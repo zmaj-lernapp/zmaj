@@ -1,0 +1,23 @@
+{
+  "_hinweis": "Kopiere diese Datei nach tts_zugang.json und trage deinen Schluessel ein. tts_zugang.json bleibt auf diesem Rechner - nicht ins APK, nicht auf GitHub.",
+
+  "dienst": "azure",
+
+  "azure": {
+    "_tarif": "WICHTIG: Die Speech-Ressource muss im Tarif S0 laufen, nicht F0. Der kostenlose Tarif traegt die Rechte zur kommerziellen Verwendung nicht.",
+    "schluessel": "HIER_DEN_SCHLUESSEL_EINTRAGEN",
+    "region": "westeurope"
+  },
+
+  "google": {
+    "_hinweis": "Nur noetig, wenn oben \"dienst\": \"google\" steht.",
+    "schluessel": "HIER_DEN_API_SCHLUESSEL_EINTRAGEN"
+  },
+
+  "_probestimmen": "Werden von  ton_bauen.py --probe  alle nebeneinander erzeugt, damit man vergleichen kann.",
+  "probestimmen": ["bs-BA-GoranNeural", "bs-BA-VesnaNeural"],
+
+  "_stimme": "Die Stimme fuer den grossen Lauf. Erst nach dem Probehoeren eintragen.",
+  "stimme": "",
+  "stimme_geschichten": ""
+}

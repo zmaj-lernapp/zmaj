@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SmartDragon - Zeichen des Studios, Maul zu, ohne Feuer
+     Erzeugt von logo_sichern.py aus web/index.html.
+     Gehoert auf dunklen Grund (#060C20). -->
+<svg viewBox="11 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SmartDragon">
+    <!-- Das Feuer liegt hinter dem Kopf, sonst käme es nicht aus dem Maul.
+         Zwölf einzelne Zungen: runder Körper, gezackte Spitze, von außen
+         rot-orange nach innen weißglühend. Jede zuckt in eigenem Takt. -->
+    <g id="vsKopf" stroke-linejoin="round">
+      <!-- Grundflaeche OHNE Unterkiefer - sie endet an der Maullinie. Waere
+           der Kiefer noch darin, staende beim Aufklappen blaues Gesicht im
+           offenen Maul. -->
+      <polygon points="248,108 256,126 250,129 152,142 142,180 92,168 58,148 44,116 66,104 22,68 76,80 56,58 16,14 64,28 110,48 158,64 190,88" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.6"/>
+      <polygon points="110,48 158,64 138,96 108,84" fill="#4F76E8" stroke="#4F76E8" stroke-width="1.1"/>
+      <polygon points="158,64 190,88 186,110 138,96" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="190,88 248,108 218,116 186,110" fill="#4F76E8" stroke="#4F76E8" stroke-width="1.1"/>
+      <polygon points="248,108 218,116 218,132 256,126" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <polygon points="218,116 186,110 170,126 218,132" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="138,96 186,110 170,126 124,116" fill="#0F2160" stroke="#0F2160" stroke-width="1.1"/>
+      <polygon points="124,116 170,126 150,142 112,130" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <polygon points="218,132 170,126 150,142" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="108,84 138,96 124,116 112,130" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="110,48 76,80 66,104 108,84" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="66,104 44,116 112,130 108,84" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <polygon points="44,116 58,148 92,168 112,130" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="112,130 92,168 142,180 150,142" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <!-- Maulhoehle: liegt unter dem Kiefer. Geschlossen sieht man nur den
+           Spalt, offen den Rachen. -->
+      <polygon points="152,142 250,129 247,155 237,170 190,179 145,176" fill="#0A1538"/>
+      <!-- Der bewegliche Unterkiefer, mit seinem Zahn und seiner Kontur -->
+      <g id="vsKiefer">
+        <polygon points="150,142 142,180 190,178 238,166 248,152" fill="#4F76E8" stroke="#4F76E8" stroke-width="1.1"/>
+        <polygon points="203,148 218,146 211,130" fill="#FFFFFF"/>
+        <polygon points="150,142 142,180 190,178 238,166 248,152" fill="none" stroke="#4F76E8" stroke-width="2.2" stroke-linejoin="round"/>
+      </g>
+      <polygon points="110,48 64,28 16,14 92,62" fill="#F5C400" stroke="#F5C400" stroke-width="1.1"/>
+      <polygon points="92,62 16,14 56,58 76,80" fill="#C99E00" stroke="#C99E00" stroke-width="1.1"/>
+      <polygon points="76,80 22,68 71,92" fill="#F5C400" stroke="#F5C400" stroke-width="1.1"/>
+      <polygon points="71,92 22,68 66,104" fill="#C99E00" stroke="#C99E00" stroke-width="1.1"/>
+      <polygon points="176,114 160,122 143,115 159,107" fill="#F5C400" stroke="#F5C400" stroke-width="1.1"/>
+      <polygon points="236,106 250,116 234,115" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <polygon points="243,128 226,131 236,150" fill="#FFFFFF"/>
+      <polygon points="196,135 180,137 188,151" fill="#FFFFFF"/>
+      <!-- Aussenkontur des Schaedels. Der Kiefer bringt seine eigene mit,
+           sonst staende beim Aufklappen eine Linie quer durchs Maul. -->
+      <polygon points="248,108 256,126 250,129 152,142 142,180 92,168 58,148 44,116 66,104 22,68 76,80 56,58 16,14 64,28 110,48 158,64 190,88"
+               fill="none" stroke="#4F76E8" stroke-width="2.2" stroke-linejoin="round"/>
+    </g>
+    <!-- textLength hält die Breite fest. Ohne das liefe der Name aus dem
+         Bild, sobald statt Nunito eine breitere Schrift einspringt. -->
+    <g>
+      <text id="vsText" x="296" y="154" font-family="Nunito, Arial, sans-serif"
+            font-size="46" font-weight="700" textLength="286" lengthAdjust="spacingAndGlyphs"
+            fill="#FFFFFF">SmartDragon</text>
+    </g>
+  </svg>

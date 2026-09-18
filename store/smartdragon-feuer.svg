@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SmartDragon - Kopf mit Flamme, Maul offen, ohne Schriftzug
+     Erzeugt von logo_sichern.py aus web/index.html.
+     Gehoert auf dunklen Grund (#060C20). -->
+<svg viewBox="8 40 590 165" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SmartDragon">
+    <!-- Das Feuer liegt hinter dem Kopf, sonst käme es nicht aus dem Maul.
+         Zwölf einzelne Zungen: runder Körper, gezackte Spitze, von außen
+         rot-orange nach innen weißglühend. Jede zuckt in eigenem Takt. -->
+    <g id="vsFeuer">
+      <g transform="translate(246,138) rotate(-26) scale(0.66,0.80)">
+        <path id="vsZ1" class="vsZunge" fill="#C2410C" opacity=".78" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(-15) scale(1.12,0.96)">
+        <path id="vsZ2" class="vsZunge" fill="#D2620E" opacity=".88" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(-6) scale(1.60,1.06)">
+        <path id="vsZ3" class="vsZunge" fill="#E2751A" opacity=".92" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(3) scale(1.40,1.00)">
+        <path id="vsZ4" class="vsZunge" fill="#D2620E" opacity=".9" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(13) scale(0.98,0.88)">
+        <path id="vsZ5" class="vsZunge" fill="#C2410C" opacity=".8" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(23) scale(0.58,0.72)">
+        <path id="vsZ6" class="vsZunge" fill="#C2410C" opacity=".72" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(-11) scale(0.86,0.52)">
+        <path id="vsZ7" class="vsZunge" fill="#EE9A16" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(-3) scale(1.24,0.58)">
+        <path id="vsZ8" class="vsZunge" fill="#F5C400" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(7) scale(0.94,0.50)">
+        <path id="vsZ9" class="vsZunge" fill="#F5C400" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(-5) scale(0.92,0.30)">
+        <path id="vsZ10" class="vsZunge" fill="#FFE682" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(2) scale(1.04,0.32)">
+        <path id="vsZ11" class="vsZunge" fill="#FFE682" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <g transform="translate(246,138) rotate(-1) scale(0.66,0.18)">
+        <path id="vsZ12" class="vsZunge" fill="#FFF8DC" d="M0,30 C10,22 22,8 44,4 C70,0 96,6 122,13 C152,20 178,26 200,30 C176,35 150,43 122,48 C94,54 66,58 42,54 C20,50 8,40 0,30 Z"/>
+      </g>
+      <circle id="vsFk1" class="vsFunke" cx="300" cy="120" r="3.2" fill="#FFE682"/>
+      <circle id="vsFk2" class="vsFunke" cx="356" cy="156" r="2.4" fill="#FFE682"/>
+      <circle id="vsFk3" class="vsFunke" cx="410" cy="126" r="2.8" fill="#FFE682"/>
+      <circle id="vsFk4" class="vsFunke" cx="338" cy="148" r="2.0" fill="#FFE682"/>
+      <circle id="vsFk5" class="vsFunke" cx="268" cy="132" r="2.2" fill="#FFE682"/>
+    </g>
+    <g id="vsKopf" stroke-linejoin="round">
+      <!-- Grundflaeche OHNE Unterkiefer - sie endet an der Maullinie. Waere
+           der Kiefer noch darin, staende beim Aufklappen blaues Gesicht im
+           offenen Maul. -->
+      <polygon points="248,108 256,126 250,129 152,142 142,180 92,168 58,148 44,116 66,104 22,68 76,80 56,58 16,14 64,28 110,48 158,64 190,88" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.6"/>
+      <polygon points="110,48 158,64 138,96 108,84" fill="#4F76E8" stroke="#4F76E8" stroke-width="1.1"/>
+      <polygon points="158,64 190,88 186,110 138,96" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="190,88 248,108 218,116 186,110" fill="#4F76E8" stroke="#4F76E8" stroke-width="1.1"/>
+      <polygon points="248,108 218,116 218,132 256,126" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <polygon points="218,116 186,110 170,126 218,132" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="138,96 186,110 170,126 124,116" fill="#0F2160" stroke="#0F2160" stroke-width="1.1"/>
+      <polygon points="124,116 170,126 150,142 112,130" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <polygon points="218,132 170,126 150,142" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="108,84 138,96 124,116 112,130" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="110,48 76,80 66,104 108,84" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="66,104 44,116 112,130 108,84" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <polygon points="44,116 58,148 92,168 112,130" fill="#2B4FC0" stroke="#2B4FC0" stroke-width="1.1"/>
+      <polygon points="112,130 92,168 142,180 150,142" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <!-- Maulhoehle: liegt unter dem Kiefer. Geschlossen sieht man nur den
+           Spalt, offen den Rachen. -->
+      <polygon points="152,142 250,129 247,155 237,170 190,179 145,176" fill="#0A1538"/>
+      <!-- Der bewegliche Unterkiefer, mit seinem Zahn und seiner Kontur -->
+      <g id="vsKiefer" transform="rotate(11 150 142)">
+        <polygon points="150,142 142,180 190,178 238,166 248,152" fill="#4F76E8" stroke="#4F76E8" stroke-width="1.1"/>
+        <polygon points="203,148 218,146 211,130" fill="#FFFFFF"/>
+        <polygon points="150,142 142,180 190,178 238,166 248,152" fill="none" stroke="#4F76E8" stroke-width="2.2" stroke-linejoin="round"/>
+      </g>
+      <polygon points="110,48 64,28 16,14 92,62" fill="#F5C400" stroke="#F5C400" stroke-width="1.1"/>
+      <polygon points="92,62 16,14 56,58 76,80" fill="#C99E00" stroke="#C99E00" stroke-width="1.1"/>
+      <polygon points="76,80 22,68 71,92" fill="#F5C400" stroke="#F5C400" stroke-width="1.1"/>
+      <polygon points="71,92 22,68 66,104" fill="#C99E00" stroke="#C99E00" stroke-width="1.1"/>
+      <polygon points="176,114 160,122 143,115 159,107" fill="#F5C400" stroke="#F5C400" stroke-width="1.1"/>
+      <polygon points="236,106 250,116 234,115" fill="#1E3FA8" stroke="#1E3FA8" stroke-width="1.1"/>
+      <polygon points="243,128 226,131 236,150" fill="#FFFFFF"/>
+      <polygon points="196,135 180,137 188,151" fill="#FFFFFF"/>
+      <!-- Aussenkontur des Schaedels. Der Kiefer bringt seine eigene mit,
+           sonst staende beim Aufklappen eine Linie quer durchs Maul. -->
+      <polygon points="248,108 256,126 250,129 152,142 142,180 92,168 58,148 44,116 66,104 22,68 76,80 56,58 16,14 64,28 110,48 158,64 190,88"
+               fill="none" stroke="#4F76E8" stroke-width="2.2" stroke-linejoin="round"/>
+    </g>
+    <g id="vsGlut"><ellipse cx="250" cy="138" rx="17" ry="10" fill="#F5C400" opacity=".85"/></g>
+    <!-- textLength hält die Breite fest. Ohne das liefe der Name aus dem
+         Bild, sobald statt Nunito eine breitere Schrift einspringt. -->
+  </svg>
