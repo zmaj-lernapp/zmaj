@@ -1,0 +1,31 @@
+MASKOTTCHEN ZMAJ
+
+zmaj.json   Lottie-Animation des Drachen. Frontansicht, sitzt auf einem
+            Bücherstapel, runde weiche Formen. Ebenen-Skelett: Körper, Kopf,
+            Arme, Beine, zwei Flügel, Schwanz, Augen, Lider, Brauen, vier
+            Münder, Tränen, Sitzplatz. Abschnitte per Marker:
+              idle   Leerlauf: atmen, blinzeln, Augen wandern, Flügel, Schwanz
+              cheer  Jubel: Sprung mit Vorspannung, Arme hoch, offener Mund
+              sad    Traurig: sackt zusammen, Kopf sinkt, Brauen, halbe Lider
+              ok     kurzer Hüpfer mit Lachen nach richtiger Antwort (einmal)
+              no     Kopfschütteln mit finsterer Braue nach falscher Antwort
+              cry    Weinen: Tränen fallen, Mund zittert, Körper bebt
+                     (bei 0 Leben)
+            Abspielen mit lottie-web (aus dem Internet); ohne Internet
+            erscheint der einfache Vektor-Drache.
+
+Erzeugt von zmaj_lottie.py im Projektordner (Thonny, F5). Formen stehen
+dort als Punktlisten, Bewegung als Keyframes. Formen in einer Ebene sind
+von unten nach oben aufgelistet, das Skript dreht sie für Lottie um.
+
+Bessere Figur einbauen:
+  - Eigene Lottie-Datei mit denselben sechs Marker-Namen als zmaj.json ablegen.
+  - ODER je Zustand eine eigene Lottie-Datei (z. B. von lottiefiles.com):
+        zmaj-idle.json  zmaj-cheer.json  zmaj-sad.json
+        zmaj-ok.json    zmaj-no.json     zmaj-cry.json
+    Jede Datei wird ganz abgespielt (idle/cheer/sad/cry in Schleife, ok/no
+    einmal). Fehlt ein Zustand, springt zmaj.json ein.
+  - Rive-Datei (zmaj.riv): Claude bindet dann den Rive-Player ein. Rive-Dateien
+    kann nur der Rive-Editor schreiben (rive.app, kostenlos im Browser).
+  - Standbilder statt Animation: zmaj-frei.png, optional zmaj-jubel.png und
+    zmaj-traurig.png (transparent). Nur genutzt, wenn keine zmaj.json da ist.

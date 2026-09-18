@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Feature-Grafik</title>
+<link href="schriften.css" rel="stylesheet">
+<script src="lottie.min.js"></script>
+<style>
+  body{margin:0;background:#222;display:flex;align-items:center;justify-content:center;height:100vh}
+  canvas{box-shadow:0 0 0 1px #555}
+  #versteck{position:absolute;left:-9999px;top:0}
+</style>
+</head>
+<body>
+<canvas id="bild" width="1024" height="500"></canvas>
+<div id="versteck"><canvas id="drache" width="420" height="404"></canvas></div>
+<script>
+/* Feature-Grafik für den Play Store, 1024 x 500.
+   Hintergrund in den Farben der App, links der Drache aus zmaj.json,
+   rechts der Schriftzug. Am Ende liegt das Bild als Daten-URL in
+   window._png und wird von aussen abgeholt. */
+const c = document.getElementById('bild');
+const g = c.getContext('2d');
+const B = 1024, H = 500;
+
+function hintergrund(){
+  const v = g.createLinearGradient(0, 0, B, H);
+  v.addColorStop(0, '#0B1330'); v.addColorStop(0.55, '#14265E'); v.addColorStop(1, '#1E3FA8');
+  g.fillStyle = v; g.fillRect(0, 0, B, H);
+
+  // Anklang an die Flagge: schräges gelbes Band, sehr zurückhaltend
+  g.save();
+  g.beginPath();
+  g.moveTo(B*0.62, -20); g.lineTo(B*1.05, -20); g.lineTo(B*1.05, H+20); g.closePath();
+  const vg = g.createLinearGradient(B*0.62, 0, B, H);
+  vg.addColorStop(0, 'rgba(255,210,63,0.16)'); vg.addColorStop(1, 'rgba(255,210,63,0.05)');
+  g.fillStyle = vg; g.fill();
+  g.restore();
+
+  // ein paar Sterne wie auf der Flagge, ganz leise
+  g.fillStyle = 'rgba(255,255,255,0.10)';
+  for(let i = 0; i < 7; i++){
+    const t = i / 6;
+    stern(B*0.60 + t*B*0.40, -30 + t*(H+60), 15);
+  }
+}
+
+function stern(mx, my, r){
+  g.beginPath();
+  for(let i = 0; i < 10; i++){
+    const a = -Math.PI/2 + i*Math.PI/5;
+    const rr = i % 2 ? r*0.42 : r;
+    const x = mx + rr*Math.cos(a), y = my + rr*Math.sin(a);
+    i ? g.lineTo(x, y) : g.moveTo(x, y);
+  }
+  g.closePath(); g.fill();
+}
+
+function schrift(){
+  // Wortmarke: Zmaj mit gelbem Punkt, wie in der App
+  g.textBaseline = 'alphabetic';
+  g.font = '800 116px Nunito, system-ui, sans-serif';
+  const x = 452, y = 250;
+  g.fillStyle = '#FFFFFF';
+  g.fillText('Zmaj', x, y);
+  const breite = g.measureText('Zmaj').width;
+  g.fillStyle = '#FFD23F';
+  g.fillText('.', x + breite, y);
+
+  g.font = '700 44px Nunito, system-ui, sans-serif';
+  g.fillStyle = '#C9D6FF';
+  g.fillText('Bosnisch lernen', x + 4, y + 62);
+
+  g.font = '600 27px Nunito, system-ui, sans-serif';
+  g.fillStyle = '#93A6DE';
+  g.fillText('43 Levels · Grammatik · Geschichten', x + 6, y + 116);
+}
+
+function fertigstellen(drache){
+  hintergrund();
+  if(drache) g.drawImage(drache, 52, 62, 372, 358);   // Drache links
+  window._drache = !!drache;
+  schrift();
+  window._png = c.toDataURL('image/png');
+  window._fertig = true;
+  document.title = 'fertig';
+}
+
+/* Der Drache wird als SVG gezeichnet (die Leinwand-Fassung von lottie
+   blieb leer) und danach in ein Bild verwandelt, das sich auf die große
+   Leinwand malen lässt. Das SVG enthält nur Formen, keine fremden
+   Dateien – deshalb funktioniert der Umweg über die Daten-URL. */
+const behaelter = document.getElementById('versteck');
+behaelter.style.width = '420px';
+behaelter.style.height = '404px';
+
+const a = lottie.loadAnimation({
+  container: behaelter,
+  renderer: 'svg',
+  loop: false, autoplay: false,
+  path: 'maskottchen/zmaj.json',
+  rendererSettings: {preserveAspectRatio: 'xMidYMid meet'}
+});
+
+a.addEventListener('DOMLoaded', () => {
+  a.goToAndStop(20, true);                 // ruhige Haltung aus dem idle-Abschnitt
+  document.fonts.ready.then(() => setTimeout(drachenBild, 400));
+});
+
+function drachenBild(){
+  const svg = behaelter.querySelector('svg');
+  if(!svg){ fertigstellen(null); return; }
+  svg.setAttribute('width', 420);
+  svg.setAttribute('height', 404);
+  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  const text = new XMLSerializer().serializeToString(svg);
+  const bild = new Image();
+  bild.onload = () => fertigstellen(bild);
+  bild.onerror = () => fertigstellen(null);
+  bild.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(text);
+}
+</script>
+</body>
+</html>

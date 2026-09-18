@@ -1,0 +1,65 @@
+DIE TONSPUR DER APP
+
+In diesem Ordner liegen die Aufnahmen und die Datei index.json, die sagt,
+welche Datei zu welchem Wort gehört. Die App liest nur index.json – sie sieht
+sich den Ordner nicht an. Deshalb braucht sie auch keinen Server, und deshalb
+funktioniert es später als Handy-App genauso.
+
+
+SO ENTSTEHEN DIE DATEIEN
+
+Es gibt auf diesem Rechner kein „python“ – nimm Thonnys Interpreter:
+
+    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" ton_bauen.py --probe
+    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" ton_bauen.py
+    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" ton_pruefen.py
+
+Der Reihe nach: 30 Probewörter anhören, dann der große Lauf, dann prüfen.
+
+Das letzte vor jedem Verpacken laufen lassen. Am PC fällt ein fehlender Ton
+nicht auf, auf dem Handy schon.
+
+
+EIGENE AUFNAHMEN – so klingt die App wie ein Muttersprachler
+
+Eine echte Aufnahme sticht die erzeugte immer aus. Ihr könnt also Stück für
+Stück ersetzen, in eurem Tempo, und zwischendurch ist nie etwas kaputt.
+
+  1. In index.json das Wort suchen und nachsehen, wie die Datei heißt,
+     zum Beispiel  w0042.mp3
+  2. Das Wort aufnehmen (Sprachmemo am Handy reicht)
+  3. Die Datei nach w0042.mp3 umbenennen und die alte überschreiben
+  4. Im Browser F5 – fertig
+
+Erlaubte Endungen: .mp3 .m4a .wav .ogg .webm. Wenn du eine andere Endung
+nimmst, muss sie auch in index.json stehen.
+
+
+WARUM DIE DATEIEN NUMMERIERT SIND UND NICHT NACH DEM WORT HEISSEN
+
+Früher stand hier, die Datei solle genau so heißen wie das bosnische Wort.
+Das funktioniert nicht, und zwar aus drei Gründen:
+
+  - Windows erlaubt kein ? und kein / im Dateinamen. "Kako se zoveš?" und
+    "Gladan sam / Gladna sam" lassen sich gar nicht anlegen.
+  - Die App schneidet Satzzeichen ab, bevor sie sucht. Eine Datei mit
+    Fragezeichen im Namen würde sie nie finden.
+  - Die Geschichten werden am Stück vorgelesen. Ihr "Name" wäre der ganze
+    Text – bis zu 523 Zeichen. Das nimmt kein Dateisystem an.
+
+Mit w0001.mp3 und index.json fällt das alles weg. Die Nummern werden einmal
+vergeben und nie wieder geändert. Kommt ein neues Wort dazu, bekommt es die
+nächste freie Nummer; ein gelöschtes hinterlässt eine Lücke, die nichts kostet.
+
+
+HERKUNFT UND LIZENZ
+
+Wer die Aufnahmen erzeugt hat, steht bei jedem Eintrag in index.json unter
+"stimme". Bei einem bezahlten Sprachdienst gehört dazu:
+
+  - die Rechnung des Monats aufheben, in dem die Dateien entstanden sind
+  - in der App und im Store-Eintrag angeben, dass die Aussprache von einer
+    KI-Stimme kommt, wenn der Anbieter das verlangt
+
+Der Zugangsschlüssel steht in tts_zugang.json im Hauptordner und bleibt dort.
+Er gehört nicht in die App, nicht ins APK und nicht auf GitHub.

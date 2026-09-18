@@ -1,0 +1,69 @@
+# Was NICHT nach GitHub darf.
+#
+# Angelegt am 19.09.2026, bevor das Projekt zum ersten Mal hochgeladen wird.
+# Die Liste ist keine Vorlage aus dem Netz, sondern stammt aus projekt_sichern.py
+# (GEHEIM, GEHEIM_MUSTER, EGAL_ORDNER, EGAL_DATEIEN) – damit es nicht zwei
+# verschiedene Wahrheiten darüber gibt, was geheim ist.
+#
+# WICHTIG: Ein einmal hochgeladener Zugangsschlüssel bleibt in der
+# Versionsgeschichte, auch wenn die Datei später gelöscht wird. Er muss dann
+# beim Anbieter zurückgezogen und neu erzeugt werden. Deshalb steht diese
+# Datei hier, BEVOR das erste Mal hochgeladen wird.
+
+
+# ---------------------------------------------------------------- geheim ---
+# Zugangsdaten. Die .BEISPIEL.json daneben bleiben drin – sie zeigen den
+# Aufbau, ohne etwas zu verraten.
+mail_zugang.json
+tts_zugang.json
+
+# Persönliches: Konten, Sitzungen, fremde Lernstände.
+sicherung_konten_*/
+codes.json
+sitzungen.json
+fortschritt_*.json
+feedback.txt
+
+# Signierschlüssel. Falls je einer neben dem Projekt landet.
+*.keystore
+*.jks
+keystore.properties
+
+
+# ---------------------------------------------- lässt sich neu herstellen ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+start.log
+
+# erzeugt inhalt_bauen.py aus vokabeln.py, grammatik.py und geschichten.py
+web/inhalt/
+
+# erzeugt seite_bauen.py
+github-seite/
+
+# nur zum Ansehen beim Entwickeln, kommt ohnehin nicht in die App
+web/_probe/
+
+
+# ------------------------------------------------------- Arbeitssicherungen ---
+# Die Kopien, die vor jeder Änderung angelegt werden. Nützlich am eigenen
+# Rechner, aber in der Versionsgeschichte überflüssig – dafür ist Git da.
+*.vor_*
+*.sicherung
+
+
+# ---------------------------------------------------------------- System ---
+desktop.ini
+Thumbs.db
+thumbs.db
+.DS_Store
+.ds_store
+
+
+# ------------------------------------------------------- bewusst DRIN sind ---
+# web/audio/   – 24 MB fertige Sprachaufnahmen. Sie neu zu erzeugen kostet
+#                Geld bei Azure, deshalb gehören sie in die Sicherung.
+# web/maskottchen/ – klein, und ohne sie zeigt die Probeseite nichts.
+# testdaten/   – erfundene Lernstände zum Ausprobieren, nichts Persönliches.
+# store/       – Symbol und Grafiken für den Play-Eintrag.

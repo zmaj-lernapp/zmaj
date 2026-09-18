@@ -1,0 +1,49 @@
+TESTDATEN - ALLES FREIGESCHALTET
+================================
+
+Zwei Sicherungen zum Durchtesten der App. Erzeugt von test_sicherung.py
+im Ordner darueber. Beide schalten alles frei:
+
+  1108 Woerter gelernt
+    43 Level bestanden
+    12 Geschichten gelesen
+  9999 Muenzen
+       alles aus dem Laden gekauft (Brille, Kopfhoerer, Hut, Krone)
+
+Der Unterschied:
+
+  zmaj-test-vollversion.json   Vollversion AN.
+                               Keine Werbung, unbegrenzte Leben.
+                               So sieht es fuer einen zahlenden Nutzer aus.
+
+  zmaj-test-alles-offen.json   Vollversion AUS.
+                               Leben, Werbung und Laden laufen normal.
+                               So sieht es fuer alle anderen aus.
+
+Man kann nicht beides gleichzeitig testen - deshalb zwei Dateien.
+
+
+SO LAEDT MAN SIE
+----------------
+In der App: Einstellungen > Sicherung > Sicherung einlesen.
+
+Am Handy muss die Datei vorher aufs Geraet, zum Beispiel ueber Drive
+oder als Anhang einer Mail an dich selbst.
+
+
+ACHTUNG
+-------
+Einlesen ERSETZT den Stand auf dem Geraet. Es wird nichts vermischt.
+
+Hast du einen echten Lernstand, sichere ihn vorher ueber denselben Weg
+und lies ihn hinterher wieder ein. Sonst ist er weg.
+
+Lerntage sind absichtlich NICHT eingetragen: eine erfundene Lernserie
+wuerde die Anzeige oben verfaelschen.
+
+
+NICHT AUSLIEFERN
+----------------
+Diese Dateien sind zum Testen. Sie gehoeren nicht in die App und nicht
+in den Store - app_bauen.py kopiert nur den Ordner web, dieser Ordner
+bleibt also von selbst draussen.

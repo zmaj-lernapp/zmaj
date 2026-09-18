@@ -1,0 +1,73 @@
+Fremde Bestandteile in Zmaj
+===========================
+
+Diese drei Dinge stammen nicht von uns. Sie liegen bewusst hier im Ordner
+und werden nicht von fremden Servern geladen – so baut die App beim Start
+keine Verbindung nach außen auf.
+
+
+1. Nunito
+---------
+Schriftart, verwendet für Überschriften und Bedienelemente.
+Urheber: Vernon Adams, Cyreal, Jacques Le Bailly
+Lizenz:  SIL Open Font License 1.1
+Quelle:  https://fonts.google.com/specimen/Nunito
+Dateien: web/fonts/nunito-*.woff2
+
+Die SIL OFL erlaubt Verwendung, Weitergabe und Einbettung, auch in
+kommerziellen Produkten. Die Schrift darf nicht einzeln verkauft werden.
+Volltext der Lizenz: https://openfontlicense.org
+
+
+2. Spectral
+-----------
+Schriftart, verwendet für die Lesetexte der Geschichten.
+Urheber: Production Type (Jean-Baptiste Levée u. a.)
+Lizenz:  SIL Open Font License 1.1
+Quelle:  https://fonts.google.com/specimen/Spectral
+Dateien: web/fonts/spectral-*.woff2
+
+
+3. lottie-web (bodymovin)
+-------------------------
+Bibliothek, die die Animation des Drachen Zmaj abspielt.
+Urheber: Hernan Torrisi
+Lizenz:  MIT
+Quelle:  https://github.com/airbnb/lottie-web
+Version: 5.12.2
+Datei:   web/lottie.min.js
+
+MIT-Lizenz (Kurzfassung): Die Software darf frei verwendet, verändert und
+weitergegeben werden, solange der Urheberrechtshinweis erhalten bleibt.
+Die Software wird ohne Gewähr bereitgestellt.
+
+  Copyright (c) 2015 Bodymovin
+
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Was die App sonst noch nutzt
+----------------------------
+Nichts. Der Rest – Server, Oberfläche, Inhalte, Maskottchen – ist
+selbst geschrieben. Es werden keine Analyse-Dienste, keine Werbenetzwerke
+und keine Schriften oder Skripte von fremden Servern eingebunden.
+
+Die Quellen für die Lerninhalte (Wörterbücher, Sprachratgeber) stehen in
+der App unter Einstellungen → Über die App.
