@@ -291,6 +291,9 @@
     width:100%; padding:14px; border-radius:var(--radius); border:1px solid var(--line);
     background:var(--bg); cursor:pointer; font:inherit; color:var(--ink); text-align:left}
   .abokarte:disabled{opacity:.45; cursor:default}
+  /* Die gewählte Karte. Sie kauft nicht - dafür gibt es den Knopf darunter. */
+  .abokarte[aria-checked="true"]{border-color:var(--primary); background:var(--primary-soft)}
+  .abokarte .haken{font-weight:800; color:var(--primary); margin-right:6px}
   .abokarte .n{font-weight:800; font-size:15px}
   .abokarte .p{font-weight:800; font-size:17px; color:var(--primary); white-space:nowrap}
   .abospar{display:inline-block; margin-top:4px; font-size:11px; font-weight:800;
@@ -1014,6 +1017,11 @@
         <button type="button" class="abolink" id="aboVerwalten"></button>
       </div>
       <div class="sd" id="setVollNote" style="font-size:12px; color:var(--muted); padding-bottom:12px"></div>
+      <!-- Widerrufsknopf nach § 356a BGB. Muss ständig verfügbar und
+           hervorgehoben sein, deshalb steht er hier und nicht versteckt. -->
+      <div class="sd" style="padding-bottom:12px">
+        <button type="button" class="abolink" id="widerrufKnopf"></button>
+      </div>
     </div>
     <div class="section">
       <h2 data-t="set.sprache"></h2>
@@ -2018,6 +2026,15 @@ function standUebernehmen(d){
   // Nur echte Datumsangaben - siehe istDatum.
   days = new Set((d.tage||[]).filter(istDatum));
   frost = new Set((d.frost||[]).filter(istDatum));
+  /* Unterschied zwischen "Feld fehlt" und "Feld ist leer":
+       fehlt  = der Stand kommt von VOR den Wegmarken, etwa aus einer alten
+                Sicherungsdatei. Dann wird weiter unten alles schon
+                Erreichte stillschweigend abgehakt - eine alte Datei
+                einzulesen ist kein Grund zu feiern.
+       leer   = neuer Stand, es wurde wirklich noch nichts gefeiert.
+     Die Dateien in testdaten/ haben 30 Lerntage und kein Feld; ohne diese
+     Unterscheidung feierte die App nach jedem Einlesen von vorn. */
+  const gefeiertFehlt = (d.gefeiert === undefined);
   gefeiert = new Set(d.gefeiert||[]);
   wann = (d.wann && typeof d.wann==='object' && !Array.isArray(d.wann)) ? d.wann : {};
   rekord = Number(d.rekord) || 0;
@@ -2026,6 +2043,12 @@ function standUebernehmen(d){
      längst hinter sich hat. Passiert genau einmal je Lernstand. */
   const gerechnet = laengsteSerie();
   if(gerechnet > rekord) rekord = gerechnet;
+  /* Siehe oben: alter Stand ohne das Feld. Was schon erreicht ist, gilt als
+     gefeiert - sonst kommt beim nächsten Lerntag eine Karte für etwas, das
+     Wochen zurückliegt. */
+  if(gefeiertFehlt && days.size){
+    MEILENSTEINE.forEach(m => { if(days.size >= m.ziel) gefeiert.add(m.id); });
+  }
   tagwerk = (d.tagwerk && typeof d.tagwerk==='object') ? d.tagwerk : {};
   muenzenGes = Number(d.muenzen_ges) || 0; muenzenAus = Number(d.muenzen_aus) || 0;
   besitz = new Set(d.besitz||[]);
@@ -2130,19 +2153,22 @@ function pruefeMeilensteine(){
      nur die größte - fünf Karten hintereinander wären kein Fest mehr,
      sondern eine Warteschlange. */
   wegmarkeLaeuft = true;
-  /* Abgehakt wird ERST beim Zeigen, nicht hier. Wer die App in den 1,4
-     Sekunden dazwischen zumacht, hätte die Wegmarke sonst für immer
-     verloren: abgehakt, aber nie gesehen. So kommt sie beim nächsten
-     Lerntag wieder. */
+  /* SOFORT abhaken und speichern, nicht erst beim Zeigen der Karte.
+     Vorher stand das unten in zeigeWegmarke - der Gedanke war, dass eine
+     Wegmarke nicht verlorengeht, wenn die App in den 1,4 Sekunden bis zur
+     Karte zugemacht wird. Die Kehrseite war schlimmer: dann kam sie am
+     nächsten Tag wieder. Ajdin hat das an zwei Tagen gesehen.
+     Abgewogen: eine verpasste Wegmarke kostet einen Glückwunsch, und die
+     nächste kommt trotzdem. Eine wiederholte lässt die App kaputt aussehen. */
+  faellig.forEach(m => gefeiert.add(m.id));
+  saveProgress();
   /* Erst der Ergebnisschirm, dann die Karte. Die Fanfare läuft 0,7 s, der
      Ton für die Tagesaufgabe kommt bei 0,85 s - die Wegmarke ist die größte
      Sache und kommt zuletzt. */
-  setTimeout(()=> zeigeWegmarke(faellig[faellig.length - 1], faellig), 1400);
+  setTimeout(()=> zeigeWegmarke(faellig[faellig.length - 1]), 1400);
 }
 
-function zeigeWegmarke(m, alle){
-  (alle || [m]).forEach(x => gefeiert.add(x.id));
-  saveProgress();
+function zeigeWegmarke(m){
   const kasten = document.createElement('div');
   kasten.className = 'nachfrage';
   kasten.innerHTML =
@@ -2939,8 +2965,13 @@ function vollZeileZeigen(){
   $('setVollStand').textContent = an ? t('voll.aktiv')
     : (aboLaeuft ? t('voll.laedt') : (aboStoerung ? t('voll.kein_store') : ''));
   const v = $('setVollVerwalten');
-  v.style.display = an ? '' : 'none';
+  /* Auch bei einer Störung zeigen: wer zahlt, aber gerade keine Antwort vom
+     Play Store bekommt, fände sonst keinen Kündigungsweg - und einen in der
+     App verlangt Google. */
+  v.style.display = (an || aboStoerung) ? '' : 'none';
   $('aboVerwalten').textContent = t('voll.verwalten');
+  const w = $('widerrufKnopf');
+  if(w) w.textContent = t('set.widerruf_knopf');
 }
 /* Fragt Google. Ändert den gemerkten Stand nur bei einer echten Antwort. */
 async function vollAbgleichen(){
@@ -2976,8 +3007,19 @@ async function vollWahlZeigen(){
   if(monat.micros && jahr.micros){
     sparen = Math.round(100 - (jahr.micros / 12) / monat.micros * 100);
   }
+  /* Die Karte WAEHLT nur aus. Gekauft wird mit dem Knopf darunter, und der
+     heißt "Zahlungspflichtig abonnieren".
+
+     Das ist kein Schönheitsfehler: § 312j Abs. 3 BGB verlangt für eine
+     zahlungspflichtige Bestellung genau diese oder eine gleich eindeutige
+     Beschriftung, und nach EuGH C-249/21 zählt allein der Text auf der
+     Schaltfläche - nicht, was daneben oder darüber steht. Das OLG
+     Düsseldorf hat am 08.02.2024 entschieden, dass "Abonnieren" oder
+     "Weiter zur Zahlung" dafür nicht reichen. Eine Karte mit "Jährlich" und
+     einem Preis erst recht nicht. */
   const karte = (p, name, abzeichen) =>
-    '<button type="button" class="abokarte" data-plan="'+esc(p.plan)+'"'+(p.preis?'':' disabled')+'>'+
+    '<button type="button" class="abokarte" role="radio" aria-checked="false"'+
+      ' data-plan="'+esc(p.plan)+'"'+(p.preis?'':' disabled')+'>'+
       '<span><span class="n">'+esc(name)+'</span>'+
         (abzeichen ? '<br><span class="abospar">'+esc(abzeichen)+'</span>' : '')+'</span>'+
       '<span class="p">'+esc(p.preis || '–')+'</span>'+
@@ -2988,25 +3030,38 @@ async function vollWahlZeigen(){
     '<div class="nachfragebox">' +
       '<h3>'+esc(t('voll.wahl_titel'))+'</h3>' +
       '<div class="txt">'+esc(t('voll.wahl_text'))+'</div>' +
-      '<div class="abowahl">' +
+      '<div class="abowahl" role="radiogroup">' +
         karte(monat, t('voll.monat'), '') +
         karte(jahr, t('voll.jahr'), sparen > 0 ? tp('voll.sparen', sparen) : '') +
       '</div>' +
       '<div class="abohinweis">'+esc(t('voll.hinweis'))+'</div>' +
+      '<button class="btn know" id="aboKauf"></button>' +
       '<button class="btn ghost" id="aboZu"></button>' +
     '</div>';
+  kasten.querySelector('#aboKauf').textContent = t('voll.kaufen');
   kasten.querySelector('#aboZu').textContent = t('btn.abbrechen');
   document.body.appendChild(kasten);
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;                       // damit die Zurück-Taste sie schließt
   kasten.querySelector('#aboZu').addEventListener('click', zu);
   kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
-  kasten.querySelectorAll('.abokarte').forEach(b => b.addEventListener('click', async ()=>{
-    if(aboLaeuft) return;                     // Sperre gegen Doppeltipp
+  /* Vorausgewählt ist das Jahr - das günstigere. Gibt es dafür keinen Preis,
+     nimmt die Auswahl, was da ist. */
+  const karten = [...kasten.querySelectorAll('.abokarte')];
+  let gewaehlt = null;
+  const waehle = b => {
+    if(!b || b.disabled) return;
+    gewaehlt = b;
+    karten.forEach(x => x.setAttribute('aria-checked', x === b));
+  };
+  waehle(karten.find(b => b.dataset.plan === 'jahr' && !b.disabled) || karten.find(b => !b.disabled));
+  karten.forEach(b => b.addEventListener('click', ()=> waehle(b)));
+  kasten.querySelector('#aboKauf').addEventListener('click', async ()=>{
+    if(aboLaeuft || !gewaehlt) return;         // Sperre gegen Doppeltipp
     aboLaeuft = true;
-    kasten.querySelectorAll('.abokarte').forEach(x => x.disabled = true);
+    kasten.querySelector('#aboKauf').disabled = true;
     let r = null;
-    try{ r = await P.kaufen({plan: b.dataset.plan}); }catch(e){}
+    try{ r = await P.kaufen({plan: gewaehlt.dataset.plan}); }catch(e){}
     aboLaeuft = false;
     zu();
     /* Ob gekauft wurde, sagt nicht dieser Aufruf, sondern die Meldung aus
@@ -3014,7 +3069,7 @@ async function vollWahlZeigen(){
        wegwischt, ohne zu entscheiden. */
     if(!r || !r.ok) vollMeldung(t('voll.fehler'));
     vollZeileZeigen();
-  }));
+  });
 }
 /* Meldungen aus dem Plugin. Einmal beim Laden anhängen. */
 (function aboHorchen(){
@@ -3033,6 +3088,48 @@ async function vollWahlZeigen(){
      "wird geladen", und sobald Google bezahlt meldet, springt sie um. */
   P.addListener('kaufWartet', ()=>{ aboLaeuft = true; vollZeileZeigen(); });
 })();
+/* ---- Widerruf ----
+   § 356a BGB, in Kraft seit dem 19.06.2026: eine ständig verfügbare,
+   hervorgehobene Schaltfläche, dahinter eine zweite zum Bestätigen. Ob
+   Ajdin gegenüber dem Käufer überhaupt der Unternehmer ist oder ob das
+   Google Commerce Limited ist, ist umstritten - er hat sich für die
+   sichere Seite entschieden.
+
+   Ohne Server kann die App keine Erklärung entgegennehmen. Also derselbe
+   Weg wie beim Feedback: die App öffnet das Mailprogramm mit fertiger
+   Nachricht, abgeschickt wird sie vom Nutzer, und Ajdins Antwortmail ist
+   die Eingangsbestätigung auf einem dauerhaften Datenträger. */
+function widerrufZeigen(){
+  const kasten = document.createElement('div');
+  kasten.className = 'nachfrage';
+  kasten.innerHTML =
+    '<div class="nachfragebox">' +
+      '<h3></h3><div class="txt"></div>' +
+      '<button class="btn know" id="widOk"></button>' +
+      '<button class="btn ghost" id="widZu"></button>' +
+    '</div>';
+  kasten.querySelector('h3').textContent = t('set.widerruf_knopf');
+  kasten.querySelector('.txt').textContent = t('set.widerruf_text');
+  kasten.querySelector('#widOk').textContent = t('set.widerruf_bestaetigen');
+  kasten.querySelector('#widZu').textContent = t('btn.abbrechen');
+  document.body.appendChild(kasten);
+  const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
+  frageSchliessen = zu;
+  kasten.querySelector('#widZu').addEventListener('click', zu);
+  kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
+  kasten.querySelector('#widOk').addEventListener('click', ()=>{
+    const betreff = 'Zmaj – ' + t('set.widerruf_knopf');
+    const rumpf = t('set.widerruf_text') + '\n\n--\n'
+                + (SPRACHE||'') + ' · ' + new Date().toISOString().slice(0,10);
+    try{ location.href = 'mailto:' + ZMAJ_MAIL
+          + '?subject=' + encodeURIComponent(betreff)
+          + '&body=' + encodeURIComponent(rumpf); }catch(e){}
+    zu();
+    vollMeldung(t('set.feedback_mail', {mail: ZMAJ_MAIL}));
+  });
+}
+$('widerrufKnopf').addEventListener('click', widerrufZeigen);
+
 $('swVoll').addEventListener('click', ()=>{
   if(premium){ aboSeiteOeffnen(); return; }   // aus geht nur bei Google
   vollWahlZeigen();

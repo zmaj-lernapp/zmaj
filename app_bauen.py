@@ -18,6 +18,7 @@ Nicht mitkopiert werden: die Probeaufnahmen, die Sicherungen von index.html
 und die LIESMICH-Dateien. Die gehören nicht in die App.
 """
 import io
+import re
 import os
 import shutil
 import subprocess
@@ -117,11 +118,43 @@ def capacitor():
     print("   " + os.path.join(HUELLE, "android"))
 
 
+def versionsnummer_hochzaehlen():
+    """Zählt versionCode in app/build.gradle um eins hoch.
+
+    Google Play nimmt jede Nummer nur EINMAL an – auch eine, die zu einem
+    zurückgezogenen Paket gehörte. Wer das vergisst, merkt es erst beim
+    Hochladen, und dann ist die Fassung schon gebaut.
+
+    Hochgezählt wird bei jedem Bau, nicht nur vor dem Hochladen. Das lässt
+    die Zahl schnell wachsen, aber das ist egal: Play verlangt nur, dass sie
+    steigt, und bis 2.100.000.000 ist Platz. versionName bleibt von Hand –
+    das ist die Nummer, die der Nutzer sieht.
+    """
+    pfad = os.path.join(HUELLE, "android", "app", "build.gradle")
+    if not os.path.isfile(pfad):
+        print("  build.gradle nicht gefunden – versionCode bleibt, wie er ist.")
+        return
+    text = io.open(pfad, encoding="utf-8", newline="").read()
+    treffer = re.search(r"(versionCode\s+)(\d+)", text)
+    if not treffer:
+        print("  Kein versionCode in build.gradle gefunden.")
+        return
+    alt = int(treffer.group(2))
+    neu = alt + 1
+    text = text[:treffer.start()] + treffer.group(1) + str(neu) + text[treffer.end():]
+    io.open(pfad, "w", encoding="utf-8", newline="").write(text)
+    name = re.search(r'versionName\s+"([^"]+)"', text)
+    print("  versionCode %d -> %d   (versionName %s, die bleibt von Hand)"
+          % (alt, neu, name.group(1) if name else "?"))
+
+
 def main():
     print("Tonspur prüfen ...")
     pruefen()
     print("\nInhalt kopieren ...")
     kopieren()
+    print("\nVersionsnummer ...")
+    versionsnummer_hochzaehlen()
     capacitor()
     # Nach dem Abgleich, nicht davor: `cap sync` kann node_modules anfassen.
     plugins_flicken()
