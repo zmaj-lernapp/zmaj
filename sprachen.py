@@ -50,8 +50,11 @@ GRUNDSPRACHE = "de"
 #
 # Solange hier eckige Klammern stehen, zeigt die App einen Warnhinweis an.
 ANBIETER = (
-    "Ajdin Hasic<br>"
-    "Gießenerstraße 17<br>"
+    # Schreibweise wie im Play-Console-Konto und im Ausweis. Bei einer
+    # Identitätsprüfung vergleicht Google damit - und die Anschrift muss
+    # ladungsfähig sein, also genau so, wie die Post sie kennt.
+    "Ajdin Hasić<br>"
+    "Gießener Str. 17<br>"
     "35435 Wettenberg<br>"
     "zmaj.lernapp@gmail.com"
 )
