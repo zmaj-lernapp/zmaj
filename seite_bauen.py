@@ -34,6 +34,10 @@ import sprachen
 SEITEN = [
     ("datenschutz.html", "set.datenschutz", "set.datenschutz_text"),
     ("nutzungsbedingungen.html", "set.agb", "set.agb_text"),
+    # Pflicht nach § 5 DDG, seit es das Gewerbe gibt. Die Angaben stehen zwar
+    # auch INNEN in den beiden Texten darüber – das genügt nicht: ein
+    # Impressum muss eigens erkennbar und unmittelbar erreichbar sein.
+    ("impressum.html", "set.impressum", "set.impressum_text"),
 ]
 
 STIL = """
@@ -110,6 +114,7 @@ def fuss(mit_skript=True, hier=None):
     von dort weder zum Impressum noch zu den anderen Texten."""
     anbieter = sprachen.ANBIETER.replace("<br>", " · ")
     andere = [(d, n) for d, n in (("index.html", "Start"),
+                                  ("impressum.html", "Impressum"),
                                   ("datenschutz.html", "Datenschutz"),
                                   ("nutzungsbedingungen.html", "Nutzungsbedingungen"),
                                   ("konto-loeschen.html", "Daten löschen"))
@@ -248,16 +253,20 @@ def baue_startseite():
         '<h1>%s</h1>\n<div class="karte">\n<p>%s</p>\n'
         '<p><a class="knopf" href="datenschutz.html">%s</a>'
         '<a class="knopf" href="nutzungsbedingungen.html">%s</a>'
-        '<a class="knopf" href="konto-loeschen.html">%s</a></p>\n'
+        '<a class="knopf" href="konto-loeschen.html">%s</a>'
+        '<a class="knopf" href="impressum.html">%s</a></p>\n'
         '<p class="recht">%s: <a href="mailto:%s">%s</a></p>\n'
         '</div>\n'
         '<div class="karte" style="margin-top:16px" lang="en">\n<p>%s</p>\n'
         '<p><a class="knopf" href="datenschutz.html">%s</a>'
         '<a class="knopf" href="nutzungsbedingungen.html">%s</a>'
-        '<a class="knopf" href="konto-loeschen.html">%s</a></p>\n</div>\n'
+        '<a class="knopf" href="konto-loeschen.html">%s</a>'
+        '<a class="knopf" href="impressum.html">%s</a></p>\n</div>\n'
     ) % (d[0], d[1], d[2], d[3], LOESCHEN["de"]["titel"],
+         sprachen.texte("de")["set.impressum"],
          d[4], post_adresse(), post_adresse(),
-         e[1], e[2], e[3], LOESCHEN["en"]["titel"])
+         e[1], e[2], e[3], LOESCHEN["en"]["titel"],
+         sprachen.texte("en")["set.impressum"])
     schreibe("index.html", kopf("Zmaj – " + d[0]) + inhalt + fuss(mit_skript=False, hier="index.html"))
 
 
