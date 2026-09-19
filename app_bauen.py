@@ -9,8 +9,12 @@ Die Android-App liegt in einem eigenen Ordner neben diesem Projekt:
 Warum getrennt? Weil dieser Ordner „Bosnisch Lernapp" heißt – mit Leerzeichen.
 Android-Builds stolpern darüber. Der Nachbarordner hat keins.
 
-Dieses Skript kopiert web/ dorthin nach www/ und ruft Capacitor auf, damit
-die Dateien im Android-Projekt landen. Danach in Android Studio bauen.
+Dieses Skript kopiert web/ dorthin nach www/, ruft Capacitor auf und baut
+das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
+
+    app_bauen.py                 Abgleich + Debug-Paket zum Aufspielen aufs Handy
+    app_bauen.py --aab           Abgleich + signiertes Paket für Google Play
+    app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen
 
     "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" app_bauen.py
 
@@ -28,6 +32,10 @@ HIER = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.join(HIER, "web")
 HUELLE = os.path.join(os.path.dirname(HIER), "zmaj-android")
 WWW = os.path.join(HUELLE, "www")
+ANDROID = os.path.join(HUELLE, "android")
+# Hier stehen Pfad und Passwoerter des Freigabeschluessels. Die Datei gehoert
+# NICHT in eine Sicherung, die den Rechner verlaesst.
+SIGNATUR = os.path.join(ANDROID, "keystore.properties")
 
 # Was in der App nichts verloren hat
 RAUS_ORDNER = {"_probe"}
@@ -114,8 +122,83 @@ def capacitor():
     e = subprocess.run("npx cap sync android", cwd=HUELLE, shell=True)
     if e.returncode != 0:
         raise SystemExit("Capacitor meldet einen Fehler – siehe oben.")
-    print("\nFertig. Jetzt in Android Studio öffnen:")
-    print("   " + os.path.join(HUELLE, "android"))
+
+
+JAVA_ORTE = [
+    r"C:\Program Files\Android\Android Studio\jbr",
+    r"C:\Program Files\Android\Android Studio\jre",
+    r"C:\Program Files\Java",
+]
+
+
+def java_finden():
+    """Sucht ein Java für Gradle.
+
+    Gradle bringt keins mit und findet von sich aus keins: JAVA_HOME ist auf
+    diesem Rechner nicht gesetzt, und `java` steht nicht im Pfad. Android
+    Studio bringt aber eins mit, und genau das ist auch das richtige – es
+    passt zur Android-Werkzeugkette.
+    """
+    if os.environ.get("JAVA_HOME") and os.path.isfile(
+            os.path.join(os.environ["JAVA_HOME"], "bin", "java.exe")):
+        return os.environ["JAVA_HOME"]
+    for ort in JAVA_ORTE:
+        if os.path.isfile(os.path.join(ort, "bin", "java.exe")):
+            return ort
+        if os.path.isdir(ort):                      # Program Files\Java: Unterordner
+            for name in sorted(os.listdir(ort), reverse=True):
+                tief = os.path.join(ort, name)
+                if os.path.isfile(os.path.join(tief, "bin", "java.exe")):
+                    return tief
+    return None
+
+
+def gradle(ziel, was):
+    """Ruft Gradle auf und gibt zurück, ob es geklappt hat."""
+    heim = java_finden()
+    if not heim:
+        print("\nKein Java gefunden. Gradle braucht eins – normalerweise das")
+        print("von Android Studio unter:")
+        print("   " + JAVA_ORTE[0])
+        print("Ohne das geht der Bau nur in Android Studio selbst.")
+        return None
+    umgebung = dict(os.environ, JAVA_HOME=heim)
+    print("\n%s ...   (Java: %s)" % (was, heim))
+    e = subprocess.run(os.path.join(ANDROID, "gradlew.bat") + " " + ziel,
+                       cwd=ANDROID, shell=True, env=umgebung)
+    if e.returncode != 0:
+        raise SystemExit("Gradle meldet einen Fehler – siehe oben.")
+    return True
+
+
+def zeigen(pfad, was):
+    if os.path.isfile(pfad):
+        print("\n%s: %s" % (was, pfad))
+        print("   %.1f MB" % (os.path.getsize(pfad) / 1048576.0))
+    else:
+        print("\n%s wurde nicht gefunden: %s" % (was, pfad))
+
+
+def debug_apk():
+    if gradle("assembleDebug", "Debug-Paket bauen"):
+        zeigen(os.path.join(ANDROID, "app", "build", "outputs", "apk",
+                            "debug", "app-debug.apk"), "APK fürs Handy")
+
+
+def freigabe_aab():
+    """Baut das signierte Paket für Google Play."""
+    if not os.path.isfile(SIGNATUR):
+        print("\nEs fehlt die Datei mit den Zugangsdaten zum Schlüssel:")
+        print("   " + SIGNATUR)
+        print("Ohne sie wäre das Paket unsigniert, und Play nimmt es nicht an.")
+        print("Vorlage: keystore.properties.beispiel im selben Ordner.")
+        raise SystemExit(1)
+    if gradle("bundleRelease", "Signiertes Paket für Play bauen"):
+        zeigen(os.path.join(ANDROID, "app", "build", "outputs", "bundle",
+                            "release", "app-release.aab"), "AAB für Play")
+        print("\nHochladen in der Play Console unter Release > Testen oder Produktion.")
+        print("Google signiert beim Hochladen noch einmal selbst (Play App Signing);")
+        print("dein Schlüssel ist der Upload-Schlüssel.")
 
 
 def versionsnummer_hochzaehlen():
@@ -149,6 +232,8 @@ def versionsnummer_hochzaehlen():
 
 
 def main():
+    aab = "--aab" in sys.argv
+    nur = "--nur-abgleich" in sys.argv
     print("Tonspur prüfen ...")
     pruefen()
     print("\nInhalt kopieren ...")
@@ -158,6 +243,14 @@ def main():
     capacitor()
     # Nach dem Abgleich, nicht davor: `cap sync` kann node_modules anfassen.
     plugins_flicken()
+    if nur:
+        print("\nAbgeglichen. Gebaut wird nichts (--nur-abgleich).")
+        print("   " + ANDROID)
+        return
+    if aab:
+        freigabe_aab()
+    else:
+        debug_apk()
 
 
 if __name__ == "__main__":

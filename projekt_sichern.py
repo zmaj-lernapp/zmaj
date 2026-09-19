@@ -47,9 +47,13 @@ GEHEIM = [
     "feedback.txt",                     # was Nutzer geschrieben haben
     "codes.json",
     "sitzungen.json",
+    "keystore.properties",              # Passwoerter zum Freigabeschluessel
 ]
-# Dateien, auf die dieses Muster passt, sind ebenfalls persönlich
-GEHEIM_MUSTER = ("fortschritt_",)
+# Dateien, auf die dieses Muster passt, sind ebenfalls persönlich.
+# .jks und .keystore: der Freigabeschluessel von Zmaj. Er MUSS gesichert
+# werden - geht er verloren, laesst sich die App nie wieder aktualisieren -
+# aber eben in die zweite Datei, die den Rechner nicht verlaesst.
+GEHEIM_MUSTER = ("fortschritt_", ".jks", ".keystore")
 
 # ------------------------------------------------------------- weglassen ---
 # Weder hier noch dort – lässt sich jederzeit neu herstellen.
