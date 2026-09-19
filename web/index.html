@@ -3435,6 +3435,17 @@ function altenFortschrittUmschreiben(){
     if(gueltig.has(x)) neu.add(x);
     else if(nachLevel.has(x)){ neu.add(nachLevel.get(x)); geaendert = true; }
     else if(nachWort.has(x)){ nachWort.get(x).forEach(id => neu.add(id)); geaendert = true; }
+    else if(nachWort.has(x.slice(x.lastIndexOf(':') + 1))){
+      /* Die Kennung eines Wortes ist "deutsch:bosnisch" (start.py). Wird die
+         deutsche Seite berichtigt - "Notarzt" war für "hitna pomoć" falsch,
+         das ist der Rettungsdienst -, ändert sich damit die Kennung, und ein
+         gelerntes Wort gälte plötzlich wieder als ungelernt. Der bosnische
+         Teil bleibt. Also am LETZTEN Doppelpunkt trennen: zehn deutsche
+         Einträge enthalten selbst einen ("Anrede: Bruder!"), kein einziger
+         bosnischer. Geprüft über alle 1108 Wörter. */
+      nachWort.get(x.slice(x.lastIndexOf(':') + 1)).forEach(id => neu.add(id));
+      geaendert = true;
+    }
     else neu.add(x);          // unbekannt, zum Beispiel ein gelöschtes Wort
   });
   if(geaendert) known = neu;
