@@ -27,6 +27,12 @@ Kopieren. Die Zeichenzahlen stehen dabei, damit du nichts kürzen musst.
 
 ---
 
+**Geviertstrich in den Kurzbeschreibungen.** Play warnt sonst: „Muss
+Geviertstriche statt doppelter Bindestriche oder Halbgeviertstriche
+enthalten." Die App wird dann nicht beworben. Deshalb steht in allen acht
+Kurzbeschreibungen ein — und kein –. In den langen Beschreibungen ist der
+Halbgeviertstrich weiterhin richtig, dort prueft Play das nicht.
+
 ## Was Google Play abfragt
 
 Der Store-Eintrag selbst:
@@ -199,7 +205,7 @@ Zmaj – Bosnisch lernen
 **Kurzbeschreibung** (73 Zeichen)
 
 ```
-Bosnisch lernen für Familie, Alltag und Amt – 43 Levels in kurzen Übungen
+Bosnisch lernen für Familie, Alltag und Amt — 43 Levels in kurzen Übungen
 ```
 
 **Vollständige Beschreibung** (3505 von 4000 Zeichen)
@@ -307,7 +313,7 @@ Zmaj – Learn Bosnian
 **Kurzbeschreibung** (76 Zeichen)
 
 ```
-Learn Bosnian for family, daily life and paperwork – 43 levels, short drills
+Learn Bosnian for family, daily life and paperwork — 43 levels, short drills
 ```
 
 **Vollständige Beschreibung** (3427 von 4000 Zeichen)
@@ -411,7 +417,7 @@ Zmaj – Boşnakça öğren
 **Kurzbeschreibung** (78 Zeichen)
 
 ```
-Aile, günlük hayat ve resmî işler için Boşnakça – 43 seviye, kısa alıştırmalar
+Aile, günlük hayat ve resmî işler için Boşnakça — 43 seviye, kısa alıştırmalar
 ```
 
 **Vollständige Beschreibung** (3409 von 4000 Zeichen)
@@ -515,7 +521,7 @@ Zmaj – Lär dig bosniska
 **Kurzbeschreibung** (76 Zeichen)
 
 ```
-Lär dig bosniska för familj, vardag och myndigheter – 43 nivåer i korta pass
+Lär dig bosniska för familj, vardag och myndigheter — 43 nivåer i korta pass
 ```
 
 **Vollständige Beschreibung** (3217 von 4000 Zeichen)
@@ -619,7 +625,7 @@ Zmaj – Bosnisch leren
 **Kurzbeschreibung** (74 Zeichen)
 
 ```
-Bosnisch leren voor familie, dagelijks leven en overheid – 43 korte levels
+Bosnisch leren voor familie, dagelijks leven en overheid — 43 korte levels
 ```
 
 **Vollständige Beschreibung** (3468 von 4000 Zeichen)
@@ -723,7 +729,7 @@ Zmaj – Lær bosnisk
 **Kurzbeschreibung** (75 Zeichen)
 
 ```
-Lær bosnisk for familie, hverdag og det offentlige – 43 nivåer, korte økter
+Lær bosnisk for familie, hverdag og det offentlige — 43 nivåer, korte økter
 ```
 
 **Vollständige Beschreibung** (3250 von 4000 Zeichen)
@@ -827,7 +833,7 @@ Zmaj – Lær bosnisk
 **Kurzbeschreibung** (67 Zeichen)
 
 ```
-Lær bosnisk til familie, hverdag og myndigheder – 43 korte niveauer
+Lær bosnisk til familie, hverdag og myndigheder — 43 korte niveauer
 ```
 
 **Vollständige Beschreibung** (3366 von 4000 Zeichen)
@@ -931,7 +937,7 @@ Zmaj – Apprendre le bosnien
 **Kurzbeschreibung** (73 Zeichen)
 
 ```
-Le bosnien pour la famille, le quotidien et l'administration – 43 niveaux
+Le bosnien pour la famille, le quotidien et l'administration — 43 niveaux
 ```
 
 **Vollständige Beschreibung** (3749 von 4000 Zeichen)
