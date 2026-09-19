@@ -1335,7 +1335,7 @@ KATEGORIEN = [
         {"de": "Rezept",                    "bs": "recept"},
         {"de": "Untersuchung",              "bs": "pregled"},
         {"de": "Termin beim Arzt",          "bs": "termin kod doktora"},
-        {"de": "Notaufnahme / Notarzt",     "bs": "hitni prijem / hitna pomoć"},
+        {"de": "Notaufnahme / Rettungsdienst", "bs": "hitni prijem / hitna pomoć"},
         {"de": "Hausarzt",                  "bs": "porodični ljekar"},
         {"de": "Facharzt",                  "bs": "specijalista"},
         {"de": "Zahnarzt",                  "bs": "zubar"},
