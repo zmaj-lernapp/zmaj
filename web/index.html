@@ -2949,6 +2949,11 @@ function vollversionGemerkt(){
 }
 let aboLaeuft = false;        // gerade eine Abfrage oder ein Kauf unterwegs
 let aboStoerung = false;      // Play Store hat zuletzt nicht geantwortet
+/* Google hat geantwortet, kennt die Produkte aber nicht. Das ist etwas
+   anderes als eine Stoerung: hier ist die Antwort eindeutig, es gibt gerade
+   nichts zu kaufen. Solange die Abos in der Play Console nicht angelegt und
+   freigeschaltet sind, ist das der Normalfall. */
+let aboProdukteFehlen = false;
 
 function vollMeldung(text){
   const el = $('setVollNote'); if(!el) return;
@@ -2957,6 +2962,11 @@ function vollMeldung(text){
 function vollZeileZeigen(){
   const box = $('setVollBox'); if(!box) return;
   const an = premium;
+  /* Zeigen, wenn es etwas zu kaufen gibt ODER die Vollversion schon laeuft.
+     Das "kaufbar" muss hier noch einmal geprueft werden: diese Funktion
+     laeuft auch am PC, wo es das Plugin gar nicht gibt - ohne die Pruefung
+     wuerde der Block dort auftauchen. */
+  box.style.display = ((!!aboPlugin()) && (an || !aboProdukteFehlen)) ? '' : 'none';
   const s = $('swVoll');
   s.setAttribute('aria-checked', an);
   /* aria-disabled statt disabled: ein disabled-Knopf nimmt keinen Tipp mehr
@@ -2988,6 +2998,21 @@ async function vollAbgleichen(){
   }
   vollZeileZeigen();
 }
+/* Fragt einmal nach, ob es ueberhaupt etwas zu kaufen gibt.
+
+   Ohne diese Abfrage stuende der Block da und meldete erst beim Antippen
+   einen Fehler. Sie kostet nichts Sichtbares: Play Billing beantwortet sie
+   vom Geraet aus, und wenn sie schiefgeht, bleibt alles, wie es war -
+   lieber ein Block zu viel als einer zu wenig. */
+async function produkteNachsehen(){
+  const P = aboPlugin(); if(!P || premium) return;
+  let d = null;
+  try{ d = await P.preise(); }catch(e){ return; }
+  if(!d || !d.ok) return;                      // keine Antwort: nichts aendern
+  aboProdukteFehlen = !d.plaene || !d.plaene.length;
+  vollZeileZeigen();
+}
+
 /* Die Auswahl Monat oder Jahr. Preise und Zeiträume kommen von Google. */
 async function vollWahlZeigen(){
   const P = aboPlugin(); if(!P || aboLaeuft) return;
@@ -2995,10 +3020,15 @@ async function vollWahlZeigen(){
   let d = null;
   try{ d = await P.preise(); }catch(e){}
   aboLaeuft = false; vollZeileZeigen();
-  if(!d || !d.ok || !d.plaene || !d.plaene.length){
+  if(d && d.ok && (!d.plaene || !d.plaene.length)){
+    /* Eindeutige Antwort: es gibt nichts zu kaufen. Keine Fehlermeldung -
+       der Block geht einfach weg. */
+    aboProdukteFehlen = true; aboStoerung = false; vollZeileZeigen(); return;
+  }
+  if(!d || !d.ok){
     aboStoerung = true; vollZeileZeigen(); vollMeldung(t('voll.fehler')); return;
   }
-  aboStoerung = false;
+  aboStoerung = false; aboProdukteFehlen = false;
   const hol = id => d.plaene.find(p => p.plan === id) || {};
   const monat = hol('monat'), jahr = hol('jahr');
   /* Die Ersparnis rechnet die App aus, damit sie in jeder Währung stimmt.
@@ -3489,7 +3519,7 @@ function showSettings(){
      dem Abo-Plugin, nicht im Browser am PC. */
   const kaufbar = !!aboPlugin();
   $('setVollBox').style.display = kaufbar ? '' : 'none';
-  if(kaufbar){ vollMeldung(''); vollZeileZeigen(); vollAbgleichen(); }
+  if(kaufbar){ vollMeldung(''); vollZeileZeigen(); vollAbgleichen(); produkteNachsehen(); }
   /* Wer die Vollversion hat, sieht gar keine Werbung mehr - dann ist auch
      die Zeile zur Werbe-Einwilligung gegenstandslos. */
   const zeigen = !unlimited()
