@@ -175,10 +175,17 @@ Der Grund, sie aus den Beschreibungen zu nehmen, ist weggefallen:
 - Die App fragt selbst nach der Erlaubnis, bevor die erste Sprechaufgabe
   kommt (`mikroVorbereiten()` in `web/index.html`).
 
-**Offen:** Die acht Sätze stehen weiterhin unten unter „Parkplatz: die
-Sprechaufgabe“ und sind noch **nicht** in die Beschreibungen zurückgesetzt.
-Das ist reine Textarbeit – tu es, bevor du den Store-Eintrag ausfüllst,
-sonst verschenkst du das beste Verkaufsargument der App.
+**Erledigt am 19.09.2026:** Der Absatz steht wieder in allen acht
+Beschreibungen, hinter dem Absatz über die Aussprache.
+
+Er ist dabei **neu geschrieben** worden, nicht bloß zurückkopiert. Der alte
+Wortlaut sagte „du hörst das Wort und sprichst es ins Mikrofon“ – die App
+zeigt das Wort aber geschrieben an, vorgelesen wird es nur, wenn du auf
+„Vorsprechen“ tippst. Das ist derselbe Fehlertyp wie „Satz“ statt „Wort“ bei
+der Höraufgabe eine Ecke weiter oben: eine Beschreibung, die eine Kleinigkeit
+anders darstellt, als die App es tut. Der neue Absatz nennt außerdem, dass die
+Spracherkennung die **des Geräts** ist – das passt zu dem, was im
+Data-Safety-Formular steht.
 
 ---
 
@@ -195,7 +202,7 @@ Zmaj – Bosnisch lernen
 Bosnisch lernen für Familie, Alltag und Amt – 43 Levels in kurzen Übungen
 ```
 
-**Vollständige Beschreibung** (3205 von 4000 Zeichen)
+**Vollständige Beschreibung** (3505 von 4000 Zeichen)
 
 ```
 Du hast Familie in Bosnien, bosnische Wurzeln oder Schwiegereltern, mit denen du endlich selbst reden willst, ohne dass jemand übersetzt? Zmaj bringt dir Bosnisch bei: 43 Levels, kurze Übungen, vom Alltag bis zum Arbeitsvertrag.
@@ -223,6 +230,8 @@ WIE GEÜBT WIRD
 Die Aufgaben wechseln sich ab: Bedeutung erkennen, das bosnische Wort finden, es selbst eintippen, eine Lücke im Satz füllen und die Grammatikübungen.
 
 Die Aussprache bringt die App mit: Zu jedem Wort gehört eine Tondatei mit bosnischer Stimme, und die zwölf Geschichten lassen sich am Stück anhören. In der Höraufgabe spielst du ein Wort ab und wählst, welches es war. So hörst du die Wörter, statt sie nur zu lesen – auch auf einem Gerät, das selbst keine bosnische Stimme kennt.
+
+Bringt dein Gerät eine Spracherkennung mit, kommt die Sprechaufgabe dazu: Das bosnische Wort steht da, auf Knopfdruck hörst du es, und dann sagst du es selbst ins Mikrofon. Die Erkennung deines Geräts gleicht ab, ob es gepasst hat. So bekommst du die Wörter auch über die Lippen, nicht nur ins Ohr.
 
 In den Lesegeschichten tippst du jedes Wort an, das du nicht kennst, und siehst die Übersetzung.
 
@@ -301,7 +310,7 @@ Zmaj – Learn Bosnian
 Learn Bosnian for family, daily life and paperwork – 43 levels, short drills
 ```
 
-**Vollständige Beschreibung** (3162 von 4000 Zeichen)
+**Vollständige Beschreibung** (3427 von 4000 Zeichen)
 
 ```
 Family in Bosnia, Bosnian roots, or Bosnian in-laws: at some point you want to do the talking yourself, without someone translating in between. You probably understand more than you can say. Zmaj teaches you Bosnian: 43 levels, short exercises, from everyday talk to an employment contract.
@@ -329,6 +338,8 @@ HOW YOU PRACTICE
 The exercises take turns: recognize the meaning, pick the Bosnian word, type it out yourself, fill the gap in a sentence, and work through the grammar drills.
 
 The pronunciation comes with the app: every word has a sound file in a Bosnian voice, and the twelve stories can be played from beginning to end. In the listening task you play a word and choose which one it was. So you hear the words instead of only reading them – even on a device that has no Bosnian voice of its own.
+
+If your device has speech recognition built in, the speaking task is there too: the Bosnian word in writing, a button to hear it spoken, and then you say it into the microphone yourself. Your device's own recognition checks whether what it heard matches the word.
 
 In the reading stories you tap any word you do not know and see the translation.
 
@@ -403,7 +414,7 @@ Zmaj – Boşnakça öğren
 Aile, günlük hayat ve resmî işler için Boşnakça – 43 seviye, kısa alıştırmalar
 ```
 
-**Vollständige Beschreibung** (3099 von 4000 Zeichen)
+**Vollständige Beschreibung** (3409 von 4000 Zeichen)
 
 ```
 Dedenden, ninenden duya duya bir şeyler anlıyor ama kendin konuşamıyor musun? Boşnak kökenli bir ailede büyüdüysen, Bosna'da akrabaların varsa ya da eşinin ailesiyle aracısız konuşmak istiyorsan: Zmaj sana Boşnakçayı baştan öğretiyor. 43 seviye, kısa alıştırmalar, günlük hayattan iş sözleşmesine kadar.
@@ -431,6 +442,8 @@ NASIL ALIŞTIRMA YAPIYORSUN?
 Alıştırmalar birbirini izliyor: anlamı seçmek, kelimenin Boşnakçasını bulmak, kelimeyi kendin yazmak, cümledeki boşluğu doldurmak ve dil bilgisi alıştırmaları.
 
 Telaffuz uygulamanın içinde geliyor: her kelimenin Boşnakça sesli bir dosyası var, on iki hikâyeyi de baştan sona dinleyebiliyorsun. Dinleme alıştırmasında bir kelimeyi çalıyor, hangisi olduğunu seçiyorsun. Böylece kelimeleri sadece okumakla kalmıyor, duyuyorsun da – cihazında Boşnakça bir ses olmasa bile.
+
+Konuşma alıştırmasında Boşnakça kelime karşında yazılı duruyor; istersen önce bir kez dinliyorsun, sonra mikrofona dokunup kendin söylüyorsun. Cihazının kendi konuşma tanıma özelliği söylediğini kelimeyle karşılaştırıyor. Kelimeler bir kez de senin ağzından çıkmış oluyor – konuşma tanıması olan her cihazda.
 
 Okuma hikâyelerinde bilmediğin her kelimeye dokunuyor, çevirisini görüyorsun.
 
@@ -505,7 +518,7 @@ Zmaj – Lär dig bosniska
 Lär dig bosniska för familj, vardag och myndigheter – 43 nivåer i korta pass
 ```
 
-**Vollständige Beschreibung** (2953 von 4000 Zeichen)
+**Vollständige Beschreibung** (3217 von 4000 Zeichen)
 
 ```
 Har du familj i Bosnien, bosniska rötter eller svärföräldrar som du äntligen vill prata med själv, utan att någon översätter åt dig? Zmaj lär dig bosniska: 43 nivåer, korta övningar, från vardagen till anställningsavtalet.
@@ -533,6 +546,8 @@ SÅ HÄR ÖVAR DU
 Uppgifterna växlar: känna igen betydelsen, hitta det bosniska ordet, skriva in det själv, fylla luckan i en mening och grammatikövningarna.
 
 Uttalet följer med i appen: varje ord har en ljudfil med bosnisk röst, och de tolv berättelserna går att lyssna på i ett svep. I lyssningsuppgiften spelar du upp ett ord och väljer vilket det var. Så hör du orden i stället för att bara läsa dem – även på en enhet som inte har någon bosnisk röst själv.
+
+I taluppgiften står det bosniska ordet på skärmen. Du kan lyssna på det först, och sedan säger du det själv i mikrofonen. Enhetens egen taligenkänning kontrollerar om det blev rätt. På så sätt får du också säga orden högt – på varje enhet som har taligenkänning.
 
 I läsberättelserna trycker du på varje ord du inte kan och ser översättningen.
 
@@ -607,7 +622,7 @@ Zmaj – Bosnisch leren
 Bosnisch leren voor familie, dagelijks leven en overheid – 43 korte levels
 ```
 
-**Vollständige Beschreibung** (3182 von 4000 Zeichen)
+**Vollständige Beschreibung** (3468 von 4000 Zeichen)
 
 ```
 Heb je familie in Bosnië, Bosnische roots of schoonouders met wie je eindelijk zelf wilt praten, zonder dat er iemand tussen zit om te vertalen? Zmaj leert je Bosnisch: 43 levels, korte oefeningen, van het dagelijks leven tot het arbeidscontract.
@@ -635,6 +650,8 @@ HOE JE OEFENT
 De opdrachten wisselen elkaar af: de betekenis herkennen, het Bosnische woord kiezen, het zelf intypen, het ontbrekende woord in een zin invullen en de grammaticaoefeningen.
 
 De uitspraak zit in de app: bij elk woord hoort een geluidsbestand met een Bosnische stem, en de twaalf verhalen kun je in één keer beluisteren. Bij de luisteropdracht speel je een woord af en kies je welk woord het was. Zo hoor je de woorden in plaats van ze alleen te lezen – ook op een apparaat dat zelf geen Bosnische stem heeft.
+
+Bij de spreekopdracht staat het Bosnische woord op het scherm. Je kunt het eerst laten horen en daarna zeg je het zelf in de microfoon. De spraakherkenning van je apparaat controleert of het klopt. Zo krijg je de woorden ook echt over je lippen – op elk apparaat met spraakherkenning.
 
 In de leesverhalen tik je elk woord aan dat je niet kent en zie je de vertaling.
 
@@ -709,7 +726,7 @@ Zmaj – Lær bosnisk
 Lær bosnisk for familie, hverdag og det offentlige – 43 nivåer, korte økter
 ```
 
-**Vollständige Beschreibung** (2989 von 4000 Zeichen)
+**Vollständige Beschreibung** (3250 von 4000 Zeichen)
 
 ```
 Har du familie i Bosnia, bosniske røtter eller svigerforeldre du endelig vil snakke med selv, uten at noen oversetter? Zmaj lærer deg bosnisk: 43 nivåer, korte økter, fra hverdagen til arbeidskontrakten.
@@ -737,6 +754,8 @@ SLIK ØVER DU
 Oppgavetypene veksler: kjenne igjen betydningen, finne ordet på bosnisk, skrive det inn selv, fylle inn ordet som mangler i setningen, og grammatikkøvelsene.
 
 Uttalen følger med i appen: hvert ord har en lydfil med bosnisk stemme, og de tolv lesehistoriene kan du høre i ett strekk. I lytteoppgaven spiller du av et ord og velger hvilket det var. Slik hører du ordene i stedet for bare å lese dem – også på en enhet som ikke har noen bosnisk stemme selv.
+
+I taleoppgaven står det bosniske ordet skrevet, og du kan høre det først om du vil. Så trykker du på mikrofonen og sier ordet, og talegjenkjenningen på enheten din sjekker om det stemmer. Da får du sagt ordene høyt selv, så lenge enheten har talegjenkjenning.
 
 I lesehistoriene trykker du på hvert ord du ikke kjenner, og ser oversettelsen.
 
@@ -811,7 +830,7 @@ Zmaj – Lær bosnisk
 Lær bosnisk til familie, hverdag og myndigheder – 43 korte niveauer
 ```
 
-**Vollständige Beschreibung** (3078 von 4000 Zeichen)
+**Vollständige Beschreibung** (3366 von 4000 Zeichen)
 
 ```
 Har du familie i Bosnien, bosniske rødder eller svigerforældre, du endelig selv vil kunne tale med, uden at nogen oversætter? Måske forstår du det meste, men svarer på dansk. Zmaj lærer dig bosnisk: 43 niveauer, korte øvelser, fra hverdagen til ansættelseskontrakten.
@@ -839,6 +858,8 @@ SÅDAN ØVER DU
 Opgavetyperne skifter: genkend betydningen, find det bosniske ord, tast ordet ind selv, udfyld hullet i sætningen og grammatikøvelserne.
 
 Udtalen følger med i appen: hvert ord har en lydfil med bosnisk stemme, og de tolv læsehistorier kan du høre i ét stræk. I lytteopgaven afspiller du et ord og vælger, hvilket det var. På den måde hører du ordene i stedet for kun at læse dem – også på en enhed, der ikke selv har en bosnisk stemme.
+
+I taleopgaven står det bosniske ord på skærmen, og du kan få det læst op først. Derefter trykker du på mikrofonen og siger ordet selv, mens enhedens egen talegenkendelse lytter med og tjekker, om det passer. Sådan får du sagt ordene højt, så længe enheden har talegenkendelse indbygget.
 
 I læsehistorierne trykker du på hvert ord, du ikke kender, og ser oversættelsen.
 
@@ -913,7 +934,7 @@ Zmaj – Apprendre le bosnien
 Le bosnien pour la famille, le quotidien et l'administration – 43 niveaux
 ```
 
-**Vollständige Beschreibung** (3430 von 4000 Zeichen)
+**Vollständige Beschreibung** (3749 von 4000 Zeichen)
 
 ```
 Tu as de la famille en Bosnie, des racines bosniennes, une belle-famille avec qui tu aimerais enfin parler toi-même, sans que personne ne traduise ? Zmaj t'apprend le bosnien : 43 niveaux, des exercices courts, du quotidien jusqu'au contrat de travail.
@@ -941,6 +962,8 @@ COMMENT ON S'ENTRAÎNE
 Les exercices alternent : reconnaître le sens, retrouver le mot bosnien, le taper toi-même, remplir un trou dans une phrase et les exercices de grammaire.
 
 La prononciation est fournie avec l'appli : chaque mot a son fichier audio en voix bosnienne, et les douze histoires s'écoutent d'un bout à l'autre. Dans l'exercice d'écoute, tu lances un mot et tu choisis lequel c'était. Tu entends donc les mots au lieu de seulement les lire – même sur un appareil qui n'a aucune voix bosnienne.
+
+Dans l'exercice de prononciation, le mot bosnien s'affiche à l'écran. Tu peux l'écouter d'abord, puis tu le dis dans le micro. La reconnaissance vocale de ton appareil vérifie au passage si c'était juste. C'est comme ça que tu finis par prononcer les mots toi-même, sur tout appareil doté d'une reconnaissance vocale.
 
 Dans les histoires, tu touches chaque mot que tu ne connais pas et sa traduction s'affiche.
 
@@ -1198,33 +1221,15 @@ Data-Safety-Formular und das Feld „Datenlöschung“.
 
 ---
 
-# Parkplatz: die Sprechaufgabe
+# Parkplatz: leer
 
-Diese acht Sätze standen bis zum 16.09.2026 in den Beschreibungen. Sie sind
-hier aufgehoben, damit die Übersetzungen nicht verloren gehen. Setz sie
-zurück, sobald die Sprechaufgabe auf dem Handy wirklich läuft – also wenn
-`RECORD_AUDIO` im Manifest steht und die App eine Spracherkennung hat, die
-die System-WebView unterstützt. Vorher nicht: eine Aufgabe zu beschreiben,
-die niemand zu sehen bekommt, ist genau die Art Angabe, wegen der Google
-Einträge zurückweist.
+Hier lagen bis zum 19.09.2026 die acht Sätze zur Sprechaufgabe. Sie stehen
+jetzt wieder in den Beschreibungen – in neuer Fassung, siehe „Die
+Sprechaufgabe läuft inzwischen“ weiter oben. Der Parkplatz bleibt als
+Abschnitt stehen, weil er nützlich ist: Was du aus einer Beschreibung
+herausnimmst, gehört hierher und nicht in den Papierkorb. Übersetzungen sind
+Arbeit, und was einmal weg ist, schreibt niemand ein zweites Mal.
 
-```
-Deutsch:    Beim Sprechen hörst du das Wort und sprichst es ins Mikrofon, die Spracherkennung prüft mit. So sprichst du die Wörter laut aus, statt sie nur zu lesen.
-
-English:    In speaking, you hear the word and say it into the microphone, and speech recognition checks what you said. So you say the words out loud instead of only reading them.
-
-Türkçe:     Konuşmada kelimeyi duyuyorsun ve mikrofona söylüyorsun, cihazının ses tanıması da kontrol ediyor. Böylece kelimeleri sadece okumakla kalmıyor, yüksek sesle söylüyorsun.
-
-Svenska:    I taluppgiften hör du ordet och säger det i mikrofonen, och taligenkänningen kontrollerar. Så säger du orden högt i stället för att bara läsa dem.
-
-Nederlands: Bij spreken hoor je het woord en spreek je het in de microfoon, de spraakherkenning controleert mee. Zo zeg je de woorden hardop in plaats van ze alleen te lezen.
-
-Norsk:      I taleoppgavene hører du ordet og sier det inn i mikrofonen, mens talegjenkjenningen følger med. Slik sier du ordene høyt i stedet for bare å lese dem.
-
-Dansk:      Ved taleopgaver hører du ordet og siger det ind i mikrofonen, mens talegenkendelsen tjekker med. På den måde får du ordene ud af munden i stedet for kun at læse dem.
-
-Français:   Pour la prononciation, tu entends le mot, tu le répètes dans le micro et la reconnaissance vocale vérifie ce que tu as dit. Tu prononces donc les mots à voix haute au lieu de seulement les lire.
-```
 
 Kommt die Aufgabe zurück, ändert sich das Data-Safety-Formular mit: dann
 gehört die Zeile zu Audio noch einmal neu bedacht, und die
