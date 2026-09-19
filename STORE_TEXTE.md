@@ -102,21 +102,34 @@ Dazu im selben Zug `ADMOB_TEST` in `web/index.html` von `true` auf `false`
 setzen und `app_bauen.py` noch einmal laufen lassen – sonst liegt in der
 Hülle weiter die alte index.html.
 
-### Die Vollversion kann man noch nicht kaufen
+### Die Vollversion ist eingebaut – der Rest liegt bei dir
 
-Das ist der Punkt, an dem der Store-Text am leichtesten falsch wird.
+Seit dem 19.09.2026 gibt es den Bezahlweg wirklich: die Play Billing
+Library 9.1.0 hängt im Android-Teil, das eigene Plugin `ZmajAbo.java`
+spricht mit ihr, und in den Einstellungen steht oben der Block
+„Vollversion“ mit der Auswahl Monat oder Jahr.
 
-In der App gibt es keinen Bezahlweg. In `zmaj-android/package.json` steht
-kein Billing-Plugin, und `premium` setzt die App nirgends selbst – der Wert
-kommt nur aus dem Gerätespeicher zurück, wohin ihn nichts schreibt. Im
-Laden ist die Vollversion mit Absicht nicht zu haben; er nimmt nur Münzen.
-Die 2,00 € im Monat und 15,00 € im Jahr stehen in keiner Datei.
+**Preise stehen bewusst nirgends in einer Datei.** Weder in der App noch in
+diesem Dokument noch in den AGB. Sie kommen zur Laufzeit von Google
+(`getFormattedPrice`) – nur so stimmen sie in jedem Land, und Googles
+Zahlungsrichtlinie verlangt, dass der Preis in der App dem im Kauffenster
+entspricht. Geplant sind 2,99 € im Monat und 19,99 € im Jahr; eingetragen
+werden sie **nur in der Play Console**.
 
-Solange das so ist:
+Solange die Produkte dort nicht angelegt und **aktiviert** sind, antwortet
+Google auf die Preisabfrage mit OK und einer leeren Liste. Die App zeigt
+dann „Das hat gerade nicht geklappt“ – das sieht aus wie ein Programmfehler,
+ist aber nur die fehlende Freischaltung.
 
-- In der Beschreibung steht nur der Werbesatz, ohne Abo und ohne Preis.
+Für den Store heißt das:
+
+- In der Beschreibung steht das Abo **ohne Zahlen** – der Store zeigt den
+  Landespreis von selbst.
 - Im Formular zur Alterseinstufung heißt die Antwort auf „Käufe in der App“
-  **nein**.
+  jetzt **ja**.
+- Einstufung unter „Steuern und Compliance“: **Dienst**, nicht digitale
+  Inhalte. Damit gibt Google dem Käufer selbst 14 Tage Erstattungsanspruch
+  und wickelt ihn ab.
 
 Erst wenn das Abo in der Play Console angelegt und der Kauf in der App
 eingebaut ist, tauschst du den Absatz gegen den **Ersatzabsatz mit Abo**,
@@ -149,25 +162,23 @@ aus einem Sprachdienst (ton_bauen.py, Stimme `bs-BA-…`). Es ist eine feste
 bosnische Tonspur, keine Aufnahme eines Menschen. Sprichst du die Wörter
 eines Tages selbst ein, darfst du damit werben – vorher nicht.
 
-### Die Sprechaufgabe fehlt in der Handy-App
+### Die Sprechaufgabe läuft inzwischen
 
-Sie ist aus allen acht Beschreibungen herausgenommen. Grund: sie kann auf
-dem Handy nicht laufen.
+Der Grund, sie aus den Beschreibungen zu nehmen, ist weggefallen:
 
-- `canSpeak` verlangt `window.SpeechRecognition` oder
-  `webkitSpeechRecognition`. Die System-WebView von Android bringt beides
-  nicht mit.
-- Im Manifest (`zmaj-android/android/app/src/main/AndroidManifest.xml`)
-  steht nur `INTERNET`. Ohne `RECORD_AUDIO` käme das Mikrofon ohnehin nicht
-  ans Laufen.
-- Ist `canSpeak` falsch, kommt der Aufgabentyp `speak` gar nicht erst in
-  die Auswahl. Der Nutzer sieht ihn nie.
+- Das Plugin `@capacitor-community/speech-recognition` ist eingebaut und
+  übernimmt, was die System-WebView nicht kann.
+- `RECORD_AUDIO` steht im Manifest, dazu
+  `<uses-feature android:name="android.hardware.microphone"
+  android:required="false" />` – Geräte ohne Mikrofon dürfen die App
+  trotzdem installieren.
+- Die App fragt selbst nach der Erlaubnis, bevor die erste Sprechaufgabe
+  kommt (`mikroVorbereiten()` in `web/index.html`).
 
-Ein „wenn dein Gerät es unterstützt“ rettet das nicht: im Store beschreibst
-du, was die App kann, und diese Aufgabe kann sie dort nicht. Die acht
-Sätze sind nicht verloren, sie stehen unten unter „Parkplatz: die
-Sprechaufgabe“. Läuft das Mikrofon eines Tages wirklich, setzt du sie
-zurück.
+**Offen:** Die acht Sätze stehen weiterhin unten unter „Parkplatz: die
+Sprechaufgabe“ und sind noch **nicht** in die Beschreibungen zurückgesetzt.
+Das ist reine Textarbeit – tu es, bevor du den Store-Eintrag ausfüllst,
+sonst verschenkst du das beste Verkaufsargument der App.
 
 ---
 
@@ -259,7 +270,7 @@ Abo in der Play Console angelegt und der Kauf in der App eingebaut ist.
 Prüf den Preis gegen die Console, oder streich die Zahlen.
 
 ```
-Zmaj ist kostenlos und finanziert sich über Werbung. Wenn du ohne Werbung und mit unbegrenzten Leben lernen willst, gibt es die Vollversion als Abo: 2,00 € im Monat oder 15,00 € im Jahr.
+Zmaj ist kostenlos und finanziert sich über Werbung. Wenn du ohne Werbung und mit unbegrenzten Leben lernen willst, gibt es die Vollversion als Abo – monatlich oder jährlich.
 ```
 
 **Apple: Untertitel** (30 Zeichen)
@@ -361,7 +372,7 @@ Sretno. Good luck.
 **Ersatzabsatz „WHAT IT COSTS“ – gilt erst, wenn das Abo im Store steht**
 
 ```
-Zmaj is free and funded by ads. If you want to learn without ads and with unlimited lives, there is a full version as a subscription: 2.00 EUR per month or 15.00 EUR per year.
+Zmaj is free and funded by ads. If you want to learn without ads and with unlimited lives, there is a full version as a subscription – monthly or yearly.
 ```
 
 **Apple: Untertitel** (26 Zeichen)
@@ -463,7 +474,7 @@ Sretno. Başarılar.
 **Ersatzabsatz „NE KADAR TUTUYOR?“ – gilt erst, wenn das Abo im Store steht**
 
 ```
-Zmaj ücretsiz ve reklamlarla finanse ediliyor. Reklamsız ve sınırsız canla çalışmak istersen tam sürüm abonelik olarak sunuluyor: ayda 2,00 € veya yılda 15,00 €.
+Zmaj ücretsiz ve reklamlarla finanse ediliyor. Reklamsız ve sınırsız canla çalışmak istersen tam sürüm abonelik olarak sunuluyor – aylık veya yıllık.
 ```
 
 **Apple: Untertitel** (28 Zeichen)
@@ -565,7 +576,7 @@ Sretno. Lycka till.
 **Ersatzabsatz „VAD DET KOSTAR“ – gilt erst, wenn das Abo im Store steht**
 
 ```
-Zmaj är gratis och finansieras med reklam. Vill du lära dig utan reklam och med obegränsade liv, finns fullversionen som prenumeration: 2,00 € i månaden eller 15,00 € om året.
+Zmaj är gratis och finansieras med reklam. Vill du lära dig utan reklam och med obegränsade liv, finns fullversionen som prenumeration – per månad eller per år.
 ```
 
 **Apple: Untertitel** (30 Zeichen)
@@ -667,7 +678,7 @@ Sretno. Veel succes.
 **Ersatzabsatz „WAT HET KOST“ – gilt erst, wenn das Abo im Store steht**
 
 ```
-Zmaj is gratis en wordt gefinancierd met advertenties. Wil je zonder advertenties en met onbeperkte levens leren, dan is er de volledige versie als abonnement: € 2,00 per maand of € 15,00 per jaar.
+Zmaj is gratis en wordt gefinancierd met advertenties. Wil je zonder advertenties en met onbeperkte levens leren, dan is er de volledige versie als abonnement – per maand of per jaar.
 ```
 
 **Apple: Untertitel** (29 Zeichen)
@@ -769,7 +780,7 @@ Sretno. Lykke til.
 **Ersatzabsatz „HVA DET KOSTER“ – gilt erst, wenn das Abo im Store steht**
 
 ```
-Zmaj er gratis og finansieres med reklame. Vil du lære uten reklame og med ubegrenset antall liv, finnes fullversjonen som abonnement: 2,00 € i måneden eller 15,00 € i året.
+Zmaj er gratis og finansieres med reklame. Vil du lære uten reklame og med ubegrenset antall liv, finnes fullversjonen som abonnement – per måned eller per år.
 ```
 
 **Apple: Untertitel** (29 Zeichen)
@@ -871,7 +882,7 @@ Sretno. Held og lykke.
 **Ersatzabsatz „HVAD DET KOSTER“ – gilt erst, wenn das Abo im Store steht**
 
 ```
-Zmaj er gratis og finansieret af reklamer. Vil du lære uden reklamer og med ubegrænsede liv, findes den fulde version som abonnement: 2,00 € om måneden eller 15,00 € om året.
+Zmaj er gratis og finansieret af reklamer. Vil du lære uden reklamer og med ubegrænsede liv, findes den fulde version som abonnement – pr. måned eller pr. år.
 ```
 
 **Apple: Untertitel** (28 Zeichen)
@@ -973,7 +984,7 @@ Sretno. Bonne chance.
 **Ersatzabsatz „COMBIEN ÇA COÛTE ?“ – gilt erst, wenn das Abo im Store steht**
 
 ```
-Zmaj est gratuit et financé par la publicité. Si tu veux apprendre sans publicité et avec des vies illimitées, la version complète existe en abonnement : 2,00 € par mois ou 15,00 € par an.
+Zmaj est gratuit et financé par la publicité. Si tu veux apprendre sans publicité et avec des vies illimitées, la version complète existe en abonnement – par mois ou par an.
 ```
 
 **Apple: Untertitel** (28 Zeichen)
@@ -1113,7 +1124,7 @@ Das ist der wichtigere Teil. Jede Zeile hier war früher ein Ja.
 | App-Aktivität im Sinne von Lernfortschritt | Gelernte Wörter, Levels, Serie, Tagesaufgaben, Münzen, Leben, Einstellungen und die Zufallskennung liegen in `localStorage` und verlassen das Gerät nie. Erhoben ist nur, was übertragen wird. |
 | Dateien und Dokumente | Die Sicherungsdatei erzeugt der Nutzer selbst und verschickt sie selbst über das Teilen-Menü. Vom Nutzer angestoßene Weitergabe zählt nicht als Erhebung durch die App. |
 | E-Mail-Inhalte | Die Rückmeldung öffnet nur das Mailprogramm des Nutzers. Abgeschickt wird sie von ihm, nicht von der App. |
-| Audio, Sprach- oder Tonaufnahmen | Die App nimmt nichts auf und speichert nichts. Sie hat nicht einmal die Berechtigung dazu: im Manifest steht nur `INTERNET`, kein `RECORD_AUDIO`. Die Sprechaufgabe erscheint auf dem Handy gar nicht. Liefe sie eines Tages, ginge die Aufnahme an den Hersteller des Geräts – nicht an uns. Kommt `RECORD_AUDIO` ins Manifest, musst du diese Zeile neu bewerten. |
+| Audio, Sprach- oder Tonaufnahmen | **Am 19.09.2026 neu bewertet, weil `RECORD_AUDIO` seitdem im Manifest steht und die Sprechaufgabe läuft.** Die App selbst nimmt nichts auf und speichert nichts. Die Spracherkennung macht das Betriebssystem: Android schickt das Gesprochene an den Dienst des Geräteherstellers und gibt der App nur den erkannten Text zurück. Nach Googles Formular-Hilfe ist nicht anzugeben, was ein anderer Dienst erhebt und worauf die App nie zugreift – die App bekommt die Aufnahme nie zu sehen. Kreuze es also weiterhin nicht an, aber **entscheide es bewusst** und schreib dir die Begründung auf. |
 | Zahlungsdaten | Der Kauf läuft über Google Play. Du siehst nur Abrechnungszahlen, nie eine Kartennummer. |
 | Absturz- und Fehlerprotokolle von uns | Es ist kein Absturzmelder eingebaut. Was die Play Console dir an Abstürzen zeigt, sammelt Google selbst – das gehört nicht ins Formular. Die Diagnosedaten oben sind die des Werbe-SDK. |
 | Genauer Standort, Kontakte, Fotos, Kalender, SMS, Gesundheits- und Fitnessdaten | Nichts davon rührt die App an. |
