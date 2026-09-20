@@ -201,10 +201,12 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
      Standardsprache Deutsch plus die sieben anderen Sprachen der App,
      „Nicht einwilligen" fuer alle Laender auf An (die DSGVO verlangt, dass
      Ablehnen genauso leicht geht wie Zustimmen).
-     **Noch nicht veroeffentlicht** — der Schalter in der Spalte
-     „Veroeffentlichen" fehlt noch. Ohne veroeffentlichte Nachricht verlangt
+     **Veroeffentlicht am 20.09.2026**, Status gruen. Sie wirkt sofort und
+     ohne neuen Build — die Tester bekommen ab dem naechsten Start Googles
+     Einwilligungsfenster statt des selbstgebauten. Das war noetig, weil
      Google seit Januar 2024 fuer Besucher aus EWR, UK und Schweiz eine
-     zertifizierte Einwilligungsplattform, die es dann nicht gibt.
+     zertifizierte Einwilligungsplattform verlangt; ohne veroeffentlichte
+     Nachricht gibt es keine.
      Zwei Einstellungen dazu, beide geprueft am 20.09.2026:
 
      - **Gaengige Werbepartner automatisch einbeziehen: 198 Partner.** Steht
