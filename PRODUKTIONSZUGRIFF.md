@@ -158,21 +158,57 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
   jede Einreichung setzt Googles Prüfuhr zurück. Stattdessen in der
   Testergruppe sagen.
 - **AdMob**, in dieser Reihenfolge:
-  1. Konto angelegt am 20.09.2026, Zahlungsland Deutschland (unaenderbar).
-     Die App wurde als **nicht veroeffentlicht** eingetragen, weil sie nur
-     im geschlossenen Test steht und AdMob sie im Store nicht findet.
-  2. **Sobald die App in Produktion live ist: in AdMob nachtraeglich mit dem
+  1. **Erledigt am 20.09.2026:** Konto angelegt, Zahlungsland Deutschland
+     (unaenderbar). Die App wurde als **nicht veroeffentlicht** eingetragen,
+     weil sie nur im geschlossenen Test steht und AdMob sie im Store nicht
+     findet. Zahlungsprofil vollstaendig (dasselbe wie bei Play). Das Konto
+     selbst war zu dem Zeitpunkt noch in der Genehmigung, Google nennt dafuer
+     in der Regel 24 Stunden.
+
+     Die drei Kennungen (keine Geheimnisse, sie stehen in jeder
+     ausgelieferten App):
+
+     | | |
+     |---|---|
+     | App-ID | `ca-app-pub-9105747905460295~9760526209` |
+     | Interstitial `zmaj-interstitial` | `ca-app-pub-9105747905460295/9764395638` |
+     | Belohnt `zmaj-belohnt` | `ca-app-pub-9105747905460295/8572576770` |
+     | Publisher-ID | `pub-9105747905460295` |
+
+  2. **Einwilligungsnachricht fuer den EWR** — steht seit 20.09.2026 als
+     **Entwurf** unter Datenschutz und Mitteilungen -> Europaeische
+     Verordnungen, Name `Zmaj EWR-Einwilligung`. Eingestellt: App verknuepft,
+     Datenschutz-URL `https://zmaj-lernapp.github.io/datenschutz.html`,
+     Standardsprache Deutsch plus die sieben anderen Sprachen der App,
+     „Nicht einwilligen" fuer alle Laender auf An (die DSGVO verlangt, dass
+     Ablehnen genauso leicht geht wie Zustimmen).
+     **Noch nicht veroeffentlicht** — der Schalter in der Spalte
+     „Veroeffentlichen" fehlt noch. Ohne veroeffentlichte Nachricht verlangt
+     Google seit Januar 2024 fuer Besucher aus EWR, UK und Schweiz eine
+     zertifizierte Einwilligungsplattform, die es dann nicht gibt.
+     Offen dazu: in den DSGVO-Einstellungen auf Kontoebene stehen bisher
+     **0 Partner**, deshalb sagt die Vorschau „0 Partner". Vor dem
+     Veroeffentlichen pruefen.
+  3. **Sobald die App in Produktion live ist: in AdMob nachtraeglich mit dem
      App-Shop verknuepfen** (App-Einstellungen -> Mit App-Shop verknuepfen,
      `de.smartdragon.zmaj`). Ohne diese Verknuepfung bleibt die
      Anzeigenbereitstellung dauerhaft eingeschraenkt. Die Pruefung danach
      dauert laut Google einige Tage, manchmal laenger.
-  3. Zahlungsdaten und USt-IdNr `DE465139848` hinterlegen.
-  4. Erst dann die drei Testkennungen gegen die echten tauschen
-     (`web/index.html:1337`, `:1338`, `strings.xml:14`) und `ADMOB_TEST`
-     auf `false`. Vorher nicht: ein Tester, der aus Hilfsbereitschaft eine
+  4. Zahlungsdaten und USt-IdNr `DE465139848` hinterlegen. Die Seite
+     „Zahlungen" blieb am 20.09.2026 leer, vermutlich weil das Konto noch
+     nicht genehmigt war — nach der Genehmigung noch einmal hin.
+  5. **Die Befunde aus `WERBUNG_PRUEFUNG.md` abarbeiten.** 20 Stueck, davon
+     drei kontogefaehrdend. Solange Testkennungen laufen, richtet keiner
+     davon Schaden an; gefaehrlich werden sie genau in dem Moment, in dem
+     `ADMOB_TEST` auf `false` steht. Gehoert deshalb VOR Schritt 6.
+  6. Erst dann die Kennungen tauschen: `python admob_scharf.py --schreiben`
+     (tauscht alle drei und setzt `ADMOB_TEST` auf `false`), danach
+     `app_bauen.py`. Vorher nicht: ein Tester, der aus Hilfsbereitschaft eine
      Anzeige anklickt, ist ungueltiger Traffic und kann das AdMob-Konto
      kosten.
-  5. `app-ads.txt` mit der Publisher-ID auf zmaj-lernapp.github.io legen.
+  7. `app-ads.txt` liegt fertig in `github-seite/` und muss in das
+     oeffentliche Repo `zmaj-lernapp.github.io` hoch, nicht in das private
+     Projekt-Repo. Gecrawlt wird sie erst nach dem Livegang.
 - Anmeldung zur Servicegebührstufe (Kontogruppe). Bringt beim Abo nichts —
   Abos liegen ohnehin bei 15 % — lohnt aber, bevor du je einen Einmalkauf
   anbietest.

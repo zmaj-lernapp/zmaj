@@ -10,6 +10,7 @@ Seiten im Ordner `github-seite`:
     index.html                Startseite mit den beiden Links
     datenschutz.html          Datenschutzerklärung, acht Sprachen
     nutzungsbedingungen.html  Nutzungsbedingungen, acht Sprachen
+    app-ads.txt               eine Zeile für AdMob
 
 Die Seiten kommen ohne fremde Server aus: keine Schriften, keine Skripte
 von außen, alles steht in der Datei selbst.
@@ -282,6 +283,23 @@ def post_adresse():
     return "kontakt@beispiel.de"
 
 
+# Die Publisher-ID aus dem AdMob-Konto, angelegt am 20.09.2026. Kein
+# Geheimnis – sie steht in jeder ausgelieferten App und ist genau dafür da,
+# öffentlich nachlesbar zu sein.
+#
+# app-ads.txt sagt den Werbeeinkäufern: Wer unter diesem Namen Werbeplätze
+# in Zmaj verkauft, gehört wirklich zu mir. Ohne die Datei bleibt die
+# Anzeigenauslieferung eingeschränkt, und AdMob meldet das nicht als Fehler.
+# Gefunden wird sie über die Entwickler-Website aus dem Play-Store-Eintrag:
+# Google hängt dort /app-ads.txt an. Die Adresse im Store muss deshalb auf
+# zmaj-lernapp.github.io zeigen.
+#
+# Das f08c47… am Ende ist Googles feste Kennung im ads.txt-Verzeichnis,
+# bei allen Publishern dieselbe.
+ADMOB_PUBLISHER = "pub-9105747905460295"
+APP_ADS = "google.com, %s, DIRECT, f08c47fec0942fa0\n" % ADMOB_PUBLISHER
+
+
 def schreibe(datei, text):
     pfad = os.path.join(ZIEL, datei)
     with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
@@ -301,5 +319,6 @@ if __name__ == "__main__":
     baue_loeschseite()
     for datei, titel, text in SEITEN:
         baue_rechtsseite(datei, titel, text)
+    schreibe("app-ads.txt", APP_ADS)
     print("\nFertig in: %s" % ZIEL)
     print("Wie es online kommt, steht in github-seite/LIESMICH.txt")
