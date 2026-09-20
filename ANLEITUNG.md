@@ -498,22 +498,32 @@ fertigen Inhaltsdateien noch der alte Wert.
 
 ### Vollversion: die Preise
 
-Entschieden am 14.09.2026, **noch nicht eingebaut**: In der Android-Hülle
-steckt kein Billing-Plugin, es gibt also keinen Weg, etwas zu verkaufen. Die
-Zahlen stehen hier, damit sie nicht noch einmal gerechnet werden müssen:
+Entschieden am 19.09.2026 und **eingebaut**: In der Android-Hülle steckt
+`ZmajAbo.java` mit der Google Play Billing Library 9.1.0. Ein Abo
+`vollversion` mit zwei Basisplänen `monat` (P1M) und `jahr` (P1Y) – ein
+Produkt mit zwei Plänen, nicht zwei Produkte, sonst geht der Wechsel von
+Monat auf Jahr nicht sauber.
 
 | | Preis | abzüglich MwSt. und Google | bleibt |
 |---|---|---|---|
-| monatlich | 2,00 € | 19 % MwSt., 15 % Google | 1,43 € |
-| jährlich | 15,00 € | dieselben Abzüge | 10,71 € |
+| monatlich | 2,99 € | 19 % MwSt., 15 % Google | ca. 2,13 € |
+| jährlich | 19,99 € | dieselben Abzüge | ca. 14,28 € |
 
-Das Jahresabo ist 37,5 % günstiger als zwölf Monatszahlungen – genug, damit
-es sich für den Nutzer lohnt, und es bringt trotzdem mehr ein als sieben
-Monate einzeln.
+Das Jahresabo ist gut 44 % günstiger als zwölf Monatszahlungen – genug,
+damit es sich für den Nutzer lohnt, und es bringt trotzdem mehr ein als
+sieben Monate einzeln.
 
-Die Preise stehen ausserdem in allen acht Store-Beschreibungen in
-STORE_TEXTE.md. Wer sie ändert, muss dort nachziehen. Diese Datei ist nur zum
-Abschreiben gedacht – die App liest sie nicht.
+**Die Preise stehen bewusst in keiner Datei** – weder hier in der App noch
+in den Store-Beschreibungen. Sie kommen zur Laufzeit von Google über
+`getFormattedPrice`. Das ist keine Bequemlichkeit: Googles
+Zahlungsrichtlinie verlangt, dass der Preis in der App dem im Kauffenster
+entspricht, und in 177 Ländern mit eigenen Währungen und Steuersätzen kann
+das keine fest eingetippte Zahl leisten. Die Tabelle oben ist nur die
+Rechnung dahinter, damit sie nicht noch einmal gemacht werden muss.
+
+Was noch fehlt, liegt allein in der Play Console: das Produkt anlegen und
+**aktivieren**. Bis dahin antwortet Google auf die Preisabfrage mit OK und
+einer leeren Liste, und der Vollversion-Block blendet sich still aus.
 
 Beides sind **Abos**, keine Einmalkäufe. Angelegt werden sie in der Play
 Console unter *Monetarisierung → Produkte → Abos*, und bezahlt wird
