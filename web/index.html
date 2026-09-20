@@ -1395,7 +1395,12 @@ async function admobZeigen(belohnt){
     if(belohnt){
       await AdMobP.prepareRewardVideoAd({adId: ADMOB_ID.belohnt, isTesting: ADMOB_TEST,
                                          npa: !werbungPersonalisiert()});
-      const lohn = await AdMobP.showRewardVideoAd();
+      /* Gegenstueck zur Frist beim Interstitial. Antwortet das SDK nie -
+         bei schlechtem Netz kommt das vor -, stuende der Nutzer sonst ewig
+         vor der Ladeanzeige. Nach zwei Minuten geht es ohne Belohnung
+         weiter, dieselbe Frist wie unten. */
+      const lohn = await Promise.race([AdMobP.showRewardVideoAd(),
+                                       new Promise(f => setTimeout(()=>f(null), 120000))]);
       return !!lohn;
     }
     await AdMobP.prepareInterstitial({adId: ADMOB_ID.interstitial, isTesting: ADMOB_TEST,
@@ -1421,7 +1426,13 @@ let SPRACHE = 'de';
 try{ SPRACHE = localStorage.getItem('zmaj_sprache') || (navigator.language||'de').slice(0,2).toLowerCase(); }catch(e){}
 const FALLBACK = {   // nur nötig, wenn der Server gar nicht antwortet
   'err.datei':'<b>So geht es nicht:</b> Die Datei index.html wurde direkt geöffnet. Die App braucht den Server aus <b>start.py</b>.<br><br><b>So geht es:</b> Auf dem Desktop die Verknüpfung <b>„Bosnisch lernen“</b> doppelklicken. Oder in Thonny <b>start.py</b> öffnen und auf Run (F5) drücken.<br>Der Browser öffnet dann von selbst <b>http://localhost:8000</b>. Diese Adresse benutzen, nicht die Datei.',
-  'err.server':'Konnte die Vokabeln nicht laden. Läuft der Server noch? Verknüpfung „Bosnisch lernen“ anklicken oder start.py in Thonny starten, dann diese Seite neu laden. Fehler: {fehler}'
+  /* Auf dem Handy gibt es weder Thonny noch start.py. Als Getter, damit
+     window.Capacitor sicher schon da ist, und zweisprachig: welche Sprache
+     der Nutzer spricht, wissen wir hier noch nicht - die Uebersetzungen
+     sind ja gerade das, was nicht geladen werden konnte. */
+  get 'err.server'(){ return (window.Capacitor && window.Capacitor.Plugins)
+    ? 'Die Inhalte konnten nicht geladen werden. Bitte die App schließen und noch einmal öffnen.<br><br>The content could not be loaded. Please close the app and open it again.<br><br><small>{fehler}</small>'
+    : 'Konnte die Vokabeln nicht laden. Läuft der Server noch? Verknüpfung „Bosnisch lernen“ anklicken oder start.py in Thonny starten, dann diese Seite neu laden. Fehler: {fehler}'; }
 };
 function fuelle(s, vars){
   return vars ? s.replace(/\{(\w+)\}/g, (m,k)=> vars[k]!==undefined ? vars[k] : m) : s;
@@ -2824,9 +2835,12 @@ async function holeInhalt(){
     const r = await fetch('/api/daten?sprache='+encodeURIComponent(SPRACHE));
     if(r.ok){ MIT_SERVER = true; return await r.json(); }
   }catch(e){}
-  // Zweiter Versuch mit der gewuenschten Sprache, dritter mit Deutsch -
-  // eine unbekannte Sprache soll die App nicht lahmlegen.
-  for(const code of [SPRACHE, 'de']){
+  // Zweiter Versuch mit der gewuenschten Sprache, dann Englisch, dann
+  // Deutsch. Englisch davor, weil die App in 177 Laendern steht: ein Handy
+  // in Bosnien meldet "bs", das gibt es hier nicht - und wer kein Deutsch
+  // kann, kommt mit Englisch weiter. Welche Sprache es wirklich wurde,
+  // traegt ladeDaten() danach in SPRACHE nach (Feld "sprache" im Inhalt).
+  for(const code of [SPRACHE, 'en', 'de']){
     try{
       const r = await fetch('inhalt/'+encodeURIComponent(code)+'.json', {cache:'no-cache'});
       if(r.ok) return await r.json();

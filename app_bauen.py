@@ -45,6 +45,12 @@ RAUS_ENDUNGEN = (".sicherung", ".bak", ".orig", ".alt")
 # weiter - eine feste Liste vergisst man beim naechsten Umbau. Deshalb ein
 # Muster statt Aufzaehlung.
 RAUS_ENTHAELT = (".vor_",)
+# Werkstattmaterial faengt mit einem Unterstrich an: web/_feature.html
+# zeichnet die Bannergrafik fuer den Play-Eintrag, web/_probe und
+# audio/_probe sind Probeseiten. Nichts davon gehoert in die App. Ein
+# Praefix statt einer Liste - sonst wandert die naechste solche Datei
+# wieder mit, so wie _feature.html es bis zum 20.09.2026 getan hat.
+RAUS_PRAEFIX = "_"
 
 
 def kopieren():
@@ -53,12 +59,14 @@ def kopieren():
     shutil.rmtree(WWW, ignore_errors=True)
     dateien = 0
     for wurzel, ordner, namen in os.walk(WEB):
-        ordner[:] = [o for o in ordner if o not in RAUS_ORDNER]
+        ordner[:] = [o for o in ordner
+                     if o not in RAUS_ORDNER and not o.startswith(RAUS_PRAEFIX)]
         ziel = os.path.join(WWW, os.path.relpath(wurzel, WEB))
         os.makedirs(ziel, exist_ok=True)
         for n in namen:
             klein = n.lower()
             if (klein in RAUS_DATEIEN or klein.endswith(RAUS_ENDUNGEN)
+                    or klein.startswith(RAUS_PRAEFIX)
                     or any(s in klein for s in RAUS_ENTHAELT)):
                 continue
             shutil.copy2(os.path.join(wurzel, n), os.path.join(ziel, n))
