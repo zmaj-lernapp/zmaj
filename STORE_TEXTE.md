@@ -1174,8 +1174,10 @@ Der Fragebogen führt bei dieser App auf **USK 0 / PEGI 3**, mit dem Zusatz
   Teilen-Menü taucht nur auf, wenn der Nutzer seine eigene
   Sicherungsdatei weitergibt – das ist kein Austausch zwischen Nutzern.
 - Standort wird geteilt: nein
-- Käufe in der App: **nein**, solange das Abo nicht wirklich zu kaufen ist
-  (siehe „Die Vollversion kann man noch nicht kaufen“ weiter oben)
+- Käufe in der App: **ja**. Die App hat ein Abo über Google Play Billing,
+  also gehört hier ja hin - unabhängig davon, ob die Produkte in der
+  Console schon aktiv sind. In der Console steht es am 20.09.2026 richtig:
+  „Onlinekäufe möglich“ und „Interaktive Elemente: In-App-Einkäufe“.
 - Werbung: **ja**
 
 ---
