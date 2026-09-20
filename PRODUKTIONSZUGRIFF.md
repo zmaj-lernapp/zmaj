@@ -205,9 +205,22 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
      „Veroeffentlichen" fehlt noch. Ohne veroeffentlichte Nachricht verlangt
      Google seit Januar 2024 fuer Besucher aus EWR, UK und Schweiz eine
      zertifizierte Einwilligungsplattform, die es dann nicht gibt.
-     Offen dazu: in den DSGVO-Einstellungen auf Kontoebene stehen bisher
-     **0 Partner**, deshalb sagt die Vorschau „0 Partner". Vor dem
-     Veroeffentlichen pruefen.
+     Zwei Einstellungen dazu, beide geprueft am 20.09.2026:
+
+     - **Gaengige Werbepartner automatisch einbeziehen: 198 Partner.** Steht
+       so voreingestellt unter Einstellungen. Die „0 Partner" in der
+       Vorschau des Mitteilungs-Editors sind nur ein Platzhalter, der erst
+       auf dem Geraet gefuellt wird — kein Fehler.
+     - **„Anzeigenquellen automatisch als Werbepartner hinzufuegen": aus,
+       und das bleibt so.** Die Option betrifft nur Vermittlung, also
+       fremde Werbenetzwerke neben Google. In der Huelle steckt nur
+       `@capacitor-community/admob`, kein einziger Vermittlungs-Adapter,
+       und unter „Vermittlung" ist nichts eingerichtet — sie braechte also
+       heute nichts und wuerde nur dafuer sorgen, dass kuenftig
+       automatisch neue Datenempfaenger in die Einwilligung rutschen.
+       **Erst einschalten, wenn wirklich einmal Vermittlung eingerichtet
+       wird**, sonst liefern die fremden Netzwerke mangels Einwilligung
+       nichts aus.
   3. **Sobald die App in Produktion live ist: in AdMob nachtraeglich mit dem
      App-Shop verknuepfen** (App-Einstellungen -> Mit App-Shop verknuepfen,
      `de.smartdragon.zmaj`). Ohne diese Verknuepfung bleibt die
