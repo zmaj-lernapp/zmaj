@@ -1069,7 +1069,7 @@
     </div>
     <div class="section">
       <h2 data-t="set.ueber"></h2>
-      <div class="sd" style="font-size:13px; color:var(--muted); padding:4px 0 10px" data-t="app.ueber_kurz"></div>
+      <div class="sd" id="ueberZeile" style="font-size:13px; color:var(--muted); padding:4px 0 10px" data-t="app.ueber_kurz"></div>
       <details><summary data-t="set.quellen"></summary><div class="inner"><ul class="srcs">
         <li><a href="https://archive.org/stream/halilovic-senahid-pravopis-bosanskoga-jezika-za-osnovne-i-srednje-skole" target="_blank" rel="noopener">Senahid Halilović: Pravopis bosanskoga jezika</a></li>
         <li><a href="https://www.researchgate.net/publication/389063646_BOSANSKI_JEZIK_-_PRVI_STUPANJ" target="_blank" rel="noopener">Bosanski jezik – Prvi stupanj</a></li>
@@ -2097,18 +2097,72 @@ function standAlsObjekt(){
    Zeit ohne Netz. */
 const VOLL_SCHLUESSEL = 'zmaj_voll';
 function vollversionMerken(an){
-  premium = !!an;
+  /* zmaj_voll bleibt der zuletzt bekannte Stand von Google - unveraendert.
+     Der Dauerschalter sticht ihn nur in premium. Wuerde er auch nach
+     zmaj_voll durchschlagen, waere beim Ausschalten nicht mehr bekannt,
+     was Google eigentlich gesagt hat. */
   try{ localStorage.setItem(VOLL_SCHLUESSEL, an ? '1' : '0'); }catch(e){}
+  premium = !!an || dauerVoll;
 }
 /* Einmalige Uebernahme aus dem alten Lernstand, damit niemand verliert, was
    er schon hatte. Das laeuft NUR beim normalen Laden - sicherungEinlesen()
    ruft standUebernehmen() direkt auf und kommt hier nie vorbei. Genau darin
    liegt der Unterschied zwischen "meins" und "aus einer fremden Datei". */
 function vollversionLaden(alterStand){
+  dauerVollLaden();          // muss vor jeder Rechnung mit premium stehen
   let v = null;
   try{ v = localStorage.getItem(VOLL_SCHLUESSEL); }catch(e){}
   if(v === null){ vollversionMerken(!!(alterStand && alterStand.premium)); return; }
-  premium = v === '1';
+  premium = (v === '1') || dauerVoll;
+}
+
+/* ---- Die dauerhafte Vollversion ----
+
+   Ajdin und Kuebra sollen sie haben, ohne zu kaufen. Ueber Play geht das
+   nicht: Gutscheincodes schenken nur einen Zeitraum, und ein
+   Dauer-Lizenztester ist das falsche Werkzeug. Also ein eigener Schalter,
+   getrennt von zmaj_voll, der diesen nur in premium sticht.
+
+   Erreichbar mit siebenmal Tippen auf die Versionszeile in den
+   Einstellungen, danach das Wort. Zwischen zwei Tipps hoechstens zwei
+   Sekunden, sonst faengt die Zaehlung von vorn an - damit niemand durch
+   verstreutes Antippen zufaellig hineinstolpert.
+
+   Das ist Verstecken, kein Schutz. Wer die App auseinandernimmt, findet
+   das Wort hier im Klartext; bei einer Anwendung, die ohne Server
+   auskommt, geht es nicht anders. Fuer den Zweck reicht es. */
+const DAUER_SCHLUESSEL = 'zmaj_dauer';
+const DAUER_WORT = 'dragon';        // hier aendern, falls es jemand erraet
+let dauerVoll = false;
+
+function dauerVollLaden(){
+  try{ dauerVoll = localStorage.getItem(DAUER_SCHLUESSEL) === '1'; }catch(e){}
+}
+function dauerVollSetzen(an){
+  dauerVoll = !!an;
+  try{ localStorage.setItem(DAUER_SCHLUESSEL, an ? '1' : '0'); }catch(e){}
+  let v = null;
+  try{ v = localStorage.getItem(VOLL_SCHLUESSEL); }catch(e){}
+  premium = (v === '1') || dauerVoll;
+}
+function dauerVollVerdrahten(){
+  const z = $('ueberZeile'); if(!z) return;
+  let n = 0, uhr = 0;
+  z.addEventListener('click', ()=>{
+    clearTimeout(uhr); uhr = setTimeout(()=>{ n = 0; }, 2000);
+    if(++n < 7) return;
+    n = 0; clearTimeout(uhr);
+    if(dauerVoll){
+      if(confirm('Dauerhafte Vollversion ist an. Ausschalten?')){
+        dauerVollSetzen(false); renderLives(); vollZeileZeigen();
+      }
+      return;
+    }
+    const wort = prompt('Wort?');
+    if(wort === null) return;
+    if(wort.trim().toLowerCase() !== DAUER_WORT) return;
+    dauerVollSetzen(true); renderLives(); vollZeileZeigen();
+  });
 }
 async function loadProgress(){
   if(!MIT_SERVER){ const roh = lokalLesen(); standUebernehmen(roh); vollversionLaden(roh); return; }
@@ -4779,6 +4833,7 @@ async function werbungVorbereiten(){
 }
 
 async function init(){
+  dauerVollVerdrahten();
   try{ await starten(); }
   finally{ vorspannWeg(); }
   /* Jetzt erst die Werbung. vorspannVorbei löst auf, wenn das Logo
