@@ -100,13 +100,24 @@ und in einer veröffentlichten App sind sie ein Regelverstoß:
 
 | Wo | Was steht da | Was hin muss |
 |---|---|---|
-| `zmaj-android/android/app/src/main/res/values/strings.xml`, `admob_app_id` | `ca-app-pub-3940256099942544~3347511713` | deine App-ID aus dem AdMob-Konto (mit Tilde) |
-| `web/index.html`, `ADMOB_ID.interstitial` | `ca-app-pub-3940256099942544/1033173712` | deine Anzeigenblock-ID |
-| `web/index.html`, `ADMOB_ID.belohnt` | `ca-app-pub-3940256099942544/5224354917` | deine Anzeigenblock-ID für das belohnte Video |
+| `zmaj-android/android/app/src/main/res/values/strings.xml`, `admob_app_id` | `ca-app-pub-3940256099942544~3347511713` | `ca-app-pub-9105747905460295~9760526209` |
+| `web/index.html`, `ADMOB_ID.interstitial` | `ca-app-pub-3940256099942544/1033173712` | `ca-app-pub-9105747905460295/9764395638` |
+| `web/index.html`, `ADMOB_ID.belohnt` | `ca-app-pub-3940256099942544/5224354917` | `ca-app-pub-9105747905460295/8572576770` |
 
-Dazu im selben Zug `ADMOB_TEST` in `web/index.html` von `true` auf `false`
-setzen und `app_bauen.py` noch einmal laufen lassen – sonst liegt in der
-Hülle weiter die alte index.html.
+**Von Hand ist das nicht nötig.** `admob_scharf.py` tauscht alle drei
+Kennungen und setzt `ADMOB_TEST` auf `false`, mit Nachkontrolle, dass danach
+keine Testkennung mehr in den Quellen steht:
+
+```
+python admob_scharf.py            # Probelauf, ändert nichts
+python admob_scharf.py --schreiben
+python app_bauen.py               # sonst liegt in der Hülle die alte index.html
+```
+
+**Erst nach dem geschlossenen Test laufen lassen** und erst, nachdem die
+Befunde aus `WERBUNG_PRUEFUNG.md` abgearbeitet sind. Ein Tester, der aus
+Hilfsbereitschaft eine echte Anzeige anklickt, erzeugt ungültigen Traffic –
+und der kostet im Zweifel das AdMob-Konto, nicht nur die paar Cent.
 
 ### Die Vollversion ist eingebaut – der Rest liegt bei dir
 

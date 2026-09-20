@@ -428,6 +428,20 @@ diesen drei Stellen die echten Werte aus dem AdMob-Konto eintragen:
 Die App-ID muss dort stehen, auch wenn man sie nicht benutzt: Ohne den
 Eintrag stürzt die App beim Start ab, sobald das Werbe-SDK dabei ist.
 
+Die Kennungen gibt es seit dem 20.09.2026:
+
+| | |
+|---|---|
+| App-ID | `ca-app-pub-9105747905460295~9760526209` |
+| Interstitial | `ca-app-pub-9105747905460295/9764395638` |
+| Belohnt | `ca-app-pub-9105747905460295/8572576770` |
+
+Eingetragen werden sie nicht von Hand, sondern mit `admob_scharf.py` – das
+Skript tauscht alle drei, legt `ADMOB_TEST` um und prüft danach nach, dass
+keine Testkennung übrig geblieben ist. Wann das dran ist, steht in
+`PRODUKTIONSZUGRIFF.md`; vorher gehören die Befunde aus
+`WERBUNG_PRUEFUNG.md` abgearbeitet.
+
 ### Die Einwilligung holt Google
 
 Für AdMob in der EU reicht ein selbstgebautes Fenster nicht. Google verlangt
