@@ -149,10 +149,13 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
   Ablauf. Das ist eine Codeänderung und geht deshalb erst in den ersten
   Build NACH dem Test. Bis dahin trägt der Lizenztest.
 - Abo-Produkt `vollversion`: angelegt am 20.09.2026 mit den Basisplänen
-  `monat` (2,99 €) und `jahr` (19,99 €), Einstufung Dienst, 174 Länder.
-  **Noch nicht aktiviert** — solange bleibt der Vollversion-Block in der App
-  still ausgeblendet. Alle 13 Tester sind Lizenztester, ihre Käufe kosten
-  also nichts.
+  `monat` (2,99 €) und `jahr` (19,99 €), Einstufung Dienst, 174 Länder,
+  **beide seit 20.09.2026 aktiv**. Damit taucht der Vollversion-Block in der
+  App auf. Alle 13 Tester sind Lizenztester, ihre Käufe kosten also nichts.
+  ACHTUNG: In den Versionshinweisen steht noch „Die Vollversion lässt sich
+  noch nicht kaufen“. Das stimmt nicht mehr, wird aber NICHT korrigiert —
+  jede Einreichung setzt Googles Prüfuhr zurück. Stattdessen in der
+  Testergruppe sagen.
 - AdMob-Zahlungsdaten. Vorher liefert AdMob keine echten Anzeigen aus, die
   drei Testkennungen bleiben also stehen und `ADMOB_TEST` bleibt `true`.
 - Anmeldung zur Servicegebührstufe (Kontogruppe). Bringt beim Abo nichts —
