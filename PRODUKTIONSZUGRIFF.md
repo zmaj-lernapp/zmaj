@@ -143,9 +143,16 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
 
 ## Offene Baustellen, die nichts mit dem Antrag zu tun haben
 
-- Abo-Produkt `vollversion` in der Console anlegen und **aktivieren**
-  (Basispläne `monat` und `jahr`, Einstufung unter Steuern: Dienst). Solange
-  es fehlt, blendet die App den Vollversion-Block still aus.
+- **Dauerhaftes Premium für Ajdin und Kübra einbauen** — versteckter Weg
+  in den Einstellungen (z. B. siebenmal auf die Versionszeile tippen, dann
+  ein Code), der `premium` lokal dauerhaft setzt. Kein Play-Kauf, kein
+  Ablauf. Das ist eine Codeänderung und geht deshalb erst in den ersten
+  Build NACH dem Test. Bis dahin trägt der Lizenztest.
+- Abo-Produkt `vollversion`: angelegt am 20.09.2026 mit den Basisplänen
+  `monat` (2,99 €) und `jahr` (19,99 €), Einstufung Dienst, 174 Länder.
+  **Noch nicht aktiviert** — solange bleibt der Vollversion-Block in der App
+  still ausgeblendet. Alle 13 Tester sind Lizenztester, ihre Käufe kosten
+  also nichts.
 - AdMob-Zahlungsdaten. Vorher liefert AdMob keine echten Anzeigen aus, die
   drei Testkennungen bleiben also stehen und `ADMOB_TEST` bleibt `true`.
 - Anmeldung zur Servicegebührstufe (Kontogruppe). Bringt beim Abo nichts —
