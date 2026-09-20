@@ -1502,6 +1502,11 @@ const apiF = () => '/api/fortschritt';
    liegt alles im Speicher des Browsers, und es gibt keine Anmeldung.
    Gesetzt wird der Schalter einmal beim Start in holeInhalt(). */
 let MIT_SERVER = false;
+/* Solange der Lernstand nicht gelesen ist, darf nichts geschrieben werden.
+   Der visibilitychange-Horcher haengt schon beim Einlesen des Skripts am
+   Dokument, loadProgress() laeuft aber erst nach Vorspann, Toenen, Inhalt
+   und Kontoabfrage. Dazwischen liegen mehrere Sekunden. */
+let standGeladen = false;
 const LOKAL_STAND = 'zmaj_stand';
 const LOKAL_ID    = 'zmaj_id';
 
@@ -2165,18 +2170,24 @@ function dauerVollVerdrahten(){
   });
 }
 async function loadProgress(){
-  if(!MIT_SERVER){ const roh = lokalLesen(); standUebernehmen(roh); vollversionLaden(roh); return; }
+  if(!MIT_SERVER){ const roh = lokalLesen(); standUebernehmen(roh); vollversionLaden(roh); standGeladen = true; return; }
   try{
     const r = await fetch(apiF()); const d = await r.json();
     if(!r.ok) throw new Error(d.fehler||'Profil unbekannt');
     standUebernehmen(d);
   }catch(e){ standUebernehmen({}); known = new Set(); passed = new Set(); read = new Set(); days = new Set(); frost = new Set(); tagwerk = {}; muenzenGes = 0; muenzenAus = 0; besitz = new Set(); }
+  standGeladen = true;
 }
 /* Gibt zurueck, ob der Stand wirklich weggeschrieben wurde. Fast alle
    Aufrufer interessiert das nicht - aber beim Einlesen einer Sicherung
    schon: sonst meldet die App Erfolg, und beim naechsten Start ist alles
    wieder weg, weil der Geraetespeicher voll oder gesperrt war. */
 async function saveProgress(){
+  /* Nichts wegschreiben, bevor gelesen wurde. Sonst ueberschreibt ein
+     visibilitychange waehrend des Vorspanns - Home-Taste, Anruf,
+     Bildschirmsperre - den ganzen Lernstand mit den leeren Startwerten.
+     Gefunden am 20.09.2026. */
+  if(!standGeladen) return false;
   if(!MIT_SERVER) return lokalSchreiben(standAlsObjekt());
   if(!profil) return false;
   try{
@@ -2887,7 +2898,15 @@ async function ladeAudio(){
 async function holeInhalt(){
   try{
     const r = await fetch('/api/daten?sprache='+encodeURIComponent(SPRACHE));
-    if(r.ok){ MIT_SERVER = true; return await r.json(); }
+    /* Erst auswerten, DANN merken. Auf dem Handy gibt es keinen Server,
+       aber Capacitor beantwortet jeden Pfad ohne Punkt im letzten Segment
+       mit der index.html und Status 200 - r.ok ist also wahr. Stand das
+       Merken davor, blieb MIT_SERVER auf true, obwohl r.json() gleich am
+       HTML scheitert. Beim Start korrigierte das noch /api/konto weiter
+       unten; beim Sprachwechsel lief ladeDaten() erneut und niemand setzte
+       zurueck. Ab da schrieb saveProgress() per POST ins Leere und meldete
+       Erfolg. Gefunden am 20.09.2026, waehrend der geschlossene Test lief. */
+    if(r.ok){ const d = await r.json(); MIT_SERVER = true; return d; }
   }catch(e){}
   // Zweiter Versuch mit der gewuenschten Sprache, dann Englisch, dann
   // Deutsch. Englisch davor, weil die App in 177 Laendern steht: ein Handy
@@ -4836,6 +4855,13 @@ async function init(){
   dauerVollVerdrahten();
   try{ await starten(); }
   finally{ vorspannWeg(); }
+  /* Einmal selbst nachsehen, ob das Abo laeuft. Bisher verliess sich die
+     App allein auf die Meldung aboGeaendert - die aber beim Kaltstart
+     abgeschickt wird, bevor es einen Zuhoerer gibt, und wegen der
+     Aenderungspruefung im Plugin nie wiederholt wird. Nach einer
+     Neuinstallation lief ein zahlender Abonnent deshalb als Gratisnutzer
+     weiter. Gefunden am 20.09.2026. */
+  vollAbgleichen();
   /* Jetzt erst die Werbung. vorspannVorbei löst auf, wenn das Logo
      ausgeblendet ist - oder spätestens nach elf Sekunden. */
   await vorspannVorbei;
