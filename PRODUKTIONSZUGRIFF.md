@@ -157,8 +157,22 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
   noch nicht kaufen“. Das stimmt nicht mehr, wird aber NICHT korrigiert —
   jede Einreichung setzt Googles Prüfuhr zurück. Stattdessen in der
   Testergruppe sagen.
-- AdMob-Zahlungsdaten. Vorher liefert AdMob keine echten Anzeigen aus, die
-  drei Testkennungen bleiben also stehen und `ADMOB_TEST` bleibt `true`.
+- **AdMob**, in dieser Reihenfolge:
+  1. Konto angelegt am 20.09.2026, Zahlungsland Deutschland (unaenderbar).
+     Die App wurde als **nicht veroeffentlicht** eingetragen, weil sie nur
+     im geschlossenen Test steht und AdMob sie im Store nicht findet.
+  2. **Sobald die App in Produktion live ist: in AdMob nachtraeglich mit dem
+     App-Shop verknuepfen** (App-Einstellungen -> Mit App-Shop verknuepfen,
+     `de.smartdragon.zmaj`). Ohne diese Verknuepfung bleibt die
+     Anzeigenbereitstellung dauerhaft eingeschraenkt. Die Pruefung danach
+     dauert laut Google einige Tage, manchmal laenger.
+  3. Zahlungsdaten und USt-IdNr `DE465139848` hinterlegen.
+  4. Erst dann die drei Testkennungen gegen die echten tauschen
+     (`web/index.html:1337`, `:1338`, `strings.xml:14`) und `ADMOB_TEST`
+     auf `false`. Vorher nicht: ein Tester, der aus Hilfsbereitschaft eine
+     Anzeige anklickt, ist ungueltiger Traffic und kann das AdMob-Konto
+     kosten.
+  5. `app-ads.txt` mit der Publisher-ID auf zmaj-lernapp.github.io legen.
 - Anmeldung zur Servicegebührstufe (Kontogruppe). Bringt beim Abo nichts —
   Abos liegen ohnehin bei 15 % — lohnt aber, bevor du je einen Einmalkauf
   anbietest.
