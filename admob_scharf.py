@@ -60,8 +60,19 @@ t(WEB, "Kennung fuer das belohnte Video",
   """  belohnt:      '%s',   // Zmaj, angelegt 20.09.2026""" % BELOHNT)
 
 t(XML, "App-Kennung in der Huelle",
-  """    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>""",
-  """    <string name="admob_app_id">%s</string>""" % APP_ID)
+  """    <!-- AdMob: Ohne diesen Eintrag stuerzt die App beim Start ab, sobald das
+         Werbe-SDK dabei ist. Hier steht Googles oeffentliche TEST-Kennung.
+         VOR DEM ERSTEN HOCHLADEN in den Play Store durch die echte Kennung
+         aus dem AdMob-Konto ersetzen (Einstellungen -> App-ID, beginnt mit
+         ca-app-pub- und hat eine Tilde). Die Anzeigen-Kennungen selbst
+         stehen in web/index.html unter ADMOB_ID. -->
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>""",
+  """    <!-- AdMob: Ohne diesen Eintrag stuerzt die App beim Start ab, sobald
+         das Werbe-SDK dabei ist. Das hier ist die echte App-Kennung aus dem
+         AdMob-Konto, eingetragen am 20.09.2026 von admob_scharf.py. Die
+         Anzeigen-Kennungen selbst stehen in web/index.html unter ADMOB_ID.
+         Nicht von Hand aendern - das Skript prueft beide Stellen zusammen. -->
+    <string name="admob_app_id">%s</string>""" % APP_ID)
 
 # ---------------------------------------------------------------- anwenden
 if not os.path.exists(XML):
