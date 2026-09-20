@@ -266,22 +266,24 @@ sowie die vier Accessoires stehen darin.
 
 Alles, was noch fehlt, hängt an Konten bei Google – nicht mehr am Code.
 
-- **Signaturschlüssel erzeugen.** In `android\app\build.gradle` steht noch
-  kein `signingConfig`, und im Projekt liegt keine `.jks`-Datei. Ohne
-  Schlüssel gibt es kein AAB zum Hochladen. Den Schlüssel und sein Passwort
-  sichern: geht er verloren, lässt sich die App nie wieder aktualisieren.
-- **Play-Entwicklerkonto anlegen** (einmalig 25 $) und bestätigen lassen.
-- **D-U-N-S-Nummer beantragen.** Google verlangt sie für Konten, die als
-  Unternehmen auftreten – das Gewerbe läuft seit dem 14.09.2026. Die Nummer
-  ist kostenlos, dauert aber Tage bis Wochen. Deshalb früh anstoßen.
-- **AdMob-Konto anlegen** und die echten Kennungen eintragen, an den drei
-  Stellen oben. `ADMOB_TEST` dabei auf `false`.
-- **Screenshots machen**, mindestens zwei, besser sechs bis acht. Symbol
-  (512 × 512) und Feature-Grafik (1024 × 500) liegen fertig in `store`.
-- **Data-Safety-Formular ausfüllen.** Es fragt, was die App sammelt und wohin
-  es geht. Zu prüfen ist dabei, was AdMob erhebt – die App selbst schickt
-  nichts weg. Die Adresse zum Löschen ist
-  `https://zmaj-lernapp.github.io/konto-loeschen.html`.
+Erledigt seit dem 19./20.09.2026: Freigabeschlüssel erzeugt und in
+`keystore.properties` eingetragen, Play-Entwicklerkonto steht, elf
+Screenshots gemacht, Data-Safety-Formular ausgefüllt, `versionCode` zählt
+`app_bauen.py` bei jedem Bau selbst hoch. Die D-U-N-S-Nummer braucht nur ein
+Firmenkonto – das Play-Konto ist ein privates, der Punkt ist damit vom
+Tisch.
+
+Was wirklich noch offen ist:
+
+- **Zwölf Tester finden** und den geschlossenen Test vierzehn Tage laufen
+  lassen. Danach Produktionszugriff beantragen. Das ist Pflicht für private
+  Play-Konten, die nach dem 13.11.2023 angelegt wurden.
+- **Zahlungsprofil und Steuerangaben** bei Google, mit der USt-IdNr aus
+  `sprachen.py`. Nötig für Abo-Einnahmen und AdMob-Auszahlungen, nicht für
+  den geschlossenen Test.
+- **Abo-Produkt anlegen und aktivieren**: `vollversion` mit den Basisplänen
+  `monat` und `jahr`, Einstufung unter Steuern als *Dienst*.
+- **AdMob-Zahlungsdaten hinterlegen.** Vorher liefert AdMob überhaupt keine
+  echten Anzeigen aus – die Testkennungen an den drei Stellen oben bleiben
+  also erst einmal stehen, und `ADMOB_TEST` bleibt auf `true`.
 - **Erste eigene Aufnahmen einsprechen**, Level 1 zuerst.
-- **Versionsnummer hochsetzen**, sobald das erste Paket hochgeladen ist:
-  `versionCode` steht auf 1 und muss bei jedem Upload größer werden.
