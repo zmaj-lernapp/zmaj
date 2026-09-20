@@ -271,9 +271,15 @@ def baue_startseite():
 
 
 def post_adresse():
-    """Die E-Mail-Adresse aus ANBIETER – die letzte Zeile."""
-    letzte = sprachen.ANBIETER.split("<br>")[-1].strip()
-    return letzte if "@" in letzte else "kontakt@beispiel.de"
+    """Die E-Mail-Adresse aus ANBIETER – die Zeile mit dem @.
+
+    Frueher war es schlicht die letzte Zeile. Seit die USt-IdNr dahinter
+    steht, waere das die falsche.
+    """
+    for zeile in sprachen.ANBIETER.split("<br>"):
+        if "@" in zeile:
+            return zeile.strip()
+    return "kontakt@beispiel.de"
 
 
 def schreibe(datei, text):
