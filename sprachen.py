@@ -56,7 +56,11 @@ ANBIETER = (
     "Ajdin Hasić<br>"
     "Gießener Str. 17<br>"
     "35435 Wettenberg<br>"
-    "zmaj.lernapp@gmail.com"
+    "zmaj.lernapp@gmail.com<br>"
+    # Mitgeteilt vom Bundeszentralamt fuer Steuern am 17.09.2026, zugleich
+    # Wirtschafts-Identifikationsnummer nach § 139c AO. § 5 Abs. 1 Nr. 6 DDG
+    # verlangt sie im Impressum, sobald man eine hat.
+    "USt-IdNr.: DE465139848"
 )
 
 # ===========================================================================
