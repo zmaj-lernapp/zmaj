@@ -163,11 +163,20 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
 
 ## Offene Baustellen, die nichts mit dem Antrag zu tun haben
 
-- **Dauerhaftes Premium für Ajdin und Kübra einbauen** — versteckter Weg
-  in den Einstellungen (z. B. siebenmal auf die Versionszeile tippen, dann
-  ein Code), der `premium` lokal dauerhaft setzt. Kein Play-Kauf, kein
-  Ablauf. Das ist eine Codeänderung und geht deshalb erst in den ersten
-  Build NACH dem Test. Bis dahin trägt der Lizenztest.
+- **Dauerhaftes Premium — erledigt, und zwar früher als geplant.** Der
+  versteckte Weg ist gebaut: siebenmal auf die Versionszeile in den
+  Einstellungen tippen (höchstens zwei Sekunden Abstand), dann das Wort
+  eingeben. Setzt `zmaj_dauer` lokal, getrennt von `zmaj_voll`, ohne
+  Play-Kauf und ohne Ablauf.
+
+  **Achtung:** Der Commit hieß „NICHT ausliefern", lag aber vor dem Bau von
+  Version 9 — und ist damit mitgegangen. Es steckt also bereits in der
+  Fassung, die die Tester auf dem Gerät haben. Kein Schaden: Es verkauft
+  nichts, es verschenkt nur, und Google verbietet nur den Verkauf außerhalb
+  von Play. Wer nicht siebenmal hintereinander auf dieselbe Zeile tippt und
+  danach das Wort kennt, merkt nichts davon. Für die Zukunft heißt die
+  Lehre: „nicht ausliefern" gehört nicht in eine Commit-Zeile, sondern in
+  einen Zweig.
 - Abo-Produkt `vollversion`: angelegt am 20.09.2026 mit den Basisplänen
   `monat` (2,99 €) und `jahr` (19,99 €), Einstufung Dienst, 174 Länder,
   **beide seit 20.09.2026 aktiv**. Damit taucht der Vollversion-Block in der
@@ -235,6 +244,24 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
      drei kontogefaehrdend. Solange Testkennungen laufen, richtet keiner
      davon Schaden an; gefaehrlich werden sie genau in dem Moment, in dem
      `ADMOB_TEST` auf `false` steht. Gehoert deshalb VOR Schritt 6.
+
+     **Liegt fertig bereit, zwei Skripte:**
+
+     ```
+     python werbung_richten.py --schreiben   # 17 Befunde, Code
+     python werbung_texte.py --schreiben     # Befund 18, acht Sprachen
+     python seite_bauen.py                   # die Webseite zieht dieselben Texte
+     python app_bauen.py
+     ```
+
+     Beide wurden am 20.09.2026 einmal angewandt, geprueft und wieder
+     zurueckgenommen - die Quelle steht also noch genau auf dem Stand, der
+     bei den Testern liegt. Geprueft wurde mit nachgebautem AdMob: eine
+     Anzeige, deren Nachpruefung beim Zeigen nein sagt, wird geladen und
+     verworfen statt gezeigt; ein abgebrochenes Video meldet sofort
+     "nichts bekommen" statt nach zwei Minuten; ein zu Ende gesehenes
+     Video gibt das Leben auch dann, wenn das Plugin seine Zusage nie
+     aufloest. Befund 20 ist schon in `admob_scharf.py` eingebaut.
   6. Erst dann die Kennungen tauschen: `python admob_scharf.py --schreiben`
      (tauscht alle drei und setzt `ADMOB_TEST` auf `false`), danach
      `app_bauen.py`. Vorher nicht: ein Tester, der aus Hilfsbereitschaft eine
