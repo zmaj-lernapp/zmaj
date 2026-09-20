@@ -11,6 +11,25 @@ nicht mitgeschrieben.
 Produktionsversion beantragen". Der Knopf wird erst aktiv, wenn zwölf Tester
 **durchgehend die vorangegangenen 14 Tage** angemeldet waren.
 
+**Stand am Abend des 20.09.2026, im Dashboard abgelesen:**
+
+| | |
+|---|---|
+| Release im geschlossenen Test veröffentlicht | erledigt (Haken) |
+| Mindestens 12 Tester angemeldet | **„Momentan sind 5 Tester angemeldet"** |
+| Test mit 12 Testern, mindestens 14 Tage | noch nicht begonnen |
+| Knopf „Produktionszugriff beantragen" | grau |
+
+**Das ist der Engpass, und er ist größer, als er aussieht.** Eingeladen sind
+dreizehn, angemeldet fünf. Eine Einladung zählt nicht — der Tester muss den
+Link geöffnet, „Tester werden" gedrückt und die App installiert haben. Und
+die vierzehn Tage fangen erst an zu laufen, wenn die zwölf voll sind. Jeder
+Tag, den die anderen acht nicht reagieren, ist ein Tag, der vorne nicht
+angerechnet wird.
+
+Version 9 ist übrigens durch: „Das App-Update wurde veröffentlicht."
+
+
 **Achtung beim Ausfüllen:** Klickst du „Verwerfen" oder verlässt die Seite
 ohne „Weiter", ist alles Eingetippte weg. Deshalb hier vorschreiben und dann
 hineinkopieren.
