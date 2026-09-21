@@ -72,3 +72,6 @@ thumbs.db
 mappe/node_modules/
 mappe/*.pdf
 mappe/bilder/
+
+# Word legt beim Oeffnen eine Sperrdatei an
+~$*

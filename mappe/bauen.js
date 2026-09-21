@@ -7,8 +7,8 @@
 const fs = require("fs");
 const {
   Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType,
-  Footer, PageNumber, NumberFormat, TabStopType, TabStopPosition,
-  BorderStyle, LevelFormat, convertInchesToTwip,
+  Footer, Header, ImageRun, PageNumber, NumberFormat, TabStopType,
+  TabStopPosition, BorderStyle, LevelFormat, convertInchesToTwip,
 } = require("docx");
 
 const ZIEL = process.argv[2] || "Kapitel1.docx";
@@ -85,13 +85,27 @@ const titelseite = [
   }),
   new Paragraph({
     alignment: AlignmentType.CENTER,
-    spacing: { after: 600 },
+    spacing: { after: 400 },
     border: { top: { style: BorderStyle.SINGLE, size: 6, color: "2E5496", space: 12 } },
     children: [new TextRun({
       text: "Eine Android-Anwendung von der Idee bis zur Veröffentlichung",
       size: 24, font: "Calibri", color: "404040",
     })],
   }),
+  /* Das Studio-Zeichen sitzt auf dem Deckblatt zwischen Titel und Namen -
+     gross und mittig, nicht klein in der Ecke. Auf allen folgenden Seiten
+     steht es dafuer in der Kopfzeile. */
+  ...(fs.existsSync(__dirname + "/smartdragon-papier.png")
+    ? [new Paragraph({
+        alignment: AlignmentType.CENTER,
+        spacing: { after: 400 },
+        children: [new ImageRun({
+          type: "png",
+          data: fs.readFileSync(__dirname + "/smartdragon-papier.png"),
+          transformation: { width: 264, height: 88 },   // ca. 7 cm breit
+        })],
+      })]
+    : []),
   new Paragraph({
     alignment: AlignmentType.CENTER,
     spacing: { after: 120 },
@@ -145,6 +159,39 @@ inhalt.push(absatz(T.gliederung_schluss));
 const RAND_TEXT = { top: 1418, bottom: 1418, left: 1701, right: 1134 };
 const RAND_TITEL = { top: 1418, bottom: 1418, left: 1418, right: 1418 };
 
+/* KOPFZEILE mit dem Studio-Zeichen, links, auf jeder Seite - so wie in der
+   Smartgrow-Mappe.
+
+   Das Bild ist die Papierfassung aus logo_papier.js: Im Original ist der
+   Schriftzug weiss, weil das Zeichen auf dunklem Grund lebt. Auf einem
+   Blatt Papier stuende dort sonst nur der Kopf und daneben nichts.
+
+   Gerendert wird mit 510 px Breite und im Dokument auf 151 px gesetzt -
+   dreifache Aufloesung, damit der Druck nicht ausfranst. Das
+   Seitenverhaeltnis 3:1 stammt aus dem SVG und darf nicht verrutschen. */
+const LOGO = __dirname + "/smartdragon-papier.png";
+const LOGO_BREITE = 151;     // ca. 4 cm
+const LOGO_HOEHE = 50;
+
+const kopfzeile = fs.existsSync(LOGO)
+  ? new Header({
+      children: [new Paragraph({
+        alignment: AlignmentType.LEFT,
+        spacing: { after: 120 },
+        children: [new ImageRun({
+          type: "png",
+          data: fs.readFileSync(LOGO),
+          transformation: { width: LOGO_BREITE, height: LOGO_HOEHE },
+        })],
+      })],
+    })
+  : null;
+
+if (!kopfzeile) {
+  console.error("Hinweis: " + LOGO + " fehlt - das Dokument entsteht ohne Logo.");
+  console.error("Erzeugen mit:  node logo_papier.js");
+}
+
 const fusszeile = new Footer({
   children: [new Paragraph({
     tabStops: [{ type: TabStopType.RIGHT, position: TabStopPosition.MAX }],
@@ -176,15 +223,17 @@ const doc = new Document({
     }],
   },
   sections: [
-    // 1) Titelseite: gleiche Raender, keine Fusszeile
+    // 1) Titelseite: gleiche Raender, keine Fuss- und keine Kopfzeile.
+    //    Das Logo steht hier mitten im Titelblock, nicht oben in der Ecke.
     {
       properties: { page: { margin: RAND_TITEL } },
       children: titelseite,
     },
-    // 2) Der Textteil mit Bindungsrand und Fusszeile
+    // 2) Der Textteil mit Bindungsrand, Logo oben und Fusszeile unten
     {
       properties: { page: { margin: RAND_TEXT } },
       children: inhalt,
+      ...(kopfzeile ? { headers: { default: kopfzeile } } : {}),
       footers: { default: fusszeile },
     },
   ],
