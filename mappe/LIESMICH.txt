@@ -1,0 +1,71 @@
+SO ENTSTEHT DAS WORD-DOKUMENT DER PROJEKTMAPPE
+==============================================
+
+Der Text steht in kapitel1.json, das Layout in bauen.js. Getrennt, damit
+sich am Text etwas ändern lässt, ohne das Layout anzufassen – und
+umgekehrt.
+
+
+Was hier liegt
+--------------
+  kapitel1.json    Der ganze Text. Hier wird geschrieben.
+  bauen.js         Baut daraus die Word-Datei. Layout, Schriften, Fußzeile.
+  pdf2png.ps1      Macht aus einem PDF Bilder, eine je Seite. Damit lässt
+                   sich das Ergebnis wirklich anschauen, nicht nur der Text
+                   prüfen. Nutzt den PDF-Renderer, der in Windows steckt –
+                   es muss nichts installiert werden.
+
+  Zmaj Kapitel 1.docx   Das Ergebnis.
+
+
+Neu bauen
+---------
+
+1. Einmalig die Pakete holen (braucht Internet):
+
+      cd mappe
+      npm install docx
+
+   Der Ordner node_modules entsteht dabei und bleibt außen vor – er steht
+   in .gitignore.
+
+2. Bauen:
+
+      node bauen.js "Zmaj Kapitel 1.docx"
+
+
+Ansehen, ohne Word zu öffnen
+----------------------------
+
+Word kann das Dokument selbst in ein PDF verwandeln, auch ohne dass ein
+Fenster aufgeht. In PowerShell:
+
+    $w = New-Object -ComObject Word.Application
+    $w.Visible = $false
+    $d = $w.Documents.Open("<voller Pfad>\Zmaj Kapitel 1.docx", $false, $true)
+    $d.SaveAs2("<voller Pfad>\kapitel1.pdf", 17)
+    $d.Close($false); $w.Quit()
+
+Und daraus Bilder:
+
+    powershell -File pdf2png.ps1 -Pdf kapitel1.pdf -Ziel bilder -Breite 900
+
+
+Am Text schreiben
+-----------------
+
+In kapitel1.json ist jeder Abschnitt ein Eintrag unter "kapitel1":
+
+    { "ueberschrift": "1.5 Titel",
+      "bloecke": [
+        "Ein ganz normaler Absatz.",
+        { "punkte": ["erster Punkt", "zweiter Punkt"] },
+        { "mix": ["Text mit ", ["fettem Stück", true], " darin."] }
+      ] }
+
+Mehr Formen gibt es absichtlich nicht. Eine Projektmappe braucht Absätze,
+Aufzählungen und gelegentlich ein fettes Wort – alles andere lenkt ab.
+
+Umlaute und Anführungszeichen kommen direkt in die Datei, nicht als \u-Code.
+Die eine Ausnahme ist das schließende deutsche Anführungszeichen: Es muss
+als “ geschrieben werden, weil " in JSON den Text beenden würde.

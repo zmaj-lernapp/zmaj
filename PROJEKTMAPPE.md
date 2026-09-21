@@ -41,11 +41,19 @@ hier Aufbau der Anwendung und Veröffentlichung.
 | 5.7 | Inbetriebnahme und Funktionstest | geschlossener Test, 12 Tester |
 | 6 | Anhang | Quelltextauszüge, Screenshots, Belege |
 
-**Warum das trägt:** Die Mappe muss nicht rückblickend erfunden werden. Jeder
-Arbeitsschritt seit dem 13.09.2026 steht mit Datum und Begründung in der
-Versionsverwaltung, jede Fehlersuche ist protokolliert, und der geschlossene
-Test liefert eine echte Inbetriebnahme mit zwölf Anwendern statt einer
-Schreibtischprobe.
+**Warum das trägt:** Die Mappe muss nicht rückblickend erfunden werden. Seit
+dem **19.09.2026** steht jeder Arbeitsschritt mit Datum, geänderten Dateien
+und Begründung in der Versionsverwaltung — derzeit 27 Einträge. Jede
+Fehlersuche ist protokolliert, und der geschlossene Test liefert eine echte
+Inbetriebnahme mit zwölf Anwendern statt einer Schreibtischprobe.
+
+> **Achtung, Lücke:** Der Bearbeitungszeitraum beginnt am 10.08.2026, die
+> Versionsverwaltung erst am 19.09.2026. Die Dateien selbst sind älter — die
+> ersten stammen vom 13.09.2026 —, aber für August und die erste
+> Septemberhälfte gibt es kein Schritt-für-Schritt-Protokoll. In Kapitel 5.6
+> (Controlling) muss deshalb entweder anders belegt werden, was in dieser
+> Zeit geschah, oder es wird offen gesagt. Nicht behaupten, die
+> Rückverfolgbarkeit sei lückenlos.
 
 ---
 
@@ -105,30 +113,29 @@ tatsächlich veröffentlichtes Produkt mit zahlenden Nutzern
 (Abonnement-Vollversion) und Werbefinanzierung. Sie wird über die Abgabe
 dieser Arbeit hinaus weitergepflegt.
 
-### Bezug zur Fachrichtung Automatisierungstechnik
+### 1.4 Bezug zur Fachrichtung Automatisierungstechnik
 
-*Dieser Abschnitt ist noch ein Vorschlag und muss mit Herrn Dr. Rosenschon
-abgestimmt werden — siehe die Anmerkung unten.*
+Eine Sprachlernanwendung ist auf den ersten Blick kein Gegenstand der Automatisierungstechnik. Der Einwand sei deshalb vorweggenommen, bevor er entsteht.
 
-Auf den ersten Blick liegt eine Sprachlernanwendung außerhalb der
-Automatisierungstechnik. Die fachliche Verbindung liegt nicht im
-Gegenstand, sondern in der Methodik:
+**Was diese Arbeit nicht enthält:** keine Sensorik, keine Antriebe, keine speicherprogrammierbare Steuerung, keinen Feldbus und keinen physikalischen Prozess. Es gibt keine Messgrößen in physikalischen Einheiten und folglich auch keine Regelstrecke, die sich mit einer Übertragungsfunktion beschreiben ließe.
 
-- **Ablaufsteuerung.** Der Lernablauf ist eine Schrittkette mit definierten
-  Zuständen und Übergangsbedingungen — Aufgabe stellen, Antwort prüfen,
-  bewerten, Folgezustand bestimmen. Dieselbe Denkweise wie bei einer
-  SPS-Schrittkette, nur in einer anderen Sprache umgesetzt.
-- **Regelkreis.** Die Wiederholung der Vokabeln arbeitet nach einem
-  rückgekoppelten Verfahren: Die Antwort des Nutzers ist die Messgröße, das
-  Wiederholungsintervall die Stellgröße. Richtige Antworten vergrößern den
-  Abstand, falsche verkürzen ihn.
-- **Zustandsüberwachung und Verriegelung.** Das Lebenssystem ist eine
-  Begrenzung mit Zeitglied: Fünf Fehlversuche sperren den Zugang für zwei
-  Stunden, ein Zeitglied gibt ihn schrittweise wieder frei.
-- **Projektmethodik.** Lastenheft, Konzeptfindung, Risikoanalyse,
-  Inbetriebnahme und Controlling sind fachrichtungsunabhängige
-  Technikerkompetenzen und bilden das Gerüst dieser Arbeit.
+Der Bezug liegt nicht im Gegenstand, sondern in den Entwurfsfragen. Beim Entwurf einer Ablaufsteuerung sind stets dieselben fünf Fragen zu beantworten, gleich ob die Anlage ein Ofen, ein Förderband oder ein Lernablauf ist:
 
-*Zu klären:* […] Ob Herr Dr. Rosenschon dieses Thema für die Fachrichtung
-Automatisierungstechnik freigegeben hat und ob er einen stärkeren Bezug
-erwartet.
+- Welche Zustände gibt es? – Der Lernablauf ist als Zustandsfolge umgesetzt: Aufgabe stellen, Antwort erfassen, bewerten, Folgezustand bestimmen.
+- Wodurch wird weitergeschaltet? – Die Übergangsbedingungen ergeben sich aus der Antwort des Anwenders und aus dem bisherigen Lernstand.
+- Was ist verriegelt? – Fünf Fehlversuche sperren den Zugang; die Sperre lässt sich weder umgehen noch durch Neustart der Anwendung aufheben.
+- Welche Zeiten werden überwacht? – Ein Zeitglied gibt die Sperre nach zwei Stunden schrittweise wieder frei. Ein Tageszähler begrenzt die Werbeeinblendungen und wird um Mitternacht zurückgesetzt.
+- Welche Störgrößen greifen ein? – Netzausfall, eingehender Anruf, Wechsel in den Hintergrund und das Beenden der Anwendung während eines laufenden Vorgangs. Jeder dieser Fälle ist als definierter Ablauf behandelt.
+
+Diese fünf Fragen sind am Projekt konkret zu beantworten und nachprüfbar. Die Werkzeuge sind andere als im Schaltschrank; die Entwurfsfragen sind dieselben.
+
+**Rückkopplung im Lernverfahren.** Die Wiederholung der Vokabeln arbeitet rückgekoppelt: Die Antwortgenauigkeit des Anwenders bestimmt den Abstand bis zur nächsten Abfrage. Richtige Antworten vergrößern ihn, falsche verkürzen ihn. Dass es sich dabei nicht um eine nachträgliche Umdeutung handelt, zeigt die Fachliteratur: Tabibian u. a. formulieren die Planung von Wiederholungen in den Proceedings of the National Academy of Sciences ausdrücklich als Problem der Optimalsteuerung und prüfen ihr Ergebnis an Daten eines Sprachlernanbieters. Bewusst nicht behauptet wird, es handle sich um einen Regelkreis im Sinne der Regelungstechnik: Die Strecke ist ein Mensch, eine Sprungantwort ist nicht reproduzierbar, und ein Stabilitätsnachweis ist nicht möglich.
+
+**Abnahme durch eine externe Instanz.** Die Inbetriebnahme erfolgte nicht am Schreibtisch. Zwölf Anwender haben die Anwendung über vierzehn Tage auf ihren eigenen Geräten benutzt. Die Freigabe erteilt Google nach einem Regelwerk, das der Verfasser nicht beeinflussen kann und dessen Verletzung zur Sperrung des Entwicklerkontos führt. Damit steht am Ende keine Selbstzertifizierung, sondern die Abnahme durch eine unabhängige Stelle.
+
+Sollte ein engerer Bezug zur Fachrichtung gewünscht sein, lässt sich die Arbeit ohne Themenwechsel erweitern: um eine Zustandsübergangstabelle des Lernablaufs mit vollständigem Testnachweis je Übergang, um eine Fehlermöglichkeits- und Einflussanalyse der Ablauflogik mit Risikoprioritätszahlen, sowie um eine Verifikationsmatrix, die jede Anforderung des Lastenhefts mit Prüfmethode, Sollwert, Istwert und Prüfdatum belegt. Das Material dafür liegt vor; es wäre in die Prüfform zu bringen.
+
+---
+
+> **Als Word-Datei:** `mappe/Zmaj Kapitel 1.docx`, erzeugt aus
+> `mappe/kapitel1.json`. Wie das geht, steht in `mappe/LIESMICH.txt`.

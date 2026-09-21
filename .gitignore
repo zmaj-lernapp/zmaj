@@ -67,3 +67,8 @@ thumbs.db
 # web/maskottchen/ – klein, und ohne sie zeigt die Probeseite nichts.
 # testdaten/   – erfundene Lernstände zum Ausprobieren, nichts Persönliches.
 # store/       – Symbol und Grafiken für den Play-Eintrag.
+
+# Die Bauwerkzeuge der Projektmappe holen sich ihre Pakete selbst
+mappe/node_modules/
+mappe/*.pdf
+mappe/bilder/
