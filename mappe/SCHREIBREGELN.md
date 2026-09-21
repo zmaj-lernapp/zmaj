@@ -51,10 +51,16 @@ Umschreiben der ganzen Mappe.
    niemals Thesen wie „Warum diese Aufgabe eine Projektarbeit trägt".
 7. Ein Absatz trägt einen Gedanken. Bringt der vierte Satz keine neue
    Tatsache, ist der Absatz zu Ende.
-8. In Kapitel 1 steht keine Literaturstelle. Eine Quelle belegt später eine
+8. **Beispiele sind erlaubt — wenn sie etwas greifbar machen.** Ein
+   Beispiel, das eine Zahl oder einen Begriff anschaulich macht, gehört
+   hinein: „43 Lernabschnitte, vom Alltag bis zum Arbeitsvertrag" sagt
+   mehr als „43 Lernabschnitte". Ein Beispiel, das nur den Text füllt oder
+   das Thema aufwerten soll, fliegt raus. Die Probe: Versteht der Leser
+   ohne das Beispiel weniger? Dann bleibt es.
+9. In Kapitel 1 steht keine Literaturstelle. Eine Quelle belegt später eine
    Entscheidung; sie wertet kein Thema auf.
-9. Kein Wort über frühere Projekte. Die Vorlage wird benutzt, nicht erwähnt.
-10. Kein Satz darüber, ob das Thema zur Fachrichtung passt. Es ist
+10. Kein Wort über frühere Projekte. Die Vorlage wird benutzt, nicht erwähnt.
+11. Kein Satz darüber, ob das Thema zur Fachrichtung passt. Es ist
     gutgeheißen.
 
 ---
