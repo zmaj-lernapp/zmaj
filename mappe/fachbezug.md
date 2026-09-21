@@ -1,8 +1,8 @@
-Eine Sprachlernanwendung ist auf den ersten Blick kein Gegenstand der Automatisierungstechnik. Der Einwand sei deshalb vorweggenommen, bevor er entsteht.
+Automatisierungstechnik ist heute zu einem erheblichen Teil Softwaretechnik. Ob eine Ablaufsteuerung in einer speicherprogrammierbaren Steuerung, in einer Visualisierung oder in einer mobilen Anwendung läuft, ändert nichts an den Fragen, die beim Entwurf zu beantworten sind. Der Gegenstand dieser Arbeit ist ungewöhnlich, die Methode ist es nicht.
 
-**Was diese Arbeit nicht enthält:** keine Sensorik, keine Antriebe, keine speicherprogrammierbare Steuerung, keinen Feldbus und keinen physikalischen Prozess. Es gibt keine Messgrößen in physikalischen Einheiten und folglich auch keine Regelstrecke, die sich mit einer Übertragungsfunktion beschreiben ließe.
+**Zur Abgrenzung:** Die Arbeit enthält keine Sensorik, keine Antriebe, keine speicherprogrammierbare Steuerung, keinen Feldbus und keinen physikalischen Prozess. Es gibt keine Messgrößen in physikalischen Einheiten und folglich auch keine Regelstrecke, die sich mit einer Übertragungsfunktion beschreiben ließe. Das ist kein Mangel, sondern eine Festlegung des Themas – und sie wird hier ausdrücklich genannt, damit der fachliche Kern dort gesucht wird, wo er tatsächlich liegt.
 
-Der Bezug liegt nicht im Gegenstand, sondern in den Entwurfsfragen. Beim Entwurf einer Ablaufsteuerung sind stets dieselben fünf Fragen zu beantworten, gleich ob die Anlage ein Ofen, ein Förderband oder ein Lernablauf ist:
+Beim Entwurf einer Ablaufsteuerung sind stets dieselben fünf Fragen zu beantworten, gleich ob die Anlage ein Ofen, ein Förderband oder ein Lernablauf ist:
 
 - Welche Zustände gibt es? – Der Lernablauf ist als Zustandsfolge umgesetzt: Aufgabe stellen, Antwort erfassen, bewerten, Folgezustand bestimmen.
 - Wodurch wird weitergeschaltet? – Die Übergangsbedingungen ergeben sich aus der Antwort des Anwenders und aus dem bisherigen Lernstand.
