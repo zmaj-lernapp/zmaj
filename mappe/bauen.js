@@ -149,9 +149,50 @@ const titelseite = [
   titelzeile(T.stand, { oben: 1655, groesse: 21, farbe: "999999" }),
 ];
 
-// ---------------------------------------------------------------- Kapitel 1
-// Beginnt einen eigenen Abschnitt, siehe unten bei RAENDER.
+/* ------------------------------------------------------ INHALTSVERZEICHNIS
+   Von Hand gesetzt, nicht als Word-Feld. Ein automatisches Verzeichnis
+   listet nur, was schon geschrieben ist - hier soll aber die ganze geplante
+   Arbeit stehen, damit der Betreuer den Umfang sieht. Was fertig ist,
+   bekommt eine Seitenzahl; alles andere einen Strich.
+
+   Sobald die Mappe vollstaendig ist, kann das gegen ein echtes Feld
+   getauscht werden. */
+const ivZeile = (nr, titel, seite, tief) =>
+  new Paragraph({
+    spacing: { after: tief ? 90 : 130 },
+    indent: { left: tief ? convertInchesToTwip(0.4) : 0 },
+    tabStops: [
+      { type: TabStopType.LEFT, position: convertInchesToTwip(tief ? 0.85 : 0.45) },
+      { type: TabStopType.RIGHT, position: TabStopPosition.MAX, leader: "dot" },
+    ],
+    children: [
+      new TextRun({ text: nr + "\t", bold: !tief, size: 24, font: "Calibri", color: tief ? "444444" : "1F3864" }),
+      new TextRun({ text: titel, bold: !tief, size: 24, font: "Calibri", color: tief ? "444444" : "1F3864" }),
+      new TextRun({ text: "\t" + (seite || "–"), bold: !tief, size: 24, font: "Calibri", color: seite ? "1F3864" : "AAAAAA" }),
+    ],
+  });
+
 const inhalt = [];
+inhalt.push(new Paragraph({
+  spacing: { before: 200, after: 320 },
+  children: [new TextRun({ text: "Inhalt", bold: true, size: 44, font: "Calibri Light", color: "1F3864" })],
+}));
+/* Ein Unterkapitel erkennt man an Ziffer-Punkt-Ziffer (2.1), NICHT am
+   blossen Punkt - 2. hat naemlich auch einen. Mit der falschen Pruefung
+   war jedes Hauptkapitel eingerueckt und nicht fett. */
+const istUnter = (nr) => /^\d+\.\d/.test(nr);
+T.gliederung.forEach((g) => inhalt.push(ivZeile(g[0], g[1], g[3], istUnter(g[0]))));
+inhalt.push(new Paragraph({
+  spacing: { before: 400 },
+  children: [new TextRun({
+    text: "Ein Strich steht für ein Kapitel, das noch entsteht. "
+        + "Der geplante Aufbau und die Quellenlage stehen am Ende dieses Hefts.",
+    size: 20, font: "Calibri", color: "808080", italics: true,
+  })],
+}));
+inhalt.push(new Paragraph({ children: [new (require("docx").PageBreak)()] }));
+
+// ---------------------------------------------------------------- Kapitel 1
 inhalt.push(ueber1("1. Vorstellung des Projekts und des Verfassers"));
 
 for (const teil of T.kapitel1) {
@@ -168,13 +209,18 @@ inhalt.push(new Paragraph({ children: [new (require("docx").PageBreak)()] }));
 inhalt.push(ueber1("Geplanter Aufbau der Arbeit"));
 inhalt.push(absatz(T.gliederung_einleitung));
 inhalt.push(...leer(1));
-T.gliederung.forEach((g) => inhalt.push(glied(g[0], g[1], g[2], g[0].includes("."))));
+T.gliederung.forEach((g) => inhalt.push(glied(g[0], g[1], g[2], istUnter(g[0]))));
 inhalt.push(...leer(1));
 inhalt.push(absatz(T.gliederung_schluss));
 
 // ---------------------------------------------------------------- Dokument
-/* RAENDER. Der Textteil bekommt links mehr Platz, damit beim Heften oder
-   Binden nichts im Falz verschwindet: 3 cm links, 2 cm rechts.
+/* RAENDER. Links und rechts gleich - 2,5 cm.
+
+   Vorher stand hier ein Bindungsrand von 3 cm links gegen 2 cm rechts. Das
+   ist bei gebundenen Arbeiten ueblich, aber es verschiebt den Satzspiegel
+   sichtbar nach rechts, und Ajdin hat genau das bemaengelt. In der
+   Smartgrow-Mappe nachgemessen: dort sind die Raender gleich. Also auch
+   hier.
 
    Die Titelseite darf das NICHT haben. "Zentriert" heisst in Word mittig
    im Satzspiegel, nicht mittig auf dem Blatt - bei ungleichen Raendern
@@ -182,7 +228,7 @@ inhalt.push(absatz(T.gliederung_schluss));
    0,5 cm. Das sieht man, und Ajdin hat es gesehen. Deshalb ist die
    Titelseite ein eigener Abschnitt mit gleichen Raendern, und auch ohne
    Fusszeile - eine Seitenzahl auf dem Deckblatt gehoert dort nicht hin. */
-const RAND_TEXT = { top: 1418, bottom: 1418, left: 1701, right: 1134 };
+const RAND_TEXT = { top: 1418, bottom: 1418, left: 1418, right: 1418 };
 const RAND_TITEL = { top: 0, bottom: 0, left: px2tw(95), right: px2tw(95) };
 
 /* KOPFZEILE mit dem Studio-Zeichen, links, auf jeder Seite - so wie in der
