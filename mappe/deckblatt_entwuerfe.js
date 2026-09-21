@@ -131,7 +131,58 @@ function entwurf3() {
   </svg>`;
 }
 
-const alle = [["entwurf-1", entwurf1()], ["entwurf-2", entwurf2()], ["entwurf-3", entwurf3()]];
+// ---------------------------------------------------------------- Entwurf 4
+// Die Mischung: der ruhige Aufbau von 1, das Telefon von 2. Das Gerät ragt
+// über die Kante in den hellen Teil - das hält die beiden Hälften zusammen,
+// statt sie nur übereinanderzulegen.
+function entwurf4() {
+  const schnitt = 1130;
+  const tw = 340, th = Math.round(tw * 2400 / 1080);
+  const tx = B - tw - 95, ty = 300;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${B}" height="${H}" viewBox="0 0 ${B} ${H}">
+    <defs>
+      <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#101E44"/>
+        <stop offset="70%" stop-color="${DUNKEL}"/>
+        <stop offset="100%" stop-color="${TIEF}"/>
+      </linearGradient>
+      <clipPath id="rund4"><rect x="${tx}" y="${ty}" width="${tw}" height="${th}" rx="28"/></clipPath>
+      <filter id="schatten" x="-30%" y="-10%" width="170%" height="130%">
+        <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000000" flood-opacity="0.45"/>
+      </filter>
+    </defs>
+    <rect width="${B}" height="${H}" fill="#FFFFFF"/>
+    <rect width="${B}" height="${schnitt}" fill="url(#g4)"/>
+    <rect y="${schnitt - 5}" width="${B}" height="5" fill="${GELB}"/>
+
+    <image href="${alsBild(logoDunkel)}" x="95" y="105" width="345" height="115"/>
+
+    <text x="95" y="500" font-family="${SCHRIFT}" font-size="128" font-weight="300"
+          fill="#FFFFFF" letter-spacing="10">ZMAJ</text>
+    <rect x="97" y="533" width="115" height="5" fill="${GELB}"/>
+    <text x="95" y="608" font-family="${SCHRIFT}" font-size="38" font-weight="600"
+          fill="${BLAU}" letter-spacing="4">BOSNISCH LERNEN</text>
+    <text x="95" y="690" font-family="${SCHRIFT}" font-size="26" fill="#AAB6D8">Eine Android-Anwendung von der</text>
+    <text x="95" y="728" font-family="${SCHRIFT}" font-size="26" fill="#AAB6D8">Idee bis zur Veröffentlichung</text>
+    <text x="95" y="830" font-family="${SCHRIFT}" font-size="23" fill="#6B7BA8">Projektarbeit zur Weiterbildung zum</text>
+    <text x="95" y="866" font-family="${SCHRIFT}" font-size="23" fill="#6B7BA8">staatlich geprüften Techniker</text>
+
+    <g filter="url(#schatten)">
+      <image href="data:image/png;base64,${schirm.toString("base64")}"
+             x="${tx}" y="${ty}" width="${tw}" height="${th}" clip-path="url(#rund4)"/>
+      <rect x="${tx}" y="${ty}" width="${tw}" height="${th}" rx="28"
+            fill="none" stroke="#3A4A78" stroke-width="3"/>
+    </g>
+
+    ${ANGABEN.map((z, i) => `<text x="95" y="${1330 + i * 52}" font-family="${SCHRIFT}"
+        font-size="${i === 0 ? 40 : 26}" font-weight="${i === 0 ? 700 : 400}"
+        fill="${i === 0 ? "#1A1A1A" : "#444444"}">${z}</text>`).join("")}
+    <text x="95" y="1672" font-family="${SCHRIFT}" font-size="21" fill="#999999">Stand: 21.09.2026</text>
+  </svg>`;
+}
+
+const alle = [["entwurf-1", entwurf1()], ["entwurf-2", entwurf2()],
+              ["entwurf-3", entwurf3()], ["entwurf-4", entwurf4()]];
 
 (async () => {
   fs.mkdirSync(path.join(HIER, "entwuerfe"), { recursive: true });
