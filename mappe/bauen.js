@@ -70,57 +70,83 @@ const glied = (nr, titel, quelle, tief) =>
     ],
   });
 
-// ---------------------------------------------------------------- Titelseite
-const titelseite = [
-  ...leer(6),
-  new Paragraph({
-    alignment: AlignmentType.CENTER,
-    spacing: { after: 0 },
-    children: [new TextRun({ text: "ZMAJ", bold: true, size: 96, font: "Calibri Light", color: "1F3864" })],
-  }),
-  new Paragraph({
-    alignment: AlignmentType.CENTER,
-    spacing: { after: 240 },
-    children: [new TextRun({ text: "BOSNISCH LERNEN", bold: true, size: 44, font: "Calibri Light", color: "2E5496" })],
-  }),
-  new Paragraph({
-    alignment: AlignmentType.CENTER,
-    spacing: { after: 400 },
-    border: { top: { style: BorderStyle.SINGLE, size: 6, color: "2E5496", space: 12 } },
+/* ---------------------------------------------------------------- TITELSEITE
+   Der Hintergrund ist ein Bild: Farbflächen, Logo, Telefon, Striche. Die
+   Schrift liegt als echter Word-Text darüber - markierbar, durchsuchbar
+   und korrigierbar. Ein Deckblatt, das nur ein Bild ist, kann niemand mehr
+   ändern, ohne das Bauskript zu haben.
+
+   Die Maße stammen aus deckblatt_entwuerfe.js: dort ist die Seite
+   1240 x 1754 px groß, also A4 bei 150 dpi. Umrechnung in Zentimeter:
+   px / 150 * 2,54. In Twips (Word rechnet darin): cm * 567.
+
+   Der linke Textrand liegt im Entwurf bei x = 95 px = 1,61 cm. Genau
+   dorthin wird der Seitenrand gesetzt, dann fluchtet der Text von selbst. */
+const HG = __dirname + "/entwurf-4-hintergrund.png";
+const hatHG = fs.existsSync(HG);
+if (!hatHG) {
+  console.error("Hinweis: " + HG + " fehlt - Titelseite ohne Hintergrund.");
+  console.error("Erzeugen mit:  node deckblatt_entwuerfe.js");
+}
+
+const px2tw = (px) => Math.round(px / 150 * 2.54 * 567);
+const px2pt = (px) => Math.round(px / 150 * 72 * 2);   // halbe Punkte für docx
+
+// Ein Textzug auf der Titelseite. `oben` ist der Abstand von der Oberkante
+// der Seite bis zur Oberkante des Absatzes, in Pixeln des Entwurfs.
+let letzteKante = 0;
+function titelzeile(text, opt) {
+  const vor = Math.max(0, px2tw(opt.oben - letzteKante));
+  letzteKante = opt.oben + opt.groesse * 1.15;   // muss zu `line` unten passen
+  return new Paragraph({
+    spacing: { before: vor, after: 0, line: Math.round(opt.groesse * 1.15 / 150 * 1440), lineRule: "exact" },
     children: [new TextRun({
-      text: "Eine Android-Anwendung von der Idee bis zur Veröffentlichung",
-      size: 24, font: "Calibri", color: "404040",
+      text,
+      size: px2pt(opt.groesse),
+      bold: !!opt.fett,
+      color: opt.farbe,
+      font: opt.leicht ? "Segoe UI Light" : "Segoe UI",
+      characterSpacing: opt.sperrung ? Math.round(opt.sperrung / 150 * 1440) : undefined,
     })],
-  }),
-  /* Das Studio-Zeichen sitzt auf dem Deckblatt zwischen Titel und Namen -
-     gross und mittig, nicht klein in der Ecke. Auf allen folgenden Seiten
-     steht es dafuer in der Kopfzeile. */
-  ...(fs.existsSync(__dirname + "/smartdragon-papier.png")
-    ? [new Paragraph({
-        alignment: AlignmentType.CENTER,
-        spacing: { after: 400 },
-        children: [new ImageRun({
-          type: "png",
-          data: fs.readFileSync(__dirname + "/smartdragon-papier.png"),
-          transformation: { width: 264, height: 88 },   // ca. 7 cm breit
-        })],
-      })]
-    : []),
+  });
+}
+
+const titelseite = [
+  /* Der Hintergrund hängt am ersten Absatz und liegt hinter allem anderen.
+     Das Bild ist 1240 x 1754 px groß und wird auf exakt A4 gesetzt:
+     21 x 29,7 cm, in Word-Pixeln bei 96 dpi also 794 x 1123. */
   new Paragraph({
-    alignment: AlignmentType.CENTER,
-    spacing: { after: 120 },
-    children: [new TextRun({ text: "AJDIN HASIĆ", bold: true, size: 30, font: "Calibri" })],
+    spacing: { after: 0, line: 20, lineRule: "exact" },
+    children: hatHG ? [new ImageRun({
+      type: "png",
+      data: fs.readFileSync(HG),
+      transformation: { width: 794, height: 1123 },
+      floating: {
+        horizontalPosition: { relative: "page", offset: 0 },
+        verticalPosition: { relative: "page", offset: 0 },
+        behindDocument: true,
+        zIndex: 0,
+        allowOverlap: true,
+      },
+    })] : [],
   }),
-  ...T.titelzeilen.map((z) => new Paragraph({
-    alignment: AlignmentType.CENTER,
-    spacing: { after: 60 },
-    children: [new TextRun({ text: z, size: 22, font: "Calibri", color: "404040" })],
-  })),
-  ...leer(3),
-  new Paragraph({
-    alignment: AlignmentType.CENTER,
-    children: [new TextRun({ text: T.stand, size: 20, font: "Calibri", color: "808080" })],
-  }),
+
+  // Die Zahlen sind die Oberkanten aus dem Entwurf. Im SVG steht dort die
+  // Grundlinie; Word misst von oben, deshalb je 0,8 × Schriftgröße höher.
+  titelzeile("ZMAJ", { oben: 386, groesse: 128, farbe: "FFFFFF", leicht: true, sperrung: 10 }),
+  titelzeile("BOSNISCH LERNEN", { oben: 578, groesse: 38, farbe: "4F76E8", fett: true, sperrung: 4 }),
+
+  titelzeile("Eine Android-Anwendung von der", { oben: 669, groesse: 26, farbe: "AAB6D8" }),
+  titelzeile("Idee bis zur Veröffentlichung", { oben: 707, groesse: 26, farbe: "AAB6D8" }),
+
+  titelzeile("Projektarbeit zur Weiterbildung zum", { oben: 812, groesse: 23, farbe: "6B7BA8" }),
+  titelzeile("staatlich geprüften Techniker", { oben: 848, groesse: 23, farbe: "6B7BA8" }),
+
+  titelzeile("Ajdin Hasić", { oben: 1298, groesse: 40, farbe: "1A1A1A", fett: true }),
+  ...T.titelzeilen.map((z, i) =>
+    titelzeile(z, { oben: 1361 + i * 52, groesse: 26, farbe: "444444" })),
+
+  titelzeile(T.stand, { oben: 1655, groesse: 21, farbe: "999999" }),
 ];
 
 // ---------------------------------------------------------------- Kapitel 1
@@ -157,7 +183,7 @@ inhalt.push(absatz(T.gliederung_schluss));
    Titelseite ein eigener Abschnitt mit gleichen Raendern, und auch ohne
    Fusszeile - eine Seitenzahl auf dem Deckblatt gehoert dort nicht hin. */
 const RAND_TEXT = { top: 1418, bottom: 1418, left: 1701, right: 1134 };
-const RAND_TITEL = { top: 1418, bottom: 1418, left: 1418, right: 1418 };
+const RAND_TITEL = { top: 0, bottom: 0, left: px2tw(95), right: px2tw(95) };
 
 /* KOPFZEILE mit dem Studio-Zeichen, links, auf jeder Seite - so wie in der
    Smartgrow-Mappe.
