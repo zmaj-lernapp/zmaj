@@ -181,8 +181,20 @@ function entwurf4() {
   </svg>`;
 }
 
+/* Entwurf 4 ein zweites Mal - aber OHNE Schrift.
+   Das ist der Hintergrund für die Word-Fassung: Farbflächen, Logo, Telefon,
+   Striche. Die Schrift kommt in Word obendrauf und bleibt dadurch echter
+   Text - markierbar, durchsuchbar, änderbar. Ein Deckblatt, das nur ein
+   Bild ist, kann niemand mehr korrigieren, ohne dieses Skript zu haben. */
+function entwurf4Hintergrund() {
+  const svg = entwurf4();
+  // Jedes <text>-Element herausnehmen. Die Striche und Flächen bleiben.
+  return svg.replace(/<text[\s\S]*?<\/text>/g, "");
+}
+
 const alle = [["entwurf-1", entwurf1()], ["entwurf-2", entwurf2()],
-              ["entwurf-3", entwurf3()], ["entwurf-4", entwurf4()]];
+              ["entwurf-3", entwurf3()], ["entwurf-4", entwurf4()],
+              ["entwurf-4-hintergrund", entwurf4Hintergrund()]];
 
 (async () => {
   fs.mkdirSync(path.join(HIER, "entwuerfe"), { recursive: true });
