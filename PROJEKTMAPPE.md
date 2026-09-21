@@ -57,7 +57,7 @@ Inbetriebnahme mit zwölf Anwendern statt einer Schreibtischprobe.
 
 ## 1. Vorstellung des Projekts und des Verfassers
 
-*172 Wörter. Wie hier geschrieben wird, steht in* `mappe/SCHREIBREGELN.md`.
+*287 Wörter. Wie hier geschrieben wird, steht in* `mappe/SCHREIBREGELN.md`.
 
 ### 1.1 Der Verfasser
 
@@ -69,9 +69,15 @@ Alle Aufgaben liegen in einer Hand: Anforderungsanalyse, Konzeption, Entwicklung
 
 ### 1.2 Das Projekt
 
-Gegenstand der Arbeit ist Zmaj, eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist das bosnische Wort für Drache. Den Anstoß gab ein privater Bedarf. Für Bosnisch war kein brauchbares Lernmaterial zu finden. Die großen Anbieter für Sprachlernsoftware führen die Sprache nicht.
+Gegenstand der Arbeit ist Zmaj, eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist das bosnische Wort für Drache.
 
-Die Anwendung ist fertiggestellt und im Google Play Store veröffentlicht. Sie arbeitet vollständig auf dem Gerät, ohne Nutzerkonto und ohne Server. Der Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben.
+Den Anstoß gab ein privater Bedarf. Für Bosnisch war kein brauchbares Lernmaterial zu finden. Die großen Anbieter für Sprachlernsoftware führen die Sprache nicht. Verfügbar sind im Wesentlichen Vokabellisten ohne Grammatik, ohne Tonspur und ohne aufeinander aufbauende Abschnitte.
+
+Die Anwendung richtet sich an Erwachsene mit persönlichem Bezug zu Bosnien und Herzegowina: an Partnerinnen und Partner in deutsch-bosnischen Beziehungen, an angeheiratete Familienangehörige und an Nachkommen der zweiten und dritten Einwanderergeneration, die Bosnisch verstehen, es aber nie lesen und schreiben gelernt haben. Der Schwerpunkt liegt in Deutschland. Die Bedienoberfläche gibt es zusätzlich in sieben weiteren Sprachen, weil die bosnische Diaspora vor allem in diesen Ländern lebt.
+
+Der Lernstoff führt vom Alltag bis zum Arbeitsvertrag. Geübt wird in fünf Formen: hören, schreiben, auswählen, Lücken füllen und sprechen. Zu jeder Vokabel gehört eine bosnische Tonspur.
+
+Die Anwendung ist fertiggestellt und im Google Play Store veröffentlicht. Sie arbeitet vollständig auf dem Gerät, ohne Nutzerkonto und ohne Server. Der Lernstand verlässt das Telefon nicht. Der vollständige Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben.
 ---
 
 > **Als Word-Datei:** `mappe/Zmaj Kapitel 1.docx`, erzeugt aus
