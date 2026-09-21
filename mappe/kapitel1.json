@@ -10,102 +10,19 @@
     {
       "ueberschrift": "1.1 Der Verfasser",
       "bloecke": [
-        "Diese Arbeit wird als Einzelprojekt durchgeführt. Verfasser ist Ajdin Hasić, gelernter Elektroniker, derzeit in Vollzeit-Weiterbildung zum staatlich geprüften Techniker der Fachrichtung Automatisierungstechnik an der Berufs- und Technikerschule Butzbach, Klasse 02FSA.",
-        "Anders als bei der vorangegangenen Projektarbeit „Smartgrow – Automatisiertes Gewächszelt“, die im Dreierteam entstand, liegen hier sämtliche Rollen in einer Hand: Anforderungsanalyse, Konzeption, Entwicklung, Test, rechtliche Absicherung und Veröffentlichung. Diese Bündelung ist eine bewusste Entscheidung und zugleich die größte Herausforderung des Projekts. Sie wird in der Risikoanalyse gesondert bewertet."
+        "Diese Arbeit wird als Einzelarbeit durchgeführt. Verfasser ist Ajdin Hasić, gelernter Elektroniker, Klasse 02FSA. Die Weiterbildung zum staatlich geprüften Techniker der Fachrichtung Automatisierungstechnik findet in Vollzeit an der Berufs- und Technikerschule Butzbach statt. Die Betreuung übernimmt Herr Dr. Rosenschon. Der Bearbeitungszeitraum reicht vom 10.08.2026 bis zum 19.03.2027.",
+        "Aus der Ausbildung liegen Kenntnisse in Elektrotechnik und Steuerungstechnik vor. Die Kenntnisse in der Anwendungsentwicklung wurden selbstständig erarbeitet und in eigenen Projekten angewendet.",
+        "Alle Aufgaben liegen in einer Hand: Anforderungsanalyse, Konzeption, Entwicklung, Test, Veröffentlichung und Dokumentation. Die getroffenen Entscheidungen werden in den folgenden Kapiteln begründet."
       ]
     },
     {
       "ueberschrift": "1.2 Das Projekt",
       "bloecke": [
-        "Zmaj ist eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist das bosnische Wort für Drache; das Maskottchen der Anwendung ist ein blauer Drache auf einem Bücherstapel.",
-        "Den Anstoß gab ein konkreter, privater Bedarf. Die Ehefrau des Verfassers wollte Bosnisch lernen, fand dafür jedoch kein brauchbares Lernmaterial. Die großen Anbieter für Sprachlernsoftware führen Bosnisch nicht im Programm. Verfügbar sind im Wesentlichen Vokabellisten ohne Grammatik, ohne Tonspur und ohne strukturierten Aufbau. Aus dieser Lücke entstand die Aufgabenstellung.",
-        "Der Umfang der fertigen Anwendung:",
-        {
-          "punkte": [
-            "43 aufeinander aufbauende Lernabschnitte vom Alltag bis zum Arbeitsvertrag",
-            "1.108 Vokabeln mit bosnischer Tonspur",
-            "16 Grammatikeinheiten mit 104 Übungen",
-            "12 Lesegeschichten und eine Sprechaufgabe mit Spracherkennung",
-            "fünf Übungsformen: hören, schreiben, auswählen, Lücken füllen und sprechen",
-            "Bedienoberfläche in acht Sprachen"
-          ]
-        },
-        "Die Anwendung arbeitet vollständig auf dem Gerät. Es gibt weder ein Nutzerkonto noch einen Server; der Lernstand verlässt das Telefon nicht."
-      ]
-    },
-    {
-      "ueberschrift": "1.3 Warum diese Aufgabe eine Projektarbeit trägt",
-      "bloecke": [
-        "Der fachliche Reiz liegt darin, dass das Vorhaben über die reine Programmierung deutlich hinausgeht. Um eine Anwendung tatsächlich in den Google Play Store zu bringen, waren unter anderem erforderlich:",
-        {
-          "punkte": [
-            "ein angemeldetes Gewerbe (Gewerbeanzeige vom 13.09.2026, bescheinigt am 21.09.2026 durch die Gemeinde Wettenberg)",
-            "eine Identitätsprüfung durch Google sowie ein geprüftes Zahlungsprofil",
-            "Impressum und Datenschutzerklärung nach DDG und DSGVO in allen acht Sprachen der Anwendung",
-            "eine zertifizierte Einwilligungslösung nach den europäischen Vorgaben für Werbung",
-            "ein geschlossener Test mit mindestens zwölf Testern über vierzehn zusammenhängende Tage, den Google seit 2023 für neue Entwicklerkonten vorschreibt"
-          ]
-        },
-        "Das Projekt bildet damit nicht einen einzelnen Entwicklungsschritt ab, sondern den vollständigen Weg von der Idee über die Umsetzung und die Inbetriebnahme bis zum marktfähigen Produkt.",
-        {
-          "mix": [
-            "Die Anwendung ist kein Prototyp und kein Studienobjekt. Sie ist ein ",
-            [
-              "tatsächlich veröffentlichtes Produkt",
-              true
-            ],
-            " mit Werbefinanzierung und einer Vollversion im Abonnement und wird über die Abgabe dieser Arbeit hinaus weitergepflegt."
-          ]
-        }
-      ]
-    },
-    {
-      "ueberschrift": "1.4 Bezug zur Fachrichtung Automatisierungstechnik",
-      "bloecke": [
-        "Automatisierungstechnik ist heute zu einem erheblichen Teil Softwaretechnik. Ob eine Ablaufsteuerung in einer speicherprogrammierbaren Steuerung, in einer Visualisierung oder in einer mobilen Anwendung läuft, ändert nichts an den Fragen, die beim Entwurf zu beantworten sind. Der Gegenstand dieser Arbeit ist ungewöhnlich, die Methode ist es nicht.",
-        {
-          "mix": [
-            [
-              "Zur Abgrenzung:",
-              true
-            ],
-            " Die Arbeit enthält keine Sensorik, keine Antriebe, keine speicherprogrammierbare Steuerung, keinen Feldbus und keinen physikalischen Prozess. Es gibt keine Messgrößen in physikalischen Einheiten und folglich auch keine Regelstrecke, die sich mit einer Übertragungsfunktion beschreiben ließe. Das ist kein Mangel, sondern eine Festlegung des Themas – und sie wird hier ausdrücklich genannt, damit der fachliche Kern dort gesucht wird, wo er tatsächlich liegt."
-          ]
-        },
-        "Beim Entwurf einer Ablaufsteuerung sind stets dieselben fünf Fragen zu beantworten, gleich ob die Anlage ein Ofen, ein Förderband oder ein Lernablauf ist:",
-        {
-          "punkte": [
-            "Welche Zustände gibt es? – Der Lernablauf ist als Zustandsfolge umgesetzt: Aufgabe stellen, Antwort erfassen, bewerten, Folgezustand bestimmen.",
-            "Wodurch wird weitergeschaltet? – Die Übergangsbedingungen ergeben sich aus der Antwort des Anwenders und aus dem bisherigen Lernstand.",
-            "Was ist verriegelt? – Fünf Fehlversuche sperren den Zugang; die Sperre lässt sich weder umgehen noch durch Neustart der Anwendung aufheben.",
-            "Welche Zeiten werden überwacht? – Ein Zeitglied gibt die Sperre nach zwei Stunden schrittweise wieder frei. Ein Tageszähler begrenzt die Werbeeinblendungen und wird um Mitternacht zurückgesetzt.",
-            "Welche Störgrößen greifen ein? – Netzausfall, eingehender Anruf, Wechsel in den Hintergrund und das Beenden der Anwendung während eines laufenden Vorgangs. Jeder dieser Fälle ist als definierter Ablauf behandelt."
-          ]
-        },
-        "Diese fünf Fragen sind am Projekt konkret zu beantworten und nachprüfbar. Die Werkzeuge sind andere als im Schaltschrank; die Entwurfsfragen sind dieselben.",
-        {
-          "mix": [
-            [
-              "Rückkopplung im Lernverfahren.",
-              true
-            ],
-            " Die Wiederholung der Vokabeln arbeitet rückgekoppelt: Die Antwortgenauigkeit des Anwenders bestimmt den Abstand bis zur nächsten Abfrage. Richtige Antworten vergrößern ihn, falsche verkürzen ihn. Dass es sich dabei nicht um eine nachträgliche Umdeutung handelt, zeigt die Fachliteratur: Tabibian u. a. formulieren die Planung von Wiederholungen in den Proceedings of the National Academy of Sciences ausdrücklich als Problem der Optimalsteuerung und prüfen ihr Ergebnis an Daten eines Sprachlernanbieters. Bewusst nicht behauptet wird, es handle sich um einen Regelkreis im Sinne der Regelungstechnik: Die Strecke ist ein Mensch, eine Sprungantwort ist nicht reproduzierbar, und ein Stabilitätsnachweis ist nicht möglich."
-          ]
-        },
-        {
-          "mix": [
-            [
-              "Abnahme durch eine externe Instanz.",
-              true
-            ],
-            " Die Inbetriebnahme erfolgte nicht am Schreibtisch. Zwölf Anwender haben die Anwendung über vierzehn Tage auf ihren eigenen Geräten benutzt. Die Freigabe erteilt Google nach einem Regelwerk, das der Verfasser nicht beeinflussen kann und dessen Verletzung zur Sperrung des Entwicklerkontos führt. Damit steht am Ende keine Selbstzertifizierung, sondern die Abnahme durch eine unabhängige Stelle."
-          ]
-        },
-        "Sollte ein engerer Bezug zur Fachrichtung gewünscht sein, lässt sich die Arbeit ohne Themenwechsel erweitern: um eine Zustandsübergangstabelle des Lernablaufs mit vollständigem Testnachweis je Übergang, um eine Fehlermöglichkeits- und Einflussanalyse der Ablauflogik mit Risikoprioritätszahlen, sowie um eine Verifikationsmatrix, die jede Anforderung des Lastenhefts mit Prüfmethode, Sollwert, Istwert und Prüfdatum belegt. Das Material dafür liegt vor; es wäre in die Prüfform zu bringen."
+        "Gegenstand der Arbeit ist Zmaj, eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist das bosnische Wort für Drache. Den Anstoß gab ein privater Bedarf. Für Bosnisch war kein brauchbares Lernmaterial zu finden. Die großen Anbieter für Sprachlernsoftware führen die Sprache nicht.",
+        "Die Anwendung ist fertiggestellt und im Google Play Store veröffentlicht. Sie arbeitet vollständig auf dem Gerät, ohne Nutzerkonto und ohne Server. Der Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben."
       ]
     }
   ],
-  "gliederung_einleitung": "Die Arbeit folgt dem Aufbau der vorangegangenen Projektmappe. Da es sich um ein Softwareprojekt handelt, treten an die Stelle von Hardwareaufbau und Spannungsversorgung der Aufbau der Anwendung und die Veröffentlichung. Zu jedem Kapitel ist angegeben, woraus es sich belegen lässt – sämtliche Arbeitsschritte sind seit Projektbeginn mit Datum und Begründung dokumentiert.",
   "gliederung": [
     [
       "1.",
@@ -209,6 +126,5 @@
       "Quelltextauszüge, Belege",
       ""
     ]
-  ],
-  "gliederung_schluss": "Ein besonderes Merkmal dieser Arbeit ist die Nachprüfbarkeit. Seit dem 19.09.2026 ist jeder Entwicklungsschritt in einer Versionsverwaltung festgehalten – derzeit 27 Einträge, jeder mit Datum, geänderten Dateien und ausführlicher Begründung. Die Risikoanalyse stützt sich nicht auf Vermutungen, sondern auf eine systematische Prüfung aus fünf Blickwinkeln mit zwanzig bestätigten Befunden, von denen jeder zusätzlich einen dokumentierten Widerlegungsversuch überstehen musste. Die Inbetriebnahme erfolgt mit zwölf Anwendern über vierzehn Tage."
+  ]
 }

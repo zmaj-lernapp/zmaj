@@ -17,9 +17,7 @@ Bearbeitungszeitraum: 10.08.2026 – 19.03.2027
 
 ## Gliederung
 
-Übernommen aus der Smartgrow-Mappe vom 12.05.2026, angepasst auf ein
-Softwareprojekt. Was dort Hardware-Aufbau und Spannungsversorgung war, wird
-hier Aufbau der Anwendung und Veröffentlichung.
+Zu jedem Kapitel steht, woraus es sich belegen lässt.
 
 | | Kapitel | Quelle im Projekt |
 |---|---|---|
@@ -59,83 +57,21 @@ Inbetriebnahme mit zwölf Anwendern statt einer Schreibtischprobe.
 
 ## 1. Vorstellung des Projekts und des Verfassers
 
-*Stand 21.09.2026: Text steht, Angaben vollständig. Das Thema hat Herr
-Dr. Rosenschon bereits gutgeheißen.*
+*172 Wörter. Wie hier geschrieben wird, steht in* `mappe/SCHREIBREGELN.md`.
 
-### Der Verfasser
+### 1.1 Der Verfasser
 
-Diese Arbeit wurde als Einzelprojekt durchgeführt. Verfasser ist Ajdin
-Hasić, gelernter Elektroniker, derzeit in Vollzeit-Weiterbildung zum
-staatlich geprüften Techniker der Fachrichtung Automatisierungstechnik an
-der Berufs- und Technikerschule Butzbach, Klasse 02FSA. Die Arbeit wird von
-Herrn Dr. Rosenschon betreut und umfasst den Zeitraum vom Schuljahresbeginn
-am 10.08.2026 bis zum 19.03.2027, dem letzten Schultag vor den hessischen
-Osterferien.
+Diese Arbeit wird als Einzelarbeit durchgeführt. Verfasser ist Ajdin Hasić, gelernter Elektroniker, Klasse 02FSA. Die Weiterbildung zum staatlich geprüften Techniker der Fachrichtung Automatisierungstechnik findet in Vollzeit an der Berufs- und Technikerschule Butzbach statt. Die Betreuung übernimmt Herr Dr. Rosenschon. Der Bearbeitungszeitraum reicht vom 10.08.2026 bis zum 19.03.2027.
 
-Anders als bei der vorangegangenen Projektarbeit *Smartgrow – Automatisiertes
-Gewächszelt*, die im Dreierteam entstand, liegen hier sämtliche Rollen in
-einer Hand: Anforderungsanalyse, Konzeption, Entwicklung, Test, Recht und
-Veröffentlichung. Diese Bündelung ist eine bewusste Entscheidung und zugleich
-die größte Herausforderung des Projekts — sie ist in der Risikoanalyse
-(Kapitel 4) gesondert bewertet.
+Aus der Ausbildung liegen Kenntnisse in Elektrotechnik und Steuerungstechnik vor. Die Kenntnisse in der Anwendungsentwicklung wurden selbstständig erarbeitet und in eigenen Projekten angewendet.
 
-### Das Projekt
+Alle Aufgaben liegen in einer Hand: Anforderungsanalyse, Konzeption, Entwicklung, Test, Veröffentlichung und Dokumentation. Die getroffenen Entscheidungen werden in den folgenden Kapiteln begründet.
 
-**Zmaj** ist eine Android-Anwendung zum Erlernen der bosnischen Sprache.
-*Zmaj* ist das bosnische Wort für Drache; das Maskottchen der App ist ein
-blauer Drache auf einem Bücherstapel.
+### 1.2 Das Projekt
 
-Den Anstoß gab ein konkreter, privater Bedarf: Die Ehefrau des Verfassers
-wollte Bosnisch lernen, fand dafür aber kein brauchbares Lernmaterial. Die
-großen Sprachlernanbieter führen Bosnisch nicht im Programm; verfügbar sind
-im Wesentlichen Vokabellisten ohne Grammatik, ohne Tonspur und ohne
-strukturierten Aufbau. Aus dieser Lücke entstand die Aufgabenstellung.
+Gegenstand der Arbeit ist Zmaj, eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist das bosnische Wort für Drache. Den Anstoß gab ein privater Bedarf. Für Bosnisch war kein brauchbares Lernmaterial zu finden. Die großen Anbieter für Sprachlernsoftware führen die Sprache nicht.
 
-Der fachliche Reiz liegt darin, dass das Projekt über die reine
-Programmierung deutlich hinausgeht. Um die Anwendung tatsächlich in den
-Google Play Store zu bringen, waren unter anderem erforderlich:
-
-- ein angemeldetes Gewerbe (Gewerbeanzeige vom 13.09.2026, bescheinigt am
-  21.09.2026 durch die Gemeinde Wettenberg),
-- eine Identitätsprüfung durch Google sowie ein Zahlungsprofil,
-- ein Impressum und eine Datenschutzerklärung nach DDG und DSGVO in allen
-  acht Sprachen der Anwendung,
-- eine Einwilligungslösung nach den europäischen Vorgaben für Werbung,
-- ein geschlossener Test mit mindestens zwölf Testern über vierzehn Tage,
-  den Google seit 2023 für neue Entwicklerkonten verlangt.
-
-Das Projekt bildet damit nicht nur einen Entwicklungsvorgang ab, sondern den
-vollständigen Weg von der Idee bis zum verkaufsfähigen Produkt.
-
-### Abgrenzung
-
-Die Anwendung ist kein Prototyp und kein Studienobjekt, sondern ein
-tatsächlich veröffentlichtes Produkt mit zahlenden Nutzern
-(Abonnement-Vollversion) und Werbefinanzierung. Sie wird über die Abgabe
-dieser Arbeit hinaus weitergepflegt.
-
-### 1.4 Bezug zur Fachrichtung Automatisierungstechnik
-
-Automatisierungstechnik ist heute zu einem erheblichen Teil Softwaretechnik. Ob eine Ablaufsteuerung in einer speicherprogrammierbaren Steuerung, in einer Visualisierung oder in einer mobilen Anwendung läuft, ändert nichts an den Fragen, die beim Entwurf zu beantworten sind. Der Gegenstand dieser Arbeit ist ungewöhnlich, die Methode ist es nicht.
-
-**Zur Abgrenzung:** Die Arbeit enthält keine Sensorik, keine Antriebe, keine speicherprogrammierbare Steuerung, keinen Feldbus und keinen physikalischen Prozess. Es gibt keine Messgrößen in physikalischen Einheiten und folglich auch keine Regelstrecke, die sich mit einer Übertragungsfunktion beschreiben ließe. Das ist kein Mangel, sondern eine Festlegung des Themas – und sie wird hier ausdrücklich genannt, damit der fachliche Kern dort gesucht wird, wo er tatsächlich liegt.
-
-Beim Entwurf einer Ablaufsteuerung sind stets dieselben fünf Fragen zu beantworten, gleich ob die Anlage ein Ofen, ein Förderband oder ein Lernablauf ist:
-
-- Welche Zustände gibt es? – Der Lernablauf ist als Zustandsfolge umgesetzt: Aufgabe stellen, Antwort erfassen, bewerten, Folgezustand bestimmen.
-- Wodurch wird weitergeschaltet? – Die Übergangsbedingungen ergeben sich aus der Antwort des Anwenders und aus dem bisherigen Lernstand.
-- Was ist verriegelt? – Fünf Fehlversuche sperren den Zugang; die Sperre lässt sich weder umgehen noch durch Neustart der Anwendung aufheben.
-- Welche Zeiten werden überwacht? – Ein Zeitglied gibt die Sperre nach zwei Stunden schrittweise wieder frei. Ein Tageszähler begrenzt die Werbeeinblendungen und wird um Mitternacht zurückgesetzt.
-- Welche Störgrößen greifen ein? – Netzausfall, eingehender Anruf, Wechsel in den Hintergrund und das Beenden der Anwendung während eines laufenden Vorgangs. Jeder dieser Fälle ist als definierter Ablauf behandelt.
-
-Diese fünf Fragen sind am Projekt konkret zu beantworten und nachprüfbar. Die Werkzeuge sind andere als im Schaltschrank; die Entwurfsfragen sind dieselben.
-
-**Rückkopplung im Lernverfahren.** Die Wiederholung der Vokabeln arbeitet rückgekoppelt: Die Antwortgenauigkeit des Anwenders bestimmt den Abstand bis zur nächsten Abfrage. Richtige Antworten vergrößern ihn, falsche verkürzen ihn. Dass es sich dabei nicht um eine nachträgliche Umdeutung handelt, zeigt die Fachliteratur: Tabibian u. a. formulieren die Planung von Wiederholungen in den Proceedings of the National Academy of Sciences ausdrücklich als Problem der Optimalsteuerung und prüfen ihr Ergebnis an Daten eines Sprachlernanbieters. Bewusst nicht behauptet wird, es handle sich um einen Regelkreis im Sinne der Regelungstechnik: Die Strecke ist ein Mensch, eine Sprungantwort ist nicht reproduzierbar, und ein Stabilitätsnachweis ist nicht möglich.
-
-**Abnahme durch eine externe Instanz.** Die Inbetriebnahme erfolgte nicht am Schreibtisch. Zwölf Anwender haben die Anwendung über vierzehn Tage auf ihren eigenen Geräten benutzt. Die Freigabe erteilt Google nach einem Regelwerk, das der Verfasser nicht beeinflussen kann und dessen Verletzung zur Sperrung des Entwicklerkontos führt. Damit steht am Ende keine Selbstzertifizierung, sondern die Abnahme durch eine unabhängige Stelle.
-
-Sollte ein engerer Bezug zur Fachrichtung gewünscht sein, lässt sich die Arbeit ohne Themenwechsel erweitern: um eine Zustandsübergangstabelle des Lernablaufs mit vollständigem Testnachweis je Übergang, um eine Fehlermöglichkeits- und Einflussanalyse der Ablauflogik mit Risikoprioritätszahlen, sowie um eine Verifikationsmatrix, die jede Anforderung des Lastenhefts mit Prüfmethode, Sollwert, Istwert und Prüfdatum belegt. Das Material dafür liegt vor; es wäre in die Prüfform zu bringen.
-
+Die Anwendung ist fertiggestellt und im Google Play Store veröffentlicht. Sie arbeitet vollständig auf dem Gerät, ohne Nutzerkonto und ohne Server. Der Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben.
 ---
 
 > **Als Word-Datei:** `mappe/Zmaj Kapitel 1.docx`, erzeugt aus

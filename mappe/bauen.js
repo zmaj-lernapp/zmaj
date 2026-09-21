@@ -57,19 +57,6 @@ const ueber2 = (text) =>
     children: [new TextRun({ text, bold: true, size: 26, font: "Calibri Light", color: "2E5496" })],
   });
 
-// Zeile im Gliederungs-Ausblick: Nummer, Titel, rechts die Quelle
-const glied = (nr, titel, quelle, tief) =>
-  new Paragraph({
-    spacing: { after: 60 },
-    indent: { left: tief ? convertInchesToTwip(0.35) : 0 },
-    tabStops: [{ type: TabStopType.RIGHT, position: TabStopPosition.MAX }],
-    children: [
-      new TextRun({ text: nr + "\t", bold: !tief, size: 22, font: "Calibri" }),
-      new TextRun({ text: titel, bold: !tief, size: 22, font: "Calibri" }),
-      new TextRun({ text: "\t" + quelle, size: 18, font: "Calibri", color: "808080", italics: true }),
-    ],
-  });
-
 /* ---------------------------------------------------------------- TITELSEITE
    Der Hintergrund ist ein Bild: Farbflächen, Logo, Telefon, Striche. Die
    Schrift liegt als echter Word-Text darüber - markierbar, durchsuchbar
@@ -186,7 +173,7 @@ inhalt.push(new Paragraph({
   spacing: { before: 400 },
   children: [new TextRun({
     text: "Ein Strich steht für ein Kapitel, das noch entsteht. "
-        + "Der geplante Aufbau und die Quellenlage stehen am Ende dieses Hefts.",
+        + "Die Seitenzahlen ergänzen sich, sobald die Kapitel geschrieben sind.",
     size: 20, font: "Calibri", color: "808080", italics: true,
   })],
 }));
@@ -203,15 +190,6 @@ for (const teil of T.kapitel1) {
     else if (b.mix) inhalt.push(absatzMix(b.mix));
   }
 }
-
-// ------------------------------------------------------- Ausblick Gliederung
-inhalt.push(new Paragraph({ children: [new (require("docx").PageBreak)()] }));
-inhalt.push(ueber1("Geplanter Aufbau der Arbeit"));
-inhalt.push(absatz(T.gliederung_einleitung));
-inhalt.push(...leer(1));
-T.gliederung.forEach((g) => inhalt.push(glied(g[0], g[1], g[2], istUnter(g[0]))));
-inhalt.push(...leer(1));
-inhalt.push(absatz(T.gliederung_schluss));
 
 // ---------------------------------------------------------------- Dokument
 /* RAENDER. Links und rechts gleich - 2,5 cm.
