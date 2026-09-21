@@ -1,7 +1,11 @@
 # Projektmappe Zmaj
 
-Technikerarbeit von Ajdin Hasić · Abgabe bis **19.03.2027**
-(letzter Schultag vor den hessischen Osterferien, 22.03.–02.04.2027)
+**Zmaj – Bosnisch lernen**
+Eine Android-Anwendung von der Idee bis zur Veröffentlichung
+
+Ajdin Hasić · Klasse 02FSA · Fachrichtung Automatisierungstechnik
+Berufs- und Technikerschule Butzbach · Betreuung: Herr Dr. Rosenschon
+Bearbeitungszeitraum: 10.08.2026 – 19.03.2027
 
 > **Arbeitsstand:** Kapitel 1 im Entwurf. Alles Weitere folgt Kapitel für
 > Kapitel. Am Ende wird daraus ein Word-Dokument im Layout der
@@ -53,7 +57,11 @@ Schreibtischprobe.
 
 Diese Arbeit wurde als Einzelprojekt durchgeführt. Verfasser ist Ajdin
 Hasić, gelernter Elektroniker, derzeit in Vollzeit-Weiterbildung zum
-staatlich geprüften Techniker der Fachrichtung […] an der […].
+staatlich geprüften Techniker der Fachrichtung Automatisierungstechnik an
+der Berufs- und Technikerschule Butzbach, Klasse 02FSA. Die Arbeit wird von
+Herrn Dr. Rosenschon betreut und umfasst den Zeitraum vom Schuljahresbeginn
+am 10.08.2026 bis zum 19.03.2027, dem letzten Schultag vor den hessischen
+Osterferien.
 
 Anders als bei der vorangegangenen Projektarbeit *Smartgrow – Automatisiertes
 Gewächszelt*, die im Dreierteam entstand, liegen hier sämtliche Rollen in
@@ -97,5 +105,30 @@ tatsächlich veröffentlichtes Produkt mit zahlenden Nutzern
 (Abonnement-Vollversion) und Werbefinanzierung. Sie wird über die Abgabe
 dieser Arbeit hinaus weitergepflegt.
 
-*Noch zu ergänzen:* […] Fachrichtung, Schule, Klasse, betreuende Lehrkraft,
-Zeitraum der Projektarbeit laut Schule.
+### Bezug zur Fachrichtung Automatisierungstechnik
+
+*Dieser Abschnitt ist noch ein Vorschlag und muss mit Herrn Dr. Rosenschon
+abgestimmt werden — siehe die Anmerkung unten.*
+
+Auf den ersten Blick liegt eine Sprachlernanwendung außerhalb der
+Automatisierungstechnik. Die fachliche Verbindung liegt nicht im
+Gegenstand, sondern in der Methodik:
+
+- **Ablaufsteuerung.** Der Lernablauf ist eine Schrittkette mit definierten
+  Zuständen und Übergangsbedingungen — Aufgabe stellen, Antwort prüfen,
+  bewerten, Folgezustand bestimmen. Dieselbe Denkweise wie bei einer
+  SPS-Schrittkette, nur in einer anderen Sprache umgesetzt.
+- **Regelkreis.** Die Wiederholung der Vokabeln arbeitet nach einem
+  rückgekoppelten Verfahren: Die Antwort des Nutzers ist die Messgröße, das
+  Wiederholungsintervall die Stellgröße. Richtige Antworten vergrößern den
+  Abstand, falsche verkürzen ihn.
+- **Zustandsüberwachung und Verriegelung.** Das Lebenssystem ist eine
+  Begrenzung mit Zeitglied: Fünf Fehlversuche sperren den Zugang für zwei
+  Stunden, ein Zeitglied gibt ihn schrittweise wieder frei.
+- **Projektmethodik.** Lastenheft, Konzeptfindung, Risikoanalyse,
+  Inbetriebnahme und Controlling sind fachrichtungsunabhängige
+  Technikerkompetenzen und bilden das Gerüst dieser Arbeit.
+
+*Zu klären:* […] Ob Herr Dr. Rosenschon dieses Thema für die Fachrichtung
+Automatisierungstechnik freigegeben hat und ob er einen stärkeren Bezug
+erwartet.
