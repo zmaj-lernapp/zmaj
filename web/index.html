@@ -20,7 +20,7 @@
     --bg:#F3F6FF; --surface:#FFFFFF; --ink:#0F1E4D; --muted:#5E6B94;
     --primary:#1E3FA8; --primary-dark:#142C7A; --primary-soft:#E4EAFF;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
-    --gold:#F5C400; --line:#D9E0F5; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    --line:#D9E0F5; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
@@ -29,14 +29,14 @@
       --bg:#0B1330; --surface:#141F4A; --ink:#F2F5FF; --muted:#9FACD9;
       --primary:#5B84FF; --primary-dark:#3C63D6; --primary-soft:#1C2B66;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-      --gold:#FFD23F; --line:#25346B; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --line:#25346B; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
     }
   }
   :root[data-theme="dark"]{
     --bg:#0B1330; --surface:#141F4A; --ink:#F2F5FF; --muted:#9FACD9;
     --primary:#5B84FF; --primary-dark:#3C63D6; --primary-soft:#1C2B66;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-    --gold:#FFD23F; --line:#25346B; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+    --line:#25346B; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -130,8 +130,6 @@
   }
   .hero .bubble::before{content:''; position:absolute; left:-8px; top:18px; border:8px solid transparent; border-right-color:#fff; border-left:0}
   .hero .bubble small{display:block; font-weight:600; color:#5E6B94; margin-top:4px; font-size:12px}
-  .bounce{animation:bounce 2.6s ease-in-out infinite}
-  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 
   /* ---------- Startseite ---------- */
   .mode{display:flex; gap:6px; background:var(--primary-soft); padding:5px; border-radius:99px; margin-bottom:12px}
@@ -167,9 +165,6 @@
   .ware .wd{font-size:12px; color:var(--muted)}
   /* Alle Knoepfe im Laden gleich breit, damit die Spalte ruhig bleibt */
   .btn.kauf{flex:0 0 auto; min-width:104px; padding-left:12px; padding-right:12px; text-align:center}
-  .wgruppe{font-size:12px; font-weight:800; color:var(--muted); text-transform:uppercase;
-           letter-spacing:.5px; margin:16px 0 2px}
-  .wgruppe:first-child{margin-top:4px}
 
   /* ---------- Sprachwahl ---------- */
   .langbar{display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin:0 0 14px}
@@ -222,18 +217,6 @@
   .node.current .state{color:var(--accent-dark)}
   .node.done .state{color:var(--good)}
 
-  /* ---------- Profile ---------- */
-  .profiles{display:grid; gap:10px; margin-top:6px}
-  .profile{
-    display:flex; align-items:center; gap:14px; width:100%; text-align:left; border:2px solid var(--line); background:var(--surface);
-    color:var(--ink); font-family:inherit; padding:14px 16px; border-radius:var(--radius); cursor:pointer; transition:.15s;
-  }
-  .profile:hover{border-color:var(--primary)}
-  .profile .avatar{flex:0 0 46px; width:46px; height:46px; border-radius:50%; background:var(--accent); color:var(--on-accent); display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:800}
-  .profile .pname{font-weight:800; font-size:16px}
-  .profile .pstats{font-size:12px; color:var(--muted)}
-  .profile .pdel{margin-left:auto; border:0; background:transparent; color:var(--muted); font-size:16px; cursor:pointer; padding:6px}
-  .profile .pdel:hover{color:var(--bad)}
   /* Regeln fürs Passwort: hakt ab, was schon erfüllt ist */
   .pwregeln{font-size:12px; color:var(--muted); line-height:1.9; margin:-2px 0 2px}
   .pwregeln b{display:block; font-weight:700; margin-bottom:2px}
@@ -428,12 +411,10 @@
     font-size:13px; line-height:1.5; color:var(--muted)}
   .kontowechsel{margin-top:14px; display:grid; gap:8px}
   .kontowechsel .btn{width:100%}
-  .newprofile{display:flex; gap:8px; margin-top:14px}
   input.field,textarea.field,select.field,button.field{
     font-family:inherit; font-size:15px; padding:11px 12px; border:2px solid var(--line); border-radius:12px; background:var(--surface); color:var(--ink); width:100%;
   }
   input.field:focus,textarea.field:focus,select.field:focus,button.field:focus{outline:none; border-color:var(--primary)}
-  .newprofile input{flex:1}
 
   /* ---------- Leben ---------- */
   /* Schmal genug, um in eine Ecke zu passen: nur so breit wie ihr Inhalt.
@@ -2855,21 +2836,6 @@ const hoerbar = text => !!audioDatei(text) || hasTTS;
    Einstellungen. Die Funktion bleibt samt Aufruf beim Stimmenwechsel
    stehen, falls die Zeile je zurueckkommt - sie muss das Fehlen des
    Kastens nur vertragen. */
-function renderVoiceBox(){
-  const box=$('voiceBox');
-  if(!box) return;
-  const own = AUDIO.size ? tp('set.stimme_aufnahmen', AUDIO.size)+' · ' : '';
-  if(!hasTTS){ box.textContent = AUDIO.size ? tp('set.stimme_aufnahmen', AUDIO.size) : t('set.stimme_keine'); return; }
-  const list = bosnianVoices();
-  if(!list.length){
-    box.innerHTML = own+t('set.stimme_nicht_gefunden');
-    return;
-  }
-  const sel = '<select class="field" id="voiceSel" style="margin-top:6px">'+list.map(v=>'<option value="'+esc(v.name)+'"'+(pickVoice()===v?' selected':'')+'>'+esc(v.name.replace(/^Microsoft /,''))+' ('+esc(v.lang)+')</option>').join('')+'</select>';
-  box.innerHTML = own+(list.some(v=>/^bs/i.test(v.lang))?'':t('set.stimme_nachbar'))+sel+'<button class="back" id="voiceTry" style="margin-top:8px">'+t('set.stimme_anhoeren')+'</button>';
-  $('voiceSel').addEventListener('change',e=>{ voiceName=e.target.value; try{ localStorage.setItem('zmaj_voice', voiceName); }catch(x){} });
-  $('voiceTry').addEventListener('click',()=>speak('Dobar dan, kako si?'));
-}
 
 /* =================== SPRACHE =================== */
 /* Die Lerninhalte kommen je nach Sprache anders vom Server zurück, deshalb
@@ -4878,7 +4844,10 @@ async function starten(){
     $('pfad').style.display='none';
     return;
   }
-  if(hasTTS){ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = ()=>{ if($('settingsView').style.display==='block') renderVoiceBox(); }; }
+  /* Die Stimmen einmal anstossen: manche Browser liefern sie erst danach.
+     Die Auswahlliste dazu gab es bis September 2026; ihr Element steht
+     nicht mehr im HTML, deshalb ist sie entfallen. */
+  if(hasTTS) speechSynthesis.getVoices();
   if(!STORIES.length) $('modeStories').hidden = true;
   await hoerenPruefen();
   /* Werbung und Einwilligung stehen hier NICHT mehr. Sie laufen erst, wenn
