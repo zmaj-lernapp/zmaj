@@ -1,0 +1,12 @@
+{
+  "name": "zmaj-projektmappe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Baut die Projektmappe fuer die Technikerschule als Word-Datei",
+  "scripts": {
+    "bauen": "node bauen.js"
+  },
+  "dependencies": {
+    "docx": "^9.0.0"
+  }
+}
