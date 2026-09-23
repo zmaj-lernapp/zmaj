@@ -11,23 +11,38 @@ nicht mitgeschrieben.
 Produktionsversion beantragen". Der Knopf wird erst aktiv, wenn zwölf Tester
 **durchgehend die vorangegangenen 14 Tage** angemeldet waren.
 
-**Stand am Abend des 20.09.2026, im Dashboard abgelesen:**
+**Stand am 23.09.2026: die Uhr läuft.**
 
 | | |
 |---|---|
-| Release im geschlossenen Test veröffentlicht | erledigt (Haken) |
-| Mindestens 12 Tester angemeldet | **„Momentan sind 5 Tester angemeldet"** |
-| Test mit 12 Testern, mindestens 14 Tage | noch nicht begonnen |
-| Knopf „Produktionszugriff beantragen" | grau |
+| Release im geschlossenen Test veröffentlicht | erledigt |
+| Mindestens 12 Tester angemeldet | **erledigt** — am 23.09.2026 durchgestrichen |
+| Test mit 12 Testern, mindestens 14 Tage | **läuft seit dem 23.09.2026** |
+| Knopf „Produktionszugriff beantragen" | noch grau |
+| Bankkonto | **bestätigt** |
+| Version 9 | veröffentlicht |
 
-**Das ist der Engpass, und er ist größer, als er aussieht.** Eingeladen sind
-dreizehn, angemeldet fünf. Eine Einladung zählt nicht — der Tester muss den
-Link geöffnet, „Tester werden" gedrückt und die App installiert haben. Und
-die vierzehn Tage fangen erst an zu laufen, wenn die zwölf voll sind. Jeder
-Tag, den die anderen acht nicht reagieren, ist ein Tag, der vorne nicht
-angerechnet wird.
+**Frühester Termin für den Antrag: um den 07.10.2026.** Google nennt kein
+Datum und zeigt keinen Zähler. Ab dem 06.10. täglich ins Dashboard sehen,
+ob der Knopf aktiv wird.
 
-Version 9 ist übrigens durch: „Das App-Update wurde veröffentlicht."
+Bis dahin sind drei Dinge Pflicht:
+
+1. **Nichts einreichen.** Kein neues AAB, keine Änderung an den
+   Versionshinweisen, nichts. Jede Einreichung setzt die Uhr zurück, und
+   dann beginnen die vierzehn Tage von vorn.
+2. **Kein Tester darf austreten.** Wer aussteigt und wieder einsteigt,
+   fängt bei null an und reißt die Zwölf. Ergänzen ist dagegen harmlos —
+   und ein oder zwei zusätzliche Tester sind eine billige Versicherung.
+3. **Die Feedback-Tabelle füllen** (weiter unten in dieser Datei). Drei der
+   acht Antragsfragen lassen sich ohne diese Mitschrift nicht beantworten,
+   und ein Test, in dem nichts passiert ist, liest sich schlecht.
+
+Was in der Wartezeit erledigt werden kann, ohne die Uhr anzufassen: die
+Antworten für den Antrag vorschreiben, `app-ads.txt` hochladen, die
+AdMob-Genehmigung abwarten, und die Änderungen für den Build NACH dem Test
+vorbereiten — `werbung_richten.py`, `werbung_texte.py`, `admob_scharf.py`
+liegen fertig im Projekt.
 
 
 **Achtung beim Ausfüllen:** Klickst du „Verwerfen" oder verlässt die Seite
