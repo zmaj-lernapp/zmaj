@@ -1,133 +1,133 @@
 {
-  "titelzeilen": [
-    "Klasse 02FSA · Fachrichtung Automatisierungstechnik",
-    "Berufs- und Technikerschule Butzbach",
-    "Betreuung: Herr Dr. Rosenschon",
-    "Bearbeitungszeitraum: 10.08.2026 – 19.03.2027"
+ "titelzeilen": [
+  "Klasse 02FSA · Fachrichtung Automatisierungstechnik",
+  "Berufs- und Technikerschule Butzbach",
+  "Betreuung: Herr Dr. Rosenschon",
+  "Bearbeitungszeitraum: 10.08.2026 – 19.03.2027"
+ ],
+ "stand": "Stand: 21.09.2026",
+ "kapitel1": [
+  {
+   "ueberschrift": "1.1 Der Verfasser",
+   "bloecke": [
+    "Diese Arbeit wird als Einzelarbeit durchgeführt. Verfasser ist Ajdin Hasić, gelernter Elektroniker, Klasse 02FSA. Die Weiterbildung zum staatlich geprüften Techniker der Fachrichtung Automatisierungstechnik findet in Vollzeit an der Berufs- und Technikerschule Butzbach statt. Die Betreuung übernimmt Herr Dr. Rosenschon. Der Bearbeitungszeitraum reicht vom 10.08.2026 bis zum 19.03.2027.",
+    "Aus der Ausbildung liegen Kenntnisse in Elektrotechnik und Steuerungstechnik vor. Die Kenntnisse in der Anwendungsentwicklung wurden selbstständig erarbeitet und in eigenen Projekten angewendet.",
+    "Alle Aufgaben liegen in einer Hand: Anforderungsanalyse, Konzeption, Entwicklung, Test, Veröffentlichung und Dokumentation. Die getroffenen Entscheidungen werden in den folgenden Kapiteln begründet."
+   ]
+  },
+  {
+   "ueberschrift": "1.2 Das Projekt",
+   "bloecke": [
+    "Gegenstand der Arbeit ist Zmaj, eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist das bosnische Wort für Drache.",
+    "Den Anstoß gab ein privater Bedarf. Die großen Anbieter für Sprachlernsoftware führen Bosnisch nicht. Lernmaterial gibt es bei kleineren Anbietern und als Lehrbuch. Die vorhandenen Anwendungen setzen ein Abonnement voraus oder verzichten auf systematische Wiederholung. Ein kostenloses deutschsprachiges Angebot, das tägliches Üben mit aufeinander aufbauenden Abschnitten verbindet, fehlt.",
+    "Die Anwendung richtet sich an Erwachsene mit persönlichem Bezug zu Bosnien und Herzegowina: an Partnerinnen und Partner in deutsch-bosnischen Beziehungen, an angeheiratete Familienangehörige und an Nachkommen der zweiten und dritten Einwanderergeneration, die Bosnisch verstehen, es aber nie lesen und schreiben gelernt haben. Der Schwerpunkt liegt in Deutschland. Die Bedienoberfläche gibt es zusätzlich in sieben weiteren Sprachen, weil die bosnische Diaspora vor allem in diesen Ländern lebt.",
+    "Der Lernstoff führt vom Alltag bis zum Arbeitsvertrag. Geübt wird in fünf Formen: hören, schreiben, auswählen, Lücken füllen und sprechen. Zu jeder Vokabel gehört eine bosnische Tonspur.",
+    "Die Anwendung ist fertiggestellt und im Google Play Store veröffentlicht. Sie arbeitet vollständig auf dem Gerät, ohne Nutzerkonto und ohne Server. Der Lernstand verlässt das Telefon nicht. Der vollständige Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben."
+   ]
+  }
+ ],
+ "gliederung": [
+  [
+   "1.",
+   "Vorstellung des Projekts und des Verfassers",
+   "liegt vor",
+   "3"
   ],
-  "stand": "Stand: 21.09.2026",
-  "kapitel1": [
-    {
-      "ueberschrift": "1.1 Der Verfasser",
-      "bloecke": [
-        "Diese Arbeit wird als Einzelarbeit durchgeführt. Verfasser ist Ajdin Hasić, gelernter Elektroniker, Klasse 02FSA. Die Weiterbildung zum staatlich geprüften Techniker der Fachrichtung Automatisierungstechnik findet in Vollzeit an der Berufs- und Technikerschule Butzbach statt. Die Betreuung übernimmt Herr Dr. Rosenschon. Der Bearbeitungszeitraum reicht vom 10.08.2026 bis zum 19.03.2027.",
-        "Aus der Ausbildung liegen Kenntnisse in Elektrotechnik und Steuerungstechnik vor. Die Kenntnisse in der Anwendungsentwicklung wurden selbstständig erarbeitet und in eigenen Projekten angewendet.",
-        "Alle Aufgaben liegen in einer Hand: Anforderungsanalyse, Konzeption, Entwicklung, Test, Veröffentlichung und Dokumentation. Die getroffenen Entscheidungen werden in den folgenden Kapiteln begründet."
-      ]
-    },
-    {
-      "ueberschrift": "1.2 Das Projekt",
-      "bloecke": [
-        "Gegenstand der Arbeit ist Zmaj, eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist das bosnische Wort für Drache.",
-        "Den Anstoß gab ein privater Bedarf. Für Bosnisch war kein brauchbares Lernmaterial zu finden. Die großen Anbieter für Sprachlernsoftware führen die Sprache nicht. Verfügbar sind im Wesentlichen Vokabellisten ohne Grammatik, ohne Tonspur und ohne aufeinander aufbauende Abschnitte.",
-        "Die Anwendung richtet sich an Erwachsene mit persönlichem Bezug zu Bosnien und Herzegowina: an Partnerinnen und Partner in deutsch-bosnischen Beziehungen, an angeheiratete Familienangehörige und an Nachkommen der zweiten und dritten Einwanderergeneration, die Bosnisch verstehen, es aber nie lesen und schreiben gelernt haben. Der Schwerpunkt liegt in Deutschland. Die Bedienoberfläche gibt es zusätzlich in sieben weiteren Sprachen, weil die bosnische Diaspora vor allem in diesen Ländern lebt.",
-        "Der Lernstoff führt vom Alltag bis zum Arbeitsvertrag. Geübt wird in fünf Formen: hören, schreiben, auswählen, Lücken füllen und sprechen. Zu jeder Vokabel gehört eine bosnische Tonspur.",
-        "Die Anwendung ist fertiggestellt und im Google Play Store veröffentlicht. Sie arbeitet vollständig auf dem Gerät, ohne Nutzerkonto und ohne Server. Der Lernstand verlässt das Telefon nicht. Der vollständige Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben."
-      ]
-    }
+  [
+   "2.",
+   "Lastenheft",
+   "",
+   ""
   ],
-  "gliederung": [
-    [
-      "1.",
-      "Vorstellung des Projekts und des Verfassers",
-      "liegt vor",
-      "3"
-    ],
-    [
-      "2.",
-      "Lastenheft",
-      "",
-      ""
-    ],
-    [
-      "2.1",
-      "Einführung in das Projekt",
-      "Marktrecherche",
-      ""
-    ],
-    [
-      "2.2",
-      "Ist-Zustand",
-      "Marktrecherche",
-      ""
-    ],
-    [
-      "2.3",
-      "Soll-Zustand",
-      "Anforderungsliste",
-      ""
-    ],
-    [
-      "2.4",
-      "Technische Anforderungen",
-      "Konfiguration der Anwendung",
-      ""
-    ],
-    [
-      "3.",
-      "Konzeptfindung",
-      "Entscheidungsprotokolle",
-      ""
-    ],
-    [
-      "4.",
-      "Risikoanalyse",
-      "20 geprüfte Befunde",
-      ""
-    ],
-    [
-      "5.",
-      "Projektdurchführung",
-      "",
-      ""
-    ],
-    [
-      "5.1",
-      "Umsetzung des Projekts",
-      "Versionsverwaltung",
-      ""
-    ],
-    [
-      "5.2",
-      "Aufbau der Anwendung",
-      "Quelltext",
-      ""
-    ],
-    [
-      "5.3",
-      "Datenhaltung und Ablauflogik",
-      "Quelltext",
-      ""
-    ],
-    [
-      "5.4",
-      "Veröffentlichung im Play Store",
-      "Store-Unterlagen",
-      ""
-    ],
-    [
-      "5.5",
-      "Probleme und Lösungsansätze",
-      "Fehlerprotokolle",
-      ""
-    ],
-    [
-      "5.6",
-      "Controlling und Projektverlauf",
-      "Versionsverwaltung",
-      ""
-    ],
-    [
-      "5.7",
-      "Inbetriebnahme und Funktionstest",
-      "geschlossener Test",
-      ""
-    ],
-    [
-      "6.",
-      "Anhang",
-      "Quelltextauszüge, Belege",
-      ""
-    ]
+  [
+   "2.1",
+   "Einführung in das Projekt",
+   "Marktrecherche",
+   ""
+  ],
+  [
+   "2.2",
+   "Ist-Zustand",
+   "Marktrecherche",
+   ""
+  ],
+  [
+   "2.3",
+   "Soll-Zustand",
+   "Anforderungsliste",
+   ""
+  ],
+  [
+   "2.4",
+   "Technische Anforderungen",
+   "Konfiguration der Anwendung",
+   ""
+  ],
+  [
+   "3.",
+   "Konzeptfindung",
+   "Entscheidungsprotokolle",
+   ""
+  ],
+  [
+   "4.",
+   "Risikoanalyse",
+   "20 geprüfte Befunde",
+   ""
+  ],
+  [
+   "5.",
+   "Projektdurchführung",
+   "",
+   ""
+  ],
+  [
+   "5.1",
+   "Umsetzung des Projekts",
+   "Versionsverwaltung",
+   ""
+  ],
+  [
+   "5.2",
+   "Aufbau der Anwendung",
+   "Quelltext",
+   ""
+  ],
+  [
+   "5.3",
+   "Datenhaltung und Ablauflogik",
+   "Quelltext",
+   ""
+  ],
+  [
+   "5.4",
+   "Veröffentlichung im Play Store",
+   "Store-Unterlagen",
+   ""
+  ],
+  [
+   "5.5",
+   "Probleme und Lösungsansätze",
+   "Fehlerprotokolle",
+   ""
+  ],
+  [
+   "5.6",
+   "Controlling und Projektverlauf",
+   "Versionsverwaltung",
+   ""
+  ],
+  [
+   "5.7",
+   "Inbetriebnahme und Funktionstest",
+   "geschlossener Test",
+   ""
+  ],
+  [
+   "6.",
+   "Anhang",
+   "Quelltextauszüge, Belege",
+   ""
   ]
+ ]
 }
