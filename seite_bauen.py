@@ -11,6 +11,7 @@ Seiten im Ordner `github-seite`:
     datenschutz.html          Datenschutzerklärung, acht Sprachen
     nutzungsbedingungen.html  Nutzungsbedingungen, acht Sprachen
     app-ads.txt               eine Zeile für AdMob
+    README.md                 Startseite des Repositories, aus seite_readme.md
 
 Die Seiten kommen ohne fremde Server aus: keine Schriften, keine Skripte
 von außen, alles steht in der Datei selbst.
@@ -320,5 +321,14 @@ if __name__ == "__main__":
     for datei, titel, text in SEITEN:
         baue_rechtsseite(datei, titel, text)
     schreibe("app-ads.txt", APP_ADS)
+    # Die Startseite des Repositories. Sie fuehrt mit klickbaren Links zu den
+    # fertigen Seiten - noetig, weil GitHub in der Dateiliste nur den
+    # HTML-Quelltext zeigt und nicht die lesbare Fassung. Der Text steht in
+    # seite_readme.md und wird hier nur kopiert.
+    quelle = os.path.join(ORDNER, "seite_readme.md")
+    if os.path.exists(quelle):
+        schreibe("README.md", io.open(quelle, encoding="utf-8").read())
+    else:
+        print("  Hinweis: seite_readme.md fehlt - README wird nicht erzeugt.")
     print("\nFertig in: %s" % ZIEL)
     print("Wie es online kommt, steht in github-seite/LIESMICH.txt")
