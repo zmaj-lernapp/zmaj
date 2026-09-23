@@ -77,12 +77,20 @@ SKRIPT = """
 (function(){
   var knoepfe = document.querySelectorAll('.sprachen button');
   var teile = document.querySelectorAll('section[data-sprache]');
+  var fuesse = document.querySelectorAll('[data-fuss]');
   function zeige(code){
     var gefunden = false;
     teile.forEach(function(s){
       var an = s.dataset.sprache === code;
       s.hidden = !an;
       if(an) gefunden = true;
+    });
+    // Die Fusszeile wandert mit. Gibt es sie in der Sprache nicht,
+    // bleibt die englische stehen - wie beim Inhalt darueber.
+    var hatFuss = false;
+    fuesse.forEach(function(f){ if(f.dataset.fuss === code) hatFuss = true; });
+    fuesse.forEach(function(f){
+      f.hidden = hatFuss ? (f.dataset.fuss !== code) : (f.dataset.fuss !== 'en');
     });
     knoepfe.forEach(function(b){ b.setAttribute('aria-current', b.dataset.sprache === code); });
     document.documentElement.lang = code;
@@ -109,20 +117,49 @@ def kopf(titel):
     ) % (titel, STIL)
 
 
+# Das Wort fuer die Startseite. Die uebrigen vier Verweise holen sich ihre
+# Beschriftung aus sprachen.py und aus LOESCHEN; nur hierfuer gab es nichts.
+# Nachgesehen an Webseiten der jeweiligen Sprache, nicht uebersetzt.
+START_WORT = {
+    "de": "Start",
+    "en": "Home",
+    "tr": "Ana Sayfa",     # tdk.gov.tr, Schreibung der tuerkischen Sprachakademie
+    "sv": "Start",         # 1177.se und polisen.se, erste Brotkrume
+    "nl": "Home",          # rijksoverheid.nl und belastingdienst.nl - auch Behoerden schreiben Home
+    "nb": "Forsiden",      # ssb.no und nrk.no, mit Artikel
+    "da": "Forside",       # borger.dk und dsb.dk, ohne Artikel
+    "fr": "Accueil",       # service-public.gouv.fr, keine Konkurrenzvariante
+}
+
+
 def fuss(mit_skript=True, hier=None):
     """hier: Dateiname dieser Seite – der eigene Verweis wird weggelassen.
 
     Google verlinkt die Datenschutzerklärung direkt. Ohne diese Zeile käme man
     von dort weder zum Impressum noch zu den anderen Texten."""
     anbieter = sprachen.ANBIETER.replace("<br>", " · ")
-    andere = [(d, n) for d, n in (("index.html", "Start"),
-                                  ("impressum.html", "Impressum"),
-                                  ("datenschutz.html", "Datenschutz"),
-                                  ("nutzungsbedingungen.html", "Nutzungsbedingungen"),
-                                  ("konto-loeschen.html", "Daten löschen"))
-              if d != hier]
-    verweise = " · ".join('<a href="%s">%s</a>' % (d, n) for d, n in andere)
-    teil = '<footer><nav>%s</nav><br>%s</footer>\n</div>\n' % (verweise, anbieter)
+
+    def zeile(code):
+        """Die fuenf Verweise in einer Sprache, ohne den auf diese Seite."""
+        texte = sprachen.texte(code)
+        namen = (("index.html", START_WORT.get(code, START_WORT["en"])),
+                 ("impressum.html", texte["set.impressum"]),
+                 ("datenschutz.html", texte["set.datenschutz"]),
+                 ("nutzungsbedingungen.html", texte["set.agb"]),
+                 ("konto-loeschen.html",
+                  LOESCHEN.get(code, LOESCHEN["en"])["titel"]))
+        return " · ".join('<a href="%s">%s</a>' % (d, n)
+                          for d, n in namen if d != hier)
+
+    # Eine Abteilung je Sprache, wie oben im Inhalt. Das Umschalt-Skript
+    # blendet sie zusammen mit dem Text um; ohne Skript bleibt die
+    # Grundsprache stehen, weil nur die uebrigen sieben hidden sind.
+    fuesse = "".join(
+        '<span data-fuss="%s"%s>%s</span>'
+        % (s["code"], "" if s["code"] == sprachen.GRUNDSPRACHE else " hidden",
+           zeile(s["code"]))
+        for s in sprachen.SPRACHEN)
+    teil = '<footer><nav>%s</nav><br>%s</footer>\n</div>\n' % (fuesse, anbieter)
     if mit_skript:
         teil += "<script>%s</script>\n" % SKRIPT
     return teil + "</body>\n</html>\n"
@@ -158,6 +195,24 @@ START = {
     "en": ("Learn Bosnian with Zmaj",
            "Zmaj is an app for learning Bosnian: 43 levels, grammar and stories.",
            "Privacy policy", "Terms of use", "Contact"),
+    "tr": ("Zmaj ile Boşnakça öğren",
+           "Zmaj, Boşnakça öğrenmek için bir uygulamadır: 43 seviye, dilbilgisi ve hikâyeler.",
+           "Gizlilik politikası", "Kullanım koşulları", "İletişim"),
+    "sv": ("Lär dig bosniska med Zmaj",
+           "Zmaj är en app för att lära sig bosniska: 43 nivåer, grammatik och berättelser.",
+           "Integritetspolicy", "Användarvillkor", "Kontakt"),
+    "nl": ("Bosnisch leren met Zmaj",
+           "Zmaj is een app om Bosnisch te leren: 43 niveaus, grammatica en verhalen.",
+           "Privacyverklaring", "Gebruiksvoorwaarden", "Contact"),
+    "nb": ("Lær bosnisk med Zmaj",
+           "Zmaj er en app for å lære bosnisk: 43 nivåer, grammatikk og fortellinger.",
+           "Personvernerklæring", "Bruksvilkår", "Kontakt"),
+    "da": ("Lær bosnisk med Zmaj",
+           "Zmaj er en app til at lære bosnisk: 43 niveauer, grammatik og fortællinger.",
+           "Privatlivspolitik", "Brugsvilkår", "Kontakt"),
+    "fr": ("Apprendre le bosnien avec Zmaj",
+           "Zmaj est une application pour apprendre le bosnien : 43 niveaux, de la grammaire et des histoires.",
+           "Politique de confidentialité", "Conditions d'utilisation", "Contact"),
 }
 
 # Google Play fragt im Data-Safety-Formular, wie Nutzer ihre Daten wieder
@@ -233,43 +288,247 @@ It belongs to your Google account, not to us. You can only cancel it and
 have it removed there.</p>
 """,
     },
+    "tr": {
+        "titel": "Verilerini sil",
+        "text": """
+<p><b>Zmaj'ın hesabı yoktur</b><br>
+Giriş yok, parola yok, e-posta adresi yok. Öğrenme ilerlemen yalnızca
+senin cihazında durur ve hiçbir yere yüklenmez – bize de.</p>
+
+<p><b>Her şeyi nasıl silersin</b><br>
+Bunun için bize sormana ya da bize ulaşmana gerek yok:
+uygulamayı sil ya da cihazının ayarlarından uygulamanın belleğini
+temizle (<i>Ayarlar → Uygulamalar → Zmaj → Depolama → Verileri temizle</i>).
+Böylece öğrenme ilerlemen kaybolur – bizde de, çünkü zaten hiç bizde
+olmadı. Bu anında geçerli olur.</p>
+
+<p><b>Neler silinir</b><br>
+Öğrenilen kelimeler, geçilen seviyeler, okunan hikâyeler, öğrenme
+günleri, öğrenme süresi, günlük görevler, jetonlar, satın alınan eşyalar,
+canlar, seri koruması, ayarların ve uygulamayı ilk açtığında oluşan
+rastgele kimlik.</p>
+
+<p><b>Yedek dosyan</b><br>
+<i>Ayarlar → Yedek</i> bölümünden bir dosya kaydettiysen, o dosya nereye
+koyduysan orada duruyor. Onu senin silmen gerekir – biz ona erişemeyiz.</p>
+
+<p><b>Bize yazdıysan</b><br>
+E-postayla gönderdiğin geri bildirim, gönderen adresinle birlikte posta
+kutumuzda kalır. <a href="mailto:{mail}">{mail}</a> adresine yaz, sileriz –
+30 gün içinde.</p>
+
+<p><b>Tam sürüm</b><br>
+Tam sürüm bize değil, Google hesabına bağlıdır. İptal etmeyi de
+sildirmeyi de yalnızca oradan yapabilirsin.</p>
+""",
+    },
+    "sv": {
+        "titel": "Radera dina data",
+        "text": """
+<p><b>Zmaj har inget konto</b><br>
+Det finns ingen inloggning, inget lösenord och ingen e-postadress. Dina framsteg ligger bara på din enhet och laddas inte upp någonstans – inte heller till oss.</p>
+
+<p><b>Så raderar du allt</b><br>
+Du behöver varken fråga oss eller få tag på oss: avinstallera appen, eller töm appens lagringsutrymme i enhetens inställningar (<i>Inställningar → Appar → Zmaj → Lagring → Rensa data</i>). Då är dina framsteg borta – hos oss också, eftersom de aldrig fanns där. Det sker direkt.</p>
+
+<p><b>Det här raderas</b><br>
+Inlärda ord, klarade nivåer, lästa berättelser, inlärningsdagar, inlärningstid, dagsuppgifter, mynt, föremål du köpt, hjärtan, serieskydd, dina inställningar och den slumpmässiga identifierare som skapas när du startar appen första gången.</p>
+
+<p><b>Din säkerhetskopia</b><br>
+Har du sparat en fil under <i>Inställningar → Säkerhetskopia</i> ligger den kvar där du lade den. Den måste du radera själv – vi kommer inte åt den.</p>
+
+<p><b>Om du har skrivit till oss</b><br>
+Ett mejl med feedback blir kvar i vår inkorg, tillsammans med din avsändaradress. Skriv till <a href="mailto:{mail}">{mail}</a>, så raderar vi det – inom 30 dagar.</p>
+
+<p><b>Fullversionen</b><br>
+Den är kopplad till ditt Google-konto, inte till oss. Du kan bara säga upp den och radera den där.</p>
+""",
+    },
+    "nl": {
+        "titel": "Je gegevens wissen",
+        "text": """
+<p><b>Zmaj heeft geen account</b><br>
+Er is geen inlog, geen wachtwoord en geen e-mailadres. Je voortgang staat
+uitsluitend op je eigen apparaat en wordt nergens naartoe geüpload – ook niet
+naar ons.</p>
+
+<p><b>Zo wis je alles</b><br>
+Je hoeft het ons daarvoor niet te vragen en ons niet te bereiken:
+verwijder de app, of wis in de instellingen van je apparaat de opslag ervan
+(<i>Instellingen → Apps → Zmaj → Opslag → Gegevens wissen</i>).
+Daarmee is je voortgang weg – bij ons ook, want daar is hij nooit geweest.
+Dat werkt meteen.</p>
+
+<p><b>Wat er gewist wordt</b><br>
+Geleerde woorden, gehaalde niveaus, gelezen verhalen, leerdagen,
+leertijd, dagtaken, munten, gekochte voorwerpen, levens,
+reeksbescherming, je instellingen en de willekeurige aanduiding die bij de
+eerste start wordt aangemaakt.</p>
+
+<p><b>Je reservekopie</b><br>
+Heb je via <i>Instellingen → Reservekopie</i> een bestand opgeslagen,
+dan staat dat waar jij het hebt neergezet. Dat moet je zelf verwijderen –
+wij kunnen er niet bij.</p>
+
+<p><b>Als je ons hebt geschreven</b><br>
+Een reactie per e-mail blijft in onze mailbox staan, samen met je
+afzenderadres. Schrijf naar <a href="mailto:{mail}">{mail}</a>, dan wissen
+we hem – binnen 30 dagen.</p>
+
+<p><b>De volledige versie</b><br>
+Die hangt aan je Google-account, niet aan ons. Opzeggen en laten verwijderen
+kan alleen daar.</p>
+""",
+    },
+    "nb": {
+        "titel": "Slett dataene dine",
+        "text": """
+<p><b>Zmaj har ingen konto</b><br>
+Det finnes ingen innlogging, intet passord og ingen e-postadresse. Framgangen din ligger bare på enheten din, og den blir aldri lastet opp noe sted – heller ikke til oss.</p>
+
+<p><b>Slik sletter du alt</b><br>
+Du trenger verken å spørre oss eller få tak i oss: slett appen, eller tøm lagringen dens i innstillingene på enheten din (<i>Innstillinger → Apper → Zmaj → Lagring → Tøm data</i>). Dermed er framgangen borte – hos oss også, for der har den aldri vært. Det virker med en gang.</p>
+
+<p><b>Hva som blir slettet</b><br>
+Lærte ord, beståtte nivåer, leste fortellinger, læringsdager, læringstid, dagsoppdrag, mynter, gjenstander du har kjøpt, liv, rekkebeskyttelse, innstillingene dine og den tilfeldige ID-en som blir laget første gang du starter appen.</p>
+
+<p><b>Sikkerhetskopien din</b><br>
+Har du lagret en fil under <i>Innstillinger → Sikkerhetskopi</i>, ligger den der du la den. Den må du slette selv – vi kommer ikke til den.</p>
+
+<p><b>Hvis du har skrevet til oss</b><br>
+En tilbakemelding på e-post blir liggende i postkassen vår, sammen med avsenderadressen din. Skriv til <a href="mailto:{mail}">{mail}</a>, så sletter vi den – innen 30 dager.</p>
+
+<p><b>Fullversjonen</b><br>
+Den hører til Google-kontoen din, ikke til oss. Du kan bare si den opp og få den slettet der.</p>
+""",
+    },
+    "da": {
+        "titel": "Slet dine data",
+        "text": """
+<p><b>Zmaj har ingen konto</b><br>
+Der er ingen login, ingen adgangskode og ingen mailadresse. Dine fremskridt ligger kun på din enhed og bliver ikke sendt nogen steder hen – heller ikke til os.</p>
+
+<p><b>Sådan sletter du det hele</b><br>
+Du behøver ikke at spørge os eller få fat i os:
+slet appen, eller ryd dens lagrede data i din enheds indstillinger
+(<i>Indstillinger → Apps → Zmaj → Lager → Ryd data</i>).
+Så er dine fremskridt væk – også hos os, for de har aldrig været der.
+Det virker med det samme.</p>
+
+<p><b>Hvad bliver slettet</b><br>
+Lærte ord, beståede niveauer, læste fortællinger, læringsdage,
+læringstid, dagsopgaver, mønter, købte genstande, liv,
+rækkebeskyttelse, dine indstillinger og det tilfældige id, der bliver
+oprettet, første gang du starter appen.</p>
+
+<p><b>Din sikkerhedskopi</b><br>
+Har du gemt en fil under <i>Indstillinger → Sikkerhedskopi</i>,
+ligger den der, hvor du har lagt den. Den skal du selv slette –
+vi kan ikke komme til den.</p>
+
+<p><b>Hvis du har skrevet til os</b><br>
+Har du sendt os en mail, bliver den liggende i vores indbakke sammen med
+din afsenderadresse. Skriv til <a href="mailto:{mail}">{mail}</a>, så
+sletter vi den – inden for 30 dage.</p>
+
+<p><b>Fuld version</b><br>
+Den hænger sammen med din Google-konto, ikke med os. Du kan kun opsige
+og slette den dér.</p>
+""",
+    },
+    "fr": {
+        "titel": "Supprimer tes données",
+        "text": """
+<p><b>Zmaj n'a pas de compte</b><br>
+Il n'y a ni connexion, ni mot de passe, ni adresse e-mail. Ta progression
+reste uniquement sur ton appareil et n'est envoyée nulle part – pas même
+chez nous.</p>
+
+<p><b>Comment tout supprimer</b><br>
+Tu n'as besoin ni de nous le demander, ni de nous joindre : supprime
+l'application, ou vide sa mémoire dans les réglages de ton appareil
+(<i>Paramètres → Applications → Zmaj → Stockage → Effacer les données</i>).
+Ta progression est alors perdue – chez nous aussi, car elle ne s'y est
+jamais trouvée. C'est immédiat.</p>
+
+<p><b>Ce qui est supprimé</b><br>
+Les mots appris, les niveaux réussis, les histoires lues, les jours
+d'apprentissage, le temps d'apprentissage, les objectifs du jour, les
+pièces, les objets achetés, les vies, les protections de série, tes
+réglages et l'identifiant aléatoire créé au premier démarrage.</p>
+
+<p><b>Ton fichier de sauvegarde</b><br>
+Si tu en as enregistré un dans <i>Réglages → Sauvegarde</i>, il se trouve
+là où tu l'as mis. Celui-là, il faudra que tu le supprimes toi-même – nous
+n'y avons pas accès.</p>
+
+<p><b>Si tu nous as écrit</b><br>
+Un commentaire envoyé par e-mail reste dans notre boîte mail, avec ton
+adresse d'expéditeur. Écris-nous à <a href="mailto:{mail}">{mail}</a> et
+nous le supprimons – sous 30 jours.</p>
+
+<p><b>La version complète</b><br>
+Elle est liée à ton compte Google, pas à nous. Tu ne peux la résilier et la
+faire supprimer que là-bas.</p>
+""",
+    },
 }
 
 
 def baue_loeschseite():
-    d, e = LOESCHEN["de"], LOESCHEN["en"]
+    """Wie die Rechtstexte: eine Abteilung je Sprache, Umschalter oben.
+
+    Frueher standen hier Deutsch und Englisch untereinander auf einer Seite.
+    Bei acht Sprachen wird das unuebersichtlich - wer Tuerkisch liest, soll
+    nicht an sieben fremden Fassungen vorbeiscrollen muessen.
+
+    Fehlt eine Sprache in LOESCHEN, springt sie auf Englisch. Eine
+    verstaendliche fremde Sprache ist besser als eine leere Seite."""
     mail = post_adresse()
-    inhalt = (
-        '<h1>%s</h1>\n<div class="karte recht">%s</div>\n'
-        '<div class="karte recht" style="margin-top:16px" lang="en">'
-        '<h1 style="font-size:21px">%s</h1>%s</div>\n'
-    ) % (d["titel"], d["text"].replace("{mail}", mail),
-         e["titel"], e["text"].replace("{mail}", mail))
-    schreibe("konto-loeschen.html", kopf("Zmaj – " + d["titel"]) + inhalt + fuss(mit_skript=False, hier="konto-loeschen.html"))
+    erste = LOESCHEN[sprachen.GRUNDSPRACHE]
+    teile = [kopf("Zmaj – " + erste["titel"]), sprachwahl()]
+    for s in sprachen.SPRACHEN:
+        code = s["code"]
+        l = LOESCHEN.get(code, LOESCHEN["en"])
+        # lang zeigt auf die Sprache, die wirklich dasteht - bei einer
+        # fehlenden Uebersetzung ist das Englisch, nicht code.
+        echt = code if code in LOESCHEN else "en"
+        teile.append(
+            '<section data-sprache="%s" lang="%s" hidden>\n<h1>%s</h1>\n'
+            '<div class="karte recht">%s</div>\n</section>\n'
+            % (code, echt, l["titel"], l["text"].replace("{mail}", mail)))
+    teile.append(fuss(hier="konto-loeschen.html"))
+    schreibe("konto-loeschen.html", "".join(teile))
 
 
 def baue_startseite():
-    d = START["de"]
-    e = START["en"]
-    inhalt = (
-        '<h1>%s</h1>\n<div class="karte">\n<p>%s</p>\n'
-        '<p><a class="knopf" href="datenschutz.html">%s</a>'
-        '<a class="knopf" href="nutzungsbedingungen.html">%s</a>'
-        '<a class="knopf" href="konto-loeschen.html">%s</a>'
-        '<a class="knopf" href="impressum.html">%s</a></p>\n'
-        '<p class="recht">%s: <a href="mailto:%s">%s</a></p>\n'
-        '</div>\n'
-        '<div class="karte" style="margin-top:16px" lang="en">\n<p>%s</p>\n'
-        '<p><a class="knopf" href="datenschutz.html">%s</a>'
-        '<a class="knopf" href="nutzungsbedingungen.html">%s</a>'
-        '<a class="knopf" href="konto-loeschen.html">%s</a>'
-        '<a class="knopf" href="impressum.html">%s</a></p>\n</div>\n'
-    ) % (d[0], d[1], d[2], d[3], LOESCHEN["de"]["titel"],
-         sprachen.texte("de")["set.impressum"],
-         d[4], post_adresse(), post_adresse(),
-         e[1], e[2], e[3], LOESCHEN["en"]["titel"],
-         sprachen.texte("en")["set.impressum"])
-    schreibe("index.html", kopf("Zmaj – " + d[0]) + inhalt + fuss(mit_skript=False, hier="index.html"))
+    """Dieselbe Bauweise wie die uebrigen Seiten.
+
+    Die Knopfbeschriftungen stehen in START; nur das Wort fuer Impressum
+    kommt aus sprachen.py, weil die App es selbst anzeigt."""
+    mail = post_adresse()
+    erste = START[sprachen.GRUNDSPRACHE]
+    # erste[0] heisst schon "Bosnisch lernen mit Zmaj" - kein Praefix
+    teile = [kopf(erste[0]), sprachwahl()]
+    for s in sprachen.SPRACHEN:
+        code = s["code"]
+        k = START.get(code, START["en"])
+        l = LOESCHEN.get(code, LOESCHEN["en"])
+        echt = code if code in START else "en"
+        teile.append(
+            '<section data-sprache="%s" lang="%s" hidden>\n<h1>%s</h1>\n'
+            '<div class="karte">\n<p>%s</p>\n'
+            '<p><a class="knopf" href="datenschutz.html">%s</a>'
+            '<a class="knopf" href="nutzungsbedingungen.html">%s</a>'
+            '<a class="knopf" href="konto-loeschen.html">%s</a>'
+            '<a class="knopf" href="impressum.html">%s</a></p>\n'
+            '<p class="recht">%s: <a href="mailto:%s">%s</a></p>\n'
+            '</div>\n</section>\n'
+            % (code, echt, k[0], k[1], k[2], k[3], l["titel"],
+               sprachen.texte(code)["set.impressum"],
+               k[4], mail, mail))
+    teile.append(fuss(hier="index.html"))
+    schreibe("index.html", "".join(teile))
 
 
 def post_adresse():
