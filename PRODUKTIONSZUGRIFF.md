@@ -101,6 +101,7 @@ Und: Entsprach die Nutzung dem erwarteten Verhalten echter Nutzer,
 | Datum | Wer | Was gemeldet | Was ich daraus gemacht habe |
 |---|---|---|---|
 | 20.09.2026 | eigene Pruefung waehrend des Tests, nicht von einem Tester gemeldet | Nach dem Umschalten der Sprache speicherte die App den Lernstand nicht mehr und meldete trotzdem Erfolg. Ursache: `MIT_SERVER` wurde gesetzt, bevor die Antwort ausgewertet war; Capacitor beantwortet jeden Pfad ohne Punkt mit der index.html und Status 200. | Behoben in Version 9 und noch am selben Tag ausgeliefert. Dazu zwei weitere: Lernstand wird nicht mehr ueberschrieben, wenn die App waehrend des Startbilds weggelegt wird, und eine gekaufte Vollversion wird nach einer Neuinstallation wieder erkannt. |
+| 23.09.2026 | Testerin, Samsung Galaxy S, per Foto gemeldet | „Die Animation von SmartDragon hat sich aufgehangen, trotz Neustart ging es nicht mehr." Das Startbild steht still, vor der Schnauze klebt ein gelber Fleck. Die App selbst laeuft normal. | Ursache gefunden: Der App-eigene Schalter *Animationen* setzt die Klasse `no-anim`, und die Regel `.no-anim *{animation:none!important}` schaltet auch den Vorspann ab. Fuer die Systemeinstellung „Bewegung reduzieren" gibt es Ersatz-Endzustaende, fuer den App-Schalter fehlten sie — deshalb blieb die Glut-Ellipse (`opacity=".85"`) stehen. Nebenbefund: dieselbe Regel toetete den Notausstieg des Vorspanns. Behoben in `vorspann_richten.py`; laeuft mit dem Build nach dem 07.10.2026. |
 | | | | |
 
 ---

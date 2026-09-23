@@ -78,6 +78,8 @@ Einreichung setzt Googles Prüfuhr zurück.
 | `werbung_richten.py` | behebt 17 der 20 Befunde aus `WERBUNG_PRUEFUNG.md` |
 | `werbung_texte.py` | ergänzt die Datenschutzerklärung in acht Sprachen |
 | `admob_scharf.py` | tauscht die Testkennungen gegen die echten |
+| `dialog_richten.py` | bringt die zwei Dialoge des versteckten Schalters ins App-Design |
+| `vorspann_richten.py` | behebt den eingefrorenen Vorspann bei abgeschalteten Animationen |
 
 Alle drei folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
 Ohne den Schalter passiert nichts. Kommt ein gesuchter Textabschnitt nicht
