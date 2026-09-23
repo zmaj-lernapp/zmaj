@@ -109,7 +109,12 @@ Programm gibt es damit nicht.
 - **`tts_zugang.json`** – der Azure-Schlüssel für die Sprachausgabe
 - **`mail_zugang.json`** – das Passwort des Postfachs
 - **Der Signierschlüssel** und `keystore.properties` – ohne ihn gibt es nie
-  wieder ein Update, mit ihm kann jeder eine gefälschte Version bauen
+  wieder ein Update, mit ihm kann jeder eine gefälschte Version bauen.
+  Er liegt in `zmaj-schluessel/` neben dem Projekt, **und seit dem
+  23.09.2026 zusätzlich auf einem USB-Stick**. Das Passwort steht nirgends
+  geschrieben. `projekt_sichern.py` nimmt ihn seither in die Geheim-Zip
+  auf – davor fehlte er in jeder Sicherung, weil das Skript seinen Ordner
+  gar nicht ansah.
 - `fortschritt_*.json`, `sitzungen.json`, `codes.json` – echte Nutzerdaten
 - `feedback.txt`, `start.log`, `__pycache__/`
 
