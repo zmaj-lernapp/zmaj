@@ -35,6 +35,11 @@ from datetime import date
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 NEBENAN = os.path.join(os.path.dirname(HIER), "zmaj-android")
+# Der Freigabeschluessel liegt in einem eigenen Ordner, damit er beim
+# Hochladen des Projekts nicht versehentlich mitgeht. Genau deshalb fiel
+# er aus jeder Sicherung heraus: gesammelt wurden nur die beiden Ordner
+# darueber. Ohne ihn gibt es nie wieder ein Update.
+SCHLUESSEL = os.path.join(os.path.dirname(HIER), "zmaj-schluessel")
 ZIEL = os.path.join(os.path.dirname(HIER), "Zmaj Sicherungen")
 
 # ---------------------------------------------------------------- geheim ---
@@ -137,7 +142,17 @@ def main():
 
     # --- Android-Huelle dazu ---
     huelle = sammeln(NEBENAN, "zmaj-android", HUELLE_WEG_ORDNER, HUELLE_WEG_DATEIEN)
+    # Auch die Huelle wird geprueft. Dort liegt android/keystore.properties
+    # mit den Passwoertern zum Freigabeschluessel; ungeprueft landete die
+    # Datei in der Projekt-Zip - also in der, die hochgeladen werden darf.
+    geheim += [(v, n) for v, n in huelle if ist_geheim(n.split("/", 1)[1])]
+    huelle = [(v, n) for v, n in huelle if not ist_geheim(n.split("/", 1)[1])]
     projekt += huelle
+
+    # --- Der Freigabeschluessel ---
+    # Der ganze Ordner ist geheim, deshalb ohne Einzelpruefung.
+    if os.path.isdir(SCHLUESSEL):
+        geheim += sammeln(SCHLUESSEL, "zmaj-schluessel")
 
     print("Sicherung vom %s\n" % heute)
     print("  Projekt      %4d Dateien" % (len(projekt) - len(huelle)))
