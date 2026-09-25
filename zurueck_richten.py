@@ -40,11 +40,17 @@ Probelauf:  python zurueck_richten.py
 Schreiben:  python zurueck_richten.py --schreiben
 """
 import io
+import os
 import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 SCHREIBEN = "--schreiben" in sys.argv
-ZIEL = r"C:\Users\Ajdin\Desktop\App Zeugs\Bosnisch Lernapp\web\index.html"
+# Der Pfad wird aus dem Ort dieses Skripts abgeleitet, nicht fest eingetragen.
+# Vorher stand hier der volle Pfad. Der Projektordner ist am 21.09.2026 schon
+# einmal umgezogen; beim naechsten Umzug haette das Skript ins Leere gegriffen
+# oder - schlimmer - in eine alte Kopie geschrieben.
+ORDNER = os.path.dirname(os.path.abspath(__file__))
+ZIEL = os.path.join(ORDNER, "web", "index.html")
 
 A = []
 
