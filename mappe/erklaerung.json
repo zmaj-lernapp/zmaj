@@ -1,0 +1,17 @@
+{
+ "stand": "Stand: 25.09.2026",
+ "ort": "Wettenberg",
+ "name": "Ajdin Hasić",
+ "erklaerung": [
+  {
+   "ueberschrift": "",
+   "bloecke": [
+    "Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Alle Stellen, die wörtlich oder sinngemäß aus Quellen übernommen wurden, sind als solche kenntlich gemacht. Die Arbeit wurde in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegt.",
+
+    "**Verwendete Hilfsmittel.** Die App wurde mit dem Rahmenwerk Capacitor gebaut. Als Entwicklungsumgebungen dienten Thonny für die Python-Dateien des Lernstoffs und Android Studio für die Android-Hülle. Die Versionsverwaltung erfolgte mit Git. Diese Projektmappe wurde mit Node.js und der Bibliothek docx aus den Kapiteldateien erzeugt. Für die Entwicklung des Programms und für die Erstellung dieser Dokumentation wurde der KI-Assistent Claude Code der Firma Anthropic eingesetzt. Alle fachlichen Entscheidungen, die Auswahl und Prüfung des bosnischen Lernstoffs sowie sämtliche Angaben zu Zahlen, Terminen und Belegen wurden von mir getroffen und überprüft.",
+
+    "Die im Anhang unter 6.1 aufgeführten Quellen wurden am angegebenen Datum abgerufen."
+   ]
+  }
+ ]
+}
