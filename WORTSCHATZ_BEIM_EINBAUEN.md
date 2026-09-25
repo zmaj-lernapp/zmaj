@@ -26,7 +26,7 @@ Standen nicht auf der Liste, kommen als eigene Einträge dazu:
 
 ## Schon bestätigt
 
-horoz (Hahn) · pacov (Ratte) · kokoš (Huhn) · leća (Linsen, nicht sočivo) ·
+horoz (Hahn) · pacov (Ratte) · kokoš (Huhn) · leća (Linsen, sočivo daneben) ·
 cvekla und cikla · brokula und brokoli · klepe · sarma statt japrak ·
 Može li jedna kahva · Može, hvala · Bujrum als Antwort auf Prijatno ·
 kusur = Rückgeld · bakšiš
