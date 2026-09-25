@@ -21,7 +21,7 @@
     "Gegenstand der Arbeit ist Zmaj, eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist dabei das bosnische Wort für Drache.",
     "Den Anstoß gab ein privater Bedarf. Die großen Anbieter für Sprachlernsoftware führen Bosnisch nicht, und den kleineren Angeboten fehlt entweder der kostenlose Zugang oder die systematische Wiederholung.",
     "Die App richtet sich an Erwachsene mit persönlichem Bezug zu Bosnien und Herzegowina: an Partnerinnen und Partner in deutsch-bosnischen Beziehungen, an angeheiratete Familienangehörige und an Nachkommen der zweiten und dritten Einwanderergeneration, die Bosnisch verstehen, es aber nie lesen und schreiben gelernt haben. Der Schwerpunkt liegt in Deutschland. Zusätzlich steht die Bedienoberfläche in sieben weiteren Sprachen zur Verfügung.",
-    "Der Lernstoff führt vom Alltag bis zum Arbeitsvertrag. Geübt wird in fünf Formen, nämlich durch Hören, Schreiben, Auswählen, Lückenfüllen und Sprechen. Zu jeder Vokabel gehört eine bosnische Sprachaufnahme.",
+    "Der Lernstoff führt vom Alltag bis zum Arbeitsvertrag. Geübt wird in fünf Formen, nämlich durch Hören, Schreiben, Auswählen, Lückentexte und Sprechen. Zu jeder Vokabel gehört eine bosnische Sprachaufnahme.",
     "Die App ist fertiggestellt und läuft im geschlossenen Test des Google Play Store. Sie arbeitet vollständig auf dem Gerät, also ohne Nutzerkonto und ohne Server, sodass der Lernstand das Telefon nicht verlässt. Der vollständige Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben, die Gründe für diesen Aufbau in Kapitel 3."
    ]
   }
@@ -30,6 +30,18 @@
   [
    "1.",
    "Vorstellung des Projekts und des Verfassers",
+   "liegt vor",
+   "3"
+  ],
+  [
+   "1.1",
+   "Der Verfasser",
+   "liegt vor",
+   "3"
+  ],
+  [
+   "1.2",
+   "Das Projekt",
    "liegt vor",
    "3"
   ],
@@ -167,7 +179,7 @@
   ],
   [
    "5.2",
-   "Aufbau der Anwendung",
+   "Aufbau der App",
    "liegt vor",
    "14"
   ],
@@ -215,7 +227,7 @@
   ],
   [
    "6.2",
-   "Die Anwendung in Bildern",
+   "Die App in Bildern",
    "liegt vor",
    "21"
   ],
