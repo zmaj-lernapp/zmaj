@@ -1,5 +1,5 @@
 {
- "stand": "Stand: 24.09.2026",
+ "stand": "Stand: 26.09.2026",
  "kapitel2": [
   {
    "ueberschrift": "2.1 Einführung in das Projekt",
@@ -42,7 +42,8 @@
     "**Zielplattform.** Android ab Fassung 7.0, entsprechend der Schnittstellenstufe 24. Übersetzt und getestet wird gegen Stufe 36. Die untere Grenze ist so gewählt, dass ältere Geräte eingeschlossen bleiben, die obere Grenze ist von Google vorgegeben.",
     "**Berechtigungen.** Die App fordert drei Berechtigungen an: Internetzugang für die Werbeauslieferung und die Abonnementprüfung, Mikrofonzugriff für die Sprechaufgabe sowie Vibration für die Rückmeldung bei falschen Antworten. Weitere Berechtigungen werden nicht angefordert.",
     "**Eigenentwicklungen.** Für die Abonnementabwicklung und für die Einwilligungsabfrage nach europäischem Datenschutzrecht wurden zwei eigene Java-Klassen erstellt, da die verfügbaren Fremdbibliotheken die benötigten Abläufe nicht vollständig abdeckten.",
-    "**Vorgaben des Play Store.** Für die Veröffentlichung im Google Play Store sind eine öffentlich erreichbare Datenschutzerklärung, ein Impressum nach § 5 DDG, Angaben zur Datensicherheit und eine Inhaltseinstufung erforderlich. Zusätzlich ist vor der Freigabe für die Produktionsversion ein geschlossener Test mit mindestens zwölf Teilnehmern über vierzehn zusammenhängende Tage durchzuführen.",
+    "**Vorgaben des Play Store.** Google verlangt für die Veröffentlichung eine öffentlich erreichbare Datenschutzerklärung, Angaben im Bereich Datensicherheit und eine Inhaltseinstufung über den Fragebogen der Play Console. Bei privaten Entwicklerkonten, die nach dem 13.11.2023 erstellt wurden, kommt ein geschlossener Test hinzu, und das Konto dieses Projekts fällt darunter. Bei der Beantragung des Produktionszugriffs müssen mindestens zwölf Testpersonen eingetragen sein, die in den vorangegangenen vierzehn Tagen durchgehend teilgenommen haben. Tritt eine Testperson zwischenzeitlich aus, beginnt die Frist neu.",
+    "**Impressumspflicht.** Ein Impressum gehört nicht zu den Vorgaben des Play Store, sondern folgt aus deutschem Recht. Die App wird über Werbung und Abonnement geschäftsmäßig angeboten und ist damit ein digitaler Dienst im Sinne des § 1 Absatz 4 Nummer 1 DDG. Daraus ergeben sich die Informationspflichten des § 5 Absatz 1 DDG, also Name und Anschrift, eine Adresse für die elektronische Post und die Umsatzsteuer-Identifikationsnummer, sämtlich leicht erkennbar und ständig verfügbar. Dass eine App unter den Begriff des digitalen Dienstes fällt, nennen die geprüften amtlichen Quellen nicht ausdrücklich, weshalb dies eine eigene Einordnung bleibt. Erfüllt wird die Pflicht doppelt, über die Rechtstexte in der App und über die öffentlich erreichbare Projektwebseite.",
     "**Rechtliche Voraussetzungen.** Die Veröffentlichung einer App mit Einnahmen setzt ein angemeldetes Gewerbe, eine steuerliche Erfassung und eine Umsatzsteuer-Identifikationsnummer voraus. Diese wurden im Verlauf des Projekts beantragt und erteilt. Mit der Gewerbeanmeldung entsteht automatisch die Mitgliedschaft in der gesetzlichen Unfallversicherung, die am 24.09.2026 bestätigt wurde. Beiträge fallen erst an, sobald Personen beschäftigt werden. Steuerlich ist das Abonnement als Dienstleistung einzuordnen und nicht als digitaler Inhalt."
    ]
   },
@@ -60,7 +61,7 @@
     },
     "Damit betragen die Gesamtausgaben 57,61 Euro, wobei beide Gebühren einmalig anfallen.",
     "Kostenfrei verfügbar waren die Entwicklungsumgebung, das Framework Capacitor, die Versionsverwaltung und der Webspeicher für die Rechtstexte. Ein eigener Server entfällt, wodurch auch im Betrieb keine laufenden Kosten entstehen.",
-    "Den Einnahmen aus Werbung und Abonnement steht auf Seiten des Vertriebs eine Servicegebühr von 15 Prozent auf Abonnementerlöse gegenüber. Ein Gewinn wird für die Laufzeit der Arbeit nicht erwartet."
+    "Von den Abonnementerlösen behält Google Play 15 Prozent ein. Seit dem 30.06.2026 ist dieser Anteil im Europäischen Wirtschaftsraum aufgeteilt in 10 Prozent Servicegebühr und 5 Prozent Abrechnungsgebühr, wobei letztere nur bei Abwicklung über die Bezahlfunktion des Play Store anfällt. Genau so rechnet Zmaj ab. Die Werbeeinnahmen bleiben davon unberührt, da AdMob getrennt abgerechnet wird. Ein Gewinn wird für die Laufzeit der Arbeit nicht erwartet."
    ]
   }
  ]

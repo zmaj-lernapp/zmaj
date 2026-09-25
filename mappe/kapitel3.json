@@ -1,12 +1,12 @@
 {
- "stand": "Stand: 25.09.2026",
+ "stand": "Stand: 26.09.2026",
  "kapitel3": [
   {
    "ueberschrift": "3.1 Technische Grundlage",
    "bloecke": [
     "**Gewählt: Webanwendung in nativer Hülle.** Der Aufbau ist in Abschnitt 2.4 beschrieben. Ausschlaggebend war der Ausgangspunkt, denn die Lerninhalte lagen zu Beginn der Arbeit bereits als Webanwendung vor und waren am Rechner lauffähig. Das Framework Capacitor ermöglicht es, diese Inhalte unverändert in eine Android-Anwendung einzubetten.",
 
-    "**Verworfen: Flutter und React Native.** Beide sind für Apps gedacht, die viel Bewegung darstellen oder tief auf Gerätefunktionen zugreifen, während der Inhalt dieser App aus Text und Ton besteht. Zusätzlich bringt Flutter 15 bis 20 Megabyte Grundgewicht mit. Auch die dafür nötigen Kenntnisse in Dart beziehungsweise React waren nicht vorhanden.",
+    "**Verworfen: Flutter und React Native.** Beide sind für Apps gedacht, die viel Bewegung darstellen oder tief auf Gerätefunktionen zugreifen, während der Inhalt dieser App aus Text und Ton besteht. Zusätzlich bringt Flutter das eigene Rahmenwerk samt Laufzeitkern mit, das laut Hersteller je Zielplattform und Prozessorarchitektur einige Megabyte Grundgewicht ausmacht. Auch die dafür nötigen Kenntnisse in Dart beziehungsweise React waren nicht vorhanden.",
 
     "**Verworfen: reine Android-Entwicklung in Java oder Kotlin.** Dabei wäre der Aufwand vor allem in die Übertragung des vorhandenen Lernstoffs geflossen, ohne dass dadurch neue Inhalte entstanden wären.",
 
@@ -18,7 +18,7 @@
    "bloecke": [
     "**Gewählt: Speicherung ausschließlich auf dem Gerät.** Der Betrieb ohne Server ist in Abschnitt 2.3 beschrieben.",
 
-    "**Verworfen: eigener Server.** Ein Server hätte 46 bis 135 Euro im Jahr gekostet und wäre damit der einzige laufende Posten des Projekts geblieben, da die Ausgaben in Abschnitt 2.5 sämtlich einmalig anfallen.",
+    "**Verworfen: eigener Server.** Ein Server wäre der einzige laufende Posten des Projekts geblieben, da die Ausgaben in Abschnitt 2.5 sämtlich einmalig anfallen. Die Einstiegstarife der beiden günstigsten geprüften Anbieter liegen bei 48 und 60 Euro im Jahr einschließlich Umsatzsteuer, jeweils ohne die einmalige Einrichtungsgebühr.",
 
     "Entscheidend war dabei weniger der Preis als der Umstand, dass ein Server die Aufgabe, für die er gedacht war, gar nicht erfüllt hätte. Der vorhandene Entwurf ersetzte beim Speichern die Listen der gelernten Wörter, bestandenen Abschnitte und Lerntage, statt sie zusammenzuführen. Dadurch hätte ein zweites Gerät den Stand des ersten überschrieben, und der Abgleich wäre zusätzlich zu entwickeln gewesen.",
 
@@ -54,7 +54,7 @@
    "bloecke": [
     "**Gewählt: Android Vitals.** Der Google Play Store erhebt Abstürze und Blockaden automatisch und stellt sie in der Play Console dar. Dadurch muss keine zusätzliche Bibliothek eingebunden werden.",
 
-    "**Verworfen: Firebase Crashlytics.** Die Bibliothek hätte 2 bis 3 Megabyte hinzugefügt und neben der Werbeauslieferung eine zweite Übertragung an Google eingerichtet. Zusätzlich wären dafür ein weiterer Punkt in der Einwilligungsabfrage und ein eigener Abschnitt in der Datenschutzerklärung erforderlich geworden.",
+    "**Verworfen: Firebase Crashlytics.** Die Bibliothek hätte neben der Werbeauslieferung eine zweite Übertragung an Google eingerichtet. Dazu wären ein weiterer Punkt in der Einwilligungsabfrage und ein eigener Abschnitt in der Datenschutzerklärung erforderlich geworden. Die Größe sprach nicht dagegen, denn das Bibliotheksarchiv wiegt rund 0,4 Megabyte.",
 
     "Ein eigener Absturzmelder wird erst dann erforderlich, wenn über die tatsächlichen Abstürze hinaus auch selbst gesetzte Fehlermeldungen ausgewertet werden sollen."
    ]
@@ -64,7 +64,8 @@
    "bloecke": [
     "**Gewählt: berechnete Klänge und ein aus geometrischen Formen aufgebautes Maskottchen.** Die Rückmeldungstöne werden unmittelbar im Gerät berechnet. Die Figur setzt sich aus Vektorformen zusammen und wird über Lottie bewegt.",
 
-    "**Verworfen: aufgenommene Klänge und eine gezeichnete Figur.** Für die Klänge lagen am 16.09.2026 Hörproben vor, die etwa 40 Kilobyte hinzugefügt hätten. Entschieden wurde daher, beim berechneten Stand zu bleiben. Ein von einem Illustrator gezeichnetes Maskottchen mit mehreren Stimmungen ist mit 150 bis 400 Euro anzusetzen und läge damit über dem gesamten Sachaufwand des Projekts.",
+    "**Verworfen: aufgenommene Klänge.** Am 16.09.2026 lagen Hörproben vor, die etwa 40 Kilobyte hinzugefügt hätten. Entschieden wurde daher, beim berechneten Stand zu bleiben.",
+    "**Verworfen: eine gezeichnete Figur.** Ein gezeichnetes Maskottchen wäre der größte Einzelposten des Projekts geworden. Auf der Vermittlungsplattform 99designs beginnt ein Figurenentwurf bei 329 Euro netto als Festpreispaket, eine Direktbeauftragung wird mit 289 bis 789 Euro netto angegeben. Schon der niedrigste dieser Beträge ist das Fünffache der Gesamtausgaben von 57,61 Euro, und mehrere Stimmungen derselben Figur sind darin nicht enthalten.",
 
     "Eine Rückmeldung aus dem geschlossenen Test beanstandet das Erscheinungsbild als zu eintönig, sodass die Gestaltung als offener Punkt vermerkt ist."
    ]
