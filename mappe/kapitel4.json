@@ -11,10 +11,10 @@
       "kopf": ["Stufe", "Eintrittswahrscheinlichkeit E", "Auswirkung A"],
       "zeilen": [
        ["1", "unwahrscheinlich", "kaum spürbar"],
-       ["2", "denkbar", "einzelne Nutzer betroffen, behebbar"],
+       ["2", "denkbar", "einzelne Nutzer betroffen, für den Betrieb folgenlos"],
        ["3", "gelegentlich", "alle Nutzer betroffen oder Verzug von Tagen"],
        ["4", "wahrscheinlich", "Verzug von Wochen"],
-       ["5", "tritt ohne Maßnahme ein", "Veröffentlichung oder Lernstand dauerhaft verloren"]
+       ["5", "tritt ohne Maßnahme ein", "Veröffentlichung insgesamt oder der Lernstand aller Nutzer dauerhaft verloren"]
       ]}},
 
     {"tabelle": {
@@ -26,7 +26,7 @@
        ["15 bis 25", "hoch", "Maßnahme vor der Veröffentlichung zwingend"]
       ]}},
 
-    "Die aufgeführten Risiken stammen aus dem Projektverlauf selbst, also aus geprüften Befunden am eigenen Quelltext, aus den Regeln des Play Store und aus den Rückmeldungen des geschlossenen Tests. Zwei von ihnen sind während des Projekts eingetreten und werden in Abschnitt 4.6 beschrieben.",
+    "Die Auswirkung A misst die Folge für das Vorhaben und nicht das Ausmaß für den einzelnen Betroffenen. Der Verlust eines einzelnen Lernstands ist für den Betroffenen endgültig, für das Vorhaben aber ein Einzelfall und daher Stufe 2. Gehen die Lernstände aller Nutzer verloren, ist es Stufe 5. Die aufgeführten Risiken stammen aus dem Projektverlauf selbst, also aus geprüften Befunden am eigenen Quelltext, aus den Regeln des Play Store und aus den Rückmeldungen des geschlossenen Tests. Zwei von ihnen sind während des Projekts eingetreten und werden in Abschnitt 4.6 beschrieben.",
 
     "Für die Fehlerarten eines Produkts oder eines Fertigungsverfahrens ist die Fehlermöglichkeits- und Einflussanalyse das übliche Werkzeug. Da sie einzelne Fehlerarten bewertet und nicht die Risiken eines Vorhabens, wird sie hier nicht angewendet. Die Einstufung der Werte ist eine Einschätzung des Verfassers, die sich auf die vorliegenden Befunde und auf die Regeln des Play Store stützt und keine statistische Grundlage hat."
    ]
