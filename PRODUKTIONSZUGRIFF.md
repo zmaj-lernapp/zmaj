@@ -84,6 +84,11 @@ Und: Entsprach die Nutzung dem erwarteten Verhalten echter Nutzer,
 - [ ] Hat jemand die Sprache umgestellt?
 - [ ] Hat jemand länger als ein paar Minuten am Stück gelernt?
 
+**Android Vitals, nachgesehen am 23.09.2026: keine Beanstandungen.** Keine
+Abstürze, keine ANR-Meldungen bei zwölf Testern. Das ist eine Angabe, die
+sich belegen lässt — Google erhebt sie selbst, ohne Zutun der App. Vor dem
+Antrag noch einmal nachsehen und den Stand mit Datum hier eintragen.
+
 ### 1.3 Fasse das Feedback zusammen und beschreibe, wie du es eingesammelt hast
 
 > Der Weg zählt mit, nicht nur das Ergebnis. Zwei Kanäle sind eingerichtet:
@@ -102,6 +107,14 @@ Und: Entsprach die Nutzung dem erwarteten Verhalten echter Nutzer,
 |---|---|---|---|
 | 20.09.2026 | eigene Pruefung waehrend des Tests, nicht von einem Tester gemeldet | Nach dem Umschalten der Sprache speicherte die App den Lernstand nicht mehr und meldete trotzdem Erfolg. Ursache: `MIT_SERVER` wurde gesetzt, bevor die Antwort ausgewertet war; Capacitor beantwortet jeden Pfad ohne Punkt mit der index.html und Status 200. | Behoben in Version 9 und noch am selben Tag ausgeliefert. Dazu zwei weitere: Lernstand wird nicht mehr ueberschrieben, wenn die App waehrend des Startbilds weggelegt wird, und eine gekaufte Vollversion wird nach einer Neuinstallation wieder erkannt. |
 | 23.09.2026 | Testerin, Samsung Galaxy S, per Foto gemeldet | „Die Animation von SmartDragon hat sich aufgehangen, trotz Neustart ging es nicht mehr." Das Startbild steht still, vor der Schnauze klebt ein gelber Fleck. Die App selbst laeuft normal. | Ursache gefunden: Der App-eigene Schalter *Animationen* setzt die Klasse `no-anim`, und die Regel `.no-anim *{animation:none!important}` schaltet auch den Vorspann ab. Fuer die Systemeinstellung „Bewegung reduzieren" gibt es Ersatz-Endzustaende, fuer den App-Schalter fehlten sie — deshalb blieb die Glut-Ellipse (`opacity=".85"`) stehen. Nebenbefund: dieselbe Regel toetete den Notausstieg des Vorspanns. Behoben in `vorspann_richten.py`; laeuft mit dem Build nach dem 07.10.2026. |
+| 24.09.2026 | Tester, gesammelt | **Fehler:** Klickt man oben links aufs Herz, erscheint die Angabe zum nächsten Herz nicht darunter, sondern rechts hinter den Münzen. | Wird untersucht; kommt ins Paket nach dem 07.10. |
+| 24.09.2026 | Tester, gesammelt | **Fehler:** Beim Vorlesen einer Geschichte beginnt die Stimme von vorn, sobald man ein Wort zum Übersetzen antippt — auch nach Drücken von Pause. Gewünscht: anhalten, Wort sprechen, dort weitermachen. | Wird untersucht; der ärgerlichste der drei, stört bei jeder Geschichte. |
+| 24.09.2026 | Tester, gesammelt | **Bedienung:** Nach einer abgeschlossenen Lektion — Geschichte wie Vokabeltest — fehlt ein Knopf zurück zum Hauptmenü. | Wird untersucht; klein, aber betrifft jeden Abschluss. |
+| 24.09.2026 | Tester, gesammelt | **Gestaltung:** Die Farben wirken eintönig. Sinngemäß: „ein gutes Spiel mit schlechter Grafik". | Offen. Betrifft das Erscheinungsbild insgesamt, nicht eine Stelle. |
+| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Einstufung für neue Nutzer — Selbsteinschätzung (Anfänger / Fortgeschritten / Profi), danach ein Test, der über den Einstiegspunkt entscheidet. Gedacht für Menschen, die Bosnisch sprechen, aber die Grammatik nie gelernt haben. | Offen. Trifft genau die Zielgruppe zweite und dritte Generation. Groesseres Vorhaben. |
+| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Ein Sammeltopf für falsch beantwortete Fragen, die sich gezielt wiederholen lassen, ohne sich durch bereits Gekonntes zu klicken. | Offen. Passt zum Kern der App; genau das, was Rezensenten bei Mitbewerbern vermissen. |
+| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Geläufiges technisches Vokabular aufnehmen (Maschine und Ähnliches), ohne ins Fachliche abzugleiten. | Offen. Inhaltliche Erweiterung. |
+| 24.09.2026 | Eigene Idee | **Vorschlag:** Festliche Erscheinungsbilder für den Drachen, zum Beispiel zu Halloween. | **Verschoben auf 2027.** Halloween ist der 31.10.2026 und fiele damit in die Woche des Livegangs; am 25.09.2026 entschieden, es nicht in Version 10 zu nehmen. |
 | | | | |
 
 ---
