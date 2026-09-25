@@ -2,9 +2,9 @@
  "stand": "Stand: 25.09.2026",
  "kapitel6": [
   {
-   "ueberschrift": "6.2 Die Anwendung in Bildern",
+   "ueberschrift": "6.2 Die App in Bildern",
    "bloecke": [
-    "Die Abbildungen zeigen die Fassung, die den Testern ausgeliefert wurde, auf einem Android-Gerät. Die fünf Übungsformen aus Abschnitt 2.3 sind darunter jede einmal vertreten.",
+    "Die Abbildungen zeigen die Fassung, die den Testern ausgeliefert wurde, auf einem Android-Gerät. Dabei ist jede der fünf Übungsformen aus Abschnitt 2.3 einmal vertreten.",
 
     {"bilder": {
       "spalten": 3,
@@ -19,7 +19,7 @@
        {"datei": "../store/screenshots/07-hoeren.png", "text": "Übungsform Hören"},
        {"datei": "../store/screenshots/08-sprechen.png", "text": "Übungsform Sprechen"},
        {"datei": "../store/screenshots/09-luecke.png", "text": "Übungsform Lücke"},
-       {"datei": "../store/screenshots/10-laden.png", "text": "Der Laden: Zierrat für das Maskottchen"},
+       {"datei": "../store/screenshots/10-laden.png", "text": "Der Laden: Ausstattung für das Maskottchen"},
        {"datei": "../store/screenshots/11-geschichte.png", "text": "Der Laden: Leben auffüllen, Serienschutz"}
       ]}}
    ]
@@ -27,7 +27,7 @@
   {
    "ueberschrift": "6.3 Quelltextauszüge",
    "bloecke": [
-    "Drei Stellen, auf die sich Kapitel 5 stützt. Die Zeilenumbrüche sind für den Abdruck gesetzt; am Inhalt ist nichts geändert.",
+    "Nachfolgend sind drei Stellen abgedruckt, auf die sich Kapitel 5 stützt. Die Zeilenumbrüche sind für den Abdruck gesetzt worden, am Inhalt selbst wurde nichts geändert.",
 
     {"quelltext": {
       "titel": "Die vier Zustände eines Abschnitts (Abschnitt 5.3)",
@@ -48,7 +48,7 @@
        "                        :         t('zustand.gesperrt')) + '</div>'"
       ]}},
 
-    "Der Zustand wird nicht gespeichert, sondern bei jedem Aufbau des Lernpfads aus dem Lernstand neu bestimmt. Damit kann er nicht von der Wirklichkeit abweichen.",
+    "Die Bestimmung des Zustands erfolgt nicht über einen gespeicherten Wert, sondern wird bei jedem Aufbau des Lernpfads erneut aus dem Lernstand abgeleitet, sodass der angezeigte Zustand nicht von der Wirklichkeit abweichen kann.",
 
     {"quelltext": {
       "titel": "Der Lernstand als Objekt (Abschnitt 5.3)",
@@ -68,7 +68,7 @@
        "}"
       ]}},
 
-    "Der Vermerk im Quelltext ist die Folge eines Fehlers: Ein Feld stand nur beim Speichern, nicht beim Einlesen, und ging beim Gerätewechsel verloren, ohne dass etwas meldete.",
+    "Der Vermerk im Quelltext ist die Folge eines Fehlers. Ein Feld war nur beim Speichern eingetragen und nicht beim Einlesen, sodass es beim Gerätewechsel verloren ging, ohne dass eine Meldung darauf hinwies.",
 
     {"quelltext": {
       "titel": "Die Sicherung in den Änderungsskripten (Abschnitt 5.1)",
@@ -90,7 +90,7 @@
        "        fehler.append(\"%r fehlt\" % muss)"
       ]}},
 
-    "Kommt ein gesuchter Abschnitt nicht genau einmal vor, bricht das Skript ab, bevor es etwas ändert. Die Nachkontrolle prüft danach am Ergebnis, ob jede Änderung angekommen ist."
+    "Kommt ein gesuchter Abschnitt nicht genau einmal vor, bricht das Skript ab, bevor es etwas ändert. Anschließend wird am Ergebnis eine Nachkontrolle durchgeführt, die prüft, ob jede Änderung angekommen ist."
    ]
   },
   {
@@ -100,16 +100,16 @@
       "breiten": [24, 76],
       "kopf": ["Begriff", "Bedeutung"],
       "zeilen": [
-       ["Android Vitals", "Auswertung in der Play Console, die Abstürze und Blockaden ohne Zutun der Anwendung erhebt"],
-       ["Capacitor", "Rahmenwerk, das eine Webanwendung in eine native Android-Anwendung einbettet"],
+       ["Android Vitals", "Auswertung in der Play Console, die Abstürze und Blockaden ohne Zutun der App erhebt"],
+       ["Capacitor", "Framework, das eine Webanwendung in eine native Android-Anwendung einbettet"],
        ["CSS", "Formatsprache, die das Aussehen einer Webseite beschreibt"],
-       ["DDG", "Digitale-Dienste-Gesetz; § 5 regelt die Pflichtangaben im Impressum"],
-       ["Firebase Crashlytics", "Absturzmelder von Google, der als Bibliothek in die Anwendung eingebunden wird"],
+       ["DDG", "Digitale-Dienste-Gesetz, dessen § 5 die Pflichtangaben im Impressum regelt"],
+       ["Firebase Crashlytics", "Absturzmelder von Google, der als Bibliothek in die App eingebunden wird"],
        ["HTML", "Auszeichnungssprache, die den Aufbau einer Webseite beschreibt"],
        ["JavaScript", "Programmiersprache, die im Browser und in der WebView ausgeführt wird"],
-       ["JSON", "Textformat für strukturierte Daten; hier für Lernstoff und Lernstand"],
-       ["Lottie", "Format für Vektoranimationen; speichert Formen statt Bildpunkten"],
-       ["Play Console", "Verwaltungsoberfläche für Anwendungen im Google Play Store"],
+       ["JSON", "Textformat für strukturierte Daten, hier für Lernstoff und Lernstand"],
+       ["Lottie", "Format für Vektoranimationen, das Formen statt Bildpunkten speichert"],
+       ["Play Console", "Verwaltungsoberfläche für Apps im Google Play Store"],
        ["RevenueCat", "Fremdanbieter für die Abwicklung von Abonnements"],
        ["USt-IdNr.", "Umsatzsteuer-Identifikationsnummer"],
        ["WebView", "Anzeigefläche innerhalb einer Android-Anwendung, die Webinhalte darstellt"]
