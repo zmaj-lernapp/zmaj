@@ -2,8 +2,9 @@
  "stand": "Stand: 24.09.2026",
  "anhang_quellen": [
   {
-   "ueberschrift": "6.1 Belegstellen zum Ist-Zustand",
+   "ueberschrift": "6.1 Quellen",
    "bloecke": [
+    "**Belegstellen zum Ist-Zustand (Abschnitt 2.2).**",
     "Die Angaben in Abschnitt 2.2 wurden am 23.09.2026 an den Webseiten der Anbieter und an den Einträgen im deutschen Google Play Store erhoben. Preise verstehen sich einschließlich Umsatzsteuer, soweit der Anbieter sie so ausweist. Installationszahlen und Bewertungen sind Angaben des Play Store und werden dort nur gestuft ausgewiesen.",
     {
      "punkte": [
@@ -28,6 +29,12 @@
       "Sprachenlernen24 — https://www.sprachenlernen24.de/bosnisch-lernen/ (abgerufen am 23.09.2026)",
       "uTalk - Bosnisch: Preise — https://utalk.com/en/plans/bosnian (abgerufen am 23.09.2026)",
       "uTalk - Bosnisch: Umfang und inhaltliche Aussage — https://utalk.com/en/store/bosnian (abgerufen am 23.09.2026)"
+     ]
+    },
+    "**Fachliteratur (Abschnitt 5.3).**",
+    {
+     "punkte": [
+      "Behzad Tabibian, Utkarsh Upadhyay, Abir De, Ali Zarezade, Bernhard Schölkopf, Manuel Gomez-Rodriguez: Enhancing human learning via spaced repetition optimization. Proceedings of the National Academy of Sciences 116 (10), 2019, Seiten 3988 bis 3993. DOI 10.1073/pnas.1815156116"
      ]
     }
    ]
