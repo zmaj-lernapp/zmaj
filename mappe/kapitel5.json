@@ -444,7 +444,7 @@
         "Linearer Aufbau: ein Abschnitt wird erst nach dem vorangegangenen freigeschaltet (2.3)",
         "Lernpfad öffnen, gesperrten Abschnitt antippen",
         "Abschnitt bleibt gesperrt, Hinweis auf den vorangegangenen erscheint",
-        "offen"
+        "bestanden 25.09."
        ],
        [
         "P2",
@@ -521,7 +521,7 @@
         "Sicherungsdatei lässt sich erzeugen und wieder einlesen (2.3)",
         "Sicherung schreiben, Anwendungsdaten löschen, Sicherung einlesen",
         "Lernstand entspricht dem Stand vor dem Löschen",
-        "offen"
+        "bestanden 25.09."
        ],
        [
         "P13",
@@ -547,6 +547,8 @@
       ]
      }
     },
+    "**Erste Ergebnisse.** Am 25.09.2026 wurden P1 und P12 durchgeführt, beide bestanden. Bei P1 blieb der gesperrte Abschnitt gesperrt und wies auf den vorangegangenen hin. Bei P12 stimmte der eingelesene Lernstand mit dem Stand vor dem Löschen überein.",
+    "P12 brachte zugleich einen Bedienungsmangel zutage, der ohne den Durchlauf nicht aufgefallen wäre: Die Sicherungsdatei war nach dem Speichern nur mit Mühe wiederzufinden. Auf Android schreibt die App sie in den Zwischenspeicher und übergibt sie an das Teilen-Menü, wo der Nutzer über die Ablage entscheidet. Die Meldung danach nennt den Dateinamen jedoch nicht, sodass unklar bleibt, wonach später zu suchen ist. Die Änderung liegt als Skript für den ersten Bau nach dem Test bereit.",
     "Die Spalte Ergebnis wird beim Durchlauf auf dem Gerät gefüllt. Dabei sind das Prüfdatum und die verwendete Android-Fassung mit anzugeben. P9 und P13 setzen ein zweites Gerät beziehungsweise ein abgeschlossenes Abonnement voraus und lassen sich erst nach der Freigabe der Produktionsversion durchführen.",
     "Die abschließende Auswertung setzt das Ende der vierzehn Tage voraus. Dieser Abschnitt wird nach dem 07.10.2026 abgeschlossen."
    ]
