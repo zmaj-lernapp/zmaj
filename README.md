@@ -80,6 +80,9 @@ Einreichung setzt Googles Prüfuhr zurück.
 | `admob_scharf.py` | tauscht die Testkennungen gegen die echten |
 | `dialog_richten.py` | bringt die zwei Dialoge des versteckten Schalters ins App-Design |
 | `vorspann_richten.py` | behebt den eingefrorenen Vorspann bei abgeschalteten Animationen |
+| `herz_richten.py` | setzt den Lebens-Hinweis unter das Herz statt hinter die Münzen |
+| `vorleser_richten.py` | die Geschichte beginnt nach einem angetippten Wort nicht mehr von vorn |
+| `zurueck_richten.py` | ein Weg ins Hauptmenü nach Vokabeltest und Geschichte |
 
 Alle drei folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
 Ohne den Schalter passiert nichts. Kommt ein gesuchter Textabschnitt nicht
