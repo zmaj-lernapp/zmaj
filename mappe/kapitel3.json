@@ -1,0 +1,73 @@
+{
+ "stand": "Stand: 25.09.2026",
+ "kapitel3": [
+  {
+   "ueberschrift": "3.1 Technische Grundlage",
+   "bloecke": [
+    "**Gewählt: Webanwendung in nativer Hülle.** Der Aufbau ist in Abschnitt 2.4 beschrieben. Ausschlaggebend war der Ausgangspunkt: Die Lerninhalte lagen zu Beginn der Arbeit als Webanwendung vor und waren am Rechner lauffähig. Das Rahmenwerk Capacitor bettet sie unverändert in eine Android-Anwendung ein.",
+
+    "**Verworfen: Flutter und React Native.** Beide sind für Anwendungen gedacht, die viel Bewegung darstellen oder tief auf Gerätefunktionen zugreifen. Der Inhalt dieser Anwendung ist Text und Ton. Flutter bringt zusätzlich 15 bis 20 Megabyte Grundgewicht mit, und die dafür nötigen Kenntnisse in Dart beziehungsweise React waren nicht vorhanden.",
+
+    "**Verworfen: reine Android-Entwicklung in Java oder Kotlin.** Der Aufwand wäre in die Übertragung des vorhandenen Lernstoffs gegangen, nicht in neue Inhalte.",
+
+    "Die Entscheidung ist an eine Festlegung gebunden, die nach der ersten Veröffentlichung nicht mehr zu ändern ist: Die Einstellungen androidScheme und hostname bestimmen, unter welcher Adresse die Anwendung im Gerät läuft. Ändert man sie später, verlieren alle Nutzer ihren gespeicherten Lernstand. Der Punkt steht in der Risikoanalyse in Kapitel 4."
+   ]
+  },
+  {
+   "ueberschrift": "3.2 Speicherung des Lernstands",
+   "bloecke": [
+    "**Gewählt: Speicherung ausschließlich auf dem Gerät.** Der Betrieb ohne Server ist in Abschnitt 2.3 beschrieben.",
+
+    "**Verworfen: eigener Server.** Ein Server hätte 46 bis 135 Euro im Jahr gekostet und wäre der einzige laufende Posten des Projekts geblieben; die Ausgaben in Abschnitt 2.5 fallen sämtlich einmalig an.",
+
+    "Entscheidend war nicht der Preis, sondern dass ein Server die Aufgabe nicht erfüllt hätte, für die er gedacht war. Der vorhandene Entwurf ersetzte beim Speichern die Listen der gelernten Wörter, bestandenen Abschnitte und Lerntage, statt sie zusammenzuführen. Ein zweites Gerät hätte den Stand des ersten überschrieben; der Abgleich wäre zusätzlich zu entwickeln gewesen.",
+
+    "Die Entscheidung vom 14.09.2026 machte einen Umbau nötig: Anmeldung, Kontoverwaltung und Sitzungsverwaltung wurden aus der ausgelieferten Anwendung entfernt. Ein Rest davon blieb als Werkzeug zum Testen am Rechner erhalten. Der Umbau ist in Abschnitt 5.1 beschrieben.",
+
+    "**Folge für den Datenschutz.** Ohne Konto entstehen keine Anmeldedaten, und der Lernstand verlässt das Gerät nicht. Eine Verbindung nach außen bleibt dennoch bestehen: Werbeauslieferung und Abonnementprüfung sprechen mit Google, wie die Berechtigungen in Abschnitt 2.4 ausweisen. Die Datenschutzerklärung führt deshalb die Werbeeinbindung, aber kein Nutzerkonto und keine Übertragung des Lernstands."
+   ]
+  },
+  {
+   "ueberschrift": "3.3 Finanzierung",
+   "bloecke": [
+    "**Gewählt: Werbung mit Abonnement als Alternative.** Preise und Umfang der Vollversion stehen in Abschnitt 2.1.",
+
+    "**Verworfen: Kaufpreis.** Die Erhebung des Marktes in Abschnitt 2.2 zeigt, dass im deutschen Play Store ausschließlich werbefinanzierte Anwendungen nennenswerte Verbreitung erreichen. Die einzige vorab bezahlte Anwendung mit vergleichbarem Lernaufbau verzeichnet unter fünf Installationen.",
+
+    "**Verworfen: Bezahlschranke für Lerninhalte.** Bezahlt werden Werbefreiheit und unbegrenzte Versuche, nicht der Zugang zum Lernstoff. Daraus folgt die steuerliche Einordnung des Abonnements als Dienstleistung, die Abschnitt 2.4 nennt.",
+
+    "**Verworfen: Abwicklung über einen Fremdanbieter.** Dienste wie RevenueCat prüfen Abonnements auf ihren eigenen Servern. Das hätte der Entscheidung aus Abschnitt 3.2 widersprochen, ohne Server auszukommen. Stattdessen wurde ein eigenes Plugin geschrieben, das unmittelbar mit der Abrechnung des Play Store spricht."
+   ]
+  },
+  {
+   "ueberschrift": "3.4 Lernverfahren",
+   "bloecke": [
+    "**Gewählt: begrenzte Versuche mit Wartezeit.** Fünf Leben und eine Wartezeit von 120 Minuten; der Ablauf steht in Abschnitt 2.3.",
+
+    "Eine Prüfung vor dem geschlossenen Test benannte dies als größtes Risiko für den ersten Eindruck: Wer zum ersten Mal bosnische Wörter sieht, hat fünf Fehler in wenigen Minuten beisammen. Die drei Auswege — Münzen ausgeben, Werbung ansehen, Abonnement abschließen — greifen bei einem neuen Lernstand noch nicht.",
+
+    "**Die Begrenzung wurde am 20.09.2026 bewusst beibehalten.** Die Wartezeit ist der Grund, aus dem Lernende am nächsten Tag wiederkommen; die verbreiteten Lernanwendungen verfahren ebenso. Die Entscheidung wird überprüft, wenn Teilnehmer des geschlossenen Tests von sich aus melden, dass sie deswegen aufgehört haben. Die Auswertung des Tests steht in Abschnitt 5.7."
+   ]
+  },
+  {
+   "ueberschrift": "3.5 Überwachung des Betriebs",
+   "bloecke": [
+    "**Gewählt: Android Vitals.** Der Google Play Store erhebt Abstürze und Blockaden selbstständig und stellt sie in der Play Console dar. Eine Zusatzbibliothek ist dafür nicht einzubinden.",
+
+    "**Verworfen: Firebase Crashlytics.** Die Bibliothek hätte 2 bis 3 Megabyte hinzugefügt und neben der Werbeauslieferung eine zweite Übertragung an Google eingerichtet. Nötig geworden wären dafür ein weiterer Punkt in der Einwilligungsabfrage und ein zusätzlicher Abschnitt in der Datenschutzerklärung.",
+
+    "Ein eigener Absturzmelder wird erst nötig, wenn nicht mehr nur echte Abstürze zu untersuchen sind, sondern selbst gesetzte Fehlermeldungen."
+   ]
+  },
+  {
+   "ueberschrift": "3.6 Gestaltung und Klang",
+   "bloecke": [
+    "**Gewählt: berechnete Klänge und ein aus geometrischen Formen aufgebautes Maskottchen.** Die Rückmeldungstöne werden im Gerät berechnet. Die Figur wird aus Vektorformen zusammengesetzt und über Lottie bewegt.",
+
+    "**Verworfen: aufgenommene Klänge und eine gezeichnete Figur.** Für die Klänge lagen am 16.09.2026 Hörproben vor; sie hätten etwa 40 Kilobyte hinzugefügt. Entschieden wurde, beim berechneten Stand zu bleiben. Ein von einem Illustrator gezeichnetes Maskottchen mit mehreren Stimmungen ist mit 150 bis 400 Euro anzusetzen und läge damit über dem gesamten Sachaufwand des Projekts.",
+
+    "Eine Rückmeldung aus dem geschlossenen Test beanstandet das Erscheinungsbild als zu eintönig. Die Gestaltung ist damit als offener Punkt vermerkt."
+   ]
+  }
+ ]
+}

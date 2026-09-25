@@ -5,24 +5,24 @@
   "Betreuung: Herr Dr. Rosenschon",
   "Bearbeitungszeitraum: 10.08.2026 – 19.03.2027"
  ],
- "stand": "Stand: 21.09.2026",
+ "stand": "Stand: 25.09.2026",
  "kapitel1": [
   {
    "ueberschrift": "1.1 Der Verfasser",
    "bloecke": [
     "Diese Arbeit wird als Einzelarbeit durchgeführt. Verfasser ist Ajdin Hasić, gelernter Elektroniker, Klasse 02FSA. Die Weiterbildung zum staatlich geprüften Techniker der Fachrichtung Automatisierungstechnik findet in Vollzeit an der Berufs- und Technikerschule Butzbach statt. Die Betreuung übernimmt Herr Dr. Rosenschon. Der Bearbeitungszeitraum reicht vom 10.08.2026 bis zum 19.03.2027.",
-    "Aus der Ausbildung liegen Kenntnisse in Elektrotechnik und Steuerungstechnik vor. Die Kenntnisse in der Anwendungsentwicklung wurden selbstständig erarbeitet und in eigenen Projekten angewendet.",
-    "Alle Aufgaben liegen in einer Hand: Anforderungsanalyse, Konzeption, Entwicklung, Test, Veröffentlichung und Dokumentation. Die getroffenen Entscheidungen werden in den folgenden Kapiteln begründet."
+    "Aus der Ausbildung liegen Kenntnisse in Elektrotechnik und Steuerungstechnik vor. Die Kenntnisse in der Anwendungsentwicklung wurden selbstständig erarbeitet.",
+    "Alle Aufgaben liegen in einer Hand: Anforderungsanalyse, Konzeption, Entwicklung, Test, Veröffentlichung und Dokumentation."
    ]
   },
   {
    "ueberschrift": "1.2 Das Projekt",
    "bloecke": [
     "Gegenstand der Arbeit ist Zmaj, eine Android-Anwendung zum Erlernen der bosnischen Sprache. Zmaj ist das bosnische Wort für Drache.",
-    "Den Anstoß gab ein privater Bedarf. Die großen Anbieter für Sprachlernsoftware führen Bosnisch nicht. Lernmaterial gibt es bei kleineren Anbietern und als Lehrbuch. Die vorhandenen Anwendungen setzen ein Abonnement voraus oder verzichten auf systematische Wiederholung. Ein kostenloses deutschsprachiges Angebot, das tägliches Üben mit aufeinander aufbauenden Abschnitten verbindet, fehlt.",
-    "Die Anwendung richtet sich an Erwachsene mit persönlichem Bezug zu Bosnien und Herzegowina: an Partnerinnen und Partner in deutsch-bosnischen Beziehungen, an angeheiratete Familienangehörige und an Nachkommen der zweiten und dritten Einwanderergeneration, die Bosnisch verstehen, es aber nie lesen und schreiben gelernt haben. Der Schwerpunkt liegt in Deutschland. Die Bedienoberfläche gibt es zusätzlich in sieben weiteren Sprachen, weil die bosnische Diaspora vor allem in diesen Ländern lebt.",
+    "Den Anstoß gab ein privater Bedarf. Die großen Anbieter für Sprachlernsoftware führen Bosnisch nicht; den kleineren Angeboten fehlt entweder der kostenlose Zugang oder die systematische Wiederholung.",
+    "Die Anwendung richtet sich an Erwachsene mit persönlichem Bezug zu Bosnien und Herzegowina: an Partnerinnen und Partner in deutsch-bosnischen Beziehungen, an angeheiratete Familienangehörige und an Nachkommen der zweiten und dritten Einwanderergeneration, die Bosnisch verstehen, es aber nie lesen und schreiben gelernt haben. Der Schwerpunkt liegt in Deutschland; die Bedienoberfläche gibt es zusätzlich in sieben weiteren Sprachen.",
     "Der Lernstoff führt vom Alltag bis zum Arbeitsvertrag. Geübt wird in fünf Formen: hören, schreiben, auswählen, Lücken füllen und sprechen. Zu jeder Vokabel gehört eine bosnische Tonspur.",
-    "Die Anwendung ist fertiggestellt und im Google Play Store veröffentlicht. Sie arbeitet vollständig auf dem Gerät, ohne Nutzerkonto und ohne Server. Der Lernstand verlässt das Telefon nicht. Der vollständige Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben."
+    "Die Anwendung ist fertiggestellt und läuft im geschlossenen Test des Google Play Store. Sie arbeitet vollständig auf dem Gerät, ohne Nutzerkonto und ohne Server. Der Lernstand verlässt das Telefon nicht. Der vollständige Funktionsumfang und die Anforderungen sind im Lastenheft in Kapitel 2 beschrieben, die Gründe für diesen Aufbau in Kapitel 3."
    ]
   }
  ],
@@ -36,98 +36,200 @@
   [
    "2.",
    "Lastenheft",
-   "",
-   ""
+   "liegt vor",
+   "4"
   ],
   [
    "2.1",
    "Einführung in das Projekt",
-   "Marktrecherche",
-   ""
+   "liegt vor",
+   "4"
   ],
   [
    "2.2",
    "Ist-Zustand",
-   "Marktrecherche",
-   ""
+   "liegt vor",
+   "4"
   ],
   [
    "2.3",
    "Soll-Zustand",
-   "Anforderungsliste",
-   ""
+   "liegt vor",
+   "5"
   ],
   [
    "2.4",
    "Technische Anforderungen",
-   "Konfiguration der Anwendung",
-   ""
+   "liegt vor",
+   "5"
+  ],
+  [
+   "2.5",
+   "Wirtschaftliche Rahmenbedingungen",
+   "liegt vor",
+   "6"
   ],
   [
    "3.",
    "Konzeptfindung",
-   "Entscheidungsprotokolle",
-   ""
+   "liegt vor",
+   "7"
+  ],
+  [
+   "3.1",
+   "Technische Grundlage",
+   "liegt vor",
+   "7"
+  ],
+  [
+   "3.2",
+   "Speicherung des Lernstands",
+   "liegt vor",
+   "7"
+  ],
+  [
+   "3.3",
+   "Finanzierung",
+   "liegt vor",
+   "7"
+  ],
+  [
+   "3.4",
+   "Lernverfahren",
+   "liegt vor",
+   "8"
+  ],
+  [
+   "3.5",
+   "Überwachung des Betriebs",
+   "liegt vor",
+   "8"
+  ],
+  [
+   "3.6",
+   "Gestaltung und Klang",
+   "liegt vor",
+   "8"
   ],
   [
    "4.",
    "Risikoanalyse",
-   "20 geprüfte Befunde",
-   ""
+   "liegt vor",
+   "10"
+  ],
+  [
+   "4.1",
+   "Verfahren",
+   "liegt vor",
+   "10"
+  ],
+  [
+   "4.2",
+   "Risiken der Technik",
+   "liegt vor",
+   "10"
+  ],
+  [
+   "4.3",
+   "Risiken der Veröffentlichung",
+   "liegt vor",
+   "11"
+  ],
+  [
+   "4.4",
+   "Risiken des Projektablaufs",
+   "liegt vor",
+   "12"
+  ],
+  [
+   "4.5",
+   "Rangfolge",
+   "liegt vor",
+   "12"
+  ],
+  [
+   "4.6",
+   "Eingetretene Risiken",
+   "liegt vor",
+   "13"
   ],
   [
    "5.",
    "Projektdurchführung",
-   "",
-   ""
+   "liegt vor",
+   "14"
   ],
   [
    "5.1",
    "Umsetzung des Projekts",
-   "Versionsverwaltung",
-   ""
+   "liegt vor",
+   "14"
   ],
   [
    "5.2",
    "Aufbau der Anwendung",
-   "Quelltext",
-   ""
+   "liegt vor",
+   "14"
   ],
   [
    "5.3",
    "Datenhaltung und Ablauflogik",
-   "Quelltext",
-   ""
+   "liegt vor",
+   "14"
   ],
   [
    "5.4",
    "Veröffentlichung im Play Store",
-   "Store-Unterlagen",
-   ""
+   "liegt vor, Abschluss nach der Freigabe",
+   "15"
   ],
   [
    "5.5",
    "Probleme und Lösungsansätze",
-   "Fehlerprotokolle",
-   ""
+   "liegt vor",
+   "16"
   ],
   [
    "5.6",
    "Controlling und Projektverlauf",
-   "Versionsverwaltung",
-   ""
+   "liegt vor",
+   "16"
   ],
   [
    "5.7",
    "Inbetriebnahme und Funktionstest",
-   "geschlossener Test",
-   ""
+   "liegt vor, Auswertung nach dem 07.10.2026",
+   "18"
   ],
   [
    "6.",
    "Anhang",
    "Quelltextauszüge, Belege",
-   ""
+   "20"
+  ],
+  [
+   "6.1",
+   "Belegstellen zum Ist-Zustand",
+   "liegt vor",
+   "20"
+  ],
+  [
+   "6.2",
+   "Die Anwendung in Bildern",
+   "liegt vor",
+   "21"
+  ],
+  [
+   "6.3",
+   "Quelltextauszüge",
+   "liegt vor",
+   "22"
+  ],
+  [
+   "6.4",
+   "Begriffe und Abkürzungen",
+   "liegt vor",
+   "23"
   ]
  ]
 }

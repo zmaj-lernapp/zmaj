@@ -1,0 +1,179 @@
+{
+ "stand": "Stand: 25.09.2026",
+ "kapitel4": [
+  {
+   "ueberschrift": "4.1 Verfahren",
+   "bloecke": [
+    "Jedes Risiko wird mit zwei Größen bewertet: der Eintrittswahrscheinlichkeit E und der Auswirkung A, beide auf einer Stufenleiter von 1 bis 5. Das Produkt ergibt den Risikowert R zwischen 1 und 25.",
+
+    {"tabelle": {
+      "breiten": [14, 43, 43],
+      "kopf": ["Stufe", "Eintrittswahrscheinlichkeit E", "Auswirkung A"],
+      "zeilen": [
+       ["1", "unwahrscheinlich", "kaum spürbar"],
+       ["2", "denkbar", "einzelne Nutzer betroffen, behebbar"],
+       ["3", "gelegentlich", "alle Nutzer betroffen oder Verzug von Tagen"],
+       ["4", "wahrscheinlich", "Verzug von Wochen"],
+       ["5", "tritt ohne Maßnahme ein", "Veröffentlichung oder Lernstand dauerhaft verloren"]
+      ]}},
+
+    {"tabelle": {
+      "breiten": [18, 20, 62],
+      "kopf": ["Risikowert R", "Einstufung", "Folge"],
+      "zeilen": [
+       ["1 bis 4", "gering", "hinnehmbar, keine Maßnahme"],
+       ["5 bis 12", "mittel", "Maßnahme, soweit ohne Umbau möglich"],
+       ["15 bis 25", "hoch", "Maßnahme vor der Veröffentlichung zwingend"]
+      ]}},
+
+    "Die Risiken stammen nicht aus einer Sammlung denkbarer Fälle, sondern aus dem Projektverlauf: aus geprüften Befunden am eigenen Quelltext, aus den Regeln des Vertriebswegs und aus Rückmeldungen des geschlossenen Tests. Zwei von ihnen sind eingetreten; sie stehen in Abschnitt 4.6.",
+
+    "Für Fehlerarten eines Erzeugnisses oder eines Fertigungsverfahrens ist die Fehlermöglichkeits- und Einflussanalyse das übliche Werkzeug. Sie bewertet Fehlerarten, nicht die Risiken eines Vorhabens, und bleibt hier außen vor. Die Einstufung der Werte ist eine Einschätzung des Verfassers und stützt sich auf die Befunde und die Regeln des Vertriebswegs, nicht auf eine Statistik."
+   ]
+  },
+  {
+   "ueberschrift": "4.2 Risiken der Technik",
+   "bloecke": [
+    {"tabelle": {
+      "breiten": [5, 36, 5, 5, 5, 35, 9],
+      "mitte": [0],
+      "kopf": ["Nr.", "Risiko und Begründung", "E", "A", "R", "Gegenmaßnahme", "R danach"],
+      "zeilen": [
+       ["R1",
+        "**Verlust des Signierschlüssels.** Google Play nimmt nur Aktualisierungen an, die mit demselben Schlüssel signiert sind. Ohne ihn ist keine Aktualisierung mehr möglich. Die Anwendung müsste unter neuem Paketnamen erscheinen, alle Nutzer verlören ihren Lernstand.",
+        "2", "5", "10",
+        "Bis 22.09.2026 lag er an einer einzigen Stelle und fehlte in jeder Sicherung, weil das Sicherungsskript seinen Ordner nicht ansah. Seit 23.09.2026 zusätzlich auf getrenntem Datenträger und vom Skript erfasst.",
+        "5"],
+       ["R2",
+        "**Änderung der Adresse im Gerät.** Die Einstellungen androidScheme und hostname bestimmen, wo der Lernstand abgelegt ist. Eine Änderung nach der ersten Veröffentlichung löscht den Lernstand aller Nutzer.",
+        "2", "5", "10",
+        "Die Werte sind festgeschrieben und an drei Stellen als unveränderlich vermerkt, darunter in Abschnitt 3.1.",
+        "5"],
+       ["R3",
+        "**Sperrung des Werbekontos.** Die Prüfung der Werbeeinbindung vom 20.09.2026 ergab 20 Befunde, davon drei kontogefährdend: Zwischen der Prüfung, ob eine Anzeige gezeigt werden darf, und dem Zeigen liegt ein Netzabruf ohne Frist. Ein Wecker läuft weiter, wenn die Anwendung in den Hintergrund geht. Google sperrt dafür Konten, nicht einzelne Anwendungen.",
+        "4", "5", "20",
+        "Solange Testkennungen laufen, richtet kein Befund Schaden an. Die Befunde werden vor dem Tausch der Kennungen behoben; die Reihenfolge ist festgelegt und liegt als Änderungsskripte bereit. Der Wert sinkt erst nach Einbau und Nachprüfung.",
+        "10"],
+       ["R4",
+        "**Ungültiger Verkehr durch eigene Geräte.** Ein Klick auf eine echte Anzeige vom Gerät des Entwicklers oder eines Testers zählt als ungültiger Verkehr und kann das Werbekonto kosten.",
+        "3", "5", "15",
+        "Bis zum Ende des geschlossenen Tests laufen ausschließlich Googles Testkennungen, die nicht abgerechnet werden. Getauscht wird erst danach.",
+        "5"],
+       ["R5",
+        "**Verlust des Lernstands beim Nutzer.** Ohne Server liegt der Lernstand nur im Gerätespeicher. Gerätewechsel, Verlust des Geräts oder das Löschen der Anwendungsdaten beenden den Lernfortschritt.",
+        "4", "2", "8",
+        "Die Anwendung erzeugt auf Wunsch eine Sicherungsdatei. Sie hilft nur dem, der sie vorher anlegt — der Wert sinkt deshalb nicht. Das Restrisiko ist der Preis der Entscheidung aus Abschnitt 3.2.",
+        "8"],
+       ["R6",
+        "**Fehler, die erst auf einem fremden Gerät auftreten.** Die Anwendung läuft am Rechner im Browser und auf dem Gerät in einer WebView. Nicht jeder Unterschied zwischen beiden fällt beim Entwickeln auf.",
+        "4", "2", "8",
+        "Geschlossener Test mit zwölf Testern auf ihren eigenen Geräten und zwei Rückmeldewegen, bevor die Anwendung allgemein verfügbar ist.",
+        "6"]
+      ]}}
+   ]
+  },
+  {
+   "ueberschrift": "4.3 Risiken der Veröffentlichung",
+   "bloecke": [
+    {"tabelle": {
+      "breiten": [5, 36, 5, 5, 5, 35, 9],
+      "mitte": [0],
+      "kopf": ["Nr.", "Risiko und Begründung", "E", "A", "R", "Gegenmaßnahme", "R danach"],
+      "zeilen": [
+       ["R7",
+        "**Rücksetzen der Prüffrist.** Der Produktionszugriff setzt einen geschlossenen Test über vierzehn zusammenhängende Tage voraus. Jede Einreichung während dieser Zeit startet die Frist neu.",
+        "3", "3", "9",
+        "Während des Tests wird nichts eingereicht. Sämtliche Korrekturen liegen als Änderungsskripte bereit und laufen erst danach.",
+        "3"],
+       ["R8",
+        "**Austritt eines Testers.** Die vierzehn Tage gelten nur, solange durchgehend zwölf Tester angemeldet sind. Wer austritt und wieder eintritt, beginnt bei null und reißt damit die Zwölf.",
+        "3", "3", "9",
+        "Angemeldet sind dreizehn Tester; ein Ausfall ist dadurch aufgefangen.",
+        "6"],
+       ["R9",
+        "**Ablehnung des Produktionszugriffs.** Google entscheidet über den Antrag nach eigenen Maßstäben. Eine Ablehnung bedeutet eine weitere Testrunde.",
+        "2", "3", "6",
+        "Die acht Antragsfragen sind vorgeschrieben, die Rückmeldungen des Tests werden laufend mitgeschrieben, und Android Vitals wies am 23.09.2026 bei zwölf Testern weder Abstürze noch Blockaden aus.",
+        "3"]
+      ]}},
+
+    "Was die Maßnahme zu R7 kostet, zeigt ein Beispiel: In den Versionshinweisen steht seit dem 20.09.2026 der Satz, die Vollversion lasse sich noch nicht kaufen. Er stimmt seit demselben Tag nicht mehr. Der Satz bleibt trotzdem stehen; die Tester wurden stattdessen unterrichtet."
+   ]
+  },
+  {
+   "ueberschrift": "4.4 Risiken des Projektablaufs",
+   "bloecke": [
+    {"tabelle": {
+      "breiten": [5, 36, 5, 5, 5, 35, 9],
+      "mitte": [0],
+      "kopf": ["Nr.", "Risiko und Begründung", "E", "A", "R", "Gegenmaßnahme", "R danach"],
+      "zeilen": [
+       ["R10",
+        "**Ausfall des Verfassers.** Die Arbeit ist Einzelarbeit; eine Vertretung gibt es nicht. Ein längerer Ausfall trifft Entwicklung und Dokumentation gleichzeitig.",
+        "2", "4", "8",
+        "Der Arbeitsstand liegt vollständig in der Versionsverwaltung, und die Dokumentation entsteht mit dem Projekt statt an seinem Ende. Ein Ausfall kostet damit Zeit, aber keinen Inhalt.",
+        "6"],
+       ["R11",
+        "**Verlust des Arbeitsrechners.** Vor dem 19.09.2026 gab es keine Versionsverwaltung; ein Defekt hätte den gesamten Stand gekostet.",
+        "2", "4", "8",
+        "Projekt und Android-Hülle liegen in zwei Repositories mit entferntem Spiegel, zusammen 50 Einträge. Zugangsschlüssel und Nutzerdaten bleiben ausdrücklich außerhalb der Spiegel.",
+        "2"],
+       ["R12",
+        "**Veröffentlichung nach dem Abgabetermin.** Der Antrag auf Produktionszugriff ist frühestens am 07.10.2026 möglich; danach prüft Google den Antrag und anschließend die erste Produktionsversion. Abgabetermin ist der 19.03.2027.",
+        "1", "4", "4",
+        "Der Puffer beträgt rund vier Monate. Eine Maßnahme ist nicht erforderlich.",
+        "4"]
+      ]}}
+   ]
+  },
+  {
+   "ueberschrift": "4.5 Rangfolge",
+   "bloecke": [
+    {"tabelle": {
+      "breiten": [7, 47, 7, 7, 8, 24],
+      "mitte": [0],
+      "kopf": ["Nr.", "Risiko", "E", "A", "R", "R nach Maßnahme"],
+      "zeilen": [
+       ["R3", "Sperrung des Werbekontos", "4", "5", "20", "10"],
+       ["R4", "Ungültiger Verkehr durch eigene Geräte", "3", "5", "15", "5"],
+       ["R1", "Verlust des Signierschlüssels", "2", "5", "10", "5"],
+       ["R2", "Änderung der Adresse im Gerät", "2", "5", "10", "5"],
+       ["R7", "Rücksetzen der Prüffrist", "3", "3", "9", "3"],
+       ["R8", "Austritt eines Testers", "3", "3", "9", "6"],
+       ["R5", "Verlust des Lernstands beim Nutzer", "4", "2", "8", "8"],
+       ["R6", "Fehler nur auf fremden Geräten", "4", "2", "8", "6"],
+       ["R10", "Ausfall des Verfassers", "2", "4", "8", "6"],
+       ["R11", "Verlust des Arbeitsrechners", "2", "4", "8", "2"],
+       ["R9", "Ablehnung des Produktionszugriffs", "2", "3", "6", "3"],
+       ["R12", "Veröffentlichung nach dem Abgabetermin", "1", "4", "4", "4"]
+      ]}},
+
+    "Zwei Risiken liegen vor der Maßnahme im hohen Bereich; beide betreffen die Werbung. Nach den Maßnahmen erreicht keines mehr diesen Bereich.",
+
+    "Zwei Werte fallen dabei nicht: **R5** und **R12**. Bei R12 ist das gewollt — der Puffer ist groß genug, eine Maßnahme wäre Aufwand ohne Wirkung. Bei R5 ist es eine Folge des Aufbaus: Die Sicherungsdatei hilft nur dem Nutzer, der sie anlegt, und mehr ist ohne Server nicht möglich. **R3** bleibt mit 10 das größte Restrisiko, bis die Befunde eingebaut und nachgeprüft sind."
+   ]
+  },
+  {
+   "ueberschrift": "4.6 Eingetretene Risiken",
+   "bloecke": [
+    {"tabelle": {
+      "breiten": [6, 14, 44, 36],
+      "mitte": [0],
+      "kopf": ["Nr.", "Datum", "Was geschah", "Folge"],
+      "zeilen": [
+       ["R1", "23.09.2026",
+        "Der Signierschlüssel lag an einer einzigen Stelle, und das Sicherungsskript übersprang seinen Ordner. Aufgefallen bei einer Durchsicht der Sicherungen, nicht durch einen Schaden.",
+        "Eingetreten ist nicht der Verlust, sondern der Zustand, der ihn möglich gemacht hätte. Schlüssel gesichert, Skript berichtigt."],
+       ["R6", "20.09.2026",
+        "Nach dem Umschalten der Sprache speicherte die Anwendung den Lernstand nicht mehr und meldete den Vorgang trotzdem als erfolgreich. Ursache: Die Hülle beantwortet jede Adresse ohne Punkt mit der Startseite und der Meldung „in Ordnung“ — die Prüfung auf einen Server fiel deshalb positiv aus.",
+        "Behoben und am selben Tag ausgeliefert."],
+       ["R6", "23.09.2026",
+        "Eine Testerin meldete ein stehengebliebenes Startbild. Der Schalter für Animationen setzt eine Regel, die im ganzen Fenster jede Bewegung unterbindet — auch die des Vorspanns.",
+        "Schwerer wog der Nebenbefund: Dieselbe Regel setzte den Notausstieg außer Kraft, der das Startbild wegblendet, wenn das Skript nicht anläuft. Wer Animationen abgeschaltet hatte, war ohne Rückversicherung unterwegs. Beides liegt als Änderungsskript bereit."]
+      ]}},
+
+    "Beide Fälle zu R6 bestätigen die Einstufung: Sie wurden auf Geräten sichtbar, nicht am Entwicklungsrechner. Der geschlossene Test hat damit seinen Zweck erfüllt, bevor die Anwendung allgemein verfügbar ist."
+   ]
+  }
+ ]
+}
