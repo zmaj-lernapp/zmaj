@@ -83,6 +83,7 @@ Einreichung setzt Googles Prüfuhr zurück.
 | `herz_richten.py` | setzt den Lebens-Hinweis unter das Herz statt hinter die Münzen |
 | `vorleser_richten.py` | die Geschichte beginnt nach einem angetippten Wort nicht mehr von vorn |
 | `zurueck_richten.py` | ein Weg ins Hauptmenü nach Vokabeltest und Geschichte |
+| `sicherung_richten.py` | die Meldung nach dem Sichern nennt den Dateinamen |
 
 Alle drei folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
 Ohne den Schalter passiert nichts. Kommt ein gesuchter Textabschnitt nicht
