@@ -435,6 +435,44 @@ if (anhangTeile.length) {
   anhangTeile.forEach(kapitelSetzen);
 }
 
+/* ------------------------------------------------- EIGENSTAENDIGKEITSERKLAERUNG
+   Steht als letzte Seite, ohne Nummer und nicht im Inhaltsverzeichnis - sie
+   ist kein Kapitel der Arbeit, sondern eine Erklaerung ueber sie.
+
+   Die Unterschriftzeile ist eine randlose Tabelle mit zwei Zellen, die oben
+   eine Linie tragen. Eine Reihe Unterstriche waere einfacher, bricht aber
+   je nach Schriftgroesse an anderer Stelle um. */
+const EPFAD = __dirname + "/erklaerung.json";
+if (fs.existsSync(EPFAD)) {
+  const E = JSON.parse(fs.readFileSync(EPFAD, "utf8"));
+  inhalt.push(new Paragraph({ children: [new (require("docx").PageBreak)()] }));
+  inhalt.push(ueber1("Eigenständigkeitserklärung"));
+  kapitelSetzen(E.erklaerung);
+  inhalt.push(...leer(3));
+
+  const LINIE_OBEN = { style: BorderStyle.SINGLE, size: 4, color: "000000" };
+  const unterschriftZelle = (text) => new TableCell({
+    width: { size: 50, type: WidthType.PERCENTAGE },
+    borders: { top: LINIE_OBEN, bottom: KEIN, left: KEIN, right: KEIN },
+    margins: { top: 80, left: 0, right: 200 },
+    children: [new Paragraph({
+      spacing: { after: 0 },
+      children: [new TextRun({ text, size: 20, font: "Calibri", color: "595959" })],
+    })],
+  });
+  inhalt.push(new Table({
+    width: { size: 100, type: WidthType.PERCENTAGE },
+    borders: OHNE_RAHMEN,
+    rows: [new TableRow({
+      cantSplit: true,
+      children: [
+        unterschriftZelle(E.ort + ", den"),
+        unterschriftZelle(E.name),
+      ],
+    })],
+  }));
+}
+
 // ---------------------------------------------------------------- Dokument
 /* RAENDER. Links und rechts gleich - 2,5 cm.
 
