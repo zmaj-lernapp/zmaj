@@ -4,61 +4,61 @@
   {
    "ueberschrift": "2.1 Einführung in das Projekt",
    "bloecke": [
-    "Die Anforderungen ergeben sich aus drei Quellen: dem Bedarf der Zielgruppe, dem vorhandenen Angebot am Markt und den Vorgaben des Google Play Store. Die dritte Quelle ist verbindlich; ohne ihre Erfüllung ist keine Veröffentlichung möglich.",
-    "Die Anwendung finanziert sich über Werbung. Eine Vollversion ohne Werbung und ohne Begrenzung der täglichen Versuche wird als Abonnement angeboten: 2,99 Euro im Monat oder 19,99 Euro im Jahr, jeweils einschließlich Umsatzsteuer. Das Jahresabonnement ist damit um rund 44 Prozent günstiger. Der Lernstoff ist in beiden Fassungen vollständig zugänglich; bezahlt werden Werbefreiheit und unbegrenzte Versuche, nicht der Zugang zum Lernmaterial.",
-    "Auftraggeber und Auftragnehmer fallen zusammen: Die Anwendung entsteht aus eigenem Bedarf, nicht im Auftrag eines Dritten. Die Anforderungen dieses Lastenhefts sind daher selbst gesetzt. Verbindlich vorgegeben sind allein die Bedingungen des Vertriebswegs; sie stehen in Abschnitt 2.4."
+    "Die Anforderungen ergeben sich aus drei Quellen: dem Bedarf der Zielgruppe, dem vorhandenen Angebot am Markt und den Vorgaben des Google Play Store. Die dritte Quelle ist verbindlich, da ohne ihre Erfüllung keine Veröffentlichung möglich ist.",
+    "Die App finanziert sich über Werbung. Eine Vollversion ohne Werbung und ohne Begrenzung der täglichen Versuche wird als Abonnement angeboten: 2,99 Euro im Monat oder 19,99 Euro im Jahr, jeweils einschließlich Umsatzsteuer. Damit ist das Jahresabonnement um rund 44 Prozent günstiger. Der Lernstoff ist in beiden Fassungen vollständig zugänglich, sodass sich die Zahlung allein auf die Werbefreiheit und die unbegrenzten Versuche bezieht und nicht auf den Zugang zum Lernmaterial.",
+    "Auftraggeber und Auftragnehmer fallen zusammen, da die App aus eigenem Bedarf und nicht im Auftrag eines Dritten entsteht. Die Anforderungen dieses Lastenhefts sind daher selbst gesetzt. Verbindlich vorgegeben sind allein die Bedingungen des Vertriebs, die in Abschnitt 2.4 aufgeführt sind."
    ]
   },
   {
    "ueberschrift": "2.2 Ist-Zustand",
    "bloecke": [
-    "Am 23.09.2026 wurden elf kommerzielle Sprachlernanbieter, neun Anwendungen im deutschen Google Play Store sowie das Angebot an Lehrwerken und Volkshochschulkursen geprüft.",
-    "**Die großen Anbieter führen Bosnisch nicht.** Duolingo bietet englischsprachigen Lernenden über vierzig Kurse an, darunter Latein, Navajo und die Kunstsprachen Klingonisch und Hochvalyrisch. Eine südslawische Sprache ist nicht enthalten; für deutschsprachige Lernende umfasst das Angebot acht Sprachen. Babbel führt dreizehn Kurssprachen, Busuu vierzehn, Rosetta Stone dreiundzwanzig, Lingoda fünf. In keinem dieser Programme kommt Bosnisch, Kroatisch, Serbisch oder Montenegrinisch vor.",
-    "Einzuschränken ist dies mit Blick auf die Sprachsituation. Bosnisch, Kroatisch, Serbisch und Montenegrinisch gelten sprachwissenschaftlich als Varietäten einer plurizentrischen Sprache und sind weitgehend gegenseitig verständlich. Mondly führt Kroatisch mit 567.113 Lernenden nach Anbieterangabe, Pimsleur und Glossika bieten ebenfalls Kroatisch an. Für einen deutschsprachigen Lernenden stellt ein Kroatischkurs daher einen teilweisen Ersatz dar. An deutschen Volkshochschulen wird Bosnisch überwiegend nicht einzeln, sondern als gemeinsamer Kurs „Bosnisch/Kroatisch/Serbisch“ von A1 bis B2 unterrichtet.",
-    "**Lernmaterial für Bosnisch existiert.** Der deutschsprachige Anbieter Sprachenlernen24 führt einen Kurs von A1 bis C2 mit über 5.000 Vokabeln, mehr als achtzig Dialogtexten, Grammatik mit Übungen und durchgehender Vertonung durch bosnische Sprecher; das Komplettpaket kostet 129,00 Euro einmalig. Die Ling-App bietet einen Bosnischkurs mit Grammatiklektionen für 16,99 US-Dollar im Monat, uTalk einen Kurs mit über 2.500 Wörtern auf Niveau A1 bis A2 für 5,99 Euro im Monat. Kostenlos verfügbar sind die einhundert vertonten Lektionen des Goethe-Verlags unter 50languages.com. Als deutschsprachiges Lehrwerk liegt „Bosnisch für absolute Anfänger“ vor (Schmetterling Verlag, Lehrbuch mit Audio-CD, 18,80 Euro).",
-    "**Die Reichweite verteilt sich ungleich.** Im deutschen Play Store erreichen ausschließlich werbefinanzierte Anwendungen nennenswerte Verbreitung: 50languages über 50.000 Installationen, Ling, Drops und Lomol je über 10.000. Die einzige Anwendung mit vergleichbarem Lernaufbau wird vorab bezahlt und verzeichnet unter fünf Installationen ohne eine einzige Bewertung.",
-    "**Die verbleibende Lücke.** Es fehlt nicht an Lernmaterial, sondern an einem kostenlosen deutschsprachigen Angebot in Anwendungsform, das tägliches Üben, systematische Wiederholung und aufeinander aufbauende Abschnitte verbindet. Die vorhandenen Anwendungen setzen ein Abonnement voraus oder sind Satzsammlungen ohne Lernfortschritt. Eine Nutzerbewertung zur Ling-App vom 24.06.2026 benennt genau diesen Mangel: „es gibt viel zu viele neue Wörter und Dialoge mit unbekannten Wörtern, keine Wiederholungen“.",
-    "Die Angaben wurden an den Webseiten der Anbieter und an den Store-Einträgen erhoben; die Belegstellen stehen im Anhang unter 6.1."
+    "Am 23.09.2026 wurden elf kommerzielle Sprachlernanbieter, neun Apps im deutschen Google Play Store sowie das Angebot an Lehrwerken und Volkshochschulkursen geprüft.",
+    "**Die großen Anbieter führen Bosnisch nicht.** Duolingo bietet englischsprachigen Lernenden über vierzig Kurse an, darunter Latein, Navajo und die Kunstsprachen Klingonisch und Hochvalyrisch. Eine südslawische Sprache ist nicht enthalten. Für deutschsprachige Lernende umfasst das Angebot acht Sprachen. Babbel führt dreizehn Kurssprachen, Busuu vierzehn, Rosetta Stone dreiundzwanzig, Lingoda fünf. In keinem dieser Programme kommt Bosnisch, Kroatisch, Serbisch oder Montenegrinisch vor.",
+    "Diese Feststellung ist mit Blick auf die Sprachsituation allerdings einzuschränken. Bosnisch, Kroatisch, Serbisch und Montenegrinisch gelten sprachwissenschaftlich als Varietäten einer plurizentrischen Sprache und sind weitgehend gegenseitig verständlich. Dabei führt Mondly Kroatisch mit 567.113 Lernenden nach Anbieterangabe, auch Pimsleur und Glossika bieten Kroatisch an. Für einen deutschsprachigen Lernenden stellt ein Kroatischkurs daher einen teilweisen Ersatz dar. An deutschen Volkshochschulen wird Bosnisch überwiegend als gemeinsamer Kurs „Bosnisch/Kroatisch/Serbisch“ von A1 bis B2 angeboten und nur selten als eigener Kurs.",
+    "**Lernmaterial für Bosnisch existiert.** Der deutschsprachige Anbieter Sprachenlernen24 führt einen Kurs von A1 bis C2 mit über 5.000 Vokabeln, mehr als achtzig Dialogtexten, Grammatik mit Übungen und durchgehender Vertonung durch bosnische Sprecher. Das Komplettpaket kostet 129,00 Euro einmalig. Die Ling-App bietet einen Bosnischkurs mit Grammatiklektionen für 16,99 US-Dollar im Monat, uTalk einen Kurs mit über 2.500 Wörtern auf Niveau A1 bis A2 für 5,99 Euro im Monat. Kostenlos verfügbar sind zusätzlich die einhundert vertonten Lektionen des Goethe-Verlags unter 50languages.com. Als deutschsprachiges Lehrwerk liegt „Bosnisch für absolute Anfänger“ vor (Schmetterling Verlag, Lehrbuch mit Audio-CD, 18,80 Euro).",
+    "**Die Reichweite verteilt sich ungleich.** Im deutschen Play Store erreichen ausschließlich werbefinanzierte Apps eine nennenswerte Verbreitung: 50languages über 50.000 Installationen, Ling, Drops und Lomol je über 10.000. Die einzige App mit vergleichbarem Lernaufbau wird vorab bezahlt und kommt auf unter fünf Installationen, ohne dass dazu eine Bewertung vorliegt.",
+    "**Die verbleibende Lücke.** Es fehlt nicht an Lernmaterial, sondern an einem kostenlosen deutschsprachigen Angebot in Form einer App, das tägliches Üben, systematische Wiederholung und aufeinander aufbauende Abschnitte miteinander verbindet. Die vorhandenen Apps setzen entweder ein Abonnement voraus oder bestehen aus Satzsammlungen ohne Lernfortschritt. Eine Nutzerbewertung zur Ling-App vom 24.06.2026 benennt genau diesen Mangel: „es gibt viel zu viele neue Wörter und Dialoge mit unbekannten Wörtern, keine Wiederholungen“.",
+    "Die Erhebung der Angaben erfolgte an den Webseiten der Anbieter und an den Store-Einträgen. Die Belegstellen stehen im Anhang unter 6.1."
    ]
   },
   {
    "ueberschrift": "2.3 Soll-Zustand",
    "bloecke": [
-    "Die Anwendung stellt den Lernstoff in drei Abschnitten bereit: Grundlagen und Alltag, Grammatik, sowie Leben und Arbeiten. Der Aufbau ist linear; ein Abschnitt wird freigeschaltet, wenn der vorangegangene bestanden ist.",
-    "Der Umfang beträgt 43 Lernabschnitte mit 1.108 Vokabeln, 16 Grammatikeinheiten mit 104 Übungen und 12 Lesegeschichten. Zu jeder Vokabel gehört eine bosnische Tonaufnahme.",
-    "Geübt wird in fünf Formen: Hören, Schreiben, Auswählen, Lückentexte und Sprechen. Die Sprechaufgabe wertet die Aussprache über die Spracherkennung des Geräts aus.",
-    "**Wiederholung.** Falsch beantwortete Aufgaben werden erneut vorgelegt. Der Lernstand hält fest, welche Wörter sicher beherrscht werden; diese erscheinen seltener.",
-    "**Begrenzung der Versuche.** Fehler verbrauchen eines von fünf Leben. Sind alle verbraucht, ist eine Wartezeit einzuhalten oder Werbung anzusehen. Die Vollversion hebt die Begrenzung auf.",
-    "**Bedienoberfläche.** Die Anwendung liegt in acht Sprachen vor: Deutsch, Englisch, Türkisch, Schwedisch, Niederländisch, Norwegisch, Dänisch und Französisch. Je Sprache sind 396 Texte zu pflegen. Die Auswahl richtet sich nach den Ländern, in denen die bosnische Diaspora vorwiegend lebt.",
-    "**Betrieb ohne Server.** Die Anwendung arbeitet vollständig auf dem Gerät. Es gibt kein Nutzerkonto und keine Anmeldung. Der Lernstand wird im Gerätespeicher abgelegt und verlässt das Telefon nicht. Eine Sicherungsdatei kann auf Wunsch erzeugt und wieder eingelesen werden."
+    "Die App stellt den Lernstoff in drei Abschnitten bereit: Grundlagen und Alltag, Grammatik, sowie Leben und Arbeiten. Der Aufbau ist linear, sodass ein Abschnitt erst dann freigeschaltet wird, wenn der vorangegangene bestanden ist.",
+    "Der Umfang beträgt 43 Lernabschnitte mit 1.108 Vokabeln, 16 Grammatikeinheiten mit 104 Übungen und 12 Lesegeschichten. Zu jeder Vokabel gehört eine bosnische Sprachaufnahme.",
+    "Geübt wird in fünf Formen: Hören, Schreiben, Auswählen, Lückentexte und Sprechen. Dabei erfolgt die Auswertung der Aussprache in der Sprechaufgabe über die Spracherkennung des Geräts.",
+    "**Wiederholung.** Falsch beantwortete Aufgaben werden erneut vorgelegt. Zusätzlich hält der Lernstand fest, welche Wörter sicher beherrscht werden, sodass diese seltener erscheinen.",
+    "**Begrenzung der Versuche.** Jeder Fehler verbraucht eines von fünf Leben. Sind alle Leben verbraucht, ist eine Wartezeit einzuhalten oder Werbung anzusehen. In der Vollversion entfällt diese Begrenzung.",
+    "**Bedienoberfläche.** Die App liegt in acht Sprachen vor: Deutsch, Englisch, Türkisch, Schwedisch, Niederländisch, Norwegisch, Dänisch und Französisch. Dabei sind je Sprache 396 Texte zu pflegen. Die Auswahl der Sprachen richtet sich nach den Ländern, in denen die bosnische Diaspora vorwiegend lebt.",
+    "**Betrieb ohne Server.** Die App arbeitet vollständig auf dem Gerät, ein Nutzerkonto und eine Anmeldung sind nicht vorgesehen. Die Speicherung des Lernstands erfolgt im Gerätespeicher, sodass die Daten das Telefon nicht verlassen. Zusätzlich lässt sich auf Wunsch eine Sicherungsdatei erzeugen und wieder einlesen."
    ]
   },
   {
    "ueberschrift": "2.4 Technische Anforderungen",
    "bloecke": [
-    "Die Anwendung ist eine Webanwendung in einer nativen Hülle. Das Programm selbst besteht aus HTML, CSS und JavaScript; das Rahmenwerk Capacitor in der Fassung 8.5.2 bettet es in eine Android-Anwendung ein und stellt die Verbindung zu den Gerätefunktionen her.",
-    "**Zielplattform.** Android ab Fassung 7.0, entsprechend der Schnittstellenstufe 24. Übersetzt und getestet wird gegen Stufe 36. Die untere Grenze ist so gewählt, dass ältere Geräte eingeschlossen bleiben; die obere ist von Google vorgegeben.",
-    "**Berechtigungen.** Die Anwendung fordert drei Berechtigungen an: Internetzugang für die Werbeauslieferung und die Abonnementprüfung, Mikrofonzugriff für die Sprechaufgabe, und Vibration für die Rückmeldung bei falschen Antworten. Weitere Berechtigungen werden nicht angefordert.",
-    "**Eigenentwicklungen.** Für die Abonnementabwicklung und für die Einwilligungsabfrage nach europäischem Datenschutzrecht wurden zwei eigene Java-Klassen erstellt. Die verfügbaren Fremdbibliotheken deckten die benötigten Abläufe nicht vollständig ab.",
-    "**Vorgaben des Vertriebswegs.** Für die Veröffentlichung im Google Play Store sind eine öffentlich erreichbare Datenschutzerklärung, ein Impressum nach § 5 DDG, Angaben zur Datensicherheit und eine Inhaltseinstufung erforderlich. Vor der Freigabe für die Produktionsversion ist ein geschlossener Test mit mindestens zwölf Teilnehmern über vierzehn zusammenhängende Tage durchzuführen.",
-    "**Rechtliche Voraussetzungen.** Die Veröffentlichung einer Anwendung mit Einnahmen setzt ein angemeldetes Gewerbe, eine steuerliche Erfassung und eine Umsatzsteuer-Identifikationsnummer voraus. Diese wurden im Verlauf des Projekts beantragt und erteilt. Mit der Gewerbeanmeldung entsteht von Amts wegen die Mitgliedschaft in der gesetzlichen Unfallversicherung; sie wurde am 24.09.2026 bestätigt. Beiträge fallen erst an, sobald Personen beschäftigt werden. Das Abonnement ist steuerlich als Dienstleistung einzuordnen, nicht als digitaler Inhalt."
+    "Die App ist eine Webanwendung in einer nativen Hülle. Das Programm selbst besteht aus HTML, CSS und JavaScript. Das Framework Capacitor in der Fassung 8.5.2 bettet es in eine Android-Anwendung ein und stellt dabei die Verbindung zu den Gerätefunktionen her.",
+    "**Zielplattform.** Android ab Fassung 7.0, entsprechend der Schnittstellenstufe 24. Übersetzt und getestet wird gegen Stufe 36. Die untere Grenze ist so gewählt, dass ältere Geräte eingeschlossen bleiben, die obere Grenze ist von Google vorgegeben.",
+    "**Berechtigungen.** Die App fordert drei Berechtigungen an: Internetzugang für die Werbeauslieferung und die Abonnementprüfung, Mikrofonzugriff für die Sprechaufgabe sowie Vibration für die Rückmeldung bei falschen Antworten. Weitere Berechtigungen werden nicht angefordert.",
+    "**Eigenentwicklungen.** Für die Abonnementabwicklung und für die Einwilligungsabfrage nach europäischem Datenschutzrecht wurden zwei eigene Java-Klassen erstellt, da die verfügbaren Fremdbibliotheken die benötigten Abläufe nicht vollständig abdeckten.",
+    "**Vorgaben des Play Store.** Für die Veröffentlichung im Google Play Store sind eine öffentlich erreichbare Datenschutzerklärung, ein Impressum nach § 5 DDG, Angaben zur Datensicherheit und eine Inhaltseinstufung erforderlich. Zusätzlich ist vor der Freigabe für die Produktionsversion ein geschlossener Test mit mindestens zwölf Teilnehmern über vierzehn zusammenhängende Tage durchzuführen.",
+    "**Rechtliche Voraussetzungen.** Die Veröffentlichung einer App mit Einnahmen setzt ein angemeldetes Gewerbe, eine steuerliche Erfassung und eine Umsatzsteuer-Identifikationsnummer voraus. Diese wurden im Verlauf des Projekts beantragt und erteilt. Mit der Gewerbeanmeldung entsteht automatisch die Mitgliedschaft in der gesetzlichen Unfallversicherung, die am 24.09.2026 bestätigt wurde. Beiträge fallen erst an, sobald Personen beschäftigt werden. Steuerlich ist das Abonnement als Dienstleistung einzuordnen und nicht als digitaler Inhalt."
    ]
   },
   {
    "ueberschrift": "2.5 Wirtschaftliche Rahmenbedingungen",
    "bloecke": [
-    "Das Projekt wurde ohne Fremdmittel durchgeführt. Angefallen sind zwei Pflichtgebühren; zwei weitere Posten blieben kostenfrei:",
+    "Die Durchführung des Projekts erfolgte ohne Fremdmittel. Angefallen sind zwei Pflichtgebühren, während zwei weitere Posten kostenfrei blieben:",
     {
      "punkte": [
-      "Entwicklerkonto Google Play — 21,61 Euro (Gebühr von 25 US-Dollar, einmalig, abgerechnet zum Tageskurs)",
-      "Gewerbeanmeldung bei der Gemeinde — 36,00 Euro (Bescheinigung vom 21.09.2026)",
-      "Sprachsynthese für 1.108 Tonaufnahmen — 0,00 Euro (kostenloses Kontingent des Anbieters)",
-      "Gesetzliche Unfallversicherung — 0,00 Euro (beitragsfrei ohne Beschäftigte, Bestätigung vom 24.09.2026)"
+      "Entwicklerkonto Google Play: 21,61 Euro (Gebühr von 25 US-Dollar, einmalig, abgerechnet zum Tageskurs)",
+      "Gewerbeanmeldung bei der Gemeinde: 36,00 Euro (Bescheinigung vom 21.09.2026)",
+      "Sprachsynthese für 1.108 Sprachaufnahmen: 0,00 Euro (kostenloses Kontingent des Anbieters)",
+      "Gesetzliche Unfallversicherung: 0,00 Euro (beitragsfrei ohne Beschäftigte, Bestätigung vom 24.09.2026)"
      ]
     },
-    "Die Gesamtausgaben betragen damit 57,61 Euro. Beide Gebühren fallen einmalig an.",
-    "Kostenfrei verfügbar waren die Entwicklungsumgebung, das Rahmenwerk Capacitor, die Versionsverwaltung und der Webspeicher für die Rechtstexte. Ein eigener Server entfällt; damit entstehen auch im Betrieb keine laufenden Kosten.",
-    "Den Einnahmen aus Werbung und Abonnement steht auf Seiten des Vertriebswegs eine Servicegebühr von 15 Prozent auf Abonnementerlöse gegenüber. Ein Gewinn wird für die Laufzeit der Arbeit nicht erwartet."
+    "Damit betragen die Gesamtausgaben 57,61 Euro, wobei beide Gebühren einmalig anfallen.",
+    "Kostenfrei verfügbar waren die Entwicklungsumgebung, das Framework Capacitor, die Versionsverwaltung und der Webspeicher für die Rechtstexte. Ein eigener Server entfällt, wodurch auch im Betrieb keine laufenden Kosten entstehen.",
+    "Den Einnahmen aus Werbung und Abonnement steht auf Seiten des Vertriebs eine Servicegebühr von 15 Prozent auf Abonnementerlöse gegenüber. Ein Gewinn wird für die Laufzeit der Arbeit nicht erwartet."
    ]
   }
  ]

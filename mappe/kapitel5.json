@@ -4,15 +4,15 @@
   {
    "ueberschrift": "5.1 Umsetzung des Projekts",
    "bloecke": [
-    "Inhalt und Programm sind getrennt. Der Lernstoff steht in Python-Dateien: vokabeln.py mit 1.639 Zeilen, sprachen.py mit 3.476, grammatik.py mit 377 und geschichten.py mit 300. Ein Erzeuger macht daraus je Oberflächensprache eine Datei im JSON-Format, ein zweiter bringt diese in die Android-Hülle und baut das Paket. Derselbe Erzeuger beliefert Browser und Gerät; beide Fassungen können inhaltlich nicht voneinander abweichen.",
+    "Inhalt und Programm sind voneinander getrennt. Der Lernstoff steht in Python-Dateien: vokabeln.py mit 1.639 Zeilen, sprachen.py mit 3.476, grammatik.py mit 377 und geschichten.py mit 300. Daraus erzeugt ein Skript je Oberflächensprache eine Datei im JSON-Format, ein zweites bringt diese in die Android-Hülle und baut das Paket. Dabei werden Browser und Gerät von demselben Skript beliefert, sodass die beiden Fassungen inhaltlich nicht voneinander abweichen können.",
 
-    "**Der Umbau vom 14.09.2026.** Mit der Entscheidung gegen einen eigenen Server (Abschnitt 3.2) wurden Anmeldung, Kontoverwaltung und Sitzungsverwaltung aus der ausgelieferten Anwendung entfernt. Am 23.09.2026 fielen weitere 151 Zeilen, die danach nicht mehr erreichbar waren. Ein Rest des alten Servers blieb erhalten, aber nur als Werkzeug am Rechner: Der Inhaltserzeuger ruft dessen Ladefunktion auf, und genau deshalb können beide Fassungen nicht auseinanderlaufen.",
+    "**Der Umbau vom 14.09.2026.** Mit der Entscheidung gegen einen eigenen Server (Abschnitt 3.2) wurden Anmeldung, Kontoverwaltung und Sitzungsverwaltung aus der ausgelieferten App entfernt. Am 23.09.2026 fielen weitere 151 Zeilen, die danach nicht mehr erreichbar waren. Ein Rest des alten Servers blieb erhalten, dient aber nur noch als Werkzeug am Rechner, denn das Skript für die Inhalte ruft dessen Ladefunktion auf. Dadurch können die beiden Fassungen nicht auseinanderlaufen.",
 
-    "**Änderungen am Programm laufen als Skript, nicht von Hand.** Jedes Skript ersetzt genau bezeichnete Textabschnitte, zählt die Treffer und bricht ab, wenn ein gesuchter Abschnitt nicht genau einmal vorkommt. Ohne den Schalter für das Schreiben läuft nur ein Probelauf; ein halb geändertes Programm kann dadurch nicht entstehen. Acht solcher Skripte liegen für den ersten Bau nach dem Test bereit."
+    "**Änderungen am Programm werden über Skripte durchgeführt und nicht von Hand vorgenommen.** Jedes Skript ersetzt genau bezeichnete Textabschnitte, zählt die Treffer und bricht ab, wenn ein gesuchter Abschnitt nicht genau einmal vorkommt. Ohne den Schalter für das Schreiben erfolgt nur ein Probelauf, sodass ein halb geändertes Programm nicht entstehen kann. Acht solcher Skripte liegen für den ersten Bau nach dem Test bereit."
    ]
   },
   {
-   "ueberschrift": "5.2 Aufbau der Anwendung",
+   "ueberschrift": "5.2 Aufbau der App",
    "bloecke": [
     {"tabelle": {
       "breiten": [34, 26, 40],
@@ -20,7 +20,7 @@
       "zeilen": [
        ["web/index.html", "5.062 Zeilen, 279 kB", "Oberfläche und Ablauflogik"],
        ["web/inhalt", "8 Dateien, 1,5 MB", "Lernstoff je Oberflächensprache"],
-       ["web/audio", "1.562 Dateien", "Tonaufnahmen der Wörter und Geschichten"],
+       ["web/audio", "1.562 Dateien", "Sprachaufnahmen der Wörter und Geschichten"],
        ["Python-Dateien", "27", "Lernstoff, Erzeuger, Änderungsskripte"],
        ["ZmajAbo.java", "435 Zeilen", "Abonnement über die Abrechnung des Play Store"],
        ["ZmajEinwilligung.java", "104 Zeilen", "Einwilligung nach europäischem Datenschutzrecht"],
@@ -28,34 +28,34 @@
        ["app-release.aab", "25,2 MB", "das ausgelieferte Paket"]
       ]}},
 
-    "Das Programm liegt in einer einzigen Datei, ohne Bauwerkzeug und ohne Übersetzungsschritt. 59 Kommentarbänder gliedern die 5.062 Zeilen in benannte Abschnitte.",
+    "Das Programm liegt in einer einzigen Datei, ohne Bauwerkzeug und ohne Übersetzungsschritt. Zur Gliederung dienen 59 Kommentarbänder, die die 5.062 Zeilen in benannte Abschnitte unterteilen.",
 
-    "Die Android-Hülle liegt in einem eigenen Repository, getrennt vom Projekt: Der Signierschlüssel liegt in ihrer Nähe und gehört in keine Sicherung, die den Rechner verlässt."
+    "Die Android-Hülle liegt in einem eigenen Repository, getrennt vom übrigen Projekt. Der Signierschlüssel wird in ihrer Nähe aufbewahrt und darf in keine Sicherung gelangen, die den Rechner verlässt."
    ]
   },
   {
    "ueberschrift": "5.3 Datenhaltung und Ablauflogik",
    "bloecke": [
-    "**Datenhaltung.** Der Lernstand liegt unter einem einzigen Schlüssel im Speicher des Geräts, daneben vierzehn weitere für Einstellungen, Sprache und Einwilligung. Der Lernstand selbst ist ein Objekt mit fünfzehn Feldern: die sicher beherrschten Wörter, die bestandenen Abschnitte, die gelesenen Geschichten, die Lerntage, zurückgestellte Lücken, gekaufte Gegenstände, Leben, Serienschutz, Tagesaufgabe, zwei Münzstände, das getragene Aussehen, gefeierte Wegmarken, der Rekord und der Zeitpunkt.",
+    "**Datenhaltung.** Der Lernstand liegt unter einem einzigen Schlüssel im Speicher des Geräts, daneben bestehen vierzehn weitere Schlüssel für Einstellungen, Sprache und Einwilligung. Der Lernstand selbst ist ein Objekt mit fünfzehn Feldern: die sicher beherrschten Wörter, die bestandenen Abschnitte, die gelesenen Geschichten, die Lerntage, zurückgestellte Lücken, gekaufte Gegenstände, Leben, Serienschutz, Tagesaufgabe, zwei Münzstände, das getragene Aussehen, gefeierte Wegmarken, der Rekord und der Zeitpunkt.",
 
-    "Jedes Feld muss an zwei Stellen stehen: beim Speichern und beim Einlesen. Fehlt es an einer der beiden, geht es beim Gerätewechsel verloren, ohne dass etwas meldet. Genau das ist im Projekt einmal geschehen; der Quelltext trägt an dieser Stelle seither einen Vermerk.",
+    "Jedes Feld muss an zwei Stellen eingetragen sein, beim Speichern und beim Einlesen. Fehlt es an einer der beiden Stellen, geht es beim Gerätewechsel verloren, ohne dass eine Meldung erfolgt. Genau das ist im Projekt einmal geschehen, weshalb der Quelltext an dieser Stelle seither einen Vermerk trägt.",
 
-    "**Ablauflogik.** Der Lernpfad ist als Zustandsfolge umgesetzt. Beim Entwurf einer Ablaufsteuerung sind stets dieselben fünf Fragen zu beantworten, gleich ob die Anlage ein Ofen, ein Förderband oder ein Lernablauf ist.",
+    "**Ablauflogik.** Der Lernpfad ist als Zustandsfolge umgesetzt. Dabei sind beim Entwurf einer Ablaufsteuerung stets dieselben fünf Fragen zu beantworten, unabhängig davon, ob die Anlage ein Ofen, ein Förderband oder ein Lernablauf ist.",
 
     {"tabelle": {
       "breiten": [38, 62],
-      "kopf": ["Frage", "Umsetzung in dieser Anwendung"],
+      "kopf": ["Frage", "Umsetzung in dieser App"],
       "zeilen": [
        ["Welche Zustände gibt es?", "Ein Abschnitt ist gesperrt, offen, in Bearbeitung oder bestanden."],
        ["Wodurch wird weitergeschaltet?", "Acht von zehn richtigen Antworten setzen den Abschnitt auf bestanden und den folgenden auf offen."],
-       ["Was ist verriegelt?", "Fünf Fehlversuche sperren den Zugang. Die Sperre überdauert das Beenden der Anwendung."],
+       ["Was ist verriegelt?", "Fünf Fehlversuche sperren den Zugang. Die Sperre bleibt auch nach dem Beenden der App bestehen."],
        ["Welche Zeiten werden überwacht?", "Ein Zeitglied gibt nach 120 Minuten je ein Leben frei. Ein Tageszähler begrenzt die Werbung auf sechs Einblendungen und wird um Mitternacht zurückgesetzt."],
        ["Welche Störgrößen greifen ein?", "Verlust der Verbindung, eingehender Anruf, Wechsel in den Hintergrund, Beenden während eines laufenden Vorgangs."]
       ]}},
 
-    "**Rückkopplung in der Wiederholung.** Die Antwortgenauigkeit bestimmt den Abstand bis zur nächsten Abfrage: Richtige Antworten vergrößern ihn, falsche verkürzen ihn. Ein Regelkreis im Sinne der Regelungstechnik ist das nicht — die Strecke ist ein Mensch, eine Sprungantwort ist nicht wiederholbar.",
+    "**Rückkopplung in der Wiederholung.** Die Antwortgenauigkeit bestimmt den Abstand bis zur nächsten Abfrage, wobei richtige Antworten ihn vergrößern und falsche ihn verkürzen. Ein Regelkreis im Sinne der Regelungstechnik ist das jedoch nicht, da die Strecke ein Mensch ist und sich eine Sprungantwort nicht wiederholen lässt.",
 
-    "**Serienschutz.** Nach zehn zusammenhängenden Lerntagen entsteht ein Schutz, der einen versäumten Tag auffängt. Höchstens zwei lassen sich gleichzeitig halten. Der Schutz ist die einzige Stelle, an der eine Zeitmessung über den laufenden Tag hinausreicht."
+    "**Serienschutz.** Nach zehn zusammenhängenden Lerntagen entsteht ein Schutz, der einen versäumten Tag auffängt. Dabei können höchstens zwei gleichzeitig gehalten werden. Der Schutz ist die einzige Stelle, an der eine Zeitmessung über den laufenden Tag hinausreicht."
    ]
   },
   {
@@ -77,7 +77,7 @@
        ["Freigabe der ersten Produktionsversion", "offen"]
       ]}},
 
-    "Die Rechtstexte werden nicht von Hand gepflegt. Ein Erzeuger macht aus denselben Texten, aus denen die Anwendung ihre Oberfläche nimmt, die Seiten für Impressum, Datenschutzerklärung und Nutzungsbedingungen in acht Sprachen. Anwendung und Webseite können dadurch nicht auseinanderlaufen.",
+    "Die Rechtstexte werden nicht von Hand gepflegt. Ein Skript erzeugt aus denselben Texten, aus denen die App ihre Oberfläche aufbaut, die Seiten für Impressum, Datenschutzerklärung und Nutzungsbedingungen in acht Sprachen. Dadurch können App und Webseite nicht auseinanderlaufen.",
 
     "Dieser Abschnitt wird nach der Freigabe der Produktionsversion abgeschlossen."
    ]
@@ -85,25 +85,25 @@
   {
    "ueberschrift": "5.5 Probleme und Lösungsansätze",
    "bloecke": [
-    "**Die Tonaufnahmen wären im Paket unauffindbar gewesen.** Die Anwendung holte die Liste der Tondateien aus einer Serverauskunft. In einer Anwendung ohne Server bleibt diese Liste leer: 1.108 Aufnahmen wären mitgeliefert und keine einzige auffindbar gewesen. Gelöst, indem die Zuordnung aus einer mitgelieferten Datei gelesen wird.",
+    "**Die Sprachaufnahmen wären im Paket unauffindbar gewesen.** Die App holte die Liste der Tondateien aus einer Serverauskunft. In einer App ohne Server bleibt diese Liste leer, sodass 1.108 Aufnahmen mitgeliefert, aber keine einzige auffindbar gewesen wäre. Gelöst wurde das, indem die Zuordnung aus einer mitgelieferten Datei gelesen wird.",
 
-    "**Die Hörknöpfe wären auf dem Gerät verschwunden.** Ob gehört werden kann, war an das Vorhandensein einer Computerstimme gebunden. Die Android-WebView kennt diese Schnittstelle nicht — Hörknöpfe, die Aufgabenart „Hören“ und die zugehörige Tagesaufgabe wären ausgeblendet gewesen, obwohl die Aufnahmen danebenlagen. Gelöst, indem die Bedingung nun Stimme **oder** Aufnahme prüft und die Stimme nur noch als Rückfallebene dient.",
+    "**Die Hörknöpfe wären auf dem Gerät verschwunden.** Ob gehört werden kann, war an das Vorhandensein einer Computerstimme gebunden. Die Android-WebView kennt diese Schnittstelle jedoch nicht, sodass die Hörknöpfe, die Aufgabenart „Hören“ und die zugehörige Tagesaufgabe ausgeblendet gewesen wären, obwohl die Aufnahmen danebenlagen. Gelöst wurde das, indem die Bedingung nun Stimme **oder** Aufnahme prüft und die Stimme nur noch als Rückfallebene dient.",
 
-    "**Die Anwendung erkannte einen Server, den es nicht gab.** Nach dem Umschalten der Sprache wurde der Lernstand nicht mehr gespeichert, der Vorgang aber als erfolgreich gemeldet. Ursache war eine Eigenheit der Hülle: Sie beantwortet jede Adresse ohne Punkt mit der Startseite und der Meldung „in Ordnung“. Die Prüfung auf einen Server fiel deshalb positiv aus. Behoben und am selben Tag ausgeliefert.",
+    "**Die App erkannte einen Server, den es nicht gab.** Nach dem Umschalten der Sprache wurde der Lernstand nicht mehr gespeichert, der Vorgang aber als erfolgreich gemeldet. Ursache war eine Eigenheit der Hülle, die jede Adresse ohne Punkt mit der Startseite und der Meldung „in Ordnung“ beantwortet. Die Prüfung auf einen Server fiel deshalb positiv aus. Der Fehler wurde behoben und am selben Tag ausgeliefert.",
 
-    "**Der Vorspann fror ein und nahm den Notausstieg mit.** Der Schalter für Animationen setzt eine Regel, die im ganzen Fenster jede Bewegung unterbindet. Sie traf auch den Vorspann, der dadurch auf halbem Weg stehenblieb. Schwerer wog der Nebenbefund: Dieselbe Regel setzte den Notausstieg außer Kraft, der das Startbild wegblendet, wenn das Skript nicht anläuft. Für die Systemeinstellung „Bewegung reduzieren“ gab es Ersatzzustände, für den Schalter in der Anwendung nicht.",
+    "**Der Vorspann fror ein und setzte dabei den Notausstieg außer Kraft.** Der Schalter für Animationen setzt eine Regel, die im ganzen Fenster jede Bewegung unterbindet. Davon war auch der Vorspann betroffen, der dadurch auf halbem Weg stehenblieb. Schwerer wog der Nebenbefund, denn dieselbe Regel setzte auch den Notausstieg außer Kraft, der das Startbild wegblendet, wenn das Skript nicht anläuft. Für die Systemeinstellung „Bewegung reduzieren“ waren Ersatzzustände vorhanden, für den Schalter in der App dagegen nicht.",
 
-    "**Tondateien ließen sich nicht nach dem Wort benennen.** Die ursprüngliche Anweisung sah vor, jede Datei so zu nennen wie das bosnische Wort. Das ist nicht durchführbar: Fragezeichen und Schrägstriche sind in Dateinamen nicht erlaubt, und eine Geschichte hieße nach ihrem ganzen Text. Die Dateien tragen seither laufende Nummern, und eine Zuordnungsdatei sagt, welche Datei zu welchem Text gehört.",
+    "**Tondateien ließen sich nicht nach dem jeweiligen Wort benennen.** Die ursprüngliche Anweisung sah vor, jede Datei so zu nennen wie das bosnische Wort. Das ist nicht durchführbar, da Fragezeichen und Schrägstriche in Dateinamen nicht erlaubt sind und eine Geschichte nach ihrem ganzen Text benannt würde. Die Dateien tragen seither laufende Nummern, und eine Zuordnungsdatei gibt an, welche Datei zu welchem Text gehört.",
 
-    "Vier dieser fünf Probleme wären erst beim Nutzer aufgefallen, nicht beim Entwickeln am Rechner. Drei davon hätten die Anwendung in einem Teilbereich unbrauchbar gemacht, ohne eine Fehlermeldung zu erzeugen."
+    "Vier dieser fünf Probleme wären erst beim Nutzer aufgefallen und nicht bereits beim Entwickeln am Rechner. Drei davon hätten die App in einem Teilbereich unbrauchbar gemacht, ohne dass eine Fehlermeldung erzeugt worden wäre."
    ]
   },
   {
    "ueberschrift": "5.6 Controlling und Projektverlauf",
    "bloecke": [
-    "Der Arbeitsstand liegt seit dem 19.09.2026 in zwei Repositories mit entferntem Spiegel, zusammen 50 Einträge. Jeder Eintrag trägt eine Beschreibung in ganzen Sätzen; die Einträge sind damit zugleich ein Protokoll des Projektverlaufs.",
+    "Der Arbeitsstand liegt seit dem 19.09.2026 in zwei Repositories mit entferntem Spiegel und umfasst zusammen 50 Einträge. Jeder Eintrag trägt eine Beschreibung in ganzen Sätzen, sodass die Einträge zugleich als Protokoll des Projektverlaufs dienen.",
 
-    "**Zeiterfassung.** Eine laufende Erfassung in Stunden wurde nicht geführt. Sie ließ sich nachträglich aus den Sitzungsprotokollen der Entwicklungsumgebung ableiten, in denen jede Eingabe, jede Ausgabe und jeder Werkzeugaufruf einen Zeitstempel trägt. Ausgewertet wurden 61.877 Zeitstempel bis zum 25.09.2026, 16:21 Uhr. Zwei aufeinanderfolgende Einträge gelten als derselbe Arbeitsblock, wenn zwischen ihnen höchstens 30 Minuten liegen; eine größere Lücke trennt. Die Dauer eines Blocks ist der Abstand zwischen seinem ersten und seinem letzten Eintrag.",
+    "**Zeiterfassung.** Eine laufende Erfassung in Stunden wurde nicht geführt. Sie ließ sich nachträglich aus den Sitzungsprotokollen der Entwicklungsumgebung ableiten, in denen jede Eingabe, jede Ausgabe und jeder Werkzeugaufruf einen Zeitstempel trägt. Ausgewertet wurden 61.877 Zeitstempel bis zum 25.09.2026, 16:21 Uhr. Zwei aufeinanderfolgende Einträge gelten als derselbe Arbeitsblock, wenn zwischen ihnen höchstens 30 Minuten liegen, während eine größere Lücke die Blöcke voneinander trennt. Die Dauer eines Blocks ergibt sich aus dem Abstand zwischen seinem ersten und seinem letzten Eintrag.",
 
     {"tabelle": {
       "breiten": [11, 10, 10, 69],
@@ -111,33 +111,33 @@
       "kopf": ["Datum", "Stunden", "Einträge", "Schwerpunkt"],
       "zeilen": [
        ["12.09.2026", "5,6", "–", "Projektbeginn: Oberfläche, Maskottchen, Symbole"],
-       ["13.09.2026", "8,6", "–", "Lesegeschichten, Schriften, Grundgerüst der Anwendung"],
-       ["14.09.2026", "7,1", "–", "Entscheidung gegen einen eigenen Server; Umbau ohne Anmeldung"],
-       ["15.09.2026", "2,9", "–", "Sprachausgabe eingerichtet, Prüfwerkzeug für die Tonspur"],
-       ["16.09.2026", "3,7", "–", "1.108 Tonaufnahmen erzeugt; Werbung eingebaut; Klänge und Maskottchen entschieden"],
+       ["13.09.2026", "8,6", "–", "Lesegeschichten, Schriften, Grundgerüst der App"],
+       ["14.09.2026", "7,1", "–", "Entscheidung gegen einen eigenen Server, Umbau ohne Anmeldung"],
+       ["15.09.2026", "2,9", "–", "Sprachausgabe eingerichtet, Prüfwerkzeug für die Sprachaufnahmen"],
+       ["16.09.2026", "3,7", "–", "1.108 Sprachaufnahmen erzeugt, Werbung eingebaut, Klänge und Maskottchen entschieden"],
        ["17.09.2026", "3,5", "–", "Testprofile und Sicherungswerkzeug"],
-       ["18.09.2026", "4,7", "–", "Prüfbericht zu den Übersetzungen; Zierrat des Maskottchens"],
-       ["19.09.2026", "5,5", "9", "Versionsverwaltung eingerichtet; Rechtstexte und Store-Texte in acht Sprachen"],
-       ["20.09.2026", "5,2", "17", "Werbekonto, Abonnement und Einwilligung; Prüfung der Werbeeinbindung; Version 9 eingereicht"],
-       ["21.09.2026", "1,7", "15", "Gewerbeanmeldung; Projektmappe begonnen"],
+       ["18.09.2026", "4,7", "–", "Prüfbericht zu den Übersetzungen, Ausstattung des Maskottchens"],
+       ["19.09.2026", "5,5", "9", "Versionsverwaltung eingerichtet, Rechtstexte und Store-Texte in acht Sprachen"],
+       ["20.09.2026", "5,2", "17", "Werbekonto, Abonnement und Einwilligung, Prüfung der Werbeeinbindung, Version 9 eingereicht"],
+       ["21.09.2026", "1,7", "15", "Gewerbeanmeldung, Projektmappe begonnen"],
        ["22.09.2026", "–", "–", "kein Eintrag"],
-       ["23.09.2026", "3,1", "9", "Geschlossener Test beginnt; Signierschlüssel gesichert; 151 Zeilen toter Code entfernt"],
+       ["23.09.2026", "3,1", "9", "Geschlossener Test beginnt, Signierschlüssel gesichert, 151 Zeilen toter Code entfernt"],
        ["24.09.2026", "1,5", "–", "Rückmeldungen der Tester aufgenommen; Lastenheft"],
        ["25.09.2026", "2,9", "–", "Konzeptfindung, Risikoanalyse, Projektdurchführung (Tag nicht abgeschlossen)"],
        ["**Summe**", "**55,9**", "**50**", "**13 Arbeitstage bei 30-Minuten-Schwelle; im Mittel 4,3 Stunden je Tag**"]
       ]}},
 
-    "**Was die Zahl nicht enthält.** Erfasst ist die Zeit an der Entwicklungsumgebung. Arbeiten in der Play Console, das Anwerben und Betreuen der Tester, das Ausprobieren auf dem Gerät und der Gang zur Gewerbeanmeldung erzeugen dort keinen Eintrag. Die tatsächlich aufgewendete Zeit liegt darüber.",
+    "**Was die Zahl nicht enthält.** Erfasst wird ausschließlich die Zeit an der Entwicklungsumgebung. Arbeiten in der Play Console, das Anwerben und Betreuen der Tester, das Ausprobieren auf dem Gerät und der Gang zur Gewerbeanmeldung erzeugen dort keinen Eintrag. Die tatsächlich aufgewendete Zeit liegt damit darüber.",
 
-    "**Das Ergebnis ist eine Spanne, kein Messwert.** Es hängt an der gewählten Pausenschwelle: Bei 5 Minuten ergeben sich 37,9 Stunden, bei 15 Minuten 52,2, bei 30 Minuten 55,9, bei 60 Minuten 61,2. Belastbar ist der Bereich zwischen 15 und 60 Minuten. Eine Schwelle von 5 Minuten trennt schon beim Lesen eines Ergebnisses; eine von mehr als einer Stunde zählt echte Abwesenheit mit. Der Aufwand beträgt danach **rund 52 bis 61 Stunden**; die Tabelle weist 55,9 bei der gewählten Schwelle von 30 Minuten aus.",
+    "**Das Ergebnis ist eine Spanne und kein einzelner Messwert.** Es hängt von der gewählten Pausenschwelle ab: Bei 5 Minuten ergeben sich 37,9 Stunden, bei 15 Minuten 52,2, bei 30 Minuten 55,9, bei 60 Minuten 61,2. Belastbar ist der Bereich zwischen 15 und 60 Minuten. Eine Schwelle von 5 Minuten trennt bereits beim Lesen eines Ergebnisses, und eine Schwelle von mehr als einer Stunde zählt echte Abwesenheit mit. Der Aufwand beträgt danach **rund 52 bis 61 Stunden**, wobei die Tabelle 55,9 bei der gewählten Schwelle von 30 Minuten ausweist.",
 
-    "Die 30 Minuten sind nicht beliebig gesetzt. Von den 154 Lücken über fünf Minuten liegen 105 unter einer Viertelstunde und 30 über einer Stunde; dazwischen sind es 19. Die Verteilung hat zwei Häufungen — kurze Unterbrechungen und echte Pausen —, und die Schwelle trennt an der dünn besetzten Stelle dazwischen.",
+    "Die 30 Minuten sind nicht beliebig gesetzt. Von den 154 Lücken über fünf Minuten liegen 105 unter einer Viertelstunde und 30 über einer Stunde, dazwischen sind es 19. Die Verteilung weist damit zwei Häufungen auf, nämlich kurze Unterbrechungen und echte Pausen, sodass die Schwelle an der dünn besetzten Stelle dazwischen trennt.",
 
-    "**Rund ein Drittel der Summe ist belegfreie Zeit.** 116 Lücken von mindestens fünf Minuten liegen innerhalb der Blöcke und werden voll mitgezählt; zusammen sind das 17,9 Stunden oder 32,1 Prozent. Ob in dieser Zeit ein Ergebnis gelesen, auf dem Gerät geprüft oder pausiert wurde, geht aus den Protokollen nicht hervor.",
+    "**Rund ein Drittel der Summe ist belegfreie Zeit.** 116 Lücken von mindestens fünf Minuten liegen innerhalb der Blöcke und werden voll mitgezählt, was zusammen 17,9 Stunden oder 32,1 Prozent ausmacht. Ob in dieser Zeit ein Ergebnis gelesen, auf dem Gerät geprüft oder pausiert wurde, geht aus den Protokollen nicht hervor.",
 
-    "**Eine Überschneidung ist abzuziehen.** Am 14.09.2026 liegen zwei Zeitspannen von zusammen 89 Minuten innerhalb gezählter Blöcke, in denen parallel an einem anderen Schulprojekt gearbeitet wurde: von 13:46 bis 14:18 und von 15:32 bis 16:30 Uhr. Nachgewiesen ist das über die Protokolle jenes Projekts, deren Zeitstempel in dieselben Spannen fallen. Auf Zmaj entfallen damit **rund 54 Stunden**.",
+    "**Eine Überschneidung ist abzuziehen.** Am 14.09.2026 liegen zwei Zeitspannen von zusammen 89 Minuten innerhalb gezählter Blöcke, in denen parallel an einem anderen Schulprojekt gearbeitet wurde: von 13:46 bis 14:18 und von 15:32 bis 16:30 Uhr. Der Nachweis erfolgt über die Protokolle jenes Projekts, deren Zeitstempel in dieselben Spannen fallen. Auf Zmaj entfallen damit **rund 54 Stunden**.",
 
-    "Der Bearbeitungszeitraum der Schule beginnt am 10.08.2026. Die Arbeit am Projekt begann am 12.09.2026; ein Arbeitsstand von davor besteht nicht. Die Erfassung deckt damit den gesamten Zeitraum ab, in dem am Projekt gearbeitet wurde.",
+    "Der Bearbeitungszeitraum der Schule beginnt am 10.08.2026. Die Arbeit am Projekt begann am 12.09.2026, wobei aus der Zeit davor kein Arbeitsstand besteht. Die Erfassung deckt damit den gesamten Zeitraum ab, in dem am Projekt gearbeitet wurde.",
 
     {"tabelle": {
       "breiten": [24, 76],
@@ -147,21 +147,21 @@
        ["12.09.2026", "Beginn der Arbeit am Projekt"],
        ["23.09.2026", "geschlossener Test beginnt, zwölf Tester vollständig"],
        ["07.10.2026", "frühester Antrag auf Produktionszugriff"],
-       ["Oktober 2026", "Freigabe der Produktionsversion erwartet; Google nennt keine Frist"],
+       ["Oktober 2026", "Freigabe der Produktionsversion erwartet, Google nennt keine Frist"],
        ["19.03.2027", "Abgabe der Arbeit"]
       ]}},
 
-    "**Prüfungen.** Drei Bestände wurden systematisch geprüft statt stichprobenweise. Die Werbeeinbindung ergab 20 belegte Befunde, davon drei kontogefährdend; jeder wurde von einem zweiten Durchgang angegriffen, der ihn widerlegen sollte, und nur was das überstand, steht im Bericht. Die Oberfläche umfasst acht Sprachen mit je 396 Texten und wurde Seite für Seite in jeder Sprache durchgesehen. Der Wortschatz mit 569 Einträgen wird derzeit von einem Muttersprachler durchgesehen.",
+    "**Prüfungen.** Drei Bestände wurden systematisch und nicht stichprobenweise geprüft. Die Werbeeinbindung ergab 20 belegte Befunde, davon drei kontogefährdend. Dazu wurde jeder Befund in einem zweiten Durchgang gezielt angegriffen, um ihn zu widerlegen, und nur die dabei bestätigten Befunde stehen im Bericht. Die Oberfläche umfasst acht Sprachen mit je 396 Texten und wurde Seite für Seite in jeder Sprache durchgesehen. Der Wortschatz mit 569 Einträgen wird derzeit von einem Muttersprachler durchgesehen.",
 
-    "Stunden, Einträge und Daten sind aus den Protokolldateien, der Versionsverwaltung und den Änderungszeiten der Dateien abgeleitet und dort nachprüfbar."
+    "Stunden, Einträge und Daten wurden aus den Protokolldateien, der Versionsverwaltung und den Änderungszeiten der Dateien abgeleitet und lassen sich dort nachprüfen."
    ]
   },
   {
    "ueberschrift": "5.7 Inbetriebnahme und Funktionstest",
    "bloecke": [
-    "Der geschlossene Test läuft seit dem 23.09.2026. Dreizehn Tester benutzen die Anwendung auf ihren eigenen Geräten. Rückmeldungen kommen über zwei Wege: eine Gruppe in einem Nachrichtendienst und eine Adresse, die im Test hinterlegt ist und den Testern bei Google Play angezeigt wird.",
+    "Der geschlossene Test läuft seit dem 23.09.2026. Dreizehn Tester benutzen die App auf ihren eigenen Geräten. Rückmeldungen erfolgen über zwei Wege, zum einen über eine Gruppe in einem Nachrichtendienst und zum anderen über eine Adresse, die im Test hinterlegt ist und den Testern bei Google Play angezeigt wird.",
 
-    "Android Vitals erhebt Abstürze und Blockaden selbstständig (Abschnitt 3.5). Am 23.09.2026 wies die Auswertung bei zwölf Testern weder Abstürze noch Blockaden aus.",
+    "Android Vitals erhebt Abstürze und Blockaden automatisch (Abschnitt 3.5). Am 23.09.2026 wies die Auswertung bei zwölf Testern weder Abstürze noch Blockaden aus.",
 
     "Bis zum 25.09.2026 sind acht Rückmeldungen eingegangen.",
 
@@ -179,9 +179,9 @@
        ["Vorschlag", "geläufiges technisches Vokabular aufnehmen", "offen"]
       ]}},
 
-    "Keine der vier behobenen Meldungen ist bereits ausgeliefert. Sie laufen mit dem ersten Bau nach dem Ende der vierzehn Tage.",
+    "Keine der vier behobenen Meldungen ist bereits ausgeliefert. Die Korrekturen laufen mit dem ersten Bau nach dem Ende der vierzehn Tage mit.",
 
-    "**Eine Abweichung ist festzuhalten.** Ein Tester benutzt ein iPhone und konnte die Anwendung nicht installieren. Die Anwendung ist ausschließlich für Android gebaut; der Fall gehört in die Antwort an Google, nicht in die Fehlerliste.",
+    "**Eine Abweichung ist festzuhalten.** Ein Tester benutzt ein iPhone und konnte die App nicht installieren. Da die App ausschließlich für Android gebaut ist, gehört der Fall in die Antwort an Google und nicht in die Fehlerliste.",
 
     "Die abschließende Auswertung setzt das Ende der vierzehn Tage voraus. Dieser Abschnitt wird nach dem 07.10.2026 abgeschlossen."
    ]

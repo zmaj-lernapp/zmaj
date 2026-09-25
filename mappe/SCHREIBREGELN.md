@@ -35,6 +35,50 @@ Umschreiben der ganzen Mappe.
 
 ---
 
+## Nachtrag vom 25.09.2026: zu knapp ist auch ein Fehler
+
+Die Regeln unten haben funktioniert — zu gut. Ajdin hat die fertige Mappe
+gelesen und gesagt: „man sieht einfach zu sehr, dass es eine KI geschrieben
+hat."
+
+Eine Auszählung gegen die Smartgrow-Mappe, die er selbst geschrieben hat,
+zeigt warum:
+
+| Merkmal | KI-Fassung (5.316 W.) | Smartgrow (2.570 W.) |
+|---|---|---|
+| Semikolon | 60 | **0** |
+| Gedankenstrich — | 14 | **0** |
+| „nicht X, sondern Y" | 6 | 1 |
+| „Anwendung" statt „App" | 55 | 0 |
+| „erfolgt" | **0** | 7 |
+| „stellt sicher" | **0** | 4 |
+| „Dazu / Hierzu / Zusätzlich" | **0** | 3 |
+
+Das Muster ist eindeutig. Die Jagd auf Füllwörter hat auch das
+weggeschnitten, was deutsche Fachprosa normal klingen lässt: die üblichen
+Bindewörter am Satzanfang und die üblichen Fachverben. Übrig blieben lauter
+gleich lange, abgehackte Sätze mit Doppelpunkt-Aufzählungen und Semikolons.
+
+**Deshalb gilt zusätzlich:**
+
+- **Keine Semikolons und keine Gedankenstriche im Fließtext.** In
+  Tabellenzellen sind sie als Trenner in Ordnung.
+- **„erfolgt", „ermöglicht", „stellt sicher", „sorgt für", „dient dazu"
+  sind kein Füllmaterial**, sondern normales Deutsch. Regel 4 unten meint
+  Wörter wie *eigentlich* und *natürlich*, nicht diese.
+- **Sätze dürfen mit „Dazu", „Hierzu", „Zusätzlich", „Dabei", „Dadurch"
+  anfangen.** Ohne sie liest sich der Text wie eine Stichwortliste.
+- **Satzlängen mischen.** Regel 2 nennt 10 bis 20 Wörter. Wenn *jeder* Satz
+  so lang ist, fällt genau das auf. Ein längerer Satz mit „um … zu" oder
+  „sodass" gehört dazwischen.
+- **Keine gebauten Schlusspointen.** Sätze, die zu gut landen
+  („Die Werkzeuge sind andere, die Fragen dieselben."), sind der deutlichste
+  Hinweis auf eine Maschine. Sachlich ausschreiben.
+- **Das Wort heißt „App".** „Anwendung" nur in Zusammensetzungen wie
+  Webanwendung oder Android-Anwendung.
+
+---
+
 ## Regeln im Einzelnen
 
 1. Jeder Satz nennt eine nachprüfbare Tatsache. Erklärt er, warum das Thema
