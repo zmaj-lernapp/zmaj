@@ -13,7 +13,9 @@ deshalb nicht in der heruntergeladenen Datei stehen.
 | Floh | `buha ist richtig aber buvljak ist Flohmarkt` | **`buha`** — `buvljak` wird ein eigener Eintrag |
 | Beisst er? | `hoce li ujesti wir sagen auch pas mi je ujeo` | **`Hoće li ujesti?`** — `Pas me je ujeo` wird ein eigener Eintrag |
 
-*lane* (Kitz) wird **nicht** aufgenommen — ausdrücklich abgelehnt.
+*lane* (Kitz) wird **nicht** aufgenommen. Zweimal ausdrücklich abgelehnt,
+am 24.09. und noch einmal am 25.09.2026, nachdem nachgefragt wurde. Nicht
+wieder aufmachen.
 
 ## Zusatzwörter, die Ajdin nebenbei geliefert hat
 
