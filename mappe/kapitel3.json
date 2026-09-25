@@ -36,7 +36,7 @@
 
     "**Verworfen: Bezahlschranke für Lerninhalte.** Bezahlt werden ausschließlich Werbefreiheit und unbegrenzte Versuche, während der Zugang zum Lernstoff offen bleibt. Daraus ergibt sich die steuerliche Einordnung des Abonnements als Dienstleistung, die Abschnitt 2.4 nennt.",
 
-    "**Verworfen: Abwicklung über einen Fremdanbieter.** Dienste wie RevenueCat prüfen Abonnements auf ihren eigenen Servern, was der Entscheidung aus Abschnitt 3.2 widersprochen hätte, ohne Server auszukommen. Stattdessen wurde ein eigenes Plugin entwickelt, das unmittelbar mit der Abrechnung des Play Store kommuniziert."
+    "**Verworfen: Abwicklung über einen Fremdanbieter.** Dienste wie RevenueCat prüfen Abonnements auf ihren eigenen Servern, was der Entscheidung aus Abschnitt 3.2, ohne Server auszukommen, widersprochen hätte. Stattdessen wurde ein eigenes Plugin entwickelt, das unmittelbar mit der Abrechnung des Play Store kommuniziert."
    ]
   },
   {

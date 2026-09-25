@@ -52,7 +52,7 @@
        ["R3",
         "**Sperrung des Werbekontos.** Die Prüfung der Werbeeinbindung vom 20.09.2026 ergab 20 Befunde, von denen drei das Konto gefährden. Zwischen der Prüfung, ob eine Anzeige gezeigt werden darf, und dem Zeigen selbst liegt ein Netzabruf ohne Frist, und ein Wecker läuft weiter, wenn die App in den Hintergrund geht. Google sperrt in solchen Fällen ganze Konten und nicht nur einzelne Apps.",
         "4", "5", "20",
-        "Solange Testkennungen laufen, richtet kein Befund Schaden an. Die Behebung der Befunde erfolgt vor dem Tausch der Kennungen, wobei die Reihenfolge festgelegt ist und als Änderungsskripte bereitliegt. Der Wert sinkt erst nach dem Einbau und der Nachprüfung.",
+        "Solange Testkennungen laufen, richtet kein Befund Schaden an. Die Behebung der Befunde erfolgt vor dem Tausch der Kennungen. Die Reihenfolge ist festgelegt, und die Korrekturen liegen als Änderungsskripte bereit. Der Wert sinkt erst nach dem Einbau und der Nachprüfung.",
         "10"],
        ["R4",
         "**Ungültiger Verkehr durch eigene Geräte.** Ein Klick auf eine echte Anzeige vom Gerät des Entwicklers oder eines Testers zählt als ungültiger Verkehr und kann das Werbekonto kosten.",

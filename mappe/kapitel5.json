@@ -6,7 +6,7 @@
    "bloecke": [
     "Inhalt und Programm sind voneinander getrennt. Der Lernstoff steht in Python-Dateien: vokabeln.py mit 1.639 Zeilen, sprachen.py mit 3.476, grammatik.py mit 377 und geschichten.py mit 300. Daraus erzeugt ein Skript je Oberflächensprache eine Datei im JSON-Format, ein zweites bringt diese in die Android-Hülle und baut das Paket. Dabei werden Browser und Gerät von demselben Skript beliefert, sodass die beiden Fassungen inhaltlich nicht voneinander abweichen können.",
 
-    "**Der Umbau vom 14.09.2026.** Mit der Entscheidung gegen einen eigenen Server (Abschnitt 3.2) wurden Anmeldung, Kontoverwaltung und Sitzungsverwaltung aus der ausgelieferten App entfernt. Am 23.09.2026 fielen weitere 151 Zeilen, die danach nicht mehr erreichbar waren. Ein Rest des alten Servers blieb erhalten, dient aber nur noch als Werkzeug am Rechner, denn das Skript für die Inhalte ruft dessen Ladefunktion auf.",
+    "**Der Umbau vom 14.09.2026.** Mit der Entscheidung gegen einen eigenen Server (Abschnitt 3.2) wurden Anmeldung, Kontoverwaltung und Sitzungsverwaltung aus der ausgelieferten App entfernt. Am 23.09.2026 wurden weitere 151 Zeilen entfernt, die seit dem Umbau nicht mehr erreichbar waren. Ein Rest des alten Servers blieb erhalten, dient aber nur noch als Werkzeug am Rechner, denn das Skript für die Inhalte ruft dessen Ladefunktion auf.",
 
     "**Änderungen am Programm werden über Skripte durchgeführt und nicht von Hand vorgenommen.** Jedes Skript ersetzt genau bezeichnete Textabschnitte, zählt die Treffer und bricht ab, wenn ein gesuchter Abschnitt nicht genau einmal vorkommt. Ohne den Schalter für das Schreiben erfolgt nur ein Probelauf, sodass ein halb geändertes Programm nicht entstehen kann. Acht solcher Skripte liegen für den ersten Bau nach dem Test bereit."
    ]
@@ -55,7 +55,7 @@
 
     "**Rückkopplung in der Wiederholung.** Die Antwortgenauigkeit bestimmt den Abstand bis zur nächsten Abfrage, wobei richtige Antworten ihn vergrößern und falsche ihn verkürzen. Ein Regelkreis im Sinne der Regelungstechnik ist das jedoch nicht, da die Strecke ein Mensch ist und sich eine Sprungantwort nicht wiederholen lässt.",
 
-    "**Serienschutz.** Nach zehn zusammenhängenden Lerntagen entsteht ein Schutz, der einen versäumten Tag auffängt. Dabei können höchstens zwei gleichzeitig gehalten werden. Der Schutz ist die einzige Stelle, an der eine Zeitmessung über den laufenden Tag hinausreicht."
+    "**Serienschutz.** Nach zehn zusammenhängenden Lerntagen entsteht ein Schutz, der einen versäumten Tag auffängt. Höchstens zwei solcher Schutztage lassen sich gleichzeitig halten. Der Schutz ist die einzige Stelle, an der eine Zeitmessung über den laufenden Tag hinausreicht."
    ]
   },
   {
@@ -85,7 +85,7 @@
   {
    "ueberschrift": "5.5 Probleme und Lösungsansätze",
    "bloecke": [
-    "**Die Sprachaufnahmen wären im Paket unauffindbar gewesen.** Die App holte die Liste der Tondateien aus einer Serverauskunft. In einer App ohne Server bleibt diese Liste leer, sodass 1.108 Aufnahmen mitgeliefert, aber keine einzige auffindbar gewesen wäre. Gelöst wurde das, indem die Zuordnung aus einer mitgelieferten Datei gelesen wird.",
+    "**Die Sprachaufnahmen wären im Paket unauffindbar gewesen.** Die App holte die Liste der Tondateien aus einer Serverauskunft. In einer App ohne Server bleibt diese Liste leer, sodass 1.108 Aufnahmen mitgeliefert worden wären, ohne dass eine einzige auffindbar gewesen wäre. Gelöst wurde das, indem die Zuordnung aus einer mitgelieferten Datei gelesen wird.",
 
     "**Die Hörknöpfe wären auf dem Gerät verschwunden.** Ob gehört werden kann, war an das Vorhandensein einer Computerstimme gebunden. Die Android-WebView kennt diese Schnittstelle jedoch nicht, sodass die Hörknöpfe, die Aufgabenart „Hören“ und die zugehörige Tagesaufgabe ausgeblendet gewesen wären, obwohl die Aufnahmen danebenlagen. Gelöst wurde das, indem die Bedingung nun Stimme **oder** Aufnahme prüft und die Stimme nur noch als Rückfallebene dient.",
 
@@ -151,7 +151,7 @@
        ["19.03.2027", "Abgabe der Arbeit"]
       ]}},
 
-    "**Prüfungen.** Drei Bestände wurden systematisch und nicht stichprobenweise geprüft. Die Werbeeinbindung ergab 20 belegte Befunde, davon drei kontogefährdend. Dazu wurde jeder Befund in einem zweiten Durchgang gezielt angegriffen, um ihn zu widerlegen, und nur die dabei bestätigten Befunde stehen im Bericht. Die Oberfläche umfasst acht Sprachen mit je 396 Texten und wurde Seite für Seite in jeder Sprache durchgesehen. Der Wortschatz mit 569 Einträgen wird derzeit von einem Muttersprachler durchgesehen.",
+    "**Prüfungen.** Drei Bestände wurden systematisch und nicht stichprobenweise geprüft. Die Prüfung der Werbeeinbindung ergab 20 belegte Befunde, davon drei kontogefährdend. Dazu wurde jeder Befund in einem zweiten Durchgang gezielt angegriffen, um ihn zu widerlegen, und nur die dabei bestätigten Befunde stehen im Bericht. Die Oberfläche umfasst acht Sprachen mit je 396 Texten und wurde Seite für Seite in jeder Sprache durchgesehen. Für eine geplante Erweiterung des Wortschatzes liegen 569 neue Vorschläge vor, die derzeit von einem Muttersprachler durchgesehen werden.",
 
     "Stunden, Einträge und Daten wurden aus den Protokolldateien, der Versionsverwaltung und den Änderungszeiten der Dateien abgeleitet und lassen sich dort nachprüfen."
    ]
@@ -159,7 +159,7 @@
   {
    "ueberschrift": "5.7 Inbetriebnahme und Funktionstest",
    "bloecke": [
-    "Der geschlossene Test läuft seit dem 23.09.2026. Dreizehn Tester benutzen die App auf ihren eigenen Geräten. Rückmeldungen erfolgen über zwei Wege, zum einen über eine Gruppe in einem Nachrichtendienst und zum anderen über eine Adresse, die im Test hinterlegt ist und den Testern bei Google Play angezeigt wird.",
+    "Der geschlossene Test läuft seit dem 23.09.2026. Angemeldet sind dreizehn Tester, zwölf davon benutzen die App auf ihren eigenen Android-Geräten. Rückmeldungen erfolgen über zwei Wege, zum einen über eine Gruppe in einem Nachrichtendienst und zum anderen über eine Adresse, die im Test hinterlegt ist und den Testern bei Google Play angezeigt wird.",
 
     "Android Vitals erhebt Abstürze und Blockaden automatisch (Abschnitt 3.5). Am 23.09.2026, zum Testbeginn mit zwölf Teilnehmern, wies die Auswertung weder Abstürze noch Blockaden aus.",
 
