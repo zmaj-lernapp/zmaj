@@ -40,7 +40,7 @@
 
     "Jedes Feld muss an zwei Stellen eingetragen sein, beim Speichern und beim Einlesen. Fehlt es an einer der beiden Stellen, geht es beim Gerätewechsel verloren, ohne dass eine Meldung erfolgt. Genau das ist im Projekt einmal geschehen, weshalb der Quelltext an dieser Stelle seither einen Vermerk trägt.",
 
-    "**Ablauflogik.** Der Lernpfad ist als Zustandsfolge umgesetzt. Dabei sind beim Entwurf einer Ablaufsteuerung stets dieselben fünf Fragen zu beantworten, unabhängig davon, ob die Anlage ein Ofen, ein Förderband oder ein Lernablauf ist.",
+    "**Ablauflogik.** Der Lernpfad ist als Zustandsfolge umgesetzt. Beschrieben wird er mit dem Begriffsgerüst der Ablaufsteuerung, wie es die Schrittkette kennt: Zustände, Weiterschaltbedingungen, Verriegelungen, Zeitglieder und Störungsbehandlung. Die folgenden fünf Fragen ordnen diese Begriffe dem Projekt zu. Sie sind daraus abgeleitet und keine Vorgabe einer Norm.",
 
     {"tabelle": {
       "breiten": [38, 62],
@@ -53,7 +53,7 @@
        ["Welche Störgrößen greifen ein?", "Verlust der Verbindung, eingehender Anruf, Wechsel in den Hintergrund, Beenden während eines laufenden Vorgangs."]
       ]}},
 
-    "**Rückkopplung in der Wiederholung.** Die Antwortgenauigkeit bestimmt den Abstand bis zur nächsten Abfrage, wobei richtige Antworten ihn vergrößern und falsche ihn verkürzen. Ein Regelkreis im Sinne der Regelungstechnik ist das jedoch nicht, da die Strecke ein Mensch ist und sich eine Sprungantwort nicht wiederholen lässt.",
+    "**Rückkopplung in der Wiederholung.** Die Antwortgenauigkeit bestimmt den Abstand bis zur nächsten Abfrage, wobei richtige Antworten ihn vergrößern und falsche ihn verkürzen. Dass sich die Planung von Wiederholungen als Steuerungsaufgabe fassen lässt, ist nicht erst hier behauptet worden: Tabibian und andere formulieren sie in den Proceedings of the National Academy of Sciences ausdrücklich als Problem der stochastischen Optimalsteuerung und prüfen ihr Ergebnis an Daten eines Sprachlernanbieters (Anhang 6.1). Ein Regelkreis im Sinne der Regelungstechnik ist die hier verwendete Wiederholung dennoch nicht, da die Strecke ein Mensch ist und sich eine Sprungantwort nicht wiederholen lässt.",
 
     "**Serienschutz.** Nach zehn zusammenhängenden Lerntagen entsteht ein Schutz, der einen versäumten Tag auffängt. Höchstens zwei solcher Schutztage lassen sich gleichzeitig halten. Der Schutz ist die einzige Stelle, an der eine Zeitmessung über den laufenden Tag hinausreicht."
    ]
