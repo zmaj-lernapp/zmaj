@@ -47,6 +47,11 @@ $null = [Windows.Storage.FileIO, Windows.Storage, ContentType = WindowsRuntime]
 
 if (-not (Test-Path $Ziel)) { New-Item -ItemType Directory -Path $Ziel | Out-Null }
 
+# GetFileFromPathAsync verlangt einen vollen Pfad. Mit einem relativen Ziel
+# scheitert jede Seite still: der Vorgang bricht ab, $out bleibt leer, und
+# es entstehen elf Dateien mit 0 Bytes. Deshalb hier einmal aufloesen.
+$Ziel = (Resolve-Path $Ziel).Path
+
 $datei = Warte ([Windows.Storage.StorageFile]::GetFileFromPathAsync((Resolve-Path $Pdf).Path)) ([Windows.Storage.StorageFile])
 $doc = Warte ([Windows.Data.Pdf.PdfDocument]::LoadFromFileAsync($datei)) ([Windows.Data.Pdf.PdfDocument])
 
