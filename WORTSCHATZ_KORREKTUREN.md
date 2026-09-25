@@ -4,6 +4,18 @@ Ajdin am 24.09.2026, nachdem drei Recherche-Durchläufe Wortvorschläge
 geliefert hatten. **Diese Seite hat Vorrang vor jeder Recherche.** Wo hier
 etwas anderes steht als in den Vorschlägen, gilt das hier.
 
+**Nachtrag vom 25.09.2026.** Ein Eintrag wurde von Ajdin selbst wieder
+kassiert: *sočivo* sind keine Kontaktlinsen. Beide Wörter meinen die
+Hülsenfrucht, *leća* ist der bosnisch-kroatische Standard und *sočivo* der
+serbische, der in Bosnien ebenfalls gebraucht wird. Nachgeprüft und
+bestätigt.
+
+Daraus folgt kein neuer Vorrang für die Recherche, sondern eine Ergänzung:
+Ein Muttersprachler weiß sicher, **was man sagt**. Ob ein zweites Wort
+daneben auch richtig ist oder etwas ganz anderes bedeutet, ist eine andere
+Frage — die lässt sich nachschlagen, und das lohnt sich, bevor ein Wort
+aus der Liste fliegt. Gestrichen wird erst, wenn beides zusammenpasst.
+
 ---
 
 ## Richtiggestellt
@@ -20,7 +32,7 @@ etwas anderes steht als in den Vorschlägen, gilt das hier.
 | *klepe* | „unsicher, ob bosnisch" | **Kann man sagen.** Aufnehmen. |
 | *cvekla* | bosnisch, *cikla* kroatisch | **Beides geht.** *cvekla* ist gängig, *cikla* auch möglich. |
 | *brokula* | bosnisch, *brokoli* serbisch | **Beides geht.** |
-| *leća* / *sočivo* | beide für Linsen, unklar welche | **Zwei verschiedene Dinge:** *leća* = die Linsen zum Essen. *sočivo* = Kontaktlinsen. Keine Variante, sondern zwei Wörter. |
+| *leća* / *sočivo* | beide für Linsen, unklar welche | **Beides geht, beides heißt die Hülsenfrucht.** *leća* ist der bosnisch-kroatische Standard, *sočivo* der serbische und in Bosnien ebenfalls geläufig. Aufnehmen: *leća*, *sočivo* als zweite Form. |
 | *kokoš* / *kokoška* | unklar | **kokoš.** |
 
 ---
