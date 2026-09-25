@@ -6,7 +6,7 @@
    "bloecke": [
     "Inhalt und Programm sind voneinander getrennt. Der Lernstoff steht in Python-Dateien: vokabeln.py mit 1.639 Zeilen, sprachen.py mit 3.476, grammatik.py mit 377 und geschichten.py mit 300. Daraus erzeugt ein Skript je Oberflächensprache eine Datei im JSON-Format, ein zweites bringt diese in die Android-Hülle und baut das Paket. Dabei werden Browser und Gerät von demselben Skript beliefert, sodass die beiden Fassungen inhaltlich nicht voneinander abweichen können.",
 
-    "**Der Umbau vom 14.09.2026.** Mit der Entscheidung gegen einen eigenen Server (Abschnitt 3.2) wurden Anmeldung, Kontoverwaltung und Sitzungsverwaltung aus der ausgelieferten App entfernt. Am 23.09.2026 fielen weitere 151 Zeilen, die danach nicht mehr erreichbar waren. Ein Rest des alten Servers blieb erhalten, dient aber nur noch als Werkzeug am Rechner, denn das Skript für die Inhalte ruft dessen Ladefunktion auf. Dadurch können die beiden Fassungen nicht auseinanderlaufen.",
+    "**Der Umbau vom 14.09.2026.** Mit der Entscheidung gegen einen eigenen Server (Abschnitt 3.2) wurden Anmeldung, Kontoverwaltung und Sitzungsverwaltung aus der ausgelieferten App entfernt. Am 23.09.2026 fielen weitere 151 Zeilen, die danach nicht mehr erreichbar waren. Ein Rest des alten Servers blieb erhalten, dient aber nur noch als Werkzeug am Rechner, denn das Skript für die Inhalte ruft dessen Ladefunktion auf.",
 
     "**Änderungen am Programm werden über Skripte durchgeführt und nicht von Hand vorgenommen.** Jedes Skript ersetzt genau bezeichnete Textabschnitte, zählt die Treffer und bricht ab, wenn ein gesuchter Abschnitt nicht genau einmal vorkommt. Ohne den Schalter für das Schreiben erfolgt nur ein Probelauf, sodass ein halb geändertes Programm nicht entstehen kann. Acht solcher Skripte liegen für den ersten Bau nach dem Test bereit."
    ]
@@ -161,7 +161,7 @@
    "bloecke": [
     "Der geschlossene Test läuft seit dem 23.09.2026. Dreizehn Tester benutzen die App auf ihren eigenen Geräten. Rückmeldungen erfolgen über zwei Wege, zum einen über eine Gruppe in einem Nachrichtendienst und zum anderen über eine Adresse, die im Test hinterlegt ist und den Testern bei Google Play angezeigt wird.",
 
-    "Android Vitals erhebt Abstürze und Blockaden automatisch (Abschnitt 3.5). Am 23.09.2026 wies die Auswertung bei zwölf Testern weder Abstürze noch Blockaden aus.",
+    "Android Vitals erhebt Abstürze und Blockaden automatisch (Abschnitt 3.5). Am 23.09.2026, zum Testbeginn mit zwölf Teilnehmern, wies die Auswertung weder Abstürze noch Blockaden aus.",
 
     "Bis zum 25.09.2026 sind acht Rückmeldungen eingegangen.",
 

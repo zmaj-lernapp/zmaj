@@ -92,6 +92,11 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
 - **Die Versionshinweise** berichtigen: „Die Vollversion lässt sich noch
   nicht kaufen" stimmt seit dem 20.09.2026 nicht mehr und blieb nur stehen,
   weil jede Einreichung die Prüffrist zurückgesetzt hätte.
+- **Zwei verirrte CR-Zeichen in `sprachen.py`**, bei Zeile 212 zwischen
+  `laden.rot` und `laden.gruen_sub`. Sie richten keinen Schaden an, sorgen
+  aber dafür, dass die Datei je nach Werkzeug 3.476 oder 3.478 Zeilen hat.
+  Aufgefallen beim Gegenprüfen der Zahlen für Abschnitt 5.1. **Nicht vor
+  dem Ende des Tests anfassen**, danach beim ersten Bau mit entfernen.
 - **Seitenzahlen im Inhaltsverzeichnis** stehen von Hand in `kapitel1.json`.
   Nach jeder größeren Änderung neu ermitteln, wie in `mappe/LIESMICH.txt`
   beschrieben.
