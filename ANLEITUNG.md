@@ -237,9 +237,9 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: 3 Sektionen, 43 Levels
+## Der Lernpfad: 9 Sektionen, 63 Levels
 
-Der Lernpfad zeigt drei Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
+Der Lernpfad zeigt neun Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
 Ein Level antippen öffnet die Übungen. Bestandene Levels und Sektionen bleiben
 offen und können jederzeit wieder gespielt werden.
 
@@ -738,10 +738,10 @@ Zwei Dateien gehören dazu:
 - **`sprachen.py`** – alle Texte der Oberfläche (Knöpfe, Hinweise, Meldungen,
   Rechtstexte), 335 Stück je Sprache.
 - **`uebersetzungen.py`** – die Lerninhalte: Sektionen, Level-Namen, Tipps,
-  die 1104 Wörter, die Lückentexte (190 Sätze in `vokabeln.py`, davon 185
+  die 1664 Wörter, die Lückentexte (290 Sätze in `vokabeln.py`, davon 285
   verschiedene deutsche Texte), die Grammatik-Erklärungen samt Tabellen,
   Übungen und Tipps, die 12 Geschichten mit ihren Fragen und das
-  Wörterbuch. 2264 Einträge je Sprache (1104 Wörter + 1160 Texte).
+  Wörterbuch. 2975 Einträge je Sprache (1664 Wörter + 1311 Texte).
 
 **Alle sieben Übersetzungen sind vollständig.** `start.py` meldet beim
 Start – und `inhalt_bauen.py` prüft dasselbe noch einmal, bevor es die
@@ -750,13 +750,13 @@ Dateien für die App schreibt:
 ```
 Sprachen: Deutsch (de), English (en), Türkçe (tr), Svenska (sv),
           Nederlands (nl), Norsk bokmål (nb), Dansk (da), Français (fr)
-  en: Oberfläche vollständig · Lerninhalte 2264 von 2264 (100 %)
-  tr: Oberfläche vollständig · Lerninhalte 2264 von 2264 (100 %)
-  sv: Oberfläche vollständig · Lerninhalte 2264 von 2264 (100 %)
-  nl: Oberfläche vollständig · Lerninhalte 2264 von 2264 (100 %)
-  nb: Oberfläche vollständig · Lerninhalte 2264 von 2264 (100 %)
-  da: Oberfläche vollständig · Lerninhalte 2264 von 2264 (100 %)
-  fr: Oberfläche vollständig · Lerninhalte 2264 von 2264 (100 %)
+  en: Oberfläche vollständig · Lerninhalte 2975 von 2975 (100 %)
+  tr: Oberfläche vollständig · Lerninhalte 2975 von 2975 (100 %)
+  sv: Oberfläche vollständig · Lerninhalte 2975 von 2975 (100 %)
+  nl: Oberfläche vollständig · Lerninhalte 2975 von 2975 (100 %)
+  nb: Oberfläche vollständig · Lerninhalte 2975 von 2975 (100 %)
+  da: Oberfläche vollständig · Lerninhalte 2975 von 2975 (100 %)
+  fr: Oberfläche vollständig · Lerninhalte 2975 von 2975 (100 %)
 ```
 
 Ganz oben in `uebersetzungen.py` steht außerdem die Liste **`GLEICH`**: 414
@@ -853,7 +853,7 @@ erste Adresse; für die anderen sechs fehlt noch jemand.
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 1108 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 1668 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, und
   keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
 
@@ -874,7 +874,7 @@ Der Grund: dasselbe bosnische Wort kann zwei Bedeutungen haben. `sto` ist die
 Zahl hundert und der Tisch, `oko` das Auge und „um herum“. Vorher merkte sich
 die App nur `sto` – wer die Zahl konnte, bei dem galt auch das Möbelstück als
 gelernt, und Level 9 startete bei 4 % statt bei 0 %. Dasselbe galt für `malo`,
-`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 43 Levels bei
+`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 63 Levels bei
 0 %, und man sieht in einer Sicherung auf einen Blick, welche Bedeutung
 gemeint ist.
 
@@ -1057,7 +1057,7 @@ beim nächsten Lauf ist es weg.
   keine Fehlermeldung, die Lektion zieht einfach andere Aufgaben.
 - **Vorlesen in der App:** Die Android-WebView kennt auch die
   Computerstimme (`speechSynthesis`) meist nicht. Dass trotzdem alles
-  vorgelesen wird, liegt allein an den 1108 Aufnahmen in `web/audio`.
+  vorgelesen wird, liegt allein an den 2153 Aufnahmen in `web/audio`.
 - **Fremde Buchstaben:** Das bosnische Alphabet hat kein x, q, w und y. Die
   Computerstimme verschluckt sie sonst (aus „Rex“ wurde „Re“). Die App
   schreibt sie vor dem Vorlesen um: x wird ks, q wird k, w wird v, y wird j.
@@ -1159,8 +1159,8 @@ welche ist.
 Der große Lauf ist **abbruchsicher**: Was in `index.json` steht und als Datei
 vorliegt, wird übersprungen. Ein zweiter Aufruf kostet also nichts, und ein
 abgebrochener Lauf lässt sich einfach noch einmal starten. Insgesamt sind es
-**1108 Aufnahmen** – 1096 Wörter samt dem Probesatz aus den Einstellungen und
-12 Geschichten, zusammen rund 13.200 Zeichen Text. Wörter werden etwas
+**2153 Aufnahmen** – 2141 Wörter und Lückensätze samt dem Probesatz aus den
+Einstellungen und 12 Geschichten. Wörter werden etwas
 langsamer gesprochen als die Geschichten.
 
 **`ton_pruefen.py`** ist der Torwächter. Es benutzt dieselbe Sammel-Logik wie
@@ -1206,11 +1206,11 @@ Hier steht das Warum, dort das Wie.
 
 ### Stand heute
 
-**Die Tonspur steht.** In `web/audio` liegen **1108 Aufnahmen**, zusammen
-14,8 MB, dazu `index.json`. Erzeugt am 15.09.2026 über Azure im Tarif S0 für
+**Die Tonspur steht.** In `web/audio` liegen **2153 Aufnahmen**, zusammen
+27.6 MB, dazu `index.json`. Erzeugt am 15.09.2026 über Azure im Tarif S0 für
 unter drei Dollar:
 
-- 1096 Wörter mit `bs-BA-GoranNeural`
+- 2141 Wörter und Lückensätze mit `bs-BA-GoranNeural`
 - die 12 Geschichten mit `bs-BA-VesnaNeural`
 
 Dazu kommt der Ordner `_probe` mit den Probeaufnahmen aus `--probe`. Der
@@ -1267,7 +1267,7 @@ Bosnisch Lernapp/
     ├── index.html.vor_*  Sicherungen früherer Fassungen (nicht in der App)
     ├── inhalt/       de.json … fr.json, erzeugt von inhalt_bauen.py,
     │                 dazu liste.json als Verzeichnis
-    ├── audio/        index.json (Zuordnung Text → Datei) und 1108 Töne
+    ├── audio/        index.json (Zuordnung Text → Datei) und 2153 Töne
     │                 w0001.mp3 …, g01.mp3 …, siehe LIESMICH.txt dort;
     │                 _probe/ mit den Probeaufnahmen bleibt draußen
     ├── maskottchen/  zmaj.json = Drache als Lottie-Animation, dazu je eine

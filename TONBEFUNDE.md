@@ -114,7 +114,7 @@ erste zu hören ist. Beides ist Arbeit; nichts zu tun ist vertretbar.
 
 - **Alle 1502 Aufnahmen sind vorhanden.** `ton_pruefen.py` meldet
   1502 im Index, 1502 aus dem Inhalt erwartet, 19,7 MB.
-- **Alle 1108 Vokabeln finden ihre Aufnahme.** Gegen die Schlüsselregel aus
+- **Alle 1668 Vokabeln finden ihre Aufnahme.** Gegen die Schlüsselregel aus
   `index.html` geprüft (`text.split(' / ')[0]`, ohne Satzzeichen am Ende,
   kleingeschrieben): null Fehlschläge.
 - **Es wird wirklich nur die erste Variante gesprochen.** Nachgewiesen über

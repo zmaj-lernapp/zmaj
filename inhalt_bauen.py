@@ -28,7 +28,7 @@ sys.path.insert(0, HIER)
 
 # Diese Felder gehören nicht in die Datei:
 #   audio  – die Tonspur steht in web/audio/index.json, die App liest sie
-#            selbst. Hier wären es 1108 Dateinamen je Sprache, also achtmal
+#            selbst. Hier wären es 2153 Dateinamen je Sprache, also achtmal
 #            derselbe Ballast.
 OHNE = ("audio",)
 

@@ -535,7 +535,7 @@ FELDER = ("gewusst", "bestanden", "gelesen", "tage", "frost", "besitz", "gefeier
 #          Geschichte gelesen wurde. Das Einzige im ganzen Lernstand, das
 #          sich nachträglich nicht mehr beschaffen lässt.
 REKORD_MAX = 100_000     # mehr Tage am Stück hat noch niemand gelernt
-WANN_MAX = 500           # 43 Level und 12 Geschichten – reichlich Luft
+WANN_MAX = 500           # 63 Level und 12 Geschichten – reichlich Luft
 # leben  = {"anzahl": 0-5, "zeit": Zeitstempel in Millisekunden, ab dem nachgefüllt wird}
 # schutz = dasselbe für den Serienschutz: alle SCHUTZ_TAGE Tage wächst einer nach
 # premium = True schaltet unbegrenzte Leben frei (Vollversion; Bezahlung kommt später)

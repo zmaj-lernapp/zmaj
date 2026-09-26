@@ -190,7 +190,7 @@ def baue_rechtsseite(datei, titel_schluessel, text_schluessel):
 # sie existiert, weil der Store eine öffentliche Adresse verlangt.
 START = {
     "de": ("Bosnisch lernen mit Zmaj",
-           "Zmaj ist eine App zum Bosnischlernen: 43 Levels, Grammatik und Geschichten.",
+           "Zmaj ist eine App zum Bosnischlernen: 63 Levels, Grammatik und Geschichten.",
            "Datenschutzerklärung", "Nutzungsbedingungen", "Kontakt"),
     "en": ("Learn Bosnian with Zmaj",
            "Zmaj is an app for learning Bosnian: 43 levels, grammar and stories.",

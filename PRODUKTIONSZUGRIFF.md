@@ -144,7 +144,7 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
 
 > Für Bosnisch gibt es fast kein strukturiertes Lernmaterial — die großen
 > Sprachlern-Apps führen die Sprache nicht. Zmaj schließt diese Lücke: 43
-> Level vom Alltag bis zum Arbeitsvertrag, 1108 Wörter mit bosnischer
+> Level vom Alltag bis zum Arbeitsvertrag, 1668 Wörter mit bosnischer
 > Tonspur, 16 Grammatik-Lektionen mit 104 Übungen, 12 Lesegeschichten und
 > eine Sprechaufgabe mit Spracherkennung. Geübt wird in fünf Formen: hören,
 > tippen, auswählen, Lücken füllen und sprechen. Die App läuft vollständig

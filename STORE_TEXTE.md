@@ -166,8 +166,8 @@ vor. Beides stimmt nicht mehr:
 
 - Es ist **kein Satz, sondern ein Wort**. Die Höraufgabe spielt `w.bs` ab
   und lässt dich zwischen vier Wörtern wählen.
-- Es ist **nicht die Stimme des Geräts**. In `web/audio` liegen 1108
-  Tondateien: 1096 Wörter und die 12 Geschichten. Die Sprachausgabe des
+- Es ist **nicht die Stimme des Geräts**. In `web/audio` liegen 2153
+  Tondateien: 2141 Wörter und Lückensätze und die 12 Geschichten. Die Sprachausgabe des
   Geräts springt nur ein, wenn zu einem Wort einmal keine Datei da ist –
   und in der Android-App gibt es sie meistens gar nicht, die System-WebView
   kennt `speechSynthesis` nicht.
@@ -216,13 +216,13 @@ Zmaj – Bosnisch lernen
 **Kurzbeschreibung** (73 Zeichen)
 
 ```
-Bosnisch lernen für Familie, Alltag und Amt — 43 Levels in kurzen Übungen
+Bosnisch lernen für Familie, Alltag und Amt — 63 Levels in kurzen Übungen
 ```
 
 **Vollständige Beschreibung** (3505 von 4000 Zeichen)
 
 ```
-Du hast Familie in Bosnien, bosnische Wurzeln oder Schwiegereltern, mit denen du endlich selbst reden willst, ohne dass jemand übersetzt? Zmaj bringt dir Bosnisch bei: 43 Levels, kurze Übungen, vom Alltag bis zum Arbeitsvertrag.
+Du hast Familie in Bosnien, bosnische Wurzeln oder Schwiegereltern, mit denen du endlich selbst reden willst, ohne dass jemand übersetzt? Zmaj bringt dir Bosnisch bei: 63 Levels, kurze Übungen, vom Alltag bis zum Arbeitsvertrag.
 
 WAS DU LERNST
 
@@ -236,8 +236,8 @@ Drei Sektionen, eine nach der anderen.
 
 Insgesamt drin:
 
-• 1108 Wörter und Wendungen
-• 190 Lückentext-Sätze
+• 1668 Wörter und Wendungen
+• 290 Lückentext-Sätze
 • 16 Grammatik-Lektionen mit zusammen 104 Übungen zu Fällen, Zeiten und Verbbeugung
 • 12 Lesegeschichten, jedes Wort antippbar mit Übersetzung
 • am Ende jedes Levels ein Test
@@ -344,8 +344,8 @@ Three sections, one after the other.
 
 In total:
 
-• 1108 words and phrases
-• 190 fill-in-the-blank sentences
+• 1668 words and phrases
+• 290 fill-in-the-blank sentences
 • 16 grammar lessons with 104 exercises in total, on cases, tenses and verb endings
 • 12 reading stories, every word tappable for a translation
 • a test at the end of every level
@@ -448,8 +448,8 @@ NELER ÖĞRENİYORSUN?
 
 Uygulamanın içinde:
 
-• 1108 kelime ve kalıp
-• 190 boşluk doldurma cümlesi
+• 1668 kelime ve kalıp
+• 290 boşluk doldurma cümlesi
 • 16 dil bilgisi dersi, toplam 104 alıştırma: hâller, zamanlar, fiil çekimi
 • 12 okuma hikâyesi, her kelimeye dokununca çevirisi
 • her seviyenin sonunda bir test
@@ -552,8 +552,8 @@ Tre sektioner, en i taget.
 
 Allt som ingår:
 
-• 1108 ord och uttryck
-• 190 meningar med lucka
+• 1668 ord och uttryck
+• 290 meningar med lucka
 • 16 grammatiklektioner med sammanlagt 104 övningar om kasus, tempus och verbböjning
 • 12 läsberättelser, varje ord går att trycka på för översättning
 • ett test i slutet av varje nivå
@@ -656,8 +656,8 @@ Drie secties, één voor één.
 
 Alles bij elkaar:
 
-• 1108 woorden en uitdrukkingen
-• 190 invulzinnen
+• 1668 woorden en uitdrukkingen
+• 290 invulzinnen
 • 16 grammaticalessen met in totaal 104 oefeningen over naamvallen, tijden en werkwoordsvervoeging
 • 12 leesverhalen, elk woord aantikbaar met vertaling
 • aan het eind van elk level een toets
@@ -760,8 +760,8 @@ Tre seksjoner, én om gangen.
 
 Til sammen får du:
 
-• 1108 ord og uttrykk
-• 190 setninger der du fyller inn ordet som mangler
+• 1668 ord og uttrykk
+• 290 setninger der du fyller inn ordet som mangler
 • 16 grammatikkleksjoner med til sammen 104 øvelser i kasus, tider og verbbøying
 • 12 lesehistorier der du kan trykke på hvert ord og få oversettelsen
 • en test på slutten av hvert nivå
@@ -864,8 +864,8 @@ Tre sektioner, en ad gangen.
 
 I alt er der:
 
-• 1108 ord og vendinger
-• 190 sætninger med huller, du skal udfylde
+• 1668 ord og vendinger
+• 290 sætninger med huller, du skal udfylde
 • 16 grammatiklektioner med i alt 104 øvelser i kasus, tider og bøjning af udsagnsord
 • 12 læsehistorier, hvor du kan trykke på hvert ord og se oversættelsen
 • en test til sidst i hvert niveau
@@ -968,8 +968,8 @@ Trois sections, les unes après les autres.
 
 Au total :
 
-• 1108 mots et expressions
-• 190 phrases à trous
+• 1668 mots et expressions
+• 290 phrases à trous
 • 16 leçons de grammaire, 104 exercices en tout, sur les cas, les temps et la conjugaison
 • 12 histoires à lire : touche un mot, sa traduction s'affiche
 • un test à la fin de chaque niveau
