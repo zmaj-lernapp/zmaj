@@ -1,0 +1,412 @@
+{
+  "stand": "26.09.2026",
+  "status": "vorschlag",
+  "neue_level": [
+    {
+      "id": "laender",
+      "label": "Länder & Sprachen",
+      "beschreibung": "Woher jemand kommt, welche Sprache er spricht, wie die Nationalitaet auf Maennlich und Weiblich geht.",
+      "woerter": 56
+    },
+    {
+      "id": "tiere",
+      "label": "Tiere",
+      "beschreibung": "Haustiere, Hoftiere, Voegel und was man ueber sie sagt.",
+      "woerter": 39
+    },
+    {
+      "id": "tiere2",
+      "label": "Tiere draussen",
+      "beschreibung": "Wald und Wild, Insekten, Koerperteile.",
+      "woerter": 35
+    },
+    {
+      "id": "restaurant",
+      "label": "Im Restaurant",
+      "beschreibung": "Ankommen, bestellen, essen, zahlen.",
+      "woerter": 56
+    },
+    {
+      "id": "obstgemuese",
+      "label": "Obst & Gemüse",
+      "beschreibung": "Was auf dem Markt liegt.",
+      "woerter": 51
+    },
+    {
+      "id": "laden",
+      "label": "Im Laden",
+      "beschreibung": "Lebensmittel, Vorrat, Baecker, Suesses.",
+      "woerter": 51
+    },
+    {
+      "id": "haushalt",
+      "label": "Haushalt",
+      "beschreibung": "Kueche, Bad, Moebel, Putzen und Waesche.",
+      "woerter": 38
+    },
+    {
+      "id": "reparatur",
+      "label": "Technik & Reparatur",
+      "beschreibung": "Strom, Licht, Heizung, Handwerk.",
+      "woerter": 27
+    },
+    {
+      "id": "natur",
+      "label": "Natur & Pflanzen",
+      "beschreibung": "Landschaft, Baeume, Pflanzen.",
+      "woerter": 30
+    }
+  ],
+  "gruppen": [
+    {
+      "gruppe": "Am Himmel (Ergaenzung Level 10)",
+      "woerter": 7,
+      "art": "level",
+      "ziel": "wetter",
+      "warum": "Gruppe nennt Level 10."
+    },
+    {
+      "gruppe": "An der Theke",
+      "woerter": 11,
+      "art": "neu",
+      "ziel": "restaurant",
+      "warum": "Gehoert zum selben Ablauf."
+    },
+    {
+      "gruppe": "Bad & Körperpflege",
+      "woerter": 7,
+      "art": "neu",
+      "ziel": "haushalt",
+      "warum": "Siehe Kueche & Geschirr."
+    },
+    {
+      "gruppe": "Beim Bäcker",
+      "woerter": 4,
+      "art": "neu",
+      "ziel": "laden",
+      "warum": "Siehe Lebensmittel."
+    },
+    {
+      "gruppe": "Bosnische Gerichte",
+      "woerter": 10,
+      "art": "level",
+      "ziel": "essen",
+      "warum": "Zehn Woerter, passt zu Level 5."
+    },
+    {
+      "gruppe": "Bosnische Speisen (Level 5)",
+      "woerter": 15,
+      "art": "level",
+      "ziel": "essen",
+      "warum": "Gruppe nennt Level 5."
+    },
+    {
+      "gruppe": "Draussen: Warnung & Sicherheit",
+      "woerter": 5,
+      "art": "level",
+      "ziel": "unterwegs",
+      "warum": "Fuenf Woerter."
+    },
+    {
+      "gruppe": "Essen gehen & bestellen (Level 5)",
+      "woerter": 7,
+      "art": "level",
+      "ziel": "essen",
+      "warum": "Gruppe nennt Level 5."
+    },
+    {
+      "gruppe": "Feiern & Braeuche (Level 35)",
+      "woerter": 5,
+      "art": "level",
+      "ziel": "feiern",
+      "warum": "Gruppe nennt Level 35."
+    },
+    {
+      "gruppe": "Gastfreundschaft (Level 35)",
+      "woerter": 7,
+      "art": "level",
+      "ziel": "feiern",
+      "warum": "Gruppe nennt Level 35."
+    },
+    {
+      "gruppe": "Geld im Alltag",
+      "woerter": 8,
+      "art": "level",
+      "ziel": "bank",
+      "warum": "Acht Woerter, passt zu Bank & Geld."
+    },
+    {
+      "gruppe": "Gemüse",
+      "woerter": 27,
+      "art": "neu",
+      "ziel": "obstgemuese",
+      "warum": "Siehe Obst."
+    },
+    {
+      "gruppe": "Getraenke (Level 5)",
+      "woerter": 2,
+      "art": "level",
+      "ziel": "essen",
+      "warum": "Gruppe nennt Level 5."
+    },
+    {
+      "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+      "woerter": 10,
+      "art": "level",
+      "ziel": "feiern",
+      "warum": "Gruppe nennt Level 35."
+    },
+    {
+      "gruppe": "Haus & Nachbarschaft",
+      "woerter": 12,
+      "art": "level",
+      "ziel": "immobilien",
+      "warum": "Zwoelf Woerter, passt zu Wohnung & Hauskauf."
+    },
+    {
+      "gruppe": "Insekten & Kleintiere",
+      "woerter": 12,
+      "art": "neu",
+      "ziel": "tiere2",
+      "warum": "Siehe Tiere: Wald & Wild."
+    },
+    {
+      "gruppe": "Kaffee",
+      "woerter": 5,
+      "art": "level",
+      "ziel": "feiern",
+      "warum": "Das Kaffeeritual gehoert zu den Traditionen."
+    },
+    {
+      "gruppe": "Küche & Geschirr",
+      "woerter": 10,
+      "art": "neu",
+      "ziel": "haushalt",
+      "warum": "Haushalt ist zusammen 77 Woerter."
+    },
+    {
+      "gruppe": "Lebensmittel",
+      "woerter": 35,
+      "art": "neu",
+      "ziel": "laden",
+      "warum": "Lebensmittel, Vorrat, Baecker und Suesses sind zusammen 51 Woerter."
+    },
+    {
+      "gruppe": "Level 1 Grundlagen - dringendste Luecke",
+      "woerter": 1,
+      "art": "level",
+      "ziel": "basics",
+      "warum": "Von Ajdin so benannt."
+    },
+    {
+      "gruppe": "Länder & Herkunft (neues Level)",
+      "woerter": 26,
+      "art": "neu",
+      "ziel": "laender",
+      "warum": "Gruppe sagt ausdruecklich: neues Level."
+    },
+    {
+      "gruppe": "Mengen",
+      "woerter": 12,
+      "art": "level",
+      "ziel": "mengen",
+      "warum": "Mengenangaben gehoeren zu Zahlen im Satz."
+    },
+    {
+      "gruppe": "Menschen & Umgang (Level 4 / 9 / 15)",
+      "woerter": 7,
+      "art": "level",
+      "ziel": "smalltalk",
+      "warum": "Gruppe nennt 4, 9 und 15. Smalltalk traegt den groessten Teil."
+    },
+    {
+      "gruppe": "Möbel & Textilien",
+      "woerter": 7,
+      "art": "neu",
+      "ziel": "haushalt",
+      "warum": "Siehe Kueche & Geschirr."
+    },
+    {
+      "gruppe": "Nationalitäten (m/w)",
+      "woerter": 18,
+      "art": "neu",
+      "ziel": "laender",
+      "warum": "Gehoert zu Laender & Herkunft."
+    },
+    {
+      "gruppe": "Natur & Landschaft",
+      "woerter": 22,
+      "art": "neu",
+      "ziel": "natur",
+      "warum": "Mit den Pflanzen 30 Woerter. Level 10 haette damit 58."
+    },
+    {
+      "gruppe": "Obst",
+      "woerter": 24,
+      "art": "neu",
+      "ziel": "obstgemuese",
+      "warum": "Obst und Gemuese sind zusammen 51 Woerter und passen in kein vorhandenes Level."
+    },
+    {
+      "gruppe": "Orte beim Einkauf",
+      "woerter": 11,
+      "art": "level",
+      "ziel": "einkaufen",
+      "warum": "Elf Woerter, Level 12 haelt das aus."
+    },
+    {
+      "gruppe": "Pflanzen & Baeume",
+      "woerter": 8,
+      "art": "neu",
+      "ziel": "natur",
+      "warum": "Siehe Natur & Landschaft."
+    },
+    {
+      "gruppe": "Putzen & Wäsche",
+      "woerter": 14,
+      "art": "neu",
+      "ziel": "haushalt",
+      "warum": "Siehe Kueche & Geschirr."
+    },
+    {
+      "gruppe": "Rakija",
+      "woerter": 6,
+      "art": "level",
+      "ziel": "feiern",
+      "warum": "Siehe Kaffee."
+    },
+    {
+      "gruppe": "Reparatur & Handwerk",
+      "woerter": 12,
+      "art": "neu",
+      "ziel": "reparatur",
+      "warum": "Siehe Strom, Licht & Heizung."
+    },
+    {
+      "gruppe": "Restaurant: ankommen",
+      "woerter": 10,
+      "art": "neu",
+      "ziel": "restaurant",
+      "warum": "Vier Gruppen bilden den Ablauf eines Restaurantbesuchs."
+    },
+    {
+      "gruppe": "Restaurant: bestellen",
+      "woerter": 17,
+      "art": "neu",
+      "ziel": "restaurant",
+      "warum": "Siehe Restaurant: ankommen."
+    },
+    {
+      "gruppe": "Restaurant: essen",
+      "woerter": 11,
+      "art": "neu",
+      "ziel": "restaurant",
+      "warum": "Siehe Restaurant: ankommen."
+    },
+    {
+      "gruppe": "Restaurant: zahlen",
+      "woerter": 7,
+      "art": "neu",
+      "ziel": "restaurant",
+      "warum": "Siehe Restaurant: ankommen."
+    },
+    {
+      "gruppe": "Rund ums Tier: Verben & Saetze",
+      "woerter": 10,
+      "art": "neu",
+      "ziel": "tiere",
+      "warum": "Die Verben gehoeren zu den Tieren, nicht zu Level 14."
+    },
+    {
+      "gruppe": "Sprachen",
+      "woerter": 12,
+      "art": "neu",
+      "ziel": "laender",
+      "warum": "Gehoert zu Laender & Herkunft."
+    },
+    {
+      "gruppe": "Strom, Licht & Heizung",
+      "woerter": 15,
+      "art": "neu",
+      "ziel": "reparatur",
+      "warum": "Technik und Handwerk sind ein eigenes Thema."
+    },
+    {
+      "gruppe": "Städte & Regionen in Bosnien",
+      "woerter": 9,
+      "art": "level",
+      "ziel": "reisen",
+      "warum": "Neun Woerter, passt zu Reisen & Verkehr."
+    },
+    {
+      "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
+      "woerter": 5,
+      "art": "level",
+      "ziel": "essen",
+      "warum": "Gruppe nennt 5 und 35. Das Kaffeeritual passt zu Rakija und Gastfreundschaft, also eher 35 - beim Einbauen je Wort entscheiden."
+    },
+    {
+      "gruppe": "Süßes",
+      "woerter": 3,
+      "art": "neu",
+      "ziel": "laden",
+      "warum": "Siehe Lebensmittel."
+    },
+    {
+      "gruppe": "Tanz & Musik (Level 35)",
+      "woerter": 12,
+      "art": "level",
+      "ziel": "feiern",
+      "warum": "Gruppe nennt Level 35."
+    },
+    {
+      "gruppe": "Tiere allgemein",
+      "woerter": 3,
+      "art": "neu",
+      "ziel": "tiere",
+      "warum": "Zu viel fuer ein vorhandenes Level."
+    },
+    {
+      "gruppe": "Tiere: Haus & Hof",
+      "woerter": 18,
+      "art": "neu",
+      "ziel": "tiere",
+      "warum": "Haustiere und Hoftiere gehoeren zusammen."
+    },
+    {
+      "gruppe": "Tiere: Wald & Wild",
+      "woerter": 16,
+      "art": "neu",
+      "ziel": "tiere2",
+      "warum": "Wild, Insekten und Koerperteile waeren zusammen mit Level Tiere ueber siebzig Woerter."
+    },
+    {
+      "gruppe": "Tierkoerper & Zubehoer",
+      "woerter": 7,
+      "art": "neu",
+      "ziel": "tiere2",
+      "warum": "Siehe Tiere: Wald & Wild."
+    },
+    {
+      "gruppe": "Voegel",
+      "woerter": 8,
+      "art": "neu",
+      "ziel": "tiere",
+      "warum": "Passt zu Haus und Hof."
+    },
+    {
+      "gruppe": "Vorrat & Grundnahrungsmittel",
+      "woerter": 9,
+      "art": "neu",
+      "ziel": "laden",
+      "warum": "Siehe Lebensmittel."
+    },
+    {
+      "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+      "woerter": 22,
+      "art": "level",
+      "ziel": "basics",
+      "warum": "Gruppe nennt Level 1, 15 und 38. Der Kern gehoert nach 1, Hoeflichkeitsformen nach 38 - beim Einbauen je Wort entscheiden."
+    }
+  ]
+}

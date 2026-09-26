@@ -4,10 +4,13 @@ app_bauen.py  –  bringt den Inhalt in die Android-Hülle
 
 Die Android-App liegt in einem eigenen Ordner neben diesem Projekt:
 
-    C:\Users\Ajdin\Desktop\zmaj-android
+    C:\Users\Ajdin\Desktop\App Zeugs\zmaj-android
 
-Warum getrennt? Weil dieser Ordner „Bosnisch Lernapp" heißt – mit Leerzeichen.
-Android-Builds stolpern darüber. Der Nachbarordner hat keins.
+Warum getrennt? Ursprünglich, weil dieser Ordner „Bosnisch Lernapp" heißt –
+mit Leerzeichen, und Android-Builds stolpern darüber. Das Ausweichen
+hat sich erledigt: beide liegen inzwischen unter „App Zeugs", und das
+hat ebenfalls eins. Der Pfad zu gradlew.bat gehört deshalb in
+Anführungszeichen, siehe gradle().
 
 Dieses Skript kopiert web/ dorthin nach www/, ruft Capacitor auf und baut
 das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
@@ -215,7 +218,12 @@ def gradle(ziel, was):
         return None
     umgebung = dict(os.environ, JAVA_HOME=heim)
     print("\n%s ...   (Java: %s)" % (was, heim))
-    e = subprocess.run(os.path.join(ANDROID, "gradlew.bat") + " " + ziel,
+    # Der Pfad MUSS in Anfuehrungszeichen stehen. Er enthaelt ein
+    # Leerzeichen ("App Zeugs"), und ohne sie bricht cmd.exe ihn dort
+    # auseinander und sucht ein Programm namens ...\Desktop\App.
+    # Am 26.09.2026 genau daran gescheitert: Gradle meldete einen Fehler,
+    # ohne eine einzige Zeile auszugeben.
+    e = subprocess.run('"%s" %s' % (os.path.join(ANDROID, "gradlew.bat"), ziel),
                        cwd=ANDROID, shell=True, env=umgebung)
     if e.returncode != 0:
         raise SystemExit("Gradle meldet einen Fehler – siehe oben.")
@@ -289,8 +297,11 @@ def main():
     pruefen()
     print("\nInhalt kopieren ...")
     kopieren()
-    print("\nVersionsnummer ...")
-    versionsnummer_hochzaehlen()
+    # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst
+    # Nummern verbrannt, ohne dass ein Paket entstand.
+    if not nur:
+        print("\nVersionsnummer ...")
+        versionsnummer_hochzaehlen()
     capacitor()
     # Nach dem Abgleich, nicht davor: `cap sync` kann node_modules anfassen.
     plugins_flicken()
