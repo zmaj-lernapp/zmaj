@@ -5,6 +5,86 @@ Abschnitten angehört.
 
 ---
 
+## Die systematische Hörprobe vom 26.09.2026
+
+Nach den ersten Einzelbefunden hat `ton_auffaellig.py` alle 1502 Aufnahmen
+nach zwei Risikoformen durchsucht, und Ajdin hat beide Gruppen über
+`web/_probe/aussprache.html` durchgehört.
+
+| Gruppe | geprüft | falsch |
+|---|---|---|
+| kurz mit stimmhaftem Endlaut (das `sud`-Muster) | 19 | **9** |
+| silbisches `r` (kein Vokal daneben) | 26 | **4** |
+| zusammen | 45 | 13 |
+
+Einer der 13 ist kein Tonfehler, sondern eine Vokabelfrage (siehe unten).
+Bleiben **zwölf Aufnahmen**, und sie fallen in vier Muster:
+
+**Vokal wird gedehnt, der kurz sein muss — sechs Fälle**
+
+| Wort | Datei | Notiz |
+|---|---|---|
+| bez (ohne) | `w0533.mp3` | das e wird zu lang gezogen |
+| kad (als/wenn) | `w0453.mp3` | das a wird zu lang gezogen, es muss kurz sein |
+| kod (bei) | `w0532.mp3` | das o ist zu lang, muss kurz sein |
+| kroz (durch) | `w0543.mp3` | o muss kurz, nicht lang |
+| od (von) | `w0528.mp3` | das o muss kurz, nicht lang |
+| zbog (wegen) | `w0524.mp3` | o zu lang **und** g verschluckt |
+
+**Endkonsonant `g` verschluckt — drei Fälle**
+
+| Wort | Datei | Notiz |
+|---|---|---|
+| dug (Schulden) | `w1009.mp3` | das g wird verschluckt, man hört es nicht |
+| zbog (wegen) | `w0524.mp3` | das g muss betont werden |
+| prtljag (Gepäck) | `w0832.mp3` | das g wird wieder verschluckt |
+
+**Silbisches `r` zu schnell oder zu schwach — drei Fälle**
+
+| Wort | Datei | Notiz |
+|---|---|---|
+| brz (schnell) | `w0758.mp3` | das r hört man zu wenig, muss mehr betont werden |
+| crkva (Kirche) | `w0854.mp3` | zu schnell — es heißt `cr`, kurze Pause, `kva` |
+| crna (schwarz) | `w0070.mp3` | wird auch zu schnell gesprochen |
+
+**Falscher Laut — ein Fall**
+
+| Wort | Datei | Notiz |
+|---|---|---|
+| sud (Gericht) | `w0984.mp3` | die Stimme sagt `sub` statt `sud` |
+
+Alle zwölf sind mit `bs-BA-GoranNeural` erzeugt. Das Muster deutet auf
+eine Eigenheit der Stimme hin: Ein alleinstehendes einsilbiges Wort wird
+offenbar als betont behandelt und gedehnt, und der Endkonsonant fällt
+dabei weg. `ton_bauen.py` setzt SSML bereits ein (`<prosody rate='-10%'>`
+für den Langsam-Modus), der Hebel dafür ist also vorhanden.
+
+### Keine Aussprachefrage: „Gute Besserung"
+
+`w0242.mp3` trägt heute **Brzo ozdravi!** — das ist die Du-Form des
+Imperativs („werde schnell gesund"). Ajdin am 26.09.2026: „nimm statt das
+nimm brz oporavak".
+
+Nachgeschlagen: `oporavak` ist ein maskulines Substantiv und heißt
+Genesung (Wiktionary, Aussprache /opǒraʋak/). `brz oporavak` ist damit
+grammatisch stimmig und entspricht als Nominalphrase dem deutschen „Gute
+Besserung", während die bisherige Form nur die Du-Anrede abdeckt.
+
+Zu ändern sind: `vokabeln.py:335`, danach `inhalt_bauen.py`, und die
+Aufnahme muss neu erzeugt werden — der Text ist der Schlüssel, `w0242.mp3`
+wird dabei zur Karteileiche.
+
+### Wie gesucht wurde
+
+`ton_auffaellig.py` meldet 48 Aufnahmen als gefährdet. Die zweite
+Risikoform kam erst auf Ajdins Hinweis dazu: „das wird wahrscheinlich auch
+bei vrt prt smrt usw auch so sein". Die ursprüngliche Suche kannte nur das
+`sud`-Muster, und Wörter mit silbischem `r` haben oft gar keinen Vokal —
+sie fielen komplett durch. `smrt`, `vrt`, `krv`, `trg` und `vrh` stehen
+übrigens gar nicht im Wortschatz, `prst` und `prvi` dagegen schon.
+
+---
+
 ## Nachzusprechen
 
 Beide Aufnahmen sind vorhanden und werden gefunden. Beanstandet ist, wie sie
