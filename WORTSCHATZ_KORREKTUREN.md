@@ -142,3 +142,30 @@ das auch keine Anrede festlegt.
 Nach der Änderung muss `inhalt_bauen.py` laufen und die Aufnahme neu
 erzeugt werden; `w0242.mp3` wird dabei zur Karteileiche und lässt sich
 löschen. `ton_auffaellig.py` meldet solche Reste in Abschnitt D.
+
+---
+
+## Nachtrag vom 26.09.2026: `prodavač` und `prodavac` — beide bleiben
+
+Beim Abgleich der 569 neuen Wörter gegen den Bestand fiel auf, dass beide
+Formen vorkommen. Ajdin dazu: „mit apostroph sagt man prodavač".
+
+**Es sind zwei Wörter, nicht zwei Schreibweisen.** Beide bleiben:
+
+| Form | Bedeutung | wo |
+|---|---|---|
+| `prodavač` | Verkäufer als **Beruf** | neu, Gruppe „Orte beim Einkauf", mit `prodavačica` |
+| `prodavac` | Verkäufer als **Vertragspartei** | vorhanden, Level „Wohnung & Hauskauf" |
+
+Belegt: Das Obligationenrecht der Föderation BiH schreibt in Artikel 121
+Absatz 3 „odredbe ovog zakona o odgovornosti **prodavca** za materijalne i
+pravne nedostatke". Im Kaufvertrag heißt die Partei also `prodavac`,
+Gegenstück zu `kupac`.
+
+Für den Beruf belegt Wiktionary `prodavač` (kyrillisch прода̀ва̄ч,
+„salesman"). Einen Eintrag `prodavac` gibt es dort nicht — das heißt aber
+nur, dass der juristische Begriff dort fehlt, nicht dass er falsch wäre.
+
+**Nicht zusammenlegen.** Die beiden stehen in verschiedenen Levels und
+haben verschiedene Nachbarn: `prodavač` neben `prodavačica` und Läden,
+`prodavac` neben `kupac`, `kupoprodajni ugovor` und `nekretnina`.
