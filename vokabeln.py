@@ -332,7 +332,10 @@ KATEGORIEN = [
         {"de": "Kopfschmerzen",  "bs": "glavobolja"},
         {"de": "Fieber",         "bs": "temperatura"},
         {"de": "Medikament",     "bs": "lijek"},
-        {"de": "Gute Besserung!", "bs": "Brzo ozdravi!"},
+        # „Brzo ozdravi!" war die Du-Form des Imperativs und legte damit die
+        # Anrede fest. „Brz oporavak" ist die Nominalphrase und passt wie das
+        # deutsche „Gute Besserung" in jede Anrede. Ajdin am 26.09.2026.
+        {"de": "Gute Besserung!", "bs": "Brz oporavak"},
     ]},
 
     {"id": "einkaufen", "label": "Einkaufen & Kleidung", "sektion": "alltag", "baut_auf": ["zahlen", "farben", "essen"], "tipp": "Preise, Größen, Kleidung. Zahlen und Farben werden hier gebraucht.",

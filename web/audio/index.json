@@ -2789,7 +2789,7 @@
    "key": "kad",
    "datei": "w0453.mp3",
    "text": "kad",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "zato",
@@ -3215,7 +3215,7 @@
    "key": "zbog",
    "datei": "w0524.mp3",
    "text": "zbog",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "u",
@@ -3239,7 +3239,7 @@
    "key": "od",
    "datei": "w0528.mp3",
    "text": "od",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "do",
@@ -3263,13 +3263,13 @@
    "key": "kod",
    "datei": "w0532.mp3",
    "text": "kod",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "bez",
    "datei": "w0533.mp3",
    "text": "bez",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "prema",
@@ -3329,7 +3329,7 @@
    "key": "kroz",
    "datei": "w0543.mp3",
    "text": "kroz",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "u gradu",
@@ -5063,7 +5063,7 @@
    "key": "prtljag",
    "datei": "w0832.mp3",
    "text": "prtljag",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "kofer",
@@ -5195,7 +5195,7 @@
    "key": "crkva",
    "datei": "w0854.mp3",
    "text": "crkva",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "prenoćiti",
@@ -5975,7 +5975,7 @@
    "key": "sud",
    "datei": "w0984.mp3",
    "text": "sud",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "advokat",
@@ -6125,7 +6125,7 @@
    "key": "dug",
    "datei": "w1009.mp3",
    "text": "dug",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "prihod",
@@ -9011,6 +9011,12 @@
    "key": "zahvaljuje",
    "datei": "w1490.mp3",
    "text": "zahvaljuje",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "brz oporavak",
+   "datei": "w1491.mp3",
+   "text": "Brz oporavak",
    "stimme": "bs-BA-GoranNeural"
   }
  ]

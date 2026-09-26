@@ -187,9 +187,69 @@ def lade_zugang():
     return json.load(io.open(ZUGANG, encoding="utf-8"))
 
 
+# Wörter, die anders erzeugt werden müssen als alle übrigen. Ajdin hat am
+# 26.09.2026 dreizehn Fassungssätze durchgehört und je eine gewählt; bei zehn
+# gewann die kroatische Stimme mit Lautschrift. Grund: <phoneme> ist für die
+# bosnischen Stimmen gesperrt (Fußnote 3 in Microsofts Stimmentabelle: „Phonemes,
+# custom lexicon, and visemes aren't supported"), für die kroatischen nicht.
+# Ohne diese Datei würde ein vollständiger Lauf die Wahl wieder überschreiben.
+_AUSNAHMEN = None
+
+
+def ausnahmen():
+    global _AUSNAHMEN
+    if _AUSNAHMEN is None:
+        pfad = os.path.join(ORDNER, "ton_ausnahmen.json")
+        try:
+            _AUSNAHMEN = json.load(io.open(pfad, encoding="utf-8"))["ausnahmen"]
+        except Exception:
+            _AUSNAHMEN = {}
+    return _AUSNAHMEN
+
+
+# Kroatische IPA-Zeichen. Bosnisch wird phonetisch geschrieben, deshalb ist die
+# Umschrift fast eins zu eins. Kein Längenzeichen heißt kurzer Vokal - genau das
+# war bei bez, kad, kod, kroz, od und zbog die Beschwerde.
+_IPA = [("lj", "ʎ"), ("nj", "ɲ"), ("dž", "dʒ"), ("č", "tʃ"), ("ć", "tɕ"),
+        ("š", "ʃ"), ("ž", "ʒ"), ("c", "ts"), ("g", "ɡ"), ("v", "ʋ")]
+
+
+def lautschrift(wort):
+    s = wort.lower()
+    for a, b in _IPA:
+        s = s.replace(a, b)
+    return s
+
+
 def azure(zugang, text, stimme, langsam):
     gebiet = zugang["azure"]["region"]
     roh = _xml(text)
+
+    sonder = ausnahmen().get(text)
+    if sonder:
+        sprache = sonder.get("sprache", "bs-BA")
+        stimme = sonder.get("stimme", stimme)
+        inhalt = roh
+        if sonder.get("lautschrift"):
+            inhalt = ("<phoneme alphabet='ipa' ph='%s'>%s</phoneme>"
+                      % (lautschrift(text), roh))
+        if sonder.get("rate"):
+            inhalt = "<prosody rate='%s'>%s</prosody>" % (sonder["rate"], inhalt)
+        ssml = ("<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' "
+                "xml:lang='%s'><voice name='%s'>%s</voice></speak>"
+                % (sprache, stimme, inhalt))
+        anfrage = urllib.request.Request(
+            "https://%s.tts.speech.microsoft.com/cognitiveservices/v1" % gebiet,
+            data=ssml.encode("utf-8"),
+            headers={
+                "Ocp-Apim-Subscription-Key": zugang["azure"]["schluessel"],
+                "Content-Type": "application/ssml+xml",
+                "X-Microsoft-OutputFormat": "audio-24khz-48kbitrate-mono-mp3",
+                "User-Agent": "zmaj-lernapp",
+            })
+        with urllib.request.urlopen(anfrage, timeout=30) as a:
+            return a.read()
+
     tempo = "<prosody rate='-10%%'>%s</prosody>" % roh if langsam else roh
     ssml = ("<speak version='1.0' xml:lang='bs-BA'><voice name='%s'>%s</voice></speak>"
             % (stimme, tempo))
