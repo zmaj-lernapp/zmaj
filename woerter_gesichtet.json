@@ -1,0 +1,6866 @@
+{
+ "behalten": [
+  {
+   "de": "Haustier",
+   "bs": "kućni ljubimac",
+   "gruppe": "Tiere allgemein",
+   "geaendert": false,
+   "anmerkung": "Woertlich 'Hausliebling', gemeint sind Hund und Katze. Nicht verwechseln mit 'domaća životinja' - das ist das Nutztier.",
+   "notiz": ""
+  },
+  {
+   "de": "Tier",
+   "bs": "životinja",
+   "gruppe": "Tiere allgemein",
+   "geaendert": false,
+   "anmerkung": "Der Oberbegriff fehlt komplett. Mehrzahl: životinje.",
+   "notiz": ""
+  },
+  {
+   "de": "Vieh / Nutztiere",
+   "bs": "stoka",
+   "gruppe": "Tiere allgemein",
+   "geaendert": false,
+   "anmerkung": "Sammelwort fuer Kuehe, Schafe, Ziegen, Pferde. Auf dem Land staendig zu hoeren. Als Beschimpfung fuer einen Menschen genauso verbreitet wie im Deutschen.",
+   "notiz": ""
+  },
+  {
+   "de": "Ente",
+   "bs": "patka",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Esel",
+   "bs": "magarac",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "Auch als Schimpfwort: 'magarče!' (du Esel).",
+   "notiz": ""
+  },
+  {
+   "de": "Gans",
+   "bs": "guska",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Hahn",
+   "bs": "horoz",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": true,
+   "anmerkung": "Regional auch 'pijevac'. Umgangssprachlich in BiH ausserdem 'horoz' (tuerkisches Lehnwort). Siehe Unsicherheiten.",
+   "notiz": ""
+  },
+  {
+   "de": "Hof / Innenhof",
+   "bs": "avlija",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "Tuerkisches Lehnwort und in BiH das Alltagswort fuer den Hof ums Haus - dort sitzt man, dort trinkt man Kahva. Neutral waere 'dvorište'. Passt stilistisch genau zum schon vorhandenen 'bašta' (Garten).",
+   "notiz": ""
+  },
+  {
+   "de": "Huhn",
+   "bs": "kokoš",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "Auch 'kokoška' ist ueblich - siehe Unsicherheiten.",
+   "notiz": ""
+  },
+  {
+   "de": "Kalb",
+   "bs": "tele",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kueken / Haehnchen",
+   "bs": "pile",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "'pile' ist das Kueken, auf der Speisekarte steht das Haehnchenfleisch als 'piletina'.",
+   "notiz": ""
+  },
+  {
+   "de": "Kuh",
+   "bs": "krava",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Lamm",
+   "bs": "jagnje",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "Bosnisch/serbisch 'jagnje', kroatisch 'janje'. 'jagnjetina' (Lammfleisch) steht in BiH auf fast jeder Speisekarte.",
+   "notiz": ""
+  },
+  {
+   "de": "Pferd",
+   "bs": "konj",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schaf",
+   "bs": "ovca",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "Die bosnische Landrasse heisst 'pramenka'. Schafe praegen das Bild auf jedem Dorf.",
+   "notiz": ""
+  },
+  {
+   "de": "Schwein",
+   "bs": "svinja",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "ZUR EINORDNUNG: gehoert in ein neutrales Tier-Level, NICHT zu 'Essen & Trinken', und ohne Beispielsatz ums Essen. Als reines Tierwort ist es unverfaenglich - als Schimpfwort ('svinjo!') uebrigens genauso gebraeuchlich wie im Deutschen.",
+   "notiz": ""
+  },
+  {
+   "de": "Schweinefleisch",
+   "bs": "svinjetina",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "Praktisch wichtiger als 'svinja' selbst: wer in BiH lebt, muss fragen koennen 'Ima li svinjetine?' (Ist da Schweinefleisch drin?) oder 'bez svinjetine' (ohne Schweinefleisch) sagen. Das hilft beiden Seiten - denen, die es meiden, und denen, die es suchen.",
+   "notiz": ""
+  },
+  {
+   "de": "Stall",
+   "bs": "štala",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Stier",
+   "bs": "bik",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Welpe",
+   "bs": "štene",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ziege",
+   "bs": "koza",
+   "gruppe": "Tiere: Haus & Hof",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Baer",
+   "bs": "medvjed",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "Braunbaeren gibt es in BiH wirklich ('mrki medvjed'), in Bergregionen stehen Hinweisschilder.",
+   "notiz": ""
+  },
+  {
+   "de": "Drache",
+   "bs": "zmaj",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "Der Name deiner eigenen App - und er steht in keiner einzigen Lektion. Ausserdem kennt in BiH jeder 'Zmaj od Bosne' (Husein-kapetan Gradaščević). Das waere die Vokabel, die die App ueber sich selbst lehrt.",
+   "notiz": ""
+  },
+  {
+   "de": "Eichhoernchen",
+   "bs": "vjeverica",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Frosch",
+   "bs": "žaba",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Fuchs",
+   "bs": "lisica",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "Wie im Deutschen auch fuer einen schlauen Menschen.",
+   "notiz": ""
+  },
+  {
+   "de": "Hase",
+   "bs": "zec",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "'zec' ist der Feldhase. Umgangssprachlich sagt man fuer beides 'zec', das Stallkaninchen heisst streng genommen 'kunić'.",
+   "notiz": ""
+  },
+  {
+   "de": "Hirsch",
+   "bs": "männlich jelen weiblich ist srna baby lane",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": true,
+   "anmerkung": "Auch eine bekannte Biermarke in der Region, das Wort sieht man oft.",
+   "notiz": ""
+  },
+  {
+   "de": "Igel",
+   "bs": "jež",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kaninchen",
+   "bs": "kunić",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "Nur aufnehmen, wenn 'zec' schon drin ist - sonst stiftet das Paar mehr Verwirrung als Nutzen.",
+   "notiz": ""
+  },
+  {
+   "de": "Luchs",
+   "bs": "ris",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "In BiH stark bedroht, taucht aber regelmaessig in den Nachrichten auf.",
+   "notiz": ""
+  },
+  {
+   "de": "Maus",
+   "bs": "miš",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "Auch die Computermaus - doppelt nuetzlich.",
+   "notiz": ""
+  },
+  {
+   "de": "Ratte",
+   "bs": "pacov",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": true,
+   "anmerkung": "In BiH ebenso oft 'pacov'. Siehe Unsicherheiten.",
+   "notiz": ""
+  },
+  {
+   "de": "Reh",
+   "bs": "srna",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "Auch ein Frauenname.",
+   "notiz": ""
+  },
+  {
+   "de": "Schlange",
+   "bs": "zmija",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "In BiH gibt es Giftschlangen (poskok, Hornotter) - das Wort ist beim Wandern kein Luxus. Auch bildlich fuer eine hinterhaeltige Person.",
+   "notiz": ""
+  },
+  {
+   "de": "Wildschwein",
+   "bs": "divlja svinja",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "Woertlich 'wildes Schwein'. 'vepar' ist NICHT dasselbe - das ist der Keiler, also das maennliche Tier.",
+   "notiz": ""
+  },
+  {
+   "de": "Wolf",
+   "bs": "vuk",
+   "gruppe": "Tiere: Wald & Wild",
+   "geaendert": false,
+   "anmerkung": "Auch ein gaengiger Maennername (Vuk).",
+   "notiz": ""
+  },
+  {
+   "de": "Adler",
+   "bs": "orao",
+   "gruppe": "Voegel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Eule",
+   "bs": "sova",
+   "gruppe": "Voegel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kraehe",
+   "bs": "vrana",
+   "gruppe": "Voegel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Nest",
+   "bs": "gnijezdo",
+   "gruppe": "Voegel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schwalbe",
+   "bs": "lastavica",
+   "gruppe": "Voegel",
+   "geaendert": false,
+   "anmerkung": "Auch ein Frauenname (Lastavica).",
+   "notiz": ""
+  },
+  {
+   "de": "Spatz",
+   "bs": "vrabac",
+   "gruppe": "Voegel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Storch",
+   "bs": "roda",
+   "gruppe": "Voegel",
+   "geaendert": false,
+   "anmerkung": "In der Posavina ein vertrauter Anblick, Nester auf Strommasten.",
+   "notiz": ""
+  },
+  {
+   "de": "Taube",
+   "bs": "golub",
+   "gruppe": "Voegel",
+   "geaendert": false,
+   "anmerkung": "Der Taubenplatz in Sarajevo heisst im Volksmund danach.",
+   "notiz": ""
+  },
+  {
+   "de": "Ameise",
+   "bs": "mrav",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Fliege",
+   "bs": "muha",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "Bosnisch MIT h: 'muha'. Serbisch 'muva'. Genau dasselbe Muster wie deine schon vorhandenen 'kahva' und 'hljeb' - das koennte man im Level sogar erwaehnen.",
+   "notiz": ""
+  },
+  {
+   "de": "Floh",
+   "bs": "buha ist richtig aber buvljak ist Flohmarkt",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": true,
+   "anmerkung": "Steckt im Alltagswort 'buvlja pijaca' (Flohmarkt) - dort kauft man in BiH viel ein.",
+   "notiz": ""
+  },
+  {
+   "de": "Forelle",
+   "bs": "pastrmka",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "Steht in BiH auf fast jeder Speisekarte am Fluss. Grenzfall zum Essens-Wortschatz, aber praktisch.",
+   "notiz": ""
+  },
+  {
+   "de": "Muecke",
+   "bs": "komarac",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "Im Sommer an Flussufern und an der Neretva ein Dauerthema.",
+   "notiz": ""
+  },
+  {
+   "de": "Schmetterling",
+   "bs": "leptir",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schnecke",
+   "bs": "puž",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Spinne",
+   "bs": "pauk",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "Fallstrick: 'pauk' ist in der Stadt auch das Abschleppfahrzeug. Wenn jemand sagt 'odnio ga pauk', wurde das Auto abgeschleppt, nicht von einer Spinne geholt.",
+   "notiz": ""
+  },
+  {
+   "de": "Wespe",
+   "bs": "männlich os weiblich osa",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": true,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Wurm",
+   "bs": "crv",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Zecke",
+   "bs": "krpelj",
+   "gruppe": "Insekten & Kleintiere",
+   "geaendert": false,
+   "anmerkung": "Wer in BiH durch Wald und Wiese laeuft, braucht das Wort wirklich - Zecken sind dort ein ernstes Thema.",
+   "notiz": ""
+  },
+  {
+   "de": "Feder",
+   "bs": "pero",
+   "gruppe": "Tierkoerper & Zubehoer",
+   "geaendert": false,
+   "anmerkung": "Auch die Schreibfeder.",
+   "notiz": ""
+  },
+  {
+   "de": "Fell",
+   "bs": "krzno",
+   "gruppe": "Tierkoerper & Zubehoer",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Fluegel",
+   "bs": "krilo",
+   "gruppe": "Tierkoerper & Zubehoer",
+   "geaendert": false,
+   "anmerkung": "Fallstrick: 'krilo' heisst auch Schoss - 'u krilu' = auf dem Schoss.",
+   "notiz": ""
+  },
+  {
+   "de": "Horn",
+   "bs": "rog",
+   "gruppe": "Tierkoerper & Zubehoer",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Leine",
+   "bs": "povodac",
+   "gruppe": "Tierkoerper & Zubehoer",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schwanz",
+   "bs": "rep",
+   "gruppe": "Tierkoerper & Zubehoer",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Tierarzt",
+   "bs": "veterinar",
+   "gruppe": "Tierkoerper & Zubehoer",
+   "geaendert": false,
+   "anmerkung": "Wer mit Hund oder Katze in BiH lebt, braucht das Wort frueher oder spaeter.",
+   "notiz": ""
+  },
+  {
+   "de": "beissen",
+   "bs": "ugristi",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": false,
+   "anmerkung": "'ugristi' ist die vollendete Form (einmal zubeissen), 'gristi' die unvollendete. Fuer den Alltag reicht 'ugristi'.",
+   "notiz": ""
+  },
+  {
+   "de": "Beisst er?",
+   "bs": "hoce li ujesti wir sagen auch pas mi je ujeo",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": true,
+   "anmerkung": "Die Frage am Gartentor. In BiH gibt es viele freilaufende Hunde - dieser Satz ist Alltag, kein Lehrbuchsatz.",
+   "notiz": ""
+  },
+  {
+   "de": "bellen",
+   "bs": "lajati",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "fuettern",
+   "bs": "hraniti",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ich habe Angst vor Hunden",
+   "bs": "Bojim se pasa",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": false,
+   "anmerkung": "'Bojim se' steht schon in Level 33. 'pasa' ist der Genitiv Mehrzahl von 'pas' - passt gut als Anwendungsbeispiel ins Genitiv-Level 22.",
+   "notiz": ""
+  },
+  {
+   "de": "spazieren gehen",
+   "bs": "šetati",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": false,
+   "anmerkung": "'šetati psa' = den Hund ausfuehren. Reflexiv 'šetati se' = selbst spazieren gehen - passt ins schon vorhandene Level 29 zu den se-Verben.",
+   "notiz": ""
+  },
+  {
+   "de": "Spaziergang",
+   "bs": "šetnja",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": false,
+   "anmerkung": "'ići u šetnju' = spazieren gehen. Der abendliche Bummel durch die Stadt heisst 'korzo' - das ist in BiH eine eigene soziale Einrichtung.",
+   "notiz": ""
+  },
+  {
+   "de": "stechen (Insekt)",
+   "bs": "ubosti",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": false,
+   "anmerkung": "'Ubola me osa' - eine Wespe hat mich gestochen.",
+   "notiz": ""
+  },
+  {
+   "de": "Vorsicht vor dem Hund!",
+   "bs": "Čuvaj se psa!",
+   "gruppe": "Rund ums Tier: Verben & Saetze",
+   "geaendert": false,
+   "anmerkung": "Die uebliche Aufschrift am Tor - zum Lesen, nicht zum Sagen.",
+   "notiz": ""
+  },
+  {
+   "de": "Bach",
+   "bs": "potok",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Blatt",
+   "bs": "list",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "'list' ist das Blatt am Baum, das Blatt Papier UND die Wade am Bein.",
+   "notiz": ""
+  },
+  {
+   "de": "Brunnen",
+   "bs": "bunar",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Erde / Boden",
+   "bs": "zemlja",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "WICHTIGER FALLSTRICK: 'zemlja' heisst auch Land/Staat. 'Iz koje si zemlje?' = Aus welchem Land bist du? Das schliesst direkt an die bekannte Laender-Luecke an und waere ein guter Aufhaenger dafuer.",
+   "notiz": ""
+  },
+  {
+   "de": "Feld / Acker",
+   "bs": "polje",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "Steckt in vielen Ortsnamen (Sarajevsko polje, Livanjsko polje).",
+   "notiz": ""
+  },
+  {
+   "de": "Fels",
+   "bs": "stijena",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Feuer",
+   "bs": "vatra",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "Auch als Warnruf. Steckt in 'vatrogasci' (Feuerwehr) - das fehlt in der App uebrigens auch.",
+   "notiz": ""
+  },
+  {
+   "de": "Gipfel",
+   "bs": "vrh",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "'vrh' heisst auch 'Spitze' im Sinne von 'das Beste' - 'to je vrh!'",
+   "notiz": ""
+  },
+  {
+   "de": "Gras",
+   "bs": "trava",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Hoehle",
+   "bs": "pećina",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Huegel",
+   "bs": "brdo",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "'brdo' ist der Huegel oder kleine Berg, 'planina' (schon in Level 10) das Gebirge. In BiH sagt man zu fast allem 'brdo' - das Land besteht daraus.",
+   "notiz": ""
+  },
+  {
+   "de": "Insel",
+   "bs": "ostrvo",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "Bosnisch/serbisch 'ostrvo', kroatisch 'otok'. Fuer BiH selbst kaum relevant (fast keine Kueste), aber beim Kroatien-Urlaub, den viele von dort machen, schon.",
+   "notiz": ""
+  },
+  {
+   "de": "Luft",
+   "bs": "zrak",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "Bosnisch 'zrak', serbisch 'vazduh' (in der Republika Srpska ueblich). Beides wird verstanden. Thema Luftqualitaet ist in Sarajevo und Zenica im Winter Dauerthema.",
+   "notiz": ""
+  },
+  {
+   "de": "Natur",
+   "bs": "priroda",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "'u prirodi' = draussen, im Gruenen. Sehr haeufige Wendung.",
+   "notiz": ""
+  },
+  {
+   "de": "Quelle",
+   "bs": "izvor",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "In BiH gibt es ueberall oeffentliche Trinkwasserquellen, an denen man Kanister fuellt. 'izvor' heisst auch Quelle im uebertragenen Sinn.",
+   "notiz": ""
+  },
+  {
+   "de": "Sand",
+   "bs": "pijesak",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Stein",
+   "bs": "kamen",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Tal",
+   "bs": "dolina",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ufer",
+   "bs": "obala",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Wasserfall",
+   "bs": "vodopad",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "Auch 'slap'. Kravica und die Pliva-Wasserfaelle sind Standard-Ausflugsziele - das Wort faellt im Sommer staendig.",
+   "notiz": ""
+  },
+  {
+   "de": "Weg / Pfad",
+   "bs": "put / staza",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "'put' ist Weg UND Reise ('sretan put' steht schon in Level 34). 'staza' ist der schmale Pfad, etwa beim Wandern.",
+   "notiz": ""
+  },
+  {
+   "de": "Wiese",
+   "bs": "livada",
+   "gruppe": "Natur & Landschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ast / Zweig",
+   "bs": "grana",
+   "gruppe": "Pflanzen & Baeume",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kamille",
+   "bs": "kamilica",
+   "gruppe": "Pflanzen & Baeume",
+   "geaendert": false,
+   "anmerkung": "In praktisch jedem Haushalt als Tee vorhanden.",
+   "notiz": ""
+  },
+  {
+   "de": "Linde",
+   "bs": "lipa",
+   "gruppe": "Pflanzen & Baeume",
+   "geaendert": false,
+   "anmerkung": "'lipin čaj' ist in BiH das Hausmittel bei Erkaeltung - passt zu Level 11 'Koerper & Gesundheit'.",
+   "notiz": ""
+  },
+  {
+   "de": "Minze",
+   "bs": "nana (auch: metvica)",
+   "gruppe": "Pflanzen & Baeume",
+   "geaendert": false,
+   "anmerkung": "VORSICHT: 'nana' ist in deiner App bereits 'Oma' (Level 4, plus 'kod nane' und 'nano!'). Echte Verwechslungsgefahr. Entweder 'metvica' nehmen oder ganz weglassen.",
+   "notiz": ""
+  },
+  {
+   "de": "Pflanze",
+   "bs": "biljka",
+   "gruppe": "Pflanzen & Baeume",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Pflaume / Pflaumenbaum",
+   "bs": "šljiva",
+   "gruppe": "Pflanzen & Baeume",
+   "geaendert": false,
+   "anmerkung": "Baum und Frucht heissen gleich. Die Pflaume ist Grundlage der Rakija und steht in jedem zweiten Garten - eines der bosnischsten Woerter ueberhaupt. Schliesst zugleich die bekannte Obst-Luecke.",
+   "notiz": ""
+  },
+  {
+   "de": "Walnuss / Walnussbaum",
+   "bs": "orah",
+   "gruppe": "Pflanzen & Baeume",
+   "geaendert": false,
+   "anmerkung": "Ebenfalls Baum und Frucht in einem Wort. Steckt in vielen Suessspeisen (baklava, orahnjača).",
+   "notiz": ""
+  },
+  {
+   "de": "Wurzel",
+   "bs": "korijen",
+   "gruppe": "Pflanzen & Baeume",
+   "geaendert": false,
+   "anmerkung": "Auch im uebertragenen Sinn - 'moji korijeni su u Bosni' (meine Wurzeln sind in Bosnien). Fuer die zweite und dritte Generation ein Satz, den sie brauchen.",
+   "notiz": ""
+  },
+  {
+   "de": "Blitz",
+   "bs": "munja",
+   "gruppe": "Am Himmel (Ergaenzung Level 10)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Donner",
+   "bs": "grmljavina",
+   "gruppe": "Am Himmel (Ergaenzung Level 10)",
+   "geaendert": false,
+   "anmerkung": "'grmljavina' ist das Grollen/Gewitter, 'grom' der einzelne Donnerschlag. Siehe Unsicherheiten.",
+   "notiz": ""
+  },
+  {
+   "de": "Eis",
+   "bs": "led",
+   "gruppe": "Am Himmel (Ergaenzung Level 10)",
+   "geaendert": false,
+   "anmerkung": "'led' ist gefrorenes Wasser. Speiseeis heisst 'sladoled' - darin steckt dasselbe Wort.",
+   "notiz": ""
+  },
+  {
+   "de": "Nebel",
+   "bs": "magla",
+   "gruppe": "Am Himmel (Ergaenzung Level 10)",
+   "geaendert": false,
+   "anmerkung": "In den Talkesseln um Sarajevo und Zenica den halben Winter lang Thema.",
+   "notiz": ""
+  },
+  {
+   "de": "Regenbogen",
+   "bs": "duga",
+   "gruppe": "Am Himmel (Ergaenzung Level 10)",
+   "geaendert": false,
+   "anmerkung": "'duga' heisst als Adjektiv auch 'lang' (weiblich).",
+   "notiz": ""
+  },
+  {
+   "de": "Schatten",
+   "bs": "hlad",
+   "gruppe": "Am Himmel (Ergaenzung Level 10)",
+   "geaendert": false,
+   "anmerkung": "'hlad' ist der kuehle Schatten zum Sitzen ('sjedimo u hladu'), 'sjena'/'sjenka' der Schattenriss. Siehe Unsicherheiten.",
+   "notiz": ""
+  },
+  {
+   "de": "Sturm",
+   "bs": "oluja",
+   "gruppe": "Am Himmel (Ergaenzung Level 10)",
+   "geaendert": false,
+   "anmerkung": "HINWEIS ZUR SENSIBILITAET: 'Oluja' ist zugleich der Name der kroatischen Militaeroperation von 1995. Als Wetterwort voellig normal, aber ich wuerde keinen Beispielsatz drumherum bauen.",
+   "notiz": ""
+  },
+  {
+   "de": "gefaehrlich",
+   "bs": "opasno",
+   "gruppe": "Draussen: Warnung & Sicherheit",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Gefahr",
+   "bs": "opasnost",
+   "gruppe": "Draussen: Warnung & Sicherheit",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Mine (Landmine)",
+   "bs": "mina",
+   "gruppe": "Draussen: Warnung & Sicherheit",
+   "geaendert": false,
+   "anmerkung": "Die Warnschilder tragen die Aufschrift 'PAŽNJA MINE'. In BiH sind Flaechen bis heute vermint, und wer abseits der Wege wandert, muss dieses Schild lesen koennen. Ob so ein Wort in eine Lern-App gehoert, ist deine Entscheidung - ich halte es fuer eine ernste Sicherheitsfrage und nicht fuer Folklore. Vor der Aufnahme die genaue Schilderaufschrift an einem Foto gegenpruefen.",
+   "notiz": ""
+  },
+  {
+   "de": "verboten",
+   "bs": "zabranjeno",
+   "gruppe": "Draussen: Warnung & Sicherheit",
+   "geaendert": false,
+   "anmerkung": "Steht auf unzaehligen Schildern ('zabranjen ulaz' = Zutritt verboten, 'zabranjeno pušenje' = Rauchen verboten). Reines Leseverstehen, aber taeglich noetig.",
+   "notiz": ""
+  },
+  {
+   "de": "Vorsicht! / Pass auf!",
+   "bs": "Pazi!",
+   "gruppe": "Draussen: Warnung & Sicherheit",
+   "geaendert": false,
+   "anmerkung": "Fehlt komplett - dabei ist es eines der haeufigsten Woerter ueberhaupt. Hoeflich/Sie-Form: 'Pazite!'",
+   "notiz": ""
+  },
+  {
+   "de": "Backofen",
+   "bs": "rerna",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "Der Herd \"šporet\" ist schon drin. \"pećnica\" ist die schriftsprachliche Variante, \"rerna\" die im Alltag gebräuchliche. Siehe Unsicherheiten.",
+   "notiz": ""
+  },
+  {
+   "de": "Flasche",
+   "bs": "flaša",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"boca\". In Bosnien \"flaša\".",
+   "notiz": ""
+  },
+  {
+   "de": "Gabel",
+   "bs": "viljuška",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "Löffel (kašika) und Messer (nož) sind schon in Level 25 drin, die Gabel fehlt. Kroatisch wäre \"vilica\", in Bosnien sagt man \"viljuška\".",
+   "notiz": ""
+  },
+  {
+   "de": "Gefrierschrank",
+   "bs": "zamrzivač",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "Ergänzt \"frižider\", das schon in Level 9 steht.",
+   "notiz": ""
+  },
+  {
+   "de": "Geschirr",
+   "bs": "suđe",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"posuđe\". Braucht man täglich zusammen mit \"prati suđe\".",
+   "notiz": ""
+  },
+  {
+   "de": "Geschirr spülen",
+   "bs": "prati suđe",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "\"prati veš\" (Wäsche waschen) ist schon in Level 30 - das Gegenstück fehlt.",
+   "notiz": ""
+  },
+  {
+   "de": "Pfanne",
+   "bs": "tava",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "Auch \"tiganj\" ist verbreitet; \"tava\" (aus dem Türkischen) ist in Bosnien die gängigere Form.",
+   "notiz": ""
+  },
+  {
+   "de": "Teller",
+   "bs": "tanjir",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"tanjur\", bosnisch/serbisch \"tanjir\".",
+   "notiz": ""
+  },
+  {
+   "de": "Topf",
+   "bs": "lonac",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "Steckt auch im Gericht \"bosanski lonac\" - schöner Anknüpfungspunkt.",
+   "notiz": ""
+  },
+  {
+   "de": "Tüte / Plastiktüte",
+   "bs": "kesa",
+   "gruppe": "Küche & Geschirr",
+   "geaendert": false,
+   "anmerkung": "An jeder Kasse in Bosnien: \"Treba li vam kesa?\" (Brauchen Sie eine Tüte?). Kroatisch \"vrećica\".",
+   "notiz": ""
+  },
+  {
+   "de": "aufräumen",
+   "bs": "pospremiti",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "In Bosnien auch \"raspremiti\" oder \"počistiti\". Siehe Unsicherheiten - bitte gegenlesen lassen.",
+   "notiz": ""
+  },
+  {
+   "de": "Besen",
+   "bs": "metla",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Bügeleisen",
+   "bs": "pegla",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "bügeln",
+   "bs": "peglati",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Passt gut in Level 30 neben \"prati veš\".",
+   "notiz": ""
+  },
+  {
+   "de": "Eimer",
+   "bs": "kanta",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Auch \"kofa\" wird in Bosnien gesagt.",
+   "notiz": ""
+  },
+  {
+   "de": "Müll",
+   "bs": "smeće",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Kein einziger Treffer im Bestand. \"Baciti smeće\" (den Müll rausbringen) gehört zum Alltag.",
+   "notiz": ""
+  },
+  {
+   "de": "Mülleimer / Mülltonne",
+   "bs": "kanta za smeće",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "sauber",
+   "bs": "čisto",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Das Verb \"čistiti\" (putzen) ist in Level 30, das Adjektiv fehlt. Formen: čist / čista / čisto.",
+   "notiz": ""
+  },
+  {
+   "de": "schmutzig",
+   "bs": "prljavo",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Formen: prljav / prljava / prljavo.",
+   "notiz": ""
+  },
+  {
+   "de": "Staubsauger",
+   "bs": "usisivač",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"usisavač\" - der Unterschied ist nur ein Buchstabe.",
+   "notiz": ""
+  },
+  {
+   "de": "Waschmaschine",
+   "bs": "veš mašina",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Auch \"mašina za veš\". Kroatisch \"perilica rublja\" - das sagt in Bosnien niemand. Im Bestand steht nur \"mašina\" = Maschine (Level 36).",
+   "notiz": ""
+  },
+  {
+   "de": "Waschmittel",
+   "bs": "deterdžent",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Deckt auch Spülmittel ab: \"deterdžent za suđe\".",
+   "notiz": ""
+  },
+  {
+   "de": "Wäsche",
+   "bs": "veš",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Steckt bisher nur im Satz \"prati veš\", fehlt als eigenes Wort. Heißt auch Unterwäsche (donji veš).",
+   "notiz": ""
+  },
+  {
+   "de": "Wäscheleine",
+   "bs": "štrik",
+   "gruppe": "Putzen & Wäsche",
+   "geaendert": false,
+   "anmerkung": "Umgangssprachlich (vom deutschen \"Strick\"). Standardsprachlich \"konopac za veš\".",
+   "notiz": ""
+  },
+  {
+   "de": "ausschalten / ausmachen",
+   "bs": "ugasiti",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "\"Ugasi televizor\" - Mach den Fernseher aus.",
+   "notiz": ""
+  },
+  {
+   "de": "Boiler / Warmwasserspeicher",
+   "bs": "bojler",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Zentral im bosnischen Alltag: Warmwasser kommt meist aus dem Bojler, den man vorher anschaltet. \"Upali bojler\" ist ein Satz, den man wirklich sagt.",
+   "notiz": ""
+  },
+  {
+   "de": "Brennholz",
+   "bs": "drva",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Achtung Falle: \"drvo\" steht schon als \"Baum\" in Level 10. Die Mehrzahl \"drva\" bedeutet Brennholz. Unbedingt als eigenes Wort mit Erklärung.",
+   "notiz": ""
+  },
+  {
+   "de": "einschalten / anmachen",
+   "bs": "upaliti",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "\"Upali svjetlo\" - Mach das Licht an. Gilt auch für Herd, Ofen, Fernseher.",
+   "notiz": ""
+  },
+  {
+   "de": "Es gibt keinen Strom",
+   "bs": "Nema struje",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Den Satz hört man in Bosnien wirklich oft. Passt zum Muster \"Nema problema\", das schon in Level 15 steht.",
+   "notiz": ""
+  },
+  {
+   "de": "Glühbirne",
+   "bs": "sijalica",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Die Lampe \"lampa\" ist schon in Level 9.",
+   "notiz": ""
+  },
+  {
+   "de": "Heizung",
+   "bs": "grijanje",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Serbisch \"grejanje\". Bosnisch ijekavisch: \"grijanje\".",
+   "notiz": ""
+  },
+  {
+   "de": "Kohle",
+   "bs": "ugalj",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Licht",
+   "bs": "svjetlo",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Bosnisch/kroatisch \"svjetlo\" (ijekavisch), serbisch \"svetlo\". Die App nutzt durchgängig ijekavisch (mlijeko, snijeg) - passt.",
+   "notiz": ""
+  },
+  {
+   "de": "Ofen (Heizofen)",
+   "bs": "peć",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "In vielen bosnischen Haushalten wird mit Holz geheizt - der \"peć\" ist Alltag, nicht Folklore.",
+   "notiz": ""
+  },
+  {
+   "de": "Sicherung",
+   "bs": "osigurač",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Nicht verwechseln mit \"osiguranje\" (Versicherung), das in Level 39 steht - gleiche Wortwurzel, anderes Ding. Guter Merkhinweis.",
+   "notiz": ""
+  },
+  {
+   "de": "Steckdose",
+   "bs": "utičnica",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Umgangssprachlich hört man auch \"šteker\", das meint aber eher den Stecker.",
+   "notiz": ""
+  },
+  {
+   "de": "Stecker",
+   "bs": "utikač",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Strom",
+   "bs": "struja",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "Fehlt völlig, obwohl Stromausfälle in Bosnien Alltagsthema sind.",
+   "notiz": ""
+  },
+  {
+   "de": "warmes Wasser",
+   "bs": "topla voda",
+   "gruppe": "Strom, Licht & Heizung",
+   "geaendert": false,
+   "anmerkung": "\"toplo\" und \"voda\" sind einzeln da (Level 10 und 5), die Wendung fehlt. Gegenstück: \"hladna voda\".",
+   "notiz": ""
+  },
+  {
+   "de": "Es funktioniert nicht",
+   "bs": "Ne radi",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "Wörtlich \"es arbeitet nicht\". \"raditi\" steht schon als \"arbeiten\" in Level 14 - schöne Brücke, aber die Bedeutung muss man lernen.",
+   "notiz": ""
+  },
+  {
+   "de": "Es läuft aus / es tropft",
+   "bs": "Curi voda",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "Der Satz, mit dem man den majstor ruft.",
+   "notiz": "curi voda heißt eher wasser läuft aus curi reicht als läuft aus"
+  },
+  {
+   "de": "Hammer",
+   "bs": "čekić",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Handwerker / Fachmann",
+   "bs": "majstor",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "Universalwort: Klempner, Elektriker, Automechaniker, Fliesenleger - alle heißen \"majstor\". Man ruft \"majstora\". Ein Wort, das enorm viel Alltag abdeckt.",
+   "notiz": ""
+  },
+  {
+   "de": "kaputt",
+   "bs": "pokvaren / pokvarena / pokvareno",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "Die App zeigt m/w-Formen schon bei \"gladan/gladna\". Hier braucht es auch die sächliche Form, weil meist Dinge kaputt sind.",
+   "notiz": ""
+  },
+  {
+   "de": "Leiter",
+   "bs": "merdevine",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"ljestve\". Nur Mehrzahl, wie im Bosnischen auch \"vrata\" (Tür).",
+   "notiz": ""
+  },
+  {
+   "de": "Nagel",
+   "bs": "ekser",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"čavao\", in Bosnien \"ekser\".",
+   "notiz": ""
+  },
+  {
+   "de": "reparieren",
+   "bs": "popraviti",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schloss (Türschloss)",
+   "bs": "brava",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "Der Schlüssel \"ključ\" ist schon in Level 9, das Schloss fehlt.",
+   "notiz": ""
+  },
+  {
+   "de": "Schraube",
+   "bs": "šaraf",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "Standardsprachlich \"vijak\". Schreibweise unsicher (šaraf/šraf) - siehe Unsicherheiten.",
+   "notiz": "seraf ist umgangssprachlich saraf ist aber richtig"
+  },
+  {
+   "de": "Wasserhahn",
+   "bs": "slavina",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "In Bosnien wird auch \"česma\" gesagt (besonders für den Hahn draußen und den Brunnen), im Badezimmer außerdem \"baterija\". Alle drei sind gängig; \"slavina\" ist die neutralste.",
+   "notiz": "cesma ist richtig"
+  },
+  {
+   "de": "Werkzeug",
+   "bs": "alat",
+   "gruppe": "Reparatur & Handwerk",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Bettwäsche",
+   "bs": "posteljina",
+   "gruppe": "Möbel & Textilien",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Decke (Bettdecke)",
+   "bs": "deka",
+   "gruppe": "Möbel & Textilien",
+   "geaendert": false,
+   "anmerkung": "\"ćebe\" ist die Wolldecke, \"jorgan\" die dicke traditionelle Steppdecke - in bosnischen Haushalten sehr präsent. Siehe Unsicherheiten.",
+   "notiz": ""
+  },
+  {
+   "de": "Kissen",
+   "bs": "jastuk",
+   "gruppe": "Möbel & Textilien",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Regal / Brett",
+   "bs": "polica",
+   "gruppe": "Möbel & Textilien",
+   "geaendert": false,
+   "anmerkung": "Auch das Regal im Supermarkt.",
+   "notiz": ""
+  },
+  {
+   "de": "Schrank",
+   "bs": "ormar",
+   "gruppe": "Möbel & Textilien",
+   "geaendert": false,
+   "anmerkung": "Level 9 hat Tisch, Stuhl, Bett - der Schrank fehlt.",
+   "notiz": ""
+  },
+  {
+   "de": "Sofa",
+   "bs": "kauč",
+   "gruppe": "Möbel & Textilien",
+   "geaendert": false,
+   "anmerkung": "Auch \"trosjed\" (Dreisitzer). Im Alltag \"kauč\".",
+   "notiz": "nimm secija"
+  },
+  {
+   "de": "Vorhang",
+   "bs": "zavjesa",
+   "gruppe": "Möbel & Textilien",
+   "geaendert": false,
+   "anmerkung": "Serbisch \"zavesa\". Bosnisch ijekavisch \"zavjesa\".",
+   "notiz": ""
+  },
+  {
+   "de": "Dusche",
+   "bs": "tuš",
+   "gruppe": "Bad & Körperpflege",
+   "geaendert": false,
+   "anmerkung": "Das Verb \"tuširati se\" ist in Level 30, das Hauptwort fehlt.",
+   "notiz": ""
+  },
+  {
+   "de": "Spiegel",
+   "bs": "ogledalo",
+   "gruppe": "Bad & Körperpflege",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Toilette",
+   "bs": "WC",
+   "gruppe": "Bad & Körperpflege",
+   "geaendert": false,
+   "anmerkung": "Wird \"ve-ce\" ausgesprochen. Auch \"toalet\". Das Bad \"kupatilo\" ist schon in Level 9, die Toilette fehlt - und danach fragt man unterwegs ständig: \"Gdje je WC?\"",
+   "notiz": ""
+  },
+  {
+   "de": "Toilettenpapier",
+   "bs": "toalet papir",
+   "gruppe": "Bad & Körperpflege",
+   "geaendert": false,
+   "anmerkung": "Steht auf jedem Einkaufszettel.",
+   "notiz": "oder auch wc papir"
+  },
+  {
+   "de": "Waschbecken",
+   "bs": "lavabo",
+   "gruppe": "Bad & Körperpflege",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Zahnbürste",
+   "bs": "četkica za zube",
+   "gruppe": "Bad & Körperpflege",
+   "geaendert": false,
+   "anmerkung": "\"prati zube\" und \"zub\" sind schon da - gute Anknüpfung.",
+   "notiz": ""
+  },
+  {
+   "de": "Zahnpasta",
+   "bs": "pasta za zube",
+   "gruppe": "Bad & Körperpflege",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Aufzug",
+   "bs": "lift",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "Das Stockwerk \"sprat\" ist schon in Level 41.",
+   "notiz": ""
+  },
+  {
+   "de": "Briefkasten",
+   "bs": "poštansko sanduče",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "Kurz auch nur \"sanduče\". Die Post \"pošta\" ist schon in Level 39.",
+   "notiz": ""
+  },
+  {
+   "de": "Dach",
+   "bs": "krov",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Dachboden",
+   "bs": "tavan",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "dachgeschoss ist potkrovlje"
+  },
+  {
+   "de": "Fußboden",
+   "bs": "pod",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "Achtung: \"pod\" ist auch die Präposition \"unter\" - steht schon so in Level 25 (\"pod stolom\"). Braucht einen klaren Hinweis.",
+   "notiz": ""
+  },
+  {
+   "de": "Hausmeister",
+   "bs": "domar",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "In Mehrfamilienhäusern der Ansprechpartner für alles.",
+   "notiz": ""
+  },
+  {
+   "de": "Keller",
+   "bs": "podrum",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "Wichtig, weil dort Brennholz und Eingemachtes (zimnica) lagern.",
+   "notiz": ""
+  },
+  {
+   "de": "Klingel",
+   "bs": "zvono",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "klingeln",
+   "bs": "zvoniti",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "Auch fürs Telefon: \"Zvoni telefon\".",
+   "notiz": ""
+  },
+  {
+   "de": "Nachbarin",
+   "bs": "komšinica",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "\"komšija\" ist in Level 9, die weibliche Form fehlt - und die braucht man im Haus täglich.",
+   "notiz": ""
+  },
+  {
+   "de": "Wand",
+   "bs": "zid",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Zaun",
+   "bs": "ograda",
+   "gruppe": "Haus & Nachbarschaft",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "bezahlen",
+   "bs": "platiti",
+   "gruppe": "Geld im Alltag",
+   "geaendert": false,
+   "anmerkung": "Steckt bisher nur in ganzen Sätzen (\"Mogu li platiti karticom\"), fehlt als eigenes Verb in Level 14.",
+   "notiz": ""
+  },
+  {
+   "de": "Fening (1/100 Mark)",
+   "bs": "fening",
+   "gruppe": "Geld im Alltag",
+   "geaendert": false,
+   "anmerkung": "1 KM = 100 feninga. Münzen gibt es zu 10, 20 und 50 Feninga. Geprüft, nicht geraten.",
+   "notiz": ""
+  },
+  {
+   "de": "Kassenbon / Quittung",
+   "bs": "fiskalni račun",
+   "gruppe": "Geld im Alltag",
+   "geaendert": false,
+   "anmerkung": "\"račun\" ist schon doppelt belegt (Konto in Level 39, Rechnung im Restaurant in Level 5). Der Kassenbon heißt in BiH ausdrücklich \"fiskalni račun\" - den braucht man beim Umtausch.",
+   "notiz": ""
+  },
+  {
+   "de": "Kleingeld",
+   "bs": "sitno",
+   "gruppe": "Geld im Alltag",
+   "geaendert": false,
+   "anmerkung": "\"Imate li sitno?\" fragt in Bosnien fast jede Kassiererin. Auch \"sitniš\" - siehe Unsicherheiten.",
+   "notiz": "man sagt eher für kleingeld sico und wenn man statt 100 mark gibt sondern 50 und nochmal 50 sagt man sitno darauf ist imas li sitno gemeint"
+  },
+  {
+   "de": "Mark (KM, die Währung im Alltag)",
+   "bs": "marka",
+   "gruppe": "Geld im Alltag",
+   "geaendert": false,
+   "anmerkung": "\"konvertibilna marka\" steht in Level 40, aber so sagt es niemand. Im Laden hört man \"deset maraka\" oder \"deset KM\". Diese Alltagsform fehlt und ist beim Einkaufen die wichtigste von allen. Geprüft: bs.wikipedia.org/wiki/Konvertibilna_marka",
+   "notiz": ""
+  },
+  {
+   "de": "Stromrechnung",
+   "bs": "račun za struju",
+   "gruppe": "Geld im Alltag",
+   "geaendert": false,
+   "anmerkung": "Nach dem gleichen Muster: račun za vodu, račun za telefon. Die Nebenkosten \"režije\" sind schon in Level 41.",
+   "notiz": ""
+  },
+  {
+   "de": "Trinkgeld",
+   "bs": "bakšiš",
+   "gruppe": "Geld im Alltag",
+   "geaendert": false,
+   "anmerkung": "Auch \"napojnica\" (neutraler, schriftlich). \"bakšiš\" ist in Bosnien die Alltagsform.",
+   "notiz": ""
+  },
+  {
+   "de": "Wechselgeld / Rückgeld",
+   "bs": "kusur",
+   "gruppe": "Geld im Alltag",
+   "geaendert": false,
+   "anmerkung": "\"Vratite mi kusur\" - Geben Sie mir das Rückgeld. Aus dem Türkischen, im ganzen Land gebräuchlich. Geprüft über hjp.znanje.hr.",
+   "notiz": ""
+  },
+  {
+   "de": "Butter",
+   "bs": "puter",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"maslac\", in Bosnien \"puter\".",
+   "notiz": ""
+  },
+  {
+   "de": "Essig",
+   "bs": "sirće",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"ocat\", bosnisch \"sirće\".",
+   "notiz": ""
+  },
+  {
+   "de": "Honig",
+   "bs": "med",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Bosnischer Honig ist ein typisches Gastgeschenk. Die Biene \"pčela\" steht schon in Level 10.",
+   "notiz": ""
+  },
+  {
+   "de": "Joghurt",
+   "bs": "jogurt",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Wird in Bosnien zu Pita getrunken, nicht gelöffelt.",
+   "notiz": ""
+  },
+  {
+   "de": "Mehl",
+   "bs": "brašno",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Ohne Mehl keine Pita - und \"pita\" ist schon in Level 5.",
+   "notiz": ""
+  },
+  {
+   "de": "Nudeln",
+   "bs": "tjestenina",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Umgangssprachlich auch \"makarone\" oder \"pasta\". Reis \"riža\" ist schon da.",
+   "notiz": ""
+  },
+  {
+   "de": "Pfeffer",
+   "bs": "biber",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"papar\", bosnisch \"biber\". Ergänzt Salz \"so\" aus Level 5.",
+   "notiz": ""
+  },
+  {
+   "de": "Sauerrahm / Schmand",
+   "bs": "pavlaka",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Steht in fast jedem bosnischen Rezept. Verwandt: \"kajmak\".",
+   "notiz": "pavlaka ist sauerrahm und kajmak ist schmand und vrhnja sahne"
+  },
+  {
+   "de": "Speiseöl",
+   "bs": "ulje",
+   "gruppe": "Vorrat & Grundnahrungsmittel",
+   "geaendert": false,
+   "anmerkung": "Level 5 hat Salz und Zucker, aber kein Öl und kein Mehl - die beiden Grundzutaten jeder bosnischen Küche.",
+   "notiz": ""
+  },
+  {
+   "de": "Ausland",
+   "bs": "inostranstvo",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Genau das Wort, das die Diaspora ueber sich selbst benutzt: \"Živim u inostranstvu\". Kroatisch \"inozemstvo\".",
+   "notiz": ""
+  },
+  {
+   "de": "Bosnien",
+   "bs": "Bosna",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Grundform. Im Alltag sagt man meist nur \"Bosna\", nicht den vollen Staatsnamen.",
+   "notiz": ""
+  },
+  {
+   "de": "Bosnien und Herzegowina",
+   "bs": "Bosna i Hercegovina",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Kurzform BiH, gesprochen \"Be-I-Ha\". Im Bestand nur als gebeugte Form \"iz Bosne\" (Level 22), nie als Wort.",
+   "notiz": ""
+  },
+  {
+   "de": "Deutschland",
+   "bs": "Njemačka",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Im Bestand nur als \"iz Njemačke\" (Level 22). Serbisch heisst es \"Nemačka\" ohne j - in Bosnien immer mit je (ijekavisch).",
+   "notiz": ""
+  },
+  {
+   "de": "die Niederlande",
+   "bs": "Holandija",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Im Alltag in BiH fast immer \"Holandija\". \"Nizozemska\" ist die kroatische Form und der Titel in der bosnischen Wikipedia, wird gesprochen aber kaum benutzt.",
+   "notiz": ""
+  },
+  {
+   "de": "die Schweiz",
+   "bs": "Švicarska",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Variante \"Švajcarska\" (serbisch gepraegt) ist in BiH ebenfalls verbreitet. Bosnische Wikipedia fuehrt \"Švicarska\" zuerst.",
+   "notiz": ""
+  },
+  {
+   "de": "die Türkei",
+   "bs": "Turska",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Grosse bosnische Diaspora, historisch enge Verbindung.",
+   "notiz": ""
+  },
+  {
+   "de": "Dänemark",
+   "bs": "Danska",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Frankreich",
+   "bs": "Francuska",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Heimat",
+   "bs": "domovina",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Gefuehlsbeladenes Wort, kommt in Liedern und bei Familienfeiern vor.",
+   "notiz": ""
+  },
+  {
+   "de": "Herzegowina",
+   "bs": "Hercegovina",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Der Suedteil des Landes, Mostar liegt dort. Wer aus Mostar stammt, sagt oft \"iz Hercegovine\".",
+   "notiz": ""
+  },
+  {
+   "de": "Ich bin in Deutschland geboren (m/w)",
+   "bs": "Rođen sam u Njemačkoj / Rođena sam u Njemačkoj",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Der Satz der zweiten Generation. Maennlich \"rođen\", weiblich \"rođena\".",
+   "notiz": ""
+  },
+  {
+   "de": "Ich komme aus Bosnien",
+   "bs": "Ja sam iz Bosne",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Fuer die zweite und dritte Generation die haeufigste Selbstbeschreibung.",
+   "notiz": ""
+  },
+  {
+   "de": "Ich komme aus Deutschland",
+   "bs": "Ja sam iz Njemačke",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Die direkte Antwort auf \"Odakle si?\" aus Level 16. Genau diese Antwort fehlt der App bisher.",
+   "notiz": ""
+  },
+  {
+   "de": "Ich lebe in Deutschland",
+   "bs": "Živim u Njemačkoj",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Das Verb \"živjeti\" (leben) fehlt bisher ganz - die App kennt nur \"stanovati\" (wohnen).",
+   "notiz": ""
+  },
+  {
+   "de": "Kroatien",
+   "bs": "Hrvatska",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Nachbarland, und fuer viele der Weg ans Meer.",
+   "notiz": ""
+  },
+  {
+   "de": "Land / Staat",
+   "bs": "država",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Fehlt komplett, obwohl \"državljanstvo\" (Staatsbuergerschaft) in Level 39 steht - das Grundwort fehlt also, die Ableitung ist da.",
+   "notiz": ""
+  },
+  {
+   "de": "Meine Familie ist aus Bosnien",
+   "bs": "Moja porodica je iz Bosne",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Kroatisch waere \"obitelj\" statt \"porodica\" - in Bosnien sagt man porodica, steht schon richtig in Level 4.",
+   "notiz": ""
+  },
+  {
+   "de": "Montenegro",
+   "bs": "Crna Gora",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Woertlich \"Schwarzer Berg\", zwei Woerter, beide gross. Beliebtes Urlaubsziel aus BiH.",
+   "notiz": ""
+  },
+  {
+   "de": "Norwegen",
+   "bs": "Norveška",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schweden",
+   "bs": "Švedska",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Eines der wichtigsten Aufnahmelaender nach 1992.",
+   "notiz": ""
+  },
+  {
+   "de": "Serbien",
+   "bs": "Srbija",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Nachbarland.",
+   "notiz": ""
+  },
+  {
+   "de": "Slowenien",
+   "bs": "Slovenija",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Viele Bosnier arbeiten dort oder haben Verwandte dort.",
+   "notiz": ""
+  },
+  {
+   "de": "Welt",
+   "bs": "svijet",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Serbisch \"svet\" ohne i. In Bosnien immer \"svijet\".",
+   "notiz": ""
+  },
+  {
+   "de": "Wo bist du geboren? (m/w)",
+   "bs": "Gdje si rođen? / Gdje si rođena?",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Die Frage wird fast immer gleich nach \"Odakle si?\" gestellt.",
+   "notiz": ""
+  },
+  {
+   "de": "Österreich",
+   "bs": "Austrija",
+   "gruppe": "Länder & Herkunft (neues Level)",
+   "geaendert": false,
+   "anmerkung": "Zweitgroesste bosnische Diaspora nach Deutschland.",
+   "notiz": ""
+  },
+  {
+   "de": "Bosniake / Bosniakin",
+   "bs": "Bošnjak / Bošnjakinja",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "VOLKSZUGEHOERIGKEIT: eines der drei konstitutiven Voelker (Bosniaken, Serben, Kroaten). Ein bosnischer Serbe ist Bosanac, aber nicht Bošnjak. Dieser Unterschied gehoert als Hinweis in die App.",
+   "notiz": ""
+  },
+  {
+   "de": "Bosnier / Bosnierin",
+   "bs": "Bosanac / Bosanka",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "STAATSANGEHOERIGKEIT: jeder Buerger von BiH, unabhaengig von Volk und Religion. Nicht dasselbe wie Bošnjak. Weibliche Form ist ein eigenes Wort, nicht nur eine Endung.",
+   "notiz": ""
+  },
+  {
+   "de": "Deutscher / Deutsche",
+   "bs": "Nijemac / Njemica",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "Haeufiger Schreibfehler: maennlich mit ije (Nijemac), weiblich mit je (Njemica). Nicht \"Njemac\", nicht \"Nijemica\".",
+   "notiz": ""
+  },
+  {
+   "de": "Däne / Dänin",
+   "bs": "Danac / Dankinja",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Franzose / Französin",
+   "bs": "Francuz / Francuskinja",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ich bin Bosnier / Bosnierin",
+   "bs": "Ja sam Bosanac / Ja sam Bosanka",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "Nationalitaeten werden im Bosnischen grossgeschrieben, Sprachen dagegen klein (bosanski).",
+   "notiz": ""
+  },
+  {
+   "de": "Ich bin Deutscher / Deutsche",
+   "bs": "Ja sam Nijemac / Ja sam Njemica",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kroate / Kroatin",
+   "bs": "Hrvat / Hrvatica",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "Sowohl Nachbarland als auch eines der drei konstitutiven Voelker in BiH.",
+   "notiz": ""
+  },
+  {
+   "de": "Montenegriner / Montenegrinerin",
+   "bs": "Crnogorac / Crnogorka",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Niederländer / Niederländerin",
+   "bs": "Holanđanin / Holanđanka",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Norweger / Norwegerin",
+   "bs": "Norvežanin / Norvežanka",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Religion / Glaube",
+   "bs": "vjera",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "\"vjera\" heisst Glaube und Religion zugleich; \"religija\" gibt es auch, klingt formeller. Serbisch \"vera\". Sensibles Thema - der Auftraggeber sollte entscheiden, ob das in eine Lern-App gehoert.",
+   "notiz": ""
+  },
+  {
+   "de": "Schwede / Schwedin",
+   "bs": "Šveđanin / Šveđanka",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schweizer / Schweizerin",
+   "bs": "Švicarac / Švicarka",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "Passend zur Landesform: wer \"Švajcarska\" sagt, sagt auch \"Švajcarac / Švajcarka\".",
+   "notiz": ""
+  },
+  {
+   "de": "Serbe / Serbin",
+   "bs": "Srbin / Srpkinja",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "Weibliche Form ist unregelmaessig: Srbin, aber Srpkinja (mit p). Auch eines der drei konstitutiven Voelker in BiH.",
+   "notiz": ""
+  },
+  {
+   "de": "Türke / Türkin",
+   "bs": "Turčin / Turkinja",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "Maennlich Turčin (mit č), weiblich Turkinja (mit k). Unregelmaessig.",
+   "notiz": ""
+  },
+  {
+   "de": "Volk",
+   "bs": "narod",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "Heisst auch schlicht \"die Leute\" im Sinne von Publikum: \"Ima puno naroda\" = Da sind viele Leute.",
+   "notiz": ""
+  },
+  {
+   "de": "Österreicher / Österreicherin",
+   "bs": "Austrijanac / Austrijanka",
+   "gruppe": "Nationalitäten (m/w)",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Bosnisch (die Sprache)",
+   "bs": "bosanski",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Steckt bisher nur in fertigen Saetzen. Sprachen werden kleingeschrieben, Nationalitaeten gross.",
+   "notiz": ""
+  },
+  {
+   "de": "Deutsch (die Sprache)",
+   "bs": "njemački",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Steckt bisher nur in \"Govoriš li njemački?\" (Level 1).",
+   "notiz": ""
+  },
+  {
+   "de": "Englisch (die Sprache)",
+   "bs": "engleski",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Steckt bisher nur in \"Govoriš li engleski?\" (Level 16).",
+   "notiz": ""
+  },
+  {
+   "de": "Ich spreche Deutsch",
+   "bs": "Govorim njemački",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Die App fragt \"Govoriš li njemački?\", liefert aber keine Antwort.",
+   "notiz": ""
+  },
+  {
+   "de": "Ich spreche kein Bosnisch",
+   "bs": "Ne govorim bosanski",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Der wichtigste Notfallsatz fuer Anfaenger.",
+   "notiz": ""
+  },
+  {
+   "de": "Kannst du das wiederholen?",
+   "bs": "Možeš li ponoviti?",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Das Verb \"ponoviti\" (wiederholen) fehlt bisher ganz.",
+   "notiz": ""
+  },
+  {
+   "de": "Muttersprache",
+   "bs": "maternji jezik",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Kroatisch \"materinski jezik\". In BiH \"maternji\".",
+   "notiz": ""
+  },
+  {
+   "de": "Sprache",
+   "bs": "jezik",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Fehlt komplett, obwohl die App staendig ueber Sprachen spricht. Achtung: \"jezik\" heisst auch Zunge.",
+   "notiz": ""
+  },
+  {
+   "de": "Sprich bitte langsamer",
+   "bs": "Molim te, pričaj sporije",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Sie-Form: \"Molim Vas, pričajte sporije\". \"pričati\" (reden) fehlt bisher, die App kennt nur \"govoriti\".",
+   "notiz": ""
+  },
+  {
+   "de": "Sprichst du Bosnisch?",
+   "bs": "Govoriš li bosanski?",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Was bedeutet das?",
+   "bs": "Šta to znači?",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Kroatisch waere \"Što to znači?\" - in Bosnien \"Šta\", steht schon richtig in Level 16.",
+   "notiz": ""
+  },
+  {
+   "de": "Wie sagt man das auf Bosnisch?",
+   "bs": "Kako se to kaže na bosanskom?",
+   "gruppe": "Sprachen",
+   "geaendert": false,
+   "anmerkung": "Der Satz, mit dem man sich selbst weiterhilft - ideal fuer eine Lern-App.",
+   "notiz": ""
+  },
+  {
+   "de": "Banja Luka",
+   "bs": "Banja Luka",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "Zweitgroesste Stadt, zwei Woerter, beide gross.",
+   "notiz": ""
+  },
+  {
+   "de": "Bihać",
+   "bs": "Bihać",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "Gesprochen \"Bihatsch\" mit weichem tsch (ć).",
+   "notiz": ""
+  },
+  {
+   "de": "Hauptstadt",
+   "bs": "glavni grad",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "Woertlich \"Hauptstadt\". \"grad\" ist schon da (Level 13).",
+   "notiz": ""
+  },
+  {
+   "de": "Ich fahre nach Mostar",
+   "bs": "Idem u Mostar",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "ja vozim za mostar"
+  },
+  {
+   "de": "Ich wohne in Sarajevo",
+   "bs": "Živim u Sarajevu",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "Fuehrt das fehlende Verb \"živjeti\" an einem bekannten Beispiel ein.",
+   "notiz": "ja zivim u sarajevo wenn es das wort ich gibt muss ja hinkommen"
+  },
+  {
+   "de": "Mostar",
+   "bs": "Mostar",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "Staedtenamen bleiben gleich - hier geht es um die Aussprache und darum, sie ueberhaupt zu kennen. Mostar: Alte Bruecke, Hercegovina.",
+   "notiz": ""
+  },
+  {
+   "de": "Sarajevo",
+   "bs": "Sarajevo",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "Steht bisher nur als Beugungsbeispiel \"u Sarajevu\" (Level 24), nicht als eigene Vokabel.",
+   "notiz": ""
+  },
+  {
+   "de": "Tuzla",
+   "bs": "Tuzla",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Zenica",
+   "bs": "Zenica",
+   "gruppe": "Städte & Regionen in Bosnien",
+   "geaendert": false,
+   "anmerkung": "Gesprochen \"Senitza\" - das c ist ein z-Laut.",
+   "notiz": ""
+  },
+  {
+   "de": "Bekannter / Bekannte",
+   "bs": "poznanik / poznanica",
+   "gruppe": "Menschen & Umgang (Level 4 / 9 / 15)",
+   "geaendert": false,
+   "anmerkung": "Die Stufe zwischen Fremdem und Freund - braucht man oefter, als man denkt.",
+   "notiz": ""
+  },
+  {
+   "de": "Freundeskreis / die Clique",
+   "bs": "raja",
+   "gruppe": "Menschen & Umgang (Level 4 / 9 / 15)",
+   "geaendert": false,
+   "anmerkung": "Sehr bosnisch und sehr alltaeglich: \"moja raja\" = meine Leute. Gibt es so im Kroatischen und Serbischen kaum.",
+   "notiz": "drustvo ist eher richtig"
+  },
+  {
+   "de": "Gastgeber",
+   "bs": "domaćin",
+   "gruppe": "Menschen & Umgang (Level 4 / 9 / 15)",
+   "geaendert": false,
+   "anmerkung": "Herr des Hauses. Passt zu \"gost\" und \"gostoprimstvo\" aus Level 35. Die weibliche Form \"domaćica\" heisst im Alltag oft \"Hausfrau\" - missverstaendlich, ich wuerde sie weglassen.",
+   "notiz": ""
+  },
+  {
+   "de": "Kollegin",
+   "bs": "koleginica",
+   "gruppe": "Menschen & Umgang (Level 4 / 9 / 15)",
+   "geaendert": false,
+   "anmerkung": "\"kolega\" (maennlich) steht schon in Level 36.",
+   "notiz": ""
+  },
+  {
+   "de": "Kumpel (Slang, vor allem Sarajevo)",
+   "bs": "jaran",
+   "gruppe": "Menschen & Umgang (Level 4 / 9 / 15)",
+   "geaendert": false,
+   "anmerkung": "Sehr bosnisch, sehr vertraut. Die weibliche Form \"jaranica\" gibt es, klingt fuer manche aber gekuenstelt - da bin ich mir weniger sicher.",
+   "notiz": ""
+  },
+  {
+   "de": "Kumpel / Kumpelin (locker)",
+   "bs": "drug / drugarica",
+   "gruppe": "Menschen & Umgang (Level 4 / 9 / 15)",
+   "geaendert": false,
+   "anmerkung": "Lockerer als prijatelj/prijateljica. Unter Schulfreunden und Gleichaltrigen. Nicht verwechseln mit \"drugi\" = der zweite (Level 32).",
+   "notiz": ""
+  },
+  {
+   "de": "Nachbarn (Mehrzahl)",
+   "bs": "komšije",
+   "gruppe": "Menschen & Umgang (Level 4 / 9 / 15)",
+   "geaendert": false,
+   "anmerkung": "Unregelmaessig: komšija wird im Plural zu komšije, obwohl es maennlich ist.",
+   "notiz": ""
+  },
+  {
+   "de": "(Antwort darauf)",
+   "bs": "Alejkumu selam",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Gehoert nur zusammen mit \"Selam alejkum\" in die App.",
+   "notiz": ""
+  },
+  {
+   "de": "Besuch",
+   "bs": "posjeta",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Serbisch \"poseta\". Passt zu gost und gostoprimstvo aus Level 35.",
+   "notiz": ""
+  },
+  {
+   "de": "Danke für alles",
+   "bs": "Hvala na svemu",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Standardsatz beim Abschied nach einem Besuch.",
+   "notiz": ""
+  },
+  {
+   "de": "Darf ich vorstellen: ...",
+   "bs": "Da te upoznam: ...",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Hoefliche Sie-Form: \"Da Vas upoznam\". Woertlich \"dass ich dich bekannt mache\".",
+   "notiz": ""
+  },
+  {
+   "de": "Das ist mein Freund",
+   "bs": "Ovo je moj prijatelj",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Weiblich: \"Ovo je moja prijateljica\". Der einfachste Weg, jemanden vorzustellen.",
+   "notiz": ""
+  },
+  {
+   "de": "Das ist meine Frau",
+   "bs": "Ovo je moja žena",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Fuer den Mann: \"Ovo je moj muž\". Genau der Satz, den ein angeheirateter Partner in Bosnien staendig braucht.",
+   "notiz": ""
+  },
+  {
+   "de": "Gruß / Grüße",
+   "bs": "pozdrav / pozdravi",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "\"Pozdrav!\" ist auch selbst ein Gruss - man sagt es beim Kommen und beim Gehen. Fehlt bisher ganz.",
+   "notiz": ""
+  },
+  {
+   "de": "Grüß ... von mir!",
+   "bs": "Pozdravi ... od mene!",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Der Satz, mit dem in bosnischen Familien jedes Telefonat endet.",
+   "notiz": ""
+  },
+  {
+   "de": "Grüß dich (muslimischer Gruß)",
+   "bs": "Selam alejkum",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Unter Bosniaken sehr verbreitet, auch ganz alltaeglich unter Nachbarn. Die Antwort lautet \"Alejkumu selam\". \"Merhaba\" steht schon in Level 1. Nicht neutral - bewusste Entscheidung noetig.",
+   "notiz": ""
+  },
+  {
+   "de": "Ich entschuldige mich",
+   "bs": "Izvinjavam se",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Etwas foermlicher als \"Izvini\", zum Beispiel wenn man zu spaet kommt.",
+   "notiz": ""
+  },
+  {
+   "de": "jemanden besuchen",
+   "bs": "posjetiti",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Serbisch \"posetiti\" ohne j. In Bosnien \"posjetiti\".",
+   "notiz": ""
+  },
+  {
+   "de": "jemanden kennenlernen",
+   "bs": "upoznati",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Fehlt ganz, obwohl \"Drago mi je\" (Level 1) schon da ist. Reflexiv \"upoznati se\" = sich kennenlernen - passt auch in Level 29.",
+   "notiz": ""
+  },
+  {
+   "de": "Komm uns besuchen!",
+   "bs": "Dođi nam u posjetu!",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Wird in Bosnien ernst gemeint, nicht als Floskel.",
+   "notiz": ""
+  },
+  {
+   "de": "Schön, dich kennengelernt zu haben",
+   "bs": "Drago mi je što smo se upoznali",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Die Kurzform \"Drago mi je\" ist schon in Level 1. Das hier ist der ganze Satz zum Abschied.",
+   "notiz": "man kann auch sagen ... da smo se upoznali"
+  },
+  {
+   "de": "Setz dich, trink einen Kaffee",
+   "bs": "Sjedi, popij kahvu",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Kernsatz bosnischer Gastfreundschaft. \"kahva\" (bosnisch, nicht kroatisch \"kava\" oder serbisch \"kafa\") steht schon richtig in Level 5, \"Sjedi!\" in Level 29.",
+   "notiz": ""
+  },
+  {
+   "de": "sich bedanken",
+   "bs": "zahvaliti se",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "\"Zahvaljujem Vam\" steht schon in Level 38, das Verb selbst fehlt. Passt auch in Level 29 (Reflexive Verben).",
+   "notiz": ""
+  },
+  {
+   "de": "sich entschuldigen",
+   "bs": "izviniti se",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "\"Izvini/Izvinite\" steht schon in Level 1, das Verb fehlt. Kroatisch waere \"ispričati se\" - in Bosnien \"izviniti se\". Passt in Level 29.",
+   "notiz": ""
+  },
+  {
+   "de": "Verzeih mir",
+   "bs": "Oprosti mi",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Sie-Form: \"Oprostite mi\".",
+   "notiz": ""
+  },
+  {
+   "de": "verzeihen",
+   "bs": "oprostiti",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Staerker als izviniti - es geht um echte Kraenkung, nicht um Anrempeln.",
+   "notiz": ""
+  },
+  {
+   "de": "Viele Grüße an die Familie",
+   "bs": "Puno pozdrava porodici",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Gleichwertig: \"Pozdravi porodicu\".",
+   "notiz": ""
+  },
+  {
+   "de": "Wie geht es deiner Familie?",
+   "bs": "Kako je tvoja porodica?",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "In Bosnien die Standardfrage direkt nach \"Kako si?\". Wer sie nicht stellt, wirkt kuehl.",
+   "notiz": ""
+  },
+  {
+   "de": "Wir kennen uns",
+   "bs": "Poznajemo se",
+   "gruppe": "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+   "geaendert": false,
+   "anmerkung": "Reflexiv - passt auch gut in Level 29.",
+   "notiz": ""
+  },
+  {
+   "de": "Hallo (neutral, ueberall)",
+   "bs": "Zdravo",
+   "gruppe": "Level 1 Grundlagen - dringendste Luecke",
+   "geaendert": false,
+   "anmerkung": "Die App kennt als Hallo nur 'Merhaba'. Merhaba ist bosniakisch-muslimisch konnotiert. 'Zdravo' ist das konfessionsneutrale Hallo, das in ganz BiH von allen benutzt wird und mit dem ein Lernender nie falsch liegt. Beide sollten drin sein, mit dem Hinweis wer was sagt.",
+   "notiz": ""
+  },
+  {
+   "de": "Akkordeon",
+   "bs": "harmonika",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Das praesenteste Instrument in BiH - Hochzeit, Kafana, jedes Fest. Hat historisch den Saz als Begleitinstrument der Sevdalinka abgeloest. Wichtiger als jedes andere Instrument in dieser Liste.",
+   "notiz": ""
+  },
+  {
+   "de": "der Tanz",
+   "bs": "ples",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die App hat nur das Verb plesati. Das Substantiv fehlt.",
+   "notiz": ""
+  },
+  {
+   "de": "ein Instrument spielen",
+   "bs": "svirati",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Deutsches 'spielen' zerfaellt im Bosnischen in drei Verben: igrati (Spiel, Sport), svirati (Instrument), glumiti (Theater). Die App hat nur igrati se. Klassischer Fallstrick fuer Deutschsprachige: 'Sviram harmoniku' = Ich spiele Akkordeon, NICHT 'igram harmoniku'.",
+   "notiz": ""
+  },
+  {
+   "de": "Folklore / Folkloregruppe",
+   "bs": "folklor / folklorna grupa",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Besonders relevant fuer die Diaspora - in fast jeder groesseren bosnischen Gemeinde in Deutschland, Oesterreich, Schweden gibt es eine Folkloregruppe, oft KUD genannt (kulturno-umjetnicko drustvo). Kinder der zweiten und dritten Generation gehen da hin.",
+   "notiz": ""
+  },
+  {
+   "de": "Kolo (bosnischer Reigentanz)",
+   "bs": "kolo",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Wortsinn 'Kreis, Rad'. Kreis- bzw. Kettentanz, bei dem man sich an den Haenden fasst. Auf jeder bosnischen Hochzeit der Moment, in dem alle aufstehen. Pansuedslawisch verbreitet, aber in BiH als 'bosansko kolo' fest verankert. Verb dazu: 'igrati kolo' (nicht plesati kolo!) - noch ein Grund, igrati/svirati sauber zu trennen.",
+   "notiz": ""
+  },
+  {
+   "de": "Saenger / Saengerin",
+   "bs": "pjevac / pjevacica",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Passt zum schon vorhandenen Muster maennlich/weiblich in Level 17.",
+   "notiz": ""
+  },
+  {
+   "de": "Saz (traditionelles Saiteninstrument)",
+   "bs": "saz",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Langhalslaute persisch-tuerkischer Herkunft, das historische Begleitinstrument der Sevdalinka, heute weitgehend von der Harmonika verdraengt. Kulturell schoen, im Alltag hoert man es fast nie. Verwandtes Instrument: sargija.",
+   "notiz": ""
+  },
+  {
+   "de": "Sevdah (wehmuetige Sehnsucht)",
+   "bs": "sevdah",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Das Gefuehl hinter der Sevdalinka - sueesse Schwermut, Liebessehnsucht mit Genuss am Schmerz. Nicht wirklich uebersetzbar; am naechsten kommt das portugiesische saudade. 'Uhvatio ga sevdah' = ihn hat der Sevdah gepackt. Gutes Wort, um Kultur zu erklaeren, im Alltag aber seltener als sevdalinka.",
+   "notiz": ""
+  },
+  {
+   "de": "Sevdalinka (bosnisches Liebeslied)",
+   "bs": "sevdalinka",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die bosnische Liedform schlechthin, entstanden in osmanischer Zeit. Von tuerkisch 'sevda' = Liebe, Liebesschmerz. Langsam, melancholisch, handelt von Sehnsucht und unerfuellter Liebe. Wer in einer bosnischen Familie sitzt, hoert das Wort frueher oder spaeter.",
+   "notiz": ""
+  },
+  {
+   "de": "Sijelo (abendliches Beisammensein)",
+   "bs": "sijelo",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Das abendliche Zusammensitzen bei Kaffee, Gespraech und oft Gesang, meist bei jemandem zu Hause. Sehr bosnisch, sehr lebendig. Man sagt 'idemo na sijelo'.",
+   "notiz": ""
+  },
+  {
+   "de": "Teferic (Ausflugsfest im Gruenen)",
+   "bs": "teferic",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Von tuerkisch tefferuec. Gemeinsamer Ausflug ins Gruene mit Essen, Musik und Tanz, oft an einem Fluss oder einer Quelle. In BiH und in der Diaspora bis heute ueblich (die Vereine veranstalten Teferic-Tage). Schoenes Wort, aber saisonal.",
+   "notiz": "man kann es auch erklären das es wie ein oktoberfest ist aber ohne karussel und bier usw"
+  },
+  {
+   "de": "Volksmusik",
+   "bs": "narodna muzika",
+   "gruppe": "Tanz & Musik (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Sammelbegriff. Wichtig fuer Gespraeche ueber Geschmack: 'Volis li narodnu muziku?'",
+   "notiz": ""
+  },
+  {
+   "de": "Ajvar (Paprikapaste)",
+   "bs": "ajvar",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Aufstrich aus gerosteten Paprika und Auberginen, im Herbst eingekocht. Steht in jedem Haushalt auf dem Tisch. Die App hat Paprika nicht einmal als Gemuese - 'paprika' waere gleich mit aufzunehmen.",
+   "notiz": ""
+  },
+  {
+   "de": "Begova corba (Beg-Suppe)",
+   "bs": "begova corba",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Cremige Suppe aus Huhn, Okraschoten und Gemuese mit Einbrenne. Osmanischen Ursprungs, nach dem 'Beg' (Gutsherr) benannt. Gute Gelegenheit, auch 'corba' als Wort fuer die dicke Suppe einzufuehren - die App hat nur 'supa' (klare Suppe). Der Unterschied ist echt.",
+   "notiz": ""
+  },
+  {
+   "de": "Bohneneintopf",
+   "bs": "grah",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Das haeufigste Alltagsessen ueberhaupt, oft mit suho meso. Regionale Variante: 'pasulj' gilt als serbisch, wird in Teilen BiHs aber auch gesagt. Siehe Unsicherheitsnotiz.",
+   "notiz": ""
+  },
+  {
+   "de": "Bosnischer Schmortopf",
+   "bs": "bosanski lonac",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Fleisch und Gemuese lagenweise geschichtet und stundenlang langsam geschmort. Eines der aeltesten Gerichte des Landes und traegt den Landesnamen - steht auf jeder Touristenkarte, wird aber auch zu Hause gekocht.",
+   "notiz": ""
+  },
+  {
+   "de": "Burek (Blaetterteigrolle mit Fleisch)",
+   "bs": "burek",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "ACHTUNG, hier liegt die klassische Falle. In Bosnien ist Burek AUSSCHLIESSLICH die mit Hackfleisch gefuellte Pita. Es gibt keinen 'Burek mit Kaese' - das heisst sirnica. Nur ausserhalb BiH (Serbien, Kroatien, Nordmazedonien, Tuerkei) ist burek der Oberbegriff. Wenn die App das richtig erklaert, merkt jeder Bosnier sofort, dass da jemand Ahnung hat. Oberbegriff ist pita (steht schon in Level 5).",
+   "notiz": ""
+  },
+  {
+   "de": "Dolma (gefuelltes Gemuese)",
+   "bs": "dolma",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Von tuerkisch dolmak = fuellen. Paprika, Zucchini, Auberginen oder Tomaten mit Hackfleisch und Reis gefuellt. Meist als 'punjene paprike' auf der Karte.",
+   "notiz": ""
+  },
+  {
+   "de": "geraeuchertes Fleisch",
+   "bs": "suho meso",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Woertlich 'trockenes Fleisch', meist Rind. Kommt in den Grah und auf die Mezeplatte.",
+   "notiz": "vjesalica sagt man eher zu beef jerky aber suho meso kann man auch sagen"
+  },
+  {
+   "de": "Grill / Gegrilltes",
+   "bs": "rostilj",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Sowohl das Geraet als auch das Essen. 'Idemo na rostilj' = wir grillen. Cevapi ist drin, der Oberbegriff fehlt.",
+   "notiz": ""
+  },
+  {
+   "de": "Japrak (gefuellte Weinblaetter)",
+   "bs": "japrak",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Wie Sarma, aber in Weinblaetter statt Kohl gewickelt. In BiH ein eigenes Wort - andernorts sagt man dazu dolma oder sarma. Der Unterschied Japrak (Blatt) zu Dolma (gefuelltes Gemuese) ist genau die Art Detail, bei der ein Bosnier aufhorcht.",
+   "notiz": ""
+  },
+  {
+   "de": "Kajmak (Rahmaufstrich)",
+   "bs": "kajmak",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Gereifter Milchrahm, salzig, zwischen Butter und Frischkaese. Kommt zu Cevapi und aufs Brot. Kein deutsches Wort dafuer, deshalb muss man das bosnische kennen.",
+   "notiz": ""
+  },
+  {
+   "de": "Krompirusa (Pita mit Kartoffeln)",
+   "bs": "krompirusa",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Von krompir (steht schon in Level 5). Die vierte Standard-Pita. Regional auch 'pita krompirusa'.",
+   "notiz": ""
+  },
+  {
+   "de": "Pljeskavica (Hacksteak)",
+   "bs": "pljeskavica",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Die flache grosse Frikadelle vom Grill, die zweite Standardbestellung neben Cevapi.",
+   "notiz": ""
+  },
+  {
+   "de": "Sarma (Krautwickel)",
+   "bs": "sarma",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Sauerkrautblaetter gefuellt mit Hackfleisch und Reis. Das Festtagsessen - Bajram, Weihnachten, Hochzeit, Besuch. Pansuedslawisch, aber in jeder bosnischen Familie zu Hause.",
+   "notiz": ""
+  },
+  {
+   "de": "Sirnica (Pita mit Kaese)",
+   "bs": "sirnica",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Die Kaese-Pita. Gehoert zwingend zusammen mit burek aufgenommen, sonst funktioniert die Erklaerung nicht.",
+   "notiz": ""
+  },
+  {
+   "de": "Somun (Fladenbrot zu Cevapi)",
+   "bs": "somun",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Ohne dieses Wort kann man Cevapi nicht richtig bestellen: man bestellt 'cevapi u somunu'. Regionale Variante: in der Herzegowina und Richtung Kroatien sagt man eher 'lepina'. Siehe meine Unsicherheitsnotiz.",
+   "notiz": "ich komme aus dem norden bosniens ich habe immer lepinja gesagt"
+  },
+  {
+   "de": "Zeljanica (Pita mit Spinat und Kaese)",
+   "bs": "zeljanica",
+   "gruppe": "Bosnische Speisen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Von 'zelje' (Blattgemuese). Die dritte der vier Standard-Pitas, in jeder Pekara zu haben.",
+   "notiz": ""
+  },
+  {
+   "de": "Dzezva (Kupferkaennchen fuer Kaffee)",
+   "bs": "dzezva",
+   "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
+   "geaendert": false,
+   "anmerkung": "Das kleine Kupfer- oder Messingkaennchen mit langem Stiel, in dem der Kaffee aufgekocht wird. Gehoert zwingend zum fildzan, der schon drin ist - fildzan ohne dzezva ist wie Tasse ohne Kanne. Tuerkisches Lehnwort (cezve).",
+   "notiz": ""
+  },
+  {
+   "de": "Gehen wir einen Kaffee trinken",
+   "bs": "Idemo na kahvu",
+   "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
+   "geaendert": false,
+   "anmerkung": "Die zentrale soziale Einladung in Bosnien. Heisst nicht 'Kaffee trinken', sondern 'zusammensitzen und reden' - dauert zwei Stunden. Wer das nicht kennt, versteht das halbe Sozialleben nicht. Die App hat kahva, aber nicht diese Wendung.",
+   "notiz": "Hajmo na kahvu sagt man eher"
+  },
+  {
+   "de": "Halva",
+   "bs": "halva",
+   "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
+   "geaendert": false,
+   "anmerkung": "Suessspeise aus Grieß oder Sesam. Wird in BiH auch zu Trauerfeiern und Tevhid gemacht, nicht nur als Nascherei.",
+   "notiz": "wird nicht aus grieß und sesam gemacht sondern aus mehl butter/öl und zucker"
+  },
+  {
+   "de": "Hurmasica (Sirupgebaeck)",
+   "bs": "hurmasica",
+   "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
+   "geaendert": false,
+   "anmerkung": "Laengliches Gebaeck, nach dem Backen in Zuckersirup getraenkt. Der Name kommt von 'hurma' (Dattel) wegen der Form. Bajram-Gebaeck, steht dann in jedem Haus auf dem Tisch. Auch 'urmasice' geschrieben.",
+   "notiz": "bei s fehlt das apostroph und bei c auch"
+  },
+  {
+   "de": "Rahat lokum (Geleewuerfel zum Kaffee)",
+   "bs": "rahat lokum",
+   "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
+   "geaendert": false,
+   "anmerkung": "Weiche, in Puderzucker gewendete Suessigkeit, die neben dem Kaffee serviert wird. Man isst sie, WAEHREND sich der Kaffee in der Dzezva setzt - das ist Teil des Rituals. Kurzform 'rahatluk' oder einfach 'lokum'. Zucker (secer) steht schon in Level 5, den brauchst du nicht doppelt.",
+   "notiz": ""
+  },
+  {
+   "de": "Sampita (Baisertoertchen)",
+   "bs": "sampita",
+   "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
+   "geaendert": false,
+   "anmerkung": "Bloecke aus Eiweissschaum zwischen zwei Blaetterteigschichten. Standard in jeder slasticarna. Siehe Unsicherheitsnotiz zur Verbreitung.",
+   "notiz": "hier fehlt auch das apostroph beim s"
+  },
+  {
+   "de": "Tufahija (gefuellter Apfel in Sirup)",
+   "bs": "tufahija",
+   "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
+   "geaendert": false,
+   "anmerkung": "Von arabisch tuffah = Apfel. In Zuckersirup gekochter Apfel, gefuellt mit gemahlenen Walnuessen, obendrauf Schlagsahne. Der klassische bosnische Nachtisch zum Kaffee. Du hattest ihn selbst auf der Liste - zu Recht.",
+   "notiz": ""
+  },
+  {
+   "de": "Baeckerei",
+   "bs": "pekara",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Der Ort, an dem man Burek, Sirnica und Somun kauft. Man geht dort taeglich hin. Die App hat hljeb, aber nicht den Laden.",
+   "notiz": ""
+  },
+  {
+   "de": "bestellen",
+   "bs": "naruciti",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Die App hat den Kellner und die Rechnung, aber nicht das Verb dazwischen.",
+   "notiz": ""
+  },
+  {
+   "de": "Cafe",
+   "bs": "kafic",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Das moderne Cafe, in dem sich alle treffen. Haeufigster Treffpunkt ueberhaupt.",
+   "notiz": ""
+  },
+  {
+   "de": "Cevapi-Lokal",
+   "bs": "cevabdzinica",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Man sagt nicht 'Restaurant', wenn man Cevapi essen geht. Analog gebildet: buregdzinica (Burek), ascinica (traditionelle Hausmannskost, gekochte Gerichte in Schalen). Das Bildungsmuster -dzinica ist tuerkisch und laesst sich in einem Satz erklaeren.",
+   "notiz": "bei c fehlt das apostroph und bei z auch"
+  },
+  {
+   "de": "Gabel",
+   "bs": "viljuska",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Kroatisch 'vilica'. In BiH 'viljuska'.",
+   "notiz": "bei s fehlt das apostroph"
+  },
+  {
+   "de": "Gericht / Speise",
+   "bs": "jelo",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Grundwort, Mehrzahl 'jela'. Braucht man fuer 'Koje jelo preporucujete?' (Welches Gericht empfehlen Sie?).",
+   "notiz": ""
+  },
+  {
+   "de": "Kafana (traditionelle Wirtschaft)",
+   "bs": "kafana",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Aeltere, einfachere Gaststaette mit Musik, Rakija und Sevdalinka. Nicht dasselbe wie ein kafic - die kafana ist der Ort, wo abends gesungen wird.",
+   "notiz": ""
+  },
+  {
+   "de": "Konditorei",
+   "bs": "slasticarna",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Fuer Baklava, Tufahija, Eis. Von 'slatko' = suess.",
+   "notiz": "bei c fehlt apostroph"
+  },
+  {
+   "de": "lecker",
+   "bs": "ukusno",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Fehlt komplett. Das erste Wort, das man als Gast braucht. Auch als 'fino' gebraeuchlich ('Fino je!').",
+   "notiz": ""
+  },
+  {
+   "de": "Portion",
+   "bs": "porcija",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Cevapi werden nach Stueck bestellt: 'deset cevapa' oder 'jedna porcija'.",
+   "notiz": ""
+  },
+  {
+   "de": "Restaurant",
+   "bs": "restoran",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Fehlt komplett, obwohl die App Hotel, Taxi und 'Racun, molim' kennt. Klare Luecke.",
+   "notiz": ""
+  },
+  {
+   "de": "Speisekarte",
+   "bs": "jelovnik",
+   "gruppe": "Essen gehen & bestellen (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Ohne das Wort kann man im Lokal nicht einmal anfangen. 'Jelovnik, molim.'",
+   "notiz": ""
+  },
+  {
+   "de": "Pflaumenbrand",
+   "bs": "sljivovica",
+   "gruppe": "Getraenke (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Die haeufigste Rakija-Sorte. Von 'sljiva' (Pflaume) - die fehlt uebrigens auch beim Obst, wie du schon festgestellt hast. Weitere Sorte: 'loza' (Traubenbrand, vor allem in der Herzegowina).",
+   "notiz": "beim s fehlt apostroph"
+  },
+  {
+   "de": "Rakija (Obstbrand)",
+   "bs": "rakija",
+   "gruppe": "Getraenke (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Selbstgebrannter Obstschnaps, wird als Begruessung angeboten. Auch in muslimischen Haushalten oft praesent - in Bosnien ist das keine religioese Frage, sondern eine Gastfreundschaftsfrage. Dazu passt 'Zivjeli!', das schon in Level 1 steht.",
+   "notiz": ""
+  },
+  {
+   "de": "Wein",
+   "bs": "vino",
+   "gruppe": "Getraenke (Level 5)",
+   "geaendert": false,
+   "anmerkung": "Echte Luecke: pivo (Bier) ist drin, vino nicht. Die Herzegowina ist Weinland - Zilavka (weiss) und Blatina (rot) sind dort Alltagsbegriffe.",
+   "notiz": ""
+  },
+  {
+   "de": "Bujrum (bitte, greif zu / komm herein)",
+   "bs": "bujrum",
+   "gruppe": "Gastfreundschaft (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Von tuerkisch buyurun. Warme, herzliche Einladung, sich zu setzen, hereinzukommen oder zuzugreifen - waermer als das schon vorhandene 'Izvolite'. Wird in BiH quer durch alle Gruppen gesagt, ist als Turzismus laengst normales Bosnisch und nicht religioes markiert. Sagt fast immer der Gastgeber, der Gast antwortet 'Hvala'.",
+   "notiz": ""
+  },
+  {
+   "de": "Danke fuer die Einladung",
+   "bs": "Hvala na pozivu",
+   "gruppe": "Gastfreundschaft (Level 35)",
+   "geaendert": false,
+   "anmerkung": "poziv (Einladung) steht schon in Level 35, der Satz dazu fehlt. Genau der Satz, den ein angeheirateter Partner beim ersten Besuch braucht.",
+   "notiz": ""
+  },
+  {
+   "de": "Danke, ich bin satt (m/w)",
+   "bs": "Hvala, sit sam / sita sam",
+   "gruppe": "Gastfreundschaft (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Praktisch der wichtigste Satz beim Besuch in Bosnien - es wird nachgelegt, bis man sich wehrt. 'sit/sita' fehlt komplett, obwohl 'gladan/gladna' (hungrig) in Level 5 steht. Gleiches m/w-Muster, passt genau dazu.",
+   "notiz": ""
+  },
+  {
+   "de": "Es war sehr lecker",
+   "bs": "Bilo je jako ukusno",
+   "gruppe": "Gastfreundschaft (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Das Lob, das der Gastgeber erwartet. Alternativ 'Bilo je fino'.",
+   "notiz": ""
+  },
+  {
+   "de": "Gastgeber / Gastgeberin",
+   "bs": "domacin / domacica",
+   "gruppe": "Gastfreundschaft (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die App hat gost und gosti, aber nicht die Gegenseite. 'Domacin' hat in BiH zusaetzlich den Beiklang von 'ordentlicher Hausherr, der sein Haus gut fuehrt' - ein Lob.",
+   "notiz": ""
+  },
+  {
+   "de": "jemanden einladen (bezahlen)",
+   "bs": "castiti",
+   "gruppe": "Gastfreundschaft (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Nicht 'pozvati' (zum Kommen einladen, steht schon drin), sondern 'die Rechnung uebernehmen'. 'Ja castim' = Ich lade ein / Das geht auf mich. In Bosnien wird darum regelrecht gestritten.",
+   "notiz": ""
+  },
+  {
+   "de": "Noch ein bisschen?",
+   "bs": "Jos malo?",
+   "gruppe": "Gastfreundschaft (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Hoert man als Gast zehnmal pro Abend. Gut als Hoerverstaendnis-Vokabel.",
+   "notiz": ""
+  },
+  {
+   "de": "Antwort auf den Bajram-Gruss",
+   "bs": "Allah razi olsun",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die App lehrt 'Bajram serif mubarek olsun', aber nicht die Erwiderung - der Lernende kann gratulieren, aber nicht antworten. Bedeutet 'moege Allah mit dir zufrieden sein' (geprueft). In BiH auch die Kurzform 'Bajrambarecula'.",
+   "notiz": ""
+  },
+  {
+   "de": "das Fasten",
+   "bs": "post",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Substantiv zum vorhandenen Verb 'postiti'. Gilt fuer Ramadan genauso wie fuer die christliche Fastenzeit.",
+   "notiz": ""
+  },
+  {
+   "de": "Frohes Bajram!",
+   "bs": "Sretan Bajram!",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die einfache bosnische Form neben der langen arabisch-tuerkischen Formel. Fuer einen Anfaenger deutlich leichter und voellig ueblich. Passt zum schon vorhandenen Muster 'Sretan rodendan' und 'Sretna Nova godina'.",
+   "notiz": "bajram bajric sagt man eher oder bajram serif mubarek olsun"
+  },
+  {
+   "de": "Gott",
+   "bs": "Bog",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Grundwort, fehlt komplett. Wird von Bosniaken, Serben und Kroaten gleichermassen benutzt - 'Bog' ist nicht konfessionell markiert, Bosniaken sagen im Alltagsbosnischen Bog genauso wie Allah. Achtung: das kroatische Gruss-'Bok' bzw. 'Bog!' als Hallo ist etwas anderes und in BiH kroatisch konnotiert.",
+   "notiz": ""
+  },
+  {
+   "de": "Gott sei Dank",
+   "bs": "Hvala Bogu",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die haeufigste Antwort auf 'Kako si?' nach 'Dobro'. Voellig konfessionsuebergreifend, sagen auch Nichtglaeubige, genau wie im Deutschen. Gehoert ohne Bedenken in eine App fuer alle.",
+   "notiz": ""
+  },
+  {
+   "de": "Iftar (Fastenbrechen)",
+   "bs": "iftar",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Das Essen nach Sonnenuntergang im Ramadan, im Ramadan das grosse gesellige Ereignis - man wird eingeladen. Gegenstueck am Morgen: 'sehur'. Die App hat 'postiti' (fasten), aber nichts vom Drumherum.",
+   "notiz": ""
+  },
+  {
+   "de": "Insallah (so Gott will)",
+   "bs": "insallah",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Bedeutung: 'wenn Allah es will'. Wird bei jeder Absicht in der Zukunft gesagt, auch ganz unreligioes ('Vidimo se sutra, insallah'). MEINE EINSCHAETZUNG: erkennbar muslimisch markiert. Ein Bosniake sagt es taeglich, ein Serbe oder Kroate nie. Gehoert in die App, aber unbedingt mit dem Hinweis, wer es sagt - sonst benutzt es ein Lernender in der falschen Familie. Schreibung nach bosnischer Rechtschreibung: klein, ein Wort, kein grosses A in der Mitte (geprueft).",
+   "notiz": ""
+  },
+  {
+   "de": "Masallah (wie schoen, Gott schuetze es)",
+   "bs": "masallah",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Sagt man beim Anblick von etwas Schoenem oder Gelungenem - vor allem bei Kindern, um sie vor dem boesen Blick zu schuetzen. MEINE EINSCHAETZUNG: stark sakularisiert, wird in BiH auch von wenig religioesen Menschen als reines Kompliment gesagt ('Masallah, kako je narasla!'). Weniger heikel als insallah. Schreibung 'masallah' (geprueft).",
+   "notiz": ""
+  },
+  {
+   "de": "Ramadanfest / Opferfest",
+   "bs": "Ramazanski bajram / Kurban-bajram",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die App hat nur 'Bajram'. Es gibt aber zwei: das Fest am Ende des Ramadan und das Opferfest gut zwei Monate spaeter. Wer 'Bajram' hoert, sollte wissen, welches gemeint sein kann.",
+   "notiz": ""
+  },
+  {
+   "de": "So Gott will / hoffentlich",
+   "bs": "Ako Bog da",
+   "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die bosnische Entsprechung von insallah, aber mit dem slawischen Wort - deshalb von allen Gruppen benutzt und unproblematisch. Wenn du nur EINE Formel dieser Art aufnehmen willst, nimm diese.",
+   "notiz": ""
+  },
+  {
+   "de": "Beerdigung",
+   "bs": "dzenaza / sahrana",
+   "gruppe": "Feiern & Braeuche (Level 35)",
+   "geaendert": false,
+   "anmerkung": "WICHTIGER UNTERSCHIED: 'dzenaza' ist das islamische Totengebet und die muslimische Beerdigung, 'sahrana' ist das allgemeine, konfessionsneutrale Wort. Ein Erwachsener mit bosnischer Familie erlebt das. Fuer das Beileid selbst siehe meine Unsicherheitsnotiz - da traue ich mir keine Empfehlung zu.",
+   "notiz": ""
+  },
+  {
+   "de": "Brauch / Sitte",
+   "bs": "obicaj",
+   "gruppe": "Feiern & Braeuche (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Neben 'tradicija', das schon drin ist, das konkretere Alltagswort: 'To je nas obicaj' = Das ist bei uns so ueblich. Hoert man staendig, wenn jemand erklaert, warum etwas so gemacht wird.",
+   "notiz": ""
+  },
+  {
+   "de": "feiern",
+   "bs": "slaviti",
+   "gruppe": "Feiern & Braeuche (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Echte Luecke: die App hat das Substantiv 'proslava' (Feier), aber nicht das Verb. 'Slavimo Bajram' / 'Slavimo rodendan'.",
+   "notiz": ""
+  },
+  {
+   "de": "gratulieren",
+   "bs": "cestitati",
+   "gruppe": "Feiern & Braeuche (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Die App hat nur den Ausruf 'Cestitam!'. Der Infinitiv fehlt - noetig, um zu sagen 'Zelim ti cestitati' oder 'Cestitali smo mu'.",
+   "notiz": ""
+  },
+  {
+   "de": "Tracht",
+   "bs": "narodna nosnja",
+   "gruppe": "Feiern & Braeuche (Level 35)",
+   "geaendert": false,
+   "anmerkung": "Relevant vor allem ueber die Folkloregruppen in der Diaspora - dort ziehen die Kinder sie an.",
+   "notiz": ""
+  },
+  {
+   "de": "Backpulver",
+   "bs": "prašak za pecivo",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Butter",
+   "bs": "maslac",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "puter im Alltag genauso verbreitet",
+   "notiz": ""
+  },
+  {
+   "de": "eingelegtes Gemüse",
+   "bs": "turšija",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "türkisches Lehnwort",
+   "notiz": ""
+  },
+  {
+   "de": "Eis",
+   "bs": "sladoled",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Gewürze",
+   "bs": "začini",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Grieß",
+   "bs": "griz",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Hackfleisch",
+   "bs": "mljeveno meso",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "faširano = fertige Frikadellen",
+   "notiz": ""
+  },
+  {
+   "de": "Hefe",
+   "bs": "kvasac",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "germa sagt man eher das andere ist kroatisch"
+  },
+  {
+   "de": "Kalbfleisch",
+   "bs": "teletina",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kekse",
+   "bs": "keks",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ketchup",
+   "bs": "kečap",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Konserve",
+   "bs": "konzerva",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Lammfleisch",
+   "bs": "janjetina",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Leberpastete",
+   "bs": "pašteta",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Linsen",
+   "bs": "leća",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "BESTÄTIGT: leća = Essen, sočivo = Kontaktlinsen",
+   "notiz": "ist richtig für socivo sagt man eher füe kontaktlinse"
+  },
+  {
+   "de": "Margarine",
+   "bs": "margarin",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Marmelade",
+   "bs": "džem",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "marmelada heißt in BiH nur Zitrusaufstrich",
+   "notiz": ""
+  },
+  {
+   "de": "Mayonnaise",
+   "bs": "majonez",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Mineralwasser",
+   "bs": "mineralna voda",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Pflaumenmus",
+   "bs": "pekmez",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "dick eingekocht, traditionell aus Pflaumen",
+   "notiz": "pekmez ist eher mus also nicht pflaumenmus das wäre pekmez od sljiva"
+  },
+  {
+   "de": "Rindfleisch",
+   "bs": "junetina",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "das, was in der Mesnica verkauft wird",
+   "notiz": "junetina ist eher junges rind also zwischen kalb und rind"
+  },
+  {
+   "de": "Sahne",
+   "bs": "slatka pavlaka",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Salami",
+   "bs": "salama",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Sauerkraut",
+   "bs": "kiseli kupus",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "Basis für Sarma",
+   "notiz": ""
+  },
+  {
+   "de": "Sauermilch",
+   "bs": "kiselo mlijeko",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "eigenes Produkt, nicht dasselbe wie Joghurt",
+   "notiz": ""
+  },
+  {
+   "de": "saure Sahne",
+   "bs": "kisela pavlaka",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "umgangssprachlich auch mileram",
+   "notiz": ""
+  },
+  {
+   "de": "Schinken",
+   "bs": "šunka",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schlagsahne",
+   "bs": "šlag",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Schokolade",
+   "bs": "čokolada",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Senf",
+   "bs": "senf",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Sprudelwasser",
+   "bs": "kisela voda",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "auch gazirana voda",
+   "notiz": ""
+  },
+  {
+   "de": "Sudžuk",
+   "bs": "sudžuk",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "hufeisenförmige Rinderwurst mit Knoblauch",
+   "notiz": ""
+  },
+  {
+   "de": "Thunfisch",
+   "bs": "tunjevina",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Wintervorrat",
+   "bs": "zimnica",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "alles Eingekochte für den Winter",
+   "notiz": ""
+  },
+  {
+   "de": "Wurst",
+   "bs": "kobasica",
+   "gruppe": "Lebensmittel",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Blätterteig",
+   "bs": "jufka",
+   "gruppe": "Beim Bäcker",
+   "geaendert": false,
+   "anmerkung": "hauchdünn gezogen",
+   "notiz": ""
+  },
+  {
+   "de": "Fladenbrot (rund)",
+   "bs": "pogača",
+   "gruppe": "Beim Bäcker",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "fladenbrot ist eher lepinja aber pogaca ist was ganz andere die ist eher hart und fladenbrot ist weich wie eine wolke"
+  },
+  {
+   "de": "Gebäck",
+   "bs": "pecivo",
+   "gruppe": "Beim Bäcker",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Hörnchen",
+   "bs": "kifla",
+   "gruppe": "Beim Bäcker",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ananas",
+   "bs": "ananas",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Aprikose",
+   "bs": "kajsija",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "türkisches Lehnwort",
+   "notiz": ""
+  },
+  {
+   "de": "Banane",
+   "bs": "banana",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Birne",
+   "bs": "kruška",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Brombeere",
+   "bs": "kupina",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Erdbeere",
+   "bs": "jagoda",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Feige",
+   "bs": "smokva",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Granatapfel",
+   "bs": "nar",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "NICHT šipak - das ist Hagebutte",
+   "notiz": ""
+  },
+  {
+   "de": "Haselnuss",
+   "bs": "lješnjak",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Heidelbeere",
+   "bs": "borovnica",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Himbeere",
+   "bs": "malina",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Honigmelone",
+   "bs": "dinja",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kastanie",
+   "bs": "kesten",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kirsche",
+   "bs": "trešnja",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Mandarine",
+   "bs": "mandarina",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Mandel",
+   "bs": "badem",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Nektarine",
+   "bs": "nektarina",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Pfirsich",
+   "bs": "breskva",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Quitte",
+   "bs": "dunja",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Sauerkirsche",
+   "bs": "višnja",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Trockenobst",
+   "bs": "suho voće",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Wassermelone",
+   "bs": "lubenica",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "man kann auch bostan sagen"
+  },
+  {
+   "de": "Weintraube",
+   "bs": "grožđe",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Zitrone",
+   "bs": "limun",
+   "gruppe": "Obst",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Aubergine",
+   "bs": "patlidžan",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "in BiH ohne Farbwort",
+   "notiz": ""
+  },
+  {
+   "de": "Blumenkohl",
+   "bs": "karfiol",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Brokkoli",
+   "bs": "brokula",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "BESTÄTIGT: brokoli geht auch",
+   "notiz": ""
+  },
+  {
+   "de": "Erbsen",
+   "bs": "grašak",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Frühlingszwiebel",
+   "bs": "mladi luk",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "grüne Bohnen",
+   "bs": "boranija",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "zelene mohune ist richtig"
+  },
+  {
+   "de": "Gurke",
+   "bs": "krastavac",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Karotte",
+   "bs": "mrkva",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Knoblauch",
+   "bs": "bijeli luk",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "BESTÄTIGT gegen crni luk = Zwiebel",
+   "notiz": ""
+  },
+  {
+   "de": "Kohl",
+   "bs": "kupus",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kopfsalat",
+   "bs": "zelena salata",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kürbis",
+   "bs": "bundeva",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "man sagt masiraca und bundeva ist eher kroatisch"
+  },
+  {
+   "de": "Lauch",
+   "bs": "praziluk",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Mais",
+   "bs": "kukuruz",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Mangold",
+   "bs": "blitva",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Okra",
+   "bs": "bamija",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "klassisches bosnisches Gemüse",
+   "notiz": ""
+  },
+  {
+   "de": "Paprika",
+   "bs": "paprika",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Petersilie",
+   "bs": "peršun",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Pilze",
+   "bs": "gljive",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "šampinjoni = Champignons",
+   "notiz": ""
+  },
+  {
+   "de": "Radieschen",
+   "bs": "rotkvica",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Rote Bete",
+   "bs": "cvekla",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "BESTÄTIGT: cikla geht auch",
+   "notiz": ""
+  },
+  {
+   "de": "rote Zwiebel",
+   "bs": "crveni luk",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "BESTÄTIGT: die violette Sorte",
+   "notiz": ""
+  },
+  {
+   "de": "scharfe Paprika",
+   "bs": "ljuta paprika",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Sellerie",
+   "bs": "celer",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Spinat",
+   "bs": "špinat",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "zelje ist blattgemüse also sozusagen der oberbegriff"
+  },
+  {
+   "de": "Wirsing",
+   "bs": "kelj",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Zucchini",
+   "bs": "tikvica",
+   "gruppe": "Gemüse",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Dose (Getränk)",
+   "bs": "limenka",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Einkaufsliste",
+   "bs": "lista za kupovinu",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Einkaufswagen",
+   "bs": "kolica",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Einmachglas",
+   "bs": "tegla",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Gramm",
+   "bs": "gram",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Korb",
+   "bs": "korpa",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Liter",
+   "bs": "litar",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Packung",
+   "bs": "pakovanje",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Sack",
+   "bs": "vreća",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Scheibe (Brot)",
+   "bs": "kriška",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Scheibe (Wurst)",
+   "bs": "šnita",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "Germanismus von Schnitte",
+   "notiz": "komad salame\nsnita ist schnitte wie brot schnitte"
+  },
+  {
+   "de": "Stück",
+   "bs": "komad",
+   "gruppe": "Mengen",
+   "geaendert": false,
+   "anmerkung": "na komad = stückweise",
+   "notiz": ""
+  },
+  {
+   "de": "Das ist teuer",
+   "bs": "Ovo je skupo",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ein halbes Kilo, bitte",
+   "bs": "Pola kile, molim",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ein Kilo, bitte",
+   "bs": "Jedan kilogram, molim",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "jedan kilo, molim reicht"
+  },
+  {
+   "de": "Eine Tüte, bitte",
+   "bs": "Jednu kesu, molim",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Etwas mehr",
+   "bs": "Malo više",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Etwas weniger",
+   "bs": "Malo manje",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Geht es günstiger?",
+   "bs": "Može li jeftinije?",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ist das frisch?",
+   "bs": "Je li ovo svježe?",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ist das hausgemacht?",
+   "bs": "Je li ovo domaće?",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "domaće ist DAS Verkaufsargument",
+   "notiz": ""
+  },
+  {
+   "de": "Kann ich probieren?",
+   "bs": "Mogu li probati?",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Was kostet …? (Markt)",
+   "bs": "Pošto je …?",
+   "gruppe": "An der Theke",
+   "geaendert": false,
+   "anmerkung": "die Marktform",
+   "notiz": "koliko kosta ist eher richtig"
+  },
+  {
+   "de": "Angebot",
+   "bs": "akcija",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "frisch",
+   "bs": "svježe",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Haltbarkeitsdatum",
+   "bs": "rok trajanja",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "hausgemacht",
+   "bs": "domaće",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Marktstand",
+   "bs": "tezga",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Metzger",
+   "bs": "mesar",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Metzgerei",
+   "bs": "mesnica",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Preisnachlass",
+   "bs": "sniženje",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Supermarkt",
+   "bs": "supermarket",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Verkäufer",
+   "bs": "prodavač",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Verkäuferin",
+   "bs": "prodavačica",
+   "gruppe": "Orte beim Einkauf",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Café",
+   "bs": "kafić",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "der moderne Normalfall",
+   "notiz": ""
+  },
+  {
+   "de": "Die Karte, bitte",
+   "bs": "Jelovnik, molim",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "draußen",
+   "bs": "vani",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "drinnen",
+   "bs": "unutra",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Einen Tisch für zwei, bitte",
+   "bs": "Sto za dvoje, molim",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Grilllokal",
+   "bs": "ćevabdžinica",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ist dieser Tisch frei?",
+   "bs": "Je li ovaj sto slobodan?",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "kurz: Je l' slobodno?",
+   "notiz": ""
+  },
+  {
+   "de": "Konditorei",
+   "bs": "slastičarna",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Terrasse",
+   "bs": "terasa",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "traditionelles Speiselokal",
+   "bs": "aščinica",
+   "gruppe": "Restaurant: ankommen",
+   "geaendert": false,
+   "anmerkung": "fertig gekochte Gerichte, kein Grill",
+   "notiz": ""
+  },
+  {
+   "de": "Beilage",
+   "bs": "prilog",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "bestellen",
+   "bs": "naručiti",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Das ist alles",
+   "bs": "To je sve",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "dicke Suppe",
+   "bs": "čorba",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "im Gegensatz zur klaren supa",
+   "notiz": ""
+  },
+  {
+   "de": "Eine Runde noch",
+   "bs": "Još jednu turu",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Für mich bitte …",
+   "bs": "Za mene …",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Geht ein Kaffee?",
+   "bs": "Može li jedna kahva?",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "KORRIGIERT: mit li",
+   "notiz": ""
+  },
+  {
+   "de": "Hauptgericht",
+   "bs": "glavno jelo",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ich hätte gern …",
+   "bs": "Ja bih …",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "die alltägliche Bestellform",
+   "notiz": ""
+  },
+  {
+   "de": "Ja, danke",
+   "bs": "Može, hvala",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "KORRIGIERT: die Antwort darauf",
+   "notiz": ""
+  },
+  {
+   "de": "mit …",
+   "bs": "sa …",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "sa kajmakom",
+   "notiz": ""
+  },
+  {
+   "de": "Nachtisch",
+   "bs": "desert",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Noch einmal dasselbe",
+   "bs": "Još jedno isto, molim",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Noch etwas? (Kellner)",
+   "bs": "Još nešto?",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "ohne …",
+   "bs": "bez …",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "bez luka, bez šećera",
+   "notiz": ""
+  },
+  {
+   "de": "Vorspeise",
+   "bs": "predjelo",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Was empfehlen Sie?",
+   "bs": "Šta preporučujete?",
+   "gruppe": "Restaurant: bestellen",
+   "geaendert": false,
+   "anmerkung": "bosnisch šta, nicht što",
+   "notiz": ""
+  },
+  {
+   "de": "Das habe ich nicht bestellt",
+   "bs": "Ovo nisam naručio",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Es hat mir geschmeckt",
+   "bs": "Prijalo mi je",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "bilo je ukusno ist eher richtig"
+  },
+  {
+   "de": "Es ist fein",
+   "bs": "Fino je",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "das alltäglichste Lob in Bosnien",
+   "notiz": ""
+  },
+  {
+   "de": "Es schmeckt gut",
+   "bs": "Ukusno je",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ich bin satt (m)",
+   "bs": "Sit sam",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Ich bin satt (w)",
+   "bs": "Sita sam",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "salzig",
+   "bs": "slano",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "sauer",
+   "bs": "kiselo",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "scharf",
+   "bs": "ljuto",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "süß",
+   "bs": "slatko",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "zu wenig",
+   "bs": "premalo",
+   "gruppe": "Restaurant: essen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Behalten Sie das Rückgeld",
+   "bs": "Zadržite kusur",
+   "gruppe": "Restaurant: zahlen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "getrennt",
+   "bs": "odvojeno",
+   "gruppe": "Restaurant: zahlen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Jeder zahlt seins",
+   "bs": "Svako plaća svoje",
+   "gruppe": "Restaurant: zahlen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Können wir zahlen?",
+   "bs": "Možemo li platiti?",
+   "gruppe": "Restaurant: zahlen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Trinkgeld (förmlich)",
+   "bs": "napojnica",
+   "gruppe": "Restaurant: zahlen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Wie viel macht das?",
+   "bs": "Koliko je?",
+   "gruppe": "Restaurant: zahlen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "zusammen",
+   "bs": "zajedno",
+   "gruppe": "Restaurant: zahlen",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Bey-Suppe",
+   "bs": "begova čorba",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "Huhn, Wurzelgemüse, Okra, mit Rahm und Ei",
+   "notiz": ""
+  },
+  {
+   "de": "Fleischspießchen",
+   "bs": "ražnjići",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "fünf Ćevapi",
+   "bs": "petica",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "gefüllte Paprika",
+   "bs": "punjene paprike",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "gefüllte Zwiebeln",
+   "bs": "sogan-dolma",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Grillwürstchen",
+   "bs": "sudžukice",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "sieben Ćevapi",
+   "bs": "sedam ćevapa",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "BESTÄTIGT: freie Stückzahl geht auch",
+   "notiz": ""
+  },
+  {
+   "de": "Teigtaschen",
+   "bs": "klepe",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "BESTÄTIGT: kann man sagen",
+   "notiz": ""
+  },
+  {
+   "de": "unter der Eisenglocke",
+   "bs": "ispod sača",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "Zubereitungsart",
+   "notiz": ""
+  },
+  {
+   "de": "zehn Ćevapi",
+   "bs": "desetka",
+   "gruppe": "Bosnische Gerichte",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Cremeschnitte",
+   "bs": "šampita",
+   "gruppe": "Süßes",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "krempita ist das eher sampita schaumschnitte oder schaumkuchen"
+  },
+  {
+   "de": "Fadengebäck",
+   "bs": "kadaif",
+   "gruppe": "Süßes",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Sirupgebäck",
+   "bs": "hurmašice",
+   "gruppe": "Süßes",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": "bosnisches traditionelles gebäck weil sirupgebäck kann auch tulumba, baklava usw sein"
+  },
+  {
+   "de": "bosnischer Kaffee",
+   "bs": "bosanska kahva",
+   "gruppe": "Kaffee",
+   "geaendert": false,
+   "anmerkung": "so bestellen, sonst kommt Espresso",
+   "notiz": ""
+  },
+  {
+   "de": "Eine bosnische, bitte",
+   "bs": "Jednu bosansku kahvu, molim",
+   "gruppe": "Kaffee",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kupferkännchen",
+   "bs": "džezva",
+   "gruppe": "Kaffee",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "langsam",
+   "bs": "polako",
+   "gruppe": "Kaffee",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Würfelzucker",
+   "bs": "šećer u kocki",
+   "gruppe": "Kaffee",
+   "geaendert": false,
+   "anmerkung": "wird getunkt, nicht aufgelöst",
+   "notiz": ""
+  },
+  {
+   "de": "Auf die Gesundheit!",
+   "bs": "U zdravlje!",
+   "gruppe": "Rakija",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Einen Rakija, bitte",
+   "bs": "Jednu rakiju, molim",
+   "gruppe": "Rakija",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "Kräuterbrand",
+   "bs": "travarica",
+   "gruppe": "Rakija",
+   "geaendert": false,
+   "anmerkung": "",
+   "notiz": ""
+  },
+  {
+   "de": "selbstgebrannt",
+   "bs": "domaća rakija",
+   "gruppe": "Rakija",
+   "geaendert": false,
+   "anmerkung": "das Qualitätsversprechen",
+   "notiz": ""
+  },
+  {
+   "de": "Traubenbrand",
+   "bs": "loza",
+   "gruppe": "Rakija",
+   "geaendert": false,
+   "anmerkung": "vor allem Herzegowina",
+   "notiz": ""
+  },
+  {
+   "de": "Zwetschgenbrand",
+   "bs": "šljivovica",
+   "gruppe": "Rakija",
+   "geaendert": false,
+   "anmerkung": "der Standard",
+   "notiz": ""
+  }
+ ],
+ "stand": {
+  "0": {
+   "wahl": "ja",
+   "bs": "kućni ljubimac"
+  },
+  "1": {
+   "wahl": "ja",
+   "bs": "životinja"
+  },
+  "2": {
+   "wahl": "ja",
+   "bs": "stoka"
+  },
+  "3": {
+   "wahl": "ja",
+   "bs": "patka"
+  },
+  "4": {
+   "wahl": "ja",
+   "bs": "magarac"
+  },
+  "5": {
+   "wahl": "ja",
+   "bs": "guska"
+  },
+  "6": {
+   "wahl": "ja",
+   "bs": "horoz"
+  },
+  "7": {
+   "wahl": "ja",
+   "bs": "avlija"
+  },
+  "8": {
+   "wahl": "ja",
+   "bs": "kokoš"
+  },
+  "9": {
+   "wahl": "ja",
+   "bs": "tele"
+  },
+  "10": {
+   "wahl": "ja",
+   "bs": "pile"
+  },
+  "11": {
+   "wahl": "ja",
+   "bs": "krava"
+  },
+  "12": {
+   "wahl": "ja",
+   "bs": "jagnje"
+  },
+  "13": {
+   "wahl": "ja",
+   "bs": "konj"
+  },
+  "14": {
+   "wahl": "ja",
+   "bs": "ovca"
+  },
+  "15": {
+   "wahl": "ja",
+   "bs": "svinja"
+  },
+  "16": {
+   "wahl": "ja",
+   "bs": "svinjetina"
+  },
+  "17": {
+   "wahl": "ja",
+   "bs": "štala"
+  },
+  "18": {
+   "wahl": "ja",
+   "bs": "bik"
+  },
+  "19": {
+   "wahl": "ja",
+   "bs": "štene"
+  },
+  "20": {
+   "wahl": "ja",
+   "bs": "koza"
+  },
+  "21": {
+   "wahl": "ja",
+   "bs": "medvjed"
+  },
+  "22": {
+   "wahl": "ja",
+   "bs": "zmaj"
+  },
+  "23": {
+   "wahl": "ja",
+   "bs": "vjeverica"
+  },
+  "24": {
+   "wahl": "ja",
+   "bs": "žaba"
+  },
+  "25": {
+   "wahl": "ja",
+   "bs": "lisica"
+  },
+  "26": {
+   "wahl": "ja",
+   "bs": "zec"
+  },
+  "27": {
+   "wahl": "ja",
+   "bs": "männlich jelen weiblich ist srna baby lane"
+  },
+  "28": {
+   "wahl": "ja",
+   "bs": "jež"
+  },
+  "29": {
+   "wahl": "ja",
+   "bs": "kunić"
+  },
+  "30": {
+   "wahl": "ja",
+   "bs": "ris"
+  },
+  "31": {
+   "wahl": "ja",
+   "bs": "miš"
+  },
+  "32": {
+   "wahl": "ja",
+   "bs": "pacov"
+  },
+  "33": {
+   "wahl": "ja",
+   "bs": "srna"
+  },
+  "34": {
+   "wahl": "ja",
+   "bs": "zmija"
+  },
+  "35": {
+   "wahl": "ja",
+   "bs": "divlja svinja"
+  },
+  "36": {
+   "wahl": "ja",
+   "bs": "vuk"
+  },
+  "37": {
+   "wahl": "ja",
+   "bs": "orao"
+  },
+  "38": {
+   "wahl": "ja",
+   "bs": "sova"
+  },
+  "39": {
+   "wahl": "ja",
+   "bs": "vrana"
+  },
+  "40": {
+   "wahl": "ja",
+   "bs": "gnijezdo"
+  },
+  "41": {
+   "wahl": "ja",
+   "bs": "lastavica"
+  },
+  "42": {
+   "wahl": "ja",
+   "bs": "vrabac"
+  },
+  "43": {
+   "wahl": "ja",
+   "bs": "roda"
+  },
+  "44": {
+   "wahl": "ja",
+   "bs": "golub"
+  },
+  "45": {
+   "wahl": "ja",
+   "bs": "mrav"
+  },
+  "46": {
+   "wahl": "ja",
+   "bs": "muha"
+  },
+  "47": {
+   "wahl": "ja",
+   "bs": "buha ist richtig aber buvljak ist Flohmarkt"
+  },
+  "48": {
+   "wahl": "ja",
+   "bs": "pastrmka"
+  },
+  "49": {
+   "wahl": "ja",
+   "bs": "komarac"
+  },
+  "50": {
+   "wahl": "ja",
+   "bs": "leptir"
+  },
+  "51": {
+   "wahl": "ja",
+   "bs": "puž"
+  },
+  "52": {
+   "wahl": "ja",
+   "bs": "pauk"
+  },
+  "53": {
+   "wahl": "ja",
+   "bs": "männlich os weiblich osa"
+  },
+  "54": {
+   "wahl": "ja",
+   "bs": "crv"
+  },
+  "55": {
+   "wahl": "ja",
+   "bs": "krpelj"
+  },
+  "56": {
+   "wahl": "ja",
+   "bs": "pero"
+  },
+  "57": {
+   "wahl": "ja",
+   "bs": "krzno"
+  },
+  "58": {
+   "wahl": "ja",
+   "bs": "krilo"
+  },
+  "59": {
+   "wahl": "ja",
+   "bs": "rog"
+  },
+  "60": {
+   "wahl": "ja",
+   "bs": "povodac"
+  },
+  "61": {
+   "wahl": "ja",
+   "bs": "rep"
+  },
+  "62": {
+   "wahl": "ja",
+   "bs": "veterinar"
+  },
+  "63": {
+   "wahl": "ja",
+   "bs": "ugristi"
+  },
+  "64": {
+   "wahl": "ja",
+   "bs": "hoce li ujesti wir sagen auch pas mi je ujeo"
+  },
+  "65": {
+   "wahl": "ja",
+   "bs": "lajati"
+  },
+  "66": {
+   "wahl": "ja",
+   "bs": "hraniti"
+  },
+  "67": {
+   "wahl": "ja",
+   "bs": "Bojim se pasa"
+  },
+  "68": {
+   "wahl": "ja",
+   "bs": "šetati"
+  },
+  "69": {
+   "wahl": "ja",
+   "bs": "šetnja"
+  },
+  "70": {
+   "wahl": "ja",
+   "bs": "ubosti"
+  },
+  "71": {
+   "wahl": "ja",
+   "bs": "Čuvaj se psa!"
+  },
+  "72": {
+   "wahl": "ja",
+   "bs": "potok"
+  },
+  "73": {
+   "wahl": "ja",
+   "bs": "list"
+  },
+  "74": {
+   "wahl": "ja",
+   "bs": "bunar"
+  },
+  "75": {
+   "wahl": "ja",
+   "bs": "zemlja"
+  },
+  "76": {
+   "wahl": "ja",
+   "bs": "polje"
+  },
+  "77": {
+   "wahl": "ja",
+   "bs": "stijena"
+  },
+  "78": {
+   "wahl": "ja",
+   "bs": "vatra"
+  },
+  "79": {
+   "wahl": "ja",
+   "bs": "vrh"
+  },
+  "80": {
+   "wahl": "ja",
+   "bs": "trava"
+  },
+  "81": {
+   "wahl": "ja",
+   "bs": "pećina"
+  },
+  "82": {
+   "wahl": "ja",
+   "bs": "brdo"
+  },
+  "83": {
+   "wahl": "ja",
+   "bs": "ostrvo"
+  },
+  "84": {
+   "wahl": "ja",
+   "bs": "zrak"
+  },
+  "85": {
+   "wahl": "ja",
+   "bs": "priroda"
+  },
+  "86": {
+   "wahl": "ja",
+   "bs": "izvor"
+  },
+  "87": {
+   "wahl": "ja",
+   "bs": "pijesak"
+  },
+  "88": {
+   "wahl": "ja",
+   "bs": "kamen"
+  },
+  "89": {
+   "wahl": "ja",
+   "bs": "dolina"
+  },
+  "90": {
+   "wahl": "ja",
+   "bs": "obala"
+  },
+  "91": {
+   "wahl": "ja",
+   "bs": "vodopad"
+  },
+  "92": {
+   "wahl": "ja",
+   "bs": "put / staza"
+  },
+  "93": {
+   "wahl": "ja",
+   "bs": "livada"
+  },
+  "94": {
+   "wahl": "ja",
+   "bs": "grana"
+  },
+  "95": {
+   "wahl": "ja",
+   "bs": "kamilica"
+  },
+  "96": {
+   "wahl": "ja",
+   "bs": "lipa"
+  },
+  "97": {
+   "wahl": "ja",
+   "bs": "nana (auch: metvica)"
+  },
+  "98": {
+   "wahl": "ja",
+   "bs": "biljka"
+  },
+  "99": {
+   "wahl": "ja",
+   "bs": "šljiva"
+  },
+  "100": {
+   "wahl": "ja",
+   "bs": "orah"
+  },
+  "101": {
+   "wahl": "ja",
+   "bs": "korijen"
+  },
+  "102": {
+   "wahl": "ja",
+   "bs": "munja"
+  },
+  "103": {
+   "wahl": "ja",
+   "bs": "grmljavina"
+  },
+  "104": {
+   "wahl": "ja",
+   "bs": "led"
+  },
+  "105": {
+   "wahl": "ja",
+   "bs": "magla"
+  },
+  "106": {
+   "wahl": "ja",
+   "bs": "duga"
+  },
+  "107": {
+   "wahl": "ja",
+   "bs": "hlad"
+  },
+  "108": {
+   "wahl": "ja",
+   "bs": "oluja"
+  },
+  "109": {
+   "wahl": "ja",
+   "bs": "opasno"
+  },
+  "110": {
+   "wahl": "ja",
+   "bs": "opasnost"
+  },
+  "111": {
+   "wahl": "ja",
+   "bs": "mina"
+  },
+  "112": {
+   "wahl": "ja",
+   "bs": "zabranjeno"
+  },
+  "113": {
+   "wahl": "ja",
+   "bs": "Pazi!"
+  },
+  "114": {
+   "wahl": "ja",
+   "bs": "rerna"
+  },
+  "115": {
+   "wahl": "ja",
+   "bs": "flaša"
+  },
+  "116": {
+   "wahl": "ja",
+   "bs": "viljuška"
+  },
+  "117": {
+   "wahl": "ja",
+   "bs": "zamrzivač"
+  },
+  "118": {
+   "wahl": "ja",
+   "bs": "suđe"
+  },
+  "119": {
+   "wahl": "ja",
+   "bs": "prati suđe"
+  },
+  "120": {
+   "wahl": "ja",
+   "bs": "tava"
+  },
+  "121": {
+   "wahl": "ja",
+   "bs": "tanjir"
+  },
+  "122": {
+   "wahl": "ja",
+   "bs": "lonac"
+  },
+  "123": {
+   "wahl": "ja",
+   "bs": "kesa"
+  },
+  "124": {
+   "wahl": "ja",
+   "bs": "pospremiti"
+  },
+  "125": {
+   "wahl": "ja",
+   "bs": "metla"
+  },
+  "126": {
+   "wahl": "ja",
+   "bs": "pegla"
+  },
+  "127": {
+   "wahl": "ja",
+   "bs": "peglati"
+  },
+  "128": {
+   "wahl": "ja",
+   "bs": "kanta"
+  },
+  "129": {
+   "wahl": "ja",
+   "bs": "smeće"
+  },
+  "130": {
+   "wahl": "ja",
+   "bs": "kanta za smeće"
+  },
+  "131": {
+   "wahl": "ja",
+   "bs": "čisto"
+  },
+  "132": {
+   "wahl": "ja",
+   "bs": "prljavo"
+  },
+  "133": {
+   "wahl": "ja",
+   "bs": "usisivač"
+  },
+  "134": {
+   "wahl": "ja",
+   "bs": "veš mašina"
+  },
+  "135": {
+   "wahl": "ja",
+   "bs": "deterdžent"
+  },
+  "136": {
+   "wahl": "ja",
+   "bs": "veš"
+  },
+  "137": {
+   "wahl": "ja",
+   "bs": "štrik"
+  },
+  "138": {
+   "wahl": "ja",
+   "bs": "ugasiti"
+  },
+  "139": {
+   "wahl": "ja",
+   "bs": "bojler"
+  },
+  "140": {
+   "wahl": "ja",
+   "bs": "drva"
+  },
+  "141": {
+   "wahl": "ja",
+   "bs": "upaliti"
+  },
+  "142": {
+   "wahl": "ja",
+   "bs": "Nema struje"
+  },
+  "143": {
+   "wahl": "ja",
+   "bs": "sijalica"
+  },
+  "144": {
+   "wahl": "ja",
+   "bs": "grijanje"
+  },
+  "145": {
+   "wahl": "ja",
+   "bs": "ugalj"
+  },
+  "146": {
+   "wahl": "ja",
+   "bs": "svjetlo"
+  },
+  "147": {
+   "wahl": "ja",
+   "bs": "peć"
+  },
+  "148": {
+   "wahl": "ja",
+   "bs": "osigurač"
+  },
+  "149": {
+   "wahl": "ja",
+   "bs": "utičnica"
+  },
+  "150": {
+   "wahl": "ja",
+   "bs": "utikač"
+  },
+  "151": {
+   "wahl": "ja",
+   "bs": "struja"
+  },
+  "152": {
+   "wahl": "ja",
+   "bs": "topla voda"
+  },
+  "153": {
+   "wahl": "ja",
+   "bs": "Ne radi"
+  },
+  "154": {
+   "wahl": "ja",
+   "bs": "Curi voda",
+   "notiz": "curi voda heißt eher wasser läuft aus curi reicht als läuft aus"
+  },
+  "155": {
+   "wahl": "ja",
+   "bs": "čekić"
+  },
+  "156": {
+   "wahl": "ja",
+   "bs": "majstor"
+  },
+  "157": {
+   "wahl": "ja",
+   "bs": "pokvaren / pokvarena / pokvareno"
+  },
+  "158": {
+   "wahl": "ja",
+   "bs": "merdevine"
+  },
+  "159": {
+   "wahl": "ja",
+   "bs": "ekser"
+  },
+  "160": {
+   "wahl": "ja",
+   "bs": "popraviti"
+  },
+  "161": {
+   "wahl": "ja",
+   "bs": "brava"
+  },
+  "162": {
+   "wahl": "ja",
+   "bs": "šaraf",
+   "notiz": "seraf ist umgangssprachlich saraf ist aber richtig"
+  },
+  "163": {
+   "wahl": "ja",
+   "bs": "slavina",
+   "notiz": "cesma ist richtig"
+  },
+  "164": {
+   "wahl": "ja",
+   "bs": "alat"
+  },
+  "165": {
+   "wahl": "ja",
+   "bs": "posteljina"
+  },
+  "166": {
+   "wahl": "ja",
+   "bs": "deka"
+  },
+  "167": {
+   "wahl": "ja",
+   "bs": "jastuk"
+  },
+  "168": {
+   "wahl": "ja",
+   "bs": "polica"
+  },
+  "169": {
+   "wahl": "ja",
+   "bs": "ormar"
+  },
+  "170": {
+   "wahl": "ja",
+   "bs": "kauč",
+   "notiz": "nimm secija"
+  },
+  "171": {
+   "wahl": "ja",
+   "bs": "zavjesa"
+  },
+  "172": {
+   "wahl": "ja",
+   "bs": "tuš"
+  },
+  "173": {
+   "wahl": "ja",
+   "bs": "ogledalo"
+  },
+  "174": {
+   "wahl": "ja",
+   "bs": "WC"
+  },
+  "175": {
+   "wahl": "ja",
+   "bs": "toalet papir",
+   "notiz": "oder auch wc papir"
+  },
+  "176": {
+   "wahl": "ja",
+   "bs": "lavabo"
+  },
+  "177": {
+   "wahl": "ja",
+   "bs": "četkica za zube"
+  },
+  "178": {
+   "wahl": "ja",
+   "bs": "pasta za zube"
+  },
+  "179": {
+   "wahl": "ja",
+   "bs": "lift"
+  },
+  "180": {
+   "wahl": "ja",
+   "bs": "poštansko sanduče"
+  },
+  "181": {
+   "wahl": "ja",
+   "bs": "krov"
+  },
+  "182": {
+   "wahl": "ja",
+   "bs": "tavan",
+   "notiz": "dachgeschoss ist potkrovlje"
+  },
+  "183": {
+   "wahl": "ja",
+   "bs": "pod"
+  },
+  "184": {
+   "wahl": "ja",
+   "bs": "domar"
+  },
+  "185": {
+   "wahl": "ja",
+   "bs": "podrum"
+  },
+  "186": {
+   "wahl": "ja",
+   "bs": "zvono"
+  },
+  "187": {
+   "wahl": "ja",
+   "bs": "zvoniti"
+  },
+  "188": {
+   "wahl": "ja",
+   "bs": "komšinica"
+  },
+  "189": {
+   "wahl": "ja",
+   "bs": "zid"
+  },
+  "190": {
+   "wahl": "ja",
+   "bs": "ograda"
+  },
+  "191": {
+   "wahl": "ja",
+   "bs": "platiti"
+  },
+  "192": {
+   "wahl": "ja",
+   "bs": "fening"
+  },
+  "193": {
+   "wahl": "ja",
+   "bs": "fiskalni račun"
+  },
+  "194": {
+   "wahl": "ja",
+   "bs": "sitno",
+   "notiz": "man sagt eher für kleingeld sico und wenn man statt 100 mark gibt sondern 50 und nochmal 50 sagt man sitno darauf ist imas li sitno gemeint"
+  },
+  "195": {
+   "wahl": "ja",
+   "bs": "marka"
+  },
+  "196": {
+   "wahl": "ja",
+   "bs": "račun za struju"
+  },
+  "197": {
+   "wahl": "ja",
+   "bs": "bakšiš"
+  },
+  "198": {
+   "wahl": "ja",
+   "bs": "kusur"
+  },
+  "199": {
+   "wahl": "ja",
+   "bs": "puter"
+  },
+  "200": {
+   "wahl": "ja",
+   "bs": "sirće"
+  },
+  "201": {
+   "wahl": "ja",
+   "bs": "med"
+  },
+  "202": {
+   "wahl": "ja",
+   "bs": "jogurt"
+  },
+  "203": {
+   "wahl": "ja",
+   "bs": "brašno"
+  },
+  "204": {
+   "wahl": "ja",
+   "bs": "tjestenina"
+  },
+  "205": {
+   "wahl": "ja",
+   "bs": "biber"
+  },
+  "206": {
+   "wahl": "ja",
+   "bs": "pavlaka",
+   "notiz": "pavlaka ist sauerrahm und kajmak ist schmand und vrhnja sahne"
+  },
+  "207": {
+   "wahl": "ja",
+   "bs": "ulje"
+  },
+  "208": {
+   "wahl": "ja",
+   "bs": "inostranstvo"
+  },
+  "209": {
+   "wahl": "ja",
+   "bs": "Bosna"
+  },
+  "210": {
+   "wahl": "ja",
+   "bs": "Bosna i Hercegovina"
+  },
+  "211": {
+   "wahl": "ja",
+   "bs": "Njemačka"
+  },
+  "212": {
+   "wahl": "ja",
+   "bs": "Holandija"
+  },
+  "213": {
+   "wahl": "ja",
+   "bs": "Švicarska"
+  },
+  "214": {
+   "wahl": "ja",
+   "bs": "Turska"
+  },
+  "215": {
+   "wahl": "ja",
+   "bs": "Danska"
+  },
+  "216": {
+   "wahl": "ja",
+   "bs": "Francuska"
+  },
+  "217": {
+   "wahl": "ja",
+   "bs": "domovina"
+  },
+  "218": {
+   "wahl": "ja",
+   "bs": "Hercegovina"
+  },
+  "219": {
+   "wahl": "ja",
+   "bs": "Rođen sam u Njemačkoj / Rođena sam u Njemačkoj"
+  },
+  "220": {
+   "wahl": "ja",
+   "bs": "Ja sam iz Bosne"
+  },
+  "221": {
+   "wahl": "ja",
+   "bs": "Ja sam iz Njemačke"
+  },
+  "222": {
+   "wahl": "ja",
+   "bs": "Živim u Njemačkoj"
+  },
+  "223": {
+   "wahl": "ja",
+   "bs": "Hrvatska"
+  },
+  "224": {
+   "wahl": "ja",
+   "bs": "država"
+  },
+  "225": {
+   "wahl": "ja",
+   "bs": "Moja porodica je iz Bosne"
+  },
+  "226": {
+   "wahl": "ja",
+   "bs": "Crna Gora"
+  },
+  "227": {
+   "wahl": "ja",
+   "bs": "Norveška"
+  },
+  "228": {
+   "wahl": "ja",
+   "bs": "Švedska"
+  },
+  "229": {
+   "wahl": "ja",
+   "bs": "Srbija"
+  },
+  "230": {
+   "wahl": "ja",
+   "bs": "Slovenija"
+  },
+  "231": {
+   "wahl": "ja",
+   "bs": "svijet"
+  },
+  "232": {
+   "wahl": "ja",
+   "bs": "Gdje si rođen? / Gdje si rođena?"
+  },
+  "233": {
+   "wahl": "ja",
+   "bs": "Austrija"
+  },
+  "234": {
+   "wahl": "ja",
+   "bs": "Bošnjak / Bošnjakinja"
+  },
+  "235": {
+   "wahl": "ja",
+   "bs": "Bosanac / Bosanka"
+  },
+  "236": {
+   "wahl": "ja",
+   "bs": "Nijemac / Njemica"
+  },
+  "237": {
+   "wahl": "ja",
+   "bs": "Danac / Dankinja"
+  },
+  "238": {
+   "wahl": "ja",
+   "bs": "Francuz / Francuskinja"
+  },
+  "239": {
+   "wahl": "ja",
+   "bs": "Ja sam Bosanac / Ja sam Bosanka"
+  },
+  "240": {
+   "wahl": "ja",
+   "bs": "Ja sam Nijemac / Ja sam Njemica"
+  },
+  "241": {
+   "wahl": "ja",
+   "bs": "Hrvat / Hrvatica"
+  },
+  "242": {
+   "wahl": "ja",
+   "bs": "Crnogorac / Crnogorka"
+  },
+  "243": {
+   "wahl": "ja",
+   "bs": "Holanđanin / Holanđanka"
+  },
+  "244": {
+   "wahl": "ja",
+   "bs": "Norvežanin / Norvežanka"
+  },
+  "245": {
+   "wahl": "ja",
+   "bs": "vjera"
+  },
+  "246": {
+   "wahl": "ja",
+   "bs": "Šveđanin / Šveđanka"
+  },
+  "247": {
+   "wahl": "ja",
+   "bs": "Švicarac / Švicarka"
+  },
+  "248": {
+   "wahl": "ja",
+   "bs": "Srbin / Srpkinja"
+  },
+  "249": {
+   "wahl": "ja",
+   "bs": "Turčin / Turkinja"
+  },
+  "250": {
+   "wahl": "ja",
+   "bs": "narod"
+  },
+  "251": {
+   "wahl": "ja",
+   "bs": "Austrijanac / Austrijanka"
+  },
+  "252": {
+   "wahl": "ja",
+   "bs": "bosanski"
+  },
+  "253": {
+   "wahl": "ja",
+   "bs": "njemački"
+  },
+  "254": {
+   "wahl": "ja",
+   "bs": "engleski"
+  },
+  "255": {
+   "wahl": "ja",
+   "bs": "Govorim njemački"
+  },
+  "256": {
+   "wahl": "ja",
+   "bs": "Ne govorim bosanski"
+  },
+  "257": {
+   "wahl": "ja",
+   "bs": "Možeš li ponoviti?"
+  },
+  "258": {
+   "wahl": "ja",
+   "bs": "maternji jezik"
+  },
+  "259": {
+   "wahl": "ja",
+   "bs": "jezik"
+  },
+  "260": {
+   "wahl": "ja",
+   "bs": "Molim te, pričaj sporije"
+  },
+  "261": {
+   "wahl": "ja",
+   "bs": "Govoriš li bosanski?"
+  },
+  "262": {
+   "wahl": "ja",
+   "bs": "Šta to znači?"
+  },
+  "263": {
+   "wahl": "ja",
+   "bs": "Kako se to kaže na bosanskom?"
+  },
+  "264": {
+   "wahl": "ja",
+   "bs": "Banja Luka"
+  },
+  "265": {
+   "wahl": "ja",
+   "bs": "Bihać"
+  },
+  "266": {
+   "wahl": "ja",
+   "bs": "glavni grad"
+  },
+  "267": {
+   "wahl": "ja",
+   "bs": "Idem u Mostar",
+   "notiz": "ja vozim za mostar"
+  },
+  "268": {
+   "wahl": "ja",
+   "bs": "Živim u Sarajevu",
+   "notiz": "ja zivim u sarajevo wenn es das wort ich gibt muss ja hinkommen"
+  },
+  "269": {
+   "wahl": "ja",
+   "bs": "Mostar"
+  },
+  "270": {
+   "wahl": "ja",
+   "bs": "Sarajevo"
+  },
+  "271": {
+   "wahl": "ja",
+   "bs": "Tuzla"
+  },
+  "272": {
+   "wahl": "ja",
+   "bs": "Zenica"
+  },
+  "273": {
+   "wahl": "ja",
+   "bs": "poznanik / poznanica"
+  },
+  "274": {
+   "wahl": "ja",
+   "bs": "raja",
+   "notiz": "drustvo ist eher richtig"
+  },
+  "275": {
+   "wahl": "ja",
+   "bs": "domaćin"
+  },
+  "276": {
+   "wahl": "ja",
+   "bs": "koleginica"
+  },
+  "277": {
+   "wahl": "ja",
+   "bs": "jaran"
+  },
+  "278": {
+   "wahl": "ja",
+   "bs": "drug / drugarica"
+  },
+  "279": {
+   "wahl": "ja",
+   "bs": "komšije"
+  },
+  "280": {
+   "wahl": "ja",
+   "bs": "Alejkumu selam"
+  },
+  "281": {
+   "wahl": "ja",
+   "bs": "posjeta"
+  },
+  "282": {
+   "wahl": "ja",
+   "bs": "Hvala na svemu"
+  },
+  "283": {
+   "wahl": "ja",
+   "bs": "Da te upoznam: ..."
+  },
+  "284": {
+   "wahl": "ja",
+   "bs": "Ovo je moj prijatelj"
+  },
+  "285": {
+   "wahl": "ja",
+   "bs": "Ovo je moja žena"
+  },
+  "286": {
+   "wahl": "ja",
+   "bs": "pozdrav / pozdravi"
+  },
+  "287": {
+   "wahl": "ja",
+   "bs": "Pozdravi ... od mene!"
+  },
+  "288": {
+   "wahl": "ja",
+   "bs": "Selam alejkum"
+  },
+  "289": {
+   "wahl": "ja",
+   "bs": "Izvinjavam se"
+  },
+  "290": {
+   "wahl": "ja",
+   "bs": "posjetiti"
+  },
+  "291": {
+   "wahl": "ja",
+   "bs": "upoznati"
+  },
+  "292": {
+   "wahl": "ja",
+   "bs": "Dođi nam u posjetu!"
+  },
+  "293": {
+   "wahl": "ja",
+   "bs": "Drago mi je što smo se upoznali",
+   "notiz": "man kann auch sagen ... da smo se upoznali"
+  },
+  "294": {
+   "wahl": "ja",
+   "bs": "Sjedi, popij kahvu"
+  },
+  "295": {
+   "wahl": "ja",
+   "bs": "zahvaliti se"
+  },
+  "296": {
+   "wahl": "ja",
+   "bs": "izviniti se"
+  },
+  "297": {
+   "wahl": "ja",
+   "bs": "Oprosti mi"
+  },
+  "298": {
+   "wahl": "ja",
+   "bs": "oprostiti"
+  },
+  "299": {
+   "wahl": "ja",
+   "bs": "Puno pozdrava porodici"
+  },
+  "300": {
+   "wahl": "ja",
+   "bs": "Kako je tvoja porodica?"
+  },
+  "301": {
+   "wahl": "ja",
+   "bs": "Poznajemo se"
+  },
+  "302": {
+   "wahl": "ja",
+   "bs": "Zdravo"
+  },
+  "303": {
+   "wahl": "ja",
+   "bs": "harmonika"
+  },
+  "304": {
+   "wahl": "ja",
+   "bs": "ples"
+  },
+  "305": {
+   "wahl": "ja",
+   "bs": "svirati"
+  },
+  "306": {
+   "wahl": "ja",
+   "bs": "folklor / folklorna grupa"
+  },
+  "307": {
+   "wahl": "ja",
+   "bs": "kolo"
+  },
+  "308": {
+   "wahl": "ja",
+   "bs": "pjevac / pjevacica"
+  },
+  "309": {
+   "wahl": "ja",
+   "bs": "saz"
+  },
+  "310": {
+   "wahl": "ja",
+   "bs": "sevdah"
+  },
+  "311": {
+   "wahl": "ja",
+   "bs": "sevdalinka"
+  },
+  "312": {
+   "wahl": "ja",
+   "bs": "sijelo"
+  },
+  "313": {
+   "wahl": "ja",
+   "bs": "teferic",
+   "notiz": "man kann es auch erklären das es wie ein oktoberfest ist aber ohne karussel und bier usw"
+  },
+  "314": {
+   "wahl": "ja",
+   "bs": "narodna muzika"
+  },
+  "315": {
+   "wahl": "ja",
+   "bs": "ajvar"
+  },
+  "316": {
+   "wahl": "ja",
+   "bs": "begova corba"
+  },
+  "317": {
+   "wahl": "ja",
+   "bs": "grah"
+  },
+  "318": {
+   "wahl": "ja",
+   "bs": "bosanski lonac"
+  },
+  "319": {
+   "wahl": "ja",
+   "bs": "burek"
+  },
+  "320": {
+   "wahl": "ja",
+   "bs": "dolma"
+  },
+  "321": {
+   "wahl": "ja",
+   "bs": "suho meso",
+   "notiz": "vjesalica sagt man eher zu beef jerky aber suho meso kann man auch sagen"
+  },
+  "322": {
+   "wahl": "ja",
+   "bs": "rostilj"
+  },
+  "323": {
+   "wahl": "ja",
+   "bs": "japrak"
+  },
+  "324": {
+   "wahl": "ja",
+   "bs": "kajmak"
+  },
+  "325": {
+   "wahl": "ja",
+   "bs": "krompirusa"
+  },
+  "326": {
+   "wahl": "ja",
+   "bs": "pljeskavica"
+  },
+  "327": {
+   "wahl": "ja",
+   "bs": "sarma"
+  },
+  "328": {
+   "wahl": "ja",
+   "bs": "sirnica"
+  },
+  "329": {
+   "wahl": "ja",
+   "bs": "somun",
+   "notiz": "ich komme aus dem norden bosniens ich habe immer lepinja gesagt"
+  },
+  "330": {
+   "wahl": "ja",
+   "bs": "zeljanica"
+  },
+  "331": {
+   "wahl": "ja",
+   "bs": "dzezva"
+  },
+  "332": {
+   "wahl": "ja",
+   "bs": "Idemo na kahvu",
+   "notiz": "Hajmo na kahvu sagt man eher"
+  },
+  "333": {
+   "wahl": "ja",
+   "bs": "halva",
+   "notiz": "wird nicht aus grieß und sesam gemacht sondern aus mehl butter/öl und zucker"
+  },
+  "334": {
+   "wahl": "ja",
+   "bs": "hurmasica",
+   "notiz": "bei s fehlt das apostroph und bei c auch"
+  },
+  "335": {
+   "wahl": "ja",
+   "bs": "rahat lokum"
+  },
+  "336": {
+   "wahl": "ja",
+   "bs": "sampita",
+   "notiz": "hier fehlt auch das apostroph beim s"
+  },
+  "337": {
+   "wahl": "ja",
+   "bs": "tufahija"
+  },
+  "338": {
+   "wahl": "ja",
+   "bs": "pekara"
+  },
+  "339": {
+   "wahl": "ja",
+   "bs": "naruciti"
+  },
+  "340": {
+   "wahl": "ja",
+   "bs": "kafic"
+  },
+  "341": {
+   "wahl": "ja",
+   "bs": "cevabdzinica",
+   "notiz": "bei c fehlt das apostroph und bei z auch"
+  },
+  "342": {
+   "wahl": "ja",
+   "bs": "viljuska",
+   "notiz": "bei s fehlt das apostroph"
+  },
+  "343": {
+   "wahl": "ja",
+   "bs": "jelo"
+  },
+  "344": {
+   "wahl": "ja",
+   "bs": "kafana"
+  },
+  "345": {
+   "wahl": "ja",
+   "bs": "slasticarna",
+   "notiz": "bei c fehlt apostroph"
+  },
+  "346": {
+   "wahl": "ja",
+   "bs": "ukusno"
+  },
+  "347": {
+   "wahl": "ja",
+   "bs": "porcija"
+  },
+  "348": {
+   "wahl": "ja",
+   "bs": "restoran"
+  },
+  "349": {
+   "wahl": "ja",
+   "bs": "jelovnik"
+  },
+  "350": {
+   "wahl": "ja",
+   "bs": "sljivovica",
+   "notiz": "beim s fehlt apostroph"
+  },
+  "351": {
+   "wahl": "ja",
+   "bs": "rakija"
+  },
+  "352": {
+   "wahl": "ja",
+   "bs": "vino"
+  },
+  "353": {
+   "wahl": "ja",
+   "bs": "bujrum"
+  },
+  "354": {
+   "wahl": "ja",
+   "bs": "Hvala na pozivu"
+  },
+  "355": {
+   "wahl": "ja",
+   "bs": "Hvala, sit sam / sita sam"
+  },
+  "356": {
+   "wahl": "ja",
+   "bs": "Bilo je jako ukusno"
+  },
+  "357": {
+   "wahl": "ja",
+   "bs": "domacin / domacica"
+  },
+  "358": {
+   "wahl": "ja",
+   "bs": "castiti"
+  },
+  "359": {
+   "wahl": "ja",
+   "bs": "Jos malo?"
+  },
+  "360": {
+   "wahl": "ja",
+   "bs": "Allah razi olsun"
+  },
+  "361": {
+   "wahl": "ja",
+   "bs": "post"
+  },
+  "362": {
+   "wahl": "ja",
+   "bs": "Sretan Bajram!",
+   "notiz": "bajram bajric sagt man eher oder bajram serif mubarek olsun"
+  },
+  "363": {
+   "wahl": "ja",
+   "bs": "Bog"
+  },
+  "364": {
+   "wahl": "ja",
+   "bs": "Hvala Bogu"
+  },
+  "365": {
+   "wahl": "ja",
+   "bs": "iftar"
+  },
+  "366": {
+   "wahl": "ja",
+   "bs": "insallah"
+  },
+  "367": {
+   "wahl": "ja",
+   "bs": "masallah"
+  },
+  "368": {
+   "wahl": "ja",
+   "bs": "Ramazanski bajram / Kurban-bajram"
+  },
+  "369": {
+   "wahl": "ja",
+   "bs": "Ako Bog da"
+  },
+  "370": {
+   "wahl": "ja",
+   "bs": "dzenaza / sahrana"
+  },
+  "371": {
+   "wahl": "ja",
+   "bs": "obicaj"
+  },
+  "372": {
+   "wahl": "ja",
+   "bs": "slaviti"
+  },
+  "373": {
+   "wahl": "ja",
+   "bs": "cestitati"
+  },
+  "374": {
+   "wahl": "ja",
+   "bs": "narodna nosnja"
+  },
+  "375": {
+   "wahl": "ja",
+   "bs": "prašak za pecivo"
+  },
+  "376": {
+   "wahl": "ja",
+   "bs": "maslac"
+  },
+  "377": {
+   "wahl": "ja",
+   "bs": "turšija"
+  },
+  "378": {
+   "wahl": "ja",
+   "bs": "sladoled"
+  },
+  "379": {
+   "wahl": "ja",
+   "bs": "začini"
+  },
+  "380": {
+   "wahl": "ja",
+   "bs": "griz"
+  },
+  "381": {
+   "wahl": "ja",
+   "bs": "mljeveno meso"
+  },
+  "382": {
+   "wahl": "ja",
+   "bs": "kvasac",
+   "notiz": "germa sagt man eher das andere ist kroatisch"
+  },
+  "383": {
+   "wahl": "ja",
+   "bs": "teletina"
+  },
+  "384": {
+   "wahl": "ja",
+   "bs": "keks"
+  },
+  "385": {
+   "wahl": "ja",
+   "bs": "kečap"
+  },
+  "386": {
+   "wahl": "ja",
+   "bs": "konzerva"
+  },
+  "387": {
+   "wahl": "ja",
+   "bs": "janjetina"
+  },
+  "388": {
+   "wahl": "ja",
+   "bs": "pašteta"
+  },
+  "389": {
+   "wahl": "ja",
+   "bs": "leća",
+   "notiz": "ist richtig für socivo sagt man eher füe kontaktlinse"
+  },
+  "390": {
+   "wahl": "ja",
+   "bs": "margarin"
+  },
+  "391": {
+   "wahl": "ja",
+   "bs": "džem"
+  },
+  "392": {
+   "wahl": "ja",
+   "bs": "majonez"
+  },
+  "393": {
+   "wahl": "ja",
+   "bs": "mineralna voda"
+  },
+  "394": {
+   "wahl": "ja",
+   "bs": "pekmez",
+   "notiz": "pekmez ist eher mus also nicht pflaumenmus das wäre pekmez od sljiva"
+  },
+  "395": {
+   "wahl": "ja",
+   "bs": "junetina",
+   "notiz": "junetina ist eher junges rind also zwischen kalb und rind"
+  },
+  "396": {
+   "wahl": "ja",
+   "bs": "slatka pavlaka"
+  },
+  "397": {
+   "wahl": "ja",
+   "bs": "salama"
+  },
+  "398": {
+   "wahl": "ja",
+   "bs": "kiseli kupus"
+  },
+  "399": {
+   "wahl": "ja",
+   "bs": "kiselo mlijeko"
+  },
+  "400": {
+   "wahl": "ja",
+   "bs": "kisela pavlaka"
+  },
+  "401": {
+   "wahl": "ja",
+   "bs": "šunka"
+  },
+  "402": {
+   "wahl": "ja",
+   "bs": "šlag"
+  },
+  "403": {
+   "wahl": "ja",
+   "bs": "čokolada"
+  },
+  "404": {
+   "wahl": "ja",
+   "bs": "senf"
+  },
+  "405": {
+   "wahl": "ja",
+   "bs": "kisela voda"
+  },
+  "406": {
+   "wahl": "ja",
+   "bs": "sudžuk"
+  },
+  "407": {
+   "wahl": "ja",
+   "bs": "tunjevina"
+  },
+  "408": {
+   "wahl": "ja",
+   "bs": "zimnica"
+  },
+  "409": {
+   "wahl": "ja",
+   "bs": "kobasica"
+  },
+  "410": {
+   "wahl": "ja",
+   "bs": "jufka"
+  },
+  "411": {
+   "wahl": "ja",
+   "bs": "pogača",
+   "notiz": "fladenbrot ist eher lepinja aber pogaca ist was ganz andere die ist eher hart und fladenbrot ist weich wie eine wolke"
+  },
+  "412": {
+   "wahl": "ja",
+   "bs": "pecivo"
+  },
+  "413": {
+   "wahl": "ja",
+   "bs": "kifla"
+  },
+  "414": {
+   "wahl": "nein",
+   "bs": "krompiruša"
+  },
+  "415": {
+   "wahl": "ja",
+   "bs": "ananas"
+  },
+  "416": {
+   "wahl": "ja",
+   "bs": "kajsija"
+  },
+  "417": {
+   "wahl": "ja",
+   "bs": "banana"
+  },
+  "418": {
+   "wahl": "ja",
+   "bs": "kruška"
+  },
+  "419": {
+   "wahl": "ja",
+   "bs": "kupina"
+  },
+  "420": {
+   "wahl": "ja",
+   "bs": "jagoda"
+  },
+  "421": {
+   "wahl": "ja",
+   "bs": "smokva"
+  },
+  "422": {
+   "wahl": "ja",
+   "bs": "nar"
+  },
+  "423": {
+   "wahl": "ja",
+   "bs": "lješnjak"
+  },
+  "424": {
+   "wahl": "ja",
+   "bs": "borovnica"
+  },
+  "425": {
+   "wahl": "ja",
+   "bs": "malina"
+  },
+  "426": {
+   "wahl": "ja",
+   "bs": "dinja"
+  },
+  "427": {
+   "wahl": "ja",
+   "bs": "kesten"
+  },
+  "428": {
+   "wahl": "ja",
+   "bs": "trešnja"
+  },
+  "429": {
+   "wahl": "ja",
+   "bs": "mandarina"
+  },
+  "430": {
+   "wahl": "ja",
+   "bs": "badem"
+  },
+  "431": {
+   "wahl": "ja",
+   "bs": "nektarina"
+  },
+  "432": {
+   "wahl": "ja",
+   "bs": "breskva"
+  },
+  "433": {
+   "wahl": "ja",
+   "bs": "dunja"
+  },
+  "434": {
+   "wahl": "ja",
+   "bs": "višnja"
+  },
+  "435": {
+   "wahl": "ja",
+   "bs": "suho voće"
+  },
+  "436": {
+   "wahl": "ja",
+   "bs": "lubenica",
+   "notiz": "man kann auch bostan sagen"
+  },
+  "437": {
+   "wahl": "ja",
+   "bs": "grožđe"
+  },
+  "438": {
+   "wahl": "ja",
+   "bs": "limun"
+  },
+  "439": {
+   "wahl": "ja",
+   "bs": "patlidžan"
+  },
+  "440": {
+   "wahl": "ja",
+   "bs": "karfiol"
+  },
+  "441": {
+   "wahl": "ja",
+   "bs": "brokula"
+  },
+  "442": {
+   "wahl": "ja",
+   "bs": "grašak"
+  },
+  "443": {
+   "wahl": "ja",
+   "bs": "mladi luk"
+  },
+  "444": {
+   "wahl": "ja",
+   "bs": "boranija",
+   "notiz": "zelene mohune ist richtig"
+  },
+  "445": {
+   "wahl": "ja",
+   "bs": "krastavac"
+  },
+  "446": {
+   "wahl": "ja",
+   "bs": "mrkva"
+  },
+  "447": {
+   "wahl": "ja",
+   "bs": "bijeli luk"
+  },
+  "448": {
+   "wahl": "ja",
+   "bs": "kupus"
+  },
+  "449": {
+   "wahl": "ja",
+   "bs": "zelena salata"
+  },
+  "450": {
+   "wahl": "ja",
+   "bs": "bundeva",
+   "notiz": "man sagt masiraca und bundeva ist eher kroatisch"
+  },
+  "451": {
+   "wahl": "ja",
+   "bs": "praziluk"
+  },
+  "452": {
+   "wahl": "ja",
+   "bs": "kukuruz"
+  },
+  "453": {
+   "wahl": "ja",
+   "bs": "blitva"
+  },
+  "454": {
+   "wahl": "ja",
+   "bs": "bamija"
+  },
+  "455": {
+   "wahl": "ja",
+   "bs": "paprika"
+  },
+  "456": {
+   "wahl": "ja",
+   "bs": "peršun"
+  },
+  "457": {
+   "wahl": "ja",
+   "bs": "gljive"
+  },
+  "458": {
+   "wahl": "ja",
+   "bs": "rotkvica"
+  },
+  "459": {
+   "wahl": "ja",
+   "bs": "cvekla"
+  },
+  "460": {
+   "wahl": "ja",
+   "bs": "crveni luk"
+  },
+  "461": {
+   "wahl": "ja",
+   "bs": "ljuta paprika"
+  },
+  "462": {
+   "wahl": "ja",
+   "bs": "celer"
+  },
+  "463": {
+   "wahl": "ja",
+   "bs": "špinat",
+   "notiz": "zelje ist blattgemüse also sozusagen der oberbegriff"
+  },
+  "464": {
+   "wahl": "ja",
+   "bs": "kelj"
+  },
+  "465": {
+   "wahl": "ja",
+   "bs": "tikvica"
+  },
+  "466": {
+   "wahl": "ja",
+   "bs": "limenka"
+  },
+  "467": {
+   "wahl": "ja",
+   "bs": "lista za kupovinu"
+  },
+  "468": {
+   "wahl": "ja",
+   "bs": "kolica"
+  },
+  "469": {
+   "wahl": "ja",
+   "bs": "tegla"
+  },
+  "470": {
+   "wahl": "ja",
+   "bs": "gram"
+  },
+  "471": {
+   "wahl": "ja",
+   "bs": "korpa"
+  },
+  "472": {
+   "wahl": "ja",
+   "bs": "litar"
+  },
+  "473": {
+   "wahl": "ja",
+   "bs": "pakovanje"
+  },
+  "474": {
+   "wahl": "ja",
+   "bs": "vreća"
+  },
+  "475": {
+   "wahl": "ja",
+   "bs": "kriška"
+  },
+  "476": {
+   "wahl": "ja",
+   "bs": "šnita",
+   "notiz": "komad salame\nsnita ist schnitte wie brot schnitte"
+  },
+  "477": {
+   "wahl": "ja",
+   "bs": "komad"
+  },
+  "478": {
+   "wahl": "ja",
+   "bs": "Ovo je skupo"
+  },
+  "479": {
+   "wahl": "ja",
+   "bs": "Pola kile, molim"
+  },
+  "480": {
+   "wahl": "ja",
+   "bs": "Jedan kilogram, molim",
+   "notiz": "jedan kilo, molim reicht"
+  },
+  "481": {
+   "wahl": "ja",
+   "bs": "Jednu kesu, molim"
+  },
+  "482": {
+   "wahl": "ja",
+   "bs": "Malo više"
+  },
+  "483": {
+   "wahl": "ja",
+   "bs": "Malo manje"
+  },
+  "484": {
+   "wahl": "ja",
+   "bs": "Može li jeftinije?"
+  },
+  "485": {
+   "wahl": "ja",
+   "bs": "Je li ovo svježe?"
+  },
+  "486": {
+   "wahl": "ja",
+   "bs": "Je li ovo domaće?"
+  },
+  "487": {
+   "wahl": "ja",
+   "bs": "Mogu li probati?"
+  },
+  "488": {
+   "wahl": "ja",
+   "bs": "Pošto je …?",
+   "notiz": "koliko kosta ist eher richtig"
+  },
+  "489": {
+   "wahl": "ja",
+   "bs": "akcija"
+  },
+  "490": {
+   "wahl": "ja",
+   "bs": "svježe"
+  },
+  "491": {
+   "wahl": "ja",
+   "bs": "rok trajanja"
+  },
+  "492": {
+   "wahl": "ja",
+   "bs": "domaće"
+  },
+  "493": {
+   "wahl": "ja",
+   "bs": "tezga"
+  },
+  "494": {
+   "wahl": "ja",
+   "bs": "mesar"
+  },
+  "495": {
+   "wahl": "ja",
+   "bs": "mesnica"
+  },
+  "496": {
+   "wahl": "ja",
+   "bs": "sniženje"
+  },
+  "497": {
+   "wahl": "ja",
+   "bs": "supermarket"
+  },
+  "498": {
+   "wahl": "ja",
+   "bs": "prodavač"
+  },
+  "499": {
+   "wahl": "ja",
+   "bs": "prodavačica"
+  },
+  "500": {
+   "wahl": "ja",
+   "bs": "kafić"
+  },
+  "501": {
+   "wahl": "ja",
+   "bs": "Jelovnik, molim"
+  },
+  "502": {
+   "wahl": "ja",
+   "bs": "vani"
+  },
+  "503": {
+   "wahl": "ja",
+   "bs": "unutra"
+  },
+  "504": {
+   "wahl": "ja",
+   "bs": "Sto za dvoje, molim"
+  },
+  "505": {
+   "wahl": "ja",
+   "bs": "ćevabdžinica"
+  },
+  "506": {
+   "wahl": "ja",
+   "bs": "Je li ovaj sto slobodan?"
+  },
+  "507": {
+   "wahl": "ja",
+   "bs": "slastičarna"
+  },
+  "508": {
+   "wahl": "ja",
+   "bs": "terasa"
+  },
+  "509": {
+   "wahl": "ja",
+   "bs": "aščinica"
+  },
+  "510": {
+   "wahl": "ja",
+   "bs": "prilog"
+  },
+  "511": {
+   "wahl": "ja",
+   "bs": "naručiti"
+  },
+  "512": {
+   "wahl": "ja",
+   "bs": "To je sve"
+  },
+  "513": {
+   "wahl": "ja",
+   "bs": "čorba"
+  },
+  "514": {
+   "wahl": "ja",
+   "bs": "Još jednu turu"
+  },
+  "515": {
+   "wahl": "ja",
+   "bs": "Za mene …"
+  },
+  "516": {
+   "wahl": "ja",
+   "bs": "Može li jedna kahva?"
+  },
+  "517": {
+   "wahl": "ja",
+   "bs": "glavno jelo"
+  },
+  "518": {
+   "wahl": "ja",
+   "bs": "Ja bih …"
+  },
+  "519": {
+   "wahl": "ja",
+   "bs": "Može, hvala"
+  },
+  "520": {
+   "wahl": "ja",
+   "bs": "sa …"
+  },
+  "521": {
+   "wahl": "ja",
+   "bs": "desert"
+  },
+  "522": {
+   "wahl": "ja",
+   "bs": "Još jedno isto, molim"
+  },
+  "523": {
+   "wahl": "ja",
+   "bs": "Još nešto?"
+  },
+  "524": {
+   "wahl": "ja",
+   "bs": "bez …"
+  },
+  "525": {
+   "wahl": "ja",
+   "bs": "predjelo"
+  },
+  "526": {
+   "wahl": "ja",
+   "bs": "Šta preporučujete?"
+  },
+  "527": {
+   "wahl": "ja",
+   "bs": "Ovo nisam naručio"
+  },
+  "528": {
+   "wahl": "ja",
+   "bs": "Prijalo mi je",
+   "notiz": "bilo je ukusno ist eher richtig"
+  },
+  "529": {
+   "wahl": "ja",
+   "bs": "Fino je"
+  },
+  "530": {
+   "wahl": "ja",
+   "bs": "Ukusno je"
+  },
+  "531": {
+   "wahl": "ja",
+   "bs": "Sit sam"
+  },
+  "532": {
+   "wahl": "ja",
+   "bs": "Sita sam"
+  },
+  "533": {
+   "wahl": "ja",
+   "bs": "slano"
+  },
+  "534": {
+   "wahl": "ja",
+   "bs": "kiselo"
+  },
+  "535": {
+   "wahl": "ja",
+   "bs": "ljuto"
+  },
+  "536": {
+   "wahl": "ja",
+   "bs": "slatko"
+  },
+  "537": {
+   "wahl": "ja",
+   "bs": "premalo"
+  },
+  "538": {
+   "wahl": "ja",
+   "bs": "Zadržite kusur"
+  },
+  "539": {
+   "wahl": "ja",
+   "bs": "odvojeno"
+  },
+  "540": {
+   "wahl": "ja",
+   "bs": "Svako plaća svoje"
+  },
+  "541": {
+   "wahl": "ja",
+   "bs": "Možemo li platiti?"
+  },
+  "542": {
+   "wahl": "ja",
+   "bs": "napojnica"
+  },
+  "543": {
+   "wahl": "ja",
+   "bs": "Koliko je?"
+  },
+  "544": {
+   "wahl": "ja",
+   "bs": "zajedno"
+  },
+  "545": {
+   "wahl": "ja",
+   "bs": "begova čorba"
+  },
+  "546": {
+   "wahl": "ja",
+   "bs": "ražnjići"
+  },
+  "547": {
+   "wahl": "ja",
+   "bs": "petica"
+  },
+  "548": {
+   "wahl": "ja",
+   "bs": "punjene paprike"
+  },
+  "549": {
+   "wahl": "ja",
+   "bs": "sogan-dolma"
+  },
+  "550": {
+   "wahl": "ja",
+   "bs": "sudžukice"
+  },
+  "551": {
+   "wahl": "ja",
+   "bs": "sedam ćevapa"
+  },
+  "552": {
+   "wahl": "ja",
+   "bs": "klepe"
+  },
+  "553": {
+   "wahl": "ja",
+   "bs": "ispod sača"
+  },
+  "554": {
+   "wahl": "ja",
+   "bs": "desetka"
+  },
+  "555": {
+   "wahl": "ja",
+   "bs": "šampita",
+   "notiz": "krempita ist das eher sampita schaumschnitte oder schaumkuchen"
+  },
+  "556": {
+   "wahl": "ja",
+   "bs": "kadaif"
+  },
+  "557": {
+   "wahl": "ja",
+   "bs": "hurmašice",
+   "notiz": "bosnisches traditionelles gebäck weil sirupgebäck kann auch tulumba, baklava usw sein"
+  },
+  "558": {
+   "wahl": "ja",
+   "bs": "bosanska kahva"
+  },
+  "559": {
+   "wahl": "ja",
+   "bs": "Jednu bosansku kahvu, molim"
+  },
+  "560": {
+   "wahl": "ja",
+   "bs": "džezva"
+  },
+  "561": {
+   "wahl": "ja",
+   "bs": "polako"
+  },
+  "562": {
+   "wahl": "ja",
+   "bs": "šećer u kocki"
+  },
+  "563": {
+   "wahl": "ja",
+   "bs": "U zdravlje!"
+  },
+  "564": {
+   "wahl": "ja",
+   "bs": "Jednu rakiju, molim"
+  },
+  "565": {
+   "wahl": "ja",
+   "bs": "travarica"
+  },
+  "566": {
+   "wahl": "ja",
+   "bs": "domaća rakija"
+  },
+  "567": {
+   "wahl": "ja",
+   "bs": "loza"
+  },
+  "568": {
+   "wahl": "ja",
+   "bs": "šljivovica"
+  }
+ },
+ "von": 569
+}
