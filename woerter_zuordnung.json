@@ -1,18 +1,30 @@
 {
   "stand": "26.09.2026",
-  "fassung": 2,
+  "fassung": 3,
   "status": "vorschlag",
-  "zielgroesse": 28,
-  "sektionen": [
+  "pfad": [
     {
-      "id": "essen_einkauf",
-      "label": "Essen & Einkauf",
-      "beschreibung": "Vom Markt ueber den Laden bis ins Restaurant.",
+      "nr": 1,
+      "art": "vorhanden",
+      "id": "alltag",
+      "label": "Grundlagen & Alltag",
+      "level": 15,
+      "woerter": 333,
+      "ton": 235,
+      "farbe": "Blau"
+    },
+    {
+      "nr": 2,
+      "art": "neu",
+      "id": "anfassen",
+      "label": "Dinge zum Anfassen",
+      "beschreibung": "Nomen, die man zeigen kann. Ohne Grammatik zu verstehen.",
+      "ton": 268,
+      "farbe": "Indigo",
       "level": [
         {
           "id": "obst",
           "label": "Obst",
-          "beschreibung": "Was auf dem Markt liegt, vom Apfel bis zur Wassermelone.",
           "gruppen": [
             "Obst"
           ],
@@ -21,7 +33,6 @@
         {
           "id": "gemuese",
           "label": "Gemüse",
-          "beschreibung": "Alles Gruene und Bunte aus dem Garten.",
           "gruppen": [
             "Gemüse"
           ],
@@ -30,7 +41,6 @@
         {
           "id": "lebensmittel",
           "label": "Lebensmittel",
-          "beschreibung": "Was sonst noch in den Einkaufswagen kommt.",
           "gruppen": [
             "Lebensmittel"
           ],
@@ -39,7 +49,6 @@
         {
           "id": "vorrat",
           "label": "Vorrat & Getränke",
-          "beschreibung": "Was im Schrank steht, beim Bäcker liegt und ins Glas kommt.",
           "gruppen": [
             "Vorrat & Grundnahrungsmittel",
             "Beim Bäcker",
@@ -49,71 +58,21 @@
             "Rakija"
           ],
           "woerter": 29
-        },
-        {
-          "id": "resto1",
-          "label": "Im Restaurant: ankommen",
-          "beschreibung": "Einen Tisch bekommen und bestellen.",
-          "gruppen": [
-            "Restaurant: ankommen",
-            "Restaurant: bestellen"
-          ],
-          "woerter": 27
-        },
-        {
-          "id": "resto2",
-          "label": "Im Restaurant: essen & zahlen",
-          "beschreibung": "Bei Tisch, an der Theke und beim Bezahlen.",
-          "gruppen": [
-            "Restaurant: essen",
-            "Restaurant: zahlen",
-            "An der Theke"
-          ],
-          "woerter": 29
-        },
-        {
-          "id": "bosnisch_essen",
-          "label": "Bosnische Küche",
-          "beschreibung": "Cevapi, Burek, Pita und was sonst auf den Tisch kommt.",
-          "gruppen": [
-            "Bosnische Speisen (Level 5)",
-            "Bosnische Gerichte"
-          ],
-          "woerter": 25
-        },
-        {
-          "id": "essen_gehen",
-          "label": "Essen gehen & Mengen",
-          "beschreibung": "Verabreden, einladen, und wie viel wovon.",
-          "gruppen": [
-            "Essen gehen & bestellen (Level 5)",
-            "Suesses & Kaffeeritual (Level 5/35)",
-            "Mengen"
-          ],
-          "woerter": 24
-        },
-        {
-          "id": "einkauf_orte",
-          "label": "Einkaufen & Orte",
-          "beschreibung": "Wo man einkauft, was es kostet, und wo das alles liegt.",
-          "gruppen": [
-            "Orte beim Einkauf",
-            "Geld im Alltag",
-            "Städte & Regionen in Bosnien"
-          ],
-          "woerter": 28
         }
       ]
     },
     {
-      "id": "tiere_natur",
-      "label": "Tiere, Natur & Haus",
-      "beschreibung": "Was lebt, was waechst und was zu Hause kaputtgeht.",
+      "nr": 3,
+      "art": "neu",
+      "id": "tiernatur",
+      "label": "Tiere & Natur",
+      "beschreibung": "Dieselbe Stufe wie davor, anderes Feld.",
+      "ton": 300,
+      "farbe": "Violett",
       "level": [
         {
           "id": "tiere",
           "label": "Tiere",
-          "beschreibung": "Haustiere, Hoftiere und Voegel.",
           "gruppen": [
             "Tiere allgemein",
             "Tiere: Haus & Hof",
@@ -124,7 +83,6 @@
         {
           "id": "tiere_wild",
           "label": "Tiere draußen",
-          "beschreibung": "Wald, Wild, Insekten und Kleintiere.",
           "gruppen": [
             "Tiere: Wald & Wild",
             "Insekten & Kleintiere"
@@ -134,7 +92,6 @@
         {
           "id": "tiere_umgang",
           "label": "Rund ums Tier",
-          "beschreibung": "Koerperteile, Zubehoer, und was man mit Tieren tut.",
           "gruppen": [
             "Tierkoerper & Zubehoer",
             "Rund ums Tier: Verben & Saetze",
@@ -145,17 +102,26 @@
         {
           "id": "natur",
           "label": "Natur & Pflanzen",
-          "beschreibung": "Landschaft, Baeume, Blumen.",
           "gruppen": [
             "Natur & Landschaft",
             "Pflanzen & Baeume"
           ],
           "woerter": 30
-        },
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "art": "neu",
+      "id": "zuhause2",
+      "label": "Zuhause",
+      "beschreibung": "Die ersten Taetigkeiten kommen dazu: putzen, waschen, reparieren.",
+      "ton": 332,
+      "farbe": "Magenta",
+      "level": [
         {
           "id": "kueche_bad",
           "label": "Küche & Bad",
-          "beschreibung": "Geschirr, Moebel, Koerperpflege.",
           "gruppen": [
             "Küche & Geschirr",
             "Möbel & Textilien",
@@ -166,7 +132,6 @@
         {
           "id": "putzen",
           "label": "Putzen & Nachbarschaft",
-          "beschreibung": "Sauber machen, waschen, und wer nebenan wohnt.",
           "gruppen": [
             "Putzen & Wäsche",
             "Haus & Nachbarschaft"
@@ -176,7 +141,6 @@
         {
           "id": "technik",
           "label": "Technik & Reparatur",
-          "beschreibung": "Strom, Licht, Heizung und was man selbst repariert.",
           "gruppen": [
             "Strom, Licht & Heizung",
             "Reparatur & Handwerk"
@@ -186,14 +150,86 @@
       ]
     },
     {
-      "id": "herkunft",
-      "label": "Herkunft & Kultur",
-      "beschreibung": "Woher jemand kommt, was er spricht, wie gefeiert wird.",
+      "nr": 5,
+      "art": "vorhanden",
+      "id": "saetze",
+      "label": "Sätze bauen",
+      "level": 22,
+      "woerter": 613,
+      "ton": 175,
+      "farbe": "Petrol"
+    },
+    {
+      "nr": 6,
+      "art": "neu",
+      "id": "einkauf",
+      "label": "Einkaufen & Essen gehen",
+      "beschreibung": "Bestellen, bezahlen, nachfragen. Braucht Fälle und Verben.",
+      "ton": 205,
+      "farbe": "Himmelblau",
       "level": [
+        {
+          "id": "einkauf_orte",
+          "label": "Einkaufen & Orte",
+          "gruppen": [
+            "Orte beim Einkauf",
+            "Geld im Alltag",
+            "Städte & Regionen in Bosnien"
+          ],
+          "woerter": 28
+        },
+        {
+          "id": "resto1",
+          "label": "Im Restaurant: ankommen",
+          "gruppen": [
+            "Restaurant: ankommen",
+            "Restaurant: bestellen"
+          ],
+          "woerter": 27
+        },
+        {
+          "id": "resto2",
+          "label": "Im Restaurant: essen & zahlen",
+          "gruppen": [
+            "Restaurant: essen",
+            "Restaurant: zahlen",
+            "An der Theke"
+          ],
+          "woerter": 29
+        },
+        {
+          "id": "essen_gehen",
+          "label": "Essen gehen & Mengen",
+          "gruppen": [
+            "Essen gehen & bestellen (Level 5)",
+            "Suesses & Kaffeeritual (Level 5/35)",
+            "Mengen"
+          ],
+          "woerter": 24
+        }
+      ]
+    },
+    {
+      "nr": 7,
+      "art": "neu",
+      "id": "herkunft",
+      "label": "Bosnien & Herkunft",
+      "beschreibung": "Woher jemand kommt, und die Formen für männlich und weiblich.",
+      "ton": 235,
+      "farbe": "Blau",
+      "level": [
+        {
+          "id": "bosnisch_essen",
+          "label": "Bosnische Küche",
+          "gruppen": [
+            "Bosnische Speisen (Level 5)",
+            "Bosnische Gerichte"
+          ],
+          "woerter": 25
+        },
         {
           "id": "laender",
           "label": "Länder & Herkunft",
-          "beschreibung": "Woher jemand kommt und wo er lebt.",
           "gruppen": [
             "Länder & Herkunft (neues Level)"
           ],
@@ -202,35 +238,53 @@
         {
           "id": "nationalitaeten",
           "label": "Nationalitäten & Sprachen",
-          "beschreibung": "Bosnier, Bosnierin, bosnisch - und die anderen Sprachen dazu.",
           "gruppen": [
             "Nationalitäten (m/w)",
             "Sprachen"
           ],
           "woerter": 30
+        }
+      ]
+    },
+    {
+      "nr": 8,
+      "art": "neu",
+      "id": "kultur",
+      "label": "Menschen & Kultur",
+      "beschreibung": "Floskeln, Gastfreundschaft, Sevdah. Das Idiomatische.",
+      "ton": 268,
+      "farbe": "Indigo",
+      "level": [
+        {
+          "id": "kennenlernen",
+          "label": "Vorstellen & Kennenlernen",
+          "gruppen": [
+            "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
+            "Menschen & Umgang (Level 4 / 9 / 15)"
+          ],
+          "woerter": 29
         },
         {
-          "id": "kultur",
+          "id": "kulturlevel",
           "label": "Musik, Glaube & Gastfreundschaft",
-          "beschreibung": "Sevdah, Kolo, die Floskeln des Alltags und wie man Gaeste empfaengt.",
           "gruppen": [
             "Tanz & Musik (Level 35)",
             "Glaube & Alltagsfloskeln (Level 35)",
             "Gastfreundschaft (Level 35)"
           ],
           "woerter": 29
-        },
-        {
-          "id": "kennenlernen",
-          "label": "Vorstellen & Kennenlernen",
-          "beschreibung": "Sich vorstellen, nachfragen, miteinander umgehen.",
-          "gruppen": [
-            "Vorstellen & Kennenlernen (Level 1 / 15 / 38)",
-            "Menschen & Umgang (Level 4 / 9 / 15)"
-          ],
-          "woerter": 29
         }
       ]
+    },
+    {
+      "nr": 9,
+      "art": "vorhanden",
+      "id": "amt",
+      "label": "Amt & Verträge",
+      "level": 6,
+      "woerter": 162,
+      "ton": 300,
+      "farbe": "Violett"
     }
   ],
   "ergaenzungen": [
@@ -238,19 +292,45 @@
       "gruppe": "Level 1 Grundlagen - dringendste Luecke",
       "level": "basics",
       "woerter": 1,
-      "warum": "Ein einziges Wort, von Ajdin als dringendste Luecke benannt."
+      "warum": "Ein Wort."
     },
     {
       "gruppe": "Am Himmel (Ergaenzung Level 10)",
       "level": "wetter",
       "woerter": 7,
-      "warum": "Sieben Woerter, die Gruppe nennt Level 10 ausdruecklich."
+      "warum": "Sieben Wörter, Gruppe nennt Level 10."
     },
     {
       "gruppe": "Feiern & Braeuche (Level 35)",
       "level": "feiern",
       "woerter": 5,
-      "warum": "Fuenf Woerter, die Gruppe nennt Level 35 ausdruecklich."
+      "warum": "Fünf Wörter, Gruppe nennt Level 35."
+    }
+  ],
+  "toene": [
+    {
+      "ton": 235,
+      "name": "Blau"
+    },
+    {
+      "ton": 268,
+      "name": "Indigo"
+    },
+    {
+      "ton": 300,
+      "name": "Violett"
+    },
+    {
+      "ton": 332,
+      "name": "Magenta"
+    },
+    {
+      "ton": 175,
+      "name": "Petrol"
+    },
+    {
+      "ton": 205,
+      "name": "Himmelblau"
     }
   ]
 }
