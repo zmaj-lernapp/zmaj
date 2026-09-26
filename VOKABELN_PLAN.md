@@ -7,7 +7,12 @@ geschlossenen Test kamen. Leitsatz des Auftraggebers:
 > Richtung gehen, aber wenigstens die Wörter lernen, die man braucht, wenn
 > man in Bosnien lebt."
 
-**Stand heute:** 43 Level, 1108 Wörter.
+**Stand bei der Aufstellung:** 43 Level, 1108 Wörter.
+
+> **Umgesetzt am 26. und 27.09.2026.** Aus den Planungen sind **63 Level
+> in 9 Sektionen mit 1668 Wörtern und 290 Lückensätzen** geworden. Die
+> Zahlen unten beschreiben den Zustand VOR der Erweiterung – sie bleiben
+> stehen, damit nachvollziehbar ist, worauf die Planung reagiert hat.
 
 ---
 

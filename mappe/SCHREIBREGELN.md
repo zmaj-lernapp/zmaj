@@ -113,7 +113,7 @@ gleich lange, abgehackte Sätze mit Doppelpunkt-Aufzählungen und Semikolons.
 
 | Was | Wohin |
 |---|---|
-| Umfangsliste: 43 Level, 1108 Vokabeln, 16 Grammatikeinheiten, 104 Übungen, 12 Geschichten, 8 Sprachen | 2.3 Soll-Zustand |
+| Umfangsliste: 63 Level, 1668 Vokabeln, 16 Grammatikeinheiten, 104 Übungen, 12 Geschichten, 8 Sprachen | 2.3 Soll-Zustand |
 | Gewerbe, Identitätsprüfung, Impressum, Datenschutz, Einwilligung | 2.4 Technische Anforderungen und 5.4 Veröffentlichung |
 | Werbefinanzierung und Abonnement | 2.1 Einführung, 2.3 Soll-Zustand |
 | Einzelarbeit als Risiko | 4. Risikoanalyse, mit Eintrittswahrscheinlichkeit und Gegenmaßnahme |
