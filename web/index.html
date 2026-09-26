@@ -17,43 +17,49 @@
 <style>
   /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
   :root{
-    --bg:#E9EEFF; --surface:#FFFFFF; --ink:#0F1E4D; --muted:#5E6B94;
-    --primary:#1E3FA8; --primary-dark:#142C7A; --primary-soft:#E4EAFF;
+    --bg:#E5E8FF; --surface:#FFFFFF; --ink:#0F1E4D; --muted:#5E6B94;
+    --primary:#2230C3; --primary-dark:#1A2493; --primary-soft:#E5E8FF;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
-    --line:#C9D3F0; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    --line:#CDCFEF; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
     /* Eine Farbe je Sektion. Vorher war jede Ueberschrift blau und jeder
        Balken gelb, dadurch standen auf dem Lernpfad nach Farbton nur vier
        Toene. Sektion 1 behaelt das Blau der App und der Fahne. Hier sind
        die Toene dunkler als in der dunklen Fassung, sonst leuchten sie
        auf Weiss. */
-    --sek1:#1E3FA8; --sek1-dunkel:#142C7A; --sek1-sanft:#E4EAFF; --sek1-grund:#E9EEFF; --sek1-flaeche:#FFFFFF; --sek1-linie:#C9D3F0; --sek1-matt:#5E6B94;   /* Blau */
-    --sek2:#167588; --sek2-dunkel:#0E4B58; --sek2-sanft:#E5FBFF; --sek2-grund:#E5FBFF; --sek2-flaeche:#FFFFFF; --sek2-linie:#CDE9EF; --sek2-matt:#5D8992;   /* Tuerkis */
-    --sek3:#611DA5; --sek3-dunkel:#451575; --sek3-sanft:#F2E5FF; --sek3-grund:#F2E5FF; --sek3-flaeche:#FFFFFF; --sek3-linie:#DECDEF; --sek3-matt:#785D92;   /* Violett */
-    --sek4:#B80A6F; --sek4-dunkel:#83074F; --sek4-sanft:#FFE5F4; --sek4-grund:#FFE5F4; --sek4-flaeche:#FFFFFF; --sek4-linie:#EFCDE1; --sek4-matt:#925D7C;   /* Magenta */
+    --sek1:#2230C3; --sek1-dunkel:#1A2493; --sek1-sanft:#E5E8FF; --sek1-grund:#E5E8FF; --sek1-flaeche:#FFFFFF; --sek1-linie:#CDCFEF; --sek1-matt:#5D6292;   /* Blau */
+    --sek2:#6D22C3; --sek2-dunkel:#531A93; --sek2-sanft:#F1E5FF; --sek2-grund:#F1E5FF; --sek2-flaeche:#FFFFFF; --sek2-linie:#DDCDEF; --sek2-matt:#765D92;   /* Indigo */
+    --sek3:#C322C3; --sek3-dunkel:#931A93; --sek3-sanft:#FFE5FF; --sek3-grund:#FFE5FF; --sek3-flaeche:#FFFFFF; --sek3-linie:#EFCDEF; --sek3-matt:#925D92;   /* Violett */
+    --sek4:#C3226D; --sek4-dunkel:#931A53; --sek4-sanft:#FFE5F1; --sek4-grund:#FFE5F1; --sek4-flaeche:#FFFFFF; --sek4-linie:#EFCDDD; --sek4-matt:#925D76;   /* Magenta */
+    --sek5:#178279; --sek5-dunkel:#0F524D; --sek5-sanft:#E5FFFD; --sek5-grund:#E5FFFD; --sek5-flaeche:#FFFFFF; --sek5-linie:#CDEFEC; --sek5-matt:#5D928E;   /* Petrol */
+    --sek6:#217ABA; --sek6-dunkel:#185B8B; --sek6-sanft:#E5F4FF; --sek6-grund:#E5F4FF; --sek6-flaeche:#FFFFFF; --sek6-linie:#CDE1EF; --sek6-matt:#5D7C92;   /* Himmelblau */
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#0B1330; --surface:#1B2A63; --ink:#F2F5FF; --muted:#9FACD9;
-      --primary:#5B84FF; --primary-dark:#3C63D6; --primary-soft:#1C2B66;
+      --bg:#0F122E; --surface:#232857; --ink:#F2F5FF; --muted:#A5A9D4;
+      --primary:#6A76F6; --primary-dark:#4C57CD; --primary-soft:#1B2164;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-      --line:#2F4184; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-      --sek1:#5B84FF; --sek1-dunkel:#3C63D6; --sek1-sanft:#1C2B66; --sek1-grund:#0B1330; --sek1-flaeche:#1B2A63; --sek1-linie:#2F4184; --sek1-matt:#9FACD9;   /* Blau */
-      --sek2:#50CAE2; --sek2-dunkel:#3F99AB; --sek2-sanft:#1B5864; --sek2-grund:#0F292E; --sek2-flaeche:#234E57; --sek2-linie:#366D78; --sek2-matt:#A5CCD4;   /* Tuerkis */
-      --sek3:#B26EF7; --sek3-dunkel:#8F4ECF; --sek3-sanft:#401B64; --sek3-grund:#1F0F2E; --sek3-flaeche:#3D2357; --sek3-linie:#573678; --sek3-matt:#BDA5D4;   /* Violett */
-      --sek4:#F76EBE; --sek4-dunkel:#CF4E9A; --sek4-sanft:#641B46; --sek4-grund:#2E0F21; --sek4-flaeche:#572341; --sek4-linie:#78365C; --sek4-matt:#D4A5C1;   /* Magenta */
+      --line:#363B78; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --sek1:#6A76F6; --sek1-dunkel:#4C57CD; --sek1-sanft:#1B2164; --sek1-grund:#0F122E; --sek1-flaeche:#232857; --sek1-linie:#363B78; --sek1-matt:#A5A9D4;   /* Blau */
+      --sek2:#AB6AF6; --sek2-dunkel:#884CCD; --sek2-sanft:#3D1B64; --sek2-grund:#1E0F2E; --sek2-flaeche:#3B2357; --sek2-linie:#553678; --sek2-matt:#BBA5D4;   /* Indigo */
+      --sek3:#F66AF6; --sek3-dunkel:#CD4CCD; --sek3-sanft:#641B64; --sek3-grund:#2E0F2E; --sek3-flaeche:#572357; --sek3-linie:#783678; --sek3-matt:#D4A5D4;   /* Violett */
+      --sek4:#F66AAB; --sek4-dunkel:#CD4C88; --sek4-sanft:#641B3D; --sek4-grund:#2E0F1E; --sek4-flaeche:#57233B; --sek4-linie:#783655; --sek4-matt:#D4A5BB;   /* Magenta */
+      --sek5:#6AF6EA; --sek5-dunkel:#4CCDC2; --sek5-sanft:#1B645E; --sek5-grund:#0F2E2B; --sek5-flaeche:#235753; --sek5-linie:#367872; --sek5-matt:#A5D4D0;   /* Petrol */
+      --sek6:#6ABCF6; --sek6-dunkel:#4C97CD; --sek6-sanft:#1B4664; --sek6-grund:#0F212E; --sek6-flaeche:#234157; --sek6-linie:#365C78; --sek6-matt:#A5C1D4;   /* Himmelblau */
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0B1330; --surface:#1B2A63; --ink:#F2F5FF; --muted:#9FACD9;
-    --primary:#5B84FF; --primary-dark:#3C63D6; --primary-soft:#1C2B66;
+    --bg:#0F122E; --surface:#232857; --ink:#F2F5FF; --muted:#A5A9D4;
+    --primary:#6A76F6; --primary-dark:#4C57CD; --primary-soft:#1B2164;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-    --line:#2F4184; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-    --sek1:#5B84FF; --sek1-dunkel:#3C63D6; --sek1-sanft:#1C2B66; --sek1-grund:#0B1330; --sek1-flaeche:#1B2A63; --sek1-linie:#2F4184; --sek1-matt:#9FACD9;   /* Blau */
-    --sek2:#50CAE2; --sek2-dunkel:#3F99AB; --sek2-sanft:#1B5864; --sek2-grund:#0F292E; --sek2-flaeche:#234E57; --sek2-linie:#366D78; --sek2-matt:#A5CCD4;   /* Tuerkis */
-    --sek3:#B26EF7; --sek3-dunkel:#8F4ECF; --sek3-sanft:#401B64; --sek3-grund:#1F0F2E; --sek3-flaeche:#3D2357; --sek3-linie:#573678; --sek3-matt:#BDA5D4;   /* Violett */
-    --sek4:#F76EBE; --sek4-dunkel:#CF4E9A; --sek4-sanft:#641B46; --sek4-grund:#2E0F21; --sek4-flaeche:#572341; --sek4-linie:#78365C; --sek4-matt:#D4A5C1;   /* Magenta */
+    --line:#363B78; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+    --sek1:#6A76F6; --sek1-dunkel:#4C57CD; --sek1-sanft:#1B2164; --sek1-grund:#0F122E; --sek1-flaeche:#232857; --sek1-linie:#363B78; --sek1-matt:#A5A9D4;   /* Blau */
+    --sek2:#AB6AF6; --sek2-dunkel:#884CCD; --sek2-sanft:#3D1B64; --sek2-grund:#1E0F2E; --sek2-flaeche:#3B2357; --sek2-linie:#553678; --sek2-matt:#BBA5D4;   /* Indigo */
+    --sek3:#F66AF6; --sek3-dunkel:#CD4CCD; --sek3-sanft:#641B64; --sek3-grund:#2E0F2E; --sek3-flaeche:#572357; --sek3-linie:#783678; --sek3-matt:#D4A5D4;   /* Violett */
+    --sek4:#F66AAB; --sek4-dunkel:#CD4C88; --sek4-sanft:#641B3D; --sek4-grund:#2E0F1E; --sek4-flaeche:#57233B; --sek4-linie:#783655; --sek4-matt:#D4A5BB;   /* Magenta */
+    --sek5:#6AF6EA; --sek5-dunkel:#4CCDC2; --sek5-sanft:#1B645E; --sek5-grund:#0F2E2B; --sek5-flaeche:#235753; --sek5-linie:#367872; --sek5-matt:#A5D4D0;   /* Petrol */
+    --sek6:#6ABCF6; --sek6-dunkel:#4C97CD; --sek6-sanft:#1B4664; --sek6-grund:#0F212E; --sek6-flaeche:#234157; --sek6-linie:#365C78; --sek6-matt:#A5C1D4;   /* Himmelblau */
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -289,6 +295,18 @@
     --surface:var(--sek4-flaeche); --line:var(--sek4-linie);
     --muted:var(--sek4-matt);
   }
+  :root[data-sek="5"]{
+    --primary:var(--sek5); --primary-dark:var(--sek5-dunkel);
+    --primary-soft:var(--sek5-sanft); --bg:var(--sek5-grund);
+    --surface:var(--sek5-flaeche); --line:var(--sek5-linie);
+    --muted:var(--sek5-matt);
+  }
+  :root[data-sek="6"]{
+    --primary:var(--sek6); --primary-dark:var(--sek6-dunkel);
+    --primary-soft:var(--sek6-sanft); --bg:var(--sek6-grund);
+    --surface:var(--sek6-flaeche); --line:var(--sek6-linie);
+    --muted:var(--sek6-matt);
+  }
 
   /* ---- Weicher Uebergang beim Sektionswechsel ----
      Wenn die naechste Sektion dran ist, soll die neue Farbe hineinlaufen
@@ -333,7 +351,7 @@
   .section.zu > .skopf .desc, .section.zu .levels{display:none}
   .section.zu{padding-bottom:14px}
 
-  .section.sek1, .section.sek2, .section.sek3, .section.sek4{ position:relative }
+  .section.sek1, .section.sek2, .section.sek3, .section.sek4, .section.sek5, .section.sek6{ position:relative }
   /* Der Streifen laeuft von der eigenen Farbe in die der naechsten Sektion.
      Scrollt man den Lernpfad hinunter, gehen die Farben ineinander ueber,
      statt hart zu springen. Bei der letzten bleibt er einfarbig, dafuer
@@ -341,8 +359,7 @@
      Ein Rahmen kann keinen Verlauf tragen, deshalb ein eigenes Element.
      Es liegt zwei Pixel weiter links und oben, damit es den Rahmen der
      Karte an dieser Seite ueberdeckt statt neben ihm zu stehen. */
-  .section.sek1::before, .section.sek2::before,
-  .section.sek3::before, .section.sek4::before{
+  .section.sek1::before, .section.sek2::before, .section.sek3::before, .section.sek4::before, .section.sek5::before, .section.sek6::before{
     content:''; position:absolute; left:-2px; top:-2px; bottom:-2px; width:5px;
     border-radius:var(--radius) 0 0 var(--radius);
     background:linear-gradient(180deg, var(--sek), var(--sek-next, var(--sek)));
@@ -351,6 +368,8 @@
   .section.sek2{--sek:var(--sek2)}
   .section.sek3{--sek:var(--sek3)}
   .section.sek4{--sek:var(--sek4)}
+  .section.sek5{--sek:var(--sek5)}
+  .section.sek6{--sek:var(--sek6)}
   /* Bis zum 26.09.2026 stand hier opacity:.6 - die gesperrten Sektionen
      waren also zu 40 Prozent durchsichtig, und der Grund schien hindurch.
      Der Tester am selben Tag: "weil die Boxen durchsichtig sind mischt
@@ -1846,7 +1865,7 @@ let offeneSektion = null;        // welche Sektion offen ist
    Sektion wieder bei der ersten Farbe anfinge. */
 function sektionsNummer(id){
   const i = SECTIONS.findIndex(s => s.id === id);
-  return String((i < 0 ? 0 : i) % 4 + 1);
+  return String((i < 0 ? 0 : i) % 6 + 1);
 }
 
 /* Auf- und Zuklappen. Ein Tipp auf einen anderen Kopf klappt den auf und
@@ -1891,7 +1910,7 @@ function sektionsFarbe(){
      von Sektion 2, ohne dass man erst fuenfzehn Level spielen muss. Ohne
      den Zusatz rechnet die App wie immer selbst. */
   const gewuenscht = new URLSearchParams(location.search).get('sek');
-  if(gewuenscht && /^[1-4]$/.test(gewuenscht)) return farbeSetzen(gewuenscht);
+  if(gewuenscht && /^[1-6]$/.test(gewuenscht)) return farbeSetzen(gewuenscht);
   if(!CATEGORIES.length || !SECTIONS.length) return;
   /* Die aufgeklappte Sektion gibt die Farbe vor, nicht die, in der gerade
      gelernt wird. Wer sich Sektion 3 ansieht, soll sie auch sehen. */
@@ -4460,7 +4479,7 @@ function showPath(){
        fuenfte Sektion wieder bei der ersten Farbe anfinge statt ohne
        Farbe dazustehen. */
     const auf = s.id === offeneSektion;
-    sec.className='section sek'+(si % 4 + 1)+(sopen?'':' locked')+(auf?'':' zu');
+    sec.className='section sek'+(si % 6 + 1)+(sopen?'':' locked')+(auf?'':' zu');
     sec.dataset.sid = s.id;
     /* Der Kopf ist ein Knopf: anklickbar, mit der Tastatur erreichbar, und
        aria-expanded sagt an, was offen ist. Die Level stehen in einem
