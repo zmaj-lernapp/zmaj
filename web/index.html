@@ -2479,7 +2479,13 @@ document.addEventListener('visibilitychange', ()=>{
        weg. Ajdin am 18.09.2026. */
     saveProgress();
   }
-  else if(uhrWarAn){ uhrWarAn = false; uhrAn(); }
+  else {
+    /* Zuerst der Tageswechsel: ueber Nacht im Hintergrund ist der
+       haeufigste Fall, und er faellt sonst erst auf, wenn die Serie
+       schon gerissen ist. */
+    tagPruefen();
+    if(uhrWarAn){ uhrWarAn = false; uhrAn(); }
+  }
 });
 
 /* Frisch geschaffte Aufgaben – wird beim Zeichnen des Ergebnisschirms geleert.
@@ -2580,7 +2586,27 @@ $('muenzBar').addEventListener('click', async ()=>{
   if(!await lektionDarfWeg()) return;
   await saveProgress(); showLaden();
 });
-setInterval(renderLives, 30000);
+/* Wer die App abends auf der Startseite liegen laesst und sie morgens
+   wieder hervorholt, sah bisher den Stand von gestern: "Heute geuebt",
+   die alte Serienzahl und alle drei Tagesaufgaben abgehakt. renderHero()
+   und renderQuests() laufen naemlich nur aus showHome(), und der einzige
+   Zeitgeber zeichnete bloss renderLives().
+   Das ist nicht nur schief angezeigt: wer glaubt, er haette heute schon
+   geuebt, lernt nicht - und verliert die Serie, weil days den neuen Tag
+   nie bekommt. Gefunden am 26.09.2026. */
+let letzterTag = today();
+function tagPruefen(){
+  const jetzt = today();
+  if(jetzt === letzterTag) return false;
+  letzterTag = jetzt;
+  /* Nur zeichnen, wenn die Startseite ueberhaupt sichtbar ist. Mitten in
+     einer Lektion wuerde showHome() die Aufgabe wegreissen. Der Merker
+     steht trotzdem schon auf heute, damit es spaeter nicht grundlos
+     nachzieht - showLevelHome() zeichnet die Startseite ohnehin neu. */
+  if(sichtbar('pfad')) showHome();
+  return true;
+}
+setInterval(()=>{ tagPruefen(); renderLives(); }, 30000);
 
 /* ---- Lernserie ----
    days  = Tage mit einer fertigen Lektion
