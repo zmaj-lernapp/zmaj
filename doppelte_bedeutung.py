@@ -101,9 +101,15 @@ def main():
     print()
     print(strich)
     print("%d Stellen insgesamt." % gesamt)
-    print("A ist der schlimmere Fall: die Auswahlaufgabe ist dort nicht")
-    print("entscheidbar, und eine richtige Antwort kostet ein Herz.")
-    return 1 if gesamt else 0
+    print()
+    print("SEIT DEM 26.09.2026 FAENGT DIE APP DAS AB.")
+    print("geschwister() in index.html liefert alle Woerter mit derselben")
+    print("angezeigten Bedeutung. distractors() wirft sie aus dem")
+    print("Ablenkertopf, und die Schreibaufgabe nimmt jede davon an.")
+    print("Diese Liste ist deshalb keine Fehlerliste mehr, sondern zeigt,")
+    print("wo die Uebersetzungen doppelt sind - das kann man beheben, muss")
+    print("man aber nicht. Rueckgabewert bleibt 0.")
+    return 0
 
 
 if __name__ == "__main__":
