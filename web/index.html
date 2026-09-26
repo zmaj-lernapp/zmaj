@@ -1218,10 +1218,17 @@ const WERBUNG_AN          = true;  // Hauptschalter
 const WERBUNG_AB_LEKTION  = 3;     // die ersten Lektionen bleiben frei
 const WERBUNG_JEDE_X      = 3;     // danach jede dritte
 const WERBUNG_MAX_TAG     = 6;     // mehr wird an einem Tag nicht gezeigt
+/* Eigenes Tageskontingent fuer das freiwillige Video. Ajdin am 26.09.2026:
+   wer viel lernt, hatte nach sechs Pflicht-Anzeigen auf dem Schirm "Keine
+   Leben mehr" keinen Knopf "Leben holen" mehr - aufgebraucht von Anzeigen,
+   die er sich nicht ausgesucht hat. Der Entwurf oben deckelt ausdruecklich
+   nur Art 1 (die Anzeige nach der Lektion), nicht Art 2. Sechs bleibt die
+   Obergrenze, die vorher schon galt - nur eben nicht mehr geteilt. */
+const WERBUNG_MAX_LOHN    = 6;     // freiwillige Videos, getrennt gezaehlt
 const WERBUNG_LEBEN_LOHN  = 1;     // so viele Leben gibt ein belohntes Video
 
 let werbungZaehler = 0;            // Lektionen seit der letzten Werbung
-let werbungHeute = {tag: '', n: 0};
+let werbungHeute = {tag: '', n: 0, lohn: 0};
 try{ werbungHeute = JSON.parse(localStorage.getItem('zmaj_werbung') || 'null') || werbungHeute; }catch(e){}
 
 /* =================== EINWILLIGUNG ===================
@@ -1312,18 +1319,25 @@ function zeigeEinwilligung(){
   });
 }
 
-function werbungErlaubt(){
+/* `belohnt` trennt die beiden Arten. Ohne Argument ist die Pflicht-Anzeige
+   gemeint, so wie vorher - der Aufruf in lessonEnd() bleibt deshalb
+   unveraendert. Das `|| 0` faengt Staende ab, die noch ohne `lohn` im
+   Geraetespeicher liegen; sonst waere der Vergleich NaN und der Knopf
+   "Leben holen" von der ersten Sekunde an weg. */
+function werbungErlaubt(belohnt){
   if(!WERBUNG_AN || unlimited()) return false;   // Vollversion: nie
   if(admobDa() && !admobDarf) return false;      // Google sagt nein
   if(einwilligungFragen()) return false;         // erst fragen, dann werben
   const heute = new Date().toISOString().slice(0,10);
-  if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0};
-  return werbungHeute.n < WERBUNG_MAX_TAG;
+  if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0};
+  return belohnt ? (werbungHeute.lohn || 0) < WERBUNG_MAX_LOHN
+                 : (werbungHeute.n    || 0) < WERBUNG_MAX_TAG;
 }
-function werbungGezaehlt(){
+function werbungGezaehlt(belohnt){
   const heute = new Date().toISOString().slice(0,10);
-  if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0};
-  werbungHeute.n++;
+  if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0};
+  if(belohnt) werbungHeute.lohn = (werbungHeute.lohn || 0) + 1;
+  else werbungHeute.n    = (werbungHeute.n    || 0) + 1;
   try{ localStorage.setItem('zmaj_werbung', JSON.stringify(werbungHeute)); }catch(e){}
 }
 
@@ -1366,8 +1380,16 @@ async function admobStart(){
      verhindert zwar jede Anzeige, aber das SDK wuerde trotzdem starten und mit
      Google sprechen - fuer jemanden, der genau dafuer bezahlt hat, waere das
      verkehrt. Gelesen wird direkt aus dem Geraetespeicher, weil an dieser
-     Stelle im Start noch niemand angemeldet ist. */
-  if(vollversionGemerkt()) return;
+     Stelle im Start noch niemand angemeldet ist.
+
+     Der versteckte Dauerschalter gehoert hier dazu. Er schreibt zmaj_voll
+     bewusst NICHT mit (siehe vollversionMerken), deshalb las diese Stelle
+     ihn gar nicht: bei Ajdin und Kuebra fuhr AdMob trotz eingeschalteter
+     Dauer-Vollversion hoch, sprach mit Google und zeigte dessen
+     Einwilligungsfenster - genau das, was dieser Kommentar ausschliessen
+     wollte. Gefunden am 26.09.2026. */
+  dauerVollLaden();   // frisch aus dem Geraetespeicher, wie eine Zeile tiefer
+  if(vollversionGemerkt() || dauerVoll) return;
   try{
     const A = P.AdMob;
     let info = await A.requestConsentInfo();
@@ -1457,10 +1479,19 @@ function t(key, vars){
   if(s.indexOf('|') >= 0) s = s.split('|')[0];
   return fuelle(s, vars);
 }
+/* Franzoesisch stellt das Substantiv nach null in die Einzahl ("0 nouveau
+   mot"); Deutsch, Englisch, Schwedisch, Norwegisch, Daenisch und
+   Niederlaendisch nehmen die Mehrzahl, Tuerkisch hat nur eine Form. Ohne diese
+   Ausnahme stand auf dem Ergebnisschirm einer Lektion ohne neue Woerter
+   "+0 nouveaux mots" und in den Einstellungen am ersten Tag "Serie : 0 jours".
+   Eine Liste statt eines Vergleichs auf 'fr', damit eine spaetere Sprache mit
+   derselben Regel nur hier eingetragen werden muss. Gefunden am 26.09.2026. */
+const EINZAHL_BEI_NULL = ['fr'];
 function tp(key, n, vars){
   const s = T[key] !== undefined ? T[key] : key;
   const teile = s.split('|');
-  const gewaehlt = (n === 1 || teile.length < 2) ? teile[0] : teile[1];
+  const einzahl = n === 1 || (n === 0 && EINZAHL_BEI_NULL.includes(SPRACHE));
+  const gewaehlt = (einzahl || teile.length < 2) ? teile[0] : teile[1];
   return fuelle(gewaehlt, Object.assign({n:n}, vars||{}));
 }
 function applyTexts(){
@@ -1484,7 +1515,9 @@ let tagwerk = {};         // Tag -> Zähler, z.B. {'2026-09-14': {auf:23, ric:18
    rekord   = die längste Serie, die jemals lief. Überlebt das Reißen.
    wann     = wann etwas geschafft wurde: "lv:<id>" und "gs:<id>" -> Datum.
               Die Kürzel davor, damit sich Level- und Geschichten-Kennungen
-              nicht ins Gehege kommen. */
+              nicht ins Gehege kommen. Dazu ein Schluessel ohne Doppelpunkt:
+              "alleWoerter" = der Tag, an dem das letzte unbekannte Wort
+              fiel (siehe neuNochMoeglich()). */
 let gefeiert = new Set();
 let rekord = 0;
 let wann = {};
@@ -2035,9 +2068,22 @@ async function googlesAntwort(){
 }
 /* Einmal beim Start abgleichen, damit der Schalter von Anfang an das zeigt,
    was bei Google steht - und nicht erst, nachdem man ihn angefasst hat. */
+/* Abgeglichen wird nur, wo Googles Fenster den Schalter fuehrt. Ajdin am
+   26.09.2026: verlangt Google keinen eigenen Aenderungsknopf (ausserhalb
+   des EWR, oder wenn in der AdMob-Konsole kein Datenschutzfenster steht),
+   dann ist admobOptionen false und der Schalter ist unser eigener - und
+   trotzdem hat dieser Abgleich die Wahl beim naechsten Oeffnen der
+   Einstellungen wieder auf "an" gesetzt, weil ZmajEinwilligung bei
+   IABTCF_gdprApplies=0 fest "personalisiert" meldet. Eine Einwilligung,
+   die sich nicht zuruecknehmen laesst, darf es nicht geben. Der Entwurf
+   weiter oben sagt es selbst: solange niemand geschaltet hat, zaehlt die
+   Antwort aus dem Einwilligungsfenster - danach nicht mehr. */
 async function werbungAbgleichen(){
-  const g = await googlesAntwort();
-  if(g !== null && g !== werbungPersonalisiert()) setzePersonalisiert(g);
+  const eigenerSchalter = !(admobDa() && admobOptionen);
+  if(!eigenerSchalter || persWahl === null){
+    const g = await googlesAntwort();
+    if(g !== null && g !== werbungPersonalisiert()) setzePersonalisiert(g);
+  }
   if($('setWerbungBox') && $('setWerbungBox').style.display !== 'none') werbungZeileZeigen();
 }
 function werbungZeileZeigen(){
@@ -2303,7 +2349,17 @@ function zeigeWegmarke(m){
   }
   document.body.appendChild(kasten);   // der Drache hängt sich selbst ein
   sound('wegmarke');
-  const zu = ()=>{ kasten.remove(); wegmarkeLaeuft = false; };
+  /* Die Karte meldet sich bei der Zurueck-Taste an - wie frage() ,
+     die Vollversionswahl und der Widerruf . Ohne das lief die
+     Taste durch die Karte hindurch: am 7. Lerntag drueckte der erste Druck
+     darunter "Lektion abbrechen", der noch nicht gelesene Ergebnisschirm war
+     weg, und die Glueckwunschkarte schwebte danach ueber dem Lernpfad.
+     Gefunden am 26.09.2026. Beim Schliessen wieder abmelden, sonst blockiert
+     die Karte jede spaetere Nachfrage - frage() steigt bei gesetztem
+     frageSchliessen sofort aus. */
+  const zu = ()=>{ kasten.remove(); wegmarkeLaeuft = false;
+                   if(frageSchliessen === zu) frageSchliessen = null; };
+  frageSchliessen = zu;
   kasten.querySelector('#wegOk').addEventListener('click', zu);
   kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
 }
@@ -2353,6 +2409,24 @@ function markToday(){
 
    Gespeichert wird nur `tagwerk`: die Zähler je Tag. */
 const alleWoerter = () => CATEGORIES.reduce((n,c)=>n+c.words.length, 0);
+
+/* known.size darf laut der Regel darueber in die Auslosung - die Bedingung
+   "es gibt noch unbekannte Woerter" kippt aber doch mitten am Tag, naemlich
+   in der Lektion, in der das letzte unbekannte Wort richtig beantwortet wird.
+   Ab diesem Augenblick fiel 'neu' aus questTopf(), zieh() mischte aus acht
+   statt neun Arten und lieferte fuer denselben Tag drei ANDERE Aufgaben: der
+   Fortschritt der angefangenen war weg, und die neu gezogenen standen wegen
+   tagwerk sofort mit Haken da, ohne dass Muenzen geflossen waeren - zaehle()
+   zahlt nur im Augenblick des Ueberschreitens. Deshalb bleibt die Aufgabe an
+   dem Tag, an dem das letzte Wort fiel, noch im Topf. Der Tag liegt in wann,
+   damit es nach einem Neustart und im zweiten Tab genauso ausgeht - eine
+   Sitzungsvariable waere hier zu wenig. Gefunden am 26.09.2026. */
+function neuNochMoeglich(){
+  const alle = alleWoerter();
+  if(!alle || known.size < alle) return true;   // !alle: Inhalt noch nicht geladen
+  if(!wann.alleWoerter){ wann.alleWoerter = today(); saveProgress(); }
+  return wann.alleWoerter === today();
+}
 
 const QUESTS = [
   {id:'auf',   art:'menge',   dick:1, ohneLeben:true, ziele:[10,20,30], txt:'quest.aufgaben'},
@@ -2575,8 +2649,12 @@ function renderLives(){
    genau diesen Knopf. Gefunden am 26.09.2026.
    Gefragt wird nur, wenn wirklich eine Lektion oder ein Test laeuft. */
 async function lektionDarfWeg(){
+  /* Tx heisst seine Liste "qs", nicht "queue" (siehe buildTest). Mit
+     Tx.queue.length warf diese Zeile waehrend eines Tests einen Fehler, und
+     der Tipp auf Muenzen, Laden oder Zahnrad tat daraufhin gar nichts.
+     Gefunden am 26.09.2026. */
   const laeuft = (sichtbar('lesson') && Lx && Lx.i < Lx.queue.length) ||
-                 (sichtbar('test')   && Tx && Tx.i < Tx.queue.length);
+                 (sichtbar('test')   && Tx && Tx.i < Tx.qs.length);
   if(!laeuft) return true;
   return await frage(t('lektion.abbrechen_frage'), t('lektion.abbrechen_hinweis'),
                      t('btn.abbrechen'), t('btn.weitermachen'));
@@ -2599,6 +2677,19 @@ function tagPruefen(){
   const jetzt = today();
   if(jetzt === letzterTag) return false;
   letzterTag = jetzt;
+  /* Der Serienschutz lief bisher nur beim Kaltstart (nachAnmeldung) und beim
+     Einlesen einer Sicherung. Bleibt die App ueber einen ausgelassenen Tag
+     hinweg im Speicher - Home-Taste, Handy in die Tasche, kein Neuladen -,
+     kam der ausgelassene Tag nie in frost: die Serie fiel still von 40 auf 1,
+     obwohl Schutztage im Vorrat lagen, und es kam weder "gerettet" noch
+     "verloren". Am PC faellt das nicht auf, weil start.py jedes Mal eine
+     frische Seite liefert. pruefeSchutz() zaehlt von GESTERN zurueck, muss
+     also nicht punktgenau um Mitternacht laufen; der Aufruf hier deckt beide
+     Wege ab - den Zeitgeber alle 30 Sekunden und das Hervorholen der App.
+     Zweimal laufen schadet nicht: beim zweiten Mal stehen die Luecken schon
+     in frost, luecken ist leer und die Funktion kehrt sofort zurueck.
+     Gefunden am 26.09.2026. */
+  pruefeSchutz();
   /* Nur zeichnen, wenn die Startseite ueberhaupt sichtbar ist. Mitten in
      einer Lektion wuerde showHome() die Aufgabe wegreissen. Der Merker
      steht trotzdem schon auf heute, damit es spaeter nicht grundlos
@@ -2999,6 +3090,12 @@ async function ladeDaten(){
   const d = await holeInhalt();
   SECTIONS = d.sektionen || []; CATEGORIES = d.kategorien; SENTENCES = d.saetze;
   GRAMMAR = d.grammatik || {}; STORIES = d.geschichten || []; DICT = d.woerterbuch || {};
+  /* Die zwei Zwischenspeicher der Wortliste haengen an DICT und CATEGORIES und
+     werden nur beim ersten Gebrauch gefuellt. Ohne dieses Leeren behielten sie
+     nach einem Sprachwechsel die alte Sprache: im Level Tagesablauf stand bei
+     "Ustajem" weiter "ich stehe auf" statt "je me leve", in 28 von 43 Leveln,
+     bis die App geschlossen und neu geoeffnet wurde. Gefunden am 26.09.2026. */
+  vokabelFormen = null; dictFormen = null;
   MASCOT = new Set(d.maskottchen||[]);
   SPRACHEN = d.sprachen || []; T = d.texte || {}; UEBERSETZT = d.uebersetzt || {fertig:0, gesamt:0};
   WERBUNG_ECHT = !!d.werbung_laeuft;      // Schalter aus sprachen.py
@@ -3221,6 +3318,14 @@ async function vollWahlZeigen(){
     aboStoerung = true; vollZeileZeigen(); vollMeldung(t('voll.fehler')); return;
   }
   aboStoerung = false; aboProdukteFehlen = false;
+  /* Erst hier der Kaufkasten - und nur, wenn die Einstellungen noch offen
+     sind. Google braucht fuer preise() eine bis mehrere Sekunden; wer in
+     dieser Zeit mit der Zurueck-Taste weiterging, bekam "Vollversion holen"
+     mit "Zahlungspflichtig abonnieren" ueber den Lernpfad gelegt, samt
+     frageSchliessen: die Zurueck-Taste schloss danach erst diesen Kasten
+     statt das, was er vor sich hatte. Googles Antwort ist oben trotzdem
+     ausgewertet, nur gefragt wird nicht mehr. Gefunden am 26.09.2026. */
+  if(!sichtbar('settingsView')) return;
   const hol = id => d.plaene.find(p => p.plan === id) || {};
   const monat = hol('monat'), jahr = hol('jahr');
   /* Die Ersparnis rechnet die App aus, damit sie in jeder Währung stimmt.
@@ -3925,6 +4030,15 @@ async function sicherungEinlesen(datei){
   if(!await frage(t('set.sicherung'), t('set.sicherung_frage'),
                   t('btn.ersetzen'), t('btn.abbrechen'))) return;
   standUebernehmen(d.stand);
+  /* Dieselbe Umschreibung wie beim normalen Start (nachAnmeldung). Die
+     Kennung eines Wortes ist "bedeutung:wort"; wird eine deutsche Bedeutung
+     berichtigt, aendert sich die Kennung mit. Eine Sicherung von vor der
+     Berichtigung brachte darum Kennungen mit, die es nicht mehr gibt: die
+     Woerter hatten keinen Lautsprecher mehr, die Levelbalken fielen zurueck,
+     die naechste Lektion bot sie als neu an - und die Meldung darunter
+     zaehlte sie ueber known.size trotzdem mit. Erst ein Neustart richtete es.
+     Fall: hitna pomoc, "Notarzt" -> "Rettungsdienst". Gefunden am 26.09.2026. */
+  altenFortschrittUmschreiben();
   syncLives(); pruefeSchutz();
   const gesichert = await saveProgress();
   renderLives();
@@ -4199,6 +4313,18 @@ function showStoryQ(s, qi, right){
     const all = right===fragen.length;
     if(all){ if(!read.has(s.id)){ read.add(s.id); wann['gs:'+s.id] = today(); } markToday(); zaehle('gesch'); sound('done'); }
     saveProgress();   // auch bei einem Fehler: die Fragen sind beantwortet
+    /* Die gruenen Zeilen fuer erledigte Tagesaufgaben - derselbe Fehler, der
+       am 18.09.2026 fuer die Lektion und danach fuer den Vokabeltest behoben
+       wurde, hier aber nicht: Wer beim Lesen 'gesch', 'auf', 'ric' oder ueber
+       die Uhr 'zeit' fertig machte, bekam die Muenzen ohne ein Wort - und die
+       Muenzleiste ist ausserhalb der Startseite gar nicht zu sehen. Schlimmer:
+       questZeilen() LEERT questFrisch, und weil es hier nie lief, blieb der
+       Eintrag liegen und wurde auf dem Ergebnisschirm der NAECHSTEN Lektion
+       als frisch geschafft gefeiert, obwohl er zur Geschichte davor gehoerte.
+       questZeilen() darf nur einmal je Ergebnisschirm laufen - deshalb hier in
+       eine Variable und unten nur noch eingesetzt. Gefunden am 26.09.2026. */
+    const questLob = questZeilen();
+    if(questLob) setTimeout(()=>sound('quest'), 850);   // nach der Fanfare, nicht darueber
     const hasNext = rIdx+1 < STORIES.length;
     box.innerHTML='<div class="ergebnis-titel">'+t('gesch.fragen')+'</div>'+(all?'<div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>':'')+
       '<div class="feedback '+(all?'ok':'no')+'" style="text-align:center">'+t('gesch.ergebnis',{r:right, n:fragen.length})+(all?t('gesch.geschafft'):t('gesch.nochmal_lesen'))+'</div>'+
@@ -4705,16 +4831,17 @@ function showLessonTask(){
    Beim echten SDK muss werbungPersonalisiert() mitgegeben werden: false
    bedeutet "nur allgemeine Werbung", bei AdMob das Feld npa=1. */
 function zeigeWerbung(belohnt, fertig){
-  if(!werbungErlaubt()){ fertig(false); return; }
+  if(!werbungErlaubt(belohnt)){ fertig(false); return; }
   stilleBitte();   // kein Wort unter der Anzeige - egal ob echte oder Platzhalter
 
   // Auf dem Handy die echte Anzeige. Gezählt wird erst, wenn sie auch lief –
   // eine Anzeige, die nicht kam, darf kein Tageskontingent verbrauchen.
+  // Und jede Art auf ihr eigenes Kontingent (Ajdin am 26.09.2026).
   if(admobDa()){
-    admobZeigen(belohnt).then(lief => { if(lief) werbungGezaehlt(); fertig(lief); });
+    admobZeigen(belohnt).then(lief => { if(lief) werbungGezaehlt(belohnt); fertig(lief); });
     return;
   }
-  werbungGezaehlt();
+  werbungGezaehlt(belohnt);
 
   const kasten = document.createElement('div');
   kasten.className = 'werbung';
@@ -4773,6 +4900,14 @@ function werbungFuerLeben(){
 let ohneLeben = 0;
 function lessonOutOfLives(){
   stilleBitte(); uhrAus();   // das letzte Wort nicht in den Ergebnisschirm reden lassen
+  /* Hier ist die Lektion zu Ende - das muss auch Lx sagen. Bei der letzten
+     falschen Antwort wuchs die Warteschlange um die Wiederholung,
+     Lx.i blieb also darunter. Folge: die Zurueck-Taste fragte auf diesem
+     Schirm "Lektion abbrechen?", und "Weitermachen" setzte nichts fort, weil
+     showLessonTask() nie wieder gerufen wird - der Nutzer musste zweimal
+     zurueck. Gefunden am 26.09.2026. Dasselbe traf Muenzen, Laden und Zahnrad
+     oben, die in lektionDarfWeg() dieselbe Bedingung pruefen. */
+  Lx.i = Lx.queue.length;
   // Der Tag zählt hier NICHT für die Lernserie. Das war früher anders
   // gedacht - wer übt, hat geübt -, aber Ajdin am 17.09.2026: die Serie
   // war gestiegen, obwohl die Lektion nicht geschafft war. Eine Serie, die
@@ -4780,7 +4915,7 @@ function lessonOutOfLives(){
   saveProgress(); sound('no');
   ohneLeben++;
   const herz = VERBRAUCH.find(w => w.id === 'herz');
-  const perVideo = werbungErlaubt();
+  const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
   $('lBar').innerHTML=''; $('zmajLesson').style.display='none';
   $('lBody').innerHTML =
@@ -4794,6 +4929,11 @@ function lessonOutOfLives(){
         (perVideo   ? '<button class="btn ghost" id="lAd">'+t('werbung.leben_holen')+'</button>' : '')+
         (perMuenzen ? '<button class="btn ghost" id="lCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '')+
       '</div>' : '')+
+    /* Platz fuer die Rueckmeldung des Video-Knopfs (Ajdin am 26.09.2026).
+       Unsichtbar, solange nichts zu sagen ist: .feedback hat eine
+       Mindesthoehe und einen Abstand oben, ein leerer Kasten risse sonst
+       eine Luecke in den Schirm. */
+    (perVideo ? '<div class="feedback" id="lAdNote" style="display:none; color:var(--muted)"></div>' : '')+
     (ohneLeben % 3 === 0 ? '<div class="feedback" style="color:var(--muted)">'+t('lektion.vollversion')+'</div>' : '')+
     '<div class="row"><button class="btn know" id="lHome">'+t('lektion.zurueck')+'</button></div>';
   $('lHome').addEventListener('click', showLevelHome);
@@ -5183,6 +5323,18 @@ function weiterBeiTipp(feldId, weiter){
      Knopf hat einen eigenen Horcher, und der Horcher auf dem Feld sieht
      denselben Klick im Einfangen zuerst. */
   let schon = false;
+  /* Wer eine Lektion oder einen Test abbricht, tippt dabei ausserhalb des
+     Aufgabenfeldes - einmal() laeuft also nie, und der Horcher bleibt auf
+     #lBody bzw. #tBody haengen; diese Felder werden nie neu gebaut, nur
+     geleert. Im naechsten Test zeichnete der alte Horcher Frage 1 noch
+     einmal, waehrend die Antwort schon Frage 2 zugeschrieben wurde: eine
+     Frage wurde still uebersprungen, eine andere zweimal gestellt und dabei
+     mit ihrer Loesung im Rueckmeldefeld angezeigt, und die Fortschrittsleiste
+     zeigte einen Punkt fuer eine Frage, die nie auf dem Schirm war.
+     buildLesson() und buildTest() legen bei jedem Start ein neues Lx bzw. Tx
+     an - daran erkennt der Horcher, dass er aus einem alten Durchgang stammt.
+     Gefunden am 26.09.2026. */
+  const meinLx = Lx, meinTx = Tx;
   const einmal = ()=>{
     if(schon) return;
     schon = true;
@@ -5226,6 +5378,21 @@ function sichtbar(id){ const e = $(id); return !!e && e.style.display !== 'none'
 function istWort(de){
   const kern = String(de || '').replace(/\([^)]*\)/g, ' ').split(' / ')[0];
   return kern.split(/\s+/).filter(Boolean).length <= 2;
+}
+/* Gezaehlt wird die DEUTSCHE Bedeutung, nicht die uebersetzte. w.de ist nach
+   uebersetzungen.anwenden() die Bedeutung der Oberflaechensprache, und die hat
+   je Sprache eine andere Wortzahl. Auf Franzoesisch galt "bankomat"
+   ("distributeur de billets", drei Woerter) als Satz, wurde in seine bosnischen
+   Teile zerlegt, fand keinen Woerterbucheintrag und fiel ganz aus der Liste:
+   im Level Bank standen 15 statt 23 Zeilen, acht Vokabeln fehlten, auf
+   Daenisch fehlten im Level Tagesablauf zehn. Die Kennung w.id baut start.py
+   als "bedeutung:wort" VOR dem Uebersetzen, sie ist in allen acht Sprachen
+   dieselbe. Damit zeigt die Liste ueberall dieselben Zeilen wie auf Deutsch.
+   Gefunden am 26.09.2026. */
+function grundBedeutung(w){
+  const id = String(w.id || ''), bs = String(w.bs || '');
+  const schnitt = id.length - bs.length - 1;
+  return schnitt > 0 ? id.slice(0, schnitt) : String(w.de || '');
 }
 
 /* ---------- Die Liste „Wörter dieses Levels" ----------
