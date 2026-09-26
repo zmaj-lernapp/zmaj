@@ -54,6 +54,24 @@ FREMD = set("qwxy")
 # Stimmhafte Endlaute: im Bosnischen werden sie am Wortende härter gesprochen.
 # Genau daran ist „sud" gescheitert, das als „sub" herauskam.
 STIMMHAFT_ENDE = tuple("bdgzvž")
+# Vokale des Bosnischen. Das r kann selbst eine Silbe tragen, wenn kein Vokal
+# daneben steht: „prst", „srce", „crkva". Ajdin am 26.09.2026: „das wird
+# wahrscheinlich auch bei vrt prt smrt usw auch so sein" – und er hatte recht.
+# Bei „brz" stand genau das in seiner Notiz: „das r hört man zu wenig".
+VOKALE = set("aeiou")
+
+
+def hat_silbisches_r(wort):
+    """Steht ein r zwischen zwei Konsonanten, trägt es selbst die Silbe."""
+    w = wort.lower()
+    for i, ch in enumerate(w):
+        if ch != "r":
+            continue
+        davor = w[i - 1] if i > 0 else ""
+        danach = w[i + 1] if i + 1 < len(w) else ""
+        if davor not in VOKALE and danach not in VOKALE:
+            return True
+    return False
 
 
 def schluessel(text):
@@ -181,6 +199,8 @@ def main():
         # stehen 80 harmlose Füllwörter in der Liste und niemand hört sie an.
         if len(s) <= 4 and s.endswith(STIMMHAFT_ENDE):
             gruende.append('kurz mit stimmhaftem Endlaut, wie „sud“ → „sub“')
+        if hat_silbisches_r(wort):
+            gruende.append('silbisches r, bei „brz“ zu schwach gesprochen')
         if FREMD & set(s):
             # sprechtext() in ton_bauen.py schreibt x, q, w, y vor der Aufnahme
             # um (aus „Rex" wird „Reks"), genauso wie fuerStimme() beim
