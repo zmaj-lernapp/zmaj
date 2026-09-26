@@ -1516,6 +1516,22 @@ const apiF = () => '/api/fortschritt';
    liegt alles im Speicher des Browsers, und es gibt keine Anmeldung.
    Gesetzt wird der Schalter einmal beim Start in holeInhalt(). */
 let MIT_SERVER = false;
+/* ===== Konten an oder aus? =====
+   Steht dieser Schalter auf false, verhaelt sich die App ueberall so wie auf
+   dem Handy: kein Anmeldeformular, kein Profilknopf, kein "Konto loeschen",
+   und der Lernstand liegt im Geraetespeicher. /api/konto wird dann gar nicht
+   erst gefragt.
+
+   Ajdin am 26.09.2026: die Anmeldung soll weg bleiben, bis ein Server
+   gemietet ist. Zum Wiedereinschalten genuegt true - das Anmelde-HTML,
+   zeigeAnmeldung() und die Kontoverwaltung stehen alle noch im Programm.
+
+   WICHTIG: Der Schalter muss MIT_SERVER mitsteuern, nicht nur die Anzeige.
+   Bliebe MIT_SERVER auf true, schriebe saveProgress() per POST an
+   /api/fortschritt mit einem Profil, das der Server nicht kennt - der
+   Lernstand waere weg, ohne Meldung. Dieser Fehler ist am 20.09.2026 schon
+   einmal aufgetreten. */
+const KONTEN_AN = false;
 /* Solange der Lernstand nicht gelesen ist, darf nichts geschrieben werden.
    Der visibilitychange-Horcher haengt schon beim Einlesen des Skripts am
    Dokument, loadProgress() laeuft aber erst nach Vorspann, Toenen, Inhalt
@@ -2938,7 +2954,7 @@ async function holeInhalt(){
        unten; beim Sprachwechsel lief ladeDaten() erneut und niemand setzte
        zurueck. Ab da schrieb saveProgress() per POST ins Leere und meldete
        Erfolg. Gefunden am 20.09.2026, waehrend der geschlossene Test lief. */
-    if(r.ok){ const d = await r.json(); MIT_SERVER = true; return d; }
+    if(r.ok){ const d = await r.json(); if(KONTEN_AN) MIT_SERVER = true; return d; }
   }catch(e){}
   // Zweiter Versuch mit der gewuenschten Sprache, dann Englisch, dann
   // Deutsch. Englisch davor, weil die App in 177 Laendern steht: ein Handy
@@ -5070,10 +5086,12 @@ async function starten(){
      statt in die Profildatei, und der Lernstand saehe aus wie verloren.
      Antwortet /api/konto, gibt es einen Server. Punkt. */
   let konto = {angemeldet:false}, serverDa = false;
-  try{
-    const r = await fetch('/api/konto');
-    if(r.ok){ konto = await r.json(); serverDa = true; }
-  }catch(e){}
+  if(KONTEN_AN){
+    try{
+      const r = await fetch('/api/konto');
+      if(r.ok){ konto = await r.json(); serverDa = true; }
+    }catch(e){}
+  }
   MIT_SERVER = serverDa;
 
   if(!serverDa){
