@@ -1,124 +1,145 @@
-# Wohin die 561 Wörter gehören
+# Der Lernpfad mit den 561 Wörtern
 
-Vorschlag vom 26.09.2026, zweite Fassung. **Noch nichts eingebaut.**
+Vorschlag vom 26.09.2026, dritte Fassung. **Noch nichts eingebaut.**
 
-Ajdin: „mach die level so das die fast alle gleich groß sind dann
-werden es halt mehr level oder auch mehr sektionen“. Die erste Fassung
-hätte drei vorhandene Level überladen – Grundlagen auf 55, Essen &
-Trinken auf 70, Feste & Traditionen auf 76. Jetzt gibt die Größe den
-Takt vor.
+Ajdin: „ne mach mehr aber mach es so das es sinn ergibt wenn es geht
+auch von leicht zu schwer“.
 
-## Das Ergebnis in Zahlen
+## Die neuen Sektionen stehen nicht hinten
 
-| | heute | neu |
-|---|---|---|
-| Level | 43 | 63 |
-| Sektionen | 3 | 6 |
-| Wörter | 1108 | 1669 |
-| kleinstes Level | 9 | 22 |
-| größtes Level | 40 | 35 |
-| Schnitt | 26 | 27 |
+Sie stehen an ihrem Platz in der Schwierigkeit. Das geht, weil der
+Lernstand **Level-Kennungen speichert und keine Nummern**: `passed` ist
+eine Menge von ids, `hoechsterBestanden()` sucht die höchste Nummer
+dazu. Schiebt man vorne etwas ein, bleibt jedes bestandene Level
+bestanden, und alles bis zum eigenen Stand bleibt offen. Die neuen Level
+tauchen mittendrin auf – freigeschaltet, nicht sperrend.
 
-**20 neue Level** mit 548 Wörtern, dazu 13 Wörter als kleine
-Ergänzung in drei vorhandene Level. Die neuen liegen zwischen 22 und
-35 Wörtern; heute reicht die Spanne von 9 bis 40.
+## Der Pfad
 
-## Drei neue Sektionen
+| | Sektion | | Level | Wörter | Farbe |
+|---|---|---|---|---|---|
+| 1 | Grundlagen & Alltag | *da* | 15 | 333 | Blau |
+| 2 | **Dinge zum Anfassen** | **NEU** | 4 | 115 | Indigo |
+| 3 | **Tiere & Natur** | **NEU** | 4 | 109 | Violett |
+| 4 | **Zuhause** | **NEU** | 3 | 77 | Magenta |
+| 5 | Sätze bauen | *da* | 22 | 613 | Petrol |
+| 6 | **Einkaufen & Essen gehen** | **NEU** | 4 | 108 | Himmelblau |
+| 7 | **Bosnien & Herkunft** | **NEU** | 3 | 81 | Blau |
+| 8 | **Menschen & Kultur** | **NEU** | 2 | 58 | Indigo |
+| 9 | Amt & Verträge | *da* | 6 | 162 | Violett |
+| | **zusammen** | | **63** | **1656** | |
 
-### Essen & Einkauf
+Aus 3 Sektionen und 43 Leveln werden **9 Sektionen und 63 Level**.
 
-Vom Markt ueber den Laden bis ins Restaurant. — 9 Level, 248 Wörter.
+## Warum die Nomen vor die Grammatik
 
-| Level | Wörter | Worum es geht |
-|---|---|---|
-| **Obst** | 24 | Was auf dem Markt liegt, vom Apfel bis zur Wassermelone. |
-| **Gemüse** | 27 | Alles Gruene und Bunte aus dem Garten. |
-| **Lebensmittel** | 35 | Was sonst noch in den Einkaufswagen kommt. |
-| **Vorrat & Getränke** | 29 | Was im Schrank steht, beim Bäcker liegt und ins Glas kommt. |
-| **Im Restaurant: ankommen** | 27 | Einen Tisch bekommen und bestellen. |
-| **Im Restaurant: essen & zahlen** | 29 | Bei Tisch, an der Theke und beim Bezahlen. |
-| **Bosnische Küche** | 25 | Cevapi, Burek, Pita und was sonst auf den Tisch kommt. |
-| **Essen gehen & Mengen** | 24 | Verabreden, einladen, und wie viel wovon. |
-| **Einkaufen & Orte** | 28 | Wo man einkauft, was es kostet, und wo das alles liegt. |
+Obst, Gemüse und Tiere sind Wörter zum Zeigen – dafür braucht es
+keinen Fall und keine Beugung. Sie **hinter** die Grammatik zu stellen
+hieße, das Leichteste zuletzt zu bringen.
 
-### Tiere, Natur & Haus
+Das Einkaufen steht dagegen bewusst **danach**: „Können Sie mir bitte
+zwei Kilo davon geben“ braucht Fälle und Verben. Und Sektion 8,
+Menschen & Kultur, kommt zuletzt – Floskeln und Gastfreundschaft sind
+das Idiomatische, das man am wenigsten ableiten kann.
 
-Was lebt, was waechst und was zu Hause kaputtgeht. — 7 Level, 186 Wörter.
+### Dinge zum Anfassen
 
-| Level | Wörter | Worum es geht |
-|---|---|---|
-| **Tiere** | 29 | Haustiere, Hoftiere und Voegel. |
-| **Tiere draußen** | 28 | Wald, Wild, Insekten und Kleintiere. |
-| **Rund ums Tier** | 22 | Koerperteile, Zubehoer, und was man mit Tieren tut. |
-| **Natur & Pflanzen** | 30 | Landschaft, Baeume, Blumen. |
-| **Küche & Bad** | 24 | Geschirr, Moebel, Koerperpflege. |
-| **Putzen & Nachbarschaft** | 26 | Sauber machen, waschen, und wer nebenan wohnt. |
-| **Technik & Reparatur** | 27 | Strom, Licht, Heizung und was man selbst repariert. |
+Nomen, die man zeigen kann. Ohne Grammatik zu verstehen.
 
-### Herkunft & Kultur
+| Level | Wörter |
+|---|---|
+| Obst | 24 |
+| Gemüse | 27 |
+| Lebensmittel | 35 |
+| Vorrat & Getränke | 29 |
 
-Woher jemand kommt, was er spricht, wie gefeiert wird. — 4 Level, 114 Wörter.
+### Tiere & Natur
 
-| Level | Wörter | Worum es geht |
-|---|---|---|
-| **Länder & Herkunft** | 26 | Woher jemand kommt und wo er lebt. |
-| **Nationalitäten & Sprachen** | 30 | Bosnier, Bosnierin, bosnisch - und die anderen Sprachen dazu. |
-| **Musik, Glaube & Gastfreundschaft** | 29 | Sevdah, Kolo, die Floskeln des Alltags und wie man Gaeste empfaengt. |
-| **Vorstellen & Kennenlernen** | 29 | Sich vorstellen, nachfragen, miteinander umgehen. |
+Dieselbe Stufe wie davor, anderes Feld.
+
+| Level | Wörter |
+|---|---|
+| Tiere | 29 |
+| Tiere draußen | 28 |
+| Rund ums Tier | 22 |
+| Natur & Pflanzen | 30 |
+
+### Zuhause
+
+Die ersten Taetigkeiten kommen dazu: putzen, waschen, reparieren.
+
+| Level | Wörter |
+|---|---|
+| Küche & Bad | 24 |
+| Putzen & Nachbarschaft | 26 |
+| Technik & Reparatur | 27 |
+
+### Einkaufen & Essen gehen
+
+Bestellen, bezahlen, nachfragen. Braucht Fälle und Verben.
+
+| Level | Wörter |
+|---|---|
+| Einkaufen & Orte | 28 |
+| Im Restaurant: ankommen | 27 |
+| Im Restaurant: essen & zahlen | 29 |
+| Essen gehen & Mengen | 24 |
+
+### Bosnien & Herkunft
+
+Woher jemand kommt, und die Formen für männlich und weiblich.
+
+| Level | Wörter |
+|---|---|
+| Bosnische Küche | 25 |
+| Länder & Herkunft | 26 |
+| Nationalitäten & Sprachen | 30 |
+
+### Menschen & Kultur
+
+Floskeln, Gastfreundschaft, Sevdah. Das Idiomatische.
+
+| Level | Wörter |
+|---|---|
+| Vorstellen & Kennenlernen | 29 |
+| Musik, Glaube & Gastfreundschaft | 29 |
 
 ## Was in vorhandene Level geht
 
-Nur noch drei kleine Ergänzungen. Alles andere bekommt ein eigenes
-Level, damit nichts überläuft.
-
-| Level | hat heute | kommt dazu | dann | Warum |
+| Level | hat heute | dazu | dann | Warum |
 |---|---|---|---|---|
-| Grundlagen | 32 | +1 | **33** | Ein einziges Wort, von Ajdin als dringendste Luecke benannt. |
-| Wetter & Natur | 28 | +7 | **35** | Sieben Woerter, die Gruppe nennt Level 10 ausdruecklich. |
-| Feste & Traditionen | 31 | +5 | **36** | Fuenf Woerter, die Gruppe nennt Level 35 ausdruecklich. |
+| Grundlagen | 32 | +1 | **33** | Ein Wort. |
+| Wetter & Natur | 28 | +7 | **35** | Sieben Wörter, Gruppe nennt Level 10. |
+| Feste & Traditionen | 31 | +5 | **36** | Fünf Wörter, Gruppe nennt Level 35. |
 
-## Vier Gruppen gehen anders als notiert
+## Die Farben bei neun Sektionen
 
-Diese Gruppen nennen in ihrem Namen ein vorhandenes Level. Sie
-bekommen trotzdem ein eigenes – zusammen mit ihren Nachbarn wären sie
-genau die Überladung, die weg soll. Das Thema bleibt, nur der Platz
-ist ein anderer.
+Sechs Farbtöne, 30 bis 33 Grad auseinander, alle mindestens 28 Grad
+von Grün („richtig“), Rot („falsch“) und Gelb (Akzent) entfernt:
 
-| Gruppe | notiert für | geht nach |
+| Ton | Farbe | Sektionen |
 |---|---|---|
-| Bosnische Speisen | Level 5 | **Bosnische Küche** |
-| Vorstellen & Kennenlernen | Level 1 / 15 / 38 | **Vorstellen & Kennenlernen** |
-| Tanz & Musik | Level 35 | **Musik, Glaube & Gastfreundschaft** |
-| Glaube & Alltagsfloskeln | Level 35 | **Musik, Glaube & Gastfreundschaft** |
+| 235° | Blau | 1, 7 |
+| 268° | Indigo | 2, 8 |
+| 300° | Violett | 3, 9 |
+| 332° | Magenta | 4 |
+| 175° | Petrol | 5 |
+| 205° | Himmelblau | 6 |
 
-## Die eine Ungleichheit
+Ab Sektion 7 wiederholen sie sich. Das ist vertretbar: zwischen
+Sektion 1 und Sektion 7 liegen fünf Sektionen und über dreißig Level,
+die sieht nie jemand nebeneinander. Der Umschalter rechnet ohnehin mit
+Rest, das Wiederholen ist schon eingebaut.
 
-**Lebensmittel** hat als einzige Gruppe 35 Wörter und wird damit das
-größte neue Level. Teilen ginge – etwa in Frisches und Haltbares –,
-dafür müsste die Gruppe aber Wort für Wort durchgesehen werden. Zwei
-Level von 17 und 18 wären die Folge.
-
-## Was die Farben dazu sagen
-
-Mit drei neuen Sektionen sind es **sechs**. Jede trägt ihre Farbe, und
-die müssen unterscheidbar bleiben. Frei ist nur der Bogen zwischen
-etwa 170 und 340 Grad auf dem Farbkreis – Grün (146) heißt
-„richtig“, Rot (0) heißt „falsch“, Gelb (46) ist der Akzent.
-
-Das sind 170 Grad für sechs Farben, also **etwa 30 Grad Abstand**. Das
-geht – die heutigen vier liegen 35 bis 55 Grad auseinander. Bei sieben
-Sektionen wären es nur noch 25 Grad, und zwei davon sähen gleich aus.
-
-**Sechs Sektionen sind also die Obergrenze**, solange Grün, Rot und
-Gelb vergeben bleiben.
+**Eine kleine Änderung:** Sektion 1 trägt heute den Ton 225. Mit
+sechs Tönen wird daraus 235 – zehn Grad, das sieht man kaum. Bliebe
+es bei 225, ginge sich nur **fünf** Töne aus, weil der sechste dann
+zu nah an Grün käme.
 
 ## Was danach noch fehlt
 
 - **561 Tonaufnahmen** über `ton_bauen.py`.
-- **Übersetzungen in sieben Sprachen.** Die Wörter liegen auf Deutsch
-  und Bosnisch vor.
-- **20 Level-Beschreibungen und Tipps**, ebenfalls achtsprachig.
-- **Drei Sektionsnamen und -beschreibungen**, achtsprachig.
-- **Zwei neue Sektionsfarben** und die Neuverteilung der vorhandenen.
-
-Das ist der größere Teil der Arbeit, nicht die Zuordnung selbst.
+- **Übersetzungen in sieben Sprachen.**
+- **20 Level-Beschreibungen und Tipps**, achtsprachig.
+- **Sechs Sektionsnamen und -beschreibungen**, achtsprachig.
+- **Zwei neue Farbtöne** und die Verteilung auf neun Sektionen.
