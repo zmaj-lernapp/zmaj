@@ -2466,11 +2466,12 @@
   },
   {
    "de": "Saenger / Saengerin",
-   "bs": "pjevac / pjevacica",
+   "bs": "pjevač / pjevačica",
    "gruppe": "Tanz & Musik (Level 35)",
    "geaendert": false,
    "anmerkung": "Passt zum schon vorhandenen Muster maennlich/weiblich in Level 17.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Saz (traditionelles Saiteninstrument)",
@@ -2506,11 +2507,12 @@
   },
   {
    "de": "Teferic (Ausflugsfest im Gruenen)",
-   "bs": "teferic",
+   "bs": "teferič",
    "gruppe": "Tanz & Musik (Level 35)",
    "geaendert": false,
    "anmerkung": "Von tuerkisch tefferuec. Gemeinsamer Ausflug ins Gruene mit Essen, Musik und Tanz, oft an einem Fluss oder einer Quelle. In BiH und in der Diaspora bis heute ueblich (die Vereine veranstalten Teferic-Tage). Schoenes Wort, aber saisonal.",
-   "notiz": "man kann es auch erklären das es wie ein oktoberfest ist aber ohne karussel und bier usw"
+   "notiz": "man kann es auch erklären das es wie ein oktoberfest ist aber ohne karussel und bier usw",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Volksmusik",
@@ -2570,11 +2572,12 @@
   },
   {
    "de": "Grill / Gegrilltes",
-   "bs": "rostilj",
+   "bs": "roštilj",
    "gruppe": "Bosnische Speisen (Level 5)",
    "geaendert": false,
    "anmerkung": "Sowohl das Geraet als auch das Essen. 'Idemo na rostilj' = wir grillen. Cevapi ist drin, der Oberbegriff fehlt.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Japrak (gefuellte Weinblaetter)",
@@ -2658,11 +2661,12 @@
   },
   {
    "de": "Hurmasica (Sirupgebaeck)",
-   "bs": "hurmasica",
+   "bs": "hurmašica",
    "gruppe": "Suesses & Kaffeeritual (Level 5/35)",
    "geaendert": false,
    "anmerkung": "Laengliches Gebaeck, nach dem Backen in Zuckersirup getraenkt. Der Name kommt von 'hurma' (Dattel) wegen der Form. Bajram-Gebaeck, steht dann in jedem Haus auf dem Tisch. Auch 'urmasice' geschrieben.",
-   "notiz": "bei s fehlt das apostroph und bei c auch"
+   "notiz": "bei s fehlt das apostroph und bei c auch",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Rahat lokum (Geleewuerfel zum Kaffee)",
@@ -2786,27 +2790,30 @@
   },
   {
    "de": "Gastgeber / Gastgeberin",
-   "bs": "domacin / domacica",
+   "bs": "domaćin / domaćica",
    "gruppe": "Gastfreundschaft (Level 35)",
    "geaendert": false,
    "anmerkung": "Die App hat gost und gosti, aber nicht die Gegenseite. 'Domacin' hat in BiH zusaetzlich den Beiklang von 'ordentlicher Hausherr, der sein Haus gut fuehrt' - ein Lob.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "jemanden einladen (bezahlen)",
-   "bs": "castiti",
+   "bs": "častiti",
    "gruppe": "Gastfreundschaft (Level 35)",
    "geaendert": false,
    "anmerkung": "Nicht 'pozvati' (zum Kommen einladen, steht schon drin), sondern 'die Rechnung uebernehmen'. 'Ja castim' = Ich lade ein / Das geht auf mich. In Bosnien wird darum regelrecht gestritten.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Noch ein bisschen?",
-   "bs": "Jos malo?",
+   "bs": "Još malo?",
    "gruppe": "Gastfreundschaft (Level 35)",
    "geaendert": false,
    "anmerkung": "Hoert man als Gast zehnmal pro Abend. Gut als Hoerverstaendnis-Vokabel.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Antwort auf den Bajram-Gruss",
@@ -2858,19 +2865,21 @@
   },
   {
    "de": "Insallah (so Gott will)",
-   "bs": "insallah",
+   "bs": "inšallah",
    "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
    "geaendert": false,
    "anmerkung": "Bedeutung: 'wenn Allah es will'. Wird bei jeder Absicht in der Zukunft gesagt, auch ganz unreligioes ('Vidimo se sutra, insallah'). MEINE EINSCHAETZUNG: erkennbar muslimisch markiert. Ein Bosniake sagt es taeglich, ein Serbe oder Kroate nie. Gehoert in die App, aber unbedingt mit dem Hinweis, wer es sagt - sonst benutzt es ein Lernender in der falschen Familie. Schreibung nach bosnischer Rechtschreibung: klein, ein Wort, kein grosses A in der Mitte (geprueft).",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Masallah (wie schoen, Gott schuetze es)",
-   "bs": "masallah",
+   "bs": "mašallah",
    "gruppe": "Glaube & Alltagsfloskeln (Level 35)",
    "geaendert": false,
    "anmerkung": "Sagt man beim Anblick von etwas Schoenem oder Gelungenem - vor allem bei Kindern, um sie vor dem boesen Blick zu schuetzen. MEINE EINSCHAETZUNG: stark sakularisiert, wird in BiH auch von wenig religioesen Menschen als reines Kompliment gesagt ('Masallah, kako je narasla!'). Weniger heikel als insallah. Schreibung 'masallah' (geprueft).",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Ramadanfest / Opferfest",
@@ -2890,19 +2899,21 @@
   },
   {
    "de": "Beerdigung",
-   "bs": "dzenaza / sahrana",
+   "bs": "dženaza / sahrana",
    "gruppe": "Feiern & Braeuche (Level 35)",
    "geaendert": false,
    "anmerkung": "WICHTIGER UNTERSCHIED: 'dzenaza' ist das islamische Totengebet und die muslimische Beerdigung, 'sahrana' ist das allgemeine, konfessionsneutrale Wort. Ein Erwachsener mit bosnischer Familie erlebt das. Fuer das Beileid selbst siehe meine Unsicherheitsnotiz - da traue ich mir keine Empfehlung zu.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Brauch / Sitte",
-   "bs": "obicaj",
+   "bs": "običaj",
    "gruppe": "Feiern & Braeuche (Level 35)",
    "geaendert": false,
    "anmerkung": "Neben 'tradicija', das schon drin ist, das konkretere Alltagswort: 'To je nas obicaj' = Das ist bei uns so ueblich. Hoert man staendig, wenn jemand erklaert, warum etwas so gemacht wird.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "feiern",
@@ -2914,19 +2925,21 @@
   },
   {
    "de": "gratulieren",
-   "bs": "cestitati",
+   "bs": "čestitati",
    "gruppe": "Feiern & Braeuche (Level 35)",
    "geaendert": false,
    "anmerkung": "Die App hat nur den Ausruf 'Cestitam!'. Der Infinitiv fehlt - noetig, um zu sagen 'Zelim ti cestitati' oder 'Cestitali smo mu'.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Tracht",
-   "bs": "narodna nosnja",
+   "bs": "narodna nošnja",
    "gruppe": "Feiern & Braeuche (Level 35)",
    "geaendert": false,
    "anmerkung": "Relevant vor allem ueber die Folkloregruppen in der Diaspora - dort ziehen die Kinder sie an.",
-   "notiz": ""
+   "notiz": "",
+   "sonderzeichen_berichtigt": true
   },
   {
    "de": "Backpulver",
