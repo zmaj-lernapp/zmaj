@@ -2544,8 +2544,26 @@ function renderLives(){
   $('livesKnopf').addEventListener('click', ()=>{ livesInfoAn = !livesInfoAn; renderLives(); });
   const b=$('btnLesson'); if(b){ b.disabled = n===0; b.textContent = n===0 ? t('leben.warten') : t('level.lektion'); }
 }
+/* Muenzanzeige, Einkaufswagen und Zahnrad stehen auch waehrend einer
+   Lektion oben, weil Lektion und Test Unteransichten von levelView sind und
+   nicht ueber showView() laufen. Wer einen davon antippt, verliert sonst die
+   angefangene Lektion ohne Warnung - die verbrauchten Leben bleiben
+   verbraucht, und zurueck fuehrt nur auf die Startseite. Der Knopf "Lektion
+   abbrechen" daneben fragt laengst nach, die Zurueck-Taste des Handys ruft
+   genau diesen Knopf. Gefunden am 26.09.2026.
+   Gefragt wird nur, wenn wirklich eine Lektion oder ein Test laeuft. */
+async function lektionDarfWeg(){
+  const laeuft = (sichtbar('lesson') && Lx && Lx.i < Lx.queue.length) ||
+                 (sichtbar('test')   && Tx && Tx.i < Tx.queue.length);
+  if(!laeuft) return true;
+  return await frage(t('lektion.abbrechen_frage'), t('lektion.abbrechen_hinweis'),
+                     t('btn.abbrechen'), t('btn.weitermachen'));
+}
 // Ein Tipp auf die Muenzen fuehrt dorthin, wo man sie ausgibt.
-$('muenzBar').addEventListener('click', showLaden);
+$('muenzBar').addEventListener('click', async ()=>{
+  if(!await lektionDarfWeg()) return;
+  await saveProgress(); showLaden();
+});
 setInterval(renderLives, 30000);
 
 /* ---- Lernserie ----
@@ -2873,6 +2891,13 @@ function speak(text, fertig){
 /* Gibt es fuer dieses Wort ueberhaupt etwas zu hoeren? Auf dem Handy kennt
    die WebView keine Computerstimme - dort gibt es nur die Aufnahmen. */
 const hoerbar = text => !!audioDatei(text) || hasTTS;
+/* hoerbar() entscheidet, OB ein Lautsprecher angeboten wird, und darf grosszuegig
+   sein: ist die Stimmenliste beim ersten Aufruf noch leer, soll der Knopf
+   trotzdem dastehen. Beim Vorlesen einer Loesung ist das anders - dort wird
+   sofort gesprochen. Ohne bosnische, kroatische oder serbische Stimme liest
+   die Standardstimme des Geraets die bosnische Form mit deutscher Aussprache
+   vor, direkt nachdem der Nutzer sie gelernt hat. Gefunden am 26.09.2026. */
+const vorlesbar = text => !!audioDatei(text) || (hasTTS && !!pickVoice());
 /* Die Stimmenauswahl steht seit dem 18.09.2026 nicht mehr in den
    Einstellungen. Die Funktion bleibt samt Aufruf beim Stimmenwechsel
    stehen, falls die Zeile je zurueckkommt - sie muss das Fehlen des
@@ -3753,7 +3778,10 @@ function kaufe(id){
 }
 /* Auswahl ändern: dasselbe Fenster noch einmal, mit der Antwort von
    vorhin gelöscht - sonst käme es gar nicht erst hoch. */
-$('btnSettings').addEventListener('click', async ()=>{ await saveProgress(); showSettings(); });
+$('btnSettings').addEventListener('click', async ()=>{
+  if(!await lektionDarfWeg()) return;
+  await saveProgress(); showSettings();
+});
 $('setLogout').addEventListener('click', abmelden);
 
 /* ---- Passwort ändern ---- */
@@ -3929,7 +3957,10 @@ function showLaden(){
 }
 $('modeWords').addEventListener('click', ()=>{ homeMode='words'; showHome(); });
 $('modeStories').addEventListener('click', ()=>{ homeMode='stories'; showHome(); });
-$('btnShop').addEventListener('click', async ()=>{ await saveProgress(); showLaden(); });
+$('btnShop').addEventListener('click', async ()=>{
+  if(!await lektionDarfWeg()) return;
+  await saveProgress(); showLaden();
+});
 $('btnBack').addEventListener('click', ()=>{ if(backTarget) backTarget(); });
 
 /* =================== LERNPFAD =================== */
@@ -4430,30 +4461,60 @@ function renderTask(task, body, done, opts={}){
         fin = true;
         heard.innerHTML = '<span style="color:var(--good)">'+t('task.gehoert_ok',{text:esc(erstes)})+'</span>';
         sound('ok'); done({ok:true});
+      } else if(!erstes){
+        /* Die Erkennung hat nichts geliefert - geschwiegen, zu laut, Anruf,
+           Mikrofon belegt. Vorher stand hier der Satz "Ich habe ‚‘
+           verstanden" mit einem leeren Wort darin, dazu der Fehlerton. Der
+           Nutzer bekam gesagt, er habe falsch gesprochen. */
+        heard.textContent = t('task.mikro_fehler');
       } else {
         heard.textContent = t('task.gehoert_no',{text:erstes}); sound('no');
       }
     };
 
+    /* Sobald der Nutzer stoppt, ueberspringt oder die Aufgabe verlaesst,
+       darf die Sprachschleife unten nicht die naechste Sprache anwerfen.
+       Vorher lief das Mikrofon bis zu viermal weiter, auch auf der
+       Levueluebersicht. Gefunden am 26.09.2026. */
+    let stoppGewollt = false;
     mic.addEventListener('click', async ()=>{
       if(fin) return;
       const H = hoererPlugin();
       if(H){
         // Weg über das Plugin: Androids eigene Erkennung.
-        if(listening){ try{ await H.stop(); }catch(e){} return; }
+        if(listening){ stoppGewollt = true; try{ await H.stop(); }catch(e){} return; }
         try{
           let rechte = await H.checkPermissions();
           if(rechte.speechRecognition !== 'granted') rechte = await H.requestPermissions();
-          if(rechte.speechRecognition !== 'granted'){ heard.textContent = t('task.mikro_blockiert'); return; }
-          listening = true; mic.classList.add('rec'); heard.textContent = t('task.hoert_zu');
-          hoererAbbrechen = abhoeren;
+          if(rechte.speechRecognition !== 'granted'){
+            /* canSpeak kam bisher allein aus H.available() - das sagt nur,
+               dass ein Erkenner installiert ist, nicht dass die App ihn
+               benutzen darf. Wer ablehnt, bekam trotzdem in jeder Lektion
+               Sprechaufgaben, musste sie ueberspringen, und die Tagesaufgabe
+               "ohne Fehler" verlangt Lx.skipped === 0 - sie war fuer ihn
+               dauerhaft unerreichbar. Ab der naechsten Lektion faellt 'speak'
+               jetzt aus dem Aufgabentopf. */
+            canSpeak = false;
+            heard.textContent = t('task.mikro_blockiert');
+            return;
+          }
+          listening = true; stoppGewollt = false;
+          mic.classList.add('rec'); heard.textContent = t('task.hoert_zu');
+          hoererAbbrechen = ()=>{ stoppGewollt = true; abhoeren(); };
           let erg = null;
           for(const sprache of ['bs-BA','hr-HR','sr-RS', null]){
             try{
               erg = await H.start(Object.assign({maxResults:5, partialResults:false, popup:false},
                                                 sprache ? {language:sprache} : {}));
               break;
-            }catch(e){ /* diese Stimme fehlt auf dem Geraet - naechste */ }
+            }catch(e){
+              /* Frueher stand hier nur "diese Stimme fehlt auf dem Geraet".
+                 Androids Erkenner wirft auf demselben Weg aber auch bei
+                 "kein Treffer", Zeitueberlauf, belegtem Mikrofon und beim
+                 Abbruch durch den Nutzer. Dann darf nicht die naechste
+                 Sprache starten. */
+              if(stoppGewollt || fin) break;
+            }
           }
           listening = false; mic.classList.remove('rec');
           bewerte((erg && erg.matches) || []);
@@ -4513,7 +4574,7 @@ function renderTask(task, body, done, opts={}){
     body.innerHTML = kick(t('task.grammatik'))+'<div class="ex-q">'+esc(g.frage)+'</div><div class="options'+(g.optionen.some(o=>o.length>22)?' one':'')+'" id="xOpts"></div><div class="feedback" id="xFb"></div><div class="ex-tipp" id="xTipp"></div>';
     // Nach der Antwort die richtige Form sprechen, wenn es sie als Aufnahme
     // gibt - bei „imaš“ gegen „ima“ entscheidet die Aussprache mit.
-    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(hoerbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); });
+    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(vorlesbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); });
     return;
   }
 }
