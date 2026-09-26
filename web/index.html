@@ -4306,9 +4306,25 @@ function renderExplain(parts){
 }
 
 /* =================== AUFGABEN-BAUSTEINE =================== */
+/* Zwei Vokabeln koennen in einer Oberflaechensprache dieselbe Uebersetzung
+   haben: auf Daenisch heissen majka und mama beide "mor", auf Franzoesisch
+   kolac und torta beide "gateau". Auf Deutsch faellt das nie auf.
+   Ohne diese Funktion waere die Auswahlaufgabe dort nicht entscheidbar und
+   die Schreibaufgabe nicht loesbar - eine richtige Antwort kostet ein Herz.
+   Gefunden am 26.09.2026, elf Stellen ueber acht Sprachen. */
+const _bedeutung = s => String(s||'').toLowerCase().replace(/[.!?\u2026]+$/,'').replace(/\s+/g,' ').trim();
+function geschwister(w){
+  const b = _bedeutung(w.de);
+  if(!b) return [];
+  return CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs && _bedeutung(x.de) === b);
+}
 function distractors(target, words, n){
-  let pool = words.filter(w=>w.bs!==target.bs);
-  if(pool.length<n) pool = CATEGORIES.flatMap(c=>c.words).filter(w=>w.bs!==target.bs);
+  /* Auch die Bedeutung vergleichen, nicht nur das bosnische Wort. Sonst
+     landen "majka" und "mama" in derselben Auswahl, beide zeigen "mor". */
+  const gleich = new Set(geschwister(target).map(x=>x.bs));
+  const raus = w => w.bs===target.bs || gleich.has(w.bs);
+  let pool = words.filter(w=>!raus(w));
+  if(pool.length<n) pool = CATEGORIES.flatMap(c=>c.words).filter(w=>!raus(w));
   const seen = new Set([target.bs]); const out=[];
   for(const w of shuffle(pool.slice())){ if(!seen.has(w.bs)){ seen.add(w.bs); out.push(w); if(out.length===n) break; } }
   return out;
@@ -4427,7 +4443,13 @@ function renderTask(task, body, done, opts={}){
       '<div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
     const check=()=>{
-      if(fin) return; const r=matches(inp.value, w.bs);
+      /* Traegt ein anderes Wort dieselbe Uebersetzung, ist es genauso
+         richtig - der Bildschirm zeigt ja nur die Bedeutung. matches()
+         trennt ohnehin bei " / ", deshalb genuegt es, die Geschwister
+         anzuhaengen. */
+      if(fin) return;
+      const auchOk = [w.bs, ...geschwister(w).map(x=>x.bs)].join(' / ');
+      const r=matches(inp.value, auchOk);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; return; }
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.

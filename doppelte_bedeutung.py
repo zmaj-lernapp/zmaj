@@ -88,14 +88,14 @@ def main():
         if gleiches_level:
             print("  A. Im SELBEN Level – trifft Schreiben UND Auswahl:")
             for bedeutung, gruppe in gleiches_level:
-                woerter = ", ".join('„%s"' % bs for bs, _ in gruppe)
-                print("     „%s"  =  %s   (%s)" % (bedeutung, woerter, gruppe[0][1]))
+                woerter = ", ".join('%s' % bs for bs, _ in gruppe)
+                print("     %s  =  %s   (%s)" % (bedeutung, woerter, gruppe[0][1]))
                 gesamt += 1
         if andere_level:
             print("  B. In verschiedenen Levels – trifft nur das Schreiben:")
             for bedeutung, eintraege in andere_level:
-                teile = ", ".join('„%s" (%s)' % (bs, label) for bs, label, _ in eintraege)
-                print("     „%s"  =  %s" % (bedeutung, teile))
+                teile = ", ".join('%s (%s)' % (bs, label) for bs, label, _ in eintraege)
+                print("     %s  =  %s" % (bedeutung, teile))
                 gesamt += 1
 
     print()
