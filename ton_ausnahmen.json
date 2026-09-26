@@ -1,0 +1,85 @@
+{
+ "ausnahmen": {
+  "bez": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0533.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "dug": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w1009.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "kad": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0453.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "kod": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0532.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "kroz": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0543.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "od": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0528.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "sud": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0984.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "zbog": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0524.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "crkva": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0854.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  },
+  "prtljag": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0832.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "26.09.2026"
+  }
+ },
+ "warum": "Von Ajdin am 26.09.2026 ausgewaehlt. Ohne diese Datei erzeugt ton_bauen.py sie wieder mit der bosnischen Standardstimme."
+}
