@@ -1,0 +1,97 @@
+{
+ "korrekturen": [
+  {
+   "falsch": "pjevac / pjevacica",
+   "richtig": "pjevač / pjevačica",
+   "deutsch": "Saenger / Saengerin",
+   "beleg": "https://en.wiktionary.org/wiki/pjeva%C4%8D",
+   "zitat": "Headword: pjèvāč (masculine animate noun), meaning \"singer\", IPA /pjěʋaːt͡ʃ/ - dazu https://en.wiktionary.org/wiki/pjeva%C4%8Dica: \"Headword: pjevàčica (feminine noun), meaning \"singer\", IPA /pjeʋǎt͡ʃit͡sa/\""
+  },
+  {
+   "falsch": "teferic",
+   "richtig": "teferič",
+   "deutsch": "Teferic (Ausflugsfest im Gruenen)",
+   "beleg": "https://hjp.znanje.hr/index.php?show=search_by_id&id=f19mWhB9&keyword=teferi%C4%8D",
+   "zitat": "Headword: tefèrič - \"reg. zabava i gozba u prirodi, izlet u prirodu s čašćenjem\"; 2. \"mjesto u prirodi odakle se pruža lijep pogled; vidikovac\" (aus dem Tuerkischen, von arab. täfärruǧ)"
+  },
+  {
+   "falsch": "rostilj",
+   "richtig": "roštilj",
+   "deutsch": "Grill / Gegrilltes",
+   "beleg": "https://en.wiktionary.org/wiki/ro%C5%A1tilj",
+   "zitat": "Headword: ròštīlj (m inan), Meanings: \"barbecue\", \"grill\"; \"grilled meat\", IPA /rǒʃtiːʎ/"
+  },
+  {
+   "falsch": "hurmasica",
+   "richtig": "hurmašica",
+   "deutsch": "Hurmasica (Sirupgebaeck)",
+   "beleg": "https://bs.wikipedia.org/wiki/Hurma%C5%A1ica",
+   "zitat": "Artikeltitel: Hurmašica - \"Hurmašica ili hurmadžik (također urmašica) je vrsta zalivenog slatkiša, prisutna u bosanskoj i srpskoj kuhinji, porijeklom s Orijenta...\""
+  },
+  {
+   "falsch": "domacin / domacica",
+   "richtig": "domaćin / domaćica",
+   "deutsch": "Gastgeber / Gastgeberin",
+   "beleg": "https://en.wiktionary.org/wiki/doma%C4%87in",
+   "zitat": "Headword: domàćin (m anim), kyrillisch дома̀ћин, \"master / head of the house\"; \"host (of a house, event, ceremony)\", IPA /domǎt͡ɕin/ - dazu https://en.wiktionary.org/wiki/doma%C4%87ica: \"Headword: domaćica (домаћица), Housewife; Hostess, IPA /domǎt͡ɕit͡sa/\""
+  },
+  {
+   "falsch": "castiti",
+   "richtig": "častiti",
+   "deutsch": "jemanden einladen (bezahlen)",
+   "beleg": "https://en.wiktionary.org/wiki/%C4%8Dastiti",
+   "zitat": "Headword: čàstiti (pf), kyrillisch ча̀стити, IPA /t͡ʃǎstiti/, \"to treat oneself, to indulge\"; \"to regale\" (Imperfektiv čašćávati)"
+  },
+  {
+   "falsch": "Jos malo?",
+   "richtig": "Još malo?",
+   "deutsch": "Noch ein bisschen?",
+   "beleg": "https://en.wiktionary.org/wiki/jo%C5%A1",
+   "zitat": "Headword: jȍš (kyrillisch јо̏ш), IPA /jôʂ/, Adverb: \"more\" or \"another\"; \"still\" or \"yet\" - \"malo\" bleibt richtig (https://en.wiktionary.org/wiki/malo: \"mȁlo ... little, few, some\")"
+  },
+  {
+   "falsch": "insallah",
+   "richtig": "inšallah",
+   "deutsch": "Insallah (so Gott will)",
+   "beleg": "https://zijadljakic.ba/pravilno-pisanje-rijeci-insallah/",
+   "zitat": "\"Dr. Senahid Halilović u knjizi 'Pravopis bosanskog jezika' na 264. strani je naveo da se ova riječ piše 'inšallah' (u prijevodu: Ako Allah da).\" Nicht richtig sind inšAllah, inšaAllah, inshAllah oder in sha Allah."
+  },
+  {
+   "falsch": "masallah",
+   "richtig": "mašallah",
+   "deutsch": "Masallah (wie schoen, Gott schuetze es)",
+   "beleg": "https://bs.wikipedia.org/wiki/Ma%C5%A1allah",
+   "zitat": "'''Mašallah''', '''mašalah''' ili '''mašala''' (مَا شَاءَ ٱللَّٰهُ [mā šāʾ Allāh]) arapski je izraz koji najčešće izgovaraju muslimani da izraze poštovanje prema nekoj osobi ili događaju"
+  },
+  {
+   "falsch": "dzenaza / sahrana",
+   "richtig": "dženaza / sahrana",
+   "deutsch": "Beerdigung",
+   "beleg": "https://en.wiktionary.org/wiki/d%C5%BEenaza",
+   "zitat": "dženáza f (Cyrillic spelling џена́за) — 1. (Islam) funeral; 2. (Islam) prayer for the dead"
+  },
+  {
+   "falsch": "obicaj",
+   "richtig": "običaj",
+   "deutsch": "Brauch / Sitte",
+   "beleg": "https://en.wiktionary.org/wiki/obi%C4%8Daj",
+   "zitat": "ȍbičāj m inan — 1. habit, tendency; 2. custom; 3. convention, formality, practice"
+  },
+  {
+   "falsch": "cestitati",
+   "richtig": "čestitati",
+   "deutsch": "gratulieren",
+   "beleg": "https://en.wiktionary.org/wiki/%C4%8Destitati",
+   "zitat": "čestítati impf or pf — to congratulate"
+  },
+  {
+   "falsch": "narodna nosnja",
+   "richtig": "narodna nošnja",
+   "deutsch": "Tracht",
+   "beleg": "https://en.wiktionary.org/wiki/no%C5%A1nja",
+   "zitat": "nošnja f (Cyrillic spelling ношња) — costume"
+  }
+ ],
+ "geprueft": 233,
+ "stand": "26.09.2026"
+}

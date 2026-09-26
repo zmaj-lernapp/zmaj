@@ -169,3 +169,48 @@ nur, dass der juristische Begriff dort fehlt, nicht dass er falsch wäre.
 **Nicht zusammenlegen.** Die beiden stehen in verschiedenen Levels und
 haben verschiedene Nachbarn: `prodavač` neben `prodavačica` und Läden,
 `prodavac` neben `kupac`, `kupoprodajni ugovor` und `nekretnina`.
+
+---
+
+## Nachtrag vom 26.09.2026: die fehlenden Sonderzeichen
+
+Ajdin nach der Durchsicht der 569 Wörter:
+
+> es sind noch mehr von den über 500 wörtern hatte nur kein bock bei jedem
+> es zu schreiben bitte guck durch korrigiere
+
+**Geprüft wurden 233 Wörter** — alle, die kein č, ć, ž, š oder đ tragen,
+aber ein c, s oder z enthalten und deshalb eines tragen könnten. Die
+übrigen 328 schieden aus: 137 hatten schon Sonderzeichen, 191 bestehen aus
+Buchstaben, die nie eines tragen.
+
+Jede vorgeschlagene Korrektur wurde von einem zweiten Durchgang mit einer
+**anderen Quelle** gegengelesen. **13 Korrekturen, alle bestätigt, keine
+verworfen.** 220 der 233 Schreibweisen waren richtig.
+
+| war | ist | Bedeutung |
+|---|---|---|
+| pjevac / pjevacica | **pjevač / pjevačica** | Sänger / Sängerin |
+| domacin / domacica | **domaćin / domaćica** | Gastgeber / Gastgeberin |
+| dzenaza | **dženaza** | Beerdigung |
+| rostilj | **roštilj** | Grill / Gegrilltes |
+| hurmasica | **hurmašica** | Hurmašica (Sirupgebäck) |
+| teferic | **teferič** | Ausflugsfest im Grünen |
+| castiti | **častiti** | jemanden einladen |
+| cestitati | **čestitati** | gratulieren |
+| obicaj | **običaj** | Brauch / Sitte |
+| narodna nosnja | **narodna nošnja** | Tracht |
+| Jos malo? | **Još malo?** | Noch ein bisschen? |
+| insallah | **inšallah** | so Gott will |
+| masallah | **mašallah** | wie schön |
+
+**Ein Fall ist mehr als Rechtschreibung:** `pjevac` gibt es wirklich — als
+regionale Nebenform von `pijevac`, **Hahn**. Ohne das `č` hätte im Lernwort
+für „Sänger" ein anderes Tier gestanden. Eine weibliche Form `pjevacica`
+existiert dagegen nicht, Hähne haben keine.
+
+**Der Bestand ist nicht betroffen.** Keines der dreizehn Wörter steht in
+`vokabeln.py` falsch geschrieben.
+
+Die Belege liegen in `sonderzeichen_korrekturen.json`, je mit URL und
+wörtlichem Zitat.
