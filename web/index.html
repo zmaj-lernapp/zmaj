@@ -17,43 +17,43 @@
 <style>
   /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
   :root{
-    --bg:#F3F6FF; --surface:#FFFFFF; --ink:#0F1E4D; --muted:#5E6B94;
+    --bg:#E9EEFF; --surface:#FFFFFF; --ink:#0F1E4D; --muted:#5E6B94;
     --primary:#1E3FA8; --primary-dark:#142C7A; --primary-soft:#E4EAFF;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
-    --line:#D9E0F5; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    --line:#C9D3F0; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
     /* Eine Farbe je Sektion. Vorher war jede Ueberschrift blau und jeder
        Balken gelb, dadurch standen auf dem Lernpfad nach Farbton nur vier
        Toene. Sektion 1 behaelt das Blau der App und der Fahne. Hier sind
        die Toene dunkler als in der dunklen Fassung, sonst leuchten sie
        auf Weiss. */
-    --sek1:#1E3FA8; --sek1-dunkel:#142C7A; --sek1-sanft:#E4EAFF; --sek1-grund:#F3F6FF; --sek1-flaeche:#FFFFFF; --sek1-linie:#D9E0F5; --sek1-matt:#5E6B94;   /* Blau */
-    --sek2:#167588; --sek2-dunkel:#0E4B58; --sek2-sanft:#E5FBFF; --sek2-grund:#F5FDFF; --sek2-flaeche:#FFFFFF; --sek2-linie:#DCF0F4; --sek2-matt:#5D8992;   /* Tuerkis */
-    --sek3:#611DA5; --sek3-dunkel:#451575; --sek3-sanft:#F2E5FF; --sek3-grund:#FAF5FF; --sek3-flaeche:#FFFFFF; --sek3-linie:#E8DCF4; --sek3-matt:#785D92;   /* Violett */
-    --sek4:#B80A6F; --sek4-dunkel:#83074F; --sek4-sanft:#FFE5F4; --sek4-grund:#FFF5FB; --sek4-flaeche:#FFFFFF; --sek4-linie:#F4DCEA; --sek4-matt:#925D7C;   /* Magenta */
+    --sek1:#1E3FA8; --sek1-dunkel:#142C7A; --sek1-sanft:#E4EAFF; --sek1-grund:#E9EEFF; --sek1-flaeche:#FFFFFF; --sek1-linie:#C9D3F0; --sek1-matt:#5E6B94;   /* Blau */
+    --sek2:#167588; --sek2-dunkel:#0E4B58; --sek2-sanft:#E5FBFF; --sek2-grund:#E5FBFF; --sek2-flaeche:#FFFFFF; --sek2-linie:#CDE9EF; --sek2-matt:#5D8992;   /* Tuerkis */
+    --sek3:#611DA5; --sek3-dunkel:#451575; --sek3-sanft:#F2E5FF; --sek3-grund:#F2E5FF; --sek3-flaeche:#FFFFFF; --sek3-linie:#DECDEF; --sek3-matt:#785D92;   /* Violett */
+    --sek4:#B80A6F; --sek4-dunkel:#83074F; --sek4-sanft:#FFE5F4; --sek4-grund:#FFE5F4; --sek4-flaeche:#FFFFFF; --sek4-linie:#EFCDE1; --sek4-matt:#925D7C;   /* Magenta */
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#0B1330; --surface:#141F4A; --ink:#F2F5FF; --muted:#9FACD9;
+      --bg:#0B1330; --surface:#1B2A63; --ink:#F2F5FF; --muted:#9FACD9;
       --primary:#5B84FF; --primary-dark:#3C63D6; --primary-soft:#1C2B66;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-      --line:#25346B; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-      --sek1:#5B84FF; --sek1-dunkel:#3C63D6; --sek1-sanft:#1C2B66; --sek1-grund:#0B1330; --sek1-flaeche:#141F4A; --sek1-linie:#25346B; --sek1-matt:#9FACD9;   /* Blau */
-      --sek2:#50CAE2; --sek2-dunkel:#3F99AB; --sek2-sanft:#1B5864; --sek2-grund:#0F292E; --sek2-flaeche:#193C43; --sek2-linie:#2B5A64; --sek2-matt:#A5CCD4;   /* Tuerkis */
-      --sek3:#B26EF7; --sek3-dunkel:#8F4ECF; --sek3-sanft:#401B64; --sek3-grund:#1F0F2E; --sek3-flaeche:#2E1943; --sek3-linie:#472B64; --sek3-matt:#BDA5D4;   /* Violett */
-      --sek4:#F76EBE; --sek4-dunkel:#CF4E9A; --sek4-sanft:#641B46; --sek4-grund:#2E0F21; --sek4-flaeche:#431931; --sek4-linie:#642B4C; --sek4-matt:#D4A5C1;   /* Magenta */
+      --line:#2F4184; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --sek1:#5B84FF; --sek1-dunkel:#3C63D6; --sek1-sanft:#1C2B66; --sek1-grund:#0B1330; --sek1-flaeche:#1B2A63; --sek1-linie:#2F4184; --sek1-matt:#9FACD9;   /* Blau */
+      --sek2:#50CAE2; --sek2-dunkel:#3F99AB; --sek2-sanft:#1B5864; --sek2-grund:#0F292E; --sek2-flaeche:#234E57; --sek2-linie:#366D78; --sek2-matt:#A5CCD4;   /* Tuerkis */
+      --sek3:#B26EF7; --sek3-dunkel:#8F4ECF; --sek3-sanft:#401B64; --sek3-grund:#1F0F2E; --sek3-flaeche:#3D2357; --sek3-linie:#573678; --sek3-matt:#BDA5D4;   /* Violett */
+      --sek4:#F76EBE; --sek4-dunkel:#CF4E9A; --sek4-sanft:#641B46; --sek4-grund:#2E0F21; --sek4-flaeche:#572341; --sek4-linie:#78365C; --sek4-matt:#D4A5C1;   /* Magenta */
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0B1330; --surface:#141F4A; --ink:#F2F5FF; --muted:#9FACD9;
+    --bg:#0B1330; --surface:#1B2A63; --ink:#F2F5FF; --muted:#9FACD9;
     --primary:#5B84FF; --primary-dark:#3C63D6; --primary-soft:#1C2B66;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-    --line:#25346B; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-    --sek1:#5B84FF; --sek1-dunkel:#3C63D6; --sek1-sanft:#1C2B66; --sek1-grund:#0B1330; --sek1-flaeche:#141F4A; --sek1-linie:#25346B; --sek1-matt:#9FACD9;   /* Blau */
-    --sek2:#50CAE2; --sek2-dunkel:#3F99AB; --sek2-sanft:#1B5864; --sek2-grund:#0F292E; --sek2-flaeche:#193C43; --sek2-linie:#2B5A64; --sek2-matt:#A5CCD4;   /* Tuerkis */
-    --sek3:#B26EF7; --sek3-dunkel:#8F4ECF; --sek3-sanft:#401B64; --sek3-grund:#1F0F2E; --sek3-flaeche:#2E1943; --sek3-linie:#472B64; --sek3-matt:#BDA5D4;   /* Violett */
-    --sek4:#F76EBE; --sek4-dunkel:#CF4E9A; --sek4-sanft:#641B46; --sek4-grund:#2E0F21; --sek4-flaeche:#431931; --sek4-linie:#642B4C; --sek4-matt:#D4A5C1;   /* Magenta */
+    --line:#2F4184; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+    --sek1:#5B84FF; --sek1-dunkel:#3C63D6; --sek1-sanft:#1C2B66; --sek1-grund:#0B1330; --sek1-flaeche:#1B2A63; --sek1-linie:#2F4184; --sek1-matt:#9FACD9;   /* Blau */
+    --sek2:#50CAE2; --sek2-dunkel:#3F99AB; --sek2-sanft:#1B5864; --sek2-grund:#0F292E; --sek2-flaeche:#234E57; --sek2-linie:#366D78; --sek2-matt:#A5CCD4;   /* Tuerkis */
+    --sek3:#B26EF7; --sek3-dunkel:#8F4ECF; --sek3-sanft:#401B64; --sek3-grund:#1F0F2E; --sek3-flaeche:#3D2357; --sek3-linie:#573678; --sek3-matt:#BDA5D4;   /* Violett */
+    --sek4:#F76EBE; --sek4-dunkel:#CF4E9A; --sek4-sanft:#641B46; --sek4-grund:#2E0F21; --sek4-flaeche:#572341; --sek4-linie:#78365C; --sek4-matt:#D4A5C1;   /* Magenta */
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -175,7 +175,10 @@
      Aus Entwurf B. Als Liste untereinander kosteten sie drei Zeilen und
      sagten trotzdem nicht auf einen Blick, wie weit man ist. */
   .qringe{display:flex; gap:7px}
-  .qring{flex:1; min-width:0; text-align:center; background:var(--bg);
+  /* --primary-soft statt --bg: der Grund ist dunkler als die Karte, in
+     der die Ringe liegen - sie sahen aus wie Loecher. Der blasse Ton der
+     Sektion legt sie darueber und faerbt sie mit. */
+  .qring{flex:1; min-width:0; text-align:center; background:var(--primary-soft);
          border:1px solid var(--line); border-radius:11px; padding:9px 5px;
          font-size:11px; font-weight:800; color:var(--ink); line-height:1.25}
   /* Die Zahl im Ring hat dieselbe Schriftfarbe wie der Text darunter.
@@ -348,7 +351,17 @@
   .section.sek2{--sek:var(--sek2)}
   .section.sek3{--sek:var(--sek3)}
   .section.sek4{--sek:var(--sek4)}
-  .section.locked{opacity:.6}
+  /* Bis zum 26.09.2026 stand hier opacity:.6 - die gesperrten Sektionen
+     waren also zu 40 Prozent durchsichtig, und der Grund schien hindurch.
+     Der Tester am selben Tag: "weil die Boxen durchsichtig sind mischt
+     sich ihr Dunkelgrau mit dem Hintergrund und deshalb wirken die Farben
+     so matt". Er hatte recht, und opacity faerbt ausserdem alles mit -
+     Schrift, Rahmen, Balken.
+     Jetzt bleibt der Kasten blickdicht, und gesperrt wird ueber die Farbe
+     gesagt: gedaempfte Schrift, blasserer Rand. */
+  .section.locked{border-color:var(--primary-soft)}
+  .section.locked h2, .section.locked .skopf::after{color:var(--muted)}
+  .section.locked .sbar i{background:var(--muted)}
   .section h2{font-family:var(--font-ui); font-weight:800; font-size:18px; margin:0 0 2px; color:var(--sek, var(--primary))}
   .section .desc{font-size:13px; color:var(--muted); margin-bottom:10px}
   .section .sbar{height:8px; background:var(--primary-soft); border-radius:99px; overflow:hidden; margin-bottom:6px}
