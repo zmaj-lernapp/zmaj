@@ -77,12 +77,55 @@ def kopieren():
     return dateien
 
 
+# Aus diesen Dateien baut inhalt_bauen.py die JSON-Dateien für das Handy.
+# Ändert sich eine davon, sind die JSON-Dateien veraltet.
+INHALT_QUELLEN = ["sprachen.py", "vokabeln.py", "geschichten.py",
+                  "grammatik.py", "uebersetzungen.py"]
+
+
+def inhalt_aktuell():
+    """Sind web/inhalt/*.json neuer als die Python-Dateien, aus denen sie kommen?
+
+    Am 26.09.2026 stand in den Einstellungen wörtlich „set.sicherung_suchen"
+    statt des Satzes. Ursache: sicherung_richten.py hatte sprachen.py geändert,
+    aber niemand hatte inhalt_bauen.py laufen lassen. Das Handy liest die
+    Texte ausschließlich aus web/inhalt/<sprache>.json, nie aus sprachen.py.
+    Am PC fällt das nie auf, weil der Server die Python-Dateien frisch liest.
+    """
+    ordner = os.path.join(HIER, "web", "inhalt")
+    if not os.path.isdir(ordner):
+        return ["web/inhalt fehlt ganz"]
+    gebaut = [os.path.join(ordner, d) for d in os.listdir(ordner)
+              if d.endswith(".json")]
+    if not gebaut:
+        return ["in web/inhalt liegt keine JSON-Datei"]
+    juengste = min(os.path.getmtime(d) for d in gebaut)
+    veraltet = []
+    for quelle in INHALT_QUELLEN:
+        pfad = os.path.join(HIER, quelle)
+        if os.path.exists(pfad) and os.path.getmtime(pfad) > juengste:
+            veraltet.append(quelle)
+    return veraltet
+
+
 def pruefen():
-    """Kein halbes Paket ausliefern: Tonspur muss vollständig sein."""
+    """Kein halbes Paket ausliefern: Tonspur vollständig, Texte aktuell."""
     sys.path.insert(0, HIER)
     import ton_pruefen
     if ton_pruefen.main() != 0:
         raise SystemExit("\nABBRUCH: Die Tonspur ist unvollständig. Nichts kopiert.")
+
+    veraltet = inhalt_aktuell()
+    if veraltet:
+        print("\nABBRUCH: web/inhalt ist älter als %s." % ", ".join(veraltet))
+        print("Das Handy würde die alten Texte anzeigen, am PC sähe alles richtig aus.")
+        print("\nErst das hier laufen lassen, dann noch einmal bauen:")
+        print('    "%s" inhalt_bauen.py' % sys.executable)
+        raise SystemExit(1)
+
+    import texte_pruefen
+    if texte_pruefen.main() != 0:
+        raise SystemExit("\nABBRUCH: Es fehlen Texte. Nichts kopiert.")
 
 
 # Die von AGP 9 abgelehnte Zeile. Sie steckt noch in zwei Plugins, die aus
