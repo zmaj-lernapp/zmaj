@@ -36,7 +36,7 @@ durchgehen und korrigieren – besonders regionale Formen
 (kahva/kafa, babo/otac, nana/baka, amidža/daidža, hiljada/tisuća).
 """
 
-# Die drei Sektionen des Lernpfads. "id" wird in jedem Level unter "sektion" genannt.
+# Die neun Sektionen des Lernpfads. "id" wird in jedem Level unter "sektion" genannt.
 SEKTIONEN = [
     {"id": "alltag", "label": "Sektion 1 · Grundlagen & Alltag",
      "beschreibung": "Sich vorstellen, zählen, Familie, Essen, Wochentage, Einkaufen. Alles, was man jeden Tag sagt."},
@@ -2291,4 +2291,164 @@ SAETZE = [
     {"kat": "feiern", "text": "Imam ___ za tebe.",         "answer": "poklon",  "de": "Ich habe ein Geschenk für dich."},
     {"kat": "feiern", "text": "Sretna Nova ___!",          "answer": "godina",  "de": "Frohes neues Jahr!"},
     {"kat": "feiern", "text": "Svi ___ su došli.",         "answer": "gosti",   "de": "Alle Gäste sind gekommen."},
+
+    # ############################################################
+    # Die Lueckensaetze der Level, die mit den 561 neuen Woertern
+    # dazugekommen sind. Sie stehen hier am Ende, nach Sektion und
+    # Level geordnet - die Reihenfolge in SAETZE spielt keine Rolle,
+    # die App sucht sich ueber "kat" heraus, was zum Level gehoert.
+    # ############################################################
+
+    # ======== Sektion 2 · Dinge zum Anfassen ========
+
+    # Obst
+    {"kat": "obst", "text": "Ovo je ___.",         "answer": "lubenica", "de": "Das ist eine Wassermelone."},
+    {"kat": "obst", "text": "U torbi je ___.",     "answer": "limun",    "de": "In der Tasche ist eine Zitrone."},
+    {"kat": "obst", "text": "Moja mama voli ___.", "answer": "kruške",   "de": "Meine Mama mag Birnen."},
+    {"kat": "obst", "text": "Djeca jedu ___.",     "answer": "jagode",   "de": "Die Kinder essen Erdbeeren."},
+    {"kat": "obst", "text": "Kupi ___ na pijaci.", "answer": "grožđe",   "de": "Kauf Weintrauben auf dem Markt."},
+
+    # Gemüse
+    {"kat": "gemuese", "text": "Djeca ne vole ___.", "answer": "špinat",  "de": "Die Kinder mögen keinen Spinat."},
+    {"kat": "gemuese", "text": "U supi je ___.",     "answer": "mrkva",   "de": "In der Suppe ist eine Karotte."},
+    {"kat": "gemuese", "text": "U bašti je ___.",    "answer": "kukuruz", "de": "Im Garten ist Mais."},
+    {"kat": "gemuese", "text": "Na stolu su ___.",   "answer": "gljive",  "de": "Auf dem Tisch sind Pilze."},
+    {"kat": "gemuese", "text": "Danas jedem ___.",   "answer": "karfiol", "de": "Heute esse ich Blumenkohl."},
+
+    # Lebensmittel
+    {"kat": "lebensmittel", "text": "Djeca jedu ___.",       "answer": "sladoled", "de": "Die Kinder essen Eis (Speiseeis)."},
+    {"kat": "lebensmittel", "text": "Hljeb, ___ i sir.",     "answer": "šunka",    "de": "Brot, Schinken und Käse."},
+    {"kat": "lebensmittel", "text": "Htjela bih ___.",       "answer": "kobasicu", "de": "Ich möchte Wurst."},
+    {"kat": "lebensmittel", "text": "Moja sestra voli ___.", "answer": "čokoladu", "de": "Meine Schwester liebt Schokolade."},
+    {"kat": "lebensmittel", "text": "Kečap i ___, molim.",   "answer": "senf",     "de": "Ketchup und Senf, bitte."},
+
+    # Vorrat & Getränke
+    {"kat": "vorrat", "text": "U frižideru je ___.", "answer": "jogurt", "de": "Im Kühlschrank ist Joghurt."},
+    {"kat": "vorrat", "text": "Volim ___ u čaju.",   "answer": "med",    "de": "Ich mag Honig im Tee."},
+    {"kat": "vorrat", "text": "Jednu ___, molim.",   "answer": "rakiju", "de": "Einen Rakija, bitte."},
+    {"kat": "vorrat", "text": "Kahva je u ___.",     "answer": "džezvi", "de": "Der Kaffee ist im Kupferkännchen."},
+    {"kat": "vorrat", "text": "Uzet ću ___.",        "answer": "pogaču", "de": "Ich nehme das Fladenbrot."},
+
+    # ======== Sektion 3 · Tiere & Natur ========
+
+    # Tiere
+    {"kat": "tiere", "text": "Krava je u ___.",          "answer": "štali",    "de": "Die Kuh ist im Stall."},
+    {"kat": "tiere", "text": "Pile i ___ su u avliji.",  "answer": "kokoš",    "de": "Das Küken und das Huhn sind im Hof."},
+    {"kat": "tiere", "text": "Malo ___ spava.",          "answer": "štene",    "de": "Der kleine Welpe schläft."},
+    {"kat": "tiere", "text": "Vidim ___ na vodi.",       "answer": "patku",    "de": "Ich sehe die Ente auf dem Wasser."},
+    {"kat": "tiere", "text": "Ptica ima ___ na drvetu.", "answer": "gnijezdo", "de": "Der Vogel hat ein Nest auf dem Baum."},
+
+    # Tiere draußen
+    {"kat": "tiere_wild", "text": "Vidi, ___!",         "answer": "zmija",   "de": "Schau mal, eine Schlange!"},
+    {"kat": "tiere_wild", "text": "U šumi je ___.",     "answer": "medvjed", "de": "Im Wald ist ein Bär."},
+    {"kat": "tiere_wild", "text": "Mačka vidi ___.",    "answer": "miša",    "de": "Die Katze sieht eine Maus."},
+    {"kat": "tiere_wild", "text": "Na cvijetu je ___.", "answer": "leptir",  "de": "Auf der Blume ist ein Schmetterling."},
+    {"kat": "tiere_wild", "text": "Ovo je ___.",        "answer": "zmaj",    "de": "Das ist ein Drache."},
+
+    # Rund ums Tier
+    {"kat": "tiere_umgang", "text": "Mačka ima ___.",   "answer": "rep",       "de": "Die Katze hat einen Schwanz."},
+    {"kat": "tiere_umgang", "text": "Moj pas ___.",     "answer": "laje",      "de": "Mein Hund bellt."},
+    {"kat": "tiere_umgang", "text": "Ja ___ mačku.",    "answer": "hranim",    "de": "Ich füttere die Katze."},
+    {"kat": "tiere_umgang", "text": "Moj brat je ___.", "answer": "veterinar", "de": "Mein Bruder ist Tierarzt."},
+    {"kat": "tiere_umgang", "text": "Gdje je ___?",     "answer": "povodac",   "de": "Wo ist die Leine?"},
+
+    # Natur & Pflanzen
+    {"kat": "natur", "text": "Vidi, ___!",        "answer": "vodopad", "de": "Schau mal, ein Wasserfall!"},
+    {"kat": "natur", "text": "Idemo na ___.",     "answer": "brdo",    "de": "Wir gehen auf den Hügel."},
+    {"kat": "natur", "text": "U ___ je hladno.",  "answer": "pećini",  "de": "In der Höhle ist es kalt."},
+    {"kat": "natur", "text": "Djeca su na ___.",  "answer": "livadi",  "de": "Die Kinder sind auf der Wiese."},
+    {"kat": "natur", "text": "Volim ___ i more.", "answer": "prirodu", "de": "Ich liebe die Natur und das Meer."},
+
+    # ======== Sektion 4 · Zuhause ========
+
+    # Küche & Bad
+    {"kat": "kueche_bad", "text": "Voda je u ___.",  "answer": "flaši",    "de": "Das Wasser ist in der Flasche."},
+    {"kat": "kueche_bad", "text": "Ovo je moj ___.", "answer": "tanjir",   "de": "Das ist mein Teller."},
+    {"kat": "kueche_bad", "text": "Supa je u ___.",  "answer": "loncu",    "de": "Die Suppe ist im Topf."},
+    {"kat": "kueche_bad", "text": "Gdje je ___?",    "answer": "ogledalo", "de": "Wo ist der Spiegel?"},
+    {"kat": "kueche_bad", "text": "Deka je na ___.", "answer": "kauču",    "de": "Die Bettdecke ist auf dem Sofa."},
+
+    # Putzen & Nachbarschaft
+    {"kat": "putzen", "text": "Kupatilo je ___.",        "answer": "čisto",  "de": "Das Bad ist sauber."},
+    {"kat": "putzen", "text": "Sutra ___ veš.",          "answer": "peglam", "de": "Morgen bügle ich die Wäsche."},
+    {"kat": "putzen", "text": "Gdje je ___?",            "answer": "metla",  "de": "Wo ist der Besen?"},
+    {"kat": "putzen", "text": "Komšinica ___ na vrata.", "answer": "zvoni",  "de": "Die Nachbarin klingelt an der Tür."},
+    {"kat": "putzen", "text": "Veš je na ___.",          "answer": "štriku", "de": "Die Wäsche ist auf der Wäscheleine."},
+
+    # Technik & Reparatur
+    {"kat": "technik", "text": "Nema ___.",            "answer": "struje",   "de": "Es gibt keinen Strom."},
+    {"kat": "technik", "text": "Gdje je moj ___?",     "answer": "alat",     "de": "Wo ist mein Werkzeug?"},
+    {"kat": "technik", "text": "Upali ___, molim te.", "answer": "svjetlo",  "de": "Mach bitte das Licht an."},
+    {"kat": "technik", "text": "Ne radi ___.",         "answer": "bojler",   "de": "Der Boiler funktioniert nicht."},
+    {"kat": "technik", "text": "Ugasi ___.",           "answer": "grijanje", "de": "Mach die Heizung aus."},
+
+    # ======== Sektion 6 · Einkaufen & Essen gehen ========
+
+    # Einkaufen & Orte
+    {"kat": "einkauf_orte", "text": "Idem u ___.",           "answer": "mesnicu", "de": "Ich gehe in die Metzgerei."},
+    {"kat": "einkauf_orte", "text": "Jabuke su na ___.",     "answer": "akciji",  "de": "Die Äpfel sind im Angebot."},
+    {"kat": "einkauf_orte", "text": "Ovo voće je ___.",      "answer": "svježe",  "de": "Dieses Obst ist frisch."},
+    {"kat": "einkauf_orte", "text": "Mogu li ___ karticom?", "answer": "platiti", "de": "Kann ich mit Karte bezahlen?"},
+    {"kat": "einkauf_orte", "text": "Gdje je moj ___?",      "answer": "kusur",   "de": "Wo ist mein Wechselgeld?"},
+
+    # Im Restaurant: ankommen
+    {"kat": "resto1", "text": "Idemo u ___.",        "answer": "kafić",    "de": "Wir gehen ins Café."},
+    {"kat": "resto1", "text": "Danas jedemo ___.",   "answer": "vani",     "de": "Heute essen wir draußen."},
+    {"kat": "resto1", "text": "Sto na ___, molim.",  "answer": "terasi",   "de": "Einen Tisch auf der Terrasse, bitte."},
+    {"kat": "resto1", "text": "Za mene ___, molim.", "answer": "čorbu",    "de": "Für mich eine Čorba, bitte."},
+    {"kat": "resto1", "text": "Želim ___.",          "answer": "naručiti", "de": "Ich möchte bestellen."},
+
+    # Im Restaurant: essen & zahlen
+    {"kat": "resto2", "text": "Meso je ___.",           "answer": "ljuto",    "de": "Das Fleisch ist scharf."},
+    {"kat": "resto2", "text": "Voće je ___.",           "answer": "slatko",   "de": "Das Obst ist süß."},
+    {"kat": "resto2", "text": "Možemo li platiti ___?", "answer": "odvojeno", "de": "Können wir getrennt zahlen?"},
+    {"kat": "resto2", "text": "Jedemo ___.",            "answer": "zajedno",  "de": "Wir essen zusammen."},
+    {"kat": "resto2", "text": "Zadržite ___.",          "answer": "kusur",    "de": "Behalten Sie das Rückgeld."},
+
+    # Essen gehen & Mengen
+    {"kat": "essen_gehen", "text": "Ovo je jako ___.",          "answer": "ukusno",   "de": "Das ist sehr lecker."},
+    {"kat": "essen_gehen", "text": "Idemo u ___.",              "answer": "restoran", "de": "Wir gehen ins Restaurant."},
+    {"kat": "essen_gehen", "text": "Gdje je ___?",              "answer": "pekara",   "de": "Wo ist die Bäckerei?"},
+    {"kat": "essen_gehen", "text": "Jedan ___ mlijeka, molim.", "answer": "litar",    "de": "Einen Liter Milch, bitte."},
+    {"kat": "essen_gehen", "text": "Jedna ___ je dosta.",       "answer": "porcija",  "de": "Eine Portion ist genug."},
+
+    # ======== Sektion 7 · Bosnien & Herkunft ========
+
+    # Bosnische Küche
+    {"kat": "bosnisch_essen", "text": "Ja bih jedan ___.", "answer": "burek",       "de": "Ich hätte gern einen Burek."},
+    {"kat": "bosnisch_essen", "text": "Za mene ___.",      "answer": "pljeskavicu", "de": "Für mich eine Pljeskavica."},
+    {"kat": "bosnisch_essen", "text": "Imate li ___?",     "answer": "ajvar",       "de": "Haben Sie Ajvar?"},
+    {"kat": "bosnisch_essen", "text": "Ja volim ___.",     "answer": "sarmu",       "de": "Ich mag Sarma."},
+    {"kat": "bosnisch_essen", "text": "Danas jedemo ___.", "answer": "grah",        "de": "Heute essen wir Bohneneintopf."},
+
+    # Länder & Herkunft
+    {"kat": "laender", "text": "Ja sam iz ___.",         "answer": "Bosne",        "de": "Ich komme aus Bosnien."},
+    {"kat": "laender", "text": "Živim u ___.",           "answer": "Njemačkoj",    "de": "Ich lebe in Deutschland."},
+    {"kat": "laender", "text": "Bosna je moja ___.",     "answer": "domovina",     "de": "Bosnien ist meine Heimat."},
+    {"kat": "laender", "text": "Moj brat radi u ___.",   "answer": "inostranstvu", "de": "Mein Bruder arbeitet im Ausland."},
+    {"kat": "laender", "text": "Švicarska je mala ___.", "answer": "država",       "de": "Die Schweiz ist ein kleiner Staat."},
+
+    # Nationalitäten & Sprachen
+    {"kat": "nationalitaeten", "text": "Moja majka je ___.",      "answer": "Bosanka",  "de": "Meine Mutter ist Bosnierin."},
+    {"kat": "nationalitaeten", "text": "Moj muž je ___.",         "answer": "Nijemac",  "de": "Mein Mann ist Deutscher."},
+    {"kat": "nationalitaeten", "text": "Bosanski je lijep ___.",  "answer": "jezik",    "de": "Bosnisch ist eine schöne Sprache."},
+    {"kat": "nationalitaeten", "text": "Govorim ___ i bosanski.", "answer": "njemački", "de": "Ich spreche Deutsch und Bosnisch."},
+    {"kat": "nationalitaeten", "text": "Moja ___ je važna.",      "answer": "vjera",    "de": "Mein Glaube ist wichtig."},
+
+    # ======== Sektion 8 · Menschen & Kultur ========
+
+    # Vorstellen & Kennenlernen
+    {"kat": "kennenlernen", "text": "Da te ___: moj brat.",   "answer": "upoznam",    "de": "Darf ich vorstellen: mein Bruder."},
+    {"kat": "kennenlernen", "text": "Hoću da te ___.",        "answer": "posjetim",   "de": "Ich will dich besuchen."},
+    {"kat": "kennenlernen", "text": "Molim te, ___ mi.",      "answer": "oprosti",    "de": "Bitte verzeih mir."},
+    {"kat": "kennenlernen", "text": "Ovo je moja ___.",       "answer": "koleginica", "de": "Das ist meine Kollegin."},
+    {"kat": "kennenlernen", "text": "Moj babo je dobar ___.", "answer": "domaćin",    "de": "Mein Papa ist ein guter Gastgeber."},
+
+    # Musik, Glaube & Gastfreundschaft
+    {"kat": "kulturlevel", "text": "Nana svira ___.",         "answer": "harmoniku",  "de": "Oma spielt Akkordeon."},
+    {"kat": "kulturlevel", "text": "Plešemo ___.",            "answer": "kolo",       "de": "Wir tanzen Kolo."},
+    {"kat": "kulturlevel", "text": "Ova ___ je jako lijepa.", "answer": "sevdalinka", "de": "Diese Sevdalinka ist sehr schön."},
+    {"kat": "kulturlevel", "text": "Hvala ___, dobro sam.",   "answer": "Bogu",       "de": "Gott sei Dank, mir geht es gut."},
+    {"kat": "kulturlevel", "text": "Idemo na ___ kod nane.",  "answer": "iftar",      "de": "Wir gehen zum Iftar zu Oma."},
+
 ]
