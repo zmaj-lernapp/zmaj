@@ -47,7 +47,15 @@
     padding:16px 16px 48px;
   }
   .wrap{width:100%; max-width:540px}
-  .no-anim *{transition:none!important; animation:none!important}
+  /* Der Stern trifft alles - auch den Vorspann. Dessen Notaus-Animation
+     muss aber bleiben: sie ist der einzige Weg, das Logo wegzunehmen,
+     wenn das Skript nicht anlaeuft. Deshalb :not(#vorspann). */
+  .no-anim *:not(#vorspann){transition:none!important; animation:none!important}
+  /* Wer die Bewegung abschaltet, bekommt dasselbe Endbild wie bei der
+     Systemeinstellung - sonst bleibt die Glut als gelber Fleck vor der
+     Schnauze stehen. Gemeldet am 23.09.2026. */
+  .no-anim #vsGlut, .no-anim #vsFeuer{opacity:0}
+  .no-anim #vsText{fill:#FFFFFF}
 
   /* ---------- Kopf ---------- */
   /* Drei Spalten: links Herzen, Mitte Muenzen, rechts Knoepfe. Die beiden
@@ -464,19 +472,39 @@
     display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:2px solid var(--line);
     border-radius:99px; padding:3px 8px 3px 4px; font-size:13px; color:var(--muted); font-weight:700;
     width:auto; min-width:0;
+    position:relative;          /* Bezugspunkt fuer den Hinweis darunter */
   }
-  /* In der Kopfzeile ist kein Platz fuer die ausgeklappte Wartezeit neben
-     allem anderen - sie darf abschneiden statt die Knoepfe hinauszudraengen. */
-  .livesbar .info{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  /* Die Wartezeit haengt UNTER der Herzpille, nicht daneben.
+     Vorher stand sie in derselben Zeile; der Kopf ist aber ein Raster mit
+     drei festen Spalten, und die Pille wuchs damit unter die Muenzen und
+     Knoepfe, die spaeter im Quelltext stehen und darueber gemalt werden.
+     Gemeldet am 24.09.2026.
+     position:absolute nimmt sie aus der Zeile: die Herzpille bleibt
+     aufgeklappt genauso breit wie zugeklappt, das Raster ruehrt sich
+     nicht, und der Inhalt darunter rutscht nicht weg.
+     pointer-events:none, weil sie ueber der Karte darunter schwebt und
+     dort keinen Tipp abfangen soll. */
+  .livesbar .info{
+    position:absolute; top:calc(100% + 4px); left:0; z-index:5;
+    background:var(--surface); border:2px solid var(--line); border-radius:99px;
+    box-shadow:0 2px 0 var(--line); padding:2px 10px;
+    font-size:11.5px; line-height:16px; font-weight:700;
+    max-width:calc(100vw - 40px);
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    pointer-events:none;
+  }
   .livesbar .herz{
     display:inline-flex; align-items:center; gap:5px; background:none; border:0; cursor:pointer;
     font:inherit; font-size:17px; color:var(--bad); padding:3px 8px; border-radius:99px;
   }
   .livesbar .herz b{font-size:15px; color:var(--ink)}
   .livesbar .herz:hover{background:var(--primary-soft)}
-  .livesbar .info{padding-right:4px}
   .livesbar.premium .herz{color:var(--accent-dark)}
   .livesbar.zero{border-color:var(--bad)}
+  /* Bei null Leben steht der Hinweis dauerhaft (renderLives: zeigen =
+     livesInfoAn || n === 0). Dann traegt er denselben roten Rand wie die
+     Pille darueber, damit beide als ein Stueck zu lesen sind. */
+  .livesbar.zero .info{border-color:var(--bad)}
 
   /* ---------- Level ---------- */
   .level{background:var(--surface); border:2px solid var(--line); border-radius:var(--radius); padding:14px 18px; margin:4px 0 12px}
@@ -1033,6 +1061,11 @@
         <button class="btn know" id="sichSpeichern" data-t="set.sicherung_speichern"></button>
         <button class="btn ghost" id="sichLaden" data-t="set.sicherung_einlesen"></button>
       </div>
+      <!-- Die Dateiauswahl von Android hat ein Suchfeld, das ueber alle
+           Speicherorte geht. Wer den Namen kennt, muss nicht navigieren.
+           Deshalb steht er hier, und deshalb nennt die Meldung nach dem
+           Speichern ihn ebenfalls. -->
+      <div class="sd" id="sichSuchen" style="font-size:12px; color:var(--muted); margin-bottom:8px" data-t="set.sicherung_suchen"></div>
       <!-- Kein accept-Filter. Android reicht ihn als Typenliste an die
            Dateiauswahl weiter, und eine Sicherung, die per Kabel, Mail oder
            Cloud aufs Handy gekommen ist, traegt dort meist gar keinen Typ.
@@ -2134,17 +2167,19 @@ function dauerVollSetzen(an){
 function dauerVollVerdrahten(){
   const z = $('ueberZeile'); if(!z) return;
   let n = 0, uhr = 0;
-  z.addEventListener('click', ()=>{
+  z.addEventListener('click', async ()=>{
     clearTimeout(uhr); uhr = setTimeout(()=>{ n = 0; }, 2000);
     if(++n < 7) return;
     n = 0; clearTimeout(uhr);
     if(dauerVoll){
-      if(confirm('Dauerhafte Vollversion ist an. Ausschalten?')){
+      if(await frage('Dauerhafte Vollversion',
+                     'Sie ist eingeschaltet. Ausschalten?',
+                     'Ausschalten', 'Anlassen')){
         dauerVollSetzen(false); renderLives(); vollZeileZeigen();
       }
       return;
     }
-    const wort = prompt('Wort?');
+    const wort = await frageWort('Wort?');
     if(wort === null) return;
     if(wort.trim().toLowerCase() !== DAUER_WORT) return;
     dauerVollSetzen(true); renderLives(); vollZeileZeigen();
@@ -2706,6 +2741,12 @@ function spieleDatei(datei, fertig){
    `laeuftVor` ist gesetzt, solange ein Knopf mitlaufen soll - er faerbt
    sich zurueck, wenn der Ton endet oder abgebrochen wird. */
 let laeuftVor = null, tonMarke = 0;
+/* Wo eine vorgelesene Geschichte unterbrochen wurde: {datei, sekunde}.
+   Wer ein Wort antippt, um es uebersetzt zu bekommen, soll danach nicht
+   wieder bei Sekunde null landen - stilleBitte() dreht currentTime aber
+   grundsaetzlich zurueck. Deshalb wird die Stelle vorher gesichert.
+   Gemeldet am 24.09.2026. */
+let geschichteStelle = null;
 /* aufgabeMarke: welche Aufgabe gerade steht. Die Spracherkennung antwortet
    verzoegert - wer waehrenddessen ueberspringt oder abbricht, bekaeme sonst
    das Ergebnis in die NAECHSTE Aufgabe geliefert, samt Piepton und einem
@@ -2982,6 +3023,37 @@ function frage(titel, text, ja, nein){
     kasten.querySelector('#frNein').addEventListener('click', ()=>schliesse(false));
     // Daneben tippen heißt Nein – wie überall sonst auch
     kasten.addEventListener('click', e=>{ if(e.target === kasten) schliesse(false); });
+  });
+}
+
+/* Wie frage(), aber mit einem Eingabefeld. Liefert den Text oder null.
+   Gebraucht wird das einmal: für den versteckten Schalter der dauerhaften
+   Vollversion. prompt() täte es auch, sieht aber nach Browser aus. */
+function frageWort(titel, text){
+  if(frageSchliessen) return Promise.resolve(null);
+  return new Promise(fertig => {
+    const kasten = document.createElement('div');
+    kasten.className = 'nachfrage';
+    kasten.innerHTML =
+      '<div class="nachfragebox">' +
+        '<h3>' + esc(titel) + '</h3>' +
+        (text ? '<div class="txt">' + esc(text) + '</div>' : '') +
+        '<input class="field" id="frWort" type="text" autocomplete="off" ' +
+               'autocapitalize="none" autocorrect="off" spellcheck="false">' +
+        '<button class="btn know" id="frOk">Weiter</button>' +
+        '<button class="btn ghost" id="frAb">Abbrechen</button>' +
+      '</div>';
+    document.body.appendChild(kasten);
+    const feld = kasten.querySelector('#frWort');
+    const schliesse = w => { kasten.remove(); frageSchliessen = null; fertig(w); };
+    frageSchliessen = () => schliesse(null);
+    kasten.querySelector('#frOk').addEventListener('click', ()=>schliesse(feld.value));
+    kasten.querySelector('#frAb').addEventListener('click', ()=>schliesse(null));
+    // Eingabetaste wie Weiter – sonst sucht man auf dem Handy den Knopf
+    feld.addEventListener('keydown', e=>{ if(e.key === 'Enter') schliesse(feld.value); });
+    kasten.addEventListener('click', e=>{ if(e.target === kasten) schliesse(null); });
+    // Erst nach dem Einhängen, sonst öffnet sich die Tastatur nicht
+    setTimeout(()=>feld.focus(), 50);
   });
 }
 
@@ -3762,7 +3834,12 @@ async function sicherungSpeichern(){
       a.href = adresse; a.download = name; a.click();
       setTimeout(()=>URL.revokeObjectURL(adresse), 4000);
     }
-    note.textContent = t('set.sicherung_ok'); sound('ok');
+    /* Der Dateiname gehoert in die Meldung. Wo die Sicherung landet,
+       entscheidet der Nutzer im Teilen-Menue - ohne den Namen weiss er
+       hinterher nicht, wonach er in der Dateiverwaltung suchen soll.
+       Aufgefallen am 25.09.2026 beim Pruefdurchlauf P12. Der Name ist
+       sprachneutral, deshalb braucht es dafuer keinen neuen Text. */
+    note.textContent = t('set.sicherung_ok') + ' ' + name; sound('ok');
   }catch(e){ note.textContent = t('set.sicherung_fehler'); }
 }
 async function sicherungEinlesen(datei){
@@ -3967,7 +4044,12 @@ function showStory(){
     b.className='bubble'; b.innerHTML = '<b>'+esc(wort)+'</b> '+(bed?esc(bed):'<span style="color:var(--muted)">'+t('gesch.kein_eintrag')+'</span>');
     /* Jeder Tipp schafft erst Ruhe. Sonst hinge es vom Wort ab, ob die
        laufende Geschichte abbricht oder weiterlaeuft - und das kann man
-       sich nicht merken. */
+       sich nicht merken.
+       Die Stelle wird aber vorher gesichert: stilleBitte() setzt
+       currentTime auf null, und ohne diese zwei Zeilen begaenne die
+       Geschichte danach wieder von vorn. */
+    if(laeuftVor && spieler.src && spieler.currentTime > 0)
+      geschichteStelle = {datei: spieler.src, sekunde: spieler.currentTime};
     stilleBitte();
     /* Das angetippte Wort gleich einzeln vorsprechen. Nur wenn es dafuer
        wirklich etwas gibt: fuer rund vier von zehn Woertern im Text liegt
@@ -3990,6 +4072,7 @@ function showStory(){
      wo es aufgehoert hat. Ajdin am 18.09.2026.
      Ganz abbrechen kann man mit dem kleinen Knopf daneben; der erscheint
      erst, wenn es etwas abzubrechen gibt. */
+  geschichteStelle = null;   // neue Geschichte, alte Stelle gilt nicht mehr
   const knopfVor = $('rListen'), knopfStop = $('rStop');
   const wiederVorlesen = ()=>{
     knopfVor.textContent = t('gesch.vorlesen');
@@ -4007,15 +4090,32 @@ function showStory(){
       return;
     }
     stilleBitte();                     // ein angetipptes Wort koennte noch laufen
+    /* Wurde fuer ein Wort unterbrochen, geht es dort weiter statt von vorn.
+       Die Stelle gilt nur fuer dieselbe Aufnahme - nach einem Wechsel der
+       Geschichte waere sie sinnlos. */
+    const weiterAb = geschichteStelle;
+    geschichteStelle = null;
     laeuftVor = wiederVorlesen;
     knopfVor.textContent = t('gesch.pause'); knopfVor.classList.add('laeuft');
     knopfStop.hidden = false;
     /* Die Marke unterscheidet Durchlaeufe: ein verspaeteter Rueckruf aus
        einem laengst abgestellten Lauf darf den naechsten nicht abwuergen. */
     const meinLauf = tonMarke;
+    /* Zur gemerkten Sekunde springen, sobald die Aufnahme bereitsteht.
+       speak() gibt kein Versprechen zurueck, auf das man warten koennte -
+       deshalb ueber das Ereignis. loadedmetadata kommt, bevor der erste
+       Ton hoerbar ist; bei playing haette man den Anfang schon gehoert.
+       {once:true} raeumt den Horcher selbst weg, auch wenn nichts folgt.
+       Geprueft wird beides: derselbe Durchlauf und dieselbe Datei. */
+    if(weiterAb) spieler.addEventListener('loadedmetadata', ()=>{
+      if(meinLauf === tonMarke && spieler.src === weiterAb.datei)
+        try{ spieler.currentTime = weiterAb.sekunde; }catch(e){}
+    }, {once:true});
     speak(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); });
   });
-  knopfStop.addEventListener('click', ()=> stilleBitte());
+  /* Der kleine Knopf bricht wirklich ab - dann ist auch die gemerkte
+     Stelle hinfaellig, sonst spraenge der naechste Start mittenhinein. */
+  knopfStop.addEventListener('click', ()=>{ geschichteStelle = null; stilleBitte(); });
   tempoLeiste('rTempo', true);
   showStoryQ(s, 0, 0);
 }
@@ -4029,8 +4129,12 @@ function showStoryQ(s, qi, right){
     const hasNext = rIdx+1 < STORIES.length;
     box.innerHTML='<div class="ergebnis-titel">'+t('gesch.fragen')+'</div>'+(all?'<div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>':'')+
       '<div class="feedback '+(all?'ok':'no')+'" style="text-align:center">'+t('gesch.ergebnis',{r:right, n:fragen.length})+(all?t('gesch.geschafft'):t('gesch.nochmal_lesen'))+'</div>'+
-      '<div class="row"><button class="btn ghost" id="rAgain">'+t('gesch.fragen_nochmal')+'</button>'+(all && hasNext ? '<button class="btn know" id="rGoNext">'+t('gesch.naechste')+'</button>' : '')+'</div>';
+      '<div class="row"><button class="btn ghost" id="rAgain">'+t('gesch.fragen_nochmal')+'</button>'+(all && hasNext ? '<button class="btn know" id="rGoNext">'+t('gesch.naechste')+'</button>' : '')+'</div>'+
+      /* Wie beim Vokabeltest: eine leise Reihe mit dem Weg heraus. Hier
+         gab es bisher gar keinen - nur "nochmal" und "naechste". */
+      '<div class="row schmal"><button class="btn ghost" id="rHome">'+t('btn.zurueck_geschichten')+'</button></div>';
     $('rAgain').addEventListener('click',()=>showStoryQ(s,0,0));
+    $('rHome').addEventListener('click',()=>{ homeMode='stories'; showHome(); });
     const n=$('rGoNext'); if(n) n.addEventListener('click',()=>openStory(rIdx+1));
     $('sNext2').disabled = !(hasNext && storyUnlocked(rIdx+1));
     return;
@@ -4598,9 +4702,15 @@ function lessonEnd(){
     (nowAllowed && !wasAllowed && !passed.has(c.id) ? '<div class="feedback ok">'+t('lektion.test_frei')+'</div>' : '')+
     (newDay ? '<div class="feedback ok">'+t('lektion.heute_geuebt')+'</div>' : '')+
     questLob+
-    '<div class="row"><button class="btn ghost" id="lHome">'+t('lektion.zurueck')+'</button><button class="btn know" id="lMore">'+t('lektion.noch_eine')+'</button></div>';
+    '<div class="row"><button class="btn ghost" id="lHome">'+t('lektion.zurueck')+'</button><button class="btn know" id="lMore">'+t('lektion.noch_eine')+'</button></div>'+
+    /* Zweite, leise Reihe: der Weg ganz heraus. "Zurueck zum Level" fuehrt
+       nur in die Uebersicht DIESES Levels - auf dem Handy ist der
+       Zurueck-Knopf oben ausgeblendet, und ohne diesen Knopf sitzt man
+       nach jeder Lektion fest. Gemeldet am 24.09.2026. */
+    '<div class="row schmal"><button class="btn ghost" id="lPfad">'+t('btn.zurueck_pfad')+'</button></div>';
   $('lHome').addEventListener('click', showLevelHome);
   $('lMore').addEventListener('click', startLesson);
+  $('lPfad').addEventListener('click', ()=>{ homeMode='words'; showHome(); });
 
   // Werbung erst nach dem Ergebnis, nie mittendrin. Die ersten Lektionen
   // bleiben frei, danach jede WERBUNG_JEDE_X-te.
@@ -4759,7 +4869,16 @@ $('tQuit').addEventListener('click', async ()=>{
    wird, und auch dann, wenn die App noch lädt. */
 const VORSPANN_ABLAUF = 2400;   // so lange dauert die Bewegung oben im Stil
 const VORSPANN_HALT   = 1500;   // so lange steht das fertige Bild danach still
-let vorspannMin = VORSPANN_ABLAUF + VORSPANN_HALT;
+/* Ohne Bewegung gibt es nichts abzuwarten: dann steht sofort das Endbild
+   da, und 3,9 Sekunden davor zu sitzen ist nur Wartezeit. Geprueft wird
+   beides - der Schalter in der App und die Einstellung des Geraets. */
+function vorspannOhneBewegung(){
+  if(document.body.classList.contains('no-anim')) return true;
+  try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  catch(e){ return false; }
+}
+let vorspannMin = vorspannOhneBewegung() ? 1400
+                                         : VORSPANN_ABLAUF + VORSPANN_HALT;
 const vorspannAb = performance.now();
 let vorspannUhr = null, appBereit = false, vorspannFort = false;
 
