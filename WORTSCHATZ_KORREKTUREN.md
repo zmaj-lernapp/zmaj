@@ -114,3 +114,31 @@ die Familienwörter und die Verbendungen bleiben, wie sie sind. Die 1108
 vorhandenen Vokabeln brauchen keine Überarbeitung.
 
 Geprüft wird ab jetzt nur noch, was neu dazukommt.
+
+---
+
+## Nachtrag vom 26.09.2026: „Gute Besserung"
+
+Beim Durchhören der Aussprachen ist Ajdin etwas anderes aufgefallen als
+der Klang. Zu `w0242.mp3`:
+
+> nimm statt das nimm brz oporavak
+
+**`Brzo ozdravi!` → `Brz oporavak`** (vokabeln.py:335, Level „Körper &
+Gesundheit")
+
+Nachgeschlagen, weil eine frühere Muttersprachler-Auskunft in dieser Datei
+schon einmal zurückgenommen werden musste: `oporavak` ist ein maskulines
+Substantiv und bedeutet Genesung (Wiktionary, Aussprache /opǒraʋak/). Das
+Adjektiv `brz` steht damit in der richtigen Form.
+
+Die bisherige Fassung ist nicht falsch, sondern enger: `Brzo ozdravi!` ist
+die Du-Form des Imperativs, „werde schnell gesund". Sie passt nicht, wenn
+man jemanden siezt oder mehrere anspricht. `brz oporavak` ist die
+Nominalphrase und entspricht damit genau dem deutschen „Gute Besserung",
+das auch keine Anrede festlegt.
+
+**Was daran hängt:** Der Text ist zugleich der Schlüssel zur Aufnahme.
+Nach der Änderung muss `inhalt_bauen.py` laufen und die Aufnahme neu
+erzeugt werden; `w0242.mp3` wird dabei zur Karteileiche und lässt sich
+löschen. `ton_auffaellig.py` meldet solche Reste in Abschnitt D.
