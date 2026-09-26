@@ -21,6 +21,15 @@
     --primary:#1E3FA8; --primary-dark:#142C7A; --primary-soft:#E4EAFF;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
     --line:#D9E0F5; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    /* Eine Farbe je Sektion. Vorher war jede Ueberschrift blau und jeder
+       Balken gelb, dadurch standen auf dem Lernpfad nach Farbton nur vier
+       Toene. Sektion 1 behaelt das Blau der App und der Fahne. Hier sind
+       die Toene dunkler als in der dunklen Fassung, sonst leuchten sie
+       auf Weiss. */
+    --sek1:#1E3FA8; --sek1-dunkel:#142C7A; --sek1-sanft:#E4EAFF; --sek1-grund:#F3F6FF; --sek1-flaeche:#FFFFFF; --sek1-linie:#D9E0F5; --sek1-matt:#5E6B94;   /* Blau */
+    --sek2:#167588; --sek2-dunkel:#0E4B58; --sek2-sanft:#E5FBFF; --sek2-grund:#F5FDFF; --sek2-flaeche:#FFFFFF; --sek2-linie:#DCF0F4; --sek2-matt:#5D8992;   /* Tuerkis */
+    --sek3:#611DA5; --sek3-dunkel:#451575; --sek3-sanft:#F2E5FF; --sek3-grund:#FAF5FF; --sek3-flaeche:#FFFFFF; --sek3-linie:#E8DCF4; --sek3-matt:#785D92;   /* Violett */
+    --sek4:#B80A6F; --sek4-dunkel:#83074F; --sek4-sanft:#FFE5F4; --sek4-grund:#FFF5FB; --sek4-flaeche:#FFFFFF; --sek4-linie:#F4DCEA; --sek4-matt:#925D7C;   /* Magenta */
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
@@ -30,6 +39,10 @@
       --primary:#5B84FF; --primary-dark:#3C63D6; --primary-soft:#1C2B66;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
       --line:#25346B; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --sek1:#5B84FF; --sek1-dunkel:#3C63D6; --sek1-sanft:#1C2B66; --sek1-grund:#0B1330; --sek1-flaeche:#141F4A; --sek1-linie:#25346B; --sek1-matt:#9FACD9;   /* Blau */
+      --sek2:#50CAE2; --sek2-dunkel:#3F99AB; --sek2-sanft:#1B5864; --sek2-grund:#0F292E; --sek2-flaeche:#193C43; --sek2-linie:#2B5A64; --sek2-matt:#A5CCD4;   /* Tuerkis */
+      --sek3:#B26EF7; --sek3-dunkel:#8F4ECF; --sek3-sanft:#401B64; --sek3-grund:#1F0F2E; --sek3-flaeche:#2E1943; --sek3-linie:#472B64; --sek3-matt:#BDA5D4;   /* Violett */
+      --sek4:#F76EBE; --sek4-dunkel:#CF4E9A; --sek4-sanft:#641B46; --sek4-grund:#2E0F21; --sek4-flaeche:#431931; --sek4-linie:#642B4C; --sek4-matt:#D4A5C1;   /* Magenta */
     }
   }
   :root[data-theme="dark"]{
@@ -37,6 +50,10 @@
     --primary:#5B84FF; --primary-dark:#3C63D6; --primary-soft:#1C2B66;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
     --line:#25346B; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+    --sek1:#5B84FF; --sek1-dunkel:#3C63D6; --sek1-sanft:#1C2B66; --sek1-grund:#0B1330; --sek1-flaeche:#141F4A; --sek1-linie:#25346B; --sek1-matt:#9FACD9;   /* Blau */
+    --sek2:#50CAE2; --sek2-dunkel:#3F99AB; --sek2-sanft:#1B5864; --sek2-grund:#0F292E; --sek2-flaeche:#193C43; --sek2-linie:#2B5A64; --sek2-matt:#A5CCD4;   /* Tuerkis */
+    --sek3:#B26EF7; --sek3-dunkel:#8F4ECF; --sek3-sanft:#401B64; --sek3-grund:#1F0F2E; --sek3-flaeche:#2E1943; --sek3-linie:#472B64; --sek3-matt:#BDA5D4;   /* Violett */
+    --sek4:#F76EBE; --sek4-dunkel:#CF4E9A; --sek4-sanft:#641B46; --sek4-grund:#2E0F21; --sek4-flaeche:#431931; --sek4-linie:#642B4C; --sek4-matt:#D4A5C1;   /* Magenta */
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -140,6 +157,41 @@
   .hero .bubble small{display:block; font-weight:600; color:#5E6B94; margin-top:4px; font-size:12px}
 
   /* ---------- Startseite ---------- */
+  /* ---- Oben auf der Startseite: Serie und Drache nebeneinander ----
+     Entwurf A+C+D, eingebaut am 26.09.2026. */
+  .obenreihe{display:flex; align-items:center; gap:8px; margin-bottom:10px}
+  .serieblock{flex:1; min-width:0}
+  .seriezahl{font-family:var(--font-display); font-size:46px; font-weight:700;
+             line-height:1; display:flex; align-items:baseline; gap:8px}
+  .seriezahl span:first-child{font-size:30px}
+  /* Am Handy naehme der Drache in seiner vollen Groesse die halbe Breite. */
+  .obenreihe .zmaj{width:120px; height:120px; flex:0 0 120px}
+  .obenreihe .streakline{margin:7px 0 0}
+  /* .btn hat flex:1 und steht sonst immer in einer Reihe. Dieser hier
+     steht allein, also braucht er seine Breite selbst. */
+  .weiterknopf{display:block; width:100%; margin-bottom:12px}
+
+  /* ---- Die drei Tagesaufgaben als Ringe ----
+     Aus Entwurf B. Als Liste untereinander kosteten sie drei Zeilen und
+     sagten trotzdem nicht auf einen Blick, wie weit man ist. */
+  .qringe{display:flex; gap:7px}
+  .qring{flex:1; min-width:0; text-align:center; background:var(--bg);
+         border:1px solid var(--line); border-radius:11px; padding:9px 5px;
+         font-size:11px; font-weight:800; color:var(--ink); line-height:1.25}
+  /* Die Zahl im Ring hat dieselbe Schriftfarbe wie der Text darunter.
+     Bis zum 26.09.2026 stand sie in Gelb - das ist der Akzent der App und
+     heisst dort "dein Fortschritt": die Balken in den Levels, "Jetzt dran",
+     die Muenzen. Im Ring bedeutete es nichts, es sah nur anders aus als
+     alles daneben. Die Sektionsfarbe scheidet aus, sie kaeme auf dem
+     blassen Ringgrund nur auf 3,9 zu 1 - die Schwelle ist 4,5.
+     Welcher Ring offen und welcher geschafft ist, sagt ohnehin der Grund
+     des Rings: blass oder gruen. */
+  .qring .kreisel{width:36px; height:36px; margin:0 auto 6px; border-radius:50%;
+                  display:grid; place-items:center; font-size:13px; font-weight:800;
+                  background:var(--primary-soft); color:var(--ink)}
+  .qring.fertig{color:var(--muted)}
+  .qring.fertig .kreisel{background:var(--good); color:var(--on-primary)}
+
   .mode{display:flex; gap:6px; background:var(--primary-soft); padding:5px; border-radius:99px; margin-bottom:12px}
   .mode button{
     flex:1; border:0; background:transparent; color:var(--primary); font-family:inherit; font-size:14px; font-weight:800;
@@ -157,14 +209,10 @@
   .quests{margin:0 0 12px; padding:10px 12px; border:2px solid var(--line); border-radius:14px; background:var(--surface)}
   .qkopf{display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; color:var(--muted); margin-bottom:6px}
   .qkopf .muenzen{color:var(--ink)}
-  .q{position:relative; display:flex; align-items:center; gap:8px; padding:5px 0; font-size:13px; font-weight:700; color:var(--ink)}
-  .q .haken{flex:0 0 16px; text-align:center; color:var(--good); font-weight:900}
-  .q .qtext{flex:1; min-width:0}
-  .q .qzahl{flex:0 0 auto; font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
-  .q .qbar{position:absolute; left:24px; right:auto; bottom:2px; height:3px; max-width:calc(100% - 24px); border-radius:99px; background:var(--primary); opacity:.35; transition:width .4s}
-  .q.fertig{color:var(--muted)}
-  .q.fertig .qtext{text-decoration:line-through}
-  .q.fertig .qbar{background:var(--good); opacity:.5}
+  /* Die Tagesaufgaben standen bis zum 26.09.2026 als Liste untereinander,
+     mit Haken, Zahl und einem duennen Balken je Zeile. Jetzt sind es drei
+     Ringe, der Stil dafuer steht weiter unten bei .qringe. Die alten
+     Regeln sind hier entfernt, es gab kein Element mehr dazu. */
   .qalle{margin-top:6px; font-size:12px; font-weight:800; color:var(--good)}
   /* ---------- Laden ---------- */
   .ware{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--line)}
@@ -188,11 +236,123 @@
     background:var(--surface); border:2px solid var(--line); border-radius:var(--radius);
     padding:16px 16px 6px; margin-bottom:14px;
   }
+  /* Welche Sektion welche Farbe traegt. Es gibt vier; eine fuenfte bekaeme
+     wieder die erste, siehe die Zuweisung in renderPath().
+     Der farbige Streifen haengt an diesen Klassen und NICHT an .section:
+     die Einstellungen benutzen dieselbe Klasse fuer ihre neun Kaesten
+     (Laden, Profil, Lernserie, Vollversion, Sprache, Lernen, Sicherung,
+     Ueber die App). Die haetten sonst alle einen blauen Streifen bekommen.
+     Am 26.09.2026 genau so passiert und hier behoben.
+     Der Streifen steht nach der Kurzschreibweise border: darueber, sonst
+     ueberschriebe sie ihn wieder. */
+  /* ---- Die ganze App traegt die Farbe der laufenden Sektion ----
+     data-sek steht am Wurzelelement und wird in sektionsFarbe() gesetzt.
+     Diese vier Zeilen biegen --primary und seine zwei Begleiter um; alle
+     45 Stellen, die var(--primary) benutzen, folgen damit von selbst -
+     Knoepfe, Ueberschriften, Geschichten, Einstellungen.
+     Gelb bleibt unangetastet. Es ist der Akzent, die zweite Farbe der
+     Fahne, und es traegt "Jetzt dran", die Muenzen und die Balken in den
+     Levels. Waere es die Farbe einer Sektion, gaebe es diese Anker nicht
+     mehr.
+     Sektion 1 traegt genau die Werte, die die App vorher fest hatte. */
+  /* Nicht nur die Hauptfarbe: auch der Grund nimmt den Ton an.
+     Die Helligkeiten sind genau die, die die App vorher fest hatte -
+     Grund 12, Flaeche 18, Linie 28, gedaempft 74 Prozent in der
+     dunklen Fassung. Nur der Farbton wandert, deshalb bleibt der
+     Kontrast ueberall gleich.
+     Ajdin am 26.09.2026: "das hintergrund soll die farbe annehmen
+     nicht nur dieser rand". */
+  :root[data-sek="1"]{
+    --primary:var(--sek1); --primary-dark:var(--sek1-dunkel);
+    --primary-soft:var(--sek1-sanft); --bg:var(--sek1-grund);
+    --surface:var(--sek1-flaeche); --line:var(--sek1-linie);
+    --muted:var(--sek1-matt);
+  }
+  :root[data-sek="2"]{
+    --primary:var(--sek2); --primary-dark:var(--sek2-dunkel);
+    --primary-soft:var(--sek2-sanft); --bg:var(--sek2-grund);
+    --surface:var(--sek2-flaeche); --line:var(--sek2-linie);
+    --muted:var(--sek2-matt);
+  }
+  :root[data-sek="3"]{
+    --primary:var(--sek3); --primary-dark:var(--sek3-dunkel);
+    --primary-soft:var(--sek3-sanft); --bg:var(--sek3-grund);
+    --surface:var(--sek3-flaeche); --line:var(--sek3-linie);
+    --muted:var(--sek3-matt);
+  }
+  :root[data-sek="4"]{
+    --primary:var(--sek4); --primary-dark:var(--sek4-dunkel);
+    --primary-soft:var(--sek4-sanft); --bg:var(--sek4-grund);
+    --surface:var(--sek4-flaeche); --line:var(--sek4-linie);
+    --muted:var(--sek4-matt);
+  }
+
+  /* ---- Weicher Uebergang beim Sektionswechsel ----
+     Wenn die naechste Sektion dran ist, soll die neue Farbe hineinlaufen
+     statt umzuspringen.
+     Die Regel gilt nur, solange die Klasse farbwechsel gesetzt ist. Stuende
+     sie immer, zoege auch die Rueckmeldung auf eine Antwort traege
+     hinterher - gruen fuer richtig soll sofort da sein. sektionsFarbe()
+     setzt die Klasse und nimmt sie nach einer Dreiviertelsekunde weg.
+     --bg selbst laesst sich nicht ueberblenden. Was sich ueberblenden
+     laesst, ist das, was daraus wird: die Hintergrundfarbe des Elements.
+     Deshalb steht hier background-color und nicht --bg.
+     !important, weil .btn eine eigene, schnellere Ueberblendung hat und
+     sonst als die genauere Regel gewaenne.
+     Die Regel fuer "weniger Bewegung" steht weiter unten im Stil und
+     gewinnt gegen diese hier - das soll so sein. */
+  :root.farbwechsel, :root.farbwechsel *{
+    transition: background-color .55s ease, background-image .55s ease,
+                color .55s ease, border-color .55s ease,
+                box-shadow .55s ease, fill .55s ease !important;
+  }
+
+  /* ---- Auf- und Zuklappen ----
+     Es ist immer genau eine Sektion offen. Die anderen zeigen nur ihren
+     Kopf. Das kuerzt den Lernpfad von fast viertausend Pixeln auf gut
+     einen Bildschirm und macht das Aufklappen zu der Geste, an der die
+     Farbe der App haengt. */
+  .skopf{cursor:pointer; -webkit-user-select:none; user-select:none;
+         position:relative; padding-right:24px}
+  /* Das Dreieck ist gezeichnet, nicht als Zeichen gesetzt. Als Schriftzeichen
+     kam es je nach Geraet als duenner Strich heraus. Aus vier Raendern
+     gebaut sieht es ueberall gleich aus.
+     Es dreht sich, statt dass zwei Formen getauscht werden: so ist die
+     Bewegung sichtbar. */
+  .skopf::after{content:''; position:absolute; right:2px; top:10px;
+                width:0; height:0; border:6px solid transparent;
+                border-top-color:var(--muted); transition:transform .25s}
+  .section:not(.zu) > .skopf::after{transform:rotate(180deg)}
+  .skopf:focus-visible{outline:3px solid var(--accent); outline-offset:3px;
+                       border-radius:8px}
+  /* Eingeklappt faellt die Beschreibung weg, nicht nur die Level: sonst
+     waere der Kopf immer noch drei Zeilen hoch. */
+  .section.zu > .skopf .desc, .section.zu .levels{display:none}
+  .section.zu{padding-bottom:14px}
+
+  .section.sek1, .section.sek2, .section.sek3, .section.sek4{ position:relative }
+  /* Der Streifen laeuft von der eigenen Farbe in die der naechsten Sektion.
+     Scrollt man den Lernpfad hinunter, gehen die Farben ineinander ueber,
+     statt hart zu springen. Bei der letzten bleibt er einfarbig, dafuer
+     sorgt renderPath().
+     Ein Rahmen kann keinen Verlauf tragen, deshalb ein eigenes Element.
+     Es liegt zwei Pixel weiter links und oben, damit es den Rahmen der
+     Karte an dieser Seite ueberdeckt statt neben ihm zu stehen. */
+  .section.sek1::before, .section.sek2::before,
+  .section.sek3::before, .section.sek4::before{
+    content:''; position:absolute; left:-2px; top:-2px; bottom:-2px; width:5px;
+    border-radius:var(--radius) 0 0 var(--radius);
+    background:linear-gradient(180deg, var(--sek), var(--sek-next, var(--sek)));
+  }
+  .section.sek1{--sek:var(--sek1)}
+  .section.sek2{--sek:var(--sek2)}
+  .section.sek3{--sek:var(--sek3)}
+  .section.sek4{--sek:var(--sek4)}
   .section.locked{opacity:.6}
-  .section h2{font-family:var(--font-ui); font-weight:800; font-size:18px; margin:0 0 2px; color:var(--primary)}
+  .section h2{font-family:var(--font-ui); font-weight:800; font-size:18px; margin:0 0 2px; color:var(--sek, var(--primary))}
   .section .desc{font-size:13px; color:var(--muted); margin-bottom:10px}
   .section .sbar{height:8px; background:var(--primary-soft); border-radius:99px; overflow:hidden; margin-bottom:6px}
-  .section .sbar i{display:block; height:100%; background:var(--accent); width:0; transition:width .4s}
+  .section .sbar i{display:block; height:100%; background:var(--sek, var(--accent)); width:0; transition:width .4s}
   .section .scap{font-size:12px; color:var(--muted); margin-bottom:6px; font-weight:700}
   .node{
     display:flex; align-items:center; gap:14px; width:100%; text-align:left;
@@ -910,8 +1070,21 @@
 
   <!-- ===== Startseite ===== -->
   <div id="pfad">
-    <div class="hero"><div class="zmaj idle" id="zmajHome"></div><div class="bubble" id="heroText"></div></div>
-    <div class="streakline" id="streakLine"></div>
+    <!-- Oben die Lernserie gross, der Drache rechts daneben. Bis zum
+         26.09.2026 stand hier der blaue Kasten mit Drache und Sprechblase.
+         Der Entwurf A+C+D stellt den Einstieg nach vorn: man soll auf einen
+         Blick sehen, wo es weitergeht, statt erst zu scrollen.
+         Den Kasten selbst gibt es weiter, die Profilseite benutzt ihn. -->
+    <div class="obenreihe">
+      <div class="serieblock">
+        <div class="seriezahl"><span aria-hidden="true">🔥</span><span id="serieZahl">0</span></div>
+        <div class="streakline" id="streakLine"></div>
+      </div>
+      <div class="zmaj idle" id="zmajHome"></div>
+    </div>
+    <!-- Der Einstieg. Er traegt den Namen des Levels, das als naechstes dran
+         ist, und fuehrt direkt hinein. -->
+    <button class="btn know weiterknopf" id="weiterKnopf"></button>
     <div class="quests" id="questBox"></div>
     <div class="mode" role="tablist">
       <button role="tab" id="modeWords" aria-selected="true" data-t="tab.lernpfad"></button>
@@ -1646,6 +1819,72 @@ const hoechsterBestanden = () => {
 };
 const isUnlocked = i => ALLE_FREI || i === 0 || i <= hoechsterBestanden() + 1;
 const firstOpen = () => { const i = CATEGORIES.findIndex(c=>!passed.has(c.id)); return i<0 ? CATEGORIES.length-1 : i; };
+/* Welche Sektion gerade dran ist. Die Antwort faerbt die ganze App, siehe
+   :root[data-sek=...] im Stil. Gerechnet wird ueber das naechste offene
+   Level, nicht ueber die gerade gezeigte Seite: sonst wechselte die Farbe
+   beim Blaettern durch die Einstellungen.
+   Mit Rest, damit eine fuenfte Sektion wieder bei der ersten Farbe anfinge
+   statt ohne Farbe dazustehen. */
+let farbUhr = 0;
+let offeneSektion = null;        // welche Sektion offen ist
+                                 // null = noch nie gesetzt, '' = alle zu
+
+/* Die Nummer der Farbe zu einer Sektion. Mit Rest, damit eine fuenfte
+   Sektion wieder bei der ersten Farbe anfinge. */
+function sektionsNummer(id){
+  const i = SECTIONS.findIndex(s => s.id === id);
+  return String((i < 0 ? 0 : i) % 4 + 1);
+}
+
+/* Auf- und Zuklappen. Ein Tipp auf einen anderen Kopf klappt den auf und
+   den bisherigen zu. Ein Tipp auf den Kopf der offenen Sektion klappt sie
+   zu - dann ist keine offen und der Lernpfad steht als reine Uebersicht
+   da. Ajdin am 26.09.2026: "die sektion soll sich auch zuklappen koennen
+   wenn man nochmal ganz oben drauf drueckt".
+   Es wird nicht neu gezeichnet, nur umgeschaltet - ein Neuzeichnen wuerde
+   ans aktuelle Level springen und die Stelle verlieren, an der man gerade
+   liest. */
+function sektionAufklappen(id){
+  offeneSektion = (offeneSektion === id) ? '' : id;
+  const box = $('sections'); if(!box) return;
+  [].slice.call(box.children).forEach(el => {
+    const auf = el.dataset.sid === offeneSektion;
+    el.classList.toggle('zu', !auf);
+    const kopf = el.querySelector('.skopf');
+    if(kopf) kopf.setAttribute('aria-expanded', auf ? 'true' : 'false');
+  });
+  /* Der Umweg ueber sektionsFarbe ist Absicht: ist keine Sektion offen,
+     faellt die Farbe auf die zurueck, in der gerade gelernt wird. Ohne
+     Farbe dazustehen waere schlechter als eine. */
+  sektionsFarbe();
+}
+
+/* Die Farbe umschalten und dabei weich hinueberblenden. */
+function farbeSetzen(nr){
+  const wurzel = document.documentElement;
+  if(wurzel.dataset.sek === nr) return;        // schon die richtige Farbe
+  /* Beim ersten Aufbau nicht ueberblenden: da gibt es keine alte Farbe,
+     und ein Aufblitzen zum Start will niemand. */
+  const ersteMal = !wurzel.dataset.sek;
+  wurzel.dataset.sek = nr;
+  if(ersteMal) return;
+  wurzel.classList.add('farbwechsel');
+  clearTimeout(farbUhr);
+  farbUhr = setTimeout(() => wurzel.classList.remove('farbwechsel'), 750);
+}
+
+function sektionsFarbe(){
+  /* Zum Ansehen am Telefon: index.html?sek=2 zeigt die App in der Farbe
+     von Sektion 2, ohne dass man erst fuenfzehn Level spielen muss. Ohne
+     den Zusatz rechnet die App wie immer selbst. */
+  const gewuenscht = new URLSearchParams(location.search).get('sek');
+  if(gewuenscht && /^[1-4]$/.test(gewuenscht)) return farbeSetzen(gewuenscht);
+  if(!CATEGORIES.length || !SECTIONS.length) return;
+  /* Die aufgeklappte Sektion gibt die Farbe vor, nicht die, in der gerade
+     gelernt wird. Wer sich Sektion 3 ansieht, soll sie auch sehen. */
+  const id = offeneSektion || (CATEGORIES[firstOpen()] || {}).sektion;
+  farbeSetzen(sektionsNummer(id));
+}
 const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const strip = s => s.toLowerCase().replace(/đ/g,'d').normalize('NFD').replace(/[̀-ͯ]/g,'');
 const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
@@ -2751,20 +2990,53 @@ function renderSerie(){
   if(schutzMeldung < 0 && days.has(today())) schutzMeldung = 0;   // heute gelernt: neue Serie laeuft
   const n=streak(), s=schutzNow(), rest=naechsterSchutzIn();
   const nach = s>=SCHUTZ_MAX ? ' · '+t('serie.schutz_voll') : (rest ? ' · '+t('serie.schutz_naechster',{zeit:fmtTage(rest)}) : '');
-  el.innerHTML = (n ? '<b>'+tp('serie.tage', n)+'</b>' : t('serie.keine')) +
+  /* Die Serie selbst steht seit dem 26.09.2026 gross darueber, mit ihrer
+     eigenen Flamme. Stuende sie hier noch einmal, saehe man "🔥 0" und
+     direkt darunter "🔥 Noch keine Lernserie" - dieselbe Flamme und
+     dieselbe Zahl zweimal. Diese Zeile traegt deshalb nur noch den
+     Schutz und die Meldungen dazu.
+     n wird weiter gebraucht: schutzMeldung haengt daran. */
+  el.innerHTML =
     '<span>'+tp('serie.schutz', s)+nach+'</span>' +
     (schutzMeldung > 0 ? '<span class="frost">'+tp('serie.gerettet', schutzMeldung)+'</span>' : '') +
     (schutzMeldung < 0 ? '<span class="lost">'+t('serie.verloren')+'</span>' : '');
 }
 function renderHero(){
-  const n=streak(), heute=days.has(today());
-  const done = CATEGORIES.filter(c=>passed.has(c.id)).length;
+  const heute=days.has(today());
   $('zmajHome').innerHTML = zmaj(heute?'cheer':'happy'); setMood($('zmajHome'), heute?'cheer':'happy');
-  let line, sub;
-  if(heute){ line=t('hero.heute'); sub=tp('hero.heute_sub', n); }
-  else if(n>0){ line=tp('hero.serie', n); sub=t('hero.serie_sub'); }
-  else { line=t('hero.start'); sub = done ? t('hero.start_sub_done') : t('hero.start_sub'); }
-  $('heroText').innerHTML = line+'<small>'+sub+'</small>';
+  $('serieZahl').textContent = streak();
+  /* Der Einstiegsknopf traegt den Namen dessen, was als naechstes dran ist.
+     btn.weitermachen gibt es schon in allen acht Sprachen, es muss also
+     kein neuer Text dazu.
+     Er richtet sich nach dem Reiter: im Lernpfad auf das naechste Level,
+     bei den Geschichten auf die naechste ungelesene. Bis zum 26.09.2026
+     zeigte er auch bei den Geschichten auf ein Level und sprang beim
+     Antippen aus dem Reiter heraus.
+     Die Begruessung des Drachen (hero.heute, hero.serie, hero.start) faellt
+     mit der Sprechblase weg. Die Texte bleiben in den Sprachdateien stehen,
+     falls sie wiederkommen. */
+  const k = $('weiterKnopf');
+  if(k){
+    let name = '', hin = null;
+    if(homeMode === 'stories'){
+      /* Die erste ungelesene. Sind alle gelesen, die letzte - dann ist der
+         Knopf ein Weg zum Nachlesen statt eine tote Stelle. */
+      let si = STORIES.findIndex(s => !read.has(s.id));
+      if(si < 0) si = STORIES.length - 1;
+      const s = STORIES[si];
+      if(s && storyUnlocked(si)){ name = s.titel; hin = () => openStory(si); }
+    } else {
+      const i = firstOpen(), c = CATEGORIES[i];
+      if(c){ name = c.label; hin = () => openLevel(i); }
+    }
+    if(hin){
+      k.textContent = '▶ ' + t('btn.weitermachen') + ' · ' + name;
+      k.onclick = hin;
+      k.style.display = '';
+    } else {
+      k.style.display = 'none';   // nichts offen, nichts weiterzumachen
+    }
+  }
   renderSerie();
   renderQuests();
 }
@@ -2778,18 +3050,24 @@ function renderQuests(){
   el.innerHTML =
     // Die Muenzen stehen seit dem 18.09.2026 oben in der Kopfzeile. Hier
     // waeren sie dasselbe zweimal auf einem Bildschirm.
-    '<div class="qkopf"><span>'+t('quest.titel')+'</span></div>' +
+    // Der Zaehler rechts ist "1/3": zwei Zahlen und ein Schraegstrich
+    // brauchen keine Uebersetzung.
+    '<div class="qkopf"><span>'+t('quest.titel')+'</span>'+
+      '<span class="muenzen">'+fertig+'/'+qs.length+'</span></div>' +
+    '<div class="qringe">' +
     qs.map(q => {
       const n = Math.min(questStand(q.id), q.ziel), ok = n >= q.ziel;
       // Die Zeitaufgabe rechnet in Sekunden, angezeigt wird in Minuten
       const zZiel = q.min ? Math.round(q.ziel/60) : q.ziel;
       const zN    = q.min ? Math.floor(n/60) : n;
-      return '<div class="q'+(ok?' fertig':'')+'">'+
-        '<span class="haken">'+(ok?'✓':'')+'</span>'+
-        '<span class="qtext">'+tp(q.txt, zZiel)+'</span>'+
-        '<span class="qzahl">'+(zZiel>1 ? zN+'/'+zZiel : '')+'</span>'+
-        '<i class="qbar" style="width:'+Math.round(n/q.ziel*100)+'%"></i></div>';
-    }).join('') +
+      /* Im Ring steht immer das Zahlenpaar, auch bei einer Aufgabe, die man
+         nur einmal macht: "0/1". Dort stand bis zum 26.09.2026 ein Punkt,
+         und ein Punkt sagt nichts - die beiden Nachbarringe zeigten Zahlen,
+         der erste einen Fleck. */
+      return '<div class="qring'+(ok?' fertig':'')+'">'+
+        '<div class="kreisel">'+(ok ? '✓' : zN+'/'+zZiel)+'</div>'+
+        tp(q.txt, zZiel)+'</div>';
+    }).join('') + '</div>' +
     (fertig===qs.length && qs.length ? '<div class="qalle">'+t('quest.alle')+'</div>' : '');
 }
 /* Grüne Zeilen für den Ergebnisschirm. Leert questFrisch – deshalb feiert
@@ -3156,6 +3434,9 @@ function showView(id){
   $('kopfLeiste').style.display = '';     // wer sie nicht will, blendet sie danach aus
   // Vor der Anmeldung darf das Logo größer sein - siehe CSS oben
   document.body.classList.toggle('vorAnmeldung', id === 'profileView');
+  /* Hier und nicht in showHome(): so stimmt die Farbe auch in den
+     Einstellungen, im Laden und bei den Geschichten. */
+  sektionsFarbe();
   window.scrollTo({top:0});
 }
 
@@ -4140,17 +4421,49 @@ function showPath(){
   const done = CATEGORIES.filter(c=>passed.has(c.id)).length;
   const nWords = CATEGORIES.reduce((n,c)=>n+c.words.length,0);
   $('summary').textContent = t('pfad.summary',{done:done, total:CATEGORIES.length, k:known.size, n:nWords})+(ALLE_FREI?t('pfad.testmodus'):'');
+  /* Ajdin am 26.09.2026: "das braucht keiner ist platzverschwendung".
+     Stimmt fuer den Alltag - wie weit die laufende Sektion ist, steht
+     eine Handbreit tiefer in ihrer Karte. Im Testmodus bleibt die Zeile
+     stehen, denn dort haengt der Hinweis "alles freigeschaltet" daran. */
+  $('summary').style.display = ALLE_FREI ? '' : 'none';
   const box=$('sections'); box.innerHTML='';
   const next = firstOpen();
+  /* Beim ersten Zeichnen ist die Sektion offen, in der gerade gelernt wird.
+     Danach bleibt die stehen, die der Nutzer gewaehlt hat - auch nach einer
+     Lektion. Erst wenn es sie nicht mehr gibt, faellt es zurueck. */
+  const laufende = (CATEGORIES[next] || {}).sektion || (SECTIONS[0] || {}).id;
+  /* Nur beim allerersten Zeichnen vorbelegen und dann, wenn die gewaehlte
+     Sektion verschwunden ist. Ein leerer Merker heisst "alle zugeklappt" -
+     das ist eine Wahl des Nutzers und wird nicht ueberschrieben. */
+  if(offeneSektion === null || (offeneSektion && !SECTIONS.some(s => s.id === offeneSektion)))
+    offeneSektion = laufende;
   SECTIONS.forEach((s, si)=>{
     const levels = CATEGORIES.map((c,i)=>({c,i})).filter(x=>x.c.sektion===s.id);
     if(!levels.length) return;
     const sdone = levels.filter(x=>passed.has(x.c.id)).length;
     const sopen = levels.some(x=>isUnlocked(x.i));
-    const sec=document.createElement('div'); sec.className='section'+(sopen?'':' locked');
-    sec.innerHTML = '<h2>'+esc(s.label)+'</h2><div class="desc">'+esc(s.beschreibung||'')+'</div>'+
-      '<div class="sbar"><i style="width:'+Math.round(sdone/levels.length*100)+'%"></i></div>'+
-      '<div class="scap">'+t('pfad.sektion_stand',{done:sdone, n:levels.length})+(sopen?'':t('pfad.sektion_gesperrt',{n:si}))+'</div>';
+    const sec=document.createElement('div');
+    /* sek1 bis sek4 geben die Farbe. Mit Rest gerechnet, damit eine
+       fuenfte Sektion wieder bei der ersten Farbe anfinge statt ohne
+       Farbe dazustehen. */
+    const auf = s.id === offeneSektion;
+    sec.className='section sek'+(si % 4 + 1)+(sopen?'':' locked')+(auf?'':' zu');
+    sec.dataset.sid = s.id;
+    /* Der Kopf ist ein Knopf: anklickbar, mit der Tastatur erreichbar, und
+       aria-expanded sagt an, was offen ist. Die Level stehen in einem
+       eigenen Kasten, damit sich genau der ausblenden laesst. */
+    sec.innerHTML =
+      '<div class="skopf" role="button" tabindex="0" aria-expanded="'+(auf?'true':'false')+'">'+
+        '<h2>'+esc(s.label)+'</h2><div class="desc">'+esc(s.beschreibung||'')+'</div>'+
+        '<div class="sbar"><i style="width:'+Math.round(sdone/levels.length*100)+'%"></i></div>'+
+        '<div class="scap">'+t('pfad.sektion_stand',{done:sdone, n:levels.length})+(sopen?'':t('pfad.sektion_gesperrt',{n:si}))+'</div>'+
+      '</div><div class="levels"></div>';
+    const kopf = sec.querySelector('.skopf');
+    kopf.addEventListener('click', ()=> sektionAufklappen(s.id));
+    kopf.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); sektionAufklappen(s.id); }
+    });
+    const levelKasten = sec.querySelector('.levels');
     levels.forEach(({c,i})=>{
       const b=document.createElement('button');
       const d=passed.has(c.id), o=isUnlocked(i), isCur=(i===next && !d), pct=levelPct(c);
@@ -4164,9 +4477,22 @@ function showPath(){
         if(!isUnlocked(i)){ b.querySelector('.state').textContent=t('pfad.erst_level',{n:i}); return; }
         openLevel(i);
       });
-      sec.appendChild(b);
+      levelKasten.appendChild(b);
     });
     box.appendChild(sec);
+  });
+  /* Erst jetzt steht fest, welche Sektion auf welche folgt: leere werden
+     oben uebersprungen. Die letzte zeigt auf sich selbst, ihr Streifen
+     bleibt damit einfarbig.
+     Weitergegeben wird "var(--sekN)", nicht der fertige Farbwert. Ein
+     Blick mit getComputedStyle taete es nicht: der Browser loest --sek
+     dort schon auf, und der Verlauf behielte beim Wechsel zwischen heller
+     und dunkler Fassung unten die alte Farbe. */
+  const mitFarbe = [].slice.call(box.querySelectorAll('.section'));
+  const farbNr = el => (el.className.match(/sek(\d)/) || [0, '1'])[1];
+  mitFarbe.forEach((el, i) => {
+    const naechste = mitFarbe[i + 1] || el;
+    el.style.setProperty('--sek-next', 'var(--sek' + farbNr(naechste) + ')');
   });
   zurAktuellenStelle(box);
 }
@@ -4177,6 +4503,13 @@ function showStoryPath(){
   $('tag').textContent=t('gesch.titel');
   const done = STORIES.filter(s=>read.has(s.id)).length;
   $('sSummary').textContent = t('gesch.summary',{done:done, n:STORIES.length});
+  /* Weg, wie die Zeile im Lernpfad. Ajdin am 26.09.2026: "das braucht
+     keiner ist platzverschwendung". Wie weit man ist, steht an jeder
+     Geschichte selbst: gelesen, jetzt dran oder gesperrt.
+     Anders als im Lernpfad haengt hier kein Hinweis zum Testmodus dran,
+     deshalb faellt sie ganz weg. Der Text bleibt gefuellt, falls die
+     Zeile wiederkommt. */
+  $('sSummary').style.display = 'none';
   const next = (()=>{ const i = STORIES.findIndex(s=>!read.has(s.id)); return i<0 ? STORIES.length-1 : i; })();
   const box=$('storyList'); box.innerHTML='<h2>'+t('gesch.titel')+'</h2><div class="desc">'+t('gesch.desc')+'</div>';
   STORIES.forEach((s,i)=>{
