@@ -1758,17 +1758,38 @@ async function admobStart(){
 
 /* Auf das Ereignis warten, mit dem das SDK sagt „fertig" oder „ging nicht".
    Ohne Frist könnte die App hängenbleiben, wenn gar nichts mehr kommt. */
-function admobWarten(paare, frist){
-  return new Promise(fertig => {
-    const offen = [];
-    const schluss = w => {
-      clearTimeout(uhr);
-      offen.forEach(p => p.then(h => h.remove()).catch(()=>{}));
-      fertig(w);
-    };
-    const uhr = setTimeout(()=>schluss(false), frist);
-    paare.forEach(([name, wert]) => offen.push(AdMobP.addListener(name, ()=>schluss(wert))));
-  });
+/* DIE HORCHER MUESSEN STEHEN, BEVOR DIE ANZEIGE STARTET.
+   addListener liefert ein Versprechen. Bis zum 27.09.2026 wurde darauf nicht
+   gewartet: admobWarten meldete an, und showInterstitial() lief im selben Zug
+   los. War die Anmeldung dann noch nicht durch, kamen interstitialAdShowed und
+   interstitialAdDismissed bei niemandem an. Die Anzeige stand auf dem Schirm,
+   die App wartete zwei Minuten in der Frist, zaehlte nichts und meldete
+   "nicht gelaufen".
+   Am Geraet belegt: werbungHeute stand bei n=0 und lohn=4 - der belohnte Weg
+   benutzt gar keine Horcher, sondern den Rueckgabewert von
+   showRewardVideoAd(), und lief deshalb immer. Nur das Interstitial hing am
+   Wettlauf. Mit vorher angemeldeten Horchern feuerten alle drei Ereignisse
+   sauber: Loaded 520,3 s, Showed 520,4 s, Dismissed 525,5 s.
+
+   Deshalb ist die Funktion jetzt async und gibt einen Umschlag zurueck:
+   { warten: Versprechen }. Ein nacktes Versprechen ginge nicht - await wuerde
+   es mit dem inneren verketten und erst beim Ereignis zurueckkommen, also
+   genau nach dem Zeigen, was wir vermeiden wollen. */
+async function admobWarten(paare, frist){
+  let melden = null;
+  const warten = new Promise(f => { melden = f; });
+  const handles = [];
+  let uhr = 0;
+  const schluss = w => {
+    clearTimeout(uhr);
+    handles.forEach(h => { try{ h.remove(); }catch(e){} });
+    melden(w);
+  };
+  for(const [name, wert] of paare){
+    try{ handles.push(await AdMobP.addListener(name, ()=>schluss(wert))); }catch(e){}
+  }
+  uhr = setTimeout(()=>schluss(false), frist);
+  return {warten};
 }
 
 /* Zeigt eine Anzeige und kommt zurück, wenn sie wieder zu ist.
@@ -1800,12 +1821,16 @@ async function admobZeigen(belohnt){
        Ajdin am 27.09.2026: "also es kommt nicht immer werbung nach der
        lektion und nach dem test auch nicht". */
     let gezeigt = false;
-    const gesehen = AdMobP.addListener('interstitialAdShowed', ()=>{ gezeigt = true; });
-    const zu = admobWarten([['interstitialAdDismissed', true],
-                            ['interstitialAdFailedToShow', false]], 120000);
+    /* Auch hier auf die Anmeldung warten - aus demselben Grund wie in
+       admobWarten. */
+    let gesehen = null;
+    try{ gesehen = await AdMobP.addListener('interstitialAdShowed', ()=>{ gezeigt = true; }); }
+    catch(e){}
+    const zu = await admobWarten([['interstitialAdDismissed', true],
+                                  ['interstitialAdFailedToShow', false]], 120000);
     await AdMobP.showInterstitial();
-    await zu;
-    gesehen.then(h => h.remove()).catch(()=>{});
+    await zu.warten;
+    if(gesehen) try{ gesehen.remove(); }catch(e){}
     return gezeigt;
   }catch(e){
     /* Auch hier den Grund stehen lassen statt ihn zu verschlucken - sonst
