@@ -14,52 +14,67 @@
      Herkunft und Lizenzen: web/LIZENZEN.txt -->
 <link href="schriften.css" rel="stylesheet">
 <script src="lottie.min.js"></script>
+<!-- Das Aussehen VOR dem ersten Zeichnen setzen. Stuende das unten im grossen
+     Skript, blitzte beim Start kurz die falsche Fassung auf - hell auf einem
+     dunkel gestellten Handy blendet richtig. Deshalb diese sechs Zeilen hier
+     oben, noch vor dem Stil.
+     Kein data-theme heisst: so, wie das Geraet eingestellt ist. Gespeichert
+     wird deutsch ("hell"/"dunkel"), im Merkmal steht englisch - das Merkmal
+     gehoert zum Stil, der gespeicherte Wert zur App. Umgesetzt wird das an
+     genau zwei Stellen: hier und in themeAnwenden(). -->
+<script>
+  try{
+    var w = localStorage.getItem('zmaj_theme');
+    if(w === 'hell')   document.documentElement.dataset.theme = 'light';
+    if(w === 'dunkel') document.documentElement.dataset.theme = 'dark';
+  }catch(e){}
+</script>
 <style>
   /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
   :root{
-    --bg:#E5E8FF; --surface:#FFFFFF; --ink:#0F1E4D; --muted:#5E6B94;
-    --primary:#2230C3; --primary-dark:#1A2493; --primary-soft:#E5E8FF;
+    --bg:#EBEDF9; --surface:#FFFFFF; --ink:#0F1E4D; --muted:#66698A;
+    --primary:#4049A5; --primary-dark:#31377D; --primary-soft:#EBEDF9;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
-    --line:#CDCFEF; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    --line:#D4D5E8; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
     /* Eine Farbe je Sektion. Vorher war jede Ueberschrift blau und jeder
        Balken gelb, dadurch standen auf dem Lernpfad nach Farbton nur vier
        Toene. Sektion 1 behaelt das Blau der App und der Fahne. Hier sind
        die Toene dunkler als in der dunklen Fassung, sonst leuchten sie
        auf Weiss. */
-    --sek1:#2230C3; --sek1-dunkel:#1A2493; --sek1-sanft:#E5E8FF; --sek1-grund:#E5E8FF; --sek1-flaeche:#FFFFFF; --sek1-linie:#CDCFEF; --sek1-matt:#5D6292;   /* Blau */
-    --sek2:#6D22C3; --sek2-dunkel:#531A93; --sek2-sanft:#F1E5FF; --sek2-grund:#F1E5FF; --sek2-flaeche:#FFFFFF; --sek2-linie:#DDCDEF; --sek2-matt:#765D92;   /* Indigo */
-    --sek3:#C322C3; --sek3-dunkel:#931A93; --sek3-sanft:#FFE5FF; --sek3-grund:#FFE5FF; --sek3-flaeche:#FFFFFF; --sek3-linie:#EFCDEF; --sek3-matt:#925D92;   /* Violett */
-    --sek4:#C3226D; --sek4-dunkel:#931A53; --sek4-sanft:#FFE5F1; --sek4-grund:#FFE5F1; --sek4-flaeche:#FFFFFF; --sek4-linie:#EFCDDD; --sek4-matt:#925D76;   /* Magenta */
-    --sek5:#178279; --sek5-dunkel:#0F524D; --sek5-sanft:#E5FFFD; --sek5-grund:#E5FFFD; --sek5-flaeche:#FFFFFF; --sek5-linie:#CDEFEC; --sek5-matt:#5D928E;   /* Petrol */
-    --sek6:#217ABA; --sek6-dunkel:#185B8B; --sek6-sanft:#E5F4FF; --sek6-grund:#E5F4FF; --sek6-flaeche:#FFFFFF; --sek6-linie:#CDE1EF; --sek6-matt:#5D7C92;   /* Himmelblau */
+    --sek1:#4049A5; --sek1-dunkel:#31377D; --sek1-sanft:#EBEDF9; --sek1-grund:#EBEDF9; --sek1-flaeche:#FFFFFF; --sek1-linie:#D4D5E8; --sek1-matt:#66698A;   /* Blau */
+    --sek2:#6F40A5; --sek2-dunkel:#55317D; --sek2-sanft:#F1EBF9; --sek2-grund:#F1EBF9; --sek2-flaeche:#FFFFFF; --sek2-linie:#DDD4E8; --sek2-matt:#77668A;   /* Indigo */
+    --sek3:#A540A5; --sek3-dunkel:#7D317D; --sek3-sanft:#F9EBF9; --sek3-grund:#F9EBF9; --sek3-flaeche:#FFFFFF; --sek3-linie:#E8D4E8; --sek3-matt:#8A668A;   /* Violett */
+    --sek4:#A5406F; --sek4-dunkel:#7D3155; --sek4-sanft:#F9EBF1; --sek4-grund:#F9EBF1; --sek4-flaeche:#FFFFFF; --sek4-linie:#E8D4DD; --sek4-matt:#8A6677;   /* Magenta */
+    --sek5:#2B6E68; --sek5-dunkel:#1B4643; --sek5-sanft:#EBF9F8; --sek5-grund:#EBF9F8; --sek5-flaeche:#FFFFFF; --sek5-linie:#D4E8E6; --sek5-matt:#5B7B79;   /* Petrol */
+    --sek6:#3B7097; --sek6-dunkel:#2B526E; --sek6-sanft:#EBF3F9; --sek6-grund:#EBF3F9; --sek6-flaeche:#FFFFFF; --sek6-linie:#D4E0E8; --sek6-matt:#627684;   /* Himmelblau */
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#0F122E; --surface:#232857; --ink:#F2F5FF; --muted:#A5A9D4;
-      --primary:#6A76F6; --primary-dark:#4C57CD; --primary-soft:#1B2164;
+      --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
+      --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-      --line:#363B78; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-      --sek1:#6A76F6; --sek1-dunkel:#4C57CD; --sek1-sanft:#1B2164; --sek1-grund:#0F122E; --sek1-flaeche:#232857; --sek1-linie:#363B78; --sek1-matt:#A5A9D4;   /* Blau */
-      --sek2:#AB6AF6; --sek2-dunkel:#884CCD; --sek2-sanft:#3D1B64; --sek2-grund:#1E0F2E; --sek2-flaeche:#3B2357; --sek2-linie:#553678; --sek2-matt:#BBA5D4;   /* Indigo */
-      --sek3:#F66AF6; --sek3-dunkel:#CD4CCD; --sek3-sanft:#641B64; --sek3-grund:#2E0F2E; --sek3-flaeche:#572357; --sek3-linie:#783678; --sek3-matt:#D4A5D4;   /* Violett */
-      --sek4:#F66AAB; --sek4-dunkel:#CD4C88; --sek4-sanft:#641B3D; --sek4-grund:#2E0F1E; --sek4-flaeche:#57233B; --sek4-linie:#783655; --sek4-matt:#D4A5BB;   /* Magenta */
-      --sek5:#6AF6EA; --sek5-dunkel:#4CCDC2; --sek5-sanft:#1B645E; --sek5-grund:#0F2E2B; --sek5-flaeche:#235753; --sek5-linie:#367872; --sek5-matt:#A5D4D0;   /* Petrol */
-      --sek6:#6ABCF6; --sek6-dunkel:#4C97CD; --sek6-sanft:#1B4664; --sek6-grund:#0F212E; --sek6-flaeche:#234157; --sek6-linie:#365C78; --sek6-matt:#A5C1D4;   /* Himmelblau */
+      --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292C56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456D; --sek1-matt:#ADAFCD;   /* Blau */
+      --sek2:#B28FDC; --sek2-dunkel:#8F68BB; --sek2-sanft:#3E2956; --sek2-grund:#1E1528; --sek2-flaeche:#3C2C4E; --sek2-linie:#56416D; --sek2-matt:#BCADCD;   /* Indigo */
+      --sek3:#D987D9; --sek3-dunkel:#B861B8; --sek3-sanft:#562956; --sek3-grund:#281528; --sek3-flaeche:#4E2C4E; --sek3-linie:#6D416D; --sek3-matt:#CDADCD;   /* Violett */
+      --sek4:#DA8BB0; --sek4-dunkel:#BA648C; --sek4-sanft:#56293E; --sek4-grund:#28151E; --sek4-flaeche:#4E2C3C; --sek4-linie:#6D4156; --sek4-matt:#CDADBC;   /* Magenta */
+      --sek5:#87D9D2; --sek5-dunkel:#61B8B1; --sek5-sanft:#295653; --sek5-grund:#152826; --sek5-flaeche:#2C4E4B; --sek5-linie:#416D69; --sek5-matt:#ADCDCA;   /* Petrol */
+      --sek6:#87B7D9; --sek6-dunkel:#6194B8; --sek6-sanft:#294456; --sek6-grund:#152028; --sek6-flaeche:#2C404E; --sek6-linie:#415A6D; --sek6-matt:#ADC0CD;   /* Himmelblau */
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0F122E; --surface:#232857; --ink:#F2F5FF; --muted:#A5A9D4;
-    --primary:#6A76F6; --primary-dark:#4C57CD; --primary-soft:#1B2164;
+    --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
+    --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-    --line:#363B78; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-    --sek1:#6A76F6; --sek1-dunkel:#4C57CD; --sek1-sanft:#1B2164; --sek1-grund:#0F122E; --sek1-flaeche:#232857; --sek1-linie:#363B78; --sek1-matt:#A5A9D4;   /* Blau */
-    --sek2:#AB6AF6; --sek2-dunkel:#884CCD; --sek2-sanft:#3D1B64; --sek2-grund:#1E0F2E; --sek2-flaeche:#3B2357; --sek2-linie:#553678; --sek2-matt:#BBA5D4;   /* Indigo */
-    --sek3:#F66AF6; --sek3-dunkel:#CD4CCD; --sek3-sanft:#641B64; --sek3-grund:#2E0F2E; --sek3-flaeche:#572357; --sek3-linie:#783678; --sek3-matt:#D4A5D4;   /* Violett */
-    --sek4:#F66AAB; --sek4-dunkel:#CD4C88; --sek4-sanft:#641B3D; --sek4-grund:#2E0F1E; --sek4-flaeche:#57233B; --sek4-linie:#783655; --sek4-matt:#D4A5BB;   /* Magenta */
-    --sek5:#6AF6EA; --sek5-dunkel:#4CCDC2; --sek5-sanft:#1B645E; --sek5-grund:#0F2E2B; --sek5-flaeche:#235753; --sek5-linie:#367872; --sek5-matt:#A5D4D0;   /* Petrol */
-    --sek6:#6ABCF6; --sek6-dunkel:#4C97CD; --sek6-sanft:#1B4664; --sek6-grund:#0F212E; --sek6-flaeche:#234157; --sek6-linie:#365C78; --sek6-matt:#A5C1D4;   /* Himmelblau */
+    --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+    --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292C56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456D; --sek1-matt:#ADAFCD;   /* Blau */
+    --sek2:#B28FDC; --sek2-dunkel:#8F68BB; --sek2-sanft:#3E2956; --sek2-grund:#1E1528; --sek2-flaeche:#3C2C4E; --sek2-linie:#56416D; --sek2-matt:#BCADCD;   /* Indigo */
+    --sek3:#D987D9; --sek3-dunkel:#B861B8; --sek3-sanft:#562956; --sek3-grund:#281528; --sek3-flaeche:#4E2C4E; --sek3-linie:#6D416D; --sek3-matt:#CDADCD;   /* Violett */
+    --sek4:#DA8BB0; --sek4-dunkel:#BA648C; --sek4-sanft:#56293E; --sek4-grund:#28151E; --sek4-flaeche:#4E2C3C; --sek4-linie:#6D4156; --sek4-matt:#CDADBC;   /* Magenta */
+    --sek5:#87D9D2; --sek5-dunkel:#61B8B1; --sek5-sanft:#295653; --sek5-grund:#152826; --sek5-flaeche:#2C4E4B; --sek5-linie:#416D69; --sek5-matt:#ADCDCA;   /* Petrol */
+    --sek6:#87B7D9; --sek6-dunkel:#6194B8; --sek6-sanft:#294456; --sek6-grund:#152028; --sek6-flaeche:#2C404E; --sek6-linie:#415A6D; --sek6-matt:#ADC0CD;   /* Himmelblau */
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -210,6 +225,10 @@
   @media (max-width:430px){ .mode button{font-size:12.5px; padding:10px 4px} }
   @media (max-width:340px){ .mode button{font-size:11.5px} }
   .mode button[aria-selected="true"]{background:var(--primary); color:var(--on-primary)}
+  /* Dieselbe Leiste dient in den Einstellungen als Dreierwahl fuer das
+     Aussehen. Dort ist es keine Reiterreihe, sondern eine Auswahl - deshalb
+     aria-checked statt aria-selected. Beide sehen gleich aus. */
+  .mode button[aria-checked="true"]{background:var(--primary); color:var(--on-primary)}
   .streakline{display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:13px; color:var(--muted); font-weight:700; margin:0 0 12px 4px}
   .streakline b{color:var(--ink)}
   .streakline .frost{color:var(--primary); background:var(--primary-soft); border-radius:99px; padding:2px 10px; font-weight:800}
@@ -1250,6 +1269,19 @@
       <div class="sd" id="langNote" style="font-size:12px; color:var(--muted); margin:8px 0 12px"></div>
     </div>
     <div class="section">
+      <h2 id="aussehenKopf" data-t="set.aussehen"></h2>
+      <div class="sd" style="font-size:13px; color:var(--muted); margin-bottom:10px" data-t="set.aussehen_sub"></div>
+      <!-- Dieselbe Leiste wie die Reiter auf der Startseite, aber als Auswahl:
+           role=radiogroup mit drei radio-Knoepfen. Ein Reiter schaltet einen
+           Bereich um, hier wird eine Einstellung gesetzt - das ist fuer eine
+           Vorlesehilfe ein Unterschied. -->
+      <div class="mode" id="themeWahl" role="radiogroup" aria-labelledby="aussehenKopf">
+        <button type="button" role="radio" data-theme-wahl="geraet" aria-checked="false" data-t="set.theme_geraet"></button>
+        <button type="button" role="radio" data-theme-wahl="hell"   aria-checked="false" data-t="set.theme_hell"></button>
+        <button type="button" role="radio" data-theme-wahl="dunkel" aria-checked="false" data-t="set.theme_dunkel"></button>
+      </div>
+    </div>
+    <div class="section">
       <h2 data-t="set.lernen"></h2>
       <div class="setting"><div><div class="st" data-t="set.toene"></div><div class="sd" data-t="set.toene_sub"></div></div><button class="switch" id="swSound" role="switch" aria-checked="true"></button></div>
       <div class="setting"><div><div class="st" data-t="set.vibration"></div><div class="sd" data-t="set.vibration_sub"></div></div><button class="switch" id="swHaptik" role="switch" aria-checked="true"></button></div>
@@ -1891,6 +1923,18 @@ function sektionAufklappen(id){
   sektionsFarbe();
 }
 
+/* Kurz ueberblenden statt umzuspringen. Die Klasse farbwechsel schaltet die
+   Uebergaenge im Stil ein und darf nicht stehen bleiben: sonst zoege auch das
+   Gruen fuer eine richtige Antwort traege hinterher.
+   Zwei Stellen brauchen das - der Sektionswechsel und der Wechsel zwischen
+   hell und dunkel. Deshalb steht es hier einmal. */
+function weichUmblenden(){
+  const wurzel = document.documentElement;
+  wurzel.classList.add('farbwechsel');
+  clearTimeout(farbUhr);
+  farbUhr = setTimeout(() => wurzel.classList.remove('farbwechsel'), 750);
+}
+
 /* Die Farbe umschalten und dabei weich hinueberblenden. */
 function farbeSetzen(nr){
   const wurzel = document.documentElement;
@@ -1900,9 +1944,7 @@ function farbeSetzen(nr){
   const ersteMal = !wurzel.dataset.sek;
   wurzel.dataset.sek = nr;
   if(ersteMal) return;
-  wurzel.classList.add('farbwechsel');
-  clearTimeout(farbUhr);
-  farbUhr = setTimeout(() => wurzel.classList.remove('farbwechsel'), 750);
+  weichUmblenden();
 }
 
 function sektionsFarbe(){
@@ -1916,7 +1958,124 @@ function sektionsFarbe(){
      gelernt wird. Wer sich Sektion 3 ansieht, soll sie auch sehen. */
   const id = offeneSektion || (CATEGORIES[firstOpen()] || {}).sektion;
   farbeSetzen(sektionsNummer(id));
+  /* Auf dem Lernpfad hat die Scrollhoehe das letzte Wort. Der Aufruf steht
+     nach farbeSetzen, weil data-sek der Rueckfall fuer alle anderen
+     Ansichten bleibt - dort wird der Fluss wieder abgeschaltet. */
+  farbfluss();
 }
+
+/* ---------- Die Farbe wandert beim Scrollen ----------
+   Ajdin am 27.09.2026: "wenn es moeglich ist das wenn man weiter runter
+   scrollt das die farben automatisch fliessend wechseln".
+
+   Wie es rechnet: Jede Sektion hat einen Kopf. Eine gedachte Linie liegt im
+   oberen Drittel des Bildschirms. Der Kopf, der zuletzt darueber gewandert
+   ist, gibt die Farbe; waehrend der naechste Kopf auf die Linie zulaeuft,
+   mischt sich dessen Farbe ein und ist bei der Linie voll da. Dadurch
+   aendert sich die Farbe mit jedem gescrollten Pixel ein wenig.
+
+   Warum das nicht mit CSS geht: --bg und seine Geschwister sind Variablen,
+   und Variablen lassen sich nicht ueberblenden - nur das, was daraus wird.
+   Ein Zwischenwert zwischen zwei Sektionsfarben ist aber selbst eine
+   Variable. Gemischt werden muss also hier, auf den fertigen Zahlen.
+
+   Die Zahlen holt farbtafel() aus dem Stil. Dort steht je Sektion, was die
+   helle und was die dunkle Fassung sagt, und getComputedStyle liefert genau
+   die, die gerade gilt. Deshalb MUSS die Tafel weg, sobald zwischen hell und
+   dunkel gewechselt wird - sonst mischte der Lernpfad weiter mit den Farben
+   der alten Fassung. Das tut themeAnwenden() ueber farbtafelVergessen(). */
+const FLUSS_ROLLEN = ['', '-dunkel', '-sanft', '-grund', '-flaeche', '-linie', '-matt'];
+const FLUSS_ZIELE  = ['--primary', '--primary-dark', '--primary-soft', '--bg',
+                      '--surface', '--line', '--muted'];
+let farbTafel = null;
+let flussOffen = false;
+
+function farbtafelVergessen(){ farbTafel = null; }
+
+/* '#4049A5', '#abc' oder 'rgb(64, 73, 165)' -> [64, 73, 165] */
+function rgbLesen(wert){
+  const s = String(wert || '').trim();
+  if(s.charAt(0) === '#'){
+    const h = s.length === 4
+      ? s.charAt(1)+s.charAt(1)+s.charAt(2)+s.charAt(2)+s.charAt(3)+s.charAt(3)
+      : s.slice(1, 7);
+    return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
+  }
+  const z = s.match(/-?\d+(?:\.\d+)?/g);
+  return z && z.length >= 3 ? [Math.round(+z[0]), Math.round(+z[1]), Math.round(+z[2])] : null;
+}
+
+function farbtafel(){
+  if(farbTafel) return farbTafel;
+  const stil = getComputedStyle(document.documentElement);
+  const tafel = [];
+  for(let n = 1; n <= 6; n++){
+    const reihe = FLUSS_ROLLEN.map(r => rgbLesen(stil.getPropertyValue('--sek'+n+r)));
+    if(reihe.some(x => !x)) return null;      // Stil noch nicht da: spaeter nochmal
+    tafel.push(reihe);
+  }
+  farbTafel = tafel;
+  return farbTafel;
+}
+
+const flussMischen = (a, b, t) =>
+  'rgb(' + Math.round(a[0] + (b[0]-a[0])*t) + ','
+         + Math.round(a[1] + (b[1]-a[1])*t) + ','
+         + Math.round(a[2] + (b[2]-a[2])*t) + ')';
+
+/* Die eigenen Werte wieder abnehmen, damit :root[data-sek] wieder greift. */
+function farbflussAus(){
+  const stil = document.documentElement.style;
+  FLUSS_ZIELE.forEach(z => stil.removeProperty(z));
+}
+
+function farbflussRechnen(){
+  flussOffen = false;
+  const pfad = $('pfad');
+  /* Nur auf dem Lernpfad: woanders gibt es keine Sektionskoepfe, an denen
+     sich die Farbe orientieren koennte. */
+  if(!pfad || pfad.style.display === 'none') return farbflussAus();
+  /* Wer die Animationen abgeschaltet hat, will auch das nicht. Und mit
+     ?sek=N schaut sich jemand eine bestimmte Farbe an - die soll stehen. */
+  if(!animOn) return farbflussAus();
+  const gewuenscht = new URLSearchParams(location.search).get('sek');
+  if(gewuenscht && /^[1-6]$/.test(gewuenscht)) return farbflussAus();
+  const box = $('sections');
+  if(!box || box.children.length < 2) return farbflussAus();
+  const tafel = farbtafel();
+  if(!tafel) return;
+
+  /* Die Bezugslinie liegt im oberen Drittel, hoechstens 220 Pixel tief.
+     innerHeight kann 0 sein - in einer verborgenen oder gedrosselten
+     Ansicht meldet Chrome das so. Ohne die untere Grenze faellt die Linie
+     dann auf 0 und die Farbe wechselt erst, wenn ein Kopf den oberen Rand
+     beruehrt. Am 27.09.2026 beim Nachmessen genau so passiert. */
+  const linie = innerHeight > 0 ? Math.min(220, innerHeight * 0.32) : 160;
+  const oben = [].slice.call(box.children).map(el => el.getBoundingClientRect().top);
+  let c = 0;
+  while(c + 1 < oben.length && oben[c+1] <= linie) c++;
+  let anteil = 0;
+  if(c + 1 < oben.length){
+    const spanne = oben[c+1] - oben[c];
+    if(spanne > 1) anteil = Math.max(0, Math.min(1, (linie - oben[c]) / spanne));
+  }
+  /* Mit Rest, genau wie sektionsNummer: die siebte Sektion faengt wieder
+     bei der ersten Farbe an. */
+  const a = tafel[c % 6];
+  const b = tafel[Math.min(c + 1, oben.length - 1) % 6];
+  const stil = document.documentElement.style;
+  FLUSS_ZIELE.forEach((ziel, i) => stil.setProperty(ziel, flussMischen(a[i], b[i], anteil)));
+}
+
+/* Hoechstens einmal je Bild rechnen. Ohne die Bremse rechnete es bei jedem
+   Scroll-Ereignis, und das sind auf dem Handy leicht hundert in der Sekunde. */
+function farbfluss(){
+  if(flussOffen) return;
+  flussOffen = true;
+  requestAnimationFrame(farbflussRechnen);
+}
+addEventListener('scroll', farbfluss, {passive:true});
+addEventListener('resize', farbfluss);
 const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const strip = s => s.toLowerCase().replace(/đ/g,'d').normalize('NFD').replace(/[̀-ͯ]/g,'');
 const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
@@ -2295,6 +2454,70 @@ function wireSwitch(id, get, set){
 wireSwitch('swSound', ()=>soundOn, v=>{ soundOn=v; try{localStorage.setItem('zmaj_sound', v?'an':'aus');}catch(e){} if(v) sound('ok'); });
 wireSwitch('swHaptik', ()=>haptikOn, v=>{ haptikOn=v; try{localStorage.setItem('zmaj_haptik', v?'an':'aus');}catch(e){} if(v) buzz(30); });
 wireSwitch('swAnim', ()=>animOn, v=>{ animOn=v; try{localStorage.setItem('zmaj_anim', v?'an':'aus');}catch(e){} applyAnim(); });
+
+/* ---------- Aussehen: hell, dunkel oder wie das Geraet ----------
+   Der Stil konnte das schon, es fehlte nur die Wahl:
+     ohne data-theme     prefers-color-scheme entscheidet, also das Handy
+     data-theme="light"  hell, auch auf einem dunkel gestellten Handy
+     data-theme="dark"   dunkel, auch auf einem hell gestellten
+   Angewandt wird es zweimal: im kleinen Skript im Kopf der Seite, damit beim
+   Start nichts aufblitzt, und hier, wenn jemand die Wahl aendert. */
+let themeWahl = 'geraet';
+try{
+  const w = localStorage.getItem('zmaj_theme');
+  if(w === 'hell' || w === 'dunkel') themeWahl = w;
+}catch(e){}
+
+function themeAnwenden(blenden){
+  const wurzel = document.documentElement;
+  if(themeWahl === 'hell')        wurzel.dataset.theme = 'light';
+  else if(themeWahl === 'dunkel') wurzel.dataset.theme = 'dark';
+  else delete wurzel.dataset.theme;
+  const leiste = $('themeWahl');
+  if(leiste) [].slice.call(leiste.children).forEach(b => {
+    b.setAttribute('aria-checked', b.dataset.themeWahl === themeWahl ? 'true' : 'false');
+  });
+  /* Die Farbtafel fuer den Lernpfad steht in den Werten der bisherigen
+     Fassung. Sie MUSS weg, sonst mischt der Pfad nach dem Umschalten weiter
+     mit den alten Farben - hell auf dunkel sieht dann aus wie ein Fehler. */
+  farbtafelVergessen();
+  farbfluss();
+  /* Beim Start nicht blenden - da gibt es keine alte Fassung, aus der man
+     herueberblenden koennte, und der Kopf der Seite hat die richtige schon
+     gesetzt. Nur ein Tippen blendet. */
+  if(blenden) weichUmblenden();
+}
+
+/* Stellt das Handy waehrend der Benutzung von hell auf dunkel um, aendert
+   sich prefers-color-scheme, ohne dass wir etwas tun - aber die Farbtafel
+   merkt das nicht von allein. */
+if(window.matchMedia){
+  const dunkelFrage = matchMedia('(prefers-color-scheme: dark)');
+  const merker = () => { farbtafelVergessen(); farbfluss(); };
+  if(dunkelFrage.addEventListener) dunkelFrage.addEventListener('change', merker);
+  else if(dunkelFrage.addListener) dunkelFrage.addListener(merker);
+}
+
+(function(){
+  const leiste = $('themeWahl');
+  if(!leiste) return;
+  leiste.addEventListener('click', e => {
+    const knopf = e.target.closest('button[data-theme-wahl]');
+    if(!knopf || knopf.dataset.themeWahl === themeWahl) return;
+    themeWahl = knopf.dataset.themeWahl;
+    /* 'geraet' ist der Standard und wird nicht gespeichert, sondern
+       geloescht - dann gilt wieder, was das Handy sagt, auch wenn wir die
+       Schluesselnamen irgendwann aendern. */
+    try{
+      if(themeWahl === 'geraet') localStorage.removeItem('zmaj_theme');
+      else localStorage.setItem('zmaj_theme', themeWahl);
+    }catch(e){}
+    themeAnwenden(true);
+    sound('ok');
+    buzz(20);
+  });
+  themeAnwenden(false);
+})();
 /* Der Werbeschalter ist UNSERER und wirkt sofort, in beide Richtungen.
    Er erzwingt npa=1, also unpersonalisierte Anzeigen - auch dann, wenn bei
    Google zugestimmt wurde. Strenger als die Einwilligung darf man sein,

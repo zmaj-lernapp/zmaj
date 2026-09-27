@@ -75,3 +75,7 @@ mappe/bilder/
 
 # Word legt beim Oeffnen eine Sperrdatei an
 ~$*
+
+# Lernstaende, die vom Handy heruntergeholt wurden. Persoenliche Daten,
+# die nirgends hin sollen - weder ins APK noch auf GitHub.
+sicherung_handy/
