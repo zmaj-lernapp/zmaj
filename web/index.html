@@ -271,6 +271,8 @@
   .ware .wd{font-size:12px; color:var(--muted)}
   /* Alle Knoepfe im Laden gleich breit, damit die Spalte ruhig bleibt */
   .btn.kauf{flex:0 0 auto; min-width:104px; padding-left:12px; padding-right:12px; text-align:center}
+  /* Zwei Wege zum selben Stueck - beim Herz der Preis und das Video. */
+  .kaufwege{display:flex; gap:6px; flex:0 0 auto; flex-wrap:wrap; justify-content:flex-end}
 
   /* ---------- Sprachwahl ---------- */
   .langbar{display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin:0 0 14px}
@@ -1240,6 +1242,9 @@
           <button class="btn again" id="btnTest"></button>
         </div>
         <div class="note" id="lvNote"></div>
+        <!-- Ohne Leben stehen hier die zwei Wege zu einem: Video ansehen
+             oder ein Herz kaufen. Gefuellt von lebenWege(). -->
+        <div class="row schmal" id="lvLeben" style="display:none"></div>
       </div>
       <div class="progress">
         <div class="bar"><div class="fill" id="fill"></div><div class="mark80" id="mark80"></div></div>
@@ -2080,8 +2085,67 @@ const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
    einfach, Leerzeichen fallen weg (wo die Erkennung Wortgrenzen setzt,
    ist Zufall). Was dann noch abweicht, darf sich um ein paar Buchstaben
    unterscheiden - je laenger das Wort, desto mehr. */
+/* ---------- Zahlen: Ziffer und Wort gelten beide ----------
+   Androids Erkenner gibt Zahlen als ZIFFERN zurueck. Wer "pet" sagt, wird als
+   "5" verstanden - und lautlich() strich am Ende alles ausser a-z, aus der 5
+   wurde eine leere Zeichenkette, und die Antwort galt als falsch. Im Level
+   "Zahlen" traf das fast jede Sprechaufgabe.
+   Ajdin am 27.09.2026: "das sprechen funktioniert irgendwie bei den zahlen
+   schlecht ich sage die zahl richtig der sagt irgendwie nein", dann "dann lass
+   einfach beides gelten sowohl zahl als auch buchstaben".
+   Zwei Wege, die sich ergaenzen:
+   - zahlWert() liest einen GANZEN Ausdruck als Zahl, ob "5", "pet" oder
+     "dvije". Sind beide Seiten Zahlen, wird gerechnet statt gehoert - damit
+     gilt auch die weibliche Form.
+   - zahlenAusschreiben() ersetzt Ziffern MITTEN in einem Satz durch das
+     Zahlwort, fuer Faelle wie "Nalazimo se u 5". */
+const ZAHL_EINER = ['nula','jedan','dva','tri','četiri','pet','šest','sedam','osam','devet',
+                    'deset','jedanaest','dvanaest','trinaest','četrnaest','petnaest',
+                    'šesnaest','sedamnaest','osamnaest','devetnaest'];
+const ZAHL_ZEHNER = {2:'dvadeset', 3:'trideset', 4:'četrdeset', 5:'pedeset',
+                     6:'šezdeset', 7:'sedamdeset', 8:'osamdeset', 9:'devedeset'};
+const ZAHL_GROSS  = {100:'sto', 200:'dvjesto', 1000:'hiljada'};
+/* Weibliche und saechliche Formen, und das kroatische tisuca fuer tausend. */
+const ZAHL_SONDER = {jedna:1, jedno:1, dvije:2, dvoje:2, tisuca:1000};
+
+function zahlAlsWort(n){
+  if(!Number.isInteger(n) || n < 0) return null;
+  if(n < 20) return ZAHL_EINER[n];
+  if(n < 100){
+    const z = ZAHL_ZEHNER[Math.floor(n / 10)], e = n % 10;
+    return z ? (e ? z + ' ' + ZAHL_EINER[e] : z) : null;
+  }
+  return ZAHL_GROSS[n] || null;
+}
+
+const zahlenAusschreiben = s => String(s).replace(/\d+/g, m => {
+  const w = zahlAlsWort(parseInt(m, 10));
+  return w === null ? m : ' ' + w + ' ';
+});
+
+function zahlWert(s){
+  const roh = String(s).trim();
+  if(/^\d+$/.test(roh)) return parseInt(roh, 10);
+  const t = strip(roh).replace(/[^a-z ]/g, '').replace(/\s+/g, ' ').trim();
+  if(!t) return null;
+  const ohne = t.replace(/ /g, '');
+  if(ZAHL_SONDER[ohne] !== undefined) return ZAHL_SONDER[ohne];
+  const i = ZAHL_EINER.findIndex(w => strip(w) === t);
+  if(i >= 0) return i;
+  for(const z in ZAHL_ZEHNER) if(strip(ZAHL_ZEHNER[z]) === t) return Number(z) * 10;
+  for(const n in ZAHL_GROSS)  if(strip(ZAHL_GROSS[n])  === t) return Number(n);
+  /* Zusammengesetzt, z.B. "dvadeset jedan". Nur Zehner plus Einer. */
+  const teile = t.split(' ');
+  if(teile.length === 2){
+    const a = zahlWert(teile[0]), b = zahlWert(teile[1]);
+    /* Nur Zehner plus Einer: 20 bis 90, glatt, und danach eine 1 bis 9.
+       Damit bleibt "sto jedan" draussen - so heisst 101 im Bosnischen nicht. */
+    if(a !== null && b !== null && a >= 20 && a <= 90 && a % 10 === 0 && b >= 1 && b <= 9) return a + b;
+  }
+  return null;
+}
 function lautlich(s){
-  let x = strip(s);
+  let x = strip(zahlenAusschreiben(s));
   const regeln = [
     // erst die langen Buendel, sonst frisst eine kurze Regel sie auf
     [/tsch/g,'c'], [/tsh/g,'c'], [/tch/g,'c'], [/cz/g,'c'],
@@ -2116,6 +2180,10 @@ function abstand(a, b){
 }
 /* Passt das Gehoerte zum Zielwort? */
 function klingtWie(gehoert, ziel){
+  /* Sind beide Seiten eine Zahl, wird gerechnet - dann gilt "5" fuer "pet"
+     und "2" auch fuer die weibliche Form "dvije". */
+  const zg = zahlWert(gehoert), zz = zahlWert(ziel);
+  if(zg !== null && zz !== null) return zg === zz;
   const g = lautlich(gehoert), z = lautlich(ziel);
   if(!g || !z) return false;
   if(g === z) return true;
@@ -2164,6 +2232,12 @@ function matches(guess, answer){
   const norm = s => s.toLowerCase().replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
   const alts = answer.split(' / ');
   if(alts.some(a => norm(a) === norm(g))) return 'ok';
+  /* Getippte Zahlen zaehlen genauso: wer "5" schreibt, meint "pet".
+     Erst der Zahlwert, dann der ausgeschriebene Satz - so gilt auch
+     "Nalazimo se u 5". */
+  const zg = zahlWert(g);
+  if(zg !== null && alts.some(a => zahlWert(a) === zg)) return 'ok';
+  if(alts.some(a => norm(zahlenAusschreiben(a)) === norm(zahlenAusschreiben(g)))) return 'ok';
   if(alts.some(a => clean(a) === clean(g))) return 'almost';
   return 'no';
 }
@@ -4426,13 +4500,22 @@ function renderLaden(){
     ? zeile(w, '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'">'+
         t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen')+'</button>')
     : zeile(w, preisKnopf(w));
+  /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
+     ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
+     Tageskontingent, siehe WERBUNG_MAX_LOHN. */
+  const knoepfe = w => (w.id === 'herz' && werbungErlaubt(true) && w.geht())
+    ? '<span class="kaufwege">' + preisKnopf(w)
+      + '<button class="btn kauf ghost" data-videoleben="1">' + t('werbung.leben_holen') + '</button></span>'
+    : preisKnopf(w);
   box.innerHTML = ladenReiter === 'vorrat'
-    ? VERBRAUCH.map(w => zeile(w, preisKnopf(w))).join('')
+    ? VERBRAUCH.map(w => zeile(w, knoepfe(w))).join('')
     : ZIERRAT.filter(w => w.gruppe === ladenReiter).map(zierratZeile).join('');
   box.querySelectorAll('button[data-ware]').forEach(b =>
     b.addEventListener('click', ()=> kaufe(b.dataset.ware)));
   box.querySelectorAll('button[data-tragen]').forEach(b =>
     b.addEventListener('click', ()=> trage(b.dataset.tragen)));
+  const videoKnopf = box.querySelector('button[data-videoleben]');
+  if(videoKnopf) videoKnopf.addEventListener('click', werbungFuerLeben);
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
@@ -5021,6 +5104,7 @@ function updateProgress(){
   $('fill').style.width = pct+'%';
   $('capText').textContent = t('level.cap',{done:done, n:words.length});
   $('capPct').textContent = pct+'%';
+  lebenWege();                       // ohne Leben die zwei Wege zeigen, sonst wegnehmen
   const marke = $('mark80');
   marke.hidden = TEST_FREI_AB >= 100;
   marke.style.left = TEST_FREI_AB + '%';
@@ -5639,8 +5723,32 @@ async function mikroVorbereiten(){
   }catch(e){}
 }
 
+/* Die zwei Wege zu einem Leben, in der Levelansicht.
+   Bis zum 27.09.2026 gab es den Weg ueber das freiwillige Video NUR auf dem
+   Schirm, der kommt, wenn die Leben mitten in der Lektion ausgehen. Wer die
+   App zwischendurch geschlossen hatte und mit 0 Leben zurueckkam, tippte auf
+   ein Level und las "warte zwei Stunden" - ohne einen einzigen Knopf. Eine
+   Sackgasse, und der Laden bot nur das Herz fuer Muenzen.
+   Ajdin: "wie soll man mit werbung auffuellen es gibt keinen button". */
+function lebenWege(){
+  const kasten = $('lvLeben');
+  if(!kasten) return;
+  const herz = VERBRAUCH.find(w => w.id === 'herz');
+  const perVideo   = werbungErlaubt(true);
+  const perMuenzen = muenzen() >= herz.preis && herz.geht();
+  if(livesNow() > 0 || (!perVideo && !perMuenzen)){
+    kasten.style.display = 'none'; kasten.innerHTML = ''; return;
+  }
+  kasten.innerHTML =
+      (perVideo   ? '<button class="btn ghost" id="lvAd">'+t('werbung.leben_holen')+'</button>' : '')
+    + (perMuenzen ? '<button class="btn ghost" id="lvCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '');
+  kasten.style.display = 'flex';
+  if($('lvAd'))   $('lvAd').addEventListener('click', werbungFuerLeben);
+  if($('lvCoin')) $('lvCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); updateProgress(); });
+}
+
 function startLesson(){
-  if(livesNow()===0){ renderLives(); $('lvNote').textContent=t('level.keine_leben',{zeit:fmtMin(nextLifeIn())}); return; }
+  if(livesNow()===0){ renderLives(); $('lvNote').textContent=t('level.keine_leben',{zeit:fmtMin(nextLifeIn())}); lebenWege(); return; }
   buildLesson();
   if(Lx.queue.some(a=>a.typ==='speak')) mikroVorbereiten();
   stilleBitte();   // Unteransicht, laeuft nicht ueber showView() - siehe showLevelHome
