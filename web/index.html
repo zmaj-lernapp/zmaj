@@ -266,11 +266,29 @@
   .qalle{margin-top:6px; font-size:12px; font-weight:800; color:var(--good)}
   /* ---------- Laden ---------- */
   .ware{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--line)}
+  /* Nur die Zeile mit ZWEI Wegen darf umbrechen. flex-wrap auf .ware
+     insgesamt zu legen war falsch - damit brachen auch Kopf, Hals, Brille
+     und Farbe auf und wurden hoeher. Ajdin am 27.09.2026: "die anderen sind
+     auch komisch gemacht worden". */
+  .ware.zweiwege{flex-wrap:wrap}
   .ware:first-of-type{border-top:0}
   .ware .wt{font-weight:800; font-size:14px}
   .ware .wd{font-size:12px; color:var(--muted)}
   /* Alle Knoepfe im Laden gleich breit, damit die Spalte ruhig bleibt */
   .btn.kauf{flex:0 0 auto; min-width:104px; padding-left:12px; padding-right:12px; text-align:center}
+  /* Zwei Wege zum selben Stueck - beim Herz der Preis und das Video. */
+  /* Zwei Wege zum selben Stueck - beim Herz der Preis und das Video. Sie
+     bekommen eine EIGENE ZEILE unter dem Namen, wie auf dem Schirm nach der
+     Lektion. Nebeneinander im rechten Feld der Zeile war zu eng: gemessen
+     liefen sie 41 Pixel ueber den Rand, der Titel wurde auf 60 Pixel
+     gequetscht und die Zeile 174 statt 60 Pixel hoch.
+     flex:1 0 100% erzwingt die eigene Zeile, flex:1 an den Knoepfen teilt
+     sie gleichmaessig - dasselbe Bild wie .row.schmal.
+     nowrap und weniger Polsterung, weil "Video ansehen" sonst umbrach und
+     die Knoepfe 71 statt 50 Pixel hoch machte. */
+  .kaufwege{display:flex; gap:8px; flex:1 0 100%; margin-top:8px}
+  .kaufwege .btn.kauf{flex:1; min-width:0; white-space:nowrap;
+                      font-size:14px; padding-left:8px; padding-right:8px}
 
   /* ---------- Sprachwahl ---------- */
   .langbar{display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin:0 0 14px}
@@ -4486,8 +4504,8 @@ function renderLaden(){
      zu sehen, wovon die Rede ist. */
   const tupfer = w => FARBEN[w.id]
     ? '<span class="farbtupfer" style="background:#'+FARBEN[w.id][0]+'"></span>' : '';
-  const zeile = (w, knopf) =>
-    '<div class="ware"><div><div class="wt">'+tupfer(w)+t(w.titel)+'</div>'+
+  const zeile = (w, knopf, extra) =>
+    '<div class="ware'+(extra ? ' '+extra : '')+'"><div><div class="wt">'+tupfer(w)+t(w.titel)+'</div>'+
     '<div class="wd">'+t(w.sub)+'</div></div>'+knopf+'</div>';
   const preisKnopf = w => {
     const geht = muenzen() >= w.preis && w.geht();
@@ -4498,23 +4516,31 @@ function renderLaden(){
     ? zeile(w, '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'">'+
         t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen')+'</button>')
     : zeile(w, preisKnopf(w));
-  /* Ein Knopf je Zeile. Am 27.09.2026 stand beim Herz kurz ein zweiter fuer
-     das freiwillige Video daneben - das sprengte die Zeile: gemessen 41 Pixel
-     ueber den Rand, Titel auf 60 Pixel gequetscht, Zeile 174 statt 60 Pixel
-     hoch. Auf eine eigene Zeile gelegt wurde die Herz-Zeile 151 Pixel hoch
-     gegen 82 beim Serienschutz und sah schief aus, und das flex-wrap traf
-     ausserdem alle anderen Warenzeilen mit. Ajdin: "mach alles rueckgaengig
-     ausser herzen".
-     Den Weg ueber das Video gibt es weiter, und zwar dort, wo er hingehoert
-     und gemessen gut aussieht: in der Levelansicht ohne Leben (lebenWege)
-     und auf dem Schirm nach der Lektion (lessonOutOfLives). */
+  /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
+     ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
+     Tageskontingent, siehe WERBUNG_MAX_LOHN.
+     Der Knopf steht IMMER da und wird nur ausgegraut, genau wie der
+     Preisknopf. Vorher verschwand er ganz, wenn die Leben voll waren - dann
+     stand der Preis grau daneben und das Video gar nicht, und es sah aus, als
+     gaebe es den Weg nicht. Ajdin am 27.09.2026: "hae im laden ist noch kein
+     werbung ansehen balken" - er hatte funf von funf Leben. */
+  const videoKnopf = w => {
+    const geht = w.geht() && werbungErlaubt(true);
+    return '<button class="btn kauf ' + (geht ? 'know' : 'ghost') + '" data-videoleben="1"'
+         + (geht ? '' : ' disabled') + '>' + t('werbung.leben_holen') + '</button>';
+  };
+  const knoepfe = w => w.id === 'herz'
+    ? '<span class="kaufwege">' + preisKnopf(w) + videoKnopf(w) + '</span>'
+    : preisKnopf(w);
   box.innerHTML = ladenReiter === 'vorrat'
-    ? VERBRAUCH.map(w => zeile(w, preisKnopf(w))).join('')
+    ? VERBRAUCH.map(w => zeile(w, knoepfe(w), w.id === 'herz' ? 'zweiwege' : '')).join('')
     : ZIERRAT.filter(w => w.gruppe === ladenReiter).map(zierratZeile).join('');
   box.querySelectorAll('button[data-ware]').forEach(b =>
     b.addEventListener('click', ()=> kaufe(b.dataset.ware)));
   box.querySelectorAll('button[data-tragen]').forEach(b =>
     b.addEventListener('click', ()=> trage(b.dataset.tragen)));
+  const vk = box.querySelector('button[data-videoleben]');
+  if(vk && !vk.disabled) vk.addEventListener('click', werbungFuerLeben);
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
