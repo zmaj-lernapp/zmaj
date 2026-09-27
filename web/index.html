@@ -271,8 +271,6 @@
   .ware .wd{font-size:12px; color:var(--muted)}
   /* Alle Knoepfe im Laden gleich breit, damit die Spalte ruhig bleibt */
   .btn.kauf{flex:0 0 auto; min-width:104px; padding-left:12px; padding-right:12px; text-align:center}
-  /* Zwei Wege zum selben Stueck - beim Herz der Preis und das Video. */
-  .kaufwege{display:flex; gap:6px; flex:0 0 auto; flex-wrap:wrap; justify-content:flex-end}
 
   /* ---------- Sprachwahl ---------- */
   .langbar{display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin:0 0 14px}
@@ -4500,31 +4498,23 @@ function renderLaden(){
     ? zeile(w, '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'">'+
         t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen')+'</button>')
     : zeile(w, preisKnopf(w));
-  /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
-     ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
-     Tageskontingent, siehe WERBUNG_MAX_LOHN.
-     Der Knopf steht IMMER da und wird nur ausgegraut, genau wie der
-     Preisknopf. Vorher verschwand er ganz, wenn die Leben voll waren - dann
-     stand der Preis grau daneben und das Video gar nicht, und es sah aus, als
-     gaebe es den Weg nicht. Ajdin am 27.09.2026: "hae im laden ist noch kein
-     werbung ansehen balken" - er hatte funf von funf Leben. */
-  const videoKnopf = w => {
-    const geht = w.geht() && werbungErlaubt(true);
-    return '<button class="btn kauf ' + (geht ? 'know' : 'ghost') + '" data-videoleben="1"'
-         + (geht ? '' : ' disabled') + '>' + t('werbung.leben_holen') + '</button>';
-  };
-  const knoepfe = w => w.id === 'herz'
-    ? '<span class="kaufwege">' + preisKnopf(w) + videoKnopf(w) + '</span>'
-    : preisKnopf(w);
+  /* Ein Knopf je Zeile. Am 27.09.2026 stand beim Herz kurz ein zweiter fuer
+     das freiwillige Video daneben - das sprengte die Zeile: gemessen 41 Pixel
+     ueber den Rand, Titel auf 60 Pixel gequetscht, Zeile 174 statt 60 Pixel
+     hoch. Auf eine eigene Zeile gelegt wurde die Herz-Zeile 151 Pixel hoch
+     gegen 82 beim Serienschutz und sah schief aus, und das flex-wrap traf
+     ausserdem alle anderen Warenzeilen mit. Ajdin: "mach alles rueckgaengig
+     ausser herzen".
+     Den Weg ueber das Video gibt es weiter, und zwar dort, wo er hingehoert
+     und gemessen gut aussieht: in der Levelansicht ohne Leben (lebenWege)
+     und auf dem Schirm nach der Lektion (lessonOutOfLives). */
   box.innerHTML = ladenReiter === 'vorrat'
-    ? VERBRAUCH.map(w => zeile(w, knoepfe(w))).join('')
+    ? VERBRAUCH.map(w => zeile(w, preisKnopf(w))).join('')
     : ZIERRAT.filter(w => w.gruppe === ladenReiter).map(zierratZeile).join('');
   box.querySelectorAll('button[data-ware]').forEach(b =>
     b.addEventListener('click', ()=> kaufe(b.dataset.ware)));
   box.querySelectorAll('button[data-tragen]').forEach(b =>
     b.addEventListener('click', ()=> trage(b.dataset.tragen)));
-  const vk = box.querySelector('button[data-videoleben]');
-  if(vk && !vk.disabled) vk.addEventListener('click', werbungFuerLeben);
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
