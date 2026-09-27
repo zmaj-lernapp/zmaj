@@ -4502,10 +4502,19 @@ function renderLaden(){
     : zeile(w, preisKnopf(w));
   /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
      ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
-     Tageskontingent, siehe WERBUNG_MAX_LOHN. */
-  const knoepfe = w => (w.id === 'herz' && werbungErlaubt(true) && w.geht())
-    ? '<span class="kaufwege">' + preisKnopf(w)
-      + '<button class="btn kauf ghost" data-videoleben="1">' + t('werbung.leben_holen') + '</button></span>'
+     Tageskontingent, siehe WERBUNG_MAX_LOHN.
+     Der Knopf steht IMMER da und wird nur ausgegraut, genau wie der
+     Preisknopf. Vorher verschwand er ganz, wenn die Leben voll waren - dann
+     stand der Preis grau daneben und das Video gar nicht, und es sah aus, als
+     gaebe es den Weg nicht. Ajdin am 27.09.2026: "hae im laden ist noch kein
+     werbung ansehen balken" - er hatte funf von funf Leben. */
+  const videoKnopf = w => {
+    const geht = w.geht() && werbungErlaubt(true);
+    return '<button class="btn kauf ' + (geht ? 'know' : 'ghost') + '" data-videoleben="1"'
+         + (geht ? '' : ' disabled') + '>' + t('werbung.leben_holen') + '</button>';
+  };
+  const knoepfe = w => w.id === 'herz'
+    ? '<span class="kaufwege">' + preisKnopf(w) + videoKnopf(w) + '</span>'
     : preisKnopf(w);
   box.innerHTML = ladenReiter === 'vorrat'
     ? VERBRAUCH.map(w => zeile(w, knoepfe(w))).join('')
@@ -4514,8 +4523,8 @@ function renderLaden(){
     b.addEventListener('click', ()=> kaufe(b.dataset.ware)));
   box.querySelectorAll('button[data-tragen]').forEach(b =>
     b.addEventListener('click', ()=> trage(b.dataset.tragen)));
-  const videoKnopf = box.querySelector('button[data-videoleben]');
-  if(videoKnopf) videoKnopf.addEventListener('click', werbungFuerLeben);
+  const vk = box.querySelector('button[data-videoleben]');
+  if(vk && !vk.disabled) vk.addEventListener('click', werbungFuerLeben);
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
