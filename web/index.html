@@ -1506,8 +1506,12 @@ try{
    3. Die Vollversion darf nur über die Bezahlung des jeweiligen Stores
       verkauft werden - eigene Bezahlwege sind dort nicht erlaubt. */
 const WERBUNG_AN          = true;  // Hauptschalter
-const WERBUNG_AB_LEKTION  = 3;     // die ersten Lektionen bleiben frei
-const WERBUNG_JEDE_X      = 3;     // danach jede dritte
+/* Ajdin am 27.09.2026: "die anzeige sollte nach jeder lektion kommen nicht
+   nach 3 lektionen sonst kann ich ja garnichts verdienen". Beides auf 1.
+   Die Obergrenze fuer den Tag bleibt bei WERBUNG_MAX_TAG - sie ist jetzt
+   das, was den Tag begrenzt: nach sechs Lektionen kommt keine Anzeige mehr. */
+const WERBUNG_AB_LEKTION  = 1;     // ab der ersten Lektion
+const WERBUNG_JEDE_X      = 1;     // und dann nach jeder
 const WERBUNG_MAX_TAG     = 6;     // mehr wird an einem Tag nicht gezeigt
 /* Eigenes Tageskontingent fuer das freiwillige Video. Ajdin am 26.09.2026:
    wer viel lernt, hatte nach sechs Pflicht-Anzeigen auf dem Schirm "Keine
@@ -2899,17 +2903,28 @@ function neuNochMoeglich(){
   return wann.alleWoerter === today();
 }
 
+/* Die Ziele waren auf GENAU EINE Lektion kalibriert, und zwar systematisch:
+   eine Lektion bringt 10 Wortaufgaben, 2 Lückentexte, bis zu 2
+   Grammatikaufgaben und - bei fünf Aufgabenarten im Wechsel - etwa 2
+   Hörübungen. Stufe 1 verlangte 8 richtige, 2 Hörübungen, 2 Lückentexte,
+   3 neue Wörter: alles mit einer Lektion erledigt.
+   Ajdin am 27.09.2026: "ich hab doch gesagt das die ziele nicht bei lektion
+   geschafft sein sollen das ist zu viel". Die Mengenziele liegen jetzt bei
+   etwa zwei Lektionen.
+   NICHT angehoben sind 'gesch' (eine Geschichte lesen ist eine eigene
+   Handlung, kein Nebenprodukt der Lektion) und 'per' (fehlerfrei ist ein
+   Güte-, kein Mengenziel). */
 const QUESTS = [
-  {id:'auf',   art:'menge',   dick:1, ohneLeben:true, ziele:[10,20,30], txt:'quest.aufgaben'},
-  {id:'ric',   art:'menge',   dick:1, ohneLeben:true, ziele:[8,15,22],  txt:'quest.richtig'},
+  {id:'auf',   art:'menge',   dick:1, ohneLeben:true, ziele:[20,30,40], txt:'quest.aufgaben'},
+  {id:'ric',   art:'menge',   dick:1, ohneLeben:true, ziele:[18,26,34], txt:'quest.richtig'},
   {id:'gesch', art:'lesen',   dick:2, ohneLeben:true, ziele:[1,1,1],    txt:'quest.geschichte'},
-  {id:'lue',   art:'typ',     dick:1, ziele:[2,3,4],  txt:'quest.luecken'},
-  {id:'hoer',  art:'typ',     dick:1, ziele:[2,3,4],  txt:'quest.hoeren',     geht:()=>canListen},
-  {id:'neu',   art:'woerter', dick:2, ziele:[3,5,6],  txt:'quest.woerter',    geht:()=>known.size < alleWoerter()},
-  {id:'lek',   art:'lektion', dick:2, ziele:[1,2,2],  txt:'quest.lektionen'},
+  {id:'lue',   art:'typ',     dick:1, ziele:[4,6,8],  txt:'quest.luecken'},
+  {id:'hoer',  art:'typ',     dick:1, ziele:[4,6,8],  txt:'quest.hoeren',     geht:()=>canListen},
+  {id:'neu',   art:'woerter', dick:2, ziele:[10,14,18], txt:'quest.woerter',  geht:()=>known.size < alleWoerter()},
+  {id:'lek',   art:'lektion', dick:2, ziele:[2,3,4],  txt:'quest.lektionen'},
   {id:'per',   art:'lektion', dick:3, ziele:[1,1,1],  txt:'quest.fehlerfrei', abStufe:2},
   // Zeit in Sekunden gespeichert, in Minuten angezeigt – siehe uhrTakt()
-  {id:'zeit',  art:'zeit',    dick:2, ohneLeben:true, ziele:[300,600,900], txt:'quest.minuten', min:true}
+  {id:'zeit',  art:'zeit',    dick:2, ohneLeben:true, ziele:[600,900,1200], txt:'quest.minuten', min:true}
 ];
 
 /* Die Stufe zählt nur Tage VOR heute, damit sie sich tagsüber nicht ändert
@@ -3015,7 +3030,7 @@ setInterval(uhrTakt, 10000);
 let uhrWarAn = false;
 document.addEventListener('visibilitychange', ()=>{
   if(document.hidden){
-    uhrWarAn = uhrStart > 0; uhrAus(); stilleBitte();
+    uhrWarAn = uhrStart > 0; uhrAus(); stilleBitte(true);   // Aufgabe bleibt gueltig
     /* Und speichern. Eine RICHTIGE Antwort speicherte bisher gar nicht:
        known.add() und zaehle() laufen, saveProgress() nicht. Gespeichert
        wurde nur bei einer falschen Antwort (ueber loseLife) und am
@@ -3418,9 +3433,23 @@ function knopfZurueck(){
   const zurueck = laeuftVor; laeuftVor = null;
   if(zurueck) try{ zurueck(); }catch(e){}
 }
-function stilleBitte(){
+/* behalteAufgabe: den Ton abstellen, die Aufgabe aber stehen lassen.
+   Gebraucht wird das genau einmal - beim Wechsel in den Hintergrund.
+   Warum: aufgabeMarke sagt, welche Aufgabe gerade gilt. bewerte() in der
+   Sprechaufgabe verwirft jedes Ergebnis, dessen Marke nicht mehr stimmt -
+   richtig, wenn die Erkennung verspaetet in die NAECHSTE Aufgabe
+   hineinredet. Nur hob visibilitychange die Marke ebenfalls an, obwohl
+   dieselbe Aufgabe weiter auf dem Schirm steht. Folge: Handy sperren und
+   wieder aufwecken, und das Sprechen war fuer diese Aufgabe tot - das
+   Mikrofon hoerte zu, aber das Ergebnis fiel weg.
+   Ajdin am 27.09.2026: "wenn ich mein handy schliesse und wieder oeffne geht
+   das sprechen nicht mehr er erkennt meine stimme nicht". Am Geraet
+   nachgemessen: die Marke sprang allein durch den Wechsel von 68 auf 69.
+   Die laufende Erkennung wird trotzdem abgebrochen - die App darf nicht aus
+   der Tasche weiter zuhoeren. Nur die Aufgabe bleibt gueltig. */
+function stilleBitte(behalteAufgabe){
   tonMarke++;              // macht noch wartende Zeitgeber ungueltig
-  aufgabeMarke++;          // und verspaetete Erkennungs-Ergebnisse
+  if(!behalteAufgabe) aufgabeMarke++;   // und verspaetete Erkennungs-Ergebnisse
   pausiert = false;        // Stopp ist keine Pause: der Knopf darf zurueck
   spieler.onended = null;  // zuerst, und ausserhalb des try: das darf nie haengenbleiben
   try{ spieler.pause(); spieler.currentTime = 0; }catch(e){}
