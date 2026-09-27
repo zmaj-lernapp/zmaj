@@ -35,6 +35,7 @@
     --bg:#D1D5FA; --surface:#F6F7FE; --ink:#0F1E4D; --muted:#66698A;
     --primary:#4049A5; --primary-dark:#31387D; --primary-soft:#D1D5FA;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
+    --primary-fill:#9EA3E0; --primary-fill-dark:#6F77D2; --on-fill:#0F1E4D;
     --line:#CBCEEB; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
     /* Eine Farbe je Sektion, neun Stueck. Vorher war jede Ueberschrift
        blau und jeder Balken gelb, dadurch standen auf dem Lernpfad nach
@@ -51,15 +52,15 @@
        Helligkeit.
        Hier sind die Toene dunkler als in der dunklen Fassung, sonst leuchten
        sie auf Weiss. */
-    --sek1:#4049A5; --sek1-dunkel:#30377C; --sek1-sanft:#D1D4FA; --sek1-grund:#D1D4FA; --sek1-flaeche:#F6F6FE; --sek1-linie:#CBCEEB; --sek1-matt:#66698A;   /* Blau */
-    --sek2:#5B40A5; --sek2-dunkel:#45307C; --sek2-sanft:#D0C2F4; --sek2-grund:#D0C2F4; --sek2-flaeche:#F8F6FE; --sek2-linie:#D4CBEB; --sek2-matt:#6F668A;   /* Indigo */
-    --sek3:#7D40A5; --sek3-dunkel:#5E307C; --sek3-sanft:#EAD1FA; --sek3-grund:#EAD1FA; --sek3-flaeche:#FBF6FE; --sek3-linie:#DFCBEB; --sek3-matt:#7B668A;   /* Violett */
-    --sek4:#7F3384; --sek4-dunkel:#58245B; --sek4-sanft:#EABAEE; --sek4-grund:#EABAEE; --sek4-flaeche:#FDF6FE; --sek4-linie:#E9CBEB; --sek4-matt:#87668A;   /* Purpur */
-    --sek5:#973B7E; --sek5-dunkel:#6F2B5D; --sek5-sanft:#F9CDED; --sek5-grund:#F9CDED; --sek5-flaeche:#FEF6FC; --sek5-linie:#EBCBE3; --sek5-matt:#8A6680;   /* Magenta */
-    --sek6:#8C3658; --sek6-dunkel:#63273F; --sek6-sanft:#EFBED1; --sek6-grund:#EFBED1; --sek6-flaeche:#FEF6F9; --sek6-linie:#EBCBD8; --sek6-matt:#8A6674;   /* Rose */
-    --sek7:#296A65; --sek7-dunkel:#19413E; --sek7-sanft:#BAE8E4; --sek7-grund:#BAE8E4; --sek7-flaeche:#F6FEFD; --sek7-linie:#CBEBE9; --sek7-matt:#597876;   /* Petrol */
-    --sek8:#295A6A; --sek8-dunkel:#193741; --sek8-sanft:#AED4E0; --sek8-grund:#AED4E0; --sek8-flaeche:#F6FCFE; --sek8-linie:#CBE3EB; --sek8-matt:#5D767E;   /* Tuerkis */
-    --sek9:#395F93; --sek9-dunkel:#29456A; --sek9-sanft:#C8DCF9; --sek9-grund:#C8DCF9; --sek9-flaeche:#F6F9FE; --sek9-linie:#CBD9EB; --sek9-matt:#647287;   /* Himmelblau */
+    --sek1:#4049A5; --sek1-dunkel:#30377C; --sek1-sanft:#D1D4FA; --sek1-grund:#D1D4FA; --sek1-flaeche:#F6F6FE; --sek1-linie:#CBCEEB; --sek1-matt:#66698A; --sek1-fuell:#9EA3E0; --sek1-fuell-dunkel:#6F77D2;   /* Blau */
+    --sek2:#5B40A5; --sek2-dunkel:#45307C; --sek2-sanft:#D0C2F4; --sek2-grund:#D0C2F4; --sek2-flaeche:#F8F6FE; --sek2-linie:#D4CBEB; --sek2-matt:#6F668A; --sek2-fuell:#AC9ADF; --sek2-fuell-dunkel:#866BD0;   /* Indigo */
+    --sek3:#7D40A5; --sek3-dunkel:#5E307C; --sek3-sanft:#EAD1FA; --sek3-grund:#EAD1FA; --sek3-flaeche:#FBF6FE; --sek3-linie:#DFCBEB; --sek3-matt:#7B668A; --sek3-fuell:#C69EE0; --sek3-fuell-dunkel:#AA6FD2;   /* Violett */
+    --sek4:#7F3384; --sek4-dunkel:#58245B; --sek4-sanft:#EABAEE; --sek4-grund:#EABAEE; --sek4-flaeche:#FDF6FE; --sek4-linie:#E9CBEB; --sek4-matt:#87668A; --sek4-fuell:#D58BDA; --sek4-fuell-dunkel:#C55CCC;   /* Purpur */
+    --sek5:#973B7E; --sek5-dunkel:#6F2B5D; --sek5-sanft:#F9CDED; --sek5-grund:#F9CDED; --sek5-flaeche:#FEF6FC; --sek5-linie:#EBCBE3; --sek5-matt:#8A6680; --sek5-fuell:#DE96CB; --sek5-fuell-dunkel:#CF68B3;   /* Magenta */
+    --sek6:#8C3658; --sek6-dunkel:#63273F; --sek6-sanft:#EFBED1; --sek6-grund:#EFBED1; --sek6-flaeche:#FEF6F9; --sek6-linie:#EBCBD8; --sek6-matt:#8A6674; --sek6-fuell:#DD92B1; --sek6-fuell-dunkel:#CE648F;   /* Rose */
+    --sek7:#296A65; --sek7-dunkel:#19413E; --sek7-sanft:#BAE8E4; --sek7-grund:#BAE8E4; --sek7-flaeche:#F6FEFD; --sek7-linie:#CBEBE9; --sek7-matt:#597876; --sek7-fuell:#58CAC1; --sek7-fuell-dunkel:#37AEA4;   /* Petrol */
+    --sek8:#295A6A; --sek8-dunkel:#193741; --sek8-sanft:#AED4E0; --sek8-grund:#AED4E0; --sek8-flaeche:#F6FCFE; --sek8-linie:#CBE3EB; --sek8-matt:#5D767E; --sek8-fuell:#64B4CE; --sek8-fuell-dunkel:#3B9BBA;   /* Tuerkis */
+    --sek9:#395F93; --sek9-dunkel:#29456A; --sek9-sanft:#C8DCF9; --sek9-grund:#C8DCF9; --sek9-flaeche:#F6F9FE; --sek9-linie:#CBD9EB; --sek9-matt:#647287; --sek9-fuell:#96B4DE; --sek9-fuell-dunkel:#6893CF;   /* Himmelblau */
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
@@ -68,32 +69,34 @@
       --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
       --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
+      --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
       --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-      --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD;   /* Blau */
-      --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD;   /* Indigo */
-      --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD;   /* Violett */
-      --sek4:#D487D9; --sek4-dunkel:#B261B8; --sek4-sanft:#532956; --sek4-grund:#271528; --sek4-flaeche:#4C2C4E; --sek4-linie:#69416C; --sek4-matt:#CAADCD;   /* Purpur */
-      --sek5:#D987C3; --sek5-dunkel:#B861A1; --sek5-sanft:#56294A; --sek5-grund:#281523; --sek5-flaeche:#4E2C45; --sek5-linie:#6C4161; --sek5-matt:#CDADC4;   /* Magenta */
-      --sek6:#DA8BAB; --sek6-dunkel:#B96486; --sek6-sanft:#56293B; --sek6-grund:#28151D; --sek6-flaeche:#4E2C3A; --sek6-linie:#6C4152; --sek6-matt:#CDADBA;   /* Rose */
-      --sek7:#87D9D2; --sek7-dunkel:#61B8B1; --sek7-sanft:#295652; --sek7-grund:#152827; --sek7-flaeche:#2C4E4B; --sek7-linie:#416C69; --sek7-matt:#ADCDCA;   /* Petrol */
-      --sek8:#87C5D9; --sek8-dunkel:#61A2B8; --sek8-sanft:#294B56; --sek8-grund:#152328; --sek8-flaeche:#2C464E; --sek8-linie:#41626C; --sek8-matt:#ADC5CD;   /* Tuerkis */
-      --sek9:#87A9D9; --sek9-dunkel:#6185B8; --sek9-sanft:#293C56; --sek9-grund:#151D28; --sek9-flaeche:#2C3A4E; --sek9-linie:#41536C; --sek9-matt:#ADBACD;   /* Himmelblau */
+      --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD; --sek1-fuell:#8F95DC; --sek1-fuell-dunkel:#686FBB;   /* Blau */
+      --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD; --sek2-fuell:#A38FDC; --sek2-fuell-dunkel:#7E68BB;   /* Indigo */
+      --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD; --sek3-fuell:#BD8FDC; --sek3-fuell-dunkel:#9A68BB;   /* Violett */
+      --sek4:#D487D9; --sek4-dunkel:#B261B8; --sek4-sanft:#532956; --sek4-grund:#271528; --sek4-flaeche:#4C2C4E; --sek4-linie:#69416C; --sek4-matt:#CAADCD; --sek4-fuell:#D487D9; --sek4-fuell-dunkel:#B261B8;   /* Purpur */
+      --sek5:#D987C3; --sek5-dunkel:#B861A1; --sek5-sanft:#56294A; --sek5-grund:#281523; --sek5-flaeche:#4E2C45; --sek5-linie:#6C4161; --sek5-matt:#CDADC4; --sek5-fuell:#D987C3; --sek5-fuell-dunkel:#B861A1;   /* Magenta */
+      --sek6:#DA8BAB; --sek6-dunkel:#B96486; --sek6-sanft:#56293B; --sek6-grund:#28151D; --sek6-flaeche:#4E2C3A; --sek6-linie:#6C4152; --sek6-matt:#CDADBA; --sek6-fuell:#DA8BAB; --sek6-fuell-dunkel:#B96486;   /* Rose */
+      --sek7:#87D9D2; --sek7-dunkel:#61B8B1; --sek7-sanft:#295652; --sek7-grund:#152827; --sek7-flaeche:#2C4E4B; --sek7-linie:#416C69; --sek7-matt:#ADCDCA; --sek7-fuell:#87D9D2; --sek7-fuell-dunkel:#61B8B1;   /* Petrol */
+      --sek8:#87C5D9; --sek8-dunkel:#61A2B8; --sek8-sanft:#294B56; --sek8-grund:#152328; --sek8-flaeche:#2C464E; --sek8-linie:#41626C; --sek8-matt:#ADC5CD; --sek8-fuell:#87C5D9; --sek8-fuell-dunkel:#61A2B8;   /* Tuerkis */
+      --sek9:#87A9D9; --sek9-dunkel:#6185B8; --sek9-sanft:#293C56; --sek9-grund:#151D28; --sek9-flaeche:#2C3A4E; --sek9-linie:#41536C; --sek9-matt:#ADBACD; --sek9-fuell:#87A9D9; --sek9-fuell-dunkel:#6185B8;   /* Himmelblau */
     }
   }
   :root[data-theme="dark"]{
     --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
     --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
-    --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-    --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD;   /* Blau */
-    --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD;   /* Indigo */
-    --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD;   /* Violett */
-    --sek4:#D487D9; --sek4-dunkel:#B261B8; --sek4-sanft:#532956; --sek4-grund:#271528; --sek4-flaeche:#4C2C4E; --sek4-linie:#69416C; --sek4-matt:#CAADCD;   /* Purpur */
-    --sek5:#D987C3; --sek5-dunkel:#B861A1; --sek5-sanft:#56294A; --sek5-grund:#281523; --sek5-flaeche:#4E2C45; --sek5-linie:#6C4161; --sek5-matt:#CDADC4;   /* Magenta */
-    --sek6:#DA8BAB; --sek6-dunkel:#B96486; --sek6-sanft:#56293B; --sek6-grund:#28151D; --sek6-flaeche:#4E2C3A; --sek6-linie:#6C4152; --sek6-matt:#CDADBA;   /* Rose */
-    --sek7:#87D9D2; --sek7-dunkel:#61B8B1; --sek7-sanft:#295652; --sek7-grund:#152827; --sek7-flaeche:#2C4E4B; --sek7-linie:#416C69; --sek7-matt:#ADCDCA;   /* Petrol */
-    --sek8:#87C5D9; --sek8-dunkel:#61A2B8; --sek8-sanft:#294B56; --sek8-grund:#152328; --sek8-flaeche:#2C464E; --sek8-linie:#41626C; --sek8-matt:#ADC5CD;   /* Tuerkis */
-    --sek9:#87A9D9; --sek9-dunkel:#6185B8; --sek9-sanft:#293C56; --sek9-grund:#151D28; --sek9-flaeche:#2C3A4E; --sek9-linie:#41536C; --sek9-matt:#ADBACD;   /* Himmelblau */
+    --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
+      --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+    --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD; --sek1-fuell:#8F95DC; --sek1-fuell-dunkel:#686FBB;   /* Blau */
+    --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD; --sek2-fuell:#A38FDC; --sek2-fuell-dunkel:#7E68BB;   /* Indigo */
+    --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD; --sek3-fuell:#BD8FDC; --sek3-fuell-dunkel:#9A68BB;   /* Violett */
+    --sek4:#D487D9; --sek4-dunkel:#B261B8; --sek4-sanft:#532956; --sek4-grund:#271528; --sek4-flaeche:#4C2C4E; --sek4-linie:#69416C; --sek4-matt:#CAADCD; --sek4-fuell:#D487D9; --sek4-fuell-dunkel:#B261B8;   /* Purpur */
+    --sek5:#D987C3; --sek5-dunkel:#B861A1; --sek5-sanft:#56294A; --sek5-grund:#281523; --sek5-flaeche:#4E2C45; --sek5-linie:#6C4161; --sek5-matt:#CDADC4; --sek5-fuell:#D987C3; --sek5-fuell-dunkel:#B861A1;   /* Magenta */
+    --sek6:#DA8BAB; --sek6-dunkel:#B96486; --sek6-sanft:#56293B; --sek6-grund:#28151D; --sek6-flaeche:#4E2C3A; --sek6-linie:#6C4152; --sek6-matt:#CDADBA; --sek6-fuell:#DA8BAB; --sek6-fuell-dunkel:#B96486;   /* Rose */
+    --sek7:#87D9D2; --sek7-dunkel:#61B8B1; --sek7-sanft:#295652; --sek7-grund:#152827; --sek7-flaeche:#2C4E4B; --sek7-linie:#416C69; --sek7-matt:#ADCDCA; --sek7-fuell:#87D9D2; --sek7-fuell-dunkel:#61B8B1;   /* Petrol */
+    --sek8:#87C5D9; --sek8-dunkel:#61A2B8; --sek8-sanft:#294B56; --sek8-grund:#152328; --sek8-flaeche:#2C464E; --sek8-linie:#41626C; --sek8-matt:#ADC5CD; --sek8-fuell:#87C5D9; --sek8-fuell-dunkel:#61A2B8;   /* Tuerkis */
+    --sek9:#87A9D9; --sek9-dunkel:#6185B8; --sek9-sanft:#293C56; --sek9-grund:#151D28; --sek9-flaeche:#2C3A4E; --sek9-linie:#41536C; --sek9-matt:#ADBACD; --sek9-fuell:#87A9D9; --sek9-fuell-dunkel:#6185B8;   /* Himmelblau */
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -243,11 +246,11 @@
   /* Drei Reiter werden auf schmalen Handys sonst umgebrochen */
   @media (max-width:430px){ .mode button{font-size:12.5px; padding:10px 4px} }
   @media (max-width:340px){ .mode button{font-size:11.5px} }
-  .mode button[aria-selected="true"]{background:var(--primary); color:var(--on-primary)}
+  .mode button[aria-selected="true"]{background:var(--primary-fill); color:var(--on-fill)}
   /* Dieselbe Leiste dient in den Einstellungen als Dreierwahl fuer das
      Aussehen. Dort ist es keine Reiterreihe, sondern eine Auswahl - deshalb
      aria-checked statt aria-selected. Beide sehen gleich aus. */
-  .mode button[aria-checked="true"]{background:var(--primary); color:var(--on-primary)}
+  .mode button[aria-checked="true"]{background:var(--primary-fill); color:var(--on-fill)}
   .streakline{display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:13px; color:var(--muted); font-weight:700; margin:0 0 12px 4px}
   .streakline b{color:var(--ink)}
   .streakline .frost{color:var(--primary); background:var(--primary-soft); border-radius:99px; padding:2px 10px; font-weight:800}
@@ -312,54 +315,63 @@
   :root[data-sek="1"]{
     --primary:var(--sek1); --primary-dark:var(--sek1-dunkel);
     --primary-soft:var(--sek1-sanft); --bg:var(--sek1-grund);
+    --primary-fill:var(--sek1-fuell); --primary-fill-dark:var(--sek1-fuell-dunkel);
     --surface:var(--sek1-flaeche); --line:var(--sek1-linie);
     --muted:var(--sek1-matt);
   }
   :root[data-sek="2"]{
     --primary:var(--sek2); --primary-dark:var(--sek2-dunkel);
     --primary-soft:var(--sek2-sanft); --bg:var(--sek2-grund);
+    --primary-fill:var(--sek2-fuell); --primary-fill-dark:var(--sek2-fuell-dunkel);
     --surface:var(--sek2-flaeche); --line:var(--sek2-linie);
     --muted:var(--sek2-matt);
   }
   :root[data-sek="3"]{
     --primary:var(--sek3); --primary-dark:var(--sek3-dunkel);
     --primary-soft:var(--sek3-sanft); --bg:var(--sek3-grund);
+    --primary-fill:var(--sek3-fuell); --primary-fill-dark:var(--sek3-fuell-dunkel);
     --surface:var(--sek3-flaeche); --line:var(--sek3-linie);
     --muted:var(--sek3-matt);
   }
   :root[data-sek="4"]{
     --primary:var(--sek4); --primary-dark:var(--sek4-dunkel);
     --primary-soft:var(--sek4-sanft); --bg:var(--sek4-grund);
+    --primary-fill:var(--sek4-fuell); --primary-fill-dark:var(--sek4-fuell-dunkel);
     --surface:var(--sek4-flaeche); --line:var(--sek4-linie);
     --muted:var(--sek4-matt);
   }
   :root[data-sek="5"]{
     --primary:var(--sek5); --primary-dark:var(--sek5-dunkel);
     --primary-soft:var(--sek5-sanft); --bg:var(--sek5-grund);
+    --primary-fill:var(--sek5-fuell); --primary-fill-dark:var(--sek5-fuell-dunkel);
     --surface:var(--sek5-flaeche); --line:var(--sek5-linie);
     --muted:var(--sek5-matt);
   }
   :root[data-sek="6"]{
     --primary:var(--sek6); --primary-dark:var(--sek6-dunkel);
     --primary-soft:var(--sek6-sanft); --bg:var(--sek6-grund);
+    --primary-fill:var(--sek6-fuell); --primary-fill-dark:var(--sek6-fuell-dunkel);
     --surface:var(--sek6-flaeche); --line:var(--sek6-linie);
     --muted:var(--sek6-matt);
   }
   :root[data-sek="7"]{
     --primary:var(--sek7); --primary-dark:var(--sek7-dunkel);
     --primary-soft:var(--sek7-sanft); --bg:var(--sek7-grund);
+    --primary-fill:var(--sek7-fuell); --primary-fill-dark:var(--sek7-fuell-dunkel);
     --surface:var(--sek7-flaeche); --line:var(--sek7-linie);
     --muted:var(--sek7-matt);
   }
   :root[data-sek="8"]{
     --primary:var(--sek8); --primary-dark:var(--sek8-dunkel);
     --primary-soft:var(--sek8-sanft); --bg:var(--sek8-grund);
+    --primary-fill:var(--sek8-fuell); --primary-fill-dark:var(--sek8-fuell-dunkel);
     --surface:var(--sek8-flaeche); --line:var(--sek8-linie);
     --muted:var(--sek8-matt);
   }
   :root[data-sek="9"]{
     --primary:var(--sek9); --primary-dark:var(--sek9-dunkel);
     --primary-soft:var(--sek9-sanft); --bg:var(--sek9-grund);
+    --primary-fill:var(--sek9-fuell); --primary-fill-dark:var(--sek9-fuell-dunkel);
     --surface:var(--sek9-flaeche); --line:var(--sek9-linie);
     --muted:var(--sek9-matt);
   }
@@ -456,7 +468,9 @@
     font-weight:800; font-size:15px; border:3px solid var(--line); color:var(--muted); background:var(--surface); transition:.15s;
     box-shadow:0 3px 0 var(--line);
   }
-  .node.done .circle{background:var(--primary); border-color:var(--primary); color:var(--on-primary); box-shadow:0 3px 0 var(--primary-dark)}
+  /* Erledigte Level: blasse Scheibe mit kraeftigem Rand. Der Rand bleibt
+     --primary, sonst verschwaemme der Kreis auf dem hellen Grund. */
+  .node.done .circle{background:var(--primary-fill); border-color:var(--primary); color:var(--on-fill); box-shadow:0 3px 0 var(--primary-fill-dark)}
   .node.current .circle{background:var(--accent); border-color:var(--accent); color:var(--on-accent); box-shadow:0 3px 0 var(--accent-dark)}
   .node.locked{cursor:not-allowed}
   .node.locked .label{color:var(--muted)}
@@ -838,7 +852,7 @@
     font-family:inherit; font-size:14px; font-weight:800; padding:8px 16px; border-radius:99px; cursor:pointer; display:inline-flex; gap:7px; align-items:center;
   }
   .listen:hover{border-color:var(--primary); color:var(--primary)}
-  .listen.bigplay{width:96px; height:96px; border-radius:50%; justify-content:center; font-size:40px; margin:6px auto 12px; background:var(--primary); color:var(--on-primary); border:0; box-shadow:0 5px 0 var(--primary-dark)}
+  .listen.bigplay{width:96px; height:96px; border-radius:50%; justify-content:center; font-size:40px; margin:6px auto 12px; background:var(--primary-fill); color:var(--on-fill); border:0; box-shadow:0 5px 0 var(--primary-fill-dark)}
   .listen.bigplay:active{transform:translateY(3px); box-shadow:0 2px 0 var(--primary-dark)}
 
   .row{display:flex; gap:10px; margin-top:20px}
@@ -849,7 +863,7 @@
     flex:1; border:0; font-family:inherit; font-size:15px; font-weight:800; padding:13px;
     border-radius:14px; cursor:pointer; transition:.1s; letter-spacing:.2px;
   }
-  .btn.know{background:var(--primary); color:var(--on-primary); box-shadow:0 4px 0 var(--primary-dark)}
+  .btn.know{background:var(--primary-fill); color:var(--on-fill); box-shadow:0 4px 0 var(--primary-fill-dark)}
   .btn.again{background:var(--accent); color:var(--on-accent); box-shadow:0 4px 0 var(--accent-dark)}
   .btn.ghost{background:var(--surface); border:2px solid var(--line); color:var(--muted); box-shadow:0 4px 0 var(--line)}
   /* Solange vorgelesen wird, traegt derselbe Knopf "Stopp" und pulst leise,
@@ -924,7 +938,7 @@
   .tbar i{flex:1; height:8px; border-radius:99px; background:var(--primary-soft)}
   .tbar i.ok{background:var(--good)} .tbar i.no{background:var(--bad)} .tbar i.skip{background:var(--muted); opacity:.5} .tbar i.cur{background:var(--accent)} .tbar i.intro{background:var(--line)}
   .rep{display:inline-block; font-size:11px; color:var(--on-accent); background:var(--accent); border-radius:99px; padding:1px 8px; text-transform:none; letter-spacing:0}
-  .rep.new{background:var(--primary); color:var(--on-primary)}
+  .rep.new{background:var(--primary-fill); color:var(--on-fill)}
   .type-input{font-family:var(--font-display); font-size:24px; color:var(--primary); text-align:center; border:0; border-bottom:3px dashed var(--muted); background:transparent; width:100%; max-width:320px; padding:4px; margin-top:8px}
   .type-input:focus{outline:none; border-bottom-color:var(--primary)}
   .result-big{font-family:var(--font-ui); font-size:46px; font-weight:800; color:var(--primary); margin:6px 0}
@@ -936,8 +950,8 @@
 
   .mic{
     width:88px; height:88px; border-radius:50%; border:0; cursor:pointer; margin:6px auto 0;
-    background:var(--primary); color:var(--on-primary); display:flex; align-items:center; justify-content:center;
-    transition:.2s; box-shadow:0 5px 0 var(--primary-dark);
+    background:var(--primary-fill); color:var(--on-fill); display:flex; align-items:center; justify-content:center;
+    transition:.2s; box-shadow:0 5px 0 var(--primary-fill-dark);
   }
   .mic svg{width:34px; height:34px}
   .mic.rec{background:var(--bad); box-shadow:0 5px 0 #9c2c26; animation:pulse 1.1s infinite}
