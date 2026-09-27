@@ -24,6 +24,15 @@ Auf Deutsch fällt das nie auf, weil dort „Mutter" und „Mama" verschieden si
 GEPRÜFT WIRD in allen acht Oberflächensprachen, getrennt nach:
   A  Beide Wörter im selben Level  – trifft auch die Auswahl-Aufgabe
   B  Wörter in verschiedenen Levels – trifft nur die Schreib-Aufgabe
+  C  Angesehen und so gewollt – steht mit Begründung in
+     bedeutung_ausnahmen.json und zählt nicht mehr als offen
+
+Am 27.09.2026 waren es 72 Stellen, nachdem je Sprache 557 Vokabeln
+dazugekommen waren. bedeutungen_trennen.py hat die getrennt, für die die
+Oberflächensprache ein eigenes Wort hat („tavuk eti" statt „tavuk" für
+Hühnerfleisch, „storey" statt „floor" für das Stockwerk). Übrig blieb, was
+sich nicht trennen lässt, ohne die Übersetzung zu verbiegen – das steht in
+bedeutung_ausnahmen.json und erscheint hier unter C.
 """
 
 import io
@@ -34,6 +43,7 @@ from collections import defaultdict
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 SPRACHEN = ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
+AUSNAHMEN = os.path.join(HIER, "bedeutung_ausnahmen.json")
 
 
 def normal(s):
@@ -41,8 +51,31 @@ def normal(s):
     return (s or "").strip().rstrip(".!?…").strip().lower()
 
 
+def vermerkt():
+    """{(sprache, bedeutung): warum} aus bedeutung_ausnahmen.json.
+
+    Am 27.09.2026 hat bedeutungen_trennen.py die Doppelungen getrennt, für die
+    die Oberflächensprache ein eigenes Wort hat. Was übrig blieb, steht dort
+    mit Begründung – dasselbe Wort zweimal, oder eine Sprache, die für beide
+    Bedeutungen nur ein Wort hat. Diese Fälle stehen unten unter C und nicht
+    mehr zwischen den ungeprüften."""
+    if not os.path.exists(AUSNAHMEN):
+        return {}
+    daten = json.load(io.open(AUSNAHMEN, encoding="utf-8"))
+    gruende = daten.get("gruende", {})
+    aus = {}
+    for fall in daten.get("bleiben", []):
+        schluessel = (fall["sprache"], normal(fall["bedeutung"]))
+        aus[schluessel] = (fall.get("grund", "?"), fall.get("warum", ""),
+                           gruende.get(fall.get("grund"), ""))
+    return aus
+
+
 def main():
     gesamt = 0
+    aus = vermerkt()
+    geprueft = 0
+    unbekannt = []
     strich = "=" * 70
 
     for sprache in SPRACHEN:
@@ -70,7 +103,12 @@ def main():
 
         gleiches_level = []
         andere_level = []
+        vermerkte = []
         for bedeutung, eintraege in sorted(treffer.items()):
+            if (sprache, bedeutung) in aus:
+                vermerkte.append((bedeutung, eintraege))
+                geprueft += 1
+                continue
             nach_level = defaultdict(list)
             for bs, label, kid in eintraege:
                 nach_level[kid].append((bs, label))
@@ -79,6 +117,7 @@ def main():
                     gleiches_level.append((bedeutung, gruppe))
             if len(nach_level) > 1:
                 andere_level.append((bedeutung, eintraege))
+            unbekannt.append((sprache, bedeutung))
 
         print()
         print(strich)
@@ -97,11 +136,25 @@ def main():
                 teile = ", ".join('%s (%s)' % (bs, label) for bs, label, _ in eintraege)
                 print("     %s  =  %s" % (bedeutung, teile))
                 gesamt += 1
+        if vermerkte:
+            print("  C. Angesehen und so gewollt – siehe bedeutung_ausnahmen.json:")
+            for bedeutung, eintraege in vermerkte:
+                grund, warum, _ = aus[(sprache, bedeutung)]
+                teile = ", ".join('%s' % bs for bs, _, _ in eintraege)
+                print("     %s  =  %s   [%s]" % (bedeutung, teile, grund))
+                print("        %s" % warum)
+        if not (gleiches_level or andere_level):
+            print("  Nichts Offenes.")
 
     print()
     print(strich)
-    print("%d Stellen insgesamt." % gesamt)
+    print("%d offene Stellen, %d angesehen und begruendet." % (gesamt, geprueft))
     print()
+    if unbekannt:
+        print("OFFEN heisst: noch nicht angesehen. Entweder trennen - dafuer ist")
+        print("bedeutungen_trennen.py da - oder in bedeutung_ausnahmen.json")
+        print("eintragen, warum es so bleiben soll.")
+        print()
     print("SEIT DEM 26.09.2026 FAENGT DIE APP DAS AB.")
     print("geschwister() in index.html liefert alle Woerter mit derselben")
     print("angezeigten Bedeutung. distractors() wirft sie aus dem")
