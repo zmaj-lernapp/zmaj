@@ -1789,11 +1789,30 @@ async function admobZeigen(belohnt){
     }
     await AdMobP.prepareInterstitial({adId: ADMOB_ID.interstitial, isTesting: ADMOB_TEST,
                                      npa: !werbungPersonalisiert()});
+    /* GEZAEHLT wird, sobald die Anzeige wirklich auf dem Schirm stand, und
+       GEWARTET wird, bis der Nutzer sie geschlossen hat. Das sind zwei
+       verschiedene Dinge, und bis zum 27.09.2026 hingen beide am
+       Schliess-Ereignis: kam es nicht, lief admobZeigen nach zwei Minuten in
+       die Frist, gab false zurueck, und die Anzeige galt als nicht gelaufen -
+       obwohl sie da war. Gemessen: werbungHeute.n stand nach elf Lektionen
+       auf 0, waehrend prepareInterstitial und showInterstitial einzeln
+       aufgerufen beide sauber durchliefen.
+       Ajdin am 27.09.2026: "also es kommt nicht immer werbung nach der
+       lektion und nach dem test auch nicht". */
+    let gezeigt = false;
+    const gesehen = AdMobP.addListener('interstitialAdShowed', ()=>{ gezeigt = true; });
     const zu = admobWarten([['interstitialAdDismissed', true],
                             ['interstitialAdFailedToShow', false]], 120000);
     await AdMobP.showInterstitial();
-    return await zu;
-  }catch(e){ return false; }
+    await zu;
+    gesehen.then(h => h.remove()).catch(()=>{});
+    return gezeigt;
+  }catch(e){
+    /* Auch hier den Grund stehen lassen statt ihn zu verschlucken - sonst
+       sucht man beim naechsten Mal wieder von vorne. */
+    admobFehler = (e && (e.message || e.code)) ? String(e.message || e.code) : 'unbekannt';
+    return false;
+  }
 }
 const SCHUTZ_MAX = 2;              // so viele Serienschutz gleichzeitig  (muss zu start.py passen)
 const SCHUTZ_TAGE = 10;            // alle so viele Tage wächst ein Schutz nach
