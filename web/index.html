@@ -1980,6 +1980,12 @@ function farbeSetzen(nr){
   const ersteMal = !wurzel.dataset.sek;
   wurzel.dataset.sek = nr;
   if(ersteMal) return;
+  /* Haelt der Fluss die Farbe fest - dann stehen die Werte inline am
+     Wurzelelement und gewinnen gegen :root[data-sek] -, aendert data-sek
+     nichts Sichtbares. Dann gibt es auch nichts zu ueberblenden, und die
+     Uebergangsklasse wuerde nur 750 Millisekunden lang jede andere
+     Farbaenderung traege machen. */
+  if(wurzel.style.getPropertyValue('--primary')) return;
   weichUmblenden();
 }
 
@@ -2006,9 +2012,15 @@ function sektionsFarbe(){
 
    Wie es rechnet: Jede Sektion hat einen Kopf. Eine gedachte Linie liegt im
    oberen Drittel des Bildschirms. Der Kopf, der zuletzt darueber gewandert
-   ist, gibt die Farbe; waehrend der naechste Kopf auf die Linie zulaeuft,
-   mischt sich dessen Farbe ein und ist bei der Linie voll da. Dadurch
-   aendert sich die Farbe mit jedem gescrollten Pixel ein wenig.
+   ist, gibt die Farbe - und zwar seine eigene, unvermischt. Erst kurz bevor
+   der naechste Kopf die Linie erreicht, laeuft sie in die naechste Farbe
+   hinueber; bei der Linie ist die neue voll da.
+
+   Der erste Entwurf hat den Uebergang ueber die ganze Sektion verteilt.
+   Das war zu viel Mischung: man sah fast nie die eigene Farbe einer Sektion,
+   und beim Scrollen wirkte es, als haenge die Farbe hinterher. Seit dem
+   27.09.2026 liegt der Wechsel deshalb in einem kurzen Band am Ende -
+   siehe FLUSS_BAND.
 
    Warum das nicht mit CSS geht: --bg und seine Geschwister sind Variablen,
    und Variablen lassen sich nicht ueberblenden - nur das, was daraus wird.
@@ -2020,6 +2032,10 @@ function sektionsFarbe(){
    die, die gerade gilt. Deshalb MUSS die Tafel weg, sobald zwischen hell und
    dunkel gewechselt wird - sonst mischte der Lernpfad weiter mit den Farben
    der alten Fassung. Das tut themeAnwenden() ueber farbtafelVergessen(). */
+/* Wie lang das Uebergangsstueck am Ende einer Sektion ist, in Pixeln. Kleiner
+   heisst: die Sektion traegt ihre Farbe laenger und der Wechsel kommt spaeter,
+   dafuer zuegiger. Groesser heisst: weicher, aber wieder mehr Mischung. */
+const FLUSS_BAND = 180;
 const FLUSS_ROLLEN = ['', '-dunkel', '-sanft', '-grund', '-flaeche', '-linie', '-matt'];
 const FLUSS_ZIELE  = ['--primary', '--primary-dark', '--primary-soft', '--bg',
                       '--surface', '--line', '--muted'];
@@ -2068,9 +2084,17 @@ function farbflussAus(){
 function farbflussRechnen(){
   flussOffen = false;
   const pfad = $('pfad');
-  /* Nur auf dem Lernpfad: woanders gibt es keine Sektionskoepfe, an denen
-     sich die Farbe orientieren koennte. */
-  if(!pfad || pfad.style.display === 'none') return farbflussAus();
+  /* Gerechnet wird nur auf dem Lernpfad - woanders gibt es keine
+     Sektionskoepfe, an denen sich die Farbe orientieren koennte.
+     Wichtig ist das WAS DANN PASSIERT: nichts. Die Farbe bleibt stehen, die
+     der Pfad zuletzt hatte. Vorher wurden hier die eigenen Werte abgenommen,
+     und damit fiel die Farbe auf die reine Sektionsfarbe aus data-sek
+     zurueck - in den Geschichten und den Einstellungen sah man deshalb eine
+     andere Farbe als im Hauptmenue.
+     Ajdin am 27.09.2026: "wenn ich von geschichte oder einstellungen wechsle
+     dann aendert sich die farbe auch das soll aber alles dieselbe farbe sein
+     wie beim hauptmenue". */
+  if(!pfad || pfad.style.display === 'none') return;
   /* Wer die Animationen abgeschaltet hat, will auch das nicht. Und mit
      ?sek=N schaut sich jemand eine bestimmte Farbe an - die soll stehen. */
   if(!animOn) return farbflussAus();
@@ -2090,10 +2114,30 @@ function farbflussRechnen(){
   const oben = [].slice.call(box.children).map(el => el.getBoundingClientRect().top);
   let c = 0;
   while(c + 1 < oben.length && oben[c+1] <= linie) c++;
+  /* Der Uebergang liegt im letzten Stueck vor der naechsten Sektion, nicht
+     ueber die ganze Sektion verteilt.
+     Ajdin am 27.09.2026: "oder wir machen es so das nicht es ueberlaeuft von
+     sektion zu sektion sondern nur innerhalb der sektion weil manchmal kommt
+     die farbe nicht so gerne mit".
+     Vorher war der Anteil (linie - oben[c]) / spanne, also die ganze Sektion
+     lang unterwegs zur naechsten Farbe. Dadurch sah man fast immer eine
+     Mischung und fast nie die eigene Farbe der Sektion - und beim Scrollen
+     wirkte es, als haenge die Farbe hinterher.
+     Jetzt: die Sektion traegt ihre Farbe. Erst in den letzten FLUSS_BAND
+     Pixeln, bevor der naechste Kopf die Linie erreicht, laeuft sie hinueber.
+     Bei kurzen Sektionen wird das Band auf die halbe Sektion gekuerzt,
+     sonst waere es laenger als die Sektion selbst. */
   let anteil = 0;
   if(c + 1 < oben.length){
     const spanne = oben[c+1] - oben[c];
-    if(spanne > 1) anteil = Math.max(0, Math.min(1, (linie - oben[c]) / spanne));
+    if(spanne > 1){
+      const band = Math.min(FLUSS_BAND, spanne / 2);
+      const rest = oben[c+1] - linie;          // bis der naechste Kopf da ist
+      if(rest < band){
+        const t = Math.max(0, Math.min(1, 1 - rest / band));
+        anteil = t * t * (3 - 2 * t);          // sanft an- und auslaufen
+      }
+    }
   }
   /* Mit Rest, genau wie sektionsNummer: die siebte Sektion faengt wieder
      bei der ersten Farbe an. */
