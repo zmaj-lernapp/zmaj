@@ -36,17 +36,30 @@
     --primary:#4049A5; --primary-dark:#31387D; --primary-soft:#D1D5FA;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
     --line:#CBCEEB; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
-    /* Eine Farbe je Sektion. Vorher war jede Ueberschrift blau und jeder
-       Balken gelb, dadurch standen auf dem Lernpfad nach Farbton nur vier
-       Toene. Sektion 1 behaelt das Blau der App und der Fahne. Hier sind
-       die Toene dunkler als in der dunklen Fassung, sonst leuchten sie
-       auf Weiss. */
-    --sek1:#4049A5; --sek1-dunkel:#31387D; --sek1-sanft:#D1D5FA; --sek1-grund:#D1D5FA; --sek1-flaeche:#F6F7FE; --sek1-linie:#CBCEEB; --sek1-matt:#66698A;   /* Blau */
-    --sek2:#6F40A5; --sek2-dunkel:#54317D; --sek2-sanft:#E4D1FA; --sek2-grund:#E4D1FA; --sek2-flaeche:#FAF6FE; --sek2-linie:#DACBEB; --sek2-matt:#77668A;   /* Indigo */
-    --sek3:#933993; --sek3-dunkel:#6B2A6B; --sek3-sanft:#F9CDF9; --sek3-grund:#F9CDF9; --sek3-flaeche:#FEF6FE; --sek3-linie:#EBCBEB; --sek3-matt:#876487;   /* Violett */
-    --sek4:#9A3C68; --sek4-dunkel:#722D4D; --sek4-sanft:#F9CDE1; --sek4-grund:#F9CDE1; --sek4-flaeche:#FEF6FA; --sek4-linie:#EBCBDA; --sek4-matt:#8A6677;   /* Magenta */
-    --sek5:#296A65; --sek5-dunkel:#19423E; --sek5-sanft:#BAE8E4; --sek5-grund:#BAE8E4; --sek5-flaeche:#F6FEFD; --sek5-linie:#CBEBE8; --sek5-matt:#597875;   /* Petrol */
-    --sek6:#336284; --sek6-dunkel:#23435B; --sek6-sanft:#C2DFF4; --sek6-grund:#C2DFF4; --sek6-flaeche:#F6FBFE; --sek6-linie:#CBDEEB; --sek6-matt:#5F7381;   /* Himmelblau */
+    /* Eine Farbe je Sektion, neun Stueck. Vorher war jede Ueberschrift
+       blau und jeder Balken gelb, dadurch standen auf dem Lernpfad nach
+       Farbton nur vier Toene.
+       Drei Farbtoene sind belegt und bleiben frei: Gruen 148 heisst
+       "richtig", Rot 3 heisst "falsch", Gelb 48 ist der Akzent. Mit 26 Grad
+       Abstand um jeden bleibt der Bogen von 175 bis 336 Grad, und darauf
+       liegen die neun Toene mit 20 Grad Abstand. Sektion 1 behaelt das Blau
+       der App und der Fahne, danach geht es den Bogen hinauf und am Ende
+       herum.
+       Weil 20 Grad allein zu wenig sind, um zwei Nachbarn auf einer grossen
+       Flaeche zu unterscheiden, ist bei jeder zweiten Sektion der Grund eine
+       Stufe kraeftiger. Dadurch unterscheiden sich Nachbarn in Farbton UND
+       Helligkeit.
+       Hier sind die Toene dunkler als in der dunklen Fassung, sonst leuchten
+       sie auf Weiss. */
+    --sek1:#4049A5; --sek1-dunkel:#30377C; --sek1-sanft:#D1D4FA; --sek1-grund:#D1D4FA; --sek1-flaeche:#F6F6FE; --sek1-linie:#CBCEEB; --sek1-matt:#66698A;   /* Blau */
+    --sek2:#5B40A5; --sek2-dunkel:#45307C; --sek2-sanft:#D0C2F4; --sek2-grund:#D0C2F4; --sek2-flaeche:#F8F6FE; --sek2-linie:#D4CBEB; --sek2-matt:#6F668A;   /* Indigo */
+    --sek3:#7D40A5; --sek3-dunkel:#5E307C; --sek3-sanft:#EAD1FA; --sek3-grund:#EAD1FA; --sek3-flaeche:#FBF6FE; --sek3-linie:#DFCBEB; --sek3-matt:#7B668A;   /* Violett */
+    --sek4:#7F3384; --sek4-dunkel:#58245B; --sek4-sanft:#EABAEE; --sek4-grund:#EABAEE; --sek4-flaeche:#FDF6FE; --sek4-linie:#E9CBEB; --sek4-matt:#87668A;   /* Purpur */
+    --sek5:#973B7E; --sek5-dunkel:#6F2B5D; --sek5-sanft:#F9CDED; --sek5-grund:#F9CDED; --sek5-flaeche:#FEF6FC; --sek5-linie:#EBCBE3; --sek5-matt:#8A6680;   /* Magenta */
+    --sek6:#8C3658; --sek6-dunkel:#63273F; --sek6-sanft:#EFBED1; --sek6-grund:#EFBED1; --sek6-flaeche:#FEF6F9; --sek6-linie:#EBCBD8; --sek6-matt:#8A6674;   /* Rose */
+    --sek7:#296A65; --sek7-dunkel:#19413E; --sek7-sanft:#BAE8E4; --sek7-grund:#BAE8E4; --sek7-flaeche:#F6FEFD; --sek7-linie:#CBEBE9; --sek7-matt:#597876;   /* Petrol */
+    --sek8:#295A6A; --sek8-dunkel:#193741; --sek8-sanft:#AED4E0; --sek8-grund:#AED4E0; --sek8-flaeche:#F6FCFE; --sek8-linie:#CBE3EB; --sek8-matt:#5D767E;   /* Tuerkis */
+    --sek9:#395F93; --sek9-dunkel:#29456A; --sek9-sanft:#C8DCF9; --sek9-grund:#C8DCF9; --sek9-flaeche:#F6F9FE; --sek9-linie:#CBD9EB; --sek9-matt:#647287;   /* Himmelblau */
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
@@ -56,12 +69,15 @@
       --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
       --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-      --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292C56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456D; --sek1-matt:#ADAFCD;   /* Blau */
-      --sek2:#B28FDC; --sek2-dunkel:#8F68BB; --sek2-sanft:#3E2956; --sek2-grund:#1E1528; --sek2-flaeche:#3C2C4E; --sek2-linie:#56416D; --sek2-matt:#BCADCD;   /* Indigo */
-      --sek3:#D987D9; --sek3-dunkel:#B861B8; --sek3-sanft:#562956; --sek3-grund:#281528; --sek3-flaeche:#4E2C4E; --sek3-linie:#6D416D; --sek3-matt:#CDADCD;   /* Violett */
-      --sek4:#DA8BB0; --sek4-dunkel:#BA648C; --sek4-sanft:#56293E; --sek4-grund:#28151E; --sek4-flaeche:#4E2C3C; --sek4-linie:#6D4156; --sek4-matt:#CDADBC;   /* Magenta */
-      --sek5:#87D9D2; --sek5-dunkel:#61B8B1; --sek5-sanft:#295653; --sek5-grund:#152826; --sek5-flaeche:#2C4E4B; --sek5-linie:#416D69; --sek5-matt:#ADCDCA;   /* Petrol */
-      --sek6:#87B7D9; --sek6-dunkel:#6194B8; --sek6-sanft:#294456; --sek6-grund:#152028; --sek6-flaeche:#2C404E; --sek6-linie:#415A6D; --sek6-matt:#ADC0CD;   /* Himmelblau */
+      --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD;   /* Blau */
+      --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD;   /* Indigo */
+      --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD;   /* Violett */
+      --sek4:#D487D9; --sek4-dunkel:#B261B8; --sek4-sanft:#532956; --sek4-grund:#271528; --sek4-flaeche:#4C2C4E; --sek4-linie:#69416C; --sek4-matt:#CAADCD;   /* Purpur */
+      --sek5:#D987C3; --sek5-dunkel:#B861A1; --sek5-sanft:#56294A; --sek5-grund:#281523; --sek5-flaeche:#4E2C45; --sek5-linie:#6C4161; --sek5-matt:#CDADC4;   /* Magenta */
+      --sek6:#DA8BAB; --sek6-dunkel:#B96486; --sek6-sanft:#56293B; --sek6-grund:#28151D; --sek6-flaeche:#4E2C3A; --sek6-linie:#6C4152; --sek6-matt:#CDADBA;   /* Rose */
+      --sek7:#87D9D2; --sek7-dunkel:#61B8B1; --sek7-sanft:#295652; --sek7-grund:#152827; --sek7-flaeche:#2C4E4B; --sek7-linie:#416C69; --sek7-matt:#ADCDCA;   /* Petrol */
+      --sek8:#87C5D9; --sek8-dunkel:#61A2B8; --sek8-sanft:#294B56; --sek8-grund:#152328; --sek8-flaeche:#2C464E; --sek8-linie:#41626C; --sek8-matt:#ADC5CD;   /* Tuerkis */
+      --sek9:#87A9D9; --sek9-dunkel:#6185B8; --sek9-sanft:#293C56; --sek9-grund:#151D28; --sek9-flaeche:#2C3A4E; --sek9-linie:#41536C; --sek9-matt:#ADBACD;   /* Himmelblau */
     }
   }
   :root[data-theme="dark"]{
@@ -69,12 +85,15 @@
     --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
     --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
-    --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292C56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456D; --sek1-matt:#ADAFCD;   /* Blau */
-    --sek2:#B28FDC; --sek2-dunkel:#8F68BB; --sek2-sanft:#3E2956; --sek2-grund:#1E1528; --sek2-flaeche:#3C2C4E; --sek2-linie:#56416D; --sek2-matt:#BCADCD;   /* Indigo */
-    --sek3:#D987D9; --sek3-dunkel:#B861B8; --sek3-sanft:#562956; --sek3-grund:#281528; --sek3-flaeche:#4E2C4E; --sek3-linie:#6D416D; --sek3-matt:#CDADCD;   /* Violett */
-    --sek4:#DA8BB0; --sek4-dunkel:#BA648C; --sek4-sanft:#56293E; --sek4-grund:#28151E; --sek4-flaeche:#4E2C3C; --sek4-linie:#6D4156; --sek4-matt:#CDADBC;   /* Magenta */
-    --sek5:#87D9D2; --sek5-dunkel:#61B8B1; --sek5-sanft:#295653; --sek5-grund:#152826; --sek5-flaeche:#2C4E4B; --sek5-linie:#416D69; --sek5-matt:#ADCDCA;   /* Petrol */
-    --sek6:#87B7D9; --sek6-dunkel:#6194B8; --sek6-sanft:#294456; --sek6-grund:#152028; --sek6-flaeche:#2C404E; --sek6-linie:#415A6D; --sek6-matt:#ADC0CD;   /* Himmelblau */
+    --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD;   /* Blau */
+    --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD;   /* Indigo */
+    --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD;   /* Violett */
+    --sek4:#D487D9; --sek4-dunkel:#B261B8; --sek4-sanft:#532956; --sek4-grund:#271528; --sek4-flaeche:#4C2C4E; --sek4-linie:#69416C; --sek4-matt:#CAADCD;   /* Purpur */
+    --sek5:#D987C3; --sek5-dunkel:#B861A1; --sek5-sanft:#56294A; --sek5-grund:#281523; --sek5-flaeche:#4E2C45; --sek5-linie:#6C4161; --sek5-matt:#CDADC4;   /* Magenta */
+    --sek6:#DA8BAB; --sek6-dunkel:#B96486; --sek6-sanft:#56293B; --sek6-grund:#28151D; --sek6-flaeche:#4E2C3A; --sek6-linie:#6C4152; --sek6-matt:#CDADBA;   /* Rose */
+    --sek7:#87D9D2; --sek7-dunkel:#61B8B1; --sek7-sanft:#295652; --sek7-grund:#152827; --sek7-flaeche:#2C4E4B; --sek7-linie:#416C69; --sek7-matt:#ADCDCA;   /* Petrol */
+    --sek8:#87C5D9; --sek8-dunkel:#61A2B8; --sek8-sanft:#294B56; --sek8-grund:#152328; --sek8-flaeche:#2C464E; --sek8-linie:#41626C; --sek8-matt:#ADC5CD;   /* Tuerkis */
+    --sek9:#87A9D9; --sek9-dunkel:#6185B8; --sek9-sanft:#293C56; --sek9-grund:#151D28; --sek9-flaeche:#2C3A4E; --sek9-linie:#41536C; --sek9-matt:#ADBACD;   /* Himmelblau */
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -326,6 +345,24 @@
     --surface:var(--sek6-flaeche); --line:var(--sek6-linie);
     --muted:var(--sek6-matt);
   }
+  :root[data-sek="7"]{
+    --primary:var(--sek7); --primary-dark:var(--sek7-dunkel);
+    --primary-soft:var(--sek7-sanft); --bg:var(--sek7-grund);
+    --surface:var(--sek7-flaeche); --line:var(--sek7-linie);
+    --muted:var(--sek7-matt);
+  }
+  :root[data-sek="8"]{
+    --primary:var(--sek8); --primary-dark:var(--sek8-dunkel);
+    --primary-soft:var(--sek8-sanft); --bg:var(--sek8-grund);
+    --surface:var(--sek8-flaeche); --line:var(--sek8-linie);
+    --muted:var(--sek8-matt);
+  }
+  :root[data-sek="9"]{
+    --primary:var(--sek9); --primary-dark:var(--sek9-dunkel);
+    --primary-soft:var(--sek9-sanft); --bg:var(--sek9-grund);
+    --surface:var(--sek9-flaeche); --line:var(--sek9-linie);
+    --muted:var(--sek9-matt);
+  }
 
   /* ---- Weicher Uebergang beim Sektionswechsel ----
      Wenn die naechste Sektion dran ist, soll die neue Farbe hineinlaufen
@@ -370,7 +407,7 @@
   .section.zu > .skopf .desc, .section.zu .levels{display:none}
   .section.zu{padding-bottom:14px}
 
-  .section.sek1, .section.sek2, .section.sek3, .section.sek4, .section.sek5, .section.sek6{ position:relative }
+  .section.sek1, .section.sek2, .section.sek3, .section.sek4, .section.sek5, .section.sek6, .section.sek7, .section.sek8, .section.sek9{ position:relative }
   /* Der Streifen laeuft von der eigenen Farbe in die der naechsten Sektion.
      Scrollt man den Lernpfad hinunter, gehen die Farben ineinander ueber,
      statt hart zu springen. Bei der letzten bleibt er einfarbig, dafuer
@@ -378,7 +415,7 @@
      Ein Rahmen kann keinen Verlauf tragen, deshalb ein eigenes Element.
      Es liegt zwei Pixel weiter links und oben, damit es den Rahmen der
      Karte an dieser Seite ueberdeckt statt neben ihm zu stehen. */
-  .section.sek1::before, .section.sek2::before, .section.sek3::before, .section.sek4::before, .section.sek5::before, .section.sek6::before{
+  .section.sek1::before, .section.sek2::before, .section.sek3::before, .section.sek4::before, .section.sek5::before, .section.sek6::before, .section.sek7::before, .section.sek8::before, .section.sek9::before{
     content:''; position:absolute; left:-2px; top:-2px; bottom:-2px; width:5px;
     border-radius:var(--radius) 0 0 var(--radius);
     background:linear-gradient(180deg, var(--sek), var(--sek-next, var(--sek)));
@@ -389,6 +426,9 @@
   .section.sek4{--sek:var(--sek4)}
   .section.sek5{--sek:var(--sek5)}
   .section.sek6{--sek:var(--sek6)}
+  .section.sek7{--sek:var(--sek7)}
+  .section.sek8{--sek:var(--sek8)}
+  .section.sek9{--sek:var(--sek9)}
   /* Bis zum 26.09.2026 stand hier opacity:.6 - die gesperrten Sektionen
      waren also zu 40 Prozent durchsichtig, und der Grund schien hindurch.
      Der Tester am selben Tag: "weil die Boxen durchsichtig sind mischt
@@ -1887,17 +1927,21 @@ const firstOpen = () => { const i = CATEGORIES.findIndex(c=>!passed.has(c.id)); 
    :root[data-sek=...] im Stil. Gerechnet wird ueber das naechste offene
    Level, nicht ueber die gerade gezeigte Seite: sonst wechselte die Farbe
    beim Blaettern durch die Einstellungen.
-   Mit Rest, damit eine fuenfte Sektion wieder bei der ersten Farbe anfinge
-   statt ohne Farbe dazustehen. */
+   Es gibt neun Sektionen und neun Farben, eine je Sektion. Bis zum
+   27.09.2026 waren es sechs, und die Sektionen 7 bis 9 trugen deshalb
+   wieder die Farben von 1 bis 3 - beim Durchscrollen sah man denselben
+   Bogen zweimal. Der Rest bleibt trotzdem stehen: kommt irgendwann eine
+   zehnte Sektion dazu, faengt sie wieder bei der ersten Farbe an statt
+   ohne Farbe dazustehen. */
 let farbUhr = 0;
 let offeneSektion = null;        // welche Sektion offen ist
                                  // null = noch nie gesetzt, '' = alle zu
 
-/* Die Nummer der Farbe zu einer Sektion. Mit Rest, damit eine fuenfte
-   Sektion wieder bei der ersten Farbe anfinge. */
+/* Die Nummer der Farbe zu einer Sektion. Neun Sektionen, neun Farben.
+   Der Rest greift erst ab einer zehnten. */
 function sektionsNummer(id){
   const i = SECTIONS.findIndex(s => s.id === id);
-  return String((i < 0 ? 0 : i) % 6 + 1);
+  return String((i < 0 ? 0 : i) % 9 + 1);
 }
 
 /* Auf- und Zuklappen. Ein Tipp auf einen anderen Kopf klappt den auf und
@@ -1980,12 +2024,6 @@ function farbeSetzen(nr){
   const ersteMal = !wurzel.dataset.sek;
   wurzel.dataset.sek = nr;
   if(ersteMal) return;
-  /* Haelt der Fluss die Farbe fest - dann stehen die Werte inline am
-     Wurzelelement und gewinnen gegen :root[data-sek] -, aendert data-sek
-     nichts Sichtbares. Dann gibt es auch nichts zu ueberblenden, und die
-     Uebergangsklasse wuerde nur 750 Millisekunden lang jede andere
-     Farbaenderung traege machen. */
-  if(wurzel.style.getPropertyValue('--primary')) return;
   weichUmblenden();
 }
 
@@ -1994,168 +2032,13 @@ function sektionsFarbe(){
      von Sektion 2, ohne dass man erst fuenfzehn Level spielen muss. Ohne
      den Zusatz rechnet die App wie immer selbst. */
   const gewuenscht = new URLSearchParams(location.search).get('sek');
-  if(gewuenscht && /^[1-6]$/.test(gewuenscht)) return farbeSetzen(gewuenscht);
+  if(gewuenscht && /^[1-9]$/.test(gewuenscht)) return farbeSetzen(gewuenscht);
   if(!CATEGORIES.length || !SECTIONS.length) return;
   /* Die aufgeklappte Sektion gibt die Farbe vor, nicht die, in der gerade
      gelernt wird. Wer sich Sektion 3 ansieht, soll sie auch sehen. */
   const id = offeneSektion || (CATEGORIES[firstOpen()] || {}).sektion;
   farbeSetzen(sektionsNummer(id));
-  /* Auf dem Lernpfad hat die Scrollhoehe das letzte Wort. Der Aufruf steht
-     nach farbeSetzen, weil data-sek der Rueckfall fuer alle anderen
-     Ansichten bleibt - dort wird der Fluss wieder abgeschaltet. */
-  farbfluss();
 }
-
-/* ---------- Die Farbe wandert beim Scrollen ----------
-   Ajdin am 27.09.2026: "wenn es moeglich ist das wenn man weiter runter
-   scrollt das die farben automatisch fliessend wechseln".
-
-   Wie es rechnet: Jede Sektion hat einen Kopf. Eine gedachte Linie liegt im
-   oberen Drittel des Bildschirms. Der Kopf, der zuletzt darueber gewandert
-   ist, gibt die Farbe - und zwar seine eigene, unvermischt. Erst kurz bevor
-   der naechste Kopf die Linie erreicht, laeuft sie in die naechste Farbe
-   hinueber; bei der Linie ist die neue voll da.
-
-   Der erste Entwurf hat den Uebergang ueber die ganze Sektion verteilt.
-   Das war zu viel Mischung: man sah fast nie die eigene Farbe einer Sektion,
-   und beim Scrollen wirkte es, als haenge die Farbe hinterher. Seit dem
-   27.09.2026 liegt der Wechsel deshalb in einem kurzen Band am Ende -
-   siehe FLUSS_BAND.
-
-   Warum das nicht mit CSS geht: --bg und seine Geschwister sind Variablen,
-   und Variablen lassen sich nicht ueberblenden - nur das, was daraus wird.
-   Ein Zwischenwert zwischen zwei Sektionsfarben ist aber selbst eine
-   Variable. Gemischt werden muss also hier, auf den fertigen Zahlen.
-
-   Die Zahlen holt farbtafel() aus dem Stil. Dort steht je Sektion, was die
-   helle und was die dunkle Fassung sagt, und getComputedStyle liefert genau
-   die, die gerade gilt. Deshalb MUSS die Tafel weg, sobald zwischen hell und
-   dunkel gewechselt wird - sonst mischte der Lernpfad weiter mit den Farben
-   der alten Fassung. Das tut themeAnwenden() ueber farbtafelVergessen(). */
-/* Wie lang das Uebergangsstueck am Ende einer Sektion ist, in Pixeln. Kleiner
-   heisst: die Sektion traegt ihre Farbe laenger und der Wechsel kommt spaeter,
-   dafuer zuegiger. Groesser heisst: weicher, aber wieder mehr Mischung. */
-const FLUSS_BAND = 180;
-const FLUSS_ROLLEN = ['', '-dunkel', '-sanft', '-grund', '-flaeche', '-linie', '-matt'];
-const FLUSS_ZIELE  = ['--primary', '--primary-dark', '--primary-soft', '--bg',
-                      '--surface', '--line', '--muted'];
-let farbTafel = null;
-let flussOffen = false;
-
-function farbtafelVergessen(){ farbTafel = null; }
-
-/* '#4049A5', '#abc' oder 'rgb(64, 73, 165)' -> [64, 73, 165] */
-function rgbLesen(wert){
-  const s = String(wert || '').trim();
-  if(s.charAt(0) === '#'){
-    const h = s.length === 4
-      ? s.charAt(1)+s.charAt(1)+s.charAt(2)+s.charAt(2)+s.charAt(3)+s.charAt(3)
-      : s.slice(1, 7);
-    return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
-  }
-  const z = s.match(/-?\d+(?:\.\d+)?/g);
-  return z && z.length >= 3 ? [Math.round(+z[0]), Math.round(+z[1]), Math.round(+z[2])] : null;
-}
-
-function farbtafel(){
-  if(farbTafel) return farbTafel;
-  const stil = getComputedStyle(document.documentElement);
-  const tafel = [];
-  for(let n = 1; n <= 6; n++){
-    const reihe = FLUSS_ROLLEN.map(r => rgbLesen(stil.getPropertyValue('--sek'+n+r)));
-    if(reihe.some(x => !x)) return null;      // Stil noch nicht da: spaeter nochmal
-    tafel.push(reihe);
-  }
-  farbTafel = tafel;
-  return farbTafel;
-}
-
-const flussMischen = (a, b, t) =>
-  'rgb(' + Math.round(a[0] + (b[0]-a[0])*t) + ','
-         + Math.round(a[1] + (b[1]-a[1])*t) + ','
-         + Math.round(a[2] + (b[2]-a[2])*t) + ')';
-
-/* Die eigenen Werte wieder abnehmen, damit :root[data-sek] wieder greift. */
-function farbflussAus(){
-  const stil = document.documentElement.style;
-  FLUSS_ZIELE.forEach(z => stil.removeProperty(z));
-}
-
-function farbflussRechnen(){
-  flussOffen = false;
-  const pfad = $('pfad');
-  /* Gerechnet wird nur auf dem Lernpfad - woanders gibt es keine
-     Sektionskoepfe, an denen sich die Farbe orientieren koennte.
-     Wichtig ist das WAS DANN PASSIERT: nichts. Die Farbe bleibt stehen, die
-     der Pfad zuletzt hatte. Vorher wurden hier die eigenen Werte abgenommen,
-     und damit fiel die Farbe auf die reine Sektionsfarbe aus data-sek
-     zurueck - in den Geschichten und den Einstellungen sah man deshalb eine
-     andere Farbe als im Hauptmenue.
-     Ajdin am 27.09.2026: "wenn ich von geschichte oder einstellungen wechsle
-     dann aendert sich die farbe auch das soll aber alles dieselbe farbe sein
-     wie beim hauptmenue". */
-  if(!pfad || pfad.style.display === 'none') return;
-  /* Wer die Animationen abgeschaltet hat, will auch das nicht. Und mit
-     ?sek=N schaut sich jemand eine bestimmte Farbe an - die soll stehen. */
-  if(!animOn) return farbflussAus();
-  const gewuenscht = new URLSearchParams(location.search).get('sek');
-  if(gewuenscht && /^[1-6]$/.test(gewuenscht)) return farbflussAus();
-  const box = $('sections');
-  if(!box || box.children.length < 2) return farbflussAus();
-  const tafel = farbtafel();
-  if(!tafel) return;
-
-  /* Die Bezugslinie liegt im oberen Drittel, hoechstens 220 Pixel tief.
-     innerHeight kann 0 sein - in einer verborgenen oder gedrosselten
-     Ansicht meldet Chrome das so. Ohne die untere Grenze faellt die Linie
-     dann auf 0 und die Farbe wechselt erst, wenn ein Kopf den oberen Rand
-     beruehrt. Am 27.09.2026 beim Nachmessen genau so passiert. */
-  const linie = innerHeight > 0 ? Math.min(220, innerHeight * 0.32) : 160;
-  const oben = [].slice.call(box.children).map(el => el.getBoundingClientRect().top);
-  let c = 0;
-  while(c + 1 < oben.length && oben[c+1] <= linie) c++;
-  /* Der Uebergang liegt im letzten Stueck vor der naechsten Sektion, nicht
-     ueber die ganze Sektion verteilt.
-     Ajdin am 27.09.2026: "oder wir machen es so das nicht es ueberlaeuft von
-     sektion zu sektion sondern nur innerhalb der sektion weil manchmal kommt
-     die farbe nicht so gerne mit".
-     Vorher war der Anteil (linie - oben[c]) / spanne, also die ganze Sektion
-     lang unterwegs zur naechsten Farbe. Dadurch sah man fast immer eine
-     Mischung und fast nie die eigene Farbe der Sektion - und beim Scrollen
-     wirkte es, als haenge die Farbe hinterher.
-     Jetzt: die Sektion traegt ihre Farbe. Erst in den letzten FLUSS_BAND
-     Pixeln, bevor der naechste Kopf die Linie erreicht, laeuft sie hinueber.
-     Bei kurzen Sektionen wird das Band auf die halbe Sektion gekuerzt,
-     sonst waere es laenger als die Sektion selbst. */
-  let anteil = 0;
-  if(c + 1 < oben.length){
-    const spanne = oben[c+1] - oben[c];
-    if(spanne > 1){
-      const band = Math.min(FLUSS_BAND, spanne / 2);
-      const rest = oben[c+1] - linie;          // bis der naechste Kopf da ist
-      if(rest < band){
-        const t = Math.max(0, Math.min(1, 1 - rest / band));
-        anteil = t * t * (3 - 2 * t);          // sanft an- und auslaufen
-      }
-    }
-  }
-  /* Mit Rest, genau wie sektionsNummer: die siebte Sektion faengt wieder
-     bei der ersten Farbe an. */
-  const a = tafel[c % 6];
-  const b = tafel[Math.min(c + 1, oben.length - 1) % 6];
-  const stil = document.documentElement.style;
-  FLUSS_ZIELE.forEach((ziel, i) => stil.setProperty(ziel, flussMischen(a[i], b[i], anteil)));
-}
-
-/* Hoechstens einmal je Bild rechnen. Ohne die Bremse rechnete es bei jedem
-   Scroll-Ereignis, und das sind auf dem Handy leicht hundert in der Sekunde. */
-function farbfluss(){
-  if(flussOffen) return;
-  flussOffen = true;
-  requestAnimationFrame(farbflussRechnen);
-}
-addEventListener('scroll', farbfluss, {passive:true});
-addEventListener('resize', farbfluss);
 const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const strip = s => s.toLowerCase().replace(/đ/g,'d').normalize('NFD').replace(/[̀-ͯ]/g,'');
 const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
@@ -2557,26 +2440,12 @@ function themeAnwenden(blenden){
   if(leiste) [].slice.call(leiste.children).forEach(b => {
     b.setAttribute('aria-checked', b.dataset.themeWahl === themeWahl ? 'true' : 'false');
   });
-  /* Die Farbtafel fuer den Lernpfad steht in den Werten der bisherigen
-     Fassung. Sie MUSS weg, sonst mischt der Pfad nach dem Umschalten weiter
-     mit den alten Farben - hell auf dunkel sieht dann aus wie ein Fehler. */
-  farbtafelVergessen();
-  farbfluss();
   /* Beim Start nicht blenden - da gibt es keine alte Fassung, aus der man
      herueberblenden koennte, und der Kopf der Seite hat die richtige schon
      gesetzt. Nur ein Tippen blendet. */
   if(blenden) weichUmblenden();
 }
 
-/* Stellt das Handy waehrend der Benutzung von hell auf dunkel um, aendert
-   sich prefers-color-scheme, ohne dass wir etwas tun - aber die Farbtafel
-   merkt das nicht von allein. */
-if(window.matchMedia){
-  const dunkelFrage = matchMedia('(prefers-color-scheme: dark)');
-  const merker = () => { farbtafelVergessen(); farbfluss(); };
-  if(dunkelFrage.addEventListener) dunkelFrage.addEventListener('change', merker);
-  else if(dunkelFrage.addListener) dunkelFrage.addListener(merker);
-}
 
 (function(){
   const leiste = $('themeWahl');
@@ -4778,11 +4647,11 @@ function showPath(){
     const sdone = levels.filter(x=>passed.has(x.c.id)).length;
     const sopen = levels.some(x=>isUnlocked(x.i));
     const sec=document.createElement('div');
-    /* sek1 bis sek4 geben die Farbe. Mit Rest gerechnet, damit eine
-       fuenfte Sektion wieder bei der ersten Farbe anfinge statt ohne
-       Farbe dazustehen. */
+    /* sek1 bis sek9 geben die Farbe, eine je Sektion. Mit Rest
+       gerechnet, damit eine zehnte wieder bei der ersten anfinge statt
+       ohne Farbe dazustehen. */
     const auf = s.id === offeneSektion;
-    sec.className='section sek'+(si % 6 + 1)+(sopen?'':' locked')+(auf?'':' zu');
+    sec.className='section sek'+(si % 9 + 1)+(sopen?'':' locked')+(auf?'':' zu');
     sec.dataset.sid = s.id;
     /* Der Kopf ist ein Knopf: anklickbar, mit der Tastatur erreichbar, und
        aria-expanded sagt an, was offen ist. Die Level stehen in einem
