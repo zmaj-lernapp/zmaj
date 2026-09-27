@@ -1541,7 +1541,14 @@ const WERBUNG_AN          = true;  // Hauptschalter
    das, was den Tag begrenzt: nach sechs Lektionen kommt keine Anzeige mehr. */
 const WERBUNG_AB_LEKTION  = 1;     // ab der ersten Lektion
 const WERBUNG_JEDE_X      = 1;     // und dann nach jeder
-const WERBUNG_MAX_TAG     = 6;     // mehr wird an einem Tag nicht gezeigt
+/* Ajdin am 27.09.2026: "fuer herzen auffuellen wuerde ich eine taegliche
+   grenze setzen aber fuer normale videos nicht also nach einer bestandenen
+   oder nicht bestandenen lektion oder auch test".
+   0 heisst: keine Tagesgrenze. Gezaehlt wird trotzdem weiter (werbungHeute.n),
+   das ist die einzige Spur, an der man spaeter ablesen kann, wie viele
+   Anzeigen ein Tag wirklich gebracht hat. Eine Zahl groesser 0 setzt die
+   Grenze wieder in Kraft. */
+const WERBUNG_MAX_TAG     = 0;     // 0 = keine Grenze fuer die Anzeige nach Lektion und Test
 /* Eigenes Tageskontingent fuer das freiwillige Video. Ajdin am 26.09.2026:
    wer viel lernt, hatte nach sechs Pflicht-Anzeigen auf dem Schirm "Keine
    Leben mehr" keinen Knopf "Leben holen" mehr - aufgebraucht von Anzeigen,
@@ -1654,8 +1661,11 @@ function werbungErlaubt(belohnt){
   if(einwilligungFragen()) return false;         // erst fragen, dann werben
   const heute = new Date().toISOString().slice(0,10);
   if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0};
+  /* Das freiwillige Video fuer ein Herz bleibt begrenzt - es kostet Leben,
+     und wer sich zwanzig Videos ansieht, spielt den Tag durch, ohne je zu
+     warten. Die Anzeige nach Lektion und Test ist nicht begrenzt. */
   return belohnt ? (werbungHeute.lohn || 0) < WERBUNG_MAX_LOHN
-                 : (werbungHeute.n    || 0) < WERBUNG_MAX_TAG;
+                 : (!WERBUNG_MAX_TAG || (werbungHeute.n || 0) < WERBUNG_MAX_TAG);
 }
 function werbungGezaehlt(belohnt){
   const heute = new Date().toISOString().slice(0,10);
@@ -1692,6 +1702,8 @@ const ADMOB_ID = {
 };
 let AdMobP = null;          // das Plugin, sobald es sich gemeldet hat
 let admobDarf = false;      // canRequestAds – vorher darf nichts geladen werden
+let admobFehler = null;     // warum der Start scheiterte, fuer den zweiten Versuch
+let admobZweitversuch = false;
 let admobOptionen = false;  // Google verlangt einen Knopf zum Nachträglich-Ändern
 
 function admobDa(){ return !!AdMobP; }
@@ -1729,7 +1741,19 @@ async function admobStart(){
     admobDarf = !!info.canRequestAds;
     admobOptionen = info.privacyOptionsRequirementStatus === 'REQUIRED';
     if(admobDarf) await A.initialize({initializeForTesting: ADMOB_TEST});
-  }catch(e){ AdMobP = null; admobDarf = false; }
+  }catch(e){
+    /* Der Fehler wurde bis zum 27.09.2026 stillschweigend verschluckt. Das
+       ist teuer: AdMobP steht danach auf null, damit liefert admobDa() false,
+       damit kippt einwilligungFragen() auf true - und werbungErlaubt() sagt
+       fuer BEIDE Werbearten nein, den ganzen Lauf lang. Eine Stoerung beim
+       Start, und der Tag bringt nichts ein. Am Geraet genau so gemessen:
+       admobDa false, einwilligungFragen true, beide Erlaubnisse false,
+       waehrend frueher am selben Tag noch drei belohnte Videos liefen.
+       Jetzt bleibt der Grund stehen, damit man ihn nachlesen kann, und
+       zeigeWerbung() fasst einmal nach. */
+    AdMobP = null; admobDarf = false;
+    admobFehler = (e && (e.message || e.code)) ? String(e.message || e.code) : 'unbekannt';
+  }
 }
 
 /* Auf das Ereignis warten, mit dem das SDK sagt „fertig" oder „ging nicht".
@@ -5551,7 +5575,21 @@ function showLessonTask(){
    verhält – mit Wartezeit und Schließen-Knopf.
    Beim echten SDK muss werbungPersonalisiert() mitgegeben werden: false
    bedeutet "nur allgemeine Werbung", bei AdMob das Feld npa=1. */
+/* Ist AdMob beim Start gescheitert, faellt sonst jede Anzeige fuer den ganzen
+   Lauf aus. Einmal nachfassen - danach geht es weiter wie immer, notfalls
+   ueber den Platzhalter. */
 function zeigeWerbung(belohnt, fertig){
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if(WERBUNG_ECHT && !AdMobP && admobFehler && P && P.AdMob && !admobZweitversuch){
+    admobZweitversuch = true;
+    admobStart().then(()=> zeigeWerbungJetzt(belohnt, fertig),
+                      ()=> zeigeWerbungJetzt(belohnt, fertig));
+    return;
+  }
+  zeigeWerbungJetzt(belohnt, fertig);
+}
+
+function zeigeWerbungJetzt(belohnt, fertig){
   if(!werbungErlaubt(belohnt)){ fertig(false); return; }
   stilleBitte();   // kein Wort unter der Anzeige - egal ob echte oder Platzhalter
 
@@ -5701,23 +5739,41 @@ function lessonEnd(){
   // Werbung erst nach dem Ergebnis, nie mittendrin. Die ersten Lektionen
   // bleiben frei, danach jede WERBUNG_JEDE_X-te.
   werbungZaehler++;
-  const dran = werbungZaehler >= WERBUNG_AB_LEKTION &&
-               (werbungZaehler - WERBUNG_AB_LEKTION) % WERBUNG_JEDE_X === 0;
-  if(dran && werbungErlaubt()){
-    // Nur, wenn das Ergebnisfeld noch steht. Wer in den 1,2 Sekunden
-    // weitergeht, bekaeme die Anzeige sonst ueber dem Lernpfad oder den
-    // Einstellungen - und wer gleich "Noch eine" tippt, ueber der ersten
-    // Aufgabe. Lx wechselt mit jeder neuen Lektion, daran erkennt man das.
-    const dieseLektion = Lx;
-    setTimeout(()=>{
-      // wegmarkeLaeuft: eine Anzeige über dem 100. Lerntag wäre die
-      // schlechteste Minute, die sich die App aussuchen könnte. Die Lektion
-      // fällt dann eben aus der Zählung - werbungZaehler steht schon höher,
-      // die nächste bekommt sie.
-      if(Lx === dieseLektion && !wegmarkeLaeuft
-         && sichtbar('levelView') && sichtbar('lesson')) zeigeWerbung(false, ()=>{});
-    }, 1200);
-  }
+  werbungNachDemErgebnis('lesson', ()=> Lx);
+}
+
+/* Die Anzeige nach einem Ergebnisschirm - nach der Lektion und nach dem Test.
+   feld: 'lesson' oder 'test', beide liegen in levelView.
+   marke: liefert das Objekt, das mit dem naechsten Durchgang wechselt (Lx bzw.
+   Tx) - daran erkennt man, ob der Nutzer weitergegangen ist.
+
+   Zwei Dinge, die Ajdin am 27.09.2026 gemeldet hat ("also es kommt nicht immer
+   werbung nach der lektion und nach dem test auch nicht"):
+   - Nach dem TEST kam gar keine. Das war keine Entscheidung, sondern eine
+     Luecke: showTestResult() hat den Auslöser einfach nie gerufen.
+   - Wer in den 1,2 Sekunden weitertippt, verlor die Anzeige ganz. Der Zaehler
+     stand schon hoeher, also war sie weg. Jetzt wird sie geschuldet und beim
+     naechsten Ergebnisschirm nachgeholt. */
+let werbungSchuldig = false;
+function werbungNachDemErgebnis(feld, marke){
+  const dran = werbungSchuldig ||
+               (werbungZaehler >= WERBUNG_AB_LEKTION &&
+                (werbungZaehler - WERBUNG_AB_LEKTION) % WERBUNG_JEDE_X === 0);
+  if(!dran || !werbungErlaubt()) return;
+  /* Nur, wenn der Ergebnisschirm noch steht. Sonst stuende die Anzeige ueber
+     dem Lernpfad, den Einstellungen oder schon ueber der ersten Aufgabe der
+     naechsten Lektion. */
+  const dieser = marke();
+  setTimeout(()=>{
+    /* wegmarkeLaeuft: eine Anzeige ueber dem 100. Lerntag waere die
+       schlechteste Minute, die sich die App aussuchen koennte. */
+    if(marke() === dieser && !wegmarkeLaeuft && sichtbar('levelView') && sichtbar(feld)){
+      werbungSchuldig = false;
+      zeigeWerbung(false, ()=>{});
+    } else {
+      werbungSchuldig = true;   // nicht verloren, nur verschoben
+    }
+  }, 1200);
 }
 /* Android fragt erst beim allerersten Zugriff nach dem Mikrofon – und die
    Spracherkennung bricht in derselben Sekunde mit „nicht erlaubt" ab,
@@ -5821,6 +5877,10 @@ function showTestQ(){
 }
 function showTestResult(){
   stilleBitte(); uhrAus(); testBar();   // das letzte Wort nicht ins Ergebnis reden lassen
+  /* Ein Test ist eine ganze Lektion wert und zaehlt deshalb auch fuer die
+     Anzeige. Bis zum 27.09.2026 fehlte das ganz. */
+  werbungZaehler++;
+  werbungNachDemErgebnis('test', ()=> Tx);
   const c=cur(); const ok = Tx.right >= TEST_BESTANDEN_AB;
   const hasNext = catIdx+1 < CATEGORIES.length;
   // Wann ein Level bestanden wurde, lässt sich später nicht mehr herausfinden.
