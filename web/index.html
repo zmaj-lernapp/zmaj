@@ -32,21 +32,21 @@
 <style>
   /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
   :root{
-    --bg:#EBEDF9; --surface:#FFFFFF; --ink:#0F1E4D; --muted:#66698A;
-    --primary:#4049A5; --primary-dark:#31377D; --primary-soft:#EBEDF9;
+    --bg:#D1D5FA; --surface:#F6F7FE; --ink:#0F1E4D; --muted:#66698A;
+    --primary:#4049A5; --primary-dark:#31387D; --primary-soft:#D1D5FA;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
-    --line:#D4D5E8; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    --line:#CBCEEB; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
     /* Eine Farbe je Sektion. Vorher war jede Ueberschrift blau und jeder
        Balken gelb, dadurch standen auf dem Lernpfad nach Farbton nur vier
        Toene. Sektion 1 behaelt das Blau der App und der Fahne. Hier sind
        die Toene dunkler als in der dunklen Fassung, sonst leuchten sie
        auf Weiss. */
-    --sek1:#4049A5; --sek1-dunkel:#31377D; --sek1-sanft:#EBEDF9; --sek1-grund:#EBEDF9; --sek1-flaeche:#FFFFFF; --sek1-linie:#D4D5E8; --sek1-matt:#66698A;   /* Blau */
-    --sek2:#6F40A5; --sek2-dunkel:#55317D; --sek2-sanft:#F1EBF9; --sek2-grund:#F1EBF9; --sek2-flaeche:#FFFFFF; --sek2-linie:#DDD4E8; --sek2-matt:#77668A;   /* Indigo */
-    --sek3:#A540A5; --sek3-dunkel:#7D317D; --sek3-sanft:#F9EBF9; --sek3-grund:#F9EBF9; --sek3-flaeche:#FFFFFF; --sek3-linie:#E8D4E8; --sek3-matt:#8A668A;   /* Violett */
-    --sek4:#A5406F; --sek4-dunkel:#7D3155; --sek4-sanft:#F9EBF1; --sek4-grund:#F9EBF1; --sek4-flaeche:#FFFFFF; --sek4-linie:#E8D4DD; --sek4-matt:#8A6677;   /* Magenta */
-    --sek5:#2B6E68; --sek5-dunkel:#1B4643; --sek5-sanft:#EBF9F8; --sek5-grund:#EBF9F8; --sek5-flaeche:#FFFFFF; --sek5-linie:#D4E8E6; --sek5-matt:#5B7B79;   /* Petrol */
-    --sek6:#3B7097; --sek6-dunkel:#2B526E; --sek6-sanft:#EBF3F9; --sek6-grund:#EBF3F9; --sek6-flaeche:#FFFFFF; --sek6-linie:#D4E0E8; --sek6-matt:#627684;   /* Himmelblau */
+    --sek1:#4049A5; --sek1-dunkel:#31387D; --sek1-sanft:#D1D5FA; --sek1-grund:#D1D5FA; --sek1-flaeche:#F6F7FE; --sek1-linie:#CBCEEB; --sek1-matt:#66698A;   /* Blau */
+    --sek2:#6F40A5; --sek2-dunkel:#54317D; --sek2-sanft:#E4D1FA; --sek2-grund:#E4D1FA; --sek2-flaeche:#FAF6FE; --sek2-linie:#DACBEB; --sek2-matt:#77668A;   /* Indigo */
+    --sek3:#933993; --sek3-dunkel:#6B2A6B; --sek3-sanft:#F9CDF9; --sek3-grund:#F9CDF9; --sek3-flaeche:#FEF6FE; --sek3-linie:#EBCBEB; --sek3-matt:#876487;   /* Violett */
+    --sek4:#9A3C68; --sek4-dunkel:#722D4D; --sek4-sanft:#F9CDE1; --sek4-grund:#F9CDE1; --sek4-flaeche:#FEF6FA; --sek4-linie:#EBCBDA; --sek4-matt:#8A6677;   /* Magenta */
+    --sek5:#296A65; --sek5-dunkel:#19423E; --sek5-sanft:#BAE8E4; --sek5-grund:#BAE8E4; --sek5-flaeche:#F6FEFD; --sek5-linie:#CBEBE8; --sek5-matt:#597875;   /* Petrol */
+    --sek6:#336284; --sek6-dunkel:#23435B; --sek6-sanft:#C2DFF4; --sek6-grund:#C2DFF4; --sek6-flaeche:#F6FBFE; --sek6-linie:#CBDEEB; --sek6-matt:#5F7381;   /* Himmelblau */
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
@@ -1909,14 +1909,50 @@ function sektionsNummer(id){
    ans aktuelle Level springen und die Stelle verlieren, an der man gerade
    liest. */
 function sektionAufklappen(id){
-  offeneSektion = (offeneSektion === id) ? '' : id;
   const box = $('sections'); if(!box) return;
+  /* Wo sitzt der angetippte Kopf gerade auf dem Bildschirm? Klappt gleichzeitig
+     eine Sektion WEITER OBEN zu, fallen dort mehrere hundert Pixel weg, alles
+     darunter rutscht nach oben, und der angetippte Kopf wandert aus dem Blick.
+     Es sieht aus, als springe die Seite.
+     Ajdin am 27.09.2026: "wenn man eine sektion oeffnet dann springt das so
+     komisch am besten wenn man auf die sektion klickt das der bildschirm auch
+     da bleibt".
+     Deshalb: Stelle vorher merken, nach dem Umschalten um genau den
+     Unterschied nachscrollen. Der Kopf steht danach wieder da, wo der Finger
+     ihn getroffen hat. */
+  const kasten = [].slice.call(box.children).find(el => el.dataset.sid === id);
+  const vorher = kasten ? kasten.getBoundingClientRect().top : null;
+
+  offeneSektion = (offeneSektion === id) ? '' : id;
   [].slice.call(box.children).forEach(el => {
     const auf = el.dataset.sid === offeneSektion;
     el.classList.toggle('zu', !auf);
     const kopf = el.querySelector('.skopf');
     if(kopf) kopf.setAttribute('aria-expanded', auf ? 'true' : 'false');
   });
+
+  if(kasten && vorher !== null){
+    /* getBoundingClientRect erzwingt hier einen neuen Umbruch - genau das ist
+       gewollt, sonst stuende noch die alte Stelle da.
+       Ohne behavior:'instant' wuerde ein spaeter eingefuehrtes
+       scroll-behavior:smooth daraus eine sichtbare Fahrt machen; das Ziel ist
+       aber, dass sich gar nichts bewegt. */
+    const versatz = kasten.getBoundingClientRect().top - vorher;
+    if(Math.abs(versatz) > 1) scrollBy({top: versatz, behavior: 'instant'});
+    /* Klappt oberhalb eine lange Sektion zu, wird die Seite kuerzer als die
+       Stelle, an der man gerade stand. Der Browser kann dann nicht so weit
+       scrollen und klemmt den Wert ab - der Kopf sitzt hinterher trotzdem
+       woanders. In dem Fall ist "bleiben" gar nicht moeglich, weil nicht
+       genug Seite da ist.
+       Dann wird der Kopf bewusst an die Bezugslinie gesetzt, an der auch die
+       Farbe haengt. Das ist eine Bewegung, aber eine erklaerbare: die
+       angetippte Sektion steht oben und traegt ihre Farbe. */
+    const rest = kasten.getBoundingClientRect().top - vorher;
+    if(Math.abs(rest) > 2){
+      const linie = innerHeight > 0 ? Math.min(220, innerHeight * 0.32) : 160;
+      scrollBy({top: kasten.getBoundingClientRect().top - linie, behavior: 'instant'});
+    }
+  }
   /* Der Umweg ueber sektionsFarbe ist Absicht: ist keine Sektion offen,
      faellt die Farbe auf die zurueck, in der gerade gelernt wird. Ohne
      Farbe dazustehen waere schlechter als eine. */
