@@ -2380,6 +2380,7 @@ function tone(freq, start, dur, type='sine', gain=0.38){
 function sound(kind){
   if(kind==='ok') buzz(15); else if(kind==='no') buzz([60,40,60]); else if(kind==='done') buzz([30,30,30,30,80]);
   else if(kind==='anziehen' || kind==='ablegen') buzz(12);
+  else if(kind==='kauf') buzz([12,40,18]);
   else if(kind==='quest') buzz([20,50,20,50,70]);
   else if(kind==='wegmarke') buzz([40,60,40,60,40,60,180]);
   if(!soundOn) return;
@@ -2395,6 +2396,19 @@ function sound(kind){
        mit einem kleinen Funkeln, Ablegen geht hinunter und laesst es weg. */
     else if(kind==='anziehen'){ tone(330,0,0.08,'triangle',0.30); tone(494,0.05,0.11,'triangle',0.24); tone(988,0.13,0.09,'sine',0.13); }
     else if(kind==='ablegen'){ tone(494,0,0.08,'triangle',0.26); tone(330,0.05,0.13,'triangle',0.22); }
+    /* Laden: gekauft. Bis zum 27.09.2026 klang ein Kauf wie eine richtige
+       Antwort - es war derselbe 'ok'-Ton. Ajdin beim Durchsehen: "beim laden
+       kategorie auffuellen ... hat noch den alten sound nicht den sound von
+       den anderen kategorien". Beim Zierrat fiel es weniger auf, weil man
+       danach auf Tragen tippt und den weichen Ladenton hoert; beim
+       Auffuellen bleibt es beim Piepen.
+       Der Kauf gehoert in dieselbe Familie wie Anziehen und Ablegen, darf
+       aber etwas mehr sein - es kostet Muenzen. Also ein Dreiklang hinauf
+       auf dem Dreieck, leiser als das Lob nach einer Lektion, und am Ende
+       zwei Funkeln wie bei einer Muenze. */
+    else if(kind==='kauf'){ tone(523,0,0.08,'triangle',0.28); tone(659,0.06,0.09,'triangle',0.26);
+                            tone(784,0.13,0.13,'triangle',0.24);
+                            tone(1568,0.19,0.10,'sine',0.11); tone(2093,0.25,0.12,'sine',0.08); }
     /* Tagesaufgabe erledigt. Musste sich vom Lektionsende ('done') deutlich
        unterscheiden - die beiden kommen oft kurz hintereinander. 'done' ist
        ein breiter Dreiklang von unten (523-1047), dieser hier liegt hoeher,
@@ -4399,7 +4413,7 @@ function kaufe(id){
     setzeGetragen(getragenListe().filter(x => gruppeVon(x) !== g).concat([id]));
   }
   muenzenAus += w.preis;
-  saveProgress(); sound('ok'); buzz(30);
+  saveProgress(); sound('kauf');
   // Gekauft wird auch außerhalb des Ladens - vom Bildschirm ohne Leben aus.
   // Dort gibt es weder Notizzeile noch Warenliste, deshalb überall prüfen.
   if($('ladenNote')) $('ladenNote').textContent = t('laden.gekauft');
