@@ -783,6 +783,9 @@
   .progress{margin:6px 0 12px}
   .progress .bar{height:12px; background:var(--primary-soft); border-radius:99px; overflow:hidden; position:relative}
   .progress .fill{height:100%; width:0; background:var(--accent); transition:width .5s ease}
+  /* Die Marke sitzt da, wo der Test aufgeht. Ihre Stelle kommt aus
+     TEST_FREI_AB und wird in updateProgress() gesetzt; steht die Schwelle bei
+     100, wäre sie das Balkenende und damit nur Beiwerk - dann bleibt sie weg. */
   .progress .mark80{position:absolute; left:80%; top:-3px; width:3px; height:18px; background:var(--primary); border-radius:2px; opacity:.6}
   .progress .cap{display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-top:6px; font-weight:700}
 
@@ -1409,7 +1412,12 @@ const LEKTION_WOERTER = 10;      // Wortaufgaben pro Lektion
 const LEKTION_NEU_MAX = 5;       // davon höchstens so viele neue Wörter (wenn es schon bekannte gibt)
 const LEKTION_LUECKEN = 2;       // Lückentexte pro Lektion
 const LEKTION_GRAMMATIK = 2;     // Grammatik-Aufgaben pro Lektion (wenn vorhanden)
-const TEST_FREI_AB = 80;         // Prozent bekannter Wörter, ab denen der Level-Test frei ist
+/* Ajdin am 27.09.2026: "mach die pruefung statt bei 80% auf 100% sonst lernt
+   man nicht alles". Der Test geht jetzt erst auf, wenn JEDES Wort des Levels
+   einmal richtig beantwortet war. Das kostet je Level ein paar Lektionen mehr -
+   buildLesson() nimmt aber immer zuerst die noch unbekannten Wörter, es kann
+   also keine Sackgasse geben, in der ein Wort nicht mehr dran kommt. */
+const TEST_FREI_AB = 100;        // Prozent bekannter Wörter, ab denen der Level-Test frei ist
 const TEST_FRAGEN = 10, TEST_WIEDERHOLUNG = 3, TEST_BESTANDEN_AB = 8;
 const LEBEN_MAX = 5;               // Leben für die ganze App
 const LEBEN_NACHFUELLEN_MIN = 120; // Minuten, bis ein Leben nachwächst (Vollversion: unbegrenzt)
@@ -2121,8 +2129,15 @@ function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
    sagt "🔊 Hören" alles; vorgelesen wird daraus je nach Programm
    "Lautsprecher mit Schallwellen Hören" oder gar nichts. */
 const nurWort = s => String(s).replace(/^[^\p{L}\p{N}]+/u, '').trim();
-const levelPct = c => { const n=c.words.length; return n ? Math.round(c.words.filter(w=>known.has(w.id)).length/n*100) : 0; };
-const testAllowed = c => ALLE_FREI || passed.has(c.id) || levelPct(c) >= TEST_FREI_AB;
+/* ABRUNDEN, nicht runden. Math.round machte aus 199 von 200 Wörtern glatte
+   100 Prozent - die Anzeige stand auf 100, und mit TEST_FREI_AB=100 wäre der
+   Test aufgegangen, obwohl ein Wort fehlt. Bei den heutigen Levelgrößen (bis
+   40 Wörter) konnte das noch nicht passieren, bei einem größeren schon. */
+const levelPct = c => { const n=c.words.length; return n ? Math.floor(c.words.filter(w=>known.has(w.id)).length/n*100) : 0; };
+/* Der Vergleich läuft ueber ganze Zahlen und nicht ueber die Prozentanzeige:
+   so hängt die Freigabe nicht daran, wie gerundet wird. */
+const testAllowed = c => ALLE_FREI || passed.has(c.id) ||
+  c.words.filter(w=>known.has(w.id)).length * 100 >= c.words.length * TEST_FREI_AB;
 const typable = w => w.bs.length<=14 && !/[.…→]/.test(w.bs) && !w.bs.includes(' / ');
 const today = () => { const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
 /* Ein Lerntag ist genau 'JJJJ-MM-TT'. Alles andere fliegt beim Einlesen raus:
@@ -5006,7 +5021,10 @@ function updateProgress(){
   $('fill').style.width = pct+'%';
   $('capText').textContent = t('level.cap',{done:done, n:words.length});
   $('capPct').textContent = pct+'%';
-  $('mark80').title = t('level.test_marke',{p:TEST_FREI_AB});
+  const marke = $('mark80');
+  marke.hidden = TEST_FREI_AB >= 100;
+  marke.style.left = TEST_FREI_AB + '%';
+  marke.title = t('level.test_marke',{p:TEST_FREI_AB});
   const bt=$('btnTest'), allowed=testAllowed(c);
   bt.disabled = !allowed;
   if(passed.has(c.id)){ bt.textContent=t('level.test_bestanden'); }
