@@ -533,6 +533,16 @@
   .werbenote{font-size:12px; color:var(--muted); font-weight:700; margin-top:10px; min-height:16px}
   .werbebox .btn{width:100%; margin-top:10px}
   .werbebox .skip{margin-top:8px}
+  /* Eine kurze Meldung, die von selbst wieder geht. Gebraucht wird sie,
+     seit die Anzeige auf dem Geraet ausfallen darf: wer auf „Video
+     ansehen“ tippt und ohne Netz ist, sah sonst gar nichts. P8, 28.09.2026. */
+  .kurznote{position:fixed; left:50%; bottom:86px; transform:translateX(-50%);
+    z-index:1001; max-width:min(92vw,420px); padding:12px 16px; text-align:center;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,.35); color:var(--ink);
+    font-size:14px; font-weight:700; line-height:1.4;
+    opacity:0; transition:opacity .25s}
+  .kurznote.an{opacity:1}
   /* Einwilligung: kommt beim ersten Start, bevor irgendeine Werbung läuft.
      Beide Knöpfe sind gleich groß und gleich auffällig – Ablehnen darf nach
      der DSGVO nicht umständlicher sein als Zustimmen. */
@@ -5445,7 +5455,7 @@ function renderTask(task, body, done, opts={}){
            Mikrofon belegt. Vorher stand hier der Satz "Ich habe ‚‘
            verstanden" mit einem leeren Wort darin, dazu der Fehlerton. Der
            Nutzer bekam gesagt, er habe falsch gesprochen. */
-        heard.textContent = t('task.mikro_fehler');
+        heard.textContent = t(navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline');
       } else {
         heard.textContent = t('task.gehoert_no',{text:erstes}); sound('no');
       }
@@ -5499,7 +5509,7 @@ function renderTask(task, body, done, opts={}){
           bewerte((erg && erg.matches) || []);
         }catch(e){
           listening = false; mic.classList.remove('rec');
-          heard.textContent = t('task.mikro_fehler');
+          heard.textContent = t(navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline');
         }
         return;
       }
@@ -5507,7 +5517,7 @@ function renderTask(task, body, done, opts={}){
       if(listening){ rec && rec.stop(); return; }
       rec=new SR(); rec.lang='hr-HR'; rec.interimResults=false; rec.maxAlternatives=3;
       rec.onstart=()=>{ listening=true; mic.classList.add('rec'); heard.textContent=t('task.hoert_zu'); hoererAbbrechen = abhoeren; };
-      rec.onerror=(e)=>{ heard.textContent = e.error==='not-allowed' ? t('task.mikro_blockiert') : t('task.mikro_fehler'); };
+      rec.onerror=(e)=>{ heard.textContent = e.error==='not-allowed' ? t('task.mikro_blockiert') : t(navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline'); };
       rec.onend=()=>{ listening=false; mic.classList.remove('rec'); };
       rec.onresult=(ev)=> bewerte([...ev.results[0]].map(r=>r.transcript));
       rec.start();
@@ -5622,6 +5632,27 @@ function showLessonTask(){
 /* Ist AdMob beim Start gescheitert, faellt sonst jede Anzeige fuer den ganzen
    Lauf aus. Einmal nachfassen - danach geht es weiter wie immer, notfalls
    ueber den Platzhalter. */
+/* Eine kurze Meldung, die nach drei Sekunden von selbst verschwindet.
+   Die App hatte dafuer bisher keine Stelle - gebraucht wird sie erst,
+   seit eine Anzeige ohne Ersatz ausfallen kann. */
+let kurzUhr = 0;
+function kurzMeldung(text){
+  let el = document.querySelector('.kurznote');
+  if(!el){
+    el = document.createElement('div');
+    el.className = 'kurznote';
+    el.setAttribute('role', 'status');
+    document.body.appendChild(el);
+  }
+  el.textContent = text;
+  setTimeout(()=> el.classList.add('an'), 20);
+  clearTimeout(kurzUhr);
+  kurzUhr = setTimeout(()=>{
+    el.classList.remove('an');
+    setTimeout(()=>{ if(!el.classList.contains('an')) el.remove(); }, 400);
+  }, 3200);
+}
+
 function zeigeWerbung(belohnt, fertig){
   const P = window.Capacitor && window.Capacitor.Plugins;
   if(WERBUNG_ECHT && !AdMobP && admobFehler && P && P.AdMob && !admobZweitversuch){
@@ -5643,6 +5674,16 @@ function zeigeWerbungJetzt(belohnt, fertig){
   if(admobDa()){
     admobZeigen(belohnt).then(lief => { if(lief) werbungGezaehlt(belohnt); fertig(lief); });
     return;
+  }
+  /* Auf dem Geraet gibt es keinen Platzhalter. Der ist fuer den PC
+     gedacht, wo es AdMob gar nicht gibt. Ist das Plugin da und die
+     Anzeige kann trotzdem nicht starten - ohne Netz zum Beispiel -,
+     faellt sie aus: kein Kontingent verbraucht, und vor allem kein Leben
+     fuer eine Anzeige, die nie lief. Gefunden bei P8 am 28.09.2026 im
+     Flugmodus, wo auf dem Handy wirklich „Hier erscheint die Werbung“
+     stand. */
+  if(window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.AdMob){
+    fertig(false); return;
   }
   werbungGezaehlt(belohnt);
 
@@ -5686,7 +5727,9 @@ function zeigeWerbungJetzt(belohnt, fertig){
 /* Ein belohntes Video: freiwillig, gibt ein Leben zurück. */
 function werbungFuerLeben(){
   zeigeWerbung(true, angesehen => {
-    if(!angesehen) return;
+    /* Ohne Anzeige kein Leben - und ein Wort dazu, sonst wirkt der Knopf
+       kaputt. */
+    if(!angesehen){ kurzMeldung(t('werbung.keine_anzeige')); return; }
     lives = {anzahl: Math.min(LEBEN_MAX, lives.anzahl + WERBUNG_LEBEN_LOHN),
              zeit: lives.zeit || Date.now()};
     saveProgress(); renderLives(); sound('ok');

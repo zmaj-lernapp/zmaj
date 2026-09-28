@@ -22,20 +22,12 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P5** 🔴 | Ein Level von null auf bestanden | Am 27.09. mit geleertem App-Speicher durchgespielt. Level 1 „Grundlagen“ 33 von 33 Wörtern, 100 %, bestanden; Level 2 „Zahlen“ aufgegangen. Lernstand hat Neustart und Neuinstallation überlebt. Münzen, Serie und Tagesaufgaben zählten mit. **Drei Fehler gefunden** – siehe unten. |
 | **P6** 🔴 | Leben aufbrauchen und zurückbekommen | Am 28.09. durchgespielt. Sperrschirm, Zurück-Taste, Schließen während der Sperre, Herz für Münzen, Herz per Video und der Ablauf der Wartezeit — alles wie vorgesehen, **kein Fehler gefunden**. Zwei Nebenbefunde festgehalten, siehe unten. |
 | **P7** 🔴 | Abonnement kaufen und kündigen | Am 28.09. mit einem Test-Abo (Lizenztester) durchgespielt. Kauf, Freischaltung, Neustart, Flugmodus, Bestätigungsfrist, Kündigung und Ablauf — alles ohne Fehlermeldung, **kein Fehler gefunden**. Einzelheiten unten. |
+| **P8** 🔴 | Ohne Internet | Am 28.09. im Flugmodus durchgespielt. Lernen, Ton und Speichern laufen vollständig. **Zwei Fehler gefunden und behoben:** die App zeigte auf dem Handy den Platzhalter vom PC und gab dafür sogar ein Leben; und das Sprechen ohne Netz meldete „Versuch es noch einmal" statt zu sagen, dass Internet fehlt. |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
 
 ---
 
 ## Offen, vor dem Produktionsantrag (🔴)
-
-### P8 — Ohne Internet
-
-Flugmodus einschalten, App starten, eine Lektion spielen, Wörter anhören.
-
-**Bestanden, wenn:** Lernen, Tonwiedergabe und Speichern funktionieren.
-Werbung und Abo-Prüfung dürfen ausfallen, aber nichts blockieren.
-
-**Achten auf:** Ob eine Fehlermeldung kommt, die den Nutzer ratlos lässt.
 
 ### P9 — Einwilligung ablehnen
 
@@ -304,3 +296,80 @@ nirgends im Programm.
 **Für P8 vorweggenommen.** Der Punkt „kennt die App ohne Internet die
 Vollversion?" ist damit erledigt. Was in P8 offenbleibt, ist der Rest der App
 im Flugmodus: Lektion, Ton, Sicherung.
+
+---
+
+## P8 im Einzelnen — durchgeführt am 28.09.2026
+
+**Aufbau.** Flugmodus über `adb` geschaltet, App jedes Mal hart geschlossen
+und neu geöffnet, damit sie wirklich ohne Netz startet und nicht nur ohne Netz
+weiterläuft. Die Lektion hat die Fernwartung gespielt, die Sprechaufgabe hat
+Ajdin selbst am Gerät versucht — die geht nicht fernzusteuern.
+
+**Ergebnis gegen die Kriterien.**
+
+| Kriterium | Ergebnis |
+|---|---|
+| Lernen | ganze Lektion, 11 von 11 richtig, +8 neue Wörter, Ergebnisschirm vollständig |
+| Tonwiedergabe | 2153 Aufnahmen liegen in der App, `w0001.mp3` spielte ab |
+| Speichern | 74 gewusste Wörter im Gerätespeicher, Tagesaufgaben mitgezählt |
+| Werbung fällt aus, blockiert aber nicht | **erst nach der Behebung** — siehe Befund 1 |
+| Abo-Prüfung | fällt nicht einmal aus: Play Billing antwortet aus dem Zwischenspeicher (P7) |
+| Keine ratlose Fehlermeldung | **erst nach der Behebung** — siehe Befund 2 |
+
+**Befund 1 — auf dem Handy erschien der Platzhalter vom PC.**
+
+Ohne Netz kommt AdMob beim Start nicht hoch (`admobFehler: "Error making
+request."`). Danach griff in `zeigeWerbungJetzt()` der Zweig, der nur für den
+Browser am PC gedacht ist, und auf dem Handy stand nach der Lektion wirklich:
+
+```
+ANZEIGE
+Hier erscheint die Werbung.
+[Weiter]   [Werbung abschalten]
+```
+
+Dazu zählte `werbungGezaehlt()` ohne Bedingung mit (`n` ging 0 → 1), und beim
+Knopf „♥ Video ansehen" meldete der Platzhalter am Ende `fertig(true)` — es
+gab also **ein echtes Leben für eine Anzeige, die es nie gab.**
+
+Neu ist der Befund nicht: In `WERBUNG_PRUEFUNG.md` steht er seit dem
+20.09.2026 als Punkt 5 und Punkt 10, dort aus dem Quelltext hergeleitet. P8
+hat ihn zum ersten Mal auf dem Gerät gesehen — und er ist jetzt behoben.
+
+**Die Behebung.** Ist das AdMob-Plugin da, gibt es keinen Platzhalter mehr:
+die Anzeige fällt aus, `fertig(false)`, kein Kontingent, kein Leben. Der
+Platzhalter bleibt für den PC, wo es AdMob gar nicht gibt. Damit der Knopf
+nicht kaputt aussieht — das ist Punkt 12 desselben Berichts —, kommt jetzt
+eine kurze Meldung: „Gerade gibt es keine Anzeige. Versuch es später noch
+einmal.", in allen acht Sprachen.
+
+**Befund 2 — das Sprechen geht ohne Netz nicht, und die App sagte das nicht.**
+
+Androids Erkennung braucht für Bosnisch, Kroatisch und Serbisch das Netz; auf
+dem Gerät liegt kein Sprachpaket dafür. Der Versuch lieferte deshalb nichts,
+und die App zeigte „Das hat nicht geklappt. Versuch es noch einmal." — der
+Nutzer bekam gesagt, er habe falsch gesprochen, dabei fehlte nur das Internet.
+Genau der Fall, auf den P8 achten sollte.
+
+Gut daran: **ein Leben kostet es nicht.** `bewerte([])` beantwortet die
+Aufgabe gar nicht, der Nutzer kann es erneut versuchen oder überspringen.
+
+**Die Behebung.** Kommt nichts zurück und `navigator.onLine` ist falsch,
+steht jetzt „Das Sprechen braucht Internet. Überspring die Aufgabe." — in
+allen acht Sprachen, an allen drei Stellen (Plugin-Weg, Fehlerzweig,
+Browser-Weg).
+
+**Gegenprobe nach der Behebung**, Fassung 34 auf dem Gerät:
+
+| Lage | Ergebnis |
+|---|---|
+| Flugmodus, Lektion zu Ende | kein Platzhalter, `n` blieb bei 2 |
+| Flugmodus, „♥ Video ansehen" getippt | Meldung erscheint, `lohn` bleibt 1, Leben bleibt 0 |
+| Wieder online, Anzeige angefordert | echte Anzeige lief, `n` 2 → 3, keine Meldung |
+
+Die Behebung nimmt also nur dort etwas weg, wo ohnehin nichts war.
+
+**Offen geblieben.** Die übrigen Punkte aus `WERBUNG_PRUEFUNG.md` bleiben
+stehen. Die um die Anzeigenkette herum (11, 16, 17) sind durch die Arbeit vom
+27.09.2026 berührt, aber noch nicht einzeln gegen diese Liste abgehakt.
