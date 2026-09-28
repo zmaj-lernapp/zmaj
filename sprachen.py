@@ -334,6 +334,7 @@ TEXTE = {
 "task.hoert_zu": "Hört zu …",
 "task.mikro_blockiert": "Kein Zugriff auf das Mikrofon. Erlaube ihn in den Einstellungen deines Geräts oder überspring die Aufgabe.",
 "task.mikro_fehler": "Das hat nicht geklappt. Versuch es noch einmal.",
+"task.mikro_offline": "Das Sprechen braucht Internet. Überspring die Aufgabe.",
 "task.gehoert_ok": "Bravo! Ich habe „{text}“ verstanden.",
 "task.gehoert_no": "Ich habe „{text}“ verstanden. Das klingt noch nicht ganz richtig. Versuch es noch einmal oder überspringe die Aufgabe.",
 "task.sprechen_skip": "Sprechen ist gerade nicht möglich, überspringen",
@@ -521,6 +522,7 @@ TEXTE = {
 "werbung.leben_holen": "♥ Video ansehen",
 "werbung.lohn_laeuft": "Nach dem Video bekommst du ein Leben.",
 "werbung.lohn_abholen": "♥ Leben abholen",
+"werbung.keine_anzeige": "Gerade gibt es keine Anzeige. Versuch es später noch einmal.",
 },
 
 # ===========================================================================
@@ -762,6 +764,7 @@ TEXTE = {
 "task.hoert_zu": "Listening…",
 "task.mikro_blockiert": "No access to the microphone. Allow it in your device settings or skip this task.",
 "task.mikro_fehler": "That did not work. Please try again.",
+"task.mikro_offline": "Speaking needs the internet. Skip this task.",
 "task.gehoert_ok": "Bravo! I understood “{text}”.",
 "task.gehoert_no": "I understood “{text}”. That is not quite right yet. Try again or skip the task.",
 "task.sprechen_skip": "Can't speak right now – skip",
@@ -943,6 +946,7 @@ TEXTE = {
 "werbung.leben_holen": "♥ Watch a video",
 "werbung.lohn_laeuft": "You get a heart after the video.",
 "werbung.lohn_abholen": "♥ Collect heart",
+"werbung.keine_anzeige": "No ad available right now. Please try again later.",
 },
 
 # ===========================================================================
@@ -1184,6 +1188,7 @@ TEXTE = {
 "task.hoert_zu": "Dinliyorum …",
 "task.mikro_blockiert": "Mikrofona erişim yok. Cihaz ayarlarından izin ver ya da bu görevi atla.",
 "task.mikro_fehler": "Olmadı. Bir daha dene.",
+"task.mikro_offline": "Konuşma için internet gerekir. Bu alıştırmayı atla.",
 "task.gehoert_ok": "Bravo! “{text}” diye anladım.",
 "task.gehoert_no": "“{text}” diye anladım. Bu henüz tam doğru değil. Tekrar dene veya görevi atla.",
 "task.sprechen_skip": "Şu an konuşmak mümkün değil, atla",
@@ -1363,6 +1368,7 @@ TEXTE = {
 "werbung.leben_holen": "♥ Video izle",
 "werbung.lohn_laeuft": "Videodan sonra bir can alırsın.",
 "werbung.lohn_abholen": "♥ Canı al",
+"werbung.keine_anzeige": "Şu anda reklam yok. Biraz sonra tekrar dene.",
 },
 
 # ===========================================================================
@@ -1604,6 +1610,7 @@ TEXTE = {
 "task.hoert_zu": "Lyssnar …",
 "task.mikro_blockiert": "Ingen åtkomst till mikrofonen. Tillåt den i enhetens inställningar eller hoppa över uppgiften.",
 "task.mikro_fehler": "Det gick inte. Försök en gång till.",
+"task.mikro_offline": "Att tala kräver internet. Hoppa över uppgiften.",
 "task.gehoert_ok": "Bravo! Jag uppfattade ”{text}”.",
 "task.gehoert_no": "Jag uppfattade ”{text}”. Det är inte riktigt rätt än. Försök igen eller hoppa över uppgiften.",
 "task.sprechen_skip": "Det går inte att tala just nu, hoppa över",
@@ -1783,6 +1790,7 @@ TEXTE = {
 "werbung.leben_holen": "♥ Se en video",
 "werbung.lohn_laeuft": "Efter videon får du ett hjärta.",
 "werbung.lohn_abholen": "♥ Hämta hjärta",
+"werbung.keine_anzeige": "Ingen annons just nu. Försök igen lite senare.",
 },
 
 # ===========================================================================
@@ -2021,6 +2029,7 @@ TEXTE = {
     "task.hoert_zu": "Aan het luisteren …",
     "task.mikro_blockiert": "Geen toegang tot de microfoon. Geef toestemming in de instellingen van je apparaat of sla de opgave over.",
     "task.mikro_fehler": "Dat lukte niet. Probeer het nog eens.",
+    "task.mikro_offline": "Spreken heeft internet nodig. Sla deze taak over.",
     "task.gehoert_ok": "Bravo! Ik verstond ‘{text}’.",
     "task.gehoert_no":
         "Ik verstond ‘{text}’. Dat klinkt nog niet helemaal goed. Probeer het nog eens of sla de opgave over.",
@@ -2202,6 +2211,7 @@ TEXTE = {
 "werbung.leben_holen": "♥ Video bekijken",
 "werbung.lohn_laeuft": "Na de video krijg je een leven.",
 "werbung.lohn_abholen": "♥ Leven ophalen",
+"werbung.keine_anzeige": "Er is nu even geen advertentie. Probeer het later nog eens.",
 },
 
 # ===========================================================================
@@ -2440,6 +2450,7 @@ TEXTE = {
     "task.hoert_zu": "Lytter …",
     "task.mikro_blockiert": "Ingen tilgang til mikrofonen. Gi tillatelse i innstillingene på enheten, eller hopp over oppgaven.",
     "task.mikro_fehler": "Det gikk ikke. Prøv en gang til.",
+    "task.mikro_offline": "Å snakke krever internett. Hopp over oppgaven.",
     "task.gehoert_ok": "Bravo! Jeg oppfattet «{text}».",
     "task.gehoert_no":
         "Jeg oppfattet «{text}». Det er ikke helt riktig ennå. Prøv igjen eller hopp over oppgaven.",
@@ -2621,6 +2632,7 @@ TEXTE = {
 "werbung.leben_holen": "♥ Se en video",
 "werbung.lohn_laeuft": "Etter videoen får du et liv.",
 "werbung.lohn_abholen": "♥ Hent liv",
+"werbung.keine_anzeige": "Ingen annonse akkurat nå. Prøv igjen senere.",
 },
 
 # ===========================================================================
@@ -2859,6 +2871,7 @@ TEXTE = {
     "task.hoert_zu": "Lytter …",
     "task.mikro_blockiert": "Ingen adgang til mikrofonen. Giv tilladelse i enhedens indstillinger, eller spring opgaven over.",
     "task.mikro_fehler": "Det gik ikke. Prøv en gang til.",
+    "task.mikro_offline": "At tale kræver internet. Spring opgaven over.",
     "task.gehoert_ok": "Bravo! Jeg opfattede »{text}«.",
     "task.gehoert_no":
         "Jeg opfattede »{text}«. Det er ikke helt rigtigt endnu. Prøv igen, eller spring opgaven over.",
@@ -3040,6 +3053,7 @@ TEXTE = {
 "werbung.leben_holen": "♥ Se en video",
 "werbung.lohn_laeuft": "Efter videoen får du et liv.",
 "werbung.lohn_abholen": "♥ Hent liv",
+"werbung.keine_anzeige": "Der er ingen annonce lige nu. Prøv igen senere.",
 },
 
 # ===========================================================================
@@ -3278,6 +3292,7 @@ TEXTE = {
     "task.hoert_zu": "Je t'écoute …",
     "task.mikro_blockiert": "Pas d'accès au micro. Autorise-le dans les réglages de ton appareil ou passe l'exercice.",
     "task.mikro_fehler": "Ça n'a pas marché. Réessaie.",
+    "task.mikro_offline": "L'oral a besoin d'internet. Passe l'exercice.",
     "task.gehoert_ok": "Bravo ! J'ai compris « {text} ».",
     "task.gehoert_no":
         "J'ai compris « {text} ». Ce n'est pas encore tout à fait juste. Réessaie ou passe l'exercice.",
@@ -3459,6 +3474,7 @@ TEXTE = {
 "werbung.leben_holen": "♥ Regarder une vidéo",
 "werbung.lohn_laeuft": "Après la vidéo, tu récupères une vie.",
 "werbung.lohn_abholen": "♥ Récupérer la vie",
+"werbung.keine_anzeige": "Pas de publicité pour le moment. Réessaie plus tard.",
 },
 
 }

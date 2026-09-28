@@ -24,6 +24,28 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ---
 
+## Stand am 28.09.2026
+
+**Behoben: Punkt 5, Punkt 10 und Punkt 12.** Alle drei hängen zusammen.
+Ohne Netz kam AdMob nicht hoch, und die App fiel auf den Platzhalter
+zurück, der für den PC gedacht ist. Auf dem Gerät gibt es ihn jetzt nicht
+mehr: Ist das AdMob-Plugin da, fällt die Anzeige aus (`fertig(false)`) —
+ohne Kontingent und ohne Leben. Damit der Knopf dabei nicht kaputt
+aussieht, kommt eine kurze Meldung — „Gerade gibt es keine Anzeige.
+Versuch es später noch einmal.“ —, in allen acht Sprachen.
+
+Gefunden hat das P8 am Gerät, im Flugmodus. Im Bericht standen die drei
+Punkte seit dem 20.09. da, damals aus dem Quelltext hergeleitet. Die
+Gegenprobe steht in `PRUEFPLAN.md` unter „P8 im Einzelnen“.
+
+**Noch nicht abgehakt:** Die Punkte um die Anzeigenkette (11, 16, 17) sind
+durch die Arbeit vom 27.09.2026 berührt — damals wurde der eigentliche
+Grund behoben, dass auf `addListener` nicht gewartet wurde. Einzeln gegen
+diese Liste geprüft sind sie noch nicht. Alle übrigen Punkte stehen
+unverändert.
+
+---
+
 ## 1. Zwischen dem Laden und dem Zeigen des Interstitials prueft niemand mehr, welcher Bildschirm gerade da ist
 
 **Kontogefährdend** · Platzierung · `web/index.html:4655`
