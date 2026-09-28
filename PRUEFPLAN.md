@@ -21,22 +21,12 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P4** 🔴 | Eine Lektion vollständig durchspielen | Durchgespielt am 26.09., 6 von 6 richtig. Alle sechs Übungsformen kamen vor: Sprechen, Hören, Auswählen in beide Richtungen, Lückentext, Schreiben. |
 | **P5** 🔴 | Ein Level von null auf bestanden | Am 27.09. mit geleertem App-Speicher durchgespielt. Level 1 „Grundlagen“ 33 von 33 Wörtern, 100 %, bestanden; Level 2 „Zahlen“ aufgegangen. Lernstand hat Neustart und Neuinstallation überlebt. Münzen, Serie und Tagesaufgaben zählten mit. **Drei Fehler gefunden** – siehe unten. |
 | **P6** 🔴 | Leben aufbrauchen und zurückbekommen | Am 28.09. durchgespielt. Sperrschirm, Zurück-Taste, Schließen während der Sperre, Herz für Münzen, Herz per Video und der Ablauf der Wartezeit — alles wie vorgesehen, **kein Fehler gefunden**. Zwei Nebenbefunde festgehalten, siehe unten. |
+| **P7** 🔴 | Abonnement kaufen und kündigen | Am 28.09. mit einem Test-Abo (Lizenztester) durchgespielt. Kauf, Freischaltung, Neustart, Flugmodus, Bestätigungsfrist, Kündigung und Ablauf — alles ohne Fehlermeldung, **kein Fehler gefunden**. Einzelheiten unten. |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
 
 ---
 
 ## Offen, vor dem Produktionsantrag (🔴)
-
-### P7 — Abonnement kaufen und kündigen
-
-Im Testkonto die Vollversion kaufen, prüfen dass Werbung verschwindet und
-die Leben unbegrenzt sind. Dann kündigen und prüfen, dass die Vollversion
-bis zum Ende des Zeitraums bleibt.
-
-**Bestanden, wenn:** Kauf, Freischaltung und Kündigung ohne Fehlermeldung
-durchlaufen und der Zustand nach einem Neustart stimmt.
-
-**Achten auf:** Ob die App ohne Internet weiterhin die Vollversion kennt.
 
 ### P8 — Ohne Internet
 
@@ -246,3 +236,71 @@ Android-Ereignisse über `adb`, nicht als Aufruf im Programm.
 die Prüfung ausgegeben, nicht Ajdin. Die Probeschlüssel im Gerätespeicher sind
 entfernt. **Nicht** zurückgesetzt wurden die Tageszähler und das eine
 eingelöste Herz-Video: das waren echte Ereignisse.
+
+---
+
+## P7 im Einzelnen — durchgeführt am 28.09.2026
+
+**Aufbau.** Gekauft hat Ajdin selbst am Gerät, mit seinem Google-Konto als
+**Lizenztester** — bezahlt wird dabei mit Googles Testkarte, es fließt kein
+Geld. Der Lizenztest rafft außerdem die Zeiträume zusammen: ein Monatsabo
+verlängert sich alle 5 Minuten statt alle 30 Tage, und die Frist, in der die
+App den Kauf bestätigen muss, beträgt 3 Minuten statt 3 Tage. Erst dadurch
+ließ sich der ganze Ablauf in einer Viertelstunde prüfen. Gemessen wurde über
+die WebView-Fernwartung, jeweils direkt am laufenden Programm.
+
+**Vorher.** `premium: false`, Google meldet `bekannt: true, aktiv: false`,
+5 von 5 Leben, Werbung erlaubt, 530 Münzen. Beide Basispläne kommen von
+Google: `monat` 2,99 € (P1M), `jahr` 19,99 € (P1Y) — die Preise stehen
+nirgends im Programm.
+
+**Ergebnis gegen die Kriterien.**
+
+| Kriterium | Ergebnis |
+|---|---|
+| Kauf ohne Fehlermeldung | ja, Monatsplan über den Block „Vollversion" |
+| Freischaltung | sofort: Schalter an, Stand „Aktiv", „Abo verwalten" erscheint |
+| Werbung verschwindet | ja — `werbungErlaubt()` liefert `false`, für Anzeige und Video |
+| Leben unbegrenzt | ja, ♥ ∞ und „Vollversion: unbegrenzte Leben" |
+| Zustand nach Neustart | unverändert aktiv |
+| Kündigung ohne Fehlermeldung | ja, über „Abo verwalten" in der App zu Googles Abo-Seite |
+| Vollversion bleibt bis Zeitraumende | ja, noch rund vier Minuten, dann sauber weg |
+| Ohne Internet („Achten auf") | Vollversion bleibt bekannt — siehe unten |
+
+**Zeitverlauf der Messung** (UTC):
+
+```
+17:04  gekauft (Monat, Testkarte)
+17:06  premium=true, aktiv=true, Werbung aus, Leben unbegrenzt
+17:06  App hart neu gestartet -> weiterhin aktiv
+17:07  Flugmodus an, App neu gestartet -> weiterhin aktiv
+17:10  Flugmodus aus, 5,5 Minuten nach dem Kauf -> weiterhin aktiv
+17:11  gekuendigt -> weiterhin aktiv, wie vorgesehen
+17:15  Zeitraum zu Ende -> premium=false, Werbung wieder erlaubt, Leben 5 von 5
+17:16  App neu gestartet -> Vollversion weg, beide Plaene wieder kaufbar
+```
+
+**Was die einzelnen Messungen belegen.**
+
+- **Ohne Internet.** Im Flugmodus antwortet die Play-Abrechnung aus ihrem
+  eigenen Zwischenspeicher: `bekannt: true, aktiv: true`. Die App musste
+  nicht einmal auf den gemerkten Wert zurückfallen. Der Fall, vor dem der
+  Kommentar über `vollAbgleichen()` warnt — ein zahlender Nutzer sitzt im
+  Flugzeug plötzlich wieder vor Werbung — tritt also nicht ein, und zwar aus
+  zwei Gründen hintereinander.
+- **Die Bestätigungsfrist.** Dass die Vollversion 5,5 Minuten nach dem Kauf
+  noch stand, ist der Nachweis für `acknowledgePurchase`. Ohne Bestätigung
+  hätte Google den Testkauf binnen 3 Minuten von selbst erstattet und die
+  Vollversion wieder abgeschaltet. Das ist der teuerste stille Fehler, den
+  ein Abo haben kann, und er ist damit ausgeschlossen.
+- **Die Kündigung.** Der Weg dorthin führt aus der App heraus, weil Google
+  ihn vorschreibt: Der Schalter kann nur einschalten, darunter steht bei
+  aktivem Abo „Abo verwalten". Dieser Weg wurde mitgeprüft und führte auf
+  Googles Abo-Seite für Zmaj.
+- **Nach dem Ablauf.** `premium: false`, Werbung wieder erlaubt, Leben wieder
+  5 von 5 mit sauberem Zeitstempel, „Abo verwalten" verschwunden, beide Pläne
+  wieder kaufbar. Die 530 Münzen sind unverändert.
+
+**Für P8 vorweggenommen.** Der Punkt „kennt die App ohne Internet die
+Vollversion?" ist damit erledigt. Was in P8 offenbleibt, ist der Rest der App
+im Flugmodus: Lektion, Ton, Sicherung.
