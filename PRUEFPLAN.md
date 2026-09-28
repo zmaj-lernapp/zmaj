@@ -25,6 +25,7 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P8** 🔴 | Ohne Internet | Am 28.09. im Flugmodus durchgespielt. Lernen, Ton und Speichern laufen vollständig. **Zwei Fehler gefunden und behoben:** die App zeigte auf dem Handy den Platzhalter vom PC und gab dafür sogar ein Leben; und das Sprechen ohne Netz meldete „Versuch es noch einmal" statt zu sagen, dass Internet fehlt. |
 | **P9** 🔴 | Einwilligung ablehnen | Am 28.09. mit geleertem App-Speicher durchgespielt. Ablehnen bringt die App nicht aus dem Tritt, `npa=1` geht an jede Anfrage, und Werbung läuft trotzdem — nur unpersonalisiert. Die Entscheidung lässt sich in den Einstellungen in beide Richtungen ändern. **Kein Fehler gefunden.** |
 | **P10** 🔴 | Mikrofon verweigern | Am 28.09. durchgespielt. Ablehnen kostet kein Leben, die Aufgabe lässt sich überspringen, und ab der nächsten Lektion kommen keine Sprechaufgaben mehr. **Ein Fehler gefunden und behoben:** der Ausschluss hielt nur bis zum nächsten Start der App. |
+| **P11** | Alle acht Oberflächensprachen | Am 28.09. gemessen: acht Sprachen, je fünf Bildschirme. Kein roher Textschlüssel. **Ein gesprengter Knopf im französischen Laden**, behoben durch einen kürzeren Text. Dazu die elf Texte sprachlich geprüft, die seit dem Bericht vom 18.09. neu sind — **21 Befunde, alle eingearbeitet**. |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
 
 ---
@@ -39,16 +40,6 @@ Tag behoben und gegengeprüft.
 ---
 
 ## Offen, kann nach dem Antrag folgen
-
-### P11 — Alle acht Oberflächensprachen
-
-Sprache umstellen, je einen Bildschirm ansehen: Startseite, Lektion,
-Einstellungen, Laden.
-
-**Bestanden, wenn:** Nirgends ein roher Textschlüssel wie
-`set.sicherung_suchen` steht und kein Text den Knopf sprengt.
-
-*`texte_pruefen.py` prüft das automatisch und meldet derzeit nichts.*
 
 ### P13 — Ein Level mit allen Sonderfällen
 
@@ -473,3 +464,70 @@ wird die Merkung gelöscht.
 
 Der Weg zurück steht also offen — die App sperrt niemanden aus, der es sich
 anders überlegt.
+
+---
+
+## P11 im Einzelnen — durchgeführt am 28.09.2026
+
+**Aufbau.** Zwei Teile: die Oberfläche am Gerät und die Sprache der Texte.
+
+**Teil 1 — acht Sprachen, vierzig Bildschirme.** Die Fernwartung hat jede
+Sprache eingestellt und in jeder fünf Bildschirme abgemessen: Startseite,
+Levelansicht, Lektion, Einstellungen, Laden. Gemessen, nicht angesehen — jeder
+Textknoten auf ein Muster wie `set.sicherung_suchen` geprüft, jeder Knopf auf
+waagerechten Überlauf (`scrollWidth` gegen `clientWidth`, dazu der rechte Rand
+gegen die Fensterbreite).
+
+| Kriterium | Ergebnis |
+|---|---|
+| Kein roher Textschlüssel | keiner, in keiner Sprache |
+| Kein Text sprengt den Knopf | **ein Fund** — siehe unten, behoben |
+| `texte_pruefen.py` | meldet nichts: 404 Schlüssel in allen acht Sprachen, Platzhalter stimmen überein |
+
+**Der Fund.** Im französischen Laden:
+
+```
+Knopf „♥ Regarder une vidéo"   braucht 155 px, hat 138 px   → 17 px zu breit
+Zeile „Recharger un cœur"      307 px in 292 px             → dieselbe Ursache
+```
+
+Der Knopf steht auf `white-space: nowrap`, damit die Herzen-Zeile nicht
+zerfällt — so wollte Ajdin sie am 27.09. Statt das Aussehen wieder
+aufzumachen, wurde der Text gekürzt: **„♥ Regarder une vidéo" → „♥ Voir une
+vidéo"**. Gleiche Bedeutung, geläufigere Wendung.
+
+**Zwei Fehlalarme**, beide aus der Messung, nicht aus der App:
+`kakosepise.info` ist eine Quellenangabe in den Danksagungen und sieht nur aus
+wie ein Schlüssel; und `showShop` heißt in Wahrheit `showLaden` — mein
+Skriptfehler, der den Laden im ersten Durchlauf gar nicht erst aufmachte.
+
+**Teil 2 — die Sprache der Texte.** Der große Übersetzungsbericht vom
+18.09.2026 deckt die Oberfläche ab, aber seitdem sind **elf Texte** dazu-
+gekommen oder geändert worden: die acht neuen (`set.aussehen`,
+`set.aussehen_sub`, die drei Theme-Knöpfe, `set.sicherung_suchen`,
+`task.mikro_offline`, `werbung.keine_anzeige`) und drei geänderte (`app.fuss`,
+`app.ueber_kurz`, `werbung.platzhalter`). Die waren noch von niemandem
+gelesen.
+
+Dafür lief je ein Prüfer pro Sprache, sieben gleichzeitig, jeder mit dem
+deutschen Original daneben und der Erlaubnis nachzuschlagen. **21 Befunde,
+alle eingearbeitet.** Die gewichtigsten:
+
+| Sprache | Was | Warum |
+|---|---|---|
+| Französisch | „cherchez" → „cherche" | Anredebruch: diese eine Zeile siezte, alles andere duzt |
+| Französisch | „Réglages" → „Paramètres" | „Réglages" ist der Apple-Begriff, Android sagt „Paramètres" |
+| Türkisch | „Yüklemek" → „Geri yüklemek" | „yüklemek" heißt installieren; wiederherstellen ist „geri yüklemek" |
+| Türkisch | „dilbilgisi" → „dil bilgisi" | TDK schreibt es getrennt — in einer Sprachlern-App fällt das auf |
+| Schwedisch | „som telefonen är inställd" → „följ telefonens inställning" | „inställd" verlangt eine Präposition, der Satz brach ab |
+| Dänisch | dasselbe mit „indstillet" | gleicher Fehler, gleiche Ursache: wörtlich aus dem Deutschen |
+| Niederländisch | „Versie" → „versie" | Substantive werden klein geschrieben; auch Norwegisch und Französisch |
+| Niederländisch | „taak" → „opgave" | „taak" ist für die Tagesaufgaben belegt, die Schwestertexte sagen „opgave" |
+
+Auffällig ist das Muster: Fast alle Befunde sind **Germanismen** — Sätze, die
+Wort für Wort aus dem Deutschen übertragen wurden und in der Zielsprache
+unvollständig oder steif klingen. Genau die Stellen, die man im eigenen Text
+nicht sieht.
+
+**Gegenprobe.** Nach beiden Änderungen, Fassung 37 auf dem Gerät: acht
+Sprachen, vierzig Bildschirme, **null Funde**.
