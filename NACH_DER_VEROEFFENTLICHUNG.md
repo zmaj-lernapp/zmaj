@@ -108,3 +108,14 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   derselben Person nur alle vier Tage. Text auf Deutsch und Englisch, weil
   die App in acht Sprachen läuft. Einzurichten, sobald die App öffentlich ist
   — im geschlossenen Test schreibt niemand außer uns.
+- **Benachrichtigungen einbauen**, vor allem die Erinnerung, bevor die
+  Lernserie abläuft. Wichtig dabei: Das müssen **örtliche** Benachrichtigungen
+  sein, die das Gerät selbst stellt (`@capacitor/local-notifications`) — kein
+  Versand von außen, sonst bräuchte die App doch einen Server. Zu bedenken:
+  Ab Android 13 muss die App die Erlaubnis dafür erfragen; sie gehört nicht in
+  den ersten Start, sondern an eine Stelle, an der der Nutzer versteht, wofür.
+  Ein Schalter in den Einstellungen zum Abschalten ist Pflicht. Inhalte, die
+  sich anbieten: Serie läuft heute ab, tägliche Erinnerung zur selbst
+  gewählten Zeit, Leben wieder voll. Der Serienschutz muss dabei
+  mitgedacht werden — wer einen hat, soll nicht gemahnt werden, als stünde er
+  vor dem Verlust.
