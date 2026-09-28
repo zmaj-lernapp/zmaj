@@ -23,19 +23,12 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P6** 🔴 | Leben aufbrauchen und zurückbekommen | Am 28.09. durchgespielt. Sperrschirm, Zurück-Taste, Schließen während der Sperre, Herz für Münzen, Herz per Video und der Ablauf der Wartezeit — alles wie vorgesehen, **kein Fehler gefunden**. Zwei Nebenbefunde festgehalten, siehe unten. |
 | **P7** 🔴 | Abonnement kaufen und kündigen | Am 28.09. mit einem Test-Abo (Lizenztester) durchgespielt. Kauf, Freischaltung, Neustart, Flugmodus, Bestätigungsfrist, Kündigung und Ablauf — alles ohne Fehlermeldung, **kein Fehler gefunden**. Einzelheiten unten. |
 | **P8** 🔴 | Ohne Internet | Am 28.09. im Flugmodus durchgespielt. Lernen, Ton und Speichern laufen vollständig. **Zwei Fehler gefunden und behoben:** die App zeigte auf dem Handy den Platzhalter vom PC und gab dafür sogar ein Leben; und das Sprechen ohne Netz meldete „Versuch es noch einmal" statt zu sagen, dass Internet fehlt. |
+| **P9** 🔴 | Einwilligung ablehnen | Am 28.09. mit geleertem App-Speicher durchgespielt. Ablehnen bringt die App nicht aus dem Tritt, `npa=1` geht an jede Anfrage, und Werbung läuft trotzdem — nur unpersonalisiert. Die Entscheidung lässt sich in den Einstellungen in beide Richtungen ändern. **Kein Fehler gefunden.** |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
 
 ---
 
 ## Offen, vor dem Produktionsantrag (🔴)
-
-### P9 — Einwilligung ablehnen
-
-App-Speicher leeren, neu starten, im Einwilligungsfenster **ablehnen**.
-
-**Bestanden, wenn:** Die App normal weiterläuft und keine personalisierte
-Werbung zeigt. Die Entscheidung muss sich in den Einstellungen ändern
-lassen.
 
 ### P10 — Mikrofon verweigern
 
@@ -373,3 +366,65 @@ Die Behebung nimmt also nur dort etwas weg, wo ohnehin nichts war.
 **Offen geblieben.** Die übrigen Punkte aus `WERBUNG_PRUEFUNG.md` bleiben
 stehen. Die um die Anzeigenkette herum (11, 16, 17) sind durch die Arbeit vom
 27.09.2026 berührt, aber noch nicht einzeln gegen diese Liste abgehakt.
+
+---
+
+## P9 im Einzelnen — durchgeführt am 28.09.2026
+
+**Vorher gesichert.** Zwei Dateien in `sicherung_handy/`: der ganze
+App-Speicher und der Lernstand allein. Das war nötig, weil P9 mit
+`pm clear` anfängt — ohne Sicherung wäre alles weg gewesen. Die große
+Sicherung vom 27.09. mit 1108 Wörtern, 43 Level und 35 Lerntagen liegt
+unverändert daneben; sie gehört zu dem Stand vor dem Leeren für P5.
+
+**Aufbau.** `pm clear de.smartdragon.zmaj`, dann App starten — ein echter
+Erststart. Googles Einwilligungsfenster (UMP) kam von selbst. „Do not
+consent" wurde als echter Tipp über `adb` gesetzt, nicht im Programm.
+
+**Ergebnis gegen die Kriterien.**
+
+| Kriterium | Ergebnis |
+|---|---|
+| App läuft normal weiter | ja — frisches Profil, Lernpfad, 5 Leben, kein Absturz, keine Fehlermeldung |
+| Keine personalisierte Werbung | `personalisiert: false`, also `npa=1` an jeder Anfrage |
+| Werbung läuft trotzdem | echte Anzeige lief, Zähler 0 → 1, kein Platzhalter |
+| Entscheidung in den Einstellungen änderbar | ja, in beide Richtungen |
+
+**Was in Googles Speicher stand**, direkt nach dem Ablehnen, gelesen über das
+eigene Plugin `ZmajEinwilligung`:
+
+```
+dsgvo: 1 · zweck1: false · zweck3: false · zweck4: false
+google: false · bekannt: true · personalisiert: false
+```
+
+Genau darauf hört `werbungPersonalisiert()`, und daraus wird das `npa` der
+Anzeigenanfrage. Die App rät also nicht, sie liest Googles Antwort.
+
+**Die Entscheidung ändern.** In den Einstellungen stand der Werbeschalter auf
+aus, darunter „Nur zufällige Anzeigen, nicht auf dich zugeschnitten." Ein Tipp
+darauf öffnet Googles eigenes Fenster — der Schalter legt nicht selbst um,
+sondern folgt der Antwort. Nach „Consent" sprang er auf an, der Text wurde zu
+„Anzeigen dürfen zu deinen Interessen passen.", und `zmaj_pers` stand auf
+`an`. Der Weg zurück wurde genauso geprüft: noch einmal tippen, „Do not
+consent", Schalter wieder aus. **Beide Richtungen, nicht nur eine.**
+
+**Nebenbefund — das Fenster kam auf Englisch.** Es begrüßte mit „Welcome to
+Publisher Test Ads". Das ist Googles Testformular, das zu den Testkennungen
+gehört; ein eigener Text steht darin nicht. Ob das veröffentlichte Formular
+auf Deutsch erscheint, hängt daran, welche Sprachen in der AdMob-Konsole für
+die Datenschutzmeldung hinterlegt sind. **Beim Kennungstausch
+(`admob_scharf.py`) mit ansehen.**
+
+**Nebenbefund — eine Falle beim Zurückspielen.** Der Lernstand ließ sich
+zuerst nicht wiederherstellen: nach dem Zurückschreiben und einem
+`location.reload()` stand wieder alles auf null. Grund ist nicht die App,
+sondern die Reihenfolge — beim Entladen schreibt die App ihren
+Arbeitsspeicher weg, und der war noch leer. Richtig ist, die App den
+zurückgespielten Stand mit `loadProgress()` lesen zu lassen, statt neu zu
+laden. **Der Weg in der App selbst ist davon nicht betroffen:** dort ruft das
+Einlesen einer Sicherung `standUebernehmen()` direkt auf (P1).
+
+**Wiederhergestellt und gegengeprüft.** Nach hartem Neustart: 77 Wörter,
+Level „basics" und „zahlen" bestanden, 550 Münzen, 5 Leben, 2 Lerntage,
+Rekord 2, Einwilligung wieder auf „ja" — also der Stand von vor P9.
