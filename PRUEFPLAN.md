@@ -24,21 +24,17 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P7** 🔴 | Abonnement kaufen und kündigen | Am 28.09. mit einem Test-Abo (Lizenztester) durchgespielt. Kauf, Freischaltung, Neustart, Flugmodus, Bestätigungsfrist, Kündigung und Ablauf — alles ohne Fehlermeldung, **kein Fehler gefunden**. Einzelheiten unten. |
 | **P8** 🔴 | Ohne Internet | Am 28.09. im Flugmodus durchgespielt. Lernen, Ton und Speichern laufen vollständig. **Zwei Fehler gefunden und behoben:** die App zeigte auf dem Handy den Platzhalter vom PC und gab dafür sogar ein Leben; und das Sprechen ohne Netz meldete „Versuch es noch einmal" statt zu sagen, dass Internet fehlt. |
 | **P9** 🔴 | Einwilligung ablehnen | Am 28.09. mit geleertem App-Speicher durchgespielt. Ablehnen bringt die App nicht aus dem Tritt, `npa=1` geht an jede Anfrage, und Werbung läuft trotzdem — nur unpersonalisiert. Die Entscheidung lässt sich in den Einstellungen in beide Richtungen ändern. **Kein Fehler gefunden.** |
+| **P10** 🔴 | Mikrofon verweigern | Am 28.09. durchgespielt. Ablehnen kostet kein Leben, die Aufgabe lässt sich überspringen, und ab der nächsten Lektion kommen keine Sprechaufgaben mehr. **Ein Fehler gefunden und behoben:** der Ausschluss hielt nur bis zum nächsten Start der App. |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
 
 ---
 
 ## Offen, vor dem Produktionsantrag (🔴)
 
-### P10 — Mikrofon verweigern
-
-Bei der ersten Sprechaufgabe die Berechtigung ablehnen.
-
-**Bestanden, wenn:** Die Aufgabe sich überspringen lässt und ab der
-nächsten Lektion keine Sprechaufgaben mehr kommen.
-
-*Hinweis: Der zweite Teil wurde am 26.09. erst eingebaut
-(`sprechen_richten.py`) und ist noch nicht auf dem Gerät geprüft.*
+Nichts mehr. **P1 bis P10 sind seit dem 28.09.2026 alle abgehakt**,
+die letzten fünf davon an diesem einen Tag. P6, P7 und P9 liefen ohne
+Befund; P8 brachte zwei Fehler und P10 einen, alle drei noch am selben
+Tag behoben und gegengeprüft.
 
 ---
 
@@ -428,3 +424,52 @@ Einlesen einer Sicherung `standUebernehmen()` direkt auf (P1).
 **Wiederhergestellt und gegengeprüft.** Nach hartem Neustart: 77 Wörter,
 Level „basics" und „zahlen" bestanden, 550 Münzen, 5 Leben, 2 Lerntage,
 Rekord 2, Einwilligung wieder auf „ja" — also der Stand von vor P9.
+
+---
+
+## P10 im Einzelnen — durchgeführt am 28.09.2026
+
+**Aufbau.** Das Mikrofonrecht war nach dem `pm clear` aus P9 ohnehin weg —
+also ein echter Erstkontakt. Die Lektion hat die Fernwartung gespielt, das
+Berechtigungsfenster von Android wurde als echter Tipp über `adb` beantwortet:
+„Zmaj erlauben, Audioaufnahmen zu machen?" → **Nicht erlauben**.
+
+**Ergebnis gegen die Kriterien.**
+
+| Kriterium | Ergebnis |
+|---|---|
+| Aufgabe lässt sich überspringen | ja, und sie kostet **kein Leben** |
+| Ab der nächsten Lektion keine Sprechaufgaben | ja — neue Lektion: 12 Aufgaben, davon 0 Sprechaufgaben |
+| Nach einem Neustart auch nicht | **erst nach der Behebung** — siehe unten |
+
+Die App sagte dabei das Richtige: „Kein Zugriff auf das Mikrofon. Erlaube ihn
+in den Einstellungen deines Geräts oder überspring die Aufgabe." Darunter der
+Knopf „Sprechen ist gerade nicht möglich, überspringen".
+
+**Befund — der Ausschluss hielt nur bis zum nächsten Start.**
+
+`hoerenPruefen()` fragt beim Start `available()`, und das sagt nur, dass ein
+Erkenner **installiert** ist, nicht dass die App ihn benutzen darf. Gemessen:
+nach dem Neustart stand `canSpeak` wieder auf `true`, und die nächste Lektion
+hatte prompt wieder zwei Sprechaufgaben. Der Nutzer, der abgelehnt hat, bekam
+sie also bei jedem Öffnen der App erneut — und mit ihnen die Tagesaufgabe
+„fehlerfrei", die `Lx.skipped === 0` verlangt und damit unerreichbar bleibt.
+Genau das sollte der Einbau vom 26.09. verhindern; er wirkte nur bis zum
+Schließen der App.
+
+**Die Behebung.** Die Absage wird gemerkt (`zmaj_mikro_nein`), und beim Start
+sieht die App zusätzlich nach — **nachsehen, nicht fragen**:
+`checkPermissions()` öffnet kein Fenster. Steht dort `denied`, oder ist die
+Absage gemerkt, fällt `speak` aus dem Aufgabentopf. Steht dort `granted`,
+wird die Merkung gelöscht.
+
+**Gegenprobe, Fassung 35 auf dem Gerät:**
+
+| Schritt | Ergebnis |
+|---|---|
+| Mikrofon antippen, ablehnen | `canSpeak: false`, Absage gemerkt, kein Leben verloren |
+| App hart neu gestartet | `canSpeak: false`, neue Lektion mit **0** Sprechaufgaben |
+| Recht in den Geräteeinstellungen erteilt, neu gestartet | `granted`, Merkung von selbst gelöscht, Sprechaufgaben wieder da |
+
+Der Weg zurück steht also offen — die App sperrt niemanden aus, der es sich
+anders überlegt.

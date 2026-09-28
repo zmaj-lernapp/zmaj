@@ -3533,11 +3533,37 @@ function hoererPlugin(){
   return (P && P.SpeechRecognition) || null;
 }
 let canSpeak = false;
+/* Hat der Nutzer das Mikrofon einmal abgelehnt, merkt sich die App das.
+   Sonst galt der Ausschluss nur bis zum naechsten Start: available()
+   sagt lediglich, dass ein Erkenner installiert ist, nicht dass die App
+   ihn benutzen darf - und nach jedem Neustart standen wieder
+   Sprechaufgaben da, die sich nur ueberspringen lassen. Gefunden bei P10
+   am 28.09.2026. Der Weg zurueck bleibt offen: erteilt er die
+   Berechtigung spaeter in den Geraeteeinstellungen, faellt die Merkung
+   beim naechsten Start von selbst weg. */
+const MIKRO_NEIN = 'zmaj_mikro_nein';
+function mikroAbgelehnt(){
+  try{ return localStorage.getItem(MIKRO_NEIN) === '1'; }catch(e){ return false; }
+}
+function mikroAbsageMerken(ja){
+  try{ ja ? localStorage.setItem(MIKRO_NEIN, '1') : localStorage.removeItem(MIKRO_NEIN); }catch(e){}
+}
 async function hoerenPruefen(){
   const H = hoererPlugin();
   if(H){
     try{ canSpeak = !!(await H.available()).available; }
     catch(e){ canSpeak = false; }
+    /* Nur nachsehen, nicht fragen: checkPermissions() oeffnet kein
+       Fenster. Ein abgelehntes Mikrofon nimmt 'speak' aus dem Topf,
+       ein erteiltes loescht die gemerkte Absage. */
+    if(canSpeak){
+      try{
+        const r = await H.checkPermissions();
+        const stand = r && r.speechRecognition;
+        if(stand === 'granted') mikroAbsageMerken(false);
+        else if(stand === 'denied' || mikroAbgelehnt()) canSpeak = false;
+      }catch(e){}
+    }
   } else {
     canSpeak = !!SR && window.isSecureContext;
   }
@@ -5484,6 +5510,7 @@ function renderTask(task, body, done, opts={}){
                dauerhaft unerreichbar. Ab der naechsten Lektion faellt 'speak'
                jetzt aus dem Aufgabentopf. */
             canSpeak = false;
+            mikroAbsageMerken(true);   // auch ueber den naechsten Start hinaus
             heard.textContent = t('task.mikro_blockiert');
             return;
           }
