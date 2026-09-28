@@ -100,3 +100,11 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
 - **Seitenzahlen im Inhaltsverzeichnis** stehen von Hand in `kapitel1.json`.
   Nach jeder größeren Änderung neu ermitteln, wie in `mappe/LIESMICH.txt`
   beschrieben.
+- **Automatische Antwort auf die Kontaktadresse** `zmaj.lernapp@gmail.com`:
+  Wer schreibt, soll sofort eine Bestätigung bekommen — dass die Nachricht
+  angekommen ist, dass ein Mensch sie liest, und in welcher Zeit. In Gmail
+  geht das mit einer Vorlage und einem Filter, der sie an alle eingehenden
+  Mails schickt. Die Abwesenheitsnotiz kann das nicht ersetzen: sie antwortet
+  derselben Person nur alle vier Tage. Text auf Deutsch und Englisch, weil
+  die App in acht Sprachen läuft. Einzurichten, sobald die App öffentlich ist
+  — im geschlossenen Test schreibt niemand außer uns.
