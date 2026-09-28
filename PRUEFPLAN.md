@@ -20,22 +20,12 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P3** 🔴 | Tonspur durchhören | 45 Aufnahmen aus zwei Risikogruppen geprüft, 13 beanstandet. Zehn davon auf die kroatische Stimme mit Lautschrift umgestellt, eine Vokabel geändert (`Brz oporavak`), zwei bleiben. |
 | **P4** 🔴 | Eine Lektion vollständig durchspielen | Durchgespielt am 26.09., 6 von 6 richtig. Alle sechs Übungsformen kamen vor: Sprechen, Hören, Auswählen in beide Richtungen, Lückentext, Schreiben. |
 | **P5** 🔴 | Ein Level von null auf bestanden | Am 27.09. mit geleertem App-Speicher durchgespielt. Level 1 „Grundlagen“ 33 von 33 Wörtern, 100 %, bestanden; Level 2 „Zahlen“ aufgegangen. Lernstand hat Neustart und Neuinstallation überlebt. Münzen, Serie und Tagesaufgaben zählten mit. **Drei Fehler gefunden** – siehe unten. |
+| **P6** 🔴 | Leben aufbrauchen und zurückbekommen | Am 28.09. durchgespielt. Sperrschirm, Zurück-Taste, Schließen während der Sperre, Herz für Münzen, Herz per Video und der Ablauf der Wartezeit — alles wie vorgesehen, **kein Fehler gefunden**. Zwei Nebenbefunde festgehalten, siehe unten. |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
 
 ---
 
 ## Offen, vor dem Produktionsantrag (🔴)
-
-### P6 — Leben aufbrauchen und zurückbekommen
-
-Fünfmal falsch antworten, bis keine Leben mehr da sind. Sperrbildschirm
-ansehen. Dann entweder zwei Stunden warten oder ein Herz im Laden kaufen.
-
-**Bestanden, wenn:** Die Wartezeit richtig heruntergezählt wird, nach Ablauf
-ein Herz zurückkommt, und die App dabei nicht hängenbleibt.
-
-**Achten auf:** Was passiert, wenn man die App während der Sperre schließt
-und neu öffnet. Und was die Zurück-Taste auf dem Sperrbildschirm tut.
 
 ### P7 — Abonnement kaufen und kündigen
 
@@ -175,3 +165,84 @@ gesehen hätte — alle am selben Tag behoben und einzeln nachgemessen:
 keine Fehler): Tagesziele auf etwa zwei Lektionen statt einer, Werbung nach
 jeder Lektion statt jeder dritten und auch nach dem Test, Level-Test erst bei
 100 % bekannter Wörter statt 80 %.
+
+---
+
+## P6 im Einzelnen — durchgeführt am 28.09.2026
+
+**Aufbau.** Ausgangslage: 5 von 5 Leben, 530 Münzen, Level 1 und 2 bei 100 %.
+Über Nacht waren die Leben von 3 auf 5 nachgewachsen — der Nachfüllweg über
+mehrere Stunden war damit schon vor dem ersten Handgriff belegt.
+
+**Wer was gespielt hat.** Die Lektionen hat die WebView-Fernwartung gespielt,
+also echte Klicks auf die echten Bedienelemente; Sprechaufgaben waren
+ausgespart (`canSpeak` vorübergehend aus), weil sie sich nicht fernbedienen
+lassen. Die Zurück-Taste und das Schließen der App kamen als echte
+Android-Ereignisse über `adb`, nicht als Aufruf im Programm.
+
+**Ergebnis gegen die Kriterien.**
+
+| Kriterium | Ergebnis |
+|---|---|
+| Wartezeit wird heruntergezählt | 2 h 0 min → 1 h 59 min → 1 h 58 min → … , durchgehend richtig |
+| Nach Ablauf kommt ein Herz zurück | ja, auf die Millisekunde wie vorausberechnet |
+| App bleibt nicht hängen | kein Hänger, kein toter Schirm, kein Doppel-Zurück |
+| Schließen während der Sperre | überstanden: 0 Leben, gleicher Zeitstempel, Uhr lief weiter |
+| Zurück-Taste auf dem Sperrschirm | führt in die Levelansicht, von dort ins Hauptmenü |
+
+**Der Weg im Einzelnen.**
+
+1. **Fünfmal falsch geantwortet**, Leben 5 → 4 → 3 → 2 → 1 → 0. Jede falsche
+   Antwort kostete genau ein Leben, die Aufgabe kam als Wiederholung zurück
+   in die Warteschlange. Der Zeitstempel für das Nachwachsen wurde beim
+   ersten Verlust gesetzt — und beim zweiten Durchgang richtigerweise **nicht**
+   neu gesetzt, weil die Leben da nicht mehr voll waren.
+2. **Sperrschirm:** „Lektion abgebrochen · ♥ 0 · Keine Leben mehr. · 2 h 0 min
+   bis zum nächsten Leben", darunter drei Knöpfe — „♥ Video ansehen",
+   „♥ für 🪙 100" und „Zurück zum Level".
+3. **Zurück-Taste:** einmal führt in die Levelansicht — ohne die Frage
+   „Lektion abbrechen?", der am 26.09. behobene Fehler ist also weg. Dort
+   steht der Lektionsknopf als „♥ Keine Leben · warten" und ist gesperrt, und
+   beide Wege zu einem Herz stehen als eigene Zeile darunter. Noch einmal
+   zurück führt ins Hauptmenü. Keine Sackgasse.
+4. **App hart geschlossen und neu geöffnet:** 0 Leben, derselbe Zeitstempel,
+   Uhr bei 1 h 58 min, Lektionsknopf weiter gesperrt.
+5. **Herz für Münzen:** 530 → 430 Münzen, 0 → 1 Leben, Knopf wieder frei, die
+   Zwei-Wege-Zeile verschwindet. Die Wartezeit läuft unverändert weiter — das
+   nachwachsende Herz kommt also trotzdem zu seiner ursprünglichen Zeit. Das
+   ist großzügig, aber gewollt.
+6. **Herz per Video:** noch einmal ein Leben verloren, auf dem Sperrschirm
+   „♥ Video ansehen" getippt. Die Anzeige lief, danach stand die App von
+   selbst wieder in der Levelansicht, `lohn` 0 → 1, Leben 0 → 1. Nebenbei
+   belegt: die **Tagesgrenze für Herz-Videos setzt sich zum Tageswechsel
+   zurück** — gestern waren 6 von 6 aufgebraucht, heute stand der Zähler
+   wieder auf 0.
+7. **Ablauf der Wartezeit.** Zwei Stunden absitzen ließ sich nicht, also wurde
+   der gespeicherte Zeitstempel um 250 Minuten zurückdatiert — zwei volle
+   Nachfüllzeiten. Geprüft wird damit genau der Weg, den die App nach echtem
+   Warten geht, `syncLives()` rechnet in beiden Fällen dasselbe. Nach dem
+   Neustart standen **genau zwei Leben** da, der neue Zeitstempel stimmte auf
+   die Millisekunde mit der Vorausberechnung überein, und das nächste Herz
+   war für 1 h 50 min angekündigt. Zwei Leben hatte das Gerät an diesem Tag
+   nie — der Wert kann also nur aus dem Nachfüllen stammen.
+
+**Zwei Nebenbefunde.**
+
+- **Der erste Messversuch schlug fehl**, und die Schuld lag bei der Messung,
+  nicht an der App: nach `am force-stop` stand wieder der alte Stand da. Die
+  WebView hält frisch geschriebenes `localStorage` einige Sekunden im
+  Arbeitsspeicher, bevor sie es auf die Platte legt. Derselbe Schreibvorgang
+  mit zwölf Sekunden Abstand überlebte vollständig. Gegenprobe mit dem
+  lebensnahen Fall — schreiben, Home-Taste, dann von Android weggeräumt
+  (`am kill`) — ging ebenfalls vollständig gut. `am force-stop` im
+  Vordergrund ist ein Entwicklerbefehl, kein Weg, den ein Nutzer geht. Kein
+  Mangel, aber gut zu wissen, wenn später wieder jemand misst.
+- **Uhr vorgestellt.** Der Kommentar in `syncLives()` warnt vor einem
+  Zeitstempel aus der Zukunft: dann wächst nie wieder ein Herz nach. Probe
+  mit einem Stempel 24 Stunden voraus: die App klemmt ihn auf jetzt ab und
+  meldet „nächstes in 2 h 0 min". Die Vorsorge greift.
+
+**Aufgeräumt.** Leben wieder auf 5 und die 100 Münzen zurückgebucht — die hat
+die Prüfung ausgegeben, nicht Ajdin. Die Probeschlüssel im Gerätespeicher sind
+entfernt. **Nicht** zurückgesetzt wurden die Tageszähler und das eine
+eingelöste Herz-Video: das waren echte Ereignisse.
