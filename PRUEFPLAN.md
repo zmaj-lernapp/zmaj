@@ -56,8 +56,40 @@ App abends benutzen, am nächsten Morgen wieder öffnen.
 **Bestanden, wenn:** Die Lernserie stimmt, neue Tagesaufgaben da sind und
 die Startseite nicht mehr „heute schon geübt" behauptet.
 
-*Achtung: Hier ist ein Fehler bekannt — nach Mitternacht zeigt die
-Startseite ohne Neustart weiter den Stand von gestern.*
+**Zum bekannten Fehler:** Er ist am 26.09.2026 behoben worden. `tagPruefen()`
+läuft seitdem im Zeitgeber alle 30 Sekunden, merkt den Datumswechsel, ruft
+`pruefeSchutz()` und zeichnet die Startseite neu, wenn sie sichtbar ist.
+Bestätigt ist das bisher nur im Quelltext — **über einen echten Tageswechsel
+am Gerät noch nie.** Genau das ist P15.
+
+**Ausgangswerte vom Abend des 28.09.2026** (am Gerät abgelesen), damit sich
+morgen vergleichen lässt:
+
+```
+Lerntage   2026-09-27, 2026-09-28     Serie 2, Rekord 2, heute gelernt: ja
+Serienschutz   1 im Vorrat, kein Tag in frost
+Tagesaufgaben  2 von 3 geschafft:
+               „10 Minuten lernen" ✓ · „10 neue Wörter lernen" ✓
+               „20 Aufgaben beantworten" offen
+Tageszähler    45 Aufgaben, 34 richtig, 6 Hörübungen, 6 Lückentexte,
+               11 neue Wörter, 2 Lektionen, 1 fehlerfrei, 283 Minuten
+Leben          5 von 5, Zeitstempel 0
+Werbung        n = 6, lohn = 1 (Tag 2026-09-28)
+Lernstand      77 Wörter, Level „basics" und „zahlen", 550 Münzen
+```
+
+**Worauf morgen zu achten ist:**
+
+1. Die App **ohne Neustart** aufwecken — nur so wird der Zeitgeber geprüft.
+   Erst danach einmal hart neu starten und beides vergleichen.
+2. Serie muss auf 3 stehen, wenn morgen gelernt wird — und vorher auf 2
+   bleiben, nicht auf 0 fallen.
+3. Drei **neue** Tagesaufgaben, Zähler wieder bei null.
+4. Die Startseite darf nicht mehr „Heute geübt ✓" zeigen.
+5. Der Werbezähler muss sich zurücksetzen (`tag` auf den neuen Tag, `n` und
+   `lohn` auf 0) — das ist am 28.09. schon einmal beobachtet worden.
+6. Der Serienschutz darf **nicht** verbraucht werden: Es wird kein Tag
+   ausgelassen.
 
 ---
 
