@@ -27,6 +27,7 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P10** 🔴 | Mikrofon verweigern | Am 28.09. durchgespielt. Ablehnen kostet kein Leben, die Aufgabe lässt sich überspringen, und ab der nächsten Lektion kommen keine Sprechaufgaben mehr. **Ein Fehler gefunden und behoben:** der Ausschluss hielt nur bis zum nächsten Start der App. |
 | **P11** | Alle acht Oberflächensprachen | Am 28.09. gemessen: acht Sprachen, je fünf Bildschirme. Kein roher Textschlüssel. **Ein gesprengter Knopf im französischen Laden**, behoben durch einen kürzeren Text. Dazu die elf Texte sprachlich geprüft, die seit dem Bericht vom 18.09. neu sind — **21 Befunde, alle eingearbeitet**. |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
+| **P13** | Ein Level mit allen Sonderfällen | Am 28.09. durchgespielt: Level 27 „Fragen stellen“ mit beiden Grammatikaufgaben richtig (10 von 10), Geschichte „Mira i Rex“ gelesen und alle drei Fragen beantwortet. **Alle zehn Zurück-Wege führen heraus**, keine Sackgasse. Kein Fehler gefunden. |
 
 ---
 
@@ -40,13 +41,6 @@ Tag behoben und gegengeprüft.
 ---
 
 ## Offen, kann nach dem Antrag folgen
-
-### P13 — Ein Level mit allen Sonderfällen
-
-Ein Level mit Grammatikaufgaben spielen, eine Geschichte lesen und ihre
-Fragen beantworten.
-
-**Bestanden, wenn:** Die Zurück-Wege aus jedem Bildschirm herausführen.
 
 ### P14 — Zwei Geräte
 
@@ -531,3 +525,87 @@ nicht sieht.
 
 **Gegenprobe.** Nach beiden Änderungen, Fassung 37 auf dem Gerät: acht
 Sprachen, vierzig Bildschirme, **null Funde**.
+
+---
+
+## P13 im Einzelnen — durchgeführt am 28.09.2026
+
+**Aufbau.** Die Grammatiklevel fangen erst bei Nummer 27 an („Fragen
+stellen"), und offen sind bisher nur drei — es sind zwei Level bestanden.
+Für die Prüfung wurden die davorliegenden Level kurz als bestanden
+eingetragen; die Sicherung von vorher hat den echten Stand danach
+zurückgespielt. Gespielt hat die Fernwartung, die Zurück-Taste kam als
+echtes Android-Ereignis über `adb`.
+
+**Teil 1 — ein Level mit Grammatikaufgaben.** Level 27 „Fragen stellen", 25
+Wörter, sechs Grammatikübungen hinterlegt. Die Lektion enthielt alle
+Aufgabenarten auf einmal:
+
+```
+intro 8 · gap 2 · mcrev 2 · mc 2 · gram 2 · speak 2 · type 1 · listen 1
+```
+
+Beide Grammatikaufgaben kamen richtig durch:
+
+| Frage | Antwort |
+|---|---|
+| Ja/Nein-Frage: „Sprichst du Deutsch?" | Govoriš li njemački? |
+| „___ ideš?" (Wohin gehst du?) | Kuda |
+
+Ergebnis: **10 von 10**, 6 neue Wörter, Level-Fortschritt 24 %.
+Die Sprechaufgaben wurden übersprungen — kein Mikrofon an der Fernwartung.
+
+**Teil 2 — eine Geschichte lesen und ihre Fragen beantworten.** „Mira i Rex",
+Kinderbuch, passt zu Level „Farben". In der Liste stehen 12 Geschichten,
+11 davon gesperrt — die Reihenfolge stimmt also.
+
+Der erste Anlauf ergab 2 von 3, und das war **mein Fehler, nicht der der
+App**: mein Treiber zählte den Weiter-Schritt als Frage mit und ordnete
+deshalb der zweiten Frage die dritte Antwort zu. Die App hat das richtig
+gemeldet („2 von 3 richtig. Lies den Text noch einmal") und die Geschichte
+folgerichtig **nicht** als gelesen eingetragen. Der zweite Anlauf über
+„Fragen noch einmal" — diesmal mit der Frage aus dem Bildschirm statt aus
+einem Zähler — ergab 3 von 3:
+
+```
+Wie heißt der Hund?      -> Rex
+Welche Farbe hat Rex?    -> braun
+Was isst Mira?           -> einen Apfel
+```
+
+Danach: „Geschichte geschafft! 🎉", `read` enthält `mira`, die Tagesaufgabe
+„Eine Geschichte" zählte mit, das Lesedatum steht im Lernstand, und die
+nächste Geschichte ist aufgegangen.
+
+**Teil 3 — das eigentliche Kriterium: die Zurück-Wege.**
+
+| Bildschirm | Zurück führt nach |
+|---|---|
+| Geschichte mit Ergebnis | Geschichtenliste |
+| Geschichtenliste | Nachfrage „Zmaj wirklich schließen?" — oberste Ebene, richtig |
+| Levelansicht | Lernpfad |
+| Mitten in der Lektion | Nachfrage „Lektion abbrechen? Richtig beantwortete Wörter bleiben gespeichert." |
+| ebendort, nach „Abbrechen" | Levelansicht |
+| Ergebnisschirm der Lektion | Levelansicht, ohne Nachfrage — richtig, es ist nichts mehr abzubrechen |
+| Mitten im Level-Test | Nachfrage „Test abbrechen? Er zählt dann nicht." |
+| ebendort, nach „Abbrechen" | Levelansicht |
+| Einstellungen | Lernpfad |
+| Laden | Lernpfad |
+
+**Kein einziger Bildschirm ist eine Sackgasse.** Kein zweimaliges Drücken
+nötig, keine Nachfrage an der falschen Stelle, und die beiden Nachfragen
+kommen genau dort, wo wirklich etwas verloren ginge.
+
+**Eine Falle beim Messen**, die festgehalten gehört: Läuft nach einer Lektion
+eine Anzeige, geht der erste Tipp auf Zurück an die Anzeige, nicht an die
+App. Zweimal sah es dadurch so aus, als täte die Zurück-Taste auf dem
+Ergebnisschirm nichts. Nachgewiesen wurde das über einen eigenen Horcher auf
+`backButton`: die Ereignisse kamen an, sobald keine Anzeige mehr im Weg
+stand. Für die saubere Messung wurde `zeigeWerbung()` kurz stillgelegt und
+danach wieder eingeschaltet. **Kein Fehler der App** — aber gut zu wissen,
+wenn später wieder jemand die Zurück-Wege misst.
+
+**Aufgeräumt.** Der echte Stand ist zurückgespielt: 77 Wörter, Level
+„basics" und „zahlen" bestanden, 550 Münzen, 5 Leben, zwei Lerntage. Die
+gelesene Geschichte und die 25 eingetragenen Level sind damit wieder weg —
+sie gehörten zur Prüfung, nicht zum Lernstand.
