@@ -24,6 +24,54 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ---
 
+## Stand am 29.09.2026
+
+**Behoben: die drei kontogefährdenden Punkte 1, 2 und 3.** Alle drei am
+Gerät gegengeprüft, Fassung 38.
+
+**Punkt 1 — zwischen Laden und Zeigen.** Die Bedingung, unter der die
+Anzeige angefordert wurde, steckt jetzt in `darfNoch()` und wird ein
+zweites Mal geprüft, unmittelbar bevor die Anzeige auf den Schirm geht.
+Dazwischen liegt `prepareInterstitial()`, ein Netzabruf von Sekunden.
+Gemessen wurde mit Gegenprobe:
+
+```
+Lektion zu Ende, bei 1,4 s auf „Noch eine Lektion“ getippt:
+    neue Lektion 0/12 steht, KEINE Anzeige, n bleibt 3, schuldig bleibt true
+Dieselbe Lektion, NICHT getippt:
+    Anzeige kommt, n 3 -> 4, schuldig wird false
+```
+
+Die geladene Anzeige geht dabei nicht verloren: `werbungSchuldig` trägt
+sie in die nächste Lektion.
+
+**Punkt 2 — der 1,2-Sekunden-Wecker.** Er steht jetzt in `werbungWecker`
+und wird abgeräumt, sobald die App in den Hintergrund geht; `document.hidden`
+gehört zusätzlich in die Bedingung, weil `sichtbar()` nur das CSS fragt.
+Gemessen: Wecker gestellt, Home-Taste gedrückt, zurückgekommen —
+
+```
+in den Hintergrund: wecker=false schuldig=true
+wieder da:          wecker=false schuldig=true      keine Anzeige, n unverändert
+```
+
+**Punkt 3 — die Schranke für Anzeigeninhalte.** `initialize()` bekommt
+jetzt `maxAdContentRating: 'Teen'` mit. „Teen“ statt „General“, weil die
+Zielgruppe laut `STORE_TEXTE.md` auf 16–17 und 18+ steht — so hatte es
+schon die Gegenprüfung des Befunds richtiggestellt. AdMob kommt damit
+sauber hoch (`admobDa()` wahr, kein Fehler); ein falscher Wert wäre beim
+Start geflogen.
+
+**Beobachtung vom 29.09., zu Punkt 1 und 17:** Nach einem Kaltstart kam
+nach zwei Lektionen keine Anzeige. Auf eine von Hand angeforderte kam sie
+nach etwa 14 Sekunden, und der Tageszähler sprang dabei von 0 auf 3 — die
+beiden wartenden Anfragen lösten sich zusammen mit ihr auf.
+`prepareInterstitial()` hat keine Frist, und die erste Anzeige ist
+innerhalb des 1,2-Sekunden-Fensters noch nicht bereit. Dem Nutzer
+schadet das nicht, es kostet Einblendungen.
+
+---
+
 ## Stand am 28.09.2026
 
 **Behoben: Punkt 5, Punkt 10 und Punkt 12.** Alle drei hängen zusammen.
