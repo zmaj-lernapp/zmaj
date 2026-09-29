@@ -1513,6 +1513,9 @@ const ZIERRAT = [
   {id:'monokel',        gruppe:'brille', voll:true},
   {id:'umhang',         gruppe:'hals',   voll:true},
   {id:'gold',           gruppe:'farbe',  voll:true},
+  {id:'silber',         gruppe:'farbe',  voll:true},
+  {id:'kupfer',         gruppe:'farbe',  voll:true},
+  {id:'galaxie',        gruppe:'farbe',  voll:true},
 ].map(w => Object.assign(w, {
   titel: 'laden.' + w.id, sub: 'laden.' + w.id + '_sub',
   geht: w.voll ? (() => unlimited()) : (() => !besitz.has(w.id)),
@@ -2426,6 +2429,13 @@ const FARBEN = {
      Blautoene wie bei den anderen Farben: Grund, hell, dunkel, Fluegel,
      Fluegelschatten. */
   gold:    ['D9A520', 'F2C94C', '8A6508', 'FFDE7A', 'C79A2E'],
+  silber:  ['9AA3B0', 'C3CAD6', '5E6673', 'E2E7EF', '8892A1'],
+  kupfer:  ['B06A2C', 'D08C45', '7A4417', 'E8A867', 'A66330'],
+  /* Die Galaxie ist mehr als eine Farbe: zu diesen fuenf dunklen Toenen
+     gehoert die Ebene zmajz-galaxie.json mit den Sternen darauf. Weil
+     die Kennung in beiden Listen steht - hier und im Laden -, laedt
+     getrageneTeile() sie von selbst mit. */
+  galaxie: ['241A4D', '3A2C73', '150F30', '4C3C93', '2C2160'],
 };
 const farbeVon = id => (FARBEN[id] || []).map(zuFarbe);
 /* Alle Farbwerte in den Daten durchgehen und die fuenf Blautoene ersetzen.
@@ -2461,8 +2471,15 @@ const zierratDatei = id => 'zmajz-' + id + '.json';
 /* Auch hier die Ausnahme fuer die Stuecke der Vollversion: sie stehen in
    keinem Besitz, weil sie nicht gekauft werden. Ohne sie haengt der
    Umhang zwar in getragen, kommt aber nie an den Drachen. */
-const getrageneTeile = () => getragenListe()
-  .filter(id => (besitz.has(id) || istVollStueck(id)) && MASCOT.has(zierratDatei(id)));
+function getrageneTeile(){
+  const liste = getragenListe()
+    .filter(id => (besitz.has(id) || istVollStueck(id)) && MASCOT.has(zierratDatei(id)));
+  /* Das Funkeln haengt an keinem Kleidungsstueck: wer die Vollversion
+     hat, funkelt. Es ist das Einzige, was sich bewegt, und genau
+     deshalb faellt es auf - ein Hut liegt nur da. */
+  if(unlimited() && MASCOT.has('zmajz-funkeln.json')) liste.push('funkeln');
+  return liste;
+}
 // Welche Farbe getragen wird. Leer heisst blau, die Grundfarbe.
 /* Die Farbe der Vollversion steht in keinem Besitz - sie wird nicht
    gekauft. Ohne diese Ausnahme blieb der Drache blau, obwohl Gold
