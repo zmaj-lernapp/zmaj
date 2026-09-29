@@ -50,7 +50,11 @@ LEDER = col("4A3020"); LEDER_H = col("744E33"); NIET = col("C9A227")
 # Vollversion gibt. Dunkles Weinrot mit Goldkante - warm genug, um sich
 # vom blauen Koerper abzuheben, und dunkel genug, dass die gelbe Kante
 # darauf leuchtet. Auf einem goldenen Drachen traegt die dunkle Flaeche.
-UMHANG = col("6B1F3A"); UMHANG_D = col("45122A"); UMHANG_H = col("F2C94C")
+UMHANG = col("BE1622"); UMHANG_D = col("8A0F17"); UMHANG_H = col("F2C94C")
+# Roeter als der erste Entwurf: 6B1F3A war ein Weinrot und zog ins
+# Violette. Ajdin am 29.09.2026: "gibt es kein roetlicheres rot fuer den
+# koeniglichen umhang". Jetzt ein klares Rot, wie man es von
+# Kroenungsmaenteln kennt.
 PERLE = col("FFF6DC")
 DUNKELGLAS = col("1C1C24"); GLANZ = col("FFFFFF")
 DOKTOR = col("23252B"); DOKTOR_H = col("454956")
@@ -629,24 +633,34 @@ UMHANG_I = [(-26, -68), (-12, -4), (-18, 64), (-34, 92)]
 put("umhang", [
     group(smooth(UMHANG_L, tension=0.5), fill(UMHANG)),
     group(smooth([(-x, y) for x, y in UMHANG_L], tension=0.5), fill(UMHANG)),
-    group(smooth(UMHANG_L, tension=0.5), stroke(UMHANG_H, 4, 80)),        # Goldkante aussen
-    group(smooth([(-x, y) for x, y in UMHANG_L], tension=0.5), stroke(UMHANG_H, 4, 80)),
     group(smooth([(-74, 44), (-56, 74), (-34, 86)], closed=False, tension=0.5),
-          stroke(UMHANG_D, 5, 45)),                                       # Falte links
+          stroke(UMHANG_D, 5, 40)),                                       # Falte links
     group(smooth([(74, 44), (56, 74), (34, 86)], closed=False, tension=0.5),
-          stroke(UMHANG_D, 5, 45)),                                       # Falte rechts
-    group(smooth(UMHANG_I, closed=False, tension=0.5), stroke(FELL, 13)),  # Hermelin vorn
-    group(smooth([(-x, y) for x, y in UMHANG_I], closed=False, tension=0.5), stroke(FELL, 13)),
-    group(rect(-16, 10, 6, 13, 3), fill(QUASTE)),                         # Schwaenzchen
-    group(rect(-22, 54, 6, 13, 3), fill(QUASTE)),
-    group(rect(16, 10, 6, 13, 3), fill(QUASTE)),
-    group(rect(22, 54, 6, 13, 3), fill(QUASTE)),
-    group(rect(0, -70, 142, 34, 17), fill(FELL)),                         # Hermelinkragen
-    group(rect(0, -56, 142, 7, 3), fill(QUASTE, 18)),                     # Schatten darunter
-    group(rect(-44, -70, 7, 15, 3), fill(QUASTE)),                        # Schwaenzchen im Kragen
-    group(rect(-15, -70, 7, 15, 3), fill(QUASTE)),
-    group(rect(15, -70, 7, 15, 3), fill(QUASTE)),
-    group(rect(44, -70, 7, 15, 3), fill(QUASTE)),
+          stroke(UMHANG_D, 5, 40)),                                       # Falte rechts
+    # Hermelinbesatz vorn: breit, weiss, bis unten durch - so wie an einem
+    # echten Kroenungsmantel. Ajdin hat ein Bild geschickt, 29.09.2026.
+    group(smooth(UMHANG_I, closed=False, tension=0.5), stroke(FELL, 24)),
+    group(smooth([(-x, y) for x, y in UMHANG_I], closed=False, tension=0.5), stroke(FELL, 24)),
+    # Die schwarzen Schwaenzchen darauf, klein und viele.
+    group(ellipse(-20, -30, 7, 11), fill(QUASTE)),
+    group(ellipse(-15, 6, 7, 11), fill(QUASTE)),
+    group(ellipse(-17, 42, 7, 11), fill(QUASTE)),
+    group(ellipse(-26, 74, 7, 11), fill(QUASTE)),
+    group(ellipse(20, -30, 7, 11), fill(QUASTE)),
+    group(ellipse(15, 6, 7, 11), fill(QUASTE)),
+    group(ellipse(17, 42, 7, 11), fill(QUASTE)),
+    group(ellipse(26, 74, 7, 11), fill(QUASTE)),
+    # Der Kragen ist ein eigener kleiner Umhang ueber den Schultern:
+    # breit, unten rund, ganz in Hermelin.
+    group(smooth([(-84, -74), (-88, -34), (-62, -14), (0, -8), (62, -14),
+                  (88, -34), (84, -74)], tension=0.45), fill(FELL)),
+    group(ellipse(-58, -40, 7, 11), fill(QUASTE)),
+    group(ellipse(-30, -28, 7, 11), fill(QUASTE)),
+    group(ellipse(0, -24, 7, 11), fill(QUASTE)),
+    group(ellipse(30, -28, 7, 11), fill(QUASTE)),
+    group(ellipse(58, -40, 7, 11), fill(QUASTE)),
+    group(ellipse(-44, -62, 7, 11), fill(QUASTE)),
+    group(ellipse(44, -62, 7, 11), fill(QUASTE)),
 ], parent="body")
 
 # ---------- Lederweste ----------
