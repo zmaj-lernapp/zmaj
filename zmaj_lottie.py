@@ -127,7 +127,11 @@ def mirror(pts): return [(-x, y) for x, y in pts]
 KOPF_TEILE = ["hut", "krone", "krone_gross", "fes", "kappe", "doktorhut", "ohrenschuetzer", "kopfhoerer"]
 BRILLEN    = ["brille", "sonnenbrille", "lesebrille", "monokel"]
 HALS_TEILE = ["trikot", "umhang", "schal_bih", "schal_winter", "weste_leder", "weste_strick"]
-ZIERRAT = KOPF_TEILE + BRILLEN + HALS_TEILE
+# Zwei Ebenen, die zur Haut gehoeren statt zur Kleidung: die Sterne der
+# Galaxie-Haut liegen direkt auf dem Koerper, das Funkeln davor. Beide
+# gibt es nur mit der Vollversion.
+HAUT_TEILE = ["funkeln", "galaxie"]
+ZIERRAT = KOPF_TEILE + BRILLEN + HALS_TEILE + HAUT_TEILE
 # Die drei Kleidungsstuecke bekommen Aermel. Das sind eigene Ebenen, denn sie
 # haengen an den Armen und nicht am Koerper - die Arme wippen, ein am Koerper
 # festgemachter Aermel bliebe stehen. Sie stehen in ORDER vor "armL", liegen
@@ -142,12 +146,12 @@ NUR_MIT.update({s: [s + "_armL", s + "_armR"] for s in AERMEL_STUECKE})
 ZIERRAT_ALLE = ZIERRAT + [n for v in NUR_MIT.values() for n in v]
 # "hoerner" ganz vorn: die Hutebenen liegen dahinter, also ragen die Spitzen
 # oben aus jedem Hut heraus, statt darunter zu verschwinden.
-ORDER = ["hoerner"] + KOPF_TEILE + BRILLEN + \
+ORDER = ["funkeln", "hoerner"] + KOPF_TEILE + BRILLEN + \
         ["tears", "brows", "mouth_cry", "mouth_sad", "mouth_open", "mouth_idle",
          "eyes_cry", "eyes_happy", "lids", "eyes", "head"] + \
         AERMEL + ["armL", "armR"] + \
         ["schal_bih_text"] + HALS_TEILE + \
-        ["body", "legs", "tail", "wingL", "wingR", "perch"]
+        ["galaxie", "body", "legs", "tail", "wingL", "wingR", "perch"]
 IDX = {n: i+1 for i, n in enumerate(ORDER)}
 built = {}
 def put(name, shapes, parent=None, p=(0, 0), a=(0, 0), r=0, animk=None):
@@ -518,6 +522,48 @@ put("brille", [
     group(ellipse(32, -74, 52, 52), fill(GLAS, 28)),
     group(ellipse(32, -74, 52, 52), stroke(RAHMEN, 7)),
 ], parent="head")
+
+# ---------- Sterne fuer die Galaxie-Haut (nur Vollversion) ----------
+# Ein vierzackiger Stern: schmale Spitzen, dazwischen eingezogen. Ueber
+# poly(), damit die Spitzen wirklich spitz bleiben - smooth() wuerde
+# runde Blasen daraus machen.
+def stern(cx, cy, r, c, o=100):
+    e = r * 0.26
+    return group(poly([(cx, cy - r), (cx + e, cy - e), (cx + r, cy), (cx + e, cy + e),
+                       (cx, cy + r), (cx - e, cy + e), (cx - r, cy), (cx - e, cy - e)]),
+                 fill(c, o))
+
+# Die Sterne sitzen auf dem Bauch und den Schenkeln - dort, wo bei der
+# Umfaerbung die dunkle Flaeche liegt. Verschiedene Groessen, damit es
+# nach Sternenhimmel aussieht und nicht nach Punktmuster.
+put("galaxie", [
+    group(ellipse(-46, -14, 7, 7), fill(WHITE, 90)),
+    group(ellipse(-24, 22, 5, 5), fill(WHITE, 75)),
+    group(ellipse(-52, 44, 6, 6), fill(WHITE, 80)),
+    group(ellipse(-16, 60, 4, 4), fill(WHITE, 70)),
+    group(ellipse(30, -6, 6, 6), fill(WHITE, 85)),
+    group(ellipse(52, 30, 5, 5), fill(WHITE, 75)),
+    group(ellipse(20, 52, 7, 7), fill(WHITE, 85)),
+    group(ellipse(0, -34, 4, 4), fill(WHITE, 65)),
+    group(ellipse(44, 62, 4, 4), fill(WHITE, 65)),
+    stern(-34, 4, 13, WHITE, 95),
+    stern(38, 40, 11, WHITE, 90),
+    stern(6, 18, 9, WHITE, 80),
+], parent="body")
+
+# ---------- Funkeln (nur Vollversion) ----------
+# Vier Sterne, die langsam um den Drachen kreisen. Sie haengen am
+# Koerper, wippen also mit ihm, und die Ebene selbst dreht sich einmal
+# je Durchlauf. Bewegung faellt auf, wo ein Kleidungsstueck nur
+# daliegt - das ist der ganze Zweck.
+put("funkeln", [
+    stern(0, -178, 17, YEL, 95),
+    stern(168, -26, 13, YEL, 85),
+    stern(-168, -40, 14, YEL, 88),
+    stern(96, 118, 11, WHITE, 80),
+    stern(-104, 112, 12, WHITE, 82),
+], parent="body",
+    animk={"r": anim([(0, 0), (110, 90), (220, 180), (330, 270), (OP, 360)])})
 
 # ---------- Monokel (nur Vollversion) ----------
 # Ein Glas ueber dem rechten Auge, Goldrand, Kettchen nach unten. Die
