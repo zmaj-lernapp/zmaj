@@ -580,6 +580,11 @@
   .abokarte .haken{font-weight:800; color:var(--primary); margin-right:6px}
   .abokarte .n{font-weight:800; font-size:15px}
   .abokarte .p{font-weight:800; font-size:17px; color:var(--primary); white-space:nowrap}
+  /* Der Monatspreis steht unter dem gelben Abzeichen, nicht daneben und
+     nicht selbst in Gelb: zwei Abzeichen nebeneinander sahen auf Deutsch
+     gedraengt aus. Ajdin am 29.09.2026. */
+  .abopromonat{display:block; margin-top:3px; font-size:11px; font-weight:700;
+    color:var(--muted)}
   .abospar{display:inline-block; margin-top:4px; font-size:11px; font-weight:800;
     color:var(--on-accent); background:var(--accent); border-radius:99px; padding:2px 8px}
   .abohinweis{font-size:12px; line-height:1.5; color:var(--muted); margin-top:8px}
@@ -4134,11 +4139,12 @@ async function vollWahlZeigen(){
      Düsseldorf hat am 08.02.2024 entschieden, dass "Abonnieren" oder
      "Weiter zur Zahlung" dafür nicht reichen. Eine Karte mit "Jährlich" und
      einem Preis erst recht nicht. */
-  const karte = (p, name, abzeichen) =>
+  const karte = (p, name, abzeichen, zweite) =>
     '<button type="button" class="abokarte" role="radio" aria-checked="false"'+
       ' data-plan="'+esc(p.plan)+'"'+(p.preis?'':' disabled')+'>'+
       '<span><span class="n">'+esc(name)+'</span>'+
-        (abzeichen ? '<br><span class="abospar">'+esc(abzeichen)+'</span>' : '')+'</span>'+
+        (abzeichen ? '<br><span class="abospar">'+esc(abzeichen)+'</span>' : '')+
+        (zweite   ? '<span class="abopromonat">'+esc(zweite)+'</span>' : '')+'</span>'+
       '<span class="p">'+esc(p.preis || '–')+'</span>'+
     '</button>';
   const kasten = document.createElement('div');
@@ -4148,11 +4154,10 @@ async function vollWahlZeigen(){
       '<h3>'+esc(t('voll.wahl_titel'))+'</h3>' +
       '<div class="txt">'+esc(t('voll.wahl_text'))+'</div>' +
       '<div class="abowahl" role="radiogroup">' +
-        karte(monat, t('voll.monat'), '') +
+        karte(monat, t('voll.monat'), '', '') +
         karte(jahr, t('voll.jahr'),
-              [sparen > 0 ? tp('voll.sparen', sparen) : '',
-               proMonat ? t('voll.pro_monat', {preis: proMonat}) : '']
-                .filter(Boolean).join(' · ')) +
+              sparen > 0 ? tp('voll.sparen', sparen) : '',
+              proMonat ? t('voll.pro_monat', {preis: proMonat}) : '') +
       '</div>' +
       '<div class="abohinweis">'+esc(t('voll.hinweis'))+'</div>' +
       '<button class="btn know" id="aboKauf"></button>' +
