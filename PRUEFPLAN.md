@@ -28,6 +28,7 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P11** | Alle acht Oberflächensprachen | Am 28.09. gemessen: acht Sprachen, je fünf Bildschirme. Kein roher Textschlüssel. **Ein gesprengter Knopf im französischen Laden**, behoben durch einen kürzeren Text. Dazu die elf Texte sprachlich geprüft, die seit dem Bericht vom 18.09. neu sind — **21 Befunde, alle eingearbeitet**. |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
 | **P13** | Ein Level mit allen Sonderfällen | Am 28.09. durchgespielt: Level 27 „Fragen stellen“ mit beiden Grammatikaufgaben richtig (10 von 10), Geschichte „Mira i Rex“ gelesen und alle drei Fragen beantwortet. **Alle zehn Zurück-Wege führen heraus**, keine Sackgasse. Kein Fehler gefunden. |
+| **P15** | Ein Tag vergeht | Am 29.09. über einen echten Tageswechsel geprüft. Die App lief über Nacht durch und merkte den neuen Tag **ohne Neustart**: drei neue Tagesaufgaben, keine „heute schon geübt“-Behauptung, Serie nach zwei Lektionen von 2 auf 3. Der im Plan vermerkte Fehler ist damit am Gerät widerlegt. |
 
 ---
 
@@ -49,47 +50,6 @@ Sicherung auf Gerät A erstellen, auf Gerät B einlesen.
 **Bestanden, wenn:** Der Lernstand vollständig ankommt. Die Vollversion
 kommt nicht mit — sie hängt am Google-Konto.
 
-### P15 — Ein Tag vergeht
-
-App abends benutzen, am nächsten Morgen wieder öffnen.
-
-**Bestanden, wenn:** Die Lernserie stimmt, neue Tagesaufgaben da sind und
-die Startseite nicht mehr „heute schon geübt" behauptet.
-
-**Zum bekannten Fehler:** Er ist am 26.09.2026 behoben worden. `tagPruefen()`
-läuft seitdem im Zeitgeber alle 30 Sekunden, merkt den Datumswechsel, ruft
-`pruefeSchutz()` und zeichnet die Startseite neu, wenn sie sichtbar ist.
-Bestätigt ist das bisher nur im Quelltext — **über einen echten Tageswechsel
-am Gerät noch nie.** Genau das ist P15.
-
-**Ausgangswerte vom Abend des 28.09.2026** (am Gerät abgelesen), damit sich
-morgen vergleichen lässt:
-
-```
-Lerntage   2026-09-27, 2026-09-28     Serie 2, Rekord 2, heute gelernt: ja
-Serienschutz   1 im Vorrat, kein Tag in frost
-Tagesaufgaben  2 von 3 geschafft:
-               „10 Minuten lernen" ✓ · „10 neue Wörter lernen" ✓
-               „20 Aufgaben beantworten" offen
-Tageszähler    45 Aufgaben, 34 richtig, 6 Hörübungen, 6 Lückentexte,
-               11 neue Wörter, 2 Lektionen, 1 fehlerfrei, 283 Minuten
-Leben          5 von 5, Zeitstempel 0
-Werbung        n = 6, lohn = 1 (Tag 2026-09-28)
-Lernstand      77 Wörter, Level „basics" und „zahlen", 550 Münzen
-```
-
-**Worauf morgen zu achten ist:**
-
-1. Die App **ohne Neustart** aufwecken — nur so wird der Zeitgeber geprüft.
-   Erst danach einmal hart neu starten und beides vergleichen.
-2. Serie muss auf 3 stehen, wenn morgen gelernt wird — und vorher auf 2
-   bleiben, nicht auf 0 fallen.
-3. Drei **neue** Tagesaufgaben, Zähler wieder bei null.
-4. Die Startseite darf nicht mehr „Heute geübt ✓" zeigen.
-5. Der Werbezähler muss sich zurücksetzen (`tag` auf den neuen Tag, `n` und
-   `lohn` auf 0) — das ist am 28.09. schon einmal beobachtet worden.
-6. Der Serienschutz darf **nicht** verbraucht werden: Es wird kein Tag
-   ausgelassen.
 
 ---
 
@@ -641,3 +601,67 @@ wenn später wieder jemand die Zurück-Wege misst.
 „basics" und „zahlen" bestanden, 550 Münzen, 5 Leben, zwei Lerntage. Die
 gelesene Geschichte und die 25 eingetragenen Level sind damit wieder weg —
 sie gehörten zur Prüfung, nicht zum Lernstand.
+
+---
+
+## P15 im Einzelnen — durchgeführt am 29.09.2026
+
+**Aufbau.** Die App lief seit dem Vorabend durch, Prozess 15525, unberührt
+über Mitternacht. Sie wurde am Morgen **nur aus dem Hintergrund geholt,
+nicht neu gestartet** — genau der Fall, den der Prüfplan meinte. Die
+Ausgangswerte vom Vorabend stehen oben.
+
+**Ergebnis gegen die Kriterien.**
+
+| Kriterium | Ergebnis |
+|---|---|
+| Lernserie stimmt | 2 vor dem Lernen, 3 danach, Rekord zog auf 3 mit |
+| Neue Tagesaufgaben da | drei neue, alle bei null |
+| Keine „heute schon geübt"-Behauptung | `days.has(heute)` war falsch, die Startseite zeigte nichts dergleichen |
+| Serienschutz unangetastet | 1 im Vorrat, `frost` leer — es wurde kein Tag ausgelassen |
+
+**Der Tageswechsel im Hintergrund.** Schon bei der ersten Messung stand
+`letzterTag` auf `2026-09-29`: Der Zeitgeber hatte beim Auftauen sofort
+`tagPruefen()` laufen lassen. Der Fehler, vor dem der Prüfplan bis gestern
+warnte, ist damit **am Gerät widerlegt** — er wäre genau jetzt aufgefallen.
+
+Die drei Tagesaufgaben waren andere als am Vortag:
+
+| 28.09. | 29.09. |
+|---|---|
+| 10 Minuten lernen ✓ | 18 Antworten richtig 0/18 |
+| 10 neue Wörter lernen ✓ | 4 Hörübungen richtig 0/4 |
+| 20 Aufgaben beantworten | 2 Lektionen abschließen 0/2 |
+
+Die Zähler vom Vortag (45 Aufgaben, 34 richtig, 283 Minuten) stehen
+unverändert im Lernstand, nur unter ihrem eigenen Datum. Der Werbezähler
+setzte sich bei der ersten Abfrage des Tages von selbst zurück.
+
+**Kaltstart zum Vergleich.** Danach wurde die App hart geschlossen und neu
+geöffnet: **dieselben Werte, dieselben drei Aufgaben.** Der warme und der
+kalte Weg stimmen überein — die Aufgaben des Tages werden also nicht bei
+jedem Start neu gewürfelt.
+
+**Gelernt wurde dann auch.** Zwei Lektionen im Level „Farben", je 12 von 12:
+
+```
+Serie        2 -> 3, Rekord 3        days enthält 2026-09-29
+Tageszähler  24 Aufgaben, 24 richtig, 4 Hörübungen, 4 Lückentexte,
+             2 Lektionen, 2 fehlerfrei, 22 Minuten
+Tagesaufgaben  3 von 3: „Alle drei geschafft! Svaka čast."
+Münzen       550 -> 580
+```
+
+Die Startseite zog jedes Mal mit: 🔥 3 statt 🔥 2, und die Aufgaben füllten
+sich von 0/18 auf ✓.
+
+**Eine Beobachtung nebenbei, die nicht zu P15 gehört.** Nach den beiden
+Lektionen kam **keine** Anzeige. Auf eine von Hand angeforderte Anzeige kam
+sie nach etwa 14 Sekunden — und der Tageszähler sprang dabei von 0 auf **3**:
+Die beiden Anfragen aus den Lektionen hatten die ganze Zeit gewartet und
+lösten sich zusammen mit dieser auf. Das passt zu den offenen Punkten 1 und
+17 in `WERBUNG_PRUEFUNG.md` — `prepareInterstitial()` hat keine Frist, und
+nach einem Kaltstart ist die erste Anzeige innerhalb des 1,2-Sekunden-Fensters
+noch nicht bereit. Schaden entsteht dem Nutzer nicht; verloren gehen
+Einblendungen. Gehört in denselben Durchgang wie die übrigen Werbepunkte,
+nach dem geschlossenen Test.
