@@ -1521,6 +1521,12 @@ const ZIERRAT = [
   {id:'silber',         gruppe:'farbe',  voll:true},
   {id:'kupfer',         gruppe:'farbe',  voll:true},
   {id:'galaxie',        gruppe:'farbe',  voll:true},
+
+  /* Eigene Gruppe, damit es sich mit Farbe und Kleidung vertraegt: aus
+     jeder Gruppe sitzt nur ein Stueck, im Farbreiter wuerde das Funkeln
+     die Galaxie herunterschieben. Vorher lief es an der Warenliste
+     vorbei und liess sich deshalb nicht abnehmen. */
+  {id:'funkeln',        gruppe:'effekt', voll:true},
 ].map(w => Object.assign(w, {
   titel: 'laden.' + w.id, sub: 'laden.' + w.id + '_sub',
   geht: w.voll ? (() => unlimited()) : (() => !besitz.has(w.id)),
@@ -1533,6 +1539,7 @@ const GRUPPEN = [
   {id:'hals',   titel:'laden.reiter_hals'},
   {id:'brille', titel:'laden.reiter_brille'},
   {id:'farbe',  titel:'laden.reiter_farbe'},
+  {id:'effekt', titel:'laden.reiter_effekt'},
 ];
 const gruppeVon = id => { const w = ZIERRAT.find(x => x.id === id); return w ? w.gruppe : ''; };
 
@@ -2131,9 +2138,8 @@ function sektionsNummer(id){
    zu - dann ist keine offen und der Lernpfad steht als reine Uebersicht
    da. Ajdin am 26.09.2026: "die sektion soll sich auch zuklappen koennen
    wenn man nochmal ganz oben drauf drueckt".
-   Es wird nicht neu gezeichnet, nur umgeschaltet - ein Neuzeichnen wuerde
-   ans aktuelle Level springen und die Stelle verlieren, an der man gerade
-   liest. */
+   Es wird nicht neu gezeichnet, nur umgeschaltet - das ist billiger und
+   laesst die Stelle stehen, an der man gerade liest. */
 function sektionAufklappen(id){
   const box = $('sections'); if(!box) return;
   /* Wo sitzt der angetippte Kopf gerade auf dem Bildschirm? Klappt gleichzeitig
@@ -2477,13 +2483,8 @@ const zierratDatei = id => 'zmajz-' + id + '.json';
    keinem Besitz, weil sie nicht gekauft werden. Ohne sie haengt der
    Umhang zwar in getragen, kommt aber nie an den Drachen. */
 function getrageneTeile(){
-  const liste = getragenListe()
+  return getragenListe()
     .filter(id => (besitz.has(id) || istVollStueck(id)) && MASCOT.has(zierratDatei(id)));
-  /* Das Funkeln haengt an keinem Kleidungsstueck: wer die Vollversion
-     hat, funkelt. Es ist das Einzige, was sich bewegt, und genau
-     deshalb faellt es auf - ein Hut liegt nur da. */
-  if(unlimited() && MASCOT.has('zmajz-funkeln.json')) liste.push('funkeln');
-  return liste;
 }
 // Welche Farbe getragen wird. Leer heisst blau, die Grundfarbe.
 /* Die Farbe der Vollversion steht in keinem Besitz - sie wird nicht
@@ -2992,6 +2993,25 @@ function seitWann(){
   s = tage.length ? tage[0] : today();
   try{ localStorage.setItem(SEIT_SCHLUESSEL, s); }catch(e){}
   return s;
+}
+/* Nach dem Einlesen einer Sicherung: "seit wann dabei" auf den fruehesten
+   Lerntag zurueckdatieren. Auf einem neuen Geraet steht dort sonst der Tag
+   der Neuinstallation - beim allerersten Start gab es ja noch keine
+   Lerntage, also nahm seitWann() heute. Wer das Handy wechselt, wartete
+   damit noch einmal bis zu einem Jahr auf seine fuenf Geschenktage,
+   obwohl er laengst dabei ist.
+   Nur nach vorn, nie nach hinten: steht schon ein frueheres Datum da,
+   bleibt es stehen. Sonst koennte eine aeltere Sicherung das Geschenk
+   wieder wegschieben.
+   Ajdin am 29.09.2026: "wenn man ein neues geraet hat und aber premium
+   hat dann ist doch bloed fuer den nutzer". */
+function seitNachEinlesen(){
+  const tage = [...days].sort();
+  if(!tage.length) return;
+  let alt = null;
+  try{ alt = localStorage.getItem(SEIT_SCHLUESSEL); }catch(e){}
+  if(alt && alt <= tage[0]) return;
+  try{ localStorage.setItem(SEIT_SCHLUESSEL, tage[0]); }catch(e){}
 }
 /* Laeuft beim Start und bei jedem Tageswechsel. Gibt zurueck, ob gerade
    ein Geschenk faellig geworden ist - die Karte zeigt jemand anders. */
@@ -4659,6 +4679,12 @@ async function nachAnmeldung(info){
   kontoMail = info.email || '';
   await loadProgress(); syncLives(); pruefeSchutz();
   if(altenFortschrittUmschreiben()) saveProgress();
+  /* Das Jahresgeschenk hing bisher allein an tagPruefen() - und das
+     schlaegt nur an, wenn die App offen ist, waehrend der Tag wechselt.
+     Wer sie abends schliesst und morgens neu oeffnet, kam nie an sein
+     Geschenk: letzterTag steht beim Laden schon auf heute. Gefunden am
+     29.09.2026, als es um den Geraetewechsel ging. */
+  const geschenkJahr = geschenkPruefen();
   // Ohne Server gibt es kein Konto zu verwalten: kein Passwort, keine
   // E-Mail, kein Abmelden. Dann bleibt der Knopf weg und mit ihm die
   // ganze Kontoansicht - erreichbar ist sie nur ueber ihn.
@@ -4667,6 +4693,9 @@ async function nachAnmeldung(info){
   $('btnSettings').style.display='inline-block';
   $('btnShop').style.display='inline-block';
   homeMode='words'; showHome();
+  // Erst zeichnen, dann die Karte darueberlegen - sonst steht sie vor
+  // einem leeren Bildschirm.
+  if(geschenkJahr) zeigeGeschenk();
 }
 
 async function abmelden(){
@@ -5009,6 +5038,7 @@ async function sicherungEinlesen(datei){
      zaehlte sie ueber known.size trotzdem mit. Erst ein Neustart richtete es.
      Fall: hitna pomoc, "Notarzt" -> "Rettungsdienst". Gefunden am 26.09.2026. */
   altenFortschrittUmschreiben();
+  seitNachEinlesen();
   syncLives(); pruefeSchutz();
   const gesichert = await saveProgress();
   renderLives();
@@ -5090,21 +5120,11 @@ $('btnShop').addEventListener('click', async ()=>{
 $('btnBack').addEventListener('click', ()=>{ if(backTarget) backTarget(); });
 
 /* =================== LERNPFAD =================== */
-/* Nach dem Oeffnen dorthin springen, wo man gerade lernt. Wer in Sektion 3
-   ist, musste sonst jedes Mal an zwei Sektionen vorbeiscrollen.
-   Ajdin am 18.09.2026. Steht die Stelle schon im Bild, passiert nichts -
-   sonst wuerde der Pfad bei jedem Blick nach oben zurueckspringen. */
-function zurAktuellenStelle(box){
-  requestAnimationFrame(()=>{
-    const jetzt = box.querySelector('.node.current')
-               || box.querySelector('.section:not(.locked) .node:not(.locked)');
-    if(!jetzt) return;
-    const r = jetzt.getBoundingClientRect();
-    if(r.top >= 0 && r.bottom <= window.innerHeight) return;
-    try{ jetzt.scrollIntoView({block:'center'}); }catch(e){ jetzt.scrollIntoView(); }
-  });
-}
-
+/* Der Pfad sprang frueher beim Oeffnen zur aktuellen Lektion. Das kam aus
+   der Zeit vor dem Knopf "Weitermachen" oben, der genau dorthin fuehrt.
+   Jetzt bleibt der Pfad stehen, wo man ihn verlassen hat.
+   Ajdin am 29.09.2026: "braucht die app nicht zur aktuellsten stelle
+   springen". */
 function showPath(){
   $('tag').textContent=t('app.tag');
   const done = CATEGORIES.filter(c=>passed.has(c.id)).length;
@@ -5183,7 +5203,6 @@ function showPath(){
     const naechste = mitFarbe[i + 1] || el;
     el.style.setProperty('--sek-next', 'var(--sek' + farbNr(naechste) + ')');
   });
-  zurAktuellenStelle(box);
 }
 
 /* =================== GESCHICHTEN-PFAD =================== */
