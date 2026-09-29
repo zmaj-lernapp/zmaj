@@ -587,6 +587,11 @@
   .abospar{display:inline-block; margin-top:4px; font-size:11px; font-weight:800;
     text-align:center; line-height:1.4;
     color:var(--on-accent); background:var(--accent); border-radius:99px; padding:2px 8px}
+  /* Der Drache im Kaufkasten. Niemand kauft eine Aufzaehlung, aber ein
+     Bild, das man haben will. Ajdin am 29.09.2026. */
+  .abovorschau{display:flex; flex-direction:column; align-items:center; margin:2px 0 6px}
+  .abovorschau .zmaj-anim, .abovorschau .zmaj{width:150px; height:150px}
+  .abovorschau .wort{font-size:12px; font-weight:800; color:var(--muted); margin-top:2px}
   .abohinweis{font-size:12px; line-height:1.5; color:var(--muted); margin-top:8px}
 
   /* ---- Wegmarke ----
@@ -2486,11 +2491,16 @@ function getrageneTeile(){
    getragen war. Beim Bauen in der Vorschau aufgefallen, 29.09.2026. */
 const getrageneFarbe = () => getragenListe()
   .find(id => FARBEN[id] && (besitz.has(id) || istVollStueck(id))) || '';
-async function zmajDaten(){
-  const ids = getrageneTeile();
-  const farbe = getrageneFarbe();
+/* Ohne Vorgabe zeigt der Drache, was der Nutzer wirklich traegt. Mit
+   Vorgabe zeigt er etwas anderes - gebraucht wird das genau einmal, im
+   Kaufkasten: dort steht er in voller Montur, damit man sieht, was man
+   bekommt, statt es zu lesen. Die Vorschau wird nicht zwischengelagert,
+   sonst verdraengt sie den echten Drachen aus dem Speicher. */
+async function zmajDaten(vorgabe){
+  const ids = vorgabe ? vorgabe.ids : getrageneTeile();
+  const farbe = vorgabe ? vorgabe.farbe : getrageneFarbe();
   const schluessel = ids.join(',') + '|' + farbe;
-  if(zmajFertig && zmajFertigFuer === schluessel) return zmajFertig;
+  if(!vorgabe && zmajFertig && zmajFertigFuer === schluessel) return zmajFertig;
   if(!zmajBasis) zmajBasis = await (await fetch('maskottchen/zmaj.json', {cache:'no-cache'})).json();
   for(const id of ids){
     if(zmajTeile.has(id)) continue;
@@ -2507,10 +2517,11 @@ async function zmajDaten(){
   /* Beim Faerben MUSS auf einer Kopie gearbeitet werden: zmajBasis und die
      Schnipsel bleiben im Speicher stehen, und ein Farbwechsel wuerde sonst
      auf dem Ergebnis des vorigen aufsetzen. */
-  zmajFertig = farbe
+  const fertig = farbe
     ? faerbe(JSON.parse(JSON.stringify(Object.assign({}, zmajBasis, {layers: ebenen}))), farbeVon(farbe))
     : Object.assign({}, zmajBasis, {layers: ebenen});
-  zmajFertigFuer = schluessel;
+  if(vorgabe) return fertig;
+  zmajFertig = fertig; zmajFertigFuer = schluessel;
   return zmajFertig;
 }
 function zmaj(mood='happy'){
@@ -2552,11 +2563,11 @@ function playMood(el, mood){
     el._timer = setTimeout(toIdle, frames / (a.frameRate || 30) * 1000 + 80);   // Sicherheitsnetz, falls kein complete-Ereignis kommt
   }
 }
-function mountZmaj(el, mood){
+function mountZmaj(el, mood, vorgabe){
   if(!hasLottie() || el._laedt) return;
   if(mood) el.dataset.mood = mood;
   el._laedt = true;
-  zmajDaten().then(daten => {
+  zmajDaten(vorgabe).then(daten => {
     el._laedt = false;
     if(!daten || !el.isConnected) return;
     if(el._anim){ try{ el._anim.destroy(); }catch(e){} el._anim = null; el.innerHTML = ''; }
@@ -4266,6 +4277,8 @@ async function vollWahlZeigen(){
   kasten.innerHTML =
     '<div class="nachfragebox">' +
       '<h3>'+esc(t('voll.wahl_titel'))+'</h3>' +
+      '<div class="abovorschau">' + zmaj('cheer') +
+        '<div class="wort">' + esc(t('voll.so_koenntest_du')) + '</div></div>' +
       '<div class="txt">'+esc(t('voll.wahl_text'))+'</div>' +
       '<div class="abowahl" role="radiogroup">' +
         karte(monat, t('voll.monat'), '', '') +
@@ -4280,6 +4293,12 @@ async function vollWahlZeigen(){
   kasten.querySelector('#aboKauf').textContent = t('voll.kaufen');
   kasten.querySelector('#aboZu').textContent = t('btn.abbrechen');
   document.body.appendChild(kasten);
+  /* Der Drache in voller Montur - unabhaengig davon, was der Nutzer
+     gerade traegt. Genau das ist ja das Angebot. */
+  const schau = kasten.querySelector('.abovorschau .zmaj-anim');
+  if(schau) mountZmaj(schau, 'cheer',
+    {ids: ['krone_gross', 'monokel', 'umhang', 'galaxie', 'funkeln']
+           .filter(id => MASCOT.has(zierratDatei(id))), farbe: 'galaxie'});
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;                       // damit die Zurück-Taste sie schließt
   kasten.querySelector('#aboZu').addEventListener('click', zu);
