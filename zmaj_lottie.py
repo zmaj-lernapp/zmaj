@@ -533,6 +533,31 @@ def stern(cx, cy, r, c, o=100):
                        (cx, cy + r), (cx - e, cy + e), (cx - r, cy), (cx - e, cy - e)]),
                  fill(c, o))
 
+# Ein Stern, der an seinem Platz aufblitzt. Der Stern selbst steht auf
+# (0,0) und wird erst durch die Verschiebung der Gruppe gesetzt - nur so
+# waechst er um seine eigene Mitte. Legte man ihn gleich auf (cx,cy),
+# zoege ihn jede Groessenaenderung zur Bildmitte hin.
+#   start  Bild, bei dem das erste Aufblitzen anfaengt
+#   takt   Abstand bis zum naechsten Aufblitzen desselben Sterns
+def funke(cx, cy, r, c, start, takt=110, o=100):
+    # Bild, Groesse, Deckkraft, Drehung. Schnell auf, langsam wieder weg -
+    # so blitzt es, statt zu pulsieren.
+    schritte = [(0, 0, 0, -35), (7, 124, o, -8), (17, 96, o, 0), (31, 0, 0, 10)]
+    gs, go, gr = [], [], []
+    b = start
+    while b < OP:
+        for dt, sv, ov, rv in schritte:
+            k = b + dt
+            if 0 <= k <= OP:
+                gs.append((k, [sv, sv])); go.append((k, ov)); gr.append((k, rv))
+        b += takt
+    e = r * 0.26
+    zeiger = {"ty": "tr", "p": const([cx, cy]), "a": const([0, 0]),
+              "s": anim(gs, dims=2), "r": anim(gr), "o": anim(go)}
+    return {"ty": "gr", "it": [
+        poly([(0, -r), (e, -e), (r, 0), (e, e), (0, r), (-e, e), (-r, 0), (-e, -e)]),
+        fill(c), zeiger]}
+
 # Die Sterne sitzen auf dem Bauch und den Schenkeln - dort, wo bei der
 # Umfaerbung die dunkle Flaeche liegt. Verschiedene Groessen, damit es
 # nach Sternenhimmel aussieht und nicht nach Punktmuster.
@@ -552,18 +577,20 @@ put("galaxie", [
 ], parent="body")
 
 # ---------- Funkeln (nur Vollversion) ----------
-# Vier Sterne, die langsam um den Drachen kreisen. Sie haengen am
-# Koerper, wippen also mit ihm, und die Ebene selbst dreht sich einmal
-# je Durchlauf. Bewegung faellt auf, wo ein Kleidungsstueck nur
-# daliegt - das ist der ganze Zweck.
+# Sieben Sterne rund um den Drachen. Jeder steht still und blitzt auf,
+# alle 110 Bilder einmal, aber mit versetztem Anfang - so leuchtet immer
+# irgendwo einer und nie alle zugleich. Sie haengen am Koerper, wippen
+# also mit ihm.
+# Ajdin am 29.09.2026: die Sterne sollen nicht kreisen, sondern funkeln.
 put("funkeln", [
-    stern(0, -178, 17, YEL, 95),
-    stern(168, -26, 13, YEL, 85),
-    stern(-168, -40, 14, YEL, 88),
-    stern(96, 118, 11, WHITE, 80),
-    stern(-104, 112, 12, WHITE, 82),
-], parent="body",
-    animk={"r": anim([(0, 0), (110, 90), (220, 180), (330, 270), (OP, 360)])})
+    funke(0, -178, 18, WHITE, 0),
+    funke(-104, 112, 13, WHITE, 14),
+    funke(168, -26, 14, YEL, 26),
+    funke(132, -128, 10, YEL, 40),
+    funke(-168, -40, 15, YEL, 52),
+    funke(-140, -132, 11, WHITE, 66),
+    funke(96, 118, 12, WHITE, 78),
+], parent="body")
 
 # ---------- Monokel (nur Vollversion) ----------
 # Ein Glas ueber dem rechten Auge, Goldrand, Kettchen nach unten. Die
