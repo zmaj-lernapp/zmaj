@@ -4114,6 +4114,16 @@ async function vollWahlZeigen(){
   if(monat.micros && jahr.micros){
     sparen = Math.round(100 - (jahr.micros / 12) / monat.micros * 100);
   }
+  /* Was das Jahr im Monat kostet. Google liefert nur den Jahrespreis,
+     und 19,99 durch zwoelf rechnet im Laden niemand nach. Die Waehrung
+     kommt aus derselben Antwort, damit es in jedem Land stimmt. */
+  let proMonat = '';
+  if(jahr.micros && jahr.waehrung){
+    try{
+      proMonat = new Intl.NumberFormat(undefined, {style: 'currency', currency: jahr.waehrung})
+                   .format(jahr.micros / 12 / 1000000);
+    }catch(e){ proMonat = ''; }
+  }
   /* Die Karte WAEHLT nur aus. Gekauft wird mit dem Knopf darunter, und der
      heißt "Zahlungspflichtig abonnieren".
 
@@ -4139,7 +4149,10 @@ async function vollWahlZeigen(){
       '<div class="txt">'+esc(t('voll.wahl_text'))+'</div>' +
       '<div class="abowahl" role="radiogroup">' +
         karte(monat, t('voll.monat'), '') +
-        karte(jahr, t('voll.jahr'), sparen > 0 ? tp('voll.sparen', sparen) : '') +
+        karte(jahr, t('voll.jahr'),
+              [sparen > 0 ? tp('voll.sparen', sparen) : '',
+               proMonat ? t('voll.pro_monat', {preis: proMonat}) : '']
+                .filter(Boolean).join(' · ')) +
       '</div>' +
       '<div class="abohinweis">'+esc(t('voll.hinweis'))+'</div>' +
       '<button class="btn know" id="aboKauf"></button>' +
@@ -5831,6 +5844,7 @@ function lessonOutOfLives(){
         (perVideo   ? '<button class="btn ghost" id="lAd">'+t('werbung.leben_holen')+'</button>' : '')+
         (perMuenzen ? '<button class="btn ghost" id="lCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '')+
       '</div>' : '')+
+    vollZeileLeben('lVoll')+
     /* Platz fuer die Rueckmeldung des Video-Knopfs (Ajdin am 26.09.2026).
        Unsichtbar, solange nichts zu sagen ist: .feedback hat eine
        Mindesthoehe und einen Abstand oben, ein leerer Kasten risse sonst
@@ -5840,6 +5854,7 @@ function lessonOutOfLives(){
     '<div class="row"><button class="btn know" id="lHome">'+t('lektion.zurueck')+'</button></div>';
   $('lHome').addEventListener('click', showLevelHome);
   if($('lAd')) $('lAd').addEventListener('click', werbungFuerLeben);
+  vollZeileHorchen('lVoll');
   if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ kaufe('herz'); showLevelHome(); });
   renderLives();
 }
@@ -5977,21 +5992,39 @@ async function mikroVorbereiten(){
    ein Level und las "warte zwei Stunden" - ohne einen einzigen Knopf. Eine
    Sackgasse, und der Laden bot nur das Herz fuer Muenzen.
    Ajdin: "wie soll man mit werbung auffuellen es gibt keinen button". */
+/* Die leise Zeile unter den zwei Wegen: wer keine Leben mehr hat, ist
+   genau der, dem unbegrenzte Leben etwas nuetzen. Sie erscheint nur,
+   wenn es die Vollversion hier ueberhaupt zu kaufen gibt, und nie bei
+   jemandem, der sie schon hat. Ajdin am 29.09.2026: „nicht jeder geht
+   in die Einstellungen“. */
+function vollZeileLeben(id){
+  if(unlimited() || !aboPlugin() || aboProdukteFehlen) return '';
+  return '<div class="abohinweis" style="text-align:center">'
+       + '<button type="button" class="abolink" id="' + id + '">'
+       + esc(t('voll.nie_warten')) + '</button></div>';
+}
+function vollZeileHorchen(id){
+  const k = document.getElementById(id);
+  if(k) k.addEventListener('click', ()=>{ showSettings(); });
+}
 function lebenWege(){
   const kasten = $('lvLeben');
   if(!kasten) return;
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo   = werbungErlaubt(true);
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
-  if(livesNow() > 0 || (!perVideo && !perMuenzen)){
+  const vollZeile = vollZeileLeben('lvVoll');
+  if(livesNow() > 0 || (!perVideo && !perMuenzen && !vollZeile)){
     kasten.style.display = 'none'; kasten.innerHTML = ''; return;
   }
   kasten.innerHTML =
       (perVideo   ? '<button class="btn ghost" id="lvAd">'+t('werbung.leben_holen')+'</button>' : '')
-    + (perMuenzen ? '<button class="btn ghost" id="lvCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '');
+    + (perMuenzen ? '<button class="btn ghost" id="lvCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '')
+    + vollZeile;
   kasten.style.display = 'flex';
   if($('lvAd'))   $('lvAd').addEventListener('click', werbungFuerLeben);
   if($('lvCoin')) $('lvCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); updateProgress(); });
+  vollZeileHorchen('lvVoll');
 }
 
 function startLesson(){
