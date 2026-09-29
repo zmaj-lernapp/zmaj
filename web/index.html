@@ -1503,10 +1503,21 @@ const ZIERRAT = [
   {id:'rot',            gruppe:'farbe',  preis:1300},
   {id:'lila',           gruppe:'farbe',  preis:1600},
   {id:'nacht',          gruppe:'farbe',  preis:2200},
+
+  /* Nur mit der Vollversion. Kein Preis: sie lassen sich nicht kaufen,
+     weder fuer Muenzen noch sonstwie. Sie sind da, solange das Abo
+     laeuft - auch in der Probezeit und in den fuenf Geschenktagen - und
+     der Drache legt sie ab, wenn es ausgelaufen ist.
+     Kein Vorteil im Spiel: ein Hut beantwortet keine Aufgabe. */
+  {id:'krone_gross',    gruppe:'kopf',   voll:true},
+  {id:'umhang',         gruppe:'hals',   voll:true},
+  {id:'gold',           gruppe:'farbe',  voll:true},
 ].map(w => Object.assign(w, {
   titel: 'laden.' + w.id, sub: 'laden.' + w.id + '_sub',
-  geht: () => !besitz.has(w.id),
+  geht: w.voll ? (() => unlimited()) : (() => !besitz.has(w.id)),
 }));
+const VOLL_STUECKE = new Set(ZIERRAT.filter(w => w.voll).map(w => w.id));
+const istVollStueck = id => VOLL_STUECKE.has(id);
 const GRUPPEN = [
   {id:'vorrat', titel:'laden.verbrauch'},
   {id:'kopf',   titel:'laden.reiter_kopf'},
@@ -1962,7 +1973,13 @@ let besitz = new Set();   // gekaufter Zierrat, z. B. "hut"
    ein Stueck je Gruppe. Bewusst eine Zeichenkette und kein Feld - alte
    Sicherungen enthalten dort schlicht "krone", und die laufen damit weiter. */
 let getragen = '';   // z. B. "krone,brille,trikot", leer = nichts
-const getragenListe = () => String(getragen || '').split(',').filter(Boolean);
+/* Was der Drache wirklich traegt. Stuecke der Vollversion fallen hier
+   heraus, sobald sie ausgelaufen ist - im Speicher bleiben sie stehen,
+   also haengt alles wieder am Drachen, wenn das Abo zurueckkommt. Eine
+   Stelle, und damit gilt es fuer den Laden, den Drachen und die Farbe
+   gleichermassen. */
+const getragenListe = () => String(getragen || '').split(',').filter(Boolean)
+  .filter(id => !istVollStueck(id) || unlimited());
 const traegt = id => getragenListe().indexOf(id) >= 0;
 function setzeGetragen(liste){
   getragen = liste.join(',');
@@ -2404,6 +2421,10 @@ const FARBEN = {
   rot:     ['C0392B', 'E05A4A', '7E1C14', 'FF8878', 'C24F3E'],
   lila:    ['7A3FBF', '9C63DB', '4A2277', 'BE8DF0', '8352C4'],
   nacht:   ['3A3F4C', '575E70', '22252D', '7C8598', '4B5364'],
+  /* Nur mit der Vollversion. Die fuenf Toene stehen fuer dieselben fuenf
+     Blautoene wie bei den anderen Farben: Grund, hell, dunkel, Fluegel,
+     Fluegelschatten. */
+  gold:    ['D9A520', 'F2C94C', '8A6508', 'FFDE7A', 'C79A2E'],
 };
 const farbeVon = id => (FARBEN[id] || []).map(zuFarbe);
 /* Alle Farbwerte in den Daten durchgehen und die fuenf Blautoene ersetzen.
@@ -2436,9 +2457,17 @@ let zmajBasis = null;              // Grunddatei, einmal geholt
 const zmajTeile = new Map();       // id -> Ebene, einmal geholt
 let zmajFertig = null, zmajFertigFuer = null;
 const zierratDatei = id => 'zmajz-' + id + '.json';
-const getrageneTeile = () => getragenListe().filter(id => besitz.has(id) && MASCOT.has(zierratDatei(id)));
+/* Auch hier die Ausnahme fuer die Stuecke der Vollversion: sie stehen in
+   keinem Besitz, weil sie nicht gekauft werden. Ohne sie haengt der
+   Umhang zwar in getragen, kommt aber nie an den Drachen. */
+const getrageneTeile = () => getragenListe()
+  .filter(id => (besitz.has(id) || istVollStueck(id)) && MASCOT.has(zierratDatei(id)));
 // Welche Farbe getragen wird. Leer heisst blau, die Grundfarbe.
-const getrageneFarbe = () => getragenListe().find(id => FARBEN[id] && besitz.has(id)) || '';
+/* Die Farbe der Vollversion steht in keinem Besitz - sie wird nicht
+   gekauft. Ohne diese Ausnahme blieb der Drache blau, obwohl Gold
+   getragen war. Beim Bauen in der Vorschau aufgefallen, 29.09.2026. */
+const getrageneFarbe = () => getragenListe()
+  .find(id => FARBEN[id] && (besitz.has(id) || istVollStueck(id))) || '';
 async function zmajDaten(){
   const ids = getrageneTeile();
   const farbe = getrageneFarbe();
@@ -4730,10 +4759,15 @@ function renderLaden(){
     return '<button class="btn kauf '+(geht?'know':'ghost')+'" data-ware="'+w.id+'"'+
            (geht?'':' disabled')+'>🪙 '+w.preis+'</button>';
   };
-  const zierratZeile = w => besitz.has(w.id)
-    ? zeile(w, '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'">'+
-        t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen')+'</button>')
-    : zeile(w, preisKnopf(w));
+  /* Ein Stueck der Vollversion hat keinen Preis. Laeuft sie, steht dort
+     Tragen oder Abnehmen wie bei gekaufter Ware; laeuft sie nicht, ein
+     grauer Knopf, der in die Einstellungen fuehrt. */
+  const tragenKnopf = w => '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'">'+
+        t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen')+'</button>';
+  const zierratZeile = w => w.voll
+    ? zeile(w, unlimited() ? tragenKnopf(w)
+              : '<button class="btn kauf ghost" data-vollstueck="1">'+t('laden.nur_voll')+'</button>')
+    : (besitz.has(w.id) ? zeile(w, tragenKnopf(w)) : zeile(w, preisKnopf(w)));
   /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
      ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
      Tageskontingent, siehe WERBUNG_MAX_LOHN.
@@ -4773,12 +4807,14 @@ function renderLaden(){
   if(vk && !vk.disabled) vk.addEventListener('click', werbungFuerLeben);
   const lv = box.querySelector('#ladenVoll');
   if(lv) lv.addEventListener('click', ()=>{ showSettings(); });
+  box.querySelectorAll('button[data-vollstueck]').forEach(b =>
+    b.addEventListener('click', ()=>{ showSettings(); }));
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
    dasselbe tippen nimmt es ab. */
 function trage(id){
-  if(!besitz.has(id)) return;
+  if(!besitz.has(id) && !(istVollStueck(id) && unlimited())) return;
   const g = gruppeVon(id);
   const runter = traegt(id);
   const rest = getragenListe().filter(x => x !== id && gruppeVon(x) !== g);
