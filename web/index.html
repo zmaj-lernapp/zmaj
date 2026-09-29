@@ -1750,7 +1750,14 @@ async function admobStart(){
     AdMobP = A;
     admobDarf = !!info.canRequestAds;
     admobOptionen = info.privacyOptionsRequirementStatus === 'REQUIRED';
-    if(admobDarf) await A.initialize({initializeForTesting: ADMOB_TEST});
+    /* maxAdContentRating: ohne diese Angabe entscheidet allein die
+       Voreinstellung im AdMob-Konto, welche Anzeigen kommen duerfen -
+       und die steht nirgends im Projekt. „Teen“ passt zur Zielgruppe
+       16-17 und 18+ aus STORE_TEXTE.md. Hoeher darf es nur, wenn die
+       Angaben in der Play Console vorher dazu passen, nicht umgekehrt.
+       Punkt 3 aus WERBUNG_PRUEFUNG.md, behoben am 29.09.2026. */
+    if(admobDarf) await A.initialize({initializeForTesting: ADMOB_TEST,
+                                      maxAdContentRating: 'Teen'});
   }catch(e){
     /* Der Fehler wurde bis zum 27.09.2026 stillschweigend verschluckt. Das
        ist teuer: AdMobP steht danach auf null, damit liefert admobDa() false,
@@ -1804,7 +1811,14 @@ async function admobWarten(paare, frist){
 
 /* Zeigt eine Anzeige und kommt zurück, wenn sie wieder zu ist.
    true heißt: sie lief wirklich. */
-async function admobZeigen(belohnt){
+/* darfNoch() ist die Bedingung, unter der die Anzeige ueberhaupt
+   angefordert wurde - derselbe Bildschirm, dieselbe Lektion, App noch
+   vorne. Sie wird unten ein zweites Mal geprueft, unmittelbar bevor die
+   Anzeige auf den Schirm geht. Dazwischen liegt prepareInterstitial(),
+   und das ist ein Netzabruf von ein bis mehreren Sekunden: genug Zeit,
+   um auf „Noch eine Lektion“ zu tippen und die erste Aufgabe vor sich
+   zu haben. Punkt 1 aus WERBUNG_PRUEFUNG.md, behoben am 29.09.2026. */
+async function admobZeigen(belohnt, darfNoch){
   if(!AdMobP || !admobDarf) return false;
   try{
     if(belohnt){
@@ -1820,6 +1834,11 @@ async function admobZeigen(belohnt){
     }
     await AdMobP.prepareInterstitial({adId: ADMOB_ID.interstitial, isTesting: ADMOB_TEST,
                                      npa: !werbungPersonalisiert()});
+    /* Hier der zweite Blick. Passt es nicht mehr, wird die geladene
+       Anzeige einfach nicht gezeigt - sie geht dadurch nicht verloren,
+       der naechste Aufruf laedt sie erneut. Lieber eine Einblendung
+       weniger als eine ueber einer laufenden Aufgabe. */
+    if(darfNoch && !darfNoch()) return false;
     /* GEZAEHLT wird, sobald die Anzeige wirklich auf dem Schirm stand, und
        GEWARTET wird, bis der Nutzer sie geschlossen hat. Das sind zwei
        verschiedene Dinge, und bis zum 27.09.2026 hingen beide am
@@ -3214,6 +3233,9 @@ let uhrWarAn = false;
 document.addEventListener('visibilitychange', ()=>{
   if(document.hidden){
     uhrWarAn = uhrStart > 0; uhrAus(); stilleBitte(true);   // Aufgabe bleibt gueltig
+    /* Den Werbewecker abraeumen. Die Anzeige ist damit nicht verloren:
+       werbungSchuldig traegt sie in die naechste Lektion. */
+    if(werbungWecker){ clearTimeout(werbungWecker); werbungWecker = 0; werbungSchuldig = true; }
     /* Und speichern. Eine RICHTIGE Antwort speicherte bisher gar nicht:
        known.add() und zaehle() laufen, saveProgress() nicht. Gespeichert
        wurde nur bei einer falschen Antwort (ueber loseLife) und am
@@ -5680,18 +5702,18 @@ function kurzMeldung(text){
   }, 3200);
 }
 
-function zeigeWerbung(belohnt, fertig){
+function zeigeWerbung(belohnt, fertig, darfNoch){
   const P = window.Capacitor && window.Capacitor.Plugins;
   if(WERBUNG_ECHT && !AdMobP && admobFehler && P && P.AdMob && !admobZweitversuch){
     admobZweitversuch = true;
-    admobStart().then(()=> zeigeWerbungJetzt(belohnt, fertig),
-                      ()=> zeigeWerbungJetzt(belohnt, fertig));
+    admobStart().then(()=> zeigeWerbungJetzt(belohnt, fertig, darfNoch),
+                      ()=> zeigeWerbungJetzt(belohnt, fertig, darfNoch));
     return;
   }
-  zeigeWerbungJetzt(belohnt, fertig);
+  zeigeWerbungJetzt(belohnt, fertig, darfNoch);
 }
 
-function zeigeWerbungJetzt(belohnt, fertig){
+function zeigeWerbungJetzt(belohnt, fertig, darfNoch){
   if(!werbungErlaubt(belohnt)){ fertig(false); return; }
   stilleBitte();   // kein Wort unter der Anzeige - egal ob echte oder Platzhalter
 
@@ -5699,7 +5721,7 @@ function zeigeWerbungJetzt(belohnt, fertig){
   // eine Anzeige, die nicht kam, darf kein Tageskontingent verbrauchen.
   // Und jede Art auf ihr eigenes Kontingent (Ajdin am 26.09.2026).
   if(admobDa()){
-    admobZeigen(belohnt).then(lief => { if(lief) werbungGezaehlt(belohnt); fertig(lief); });
+    admobZeigen(belohnt, darfNoch).then(lief => { if(lief) werbungGezaehlt(belohnt); fertig(lief); });
     return;
   }
   /* Auf dem Geraet gibt es keinen Platzhalter. Der ist fuer den PC
@@ -5869,6 +5891,12 @@ function lessonEnd(){
      stand schon hoeher, also war sie weg. Jetzt wird sie geschuldet und beim
      naechsten Ergebnisschirm nachgeholt. */
 let werbungSchuldig = false;
+/* Der Wecker aus werbungNachDemErgebnis. Er muss abraeumbar sein: geht
+   die App in den 1,2 Sekunden in den Hintergrund - Home-Taste, Anruf -,
+   duerfte die Anzeige sonst beim Zurueckkommen erscheinen, ohne dass
+   jemand etwas getan hat. Genau das verbietet Google.
+   Punkt 2 aus WERBUNG_PRUEFUNG.md, behoben am 29.09.2026. */
+let werbungWecker = 0;
 function werbungNachDemErgebnis(feld, marke){
   const dran = werbungSchuldig ||
                (werbungZaehler >= WERBUNG_AB_LEKTION &&
@@ -5878,12 +5906,21 @@ function werbungNachDemErgebnis(feld, marke){
      dem Lernpfad, den Einstellungen oder schon ueber der ersten Aufgabe der
      naechsten Lektion. */
   const dieser = marke();
-  setTimeout(()=>{
+  /* Dieselbe Bedingung zweimal gebraucht: einmal jetzt, wenn der Wecker
+     klingelt, und noch einmal unten in admobZeigen(), kurz bevor die
+     Anzeige wirklich kommt. document.hidden gehoert dazu - sichtbar()
+     fragt nur das CSS, nicht ob die App ueberhaupt noch vorne ist. */
+  const darfNoch = ()=> marke() === dieser && !wegmarkeLaeuft
+                        && sichtbar('levelView') && sichtbar(feld)
+                        && !document.hidden;
+  clearTimeout(werbungWecker);
+  werbungWecker = setTimeout(()=>{
+    werbungWecker = 0;
     /* wegmarkeLaeuft: eine Anzeige ueber dem 100. Lerntag waere die
        schlechteste Minute, die sich die App aussuchen koennte. */
-    if(marke() === dieser && !wegmarkeLaeuft && sichtbar('levelView') && sichtbar(feld)){
+    if(darfNoch()){
       werbungSchuldig = false;
-      zeigeWerbung(false, ()=>{});
+      zeigeWerbung(false, lief => { if(!lief) werbungSchuldig = true; }, darfNoch);
     } else {
       werbungSchuldig = true;   // nicht verloren, nur verschoben
     }
