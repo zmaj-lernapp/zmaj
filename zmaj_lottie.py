@@ -537,20 +537,36 @@ def stern(cx, cy, r, c, o=100):
 # (0,0) und wird erst durch die Verschiebung der Gruppe gesetzt - nur so
 # waechst er um seine eigene Mitte. Legte man ihn gleich auf (cx,cy),
 # zoege ihn jede Groessenaenderung zur Bildmitte hin.
-#   start  Bild, bei dem das erste Aufblitzen anfaengt
-#   takt   Abstand bis zum naechsten Aufblitzen desselben Sterns
-def funke(cx, cy, r, c, start, takt=110, o=100):
+#   platz   Nummer des Sterns, 0 bis anzahl-1 - bestimmt, wann er dran ist
+#   anzahl  wie viele Sterne sich den Abschnitt teilen
+#
+# Wichtig: die App spielt nie die ganze Zeitleiste. playMood() ruft
+# playSegments() mit einem Abschnitt aus SEG - im Ruhezustand die Bilder 0
+# bis 90, in Schleife. Ein Takt ueber die ganze Datei liesse die meisten
+# Blitze nie fallen und schnitte die spaeten Sterne an der Abschnittsgrenze
+# mitten im Leuchten ab. Deshalb bekommt jeder Stern in JEDEM Abschnitt
+# genau einen Blitz, und der ist vor der Grenze zu Ende.
+def funke(cx, cy, r, c, platz, anzahl=7, o=100):
     # Bild, Groesse, Deckkraft, Drehung. Schnell auf, langsam wieder weg -
-    # so blitzt es, statt zu pulsieren.
-    schritte = [(0, 0, 0, -35), (7, 124, o, -8), (17, 96, o, 0), (31, 0, 0, 10)]
+    # so blitzt es, statt zu pulsieren. 26 Bilder, damit auch die kurzen
+    # Abschnitte (ok und no sind nur 30 lang) noch einen ganzen Blitz fassen.
+    DAUER = 26
+    schritte = [(0, 0, 0, -35), (6, 124, o, -8), (15, 96, o, 0), (DAUER, 0, 0, 10)]
     gs, go, gr = [], [], []
-    b = start
-    while b < OP:
+    # Nur die langen Abschnitte. In den kurzen Reaktionen (ok und no sind je
+    # 30 Bilder, no_l und no_r je 40) blieben nach Abzug der Blitzdauer so
+    # wenige Bilder uebrig, dass alle sieben Sterne fast gleichzeitig
+    # losgingen - das sieht nach einem einzigen Blinzeln aus und kostete die
+    # Haelfte der Dateigroesse. Dort funkelt jetzt nichts; die Reaktion
+    # dauert eine Sekunde, danach ist ohnehin wieder Ruhezustand.
+    for a, e in sorted(SEG.values()):
+        fenster = (e - a) - DAUER
+        if e - a < 50:
+            continue                      # zu kurz fuer sieben gestaffelte Blitze
+        start = a + (fenster * platz) // max(1, anzahl - 1)
         for dt, sv, ov, rv in schritte:
-            k = b + dt
-            if 0 <= k <= OP:
-                gs.append((k, [sv, sv])); go.append((k, ov)); gr.append((k, rv))
-        b += takt
+            k = start + dt
+            gs.append((k, [sv, sv])); go.append((k, ov)); gr.append((k, rv))
     e = r * 0.26
     zeiger = {"ty": "tr", "p": const([cx, cy]), "a": const([0, 0]),
               "s": anim(gs, dims=2), "r": anim(gr), "o": anim(go)}
@@ -577,19 +593,19 @@ put("galaxie", [
 ], parent="body")
 
 # ---------- Funkeln (nur Vollversion) ----------
-# Sieben Sterne rund um den Drachen. Jeder steht still und blitzt auf,
-# alle 110 Bilder einmal, aber mit versetztem Anfang - so leuchtet immer
-# irgendwo einer und nie alle zugleich. Sie haengen am Koerper, wippen
-# also mit ihm.
+# Sieben Sterne rund um den Drachen. Jeder steht still und blitzt einmal
+# je Stimmungsabschnitt auf, der Reihe nach - so leuchtet immer irgendwo
+# einer und nie alle zugleich. Im Ruhezustand sind das 90 Bilder, also
+# drei Sekunden fuer alle sieben. Sie haengen am Koerper, wippen mit ihm.
 # Ajdin am 29.09.2026: die Sterne sollen nicht kreisen, sondern funkeln.
 put("funkeln", [
     funke(0, -178, 18, WHITE, 0),
-    funke(-104, 112, 13, WHITE, 14),
-    funke(168, -26, 14, YEL, 26),
-    funke(132, -128, 10, YEL, 40),
-    funke(-168, -40, 15, YEL, 52),
-    funke(-140, -132, 11, WHITE, 66),
-    funke(96, 118, 12, WHITE, 78),
+    funke(-104, 112, 13, WHITE, 1),
+    funke(168, -26, 14, YEL, 2),
+    funke(132, -128, 10, YEL, 3),
+    funke(-168, -40, 15, YEL, 4),
+    funke(-140, -132, 11, WHITE, 5),
+    funke(96, 118, 12, WHITE, 6),
 ], parent="body")
 
 # ---------- Monokel (nur Vollversion) ----------

@@ -1475,8 +1475,9 @@ const VERBRAUCH = [
   {id:'schutz', preis:300, titel:'laden.schutz', sub:'laden.schutz_sub',
    geht:()=> schutzNow() < SCHUTZ_MAX}
 ];
-/* Zierrat in drei Gruppen - das sind zugleich die Reiter im Laden. Aus jeder
-   Gruppe kann ein Stueck getragen werden, alle drei zusammen. Die Reihenfolge
+/* Zierrat in fuenf Gruppen - Kopf, Brille, Hals, Farbe, Effekt. Das sind
+   zugleich die Reiter im Laden. Aus jeder Gruppe kann ein Stueck getragen
+   werden, alle fuenf zusammen. Die Reihenfolge
    hier ist die Reihenfolge im Laden: das Guenstigste zuerst.
    Die Kennungen muessen zu den Dateien web/maskottchen/zmajz-<id>.json
    passen, die zmaj_lottie.py erzeugt. */
@@ -5122,7 +5123,9 @@ $('btnBack').addEventListener('click', ()=>{ if(backTarget) backTarget(); });
 /* =================== LERNPFAD =================== */
 /* Der Pfad sprang frueher beim Oeffnen zur aktuellen Lektion. Das kam aus
    der Zeit vor dem Knopf "Weitermachen" oben, der genau dorthin fuehrt.
-   Jetzt bleibt der Pfad stehen, wo man ihn verlassen hat.
+   Jetzt oeffnet der Pfad oben und bleibt dort - showView() setzt ohnehin
+   window.scrollTo(0), gespart wird also nicht das Scrollen an sich,
+   sondern der Sprung mitten in die Liste hinein.
    Ajdin am 29.09.2026: "braucht die app nicht zur aktuellsten stelle
    springen". */
 function showPath(){
