@@ -580,12 +580,12 @@
   .abokarte .haken{font-weight:800; color:var(--primary); margin-right:6px}
   .abokarte .n{font-weight:800; font-size:15px}
   .abokarte .p{font-weight:800; font-size:17px; color:var(--primary); white-space:nowrap}
-  /* Der Monatspreis steht unter dem gelben Abzeichen, nicht daneben und
-     nicht selbst in Gelb: zwei Abzeichen nebeneinander sahen auf Deutsch
-     gedraengt aus. Ajdin am 29.09.2026. */
-  .abopromonat{display:block; margin-top:3px; font-size:11px; font-weight:700;
-    color:var(--muted)}
+  /* Beides steht in derselben gelben Pille, untereinander: nebeneinander
+     war die Zeile auf Deutsch zu lang, und in Grau darunter wirkte der
+     Monatspreis wie eine Fussnote. Ajdin am 29.09.2026. */
+  .abospar .promonat{display:block; font-weight:700; opacity:.9}
   .abospar{display:inline-block; margin-top:4px; font-size:11px; font-weight:800;
+    text-align:center; line-height:1.4;
     color:var(--on-accent); background:var(--accent); border-radius:99px; padding:2px 8px}
   .abohinweis{font-size:12px; line-height:1.5; color:var(--muted); margin-top:8px}
 
@@ -4143,8 +4143,8 @@ async function vollWahlZeigen(){
     '<button type="button" class="abokarte" role="radio" aria-checked="false"'+
       ' data-plan="'+esc(p.plan)+'"'+(p.preis?'':' disabled')+'>'+
       '<span><span class="n">'+esc(name)+'</span>'+
-        (abzeichen ? '<br><span class="abospar">'+esc(abzeichen)+'</span>' : '')+
-        (zweite   ? '<span class="abopromonat">'+esc(zweite)+'</span>' : '')+'</span>'+
+        (abzeichen || zweite ? '<br><span class="abospar">'+esc(abzeichen)+
+          (zweite ? '<span class="promonat">'+esc(zweite)+'</span>' : '')+'</span>' : '')+'</span>'+
       '<span class="p">'+esc(p.preis || '–')+'</span>'+
     '</button>';
   const kasten = document.createElement('div');
