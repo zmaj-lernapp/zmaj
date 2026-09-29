@@ -1569,7 +1569,12 @@ const WERBUNG_MAX_LOHN    = 6;     // freiwillige Videos, getrennt gezaehlt
 const WERBUNG_LEBEN_LOHN  = 1;     // so viele Leben gibt ein belohntes Video
 
 let werbungZaehler = 0;            // Lektionen seit der letzten Werbung
-let werbungHeute = {tag: '', n: 0, lohn: 0};
+/* offen: eine Anzeige, die faellig war, aber nicht laufen konnte - weil
+   der Nutzer weitergetippt hat oder die App in den Hintergrund ging. Sie
+   steht hier und nicht nur im Arbeitsspeicher, weil sie sonst mit dem
+   Schliessen der App verschwand: Lektion zu Ende, App wegwischen, neu
+   oeffnen - und die Anzeige war umgangen. Ajdin am 29.09.2026. */
+let werbungHeute = {tag: '', n: 0, lohn: 0, offen: false};
 try{ werbungHeute = JSON.parse(localStorage.getItem('zmaj_werbung') || 'null') || werbungHeute; }catch(e){}
 
 /* =================== EINWILLIGUNG ===================
@@ -1670,7 +1675,8 @@ function werbungErlaubt(belohnt){
   if(admobDa() && !admobDarf) return false;      // Google sagt nein
   if(einwilligungFragen()) return false;         // erst fragen, dann werben
   const heute = new Date().toISOString().slice(0,10);
-  if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0};
+  if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0,
+                                                 offen: !!werbungHeute.offen};
   /* Das freiwillige Video fuer ein Herz bleibt begrenzt - es kostet Leben,
      und wer sich zwanzig Videos ansieht, spielt den Tag durch, ohne je zu
      warten. Die Anzeige nach Lektion und Test ist nicht begrenzt. */
@@ -1679,7 +1685,8 @@ function werbungErlaubt(belohnt){
 }
 function werbungGezaehlt(belohnt){
   const heute = new Date().toISOString().slice(0,10);
-  if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0};
+  if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0,
+                                                 offen: !!werbungHeute.offen};
   if(belohnt) werbungHeute.lohn = (werbungHeute.lohn || 0) + 1;
   else werbungHeute.n    = (werbungHeute.n    || 0) + 1;
   try{ localStorage.setItem('zmaj_werbung', JSON.stringify(werbungHeute)); }catch(e){}
@@ -3235,7 +3242,7 @@ document.addEventListener('visibilitychange', ()=>{
     uhrWarAn = uhrStart > 0; uhrAus(); stilleBitte(true);   // Aufgabe bleibt gueltig
     /* Den Werbewecker abraeumen. Die Anzeige ist damit nicht verloren:
        werbungSchuldig traegt sie in die naechste Lektion. */
-    if(werbungWecker){ clearTimeout(werbungWecker); werbungWecker = 0; werbungSchuldig = true; }
+    if(werbungWecker){ clearTimeout(werbungWecker); werbungWecker = 0; schuldigSetzen(true); }
     /* Und speichern. Eine RICHTIGE Antwort speicherte bisher gar nicht:
        known.add() und zaehle() laufen, saveProgress() nicht. Gespeichert
        wurde nur bei einer falschen Antwort (ueber loseLife) und am
@@ -5890,7 +5897,15 @@ function lessonEnd(){
    - Wer in den 1,2 Sekunden weitertippt, verlor die Anzeige ganz. Der Zaehler
      stand schon hoeher, also war sie weg. Jetzt wird sie geschuldet und beim
      naechsten Ergebnisschirm nachgeholt. */
-let werbungSchuldig = false;
+let werbungSchuldig = !!werbungHeute.offen;
+/* Immer hierueber setzen, nie direkt: der Merker muss in denselben
+   Eintrag wie die Tageszaehler, sonst ueberlebt er das Schliessen der
+   App nicht. */
+function schuldigSetzen(ja){
+  werbungSchuldig = ja;
+  werbungHeute.offen = ja;
+  try{ localStorage.setItem('zmaj_werbung', JSON.stringify(werbungHeute)); }catch(e){}
+}
 /* Der Wecker aus werbungNachDemErgebnis. Er muss abraeumbar sein: geht
    die App in den 1,2 Sekunden in den Hintergrund - Home-Taste, Anruf -,
    duerfte die Anzeige sonst beim Zurueckkommen erscheinen, ohne dass
@@ -5919,10 +5934,10 @@ function werbungNachDemErgebnis(feld, marke){
     /* wegmarkeLaeuft: eine Anzeige ueber dem 100. Lerntag waere die
        schlechteste Minute, die sich die App aussuchen koennte. */
     if(darfNoch()){
-      werbungSchuldig = false;
-      zeigeWerbung(false, lief => { if(!lief) werbungSchuldig = true; }, darfNoch);
+      schuldigSetzen(false);
+      zeigeWerbung(false, lief => { if(!lief) schuldigSetzen(true); }, darfNoch);
     } else {
-      werbungSchuldig = true;   // nicht verloren, nur verschoben
+      schuldigSetzen(true);     // nicht verloren, nur verschoben
     }
   }, 1200);
 }
