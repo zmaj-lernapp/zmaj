@@ -46,6 +46,12 @@ SCHAL_B = col("101C5C"); SCHAL_G = col("FFD23F")
 WOLLE = col("C8392B"); WOLLE_D = col("8E2318"); FELL = col("FFF1E0")
 KAPPE = col("1F7A4D"); KAPPE_D = col("125232"); KAPPE_H = col("35B075")
 LEDER = col("4A3020"); LEDER_H = col("744E33"); NIET = col("C9A227")
+# Umhang und grosse Krone: die beiden Stuecke, die es nur mit der
+# Vollversion gibt. Dunkles Weinrot mit Goldkante - warm genug, um sich
+# vom blauen Koerper abzuheben, und dunkel genug, dass die gelbe Kante
+# darauf leuchtet. Auf einem goldenen Drachen traegt die dunkle Flaeche.
+UMHANG = col("6B1F3A"); UMHANG_D = col("45122A"); UMHANG_H = col("F2C94C")
+PERLE = col("FFF6DC")
 DUNKELGLAS = col("1C1C24"); GLANZ = col("FFFFFF")
 DOKTOR = col("23252B"); DOKTOR_H = col("454956")
 STRICK = col("7B3F51"); STRICK_H = col("A85C72"); STRICK_D = col("55283A")   # Weinrot: hebt sich von Blau UND Gelb ab
@@ -114,9 +120,9 @@ def mirror(pts): return [(-x, y) for x, y in pts]
 #   Die Halssachen stehen HINTER dem Kopf und hinter den Armen, aber vor dem
 #   Körper. Dadurch schiebt sich der Kopf über den oberen Rand des Schals,
 #   genau wie bei einem echten Schal, und die Arme liegen auf der Weste.
-KOPF_TEILE = ["hut", "krone", "fes", "kappe", "doktorhut", "ohrenschuetzer", "kopfhoerer"]
+KOPF_TEILE = ["hut", "krone", "krone_gross", "fes", "kappe", "doktorhut", "ohrenschuetzer", "kopfhoerer"]
 BRILLEN    = ["brille", "sonnenbrille", "lesebrille"]
-HALS_TEILE = ["trikot", "schal_bih", "schal_winter", "weste_leder", "weste_strick"]
+HALS_TEILE = ["trikot", "umhang", "schal_bih", "schal_winter", "weste_leder", "weste_strick"]
 ZIERRAT = KOPF_TEILE + BRILLEN + HALS_TEILE
 # Die drei Kleidungsstuecke bekommen Aermel. Das sind eigene Ebenen, denn sie
 # haengen an den Armen und nicht am Koerper - die Arme wippen, ein am Koerper
@@ -405,6 +411,25 @@ put("krone", [
     group(ellipse(0, -130, 14, 14), fill(STEIN)),
 ], parent="head")
 
+# ---------- Grosse Krone (nur Vollversion) ----------
+# Dieselbe Bauart wie die kleine, nur hoeher, breiter und mit einem
+# grossen Stein in der Mitte. Sie muss sich auf einen Blick von der
+# kleinen unterscheiden - sonst fragt sich jeder, wofuer er zahlt.
+put("krone_gross", [
+    group(rect(0, -104, 152, 30, 9), fill(KRONE)),                    # Reif
+    group(rect(0, -93, 152, 10, 5), fill(KRONE_D, 40)),               # Schatten darunter
+    group(rect(0, -114, 152, 7, 3), fill(PERLE, 55)),                 # helle Kante oben
+    group(smooth([(-74, -100), (-74, -168), (-50, -138), (-30, -186),
+                  (0, -146), (30, -186), (50, -138), (74, -168), (74, -100)],
+                 tension=0.1), fill(KRONE)),                          # fuenf Zacken
+    group(ellipse(0, -128, 30, 30), fill(STEIN)),                     # grosser Stein
+    group(ellipse(-6, -134, 10, 10), fill(PERLE, 60)),                # Glanzpunkt darauf
+    group(ellipse(-30, -186, 15, 15), fill(PERLE)),
+    group(ellipse(30, -186, 15, 15), fill(PERLE)),
+    group(ellipse(-74, -168, 12, 12), fill(STEIN)),
+    group(ellipse(74, -168, 12, 12), fill(STEIN)),
+], parent="head")
+
 # ---------- Fes ----------
 put("fes", [
     group(smooth([(-64, -96), (-55, -172), (55, -172), (64, -96)], tension=0.06), fill(FES)),
@@ -571,6 +596,26 @@ put("weste_strick", [
     # das den echten Ausschnitt einfasst - wie der Bund einer Strickjacke.
     group(smooth([(-26, -60), (0, -22), (26, -60)], closed=False, tension=0), stroke(STRICK_H, 8)),
     group(smooth(KOERPER_V_TIEF, tension=0.6, scharf=AUSSCHNITT), stroke(STRICK_H, 3, 50)),
+], parent="body")
+
+# ---------- Umhang (nur Vollversion) ----------
+# Faellt von den Schultern bis unter den Bauch, vorn offen, damit der
+# gelbe Bauch sichtbar bleibt - dieselbe Loesung wie bei der Lederweste.
+# Oben ein Kragen quer ueber die Schultern, in der Mitte die Spange.
+UMHANG_L = [(-38, -72), (-92, -4), (-84, 78), (-34, 88), (-18, 64), (-12, -4), (-26, -68)]
+put("umhang", [
+    group(smooth(UMHANG_L, tension=0.5), fill(UMHANG)),
+    group(smooth([(-x, y) for x, y in UMHANG_L], tension=0.5), fill(UMHANG)),
+    group(smooth(UMHANG_L, tension=0.5), stroke(UMHANG_H, 4, 85)),        # Goldkante
+    group(smooth([(-x, y) for x, y in UMHANG_L], tension=0.5), stroke(UMHANG_H, 4, 85)),
+    group(smooth([(-70, 40), (-52, 70), (-30, 80)], closed=False, tension=0.5),
+          stroke(UMHANG_D, 5, 45)),                                       # Falte links
+    group(smooth([(70, 40), (52, 70), (30, 80)], closed=False, tension=0.5),
+          stroke(UMHANG_D, 5, 45)),                                       # Falte rechts
+    group(rect(0, -70, 104, 26, 13), fill(UMHANG_D)),                     # Kragen
+    group(rect(0, -70, 104, 8, 4), fill(UMHANG_H, 60)),
+    group(ellipse(0, -70, 22, 22), fill(UMHANG_H)),                       # Spange
+    group(ellipse(0, -70, 9, 9), fill(STEIN)),
 ], parent="body")
 
 # ---------- Lederweste ----------
