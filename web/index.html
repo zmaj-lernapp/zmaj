@@ -5930,7 +5930,7 @@ function lessonOutOfLives(){
         (perVideo   ? '<button class="btn ghost" id="lAd">'+t('werbung.leben_holen')+'</button>' : '')+
         (perMuenzen ? '<button class="btn ghost" id="lCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '')+
       '</div>' : '')+
-    vollZeileLeben('lVoll', true)+
+    vollZeileLeben('lVoll')+
     /* Platz fuer die Rueckmeldung des Video-Knopfs (Ajdin am 26.09.2026).
        Unsichtbar, solange nichts zu sagen ist: .feedback hat eine
        Mindesthoehe und einen Abstand oben, ein leerer Kasten risse sonst
@@ -6083,15 +6083,12 @@ async function mikroVorbereiten(){
    wenn es die Vollversion hier ueberhaupt zu kaufen gibt, und nie bei
    jemandem, der sie schon hat. Ajdin am 29.09.2026: „nicht jeder geht
    in die Einstellungen“. */
-function vollZeileLeben(id, gross){
+function vollZeileLeben(id){
   if(unlimited() || !aboPlugin() || aboProdukteFehlen) return '';
-  /* Auf dem Sperrschirm ein richtiger Knopf: dort ist die Lektion
-     vorbei, der Nutzer sitzt fest, und eine kleine graue Zeile geht
-     unter. In der Levelansicht bleibt es die leise Zeile - da laeuft
-     noch alles. */
-  if(gross) return '<div class="row schmal">'
-       + '<button type="button" class="btn ghost" id="' + id + '">'
-       + esc(t('voll.nie_warten')) + '</button></div>';
+  /* Bewusst die leise Zeile, auch auf dem Sperrschirm: als richtiger
+     Knopf zwischen den zwei Herz-Wegen sah sie nach Bettelei aus.
+     Ajdin am 29.09.2026: „neee das sieht nicht gut aus, im laden schon
+     aber da nicht“. Im Laden bleibt die eigene Zeile. */
   return '<div class="abohinweis" style="text-align:center">'
        + '<button type="button" class="abolink" id="' + id + '">'
        + esc(t('voll.nie_warten')) + '</button></div>';
