@@ -1747,7 +1747,7 @@ async function admobStart(){
      Einwilligungsfenster - genau das, was dieser Kommentar ausschliessen
      wollte. Gefunden am 26.09.2026. */
   dauerVollLaden();   // frisch aus dem Geraetespeicher, wie eine Zeile tiefer
-  if(vollversionGemerkt() || dauerVoll) return;
+  if(vollversionGemerkt() || dauerVoll || geschenkLaeuft()) return;
   try{
     const A = P.AdMob;
     let info = await A.requestConsentInfo();
@@ -2901,6 +2901,69 @@ function vollversionLaden(alterStand){
    Das ist Verstecken, kein Schutz. Wer die App auseinandernimmt, findet
    das Wort hier im Klartext; bei einer Anwendung, die ohne Server
    auskommt, geht es nicht anders. Fuer den Zweck reicht es. */
+/* ---- Fuenf Tage Vollversion zum Jahrestag ----
+
+   Wer ein Jahr dabei ist, bekommt fuenf Tage ohne Werbung und mit
+   unbegrenzten Leben - und danach laeuft alles weiter wie vorher. Das
+   ist ein Geschenk, kein Kauf: Google weiss nichts davon, deshalb steht
+   es in einem eigenen Eintrag und laesst zmaj_voll in Ruhe. Sonst
+   ueberschriebe der naechste Abgleich mit Google das Geschenk, oder
+   schlimmer: die App hielte einen zahlenden Nutzer fuer einen
+   beschenkten.
+
+   Der Anfang steht in zmaj_seit. Wer die App schon laenger hat, bekommt
+   seinen fruehesten Lerntag als Anfang - er soll nicht von vorn
+   anfangen muessen, nur weil dieser Eintrag neu ist.
+
+   Gerechnet wird in ganzen Jahren seit diesem Tag. Wer ein halbes Jahr
+   nicht hereinschaut, verliert nichts: beim naechsten Start steht das
+   Geschenk bereit. Ajdin am 29.09.2026. */
+const SEIT_SCHLUESSEL = 'zmaj_seit';
+const GESCHENK_SCHLUESSEL = 'zmaj_geschenk';
+const GESCHENK_TAGE = 5;
+let geschenk = {jahr: 0, bis: 0};
+try{ geschenk = JSON.parse(localStorage.getItem(GESCHENK_SCHLUESSEL) || 'null') || geschenk; }catch(e){}
+const geschenkLaeuft = () => (geschenk.bis || 0) > Date.now();
+const geschenkRest = () => Math.max(0, Math.ceil(((geschenk.bis || 0) - Date.now()) / 86400000));
+function seitWann(){
+  let s = null;
+  try{ s = localStorage.getItem(SEIT_SCHLUESSEL); }catch(e){}
+  if(s) return s;
+  /* Noch nichts eingetragen: der fruheste Lerntag, sonst heute. */
+  const tage = [...days].sort();
+  s = tage.length ? tage[0] : today();
+  try{ localStorage.setItem(SEIT_SCHLUESSEL, s); }catch(e){}
+  return s;
+}
+/* Laeuft beim Start und bei jedem Tageswechsel. Gibt zurueck, ob gerade
+   ein Geschenk faellig geworden ist - die Karte zeigt jemand anders. */
+function geschenkPruefen(){
+  if(!standGeladen) return 0;
+  const seit = new Date(seitWann() + 'T00:00:00');
+  const jahre = Math.floor((Date.now() - seit.getTime()) / (365 * 86400000));
+  if(jahre < 1 || jahre <= (geschenk.jahr || 0)) return 0;
+  geschenk = {jahr: jahre, bis: Date.now() + GESCHENK_TAGE * 86400000};
+  try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk)); }catch(e){}
+  renderLives();
+  return jahre;
+}
+function zeigeGeschenk(){
+  const kasten = document.createElement('div');
+  kasten.className = 'nachfrage';
+  kasten.innerHTML =
+    '<div class="nachfragebox">' +
+      '<div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
+      '<h3>' + esc(t('geschenk.titel', {n: GESCHENK_TAGE})) + '</h3>' +
+      '<div class="txt">' + esc(t('geschenk.text')) + '</div>' +
+      '<button class="btn know" id="geschenkOk"></button>' +
+    '</div>';
+  kasten.querySelector('#geschenkOk').textContent = t('task.weiter');
+  document.body.appendChild(kasten);
+  const zu = ()=>{ kasten.remove(); frageSchliessen = null; };
+  kasten.querySelector('#geschenkOk').addEventListener('click', zu);
+  frageSchliessen = zu;
+  sound('done');
+}
 const DAUER_SCHLUESSEL = 'zmaj_dauer';
 const DAUER_WORT = 'dragon';        // hier aendern, falls es jemand erraet
 let dauerVoll = false;
@@ -3285,7 +3348,9 @@ function zaehle(id, wieviel){
 }
 
 /* ---- Leben ---- */
-const unlimited = () => premium || ALLE_FREI;
+/* Das Geschenk zaehlt hier mit: solange es laeuft, gibt es weder Werbung
+   noch eine Grenze bei den Leben - genau wie gekauft. */
+const unlimited = () => premium || ALLE_FREI || geschenkLaeuft();
 const REFILL_MS = LEBEN_NACHFUELLEN_MIN*60*1000;
 function syncLives(){
   if(unlimited() || lives.anzahl >= LEBEN_MAX) return;
@@ -3393,6 +3458,7 @@ function tagPruefen(){
      in frost, luecken ist leer und die Funktion kehrt sofort zurueck.
      Gefunden am 26.09.2026. */
   pruefeSchutz();
+  if(geschenkPruefen() && sichtbar('pfad')) zeigeGeschenk();
   /* Nur zeichnen, wenn die Startseite ueberhaupt sichtbar ist. Mitten in
      einer Lektion wuerde showHome() die Aufgabe wegreissen. Der Merker
      steht trotzdem schon auf heute, damit es spaeter nicht grundlos
@@ -4047,7 +4113,8 @@ function vollZeileZeigen(){
      an - der Tipp soll aber zu Googles Abo-Seite führen. */
   s.setAttribute('aria-disabled', an);
   $('setVollStand').textContent = an ? t('voll.aktiv')
-    : (aboLaeuft ? t('voll.laedt') : (aboStoerung ? t('voll.kein_store') : ''));
+    : (geschenkLaeuft() ? t('voll.geschenk_rest', {n: geschenkRest()})
+    : (aboLaeuft ? t('voll.laedt') : (aboStoerung ? t('voll.kein_store') : '')));
   const v = $('setVollVerwalten');
   /* Auch bei einer Störung zeigen: wer zahlt, aber gerade keine Antwort vom
      Play Store bekommt, fände sonst keinen Kündigungsweg - und einen in der
@@ -4683,8 +4750,20 @@ function renderLaden(){
   const knoepfe = w => w.id === 'herz'
     ? '<span class="kaufwege">' + preisKnopf(w) + videoKnopf(w) + '</span>'
     : preisKnopf(w);
+  /* Die Vollversion ganz oben im Vorrat. Sie ist das Einzige im Laden,
+     das es NICHT fuer Muenzen gibt - gekauft wird bei Google -, und
+     genau deshalb sucht sie dort niemand. Der Knopf fuehrt in die
+     Einstellungen, wo der Kauf steht. Ajdin am 29.09.2026: „im laden
+     noch eine anzeige hinbauen dann sieht man es eindeutig“. */
+  const vollZeileLaden = () => {
+    if(unlimited() || !aboPlugin() || aboProdukteFehlen) return '';
+    return '<div class="ware"><div><div class="wt">' + esc(t('voll.wahl_titel')) + '</div>'
+         + '<div class="wd">' + esc(t('lektion.vollversion')) + '</div></div>'
+         + '<button class="btn kauf know" id="ladenVoll">' + esc(t('laden.voll_knopf'))
+         + '</button></div>';
+  };
   box.innerHTML = ladenReiter === 'vorrat'
-    ? VERBRAUCH.map(w => zeile(w, knoepfe(w), w.id === 'herz' ? 'zweiwege' : '')).join('')
+    ? vollZeileLaden() + VERBRAUCH.map(w => zeile(w, knoepfe(w), w.id === 'herz' ? 'zweiwege' : '')).join('')
     : ZIERRAT.filter(w => w.gruppe === ladenReiter).map(zierratZeile).join('');
   box.querySelectorAll('button[data-ware]').forEach(b =>
     b.addEventListener('click', ()=> kaufe(b.dataset.ware)));
@@ -4692,6 +4771,8 @@ function renderLaden(){
     b.addEventListener('click', ()=> trage(b.dataset.tragen)));
   const vk = box.querySelector('button[data-videoleben]');
   if(vk && !vk.disabled) vk.addEventListener('click', werbungFuerLeben);
+  const lv = box.querySelector('#ladenVoll');
+  if(lv) lv.addEventListener('click', ()=>{ showSettings(); });
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
@@ -5849,7 +5930,7 @@ function lessonOutOfLives(){
         (perVideo   ? '<button class="btn ghost" id="lAd">'+t('werbung.leben_holen')+'</button>' : '')+
         (perMuenzen ? '<button class="btn ghost" id="lCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '')+
       '</div>' : '')+
-    vollZeileLeben('lVoll')+
+    vollZeileLeben('lVoll', true)+
     /* Platz fuer die Rueckmeldung des Video-Knopfs (Ajdin am 26.09.2026).
        Unsichtbar, solange nichts zu sagen ist: .feedback hat eine
        Mindesthoehe und einen Abstand oben, ein leerer Kasten risse sonst
@@ -6002,8 +6083,15 @@ async function mikroVorbereiten(){
    wenn es die Vollversion hier ueberhaupt zu kaufen gibt, und nie bei
    jemandem, der sie schon hat. Ajdin am 29.09.2026: „nicht jeder geht
    in die Einstellungen“. */
-function vollZeileLeben(id){
+function vollZeileLeben(id, gross){
   if(unlimited() || !aboPlugin() || aboProdukteFehlen) return '';
+  /* Auf dem Sperrschirm ein richtiger Knopf: dort ist die Lektion
+     vorbei, der Nutzer sitzt fest, und eine kleine graue Zeile geht
+     unter. In der Levelansicht bleibt es die leise Zeile - da laeuft
+     noch alles. */
+  if(gross) return '<div class="row schmal">'
+       + '<button type="button" class="btn ghost" id="' + id + '">'
+       + esc(t('voll.nie_warten')) + '</button></div>';
   return '<div class="abohinweis" style="text-align:center">'
        + '<button type="button" class="abolink" id="' + id + '">'
        + esc(t('voll.nie_warten')) + '</button></div>';
