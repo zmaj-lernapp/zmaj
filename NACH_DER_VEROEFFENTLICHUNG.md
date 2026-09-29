@@ -119,3 +119,12 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   gewählten Zeit, Leben wieder voll. Der Serienschutz muss dabei
   mitgedacht werden — wer einen hat, soll nicht gemahnt werden, als stünde er
   vor dem Verlust.
+
+- **Probezeit beim Abo anlegen**, sobald die App in Produktion ist: in der
+  Play Console beim Basisplan ein Angebot mit **Gratiszeitraum von 7 Tagen**.
+  Google zeigt beim Kauf dann von selbst „7 Tage kostenlos, danach 2,99 €",
+  die App bekommt ganz normal `aktiv: true` und merkt nichts davon — **kein
+  neuer Build nötig**, auch später änderbar. Duolingo gibt 14 Tage, Pimsleur
+  7, Rosetta Stone 3; wenn nach ein paar Wochen kaum jemand umwandelt, auf 14
+  hochstellen. Im geschlossenen Test bringt es nichts: dort kauft niemand
+  außer uns, und wir sind Lizenztester.
