@@ -121,7 +121,7 @@ def mirror(pts): return [(-x, y) for x, y in pts]
 #   Körper. Dadurch schiebt sich der Kopf über den oberen Rand des Schals,
 #   genau wie bei einem echten Schal, und die Arme liegen auf der Weste.
 KOPF_TEILE = ["hut", "krone", "krone_gross", "fes", "kappe", "doktorhut", "ohrenschuetzer", "kopfhoerer"]
-BRILLEN    = ["brille", "sonnenbrille", "lesebrille"]
+BRILLEN    = ["brille", "sonnenbrille", "lesebrille", "monokel"]
 HALS_TEILE = ["trikot", "umhang", "schal_bih", "schal_winter", "weste_leder", "weste_strick"]
 ZIERRAT = KOPF_TEILE + BRILLEN + HALS_TEILE
 # Die drei Kleidungsstuecke bekommen Aermel. Das sind eigene Ebenen, denn sie
@@ -428,6 +428,9 @@ put("krone_gross", [
     group(ellipse(30, -186, 15, 15), fill(PERLE)),
     group(ellipse(-74, -168, 12, 12), fill(STEIN)),
     group(ellipse(74, -168, 12, 12), fill(STEIN)),
+    group(smooth([(-74, -100), (-74, -168), (-50, -138), (-30, -186),
+                  (0, -146), (30, -186), (50, -138), (74, -168), (74, -100)],
+                 tension=0.1), stroke(KRONE_D, 3, 70)),               # Kante auf Gold
 ], parent="head")
 
 # ---------- Fes ----------
@@ -510,6 +513,21 @@ put("brille", [
     group(ellipse(-32, -74, 52, 52), stroke(RAHMEN, 7)),
     group(ellipse(32, -74, 52, 52), fill(GLAS, 28)),
     group(ellipse(32, -74, 52, 52), stroke(RAHMEN, 7)),
+], parent="head")
+
+# ---------- Monokel (nur Vollversion) ----------
+# Ein Glas ueber dem rechten Auge, Goldrand, Kettchen nach unten. Die
+# Augen sitzen bei x = -32 und x = 32 auf Hoehe -74; das Glas ist etwas
+# groesser als das Auge, damit es davor liegt und nicht darin.
+put("monokel", [
+    group(ellipse(32, -74, 60, 60), fill(GLAS, 26)),                  # Glas
+    group(ellipse(32, -74, 60, 60), stroke(RAHMEN, 7)),               # dunkler Rand
+    group(ellipse(32, -74, 52, 52), stroke(KRONE, 3, 85)),           # Goldlinie innen
+    # Dunkel statt golden: auf dem goldenen Drachen verschwand ein
+    # goldener Rand vollstaendig. 29.09.2026.
+    group(smooth([(56, -52), (74, -18), (66, 16)], closed=False, tension=0.5),
+          stroke(RAHMEN, 3)),                                       # Kettchen
+    group(ellipse(66, 18, 11, 11), fill(KRONE)),                      # Knopf am Ende
 ], parent="head")
 
 # ---------- Sonnenbrille ----------
@@ -598,24 +616,37 @@ put("weste_strick", [
     group(smooth(KOERPER_V_TIEF, tension=0.6, scharf=AUSSCHNITT), stroke(STRICK_H, 3, 50)),
 ], parent="body")
 
-# ---------- Umhang (nur Vollversion) ----------
-# Faellt von den Schultern bis unter den Bauch, vorn offen, damit der
-# gelbe Bauch sichtbar bleibt - dieselbe Loesung wie bei der Lederweste.
-# Oben ein Kragen quer ueber die Schultern, in der Mitte die Spange.
-UMHANG_L = [(-38, -72), (-92, -4), (-84, 78), (-34, 88), (-18, 64), (-12, -4), (-26, -68)]
+# ---------- Koenigsmantel (nur Vollversion) ----------
+# Was ein Koenig traegt: tiefrotes Tuch, Goldkante, und vorn der
+# Hermelinbesatz - weisses Fell mit schwarzen Schwaenzchen. Der Kragen
+# liegt quer ueber den Schultern und ist das, was man zuerst sieht;
+# darunter faellt der Mantel bis unter den Bauch und bleibt vorn offen,
+# damit der gelbe Bauch hervorschaut. Ajdin am 29.09.2026: "mach das,
+# was ein koenig traegt".
+UMHANG_L = [(-38, -72), (-96, -4), (-88, 82), (-34, 92), (-18, 64), (-12, -4), (-26, -68)]
+# Die Innenkante, an der der Hermelin entlanglaeuft.
+UMHANG_I = [(-26, -68), (-12, -4), (-18, 64), (-34, 92)]
 put("umhang", [
     group(smooth(UMHANG_L, tension=0.5), fill(UMHANG)),
     group(smooth([(-x, y) for x, y in UMHANG_L], tension=0.5), fill(UMHANG)),
-    group(smooth(UMHANG_L, tension=0.5), stroke(UMHANG_H, 4, 85)),        # Goldkante
-    group(smooth([(-x, y) for x, y in UMHANG_L], tension=0.5), stroke(UMHANG_H, 4, 85)),
-    group(smooth([(-70, 40), (-52, 70), (-30, 80)], closed=False, tension=0.5),
+    group(smooth(UMHANG_L, tension=0.5), stroke(UMHANG_H, 4, 80)),        # Goldkante aussen
+    group(smooth([(-x, y) for x, y in UMHANG_L], tension=0.5), stroke(UMHANG_H, 4, 80)),
+    group(smooth([(-74, 44), (-56, 74), (-34, 86)], closed=False, tension=0.5),
           stroke(UMHANG_D, 5, 45)),                                       # Falte links
-    group(smooth([(70, 40), (52, 70), (30, 80)], closed=False, tension=0.5),
+    group(smooth([(74, 44), (56, 74), (34, 86)], closed=False, tension=0.5),
           stroke(UMHANG_D, 5, 45)),                                       # Falte rechts
-    group(rect(0, -70, 104, 26, 13), fill(UMHANG_D)),                     # Kragen
-    group(rect(0, -70, 104, 8, 4), fill(UMHANG_H, 60)),
-    group(ellipse(0, -70, 22, 22), fill(UMHANG_H)),                       # Spange
-    group(ellipse(0, -70, 9, 9), fill(STEIN)),
+    group(smooth(UMHANG_I, closed=False, tension=0.5), stroke(FELL, 13)),  # Hermelin vorn
+    group(smooth([(-x, y) for x, y in UMHANG_I], closed=False, tension=0.5), stroke(FELL, 13)),
+    group(rect(-16, 10, 6, 13, 3), fill(QUASTE)),                         # Schwaenzchen
+    group(rect(-22, 54, 6, 13, 3), fill(QUASTE)),
+    group(rect(16, 10, 6, 13, 3), fill(QUASTE)),
+    group(rect(22, 54, 6, 13, 3), fill(QUASTE)),
+    group(rect(0, -70, 142, 34, 17), fill(FELL)),                         # Hermelinkragen
+    group(rect(0, -56, 142, 7, 3), fill(QUASTE, 18)),                     # Schatten darunter
+    group(rect(-44, -70, 7, 15, 3), fill(QUASTE)),                        # Schwaenzchen im Kragen
+    group(rect(-15, -70, 7, 15, 3), fill(QUASTE)),
+    group(rect(15, -70, 7, 15, 3), fill(QUASTE)),
+    group(rect(44, -70, 7, 15, 3), fill(QUASTE)),
 ], parent="body")
 
 # ---------- Lederweste ----------
