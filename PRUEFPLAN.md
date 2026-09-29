@@ -28,6 +28,7 @@ erkennt. Prüfungen mit 🔴 braucht es vor dem Produktionsantrag, die
 | **P11** | Alle acht Oberflächensprachen | Am 28.09. gemessen: acht Sprachen, je fünf Bildschirme. Kein roher Textschlüssel. **Ein gesprengter Knopf im französischen Laden**, behoben durch einen kürzeren Text. Dazu die elf Texte sprachlich geprüft, die seit dem Bericht vom 18.09. neu sind — **21 Befunde, alle eingearbeitet**. |
 | **P12** | Wortschatz durchsehen | 569 vorgelegte Wörter entschieden, 568 behalten. Dabei 10 Dubletten mit falscher Schreibweise und 13 fehlende Sonderzeichen gefunden. |
 | **P13** | Ein Level mit allen Sonderfällen | Am 28.09. durchgespielt: Level 27 „Fragen stellen“ mit beiden Grammatikaufgaben richtig (10 von 10), Geschichte „Mira i Rex“ gelesen und alle drei Fragen beantwortet. **Alle zehn Zurück-Wege führen heraus**, keine Sackgasse. Kein Fehler gefunden. |
+| **P14** | Zwei Geräte | Am 29.09. mit zwei Handys durchgespielt: Galaxy S21 Ultra (Android 15) und Galaxy S9 (Android 10). Der Lernstand kam **vollständig** an — 77 Wörter, 2 Level, 3 Lerntage, 580 Münzen, Rekord 3, Tagwerk aller drei Tage, geprüft über Prüfsummen und nicht nur über Anzahlen. Die Vollversion kam **nicht** mit, die Vollversions-Stücke blieben am Drachen aus. Nachtrag am selben Abend: Darstellung auf dem S9 bei 360 dp, acht Sprachen mal sieben Schirme, **0 Befunde**. **Kein Fehler gefunden.** |
 | **P15** | Ein Tag vergeht | Am 29.09. über einen echten Tageswechsel geprüft. Die App lief über Nacht durch und merkte den neuen Tag **ohne Neustart**: drei neue Tagesaufgaben, keine „heute schon geübt“-Behauptung, Serie nach zwei Lektionen von 2 auf 3. Der im Plan vermerkte Fehler ist damit am Gerät widerlegt. |
 
 ---
@@ -43,13 +44,8 @@ Tag behoben und gegengeprüft.
 
 ## Offen, kann nach dem Antrag folgen
 
-### P14 — Zwei Geräte
-
-Sicherung auf Gerät A erstellen, auf Gerät B einlesen.
-
-**Bestanden, wenn:** Der Lernstand vollständig ankommt. Die Vollversion
-kommt nicht mit — sie hängt am Google-Konto.
-
+Nichts mehr. **Alle fünfzehn Prüfungen sind abgehakt**, P14 als letzte am
+29.09.2026.
 
 ---
 
@@ -665,3 +661,98 @@ nach einem Kaltstart ist die erste Anzeige innerhalb des 1,2-Sekunden-Fensters
 noch nicht bereit. Schaden entsteht dem Nutzer nicht; verloren gehen
 Einblendungen. Gehört in denselben Durchgang wie die übrigen Werbepunkte,
 nach dem geschlossenen Test.
+
+---
+
+## P14 im Einzelnen — durchgeführt am 29.09.2026
+
+**Aufbau.** Zwei Handys gleichzeitig am Kabel, auf beiden dieselbe Fassung 51.
+
+| | Gerät | Android | WebView | Stand vorher |
+|---|---|---|---|---|
+| **A** | Galaxy S21 Ultra (SM-G998B) | 15 | — | Ajdins echter Lernstand |
+| **B** | Galaxy S9 (SM-G960F) | 10 (API 29) | 152.0.7977.88 | leer, frisch installiert |
+
+Das S9 ist absichtlich das ältere Gerät: kleinerer Schirm, fünf Jahre älteres
+Android. Wenn die Sicherung dort ankommt, kommt sie überall an.
+
+**Der Weg.** Auf A `sicherungSpeichern()` ausgelöst. Die Datei landete als
+`zmaj-sicherung-2026-09-29.json` im Zwischenspeicher der App (2935 Bytes) und
+ging von dort ans Teilen-Menü — genau der Weg, den ein Nutzer geht. Dieselbe
+Datei wurde ausgelesen und auf B der Dateiauswahl untergeschoben, also durch
+`sicherungEinlesen()` gereicht. Die Rückfrage kam wie vorgesehen:
+
+> Sicherung — Dein jetziger Lernstand wird durch die Sicherung ersetzt. Weitermachen?
+
+Danach meldete B: *„Eingelesen: 77 Wörter, 3 Lerntage.“*
+
+**Was verglichen wurde.** Nicht nur Anzahlen — die können zufällig stimmen,
+während andere Wörter dahinterstehen. Deshalb je eine Prüfsumme über die
+sortierten Kennungen von Wörtern, Leveln und Lerntagen.
+
+| | Gerät A | Gerät B danach |
+|---|---|---|
+| Wörter | 77 (Summe 1810340266) | 77 (Summe 1810340266) |
+| Level | 2 (Summe −1020416469) | 2 (Summe −1020416469) |
+| Lerntage | 3 (Summe −956210529) | 3 (Summe −956210529) |
+| Münzen | 580 (1080 ein, 500 aus) | 580 (1080 ein, 500 aus) |
+| Rekord / Leben / Schutz | 3 / 5 / 1 | 3 / 5 / 1 |
+| Tagwerk | 27., 28., 29.09. | 27., 28., 29.09. |
+| Bestanden am | basics + zahlen, 27.09. | basics + zahlen, 27.09. |
+
+Alles gleich, Zeichen für Zeichen.
+
+**Was absichtlich nicht mitkam.** Die Vollversion. Auf A stand sie an, auf B
+blieb `unlimited()` **falsch**. Das ist kein Mangel, sondern der Zweck: sie
+liegt getrennt im Gerätespeicher, nicht im Lernstand — sonst hätte jeder, dem
+man eine Sicherung schickt, die Vollversion geschenkt.
+
+Dazu eine Probe, die leicht durchs Raster fällt: in der Sicherung stand
+`getragen: krone_gross, monokel, galaxie, funkeln` — lauter Stücke der
+Vollversion. B **speicherte** sie, **trug** aber keines davon:
+
+```
+getragen (gespeichert): krone_gross,monokel,galaxie,funkeln
+wirklich getragen:      []
+am Drachen:             []      Farbe: (keine)
+```
+
+Damit bekommt niemand über eine fremde Sicherung kostenlos die Krone. Und
+sollte B später selbst die Vollversion kaufen, hängt alles wieder dran —
+gespeichert ist es ja.
+
+**Neustart.** App auf B mit `force-stop` beendet und neu gestartet: alle Werte
+unverändert. Der Stand liegt also wirklich im Gerätespeicher und nicht nur im
+Arbeitsspeicher.
+
+**Nachtrag am selben Abend — die Darstellung auf dem S9.**
+
+Das S9 ist der schmalste Fall im Haus: 1440 × 2960 Bildpunkte bei
+Bildpunktdichte 640, macht **360 × 668 dp** Nutzfläche und ein
+Geräteverhältnis von 4. Wenn ein Text irgendwo aus seinem Knopf
+herausragt, dann hier.
+
+Gemessen wurde **acht Sprachen mal sieben Schirme**, also 56 Kombinationen:
+Lernpfad, Geschichten, die vier Ladenreiter (Auffüllen, Kopf, Farben,
+Effekte) und die Einstellungen. Zweierlei je Kombination — ob die Seite
+seitlich über den Rand läuft (`scrollWidth − clientWidth`), und ob ein
+Text aus seinem Kasten herausragt (`scrollWidth > clientWidth`), wobei
+Stücke mit `overflow: hidden` oder Auslassungspunkten ausgenommen sind:
+dort ist das Abschneiden gewollt.
+
+```
+geprüft: 56    Befunde: 0    Schirm: 360 × 668 dp
+```
+
+**Kein einziger Befund.** Das ist die Probe, die in P11 den gesprengten
+Knopf im französischen Laden gefunden hat — dieselbe Messung, diesmal auf
+dem schmaleren Gerät und mit den seither dazugekommenen Texten
+(Vollversions-Stücke, Reiter „Effekte“, Geschenktage).
+
+Ein erster Durchgang lieferte lauter Fehlalarme — bis zu 268 Bildpunkte
+Überlauf auf jedem Schirm. Ursache war nicht die App: das Handy lag auf
+dem Sperrbildschirm, die WebView meldete Breite **0**, und gegen null ist
+jede Kiste zu breit. Mit entsperrtem Gerät war nichts davon übrig. Eine
+Messung, die man nicht hinterfragt, erfindet Fehler.
+
+**Ergebnis: bestanden, kein Fehler gefunden.**
