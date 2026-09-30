@@ -1660,6 +1660,20 @@ function einwilligungFragen(){
      nicht, das Fenster kam trotzdem. */
   if(unlimited()) return false;
   if(admobDa()) return false;      // dann fragt Googles eigenes Fenster
+  /* Punkt 7 aus WERBUNG_PRUEFUNG.md: kam Googles UMP nicht durch, sprang
+     frueher unser eigenes Fenster ein. Das ist kein zertifiziertes CMP.
+     Seine Antwort wurde trotzdem dauerhaft gespeichert, landete ueber
+     werbungPersonalisiert() als npa an echten Anzeigenanfragen, und beim
+     naechsten Start mit Netz fragte UMP dieselbe Sache ein zweites Mal -
+     derselbe Nutzer, zweimal befragt, und die erste Antwort galt als
+     Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO.
+     Auf dem Geraet fragt deshalb ausschliesslich Google. Kommt UMP nicht
+     durch, gibt es lieber keine Werbung; der naechste Start versucht es
+     erneut, und zeigeWerbung() fasst innerhalb einer Sitzung einmal nach.
+     Unser eigenes Fenster bleibt fuer die Browser-Fassung, wo es AdMob
+     gar nicht gibt. */
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if(WERBUNG_ECHT && P && P.AdMob) return false;
   return (WERBUNG_ECHT || EINWILLIGUNG_TEST) && !einwilligungGueltig();
 }
 /* Diese Antwort braucht das SDK später: false heißt "nur allgemeine
@@ -1720,6 +1734,12 @@ function zeigeEinwilligung(){
 function werbungErlaubt(belohnt){
   if(!WERBUNG_AN || unlimited()) return false;   // Vollversion: nie
   if(admobDa() && !admobDarf) return false;      // Google sagt nein
+  /* Punkt 7: auf dem Geraet ohne laufendes AdMob gibt es nichts zu zeigen.
+     Seit das eigene Einwilligungsfenster dort nicht mehr einspringt, waere
+     der Knopf „Video ansehen“ sonst zwar da, liefe aber jedes Mal ins
+     Leere. Lieber gar nicht erst anbieten. */
+  const Pw = window.Capacitor && window.Capacitor.Plugins;
+  if(!admobDa() && Pw && Pw.AdMob) return false;
   if(einwilligungFragen()) return false;         // erst fragen, dann werben
   const heute = new Date().toISOString().slice(0,10);
   if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0,
@@ -1798,6 +1818,10 @@ let admobDarf = false;      // canRequestAds – vorher darf nichts geladen werd
 let admobFehler = null;     // warum der Start scheiterte, fuer den zweiten Versuch
 let admobZweitversuch = false;
 let admobOptionen = false;  // Google verlangt einen Knopf zum Nachträglich-Ändern
+/* Punkt 6: initialize() darf nur einmal laufen. Wird die Antwort spaeter
+   in Googles Fenster geaendert, holen wir den Start nach - ohne Merker
+   koennte das SDK zweimal starten. */
+let admobGestartet = false;
 
 function admobDa(){ return !!AdMobP; }
 
@@ -1839,12 +1863,15 @@ async function admobStart(){
        16-17 und 18+ aus STORE_TEXTE.md. Hoeher darf es nur, wenn die
        Angaben in der Play Console vorher dazu passen, nicht umgekehrt.
        Punkt 3 aus WERBUNG_PRUEFUNG.md, behoben am 29.09.2026. */
-    if(admobDarf) await A.initialize({
-      /* Siehe ADMOB_TESTGERAETE: ohne initializeForTesting bleibt die
-         Liste unbeachtet. */
-      initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
-      testingDevices: ADMOB_TESTGERAETE,
-      maxAdContentRating: 'Teen'});
+    if(admobDarf){
+      await A.initialize({
+        /* Siehe ADMOB_TESTGERAETE: ohne initializeForTesting bleibt die
+           Liste unbeachtet. */
+        initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
+        testingDevices: ADMOB_TESTGERAETE,
+        maxAdContentRating: 'Teen'});
+      admobGestartet = true;
+    }
   }catch(e){
     /* Der Fehler wurde bis zum 27.09.2026 stillschweigend verschluckt. Das
        ist teuer: AdMobP steht danach auf null, damit liefert admobDa() false,
@@ -1858,6 +1885,34 @@ async function admobStart(){
     AdMobP = null; admobDarf = false;
     admobFehler = (e && (e.message || e.code)) ? String(e.message || e.code) : 'unbekannt';
   }
+}
+
+/* Punkt 6 aus WERBUNG_PRUEFUNG.md: nach Googles Datenschutzfenster stand
+   nur persWahl neu - admobDarf und admobOptionen blieben auf dem Wert vom
+   Start. Zwei Wege liefen schief:
+     Widerruf -> canRequestAds wird false, die App fragte aber bis zum
+       Neustart weiter Anzeigen an. Kein Datenschutzverstoss, denn npa
+       wird bei jeder Anfrage frisch gerechnet, aber ein Verstoss gegen
+       Googles eigene Bedingung.
+     Zustimmung nach anfaenglicher Ablehnung -> admobDarf blieb false und
+       initialize() war nie gelaufen; die Zustimmung blieb bis zum
+       Neustart folgenlos.
+   Deshalb die Auskunft frisch holen und das SDK nachstarten, falls es
+   noch nicht lief. */
+async function einwilligungNachziehen(){
+  if(!AdMobP) return;
+  try{
+    const info = await AdMobP.requestConsentInfo();
+    admobDarf = !!info.canRequestAds;
+    admobOptionen = info.privacyOptionsRequirementStatus === 'REQUIRED';
+    if(admobDarf && !admobGestartet){
+      await AdMobP.initialize({
+        initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
+        testingDevices: ADMOB_TESTGERAETE,
+        maxAdContentRating: 'Teen'});
+      admobGestartet = true;
+    }
+  }catch(e){}
 }
 
 /* Auf das Ereignis warten, mit dem das SDK sagt „fertig" oder „ging nicht".
@@ -2975,6 +3030,8 @@ $('swWerbung').addEventListener('click', async ()=>{
     try{ await AdMobP.showPrivacyOptionsForm(); }catch(e){}
     const g = await googlesAntwort();
     if(g !== null) setzePersonalisiert(g);   // genau das, was bei Google herauskam
+    // Punkt 6: auch admobDarf und admobOptionen gehoeren nachgezogen.
+    await einwilligungNachziehen();
     werbungLaeuft = false;
     werbungZeileZeigen();
     return;
