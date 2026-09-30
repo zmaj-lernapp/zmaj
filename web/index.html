@@ -1413,6 +1413,14 @@
            Nuetzliches - dort gibt es gar keine Computerstimme. Beide Zeilen
            am 18.09.2026 auf Ajdins Wunsch entfernt. -->
     </div>
+    <!-- Nur auf dem Handy: am PC gibt es keine Benachrichtigungen. -->
+    <div class="section" id="setBenBox" style="display:none">
+      <h2 data-t="set.benachrichtigungen"></h2>
+      <div class="setting"><div><div class="st" data-t="set.ben_erinnerung"></div><div class="sd" data-t="set.ben_erinnerung_sub"></div></div><button class="switch" id="swBenErinnerung" role="switch" aria-checked="false"></button></div>
+      <div class="setting"><div><div class="st" data-t="set.ben_serie"></div><div class="sd" data-t="set.ben_serie_sub"></div></div><button class="switch" id="swBenSerie" role="switch" aria-checked="false"></button></div>
+      <div class="setting"><div><div class="st" data-t="set.ben_leben"></div><div class="sd" data-t="set.ben_leben_sub"></div></div><button class="switch" id="swBenLeben" role="switch" aria-checked="false"></button></div>
+      <div class="note" id="benNote"></div>
+    </div>
     <div class="section">
       <h2 data-t="set.sicherung"></h2>
       <div class="sd" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.sicherung_sub"></div>
@@ -2167,6 +2175,7 @@ let gefeiert = new Set();
    WIEDERHOLEN. Hier oben, weil standUebernehmen() sie setzt. */
 let einstufung = null;    // null = noch nie gefragt, sonst {tag, wahl, bis}
 let topf = {};            // Schluessel -> {typ, n, z}
+let bewertung = {gezeigt:[], nein:false, bewertet:false};   // siehe BEWERTUNG
 let rekord = 0;
 let wann = {};
 let muenzenGes = 0, muenzenAus = 0;   // jemals verdient / jemals ausgegeben
@@ -3136,6 +3145,9 @@ function standUebernehmen(d){
      Fortschritt hat, wird es nie. */
   einstufung = (d.einstufung && typeof d.einstufung==='object' && !Array.isArray(d.einstufung)) ? d.einstufung : null;
   topf = (d.topf && typeof d.topf==='object' && !Array.isArray(d.topf)) ? d.topf : {};
+  const bw = (d.bewertung && typeof d.bewertung==='object' && !Array.isArray(d.bewertung)) ? d.bewertung : {};
+  bewertung = {gezeigt: Array.isArray(bw.gezeigt) ? bw.gezeigt.filter(istDatum) : [],
+               nein: !!bw.nein, bewertet: !!bw.bewertet};
   lives = (d.leben && typeof d.leben.anzahl==='number') ? {anzahl:d.leben.anzahl, zeit:d.leben.zeit||0} : {anzahl:LEBEN_MAX, zeit:0};
   schutz = (d.schutz && typeof d.schutz.anzahl==='number') ? {anzahl:d.schutz.anzahl, zeit:d.schutz.zeit||0} : {anzahl:1, zeit:0};
   /* premium steht hier bewusst NICHT mehr. Der Lernstand kommt auch aus
@@ -3194,7 +3206,7 @@ function standAlsObjekt(){
           geschenk_jahr: (geschenk.jahr || 0),
           /* Beide gehoeren zum Lernenden und muessen mit auf ein neues
              Handy - die Einstufung haelt die uebersprungenen Level offen. */
-          einstufung: einstufung, topf: topf};
+          einstufung: einstufung, topf: topf, bewertung: bewertung};
 }
 /* ---- Die Vollversion ----
    Sie gehoert nicht in den Lernstand. Vorher stand sie dort, und damit
@@ -3775,6 +3787,9 @@ document.addEventListener('visibilitychange', ()=>{
        Lauf - Anruf mitten in der Lektion, und die gelernten Woerter waren
        weg. Ajdin am 18.09.2026. */
     saveProgress();
+    /* Jetzt ist der Stand des Tages fertig - wer geuebt hat, bekommt
+       heute keine Erinnerung mehr. Siehe BENACHRICHTIGUNGEN. */
+    benPlanen();
   }
   else {
     /* Zuerst der Tageswechsel: ueber Nacht im Hintergrund ist der
@@ -5193,6 +5208,7 @@ function showSettings(){
     widerrufBox.style.display = (unlimited() && P && P.AdMob) ? '' : 'none';
     $('setWiderrufStand').textContent = t('set.einwilligung_google');
   }
+  benSchalterZeigen();
   renderLangSel();
 }
 /* ---- Laden ----
@@ -5487,13 +5503,13 @@ const ZMAJ_MAIL = 'zmaj.lernapp@gmail.com';
    Nachricht. Kein fremder Dienst, keine zusaetzlichen Daten.
    Falls kein Mail-Programm eingerichtet ist, passiert sichtbar nichts -
    deshalb steht die Adresse danach zum Kopieren da. */
-function feedbackPerMail(text){
+function feedbackPerMail(text, notiz){
   const betreff = 'Zmaj – ' + t('set.feedback');
   const fuss = '\n\n--\n' + (SPRACHE||'') + ' · ' + new Date().toISOString().slice(0,10);
   try{ location.href = 'mailto:' + ZMAJ_MAIL
         + '?subject=' + encodeURIComponent(betreff)
         + '&body=' + encodeURIComponent(text + fuss); }catch(e){}
-  const kasten = $('fbNote');
+  const kasten = notiz || $('fbNote');
   kasten.textContent = t('set.feedback_mail', {mail: ZMAJ_MAIL}) + ' ';
   const knopf = document.createElement('button');
   knopf.className = 'back'; knopf.type = 'button';
@@ -5527,6 +5543,7 @@ function showHome(){
   renderHero(); renderLives();
   if(homeMode==='words') showPath(); else if(homeMode==='topf') showTopf(); else showStoryPath();
   einstufungAnbieten();
+  kartenNachreichen();
 }
 /* Der Laden ist keine Lernsache, deshalb steht er oben bei Profil und
    Einstellungen und nicht in der Reiterleiste. */
@@ -5833,6 +5850,7 @@ function openLevel(i){
   setzeZurueck(t('btn.zurueck_pfad'), ()=>{ homeMode='words'; showHome(); });
   $('tag').textContent=t('level.zaehler',{i:i+1, n:CATEGORIES.length});
   showLevelHome();
+  kartenNachreichen();
 }
 /* Lektion, Test und Level-Uebersicht sind Unteransichten INNERHALB von
    levelView und laufen nicht ueber showView(). Deshalb hier eigens
@@ -6540,6 +6558,7 @@ function lessonEnd(){
      noch eingesetzt. Ajdin am 18.09.2026. */
   const questLob = questZeilen();
   if(questLob) setTimeout(()=>sound('quest'), 850);   // nach der Fanfare, nicht darueber
+  if(benPlugin() && !benStand().gefragt) benDran = true;
   const pct=levelPct(c), nowAllowed=testAllowed(c);
   $('lBar').innerHTML=''; $('zmajLesson').style.display='none';
   $('lBody').innerHTML =
@@ -6754,6 +6773,7 @@ function showTestResult(){
   const hasNext = catIdx+1 < CATEGORIES.length;
   // Wann ein Level bestanden wurde, lässt sich später nicht mehr herausfinden.
   if(ok){ if(!passed.has(c.id)){ passed.add(c.id); wann['lv:'+c.id] = today(); } markToday(); sound('done'); }
+  if(ok && bewertungFaellig()) bewertungDran = true;
   saveProgress();   // auch bei nicht bestanden: die Aufgaben sind trotzdem beantwortet
   /* Auch hier koennen Tagesaufgaben fertig geworden sein - siehe lessonEnd.
      Bei nicht bestandenem Test kommt der Ton frueher, weil dann keine
@@ -6939,9 +6959,11 @@ function einstufungWahl(){
     '<div class="celebrate"><div class="zmaj idle">' + zmaj('happy') + '</div></div>' +
     '<h3>' + esc(t('einst.frage_titel')) + '</h3>' +
     '<div class="abowahl">' +
-      ['neu', 'etwas', 'gut'].map(w =>
+      /* Die Schluessel ausgeschrieben, nicht zusammengesetzt: texte_pruefen.py
+         liest die t()-Aufrufe und haelt 'einst.' + w fuer einen fehlenden Text. */
+      [['neu', t('einst.neu')], ['etwas', t('einst.etwas')], ['gut', t('einst.gut')]].map(([w, text]) =>
         '<button type="button" class="abokarte einstwahl" data-wahl="' + w + '"><span class="n">' +
-        esc(t('einst.' + w)) + '</span></button>').join('') +
+        esc(text) + '</span></button>').join('') +
     '</div>');
   kasten.querySelectorAll('[data-wahl]').forEach(b => b.addEventListener('click', ()=>{
     const wahl = b.dataset.wahl;
@@ -7218,6 +7240,308 @@ function topfEnde(){
   werbungNachDemErgebnis('lesson', ()=> Lx);
 }
 
+/* =================== BEWERTUNG ===================
+   Festgelegt von Ajdin am 30.09.2026: eine Karte mit zwei Wegen - bei
+   Google Play bewerten oder eine Verbesserung vorschlagen -, und leise
+   darunter "Nein danke". Sie kommt nach einem bestandenen Level-Test, fruehestens
+   am dritten Lerntag, hoechstens zweimal im Jahr, und nach "Nein danke" nie
+   wieder. Wer auf Bewerten getippt hat, wird auch nicht mehr gefragt.
+
+   Bewusst KEINE Frage wie "Gefaellt dir Zmaj?" davor. Google verbietet
+   genau das: erst die Stimmung abfragen und nur die Zufriedenen zur
+   Bewertung schicken. Beide Wege stehen deshalb gleichberechtigt da.
+   https://developer.android.com/guide/playcore/in-app-review
+
+   Zwischen zwei Karten liegen mindestens 90 Tage - "zweimal im Jahr" soll
+   nicht heissen: zweimal in derselben Woche. Die Zahl ist meine Wahl, nicht
+   Ajdins; sie steht im Bericht vom 01.10.2026.
+
+   Die Karte kommt nicht auf dem Ergebnisschirm selbst - dort laeuft nach
+   1,2 Sekunden die Anzeige. Sie wartet, bis man ihn verlaesst. */
+const BEWERTUNG_AB_TAG = 3, BEWERTUNG_PRO_JAHR = 2, BEWERTUNG_ABSTAND = 90;
+/* true: erst Googles Fenster in der App, und wenn es nicht kommt, der Play
+   Store. false: gleich der Play Store. Siehe ZmajBewertung.java. */
+const BEWERTUNG_IM_APP = true;
+const ZMAJ_PAKET = 'de.smartdragon.zmaj';
+let bewertungDran = false;
+function bewertungFaellig(){
+  if(ALLE_FREI || bewertung.nein || bewertung.bewertet) return false;
+  if(days.size < BEWERTUNG_AB_TAG) return false;
+  const heute = today(), jahr = tagMinus(heute, 365);
+  const imJahr = (bewertung.gezeigt || []).filter(d => d > jahr).sort();
+  if(imJahr.length >= BEWERTUNG_PRO_JAHR) return false;
+  const letzte = imJahr[imJahr.length - 1];
+  return !(letzte && letzte > tagMinus(heute, BEWERTUNG_ABSTAND));
+}
+async function bewertungOeffnen(){
+  const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajBewertung;
+  if(!P){
+    try{ window.open('https://play.google.com/store/apps/details?id=' + ZMAJ_PAKET, '_blank', 'noopener'); }catch(e){}
+    return;
+  }
+  if(BEWERTUNG_IM_APP){
+    /* Google sagt nicht, ob das Fenster kam. Kommt die Antwort in unter
+       anderthalb Sekunden, kann niemand bewertet haben - dann war das
+       Kontingent verbraucht, und der Store faengt es auf. */
+    try{ const r = await P.imApp(); if(r && r.ok && r.ms >= 1500) return; }catch(e){}
+  }
+  try{ await P.storeOeffnen(); }catch(e){}
+}
+function zeigeBewertung(){
+  bewertung.gezeigt = (bewertung.gezeigt || []).concat([today()]).slice(-6);
+  saveProgress();
+  const kasten = document.createElement('div');
+  kasten.className = 'nachfrage';
+  kasten.innerHTML =
+    '<div class="nachfragebox einstbox">' +
+      '<div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
+      '<h3></h3><div class="txt"></div>' +
+      '<button class="btn know" id="bwJa"></button>' +
+      '<button class="btn ghost" id="bwVor"></button>' +
+      '<div style="margin-top:12px"><button type="button" class="abolink" id="bwNein"></button></div>' +
+    '</div>';
+  kasten.querySelector('h3').textContent = t('bew.titel');
+  kasten.querySelector('.txt').textContent = t('bew.text');
+  kasten.querySelector('#bwJa').textContent = t('bew.bewerten');
+  kasten.querySelector('#bwVor').textContent = t('bew.vorschlag');
+  kasten.querySelector('#bwNein').textContent = t('bew.nein');
+  document.body.appendChild(kasten);
+  const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
+  frageSchliessen = zu;
+  kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
+  kasten.querySelector('#bwJa').addEventListener('click', ()=>{
+    zu(); bewertung.bewertet = true; saveProgress(); bewertungOeffnen();
+  });
+  kasten.querySelector('#bwVor').addEventListener('click', ()=>{ zu(); zeigeVorschlag(); });
+  kasten.querySelector('#bwNein').addEventListener('click', ()=>{ zu(); bewertung.nein = true; saveProgress(); });
+}
+/* Das Feld fuer den Vorschlag. Verschickt wird wie in den Einstellungen:
+   das Mailprogramm des Geraets geht mit fertiger Nachricht auf. */
+function zeigeVorschlag(){
+  const kasten = document.createElement('div');
+  kasten.className = 'nachfrage';
+  kasten.innerHTML =
+    '<div class="nachfragebox">' +
+      '<h3></h3>' +
+      '<textarea class="field" id="bwText" rows="4" maxlength="2000"></textarea>' +
+      '<button class="btn know" id="bwSenden"></button>' +
+      '<button class="btn ghost" id="bwZu"></button>' +
+      '<div class="note" id="bwNote" style="margin-top:8px"></div>' +
+    '</div>';
+  kasten.querySelector('h3').textContent = t('bew.fb_titel');
+  kasten.querySelector('#bwText').placeholder = t('set.feedback_platzhalter');
+  kasten.querySelector('#bwSenden').textContent = t('set.feedback_senden');
+  kasten.querySelector('#bwZu').textContent = t('btn.abbrechen');
+  document.body.appendChild(kasten);
+  const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
+  frageSchliessen = zu;
+  kasten.querySelector('#bwZu').addEventListener('click', zu);
+  kasten.querySelector('#bwSenden').addEventListener('click', ()=>{
+    const text = kasten.querySelector('#bwText').value.trim();
+    const note = kasten.querySelector('#bwNote');
+    if(!text){ note.textContent = t('set.feedback_leer'); return; }
+    feedbackPerMail(text, note);
+    note.insertAdjacentText('afterbegin', t('bew.danke') + ' ');
+    sound('ok');
+    kasten.querySelector('#bwZu').textContent = t('task.weiter');
+  });
+  setTimeout(()=>{ const f = kasten.querySelector('#bwText'); if(f) f.focus(); }, 50);
+}
+
+/* =================== BENACHRICHTIGUNGEN ===================
+   Festgelegt von Ajdin am 30.09.2026: drei Arten, jede einzeln
+   abschaltbar - die taegliche Erinnerung um 19 Uhr, die Warnung um 20 Uhr,
+   bevor die Serie reisst, und eine Nachricht, wenn die Leben nach dem
+   Aufbrauchen wieder voll sind. Hoechstens EINE Nachricht am Abend. Um
+   Erlaubnis gefragt wird nach der ersten Lektion.
+
+   Geplant wird im Voraus, denn um 19 Uhr laeuft die App meist nicht. Die
+   Plaene werden jedes Mal neu gemacht, wenn die App in den Hintergrund
+   geht - dann ist der Stand des Tages fertig: wer geuebt hat, bekommt
+   heute nichts mehr.
+
+   Welcher Abend was bekommt:
+     heute, noch nicht geuebt, Serie laeuft   -> Serienwarnung um 20 Uhr
+     morgen, wenn heute geuebt                -> Serienwarnung um 20 Uhr
+     sonst (bis sechs Tage voraus)            -> Erinnerung um 19 Uhr
+   Die Serienwarnung faellt weg, solange ein Serienschutz im Vorrat liegt -
+   dann reisst die Serie ja nicht. Statt ihrer kommt die Erinnerung.
+   Nach sieben Tagen ohne die App hoert es auf. Wer so lange nicht kam,
+   will nicht jeden Abend daran erinnert werden. Beides ist meine Wahl,
+   nicht Ajdins - steht im Bericht vom 01.10.2026.
+
+   Die Leben-Nachricht kommt nur, wenn beim Planen alle Leben weg sind.
+   Faellt sie in die Nacht (22 bis 8 Uhr), kommt sie um 8 Uhr; faellt sie
+   auf einen Abend, an dem ohnehin eine Nachricht kommt, entfaellt sie. */
+const BEN_SCHLUESSEL = 'zmaj_benachrichtigung';
+const BEN_ERINNERUNG_UM = 19, BEN_SERIE_UM = 20, BEN_TAGE = 7;
+const BEN_ID_ABEND = 100, BEN_ID_LEBEN = 200, BEN_KANAL = 'erinnerungen';
+const benPlugin = () => (window.Capacitor && window.Capacitor.Plugins
+                         && window.Capacitor.Plugins.LocalNotifications) || null;
+let benDran = false;
+function benStand(){
+  let s = null;
+  try{ s = JSON.parse(localStorage.getItem(BEN_SCHLUESSEL) || 'null'); }catch(e){}
+  return Object.assign({gefragt:false, erinnerung:false, serie:false, leben:false}, s || {});
+}
+function benMerken(s){
+  try{ localStorage.setItem(BEN_SCHLUESSEL, JSON.stringify(s)); }catch(e){}
+}
+async function benErlaubt(fragen){
+  const L = benPlugin();
+  if(!L) return false;
+  try{
+    let p = await L.checkPermissions();
+    if(p.display !== 'granted' && fragen) p = await L.requestPermissions();
+    return p.display === 'granted';
+  }catch(e){ return false; }
+}
+function benZeit(tag, stunde){ const d = new Date(tag + 'T12:00:00'); d.setHours(stunde, 0, 0, 0); return d; }
+/* Was die naechsten Abende bringen - ohne Plugin, damit es sich auch im
+   Browser nachpruefen laesst. */
+function benPlan(){
+  const s = benStand(), jetzt = Date.now(), heute = today(), plan = [];
+  const heuteGeuebt = days.has(heute);
+  const schutzDa = schutzNow() > 0;
+  const abende = new Set();
+  for(let d = 0; d < BEN_TAGE; d++){
+    const tag = tagMinus(heute, -d);
+    if(d === 0 && heuteGeuebt) continue;
+    const serieLebt = (d === 0 && streak() > 0) || (d === 1 && heuteGeuebt);
+    let art = null, um = 0;
+    if(s.serie && serieLebt && !schutzDa){ art = 'serie'; um = BEN_SERIE_UM; }
+    else if(s.erinnerung){ art = 'erinnerung'; um = BEN_ERINNERUNG_UM; }
+    if(!art) continue;
+    const wann = benZeit(tag, um);
+    if(wann.getTime() <= jetzt + 60000) continue;
+    abende.add(tag);
+    const n = streak();
+    plan.push({id: BEN_ID_ABEND + d, art, wann,
+               titel: art === 'serie' ? tp('ben.serie_titel', n) : t('ben.erinnerung_titel'),
+               text:  art === 'serie' ? t('ben.serie_text') : t('ben.erinnerung_text')});
+  }
+  if(s.leben && !unlimited()){
+    syncLives();
+    if(lives.anzahl === 0 && lives.zeit){
+      const wann = new Date(lives.zeit + LEBEN_MAX * REFILL_MS);
+      const h = wann.getHours();
+      if(h >= 22 || h < 8){
+        if(h >= 22) wann.setDate(wann.getDate() + 1);
+        wann.setHours(8, 0, 0, 0);
+      }
+      const abend = h >= 18 && h < 22 && abende.has(dayKey(wann));
+      if(!abend && wann.getTime() > jetzt + 60000)
+        plan.push({id: BEN_ID_LEBEN, art: 'leben', wann,
+                   titel: t('ben.leben_titel'), text: t('ben.leben_text')});
+    }
+  }
+  return plan;
+}
+let benLaeuft = null;
+async function benPlanen(){
+  const L = benPlugin();
+  if(!L || !standGeladen) return;
+  /* Nicht zweimal gleichzeitig: sonst loescht der zweite Lauf, was der
+     erste gerade angelegt hat, und plant danach doppelt. */
+  if(benLaeuft) return benLaeuft;
+  benLaeuft = (async ()=>{
+    try{
+      const alt = await L.getPending();
+      const weg = ((alt && alt.notifications) || [])
+        .filter(n => n.id >= BEN_ID_ABEND && n.id < BEN_ID_LEBEN + 100).map(n => ({id: n.id}));
+      if(weg.length) await L.cancel({notifications: weg});
+    }catch(e){}
+    if(!await benErlaubt(false)) return;
+    const plan = benPlan();
+    if(!plan.length) return;
+    try{ await L.createChannel({id: BEN_KANAL, name: t('ben.kanal'), importance: 3, visibility: 1}); }catch(e){}
+    try{
+      await L.schedule({notifications: plan.map(p => ({
+        id: p.id, title: p.titel, body: p.text, channelId: BEN_KANAL,
+        schedule: {at: p.wann, allowWhileIdle: true}, extra: {art: p.art}}))});
+    }catch(e){}
+  })();
+  try{ await benLaeuft; } finally { benLaeuft = null; }
+}
+/* Die Frage nach der ersten Lektion. Erst unsere eigene Karte, dann
+   Androids Abfrage - wer bei Android einmal Nein sagt, bekommt die Abfrage
+   nie wieder zu sehen, deshalb nur, wenn jemand vorher Ja gesagt hat. */
+function zeigeBenFrage(){
+  const kasten = document.createElement('div');
+  kasten.className = 'nachfrage';
+  kasten.innerHTML =
+    '<div class="nachfragebox einstbox">' +
+      '<div class="celebrate"><div class="zmaj idle">' + zmaj('happy') + '</div></div>' +
+      '<h3></h3><div class="txt"></div>' +
+      '<button class="btn know" id="bnJa"></button>' +
+      '<button class="btn ghost" id="bnNein"></button>' +
+    '</div>';
+  kasten.querySelector('h3').textContent = t('ben.frage_titel');
+  kasten.querySelector('.txt').textContent = t('ben.frage_text');
+  kasten.querySelector('#bnJa').textContent = t('ben.ja');
+  kasten.querySelector('#bnNein').textContent = t('bew.nein');
+  document.body.appendChild(kasten);
+  const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
+  frageSchliessen = zu;
+  kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
+  kasten.querySelector('#bnJa').addEventListener('click', async ()=>{
+    zu();
+    const ja = await benErlaubt(true);
+    benMerken({gefragt:true, erinnerung:ja, serie:ja, leben:ja});
+    if(ja) benPlanen();
+  });
+  kasten.querySelector('#bnNein').addEventListener('click', ()=>{
+    zu(); benMerken(Object.assign(benStand(), {gefragt:true}));
+  });
+}
+/* Die drei Schalter in den Einstellungen. Einschalten fragt Android, wenn
+   die Erlaubnis noch fehlt. Sagt Android Nein, bleibt der Schalter aus und
+   darunter steht, wo man es aendert. */
+function benSchalterZeigen(){
+  const box = $('setBenBox');
+  if(!box) return;
+  box.style.display = benPlugin() ? '' : 'none';
+  const s = benStand();
+  $('swBenErinnerung').setAttribute('aria-checked', s.erinnerung);
+  $('swBenSerie').setAttribute('aria-checked', s.serie);
+  $('swBenLeben').setAttribute('aria-checked', s.leben);
+  $('benNote').textContent = '';
+}
+[['swBenErinnerung', 'erinnerung'], ['swBenSerie', 'serie'], ['swBenLeben', 'leben']].forEach(([id, feld]) => {
+  const k = $(id);
+  if(!k) return;
+  k.addEventListener('click', async ()=>{
+    const s = benStand();
+    const an = !s[feld];
+    if(an && !await benErlaubt(true)){
+      $('benNote').textContent = t('set.ben_gesperrt');
+      k.setAttribute('aria-checked', 'false');
+      return;
+    }
+    s[feld] = an; s.gefragt = true;
+    benMerken(s);
+    k.setAttribute('aria-checked', an);
+    $('benNote').textContent = '';
+    benPlanen();
+  });
+});
+
+/* Karten, die auf das Verlassen eines Ergebnisschirms warten. Eine nach
+   der anderen, nie zwei uebereinander, und nie ueber der Einwilligung,
+   einer Anzeige oder einer Wegmarke. Was jetzt nicht passt, bleibt dran. */
+function kartenNachreichen(){
+  if(!benDran && !bewertungDran) return;
+  const frei = ()=> !frageSchliessen && !wegmarkeLaeuft && !Ex_laeuft() &&
+                    !document.querySelector('.nachfrage, .einwilligung, .werbung');
+  if(!frei()) return;
+  setTimeout(()=>{
+    if(!frei()) return;
+    if(benDran){ benDran = false; zeigeBenFrage(); return; }
+    if(bewertungDran){ bewertungDran = false; zeigeBewertung(); }
+  }, 600);
+}
+const Ex_laeuft = () => !!(Ex && !Ex.fertig && sichtbar('einstufungView'));
+
 /* ---- Init ---- */
 /* =================== VORSPANN ===================
    Das Studio-Zeichen steht, bis die App wirklich bereit ist – aber
@@ -7324,6 +7648,7 @@ async function init(){
      Neuinstallation lief ein zahlender Abonnent deshalb als Gratisnutzer
      weiter. Gefunden am 20.09.2026. */
   vollAbgleichen();
+  benPlanen();
   /* Jetzt erst die Werbung. vorspannVorbei löst auf, wenn das Logo
      ausgeblendet ist - oder spätestens nach elf Sekunden. */
   await vorspannVorbei;
