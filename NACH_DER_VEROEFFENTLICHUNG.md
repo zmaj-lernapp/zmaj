@@ -200,28 +200,29 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   „App-Daten löschen“ ist er weg, und bis zu den sieben Tipps auf die
   Versionszeile läuft das Gerät als ganz normaler Gratisnutzer.
 
-  **Zwei Wege, am besten beide:**
+  **Die App sagt ihre Kennung seit Fassung 64 selbst.** Sieben Tipps auf
+  die Versionszeile, dann das Wort `kennung` eintippen. Es erscheinen
+  beide Werte: oben die **Werbe-ID** für die AdMob-Konsole, unten die
+  **Kennung** für `ADMOB_TESTGERAETE`. Kein Kabel, kein USB-Debugging,
+  keine Menüsuche — gebaut genau deshalb, weil sich USB-Debugging auf
+  Kübras Handy nicht einschalten lässt.
 
-  1. **Über die App, mit Kabel.** USB-Debugging an, Gerät anstecken, eine
-     Anzeige anfordern lassen, dann steht die Kennung im Protokoll:
-     `adb logcat -d | grep setTestDeviceIds`. Dazu muss die
-     Dauer-Vollversion kurz aus, sonst fährt AdMob gar nicht erst hoch.
-     Der Wert gehört dann in `ADMOB_TESTGERAETE`.
-     Geht nur mit einer Debug-Fassung — eine Store-Fassung lässt sich
-     nicht fernsteuern.
+  **Die Reihenfolge löst das Problem von selbst.** Kübra hat die App aus
+  dem Play-Test, also eine Store-Fassung; die lässt sich weder
+  fernsteuern noch mit einer Debug-Fassung überschreiben, ohne ihren
+  Lernstand zu löschen. Sie bekommt die Kennungsanzeige beim nächsten
+  Hochladen — und das ist ohnehin der Produktionsantrag:
 
-  2. **Über die AdMob-Konsole, ohne Kabel.** Auf dem Handy die Werbe-ID
-     ablesen (Samsung: Einstellungen → Sicherheit und Datenschutz →
-     Weitere Datenschutzeinstellungen → Anzeigen; sonst in den
-     Einstellungen nach „Anzeigen“ suchen) und sie in der AdMob-Konsole
-     unter **Testgeräte** eintragen. Wirkt kontoweit, braucht keinen neuen
-     Build und gilt auch für die Store-Fassung.
+  1. ab 07.10. hochladen → Kübra bekommt Fassung 64 oder neuer
+  2. Produktion live → AdMob mit dem App-Shop verknüpfen
+  3. sie tippt 7× auf die Versionszeile, tippt `kennung`, schickt die Werte
+  4. eintragen: Kennung in `ADMOB_TESTGERAETE`, Werbe-ID in der
+     AdMob-Konsole unter Einstellungen → Testgeräte
+  5. **erst dann** `admob_scharf.py`
 
-  Weg 1 bleibt im Quelltext nachvollziehbar, Weg 2 wirkt sofort und ohne
-  Eingriff. Deshalb beide.
-
-  Bei Kübras Handy war USB-Debugging am 30.09.2026 ausgegraut, auch bei
-  eingeschaltetem Hauptschalter der Entwickleroptionen — dort also Weg 2.
+  Vor Schritt 5 kann nichts passieren, weil bis dahin Googles
+  Testkennungen laufen. Das S9 geht genauso, nur schneller — dort liegt
+  eine Debug-Fassung, da reicht Anstecken.
 
 - **TikTok, Instagram und Facebook** — als **letzter** Schritt, wenn die
   App öffentlich ist. Die Konten legt Ajdin selbst an; erst danach lassen
