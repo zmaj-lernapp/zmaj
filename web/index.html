@@ -1645,6 +1645,14 @@ function einwilligungGueltig(){
          (einwilligung.wahl === 'ja' || einwilligung.wahl === 'nein');
 }
 function einwilligungFragen(){
+  /* Punkt 15 aus WERBUNG_PRUEFUNG.md: wer die Vollversion hat, sieht nie
+     eine Anzeige - ihn nach einer Einwilligung in eine Datenverarbeitung
+     zu fragen, die bei ihm nicht stattfindet, ist falsch und unhoeflich.
+     Die Pruefung gehoert hierher und nicht in admobStart(): am PC gibt es
+     das Plugin gar nicht, und bei der versteckten Dauer-Vollversion steht
+     zmaj_voll auf '0' - in beiden Faellen griff der dortige Ausstieg
+     nicht, das Fenster kam trotzdem. */
+  if(unlimited()) return false;
   if(admobDa()) return false;      // dann fragt Googles eigenes Fenster
   return (WERBUNG_ECHT || EINWILLIGUNG_TEST) && !einwilligungGueltig();
 }
@@ -1732,8 +1740,13 @@ function werbungGezaehlt(belohnt){
    EINWILLIGUNG: Googles User Messaging Platform (UMP) bringt ihr eigenes
    Fenster mit – genau das, was oben als „zertifiziertes CMP" verlangt ist.
    Deshalb tritt unser eigenes Fenster auf dem Handy zurück. Welche Anzeigen
-   jemand bekommt, entscheidet danach Google anhand der Antwort; die App
-   setzt npa nicht mehr selbst, sonst würden zwei Stellen dasselbe regeln.
+   jemand bekommt, entscheidet Google anhand dieser Antwort.
+   Die App gibt npa trotzdem mit - an beiden Anforderungsstellen, aus dem,
+   was werbungPersonalisiert() sagt. Das ist kein zweites Regelwerk,
+   sondern dieselbe Antwort noch einmal: werbungAbgleichen() holt sie beim
+   Start aus Googles Speicher und schreibt sie in persWahl. Frueher stand
+   hier, die App setze npa nicht mehr selbst - das war schon damals nicht
+   wahr. Berichtigt am 30.09.2026, Punkt 19.
 
    TESTBETRIEB: Solange ADMOB_TEST true ist, laufen Googles öffentliche
    Testanzeigen. Die brauchen kein Konto, kosten nichts und bringen nichts
@@ -6529,6 +6542,17 @@ async function werbungVorbereiten(){
   if(err && err.style.display === 'block') return;
   try{
     await admobStart();
+    /* Punkt 19 aus WERBUNG_PRUEFUNG.md: Googles Antwort holen, BEVOR die
+       erste Anzeige laeuft. werbungAbgleichen() hing an einer einzigen
+       Stelle - showSettings(). Wer dort nie hinschaut, und das sind die
+       meisten, bekam dauerhaft npa=1: unpersonalisierte Anzeigen, obwohl
+       er in Googles Fenster zugestimmt hatte. Das trifft auch Laender
+       ohne DSGVO, wo ZmajEinwilligung.java ausdruecklich
+       personalisiert:true meldet - dort ohne jeden rechtlichen
+       Gegenwert, nur als Einnahmeverlust.
+       Kostet nichts Sichtbares: die Antwort liegt im Geraetespeicher,
+       ZmajEinwilligung liest sie ohnehin schon aus. */
+    await werbungAbgleichen();
     if(einwilligungFragen()) await zeigeEinwilligung();
   }catch(e){}
 }
