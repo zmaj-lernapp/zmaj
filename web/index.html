@@ -1875,8 +1875,25 @@ async function admobZeigen(belohnt, darfNoch){
   if(!AdMobP || !admobDarf) return false;
   try{
     if(belohnt){
-      await AdMobP.prepareRewardVideoAd({adId: ADMOB_ID.belohnt, isTesting: ADMOB_TEST,
-                                         npa: !werbungPersonalisiert()});
+      /* Punkt 17: prepare hatte keine Frist - nur show war abgesichert.
+         Seit der Riegel aus Punkt 9/13 drin ist, waere ein haengendes
+         prepare besonders unangenehm: die Sicherheitsleine macht zwar
+         nach 150 Sekunden wieder auf, aber so lange soll niemand vor
+         einem toten Knopf sitzen. Fuenfzehn Sekunden reichen - kein
+         Mensch wartet zwei Minuten auf ein Leben.
+         Der Grund fuer den Fehlschlag wird mitgenommen statt verschluckt,
+         sonst sucht man beim naechsten Mal wieder von vorn. */
+      let ladeFehler = null;
+      const geladen = await Promise.race([
+        AdMobP.prepareRewardVideoAd({adId: ADMOB_ID.belohnt, isTesting: ADMOB_TEST,
+                                     npa: !werbungPersonalisiert()})
+          .then(()=> true, e => { ladeFehler = e; return false; }),
+        new Promise(f => setTimeout(()=> f(null), 15000))]);
+      if(!geladen){
+        admobFehler = ladeFehler ? String(ladeFehler.message || ladeFehler.code || ladeFehler)
+                                 : 'Ladefrist von 15 s abgelaufen';
+        return false;
+      }
       /* Punkt 11 und 16 aus WERBUNG_PRUEFUNG.md.
          Vorher entschied hier ein Rennen gegen zwei Minuten darueber, ob
          es ein Leben gibt. Zwei Wege liefen schief: wer waehrend des
@@ -6122,9 +6139,12 @@ function werbungFuerLeben(){
      in zeigeWerbung() haelt ohnehin, aber ein Knopf, der sich nicht
      ruehrt, laedt zum zweiten Tipp ein. */
   const knopf = $('lAd');
-  if(knopf) knopf.disabled = true;
+  /* Punkt 17: bis zum ersten Bild der Anzeige vergehen Sekunden, in denen
+     der AdMob-Weg gar keine Oberflaeche baut. Ohne ein Wort sieht die App
+     unbeteiligt aus - und genau das loest den zweiten Tipp aus. */
+  if(knopf){ knopf.disabled = true; knopf.textContent = t('werbung.laedt'); }
   zeigeWerbung(true, angesehen => {
-    if(knopf) knopf.disabled = false;
+    if(knopf){ knopf.disabled = false; knopf.textContent = t('werbung.leben_holen'); }
     /* Ohne Anzeige kein Leben - und ein Wort dazu, sonst wirkt der Knopf
        kaputt. */
     if(!angesehen){ kurzMeldung(t('werbung.keine_anzeige')); return; }
