@@ -3283,6 +3283,9 @@ function zeigeGeschenk(){
 }
 const DAUER_SCHLUESSEL = 'zmaj_dauer';
 const DAUER_WORT = 'dragon';        // hier aendern, falls es jemand erraet
+/* Dasselbe Versteck, anderes Wort: zeigt die Geraetekennung, statt
+   etwas umzuschalten. Kein Geheimnis, nur nichts fuer die Oberflaeche. */
+const KENNUNG_WORT = 'kennung';
 let dauerVoll = false;
 
 function dauerVollLaden(){
@@ -3295,6 +3298,38 @@ function dauerVollSetzen(an){
   try{ v = localStorage.getItem(VOLL_SCHLUESSEL); }catch(e){}
   premium = (v === '1') || dauerVoll;
 }
+/* Zeigt, womit sich dieses Geraet bei AdMob als Testgeraet eintragen
+   laesst. Zwei Werte, zwei Zwecke: die Werbe-ID will die AdMob-Konsole,
+   die Kennung gehoert in ADMOB_TESTGERAETE im Quelltext.
+   Googles Doku kennt fuer die Kennung nur zwei Wege - logcat, oder "eine
+   App, die sie anzeigt". Der erste braucht Kabel und USB-Debugging, und
+   das laesst sich nicht auf jedem Geraet einschalten. Also der zweite.
+   Ajdin am 30.09.2026, nachdem es bei Kuebras Handy ausgegraut war. */
+async function kennungZeigen(){
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if(!P || !P.ZmajEinwilligung){
+    await frage('Geraetekennung', 'Gibt es nur in der Handy-Fassung.', 'Gut', 'Zu');
+    return;
+  }
+  let d = null;
+  try{ d = await P.ZmajEinwilligung.kennung(); }catch(e){}
+  if(!d || !d.ok){
+    await frage('Geraetekennung',
+                'Ging nicht: ' + ((d && d.fehler) || 'unbekannt'), 'Gut', 'Zu');
+    return;
+  }
+  /* Beide untereinander, damit man sie abschreiben oder abfotografieren
+     kann. Kopieren geht in der WebView nicht immer - deshalb steht der
+     Wert auch lesbar da und nicht nur hinter einem Knopf. */
+  const text = 'Werbe-ID (AdMob-Konsole):' + String.fromCharCode(10) + d.werbe_id
+             + String.fromCharCode(10) + String.fromCharCode(10)
+             + 'Kennung (ADMOB_TESTGERAETE):' + String.fromCharCode(10) + d.kennung
+             + (d.abgeschaltet ? String.fromCharCode(10) + String.fromCharCode(10)
+                 + 'Achtung: Werbe-ID ist auf diesem Geraet abgeschaltet.' : '');
+  if(await frage('Geraetekennung', text, 'Kopieren', 'Zu')){
+    try{ await navigator.clipboard.writeText(d.werbe_id + ' / ' + d.kennung); }catch(e){}
+  }
+}
 function dauerVollVerdrahten(){
   const z = $('ueberZeile'); if(!z) return;
   let n = 0, uhr = 0;
@@ -3302,6 +3337,15 @@ function dauerVollVerdrahten(){
     clearTimeout(uhr); uhr = setTimeout(()=>{ n = 0; }, 2000);
     if(++n < 7) return;
     n = 0; clearTimeout(uhr);
+    /* Es entscheidet das Wort, nicht der Zustand. Vorher wurde bei
+       eingeschalteter Dauer-Vollversion ohne Wort gefragt, ob sie aus
+       soll - wer nur die Kennung ablesen sollte, konnte sie damit
+       versehentlich ausschalten. */
+    const wort = await frageWort('Wort?');
+    if(wort === null) return;
+    const w = wort.trim().toLowerCase();
+    if(w === KENNUNG_WORT){ await kennungZeigen(); return; }
+    if(w !== DAUER_WORT) return;
     if(dauerVoll){
       if(await frage('Dauerhafte Vollversion',
                      'Sie ist eingeschaltet. Ausschalten?',
@@ -3310,9 +3354,6 @@ function dauerVollVerdrahten(){
       }
       return;
     }
-    const wort = await frageWort('Wort?');
-    if(wort === null) return;
-    if(wort.trim().toLowerCase() !== DAUER_WORT) return;
     dauerVollSetzen(true); renderLives(); vollZeileZeigen();
   });
 }
