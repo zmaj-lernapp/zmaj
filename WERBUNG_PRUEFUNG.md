@@ -24,6 +24,88 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ---
 
+## Stand am 30.09.2026
+
+**Behoben: die Punkte 9, 11, 13, 14 und 16.** Alle am Gerät gegengeprüft,
+Fassung 56, Galaxy S9 mit Android 10 und Googles Testkennungen.
+
+**Punkt 12 war schon behoben** und stand nur noch aus Versehen in der
+Liste: `werbungFuerLeben()` zeigt seit dem 29.09. `kurzMeldung(t('werbung.
+keine_anzeige'))`, wenn keine Anzeige kam. Nachgesehen, nicht angenommen.
+
+**Punkt 9 und 13 — der Doppeltipp.** Es gab keinen Riegel. Jetzt sitzt
+`anzeigeLaeuft` in `zeigeWerbung()` — nicht in `zeigeWerbungJetzt()`, weil
+auch der Zweitversuch über `admobStart()` durch diese Tür geht. Jeder
+Ausgang läuft über `fertigEinmal()`, damit der Riegel wieder aufgeht.
+Dazu wird der Knopf `lAd` beim Tippen ausgegraut: ein Knopf, der sich
+nicht rührt, lädt zum zweiten Tipp ein.
+
+Im Browser gemessen, drei Tipps unmittelbar hintereinander:
+
+```
+erster  -> Überlagerung 1, Riegel zu, Kontingent 1
+zweiter -> false, keine zweite Überlagerung
+dritter -> false, keine zweite Überlagerung
+nach dem Schliessen: Riegel wieder auf, nächste Anzeige läuft
+```
+
+**Dabei eine neue Gefahr eingebaut und gleich wieder entschärft.** Ein
+Riegel, den niemand öffnet, sperrt die Werbung bis zum Neustart der App —
+vorher kostete ein hängender Aufruf nur diesen einen Versuch. Beim Messen
+stand genau der Fall auf dem Schirm. Es gibt jetzt eine Sicherheitsleine:
+ein Wecker über 150 Sekunden, der den Riegel notfalls selbst aufmacht.
+Die Frist liegt über der längsten inneren Frist von 120 Sekunden, greift
+also nur, wenn wirklich niemand mehr antwortet.
+
+**Punkt 11 und 16 — die weggeworfene Belohnung.** Vorher entschied ein
+`Promise.race` gegen 120 Sekunden darüber, ob es ein Leben gibt. Wer
+während des Videos angerufen wurde, sah es zu Ende und bekam nichts; wer
+abbrach, wartete zwei Minuten auf nichts. Jetzt halten zwei Zuhörer beides
+getrennt fest — `onRewardedVideoAdReward` sagt, **dass** die Belohnung
+fällig wurde, `onRewardedVideoAdDismissed` beendet das Warten. Das Plugin
+schreibt eigens dazu, dass Dismissed über die Belohnung nichts aussagt.
+
+Erst die Ereignisse einzeln vermessen, um nicht auf Vermutungen zu bauen:
+
+```
+prepare fertig    4193 ms
+Loaded            4194 ms
+Showed            4567 ms
+Reward           10020 ms   show löst auf: {type:"coins", amount:10}
+```
+
+Dann der ganze Weg in der App, Leben vorher auf 0:
+
+```
+Video angesehen, danach geschlossen:
+    lief: true, Rückmeldung nach 22,2 s  — nicht nach 120 s
+    Leben 0 -> 1, Riegel wieder auf, Kontingent zählt
+```
+
+Die 22,2 Sekunden sind der Beleg: die Rückmeldung kam, als die Anzeige
+geschlossen wurde. Vorher wäre an dieser Stelle die volle Frist gelaufen.
+
+**Was hier nicht geprüft werden konnte:** der Abbruch **vor** dem
+Belohnungspunkt. Googles Testvideo lässt sich per Zurück-Taste erst
+schließen, nachdem die Belohnung gefallen ist — zwei Versuche endeten
+beide mit `lief: true`. Der Zweig ist durch den Bau richtig (ohne
+Reward-Ereignis bleibt `verdient` falsch, Dismissed beendet das Warten),
+aber er ist **nicht am Gerät beobachtet**. Nachzuholen mit einem echten
+Video von Hand.
+
+**Punkt 14 — das späte Video riss die Lektion ab.** `showLevelHome()`
+läuft jetzt nur noch, wenn der Bildschirm ohne Leben überhaupt noch steht.
+Geprüft wird der Knopf **selbst**, nicht seine Kennung: nur wenn genau
+dieser Knoten noch im Dokument hängt, ist es derselbe Schirm. Beide
+Richtungen im Browser gemessen:
+
+```
+Schirm weg (Herz gekauft, neue Lektion):  showLevelHome 0 mal, Leben +1
+Schirm steht noch:                        showLevelHome 1 mal, Leben +1
+```
+
+---
+
 ## Stand am 29.09.2026
 
 **Behoben: die drei kontogefährdenden Punkte 1, 2 und 3.** Alle drei am
