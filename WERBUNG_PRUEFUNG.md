@@ -26,7 +26,7 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ## Stand am 30.09.2026
 
-**Behoben: die Punkte 8, 9, 11, 13, 14, 15, 16, 17, 18 und 19.** Gegengeprüft auf dem
+**Behoben: die Punkte 4, 8, 9, 11, 13, 14, 15, 16, 17, 18 und 19.** Gegengeprüft auf dem
 Galaxy S9 (Android 10) mit Googles Testkennungen, Fassung 57 — und dort, wo
 der Fehler nur ohne AdMob-Plugin auftritt, im Browser.
 
@@ -261,6 +261,46 @@ request.“ fehl, liegt das nicht am Netz, sondern daran, dass die Activity
 nicht im Vordergrund ist — einmal mit heruntergezogener
 Benachrichtigungsleiste gemessen, einmal ohne. Der Fehlerzweig zeigt
 dafür eine kurze Meldung.
+
+**Punkt 4 — die eigenen Geräte bekommen weiter Testanzeigen.** Im ganzen
+Projekt kam `testingDevices` kein einziges Mal vor. Weil `isTesting` und
+`initializeForTesting` beide am selben Schalter hingen, gäbe es nach dem
+Umlegen auf die echten Kennungen keine Möglichkeit mehr, auf dem eigenen
+Handy noch Testanzeigen zu sehen — jeder eigene Klick beim Nachtesten wäre
+ungültiger Traffic auf dem eigenen Konto.
+
+Die Gegenprüfung hatte den entscheidenden Zusatz: `testingDevices` allein
+wirkt nicht. `AdMob.java:250-253` liest die Liste nur, wenn
+`initializeForTesting` wahr ist. Deshalb hängt sie jetzt an „`ADMOB_TEST`
+**oder** Liste nicht leer“. Für alle anderen Geräte ändert das nichts:
+`setTestDeviceIds` (`AdMob.java:302`) betrifft genau die aufgezählten.
+
+Die Kennung wurde am Gerät abgelesen, nicht geraten. Vorher meldete AdMob:
+
+```
+I/Ads: Use RequestConfiguration.Builder().setTestDeviceIds(
+       Arrays.asList("41C694B849758EB6384F9FED5DD5FFAC"))
+       to get test ads on this device.
+```
+
+Nach dem Eintragen, derselbe Aufruf auf demselben Gerät:
+
+```
+I/Ads: This request is sent from a test device.
+```
+
+Das ist der Beleg: die Liste kommt im SDK an. Sie überlebt auch
+`admob_scharf.py`, weil `initializeForTesting` dann über die nicht leere
+Liste wahr bleibt — der Probelauf des Skripts geht weiterhin durch.
+
+Für die Messung musste die versteckte Dauer-Vollversion auf Ajdins S21
+kurz aus, weil `admobStart()` sonst gar nicht erst hochfährt. Sie ist
+danach wieder an, der Lernstand unverändert (77 Wörter, 5 Leben, derselbe
+Zierrat).
+
+**Noch offen:** Kübras Handy und das Galaxy S9 fehlen in der Liste. Beide
+gehören hinein, **bevor** `admob_scharf.py` läuft — wie man die Kennung
+abliest, steht als Anmerkung über der Liste im Quelltext.
 
 ---
 

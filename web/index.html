@@ -1765,6 +1765,30 @@ function werbungGezaehlt(belohnt){
    einfach ohne Werbung weiter. Eine Lernapp, die wegen einer Anzeige nicht
    startet, wäre der schlechteste aller Tauschhandel. */
 const ADMOB_TEST = true;
+/* Punkt 4 aus WERBUNG_PRUEFUNG.md: unsere eigenen Geraete bekommen auch
+   nach dem Tausch auf die echten Kennungen weiter TESTanzeigen. Ohne das
+   waere jeder eigene Klick beim Nachtesten ungueltiger Traffic auf dem
+   eigenen Konto - genau die Gefahr, vor der admob_scharf.py warnt. Der
+   versteckte Dauer-Schalter reicht dafuer nicht: er haengt an
+   localStorage und ist nach einer Neuinstallation weg.
+
+   Eine Kennung holt man so: die App einmal eine Anzeige anfordern lassen,
+   dann steht sie im Protokoll.
+     adb logcat -d | grep setTestDeviceIds
+   Sie ist der MD5 der Werbe-ID des Geraets - kein Geheimnis, und sie
+   aendert sich nur, wenn jemand seine Werbe-ID zuruecksetzt.
+
+   WICHTIG: testingDevices wirkt NUR zusammen mit initializeForTesting.
+   AdMob.java:250-253 liest die Liste sonst gar nicht erst. Deshalb steht
+   unten ADMOB_TEST ODER 'Liste nicht leer' - nicht nur ADMOB_TEST. Fuer
+   alle anderen Geraete aendert das nichts: setTestDeviceIds
+   (AdMob.java:302) betrifft genau die hier aufgezaehlten. */
+const ADMOB_TESTGERAETE = [
+  '41C694B849758EB6384F9FED5DD5FFAC',   // Ajdin, Galaxy S21 Ultra, 30.09.2026
+  // Kuebras Handy fehlt noch, und das Galaxy S9 auch - siehe oben, wie man
+  // die Kennung abliest. Beide gehoeren hier hinein, BEVOR admob_scharf.py
+  // laeuft.
+];
 const ADMOB_ID = {
   interstitial: 'ca-app-pub-3940256099942544/1033173712',   // Googles Testkennung
   belohnt:      'ca-app-pub-3940256099942544/5224354917',   // Googles Testkennung
@@ -1815,8 +1839,12 @@ async function admobStart(){
        16-17 und 18+ aus STORE_TEXTE.md. Hoeher darf es nur, wenn die
        Angaben in der Play Console vorher dazu passen, nicht umgekehrt.
        Punkt 3 aus WERBUNG_PRUEFUNG.md, behoben am 29.09.2026. */
-    if(admobDarf) await A.initialize({initializeForTesting: ADMOB_TEST,
-                                      maxAdContentRating: 'Teen'});
+    if(admobDarf) await A.initialize({
+      /* Siehe ADMOB_TESTGERAETE: ohne initializeForTesting bleibt die
+         Liste unbeachtet. */
+      initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
+      testingDevices: ADMOB_TESTGERAETE,
+      maxAdContentRating: 'Teen'});
   }catch(e){
     /* Der Fehler wurde bis zum 27.09.2026 stillschweigend verschluckt. Das
        ist teuer: AdMobP steht danach auf null, damit liefert admobDa() false,
