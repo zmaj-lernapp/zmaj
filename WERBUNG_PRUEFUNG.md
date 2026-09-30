@@ -26,8 +26,9 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ## Stand am 30.09.2026
 
-**Behoben: die Punkte 9, 11, 13, 14 und 16.** Alle am Gerät gegengeprüft,
-Fassung 56, Galaxy S9 mit Android 10 und Googles Testkennungen.
+**Behoben: die Punkte 9, 11, 13, 14, 15, 16 und 19.** Gegengeprüft auf dem
+Galaxy S9 (Android 10) mit Googles Testkennungen, Fassung 57 — und dort, wo
+der Fehler nur ohne AdMob-Plugin auftritt, im Browser.
 
 **Punkt 12 war schon behoben** und stand nur noch aus Versehen in der
 Liste: `werbungFuerLeben()` zeigt seit dem 29.09. `kurzMeldung(t('werbung.
@@ -103,6 +104,43 @@ Richtungen im Browser gemessen:
 Schirm weg (Herz gekauft, neue Lektion):  showLevelHome 0 mal, Leben +1
 Schirm steht noch:                        showLevelHome 1 mal, Leben +1
 ```
+
+**Punkt 15 — das Einwilligungsfenster trotz Vollversion.** Wer zahlt, sieht
+nie eine Anzeige. Ihn nach einer Einwilligung in eine Datenverarbeitung zu
+fragen, die bei ihm nicht stattfindet, ist falsch. Die Prüfung gehört in
+`einwilligungFragen()` und nicht in `admobStart()`: am PC gibt es das Plugin
+gar nicht, und bei der versteckten Dauer-Vollversion steht `zmaj_voll` auf
+`0` — in beiden Fällen griff der dortige Ausstieg nicht. Im Browser
+gemessen, also genau auf dem Weg, der vorher durchrutschte:
+
+```
+ohne Vollversion, keine gespeicherte Antwort:  fragt = true   (richtig)
+mit Vollversion:                               fragt = false
+mit Dauer-Vollversion (zmaj_voll = "0"):       fragt = false
+```
+
+**Punkt 19 — npa=1 trotz Zustimmung.** `werbungAbgleichen()` hing an einer
+einzigen Stelle: `showSettings()`. Wer die Einstellungen nie öffnet — und
+das sind die meisten —, bekam dauerhaft unpersonalisierte Anzeigen, obwohl
+er in Googles Fenster zugestimmt hatte. Das trifft auch Länder ohne DSGVO,
+wo `ZmajEinwilligung.java` ausdrücklich `personalisiert: true` meldet — dort
+ohne jeden rechtlichen Gegenwert, rein als Einnahmeverlust. Der Abgleich
+läuft jetzt in `werbungVorbereiten()`, bevor die erste Anzeige kommen kann.
+
+Auf dem S9 nach einem Kaltstart gemessen, **ohne die Einstellungen zu
+öffnen**:
+
+```
+Googles Antwort:  {dsgvo:1, zweck1..4: true, google: true,
+                   bekannt: true, personalisiert: true}
+persWahl:                 true
+werbungPersonalisiert():  true
+Einstellungen je offen:   false
+```
+
+Vorher stand `persWahl` hier auf `null` und an jede Anzeige ging `npa=1`.
+Dazu der Kommentar über AdMob berichtigt: er behauptete, die App setze npa
+nicht mehr selbst — sie tut es an zwei Stellen, und das ist auch richtig so.
 
 ---
 
