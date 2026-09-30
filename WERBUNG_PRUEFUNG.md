@@ -26,7 +26,7 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ## Stand am 30.09.2026
 
-**Behoben: die Punkte 9, 11, 13, 14, 15, 16, 17, 18 und 19.** Gegengeprüft auf dem
+**Behoben: die Punkte 8, 9, 11, 13, 14, 15, 16, 17, 18 und 19.** Gegengeprüft auf dem
 Galaxy S9 (Android 10) mit Googles Testkennungen, Fassung 57 — und dort, wo
 der Fehler nur ohne AdMob-Plugin auftritt, im Browser.
 
@@ -210,6 +210,57 @@ gleich lang wie der alte („♥ Wird geladen …“ gegen „♥ Video ansehen�
 eigene Messung auf 360 dp steht aus: der Schirm ohne Leben war in der
 Sprachprüfung vom 29.09. nicht dabei, weil er sich nur mit leergespielten
 Leben erreichen lässt.
+
+**Punkt 8 — Abonnenten konnten ihre Einwilligung nicht widerrufen.** Wer
+die Vollversion hat, fährt AdMob bewusst nicht hoch: während des Abos
+findet keine Werbe-Datenverarbeitung statt, und das soll so bleiben. Nur —
+eine früher als Gratisnutzer erteilte Einwilligung liegt weiter in Googles
+Speicher auf dem Gerät. Art. 7 Abs. 3 DSGVO verlangt, dass sie sich so
+leicht zurücknehmen lässt, wie sie gegeben wurde, und die
+Datenschutzerklärung verspricht in acht Sprachen „jederzeit unter
+Einstellungen → Werbung“. Für Abonnenten stimmte das nicht.
+
+**Der naheliegende Ein-Zeilen-Fix wäre schlimmer als gar nichts gewesen**
+— das hat die Gegenprüfung sauber herausgearbeitet. Streicht man nur das
+`!unlimited()`, steht die Zeile zwar da, aber ohne `AdMobP` fände der
+Schalter weder `admobDa()` noch `admobOptionen` und legte nur den lokalen
+npa-Schalter um: eine Zeile, die so aussieht, als ändere sie die
+Einwilligung, Googles gespeicherte Antwort aber nicht anfässt.
+
+Gebaut ist deshalb Weg (b) aus der Gegenprüfung: eine **eigene Zeile** mit
+eigenem Knopf, die Googles Auskunft **erst auf Tipp** nachlädt — ohne
+`initialize()`. Das Werbe-SDK bleibt aus, beim Start spricht weiterhin
+niemand mit Google, und der Einstiegspunkt ist trotzdem dauerhaft
+erreichbar. `AdMobP` wird dabei bewusst **nicht** gesetzt: das würde
+`admobDa()` umschalten und damit `einwilligungFragen()` und
+`werbungErlaubt()` mitreißen — liefe das Abo in derselben Sitzung aus,
+käme danach keine Anzeige mehr durch.
+
+Auf Ajdins S21 gemessen, mit eingeschalteter Dauer-Vollversion:
+
+```
+Zeile: Werbung | Deine Antwort liegt bei Google. Hier kannst du sie
+       ändern. | Wahl ändern
+Werbeschalter daneben: ausgeblendet   (richtig, da gibt es nichts zu drehen)
+
+requestConsentInfo():  status OBTAINED
+                       isConsentFormAvailable true
+                       privacyOptionsRequirementStatus REQUIRED
+AdMobP danach: false   admobDa() danach: false
+```
+
+Googles Fenster ist also vorhanden und erreichbar, und das Werbe-SDK
+bleibt dabei aus.
+
+**Was nicht geprüft werden konnte:** das Öffnen des Fensters selbst. Beim
+Versuch hatte sich das S21 gesperrt, und die PIN geht mich nichts an.
+Nachzuholen mit entsperrtem Gerät — ein Tipp auf „Wahl ändern“ genügt.
+
+Nebenbei gelernt: schlägt `requestConsentInfo()` mit „Error making
+request.“ fehl, liegt das nicht am Netz, sondern daran, dass die Activity
+nicht im Vordergrund ist — einmal mit heruntergezogener
+Benachrichtigungsleiste gemessen, einmal ohne. Der Fehlerzweig zeigt
+dafür eine kurze Meldung.
 
 ---
 
