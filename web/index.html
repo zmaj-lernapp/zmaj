@@ -1439,6 +1439,12 @@
            Ajdin am 18.09.2026. -->
       <div class="setting" id="setWerbungBox" style="display:none"><div><div class="st" data-t="set.einwilligung"></div><div class="sd" id="setWerbungStand"></div></div>
         <button class="switch" id="swWerbung" role="switch" aria-checked="false"></button></div>
+      <!-- Nur fuer Abonnenten: sie sehen keine Werbung, koennen aber eine
+           frueher erteilte Einwilligung immer noch bei Google zuruecknehmen.
+           Kein Schalter, denn hier gibt es nichts umzulegen - der Knopf
+           fuehrt zu Googles eigenem Fenster. Punkt 8, 30.09.2026. -->
+      <div class="setting" id="setWiderrufBox" style="display:none"><div><div class="st" data-t="set.einwilligung"></div><div class="sd" id="setWiderrufStand" data-t="set.einwilligung_google"></div></div>
+        <button class="btn ghost" id="einwWiderruf" data-t="set.einwilligung_knopf"></button></div>
       <details><summary data-t="set.agb"></summary><div class="inner legal" data-t="set.agb_text"></div></details>
       <details><summary data-t="set.datenschutz"></summary><div class="inner legal" data-t="set.datenschutz_text"></div></details>
     </div>
@@ -2900,6 +2906,40 @@ function werbungZeileZeigen(){
   $('setWerbungStand').textContent = t(an ? 'set.einwilligung_ja' : 'set.einwilligung_nein');
 }
 let werbungLaeuft = false;      // zwei Fenster uebereinander waeren haesslich
+/* Punkt 8: der Widerruf fuer Abonnenten. Googles Auskunft wird ERST HIER
+   geholt, auf Tipp, und ohne initialize() - das Werbe-SDK bleibt aus, beim
+   Start spricht weiterhin niemand mit Google. AdMobP wird bewusst NICHT
+   gesetzt: das wuerde admobDa() umschalten und damit einwilligungFragen()
+   und werbungErlaubt() mitreissen, und liefe das Abo in derselben Sitzung
+   aus, kaeme danach keine Anzeige mehr durch.
+   Dass hier ueberhaupt mit Google gesprochen wird, hat der Nutzer selbst
+   angetippt - anders ist Googles Fenster nicht zu erreichen. */
+async function einwilligungWiderrufen(){
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if(!P || !P.AdMob || werbungLaeuft) return;
+  const knopf = $('einwWiderruf'), stand = $('setWiderrufStand');
+  werbungLaeuft = true;
+  if(knopf) knopf.disabled = true;
+  try{
+    const A = P.AdMob;
+    const info = await A.requestConsentInfo();
+    if(info && info.privacyOptionsRequirementStatus === 'REQUIRED'){
+      await A.showPrivacyOptionsForm();
+      /* Die neue Antwort gleich uebernehmen, damit der lokale Schalter
+         stimmt, falls das Abo spaeter auslaeuft. */
+      const g = await googlesAntwort();
+      if(g !== null) setzePersonalisiert(g);
+      if(stand) stand.textContent = t('set.einwilligung_google');
+    }else if(stand){
+      /* Ausserhalb des EWR verlangt Google keinen Einstiegspunkt, und
+         ohne frueher erteilte Antwort gibt es nichts zurueckzunehmen. */
+      stand.textContent = t('set.einwilligung_nichts');
+    }
+  }catch(e){ if(stand) stand.textContent = t('voll.fehler'); }
+  werbungLaeuft = false;
+  if(knopf) knopf.disabled = false;
+}
+if($('einwWiderruf')) $('einwWiderruf').addEventListener('click', einwilligungWiderrufen);
 $('swWerbung').addEventListener('click', async ()=>{
   if(werbungLaeuft) return;
   if(admobDa() && admobOptionen){
@@ -4895,11 +4935,23 @@ function showSettings(){
   $('setVollBox').style.display = kaufbar ? '' : 'none';
   if(kaufbar){ vollMeldung(''); vollZeileZeigen(); vollAbgleichen(); produkteNachsehen(); }
   /* Wer die Vollversion hat, sieht gar keine Werbung mehr - dann ist auch
-     die Zeile zur Werbe-Einwilligung gegenstandslos. */
+     der Schalter zur Werbe-Einwilligung gegenstandslos. */
   const zeigen = !unlimited()
     && (WERBUNG_ECHT || EINWILLIGUNG_TEST || einwilligungGueltig() || admobDa());
   $('setWerbungBox').style.display = zeigen ? '' : 'none';
   if(zeigen){ werbungZeileZeigen(); werbungAbgleichen(); }
+  /* Punkt 8 aus WERBUNG_PRUEFUNG.md: gegenstandslos ist der SCHALTER, nicht
+     der Widerruf. Eine frueher als Gratisnutzer erteilte Einwilligung liegt
+     weiter in Googles Speicher, und sie muss sich so leicht zuruecknehmen
+     lassen, wie sie gegeben wurde - die Datenschutzerklaerung verspricht das
+     in acht Sprachen. Deshalb eine eigene Zeile, nur auf dem Geraet: am PC
+     gibt es Googles Fenster gar nicht. */
+  const widerrufBox = $('setWiderrufBox');
+  if(widerrufBox){
+    const P = window.Capacitor && window.Capacitor.Plugins;
+    widerrufBox.style.display = (unlimited() && P && P.AdMob) ? '' : 'none';
+    $('setWiderrufStand').textContent = t('set.einwilligung_google');
+  }
   renderLangSel();
 }
 /* ---- Laden ----
