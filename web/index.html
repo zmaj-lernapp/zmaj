@@ -1792,11 +1792,24 @@ const ADMOB_TEST = true;
    versteckte Dauer-Schalter reicht dafuer nicht: er haengt an
    localStorage und ist nach einer Neuinstallation weg.
 
-   Eine Kennung holt man so: die App einmal eine Anzeige anfordern lassen,
-   dann steht sie im Protokoll.
+   Eine Kennung holt man so: in den Einstellungen siebenmal auf die
+   Versionszeile tippen und das Wort 'kennung' eingeben. Die App zeigt sie
+   dann selbst. Der Weg ueber das Protokoll geht auch:
      adb logcat -d | grep setTestDeviceIds
-   Sie ist der MD5 der Werbe-ID des Geraets - kein Geheimnis, und sie
-   aendert sich nur, wenn jemand seine Werbe-ID zuruecksetzt.
+
+   ACHTUNG, ZWEI KENNUNGEN JE GERAET. Die Kennung ist der MD5 der
+   ANDROID-ID (nicht der Werbe-ID - am 30.09.2026 am Geraet nachgemessen),
+   und die Android-ID haengt seit Android 8 am Signaturschluessel der App.
+   Debug- und Play-Fassung sind verschieden signiert, also liefert dasselbe
+   Handy zwei verschiedene Werte. Der Wert aus einer Debug-Fassung schuetzt
+   die veroeffentlichte App NICHT.
+   Wer also ein Geraet fuer die echte App schuetzen will, liest die Kennung
+   aus der Fassung ab, die aus dem Play Store kommt.
+
+   Bequemer und ohne diese Falle: das Geraet in der AdMob-Konsole unter
+   Einstellungen -> Testgeraete eintragen. Dort zaehlt die Werbe-ID, und
+   die haengt an keinem Signaturschluessel - ein Eintrag deckt beide
+   Fassungen ab. Die Werbe-ID zeigt dieselbe Stelle in der App mit an.
 
    WICHTIG: testingDevices wirkt NUR zusammen mit initializeForTesting.
    AdMob.java:250-253 liest die Liste sonst gar nicht erst. Deshalb steht
@@ -1804,10 +1817,13 @@ const ADMOB_TEST = true;
    alle anderen Geraete aendert das nichts: setTestDeviceIds
    (AdMob.java:302) betrifft genau die hier aufgezaehlten. */
 const ADMOB_TESTGERAETE = [
-  '41C694B849758EB6384F9FED5DD5FFAC',   // Ajdin, Galaxy S21 Ultra, 30.09.2026
-  // Kuebras Handy fehlt noch, und das Galaxy S9 auch - siehe oben, wie man
-  // die Kennung abliest. Beide gehoeren hier hinein, BEVOR admob_scharf.py
-  // laeuft.
+  '41C694B849758EB6384F9FED5DD5FFAC',   // Ajdin, S21 Ultra - DEBUG-Fassung
+  /* Was hier noch fehlt, siehe oben:
+       - Ajdins S21 aus der PLAY-Fassung (anderer Signaturschluessel,
+         andere Kennung - der Wert oben schuetzt nur die Debug-Fassung)
+       - Kuebras Handy, ebenfalls aus der Play-Fassung
+       - das Galaxy S9
+     Alle drei gehoeren hier hinein, BEVOR admob_scharf.py laeuft. */
 ];
 const ADMOB_ID = {
   interstitial: 'ca-app-pub-3940256099942544/1033173712',   // Googles Testkennung

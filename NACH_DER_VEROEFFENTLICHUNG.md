@@ -224,6 +224,24 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   Testkennungen laufen. Das S9 geht genauso, nur schneller — dort liegt
   eine Debug-Fassung, da reicht Anstecken.
 
+  **Wichtig, sonst ist die ganze Mühe umsonst: jedes Handy hat ZWEI
+  Kennungen.** Die Kennung ist der MD5 der **Android-ID** — nicht der
+  Werbe-ID; das ist am 30.09.2026 am Gerät nachgemessen worden, die
+  Quellen im Netz widersprechen sich. Und die Android-ID hängt seit
+  Android 8 am **Signaturschlüssel** der App. Debug- und Play-Fassung
+  sind verschieden signiert, also liefert dasselbe Handy zwei
+  verschiedene Werte.
+
+  Der Wert, der heute in `ADMOB_TESTGERAETE` steht
+  (`41C694B8…`, Ajdins S21), stammt aus der **Debug**-Fassung. Er
+  schützt die veröffentlichte App **nicht**. Für die echte App muss der
+  Wert aus der **Play**-Fassung dazu — auch für Ajdins eigenes Handy.
+
+  **Deshalb ist die AdMob-Konsole der bessere Weg:** dort zählt die
+  **Werbe-ID**, und die hängt an keinem Signaturschlüssel. Ein Eintrag
+  deckt beide Fassungen ab. Die App zeigt beide Werte nebeneinander an —
+  oben die Werbe-ID für die Konsole, unten die Kennung für den Quelltext.
+
 - **TikTok, Instagram und Facebook** — als **letzter** Schritt, wenn die
   App öffentlich ist. Die Konten legt Ajdin selbst an; erst danach lassen
   sich Reels und kurze Videos planen. Vorher bringt es nichts: ein Profil,
