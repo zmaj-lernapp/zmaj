@@ -182,6 +182,47 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   nie wieder, wenn jemand einmal abgelehnt hat. Google deckelt die
   In-App-Review-Anzeige ohnehin selbst.
 
+- **Die eigenen Geräte als Testgeräte eintragen — bevor**
+  `admob_scharf.py` **läuft.** Ajdins S21 steht seit dem 30.09.2026 in
+  `ADMOB_TESTGERAETE` (`web/index.html`). Es fehlen **Kübras Handy** und
+  **das Galaxy S9**.
+
+  Warum das keine Kleinigkeit ist: die Liste gilt pro Gerät, der Eintrag
+  ist der MD5 der Werbe-ID. Nach dem Tausch auf die echten Kennungen
+  bekommt jedes Gerät, das nicht darin steht, **echte** Anzeigen. Der
+  Verstoß ist der eigene Klick, nicht die bloße Einblendung — aber genau
+  darauf läuft es beim Nachtesten hinaus.
+
+  Das S9 hat gar keinen Schutz, dort ist die Dauer-Vollversion nie
+  eingeschaltet worden. Kübras Handy ist im Normalbetrieb geschützt —
+  `admobStart()` steigt bei `dauerVoll` sofort aus —, aber der Schalter
+  hängt an `localStorage`. Nach einer Neuinstallation oder einem
+  „App-Daten löschen“ ist er weg, und bis zu den sieben Tipps auf die
+  Versionszeile läuft das Gerät als ganz normaler Gratisnutzer.
+
+  **Zwei Wege, am besten beide:**
+
+  1. **Über die App, mit Kabel.** USB-Debugging an, Gerät anstecken, eine
+     Anzeige anfordern lassen, dann steht die Kennung im Protokoll:
+     `adb logcat -d | grep setTestDeviceIds`. Dazu muss die
+     Dauer-Vollversion kurz aus, sonst fährt AdMob gar nicht erst hoch.
+     Der Wert gehört dann in `ADMOB_TESTGERAETE`.
+     Geht nur mit einer Debug-Fassung — eine Store-Fassung lässt sich
+     nicht fernsteuern.
+
+  2. **Über die AdMob-Konsole, ohne Kabel.** Auf dem Handy die Werbe-ID
+     ablesen (Samsung: Einstellungen → Sicherheit und Datenschutz →
+     Weitere Datenschutzeinstellungen → Anzeigen; sonst in den
+     Einstellungen nach „Anzeigen“ suchen) und sie in der AdMob-Konsole
+     unter **Testgeräte** eintragen. Wirkt kontoweit, braucht keinen neuen
+     Build und gilt auch für die Store-Fassung.
+
+  Weg 1 bleibt im Quelltext nachvollziehbar, Weg 2 wirkt sofort und ohne
+  Eingriff. Deshalb beide.
+
+  Bei Kübras Handy war USB-Debugging am 30.09.2026 ausgegraut, auch bei
+  eingeschaltetem Hauptschalter der Entwickleroptionen — dort also Weg 2.
+
 - **TikTok, Instagram und Facebook** — als **letzter** Schritt, wenn die
   App öffentlich ist. Die Konten legt Ajdin selbst an; erst danach lassen
   sich Reels und kurze Videos planen. Vorher bringt es nichts: ein Profil,
