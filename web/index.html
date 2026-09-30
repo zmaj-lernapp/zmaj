@@ -3302,6 +3302,10 @@ const DAUER_WORT = 'dragon';        // hier aendern, falls es jemand erraet
 /* Dasselbe Versteck, anderes Wort: zeigt die Geraetekennung, statt
    etwas umzuschalten. Kein Geheimnis, nur nichts fuer die Oberflaeche. */
 const KENNUNG_WORT = 'kennung';
+/* Drittes Wort: oeffnet Googles Anzeigenpruef-Tool. Es zeigt, was bei
+   Anzeigenanfragen wirklich passiert - welche Bloecke abgefragt werden, was
+   zurueckkommt, wie lange es dauert. Laeuft nur auf Testgeraeten. */
+const PRUEF_WORT = 'pruef';
 let dauerVoll = false;
 
 function dauerVollLaden(){
@@ -3346,6 +3350,38 @@ async function kennungZeigen(){
     try{ await navigator.clipboard.writeText(d.werbe_id + ' / ' + d.kennung); }catch(e){}
   }
 }
+/* Googles Anzeigenpruef-Tool. Das Werbe-Plugin kennt es nicht, deshalb
+   ueber das eigene. Es laeuft nur auf Testgeraeten - steht das Geraet
+   weder in ADMOB_TESTGERAETE noch in der AdMob-Konsole, sagt Google das
+   selbst, und die Meldung steht dann hier. */
+async function pruefwerkzeugOeffnen(){
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if(!P || !P.ZmajEinwilligung){
+    await frage('Anzeigen pruefen', 'Gibt es nur in der Handy-Fassung.', 'Gut', 'Zu');
+    return;
+  }
+  /* Der haeufigste Grund fuer ein Nein, und er hat nichts mit dem
+     Testgeraet zu tun: ohne laufendes AdMob ist die Testgeraeteliste nie
+     gesetzt worden - sie geht in initialize() mit. Mit eingeschalteter
+     Vollversion faehrt das SDK gar nicht erst hoch. Google meldet dann
+     "device is not in test mode", was in die Irre fuehrt.
+     Am 30.09.2026 genau so gemessen. */
+  if(!admobDa()){
+    await frage('Anzeigen pruefen',
+                'AdMob laeuft gerade nicht. Mit der Vollversion faehrt es gar' +
+                ' nicht erst hoch, und ohne laufendes SDK kennt Google das' +
+                ' Testgeraet nicht.', 'Gut', 'Zu');
+    return;
+  }
+  let d = null;
+  try{ d = await P.ZmajEinwilligung.pruefwerkzeug(); }catch(e){ d = {ok:false, fehler:String(e)}; }
+  if(d && !d.ok){
+    await frage('Anzeigen pruefen',
+                'Ging nicht: ' + (d.fehler || 'unbekannt') +
+                String.fromCharCode(10) + String.fromCharCode(10) +
+                'Das Tool laeuft nur auf Testgeraeten.', 'Gut', 'Zu');
+  }
+}
 function dauerVollVerdrahten(){
   const z = $('ueberZeile'); if(!z) return;
   let n = 0, uhr = 0;
@@ -3361,6 +3397,7 @@ function dauerVollVerdrahten(){
     if(wort === null) return;
     const w = wort.trim().toLowerCase();
     if(w === KENNUNG_WORT){ await kennungZeigen(); return; }
+    if(w === PRUEF_WORT){ await pruefwerkzeugOeffnen(); return; }
     if(w !== DAUER_WORT) return;
     if(dauerVoll){
       if(await frage('Dauerhafte Vollversion',
