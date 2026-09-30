@@ -111,9 +111,9 @@ Antrag noch einmal nachsehen und den Stand mit Datum hier eintragen.
 | 24.09.2026 | Tester, gesammelt | **Fehler:** Beim Vorlesen einer Geschichte beginnt die Stimme von vorn, sobald man ein Wort zum Übersetzen antippt — auch nach Drücken von Pause. Gewünscht: anhalten, Wort sprechen, dort weitermachen. | **Behoben am 26.09.2026** (`vorleser_richten.py`). Der Knopf wechselt jetzt Vorlesen – Pause – Weiterlesen und setzt die Stelle nicht mehr zurueck. Der gemeldete Fall wurde vollstaendig nachgestellt, auch mit dem Antippen dazwischen: Vorlesen bis 4,45 s, Pause, Wort angetippt (Uebersetzung erscheint, die Wortaufnahme laeuft, die Stelle 4,45 s bleibt gesichert), dann Vorlesen - es geht ab 6,61 s weiter. |
 | 24.09.2026 | Tester, gesammelt | **Bedienung:** Nach einer abgeschlossenen Lektion — Geschichte wie Vokabeltest — fehlt ein Knopf zurück zum Hauptmenü. | **Behoben am 26.09.2026** (`zurueck_richten.py`). Nach Vokabeltest und Geschichte steht in einer eigenen, leisen Reihe „← Lernpfad“ bzw. „← Geschichten“. Beide im Browser gedrueckt, sie fuehren dorthin. |
 | 24.09.2026 | Tester, gesammelt | **Gestaltung:** Die Farben wirken eintönig. Sinngemäß: „ein gutes Spiel mit schlechter Grafik". Wörtlich dazu: „nicht sehr anschaulich, pack maybe verschiedene Farben hin" und „nur blau sieht zwar nicht schlecht aus aber sehr eintönig". | **Bearbeitet am 26.09.2026.** Nachgemessen: auf dem Schirm standen elf Farbwerte, nach Farbton aber nur vier – sechs der elf waren dasselbe Blau. Die Ursache lag im Aufbau: die vier Sektionen benutzten dieselben Farben wie die Zustände (Blau war Primärfarbe *und* Sektion 1, Grün „geschafft" *und* Sektion 2, und so fort), ein fünfter Ton konnte nie entstehen. Jetzt trägt jede Sektion eine eigene Farbe – Blau, Türkis, Violett, Magenta – und die ganze App nimmt die Farbe der Sektion an, in der man gerade lernt: Grund, Flächen, Linien, Knöpfe und Schrift, in der hellen wie in der dunklen Fassung. Beim Wechsel blendet sie in 0,55 Sekunden hinüber. Gelb bleibt der Akzent, Grün „richtig", Rot „falsch". Gleichzeitig wurde die Startseite neu geordnet (Entwurf A+C+D): der Einstieg endet jetzt bei 248 Pixeln, vorher stand „Jetzt dran" bei 4039. Commit `8cd9078`. Läuft mit dem Build nach dem 07.10. |
-| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Einstufung für neue Nutzer — Selbsteinschätzung (Anfänger / Fortgeschritten / Profi), danach ein Test, der über den Einstiegspunkt entscheidet. Gedacht für Menschen, die Bosnisch sprechen, aber die Grammatik nie gelernt haben. | Offen. Trifft genau die Zielgruppe zweite und dritte Generation. Groesseres Vorhaben. |
-| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Ein Sammeltopf für falsch beantwortete Fragen, die sich gezielt wiederholen lassen, ohne sich durch bereits Gekonntes zu klicken. | Offen. Passt zum Kern der App; genau das, was Rezensenten bei Mitbewerbern vermissen. |
-| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Geläufiges technisches Vokabular aufnehmen (Maschine und Ähnliches), ohne ins Fachliche abzugleiten. | Offen. Inhaltliche Erweiterung. |
+| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Einstufung für neue Nutzer — Selbsteinschätzung (Anfänger / Fortgeschritten / Profi), danach ein Test, der über den Einstiegspunkt entscheidet. Gedacht für Menschen, die Bosnisch sprechen, aber die Grammatik nie gelernt haben. | **Umgesetzt am 30.09./01.10.2026.** Beim ersten Start: „Kannst du schon Bosnisch?“ mit drei Antworten, danach ein Test mit 15 Fragen in fünf Stufen von leicht bis schwer (Vorbild Duolingo und Busuu). Eingestuft wird hinter die letzte Stufe, bis zu der 80 Prozent aller Antworten stimmen; übersprungene Level bleiben offen. Im Browser durchgespielt: fehlerfrei → Level 58, 6 von 10 → Level 27, vier Fehler am Anfang → Level 1. Läuft mit dem Build nach dem 07.10. |
+| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Ein Sammeltopf für falsch beantwortete Fragen, die sich gezielt wiederholen lassen, ohne sich durch bereits Gekonntes zu klicken. | **Umgesetzt am 30.09./01.10.2026.** Eigener Reiter „Wiederholen“: Fehler aus Lektionen und Level-Tests landen dort, zehn je Runde, raus nach zweimal hintereinander richtig. Eine Runde zählt wie eine Lektion. Für alle, auch ohne Vollversion. Läuft mit dem Build nach dem 07.10. |
+| 24.09.2026 | Tester, gesammelt | **Vorschlag:** Geläufiges technisches Vokabular aufnehmen (Maschine und Ähnliches), ohne ins Fachliche abzugleiten. | **Entwurf liegt vor (01.10.2026):** zwei Level mit 60 Wörtern – Auto & Werkstatt, Handy/Computer & Geräte – in `ENTWURF_TECHNIK.md`. Wird nach dem Durchsehen mit einer Muttersprachlerin und den Aufnahmen eingebaut. |
 | 24.09.2026 | Eigene Idee | **Vorschlag:** Festliche Erscheinungsbilder für den Drachen, zum Beispiel zu Halloween. | **Verschoben auf 2027.** Halloween ist der 31.10.2026 und fiele damit in die Woche des Livegangs; am 25.09.2026 entschieden, es nicht in Version 10 zu nehmen. |
 | | | | |
 
@@ -143,7 +143,7 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
 **Vorgeschrieben:**
 
 > Für Bosnisch gibt es fast kein strukturiertes Lernmaterial — die großen
-> Sprachlern-Apps führen die Sprache nicht. Zmaj schließt diese Lücke: 43
+> Sprachlern-Apps führen die Sprache nicht. Zmaj schließt diese Lücke: 63
 > Level vom Alltag bis zum Arbeitsvertrag, 1668 Wörter mit bosnischer
 > Tonspur, 16 Grammatik-Lektionen mit 104 Übungen, 12 Lesegeschichten und
 > eine Sprechaufgabe mit Spracherkennung. Geübt wird in fünf Formen: hören,
@@ -170,15 +170,41 @@ Sichtbarkeit noch den Zugang zu Programmen. Also ruhig konkret werden.*
 > hat. Ein Test, in dem nichts passiert ist, liest sich schlecht. Deshalb
 > oben die Tabelle führen — dann steht hier am Ende von selbst etwas.
 
-**Noch offen — aus der Tabelle oben zusammenschreiben.**
+**Entwurf vom 01.10.2026, aus der Tabelle oben** (vor dem Einfügen prüfen,
+ob inzwischen etwas dazugekommen ist):
+
+> Aus dem Test sind diese Änderungen entstanden:
+> Fehler behoben: Nach einem Sprachwechsel wurde der Lernstand nicht mehr
+> gespeichert (noch am selben Tag mit Version 9 ausgeliefert). Die
+> Startanimation blieb stehen, wenn Animationen abgeschaltet waren. Der
+> Hinweis zum nächsten Leben stand an der falschen Stelle. Beim Vorlesen
+> einer Geschichte fing die Stimme nach dem Antippen eines Wortes von vorn an.
+> Bedienung: Nach Lektion, Test und Geschichte führt jetzt ein Knopf direkt
+> zurück zum Lernpfad.
+> Gestaltung: Die Tester fanden die App eintönig. Jede Sektion hat jetzt eine
+> eigene Farbe, und die Startseite zeigt sofort, wo es weitergeht.
+> Zwei Wünsche der Tester sind eingebaut: ein Einstufungstest beim ersten
+> Start für alle, die schon Bosnisch sprechen, und ein Reiter „Wiederholen“,
+> in dem falsch beantwortete Aufgaben gezielt geübt werden.
+> Inhalt: Aus den Rückmeldungen wurden 20 neue Level (von 43 auf 63, von 1108
+> auf 1668 Wörter) – unter anderem Einkaufen, Restaurant, Tiere, Obst und
+> Gemüse, Länder und Herkunft.
 
 ### 3.2 Woran hast du festgemacht, dass die App reif für die Produktion ist?
 
-**Antwortgerüst:**
+**Entwurf vom 01.10.2026** – die Stellen in eckigen Klammern vor dem
+Einfügen prüfen und nur stehen lassen, was stimmt:
 
-> _(am Ende ergänzen: keine Abstürze gemeldet, alle Funktionen von mindestens
-> einem Tester benutzt, gemeldete Fehler behoben, Inhalte von
-> Muttersprachlern gegengelesen …)_
+> Android Vitals zeigt für den ganzen Test keine Abstürze und keine ANR
+> [Stand am Tag des Antrags nachsehen]. Alle gemeldeten Fehler sind behoben
+> und auf zwei eigenen Geräten (Android 10 und Android 13 oder neuer)
+> nachgeprüft. [Die Tester haben Lektionen, Tests, Geschichten, Hör- und
+> Sprechaufgaben, Laden und Sprachwahl benutzt – nur, was 1.2 bestätigt.]
+> Werbung und Einwilligung laufen über Google AdMob und Googles zertifizierte
+> Einwilligungsplattform; die Werbung wurde vorher Punkt für Punkt gegen die
+> AdMob-Richtlinien geprüft. Das Abo läuft über Google Play Billing. Die App
+> speichert alles auf dem Gerät, ohne Konto und ohne Server. [Die bosnischen
+> Inhalte hat eine Muttersprachlerin gegengelesen – nur, wenn das so ist.]
 
 ---
 
