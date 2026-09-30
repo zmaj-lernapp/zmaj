@@ -91,7 +91,14 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   wird sie erst nach dem Livegang.
 - **Die Versionshinweise** berichtigen: „Die Vollversion lässt sich noch
   nicht kaufen" stimmt seit dem 20.09.2026 nicht mehr und blieb nur stehen,
-  weil jede Einreichung die Prüffrist zurückgesetzt hätte.
+  weil jede Einreichung die Prüffrist zurückgesetzt hätte. Der neue Text
+  liegt fertig in acht Sprachen in `STORE_TEXTE.md` unter „Versionshinweise –
+  Entwurf vom 01.10.2026“.
+- **Store-Screenshots neu machen.** Die elf Bilder in `store/screenshots`
+  sind vom 19.09.2026 und zeigen das alte Aussehen: „Sektion 2 · Sätze
+  bauen“, ohne Weitermachen-Knopf, ohne Sektionsfarben, ohne Reiter
+  „Wiederholen“. Aufgefallen am 01.10.2026. Neu aufnehmen, wenn die Fassung
+  nach dem Test auf dem Handy läuft.
 - **Zwei verirrte CR-Zeichen in `sprachen.py`**, bei Zeile 212 zwischen
   `laden.rot` und `laden.gruen_sub`. Sie richten keinen Schaden an, sorgen
   aber dafür, dass die Datei je nach Werkzeug 3.476 oder 3.478 Zeilen hat.
