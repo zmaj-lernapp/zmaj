@@ -34,6 +34,10 @@ ORDNER = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.join(ORDNER, "web", "index.html")
 XML = os.path.join(os.path.dirname(ORDNER), "zmaj-android", "android", "app",
                    "src", "main", "res", "values", "strings.xml")
+# Die Anleitung fuehrt dieselben Kennungen in einer Tabelle. Ohne sie hier
+# stuende dort nach dem Tausch weiter die Testkennung - beim naechsten
+# Durchsehen sieht das aus wie eine offene Aufgabe.
+ANL = os.path.join(ORDNER, "ANLEITUNG.md")
 
 APP_ID = "ca-app-pub-9105747905460295~9760526209"
 INTER = "ca-app-pub-9105747905460295/9764395638"
@@ -58,6 +62,27 @@ t(WEB, "Interstitial-Kennung",
 t(WEB, "Kennung fuer das belohnte Video",
   """  belohnt:      'ca-app-pub-3940256099942544/5224354917',   // Googles Testkennung""",
   """  belohnt:      '%s',   // Zmaj, angelegt 20.09.2026""" % BELOHNT)
+
+t(ANL, "Kennungstabelle in der Anleitung",
+  """Zurzeit laufen **Googles öffentliche Testanzeigen**. Die brauchen kein
+Konto, kosten nichts und bringen nichts ein. Testanzeigen in einer
+veröffentlichten App sind ein Regelverstoß, also vor dem ersten Hochladen an
+diesen drei Stellen die echten Werte aus dem AdMob-Konto eintragen:
+
+| Was | Wo | Steht dort jetzt |
+|---|---|---|
+| App-ID | `zmaj-android/android/app/src/main/res/values/strings.xml`, `admob_app_id` | `ca-app-pub-3940256099942544~3347511713` |
+| Anzeigen-IDs | `web/index.html`, `ADMOB_ID` (`interstitial`, `belohnt`) | Googles Testkennungen |
+| Testbetrieb | `web/index.html`, `ADMOB_TEST` | `true` → auf `false` |""",
+  """Die echten Kennungen aus dem AdMob-Konto sind eingetragen, gesetzt von
+`admob_scharf.py`. Testanzeigen in einer veröffentlichten App wären ein
+Regelverstoß; seitdem stehen an diesen drei Stellen die scharfen Werte:
+
+| Was | Wo | Steht dort jetzt |
+|---|---|---|
+| App-ID | `zmaj-android/android/app/src/main/res/values/strings.xml`, `admob_app_id` | `%s` |
+| Anzeigen-IDs | `web/index.html`, `ADMOB_ID` (`interstitial`, `belohnt`) | die echten Kennungen vom 20.09.2026 |
+| Testbetrieb | `web/index.html`, `ADMOB_TEST` | `false` |""" % APP_ID)
 
 t(XML, "App-Kennung in der Huelle",
   """    <!-- AdMob: Ohne diesen Eintrag stuerzt die App beim Start ab, sobald das

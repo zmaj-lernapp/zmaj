@@ -26,7 +26,7 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ## Stand am 30.09.2026
 
-**Behoben: die Punkte 9, 11, 13, 14, 15, 16 und 19.** Gegengeprüft auf dem
+**Behoben: die Punkte 9, 11, 13, 14, 15, 16, 18 und 19.** Gegengeprüft auf dem
 Galaxy S9 (Android 10) mit Googles Testkennungen, Fassung 57 — und dort, wo
 der Fehler nur ohne AdMob-Plugin auftritt, im Browser.
 
@@ -141,6 +141,43 @@ Einstellungen je offen:   false
 Vorher stand `persWahl` hier auf `null` und an jede Anzeige ging `npa=1`.
 Dazu der Kommentar über AdMob berichtigt: er behauptete, die App setze npa
 nicht mehr selbst — sie tut es an zwei Stellen, und das ist auch richtig so.
+
+**Punkt 18 — die Diagnosedaten in der Datenschutzerklärung.** Das
+Data-Safety-Formular kreuzt „App-Informationen und -Leistung / Diagnosedaten
+/ Startzeit, Hänger, Energieverbrauch“ an; die Erklärung zählte nur vier
+Dinge auf und nannte sie nicht. Google vergleicht beides miteinander. Jetzt
+steht der Halbsatz in allen acht Sprachen, und `seite_bauen.py` hat ihn auf
+die öffentliche Seite gebracht.
+
+Die Begriffe sind nachgeschlagen statt geraten: Google Play nennt es auf
+Schwedisch `starttid` und `batteriförbrukning`. Die sieben Übersetzungen
+benutzen deshalb das Akku-Wort ihrer Sprache. Das Deutsche bleibt bei
+„Energieverbrauch“ — so steht es im Formular, das abgeschickt wird.
+
+Der zweite Teil des ursprünglichen Befundes — ein Widerspruch bei den
+Zwecken „Analysen“ und „Betrugsprävention“ — hat der Gegenprüfung nicht
+standgehalten und bleibt unangetastet: das sind Zwecke von Googles
+Verarbeitung, und dafür verweist die Erklärung auf Googles eigene.
+
+**Punkt 20 war schon behoben**, wie Punkt 12. `admob_scharf.py` tauscht
+längst den ganzen Kommentarblock in `strings.xml` mit, nicht nur die
+Kennung. Offen war nur der Zusatzbefund: `ANLEITUNG.md` führt dieselben
+Testkennungen in einer Tabelle und wäre beim Tausch veraltet. Die Tabelle
+steht jetzt mit in `admob_scharf.py` — und weil dessen Nachkontrolle jede
+angefasste Datei darauf prüft, dass keine Testkennung mehr darin steht,
+prüft sich die Änderung selbst. Probelauf:
+
+```
+ok   index.html     Testschalter aus
+ok   index.html     Interstitial-Kennung
+ok   index.html     Kennung fuer das belohnte Video
+ok   ANLEITUNG.md   Kennungstabelle in der Anleitung
+ok   strings.xml    App-Kennung in der Huelle
+     Nachkontrollen bestanden.
+```
+
+Geschrieben wurde dort nichts: das Skript läuft erst nach der
+Produktionsfreigabe.
 
 ---
 
