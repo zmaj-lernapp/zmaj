@@ -1818,12 +1818,14 @@ const ADMOB_TEST = true;
    (AdMob.java:302) betrifft genau die hier aufgezaehlten. */
 const ADMOB_TESTGERAETE = [
   '41C694B849758EB6384F9FED5DD5FFAC',   // Ajdin, S21 Ultra - DEBUG-Fassung
+  'E305C080FC5C6BC30B53AE7A29DD4E0A',   // Galaxy S9 - DEBUG-Fassung, 30.09.2026
   /* Was hier noch fehlt, siehe oben:
        - Ajdins S21 aus der PLAY-Fassung (anderer Signaturschluessel,
          andere Kennung - der Wert oben schuetzt nur die Debug-Fassung)
        - Kuebras Handy, ebenfalls aus der Play-Fassung
-       - das Galaxy S9
-     Alle drei gehoeren hier hinein, BEVOR admob_scharf.py laeuft. */
+     Beide gehoeren hier hinein, BEVOR admob_scharf.py laeuft - oder beide
+     Geraete stehen mit ihrer Werbe-ID in der AdMob-Konsole, das deckt
+     jede Fassung ab. */
 ];
 const ADMOB_ID = {
   interstitial: 'ca-app-pub-3940256099942544/1033173712',   // Googles Testkennung
