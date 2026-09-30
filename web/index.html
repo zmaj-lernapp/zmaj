@@ -1995,7 +1995,14 @@ let getragen = '';   // z. B. "krone,brille,trikot", leer = nichts
    also haengt alles wieder am Drachen, wenn das Abo zurueckkommt. Eine
    Stelle, und damit gilt es fuer den Laden, den Drachen und die Farbe
    gleichermassen. */
-const getragenListe = () => String(getragen || '').split(',').filter(Boolean)
+/* Die rohe Liste - alles, was gespeichert ist. GERECHNET wird mit ihr,
+   ANGEZEIGT wird mit getragenListe(). Stand das Rechnen auf der
+   gefilterten Liste, schrieb ein einziger Tipp im Laden bei abgelaufenem
+   Abo die gekuerzte Liste zurueck - Krone, Mantel, Farbe und Funkeln waren
+   damit endgueltig weg, entgegen dem Versprechen zwei Zeilen hoeher.
+   Gefunden in der Gegenpruefung am 29.09.2026. */
+const getragenRoh = () => String(getragen || '').split(',').filter(Boolean);
+const getragenListe = () => getragenRoh()
   .filter(id => !istVollStueck(id) || unlimited());
 const traegt = id => getragenListe().indexOf(id) >= 0;
 function setzeGetragen(liste){
@@ -2906,6 +2913,31 @@ function standUebernehmen(d){
     getragen = d.getragen;
     try{ localStorage.setItem('zmaj_getragen', getragen); }catch(e){}
   }
+  /* Siehe standAlsObjekt: nur nach oben. Eine aeltere Sicherung darf ein
+     schon gegebenes Geschenk nicht wieder aufmachen. */
+  const jahrAusStand = Number(d.geschenk_jahr) || 0;
+  if(jahrAusStand > (geschenk.jahr || 0)){
+    geschenk = {jahr: jahrAusStand, bis: geschenk.bis || 0};
+    try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk)); }catch(e){}
+  }
+}
+/* Einmaliger Umzug. Bis Fassung 52 funkelte jeder mit Vollversion von
+   selbst - das Funkeln stand in keiner Trageliste, getrageneTeile() legte
+   es jedem dazu. Seit es eine Ware ist, muss es in getragen stehen, sonst
+   waere es nach dem Update ohne ein Wort verschwunden.
+   Laeuft genau einmal, und nur bei dem, der die Vollversion zuletzt hatte.
+   Wichtig ist die Stelle: erst NACH loadProgress(). Stand er frueher,
+   beim Einlesen von zmaj_getragen, schrieb standUebernehmen() ihn gleich
+   darauf wieder zu - in der Browser-Probe am 30.09.2026 aufgefallen. */
+function funkelnUmzug(){
+  try{
+    if(localStorage.getItem('zmaj_funkeln_umzug')) return false;
+    localStorage.setItem('zmaj_funkeln_umzug', '1');
+  }catch(e){ return false; }
+  if(!(vollversionGemerkt() || dauerVoll)) return false;
+  if(getragenRoh().indexOf('funkeln') >= 0) return false;
+  setzeGetragen(getragenRoh().concat(['funkeln']));
+  return true;
 }
 function standAlsObjekt(){
   return {gewusst:[...known], bestanden:[...passed], gelesen:[...read], tage:[...days],
@@ -2915,7 +2947,15 @@ function standAlsObjekt(){
           /* Muss in BEIDE Richtungen stehen - hier und in standUebernehmen.
              Steht es nur hier, fällt es beim Handywechsel durch dasselbe
              Loch, das "getragen" schon einmal hatte. */
-          gefeiert:[...gefeiert], rekord:rekord, wann:wann};
+          gefeiert:[...gefeiert], rekord:rekord, wann:wann,
+          /* Nur das Jahr des letzten Geschenks, nie die laufende Frist.
+             Das Jahr sagt "dieses Geschenk wurde schon gegeben" und gehoert
+             damit zum Lernenden, nicht zum Geraet: lag es nur im
+             Geraetespeicher, holte man sich die fuenf Tage beliebig oft -
+             App-Daten loeschen, Sicherung einlesen, wieder faellig. Die
+             Frist bleibt draussen, sonst waeren laufende Geschenktage
+             verschenkbar. Gefunden in der Gegenpruefung am 29.09.2026. */
+          geschenk_jahr: (geschenk.jahr || 0)};
 }
 /* ---- Die Vollversion ----
    Sie gehoert nicht in den Lernstand. Vorher stand sie dort, und damit
@@ -2982,6 +3022,12 @@ const SEIT_SCHLUESSEL = 'zmaj_seit';
 const GESCHENK_SCHLUESSEL = 'zmaj_geschenk';
 const GESCHENK_TAGE = 5;
 let geschenk = {jahr: 0, bis: 0};
+/* Faellig, aber noch nicht gezeigt. Frueher stand die Sichtbarkeitspruefung
+   hinter geschenkPruefen() im selben && - das Jahr war dann abgebucht und
+   die Karte fuer immer weg, wenn der Tag mitten in einer Lektion wechselte.
+   Jetzt bleibt das Geschenk offen, bis die Startseite wirklich zu sehen
+   ist. Gefunden in der Gegenpruefung am 29.09.2026. */
+let geschenkOffen = false;
 try{ geschenk = JSON.parse(localStorage.getItem(GESCHENK_SCHLUESSEL) || 'null') || geschenk; }catch(e){}
 const geschenkLaeuft = () => (geschenk.bis || 0) > Date.now();
 const geschenkRest = () => Math.max(0, Math.ceil(((geschenk.bis || 0) - Date.now()) / 86400000));
@@ -3023,8 +3069,19 @@ function geschenkPruefen(){
   if(jahre < 1 || jahre <= (geschenk.jahr || 0)) return 0;
   geschenk = {jahr: jahre, bis: Date.now() + GESCHENK_TAGE * 86400000};
   try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk)); }catch(e){}
+  geschenkOffen = true;
   renderLives();
   return jahre;
+}
+/* Zeigt die Karte, sobald es passt: die Startseite muss da sein und es darf
+   kein anderer Kasten offen stehen. Wird von drei Stellen gerufen - nach
+   dem Vorspann, beim Tageswechsel und jedes Mal, wenn der Lernpfad
+   gezeichnet wird. Mehrfach rufen schadet nicht, der Merker faellt beim
+   ersten Mal um. */
+function geschenkNachreichen(){
+  if(!geschenkOffen || frageSchliessen || !sichtbar('pfad')) return;
+  geschenkOffen = false;
+  zeigeGeschenk();
 }
 function zeigeGeschenk(){
   const kasten = document.createElement('div');
@@ -3038,7 +3095,11 @@ function zeigeGeschenk(){
     '</div>';
   kasten.querySelector('#geschenkOk').textContent = t('task.weiter');
   document.body.appendChild(kasten);
-  const zu = ()=>{ kasten.remove(); frageSchliessen = null; };
+  /* Nur die eigene Schliessfunktion zuruecknehmen. Stuende hier ein nacktes
+     frageSchliessen = null, naehme diese Karte einem spaeter geoeffneten
+     Kasten seinen Weg hinaus - Abo- und Widerrufkasten machen es deshalb
+     genauso. */
+  const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   kasten.querySelector('#geschenkOk').addEventListener('click', zu);
   frageSchliessen = zu;
   sound('done');
@@ -3537,7 +3598,8 @@ function tagPruefen(){
      in frost, luecken ist leer und die Funktion kehrt sofort zurueck.
      Gefunden am 26.09.2026. */
   pruefeSchutz();
-  if(geschenkPruefen() && sichtbar('pfad')) zeigeGeschenk();
+  geschenkPruefen();
+  geschenkNachreichen();
   /* Nur zeichnen, wenn die Startseite ueberhaupt sichtbar ist. Mitten in
      einer Lektion wuerde showHome() die Aufgabe wegreissen. Der Merker
      steht trotzdem schon auf heute, damit es spaeter nicht grundlos
@@ -4212,7 +4274,12 @@ async function vollAbgleichen(){
   aboLaeuft = false;
   if(d && d.bekannt){
     aboStoerung = false;
-    if(!!d.aktiv !== premium){ vollversionMerken(!!d.aktiv); renderLives(); }
+    /* Nicht nur die Leben: mit der Vollversion gehen auch ihre Stuecke
+       an oder aus. Ohne das neue Zeichnen funkelte der Drache nach dem
+       Auslaufen weiter, bis der Nutzer den Schirm wechselte. */
+    if(!!d.aktiv !== premium){
+      vollversionMerken(!!d.aktiv); renderLives(); drachenNeu(); renderLaden();
+    }
   }else{
     aboStoerung = true;   // gemerkten Stand stehen lassen
   }
@@ -4679,13 +4746,13 @@ async function nachAnmeldung(info){
   premium = !!info.premium;
   kontoMail = info.email || '';
   await loadProgress(); syncLives(); pruefeSchutz();
-  if(altenFortschrittUmschreiben()) saveProgress();
+  if(altenFortschrittUmschreiben() | funkelnUmzug()) saveProgress();
   /* Das Jahresgeschenk hing bisher allein an tagPruefen() - und das
      schlaegt nur an, wenn die App offen ist, waehrend der Tag wechselt.
      Wer sie abends schliesst und morgens neu oeffnet, kam nie an sein
      Geschenk: letzterTag steht beim Laden schon auf heute. Gefunden am
      29.09.2026, als es um den Geraetewechsel ging. */
-  const geschenkJahr = geschenkPruefen();
+  geschenkPruefen();
   // Ohne Server gibt es kein Konto zu verwalten: kein Passwort, keine
   // E-Mail, kein Abmelden. Dann bleibt der Knopf weg und mit ihm die
   // ganze Kontoansicht - erreichbar ist sie nur ueber ihn.
@@ -4694,9 +4761,6 @@ async function nachAnmeldung(info){
   $('btnSettings').style.display='inline-block';
   $('btnShop').style.display='inline-block';
   homeMode='words'; showHome();
-  // Erst zeichnen, dann die Karte darueberlegen - sonst steht sie vor
-  // einem leeren Bildschirm.
-  if(geschenkJahr) zeigeGeschenk();
 }
 
 async function abmelden(){
@@ -4828,12 +4892,21 @@ function renderLaden(){
   };
   /* Ein Stueck der Vollversion hat keinen Preis. Laeuft sie, steht dort
      Tragen oder Abnehmen wie bei gekaufter Ware; laeuft sie nicht, ein
-     grauer Knopf, der in die Einstellungen fuehrt. */
+     grauer Knopf, der in die Einstellungen fuehrt.
+     Gibt es dort nichts zu holen - kein Abo-Plugin wie im Browser am PC,
+     oder Google kennt die Produkte noch nicht -, blendet showSettings()
+     den ganzen Vollversions-Block aus. Dann fuehrte der Knopf ins Leere,
+     und im Reiter Effekte war er der einzige. Jetzt steht er dort
+     ausgegraut: nichts zu tun, aber auch kein falsches Versprechen.
+     Dieselbe Bedingung benutzen vollZeileLaden() und vollZeileLeben().
+     Gefunden in der Gegenpruefung am 29.09.2026. */
   const tragenKnopf = w => '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'">'+
         t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen')+'</button>';
+  const vollKnopf = () => (!aboPlugin() || aboProdukteFehlen)
+    ? '<button class="btn kauf ghost" disabled>'+t('laden.nur_voll')+'</button>'
+    : '<button class="btn kauf ghost" data-vollstueck="1">'+t('laden.nur_voll')+'</button>';
   const zierratZeile = w => w.voll
-    ? zeile(w, unlimited() ? tragenKnopf(w)
-              : '<button class="btn kauf ghost" data-vollstueck="1">'+t('laden.nur_voll')+'</button>')
+    ? zeile(w, unlimited() ? tragenKnopf(w) : vollKnopf())
     : (besitz.has(w.id) ? zeile(w, tragenKnopf(w)) : zeile(w, preisKnopf(w)));
   /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
      ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
@@ -4884,7 +4957,9 @@ function trage(id){
   if(!besitz.has(id) && !(istVollStueck(id) && unlimited())) return;
   const g = gruppeVon(id);
   const runter = traegt(id);
-  const rest = getragenListe().filter(x => x !== id && gruppeVon(x) !== g);
+  // Rohe Liste: siehe getragenRoh(). Sonst faellt hier heraus, was das
+  // abgelaufene Abo gerade verdeckt, und kommt nie wieder.
+  const rest = getragenRoh().filter(x => x !== id && gruppeVon(x) !== g);
   setzeGetragen(runter ? rest : rest.concat([id]));
   sound(runter ? 'ablegen' : 'anziehen');
   renderLaden(); drachenNeu();
@@ -4911,7 +4986,7 @@ function kaufe(id){
     // Gruppe herunter, nicht den ganzen uebrigen Zierrat.
     besitz.add(id);
     const g = gruppeVon(id);
-    setzeGetragen(getragenListe().filter(x => gruppeVon(x) !== g).concat([id]));
+    setzeGetragen(getragenRoh().filter(x => gruppeVon(x) !== g).concat([id]));
   }
   muenzenAus += w.preis;
   saveProgress(); sound('kauf');
@@ -5040,6 +5115,10 @@ async function sicherungEinlesen(datei){
      Fall: hitna pomoc, "Notarzt" -> "Rettungsdienst". Gefunden am 26.09.2026. */
   altenFortschrittUmschreiben();
   seitNachEinlesen();
+  /* Gleich nachsehen statt erst beim naechsten Kaltstart: die Sicherung
+     kann einen viel frueheren Anfang mitbringen, und dann ist das Geschenk
+     in diesem Augenblick faellig. */
+  geschenkPruefen();
   syncLives(); pruefeSchutz();
   const gesichert = await saveProgress();
   renderLives();
@@ -5206,6 +5285,7 @@ function showPath(){
     const naechste = mitFarbe[i + 1] || el;
     el.style.setProperty('--sek-next', 'var(--sek' + farbNr(naechste) + ')');
   });
+  geschenkNachreichen();
 }
 
 /* =================== GESCHICHTEN-PFAD =================== */
@@ -6404,6 +6484,10 @@ async function init(){
   /* Jetzt erst die Werbung. vorspannVorbei löst auf, wenn das Logo
      ausgeblendet ist - oder spätestens nach elf Sekunden. */
   await vorspannVorbei;
+  /* Erst jetzt. Der Aufruf stand vorher am Ende von nachAnmeldung(), also
+     noch innerhalb von starten() - die Karte (z-index 1000) legte sich
+     damit ueber den laufenden Vorspann (900). */
+  geschenkNachreichen();
   werbungVorbereiten();
 }
 
