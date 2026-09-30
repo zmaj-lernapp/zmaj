@@ -1864,13 +1864,35 @@ async function admobZeigen(belohnt, darfNoch){
     if(belohnt){
       await AdMobP.prepareRewardVideoAd({adId: ADMOB_ID.belohnt, isTesting: ADMOB_TEST,
                                          npa: !werbungPersonalisiert()});
-      /* Gegenstueck zur Frist beim Interstitial. Antwortet das SDK nie -
-         bei schlechtem Netz kommt das vor -, stuende der Nutzer sonst ewig
-         vor der Ladeanzeige. Nach zwei Minuten geht es ohne Belohnung
-         weiter, dieselbe Frist wie unten. */
-      const lohn = await Promise.race([AdMobP.showRewardVideoAd(),
-                                       new Promise(f => setTimeout(()=>f(null), 120000))]);
-      return !!lohn;
+      /* Punkt 11 und 16 aus WERBUNG_PRUEFUNG.md.
+         Vorher entschied hier ein Rennen gegen zwei Minuten darueber, ob
+         es ein Leben gibt. Zwei Wege liefen schief: wer waehrend des
+         Videos angerufen wurde, sah es zu Ende und bekam trotzdem nichts
+         - die Belohnung kam nach dem Rennen und fiel unter den Tisch.
+         Und wer abbrach, wartete zwei volle Minuten auf nichts, weil das
+         Plugin den Aufruf beim Schliessen ohne Belohnung weder aufloest
+         noch ablehnt.
+         Jetzt halten zwei Zuhoerer die beiden Dinge getrennt fest:
+         onRewardedVideoAdReward sagt, DASS die Belohnung faellig wurde -
+         das Plugin schreibt eigens dazu, dass Dismissed darueber nichts
+         aussagt -, und Dismissed beendet das Warten, sobald der Nutzer
+         die Anzeige wegdrueckt. Dieselbe Bauweise wie beim Interstitial
+         ein Stueck weiter unten.
+         Die Frist bleibt als letzter Ausweg stehen: ohne sie haengt der
+         Aufruf bei einem Abbruch fuer immer. */
+      let verdient = false;
+      let lohnHorcher = null;
+      try{ lohnHorcher = await AdMobP.addListener('onRewardedVideoAdReward',
+                                                  ()=>{ verdient = true; }); }catch(e){}
+      const fertigLohn = await admobWarten([['onRewardedVideoAdDismissed', true],
+                                            ['onRewardedVideoAdFailedToShow', false]], 120000);
+      /* Nicht awaiten: das Versprechen loest nur auf, wenn es eine
+         Belohnung gibt. Kommt sie, wird sie hier trotzdem noch
+         mitgenommen - doppelt haelt besser als der Zuhoerer allein. */
+      AdMobP.showRewardVideoAd().then(lohn => { if(lohn) verdient = true; }, ()=>{});
+      await fertigLohn.warten;
+      if(lohnHorcher) try{ lohnHorcher.remove(); }catch(e){}
+      return verdient;
     }
     await AdMobP.prepareInterstitial({adId: ADMOB_ID.interstitial, isTesting: ADMOB_TEST,
                                      npa: !werbungPersonalisiert()});
@@ -5983,15 +6005,42 @@ function kurzMeldung(text){
   }, 3200);
 }
 
+/* Punkt 9 und 13 aus WERBUNG_PRUEFUNG.md: es gab keinen Riegel gegen den
+   zweiten Tipp. Ein zweiter Tipp startete einen zweiten Ladevorgang; kam
+   der erst zurueck, nachdem das erste Video zu war, schob sich ein
+   unangefordertes Vollbild-Video ueber die inzwischen geoeffnete
+   Startseite - mit einem zweiten Leben und einem zweiten Abzug vom
+   Tageskontingent.
+   Der Riegel heisst anzeigeLaeuft: werbungLaeuft gibt es schon, das
+   riegelt Googles Einwilligungsfenster ab. Er sitzt in zeigeWerbung()
+   und nicht in zeigeWerbungJetzt():
+   auch der Zweitversuch ueber admobStart() geht durch diese Tuer. Jeder
+   Ausgang laeuft ueber fertigEinmal(), damit er wieder aufgeht. */
+let anzeigeLaeuft = false;
 function zeigeWerbung(belohnt, fertig, darfNoch){
+  if(anzeigeLaeuft){ fertig(false); return; }
+  anzeigeLaeuft = true;
+  let erledigt = false;
+  /* Sicherheitsleine. Ohne sie bliebe der Riegel fuer immer zu, wenn ein
+     Weg sein fertig() nie ruft - und die App koennte bis zum Neustart
+     keine Anzeige mehr zeigen. Die Frist liegt ueber der laengsten
+     inneren Frist von 120 Sekunden, greift also nur, wenn wirklich
+     niemand mehr antwortet. */
+  let wacht = setTimeout(()=> fertigEinmal(false), 150000);
+  const fertigEinmal = lief => {
+    if(erledigt) return;          // ein Ausgang, einmal
+    erledigt = true; anzeigeLaeuft = false;
+    clearTimeout(wacht);
+    fertig(lief);
+  };
   const P = window.Capacitor && window.Capacitor.Plugins;
   if(WERBUNG_ECHT && !AdMobP && admobFehler && P && P.AdMob && !admobZweitversuch){
     admobZweitversuch = true;
-    admobStart().then(()=> zeigeWerbungJetzt(belohnt, fertig, darfNoch),
-                      ()=> zeigeWerbungJetzt(belohnt, fertig, darfNoch));
+    admobStart().then(()=> zeigeWerbungJetzt(belohnt, fertigEinmal, darfNoch),
+                      ()=> zeigeWerbungJetzt(belohnt, fertigEinmal, darfNoch));
     return;
   }
-  zeigeWerbungJetzt(belohnt, fertig, darfNoch);
+  zeigeWerbungJetzt(belohnt, fertigEinmal, darfNoch);
 }
 
 function zeigeWerbungJetzt(belohnt, fertig, darfNoch){
@@ -6056,14 +6105,28 @@ function zeigeWerbungJetzt(belohnt, fertig, darfNoch){
 
 /* Ein belohntes Video: freiwillig, gibt ein Leben zurück. */
 function werbungFuerLeben(){
+  /* Punkt 9 und 13: den Knopf sperren, solange etwas laeuft. Der Riegel
+     in zeigeWerbung() haelt ohnehin, aber ein Knopf, der sich nicht
+     ruehrt, laedt zum zweiten Tipp ein. */
+  const knopf = $('lAd');
+  if(knopf) knopf.disabled = true;
   zeigeWerbung(true, angesehen => {
+    if(knopf) knopf.disabled = false;
     /* Ohne Anzeige kein Leben - und ein Wort dazu, sonst wirkt der Knopf
        kaputt. */
     if(!angesehen){ kurzMeldung(t('werbung.keine_anzeige')); return; }
     lives = {anzahl: Math.min(LEBEN_MAX, lives.anzahl + WERBUNG_LEBEN_LOHN),
              zeit: lives.zeit || Date.now()};
     saveProgress(); renderLives(); sound('ok');
-    showLevelHome();
+    /* Punkt 14: nur aufraeumen, wenn der Bildschirm ohne Leben ueberhaupt
+       noch steht. Wer waehrend des Ladens mit Muenzen ein Herz gekauft und
+       eine neue Lektion angefangen hat, verlor sie sonst - showLevelHome()
+       leert lBody, und lessonEnd() wird nie erreicht: keine Lektion
+       gezaehlt, kein Bonus, kein Lerntag.
+       Geprueft wird der Knopf selbst, nicht seine Kennung: nur wenn genau
+       dieser Knoten noch im Dokument haengt, steht auch der alte Schirm
+       noch. Dieselbe Vorsicht wie beim Interstitial seit dem 29.09.2026. */
+    if(!knopf || document.body.contains(knopf)) showLevelHome();
   });
 }
 
