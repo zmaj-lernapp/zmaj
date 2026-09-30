@@ -289,14 +289,30 @@ Zmaj ist kostenlos und finanziert sich über Werbung.
 Sretno. Viel Erfolg.
 ```
 
-**Ersatzabsatz „Was es kostet“ – gilt erst, wenn das Abo im Store steht**
+**Ersatzabsatz „Was es kostet“ – gilt erst, wenn die Probezeit angelegt ist**
 
-Tausch den Absatz unter „WAS ES KOSTET“ oben gegen diesen hier, sobald das
-Abo in der Play Console angelegt und der Kauf in der App eingebaut ist.
-Prüf den Preis gegen die Console, oder streich die Zahlen.
+Tausch den Absatz unter „WAS ES KOSTET“ oben gegen diesen hier — aber
+**erst, wenn in der Play Console die 7 Tage Probezeit angelegt sind.** Der
+Absatz verspricht sie; steht er vorher online, sagt der Store etwas, das es
+beim Kauf nicht gibt. Keine Preise darin, also muss nichts gegen die Console
+geprüft werden.
+
+Gebaut am 30.09.2026 nach dem Vorbild von Duolingo, Babbel, Busuu, Drops,
+Memrise und Mondly: dort steht der Bezahlteil ganz hinten, als Fließtext
+ohne Aufzählung, kurz (Duolingo 222 Zeichen, Babbel 420), erst das Freie,
+dann das Extra als Einladung, keine Preise. Ajdin: „nimm die kurze, keiner
+wird sich das wirklich durchlesen“.
+
+Der Satz „Keine Aufgabe wird dadurch leichter“ ist Ajdins Regel „niemals
+pay-to-win“ in einem Satz und bleibt stehen.
+
+Passt ins Budget: heute 3505 Zeichen, der Einzeiler hat 52, der neue Absatz
+hat 379 — danach 3832 von 4000.
 
 ```
-Zmaj ist kostenlos und finanziert sich über Werbung. Wenn du ohne Werbung und mit unbegrenzten Leben lernen willst, gibt es die Vollversion als Abo – monatlich oder jährlich.
+Zmaj ist kostenlos und finanziert sich über Werbung. Alle 63 Levels, Grammatik, Geschichten und Aussprache sind frei.
+
+Wenn dir Zmaj gefällt, teste die Vollversion sieben Tage kostenlos: keine Werbung, unbegrenzte Leben, Schmuck für den Drachen. Keine Aufgabe wird dadurch leichter. Nach der Testwoche läuft das Abo monatlich oder jährlich weiter, bis du in Google Play kündigst.
 ```
 
 **Apple: Untertitel** (30 Zeichen)
@@ -324,13 +340,13 @@ Zmaj – Learn Bosnian
 **Kurzbeschreibung** (76 Zeichen)
 
 ```
-Learn Bosnian for family, daily life and paperwork — 43 levels, short drills
+Learn Bosnian for family, daily life and paperwork — 63 levels, short drills
 ```
 
 **Vollständige Beschreibung** (3427 von 4000 Zeichen)
 
 ```
-Family in Bosnia, Bosnian roots, or Bosnian in-laws: at some point you want to do the talking yourself, without someone translating in between. You probably understand more than you can say. Zmaj teaches you Bosnian: 43 levels, short exercises, from everyday talk to an employment contract.
+Family in Bosnia, Bosnian roots, or Bosnian in-laws: at some point you want to do the talking yourself, without someone translating in between. You probably understand more than you can say. Zmaj teaches you Bosnian: 63 levels, short exercises, from everyday talk to an employment contract.
 
 WHAT YOU LEARN
 
@@ -397,10 +413,15 @@ Zmaj is free and funded by ads.
 Sretno. Good luck.
 ```
 
-**Ersatzabsatz „WHAT IT COSTS“ – gilt erst, wenn das Abo im Store steht**
+**Ersatzabsatz „WHAT IT COSTS“ – gilt erst, wenn die Probezeit angelegt ist**
+
+Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
+Console stehen. 374 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj is free and funded by ads. If you want to learn without ads and with unlimited lives, there is a full version as a subscription – monthly or yearly.
+Zmaj is free and funded by ads. All 63 levels, the grammar, the stories and the pronunciation are open to everyone.
+
+If you like Zmaj, try the full version free for seven days: no ads, unlimited lives, accessories for the dragon. None of this makes a single exercise easier. After the trial week, the subscription renews monthly or yearly until you cancel it in Google Play.
 ```
 
 **Apple: Untertitel** (26 Zeichen)
@@ -428,13 +449,13 @@ Zmaj – Boşnakça öğren
 **Kurzbeschreibung** (78 Zeichen)
 
 ```
-Aile, günlük hayat ve resmî işler için Boşnakça — 43 seviye, kısa alıştırmalar
+Aile, günlük hayat ve resmî işler için Boşnakça — 63 seviye, kısa alıştırmalar
 ```
 
 **Vollständige Beschreibung** (3409 von 4000 Zeichen)
 
 ```
-Dedenden, ninenden duya duya bir şeyler anlıyor ama kendin konuşamıyor musun? Boşnak kökenli bir ailede büyüdüysen, Bosna'da akrabaların varsa ya da eşinin ailesiyle aracısız konuşmak istiyorsan: Zmaj sana Boşnakçayı baştan öğretiyor. 43 seviye, kısa alıştırmalar, günlük hayattan iş sözleşmesine kadar.
+Dedenden, ninenden duya duya bir şeyler anlıyor ama kendin konuşamıyor musun? Boşnak kökenli bir ailede büyüdüysen, Bosna'da akrabaların varsa ya da eşinin ailesiyle aracısız konuşmak istiyorsan: Zmaj sana Boşnakçayı baştan öğretiyor. 63 seviye, kısa alıştırmalar, günlük hayattan iş sözleşmesine kadar.
 
 NELER ÖĞRENİYORSUN?
 
@@ -501,10 +522,15 @@ Zmaj ücretsiz ve reklamlarla finanse ediliyor.
 Sretno. Başarılar.
 ```
 
-**Ersatzabsatz „NE KADAR TUTUYOR?“ – gilt erst, wenn das Abo im Store steht**
+**Ersatzabsatz „NE KADAR TUTUYOR?“ – gilt erst, wenn die Probezeit angelegt ist**
+
+Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
+Console stehen. 393 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj ücretsiz ve reklamlarla finanse ediliyor. Reklamsız ve sınırsız canla çalışmak istersen tam sürüm abonelik olarak sunuluyor – aylık veya yıllık.
+Zmaj ücretsiz ve reklamlarla finanse ediliyor. 63 seviyenin hepsi, dil bilgisi, hikâyeler ve telaffuz herkese açık.
+
+Zmaj'ı beğendiysen tam sürümü yedi gün ücretsiz deneyebilirsin: reklamsız kullanım, sınırsız can ve ejderha için aksesuarlar. Hiçbir alıştırma bununla kolaylaşmıyor. Deneme haftasından sonra abonelik, sen Google Play'de iptal edene kadar aylık veya yıllık olarak devam ediyor.
 ```
 
 **Apple: Untertitel** (28 Zeichen)
@@ -532,13 +558,13 @@ Zmaj – Lär dig bosniska
 **Kurzbeschreibung** (76 Zeichen)
 
 ```
-Lär dig bosniska för familj, vardag och myndigheter — 43 nivåer i korta pass
+Lär dig bosniska för familj, vardag och myndigheter — 63 nivåer i korta pass
 ```
 
 **Vollständige Beschreibung** (3217 von 4000 Zeichen)
 
 ```
-Har du familj i Bosnien, bosniska rötter eller svärföräldrar som du äntligen vill prata med själv, utan att någon översätter åt dig? Zmaj lär dig bosniska: 43 nivåer, korta övningar, från vardagen till anställningsavtalet.
+Har du familj i Bosnien, bosniska rötter eller svärföräldrar som du äntligen vill prata med själv, utan att någon översätter åt dig? Zmaj lär dig bosniska: 63 nivåer, korta övningar, från vardagen till anställningsavtalet.
 
 DET HÄR LÄR DU DIG
 
@@ -605,10 +631,15 @@ Zmaj är gratis och finansieras med reklam.
 Sretno. Lycka till.
 ```
 
-**Ersatzabsatz „VAD DET KOSTAR“ – gilt erst, wenn das Abo im Store steht**
+**Ersatzabsatz „VAD DET KOSTAR“ – gilt erst, wenn die Probezeit angelegt ist**
+
+Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
+Console stehen. 382 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj är gratis och finansieras med reklam. Vill du lära dig utan reklam och med obegränsade liv, finns fullversionen som prenumeration – per månad eller per år.
+Zmaj är gratis och finansieras med reklam. Alla 63 nivåer, grammatiken, berättelserna och uttalet är fritt tillgängliga.
+
+Gillar du Zmaj kan du prova fullversionen gratis i sju dagar: ingen reklam, obegränsade liv och accessoarer till draken. Ingen uppgift blir lättare av det. Efter provveckan fortsätter prenumerationen per månad eller per år tills du säger upp den i Google Play.
 ```
 
 **Apple: Untertitel** (30 Zeichen)
@@ -636,13 +667,13 @@ Zmaj – Bosnisch leren
 **Kurzbeschreibung** (74 Zeichen)
 
 ```
-Bosnisch leren voor familie, dagelijks leven en overheid — 43 korte levels
+Bosnisch leren voor familie, dagelijks leven en overheid — 63 korte levels
 ```
 
 **Vollständige Beschreibung** (3468 von 4000 Zeichen)
 
 ```
-Heb je familie in Bosnië, Bosnische roots of schoonouders met wie je eindelijk zelf wilt praten, zonder dat er iemand tussen zit om te vertalen? Zmaj leert je Bosnisch: 43 levels, korte oefeningen, van het dagelijks leven tot het arbeidscontract.
+Heb je familie in Bosnië, Bosnische roots of schoonouders met wie je eindelijk zelf wilt praten, zonder dat er iemand tussen zit om te vertalen? Zmaj leert je Bosnisch: 63 levels, korte oefeningen, van het dagelijks leven tot het arbeidscontract.
 
 WAT JE LEERT
 
@@ -709,10 +740,15 @@ Zmaj is gratis en wordt gefinancierd met advertenties.
 Sretno. Veel succes.
 ```
 
-**Ersatzabsatz „WAT HET KOST“ – gilt erst, wenn das Abo im Store steht**
+**Ersatzabsatz „WAT HET KOST“ – gilt erst, wenn die Probezeit angelegt ist**
+
+Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
+Console stehen. 424 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj is gratis en wordt gefinancierd met advertenties. Wil je zonder advertenties en met onbeperkte levens leren, dan is er de volledige versie als abonnement – per maand of per jaar.
+Zmaj is gratis en wordt gefinancierd met advertenties. Alle 63 levels, de grammatica, de verhalen en de uitspraak zijn vrij toegankelijk.
+
+Vind je Zmaj leuk? Probeer dan de volledige versie zeven dagen gratis: geen advertenties, onbeperkte levens en accessoires voor de draak. Geen enkele opdracht wordt daardoor makkelijker. Na de proefweek loopt het abonnement per maand of per jaar door, tot je het in Google Play opzegt.
 ```
 
 **Apple: Untertitel** (29 Zeichen)
@@ -740,13 +776,13 @@ Zmaj – Lær bosnisk
 **Kurzbeschreibung** (75 Zeichen)
 
 ```
-Lær bosnisk for familie, hverdag og det offentlige — 43 nivåer, korte økter
+Lær bosnisk for familie, hverdag og det offentlige — 63 nivåer, korte økter
 ```
 
 **Vollständige Beschreibung** (3250 von 4000 Zeichen)
 
 ```
-Har du familie i Bosnia, bosniske røtter eller svigerforeldre du endelig vil snakke med selv, uten at noen oversetter? Zmaj lærer deg bosnisk: 43 nivåer, korte økter, fra hverdagen til arbeidskontrakten.
+Har du familie i Bosnia, bosniske røtter eller svigerforeldre du endelig vil snakke med selv, uten at noen oversetter? Zmaj lærer deg bosnisk: 63 nivåer, korte økter, fra hverdagen til arbeidskontrakten.
 
 DETTE LÆRER DU
 
@@ -813,10 +849,15 @@ Zmaj er gratis og finansieres med reklame.
 Sretno. Lykke til.
 ```
 
-**Ersatzabsatz „HVA DET KOSTER“ – gilt erst, wenn das Abo im Store steht**
+**Ersatzabsatz „HVA DET KOSTER“ – gilt erst, wenn die Probezeit angelegt ist**
+
+Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
+Console stehen. 376 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj er gratis og finansieres med reklame. Vil du lære uten reklame og med ubegrenset antall liv, finnes fullversjonen som abonnement – per måned eller per år.
+Zmaj er gratis og finansieres med reklame. Alle 63 nivåer, grammatikk, lesehistorier og uttale er fritt tilgjengelige.
+
+Liker du Zmaj, kan du prøve fullversjonen gratis i sju dager: ingen reklame, ubegrenset antall liv og tilbehør til dragen. Ingen oppgave blir lettere av det. Etter prøveuken fortsetter abonnementet per måned eller per år, til du sier det opp i Google Play.
 ```
 
 **Apple: Untertitel** (29 Zeichen)
@@ -844,13 +885,13 @@ Zmaj – Lær bosnisk
 **Kurzbeschreibung** (67 Zeichen)
 
 ```
-Lær bosnisk til familie, hverdag og myndigheder — 43 korte niveauer
+Lær bosnisk til familie, hverdag og myndigheder — 63 korte niveauer
 ```
 
 **Vollständige Beschreibung** (3366 von 4000 Zeichen)
 
 ```
-Har du familie i Bosnien, bosniske rødder eller svigerforældre, du endelig selv vil kunne tale med, uden at nogen oversætter? Måske forstår du det meste, men svarer på dansk. Zmaj lærer dig bosnisk: 43 niveauer, korte øvelser, fra hverdagen til ansættelseskontrakten.
+Har du familie i Bosnien, bosniske rødder eller svigerforældre, du endelig selv vil kunne tale med, uden at nogen oversætter? Måske forstår du det meste, men svarer på dansk. Zmaj lærer dig bosnisk: 63 niveauer, korte øvelser, fra hverdagen til ansættelseskontrakten.
 
 DET LÆRER DU
 
@@ -917,10 +958,15 @@ Zmaj er gratis og finansieret af reklamer.
 Sretno. Held og lykke.
 ```
 
-**Ersatzabsatz „HVAD DET KOSTER“ – gilt erst, wenn das Abo im Store steht**
+**Ersatzabsatz „HVAD DET KOSTER“ – gilt erst, wenn die Probezeit angelegt ist**
+
+Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
+Console stehen. 374 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj er gratis og finansieret af reklamer. Vil du lære uden reklamer og med ubegrænsede liv, findes den fulde version som abonnement – pr. måned eller pr. år.
+Zmaj er gratis og finansieret af reklamer. Alle 63 niveauer, grammatik, læsehistorier og udtale er frit tilgængelige.
+
+Kan du lide Zmaj, så prøv den fulde version gratis i syv dage: ingen reklamer, ubegrænsede liv og tilbehør til dragen. Ingen opgave bliver lettere af det. Efter prøveugen fortsætter abonnementet pr. måned eller pr. år, indtil du opsiger det i Google Play.
 ```
 
 **Apple: Untertitel** (28 Zeichen)
@@ -948,13 +994,13 @@ Zmaj – Apprendre le bosnien
 **Kurzbeschreibung** (73 Zeichen)
 
 ```
-Le bosnien pour la famille, le quotidien et l'administration — 43 niveaux
+Le bosnien pour la famille, le quotidien et l'administration — 63 niveaux
 ```
 
 **Vollständige Beschreibung** (3749 von 4000 Zeichen)
 
 ```
-Tu as de la famille en Bosnie, des racines bosniennes, une belle-famille avec qui tu aimerais enfin parler toi-même, sans que personne ne traduise ? Zmaj t'apprend le bosnien : 43 niveaux, des exercices courts, du quotidien jusqu'au contrat de travail.
+Tu as de la famille en Bosnie, des racines bosniennes, une belle-famille avec qui tu aimerais enfin parler toi-même, sans que personne ne traduise ? Zmaj t'apprend le bosnien : 63 niveaux, des exercices courts, du quotidien jusqu'au contrat de travail.
 
 CE QUE TU APPRENDS
 
@@ -1021,10 +1067,15 @@ Zmaj est gratuit et financé par la publicité.
 Sretno. Bonne chance.
 ```
 
-**Ersatzabsatz „COMBIEN ÇA COÛTE ?“ – gilt erst, wenn das Abo im Store steht**
+**Ersatzabsatz „COMBIEN ÇA COÛTE ?“ – gilt erst, wenn die Probezeit angelegt ist**
+
+Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
+Console stehen. 294 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj est gratuit et financé par la publicité. Si tu veux apprendre sans publicité et avec des vies illimitées, la version complète existe en abonnement – par mois ou par an.
+Zmaj et tout son contenu sont gratuits grâce à la publicité.
+
+Si Zmaj te plaît, la version complète est offerte 7 jours : sans pub, vies illimitées, accessoires pour Zmaj. Aucun exercice n'en devient plus facile. Puis l'abonnement mensuel ou annuel continue jusqu'à résiliation sur Google Play.
 ```
 
 **Apple: Untertitel** (28 Zeichen)
