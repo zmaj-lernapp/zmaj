@@ -120,6 +120,68 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   mitgedacht werden — wer einen hat, soll nicht gemahnt werden, als stünde er
   vor dem Verlust.
 
+- **Store-Beschreibung ändern, vor dem Produktionsantrag.** Ajdin am
+  30.09.2026. Drei Dinge stimmen dort nicht mehr:
+
+  1. **„WAS ES KOSTET“** sagt noch „Zmaj ist kostenlos und finanziert sich
+     über Werbung“. Der Ersatzabsatz liegt in `STORE_TEXTE.md` schon
+     fertig daneben und muss nur getauscht werden — in **allen acht
+     Sprachen**, die Datei führt jede einzeln.
+
+  2. Der Ersatzabsatz ist inzwischen selbst unvollständig. Seit dem
+     29./30.09.2026 bringt die Vollversion mehr als „keine Werbung und
+     unbegrenzte Leben“: **große Krone, Monokel, Königsmantel, vier
+     Drachenfarben (Gold, Silber, Kupfer, Galaxie) und das Funkeln**. Dazu
+     **7 Tage kostenlos** (sobald in der Play Console angelegt) und **5
+     Geschenktage im Jahr**. Das sind die Verkaufsargumente — sie gehören
+     in die Beschreibung, nicht nur in den Kaufkasten.
+
+  3. Zu prüfen, ob die Zahlen noch stimmen: die Kurzbeschreibung nennt
+     **63 Levels**, die lange **1668 Wörter, 290 Lückentexte, 16
+     Grammatik-Lektionen mit 104 Übungen, 12 Geschichten**. Nach jedem
+     Inhaltszuwachs neu abgleichen — `inhalt_bauen.py` gibt die Zahlen
+     beim Bauen aus.
+
+  Wichtig: **Pay-to-win-Eindruck vermeiden.** Die Vollversion nimmt
+  Werbung weg und gibt Schmuck — sie löst keine Aufgabe. Die Beschreibung
+  muss das so sagen, sonst liest es sich wie ein Vorteil beim Lernen.
+
+- **Bewertungsabfrage einbauen.** Ajdins Entwurf am 30.09.2026: ein
+  Fenster „Gefällt dir das Spiel?“ — bei **Ja** direkt zur
+  Google-Play-Seite der App, bei **Nein** ein zweites Fenster, in das man
+  schreiben kann, was besser werden soll. Wann es erscheint und wie oft,
+  ist noch zu klären.
+
+  **Vorher zu wissen, sonst kostet es Ajdin die App:** genau dieses Muster
+  — erst fragen, ob es gefällt, und nur die Zufriedenen zur Bewertung
+  schicken — verbietet Google ausdrücklich. Die Anleitung zur In-App
+  Review API sagt wörtlich, die App dürfe **vor oder während** der
+  Bewertung **keine Frage** stellen, weder nach der Meinung („Gefällt dir
+  die App?“) noch vorhersagend („Würdest du fünf Sterne geben?“). Der
+  Grund: das Muster filtert die Unzufriedenen heraus und hebt den
+  Sternedurchschnitt künstlich. Google gibt die Antwort deshalb auch gar
+  nicht zurück — man erfährt nie, ob jemand bewertet hat.
+  Nachgeschlagen am 30.09.2026:
+  https://developer.android.com/guide/playcore/in-app-review
+
+  Das Ziel dahinter ist trotzdem richtig, und es gibt zwei saubere Wege:
+
+  **A — beide Wege gleichberechtigt anbieten.** Ein Fenster, zwei Knöpfe
+  nebeneinander: „App bewerten“ und „Verbesserung vorschlagen“. Niemand
+  wird gefiltert, jeder sieht beides, und wer unzufrieden ist, hat einen
+  Weg, der nicht im Store endet. Das ist Ajdins Idee, nur ohne die
+  Vorsortierung.
+
+  **B — Googles eigener Weg.** Die In-App Review API ohne jede Frage nach
+  einem guten Moment aufrufen, etwa nach einem bestandenen Level. Der
+  Feedback-Weg bleibt davon getrennt: den Eintrag „Feedback“ gibt es in
+  den Einstellungen schon.
+
+  Zum „wann und wie oft“, wenn entschieden ist: nicht vor dem dritten
+  Lerntag, nicht mitten in einer Lektion, höchstens zweimal im Jahr, und
+  nie wieder, wenn jemand einmal abgelehnt hat. Google deckelt die
+  In-App-Review-Anzeige ohnehin selbst.
+
 - **Probezeit beim Abo anlegen**, sobald die App in Produktion ist: in der
   Play Console beim Basisplan ein Angebot mit **Gratiszeitraum von 7 Tagen**.
   Google zeigt beim Kauf dann von selbst „7 Tage kostenlos, danach 2,99 €",
