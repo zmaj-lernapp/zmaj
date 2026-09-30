@@ -182,6 +182,14 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   nie wieder, wenn jemand einmal abgelehnt hat. Google deckelt die
   In-App-Review-Anzeige ohnehin selbst.
 
+- **TikTok, Instagram und Facebook** — als **letzter** Schritt, wenn die
+  App öffentlich ist. Die Konten legt Ajdin selbst an; erst danach lassen
+  sich Reels und kurze Videos planen. Vorher bringt es nichts: ein Profil,
+  das auf eine App zeigt, die es im Store noch nicht gibt, verliert seine
+  Besucher sofort. Stoff ist genug da — der Drache, die acht
+  Oberflächensprachen, die Geschichten, und die Frage „heisst es bosnisch,
+  kroatisch oder serbisch?“, die ohnehin ständig gestellt wird.
+
 - **Probezeit beim Abo anlegen**, sobald die App in Produktion ist: in der
   Play Console beim Basisplan ein Angebot mit **Gratiszeitraum von 7 Tagen**.
   Google zeigt beim Kauf dann von selbst „7 Tage kostenlos, danach 2,99 €",
