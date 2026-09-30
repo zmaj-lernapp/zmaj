@@ -3613,6 +3613,10 @@ function markToday(){
   days.add(t);
   const n = streak(); if(n > rekord) rekord = n;
   pruefeMeilensteine();
+  /* Wer heute geuebt hat, bekommt heute keine Erinnerung mehr. Geplant
+     wird sonst beim Wechsel in den Hintergrund - ob die WebView dann noch
+     lange genug laeuft, um die Plaene umzuschreiben, ist nicht sicher. */
+  benPlanen();
   return true;
 }
 
@@ -3847,6 +3851,7 @@ function loseLife(){
   if(lives.anzahl >= LEBEN_MAX) lives.zeit = Date.now();
   lives.anzahl = Math.max(0, lives.anzahl - 1);
   saveProgress(); renderLives();
+  if(lives.anzahl === 0) benPlanen();
 }
 function nextLifeIn(){ if(unlimited() || lives.anzahl >= LEBEN_MAX) return 0; return Math.max(0, lives.zeit + REFILL_MS - Date.now()); }
 const fmtMin = ms => { const m=Math.ceil(ms/60000); return m>=60 ? t('zeit.stunden',{h:Math.floor(m/60), m:m%60}) : t('zeit.minuten',{m:m}); };
@@ -6927,13 +6932,18 @@ function einstufungZiel(){
   return Math.min(ziel, CATEGORIES.length - 1);
 }
 
+/* Einmal je Start. Ohne diesen Merker kam die Frage nach dem Wegtippen bei
+   jedem Reiterwechsel wieder - showHome() ruft einstufungAnbieten() jedes
+   Mal. Gefunden in der Gegenpruefung am 01.10.2026. */
+let einstufungGefragt = false;
 function einstufungAnbieten(){
-  if(!einstufungBereit || !einstufungFaellig()) return;
+  if(!einstufungBereit || einstufungGefragt || !einstufungFaellig()) return;
   /* Nur auf der Startseite und nur, wenn gerade nichts anderes offen ist.
      Klappt es jetzt nicht, kommt die Frage beim naechsten Start - sie gilt
      erst als beantwortet, wenn jemand wirklich gewaehlt hat. */
   if(!sichtbar('pfad') || frageSchliessen ||
      document.querySelector('.nachfrage, .einwilligung, .werbung')) return;
+  einstufungGefragt = true;
   einstufungWahl();
 }
 function einstufungKarte(inhalt){
