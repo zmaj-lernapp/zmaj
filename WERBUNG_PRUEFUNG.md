@@ -26,7 +26,7 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ## Stand am 30.09.2026
 
-**Behoben: die Punkte 9, 11, 13, 14, 15, 16, 18 und 19.** Gegengeprüft auf dem
+**Behoben: die Punkte 9, 11, 13, 14, 15, 16, 17, 18 und 19.** Gegengeprüft auf dem
 Galaxy S9 (Android 10) mit Googles Testkennungen, Fassung 57 — und dort, wo
 der Fehler nur ohne AdMob-Plugin auftritt, im Browser.
 
@@ -178,6 +178,38 @@ ok   strings.xml    App-Kennung in der Huelle
 
 Geschrieben wurde dort nichts: das Skript läuft erst nach der
 Produktionsfreigabe.
+
+**Punkt 17 — kein Ladehinweis, und prepare ohne Frist.** Wer auf
+„Video ansehen“ tippte, bekam bis zum ersten Bild der Anzeige keine
+Rückmeldung: der AdMob-Weg baut keine eigene Oberfläche, anders als der
+Platzhalter am PC. Bei schwachem Netz sind das mehrere Sekunden, in denen
+die App unbeteiligt aussieht — und genau das löst den zweiten Tipp aus,
+also Punkt 9 und 13. Der Knopf schreibt sich jetzt auf „♥ Wird geladen …“
+um und wird gesperrt; danach steht wieder „♥ Video ansehen“ da.
+
+Zweitens hatte nur show eine Frist, prepare nicht. Das wiegt seit dem
+Riegel schwerer: die Sicherheitsleine macht zwar nach 150 Sekunden wieder
+auf, aber so lange soll niemand vor einem toten Knopf sitzen. Prepare
+bekommt 15 Sekunden, und der Grund für einen Fehlschlag wird
+mitgenommen statt verschluckt.
+
+Auf dem S9 durchgespielt, Leben vorher auf 0:
+
+```
+vorher:   ♥ Video ansehen
+während:  ♥ Wird geladen …      gesperrt: true
+danach:   Leben 0 → 1, Riegel wieder auf, Schirm aufgeräumt
+```
+
+Der dritte Teil des Befundes — ein Kommentar, der eine Ladeanzeige
+behauptete, die es nie gab — war schon beim Umbau für Punkt 11/16
+verschwunden.
+
+**Zur Knopfbreite:** der neue Text ist in allen acht Sprachen kürzer oder
+gleich lang wie der alte („♥ Wird geladen …“ gegen „♥ Video ansehen“). Eine
+eigene Messung auf 360 dp steht aus: der Schirm ohne Leben war in der
+Sprachprüfung vom 29.09. nicht dabei, weil er sich nur mit leergespielten
+Leben erreichen lässt.
 
 ---
 
