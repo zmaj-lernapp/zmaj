@@ -1219,6 +1219,8 @@ Das ist der wichtigere Teil. Jede Zeile hier war früher ein Ja.
 | Zahlungsdaten | Der Kauf läuft über Google Play. Du siehst nur Abrechnungszahlen, nie eine Kartennummer. |
 | Absturz- und Fehlerprotokolle von uns | Es ist kein Absturzmelder eingebaut. Was die Play Console dir an Abstürzen zeigt, sammelt Google selbst – das gehört nicht ins Formular. Die Diagnosedaten oben sind die des Werbe-SDK. |
 | Genauer Standort, Kontakte, Fotos, Kalender, SMS, Gesundheits- und Fitnessdaten | Nichts davon rührt die App an. |
+| Erinnerungen (Benachrichtigungen) | **Neu am 01.10.2026.** Die App plant sie auf dem Gerät selbst (Android-Wecker). Dabei verlässt nichts das Gerät, es gibt keinen Push-Dienst und keinen Server. |
+| Bewertungen | **Neu am 01.10.2026.** „Zmaj bewerten“ öffnet Googles eigenes Bewertungsfenster oder den Play Store. Was dort geschrieben wird, bekommt Google, nicht die App. |
 
 **Wenn du die Werbung eines Tages abschaltest** (`WERBUNG_LAEUFT = False`
 und das Plugin raus), fällt die ganze Tabelle weg. Dann lautet die erste
@@ -1288,6 +1290,88 @@ Pages-Einstellungen unter „Custom domain“ eintragen, beim Domain-Anbieter
 einen CNAME setzen, die Dateien bleiben dieselben. Änderst du die Adresse,
 denk an die drei Stellen, die sie nennen: die Play Console, das
 Data-Safety-Formular und das Feld „Datenlöschung“.
+
+---
+
+# Versionshinweise – Entwurf vom 01.10.2026
+
+Für die erste Fassung nach dem Test. **Noch nirgends eingetragen.** In der Play Console
+gehört der ganze Block unten in das Feld „Versionshinweise“ – die Sprachkürzel sortiert
+Google selbst. Jede Sprache hat höchstens 500 Zeichen (geprüft: 325 bis 361).
+
+Zwei Dinge vor dem Eintragen:
+
+- Die alten Hinweise sagen noch „Die Vollversion lässt sich noch nicht kaufen“ – das
+  ersetzt dieser Block (siehe NACH_DER_VEROEFFENTLICHUNG.md, Abschnitt 5).
+- Die sieben Tage Probezeit stehen hier bewusst nicht drin. Sie gelten erst, wenn das
+  Angebot in der Play Console angelegt ist – dann eine Zeile ergänzen.
+
+```
+<de-DE>
+Neu in dieser Version:
+• Einstufungstest beim ersten Start: Wer schon Bosnisch kann, steigt weiter hinten ein.
+• Neuer Reiter „Wiederholen“: Was du falsch beantwortet hast, übst du gezielt nach.
+• Erinnerungen am Abend – jede einzeln abschaltbar.
+• Die Vollversion ist da: keine Werbung, unbegrenzte Leben.
+• Viele kleine Verbesserungen und Fehlerbehebungen.
+</de-DE>
+<en-US>
+New in this version:
+• Placement test on first start: if you already know some Bosnian, you start further ahead.
+• New “Review” tab: practice exactly the exercises you got wrong.
+• Evening reminders – each one can be turned off.
+• The full version is here: no ads, unlimited hearts.
+• Lots of small improvements and bug fixes.
+</en-US>
+<tr-TR>
+Bu sürümde yeni:
+• İlk açılışta seviye belirleme testi: Biraz Boşnakça biliyorsan daha ileriden başlarsın.
+• Yeni “Tekrar” sekmesi: Yanlış cevapladığın alıştırmaları hedefli olarak tekrar et.
+• Akşam hatırlatmaları – her biri ayrı ayrı kapatılabilir.
+• Tam sürüm geldi: reklamsız, sınırsız can.
+• Birçok küçük iyileştirme ve hata düzeltmesi.
+</tr-TR>
+<sv-SE>
+Nytt i den här versionen:
+• Nivåtest vid första starten: kan du redan lite bosniska börjar du längre fram.
+• Ny flik ”Repetera”: öva just de uppgifter du svarat fel på.
+• Påminnelser på kvällen – var och en kan stängas av.
+• Fullversionen är här: ingen reklam, obegränsat med hjärtan.
+• Många små förbättringar och buggfixar.
+</sv-SE>
+<nl-NL>
+Nieuw in deze versie:
+• Niveautest bij de eerste start: spreek je al wat Bosnisch, dan begin je verderop.
+• Nieuw tabblad ‘Herhalen’: oefen precies de opdrachten die je fout had.
+• Herinneringen ’s avonds – elk apart uit te zetten.
+• De volledige versie is er: geen advertenties, onbeperkt levens.
+• Veel kleine verbeteringen en foutoplossingen.
+</nl-NL>
+<no-NO>
+Nytt i denne versjonen:
+• Nivåtest ved første oppstart: kan du litt bosnisk fra før, begynner du lenger fremme.
+• Ny fane «Repeter»: øv på akkurat de oppgavene du svarte feil på.
+• Påminnelser om kvelden – hver av dem kan slås av.
+• Fullversjonen er her: ingen reklame, ubegrenset antall liv.
+• Mange små forbedringer og feilrettinger.
+</no-NO>
+<da-DK>
+Nyt i denne version:
+• Niveautest ved første start: kan du allerede lidt bosnisk, starter du længere fremme.
+• Ny fane »Gentag«: øv netop de opgaver, du svarede forkert på.
+• Påmindelser om aftenen – hver enkelt kan slås fra.
+• Den fulde version er her: ingen reklamer, ubegrænsede liv.
+• Mange små forbedringer og fejlrettelser.
+</da-DK>
+<fr-FR>
+Nouveau dans cette version :
+• Test de niveau au premier lancement : si tu connais déjà un peu le bosnien, tu commences plus loin.
+• Nouvel onglet « Réviser » : travaille précisément les exercices ratés.
+• Rappels le soir – chacun peut être désactivé.
+• La version complète est là : sans pub, vies illimitées.
+• Beaucoup de petites améliorations et corrections.
+</fr-FR>
+```
 
 ---
 
