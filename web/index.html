@@ -594,6 +594,17 @@
   .abovorschau .wort{font-size:12px; font-weight:800; color:var(--muted); margin-top:2px}
   .abohinweis{font-size:12px; line-height:1.5; color:var(--muted); margin-top:8px}
 
+  /* ---- Einstufung und Wiederholen ----
+     Die Einstufung benutzt die Karten der Vollversionswahl, Wiederholen
+     die grosse Zahl der Wegmarke - nichts Neues erfunden. */
+  .einstbox .celebrate{margin-bottom:0}
+  .einstbox .zmaj{width:110px; height:110px}
+  .einstbox .einstwahl{justify-content:center; text-align:center}
+  .topfzahl{font-family:var(--font-ui); font-weight:800; font-size:48px; line-height:1;
+    letter-spacing:-1px; color:var(--primary); text-align:center; margin:16px 0 2px}
+  .topfwort{text-align:center; font-weight:800; color:var(--muted); font-size:13px; margin-bottom:4px}
+  .topfleer{font-size:14px; line-height:1.6; color:var(--muted); margin-top:12px}
+
   /* ---- Wegmarke ----
      Dieselbe Huelle wie die Nachfrage, nur mit einer sehr grossen Zahl.
      Bewusst nichts Neues erfunden: ein zweiter Overlay-Bau waere eine
@@ -1235,6 +1246,7 @@
     <div class="mode" role="tablist">
       <button role="tab" id="modeWords" aria-selected="true" data-t="tab.lernpfad"></button>
       <button role="tab" id="modeStories" aria-selected="false" data-t="tab.geschichten"></button>
+      <button role="tab" id="modeTopf" aria-selected="false" data-t="tab.wiederholen"></button>
     </div>
     <div id="wordsHome">
       <div class="summary" id="summary"></div>
@@ -1243,6 +1255,10 @@
     <div id="storiesHome" style="display:none">
       <div class="summary" id="sSummary"></div>
       <div class="section" id="storyList"></div>
+    </div>
+    <!-- Wiederholen: der Sammeltopf fuer falsch Beantwortetes -->
+    <div id="topfHome" style="display:none">
+      <div class="section" id="topfBox"></div>
     </div>
   </div>
 
@@ -1299,6 +1315,14 @@
     <section id="test" style="display:none">
       <div class="card"><div class="tbar" id="tBar"></div><div id="tBody"></div></div>
       <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>
+    </section>
+  </div>
+
+  <!-- ===== Einstufung ===== -->
+  <div id="einstufungView" style="display:none">
+    <section>
+      <div class="card"><div class="tbar" id="eBar"></div><div id="eBody"></div></div>
+      <div class="nav"><button id="eQuit" data-t="einst.abbrechen"></button><span></span></div>
     </section>
   </div>
 
@@ -2139,6 +2163,10 @@ let tagwerk = {};         // Tag -> Zähler, z.B. {'2026-09-14': {auf:23, ric:18
               "alleWoerter" = der Tag, an dem das letzte unbekannte Wort
               fiel (siehe neuNochMoeglich()). */
 let gefeiert = new Set();
+/* Einstufung und Wiederholen - erklaert weiter unten bei EINSTUFUNG und
+   WIEDERHOLEN. Hier oben, weil standUebernehmen() sie setzt. */
+let einstufung = null;    // null = noch nie gefragt, sonst {tag, wahl, bis}
+let topf = {};            // Schluessel -> {typ, n, z}
 let rekord = 0;
 let wann = {};
 let muenzenGes = 0, muenzenAus = 0;   // jemals verdient / jemals ausgegeben
@@ -2277,8 +2305,16 @@ const hoechsterBestanden = () => {
   for(let k = CATEGORIES.length - 1; k >= 0; k--) if(passed.has(CATEGORIES[k].id)) return k;
   return -1;
 };
-const isUnlocked = i => ALLE_FREI || i === 0 || i <= hoechsterBestanden() + 1;
-const firstOpen = () => { const i = CATEGORIES.findIndex(c=>!passed.has(c.id)); return i<0 ? CATEGORIES.length-1 : i; };
+/* Die Einstufung macht zusaetzlich alles bis zu ihrem Einstieg frei.
+   "Dran" ist dann das erste offene Level AB dem Einstieg - sonst zeigte
+   Weitermachen nach der Einstufung wieder auf Level 1. */
+const isUnlocked = i => ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
+const firstOpen = () => {
+  const ab = Math.max(0, einstufungIndex());
+  let i = CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id));
+  if(i < 0) i = CATEGORIES.findIndex(c => !passed.has(c.id));
+  return i < 0 ? CATEGORIES.length-1 : i;
+};
 /* Welche Sektion gerade dran ist. Die Antwort faerbt die ganze App, siehe
    :root[data-sek=...] im Stil. Gerechnet wird ueber das naechste offene
    Level, nicht ueber die gerade gezeigte Seite: sonst wechselte die Farbe
@@ -3095,6 +3131,11 @@ function standUebernehmen(d){
   tagwerk = (d.tagwerk && typeof d.tagwerk==='object') ? d.tagwerk : {};
   muenzenGes = Number(d.muenzen_ges) || 0; muenzenAus = Number(d.muenzen_aus) || 0;
   besitz = new Set(d.besitz||[]);
+  /* Fehlt das Feld, ist es ein Stand von vorher: nie eingestuft, nichts
+     im Topf. Ob gefragt wird, entscheidet einstufungFaellig() - wer schon
+     Fortschritt hat, wird es nie. */
+  einstufung = (d.einstufung && typeof d.einstufung==='object' && !Array.isArray(d.einstufung)) ? d.einstufung : null;
+  topf = (d.topf && typeof d.topf==='object' && !Array.isArray(d.topf)) ? d.topf : {};
   lives = (d.leben && typeof d.leben.anzahl==='number') ? {anzahl:d.leben.anzahl, zeit:d.leben.zeit||0} : {anzahl:LEBEN_MAX, zeit:0};
   schutz = (d.schutz && typeof d.schutz.anzahl==='number') ? {anzahl:d.schutz.anzahl, zeit:d.schutz.zeit||0} : {anzahl:1, zeit:0};
   /* premium steht hier bewusst NICHT mehr. Der Lernstand kommt auch aus
@@ -3150,7 +3191,10 @@ function standAlsObjekt(){
              App-Daten loeschen, Sicherung einlesen, wieder faellig. Die
              Frist bleibt draussen, sonst waeren laufende Geschenktage
              verschenkbar. Gefunden in der Gegenpruefung am 29.09.2026. */
-          geschenk_jahr: (geschenk.jahr || 0)};
+          geschenk_jahr: (geschenk.jahr || 0),
+          /* Beide gehoeren zum Lernenden und muessen mit auf ein neues
+             Handy - die Einstufung haelt die uebersprungenen Level offen. */
+          einstufung: einstufung, topf: topf};
 }
 /* ---- Die Vollversion ----
    Sie gehoert nicht in den Lernstand. Vorher stand sie dort, und damit
@@ -3834,6 +3878,13 @@ async function lektionDarfWeg(){
      Tx.queue.length warf diese Zeile waehrend eines Tests einen Fehler, und
      der Tipp auf Muenzen, Laden oder Zahnrad tat daraufhin gar nichts.
      Gefunden am 26.09.2026. */
+  if(sichtbar('einstufungView') && Ex && !Ex.fertig){
+    const ziel = einstufungZiel();
+    if(!await frage(t('einst.abbrechen_frage'), t('einst.abbrechen_text', {n: ziel + 1}),
+                    t('btn.abbrechen'), t('btn.weitermachen'))) return false;
+    einstufungEnde();
+    return true;
+  }
   const laeuft = (sichtbar('lesson') && Lx && Lx.i < Lx.queue.length) ||
                  (sichtbar('test')   && Tx && Tx.i < Tx.qs.length);
   if(!laeuft) return true;
@@ -3962,7 +4013,11 @@ function renderHero(){
   const k = $('weiterKnopf');
   if(k){
     let name = '', hin = null;
-    if(homeMode === 'stories'){
+    if(homeMode === 'topf'){
+      /* Im Reiter Wiederholen fuehrt der Knopf in die naechste Runde. Ist
+         nichts im Topf, gibt es nichts weiterzumachen. */
+      if(topfAnzahl() && livesNow() > 0){ name = t('topf.titel'); hin = startTopf; }
+    } else if(homeMode === 'stories'){
       /* Die erste ungelesene. Sind alle gelesen, die letzte - dann ist der
          Knopf ein Weg zum Nachlesen statt eine tote Stelle. */
       let si = STORIES.findIndex(s => !read.has(s.id));
@@ -4358,6 +4413,11 @@ async function ladeDaten(){
      "Ustajem" weiter "ich stehe auf" statt "je me leve", in 28 von 43 Leveln,
      bis die App geschlossen und neu geoeffnet wurde. Gefunden am 26.09.2026. */
   vokabelFormen = null; dictFormen = null;
+  /* Jede Grammatikaufgabe weiss, zu welchem Level sie gehoert und die
+     wievielte sie ist. Daran erkennt der Wiederholen-Topf sie wieder, auch
+     nach einem Sprachwechsel. Und die Wortsuche des Topfs neu aufbauen. */
+  Object.keys(GRAMMAR).forEach(id => ((GRAMMAR[id] || {}).uebungen || []).forEach((g, i) => { g._lv = id; g._nr = i; }));
+  _wortNachId = null;
   MASCOT = new Set(d.maskottchen||[]);
   SPRACHEN = d.sprachen || []; T = d.texte || {}; UEBERSETZT = d.uebersetzt || {fertig:0, gesamt:0};
   WERBUNG_ECHT = !!d.werbung_laeuft;      // Schalter aus sprachen.py
@@ -4410,7 +4470,7 @@ function renderLangSel(){
 }
 
 /* =================== ANSICHTEN =================== */
-const VIEWS = ['profileView','pfad','storyView','levelView','kontoView','settingsView','shopView'];
+const VIEWS = ['profileView','pfad','storyView','levelView','kontoView','settingsView','shopView','einstufungView'];
 function showView(id){
   stilleBitte();          // kein Ton laeuft in die naechste Ansicht hinein
   uhrAus();               // und keine Lernzeit: Geschichte und Lektion rufen uhrAn() selbst
@@ -5460,10 +5520,13 @@ function showHome(){
   uhrAus();
   showView('pfad'); setzeZurueck('', null);
   $('modeWords').setAttribute('aria-selected', homeMode==='words'); $('modeStories').setAttribute('aria-selected', homeMode==='stories');
+  $('modeTopf').setAttribute('aria-selected', homeMode==='topf');
   $('wordsHome').style.display = homeMode==='words' ? 'block' : 'none';
   $('storiesHome').style.display = homeMode==='stories' ? 'block' : 'none';
+  $('topfHome').style.display = homeMode==='topf' ? 'block' : 'none';
   renderHero(); renderLives();
-  if(homeMode==='words') showPath(); else showStoryPath();
+  if(homeMode==='words') showPath(); else if(homeMode==='topf') showTopf(); else showStoryPath();
+  einstufungAnbieten();
 }
 /* Der Laden ist keine Lernsache, deshalb steht er oben bei Profil und
    Einstellungen und nicht in der Reiterleiste. */
@@ -5478,6 +5541,7 @@ function showLaden(){
 }
 $('modeWords').addEventListener('click', ()=>{ homeMode='words'; showHome(); });
 $('modeStories').addEventListener('click', ()=>{ homeMode='stories'; showHome(); });
+$('modeTopf').addEventListener('click', ()=>{ homeMode='topf'; showHome(); });
 $('btnShop').addEventListener('click', async ()=>{
   if(!await lektionDarfWeg()) return;
   await saveProgress(); showLaden();
@@ -6217,6 +6281,7 @@ function showLessonTask(){
     else if(res.skipped){ Lx.results[Lx.i]='skip'; Lx.skipped++; }
     else {
       Lx.results[Lx.i]=res.ok; zmajReact(res.ok); uhrTakt(true); zaehle('auf');
+      topfMerken(task, res.ok);
       if(res.ok){
         Lx.right++; zaehle('ric');
         if(task.typ==='gap') zaehle('lue');
@@ -6367,11 +6432,15 @@ function zeigeWerbungJetzt(belohnt, fertig, darfNoch){
 }
 
 /* Ein belohntes Video: freiwillig, gibt ein Leben zurück. */
-function werbungFuerLeben(){
+function werbungFuerLeben(e){
   /* Punkt 9 und 13: den Knopf sperren, solange etwas laeuft. Der Riegel
      in zeigeWerbung() haelt ohnehin, aber ein Knopf, der sich nicht
      ruehrt, laedt zum zweiten Tipp ein. */
-  const knopf = $('lAd');
+  /* Aus der Levelansicht und aus dem Wiederholen-Reiter kommt der Knopf
+     selbst mit. Der Laden bleibt beim alten Weg - sein Knopf traegt
+     eigenes Innenleben, das textContent unten zerstoeren wuerde. */
+  const quelle = e && e.currentTarget;
+  const knopf = (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd')) ? quelle : $('lAd');
   /* Punkt 17: bis zum ersten Bild der Anzeige vergehen Sekunden, in denen
      der AdMob-Weg gar keine Oberflaeche baut. Ohne ein Wort sieht die App
      unbeteiligt aus - und genau das loest den zweiten Tipp aus. */
@@ -6392,7 +6461,12 @@ function werbungFuerLeben(){
        Geprueft wird der Knopf selbst, nicht seine Kennung: nur wenn genau
        dieser Knoten noch im Dokument haengt, steht auch der alte Schirm
        noch. Dieselbe Vorsicht wie beim Interstitial seit dem 29.09.2026. */
-    if(!knopf || document.body.contains(knopf)) showLevelHome();
+    const danach = ()=>{
+      if(knopf && knopf.id === 'topfAd') showTopf();
+      else if(knopf && knopf.id === 'lAd') lektionVerlassen();
+      else showLevelHome();
+    };
+    if(!knopf || document.body.contains(knopf)) danach();
   });
 }
 
@@ -6441,14 +6515,15 @@ function lessonOutOfLives(){
        eine Luecke in den Schirm. */
     (perVideo ? '<div class="feedback" id="lAdNote" style="display:none; color:var(--muted)"></div>' : '')+
     (ohneLeben % 3 === 0 ? '<div class="feedback" style="color:var(--muted)">'+t('lektion.vollversion')+'</div>' : '')+
-    '<div class="row"><button class="btn know" id="lHome">'+t('lektion.zurueck')+'</button></div>';
-  $('lHome').addEventListener('click', showLevelHome);
+    '<div class="row"><button class="btn know" id="lHome">'+t(Lx.topf ? 'topf.zurueck' : 'lektion.zurueck')+'</button></div>';
+  $('lHome').addEventListener('click', lektionVerlassen);
   if($('lAd')) $('lAd').addEventListener('click', werbungFuerLeben);
   vollZeileHorchen('lVoll');
-  if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ kaufe('herz'); showLevelHome(); });
+  if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ kaufe('herz'); lektionVerlassen(); });
   renderLives();
 }
 function lessonEnd(){
+  if(Lx && Lx.topf){ topfEnde(); return; }
   stilleBitte(); uhrAus();   // das letzte Wort nicht in den Ergebnisschirm reden lassen
   const c=cur(); const wasAllowed = testAllowed(c);
   const scored = Lx.results.filter(r=>r!=='intro' && r!=='skip').length;
@@ -6480,7 +6555,7 @@ function lessonEnd(){
        Zurueck-Knopf oben ausgeblendet, und ohne diesen Knopf sitzt man
        nach jeder Lektion fest. Gemeldet am 24.09.2026. */
     '<div class="row schmal"><button class="btn ghost" id="lPfad">'+t('btn.zurueck_pfad')+'</button></div>';
-  $('lHome').addEventListener('click', showLevelHome);
+  $('lHome').addEventListener('click', lektionVerlassen);
   $('lMore').addEventListener('click', startLesson);
   $('lPfad').addEventListener('click', ()=>{ homeMode='words'; showHome(); });
 
@@ -6639,7 +6714,7 @@ $('lQuit').addEventListener('click', async ()=>{
   if(Lx && Lx.i < Lx.queue.length &&
      !await frage(t('lektion.abbrechen_frage'), t('lektion.abbrechen_hinweis'),
                   t('btn.abbrechen'), t('btn.weitermachen'))) return;
-  saveProgress(); showLevelHome();
+  saveProgress(); lektionVerlassen();
 });
 
 /* =================== LEVEL-TEST =================== */
@@ -6664,6 +6739,7 @@ function showTestQ(){
   if(Tx.i >= Tx.qs.length){ showTestResult(); return; }
   $('tBody').dataset.i = Tx.i;
   renderTask(Tx.qs[Tx.i], $('tBody'), res=>{
+    topfMerken(Tx.qs[Tx.i], !!res.ok);
     Tx.results.push(!!res.ok); if(res.ok) Tx.right++; Tx.i++; uhrTakt(true); zaehle('auf'); if(res.ok) zaehle('ric');
     weiterBeiTipp('tBody', showTestQ);
   }, {noSkip:true});
@@ -6714,6 +6790,433 @@ $('tQuit').addEventListener('click', async ()=>{
                   t('btn.abbrechen'), t('btn.weitermachen'))) return;
   saveProgress(); showLevelHome();
 });
+
+/* =================== EINSTUFUNG ===================
+   Fuer alle, die schon etwas Bosnisch koennen - die zweite und dritte
+   Generation, die zu Hause zuhoert, aber nie Grammatik hatte. Gewuenscht
+   von den Testern am 24.09.2026 (PRODUKTIONSZUGRIFF.md, Selbsteinschaetzung
+   und danach ein Test), festgelegt von Ajdin am 30.09.2026: nur beim
+   ersten Start, 15 Fragen, 80 Prozent, ohne Leben. Uebersprungene Level
+   sind offen, aber nicht bestanden - keine Muenzen, keine Wegmarken.
+
+   Die Sprungweite ist abgeschaut bei Duolingo und Busuu: erst die
+   Selbsteinschaetzung, dann ein Test, der leicht anfaengt, immer schwerer
+   wird und von selbst aufhoert, wenn es zu schwer wird. Hier sind es fuenf
+   Stufen zu je drei Fragen, jede Stufe ein Stueck weiter hinten im
+   Lernpfad. Eingestuft wird hinter die letzte Stufe, bis zu der mindestens
+   80 Prozent ALLER bisherigen Antworten stimmen. Beim vierten Fehler ist
+   Schluss: dann schafft auch die letzte Stufe die 80 Prozent nicht mehr
+   (12 von 15). Amt & Vertraege wird nie uebersprungen - das ist der Teil,
+   fuer den die meisten ueberhaupt kommen.
+
+   Die Stufen haengen an den Kennungen der Sektionen, nicht an Nummern.
+   Faellt eine Sektion weg, wird die Stufe kleiner oder entfaellt; die
+   Reihenfolge muss aber die des Lernpfads bleiben. */
+const EINSTUFUNG_STUFEN = [
+  {sek:['alltag'],                          arten:['mcrev','mc','gap']},
+  {sek:['anfassen','tiernatur','zuhause2'], arten:['mcrev','mc','gap']},
+  {sek:['saetze'], haelfte:1,               arten:['gram','gram','gap']},
+  {sek:['saetze'], haelfte:2,               arten:['gram','gram','gap']},
+  {sek:['einkauf','herkunft','kultur'],     arten:['mcrev','mc','gap']},
+];
+const EINSTUFUNG_QUOTE = 0.8;
+let Ex = null;
+/* Erst wenn Vorspann und Googles Einwilligungsfenster durch sind. Sonst
+   laegen zwei Fenster uebereinander. */
+let einstufungBereit = false;
+
+/* Ab welchem Level die Einstufung den Weg frei gemacht hat, oder -1. */
+function einstufungIndex(){
+  if(!einstufung || !einstufung.bis) return -1;
+  return CATEGORIES.findIndex(c => c.id === einstufung.bis);
+}
+/* Nur beim allerersten Start: noch nie gefragt und noch gar nichts getan.
+   Wer schon eine Lektion hinter sich hat - auch aus einer Sicherung -,
+   wird nicht mehr gefragt. */
+function einstufungFaellig(){
+  return !einstufung && !ALLE_FREI && CATEGORIES.length > 0
+    && passed.size === 0 && known.size === 0 && days.size === 0;
+}
+function stufenLevel(st){
+  const nr = [];
+  CATEGORIES.forEach((c, i) => { if(st.sek.indexOf(c.sektion) >= 0) nr.push(i); });
+  if(!st.haelfte) return nr;
+  const mitte = Math.ceil(nr.length / 2);
+  return st.haelfte === 1 ? nr.slice(0, mitte) : nr.slice(mitte);
+}
+/* Eine Frage aus den Leveln einer Stufe. `schon` verhindert, dass dasselbe
+   Wort zweimal drankommt. Fehlt etwas (keine Grammatik, keine Saetze),
+   weicht die Frage auf eine Wortaufgabe aus. */
+function einstufungFrage(levels, art, schon){
+  const reihe = shuffle(levels.slice());
+  if(art === 'gram'){
+    for(const i of reihe){
+      const id = CATEGORIES[i].id;
+      const u = shuffle(((GRAMMAR[id] || {}).uebungen || []).filter(g => !schon.has('g:' + g._lv + '|' + g._nr)));
+      if(u.length){ schon.add('g:' + u[0]._lv + '|' + u[0]._nr); return {typ:'gram', g:u[0]}; }
+    }
+    art = 'mcrev';
+  }
+  if(art === 'gap'){
+    const ids = new Set(levels.map(i => CATEGORIES[i].id));
+    const s = shuffle(SENTENCES.filter(x => ids.has(x.kat) && !schon.has('s:' + x.text)))[0];
+    if(s){ schon.add('s:' + s.text); return {typ:'gap', s}; }
+    art = 'mc';
+  }
+  for(const i of reihe){
+    const c = CATEGORIES[i];
+    const w = shuffle(c.words.filter(x => !schon.has(x.id)))[0];
+    if(w){ schon.add(w.id); return {typ:art, w, pool:c.words}; }
+  }
+  return null;
+}
+function baueEinstufung(wahl){
+  const stufen = [], qs = [], schon = new Set();
+  EINSTUFUNG_STUFEN.forEach(st => {
+    const levels = stufenLevel(st);
+    if(!levels.length) return;
+    const k = stufen.length;
+    stufen.push(levels);
+    st.arten.forEach(art => {
+      const q = einstufungFrage(levels, art, schon);
+      if(q){ q.stufe = k; qs.push(q); }
+    });
+  });
+  Ex = {qs, i:0, results:[], stufen, fehler:0, fertig:false, wahl};
+}
+/* So viele Fehler vertraegt der ganze Test noch: bei 15 Fragen drei. */
+function einstufungSpielraum(){
+  const n = Ex.qs.length;
+  return n - Math.ceil(n * EINSTUFUNG_QUOTE - 1e-9);
+}
+/* Wo es losgeht: hinter der letzten Stufe, bis zu der die Quote haelt.
+   Eine Stufe zaehlt nur, wenn alle ihre Fragen beantwortet sind. */
+function einstufungZiel(){
+  let n = 0, r = 0, beste = -1;
+  for(let k = 0; k < Ex.stufen.length; k++){
+    const nr = [];
+    Ex.qs.forEach((q, i) => { if(q.stufe === k) nr.push(i); });
+    if(!nr.length) continue;
+    if(nr.some(i => i >= Ex.results.length)) break;
+    n += nr.length;
+    r += nr.filter(i => Ex.results[i]).length;
+    if(r >= n * EINSTUFUNG_QUOTE - 1e-9) beste = k;
+  }
+  if(beste < 0) return 0;
+  const ziel = Math.max.apply(null, Ex.stufen[beste]) + 1;
+  return Math.min(ziel, CATEGORIES.length - 1);
+}
+
+function einstufungAnbieten(){
+  if(!einstufungBereit || !einstufungFaellig()) return;
+  /* Nur auf der Startseite und nur, wenn gerade nichts anderes offen ist.
+     Klappt es jetzt nicht, kommt die Frage beim naechsten Start - sie gilt
+     erst als beantwortet, wenn jemand wirklich gewaehlt hat. */
+  if(!sichtbar('pfad') || frageSchliessen ||
+     document.querySelector('.nachfrage, .einwilligung, .werbung')) return;
+  einstufungWahl();
+}
+function einstufungKarte(inhalt){
+  const kasten = document.createElement('div');
+  kasten.className = 'nachfrage';
+  kasten.innerHTML = '<div class="nachfragebox einstbox">' + inhalt + '</div>';
+  document.body.appendChild(kasten);
+  /* Zurueck-Taste und Tipp daneben schliessen nur. Gefragt wird dann beim
+     naechsten Start wieder - ein versehentlicher Tipp soll den Test nicht
+     fuer immer verschenken. */
+  const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
+  frageSchliessen = zu;
+  kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
+  return {kasten, zu};
+}
+function einstufungMerken(wahl, bis, richtig, fragen){
+  einstufung = {tag: today(), wahl: wahl, bis: bis || ''};
+  if(fragen !== undefined){ einstufung.richtig = richtig; einstufung.fragen = fragen; }
+  saveProgress();
+}
+function einstufungWahl(){
+  const {kasten, zu} = einstufungKarte(
+    '<div class="celebrate"><div class="zmaj idle">' + zmaj('happy') + '</div></div>' +
+    '<h3>' + esc(t('einst.frage_titel')) + '</h3>' +
+    '<div class="abowahl">' +
+      ['neu', 'etwas', 'gut'].map(w =>
+        '<button type="button" class="abokarte einstwahl" data-wahl="' + w + '"><span class="n">' +
+        esc(t('einst.' + w)) + '</span></button>').join('') +
+    '</div>');
+  kasten.querySelectorAll('[data-wahl]').forEach(b => b.addEventListener('click', ()=>{
+    const wahl = b.dataset.wahl;
+    zu();
+    if(wahl === 'neu'){ einstufungMerken('neu', ''); return; }
+    einstufungErklaeren(wahl);
+  }));
+}
+function einstufungErklaeren(wahl){
+  /* Die Zahl kommt aus dem gebauten Test, nicht aus dem Text: fehlt einmal
+     eine Sektion, stimmt die Angabe trotzdem. */
+  baueEinstufung(wahl);
+  const {kasten, zu} = einstufungKarte(
+    '<h3>' + esc(t('einst.test_titel')) + '</h3>' +
+    '<div class="txt">' + esc(t('einst.test_text', {n: Ex.qs.length})) + '</div>' +
+    '<button class="btn know" id="eStart"></button>' +
+    '<button class="btn ghost" id="eNeu"></button>');
+  kasten.querySelector('#eStart').textContent = t('einst.starten');
+  kasten.querySelector('#eNeu').textContent = t('einst.lieber_neu');
+  kasten.querySelector('#eStart').addEventListener('click', ()=>{ zu(); einstufungStarten(); });
+  kasten.querySelector('#eNeu').addEventListener('click', ()=>{ zu(); Ex = null; einstufungMerken(wahl, ''); });
+}
+function einstufungStarten(){
+  if(!Ex || !Ex.qs.length){ einstufungMerken(Ex ? Ex.wahl : 'etwas', ''); Ex = null; return; }
+  showView('einstufungView');
+  /* Keine Leben, keine Muenzen - die Leiste oben haette hier nichts zu
+     sagen. Die Uhr fuer die Tagesaufgabe "Minuten" laeuft bewusst nicht:
+     der Test bringt keine Muenzen. */
+  $('kopfLeiste').style.display = 'none';
+  setzeZurueck(t('btn.zurueck'), ()=>{
+    if(Ex && !Ex.fertig) $('eQuit').click(); else { homeMode = 'words'; showHome(); }
+  });
+  $('tag').textContent = t('einst.kopf');
+  $('eQuit').style.display = '';
+  $('eBody').innerHTML = '';
+  einstufungFrageZeigen();
+}
+function einstufungBar(){
+  $('eBar').innerHTML = Ex.qs.map((q, i) => '<i class="' +
+    (i < Ex.results.length ? (Ex.results[i] ? 'ok' : 'no') : (i === Ex.i && !Ex.fertig ? 'cur' : '')) + '"></i>').join('');
+}
+function einstufungFrageZeigen(){
+  if(!Ex || Ex.fertig) return;
+  einstufungBar();
+  if(Ex.i >= Ex.qs.length || Ex.fehler > einstufungSpielraum()){ einstufungEnde(); return; }
+  const body = $('eBody');
+  body.dataset.i = Ex.i;
+  const meinEx = Ex;
+  renderTask(Ex.qs[Ex.i], body, res=>{
+    if(Ex !== meinEx || Ex.fertig) return;
+    Ex.results.push(!!res.ok);
+    if(!res.ok) Ex.fehler++;
+    Ex.i++;
+    einstufungBar();
+    weiterBeiTipp('eBody', einstufungFrageZeigen);
+  }, {noSkip:true});
+}
+function einstufungEnde(){
+  if(!Ex || Ex.fertig) return;
+  Ex.fertig = true;
+  stilleBitte();
+  const ziel = einstufungZiel();
+  const richtig = Ex.results.filter(Boolean).length;
+  const c = CATEGORIES[ziel];
+  einstufungMerken(Ex.wahl, ziel > 0 ? c.id : '', richtig, Ex.results.length);
+  einstufungBar();
+  $('eQuit').style.display = 'none';
+  $('eBody').innerHTML =
+    '<div class="ergebnis-titel">' + esc(t('einst.ergebnis_titel')) + '</div>' +
+    '<div class="celebrate"><div class="zmaj ' + (ziel > 0 ? 'cheer' : 'idle') + '">' + zmaj(ziel > 0 ? 'cheer' : 'happy') + '</div></div>' +
+    '<div class="result-big">' + richtig + ' / ' + Ex.results.length + '</div>' +
+    '<div class="feedback ok">' + esc(ziel > 0 ? t('einst.ergebnis_start', {n: ziel + 1, label: c.label})
+                                              : t('einst.ergebnis_anfang')) + '</div>' +
+    (ziel > 0 ? '<div class="feedback" style="color:var(--muted)">' + esc(t('einst.ergebnis_offen')) + '</div>' : '') +
+    '<div class="row"><button class="btn know" id="eLos"></button></div>';
+  $('eLos').textContent = t('einst.los');
+  sound(ziel > 0 ? 'done' : 'ok');
+  $('eLos').addEventListener('click', ()=>{
+    homeMode = 'words';
+    if(c) offeneSektion = c.sektion;
+    showHome();
+  });
+}
+$('eQuit').addEventListener('click', async ()=>{
+  if(!Ex || Ex.fertig) return;
+  const ziel = einstufungZiel();
+  if(!await frage(t('einst.abbrechen_frage'), t('einst.abbrechen_text', {n: ziel + 1}),
+                  t('btn.abbrechen'), t('btn.weitermachen'))) return;
+  einstufungEnde();
+});
+
+/* =================== WIEDERHOLEN ===================
+   Der Sammeltopf fuer falsch Beantwortetes - der zweite Wunsch der Tester
+   vom 24.09.2026: gezielt wiederholen, ohne sich durch Gekonntes zu
+   klicken. Festgelegt von Ajdin am 30.09.2026: ein eigener Reiter, Fehler
+   aus Lektionen und Level-Tests, zehn Aufgaben je Runde, raus nach zweimal
+   hintereinander richtig, und eine Runde zaehlt wie eine Lektion - Leben,
+   Serie, Tagesaufgaben, Muenzen. Fuer alle, auch ohne Vollversion.
+
+   Gemerkt wird nur ein Schluessel, nie die Aufgabe selbst. Die Texte sind
+   je Sprache verschieden, die Schluessel nicht:
+     w:<Wort-Kennung>             das Wort, wie in known
+     s:<Level>|<bosnischer Satz>  ein Lueckensatz
+     g:<Level>|<Nummer>           eine Grammatikaufgabe. Die Nummer statt
+                                  der Loesung, weil sechs Loesungen mit
+                                  uebersetzt werden ("weiblich (ona)").
+   Dazu die Aufgabenart, in der es schiefging, und wie oft es seitdem
+   hintereinander richtig war.
+
+   Eine richtige Antwort direkt nach dem Fehler - die Wiederholung am Ende
+   derselben Lektion - zaehlt nicht: da stand die Loesung eben noch auf dem
+   Bildschirm. */
+const TOPF_RUNDE = 10, TOPF_RAUS = 2, TOPF_MAX = 300;
+function topfSchluessel(task){
+  if(!task) return '';
+  if(task.typ === 'gap' && task.s) return 's:' + task.s.kat + '|' + task.s.text;
+  if(task.typ === 'gram' && task.g && task.g._lv) return 'g:' + task.g._lv + '|' + task.g._nr;
+  if(task.w && task.w.id) return 'w:' + task.w.id;
+  return '';
+}
+function topfMerken(task, ok){
+  const k = topfSchluessel(task);
+  if(!k) return;
+  const e = topf[k];
+  if(ok){
+    if(!e || task.retry) return;
+    e.n = (e.n || 0) + 1;
+    if(e.n >= TOPF_RAUS) delete topf[k];
+    return;
+  }
+  topf[k] = {typ: task.typ, n: 0, z: Date.now()};
+  /* Deckel, damit der Lernstand nicht ohne Ende waechst. Es fallen die
+     aeltesten Fehler weg. */
+  const alle = Object.keys(topf);
+  if(alle.length > TOPF_MAX){
+    alle.sort((a, b) => (topf[a].z || 0) - (topf[b].z || 0))
+        .slice(0, alle.length - TOPF_MAX).forEach(x => { delete topf[x]; });
+  }
+}
+let _wortNachId = null;
+function wortNachId(id){
+  if(!_wortNachId){
+    _wortNachId = new Map();
+    CATEGORIES.forEach(c => c.words.forEach(w => { if(!_wortNachId.has(w.id)) _wortNachId.set(w.id, {w, c}); }));
+  }
+  return _wortNachId.get(id) || null;
+}
+/* Aus dem Schluessel wieder eine Aufgabe. null, wenn es den Inhalt nicht
+   mehr gibt - dann fliegt der Eintrag raus. */
+function topfAufgabe(k, e){
+  const art = k.slice(0, 2), rest = k.slice(2);
+  if(art === 'w:'){
+    const f = wortNachId(rest);
+    if(!f) return null;
+    let typ = e.typ;
+    if(typ === 'listen' && !canListen) typ = 'mc';
+    if(typ === 'type' && !typable(f.w)) typ = 'mcrev';
+    if(['mc', 'mcrev', 'type', 'listen'].indexOf(typ) < 0) typ = 'mcrev';
+    return {typ, w: f.w, pool: f.c.words, rep: f.c.label};
+  }
+  if(art === 's:'){
+    const s = SENTENCES.find(x => 's:' + x.kat + '|' + x.text === k);
+    if(!s) return null;
+    const c = byId(s.kat);
+    return {typ:'gap', s, rep: c ? c.label : ''};
+  }
+  if(art === 'g:'){
+    const teile = rest.split('|');
+    const g = ((GRAMMAR[teile[0]] || {}).uebungen || [])[Number(teile[1])];
+    if(!g) return null;
+    const c = byId(teile[0]);
+    return {typ:'gram', g, rep: c ? c.label : ''};
+  }
+  return null;
+}
+function topfAufraeumen(){
+  if(!CATEGORIES.length) return;
+  let weg = false;
+  Object.keys(topf).forEach(k => { if(!topfAufgabe(k, topf[k])){ delete topf[k]; weg = true; } });
+  if(weg) saveProgress();
+}
+const topfAnzahl = () => Object.keys(topf).length;
+/* Die aeltesten zuerst - was einmal richtig war, steht damit bald wieder
+   an, und frisch Falsches bekommt etwas Abstand. */
+function topfRunde(){
+  const liste = Object.keys(topf).map(k => ({k, e: topf[k]}))
+    .sort((a, b) => (a.e.z || 0) - (b.e.z || 0))
+    .map(x => topfAufgabe(x.k, x.e)).filter(Boolean);
+  return shuffle(liste.slice(0, TOPF_RUNDE));
+}
+function topfSeite(){ homeMode = 'topf'; showHome(); }
+/* Nach dem Ende einer Lektion oder Runde: wohin zurueck. */
+function lektionVerlassen(){ if(Lx && Lx.topf) topfSeite(); else showLevelHome(); }
+function showTopf(){
+  const box = $('topfBox');
+  if(!box) return;
+  topfAufraeumen();
+  const n = topfAnzahl();
+  let html = '<h2>' + esc(t('topf.titel')) + '</h2><div class="desc">' + esc(t('topf.desc')) + '</div>';
+  if(!n){
+    box.innerHTML = html + '<div class="topfleer">' + esc(t('topf.leer')) + '</div>';
+    return;
+  }
+  html += '<div class="topfzahl">' + n + '</div><div class="topfwort">' + esc(tp('topf.anzahl', n)) + '</div>';
+  if(livesNow() > 0){
+    html += '<div class="row"><button class="btn know" id="topfLos"></button></div>';
+    box.innerHTML = html;
+    $('topfLos').textContent = t('topf.start');
+    $('topfLos').addEventListener('click', startTopf);
+    return;
+  }
+  /* Ohne Leben dieselben zwei Wege wie in der Levelansicht. */
+  const herz = VERBRAUCH.find(w => w.id === 'herz');
+  const perVideo = werbungErlaubt(true);
+  const perMuenzen = muenzen() >= herz.preis && herz.geht();
+  html += '<div class="note">' + esc(t('level.keine_leben', {zeit: fmtMin(nextLifeIn())})) + '</div>' +
+    ((perVideo || perMuenzen) ?
+      '<div class="row schmal">' +
+        (perVideo ? '<button class="btn ghost" id="topfAd"></button>' : '') +
+        (perMuenzen ? '<button class="btn ghost" id="topfCoin"></button>' : '') +
+      '</div>' : '') +
+    vollZeileLeben('topfVoll');
+  box.innerHTML = html;
+  if($('topfAd')){ $('topfAd').textContent = t('werbung.leben_holen'); $('topfAd').addEventListener('click', werbungFuerLeben); }
+  if($('topfCoin')){
+    $('topfCoin').textContent = t('lektion.leben_muenzen', {n: herz.preis});
+    $('topfCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); showTopf(); });
+  }
+  vollZeileHorchen('topfVoll');
+}
+function startTopf(){
+  const aufgaben = (livesNow() > 0) ? topfRunde() : [];
+  if(!aufgaben.length){ topfSeite(); return; }
+  showView('levelView');
+  setzeZurueck(t('btn.zurueck'), topfSeite);
+  $('tag').textContent = t('topf.titel');
+  stilleBitte();
+  $('levelHome').style.display = 'none'; $('test').style.display = 'none'; $('lesson').style.display = 'block';
+  $('tBody').innerHTML = '';   // siehe showLevelHome: gleiche ids in beiden Feldern
+  uhrNeu();
+  const zl = $('zmajLesson'); zl.style.display = 'block'; zl.innerHTML = zmaj('happy'); setMood(zl, 'happy');
+  Lx = {queue: aufgaben, i:0, results:[], right:0, total: aufgaben.length, skipped:0,
+        newWords: new Set(), retried: new Set(), topf: true};
+  showLessonTask();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+/* Das Ende einer Runde. Wie lessonEnd(), nur ohne Level: kein Fortschritt
+   im Level, kein Test, der frei wird. Dafuer steht da, was noch uebrig ist. */
+function topfEnde(){
+  stilleBitte(); uhrAus();
+  const scored = Lx.results.filter(r => r !== 'intro' && r !== 'skip').length;
+  zaehle('lek');
+  if(Lx.right === scored && scored > 0 && Lx.skipped === 0) zaehle('per');
+  const newDay = markToday(); saveProgress(); sound('done');
+  const questLob = questZeilen();
+  if(questLob) setTimeout(()=>sound('quest'), 850);
+  const rest = topfAnzahl();
+  $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none';
+  $('lBody').innerHTML =
+    '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
+    '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
+    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(t('topf.rest')) + '</div>' +
+      '<div class="stat"><b>🔥 ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
+      '<div class="stat"><b>♥ ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
+    (rest === 0 ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
+    (newDay ? '<div class="feedback ok">' + t('lektion.heute_geuebt') + '</div>' : '') +
+    questLob +
+    '<div class="row"><button class="btn ghost" id="lHome"></button>' +
+      (rest ? '<button class="btn know" id="lMore"></button>' : '') + '</div>';
+  $('lHome').textContent = t('topf.zurueck');
+  $('lHome').addEventListener('click', topfSeite);
+  if($('lMore')){ $('lMore').textContent = t('topf.noch'); $('lMore').addEventListener('click', startTopf); }
+  werbungZaehler++;
+  werbungNachDemErgebnis('lesson', ()=> Lx);
+}
 
 /* ---- Init ---- */
 /* =================== VORSPANN ===================
@@ -6828,7 +7331,16 @@ async function init(){
      noch innerhalb von starten() - die Karte (z-index 1000) legte sich
      damit ueber den laufenden Vorspann (900). */
   geschenkNachreichen();
-  werbungVorbereiten();
+  /* Die Einstufung erst, wenn Googles Einwilligungsfenster durch ist -
+     sonst laege es ueber der Frage. Zwei Anlaeufe: sobald die Einwilligung
+     erledigt ist, und nach acht Sekunden, falls Google gar nicht antwortet.
+     Steht beim zweiten das Fenster noch da, verzichtet er; dann kommt der
+     erste, wenn es zu ist. Mit Promise.race allein kam die Frage nie, wenn
+     jemand laenger als acht Sekunden im Einwilligungsfenster las -
+     gefunden in der Browser-Probe am 30.09.2026. */
+  const einstufungLos = ()=>{ einstufungBereit = true; einstufungAnbieten(); };
+  werbungVorbereiten().then(einstufungLos);
+  setTimeout(einstufungLos, 8000);
 }
 
 async function starten(){
