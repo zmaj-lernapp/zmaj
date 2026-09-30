@@ -26,9 +26,14 @@ dem Moment, in dem `ADMOB_TEST` auf `false` steht.
 
 ## Stand am 30.09.2026
 
-**Behoben: die Punkte 4, 8, 9, 11, 13, 14, 15, 16, 17, 18 und 19.** Gegengeprüft auf dem
-Galaxy S9 (Android 10) mit Googles Testkennungen, Fassung 57 — und dort, wo
-der Fehler nur ohne AdMob-Plugin auftritt, im Browser.
+**Behoben: die Punkte 4, 6, 7, 8, 9, 11, 13, 14, 15, 16, 17, 18 und 19.**
+Damit sind **alle zwanzig Punkte abgehakt** — 5, 10 und 12 am 28./29.09.,
+1, 2 und 3 am 29.09., 20 war schon vorher erledigt.
+
+Gegengeprüft mit Googles Testkennungen auf beiden Geräten — Galaxy S9
+(Android 10) bis Fassung 59, danach Galaxy S21 Ultra (Android 15) bis
+Fassung 62 — und dort, wo der Fehler nur ohne AdMob-Plugin auftritt, im
+Browser.
 
 **Punkt 12 war schon behoben** und stand nur noch aus Versehen in der
 Liste: `werbungFuerLeben()` zeigt seit dem 29.09. `kurzMeldung(t('werbung.
@@ -301,6 +306,63 @@ Zierrat).
 **Noch offen:** Kübras Handy und das Galaxy S9 fehlen in der Liste. Beide
 gehören hinein, **bevor** `admob_scharf.py` läuft — wie man die Kennung
 abliest, steht als Anmerkung über der Liste im Quelltext.
+
+**Punkt 6 — eine Änderung in Googles Fenster wirkte erst nach einem
+Neustart.** Danach wurde nur `persWahl` neu gelesen; `admobDarf` und
+`admobOptionen` blieben auf dem Wert vom Start. Zwei Wege liefen schief:
+
+* **Widerruf** → `canRequestAds` wird false, die App fragte aber bis zum
+  Neustart weiter Anzeigen an. Kein Datenschutzverstoß — `npa` wird bei
+  jeder Anfrage frisch gerechnet —, aber ein Verstoß gegen Googles eigene
+  Bedingung.
+* **Zustimmung nach anfänglicher Ablehnung** → `admobDarf` blieb false und
+  `initialize()` war nie gelaufen. Die Zustimmung blieb bis zum Neustart
+  folgenlos: keine Werbung, kein belohntes Video. Schadet nur uns.
+
+Neu ist `einwilligungNachziehen()`: holt die Auskunft frisch, setzt beide
+Werte und holt `initialize()` nach, falls es noch nicht lief. Ein Merker
+verhindert den zweiten Start. Auf dem S21 gemessen — der klebende Zustand
+wurde nachgestellt:
+
+```
+vorher:        admobDarf true,  gestartet true,  Werbung erlaubt true
+nachgestellt:  admobDarf false, gestartet false, Werbung erlaubt false
+danach:        admobDarf true,  gestartet true,  Werbung erlaubt true
+               nach 545 ms, ohne Neustart
+```
+
+**Punkt 7 — das eigene Fenster sprang für Googles UMP ein.** Kam UMP nicht
+durch, zeigte die App ihren eigenen Einwilligungsdialog. Der ist kein
+zertifiziertes CMP. Seine Antwort wurde dauerhaft gespeichert, landete über
+`werbungPersonalisiert()` als `npa` an **echten** Anzeigenanfragen, und beim
+nächsten Start mit Netz fragte UMP dieselbe Sache ein zweites Mal — derselbe
+Nutzer zweimal befragt, und die erste Antwort galt der App als Einwilligung
+nach Art. 6 Abs. 1 lit. a DSGVO.
+
+Auf dem Gerät fragt jetzt ausschließlich Google. Kommt UMP nicht durch,
+gibt es lieber keine Werbung; der nächste Start versucht es erneut, und
+`zeigeWerbung()` fasst innerhalb einer Sitzung einmal nach. Das eigene
+Fenster bleibt für die Browser-Fassung, wo es AdMob gar nicht gibt.
+
+Dazu gehört eine zweite Änderung, sonst wäre die Reparatur nach hinten
+losgegangen: ohne laufendes AdMob ist auf dem Gerät jetzt **gar keine
+Werbung erlaubt**. Sonst stünde der Knopf „Video ansehen“ zwar da, liefe
+aber jedes Mal ins Leere.
+
+Beide Seiten gemessen:
+
+```
+Gerät, Plugin da, AdMob nicht hochgefahren:
+    einwilligungFragen()  false   (eigenes Fenster springt nicht ein)
+    werbungErlaubt(true)  false   (kein toter Knopf)
+    werbungErlaubt(false) false
+
+Browser, kein Plugin:
+    einwilligungFragen()  true    (eigenes Fenster bleibt)
+```
+
+Teil C des Befundes — der zahlende Abonnent bekam das Fenster trotzdem —
+war schon mit Punkt 15 erledigt.
 
 ---
 
