@@ -3018,8 +3018,17 @@ function festBajram(){
     + fenster(229, 54, 5, 8) + fenster(229, 70, 5, 8)
     + haus(289, 24, 16, 14, 13, false) + haus(252, 34, 18, 17, 17, true)
     + '</svg>';
-  const ornament = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 24 24"><g fill="none" stroke="#E9B949" stroke-width="1.6"><rect x="-7" y="-7" width="14" height="14"/><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)"/></g><circle r="2.4" fill="#E9B949"/></svg>';
-  return {oben, fall: '', css: `.festgruss{border-style:double; border-width:4px; background-image:${festSvgUrl(ornament)},${festSvgUrl(ornament)}; background-repeat:no-repeat; background-size:22px; background-position:right 12px top 10px, right 12px bottom 10px}`};
+  /* Im Grusskasten Mondsichel und fuenfzackiger Stern. Vorher standen dort
+     zwei verschraenkte Quadrate - klein gezeichnet sahen sie aus wie ein
+     Davidstern (Ajdin: "die Sterne sehen ein bisschen aus wie Judensterne,
+     aender das"). */
+  const zacken = Array.from({length: 10}, (_, k) => {
+    const w = (-90 + k * 36) * Math.PI / 180, r = k % 2 ? 1.5 : 3.6;
+    return (5.2 + r * Math.cos(w)).toFixed(2) + ',' + (-2.2 + r * Math.sin(w)).toFixed(2);
+  }).join(' ');
+  const mond = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 24 24"><defs><mask id="m"><rect x="-12" y="-12" width="24" height="24" fill="#fff"/><circle cx="4.2" cy="-2.6" r="7.4" fill="#000"/></mask></defs>'
+    + '<circle r="9.5" fill="#E9B949" mask="url(#m)"/><polygon points="' + zacken + '" fill="#E9B949"/></svg>';
+  return {oben, fall: '', css: `.festgruss{border-style:double; border-width:4px; background-image:${festSvgUrl(mond)}; background-repeat:no-repeat; background-size:32px; background-position:right 12px center}`};
 }
 
 function festOstern(){
