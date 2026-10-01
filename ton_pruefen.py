@@ -69,8 +69,13 @@ def main():
                 warnung.append("liegt herum, steht in keinem Index: %s" % f)
 
     # 5) Der Schlüssel muss wirklich das sein, wonach die App sucht
+    # Aufnahmen mit allen Formen (Schluessel mit " / ") sucht die App ueber
+    # den ganzen Text - siehe schluessel_alle() in ton_bauen.py.
     for e in toene:
-        soll = ton_bauen.schluessel(e["text"])
+        if " / " in e["key"]:
+            soll = ton_bauen.schluessel_alle(e["text"])
+        else:
+            soll = ton_bauen.schluessel(e["text"])
         if e["key"] != soll:
             fehler.append("Schlüssel passt nicht zum Text: %r statt %r"
                           % (e["key"], soll))

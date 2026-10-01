@@ -75,6 +75,28 @@ def schluessel(text):
     return text.split(" / ")[0].strip().lower()
 
 
+def schluessel_alle(text):
+    """Der Schluessel fuer die Aufnahme mit ALLEN Formen ("moj / moja / moje"):
+    der ganze Text, getrimmt und kleingeschrieben. audioDatei() in index.html
+    sucht ihn zuerst, sobald ein Text ' / ' enthaelt. Ajdin am 01.10.2026:
+    "alle Formen sprechen" - wer zwei Formen sieht und eine hoert, haelt das
+    fuer einen Fehler."""
+    return text.strip().lower()
+
+
+def sprechtext_alle(text):
+    """Alle Formen hintereinander, mit kurzer Pause: "moj, moja, moje".
+    Endet eine Form schon mit einem Satzzeichen ("Gdje si rođen?"), ersetzt
+    das das Komma."""
+    teile = [sprechtext(t) for t in text.split(" / ") if t.strip()]
+    raus = ""
+    for i, t in enumerate(teile):
+        if i:
+            raus += " " if raus[-1:] in ".?!…" else ", "
+        raus += t
+    return raus
+
+
 def sprechtext(text):
     """Wie fuerStimme() in index.html: Das bosnische Alphabet kennt kein
     x, q, w, y. Die Stimme verschluckt sie, darum vorher umschreiben."""
@@ -172,7 +194,21 @@ def sammle():
     # Der Probesatz aus den Einstellungen, fest in index.html verdrahtet.
     k = schluessel("Dobar dan, kako si?")
     if k not in gesehen:
+        gesehen.add(k)
         posten.append({"art": "wort", "key": k, "text": "Dobar dan, kako si?"})
+
+    # Woerter mit mehreren Formen bekommen zusaetzlich eine Aufnahme mit
+    # allen Formen (seit 01.10.2026). Die bisherige mit nur der ersten Form
+    # bleibt - die braucht z. B. das angetippte Wort in einer Geschichte.
+    # Am Ende angehaengt, damit die vergebenen Nummern gleich bleiben.
+    for kat in v.KATEGORIEN:
+        for w in kat["words"]:
+            if " / " not in w["bs"]:
+                continue
+            k = schluessel_alle(w["bs"])
+            if k not in gesehen:
+                gesehen.add(k)
+                posten.append({"art": "wort", "key": k, "text": w["bs"], "alle": True})
     return posten
 
 
@@ -231,8 +267,16 @@ def azure(zugang, text, stimme, langsam):
         stimme = sonder.get("stimme", stimme)
         inhalt = roh
         if sonder.get("lautschrift"):
-            inhalt = ("<phoneme alphabet='ipa' ph='%s'>%s</phoneme>"
-                      % (lautschrift(text), roh))
+            # Mehrere Formen ("nju, je"): je Form ein eigenes <phoneme>,
+            # dazwischen das Komma als Pause.
+            # "ipa" in ton_ausnahmen.json gibt die Lautschrift von Hand vor,
+            # z. B. mit Laengenzeichen: skup mit langem u ("skuːp"), Ajdin am
+            # 01.10.2026. Bei mehreren Formen durch ", " getrennt.
+            teile = text.split(", ")
+            ipa = sonder.get("ipa")
+            ipa = ipa.split(", ") if ipa else [lautschrift(t) for t in teile]
+            inhalt = ", ".join("<phoneme alphabet='ipa' ph='%s'>%s</phoneme>"
+                               % (ph, _xml(t)) for ph, t in zip(ipa, teile))
         if sonder.get("rate"):
             inhalt = "<prosody rate='%s'>%s</prosody>" % (sonder["rate"], inhalt)
         ssml = ("<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' "
@@ -358,7 +402,8 @@ def grosser_lauf(dienst, zugang, stimme, stimme_gesch):
             nr_g += 1; datei = "g%02d.mp3" % nr_g
 
         lang = p["art"] == "geschichte"
-        ton = hole(dienst, zugang, sprechtext(p["text"]),
+        gesprochen = sprechtext_alle(p["text"]) if p.get("alle") else sprechtext(p["text"])
+        ton = hole(dienst, zugang, gesprochen,
                    stimme_gesch if lang else stimme, not lang)
         if len(ton) < 800:
             print("  WARNUNG: %s ist nur %d Byte groß – vermutlich stumm"

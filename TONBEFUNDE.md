@@ -85,6 +85,40 @@ sie fielen komplett durch. `smrt`, `vrt`, `krv`, `trg` und `vrh` stehen
 
 ---
 
+## Prüfliste vom 01.10.2026
+
+Ajdin hat über die Prüfliste angehört und entschieden:
+
+| Wort | Datei | Ergebnis |
+|---|---|---|
+| **sud** (Gericht) | `w0984.mp3` | klingt jetzt richtig (seit 26.09. kroatische Stimme mit Lautschrift) |
+| **nju / je** | `w0496.mp3` | falsch: „er sagt inju, es muss nju sein, und das andere Wort ist je“ |
+| **skup / skupa** (teuer) | `w0755.mp3` | falsch: „er sagt skop und nicht skup“ |
+| **drug / drugarica** (Kumpel) | `w2014.mp3` | falsch: „er sagt dru nicht drug“ – das g fällt wieder weg |
+
+**Mehrere Formen:** Entscheidung „alle Formen sprechen“. Heute spricht
+`sprechtext()` in `ton_bauen.py` nur die erste Form, und `audioDatei()` in
+`index.html` sucht die Aufnahme ebenfalls nur über die erste Form. Für beide
+Formen ändern sich also Erzeugung und Schlüssel; betroffen sind 107 Einträge
+(Stand 01.10.2026). Neue Aufnahmen kosten Azure-Guthaben – erst nach Ajdins
+Freigabe.
+
+### Erledigt am 01.10.2026 (Prüfliste, Runden 2 und 3)
+
+- **Alle Formen:** 107 neue Aufnahmen mit allen Formen hintereinander
+  („moj, moja, moje“), eigener Schlüssel = ganzer Text (`schluessel_alle()`
+  in `ton_bauen.py`, `audioDatei()` in `index.html` sucht ihn zuerst). Die
+  Aufnahme der ersten Form bleibt für das angetippte Wort in Geschichten.
+  Ajdin hat alle angehört, keine beanstandet.
+- **nju** (`w0496.mp3`) und **drug** (`w2014.mp3`): kroatische Stimme mit
+  Lautschrift. „nju, je“ und „drug, drugarica“ bleiben bei Goran.
+- **skup** (`w0755.mp3`): kroatische Stimme mit langem u, Lautschrift von
+  Hand („skuːp“, Feld `ipa` in `ton_ausnahmen.json`). Der Eintrag in Level 42
+  heißt jetzt „skup / skupa / skupo = teuer (m/w/s)“ – „skup“ allein ist
+  auch das Treffen, „skupa“ auch „zusammen“. „skup, skupa, skupo“ bleibt bei
+  Goran.
+- Fassungen erzeugt mit `ton_varianten2.py`, alles in `web/audio/_probe/`.
+
 ## Nachzusprechen
 
 Beide Aufnahmen sind vorhanden und werden gefunden. Beanstandet ist, wie sie
