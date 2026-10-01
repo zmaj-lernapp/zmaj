@@ -13986,6 +13986,12 @@
    "datei": "w2320.mp3",
    "text": "aparat za kahvu / aparat za kafu",
    "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ovo meso je ljuto.",
+   "datei": "w2321.mp3",
+   "text": "Ovo meso je ljuto.",
+   "stimme": "bs-BA-GoranNeural"
   }
  ]
 }
