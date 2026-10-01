@@ -4,7 +4,7 @@ Eine Android-App zum Erlernen der bosnischen Sprache. Sie läuft vollständig
 auf dem Gerät: kein Nutzerkonto, kein Server, der Lernstand verlässt das
 Telefon nicht.
 
-**63 Level** vom Alltag bis zum Arbeitsvertrag · **1668 Vokabeln** mit
+**65 Level** vom Alltag bis zum Arbeitsvertrag · **1728 Vokabeln** mit
 bosnischer Tonspur · **16 Grammatikeinheiten** mit 104 Übungen · **12
 Lesegeschichten** · Sprechaufgabe mit Spracherkennung · Oberfläche in **acht
 Sprachen**

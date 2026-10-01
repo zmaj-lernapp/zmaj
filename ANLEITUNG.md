@@ -237,7 +237,7 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: 9 Sektionen, 63 Levels
+## Der Lernpfad: 9 Sektionen, 65 Levels
 
 Der Lernpfad zeigt neun Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
 Ein Level antippen öffnet die Übungen. Bestandene Levels und Sektionen bleiben
@@ -248,15 +248,33 @@ Familie, Essen & Trinken, Wochentage, Monate, Zeit, Zuhause, Wetter & Natur,
 Körper & Gesundheit, Einkaufen & Kleidung, Unterwegs, Verben, Smalltalk &
 Gefühle.
 
-**Sektion 2 · Sätze bauen** (22 Levels, die größte Sektion): Fragen stellen,
-Geschlecht (on/ona/ono), Verben beugen, Mehrzahl, Nebensätze & Verneinung,
-Fälle 1 (Nominativ & Akkusativ), Fälle 2 (Genitiv), Präpositionen, Fälle 3
-(Dativ & Lokativ), Fälle 4 (Instrumental & Vokativ), Vergangenheit, Zukunft &
-Pläne, Können/müssen/wollen, Reflexive Verben, Tagesablauf, Vergleichen &
-Beschreiben, Zahlen im Satz, Gefühle & Meinungen, Reisen & Verkehr, Feste &
-Traditionen, Arbeit & Schule, Ganze Sätze.
+**Sektion 2 · Dinge zum Anfassen** (4 Levels): Obst, Gemüse, Lebensmittel,
+Vorrat & Getränke.
 
-**Sektion 3 · Amt & Verträge** (6 Levels): Höflich & Formell, Amt & Behörde,
+**Sektion 3 · Tiere & Natur** (4 Levels): Tiere, Tiere draußen, Rund ums Tier,
+Natur & Pflanzen.
+
+**Sektion 4 · Zuhause** (5 Levels): Küche & Bad, Putzen & Nachbarschaft,
+Technik & Reparatur, Auto & Werkstatt, Handy, Computer & Geräte.
+
+**Sektion 5 · Sätze bauen** (22 Levels): Fragen stellen, Geschlecht: on, ona,
+ono, Verben beugen, Mehrzahl, Nebensätze & Verneinung, Fälle 1: Nominativ &
+Akkusativ, Fälle 2: Genitiv, Präpositionen, Fälle 3: Dativ & Lokativ, Fälle 4:
+Instrumental & Vokativ, Vergangenheit, Zukunft & Pläne, Können, müssen,
+wollen, Reflexive Verben (se), Tagesablauf, Vergleichen & Beschreiben, Zahlen
+im Satz, Gefühle & Meinungen, Reisen & Verkehr, Feste & Traditionen, Arbeit &
+Schule, Ganze Sätze.
+
+**Sektion 6 · Einkaufen & Essen gehen** (4 Levels): Einkaufen & Orte, Im
+Restaurant: ankommen, Im Restaurant: essen & zahlen, Essen gehen & Mengen.
+
+**Sektion 7 · Bosnien & Herkunft** (3 Levels): Bosnische Küche, Länder &
+Herkunft, Nationalitäten & Sprachen.
+
+**Sektion 8 · Menschen & Kultur** (2 Levels): Vorstellen & Kennenlernen,
+Musik, Glaube & Gastfreundschaft.
+
+**Sektion 9 · Amt & Verträge** (6 Levels): Höflich & Formell, Amt & Behörde,
 Bank & Geld, Wohnung & Hauskauf, Arbeitsvertrag & Bewerbung, Arzt &
 Versicherung.
 
@@ -853,7 +871,7 @@ erste Adresse; für die anderen sechs fehlt noch jemand.
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 1668 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 1728 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, und
   keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
 
@@ -874,7 +892,7 @@ Der Grund: dasselbe bosnische Wort kann zwei Bedeutungen haben. `sto` ist die
 Zahl hundert und der Tisch, `oko` das Auge und „um herum“. Vorher merkte sich
 die App nur `sto` – wer die Zahl konnte, bei dem galt auch das Möbelstück als
 gelernt, und Level 9 startete bei 4 % statt bei 0 %. Dasselbe galt für `malo`,
-`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 63 Levels bei
+`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 65 Levels bei
 0 %, und man sieht in einer Sicherung auf einen Blick, welche Bedeutung
 gemeint ist.
 

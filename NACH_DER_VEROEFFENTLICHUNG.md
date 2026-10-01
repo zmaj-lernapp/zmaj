@@ -144,7 +144,7 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
      in die Beschreibung, nicht nur in den Kaufkasten.
 
   3. Zu prüfen, ob die Zahlen noch stimmen: die Kurzbeschreibung nennt
-     **63 Levels**, die lange **1668 Wörter, 290 Lückentexte, 16
+     **65 Levels**, die lange **1728 Wörter, 300 Lückentexte, 16
      Grammatik-Lektionen mit 104 Übungen, 12 Geschichten**. Nach jedem
      Inhaltszuwachs neu abgleichen — `inhalt_bauen.py` gibt die Zahlen
      beim Bauen aus.

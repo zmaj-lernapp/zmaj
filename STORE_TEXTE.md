@@ -216,28 +216,24 @@ Zmaj – Bosnisch lernen
 **Kurzbeschreibung** (73 Zeichen)
 
 ```
-Bosnisch lernen für Familie, Alltag und Amt — 63 Levels in kurzen Übungen
+Bosnisch lernen für Familie, Alltag und Amt — 65 Levels in kurzen Übungen
 ```
 
-**Vollständige Beschreibung** (3505 von 4000 Zeichen)
+**Vollständige Beschreibung** (3516 von 4000 Zeichen)
 
 ```
-Du hast Familie in Bosnien, bosnische Wurzeln oder Schwiegereltern, mit denen du endlich selbst reden willst, ohne dass jemand übersetzt? Zmaj bringt dir Bosnisch bei: 63 Levels, kurze Übungen, vom Alltag bis zum Arbeitsvertrag.
+Du hast Familie in Bosnien, bosnische Wurzeln oder Schwiegereltern, mit denen du endlich selbst reden willst, ohne dass jemand übersetzt? Zmaj bringt dir Bosnisch bei: 65 Levels, kurze Übungen, vom Alltag bis zum Arbeitsvertrag.
 
 WAS DU LERNST
 
-Drei Sektionen, eine nach der anderen.
+Neun Sektionen, eine nach der anderen: Es beginnt bei den ersten Wörtern und dem Alltag, geht über Essen, Tiere, Zuhause, Auto und Handy zu eigenen Sätzen, dann zu Einkaufen, Herkunft und Kultur.
 
-"Grundlagen & Alltag" beginnt bei den ersten Wörtern und bei dem, was du jeden Tag brauchst.
-
-"Sätze bauen" zeigt dir, wie aus einzelnen Wörtern eigene Sätze werden.
-
-"Amt & Verträge" nimmt sich das vor, wovor viele Respekt haben: Behördengang, Arbeitsvertrag, Wohnungssuche, Bank, Arzt. Also die Situationen, in denen man sonst jemanden mitnehmen muss.
+Die letzte Sektion, "Amt & Verträge", nimmt sich das vor, wovor viele Respekt haben: Behördengang, Arbeitsvertrag, Wohnungssuche, Bank, Arzt. Also die Situationen, in denen man sonst jemanden mitnehmen muss.
 
 Insgesamt drin:
 
-• 1668 Wörter und Wendungen
-• 290 Lückentext-Sätze
+• 1728 Wörter und Wendungen
+• 300 Lückentext-Sätze
 • 16 Grammatik-Lektionen mit zusammen 104 Übungen zu Fällen, Zeiten und Verbbeugung
 • 12 Lesegeschichten, jedes Wort antippbar mit Übersetzung
 • am Ende jedes Levels ein Test
@@ -306,11 +302,11 @@ wird sich das wirklich durchlesen“.
 Der Satz „Keine Aufgabe wird dadurch leichter“ ist Ajdins Regel „niemals
 pay-to-win“ in einem Satz und bleibt stehen.
 
-Passt ins Budget: heute 3505 Zeichen, der Einzeiler hat 52, der neue Absatz
-hat 379 — danach 3832 von 4000.
+Passt ins Budget: heute 3516 Zeichen (01.10.2026), der Einzeiler hat 52, der neue Absatz
+hat 379 — danach 3843 von 4000.
 
 ```
-Zmaj ist kostenlos und finanziert sich über Werbung. Alle 63 Levels, Grammatik, Geschichten und Aussprache sind frei.
+Zmaj ist kostenlos und finanziert sich über Werbung. Alle 65 Levels, Grammatik, Geschichten und Aussprache sind frei.
 
 Wenn dir Zmaj gefällt, teste die Vollversion sieben Tage kostenlos: keine Werbung, unbegrenzte Leben, Schmuck für den Drachen. Keine Aufgabe wird dadurch leichter. Nach der Testwoche läuft das Abo monatlich oder jährlich weiter, bis du in Google Play kündigst.
 ```
@@ -340,28 +336,24 @@ Zmaj – Learn Bosnian
 **Kurzbeschreibung** (76 Zeichen)
 
 ```
-Learn Bosnian for family, daily life and paperwork — 63 levels, short drills
+Learn Bosnian for family, daily life and paperwork — 65 levels, short drills
 ```
 
-**Vollständige Beschreibung** (3427 von 4000 Zeichen)
+**Vollständige Beschreibung** (3444 von 4000 Zeichen)
 
 ```
-Family in Bosnia, Bosnian roots, or Bosnian in-laws: at some point you want to do the talking yourself, without someone translating in between. You probably understand more than you can say. Zmaj teaches you Bosnian: 63 levels, short exercises, from everyday talk to an employment contract.
+Family in Bosnia, Bosnian roots, or Bosnian in-laws: at some point you want to do the talking yourself, without someone translating in between. You probably understand more than you can say. Zmaj teaches you Bosnian: 65 levels, short exercises, from everyday talk to an employment contract.
 
 WHAT YOU LEARN
 
-Three sections, one after the other.
+Nine sections, one after the other: it starts with the first words and everyday life, moves on to food, animals, home, cars and phones, then to building your own sentences, shopping, origins and culture.
 
-“Basics & everyday life” starts with the first words and with what you need every day.
-
-“Building sentences” shows you how single words turn into sentences of your own.
-
-“Offices & contracts” takes on the part many people are wary of: the government office, the employment contract, finding an apartment, the bank, the doctor. The situations where you would otherwise have to bring someone along.
+The last section, “Offices & contracts”, takes on the part many people are wary of: the government office, the employment contract, finding an apartment, the bank, the doctor. The situations where you would otherwise have to bring someone along.
 
 In total:
 
-• 1668 words and phrases
-• 290 fill-in-the-blank sentences
+• 1728 words and phrases
+• 300 fill-in-the-blank sentences
 • 16 grammar lessons with 104 exercises in total, on cases, tenses and verb endings
 • 12 reading stories, every word tappable for a translation
 • a test at the end of every level
@@ -392,7 +384,7 @@ And if you already understand a fair amount because you grew up hearing it at ho
 
 KEEPING IT UP
 
-You have five lives and they grow back on their own. The streak counts the days you practiced, and streak protection covers one missed day when life gets in the way.
+You have five hearts and they grow back on their own. The streak counts the days you practiced, and streak protection covers one missed day when life gets in the way.
 
 YOUR LANGUAGE
 
@@ -419,9 +411,9 @@ Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
 Console stehen. 374 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj is free and funded by ads. All 63 levels, the grammar, the stories and the pronunciation are open to everyone.
+Zmaj is free and funded by ads. All 65 levels, the grammar, the stories and the pronunciation are open to everyone.
 
-If you like Zmaj, try the full version free for seven days: no ads, unlimited lives, accessories for the dragon. None of this makes a single exercise easier. After the trial week, the subscription renews monthly or yearly until you cancel it in Google Play.
+If you like Zmaj, try the full version free for seven days: no ads, unlimited hearts, accessories for the dragon. None of this makes a single exercise easier. After the trial week, the subscription renews monthly or yearly until you cancel it in Google Play.
 ```
 
 **Apple: Untertitel** (26 Zeichen)
@@ -449,28 +441,24 @@ Zmaj – Boşnakça öğren
 **Kurzbeschreibung** (78 Zeichen)
 
 ```
-Aile, günlük hayat ve resmî işler için Boşnakça — 63 seviye, kısa alıştırmalar
+Aile, günlük hayat ve resmî işler için Boşnakça — 65 seviye, kısa alıştırmalar
 ```
 
-**Vollständige Beschreibung** (3409 von 4000 Zeichen)
+**Vollständige Beschreibung** (3407 von 4000 Zeichen)
 
 ```
-Dedenden, ninenden duya duya bir şeyler anlıyor ama kendin konuşamıyor musun? Boşnak kökenli bir ailede büyüdüysen, Bosna'da akrabaların varsa ya da eşinin ailesiyle aracısız konuşmak istiyorsan: Zmaj sana Boşnakçayı baştan öğretiyor. 63 seviye, kısa alıştırmalar, günlük hayattan iş sözleşmesine kadar.
+Dedenden, ninenden duya duya bir şeyler anlıyor ama kendin konuşamıyor musun? Boşnak kökenli bir ailede büyüdüysen, Bosna'da akrabaların varsa ya da eşinin ailesiyle aracısız konuşmak istiyorsan: Zmaj sana Boşnakçayı baştan öğretiyor. 65 seviye, kısa alıştırmalar, günlük hayattan iş sözleşmesine kadar.
 
 NELER ÖĞRENİYORSUN?
 
-Üç bölüm, sırayla.
-
-“Temeller ve günlük hayat” ilk kelimelerle başlıyor ve her gün ihtiyaç duyduğun şeyleri veriyor.
-
-“Cümle kurmak” tek tek kelimelerden kendi cümlelerini nasıl kuracağını gösteriyor.
+Dokuz bölüm, sırayla: İlk kelimeler ve günlük hayatla başlıyor; yiyecekler, hayvanlar, ev, araba ve telefonla devam ediyor, ardından kendi cümlelerini kurmaya, alışverişe, kökene ve kültüre geçiyor.
 
 “Resmî işler ve sözleşmeler” birçok kişinin çekindiği kısmı ele alıyor: resmî daire işleri, iş sözleşmesi, ev arama, banka, doktor. Yani normalde yanına birini almak zorunda kaldığın durumlar.
 
 Uygulamanın içinde:
 
-• 1668 kelime ve kalıp
-• 290 boşluk doldurma cümlesi
+• 1728 kelime ve kalıp
+• 300 boşluk doldurma cümlesi
 • 16 dil bilgisi dersi, toplam 104 alıştırma: hâller, zamanlar, fiil çekimi
 • 12 okuma hikâyesi, her kelimeye dokununca çevirisi
 • her seviyenin sonunda bir test
@@ -528,7 +516,7 @@ Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
 Console stehen. 393 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj ücretsiz ve reklamlarla finanse ediliyor. 63 seviyenin hepsi, dil bilgisi, hikâyeler ve telaffuz herkese açık.
+Zmaj ücretsiz ve reklamlarla finanse ediliyor. 65 seviyenin hepsi, dil bilgisi, hikâyeler ve telaffuz herkese açık.
 
 Zmaj'ı beğendiysen tam sürümü yedi gün ücretsiz deneyebilirsin: reklamsız kullanım, sınırsız can ve ejderha için aksesuarlar. Hiçbir alıştırma bununla kolaylaşmıyor. Deneme haftasından sonra abonelik, sen Google Play'de iptal edene kadar aylık veya yıllık olarak devam ediyor.
 ```
@@ -558,28 +546,24 @@ Zmaj – Lär dig bosniska
 **Kurzbeschreibung** (76 Zeichen)
 
 ```
-Lär dig bosniska för familj, vardag och myndigheter — 63 nivåer i korta pass
+Lär dig bosniska för familj, vardag och myndigheter — 65 nivåer i korta pass
 ```
 
-**Vollständige Beschreibung** (3217 von 4000 Zeichen)
+**Vollständige Beschreibung** (3249 von 4000 Zeichen)
 
 ```
-Har du familj i Bosnien, bosniska rötter eller svärföräldrar som du äntligen vill prata med själv, utan att någon översätter åt dig? Zmaj lär dig bosniska: 63 nivåer, korta övningar, från vardagen till anställningsavtalet.
+Har du familj i Bosnien, bosniska rötter eller svärföräldrar som du äntligen vill prata med själv, utan att någon översätter åt dig? Zmaj lär dig bosniska: 65 nivåer, korta övningar, från vardagen till anställningsavtalet.
 
 DET HÄR LÄR DU DIG
 
-Tre sektioner, en i taget.
-
-”Grunderna & vardagen” börjar med de första orden och med det du behöver varje dag.
-
-”Bygga meningar” visar hur enstaka ord blir dina egna meningar.
+Nio avsnitt, ett i taget: det börjar med de första orden och vardagen, går vidare till mat, djur, hemmet, bilen och mobilen, sedan till att bygga egna meningar och därefter till shopping, härkomst och kultur.
 
 ”Myndigheter & avtal” tar sig an det som många drar sig för: myndighetsbesök, anställningsavtal, bostadsjakt, banken, läkaren. Alltså situationerna där man annars brukar ta med sig någon.
 
 Allt som ingår:
 
-• 1668 ord och uttryck
-• 290 meningar med lucka
+• 1728 ord och uttryck
+• 300 meningar med lucka
 • 16 grammatiklektioner med sammanlagt 104 övningar om kasus, tempus och verbböjning
 • 12 läsberättelser, varje ord går att trycka på för översättning
 • ett test i slutet av varje nivå
@@ -604,7 +588,7 @@ Innehållet följer ”Pravopis bosanskoga jezika” av Senahid Halilović. Du l
 
 BEHÖVER JAG FÖRKUNSKAPER?
 
-Nej. Första sektionen heter ”Grunderna & vardagen” och börjar precis där.
+Nej. Första avsnittet heter ”Grunderna & vardagen” och börjar precis där.
 
 Och om du redan förstår en del för att du har hört språket hemma, men aldrig har satt dig in i kasus och tempus: grammatiklektionerna och läsberättelserna är oftast just det som saknas.
 
@@ -637,7 +621,7 @@ Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
 Console stehen. 382 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj är gratis och finansieras med reklam. Alla 63 nivåer, grammatiken, berättelserna och uttalet är fritt tillgängliga.
+Zmaj är gratis och finansieras med reklam. Alla 65 nivåer, grammatiken, berättelserna och uttalet är fritt tillgängliga.
 
 Gillar du Zmaj kan du prova fullversionen gratis i sju dagar: ingen reklam, obegränsade liv och accessoarer till draken. Ingen uppgift blir lättare av det. Efter provveckan fortsätter prenumerationen per månad eller per år tills du säger upp den i Google Play.
 ```
@@ -667,28 +651,24 @@ Zmaj – Bosnisch leren
 **Kurzbeschreibung** (74 Zeichen)
 
 ```
-Bosnisch leren voor familie, dagelijks leven en overheid — 63 korte levels
+Bosnisch leren voor familie, dagelijks leven en overheid — 65 korte levels
 ```
 
-**Vollständige Beschreibung** (3468 von 4000 Zeichen)
+**Vollständige Beschreibung** (3488 von 4000 Zeichen)
 
 ```
-Heb je familie in Bosnië, Bosnische roots of schoonouders met wie je eindelijk zelf wilt praten, zonder dat er iemand tussen zit om te vertalen? Zmaj leert je Bosnisch: 63 levels, korte oefeningen, van het dagelijks leven tot het arbeidscontract.
+Heb je familie in Bosnië, Bosnische roots of schoonouders met wie je eindelijk zelf wilt praten, zonder dat er iemand tussen zit om te vertalen? Zmaj leert je Bosnisch: 65 levels, korte oefeningen, van het dagelijks leven tot het arbeidscontract.
 
 WAT JE LEERT
 
-Drie secties, één voor één.
-
-‘Basis & dagelijks leven’ begint bij de eerste woorden en bij wat je elke dag nodig hebt.
-
-‘Zinnen bouwen’ laat zien hoe losse woorden jouw eigen zinnen worden.
+Negen delen, één voor één: het begint bij de eerste woorden en het dagelijks leven, gaat via eten, dieren, het huis, de auto en je telefoon naar je eigen zinnen, en daarna naar boodschappen, afkomst en cultuur.
 
 ‘Overheid & contracten’ gaat over de dingen waar veel mensen tegenop zien: het loket, het arbeidscontract, een woning zoeken, de bank, de dokter. Precies de situaties waarbij je anders iemand mee moet nemen.
 
 Alles bij elkaar:
 
-• 1668 woorden en uitdrukkingen
-• 290 invulzinnen
+• 1728 woorden en uitdrukkingen
+• 300 invulzinnen
 • 16 grammaticalessen met in totaal 104 oefeningen over naamvallen, tijden en werkwoordsvervoeging
 • 12 leesverhalen, elk woord aantikbaar met vertaling
 • aan het eind van elk level een toets
@@ -713,7 +693,7 @@ De inhoud volgt de ‘Pravopis bosanskoga jezika’ van Senahid Halilović. Je l
 
 HEB IK VOORKENNIS NODIG?
 
-Nee. De eerste sectie heet ‘Basis & dagelijks leven’ en begint precies daar.
+Nee. Het eerste deel heet ‘Basis & dagelijks leven’ en begint precies daar.
 
 En begrijp je al het een en ander omdat je het thuis hebt gehoord, maar heb je je nooit met naamvallen en tijden beziggehouden? Dan zijn de grammaticalessen en de leesverhalen meestal precies het stuk dat ontbreekt.
 
@@ -746,7 +726,7 @@ Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
 Console stehen. 424 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj is gratis en wordt gefinancierd met advertenties. Alle 63 levels, de grammatica, de verhalen en de uitspraak zijn vrij toegankelijk.
+Zmaj is gratis en wordt gefinancierd met advertenties. Alle 65 levels, de grammatica, de verhalen en de uitspraak zijn vrij toegankelijk.
 
 Vind je Zmaj leuk? Probeer dan de volledige versie zeven dagen gratis: geen advertenties, onbeperkte levens en accessoires voor de draak. Geen enkele opdracht wordt daardoor makkelijker. Na de proefweek loopt het abonnement per maand of per jaar door, tot je het in Google Play opzegt.
 ```
@@ -776,28 +756,24 @@ Zmaj – Lær bosnisk
 **Kurzbeschreibung** (75 Zeichen)
 
 ```
-Lær bosnisk for familie, hverdag og det offentlige — 63 nivåer, korte økter
+Lær bosnisk for familie, hverdag og det offentlige — 65 nivåer, korte økter
 ```
 
-**Vollständige Beschreibung** (3250 von 4000 Zeichen)
+**Vollständige Beschreibung** (3248 von 4000 Zeichen)
 
 ```
-Har du familie i Bosnia, bosniske røtter eller svigerforeldre du endelig vil snakke med selv, uten at noen oversetter? Zmaj lærer deg bosnisk: 63 nivåer, korte økter, fra hverdagen til arbeidskontrakten.
+Har du familie i Bosnia, bosniske røtter eller svigerforeldre du endelig vil snakke med selv, uten at noen oversetter? Zmaj lærer deg bosnisk: 65 nivåer, korte økter, fra hverdagen til arbeidskontrakten.
 
 DETTE LÆRER DU
 
-Tre seksjoner, én om gangen.
-
-«Grunnlaget & hverdagen» begynner med de første ordene og med det du bruker hver dag.
-
-«Bygge setninger» viser deg hvordan enkeltord blir til dine egne setninger.
+Ni deler, én om gangen: Det begynner med de første ordene og hverdagen, går videre til mat, dyr, hjemmet, bilen og mobilen, så til egne setninger og deretter til handling, opprinnelse og kultur.
 
 «Offentlige kontorer & avtaler» tar for seg det mange kvier seg for: møtet med det offentlige, arbeidskontrakten, boligjakten, banken, legen. Altså situasjonene der du ellers må ha med deg noen.
 
 Til sammen får du:
 
-• 1668 ord og uttrykk
-• 290 setninger der du fyller inn ordet som mangler
+• 1728 ord og uttrykk
+• 300 setninger der du fyller inn ordet som mangler
 • 16 grammatikkleksjoner med til sammen 104 øvelser i kasus, tider og verbbøying
 • 12 lesehistorier der du kan trykke på hvert ord og få oversettelsen
 • en test på slutten av hvert nivå
@@ -806,7 +782,7 @@ SLIK ØVER DU
 
 Oppgavetypene veksler: kjenne igjen betydningen, finne ordet på bosnisk, skrive det inn selv, fylle inn ordet som mangler i setningen, og grammatikkøvelsene.
 
-Uttalen følger med i appen: hvert ord har en lydfil med bosnisk stemme, og de tolv lesehistoriene kan du høre i ett strekk. I lytteoppgaven spiller du av et ord og velger hvilket det var. Slik hører du ordene i stedet for bare å lese dem – også på en enhet som ikke har noen bosnisk stemme selv.
+Uttalen følger med i appen: Hvert ord har en lydfil med bosnisk stemme, og de tolv lesehistoriene kan du høre i ett strekk. I lytteoppgaven spiller du av et ord og velger hvilket det var. Slik hører du ordene i stedet for bare å lese dem – også på en enhet som ikke har noen bosnisk stemme selv.
 
 I taleoppgaven står det bosniske ordet skrevet, og du kan høre det først om du vil. Så trykker du på mikrofonen og sier ordet, og talegjenkjenningen på enheten din sjekker om det stemmer. Da får du sagt ordene høyt selv, så lenge enheten har talegjenkjenning.
 
@@ -814,7 +790,7 @@ I lesehistoriene trykker du på hvert ord du ikke kjenner, og ser oversettelsen.
 
 ER BOSNISK VANSKELIG Å LÆRE?
 
-Ordene er det minste problemet. Det som stopper opp, er kasusene og verbbøyingen. Nettopp derfor finnes de 16 grammatikkleksjonene med sine 104 øvelser: Du jobber deg gjennom steg for steg i stedet for å pugge tabeller.
+Ordene er det minste problemet. Det som stopper deg, er kasusene og verbbøyingen. Nettopp derfor finnes de 16 grammatikkleksjonene med sine 104 øvelser: Du jobber deg gjennom steg for steg i stedet for å pugge tabeller.
 
 BOSNISK, KROATISK ELLER SERBISK?
 
@@ -822,7 +798,7 @@ Innholdet følger «Pravopis bosanskoga jezika» av Senahid Halilović. Du lære
 
 MÅ JEG KUNNE NOE FRA FØR?
 
-Nei. Den første seksjonen heter «Grunnlaget & hverdagen» og begynner nettopp der.
+Nei. Den første delen heter «Grunnlaget & hverdagen» og begynner nettopp der.
 
 Og hvis du allerede forstår en del fordi du har hørt språket hjemme, men aldri har satt deg ned med kasus og tider: Grammatikkleksjonene og lesehistoriene er som regel akkurat den delen som mangler.
 
@@ -855,7 +831,7 @@ Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
 Console stehen. 376 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj er gratis og finansieres med reklame. Alle 63 nivåer, grammatikk, lesehistorier og uttale er fritt tilgjengelige.
+Zmaj er gratis og finansieres med reklame. Alle 65 nivåer, grammatikk, lesehistorier og uttale er fritt tilgjengelige.
 
 Liker du Zmaj, kan du prøve fullversjonen gratis i sju dager: ingen reklame, ubegrenset antall liv og tilbehør til dragen. Ingen oppgave blir lettere av det. Etter prøveuken fortsetter abonnementet per måned eller per år, til du sier det opp i Google Play.
 ```
@@ -885,28 +861,24 @@ Zmaj – Lær bosnisk
 **Kurzbeschreibung** (67 Zeichen)
 
 ```
-Lær bosnisk til familie, hverdag og myndigheder — 63 korte niveauer
+Lær bosnisk til familie, hverdag og myndigheder — 65 korte niveauer
 ```
 
-**Vollständige Beschreibung** (3366 von 4000 Zeichen)
+**Vollständige Beschreibung** (3360 von 4000 Zeichen)
 
 ```
-Har du familie i Bosnien, bosniske rødder eller svigerforældre, du endelig selv vil kunne tale med, uden at nogen oversætter? Måske forstår du det meste, men svarer på dansk. Zmaj lærer dig bosnisk: 63 niveauer, korte øvelser, fra hverdagen til ansættelseskontrakten.
+Har du familie i Bosnien, bosniske rødder eller svigerforældre, du endelig selv vil kunne tale med, uden at nogen oversætter? Måske forstår du det meste, men svarer på dansk. Zmaj lærer dig bosnisk: 65 niveauer, korte øvelser, fra hverdagen til ansættelseskontrakten.
 
 DET LÆRER DU
 
-Tre sektioner, en ad gangen.
-
-»Grundlaget & hverdagen« begynder ved de første ord og ved det, du bruger hver dag.
-
-»Bygge sætninger« viser dig, hvordan de enkelte ord bliver til dine egne sætninger.
+Ni dele, en ad gangen: Det begynder med de første ord og hverdagen, går videre til mad, dyr, hjemmet, bilen og mobilen, så til at bygge egne sætninger og derefter til indkøb, oprindelse og kultur.
 
 »Myndigheder & aftaler« tager fat i det, som mange har respekt for: kommunen, ansættelseskontrakten, boligsøgningen, banken, lægen. Altså de situationer, hvor man ellers skal have en med.
 
 I alt er der:
 
-• 1668 ord og vendinger
-• 290 sætninger med huller, du skal udfylde
+• 1728 ord og vendinger
+• 300 sætninger med huller, du skal udfylde
 • 16 grammatiklektioner med i alt 104 øvelser i kasus, tider og bøjning af udsagnsord
 • 12 læsehistorier, hvor du kan trykke på hvert ord og se oversættelsen
 • en test til sidst i hvert niveau
@@ -915,7 +887,7 @@ SÅDAN ØVER DU
 
 Opgavetyperne skifter: genkend betydningen, find det bosniske ord, tast ordet ind selv, udfyld hullet i sætningen og grammatikøvelserne.
 
-Udtalen følger med i appen: hvert ord har en lydfil med bosnisk stemme, og de tolv læsehistorier kan du høre i ét stræk. I lytteopgaven afspiller du et ord og vælger, hvilket det var. På den måde hører du ordene i stedet for kun at læse dem – også på en enhed, der ikke selv har en bosnisk stemme.
+Udtalen følger med i appen: Hvert ord har en lydfil med bosnisk stemme, og de tolv læsehistorier kan du høre i ét stræk. I lytteopgaven afspiller du et ord og vælger, hvilket det var. På den måde hører du ordene i stedet for kun at læse dem – også på en enhed, der ikke selv har en bosnisk stemme.
 
 I taleopgaven står det bosniske ord på skærmen, og du kan få det læst op først. Derefter trykker du på mikrofonen og siger ordet selv, mens enhedens egen talegenkendelse lytter med og tjekker, om det passer. Sådan får du sagt ordene højt, så længe enheden har talegenkendelse indbygget.
 
@@ -931,7 +903,7 @@ Indholdet følger »Pravopis bosanskoga jezika« af Senahid Halilović. Du lære
 
 SKAL JEG KUNNE NOGET I FORVEJEN?
 
-Nej. Den første sektion hedder »Grundlaget & hverdagen« og begynder præcis der.
+Nej. Den første del hedder »Grundlaget & hverdagen« og begynder præcis der.
 
 Og forstår du allerede en del, fordi du har hørt det hjemme, men aldrig har siddet med kasus og tider: Grammatiklektionerne og læsehistorierne er som regel lige netop den del, der mangler.
 
@@ -964,7 +936,7 @@ Wie beim Deutschen: erst tauschen, wenn die 7 Tage Probezeit in der Play
 Console stehen. 374 Zeichen, geprüft am 30.09.2026.
 
 ```
-Zmaj er gratis og finansieret af reklamer. Alle 63 niveauer, grammatik, læsehistorier og udtale er frit tilgængelige.
+Zmaj er gratis og finansieret af reklamer. Alle 65 niveauer, grammatik, læsehistorier og udtale er frit tilgængelige.
 
 Kan du lide Zmaj, så prøv den fulde version gratis i syv dage: ingen reklamer, ubegrænsede liv og tilbehør til dragen. Ingen opgave bliver lettere af det. Efter prøveugen fortsætter abonnementet pr. måned eller pr. år, indtil du opsiger det i Google Play.
 ```
@@ -994,28 +966,24 @@ Zmaj – Apprendre le bosnien
 **Kurzbeschreibung** (73 Zeichen)
 
 ```
-Le bosnien pour la famille, le quotidien et l'administration — 63 niveaux
+Le bosnien pour la famille, le quotidien et l'administration — 65 niveaux
 ```
 
-**Vollständige Beschreibung** (3749 von 4000 Zeichen)
+**Vollständige Beschreibung** (3745 von 4000 Zeichen)
 
 ```
-Tu as de la famille en Bosnie, des racines bosniennes, une belle-famille avec qui tu aimerais enfin parler toi-même, sans que personne ne traduise ? Zmaj t'apprend le bosnien : 63 niveaux, des exercices courts, du quotidien jusqu'au contrat de travail.
+Tu as de la famille en Bosnie, des racines bosniennes, une belle-famille avec qui tu aimerais enfin parler toi-même, sans que personne ne traduise ? Zmaj t'apprend le bosnien : 65 niveaux, des exercices courts, du quotidien jusqu'au contrat de travail.
 
 CE QUE TU APPRENDS
 
-Trois sections, les unes après les autres.
-
-« Les bases & le quotidien » commence par les tout premiers mots et par ce dont tu as besoin chaque jour.
-
-« Construire des phrases » te montre comment assembler des mots isolés pour en faire tes propres phrases.
+Neuf parties, les unes après les autres : on commence par les premiers mots et le quotidien, puis la nourriture, les animaux, la maison, la voiture et le téléphone, ensuite la construction de tes propres phrases, les courses, les origines et la culture.
 
 « Administration & contrats » s'attaque à ce qui impressionne beaucoup de monde : les démarches administratives, le contrat de travail, la recherche d'un logement, la banque, le médecin. Bref, les situations où il faut d'ordinaire se faire accompagner.
 
 Au total :
 
-• 1668 mots et expressions
-• 290 phrases à trous
+• 1728 mots et expressions
+• 300 phrases à trous
 • 16 leçons de grammaire, 104 exercices en tout, sur les cas, les temps et la conjugaison
 • 12 histoires à lire : touche un mot, sa traduction s'affiche
 • un test à la fin de chaque niveau
@@ -1040,7 +1008,7 @@ Les contenus suivent le « Pravopis bosanskoga jezika » de Senahid Halilović. 
 
 FAUT-IL DES BASES ?
 
-Non. La première section s'appelle « Les bases & le quotidien » et commence exactement là.
+Non. La première partie s'appelle « Les bases & le quotidien » et commence exactement là.
 
 Et si tu comprends déjà pas mal de choses parce que tu les as entendues à la maison, mais que tu ne t'es jamais penché sur les cas et les temps : les leçons de grammaire et les histoires sont en général la partie qui te manque.
 
@@ -1299,7 +1267,7 @@ Data-Safety-Formular und das Feld „Datenlöschung“.
 
 Für die erste Fassung nach dem Test. **Noch nirgends eingetragen.** In der Play Console
 gehört der ganze Block unten in das Feld „Versionshinweise“ – die Sprachkürzel sortiert
-Google selbst. Jede Sprache hat höchstens 500 Zeichen (geprüft: 325 bis 361).
+Google selbst. Jede Sprache hat höchstens 500 Zeichen (geprüft am 01.10.2026: 429 bis 481).
 
 Zwei Dinge vor dem Eintragen:
 
@@ -1312,66 +1280,74 @@ Zwei Dinge vor dem Eintragen:
 <de-DE>
 Neu in dieser Version:
 • Einstufungstest beim ersten Start: Wer schon Bosnisch kann, steigt weiter hinten ein.
-• Neuer Reiter „Wiederholen“: Was du falsch beantwortet hast, übst du gezielt nach.
-• Erinnerungen am Abend und wenn die Leben wieder voll sind – jede einzeln abschaltbar.
+• Neuer Reiter „Wiederholen“ für alles, was du falsch beantwortet hast.
+• Zwei neue Level: Auto & Werkstatt, Handy & Geräte – jetzt 65.
+• Übersichtlichere Lektionen, und bei Wörtern mit mehreren Formen hörst du jetzt alle.
+• Erinnerungen am Abend und bei vollen Leben, einzeln abschaltbar.
 • Die Vollversion ist da: keine Werbung, unbegrenzte Leben.
-• Viele kleine Verbesserungen und Fehlerbehebungen.
 </de-DE>
 <en-US>
 New in this version:
 • Placement test on first start: if you already know some Bosnian, you start further ahead.
-• New “Review” tab: practice exactly the exercises you got wrong.
-• Reminders in the evening and when your hearts are full again – each one can be turned off.
+• New “Review” tab for everything you got wrong.
+• Two new levels: Car & workshop, Phone & devices – 65 in total.
+• Clearer lessons, and words with several forms are read out in full.
+• Reminders in the evening and when your hearts are full – each one can be turned off.
 • The full version is here: no ads, unlimited hearts.
-• Lots of small improvements and bug fixes.
 </en-US>
 <tr-TR>
 Bu sürümde yeni:
 • İlk açılışta seviye belirleme testi: Biraz Boşnakça biliyorsan daha ileriden başlarsın.
-• Yeni “Tekrar” sekmesi: Yanlış cevapladığın alıştırmaları hedefli olarak tekrar et.
-• Akşam ve canların yeniden dolduğunda hatırlatmalar – her biri ayrı ayrı kapatılabilir.
+• Yanlış cevapladığın her şey için yeni “Tekrar” sekmesi.
+• İki yeni seviye: Araba ve tamirhane, Telefon ve cihazlar – artık 65.
+• Daha sade dersler; birden çok biçimi olan kelimeler tamamen seslendiriliyor.
+• Akşamları ve canların dolunca hatırlatmalar, ayrı ayrı kapatılabilir.
 • Tam sürüm geldi: reklamsız, sınırsız can.
-• Birçok küçük iyileştirme ve hata düzeltmesi.
 </tr-TR>
 <sv-SE>
 Nytt i den här versionen:
 • Nivåtest vid första starten: kan du redan lite bosniska börjar du längre fram.
-• Ny flik ”Repetera”: öva just de uppgifter du svarat fel på.
-• Påminnelser på kvällen och när hjärtana är fulla igen – var och en kan stängas av.
+• Ny flik ”Repetera” för allt du svarat fel på.
+• Två nya nivåer: Bil & verkstad, Mobil & apparater – nu 65.
+• Tydligare lektioner, och ord med flera former läses upp i sin helhet.
+• Påminnelser på kvällen och när hjärtana är fulla – båda kan stängas av var för sig.
 • Fullversionen är här: ingen reklam, obegränsat med hjärtan.
-• Många små förbättringar och buggfixar.
 </sv-SE>
 <nl-NL>
 Nieuw in deze versie:
 • Niveautest bij de eerste start: spreek je al wat Bosnisch, dan begin je verderop.
-• Nieuw tabblad ‘Herhalen’: oefen precies de opdrachten die je fout had.
-• Herinneringen ’s avonds en als je levens weer vol zijn – elk apart uit te zetten.
-• De volledige versie is er: geen advertenties, onbeperkt levens.
-• Veel kleine verbeteringen en foutoplossingen.
+• Nieuw tabblad ‘Herhalen’ voor alles wat je fout had.
+• Twee nieuwe levels: Auto & werkplaats, Telefoon & apparaten – nu 65.
+• Overzichtelijkere lessen, en woorden met meerdere vormen worden helemaal voorgelezen.
+• Herinneringen ’s avonds en als je levens vol zijn, elk apart uit te zetten.
+• De volledige versie is er: geen advertenties, onbeperkte levens.
 </nl-NL>
 <no-NO>
 Nytt i denne versjonen:
-• Nivåtest ved første oppstart: kan du litt bosnisk fra før, begynner du lenger fremme.
-• Ny fane «Repeter»: øv på akkurat de oppgavene du svarte feil på.
-• Påminnelser om kvelden og når livene er fulle igjen – hver av dem kan slås av.
+• Nivåtest ved første oppstart: Kan du litt bosnisk fra før, begynner du lenger fremme.
+• Ny fane «Repeter» for alt du svarte feil på.
+• To nye nivåer: Bil & verksted, Mobil & apparater – nå 65.
+• Ryddigere leksjoner, og ord med flere former blir lest opp i sin helhet.
+• Påminnelser om kvelden og når livene er fulle, hver av dem kan slås av.
 • Fullversjonen er her: ingen reklame, ubegrenset antall liv.
-• Mange små forbedringer og feilrettinger.
 </no-NO>
 <da-DK>
 Nyt i denne version:
 • Niveautest ved første start: kan du allerede lidt bosnisk, starter du længere fremme.
-• Ny fane »Gentag«: øv netop de opgaver, du svarede forkert på.
-• Påmindelser om aftenen og når livene er fulde igen – hver enkelt kan slås fra.
+• Ny fane »Gentag« til alt, hvad du svarede forkert på.
+• To nye niveauer: Bil & værksted, Mobil & apparater – nu 65.
+• Mere overskuelige lektioner, og ord med flere former bliver læst helt op.
+• Påmindelser om aftenen og når livene er fulde igen – de kan slås fra hver for sig.
 • Den fulde version er her: ingen reklamer, ubegrænsede liv.
-• Mange små forbedringer og fejlrettelser.
 </da-DK>
 <fr-FR>
 Nouveau dans cette version :
 • Test de niveau au premier lancement : si tu connais déjà un peu le bosnien, tu commences plus loin.
-• Nouvel onglet « Réviser » : travaille précisément les exercices ratés.
-• Rappels le soir et quand tes vies sont de nouveau pleines – chacun peut être désactivé.
+• Nouvel onglet « Réviser » pour tout ce que tu as raté.
+• Deux nouveaux niveaux : Voiture & atelier, Téléphone & appareils – 65 au total.
+• Des leçons plus claires, et les mots à plusieurs formes sont lus en entier.
+• Rappels le soir et quand tes vies sont pleines, désactivables séparément.
 • La version complète est là : sans pub, vies illimitées.
-• Beaucoup de petites améliorations et corrections.
 </fr-FR>
 ```
 
