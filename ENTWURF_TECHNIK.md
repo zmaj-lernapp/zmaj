@@ -19,14 +19,14 @@ _Tanken, Panne, Werkzeug – was man auf der Straße und in der Werkstatt brauch
 | motor | Motor |
 | akumulator | Autobatterie |
 | sigurnosni pojas | Sicherheitsgurt |
-| parking | Parkplatz |
+| parkiralište | Parkplatz |
 | parkirati | parken |
 | semafor | Ampel |
 | raskrsnica | Kreuzung |
 | saobraćaj | Verkehr |
-| gužva | Stau |
+| zastoj | Stau |
 | kazna | Strafzettel / Bußgeld |
-| registracija | Zulassung (Auto) |
+| registracija | Kennzeichen (Auto) |
 | tehnički pregled | Hauptuntersuchung (TÜV) |
 | autoservis | Autowerkstatt |
 | šlep služba | Abschleppdienst |
@@ -46,7 +46,7 @@ _Tanken, Panne, Werkzeug – was man auf der Straße und in der Werkstatt brauch
 
 - Moram sipati ___. → **gorivo** · Ich muss tanken.
 - Pukla mi je ___. → **guma** · Ich habe einen Platten.
-- Gdje mogu ___ auto? → **parkirati** · Wo kann ich das Auto parken?
+- Gdje mogu ___ svoj auto? → **parkirati** · Wo kann ich mein Auto parken?
 - Na ___ je crveno. → **semaforu** · Die Ampel ist rot.
 - Daj mi ___, molim te. → **kliješta** · Gib mir bitte die Zange.
 
@@ -95,20 +95,11 @@ _Laden, Passwort, Nachricht – und die Geräte im Haushalt._ · Vorschlag: Sekt
 - Pošalji mi ___. → **poruku** · Schick mir eine Nachricht.
 - Ne radi ___ za suđe. → **mašina** · Die Spülmaschine funktioniert nicht.
 
-## Fragen an Kübra
+## Durchgesehen
 
-- **sipati gorivo** – oder lieber natočiti gorivo? Beides steht in bosnischen Zeitungen.
-- **testera** – oder pila? Im Standard steht beides, gesagt wird meist testera.
-- **odvijač / šrafciger** – beide Formen drin - reicht eine?
-- **šifra / lozinka** – šifra sagt man, lozinka ist das Wort im Handymenü - beide drin.
-- **mikrovalna** – oder mikrotalasna? Die Händler in Sarajevo schreiben mikrovalna.
-- **aparat za kahvu** – kahva wie überall in der App - oder sagt man hier aparat za kafu?
-- **slikati** – fotografieren - oder lieber fotografisati?
-- **gužva** – heißt Stau UND Gedränge. Reicht das als Wort für Stau?
-- **parking** – oder parking mjesto / parkiralište?
-- **daljinski** – umgangssprachlich für daljinski upravljač - passt das?
+Von Ajdin am 01.10.2026 in der Prüfliste. Geändert: **zastoj** statt gužva für Stau (gužva ist eher eine große Menschenmenge), **parkiralište** statt parking, registracija heißt **Kennzeichen**, und im Lückensatz fehlte „mein Auto“ (**svoj auto** – auto ist männlich). Alles andere bleibt; Einzelheiten im Kopf von `entwurf_technik.py`.
 
 ## Offen
 
-- Wohin in den Lernpfad? Vorschlag Sektion 4 („Zuhause“). „Auto“ passt dort nur halb – alternativ Sektion 6 oder eine eigene Sektion.
+- Platz im Lernpfad: Sektion 4 („Zuhause“), entschieden am 01.10.2026.
 - Beim Einbauen ändern sich die Zahlen: 65 Level, 1728 Wörter, 300 Lückensätze. Die stehen in STORE_TEXTE.md, auf der Webseite (seite_bauen.py) und in der Play Console.

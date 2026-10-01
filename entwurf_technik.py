@@ -28,6 +28,22 @@ Nachgeschlagen am 01.10.2026:
                nur vereinzelt (superponuda.ba)
   sipati gorivo  Oslobođenje und Radio Sarajevo; "natočiti" auch üblich
   pomoć na cesti  so bei BIHAMK und JP Ceste FBiH
+
+Durchgesehen von Ajdin am 01.10.2026 (Prüfliste):
+  sipati gorivo   bleibt; natočiti gorivo geht auch
+  testera         bleibt; pila und zaga gehen auch
+  odvijač / šrafciger, šifra / lozinka   beide bleiben. šifra eher für
+                  Zahlen (PIN), lozinka eher für Buchstaben
+  mikrovalna, aparat za kahvu, slikati, daljinski   bleiben
+  Stau            zastoj statt gužva - gužva ist eher eine große
+                  Menschenmenge, wie auf einem Festival
+  Parkplatz       parkiralište statt parking
+  registracija    heißt eher das Kennzeichen, nicht die Zulassung
+  Lückensatz      "Gdje mogu ___ svoj auto?": "mein Auto" fehlte. Ajdin
+                  schrieb "moju auto"; auto ist aber männlich (moj auto),
+                  im Satz mit ich als Subjekt steht svoj
+  ekran           passt; monitor sagt man eher beim PC
+  Platz           Sektion 4 · Zuhause
 """
 
 # Vorschlag: beide hinter "technik" in Sektion 4. "Auto" passt dort nur
@@ -35,7 +51,7 @@ Nachgeschlagen am 01.10.2026:
 LEVEL = [
     {"id": "auto_werkstatt", "label": "Auto & Werkstatt", "sektion": "zuhause2",
      "tipp": "Tanken, Panne, Werkzeug – was man auf der Straße und in der Werkstatt braucht.",
-     "baut_auf": ["technik", "reisen"],
+     "baut_auf": ["technik", "unterwegs"],   # "reisen" kommt erst in Sektion 5
      "words": [
         {"de": "Kraftstoff / Sprit",                 "bs": "gorivo"},
         {"de": "tanken",                             "bs": "sipati gorivo"},
@@ -45,14 +61,14 @@ LEVEL = [
         {"de": "Motor",                              "bs": "motor"},
         {"de": "Autobatterie",                       "bs": "akumulator"},
         {"de": "Sicherheitsgurt",                    "bs": "sigurnosni pojas"},
-        {"de": "Parkplatz",                          "bs": "parking"},
+        {"de": "Parkplatz",                          "bs": "parkiralište"},
         {"de": "parken",                             "bs": "parkirati"},
         {"de": "Ampel",                              "bs": "semafor"},
         {"de": "Kreuzung",                           "bs": "raskrsnica"},
         {"de": "Verkehr",                            "bs": "saobraćaj"},
-        {"de": "Stau",                               "bs": "gužva"},
+        {"de": "Stau",                               "bs": "zastoj"},
         {"de": "Strafzettel / Bußgeld",              "bs": "kazna"},
-        {"de": "Zulassung (Auto)",                   "bs": "registracija"},
+        {"de": "Kennzeichen (Auto)",                 "bs": "registracija"},
         {"de": "Hauptuntersuchung (TÜV)",            "bs": "tehnički pregled"},
         {"de": "Autowerkstatt",                      "bs": "autoservis"},
         {"de": "Abschleppdienst",                    "bs": "šlep služba"},
@@ -108,7 +124,7 @@ LEVEL = [
 SAETZE = [
     {"kat": "auto_werkstatt", "text": "Moram sipati ___.",        "answer": "gorivo",    "de": "Ich muss tanken."},
     {"kat": "auto_werkstatt", "text": "Pukla mi je ___.",         "answer": "guma",      "de": "Ich habe einen Platten."},
-    {"kat": "auto_werkstatt", "text": "Gdje mogu ___ auto?",      "answer": "parkirati", "de": "Wo kann ich das Auto parken?"},
+    {"kat": "auto_werkstatt", "text": "Gdje mogu ___ svoj auto?", "answer": "parkirati", "de": "Wo kann ich mein Auto parken?"},
     {"kat": "auto_werkstatt", "text": "Na ___ je crveno.",        "answer": "semaforu",  "de": "Die Ampel ist rot."},
     {"kat": "auto_werkstatt", "text": "Daj mi ___, molim te.",    "answer": "kliješta",  "de": "Gib mir bitte die Zange."},
     {"kat": "geraete",        "text": "Koja je ___ za WiFi?",     "answer": "šifra",     "de": "Wie ist das WLAN-Passwort?"},
@@ -156,7 +172,7 @@ _Z = [
  ("Verkehr", "traffic", "trafik", "trafik", "verkeer", "trafikk", "trafik", "circulation"),
  ("Stau", "traffic jam", "trafik sıkışıklığı", "bilkö", "file", "kø (trafikk)", "kø (trafik)", "embouteillage"),
  ("Strafzettel / Bußgeld", "fine / ticket", "trafik cezası", "böter", "boete", "bot", "bøde", "amende"),
- ("Zulassung (Auto)", "car registration", "araç ruhsatı", "registrering (bil)", "kenteken (auto)", "registrering (bil)", "indregistrering (bil)", "immatriculation"),
+ ("Kennzeichen (Auto)", "number plate", "plaka", "registreringsskylt", "kenteken (auto)", "registreringsskilt", "nummerplade", "plaque d'immatriculation"),
  ("Hauptuntersuchung (TÜV)", "vehicle inspection", "araç muayenesi", "bilbesiktning", "APK-keuring", "EU-kontroll", "bilsyn", "contrôle technique"),
  ("Autowerkstatt", "car repair shop", "oto tamirhanesi", "bilverkstad", "garage", "bilverksted", "autoværksted", "garage"),
  ("Abschleppdienst", "towing service", "çekici hizmeti", "bärgningstjänst", "sleepdienst", "bergingstjeneste", "bugseringstjeneste", "service de dépannage"),
@@ -204,7 +220,7 @@ _Z = [
  ("Garantie", "warranty", "garanti", "garanti", "garantie", "garanti", "garanti", "garantie"),
  # Sätze
  ("Ich muss tanken.", "I need to fill up.", "Yakıt almam lazım.", "Jag måste tanka.", "Ik moet tanken.", "Jeg må tanke.", "Jeg skal tanke.", "Je dois faire le plein."),
- ("Wo kann ich das Auto parken?", "Where can I park the car?", "Arabayı nereye park edebilirim?", "Var kan jag parkera bilen?", "Waar kan ik de auto parkeren?", "Hvor kan jeg parkere bilen?", "Hvor kan jeg parkere bilen?", "Où est-ce que je peux garer la voiture" + NB + "?"),
+ ("Wo kann ich mein Auto parken?", "Where can I park my car?", "Arabamı nereye park edebilirim?", "Var kan jag parkera min bil?", "Waar kan ik mijn auto parkeren?", "Hvor kan jeg parkere bilen min?", "Hvor kan jeg parkere min bil?", "Où est-ce que je peux garer ma voiture" + NB + "?"),
  ("Die Ampel ist rot.", "The light is red.", "Işık kırmızı.", "Det är rött ljus.", "Het stoplicht staat op rood.", "Det er rødt lys.", "Der er rødt lys.", "Le feu est rouge."),
  ("Gib mir bitte die Zange.", "Please hand me the pliers.", "Penseyi verir misin lütfen?", "Ge mig tången, tack.", "Geef me de tang even, alsjeblieft.", "Gi meg tanga, er du snill.", "Giv mig lige tangen.", "Passe-moi la pince, s'il te plaît."),
  ("Wo ist mein Ladegerät?", "Where is my charger?", "Şarj aletim nerede?", "Var är min laddare?", "Waar is mijn oplader?", "Hvor er laderen min?", "Hvor er min oplader?", "Où est mon chargeur" + NB + "?"),
@@ -214,16 +230,6 @@ _Z = [
 SPRACHEN = ["en", "tr", "sv", "nl", "nb", "da", "fr"]
 UEBERSETZUNGEN = {c: {z[0]: z[i + 1] for z in _Z} for i, c in enumerate(SPRACHEN)}
 
-# Zum Nachsehen mit Kübra - hier war ich mir nicht sicher.
-FRAGEN = [
-    ("sipati gorivo", "oder lieber natočiti gorivo? Beides steht in bosnischen Zeitungen."),
-    ("testera", "oder pila? Im Standard steht beides, gesagt wird meist testera."),
-    ("odvijač / šrafciger", "beide Formen drin - reicht eine?"),
-    ("šifra / lozinka", "šifra sagt man, lozinka ist das Wort im Handymenü - beide drin."),
-    ("mikrovalna", "oder mikrotalasna? Die Händler in Sarajevo schreiben mikrovalna."),
-    ("aparat za kahvu", "kahva wie überall in der App - oder sagt man hier aparat za kafu?"),
-    ("slikati", "fotografieren - oder lieber fotografisati?"),
-    ("gužva", "heißt Stau UND Gedränge. Reicht das als Wort für Stau?"),
-    ("parking", "oder parking mjesto / parkiralište?"),
-    ("daljinski", "umgangssprachlich für daljinski upravljač - passt das?"),
-]
+# Die zehn Fragen hat Ajdin am 01.10.2026 in der Prüfliste beantwortet,
+# die Antworten stehen oben im Kopf der Datei.
+FRAGEN = []
