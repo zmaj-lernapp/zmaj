@@ -220,11 +220,11 @@ Einfügen prüfen und nur stehen lassen, was stimmt:
 Alles, was vorher ging, ist erledigt: Store-Texte in acht Sprachen,
 Screenshots und Vorstellungsgrafik liegen als Entwurf in der Console
 („10 Änderungen“ unter Veröffentlichungen – Übersicht), die Website ist
-online, das signierte Paket liegt als `App Zeugs\Release\zmaj-1.0-v88.aab`.
+online, das signierte Paket liegt als `App Zeugs\Release\zmaj-1.0-v89.aab`.
 
 1. Produktionszugriff ist erteilt (Mail von Google).
 2. Paket neu bauen, falls seit dem 01.10. noch etwas geändert wurde
-   (`python app_bauen.py --aab`), sonst v88 nehmen.
+   (`python app_bauen.py --aab`), sonst v89 nehmen.
 3. Produktion → neuer Release → Paket hochladen, Versionshinweise aus
    `STORE_TEXTE.md` in allen acht Sprachen (ohne Festtage, Ajdin am 01.10.).
 4. **Probezeit anlegen:** Abo `vollversion` → beide Basispläne → Angebot
