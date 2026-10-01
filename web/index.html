@@ -5218,7 +5218,11 @@ async function abmelden(){
    die Suche unten findet sie sonst nicht wieder. "skup / skupa" war
    mehrdeutig (auch: Treffen, zusammen); mit "skupo" ist klar, dass es
    teuer heisst. Ajdin am 01.10.2026. */
-const UMBENANNT = {'teuer (m/w):skup / skupa': 'teuer (m/w/s):skup / skupa / skupo'};
+const UMBENANNT = {'teuer (m/w):skup / skupa': 'teuer (m/w/s):skup / skupa / skupo',
+  /* Ajdin am 01.10.2026: "auf einer bosnischen Kaffeepackung steht kafa nicht
+     kahva - mach beides rein". */
+  'kaffee:kahva': 'kaffee:kahva / kafa',
+  'kaffeemaschine:aparat za kahvu': 'kaffeemaschine:aparat za kahvu / aparat za kafu'};
 function altenFortschrittUmschreiben(){
   const gueltig = new Set(), nachWort = new Map(), nachLevel = new Map();
   CATEGORIES.forEach(c => c.words.forEach(w => {

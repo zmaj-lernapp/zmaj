@@ -179,7 +179,7 @@ KATEGORIEN = [
      "words": [
         {"de": "Wasser",              "bs": "voda"},
         {"de": "Brot",                "bs": "hljeb"},
-        {"de": "Kaffee",              "bs": "kahva"},
+        {"de": "Kaffee",              "bs": "kahva / kafa"},
         {"de": "Kaffeetasse (traditionell)", "bs": "fildžan"},
         {"de": "Tee",                 "bs": "čaj"},
         {"de": "Milch",               "bs": "mlijeko"},
@@ -874,7 +874,7 @@ KATEGORIEN = [
         {"de": "Klimaanlage",                         "bs": "klima"},
         {"de": "Ventilator",                          "bs": "ventilator"},
         {"de": "Fernbedienung",                       "bs": "daljinski"},
-        {"de": "Kaffeemaschine",                      "bs": "aparat za kahvu"},
+        {"de": "Kaffeemaschine",                      "bs": "aparat za kahvu / aparat za kafu"},
         {"de": "Bedienungsanleitung",                 "bs": "uputstvo"},
         {"de": "Garantie",                            "bs": "garancija"},
     ]},
