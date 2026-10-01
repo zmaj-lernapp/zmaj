@@ -1094,8 +1094,9 @@ bosnien,bosnie,balkans,langue,vocabulaire,grammaire,serbe,croate,sarajevo,voyage
 
 # Screenshots
 
-Google will mindestens zwei, zeigt aber bis zu acht. Nimm sechs – mehr
-schaut sich niemand an, weniger wirkt dünn.
+Google will mindestens zwei, zeigt aber bis zu acht. Fertig liegen acht in
+`store/screenshots` (Stand 01.10.2026), erzeugt mit `store/bilder_machen/`.
+Die Tabelle unten war der ursprüngliche Plan für sechs.
 
 **Größe:** 1080 × 1920 px (Hochformat) reicht für alle Telefonformate.
 Google verlangt: mindestens 320 px Kantenlänge, höchstens 3840 px,

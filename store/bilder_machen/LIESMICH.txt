@@ -1,0 +1,48 @@
+STORE-BILDER NEU MACHEN
+=======================
+
+Erzeugt die acht Bilder in store/screenshots, je 1080 x 1920, PNG ohne
+Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 01.10.2026.
+
+Die Bilder entstehen in einem unsichtbaren Chrome am PC, nicht auf dem
+Handy. Das hat drei Gruende:
+  - Das Handy braucht dafuer keine geaenderte Bildschirmgroesse.
+  - Kein echter Lernstand wird angefasst; der Vorfuehrstand liegt in
+    testdaten/zmaj-screenshots.json.
+  - Keine Statusleiste, keine Uhrzeit, kein Akkustand im Bild.
+
+Die Breite ist 405 Punkte. Bei 360 und 384 Punkten schiebt sich in der
+Lektion und in der Geschichte die Muenzanzeige ueber die Herzanzeige,
+sobald oben rechts der Zurueck-Knopf steht.
+
+
+SO GEHT ES (Git Bash, im Projektordner)
+--------------------------------------
+1. Die App ausliefern:
+     cd web && python -m http.server 8777 --bind 127.0.0.1
+
+2. Chrome ohne Fenster starten (zweites Terminal):
+     "/c/Program Files/Google/Chrome/Application/chrome.exe" --headless=new \
+       --remote-debugging-port=9444 --user-data-dir="$TEMP/zmaj_chrome" \
+       --hide-scrollbars --mute-audio --lang=de-DE about:blank
+
+3. Bilder machen:
+     sh store/bilder_machen/bilder_machen.sh
+
+Python ist das von Thonny; es braucht das Paket websockets.
+
+
+WAS AUF DEN BILDERN IST
+-----------------------
+  01-start        Startseite: Lernserie, Weitermachen, Tagesaufgaben
+  02-lernpfad     Sektion 1 mit bestandenen und gesperrten Levels
+  03-neues-wort   erste Karte einer Lektion
+  04-auswahl      Auswahlaufgabe "Wie viel kostet das?"
+  05-richtig      dieselbe Aufgabe nach der richtigen Antwort
+  06-luecke       Lueckensatz mit eingetippter Antwort
+  07-geschichte   Geschichte "Na pijaci" mit angetipptem Wort
+  08-wiederholen  Reiter Wiederholen mit sieben Aufgaben
+
+Die Lektion wird zufaellig zusammengestellt. Das Skript sucht sich die
+Aufgaben darin selbst; Wort und Satz koennen also beim naechsten Lauf
+andere sein.
