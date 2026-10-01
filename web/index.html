@@ -3801,6 +3801,7 @@ document.addEventListener('visibilitychange', ()=>{
        schon gerissen ist. */
     tagPruefen();
     if(uhrWarAn){ uhrWarAn = false; uhrAn(); }
+    topfNachziehen();
   }
 });
 
@@ -3905,8 +3906,11 @@ async function lektionDarfWeg(){
     einstufungEnde();
     return true;
   }
-  const laeuft = (sichtbar('lesson') && Lx && Lx.i < Lx.queue.length) ||
-                 (sichtbar('test')   && Tx && Tx.i < Tx.qs.length);
+  /* Nur in der Levelansicht: #lesson und #test liegen darin und behalten
+     ihren eigenen Schalter, auch wenn die ganze Ansicht weg ist. */
+  const laeuft = sichtbar('levelView') &&
+                 ((sichtbar('lesson') && Lx && Lx.i < Lx.queue.length) ||
+                  (sichtbar('test')   && Tx && Tx.i < Tx.qs.length));
   if(!laeuft) return true;
   return await frage(t('lektion.abbrechen_frage'), t('lektion.abbrechen_hinweis'),
                      t('btn.abbrechen'), t('btn.weitermachen'));
@@ -3951,7 +3955,7 @@ function tagPruefen(){
   if(sichtbar('pfad')) showHome();
   return true;
 }
-setInterval(()=>{ tagPruefen(); renderLives(); }, 30000);
+setInterval(()=>{ tagPruefen(); renderLives(); topfNachziehen(); }, 30000);
 
 /* ---- Lernserie ----
    days  = Tage mit einer fertigen Lektion
@@ -6486,7 +6490,9 @@ function werbungFuerLeben(e){
        noch. Dieselbe Vorsicht wie beim Interstitial seit dem 29.09.2026. */
     const danach = ()=>{
       if(knopf && knopf.id === 'topfAd') showTopf();
-      else if(knopf && knopf.id === 'lAd') lektionVerlassen();
+      else if(knopf && knopf.id === 'lAd'){
+        if(sichtbar('levelView') && sichtbar('lesson')) lektionVerlassen();
+      }
       else showLevelHome();
     };
     if(!knopf || document.body.contains(knopf)) danach();
@@ -6785,7 +6791,13 @@ function showTestResult(){
      Fanfare laeuft, die er abwarten muesste. */
   const questLob = questZeilen();
   if(questLob) setTimeout(()=>sound('quest'), ok ? 850 : 150);
-  const nextSec = hasNext && CATEGORIES[catIdx+1].sektion !== c.sektion;
+  /* Seit der Einstufung koennen Level offen sein, ohne bestanden zu sein.
+     Die Position allein sagt deshalb nicht mehr, ob eine Sektion oder
+     alles geschafft ist - es muss wirklich jedes Level bestanden sein.
+     Gefunden in der Gegenpruefung am 01.10.2026. */
+  const sektionFertig = CATEGORIES.every(x => x.sektion !== c.sektion || passed.has(x.id));
+  const allesFertig = CATEGORIES.every(x => passed.has(x.id));
+  const nextSec = hasNext && CATEGORIES[catIdx+1].sektion !== c.sektion && sektionFertig;
   $('tBody').innerHTML =
     '<div class="ergebnis-titel">'+t('level.titel',{i:catIdx+1, label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
@@ -6798,7 +6810,7 @@ function showTestResult(){
   $('tBack').addEventListener('click', ()=>{ if(ok){ homeMode='words'; showHome(); } else showLevelHome(); });
   const n=$('tNext'); if(n) n.addEventListener('click', ()=> openLevel(catIdx+1));
   const r=$('tRetry'); if(r) r.addEventListener('click', startTest);
-  if(ok && !hasNext){ $('tBody').insertAdjacentHTML('beforeend','<div class="kicker" style="margin-top:12px">'+t('test.alles_geschafft')+'</div>'); }
+  if(ok && !hasNext && allesFertig){ $('tBody').insertAdjacentHTML('beforeend','<div class="kicker" style="margin-top:12px">'+t('test.alles_geschafft')+'</div>'); }
 }
 function startTest(){
   if(!testAllowed(cur())) return;
@@ -7164,7 +7176,25 @@ function topfRunde(){
     .map(x => topfAufgabe(x.k, x.e)).filter(Boolean);
   return shuffle(liste.slice(0, TOPF_RUNDE));
 }
-function topfSeite(){ homeMode = 'topf'; showHome(); }
+/* Der Reiter Wiederholen entscheidet beim Zeichnen zwischen "Runde
+   starten" und "keine Leben". Wachsen Leben nach, waehrend er offen ist,
+   zeichnet nur das hier ihn neu - der Takt alle 30 Sekunden und die
+   Rueckkehr aus dem Hintergrund rufen es auf. */
+function topfNachziehen(){
+  if(sichtbar('pfad') && homeMode === 'topf' && topfAnzahl() &&
+     (livesNow() > 0) !== !!$('topfLos')) showHome();
+}
+/* Wie showLevelHome() die Lektion wegraeumen. Ohne das blieb #lesson
+   sichtbar geschaltet und Lx halb durchgelaufen stehen: lektionDarfWeg()
+   hielt die abgebrochene Runde weiter fuer laufend, und Laden, Muenzen und
+   Zahnrad fragten auf der Startseite "Lektion abbrechen?". Gefunden in der
+   Gegenpruefung am 01.10.2026. */
+function topfSeite(){
+  homeMode = 'topf';
+  $('lesson').style.display = 'none';
+  $('lBody').innerHTML = '';
+  showHome();
+}
 /* Nach dem Ende einer Lektion oder Runde: wohin zurueck. */
 function lektionVerlassen(){ if(Lx && Lx.topf) topfSeite(); else showLevelHome(); }
 function showTopf(){
@@ -7235,7 +7265,7 @@ function topfEnde(){
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
-    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(t('topf.rest')) + '</div>' +
+    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp('topf.rest', rest)) + '</div>' +
       '<div class="stat"><b>🔥 ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
       '<div class="stat"><b>♥ ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
     (rest === 0 ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
@@ -7413,13 +7443,23 @@ function benPlan(){
   const s = benStand(), jetzt = Date.now(), heute = today(), plan = [];
   const heuteGeuebt = days.has(heute);
   const schutzDa = schutzNow() > 0;
+  const schutzRest = naechsterSchutzIn();
+  const gesendet = new Set(s.gesendet || []);
   const abende = new Set();
   for(let d = 0; d < BEN_TAGE; d++){
     const tag = tagMinus(heute, -d);
     if(d === 0 && heuteGeuebt) continue;
+    /* Kam heute schon eine Abendnachricht, kommt keine zweite - auch dann
+       nicht, wenn die Art inzwischen wechselt (etwa weil beim Oeffnen der
+       letzte Serienschutz verbraucht wurde und jetzt die Warnung um 20 Uhr
+       faellig waere). Gefunden in der Gegenpruefung am 01.10.2026. */
+    if(d === 0 && gesendet.has(tag)){ abende.add(tag); continue; }
     const serieLebt = (d === 0 && streak() > 0) || (d === 1 && heuteGeuebt);
+    /* Ein Schutz, der bis 20 Uhr nachwaechst, rettet die Serie genauso. */
+    const schutzAbends = schutzDa ||
+      (schutzRest > 0 && jetzt + schutzRest <= benZeit(tag, BEN_SERIE_UM).getTime());
     let art = null, um = 0;
-    if(s.serie && serieLebt && !schutzDa){ art = 'serie'; um = BEN_SERIE_UM; }
+    if(s.serie && serieLebt && !schutzAbends){ art = 'serie'; um = BEN_SERIE_UM; }
     else if(s.erinnerung){ art = 'erinnerung'; um = BEN_ERINNERUNG_UM; }
     if(!art) continue;
     const wann = benZeit(tag, um);
@@ -7455,19 +7495,42 @@ async function benPlanen(){
      erste gerade angelegt hat, und plant danach doppelt. */
   if(benLaeuft) return benLaeuft;
   benLaeuft = (async ()=>{
+    /* Was beim letzten Planen schon faellig war, ist gekommen oder kommt
+       gleich. Das wird nicht mehr abgesagt (Android stellt ungenau zu, eine
+       19-Uhr-Nachricht kann um 19:05 noch ausstehen), und sein Abend gilt
+       als belegt. */
+    const jetzt = Date.now(), s = benStand();
+    const gesendet = new Set(s.gesendet || []);
+    const behalten = new Set();
+    (s.geplant || []).forEach(p => {
+      if(p.at <= jetzt){ behalten.add(p.id); if(p.abend) gesendet.add(p.tag); }
+    });
+    s.gesendet = [...gesendet].sort().slice(-10);
     try{
       const alt = await L.getPending();
       const weg = ((alt && alt.notifications) || [])
-        .filter(n => n.id >= BEN_ID_ABEND && n.id < BEN_ID_LEBEN + 100).map(n => ({id: n.id}));
+        .filter(n => n.id >= BEN_ID_ABEND && n.id < BEN_ID_LEBEN + 100 && !behalten.has(n.id))
+        .map(n => ({id: n.id}));
       if(weg.length) await L.cancel({notifications: weg});
     }catch(e){}
+    benMerken(s);
     if(!await benErlaubt(false)) return;
-    const plan = benPlan();
+    const plan = benPlan().filter(p => !behalten.has(p.id));
+    s.geplant = plan.map(p => ({id: p.id, at: p.wann.getTime(), tag: dayKey(p.wann), abend: p.art !== 'leben'}));
+    benMerken(s);
     if(!plan.length) return;
     try{ await L.createChannel({id: BEN_KANAL, name: t('ben.kanal'), importance: 3, visibility: 1}); }catch(e){}
     try{
+      /* isExactNotification:false ist Pflicht. Ab Fassung 8.3 will das
+         Plugin sonst einen genauen Wecker und schickt den Nutzer dafuer
+         selbst in Androids Seite "Wecker und Erinnerungen" - direkt nach dem
+         Ja zu den Erinnerungen, mitten aus der App heraus. Am S21 so
+         passiert am 01.10.2026. Die Erlaubnis dafuer ist im Manifest
+         ohnehin entfernt; ob die Nachricht um 19:00 oder 19:07 kommt, ist
+         egal. */
       await L.schedule({notifications: plan.map(p => ({
         id: p.id, title: p.titel, body: p.text, channelId: BEN_KANAL,
+        isExactNotification: false,
         schedule: {at: p.wann, allowWhileIdle: true}, extra: {art: p.art}}))});
     }catch(e){}
   })();
@@ -7805,6 +7868,11 @@ function weiterBeiTipp(feldId, weiter){
      sonst wären sie nach der Antwort unbenutzbar, weil derselbe Tipp sofort
      die nächste Aufgabe holt. */
   const los = (e)=>{
+    /* Der Merker war seit dem 26.09.2026 da, wurde aber nie gelesen. Ein
+       Horcher aus einem alten Durchgang haengt sich jetzt beim ersten Tipp
+       selbst ab und laesst den Klick durch. Gefunden in der Gegenpruefung
+       am 01.10.2026. */
+    if(Lx !== meinLx || Tx !== meinTx){ feld.removeEventListener('click', los, true); return; }
     if(e && e.target && e.target.closest && e.target.closest('.listen, .wortton, .tempo')) return;
     einmal();
   };
