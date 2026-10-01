@@ -2900,7 +2900,7 @@ function festHeute(){
      Wochen und kommt Bajram fuer drei Tage dazu, ist es dann Bajram,
      Weihnachten, Bajram und nicht umgekehrt. */
   const aktiv = festZeiten(j - 1).concat(festZeiten(j)).filter(z => z.von <= n && n <= z.bis)
-    .sort((a, b) => b.von - a.von);
+    .sort((a, b) => b.von - a.von || a.bis - b.bis);   // gleicher Beginn: das kuerzere zuerst
   return aktiv.length ? aktiv[(n - aktiv[0].von) % aktiv.length].id : '';
 }
 /* Was der Drache heute wirklich anhat: das Getragene, ueber das sich zu
@@ -2946,8 +2946,10 @@ function festHalloween(){
     : '<g transform="translate(' + x + ',' + (y + 12) + ')"><ellipse rx="14" ry="12" fill="#F28C28"/><ellipse rx="5.5" ry="12" fill="#E07A12"/><rect x="-2" y="-16" width="4" height="6" rx="2" fill="#4E7A2E"/><path d="M-7,-3 l3.5,-4 l3.5,4Z M0.5,-3 l3.5,-4 l3.5,4Z M-7,4 l2,2 l2,-2 l2,2 l2,-2 l2,2 l2,-2" fill="#3B1F0A" stroke="#3B1F0A" stroke-width="1"/></g>'));
   const farben = ['#E8742A', '#C8452B', '#E9A23B', '#B5651D', '#D9532B'];
   let fall = '';
-  for(let i = 0; i < 10; i++){
-    const x = (i * 37 + 13) % 100, d = 9 + (i % 4) * 2.5, verz = -(i * 1.7), g = 16 + (i % 3) * 6;
+  /* Sechs Blaetter. Zehn waren Kuebra zu viele ("bisschen zu viele
+     Blaetter, aber sonst top"), 01.10.2026. */
+  for(let i = 0; i < 6; i++){
+    const x = (i * 53 + 11) % 100, d = 9 + (i % 4) * 2.5, verz = -(i * 2.6), g = 16 + (i % 3) * 6;
     fall += '<i style="left:' + x + '%;width:' + g + 'px;height:' + g + 'px;background-image:' + festSvgUrl(festBlatt(farben[i % 5], i * 40))
       + ';animation-name:festFallen,festWiegen;animation-timing-function:linear,ease-in-out;animation-duration:' + d + 's,' + (d / 3) + 's;animation-delay:' + verz + 's,' + verz + 's"></i>';
   }
@@ -2991,11 +2993,22 @@ function festBajram(){
     return s;
   };
   const kuppel = (cx, y, r) => '<path d="M' + (cx - r) + ',' + y + ' A' + r + ',' + (r * 0.95) + ' 0 0 1 ' + (cx + r) + ',' + y + 'Z" fill="' + g + '"/>';
-  const halbmond = (cx, y) => '<rect x="' + (cx - 0.8) + '" y="' + (y - 7) + '" width="1.6" height="7" fill="' + g + '"/><circle cx="' + cx + '" cy="' + (y - 9) + '" r="2.6" fill="' + g + '"/><circle cx="' + (cx + 1.2) + '" cy="' + (y - 9.6) + '" r="2.2" fill="#1C2350"/>';
+  /* Mondsicheln werden ausgeschnitten (Maske), nicht mit Nachtblau
+     uebermalt: im hellen Design laeuft der Himmel nach unten ins
+     Durchsichtige aus, und die blaue Scheibe stand dort sichtbar auf
+     hellem Grund. Jede Maske braucht eine eigene Kennung. */
+  let masken = '', mn = 0;
+  const sichel = (cx, cy, r, dx, dy, ri) => {
+    const id = 'festMond' + (mn++);
+    masken += '<mask id="' + id + '"><rect x="' + (cx - r - 1) + '" y="' + (cy - r - 1) + '" width="' + (2 * r + 2) + '" height="' + (2 * r + 2) + '" fill="#fff"/>'
+      + '<circle cx="' + (cx + dx) + '" cy="' + (cy + dy) + '" r="' + ri + '" fill="#000"/></mask>';
+    return '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + g + '" mask="url(#' + id + ')"/>';
+  };
+  const halbmond = (cx, y) => '<rect x="' + (cx - 0.8) + '" y="' + (y - 7) + '" width="1.6" height="7" fill="' + g + '"/>' + sichel(cx, y - 9, 2.6, 1.2, -0.6, 2.2);
   const oben = '<svg class="festgirlande festteil festnacht" aria-hidden="true" viewBox="0 0 328 96" width="100%">'
     + '<defs><linearGradient id="festNacht" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C2350"/><stop offset="1" stop-color="#151728" stop-opacity="0"/></linearGradient></defs>'
     + '<rect width="328" height="96" rx="16" fill="url(#festNacht)"/>'
-    + '<circle cx="300" cy="22" r="12" fill="' + g + '"/><circle cx="305.5" cy="18.5" r="10" fill="#1C2350"/>'
+    + sichel(300, 22, 12, 5.5, -3.5, 10)
     + [[24, 14], [70, 24], [104, 10], [146, 30], [196, 12], [246, 22], [276, 40], [318, 46]].map(([x, y], i) => '<circle class="festStern" cx="' + x + '" cy="' + y + '" r="' + (i % 2 ? 1.5 : 2.1) + '" fill="#FFF3C4" style="animation-delay:' + (i * 0.4) + 's"/>').join('')
     + haus(12, 38, 18, 16, 16, true)
     + '<rect x="62" y="82" width="34" height="14" fill="' + gd + '"/><path d="M58,83 L64,72 H94 L100,83Z" fill="' + gl + '"/>'
@@ -3017,7 +3030,7 @@ function festBajram(){
     + '<circle cx="231.5" cy="40" r="5" fill="' + licht + '"/><path d="M231.5,40 v-3.5 M231.5,40 h2.6" stroke="' + gd + '" stroke-width="1.1"/>'
     + fenster(229, 54, 5, 8) + fenster(229, 70, 5, 8)
     + haus(289, 24, 16, 14, 13, false) + haus(252, 34, 18, 17, 17, true)
-    + '</svg>';
+    + '<defs>' + masken + '</defs></svg>';
   /* Im Grusskasten Mondsichel und fuenfzackiger Stern. Vorher standen dort
      zwei verschraenkte Quadrate - klein gezeichnet sahen sie aus wie ein
      Davidstern (Ajdin: "die Sterne sehen ein bisschen aus wie Judensterne,
@@ -3181,7 +3194,12 @@ function mountZmaj(el, mood, vorgabe){
     a.addEventListener('DOMLoaded', ()=>{ a.isLoaded = true; playMood(el, el.dataset.mood || 'happy'); });
   }).catch(()=>{ el._laedt = false; });
 }
-new MutationObserver(()=>{ document.querySelectorAll('.zmaj-anim').forEach(el=>{ if(!el._anim) mountZmaj(el); }); })
+new MutationObserver(()=>{
+  if(window.lottie && lottie.getRegisteredAnimations) lottie.getRegisteredAnimations().forEach(a => {
+    if(a.wrapper && !a.wrapper.isConnected){ try{ a.destroy(); }catch(e){} }
+  });
+  document.querySelectorAll('.zmaj-anim').forEach(el=>{ if(!el._anim) mountZmaj(el); });
+})
   .observe(document.documentElement, {childList:true, subtree:true});
 function setMood(el, mood){ // Bewegung passend zur Stimmung
   if(!el) return;
@@ -4432,6 +4450,7 @@ function renderHero(){
   const stand = stimmung + '|' + today();
   const box = $('zmajHome'), anim = box.querySelector('.zmaj-anim');
   if(stand !== heroStand || !box.firstChild){
+    if(anim && anim._anim){ try{ anim._anim.destroy(); }catch(e){} anim._anim = null; }
     box.innerHTML = zmaj(stimmung); setMood(box, stimmung);
     heroStand = stand;
   } else if(anim && anim._anim && anim._stand !== zierratSchluessel()){
