@@ -1221,6 +1221,7 @@ Das ist der wichtigere Teil. Jede Zeile hier war früher ein Ja.
 | Genauer Standort, Kontakte, Fotos, Kalender, SMS, Gesundheits- und Fitnessdaten | Nichts davon rührt die App an. |
 | Erinnerungen (Benachrichtigungen) | **Neu am 01.10.2026.** Die App plant sie auf dem Gerät selbst (Android-Wecker). Dabei verlässt nichts das Gerät, es gibt keinen Push-Dienst und keinen Server. |
 | Bewertungen | **Neu am 01.10.2026.** „Zmaj bewerten“ öffnet Googles eigenes Bewertungsfenster oder den Play Store. Was dort geschrieben wird, bekommt Google, nicht die App. |
+| Androids eigene Cloud-Sicherung | **Neu bedacht am 01.10.2026.** Die Hülle hat `allowBackup` an, Android lädt den Speicher der App also ins Google-Konto des Nutzers (Datenschutzerklärung Abschnitt 2 sagt das seit heute). Google nimmt aus: „User data that is sent off device, but that is unreadable by you or anyone other than the sender and recipient as a result of end-to-end encryption does not need to be disclosed“ (Play-Console-Hilfe 10787469). Androids Sicherung ist ab Android 9 mit Displaysperre Ende-zu-Ende verschlüsselt, und die App selbst schickt nichts. Deshalb nicht ankreuzen – aber **bewusst so entscheiden**. |
 
 **Wenn du die Werbung eines Tages abschaltest** (`WERBUNG_LAEUFT = False`
 und das Plugin raus), fällt die ganze Tabelle weg. Dann lautet die erste
