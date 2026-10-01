@@ -555,6 +555,11 @@ def stern(cx, cy, r, c, o=100):
 # Blitze nie fallen und schnitte die spaeten Sterne an der Abschnittsgrenze
 # mitten im Leuchten ab. Deshalb bekommt jeder Stern in JEDEM Abschnitt
 # genau einen Blitz, und der ist vor der Grenze zu Ende.
+# Eigenes Gelb fuer die Funken: YEL tauscht die Skelettfarbe zu Halloween
+# mit aus, die gekauften Funken waeren dann knochenfarben (Gegenpruefung
+# 01.10.2026). Mindestens 2/255 Abstand in einem Kanal, sonst zaehlt es
+# in faerbe() noch als YEL.
+FUNKE_GELB = col("FFCE22")
 def funke(cx, cy, r, c, platz, anzahl=7, o=100):
     # Bild, Groesse, Deckkraft, Drehung. Schnell auf, langsam wieder weg -
     # so blitzt es, statt zu pulsieren. 26 Bilder, damit auch die kurzen
@@ -610,9 +615,9 @@ put("galaxie", [
 put("funkeln", [
     funke(0, -178, 18, WHITE, 0),
     funke(-104, 112, 13, WHITE, 1),
-    funke(168, -26, 14, YEL, 2),
-    funke(132, -128, 10, YEL, 3),
-    funke(-168, -40, 15, YEL, 4),
+    funke(168, -26, 14, FUNKE_GELB, 2),
+    funke(132, -128, 10, FUNKE_GELB, 3),
+    funke(-168, -40, 15, FUNKE_GELB, 4),
     funke(-140, -132, 11, WHITE, 5),
     funke(96, 118, 12, WHITE, 6),
 ], parent="body")
