@@ -25,7 +25,7 @@ YEL = col("FFCB1F"); YEL_D = col("D9A400"); AMBER = col("F2A900"); WHITE = col("
 # also dieselbe Farbe wie die Drachenbeine - beim Umfaerben des Drachen waere
 # der Stapel mitgegangen, obwohl er nicht zum Drachen gehoert.
 BOOK1_D = col("122C74")
-RED = col("7A1F2B"); TONGUE = col("FF7B8E"); TEAR = col("8FD3FF"); BOOK1 = col("1B3A9E"); BOOK2 = col("FFCB1F"); PAGE = col("FFF6DC")
+RED = col("7A1F2B"); TONGUE = col("FF7B8E"); TEAR = col("8FD3FF"); BOOK1 = col("1B3A9E"); BOOK2 = col("FFCC21"); BOOK2_D = col("D9A403"); PAGE = col("FFF6DC")   # BOOK2 eine Spur anders als YEL: die Skelett-Farbe tauscht YEL, das Buch soll gelb bleiben
 # Zierrat aus dem Laden. Warme Töne, damit sie sich vom blauen Kopf abheben.
 HUT = col("C8392B"); HUT_D = col("9E2A1E"); HUT_HELL = col("FFF1E0")
 KRONE = col("F5C518"); KRONE_D = col("C79A00"); STEIN = col("C8392B")
@@ -124,13 +124,16 @@ def mirror(pts): return [(-x, y) for x, y in pts]
 #   Die Halssachen stehen HINTER dem Kopf und hinter den Armen, aber vor dem
 #   Körper. Dadurch schiebt sich der Kopf über den oberen Rand des Schals,
 #   genau wie bei einem echten Schal, und die Arme liegen auf der Weste.
-KOPF_TEILE = ["hut", "krone", "krone_gross", "fes", "kappe", "doktorhut", "ohrenschuetzer", "kopfhoerer"]
+KOPF_TEILE = ["hut", "krone", "krone_gross", "fes", "kappe", "doktorhut", "ohrenschuetzer", "kopfhoerer",
+              # Festtage, Entwurf vom 01.10.2026 - siehe unten bei "Festtage"
+              "hexenhut", "nikolausmuetze", "bajramfes", "hasenohren"]
 BRILLEN    = ["brille", "sonnenbrille", "lesebrille", "monokel"]
-HALS_TEILE = ["trikot", "umhang", "schal_bih", "schal_winter", "weste_leder", "weste_strick"]
+HALS_TEILE = ["trikot", "umhang", "schal_bih", "schal_winter", "weste_leder", "weste_strick",
+              "jelek"]   # Festtage: Bajram, Entwurf vom 01.10.2026
 # Zwei Ebenen, die zur Haut gehoeren statt zur Kleidung: die Sterne der
 # Galaxie-Haut liegen direkt auf dem Koerper, das Funkeln davor. Beide
 # gibt es nur mit der Vollversion.
-HAUT_TEILE = ["funkeln", "galaxie"]
+HAUT_TEILE = ["funkeln", "galaxie", "skelett"]   # skelett: Halloween, Entwurf vom 01.10.2026
 ZIERRAT = KOPF_TEILE + BRILLEN + HALS_TEILE + HAUT_TEILE
 # Die drei Kleidungsstuecke bekommen Aermel. Das sind eigene Ebenen, denn sie
 # haengen an den Armen und nicht am Koerper - die Arme wippen, ein am Koerper
@@ -142,16 +145,22 @@ AERMEL = [s + "_" + a for s in AERMEL_STUECKE for a in ("armL", "armR")]
 # Schriftzug auf dem Fanschal ist die erste davon: er muss VOR dem Stoff
 # liegen, ist aber eine eigene Ebene, weil Lottie Text nicht als Form kennt.
 NUR_MIT = {"schal_bih": ["schal_bih_text"]}
+# Das Skelett braucht Ebenen an Kopf, Armen, Fluegeln und Schwanz: jede
+# haengt an ihrem Koerperteil und bewegt sich mit ihm.
+SKELETT_EBENEN = ["skelett_augen", "skelett_kopf", "skelett_zaehne", "skelett_armL", "skelett_armR",
+                  "skelett_wingL", "skelett_wingR", "skelett_schwanz"]
+NUR_MIT["skelett"] = SKELETT_EBENEN
 NUR_MIT.update({s: [s + "_armL", s + "_armR"] for s in AERMEL_STUECKE})
 ZIERRAT_ALLE = ZIERRAT + [n for v in NUR_MIT.values() for n in v]
 # "hoerner" ganz vorn: die Hutebenen liegen dahinter, also ragen die Spitzen
 # oben aus jedem Hut heraus, statt darunter zu verschwinden.
 ORDER = ["funkeln", "hoerner"] + KOPF_TEILE + BRILLEN + \
-        ["tears", "brows", "mouth_cry", "mouth_sad", "mouth_open", "mouth_idle",
-         "eyes_cry", "eyes_happy", "lids", "eyes", "head"] + \
-        AERMEL + ["armL", "armR"] + \
+        ["tears", "brows", "mouth_cry", "mouth_sad", "mouth_open", "mouth_idle", "skelett_zaehne",
+         "eyes_cry", "eyes_happy", "lids", "skelett_augen", "eyes", "skelett_kopf", "head"] + \
+        AERMEL + ["skelett_armL", "armL", "skelett_armR", "armR"] + \
         ["schal_bih_text"] + HALS_TEILE + \
-        ["galaxie", "body", "legs", "tail", "wingL", "wingR", "perch"]
+        ["galaxie", "skelett", "body", "legs", "skelett_schwanz", "tail",
+         "skelett_wingL", "wingL", "skelett_wingR", "wingR", "perch"]
 IDX = {n: i+1 for i, n in enumerate(ORDER)}
 built = {}
 def put(name, shapes, parent=None, p=(0, 0), a=(0, 0), r=0, animk=None):
@@ -268,7 +277,7 @@ def tear_opa(start):
 
 # ---------- Sitzplatz: Bücherstapel ----------
 put("perch", [group(rect(0, 26, 300, 46, 14), fill(BOOK1)), group(rect(8, 22, 300, 14, 6), fill(PAGE)), group(rect(0, 42, 300, 8, 4), fill(BOOK1_D, 60)),
-              group(rect(-6, -22, 250, 44, 14), fill(BOOK2)), group(rect(2, -26, 250, 14, 6), fill(PAGE)), group(rect(-6, -6, 250, 8, 4), fill(YEL_D, 55)),
+              group(rect(-6, -22, 250, 44, 14), fill(BOOK2)), group(rect(2, -26, 250, 14, 6), fill(PAGE)), group(rect(-6, -6, 250, 8, 4), fill(BOOK2_D, 55)),
               group(ellipse(0, 52, 320, 26), fill(INK, 12))],
     p=(CX, 420))
 
@@ -874,6 +883,284 @@ put("schal_bih", [
 # Gelbe Schrift auf dem blauen Stoff - Ajdin am 18.09.2026: "mit gelber
 # schrift bosna und hintergrund ist blau".
 built["schal_bih_text"] = textebene("schal_bih_text", "BOSNA", 54, 33, 15, SCHAL_G, "body")
+
+
+# ---------- Festtage ----------
+# Entwurf vom 01.10.2026. Ajdin: "wir koennen jetzt schonmal die kostueme
+# oder das app layout entwerfen fuer die feste wie halloween oder
+# weihnachten oder bayram oder ostern". Vier Kopfstuecke, je eines pro Fest.
+HEXE = col("3B1F5E"); HEXE_D = col("24123D"); HEXE_BAND = col("F28C28"); SCHNALLE = col("F5C518")
+NIKO = col("D62B2B"); NIKO_D = col("A11B1B"); NIKO_FELL = col("FFF8F0")
+BAJRAM = col("A4161A"); BAJRAM_D = col("74100F"); GOLD = col("F5C518"); GOLD_D = col("C79A00")
+OHR = col("FBF7FA"); OHR_INNEN = col("F6A8C4"); OHR_BAND = col("8FD6B4")
+
+# Hexenhut fuer Halloween: breite Krempe, die Spitze knickt nach rechts ab.
+put("hexenhut", [
+    group(ellipse(0, -100, 184, 30), fill(HEXE_D)),                   # Krempe
+    group(smooth([(-56, -104), (-40, -150), (-14, -190), (22, -222), (40, -226),
+                  (28, -200), (24, -160), (40, -128), (56, -104)], tension=0.45), fill(HEXE)),
+    group(smooth([(-30, -120), (-12, -170), (14, -204)], closed=False, tension=0.5), stroke(HEXE_D, 5, 50)),
+    group(rect(0, -114, 116, 16, 4), fill(HEXE_BAND)),                # Band
+    group(rect(0, -114, 26, 20, 4), stroke(SCHNALLE, 4)),             # Schnalle
+], parent="head")
+
+# Nikolausmuetze fuer Weihnachten und Neujahr: der Zipfel faellt nach rechts.
+put("nikolausmuetze", [
+    group(smooth([(-68, -98), (-58, -148), (-12, -182), (46, -184), (92, -160),
+                  (118, -122), (96, -120), (70, -146), (40, -140), (68, -98)], tension=0.5), fill(NIKO)),
+    group(smooth([(-30, -122), (6, -166), (60, -168)], closed=False, tension=0.5), stroke(NIKO_D, 5, 45)),
+    group(rect(0, -98, 152, 30, 15), fill(NIKO_FELL)),                # Pelzrand
+    group(rect(0, -110, 150, 8, 4), fill(NIKO_D, 22)),
+    group(ellipse(116, -116, 36, 36), fill(NIKO_FELL)),               # Bommel am Zipfel
+], parent="head")
+
+# Bajram-Fes: der Fes aus dem Laden, aber mit goldenem Halbmond und Stern
+# vorne und goldener Quaste - sonst saehe er aus wie der gekaufte.
+put("bajramfes", [
+    group(smooth([(-64, -96), (-55, -172), (55, -172), (64, -96)], tension=0.06), fill(BAJRAM)),
+    group(ellipse(0, -172, 112, 19), fill(BAJRAM_D)),
+    group(rect(0, -100, 124, 9, 4), fill(GOLD, 90)),                  # goldenes Band unten
+    group(ellipse(-6, -136, 38, 38), fill(GOLD)),                     # Halbmond: Gold ...
+    group(ellipse(3, -140, 31, 31), fill(BAJRAM)),                    # ... und rot darueber
+    stern(16, -138, 10, GOLD),
+    group(smooth([(10, -174), (46, -158), (62, -128)], closed=False, tension=0.5), stroke(GOLD_D, 5)),
+    group(rect(64, -110, 16, 32, 7), fill(GOLD)),                     # goldene Quaste
+    group(rect(64, -96, 16, 7, 3), fill(GOLD_D)),
+], parent="head")
+
+# Hasenohren fuer Ostern: ein Haarreif mit zwei Ohren.
+put("hasenohren", [
+    group(group(ellipse(0, -50, 40, 104), fill(OHR)),
+          group(ellipse(0, -46, 20, 74), fill(OHR_INNEN)), r=-16, p=(-40, -120)),
+    group(group(ellipse(0, -50, 40, 104), fill(OHR)),
+          group(ellipse(0, -46, 20, 74), fill(OHR_INNEN)), r=14, p=(40, -122)),
+    group(smooth([(-74, -96), (-40, -124), (0, -132), (40, -124), (74, -96)], closed=False, tension=0.6),
+          stroke(OHR_BAND, 9)),                                       # Haarreif
+], parent="head")
+
+
+# Skelett fuer Halloween. Ajdin: "was voll cool waere ist bei halloween das
+# der drache ein skelettdrache waere", in Runde 2: "mit skelett meine ich
+# komplett wie Knochentrocken aus Mario", in Runde 3: "der muss doch viel
+# duenner sein weil er nur aus knochen besteht und zb am schwanz sind die
+# schwarzen stellen unnoetig".
+#
+# Deshalb hat der Skelett-Drache KEIN Fleisch mehr: Die Ebene "skelett"
+# traegt die Liste zmaj_leert, und die App leert beim Zusammensetzen genau
+# diese Ebenen des Grunddrachens (Koerper, Beine, Arme, Schwanz, Fluegel).
+# Die Ebenen selbst bleiben stehen, nur ohne Formen - sie tragen weiter die
+# Bewegung, und die Knochen haengen an ihnen. Lottie kennt den Schluessel
+# zmaj_leert nicht und uebergeht ihn.
+# Der Kopf bleibt: ein Schaedel ist rund. Die App faerbt ihn knochenweiss
+# (FARBEN.skelett), diese Ebenen setzen Augenhoehlen und Nase hinein.
+SKEL_D = col("1B1C22"); KNOCHEN = col("F1EBDA"); KNOCHEN_D = col("A79D84")
+SKELETT_LEERT = ["body", "legs", "armL", "armR", "tail", "wingL", "wingR", "head"]
+
+
+def knochen(a, b, dicke, knubbel=None, c=KNOCHEN, rand=KNOCHEN_D):
+    """Ein Knochen von a nach b: Schaft mit zwei runden Enden, dazu eine
+    dunklere Kante, damit er auch auf hellem Grund steht."""
+    knubbel = knubbel or dicke * 1.3
+    (ax, ay), (bx, by) = a, b
+    nx, ny = by - ay, -(bx - ax); l = math.hypot(nx, ny) or 1
+    nx, ny = nx / l * knubbel * 0.36, ny / l * knubbel * 0.36
+    def lage(farbe, plus):
+        teile = [group(smooth([a, b], closed=False, tension=0), stroke(farbe, dicke + plus))]
+        for x, y in (a, b):
+            teile += [group(ellipse(x + nx, y + ny, knubbel + plus, knubbel + plus), fill(farbe)),
+                      group(ellipse(x - nx, y - ny, knubbel + plus, knubbel + plus), fill(farbe))]
+        return teile
+    return lage(rand, 3) + lage(c, 0)
+
+
+def bogen(punkte, dicke, c=KNOCHEN, rand=KNOCHEN_D):
+    """Ein gebogener Knochen (Rippe, Schluesselbein) mit Kante."""
+    return [group(smooth(punkte, closed=False, tension=0.5), stroke(rand, dicke + 3)),
+            group(smooth(punkte, closed=False, tension=0.5), stroke(c, dicke))]
+
+
+def wirbel(x, y, b, h, winkel=0):
+    return [group(rect(0, 0, b + 3, h + 3, (h + 3) * 0.45), fill(KNOCHEN_D), r=winkel, p=(x, y)),
+            group(rect(0, 0, b, h, h * 0.45), fill(KNOCHEN), r=winkel, p=(x, y))]
+
+
+def rippe(y, breit):
+    links = [(-5, y), (-breit * 0.5, y - 6), (-breit * 0.92, y + 2), (-breit, y + 13)]
+    return bogen(links, 6) + bogen(mirror(links), 6)
+
+
+def bein(sg):
+    """Sitzend, Knie nach aussen: Oberschenkel, Unterschenkel, drei Zehen."""
+    huefte, knie, fuss = (22 * sg, 64), (64 * sg, 48), (60 * sg, 84)
+    teile = knochen(huefte, knie, 8, 12) + knochen(knie, fuss, 7, 11)
+    for zx, zy in ((42, 92), (60, 96), (78, 92)):
+        teile += knochen(fuss, (zx * sg, zy), 4.5, 7)
+    return teile
+
+
+put("skelett", [
+    *bein(1), *bein(-1),
+    # Wirbelsaeule: oben der Hals bis unter den Schaedel, unten bis ins Becken
+    *[t for y in (-50, -40, 44, 54) for t in wirbel(0, y, 13, 8)],
+    # Becken
+    group(smooth([(-32, 58), (-12, 54), (0, 62), (12, 54), (32, 58), (28, 72), (10, 78), (-10, 78), (-28, 72)],
+                 tension=0.5), stroke(KNOCHEN_D, 3)),
+    group(smooth([(-32, 58), (-12, 54), (0, 62), (12, 54), (32, 58), (28, 72), (10, 78), (-10, 78), (-28, 72)],
+                 tension=0.5), fill(KNOCHEN)),
+    # Brustkorb ohne Fuellung: vier Rippenpaare und eine kurze, dazu das Brustbein
+    *rippe(-22, 34), *rippe(-6, 42), *rippe(10, 44), *rippe(26, 38), *rippe(40, 26),
+    *knochen((0, -26), (0, 30), 9, 11),
+    # Schluesselbeine bis zu den Schultern, an denen die Arme haengen
+    *knochen((-6, -30), (-50, -14), 6, 9), *knochen((6, -30), (50, -14), 6, 9),
+], parent="body")
+built["skelett"]["zmaj_leert"] = SKELETT_LEERT
+
+# Kopf des Skeletts. Mehrere Versuche mit einem eigenen Schaedel - eckig,
+# mit Herz-Nase, Augenhoehlen als Vielecke und kleinen Punkten darin, einer
+# umrandeten Schnauze und Jochbein-Linien - sahen nicht mehr nach Zmaj aus
+# (Ajdin: "irgendwas sagt mir, es ist nicht so wie der Original-Drache").
+# Im Vergleich nebeneinander war es klar: Zmaj erkennt man am runden Kopf,
+# an den grossen Kulleraugen mit gelber Iris, an zwei kleinen Nasenloechern,
+# der weichen hellen Schnauze und den waagrechten Seitenhoernern.
+#
+# Darum ist der Kopf jetzt der Original-Kopf, Form fuer Form, mit nur drei
+# Aenderungen: knochenweiss (macht die App), etwas schmaler (144 statt 156 -
+# "nur etwas schmaler, weil keine Haut und keine Muskeln und Fett dran sind",
+# 124 war zu schmal), und die Nasenloecher sind schwarze Loecher.
+# "head" wird geleert, damit nicht der breite Kopf dahinter hervorschaut.
+put("skelett_kopf", [
+    group(ellipse(0, -60, 144, 136), stroke(KNOCHEN_D, 2.5, 60)),
+    group(ellipse(0, -60, 144, 136), fill(BLUE)),
+    group(ellipse(0, -22, 90, 56), fill(BLUE_L, 70)),                             # Schnauze
+    group(ellipse(-17, -30, 12, 9), fill(SKEL_D)), group(ellipse(17, -30, 12, 9), fill(SKEL_D)),   # Nasenloecher
+    group(ellipse(-53, -44, 26, 20), fill(BLUE_L, 45)), group(ellipse(53, -44, 26, 20), fill(BLUE_L, 45)),   # Wangen
+    *HORN_OBEN,
+    group(smooth([(0, 0), (-10, -18), (-6, -44), (10, -28), (13, -6)], tension=0.65), fill(YEL), p=(-70, -76), r=-52),
+    group(smooth([(0, 0), (10, -18), (6, -44), (-10, -28), (-13, -6)], tension=0.65), fill(YEL), p=(70, -76), r=52),
+    group(ellipse(-31, -98, 44, 16), fill(WHITE, 14), r=-25),
+], parent="head")
+
+# Augen: runde schwarze Hoehlen, so gross wie die Augen des Originals, darin
+# nur ein gelber Punkt, der dem Blick folgt (Ajdin: "es reicht ein gelber
+# Punkt"). Eine volle Iris mit Pupille und Glanzlichtern war zu viel.
+# Eigenes Gelb: AMBER und YEL wuerden von der Skelettfarbe mitgefaerbt.
+IRIS = col("FFC61A")
+put("skelett_augen", [
+    group(ellipse(-32, -74, 48, 54), fill(SKEL_D)), group(ellipse(32, -74, 48, 54), fill(SKEL_D)),
+    {"ty": "gr", "it": [
+        group(ellipse(-30, -72, 15, 18), fill(IRIS)), group(ellipse(32, -72, 15, 18), fill(IRIS)),          # gelber Punkt
+        {"ty": "tr", "p": pupil_pos, "a": const([0, 0]), "s": const([100, 100]), "r": const(0), "o": const(100)}]},
+], parent="head", animk={"o": opa({"idle", "sad", "ok", "no", "no_l", "no_r"})})
+
+# Kanten um die beiden Fangzaehne: weiss auf hellem Knochen verschwanden sie.
+# Nur in der Ruhe sichtbar, wie mouth_idle selbst.
+put("skelett_zaehne", [
+    group(poly([(-23, -1), (-14, 18), (-5, 0)]), fill(KNOCHEN_D)),
+    group(poly([(5, 0), (14, 18), (23, -1)]), fill(KNOCHEN_D)),
+], parent="head", animk={"o": opa({"idle"})})
+
+
+# Arme: ein Oberarmknochen, an der Hand drei Fingerknochen.
+def skelett_arm(sg):
+    teile = knochen((6 * sg, 0), (-28 * sg, 4), 7, 11)
+    for fx, fy in ((-46, -4), (-50, 6), (-45, 15)):
+        teile += knochen((-30 * sg, 5), (fx * sg, fy), 4, 6)
+    return teile
+put("skelett_armL", skelett_arm(1), parent="armL")
+put("skelett_armR", skelett_arm(-1), parent="armR")
+
+
+# Fluegel nur aus Knochen, wie bei einer Fledermaus ohne Haut: der Armknochen
+# laeuft bis zum Handgelenk, von dort gehen vier Finger zu den Zacken.
+GELENK = (-108, -124)
+def skelett_fluegel(sg):
+    gx, gy = GELENK[0] * sg, GELENK[1]
+    teile = knochen((-4 * sg, -6), (gx, gy), 8, 12)                    # Armknochen
+    for (x, y), b in zip(WING_TIPS, (-4, -6, -8, -8)):
+        ende = (x * sg * 0.97, y * 0.97)
+        teile += [group(arc((gx, gy), ende, b * sg), stroke(KNOCHEN_D, 7.5)),
+                  group(arc((gx, gy), ende, b * sg), stroke(KNOCHEN, 4.5)),
+                  group(ellipse(ende[0], ende[1], 10, 10), fill(KNOCHEN_D)),
+                  group(ellipse(ende[0], ende[1], 7, 7), fill(KNOCHEN))]
+    teile += [group(ellipse(gx, gy, 18, 18), fill(KNOCHEN_D)),
+              group(ellipse(gx, gy, 15, 15), fill(KNOCHEN))]           # Handgelenk
+    return teile
+put("skelett_wingL", skelett_fluegel(1), parent="wingL", p=(0, 0))
+put("skelett_wingR", skelett_fluegel(-1), parent="wingR", p=(0, 0))
+
+
+# Schwanz: nur Wirbel, nach hinten kleiner, jeder mit einem kleinen Dorn;
+# am Ende die Pfeilspitze als Knochen. Keine dunkle Fuellung mehr.
+def schwanz_wirbel(c, breiten, n=13, t=0.6):
+    m = len(c); seg = []
+    for k in range(m - 1):
+        p0, p1, p2, p3 = c[max(k - 1, 0)], c[k], c[k + 1], c[min(k + 2, m - 1)]
+        o = ((p2[0] - p0[0]) * t / 2, (p2[1] - p0[1]) * t / 2)
+        i = ((p3[0] - p1[0]) * t / 2, (p3[1] - p1[1]) * t / 2)
+        bz = [p1, (p1[0] + o[0], p1[1] + o[1]), (p2[0] - i[0], p2[1] - i[1]), p2]
+        for j in range(40):
+            u = j / 40.0
+            x = (1-u)**3*bz[0][0] + 3*(1-u)**2*u*bz[1][0] + 3*(1-u)*u*u*bz[2][0] + u**3*bz[3][0]
+            y = (1-u)**3*bz[0][1] + 3*(1-u)**2*u*bz[1][1] + 3*(1-u)*u*u*bz[2][1] + u**3*bz[3][1]
+            seg.append((x, y, breiten[k] + (breiten[k + 1] - breiten[k]) * u))
+    seg.append((c[-1][0], c[-1][1], breiten[-1]))
+    laenge = [0.0]
+    for p, q in zip(seg, seg[1:]):
+        laenge.append(laenge[-1] + math.hypot(q[0] - p[0], q[1] - p[1]))
+    schritt = laenge[-1] / n; teile = []
+    for q in range(n):
+        ziel = schritt * (q + 0.5)
+        k = next(i for i, l in enumerate(laenge) if l >= ziel)
+        x, y, w = seg[k]; p = seg[max(k - 1, 0)]; r = seg[min(k + 1, len(seg) - 1)]
+        winkel = math.degrees(math.atan2(r[1] - p[1], r[0] - p[0]))
+        hoch = w * 0.62
+        # Dorn: zeigt nach oben, also auf die Seite der Normalen mit kleinerem y
+        tx, ty = math.cos(math.radians(winkel)), math.sin(math.radians(winkel))
+        nx, ny = (-ty, tx) if tx < 0 else (ty, -tx)
+        if ny > 0: nx, ny = -nx, -ny
+        fuss = [(x + nx * hoch * 0.3 + tx * d, y + ny * hoch * 0.3 + ty * d) for d in (-schritt * 0.2, schritt * 0.2)]
+        spitze = (x + nx * hoch * 1.15, y + ny * hoch * 1.15)
+        teile += [group(poly([fuss[0], spitze, fuss[1]]), stroke(KNOCHEN_D, 3)),
+                  group(poly([fuss[0], spitze, fuss[1]]), fill(KNOCHEN))]
+        teile += wirbel(x, y, schritt * 0.72, hoch, winkel)
+    return teile
+SPITZE_SCHWANZ = [(-174, -18), (-196, -32), (-204, -14), (-190, 0), (-170, -6)]
+put("skelett_schwanz", schwanz_wirbel(tail_c[:-1] + [(-170, -12)], [34, 29, 23, 17, 12], n=12)
+    + [group(smooth(SPITZE_SCHWANZ, tension=0.65), stroke(KNOCHEN_D, 3)),
+       group(smooth(SPITZE_SCHWANZ, tension=0.65), fill(KNOCHEN))],
+    parent="tail")
+
+# Jelek fuer Bajram: die bestickte Weste aus der bosnischen Tracht -
+# dunkles Weinrot, vorn offen, mit goldener Kante und Ranken.
+# Runde 2 war zu klein (Ajdin: "der jelek ist wieder zu klein guck genau"):
+# er sass wie ein Laetzchen auf dem Bauch. Jetzt reicht er wie die
+# Lederweste ueber den ganzen Rumpf, von der Schulter bis unter den Bauch,
+# und steht an der Seite ueber den Koerperrand hinaus.
+JELEK = col("6E1423"); JELEK_D = col("4A0C17"); JELEK_GOLD = col("E9B949")
+JELEK_L = [(-48, -74), (-88, -12), (-82, 56), (-48, 82), (-20, 68), (-14, 2), (-28, -70)]
+JELEK_INNEN = [(-46, -60), (-76, -10), (-71, 50), (-46, 70), (-28, 60), (-24, 2), (-34, -58)]
+def ranke(x, y, s=1, g=1.0):
+    pkt = [(0, 0), (9, -11), (20, -4), (16, 7), (7, 4), (9, -2)]
+    return group(smooth([(x + px * g * s, y + py * g) for px, py in pkt], closed=False, tension=0.55),
+                 stroke(JELEK_GOLD, 3.2, 95))
+def blatt(x, y, s=1):
+    return group(smooth([(x, y), (x + 7 * s, y - 6), (x + 13 * s, y), (x + 7 * s, y + 5)], tension=0.6), fill(JELEK_GOLD, 90))
+put("jelek", [
+    group(smooth(JELEK_L, tension=0.45), fill(JELEK)),
+    group(smooth(mirror(JELEK_L), tension=0.45), fill(JELEK)),
+    group(smooth([(-84, 30), (-82, 56), (-48, 82), (-20, 68), (-18, 40)], tension=0.45), fill(JELEK_D, 55)),
+    group(smooth([(84, 30), (82, 56), (48, 82), (20, 68), (18, 40)], tension=0.45), fill(JELEK_D, 55)),
+    group(smooth(JELEK_L, tension=0.45), stroke(JELEK_GOLD, 6)),
+    group(smooth(mirror(JELEK_L), tension=0.45), stroke(JELEK_GOLD, 6)),
+    group(smooth(JELEK_INNEN, tension=0.45), stroke(JELEK_GOLD, 2.2, 70)),
+    group(smooth(mirror(JELEK_INNEN), tension=0.45), stroke(JELEK_GOLD, 2.2, 70)),
+    ranke(-66, -16, 1, 1.5), ranke(-68, 20, 1, 1.5), ranke(-58, 52, 1, 1.3),
+    ranke(66, -16, -1, 1.5), ranke(68, 20, -1, 1.5), ranke(58, 52, -1, 1.3),
+    blatt(-50, -36), blatt(-52, 4), blatt(-48, 38), blatt(50, -36, -1), blatt(52, 4, -1), blatt(48, 38, -1),
+    # Goldknoepfe (toke) an der Kante, wie an der echten Weste
+    *[group(ellipse(x, y, 9, 9), fill(JELEK_GOLD)) for x, y in [(-22, -40), (-18, -14), (-18, 12), (-20, 38),
+                                                                (22, -40), (18, -14), (18, 12), (20, 38)]],
+], parent="body")
 
 # ---------- Ausgabe ----------
 # Eine Grunddatei ohne jeden Zierrat, dazu je Stück eine winzige Datei mit

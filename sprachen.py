@@ -154,7 +154,13 @@ TEXTE = {
 "serie.schutz_naechster": "noch {zeit} bis zum nächsten",
 "serie.schutz_voll": "voll",
 "serie.gerettet": "❄ Du hast einen Tag ausgelassen. Ein Schutz hat deine Serie gerettet.|❄ Du hast {n} Tage ausgelassen. {n} Schutz haben deine Serie gerettet.",
-"serie.verloren": "Deine Lernserie ist leider gerissen. Heute fängt eine neue an.",
+"serie.verloren": "Deine Lernserie ist leider gerissen. Heute fängt eine neue an.",
+# Festtage: die zweite Zeile im Grusskasten auf der Startseite. Die erste
+# ist bosnisch und steht in index.html (FESTE). Geprueft am 01.10.2026.
+"fest.weihnachten": "Frohe Feiertage!",
+"fest.bajram": "Gesegnetes Bajram-Fest!",
+"fest.ostern": "Frohe Ostern!",
+"fest.halloween": "Fröhliches Halloween!",
 
 # ---- Tagesaufgaben und Laden ----------------------------------------------
 "quest.titel": "Heute",
@@ -670,7 +676,11 @@ TEXTE = {
 "serie.schutz_naechster": "{zeit} until the next one",
 "serie.schutz_voll": "full",
 "serie.gerettet": "❄ You missed a day. A streak freeze saved your streak.|❄ You missed {n} days. {n} streak freezes saved your streak.",
-"serie.verloren": "Your streak ended. A new one starts today.",
+"serie.verloren": "Your streak ended. A new one starts today.",
+"fest.weihnachten": "Happy holidays!",
+"fest.bajram": "Happy Bajram!",
+"fest.ostern": "Happy Easter!",
+"fest.halloween": "Happy Halloween!",
 
 # ---- Tagesaufgaben und Laden ----------------------------------------------
 "quest.titel": "Today",
@@ -1174,7 +1184,11 @@ TEXTE = {
 "serie.schutz_naechster": "yenisine {zeit} kaldı",
 "serie.schutz_voll": "dolu",
 "serie.gerettet": "❄ Bir gün ara verdin. Bir seri koruması serini kurtardı.|❄ {n} gün ara verdin. {n} seri koruması serini kurtardı.",
-"serie.verloren": "Serin maalesef bozuldu. Bugün yenisi başlıyor.",
+"serie.verloren": "Serin maalesef bozuldu. Bugün yenisi başlıyor.",
+"fest.weihnachten": "Mutlu yıllar!",
+"fest.bajram": "Bayramınız mübarek olsun!",
+"fest.ostern": "Mutlu Paskalyalar!",
+"fest.halloween": "Mutlu Cadılar Bayramı!",
 
 # ---- Tagesaufgaben und Laden ----------------------------------------------
 "quest.titel": "Bugün",
@@ -1676,7 +1690,11 @@ TEXTE = {
 "serie.schutz_naechster": "{zeit} till nästa",
 "serie.schutz_voll": "fullt",
 "serie.gerettet": "❄ Du hoppade över en dag. Ett serieskydd räddade din serie.|❄ Du hoppade över {n} dagar. {n} serieskydd räddade din serie.",
-"serie.verloren": "Din serie tog tyvärr slut. I dag börjar en ny.",
+"serie.verloren": "Din serie tog tyvärr slut. I dag börjar en ny.",
+"fest.weihnachten": "Trevliga helger!",
+"fest.bajram": "Glad bajram!",
+"fest.ostern": "Glad påsk!",
+"fest.halloween": "Glad halloween!",
 
 # ---- Tagesaufgaben und Laden ----------------------------------------------
 "quest.titel": "Idag",
@@ -2176,7 +2194,11 @@ TEXTE = {
     "serie.schutz_voll": "vol",
     "serie.gerettet":
         "❄ Je hebt een dag overgeslagen. Een reeksbescherming heeft je reeks gered.|❄ Je hebt {n} dagen overgeslagen. {n} reeksbeschermingen hebben je reeks gered.",
-    "serie.verloren": "Je reeks is helaas gestopt. Vandaag begint er een nieuwe.",
+    "serie.verloren": "Je reeks is helaas gestopt. Vandaag begint er een nieuwe.",
+    "fest.weihnachten": "Fijne feestdagen!",
+    "fest.bajram": "Fijn Bajramfeest!",
+    "fest.ostern": "Fijne Pasen!",
+    "fest.halloween": "Fijne Halloween!",
 
     # ---- Tagesaufgaben und Laden ----------------------------------------------
     "quest.titel": "Vandaag",
@@ -2676,7 +2698,11 @@ TEXTE = {
     "serie.schutz_voll": "fullt",
     "serie.gerettet":
         "❄ Du hoppet over en dag. En rekkebeskyttelse reddet rekka di.|❄ Du hoppet over {n} dager. {n} rekkebeskyttelser reddet rekka di.",
-    "serie.verloren": "Rekka di tok dessverre slutt. I dag begynner en ny.",
+    "serie.verloren": "Rekka di tok dessverre slutt. I dag begynner en ny.",
+    "fest.weihnachten": "God høytid!",
+    "fest.bajram": "God bajram!",
+    "fest.ostern": "God påske!",
+    "fest.halloween": "God halloween!",
 
     # ---- Tagesaufgaben und Laden ----------------------------------------------
     "quest.titel": "I dag",
@@ -3177,7 +3203,11 @@ TEXTE = {
     "serie.schutz_voll": "fuldt",
     "serie.gerettet":
         "❄ Du sprang en dag over. En rækkebeskyttelse reddede din række.|❄ Du sprang {n} dage over. {n} rækkebeskyttelser reddede din række.",
-    "serie.verloren": "Din række sluttede desværre. I dag begynder en ny.",
+    "serie.verloren": "Din række sluttede desværre. I dag begynder en ny.",
+    "fest.weihnachten": "Glædelig højtid!",
+    "fest.bajram": "Glædelig bajram!",
+    "fest.ostern": "God påske!",
+    "fest.halloween": "Glædelig halloween!",
 
     # ---- Tagesaufgaben und Laden ----------------------------------------------
     "quest.titel": "I dag",
@@ -3677,7 +3707,11 @@ TEXTE = {
     "serie.schutz_voll": "au complet",
     "serie.gerettet":
         "❄ Tu as sauté un jour. Une protection de série a sauvé ta série.|❄ Tu as sauté {n} jours. {n} protections de série ont sauvé ta série.",
-    "serie.verloren": "Ta série s'est malheureusement arrêtée. Une nouvelle commence aujourd'hui.",
+    "serie.verloren": "Ta série s'est malheureusement arrêtée. Une nouvelle commence aujourd'hui.",
+    "fest.weihnachten": "Joyeuses fêtes !",
+    "fest.bajram": "Bonne fête de Bajram !",
+    "fest.ostern": "Joyeuses Pâques !",
+    "fest.halloween": "Joyeux Halloween !",
 
     # ---- Tagesaufgaben und Laden ----------------------------------------------
     "quest.titel": "Aujourd’hui",
