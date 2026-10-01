@@ -83,7 +83,7 @@ _Laden, Passwort, Nachricht – und die Geräte im Haushalt._ · Vorschlag: Sekt
 | klima | Klimaanlage |
 | ventilator | Ventilator |
 | daljinski | Fernbedienung |
-| aparat za kahvu | Kaffeemaschine |
+| aparat za kahvu / aparat za kafu | Kaffeemaschine |
 | uputstvo | Bedienungsanleitung |
 | garancija | Garantie |
 

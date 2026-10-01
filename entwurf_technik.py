@@ -115,7 +115,7 @@ LEVEL = [
         {"de": "Klimaanlage",                        "bs": "klima"},
         {"de": "Ventilator",                         "bs": "ventilator"},
         {"de": "Fernbedienung",                      "bs": "daljinski"},
-        {"de": "Kaffeemaschine",                     "bs": "aparat za kahvu"},
+        {"de": "Kaffeemaschine",                     "bs": "aparat za kahvu / aparat za kafu"},
         {"de": "Bedienungsanleitung",                "bs": "uputstvo"},
         {"de": "Garantie",                           "bs": "garancija"},
      ]},

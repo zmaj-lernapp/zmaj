@@ -13974,6 +13974,18 @@
    "datei": "w2318.mp3",
    "text": "šifra / lozinka",
    "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "kahva / kafa",
+   "datei": "w2319.mp3",
+   "text": "kahva / kafa",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "aparat za kahvu / aparat za kafu",
+   "datei": "w2320.mp3",
+   "text": "aparat za kahvu / aparat za kafu",
+   "stimme": "bs-BA-GoranNeural"
   }
  ]
 }
