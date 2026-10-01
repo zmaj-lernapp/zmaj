@@ -2480,7 +2480,7 @@ SAETZE = [
     {"kat": "resto1", "text": "Želim ___.",          "answer": "naručiti", "de": "Ich möchte bestellen."},
 
     # Im Restaurant: essen & zahlen
-    {"kat": "resto2", "text": "Meso je ___.",           "answer": "ljuto",    "de": "Das Fleisch ist scharf."},
+    {"kat": "resto2", "text": "Ovo meso je ___.",       "answer": "ljuto",    "de": "Dieses Fleisch ist scharf."},
     {"kat": "resto2", "text": "Voće je ___.",           "answer": "slatko",   "de": "Das Obst ist süß."},
     {"kat": "resto2", "text": "Možemo li platiti ___?", "answer": "odvojeno", "de": "Können wir getrennt zahlen?"},
     {"kat": "resto2", "text": "Jedemo ___.",            "answer": "zajedno",  "de": "Wir essen zusammen."},

@@ -1107,6 +1107,7 @@
   .lesson .tablewrap{overflow-x:auto}
   .lesson b{color:var(--primary)}
   .ex-q{font-size:20px; font-weight:800; margin:6px 0 4px; line-height:1.4}
+  .ex-q .ex-q-sub{display:block; font-size:15px; font-weight:600; color:var(--muted); margin-top:6px; line-height:1.35}
 
   .story{text-align:left}
   .story h3{font-family:var(--font-ui); font-weight:800; font-size:22px; margin:0 0 12px; color:var(--primary)}
@@ -6461,6 +6462,19 @@ function renderChoice(box, opts, correctKey, keyOf, onDone){
   });
 }
 
+/* Die Frage einer Grammatikaufgabe: der bosnische Satz oben, die
+   Uebersetzung aus der Klammer am Ende darunter in einer eigenen Zeile.
+   Vorher stand beides in einer Zeile und brach mitten in der Klammer um -
+   „___ kahve, molim.“ (Zwei / Kaffee, bitte.). Ajdin beim Durchspielen des
+   Einstufungstests, 01.10.2026: "besser wenn der bosnische Satz auf einer
+   Zeile ist und die Uebersetzung darunter". */
+function gramFrageHtml(frage){
+  const roh = String(frage || '').trim();
+  const k = roh.match(/^(.*\S)\s*\(([^()]{2,})\)\s*$/);
+  if(!k) return '<div class="ex-q">' + esc(roh) + '</div>';
+  return '<div class="ex-q">' + esc(k[1]) + '<span class="ex-q-sub">' + esc(k[2].trim()) + '</span></div>';
+}
+
 /* Grammatikaufgaben tragen ihre Bedeutung meist schon in Klammern mit:
    „___ stanuješ?“ (Wo wohnst du?). Daraus wird nach der Antwort der fertige
    Satz und darunter seine Übersetzung. Steht keine Lücke in der Frage, gibt
@@ -6725,7 +6739,7 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='gram'){
     const g=task.g;
-    body.innerHTML = kick(t('task.grammatik'))+'<div class="ex-q">'+esc(g.frage)+'</div><div class="options'+(g.optionen.some(o=>o.length>22)?' one':'')+'" id="xOpts"></div><div class="feedback" id="xFb"></div><div class="ex-tipp" id="xTipp"></div>';
+    body.innerHTML = kick(t('task.grammatik'))+gramFrageHtml(g.frage)+'<div class="options'+(g.optionen.some(o=>o.length>22)?' one':'')+'" id="xOpts"></div><div class="feedback" id="xFb"></div><div class="ex-tipp" id="xTipp"></div>';
     // Nach der Antwort die richtige Form sprechen, wenn es sie als Aufnahme
     // gibt - bei „imaš“ gegen „ima“ entscheidet die Aussprache mit.
     renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(vorlesbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); });

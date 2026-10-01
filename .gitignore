@@ -82,3 +82,6 @@ sicherung_handy/
 
 # Store-Bilder: Zwischenstand, wird bei jedem Lauf neu geschrieben.
 store/bilder_machen/_stand.json
+
+# Mails aus der Feedback-Durchsicht (feedback_holen.py): Namen und Adressen.
+feedback/
