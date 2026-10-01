@@ -280,6 +280,25 @@
   /* Am Handy naehme der Drache in seiner vollen Groesse die halbe Breite. */
   .obenreihe .zmaj{width:120px; height:120px; flex:0 0 120px}
   .obenreihe .streakline{margin:7px 0 0}
+  /* ---- Festtage: Girlande, Gruss, fallende Blaetter und Flocken ----
+     Die Farben je Fest setzt festSchmuck() in <style id="festStil">. */
+  .festgirlande{display:block; width:100%; height:auto; margin:-6px 0 2px}
+  .festnacht{margin:-4px 0 6px}
+  .festwiese{display:block; width:100%; height:auto; margin:-30px 0 0; position:relative; pointer-events:none}
+  .festgruss{display:flex; align-items:center; gap:10px; margin:6px 0 12px; padding:10px 14px; border-radius:16px;
+             background-color:var(--fest-grund); border:2px solid var(--fest-kante)}
+  .festgruss b{display:block; font:700 19px/1.25 var(--font-display); color:var(--fest-schrift); padding-right:34px}
+  .festgruss span{display:block; font-size:13px; color:var(--muted); font-weight:700; padding-right:34px}
+  .festfall{position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:5}
+  .festfall i{position:absolute; top:-30px; background-size:contain; background-repeat:no-repeat; animation-iteration-count:infinite}
+  .festfall .flocke{background:#FFFFFF; border-radius:50%; opacity:.85; box-shadow:0 0 0 1px rgba(64,73,165,.18)}
+  .festStern{animation:festFunkeln 2.4s ease-in-out infinite}
+  @keyframes festFallen{from{translate:0 -40px} to{translate:0 110vh}}
+  @keyframes festWiegen{0%,100%{margin-left:-14px; rotate:-25deg} 50%{margin-left:14px; rotate:25deg}}
+  @keyframes festFunkeln{0%,100%{opacity:.35} 50%{opacity:1}}
+  /* Ohne Bewegung stuenden die Blaetter oben am Rand - dann lieber gar nicht. */
+  .no-anim .festfall{display:none}
+  @media (prefers-reduced-motion: reduce){ .festfall{display:none} }
   /* .btn hat flex:1 und steht sonst immer in einer Reihe. Dieser hier
      steht allein, also braucht er seine Breite selbst. */
   .weiterknopf{display:block; width:100%; margin-bottom:12px}
@@ -1124,6 +1143,7 @@
   .err{background:var(--accent-soft); color:var(--ink); padding:12px 16px; border-radius:12px; font-size:14px; margin-bottom:14px; display:none; text-align:left; line-height:1.6}
   @media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important}}
 </style>
+<style id="festStil"></style>
 </head>
 <body>
 <!-- Vorspann: das Zeichen des Studios, nicht der App.
@@ -2711,7 +2731,11 @@ const hasLottie = () => !!window.lottie && MASCOT.has('zmaj.json');
 const zuFarbe = h => [parseInt(h.slice(0, 2), 16) / 255,
                       parseInt(h.slice(2, 4), 16) / 255,
                       parseInt(h.slice(4, 6), 16) / 255];
-const FARB_QUELLE = ['2448B8', '3F66DF', '17307F', '6C90FF', '3A5CD0'].map(zuFarbe);
+/* Dazu seit dem 01.10.2026 die drei Gelbtoene (Bauch, Bauchschatten,
+   Hoerner) als Nummer 6 bis 8. Getauscht wird nur, was eine Farbe auch
+   angibt: die Kauffarben haben fuenf Toene und lassen Gelb stehen, das
+   Skelett hat acht und macht auch Hoerner und Krallen zu Knochen. */
+const FARB_QUELLE = ['2448B8', '3F66DF', '17307F', '6C90FF', '3A5CD0', 'FFCB1F', 'D9A400', 'F2A900'].map(zuFarbe);
 const FARBEN = {
   gruen:   ['1E9E52', '32C169', '136434', '62DE98', '28A05C'],
   rosa:    ['D94E8C', 'EE74A8', '952F5E', 'FF9CC4', 'D1679B'],
@@ -2729,6 +2753,10 @@ const FARBEN = {
      die Kennung in beiden Listen steht - hier und im Laden -, laedt
      getrageneTeile() sie von selbst mit. */
   galaxie: ['241A4D', '3A2C73', '150F30', '4C3C93', '2C2160'],
+  /* Kein Kaufartikel: die Haut des Skelett-Drachen zu Halloween. Acht
+     Toene - knochenweiss, die Fluegelhaut dunkel (sie wird ohnehin
+     geleert), dazu die drei Gelbtoene. */
+  skelett: ['E6DFCB', 'F6F1E4', 'BDB398', '4A465C', '2C2A38', 'D6CCB0', 'A99F84', 'CFC4A5'],
 };
 const farbeVon = id => (FARBEN[id] || []).map(zuFarbe);
 /* Alle Farbwerte in den Daten durchgehen und die fuenf Blautoene ersetzen.
@@ -2743,7 +2771,7 @@ function faerbe(daten, palette){
     if(Array.isArray(x)){ x.forEach(geh); return; }
     if(!x || typeof x !== 'object') return;
     if(x.a === 0 && Array.isArray(x.k) && x.k.length === 4){
-      for(let i = 0; i < FARB_QUELLE.length; i++){
+      for(let i = 0; i < Math.min(FARB_QUELLE.length, palette.length); i++){
         const q = FARB_QUELLE[i];
         if(nah(x.k[0], q[0]) && nah(x.k[1], q[1]) && nah(x.k[2], q[2])){
           x.k = [palette[i][0], palette[i][1], palette[i][2], x.k[3]];
@@ -2779,10 +2807,283 @@ const getrageneFarbe = () => getragenListe()
    Kaufkasten: dort steht er in voller Montur, damit man sieht, was man
    bekommt, statt es zu lesen. Die Vorschau wird nicht zwischengelagert,
    sonst verdraengt sie den echten Drachen aus dem Speicher. */
+/* =================== FESTTAGE ===================
+   Eingebaut am 01.10.2026. Ajdin: "das Weihnachtslayout bis zum 07.01
+   laufen lassen und das gleiche mit Ostern, Halloween erst naechstes Jahr,
+   Bajram zweimal". Und: "wenn mal der Fall kommt, dass Bajram mit einem
+   anderen Feiertag kollidiert, dann soll er jeden Tag wechseln - ich denke,
+   das ist fair fuer alle."
+
+   Zeitraeume (jeweils einschliesslich):
+     Weihnachten  1. Dezember bis 7. Januar - Weihnachten, Neujahr und das
+                  orthodoxe Weihnachten am 7. Januar
+     Ostern       Palmsonntag vor dem katholischen Ostern bis zum
+                  orthodoxen Ostermontag. Fallen beide auf einen Tag, ist
+                  das gut eine Woche, sonst bis zu sechs.
+     Bajram       Ramazanski drei Tage, Kurban vier Tage, ab dem ersten Tag
+                  laut Islamischer Gemeinschaft in BiH. Bajram wandert jedes
+                  Jahr um elf Tage nach vorn und laesst sich nicht wie
+                  Ostern ausrechnen - deshalb eine Tabelle. Sie reicht bis
+                  2036 und muss dann verlaengert werden.
+     Halloween    24. bis 31. Oktober, erst ab 2027
+   Sind zwei Feste zugleich dran, wechseln sie sich taeglich ab.
+
+   Das Kostuem zieht der Drache von selbst an, kostenlos, und legt es nach
+   dem Fest wieder ab. Getragenes bleibt gespeichert wie es ist - das
+   Festteil verdeckt nur fuer die Festtage, was in seiner Gruppe sitzt.
+   Im Kaufkasten der Vollversion bleibt der Drache in voller Montur. */
+const BAJRAM = [
+  /* Erster Tag und Dauer. Recherchiert am 01.10.2026 aus zwei getrennten
+     Quellen - Diyanet (dieselbe Rechnung wie die Islamische Gemeinschaft
+     in BiH, Istanbuler Kriterium 2016) und bosnische Seiten - und
+     gegeneinander geprueft. 2033 faellt Ramazanski zweimal ins Jahr. */
+  ['2027-03-09', 3],   // Ramazanski
+  ['2027-05-16', 4],   // Kurban
+  ['2028-02-26', 3],   // Ramazanski
+  ['2028-05-05', 4],   // Kurban
+  ['2029-02-14', 3],   // Ramazanski
+  ['2029-04-24', 4],   // Kurban
+  ['2030-02-04', 3],   // Ramazanski
+  ['2030-04-13', 4],   // Kurban
+  ['2031-01-24', 3],   // Ramazanski
+  ['2031-04-02', 4],   // Kurban
+  ['2032-01-14', 3],   // Ramazanski
+  ['2032-03-22', 4],   // Kurban
+  ['2033-01-02', 3],   // Ramazanski
+  ['2033-03-11', 4],   // Kurban
+  ['2033-12-23', 3],   // Ramazanski
+  ['2034-03-01', 4],   // Kurban
+  ['2034-12-12', 3],   // Ramazanski
+  ['2035-02-18', 4],   // Kurban
+  ['2035-12-01', 3],   // Ramazanski
+  ['2036-02-07', 4],   // Kurban   // unsicher: 07. oder 08.02., Diyanet hat 2036 noch nicht veroeffentlicht
+  ['2036-11-19', 3],   // Ramazanski
+];
+const FEST_GRUPPE = {hexenhut: 'kopf', nikolausmuetze: 'kopf', bajramfes: 'kopf', hasenohren: 'kopf',
+                     jelek: 'hals', skelett: 'farbe'};
+const tagNr = (j, m, d) => Math.round(Date.UTC(j, m - 1, d) / 864e5);
+const heuteNr = () => { const d = new Date(); return tagNr(d.getFullYear(), d.getMonth() + 1, d.getDate()); };
+/* Ostersonntag nach dem gregorianischen Kalender (Gauss, in der Form von
+   Meeus). Geprueft gegen 2026 bis 2036. */
+function osternWest(j){
+  const a = j % 19, b = Math.floor(j / 100), c = j % 100, d = Math.floor(b / 4), e = b % 4;
+  const f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const n = h + l - 7 * m + 114;
+  return tagNr(j, Math.floor(n / 31), n % 31 + 1);
+}
+/* Orthodoxes Ostern: julianisch gerechnet, dann 13 Tage auf den heutigen
+   Kalender - das stimmt von 1900 bis 2099. */
+function osternOst(j){
+  const a = j % 4, b = j % 7, c = j % 19, d = (19 * c + 15) % 30, e = (2 * a + 4 * b - d + 34) % 7;
+  const n = d + e + 114;
+  return tagNr(j, Math.floor(n / 31), n % 31 + 1) + 13;
+}
+function festZeiten(j){
+  const z = [{id: 'weihnachten', von: tagNr(j, 12, 1), bis: tagNr(j + 1, 1, 7)},
+             {id: 'ostern', von: osternWest(j) - 7, bis: osternOst(j) + 1}];
+  if(j >= 2027) z.push({id: 'halloween', von: tagNr(j, 10, 24), bis: tagNr(j, 10, 31)});
+  BAJRAM.forEach(([tag, dauer]) => {
+    const [y, m, d] = tag.split('-').map(Number);
+    if(y === j) z.push({id: 'bajram', von: tagNr(y, m, d), bis: tagNr(y, m, d) + dauer - 1});
+  });
+  return z;
+}
+/* Welches Fest heute dran ist, oder ''. zmaj_fest_probe setzt niemand in
+   der App - nur wer am Geraet nachsehen will, wie ein Fest aussieht, ueber
+   die Fernwartung. */
+function festHeute(){
+  try{ const p = localStorage.getItem('zmaj_fest_probe'); if(p && FESTE[p]) return p; }catch(e){}
+  const n = heuteNr(), j = new Date().getFullYear();
+  /* Zwei zugleich: taeglich abwechselnd, und zwar ab dem Tag, an dem das
+     zweite dazukommt - mit diesem zuerst. Laeuft Weihnachten schon seit
+     Wochen und kommt Bajram fuer drei Tage dazu, ist es dann Bajram,
+     Weihnachten, Bajram und nicht umgekehrt. */
+  const aktiv = festZeiten(j - 1).concat(festZeiten(j)).filter(z => z.von <= n && n <= z.bis)
+    .sort((a, b) => b.von - a.von);
+  return aktiv.length ? aktiv[(n - aktiv[0].von) % aktiv.length].id : '';
+}
+/* Was der Drache heute wirklich anhat: das Getragene, ueber das sich zu
+   einem Fest das Festkostuem legt. Ein Festteil ersetzt das Stueck aus
+   derselben Gruppe. Das Skelett hat keinen Koerper mehr, darauf saesse
+   keine Weste - deshalb faellt dann auch die Halsgruppe weg. */
+function festTracht(){
+  const ids = getrageneTeile(), farbe = getrageneFarbe();
+  const f = FESTE[festHeute()];
+  const neu = f ? f.teile.filter(id => MASCOT.has(zierratDatei(id))) : [];
+  if(!neu.length) return {ids, farbe};
+  const weg = new Set(neu.map(id => FEST_GRUPPE[id]));
+  if(f.farbe) weg.add('hals');
+  return {ids: ids.filter(id => !weg.has(gruppeVon(id))).concat(neu), farbe: f.farbe || farbe};
+}
+
+/* ---- Schmuck auf der Startseite ----
+   Oben eine Girlande (an Bajram die Baščaršija bei Nacht), unter Serie und
+   Drache ein Gruss: oben bosnisch, darunter in der Sprache der App. Dazu
+   fallende Blaetter oder Flocken. Gezeichnet auf 330 Punkte Breite; die
+   Bilder skalieren mit, ohne sich zu verziehen.
+   Entworfen in drei Runden mit Ajdin, 01.10.2026: Schneehauben auf den
+   Knoepfen und Eiszapfen sind wieder raus, die Haeuser an Bajram sind
+   bosnische Altstadthaeuser, die Tulpen zu Ostern haben oben Luft. */
+const festSvgUrl = s => "url('data:image/svg+xml," + encodeURIComponent(s).replace(/'/g, '%27') + "')";
+const FW = 330;
+const festSchnur = d => '<path d="M0,6 Q' + (FW / 2) + ',' + d + ' ' + FW + ',6" stroke="#9AA0C8" stroke-width="2" fill="none"/>';
+function festHaenger(n, fn){
+  let s = '';
+  for(let i = 0; i < n; i++){
+    const x = 16 + i * (FW - 32) / (n - 1);
+    const y = 6 + 26 * (1 - Math.pow((x - FW / 2) / (FW / 2), 2)) * 0.55;
+    s += '<line x1="' + x + '" y1="' + y + '" x2="' + x + '" y2="' + (y + 8) + '" stroke="#9AA0C8" stroke-width="1.4"/>' + fn(x, y + 8, i);
+  }
+  return s;
+}
+const festBild = (h, innen) => '<svg class="festgirlande festteil" aria-hidden="true" viewBox="0 0 ' + FW + ' ' + h + '" width="100%">' + innen + '</svg>';
+const festBlatt = (c, r) => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 24 24"><g transform="rotate(' + r + ')"><path d="M0,-11 L3,-5 L9,-7 L6,-1 L11,2 L5,4 L6,10 L0,6 L-6,10 L-5,4 L-11,2 L-6,-1 L-9,-7 L-3,-5Z" fill="' + c + '"/><path d="M0,-8 V11" stroke="#7A3B14" stroke-width="1.2"/></g></svg>';
+
+function festHalloween(){
+  const oben = festBild(70, festSchnur(34) + festHaenger(7, (x, y, i) => i % 2
+    ? '<g transform="translate(' + x + ',' + (y + 9) + ')"><path d="M-16,-2 Q-8,-12 0,-3 Q8,-12 16,-2 Q9,0 7,7 Q3,2 0,7 Q-3,2 -7,7 Q-9,0 -16,-2Z" fill="#6E5B9A"/><circle cx="-3.5" cy="-1" r="1.6" fill="#FFB347"/><circle cx="3.5" cy="-1" r="1.6" fill="#FFB347"/></g>'
+    : '<g transform="translate(' + x + ',' + (y + 12) + ')"><ellipse rx="14" ry="12" fill="#F28C28"/><ellipse rx="5.5" ry="12" fill="#E07A12"/><rect x="-2" y="-16" width="4" height="6" rx="2" fill="#4E7A2E"/><path d="M-7,-3 l3.5,-4 l3.5,4Z M0.5,-3 l3.5,-4 l3.5,4Z M-7,4 l2,2 l2,-2 l2,2 l2,-2 l2,2 l2,-2" fill="#3B1F0A" stroke="#3B1F0A" stroke-width="1"/></g>'));
+  const farben = ['#E8742A', '#C8452B', '#E9A23B', '#B5651D', '#D9532B'];
+  let fall = '';
+  for(let i = 0; i < 10; i++){
+    const x = (i * 37 + 13) % 100, d = 9 + (i % 4) * 2.5, verz = -(i * 1.7), g = 16 + (i % 3) * 6;
+    fall += '<i style="left:' + x + '%;width:' + g + 'px;height:' + g + 'px;background-image:' + festSvgUrl(festBlatt(farben[i % 5], i * 40))
+      + ';animation-name:festFallen,festWiegen;animation-timing-function:linear,ease-in-out;animation-duration:' + d + 's,' + (d / 3) + 's;animation-delay:' + verz + 's,' + verz + 's"></i>';
+  }
+  return {oben, fall, css: `.festgruss{background-image:${festSvgUrl(festBlatt('#E8742A', 20))},${festSvgUrl(festBlatt('#C8452B', -30))}; background-repeat:no-repeat; background-size:26px,20px; background-position:right 10px top 8px, right 34px bottom 8px}`};
+}
+
+function festWeihnachten(){
+  const lichter = ['#E8474B', '#F5C518', '#4CCB84', '#6C90FF'];
+  const oben = festBild(62, festSchnur(30) + festHaenger(11, (x, y, i) =>
+    '<g transform="translate(' + x + ',' + (y - 2) + ')"><rect x="-3" y="-4" width="6" height="5" rx="1" fill="#9AA0C8"/><ellipse cy="8" rx="6" ry="8.5" fill="' + lichter[i % 4] + '"/><ellipse cy="8" rx="12" ry="14" fill="' + lichter[i % 4] + '" opacity=".22"/></g>'));
+  let fall = '';
+  for(let i = 0; i < 26; i++){
+    const x = (i * 29 + 7) % 100, d = 7 + (i % 5) * 1.6, verz = -(i * 0.9), g = 3 + (i % 3) * 2;
+    fall += '<i class="flocke" style="left:' + x + '%;width:' + g + 'px;height:' + g + 'px;animation-name:festFallen;animation-timing-function:linear;animation-duration:' + d + 's;animation-delay:' + verz + 's"></i>';
+  }
+  return {oben, fall, css: ''};
+}
+
+function festBajram(){
+  /* Baščaršija bei Nacht: Altstadthaeuser mit ueberstehendem Obergeschoss,
+     Walmdach, Erker (doksat) und Gitterfenstern; die Laeden der Čaršija;
+     Gazi Husrev-begova džamija mit Minarett, Sebilj und Sahat-kula. */
+  const g = '#E9B949', gd = '#A87E26', gl = '#F3CF6E', licht = '#FFE9A3';
+  const fenster = (x, y, b = 6, hh = 8) => '<rect x="' + x + '" y="' + y + '" width="' + b + '" height="' + hh + '" rx="1" fill="' + licht + '"/>'
+    + '<path d="M' + (x + b / 2) + ',' + y + ' v' + hh + ' M' + x + ',' + (y + hh / 2) + ' h' + b + '" stroke="' + gd + '" stroke-width=".9"/>';
+  const haus = (x, b, eg, og, dach, erker) => {
+    const ogU = 96 - eg, ogO = ogU - og, ue = 4;
+    let s = '<rect x="' + x + '" y="' + ogU + '" width="' + b + '" height="' + eg + '" fill="' + gd + '"/>'
+      + '<rect x="' + (x - ue) + '" y="' + ogO + '" width="' + (b + 2 * ue) + '" height="' + og + '" fill="' + g + '"/>'
+      + '<path d="M' + (x - ue - 1) + ',' + ogU + ' h' + (b + 2 * ue + 2) + ' l-3,3 h' + (-(b + 2 * ue - 4)) + 'Z" fill="' + gd + '" opacity=".7"/>'
+      + '<path d="M' + (x - ue - 7) + ',' + (ogO + 1) + ' L' + (x + b * 0.22) + ',' + (ogO - dach) + ' L' + (x + b * 0.78) + ',' + (ogO - dach) + ' L' + (x + b + ue + 7) + ',' + (ogO + 1) + 'Z" fill="' + gl + '"/>'
+      + '<rect x="' + (x + b * 0.7) + '" y="' + (ogO - dach - 5) + '" width="4" height="9" fill="' + gl + '"/>';
+    const n = Math.max(2, Math.round(b / 12));
+    for(let i = 0; i < n; i++) s += fenster(x - ue + 5 + i * ((b + 2 * ue - 16) / (n - 1)), ogO + 4, 6, og - 8);
+    s += '<path d="M' + (x + b / 2 - 4) + ',96 v-10 a4,4 0 0 1 8,0 v10Z" fill="#6E4F14"/>';
+    if(erker){
+      const ex = x + b / 2 - 9;
+      s += '<rect x="' + ex + '" y="' + (ogO - 2) + '" width="18" height="' + (og + 4) + '" fill="' + gl + '"/>'
+        + '<path d="M' + ex + ',' + (ogO + og + 2) + ' l9,6 l9,-6Z" fill="' + gd + '"/>' + fenster(ex + 3, ogO + 2, 12, og - 4);
+    }
+    return s;
+  };
+  const kuppel = (cx, y, r) => '<path d="M' + (cx - r) + ',' + y + ' A' + r + ',' + (r * 0.95) + ' 0 0 1 ' + (cx + r) + ',' + y + 'Z" fill="' + g + '"/>';
+  const halbmond = (cx, y) => '<rect x="' + (cx - 0.8) + '" y="' + (y - 7) + '" width="1.6" height="7" fill="' + g + '"/><circle cx="' + cx + '" cy="' + (y - 9) + '" r="2.6" fill="' + g + '"/><circle cx="' + (cx + 1.2) + '" cy="' + (y - 9.6) + '" r="2.2" fill="#1C2350"/>';
+  const oben = '<svg class="festgirlande festteil festnacht" aria-hidden="true" viewBox="0 0 328 96" width="100%">'
+    + '<defs><linearGradient id="festNacht" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C2350"/><stop offset="1" stop-color="#151728" stop-opacity="0"/></linearGradient></defs>'
+    + '<rect width="328" height="96" rx="16" fill="url(#festNacht)"/>'
+    + '<circle cx="300" cy="22" r="12" fill="' + g + '"/><circle cx="305.5" cy="18.5" r="10" fill="#1C2350"/>'
+    + [[24, 14], [70, 24], [104, 10], [146, 30], [196, 12], [246, 22], [276, 40], [318, 46]].map(([x, y], i) => '<circle class="festStern" cx="' + x + '" cy="' + y + '" r="' + (i % 2 ? 1.5 : 2.1) + '" fill="#FFF3C4" style="animation-delay:' + (i * 0.4) + 's"/>').join('')
+    + haus(12, 38, 18, 16, 16, true)
+    + '<rect x="62" y="82" width="34" height="14" fill="' + gd + '"/><path d="M58,83 L64,72 H94 L100,83Z" fill="' + gl + '"/>'
+    + '<rect x="65" y="85" width="12" height="11" fill="' + licht + '" opacity=".85"/><rect x="81" y="85" width="12" height="11" fill="' + licht + '" opacity=".85"/>'
+    + '<path d="M65,88 h12 M81,88 h12" stroke="' + gd + '" stroke-width="1"/>'
+    + '<rect x="104" y="66" width="46" height="30" fill="' + g + '"/><rect x="110" y="60" width="34" height="7" fill="' + g + '"/>'
+    + kuppel(127, 61, 17) + halbmond(127, 45)
+    + '<rect x="100" y="80" width="54" height="16" fill="' + gd + '"/>'
+    + kuppel(109, 81, 6) + kuppel(127, 81, 6) + kuppel(145, 81, 6)
+    + [104, 116, 128, 140].map(x => '<path d="M' + (x + 1) + ',96 v-8 a4,4 0 0 1 8,0 v8Z" fill="' + licht + '" opacity=".8"/>').join('')
+    + '<rect x="157" y="28" width="7" height="68" fill="' + g + '"/>'
+    + '<rect x="154" y="44" width="13" height="3" fill="' + gl + '"/><path d="M154,47 h13 l-2,3 h-9Z" fill="' + gd + '"/>'
+    + '<path d="M156,29 L160.5,14 L165,29Z" fill="' + gl + '"/>' + halbmond(160.5, 14) + fenster(158.5, 56, 4, 6)
+    + '<rect x="174" y="91" width="40" height="5" fill="' + gd + '"/><rect x="178" y="87" width="32" height="4" fill="' + g + '"/>'
+    + '<rect x="181" y="68" width="26" height="19" fill="' + g + '"/>'
+    + [183, 191, 199].map(x => '<path d="M' + x + ',86 v-10 a3,3 0 0 1 6,0 v10Z" fill="' + licht + '" opacity=".85"/>').join('')
+    + '<path d="M172,69 L180,61 H208 L216,69Z" fill="' + gl + '"/>' + kuppel(194, 62, 12) + halbmond(194, 50)
+    + '<rect x="224" y="30" width="15" height="66" fill="' + g + '"/><path d="M222,31 L231.5,14 L241,31Z" fill="' + gl + '"/>'
+    + '<circle cx="231.5" cy="40" r="5" fill="' + licht + '"/><path d="M231.5,40 v-3.5 M231.5,40 h2.6" stroke="' + gd + '" stroke-width="1.1"/>'
+    + fenster(229, 54, 5, 8) + fenster(229, 70, 5, 8)
+    + haus(289, 24, 16, 14, 13, false) + haus(252, 34, 18, 17, 17, true)
+    + '</svg>';
+  const ornament = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 24 24"><g fill="none" stroke="#E9B949" stroke-width="1.6"><rect x="-7" y="-7" width="14" height="14"/><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)"/></g><circle r="2.4" fill="#E9B949"/></svg>';
+  return {oben, fall: '', css: `.festgruss{border-style:double; border-width:4px; background-image:${festSvgUrl(ornament)},${festSvgUrl(ornament)}; background-repeat:no-repeat; background-size:22px; background-position:right 12px top 10px, right 12px bottom 10px}`};
+}
+
+function festOstern(){
+  const wimpel = ['#F6A8C4', '#8FD6B4', '#FFE08A', '#B9C8FF'];
+  const eier = [['#F6A8C4', '#FFFFFF'], ['#8FD6B4', '#F5C518'], ['#9BB8FF', '#FFFFFF'], ['#F5C518', '#E8474B']];
+  const oben = festBild(66, festSchnur(30) + festHaenger(9, (x, y, i) => i % 2
+    ? '<path transform="translate(' + x + ',' + (y - 8) + ')" d="M-11,0 H11 L0,22Z" fill="' + wimpel[i % 4] + '"/>'
+    : '<g transform="translate(' + x + ',' + (y + 12) + ')"><ellipse rx="10" ry="13" fill="' + eier[i % 4][0] + '"/><path d="M-10,0 l5,-4 5,4 5,-4 5,4" stroke="' + eier[i % 4][1] + '" stroke-width="2" fill="none"/><circle cy="7" r="2" fill="' + eier[i % 4][1] + '"/><circle cx="-5" cy="6" r="1.6" fill="' + eier[i % 4][1] + '"/><circle cx="5" cy="6" r="1.6" fill="' + eier[i % 4][1] + '"/></g>'));
+  const tulpe = (x, c, h) => '<g transform="translate(' + x + ',62)"><path d="M0,0 V-' + h + '" stroke="#5DAA6E" stroke-width="2.5"/><path d="M0,-' + (h - 8) + ' q-9,-4 -9,-14 q0,-4 9,-8 q9,4 9,8 q0,10 -9,14Z" fill="' + c + '"/><path d="M0,-' + (h * 0.45) + ' q-8,-2 -10,-10 q8,0 10,6Z" fill="#5DAA6E"/></g>';
+  const bluemchen = (x, y) => '<g transform="translate(' + x + ',' + y + ')">' + [0, 72, 144, 216, 288].map(r => '<ellipse rx="3" ry="5.5" cy="-5" transform="rotate(' + r + ')" fill="#FFFFFF"/>').join('') + '<circle r="3" fill="#F5C518"/></g>';
+  let wiese = '<svg class="festwiese festteil" aria-hidden="true" viewBox="0 0 ' + FW + ' 64" width="100%"><path d="M0,64 V52 Q' + (FW * 0.25) + ',44 ' + (FW / 2) + ',52 T' + FW + ',50 V64Z" fill="#3E7C55" opacity=".55"/>';
+  [[18, '#F6A8C4', 30], [52, '#FFE08A', 24], [FW - 70, '#B9C8FF', 28], [FW - 30, '#F6A8C4', 34]].forEach(([x, c, hh]) => { wiese += tulpe(x, c, hh); });
+  [[90, 54], [130, 58], [FW / 2, 53], [FW / 2 + 40, 57], [FW - 110, 55]].forEach(([x, y]) => { wiese += bluemchen(x, y); });
+  wiese += '<g transform="translate(' + (FW / 2 - 18) + ',44) scale(.62)"><ellipse cy="6" rx="15" ry="13" fill="#FFD84D"/><circle cy="-10" r="10" fill="#FFD84D"/><circle cx="3" cy="-12" r="1.8" fill="#2B2B2B"/><path d="M9,-10 l6,2 -6,2Z" fill="#F28C28"/><path d="M-8,4 q-6,-4 -10,2 q5,2 10,1Z" fill="#F2C230"/><path d="M-12,4 q2,-14 12,-16 q-4,10 12,14 q-6,10 -24,2Z" fill="#FFFFFF" opacity=".95"/><path d="M-12,4 l3,-4 3,4 3,-4 3,4 3,-4 3,4 3,-4 3,4" stroke="#C9B9A0" stroke-width="1" fill="none"/></g>';
+  wiese += '</svg>';
+  const bluete = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 24 24">' + [0, 72, 144, 216, 288].map(r => '<ellipse rx="4" ry="7" cy="-6" transform="rotate(' + r + ')" fill="#F6A8C4"/>').join('') + '<circle r="4" fill="#F5C518"/></svg>';
+  return {oben, wiese, fall: '', css: `.festgruss{background-image:${festSvgUrl(bluete)}; background-repeat:no-repeat; background-size:26px; background-position:right 12px center}`};
+}
+
+/* Je Fest: Kostuem, bosnischer Gruss, Farben des Grusskastens - Kante,
+   Schrift hell und dunkel, Grund - und der Schmuck. */
+const FESTE = {
+  weihnachten: {teile: ['nikolausmuetze'], gruss: "Sretni praznici!", kante: '#E8474B', hell: '#B3261E', dunkel: '#FF6B6E', grund: 'rgba(232,71,75,.14)', schmuck: festWeihnachten},
+  bajram:      {teile: ['bajramfes', 'jelek'], gruss: "Bajram šerif mubarek olsun!", kante: '#E9B949', hell: '#8A6508', dunkel: '#F2C94C', grund: 'rgba(233,185,73,.14)', schmuck: festBajram},
+  ostern:      {teile: ['hasenohren'], gruss: "Sretan Uskrs!", kante: '#5DBB8E', hell: '#1E7A52', dunkel: '#8FD6B4', grund: 'rgba(143,214,180,.16)', schmuck: festOstern},
+  halloween:   {teile: ['hexenhut', 'skelett'], farbe: 'skelett', gruss: "Sretna Noć vještica!", kante: '#F28C28', hell: '#B45309', dunkel: '#F6A04D', grund: 'rgba(242,140,40,.15)', schmuck: festHalloween},
+};
+
+/* Baut den Schmuck nur, wenn sich das Fest geaendert hat. Bei jedem
+   Reiterwechsel neu gebaut, fingen die Flocken jedes Mal oben wieder an -
+   derselbe Fehler wie beim springenden Drachen. */
+let festSchmuckFuer = null;
+function festSchmuck(){
+  const id = festHeute();
+  if(id === festSchmuckFuer) return;
+  festSchmuckFuer = id;
+  document.querySelectorAll('#pfad .festteil').forEach(e => e.remove());
+  const stil = $('festStil');
+  const f = FESTE[id];
+  if(!f){ stil.textContent = ''; return; }
+  const s = f.schmuck(), ober = document.querySelector('#pfad .obenreihe');
+  stil.textContent = `#pfad{--fest-kante:${f.kante}; --fest-schrift:${f.hell}; --fest-grund:${f.grund}}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #pfad{--fest-schrift:${f.dunkel}} }
+  :root[data-theme="dark"] #pfad{--fest-schrift:${f.dunkel}}
+  ` + s.css;
+  ober.insertAdjacentHTML('beforebegin', s.oben);
+  ober.insertAdjacentHTML('afterend', '<div class="festgruss festteil"><div><b lang="bs"></b><span></span></div></div>');
+  const gruss = document.querySelector('#pfad .festgruss'), zeile = gruss.querySelector('span');
+  gruss.querySelector('b').textContent = f.gruss;
+  const schluessel = 'fest.' + id;        // fest.weihnachten, fest.bajram, fest.ostern, fest.halloween
+  zeile.dataset.t = schluessel;            // so uebersetzt ein Sprachwechsel sie mit
+  zeile.textContent = t(schluessel);
+  if(s.wiese) ober.insertAdjacentHTML('afterend', s.wiese);
+  if(s.fall) $('pfad').insertAdjacentHTML('beforeend', '<div class="festfall festteil" aria-hidden="true">' + s.fall + '</div>');
+}
+
+function zierratSchluessel(ids, farbe){
+  if(ids === undefined){ const tr = festTracht(); ids = tr.ids; farbe = tr.farbe; }
+  return ids.join(',') + '|' + farbe;
+}
 async function zmajDaten(vorgabe){
-  const ids = vorgabe ? vorgabe.ids : getrageneTeile();
-  const farbe = vorgabe ? vorgabe.farbe : getrageneFarbe();
-  const schluessel = ids.join(',') + '|' + farbe;
+  const tracht = vorgabe || festTracht();
+  const ids = tracht.ids, farbe = tracht.farbe;
+  const schluessel = zierratSchluessel(ids, farbe);
   if(!vorgabe && zmajFertig && zmajFertigFuer === schluessel) return zmajFertig;
   if(!zmajBasis) zmajBasis = await (await fetch('maskottchen/zmaj.json', {cache:'no-cache'})).json();
   for(const id of ids){
@@ -2797,6 +3098,13 @@ async function zmajDaten(vorgabe){
   ids.forEach(id => { const teil = zmajTeile.get(id);
     if(Array.isArray(teil)) ebenen.push(...teil); else if(teil) ebenen.push(teil); });
   ebenen.sort((a, b) => a.ind - b.ind);
+  /* Ein Stueck kann Ebenen des Grunddrachens leeren - das Skelett hat kein
+     Fleisch, also weg mit Koerper, Kopf, Armen, Beinen, Fluegeln und
+     Schwanz (zmaj_leert in zmajz-skelett.json). Die Ebene bleibt stehen,
+     nur ohne Formen: an ihr haengt die Bewegung, und die Knochen haengen
+     an ihr. */
+  const leer = new Set(ebenen.flatMap(l => l.zmaj_leert || []));
+  if(leer.size) ebenen.forEach((l, i) => { if(leer.has(l.nm)) ebenen[i] = Object.assign({}, l, {shapes: []}); });
   /* Beim Faerben MUSS auf einer Kopie gearbeitet werden: zmajBasis und die
      Schnipsel bleiben im Speicher stehen, und ein Farbwechsel wuerde sonst
      auf dem Ergebnis des vorigen aufsetzen. */
@@ -4096,9 +4404,32 @@ function renderSerie(){
     (schutzMeldung > 0 ? '<span class="frost">'+tp('serie.gerettet', schutzMeldung)+'</span>' : '') +
     (schutzMeldung < 0 ? '<span class="lost">'+t('serie.verloren')+'</span>' : '');
 }
+/* Bis zum 01.10.2026 baute renderHero() den Drachen bei JEDEM Aufruf neu
+   auf. renderHero() laeuft aber bei jedem Reiterwechsel und bei jeder
+   Rueckkehr aus Einstellungen, Laden oder Lektion - und wer heute schon
+   gelernt hatte, bekam dabei jedes Mal den Jubelsprung zu sehen (Ajdin:
+   "warum springt der Drache, wenn ich vom Lernpfad zur Geschichte
+   wechsle"). Jetzt wird er nur neu aufgebaut, wenn sich die Stimmung
+   aendert: Er jubelt also einmal nach der ersten Lektion des Tages.
+   Traegt er nicht mehr den Zierrat des angemeldeten Kontos, etwa nach
+   einem Kontowechsel, wird nur die Figur neu geladen, ohne Sprung.
+   Der Tag gehoert mit in den Vergleich: Bleibt die App ueber Mitternacht
+   in einem Level offen, galt sonst der Jubel von gestern schon als der von
+   heute, und nach der ersten Lektion des neuen Tages kam keiner. */
+let heroStand = null;
 function renderHero(){
-  const heute=days.has(today());
-  $('zmajHome').innerHTML = zmaj(heute?'cheer':'happy'); setMood($('zmajHome'), heute?'cheer':'happy');
+  festSchmuck();
+  const stimmung = days.has(today()) ? 'cheer' : 'happy';
+  const stand = stimmung + '|' + today();
+  const box = $('zmajHome'), anim = box.querySelector('.zmaj-anim');
+  if(stand !== heroStand || !box.firstChild){
+    box.innerHTML = zmaj(stimmung); setMood(box, stimmung);
+    heroStand = stand;
+  } else if(anim && anim._anim && anim._stand !== zierratSchluessel()){
+    try{ anim._anim.destroy(); }catch(e){}
+    anim._anim = null; anim._stand = null; anim.innerHTML = '';
+    mountZmaj(anim);
+  }
   $('serieZahl').textContent = streak();
   /* Der Einstiegsknopf traegt den Namen dessen, was als naechstes dran ist.
      btn.weitermachen gibt es schon in allen acht Sprachen, es muss also
