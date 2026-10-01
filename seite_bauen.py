@@ -224,8 +224,8 @@ LOESCHEN = {
         "text": """
 <p><b>Zmaj hat kein Konto</b><br>
 Es gibt keine Anmeldung, kein Passwort und keine E-Mail-Adresse. Dein
-Lernfortschritt liegt ausschließlich auf deinem Gerät und wird nirgendwo
-hochgeladen – auch nicht zu uns.</p>
+Lernfortschritt liegt auf deinem Gerät; die App lädt ihn nirgendwo hoch –
+auch nicht zu uns.</p>
 
 <p><b>So löschst du alles</b><br>
 Du brauchst uns dafür nicht zu fragen und nicht zu erreichen:
@@ -239,6 +239,12 @@ Gelernte Wörter, bestandene Levels, gelesene Geschichten, Lerntage,
 Lernzeit, Tagesaufgaben, Münzen, gekaufte Gegenstände, Leben,
 Serienschutz, deine Einstellungen und die zufällige Kennung, die beim
 ersten Start entsteht.</p>
+
+<p><b>Androids eigene Sicherung</b><br>
+Hast du sie in deinem Google-Konto eingeschaltet, liegt dort eine Kopie
+der App-Daten, und Android spielt sie bei einer Neuinstallation zurück.
+Die löschst du in deinem Google-Konto (Google Drive bzw. Google One →
+Sicherungen) – wir kommen nicht an sie heran.</p>
 
 <p><b>Deine Sicherungsdatei</b><br>
 Hast du unter <i>Einstellungen → Sicherung</i> eine Datei gespeichert,
@@ -260,8 +266,7 @@ lassen kannst du sie nur dort.</p>
         "text": """
 <p><b>Zmaj has no account</b><br>
 There is no sign-in, no password and no email address. Your progress is
-held solely on your device and is never uploaded anywhere – not to us
-either.</p>
+kept on your device; the app never uploads it anywhere – not to us either.</p>
 
 <p><b>How to delete everything</b><br>
 You do not need to ask us or get hold of us: delete the app, or clear its
@@ -273,6 +278,12 @@ was never there. This takes effect immediately.</p>
 Words learned, levels passed, stories read, learning days, learning time,
 daily tasks, coins, items bought, hearts, streak freezes, your settings
 and the random identifier created the first time you start the app.</p>
+
+<p><b>Android's own backup</b><br>
+If you have turned it on in your Google account, a copy of the app's
+data is kept there, and Android restores it when you reinstall. You
+delete it in your Google account (Google Drive or Google One → Backups) –
+we cannot reach it.</p>
 
 <p><b>Your backup file</b><br>
 If you saved one under <i>Settings → Backup</i>, it is wherever you put
@@ -292,8 +303,8 @@ have it removed there.</p>
         "titel": "Verilerini sil",
         "text": """
 <p><b>Zmaj'ın hesabı yoktur</b><br>
-Giriş yok, parola yok, e-posta adresi yok. Öğrenme ilerlemen yalnızca
-senin cihazında durur ve hiçbir yere yüklenmez – bize de.</p>
+Giriş yok, parola yok, e-posta adresi yok. Öğrenme ilerlemen senin
+cihazında durur; uygulama onu hiçbir yere yüklemez – bize de.</p>
 
 <p><b>Her şeyi nasıl silersin</b><br>
 Bunun için bize sormana ya da bize ulaşmana gerek yok:
@@ -307,6 +318,12 @@ olmadı. Bu anında geçerli olur.</p>
 günleri, öğrenme süresi, günlük görevler, jetonlar, satın alınan eşyalar,
 canlar, seri koruması, ayarların ve uygulamayı ilk açtığında oluşan
 rastgele kimlik.</p>
+
+<p><b>Android'in kendi yedeklemesi</b><br>
+Bunu Google hesabında açtıysan, uygulama verilerinin bir kopyası orada
+durur ve Android onu yeniden kurulumda geri yükler. Onu Google hesabından
+silersin (Google Drive ya da Google One → Yedeklemeler) – biz ona
+erişemeyiz.</p>
 
 <p><b>Yedek dosyan</b><br>
 <i>Ayarlar → Yedek</i> bölümünden bir dosya kaydettiysen, o dosya nereye
@@ -326,13 +343,16 @@ sildirmeyi de yalnızca oradan yapabilirsin.</p>
         "titel": "Radera dina data",
         "text": """
 <p><b>Zmaj har inget konto</b><br>
-Det finns ingen inloggning, inget lösenord och ingen e-postadress. Dina framsteg ligger bara på din enhet och laddas inte upp någonstans – inte heller till oss.</p>
+Det finns ingen inloggning, inget lösenord och ingen e-postadress. Dina framsteg ligger på din enhet; appen laddar inte upp dem någonstans – inte heller till oss.</p>
 
 <p><b>Så raderar du allt</b><br>
 Du behöver varken fråga oss eller få tag på oss: avinstallera appen, eller töm appens lagringsutrymme i enhetens inställningar (<i>Inställningar → Appar → Zmaj → Lagring → Rensa data</i>). Då är dina framsteg borta – hos oss också, eftersom de aldrig fanns där. Det sker direkt.</p>
 
 <p><b>Det här raderas</b><br>
 Inlärda ord, klarade nivåer, lästa berättelser, inlärningsdagar, inlärningstid, dagsuppgifter, mynt, föremål du köpt, hjärtan, serieskydd, dina inställningar och den slumpmässiga identifierare som skapas när du startar appen första gången.</p>
+
+<p><b>Androids egen säkerhetskopiering</b><br>
+Har du slagit på den i ditt Google-konto finns en kopia av appens data där, och Android lägger tillbaka den när du installerar om. Den raderar du i ditt Google-konto (Google Drive eller Google One → Säkerhetskopior) – vi kommer inte åt den.</p>
 
 <p><b>Din säkerhetskopia</b><br>
 Har du sparat en fil under <i>Inställningar → Säkerhetskopia</i> ligger den kvar där du lade den. Den måste du radera själv – vi kommer inte åt den.</p>
@@ -349,8 +369,7 @@ Den är kopplad till ditt Google-konto, inte till oss. Du kan bara säga upp den
         "text": """
 <p><b>Zmaj heeft geen account</b><br>
 Er is geen inlog, geen wachtwoord en geen e-mailadres. Je voortgang staat
-uitsluitend op je eigen apparaat en wordt nergens naartoe geüpload – ook niet
-naar ons.</p>
+op je eigen apparaat; de app uploadt hem nergens naartoe – ook niet naar ons.</p>
 
 <p><b>Zo wis je alles</b><br>
 Je hoeft het ons daarvoor niet te vragen en ons niet te bereiken:
@@ -364,6 +383,12 @@ Geleerde woorden, gehaalde niveaus, gelezen verhalen, leerdagen,
 leertijd, dagtaken, munten, gekochte voorwerpen, levens,
 reeksbescherming, je instellingen en de willekeurige aanduiding die bij de
 eerste start wordt aangemaakt.</p>
+
+<p><b>De eigen back-up van Android</b><br>
+Heb je die in je Google-account aangezet, dan staat daar een kopie van de
+gegevens van de app, en Android zet die terug als je opnieuw installeert.
+Die wis je in je Google-account (Google Drive of Google One → Back-ups) –
+wij kunnen er niet bij.</p>
 
 <p><b>Je reservekopie</b><br>
 Heb je via <i>Instellingen → Reservekopie</i> een bestand opgeslagen,
@@ -384,13 +409,16 @@ kan alleen daar.</p>
         "titel": "Slett dataene dine",
         "text": """
 <p><b>Zmaj har ingen konto</b><br>
-Det finnes ingen innlogging, intet passord og ingen e-postadresse. Framgangen din ligger bare på enheten din, og den blir aldri lastet opp noe sted – heller ikke til oss.</p>
+Det finnes ingen innlogging, intet passord og ingen e-postadresse. Framgangen din ligger på enheten din; appen laster den aldri opp noe sted – heller ikke til oss.</p>
 
 <p><b>Slik sletter du alt</b><br>
 Du trenger verken å spørre oss eller få tak i oss: slett appen, eller tøm lagringen dens i innstillingene på enheten din (<i>Innstillinger → Apper → Zmaj → Lagring → Tøm data</i>). Dermed er framgangen borte – hos oss også, for der har den aldri vært. Det virker med en gang.</p>
 
 <p><b>Hva som blir slettet</b><br>
 Lærte ord, beståtte nivåer, leste fortellinger, læringsdager, læringstid, dagsoppdrag, mynter, gjenstander du har kjøpt, liv, rekkebeskyttelse, innstillingene dine og den tilfeldige ID-en som blir laget første gang du starter appen.</p>
+
+<p><b>Androids egen sikkerhetskopiering</b><br>
+Har du slått den på i Google-kontoen din, ligger det en kopi av appens data der, og Android legger den tilbake når du installerer på nytt. Den sletter du i Google-kontoen din (Google Disk eller Google One → Sikkerhetskopier) – vi kommer ikke til den.</p>
 
 <p><b>Sikkerhetskopien din</b><br>
 Har du lagret en fil under <i>Innstillinger → Sikkerhetskopi</i>, ligger den der du la den. Den må du slette selv – vi kommer ikke til den.</p>
@@ -406,7 +434,7 @@ Den hører til Google-kontoen din, ikke til oss. Du kan bare si den opp og få d
         "titel": "Slet dine data",
         "text": """
 <p><b>Zmaj har ingen konto</b><br>
-Der er ingen login, ingen adgangskode og ingen mailadresse. Dine fremskridt ligger kun på din enhed og bliver ikke sendt nogen steder hen – heller ikke til os.</p>
+Der er ingen login, ingen adgangskode og ingen mailadresse. Dine fremskridt ligger på din enhed; appen sender dem ikke nogen steder hen – heller ikke til os.</p>
 
 <p><b>Sådan sletter du det hele</b><br>
 Du behøver ikke at spørge os eller få fat i os:
@@ -420,6 +448,12 @@ Lærte ord, beståede niveauer, læste fortællinger, læringsdage,
 læringstid, dagsopgaver, mønter, købte genstande, liv,
 rækkebeskyttelse, dine indstillinger og det tilfældige id, der bliver
 oprettet, første gang du starter appen.</p>
+
+<p><b>Androids egen sikkerhedskopiering</b><br>
+Har du slået den til i din Google-konto, ligger der en kopi af appens
+data, og Android lægger den tilbage, når du geninstallerer. Den sletter du
+i din Google-konto (Google Drev eller Google One → Sikkerhedskopier) –
+vi kan ikke komme til den.</p>
 
 <p><b>Din sikkerhedskopi</b><br>
 Har du gemt en fil under <i>Indstillinger → Sikkerhedskopi</i>,
@@ -441,8 +475,8 @@ og slette den dér.</p>
         "text": """
 <p><b>Zmaj n'a pas de compte</b><br>
 Il n'y a ni connexion, ni mot de passe, ni adresse e-mail. Ta progression
-reste uniquement sur ton appareil et n'est envoyée nulle part – pas même
-chez nous.</p>
+reste sur ton appareil ; l'application ne l'envoie nulle part – pas
+même chez nous.</p>
 
 <p><b>Comment tout supprimer</b><br>
 Tu n'as besoin ni de nous le demander, ni de nous joindre : supprime
@@ -456,6 +490,12 @@ Les mots appris, les niveaux réussis, les histoires lues, les jours
 d'apprentissage, le temps d'apprentissage, les objectifs du jour, les
 pièces, les objets achetés, les vies, les protections de série, tes
 réglages et l'identifiant aléatoire créé au premier démarrage.</p>
+
+<p><b>La sauvegarde d'Android</b><br>
+Si tu l'as activée dans ton compte Google, une copie des données de
+l'application s'y trouve, et Android la restaure quand tu réinstalles. Tu
+la supprimes dans ton compte Google (Google Drive ou Google One →
+Sauvegardes) – nous n'y avons pas accès.</p>
 
 <p><b>Ton fichier de sauvegarde</b><br>
 Si tu en as enregistré un dans <i>Réglages → Sauvegarde</i>, il se trouve
