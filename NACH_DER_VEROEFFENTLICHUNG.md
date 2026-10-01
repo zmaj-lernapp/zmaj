@@ -94,12 +94,12 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   weil jede Einreichung die Prüffrist zurückgesetzt hätte. Der neue Text
   liegt fertig in acht Sprachen in `STORE_TEXTE.md` unter „Versionshinweise –
   Entwurf vom 01.10.2026“.
-- **Store-Screenshots in der Play Console tauschen.** Die acht neuen Bilder
+- **Store-Screenshots in der Play Console tauschen.** **Erledigt am 01.10.2026** (als Entwurf, mit neuer Vorstellungsgrafik „65 Levels“; geht mit der Einreichung am Release-Tag raus). Die acht neuen Bilder
   liegen seit dem 01.10.2026 in `store/screenshots` (1080 × 1920, mit
   Weitermachen-Knopf, Sektionsfarben und Reiter „Wiederholen“). In der
   Console stehen noch die elf alten vom 19.09. Neu erzeugen lassen sie sich
   mit `store/bilder_machen/` – Anleitung im LIESMICH dort.
-- **Zwei verirrte CR-Zeichen in `sprachen.py`**, bei Zeile 212 zwischen
+- **Erledigt am 01.10.2026:** die Zeilenenden in `sprachen.py` sind jetzt einheitlich (CRLF). Ursprünglicher Eintrag: **Zwei verirrte CR-Zeichen in `sprachen.py`**, bei Zeile 212 zwischen
   `laden.rot` und `laden.gruen_sub`. Sie richten keinen Schaden an, sorgen
   aber dafür, dass die Datei je nach Werkzeug 3.476 oder 3.478 Zeilen hat.
   Aufgefallen beim Gegenprüfen der Zahlen für Abschnitt 5.1. **Nicht vor
@@ -107,7 +107,7 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
 - **Seitenzahlen im Inhaltsverzeichnis** stehen von Hand in `kapitel1.json`.
   Nach jeder größeren Änderung neu ermitteln, wie in `mappe/LIESMICH.txt`
   beschrieben.
-- **Automatische Antwort auf die Kontaktadresse** `zmaj.lernapp@gmail.com`:
+- **Erledigt am 01.10.2026:** Vorlage „Zmaj: Deine Nachricht ist angekommen / Your message has arrived“ (Deutsch und Englisch) und ein Gmail-Filter, der sie an jede Mail außer von Google und noreply-Adressen schickt. Dazu jeden Abend gegen 20 Uhr die geplante Aufgabe „zmaj-feedback“ (`feedback_holen.py`). Ursprünglicher Eintrag: **Automatische Antwort auf die Kontaktadresse** `zmaj.lernapp@gmail.com`:
   Wer schreibt, soll sofort eine Bestätigung bekommen — dass die Nachricht
   angekommen ist, dass ein Mensch sie liest, und in welcher Zeit. In Gmail
   geht das mit einer Vorlage und einem Filter, der sie an alle eingehenden
@@ -127,7 +127,7 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   mitgedacht werden — wer einen hat, soll nicht gemahnt werden, als stünde er
   vor dem Verlust.
 
-- **Store-Beschreibung ändern, vor dem Produktionsantrag.** Ajdin am
+- **Erledigt am 01.10.2026** (Entwurf in allen acht Sprachen, geprüft nach dem Neuladen): **Store-Beschreibung ändern, vor dem Produktionsantrag.** Ajdin am
   30.09.2026. Drei Dinge stimmen dort nicht mehr:
 
   1. **„WAS ES KOSTET“** sagt noch „Zmaj ist kostenlos und finanziert sich
