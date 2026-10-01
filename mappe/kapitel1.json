@@ -5,7 +5,7 @@
   "Betreuung: Herr Dr. Rosenschon",
   "Bearbeitungszeitraum: 10.08.2026 – 19.03.2027"
  ],
- "stand": "Stand: 26.09.2026",
+ "stand": "Stand: 02.10.2026",
  "kapitel1": [
   {
    "ueberschrift": "1.1 Der Verfasser",
@@ -85,163 +85,163 @@
    "3.",
    "Konzeptfindung",
    "liegt vor",
-   "8"
+   "9"
   ],
   [
    "3.1",
    "Technische Grundlage",
    "liegt vor",
-   "8"
+   "9"
   ],
   [
    "3.2",
    "Speicherung des Lernstands",
    "liegt vor",
-   "8"
+   "9"
   ],
   [
    "3.3",
    "Finanzierung",
    "liegt vor",
-   "9"
+   "10"
   ],
   [
    "3.4",
    "Lernverfahren",
    "liegt vor",
-   "9"
+   "10"
   ],
   [
    "3.5",
    "Überwachung des Betriebs",
    "liegt vor",
-   "9"
+   "11"
   ],
   [
    "3.6",
    "Gestaltung und Klang",
    "liegt vor",
-   "10"
+   "11"
   ],
   [
    "4.",
    "Risikoanalyse",
    "liegt vor",
-   "11"
+   "13"
   ],
   [
    "4.1",
    "Verfahren",
    "liegt vor",
-   "11"
+   "13"
   ],
   [
    "4.2",
    "Risiken der Technik",
    "liegt vor",
-   "11"
+   "13"
   ],
   [
    "4.3",
    "Risiken der Veröffentlichung",
    "liegt vor",
-   "12"
+   "15"
   ],
   [
    "4.4",
    "Risiken des Projektablaufs",
    "liegt vor",
-   "13"
+   "15"
   ],
   [
    "4.5",
    "Rangfolge",
    "liegt vor",
-   "13"
+   "16"
   ],
   [
    "4.6",
    "Eingetretene Risiken",
    "liegt vor",
-   "14"
+   "16"
   ],
   [
    "5.",
    "Projektdurchführung",
    "liegt vor",
-   "15"
+   "18"
   ],
   [
    "5.1",
    "Umsetzung des Projekts",
    "liegt vor",
-   "15"
+   "18"
   ],
   [
    "5.2",
    "Aufbau der App",
    "liegt vor",
-   "15"
+   "18"
   ],
   [
    "5.3",
    "Datenhaltung und Ablauflogik",
    "liegt vor",
-   "16"
+   "19"
   ],
   [
    "5.4",
    "Veröffentlichung im Play Store",
    "liegt vor, Abschluss nach der Freigabe",
-   "16"
+   "20"
   ],
   [
    "5.5",
    "Probleme und Lösungsansätze",
    "liegt vor",
-   "17"
+   "21"
   ],
   [
    "5.6",
    "Controlling und Projektverlauf",
    "liegt vor",
-   "18"
+   "22"
   ],
   [
    "5.7",
    "Inbetriebnahme und Funktionstest",
    "liegt vor, Auswertung nach dem 07.10.2026",
-   "20"
+   "24"
   ],
   [
    "6.",
    "Anhang",
    "Quelltextauszüge, Belege",
-   "23"
+   "28"
   ],
   [
    "6.1",
    "Quellen",
    "liegt vor",
-   "23"
+   "28"
   ],
   [
    "6.2",
    "Die App in Bildern",
    "liegt vor",
-   "25"
+   "30"
   ],
   [
    "6.3",
    "Quelltextauszüge",
    "liegt vor",
-   "26"
+   "31"
   ],
   [
    "6.4",
    "Begriffe und Abkürzungen",
    "liegt vor",
-   "27"
+   "32"
   ]
  ]
 }

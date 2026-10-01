@@ -1,5 +1,5 @@
 {
- "stand": "Stand: 26.09.2026",
+ "stand": "Stand: 02.10.2026",
  "kapitel3": [
   {
    "ueberschrift": "3.1 Technische Grundlage",
@@ -22,9 +22,11 @@
 
     "Entscheidend war dabei weniger der Preis als der Umstand, dass ein Server die Aufgabe, für die er gedacht war, gar nicht erfüllt hätte. Der vorhandene Entwurf ersetzte beim Speichern die Listen der gelernten Wörter, bestandenen Abschnitte und Lerntage, statt sie zusammenzuführen. Dadurch hätte ein zweites Gerät den Stand des ersten überschrieben, und der Abgleich wäre zusätzlich zu entwickeln gewesen.",
 
-    "Die Entscheidung vom 14.09.2026 machte einen Umbau nötig, bei dem Anmeldung, Kontoverwaltung und Sitzungsverwaltung aus der ausgelieferten App entfernt wurden. Ein Rest davon blieb als Werkzeug zum Testen am Rechner erhalten. Der Umbau wird in Abschnitt 5.1 beschrieben.",
+    "Die Entscheidung vom 14.09.2026 machte einen Umbau nötig, bei dem Anmeldung, Kontoverwaltung und Sitzungsverwaltung aus der ausgelieferten App entfernt wurden. Ein Rest davon blieb im Quelltext erhalten. Seit dem 26.09.2026 ist er auch am Rechner über einen Schalter abgeschaltet, sodass sich die App dort wie auf dem Gerät verhält. Der Umbau wird in Abschnitt 5.1 beschrieben.",
+    "**Androids eigene Sicherung bleibt zugelassen.** Am 19.09.2026 wurde entschieden, sie in der Android-Hülle nicht abzuschalten. Hat der Nutzer sie in seinem Google-Konto eingeschaltet, nimmt Android die Daten der App dorthin mit, sodass der Lernstand einen Gerätewechsel übersteht. Ausgenommen ist die gespeicherte Antwort zur Werbeeinwilligung, da sie auf einem neuen Gerät neu abgefragt wird.",
 
-    "**Folge für den Datenschutz.** Ohne Konto entstehen keine Anmeldedaten, und der Lernstand verlässt das Gerät nicht. Eine Verbindung nach außen bleibt dennoch bestehen, weil Werbeauslieferung und Abonnementprüfung mit Google kommunizieren, wie die Berechtigungen in Abschnitt 2.4 ausweisen. Die Datenschutzerklärung führt deshalb die Werbeeinbindung auf, jedoch kein Nutzerkonto und keine Übertragung des Lernstands."
+    "**Folge für den Datenschutz.** Ohne Konto entstehen keine Anmeldedaten, und die App selbst überträgt den Lernstand nicht. Eine Verbindung nach außen bleibt dennoch bestehen, weil Werbeauslieferung und Abonnementprüfung mit Google kommunizieren, wie die Berechtigungen in Abschnitt 2.4 ausweisen. Die Datenschutzerklärung führt deshalb die Werbeeinbindung und seit dem 01.10.2026 auch Androids eigene Sicherung auf, jedoch kein Nutzerkonto und keine Übertragung des Lernstands durch die App.",
+    "**Folge für die Erinnerungen.** Die Erinnerungen am Abend, die am 01.10.2026 hinzukamen, plant die App auf dem Gerät selbst über das Plugin für lokale Benachrichtigungen. Ein Versand von außen schied aus, weil er einen Server vorausgesetzt hätte. Die Berechtigung für minutengenaue Wecker, die das Plugin mitbringt, ist entfernt, da es auf einige Minuten nicht ankommt."
    ]
   },
   {
@@ -34,9 +36,10 @@
 
     "**Verworfen: Kaufpreis.** Die Erhebung des Marktes in Abschnitt 2.2 zeigt, dass im deutschen Play Store ausschließlich werbefinanzierte Apps eine nennenswerte Verbreitung erreichen. Die einzige vorab bezahlte App mit vergleichbarem Lernaufbau verzeichnet unter fünf Installationen.",
 
-    "**Verworfen: Bezahlschranke für Lerninhalte.** Bezahlt werden ausschließlich Werbefreiheit und unbegrenzte Versuche, während der Zugang zum Lernstoff offen bleibt. Daraus ergibt sich die steuerliche Einordnung des Abonnements als Dienstleistung, die Abschnitt 2.4 nennt.",
+    "**Verworfen: Bezahlschranke für Lerninhalte.** Bezahlt werden Werbefreiheit, unbegrenzte Versuche und seit dem 29.09.2026 acht Ausstattungsteile für das Maskottchen, während der Zugang zum Lernstoff offen bleibt. Dazu gehören eine große Krone und vier Drachenfarben. Alle acht verändern nur das Aussehen und erleichtern keine Aufgabe. Daraus ergibt sich die steuerliche Einordnung des Abonnements als Dienstleistung, die Abschnitt 2.4 nennt.",
 
-    "**Verworfen: Abwicklung über einen Fremdanbieter.** Dienste wie RevenueCat prüfen Abonnements auf ihren eigenen Servern, was der Entscheidung aus Abschnitt 3.2, ohne Server auszukommen, widersprochen hätte. Stattdessen wurde ein eigenes Plugin entwickelt, das unmittelbar mit der Abrechnung des Play Store kommuniziert."
+    "**Verworfen: Abwicklung über einen Fremdanbieter.** Dienste wie RevenueCat prüfen Abonnements auf ihren eigenen Servern, was der Entscheidung aus Abschnitt 3.2, ohne Server auszukommen, widersprochen hätte. Stattdessen wurde ein eigenes Plugin entwickelt, das unmittelbar mit der Abrechnung des Play Store kommuniziert.",
+    "**Häufigkeit der Werbung.** Seit dem 27.09.2026 folgt auf jede Lektion und jeden Test am Ende eines Lernabschnitts eine Anzeige, ohne Obergrenze für den Tag. Zuvor kam nur nach jeder dritten Lektion eine, höchstens sechs am Tag. Begrenzt bleibt das freiwillige Video für ein Leben, und zwar auf sechs am Tag, da sich die Wartezeit aus Abschnitt 3.4 sonst durch Videos umgehen ließe."
    ]
   },
   {
@@ -46,7 +49,9 @@
 
     "Eine Prüfung vor dem geschlossenen Test benannte dies als größtes Risiko für den ersten Eindruck, denn wer zum ersten Mal bosnische Wörter sieht, hat fünf Fehler in wenigen Minuten beisammen. Die drei Auswege (Münzen ausgeben, Werbung ansehen, Abonnement abschließen) greifen bei einem neuen Lernstand noch nicht.",
 
-    "**Die Begrenzung wurde am 20.09.2026 bewusst beibehalten.** Die Wartezeit sorgt dafür, dass Lernende am nächsten Tag wiederkommen, und die verbreiteten Sprachlern-Apps verfahren ebenso. Eine erneute Überprüfung der Entscheidung erfolgt, wenn Teilnehmer des geschlossenen Tests von sich aus melden, dass sie deswegen aufgehört haben. Die Auswertung des Tests steht in Abschnitt 5.7."
+    "**Die Begrenzung wurde am 20.09.2026 bewusst beibehalten.** Die Wartezeit sorgt dafür, dass Lernende am nächsten Tag wiederkommen, und die verbreiteten Sprachlern-Apps verfahren ebenso. Eine erneute Überprüfung der Entscheidung erfolgt, wenn Teilnehmer des geschlossenen Tests von sich aus melden, dass sie deswegen aufgehört haben. Die Auswertung des Tests steht in Abschnitt 5.7.",
+    "**Gewählt: Freigabe des Abschnittstests erst bei 100 Prozent.** Seit dem 27.09.2026 öffnet sich der Test erst, wenn jedes Wort des Lernabschnitts einmal richtig beantwortet wurde. Zuvor öffnete er sich bei 80 Prozent der Wörter, sodass ein Abschnitt mit Lücken abgeschlossen werden konnte. Nach der Rechnung vom selben Tag braucht der Kurs dadurch rund ein Fünftel mehr Lektionen.",
+    "**Gewählt: Einstufungstest und Reiter zum Wiederholen.** Beide gehen auf Vorschläge der Tester vom 24.09.2026 zurück und wurden am 30.09.2026 eingebaut. Beim ersten Start fragt die App nach Vorkenntnissen. Wer welche angibt, durchläuft einen Test mit 15 Fragen in fünf Stufen nach dem Vorbild von Duolingo und Busuu, der den Einstieg in den Lernpfad festlegt und keine Leben kostet. Falsch beantwortete Aufgaben sammeln sich in einem eigenen Reiter und werden in Runden zu zehn geübt, bis sie zweimal hintereinander richtig sind."
    ]
   },
   {
@@ -56,7 +61,9 @@
 
     "**Verworfen: Firebase Crashlytics.** Die Bibliothek hätte neben der Werbeauslieferung eine zweite Übertragung an Google eingerichtet. Dazu wären ein weiterer Punkt in der Einwilligungsabfrage und ein eigener Abschnitt in der Datenschutzerklärung erforderlich geworden. Die Größe sprach nicht dagegen, denn das Bibliotheksarchiv wiegt rund 0,4 Megabyte.",
 
-    "Ein eigener Absturzmelder wird erst dann erforderlich, wenn über die tatsächlichen Abstürze hinaus auch selbst gesetzte Fehlermeldungen ausgewertet werden sollen."
+    "Ein eigener Absturzmelder wird erst dann erforderlich, wenn über die tatsächlichen Abstürze hinaus auch selbst gesetzte Fehlermeldungen ausgewertet werden sollen.",
+    "**Gewählt: Bewertungskarte ohne vorgeschaltete Frage.** Nach einem bestandenen Abschnittstest, frühestens am dritten Lerntag und höchstens zweimal im Jahr, bietet eine Karte zwei gleichrangige Wege an, die Bewertung bei Google Play und einen Verbesserungsvorschlag. Der erste Entwurf vom 30.09.2026 sah vor, zuerst nach dem Gefallen zu fragen und nur Zufriedene zur Bewertung zu schicken. Googles Anleitung zur In-App-Bewertung untersagt jedoch jede Frage vor oder während der Bewertung, auch die, ob die App gefällt.",
+    "**Rückmeldungen per E-Mail.** Seit dem 01.10.2026 beantwortet eine Vorlage Nachrichten an die Kontaktadresse sofort mit einer Eingangsbestätigung auf Deutsch und Englisch. Eine Abwesenheitsnotiz schied dafür aus, weil sie derselben Person nur alle vier Tage antwortet. Neue Nachrichten werden jeden Abend gegen 20 Uhr gesichtet."
    ]
   },
   {
@@ -67,7 +74,11 @@
     "**Verworfen: aufgenommene Klänge.** Am 16.09.2026 lagen Hörproben vor, die etwa 40 Kilobyte hinzugefügt hätten. Entschieden wurde daher, beim berechneten Stand zu bleiben.",
     "**Verworfen: eine gezeichnete Figur.** Ein gezeichnetes Maskottchen wäre der größte Einzelposten des Projekts geworden. Auf der Vermittlungsplattform 99designs beginnt ein Figurenentwurf bei 329 Euro netto als Festpreispaket, eine Direktbeauftragung wird mit 289 bis 789 Euro netto angegeben. Schon der niedrigste dieser Beträge ist das Fünffache der Gesamtausgaben von 57,61 Euro, und mehrere Stimmungen derselben Figur sind darin nicht enthalten.",
 
-    "Eine Rückmeldung aus dem geschlossenen Test beanstandet das Erscheinungsbild als zu eintönig, sodass die Gestaltung als offener Punkt vermerkt ist."
+    "Eine Rückmeldung aus dem geschlossenen Test beanstandete das Erscheinungsbild als zu eintönig. Eine Messung am 26.09.2026 ergab elf Farbwerte auf dem Bildschirm, nach Farbton aber nur vier. Die Sektionen benutzten dieselben Farben wie die Hauptfarbe, der Akzent und die Anzeigen für geschafft und falsch.",
+    "**Gewählt: eine eigene Farbe je Sektion.** Seit dem 27.09.2026 trägt jede der neun Sektionen einen eigenen Farbton, und alle Ansichten nehmen die Farbe der aufgeklappten Sektion an. Grün, Rot und Gelb bleiben für richtig, falsch und den Akzent frei, sodass die neun Töne im Abstand von rund 20 Grad zwischen 175 und 336 Grad des Farbkreises liegen. Die helle und die dunkle Darstellung lassen sich seitdem in den Einstellungen wählen.",
+    "**Verworfen: ein Farbwechsel, der dem Scrollen folgt.** Er wurde am 27.09.2026 in zwei Fassungen gebaut und noch am selben Tag wieder entfernt. Die Farbe hing beim Scrollen nach, und Ansichten außerhalb des Lernpfads trugen eine andere Farbe als der Pfad.",
+    "**Festtage.** Seit dem 01.10.2026 trägt das Maskottchen zu Weihnachten, Ostern sowie Ramazanski und Kurban Bajram von selbst und kostenlos ein Festkostüm, und die Startseite zeigt einen Gruß auf Bosnisch und in der Sprache der App. Die Bajram-Feste wandern jedes Jahr um elf Tage und lassen sich nicht wie Ostern berechnen, weshalb ihre Termine bis 2036 in einer Tabelle stehen. Halloween wurde auf 2027 verschoben, da der 31.10.2026 in die erwartete Woche der Veröffentlichung fällt.",
+    "**Gewählt für 13 Aufnahmen: eine kroatische Stimme mit Lautschrift.** Die bosnische Stimme der Sprachsynthese dehnte in kurzen Wörtern wie „kad“ und „od“ den Vokal, verschluckte das auslautende g und sprach „sud“ als „sub“. Lautschrift nehmen die bosnischen Stimmen laut der Stimmentabelle des Anbieters nicht an, die kroatischen dagegen schon. Nach einem Hörvergleich mehrerer Fassungen je Wort wurden am 26.09.2026 zehn Aufnahmen umgestellt und am 01.10.2026 drei weitere."
    ]
   }
  ]

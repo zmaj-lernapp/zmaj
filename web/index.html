@@ -1864,7 +1864,10 @@ function werbungErlaubt(belohnt){
   const Pw = window.Capacitor && window.Capacitor.Plugins;
   if(!admobDa() && Pw && Pw.AdMob) return false;
   if(einwilligungFragen()) return false;         // erst fragen, dann werben
-  const heute = new Date().toISOString().slice(0,10);
+  /* today() ist der oertliche Tag. Vorher stand hier toISOString(), also
+     UTC - der Zaehler sprang im Sommer um 2 Uhr nachts um, nicht um
+     Mitternacht. Gefunden beim Abgleich der Projektmappe, 02.10.2026. */
+  const heute = today();
   if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0,
                                                  offen: !!werbungHeute.offen};
   /* Das freiwillige Video fuer ein Herz bleibt begrenzt - es kostet Leben,
@@ -1874,7 +1877,7 @@ function werbungErlaubt(belohnt){
                  : (!WERBUNG_MAX_TAG || (werbungHeute.n || 0) < WERBUNG_MAX_TAG);
 }
 function werbungGezaehlt(belohnt){
-  const heute = new Date().toISOString().slice(0,10);
+  const heute = today();
   if(werbungHeute.tag !== heute) werbungHeute = {tag: heute, n: 0, lohn: 0,
                                                  offen: !!werbungHeute.offen};
   if(belohnt) werbungHeute.lohn = (werbungHeute.lohn || 0) + 1;
