@@ -21,7 +21,7 @@ wieder, wo überall „geschlossener Test" steht.
 | **5.4**, Tabelle | „Antrag auf Produktionszugriff — frühestens 07.10.2026" · „Freigabe der ersten Produktionsversion — offen" | beide mit Datum |
 | **5.7**, letzter Satz | „Dieser Abschnitt wird nach dem 07.10.2026 abgeschlossen." | streichen, Auswertung schreiben |
 | **5.6**, Termintabelle | „Oktober 2026 — Freigabe erwartet" | tatsächliches Datum |
-| **6.2** | Die Screenshots zeigen unten „Zmaj v0.9" | neue Bilder aus der veröffentlichten Fassung |
+| **6.2** | Die Screenshots zeigen unten „Zmaj v0.9" | erledigt am 01.10.2026: acht neue Bilder mit „v1.0“ in `store/screenshots` |
 
 ---
 
@@ -94,11 +94,11 @@ haben — auch wenn die Antwort „bleibt wie es ist" lautet.
   weil jede Einreichung die Prüffrist zurückgesetzt hätte. Der neue Text
   liegt fertig in acht Sprachen in `STORE_TEXTE.md` unter „Versionshinweise –
   Entwurf vom 01.10.2026“.
-- **Store-Screenshots neu machen.** Die elf Bilder in `store/screenshots`
-  sind vom 19.09.2026 und zeigen das alte Aussehen: „Sektion 2 · Sätze
-  bauen“, ohne Weitermachen-Knopf, ohne Sektionsfarben, ohne Reiter
-  „Wiederholen“. Aufgefallen am 01.10.2026. Neu aufnehmen, wenn die Fassung
-  nach dem Test auf dem Handy läuft.
+- **Store-Screenshots in der Play Console tauschen.** Die acht neuen Bilder
+  liegen seit dem 01.10.2026 in `store/screenshots` (1080 × 1920, mit
+  Weitermachen-Knopf, Sektionsfarben und Reiter „Wiederholen“). In der
+  Console stehen noch die elf alten vom 19.09. Neu erzeugen lassen sie sich
+  mit `store/bilder_machen/` – Anleitung im LIESMICH dort.
 - **Zwei verirrte CR-Zeichen in `sprachen.py`**, bei Zeile 212 zwischen
   `laden.rot` und `laden.gruen_sub`. Sie richten keinen Schaden an, sorgen
   aber dafür, dass die Datei je nach Werkzeug 3.476 oder 3.478 Zeilen hat.

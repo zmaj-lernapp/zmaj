@@ -79,3 +79,6 @@ mappe/bilder/
 # Lernstaende, die vom Handy heruntergeholt wurden. Persoenliche Daten,
 # die nirgends hin sollen - weder ins APK noch auf GitHub.
 sicherung_handy/
+
+# Store-Bilder: Zwischenstand, wird bei jedem Lauf neu geschrieben.
+store/bilder_machen/_stand.json
