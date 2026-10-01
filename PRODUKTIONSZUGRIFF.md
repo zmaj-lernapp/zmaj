@@ -215,6 +215,26 @@ Einfügen prüfen und nur stehen lassen, was stimmt:
 
 ---
 
+## Ablauf am Release-Tag (vorbereitet am 01.10.2026)
+
+Alles, was vorher ging, ist erledigt: Store-Texte in acht Sprachen,
+Screenshots und Vorstellungsgrafik liegen als Entwurf in der Console
+(„10 Änderungen“ unter Veröffentlichungen – Übersicht), die Website ist
+online, das signierte Paket liegt als `App Zeugs\Release\zmaj-1.0-v88.aab`.
+
+1. Produktionszugriff ist erteilt (Mail von Google).
+2. Paket neu bauen, falls seit dem 01.10. noch etwas geändert wurde
+   (`python app_bauen.py --aab`), sonst v88 nehmen.
+3. Produktion → neuer Release → Paket hochladen, Versionshinweise aus
+   `STORE_TEXTE.md` in allen acht Sprachen (ohne Festtage, Ajdin am 01.10.).
+4. **Probezeit anlegen:** Abo `vollversion` → beide Basispläne → Angebot
+   „7 Tage kostenlos“ für Neukunden. Die Store-Beschreibung verspricht sie –
+   ohne Angebot stimmt der Text nicht. Nur mit Ajdins Ja aktivieren.
+5. Ajdin drückt „Release starten“ und „Änderungen zur Überprüfung einreichen“.
+6. Nach dem Livegang: AdMob mit dem Store verknüpfen, `app-ads.txt` prüfen,
+   Kübras Handy und das S9 als Testgeräte eintragen, dann erst
+   `admob_scharf.py`.
+
 ## Was währenddessen NICHT passieren darf
 
 - **Kein neues AAB hochladen.** Googles Prüfuhr zählt ab der zuletzt
