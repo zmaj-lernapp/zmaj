@@ -6496,6 +6496,7 @@ function werbungFuerLeben(e){
       else showLevelHome();
     };
     if(!knopf || document.body.contains(knopf)) danach();
+    else topfNachziehen();
   });
 }
 
@@ -6783,6 +6784,7 @@ function showTestResult(){
   const c=cur(); const ok = Tx.right >= TEST_BESTANDEN_AB;
   const hasNext = catIdx+1 < CATEGORIES.length;
   // Wann ein Level bestanden wurde, lässt sich später nicht mehr herausfinden.
+  const neuBestanden = ok && !passed.has(c.id);
   if(ok){ if(!passed.has(c.id)){ passed.add(c.id); wann['lv:'+c.id] = today(); } markToday(); sound('done'); }
   if(ok && bewertungFaellig()) bewertungDran = true;
   saveProgress();   // auch bei nicht bestanden: die Aufgaben sind trotzdem beantwortet
@@ -6797,7 +6799,11 @@ function showTestResult(){
      Gefunden in der Gegenpruefung am 01.10.2026. */
   const sektionFertig = CATEGORIES.every(x => x.sektion !== c.sektion || passed.has(x.id));
   const allesFertig = CATEGORIES.every(x => passed.has(x.id));
-  const nextSec = hasNext && CATEGORIES[catIdx+1].sektion !== c.sektion && sektionFertig;
+  /* Nach einer Einstufung wird eine Sektion oft nicht an ihrem letzten
+     Level fertig, sondern mittendrin, wenn das letzte uebersprungene Level
+     nachgeholt ist. Zaehlt also, was DIESER Test neu abgeschlossen hat.
+     Wer ein schon bestandenes Level wiederholt, bekommt die alte Regel. */
+  const nextSec = sektionFertig && (neuBestanden || (hasNext && CATEGORIES[catIdx+1].sektion !== c.sektion));
   $('tBody').innerHTML =
     '<div class="ergebnis-titel">'+t('level.titel',{i:catIdx+1, label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
@@ -6810,7 +6816,7 @@ function showTestResult(){
   $('tBack').addEventListener('click', ()=>{ if(ok){ homeMode='words'; showHome(); } else showLevelHome(); });
   const n=$('tNext'); if(n) n.addEventListener('click', ()=> openLevel(catIdx+1));
   const r=$('tRetry'); if(r) r.addEventListener('click', startTest);
-  if(ok && !hasNext && allesFertig){ $('tBody').insertAdjacentHTML('beforeend','<div class="kicker" style="margin-top:12px">'+t('test.alles_geschafft')+'</div>'); }
+  if(ok && allesFertig && (neuBestanden || !hasNext)){ $('tBody').insertAdjacentHTML('beforeend','<div class="kicker" style="margin-top:12px">'+t('test.alles_geschafft')+'</div>'); }
 }
 function startTest(){
   if(!testAllowed(cur())) return;
@@ -7181,8 +7187,11 @@ function topfRunde(){
    zeichnet nur das hier ihn neu - der Takt alle 30 Sekunden und die
    Rueckkehr aus dem Hintergrund rufen es auf. */
 function topfNachziehen(){
+  /* Nur den Kasten und den Weitermachen-Knopf neu zeichnen, nicht die
+     ganze Startseite: showHome() springt an den Seitenanfang, und dieser
+     Aufruf kommt nicht vom Nutzer. */
   if(sichtbar('pfad') && homeMode === 'topf' && topfAnzahl() &&
-     (livesNow() > 0) !== !!$('topfLos')) showHome();
+     (livesNow() > 0) !== !!$('topfLos')){ renderHero(); showTopf(); }
 }
 /* Wie showLevelHome() die Lektion wegraeumen. Ohne das blieb #lesson
    sichtbar geschaltet und Lx halb durchgelaufen stehen: lektionDarfWeg()
@@ -7439,6 +7448,14 @@ async function benErlaubt(fragen){
 function benZeit(tag, stunde){ const d = new Date(tag + 'T12:00:00'); d.setHours(stunde, 0, 0, 0); return d; }
 /* Was die naechsten Abende bringen - ohne Plugin, damit es sich auch im
    Browser nachpruefen laesst. */
+/* Die Nummer einer Abendnachricht haengt am Kalendertag, nicht am Abstand
+   zu heute: 14 Nummern im Kreis (100 bis 113). Vorher war es "100 + Tage
+   ab heute" - eine behaltene Nachricht von gestern trug dann dieselbe
+   Nummer wie ein kommender Abend, und der fiel weg. */
+function benAbendId(tag){
+  const t = tag.split('-').map(Number);
+  return BEN_ID_ABEND + (Math.round(Date.UTC(t[0], t[1] - 1, t[2]) / 86400000) % 14);
+}
 function benPlan(){
   const s = benStand(), jetzt = Date.now(), heute = today(), plan = [];
   const heuteGeuebt = days.has(heute);
@@ -7466,7 +7483,7 @@ function benPlan(){
     if(wann.getTime() <= jetzt + 60000) continue;
     abende.add(tag);
     const n = streak();
-    plan.push({id: BEN_ID_ABEND + d, art, wann,
+    plan.push({id: benAbendId(tag), art, wann,
                titel: art === 'serie' ? tp('ben.serie_titel', n) : t('ben.erinnerung_titel'),
                text:  art === 'serie' ? t('ben.serie_text') : t('ben.erinnerung_text')});
   }
@@ -7495,15 +7512,23 @@ async function benPlanen(){
      erste gerade angelegt hat, und plant danach doppelt. */
   if(benLaeuft) return benLaeuft;
   benLaeuft = (async ()=>{
-    /* Was beim letzten Planen schon faellig war, ist gekommen oder kommt
-       gleich. Das wird nicht mehr abgesagt (Android stellt ungenau zu, eine
-       19-Uhr-Nachricht kann um 19:05 noch ausstehen), und sein Abend gilt
-       als belegt. */
-    const jetzt = Date.now(), s = benStand();
+    /* Was beim letzten Planen fuer HEUTE schon faellig war, ist gekommen
+       oder kommt gleich - Android stellt ungenau zu, eine 19-Uhr-Nachricht
+       kann um 19:40 noch ausstehen. Die wird nicht abgesagt, und der Abend
+       gilt als belegt. Ausnahme: heute schon geuebt. Dann darf sie weg,
+       "du hast heute noch nicht geuebt" nach dem Ueben waere falsch.
+       Aeltere Eintraege sind laengst zugestellt; sie zu behalten liesse
+       ihre Nummer mit einem kommenden Abend zusammenstossen. Die
+       Leben-Nachricht wird immer neu geplant. Zweite Gegenpruefung am
+       01.10.2026. */
+    const jetzt = Date.now(), s = benStand(), heute = today();
+    const heuteGeuebt = days.has(heute);
     const gesendet = new Set(s.gesendet || []);
     const behalten = new Set();
     (s.geplant || []).forEach(p => {
-      if(p.at <= jetzt){ behalten.add(p.id); if(p.abend) gesendet.add(p.tag); }
+      if(!p.abend || p.at > jetzt) return;
+      gesendet.add(p.tag);
+      if(p.tag === heute && !heuteGeuebt) behalten.add(p.id);
     });
     s.gesendet = [...gesendet].sort().slice(-10);
     try{
@@ -7513,25 +7538,33 @@ async function benPlanen(){
         .map(n => ({id: n.id}));
       if(weg.length) await L.cancel({notifications: weg});
     }catch(e){}
+    /* In s.geplant steht danach nur, was wirklich noch aussteht. Was gerade
+       abgesagt wurde, darf spaeter nicht als zugestellt zaehlen - auch dann
+       nicht, wenn gleich die Erlaubnis fehlt oder schedule() scheitert. */
+    s.geplant = (s.geplant || []).filter(p => behalten.has(p.id));
     benMerken(s);
     if(!await benErlaubt(false)) return;
     const plan = benPlan().filter(p => !behalten.has(p.id));
-    s.geplant = plan.map(p => ({id: p.id, at: p.wann.getTime(), tag: dayKey(p.wann), abend: p.art !== 'leben'}));
-    benMerken(s);
     if(!plan.length) return;
     try{ await L.createChannel({id: BEN_KANAL, name: t('ben.kanal'), importance: 3, visibility: 1}); }catch(e){}
+    /* Genau, wo es ohne Rueckfrage geht, sonst ungenau. Unter Android 12
+       meldet das Plugin immer "granted" - dort kommen die Nachrichten
+       punktgenau wie vorher; ungenau darf ein Wecker dort bis zu 75 % der
+       Vorlaufzeit spaeter kommen, die Serienwarnung also nach Mitternacht.
+       Ab Android 12 fehlt die Erlaubnis (im Manifest entfernt), dann
+       "denied" und ungenau, hoechstens etwa eine Stunde spaeter. Mit
+       isExactNotification:true und fehlender Erlaubnis oeffnete das Plugin
+       ab Fassung 8.3 selbst Androids Seite "Wecker und Erinnerungen" -
+       am S21 so passiert am 01.10.2026. */
+    let genau = false;
+    try{ const r = await L.checkExactNotificationSetting(); genau = !!r && r.exact_alarm === 'granted'; }catch(e){}
     try{
-      /* isExactNotification:false ist Pflicht. Ab Fassung 8.3 will das
-         Plugin sonst einen genauen Wecker und schickt den Nutzer dafuer
-         selbst in Androids Seite "Wecker und Erinnerungen" - direkt nach dem
-         Ja zu den Erinnerungen, mitten aus der App heraus. Am S21 so
-         passiert am 01.10.2026. Die Erlaubnis dafuer ist im Manifest
-         ohnehin entfernt; ob die Nachricht um 19:00 oder 19:07 kommt, ist
-         egal. */
       await L.schedule({notifications: plan.map(p => ({
         id: p.id, title: p.titel, body: p.text, channelId: BEN_KANAL,
-        isExactNotification: false,
+        isExactNotification: genau,
         schedule: {at: p.wann, allowWhileIdle: true}, extra: {art: p.art}}))});
+      s.geplant = s.geplant.concat(plan.map(p => ({id: p.id, at: p.wann.getTime(), tag: dayKey(p.wann), abend: p.art !== 'leben'})));
+      benMerken(s);
     }catch(e){}
   })();
   try{ await benLaeuft; } finally { benLaeuft = null; }
