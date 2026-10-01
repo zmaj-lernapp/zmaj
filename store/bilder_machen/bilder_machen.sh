@@ -1,10 +1,10 @@
 #!/bin/sh
 # Macht die acht Store-Bilder im kopflosen Chrome (Port 9444). Anleitung: LIESMICH.txt
-# 405 x 720 CSS-Punkte mal 8/3 = genau 1080 x 1920.
+# 360 x 640 CSS-Punkte mal 3 = genau 1080 x 1920 - so breit wie Ajdins S21.
 S="$(cd "$(dirname "$0")" && pwd)"
 cd "$S"
 P="C:/Users/Ajdin/AppData/Local/Programs/Thonny/python.exe"
-export PYTHONIOENCODING=utf-8 BREITE=405 HOEHE=720 DSF=2.6666666667
+export PYTHONIOENCODING=utf-8 BREITE=360 HOEHE=640 DSF=3
 OUT="$S/../screenshots"
 mkdir -p "$OUT"
 pc(){ "$P" pc.py "$@"; }
@@ -12,9 +12,13 @@ pc(){ "$P" pc.py "$@"; }
 "$P" stand.py
 STAND=$("$P" -c "import json;print(json.dumps(open('_stand.json',encoding='utf-8').read()))")
 pc js "standGeladen = false; localStorage.clear(); localStorage.setItem('zmaj_stand', $STAND); localStorage.setItem('zmaj_einwilligung', JSON.stringify({wahl:'nein',stand:1,zeit:new Date().toISOString()})); localStorage.setItem('zmaj_sprache','de'); return 'ok'"
-pc nav "http://127.0.0.1:8777/index.html"
+pc nav "http://127.0.0.1:8777/index.html?neu=$(date +%s)"   # ohne den Zusatz liefert Chrome eine alte Fassung aus dem Zwischenspeicher
 sleep 15
 pc js "$(cat antworte.js)"
+# Den Zurueck-Knopf oben rechts gibt es nur im Browser am PC. In der App
+# blendet setzeZurueck() ihn aus, weil Android eine eigene Zurueck-Taste hat.
+# Die Bilder sollen die App zeigen.
+pc js "const st = document.createElement('style'); st.textContent = '#btnBack{display:none!important}'; document.head.append(st); return 'ok'"
 
 # 1 Startseite
 pc js "const q = questsHeute(), t = today(); tagwerk[t] = {}; q.forEach((x,i) => { tagwerk[t][x.id] = i === 0 ? x.ziel : Math.floor(x.ziel * 0.6); }); [...known].slice(40, 47).forEach((id, i) => { topf['w:' + id] = {typ: i % 2 ? 'mcrev' : 'mc', n: 0, z: Date.now() - i * 60000}; }); homeMode = 'words'; showHome(); scrollTo(0,0); await new Promise(r=>setTimeout(r,2500)); return [...document.querySelectorAll('.nachfrage, .einwilligung, .werbung')].length + ' Karten offen'"

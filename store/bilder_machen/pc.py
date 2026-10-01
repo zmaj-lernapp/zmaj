@@ -7,12 +7,12 @@
 
 Die Bildschirmgroesse kommt aus BREITE, HOEHE und DSF (Punkte je CSS-Punkt).
 Sie wird bei jedem Aufruf neu gesetzt: Chrome vergisst sie, sobald die
-Verbindung zu ist. 405 x 720 mal 8/3 ergibt genau 1080 x 1920.
+Verbindung zu ist. 360 x 640 mal 3 ergibt genau 1080 x 1920.
 """
 import asyncio, base64, json, os, sys, urllib.request
 
 TOR = "9444"
-ZEIT = 60
+ZEIT = int(os.environ.get("ZEIT", "60"))
 
 
 async def main():
@@ -32,9 +32,9 @@ async def main():
                     return a
 
         await ruf("Emulation.setDeviceMetricsOverride", {
-            "width": int(os.environ.get("BREITE", "405")),
-            "height": int(os.environ.get("HOEHE", "720")),
-            "deviceScaleFactor": float(os.environ.get("DSF", "2.6666666667")),
+            "width": int(os.environ.get("BREITE", "360")),
+            "height": int(os.environ.get("HOEHE", "640")),
+            "deviceScaleFactor": float(os.environ.get("DSF", "3")),
             "mobile": True})
         await ruf("Emulation.setTouchEmulationEnabled", {"enabled": True, "maxTouchPoints": 5})
         if was == "js":
