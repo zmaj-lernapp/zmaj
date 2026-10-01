@@ -11,9 +11,11 @@ Handy. Das hat drei Gruende:
     testdaten/zmaj-screenshots.json.
   - Keine Statusleiste, keine Uhrzeit, kein Akkustand im Bild.
 
-Die Breite ist 405 Punkte. Bei 360 und 384 Punkten schiebt sich in der
-Lektion und in der Geschichte die Muenzanzeige ueber die Herzanzeige,
-sobald oben rechts der Zurueck-Knopf steht.
+Die Breite ist 360 Punkte, so breit wie Ajdins S21 in der App misst.
+Den Zurueck-Knopf oben rechts blendet das Skript aus: es gibt ihn nur
+im Browser am PC, die App hat ihn nicht (Android hat eine eigene
+Zurueck-Taste). Mit ihm schob sich bei 360 Punkten die Muenzanzeige
+ueber die Herzen - in der App kommt das nicht vor.
 
 
 SO GEHT ES (Git Bash, im Projektordner)

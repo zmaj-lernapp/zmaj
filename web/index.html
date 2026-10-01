@@ -156,6 +156,14 @@
     .hero .zmaj{width:96px; height:96px; flex:0 0 96px}
   }
   .hbtns{display:flex; gap:6px}
+  /* In Lektion, Level-Test und Wiederholen-Runde gibt es keine Kopfzeile:
+     keine Muenzen, kein Laden, kein Zahnrad. Das Herz steht im Fragenkasten
+     neben den Fortschrittspunkten (.kastenkopf), der Kasten rueckt nach
+     oben, und der Drache darf groesser sein. Ajdin am 01.10.2026: "in den
+     lektionen ist nur das herz sichtbar", "mit den fragen in den kasten".
+     Der Satz unten verweist aufs Zahnrad oben rechts - das ist dann nicht
+     zu sehen, also weg damit. Die Klasse setzt nurHerz(). */
+  body.nurHerz header, body.nurHerz footer{display:none}
   .back{
     border:2px solid var(--line); background:var(--surface); color:var(--ink); font-family:inherit; font-size:13px; font-weight:800;
     padding:7px 12px; border-radius:99px; cursor:pointer; transition:.15s;
@@ -173,11 +181,73 @@
   .zmaj.sad>img,.zmaj.sad>svg{animation:zSad 3.4s ease-in-out infinite; filter:saturate(.75)}
   .zmaj.ok>img,.zmaj.ok>svg{animation:zPop .55s cubic-bezier(.34,1.56,.64,1)}
   .zmaj.no>img,.zmaj.no>svg{animation:zShake .5s ease-in-out}
-  .zmaj.mini{width:112px; height:112px; position:absolute; right:6px; top:2px; filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
-  #lesson .card{padding-top:34px}
-  #lesson .tbar{margin-right:110px}
-  #lesson .kicker{margin-right:100px}
-  @media (max-width:480px){ .zmaj.mini{width:84px; height:84px} #lesson .tbar{margin-right:86px} #lesson .kicker{margin-right:80px} }
+  /* Der Lektionskasten, festgelegt von Ajdin am 01.10.2026 nach drei
+     Vorschauen:
+     - oben eine Reihe: Herz, dann die Fortschrittspunkte, "viel besser
+       sichtbar" (.kastenkopf);
+     - darunter der Drache, groesser und in der Mitte;
+     - keine Anweisungszeile mehr ("Was bedeutet ...", "Was heisst auf
+       Bosnisch ..."). Was zu tun ist, sieht man an der Aufgabe selbst; nur
+       die Schreibaufgabe sagt es im Eingabefeld, sonst waere offen, in
+       welcher Sprache. Die Zeile bleibt im HTML - font-size:0 blendet den
+       Text aus, die Marken "Neues Wort", "Wiederholung", "Nochmal" (.rep)
+       bleiben sichtbar;
+     - der Kasten richtet sich nach dem Inhalt: wenig Inhalt, kleiner
+       Kasten; viel Inhalt, grosser Kasten. Ein Versuch mit immer gleicher
+       Hoehe liess bei Schreib- und Lueckenaufgaben und auf dem Ergebnis
+       eine grosse leere Flaeche - Ajdin am 01.10.2026: "am besten machen
+       wir den kasten dynamisch".
+     Rueckmeldung, Loesung und Weiter stehen nach der Antwort zusammen
+     direkt unter der Aufgabe (.antwortfeld, gebaut in weiterBeiTipp).
+     Gilt fuer Lektion, Wiederholen-Runde (beide #lesson) und Level-Test. */
+  .zmaj.mini{width:120px; height:120px; margin:2px auto 6px; filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
+  #lesson .card, #test .card{padding-top:16px}
+  .antwortfeld{margin-top:12px}
+  .antwortfeld .feedback{margin-top:0}
+  .antwortfeld .weiterbox{margin-top:10px}
+  /* Nur die Aufgabenzeile aus kick(), nicht jede .kicker: der Level-Test
+     haengt "Alle Levels geschafft" ebenfalls als .kicker an. */
+  #lesson .kicker.aufgabe, #test .kicker.aufgabe{font-size:0; margin:0 0 8px; min-height:0}
+  #lesson .kicker.aufgabe .rep, #test .kicker.aufgabe .rep{font-size:13px}
+  #lesson .kicker.aufgabe .rep + .rep, #test .kicker.aufgabe .rep + .rep{margin-left:8px}
+  /* Nach der Antwort ist "Gerade nicht hoeren, ueberspringen" ohne Sinn und
+     kostet nur Hoehe. */
+  #lBody:has(.weiterbox) > .skip, #tBody:has(.weiterbox) > .skip{display:none}
+  #lBody > .feedback, #tBody > .feedback{margin-top:10px}
+  /* Vor der Antwort ist die Rueckmeldung leer und wandert danach ohnehin
+     ins Antwortfeld - ihr Platz in der Aufgabe waere nur Luecke. */
+  #lBody > .feedback:empty, #tBody > .feedback:empty{display:none}
+  #lesson .options, #test .options{margin-top:12px}
+  .antwortfeld .loesung{margin-top:8px; padding-top:7px; padding-bottom:7px}
+  #lesson .listen.bigplay{width:84px; height:84px; font-size:34px}
+  /* Gemessen am 01.10.2026: Ajdins S21 hat in der App 360 x 726 Punkte.
+     Mit dem grossen Drachen rutschte Weiter dort bei der Hoeraufgabe nach
+     der Antwort unter den Bildrand. */
+  @media (max-height:820px){ #lesson .zmaj.mini{width:100px; height:100px} }
+  .type-input::placeholder{font-family:var(--font-ui); font-size:17px; font-weight:700}
+  #lesson .prompt{font-size:29px}
+  #lesson .prompt.long{font-size:22px}
+  #lesson .opt{font-size:21px; padding:14px 10px}
+  #lesson .opt.long{font-size:16px}
+  .kastenkopf{display:flex; align-items:center; gap:10px; margin-bottom:10px}
+  #test .kastenkopf{margin-bottom:18px}
+  .kastenkopf .tbar{flex:1; min-width:0; margin:0; gap:4px}
+  .kastenkopf .tbar i{height:14px; background:var(--line); background:color-mix(in srgb, var(--ink) 16%, transparent)}
+  .kastenkopf .tbar i.intro{background:var(--muted); background:color-mix(in srgb, var(--ink) 42%, transparent)}
+  .kastenkopf .tbar i.skip{background:var(--muted); opacity:.6}
+  .kastenkopf .tbar i.ok{background:var(--good)}
+  .kastenkopf .tbar i.no{background:var(--bad)}
+  .kastenkopf .tbar i.cur{background:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); box-shadow:0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent)}
+  .kastenherz{display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; white-space:nowrap;
+    font:800 20px var(--font-ui); color:var(--bad); background:var(--bg); border:2px solid var(--line);
+    border-radius:99px; padding:2px 12px 2px 9px}
+  .kastenherz b{color:var(--ink)}
+  .kastenherz.zero{border-color:var(--bad)}
+  .kastenherz:empty{display:none}
+  /* Auf Ergebnis und "Keine Leben mehr" ist die Punktreihe leer, und die
+     Leben stehen dort ohnehin gross in der Auswertung - ohne die Reihe
+     staende das Herz doppelt da. */
+  .kastenkopf:has(> .tbar:empty){display:none}
   .card{position:relative}
   @keyframes zIdle{0%,100%{transform:translateY(0) rotate(0) scale(1)}35%{transform:translateY(-5px) rotate(-1.5deg) scale(1.02)}70%{transform:translateY(-2px) rotate(1.2deg) scale(1.01)}}
   @keyframes zCheer{0%,100%{transform:translateY(0) rotate(0) scale(1)}30%{transform:translateY(-16px) rotate(-6deg) scale(1.06)}60%{transform:translateY(-4px) rotate(5deg) scale(1.03)}}
@@ -987,7 +1057,7 @@
   .opt:disabled{cursor:default}
 
   .tbar{display:flex; gap:3px; margin-bottom:16px}
-  .tbar i{flex:1; height:8px; border-radius:99px; background:var(--primary-soft)}
+  .tbar i{flex:1; margin:0; height:8px; border-radius:99px; background:var(--primary-soft)}
   .tbar i.ok{background:var(--good)} .tbar i.no{background:var(--bad)} .tbar i.skip{background:var(--muted); opacity:.5} .tbar i.cur{background:var(--accent)} .tbar i.intro{background:var(--line)}
   .rep{display:inline-block; font-size:11px; color:var(--on-accent); background:var(--accent); border-radius:99px; padding:1px 8px; text-transform:none; letter-spacing:0}
   .rep.new{background:var(--primary-fill); color:var(--on-fill)}
@@ -1308,12 +1378,12 @@
     </div>
 
     <section id="lesson" style="display:none">
-      <div class="card"><div class="tbar" id="lBar"></div><div class="zmaj mini idle" id="zmajLesson"></div><div id="lBody"></div></div>
+      <div class="card"><div class="kastenkopf"><div class="kastenherz" id="lHerz"></div><div class="tbar" id="lBar"></div></div><div class="zmaj mini idle" id="zmajLesson"></div><div id="lBody"></div></div>
       <div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>
     </section>
 
     <section id="test" style="display:none">
-      <div class="card"><div class="tbar" id="tBar"></div><div id="tBody"></div></div>
+      <div class="card"><div class="kastenkopf"><div class="tbar" id="tBar"></div></div><div id="tBody"></div></div>
       <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>
     </section>
   </div>
@@ -3878,6 +3948,12 @@ function renderLives(){
   if(mb){ mb.hidden = !profil; if(profil) mb.innerHTML = '🪙 <b>'+muenzen()+'</b> <span class="km">KM</span>'; }
   const bar=$('livesBar'); if(!profil){ bar.style.display='none'; return; } bar.style.display='inline-flex';
   const n = livesNow();
+  /* Das Herz im Fragenkasten. Gibt es nur in der Lektion (#lHerz); der
+     Level-Test kostet keine Leben und hat deshalb keins. */
+  document.querySelectorAll('.kastenherz').forEach(k => {
+    k.innerHTML = '♥ <b>' + (unlimited() ? '∞' : n) + '</b>';
+    k.classList.toggle('zero', n === 0 && !unlimited());
+  });
   const zeigen = livesInfoAn || n === 0;
   bar.className='livesbar'+(unlimited()?' premium':'')+(n===0?' zero':'');
   bar.innerHTML = '<button type="button" class="herz" id="livesKnopf" aria-expanded="'+zeigen+'">'
@@ -4328,6 +4404,12 @@ function spaeterSprechen(text, ms){
 /* Erst den vollen Text suchen, dann den gekuerzten Schluessel. Dadurch koennen
    "Molim" und "Molim?" eigene Aufnahmen haben, muessen aber nicht. */
 function audioDatei(text){
+  /* Mehrere Formen ("moj / moja / moje") haben seit dem 01.10.2026 eine
+     eigene Aufnahme mit allen Formen - Ajdin: "alle Formen sprechen". Ihr
+     Schluessel ist der ganze Text, siehe schluessel_alle() in ton_bauen.py.
+     Fehlt sie, gilt wie bisher die erste Form. */
+  const klein = text.trim().toLowerCase();
+  if(klein.includes(' / ')){ const alle = AUDIO.get(klein); if(alle) return alle; }
   const voll = text.split(' / ')[0].trim().toLowerCase();
   return AUDIO.get(voll) || AUDIO.get(audioKey(text)) || null;
 }
@@ -4500,6 +4582,7 @@ function showView(id){
   uhrAus();               // und keine Lernzeit: Geschichte und Lektion rufen uhrAn() selbst
   VIEWS.forEach(v=>{ $(v).style.display = v===id ? 'block' : 'none'; });
   $('kopfLeiste').style.display = '';     // wer sie nicht will, blendet sie danach aus
+  nurHerz(false);                         // Lektion, Test und Runde setzen es selbst wieder
   // Vor der Anmeldung darf das Logo größer sein - siehe CSS oben
   document.body.classList.toggle('vorAnmeldung', id === 'profileView');
   /* Hier und nicht in showHome(): so stimmt die Farbe auch in den
@@ -5131,6 +5214,11 @@ async function abmelden(){
    Alter Fortschritt wird beim ersten Öffnen umgeschrieben und geht dabei
    nicht verloren. Erkannt werden beide früheren Schreibweisen: das nackte
    Wort und die Zwischenform „level:wort“. */
+/* Woerter, bei denen sich deutsche UND bosnische Seite geaendert haben -
+   die Suche unten findet sie sonst nicht wieder. "skup / skupa" war
+   mehrdeutig (auch: Treffen, zusammen); mit "skupo" ist klar, dass es
+   teuer heisst. Ajdin am 01.10.2026. */
+const UMBENANNT = {'teuer (m/w):skup / skupa': 'teuer (m/w/s):skup / skupa / skupo'};
 function altenFortschrittUmschreiben(){
   const gueltig = new Set(), nachWort = new Map(), nachLevel = new Map();
   CATEGORIES.forEach(c => c.words.forEach(w => {
@@ -5141,7 +5229,8 @@ function altenFortschrittUmschreiben(){
   }));
   const neu = new Set(); let geaendert = false;
   known.forEach(x => {
-    if(gueltig.has(x)) neu.add(x);
+    if(UMBENANNT[x] && gueltig.has(UMBENANNT[x])){ neu.add(UMBENANNT[x]); geaendert = true; }
+    else if(gueltig.has(x)) neu.add(x);
     else if(nachLevel.has(x)){ neu.add(nachLevel.get(x)); geaendert = true; }
     else if(nachWort.has(x)){ nachWort.get(x).forEach(id => neu.add(id)); geaendert = true; }
     else if(nachWort.has(x.slice(x.lastIndexOf(':') + 1))){
@@ -5865,8 +5954,15 @@ function openLevel(i){
    levelView und laufen nicht ueber showView(). Deshalb hier eigens
    abstellen - sonst spricht das letzte Wort der Lektion (bis zu 3,7 s)
    auf der Uebersicht zu Ende. Das war der gemeldete Fall. */
+/* Lektion, Test und Wiederholen-Runde laufen in levelView, aber nicht ueber
+   showView(). Darum schalten die drei Starts den Kopf selbst um, und
+   showLevelHome() und showView() schalten ihn zurueck - alle Wege hinaus
+   (Ergebnis, Abbrechen, Zurueck-Taste, topfSeite) gehen durch eine der
+   beiden. */
+function nurHerz(an){ document.body.classList.toggle('nurHerz', !!an); if(an) renderLives(); }
 function showLevelHome(){
   stilleBitte();
+  nurHerz(false);
   $('lesson').style.display='none'; $('test').style.display='none'; $('levelHome').style.display='block';
   // Beide Aufgabenfelder leeren. renderTask() sucht seine Knöpfe mit
   // getElementById, und die ids (xCheck, xIn, xOpts …) sind in Lektion und
@@ -6049,7 +6145,7 @@ function renderTask(task, body, done, opts={}){
   const meineAufgabe = aufgabeMarke;   // gilt fuer verspaetete Erkennungs-Ergebnisse
   const pool = task.pool || curWords();
   const w = task.w;
-  const kick = (text)=> '<div class="kicker">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
+  const kick = (text)=> '<div class="kicker aufgabe">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
   const fb = (ok, right, extra)=>{ $$('xFb').textContent = ok?t('task.richtig'):t('task.falsch',{wort:right})+(extra?' ('+extra+')':''); $$('xFb').className='feedback '+(ok?'ok':'no'); };
   /* Nach der Antwort: das Bosnische und darunter, was es heißt. Vorher
      konnte man eine Auswahlaufgabe richtig lösen, ohne je zu erfahren, was
@@ -6066,9 +6162,9 @@ function renderTask(task, body, done, opts={}){
   const wireSkip = ()=>{ const b=$$('xSkip'); if(b) b.addEventListener('click',()=>done({ok:false, skipped:true})); };
 
   if(task.typ==='intro'){
-    body.innerHTML = '<div class="kicker"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'">'+esc(w.bs)+'</div>'+
+    body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'">'+esc(w.bs)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+t('task.hoeren')+'</button>':'')+
-      '<div class="row"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
+      '<div class="row unten"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
     if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 250); }
     $$('xNext').addEventListener('click',()=>done({ok:true, intro:true})); $$('xNext').focus();
     return;
@@ -6095,7 +6191,7 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='type'){
     body.innerHTML = kick(t('task.schreib'))+'<div class="prompt'+(w.de.length>18?' long':'')+'">'+esc(w.de)+'</div>'+
-      '<input class="type-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="…">'+
+      '<input class="type-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(t('task.schreib'))+'">'+
       '<div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
     const check=()=>{
@@ -6526,7 +6622,7 @@ function lessonOutOfLives(){
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
-  $('lBar').innerHTML=''; $('zmajLesson').style.display='none';
+  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('lHerz').style.display='none';
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.aus')+'</div><div class="celebrate"><div class="zmaj sad">'+zmaj('cry')+'</div></div>'+
     '<div class="result-big fail">♥ 0</div>'+
@@ -6572,7 +6668,7 @@ function lessonEnd(){
   if(questLob) setTimeout(()=>sound('quest'), 850);   // nach der Fanfare, nicht darueber
   if(benPlugin() && !benStand().gefragt) benDran = true;
   const pct=levelPct(c), nowAllowed=testAllowed(c);
-  $('lBar').innerHTML=''; $('zmajLesson').style.display='none';
+  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('lHerz').style.display='none';
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.geschafft')+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
     '<div class="result-big">'+Lx.right+' / '+scored+'</div>'+
@@ -6733,9 +6829,10 @@ function startLesson(){
   if(Lx.queue.some(a=>a.typ==='speak')) mikroVorbereiten();
   stilleBitte();   // Unteransicht, laeuft nicht ueber showView() - siehe showLevelHome
   $('levelHome').style.display='none'; $('test').style.display='none'; $('lesson').style.display='block';
+  nurHerz(true);
   $('tBody').innerHTML='';   // siehe showLevelHome: gleiche ids in beiden Feldern
   uhrNeu();
-  const zl=$('zmajLesson'); zl.style.display='block'; zl.innerHTML=zmaj('happy'); setMood(zl,'happy');
+  const zl=$('zmajLesson'); zl.style.display='block'; $('lHerz').style.display=''; zl.innerHTML=zmaj('happy'); setMood(zl,'happy');
   showLessonTask(); window.scrollTo({top:0, behavior:'smooth'});
 }
 $('btnLesson').addEventListener('click', startLesson);
@@ -6822,6 +6919,7 @@ function startTest(){
   if(!testAllowed(cur())) return;
   stilleBitte();   // Unteransicht, laeuft nicht ueber showView() - siehe showLevelHome
   buildTest(); $('levelHome').style.display='none'; $('lesson').style.display='none'; $('test').style.display='block';
+  nurHerz(true);
   $('lBody').innerHTML='';   // siehe showLevelHome: gleiche ids in beiden Feldern
   uhrNeu();
   showTestQ(); window.scrollTo({top:0, behavior:'smooth'});
@@ -7251,9 +7349,10 @@ function startTopf(){
   $('tag').textContent = t('topf.titel');
   stilleBitte();
   $('levelHome').style.display = 'none'; $('test').style.display = 'none'; $('lesson').style.display = 'block';
+  nurHerz(true);
   $('tBody').innerHTML = '';   // siehe showLevelHome: gleiche ids in beiden Feldern
   uhrNeu();
-  const zl = $('zmajLesson'); zl.style.display = 'block'; zl.innerHTML = zmaj('happy'); setMood(zl, 'happy');
+  const zl = $('zmajLesson'); zl.style.display = 'block'; $('lHerz').style.display = ''; zl.innerHTML = zmaj('happy'); setMood(zl, 'happy');
   Lx = {queue: aufgaben, i:0, results:[], right:0, total: aufgaben.length, skipped:0,
         newWords: new Set(), retried: new Set(), topf: true};
   showLessonTask();
@@ -7270,7 +7369,7 @@ function topfEnde(){
   const questLob = questZeilen();
   if(questLob) setTimeout(()=>sound('quest'), 850);
   const rest = topfAnzahl();
-  $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none';
+  $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('lHerz').style.display = 'none';
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
@@ -7916,8 +8015,24 @@ function weiterBeiTipp(feldId, weiter){
     const kasten = document.createElement('div');
     kasten.className = 'row weiterbox';
     kasten.innerHTML = '<button type="button" class="btn know">'+esc(t('task.weiter'))+'</button>';
-    feld.appendChild(kasten);
+    if(feldId === 'lBody' || feldId === 'tBody'){
+      /* Rueckmeldung, Loesung und Weiter zusammen unter die Aufgabe - bei
+         Schreib- und Lueckenaufgaben stand sonst der leere Pruefen-Platz
+         dazwischen. Es sind dieselben Knoten (#xFb), spaetere Aenderungen
+         daran kommen also an. */
+      const unten = document.createElement('div');
+      unten.className = 'antwortfeld';
+      feld.querySelectorAll(':scope > .feedback, :scope > .loesung').forEach(e => unten.appendChild(e));
+      unten.appendChild(kasten);
+      feld.appendChild(unten);
+    } else {
+      feld.appendChild(kasten);
+    }
     kasten.querySelector('button').addEventListener('click', einmal);
+    /* Ist eine Aufgabe laenger als der Schirm - kleines Handy, lange
+       Grammatikantworten -, laege Weiter sonst unter dem Rand. 'nearest'
+       bewegt nichts, solange er sichtbar ist. */
+    try{ kasten.scrollIntoView({block:'nearest', behavior:'smooth'}); }catch(e){}
   }
   // 900 ms statt 250: nach der Antwort läuft jetzt das Wort. Wer gleich
   // tippt, soll es wenigstens angehört haben können. Der Knopf selbst
