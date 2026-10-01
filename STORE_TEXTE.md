@@ -1311,7 +1311,7 @@ Zwei Dinge vor dem Eintragen:
 Neu in dieser Version:
 • Einstufungstest beim ersten Start: Wer schon Bosnisch kann, steigt weiter hinten ein.
 • Neuer Reiter „Wiederholen“: Was du falsch beantwortet hast, übst du gezielt nach.
-• Erinnerungen am Abend – jede einzeln abschaltbar.
+• Erinnerungen am Abend und wenn die Leben wieder voll sind – jede einzeln abschaltbar.
 • Die Vollversion ist da: keine Werbung, unbegrenzte Leben.
 • Viele kleine Verbesserungen und Fehlerbehebungen.
 </de-DE>
@@ -1319,7 +1319,7 @@ Neu in dieser Version:
 New in this version:
 • Placement test on first start: if you already know some Bosnian, you start further ahead.
 • New “Review” tab: practice exactly the exercises you got wrong.
-• Evening reminders – each one can be turned off.
+• Reminders in the evening and when your hearts are full again – each one can be turned off.
 • The full version is here: no ads, unlimited hearts.
 • Lots of small improvements and bug fixes.
 </en-US>
@@ -1327,7 +1327,7 @@ New in this version:
 Bu sürümde yeni:
 • İlk açılışta seviye belirleme testi: Biraz Boşnakça biliyorsan daha ileriden başlarsın.
 • Yeni “Tekrar” sekmesi: Yanlış cevapladığın alıştırmaları hedefli olarak tekrar et.
-• Akşam hatırlatmaları – her biri ayrı ayrı kapatılabilir.
+• Akşam ve canların yeniden dolduğunda hatırlatmalar – her biri ayrı ayrı kapatılabilir.
 • Tam sürüm geldi: reklamsız, sınırsız can.
 • Birçok küçük iyileştirme ve hata düzeltmesi.
 </tr-TR>
@@ -1335,7 +1335,7 @@ Bu sürümde yeni:
 Nytt i den här versionen:
 • Nivåtest vid första starten: kan du redan lite bosniska börjar du längre fram.
 • Ny flik ”Repetera”: öva just de uppgifter du svarat fel på.
-• Påminnelser på kvällen – var och en kan stängas av.
+• Påminnelser på kvällen och när hjärtana är fulla igen – var och en kan stängas av.
 • Fullversionen är här: ingen reklam, obegränsat med hjärtan.
 • Många små förbättringar och buggfixar.
 </sv-SE>
@@ -1343,7 +1343,7 @@ Nytt i den här versionen:
 Nieuw in deze versie:
 • Niveautest bij de eerste start: spreek je al wat Bosnisch, dan begin je verderop.
 • Nieuw tabblad ‘Herhalen’: oefen precies de opdrachten die je fout had.
-• Herinneringen ’s avonds – elk apart uit te zetten.
+• Herinneringen ’s avonds en als je levens weer vol zijn – elk apart uit te zetten.
 • De volledige versie is er: geen advertenties, onbeperkt levens.
 • Veel kleine verbeteringen en foutoplossingen.
 </nl-NL>
@@ -1351,7 +1351,7 @@ Nieuw in deze versie:
 Nytt i denne versjonen:
 • Nivåtest ved første oppstart: kan du litt bosnisk fra før, begynner du lenger fremme.
 • Ny fane «Repeter»: øv på akkurat de oppgavene du svarte feil på.
-• Påminnelser om kvelden – hver av dem kan slås av.
+• Påminnelser om kvelden og når livene er fulle igjen – hver av dem kan slås av.
 • Fullversjonen er her: ingen reklame, ubegrenset antall liv.
 • Mange små forbedringer og feilrettinger.
 </no-NO>
@@ -1359,7 +1359,7 @@ Nytt i denne versjonen:
 Nyt i denne version:
 • Niveautest ved første start: kan du allerede lidt bosnisk, starter du længere fremme.
 • Ny fane »Gentag«: øv netop de opgaver, du svarede forkert på.
-• Påmindelser om aftenen – hver enkelt kan slås fra.
+• Påmindelser om aftenen og når livene er fulde igen – hver enkelt kan slås fra.
 • Den fulde version er her: ingen reklamer, ubegrænsede liv.
 • Mange små forbedringer og fejlrettelser.
 </da-DK>
@@ -1367,7 +1367,7 @@ Nyt i denne version:
 Nouveau dans cette version :
 • Test de niveau au premier lancement : si tu connais déjà un peu le bosnien, tu commences plus loin.
 • Nouvel onglet « Réviser » : travaille précisément les exercices ratés.
-• Rappels le soir – chacun peut être désactivé.
+• Rappels le soir et quand tes vies sont de nouveau pleines – chacun peut être désactivé.
 • La version complète est là : sans pub, vies illimitées.
 • Beaucoup de petites améliorations et corrections.
 </fr-FR>
