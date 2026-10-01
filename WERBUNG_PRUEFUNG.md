@@ -99,6 +99,21 @@ Reward-Ereignis bleibt `verdient` falsch, Dismissed beendet das Warten),
 aber er ist **nicht am Gerät beobachtet**. Nachzuholen mit einem echten
 Video von Hand.
 
+**Nachmessung am 01.10.2026, Galaxy S21, Fassung 75:** Die Zurück-Taste
+wurde ab dem ersten Bild der Anzeige alle halbe Sekunde gedrückt:
+
+```
+gezeigt         2059 ms
+Belohnung       9754 ms
+geschlossen    10376 ms   nach dem 8. Druck auf Zurück
+```
+
+Googles Test-Video sperrt die Zurück-Taste also bis zur Belohnung - ein
+Abbruch davor lässt sich mit Testanzeigen grundsätzlich nicht erzeugen,
+auch nicht mit Fernsteuerung. Bleibt offen bis zur ersten echten Anzeige
+nach dem Scharfschalten: ein Video öffnen und vor der Belohnung über das
+X schließen, **nichts anklicken**. Erwartet: sofort zurück, kein Leben.
+
 **Punkt 14 — das späte Video riss die Lektion ab.** `showLevelHome()`
 läuft jetzt nur noch, wenn der Bildschirm ohne Leben überhaupt noch steht.
 Geprüft wird der Knopf **selbst**, nicht seine Kennung: nur wenn genau
