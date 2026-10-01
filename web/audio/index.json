@@ -3047,7 +3047,7 @@
    "key": "nju",
    "datei": "w0496.mp3",
    "text": "nju / je",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "bez šećera",
@@ -4601,7 +4601,7 @@
    "key": "skup",
    "datei": "w0755.mp3",
    "text": "skup / skupa",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "skuplji",
@@ -12155,7 +12155,7 @@
    "key": "drug",
    "datei": "w2014.mp3",
    "text": "drug / drugarica",
-   "stimme": "bs-BA-GoranNeural"
+   "stimme": "hr-HR-SreckoNeural"
   },
   {
    "key": "komšije",
@@ -12917,6 +12917,1062 @@
    "key": "idemo na iftar kod nane.",
    "datei": "w2141.mp3",
    "text": "Idemo na iftar kod nane.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "laku noć / lahku noć",
+   "datei": "w2142.mp3",
+   "text": "Laku noć / Lahku noć",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "gladan sam / gladna sam",
+   "datei": "w2143.mp3",
+   "text": "Gladan sam / Gladna sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "žedan sam / žedna sam",
+   "datei": "w2144.mp3",
+   "text": "Žedan sam / Žedna sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "bolestan / bolesna",
+   "datei": "w2145.mp3",
+   "text": "bolestan / bolesna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "zdrav / zdrava",
+   "datei": "w2146.mp3",
+   "text": "zdrav / zdrava",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "umoran sam / umorna sam",
+   "datei": "w2147.mp3",
+   "text": "Umoran sam / Umorna sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "sretan / sretna",
+   "datei": "w2148.mp3",
+   "text": "sretan / sretna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "tužan / tužna",
+   "datei": "w2149.mp3",
+   "text": "tužan / tužna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "htio bih / htjela bih",
+   "datei": "w2150.mp3",
+   "text": "Htio bih / Htjela bih",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "maslac / puter",
+   "datei": "w2151.mp3",
+   "text": "maslac / puter",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "put / staza",
+   "datei": "w2152.mp3",
+   "text": "put / staza",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "pokvaren / pokvarena / pokvareno",
+   "datei": "w2153.mp3",
+   "text": "pokvaren / pokvarena / pokvareno",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "moj / moja / moje",
+   "datei": "w2154.mp3",
+   "text": "moj / moja / moje",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "tvoj / tvoja / tvoje",
+   "datei": "w2155.mp3",
+   "text": "tvoj / tvoja / tvoje",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "njegov / njegova / njegovo",
+   "datei": "w2156.mp3",
+   "text": "njegov / njegova / njegovo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "njen / njena / njeno",
+   "datei": "w2157.mp3",
+   "text": "njen / njena / njeno",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "naš / naša / naše",
+   "datei": "w2158.mp3",
+   "text": "naš / naša / naše",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "vaš / vaša / vaše",
+   "datei": "w2159.mp3",
+   "text": "vaš / vaša / vaše",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ovaj / ova / ovo",
+   "datei": "w2160.mp3",
+   "text": "ovaj / ova / ovo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "onaj / ona / ono",
+   "datei": "w2161.mp3",
+   "text": "onaj / ona / ono",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nastavnik / nastavnica",
+   "datei": "w2162.mp3",
+   "text": "nastavnik / nastavnica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "student / studentica",
+   "datei": "w2163.mp3",
+   "text": "student / studentica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "konobar / konobarica",
+   "datei": "w2164.mp3",
+   "text": "konobar / konobarica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "doktor / doktorica",
+   "datei": "w2165.mp3",
+   "text": "doktor / doktorica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "prodavač / prodavačica",
+   "datei": "w2166.mp3",
+   "text": "prodavač / prodavačica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "velik / velika / veliko",
+   "datei": "w2167.mp3",
+   "text": "velik / velika / veliko",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "lijep / lijepa / lijepo",
+   "datei": "w2168.mp3",
+   "text": "lijep / lijepa / lijepo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "dobar / dobra / dobro",
+   "datei": "w2169.mp3",
+   "text": "dobar / dobra / dobro",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nov / nova / novo",
+   "datei": "w2170.mp3",
+   "text": "nov / nova / novo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "on je / ona je",
+   "datei": "w2171.mp3",
+   "text": "on je / ona je",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "mene / me",
+   "datei": "w2172.mp3",
+   "text": "mene / me",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "tebe / te",
+   "datei": "w2173.mp3",
+   "text": "tebe / te",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "njega / ga",
+   "datei": "w2174.mp3",
+   "text": "njega / ga",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nju / je",
+   "datei": "w2175.mp3",
+   "text": "nju / je",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "meni / mi",
+   "datei": "w2176.mp3",
+   "text": "meni / mi",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "tebi / ti",
+   "datei": "w2177.mp3",
+   "text": "tebi / ti",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "njemu / mu",
+   "datei": "w2178.mp3",
+   "text": "njemu / mu",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "njoj / joj",
+   "datei": "w2179.mp3",
+   "text": "njoj / joj",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nama / nam",
+   "datei": "w2180.mp3",
+   "text": "nama / nam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "vama / vam",
+   "datei": "w2181.mp3",
+   "text": "vama / vam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "bio sam / bila sam",
+   "datei": "w2182.mp3",
+   "text": "bio sam / bila sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "bio si / bila si",
+   "datei": "w2183.mp3",
+   "text": "bio si / bila si",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "imao sam / imala sam",
+   "datei": "w2184.mp3",
+   "text": "imao sam / imala sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "radio sam / radila sam",
+   "datei": "w2185.mp3",
+   "text": "radio sam / radila sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "jeo sam / jela sam",
+   "datei": "w2186.mp3",
+   "text": "jeo sam / jela sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "vidio sam / vidjela sam",
+   "datei": "w2187.mp3",
+   "text": "vidio sam / vidjela sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "išao sam / išla sam",
+   "datei": "w2188.mp3",
+   "text": "išao sam / išla sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "rekao sam / rekla sam",
+   "datei": "w2189.mp3",
+   "text": "rekao sam / rekla sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "kupio sam / kupila sam",
+   "datei": "w2190.mp3",
+   "text": "kupio sam / kupila sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "učio sam / učila sam",
+   "datei": "w2191.mp3",
+   "text": "učio sam / učila sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "stanovao sam / stanovala sam",
+   "datei": "w2192.mp3",
+   "text": "stanovao sam / stanovala sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "bio sam u bosni / bila sam u bosni",
+   "datei": "w2193.mp3",
+   "text": "Bio sam u Bosni / Bila sam u Bosni",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "šta si radio? / šta si radila?",
+   "datei": "w2194.mp3",
+   "text": "Šta si radio? / Šta si radila?",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "trebao bih / trebala bih",
+   "datei": "w2195.mp3",
+   "text": "trebao bih / trebala bih",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "zaljubio sam se / zaljubila sam se",
+   "datei": "w2196.mp3",
+   "text": "Zaljubio sam se / Zaljubila sam se",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "velik / velika",
+   "datei": "w2197.mp3",
+   "text": "velik / velika",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "mali / mala",
+   "datei": "w2198.mp3",
+   "text": "mali / mala",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "dobar / dobra",
+   "datei": "w2199.mp3",
+   "text": "dobar / dobra",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "loš / loša",
+   "datei": "w2200.mp3",
+   "text": "loš / loša",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "lijep / lijepa",
+   "datei": "w2201.mp3",
+   "text": "lijep / lijepa",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nov / nova",
+   "datei": "w2202.mp3",
+   "text": "nov / nova",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "star / stara",
+   "datei": "w2203.mp3",
+   "text": "star / stara",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "mlad / mlada",
+   "datei": "w2204.mp3",
+   "text": "mlad / mlada",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "brz / brza",
+   "datei": "w2206.mp3",
+   "text": "brz / brza",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "spor / spora",
+   "datei": "w2207.mp3",
+   "text": "spor / spora",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nego / od",
+   "datei": "w2208.mp3",
+   "text": "nego / od",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nijedan / nijedna",
+   "datei": "w2209.mp3",
+   "text": "nijedan / nijedna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "siguran sam / sigurna sam",
+   "datei": "w2210.mp3",
+   "text": "Siguran sam / Sigurna sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ljut / ljuta",
+   "datei": "w2211.mp3",
+   "text": "ljut / ljuta",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nervozan / nervozna",
+   "datei": "w2212.mp3",
+   "text": "nervozan / nervozna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "zadovoljan / zadovoljna",
+   "datei": "w2213.mp3",
+   "text": "zadovoljan / zadovoljna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "iznenađen / iznenađena",
+   "datei": "w2214.mp3",
+   "text": "iznenađen / iznenađena",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "usamljen / usamljena",
+   "datei": "w2215.mp3",
+   "text": "usamljen / usamljena",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ponosan / ponosna",
+   "datei": "w2216.mp3",
+   "text": "ponosan / ponosna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ponosan sam na tebe / ponosna sam na tebe",
+   "datei": "w2217.mp3",
+   "text": "Ponosan sam na tebe / Ponosna sam na tebe",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "lako / lahko",
+   "datei": "w2218.mp3",
+   "text": "lako / lahko",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "dženaza / sahrana",
+   "datei": "w2219.mp3",
+   "text": "dženaza / sahrana",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "rođen sam u njemačkoj / rođena sam u njemačkoj",
+   "datei": "w2220.mp3",
+   "text": "Rođen sam u Njemačkoj / Rođena sam u Njemačkoj",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "gdje si rođen? / gdje si rođena?",
+   "datei": "w2221.mp3",
+   "text": "Gdje si rođen? / Gdje si rođena?",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "bošnjak / bošnjakinja",
+   "datei": "w2222.mp3",
+   "text": "Bošnjak / Bošnjakinja",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "bosanac / bosanka",
+   "datei": "w2223.mp3",
+   "text": "Bosanac / Bosanka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nijemac / njemica",
+   "datei": "w2224.mp3",
+   "text": "Nijemac / Njemica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "danac / dankinja",
+   "datei": "w2225.mp3",
+   "text": "Danac / Dankinja",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "francuz / francuskinja",
+   "datei": "w2226.mp3",
+   "text": "Francuz / Francuskinja",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ja sam bosanac / ja sam bosanka",
+   "datei": "w2227.mp3",
+   "text": "Ja sam Bosanac / Ja sam Bosanka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ja sam nijemac / ja sam njemica",
+   "datei": "w2228.mp3",
+   "text": "Ja sam Nijemac / Ja sam Njemica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "hrvat / hrvatica",
+   "datei": "w2229.mp3",
+   "text": "Hrvat / Hrvatica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "crnogorac / crnogorka",
+   "datei": "w2230.mp3",
+   "text": "Crnogorac / Crnogorka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "holanđanin / holanđanka",
+   "datei": "w2231.mp3",
+   "text": "Holanđanin / Holanđanka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "norvežanin / norvežanka",
+   "datei": "w2232.mp3",
+   "text": "Norvežanin / Norvežanka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "šveđanin / šveđanka",
+   "datei": "w2233.mp3",
+   "text": "Šveđanin / Šveđanka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "švicarac / švicarka",
+   "datei": "w2234.mp3",
+   "text": "Švicarac / Švicarka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "srbin / srpkinja",
+   "datei": "w2235.mp3",
+   "text": "Srbin / Srpkinja",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "turčin / turkinja",
+   "datei": "w2236.mp3",
+   "text": "Turčin / Turkinja",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "austrijanac / austrijanka",
+   "datei": "w2237.mp3",
+   "text": "Austrijanac / Austrijanka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "pozdrav / pozdravi",
+   "datei": "w2238.mp3",
+   "text": "pozdrav / pozdravi",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "poznanik / poznanica",
+   "datei": "w2239.mp3",
+   "text": "poznanik / poznanica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "drug / drugarica",
+   "datei": "w2240.mp3",
+   "text": "drug / drugarica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "folklor / folklorna grupa",
+   "datei": "w2241.mp3",
+   "text": "folklor / folklorna grupa",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "pjevač / pjevačica",
+   "datei": "w2242.mp3",
+   "text": "pjevač / pjevačica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ramazanski bajram / kurban-bajram",
+   "datei": "w2243.mp3",
+   "text": "Ramazanski bajram / Kurban-bajram",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "hvala, sit sam / sita sam",
+   "datei": "w2244.mp3",
+   "text": "Hvala, sit sam / sita sam",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "domaćin / domaćica",
+   "datei": "w2245.mp3",
+   "text": "domaćin / domaćica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "zemljišna knjiga / gruntovnica",
+   "datei": "w2246.mp3",
+   "text": "zemljišna knjiga / gruntovnica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "hitni prijem / hitna pomoć",
+   "datei": "w2247.mp3",
+   "text": "hitni prijem / hitna pomoć",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "alergičan sam na ... / alergična sam na ...",
+   "datei": "w2248.mp3",
+   "text": "Alergičan sam na ... / Alergična sam na ...",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "skup / skupa / skupo",
+   "datei": "w2249.mp3",
+   "text": "skup / skupa / skupo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "gorivo",
+   "datei": "w2250.mp3",
+   "text": "gorivo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "sipati gorivo",
+   "datei": "w2251.mp3",
+   "text": "sipati gorivo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "guma",
+   "datei": "w2252.mp3",
+   "text": "guma",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "pukla mi je guma.",
+   "datei": "w2253.mp3",
+   "text": "Pukla mi je guma.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "kočnica",
+   "datei": "w2254.mp3",
+   "text": "kočnica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "motor",
+   "datei": "w2255.mp3",
+   "text": "motor",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "akumulator",
+   "datei": "w2256.mp3",
+   "text": "akumulator",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "sigurnosni pojas",
+   "datei": "w2257.mp3",
+   "text": "sigurnosni pojas",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "parkiralište",
+   "datei": "w2258.mp3",
+   "text": "parkiralište",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "parkirati",
+   "datei": "w2259.mp3",
+   "text": "parkirati",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "semafor",
+   "datei": "w2260.mp3",
+   "text": "semafor",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "raskrsnica",
+   "datei": "w2261.mp3",
+   "text": "raskrsnica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "saobraćaj",
+   "datei": "w2262.mp3",
+   "text": "saobraćaj",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "zastoj",
+   "datei": "w2263.mp3",
+   "text": "zastoj",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "kazna",
+   "datei": "w2264.mp3",
+   "text": "kazna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "registracija",
+   "datei": "w2265.mp3",
+   "text": "registracija",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "tehnički pregled",
+   "datei": "w2266.mp3",
+   "text": "tehnički pregled",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "autoservis",
+   "datei": "w2267.mp3",
+   "text": "autoservis",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "šlep služba",
+   "datei": "w2268.mp3",
+   "text": "šlep služba",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "pomoć na cesti",
+   "datei": "w2269.mp3",
+   "text": "pomoć na cesti",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "odvijač",
+   "datei": "w2270.mp3",
+   "text": "odvijač / šrafciger",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "kliješta",
+   "datei": "w2271.mp3",
+   "text": "kliješta",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "bušilica",
+   "datei": "w2272.mp3",
+   "text": "bušilica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "bušiti",
+   "datei": "w2273.mp3",
+   "text": "bušiti",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "testera",
+   "datei": "w2274.mp3",
+   "text": "testera",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "francuski ključ",
+   "datei": "w2275.mp3",
+   "text": "francuski ključ",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "metar",
+   "datei": "w2276.mp3",
+   "text": "metar",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ljepilo",
+   "datei": "w2277.mp3",
+   "text": "ljepilo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "produžni kabl",
+   "datei": "w2278.mp3",
+   "text": "produžni kabl",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "radionica",
+   "datei": "w2279.mp3",
+   "text": "radionica",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "punjač",
+   "datei": "w2280.mp3",
+   "text": "punjač",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "baterija",
+   "datei": "w2281.mp3",
+   "text": "baterija",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "baterija je prazna.",
+   "datei": "w2282.mp3",
+   "text": "Baterija je prazna.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "napuniti",
+   "datei": "w2283.mp3",
+   "text": "napuniti",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "šifra",
+   "datei": "w2284.mp3",
+   "text": "šifra / lozinka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "koja je šifra za wifi?",
+   "datei": "w2285.mp3",
+   "text": "Koja je šifra za WiFi?",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "internet",
+   "datei": "w2286.mp3",
+   "text": "internet",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nema signala.",
+   "datei": "w2287.mp3",
+   "text": "Nema signala.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "poruka",
+   "datei": "w2288.mp3",
+   "text": "poruka",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "poslati poruku",
+   "datei": "w2289.mp3",
+   "text": "poslati poruku",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "nazvati",
+   "datei": "w2290.mp3",
+   "text": "nazvati",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "aplikacija",
+   "datei": "w2291.mp3",
+   "text": "aplikacija",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ekran",
+   "datei": "w2292.mp3",
+   "text": "ekran",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "tastatura",
+   "datei": "w2293.mp3",
+   "text": "tastatura",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "štampač",
+   "datei": "w2294.mp3",
+   "text": "štampač",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "slušalice",
+   "datei": "w2295.mp3",
+   "text": "slušalice",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "slikati",
+   "datei": "w2296.mp3",
+   "text": "slikati",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ažurirati",
+   "datei": "w2297.mp3",
+   "text": "ažurirati",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "mašina za suđe",
+   "datei": "w2298.mp3",
+   "text": "mašina za suđe",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "sušilica za veš",
+   "datei": "w2299.mp3",
+   "text": "sušilica za veš",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "mikrovalna",
+   "datei": "w2300.mp3",
+   "text": "mikrovalna",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "toster",
+   "datei": "w2301.mp3",
+   "text": "toster",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "kuhalo za vodu",
+   "datei": "w2302.mp3",
+   "text": "kuhalo za vodu",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "fen",
+   "datei": "w2303.mp3",
+   "text": "fen",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "klima",
+   "datei": "w2304.mp3",
+   "text": "klima",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ventilator",
+   "datei": "w2305.mp3",
+   "text": "ventilator",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "daljinski",
+   "datei": "w2306.mp3",
+   "text": "daljinski",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "aparat za kahvu",
+   "datei": "w2307.mp3",
+   "text": "aparat za kahvu",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "uputstvo",
+   "datei": "w2308.mp3",
+   "text": "uputstvo",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "garancija",
+   "datei": "w2309.mp3",
+   "text": "garancija",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "moram sipati gorivo.",
+   "datei": "w2310.mp3",
+   "text": "Moram sipati gorivo.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "gdje mogu parkirati svoj auto?",
+   "datei": "w2311.mp3",
+   "text": "Gdje mogu parkirati svoj auto?",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "na semaforu je crveno.",
+   "datei": "w2312.mp3",
+   "text": "Na semaforu je crveno.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "daj mi kliješta, molim te.",
+   "datei": "w2313.mp3",
+   "text": "Daj mi kliješta, molim te.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "gdje je moj punjač?",
+   "datei": "w2314.mp3",
+   "text": "Gdje je moj punjač?",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "pošalji mi poruku.",
+   "datei": "w2315.mp3",
+   "text": "Pošalji mi poruku.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "ne radi mašina za suđe.",
+   "datei": "w2316.mp3",
+   "text": "Ne radi mašina za suđe.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "odvijač / šrafciger",
+   "datei": "w2317.mp3",
+   "text": "odvijač / šrafciger",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "šifra / lozinka",
+   "datei": "w2318.mp3",
+   "text": "šifra / lozinka",
    "stimme": "bs-BA-GoranNeural"
   }
  ]

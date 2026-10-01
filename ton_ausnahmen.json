@@ -79,6 +79,31 @@
    "datei": "w0832.mp3",
    "fassung": "kroatisch",
    "gewaehlt_am": "26.09.2026"
+  },
+  "nju": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w0496.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "01.10.2026"
+  },
+  "drug": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "datei": "w2014.mp3",
+   "fassung": "kroatisch",
+   "gewaehlt_am": "01.10.2026"
+  },
+  "skup": {
+   "stimme": "hr-HR-SreckoNeural",
+   "sprache": "hr-HR",
+   "lautschrift": true,
+   "ipa": "skuːp",
+   "datei": "w0755.mp3",
+   "fassung": "kroatisch_lang",
+   "gewaehlt_am": "01.10.2026"
   }
  },
  "warum": "Von Ajdin am 26.09.2026 ausgewaehlt. Ohne diese Datei erzeugt ton_bauen.py sie wieder mit der bosnischen Standardstimme."
