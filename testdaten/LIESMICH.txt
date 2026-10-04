@@ -2,25 +2,34 @@ TESTDATEN - ALLES FREIGESCHALTET
 ================================
 
 Zwei Sicherungen zum Durchtesten der App. Erzeugt von testdaten_bauen.py
-im Ordner darueber. Beide schalten alles frei:
-
-  1108 Woerter gelernt
-    43 Level bestanden
-    12 Geschichten gelesen
-  9999 Muenzen
-       alles aus dem Laden gekauft (Brille, Kopfhoerer, Hut, Krone)
+im Ordner darueber, immer aus dem aktuellen Inhalt (vokabeln.py,
+geschichten.py). In beiden ist jedes Level bestanden und jede Geschichte
+gelesen, beide haben 999999 Muenzen und 30 Lerntage bis gestern.
 
 Der Unterschied:
 
   zmaj-test-vollversion.json   Vollversion AN.
+                               Jedes Wort des Kurses gelernt, alles aus dem
+                               Laden gekauft, der Drache traegt die Krone.
                                Keine Werbung, unbegrenzte Leben.
-                               So sieht es fuer einen zahlenden Nutzer aus.
+                               So sieht es fuer einen zahlenden Nutzer aus,
+                               der alles geschafft hat.
 
   zmaj-test-alles-offen.json   Vollversion AUS.
+                               Alles offen, aber NICHTS gelernt und nichts
+                               gekauft. Lektionen zeigen Vorstellkarten,
                                Leben, Werbung und Laden laufen normal.
                                So sieht es fuer alle anderen aus.
 
 Man kann nicht beides gleichzeitig testen - deshalb zwei Dateien.
+
+Wie viele Woerter, Level und Geschichten genau drinstehen, steht hier
+absichtlich nicht: die Zahlen wachsen mit dem Kurs. Das Skript nennt sie
+beim Laufen. tests/test_testdaten.py prueft, dass die Dateien zum Inhalt
+passen - schlaegt er an, testdaten_bauen.py neu laufen lassen.
+
+Die Lerntage altern: am Testtag neu bauen, sonst meldet die App nach ein
+paar Tagen "Serie verloren".
 
 
 SO LAEDT MAN SIE
@@ -37,9 +46,6 @@ Einlesen ERSETZT den Stand auf dem Geraet. Es wird nichts vermischt.
 
 Hast du einen echten Lernstand, sichere ihn vorher ueber denselben Weg
 und lies ihn hinterher wieder ein. Sonst ist er weg.
-
-Lerntage sind absichtlich NICHT eingetragen: eine erfundene Lernserie
-wuerde die Anzeige oben verfaelschen.
 
 
 NICHT AUSLIEFERN

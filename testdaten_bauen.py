@@ -38,11 +38,24 @@ Datum gerechnet; liest man sie Tage später ein, verbraucht die App erst den
 Serienschutz und meldet dann „Serie verloren". Deshalb am Testtag noch
 einmal laufen lassen – das dauert Sekunden.
 
+Bis auf die Lerntage ist die Ausgabe vollständig durch den Inhalt bestimmt:
+zwei Läufe am selben Tag ergeben byte-gleiche Dateien. Wer sie an einem
+anderen Tag genau nachbauen will, gibt den letzten Lerntag mit:
+
+    python3 testdaten_bauen.py --bis 2026-10-03
+
+DRITTE ACHTUNG: Die Dateien veralten auch mit dem Inhalt. Im Oktober 2026
+standen noch 1108 Wörter und 43 Level drin, obwohl der Kurs längst 1728
+und 65 hatte – das Skript war richtig, es war nur nicht neu gelaufen.
+Seitdem prüft tests/test_testdaten.py, dass jede Kennung des Inhalts
+drinsteht. Schlägt der Test an: dieses Skript laufen lassen.
+
 Und: die Vollversion wirkt nur in der Geräteversion. Läuft `start.py`, holt
 der Server `premium` beim ersten Speichern aus der Profildatei zurück
 (start.py:875) – dann ist sie wieder aus. Am PC stattdessen `?alle=1` an
 die Adresse hängen, das schaltet zum Ausprobieren alles frei.
 """
+import argparse
 import datetime
 import io
 import json
@@ -64,7 +77,7 @@ MUENZEN = 999999
 LERNTAGE = 30
 
 
-def lerntage():
+def lerntage(bis=None):
     """Die letzten Tage BIS GESTERN - heute absichtlich nicht.
 
     Dann zeigt die Startseite erst die laufende Serie mit „heute noch nicht
@@ -75,24 +88,37 @@ def lerntage():
     Tage spaeter frisst der Serienschutz sich auf und es steht rot
     „Serie verloren" da. Deshalb am Testtag neu laufen lassen.
     """
-    heute = datetime.date.today()
+    # bis = letzter Lerntag. Ohne Angabe gestern, also heute minus i ab 1.
+    heute = (bis + datetime.timedelta(days=1)) if bis else datetime.date.today()
     return [(heute - datetime.timedelta(days=i)).isoformat()
             for i in range(LERNTAGE, 0, -1)]
 
 
-def stand(premium, alles_gewusst=True):
-    import vokabeln
-    import geschichten
+def inhalt():
+    """Alle Wort-Kennungen, Level und Geschichten - genau wie die App sie sieht.
 
-    # Die Wort-Kennung entsteht erst beim Ausliefern, aus deutschem und
-    # bosnischem Wort - genauso wie in start.lade_daten(). Steht sie hier
-    # anders, erkennt die App die Woerter nicht wieder.
+    Die Kennung baut start.mit_kennung(), dieselbe Funktion, die auch
+    start.lade_daten() benutzt. Früher stand die Regel hier ein zweites Mal;
+    weicht sie je ab, erkennt die App die Wörter nicht wieder.
+    Gezählt wird nichts von Hand: was im Inhalt steht, kommt in die Datei.
+    """
+    import geschichten
+    import start
+    import vokabeln
+
+    daten = start.mit_kennung({"kategorien": vokabeln.KATEGORIEN})
     woerter, level = [], []
-    for k in vokabeln.KATEGORIEN:
+    for k in daten["kategorien"]:
         level.append(k["id"])
         for w in k["words"]:
-            woerter.append("%s:%s" % (w.get("de", "").strip().lower(), w.get("bs", "")))
+            if w["id"] not in woerter:
+                woerter.append(w["id"])
     gelesen = [g["id"] for g in geschichten.GESCHICHTEN]
+    return woerter, level, gelesen
+
+
+def stand(premium, alles_gewusst=True, bis=None):
+    woerter, level, gelesen = inhalt()
 
     return {
         # Alle Woerter als gekonnt einzutragen kostet etwas: buildLesson baut
@@ -106,10 +132,10 @@ def stand(premium, alles_gewusst=True):
         "bestanden": level,
         "gelesen": gelesen,
         # Lerntage MÜSSEN sein. Ohne sie sagt die App an drei Stellen
-        # „heute noch nicht geübt" und „noch keine Lernserie" – bei 43
+        # „heute noch nicht geübt" und „noch keine Lernserie" – bei lauter
         # bestandenen Leveln. Und die Tagesaufgaben blieben auf Stufe 1,
         # damit wäre ein ganzer Zweig der App gar nicht anschaubar.
-        "tage": lerntage(),
+        "tage": lerntage(bis),
         "frost": [],
         # Alles aus dem Laden schon gekauft, damit man den Drachen
         # anziehen kann, ohne erst sparen zu müssen. In der zweiten Datei
@@ -130,9 +156,9 @@ def stand(premium, alles_gewusst=True):
     }
 
 
-def schreibe(name, premium, hinweis, alles_gewusst=True):
+def schreibe(name, premium, hinweis, alles_gewusst=True, bis=None):
     d = {"app": "zmaj", "version": 1, "aus": hinweis,
-         "stand": stand(premium, alles_gewusst)}
+         "stand": stand(premium, alles_gewusst, bis)}
     pfad = os.path.join(ZIEL, name)
     io.open(pfad, "w", encoding="utf-8").write(
         json.dumps(d, ensure_ascii=False, indent=1))
@@ -144,12 +170,16 @@ def schreibe(name, premium, hinweis, alles_gewusst=True):
     return pfad
 
 
-def main():
+def main(argv=None):
+    p = argparse.ArgumentParser(description="Sicherungen zum Durchtesten bauen.")
+    p.add_argument("--bis", type=datetime.date.fromisoformat, default=None,
+                   help="letzter Lerntag JJJJ-MM-TT (Vorgabe: gestern)")
+    bis = p.parse_args(argv).bis
     os.makedirs(ZIEL, exist_ok=True)
     print("Testdaten bauen ...\n")
-    schreibe("zmaj-test-vollversion.json", True, "Test mit Vollversion")
+    schreibe("zmaj-test-vollversion.json", True, "Test mit Vollversion", bis=bis)
     schreibe("zmaj-test-alles-offen.json", False, "Test ohne Vollversion",
-             alles_gewusst=False)
+             alles_gewusst=False, bis=bis)
     print("\nLiegt in: %s" % ZIEL)
     print("In der App: Einstellungen > Sicherung > Sicherung einlesen.")
     print("Achtung: Das ersetzt den Stand auf dem Gerät. Eigenen vorher sichern.")
