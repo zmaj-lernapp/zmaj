@@ -33,4 +33,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #7 Inhaltstests in allen Sprachen: 16 Tabellen, 104 Übungen, 406 Wörterbucheinträge – keine Befunde | `74df921` |
 | #8 Live-Demo: `demo_bauen.py` (ohne Werbung, passender Datenschutztext), Pages-Workflow, Tests | `c0e28c4` |
 | #9 Test-Werkzeuge mit Prüfsummen gesperrt (Scorecard „Pinned-Dependencies“); Demo-Link in der Bewerbung | `08e8a3b` |
-| #10 `docs/ARCHITECTURE.md` auf Englisch | dieser Commit |
+| #10 `docs/ARCHITECTURE.md` auf Englisch | `d8acf36` |
+| #11 Test: 39 relative Links in der Doku zeigen auf vorhandene Dateien | dieser Commit |
