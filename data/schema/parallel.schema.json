@@ -1,0 +1,20 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://github.com/zmaj-lernapp/zmaj/blob/master/data/schema/parallel.schema.json",
+ "title": "Zmaj Bosnian parallel text (one line of parallel.jsonl)",
+ "type": "object",
+ "required": ["id", "kind", "bs", "translations"],
+ "additionalProperties": false,
+ "properties": {
+  "id": {"type": "string", "minLength": 1, "description": "The id of the entry in vocabulary.json, sentences.json or stories.json. Unique only together with kind."},
+  "kind": {"enum": ["word", "sentence", "story"]},
+  "bs": {"type": "string", "minLength": 1, "description": "Bosnian (Ijekavian, Latin script). A story is the full text, not split into sentences."},
+  "translations": {
+   "type": "object",
+   "minProperties": 1,
+   "propertyNames": {"enum": ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]},
+   "additionalProperties": {"type": "string", "minLength": 1},
+   "description": "Translation per language code. Empty translations are left out."
+  }
+ }
+}

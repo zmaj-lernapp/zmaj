@@ -1,0 +1,2029 @@
+bs	tr	kind	id
+Merhaba	Merhaba	word	hallo:Merhaba
+Dobar dan	İyi günler	word	guten tag:Dobar dan
+Dobro jutro	Günaydın	word	guten morgen:Dobro jutro
+Dobro veče	İyi akşamlar	word	guten abend:Dobro veče
+Laku noć / Lahku noć	İyi geceler	word	gute nacht:Laku noć / Lahku noć
+Doviđenja	Hoşça kal	word	auf wiedersehen:Doviđenja
+Ćao	Görüşürüz	word	tschüss:Ćao
+Dobro došli	Hoş geldiniz	word	willkommen:Dobro došli
+Da	Evet	word	ja:Da
+Ne	Hayır	word	nein:Ne
+Hvala	Teşekkürler	word	danke:Hvala
+Hvala puno	Çok teşekkürler	word	vielen dank:Hvala puno
+Molim	Lütfen / Rica ederim (kibar, genel)	word	bitte (höflich, allgemein):Molim
+Nema na čemu	Rica ederim	word	gern geschehen:Nema na čemu
+Izvini	Affedersin (sen)	word	entschuldigung (du):Izvini
+Izvinite	Affedersiniz (siz)	word	entschuldigung (sie):Izvinite
+Kako si?	Nasılsın?	word	wie geht's dir?:Kako si?
+Kako ste?	Nasılsınız?	word	wie geht es ihnen?:Kako ste?
+Dobro	İyi	word	gut:Dobro
+Loše	Kötü	word	schlecht:Loše
+Kako se zoveš?	Adın ne?	word	wie heißt du?:Kako se zoveš?
+Zovem se ...	Benim adım ...	word	ich heiße ...:Zovem se ...
+Drago mi je	Memnun oldum	word	freut mich:Drago mi je
+Razumijem	Anlıyorum	word	ich verstehe:Razumijem
+Ne razumijem	Anlamıyorum	word	ich verstehe nicht:Ne razumijem
+Ne znam	Bilmiyorum	word	ich weiß nicht:Ne znam
+Govoriš li njemački?	Almanca konuşuyor musun?	word	sprichst du deutsch?:Govoriš li njemački?
+Govorim malo bosanski	Biraz Boşnakça konuşuyorum	word	ich spreche ein bisschen bosnisch:Govorim malo bosanski
+U redu	Tamam	word	in ordnung / okay:U redu
+Možda	Belki	word	vielleicht:Možda
+Živjeli!	Şerefe!	word	prost!:Živjeli!
+Prijatno	Afiyet olsun	word	guten appetit:Prijatno
+Zdravo	Merhaba (nötr, her yerde)	word	hallo (neutral, ueberall):Zdravo
+nula	sıfır	word	null:nula
+jedan	bir	word	eins:jedan
+dva	iki	word	zwei:dva
+tri	üç	word	drei:tri
+četiri	dört	word	vier:četiri
+pet	beş	word	fünf:pet
+šest	altı	word	sechs:šest
+sedam	yedi	word	sieben:sedam
+osam	sekiz	word	acht:osam
+devet	dokuz	word	neun:devet
+deset	on	word	zehn:deset
+jedanaest	on bir	word	elf:jedanaest
+dvanaest	on iki	word	zwölf:dvanaest
+trinaest	on üç	word	dreizehn:trinaest
+četrnaest	on dört	word	vierzehn:četrnaest
+petnaest	on beş	word	fünfzehn:petnaest
+šesnaest	on altı	word	sechzehn:šesnaest
+sedamnaest	on yedi	word	siebzehn:sedamnaest
+osamnaest	on sekiz	word	achtzehn:osamnaest
+devetnaest	on dokuz	word	neunzehn:devetnaest
+dvadeset	yirmi	word	zwanzig:dvadeset
+dvadeset jedan	yirmi bir	word	einundzwanzig:dvadeset jedan
+trideset	otuz	word	dreißig:trideset
+četrdeset	kırk	word	vierzig:četrdeset
+pedeset	elli	word	fünfzig:pedeset
+šezdeset	altmış	word	sechzig:šezdeset
+sedamdeset	yetmiş	word	siebzig:sedamdeset
+osamdeset	seksen	word	achtzig:osamdeset
+devedeset	doksan	word	neunzig:devedeset
+sto	yüz	word	hundert:sto
+dvjesto	iki yüz	word	zweihundert:dvjesto
+hiljada	bin	word	tausend:hiljada
+boja	renk	word	farbe:boja
+crvena	kırmızı	word	rot:crvena
+plava	mavi	word	blau:plava
+zelena	yeşil	word	grün:zelena
+žuta	sarı	word	gelb:žuta
+crna	siyah	word	schwarz:crna
+bijela	beyaz	word	weiß:bijela
+kafena	kahverengi	word	braun:kafena
+siva	gri	word	grau:siva
+narandžasta	turuncu	word	orange:narandžasta
+ljubičasta	mor	word	lila:ljubičasta
+roza	pembe	word	rosa:roza
+majka	anne	word	mutter:majka
+mama	anneciğim	word	mama:mama
+otac	baba	word	vater:otac
+babo	babacığım (Boşnakça babo)	word	papa (bosnisch):babo
+brat	erkek kardeş	word	bruder:brat
+sestra	kız kardeş	word	schwester:sestra
+sin	oğul	word	sohn:sin
+kćerka	kız evlat	word	tochter:kćerka
+dijete	çocuk	word	kind:dijete
+djeca	çocuklar	word	kinder:djeca
+žena	eş (kadın)	word	ehefrau:žena
+muž	eş (erkek)	word	ehemann:muž
+nana	nine	word	oma:nana
+dedo	dede	word	opa:dedo
+tetka	teyze / hala	word	tante:tetka
+amidža	amca	word	onkel (vaterseite):amidža
+daidža	dayı	word	onkel (mutterseite):daidža
+rođak	kuzen	word	cousin:rođak
+beba	bebek	word	baby:beba
+porodica	Aile	word	familie:porodica
+prijatelj	arkadaş (erkek)	word	freund:prijatelj
+prijateljica	arkadaş (kadın)	word	freundin:prijateljica
+voda	su	word	wasser:voda
+hljeb	ekmek	word	brot:hljeb
+kahva / kafa	kahve	word	kaffee:kahva / kafa
+fildžan	fincan (geleneksel kahve fincanı)	word	kaffeetasse (traditionell):fildžan
+čaj	çay	word	tee:čaj
+mlijeko	süt	word	milch:mlijeko
+sok	meyve suyu	word	saft:sok
+pivo	bira	word	bier:pivo
+meso	et	word	fleisch:meso
+piletina	tavuk eti	word	hähnchen:piletina
+riba	balık	word	fisch:riba
+sir	peynir	word	käse:sir
+jaje	yumurta	word	ei:jaje
+jabuka	elma	word	apfel:jabuka
+voće	meyve	word	obst:voće
+povrće	sebze	word	gemüse:povrće
+krompir	patates	word	kartoffel:krompir
+paradajz	domates	word	tomate:paradajz
+luk	soğan	word	zwiebel:luk
+riža	pirinç	word	reis:riža
+so	tuz	word	salz:so
+šećer	şeker	word	zucker:šećer
+supa	çorba	word	suppe:supa
+pita	pita (yufkadan börek)	word	pita (blätterteig-gericht):pita
+ćevapi	ćevapi (küçük köfteler)	word	ćevapi:ćevapi
+doručak	kahvaltı	word	frühstück:doručak
+ručak	öğle yemeği	word	mittagessen:ručak
+večera	akşam yemeği	word	abendessen:večera
+Gladan sam / Gladna sam	Açım (e/k)	word	ich habe hunger (m/w):Gladan sam / Gladna sam
+Žedan sam / Žedna sam	Susadım (e/k)	word	ich habe durst (m/w):Žedan sam / Žedna sam
+Račun, molim	Hesap, lütfen	word	die rechnung, bitte:Račun, molim
+ponedjeljak	Pazartesi	word	montag:ponedjeljak
+utorak	Salı	word	dienstag:utorak
+srijeda	Çarşamba	word	mittwoch:srijeda
+četvrtak	Perşembe	word	donnerstag:četvrtak
+petak	Cuma	word	freitag:petak
+subota	Cumartesi	word	samstag:subota
+nedjelja	Pazar	word	sonntag:nedjelja
+vikend	hafta sonu	word	wochenende:vikend
+sedmica	hafta	word	woche:sedmica
+januar	Ocak	word	januar:januar
+februar	Şubat	word	februar:februar
+mart	Mart	word	märz:mart
+april	Nisan	word	april:april
+maj	Mayıs	word	mai:maj
+juni	Haziran	word	juni:juni
+juli	Temmuz	word	juli:juli
+august	Ağustos	word	august:august
+septembar	Eylül	word	september:septembar
+oktobar	Ekim	word	oktober:oktobar
+novembar	Kasım	word	november:novembar
+decembar	Aralık	word	dezember:decembar
+mjesec	ay	word	monat:mjesec
+godina	yıl	word	jahr:godina
+danas	bugün	word	heute:danas
+sutra	yarın	word	morgen (der nächste tag):sutra
+jučer	dün	word	gestern:jučer
+sada	şimdi	word	jetzt:sada
+kasnije	sonra	word	später:kasnije
+dan	gün	word	tag:dan
+jutro	sabah	word	morgen (tageszeit):jutro
+podne	öğle	word	mittag:podne
+večer	akşam	word	abend:večer
+noć	gece	word	nacht:noć
+sat	saat	word	stunde / uhr:sat
+minuta	dakika	word	minute:minuta
+Koliko je sati?	Saat kaç?	word	wie spät ist es?:Koliko je sati?
+Vidimo se sutra!	Yarın görüşürüz!	word	bis morgen!:Vidimo se sutra!
+stan	daire	word	wohnung:stan
+soba	oda	word	zimmer:soba
+kuhinja	mutfak	word	küche:kuhinja
+kupatilo	banyo	word	bad:kupatilo
+spavaća soba	yatak odası	word	schlafzimmer:spavaća soba
+dnevna soba	oturma odası	word	wohnzimmer:dnevna soba
+vrata	kapı	word	tür:vrata
+prozor	pencere	word	fenster:prozor
+sto	masa	word	tisch:sto
+stolica	sandalye	word	stuhl:stolica
+krevet	yatak	word	bett:krevet
+ključ	anahtar	word	schlüssel:ključ
+lampa	lamba	word	lampe:lampa
+televizor	televizyon	word	fernseher:televizor
+mobitel	cep telefonu	word	handy:mobitel
+frižider	buzdolabı	word	kühlschrank:frižider
+šporet	mutfak ocağı	word	herd:šporet
+tepih	halı	word	teppich:tepih
+peškir	havlu	word	handtuch:peškir
+sapun	sabun	word	seife:sapun
+stepenice	merdiven	word	treppe:stepenice
+balkon	balkon	word	balkon:balkon
+bašta	bahçe	word	garten:bašta
+komšija	komşu	word	nachbar:komšija
+vrijeme	hava durumu	word	wetter:vrijeme
+sunce	güneş	word	sonne:sunce
+kiša	yağmur	word	regen:kiša
+snijeg	kar	word	schnee:snijeg
+vjetar	rüzgâr	word	wind:vjetar
+oblak	bulut	word	wolke:oblak
+toplo	ılık	word	warm:toplo
+hladno	soğuk	word	kalt:hladno
+vruće	sıcak	word	heiß:vruće
+Pada kiša	Yağmur yağıyor	word	es regnet:Pada kiša
+Pada snijeg	Kar yağıyor	word	es schneit:Pada snijeg
+proljeće	ilkbahar	word	frühling:proljeće
+ljeto	yaz	word	sommer:ljeto
+jesen	sonbahar	word	herbst:jesen
+zima	kış	word	winter:zima
+planina	dağ	word	berg:planina
+rijeka	nehir	word	fluss:rijeka
+more	deniz	word	meer:more
+jezero	göl	word	see:jezero
+šuma	orman	word	wald:šuma
+drvo	ağaç	word	baum:drvo
+cvijet	çiçek	word	blume:cvijet
+nebo	gökyüzü	word	himmel:nebo
+zvijezda	yıldız	word	stern:zvijezda
+pas	köpek	word	hund:pas
+mačka	kedi	word	katze:mačka
+ptica	kuş	word	vogel:ptica
+pčela	arı	word	biene:pčela
+munja	şimşek	word	blitz:munja
+grmljavina	gök gürültüsü	word	donner:grmljavina
+led	buz (donmuş su)	word	eis (gefrorenes wasser):led
+magla	sis	word	nebel:magla
+duga	gökkuşağı	word	regenbogen:duga
+hlad	gölge	word	schatten:hlad
+oluja	fırtına	word	sturm:oluja
+glava	baş	word	kopf:glava
+kosa	saç	word	haar:kosa
+oko	göz	word	auge:oko
+uho	kulak	word	ohr:uho
+nos	burun	word	nase:nos
+usta	ağız	word	mund:usta
+zub	diş	word	zahn:zub
+vrat	boyun / boğaz	word	hals:vrat
+ruka	el / kol	word	hand / arm:ruka
+prst	parmak	word	finger:prst
+noga	bacak	word	bein:noga
+stomak	karın	word	bauch:stomak
+leđa	sırt	word	rücken:leđa
+srce	kalp	word	herz:srce
+bolestan / bolesna	hasta (e/k)	word	krank (m/w):bolestan / bolesna
+zdrav / zdrava	sağlıklı (e/k)	word	gesund (m/w):zdrav / zdrava
+doktor	doktor	word	arzt:doktor
+bolnica	hastane	word	krankenhaus:bolnica
+apoteka	eczane	word	apotheke:apoteka
+bol	ağrı	word	schmerz:bol
+Boli me	Ağrıyor	word	es tut mir weh:Boli me
+glavobolja	baş ağrısı	word	kopfschmerzen:glavobolja
+temperatura	vücut ateşi	word	fieber:temperatura
+lijek	ilaç	word	medikament:lijek
+Brz oporavak	Geçmiş olsun!	word	gute besserung!:Brz oporavak
+radnja	dükkân	word	geschäft:radnja
+tržni centar	alışveriş merkezi	word	einkaufszentrum:tržni centar
+kasa	kasa	word	kasse:kasa
+cijena	fiyat	word	preis:cijena
+popust	indirim	word	rabatt:popust
+gotovina	nakit	word	bargeld:gotovina
+kartica	kart (banka kartı)	word	karte (bankkarte):kartica
+torba	çanta	word	tasche:torba
+odjeća	giysi	word	kleidung:odjeća
+košulja	gömlek	word	hemd:košulja
+majica	tişört	word	t-shirt:majica
+pantalone	pantolon	word	hose:pantalone
+jakna	ceket	word	jacke:jakna
+haljina	elbise	word	kleid:haljina
+suknja	etek	word	rock:suknja
+cipele	ayakkabı	word	schuhe:cipele
+čarape	çorap	word	socken:čarape
+kapa	bere	word	mütze:kapa
+veličina	beden	word	größe:veličina
+veliko	büyük	word	groß:veliko
+malo	küçük	word	klein:malo
+novo	yeni	word	neu:novo
+staro	eski	word	alt:staro
+Tražim ...	... arıyorum	word	ich suche ...:Tražim ...
+Imate li ...?	... var mı?	word	haben sie ...?:Imate li ...?
+Uzet ću ovo	Bunu alıyorum	word	ich nehme das:Uzet ću ovo
+Mogu li platiti karticom?	Kartla ödeyebilir miyim?	word	kann ich mit karte zahlen?:Mogu li platiti karticom?
+Gdje je ...?	... nerede?	word	wo ist ...?:Gdje je ...?
+lijevo	sol	word	links:lijevo
+desno	sağ	word	rechts:desno
+pravo	dosdoğru	word	geradeaus:pravo
+ulica	sokak	word	straße:ulica
+kuća	ev	word	haus:kuća
+grad	şehir	word	stadt:grad
+selo	köy	word	dorf:selo
+stanica	istasyon / durak	word	bahnhof / haltestelle:stanica
+auto	araba	word	auto:auto
+autobus	otobüs	word	bus:autobus
+prodavnica	mağaza	word	laden:prodavnica
+pijaca	pazar yeri	word	markt:pijaca
+novac	para	word	geld:novac
+Koliko košta?	Bu kaça?	word	wie viel kostet das?:Koliko košta?
+skupo	pahalı	word	teuer:skupo
+jeftino	ucuz	word	billig:jeftino
+otvoreno	açık	word	offen:otvoreno
+zatvoreno	kapalı	word	geschlossen:zatvoreno
+biti	olmak	word	sein:biti
+imati	sahip olmak	word	haben:imati
+ići	gitmek	word	gehen:ići
+doći	gelmek	word	kommen:doći
+jesti	yemek	word	essen:jesti
+piti	içmek	word	trinken:piti
+govoriti	konuşmak	word	sprechen:govoriti
+razumjeti	anlamak	word	verstehen:razumjeti
+znati	bilmek	word	wissen:znati
+htjeti	istemek	word	wollen:htjeti
+moći	-ebilmek	word	können:moći
+voljeti	sevmek	word	lieben:voljeti
+raditi	çalışmak	word	arbeiten:raditi
+spavati	uyumak	word	schlafen:spavati
+učiti	öğrenmek	word	lernen:učiti
+vidjeti	görmek	word	sehen:vidjeti
+kupiti	satın almak	word	kaufen:kupiti
+stanovati	oturmak / yaşamak	word	wohnen:stanovati
+Šta ima?	Ne var ne yok?	word	was gibt's? / wie läuft's?:Šta ima?
+Sve je dobro	Her şey yolunda	word	alles gut:Sve je dobro
+Nema problema	Sorun değil	word	kein problem:Nema problema
+Ne brini	Merak etme	word	mach dir keine sorgen:Ne brini
+Hajde!	Hadi!	word	komm! / los!:Hajde!
+Hajmo!	Hadi gidelim!	word	auf geht's!:Hajmo!
+Vidi	Bak	word	schau mal:Vidi
+Stvarno?	Gerçekten mi?	word	wirklich?:Stvarno?
+Super!	Süper!	word	super!:Super!
+lijepo	güzel	word	schön:lijepo
+Ništa	Hiçbir şey	word	nichts:Ništa
+Sve	Her şey	word	alles:Sve
+Šta radiš?	Ne yapıyorsun?	word	was machst du?:Šta radiš?
+Gdje si?	Neredesin?	word	wo bist du?:Gdje si?
+Nemam vremena	Vaktim yok	word	ich habe keine zeit:Nemam vremena
+Umoran sam / Umorna sam	Yorgunum (e/k)	word	ich bin müde (m/w):Umoran sam / Umorna sam
+sretan / sretna	mutlu (e/k)	word	glücklich (m/w):sretan / sretna
+tužan / tužna	üzgün (e/k)	word	traurig (m/w):tužan / tužna
+ljubav	sevgi	word	liebe:ljubav
+Volim te	Seni seviyorum	word	ich liebe dich:Volim te
+Nedostaješ mi	Seni özledim	word	ich vermisse dich:Nedostaješ mi
+dušo	canım (hitap)	word	schatz (anrede):dušo
+Sviđa mi se	Bu hoşuma gidiyor	word	das gefällt mir:Sviđa mi se
+Htio bih / Htjela bih	İstiyorum (e/k)	word	ich möchte (m/w):Htio bih / Htjela bih
+Molim te	Lütfen (rica ederken, sen)	word	bitte (um etwas bitten, du-form):Molim te
+Znaš ...	Biliyor musun ...	word	weißt du ...:Znaš ...
+ananas	ananas	word	ananas:ananas
+kajsija	kayısı	word	aprikose:kajsija
+banana	muz	word	banane:banana
+kruška	armut	word	birne:kruška
+kupina	böğürtlen	word	brombeere:kupina
+jagoda	çilek	word	erdbeere:jagoda
+smokva	incir	word	feige:smokva
+nar	nar	word	granatapfel:nar
+lješnjak	fındık	word	haselnuss:lješnjak
+borovnica	yaban mersini	word	heidelbeere:borovnica
+malina	ahududu	word	himbeere:malina
+dinja	kavun	word	honigmelone:dinja
+kesten	kestane	word	kastanie:kesten
+trešnja	kiraz	word	kirsche:trešnja
+mandarina	mandalina	word	mandarine:mandarina
+badem	badem	word	mandel:badem
+nektarina	nektarin	word	nektarine:nektarina
+breskva	şeftali	word	pfirsich:breskva
+dunja	ayva	word	quitte:dunja
+višnja	vişne	word	sauerkirsche:višnja
+suho voće	kuru meyve	word	trockenobst:suho voće
+lubenica	karpuz	word	wassermelone:lubenica
+grožđe	üzüm	word	weintraube:grožđe
+limun	limon	word	zitrone:limun
+patlidžan	patlıcan	word	aubergine:patlidžan
+karfiol	karnabahar	word	blumenkohl:karfiol
+brokula	brokoli	word	brokkoli:brokula
+grašak	bezelye	word	erbsen:grašak
+mladi luk	taze soğan	word	frühlingszwiebel:mladi luk
+boranija	taze fasulye	word	grüne bohnen:boranija
+krastavac	salatalık	word	gurke:krastavac
+mrkva	havuç	word	karotte:mrkva
+bijeli luk	sarımsak	word	knoblauch:bijeli luk
+kupus	lahana	word	kohl:kupus
+zelena salata	marul	word	kopfsalat:zelena salata
+bundeva	balkabağı	word	kürbis:bundeva
+praziluk	pırasa	word	lauch:praziluk
+kukuruz	mısır	word	mais:kukuruz
+blitva	pazı	word	mangold:blitva
+bamija	bamya	word	okra:bamija
+paprika	biber (sebze)	word	paprika:paprika
+peršun	maydanoz	word	petersilie:peršun
+gljive	mantar	word	pilze:gljive
+rotkvica	kırmızı turp	word	radieschen:rotkvica
+cvekla	kırmızı pancar	word	rote bete:cvekla
+crveni luk	kırmızı soğan	word	rote zwiebel:crveni luk
+ljuta paprika	acı biber	word	scharfe paprika:ljuta paprika
+celer	kereviz	word	sellerie:celer
+špinat	ıspanak	word	spinat:špinat
+kelj	kıvırcık lahana	word	wirsing:kelj
+tikvica	sakız kabağı	word	zucchini:tikvica
+prašak za pecivo	kabartma tozu	word	backpulver:prašak za pecivo
+maslac / puter	tereyağı	word	butter:maslac / puter
+turšija	turşu	word	eingelegtes gemüse:turšija
+sladoled	dondurma	word	eis (speiseeis):sladoled
+začini	baharat	word	gewürze:začini
+griz	irmik	word	grieß:griz
+mljeveno meso	kıyma	word	hackfleisch:mljeveno meso
+kvasac	maya	word	hefe:kvasac
+teletina	dana eti	word	kalbfleisch:teletina
+keks	bisküvi	word	kekse:keks
+kečap	ketçap	word	ketchup:kečap
+konzerva	konserve	word	konserve:konzerva
+janjetina	kuzu eti	word	lammfleisch:janjetina
+pašteta	ciğer ezmesi	word	leberpastete:pašteta
+leća	mercimek	word	linsen:leća
+margarin	margarin	word	margarine:margarin
+džem	reçel	word	marmelade:džem
+majonez	mayonez	word	mayonnaise:majonez
+mineralna voda	maden suyu	word	mineralwasser:mineralna voda
+pekmez	pekmez (erik pekmezi)	word	pflaumenmus:pekmez
+junetina	sığır eti	word	rindfleisch:junetina
+slatka pavlaka	krema (süt kreması)	word	sahne:slatka pavlaka
+salama	salam	word	salami:salama
+kiseli kupus	lahana turşusu	word	sauerkraut:kiseli kupus
+kiselo mlijeko	ekşi süt (yoğurda benzer içecek)	word	sauermilch:kiselo mlijeko
+kisela pavlaka	ekşi krema	word	saure sahne:kisela pavlaka
+šunka	jambon	word	schinken:šunka
+šlag	krem şanti	word	schlagsahne:šlag
+čokolada	çikolata	word	schokolade:čokolada
+senf	hardal	word	senf:senf
+kisela voda	gazlı su (soda)	word	sprudelwasser:kisela voda
+sudžuk	sudžuk (sucuk)	word	sudžuk:sudžuk
+tunjevina	ton balığı	word	thunfisch:tunjevina
+zimnica	kışlık erzak	word	wintervorrat:zimnica
+kobasica	sosis	word	wurst:kobasica
+sirće	sirke	word	essig:sirće
+med	bal	word	honig:med
+jogurt	yoğurt	word	joghurt:jogurt
+brašno	un	word	mehl:brašno
+tjestenina	makarna	word	nudeln:tjestenina
+biber	kara biber	word	pfeffer:biber
+pavlaka	ekşi krema	word	sauerrahm / schmand:pavlaka
+ulje	yemeklik yağ	word	speiseöl:ulje
+jufka	yufka	word	blätterteig:jufka
+pogača	pide (yuvarlak)	word	fladenbrot (rund):pogača
+pecivo	hamur işi (çörek)	word	gebäck:pecivo
+kifla	ay çöreği	word	hörnchen:kifla
+šampita	šampita (bezeli kremalı pasta)	word	cremeschnitte:šampita
+kadaif	tel kadayıf	word	fadengebäck:kadaif
+hurmašice	şerbetli hamur tatlısı	word	sirupgebäck:hurmašice
+rakija	rakija (meyveden yapılan sert içki)	word	rakija (obstbrand):rakija
+vino	şarap	word	wein:vino
+bosanska kahva	Bosna kahvesi	word	bosnischer kaffee:bosanska kahva
+Jednu bosansku kahvu, molim	Bir Bosna kahvesi, lütfen	word	eine bosnische, bitte:Jednu bosansku kahvu, molim
+džezva	cezve	word	kupferkännchen:džezva
+polako	yavaş	word	langsam:polako
+šećer u kocki	küp şeker	word	würfelzucker:šećer u kocki
+U zdravlje!	Sağlığınıza!	word	auf die gesundheit!:U zdravlje!
+Jednu rakiju, molim	Bir rakija, lütfen	word	einen rakija, bitte:Jednu rakiju, molim
+travarica	otlu rakija	word	kräuterbrand:travarica
+domaća rakija	ev yapımı rakija	word	selbstgebrannt:domaća rakija
+loza	üzüm rakijası	word	traubenbrand:loza
+šljivovica	erik rakijası	word	zwetschgenbrand:šljivovica
+kućni ljubimac	evcil hayvan	word	haustier:kućni ljubimac
+životinja	hayvan	word	tier:životinja
+stoka	çiftlik hayvanları / besi hayvanları	word	vieh / nutztiere:stoka
+patka	ördek	word	ente:patka
+magarac	eşek	word	esel:magarac
+guska	kaz	word	gans:guska
+horoz	horoz	word	hahn:horoz
+avlija	avlu / iç avlu	word	hof / innenhof:avlija
+kokoš	tavuk	word	huhn:kokoš
+tele	buzağı	word	kalb:tele
+pile	civciv / piliç	word	kueken / haehnchen:pile
+krava	inek	word	kuh:krava
+jagnje	kuzu	word	lamm:jagnje
+konj	at	word	pferd:konj
+ovca	koyun	word	schaf:ovca
+svinja	domuz	word	schwein:svinja
+svinjetina	domuz eti	word	schweinefleisch:svinjetina
+štala	ahır	word	stall:štala
+bik	boğa	word	stier:bik
+štene	köpek yavrusu	word	welpe:štene
+koza	keçi	word	ziege:koza
+orao	kartal	word	adler:orao
+sova	baykuş	word	eule:sova
+vrana	karga	word	kraehe:vrana
+gnijezdo	yuva (kuş yuvası)	word	nest:gnijezdo
+lastavica	kırlangıç	word	schwalbe:lastavica
+vrabac	serçe	word	spatz:vrabac
+roda	leylek	word	storch:roda
+golub	güvercin	word	taube:golub
+medvjed	ayı	word	baer:medvjed
+zmaj	ejderha	word	drache:zmaj
+vjeverica	sincap	word	eichhoernchen:vjeverica
+žaba	kurbağa	word	frosch:žaba
+lisica	tilki	word	fuchs:lisica
+zec	yaban tavşanı	word	hase:zec
+jelen	geyik	word	hirsch:jelen
+jež	kirpi	word	igel:jež
+kunić	evcil tavşan	word	kaninchen:kunić
+ris	vaşak	word	luchs:ris
+miš	fare	word	maus:miš
+pacov	sıçan	word	ratte:pacov
+srna	karaca	word	reh:srna
+zmija	yılan	word	schlange:zmija
+divlja svinja	yaban domuzu	word	wildschwein:divlja svinja
+vuk	kurt	word	wolf:vuk
+mrav	karınca	word	ameise:mrav
+muha	sinek	word	fliege:muha
+buha	pire	word	floh:buha
+pastrmka	alabalık	word	forelle:pastrmka
+komarac	sivrisinek	word	muecke:komarac
+leptir	kelebek	word	schmetterling:leptir
+puž	salyangoz	word	schnecke:puž
+pauk	örümcek	word	spinne:pauk
+osa	yaban arısı	word	wespe:osa
+crv	solucan	word	wurm:crv
+krpelj	kene	word	zecke:krpelj
+buvljak	bit pazarı	word	flohmarkt:buvljak
+pero	tüy (kuş tüyü)	word	feder:pero
+krzno	kürk	word	fell:krzno
+krilo	kanat	word	fluegel:krilo
+rog	boynuz	word	horn:rog
+povodac	tasma (gezdirme kayışı)	word	leine:povodac
+rep	kuyruk	word	schwanz:rep
+veterinar	veteriner	word	tierarzt:veterinar
+ugristi	ısırmak	word	beissen:ugristi
+Hoće li ujesti?	Isırır mı?	word	beisst er?:Hoće li ujesti?
+lajati	havlamak	word	bellen:lajati
+hraniti	beslemek	word	fuettern:hraniti
+Bojim se pasa	Köpeklerden korkuyorum	word	ich habe angst vor hunden:Bojim se pasa
+šetati	yürüyüşe çıkmak	word	spazieren gehen:šetati
+šetnja	yürüyüş	word	spaziergang:šetnja
+ubosti	sokmak (böcek)	word	stechen (insekt):ubosti
+Čuvaj se psa!	Köpeğe dikkat!	word	vorsicht vor dem hund!:Čuvaj se psa!
+Pas me je ujeo	Köpek beni ısırdı	word	der hund hat mich gebissen:Pas me je ujeo
+opasno	tehlikeli	word	gefaehrlich:opasno
+opasnost	tehlike	word	gefahr:opasnost
+mina	mayın (kara mayını)	word	mine (landmine):mina
+zabranjeno	yasak	word	verboten:zabranjeno
+Pazi!	Dikkat! / Dikkat et!	word	vorsicht! / pass auf!:Pazi!
+potok	dere	word	bach:potok
+list	yaprak	word	blatt:list
+bunar	su kuyusu	word	brunnen:bunar
+zemlja	toprak	word	erde / boden:zemlja
+polje	tarla	word	feld / acker:polje
+stijena	kaya	word	fels:stijena
+vatra	ateş	word	feuer:vatra
+vrh	zirve	word	gipfel:vrh
+trava	çimen	word	gras:trava
+pećina	mağara	word	hoehle:pećina
+brdo	tepe	word	huegel:brdo
+ostrvo	ada	word	insel:ostrvo
+zrak	hava	word	luft:zrak
+priroda	doğa	word	natur:priroda
+izvor	kaynak (su kaynağı)	word	quelle:izvor
+pijesak	kum	word	sand:pijesak
+kamen	taş	word	stein:kamen
+dolina	vadi	word	tal:dolina
+obala	kıyı	word	ufer:obala
+vodopad	şelale	word	wasserfall:vodopad
+put / staza	yol / patika	word	weg / pfad:put / staza
+livada	çayır	word	wiese:livada
+grana	dal / ince dal	word	ast / zweig:grana
+kamilica	papatya	word	kamille:kamilica
+lipa	ıhlamur	word	linde:lipa
+nana (auch: metvica)	nane	word	minze:nana (auch: metvica)
+biljka	bitki	word	pflanze:biljka
+šljiva	erik / erik ağacı	word	pflaume / pflaumenbaum:šljiva
+orah	ceviz / ceviz ağacı	word	walnuss / walnussbaum:orah
+korijen	kök	word	wurzel:korijen
+rerna	fırın	word	backofen:rerna
+flaša	şişe	word	flasche:flaša
+viljuška	çatal	word	gabel:viljuška
+zamrzivač	dondurucu	word	gefrierschrank:zamrzivač
+suđe	tabak çanak (bulaşık)	word	geschirr:suđe
+prati suđe	bulaşık yıkamak	word	geschirr spülen:prati suđe
+tava	tava	word	pfanne:tava
+tanjir	tabak	word	teller:tanjir
+lonac	tencere	word	topf:lonac
+kesa	poşet / plastik poşet	word	tüte / plastiktüte:kesa
+posteljina	nevresim	word	bettwäsche:posteljina
+deka	battaniye	word	decke (bettdecke):deka
+jastuk	yastık	word	kissen:jastuk
+polica	raf	word	regal / brett:polica
+ormar	dolap	word	schrank:ormar
+kauč	kanepe	word	sofa:kauč
+zavjesa	perde	word	vorhang:zavjesa
+tuš	duş	word	dusche:tuš
+ogledalo	ayna	word	spiegel:ogledalo
+WC	tuvalet	word	toilette:WC
+toalet papir	tuvalet kâğıdı	word	toilettenpapier:toalet papir
+lavabo	lavabo	word	waschbecken:lavabo
+četkica za zube	diş fırçası	word	zahnbürste:četkica za zube
+pasta za zube	diş macunu	word	zahnpasta:pasta za zube
+pospremiti	ortalığı toplamak	word	aufräumen:pospremiti
+metla	süpürge	word	besen:metla
+pegla	ütü	word	bügeleisen:pegla
+peglati	ütülemek	word	bügeln:peglati
+kanta	kova	word	eimer:kanta
+smeće	çöp	word	müll:smeće
+kanta za smeće	çöp kovası / çöp bidonu	word	mülleimer / mülltonne:kanta za smeće
+čisto	temiz	word	sauber:čisto
+prljavo	kirli	word	schmutzig:prljavo
+usisivač	elektrikli süpürge	word	staubsauger:usisivač
+veš mašina	çamaşır makinesi	word	waschmaschine:veš mašina
+deterdžent	çamaşır deterjanı	word	waschmittel:deterdžent
+veš	çamaşır	word	wäsche:veš
+štrik	çamaşır ipi	word	wäscheleine:štrik
+lift	asansör	word	aufzug:lift
+poštansko sanduče	posta kutusu	word	briefkasten:poštansko sanduče
+krov	çatı	word	dach:krov
+tavan	tavan arası	word	dachboden:tavan
+pod	yer / zemin	word	fußboden:pod
+domar	kapıcı	word	hausmeister:domar
+podrum	bodrum	word	keller:podrum
+zvono	kapı zili	word	klingel:zvono
+zvoniti	zil çalmak	word	klingeln:zvoniti
+komšinica	komşu (kadın)	word	nachbarin:komšinica
+zid	duvar	word	wand:zid
+ograda	çit	word	zaun:ograda
+ugasiti	kapatmak / söndürmek	word	ausschalten / ausmachen:ugasiti
+bojler	termosifon / sıcak su deposu	word	boiler / warmwasserspeicher:bojler
+drva	odun (yakacak)	word	brennholz:drva
+upaliti	açmak / yakmak	word	einschalten / anmachen:upaliti
+Nema struje	Elektrik yok	word	es gibt keinen strom:Nema struje
+sijalica	ampul	word	glühbirne:sijalica
+grijanje	kalorifer / ısıtma	word	heizung:grijanje
+ugalj	kömür	word	kohle:ugalj
+svjetlo	ışık	word	licht:svjetlo
+peć	soba (ısıtma sobası)	word	ofen (heizofen):peć
+osigurač	elektrik sigortası	word	sicherung:osigurač
+utičnica	priz	word	steckdose:utičnica
+utikač	fiş	word	stecker:utikač
+struja	elektrik	word	strom:struja
+topla voda	sıcak su	word	warmes wasser:topla voda
+Ne radi	Çalışmıyor	word	es funktioniert nicht:Ne radi
+Curi voda	Su sızıyor / damlıyor	word	es läuft aus / es tropft:Curi voda
+čekić	çekiç	word	hammer:čekić
+majstor	zanaatkâr / usta	word	handwerker / fachmann:majstor
+pokvaren / pokvarena / pokvareno	bozuk	word	kaputt:pokvaren / pokvarena / pokvareno
+merdevine	el merdiveni	word	leiter:merdevine
+ekser	çivi	word	nagel:ekser
+popraviti	tamir etmek	word	reparieren:popraviti
+brava	kilit (kapı kilidi)	word	schloss (türschloss):brava
+šaraf	vida	word	schraube:šaraf
+slavina	musluk	word	wasserhahn:slavina
+alat	alet	word	werkzeug:alat
+gorivo	yakıt	word	kraftstoff / sprit:gorivo
+sipati gorivo	yakıt almak	word	tanken:sipati gorivo
+guma	lastik	word	reifen:guma
+Pukla mi je guma.	Lastiğim patladı.	word	ich habe einen platten.:Pukla mi je guma.
+kočnica	fren	word	bremse:kočnica
+motor	motor	word	motor:motor
+akumulator	akü	word	autobatterie:akumulator
+sigurnosni pojas	emniyet kemeri	word	sicherheitsgurt:sigurnosni pojas
+parkiralište	otopark	word	parkplatz:parkiralište
+parkirati	park etmek	word	parken:parkirati
+semafor	trafik lambası	word	ampel:semafor
+raskrsnica	kavşak	word	kreuzung:raskrsnica
+saobraćaj	trafik	word	verkehr:saobraćaj
+zastoj	trafik sıkışıklığı	word	stau:zastoj
+kazna	trafik cezası	word	strafzettel / bußgeld:kazna
+registracija	plaka	word	kennzeichen (auto):registracija
+tehnički pregled	araç muayenesi	word	hauptuntersuchung (tüv):tehnički pregled
+autoservis	oto tamirhanesi	word	autowerkstatt:autoservis
+šlep služba	çekici hizmeti	word	abschleppdienst:šlep služba
+pomoć na cesti	yol yardımı	word	pannenhilfe:pomoć na cesti
+odvijač / šrafciger	tornavida	word	schraubenzieher:odvijač / šrafciger
+kliješta	pense	word	zange:kliješta
+bušilica	matkap	word	bohrmaschine:bušilica
+bušiti	delmek	word	bohren:bušiti
+testera	testere	word	säge:testera
+francuski ključ	İngiliz anahtarı	word	rollgabelschlüssel (engländer):francuski ključ
+metar	şerit metre	word	maßband / zollstock:metar
+ljepilo	yapıştırıcı	word	kleber:ljepilo
+produžni kabl	uzatma kablosu	word	verlängerungskabel:produžni kabl
+radionica	atölye	word	werkstatt:radionica
+punjač	şarj aleti	word	ladegerät:punjač
+baterija	batarya	word	akku:baterija
+Baterija je prazna.	Şarjım bitti.	word	der akku ist leer.:Baterija je prazna.
+napuniti	şarj etmek	word	aufladen:napuniti
+šifra / lozinka	şifre	word	passwort:šifra / lozinka
+Koja je šifra za WiFi?	Wi-Fi şifresi ne?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
+internet	internet	word	internet:internet
+Nema signala.	Sinyal yok.	word	kein empfang.:Nema signala.
+poruka	mesaj	word	nachricht:poruka
+poslati poruku	mesaj göndermek	word	eine nachricht schicken:poslati poruku
+nazvati	aramak (telefonla)	word	anrufen:nazvati
+aplikacija	uygulama	word	app:aplikacija
+ekran	ekran	word	bildschirm:ekran
+tastatura	klavye	word	tastatur:tastatura
+štampač	yazıcı	word	drucker:štampač
+slušalice	kulaklık	word	kopfhörer:slušalice
+slikati	fotoğraf çekmek	word	fotografieren:slikati
+ažurirati	güncellemek	word	aktualisieren:ažurirati
+mašina za suđe	bulaşık makinesi	word	spülmaschine:mašina za suđe
+sušilica za veš	çamaşır kurutma makinesi	word	wäschetrockner:sušilica za veš
+mikrovalna	mikrodalga fırın	word	mikrowelle:mikrovalna
+toster	ekmek kızartma makinesi	word	toaster:toster
+kuhalo za vodu	su ısıtıcısı	word	wasserkocher:kuhalo za vodu
+fen	saç kurutma makinesi	word	föhn:fen
+klima	klima	word	klimaanlage:klima
+ventilator	vantilatör	word	ventilator:ventilator
+daljinski	kumanda	word	fernbedienung:daljinski
+aparat za kahvu / aparat za kafu	kahve makinesi	word	kaffeemaschine:aparat za kahvu / aparat za kafu
+uputstvo	kullanım kılavuzu	word	bedienungsanleitung:uputstvo
+garancija	garanti	word	garantie:garancija
+Ko?	Kim?	word	wer?:Ko?
+Šta?	Ne?	word	was?:Šta?
+Gdje?	Nerede?	word	wo?:Gdje?
+Kuda?	Nereye?	word	wohin?:Kuda?
+Odakle?	Nereden?	word	woher?:Odakle?
+Kada?	Ne zaman?	word	wann?:Kada?
+Zašto?	Neden?	word	warum?:Zašto?
+Kako?	Nasıl?	word	wie?:Kako?
+Koliko?	Ne kadar?	word	wie viel?:Koliko?
+Koji?	Hangi?	word	welcher?:Koji?
+Čiji?	Kimin?	word	wessen?:Čiji?
+Da li ...?	Evet/hayır sorusu: ... mı?	word	ja/nein-frage: ist ...?:Da li ...?
+Je li to ...?	Bu ... mı?	word	ist das ...?:Je li to ...?
+Ko si ti?	Sen kimsin?	word	wer bist du?:Ko si ti?
+Odakle si?	Nerelisin?	word	woher kommst du?:Odakle si?
+Kuda ideš?	Nereye gidiyorsun?	word	wohin gehst du?:Kuda ideš?
+Kada dolaziš?	Ne zaman geliyorsun?	word	wann kommst du?:Kada dolaziš?
+Zašto ne?	Neden olmasın?	word	warum nicht?:Zašto ne?
+Šta je to?	Bu ne?	word	was ist das?:Šta je to?
+Koliko imaš godina?	Kaç yaşındasın?	word	wie alt bist du?:Koliko imaš godina?
+Imaš li vremena?	Vaktin var mı?	word	hast du zeit?:Imaš li vremena?
+Govoriš li engleski?	İngilizce konuşuyor musun?	word	sprichst du englisch?:Govoriš li engleski?
+Mogu li pomoći?	Yardım edebilir miyim?	word	kann ich helfen?:Mogu li pomoći?
+Gdje stanuješ?	Nerede oturuyorsun?	word	wo wohnst du?:Gdje stanuješ?
+Šta misliš?	Ne düşünüyorsun?	word	was meinst du?:Šta misliš?
+on	o (erkek)	word	er:on
+ona	o (kadın)	word	sie (einzahl):ona
+ono	o (nötr)	word	es:ono
+oni	onlar (eril)	word	sie (mehrzahl, männlich):oni
+one	onlar (dişil)	word	sie (mehrzahl, weiblich):one
+moj / moja / moje	benim (e/d/n)	word	mein (m/w/s):moj / moja / moje
+tvoj / tvoja / tvoje	senin (e/d/n)	word	dein (m/w/s):tvoj / tvoja / tvoje
+njegov / njegova / njegovo	onun (erkek) (e/d/n)	word	sein (m/w/s):njegov / njegova / njegovo
+njen / njena / njeno	onun (kadın) (e/d/n)	word	ihr (von ihr) (m/w/s):njen / njena / njeno
+naš / naša / naše	bizim (e/d/n)	word	unser (m/w/s):naš / naša / naše
+vaš / vaša / vaše	sizin (e/d/n)	word	euer / ihr (m/w/s):vaš / vaša / vaše
+ovaj / ova / ovo	bu (e/d/n)	word	dieser / diese / dieses:ovaj / ova / ovo
+onaj / ona / ono	şu (e/d/n)	word	jener / jene / jenes:onaj / ona / ono
+muškarac	adam	word	der mann:muškarac
+djevojka	genç kız	word	das mädchen:djevojka
+dječak	oğlan	word	der junge:dječak
+nastavnik / nastavnica	öğretmen (e/k)	word	lehrer / lehrerin:nastavnik / nastavnica
+student / studentica	öğrenci (e/k)	word	student / studentin:student / studentica
+konobar / konobarica	garson (e/k)	word	kellner / kellnerin:konobar / konobarica
+doktor / doktorica	doktor (e/k)	word	arzt / ärztin:doktor / doktorica
+prodavač / prodavačica	satıcı (e/k)	word	verkäufer / verkäuferin:prodavač / prodavačica
+velik / velika / veliko	büyük (e/d/n)	word	groß (m/w/s):velik / velika / veliko
+lijep / lijepa / lijepo	güzel (e/d/n)	word	schön (m/w/s):lijep / lijepa / lijepo
+dobar / dobra / dobro	iyi (e/d/n)	word	gut (m/w/s):dobar / dobra / dobro
+nov / nova / novo	yeni (e/d/n)	word	neu (m/w/s):nov / nova / novo
+pismo	mektup	word	der brief:pismo
+stvar	şey	word	die sache / das ding:stvar
+ja sam	ben ... -im	word	ich bin:ja sam
+ti si	sen ... -sin	word	du bist:ti si
+on je / ona je	o ... -dir	word	er / sie ist:on je / ona je
+mi smo	biz ... -iz	word	wir sind:mi smo
+vi ste	siz ... -siniz	word	ihr seid / sie sind:vi ste
+oni su	onlar ... -ler	word	sie sind:oni su
+imam	bende var	word	ich habe:imam
+imaš	sende var	word	du hast:imaš
+ima	onda var	word	er / sie hat:ima
+imamo	bizde var	word	wir haben:imamo
+imate	sizde var	word	ihr habt:imate
+imaju	onlarda var	word	sie haben:imaju
+idem	gidiyorum	word	ich gehe:idem
+ideš	gidiyorsun	word	du gehst:ideš
+idemo	gidiyoruz	word	wir gehen:idemo
+idu	gidiyorlar	word	sie gehen:idu
+jedem	yiyorum	word	ich esse:jedem
+jedeš	yiyorsun	word	du isst:jedeš
+pijem	içiyorum	word	ich trinke:pijem
+govorim	konuşuyorum	word	ich spreche:govorim
+znam	biliyorum	word	ich weiß:znam
+znaš	biliyorsun	word	du weißt:znaš
+mogu	yapabilirim	word	ich kann:mogu
+možeš	yapabilirsin	word	du kannst:možeš
+hoću	istiyorum	word	ich will:hoću
+radim	çalışıyorum	word	ich arbeite:radim
+stanujem	oturuyorum	word	ich wohne:stanujem
+učim	öğreniyorum	word	ich lerne:učim
+volim	seviyorum	word	ich liebe / mag:volim
+brat → braća	erkek kardeş → erkek kardeşler	word	bruder → brüder:brat → braća
+sestra → sestre	kız kardeş → kız kardeşler	word	schwester → schwestern:sestra → sestre
+kuća → kuće	ev → evler	word	haus → häuser:kuća → kuće
+grad → gradovi	şehir → şehirler	word	stadt → städte:grad → gradovi
+dijete → djeca	çocuk → çocuklar	word	kind → kinder:dijete → djeca
+žena → žene	kadın → kadınlar	word	frau → frauen:žena → žene
+muškarac → muškarci	adam → adamlar	word	mann → männer:muškarac → muškarci
+prijatelj → prijatelji	arkadaş → arkadaşlar	word	freund → freunde:prijatelj → prijatelji
+jabuka → jabuke	elma → elmalar	word	apfel → äpfel:jabuka → jabuke
+knjiga → knjige	kitap → kitaplar	word	buch → bücher:knjiga → knjige
+sto → stolovi	masa → masalar	word	tisch → tische:sto → stolovi
+stolica → stolice	sandalye → sandalyeler	word	stuhl → stühle:stolica → stolice
+auto → auti	araba → arabalar	word	auto → autos:auto → auti
+dan → dani	gün → günler	word	tag → tage:dan → dani
+godina → godine	yıl → yıllar	word	jahr → jahre:godina → godine
+riječ → riječi	kelime → kelimeler	word	wort → wörter:riječ → riječi
+oko → oči	göz → gözler	word	auge → augen:oko → oči
+ruka → ruke	el → eller	word	hand → hände:ruka → ruke
+čovjek → ljudi	insan → insanlar	word	mensch → menschen:čovjek → ljudi
+prozor → prozori	pencere → pencereler	word	fenster → fenster:prozor → prozori
+selo → sela	köy → köyler	word	dorf → dörfer:selo → sela
+jaje → jaja	yumurta → yumurtalar	word	ei → eier:jaje → jaja
+ključ → ključevi	anahtar → anahtarlar	word	schlüssel → schlüssel:ključ → ključevi
+zub → zubi	diş → dişler	word	zahn → zähne:zub → zubi
+noć → noći	gece → geceler	word	nacht → nächte:noć → noći
+pas → psi	köpek → köpekler	word	hund → hunde:pas → psi
+čovjek	insan	word	mensch:čovjek
+ljudi	insanlar	word	leute:ljudi
+ne	değil	word	nicht:ne
+nisam	değilim	word	ich bin nicht:nisam
+nisi	değilsin	word	du bist nicht:nisi
+nije	o değil	word	er / sie ist nicht:nije
+nemam	bende yok	word	ich habe nicht / kein:nemam
+ne mogu	yapamam	word	ich kann nicht:ne mogu
+neću	istemiyorum	word	ich will nicht:neću
+i	ve	word	und:i
+ali	ama	word	aber:ali
+ili	veya	word	oder:ili
+jer	çünkü	word	weil:jer
+da	ki	word	dass:da
+da li	-ıp -madığı	word	ob:da li
+ako	eğer	word	wenn / falls:ako
+kad	-dığı zaman	word	als / wenn (zeitlich):kad
+zato	bu yüzden	word	deshalb:zato
+Mislim da ...	Bence ... / ... diye düşünüyorum	word	ich denke, dass ...:Mislim da ...
+Ne znam gdje ...	Nerede olduğunu bilmiyorum ...	word	ich weiß nicht, wo ...:Ne znam gdje ...
+Pitam se da li ...	Acaba ... mı diye merak ediyorum	word	ich frage mich, ob ...:Pitam se da li ...
+Kaže da ...	... diyor	word	er sagt, dass ...:Kaže da ...
+Nadam se da ...	Umarım ki ...	word	ich hoffe, dass ...:Nadam se da ...
+Ne vjerujem	Sanmıyorum	word	ich glaube nicht:Ne vjerujem
+niko	hiç kimse	word	niemand:niko
+nikad	asla	word	nie:nikad
+uvijek	her zaman	word	immer:uvijek
+također	de / da	word	auch:također
+samo	sadece	word	nur:samo
+već	zaten	word	schon:već
+još ne	henüz değil	word	noch nicht:još ne
+Vidim brata	Erkek kardeşi görüyorum	word	ich sehe den bruder:Vidim brata
+Vidim sestru	Kız kardeşi görüyorum	word	ich sehe die schwester:Vidim sestru
+Vidim dijete	Çocuğu görüyorum	word	ich sehe das kind:Vidim dijete
+Pijem kahvu	Kahve içiyorum	word	ich trinke kaffee:Pijem kahvu
+Jedem hljeb	Ekmek yiyorum	word	ich esse brot:Jedem hljeb
+Imam pitanje	Bir sorum var	word	ich habe eine frage:Imam pitanje
+Imam auto	Arabam var	word	ich habe ein auto:Imam auto
+Volim svoju majku	Annemi seviyorum	word	ich liebe meine mutter:Volim svoju majku
+Kupujem jaknu	Bir ceket alıyorum	word	ich kaufe eine jacke:Kupujem jaknu
+Čitam knjigu	Bir kitap okuyorum	word	ich lese ein buch:Čitam knjigu
+Zovem doktora	Doktoru arıyorum	word	ich rufe den arzt:Zovem doktora
+On ima psa	Onun köpeği var	word	er hat einen hund:On ima psa
+Ona ima mačku	Onun kedisi var	word	sie hat eine katze:Ona ima mačku
+Tražimo ulicu	Sokağı arıyoruz	word	wir suchen die straße:Tražimo ulicu
+Trebam vodu	Suya ihtiyacım var	word	ich brauche wasser:Trebam vodu
+Trebam ključ	Anahtara ihtiyacım var	word	ich brauche einen schlüssel:Trebam ključ
+Znam tvog brata	Erkek kardeşini tanıyorum	word	ich kenne deinen bruder:Znam tvog brata
+pitanje	soru	word	frage:pitanje
+odgovor	cevap	word	antwort:odgovor
+čitati	okumak	word	lesen:čitati
+tražiti	aramak	word	suchen:tražiti
+trebati	ihtiyaç duymak	word	brauchen:trebati
+zvati	çağırmak / aramak	word	rufen / anrufen:zvati
+kupujem	alıyorum	word	ich kaufe:kupujem
+vidim	görüyorum	word	ich sehe:vidim
+mene / me	beni	word	mich:mene / me
+tebe / te	seni	word	dich:tebe / te
+njega / ga	onu (erkek)	word	ihn:njega / ga
+nju / je	onu (kadın)	word	sie (akkusativ):nju / je
+bez šećera	şekersiz	word	ohne zucker:bez šećera
+bez mlijeka	sütsüz	word	ohne milch:bez mlijeka
+iz Bosne	Bosna'dan	word	aus bosnien:iz Bosne
+iz Njemačke	Almanya'dan	word	aus deutschland:iz Njemačke
+iz grada	şehirden	word	aus der stadt:iz grada
+od mog brata	erkek kardeşimden	word	von meinem bruder:od mog brata
+do sutra	yarına kadar	word	bis morgen:do sutra
+do stanice	durağa kadar	word	bis zur haltestelle:do stanice
+pored kuće	evin yanında	word	neben dem haus:pored kuće
+kod nane	ninemde	word	bei der oma:kod nane
+kod prijatelja	arkadaşımda	word	bei meinem freund:kod prijatelja
+kuća moje sestre	kız kardeşimin evi	word	das haus meiner schwester:kuća moje sestre
+auto oca	babanın arabası	word	das auto des vaters:auto oca
+čaša vode	bir bardak su	word	ein glas wasser:čaša vode
+šolja kahve	bir fincan kahve	word	eine tasse kaffee:šolja kahve
+kilogram jabuka	bir kilo elma	word	ein kilo äpfel:kilogram jabuka
+mnogo ljudi	çok insan	word	viele menschen:mnogo ljudi
+malo vremena	az vakit	word	wenig zeit:malo vremena
+Nemam novca	Param yok	word	ich habe kein geld:Nemam novca
+Nema hljeba	Ekmek yok	word	es gibt kein brot:Nema hljeba
+Ima mnogo djece	Çok çocuk var	word	es gibt viele kinder:Ima mnogo djece
+čaša	bardak	word	glas:čaša
+šolja	fincan	word	tasse:šolja
+kilogram	kilo	word	kilo:kilogram
+mnogo	çok / birçok	word	viel / viele:mnogo
+malo	az	word	wenig:malo
+dosta	yeterli	word	genug:dosta
+blizu	yakınında	word	in der nähe von:blizu
+zbog	yüzünden	word	wegen:zbog
+u	içinde (nerede)	word	in (wo):u
+na	üstünde (nerede)	word	auf (wo):na
+iz	-den	word	aus:iz
+od	-den / -in	word	von:od
+do	-e kadar	word	bis:do
+sa	ile	word	mit:sa
+za	için	word	für:za
+kod	-de	word	bei:kod
+bez	-siz	word	ohne:bez
+prema	-e doğru	word	zu / in richtung:prema
+iznad	üstünde	word	über / oberhalb:iznad
+ispod	altında	word	unter:ispod
+između	arasında	word	zwischen:između
+iza	arkasında	word	hinter:iza
+ispred	önünde	word	vor (räumlich):ispred
+pored	yanında	word	neben:pored
+poslije	-den sonra	word	nach (zeitlich):poslije
+prije	-den önce	word	vor (zeitlich):prije
+kroz	içinden	word	durch:kroz
+oko	etrafında	word	um ... herum:oko
+u gradu	şehirde	word	in der stadt:u gradu
+u kući	evde	word	im haus:u kući
+na stolu	masada	word	auf dem tisch:na stolu
+na pijaci	pazarda	word	auf dem markt:na pijaci
+s mojom ženom	eşimle	word	mit meiner frau:s mojom ženom
+za tebe	senin için	word	für dich:za tebe
+za djecu	çocuklar için	word	für die kinder:za djecu
+u autu	arabada	word	im auto:u autu
+poslije posla	işten sonra	word	nach der arbeit:poslije posla
+prije jela	yemekten önce	word	vor dem essen:prije jela
+Dajem bratu	Erkek kardeşime veriyorum	word	ich gebe dem bruder:Dajem bratu
+Dajem sestri	Kız kardeşime veriyorum	word	ich gebe der schwester:Dajem sestri
+Dajem djetetu	Çocuğa veriyorum	word	ich gebe dem kind:Dajem djetetu
+Pomažem majci	Anneme yardım ediyorum	word	ich helfe meiner mutter:Pomažem majci
+Kažem prijatelju	Arkadaşıma söylüyorum	word	ich sage dem freund:Kažem prijatelju
+Pišem nani	Nineme yazıyorum	word	ich schreibe der oma:Pišem nani
+meni / mi	bana	word	mir:meni / mi
+tebi / ti	sana	word	dir:tebi / ti
+njemu / mu	ona (erkek)	word	ihm:njemu / mu
+njoj / joj	ona (kadın)	word	ihr (dativ):njoj / joj
+nama / nam	bize	word	uns:nama / nam
+vama / vam	size	word	euch / ihnen:vama / vam
+Daj mi	Bana ver	word	gib mir:Daj mi
+Reci mi	Bana söyle	word	sag mir:Reci mi
+Hladno mi je	Üşüyorum	word	mir ist kalt:Hladno mi je
+u školi	okulda	word	in der schule:u školi
+u kuhinji	mutfakta	word	in der küche:u kuhinji
+na ulici	sokakta	word	auf der straße:na ulici
+u Sarajevu	Saraybosna'da	word	in sarajevo:u Sarajevu
+u sobi	odada	word	im zimmer:u sobi
+govoriti o poslu	iş hakkında konuşmak	word	über die arbeit sprechen:govoriti o poslu
+Mislim na tebe	Seni düşünüyorum	word	ich denke an dich:Mislim na tebe
+Stanujem u Berlinu	Berlin'de oturuyorum	word	ich wohne in berlin:Stanujem u Berlinu
+dati	vermek	word	geben:dati
+pomoći	yardım etmek	word	helfen:pomoći
+pisati	yazmak	word	schreiben:pisati
+reći	söylemek	word	sagen:reći
+pokloniti	hediye etmek	word	schenken:pokloniti
+pokazati	göstermek	word	zeigen:pokazati
+s bratom	erkek kardeşle	word	mit dem bruder:s bratom
+sa sestrom	kız kardeşle	word	mit der schwester:sa sestrom
+s djecom	çocuklarla	word	mit den kindern:s djecom
+autom	arabayla	word	mit dem auto:autom
+autobusom	otobüsle	word	mit dem bus:autobusom
+vozom	trenle	word	mit dem zug:vozom
+biciklom	bisikletle	word	mit dem fahrrad:biciklom
+pješke	yürüyerek	word	zu fuß:pješke
+sa mnom	benimle	word	mit mir:sa mnom
+s tobom	seninle	word	mit dir:s tobom
+s nama	bizimle	word	mit uns:s nama
+sa šećerom	şekerli	word	mit zucker:sa šećerom
+s mlijekom	sütlü	word	mit milch:s mlijekom
+pod stolom	masanın altında	word	unter dem tisch:pod stolom
+brate!	kardeşim! (hitap)	word	anrede: bruder!:brate!
+sestro!	kardeşim! (kadına hitap)	word	anrede: schwester!:sestro!
+prijatelju!	arkadaşım! (hitap)	word	anrede: freund!:prijatelju!
+gospodine!	beyefendi! (hitap)	word	anrede: herr!:gospodine!
+gospođo!	hanımefendi! (hitap)	word	anrede: frau!:gospođo!
+dušo!	canım! (hitap)	word	anrede: schatz!:dušo!
+babo!	baba! (hitap)	word	anrede: papa!:babo!
+nano!	nine! (hitap)	word	anrede: oma!:nano!
+sine!	oğlum! (hitap)	word	anrede: sohn!:sine!
+voz	tren	word	zug:voz
+avion	uçak	word	flugzeug:avion
+bicikl	bisiklet	word	fahrrad:bicikl
+kašika	kaşık	word	löffel:kašika
+kašikom	kaşıkla	word	mit dem löffel:kašikom
+nož	bıçak	word	messer:nož
+bio sam / bila sam	-dim (e/k)	word	ich war (m/w):bio sam / bila sam
+bio si / bila si	-din (e/k)	word	du warst (m/w):bio si / bila si
+bio je	o -di (erkek)	word	er war:bio je
+bila je	o -di (kadın)	word	sie war:bila je
+bili smo	-dik	word	wir waren:bili smo
+imao sam / imala sam	bende vardı (e/k)	word	ich hatte (m/w):imao sam / imala sam
+radio sam / radila sam	çalıştım (e/k)	word	ich habe gearbeitet (m/w):radio sam / radila sam
+jeo sam / jela sam	yedim (e/k)	word	ich habe gegessen (m/w):jeo sam / jela sam
+vidio sam / vidjela sam	gördüm (e/k)	word	ich habe gesehen (m/w):vidio sam / vidjela sam
+išao sam / išla sam	gittim (e/k)	word	ich bin gegangen (m/w):išao sam / išla sam
+rekao sam / rekla sam	söyledim (e/k)	word	ich habe gesagt (m/w):rekao sam / rekla sam
+kupio sam / kupila sam	satın aldım (e/k)	word	ich habe gekauft (m/w):kupio sam / kupila sam
+učio sam / učila sam	öğrendim (e/k)	word	ich habe gelernt (m/w):učio sam / učila sam
+stanovao sam / stanovala sam	oturdum (e/k)	word	ich habe gewohnt (m/w):stanovao sam / stanovala sam
+prošle sedmice	geçen hafta	word	letzte woche:prošle sedmice
+prošle godine	geçen yıl	word	letztes jahr:prošle godine
+prije dva dana	iki gün önce	word	vor zwei tagen:prije dva dana
+prije	daha önce	word	früher:prije
+tada	o zamanlar	word	damals:tada
+Bio sam u Bosni / Bila sam u Bosni	Bosna'daydım (e/k)	word	ich war in bosnien (m/w):Bio sam u Bosni / Bila sam u Bosni
+Bilo je lijepo	Güzeldi	word	es war schön:Bilo je lijepo
+Šta si radio? / Šta si radila?	Ne yaptın? (e/k)	word	was hast du gemacht? (m/w):Šta si radio? / Šta si radila?
+ću	-eceğim	word	ich werde:ću
+ćeš	-eceksin	word	du wirst:ćeš
+će	-ecek	word	er / sie wird:će
+ćemo	-eceğiz	word	wir werden:ćemo
+ćete	-eceksiniz	word	ihr werdet:ćete
+Radit ću	Çalışacağım	word	ich werde arbeiten:Radit ću
+Doći ću	Geleceğim	word	ich werde kommen:Doći ću
+Vidjet ćemo	Göreceğiz	word	wir werden sehen:Vidjet ćemo
+Učit ću	Öğreneceğim	word	ich werde lernen:Učit ću
+Nazvat ću te	Seni arayacağım	word	ich werde dich anrufen:Nazvat ću te
+Kada ćeš doći?	Ne zaman geleceksin?	word	wann wirst du kommen?:Kada ćeš doći?
+prekosutra	öbür gün	word	übermorgen:prekosutra
+sljedeće sedmice	gelecek hafta	word	nächste woche:sljedeće sedmice
+sljedeće godine	gelecek yıl	word	nächstes jahr:sljedeće godine
+uskoro	yakında	word	bald:uskoro
+plan	plan	word	plan:plan
+Planiram ...	... planlıyorum	word	ich habe vor ...:Planiram ...
+Želim putovati	Seyahat etmek istiyorum	word	ich möchte reisen:Želim putovati
+putovanje	seyahat	word	reise:putovanje
+Idemo u Bosnu	Bosna'ya gidiyoruz	word	wir fahren nach bosnien:Idemo u Bosnu
+Pokušat ću	Deneyeceğim	word	ich werde es versuchen:Pokušat ću
+morati	zorunda olmak	word	müssen:morati
+moram	-meliyim	word	ich muss:moram
+moraš	-melisin	word	du musst:moraš
+moramo	-meliyiz	word	wir müssen:moramo
+može	yapabilir	word	er / sie kann:može
+možemo	yapabiliriz	word	wir können:možemo
+hoćeš	istiyorsun	word	du willst:hoćeš
+hoćemo	istiyoruz	word	wir wollen:hoćemo
+smjeti	izinli olmak	word	dürfen:smjeti
+smijem	iznim var	word	ich darf:smijem
+trebao bih / trebala bih	-meliyim (e/k)	word	ich sollte (m/w):trebao bih / trebala bih
+Moram raditi	Çalışmam gerek	word	ich muss arbeiten:Moram raditi
+Moram ići	Gitmem gerek	word	ich muss gehen:Moram ići
+Ne mogu doći	Gelemem	word	ich kann nicht kommen:Ne mogu doći
+Možeš li mi pomoći?	Bana yardım edebilir misin?	word	kannst du mir helfen?:Možeš li mi pomoći?
+Hoću spavati	Uyumak istiyorum	word	ich will schlafen:Hoću spavati
+Želim učiti	Öğrenmek istiyorum	word	ich möchte lernen:Želim učiti
+Smijem li pitati?	Sorabilir miyim?	word	darf ich fragen?:Smijem li pitati?
+Ne moraš	Zorunda değilsin	word	du musst nicht:Ne moraš
+Moramo čekati	Beklememiz gerek	word	wir müssen warten:Moramo čekati
+čekati	beklemek	word	warten:čekati
+Želim nešto jesti	Bir şey yemek istiyorum	word	ich möchte etwas essen:Želim nešto jesti
+nešto	bir şey	word	etwas:nešto
+Mogu govoriti bosanski	Boşnakça konuşabilirim	word	ich kann bosnisch sprechen:Mogu govoriti bosanski
+Ne znam plivati	Yüzme bilmiyorum (beceri)	word	ich kann nicht schwimmen (fähigkeit):Ne znam plivati
+plivati	yüzmek	word	schwimmen:plivati
+pitati	sormak	word	fragen:pitati
+pokušati	denemek	word	versuchen:pokušati
+se	kendini (dönüşlü)	word	sich (reflexivpronomen):se
+zvati se	adı olmak	word	sich nennen / heißen:zvati se
+prati se	yıkanmak	word	sich waschen:prati se
+Perem se	Yıkanıyorum	word	ich wasche mich:Perem se
+radovati se	sevinmek	word	sich freuen:radovati se
+Radujem se	Seviniyorum	word	ich freue mich:Radujem se
+osjećati se	hissetmek	word	sich fühlen:osjećati se
+Osjećam se dobro	İyi hissediyorum	word	ich fühle mich gut:Osjećam se dobro
+naći se	buluşmak	word	sich treffen:naći se
+Nalazimo se u pet	Beşte buluşuyoruz	word	wir treffen uns um fünf:Nalazimo se u pet
+sjećati se	hatırlamak	word	sich erinnern:sjećati se
+Sjećam se	Hatırlıyorum	word	ich erinnere mich:Sjećam se
+sjesti	oturmak	word	sich setzen:sjesti
+Sjedi!	Otur!	word	setz dich!:Sjedi!
+odmarati se	dinlenmek	word	sich ausruhen:odmarati se
+Odmaram se	Dinleniyorum	word	ich ruhe mich aus:Odmaram se
+oblačiti se	giyinmek	word	sich anziehen:oblačiti se
+žuriti se	acele etmek	word	sich beeilen:žuriti se
+Požuri!	Acele et!	word	beeil dich!:Požuri!
+kasniti	geç kalmak	word	sich verspäten:kasniti
+Kasnim	Geç kalıyorum	word	ich komme zu spät:Kasnim
+svađati se	tartışmak	word	sich streiten:svađati se
+zaljubiti se	âşık olmak	word	sich verlieben:zaljubiti se
+Zaljubio sam se / Zaljubila sam se	Âşık oldum (e/k)	word	ich habe mich verliebt (m/w):Zaljubio sam se / Zaljubila sam se
+smijati se	gülmek	word	lachen:smijati se
+Smijem se	Gülüyorum	word	ich lache:Smijem se
+igrati se	oynamak (çocuklar)	word	spielen (kinder):igrati se
+Djeca se igraju	Çocuklar oynuyor	word	die kinder spielen:Djeca se igraju
+brinuti se	endişelenmek	word	sich sorgen machen:brinuti se
+ustajati	kalkmak	word	aufstehen:ustajati
+Ustajem u sedam	Yedide kalkıyorum	word	ich stehe um sieben auf:Ustajem u sedam
+tuširati se	duş almak	word	sich duschen:tuširati se
+Tuširam se	Duş alıyorum	word	ich dusche mich:Tuširam se
+prati zube	diş fırçalamak	word	zähne putzen:prati zube
+doručkovati	kahvaltı yapmak	word	frühstücken:doručkovati
+Doručkujem	Kahvaltı yapıyorum	word	ich frühstücke:Doručkujem
+ići na posao	işe gitmek	word	zur arbeit gehen:ići na posao
+Idem na posao	İşe gidiyorum	word	ich gehe zur arbeit:Idem na posao
+ručati	öğle yemeği yemek	word	zu mittag essen:ručati
+Ručam	Öğle yemeği yiyorum	word	ich esse zu mittag:Ručam
+doći kući	eve gelmek	word	nach hause kommen:doći kući
+Dolazim kući	Eve geliyorum	word	ich komme nach hause:Dolazim kući
+kuhati	yemek pişirmek	word	kochen:kuhati
+Kuham večeru	Akşam yemeği pişiriyorum	word	ich koche abendessen:Kuham večeru
+gledati televiziju	televizyon izlemek	word	fernsehen:gledati televiziju
+ići spavati	uyumaya gitmek	word	schlafen gehen:ići spavati
+Idem spavati	Uyumaya gidiyorum	word	ich gehe schlafen:Idem spavati
+ići u kupovinu	alışverişe gitmek	word	einkaufen gehen:ići u kupovinu
+čistiti	temizlemek	word	putzen:čistiti
+prati veš	çamaşır yıkamak	word	wäsche waschen:prati veš
+rano	erken	word	früh:rano
+kasno	geç	word	spät:kasno
+svaki dan	her gün	word	jeden tag:svaki dan
+ponekad	bazen	word	manchmal:ponekad
+često	sık sık	word	oft:često
+rijetko	nadiren	word	selten:rijetko
+ujutro	sabahleyin	word	am morgen:ujutro
+popodne	öğleden sonra	word	am nachmittag:popodne
+navečer	akşamleyin	word	am abend:navečer
+vikendom	hafta sonunda	word	am wochenende:vikendom
+velik / velika	büyük (e/k)	word	groß (m/w):velik / velika
+veći	daha büyük	word	größer:veći
+najveći	en büyük	word	am größten:najveći
+mali / mala	küçük (e/k)	word	klein (m/w):mali / mala
+manji	daha küçük	word	kleiner:manji
+dobar / dobra	iyi (e/k)	word	gut (m/w):dobar / dobra
+bolji	daha iyi	word	besser:bolji
+najbolji	en iyi	word	am besten:najbolji
+loš / loša	kötü (e/k)	word	schlecht (m/w):loš / loša
+gori	daha kötü	word	schlechter:gori
+lijep / lijepa	güzel (e/k)	word	schön (m/w):lijep / lijepa
+ljepši	daha güzel	word	schöner:ljepši
+nov / nova	yeni (e/k)	word	neu (m/w):nov / nova
+star / stara	yaşlı / eski (e/k)	word	alt (m/w):star / stara
+stariji	daha yaşlı	word	älter:stariji
+mlad / mlada	genç (e/k)	word	jung (m/w):mlad / mlada
+mlađi	daha genç	word	jünger:mlađi
+skup / skupa / skupo	pahalı (e/d/n)	word	teuer (m/w/s):skup / skupa / skupo
+skuplji	daha pahalı	word	teurer:skuplji
+jeftiniji	daha ucuz	word	billiger:jeftiniji
+brz / brza	hızlı (e/k)	word	schnell (m/w):brz / brza
+spor / spora	yavaş (e/k)	word	langsam (m/w):spor / spora
+nego / od	-den (karşılaştırma)	word	als (vergleich):nego / od
+jako	çok	word	sehr:jako
+previše	fazla (fazla büyük)	word	zu (zu groß):previše
+To je bolje nego to	Bu ondan daha iyi	word	das ist besser als das:To je bolje nego to
+jedan brat	bir erkek kardeş	word	ein bruder:jedan brat
+dva brata	iki erkek kardeş	word	zwei brüder:dva brata
+pet braće	beş erkek kardeş	word	fünf brüder:pet braće
+jedna sestra	bir kız kardeş	word	eine schwester:jedna sestra
+dvije sestre	iki kız kardeş	word	zwei schwestern:dvije sestre
+pet sestara	beş kız kardeş	word	fünf schwestern:pet sestara
+jedna godina	bir yıl	word	ein jahr:jedna godina
+dvije godine	iki yıl	word	zwei jahre:dvije godine
+pet godina	beş yıl	word	fünf jahre:pet godina
+jedan dan	bir gün	word	ein tag:jedan dan
+tri dana	üç gün	word	drei tage:tri dana
+deset dana	on gün	word	zehn tage:deset dana
+jedna kahva	bir kahve	word	ein kaffee:jedna kahva
+dvije kahve	iki kahve	word	zwei kaffee:dvije kahve
+tri piva	üç bira	word	drei bier:tri piva
+nekoliko	birkaç	word	einige / ein paar:nekoliko
+nekoliko dana	birkaç gün	word	ein paar tage:nekoliko dana
+pola	yarım	word	die hälfte:pola
+pola kilograma	yarım kilo	word	ein halbes kilo:pola kilograma
+četvrt	çeyrek	word	ein viertel:četvrt
+prvi	birinci	word	der erste:prvi
+drugi	ikinci	word	der zweite:drugi
+treći	üçüncü	word	der dritte:treći
+zadnji	sonuncu	word	der letzte:zadnji
+jednom	bir kez	word	einmal:jednom
+dva puta	iki kez	word	zweimal:dva puta
+prvi put	ilk kez	word	zum ersten mal:prvi put
+oboje	ikisi de	word	beide:oboje
+svi	hepsi	word	alle:svi
+svaki	her	word	jeder:svaki
+nijedan / nijedna	hiçbir (e/d)	word	kein / keine:nijedan / nijedna
+mišljenje	görüş	word	meinung:mišljenje
+Po mom mišljenju	Bence	word	meiner meinung nach:Po mom mišljenju
+Slažem se	Katılıyorum	word	ich stimme zu:Slažem se
+Ne slažem se	Katılmıyorum	word	ich stimme nicht zu:Ne slažem se
+Siguran sam / Sigurna sam	Eminim (e/k)	word	ich bin sicher (m/w):Siguran sam / Sigurna sam
+To je tačno	Bu doğru	word	das stimmt:To je tačno
+To nije tačno	Bu doğru değil	word	das stimmt nicht:To nije tačno
+važno	önemli	word	wichtig:važno
+Svejedno mi je	Benim için fark etmez	word	mir ist es egal:Svejedno mi je
+strah	korku	word	angst:strah
+Bojim se	Korkuyorum	word	ich habe angst:Bojim se
+ljut / ljuta	kızgın (e/k)	word	wütend (m/w):ljut / ljuta
+nervozan / nervozna	gergin (e/k)	word	nervös (m/w):nervozan / nervozna
+zadovoljan / zadovoljna	memnun (e/k)	word	zufrieden (m/w):zadovoljan / zadovoljna
+iznenađen / iznenađena	şaşırmış (e/k)	word	überrascht (m/w):iznenađen / iznenađena
+Dosadno mi je	Canım sıkılıyor	word	mir ist langweilig:Dosadno mi je
+usamljen / usamljena	yalnız (e/k)	word	einsam (m/w):usamljen / usamljena
+ponosan / ponosna	gururlu (e/k)	word	stolz (m/w):ponosan / ponosna
+Ponosan sam na tebe / Ponosna sam na tebe	Seninle gurur duyuyorum (e/k)	word	ich bin stolz auf dich (m/w):Ponosan sam na tebe / Ponosna sam na tebe
+nada	umut	word	hoffnung:nada
+nadam se	umarım	word	hoffentlich:nadam se
+nažalost	maalesef	word	leider:nažalost
+srećom	neyse ki	word	zum glück:srećom
+Brinem se	Endişeleniyorum	word	ich mache mir sorgen:Brinem se
+Drago mi je zbog tebe	Senin adına sevindim	word	ich freue mich für dich:Drago mi je zbog tebe
+zanimljivo	ilginç	word	interessant:zanimljivo
+dosadno	sıkıcı	word	langweilig:dosadno
+smiješno	komik	word	lustig:smiješno
+teško	zor	word	schwierig:teško
+lako / lahko	kolay	word	leicht / einfach:lako / lahko
+aerodrom	havalimanı	word	flughafen:aerodrom
+let	uçuş	word	flug:let
+karta	bilet	word	fahrkarte / ticket:karta
+povratna karta	gidiş dönüş bileti	word	hin- und rückfahrkarte:povratna karta
+polazak	kalkış	word	abfahrt:polazak
+dolazak	varış	word	ankunft:dolazak
+kašnjenje	gecikme	word	verspätung:kašnjenje
+prtljag	bagaj	word	gepäck:prtljag
+kofer	bavul	word	koffer:kofer
+hotel	otel	word	hotel:hotel
+rezervisati sobu	oda ayırtmak	word	ein zimmer reservieren:rezervisati sobu
+rezervacija	rezervasyon	word	reservierung:rezervacija
+autobuska stanica	otogar	word	busbahnhof:autobuska stanica
+taksi	taksi	word	taxi:taksi
+vozač	şoför	word	fahrer:vozač
+benzinska pumpa	benzin istasyonu	word	tankstelle:benzinska pumpa
+benzin	benzin	word	benzin:benzin
+autoput	otoyol	word	autobahn:autoput
+mapa	harita	word	landkarte:mapa
+pravac	yön	word	richtung:pravac
+vožnja	yolculuk	word	fahrt:vožnja
+Koliko traje vožnja?	Yolculuk ne kadar sürüyor?	word	wie lange dauert die fahrt?:Koliko traje vožnja?
+Kada polazi autobus?	Otobüs ne zaman kalkıyor?	word	wann fährt der bus ab?:Kada polazi autobus?
+ulaz	giriş	word	eingang:ulaz
+izlaz	çıkış	word	ausgang:izlaz
+znamenitost	görülecek yer	word	sehenswürdigkeit:znamenitost
+most	köprü	word	brücke:most
+stari grad	eski şehir	word	altstadt:stari grad
+džamija	cami	word	moschee:džamija
+crkva	kilise	word	kirche:crkva
+prenoćiti	gecelemek	word	übernachten:prenoćiti
+Sretan put!	İyi yolculuklar!	word	gute reise!:Sretan put!
+proslava	kutlama	word	feier:proslava
+rođendan	doğum günü	word	geburtstag:rođendan
+Sretan rođendan!	İyi ki doğdun!	word	alles gute zum geburtstag!:Sretan rođendan!
+svadba	düğün	word	hochzeit:svadba
+mlada	gelin	word	braut:mlada
+mladoženja	damat	word	bräutigam:mladoženja
+gost	misafir	word	gast:gost
+gosti	misafirler	word	gäste:gosti
+poklon	hediye	word	geschenk:poklon
+poziv	davet	word	einladung:poziv
+pozvati	davet etmek	word	einladen:pozvati
+Bajram	Bayram	word	bajram:Bajram
+Bajram šerif mubarek olsun!	Bayramınız mübarek olsun!	word	gesegnetes bajram!:Bajram šerif mubarek olsun!
+Ramazan	Ramazan	word	ramadan:Ramazan
+postiti	oruç tutmak	word	fasten:postiti
+Nova godina	Yılbaşı	word	neujahr:Nova godina
+Sretna Nova godina!	Yeni yılınız kutlu olsun!	word	frohes neues jahr!:Sretna Nova godina!
+Božić	Noel	word	weihnachten:Božić
+Uskrs	Paskalya	word	ostern:Uskrs
+kolač	kek	word	kuchen:kolač
+baklava	baklava	word	baklava:baklava
+torta	pasta	word	torte:torta
+plesati	dans etmek	word	tanzen:plesati
+pjevati	şarkı söylemek	word	singen:pjevati
+pjesma	şarkı	word	lied:pjesma
+muzika	müzik	word	musik:muzika
+tradicija	gelenek	word	tradition:tradicija
+Čestitam!	Tebrikler!	word	herzlichen glückwunsch!:Čestitam!
+Izvolite, uđite!	Buyurun, girin!	word	bitte, kommt herein!:Izvolite, uđite!
+poslužiti kahvu	kahve ikram etmek	word	kaffee servieren:poslužiti kahvu
+gostoprimstvo	misafirperverlik	word	gastfreundschaft:gostoprimstvo
+dženaza / sahrana	cenaze töreni	word	beerdigung:dženaza / sahrana
+običaj	gelenek / âdet	word	brauch / sitte:običaj
+slaviti	kutlamak	word	feiern:slaviti
+čestitati	tebrik etmek	word	gratulieren:čestitati
+narodna nošnja	geleneksel halk kıyafeti	word	tracht:narodna nošnja
+posao	iş	word	arbeit:posao
+firma	şirket	word	firma:firma
+šef	patron	word	chef:šef
+kolega	iş arkadaşı	word	kollege:kolega
+kancelarija	ofis	word	büro:kancelarija
+fabrika	fabrika	word	fabrik:fabrika
+mašina	makine	word	maschine:mašina
+inženjer	mühendis	word	ingenieur:inženjer
+električar	elektrikçi	word	elektriker:električar
+zanimanje	meslek	word	beruf:zanimanje
+Šta si po zanimanju?	Mesleğin ne?	word	was bist du von beruf?:Šta si po zanimanju?
+plata	maaş	word	gehalt:plata
+godišnji odmor	yıllık izin	word	urlaub:godišnji odmor
+škola	okul	word	schule:škola
+nastavnik	öğretmen	word	lehrer:nastavnik
+učenik	öğrenci	word	schüler:učenik
+student	üniversite öğrencisi	word	student:student
+univerzitet	üniversite	word	universität:univerzitet
+ispit	sınav	word	prüfung:ispit
+zadaća	ödev	word	hausaufgabe:zadaća
+knjiga	kitap	word	buch:knjiga
+olovka	kalem	word	stift:olovka
+papir	kâğıt	word	papier:papir
+računar	bilgisayar	word	computer:računar
+Imam dva brata	İki erkek kardeşim var	word	ich habe zwei brüder:Imam dva brata
+Moja sestra ima pet godina	Kız kardeşim beş yaşında	word	meine schwester ist fünf jahre alt:Moja sestra ima pet godina
+Jedemo u sedam sati	Saat yedide yemek yiyoruz	word	wir essen um sieben uhr:Jedemo u sedam sati
+U ponedjeljak idem na posao	Pazartesi işe gidiyorum	word	am montag gehe ich zur arbeit:U ponedjeljak idem na posao
+Kahva je vruća	Kahve sıcak	word	der kaffee ist heiß:Kahva je vruća
+Pijem vodu, hvala	Su içiyorum, teşekkürler	word	ich trinke wasser, danke:Pijem vodu, hvala
+Moj babo ne radi u julu	Babam temmuzda çalışmıyor	word	mein papa arbeitet im juli nicht:Moj babo ne radi u julu
+Gdje je crvena torba?	Kırmızı çanta nerede?	word	wo ist die rote tasche?:Gdje je crvena torba?
+Koliko košta hljeb?	Ekmek kaça?	word	wie viel kostet das brot?:Koliko košta hljeb?
+Danas je hladno i pada kiša	Bugün hava soğuk ve yağmur yağıyor	word	heute ist es kalt und es regnet:Danas je hladno i pada kiša
+Razumijem malo bosanski	Biraz Boşnakça anlıyorum	word	ich verstehe ein bisschen bosnisch:Razumijem malo bosanski
+Vidimo se u subotu	Cumartesi görüşürüz	word	wir sehen uns am samstag:Vidimo se u subotu
+Htjela bih tri jabuke, molim	Üç elma istiyorum, lütfen	word	ich möchte drei äpfel, bitte:Htjela bih tri jabuke, molim
+Moja nana stanuje u selu	Ninem köyde oturuyor	word	meine oma wohnt im dorf:Moja nana stanuje u selu
+Učim bosanski svaki dan	Her gün Boşnakça öğreniyorum	word	ich lerne jeden tag bosnisch:Učim bosanski svaki dan
+Autobus dolazi u deset	Otobüs onda geliyor	word	der bus kommt um zehn:Autobus dolazi u deset
+Imam glavobolju i temperaturu	Başım ağrıyor ve ateşim var	word	ich habe kopfschmerzen und fieber:Imam glavobolju i temperaturu
+Voda u jezeru je plava	Göldeki su mavi	word	das wasser im see ist blau:Voda u jezeru je plava
+Mislim da je moja sestra kod kuće	Kız kardeşimin evde olduğunu düşünüyorum	word	ich denke, dass meine schwester zu hause ist:Mislim da je moja sestra kod kuće
+Ne znam kada dolazi autobus	Otobüsün ne zaman geleceğini bilmiyorum	word	ich weiß nicht, wann der bus kommt:Ne znam kada dolazi autobus
+Ako pada kiša, ostajem kod kuće	Yağmur yağarsa evde kalıyorum	word	wenn es regnet, bleibe ich zu hause:Ako pada kiša, ostajem kod kuće
+Jučer sam kupila hljeb i mlijeko	Dün ekmek ve süt aldım (kadın)	word	gestern habe ich brot und milch gekauft (frau):Jučer sam kupila hljeb i mlijeko
+Sljedeće godine ćemo kupiti kuću	Gelecek yıl bir ev alacağız	word	nächstes jahr werden wir ein haus kaufen:Sljedeće godine ćemo kupiti kuću
+Moj brat je stariji od mene, ali manji	Erkek kardeşim benden büyük ama daha kısa	word	mein bruder ist älter als ich, aber kleiner:Moj brat je stariji od mene, ali manji
+akcija	kampanya (indirim)	word	angebot:akcija
+svježe	taze	word	frisch:svježe
+rok trajanja	son kullanma tarihi	word	haltbarkeitsdatum:rok trajanja
+domaće	ev yapımı	word	hausgemacht:domaće
+tezga	pazar tezgâhı	word	marktstand:tezga
+mesar	kasap	word	metzger:mesar
+mesnica	kasap dükkânı	word	metzgerei:mesnica
+sniženje	fiyat indirimi	word	preisnachlass:sniženje
+supermarket	süpermarket	word	supermarkt:supermarket
+prodavač	satıcı	word	verkäufer:prodavač
+prodavačica	satıcı (kadın)	word	verkäuferin:prodavačica
+platiti	ödemek	word	bezahlen:platiti
+fening	fening (markın 1/100'ü)	word	fening (1/100 mark):fening
+fiskalni račun	fiş / makbuz	word	kassenbon / quittung:fiskalni račun
+sitno	bozuk para	word	kleingeld:sitno
+marka	marka (KM, günlük hayattaki para birimi)	word	mark (km, die währung im alltag):marka
+račun za struju	elektrik faturası	word	stromrechnung:račun za struju
+bakšiš	bahşiş	word	trinkgeld:bakšiš
+kusur	para üstü	word	wechselgeld / rückgeld:kusur
+Banja Luka	Banja Luka	word	banja luka:Banja Luka
+Bihać	Bihać	word	bihać:Bihać
+glavni grad	başkent	word	hauptstadt:glavni grad
+Idem u Mostar	Mostar'a gidiyorum	word	ich fahre nach mostar:Idem u Mostar
+Živim u Sarajevu	Saraybosna'da oturuyorum	word	ich wohne in sarajevo:Živim u Sarajevu
+Mostar	Mostar	word	mostar:Mostar
+Sarajevo	Saraybosna	word	sarajevo:Sarajevo
+Tuzla	Tuzla	word	tuzla:Tuzla
+Zenica	Zenica	word	zenica:Zenica
+kafić	kafe	word	café:kafić
+Jelovnik, molim	Menü, lütfen	word	die karte, bitte:Jelovnik, molim
+vani	dışarıda	word	draußen:vani
+unutra	içeride	word	drinnen:unutra
+Sto za dvoje, molim	İki kişilik bir masa, lütfen	word	einen tisch für zwei, bitte:Sto za dvoje, molim
+ćevabdžinica	ızgara lokantası (kebapçı)	word	grilllokal:ćevabdžinica
+Je li ovaj sto slobodan?	Bu masa boş mu?	word	ist dieser tisch frei?:Je li ovaj sto slobodan?
+slastičarna	pastane	word	konditorei:slastičarna
+terasa	teras	word	terrasse:terasa
+aščinica	geleneksel esnaf lokantası	word	traditionelles speiselokal:aščinica
+prilog	garnitür (yan yemek)	word	beilage:prilog
+naručiti	sipariş vermek	word	bestellen:naručiti
+To je sve	Hepsi bu kadar	word	das ist alles:To je sve
+čorba	koyu çorba	word	dicke suppe:čorba
+Još jednu turu	Bir tur daha	word	eine runde noch:Još jednu turu
+Za mene …	Bana lütfen …	word	für mich bitte …:Za mene …
+Može li jedna kahva?	Bir kahve olur mu?	word	geht ein kaffee?:Može li jedna kahva?
+glavno jelo	ana yemek	word	hauptgericht:glavno jelo
+Ja bih …	… istiyorum	word	ich hätte gern …:Ja bih …
+Može, hvala	Evet, teşekkürler	word	ja, danke:Može, hvala
+sa …	… ile	word	mit …:sa …
+desert	tatlı	word	nachtisch:desert
+Još jedno isto, molim	Aynısından bir daha	word	noch einmal dasselbe:Još jedno isto, molim
+Još nešto?	Başka bir şey? (garson)	word	noch etwas? (kellner):Još nešto?
+bez …	… olmadan	word	ohne …:bez …
+predjelo	başlangıç (meze)	word	vorspeise:predjelo
+Šta preporučujete?	Ne tavsiye edersiniz?	word	was empfehlen sie?:Šta preporučujete?
+Ovo nisam naručio	Bunu ben sipariş etmedim	word	das habe ich nicht bestellt:Ovo nisam naručio
+Prijalo mi je	Çok beğendim	word	es hat mir geschmeckt:Prijalo mi je
+Fino je	Çok güzel	word	es ist fein:Fino je
+Ukusno je	Çok lezzetli	word	es schmeckt gut:Ukusno je
+Sit sam	Doydum (erkek)	word	ich bin satt (m):Sit sam
+Sita sam	Doydum (kadın)	word	ich bin satt (w):Sita sam
+slano	tuzlu	word	salzig:slano
+kiselo	ekşi	word	sauer:kiselo
+ljuto	acı (baharatlı)	word	scharf:ljuto
+slatko	tatlı	word	süß:slatko
+premalo	çok az	word	zu wenig:premalo
+Zadržite kusur	Üstü kalsın	word	behalten sie das rückgeld:Zadržite kusur
+odvojeno	ayrı ayrı	word	getrennt:odvojeno
+Svako plaća svoje	Herkes kendi hesabını öder	word	jeder zahlt seins:Svako plaća svoje
+Možemo li platiti?	Ödeyebilir miyiz?	word	können wir zahlen?:Možemo li platiti?
+napojnica	bahşiş (resmî)	word	trinkgeld (förmlich):napojnica
+Koliko je?	Ne kadar tuttu?	word	wie viel macht das?:Koliko je?
+zajedno	birlikte	word	zusammen:zajedno
+Ovo je skupo	Bu pahalı	word	das ist teuer:Ovo je skupo
+Pola kile, molim	Yarım kilo, lütfen	word	ein halbes kilo, bitte:Pola kile, molim
+Jedan kilogram, molim	Bir kilo, lütfen	word	ein kilo, bitte:Jedan kilogram, molim
+Jednu kesu, molim	Bir poşet, lütfen	word	eine tüte, bitte:Jednu kesu, molim
+Malo više	Biraz daha	word	etwas mehr:Malo više
+Malo manje	Biraz daha az	word	etwas weniger:Malo manje
+Može li jeftinije?	Daha ucuz olur mu?	word	geht es günstiger?:Može li jeftinije?
+Je li ovo svježe?	Bu taze mi?	word	ist das frisch?:Je li ovo svježe?
+Je li ovo domaće?	Bu ev yapımı mı?	word	ist das hausgemacht?:Je li ovo domaće?
+Mogu li probati?	Tadabilir miyim?	word	kann ich probieren?:Mogu li probati?
+Pošto je …?	… kaça? (pazarda)	word	was kostet …? (markt):Pošto je …?
+pekara	ekmek fırını	word	baeckerei:pekara
+jelo	yemek	word	gericht / speise:jelo
+kafana	kafana (geleneksel kahve ve müzik mekânı)	word	kafana (traditionelle wirtschaft):kafana
+ukusno	lezzetli	word	lecker:ukusno
+porcija	porsiyon	word	portion:porcija
+restoran	restoran	word	restaurant:restoran
+jelovnik	menü	word	speisekarte:jelovnik
+Idemo na kahvu	Kahve içmeye gidelim	word	gehen wir einen kaffee trinken:Idemo na kahvu
+halva	helva	word	halva:halva
+hurmašica	hurmašica (şerbetli hamur tatlısı)	word	hurmasica (sirupgebaeck):hurmašica
+rahat lokum	rahat lokum (kahve yanında yenen lokum)	word	rahat lokum (geleewuerfel zum kaffee):rahat lokum
+tufahija	tufahija (şerbette dolgulu elma tatlısı)	word	tufahija (gefuellter apfel in sirup):tufahija
+limenka	kutu (içecek)	word	dose (getränk):limenka
+lista za kupovinu	alışveriş listesi	word	einkaufsliste:lista za kupovinu
+kolica	alışveriş arabası	word	einkaufswagen:kolica
+tegla	kavanoz	word	einmachglas:tegla
+gram	gram	word	gramm:gram
+korpa	sepet	word	korb:korpa
+litar	litre	word	liter:litar
+pakovanje	paket	word	packung:pakovanje
+vreća	çuval	word	sack:vreća
+kriška	dilim (ekmek)	word	scheibe (brot):kriška
+šnita	dilim (salam, sosis)	word	scheibe (wurst):šnita
+komad	parça (adet)	word	stück:komad
+ajvar	ajvar (biber ezmesi)	word	ajvar (paprikapaste):ajvar
+grah	kuru fasulye	word	bohneneintopf:grah
+bosanski lonac	bosanski lonac (Bosna güveci)	word	bosnischer schmortopf:bosanski lonac
+burek	burek (kıymalı börek)	word	burek (blaetterteigrolle mit fleisch):burek
+dolma	dolma (doldurulmuş sebze)	word	dolma (gefuelltes gemuese):dolma
+suho meso	tütsülenmiş et	word	geraeuchertes fleisch:suho meso
+roštilj	ızgara	word	grill / gegrilltes:roštilj
+japrak	japrak (asma yaprağı sarması)	word	japrak (gefuellte weinblaetter):japrak
+kajmak	kajmak (sürülen tuzlu kaymak)	word	kajmak (rahmaufstrich):kajmak
+krompiruša	krompiruša (patatesli börek)	word	krompiruša (pita mit kartoffeln):krompiruša
+pljeskavica	pljeskavica (yayvan kıyma köftesi)	word	pljeskavica (hacksteak):pljeskavica
+sarma	sarma (lahana sarması)	word	sarma (krautwickel):sarma
+sirnica	sirnica (peynirli börek)	word	sirnica (pita mit kaese):sirnica
+somun	somun (ćevapi ile yenen pide)	word	somun (fladenbrot zu cevapi):somun
+zeljanica	zeljanica (ıspanaklı ve peynirli börek)	word	zeljanica (pita mit spinat und kaese):zeljanica
+begova čorba	begova čorba (tavuklu, bamyalı çorba)	word	bey-suppe:begova čorba
+ražnjići	şiş kebap	word	fleischspießchen:ražnjići
+petica	beş ćevapi	word	fünf ćevapi:petica
+punjene paprike	biber dolması	word	gefüllte paprika:punjene paprike
+sogan-dolma	soğan dolması	word	gefüllte zwiebeln:sogan-dolma
+sudžukice	ızgara sucuk	word	grillwürstchen:sudžukice
+sedam ćevapa	yedi ćevapi	word	sieben ćevapi:sedam ćevapa
+klepe	mantı	word	teigtaschen:klepe
+ispod sača	sač altında (kor altında pişirme)	word	unter der eisenglocke:ispod sača
+desetka	on ćevapi	word	zehn ćevapi:desetka
+inostranstvo	yurt dışı	word	ausland:inostranstvo
+Bosna	Bosna	word	bosnien:Bosna
+Bosna i Hercegovina	Bosna-Hersek	word	bosnien und herzegowina:Bosna i Hercegovina
+Njemačka	Almanya	word	deutschland:Njemačka
+Holandija	Hollanda	word	die niederlande:Holandija
+Švicarska	İsviçre	word	die schweiz:Švicarska
+Turska	Türkiye	word	die türkei:Turska
+Danska	Danimarka	word	dänemark:Danska
+Francuska	Fransa	word	frankreich:Francuska
+domovina	vatan	word	heimat:domovina
+Hercegovina	Hersek	word	herzegowina:Hercegovina
+Rođen sam u Njemačkoj / Rođena sam u Njemačkoj	Almanya'da doğdum (erkek / kadın)	word	ich bin in deutschland geboren (m/w):Rođen sam u Njemačkoj / Rođena sam u Njemačkoj
+Ja sam iz Bosne	Ben Bosna'danım	word	ich komme aus bosnien:Ja sam iz Bosne
+Ja sam iz Njemačke	Ben Almanya'danım	word	ich komme aus deutschland:Ja sam iz Njemačke
+Živim u Njemačkoj	Almanya'da yaşıyorum	word	ich lebe in deutschland:Živim u Njemačkoj
+Hrvatska	Hırvatistan	word	kroatien:Hrvatska
+država	ülke / devlet	word	land / staat:država
+Moja porodica je iz Bosne	Ailem Bosna'dan	word	meine familie ist aus bosnien:Moja porodica je iz Bosne
+Crna Gora	Karadağ	word	montenegro:Crna Gora
+Norveška	Norveç	word	norwegen:Norveška
+Švedska	İsveç	word	schweden:Švedska
+Srbija	Sırbistan	word	serbien:Srbija
+Slovenija	Slovenya	word	slowenien:Slovenija
+svijet	dünya	word	welt:svijet
+Gdje si rođen? / Gdje si rođena?	Nerede doğdun? (erkek / kadın)	word	wo bist du geboren? (m/w):Gdje si rođen? / Gdje si rođena?
+Austrija	Avusturya	word	österreich:Austrija
+Bošnjak / Bošnjakinja	Boşnak (erkek / kadın)	word	bosniake / bosniakin:Bošnjak / Bošnjakinja
+Bosanac / Bosanka	Bosnalı (erkek / kadın)	word	bosnier / bosnierin:Bosanac / Bosanka
+Nijemac / Njemica	Alman (erkek / kadın)	word	deutscher / deutsche:Nijemac / Njemica
+Danac / Dankinja	Danimarkalı (erkek / kadın)	word	däne / dänin:Danac / Dankinja
+Francuz / Francuskinja	Fransız (erkek / kadın)	word	franzose / französin:Francuz / Francuskinja
+Ja sam Bosanac / Ja sam Bosanka	Ben Bosnalıyım (erkek / kadın)	word	ich bin bosnier / bosnierin:Ja sam Bosanac / Ja sam Bosanka
+Ja sam Nijemac / Ja sam Njemica	Ben Alman'ım (erkek / kadın)	word	ich bin deutscher / deutsche:Ja sam Nijemac / Ja sam Njemica
+Hrvat / Hrvatica	Hırvat (erkek / kadın)	word	kroate / kroatin:Hrvat / Hrvatica
+Crnogorac / Crnogorka	Karadağlı (erkek / kadın)	word	montenegriner / montenegrinerin:Crnogorac / Crnogorka
+Holanđanin / Holanđanka	Hollandalı (erkek / kadın)	word	niederländer / niederländerin:Holanđanin / Holanđanka
+Norvežanin / Norvežanka	Norveçli (erkek / kadın)	word	norweger / norwegerin:Norvežanin / Norvežanka
+vjera	din / inanç	word	religion / glaube:vjera
+Šveđanin / Šveđanka	İsveçli (erkek / kadın)	word	schwede / schwedin:Šveđanin / Šveđanka
+Švicarac / Švicarka	İsviçreli (erkek / kadın)	word	schweizer / schweizerin:Švicarac / Švicarka
+Srbin / Srpkinja	Sırp (erkek / kadın)	word	serbe / serbin:Srbin / Srpkinja
+Turčin / Turkinja	Türk (erkek / kadın)	word	türke / türkin:Turčin / Turkinja
+narod	halk	word	volk:narod
+Austrijanac / Austrijanka	Avusturyalı (erkek / kadın)	word	österreicher / österreicherin:Austrijanac / Austrijanka
+bosanski	Boşnakça (dil)	word	bosnisch (die sprache):bosanski
+njemački	Almanca (dil)	word	deutsch (die sprache):njemački
+engleski	İngilizce (dil)	word	englisch (die sprache):engleski
+Govorim njemački	Almanca konuşuyorum	word	ich spreche deutsch:Govorim njemački
+Ne govorim bosanski	Boşnakça konuşmuyorum	word	ich spreche kein bosnisch:Ne govorim bosanski
+Možeš li ponoviti?	Tekrar edebilir misin?	word	kannst du das wiederholen?:Možeš li ponoviti?
+maternji jezik	ana dili	word	muttersprache:maternji jezik
+jezik	dil	word	sprache:jezik
+Molim te, pričaj sporije	Lütfen daha yavaş konuş	word	sprich bitte langsamer:Molim te, pričaj sporije
+Govoriš li bosanski?	Boşnakça konuşuyor musun?	word	sprichst du bosnisch?:Govoriš li bosanski?
+Šta to znači?	Bu ne demek?	word	was bedeutet das?:Šta to znači?
+Kako se to kaže na bosanskom?	Bunu Boşnakça nasıl derler?	word	wie sagt man das auf bosnisch?:Kako se to kaže na bosanskom?
+Alejkumu selam	(buna verilen cevap)	word	(antwort darauf):Alejkumu selam
+posjeta	ziyaret	word	besuch:posjeta
+Hvala na svemu	Her şey için teşekkürler	word	danke für alles:Hvala na svemu
+Da te upoznam: ...	Tanıştırayım: ...	word	darf ich vorstellen: ...:Da te upoznam: ...
+Ovo je moj prijatelj	Bu benim arkadaşım	word	das ist mein freund:Ovo je moj prijatelj
+Ovo je moja žena	Bu benim eşim	word	das ist meine frau:Ovo je moja žena
+pozdrav / pozdravi	selam / selamlar	word	gruß / grüße:pozdrav / pozdravi
+Pozdravi ... od mene!	...'a benden selam söyle!	word	grüß ... von mir!:Pozdravi ... od mene!
+Selam alejkum	Selamünaleyküm (Müslüman selamı)	word	grüß dich (muslimischer gruß):Selam alejkum
+Izvinjavam se	Özür dilerim	word	ich entschuldige mich:Izvinjavam se
+posjetiti	ziyaret etmek	word	jemanden besuchen:posjetiti
+upoznati	tanışmak	word	jemanden kennenlernen:upoznati
+Dođi nam u posjetu!	Bizi ziyarete gel!	word	komm uns besuchen!:Dođi nam u posjetu!
+Drago mi je što smo se upoznali	Tanıştığımıza memnun oldum	word	schön, dich kennengelernt zu haben:Drago mi je što smo se upoznali
+Sjedi, popij kahvu	Otur, bir kahve iç	word	setz dich, trink einen kaffee:Sjedi, popij kahvu
+zahvaliti se	teşekkür etmek	word	sich bedanken:zahvaliti se
+izviniti se	özür dilemek	word	sich entschuldigen:izviniti se
+Oprosti mi	Beni affet	word	verzeih mir:Oprosti mi
+oprostiti	affetmek	word	verzeihen:oprostiti
+Puno pozdrava porodici	Aileye çok selam	word	viele grüße an die familie:Puno pozdrava porodici
+Kako je tvoja porodica?	Ailen nasıl?	word	wie geht es deiner familie?:Kako je tvoja porodica?
+Poznajemo se	Birbirimizi tanıyoruz	word	wir kennen uns:Poznajemo se
+poznanik / poznanica	tanıdık (erkek / kadın)	word	bekannter / bekannte:poznanik / poznanica
+raja	arkadaş çevresi / tayfa	word	freundeskreis / die clique:raja
+domaćin	ev sahibi	word	gastgeber:domaćin
+koleginica	iş arkadaşı (kadın)	word	kollegin:koleginica
+jaran	ahbap (argo, özellikle Saraybosna)	word	kumpel (slang, vor allem sarajevo):jaran
+drug / drugarica	arkadaş (samimi; erkek / kadın)	word	kumpel / kumpelin (locker):drug / drugarica
+komšije	komşular	word	nachbarn (mehrzahl):komšije
+harmonika	akordeon	word	akkordeon:harmonika
+ples	dans	word	der tanz:ples
+svirati	enstrüman çalmak	word	ein instrument spielen:svirati
+folklor / folklorna grupa	folklor / folklor grubu	word	folklore / folkloregruppe:folklor / folklorna grupa
+kolo	kolo (geleneksel halka dansı)	word	kolo (bosnischer reigentanz):kolo
+pjevač / pjevačica	şarkıcı (erkek / kadın)	word	saenger / saengerin:pjevač / pjevačica
+saz	saz (geleneksel telli çalgı)	word	saz (traditionelles saiteninstrument):saz
+sevdah	sevdah (hüzünlü özlem)	word	sevdah (wehmuetige sehnsucht):sevdah
+sevdalinka	sevdalinka (Boşnak aşk şarkısı)	word	sevdalinka (bosnisches liebeslied):sevdalinka
+sijelo	sijelo (akşam buluşması)	word	sijelo (abendliches beisammensein):sijelo
+teferič	teferič (kırda yapılan gezinti şenliği)	word	teferic (ausflugsfest im gruenen):teferič
+narodna muzika	halk müziği	word	volksmusik:narodna muzika
+Allah razi olsun	bayram selamına verilen cevap	word	antwort auf den bajram-gruss:Allah razi olsun
+post	oruç	word	das fasten:post
+Sretan Bajram!	Bayramın kutlu olsun!	word	frohes bajram!:Sretan Bajram!
+Bog	Tanrı	word	gott:Bog
+Hvala Bogu	Allah'a şükür	word	gott sei dank:Hvala Bogu
+iftar	iftar (oruç açma)	word	iftar (fastenbrechen):iftar
+inšallah	inşallah (Allah izin verirse)	word	insallah (so gott will):inšallah
+mašallah	maşallah (ne güzel, Allah korusun)	word	masallah (wie schoen, gott schuetze es):mašallah
+Ramazanski bajram / Kurban-bajram	Ramazan Bayramı / Kurban Bayramı	word	ramadanfest / opferfest:Ramazanski bajram / Kurban-bajram
+Ako Bog da	Allah izin verirse / umarım	word	so gott will / hoffentlich:Ako Bog da
+bujrum	bujrum (buyurun: al / içeri gel)	word	bujrum (bitte, greif zu / komm herein):bujrum
+Hvala na pozivu	Davet için teşekkürler	word	danke fuer die einladung:Hvala na pozivu
+Hvala, sit sam / sita sam	Teşekkürler, doydum (erkek / kadın)	word	danke, ich bin satt (m/w):Hvala, sit sam / sita sam
+Bilo je jako ukusno	Çok lezzetliydi	word	es war sehr lecker:Bilo je jako ukusno
+domaćin / domaćica	ev sahibi (erkek / kadın)	word	gastgeber / gastgeberin:domaćin / domaćica
+častiti	ısmarlamak (hesabı ödemek)	word	jemanden einladen (bezahlen):častiti
+Još malo?	Biraz daha ister misin?	word	noch ein bisschen?:Još malo?
+Vi	siz (kibar)	word	sie (höflich):Vi
+gospodin	Bay	word	herr:gospodin
+gospođa	Bayan	word	frau:gospođa
+gospođica	Küçük Hanım	word	fräulein:gospođica
+Dobar dan, kako ste?	İyi günler, nasılsınız?	word	guten tag, wie geht es ihnen?:Dobar dan, kako ste?
+Izvolite	Buyurun (bir şey uzatırken)	word	bitte sehr (beim überreichen):Izvolite
+Izvinite, molim Vas	Affedersiniz lütfen	word	entschuldigen sie bitte:Izvinite, molim Vas
+Možete li mi pomoći?	Bana yardım edebilir misiniz?	word	könnten sie mir helfen?:Možete li mi pomoći?
+Smijem li?	İzin verir misiniz?	word	darf ich?:Smijem li?
+Naravno	Elbette	word	selbstverständlich:Naravno
+Žao mi je	Üzgünüm	word	es tut mir leid:Žao mi je
+Molim za izvinjenje	Sizden özür dilerim	word	ich bitte um entschuldigung:Molim za izvinjenje
+Trenutak, molim	Bir dakika, lütfen	word	einen moment, bitte:Trenutak, molim
+Molim?	Efendim?	word	wie bitte?:Molim?
+Zahvaljujem Vam	Size teşekkür ederim	word	ich danke ihnen:Zahvaljujem Vam
+Hvala Vam na pomoći	Yardımınız için çok teşekkürler	word	vielen dank für ihre hilfe:Hvala Vam na pomoći
+Poštovani gospodine	Sayın Bay	word	sehr geehrter herr:Poštovani gospodine
+Poštovana gospođo	Sayın Bayan	word	sehr geehrte frau:Poštovana gospođo
+S poštovanjem	Saygılarımla	word	mit freundlichen grüßen:S poštovanjem
+općina	belediye	word	gemeinde / gemeindeamt:općina
+zahtjev	başvuru	word	antrag:zahtjev
+obrazac	form	word	formular:obrazac
+dokument	belge	word	dokument:dokument
+lična karta	kimlik kartı	word	personalausweis:lična karta
+pasoš	pasaport	word	reisepass:pasoš
+vozačka dozvola	ehliyet	word	führerschein:vozačka dozvola
+rodni list	doğum belgesi	word	geburtsurkunde:rodni list
+vjenčani list	evlenme belgesi	word	heiratsurkunde:vjenčani list
+državljanstvo	vatandaşlık	word	staatsbürgerschaft:državljanstvo
+potvrda	belge / onay yazısı	word	bescheinigung:potvrda
+prebivalište	ikametgâh	word	wohnsitz:prebivalište
+prijava prebivališta	ikamet kaydı	word	anmeldung (wohnsitz):prijava prebivališta
+boravišna dozvola	oturma izni	word	aufenthaltserlaubnis:boravišna dozvola
+radna dozvola	çalışma izni	word	arbeitserlaubnis:radna dozvola
+potpis	imza	word	unterschrift:potpis
+pečat	mühür	word	stempel:pečat
+ovjera	onay / tasdik	word	beglaubigung:ovjera
+kopija	fotokopi	word	kopie:kopija
+original	asıl nüsha	word	original:original
+termin	randevu	word	termin:termin
+rok	süre	word	frist:rok
+taksa	harç	word	gebühr:taksa
+porez	vergi	word	steuer:porez
+osiguranje	sigorta	word	versicherung:osiguranje
+zdravstveno osiguranje	sağlık sigortası	word	krankenversicherung:zdravstveno osiguranje
+ugovor	sözleşme	word	vertrag:ugovor
+banka	banka	word	bank:banka
+račun	hesap	word	konto:račun
+pošta	postane	word	post:pošta
+policija	polis	word	polizei:policija
+sud	mahkeme	word	gericht:sud
+advokat	avukat	word	anwalt:advokat
+notar	noter	word	notar:notar
+ambasada	büyükelçilik	word	botschaft:ambasada
+granica	sınır	word	grenze:granica
+carina	gümrük	word	zoll:carina
+Trebam potvrdu	Bir belgeye ihtiyacım var	word	ich brauche eine bescheinigung:Trebam potvrdu
+Gdje trebam potpisati?	Nereyi imzalamam gerekiyor?	word	wo muss ich unterschreiben?:Gdje trebam potpisati?
+Koji dokumenti mi trebaju?	Hangi belgeler gerekiyor?	word	welche dokumente brauche ich?:Koji dokumenti mi trebaju?
+bankovni račun	banka hesabı	word	bankkonto:bankovni račun
+otvoriti račun	hesap açmak	word	konto eröffnen:otvoriti račun
+kredit	kredi	word	kredit:kredit
+kamata	faiz	word	zinsen:kamata
+rata	taksit	word	rate:rata
+uplata	para yatırma	word	einzahlung:uplata
+isplata	para çekme	word	auszahlung:isplata
+bankovni prijenos	havale	word	überweisung:bankovni prijenos
+nalog za plaćanje	ödeme talimatı	word	zahlungsauftrag:nalog za plaćanje
+bankovna kartica	banka kartı	word	bankkarte:bankovna kartica
+bankomat	bankamatik	word	geldautomat:bankomat
+podići novac	para çekmek	word	geld abheben:podići novac
+uplatiti novac	para yatırmak	word	geld einzahlen:uplatiti novac
+izvod	hesap özeti	word	kontoauszug:izvod
+naknada	masraf (banka)	word	gebühr (bank):naknada
+štednja	tasarruf / birikim	word	sparen / ersparnisse:štednja
+dug	borç	word	schulden:dug
+prihod	gelir	word	einkommen:prihod
+troškovi	giderler	word	ausgaben / kosten:troškovi
+mjenjačnica	döviz bürosu	word	wechselstube:mjenjačnica
+kurs	döviz kuru	word	wechselkurs:kurs
+konvertibilna marka	konvertibl mark (Bosna para birimi, KM)	word	konvertible mark (währung):konvertibilna marka
+euro	avro	word	euro:euro
+Želim otvoriti račun	Hesap açmak istiyorum	word	ich möchte ein konto eröffnen:Želim otvoriti račun
+Kolika je kamata?	Faiz ne kadar?	word	wie hoch sind die zinsen?:Kolika je kamata?
+Mogu li platiti na rate?	Taksitle ödeyebilir miyim?	word	kann ich in raten zahlen?:Mogu li platiti na rate?
+nekretnina	gayrimenkul	word	immobilie:nekretnina
+kupiti kuću	ev satın almak	word	ein haus kaufen:kupiti kuću
+kupoprodajni ugovor	satış sözleşmesi	word	kaufvertrag:kupoprodajni ugovor
+prodavac	satıcı	word	verkäufer (vertragspartei):prodavac
+kupac	alıcı	word	käufer:kupac
+vlasnik	mülk sahibi	word	eigentümer:vlasnik
+vlasništvo	mülkiyet	word	eigentum:vlasništvo
+zemljišna knjiga / gruntovnica	tapu sicili	word	grundbuch:zemljišna knjiga / gruntovnica
+katastar	kadastro	word	kataster:katastar
+zemljište	arsa	word	grundstück:zemljište
+hipoteka	ipotek	word	hypothek:hipoteka
+kapara	kapora	word	anzahlung:kapara
+agent za nekretnine	emlakçı	word	immobilienmakler:agent za nekretnine
+procjena	değerleme	word	schätzung / bewertung:procjena
+pregovarati o cijeni	fiyat üzerinde pazarlık etmek	word	über den preis verhandeln:pregovarati o cijeni
+građevinska dozvola	yapı ruhsatı	word	baugenehmigung:građevinska dozvola
+kirija	kira	word	miete:kirija
+iznajmiti	kiralamak	word	mieten:iznajmiti
+podstanar	kiracı	word	mieter:podstanar
+stanodavac	kiraya veren	word	vermieter:stanodavac
+ugovor o najmu	kira sözleşmesi	word	mietvertrag:ugovor o najmu
+režije	faturalar	word	nebenkosten:režije
+kvadratni metar	metrekare	word	quadratmeter:kvadratni metar
+sprat	kat	word	stockwerk:sprat
+prizemlje	zemin kat	word	erdgeschoss:prizemlje
+selidba	taşınma	word	umzug:selidba
+useliti se	taşınmak	word	einziehen:useliti se
+Želim kupiti kuću	Bir ev almak istiyorum	word	ich möchte ein haus kaufen:Želim kupiti kuću
+Koliko košta kuća?	Ev ne kadar?	word	wie viel kostet das haus?:Koliko košta kuća?
+Je li kuća upisana u gruntovnicu?	Ev tapu siciline kayıtlı mı?	word	ist das haus im grundbuch eingetragen?:Je li kuća upisana u gruntovnicu?
+ugovor o radu	iş sözleşmesi	word	arbeitsvertrag:ugovor o radu
+poslodavac	işveren	word	arbeitgeber:poslodavac
+zaposlenik	çalışan	word	arbeitnehmer:zaposlenik
+prijava za posao	iş başvurusu	word	bewerbung:prijava za posao
+biografija	özgeçmiş	word	lebenslauf:biografija
+razgovor za posao	iş görüşmesi	word	vorstellungsgespräch:razgovor za posao
+radno vrijeme	çalışma saatleri	word	arbeitszeit:radno vrijeme
+puno radno vrijeme	tam zamanlı	word	vollzeit:puno radno vrijeme
+nepuno radno vrijeme	yarı zamanlı	word	teilzeit:nepuno radno vrijeme
+probni rad	deneme süresi	word	probezeit:probni rad
+otkaz	fesih	word	kündigung:otkaz
+bruto plata	brüt maaş	word	bruttogehalt:bruto plata
+neto plata	net maaş	word	nettogehalt:neto plata
+prekovremeni rad	fazla mesai	word	überstunden:prekovremeni rad
+penzija	emekli maaşı	word	rente:penzija
+bolovanje	istirahat raporu	word	krankschreibung:bolovanje
+socijalno osiguranje	sosyal sigorta	word	sozialversicherung:socijalno osiguranje
+porezni broj	vergi numarası	word	steuernummer:porezni broj
+svjedočanstvo	diploma belgesi	word	zeugnis:svjedočanstvo
+diploma	diploma	word	diplom:diploma
+kvalifikacija	nitelik	word	qualifikation:kvalifikacija
+iskustvo	deneyim	word	erfahrung:iskustvo
+odgovornost	sorumluluk	word	verantwortung:odgovornost
+Tražim posao	İş arıyorum	word	ich suche arbeit:Tražim posao
+Imam pet godina iskustva	Beş yıllık deneyimim var	word	ich habe fünf jahre erfahrung:Imam pet godina iskustva
+zdravstvena knjižica	sağlık karnesi	word	versichertenkarte:zdravstvena knjižica
+uputnica	sevk (uzmana)	word	überweisung (zum facharzt):uputnica
+recept	reçete	word	rezept:recept
+pregled	muayene	word	untersuchung:pregled
+termin kod doktora	doktor randevusu	word	termin beim arzt:termin kod doktora
+hitni prijem / hitna pomoć	acil servis / ambulans	word	notaufnahme / rettungsdienst:hitni prijem / hitna pomoć
+porodični ljekar	aile hekimi	word	hausarzt:porodični ljekar
+specijalista	uzman doktor	word	facharzt:specijalista
+zubar	diş hekimi	word	zahnarzt:zubar
+medicinska sestra	hemşire	word	krankenschwester:medicinska sestra
+dijagnoza	teşhis	word	diagnose:dijagnoza
+liječenje	tedavi	word	behandlung:liječenje
+operacija	ameliyat	word	operation:operacija
+vakcina	aşı	word	impfung:vakcina
+krvni pritisak	tansiyon	word	blutdruck:krvni pritisak
+alergija	alerji	word	allergie:alergija
+lijek protiv bolova	ağrı kesici	word	schmerzmittel:lijek protiv bolova
+participacija	katılım payı	word	selbstbeteiligung:participacija
+Trebam termin	Randevuya ihtiyacım var	word	ich brauche einen termin:Trebam termin
+Na bolovanju sam	Raporluyum	word	ich bin krankgeschrieben:Na bolovanju sam
+Gdje Vas boli?	Neresi ağrıyor?	word	wo tut es ihnen weh?:Gdje Vas boli?
+Alergičan sam na ... / Alergična sam na ...	... alerjim var (e/k)	word	ich bin allergisch auf ... (m/w):Alergičan sam na ... / Alergična sam na ...
+Dobar dan	İyi günler	sentence	s0001
+Merhaba, kako si?	Merhaba, nasılsın?	sentence	s0002
+Kako si?	Nasılsın?	sentence	s0003
+Hvala puno!	Çok teşekkürler!	sentence	s0004
+Laku noć!	İyi geceler!	sentence	s0005
+Zovem se Amina.	Benim adım Amina.	sentence	s0006
+Ne razumijem.	Anlamıyorum.	sentence	s0007
+Drago mi je.	Memnun oldum.	sentence	s0008
+Dobro jutro!	Günaydın!	sentence	s0009
+Nema na čemu.	Rica ederim.	sentence	s0010
+Jedan, dva, tri	bir, iki, üç	sentence	s0011
+Pet i pet je deset.	Beş artı beş on eder.	sentence	s0012
+Sedam, osam, devet	yedi, sekiz, dokuz	sentence	s0013
+Deset, dvadeset, trideset	on, yirmi, otuz	sentence	s0014
+Dva i dva su četiri.	İki artı iki dört eder.	sentence	s0015
+Ponedjeljak, utorak, srijeda	Pazartesi, salı, çarşamba	sentence	s0016
+Subota i nedjelja su vikend.	Cumartesi ve pazar hafta sonudur.	sentence	s0017
+Poslije četvrtka dolazi petak.	Perşembeden sonra cuma gelir.	sentence	s0018
+Januar, februar, mart	Ocak, şubat, mart	sentence	s0019
+Poslije maja dolazi juni.	Mayıstan sonra haziran gelir.	sentence	s0020
+Decembar je zadnji mjesec u godini.	Aralık yılın son ayıdır.	sentence	s0021
+Koliko je sati?	Saat kaç?	sentence	s0022
+Sada je pet sati.	Şimdi saat beş.	sentence	s0023
+U subotu je vikend.	Cumartesi hafta sonudur.	sentence	s0024
+Vidimo se sutra!	Yarın görüşürüz!	sentence	s0025
+Danas je lijep dan.	Bugün güzel bir gün.	sentence	s0026
+Moja sestra se zove Amina.	Kız kardeşimin adı Amina.	sentence	s0027
+Moj muž se zove Ajdin.	Eşimin adı Ajdin.	sentence	s0028
+Moj amidža je pčelar.	Amcam arıcı.	sentence	s0029
+Moja majka i moj babo.	Annem ve babam.	sentence	s0030
+Hljeb i sir.	Ekmek ve peynir.	sentence	s0031
+Dvije kahve, molim.	İki kahve, lütfen.	sentence	s0032
+Račun, molim.	Hesap, lütfen.	sentence	s0033
+Voda je hladna.	Su soğuk.	sentence	s0034
+Gladna sam.	Açım. (kadın)	sentence	s0035
+Jednu kahvu, molim.	Bir kahve, lütfen.	sentence	s0036
+Trava je zelena.	Çimen yeşil.	sentence	s0037
+Jabuka je crvena.	Elma kırmızı.	sentence	s0038
+Kahva je crna.	Kahve siyah.	sentence	s0039
+Banana je žuta.	Muz sarı.	sentence	s0040
+Gdje je stanica?	Durak nerede?	sentence	s0041
+Koliko košta?	Bu kaça?	sentence	s0042
+Skreni lijevo.	Sola dön.	sentence	s0043
+Ja govorim bosanski.	Boşnakça konuşuyorum.	sentence	s0044
+Ja pijem kahvu.	Kahve içiyorum.	sentence	s0045
+Mi učimo bosanski.	Boşnakça öğreniyoruz.	sentence	s0046
+Volim te.	Seni seviyorum.	sentence	s0047
+Nedostaješ mi.	Seni özledim.	sentence	s0048
+Nema problema.	Sorun değil.	sentence	s0049
+Šta radiš?	Ne yapıyorsun?	sentence	s0050
+Hajde, idemo!	Hadi gidelim!	sentence	s0051
+Gdje je ključ?	Anahtar nerede?	sentence	s0052
+Ovo je moja soba.	Bu benim odam.	sentence	s0053
+Moj komšija je dobar čovjek.	Komşum iyi bir insan.	sentence	s0054
+Boli me glava.	Başım ağrıyor.	sentence	s0055
+Gdje je apoteka?	Eczane nerede?	sentence	s0056
+Brzo ozdravi!	Geçmiş olsun!	sentence	s0057
+Kolika je cijena?	Fiyat ne kadar?	sentence	s0058
+Tražim plavu haljinu.	Mavi bir elbise arıyorum.	sentence	s0059
+Jakna košta pedeset maraka.	Ceket elli mark.	sentence	s0060
+Mogu li platiti karticom?	Kartla ödeyebilir miyim?	sentence	s0061
+Tražim cipele.	Ayakkabı arıyorum.	sentence	s0062
+Pada kiša.	Yağmur yağıyor.	sentence	s0063
+Danas je hladno.	Bugün hava soğuk.	sentence	s0064
+Nebo je plavo.	Gökyüzü mavi.	sentence	s0065
+Sutra radim.	Yarın çalışıyorum.	sentence	s0066
+Imam ispit.	Sınavım var.	sentence	s0067
+Šta si po zanimanju?	Mesleğin ne?	sentence	s0068
+Kako ste?	Nasılsınız?	sentence	s0069
+Možete li mi pomoći?	Bana yardım edebilir misiniz?	sentence	s0070
+S poštovanjem.	Saygılarımla.	sentence	s0071
+Izvinite, molim Vas.	Affedersiniz, lütfen.	sentence	s0072
+Imam dva brata.	İki erkek kardeşim var.	sentence	s0073
+Jedemo u sedam sati.	Saat yedide yemek yiyoruz.	sentence	s0074
+U ponedjeljak idem na posao.	Pazartesi işe gidiyorum.	sentence	s0075
+Gdje je crvena torba?	Kırmızı çanta nerede?	sentence	s0076
+Moja nana stanuje u selu.	Ninem köyde oturuyor.	sentence	s0077
+Danas je hladno i pada kiša.	Bugün hava soğuk ve yağmur yağıyor.	sentence	s0078
+Koliko košta hljeb?	Ekmek kaça?	sentence	s0079
+Učim bosanski svaki dan.	Her gün Boşnakça öğreniyorum.	sentence	s0080
+Trebam potvrdu.	Bir belgeye ihtiyacım var.	sentence	s0081
+Imam termin u ponedjeljak u deset sati.	Pazartesi saat onda randevum var.	sentence	s0082
+Taksa za pasoš je trideset maraka.	Pasaport harcı otuz mark.	sentence	s0083
+Gdje trebam potpisati?	Nereyi imzalamam gerekiyor?	sentence	s0084
+Imate li pasoš?	Pasaportunuz var mı?	sentence	s0085
+Koji dokumenti mi trebaju?	Hangi belgeler gerekiyor?	sentence	s0086
+Odakle si?	Nerelisin?	sentence	s0087
+Šta je to?	Bu ne?	sentence	s0088
+Koliko imaš godina?	Kaç yaşındasın?	sentence	s0089
+Imaš li vremena?	Vaktin var mı?	sentence	s0090
+Kuda ideš?	Nereye gidiyorsun?	sentence	s0091
+Ja sam iz Njemačke.	Almanya'danım.	sentence	s0092
+Mi smo kod kuće.	Evdeyiz.	sentence	s0093
+Ti imaš dva brata.	İki erkek kardeşin var.	sentence	s0094
+Oni idu u školu.	Onlar okula gidiyor.	sentence	s0095
+Govoriš li ti bosanski?	Boşnakça konuşuyor musun?	sentence	s0096
+Mislim da je dobro.	Bunun iyi olduğunu düşünüyorum.	sentence	s0097
+Ne znam gdje je ključ.	Anahtarın nerede olduğunu bilmiyorum.	sentence	s0098
+Pitam se da li dolazi.	Acaba geliyor mu diye merak ediyorum.	sentence	s0099
+Nemam vremena jer radim.	Vaktim yok çünkü çalışıyorum.	sentence	s0100
+Ja nisam umoran.	Yorgun değilim.	sentence	s0101
+Volim kahvu, ali ne volim čaj.	Kahve severim ama çay sevmem.	sentence	s0102
+Ako pada kiša, ostajem kod kuće.	Yağmur yağarsa evde kalıyorum.	sentence	s0103
+Jučer sam radila.	Dün çalıştım. (kadın)	sentence	s0104
+Bilo je lijepo.	Güzeldi.	sentence	s0105
+Prošle godine smo bili u Bosni.	Geçen yıl Bosna'daydık.	sentence	s0106
+Šta si radio?	Ne yaptın? (bir erkeğe)	sentence	s0107
+Sutra ću raditi.	Yarın çalışacağım.	sentence	s0108
+Vidjet ćemo.	Göreceğiz.	sentence	s0109
+Kada ćeš doći?	Ne zaman geleceksin?	sentence	s0110
+Sljedeće godine idemo u Bosnu.	Gelecek yıl Bosna'ya gidiyoruz.	sentence	s0111
+Ovo je bolje nego to.	Bu ondan daha iyi.	sentence	s0112
+Moj brat je stariji od mene.	Erkek kardeşim benden büyük.	sentence	s0113
+Kahva je jako vruća.	Kahve çok sıcak.	sentence	s0114
+Ova jakna je skuplja od one.	Bu ceket şundan daha pahalı.	sentence	s0115
+Želim otvoriti račun.	Hesap açmak istiyorum.	sentence	s0116
+Kolika je kamata?	Faiz ne kadar?	sentence	s0117
+Mogu li platiti na rate?	Taksitle ödeyebilir miyim?	sentence	s0118
+Gdje je najbliži bankomat?	En yakın bankamatik nerede?	sentence	s0119
+Želim kupiti kuću.	Bir ev almak istiyorum.	sentence	s0120
+Ko je vlasnik kuće?	Evin sahibi kim?	sentence	s0121
+Je li kuća upisana u gruntovnicu?	Ev tapu siciline kayıtlı mı?	sentence	s0122
+Kolika je kirija mjesečno?	Aylık kira ne kadar?	sentence	s0123
+Potpisujemo ugovor kod notara.	Sözleşmeyi noterde imzalıyoruz.	sentence	s0124
+Tražim posao.	İş arıyorum.	sentence	s0125
+Imam pet godina iskustva.	Beş yıllık deneyimim var.	sentence	s0126
+Probni rad traje tri mjeseca.	Deneme süresi üç ay sürüyor.	sentence	s0127
+Kolika je neto plata?	Net maaş ne kadar?	sentence	s0128
+Trebam termin kod doktora.	Doktordan randevu almam gerekiyor.	sentence	s0129
+Na bolovanju sam.	Raporluyum.	sentence	s0130
+Gdje Vas boli?	Neresi ağrıyor?	sentence	s0131
+Trebam uputnicu za specijalistu.	Uzmana sevk belgesine ihtiyacım var.	sentence	s0132
+Mislim da je moja sestra kod kuće.	Kız kardeşimin evde olduğunu düşünüyorum.	sentence	s0133
+Ne znam kada dolazi autobus.	Otobüsün ne zaman geleceğini bilmiyorum.	sentence	s0134
+Jučer sam kupila hljeb i mlijeko.	Dün ekmek ve süt aldım. (kadın)	sentence	s0135
+Moja kuća je velika.	Evim büyük.	sentence	s0136
+Moj brat je student.	Erkek kardeşim üniversite öğrencisi.	sentence	s0137
+Ona je nastavnica.	O öğretmen.	sentence	s0138
+Ovo je naše selo.	Bu bizim köyümüz.	sentence	s0139
+Imam dvije sestre.	İki kız kardeşim var.	sentence	s0140
+Djeca se igraju.	Çocuklar oynuyor.	sentence	s0141
+Na pijaci ima mnogo ljudi.	Pazarda çok insan var.	sentence	s0142
+Vidim brata.	Erkek kardeşi görüyorum.	sentence	s0143
+Pijem kahvu.	Kahve içiyorum.	sentence	s0144
+Volim svoju majku.	Annemi seviyorum.	sentence	s0145
+Čitam knjigu.	Bir kitap okuyorum.	sentence	s0146
+Kahva bez šećera.	Şekersiz kahve.	sentence	s0147
+Ja sam iz Bosne.	Bosna'danım.	sentence	s0148
+Čaša vode, molim.	Bir bardak su, lütfen.	sentence	s0149
+Nemam vremena.	Vaktim yok.	sentence	s0150
+Knjiga je na stolu.	Kitap masada.	sentence	s0151
+Poslije posla idem kući.	İşten sonra eve gidiyorum.	sentence	s0152
+Poklon je za tebe.	Hediye senin için.	sentence	s0153
+Kahva bez mlijeka.	Sütsüz kahve.	sentence	s0154
+Dajem poklon sestri.	Kız kardeşime hediye veriyorum.	sentence	s0155
+Stanujem u Sarajevu.	Saraybosna'da oturuyorum.	sentence	s0156
+Daj mi vode.	Bana su ver.	sentence	s0157
+Pomažem majci.	Anneme yardım ediyorum.	sentence	s0158
+Idem s bratom u grad.	Erkek kardeşimle şehre gidiyorum.	sentence	s0159
+Putujemo autom.	Arabayla seyahat ediyoruz.	sentence	s0160
+Sine, dođi ovamo!	Oğlum, buraya gel!	sentence	s0161
+Kahva sa šećerom.	Şekerli kahve.	sentence	s0162
+Moram raditi sutra.	Yarın çalışmam gerek.	sentence	s0163
+Možeš li mi pomoći?	Bana yardım edebilir misin?	sentence	s0164
+Smijem li pitati?	Sorabilir miyim?	sentence	s0165
+Ne mogu doći.	Gelemem.	sentence	s0166
+Zovem se Amina.	Benim adım Amina.	sentence	s0167
+Osjećam se dobro.	İyi hissediyorum.	sentence	s0168
+Nalazimo se u pet.	Beşte buluşuyoruz.	sentence	s0169
+Djeca se igraju.	Çocuklar oynuyor.	sentence	s0170
+Ustajem u sedam sati.	Saat yedide kalkıyorum.	sentence	s0171
+Poslije posla kuham večeru.	İşten sonra akşam yemeği pişiriyorum.	sentence	s0172
+Idem spavati u jedanaest.	Saat on birde uyumaya gidiyorum.	sentence	s0173
+Svaki dan pijem kahvu.	Her gün kahve içiyorum.	sentence	s0174
+Imam dva brata.	İki erkek kardeşim var.	sentence	s0175
+Imam trideset godina.	Otuz yaşındayım.	sentence	s0176
+Dvije kahve, molim.	İki kahve, lütfen.	sentence	s0177
+Ostajemo pet dana.	Beş gün kalıyoruz.	sentence	s0178
+Slažem se s tobom.	Sana katılıyorum.	sentence	s0179
+Po mom mišljenju, to je dobro.	Bence bu iyi.	sentence	s0180
+Ponosna sam na tebe.	Seninle gurur duyuyorum. (kadın)	sentence	s0181
+Nažalost, nemam vremena.	Maalesef vaktim yok.	sentence	s0182
+Koliko traje vožnja?	Yolculuk ne kadar sürüyor?	sentence	s0183
+Kada polazi autobus?	Otobüs ne zaman kalkıyor?	sentence	s0184
+Gdje je izlaz?	Çıkış nerede?	sentence	s0185
+Sretan put!	İyi yolculuklar!	sentence	s0186
+Sretan rođendan!	İyi ki doğdun!	sentence	s0187
+Imam poklon za tebe.	Sana bir hediyem var.	sentence	s0188
+Sretna Nova godina!	Yeni yılınız kutlu olsun!	sentence	s0189
+Svi gosti su došli.	Bütün misafirler geldi.	sentence	s0190
+Ovo je lubenica.	Bu bir karpuz.	sentence	s0191
+U torbi je limun.	Çantada bir limon var.	sentence	s0192
+Moja mama voli kruške.	Annem armut sever.	sentence	s0193
+Djeca jedu jagode.	Çocuklar çilek yiyor.	sentence	s0194
+Kupi grožđe na pijaci.	Pazardan üzüm al.	sentence	s0195
+Djeca ne vole špinat.	Çocuklar ıspanak sevmez.	sentence	s0196
+U supi je mrkva.	Çorbada bir havuç var.	sentence	s0197
+U bašti je kukuruz.	Bahçede mısır var.	sentence	s0198
+Na stolu su gljive.	Masada mantarlar var.	sentence	s0199
+Danas jedem karfiol.	Bugün karnabahar yiyorum.	sentence	s0200
+Djeca jedu sladoled.	Çocuklar dondurma yiyor.	sentence	s0201
+Hljeb, šunka i sir.	Ekmek, jambon ve peynir.	sentence	s0202
+Htjela bih kobasicu.	Sosis istiyorum.	sentence	s0203
+Moja sestra voli čokoladu.	Kız kardeşim çikolatayı seviyor.	sentence	s0204
+Kečap i senf, molim.	Ketçap ve hardal, lütfen.	sentence	s0205
+U frižideru je jogurt.	Buzdolabında yoğurt var.	sentence	s0206
+Volim med u čaju.	Çayda bal severim.	sentence	s0207
+Jednu rakiju, molim.	Bir rakija, lütfen.	sentence	s0208
+Kahva je u džezvi.	Kahve cezvede.	sentence	s0209
+Uzet ću pogaču.	Pideyi alacağım.	sentence	s0210
+Krava je u štali.	İnek ahırda.	sentence	s0211
+Pile i kokoš su u avliji.	Civciv ve tavuk avluda.	sentence	s0212
+Malo štene spava.	Küçük köpek yavrusu uyuyor.	sentence	s0213
+Vidim patku na vodi.	Ördeği suda görüyorum.	sentence	s0214
+Ptica ima gnijezdo na drvetu.	Kuşun ağaçta yuvası var.	sentence	s0215
+Vidi, zmija!	Bak, bir yılan!	sentence	s0216
+U šumi je medvjed.	Ormanda bir ayı var.	sentence	s0217
+Mačka vidi miša.	Kedi bir fare görüyor.	sentence	s0218
+Na cvijetu je leptir.	Çiçeğin üstünde bir kelebek var.	sentence	s0219
+Ovo je zmaj.	Bu bir ejderha.	sentence	s0220
+Mačka ima rep.	Kedinin kuyruğu var.	sentence	s0221
+Moj pas laje.	Köpeğim havlıyor.	sentence	s0222
+Ja hranim mačku.	Kediyi besliyorum.	sentence	s0223
+Moj brat je veterinar.	Erkek kardeşim veteriner.	sentence	s0224
+Gdje je povodac?	Gezdirme tasması nerede?	sentence	s0225
+Vidi, vodopad!	Bak, bir şelale!	sentence	s0226
+Idemo na brdo.	Tepeye gidiyoruz.	sentence	s0227
+U pećini je hladno.	Mağarada soğuk.	sentence	s0228
+Djeca su na livadi.	Çocuklar çayırda.	sentence	s0229
+Volim prirodu i more.	Doğayı ve denizi seviyorum.	sentence	s0230
+Voda je u flaši.	Su şişede.	sentence	s0231
+Ovo je moj tanjir.	Bu benim tabağım.	sentence	s0232
+Supa je u loncu.	Çorba tencerede.	sentence	s0233
+Gdje je ogledalo?	Ayna nerede?	sentence	s0234
+Deka je na kauču.	Battaniye kanepede.	sentence	s0235
+Kupatilo je čisto.	Banyo temiz.	sentence	s0236
+Sutra peglam veš.	Yarın çamaşırları ütülüyorum.	sentence	s0237
+Gdje je metla?	Süpürge nerede?	sentence	s0238
+Komšinica zvoni na vrata.	Kadın komşu kapının zilini çalıyor.	sentence	s0239
+Veš je na štriku.	Çamaşırlar çamaşır ipinde.	sentence	s0240
+Nema struje.	Elektrik yok.	sentence	s0241
+Gdje je moj alat?	Aletim nerede?	sentence	s0242
+Upali svjetlo, molim te.	Işığı yak, lütfen.	sentence	s0243
+Ne radi bojler.	Boyler çalışmıyor.	sentence	s0244
+Ugasi grijanje.	Isıtmayı kapat.	sentence	s0245
+Moram sipati gorivo.	Yakıt almam lazım.	sentence	s0246
+Pukla mi je guma.	Lastiğim patladı.	sentence	s0247
+Gdje mogu parkirati svoj auto?	Arabamı nereye park edebilirim?	sentence	s0248
+Na semaforu je crveno.	Işık kırmızı.	sentence	s0249
+Daj mi kliješta, molim te.	Penseyi verir misin lütfen?	sentence	s0250
+Koja je šifra za WiFi?	Wi-Fi şifresi ne?	sentence	s0251
+Baterija je prazna.	Şarjım bitti.	sentence	s0252
+Gdje je moj punjač?	Şarj aletim nerede?	sentence	s0253
+Pošalji mi poruku.	Bana mesaj at.	sentence	s0254
+Ne radi mašina za suđe.	Bulaşık makinesi çalışmıyor.	sentence	s0255
+Idem u mesnicu.	Kasap dükkânına gidiyorum.	sentence	s0256
+Jabuke su na akciji.	Elmalar indirimde.	sentence	s0257
+Ovo voće je svježe.	Bu meyve taze.	sentence	s0258
+Mogu li platiti karticom?	Kartla ödeyebilir miyim?	sentence	s0259
+Gdje je moj kusur?	Para üstüm nerede?	sentence	s0260
+Idemo u kafić.	Kafeye gidiyoruz.	sentence	s0261
+Danas jedemo vani.	Bugün dışarıda yiyoruz.	sentence	s0262
+Sto na terasi, molim.	Terasta bir masa, lütfen.	sentence	s0263
+Za mene čorbu, molim.	Bana čorba, lütfen.	sentence	s0264
+Želim naručiti.	Sipariş vermek istiyorum.	sentence	s0265
+Ovo meso je ljuto.	Bu et acı.	sentence	s0266
+Voće je slatko.	Meyve tatlı.	sentence	s0267
+Možemo li platiti odvojeno?	Ayrı ayrı ödeyebilir miyiz?	sentence	s0268
+Jedemo zajedno.	Birlikte yiyoruz.	sentence	s0269
+Zadržite kusur.	Para üstü sizde kalsın.	sentence	s0270
+Ovo je jako ukusno.	Bu çok lezzetli.	sentence	s0271
+Idemo u restoran.	Restorana gidiyoruz.	sentence	s0272
+Gdje je pekara?	Ekmek fırını nerede?	sentence	s0273
+Jedan litar mlijeka, molim.	Bir litre süt, lütfen.	sentence	s0274
+Jedna porcija je dosta.	Bir porsiyon yeter.	sentence	s0275
+Ja bih jedan burek.	Bir burek istiyorum.	sentence	s0276
+Za mene pljeskavicu.	Bana pljeskavica.	sentence	s0277
+Imate li ajvar?	Ajvar var mı?	sentence	s0278
+Ja volim sarmu.	Ben sarma severim.	sentence	s0279
+Danas jedemo grah.	Bugün fasulye yiyoruz.	sentence	s0280
+Ja sam iz Bosne.	Ben Bosna'danım.	sentence	s0281
+Živim u Njemačkoj.	Almanya'da yaşıyorum.	sentence	s0282
+Bosna je moja domovina.	Bosna benim vatanım.	sentence	s0283
+Moj brat radi u inostranstvu.	Erkek kardeşim yurt dışında çalışıyor.	sentence	s0284
+Švicarska je mala država.	İsviçre küçük bir devlet.	sentence	s0285
+Moja majka je Bosanka.	Annem Bosnalı.	sentence	s0286
+Moj muž je Nijemac.	Kocam Alman.	sentence	s0287
+Bosanski je lijep jezik.	Boşnakça güzel bir dil.	sentence	s0288
+Govorim njemački i bosanski.	Almanca ve Boşnakça konuşuyorum.	sentence	s0289
+Moja vjera je važna.	İnancım önemli.	sentence	s0290
+Da te upoznam: moj brat.	Seni tanıştırayım: erkek kardeşim.	sentence	s0291
+Hoću da te posjetim.	Seni ziyaret etmek istiyorum.	sentence	s0292
+Molim te, oprosti mi.	Lütfen beni affet.	sentence	s0293
+Ovo je moja koleginica.	Bu benim kadın iş arkadaşım.	sentence	s0294
+Moj babo je dobar domaćin.	Babam iyi bir ev sahibi.	sentence	s0295
+Nana svira harmoniku.	Nenem akordeon çalıyor.	sentence	s0296
+Plešemo kolo.	Kolo oynuyoruz.	sentence	s0297
+Ova sevdalinka je jako lijepa.	Bu sevdalinka çok güzel.	sentence	s0298
+Hvala Bogu, dobro sam.	Tanrı'ya şükür, iyiyim.	sentence	s0299
+Idemo na iftar kod nane.	İftar için neneme gidiyoruz.	sentence	s0300
