@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use the Zmaj app or its Bosnian dataset, please cite it as below."
+type: software
+title: "Zmaj: an open Bosnian course and learning app"
+abstract: >-
+  Offline app for learning Bosnian (Ijekavian) and the open dataset behind it:
+  1,728 words and phrases in 65 levels, 300 cloze sentences, 12 graded reading
+  stories with glossary and questions, and 16 grammar lessons, each translated
+  into German, English, Turkish, Swedish, Dutch, Norwegian, Danish and French,
+  with synthetic Bosnian audio for every item. Code AGPL-3.0-or-later, content
+  CC BY-SA 4.0.
+authors:
+  - family-names: Hasic
+    given-names: Ajdin
+    email: zmaj.lernapp@gmail.com
+repository-code: "https://github.com/zmaj-lernapp/zmaj"
+license:
+  - AGPL-3.0-or-later
+  - CC-BY-SA-4.0
+keywords:
+  - bosnian
+  - language-learning
+  - low-resource-languages
+  - dataset
+  - vocabulary
+  - parallel-corpus
+  - text-to-speech
+  - anki
+  - heritage-language

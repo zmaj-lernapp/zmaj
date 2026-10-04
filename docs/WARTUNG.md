@@ -1,4 +1,4 @@
-# Zmaj – Bosnisch lernen
+# Zmaj – Notizen für den Maintainer
 
 Eine Android-App zum Erlernen der bosnischen Sprache. Sie läuft vollständig
 auf dem Gerät: kein Nutzerkonto, kein Server, der Lernstand verlässt das
