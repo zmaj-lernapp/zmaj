@@ -92,7 +92,7 @@ Nur im Browser möglich, Claude hat dafür keine Rechte:
       *Dependabot alerts* und *security updates* an, *Secret scanning* an
 - [ ] Settings → Branches: Regel für `master` – Pull Request nötig,
       Checks `Content & tests`, `REUSE licensing`, `Secret scan` müssen grün sein
-- [ ] Labels anlegen: `language-correction`, `codex-triage`, `codex-review`,
+- [ ] Labels anlegen: `language-correction`, `translation`, `codex-triage`, `codex-review`,
       `good first issue`, `help wanted`, `needs-native-speaker`
 - [ ] Profil `zmaj-lernapp`: öffentlich, Name, Bild (der Drache), Bio,
       Repository anpinnen

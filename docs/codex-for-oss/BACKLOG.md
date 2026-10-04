@@ -10,7 +10,6 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 
 | # | Wer | Punkt | Abnahmekriterium | Hebel (PLAN §3) |
 |---|---|---|---|---|
-| 4 | C | Vorlagen für 8 Issues „Review translations: <Sprache>“ | Datei mit Titel/Text/Labels je Sprache, mit Links auf die passenden Spalten in `data/` | A |
 | 5 | C | Ankündigungstexte: r/bih, r/languagelearning, r/Anki, Show HN, Vereine (EN/DE/BS) | je Kanal ein Text, ehrlich, mit Link; Regeln des Kanals beachtet | A |
 | 6 | C | Plattformunabhängiges Screenshot-Skript (Playwright) statt Windows/CDP | `python3 store/bilder_machen/bilder_playwright.py --sprache en` erzeugt die Bilder | B |
 | 7 | C | Weitere Inhaltstests: Grammatik-Tabellen rechteckig, Optionen ohne Dubletten, Wörterbuch ohne Leereinträge | Tests grün oder echte Befunde dokumentiert | C |
@@ -30,4 +29,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | Plan, Bewerbungstexte, Zeichengrenzen-Test | `95767bb` |
 | #1 Hugging-Face-Datenkarte `data/README.md` mit Test | `9e999cd` |
 | #2 Anki-Pakete mit Ton im Release (`anki_bauen.py`) | `752251d` |
-| #3 `kennzahlen.py` + `kennzahlen_manuell.json` | dieser Commit |
+| #3 `kennzahlen.py` + `kennzahlen_manuell.json` | `046edbe` |
+| #4 Issue-Entwürfe für 7 Übersetzungssprachen + Bosnisch (`ISSUES.md`) | dieser Commit |
