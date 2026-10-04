@@ -10,7 +10,7 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 
 | # | Wer | Punkt | Abnahmekriterium | Hebel (PLAN §3) |
 |---|---|---|---|---|
-| 8 | A | M1: PR mergen, Beschreibung, Topics, Discussions, Private Vulnerability Reporting, Branch-Schutz, Labels, Profil | Checkliste in PLAN.md M1 vollständig | C, E |
+| 8 | A | M1 (inkl. Live-Demo einschalten): PR mergen, Beschreibung, Topics, Discussions, Private Vulnerability Reporting, Branch-Schutz, Labels, Profil | Checkliste in PLAN.md M1 vollständig | C, E |
 | 9 | A | M2: Tag `v1.0.0`, Zenodo einschalten → DOI | Release mit 3 Dateien, DOI-Badge | B |
 | 10 | A | M3: Play-Produktion (ab 07.10.2026) | öffentlicher Play-Link im README | A |
 | 11 | A | `OPENAI_API_KEY` als Secret, damit Codex-Reviews sichtbar laufen | erster PR mit Kommentar „Codex review“ | D |
@@ -30,4 +30,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #4 Issue-Entwürfe für 7 Übersetzungssprachen + Bosnisch (`ISSUES.md`) | `4e09ded` |
 | #5 Ankündigungstexte für HN, Reddit, Vereine (`ANKUENDIGUNGEN.md`) | `17a249a` |
 | #6 `store/bilder_machen/bilder_playwright.py`: Store-Bilder in jeder Sprache, plattformunabhängig | `dfcbbc8` |
-| #7 Inhaltstests in allen Sprachen: 16 Tabellen, 104 Übungen, 406 Wörterbucheinträge – keine Befunde | dieser Commit |
+| #7 Inhaltstests in allen Sprachen: 16 Tabellen, 104 Übungen, 406 Wörterbucheinträge – keine Befunde | `74df921` |
+| #8 Live-Demo: `demo_bauen.py` (ohne Werbung, passender Datenschutztext), Pages-Workflow, Tests | dieser Commit |

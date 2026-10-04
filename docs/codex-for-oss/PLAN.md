@@ -88,6 +88,9 @@ Nur im Browser möglich, Claude hat dafür keine Rechte:
 - [ ] Topics: `bosnian`, `language-learning`, `dataset`, `low-resource-languages`,
       `anki`, `education`, `offline-first`, `android`, `tts`, `open-data`
 - [ ] Settings → General: *Discussions* an, *Wiki* aus
+- [ ] **Live-Demo:** Settings → Pages → Source „GitHub Actions“; Settings →
+      Secrets and variables → Actions → *Variables*: `PAGES_DEMO` = `true`;
+      dann Actions → *Demo* → *Run workflow*. Danach geht der Demo-Link im README.
 - [ ] Settings → Code security: *Private vulnerability reporting* an,
       *Dependabot alerts* und *security updates* an, *Secret scanning* an
 - [ ] Settings → Branches: Regel für `master` – Pull Request nötig,

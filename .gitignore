@@ -88,3 +88,6 @@ feedback/
 
 # Gebaute Release-Dateien (anki_bauen.py, Release-Workflow)
 dist/
+
+# Gebaute Web-Demo (demo_bauen.py)
+_site/

@@ -11,6 +11,7 @@
   <a href="LICENSE"><img alt="Code: AGPL-3.0" src="https://img.shields.io/badge/code-AGPL--3.0-blue"></a>
   <a href="LICENSE-CONTENT"><img alt="Content: CC BY-SA 4.0" src="https://img.shields.io/badge/content-CC%20BY--SA%204.0-lightgrey"></a>
   <a href="REUSE.toml"><img alt="REUSE compliant" src="https://img.shields.io/badge/REUSE-compliant-green"></a>
+  <a href="https://zmaj-lernapp.github.io/zmaj/"><img alt="Live demo" src="https://img.shields.io/badge/demo-zmaj--lernapp.github.io%2Fzmaj-2448b8"></a>
 </p>
 
 **An offline app for learning Bosnian, and the open Bosnian course behind it.**
@@ -40,9 +41,14 @@ the regional variants real families use. The last section covers what people
 otherwise need a translator for: the municipality, the bank, the doctor, a
 rental or employment contract.
 
-## Try it in 30 seconds
+## Try it in 20 seconds
 
-No dependencies besides Python 3.9+.
+**In the browser:** [zmaj-lernapp.github.io/zmaj](https://zmaj-lernapp.github.io/zmaj/).
+No account, no install; the interface follows your browser language. Append
+`?alle=1` to unlock every level. The web demo has no ads
+([`demo_bauen.py`](demo_bauen.py)); it is hosted by GitHub Pages.
+
+**Locally,** with nothing but Python 3.9+:
 
 ```bash
 git clone https://github.com/zmaj-lernapp/zmaj.git
@@ -50,8 +56,8 @@ cd zmaj
 python3 start.py          # opens http://localhost:8000
 ```
 
-Append `?alle=1` to the URL to unlock every level. The Android app is in a
-closed test on Google Play since 23 September 2026; the public release follows.
+The Android app is in a closed test on Google Play since 23 September 2026;
+the public release follows.
 
 ## The open dataset
 
