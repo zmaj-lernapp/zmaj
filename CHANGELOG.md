@@ -19,6 +19,14 @@ are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
 ### Changed
 - `mappe/` (school project documents with names of third parties) removed
   from the public repository.
+- Anki packages: every language now has its own note IDs, so several language
+  decks can live side by side. Packages from v1.0.0 import as new notes.
+- Patch scripts work on Windows checkouts with CRLF line endings; `data/` is
+  always checked out with LF.
+- Release workflow refuses a tag that already points at another commit and
+  starts the PyPI workflow after a release run by hand; the PyPI workflow
+  checks that the package version matches the tag.
+- Codex workflows: a label event no longer cancels a review already running.
 
 ## [1.0.0] – 2026-10-04
 

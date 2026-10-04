@@ -30,6 +30,19 @@ jobs:
           ref: ${{ github.sha }}
           persist-credentials: false
 
+      - name: By hand, the tag must be new or already point at this commit
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          ziel=$(gh api "repos/$REPO/commits/$TAG" --jq .sha 2>/dev/null || true)
+          if [ -n "$ziel" ] && [ "$ziel" != "$SHA" ]; then
+            echo "::error::$TAG already points at $ziel, not at $SHA. Run on that tag, or choose a new tag."
+            exit 1
+          fi
+
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
@@ -69,6 +82,25 @@ jobs:
             dist/*.zip
             dist/*.apkg
             dist/SHA256SUMS.txt
+
+  pypi:
+    # A tag created by this workflow's token does not start other workflows,
+    # so a release started by hand starts the PyPI workflow on the new tag.
+    # A pushed tag starts pypi.yml by itself.
+    needs: release
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    env:
+      TAG: ${{ github.event.inputs.tag }}
+    steps:
+      - name: Start the PyPI workflow on the tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: gh workflow run pypi.yml --repo "$REPO" --ref "$TAG"
 
   huggingface:
     needs: release
