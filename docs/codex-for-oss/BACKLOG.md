@@ -32,4 +32,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #6 `store/bilder_machen/bilder_playwright.py`: Store-Bilder in jeder Sprache, plattformunabhängig | `dfcbbc8` |
 | #7 Inhaltstests in allen Sprachen: 16 Tabellen, 104 Übungen, 406 Wörterbucheinträge – keine Befunde | `74df921` |
 | #8 Live-Demo: `demo_bauen.py` (ohne Werbung, passender Datenschutztext), Pages-Workflow, Tests | `c0e28c4` |
-| #9 Test-Werkzeuge mit Prüfsummen gesperrt (Scorecard „Pinned-Dependencies“); Demo-Link in der Bewerbung | dieser Commit |
+| #9 Test-Werkzeuge mit Prüfsummen gesperrt (Scorecard „Pinned-Dependencies“); Demo-Link in der Bewerbung | `08e8a3b` |
+| #10 `docs/ARCHITECTURE.md` auf Englisch | dieser Commit |
