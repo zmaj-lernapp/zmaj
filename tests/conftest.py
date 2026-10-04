@@ -32,3 +32,10 @@ def alle_daten(sprachcodes):
 def grunddaten(alle_daten):
     import sprachen
     return alle_daten[sprachen.GRUNDSPRACHE]
+
+
+@pytest.fixture(scope="session")
+def index_html(wurzel):
+    """web/index.html, wie sie im Repository liegt (Zeilenenden unverändert)."""
+    import io
+    return io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8", newline="").read()

@@ -42,7 +42,18 @@ import sys
 from collections import defaultdict
 
 HIER = os.path.dirname(os.path.abspath(__file__))
-SPRACHEN = ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
+def _sprachen():
+    """Die Sprachen aus web/inhalt/liste.json, Grundsprache zuerst - dieselbe
+    Liste, nach der inhalt_bauen.py die Dateien geschrieben hat. Fehlt sie,
+    die acht von heute."""
+    try:
+        with io.open(os.path.join(HIER, "web", "inhalt", "liste.json"), encoding="utf-8") as f:
+            return [s["code"] for s in json.load(f)["sprachen"]]
+    except (OSError, ValueError, KeyError):
+        return ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
+
+
+SPRACHEN = _sprachen()
 AUSNAHMEN = os.path.join(HIER, "bedeutung_ausnahmen.json")
 
 
