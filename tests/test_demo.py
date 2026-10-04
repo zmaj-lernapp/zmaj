@@ -29,11 +29,10 @@ def test_datenschutz_passt_zur_demo(demo, sprachcodes):
         assert "AdMob" not in daten["texte"]["set.datenschutz_text"], code
 
 
-def test_app_selbst_bleibt_unveraendert(demo, wurzel):
+def test_app_selbst_bleibt_unveraendert(demo, index_html):
     """Die Demo ändert nur die Kopie, nie web/."""
     import demo_bauen
-    html = io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
-    assert html.count(demo_bauen.WERBUNG_ALT) == 1
+    assert index_html.replace("\r\n", "\n").count(demo_bauen.WERBUNG_ALT) == 1
 
 
 def test_keine_probedateien_in_der_demo(demo):

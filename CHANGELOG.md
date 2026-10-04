@@ -6,6 +6,15 @@ are in the Play Store listing. Format:
 
 ## [Unreleased]
 
+### Changed
+- Patch scripts share one implementation of the dry-run, anchor and CRLF
+  rules (`richten.py`); one parametrized test covers every pending script.
+- App content and web demo are written by the same function
+  (`inhalt_bauen.schreiben`); output is byte-identical.
+- CI caches pip downloads and the Playwright browser, lints once, and
+  cancels superseded CodeQL runs. Store feature graphic recompressed
+  losslessly (529 KB to 208 KB).
+
 ### Removed
 - Internal working notes, finished one-off patch and migration scripts and
   their intermediate files. Audio and translation review reports moved to

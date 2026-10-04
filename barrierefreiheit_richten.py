@@ -83,13 +83,11 @@ Probelauf:  python barrierefreiheit_richten.py
 Schreiben:  python barrierefreiheit_richten.py --schreiben
 An Kopie:   python barrierefreiheit_richten.py --datei /pfad/index.html --schreiben
 """
-import io
-import os
 import re
-import sys
 
-ORDNER = os.path.dirname(os.path.abspath(__file__))
-INDEX = os.path.join(ORDNER, "web", "index.html")
+import richten
+
+INDEX = richten.INDEX
 
 KOMMENTAR_TOKEN = (
     "    /* Nur fuer Schrift. --good, --bad und --accent-dark sind auch Flaechen\n"
@@ -222,24 +220,15 @@ KENNUNG = "--good-text:#188049"
 def anwenden(html):
     """(neuer Text, Fehlerliste). Ein Fehler heisst: nichts wird geschrieben."""
     fehler = []
-    neu = html
     if KENNUNG in html:
         fehler.append("schon angewendet: %s steht bereits in der Datei" % KENNUNG)
-    for name, alt, ersatz in AENDERUNGEN:
-        n = neu.count(alt)
-        if n != 1:
-            fehler.append("%s: Stelle %d-mal gefunden statt einmal" % (name, n))
-            continue
-        neu = neu.replace(alt, ersatz)
+    neu, fehlt = richten.ersetze_einmal(html, AENDERUNGEN)
+    fehler += fehlt
     if fehler:
         return neu, fehler
 
-    # Nachkontrollen wie in den anderen *_richten.py
-    for auf, zu, was in (("{", "}", "geschweifte Klammern"), ("(", ")", "runde Klammern"),
-                         ("/*", "*/", "Kommentare"), ("<!--", "-->", "HTML-Kommentare"),
-                         ("<main>", "</main>", "main")):
-        if neu.count(auf) - neu.count(zu) != html.count(auf) - html.count(zu):
-            fehler.append("%s aus dem Gleichgewicht" % was)
+    # Nachkontrollen wie in den anderen *_richten.py, dazu <main>
+    fehler += richten.gleichgewicht(html, neu, richten.PAARE + (("<main>", "</main>", "main"),))
     # Jeder Schalter hat einen Namen, und der zeigt auf genau ein Element
     for knopf in re.findall(r'<button class="switch"[^>]*>', neu):
         m = re.search(r'aria-labelledby="([^"]+)"', knopf)
@@ -264,35 +253,8 @@ def anwenden(html):
 
 
 def main(argv=None):
-    argv = sys.argv[1:] if argv is None else argv
-    schreiben = "--schreiben" in argv
-    datei = INDEX
-    if "--datei" in argv:
-        datei = argv[argv.index("--datei") + 1]
-    roh = io.open(datei, encoding="utf-8", newline="").read()
-    # Git fuer Windows checkt mit CRLF aus. Die Anker kennen nur \n -
-    # also wie in sicherung_richten.py: normalisieren, beim Schreiben zurueck.
-    crlf = "\r\n" in roh
-    html = roh.replace("\r\n", "\n")
-    neu, fehler = anwenden(html)
-    for name, _, _ in AENDERUNGEN:
-        print("   %s %s" % ("✗" if any(f.startswith(name + ":") for f in fehler) else "✓", name))
-    if fehler:
-        print("\nABBRUCH - nichts geschrieben:")
-        for f in fehler:
-            print("   " + f)
-        return 1
-    if schreiben:
-        io.open(datei, "w", encoding="utf-8", newline="").write(
-            neu.replace("\n", "\r\n") if crlf else neu)
-        print("\ngeschrieben: %s" % datei)
-        print("Danach: app_bauen.py - aber NICHT vor dem 07.10.2026 einreichen.")
-    else:
-        print("\n(Probelauf. Zum Schreiben: python barrierefreiheit_richten.py --schreiben)")
-    return 0
+    return richten.main(argv, AENDERUNGEN, anwenden, "barrierefreiheit_richten.py")
 
 
 if __name__ == "__main__":
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     raise SystemExit(main())

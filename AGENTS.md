@@ -60,7 +60,8 @@ A change is done when `pytest`, `ruff check .` and `reuse lint` pass and
    entry in `web/LIZENZEN.txt` and `REUSE.toml`.
 7. **Patch scripts are all-or-nothing.** The `*_richten.py` pattern: dry run by
    default, `--schreiben` to write, abort without changes if an anchor is not
-   found exactly once. Follow the same pattern for new ones.
+   found exactly once. New ones build on `richten.py`, which implements this
+   once, and get an entry in `tests/test_richten.py`.
 8. **No secrets.** `tts_zugang.json`, `mail_zugang.json`, keystores and anything
    with learner data are gitignored. Never create, print or commit them.
 
