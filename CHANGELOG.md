@@ -39,6 +39,10 @@ are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
   `requirements-dev.txt`) and installed with `--require-hashes` in CI.
 
 ### Fixed
+- Security review of the backup import: a hand-written backup could lock
+  the app at every start (`"gewusst":[1]`), grant unlimited hearts or break
+  the review tab. The fix is prepared as `import_richten.py` and applied for
+  the first build after the closed test.
 - French terms of service: the heading "Rétractation et remboursement" was
   missing, leaving an unbalanced `</b>` before the withdrawal clause.
 

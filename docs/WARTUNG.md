@@ -84,6 +84,7 @@ Einreichung setzt Googles Prüfuhr zurück.
 | `vorleser_richten.py` | die Geschichte beginnt nach einem angetippten Wort nicht mehr von vorn |
 | `zurueck_richten.py` | ein Weg ins Hauptmenü nach Vokabeltest und Geschichte |
 | `sicherung_richten.py` | die Meldung nach dem Sichern nennt den Dateinamen |
+| `import_richten.py` | eine von Hand geschriebene Sicherung kann die App nicht mehr lahmlegen (Sicherheitsprüfung 04.10.2026) |
 
 Alle drei folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
 Ohne den Schalter passiert nichts. Kommt ein gesuchter Textabschnitt nicht
