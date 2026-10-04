@@ -45,3 +45,27 @@ def test_kennungen_sind_fest():
     import anki_bauen
     assert anki_bauen.feste_id("zmaj-modell-v1") == anki_bauen.feste_id("zmaj-modell-v1")
     assert anki_bauen.feste_id("zmaj-stapel-en") != anki_bauen.feste_id("zmaj-stapel-de")
+
+
+def test_sprachen_haben_eigene_notiz_kennungen(tmp_path, wurzel):
+    """Anki erkennt Notizen an der GUID. Teilten sich en und de dieselben,
+    ueberschriebe das zweite importierte Paket das erste."""
+    import sqlite3 as _sqlite3
+    import zipfile as _zipfile
+    genanki = pytest.importorskip("genanki")
+    import anki_bauen
+    vokabeln = json.load(io.open(os.path.join(wurzel, "data", "vocabulary.json"), encoding="utf-8"))
+    alt = anki_bauen.ZIEL
+    anki_bauen.ZIEL = str(tmp_path)
+    try:
+        guids = {}
+        for code in ("en", "de"):
+            pfad, _, _ = anki_bauen.paket_bauen(code, vokabeln, genanki)
+            with _zipfile.ZipFile(pfad) as z:
+                z.extract("collection.anki2", str(tmp_path / code))
+            db = _sqlite3.connect(str(tmp_path / code / "collection.anki2"))
+            guids[code] = {g for (g,) in db.execute("select guid from notes")}
+    finally:
+        anki_bauen.ZIEL = alt
+    assert len(guids["en"]) == len(vokabeln["entries"])
+    assert not guids["en"] & guids["de"]

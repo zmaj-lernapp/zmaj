@@ -74,6 +74,7 @@ Everything the app teaches is exported to [`data/`](data/) under
 | Reading glossary | 406 | JSON |
 | Grammar lessons with exercises | 16 | JSON |
 | Synthetic Bosnian audio (MP3) | 2,332 | `web/audio/` |
+| Parallel corpus for machine translation | 2,040 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
 
 Every item is translated into **German, English, Turkish, Swedish, Dutch,
 Norwegian, Danish and French**. JSON Schemas, a SHA-256 manifest and an honest
@@ -154,6 +155,14 @@ answers present in every language, placeholders and HTML balanced in all
 translations, an audio file for every item, dataset in sync with the
 sources), plus `ruff`, REUSE licensing, gitleaks over the full history,
 CodeQL and OpenSSF Scorecard. All actions are pinned to commit SHAs.
+
+20 browser tests (Playwright) play the built app like a learner: start in all
+eight languages without script errors or requests to other servers, finish a
+lesson and a level test, read a story, switch language and keep progress,
+survive malicious backup files, and pass axe-core's accessibility checks
+(0 serious or critical findings once
+[`barrierefreiheit_richten.py`](barrierefreiheit_richten.py) is applied).
+Two security reviews are documented in [SECURITY.md](SECURITY.md).
 
 ## Working with AI agents
 

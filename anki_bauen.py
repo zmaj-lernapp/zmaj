@@ -89,7 +89,9 @@ def paket_bauen(code, vokabeln, genanki):
         stapel.add_note(genanki.Note(
             model=m,
             fields=[e["bs"], e["translations"][code], ton, stufe],
-            guid=genanki.guid_for("zmaj", e["id"]),
+            # Je Sprache eigene Kennung: Anki erkennt Notizen an der GUID. Mit
+            # derselben GUID ueberschriebe das zweite Sprachpaket das erste.
+            guid=genanki.guid_for("zmaj", code, e["id"]),
             tags=["zmaj", "zmaj::%02d_%s" % (lv["position"], lv["id"])],
         ))
     os.makedirs(ZIEL, exist_ok=True)

@@ -57,6 +57,16 @@ You will get an answer within **5 days**. Confirmed issues are fixed in the
 next release, normally within 30 days, and you are credited in the release
 notes unless you prefer otherwise.
 
+## Reviews so far
+
+| Date | Scope | Result |
+|---|---|---|
+| 04.10.2026 | backup import | 3 confirmed (lock-out at every start, unlimited hearts, review tab crash); fixed in `import_richten.py` |
+| 04.10.2026 | URL parameters, stored settings, HTML sinks, mailto, load paths | nothing exploitable; 2 hardenings in `sicherheit2_richten.py` |
+
+Both fixes are verified in a browser by `tests_e2e/` and ship with the first
+build after the closed test on Google Play (07.10.2026).
+
 ## What we already do
 
 - CodeQL (`security-extended`) on Python, JavaScript and the workflows, on

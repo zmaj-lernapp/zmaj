@@ -122,7 +122,10 @@ def bilder_machen(sprache, ziel, chrome=None):
             seite = browser.new_context(viewport={"width": 360, "height": 640},
                                         device_scale_factor=3, locale=sprache).new_page()
             js = lambda code: seite.evaluate("async () => {" + code + "}")  # noqa: E731
-            seite.goto(basis + "/index.html")
+            # Den Stand auf einer leeren Seite desselben Ursprungs setzen, nicht in
+            # der laufenden App: deren visibilitychange speichert beim Wegnavigieren
+            # sonst den eigenen, leeren Stand darueber (wie tests_e2e/conftest.py).
+            seite.goto(basis + "/leer")
             js("localStorage.clear(); localStorage.setItem('zmaj_stand', %s); "
                "localStorage.setItem('zmaj_einwilligung', JSON.stringify({wahl:'nein',stand:1,zeit:new Date().toISOString()})); "
                "localStorage.setItem('zmaj_sprache', %s); return 1"

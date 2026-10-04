@@ -70,6 +70,15 @@ precedence = "override"
 SPDX-FileCopyrightText = "2015 Bodymovin"
 SPDX-License-Identifier = "MIT"
 
+# axe-core 4.13.0, only for the browser accessibility test in tests_e2e/.
+# Never shipped in web/. The bundle contains MIT-licensed helpers listed in
+# axe-core-LICENSE-3RD-PARTY.txt.
+[[annotations]]
+path = "tests_e2e/vendor/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2015 - 2026 Deque Systems, Inc."
+SPDX-License-Identifier = "MPL-2.0 AND MIT"
+
 # --- metadata files that describe licensing themselves ---------------------
 [[annotations]]
 path = ["REUSE.toml", "LICENSE-CONTENT", "CITATION.cff", ".gitignore", ".gitattributes", ".editorconfig", ".github/**", ".claude/**", "AGENTS.md", "pyproject.toml", "requirements-dev.txt", "requirements-dev.in", "requirements-hf.txt", "requirements-hf.in"]
