@@ -36,11 +36,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
           SHA: ${{ github.sha }}
+        # Ask for the tag ref first: on a missing tag gh api still prints the
+        # error body on stdout, which must not be read as a commit.
         run: |
-          ziel=$(gh api "repos/$REPO/commits/$TAG" --jq .sha 2>/dev/null || true)
-          if [ -n "$ziel" ] && [ "$ziel" != "$SHA" ]; then
-            echo "::error::$TAG already points at $ziel, not at $SHA. Run on that tag, or choose a new tag."
-            exit 1
+          if gh api "repos/$REPO/git/ref/tags/$TAG" >/dev/null 2>&1; then
+            ziel=$(gh api "repos/$REPO/commits/$TAG" --jq .sha)
+            if [ "$ziel" != "$SHA" ]; then
+              echo "::error::$TAG already points at $ziel, not at $SHA. Run on that tag, or choose a new tag."
+              exit 1
+            fi
           fi
 
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
