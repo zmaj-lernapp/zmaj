@@ -34,7 +34,7 @@ jobs:
           cache-dependency-path: requirements-dev.txt
 
       - name: Install test tools (the app itself needs none)
-        run: python -m pip install -r requirements-dev.txt
+        run: python -m pip install --require-hashes -r requirements-dev.txt
 
       - name: Lint
         run: ruff check .
