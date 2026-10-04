@@ -14,6 +14,8 @@ are in the Play Store listing. Format:
 - CI caches pip downloads and the Playwright browser, lints once, and
   cancels superseded CodeQL runs. Store feature graphic recompressed
   losslessly (529 KB to 208 KB).
+- Python 3.10 is the minimum (3.9 is end of life since October 2025); CI runs
+  on 3.10 and 3.13.
 
 ### Removed
 - Internal working notes, finished one-off patch and migration scripts and

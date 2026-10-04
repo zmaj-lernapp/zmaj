@@ -50,7 +50,7 @@ No account, no install; the interface follows your browser language. Append
 `?alle=1` to unlock every level. The web demo has no ads
 ([`demo_bauen.py`](demo_bauen.py)); it is hosted by GitHub Pages.
 
-**Locally,** with nothing but Python 3.9+:
+**Locally,** with nothing but Python 3.10+:
 
 ```bash
 git clone https://github.com/zmaj-lernapp/zmaj.git
@@ -150,7 +150,7 @@ Maintainer notes in German:
 
 ## Quality
 
-Every push runs `pytest` on Python 3.9 and 3.13 (word IDs, cloze gaps,
+Every push runs `pytest` on Python 3.10 and 3.13 (word IDs, cloze gaps,
 answers present in every language, placeholders and HTML balanced in all
 translations, an audio file for every item, dataset in sync with the
 sources), plus `ruff`, REUSE licensing, gitleaks over the full history,
