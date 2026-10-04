@@ -1,0 +1,1733 @@
+#separator:tab
+#html:false
+#notetype:Basic (and reversed card)
+#columns:Bosnian	nl	Tags
+#tags column:3
+Merhaba	Hallo	zmaj zmaj::01_basics
+Dobar dan	Goedendag	zmaj zmaj::01_basics
+Dobro jutro	Goedemorgen	zmaj zmaj::01_basics
+Dobro veče	Goedenavond	zmaj zmaj::01_basics
+Laku noć / Lahku noć	Welterusten	zmaj zmaj::01_basics
+Doviđenja	Tot ziens	zmaj zmaj::01_basics
+Ćao	Doei	zmaj zmaj::01_basics
+Dobro došli	Welkom	zmaj zmaj::01_basics
+Da	Ja	zmaj zmaj::01_basics
+Ne	Nee	zmaj zmaj::01_basics
+Hvala	Dank je	zmaj zmaj::01_basics
+Hvala puno	Hartelijk dank	zmaj zmaj::01_basics
+Molim	Alstublieft / graag gedaan (beleefd)	zmaj zmaj::01_basics
+Nema na čemu	Graag gedaan	zmaj zmaj::01_basics
+Izvini	Sorry (jij)	zmaj zmaj::01_basics
+Izvinite	Neemt u mij niet kwalijk (u)	zmaj zmaj::01_basics
+Kako si?	Hoe gaat het met je?	zmaj zmaj::01_basics
+Kako ste?	Hoe gaat het met u?	zmaj zmaj::01_basics
+Dobro	Goed	zmaj zmaj::01_basics
+Loše	Slecht	zmaj zmaj::01_basics
+Kako se zoveš?	Hoe heet je?	zmaj zmaj::01_basics
+Zovem se ...	Ik heet ...	zmaj zmaj::01_basics
+Drago mi je	Aangenaam	zmaj zmaj::01_basics
+Razumijem	Ik begrijp het	zmaj zmaj::01_basics
+Ne razumijem	Ik begrijp het niet	zmaj zmaj::01_basics
+Ne znam	Ik weet het niet	zmaj zmaj::01_basics
+Govoriš li njemački?	Spreek je Duits?	zmaj zmaj::01_basics
+Govorim malo bosanski	Ik spreek een beetje Bosnisch	zmaj zmaj::01_basics
+U redu	Oké	zmaj zmaj::01_basics
+Možda	Misschien	zmaj zmaj::01_basics
+Živjeli!	Proost!	zmaj zmaj::01_basics
+Prijatno	Eet smakelijk	zmaj zmaj::01_basics
+Zdravo	Hallo (neutraal, overal)	zmaj zmaj::01_basics
+nula	nul	zmaj zmaj::02_zahlen
+jedan	een	zmaj zmaj::02_zahlen
+dva	twee	zmaj zmaj::02_zahlen
+tri	drie	zmaj zmaj::02_zahlen
+četiri	vier	zmaj zmaj::02_zahlen
+pet	vijf	zmaj zmaj::02_zahlen
+šest	zes	zmaj zmaj::02_zahlen
+sedam	zeven	zmaj zmaj::02_zahlen
+osam	acht	zmaj zmaj::02_zahlen
+devet	negen	zmaj zmaj::02_zahlen
+deset	tien	zmaj zmaj::02_zahlen
+jedanaest	elf	zmaj zmaj::02_zahlen
+dvanaest	twaalf	zmaj zmaj::02_zahlen
+trinaest	dertien	zmaj zmaj::02_zahlen
+četrnaest	veertien	zmaj zmaj::02_zahlen
+petnaest	vijftien	zmaj zmaj::02_zahlen
+šesnaest	zestien	zmaj zmaj::02_zahlen
+sedamnaest	zeventien	zmaj zmaj::02_zahlen
+osamnaest	achttien	zmaj zmaj::02_zahlen
+devetnaest	negentien	zmaj zmaj::02_zahlen
+dvadeset	twintig	zmaj zmaj::02_zahlen
+dvadeset jedan	eenentwintig	zmaj zmaj::02_zahlen
+trideset	dertig	zmaj zmaj::02_zahlen
+četrdeset	veertig	zmaj zmaj::02_zahlen
+pedeset	vijftig	zmaj zmaj::02_zahlen
+šezdeset	zestig	zmaj zmaj::02_zahlen
+sedamdeset	zeventig	zmaj zmaj::02_zahlen
+osamdeset	tachtig	zmaj zmaj::02_zahlen
+devedeset	negentig	zmaj zmaj::02_zahlen
+sto	honderd	zmaj zmaj::02_zahlen
+dvjesto	tweehonderd	zmaj zmaj::02_zahlen
+hiljada	duizend	zmaj zmaj::02_zahlen
+boja	kleur	zmaj zmaj::03_farben
+crvena	rood	zmaj zmaj::03_farben
+plava	blauw	zmaj zmaj::03_farben
+zelena	groen	zmaj zmaj::03_farben
+žuta	geel	zmaj zmaj::03_farben
+crna	zwart	zmaj zmaj::03_farben
+bijela	wit	zmaj zmaj::03_farben
+kafena	bruin	zmaj zmaj::03_farben
+siva	grijs	zmaj zmaj::03_farben
+narandžasta	oranje	zmaj zmaj::03_farben
+ljubičasta	paars	zmaj zmaj::03_farben
+roza	roze	zmaj zmaj::03_farben
+majka	moeder	zmaj zmaj::04_familie
+mama	mama	zmaj zmaj::04_familie
+otac	vader	zmaj zmaj::04_familie
+babo	papa (Bosnisch babo)	zmaj zmaj::04_familie
+brat	broer	zmaj zmaj::04_familie
+sestra	zus	zmaj zmaj::04_familie
+sin	zoon	zmaj zmaj::04_familie
+kćerka	dochter	zmaj zmaj::04_familie
+dijete	kind	zmaj zmaj::04_familie
+djeca	kinderen	zmaj zmaj::04_familie
+žena	echtgenote	zmaj zmaj::04_familie
+muž	echtgenoot	zmaj zmaj::04_familie
+nana	oma	zmaj zmaj::04_familie
+dedo	opa	zmaj zmaj::04_familie
+tetka	tante	zmaj zmaj::04_familie
+amidža	oom (van vaderskant)	zmaj zmaj::04_familie
+daidža	oom (van moederskant)	zmaj zmaj::04_familie
+rođak	neef	zmaj zmaj::04_familie
+beba	baby	zmaj zmaj::04_familie
+porodica	Familie	zmaj zmaj::04_familie
+prijatelj	vriend	zmaj zmaj::04_familie
+prijateljica	vriendin	zmaj zmaj::04_familie
+voda	water	zmaj zmaj::05_essen
+hljeb	brood	zmaj zmaj::05_essen
+kahva / kafa	koffie	zmaj zmaj::05_essen
+fildžan	klein koffiekopje (traditioneel)	zmaj zmaj::05_essen
+čaj	thee	zmaj zmaj::05_essen
+mlijeko	melk	zmaj zmaj::05_essen
+sok	sap	zmaj zmaj::05_essen
+pivo	bier	zmaj zmaj::05_essen
+meso	vlees	zmaj zmaj::05_essen
+piletina	kip	zmaj zmaj::05_essen
+riba	vis	zmaj zmaj::05_essen
+sir	kaas	zmaj zmaj::05_essen
+jaje	ei	zmaj zmaj::05_essen
+jabuka	appel	zmaj zmaj::05_essen
+voće	fruit	zmaj zmaj::05_essen
+povrće	groente	zmaj zmaj::05_essen
+krompir	aardappel	zmaj zmaj::05_essen
+paradajz	tomaat	zmaj zmaj::05_essen
+luk	ui	zmaj zmaj::05_essen
+riža	rijst	zmaj zmaj::05_essen
+so	zout	zmaj zmaj::05_essen
+šećer	suiker	zmaj zmaj::05_essen
+supa	soep	zmaj zmaj::05_essen
+pita	pita (gevuld filodeeggebak)	zmaj zmaj::05_essen
+ćevapi	ćevapi (gegrilde gehaktrolletjes)	zmaj zmaj::05_essen
+doručak	ontbijt	zmaj zmaj::05_essen
+ručak	lunch	zmaj zmaj::05_essen
+večera	avondeten	zmaj zmaj::05_essen
+Gladan sam / Gladna sam	Ik heb honger (m/v)	zmaj zmaj::05_essen
+Žedan sam / Žedna sam	Ik heb dorst (m/v)	zmaj zmaj::05_essen
+Račun, molim	De rekening, alstublieft	zmaj zmaj::05_essen
+ponedjeljak	maandag	zmaj zmaj::06_wochentage
+utorak	dinsdag	zmaj zmaj::06_wochentage
+srijeda	woensdag	zmaj zmaj::06_wochentage
+četvrtak	donderdag	zmaj zmaj::06_wochentage
+petak	vrijdag	zmaj zmaj::06_wochentage
+subota	zaterdag	zmaj zmaj::06_wochentage
+nedjelja	zondag	zmaj zmaj::06_wochentage
+vikend	weekend	zmaj zmaj::06_wochentage
+sedmica	week	zmaj zmaj::06_wochentage
+januar	januari	zmaj zmaj::07_monate
+februar	februari	zmaj zmaj::07_monate
+mart	maart	zmaj zmaj::07_monate
+april	april	zmaj zmaj::07_monate
+maj	mei	zmaj zmaj::07_monate
+juni	juni	zmaj zmaj::07_monate
+juli	juli	zmaj zmaj::07_monate
+august	augustus	zmaj zmaj::07_monate
+septembar	september	zmaj zmaj::07_monate
+oktobar	oktober	zmaj zmaj::07_monate
+novembar	november	zmaj zmaj::07_monate
+decembar	december	zmaj zmaj::07_monate
+mjesec	maand	zmaj zmaj::07_monate
+godina	jaar	zmaj zmaj::07_monate
+danas	vandaag	zmaj zmaj::08_zeit
+sutra	morgen	zmaj zmaj::08_zeit
+jučer	gisteren	zmaj zmaj::08_zeit
+sada	nu	zmaj zmaj::08_zeit
+kasnije	later	zmaj zmaj::08_zeit
+dan	dag	zmaj zmaj::08_zeit
+jutro	ochtend	zmaj zmaj::08_zeit
+podne	middag	zmaj zmaj::08_zeit
+večer	avond	zmaj zmaj::08_zeit
+noć	nacht	zmaj zmaj::08_zeit
+sat	uur / klok	zmaj zmaj::08_zeit
+minuta	minuut	zmaj zmaj::08_zeit
+Koliko je sati?	Hoe laat is het?	zmaj zmaj::08_zeit
+Vidimo se sutra!	We zien elkaar morgen!	zmaj zmaj::08_zeit
+stan	woning	zmaj zmaj::09_zuhause
+soba	kamer	zmaj zmaj::09_zuhause
+kuhinja	keuken	zmaj zmaj::09_zuhause
+kupatilo	badkamer	zmaj zmaj::09_zuhause
+spavaća soba	slaapkamer	zmaj zmaj::09_zuhause
+dnevna soba	woonkamer	zmaj zmaj::09_zuhause
+vrata	deur	zmaj zmaj::09_zuhause
+prozor	raam	zmaj zmaj::09_zuhause
+sto	tafel	zmaj zmaj::09_zuhause
+stolica	stoel	zmaj zmaj::09_zuhause
+krevet	bed	zmaj zmaj::09_zuhause
+ključ	sleutel	zmaj zmaj::09_zuhause
+lampa	lamp	zmaj zmaj::09_zuhause
+televizor	televisie	zmaj zmaj::09_zuhause
+mobitel	mobiele telefoon	zmaj zmaj::09_zuhause
+frižider	koelkast	zmaj zmaj::09_zuhause
+šporet	fornuis	zmaj zmaj::09_zuhause
+tepih	tapijt	zmaj zmaj::09_zuhause
+peškir	handdoek	zmaj zmaj::09_zuhause
+sapun	zeep	zmaj zmaj::09_zuhause
+stepenice	trap	zmaj zmaj::09_zuhause
+balkon	balkon	zmaj zmaj::09_zuhause
+bašta	tuin	zmaj zmaj::09_zuhause
+komšija	buurman	zmaj zmaj::09_zuhause
+vrijeme	weer	zmaj zmaj::10_wetter
+sunce	zon	zmaj zmaj::10_wetter
+kiša	regen	zmaj zmaj::10_wetter
+snijeg	sneeuw	zmaj zmaj::10_wetter
+vjetar	wind	zmaj zmaj::10_wetter
+oblak	wolk	zmaj zmaj::10_wetter
+toplo	warm	zmaj zmaj::10_wetter
+hladno	koud	zmaj zmaj::10_wetter
+vruće	heet	zmaj zmaj::10_wetter
+Pada kiša	Het regent	zmaj zmaj::10_wetter
+Pada snijeg	Het sneeuwt	zmaj zmaj::10_wetter
+proljeće	lente	zmaj zmaj::10_wetter
+ljeto	zomer	zmaj zmaj::10_wetter
+jesen	herfst	zmaj zmaj::10_wetter
+zima	winter	zmaj zmaj::10_wetter
+planina	berg	zmaj zmaj::10_wetter
+rijeka	rivier	zmaj zmaj::10_wetter
+more	zee	zmaj zmaj::10_wetter
+jezero	meer	zmaj zmaj::10_wetter
+šuma	bos	zmaj zmaj::10_wetter
+drvo	boom	zmaj zmaj::10_wetter
+cvijet	bloem	zmaj zmaj::10_wetter
+nebo	hemel	zmaj zmaj::10_wetter
+zvijezda	ster	zmaj zmaj::10_wetter
+pas	hond	zmaj zmaj::10_wetter
+mačka	kat	zmaj zmaj::10_wetter
+ptica	vogel	zmaj zmaj::10_wetter
+pčela	honingbij	zmaj zmaj::10_wetter
+munja	bliksem	zmaj zmaj::10_wetter
+grmljavina	donder	zmaj zmaj::10_wetter
+led	ijs (bevroren water)	zmaj zmaj::10_wetter
+magla	mist	zmaj zmaj::10_wetter
+duga	regenboog	zmaj zmaj::10_wetter
+hlad	schaduw	zmaj zmaj::10_wetter
+oluja	storm	zmaj zmaj::10_wetter
+glava	hoofd	zmaj zmaj::11_koerper
+kosa	haar	zmaj zmaj::11_koerper
+oko	oog	zmaj zmaj::11_koerper
+uho	oor	zmaj zmaj::11_koerper
+nos	neus	zmaj zmaj::11_koerper
+usta	mond	zmaj zmaj::11_koerper
+zub	tand	zmaj zmaj::11_koerper
+vrat	hals	zmaj zmaj::11_koerper
+ruka	hand / arm	zmaj zmaj::11_koerper
+prst	vinger	zmaj zmaj::11_koerper
+noga	been	zmaj zmaj::11_koerper
+stomak	buik	zmaj zmaj::11_koerper
+leđa	rug	zmaj zmaj::11_koerper
+srce	hart	zmaj zmaj::11_koerper
+bolestan / bolesna	ziek (m/v)	zmaj zmaj::11_koerper
+zdrav / zdrava	gezond (m/v)	zmaj zmaj::11_koerper
+doktor	dokter	zmaj zmaj::11_koerper
+bolnica	ziekenhuis	zmaj zmaj::11_koerper
+apoteka	apotheek	zmaj zmaj::11_koerper
+bol	pijn	zmaj zmaj::11_koerper
+Boli me	Het doet pijn	zmaj zmaj::11_koerper
+glavobolja	hoofdpijn	zmaj zmaj::11_koerper
+temperatura	koorts	zmaj zmaj::11_koerper
+lijek	medicijn	zmaj zmaj::11_koerper
+Brz oporavak	Beterschap!	zmaj zmaj::11_koerper
+radnja	zaak	zmaj zmaj::12_einkaufen
+tržni centar	winkelcentrum	zmaj zmaj::12_einkaufen
+kasa	kassa	zmaj zmaj::12_einkaufen
+cijena	prijs	zmaj zmaj::12_einkaufen
+popust	korting	zmaj zmaj::12_einkaufen
+gotovina	contant geld	zmaj zmaj::12_einkaufen
+kartica	pas (bankpas)	zmaj zmaj::12_einkaufen
+torba	tas	zmaj zmaj::12_einkaufen
+odjeća	kleding	zmaj zmaj::12_einkaufen
+košulja	overhemd	zmaj zmaj::12_einkaufen
+majica	T-shirt	zmaj zmaj::12_einkaufen
+pantalone	broek	zmaj zmaj::12_einkaufen
+jakna	jas	zmaj zmaj::12_einkaufen
+haljina	jurk	zmaj zmaj::12_einkaufen
+suknja	rok	zmaj zmaj::12_einkaufen
+cipele	schoenen	zmaj zmaj::12_einkaufen
+čarape	sokken	zmaj zmaj::12_einkaufen
+kapa	muts	zmaj zmaj::12_einkaufen
+veličina	maat	zmaj zmaj::12_einkaufen
+veliko	groot	zmaj zmaj::12_einkaufen
+malo	klein	zmaj zmaj::12_einkaufen
+novo	nieuw	zmaj zmaj::12_einkaufen
+staro	oud	zmaj zmaj::12_einkaufen
+Tražim ...	Ik zoek ...	zmaj zmaj::12_einkaufen
+Imate li ...?	Heeft u ...?	zmaj zmaj::12_einkaufen
+Uzet ću ovo	Ik neem deze	zmaj zmaj::12_einkaufen
+Mogu li platiti karticom?	Kan ik met de pas betalen?	zmaj zmaj::12_einkaufen
+Gdje je ...?	Waar is ...?	zmaj zmaj::13_unterwegs
+lijevo	links	zmaj zmaj::13_unterwegs
+desno	rechts	zmaj zmaj::13_unterwegs
+pravo	rechtdoor	zmaj zmaj::13_unterwegs
+ulica	straat	zmaj zmaj::13_unterwegs
+kuća	huis	zmaj zmaj::13_unterwegs
+grad	stad	zmaj zmaj::13_unterwegs
+selo	dorp	zmaj zmaj::13_unterwegs
+stanica	station / halte	zmaj zmaj::13_unterwegs
+auto	auto	zmaj zmaj::13_unterwegs
+autobus	bus	zmaj zmaj::13_unterwegs
+prodavnica	winkel	zmaj zmaj::13_unterwegs
+pijaca	markt	zmaj zmaj::13_unterwegs
+novac	geld	zmaj zmaj::13_unterwegs
+Koliko košta?	Hoeveel kost dat?	zmaj zmaj::13_unterwegs
+skupo	duur	zmaj zmaj::13_unterwegs
+jeftino	goedkoop	zmaj zmaj::13_unterwegs
+otvoreno	open	zmaj zmaj::13_unterwegs
+zatvoreno	gesloten	zmaj zmaj::13_unterwegs
+biti	zijn (werkwoord)	zmaj zmaj::14_verben
+imati	hebben	zmaj zmaj::14_verben
+ići	gaan	zmaj zmaj::14_verben
+doći	komen	zmaj zmaj::14_verben
+jesti	eten	zmaj zmaj::14_verben
+piti	drinken	zmaj zmaj::14_verben
+govoriti	spreken	zmaj zmaj::14_verben
+razumjeti	begrijpen	zmaj zmaj::14_verben
+znati	weten	zmaj zmaj::14_verben
+htjeti	willen	zmaj zmaj::14_verben
+moći	kunnen	zmaj zmaj::14_verben
+voljeti	houden van	zmaj zmaj::14_verben
+raditi	werken	zmaj zmaj::14_verben
+spavati	slapen	zmaj zmaj::14_verben
+učiti	leren	zmaj zmaj::14_verben
+vidjeti	zien	zmaj zmaj::14_verben
+kupiti	kopen	zmaj zmaj::14_verben
+stanovati	wonen	zmaj zmaj::14_verben
+Šta ima?	Hoe is het? / Alles goed?	zmaj zmaj::15_smalltalk
+Sve je dobro	Alles goed	zmaj zmaj::15_smalltalk
+Nema problema	Geen probleem	zmaj zmaj::15_smalltalk
+Ne brini	Maak je geen zorgen	zmaj zmaj::15_smalltalk
+Hajde!	Kom op!	zmaj zmaj::15_smalltalk
+Hajmo!	Daar gaan we!	zmaj zmaj::15_smalltalk
+Vidi	Kijk eens	zmaj zmaj::15_smalltalk
+Stvarno?	Echt waar?	zmaj zmaj::15_smalltalk
+Super!	Top!	zmaj zmaj::15_smalltalk
+lijepo	mooi	zmaj zmaj::15_smalltalk
+Ništa	Niets	zmaj zmaj::15_smalltalk
+Sve	Alles	zmaj zmaj::15_smalltalk
+Šta radiš?	Wat doe je?	zmaj zmaj::15_smalltalk
+Gdje si?	Waar ben je?	zmaj zmaj::15_smalltalk
+Nemam vremena	Ik heb geen tijd	zmaj zmaj::15_smalltalk
+Umoran sam / Umorna sam	Ik ben moe (m/v)	zmaj zmaj::15_smalltalk
+sretan / sretna	blij (m/v)	zmaj zmaj::15_smalltalk
+tužan / tužna	verdrietig (m/v)	zmaj zmaj::15_smalltalk
+ljubav	liefde	zmaj zmaj::15_smalltalk
+Volim te	Ik hou van je	zmaj zmaj::15_smalltalk
+Nedostaješ mi	Ik mis je	zmaj zmaj::15_smalltalk
+dušo	schat (aanspreekvorm)	zmaj zmaj::15_smalltalk
+Sviđa mi se	Dat vind ik leuk	zmaj zmaj::15_smalltalk
+Htio bih / Htjela bih	Ik zou graag willen (m/v)	zmaj zmaj::15_smalltalk
+Molim te	Alsjeblieft (als je iets vraagt, jij)	zmaj zmaj::15_smalltalk
+Znaš ...	Weet je ...	zmaj zmaj::15_smalltalk
+ananas	ananas	zmaj zmaj::16_obst
+kajsija	abrikoos	zmaj zmaj::16_obst
+banana	banaan	zmaj zmaj::16_obst
+kruška	peer (vrucht)	zmaj zmaj::16_obst
+kupina	braam	zmaj zmaj::16_obst
+jagoda	aardbei	zmaj zmaj::16_obst
+smokva	vijg	zmaj zmaj::16_obst
+nar	granaatappel	zmaj zmaj::16_obst
+lješnjak	hazelnoot	zmaj zmaj::16_obst
+borovnica	bosbes	zmaj zmaj::16_obst
+malina	framboos	zmaj zmaj::16_obst
+dinja	honingmeloen	zmaj zmaj::16_obst
+kesten	kastanje	zmaj zmaj::16_obst
+trešnja	kers	zmaj zmaj::16_obst
+mandarina	mandarijn	zmaj zmaj::16_obst
+badem	amandel	zmaj zmaj::16_obst
+nektarina	nectarine	zmaj zmaj::16_obst
+breskva	perzik	zmaj zmaj::16_obst
+dunja	kweepeer	zmaj zmaj::16_obst
+višnja	zure kers	zmaj zmaj::16_obst
+suho voće	gedroogd fruit	zmaj zmaj::16_obst
+lubenica	watermeloen	zmaj zmaj::16_obst
+grožđe	druif	zmaj zmaj::16_obst
+limun	citroen	zmaj zmaj::16_obst
+patlidžan	aubergine	zmaj zmaj::17_gemuese
+karfiol	bloemkool	zmaj zmaj::17_gemuese
+brokula	broccoli	zmaj zmaj::17_gemuese
+grašak	erwten	zmaj zmaj::17_gemuese
+mladi luk	lente-ui	zmaj zmaj::17_gemuese
+boranija	sperziebonen	zmaj zmaj::17_gemuese
+krastavac	komkommer	zmaj zmaj::17_gemuese
+mrkva	wortel (groente)	zmaj zmaj::17_gemuese
+bijeli luk	knoflook	zmaj zmaj::17_gemuese
+kupus	kool (groente)	zmaj zmaj::17_gemuese
+zelena salata	kropsla	zmaj zmaj::17_gemuese
+bundeva	pompoen	zmaj zmaj::17_gemuese
+praziluk	prei	zmaj zmaj::17_gemuese
+kukuruz	maïs	zmaj zmaj::17_gemuese
+blitva	snijbiet	zmaj zmaj::17_gemuese
+bamija	okra	zmaj zmaj::17_gemuese
+paprika	paprika	zmaj zmaj::17_gemuese
+peršun	peterselie	zmaj zmaj::17_gemuese
+gljive	paddenstoelen	zmaj zmaj::17_gemuese
+rotkvica	radijs	zmaj zmaj::17_gemuese
+cvekla	rode biet	zmaj zmaj::17_gemuese
+crveni luk	rode ui	zmaj zmaj::17_gemuese
+ljuta paprika	hete peper	zmaj zmaj::17_gemuese
+celer	selderij	zmaj zmaj::17_gemuese
+špinat	spinazie	zmaj zmaj::17_gemuese
+kelj	savooiekool	zmaj zmaj::17_gemuese
+tikvica	courgette	zmaj zmaj::17_gemuese
+prašak za pecivo	bakpoeder	zmaj zmaj::18_lebensmittel
+maslac / puter	boter	zmaj zmaj::18_lebensmittel
+turšija	ingelegde groente	zmaj zmaj::18_lebensmittel
+sladoled	ijs (consumptie-ijs)	zmaj zmaj::18_lebensmittel
+začini	specerijen	zmaj zmaj::18_lebensmittel
+griz	griesmeel	zmaj zmaj::18_lebensmittel
+mljeveno meso	gehakt	zmaj zmaj::18_lebensmittel
+kvasac	gist	zmaj zmaj::18_lebensmittel
+teletina	kalfsvlees	zmaj zmaj::18_lebensmittel
+keks	koekjes	zmaj zmaj::18_lebensmittel
+kečap	ketchup	zmaj zmaj::18_lebensmittel
+konzerva	conserven	zmaj zmaj::18_lebensmittel
+janjetina	lamsvlees	zmaj zmaj::18_lebensmittel
+pašteta	leverpastei	zmaj zmaj::18_lebensmittel
+leća	linzen	zmaj zmaj::18_lebensmittel
+margarin	margarine	zmaj zmaj::18_lebensmittel
+džem	jam	zmaj zmaj::18_lebensmittel
+majonez	mayonaise	zmaj zmaj::18_lebensmittel
+mineralna voda	mineraalwater	zmaj zmaj::18_lebensmittel
+pekmez	pruimenmoes	zmaj zmaj::18_lebensmittel
+junetina	rundvlees	zmaj zmaj::18_lebensmittel
+slatka pavlaka	room	zmaj zmaj::18_lebensmittel
+salama	salami	zmaj zmaj::18_lebensmittel
+kiseli kupus	zuurkool	zmaj zmaj::18_lebensmittel
+kiselo mlijeko	zure melk	zmaj zmaj::18_lebensmittel
+kisela pavlaka	zure room	zmaj zmaj::18_lebensmittel
+šunka	ham	zmaj zmaj::18_lebensmittel
+šlag	slagroom	zmaj zmaj::18_lebensmittel
+čokolada	chocolade	zmaj zmaj::18_lebensmittel
+senf	mosterd	zmaj zmaj::18_lebensmittel
+kisela voda	koolzuurhoudend water	zmaj zmaj::18_lebensmittel
+sudžuk	sudžuk	zmaj zmaj::18_lebensmittel
+tunjevina	tonijn	zmaj zmaj::18_lebensmittel
+zimnica	wintervoorraad	zmaj zmaj::18_lebensmittel
+kobasica	worst	zmaj zmaj::18_lebensmittel
+sirće	azijn	zmaj zmaj::19_vorrat
+med	honing	zmaj zmaj::19_vorrat
+jogurt	yoghurt	zmaj zmaj::19_vorrat
+brašno	meel	zmaj zmaj::19_vorrat
+tjestenina	pasta	zmaj zmaj::19_vorrat
+biber	peper	zmaj zmaj::19_vorrat
+pavlaka	zure room	zmaj zmaj::19_vorrat
+ulje	olie (om te koken)	zmaj zmaj::19_vorrat
+jufka	bladerdeeg	zmaj zmaj::19_vorrat
+pogača	platbrood (rond)	zmaj zmaj::19_vorrat
+pecivo	gebak / broodjes	zmaj zmaj::19_vorrat
+kifla	hoorntje (broodje)	zmaj zmaj::19_vorrat
+šampita	roomgebakje	zmaj zmaj::19_vorrat
+kadaif	draadjesgebak	zmaj zmaj::19_vorrat
+hurmašice	siroopgebak	zmaj zmaj::19_vorrat
+rakija	rakija (vruchtenbrandewijn)	zmaj zmaj::19_vorrat
+vino	wijn	zmaj zmaj::19_vorrat
+bosanska kahva	Bosnische koffie	zmaj zmaj::19_vorrat
+Jednu bosansku kahvu, molim	Een Bosnische, alstublieft	zmaj zmaj::19_vorrat
+džezva	koperen kannetje	zmaj zmaj::19_vorrat
+polako	langzaam	zmaj zmaj::19_vorrat
+šećer u kocki	suikerklontjes	zmaj zmaj::19_vorrat
+U zdravlje!	Op je gezondheid!	zmaj zmaj::19_vorrat
+Jednu rakiju, molim	Een rakija, alstublieft	zmaj zmaj::19_vorrat
+travarica	kruidenbrandewijn	zmaj zmaj::19_vorrat
+domaća rakija	zelfgestookt	zmaj zmaj::19_vorrat
+loza	druivenbrandewijn	zmaj zmaj::19_vorrat
+šljivovica	pruimenbrandewijn	zmaj zmaj::19_vorrat
+kućni ljubimac	huisdier	zmaj zmaj::20_tiere
+životinja	dier	zmaj zmaj::20_tiere
+stoka	vee / boerderijdieren	zmaj zmaj::20_tiere
+patka	eend	zmaj zmaj::20_tiere
+magarac	ezel	zmaj zmaj::20_tiere
+guska	gans	zmaj zmaj::20_tiere
+horoz	haan	zmaj zmaj::20_tiere
+avlija	erf / binnenplaats	zmaj zmaj::20_tiere
+kokoš	hen	zmaj zmaj::20_tiere
+tele	kalf	zmaj zmaj::20_tiere
+pile	kuiken / jonge kip	zmaj zmaj::20_tiere
+krava	koe	zmaj zmaj::20_tiere
+jagnje	lam	zmaj zmaj::20_tiere
+konj	paard	zmaj zmaj::20_tiere
+ovca	schaap	zmaj zmaj::20_tiere
+svinja	varken	zmaj zmaj::20_tiere
+svinjetina	varkensvlees	zmaj zmaj::20_tiere
+štala	stal	zmaj zmaj::20_tiere
+bik	stier	zmaj zmaj::20_tiere
+štene	puppy	zmaj zmaj::20_tiere
+koza	geit	zmaj zmaj::20_tiere
+orao	arend	zmaj zmaj::20_tiere
+sova	uil	zmaj zmaj::20_tiere
+vrana	kraai	zmaj zmaj::20_tiere
+gnijezdo	nest	zmaj zmaj::20_tiere
+lastavica	zwaluw	zmaj zmaj::20_tiere
+vrabac	mus	zmaj zmaj::20_tiere
+roda	ooievaar	zmaj zmaj::20_tiere
+golub	duif	zmaj zmaj::20_tiere
+medvjed	beer (dier)	zmaj zmaj::21_tiere_wild
+zmaj	draak	zmaj zmaj::21_tiere_wild
+vjeverica	eekhoorn	zmaj zmaj::21_tiere_wild
+žaba	kikker	zmaj zmaj::21_tiere_wild
+lisica	vos	zmaj zmaj::21_tiere_wild
+zec	haas	zmaj zmaj::21_tiere_wild
+jelen	hert	zmaj zmaj::21_tiere_wild
+jež	egel	zmaj zmaj::21_tiere_wild
+kunić	konijn	zmaj zmaj::21_tiere_wild
+ris	lynx	zmaj zmaj::21_tiere_wild
+miš	muis	zmaj zmaj::21_tiere_wild
+pacov	rat	zmaj zmaj::21_tiere_wild
+srna	ree	zmaj zmaj::21_tiere_wild
+zmija	slang (dier)	zmaj zmaj::21_tiere_wild
+divlja svinja	wild zwijn	zmaj zmaj::21_tiere_wild
+vuk	wolf	zmaj zmaj::21_tiere_wild
+mrav	mier	zmaj zmaj::21_tiere_wild
+muha	vlieg	zmaj zmaj::21_tiere_wild
+buha	vlo	zmaj zmaj::21_tiere_wild
+pastrmka	forel	zmaj zmaj::21_tiere_wild
+komarac	mug	zmaj zmaj::21_tiere_wild
+leptir	vlinder	zmaj zmaj::21_tiere_wild
+puž	slak	zmaj zmaj::21_tiere_wild
+pauk	spin	zmaj zmaj::21_tiere_wild
+osa	wesp	zmaj zmaj::21_tiere_wild
+crv	worm	zmaj zmaj::21_tiere_wild
+krpelj	teek	zmaj zmaj::21_tiere_wild
+buvljak	vlooienmarkt	zmaj zmaj::21_tiere_wild
+pero	veer (van een vogel)	zmaj zmaj::22_tiere_umgang
+krzno	vacht	zmaj zmaj::22_tiere_umgang
+krilo	vleugel	zmaj zmaj::22_tiere_umgang
+rog	hoorn (van dier)	zmaj zmaj::22_tiere_umgang
+povodac	hondenlijn	zmaj zmaj::22_tiere_umgang
+rep	staart	zmaj zmaj::22_tiere_umgang
+veterinar	dierenarts	zmaj zmaj::22_tiere_umgang
+ugristi	bijten	zmaj zmaj::22_tiere_umgang
+Hoće li ujesti?	Bijt hij?	zmaj zmaj::22_tiere_umgang
+lajati	blaffen	zmaj zmaj::22_tiere_umgang
+hraniti	voeren	zmaj zmaj::22_tiere_umgang
+Bojim se pasa	Ik ben bang voor honden	zmaj zmaj::22_tiere_umgang
+šetati	wandelen	zmaj zmaj::22_tiere_umgang
+šetnja	wandeling	zmaj zmaj::22_tiere_umgang
+ubosti	steken (insect)	zmaj zmaj::22_tiere_umgang
+Čuvaj se psa!	Pas op voor de hond!	zmaj zmaj::22_tiere_umgang
+Pas me je ujeo	De hond heeft me gebeten	zmaj zmaj::22_tiere_umgang
+opasno	gevaarlijk	zmaj zmaj::22_tiere_umgang
+opasnost	gevaar	zmaj zmaj::22_tiere_umgang
+mina	mijn (landmijn)	zmaj zmaj::22_tiere_umgang
+zabranjeno	verboden	zmaj zmaj::22_tiere_umgang
+Pazi!	Voorzichtig! / Pas op!	zmaj zmaj::22_tiere_umgang
+potok	beek	zmaj zmaj::23_natur
+list	blad (van een boom)	zmaj zmaj::23_natur
+bunar	waterput	zmaj zmaj::23_natur
+zemlja	aarde / bodem	zmaj zmaj::23_natur
+polje	veld / akker	zmaj zmaj::23_natur
+stijena	rots	zmaj zmaj::23_natur
+vatra	vuur	zmaj zmaj::23_natur
+vrh	top (van een berg)	zmaj zmaj::23_natur
+trava	gras	zmaj zmaj::23_natur
+pećina	grot	zmaj zmaj::23_natur
+brdo	heuvel	zmaj zmaj::23_natur
+ostrvo	eiland	zmaj zmaj::23_natur
+zrak	lucht	zmaj zmaj::23_natur
+priroda	natuur	zmaj zmaj::23_natur
+izvor	bron (waterbron)	zmaj zmaj::23_natur
+pijesak	zand	zmaj zmaj::23_natur
+kamen	steen	zmaj zmaj::23_natur
+dolina	vallei	zmaj zmaj::23_natur
+obala	oever	zmaj zmaj::23_natur
+vodopad	waterval	zmaj zmaj::23_natur
+put / staza	weg / pad	zmaj zmaj::23_natur
+livada	weide	zmaj zmaj::23_natur
+grana	tak	zmaj zmaj::23_natur
+kamilica	kamille	zmaj zmaj::23_natur
+lipa	linde	zmaj zmaj::23_natur
+nana (auch: metvica)	munt (plant)	zmaj zmaj::23_natur
+biljka	plant	zmaj zmaj::23_natur
+šljiva	pruim / pruimenboom	zmaj zmaj::23_natur
+orah	walnoot / walnotenboom	zmaj zmaj::23_natur
+korijen	wortel (van een plant)	zmaj zmaj::23_natur
+rerna	oven	zmaj zmaj::24_kueche_bad
+flaša	fles	zmaj zmaj::24_kueche_bad
+viljuška	vork	zmaj zmaj::24_kueche_bad
+zamrzivač	vrieskast	zmaj zmaj::24_kueche_bad
+suđe	serviesgoed	zmaj zmaj::24_kueche_bad
+prati suđe	afwassen	zmaj zmaj::24_kueche_bad
+tava	pan	zmaj zmaj::24_kueche_bad
+tanjir	bord (om te eten)	zmaj zmaj::24_kueche_bad
+lonac	kookpan	zmaj zmaj::24_kueche_bad
+kesa	zakje / plastic zakje	zmaj zmaj::24_kueche_bad
+posteljina	beddengoed	zmaj zmaj::24_kueche_bad
+deka	deken (voor het bed)	zmaj zmaj::24_kueche_bad
+jastuk	kussen	zmaj zmaj::24_kueche_bad
+polica	schap / plank	zmaj zmaj::24_kueche_bad
+ormar	kast	zmaj zmaj::24_kueche_bad
+kauč	bank (zitbank)	zmaj zmaj::24_kueche_bad
+zavjesa	gordijn	zmaj zmaj::24_kueche_bad
+tuš	douche	zmaj zmaj::24_kueche_bad
+ogledalo	spiegel	zmaj zmaj::24_kueche_bad
+WC	toilet	zmaj zmaj::24_kueche_bad
+toalet papir	toiletpapier	zmaj zmaj::24_kueche_bad
+lavabo	wastafel	zmaj zmaj::24_kueche_bad
+četkica za zube	tandenborstel	zmaj zmaj::24_kueche_bad
+pasta za zube	tandpasta	zmaj zmaj::24_kueche_bad
+pospremiti	opruimen	zmaj zmaj::25_putzen
+metla	bezem	zmaj zmaj::25_putzen
+pegla	strijkijzer	zmaj zmaj::25_putzen
+peglati	strijken	zmaj zmaj::25_putzen
+kanta	emmer	zmaj zmaj::25_putzen
+smeće	afval	zmaj zmaj::25_putzen
+kanta za smeće	vuilnisbak / vuilniscontainer	zmaj zmaj::25_putzen
+čisto	schoon	zmaj zmaj::25_putzen
+prljavo	vies	zmaj zmaj::25_putzen
+usisivač	stofzuiger	zmaj zmaj::25_putzen
+veš mašina	wasmachine	zmaj zmaj::25_putzen
+deterdžent	wasmiddel	zmaj zmaj::25_putzen
+veš	wasgoed	zmaj zmaj::25_putzen
+štrik	waslijn	zmaj zmaj::25_putzen
+lift	lift	zmaj zmaj::25_putzen
+poštansko sanduče	brievenbus	zmaj zmaj::25_putzen
+krov	dak	zmaj zmaj::25_putzen
+tavan	zolder	zmaj zmaj::25_putzen
+pod	vloer	zmaj zmaj::25_putzen
+domar	huismeester	zmaj zmaj::25_putzen
+podrum	kelder	zmaj zmaj::25_putzen
+zvono	deurbel	zmaj zmaj::25_putzen
+zvoniti	aanbellen	zmaj zmaj::25_putzen
+komšinica	buurvrouw	zmaj zmaj::25_putzen
+zid	muur	zmaj zmaj::25_putzen
+ograda	hek	zmaj zmaj::25_putzen
+ugasiti	uitzetten / uitdoen	zmaj zmaj::26_technik
+bojler	boiler (warmwaterreservoir)	zmaj zmaj::26_technik
+drva	brandhout	zmaj zmaj::26_technik
+upaliti	aanzetten / aandoen	zmaj zmaj::26_technik
+Nema struje	Er is geen stroom	zmaj zmaj::26_technik
+sijalica	gloeilamp	zmaj zmaj::26_technik
+grijanje	verwarming	zmaj zmaj::26_technik
+ugalj	steenkool	zmaj zmaj::26_technik
+svjetlo	licht	zmaj zmaj::26_technik
+peć	kachel (verwarming)	zmaj zmaj::26_technik
+osigurač	zekering	zmaj zmaj::26_technik
+utičnica	stopcontact	zmaj zmaj::26_technik
+utikač	stekker	zmaj zmaj::26_technik
+struja	stroom (elektriciteit)	zmaj zmaj::26_technik
+topla voda	warm water	zmaj zmaj::26_technik
+Ne radi	Het werkt niet	zmaj zmaj::26_technik
+Curi voda	Het lekt / het druppelt	zmaj zmaj::26_technik
+čekić	hamer	zmaj zmaj::26_technik
+majstor	vakman / klusjesman	zmaj zmaj::26_technik
+pokvaren / pokvarena / pokvareno	kapot	zmaj zmaj::26_technik
+merdevine	ladder	zmaj zmaj::26_technik
+ekser	spijker	zmaj zmaj::26_technik
+popraviti	repareren	zmaj zmaj::26_technik
+brava	slot (deurslot)	zmaj zmaj::26_technik
+šaraf	schroef	zmaj zmaj::26_technik
+slavina	waterkraan	zmaj zmaj::26_technik
+alat	gereedschap	zmaj zmaj::26_technik
+gorivo	brandstof	zmaj zmaj::27_auto_werkstatt
+sipati gorivo	tanken	zmaj zmaj::27_auto_werkstatt
+guma	band (auto)	zmaj zmaj::27_auto_werkstatt
+Pukla mi je guma.	Ik heb een lekke band.	zmaj zmaj::27_auto_werkstatt
+kočnica	rem	zmaj zmaj::27_auto_werkstatt
+motor	motor	zmaj zmaj::27_auto_werkstatt
+akumulator	accu (auto)	zmaj zmaj::27_auto_werkstatt
+sigurnosni pojas	veiligheidsgordel	zmaj zmaj::27_auto_werkstatt
+parkiralište	parkeerplaats	zmaj zmaj::27_auto_werkstatt
+parkirati	parkeren	zmaj zmaj::27_auto_werkstatt
+semafor	verkeerslicht	zmaj zmaj::27_auto_werkstatt
+raskrsnica	kruispunt	zmaj zmaj::27_auto_werkstatt
+saobraćaj	verkeer	zmaj zmaj::27_auto_werkstatt
+zastoj	file	zmaj zmaj::27_auto_werkstatt
+kazna	boete	zmaj zmaj::27_auto_werkstatt
+registracija	kenteken (auto)	zmaj zmaj::27_auto_werkstatt
+tehnički pregled	APK-keuring	zmaj zmaj::27_auto_werkstatt
+autoservis	garage	zmaj zmaj::27_auto_werkstatt
+šlep služba	sleepdienst	zmaj zmaj::27_auto_werkstatt
+pomoć na cesti	pechhulp	zmaj zmaj::27_auto_werkstatt
+odvijač / šrafciger	schroevendraaier	zmaj zmaj::27_auto_werkstatt
+kliješta	tang	zmaj zmaj::27_auto_werkstatt
+bušilica	boormachine	zmaj zmaj::27_auto_werkstatt
+bušiti	boren	zmaj zmaj::27_auto_werkstatt
+testera	zaag	zmaj zmaj::27_auto_werkstatt
+francuski ključ	Engelse sleutel	zmaj zmaj::27_auto_werkstatt
+metar	rolmaat	zmaj zmaj::27_auto_werkstatt
+ljepilo	lijm	zmaj zmaj::27_auto_werkstatt
+produžni kabl	verlengsnoer	zmaj zmaj::27_auto_werkstatt
+radionica	werkplaats	zmaj zmaj::27_auto_werkstatt
+punjač	oplader	zmaj zmaj::28_geraete
+baterija	batterij	zmaj zmaj::28_geraete
+Baterija je prazna.	Mijn batterij is leeg.	zmaj zmaj::28_geraete
+napuniti	opladen	zmaj zmaj::28_geraete
+šifra / lozinka	wachtwoord	zmaj zmaj::28_geraete
+Koja je šifra za WiFi?	Wat is het wifi-wachtwoord?	zmaj zmaj::28_geraete
+internet	internet	zmaj zmaj::28_geraete
+Nema signala.	Geen bereik.	zmaj zmaj::28_geraete
+poruka	bericht	zmaj zmaj::28_geraete
+poslati poruku	een bericht sturen	zmaj zmaj::28_geraete
+nazvati	bellen (telefoon)	zmaj zmaj::28_geraete
+aplikacija	app	zmaj zmaj::28_geraete
+ekran	scherm	zmaj zmaj::28_geraete
+tastatura	toetsenbord	zmaj zmaj::28_geraete
+štampač	printer	zmaj zmaj::28_geraete
+slušalice	koptelefoon	zmaj zmaj::28_geraete
+slikati	fotograferen	zmaj zmaj::28_geraete
+ažurirati	bijwerken	zmaj zmaj::28_geraete
+mašina za suđe	vaatwasser	zmaj zmaj::28_geraete
+sušilica za veš	droger	zmaj zmaj::28_geraete
+mikrovalna	magnetron	zmaj zmaj::28_geraete
+toster	broodrooster	zmaj zmaj::28_geraete
+kuhalo za vodu	waterkoker	zmaj zmaj::28_geraete
+fen	föhn	zmaj zmaj::28_geraete
+klima	airco	zmaj zmaj::28_geraete
+ventilator	ventilator	zmaj zmaj::28_geraete
+daljinski	afstandsbediening	zmaj zmaj::28_geraete
+aparat za kahvu / aparat za kafu	koffiezetapparaat	zmaj zmaj::28_geraete
+uputstvo	handleiding	zmaj zmaj::28_geraete
+garancija	garantie	zmaj zmaj::28_geraete
+Ko?	Wie?	zmaj zmaj::29_fragen
+Šta?	Wat?	zmaj zmaj::29_fragen
+Gdje?	Waar?	zmaj zmaj::29_fragen
+Kuda?	Waarheen?	zmaj zmaj::29_fragen
+Odakle?	Waarvandaan?	zmaj zmaj::29_fragen
+Kada?	Wanneer?	zmaj zmaj::29_fragen
+Zašto?	Waarom?	zmaj zmaj::29_fragen
+Kako?	Hoe?	zmaj zmaj::29_fragen
+Koliko?	Hoeveel?	zmaj zmaj::29_fragen
+Koji?	Welke?	zmaj zmaj::29_fragen
+Čiji?	Van wie?	zmaj zmaj::29_fragen
+Da li ...?	Ja/nee-vraag: Is ...?	zmaj zmaj::29_fragen
+Je li to ...?	Is dat ...?	zmaj zmaj::29_fragen
+Ko si ti?	Wie ben jij?	zmaj zmaj::29_fragen
+Odakle si?	Waar kom je vandaan?	zmaj zmaj::29_fragen
+Kuda ideš?	Waar ga je heen?	zmaj zmaj::29_fragen
+Kada dolaziš?	Wanneer kom je?	zmaj zmaj::29_fragen
+Zašto ne?	Waarom niet?	zmaj zmaj::29_fragen
+Šta je to?	Wat is dat?	zmaj zmaj::29_fragen
+Koliko imaš godina?	Hoe oud ben je?	zmaj zmaj::29_fragen
+Imaš li vremena?	Heb je tijd?	zmaj zmaj::29_fragen
+Govoriš li engleski?	Spreek je Engels?	zmaj zmaj::29_fragen
+Mogu li pomoći?	Kan ik helpen?	zmaj zmaj::29_fragen
+Gdje stanuješ?	Waar woon je?	zmaj zmaj::29_fragen
+Šta misliš?	Wat vind jij?	zmaj zmaj::29_fragen
+on	hij	zmaj zmaj::30_genus
+ona	zij (enkelvoud)	zmaj zmaj::30_genus
+ono	het	zmaj zmaj::30_genus
+oni	zij (meervoud, mannelijk)	zmaj zmaj::30_genus
+one	zij (meervoud, vrouwelijk)	zmaj zmaj::30_genus
+moj / moja / moje	mijn (m/v/o)	zmaj zmaj::30_genus
+tvoj / tvoja / tvoje	jouw (m/v/o)	zmaj zmaj::30_genus
+njegov / njegova / njegovo	zijn (m/v/o)	zmaj zmaj::30_genus
+njen / njena / njeno	haar (m/v/o)	zmaj zmaj::30_genus
+naš / naša / naše	ons (m/v/o)	zmaj zmaj::30_genus
+vaš / vaša / vaše	jullie / uw (m/v/o)	zmaj zmaj::30_genus
+ovaj / ova / ovo	deze / dit (m/v/o)	zmaj zmaj::30_genus
+onaj / ona / ono	die / dat (m/v/o)	zmaj zmaj::30_genus
+muškarac	de man	zmaj zmaj::30_genus
+djevojka	het meisje	zmaj zmaj::30_genus
+dječak	de jongen	zmaj zmaj::30_genus
+nastavnik / nastavnica	leraar / lerares	zmaj zmaj::30_genus
+student / studentica	student / studente	zmaj zmaj::30_genus
+konobar / konobarica	ober / serveerster	zmaj zmaj::30_genus
+doktor / doktorica	dokter (m/v)	zmaj zmaj::30_genus
+prodavač / prodavačica	verkoper / verkoopster	zmaj zmaj::30_genus
+velik / velika / veliko	groot (m/v/o)	zmaj zmaj::30_genus
+lijep / lijepa / lijepo	mooi (m/v/o)	zmaj zmaj::30_genus
+dobar / dobra / dobro	goed (m/v/o)	zmaj zmaj::30_genus
+nov / nova / novo	nieuw (m/v/o)	zmaj zmaj::30_genus
+pismo	de brief	zmaj zmaj::30_genus
+stvar	het ding	zmaj zmaj::30_genus
+ja sam	ik ben	zmaj zmaj::31_konjugation
+ti si	jij bent	zmaj zmaj::31_konjugation
+on je / ona je	hij / zij is	zmaj zmaj::31_konjugation
+mi smo	wij zijn	zmaj zmaj::31_konjugation
+vi ste	jullie zijn / u bent	zmaj zmaj::31_konjugation
+oni su	zij zijn	zmaj zmaj::31_konjugation
+imam	ik heb	zmaj zmaj::31_konjugation
+imaš	jij hebt	zmaj zmaj::31_konjugation
+ima	hij / zij heeft	zmaj zmaj::31_konjugation
+imamo	wij hebben	zmaj zmaj::31_konjugation
+imate	jullie hebben	zmaj zmaj::31_konjugation
+imaju	zij hebben	zmaj zmaj::31_konjugation
+idem	ik ga	zmaj zmaj::31_konjugation
+ideš	jij gaat	zmaj zmaj::31_konjugation
+idemo	wij gaan	zmaj zmaj::31_konjugation
+idu	zij gaan	zmaj zmaj::31_konjugation
+jedem	ik eet	zmaj zmaj::31_konjugation
+jedeš	jij eet	zmaj zmaj::31_konjugation
+pijem	ik drink	zmaj zmaj::31_konjugation
+govorim	ik spreek	zmaj zmaj::31_konjugation
+znam	ik weet	zmaj zmaj::31_konjugation
+znaš	jij weet	zmaj zmaj::31_konjugation
+mogu	ik kan	zmaj zmaj::31_konjugation
+možeš	jij kunt	zmaj zmaj::31_konjugation
+hoću	ik wil	zmaj zmaj::31_konjugation
+radim	ik werk	zmaj zmaj::31_konjugation
+stanujem	ik woon	zmaj zmaj::31_konjugation
+učim	ik leer	zmaj zmaj::31_konjugation
+volim	ik hou van	zmaj zmaj::31_konjugation
+brat → braća	broer → broers	zmaj zmaj::32_mehrzahl
+sestra → sestre	zus → zussen	zmaj zmaj::32_mehrzahl
+kuća → kuće	huis → huizen	zmaj zmaj::32_mehrzahl
+grad → gradovi	stad → steden	zmaj zmaj::32_mehrzahl
+dijete → djeca	kind → kinderen	zmaj zmaj::32_mehrzahl
+žena → žene	vrouw → vrouwen	zmaj zmaj::32_mehrzahl
+muškarac → muškarci	man → mannen	zmaj zmaj::32_mehrzahl
+prijatelj → prijatelji	vriend → vrienden	zmaj zmaj::32_mehrzahl
+jabuka → jabuke	appel → appels	zmaj zmaj::32_mehrzahl
+knjiga → knjige	boek → boeken	zmaj zmaj::32_mehrzahl
+sto → stolovi	tafel → tafels	zmaj zmaj::32_mehrzahl
+stolica → stolice	stoel → stoelen	zmaj zmaj::32_mehrzahl
+auto → auti	auto → auto's	zmaj zmaj::32_mehrzahl
+dan → dani	dag → dagen	zmaj zmaj::32_mehrzahl
+godina → godine	jaar → jaren	zmaj zmaj::32_mehrzahl
+riječ → riječi	woord → woorden	zmaj zmaj::32_mehrzahl
+oko → oči	oog → ogen	zmaj zmaj::32_mehrzahl
+ruka → ruke	hand → handen	zmaj zmaj::32_mehrzahl
+čovjek → ljudi	mens → mensen	zmaj zmaj::32_mehrzahl
+prozor → prozori	raam → ramen	zmaj zmaj::32_mehrzahl
+selo → sela	dorp → dorpen	zmaj zmaj::32_mehrzahl
+jaje → jaja	ei → eieren	zmaj zmaj::32_mehrzahl
+ključ → ključevi	sleutel → sleutels	zmaj zmaj::32_mehrzahl
+zub → zubi	tand → tanden	zmaj zmaj::32_mehrzahl
+noć → noći	nacht → nachten	zmaj zmaj::32_mehrzahl
+pas → psi	hond → honden	zmaj zmaj::32_mehrzahl
+čovjek	mens	zmaj zmaj::32_mehrzahl
+ljudi	mensen	zmaj zmaj::32_mehrzahl
+ne	niet	zmaj zmaj::33_satzbau
+nisam	ik ben niet	zmaj zmaj::33_satzbau
+nisi	jij bent niet	zmaj zmaj::33_satzbau
+nije	hij / zij is niet	zmaj zmaj::33_satzbau
+nemam	ik heb geen	zmaj zmaj::33_satzbau
+ne mogu	ik kan niet	zmaj zmaj::33_satzbau
+neću	ik wil niet	zmaj zmaj::33_satzbau
+i	en	zmaj zmaj::33_satzbau
+ali	maar	zmaj zmaj::33_satzbau
+ili	of	zmaj zmaj::33_satzbau
+jer	omdat	zmaj zmaj::33_satzbau
+da	dat	zmaj zmaj::33_satzbau
+da li	of (in vragen)	zmaj zmaj::33_satzbau
+ako	als	zmaj zmaj::33_satzbau
+kad	wanneer (in de tijd)	zmaj zmaj::33_satzbau
+zato	daarom	zmaj zmaj::33_satzbau
+Mislim da ...	Ik denk dat ...	zmaj zmaj::33_satzbau
+Ne znam gdje ...	Ik weet niet waar ...	zmaj zmaj::33_satzbau
+Pitam se da li ...	Ik vraag me af of ...	zmaj zmaj::33_satzbau
+Kaže da ...	Hij zegt dat ...	zmaj zmaj::33_satzbau
+Nadam se da ...	Ik hoop dat ...	zmaj zmaj::33_satzbau
+Ne vjerujem	Ik denk het niet	zmaj zmaj::33_satzbau
+niko	niemand	zmaj zmaj::33_satzbau
+nikad	nooit	zmaj zmaj::33_satzbau
+uvijek	altijd	zmaj zmaj::33_satzbau
+također	ook	zmaj zmaj::33_satzbau
+samo	alleen	zmaj zmaj::33_satzbau
+već	al	zmaj zmaj::33_satzbau
+još ne	nog niet	zmaj zmaj::33_satzbau
+Vidim brata	Ik zie de broer	zmaj zmaj::34_faelle1
+Vidim sestru	Ik zie de zus	zmaj zmaj::34_faelle1
+Vidim dijete	Ik zie het kind	zmaj zmaj::34_faelle1
+Pijem kahvu	Ik drink koffie	zmaj zmaj::34_faelle1
+Jedem hljeb	Ik eet brood	zmaj zmaj::34_faelle1
+Imam pitanje	Ik heb een vraag	zmaj zmaj::34_faelle1
+Imam auto	Ik heb een auto	zmaj zmaj::34_faelle1
+Volim svoju majku	Ik hou van mijn moeder	zmaj zmaj::34_faelle1
+Kupujem jaknu	Ik koop een jas	zmaj zmaj::34_faelle1
+Čitam knjigu	Ik lees een boek	zmaj zmaj::34_faelle1
+Zovem doktora	Ik bel de dokter	zmaj zmaj::34_faelle1
+On ima psa	Hij heeft een hond	zmaj zmaj::34_faelle1
+Ona ima mačku	Zij heeft een kat	zmaj zmaj::34_faelle1
+Tražimo ulicu	Wij zoeken de straat	zmaj zmaj::34_faelle1
+Trebam vodu	Ik heb water nodig	zmaj zmaj::34_faelle1
+Trebam ključ	Ik heb een sleutel nodig	zmaj zmaj::34_faelle1
+Znam tvog brata	Ik ken jouw broer	zmaj zmaj::34_faelle1
+pitanje	vraag	zmaj zmaj::34_faelle1
+odgovor	antwoord	zmaj zmaj::34_faelle1
+čitati	lezen	zmaj zmaj::34_faelle1
+tražiti	zoeken	zmaj zmaj::34_faelle1
+trebati	nodig hebben	zmaj zmaj::34_faelle1
+zvati	roepen / bellen	zmaj zmaj::34_faelle1
+kupujem	ik koop	zmaj zmaj::34_faelle1
+vidim	ik zie	zmaj zmaj::34_faelle1
+mene / me	mij	zmaj zmaj::34_faelle1
+tebe / te	jou	zmaj zmaj::34_faelle1
+njega / ga	hem	zmaj zmaj::34_faelle1
+nju / je	haar (accusatief)	zmaj zmaj::34_faelle1
+bez šećera	zonder suiker	zmaj zmaj::35_faelle2
+bez mlijeka	zonder melk	zmaj zmaj::35_faelle2
+iz Bosne	uit Bosnië	zmaj zmaj::35_faelle2
+iz Njemačke	uit Duitsland	zmaj zmaj::35_faelle2
+iz grada	uit de stad	zmaj zmaj::35_faelle2
+od mog brata	van mijn broer	zmaj zmaj::35_faelle2
+do sutra	tot morgen	zmaj zmaj::35_faelle2
+do stanice	tot aan de halte	zmaj zmaj::35_faelle2
+pored kuće	naast het huis	zmaj zmaj::35_faelle2
+kod nane	bij oma	zmaj zmaj::35_faelle2
+kod prijatelja	bij mijn vriend	zmaj zmaj::35_faelle2
+kuća moje sestre	het huis van mijn zus	zmaj zmaj::35_faelle2
+auto oca	de auto van vader	zmaj zmaj::35_faelle2
+čaša vode	een glas water	zmaj zmaj::35_faelle2
+šolja kahve	een kopje koffie	zmaj zmaj::35_faelle2
+kilogram jabuka	een kilo appels	zmaj zmaj::35_faelle2
+mnogo ljudi	veel mensen	zmaj zmaj::35_faelle2
+malo vremena	weinig tijd	zmaj zmaj::35_faelle2
+Nemam novca	Ik heb geen geld	zmaj zmaj::35_faelle2
+Nema hljeba	Er is geen brood	zmaj zmaj::35_faelle2
+Ima mnogo djece	Er zijn veel kinderen	zmaj zmaj::35_faelle2
+čaša	glas	zmaj zmaj::35_faelle2
+šolja	kopje	zmaj zmaj::35_faelle2
+kilogram	kilo	zmaj zmaj::35_faelle2
+mnogo	veel	zmaj zmaj::35_faelle2
+malo	weinig	zmaj zmaj::35_faelle2
+dosta	genoeg	zmaj zmaj::35_faelle2
+blizu	dicht bij	zmaj zmaj::35_faelle2
+zbog	vanwege	zmaj zmaj::35_faelle2
+u	in (waar)	zmaj zmaj::36_praepositionen
+na	op (waar)	zmaj zmaj::36_praepositionen
+iz	uit	zmaj zmaj::36_praepositionen
+od	van	zmaj zmaj::36_praepositionen
+do	tot	zmaj zmaj::36_praepositionen
+sa	met	zmaj zmaj::36_praepositionen
+za	voor	zmaj zmaj::36_praepositionen
+kod	bij	zmaj zmaj::36_praepositionen
+bez	zonder	zmaj zmaj::36_praepositionen
+prema	naar	zmaj zmaj::36_praepositionen
+iznad	boven	zmaj zmaj::36_praepositionen
+ispod	onder	zmaj zmaj::36_praepositionen
+između	tussen	zmaj zmaj::36_praepositionen
+iza	achter	zmaj zmaj::36_praepositionen
+ispred	voor (plaats)	zmaj zmaj::36_praepositionen
+pored	naast	zmaj zmaj::36_praepositionen
+poslije	na	zmaj zmaj::36_praepositionen
+prije	voor (tijd)	zmaj zmaj::36_praepositionen
+kroz	door	zmaj zmaj::36_praepositionen
+oko	rond	zmaj zmaj::36_praepositionen
+u gradu	in de stad	zmaj zmaj::36_praepositionen
+u kući	in het huis	zmaj zmaj::36_praepositionen
+na stolu	op de tafel	zmaj zmaj::36_praepositionen
+na pijaci	op de markt	zmaj zmaj::36_praepositionen
+s mojom ženom	met mijn vrouw	zmaj zmaj::36_praepositionen
+za tebe	voor jou	zmaj zmaj::36_praepositionen
+za djecu	voor de kinderen	zmaj zmaj::36_praepositionen
+u autu	in de auto	zmaj zmaj::36_praepositionen
+poslije posla	na het werk	zmaj zmaj::36_praepositionen
+prije jela	voor het eten	zmaj zmaj::36_praepositionen
+Dajem bratu	Ik geef aan de broer	zmaj zmaj::37_faelle3
+Dajem sestri	Ik geef aan de zus	zmaj zmaj::37_faelle3
+Dajem djetetu	Ik geef aan het kind	zmaj zmaj::37_faelle3
+Pomažem majci	Ik help mijn moeder	zmaj zmaj::37_faelle3
+Kažem prijatelju	Ik zeg het tegen mijn vriend	zmaj zmaj::37_faelle3
+Pišem nani	Ik schrijf aan oma	zmaj zmaj::37_faelle3
+meni / mi	aan mij	zmaj zmaj::37_faelle3
+tebi / ti	aan jou	zmaj zmaj::37_faelle3
+njemu / mu	aan hem	zmaj zmaj::37_faelle3
+njoj / joj	aan haar	zmaj zmaj::37_faelle3
+nama / nam	aan ons	zmaj zmaj::37_faelle3
+vama / vam	aan jullie / aan u	zmaj zmaj::37_faelle3
+Daj mi	Geef mij	zmaj zmaj::37_faelle3
+Reci mi	Zeg mij	zmaj zmaj::37_faelle3
+Hladno mi je	Ik heb het koud	zmaj zmaj::37_faelle3
+u školi	op school	zmaj zmaj::37_faelle3
+u kuhinji	in de keuken	zmaj zmaj::37_faelle3
+na ulici	op straat	zmaj zmaj::37_faelle3
+u Sarajevu	in Sarajevo	zmaj zmaj::37_faelle3
+u sobi	in de kamer	zmaj zmaj::37_faelle3
+govoriti o poslu	over het werk praten	zmaj zmaj::37_faelle3
+Mislim na tebe	Ik denk aan jou	zmaj zmaj::37_faelle3
+Stanujem u Berlinu	Ik woon in Berlijn	zmaj zmaj::37_faelle3
+dati	geven	zmaj zmaj::37_faelle3
+pomoći	helpen	zmaj zmaj::37_faelle3
+pisati	schrijven	zmaj zmaj::37_faelle3
+reći	zeggen	zmaj zmaj::37_faelle3
+pokloniti	cadeau geven	zmaj zmaj::37_faelle3
+pokazati	laten zien	zmaj zmaj::37_faelle3
+s bratom	met de broer	zmaj zmaj::38_faelle4
+sa sestrom	met de zus	zmaj zmaj::38_faelle4
+s djecom	met de kinderen	zmaj zmaj::38_faelle4
+autom	met de auto	zmaj zmaj::38_faelle4
+autobusom	met de bus	zmaj zmaj::38_faelle4
+vozom	met de trein	zmaj zmaj::38_faelle4
+biciklom	met de fiets	zmaj zmaj::38_faelle4
+pješke	te voet	zmaj zmaj::38_faelle4
+sa mnom	met mij	zmaj zmaj::38_faelle4
+s tobom	met jou	zmaj zmaj::38_faelle4
+s nama	met ons	zmaj zmaj::38_faelle4
+sa šećerom	met suiker	zmaj zmaj::38_faelle4
+s mlijekom	met melk	zmaj zmaj::38_faelle4
+pod stolom	onder de tafel	zmaj zmaj::38_faelle4
+brate!	broer! (aanspreekvorm)	zmaj zmaj::38_faelle4
+sestro!	zus! (aanspreekvorm)	zmaj zmaj::38_faelle4
+prijatelju!	vriend! (aanspreekvorm)	zmaj zmaj::38_faelle4
+gospodine!	meneer! (aanspreekvorm)	zmaj zmaj::38_faelle4
+gospođo!	mevrouw! (aanspreekvorm)	zmaj zmaj::38_faelle4
+dušo!	schat! (aanspreekvorm)	zmaj zmaj::38_faelle4
+babo!	papa! (aanspreekvorm)	zmaj zmaj::38_faelle4
+nano!	oma! (aanspreekvorm)	zmaj zmaj::38_faelle4
+sine!	zoon! (aanspreekvorm)	zmaj zmaj::38_faelle4
+voz	trein	zmaj zmaj::38_faelle4
+avion	vliegtuig	zmaj zmaj::38_faelle4
+bicikl	fiets	zmaj zmaj::38_faelle4
+kašika	lepel	zmaj zmaj::38_faelle4
+kašikom	met de lepel	zmaj zmaj::38_faelle4
+nož	mes	zmaj zmaj::38_faelle4
+bio sam / bila sam	ik was (m/v)	zmaj zmaj::39_vergangenheit
+bio si / bila si	jij was (m/v)	zmaj zmaj::39_vergangenheit
+bio je	hij was	zmaj zmaj::39_vergangenheit
+bila je	zij was	zmaj zmaj::39_vergangenheit
+bili smo	wij waren	zmaj zmaj::39_vergangenheit
+imao sam / imala sam	ik had (m/v)	zmaj zmaj::39_vergangenheit
+radio sam / radila sam	ik heb gewerkt (m/v)	zmaj zmaj::39_vergangenheit
+jeo sam / jela sam	ik heb gegeten (m/v)	zmaj zmaj::39_vergangenheit
+vidio sam / vidjela sam	ik heb gezien (m/v)	zmaj zmaj::39_vergangenheit
+išao sam / išla sam	ik ben gegaan (m/v)	zmaj zmaj::39_vergangenheit
+rekao sam / rekla sam	ik heb gezegd (m/v)	zmaj zmaj::39_vergangenheit
+kupio sam / kupila sam	ik heb gekocht (m/v)	zmaj zmaj::39_vergangenheit
+učio sam / učila sam	ik heb geleerd (m/v)	zmaj zmaj::39_vergangenheit
+stanovao sam / stanovala sam	ik heb gewoond (m/v)	zmaj zmaj::39_vergangenheit
+prošle sedmice	vorige week	zmaj zmaj::39_vergangenheit
+prošle godine	vorig jaar	zmaj zmaj::39_vergangenheit
+prije dva dana	twee dagen geleden	zmaj zmaj::39_vergangenheit
+prije	vroeger	zmaj zmaj::39_vergangenheit
+tada	destijds	zmaj zmaj::39_vergangenheit
+Bio sam u Bosni / Bila sam u Bosni	Ik was in Bosnië (m/v)	zmaj zmaj::39_vergangenheit
+Bilo je lijepo	Het was mooi	zmaj zmaj::39_vergangenheit
+Šta si radio? / Šta si radila?	Wat heb je gedaan? (m/v)	zmaj zmaj::39_vergangenheit
+ću	ik zal	zmaj zmaj::40_zukunft
+ćeš	jij zult	zmaj zmaj::40_zukunft
+će	hij / zij zal	zmaj zmaj::40_zukunft
+ćemo	wij zullen	zmaj zmaj::40_zukunft
+ćete	jullie zullen	zmaj zmaj::40_zukunft
+Radit ću	Ik zal werken	zmaj zmaj::40_zukunft
+Doći ću	Ik zal komen	zmaj zmaj::40_zukunft
+Vidjet ćemo	We zullen zien	zmaj zmaj::40_zukunft
+Učit ću	Ik zal leren	zmaj zmaj::40_zukunft
+Nazvat ću te	Ik zal je bellen	zmaj zmaj::40_zukunft
+Kada ćeš doći?	Wanneer zul je komen?	zmaj zmaj::40_zukunft
+prekosutra	overmorgen	zmaj zmaj::40_zukunft
+sljedeće sedmice	volgende week	zmaj zmaj::40_zukunft
+sljedeće godine	volgend jaar	zmaj zmaj::40_zukunft
+uskoro	binnenkort	zmaj zmaj::40_zukunft
+plan	plan	zmaj zmaj::40_zukunft
+Planiram ...	Ik ben van plan ...	zmaj zmaj::40_zukunft
+Želim putovati	Ik wil reizen	zmaj zmaj::40_zukunft
+putovanje	reis	zmaj zmaj::40_zukunft
+Idemo u Bosnu	We gaan naar Bosnië	zmaj zmaj::40_zukunft
+Pokušat ću	Ik zal het proberen	zmaj zmaj::40_zukunft
+morati	moeten	zmaj zmaj::41_modal
+moram	ik moet	zmaj zmaj::41_modal
+moraš	jij moet	zmaj zmaj::41_modal
+moramo	wij moeten	zmaj zmaj::41_modal
+može	hij / zij kan	zmaj zmaj::41_modal
+možemo	wij kunnen	zmaj zmaj::41_modal
+hoćeš	jij wilt	zmaj zmaj::41_modal
+hoćemo	wij willen	zmaj zmaj::41_modal
+smjeti	mogen	zmaj zmaj::41_modal
+smijem	ik mag	zmaj zmaj::41_modal
+trebao bih / trebala bih	ik zou moeten (m/v)	zmaj zmaj::41_modal
+Moram raditi	Ik moet werken	zmaj zmaj::41_modal
+Moram ići	Ik moet gaan	zmaj zmaj::41_modal
+Ne mogu doći	Ik kan niet komen	zmaj zmaj::41_modal
+Možeš li mi pomoći?	Kun je me helpen?	zmaj zmaj::41_modal
+Hoću spavati	Ik wil slapen	zmaj zmaj::41_modal
+Želim učiti	Ik wil leren	zmaj zmaj::41_modal
+Smijem li pitati?	Mag ik iets vragen?	zmaj zmaj::41_modal
+Ne moraš	Je hoeft niet	zmaj zmaj::41_modal
+Moramo čekati	We moeten wachten	zmaj zmaj::41_modal
+čekati	wachten	zmaj zmaj::41_modal
+Želim nešto jesti	Ik wil iets eten	zmaj zmaj::41_modal
+nešto	iets	zmaj zmaj::41_modal
+Mogu govoriti bosanski	Ik kan Bosnisch spreken	zmaj zmaj::41_modal
+Ne znam plivati	Ik kan niet zwemmen (vaardigheid)	zmaj zmaj::41_modal
+plivati	zwemmen	zmaj zmaj::41_modal
+pitati	vragen	zmaj zmaj::41_modal
+pokušati	proberen	zmaj zmaj::41_modal
+se	zich (wederkerend voornaamwoord)	zmaj zmaj::42_reflexiv
+zvati se	heten	zmaj zmaj::42_reflexiv
+prati se	zich wassen	zmaj zmaj::42_reflexiv
+Perem se	Ik was me	zmaj zmaj::42_reflexiv
+radovati se	zich verheugen	zmaj zmaj::42_reflexiv
+Radujem se	Ik verheug me	zmaj zmaj::42_reflexiv
+osjećati se	zich voelen	zmaj zmaj::42_reflexiv
+Osjećam se dobro	Ik voel me goed	zmaj zmaj::42_reflexiv
+naći se	afspreken	zmaj zmaj::42_reflexiv
+Nalazimo se u pet	We spreken om vijf uur af	zmaj zmaj::42_reflexiv
+sjećati se	zich herinneren	zmaj zmaj::42_reflexiv
+Sjećam se	Ik herinner het me	zmaj zmaj::42_reflexiv
+sjesti	gaan zitten	zmaj zmaj::42_reflexiv
+Sjedi!	Ga zitten!	zmaj zmaj::42_reflexiv
+odmarati se	uitrusten	zmaj zmaj::42_reflexiv
+Odmaram se	Ik rust uit	zmaj zmaj::42_reflexiv
+oblačiti se	zich aankleden	zmaj zmaj::42_reflexiv
+žuriti se	zich haasten	zmaj zmaj::42_reflexiv
+Požuri!	Schiet op!	zmaj zmaj::42_reflexiv
+kasniti	te laat komen	zmaj zmaj::42_reflexiv
+Kasnim	Ik kom te laat	zmaj zmaj::42_reflexiv
+svađati se	ruziemaken	zmaj zmaj::42_reflexiv
+zaljubiti se	verliefd worden	zmaj zmaj::42_reflexiv
+Zaljubio sam se / Zaljubila sam se	Ik ben verliefd geworden (m/v)	zmaj zmaj::42_reflexiv
+smijati se	lachen	zmaj zmaj::42_reflexiv
+Smijem se	Ik lach	zmaj zmaj::42_reflexiv
+igrati se	spelen (kinderen)	zmaj zmaj::42_reflexiv
+Djeca se igraju	De kinderen spelen	zmaj zmaj::42_reflexiv
+brinuti se	zich zorgen maken	zmaj zmaj::42_reflexiv
+ustajati	opstaan	zmaj zmaj::43_routine
+Ustajem u sedam	Ik sta om zeven uur op	zmaj zmaj::43_routine
+tuširati se	douchen	zmaj zmaj::43_routine
+Tuširam se	Ik douche	zmaj zmaj::43_routine
+prati zube	tanden poetsen	zmaj zmaj::43_routine
+doručkovati	ontbijten	zmaj zmaj::43_routine
+Doručkujem	Ik ontbijt	zmaj zmaj::43_routine
+ići na posao	naar het werk gaan	zmaj zmaj::43_routine
+Idem na posao	Ik ga naar het werk	zmaj zmaj::43_routine
+ručati	lunchen	zmaj zmaj::43_routine
+Ručam	Ik lunch	zmaj zmaj::43_routine
+doći kući	thuiskomen	zmaj zmaj::43_routine
+Dolazim kući	Ik kom thuis	zmaj zmaj::43_routine
+kuhati	koken	zmaj zmaj::43_routine
+Kuham večeru	Ik kook het avondeten	zmaj zmaj::43_routine
+gledati televiziju	televisiekijken	zmaj zmaj::43_routine
+ići spavati	gaan slapen	zmaj zmaj::43_routine
+Idem spavati	Ik ga slapen	zmaj zmaj::43_routine
+ići u kupovinu	boodschappen doen	zmaj zmaj::43_routine
+čistiti	schoonmaken	zmaj zmaj::43_routine
+prati veš	de was doen	zmaj zmaj::43_routine
+rano	vroeg	zmaj zmaj::43_routine
+kasno	laat	zmaj zmaj::43_routine
+svaki dan	elke dag	zmaj zmaj::43_routine
+ponekad	soms	zmaj zmaj::43_routine
+često	vaak	zmaj zmaj::43_routine
+rijetko	zelden	zmaj zmaj::43_routine
+ujutro	's ochtends	zmaj zmaj::43_routine
+popodne	's middags	zmaj zmaj::43_routine
+navečer	's avonds	zmaj zmaj::43_routine
+vikendom	in het weekend	zmaj zmaj::43_routine
+velik / velika	groot (m/v)	zmaj zmaj::44_adjektive
+veći	groter	zmaj zmaj::44_adjektive
+najveći	het grootst	zmaj zmaj::44_adjektive
+mali / mala	klein (m/v)	zmaj zmaj::44_adjektive
+manji	kleiner	zmaj zmaj::44_adjektive
+dobar / dobra	goed (m/v)	zmaj zmaj::44_adjektive
+bolji	beter	zmaj zmaj::44_adjektive
+najbolji	het best	zmaj zmaj::44_adjektive
+loš / loša	slecht (m/v)	zmaj zmaj::44_adjektive
+gori	slechter	zmaj zmaj::44_adjektive
+lijep / lijepa	mooi (m/v)	zmaj zmaj::44_adjektive
+ljepši	mooier	zmaj zmaj::44_adjektive
+nov / nova	nieuw (m/v)	zmaj zmaj::44_adjektive
+star / stara	oud (m/v)	zmaj zmaj::44_adjektive
+stariji	ouder	zmaj zmaj::44_adjektive
+mlad / mlada	jong (m/v)	zmaj zmaj::44_adjektive
+mlađi	jonger	zmaj zmaj::44_adjektive
+skup / skupa / skupo	duur (m/v/o)	zmaj zmaj::44_adjektive
+skuplji	duurder	zmaj zmaj::44_adjektive
+jeftiniji	goedkoper	zmaj zmaj::44_adjektive
+brz / brza	snel (m/v)	zmaj zmaj::44_adjektive
+spor / spora	langzaam (m/v)	zmaj zmaj::44_adjektive
+nego / od	dan (bij vergelijking)	zmaj zmaj::44_adjektive
+jako	heel	zmaj zmaj::44_adjektive
+previše	te (te groot)	zmaj zmaj::44_adjektive
+To je bolje nego to	Dit is beter dan dat	zmaj zmaj::44_adjektive
+jedan brat	één broer	zmaj zmaj::45_mengen
+dva brata	twee broers	zmaj zmaj::45_mengen
+pet braće	vijf broers	zmaj zmaj::45_mengen
+jedna sestra	één zus	zmaj zmaj::45_mengen
+dvije sestre	twee zussen	zmaj zmaj::45_mengen
+pet sestara	vijf zussen	zmaj zmaj::45_mengen
+jedna godina	één jaar	zmaj zmaj::45_mengen
+dvije godine	twee jaar	zmaj zmaj::45_mengen
+pet godina	vijf jaar	zmaj zmaj::45_mengen
+jedan dan	één dag	zmaj zmaj::45_mengen
+tri dana	drie dagen	zmaj zmaj::45_mengen
+deset dana	tien dagen	zmaj zmaj::45_mengen
+jedna kahva	één koffie	zmaj zmaj::45_mengen
+dvije kahve	twee koffie	zmaj zmaj::45_mengen
+tri piva	drie bier	zmaj zmaj::45_mengen
+nekoliko	een paar	zmaj zmaj::45_mengen
+nekoliko dana	een paar dagen	zmaj zmaj::45_mengen
+pola	de helft	zmaj zmaj::45_mengen
+pola kilograma	een half kilo	zmaj zmaj::45_mengen
+četvrt	een kwart	zmaj zmaj::45_mengen
+prvi	de eerste	zmaj zmaj::45_mengen
+drugi	de tweede	zmaj zmaj::45_mengen
+treći	de derde	zmaj zmaj::45_mengen
+zadnji	de laatste	zmaj zmaj::45_mengen
+jednom	één keer	zmaj zmaj::45_mengen
+dva puta	twee keer	zmaj zmaj::45_mengen
+prvi put	voor de eerste keer	zmaj zmaj::45_mengen
+oboje	allebei	zmaj zmaj::45_mengen
+svi	allemaal	zmaj zmaj::45_mengen
+svaki	elke	zmaj zmaj::45_mengen
+nijedan / nijedna	geen	zmaj zmaj::45_mengen
+mišljenje	mening	zmaj zmaj::46_gefuehle
+Po mom mišljenju	Naar mijn mening	zmaj zmaj::46_gefuehle
+Slažem se	Ik ben het ermee eens	zmaj zmaj::46_gefuehle
+Ne slažem se	Ik ben het er niet mee eens	zmaj zmaj::46_gefuehle
+Siguran sam / Sigurna sam	Ik weet het zeker (m/v)	zmaj zmaj::46_gefuehle
+To je tačno	Dat klopt	zmaj zmaj::46_gefuehle
+To nije tačno	Dat klopt niet	zmaj zmaj::46_gefuehle
+važno	belangrijk	zmaj zmaj::46_gefuehle
+Svejedno mi je	Het maakt mij niet uit	zmaj zmaj::46_gefuehle
+strah	angst	zmaj zmaj::46_gefuehle
+Bojim se	Ik ben bang	zmaj zmaj::46_gefuehle
+ljut / ljuta	boos (m/v)	zmaj zmaj::46_gefuehle
+nervozan / nervozna	zenuwachtig (m/v)	zmaj zmaj::46_gefuehle
+zadovoljan / zadovoljna	tevreden (m/v)	zmaj zmaj::46_gefuehle
+iznenađen / iznenađena	verrast (m/v)	zmaj zmaj::46_gefuehle
+Dosadno mi je	Ik verveel me	zmaj zmaj::46_gefuehle
+usamljen / usamljena	eenzaam (m/v)	zmaj zmaj::46_gefuehle
+ponosan / ponosna	trots (m/v)	zmaj zmaj::46_gefuehle
+Ponosan sam na tebe / Ponosna sam na tebe	Ik ben trots op je (m/v)	zmaj zmaj::46_gefuehle
+nada	hoop	zmaj zmaj::46_gefuehle
+nadam se	hopelijk	zmaj zmaj::46_gefuehle
+nažalost	helaas	zmaj zmaj::46_gefuehle
+srećom	gelukkig	zmaj zmaj::46_gefuehle
+Brinem se	Ik maak me zorgen	zmaj zmaj::46_gefuehle
+Drago mi je zbog tebe	Ik ben blij voor je	zmaj zmaj::46_gefuehle
+zanimljivo	interessant	zmaj zmaj::46_gefuehle
+dosadno	saai	zmaj zmaj::46_gefuehle
+smiješno	grappig	zmaj zmaj::46_gefuehle
+teško	moeilijk	zmaj zmaj::46_gefuehle
+lako / lahko	makkelijk	zmaj zmaj::46_gefuehle
+aerodrom	vliegveld	zmaj zmaj::47_reisen
+let	vlucht	zmaj zmaj::47_reisen
+karta	kaartje	zmaj zmaj::47_reisen
+povratna karta	retourtje	zmaj zmaj::47_reisen
+polazak	vertrek	zmaj zmaj::47_reisen
+dolazak	aankomst	zmaj zmaj::47_reisen
+kašnjenje	vertraging	zmaj zmaj::47_reisen
+prtljag	bagage	zmaj zmaj::47_reisen
+kofer	koffer	zmaj zmaj::47_reisen
+hotel	hotel	zmaj zmaj::47_reisen
+rezervisati sobu	een kamer boeken	zmaj zmaj::47_reisen
+rezervacija	reservering	zmaj zmaj::47_reisen
+autobuska stanica	busstation	zmaj zmaj::47_reisen
+taksi	taxi	zmaj zmaj::47_reisen
+vozač	chauffeur	zmaj zmaj::47_reisen
+benzinska pumpa	tankstation	zmaj zmaj::47_reisen
+benzin	benzine	zmaj zmaj::47_reisen
+autoput	snelweg	zmaj zmaj::47_reisen
+mapa	kaart	zmaj zmaj::47_reisen
+pravac	richting	zmaj zmaj::47_reisen
+vožnja	rit	zmaj zmaj::47_reisen
+Koliko traje vožnja?	Hoe lang duurt de rit?	zmaj zmaj::47_reisen
+Kada polazi autobus?	Wanneer vertrekt de bus?	zmaj zmaj::47_reisen
+ulaz	ingang	zmaj zmaj::47_reisen
+izlaz	uitgang	zmaj zmaj::47_reisen
+znamenitost	bezienswaardigheid	zmaj zmaj::47_reisen
+most	brug	zmaj zmaj::47_reisen
+stari grad	oude stad	zmaj zmaj::47_reisen
+džamija	moskee	zmaj zmaj::47_reisen
+crkva	kerk	zmaj zmaj::47_reisen
+prenoćiti	overnachten	zmaj zmaj::47_reisen
+Sretan put!	Goede reis!	zmaj zmaj::47_reisen
+proslava	feest	zmaj zmaj::48_feiern
+rođendan	verjaardag	zmaj zmaj::48_feiern
+Sretan rođendan!	Gefeliciteerd met je verjaardag!	zmaj zmaj::48_feiern
+svadba	bruiloft	zmaj zmaj::48_feiern
+mlada	bruid	zmaj zmaj::48_feiern
+mladoženja	bruidegom	zmaj zmaj::48_feiern
+gost	gast	zmaj zmaj::48_feiern
+gosti	gasten	zmaj zmaj::48_feiern
+poklon	cadeau	zmaj zmaj::48_feiern
+poziv	uitnodiging	zmaj zmaj::48_feiern
+pozvati	uitnodigen	zmaj zmaj::48_feiern
+Bajram	Bajram (Eid)	zmaj zmaj::48_feiern
+Bajram šerif mubarek olsun!	Gezegende Bajram!	zmaj zmaj::48_feiern
+Ramazan	Ramadan	zmaj zmaj::48_feiern
+postiti	vasten	zmaj zmaj::48_feiern
+Nova godina	nieuwjaar	zmaj zmaj::48_feiern
+Sretna Nova godina!	Gelukkig nieuwjaar!	zmaj zmaj::48_feiern
+Božić	Kerstmis	zmaj zmaj::48_feiern
+Uskrs	Pasen	zmaj zmaj::48_feiern
+kolač	cake	zmaj zmaj::48_feiern
+baklava	baklava	zmaj zmaj::48_feiern
+torta	taart	zmaj zmaj::48_feiern
+plesati	dansen	zmaj zmaj::48_feiern
+pjevati	zingen	zmaj zmaj::48_feiern
+pjesma	lied	zmaj zmaj::48_feiern
+muzika	muziek	zmaj zmaj::48_feiern
+tradicija	traditie	zmaj zmaj::48_feiern
+Čestitam!	Gefeliciteerd!	zmaj zmaj::48_feiern
+Izvolite, uđite!	Komt u binnen!	zmaj zmaj::48_feiern
+poslužiti kahvu	koffie serveren	zmaj zmaj::48_feiern
+gostoprimstvo	gastvrijheid	zmaj zmaj::48_feiern
+dženaza / sahrana	begrafenis	zmaj zmaj::48_feiern
+običaj	gebruik / gewoonte (traditie)	zmaj zmaj::48_feiern
+slaviti	vieren	zmaj zmaj::48_feiern
+čestitati	feliciteren	zmaj zmaj::48_feiern
+narodna nošnja	klederdracht	zmaj zmaj::48_feiern
+posao	werk	zmaj zmaj::49_arbeit
+firma	bedrijf	zmaj zmaj::49_arbeit
+šef	baas	zmaj zmaj::49_arbeit
+kolega	collega	zmaj zmaj::49_arbeit
+kancelarija	kantoor	zmaj zmaj::49_arbeit
+fabrika	fabriek	zmaj zmaj::49_arbeit
+mašina	machine	zmaj zmaj::49_arbeit
+inženjer	ingenieur	zmaj zmaj::49_arbeit
+električar	elektricien	zmaj zmaj::49_arbeit
+zanimanje	beroep	zmaj zmaj::49_arbeit
+Šta si po zanimanju?	Wat voor werk doe je?	zmaj zmaj::49_arbeit
+plata	salaris	zmaj zmaj::49_arbeit
+godišnji odmor	vakantie	zmaj zmaj::49_arbeit
+škola	school	zmaj zmaj::49_arbeit
+nastavnik	leraar	zmaj zmaj::49_arbeit
+učenik	leerling	zmaj zmaj::49_arbeit
+student	student	zmaj zmaj::49_arbeit
+univerzitet	universiteit	zmaj zmaj::49_arbeit
+ispit	examen	zmaj zmaj::49_arbeit
+zadaća	huiswerk	zmaj zmaj::49_arbeit
+knjiga	boek	zmaj zmaj::49_arbeit
+olovka	pen	zmaj zmaj::49_arbeit
+papir	papier	zmaj zmaj::49_arbeit
+računar	computer	zmaj zmaj::49_arbeit
+Imam dva brata	Ik heb twee broers	zmaj zmaj::50_saetze
+Moja sestra ima pet godina	Mijn zus is vijf jaar	zmaj zmaj::50_saetze
+Jedemo u sedam sati	We eten om zeven uur	zmaj zmaj::50_saetze
+U ponedjeljak idem na posao	Op maandag ga ik naar het werk	zmaj zmaj::50_saetze
+Kahva je vruća	De koffie is heet	zmaj zmaj::50_saetze
+Pijem vodu, hvala	Ik drink water, dank je	zmaj zmaj::50_saetze
+Moj babo ne radi u julu	Mijn papa werkt niet in juli	zmaj zmaj::50_saetze
+Gdje je crvena torba?	Waar is de rode tas?	zmaj zmaj::50_saetze
+Koliko košta hljeb?	Hoeveel kost het brood?	zmaj zmaj::50_saetze
+Danas je hladno i pada kiša	Vandaag is het koud en het regent	zmaj zmaj::50_saetze
+Razumijem malo bosanski	Ik begrijp een beetje Bosnisch	zmaj zmaj::50_saetze
+Vidimo se u subotu	We zien elkaar op zaterdag	zmaj zmaj::50_saetze
+Htjela bih tri jabuke, molim	Ik wil graag drie appels, alstublieft	zmaj zmaj::50_saetze
+Moja nana stanuje u selu	Mijn oma woont in het dorp	zmaj zmaj::50_saetze
+Učim bosanski svaki dan	Ik leer elke dag Bosnisch	zmaj zmaj::50_saetze
+Autobus dolazi u deset	De bus komt om tien uur	zmaj zmaj::50_saetze
+Imam glavobolju i temperaturu	Ik heb hoofdpijn en koorts	zmaj zmaj::50_saetze
+Voda u jezeru je plava	Het water in het meer is blauw	zmaj zmaj::50_saetze
+Mislim da je moja sestra kod kuće	Ik denk dat mijn zus thuis is	zmaj zmaj::50_saetze
+Ne znam kada dolazi autobus	Ik weet niet wanneer de bus komt	zmaj zmaj::50_saetze
+Ako pada kiša, ostajem kod kuće	Als het regent blijf ik thuis	zmaj zmaj::50_saetze
+Jučer sam kupila hljeb i mlijeko	Gisteren heb ik brood en melk gekocht (vrouw)	zmaj zmaj::50_saetze
+Sljedeće godine ćemo kupiti kuću	Volgend jaar gaan we een huis kopen	zmaj zmaj::50_saetze
+Moj brat je stariji od mene, ali manji	Mijn broer is ouder dan ik, maar kleiner	zmaj zmaj::50_saetze
+akcija	aanbieding	zmaj zmaj::51_einkauf_orte
+svježe	vers	zmaj zmaj::51_einkauf_orte
+rok trajanja	houdbaarheidsdatum	zmaj zmaj::51_einkauf_orte
+domaće	zelfgemaakt	zmaj zmaj::51_einkauf_orte
+tezga	marktkraam	zmaj zmaj::51_einkauf_orte
+mesar	slager	zmaj zmaj::51_einkauf_orte
+mesnica	slagerij	zmaj zmaj::51_einkauf_orte
+sniženje	prijsverlaging	zmaj zmaj::51_einkauf_orte
+supermarket	supermarkt	zmaj zmaj::51_einkauf_orte
+prodavač	verkoper	zmaj zmaj::51_einkauf_orte
+prodavačica	verkoopster	zmaj zmaj::51_einkauf_orte
+platiti	betalen	zmaj zmaj::51_einkauf_orte
+fening	fening (1/100 mark)	zmaj zmaj::51_einkauf_orte
+fiskalni račun	kassabon / kwitantie	zmaj zmaj::51_einkauf_orte
+sitno	kleingeld	zmaj zmaj::51_einkauf_orte
+marka	mark (KM, de munt in het dagelijks leven)	zmaj zmaj::51_einkauf_orte
+račun za struju	elektriciteitsrekening	zmaj zmaj::51_einkauf_orte
+bakšiš	fooi	zmaj zmaj::51_einkauf_orte
+kusur	wisselgeld	zmaj zmaj::51_einkauf_orte
+Banja Luka	Banja Luka	zmaj zmaj::51_einkauf_orte
+Bihać	Bihać	zmaj zmaj::51_einkauf_orte
+glavni grad	hoofdstad	zmaj zmaj::51_einkauf_orte
+Idem u Mostar	Ik ga naar Mostar	zmaj zmaj::51_einkauf_orte
+Živim u Sarajevu	Ik woon in Sarajevo	zmaj zmaj::51_einkauf_orte
+Mostar	Mostar	zmaj zmaj::51_einkauf_orte
+Sarajevo	Sarajevo	zmaj zmaj::51_einkauf_orte
+Tuzla	Tuzla	zmaj zmaj::51_einkauf_orte
+Zenica	Zenica	zmaj zmaj::51_einkauf_orte
+kafić	café	zmaj zmaj::52_resto1
+Jelovnik, molim	De menukaart, alstublieft	zmaj zmaj::52_resto1
+vani	buiten	zmaj zmaj::52_resto1
+unutra	binnen	zmaj zmaj::52_resto1
+Sto za dvoje, molim	Een tafel voor twee, alstublieft	zmaj zmaj::52_resto1
+ćevabdžinica	grillrestaurant	zmaj zmaj::52_resto1
+Je li ovaj sto slobodan?	Is deze tafel vrij?	zmaj zmaj::52_resto1
+slastičarna	banketbakkerij	zmaj zmaj::52_resto1
+terasa	terras	zmaj zmaj::52_resto1
+aščinica	traditioneel eethuis	zmaj zmaj::52_resto1
+prilog	bijgerecht	zmaj zmaj::52_resto1
+naručiti	bestellen	zmaj zmaj::52_resto1
+To je sve	Dat is alles	zmaj zmaj::52_resto1
+čorba	dikke soep	zmaj zmaj::52_resto1
+Još jednu turu	Nog een rondje	zmaj zmaj::52_resto1
+Za mene …	Voor mij graag …	zmaj zmaj::52_resto1
+Može li jedna kahva?	Eén koffie, kan dat?	zmaj zmaj::52_resto1
+glavno jelo	hoofdgerecht	zmaj zmaj::52_resto1
+Ja bih …	Ik wil graag …	zmaj zmaj::52_resto1
+Može, hvala	Ja, dank je	zmaj zmaj::52_resto1
+sa …	met …	zmaj zmaj::52_resto1
+desert	nagerecht	zmaj zmaj::52_resto1
+Još jedno isto, molim	Nog een keer hetzelfde	zmaj zmaj::52_resto1
+Još nešto?	Nog iets? (ober)	zmaj zmaj::52_resto1
+bez …	zonder …	zmaj zmaj::52_resto1
+predjelo	voorgerecht	zmaj zmaj::52_resto1
+Šta preporučujete?	Wat raadt u aan?	zmaj zmaj::52_resto1
+Ovo nisam naručio	Dit heb ik niet besteld	zmaj zmaj::53_resto2
+Prijalo mi je	Het heeft me goed gesmaakt	zmaj zmaj::53_resto2
+Fino je	Het is lekker	zmaj zmaj::53_resto2
+Ukusno je	Het smaakt goed	zmaj zmaj::53_resto2
+Sit sam	Ik zit vol (m)	zmaj zmaj::53_resto2
+Sita sam	Ik zit vol (v)	zmaj zmaj::53_resto2
+slano	zout	zmaj zmaj::53_resto2
+kiselo	zuur	zmaj zmaj::53_resto2
+ljuto	pikant	zmaj zmaj::53_resto2
+slatko	zoet	zmaj zmaj::53_resto2
+premalo	te weinig	zmaj zmaj::53_resto2
+Zadržite kusur	Houd het wisselgeld maar	zmaj zmaj::53_resto2
+odvojeno	apart	zmaj zmaj::53_resto2
+Svako plaća svoje	Ieder betaalt voor zichzelf	zmaj zmaj::53_resto2
+Možemo li platiti?	Kunnen we afrekenen?	zmaj zmaj::53_resto2
+napojnica	fooi (formeel)	zmaj zmaj::53_resto2
+Koliko je?	Hoeveel is het?	zmaj zmaj::53_resto2
+zajedno	samen	zmaj zmaj::53_resto2
+Ovo je skupo	Dat is duur	zmaj zmaj::53_resto2
+Pola kile, molim	Een halve kilo, alstublieft	zmaj zmaj::53_resto2
+Jedan kilogram, molim	Een kilo, alstublieft	zmaj zmaj::53_resto2
+Jednu kesu, molim	Een zakje, alstublieft	zmaj zmaj::53_resto2
+Malo više	Iets meer	zmaj zmaj::53_resto2
+Malo manje	Iets minder	zmaj zmaj::53_resto2
+Može li jeftinije?	Kan het goedkoper?	zmaj zmaj::53_resto2
+Je li ovo svježe?	Is dit vers?	zmaj zmaj::53_resto2
+Je li ovo domaće?	Is dit zelfgemaakt?	zmaj zmaj::53_resto2
+Mogu li probati?	Mag ik proeven?	zmaj zmaj::53_resto2
+Pošto je …?	Hoeveel kost …? (markt)	zmaj zmaj::53_resto2
+pekara	bakkerij	zmaj zmaj::54_essen_gehen
+jelo	gerecht / eten	zmaj zmaj::54_essen_gehen
+kafana	kafana (traditioneel café)	zmaj zmaj::54_essen_gehen
+ukusno	lekker	zmaj zmaj::54_essen_gehen
+porcija	portie	zmaj zmaj::54_essen_gehen
+restoran	restaurant	zmaj zmaj::54_essen_gehen
+jelovnik	menukaart	zmaj zmaj::54_essen_gehen
+Idemo na kahvu	Laten we koffie gaan drinken	zmaj zmaj::54_essen_gehen
+halva	halva	zmaj zmaj::54_essen_gehen
+hurmašica	hurmašica (siroopgebak)	zmaj zmaj::54_essen_gehen
+rahat lokum	rahat lokum (geleiblokjes bij de koffie)	zmaj zmaj::54_essen_gehen
+tufahija	tufahija (gevulde appel in siroop)	zmaj zmaj::54_essen_gehen
+limenka	blikje (drank)	zmaj zmaj::54_essen_gehen
+lista za kupovinu	boodschappenlijst	zmaj zmaj::54_essen_gehen
+kolica	winkelwagen	zmaj zmaj::54_essen_gehen
+tegla	weckpot	zmaj zmaj::54_essen_gehen
+gram	gram	zmaj zmaj::54_essen_gehen
+korpa	mand	zmaj zmaj::54_essen_gehen
+litar	liter	zmaj zmaj::54_essen_gehen
+pakovanje	pak	zmaj zmaj::54_essen_gehen
+vreća	zak	zmaj zmaj::54_essen_gehen
+kriška	snee (brood)	zmaj zmaj::54_essen_gehen
+šnita	plakje (worst)	zmaj zmaj::54_essen_gehen
+komad	stuk	zmaj zmaj::54_essen_gehen
+ajvar	ajvar (paprikapasta)	zmaj zmaj::55_bosnisch_essen
+grah	bonenstoofpot	zmaj zmaj::55_bosnisch_essen
+bosanski lonac	Bosnische stoofpot	zmaj zmaj::55_bosnisch_essen
+burek	burek (bladerdeegrol met vlees)	zmaj zmaj::55_bosnisch_essen
+dolma	dolma (gevulde groente)	zmaj zmaj::55_bosnisch_essen
+suho meso	gerookt vlees	zmaj zmaj::55_bosnisch_essen
+roštilj	grill / gegrild vlees	zmaj zmaj::55_bosnisch_essen
+japrak	japrak (gevulde wijnbladeren)	zmaj zmaj::55_bosnisch_essen
+kajmak	kajmak (roomspread)	zmaj zmaj::55_bosnisch_essen
+krompiruša	krompiruša (pita met aardappel)	zmaj zmaj::55_bosnisch_essen
+pljeskavica	pljeskavica (platte gehaktschijf)	zmaj zmaj::55_bosnisch_essen
+sarma	sarma (gevulde koolrolletjes)	zmaj zmaj::55_bosnisch_essen
+sirnica	sirnica (pita met kaas)	zmaj zmaj::55_bosnisch_essen
+somun	somun (platbrood bij ćevapi)	zmaj zmaj::55_bosnisch_essen
+zeljanica	zeljanica (pita met spinazie en kaas)	zmaj zmaj::55_bosnisch_essen
+begova čorba	bey-soep (romige kip-okrasoep)	zmaj zmaj::55_bosnisch_essen
+ražnjići	vleesspiesjes	zmaj zmaj::55_bosnisch_essen
+petica	vijf ćevapi	zmaj zmaj::55_bosnisch_essen
+punjene paprike	gevulde paprika's	zmaj zmaj::55_bosnisch_essen
+sogan-dolma	gevulde uien	zmaj zmaj::55_bosnisch_essen
+sudžukice	gegrilde worstjes	zmaj zmaj::55_bosnisch_essen
+sedam ćevapa	zeven ćevapi	zmaj zmaj::55_bosnisch_essen
+klepe	deegpakketjes	zmaj zmaj::55_bosnisch_essen
+ispod sača	onder de ijzeren stolp	zmaj zmaj::55_bosnisch_essen
+desetka	tien ćevapi	zmaj zmaj::55_bosnisch_essen
+inostranstvo	buitenland	zmaj zmaj::56_laender
+Bosna	Bosnië	zmaj zmaj::56_laender
+Bosna i Hercegovina	Bosnië en Herzegovina	zmaj zmaj::56_laender
+Njemačka	Duitsland	zmaj zmaj::56_laender
+Holandija	Nederland	zmaj zmaj::56_laender
+Švicarska	Zwitserland	zmaj zmaj::56_laender
+Turska	Turkije	zmaj zmaj::56_laender
+Danska	Denemarken	zmaj zmaj::56_laender
+Francuska	Frankrijk	zmaj zmaj::56_laender
+domovina	vaderland	zmaj zmaj::56_laender
+Hercegovina	Herzegovina	zmaj zmaj::56_laender
+Rođen sam u Njemačkoj / Rođena sam u Njemačkoj	Ik ben in Duitsland geboren (m/v)	zmaj zmaj::56_laender
+Ja sam iz Bosne	Ik kom uit Bosnië	zmaj zmaj::56_laender
+Ja sam iz Njemačke	Ik kom uit Duitsland	zmaj zmaj::56_laender
+Živim u Njemačkoj	Ik woon in Duitsland	zmaj zmaj::56_laender
+Hrvatska	Kroatië	zmaj zmaj::56_laender
+država	land / staat	zmaj zmaj::56_laender
+Moja porodica je iz Bosne	Mijn familie komt uit Bosnië	zmaj zmaj::56_laender
+Crna Gora	Montenegro	zmaj zmaj::56_laender
+Norveška	Noorwegen	zmaj zmaj::56_laender
+Švedska	Zweden	zmaj zmaj::56_laender
+Srbija	Servië	zmaj zmaj::56_laender
+Slovenija	Slovenië	zmaj zmaj::56_laender
+svijet	wereld	zmaj zmaj::56_laender
+Gdje si rođen? / Gdje si rođena?	Waar ben je geboren? (m/v)	zmaj zmaj::56_laender
+Austrija	Oostenrijk	zmaj zmaj::56_laender
+Bošnjak / Bošnjakinja	Bosniak (man of vrouw)	zmaj zmaj::57_nationalitaeten
+Bosanac / Bosanka	Bosniër / Bosnische	zmaj zmaj::57_nationalitaeten
+Nijemac / Njemica	Duitser / Duitse	zmaj zmaj::57_nationalitaeten
+Danac / Dankinja	Deen / Deense	zmaj zmaj::57_nationalitaeten
+Francuz / Francuskinja	Fransman / Française	zmaj zmaj::57_nationalitaeten
+Ja sam Bosanac / Ja sam Bosanka	Ik ben Bosniër / Bosnische	zmaj zmaj::57_nationalitaeten
+Ja sam Nijemac / Ja sam Njemica	Ik ben Duitser / Duitse	zmaj zmaj::57_nationalitaeten
+Hrvat / Hrvatica	Kroaat / Kroatische	zmaj zmaj::57_nationalitaeten
+Crnogorac / Crnogorka	Montenegrijn / Montenegrijnse	zmaj zmaj::57_nationalitaeten
+Holanđanin / Holanđanka	Nederlander / Nederlandse	zmaj zmaj::57_nationalitaeten
+Norvežanin / Norvežanka	Noor / Noorse	zmaj zmaj::57_nationalitaeten
+vjera	religie / geloof	zmaj zmaj::57_nationalitaeten
+Šveđanin / Šveđanka	Zweed / Zweedse	zmaj zmaj::57_nationalitaeten
+Švicarac / Švicarka	Zwitser / Zwitserse	zmaj zmaj::57_nationalitaeten
+Srbin / Srpkinja	Serviër / Servische	zmaj zmaj::57_nationalitaeten
+Turčin / Turkinja	Turk / Turkse	zmaj zmaj::57_nationalitaeten
+narod	volk	zmaj zmaj::57_nationalitaeten
+Austrijanac / Austrijanka	Oostenrijker / Oostenrijkse	zmaj zmaj::57_nationalitaeten
+bosanski	Bosnisch (de taal)	zmaj zmaj::57_nationalitaeten
+njemački	Duits (de taal)	zmaj zmaj::57_nationalitaeten
+engleski	Engels (de taal)	zmaj zmaj::57_nationalitaeten
+Govorim njemački	Ik spreek Duits	zmaj zmaj::57_nationalitaeten
+Ne govorim bosanski	Ik spreek geen Bosnisch	zmaj zmaj::57_nationalitaeten
+Možeš li ponoviti?	Kun je dat herhalen?	zmaj zmaj::57_nationalitaeten
+maternji jezik	moedertaal	zmaj zmaj::57_nationalitaeten
+jezik	taal	zmaj zmaj::57_nationalitaeten
+Molim te, pričaj sporije	Spreek alsjeblieft langzamer	zmaj zmaj::57_nationalitaeten
+Govoriš li bosanski?	Spreek jij Bosnisch?	zmaj zmaj::57_nationalitaeten
+Šta to znači?	Wat betekent dat?	zmaj zmaj::57_nationalitaeten
+Kako se to kaže na bosanskom?	Hoe zeg je dat in het Bosnisch?	zmaj zmaj::57_nationalitaeten
+Alejkumu selam	(antwoord daarop)	zmaj zmaj::58_kennenlernen
+posjeta	bezoek	zmaj zmaj::58_kennenlernen
+Hvala na svemu	Bedankt voor alles	zmaj zmaj::58_kennenlernen
+Da te upoznam: ...	Mag ik je voorstellen: ...	zmaj zmaj::58_kennenlernen
+Ovo je moj prijatelj	Dit is een vriend van mij	zmaj zmaj::58_kennenlernen
+Ovo je moja žena	Dit is mijn vrouw	zmaj zmaj::58_kennenlernen
+pozdrav / pozdravi	groet / groeten	zmaj zmaj::58_kennenlernen
+Pozdravi ... od mene!	Doe ... de groeten van mij!	zmaj zmaj::58_kennenlernen
+Selam alejkum	Hallo (moslimgroet)	zmaj zmaj::58_kennenlernen
+Izvinjavam se	Ik verontschuldig me	zmaj zmaj::58_kennenlernen
+posjetiti	iemand bezoeken	zmaj zmaj::58_kennenlernen
+upoznati	iemand leren kennen	zmaj zmaj::58_kennenlernen
+Dođi nam u posjetu!	Kom ons opzoeken!	zmaj zmaj::58_kennenlernen
+Drago mi je što smo se upoznali	Leuk dat ik je heb leren kennen	zmaj zmaj::58_kennenlernen
+Sjedi, popij kahvu	Ga zitten, drink een kopje koffie	zmaj zmaj::58_kennenlernen
+zahvaliti se	bedanken	zmaj zmaj::58_kennenlernen
+izviniti se	zich verontschuldigen	zmaj zmaj::58_kennenlernen
+Oprosti mi	Vergeef me	zmaj zmaj::58_kennenlernen
+oprostiti	vergeven	zmaj zmaj::58_kennenlernen
+Puno pozdrava porodici	Veel groeten aan de familie	zmaj zmaj::58_kennenlernen
+Kako je tvoja porodica?	Hoe gaat het met je familie?	zmaj zmaj::58_kennenlernen
+Poznajemo se	We kennen elkaar	zmaj zmaj::58_kennenlernen
+poznanik / poznanica	kennis (bekende)	zmaj zmaj::58_kennenlernen
+raja	vriendenkring / vriendengroep	zmaj zmaj::58_kennenlernen
+domaćin	gastheer	zmaj zmaj::58_kennenlernen
+koleginica	collega (vrouw)	zmaj zmaj::58_kennenlernen
+jaran	maat (straattaal, vooral Sarajevo)	zmaj zmaj::58_kennenlernen
+drug / drugarica	vriend / vriendin (informeel)	zmaj zmaj::58_kennenlernen
+komšije	buren (meervoud)	zmaj zmaj::58_kennenlernen
+harmonika	accordeon	zmaj zmaj::59_kulturlevel
+ples	de dans	zmaj zmaj::59_kulturlevel
+svirati	een instrument spelen	zmaj zmaj::59_kulturlevel
+folklor / folklorna grupa	folklore / folkloregroep	zmaj zmaj::59_kulturlevel
+kolo	kolo (Bosnische kringdans)	zmaj zmaj::59_kulturlevel
+pjevač / pjevačica	zanger / zangeres	zmaj zmaj::59_kulturlevel
+saz	saz (traditioneel snaarinstrument)	zmaj zmaj::59_kulturlevel
+sevdah	sevdah (weemoedig verlangen)	zmaj zmaj::59_kulturlevel
+sevdalinka	sevdalinka (Bosnisch liefdeslied)	zmaj zmaj::59_kulturlevel
+sijelo	sijelo (avondlijk samenzijn)	zmaj zmaj::59_kulturlevel
+teferič	teferič (feestelijk uitje in het groen)	zmaj zmaj::59_kulturlevel
+narodna muzika	volksmuziek	zmaj zmaj::59_kulturlevel
+Allah razi olsun	antwoord op de Bajram-groet	zmaj zmaj::59_kulturlevel
+post	het vasten	zmaj zmaj::59_kulturlevel
+Sretan Bajram!	Fijne Bajram!	zmaj zmaj::59_kulturlevel
+Bog	God	zmaj zmaj::59_kulturlevel
+Hvala Bogu	Godzijdank	zmaj zmaj::59_kulturlevel
+iftar	iftar (het verbreken van het vasten)	zmaj zmaj::59_kulturlevel
+inšallah	inšallah (als God het wil)	zmaj zmaj::59_kulturlevel
+mašallah	mašallah (wat mooi, moge God het behoeden)	zmaj zmaj::59_kulturlevel
+Ramazanski bajram / Kurban-bajram	Suikerfeest (Ramadanfeest) / Offerfeest	zmaj zmaj::59_kulturlevel
+Ako Bog da	Als God het wil / hopelijk	zmaj zmaj::59_kulturlevel
+bujrum	bujrum (alsjeblieft, tast toe / kom binnen)	zmaj zmaj::59_kulturlevel
+Hvala na pozivu	Bedankt voor de uitnodiging	zmaj zmaj::59_kulturlevel
+Hvala, sit sam / sita sam	Dank je, ik zit vol (m/v)	zmaj zmaj::59_kulturlevel
+Bilo je jako ukusno	Het was heel lekker	zmaj zmaj::59_kulturlevel
+domaćin / domaćica	gastheer / gastvrouw	zmaj zmaj::59_kulturlevel
+častiti	iemand trakteren (betalen)	zmaj zmaj::59_kulturlevel
+Još malo?	Nog een beetje?	zmaj zmaj::59_kulturlevel
+Vi	u (beleefd)	zmaj zmaj::60_formell
+gospodin	meneer	zmaj zmaj::60_formell
+gospođa	mevrouw	zmaj zmaj::60_formell
+gospođica	juffrouw	zmaj zmaj::60_formell
+Dobar dan, kako ste?	Goedendag, hoe gaat het met u?	zmaj zmaj::60_formell
+Izvolite	Alstublieft (bij het aangeven)	zmaj zmaj::60_formell
+Izvinite, molim Vas	Neemt u mij niet kwalijk	zmaj zmaj::60_formell
+Možete li mi pomoći?	Zou u mij kunnen helpen?	zmaj zmaj::60_formell
+Smijem li?	Mag ik?	zmaj zmaj::60_formell
+Naravno	Vanzelfsprekend	zmaj zmaj::60_formell
+Žao mi je	Het spijt me	zmaj zmaj::60_formell
+Molim za izvinjenje	Ik bied mijn excuses aan	zmaj zmaj::60_formell
+Trenutak, molim	Een moment, alstublieft	zmaj zmaj::60_formell
+Molim?	Pardon?	zmaj zmaj::60_formell
+Zahvaljujem Vam	Ik dank u	zmaj zmaj::60_formell
+Hvala Vam na pomoći	Hartelijk dank voor uw hulp	zmaj zmaj::60_formell
+Poštovani gospodine	Geachte heer	zmaj zmaj::60_formell
+Poštovana gospođo	Geachte mevrouw	zmaj zmaj::60_formell
+S poštovanjem	Met vriendelijke groet	zmaj zmaj::60_formell
+općina	gemeente / gemeentehuis	zmaj zmaj::61_amt
+zahtjev	aanvraag	zmaj zmaj::61_amt
+obrazac	formulier	zmaj zmaj::61_amt
+dokument	document	zmaj zmaj::61_amt
+lična karta	identiteitskaart	zmaj zmaj::61_amt
+pasoš	paspoort	zmaj zmaj::61_amt
+vozačka dozvola	rijbewijs	zmaj zmaj::61_amt
+rodni list	geboorteakte	zmaj zmaj::61_amt
+vjenčani list	huwelijksakte	zmaj zmaj::61_amt
+državljanstvo	nationaliteit	zmaj zmaj::61_amt
+potvrda	verklaring	zmaj zmaj::61_amt
+prebivalište	woonplaats	zmaj zmaj::61_amt
+prijava prebivališta	inschrijving bij de gemeente	zmaj zmaj::61_amt
+boravišna dozvola	verblijfsvergunning	zmaj zmaj::61_amt
+radna dozvola	werkvergunning	zmaj zmaj::61_amt
+potpis	handtekening	zmaj zmaj::61_amt
+pečat	stempel	zmaj zmaj::61_amt
+ovjera	waarmerking	zmaj zmaj::61_amt
+kopija	kopie	zmaj zmaj::61_amt
+original	origineel	zmaj zmaj::61_amt
+termin	afspraak	zmaj zmaj::61_amt
+rok	termijn	zmaj zmaj::61_amt
+taksa	leges	zmaj zmaj::61_amt
+porez	belasting	zmaj zmaj::61_amt
+osiguranje	verzekering	zmaj zmaj::61_amt
+zdravstveno osiguranje	zorgverzekering	zmaj zmaj::61_amt
+ugovor	contract	zmaj zmaj::61_amt
+banka	bank	zmaj zmaj::61_amt
+račun	rekening	zmaj zmaj::61_amt
+pošta	postkantoor	zmaj zmaj::61_amt
+policija	politie	zmaj zmaj::61_amt
+sud	rechtbank	zmaj zmaj::61_amt
+advokat	advocaat	zmaj zmaj::61_amt
+notar	notaris	zmaj zmaj::61_amt
+ambasada	ambassade	zmaj zmaj::61_amt
+granica	grens	zmaj zmaj::61_amt
+carina	douane	zmaj zmaj::61_amt
+Trebam potvrdu	Ik heb een verklaring nodig	zmaj zmaj::61_amt
+Gdje trebam potpisati?	Waar moet ik tekenen?	zmaj zmaj::61_amt
+Koji dokumenti mi trebaju?	Welke documenten heb ik nodig?	zmaj zmaj::61_amt
+bankovni račun	bankrekening	zmaj zmaj::62_bank
+otvoriti račun	een rekening openen	zmaj zmaj::62_bank
+kredit	lening	zmaj zmaj::62_bank
+kamata	rente	zmaj zmaj::62_bank
+rata	termijn (afbetaling)	zmaj zmaj::62_bank
+uplata	storting	zmaj zmaj::62_bank
+isplata	opname	zmaj zmaj::62_bank
+bankovni prijenos	overboeking	zmaj zmaj::62_bank
+nalog za plaćanje	betaalopdracht	zmaj zmaj::62_bank
+bankovna kartica	bankpas	zmaj zmaj::62_bank
+bankomat	geldautomaat	zmaj zmaj::62_bank
+podići novac	geld opnemen	zmaj zmaj::62_bank
+uplatiti novac	geld storten	zmaj zmaj::62_bank
+izvod	rekeningafschrift	zmaj zmaj::62_bank
+naknada	kosten (bank)	zmaj zmaj::62_bank
+štednja	sparen / spaargeld	zmaj zmaj::62_bank
+dug	schulden	zmaj zmaj::62_bank
+prihod	inkomen	zmaj zmaj::62_bank
+troškovi	uitgaven	zmaj zmaj::62_bank
+mjenjačnica	wisselkantoor	zmaj zmaj::62_bank
+kurs	wisselkoers	zmaj zmaj::62_bank
+konvertibilna marka	convertibele mark (munt van Bosnië, KM)	zmaj zmaj::62_bank
+euro	euro	zmaj zmaj::62_bank
+Želim otvoriti račun	Ik wil een rekening openen	zmaj zmaj::62_bank
+Kolika je kamata?	Hoe hoog is de rente?	zmaj zmaj::62_bank
+Mogu li platiti na rate?	Kan ik in termijnen betalen?	zmaj zmaj::62_bank
+nekretnina	onroerend goed	zmaj zmaj::63_immobilien
+kupiti kuću	een huis kopen	zmaj zmaj::63_immobilien
+kupoprodajni ugovor	koopakte	zmaj zmaj::63_immobilien
+prodavac	verkoper	zmaj zmaj::63_immobilien
+kupac	koper	zmaj zmaj::63_immobilien
+vlasnik	eigenaar	zmaj zmaj::63_immobilien
+vlasništvo	eigendom	zmaj zmaj::63_immobilien
+zemljišna knjiga / gruntovnica	openbare registers (eigendomsregister)	zmaj zmaj::63_immobilien
+katastar	kadaster	zmaj zmaj::63_immobilien
+zemljište	perceel	zmaj zmaj::63_immobilien
+hipoteka	hypotheek	zmaj zmaj::63_immobilien
+kapara	aanbetaling	zmaj zmaj::63_immobilien
+agent za nekretnine	makelaar	zmaj zmaj::63_immobilien
+procjena	taxatie	zmaj zmaj::63_immobilien
+pregovarati o cijeni	over de prijs onderhandelen	zmaj zmaj::63_immobilien
+građevinska dozvola	bouwvergunning	zmaj zmaj::63_immobilien
+kirija	huur	zmaj zmaj::63_immobilien
+iznajmiti	huren	zmaj zmaj::63_immobilien
+podstanar	huurder	zmaj zmaj::63_immobilien
+stanodavac	verhuurder	zmaj zmaj::63_immobilien
+ugovor o najmu	huurcontract	zmaj zmaj::63_immobilien
+režije	servicekosten	zmaj zmaj::63_immobilien
+kvadratni metar	vierkante meter	zmaj zmaj::63_immobilien
+sprat	verdieping	zmaj zmaj::63_immobilien
+prizemlje	begane grond	zmaj zmaj::63_immobilien
+selidba	verhuizing	zmaj zmaj::63_immobilien
+useliti se	intrekken	zmaj zmaj::63_immobilien
+Želim kupiti kuću	Ik wil een huis kopen	zmaj zmaj::63_immobilien
+Koliko košta kuća?	Hoeveel kost het huis?	zmaj zmaj::63_immobilien
+Je li kuća upisana u gruntovnicu?	Staat het huis in het kadaster?	zmaj zmaj::63_immobilien
+ugovor o radu	arbeidscontract	zmaj zmaj::64_arbeitsvertrag
+poslodavac	werkgever	zmaj zmaj::64_arbeitsvertrag
+zaposlenik	werknemer	zmaj zmaj::64_arbeitsvertrag
+prijava za posao	sollicitatie	zmaj zmaj::64_arbeitsvertrag
+biografija	cv	zmaj zmaj::64_arbeitsvertrag
+razgovor za posao	sollicitatiegesprek	zmaj zmaj::64_arbeitsvertrag
+radno vrijeme	werktijd	zmaj zmaj::64_arbeitsvertrag
+puno radno vrijeme	voltijd	zmaj zmaj::64_arbeitsvertrag
+nepuno radno vrijeme	deeltijd	zmaj zmaj::64_arbeitsvertrag
+probni rad	proeftijd	zmaj zmaj::64_arbeitsvertrag
+otkaz	ontslag	zmaj zmaj::64_arbeitsvertrag
+bruto plata	brutosalaris	zmaj zmaj::64_arbeitsvertrag
+neto plata	nettosalaris	zmaj zmaj::64_arbeitsvertrag
+prekovremeni rad	overuren	zmaj zmaj::64_arbeitsvertrag
+penzija	pensioen	zmaj zmaj::64_arbeitsvertrag
+bolovanje	ziekmelding	zmaj zmaj::64_arbeitsvertrag
+socijalno osiguranje	sociale verzekering	zmaj zmaj::64_arbeitsvertrag
+porezni broj	fiscaal nummer	zmaj zmaj::64_arbeitsvertrag
+svjedočanstvo	getuigschrift	zmaj zmaj::64_arbeitsvertrag
+diploma	diploma	zmaj zmaj::64_arbeitsvertrag
+kvalifikacija	kwalificatie	zmaj zmaj::64_arbeitsvertrag
+iskustvo	ervaring	zmaj zmaj::64_arbeitsvertrag
+odgovornost	verantwoordelijkheid	zmaj zmaj::64_arbeitsvertrag
+Tražim posao	Ik zoek werk	zmaj zmaj::64_arbeitsvertrag
+Imam pet godina iskustva	Ik heb vijf jaar ervaring	zmaj zmaj::64_arbeitsvertrag
+zdravstvena knjižica	zorgpas	zmaj zmaj::65_gesundheit
+uputnica	verwijsbrief (naar de specialist)	zmaj zmaj::65_gesundheit
+recept	recept	zmaj zmaj::65_gesundheit
+pregled	onderzoek	zmaj zmaj::65_gesundheit
+termin kod doktora	afspraak bij de dokter	zmaj zmaj::65_gesundheit
+hitni prijem / hitna pomoć	spoedeisende hulp / ambulancedienst	zmaj zmaj::65_gesundheit
+porodični ljekar	huisarts	zmaj zmaj::65_gesundheit
+specijalista	specialist	zmaj zmaj::65_gesundheit
+zubar	tandarts	zmaj zmaj::65_gesundheit
+medicinska sestra	verpleegkundige	zmaj zmaj::65_gesundheit
+dijagnoza	diagnose	zmaj zmaj::65_gesundheit
+liječenje	behandeling	zmaj zmaj::65_gesundheit
+operacija	operatie	zmaj zmaj::65_gesundheit
+vakcina	vaccinatie	zmaj zmaj::65_gesundheit
+krvni pritisak	bloeddruk	zmaj zmaj::65_gesundheit
+alergija	allergie	zmaj zmaj::65_gesundheit
+lijek protiv bolova	pijnstiller	zmaj zmaj::65_gesundheit
+participacija	eigen risico	zmaj zmaj::65_gesundheit
+Trebam termin	Ik heb een afspraak nodig	zmaj zmaj::65_gesundheit
+Na bolovanju sam	Ik ben ziekgemeld	zmaj zmaj::65_gesundheit
+Gdje Vas boli?	Waar doet het pijn?	zmaj zmaj::65_gesundheit
+Alergičan sam na ... / Alergična sam na ...	Ik ben allergisch voor ... (m/v)	zmaj zmaj::65_gesundheit
