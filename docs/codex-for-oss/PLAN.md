@@ -159,6 +159,12 @@ erneut bewerben, falls das Programm es zulässt.
 Abschicken, wenn **mindestens fünf der acht Schwellen** erreicht sind –
 oder am 01.11.2026, je nachdem, was zuerst kommt.
 
+**Messen:** `python3 kennzahlen.py` holt die GitHub-Werte selbst und liest den
+Rest aus [`kennzahlen_manuell.json`](kennzahlen_manuell.json) (Play Console,
+Hugging Face, Scorecard, Verlinkungen – dort mit Datum nachtragen). Es endet
+mit 0, sobald fünf Schwellen erreicht sind; `--markdown` gibt die Tabelle zum
+Einfügen aus.
+
 ## 6. Risiken
 
 | Risiko | Wirkung | Gegenmittel |
