@@ -99,6 +99,8 @@ Nur im Browser möglich, Claude hat dafür keine Rechte:
       `good first issue`, `help wanted`, `needs-native-speaker`
 - [ ] Profil `zmaj-lernapp`: öffentlich, Name, Bild (der Drache), Bio,
       Repository anpinnen
+- [ ] Settings → General → *Social preview*: `docs/assets/social-preview.png`
+      hochladen (das Bild, das bei Links auf Reddit, HN, Slack erscheint)
 
 **Abnahme:** CI auf `master` grün; Scorecard-Badge zeigt eine Zahl ≥ 6.
 

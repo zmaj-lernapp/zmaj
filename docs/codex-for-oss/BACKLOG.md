@@ -34,4 +34,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #8 Live-Demo: `demo_bauen.py` (ohne Werbung, passender Datenschutztext), Pages-Workflow, Tests | `c0e28c4` |
 | #9 Test-Werkzeuge mit Prüfsummen gesperrt (Scorecard „Pinned-Dependencies“); Demo-Link in der Bewerbung | `08e8a3b` |
 | #10 `docs/ARCHITECTURE.md` auf Englisch | `d8acf36` |
-| #11 Test: 39 relative Links in der Doku zeigen auf vorhandene Dateien | dieser Commit |
+| #11 Test: 39 relative Links in der Doku zeigen auf vorhandene Dateien | `c2bd25f` |
+| #12 Social-Preview-Bild 1280×640 auf Englisch (`docs/assets/social-preview.png`) | dieser Commit |
