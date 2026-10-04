@@ -134,4 +134,4 @@ flowchart TB
 | Secrets in history | gitleaks | CI |
 | Security analysis | CodeQL (Python, JavaScript, Actions) | CI, weekly |
 | Supply chain | OpenSSF Scorecard, SHA-pinned actions, hash-locked dev tools | CI, weekly |
-| Review | Codex against `AGENTS.md`, then a human | every pull request |
+| Review | Codex against `AGENTS.md`, then a human | every pull request (when secret `OPENAI_API_KEY` and variable `CODEX_AN=true` are set) |

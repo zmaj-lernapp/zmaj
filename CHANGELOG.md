@@ -18,6 +18,8 @@ are in the Play Store listing. Format:
   on 3.10 and 3.13.
 - Playwright moved from `requirements-dev.txt` to its own lock file
   `requirements-e2e.txt`, used only by the browser tests.
+- The Codex workflows start no runner unless the repository variable
+  `CODEX_AN` is `true` (besides the `OPENAI_API_KEY` secret).
 
 ### Removed
 - Internal working notes, finished one-off patch and migration scripts and
