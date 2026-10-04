@@ -34,7 +34,7 @@ Sprachen**
 ```
 web/           die App selbst - index.html ist das ganze Programm
 store/         Symbol, Vorstellungsgrafik, Screenshots, Logo
-mappe/         die Projektmappe für die Technikerschule
+mappe/         die Projektmappe für die Technikerschule (nur lokal, nicht im Repository)
 github-seite/  Impressum, Datenschutz, Nutzungsbedingungen (erzeugt)
 testdaten/     Profile zum Durchtesten
 ```
@@ -102,8 +102,8 @@ Programm gibt es damit nicht.
 | `STORE_TEXTE.md` | Store-Eintrag, Data Safety, Inhaltseinstufung |
 | `WERBUNG_PRUEFUNG.md` | 20 geprüfte Befunde zur Werbeeinbindung |
 | `WAS_IST_NEU.md` | was sich zuletzt geändert hat |
-| `PROJEKTMAPPE.md` | die Arbeit für die Technikerschule |
-| `mappe/SCHREIBREGELN.md` | wie in der Projektmappe geschrieben wird |
+| `PROJEKTMAPPE.md` | die Arbeit für die Technikerschule (nur lokal) |
+| `mappe/SCHREIBREGELN.md` | wie in der Projektmappe geschrieben wird (nur lokal) |
 
 ---
 

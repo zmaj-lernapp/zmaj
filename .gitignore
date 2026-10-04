@@ -98,3 +98,10 @@ paket/LICENSE
 paket/dist/
 paket/build/
 *.egg-info/
+
+# Projektmappe für die Technikerschule: bleibt nur lokal. Enthält Namen
+# Dritter (Betreuung) und gehört nicht ins öffentliche Repository und nicht
+# ins Zenodo-Archiv. Aus master entfernt am 04.10.2026.
+mappe/
+PROJEKTMAPPE.md
+NACH_DER_VEROEFFENTLICHUNG.md
