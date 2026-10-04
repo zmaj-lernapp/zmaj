@@ -1,7 +1,7 @@
 TESTDATEN - ALLES FREIGESCHALTET
 ================================
 
-Zwei Sicherungen zum Durchtesten der App. Erzeugt von test_sicherung.py
+Zwei Sicherungen zum Durchtesten der App. Erzeugt von testdaten_bauen.py
 im Ordner darueber. Beide schalten alles frei:
 
   1108 Woerter gelernt
