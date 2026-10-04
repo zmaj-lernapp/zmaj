@@ -70,6 +70,24 @@ draußen gewinnen. Deshalb sind M3 bis M5 die wichtigsten Meilensteine.
 
 ## 4. Meilensteine
 
+```mermaid
+gantt
+  title Weg zur Bewerbung (Stand 04.10.2026)
+  dateFormat YYYY-MM-DD
+  axisFormat %d.%m.
+  section Repository
+  M0 Repo bereit (erledigt)          :done,    m0, 2026-10-04, 1d
+  M1 Einstellungen, PR mergen        :active,  m1, 2026-10-05, 2d
+  M2 Release v1.0.0 + DOI            :         m2, after m1, 1d
+  section Nutzung
+  M3 Play Store öffentlich           :crit,    m3, 2026-10-07, 4d
+  M4 Datensatz verbreiten            :         m4, after m2, 14d
+  M5 Gemeinschaft, Ankündigungen     :crit,    m5, after m3, 21d
+  section Bewerbung
+  Kennzahlen wöchentlich messen      :         k,  2026-10-05, 27d
+  M6 Abschicken (spätestens)         :milestone, m6, 2026-11-01, 0d
+```
+
 Jeder Meilenstein hat ein **Abnahmekriterium**, das sich mit Ja/Nein prüfen lässt.
 
 ### M0 – Repository bereit · erledigt 04.10.2026 · Claude
@@ -150,6 +168,15 @@ erneut bewerben, falls das Programm es zulässt.
 
 ## 5. Kennzahlen und Schwellen
 
+```mermaid
+flowchart LR
+  K["python3 kennzahlen.py"] --> Z{"≥ 5 von 8<br/>Schwellen?"}
+  Z -- ja --> A[Bewerbung abschicken]
+  Z -- nein --> D{"01.11.2026<br/>erreicht?"}
+  D -- ja --> A
+  D -- nein --> W["weiter M3–M5,<br/>nächste Woche messen"] --> K
+```
+
 | Kennzahl | heute | Schwelle zum Abschicken | Ziel | gemessen mit |
 |---|---:|---:|---:|---|
 | GitHub-Sterne | 0 | 50 | 150 | Repository-Seite |
@@ -183,6 +210,20 @@ Einfügen aus.
 | `vokabeln.py`: Level 52 und 58 fragen im Test Wörter aus Level 60 ab | Lernende sehen Ungelerntes | inhaltlich entscheiden (Liste `BEKANNT` in `tests/test_inhalt.py`) |
 
 ## 7. Arbeitsschleife („Loop“)
+
+```mermaid
+flowchart LR
+  N[oberster offener Punkt<br/>BACKLOG.md] --> B[kleinste Änderung<br/>fürs Abnahmekriterium]
+  B --> P{"pytest · ruff ·<br/>reuse grün?"}
+  P -- nein --> B
+  P -- ja --> C[Commit + Push<br/>zmaj.lernapp@gmail.com]
+  C --> M[Kennzahlen aktualisieren]
+  M --> H[abhaken]
+  H --> E{"Backlog leer, Entscheidung<br/>nötig oder Budget erreicht?"}
+  E -- nein --> N
+  E -- Entscheidung --> Q[als Frage notieren,<br/>nächsten Punkt nehmen] --> N
+  E -- leer / Budget --> S[Stopp + Bericht]
+```
 
 Damit die Arbeit ohne neue Anweisung weitergeht, folgt jeder Durchlauf –
 egal ob Mensch, Claude oder Codex – demselben Ablauf:

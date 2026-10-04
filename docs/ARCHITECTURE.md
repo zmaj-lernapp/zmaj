@@ -11,13 +11,23 @@ that content into JSON for the app, into the open dataset, into Anki decks and
 into a web demo. There is no server in production and no build step for the
 app itself.
 
-```
- vokabeln.py ─┐                          ┌─► web/inhalt/<lang>.json ──► Android app (Capacitor)
- grammatik.py ├─► start.lade_daten(lang) ┼─► data/  (JSON, CSV, Anki TSV) ──► releases, Hugging Face
- geschichten.py│   + uebersetzungen.py    ├─► _site/inhalt/ (no ads) ──► GitHub Pages demo
- sprachen.py ─┘   + sprachen.py (UI)      └─► /api/daten (start.py, live while editing)
-                                                     ▲
- web/audio/*.mp3 + index.json ◄── ton_bauen.py (Azure TTS, run rarely, costs money)
+```mermaid
+flowchart LR
+  subgraph edit["Edited by hand"]
+    V[vokabeln.py]
+    G[grammatik.py]
+    S[geschichten.py]
+    U["uebersetzungen.py<br/>sprachen.py (UI)"]
+  end
+  L{{"start.lade_daten(lang)"}}
+  V & G & S & U --> L
+  L -->|inhalt_bauen.py| APP["web/inhalt/&lt;lang&gt;.json<br/>→ Android app (Capacitor)"]
+  L -->|daten_exportieren.py| DS["data/ · JSON, CSV, Anki TSV<br/>→ releases, Hugging Face"]
+  L -->|demo_bauen.py| DEMO["_site/ · no ads<br/>→ GitHub Pages demo"]
+  L -->|start.py| DEV["/api/daten<br/>live while editing"]
+  TTS["ton_bauen.py<br/>Azure TTS · rare, costs money"] --> AU[("web/audio/<br/>*.mp3 + index.json")]
+  AU -.-> APP & DEMO & DEV
+  DS -->|anki_bauen.py| AP["8 × .apkg with audio"]
 ```
 
 `start.lade_daten(lang)` is the single source of truth: the development
@@ -36,6 +46,25 @@ it, so the phone, the dataset and the demo can never disagree.
 | Story | `geschichten.GESCHICHTEN` | text, translation, glossary, questions; `WOERTERBUCH` makes every word tappable |
 | Translation | `uebersetzungen.py` | German is the source; the other seven languages map German strings to theirs. Bosnian is never translated |
 | UI text | `sprachen.TEXTE[lang][key]` | 488 keys × 8 languages, including the legal texts |
+
+```mermaid
+erDiagram
+  SECTION ||--|{ LEVEL : "groups (9)"
+  LEVEL ||--|{ WORD : "teaches (1,728)"
+  LEVEL ||--o{ SENTENCE : "cloze (300)"
+  LEVEL ||--o| GRAMMAR_LESSON : "explains (16)"
+  LEVEL }o--o{ LEVEL : "baut_auf (review)"
+  STORY }o--o| LEVEL : "passt_zu"
+  STORY }o--o{ GLOSSARY_ENTRY : "tappable words (406)"
+  WORD ||--o| AUDIO : "w0001.mp3"
+  SENTENCE ||--o| AUDIO : "spoken"
+  STORY ||--o| AUDIO : "g01.mp3"
+  WORD {
+    string id "german meaning:bosnian (stable)"
+    string bs "never translated"
+    string de "translated x8"
+  }
+```
 
 **Word IDs are user data.** Learning progress is stored under them. Changing
 the German meaning of an existing word creates a new ID and resets that word
@@ -77,6 +106,23 @@ Store identity, the second is the origin that owns the learners' stored
 progress.
 
 ## Quality gates
+
+```mermaid
+flowchart TB
+  P[push / pull request] --> T & R & K & Q & X
+  T["pytest · Python 3.9 + 3.13<br/>content, 8 languages, audio, dataset, links"]
+  R["reuse lint<br/>licence of every file"]
+  K["gitleaks<br/>whole git history"]
+  Q["CodeQL<br/>Python · JavaScript · Actions"]
+  X["Codex review<br/>against AGENTS.md"]
+  T & R & K & Q --> G{all green?}
+  G -- no --> F[fix, push again]
+  G -- yes --> H[human review]
+  X --> H
+  H --> M[merge to master]
+  M --> SC["Scorecard (weekly)"] & D[Pages demo] 
+  M -. tag v* .-> REL[Release: dataset zip, Anki packages, checksums]
+```
 
 | Check | Tool | Where |
 |---|---|---|

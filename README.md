@@ -107,6 +107,29 @@ phrase pairs plus a pronunciation lexicon for low-resource Bosnian NLP.
 
 ## How it is built
 
+One function, `start.lade_daten()`, turns the content files into what every
+output needs, so the app, the dataset and the demo can never disagree:
+
+```mermaid
+flowchart LR
+  subgraph src["Content (edited by hand)"]
+    V["vokabeln.py<br/>65 levels · 1,728 words · 300 sentences"]
+    G["grammatik.py<br/>16 lessons"]
+    S["geschichten.py<br/>12 stories"]
+    U["uebersetzungen.py · sprachen.py<br/>8 languages"]
+  end
+  L{{"start.lade_daten(lang)"}}
+  V & G & S & U --> L
+  A[("web/audio/<br/>2,332 MP3")]
+  L --> APP["web/inhalt/*.json<br/>Android app"]
+  L --> DS["data/<br/>JSON · CSV · Anki TSV"]
+  L --> DEMO["_site/<br/>web demo, no ads"]
+  DS --> ANKI["8 Anki packages<br/>with audio"]
+  A --> APP & DEMO & ANKI
+  DS --> REL["GitHub release<br/>+ SHA256SUMS"]
+  ANKI --> REL
+```
+
 | Path | What |
 |---|---|
 | `web/index.html` | the whole app: one file of HTML, CSS and JavaScript, no framework, no build step |
@@ -139,6 +162,26 @@ against those rules ([workflow](.github/workflows/codex-review.yml)), and a
 maintainer can ask Codex for a first look at a reported language error
 ([workflow](.github/workflows/codex-language-triage.yml)). A human decides in
 both cases.
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor C as Contributor
+  participant GH as GitHub
+  participant CI as CI (tests · REUSE · gitleaks · CodeQL)
+  participant X as Codex (reads AGENTS.md)
+  actor M as Maintainer (native speaker)
+  C->>GH: pull request
+  par checks
+    GH->>CI: run
+    CI-->>GH: green / red
+  and review
+    GH->>X: diff + PR text as a file, never as prompt
+    X-->>GH: comment: blocking issues first
+  end
+  M->>GH: reads both, decides
+  GH-->>C: merge or requested changes
+```
 
 ## Contributing
 

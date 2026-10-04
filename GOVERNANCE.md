@@ -10,6 +10,17 @@
 
 ## How decisions are made
 
+```mermaid
+flowchart TD
+  C{What changes?}
+  C -- Bosnian content --> N["native speaker decides<br/>logged in WORTSCHATZ_KORREKTUREN.md"]
+  C -- a translation --> T{"language reviewer<br/>for that language?"}
+  T -- yes --> R[reviewer approves]
+  T -- not yet --> M1["maintainer merges if clearly right,<br/>else asks in the issue"]
+  C -- code --> M2["maintainer reviews,<br/>CI must be green"]
+  AI["Codex · CodeQL · Scorecard"] -. advise .-> N & R & M1 & M2
+```
+
 - **Bosnian content:** a native speaker decides. `WORTSCHATZ_KORREKTUREN.md`
   records each ruling and overrides dictionaries, research and AI suggestions.
 - **Translations:** a native speaker of that language approves the change.

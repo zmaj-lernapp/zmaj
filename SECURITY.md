@@ -16,6 +16,37 @@ device. The parts that can still go wrong, and that we want to hear about:
 - secrets or personal data in this repository or its history;
 - a compromised third-party file in `web/` (`lottie.min.js`, fonts).
 
+The one untrusted input is a backup file. This is how the import is guarded
+from the first build after the closed test (`import_richten.py`):
+
+```mermaid
+sequenceDiagram
+  actor U as Learner
+  participant A as App (sicherungEinlesen)
+  participant S as standUebernehmen
+  participant L as localStorage
+  U->>A: choose backup file
+  A->>A: JSON.parse, app == "zmaj", stand is an object?
+  alt not a Zmaj backup
+    A-->>U: "not a valid backup"
+  else looks valid
+    A->>A: vorher = current state
+    A->>S: stand
+    S->>S: keep only strings in lists,<br/>clamp hearts and streak freezes,<br/>only objects in the review pot
+    alt anything still throws
+      A->>S: vorher (roll back)
+      A-->>U: "not a valid backup"
+    else ok
+      A->>L: save
+      A-->>U: "Loaded: N words, M days"
+    end
+  end
+```
+
+Before that fix, a hand-written backup with `"gewusst":[1]` locked the app at
+every start. It was found in our own review on 04.10.2026 and is reproduced
+and verified in a browser; see the docstring of `import_richten.py`.
+
 ## Reporting a vulnerability
 
 Please **do not open a public issue.** Use GitHub's private reporting:
