@@ -23,8 +23,6 @@ def markdown_dateien(wurzel):
 def test_relative_links_existieren(wurzel):
     tot = []
     for datei in markdown_dateien(wurzel):
-        if datei.startswith("mappe/"):
-            continue       # Projektmappe: eigene Verweise auf Word-Abschnitte
         text = io.open(os.path.join(wurzel, datei), encoding="utf-8").read()
         text = re.sub(r"```.*?```", "", text, flags=re.S)       # Codeblöcke nicht
         for treffer in LINK.finditer(text):
