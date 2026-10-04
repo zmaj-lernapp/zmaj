@@ -18,6 +18,19 @@ Zurueck-Taste). Mit ihm schob sich bei 360 Punkten die Muenzanzeige
 ueber die Herzen - in der App kommt das nicht vor.
 
 
+NEU: OHNE GIT BASH UND IN JEDER SPRACHE
+--------------------------------------
+bilder_playwright.py macht dieselben acht Bilder auf Windows, Linux und
+Mac, liefert web/ selbst aus und kennt jede Sprache der App:
+
+     python -m pip install playwright pillow
+     python -m playwright install chromium
+     python store/bilder_machen/bilder_playwright.py                  (Deutsch)
+     python store/bilder_machen/bilder_playwright.py --sprache en --montage docs/assets/screenshots-en.png
+
+Der alte Weg unten funktioniert weiter.
+
+
 SO GEHT ES (Git Bash, im Projektordner)
 --------------------------------------
 1. Die App ausliefern:
