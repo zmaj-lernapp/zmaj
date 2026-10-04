@@ -12,6 +12,7 @@
   <a href="https://scorecard.dev/viewer/?uri=github.com/zmaj-lernapp/zmaj"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/zmaj-lernapp/zmaj/badge"></a>
   <a href="LICENSE"><img alt="Code: AGPL-3.0" src="https://img.shields.io/badge/code-AGPL--3.0-blue"></a>
   <a href="LICENSE-CONTENT"><img alt="Content: CC BY-SA 4.0" src="https://img.shields.io/badge/content-CC%20BY--SA%204.0-lightgrey"></a>
+  <a href="https://doi.org/10.5281/zenodo.23146609"><img alt="DOI 10.5281/zenodo.23146609" src="https://zenodo.org/badge/DOI/10.5281/zenodo.23146609.svg"></a>
   <a href="REUSE.toml"><img alt="REUSE compliant" src="https://img.shields.io/badge/REUSE-compliant-green"></a>
   <a href="https://zmaj-lernapp.github.io/zmaj/"><img alt="Live demo" src="https://img.shields.io/badge/demo-zmaj--lernapp.github.io%2Fzmaj-2448b8"></a>
 </p>
@@ -212,7 +213,8 @@ no git needed. For code, see [CONTRIBUTING.md](CONTRIBUTING.md).
 - Per-file details in [`REUSE.toml`](REUSE.toml). "Zmaj" and the app icon are
   trademarks; forks are welcome under a different name ([TRADEMARK.md](TRADEMARK.md)).
 
-Please cite as described in [CITATION.cff](CITATION.cff).
+Please cite as described in [CITATION.cff](CITATION.cff), DOI
+[10.5281/zenodo.23146609](https://doi.org/10.5281/zenodo.23146609) (all versions).
 
 ---
 
