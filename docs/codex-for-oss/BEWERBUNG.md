@@ -48,7 +48,7 @@ Already wired in the repo: 1) Codex reviews every PR against AGENTS.md (word IDs
 ## Gibt es sonst noch etwas? (max. 500)
 
 <!-- feld: sonstiges -->
-I built Zmaj for my wife, because I could not find anything for Bosnian beyond vocabulary lists. It is a one-person project, so Codex directly multiplies the time I can spend on content instead of maintenance. Codex Security would cover backup-file import and the Android shell. The project is young (Sept 2026), but the dataset is the open Bosnian learning resource I could not find, and every exercise stays free.
+I built Zmaj for my wife, because I could not find anything for Bosnian beyond vocabulary lists. As a one-person project, Codex directly multiplies my time for content over maintenance. A first security review found a crafted backup that locks the app on every start (fix ready); Codex Security would cover the Android shell and billing the same way. Every exercise stays free.
 <!-- ende -->
 
 ---
