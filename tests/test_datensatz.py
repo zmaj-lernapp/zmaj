@@ -44,3 +44,27 @@ def test_satz_ergibt_sich_aus_luecke_und_antwort(wurzel):
     saetze = json.loads(lies(wurzel, "sentences.json"))
     for s in saetze["entries"]:
         assert s["cloze"].replace("___", s["answer"], 1) == s["bs"], s["id"]
+
+
+def test_datenkarte_passt_zum_manifest(wurzel):
+    """data/README.md ist die Datenkarte für Hugging Face. Ihr YAML-Kopf und
+    die Zahlen im Text müssen zum Datensatz passen."""
+    import re
+    karte = lies(wurzel, "README.md")
+    kopf = karte.split("---")[1]
+    manifest = json.loads(lies(wurzel, "manifest.json"))
+    n = manifest["counts"]
+
+    assert "license: cc-by-sa-4.0" in kopf
+    sprachen = set(re.findall(r"^  - ([a-z]{2})$", kopf, re.M))
+    assert sprachen == {"bs"} | set(manifest["translation_languages"])
+    groesse = "1K<n<10K" if 1000 <= n["words"] < 10000 else None
+    assert groesse and groesse in kopf, n["words"]
+    for datei in re.findall(r"data_files: (\S+)", kopf):
+        assert datei in manifest["files"], datei
+
+    for zahl, schluessel in [("1,728 words", "words"), ("300 cloze", "sentences"),
+                             ("12 graded", "stories"), ("406", "glossary_entries"),
+                             ("16 grammar", "grammar_lessons")]:
+        assert zahl in karte, zahl
+        assert int(zahl.split()[0].replace(",", "")) == n[schluessel], schluessel

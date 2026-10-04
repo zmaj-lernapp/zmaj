@@ -10,7 +10,6 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 
 | # | Wer | Punkt | Abnahmekriterium | Hebel (PLAN §3) |
 |---|---|---|---|---|
-| 1 | C | Hugging-Face-Datenkarte `data/README.md` mit HF-YAML-Kopf | YAML gültig, Lizenz/Sprachen/Größen stimmen mit `manifest.json`; Test prüft das | A, B |
 | 2 | C | Anki-Paket `.apkg` **mit Ton** im Release-Workflow | Release enthält je Sprache ein `.apkg`; Import in Anki spielt den Ton | A |
 | 3 | C | `kennzahlen.py`: Sterne, Forks, Release-Downloads, Issues per GitHub-API | gibt die Tabelle aus PLAN §5 aus; läuft ohne Token (öffentliche API) | Messen |
 | 4 | C | Vorlagen für 8 Issues „Review translations: <Sprache>“ | Datei mit Titel/Text/Labels je Sprache, mit Links auf die passenden Spalten in `data/` | A |
@@ -30,4 +29,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | Punkt | Commit |
 |---|---|
 | M0: Lizenzen, Datensatz, Tests, CI, AGENTS.md, Codex-Workflows, README, Community-Dateien | `445c8d2` … `01da6f4` |
-| Plan, Bewerbungstexte, Zeichengrenzen-Test | dieser Commit |
+| Plan, Bewerbungstexte, Zeichengrenzen-Test | `95767bb` |
+| #1 Hugging-Face-Datenkarte `data/README.md` mit Test | dieser Commit |
