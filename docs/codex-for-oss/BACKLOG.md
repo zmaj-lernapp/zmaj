@@ -19,6 +19,9 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | 16 | A | Nach dem 07.10.: `python import_richten.py --schreiben`, dann Build (Sicherheitsfix Backup-Import) | App startet nach Import einer kaputten Sicherung weiter | C |
 | 15 | A | OpenSSF-Best-Practices-Badge beantragen (Antworten in `BEST_PRACTICES.md`) | Badge „passing“ im README | B, C |
 | 17 | A | PyPI: Projekt `zmaj-bosnian` auf pypi.org mit Trusted Publisher (Workflow `pypi.yml`, Umgebung `pypi`) anlegen, Variable `PYPI_PUBLISH=true` | `pip install zmaj-bosnian` funktioniert | A |
+| 18 | A | Hugging Face: Konto `zmaj-lernapp`, Token als Secret `HF_TOKEN` → nächstes Release lädt hoch | Datensatz-Seite auf huggingface.co | A, B |
+| 19 | A | AnkiWeb: Stapel en/de teilen (Texte in `ANKIWEB.md`) | Stapel öffentlich | A |
+| 20 | A | `README.bs.md` gegenlesen | Kommentar oben entfernt | A |
 | 14 | A | M6: Bewerbung abschicken | Bestätigungsmail | Ziel |
 
 ## Erledigt
@@ -42,4 +45,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #13 Antworthilfe für das OpenSSF-Best-Practices-Badge | `4ccf2c3` |
 | #14 Sicherheitsprüfung Backup-Import: 3 bestätigte Befunde, Fix als `import_richten.py` (im Browser vorher/nachher geprüft) | `a5cb5bb` |
 | #15 13 Mermaid-Diagramme (README, Architektur, Datenblatt, Mitmachen, Sicherheit, Governance, Plan), alle mit mermaid-cli gerendert; `test_mermaid.py` hält Zahlen am Datensatz | `33b8757` |
-| #16 PyPI-Paket `zmaj-bosnian` (`paket/`, `paket_bauen.py`, Trusted Publishing) | dieser Commit |
+| #16 PyPI-Paket `zmaj-bosnian` (`paket/`, `paket_bauen.py`, Trusted Publishing) | `c662cb3` |
+| #17 Hugging-Face-Upload im Release, wöchentliche Kennzahlen, AnkiWeb-Texte, README auf Bosnisch, Version 1.0.0 | dieser Commit |

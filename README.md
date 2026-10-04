@@ -4,6 +4,8 @@
 
 <h1 align="center">Zmaj – learn Bosnian</h1>
 
+<p align="center"><b>English</b> · <a href="README.bs.md">Bosanski</a></p>
+
 <p align="center">
   <a href="https://github.com/zmaj-lernapp/zmaj/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/zmaj-lernapp/zmaj/actions/workflows/ci.yml/badge.svg?branch=master"></a>
   <a href="https://github.com/zmaj-lernapp/zmaj/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/zmaj-lernapp/zmaj/actions/workflows/codeql.yml/badge.svg?branch=master"></a>
