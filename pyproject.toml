@@ -4,7 +4,7 @@
 
 [project]
 name = "zmaj"
-version = "1.1.0"
+version = "1.2.0"
 description = "Zmaj – learn Bosnian. Offline language-learning app and open Bosnian course dataset."
 readme = "README.md"
 requires-python = ">=3.10"

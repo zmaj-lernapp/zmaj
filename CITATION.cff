@@ -13,7 +13,7 @@ authors:
   - family-names: Hasic
     given-names: Ajdin
     email: zmaj.lernapp@gmail.com
-version: 1.1.0
+version: 1.2.0
 date-released: "2026-10-04"
 repository-code: "https://github.com/zmaj-lernapp/zmaj"
 license:
