@@ -1,0 +1,40 @@
+name: Bug report
+description: Something in the app or the scripts does not work.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open level …
+        2. Tap …
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      options:
+        - Android app (Google Play)
+        - Browser (python3 start.py)
+        - A script in this repository
+        - The dataset in data/
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Device, Android/browser version, app language
+      placeholder: "Pixel 7, Android 15, interface English"
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshot or log (optional)
+      description: Please remove anything personal. Never attach a backup file – it contains your learning progress.
