@@ -19,7 +19,8 @@ it matters to a learner or maintainer, and a concrete fix. Check in this order:
    regenerated after a content change.
 6. Ordinary bugs in Python or JavaScript.
 
-You may run `python3 -m pytest -q` and `python3 daten_exportieren.py --pruefen`.
+Do not run the code of the pull request; CI runs the tests. Read the diff and
+the files it touches.
 
 Answer in Markdown, at most 400 words, most severe first. Start with one line:
 "✅ No blocking issues" or "⚠️ N blocking issue(s)". If a finding is a guess, say so.
