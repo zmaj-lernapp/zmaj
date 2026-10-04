@@ -4,7 +4,7 @@ All notable changes to this repository. The app's user-facing release notes
 are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [1.1.0] – 2026-10-04
 
 ### Added
 - Parallel corpus for machine translation: `data/parallel.tmx` (TMX 1.4b),
