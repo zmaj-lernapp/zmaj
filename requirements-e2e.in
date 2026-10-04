@@ -1,0 +1,8 @@
+# Browser-Tests in tests_e2e/ (.github/workflows/e2e.yml). Getrennt von
+# requirements-dev.in, damit der schnelle CI-Lauf Playwright nicht lädt.
+# Gesperrte Fassung mit Prüfsummen: requirements-e2e.txt, erzeugt mit
+#   uv pip compile --universal --python-version 3.10 --generate-hashes requirements-e2e.in -o requirements-e2e.txt
+# Den Browser selbst holt  python -m playwright install --with-deps chromium
+# (oder ZMAJ_CHROMIUM=/pfad/zu/chromium für einen vorhandenen).
+pytest>=8
+playwright>=1.49

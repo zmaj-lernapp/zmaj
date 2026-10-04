@@ -1,5 +1,6 @@
 # Browser end-to-end tests: the real app in headless Chromium.
 # Separate from ci.yml so the fast unit suite stays fast; see tests_e2e/conftest.py.
+# Its own lock file (requirements-e2e.txt) keeps Playwright out of the other jobs.
 name: E2E
 
 on:
@@ -29,10 +30,10 @@ jobs:
         with:
           python-version: "3.13"
           cache: pip
-          cache-dependency-path: requirements-dev.txt
+          cache-dependency-path: requirements-e2e.txt
 
-      - name: Install test tools (Playwright is pinned with hashes in requirements-dev.txt)
-        run: python -m pip install --require-hashes -r requirements-dev.txt
+      - name: Install test tools (pytest and Playwright, pinned with hashes in requirements-e2e.txt)
+        run: python -m pip install --require-hashes -r requirements-e2e.txt
 
       # Chromium (~170 MB) nur neu laden, wenn sich die Playwright-Version
       # in requirements-dev.txt aendert. Die Systempakete installiert
