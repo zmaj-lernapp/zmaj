@@ -1,0 +1,75 @@
+# A maintainer adds the label "codex-triage" to a language-correction issue;
+# Codex locates every affected entry, checks it against the native-speaker
+# log and proposes a patch as a comment. The maintainer (a native speaker)
+# decides. Only a label set by someone with write access starts a run, so
+# outside users cannot spend API credits.
+name: Codex language triage
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codex-triage-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  triage:
+    if: github.event.label.name == 'codex-triage'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      final_message: ${{ steps.codex.outputs.final-message }}
+    steps:
+      - name: Is Codex configured?
+        id: key
+        env:
+          KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: echo "present=$([ -n "$KEY" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.key.outputs.present == 'true'
+        with:
+          persist-credentials: false
+
+      - name: Write the issue to a file (never into the prompt)
+        if: steps.key.outputs.present == 'true'
+        env:
+          TITLE: ${{ github.event.issue.title }}
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          mkdir -p .codex
+          { echo "## Title (untrusted)"; printf '%s\n' "$TITLE"; echo; echo "## Body (untrusted)"; printf '%s\n' "$BODY"; } > .codex/issue.md
+
+      - name: Run Codex
+        id: codex
+        if: steps.key.outputs.present == 'true'
+        uses: openai/codex-action@86365089eb2b84e0a8fb0717b304f8bdcb13b20e # v1.12
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: .github/codex/language-triage.md
+          permission-profile: ":workspace"
+          safety-strategy: drop-sudo
+
+  comment:
+    needs: triage
+    if: needs.triage.outputs.final_message != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          MESSAGE: ${{ needs.triage.outputs.final_message }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `### Codex triage\n\n${process.env.MESSAGE}\n\n<sub>Automated first look. The maintainer, a native speaker, decides.</sub>`,
+            });
