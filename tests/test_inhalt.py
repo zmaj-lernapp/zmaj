@@ -28,7 +28,7 @@ def test_projekteigene_pruefung(grunddaten):
 
 
 def test_kennzahlen_wie_im_readme(grunddaten):
-    """README, Store-Text und Bewerbung nennen diese Zahlen. Ändern sie sich,
+    """README und Store-Text nennen diese Zahlen. Ändern sie sich,
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
     assert len(grunddaten["kategorien"]) == 65

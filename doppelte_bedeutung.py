@@ -151,8 +151,8 @@ def main():
     print("%d offene Stellen, %d angesehen und begruendet." % (gesamt, geprueft))
     print()
     if unbekannt:
-        print("OFFEN heisst: noch nicht angesehen. Entweder trennen - dafuer ist")
-        print("bedeutungen_trennen.py da - oder in bedeutung_ausnahmen.json")
+        print("OFFEN heisst: noch nicht angesehen. Entweder die Bedeutungen in")
+        print("uebersetzungen.py trennen oder in bedeutung_ausnahmen.json")
         print("eintragen, warum es so bleiben soll.")
         print()
     print("SEIT DEM 26.09.2026 FAENGT DIE APP DAS AB.")

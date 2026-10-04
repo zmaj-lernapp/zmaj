@@ -3,7 +3,7 @@ r"""Barrierefreiheit: Schalter mit Namen, lesbarer grauer und farbiger Text, ein
 
 GEFUNDEN BEI DER AXE-MESSUNG am 04.10.2026 (axe-core 4.13, Chromium,
 390 x 844, Englisch und Deutsch, hell und dunkel, Sektion 1, 4 und 8).
-Bericht: "Zmaj Berichte/barrierefreiheit-2026-10-04.md".
+Bericht: "docs/barrierefreiheit-2026-10-04.md".
 
 WAS AXE GEFUNDEN HAT (nur ernst und kritisch)
 

@@ -79,4 +79,4 @@ schauen nach.
 | Befunde werden behoben | Met | Code-Scanning-Alerts im Security-Tab |
 | Dynamische Analyse | Unmet / N/A | kein Fuzzing; ehrlich angeben. Die Inhaltstests prüfen alle 8 Sprachen gegen die echte Ladefunktion |
 
-Fehlt danach noch etwas, als Backlog-Punkt in `BACKLOG.md` eintragen.
+Fehlt danach noch etwas, als Issue anlegen.
