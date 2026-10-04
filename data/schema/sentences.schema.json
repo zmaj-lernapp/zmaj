@@ -1,0 +1,29 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://github.com/zmaj-lernapp/zmaj/blob/master/data/schema/sentences.schema.json",
+ "title": "Zmaj Bosnian cloze sentences",
+ "type": "object",
+ "required": ["dataset", "kind", "format_version", "license", "entries"],
+ "properties": {
+  "dataset": {"const": "zmaj-bosnian"},
+  "kind": {"const": "sentences"},
+  "license": {"const": "CC-BY-SA-4.0"},
+  "entries": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": ["id", "level", "cloze", "answer", "bs", "translations", "audio"],
+    "additionalProperties": false,
+    "properties": {
+     "id": {"type": "string", "pattern": "^s[0-9]{4}$"},
+     "level": {"type": "string"},
+     "cloze": {"type": "string", "pattern": "___", "description": "Sentence with exactly one gap written as ___."},
+     "answer": {"type": "string", "minLength": 1},
+     "bs": {"type": "string", "description": "The full sentence: cloze with the gap filled by answer."},
+     "translations": {"type": "object", "additionalProperties": {"type": "string"}},
+     "audio": {"type": ["string", "null"]}
+    }
+   }
+  }
+ }
+}

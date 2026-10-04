@@ -1,0 +1,58 @@
+name: Language correction
+description: A word, sentence, translation or pronunciation is wrong or unnatural.
+title: "[Language] "
+labels: ["language-correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Corrections from native speakers are the most valuable contribution to Zmaj.
+        Hvala! Ispravke izvornih govornika su najvrijedniji doprinos.
+  - type: dropdown
+    id: language
+    attributes:
+      label: Which language is wrong?
+      options:
+        - Bosnian (the word or sentence you learn)
+        - German (Deutsch)
+        - English
+        - Turkish (Türkçe)
+        - Swedish (Svenska)
+        - Dutch (Nederlands)
+        - Norwegian (Norsk bokmål)
+        - Danish (Dansk)
+        - French (Français)
+        - Pronunciation (audio)
+    validations:
+      required: true
+  - type: input
+    id: current
+    attributes:
+      label: What the app says now
+      placeholder: "Dobro veče – Good evening"
+    validations:
+      required: true
+  - type: input
+    id: proposed
+    attributes:
+      label: What it should say
+      placeholder: "Dobro veče / Dobra večer – Good evening"
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where in the app?
+      description: Level name or number, story, grammar lesson, or the screen.
+      placeholder: "Level 1 Basics"
+  - type: textarea
+    id: why
+    attributes:
+      label: Why? (optional)
+      description: A source, a regional note, how your family says it. "I am a native speaker" is a fine reason.
+  - type: checkboxes
+    id: native
+    attributes:
+      label: About you
+      options:
+        - label: I am a native speaker of the language I am correcting.

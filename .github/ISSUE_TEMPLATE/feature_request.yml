@@ -1,0 +1,21 @@
+name: Idea or request
+description: New content, a new interface language, a new exercise type, a dataset format.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What do you want to do that Zmaj does not let you do?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help?
+      options:
+        - label: I could write or check content in my language.
+        - label: I could open a pull request.

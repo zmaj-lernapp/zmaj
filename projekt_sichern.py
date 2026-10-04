@@ -28,7 +28,6 @@ Die Tondateien sind dagegen DRIN. Sie sehen aus wie erzeugtes Beiwerk, aber
 sie neu zu erzeugen kostet Azure-Guthaben und braucht den Schlüssel. Weg
 sind sie schneller als bezahlt.
 """
-import io
 import os
 import zipfile
 from datetime import date

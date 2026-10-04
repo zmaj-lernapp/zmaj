@@ -1,0 +1,5299 @@
+{
+ "dataset": "zmaj-bosnian",
+ "kind": "glossary",
+ "format_version": "1.0",
+ "license": "CC-BY-SA-4.0",
+ "attribution": "Zmaj – Bosnian learning content, (c) 2026 Ajdin Hasic, CC BY-SA 4.0, https://github.com/zmaj-lernapp/zmaj",
+ "source": "https://github.com/zmaj-lernapp/zmaj",
+ "target_language": "bs",
+ "translation_languages": [
+  "de",
+  "en",
+  "tr",
+  "sv",
+  "nl",
+  "nb",
+  "da",
+  "fr"
+ ],
+ "entries": [
+  {
+   "bs": "a",
+   "translations": {
+    "de": "und / aber",
+    "en": "and / but",
+    "tr": "ve / ama",
+    "sv": "och / men",
+    "nl": "en / maar",
+    "nb": "og / men",
+    "da": "og / men",
+    "fr": "et / mais"
+   }
+  },
+  {
+   "bs": "agent",
+   "translations": {
+    "de": "Makler",
+    "en": "agent",
+    "tr": "emlakçı",
+    "sv": "mäklare",
+    "nl": "makelaar",
+    "nb": "megler",
+    "da": "mægler",
+    "fr": "agent"
+   }
+  },
+  {
+   "bs": "ajdin",
+   "translations": {
+    "de": "Ajdin (Name)",
+    "en": "Ajdin (name)",
+    "tr": "Ajdin (isim)",
+    "sv": "Ajdin (namn)",
+    "nl": "Ajdin (naam)",
+    "nb": "Ajdin (navn)",
+    "da": "Ajdin (navn)",
+    "fr": "Ajdin (prénom)"
+   }
+  },
+  {
+   "bs": "ali",
+   "translations": {
+    "de": "aber",
+    "en": "but",
+    "tr": "ama",
+    "sv": "men",
+    "nl": "maar",
+    "nb": "men",
+    "da": "men",
+    "fr": "mais"
+   }
+  },
+  {
+   "bs": "amidže",
+   "translations": {
+    "de": "Onkel (Gen.)",
+    "en": "uncle (gen.)",
+    "tr": "amca (genitif)",
+    "sv": "farbror (genitiv)",
+    "nl": "oom (genitief)",
+    "nb": "onkel (genitiv)",
+    "da": "onkel (genitiv)",
+    "fr": "oncle (génitif)"
+   }
+  },
+  {
+   "bs": "amina",
+   "translations": {
+    "de": "Amina (Name)",
+    "en": "Amina (name)",
+    "tr": "Amina (isim)",
+    "sv": "Amina (namn)",
+    "nl": "Amina (naam)",
+    "nb": "Amina (navn)",
+    "da": "Amina (navn)",
+    "fr": "Amina (prénom)"
+   }
+  },
+  {
+   "bs": "augustu",
+   "translations": {
+    "de": "August (Lok.)",
+    "en": "August (loc.)",
+    "tr": "ağustos (lokatif)",
+    "sv": "augusti (lokativ)",
+    "nl": "augustus (locatief)",
+    "nb": "august (lokativ)",
+    "da": "august (lokativ)",
+    "fr": "août (locatif)"
+   }
+  },
+  {
+   "bs": "autom",
+   "translations": {
+    "de": "mit dem Auto",
+    "en": "by car",
+    "tr": "arabayla",
+    "sv": "med bil",
+    "nl": "met de auto",
+    "nb": "med bil",
+    "da": "med bil",
+    "fr": "en voiture"
+   }
+  },
+  {
+   "bs": "avionom",
+   "translations": {
+    "de": "mit dem Flugzeug",
+    "en": "by plane",
+    "tr": "uçakla",
+    "sv": "med flyg",
+    "nl": "met het vliegtuig",
+    "nb": "med fly",
+    "da": "med fly",
+    "fr": "en avion"
+   }
+  },
+  {
+   "bs": "babo",
+   "translations": {
+    "de": "Papa",
+    "en": "dad",
+    "tr": "baba",
+    "sv": "pappa",
+    "nl": "papa",
+    "nb": "pappa",
+    "da": "far",
+    "fr": "papa"
+   }
+  },
+  {
+   "bs": "balkonu",
+   "translations": {
+    "de": "Balkon (Lok.)",
+    "en": "balcony (loc.)",
+    "tr": "balkon (lokatif)",
+    "sv": "balkong (lokativ)",
+    "nl": "balkon (locatief)",
+    "nb": "balkong (lokativ)",
+    "da": "altan (lokativ)",
+    "fr": "balcon (locatif)"
+   }
+  },
+  {
+   "bs": "bašta",
+   "translations": {
+    "de": "Garten",
+    "en": "garden",
+    "tr": "bahçe",
+    "sv": "trädgård",
+    "nl": "tuin",
+    "nb": "hage",
+    "da": "have",
+    "fr": "jardin"
+   }
+  },
+  {
+   "bs": "bašti",
+   "translations": {
+    "de": "Garten (Lok.)",
+    "en": "garden (loc.)",
+    "tr": "bahçe (lokatif)",
+    "sv": "trädgård (lokativ)",
+    "nl": "tuin (locatief)",
+    "nb": "hage (lokativ)",
+    "da": "have (lokativ)",
+    "fr": "jardin (locatif)"
+   }
+  },
+  {
+   "bs": "baštu",
+   "translations": {
+    "de": "Garten (Akk.)",
+    "en": "garden (acc.)",
+    "tr": "bahçe (akuzatif)",
+    "sv": "trädgård (ackusativ)",
+    "nl": "tuin (accusatief)",
+    "nb": "hage (akkusativ)",
+    "da": "have (akkusativ)",
+    "fr": "jardin (accusatif)"
+   }
+  },
+  {
+   "bs": "baščaršiju",
+   "translations": {
+    "de": "Baščaršija (Altstadt)",
+    "en": "Baščaršija (the old bazaar quarter)",
+    "tr": "Baščaršija (Saraybosna'nın eski çarşısı)",
+    "sv": "Baščaršija (gamla stan, gamla basaren)",
+    "nl": "Baščaršija (de oude bazaarwijk)",
+    "nb": "Baščaršija (den gamle basargata)",
+    "da": "Baščaršija (den gamle basargade)",
+    "fr": "Baščaršija (vieille ville)"
+   }
+  },
+  {
+   "bs": "bez",
+   "translations": {
+    "de": "ohne",
+    "en": "without",
+    "tr": "-siz",
+    "sv": "utan",
+    "nl": "zonder",
+    "nb": "uten",
+    "da": "uden",
+    "fr": "sans"
+   }
+  },
+  {
+   "bs": "bi",
+   "translations": {
+    "de": "würde",
+    "en": "would",
+    "tr": "-ardı",
+    "sv": "skulle",
+    "nl": "zou",
+    "nb": "ville",
+    "da": "ville",
+    "fr": "conditionnel (« -rais »)"
+   }
+  },
+  {
+   "bs": "bijela",
+   "translations": {
+    "de": "weiß (w)",
+    "en": "white (f)",
+    "tr": "beyaz (dişil)",
+    "sv": "vit (fem.)",
+    "nl": "wit (v)",
+    "nb": "hvit (hunkj.)",
+    "da": "hvid (hunk.)",
+    "fr": "blanche"
+   }
+  },
+  {
+   "bs": "bila",
+   "translations": {
+    "de": "war (w)",
+    "en": "was (f)",
+    "tr": "-di (dişil)",
+    "sv": "var (fem.)",
+    "nl": "was (v)",
+    "nb": "var (hunkj.)",
+    "da": "var (hunk.)",
+    "fr": "était (femme)"
+   }
+  },
+  {
+   "bs": "bili",
+   "translations": {
+    "de": "waren",
+    "en": "were",
+    "tr": "-diler",
+    "sv": "var (flera)",
+    "nl": "waren",
+    "nb": "var (flere)",
+    "da": "var (flere)",
+    "fr": "étaient"
+   }
+  },
+  {
+   "bs": "bilo",
+   "translations": {
+    "de": "war (s)",
+    "en": "was (n)",
+    "tr": "-di (nötr)",
+    "sv": "var (neutr.)",
+    "nl": "was (o)",
+    "nb": "var (intetkj.)",
+    "da": "var (intetk.)",
+    "fr": "c'était (neutre)"
+   }
+  },
+  {
+   "bs": "bio",
+   "translations": {
+    "de": "war (m)",
+    "en": "was (m)",
+    "tr": "-di (eril)",
+    "sv": "var (mask.)",
+    "nl": "was (m)",
+    "nb": "var (hankj.)",
+    "da": "var (hank.)",
+    "fr": "était (homme)"
+   }
+  },
+  {
+   "bs": "boja",
+   "translations": {
+    "de": "Farbe",
+    "en": "color",
+    "tr": "renk",
+    "sv": "färg",
+    "nl": "kleur",
+    "nb": "farge",
+    "da": "farve",
+    "fr": "couleur"
+   }
+  },
+  {
+   "bs": "bosanski",
+   "translations": {
+    "de": "Bosnisch",
+    "en": "Bosnian",
+    "tr": "Boşnakça",
+    "sv": "Bosniska",
+    "nl": "Bosnisch",
+    "nb": "Bosnisk",
+    "da": "Bosnisk",
+    "fr": "Bosnien"
+   }
+  },
+  {
+   "bs": "bosni",
+   "translations": {
+    "de": "Bosnien (Lok.)",
+    "en": "Bosnia (loc.)",
+    "tr": "Bosna (lokatif)",
+    "sv": "Bosnien (lokativ)",
+    "nl": "Bosnië (locatief)",
+    "nb": "Bosnia (lokativ)",
+    "da": "Bosnien (lokativ)",
+    "fr": "Bosnie (locatif)"
+   }
+  },
+  {
+   "bs": "bosnu",
+   "translations": {
+    "de": "Bosnien (Akk.)",
+    "en": "Bosnia (acc.)",
+    "tr": "Bosna (akuzatif)",
+    "sv": "Bosnien (ackusativ)",
+    "nl": "Bosnië (accusatief)",
+    "nb": "Bosnia (akkusativ)",
+    "da": "Bosnien (akkusativ)",
+    "fr": "Bosnie (accusatif)"
+   }
+  },
+  {
+   "bs": "brat",
+   "translations": {
+    "de": "Bruder",
+    "en": "brother",
+    "tr": "erkek kardeş",
+    "sv": "bror",
+    "nl": "broer",
+    "nb": "bror",
+    "da": "bror",
+    "fr": "frère"
+   }
+  },
+  {
+   "bs": "brata",
+   "translations": {
+    "de": "Bruder (Akk.)",
+    "en": "brother (acc.)",
+    "tr": "erkek kardeş (akuzatif)",
+    "sv": "bror (ackusativ)",
+    "nl": "broer (accusatief)",
+    "nb": "bror (akkusativ)",
+    "da": "bror (akkusativ)",
+    "fr": "frère (accusatif)"
+   }
+  },
+  {
+   "bs": "brzo",
+   "translations": {
+    "de": "schnell",
+    "en": "quickly",
+    "tr": "hızlı",
+    "sv": "fort",
+    "nl": "snel",
+    "nb": "fort",
+    "da": "hurtigt",
+    "fr": "vite"
+   }
+  },
+  {
+   "bs": "centru",
+   "translations": {
+    "de": "Zentrum (Lok.)",
+    "en": "center (loc.)",
+    "tr": "merkez (lokatif)",
+    "sv": "centrum (lokativ)",
+    "nl": "centrum (locatief)",
+    "nb": "sentrum (lokativ)",
+    "da": "centrum (lokativ)",
+    "fr": "centre (locatif)"
+   }
+  },
+  {
+   "bs": "cijena",
+   "translations": {
+    "de": "Preis",
+    "en": "price",
+    "tr": "fiyat",
+    "sv": "pris",
+    "nl": "prijs",
+    "nb": "pris",
+    "da": "pris",
+    "fr": "prix"
+   }
+  },
+  {
+   "bs": "cijeni",
+   "translations": {
+    "de": "Preis (Lok.)",
+    "en": "price (loc.)",
+    "tr": "fiyat (lokatif)",
+    "sv": "pris (lokativ)",
+    "nl": "prijs (locatief)",
+    "nb": "pris (lokativ)",
+    "da": "pris (lokativ)",
+    "fr": "prix (locatif)"
+   }
+  },
+  {
+   "bs": "cvijeća",
+   "translations": {
+    "de": "Blumen (Gen.)",
+    "en": "flowers (gen.)",
+    "tr": "çiçek (genitif)",
+    "sv": "blommor (genitiv)",
+    "nl": "bloemen (genitief)",
+    "nb": "blomster (genitiv)",
+    "da": "blomster (genitiv)",
+    "fr": "fleurs (génitif)"
+   }
+  },
+  {
+   "bs": "cvijeće",
+   "translations": {
+    "de": "Blumen",
+    "en": "flowers",
+    "tr": "çiçekler",
+    "sv": "blommor",
+    "nl": "bloemen",
+    "nb": "blomster",
+    "da": "blomster",
+    "fr": "fleurs"
+   }
+  },
+  {
+   "bs": "da",
+   "translations": {
+    "de": "dass / ja",
+    "en": "that / yes",
+    "tr": "ki / evet",
+    "sv": "att / ja",
+    "nl": "dat / ja",
+    "nb": "at / ja",
+    "da": "at / ja",
+    "fr": "que / oui"
+   }
+  },
+  {
+   "bs": "dan",
+   "translations": {
+    "de": "Tag",
+    "en": "day",
+    "tr": "gün",
+    "sv": "dag",
+    "nl": "dag",
+    "nb": "dag",
+    "da": "dag",
+    "fr": "jour"
+   }
+  },
+  {
+   "bs": "dana",
+   "translations": {
+    "de": "Tage",
+    "en": "days",
+    "tr": "günler",
+    "sv": "dagar",
+    "nl": "dagen",
+    "nb": "dager",
+    "da": "dage",
+    "fr": "jours"
+   }
+  },
+  {
+   "bs": "danas",
+   "translations": {
+    "de": "heute",
+    "en": "today",
+    "tr": "bugün",
+    "sv": "i dag",
+    "nl": "vandaag",
+    "nb": "i dag",
+    "da": "i dag",
+    "fr": "aujourd'hui"
+   }
+  },
+  {
+   "bs": "dedo",
+   "translations": {
+    "de": "Opa",
+    "en": "grandpa",
+    "tr": "dede",
+    "sv": "morfar / farfar",
+    "nl": "opa",
+    "nb": "bestefar",
+    "da": "bedstefar",
+    "fr": "grand-père"
+   }
+  },
+  {
+   "bs": "dedu",
+   "translations": {
+    "de": "Opa (Akk.)",
+    "en": "grandpa (acc.)",
+    "tr": "dede (akuzatif)",
+    "sv": "morfar (ackusativ)",
+    "nl": "opa (accusatief)",
+    "nb": "bestefar (akkusativ)",
+    "da": "bedstefar (akkusativ)",
+    "fr": "grand-père (accusatif)"
+   }
+  },
+  {
+   "bs": "deset",
+   "translations": {
+    "de": "zehn",
+    "en": "ten",
+    "tr": "on",
+    "sv": "tio",
+    "nl": "tien",
+    "nb": "ti",
+    "da": "ti",
+    "fr": "dix"
+   }
+  },
+  {
+   "bs": "direktor",
+   "translations": {
+    "de": "Direktor / Chef",
+    "en": "director / boss",
+    "tr": "müdür / patron",
+    "sv": "direktör / chef",
+    "nl": "directeur / baas",
+    "nb": "direktør / sjef",
+    "da": "direktør / chef",
+    "fr": "directeur"
+   }
+  },
+  {
+   "bs": "djevojčica",
+   "translations": {
+    "de": "Mädchen",
+    "en": "girl",
+    "tr": "kız çocuğu",
+    "sv": "flicka",
+    "nl": "meisje",
+    "nb": "jente",
+    "da": "pige",
+    "fr": "petite fille"
+   }
+  },
+  {
+   "bs": "do",
+   "translations": {
+    "de": "bis",
+    "en": "until",
+    "tr": "-e kadar",
+    "sv": "till",
+    "nl": "tot",
+    "nb": "til",
+    "da": "til",
+    "fr": "jusqu'à"
+   }
+  },
+  {
+   "bs": "dobar",
+   "translations": {
+    "de": "gut (m)",
+    "en": "good (m)",
+    "tr": "iyi (eril)",
+    "sv": "bra (mask.)",
+    "nl": "goed (m)",
+    "nb": "god (hankj.)",
+    "da": "god (hank.)",
+    "fr": "bon"
+   }
+  },
+  {
+   "bs": "dobro",
+   "translations": {
+    "de": "gut",
+    "en": "good",
+    "tr": "iyi",
+    "sv": "bra",
+    "nl": "goed",
+    "nb": "bra",
+    "da": "godt",
+    "fr": "bien"
+   }
+  },
+  {
+   "bs": "dogovaraju",
+   "translations": {
+    "de": "sie vereinbaren",
+    "en": "they agree on",
+    "tr": "anlaşıyorlar",
+    "sv": "de kommer överens om",
+    "nl": "zij spreken af",
+    "nb": "de blir enige om",
+    "da": "de aftaler",
+    "fr": "ils conviennent"
+   }
+  },
+  {
+   "bs": "dokumenti",
+   "translations": {
+    "de": "Dokumente",
+    "en": "documents",
+    "tr": "belgeler",
+    "sv": "handlingar",
+    "nl": "documenten",
+    "nb": "dokumenter",
+    "da": "dokumenter",
+    "fr": "documents"
+   }
+  },
+  {
+   "bs": "doručak",
+   "translations": {
+    "de": "Frühstück",
+    "en": "breakfast",
+    "tr": "kahvaltı",
+    "sv": "frukost",
+    "nl": "ontbijt",
+    "nb": "frokost",
+    "da": "morgenmad",
+    "fr": "petit-déjeuner"
+   }
+  },
+  {
+   "bs": "doručkujem",
+   "translations": {
+    "de": "ich frühstücke",
+    "en": "I have breakfast",
+    "tr": "kahvaltı yapıyorum",
+    "sv": "jag äter frukost",
+    "nl": "ik ontbijt",
+    "nb": "jeg spiser frokost",
+    "da": "jeg spiser morgenmad",
+    "fr": "je prends mon petit-déjeuner"
+   }
+  },
+  {
+   "bs": "doći",
+   "translations": {
+    "de": "kommen",
+    "en": "to come",
+    "tr": "gelmek",
+    "sv": "komma",
+    "nl": "komen",
+    "nb": "komme",
+    "da": "at komme",
+    "fr": "venir"
+   }
+  },
+  {
+   "bs": "došao",
+   "translations": {
+    "de": "gekommen (m)",
+    "en": "came (m)",
+    "tr": "geldi (eril)",
+    "sv": "kom (mask.)",
+    "nl": "gekomen (m)",
+    "nb": "kom (hankj.)",
+    "da": "kom (hank.)",
+    "fr": "venu (homme)"
+   }
+  },
+  {
+   "bs": "draga",
+   "translations": {
+    "de": "liebe",
+    "en": "dear",
+    "tr": "sevgili",
+    "sv": "kära",
+    "nl": "lieve",
+    "nb": "kjære",
+    "da": "kære",
+    "fr": "chère"
+   }
+  },
+  {
+   "bs": "drvo",
+   "translations": {
+    "de": "Baum",
+    "en": "tree",
+    "tr": "ağaç",
+    "sv": "träd",
+    "nl": "boom",
+    "nb": "tre (plante)",
+    "da": "træ",
+    "fr": "arbre"
+   }
+  },
+  {
+   "bs": "duže",
+   "translations": {
+    "de": "länger",
+    "en": "longer",
+    "tr": "daha uzun",
+    "sv": "längre",
+    "nl": "langer",
+    "nb": "lenger",
+    "da": "længere",
+    "fr": "plus longtemps"
+   }
+  },
+  {
+   "bs": "dva",
+   "translations": {
+    "de": "zwei",
+    "en": "two",
+    "tr": "iki",
+    "sv": "två",
+    "nl": "twee",
+    "nb": "to",
+    "da": "to",
+    "fr": "deux"
+   }
+  },
+  {
+   "bs": "dvadeset",
+   "translations": {
+    "de": "zwanzig",
+    "en": "twenty",
+    "tr": "yirmi",
+    "sv": "tjugo",
+    "nl": "twintig",
+    "nb": "tjue",
+    "da": "tyve",
+    "fr": "vingt"
+   }
+  },
+  {
+   "bs": "dvanaest",
+   "translations": {
+    "de": "zwölf",
+    "en": "twelve",
+    "tr": "on iki",
+    "sv": "tolv",
+    "nl": "twaalf",
+    "nb": "tolv",
+    "da": "tolv",
+    "fr": "douze"
+   }
+  },
+  {
+   "bs": "dvije",
+   "translations": {
+    "de": "zwei (w)",
+    "en": "two (f)",
+    "tr": "iki (dişil)",
+    "sv": "två (fem.)",
+    "nl": "twee (v)",
+    "nb": "to (hunkj.)",
+    "da": "to (hunk.)",
+    "fr": "deux (féminin)"
+   }
+  },
+  {
+   "bs": "ekonomiju",
+   "translations": {
+    "de": "Wirtschaft (Akk.)",
+    "en": "economics (acc.)",
+    "tr": "ekonomi (akuzatif)",
+    "sv": "ekonomi (ackusativ)",
+    "nl": "economie (accusatief)",
+    "nb": "økonomi (akkusativ)",
+    "da": "økonomi (akkusativ)",
+    "fr": "économie (accusatif)"
+   }
+  },
+  {
+   "bs": "engleski",
+   "translations": {
+    "de": "Englisch",
+    "en": "English",
+    "tr": "İngilizce",
+    "sv": "engelska",
+    "nl": "Engels",
+    "nb": "engelsk",
+    "da": "engelsk",
+    "fr": "anglais"
+   }
+  },
+  {
+   "bs": "firmi",
+   "translations": {
+    "de": "Firma (Lok.)",
+    "en": "company (loc.)",
+    "tr": "şirket (lokatif)",
+    "sv": "företag (lokativ)",
+    "nl": "bedrijf (locatief)",
+    "nb": "firma (lokativ)",
+    "da": "firma (lokativ)",
+    "fr": "entreprise (locatif)"
+   }
+  },
+  {
+   "bs": "gdje",
+   "translations": {
+    "de": "wo",
+    "en": "where",
+    "tr": "nerede",
+    "sv": "var",
+    "nl": "waar",
+    "nb": "hvor",
+    "da": "hvor",
+    "fr": "où"
+   }
+  },
+  {
+   "bs": "gledaju",
+   "translations": {
+    "de": "sie schauen",
+    "en": "they watch",
+    "tr": "izliyorlar",
+    "sv": "de tittar",
+    "nl": "zij kijken",
+    "nb": "de ser",
+    "da": "de ser",
+    "fr": "ils regardent"
+   }
+  },
+  {
+   "bs": "gledam",
+   "translations": {
+    "de": "ich schaue",
+    "en": "I watch",
+    "tr": "izliyorum",
+    "sv": "jag tittar",
+    "nl": "ik kijk",
+    "nb": "jeg ser",
+    "da": "jeg ser",
+    "fr": "je regarde"
+   }
+  },
+  {
+   "bs": "godina",
+   "translations": {
+    "de": "Jahre",
+    "en": "years",
+    "tr": "yıl",
+    "sv": "år",
+    "nl": "jaren",
+    "nb": "år",
+    "da": "år",
+    "fr": "ans"
+   }
+  },
+  {
+   "bs": "godine",
+   "translations": {
+    "de": "Jahre / Jahr (Gen.)",
+    "en": "years / year (gen.)",
+    "tr": "yıl (genitif)",
+    "sv": "år (genitiv)",
+    "nl": "jaar (genitief)",
+    "nb": "år (genitiv)",
+    "da": "år (genitiv)",
+    "fr": "ans / année (génitif)"
+   }
+  },
+  {
+   "bs": "gotova",
+   "translations": {
+    "de": "fertig",
+    "en": "ready",
+    "tr": "hazır",
+    "sv": "klart",
+    "nl": "klaar",
+    "nb": "ferdig",
+    "da": "færdig",
+    "fr": "prête"
+   }
+  },
+  {
+   "bs": "gotovinom",
+   "translations": {
+    "de": "bar (mit Bargeld)",
+    "en": "in cash",
+    "tr": "nakit olarak",
+    "sv": "kontant",
+    "nl": "contant",
+    "nb": "kontant",
+    "da": "kontant",
+    "fr": "en espèces"
+   }
+  },
+  {
+   "bs": "govore",
+   "translations": {
+    "de": "sie sprechen",
+    "en": "they speak",
+    "tr": "konuşuyorlar",
+    "sv": "de pratar",
+    "nl": "zij praten",
+    "nb": "de snakker",
+    "da": "de taler",
+    "fr": "ils parlent"
+   }
+  },
+  {
+   "bs": "govorim",
+   "translations": {
+    "de": "ich spreche",
+    "en": "I speak",
+    "tr": "konuşuyorum",
+    "sv": "jag talar",
+    "nl": "ik spreek",
+    "nb": "jeg snakker",
+    "da": "jeg taler",
+    "fr": "je parle"
+   }
+  },
+  {
+   "bs": "grad",
+   "translations": {
+    "de": "Stadt",
+    "en": "city",
+    "tr": "şehir",
+    "sv": "stad",
+    "nl": "stad",
+    "nb": "by",
+    "da": "by",
+    "fr": "ville"
+   }
+  },
+  {
+   "bs": "grada",
+   "translations": {
+    "de": "Stadt (Gen.)",
+    "en": "city (gen.)",
+    "tr": "şehir (genitif)",
+    "sv": "stad (genitiv)",
+    "nl": "stad (genitief)",
+    "nb": "by (genitiv)",
+    "da": "by (genitiv)",
+    "fr": "ville (génitif)"
+   }
+  },
+  {
+   "bs": "gradu",
+   "translations": {
+    "de": "Stadt (Lok.)",
+    "en": "city (loc.)",
+    "tr": "şehir (lokatif)",
+    "sv": "stad (lokativ)",
+    "nl": "stad (locatief)",
+    "nb": "by (lokativ)",
+    "da": "by (lokativ)",
+    "fr": "ville (locatif)"
+   }
+  },
+  {
+   "bs": "gruntovnicu",
+   "translations": {
+    "de": "Grundbuch (Akk.)",
+    "en": "land register (acc.)",
+    "tr": "tapu sicili (akuzatif)",
+    "sv": "fastighetsregistret (ackusativ)",
+    "nl": "kadaster (accusatief)",
+    "nb": "grunnboka (akkusativ)",
+    "da": "tingbogen (akkusativ)",
+    "fr": "registre foncier (accusatif)"
+   }
+  },
+  {
+   "bs": "hiljada",
+   "translations": {
+    "de": "tausend",
+    "en": "one thousand",
+    "tr": "bin",
+    "sv": "tusen",
+    "nl": "duizend",
+    "nb": "tusen",
+    "da": "tusind",
+    "fr": "mille"
+   }
+  },
+  {
+   "bs": "hljeb",
+   "translations": {
+    "de": "Brot",
+    "en": "bread",
+    "tr": "ekmek",
+    "sv": "bröd",
+    "nl": "brood",
+    "nb": "brød",
+    "da": "brød",
+    "fr": "pain"
+   }
+  },
+  {
+   "bs": "hotel",
+   "translations": {
+    "de": "Hotel",
+    "en": "hotel",
+    "tr": "otel",
+    "sv": "hotell",
+    "nl": "hotel",
+    "nb": "hotell",
+    "da": "hotel",
+    "fr": "hôtel"
+   }
+  },
+  {
+   "bs": "hvala",
+   "translations": {
+    "de": "danke",
+    "en": "thank you",
+    "tr": "teşekkürler",
+    "sv": "tack",
+    "nl": "dank je",
+    "nb": "takk",
+    "da": "tak",
+    "fr": "merci"
+   }
+  },
+  {
+   "bs": "i",
+   "translations": {
+    "de": "und",
+    "en": "and",
+    "tr": "ve",
+    "sv": "och",
+    "nl": "en",
+    "nb": "og",
+    "da": "og",
+    "fr": "et"
+   }
+  },
+  {
+   "bs": "ide",
+   "translations": {
+    "de": "er/sie geht",
+    "en": "he/she goes",
+    "tr": "gidiyor",
+    "sv": "han/hon går",
+    "nl": "hij/zij gaat",
+    "nb": "han/hun går",
+    "da": "han/hun går",
+    "fr": "il / elle va"
+   }
+  },
+  {
+   "bs": "idem",
+   "translations": {
+    "de": "ich gehe",
+    "en": "I go",
+    "tr": "gidiyorum",
+    "sv": "jag går",
+    "nl": "ik ga",
+    "nb": "jeg går",
+    "da": "jeg går",
+    "fr": "je vais"
+   }
+  },
+  {
+   "bs": "idemo",
+   "translations": {
+    "de": "wir gehen",
+    "en": "we go",
+    "tr": "gidiyoruz",
+    "sv": "vi går",
+    "nl": "wij gaan",
+    "nb": "vi går",
+    "da": "vi går",
+    "fr": "nous allons"
+   }
+  },
+  {
+   "bs": "idu",
+   "translations": {
+    "de": "sie gehen",
+    "en": "they go",
+    "tr": "gidiyorlar",
+    "sv": "de går",
+    "nl": "zij gaan",
+    "nb": "de går",
+    "da": "de går",
+    "fr": "ils vont"
+   }
+  },
+  {
+   "bs": "ili",
+   "translations": {
+    "de": "oder",
+    "en": "or",
+    "tr": "veya",
+    "sv": "eller",
+    "nl": "of",
+    "nb": "eller",
+    "da": "eller",
+    "fr": "ou"
+   }
+  },
+  {
+   "bs": "im",
+   "translations": {
+    "de": "ihnen",
+    "en": "to them",
+    "tr": "onlara",
+    "sv": "till dem",
+    "nl": "aan hen",
+    "nb": "til dem",
+    "da": "til dem",
+    "fr": "à eux"
+   }
+  },
+  {
+   "bs": "ima",
+   "translations": {
+    "de": "er/sie hat / es gibt",
+    "en": "he/she has / there is",
+    "tr": "onda var / var",
+    "sv": "han/hon har / det finns",
+    "nl": "hij/zij heeft / er is",
+    "nb": "han/hun har / det finnes",
+    "da": "han/hun har / der er",
+    "fr": "il / elle a / il y a"
+   }
+  },
+  {
+   "bs": "imam",
+   "translations": {
+    "de": "ich habe",
+    "en": "I have",
+    "tr": "bende var",
+    "sv": "jag har",
+    "nl": "ik heb",
+    "nb": "jeg har",
+    "da": "jeg har",
+    "fr": "j'ai"
+   }
+  },
+  {
+   "bs": "imamo",
+   "translations": {
+    "de": "wir haben",
+    "en": "we have",
+    "tr": "bizde var",
+    "sv": "vi har",
+    "nl": "wij hebben",
+    "nb": "vi har",
+    "da": "vi har",
+    "fr": "nous avons"
+   }
+  },
+  {
+   "bs": "inženjer",
+   "translations": {
+    "de": "Ingenieur",
+    "en": "engineer",
+    "tr": "mühendis",
+    "sv": "ingenjör",
+    "nl": "ingenieur",
+    "nb": "ingeniør",
+    "da": "ingeniør",
+    "fr": "ingénieur"
+   }
+  },
+  {
+   "bs": "iskustva",
+   "translations": {
+    "de": "Erfahrung (Gen.)",
+    "en": "experience (gen.)",
+    "tr": "deneyim (genitif)",
+    "sv": "erfarenhet (genitiv)",
+    "nl": "ervaring (genitief)",
+    "nb": "erfaring (genitiv)",
+    "da": "erfaring (genitiv)",
+    "fr": "expérience (génitif)"
+   }
+  },
+  {
+   "bs": "isplaćuje",
+   "translations": {
+    "de": "wird ausgezahlt",
+    "en": "is paid out",
+    "tr": "ödeniyor",
+    "sv": "betalas ut",
+    "nl": "wordt uitbetaald",
+    "nb": "utbetales",
+    "da": "udbetales",
+    "fr": "est versé"
+   }
+  },
+  {
+   "bs": "iz",
+   "translations": {
+    "de": "aus",
+    "en": "from",
+    "tr": "-den",
+    "sv": "från",
+    "nl": "uit",
+    "nb": "fra",
+    "da": "fra",
+    "fr": "de (provenance)"
+   }
+  },
+  {
+   "bs": "iza",
+   "translations": {
+    "de": "hinter",
+    "en": "behind",
+    "tr": "arkasında",
+    "sv": "bakom",
+    "nl": "achter",
+    "nb": "bak",
+    "da": "bag",
+    "fr": "derrière"
+   }
+  },
+  {
+   "bs": "ja",
+   "translations": {
+    "de": "ich",
+    "en": "I",
+    "tr": "ben",
+    "sv": "jag",
+    "nl": "ik",
+    "nb": "jeg",
+    "da": "jeg",
+    "fr": "je"
+   }
+  },
+  {
+   "bs": "jabuke",
+   "translations": {
+    "de": "Äpfel",
+    "en": "apples",
+    "tr": "elmalar",
+    "sv": "äpplen",
+    "nl": "appels",
+    "nb": "epler",
+    "da": "æbler",
+    "fr": "pommes"
+   }
+  },
+  {
+   "bs": "jabuku",
+   "translations": {
+    "de": "Apfel (Akk.)",
+    "en": "apple (acc.)",
+    "tr": "elma (akuzatif)",
+    "sv": "äpple (ackusativ)",
+    "nl": "appel (accusatief)",
+    "nb": "eple (akkusativ)",
+    "da": "æble (akkusativ)",
+    "fr": "pomme (accusatif)"
+   }
+  },
+  {
+   "bs": "je",
+   "translations": {
+    "de": "ist",
+    "en": "is",
+    "tr": "-dir",
+    "sv": "är",
+    "nl": "is",
+    "nb": "er",
+    "da": "er",
+    "fr": "est"
+   }
+  },
+  {
+   "bs": "jedan",
+   "translations": {
+    "de": "ein",
+    "en": "one (m)",
+    "tr": "bir (eril)",
+    "sv": "en (mask.)",
+    "nl": "een (m)",
+    "nb": "en (hankj.)",
+    "da": "en (hank.)",
+    "fr": "un"
+   }
+  },
+  {
+   "bs": "jedanaest",
+   "translations": {
+    "de": "elf",
+    "en": "eleven",
+    "tr": "on bir",
+    "sv": "elva",
+    "nl": "elf",
+    "nb": "elleve",
+    "da": "elleve",
+    "fr": "onze"
+   }
+  },
+  {
+   "bs": "jede",
+   "translations": {
+    "de": "er/sie isst",
+    "en": "he/she eats",
+    "tr": "yiyor",
+    "sv": "han/hon äter",
+    "nl": "hij/zij eet",
+    "nb": "han/hun spiser",
+    "da": "han/hun spiser",
+    "fr": "il / elle mange"
+   }
+  },
+  {
+   "bs": "jedem",
+   "translations": {
+    "de": "ich esse",
+    "en": "I eat",
+    "tr": "yiyorum",
+    "sv": "jag äter",
+    "nl": "ik eet",
+    "nb": "jeg spiser",
+    "da": "jeg spiser",
+    "fr": "je mange"
+   }
+  },
+  {
+   "bs": "jedna",
+   "translations": {
+    "de": "eine",
+    "en": "one (f)",
+    "tr": "bir (dişil)",
+    "sv": "en (fem.)",
+    "nl": "een (v)",
+    "nb": "ei (hunkj.)",
+    "da": "en (hunk.)",
+    "fr": "une"
+   }
+  },
+  {
+   "bs": "jedno",
+   "translations": {
+    "de": "ein (s)",
+    "en": "one (n)",
+    "tr": "bir (nötr)",
+    "sv": "ett (neutr.)",
+    "nl": "een (o)",
+    "nb": "et (intetkj.)",
+    "da": "et (intetk.)",
+    "fr": "un (neutre)"
+   }
+  },
+  {
+   "bs": "jednog",
+   "translations": {
+    "de": "einen",
+    "en": "one (m, acc.)",
+    "tr": "bir (eril, akuzatif)",
+    "sv": "en (mask., ackusativ)",
+    "nl": "een (m, accusatief)",
+    "nb": "en (hankj., akkusativ)",
+    "da": "en (hank., akkusativ)",
+    "fr": "un (accusatif masculin)"
+   }
+  },
+  {
+   "bs": "jednoj",
+   "translations": {
+    "de": "einer (Lok.)",
+    "en": "one (f, loc.)",
+    "tr": "bir (dişil, lokatif)",
+    "sv": "en (fem., lokativ)",
+    "nl": "een (v, locatief)",
+    "nb": "ei (hunkj., lokativ)",
+    "da": "en (hunk., lokativ)",
+    "fr": "une (locatif)"
+   }
+  },
+  {
+   "bs": "jednu",
+   "translations": {
+    "de": "eine (Akk.)",
+    "en": "one (f, acc.)",
+    "tr": "bir (dişil, akuzatif)",
+    "sv": "en (fem., ackusativ)",
+    "nl": "een (v, accusatief)",
+    "nb": "ei (hunkj., akkusativ)",
+    "da": "en (hunk., akkusativ)",
+    "fr": "une (accusatif)"
+   }
+  },
+  {
+   "bs": "jedu",
+   "translations": {
+    "de": "sie essen",
+    "en": "they eat",
+    "tr": "yiyorlar",
+    "sv": "de äter",
+    "nl": "zij eten",
+    "nb": "de spiser",
+    "da": "de spiser",
+    "fr": "ils mangent"
+   }
+  },
+  {
+   "bs": "jeftinije",
+   "translations": {
+    "de": "billiger",
+    "en": "cheaper",
+    "tr": "daha ucuz",
+    "sv": "billigare",
+    "nl": "goedkoper",
+    "nb": "billigere",
+    "da": "billigere",
+    "fr": "moins cher"
+   }
+  },
+  {
+   "bs": "jer",
+   "translations": {
+    "de": "weil",
+    "en": "because",
+    "tr": "çünkü",
+    "sv": "för att",
+    "nl": "omdat",
+    "nb": "fordi",
+    "da": "fordi",
+    "fr": "parce que"
+   }
+  },
+  {
+   "bs": "jeste",
+   "translations": {
+    "de": "ja, ist es",
+    "en": "yes, it is",
+    "tr": "evet, öyle",
+    "sv": "ja, det är det",
+    "nl": "ja, dat is zo",
+    "nb": "ja, det er det",
+    "da": "ja, det er det",
+    "fr": "oui, elle l'est"
+   }
+  },
+  {
+   "bs": "još",
+   "translations": {
+    "de": "noch",
+    "en": "still",
+    "tr": "hâlâ",
+    "sv": "fortfarande",
+    "nl": "nog",
+    "nb": "fortsatt",
+    "da": "endnu / stadig",
+    "fr": "encore"
+   }
+  },
+  {
+   "bs": "jučer",
+   "translations": {
+    "de": "gestern",
+    "en": "yesterday",
+    "tr": "dün",
+    "sv": "i går",
+    "nl": "gisteren",
+    "nb": "i går",
+    "da": "i går",
+    "fr": "hier"
+   }
+  },
+  {
+   "bs": "kada",
+   "translations": {
+    "de": "wann",
+    "en": "when",
+    "tr": "ne zaman",
+    "sv": "när",
+    "nl": "wanneer",
+    "nb": "når",
+    "da": "hvornår",
+    "fr": "quand"
+   }
+  },
+  {
+   "bs": "kafen",
+   "translations": {
+    "de": "braun (m)",
+    "en": "brown (m)",
+    "tr": "kahverengi (eril)",
+    "sv": "brun (mask.)",
+    "nl": "bruin (m)",
+    "nb": "brun (hankj.)",
+    "da": "brun (hank.)",
+    "fr": "marron (masculin)"
+   }
+  },
+  {
+   "bs": "kafena",
+   "translations": {
+    "de": "braun (w)",
+    "en": "brown (f)",
+    "tr": "kahverengi (dişil)",
+    "sv": "brun (fem.)",
+    "nl": "bruin (v)",
+    "nb": "brun (hunkj.)",
+    "da": "brun (hunk.)",
+    "fr": "marron (féminin)"
+   }
+  },
+  {
+   "bs": "kafeno",
+   "translations": {
+    "de": "braun (s)",
+    "en": "brown (n)",
+    "tr": "kahverengi (nötr)",
+    "sv": "brunt (neutr.)",
+    "nl": "bruin (o)",
+    "nb": "brunt (intetkj.)",
+    "da": "brunt (intetk.)",
+    "fr": "marron (neutre)"
+   }
+  },
+  {
+   "bs": "kahva",
+   "translations": {
+    "de": "Kaffee",
+    "en": "coffee",
+    "tr": "kahve",
+    "sv": "kaffe",
+    "nl": "koffie",
+    "nb": "kaffe",
+    "da": "kaffe",
+    "fr": "café"
+   }
+  },
+  {
+   "bs": "kahvu",
+   "translations": {
+    "de": "Kaffee (Akk.)",
+    "en": "coffee (acc.)",
+    "tr": "kahve (akuzatif)",
+    "sv": "kaffe (ackusativ)",
+    "nl": "koffie (accusatief)",
+    "nb": "kaffe (akkusativ)",
+    "da": "kaffe (akkusativ)",
+    "fr": "café (accusatif)"
+   }
+  },
+  {
+   "bs": "kako",
+   "translations": {
+    "de": "wie",
+    "en": "how",
+    "tr": "nasıl",
+    "sv": "hur",
+    "nl": "hoe",
+    "nb": "hvordan",
+    "da": "hvordan",
+    "fr": "comment"
+   }
+  },
+  {
+   "bs": "kancelariji",
+   "translations": {
+    "de": "Büro (Lok.)",
+    "en": "office (loc.)",
+    "tr": "ofis (lokatif)",
+    "sv": "kontor (lokativ)",
+    "nl": "kantoor (locatief)",
+    "nb": "kontor (lokativ)",
+    "da": "kontor (lokativ)",
+    "fr": "bureau (locatif)"
+   }
+  },
+  {
+   "bs": "kaparu",
+   "translations": {
+    "de": "Anzahlung (Akk.)",
+    "en": "down payment (acc.)",
+    "tr": "kapora (akuzatif)",
+    "sv": "handpenning (ackusativ)",
+    "nl": "aanbetaling (accusatief)",
+    "nb": "forskudd (akkusativ)",
+    "da": "udbetaling (akkusativ)",
+    "fr": "acompte (accusatif)"
+   }
+  },
+  {
+   "bs": "kartu",
+   "translations": {
+    "de": "Karte / Ausweis (Akk.)",
+    "en": "card / ID (acc.)",
+    "tr": "kart / kimlik (akuzatif)",
+    "sv": "kort / id (ackusativ)",
+    "nl": "kaart / bewijs (accusatief)",
+    "nb": "kort / legitimasjon (akkusativ)",
+    "da": "kort / legitimation (akkusativ)",
+    "fr": "carte (accusatif)"
+   }
+  },
+  {
+   "bs": "kasno",
+   "translations": {
+    "de": "spät",
+    "en": "late",
+    "tr": "geç",
+    "sv": "sent",
+    "nl": "laat",
+    "nb": "sent",
+    "da": "sent",
+    "fr": "tard"
+   }
+  },
+  {
+   "bs": "kaže",
+   "translations": {
+    "de": "er/sie sagt",
+    "en": "he/she says",
+    "tr": "diyor",
+    "sv": "han/hon säger",
+    "nl": "hij/zij zegt",
+    "nb": "han/hun sier",
+    "da": "han/hun siger",
+    "fr": "il / elle dit"
+   }
+  },
+  {
+   "bs": "kilogram",
+   "translations": {
+    "de": "Kilo",
+    "en": "kilo",
+    "tr": "kilo",
+    "sv": "kilo",
+    "nl": "kilo",
+    "nb": "kilo",
+    "da": "kilo",
+    "fr": "kilo"
+   }
+  },
+  {
+   "bs": "kilograma",
+   "translations": {
+    "de": "Kilo (Gen.)",
+    "en": "kilo (gen.)",
+    "tr": "kilo (genitif)",
+    "sv": "kilo (genitiv)",
+    "nl": "kilo (genitief)",
+    "nb": "kilo (genitiv)",
+    "da": "kilo (genitiv)",
+    "fr": "kilos (génitif)"
+   }
+  },
+  {
+   "bs": "knjigu",
+   "translations": {
+    "de": "Buch (Akk.)",
+    "en": "book (acc.)",
+    "tr": "kitap (akuzatif)",
+    "sv": "bok (ackusativ)",
+    "nl": "boek (accusatief)",
+    "nb": "bok (akkusativ)",
+    "da": "bog (akkusativ)",
+    "fr": "livre (accusatif)"
+   }
+  },
+  {
+   "bs": "ko",
+   "translations": {
+    "de": "wer",
+    "en": "who",
+    "tr": "kim",
+    "sv": "vem",
+    "nl": "wie",
+    "nb": "hvem",
+    "da": "hvem",
+    "fr": "qui"
+   }
+  },
+  {
+   "bs": "kod",
+   "translations": {
+    "de": "bei",
+    "en": "at",
+    "tr": "-de",
+    "sv": "hos",
+    "nl": "bij",
+    "nb": "hos",
+    "da": "hos",
+    "fr": "chez"
+   }
+  },
+  {
+   "bs": "koji",
+   "translations": {
+    "de": "welche",
+    "en": "which",
+    "tr": "hangi",
+    "sv": "vilken",
+    "nl": "welke",
+    "nb": "hvilken",
+    "da": "hvilken",
+    "fr": "quel"
+   }
+  },
+  {
+   "bs": "kolege",
+   "translations": {
+    "de": "Kollegen",
+    "en": "colleagues",
+    "tr": "iş arkadaşları",
+    "sv": "kolleger",
+    "nl": "collega's",
+    "nb": "kolleger",
+    "da": "kolleger",
+    "fr": "collègues"
+   }
+  },
+  {
+   "bs": "koliko",
+   "translations": {
+    "de": "wie viel",
+    "en": "how much",
+    "tr": "ne kadar",
+    "sv": "hur mycket",
+    "nl": "hoeveel",
+    "nb": "hvor mye",
+    "da": "hvor meget",
+    "fr": "combien"
+   }
+  },
+  {
+   "bs": "košta",
+   "translations": {
+    "de": "es kostet",
+    "en": "it costs",
+    "tr": "tutuyor",
+    "sv": "det kostar",
+    "nl": "het kost",
+    "nb": "det koster",
+    "da": "det koster",
+    "fr": "ça coûte"
+   }
+  },
+  {
+   "bs": "koštaju",
+   "translations": {
+    "de": "sie kosten",
+    "en": "they cost",
+    "tr": "tutuyor",
+    "sv": "de kostar",
+    "nl": "zij kosten",
+    "nb": "de koster",
+    "da": "de koster",
+    "fr": "ils coûtent"
+   }
+  },
+  {
+   "bs": "kraju",
+   "translations": {
+    "de": "Ende (Lok.)",
+    "en": "end (loc.)",
+    "tr": "sonunda",
+    "sv": "slutet (lokativ)",
+    "nl": "eind (locatief)",
+    "nb": "slutten (lokativ)",
+    "da": "slutningen (lokativ)",
+    "fr": "à la fin"
+   }
+  },
+  {
+   "bs": "krevet",
+   "translations": {
+    "de": "Bett",
+    "en": "bed",
+    "tr": "yatak",
+    "sv": "säng",
+    "nl": "bed",
+    "nb": "seng",
+    "da": "seng",
+    "fr": "lit"
+   }
+  },
+  {
+   "bs": "kuhali",
+   "translations": {
+    "de": "gekocht haben",
+    "en": "cooked",
+    "tr": "pişirdiler",
+    "sv": "lagade mat",
+    "nl": "gekookt",
+    "nb": "lagde mat",
+    "da": "lavede mad",
+    "fr": "cuisiné (pluriel)"
+   }
+  },
+  {
+   "bs": "kuham",
+   "translations": {
+    "de": "ich koche",
+    "en": "I cook",
+    "tr": "pişiriyorum",
+    "sv": "jag lagar mat",
+    "nl": "ik kook",
+    "nb": "jeg lager mat",
+    "da": "jeg laver mad",
+    "fr": "je cuisine"
+   }
+  },
+  {
+   "bs": "kuhinja",
+   "translations": {
+    "de": "Küche",
+    "en": "kitchen",
+    "tr": "mutfak",
+    "sv": "kök",
+    "nl": "keuken",
+    "nb": "kjøkken",
+    "da": "køkken",
+    "fr": "cuisine"
+   }
+  },
+  {
+   "bs": "kuhinju",
+   "translations": {
+    "de": "Küche (Akk.)",
+    "en": "kitchen (acc.)",
+    "tr": "mutfak (akuzatif)",
+    "sv": "kök (ackusativ)",
+    "nl": "keuken (accusatief)",
+    "nb": "kjøkken (akkusativ)",
+    "da": "køkken (akkusativ)",
+    "fr": "cuisine (accusatif)"
+   }
+  },
+  {
+   "bs": "kupila",
+   "translations": {
+    "de": "gekauft (w)",
+    "en": "bought (f)",
+    "tr": "aldı (kadın)",
+    "sv": "köpte (kvinna)",
+    "nl": "gekocht (vrouw)",
+    "nb": "kjøpte (kvinne)",
+    "da": "købte (kvinde)",
+    "fr": "acheté (femme)"
+   }
+  },
+  {
+   "bs": "kupiti",
+   "translations": {
+    "de": "kaufen",
+    "en": "to buy",
+    "tr": "satın almak",
+    "sv": "köpa",
+    "nl": "kopen",
+    "nb": "kjøpe",
+    "da": "at købe",
+    "fr": "acheter"
+   }
+  },
+  {
+   "bs": "kupoprodajni",
+   "translations": {
+    "de": "Kauf-",
+    "en": "purchase",
+    "tr": "satış",
+    "sv": "köpe-",
+    "nl": "koop-",
+    "nb": "kjøpe-",
+    "da": "købs-",
+    "fr": "de vente"
+   }
+  },
+  {
+   "bs": "kupovinu",
+   "translations": {
+    "de": "Einkauf (Akk.)",
+    "en": "shopping (acc.)",
+    "tr": "alışveriş (akuzatif)",
+    "sv": "inköp (ackusativ)",
+    "nl": "boodschappen (accusatief)",
+    "nb": "handel (akkusativ)",
+    "da": "indkøb (akkusativ)",
+    "fr": "courses (accusatif)"
+   }
+  },
+  {
+   "bs": "kupuje",
+   "translations": {
+    "de": "er/sie kauft",
+    "en": "he/she buys",
+    "tr": "satın alıyor",
+    "sv": "han/hon köper",
+    "nl": "hij/zij koopt",
+    "nb": "han/hun kjøper",
+    "da": "han/hun køber",
+    "fr": "il / elle achète"
+   }
+  },
+  {
+   "bs": "kupujem",
+   "translations": {
+    "de": "ich kaufe",
+    "en": "I buy",
+    "tr": "alıyorum",
+    "sv": "jag köper",
+    "nl": "ik koop",
+    "nb": "jeg kjøper",
+    "da": "jeg køber",
+    "fr": "j'achète"
+   }
+  },
+  {
+   "bs": "kuća",
+   "translations": {
+    "de": "Haus",
+    "en": "house",
+    "tr": "ev",
+    "sv": "hus",
+    "nl": "huis",
+    "nb": "hus",
+    "da": "hus",
+    "fr": "maison"
+   }
+  },
+  {
+   "bs": "kući",
+   "translations": {
+    "de": "Haus (Lok.) / nach Hause",
+    "en": "home (loc.) / homewards",
+    "tr": "evde / eve",
+    "sv": "hemma / hem",
+    "nl": "thuis / naar huis",
+    "nb": "hjemme / hjem",
+    "da": "hjemme / hjem",
+    "fr": "à la maison"
+   }
+  },
+  {
+   "bs": "kuću",
+   "translations": {
+    "de": "Haus (Akk.)",
+    "en": "house (acc.)",
+    "tr": "ev (akuzatif)",
+    "sv": "hus (ackusativ)",
+    "nl": "huis (accusatief)",
+    "nb": "hus (akkusativ)",
+    "da": "hus (akkusativ)",
+    "fr": "maison (accusatif)"
+   }
+  },
+  {
+   "bs": "lampa",
+   "translations": {
+    "de": "Lampe",
+    "en": "lamp",
+    "tr": "lamba",
+    "sv": "lampa",
+    "nl": "lamp",
+    "nb": "lampe",
+    "da": "lampe",
+    "fr": "lampe"
+   }
+  },
+  {
+   "bs": "lijep",
+   "translations": {
+    "de": "schön (m)",
+    "en": "beautiful (m)",
+    "tr": "güzel (eril)",
+    "sv": "vacker (mask.)",
+    "nl": "mooi (m)",
+    "nb": "vakker (hankj.)",
+    "da": "smuk (hank.)",
+    "fr": "beau"
+   }
+  },
+  {
+   "bs": "lijepo",
+   "translations": {
+    "de": "schön",
+    "en": "nice",
+    "tr": "güzel",
+    "sv": "fint",
+    "nl": "mooi",
+    "nb": "fint",
+    "da": "flot",
+    "fr": "joli"
+   }
+  },
+  {
+   "bs": "ličnu",
+   "translations": {
+    "de": "Personal- (Akk.)",
+    "en": "personal (acc.)",
+    "tr": "kişisel (akuzatif)",
+    "sv": "person- (ackusativ)",
+    "nl": "persoons- (accusatief)",
+    "nb": "person- (akkusativ)",
+    "da": "person- (akkusativ)",
+    "fr": "personnelle (accusatif)"
+   }
+  },
+  {
+   "bs": "ljubazne",
+   "translations": {
+    "de": "freundlich (Mehrz.)",
+    "en": "friendly (pl.)",
+    "tr": "cana yakın (çoğul)",
+    "sv": "trevliga",
+    "nl": "aardig (meervoud)",
+    "nb": "hyggelige",
+    "da": "flinke",
+    "fr": "gentils"
+   }
+  },
+  {
+   "bs": "luk",
+   "translations": {
+    "de": "Zwiebel",
+    "en": "onion",
+    "tr": "soğan",
+    "sv": "lök",
+    "nl": "ui",
+    "nb": "løk",
+    "da": "løg",
+    "fr": "oignon"
+   }
+  },
+  {
+   "bs": "majka",
+   "translations": {
+    "de": "Mutter",
+    "en": "mother",
+    "tr": "anne",
+    "sv": "mor",
+    "nl": "moeder",
+    "nb": "mor",
+    "da": "mor",
+    "fr": "mère"
+   }
+  },
+  {
+   "bs": "mali",
+   "translations": {
+    "de": "klein (m)",
+    "en": "small (m)",
+    "tr": "küçük (eril)",
+    "sv": "liten (mask.)",
+    "nl": "klein (m)",
+    "nb": "liten (hankj.)",
+    "da": "lille (hank.)",
+    "fr": "petit"
+   }
+  },
+  {
+   "bs": "malo",
+   "translations": {
+    "de": "wenig / ein bisschen",
+    "en": "little / a bit",
+    "tr": "az / biraz",
+    "sv": "lite",
+    "nl": "weinig / een beetje",
+    "nb": "lite / litt",
+    "da": "lidt",
+    "fr": "peu / un peu"
+   }
+  },
+  {
+   "bs": "maloj",
+   "translations": {
+    "de": "kleinen (Lok.)",
+    "en": "small (loc.)",
+    "tr": "küçük (lokatif)",
+    "sv": "liten (lokativ)",
+    "nl": "klein (locatief)",
+    "nb": "liten (lokativ)",
+    "da": "lille (lokativ)",
+    "fr": "petite (locatif)"
+   }
+  },
+  {
+   "bs": "maraka",
+   "translations": {
+    "de": "Mark (Gen. Mehrz.)",
+    "en": "marks (gen. pl.)",
+    "tr": "mark (genitif çoğul)",
+    "sv": "mark (genitiv plural)",
+    "nl": "mark (genitief meervoud)",
+    "nb": "mark (genitiv flertall)",
+    "da": "mark (genitiv flertal)",
+    "fr": "marks (génitif pluriel)"
+   }
+  },
+  {
+   "bs": "marke",
+   "translations": {
+    "de": "Mark (Währung)",
+    "en": "marks (currency)",
+    "tr": "mark (para birimi)",
+    "sv": "mark (valuta)",
+    "nl": "mark (munt)",
+    "nb": "mark (valuta)",
+    "da": "mark (valuta)",
+    "fr": "marks (monnaie)"
+   }
+  },
+  {
+   "bs": "me",
+   "translations": {
+    "de": "mich",
+    "en": "me",
+    "tr": "beni",
+    "sv": "mig",
+    "nl": "mij",
+    "nb": "meg",
+    "da": "mig",
+    "fr": "me"
+   }
+  },
+  {
+   "bs": "mi",
+   "translations": {
+    "de": "mir / wir",
+    "en": "to me / we",
+    "tr": "bana / biz",
+    "sv": "till mig / vi",
+    "nl": "aan mij / wij",
+    "nb": "til meg / vi",
+    "da": "til mig / vi",
+    "fr": "à moi / nous"
+   }
+  },
+  {
+   "bs": "minuta",
+   "translations": {
+    "de": "Minuten",
+    "en": "minutes",
+    "tr": "dakika",
+    "sv": "minuter",
+    "nl": "minuten",
+    "nb": "minutter",
+    "da": "minutter",
+    "fr": "minutes"
+   }
+  },
+  {
+   "bs": "mira",
+   "translations": {
+    "de": "Mira (Name)",
+    "en": "Mira (name)",
+    "tr": "Mira (isim)",
+    "sv": "Mira (namn)",
+    "nl": "Mira (naam)",
+    "nb": "Mira (navn)",
+    "da": "Mira (navn)",
+    "fr": "Mira (prénom)"
+   }
+  },
+  {
+   "bs": "mislim",
+   "translations": {
+    "de": "ich denke",
+    "en": "I think",
+    "tr": "düşünüyorum",
+    "sv": "jag tror",
+    "nl": "ik denk",
+    "nb": "jeg tror",
+    "da": "jeg tror",
+    "fr": "je pense"
+   }
+  },
+  {
+   "bs": "mjeseca",
+   "translations": {
+    "de": "Monat (Gen.)",
+    "en": "month (gen.)",
+    "tr": "ay (genitif)",
+    "sv": "månad (genitiv)",
+    "nl": "maand (genitief)",
+    "nb": "måned (genitiv)",
+    "da": "måned (genitiv)",
+    "fr": "mois (génitif)"
+   }
+  },
+  {
+   "bs": "mjesecu",
+   "translations": {
+    "de": "Monat (Lok.)",
+    "en": "month (loc.)",
+    "tr": "ay (lokatif)",
+    "sv": "månad (lokativ)",
+    "nl": "maand (locatief)",
+    "nb": "måned (lokativ)",
+    "da": "måned (lokativ)",
+    "fr": "mois (locatif)"
+   }
+  },
+  {
+   "bs": "mnogo",
+   "translations": {
+    "de": "viel / viele",
+    "en": "much / many",
+    "tr": "çok / birçok",
+    "sv": "mycket / många",
+    "nl": "veel",
+    "nb": "mye / mange",
+    "da": "meget / mange",
+    "fr": "beaucoup"
+   }
+  },
+  {
+   "bs": "mog",
+   "translations": {
+    "de": "meines / meinen",
+    "en": "of my / my (acc.)",
+    "tr": "benim (genitif/akuzatif)",
+    "sv": "min (genitiv/ackusativ)",
+    "nl": "van mijn (genitief/accusatief)",
+    "nb": "min (genitiv/akkusativ)",
+    "da": "min (genitiv/akkusativ)",
+    "fr": "de mon / mon (accusatif)"
+   }
+  },
+  {
+   "bs": "mogla",
+   "translations": {
+    "de": "könnte (w)",
+    "en": "could (f)",
+    "tr": "yapabilirdi (kadın)",
+    "sv": "skulle kunna (kvinna)",
+    "nl": "zou kunnen (vrouw)",
+    "nb": "kunne (kvinne)",
+    "da": "kunne (kvinde)",
+    "fr": "pourrait (femme)"
+   }
+  },
+  {
+   "bs": "moj",
+   "translations": {
+    "de": "mein",
+    "en": "my (m)",
+    "tr": "benim (eril)",
+    "sv": "min (mask.)",
+    "nl": "mijn (m)",
+    "nb": "min (hankj.)",
+    "da": "min (hank.)",
+    "fr": "mon"
+   }
+  },
+  {
+   "bs": "moja",
+   "translations": {
+    "de": "meine",
+    "en": "my (f)",
+    "tr": "benim (dişil)",
+    "sv": "min (fem.)",
+    "nl": "mijn (v)",
+    "nb": "mi (hunkj.)",
+    "da": "min (hunk.)",
+    "fr": "ma"
+   }
+  },
+  {
+   "bs": "moje",
+   "translations": {
+    "de": "mein (s)",
+    "en": "my (n)",
+    "tr": "benim (nötr)",
+    "sv": "mitt (neutr.)",
+    "nl": "mijn (o)",
+    "nb": "mitt (intetkj.)",
+    "da": "mit (intetk.)",
+    "fr": "mon (neutre)"
+   }
+  },
+  {
+   "bs": "moju",
+   "translations": {
+    "de": "meine (Akk.)",
+    "en": "my (acc.)",
+    "tr": "benim (akuzatif)",
+    "sv": "min (ackusativ)",
+    "nl": "mijn (accusatief)",
+    "nb": "min (akkusativ)",
+    "da": "min (akkusativ)",
+    "fr": "ma (accusatif)"
+   }
+  },
+  {
+   "bs": "molim",
+   "translations": {
+    "de": "bitte",
+    "en": "please",
+    "tr": "lütfen",
+    "sv": "tack / snälla",
+    "nl": "alstublieft",
+    "nb": "vær så snill",
+    "da": "vær venlig",
+    "fr": "s'il vous plaît"
+   }
+  },
+  {
+   "bs": "more",
+   "translations": {
+    "de": "Meer",
+    "en": "sea",
+    "tr": "deniz",
+    "sv": "hav",
+    "nl": "zee",
+    "nb": "hav",
+    "da": "hav",
+    "fr": "mer"
+   }
+  },
+  {
+   "bs": "mosta",
+   "translations": {
+    "de": "Brücke (Gen.)",
+    "en": "bridge (gen.)",
+    "tr": "köprü (genitif)",
+    "sv": "bro (genitiv)",
+    "nl": "brug (genitief)",
+    "nb": "bru (genitiv)",
+    "da": "bro (genitiv)",
+    "fr": "pont (génitif)"
+   }
+  },
+  {
+   "bs": "može",
+   "translations": {
+    "de": "er/sie kann",
+    "en": "he/she can",
+    "tr": "yapabilir",
+    "sv": "han/hon kan",
+    "nl": "hij/zij kan",
+    "nb": "han/hun kan",
+    "da": "han/hun kan",
+    "fr": "il / elle peut"
+   }
+  },
+  {
+   "bs": "mu",
+   "translations": {
+    "de": "ihm",
+    "en": "to him",
+    "tr": "ona (erkek)",
+    "sv": "till honom",
+    "nl": "aan hem",
+    "nb": "til ham",
+    "da": "til ham",
+    "fr": "à lui"
+   }
+  },
+  {
+   "bs": "muž",
+   "translations": {
+    "de": "Ehemann",
+    "en": "husband",
+    "tr": "eş (erkek)",
+    "sv": "make",
+    "nl": "echtgenoot",
+    "nb": "ektemann",
+    "da": "mand",
+    "fr": "mari"
+   }
+  },
+  {
+   "bs": "na",
+   "translations": {
+    "de": "auf / an",
+    "en": "on / at",
+    "tr": "üstünde / -de",
+    "sv": "på / vid",
+    "nl": "op / aan",
+    "nb": "på / ved",
+    "da": "på / ved",
+    "fr": "sur / à"
+   }
+  },
+  {
+   "bs": "nadam",
+   "translations": {
+    "de": "ich hoffe",
+    "en": "I hope",
+    "tr": "umuyorum",
+    "sv": "jag hoppas",
+    "nl": "ik hoop",
+    "nb": "jeg håper",
+    "da": "jeg håber",
+    "fr": "j'espère"
+   }
+  },
+  {
+   "bs": "nam",
+   "translations": {
+    "de": "uns",
+    "en": "to us",
+    "tr": "bize",
+    "sv": "till oss",
+    "nl": "aan ons",
+    "nb": "til oss",
+    "da": "til os",
+    "fr": "à nous"
+   }
+  },
+  {
+   "bs": "nana",
+   "translations": {
+    "de": "Oma",
+    "en": "grandma",
+    "tr": "nine",
+    "sv": "mormor / farmor",
+    "nl": "oma",
+    "nb": "bestemor",
+    "da": "bedstemor",
+    "fr": "grand-mère"
+   }
+  },
+  {
+   "bs": "nane",
+   "translations": {
+    "de": "Oma (Gen.)",
+    "en": "grandma (gen.)",
+    "tr": "nine (genitif)",
+    "sv": "mormor (genitiv)",
+    "nl": "oma (genitief)",
+    "nb": "bestemor (genitiv)",
+    "da": "bedstemor (genitiv)",
+    "fr": "grand-mère (génitif)"
+   }
+  },
+  {
+   "bs": "nani",
+   "translations": {
+    "de": "Oma (Dat.)",
+    "en": "grandma (dat.)",
+    "tr": "nine (datif)",
+    "sv": "mormor (dativ)",
+    "nl": "oma (datief)",
+    "nb": "bestemor (dativ)",
+    "da": "bedstemor (dativ)",
+    "fr": "grand-mère (datif)"
+   }
+  },
+  {
+   "bs": "nano",
+   "translations": {
+    "de": "Oma! (Anrede)",
+    "en": "grandma! (vocative)",
+    "tr": "nine! (hitap)",
+    "sv": "mormor! (tilltal)",
+    "nl": "oma! (aanspreekvorm)",
+    "nb": "bestemor! (tiltale)",
+    "da": "bedstemor! (tiltale)",
+    "fr": "grand-mère ! (vocatif)"
+   }
+  },
+  {
+   "bs": "nanu",
+   "translations": {
+    "de": "Oma (Akk.)",
+    "en": "grandma (acc.)",
+    "tr": "nine (akuzatif)",
+    "sv": "mormor (ackusativ)",
+    "nl": "oma (accusatief)",
+    "nb": "bestemor (akkusativ)",
+    "da": "bedstemor (akkusativ)",
+    "fr": "grand-mère (accusatif)"
+   }
+  },
+  {
+   "bs": "nastavnica",
+   "translations": {
+    "de": "Lehrerin",
+    "en": "teacher (f)",
+    "tr": "öğretmen (kadın)",
+    "sv": "lärare (kvinna)",
+    "nl": "lerares",
+    "nb": "lærer (kvinne)",
+    "da": "lærer (kvinde)",
+    "fr": "enseignante"
+   }
+  },
+  {
+   "bs": "naučiti",
+   "translations": {
+    "de": "erlernen",
+    "en": "to learn",
+    "tr": "öğrenmek",
+    "sv": "lära sig",
+    "nl": "leren",
+    "nb": "lære seg",
+    "da": "at lære",
+    "fr": "apprendre"
+   }
+  },
+  {
+   "bs": "navečer",
+   "translations": {
+    "de": "abends",
+    "en": "in the evening",
+    "tr": "akşamları",
+    "sv": "på kvällarna",
+    "nl": "'s avonds",
+    "nb": "om kveldene",
+    "da": "om aftenen",
+    "fr": "le soir"
+   }
+  },
+  {
+   "bs": "nazvat",
+   "translations": {
+    "de": "anrufen (Zukunft)",
+    "en": "to call (future)",
+    "tr": "aramak (gelecek)",
+    "sv": "ringa (framtid)",
+    "nl": "bellen (toekomst)",
+    "nb": "ringe (framtid)",
+    "da": "at ringe (fremtid)",
+    "fr": "appeler (futur)"
+   }
+  },
+  {
+   "bs": "naš",
+   "translations": {
+    "de": "unser",
+    "en": "our (m)",
+    "tr": "bizim (eril)",
+    "sv": "vår (mask.)",
+    "nl": "ons (m)",
+    "nb": "vår (hankj.)",
+    "da": "vores (hank.)",
+    "fr": "notre (masculin)"
+   }
+  },
+  {
+   "bs": "naša",
+   "translations": {
+    "de": "unsere",
+    "en": "our (f)",
+    "tr": "bizim (dişil)",
+    "sv": "vår (fem.)",
+    "nl": "onze (v)",
+    "nb": "vår (hunkj.)",
+    "da": "vores (hunk.)",
+    "fr": "notre (féminin)"
+   }
+  },
+  {
+   "bs": "našu",
+   "translations": {
+    "de": "unsere (Akk.)",
+    "en": "our (acc.)",
+    "tr": "bizim (akuzatif)",
+    "sv": "vår (ackusativ)",
+    "nl": "onze (accusatief)",
+    "nb": "vår (akkusativ)",
+    "da": "vores (akkusativ)",
+    "fr": "notre (accusatif)"
+   }
+  },
+  {
+   "bs": "ne",
+   "translations": {
+    "de": "nicht",
+    "en": "not",
+    "tr": "değil",
+    "sv": "inte",
+    "nl": "niet",
+    "nb": "ikke",
+    "da": "ikke",
+    "fr": "ne ... pas"
+   }
+  },
+  {
+   "bs": "nekretnine",
+   "translations": {
+    "de": "Immobilien",
+    "en": "real estate",
+    "tr": "gayrimenkul",
+    "sv": "fastigheter",
+    "nl": "onroerend goed",
+    "nb": "eiendom (flere)",
+    "da": "fast ejendom (flere)",
+    "fr": "biens immobiliers"
+   }
+  },
+  {
+   "bs": "nema",
+   "translations": {
+    "de": "es gibt nicht / hat nicht",
+    "en": "there is no / does not have",
+    "tr": "yok",
+    "sv": "finns inte / har inte",
+    "nl": "er is niet / heeft niet",
+    "nb": "finnes ikke / har ikke",
+    "da": "findes ikke / har ikke",
+    "fr": "il n'y a pas / n'a pas"
+   }
+  },
+  {
+   "bs": "nešto",
+   "translations": {
+    "de": "etwas",
+    "en": "something",
+    "tr": "bir şey",
+    "sv": "något",
+    "nl": "iets",
+    "nb": "noe",
+    "da": "noget",
+    "fr": "quelque chose"
+   }
+  },
+  {
+   "bs": "nije",
+   "translations": {
+    "de": "ist nicht",
+    "en": "is not",
+    "tr": "değildir",
+    "sv": "är inte",
+    "nl": "is niet",
+    "nb": "er ikke",
+    "da": "er ikke",
+    "fr": "n'est pas"
+   }
+  },
+  {
+   "bs": "njegov",
+   "translations": {
+    "de": "sein",
+    "en": "to be",
+    "tr": "olmak",
+    "sv": "vara",
+    "nl": "zijn (werkwoord)",
+    "nb": "være",
+    "da": "at være",
+    "fr": "être"
+   }
+  },
+  {
+   "bs": "njemački",
+   "translations": {
+    "de": "Deutsch (Sprache)",
+    "en": "German",
+    "tr": "Almanca",
+    "sv": "tyska",
+    "nl": "Duits",
+    "nb": "tysk",
+    "da": "tysk",
+    "fr": "allemand"
+   }
+  },
+  {
+   "bs": "njen",
+   "translations": {
+    "de": "ihr",
+    "en": "her",
+    "tr": "onun (kadın)",
+    "sv": "hennes",
+    "nl": "haar",
+    "nb": "hennes",
+    "da": "hendes",
+    "fr": "son (à elle)"
+   }
+  },
+  {
+   "bs": "notara",
+   "translations": {
+    "de": "Notar (Gen.)",
+    "en": "notary (gen.)",
+    "tr": "noter (genitif)",
+    "sv": "notarius publicus (genitiv)",
+    "nl": "notaris (genitief)",
+    "nb": "notarius publicus (genitiv)",
+    "da": "notar (genitiv)",
+    "fr": "notaire (génitif)"
+   }
+  },
+  {
+   "bs": "novi",
+   "translations": {
+    "de": "neuen",
+    "en": "new",
+    "tr": "yeni",
+    "sv": "nytt",
+    "nl": "nieuwe",
+    "nb": "ny",
+    "da": "nyt",
+    "fr": "nouveau"
+   }
+  },
+  {
+   "bs": "o",
+   "translations": {
+    "de": "über",
+    "en": "about",
+    "tr": "hakkında",
+    "sv": "om",
+    "nl": "over",
+    "nb": "om",
+    "da": "om",
+    "fr": "à propos de"
+   }
+  },
+  {
+   "bs": "objašnjava",
+   "translations": {
+    "de": "er/sie erklärt",
+    "en": "he/she explains",
+    "tr": "açıklıyor",
+    "sv": "han/hon förklarar",
+    "nl": "hij/zij legt uit",
+    "nb": "han/hun forklarer",
+    "da": "han/hun forklarer",
+    "fr": "il / elle explique"
+   }
+  },
+  {
+   "bs": "obrazac",
+   "translations": {
+    "de": "Formular",
+    "en": "form",
+    "tr": "form",
+    "sv": "blankett",
+    "nl": "formulier",
+    "nb": "skjema",
+    "da": "blanket",
+    "fr": "formulaire"
+   }
+  },
+  {
+   "bs": "od",
+   "translations": {
+    "de": "von",
+    "en": "from / of",
+    "tr": "-den / -in",
+    "sv": "av",
+    "nl": "van",
+    "nb": "av",
+    "da": "af",
+    "fr": "de"
+   }
+  },
+  {
+   "bs": "odgovara",
+   "translations": {
+    "de": "er/sie antwortet",
+    "en": "he/she answers",
+    "tr": "cevap veriyor",
+    "sv": "han/hon svarar",
+    "nl": "hij/zij antwoordt",
+    "nb": "han/hun svarer",
+    "da": "han/hun svarer",
+    "fr": "il / elle répond"
+   }
+  },
+  {
+   "bs": "odgovor",
+   "translations": {
+    "de": "Antwort",
+    "en": "answer",
+    "tr": "cevap",
+    "sv": "svar",
+    "nl": "antwoord",
+    "nb": "svar",
+    "da": "svar",
+    "fr": "réponse"
+   }
+  },
+  {
+   "bs": "oko",
+   "translations": {
+    "de": "etwa / um",
+    "en": "about / around",
+    "tr": "yaklaşık / civarında",
+    "sv": "ungefär / omkring",
+    "nl": "ongeveer / rond",
+    "nb": "omtrent / rundt",
+    "da": "omkring",
+    "fr": "environ / autour de"
+   }
+  },
+  {
+   "bs": "on",
+   "translations": {
+    "de": "er",
+    "en": "he",
+    "tr": "o (erkek)",
+    "sv": "han",
+    "nl": "hij",
+    "nb": "han",
+    "da": "han",
+    "fr": "il"
+   }
+  },
+  {
+   "bs": "ona",
+   "translations": {
+    "de": "sie",
+    "en": "she",
+    "tr": "o (kadın)",
+    "sv": "hon",
+    "nl": "zij",
+    "nb": "hun",
+    "da": "hun",
+    "fr": "elle"
+   }
+  },
+  {
+   "bs": "onda",
+   "translations": {
+    "de": "dann",
+    "en": "then",
+    "tr": "o zaman",
+    "sv": "sedan",
+    "nl": "dan",
+    "nb": "så",
+    "da": "så",
+    "fr": "alors"
+   }
+  },
+  {
+   "bs": "oni",
+   "translations": {
+    "de": "sie (Mehrzahl)",
+    "en": "they",
+    "tr": "onlar",
+    "sv": "de",
+    "nl": "zij (meervoud)",
+    "nb": "de",
+    "da": "de",
+    "fr": "ils (pluriel)"
+   }
+  },
+  {
+   "bs": "općinu",
+   "translations": {
+    "de": "Gemeindeamt (Akk.)",
+    "en": "municipal office (acc.)",
+    "tr": "belediye (akuzatif)",
+    "sv": "kommunkontor (ackusativ)",
+    "nl": "gemeentehuis (accusatief)",
+    "nb": "kommunekontor (akkusativ)",
+    "da": "borgerservice (akkusativ)",
+    "fr": "mairie (accusatif)"
+   }
+  },
+  {
+   "bs": "osam",
+   "translations": {
+    "de": "acht",
+    "en": "eight",
+    "tr": "sekiz",
+    "sv": "åtta",
+    "nl": "acht",
+    "nb": "åtte",
+    "da": "otte",
+    "fr": "huit"
+   }
+  },
+  {
+   "bs": "osamdeset",
+   "translations": {
+    "de": "achtzig",
+    "en": "eighty",
+    "tr": "seksen",
+    "sv": "åttio",
+    "nl": "tachtig",
+    "nb": "åtti",
+    "da": "firs",
+    "fr": "quatre-vingts"
+   }
+  },
+  {
+   "bs": "ostati",
+   "translations": {
+    "de": "bleiben",
+    "en": "to stay",
+    "tr": "kalmak",
+    "sv": "stanna",
+    "nl": "blijven",
+    "nb": "bli",
+    "da": "at blive",
+    "fr": "rester"
+   }
+  },
+  {
+   "bs": "otišla",
+   "translations": {
+    "de": "weggegangen (w)",
+    "en": "went away (f)",
+    "tr": "gitti (kadın)",
+    "sv": "gick i väg (kvinna)",
+    "nl": "weggegaan (vrouw)",
+    "nb": "gikk (kvinne)",
+    "da": "gik (kvinde)",
+    "fr": "partie (femme)"
+   }
+  },
+  {
+   "bs": "ova",
+   "translations": {
+    "de": "diese",
+    "en": "this (f)",
+    "tr": "bu (dişil)",
+    "sv": "den här (fem.)",
+    "nl": "deze (v)",
+    "nb": "denne (hunkj.)",
+    "da": "denne (hunk.)",
+    "fr": "cette"
+   }
+  },
+  {
+   "bs": "ovaj",
+   "translations": {
+    "de": "dieser",
+    "en": "this (m)",
+    "tr": "bu (eril)",
+    "sv": "den här (mask.)",
+    "nl": "deze (m)",
+    "nb": "denne (hankj.)",
+    "da": "denne (hank.)",
+    "fr": "ce (masculin)"
+   }
+  },
+  {
+   "bs": "ovdje",
+   "translations": {
+    "de": "hier",
+    "en": "here",
+    "tr": "burada",
+    "sv": "här",
+    "nl": "hier",
+    "nb": "her",
+    "da": "her",
+    "fr": "ici"
+   }
+  },
+  {
+   "bs": "ovo",
+   "translations": {
+    "de": "dies / das",
+    "en": "this",
+    "tr": "bu",
+    "sv": "det här",
+    "nl": "dit",
+    "nb": "dette",
+    "da": "det her",
+    "fr": "ceci"
+   }
+  },
+  {
+   "bs": "paradajz",
+   "translations": {
+    "de": "Tomate",
+    "en": "tomato",
+    "tr": "domates",
+    "sv": "tomat",
+    "nl": "tomaat",
+    "nb": "tomat",
+    "da": "tomat",
+    "fr": "tomate"
+   }
+  },
+  {
+   "bs": "park",
+   "translations": {
+    "de": "Park",
+    "en": "park",
+    "tr": "park",
+    "sv": "park",
+    "nl": "park",
+    "nb": "park",
+    "da": "park",
+    "fr": "parc"
+   }
+  },
+  {
+   "bs": "parku",
+   "translations": {
+    "de": "Park (Lok.)",
+    "en": "park (loc.)",
+    "tr": "park (lokatif)",
+    "sv": "park (lokativ)",
+    "nl": "park (locatief)",
+    "nb": "park (lokativ)",
+    "da": "park (lokativ)",
+    "fr": "parc (locatif)"
+   }
+  },
+  {
+   "bs": "pas",
+   "translations": {
+    "de": "Hund",
+    "en": "dog",
+    "tr": "köpek",
+    "sv": "hund",
+    "nl": "hond",
+    "nb": "hund",
+    "da": "hund",
+    "fr": "chien"
+   }
+  },
+  {
+   "bs": "pet",
+   "translations": {
+    "de": "fünf",
+    "en": "five",
+    "tr": "beş",
+    "sv": "fem",
+    "nl": "vijf",
+    "nb": "fem",
+    "da": "fem",
+    "fr": "cinq"
+   }
+  },
+  {
+   "bs": "petog",
+   "translations": {
+    "de": "am fünften",
+    "en": "on the fifth",
+    "tr": "beşinde",
+    "sv": "den femte",
+    "nl": "op de vijfde",
+    "nb": "den femte",
+    "da": "den femte",
+    "fr": "le cinq"
+   }
+  },
+  {
+   "bs": "pijaci",
+   "translations": {
+    "de": "Markt (Lok.)",
+    "en": "market (loc.)",
+    "tr": "pazar (lokatif)",
+    "sv": "marknad (lokativ)",
+    "nl": "markt (locatief)",
+    "nb": "marked (lokativ)",
+    "da": "marked (lokativ)",
+    "fr": "marché (locatif)"
+   }
+  },
+  {
+   "bs": "pijacu",
+   "translations": {
+    "de": "Markt (Akk.)",
+    "en": "market (acc.)",
+    "tr": "pazar (akuzatif)",
+    "sv": "marknad (ackusativ)",
+    "nl": "markt (accusatief)",
+    "nb": "marked (akkusativ)",
+    "da": "marked (akkusativ)",
+    "fr": "marché (accusatif)"
+   }
+  },
+  {
+   "bs": "pijem",
+   "translations": {
+    "de": "ich trinke",
+    "en": "I drink",
+    "tr": "içiyorum",
+    "sv": "jag dricker",
+    "nl": "ik drink",
+    "nb": "jeg drikker",
+    "da": "jeg drikker",
+    "fr": "je bois"
+   }
+  },
+  {
+   "bs": "piju",
+   "translations": {
+    "de": "sie trinken",
+    "en": "they drink",
+    "tr": "içiyorlar",
+    "sv": "de dricker",
+    "nl": "zij drinken",
+    "nb": "de drikker",
+    "da": "de drikker",
+    "fr": "ils boivent"
+   }
+  },
+  {
+   "bs": "pile",
+   "translations": {
+    "de": "getrunken haben (w. Mehrz.)",
+    "en": "drank (f, pl.)",
+    "tr": "içtiler (dişil çoğul)",
+    "sv": "drack (fem. plural)",
+    "nl": "hebben gedronken (v. meervoud)",
+    "nb": "drakk (hunkj. flertall)",
+    "da": "drak (hunk. flertal)",
+    "fr": "bu (femmes)"
+   }
+  },
+  {
+   "bs": "pita",
+   "translations": {
+    "de": "er/sie fragt",
+    "en": "he/she asks",
+    "tr": "soruyor",
+    "sv": "han/hon frågar",
+    "nl": "hij/zij vraagt",
+    "nb": "han/hun spør",
+    "da": "han/hun spørger",
+    "fr": "il / elle demande"
+   }
+  },
+  {
+   "bs": "pitu",
+   "translations": {
+    "de": "Pita (Akk.)",
+    "en": "pita (acc.)",
+    "tr": "pita (akuzatif)",
+    "sv": "pita (ackusativ)",
+    "nl": "pita (accusatief)",
+    "nb": "pita (akkusativ)",
+    "da": "pita (akkusativ)",
+    "fr": "pita (accusatif)"
+   }
+  },
+  {
+   "bs": "plata",
+   "translations": {
+    "de": "Gehalt",
+    "en": "salary",
+    "tr": "maaş",
+    "sv": "lön",
+    "nl": "salaris",
+    "nb": "lønn",
+    "da": "løn",
+    "fr": "salaire"
+   }
+  },
+  {
+   "bs": "plava",
+   "translations": {
+    "de": "blau (w)",
+    "en": "blue (f)",
+    "tr": "mavi (dişil)",
+    "sv": "blå (fem.)",
+    "nl": "blauw (v)",
+    "nb": "blå (hunkj.)",
+    "da": "blå (hunk.)",
+    "fr": "bleue"
+   }
+  },
+  {
+   "bs": "plaća",
+   "translations": {
+    "de": "er/sie bezahlt",
+    "en": "he/she pays",
+    "tr": "ödüyor",
+    "sv": "han/hon betalar",
+    "nl": "hij/zij betaalt",
+    "nb": "han/hun betaler",
+    "da": "han/hun betaler",
+    "fr": "il / elle paie"
+   }
+  },
+  {
+   "bs": "pokazala",
+   "translations": {
+    "de": "gezeigt (w)",
+    "en": "showed (f)",
+    "tr": "gösterdi (kadın)",
+    "sv": "visade (kvinna)",
+    "nl": "liet zien (vrouw)",
+    "nb": "viste (kvinne)",
+    "da": "viste (kvinde)",
+    "fr": "montré (femme)"
+   }
+  },
+  {
+   "bs": "pokazuje",
+   "translations": {
+    "de": "er/sie zeigt",
+    "en": "he/she shows",
+    "tr": "gösteriyor",
+    "sv": "han/hon visar",
+    "nl": "hij/zij laat zien",
+    "nb": "han/hun viser",
+    "da": "han/hun viser",
+    "fr": "il / elle montre"
+   }
+  },
+  {
+   "bs": "poklon",
+   "translations": {
+    "de": "Geschenk",
+    "en": "present",
+    "tr": "hediye",
+    "sv": "present",
+    "nl": "cadeau",
+    "nb": "gave",
+    "da": "gave",
+    "fr": "cadeau"
+   }
+  },
+  {
+   "bs": "pomoći",
+   "translations": {
+    "de": "Hilfe (Lok.) / helfen",
+    "en": "help (loc.) / to help",
+    "tr": "yardım (lokatif) / yardım etmek",
+    "sv": "hjälp (lokativ) / hjälpa",
+    "nl": "hulp (locatief) / helpen",
+    "nb": "hjelp (lokativ) / hjelpe",
+    "da": "hjælp (lokativ) / at hjælpe",
+    "fr": "aide (locatif) / aider"
+   }
+  },
+  {
+   "bs": "ponekad",
+   "translations": {
+    "de": "manchmal",
+    "en": "sometimes",
+    "tr": "bazen",
+    "sv": "ibland",
+    "nl": "soms",
+    "nb": "noen ganger",
+    "da": "nogle gange",
+    "fr": "parfois"
+   }
+  },
+  {
+   "bs": "popunjava",
+   "translations": {
+    "de": "er/sie füllt aus",
+    "en": "he/she fills in",
+    "tr": "dolduruyor",
+    "sv": "han/hon fyller i",
+    "nl": "hij/zij vult in",
+    "nb": "han/hun fyller ut",
+    "da": "han/hun udfylder",
+    "fr": "il / elle remplit"
+   }
+  },
+  {
+   "bs": "pored",
+   "translations": {
+    "de": "neben",
+    "en": "next to",
+    "tr": "yanında",
+    "sv": "bredvid",
+    "nl": "naast",
+    "nb": "ved siden av",
+    "da": "ved siden af",
+    "fr": "à côté de"
+   }
+  },
+  {
+   "bs": "porodica",
+   "translations": {
+    "de": "Familie",
+    "en": "Family",
+    "tr": "Aile",
+    "sv": "Familj",
+    "nl": "Familie",
+    "nb": "Familie",
+    "da": "Familie",
+    "fr": "La famille"
+   }
+  },
+  {
+   "bs": "porodici",
+   "translations": {
+    "de": "Familie (Lok.)",
+    "en": "family (loc.)",
+    "tr": "aile (lokatif)",
+    "sv": "familj (lokativ)",
+    "nl": "familie (locatief)",
+    "nb": "familie (lokativ)",
+    "da": "familie (lokativ)",
+    "fr": "famille (locatif)"
+   }
+  },
+  {
+   "bs": "porodicu",
+   "translations": {
+    "de": "Familie (Akk.)",
+    "en": "family (acc.)",
+    "tr": "aile (akuzatif)",
+    "sv": "familj (ackusativ)",
+    "nl": "familie (accusatief)",
+    "nb": "familie (akkusativ)",
+    "da": "familie (akkusativ)",
+    "fr": "famille (accusatif)"
+   }
+  },
+  {
+   "bs": "posao",
+   "translations": {
+    "de": "Arbeit",
+    "en": "work",
+    "tr": "iş",
+    "sv": "arbete",
+    "nl": "werk",
+    "nb": "arbeid",
+    "da": "arbejde",
+    "fr": "travail"
+   }
+  },
+  {
+   "bs": "posla",
+   "translations": {
+    "de": "Arbeit (Gen.)",
+    "en": "work (gen.)",
+    "tr": "iş (genitif)",
+    "sv": "jobb (genitiv)",
+    "nl": "werk (genitief)",
+    "nb": "jobb (genitiv)",
+    "da": "arbejde (genitiv)",
+    "fr": "travail (génitif)"
+   }
+  },
+  {
+   "bs": "poslije",
+   "translations": {
+    "de": "danach / nach",
+    "en": "after / afterwards",
+    "tr": "sonra",
+    "sv": "efter",
+    "nl": "daarna / na",
+    "nb": "etterpå / etter",
+    "da": "bagefter / efter",
+    "fr": "ensuite / après"
+   }
+  },
+  {
+   "bs": "potpisuje",
+   "translations": {
+    "de": "er/sie unterschreibt",
+    "en": "he/she signs",
+    "tr": "imzalıyor",
+    "sv": "han/hon skriver under",
+    "nl": "hij/zij tekent",
+    "nb": "han/hun skriver under",
+    "da": "han/hun skriver under",
+    "fr": "il / elle signe"
+   }
+  },
+  {
+   "bs": "potpisuju",
+   "translations": {
+    "de": "sie unterschreiben",
+    "en": "they sign",
+    "tr": "imzalıyorlar",
+    "sv": "de skriver under",
+    "nl": "zij tekenen",
+    "nb": "de skriver under",
+    "da": "de skriver under",
+    "fr": "ils signent"
+   }
+  },
+  {
+   "bs": "potvrda",
+   "translations": {
+    "de": "Bescheinigung",
+    "en": "certificate",
+    "tr": "belge / onay yazısı",
+    "sv": "intyg",
+    "nl": "verklaring",
+    "nb": "attest",
+    "da": "attest",
+    "fr": "attestation"
+   }
+  },
+  {
+   "bs": "potvrdu",
+   "translations": {
+    "de": "Bescheinigung (Akk.)",
+    "en": "certificate (acc.)",
+    "tr": "belge (akuzatif)",
+    "sv": "intyg (ackusativ)",
+    "nl": "verklaring (accusatief)",
+    "nb": "attest (akkusativ)",
+    "da": "attest (akkusativ)",
+    "fr": "attestation (accusatif)"
+   }
+  },
+  {
+   "bs": "povrća",
+   "translations": {
+    "de": "Gemüse (Gen.)",
+    "en": "vegetables (gen.)",
+    "tr": "sebze (genitif)",
+    "sv": "grönsaker (genitiv)",
+    "nl": "groente (genitief)",
+    "nb": "grønnsaker (genitiv)",
+    "da": "grøntsager (genitiv)",
+    "fr": "légumes (génitif)"
+   }
+  },
+  {
+   "bs": "pozdravi",
+   "translations": {
+    "de": "grüße",
+    "en": "say hello to",
+    "tr": "selam söyle",
+    "sv": "hälsa",
+    "nl": "doe de groeten",
+    "nb": "hils",
+    "da": "hils",
+    "fr": "salue"
+   }
+  },
+  {
+   "bs": "počela",
+   "translations": {
+    "de": "begonnen (w)",
+    "en": "started (f)",
+    "tr": "başladı (kadın)",
+    "sv": "började (kvinna)",
+    "nl": "begonnen (vrouw)",
+    "nb": "begynte (kvinne)",
+    "da": "begyndte (kvinde)",
+    "fr": "commencé (femme)"
+   }
+  },
+  {
+   "bs": "početi",
+   "translations": {
+    "de": "anfangen",
+    "en": "to start",
+    "tr": "başlamak",
+    "sv": "börja",
+    "nl": "beginnen",
+    "nb": "begynne",
+    "da": "at begynde",
+    "fr": "commencer"
+   }
+  },
+  {
+   "bs": "prebivalištu",
+   "translations": {
+    "de": "Wohnsitz (Lok.)",
+    "en": "residence (loc.)",
+    "tr": "ikametgâh (lokatif)",
+    "sv": "bostadsort (lokativ)",
+    "nl": "woonplaats (locatief)",
+    "nb": "bosted (lokativ)",
+    "da": "bopæl (lokativ)",
+    "fr": "domicile (locatif)"
+   }
+  },
+  {
+   "bs": "pregovaraju",
+   "translations": {
+    "de": "sie verhandeln",
+    "en": "they negotiate",
+    "tr": "pazarlık ediyorlar",
+    "sv": "de förhandlar",
+    "nl": "zij onderhandelen",
+    "nb": "de forhandler",
+    "da": "de forhandler",
+    "fr": "ils négocient"
+   }
+  },
+  {
+   "bs": "preko",
+   "translations": {
+    "de": "über / hinüber",
+    "en": "over / across",
+    "tr": "üzerinden",
+    "sv": "över",
+    "nl": "over / overheen",
+    "nb": "over",
+    "da": "over",
+    "fr": "par-dessus"
+   }
+  },
+  {
+   "bs": "prenoćiti",
+   "translations": {
+    "de": "übernachten",
+    "en": "to stay overnight",
+    "tr": "gecelemek",
+    "sv": "övernatta",
+    "nl": "overnachten",
+    "nb": "overnatte",
+    "da": "at overnatte",
+    "fr": "passer la nuit"
+   }
+  },
+  {
+   "bs": "prije",
+   "translations": {
+    "de": "vor / früher",
+    "en": "before / earlier",
+    "tr": "önce / daha önce",
+    "sv": "före / tidigare",
+    "nl": "voor / eerder",
+    "nb": "før / tidligere",
+    "da": "før / tidligere",
+    "fr": "avant"
+   }
+  },
+  {
+   "bs": "prirodu",
+   "translations": {
+    "de": "Natur (Akk.)",
+    "en": "nature (acc.)",
+    "tr": "doğa (akuzatif)",
+    "sv": "natur (ackusativ)",
+    "nl": "natuur (accusatief)",
+    "nb": "natur (akkusativ)",
+    "da": "natur (akkusativ)",
+    "fr": "nature (accusatif)"
+   }
+  },
+  {
+   "bs": "pričale",
+   "translations": {
+    "de": "geredet haben (w. Mehrz.)",
+    "en": "talked (f, pl.)",
+    "tr": "konuştular (dişil çoğul)",
+    "sv": "pratade (fem. plural)",
+    "nl": "praatten (v. meervoud)",
+    "nb": "snakket (hunkj. flertall)",
+    "da": "talte (hunk. flertal)",
+    "fr": "parlé (femmes)"
+   }
+  },
+  {
+   "bs": "probni",
+   "translations": {
+    "de": "Probe-",
+    "en": "trial",
+    "tr": "deneme",
+    "sv": "prov-",
+    "nl": "proef-",
+    "nb": "prøve-",
+    "da": "prøve-",
+    "fr": "d'essai"
+   }
+  },
+  {
+   "bs": "prodavač",
+   "translations": {
+    "de": "Verkäufer",
+    "en": "seller",
+    "tr": "satıcı",
+    "sv": "säljare",
+    "nl": "verkoper",
+    "nb": "selger",
+    "da": "sælger",
+    "fr": "vendeur"
+   }
+  },
+  {
+   "bs": "prozora",
+   "translations": {
+    "de": "Fenster (Gen. Mehrz.)",
+    "en": "windows (gen. pl.)",
+    "tr": "pencere (genitif çoğul)",
+    "sv": "fönster (genitiv plural)",
+    "nl": "ramen (genitief meervoud)",
+    "nb": "vinduer (genitiv flertall)",
+    "da": "vinduer (genitiv flertal)",
+    "fr": "fenêtres (génitif pluriel)"
+   }
+  },
+  {
+   "bs": "prošle",
+   "translations": {
+    "de": "letzte",
+    "en": "last",
+    "tr": "geçen",
+    "sv": "förra",
+    "nl": "vorige",
+    "nb": "forrige",
+    "da": "sidste",
+    "fr": "dernière"
+   }
+  },
+  {
+   "bs": "prvo",
+   "translations": {
+    "de": "zuerst",
+    "en": "first",
+    "tr": "önce",
+    "sv": "först",
+    "nl": "eerst",
+    "nb": "først",
+    "da": "først",
+    "fr": "d'abord"
+   }
+  },
+  {
+   "bs": "psa",
+   "translations": {
+    "de": "Hund (Akk.)",
+    "en": "dog (acc.)",
+    "tr": "köpek (akuzatif)",
+    "sv": "hund (ackusativ)",
+    "nl": "hond (accusatief)",
+    "nb": "hund (akkusativ)",
+    "da": "hund (akkusativ)",
+    "fr": "chien (accusatif)"
+   }
+  },
+  {
+   "bs": "putovat",
+   "translations": {
+    "de": "reisen (Zukunft)",
+    "en": "to travel (future)",
+    "tr": "seyahat etmek (gelecek)",
+    "sv": "resa (framtid)",
+    "nl": "reizen (toekomst)",
+    "nb": "reise (framtid)",
+    "da": "at rejse (fremtid)",
+    "fr": "voyager (futur)"
+   }
+  },
+  {
+   "bs": "pčelar",
+   "translations": {
+    "de": "Imker",
+    "en": "a beekeeper",
+    "tr": "arıcı",
+    "sv": "biodlare",
+    "nl": "imker",
+    "nb": "birøkter",
+    "da": "biavler",
+    "fr": "apiculteur"
+   }
+  },
+  {
+   "bs": "rad",
+   "translations": {
+    "de": "Arbeit",
+    "en": "work",
+    "tr": "iş",
+    "sv": "arbete",
+    "nl": "werk",
+    "nb": "arbeid",
+    "da": "arbejde",
+    "fr": "travail"
+   }
+  },
+  {
+   "bs": "radim",
+   "translations": {
+    "de": "ich arbeite",
+    "en": "I work",
+    "tr": "çalışıyorum",
+    "sv": "jag arbetar",
+    "nl": "ik werk",
+    "nb": "jeg arbeider",
+    "da": "jeg arbejder",
+    "fr": "je travaille"
+   }
+  },
+  {
+   "bs": "radnji",
+   "translations": {
+    "de": "Laden (Lok.)",
+    "en": "shop (loc.)",
+    "tr": "dükkân (lokatif)",
+    "sv": "butik (lokativ)",
+    "nl": "winkel (locatief)",
+    "nb": "butikk (lokativ)",
+    "da": "butik (lokativ)",
+    "fr": "boutique (locatif)"
+   }
+  },
+  {
+   "bs": "radno",
+   "translations": {
+    "de": "Arbeits-",
+    "en": "working",
+    "tr": "çalışma",
+    "sv": "arbets-",
+    "nl": "werk-",
+    "nb": "arbeids-",
+    "da": "arbejds-",
+    "fr": "de travail"
+   }
+  },
+  {
+   "bs": "raduje",
+   "translations": {
+    "de": "freut sich",
+    "en": "is looking forward",
+    "tr": "seviniyor",
+    "sv": "ser fram emot",
+    "nl": "verheugt zich",
+    "nb": "gleder seg",
+    "da": "glæder sig",
+    "fr": "se réjouit"
+   }
+  },
+  {
+   "bs": "rano",
+   "translations": {
+    "de": "früh",
+    "en": "early",
+    "tr": "erken",
+    "sv": "tidigt",
+    "nl": "vroeg",
+    "nb": "tidlig",
+    "da": "tidligt",
+    "fr": "tôt"
+   }
+  },
+  {
+   "bs": "razgovor",
+   "translations": {
+    "de": "Gespräch",
+    "en": "conversation",
+    "tr": "konuşma",
+    "sv": "samtal",
+    "nl": "gesprek",
+    "nb": "samtale",
+    "da": "samtale",
+    "fr": "entretien"
+   }
+  },
+  {
+   "bs": "razumijem",
+   "translations": {
+    "de": "ich verstehe",
+    "en": "I understand",
+    "tr": "anlıyorum",
+    "sv": "jag förstår",
+    "nl": "ik begrijp",
+    "nb": "jeg forstår",
+    "da": "jeg forstår",
+    "fr": "je comprends"
+   }
+  },
+  {
+   "bs": "računovodstvu",
+   "translations": {
+    "de": "Buchhaltung (Lok.)",
+    "en": "accounting (loc.)",
+    "tr": "muhasebe (lokatif)",
+    "sv": "bokföring (lokativ)",
+    "nl": "boekhouding (locatief)",
+    "nb": "regnskap (lokativ)",
+    "da": "bogføring (lokativ)",
+    "fr": "comptabilité (locatif)"
+   }
+  },
+  {
+   "bs": "recite",
+   "translations": {
+    "de": "sagen Sie",
+    "en": "tell (formal)",
+    "tr": "söyleyin",
+    "sv": "berätta (ni)",
+    "nl": "vertelt u",
+    "nb": "fortell (De)",
+    "da": "fortæl (De)",
+    "fr": "dites"
+   }
+  },
+  {
+   "bs": "rex",
+   "translations": {
+    "de": "Rex (Hundename)",
+    "en": "Rex (dog's name)",
+    "tr": "Rex (köpek adı)",
+    "sv": "Rex (hundens namn)",
+    "nl": "Rex (naam van de hond)",
+    "nb": "Rex (hundens navn)",
+    "da": "Rex (hundens navn)",
+    "fr": "Rex (nom du chien)"
+   }
+  },
+  {
+   "bs": "rijeke",
+   "translations": {
+    "de": "Fluss (Gen.)",
+    "en": "river (gen.)",
+    "tr": "nehir (genitif)",
+    "sv": "flod (genitiv)",
+    "nl": "rivier (genitief)",
+    "nb": "elv (genitiv)",
+    "da": "flod (genitiv)",
+    "fr": "rivière (génitif)"
+   }
+  },
+  {
+   "bs": "ručka",
+   "translations": {
+    "de": "Mittagessen (Gen.)",
+    "en": "lunch (gen.)",
+    "tr": "öğle yemeği (genitif)",
+    "sv": "lunch (genitiv)",
+    "nl": "lunch (genitief)",
+    "nb": "lunsj (genitiv)",
+    "da": "frokost (genitiv)",
+    "fr": "déjeuner (génitif)"
+   }
+  },
+  {
+   "bs": "sa",
+   "translations": {
+    "de": "mit",
+    "en": "with",
+    "tr": "ile",
+    "sv": "med",
+    "nl": "met",
+    "nb": "med",
+    "da": "med",
+    "fr": "avec"
+   }
+  },
+  {
+   "bs": "sada",
+   "translations": {
+    "de": "jetzt",
+    "en": "now",
+    "tr": "şimdi",
+    "sv": "nu",
+    "nl": "nu",
+    "nb": "nå",
+    "da": "nu",
+    "fr": "maintenant"
+   }
+  },
+  {
+   "bs": "sam",
+   "translations": {
+    "de": "bin",
+    "en": "am",
+    "tr": "-im",
+    "sv": "är (jag)",
+    "nl": "ben",
+    "nb": "er (jeg)",
+    "da": "er (jeg)",
+    "fr": "suis"
+   }
+  },
+  {
+   "bs": "sarajeva",
+   "translations": {
+    "de": "Sarajevo (Gen.)",
+    "en": "Sarajevo (gen.)",
+    "tr": "Saraybosna (genitif)",
+    "sv": "Sarajevo (genitiv)",
+    "nl": "Sarajevo (genitief)",
+    "nb": "Sarajevo (genitiv)",
+    "da": "Sarajevo (genitiv)",
+    "fr": "Sarajevo (génitif)"
+   }
+  },
+  {
+   "bs": "sarajevo",
+   "translations": {
+    "de": "Sarajevo",
+    "en": "Sarajevo",
+    "tr": "Saraybosna",
+    "sv": "Sarajevo",
+    "nl": "Sarajevo",
+    "nb": "Sarajevo",
+    "da": "Sarajevo",
+    "fr": "Sarajevo"
+   }
+  },
+  {
+   "bs": "sarajevu",
+   "translations": {
+    "de": "Sarajevo (Lok.)",
+    "en": "Sarajevo (loc.)",
+    "tr": "Saraybosna (lokatif)",
+    "sv": "Sarajevo (lokativ)",
+    "nl": "Sarajevo (locatief)",
+    "nb": "Sarajevo (lokativ)",
+    "da": "Sarajevo (lokativ)",
+    "fr": "Sarajevo (locatif)"
+   }
+  },
+  {
+   "bs": "sati",
+   "translations": {
+    "de": "Uhr / Stunden",
+    "en": "o'clock / hours",
+    "tr": "saat",
+    "sv": "klockan / timmar",
+    "nl": "uur",
+    "nb": "klokka / timer",
+    "da": "klokken / timer",
+    "fr": "heures"
+   }
+  },
+  {
+   "bs": "se",
+   "translations": {
+    "de": "sich",
+    "en": "oneself",
+    "tr": "kendini",
+    "sv": "sig",
+    "nl": "zich",
+    "nb": "seg",
+    "da": "sig",
+    "fr": "se"
+   }
+  },
+  {
+   "bs": "sebi",
+   "translations": {
+    "de": "sich",
+    "en": "oneself",
+    "tr": "kendini",
+    "sv": "sig",
+    "nl": "zich",
+    "nb": "seg",
+    "da": "sig",
+    "fr": "se"
+   }
+  },
+  {
+   "bs": "sedam",
+   "translations": {
+    "de": "sieben",
+    "en": "seven",
+    "tr": "yedi",
+    "sv": "sju",
+    "nl": "zeven",
+    "nb": "sju",
+    "da": "syv",
+    "fr": "sept"
+   }
+  },
+  {
+   "bs": "sedmice",
+   "translations": {
+    "de": "Woche (Gen.)",
+    "en": "week (gen.)",
+    "tr": "hafta (genitif)",
+    "sv": "vecka (genitiv)",
+    "nl": "week (genitief)",
+    "nb": "uke (genitiv)",
+    "da": "uge (genitiv)",
+    "fr": "semaine (génitif)"
+   }
+  },
+  {
+   "bs": "selu",
+   "translations": {
+    "de": "Dorf (Lok.)",
+    "en": "village (loc.)",
+    "tr": "köy (lokatif)",
+    "sv": "by (lokativ)",
+    "nl": "dorp (locatief)",
+    "nb": "landsby (lokativ)",
+    "da": "landsby (lokativ)",
+    "fr": "village (locatif)"
+   }
+  },
+  {
+   "bs": "sestra",
+   "translations": {
+    "de": "Schwester",
+    "en": "sister",
+    "tr": "kız kardeş",
+    "sv": "syster",
+    "nl": "zus",
+    "nb": "søster",
+    "da": "søster",
+    "fr": "sœur"
+   }
+  },
+  {
+   "bs": "sestru",
+   "translations": {
+    "de": "Schwester (Akk.)",
+    "en": "sister (acc.)",
+    "tr": "kız kardeş (akuzatif)",
+    "sv": "syster (ackusativ)",
+    "nl": "zus (accusatief)",
+    "nb": "søster (akkusativ)",
+    "da": "søster (akkusativ)",
+    "fr": "sœur (accusatif)"
+   }
+  },
+  {
+   "bs": "si",
+   "translations": {
+    "de": "bist",
+    "en": "are (you)",
+    "tr": "-sin",
+    "sv": "är (du)",
+    "nl": "bent",
+    "nb": "er (du)",
+    "da": "er (du)",
+    "fr": "es"
+   }
+  },
+  {
+   "bs": "sir",
+   "translations": {
+    "de": "Käse",
+    "en": "cheese",
+    "tr": "peynir",
+    "sv": "ost",
+    "nl": "kaas",
+    "nb": "ost",
+    "da": "ost",
+    "fr": "fromage"
+   }
+  },
+  {
+   "bs": "sirom",
+   "translations": {
+    "de": "Käse (Instr.)",
+    "en": "cheese (instr.)",
+    "tr": "peynir (instrumental)",
+    "sv": "ost (instrumentalis)",
+    "nl": "kaas (instrumentalis)",
+    "nb": "ost (instrumentalis)",
+    "da": "ost (instrumentalis)",
+    "fr": "fromage (instrumental)"
+   }
+  },
+  {
+   "bs": "sjede",
+   "translations": {
+    "de": "sie sitzen",
+    "en": "they sit",
+    "tr": "oturuyorlar",
+    "sv": "de sitter",
+    "nl": "zij zitten",
+    "nb": "de sitter",
+    "da": "de sidder",
+    "fr": "ils sont assis"
+   }
+  },
+  {
+   "bs": "skuhati",
+   "translations": {
+    "de": "kochen",
+    "en": "to cook",
+    "tr": "yemek pişirmek",
+    "sv": "laga mat",
+    "nl": "koken",
+    "nb": "lage mat",
+    "da": "at lave mad",
+    "fr": "cuisiner"
+   }
+  },
+  {
+   "bs": "slike",
+   "translations": {
+    "de": "Bilder",
+    "en": "photos",
+    "tr": "fotoğraflar",
+    "sv": "foton",
+    "nl": "foto's",
+    "nb": "bilder",
+    "da": "billeder",
+    "fr": "photos"
+   }
+  },
+  {
+   "bs": "sljedeće",
+   "translations": {
+    "de": "nächste",
+    "en": "next",
+    "tr": "gelecek",
+    "sv": "nästa",
+    "nl": "volgende",
+    "nb": "neste",
+    "da": "næste",
+    "fr": "prochaine"
+   }
+  },
+  {
+   "bs": "sljedećeg",
+   "translations": {
+    "de": "nächsten (Gen.)",
+    "en": "next (gen.)",
+    "tr": "gelecek (genitif)",
+    "sv": "nästa (genitiv)",
+    "nl": "volgende (genitief)",
+    "nb": "neste (genitiv)",
+    "da": "næste (genitiv)",
+    "fr": "prochain (génitif)"
+   }
+  },
+  {
+   "bs": "službenica",
+   "translations": {
+    "de": "Beamtin",
+    "en": "clerk (f)",
+    "tr": "memur (kadın)",
+    "sv": "handläggare (kvinna)",
+    "nl": "ambtenaar (vrouw)",
+    "nb": "saksbehandler (kvinne)",
+    "da": "sagsbehandler (kvinde)",
+    "fr": "employée"
+   }
+  },
+  {
+   "bs": "smije",
+   "translations": {
+    "de": "er/sie lacht",
+    "en": "he/she laughs",
+    "tr": "gülüyor",
+    "sv": "han/hon skrattar",
+    "nl": "hij/zij lacht",
+    "nb": "han/hun ler",
+    "da": "han/hun griner",
+    "fr": "il / elle rit"
+   }
+  },
+  {
+   "bs": "smo",
+   "translations": {
+    "de": "sind (wir)",
+    "en": "are (we)",
+    "tr": "-iz",
+    "sv": "är (vi)",
+    "nl": "zijn (wij)",
+    "nb": "er (vi)",
+    "da": "er (vi)",
+    "fr": "sommes"
+   }
+  },
+  {
+   "bs": "soba",
+   "translations": {
+    "de": "Zimmer",
+    "en": "room",
+    "tr": "oda",
+    "sv": "rum",
+    "nl": "kamer",
+    "nb": "rom",
+    "da": "værelse",
+    "fr": "pièce"
+   }
+  },
+  {
+   "bs": "sobe",
+   "translations": {
+    "de": "Zimmer (Mehrz.)",
+    "en": "rooms",
+    "tr": "odalar",
+    "sv": "rum (flera)",
+    "nl": "kamers",
+    "nb": "rom (flere)",
+    "da": "værelser",
+    "fr": "pièces"
+   }
+  },
+  {
+   "bs": "sobi",
+   "translations": {
+    "de": "Zimmer (Lok.)",
+    "en": "room (loc.)",
+    "tr": "oda (lokatif)",
+    "sv": "rum (lokativ)",
+    "nl": "kamer (locatief)",
+    "nb": "rom (lokativ)",
+    "da": "værelse (lokativ)",
+    "fr": "chambre (locatif)"
+   }
+  },
+  {
+   "bs": "spava",
+   "translations": {
+    "de": "er/sie schläft",
+    "en": "he/she sleeps",
+    "tr": "uyuyor",
+    "sv": "han/hon sover",
+    "nl": "hij/zij slaapt",
+    "nb": "han/hun sover",
+    "da": "han/hun sover",
+    "fr": "il / elle dort"
+   }
+  },
+  {
+   "bs": "spavam",
+   "translations": {
+    "de": "ich schlafe",
+    "en": "I sleep",
+    "tr": "uyuyorum",
+    "sv": "jag sover",
+    "nl": "ik slaap",
+    "nb": "jeg sover",
+    "da": "jeg sover",
+    "fr": "je dors"
+   }
+  },
+  {
+   "bs": "spavati",
+   "translations": {
+    "de": "schlafen",
+    "en": "to sleep",
+    "tr": "uyumak",
+    "sv": "sova",
+    "nl": "slapen",
+    "nb": "sove",
+    "da": "at sove",
+    "fr": "dormir"
+   }
+  },
+  {
+   "bs": "stare",
+   "translations": {
+    "de": "alte",
+    "en": "old (pl.)",
+    "tr": "eski (çoğul)",
+    "sv": "gamla",
+    "nl": "oude",
+    "nb": "gamle",
+    "da": "gamle",
+    "fr": "vieilles"
+   }
+  },
+  {
+   "bs": "stari",
+   "translations": {
+    "de": "alte / Alt-",
+    "en": "old",
+    "tr": "eski",
+    "sv": "gamla / gammel-",
+    "nl": "oude / oud-",
+    "nb": "gamle / gammel-",
+    "da": "gamle / gammel-",
+    "fr": "vieux"
+   }
+  },
+  {
+   "bs": "starog",
+   "translations": {
+    "de": "alten",
+    "en": "old (gen.)",
+    "tr": "eski (genitif)",
+    "sv": "gamla (genitiv)",
+    "nl": "oude (genitief)",
+    "nb": "gamle (genitiv)",
+    "da": "gamle (genitiv)",
+    "fr": "vieux (accusatif)"
+   }
+  },
+  {
+   "bs": "staru",
+   "translations": {
+    "de": "altes (Akk.)",
+    "en": "old (acc.)",
+    "tr": "eski (akuzatif)",
+    "sv": "gammalt (ackusativ)",
+    "nl": "oud (accusatief)",
+    "nb": "gammelt (akkusativ)",
+    "da": "gammelt (akkusativ)",
+    "fr": "vieille (accusatif)"
+   }
+  },
+  {
+   "bs": "ste",
+   "translations": {
+    "de": "sind (ihr/Sie)",
+    "en": "are (you, plural or formal)",
+    "tr": "-siniz",
+    "sv": "är (ni)",
+    "nl": "zijn (jullie/u)",
+    "nb": "er (dere)",
+    "da": "er (I/De)",
+    "fr": "êtes"
+   }
+  },
+  {
+   "bs": "stignemo",
+   "translations": {
+    "de": "wir ankommen",
+    "en": "we arrive",
+    "tr": "varırız",
+    "sv": "vi kommer fram",
+    "nl": "wij aankomen",
+    "nb": "vi kommer fram",
+    "da": "vi kommer frem",
+    "fr": "nous arrivons"
+   }
+  },
+  {
+   "bs": "sto",
+   "translations": {
+    "de": "Tisch",
+    "en": "table",
+    "tr": "masa",
+    "sv": "bord",
+    "nl": "tafel",
+    "nb": "bord",
+    "da": "bord",
+    "fr": "table"
+   }
+  },
+  {
+   "bs": "stolice",
+   "translations": {
+    "de": "Stühle",
+    "en": "chairs",
+    "tr": "sandalyeler",
+    "sv": "stolar",
+    "nl": "stoelen",
+    "nb": "stoler",
+    "da": "stole",
+    "fr": "chaises"
+   }
+  },
+  {
+   "bs": "su",
+   "translations": {
+    "de": "sind",
+    "en": "are",
+    "tr": "-dirler",
+    "sv": "är (flera)",
+    "nl": "zijn",
+    "nb": "er (flere)",
+    "da": "er (flere)",
+    "fr": "sont"
+   }
+  },
+  {
+   "bs": "subota",
+   "translations": {
+    "de": "Samstag",
+    "en": "Saturday",
+    "tr": "Cumartesi",
+    "sv": "lördag",
+    "nl": "zaterdag",
+    "nb": "lørdag",
+    "da": "lørdag",
+    "fr": "samedi"
+   }
+  },
+  {
+   "bs": "sunce",
+   "translations": {
+    "de": "Sonne",
+    "en": "sun",
+    "tr": "güneş",
+    "sv": "sol",
+    "nl": "zon",
+    "nb": "sol",
+    "da": "sol",
+    "fr": "soleil"
+   }
+  },
+  {
+   "bs": "sutra",
+   "translations": {
+    "de": "morgen",
+    "en": "tomorrow",
+    "tr": "yarın",
+    "sv": "i morgon",
+    "nl": "morgen",
+    "nb": "i morgen",
+    "da": "i morgen",
+    "fr": "demain"
+   }
+  },
+  {
+   "bs": "svaki",
+   "translations": {
+    "de": "jeder",
+    "en": "every",
+    "tr": "her",
+    "sv": "varje",
+    "nl": "elke",
+    "nb": "hver",
+    "da": "hver",
+    "fr": "chaque"
+   }
+  },
+  {
+   "bs": "sve",
+   "translations": {
+    "de": "alles",
+    "en": "everything",
+    "tr": "her şey",
+    "sv": "allt",
+    "nl": "alles",
+    "nb": "alt",
+    "da": "alt",
+    "fr": "tout"
+   }
+  },
+  {
+   "bs": "taksa",
+   "translations": {
+    "de": "Gebühr",
+    "en": "fee",
+    "tr": "harç",
+    "sv": "avgift",
+    "nl": "leges",
+    "nb": "gebyr",
+    "da": "gebyr",
+    "fr": "taxe"
+   }
+  },
+  {
+   "bs": "taksu",
+   "translations": {
+    "de": "Gebühr (Akk.)",
+    "en": "fee (acc.)",
+    "tr": "harç (akuzatif)",
+    "sv": "avgift (ackusativ)",
+    "nl": "leges (accusatief)",
+    "nb": "gebyr (akkusativ)",
+    "da": "gebyr (akkusativ)",
+    "fr": "taxe (accusatif)"
+   }
+  },
+  {
+   "bs": "tamo",
+   "translations": {
+    "de": "dort",
+    "en": "there",
+    "tr": "orada",
+    "sv": "där borta",
+    "nl": "daar",
+    "nb": "der borte",
+    "da": "derovre",
+    "fr": "là-bas"
+   }
+  },
+  {
+   "bs": "te",
+   "translations": {
+    "de": "dich",
+    "en": "you (object)",
+    "tr": "seni",
+    "sv": "dig",
+    "nl": "jou",
+    "nb": "deg",
+    "da": "dig",
+    "fr": "te"
+   }
+  },
+  {
+   "bs": "tebe",
+   "translations": {
+    "de": "dich / dir",
+    "en": "you (obj.)",
+    "tr": "seni / sana",
+    "sv": "dig / till dig",
+    "nl": "jou / aan jou",
+    "nb": "deg / til deg",
+    "da": "dig / til dig",
+    "fr": "toi"
+   }
+  },
+  {
+   "bs": "televiziju",
+   "translations": {
+    "de": "Fernsehen (Akk.)",
+    "en": "television (acc.)",
+    "tr": "televizyon (akuzatif)",
+    "sv": "tv (ackusativ)",
+    "nl": "televisie (accusatief)",
+    "nb": "tv (akkusativ)",
+    "da": "fjernsyn (akkusativ)",
+    "fr": "télévision (accusatif)"
+   }
+  },
+  {
+   "bs": "ti",
+   "translations": {
+    "de": "du",
+    "en": "you",
+    "tr": "sen",
+    "sv": "du",
+    "nl": "jij",
+    "nb": "du",
+    "da": "du",
+    "fr": "tu"
+   }
+  },
+  {
+   "bs": "to",
+   "translations": {
+    "de": "das",
+    "en": "that",
+    "tr": "o",
+    "sv": "det",
+    "nl": "dat",
+    "nb": "det",
+    "da": "det",
+    "fr": "cela"
+   }
+  },
+  {
+   "bs": "toga",
+   "translations": {
+    "de": "dessen / danach",
+    "en": "of that / after that",
+    "tr": "onun / ondan sonra",
+    "sv": "det / därefter",
+    "nl": "daarvan / daarna",
+    "nb": "det / etter det",
+    "da": "det / derefter",
+    "fr": "de cela / après cela"
+   }
+  },
+  {
+   "bs": "traje",
+   "translations": {
+    "de": "es dauert",
+    "en": "it takes",
+    "tr": "sürüyor",
+    "sv": "det tar",
+    "nl": "het duurt",
+    "nb": "det tar",
+    "da": "det tager",
+    "fr": "ça dure"
+   }
+  },
+  {
+   "bs": "treba",
+   "translations": {
+    "de": "er/sie braucht",
+    "en": "he/she needs",
+    "tr": "ihtiyacı var",
+    "sv": "han/hon behöver",
+    "nl": "hij/zij heeft nodig",
+    "nb": "han/hun trenger",
+    "da": "han/hun har brug for",
+    "fr": "il / elle a besoin"
+   }
+  },
+  {
+   "bs": "trebaju",
+   "translations": {
+    "de": "sie brauchen",
+    "en": "they need",
+    "tr": "ihtiyaçları var",
+    "sv": "de behöver",
+    "nl": "zij hebben nodig",
+    "nb": "de trenger",
+    "da": "de har brug for",
+    "fr": "ils ont besoin"
+   }
+  },
+  {
+   "bs": "trebam",
+   "translations": {
+    "de": "ich brauche",
+    "en": "I need",
+    "tr": "ihtiyacım var",
+    "sv": "jag behöver",
+    "nl": "ik heb nodig",
+    "nb": "jeg trenger",
+    "da": "jeg har brug for",
+    "fr": "j'ai besoin"
+   }
+  },
+  {
+   "bs": "trebate",
+   "translations": {
+    "de": "Sie brauchen",
+    "en": "you need (formal)",
+    "tr": "ihtiyacınız var",
+    "sv": "ni behöver",
+    "nl": "u heeft nodig",
+    "nb": "De trenger",
+    "da": "De skal bruge",
+    "fr": "il vous faut"
+   }
+  },
+  {
+   "bs": "tri",
+   "translations": {
+    "de": "drei",
+    "en": "three",
+    "tr": "üç",
+    "sv": "tre",
+    "nl": "drie",
+    "nb": "tre",
+    "da": "tre",
+    "fr": "trois"
+   }
+  },
+  {
+   "bs": "trči",
+   "translations": {
+    "de": "er/sie rennt",
+    "en": "he/she runs",
+    "tr": "koşuyor",
+    "sv": "han/hon springer",
+    "nl": "hij/zij rent",
+    "nb": "han/hun løper",
+    "da": "han/hun løber",
+    "fr": "il / elle court"
+   }
+  },
+  {
+   "bs": "tu",
+   "translations": {
+    "de": "hier / da",
+    "en": "here / there",
+    "tr": "burada / şurada",
+    "sv": "här / där",
+    "nl": "hier / daar",
+    "nb": "her / der",
+    "da": "her / der",
+    "fr": "ici / là"
+   }
+  },
+  {
+   "bs": "tuširam",
+   "translations": {
+    "de": "ich dusche",
+    "en": "I take a shower",
+    "tr": "duş alıyorum",
+    "sv": "jag duschar",
+    "nl": "ik douche",
+    "nb": "jeg dusjer",
+    "da": "jeg går i bad",
+    "fr": "je me douche"
+   }
+  },
+  {
+   "bs": "tvoj",
+   "translations": {
+    "de": "dein",
+    "en": "your (m)",
+    "tr": "senin (eril)",
+    "sv": "din (mask.)",
+    "nl": "jouw (m)",
+    "nb": "din (hankj.)",
+    "da": "din (hank.)",
+    "fr": "ton"
+   }
+  },
+  {
+   "bs": "tvoja",
+   "translations": {
+    "de": "deine",
+    "en": "your (f)",
+    "tr": "senin (dişil)",
+    "sv": "din (fem.)",
+    "nl": "jouw (v)",
+    "nb": "di (hunkj.)",
+    "da": "din (hunk.)",
+    "fr": "ta"
+   }
+  },
+  {
+   "bs": "u",
+   "translations": {
+    "de": "in",
+    "en": "in",
+    "tr": "içinde",
+    "sv": "i",
+    "nl": "in",
+    "nb": "i",
+    "da": "i",
+    "fr": "dans"
+   }
+  },
+  {
+   "bs": "ugovor",
+   "translations": {
+    "de": "Vertrag",
+    "en": "contract",
+    "tr": "sözleşme",
+    "sv": "avtal",
+    "nl": "contract",
+    "nb": "avtale",
+    "da": "kontrakt",
+    "fr": "contrat"
+   }
+  },
+  {
+   "bs": "ujutro",
+   "translations": {
+    "de": "morgens",
+    "en": "in the morning",
+    "tr": "sabahları",
+    "sv": "på morgnarna",
+    "nl": "'s ochtends",
+    "nb": "om morgenene",
+    "da": "om morgenen",
+    "fr": "le matin"
+   }
+  },
+  {
+   "bs": "upisana",
+   "translations": {
+    "de": "eingetragen",
+    "en": "entered",
+    "tr": "kayıtlı",
+    "sv": "inskrivet",
+    "nl": "ingeschreven",
+    "nb": "tinglyst",
+    "da": "tinglyst",
+    "fr": "inscrite"
+   }
+  },
+  {
+   "bs": "uslove",
+   "translations": {
+    "de": "Bedingungen (Akk.)",
+    "en": "conditions (acc.)",
+    "tr": "koşullar (akuzatif)",
+    "sv": "villkor (ackusativ)",
+    "nl": "voorwaarden (accusatief)",
+    "nb": "vilkår (akkusativ)",
+    "da": "vilkår (akkusativ)",
+    "fr": "conditions (accusatif)"
+   }
+  },
+  {
+   "bs": "ustajem",
+   "translations": {
+    "de": "ich stehe auf",
+    "en": "I get up",
+    "tr": "kalkıyorum",
+    "sv": "jag går upp",
+    "nl": "ik sta op",
+    "nb": "jeg står opp",
+    "da": "jeg står op",
+    "fr": "je me lève"
+   }
+  },
+  {
+   "bs": "ustala",
+   "translations": {
+    "de": "aufgestanden (w)",
+    "en": "got up (f)",
+    "tr": "kalktı (kadın)",
+    "sv": "gick upp (kvinna)",
+    "nl": "opgestaan (vrouw)",
+    "nb": "sto opp (kvinne)",
+    "da": "stod op (kvinde)",
+    "fr": "levée (femme)"
+   }
+  },
+  {
+   "bs": "uvijek",
+   "translations": {
+    "de": "immer",
+    "en": "always",
+    "tr": "her zaman",
+    "sv": "alltid",
+    "nl": "altijd",
+    "nb": "alltid",
+    "da": "altid",
+    "fr": "toujours"
+   }
+  },
+  {
+   "bs": "uzima",
+   "translations": {
+    "de": "er/sie nimmt",
+    "en": "he/she takes",
+    "tr": "alıyor",
+    "sv": "han/hon tar",
+    "nl": "hij/zij neemt",
+    "nb": "han/hun tar",
+    "da": "han/hun tager",
+    "fr": "il / elle prend"
+   }
+  },
+  {
+   "bs": "učim",
+   "translations": {
+    "de": "ich lerne",
+    "en": "I learn",
+    "tr": "öğreniyorum",
+    "sv": "jag lär mig",
+    "nl": "ik leer",
+    "nb": "jeg lærer",
+    "da": "jeg lærer",
+    "fr": "j'apprends"
+   }
+  },
+  {
+   "bs": "vam",
+   "translations": {
+    "de": "Ihnen",
+    "en": "to you (formal)",
+    "tr": "size",
+    "sv": "er",
+    "nl": "u",
+    "nb": "Dem",
+    "da": "Dem",
+    "fr": "à vous"
+   }
+  },
+  {
+   "bs": "velika",
+   "translations": {
+    "de": "groß (w)",
+    "en": "big (f)",
+    "tr": "büyük (dişil)",
+    "sv": "stor (fem.)",
+    "nl": "groot (v)",
+    "nb": "stor (hunkj.)",
+    "da": "stor (hunk.)",
+    "fr": "grande"
+   }
+  },
+  {
+   "bs": "veliku",
+   "translations": {
+    "de": "große (Akk.)",
+    "en": "big (acc.)",
+    "tr": "büyük (akuzatif)",
+    "sv": "stor (ackusativ)",
+    "nl": "grote (accusatief)",
+    "nb": "stor (akkusativ)",
+    "da": "stor (akkusativ)",
+    "fr": "grande (accusatif)"
+   }
+  },
+  {
+   "bs": "već",
+   "translations": {
+    "de": "schon",
+    "en": "already",
+    "tr": "zaten",
+    "sv": "redan",
+    "nl": "al",
+    "nb": "allerede",
+    "da": "allerede",
+    "fr": "déjà"
+   }
+  },
+  {
+   "bs": "večeru",
+   "translations": {
+    "de": "Abendessen (Akk.)",
+    "en": "dinner (acc.)",
+    "tr": "akşam yemeği (akuzatif)",
+    "sv": "middag (ackusativ)",
+    "nl": "avondeten (accusatief)",
+    "nb": "middag (akkusativ)",
+    "da": "aftensmad (akkusativ)",
+    "fr": "dîner (accusatif)"
+   }
+  },
+  {
+   "bs": "vi",
+   "translations": {
+    "de": "ihr / Sie",
+    "en": "you (plural or formal)",
+    "tr": "siz",
+    "sv": "ni",
+    "nl": "jullie / u",
+    "nb": "dere / De",
+    "da": "I / De",
+    "fr": "vous"
+   }
+  },
+  {
+   "bs": "vikendom",
+   "translations": {
+    "de": "am Wochenende",
+    "en": "on the weekend",
+    "tr": "hafta sonunda",
+    "sv": "på helgen",
+    "nl": "in het weekend",
+    "nb": "i helga",
+    "da": "i weekenden",
+    "fr": "le week-end"
+   }
+  },
+  {
+   "bs": "voli",
+   "translations": {
+    "de": "er/sie liebt",
+    "en": "he/she loves",
+    "tr": "seviyor",
+    "sv": "han/hon älskar",
+    "nl": "hij/zij houdt van",
+    "nb": "han/hun elsker",
+    "da": "han/hun elsker",
+    "fr": "il / elle aime"
+   }
+  },
+  {
+   "bs": "volim",
+   "translations": {
+    "de": "ich liebe",
+    "en": "I love",
+    "tr": "seviyorum",
+    "sv": "jag älskar",
+    "nl": "ik hou van",
+    "nb": "jeg elsker",
+    "da": "jeg elsker",
+    "fr": "j'aime"
+   }
+  },
+  {
+   "bs": "voziti",
+   "translations": {
+    "de": "fahren",
+    "en": "to drive",
+    "tr": "sürmek",
+    "sv": "köra",
+    "nl": "rijden",
+    "nb": "kjøre",
+    "da": "at køre",
+    "fr": "conduire"
+   }
+  },
+  {
+   "bs": "voća",
+   "translations": {
+    "de": "Obst (Gen.)",
+    "en": "fruit (gen.)",
+    "tr": "meyve (genitif)",
+    "sv": "frukt (genitiv)",
+    "nl": "fruit (genitief)",
+    "nb": "frukt (genitiv)",
+    "da": "frugt (genitiv)",
+    "fr": "fruits (génitif)"
+   }
+  },
+  {
+   "bs": "voće",
+   "translations": {
+    "de": "Obst",
+    "en": "fruit",
+    "tr": "meyve",
+    "sv": "frukt",
+    "nl": "fruit",
+    "nb": "frukt",
+    "da": "frugt",
+    "fr": "fruits"
+   }
+  },
+  {
+   "bs": "vožnja",
+   "translations": {
+    "de": "Fahrt",
+    "en": "ride",
+    "tr": "yolculuk",
+    "sv": "resa / färd",
+    "nl": "rit",
+    "nb": "kjøretur",
+    "da": "køretur",
+    "fr": "trajet"
+   }
+  },
+  {
+   "bs": "vrata",
+   "translations": {
+    "de": "Tür",
+    "en": "door",
+    "tr": "kapı",
+    "sv": "dörr",
+    "nl": "deur",
+    "nb": "dør",
+    "da": "dør",
+    "fr": "porte"
+   }
+  },
+  {
+   "bs": "vrijeme",
+   "translations": {
+    "de": "Zeit / Wetter",
+    "en": "time / weather",
+    "tr": "zaman / hava",
+    "sv": "tid / väder",
+    "nl": "tijd / weer",
+    "nb": "tid / vær",
+    "da": "tid / vejr",
+    "fr": "temps (durée et météo)"
+   }
+  },
+  {
+   "bs": "za",
+   "translations": {
+    "de": "für",
+    "en": "for",
+    "tr": "için",
+    "sv": "för",
+    "nl": "voor",
+    "nb": "for",
+    "da": "for",
+    "fr": "pour"
+   }
+  },
+  {
+   "bs": "zagrebu",
+   "translations": {
+    "de": "Zagreb (Lok.)",
+    "en": "Zagreb (loc.)",
+    "tr": "Zagreb (lokatif)",
+    "sv": "Zagreb (lokativ)",
+    "nl": "Zagreb (locatief)",
+    "nb": "Zagreb (lokativ)",
+    "da": "Zagreb (lokativ)",
+    "fr": "Zagreb (locatif)"
+   }
+  },
+  {
+   "bs": "zahvaljuje",
+   "translations": {
+    "de": "er/sie bedankt sich",
+    "en": "he/she says thank you",
+    "tr": "teşekkür ediyor",
+    "sv": "han/hon tackar",
+    "nl": "hij/zij bedankt",
+    "nb": "han/hun takker",
+    "da": "han/hun takker",
+    "fr": "il / elle remercie"
+   }
+  },
+  {
+   "bs": "zajedno",
+   "translations": {
+    "de": "zusammen",
+    "en": "together",
+    "tr": "birlikte",
+    "sv": "tillsammans",
+    "nl": "samen",
+    "nb": "sammen",
+    "da": "sammen",
+    "fr": "ensemble"
+   }
+  },
+  {
+   "bs": "zarađivati",
+   "translations": {
+    "de": "verdienen",
+    "en": "to earn",
+    "tr": "kazanmak",
+    "sv": "tjäna",
+    "nl": "verdienen",
+    "nb": "tjene",
+    "da": "at tjene",
+    "fr": "gagner (de l'argent)"
+   }
+  },
+  {
+   "bs": "završila",
+   "translations": {
+    "de": "abgeschlossen (w)",
+    "en": "completed (f)",
+    "tr": "bitirdi (kadın)",
+    "sv": "avslutade (kvinna)",
+    "nl": "afgerond (vrouw)",
+    "nb": "fullførte (kvinne)",
+    "da": "afsluttede (kvinde)",
+    "fr": "terminé (femme)"
+   }
+  },
+  {
+   "bs": "zove",
+   "translations": {
+    "de": "er/sie heißt",
+    "en": "he/she is called",
+    "tr": "adı ...",
+    "sv": "han/hon heter",
+    "nl": "hij/zij heet",
+    "nb": "han/hun heter",
+    "da": "han/hun hedder",
+    "fr": "il / elle s'appelle"
+   }
+  },
+  {
+   "bs": "zovem",
+   "translations": {
+    "de": "ich heiße / ich rufe",
+    "en": "my name is / I call",
+    "tr": "adım ... / çağırıyorum",
+    "sv": "jag heter / jag ringer",
+    "nl": "ik heet / ik roep",
+    "nb": "jeg heter / jeg roper",
+    "da": "jeg hedder / jeg kalder",
+    "fr": "je m'appelle / j'appelle"
+   }
+  },
+  {
+   "bs": "će",
+   "translations": {
+    "de": "er/sie wird",
+    "en": "he/she will",
+    "tr": "-ecek",
+    "sv": "han/hon ska",
+    "nl": "hij/zij zal",
+    "nb": "han/hun skal",
+    "da": "han/hun skal",
+    "fr": "il / elle va (futur)"
+   }
+  },
+  {
+   "bs": "ćemo",
+   "translations": {
+    "de": "wir werden",
+    "en": "we will",
+    "tr": "-eceğiz",
+    "sv": "vi ska",
+    "nl": "wij zullen",
+    "nb": "vi skal",
+    "da": "vi skal",
+    "fr": "nous allons (futur)"
+   }
+  },
+  {
+   "bs": "ćevape",
+   "translations": {
+    "de": "Ćevapi (Akk.)",
+    "en": "ćevapi (acc.)",
+    "tr": "ćevapi (akuzatif)",
+    "sv": "ćevapi (ackusativ)",
+    "nl": "ćevapi (accusatief)",
+    "nb": "ćevapi (akkusativ)",
+    "da": "ćevapi (akkusativ)",
+    "fr": "ćevapi (accusatif)"
+   }
+  },
+  {
+   "bs": "ćeš",
+   "translations": {
+    "de": "du wirst",
+    "en": "you will",
+    "tr": "-eceksin",
+    "sv": "du ska",
+    "nl": "jij zult",
+    "nb": "du skal",
+    "da": "du skal",
+    "fr": "tu vas (futur)"
+   }
+  },
+  {
+   "bs": "ću",
+   "translations": {
+    "de": "ich werde",
+    "en": "I will",
+    "tr": "-eceğim",
+    "sv": "jag ska",
+    "nl": "ik zal",
+    "nb": "jeg skal",
+    "da": "jeg skal",
+    "fr": "je vais (futur)"
+   }
+  },
+  {
+   "bs": "čekati",
+   "translations": {
+    "de": "warten",
+    "en": "to wait",
+    "tr": "beklemek",
+    "sv": "vänta",
+    "nl": "wachten",
+    "nb": "vente",
+    "da": "at vente",
+    "fr": "attendre"
+   }
+  },
+  {
+   "bs": "četiri",
+   "translations": {
+    "de": "vier",
+    "en": "four",
+    "tr": "dört",
+    "sv": "fyra",
+    "nl": "vier",
+    "nb": "fire",
+    "da": "fire",
+    "fr": "quatre"
+   }
+  },
+  {
+   "bs": "čitam",
+   "translations": {
+    "de": "ich lese",
+    "en": "I read",
+    "tr": "okuyorum",
+    "sv": "jag läser",
+    "nl": "ik lees",
+    "nb": "jeg leser",
+    "da": "jeg læser",
+    "fr": "je lis"
+   }
+  },
+  {
+   "bs": "šalteru",
+   "translations": {
+    "de": "Schalter (Lok.)",
+    "en": "counter (loc.)",
+    "tr": "gişe (lokatif)",
+    "sv": "lucka (lokativ)",
+    "nl": "loket (locatief)",
+    "nb": "luke (lokativ)",
+    "da": "skranke (lokativ)",
+    "fr": "guichet (locatif)"
+   }
+  },
+  {
+   "bs": "šesnaest",
+   "translations": {
+    "de": "sechzehn",
+    "en": "sixteen",
+    "tr": "on altı",
+    "sv": "sexton",
+    "nl": "zestien",
+    "nb": "seksten",
+    "da": "seksten",
+    "fr": "seize"
+   }
+  },
+  {
+   "bs": "šetaju",
+   "translations": {
+    "de": "sie spazieren",
+    "en": "they stroll",
+    "tr": "geziniyorlar",
+    "sv": "de promenerar",
+    "nl": "zij wandelen",
+    "nb": "de går en tur",
+    "da": "de går en tur",
+    "fr": "ils se promènent"
+   }
+  },
+  {
+   "bs": "šta",
+   "translations": {
+    "de": "was",
+    "en": "what",
+    "tr": "ne",
+    "sv": "vad",
+    "nl": "wat",
+    "nb": "hva",
+    "da": "hvad",
+    "fr": "quoi"
+   }
+  },
+  {
+   "bs": "žele",
+   "translations": {
+    "de": "sie möchten",
+    "en": "they want",
+    "tr": "istiyorlar",
+    "sv": "de vill",
+    "nl": "zij willen",
+    "nb": "de vil",
+    "da": "de vil",
+    "fr": "ils veulent"
+   }
+  },
+  {
+   "bs": "željela",
+   "translations": {
+    "de": "wollte (w)",
+    "en": "wanted (f)",
+    "tr": "istedi (kadın)",
+    "sv": "ville (kvinna)",
+    "nl": "wilde (vrouw)",
+    "nb": "ville (kvinne)",
+    "da": "ville (kvinde)",
+    "fr": "voulait (femme)"
+   }
+  },
+  {
+   "bs": "žive",
+   "translations": {
+    "de": "sie leben",
+    "en": "they live",
+    "tr": "yaşıyorlar",
+    "sv": "de bor",
+    "nl": "zij wonen",
+    "nb": "de bor",
+    "da": "de bor",
+    "fr": "ils vivent"
+   }
+  },
+  {
+   "bs": "žuta",
+   "translations": {
+    "de": "gelb (w)",
+    "en": "yellow (f)",
+    "tr": "sarı (dişil)",
+    "sv": "gul (fem.)",
+    "nl": "geel (v)",
+    "nb": "gul (hunkj.)",
+    "da": "gul (hunk.)",
+    "fr": "jaune (féminin)"
+   }
+  }
+ ]
+}

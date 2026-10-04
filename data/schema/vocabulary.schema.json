@@ -1,0 +1,69 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://github.com/zmaj-lernapp/zmaj/blob/master/data/schema/vocabulary.schema.json",
+ "title": "Zmaj Bosnian vocabulary",
+ "description": "Words and phrases of the Zmaj course with translations into the interface languages and a Bosnian audio recording.",
+ "type": "object",
+ "required": ["dataset", "kind", "format_version", "license", "translation_languages", "sections", "levels", "entries"],
+ "properties": {
+  "dataset": {"const": "zmaj-bosnian"},
+  "kind": {"const": "vocabulary"},
+  "format_version": {"type": "string", "pattern": "^1\\.[0-9]+$"},
+  "license": {"const": "CC-BY-SA-4.0"},
+  "translation_languages": {"type": "array", "items": {"$ref": "#/$defs/lang"}, "minItems": 1, "uniqueItems": true},
+  "sections": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": ["id", "position", "label", "description"],
+    "properties": {
+     "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+     "position": {"type": "integer", "minimum": 1},
+     "label": {"$ref": "#/$defs/translations"},
+     "description": {"$ref": "#/$defs/translations"}
+    }
+   }
+  },
+  "levels": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": ["id", "position", "section", "label", "builds_on", "word_count"],
+    "properties": {
+     "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+     "position": {"type": "integer", "minimum": 1},
+     "section": {"type": "string"},
+     "label": {"$ref": "#/$defs/translations"},
+     "tip": {"$ref": "#/$defs/translations"},
+     "builds_on": {"type": "array", "items": {"type": "string"}},
+     "word_count": {"type": "integer", "minimum": 1}
+    }
+   }
+  },
+  "entries": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": ["id", "bs", "level", "level_position", "section", "translations", "audio"],
+    "additionalProperties": false,
+    "properties": {
+     "id": {"type": "string", "description": "Stable key '<german meaning>:<bosnian word>'. Used by the app to store learning progress, so it never changes for an existing word.", "pattern": "^[^:]+:.+$"},
+     "bs": {"type": "string", "minLength": 1, "description": "Bosnian (Ijekavian, Latin script). Alternative forms are separated by ' / '."},
+     "level": {"type": "string"},
+     "level_position": {"type": "integer", "minimum": 1},
+     "section": {"type": "string"},
+     "translations": {"$ref": "#/$defs/translations"},
+     "audio": {"type": ["string", "null"], "pattern": "^web/audio/[a-z0-9_]+\\.mp3$"}
+    }
+   }
+  }
+ },
+ "$defs": {
+  "lang": {"type": "string", "pattern": "^[a-z]{2,3}$"},
+  "translations": {
+   "type": "object",
+   "propertyNames": {"$ref": "#/$defs/lang"},
+   "additionalProperties": {"type": "string"}
+  }
+ }
+}

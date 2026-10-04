@@ -1,0 +1,32 @@
+# Werkzeug-Einstellungen. Zmaj braucht zum Laufen nichts außer Python 3.9+;
+# pytest, ruff, jsonschema und reuse sind nur für Tests und CI
+# (requirements-dev.txt).
+
+[project]
+name = "zmaj"
+version = "1.0.0"
+description = "Zmaj – learn Bosnian. Offline language-learning app and open Bosnian course dataset."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "AGPL-3.0-or-later AND CC-BY-SA-4.0"
+authors = [{ name = "Ajdin Hasic", email = "zmaj.lernapp@gmail.com" }]
+keywords = ["bosnian", "language-learning", "dataset", "vocabulary", "low-resource-languages", "anki", "tts"]
+
+[project.urls]
+Homepage = "https://github.com/zmaj-lernapp/zmaj"
+Issues = "https://github.com/zmaj-lernapp/zmaj/issues"
+Dataset = "https://github.com/zmaj-lernapp/zmaj/tree/master/data"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+extend-exclude = ["uebersetzungen.py", "mappe", "web"]
+
+[tool.ruff.lint]
+# Bewusst schmal: Syntaxfehler, undefinierte Namen, kaputte Vergleiche.
+# Stilregeln würden Tausende Zeilen anfassen, ohne einen Fehler zu finden.
+select = ["E9", "F63", "F7", "F82", "F401", "F811", "F841", "B006", "B008"]

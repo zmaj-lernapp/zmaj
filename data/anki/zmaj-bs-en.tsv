@@ -1,0 +1,1733 @@
+#separator:tab
+#html:false
+#notetype:Basic (and reversed card)
+#columns:Bosnian	en	Tags
+#tags column:3
+Merhaba	Hello	zmaj zmaj::01_basics
+Dobar dan	Good day	zmaj zmaj::01_basics
+Dobro jutro	Good morning	zmaj zmaj::01_basics
+Dobro veče	Good evening	zmaj zmaj::01_basics
+Laku noć / Lahku noć	Good night	zmaj zmaj::01_basics
+Doviđenja	Goodbye	zmaj zmaj::01_basics
+Ćao	Bye	zmaj zmaj::01_basics
+Dobro došli	Welcome	zmaj zmaj::01_basics
+Da	Yes	zmaj zmaj::01_basics
+Ne	No	zmaj zmaj::01_basics
+Hvala	Thank you	zmaj zmaj::01_basics
+Hvala puno	Thank you very much	zmaj zmaj::01_basics
+Molim	Please / you're welcome (polite)	zmaj zmaj::01_basics
+Nema na čemu	You are welcome	zmaj zmaj::01_basics
+Izvini	Sorry (informal)	zmaj zmaj::01_basics
+Izvinite	Sorry (formal)	zmaj zmaj::01_basics
+Kako si?	How are you?	zmaj zmaj::01_basics
+Kako ste?	How are you? (formal)	zmaj zmaj::01_basics
+Dobro	Good	zmaj zmaj::01_basics
+Loše	Bad	zmaj zmaj::01_basics
+Kako se zoveš?	What is your name?	zmaj zmaj::01_basics
+Zovem se ...	My name is ...	zmaj zmaj::01_basics
+Drago mi je	Nice to meet you	zmaj zmaj::01_basics
+Razumijem	I understand	zmaj zmaj::01_basics
+Ne razumijem	I do not understand	zmaj zmaj::01_basics
+Ne znam	I do not know	zmaj zmaj::01_basics
+Govoriš li njemački?	Do you speak German?	zmaj zmaj::01_basics
+Govorim malo bosanski	I speak a little Bosnian	zmaj zmaj::01_basics
+U redu	All right / okay	zmaj zmaj::01_basics
+Možda	Maybe	zmaj zmaj::01_basics
+Živjeli!	Cheers!	zmaj zmaj::01_basics
+Prijatno	Enjoy your meal	zmaj zmaj::01_basics
+Zdravo	Hello (neutral, anywhere)	zmaj zmaj::01_basics
+nula	zero	zmaj zmaj::02_zahlen
+jedan	one	zmaj zmaj::02_zahlen
+dva	two	zmaj zmaj::02_zahlen
+tri	three	zmaj zmaj::02_zahlen
+četiri	four	zmaj zmaj::02_zahlen
+pet	five	zmaj zmaj::02_zahlen
+šest	six	zmaj zmaj::02_zahlen
+sedam	seven	zmaj zmaj::02_zahlen
+osam	eight	zmaj zmaj::02_zahlen
+devet	nine	zmaj zmaj::02_zahlen
+deset	ten	zmaj zmaj::02_zahlen
+jedanaest	eleven	zmaj zmaj::02_zahlen
+dvanaest	twelve	zmaj zmaj::02_zahlen
+trinaest	thirteen	zmaj zmaj::02_zahlen
+četrnaest	fourteen	zmaj zmaj::02_zahlen
+petnaest	fifteen	zmaj zmaj::02_zahlen
+šesnaest	sixteen	zmaj zmaj::02_zahlen
+sedamnaest	seventeen	zmaj zmaj::02_zahlen
+osamnaest	eighteen	zmaj zmaj::02_zahlen
+devetnaest	nineteen	zmaj zmaj::02_zahlen
+dvadeset	twenty	zmaj zmaj::02_zahlen
+dvadeset jedan	twenty-one	zmaj zmaj::02_zahlen
+trideset	thirty	zmaj zmaj::02_zahlen
+četrdeset	forty	zmaj zmaj::02_zahlen
+pedeset	fifty	zmaj zmaj::02_zahlen
+šezdeset	sixty	zmaj zmaj::02_zahlen
+sedamdeset	seventy	zmaj zmaj::02_zahlen
+osamdeset	eighty	zmaj zmaj::02_zahlen
+devedeset	ninety	zmaj zmaj::02_zahlen
+sto	one hundred	zmaj zmaj::02_zahlen
+dvjesto	two hundred	zmaj zmaj::02_zahlen
+hiljada	one thousand	zmaj zmaj::02_zahlen
+boja	color	zmaj zmaj::03_farben
+crvena	red	zmaj zmaj::03_farben
+plava	blue	zmaj zmaj::03_farben
+zelena	green	zmaj zmaj::03_farben
+žuta	yellow	zmaj zmaj::03_farben
+crna	black	zmaj zmaj::03_farben
+bijela	white	zmaj zmaj::03_farben
+kafena	brown	zmaj zmaj::03_farben
+siva	gray	zmaj zmaj::03_farben
+narandžasta	orange	zmaj zmaj::03_farben
+ljubičasta	purple	zmaj zmaj::03_farben
+roza	pink	zmaj zmaj::03_farben
+majka	mother	zmaj zmaj::04_familie
+mama	mom	zmaj zmaj::04_familie
+otac	father	zmaj zmaj::04_familie
+babo	dad (Bosnian)	zmaj zmaj::04_familie
+brat	brother	zmaj zmaj::04_familie
+sestra	sister	zmaj zmaj::04_familie
+sin	son	zmaj zmaj::04_familie
+kćerka	daughter	zmaj zmaj::04_familie
+dijete	child	zmaj zmaj::04_familie
+djeca	children	zmaj zmaj::04_familie
+žena	wife	zmaj zmaj::04_familie
+muž	husband	zmaj zmaj::04_familie
+nana	grandma	zmaj zmaj::04_familie
+dedo	grandpa	zmaj zmaj::04_familie
+tetka	aunt	zmaj zmaj::04_familie
+amidža	uncle (father's side)	zmaj zmaj::04_familie
+daidža	uncle (mother's side)	zmaj zmaj::04_familie
+rođak	cousin	zmaj zmaj::04_familie
+beba	baby	zmaj zmaj::04_familie
+porodica	Family	zmaj zmaj::04_familie
+prijatelj	friend (male)	zmaj zmaj::04_familie
+prijateljica	friend (female)	zmaj zmaj::04_familie
+voda	water	zmaj zmaj::05_essen
+hljeb	bread	zmaj zmaj::05_essen
+kahva / kafa	coffee	zmaj zmaj::05_essen
+fildžan	small coffee cup (traditional)	zmaj zmaj::05_essen
+čaj	tea	zmaj zmaj::05_essen
+mlijeko	milk	zmaj zmaj::05_essen
+sok	juice	zmaj zmaj::05_essen
+pivo	beer	zmaj zmaj::05_essen
+meso	meat	zmaj zmaj::05_essen
+piletina	chicken	zmaj zmaj::05_essen
+riba	fish	zmaj zmaj::05_essen
+sir	cheese	zmaj zmaj::05_essen
+jaje	egg	zmaj zmaj::05_essen
+jabuka	apple	zmaj zmaj::05_essen
+voće	fruit	zmaj zmaj::05_essen
+povrće	vegetables	zmaj zmaj::05_essen
+krompir	potato	zmaj zmaj::05_essen
+paradajz	tomato	zmaj zmaj::05_essen
+luk	onion	zmaj zmaj::05_essen
+riža	rice	zmaj zmaj::05_essen
+so	salt	zmaj zmaj::05_essen
+šećer	sugar	zmaj zmaj::05_essen
+supa	soup	zmaj zmaj::05_essen
+pita	pita (filled filo pastry)	zmaj zmaj::05_essen
+ćevapi	ćevapi (grilled minced meat rolls)	zmaj zmaj::05_essen
+doručak	breakfast	zmaj zmaj::05_essen
+ručak	lunch	zmaj zmaj::05_essen
+večera	dinner	zmaj zmaj::05_essen
+Gladan sam / Gladna sam	I am hungry (m/f)	zmaj zmaj::05_essen
+Žedan sam / Žedna sam	I am thirsty (m/f)	zmaj zmaj::05_essen
+Račun, molim	The check, please	zmaj zmaj::05_essen
+ponedjeljak	Monday	zmaj zmaj::06_wochentage
+utorak	Tuesday	zmaj zmaj::06_wochentage
+srijeda	Wednesday	zmaj zmaj::06_wochentage
+četvrtak	Thursday	zmaj zmaj::06_wochentage
+petak	Friday	zmaj zmaj::06_wochentage
+subota	Saturday	zmaj zmaj::06_wochentage
+nedjelja	Sunday	zmaj zmaj::06_wochentage
+vikend	weekend	zmaj zmaj::06_wochentage
+sedmica	week	zmaj zmaj::06_wochentage
+januar	January	zmaj zmaj::07_monate
+februar	February	zmaj zmaj::07_monate
+mart	March	zmaj zmaj::07_monate
+april	April	zmaj zmaj::07_monate
+maj	May	zmaj zmaj::07_monate
+juni	June	zmaj zmaj::07_monate
+juli	July	zmaj zmaj::07_monate
+august	August	zmaj zmaj::07_monate
+septembar	September	zmaj zmaj::07_monate
+oktobar	October	zmaj zmaj::07_monate
+novembar	November	zmaj zmaj::07_monate
+decembar	December	zmaj zmaj::07_monate
+mjesec	month	zmaj zmaj::07_monate
+godina	year	zmaj zmaj::07_monate
+danas	today	zmaj zmaj::08_zeit
+sutra	tomorrow	zmaj zmaj::08_zeit
+jučer	yesterday	zmaj zmaj::08_zeit
+sada	now	zmaj zmaj::08_zeit
+kasnije	later	zmaj zmaj::08_zeit
+dan	day	zmaj zmaj::08_zeit
+jutro	morning	zmaj zmaj::08_zeit
+podne	noon	zmaj zmaj::08_zeit
+večer	evening	zmaj zmaj::08_zeit
+noć	night	zmaj zmaj::08_zeit
+sat	hour / o'clock	zmaj zmaj::08_zeit
+minuta	minute	zmaj zmaj::08_zeit
+Koliko je sati?	What time is it?	zmaj zmaj::08_zeit
+Vidimo se sutra!	See you tomorrow!	zmaj zmaj::08_zeit
+stan	apartment	zmaj zmaj::09_zuhause
+soba	room	zmaj zmaj::09_zuhause
+kuhinja	kitchen	zmaj zmaj::09_zuhause
+kupatilo	bathroom	zmaj zmaj::09_zuhause
+spavaća soba	bedroom	zmaj zmaj::09_zuhause
+dnevna soba	living room	zmaj zmaj::09_zuhause
+vrata	door	zmaj zmaj::09_zuhause
+prozor	window	zmaj zmaj::09_zuhause
+sto	table	zmaj zmaj::09_zuhause
+stolica	chair	zmaj zmaj::09_zuhause
+krevet	bed	zmaj zmaj::09_zuhause
+ključ	key	zmaj zmaj::09_zuhause
+lampa	lamp	zmaj zmaj::09_zuhause
+televizor	television	zmaj zmaj::09_zuhause
+mobitel	cell phone	zmaj zmaj::09_zuhause
+frižider	refrigerator	zmaj zmaj::09_zuhause
+šporet	stove	zmaj zmaj::09_zuhause
+tepih	carpet	zmaj zmaj::09_zuhause
+peškir	towel	zmaj zmaj::09_zuhause
+sapun	soap	zmaj zmaj::09_zuhause
+stepenice	stairs	zmaj zmaj::09_zuhause
+balkon	balcony	zmaj zmaj::09_zuhause
+bašta	garden	zmaj zmaj::09_zuhause
+komšija	neighbor	zmaj zmaj::09_zuhause
+vrijeme	weather	zmaj zmaj::10_wetter
+sunce	sun	zmaj zmaj::10_wetter
+kiša	rain	zmaj zmaj::10_wetter
+snijeg	snow	zmaj zmaj::10_wetter
+vjetar	wind	zmaj zmaj::10_wetter
+oblak	cloud	zmaj zmaj::10_wetter
+toplo	warm	zmaj zmaj::10_wetter
+hladno	cold	zmaj zmaj::10_wetter
+vruće	hot	zmaj zmaj::10_wetter
+Pada kiša	It is raining	zmaj zmaj::10_wetter
+Pada snijeg	It is snowing	zmaj zmaj::10_wetter
+proljeće	spring	zmaj zmaj::10_wetter
+ljeto	summer	zmaj zmaj::10_wetter
+jesen	fall	zmaj zmaj::10_wetter
+zima	winter	zmaj zmaj::10_wetter
+planina	mountain	zmaj zmaj::10_wetter
+rijeka	river	zmaj zmaj::10_wetter
+more	sea	zmaj zmaj::10_wetter
+jezero	lake	zmaj zmaj::10_wetter
+šuma	forest	zmaj zmaj::10_wetter
+drvo	tree	zmaj zmaj::10_wetter
+cvijet	flower	zmaj zmaj::10_wetter
+nebo	sky	zmaj zmaj::10_wetter
+zvijezda	star	zmaj zmaj::10_wetter
+pas	dog	zmaj zmaj::10_wetter
+mačka	cat	zmaj zmaj::10_wetter
+ptica	bird	zmaj zmaj::10_wetter
+pčela	bee	zmaj zmaj::10_wetter
+munja	lightning	zmaj zmaj::10_wetter
+grmljavina	thunder	zmaj zmaj::10_wetter
+led	ice (frozen water)	zmaj zmaj::10_wetter
+magla	fog	zmaj zmaj::10_wetter
+duga	rainbow	zmaj zmaj::10_wetter
+hlad	shade	zmaj zmaj::10_wetter
+oluja	storm	zmaj zmaj::10_wetter
+glava	head	zmaj zmaj::11_koerper
+kosa	hair	zmaj zmaj::11_koerper
+oko	eye	zmaj zmaj::11_koerper
+uho	ear	zmaj zmaj::11_koerper
+nos	nose	zmaj zmaj::11_koerper
+usta	mouth	zmaj zmaj::11_koerper
+zub	tooth	zmaj zmaj::11_koerper
+vrat	neck	zmaj zmaj::11_koerper
+ruka	hand / arm	zmaj zmaj::11_koerper
+prst	finger	zmaj zmaj::11_koerper
+noga	leg	zmaj zmaj::11_koerper
+stomak	stomach	zmaj zmaj::11_koerper
+leđa	back	zmaj zmaj::11_koerper
+srce	heart	zmaj zmaj::11_koerper
+bolestan / bolesna	sick (m/f)	zmaj zmaj::11_koerper
+zdrav / zdrava	healthy (m/f)	zmaj zmaj::11_koerper
+doktor	doctor	zmaj zmaj::11_koerper
+bolnica	hospital	zmaj zmaj::11_koerper
+apoteka	pharmacy	zmaj zmaj::11_koerper
+bol	pain	zmaj zmaj::11_koerper
+Boli me	It hurts	zmaj zmaj::11_koerper
+glavobolja	headache	zmaj zmaj::11_koerper
+temperatura	fever	zmaj zmaj::11_koerper
+lijek	medicine	zmaj zmaj::11_koerper
+Brz oporavak	Get well soon!	zmaj zmaj::11_koerper
+radnja	store	zmaj zmaj::12_einkaufen
+tržni centar	shopping mall	zmaj zmaj::12_einkaufen
+kasa	checkout	zmaj zmaj::12_einkaufen
+cijena	price	zmaj zmaj::12_einkaufen
+popust	discount	zmaj zmaj::12_einkaufen
+gotovina	cash	zmaj zmaj::12_einkaufen
+kartica	card (bank card)	zmaj zmaj::12_einkaufen
+torba	bag	zmaj zmaj::12_einkaufen
+odjeća	clothes	zmaj zmaj::12_einkaufen
+košulja	shirt	zmaj zmaj::12_einkaufen
+majica	T-shirt	zmaj zmaj::12_einkaufen
+pantalone	pants	zmaj zmaj::12_einkaufen
+jakna	jacket	zmaj zmaj::12_einkaufen
+haljina	dress	zmaj zmaj::12_einkaufen
+suknja	skirt	zmaj zmaj::12_einkaufen
+cipele	shoes	zmaj zmaj::12_einkaufen
+čarape	socks	zmaj zmaj::12_einkaufen
+kapa	cap	zmaj zmaj::12_einkaufen
+veličina	size	zmaj zmaj::12_einkaufen
+veliko	big	zmaj zmaj::12_einkaufen
+malo	small	zmaj zmaj::12_einkaufen
+novo	new	zmaj zmaj::12_einkaufen
+staro	old	zmaj zmaj::12_einkaufen
+Tražim ...	I am looking for ...	zmaj zmaj::12_einkaufen
+Imate li ...?	Do you have ...?	zmaj zmaj::12_einkaufen
+Uzet ću ovo	I will take this	zmaj zmaj::12_einkaufen
+Mogu li platiti karticom?	Can I pay by card?	zmaj zmaj::12_einkaufen
+Gdje je ...?	Where is ...?	zmaj zmaj::13_unterwegs
+lijevo	left	zmaj zmaj::13_unterwegs
+desno	right	zmaj zmaj::13_unterwegs
+pravo	straight ahead	zmaj zmaj::13_unterwegs
+ulica	street	zmaj zmaj::13_unterwegs
+kuća	house	zmaj zmaj::13_unterwegs
+grad	city	zmaj zmaj::13_unterwegs
+selo	village	zmaj zmaj::13_unterwegs
+stanica	station / stop	zmaj zmaj::13_unterwegs
+auto	car	zmaj zmaj::13_unterwegs
+autobus	bus	zmaj zmaj::13_unterwegs
+prodavnica	shop	zmaj zmaj::13_unterwegs
+pijaca	market	zmaj zmaj::13_unterwegs
+novac	money	zmaj zmaj::13_unterwegs
+Koliko košta?	How much does it cost?	zmaj zmaj::13_unterwegs
+skupo	expensive	zmaj zmaj::13_unterwegs
+jeftino	cheap	zmaj zmaj::13_unterwegs
+otvoreno	open	zmaj zmaj::13_unterwegs
+zatvoreno	closed	zmaj zmaj::13_unterwegs
+biti	to be	zmaj zmaj::14_verben
+imati	to have	zmaj zmaj::14_verben
+ići	to go	zmaj zmaj::14_verben
+doći	to come	zmaj zmaj::14_verben
+jesti	to eat	zmaj zmaj::14_verben
+piti	to drink	zmaj zmaj::14_verben
+govoriti	to speak	zmaj zmaj::14_verben
+razumjeti	to understand	zmaj zmaj::14_verben
+znati	to know	zmaj zmaj::14_verben
+htjeti	to want	zmaj zmaj::14_verben
+moći	to be able to	zmaj zmaj::14_verben
+voljeti	to love	zmaj zmaj::14_verben
+raditi	to work	zmaj zmaj::14_verben
+spavati	to sleep	zmaj zmaj::14_verben
+učiti	to learn	zmaj zmaj::14_verben
+vidjeti	to see	zmaj zmaj::14_verben
+kupiti	to buy	zmaj zmaj::14_verben
+stanovati	to live (somewhere)	zmaj zmaj::14_verben
+Šta ima?	What's up? / How is it going?	zmaj zmaj::15_smalltalk
+Sve je dobro	All good	zmaj zmaj::15_smalltalk
+Nema problema	No problem	zmaj zmaj::15_smalltalk
+Ne brini	Do not worry	zmaj zmaj::15_smalltalk
+Hajde!	Come on! / Let's go!	zmaj zmaj::15_smalltalk
+Hajmo!	Let's go!	zmaj zmaj::15_smalltalk
+Vidi	Look	zmaj zmaj::15_smalltalk
+Stvarno?	Really?	zmaj zmaj::15_smalltalk
+Super!	Great!	zmaj zmaj::15_smalltalk
+lijepo	nice	zmaj zmaj::15_smalltalk
+Ništa	Nothing	zmaj zmaj::15_smalltalk
+Sve	Everything	zmaj zmaj::15_smalltalk
+Šta radiš?	What are you doing?	zmaj zmaj::15_smalltalk
+Gdje si?	Where are you?	zmaj zmaj::15_smalltalk
+Nemam vremena	I have no time	zmaj zmaj::15_smalltalk
+Umoran sam / Umorna sam	I am tired (m/f)	zmaj zmaj::15_smalltalk
+sretan / sretna	happy (m/f)	zmaj zmaj::15_smalltalk
+tužan / tužna	sad (m/f)	zmaj zmaj::15_smalltalk
+ljubav	love	zmaj zmaj::15_smalltalk
+Volim te	I love you	zmaj zmaj::15_smalltalk
+Nedostaješ mi	I miss you	zmaj zmaj::15_smalltalk
+dušo	sweetheart (form of address)	zmaj zmaj::15_smalltalk
+Sviđa mi se	I like it	zmaj zmaj::15_smalltalk
+Htio bih / Htjela bih	I would like (m/f)	zmaj zmaj::15_smalltalk
+Molim te	Please (asking someone, informal)	zmaj zmaj::15_smalltalk
+Znaš ...	Do you know ...	zmaj zmaj::15_smalltalk
+ananas	pineapple	zmaj zmaj::16_obst
+kajsija	apricot	zmaj zmaj::16_obst
+banana	banana	zmaj zmaj::16_obst
+kruška	pear	zmaj zmaj::16_obst
+kupina	blackberry	zmaj zmaj::16_obst
+jagoda	strawberry	zmaj zmaj::16_obst
+smokva	fig	zmaj zmaj::16_obst
+nar	pomegranate	zmaj zmaj::16_obst
+lješnjak	hazelnut	zmaj zmaj::16_obst
+borovnica	blueberry	zmaj zmaj::16_obst
+malina	raspberry	zmaj zmaj::16_obst
+dinja	honeydew melon	zmaj zmaj::16_obst
+kesten	chestnut	zmaj zmaj::16_obst
+trešnja	cherry	zmaj zmaj::16_obst
+mandarina	mandarin orange	zmaj zmaj::16_obst
+badem	almond	zmaj zmaj::16_obst
+nektarina	nectarine	zmaj zmaj::16_obst
+breskva	peach	zmaj zmaj::16_obst
+dunja	quince	zmaj zmaj::16_obst
+višnja	sour cherry	zmaj zmaj::16_obst
+suho voće	dried fruit	zmaj zmaj::16_obst
+lubenica	watermelon	zmaj zmaj::16_obst
+grožđe	grape	zmaj zmaj::16_obst
+limun	lemon	zmaj zmaj::16_obst
+patlidžan	eggplant	zmaj zmaj::17_gemuese
+karfiol	cauliflower	zmaj zmaj::17_gemuese
+brokula	broccoli	zmaj zmaj::17_gemuese
+grašak	peas	zmaj zmaj::17_gemuese
+mladi luk	green onion	zmaj zmaj::17_gemuese
+boranija	green beans	zmaj zmaj::17_gemuese
+krastavac	cucumber	zmaj zmaj::17_gemuese
+mrkva	carrot	zmaj zmaj::17_gemuese
+bijeli luk	garlic	zmaj zmaj::17_gemuese
+kupus	cabbage	zmaj zmaj::17_gemuese
+zelena salata	lettuce	zmaj zmaj::17_gemuese
+bundeva	pumpkin	zmaj zmaj::17_gemuese
+praziluk	leek	zmaj zmaj::17_gemuese
+kukuruz	corn	zmaj zmaj::17_gemuese
+blitva	Swiss chard	zmaj zmaj::17_gemuese
+bamija	okra	zmaj zmaj::17_gemuese
+paprika	bell pepper	zmaj zmaj::17_gemuese
+peršun	parsley	zmaj zmaj::17_gemuese
+gljive	mushrooms	zmaj zmaj::17_gemuese
+rotkvica	radish	zmaj zmaj::17_gemuese
+cvekla	beet	zmaj zmaj::17_gemuese
+crveni luk	red onion	zmaj zmaj::17_gemuese
+ljuta paprika	chili pepper	zmaj zmaj::17_gemuese
+celer	celery	zmaj zmaj::17_gemuese
+špinat	spinach	zmaj zmaj::17_gemuese
+kelj	savoy cabbage	zmaj zmaj::17_gemuese
+tikvica	zucchini	zmaj zmaj::17_gemuese
+prašak za pecivo	baking powder	zmaj zmaj::18_lebensmittel
+maslac / puter	butter	zmaj zmaj::18_lebensmittel
+turšija	pickled vegetables	zmaj zmaj::18_lebensmittel
+sladoled	ice cream	zmaj zmaj::18_lebensmittel
+začini	spices	zmaj zmaj::18_lebensmittel
+griz	semolina	zmaj zmaj::18_lebensmittel
+mljeveno meso	ground meat	zmaj zmaj::18_lebensmittel
+kvasac	yeast	zmaj zmaj::18_lebensmittel
+teletina	veal	zmaj zmaj::18_lebensmittel
+keks	cookies	zmaj zmaj::18_lebensmittel
+kečap	ketchup	zmaj zmaj::18_lebensmittel
+konzerva	can (preserved food)	zmaj zmaj::18_lebensmittel
+janjetina	lamb (meat)	zmaj zmaj::18_lebensmittel
+pašteta	liver pâté	zmaj zmaj::18_lebensmittel
+leća	lentils	zmaj zmaj::18_lebensmittel
+margarin	margarine	zmaj zmaj::18_lebensmittel
+džem	jam	zmaj zmaj::18_lebensmittel
+majonez	mayonnaise	zmaj zmaj::18_lebensmittel
+mineralna voda	mineral water	zmaj zmaj::18_lebensmittel
+pekmez	plum butter (pekmez)	zmaj zmaj::18_lebensmittel
+junetina	beef	zmaj zmaj::18_lebensmittel
+slatka pavlaka	cream	zmaj zmaj::18_lebensmittel
+salama	salami	zmaj zmaj::18_lebensmittel
+kiseli kupus	sauerkraut (pickled cabbage)	zmaj zmaj::18_lebensmittel
+kiselo mlijeko	sour milk (cultured milk)	zmaj zmaj::18_lebensmittel
+kisela pavlaka	sour cream	zmaj zmaj::18_lebensmittel
+šunka	ham	zmaj zmaj::18_lebensmittel
+šlag	whipped cream	zmaj zmaj::18_lebensmittel
+čokolada	chocolate	zmaj zmaj::18_lebensmittel
+senf	mustard	zmaj zmaj::18_lebensmittel
+kisela voda	sparkling water	zmaj zmaj::18_lebensmittel
+sudžuk	sudžuk (dry spicy beef sausage)	zmaj zmaj::18_lebensmittel
+tunjevina	tuna	zmaj zmaj::18_lebensmittel
+zimnica	winter supplies (preserved food)	zmaj zmaj::18_lebensmittel
+kobasica	sausage	zmaj zmaj::18_lebensmittel
+sirće	vinegar	zmaj zmaj::19_vorrat
+med	honey	zmaj zmaj::19_vorrat
+jogurt	yogurt	zmaj zmaj::19_vorrat
+brašno	flour	zmaj zmaj::19_vorrat
+tjestenina	pasta	zmaj zmaj::19_vorrat
+biber	pepper (spice)	zmaj zmaj::19_vorrat
+pavlaka	sour cream	zmaj zmaj::19_vorrat
+ulje	cooking oil	zmaj zmaj::19_vorrat
+jufka	filo pastry	zmaj zmaj::19_vorrat
+pogača	flatbread (round)	zmaj zmaj::19_vorrat
+pecivo	baked goods	zmaj zmaj::19_vorrat
+kifla	crescent roll	zmaj zmaj::19_vorrat
+šampita	meringue cream slice	zmaj zmaj::19_vorrat
+kadaif	shredded pastry (angel hair)	zmaj zmaj::19_vorrat
+hurmašice	syrup-soaked pastry (hurmašice)	zmaj zmaj::19_vorrat
+rakija	rakija (fruit brandy)	zmaj zmaj::19_vorrat
+vino	wine	zmaj zmaj::19_vorrat
+bosanska kahva	Bosnian coffee	zmaj zmaj::19_vorrat
+Jednu bosansku kahvu, molim	A Bosnian coffee, please	zmaj zmaj::19_vorrat
+džezva	copper coffee pot	zmaj zmaj::19_vorrat
+polako	slowly	zmaj zmaj::19_vorrat
+šećer u kocki	sugar cubes	zmaj zmaj::19_vorrat
+U zdravlje!	To your health!	zmaj zmaj::19_vorrat
+Jednu rakiju, molim	One rakija, please	zmaj zmaj::19_vorrat
+travarica	herbal brandy	zmaj zmaj::19_vorrat
+domaća rakija	home-distilled	zmaj zmaj::19_vorrat
+loza	grape brandy	zmaj zmaj::19_vorrat
+šljivovica	plum brandy	zmaj zmaj::19_vorrat
+kućni ljubimac	pet	zmaj zmaj::20_tiere
+životinja	animal	zmaj zmaj::20_tiere
+stoka	livestock / farm animals	zmaj zmaj::20_tiere
+patka	duck	zmaj zmaj::20_tiere
+magarac	donkey	zmaj zmaj::20_tiere
+guska	goose	zmaj zmaj::20_tiere
+horoz	rooster	zmaj zmaj::20_tiere
+avlija	yard / courtyard	zmaj zmaj::20_tiere
+kokoš	chicken (hen)	zmaj zmaj::20_tiere
+tele	calf	zmaj zmaj::20_tiere
+pile	chick / young chicken	zmaj zmaj::20_tiere
+krava	cow	zmaj zmaj::20_tiere
+jagnje	lamb	zmaj zmaj::20_tiere
+konj	horse	zmaj zmaj::20_tiere
+ovca	sheep	zmaj zmaj::20_tiere
+svinja	pig	zmaj zmaj::20_tiere
+svinjetina	pork	zmaj zmaj::20_tiere
+štala	stable (barn)	zmaj zmaj::20_tiere
+bik	bull	zmaj zmaj::20_tiere
+štene	puppy	zmaj zmaj::20_tiere
+koza	goat	zmaj zmaj::20_tiere
+orao	eagle	zmaj zmaj::20_tiere
+sova	owl	zmaj zmaj::20_tiere
+vrana	crow	zmaj zmaj::20_tiere
+gnijezdo	nest	zmaj zmaj::20_tiere
+lastavica	swallow (bird)	zmaj zmaj::20_tiere
+vrabac	sparrow	zmaj zmaj::20_tiere
+roda	stork	zmaj zmaj::20_tiere
+golub	pigeon	zmaj zmaj::20_tiere
+medvjed	bear	zmaj zmaj::21_tiere_wild
+zmaj	dragon	zmaj zmaj::21_tiere_wild
+vjeverica	squirrel	zmaj zmaj::21_tiere_wild
+žaba	frog	zmaj zmaj::21_tiere_wild
+lisica	fox	zmaj zmaj::21_tiere_wild
+zec	hare	zmaj zmaj::21_tiere_wild
+jelen	deer	zmaj zmaj::21_tiere_wild
+jež	hedgehog	zmaj zmaj::21_tiere_wild
+kunić	rabbit	zmaj zmaj::21_tiere_wild
+ris	lynx	zmaj zmaj::21_tiere_wild
+miš	mouse	zmaj zmaj::21_tiere_wild
+pacov	rat	zmaj zmaj::21_tiere_wild
+srna	roe deer	zmaj zmaj::21_tiere_wild
+zmija	snake	zmaj zmaj::21_tiere_wild
+divlja svinja	wild boar	zmaj zmaj::21_tiere_wild
+vuk	wolf	zmaj zmaj::21_tiere_wild
+mrav	ant	zmaj zmaj::21_tiere_wild
+muha	fly (insect)	zmaj zmaj::21_tiere_wild
+buha	flea	zmaj zmaj::21_tiere_wild
+pastrmka	trout	zmaj zmaj::21_tiere_wild
+komarac	mosquito	zmaj zmaj::21_tiere_wild
+leptir	butterfly	zmaj zmaj::21_tiere_wild
+puž	snail	zmaj zmaj::21_tiere_wild
+pauk	spider	zmaj zmaj::21_tiere_wild
+osa	wasp	zmaj zmaj::21_tiere_wild
+crv	worm	zmaj zmaj::21_tiere_wild
+krpelj	tick (parasite)	zmaj zmaj::21_tiere_wild
+buvljak	flea market	zmaj zmaj::21_tiere_wild
+pero	feather	zmaj zmaj::22_tiere_umgang
+krzno	fur	zmaj zmaj::22_tiere_umgang
+krilo	wing	zmaj zmaj::22_tiere_umgang
+rog	horn	zmaj zmaj::22_tiere_umgang
+povodac	leash	zmaj zmaj::22_tiere_umgang
+rep	tail	zmaj zmaj::22_tiere_umgang
+veterinar	veterinarian	zmaj zmaj::22_tiere_umgang
+ugristi	to bite	zmaj zmaj::22_tiere_umgang
+Hoće li ujesti?	Does he bite?	zmaj zmaj::22_tiere_umgang
+lajati	to bark	zmaj zmaj::22_tiere_umgang
+hraniti	to feed	zmaj zmaj::22_tiere_umgang
+Bojim se pasa	I am afraid of dogs	zmaj zmaj::22_tiere_umgang
+šetati	to go for a walk	zmaj zmaj::22_tiere_umgang
+šetnja	walk (outing)	zmaj zmaj::22_tiere_umgang
+ubosti	to sting (insect)	zmaj zmaj::22_tiere_umgang
+Čuvaj se psa!	Beware of the dog!	zmaj zmaj::22_tiere_umgang
+Pas me je ujeo	The dog bit me	zmaj zmaj::22_tiere_umgang
+opasno	dangerous	zmaj zmaj::22_tiere_umgang
+opasnost	danger	zmaj zmaj::22_tiere_umgang
+mina	mine (landmine)	zmaj zmaj::22_tiere_umgang
+zabranjeno	forbidden	zmaj zmaj::22_tiere_umgang
+Pazi!	Careful! / Watch out!	zmaj zmaj::22_tiere_umgang
+potok	stream	zmaj zmaj::23_natur
+list	leaf	zmaj zmaj::23_natur
+bunar	well (for water)	zmaj zmaj::23_natur
+zemlja	soil / ground	zmaj zmaj::23_natur
+polje	field / farmland	zmaj zmaj::23_natur
+stijena	rock	zmaj zmaj::23_natur
+vatra	fire	zmaj zmaj::23_natur
+vrh	peak	zmaj zmaj::23_natur
+trava	grass	zmaj zmaj::23_natur
+pećina	cave	zmaj zmaj::23_natur
+brdo	hill	zmaj zmaj::23_natur
+ostrvo	island	zmaj zmaj::23_natur
+zrak	air	zmaj zmaj::23_natur
+priroda	nature	zmaj zmaj::23_natur
+izvor	spring (water source)	zmaj zmaj::23_natur
+pijesak	sand	zmaj zmaj::23_natur
+kamen	stone	zmaj zmaj::23_natur
+dolina	valley	zmaj zmaj::23_natur
+obala	shore	zmaj zmaj::23_natur
+vodopad	waterfall	zmaj zmaj::23_natur
+put / staza	way / path	zmaj zmaj::23_natur
+livada	meadow	zmaj zmaj::23_natur
+grana	branch / twig	zmaj zmaj::23_natur
+kamilica	chamomile	zmaj zmaj::23_natur
+lipa	linden tree	zmaj zmaj::23_natur
+nana (auch: metvica)	mint	zmaj zmaj::23_natur
+biljka	plant	zmaj zmaj::23_natur
+šljiva	plum / plum tree	zmaj zmaj::23_natur
+orah	walnut / walnut tree	zmaj zmaj::23_natur
+korijen	root (plant)	zmaj zmaj::23_natur
+rerna	oven	zmaj zmaj::24_kueche_bad
+flaša	bottle	zmaj zmaj::24_kueche_bad
+viljuška	fork	zmaj zmaj::24_kueche_bad
+zamrzivač	freezer	zmaj zmaj::24_kueche_bad
+suđe	dishes (crockery)	zmaj zmaj::24_kueche_bad
+prati suđe	to wash the dishes	zmaj zmaj::24_kueche_bad
+tava	pan	zmaj zmaj::24_kueche_bad
+tanjir	plate	zmaj zmaj::24_kueche_bad
+lonac	pot (for cooking)	zmaj zmaj::24_kueche_bad
+kesa	bag / plastic bag	zmaj zmaj::24_kueche_bad
+posteljina	bed linen	zmaj zmaj::24_kueche_bad
+deka	blanket (for the bed)	zmaj zmaj::24_kueche_bad
+jastuk	pillow	zmaj zmaj::24_kueche_bad
+polica	shelf / board	zmaj zmaj::24_kueche_bad
+ormar	cupboard	zmaj zmaj::24_kueche_bad
+kauč	sofa	zmaj zmaj::24_kueche_bad
+zavjesa	curtain	zmaj zmaj::24_kueche_bad
+tuš	shower	zmaj zmaj::24_kueche_bad
+ogledalo	mirror	zmaj zmaj::24_kueche_bad
+WC	toilet	zmaj zmaj::24_kueche_bad
+toalet papir	toilet paper	zmaj zmaj::24_kueche_bad
+lavabo	washbasin	zmaj zmaj::24_kueche_bad
+četkica za zube	toothbrush	zmaj zmaj::24_kueche_bad
+pasta za zube	toothpaste	zmaj zmaj::24_kueche_bad
+pospremiti	to tidy up	zmaj zmaj::25_putzen
+metla	broom	zmaj zmaj::25_putzen
+pegla	iron (for clothes)	zmaj zmaj::25_putzen
+peglati	to iron	zmaj zmaj::25_putzen
+kanta	bucket	zmaj zmaj::25_putzen
+smeće	trash	zmaj zmaj::25_putzen
+kanta za smeće	trash can / garbage bin	zmaj zmaj::25_putzen
+čisto	clean	zmaj zmaj::25_putzen
+prljavo	dirty	zmaj zmaj::25_putzen
+usisivač	vacuum cleaner	zmaj zmaj::25_putzen
+veš mašina	washing machine	zmaj zmaj::25_putzen
+deterdžent	laundry detergent	zmaj zmaj::25_putzen
+veš	laundry	zmaj zmaj::25_putzen
+štrik	clothesline	zmaj zmaj::25_putzen
+lift	elevator	zmaj zmaj::25_putzen
+poštansko sanduče	mailbox	zmaj zmaj::25_putzen
+krov	roof	zmaj zmaj::25_putzen
+tavan	attic	zmaj zmaj::25_putzen
+pod	floor	zmaj zmaj::25_putzen
+domar	janitor	zmaj zmaj::25_putzen
+podrum	cellar	zmaj zmaj::25_putzen
+zvono	doorbell	zmaj zmaj::25_putzen
+zvoniti	to ring (the doorbell)	zmaj zmaj::25_putzen
+komšinica	neighbor (f)	zmaj zmaj::25_putzen
+zid	wall	zmaj zmaj::25_putzen
+ograda	fence	zmaj zmaj::25_putzen
+ugasiti	to switch off / to turn off	zmaj zmaj::26_technik
+bojler	boiler / water heater	zmaj zmaj::26_technik
+drva	firewood	zmaj zmaj::26_technik
+upaliti	to switch on / to turn on	zmaj zmaj::26_technik
+Nema struje	There is no electricity	zmaj zmaj::26_technik
+sijalica	light bulb	zmaj zmaj::26_technik
+grijanje	heating	zmaj zmaj::26_technik
+ugalj	coal	zmaj zmaj::26_technik
+svjetlo	light	zmaj zmaj::26_technik
+peć	stove (heating stove)	zmaj zmaj::26_technik
+osigurač	fuse (electrical)	zmaj zmaj::26_technik
+utičnica	power socket	zmaj zmaj::26_technik
+utikač	plug (electrical)	zmaj zmaj::26_technik
+struja	electricity	zmaj zmaj::26_technik
+topla voda	warm water	zmaj zmaj::26_technik
+Ne radi	It does not work	zmaj zmaj::26_technik
+Curi voda	It is leaking / it is dripping	zmaj zmaj::26_technik
+čekić	hammer	zmaj zmaj::26_technik
+majstor	craftsman / expert	zmaj zmaj::26_technik
+pokvaren / pokvarena / pokvareno	broken	zmaj zmaj::26_technik
+merdevine	ladder	zmaj zmaj::26_technik
+ekser	nail	zmaj zmaj::26_technik
+popraviti	to repair	zmaj zmaj::26_technik
+brava	lock (door lock)	zmaj zmaj::26_technik
+šaraf	screw	zmaj zmaj::26_technik
+slavina	tap (faucet)	zmaj zmaj::26_technik
+alat	tool	zmaj zmaj::26_technik
+gorivo	fuel	zmaj zmaj::27_auto_werkstatt
+sipati gorivo	to fill up (the tank)	zmaj zmaj::27_auto_werkstatt
+guma	tire	zmaj zmaj::27_auto_werkstatt
+Pukla mi je guma.	I have a flat tire.	zmaj zmaj::27_auto_werkstatt
+kočnica	brake	zmaj zmaj::27_auto_werkstatt
+motor	engine	zmaj zmaj::27_auto_werkstatt
+akumulator	car battery	zmaj zmaj::27_auto_werkstatt
+sigurnosni pojas	seat belt	zmaj zmaj::27_auto_werkstatt
+parkiralište	parking lot	zmaj zmaj::27_auto_werkstatt
+parkirati	to park	zmaj zmaj::27_auto_werkstatt
+semafor	traffic light	zmaj zmaj::27_auto_werkstatt
+raskrsnica	intersection	zmaj zmaj::27_auto_werkstatt
+saobraćaj	traffic	zmaj zmaj::27_auto_werkstatt
+zastoj	traffic jam	zmaj zmaj::27_auto_werkstatt
+kazna	fine / ticket	zmaj zmaj::27_auto_werkstatt
+registracija	number plate	zmaj zmaj::27_auto_werkstatt
+tehnički pregled	vehicle inspection	zmaj zmaj::27_auto_werkstatt
+autoservis	car repair shop	zmaj zmaj::27_auto_werkstatt
+šlep služba	towing service	zmaj zmaj::27_auto_werkstatt
+pomoć na cesti	roadside assistance	zmaj zmaj::27_auto_werkstatt
+odvijač / šrafciger	screwdriver	zmaj zmaj::27_auto_werkstatt
+kliješta	pliers	zmaj zmaj::27_auto_werkstatt
+bušilica	drill	zmaj zmaj::27_auto_werkstatt
+bušiti	to drill	zmaj zmaj::27_auto_werkstatt
+testera	saw	zmaj zmaj::27_auto_werkstatt
+francuski ključ	adjustable wrench	zmaj zmaj::27_auto_werkstatt
+metar	tape measure	zmaj zmaj::27_auto_werkstatt
+ljepilo	glue	zmaj zmaj::27_auto_werkstatt
+produžni kabl	extension cord	zmaj zmaj::27_auto_werkstatt
+radionica	workshop	zmaj zmaj::27_auto_werkstatt
+punjač	charger	zmaj zmaj::28_geraete
+baterija	battery	zmaj zmaj::28_geraete
+Baterija je prazna.	The battery is dead.	zmaj zmaj::28_geraete
+napuniti	to charge	zmaj zmaj::28_geraete
+šifra / lozinka	password	zmaj zmaj::28_geraete
+Koja je šifra za WiFi?	What's the Wi-Fi password?	zmaj zmaj::28_geraete
+internet	internet	zmaj zmaj::28_geraete
+Nema signala.	No signal.	zmaj zmaj::28_geraete
+poruka	message	zmaj zmaj::28_geraete
+poslati poruku	to send a message	zmaj zmaj::28_geraete
+nazvati	to call (on the phone)	zmaj zmaj::28_geraete
+aplikacija	app	zmaj zmaj::28_geraete
+ekran	screen	zmaj zmaj::28_geraete
+tastatura	keyboard	zmaj zmaj::28_geraete
+štampač	printer	zmaj zmaj::28_geraete
+slušalice	headphones	zmaj zmaj::28_geraete
+slikati	to take a photo	zmaj zmaj::28_geraete
+ažurirati	to update	zmaj zmaj::28_geraete
+mašina za suđe	dishwasher	zmaj zmaj::28_geraete
+sušilica za veš	tumble dryer	zmaj zmaj::28_geraete
+mikrovalna	microwave	zmaj zmaj::28_geraete
+toster	toaster	zmaj zmaj::28_geraete
+kuhalo za vodu	electric kettle	zmaj zmaj::28_geraete
+fen	hair dryer	zmaj zmaj::28_geraete
+klima	air conditioning	zmaj zmaj::28_geraete
+ventilator	fan	zmaj zmaj::28_geraete
+daljinski	remote control	zmaj zmaj::28_geraete
+aparat za kahvu / aparat za kafu	coffee maker	zmaj zmaj::28_geraete
+uputstvo	instruction manual	zmaj zmaj::28_geraete
+garancija	warranty	zmaj zmaj::28_geraete
+Ko?	Who?	zmaj zmaj::29_fragen
+Šta?	What?	zmaj zmaj::29_fragen
+Gdje?	Where?	zmaj zmaj::29_fragen
+Kuda?	Where to?	zmaj zmaj::29_fragen
+Odakle?	Where from?	zmaj zmaj::29_fragen
+Kada?	When?	zmaj zmaj::29_fragen
+Zašto?	Why?	zmaj zmaj::29_fragen
+Kako?	How?	zmaj zmaj::29_fragen
+Koliko?	How much?	zmaj zmaj::29_fragen
+Koji?	Which?	zmaj zmaj::29_fragen
+Čiji?	Whose?	zmaj zmaj::29_fragen
+Da li ...?	Yes/no question: Is ...?	zmaj zmaj::29_fragen
+Je li to ...?	Is that ...?	zmaj zmaj::29_fragen
+Ko si ti?	Who are you?	zmaj zmaj::29_fragen
+Odakle si?	Where are you from?	zmaj zmaj::29_fragen
+Kuda ideš?	Where are you going?	zmaj zmaj::29_fragen
+Kada dolaziš?	When are you coming?	zmaj zmaj::29_fragen
+Zašto ne?	Why not?	zmaj zmaj::29_fragen
+Šta je to?	What is that?	zmaj zmaj::29_fragen
+Koliko imaš godina?	How old are you?	zmaj zmaj::29_fragen
+Imaš li vremena?	Do you have time?	zmaj zmaj::29_fragen
+Govoriš li engleski?	Do you speak English?	zmaj zmaj::29_fragen
+Mogu li pomoći?	Can I help?	zmaj zmaj::29_fragen
+Gdje stanuješ?	Where do you live?	zmaj zmaj::29_fragen
+Šta misliš?	What do you think?	zmaj zmaj::29_fragen
+on	he	zmaj zmaj::30_genus
+ona	she	zmaj zmaj::30_genus
+ono	it	zmaj zmaj::30_genus
+oni	they (masculine)	zmaj zmaj::30_genus
+one	they (feminine)	zmaj zmaj::30_genus
+moj / moja / moje	my (m/f/n)	zmaj zmaj::30_genus
+tvoj / tvoja / tvoje	your (m/f/n)	zmaj zmaj::30_genus
+njegov / njegova / njegovo	his (m/f/n)	zmaj zmaj::30_genus
+njen / njena / njeno	her (m/f/n)	zmaj zmaj::30_genus
+naš / naša / naše	our (m/f/n)	zmaj zmaj::30_genus
+vaš / vaša / vaše	your (plural or formal) (m/f/n)	zmaj zmaj::30_genus
+ovaj / ova / ovo	this (m/f/n)	zmaj zmaj::30_genus
+onaj / ona / ono	that (m/f/n)	zmaj zmaj::30_genus
+muškarac	the man	zmaj zmaj::30_genus
+djevojka	the girl	zmaj zmaj::30_genus
+dječak	the boy	zmaj zmaj::30_genus
+nastavnik / nastavnica	teacher (m/f)	zmaj zmaj::30_genus
+student / studentica	student (m/f)	zmaj zmaj::30_genus
+konobar / konobarica	waiter / waitress	zmaj zmaj::30_genus
+doktor / doktorica	doctor (m/f)	zmaj zmaj::30_genus
+prodavač / prodavačica	salesperson (m/f)	zmaj zmaj::30_genus
+velik / velika / veliko	big (m/f/n)	zmaj zmaj::30_genus
+lijep / lijepa / lijepo	beautiful (m/f/n)	zmaj zmaj::30_genus
+dobar / dobra / dobro	good (m/f/n)	zmaj zmaj::30_genus
+nov / nova / novo	new (m/f/n)	zmaj zmaj::30_genus
+pismo	the letter	zmaj zmaj::30_genus
+stvar	the thing	zmaj zmaj::30_genus
+ja sam	I am	zmaj zmaj::31_konjugation
+ti si	you are (singular)	zmaj zmaj::31_konjugation
+on je / ona je	he / she is	zmaj zmaj::31_konjugation
+mi smo	we are	zmaj zmaj::31_konjugation
+vi ste	you are (plural or formal)	zmaj zmaj::31_konjugation
+oni su	they are	zmaj zmaj::31_konjugation
+imam	I have	zmaj zmaj::31_konjugation
+imaš	you have (singular)	zmaj zmaj::31_konjugation
+ima	he / she has	zmaj zmaj::31_konjugation
+imamo	we have	zmaj zmaj::31_konjugation
+imate	you have (plural)	zmaj zmaj::31_konjugation
+imaju	they have	zmaj zmaj::31_konjugation
+idem	I go	zmaj zmaj::31_konjugation
+ideš	you go	zmaj zmaj::31_konjugation
+idemo	we go	zmaj zmaj::31_konjugation
+idu	they go	zmaj zmaj::31_konjugation
+jedem	I eat	zmaj zmaj::31_konjugation
+jedeš	you eat	zmaj zmaj::31_konjugation
+pijem	I drink	zmaj zmaj::31_konjugation
+govorim	I speak	zmaj zmaj::31_konjugation
+znam	I know	zmaj zmaj::31_konjugation
+znaš	you know	zmaj zmaj::31_konjugation
+mogu	I can	zmaj zmaj::31_konjugation
+možeš	you can	zmaj zmaj::31_konjugation
+hoću	I want	zmaj zmaj::31_konjugation
+radim	I work	zmaj zmaj::31_konjugation
+stanujem	I live	zmaj zmaj::31_konjugation
+učim	I learn	zmaj zmaj::31_konjugation
+volim	I love / I like	zmaj zmaj::31_konjugation
+brat → braća	brother → brothers	zmaj zmaj::32_mehrzahl
+sestra → sestre	sister → sisters	zmaj zmaj::32_mehrzahl
+kuća → kuće	house → houses	zmaj zmaj::32_mehrzahl
+grad → gradovi	city → cities	zmaj zmaj::32_mehrzahl
+dijete → djeca	child → children	zmaj zmaj::32_mehrzahl
+žena → žene	woman → women	zmaj zmaj::32_mehrzahl
+muškarac → muškarci	man → men	zmaj zmaj::32_mehrzahl
+prijatelj → prijatelji	friend → friends	zmaj zmaj::32_mehrzahl
+jabuka → jabuke	apple → apples	zmaj zmaj::32_mehrzahl
+knjiga → knjige	book → books	zmaj zmaj::32_mehrzahl
+sto → stolovi	table → tables	zmaj zmaj::32_mehrzahl
+stolica → stolice	chair → chairs	zmaj zmaj::32_mehrzahl
+auto → auti	car → cars	zmaj zmaj::32_mehrzahl
+dan → dani	day → days	zmaj zmaj::32_mehrzahl
+godina → godine	year → years	zmaj zmaj::32_mehrzahl
+riječ → riječi	word → words	zmaj zmaj::32_mehrzahl
+oko → oči	eye → eyes	zmaj zmaj::32_mehrzahl
+ruka → ruke	hand → hands	zmaj zmaj::32_mehrzahl
+čovjek → ljudi	person → people	zmaj zmaj::32_mehrzahl
+prozor → prozori	window → windows	zmaj zmaj::32_mehrzahl
+selo → sela	village → villages	zmaj zmaj::32_mehrzahl
+jaje → jaja	egg → eggs	zmaj zmaj::32_mehrzahl
+ključ → ključevi	key → keys	zmaj zmaj::32_mehrzahl
+zub → zubi	tooth → teeth	zmaj zmaj::32_mehrzahl
+noć → noći	night → nights	zmaj zmaj::32_mehrzahl
+pas → psi	dog → dogs	zmaj zmaj::32_mehrzahl
+čovjek	person	zmaj zmaj::32_mehrzahl
+ljudi	people	zmaj zmaj::32_mehrzahl
+ne	not	zmaj zmaj::33_satzbau
+nisam	I am not	zmaj zmaj::33_satzbau
+nisi	you are not	zmaj zmaj::33_satzbau
+nije	he / she is not	zmaj zmaj::33_satzbau
+nemam	I do not have	zmaj zmaj::33_satzbau
+ne mogu	I cannot	zmaj zmaj::33_satzbau
+neću	I do not want	zmaj zmaj::33_satzbau
+i	and	zmaj zmaj::33_satzbau
+ali	but	zmaj zmaj::33_satzbau
+ili	or	zmaj zmaj::33_satzbau
+jer	because	zmaj zmaj::33_satzbau
+da	that	zmaj zmaj::33_satzbau
+da li	whether	zmaj zmaj::33_satzbau
+ako	if	zmaj zmaj::33_satzbau
+kad	when (in time)	zmaj zmaj::33_satzbau
+zato	therefore	zmaj zmaj::33_satzbau
+Mislim da ...	I think that ...	zmaj zmaj::33_satzbau
+Ne znam gdje ...	I do not know where ...	zmaj zmaj::33_satzbau
+Pitam se da li ...	I wonder whether ...	zmaj zmaj::33_satzbau
+Kaže da ...	He says that ...	zmaj zmaj::33_satzbau
+Nadam se da ...	I hope that ...	zmaj zmaj::33_satzbau
+Ne vjerujem	I do not believe so	zmaj zmaj::33_satzbau
+niko	nobody	zmaj zmaj::33_satzbau
+nikad	never	zmaj zmaj::33_satzbau
+uvijek	always	zmaj zmaj::33_satzbau
+također	also	zmaj zmaj::33_satzbau
+samo	only	zmaj zmaj::33_satzbau
+već	already	zmaj zmaj::33_satzbau
+još ne	not yet	zmaj zmaj::33_satzbau
+Vidim brata	I see the brother	zmaj zmaj::34_faelle1
+Vidim sestru	I see the sister	zmaj zmaj::34_faelle1
+Vidim dijete	I see the child	zmaj zmaj::34_faelle1
+Pijem kahvu	I am drinking coffee	zmaj zmaj::34_faelle1
+Jedem hljeb	I am eating bread	zmaj zmaj::34_faelle1
+Imam pitanje	I have a question	zmaj zmaj::34_faelle1
+Imam auto	I have a car	zmaj zmaj::34_faelle1
+Volim svoju majku	I love my mother	zmaj zmaj::34_faelle1
+Kupujem jaknu	I am buying a jacket	zmaj zmaj::34_faelle1
+Čitam knjigu	I am reading a book	zmaj zmaj::34_faelle1
+Zovem doktora	I am calling the doctor	zmaj zmaj::34_faelle1
+On ima psa	He has a dog	zmaj zmaj::34_faelle1
+Ona ima mačku	She has a cat	zmaj zmaj::34_faelle1
+Tražimo ulicu	We are looking for the street	zmaj zmaj::34_faelle1
+Trebam vodu	I need water	zmaj zmaj::34_faelle1
+Trebam ključ	I need a key	zmaj zmaj::34_faelle1
+Znam tvog brata	I know your brother	zmaj zmaj::34_faelle1
+pitanje	question	zmaj zmaj::34_faelle1
+odgovor	answer	zmaj zmaj::34_faelle1
+čitati	to read	zmaj zmaj::34_faelle1
+tražiti	to look for	zmaj zmaj::34_faelle1
+trebati	to need	zmaj zmaj::34_faelle1
+zvati	to call	zmaj zmaj::34_faelle1
+kupujem	I buy	zmaj zmaj::34_faelle1
+vidim	I see	zmaj zmaj::34_faelle1
+mene / me	me	zmaj zmaj::34_faelle1
+tebe / te	you (object)	zmaj zmaj::34_faelle1
+njega / ga	him	zmaj zmaj::34_faelle1
+nju / je	her (accusative)	zmaj zmaj::34_faelle1
+bez šećera	without sugar	zmaj zmaj::35_faelle2
+bez mlijeka	without milk	zmaj zmaj::35_faelle2
+iz Bosne	from Bosnia	zmaj zmaj::35_faelle2
+iz Njemačke	from Germany	zmaj zmaj::35_faelle2
+iz grada	from the city	zmaj zmaj::35_faelle2
+od mog brata	from my brother	zmaj zmaj::35_faelle2
+do sutra	until tomorrow	zmaj zmaj::35_faelle2
+do stanice	up to the stop	zmaj zmaj::35_faelle2
+pored kuće	next to the house	zmaj zmaj::35_faelle2
+kod nane	at grandma's	zmaj zmaj::35_faelle2
+kod prijatelja	at my friend's	zmaj zmaj::35_faelle2
+kuća moje sestre	my sister's house	zmaj zmaj::35_faelle2
+auto oca	the father's car	zmaj zmaj::35_faelle2
+čaša vode	a glass of water	zmaj zmaj::35_faelle2
+šolja kahve	a cup of coffee	zmaj zmaj::35_faelle2
+kilogram jabuka	a kilo of apples	zmaj zmaj::35_faelle2
+mnogo ljudi	many people	zmaj zmaj::35_faelle2
+malo vremena	little time	zmaj zmaj::35_faelle2
+Nemam novca	I have no money	zmaj zmaj::35_faelle2
+Nema hljeba	There is no bread	zmaj zmaj::35_faelle2
+Ima mnogo djece	There are many children	zmaj zmaj::35_faelle2
+čaša	glass	zmaj zmaj::35_faelle2
+šolja	cup	zmaj zmaj::35_faelle2
+kilogram	kilo	zmaj zmaj::35_faelle2
+mnogo	much / many	zmaj zmaj::35_faelle2
+malo	little	zmaj zmaj::35_faelle2
+dosta	enough	zmaj zmaj::35_faelle2
+blizu	near	zmaj zmaj::35_faelle2
+zbog	because of	zmaj zmaj::35_faelle2
+u	in (where)	zmaj zmaj::36_praepositionen
+na	on (where)	zmaj zmaj::36_praepositionen
+iz	from	zmaj zmaj::36_praepositionen
+od	from / of	zmaj zmaj::36_praepositionen
+do	until	zmaj zmaj::36_praepositionen
+sa	with	zmaj zmaj::36_praepositionen
+za	for	zmaj zmaj::36_praepositionen
+kod	at	zmaj zmaj::36_praepositionen
+bez	without	zmaj zmaj::36_praepositionen
+prema	towards	zmaj zmaj::36_praepositionen
+iznad	above	zmaj zmaj::36_praepositionen
+ispod	under	zmaj zmaj::36_praepositionen
+između	between	zmaj zmaj::36_praepositionen
+iza	behind	zmaj zmaj::36_praepositionen
+ispred	in front of	zmaj zmaj::36_praepositionen
+pored	next to	zmaj zmaj::36_praepositionen
+poslije	after	zmaj zmaj::36_praepositionen
+prije	before	zmaj zmaj::36_praepositionen
+kroz	through	zmaj zmaj::36_praepositionen
+oko	around	zmaj zmaj::36_praepositionen
+u gradu	in the city	zmaj zmaj::36_praepositionen
+u kući	in the house	zmaj zmaj::36_praepositionen
+na stolu	on the table	zmaj zmaj::36_praepositionen
+na pijaci	at the market	zmaj zmaj::36_praepositionen
+s mojom ženom	with my wife	zmaj zmaj::36_praepositionen
+za tebe	for you	zmaj zmaj::36_praepositionen
+za djecu	for the children	zmaj zmaj::36_praepositionen
+u autu	in the car	zmaj zmaj::36_praepositionen
+poslije posla	after work	zmaj zmaj::36_praepositionen
+prije jela	before the meal	zmaj zmaj::36_praepositionen
+Dajem bratu	I give to the brother	zmaj zmaj::37_faelle3
+Dajem sestri	I give to the sister	zmaj zmaj::37_faelle3
+Dajem djetetu	I give to the child	zmaj zmaj::37_faelle3
+Pomažem majci	I help my mother	zmaj zmaj::37_faelle3
+Kažem prijatelju	I tell my friend	zmaj zmaj::37_faelle3
+Pišem nani	I am writing to grandma	zmaj zmaj::37_faelle3
+meni / mi	to me	zmaj zmaj::37_faelle3
+tebi / ti	to you	zmaj zmaj::37_faelle3
+njemu / mu	to him	zmaj zmaj::37_faelle3
+njoj / joj	to her (dative)	zmaj zmaj::37_faelle3
+nama / nam	to us	zmaj zmaj::37_faelle3
+vama / vam	to you (plural or formal)	zmaj zmaj::37_faelle3
+Daj mi	Give me	zmaj zmaj::37_faelle3
+Reci mi	Tell me	zmaj zmaj::37_faelle3
+Hladno mi je	I am cold	zmaj zmaj::37_faelle3
+u školi	at school	zmaj zmaj::37_faelle3
+u kuhinji	in the kitchen	zmaj zmaj::37_faelle3
+na ulici	on the street	zmaj zmaj::37_faelle3
+u Sarajevu	in Sarajevo	zmaj zmaj::37_faelle3
+u sobi	in the room	zmaj zmaj::37_faelle3
+govoriti o poslu	to talk about work	zmaj zmaj::37_faelle3
+Mislim na tebe	I am thinking of you	zmaj zmaj::37_faelle3
+Stanujem u Berlinu	I live in Berlin	zmaj zmaj::37_faelle3
+dati	to give	zmaj zmaj::37_faelle3
+pomoći	to help	zmaj zmaj::37_faelle3
+pisati	to write	zmaj zmaj::37_faelle3
+reći	to say	zmaj zmaj::37_faelle3
+pokloniti	to give as a present	zmaj zmaj::37_faelle3
+pokazati	to show	zmaj zmaj::37_faelle3
+s bratom	with the brother	zmaj zmaj::38_faelle4
+sa sestrom	with the sister	zmaj zmaj::38_faelle4
+s djecom	with the children	zmaj zmaj::38_faelle4
+autom	by car	zmaj zmaj::38_faelle4
+autobusom	by bus	zmaj zmaj::38_faelle4
+vozom	by train	zmaj zmaj::38_faelle4
+biciklom	by bike	zmaj zmaj::38_faelle4
+pješke	on foot	zmaj zmaj::38_faelle4
+sa mnom	with me	zmaj zmaj::38_faelle4
+s tobom	with you	zmaj zmaj::38_faelle4
+s nama	with us	zmaj zmaj::38_faelle4
+sa šećerom	with sugar	zmaj zmaj::38_faelle4
+s mlijekom	with milk	zmaj zmaj::38_faelle4
+pod stolom	under the table	zmaj zmaj::38_faelle4
+brate!	brother! (vocative)	zmaj zmaj::38_faelle4
+sestro!	sister! (vocative)	zmaj zmaj::38_faelle4
+prijatelju!	friend! (vocative)	zmaj zmaj::38_faelle4
+gospodine!	sir! (vocative)	zmaj zmaj::38_faelle4
+gospođo!	madam! (vocative)	zmaj zmaj::38_faelle4
+dušo!	sweetheart! (vocative)	zmaj zmaj::38_faelle4
+babo!	dad! (vocative)	zmaj zmaj::38_faelle4
+nano!	grandma! (vocative)	zmaj zmaj::38_faelle4
+sine!	son! (vocative)	zmaj zmaj::38_faelle4
+voz	train	zmaj zmaj::38_faelle4
+avion	airplane	zmaj zmaj::38_faelle4
+bicikl	bicycle	zmaj zmaj::38_faelle4
+kašika	spoon	zmaj zmaj::38_faelle4
+kašikom	with the spoon	zmaj zmaj::38_faelle4
+nož	knife	zmaj zmaj::38_faelle4
+bio sam / bila sam	I was (m/f)	zmaj zmaj::39_vergangenheit
+bio si / bila si	you were (m/f)	zmaj zmaj::39_vergangenheit
+bio je	he was	zmaj zmaj::39_vergangenheit
+bila je	she was	zmaj zmaj::39_vergangenheit
+bili smo	we were	zmaj zmaj::39_vergangenheit
+imao sam / imala sam	I had (m/f)	zmaj zmaj::39_vergangenheit
+radio sam / radila sam	I worked (m/f)	zmaj zmaj::39_vergangenheit
+jeo sam / jela sam	I ate (m/f)	zmaj zmaj::39_vergangenheit
+vidio sam / vidjela sam	I saw (m/f)	zmaj zmaj::39_vergangenheit
+išao sam / išla sam	I went (m/f)	zmaj zmaj::39_vergangenheit
+rekao sam / rekla sam	I said (m/f)	zmaj zmaj::39_vergangenheit
+kupio sam / kupila sam	I bought (m/f)	zmaj zmaj::39_vergangenheit
+učio sam / učila sam	I studied (m/f)	zmaj zmaj::39_vergangenheit
+stanovao sam / stanovala sam	I lived (m/f)	zmaj zmaj::39_vergangenheit
+prošle sedmice	last week	zmaj zmaj::39_vergangenheit
+prošle godine	last year	zmaj zmaj::39_vergangenheit
+prije dva dana	two days ago	zmaj zmaj::39_vergangenheit
+prije	earlier	zmaj zmaj::39_vergangenheit
+tada	back then	zmaj zmaj::39_vergangenheit
+Bio sam u Bosni / Bila sam u Bosni	I was in Bosnia (m/f)	zmaj zmaj::39_vergangenheit
+Bilo je lijepo	It was nice	zmaj zmaj::39_vergangenheit
+Šta si radio? / Šta si radila?	What did you do? (m/f)	zmaj zmaj::39_vergangenheit
+ću	I will	zmaj zmaj::40_zukunft
+ćeš	you will	zmaj zmaj::40_zukunft
+će	he / she will	zmaj zmaj::40_zukunft
+ćemo	we will	zmaj zmaj::40_zukunft
+ćete	you will (plural)	zmaj zmaj::40_zukunft
+Radit ću	I will work	zmaj zmaj::40_zukunft
+Doći ću	I will come	zmaj zmaj::40_zukunft
+Vidjet ćemo	We will see	zmaj zmaj::40_zukunft
+Učit ću	I will study	zmaj zmaj::40_zukunft
+Nazvat ću te	I will call you	zmaj zmaj::40_zukunft
+Kada ćeš doći?	When will you come?	zmaj zmaj::40_zukunft
+prekosutra	the day after tomorrow	zmaj zmaj::40_zukunft
+sljedeće sedmice	next week	zmaj zmaj::40_zukunft
+sljedeće godine	next year	zmaj zmaj::40_zukunft
+uskoro	soon	zmaj zmaj::40_zukunft
+plan	plan	zmaj zmaj::40_zukunft
+Planiram ...	I am planning to ...	zmaj zmaj::40_zukunft
+Želim putovati	I want to travel	zmaj zmaj::40_zukunft
+putovanje	trip	zmaj zmaj::40_zukunft
+Idemo u Bosnu	We are going to Bosnia	zmaj zmaj::40_zukunft
+Pokušat ću	I will try	zmaj zmaj::40_zukunft
+morati	to have to	zmaj zmaj::41_modal
+moram	I have to	zmaj zmaj::41_modal
+moraš	you have to	zmaj zmaj::41_modal
+moramo	we have to	zmaj zmaj::41_modal
+može	he / she can	zmaj zmaj::41_modal
+možemo	we can	zmaj zmaj::41_modal
+hoćeš	you want	zmaj zmaj::41_modal
+hoćemo	we want	zmaj zmaj::41_modal
+smjeti	to be allowed to	zmaj zmaj::41_modal
+smijem	I am allowed to	zmaj zmaj::41_modal
+trebao bih / trebala bih	I should (m/f)	zmaj zmaj::41_modal
+Moram raditi	I have to work	zmaj zmaj::41_modal
+Moram ići	I have to go	zmaj zmaj::41_modal
+Ne mogu doći	I cannot come	zmaj zmaj::41_modal
+Možeš li mi pomoći?	Can you help me?	zmaj zmaj::41_modal
+Hoću spavati	I want to sleep	zmaj zmaj::41_modal
+Želim učiti	I want to study	zmaj zmaj::41_modal
+Smijem li pitati?	May I ask?	zmaj zmaj::41_modal
+Ne moraš	You do not have to	zmaj zmaj::41_modal
+Moramo čekati	We have to wait	zmaj zmaj::41_modal
+čekati	to wait	zmaj zmaj::41_modal
+Želim nešto jesti	I want to eat something	zmaj zmaj::41_modal
+nešto	something	zmaj zmaj::41_modal
+Mogu govoriti bosanski	I can speak Bosnian	zmaj zmaj::41_modal
+Ne znam plivati	I cannot swim (ability)	zmaj zmaj::41_modal
+plivati	to swim	zmaj zmaj::41_modal
+pitati	to ask	zmaj zmaj::41_modal
+pokušati	to try	zmaj zmaj::41_modal
+se	oneself (reflexive pronoun)	zmaj zmaj::42_reflexiv
+zvati se	to be called	zmaj zmaj::42_reflexiv
+prati se	to wash oneself	zmaj zmaj::42_reflexiv
+Perem se	I wash myself	zmaj zmaj::42_reflexiv
+radovati se	to be glad	zmaj zmaj::42_reflexiv
+Radujem se	I am glad	zmaj zmaj::42_reflexiv
+osjećati se	to feel	zmaj zmaj::42_reflexiv
+Osjećam se dobro	I feel good	zmaj zmaj::42_reflexiv
+naći se	to meet	zmaj zmaj::42_reflexiv
+Nalazimo se u pet	We are meeting at five	zmaj zmaj::42_reflexiv
+sjećati se	to remember	zmaj zmaj::42_reflexiv
+Sjećam se	I remember	zmaj zmaj::42_reflexiv
+sjesti	to sit down	zmaj zmaj::42_reflexiv
+Sjedi!	Sit down!	zmaj zmaj::42_reflexiv
+odmarati se	to rest	zmaj zmaj::42_reflexiv
+Odmaram se	I am resting	zmaj zmaj::42_reflexiv
+oblačiti se	to get dressed	zmaj zmaj::42_reflexiv
+žuriti se	to hurry	zmaj zmaj::42_reflexiv
+Požuri!	Hurry up!	zmaj zmaj::42_reflexiv
+kasniti	to be late	zmaj zmaj::42_reflexiv
+Kasnim	I am late	zmaj zmaj::42_reflexiv
+svađati se	to argue	zmaj zmaj::42_reflexiv
+zaljubiti se	to fall in love	zmaj zmaj::42_reflexiv
+Zaljubio sam se / Zaljubila sam se	I have fallen in love (m/f)	zmaj zmaj::42_reflexiv
+smijati se	to laugh	zmaj zmaj::42_reflexiv
+Smijem se	I am laughing	zmaj zmaj::42_reflexiv
+igrati se	to play (children)	zmaj zmaj::42_reflexiv
+Djeca se igraju	The children are playing	zmaj zmaj::42_reflexiv
+brinuti se	to worry	zmaj zmaj::42_reflexiv
+ustajati	to get up	zmaj zmaj::43_routine
+Ustajem u sedam	I get up at seven	zmaj zmaj::43_routine
+tuširati se	to take a shower	zmaj zmaj::43_routine
+Tuširam se	I am taking a shower	zmaj zmaj::43_routine
+prati zube	to brush one's teeth	zmaj zmaj::43_routine
+doručkovati	to have breakfast	zmaj zmaj::43_routine
+Doručkujem	I am having breakfast	zmaj zmaj::43_routine
+ići na posao	to go to work	zmaj zmaj::43_routine
+Idem na posao	I am going to work	zmaj zmaj::43_routine
+ručati	to have lunch	zmaj zmaj::43_routine
+Ručam	I am having lunch	zmaj zmaj::43_routine
+doći kući	to come home	zmaj zmaj::43_routine
+Dolazim kući	I am coming home	zmaj zmaj::43_routine
+kuhati	to cook	zmaj zmaj::43_routine
+Kuham večeru	I am cooking dinner	zmaj zmaj::43_routine
+gledati televiziju	to watch television	zmaj zmaj::43_routine
+ići spavati	to go to sleep	zmaj zmaj::43_routine
+Idem spavati	I am going to sleep	zmaj zmaj::43_routine
+ići u kupovinu	to go shopping	zmaj zmaj::43_routine
+čistiti	to clean	zmaj zmaj::43_routine
+prati veš	to do the laundry	zmaj zmaj::43_routine
+rano	early	zmaj zmaj::43_routine
+kasno	late	zmaj zmaj::43_routine
+svaki dan	every day	zmaj zmaj::43_routine
+ponekad	sometimes	zmaj zmaj::43_routine
+često	often	zmaj zmaj::43_routine
+rijetko	rarely	zmaj zmaj::43_routine
+ujutro	in the morning	zmaj zmaj::43_routine
+popodne	in the afternoon	zmaj zmaj::43_routine
+navečer	in the evening	zmaj zmaj::43_routine
+vikendom	on the weekend	zmaj zmaj::43_routine
+velik / velika	big (m/f)	zmaj zmaj::44_adjektive
+veći	bigger	zmaj zmaj::44_adjektive
+najveći	the biggest	zmaj zmaj::44_adjektive
+mali / mala	small (m/f)	zmaj zmaj::44_adjektive
+manji	smaller	zmaj zmaj::44_adjektive
+dobar / dobra	good (m/f)	zmaj zmaj::44_adjektive
+bolji	better	zmaj zmaj::44_adjektive
+najbolji	the best	zmaj zmaj::44_adjektive
+loš / loša	bad (m/f)	zmaj zmaj::44_adjektive
+gori	worse	zmaj zmaj::44_adjektive
+lijep / lijepa	beautiful (m/f)	zmaj zmaj::44_adjektive
+ljepši	more beautiful	zmaj zmaj::44_adjektive
+nov / nova	new (m/f)	zmaj zmaj::44_adjektive
+star / stara	old (m/f)	zmaj zmaj::44_adjektive
+stariji	older	zmaj zmaj::44_adjektive
+mlad / mlada	young (m/f)	zmaj zmaj::44_adjektive
+mlađi	younger	zmaj zmaj::44_adjektive
+skup / skupa / skupo	expensive (m/f/n)	zmaj zmaj::44_adjektive
+skuplji	more expensive	zmaj zmaj::44_adjektive
+jeftiniji	cheaper	zmaj zmaj::44_adjektive
+brz / brza	fast (m/f)	zmaj zmaj::44_adjektive
+spor / spora	slow (m/f)	zmaj zmaj::44_adjektive
+nego / od	than (comparison)	zmaj zmaj::44_adjektive
+jako	very	zmaj zmaj::44_adjektive
+previše	too (too big)	zmaj zmaj::44_adjektive
+To je bolje nego to	This is better than that	zmaj zmaj::44_adjektive
+jedan brat	one brother	zmaj zmaj::45_mengen
+dva brata	two brothers	zmaj zmaj::45_mengen
+pet braće	five brothers	zmaj zmaj::45_mengen
+jedna sestra	one sister	zmaj zmaj::45_mengen
+dvije sestre	two sisters	zmaj zmaj::45_mengen
+pet sestara	five sisters	zmaj zmaj::45_mengen
+jedna godina	one year	zmaj zmaj::45_mengen
+dvije godine	two years	zmaj zmaj::45_mengen
+pet godina	five years	zmaj zmaj::45_mengen
+jedan dan	one day	zmaj zmaj::45_mengen
+tri dana	three days	zmaj zmaj::45_mengen
+deset dana	ten days	zmaj zmaj::45_mengen
+jedna kahva	one coffee	zmaj zmaj::45_mengen
+dvije kahve	two coffees	zmaj zmaj::45_mengen
+tri piva	three beers	zmaj zmaj::45_mengen
+nekoliko	a few	zmaj zmaj::45_mengen
+nekoliko dana	a few days	zmaj zmaj::45_mengen
+pola	half	zmaj zmaj::45_mengen
+pola kilograma	half a kilo	zmaj zmaj::45_mengen
+četvrt	a quarter	zmaj zmaj::45_mengen
+prvi	the first	zmaj zmaj::45_mengen
+drugi	the second	zmaj zmaj::45_mengen
+treći	the third	zmaj zmaj::45_mengen
+zadnji	the last	zmaj zmaj::45_mengen
+jednom	once	zmaj zmaj::45_mengen
+dva puta	twice	zmaj zmaj::45_mengen
+prvi put	for the first time	zmaj zmaj::45_mengen
+oboje	both	zmaj zmaj::45_mengen
+svi	all	zmaj zmaj::45_mengen
+svaki	every	zmaj zmaj::45_mengen
+nijedan / nijedna	no / none (m/f)	zmaj zmaj::45_mengen
+mišljenje	opinion	zmaj zmaj::46_gefuehle
+Po mom mišljenju	In my opinion	zmaj zmaj::46_gefuehle
+Slažem se	I agree	zmaj zmaj::46_gefuehle
+Ne slažem se	I do not agree	zmaj zmaj::46_gefuehle
+Siguran sam / Sigurna sam	I am sure (m/f)	zmaj zmaj::46_gefuehle
+To je tačno	That is right	zmaj zmaj::46_gefuehle
+To nije tačno	That is not right	zmaj zmaj::46_gefuehle
+važno	important	zmaj zmaj::46_gefuehle
+Svejedno mi je	I do not mind	zmaj zmaj::46_gefuehle
+strah	fear	zmaj zmaj::46_gefuehle
+Bojim se	I am afraid	zmaj zmaj::46_gefuehle
+ljut / ljuta	angry (m/f)	zmaj zmaj::46_gefuehle
+nervozan / nervozna	nervous (m/f)	zmaj zmaj::46_gefuehle
+zadovoljan / zadovoljna	content (m/f)	zmaj zmaj::46_gefuehle
+iznenađen / iznenađena	surprised (m/f)	zmaj zmaj::46_gefuehle
+Dosadno mi je	I am bored	zmaj zmaj::46_gefuehle
+usamljen / usamljena	lonely (m/f)	zmaj zmaj::46_gefuehle
+ponosan / ponosna	proud (m/f)	zmaj zmaj::46_gefuehle
+Ponosan sam na tebe / Ponosna sam na tebe	I am proud of you (m/f)	zmaj zmaj::46_gefuehle
+nada	hope	zmaj zmaj::46_gefuehle
+nadam se	hopefully	zmaj zmaj::46_gefuehle
+nažalost	unfortunately	zmaj zmaj::46_gefuehle
+srećom	luckily	zmaj zmaj::46_gefuehle
+Brinem se	I am worried	zmaj zmaj::46_gefuehle
+Drago mi je zbog tebe	I am happy for you	zmaj zmaj::46_gefuehle
+zanimljivo	interesting	zmaj zmaj::46_gefuehle
+dosadno	boring	zmaj zmaj::46_gefuehle
+smiješno	funny	zmaj zmaj::46_gefuehle
+teško	difficult	zmaj zmaj::46_gefuehle
+lako / lahko	easy	zmaj zmaj::46_gefuehle
+aerodrom	airport	zmaj zmaj::47_reisen
+let	flight	zmaj zmaj::47_reisen
+karta	ticket	zmaj zmaj::47_reisen
+povratna karta	round-trip ticket	zmaj zmaj::47_reisen
+polazak	departure	zmaj zmaj::47_reisen
+dolazak	arrival	zmaj zmaj::47_reisen
+kašnjenje	delay	zmaj zmaj::47_reisen
+prtljag	luggage	zmaj zmaj::47_reisen
+kofer	suitcase	zmaj zmaj::47_reisen
+hotel	hotel	zmaj zmaj::47_reisen
+rezervisati sobu	to book a room	zmaj zmaj::47_reisen
+rezervacija	reservation	zmaj zmaj::47_reisen
+autobuska stanica	bus station	zmaj zmaj::47_reisen
+taksi	taxi	zmaj zmaj::47_reisen
+vozač	driver	zmaj zmaj::47_reisen
+benzinska pumpa	gas station	zmaj zmaj::47_reisen
+benzin	gasoline	zmaj zmaj::47_reisen
+autoput	highway	zmaj zmaj::47_reisen
+mapa	map	zmaj zmaj::47_reisen
+pravac	direction	zmaj zmaj::47_reisen
+vožnja	ride	zmaj zmaj::47_reisen
+Koliko traje vožnja?	How long does the ride take?	zmaj zmaj::47_reisen
+Kada polazi autobus?	When does the bus leave?	zmaj zmaj::47_reisen
+ulaz	entrance	zmaj zmaj::47_reisen
+izlaz	exit	zmaj zmaj::47_reisen
+znamenitost	sight	zmaj zmaj::47_reisen
+most	bridge	zmaj zmaj::47_reisen
+stari grad	old town	zmaj zmaj::47_reisen
+džamija	mosque	zmaj zmaj::47_reisen
+crkva	church	zmaj zmaj::47_reisen
+prenoćiti	to stay overnight	zmaj zmaj::47_reisen
+Sretan put!	Have a good trip!	zmaj zmaj::47_reisen
+proslava	celebration	zmaj zmaj::48_feiern
+rođendan	birthday	zmaj zmaj::48_feiern
+Sretan rođendan!	Happy birthday!	zmaj zmaj::48_feiern
+svadba	wedding	zmaj zmaj::48_feiern
+mlada	bride	zmaj zmaj::48_feiern
+mladoženja	groom	zmaj zmaj::48_feiern
+gost	guest	zmaj zmaj::48_feiern
+gosti	guests	zmaj zmaj::48_feiern
+poklon	present	zmaj zmaj::48_feiern
+poziv	invitation	zmaj zmaj::48_feiern
+pozvati	to invite	zmaj zmaj::48_feiern
+Bajram	Bajram (Eid)	zmaj zmaj::48_feiern
+Bajram šerif mubarek olsun!	Blessed Bajram!	zmaj zmaj::48_feiern
+Ramazan	Ramadan	zmaj zmaj::48_feiern
+postiti	to fast	zmaj zmaj::48_feiern
+Nova godina	New Year	zmaj zmaj::48_feiern
+Sretna Nova godina!	Happy New Year!	zmaj zmaj::48_feiern
+Božić	Christmas	zmaj zmaj::48_feiern
+Uskrs	Easter	zmaj zmaj::48_feiern
+kolač	cake	zmaj zmaj::48_feiern
+baklava	baklava	zmaj zmaj::48_feiern
+torta	layer cake	zmaj zmaj::48_feiern
+plesati	to dance	zmaj zmaj::48_feiern
+pjevati	to sing	zmaj zmaj::48_feiern
+pjesma	song	zmaj zmaj::48_feiern
+muzika	music	zmaj zmaj::48_feiern
+tradicija	tradition	zmaj zmaj::48_feiern
+Čestitam!	Congratulations!	zmaj zmaj::48_feiern
+Izvolite, uđite!	Please, come in!	zmaj zmaj::48_feiern
+poslužiti kahvu	to serve coffee	zmaj zmaj::48_feiern
+gostoprimstvo	hospitality	zmaj zmaj::48_feiern
+dženaza / sahrana	funeral	zmaj zmaj::48_feiern
+običaj	custom / tradition	zmaj zmaj::48_feiern
+slaviti	to celebrate	zmaj zmaj::48_feiern
+čestitati	to congratulate	zmaj zmaj::48_feiern
+narodna nošnja	traditional costume	zmaj zmaj::48_feiern
+posao	work	zmaj zmaj::49_arbeit
+firma	company	zmaj zmaj::49_arbeit
+šef	boss	zmaj zmaj::49_arbeit
+kolega	colleague	zmaj zmaj::49_arbeit
+kancelarija	office	zmaj zmaj::49_arbeit
+fabrika	factory	zmaj zmaj::49_arbeit
+mašina	machine	zmaj zmaj::49_arbeit
+inženjer	engineer	zmaj zmaj::49_arbeit
+električar	electrician	zmaj zmaj::49_arbeit
+zanimanje	profession	zmaj zmaj::49_arbeit
+Šta si po zanimanju?	What do you do for a living?	zmaj zmaj::49_arbeit
+plata	salary	zmaj zmaj::49_arbeit
+godišnji odmor	vacation	zmaj zmaj::49_arbeit
+škola	school	zmaj zmaj::49_arbeit
+nastavnik	teacher	zmaj zmaj::49_arbeit
+učenik	pupil	zmaj zmaj::49_arbeit
+student	student (university)	zmaj zmaj::49_arbeit
+univerzitet	university	zmaj zmaj::49_arbeit
+ispit	exam	zmaj zmaj::49_arbeit
+zadaća	homework	zmaj zmaj::49_arbeit
+knjiga	book	zmaj zmaj::49_arbeit
+olovka	pen	zmaj zmaj::49_arbeit
+papir	paper	zmaj zmaj::49_arbeit
+računar	computer	zmaj zmaj::49_arbeit
+Imam dva brata	I have two brothers	zmaj zmaj::50_saetze
+Moja sestra ima pet godina	My sister is five years old	zmaj zmaj::50_saetze
+Jedemo u sedam sati	We eat at seven o'clock	zmaj zmaj::50_saetze
+U ponedjeljak idem na posao	On Monday I go to work	zmaj zmaj::50_saetze
+Kahva je vruća	The coffee is hot	zmaj zmaj::50_saetze
+Pijem vodu, hvala	I am drinking water, thank you	zmaj zmaj::50_saetze
+Moj babo ne radi u julu	My dad does not work in July	zmaj zmaj::50_saetze
+Gdje je crvena torba?	Where is the red bag?	zmaj zmaj::50_saetze
+Koliko košta hljeb?	How much does the bread cost?	zmaj zmaj::50_saetze
+Danas je hladno i pada kiša	Today it is cold and it is raining	zmaj zmaj::50_saetze
+Razumijem malo bosanski	I understand a little Bosnian	zmaj zmaj::50_saetze
+Vidimo se u subotu	See you on Saturday	zmaj zmaj::50_saetze
+Htjela bih tri jabuke, molim	I would like three apples, please	zmaj zmaj::50_saetze
+Moja nana stanuje u selu	My grandma lives in the village	zmaj zmaj::50_saetze
+Učim bosanski svaki dan	I study Bosnian every day	zmaj zmaj::50_saetze
+Autobus dolazi u deset	The bus comes at ten	zmaj zmaj::50_saetze
+Imam glavobolju i temperaturu	I have a headache and a fever	zmaj zmaj::50_saetze
+Voda u jezeru je plava	The water in the lake is blue	zmaj zmaj::50_saetze
+Mislim da je moja sestra kod kuće	I think that my sister is at home	zmaj zmaj::50_saetze
+Ne znam kada dolazi autobus	I do not know when the bus comes	zmaj zmaj::50_saetze
+Ako pada kiša, ostajem kod kuće	If it rains, I stay at home	zmaj zmaj::50_saetze
+Jučer sam kupila hljeb i mlijeko	Yesterday I bought bread and milk (female speaker)	zmaj zmaj::50_saetze
+Sljedeće godine ćemo kupiti kuću	Next year we will buy a house	zmaj zmaj::50_saetze
+Moj brat je stariji od mene, ali manji	My brother is older than me, but shorter	zmaj zmaj::50_saetze
+akcija	special offer	zmaj zmaj::51_einkauf_orte
+svježe	fresh	zmaj zmaj::51_einkauf_orte
+rok trajanja	expiration date	zmaj zmaj::51_einkauf_orte
+domaće	homemade	zmaj zmaj::51_einkauf_orte
+tezga	market stall	zmaj zmaj::51_einkauf_orte
+mesar	butcher	zmaj zmaj::51_einkauf_orte
+mesnica	butcher shop	zmaj zmaj::51_einkauf_orte
+sniženje	price reduction	zmaj zmaj::51_einkauf_orte
+supermarket	supermarket	zmaj zmaj::51_einkauf_orte
+prodavač	seller	zmaj zmaj::51_einkauf_orte
+prodavačica	saleswoman	zmaj zmaj::51_einkauf_orte
+platiti	to pay	zmaj zmaj::51_einkauf_orte
+fening	fening (1/100 of a mark)	zmaj zmaj::51_einkauf_orte
+fiskalni račun	receipt	zmaj zmaj::51_einkauf_orte
+sitno	small change	zmaj zmaj::51_einkauf_orte
+marka	mark (KM, the everyday currency)	zmaj zmaj::51_einkauf_orte
+račun za struju	electricity bill	zmaj zmaj::51_einkauf_orte
+bakšiš	tip	zmaj zmaj::51_einkauf_orte
+kusur	change (money returned)	zmaj zmaj::51_einkauf_orte
+Banja Luka	Banja Luka	zmaj zmaj::51_einkauf_orte
+Bihać	Bihać	zmaj zmaj::51_einkauf_orte
+glavni grad	capital city	zmaj zmaj::51_einkauf_orte
+Idem u Mostar	I am going to Mostar	zmaj zmaj::51_einkauf_orte
+Živim u Sarajevu	I live in Sarajevo	zmaj zmaj::51_einkauf_orte
+Mostar	Mostar	zmaj zmaj::51_einkauf_orte
+Sarajevo	Sarajevo	zmaj zmaj::51_einkauf_orte
+Tuzla	Tuzla	zmaj zmaj::51_einkauf_orte
+Zenica	Zenica	zmaj zmaj::51_einkauf_orte
+kafić	café	zmaj zmaj::52_resto1
+Jelovnik, molim	The menu, please	zmaj zmaj::52_resto1
+vani	outside	zmaj zmaj::52_resto1
+unutra	inside	zmaj zmaj::52_resto1
+Sto za dvoje, molim	A table for two, please	zmaj zmaj::52_resto1
+ćevabdžinica	grill restaurant	zmaj zmaj::52_resto1
+Je li ovaj sto slobodan?	Is this table free?	zmaj zmaj::52_resto1
+slastičarna	pastry shop	zmaj zmaj::52_resto1
+terasa	terrace	zmaj zmaj::52_resto1
+aščinica	traditional eatery	zmaj zmaj::52_resto1
+prilog	side dish	zmaj zmaj::52_resto1
+naručiti	to order	zmaj zmaj::52_resto1
+To je sve	That is all	zmaj zmaj::52_resto1
+čorba	thick soup	zmaj zmaj::52_resto1
+Još jednu turu	One more round	zmaj zmaj::52_resto1
+Za mene …	For me, please …	zmaj zmaj::52_resto1
+Može li jedna kahva?	Can we have a coffee?	zmaj zmaj::52_resto1
+glavno jelo	main course	zmaj zmaj::52_resto1
+Ja bih …	I would like …	zmaj zmaj::52_resto1
+Može, hvala	Yes, thank you	zmaj zmaj::52_resto1
+sa …	with …	zmaj zmaj::52_resto1
+desert	dessert	zmaj zmaj::52_resto1
+Još jedno isto, molim	The same again	zmaj zmaj::52_resto1
+Još nešto?	Anything else? (waiter)	zmaj zmaj::52_resto1
+bez …	without …	zmaj zmaj::52_resto1
+predjelo	appetizer	zmaj zmaj::52_resto1
+Šta preporučujete?	What do you recommend?	zmaj zmaj::52_resto1
+Ovo nisam naručio	I did not order this	zmaj zmaj::53_resto2
+Prijalo mi je	I enjoyed it	zmaj zmaj::53_resto2
+Fino je	It is nice	zmaj zmaj::53_resto2
+Ukusno je	It tastes good	zmaj zmaj::53_resto2
+Sit sam	I am full (m)	zmaj zmaj::53_resto2
+Sita sam	I am full (f)	zmaj zmaj::53_resto2
+slano	salty	zmaj zmaj::53_resto2
+kiselo	sour	zmaj zmaj::53_resto2
+ljuto	spicy	zmaj zmaj::53_resto2
+slatko	sweet	zmaj zmaj::53_resto2
+premalo	too little	zmaj zmaj::53_resto2
+Zadržite kusur	Keep the change	zmaj zmaj::53_resto2
+odvojeno	separately	zmaj zmaj::53_resto2
+Svako plaća svoje	Everyone pays for their own	zmaj zmaj::53_resto2
+Možemo li platiti?	Can we pay?	zmaj zmaj::53_resto2
+napojnica	tip (formal)	zmaj zmaj::53_resto2
+Koliko je?	How much is that?	zmaj zmaj::53_resto2
+zajedno	together	zmaj zmaj::53_resto2
+Ovo je skupo	That is expensive	zmaj zmaj::53_resto2
+Pola kile, molim	Half a kilo, please	zmaj zmaj::53_resto2
+Jedan kilogram, molim	One kilo, please	zmaj zmaj::53_resto2
+Jednu kesu, molim	A bag, please	zmaj zmaj::53_resto2
+Malo više	A little more	zmaj zmaj::53_resto2
+Malo manje	A little less	zmaj zmaj::53_resto2
+Može li jeftinije?	Can you do it cheaper?	zmaj zmaj::53_resto2
+Je li ovo svježe?	Is this fresh?	zmaj zmaj::53_resto2
+Je li ovo domaće?	Is this homemade?	zmaj zmaj::53_resto2
+Mogu li probati?	Can I try it?	zmaj zmaj::53_resto2
+Pošto je …?	How much is …? (market)	zmaj zmaj::53_resto2
+pekara	bakery	zmaj zmaj::54_essen_gehen
+jelo	dish / meal	zmaj zmaj::54_essen_gehen
+kafana	kafana (traditional tavern)	zmaj zmaj::54_essen_gehen
+ukusno	tasty	zmaj zmaj::54_essen_gehen
+porcija	portion	zmaj zmaj::54_essen_gehen
+restoran	restaurant	zmaj zmaj::54_essen_gehen
+jelovnik	menu	zmaj zmaj::54_essen_gehen
+Idemo na kahvu	Let us go for a coffee	zmaj zmaj::54_essen_gehen
+halva	halva	zmaj zmaj::54_essen_gehen
+hurmašica	hurmašica (syrup-soaked semolina cookie)	zmaj zmaj::54_essen_gehen
+rahat lokum	rahat lokum (jelly cubes served with coffee)	zmaj zmaj::54_essen_gehen
+tufahija	tufahija (stuffed apple in syrup)	zmaj zmaj::54_essen_gehen
+limenka	can (drink)	zmaj zmaj::54_essen_gehen
+lista za kupovinu	shopping list	zmaj zmaj::54_essen_gehen
+kolica	shopping cart	zmaj zmaj::54_essen_gehen
+tegla	canning jar	zmaj zmaj::54_essen_gehen
+gram	gram	zmaj zmaj::54_essen_gehen
+korpa	basket	zmaj zmaj::54_essen_gehen
+litar	liter	zmaj zmaj::54_essen_gehen
+pakovanje	pack	zmaj zmaj::54_essen_gehen
+vreća	sack	zmaj zmaj::54_essen_gehen
+kriška	slice (of bread)	zmaj zmaj::54_essen_gehen
+šnita	slice (of sausage)	zmaj zmaj::54_essen_gehen
+komad	piece	zmaj zmaj::54_essen_gehen
+ajvar	ajvar (pepper paste)	zmaj zmaj::55_bosnisch_essen
+grah	bean stew	zmaj zmaj::55_bosnisch_essen
+bosanski lonac	Bosnian pot (stew)	zmaj zmaj::55_bosnisch_essen
+burek	burek (filo roll with meat)	zmaj zmaj::55_bosnisch_essen
+dolma	dolma (stuffed vegetables)	zmaj zmaj::55_bosnisch_essen
+suho meso	smoked meat	zmaj zmaj::55_bosnisch_essen
+roštilj	barbecue / grilled food	zmaj zmaj::55_bosnisch_essen
+japrak	japrak (stuffed vine leaves)	zmaj zmaj::55_bosnisch_essen
+kajmak	kajmak (clotted cream spread)	zmaj zmaj::55_bosnisch_essen
+krompiruša	krompiruša (pita with potato filling)	zmaj zmaj::55_bosnisch_essen
+pljeskavica	pljeskavica (grilled minced meat patty)	zmaj zmaj::55_bosnisch_essen
+sarma	sarma (stuffed cabbage rolls)	zmaj zmaj::55_bosnisch_essen
+sirnica	sirnica (pita with cheese)	zmaj zmaj::55_bosnisch_essen
+somun	somun (flatbread served with ćevapi)	zmaj zmaj::55_bosnisch_essen
+zeljanica	zeljanica (pita with spinach and cheese)	zmaj zmaj::55_bosnisch_essen
+begova čorba	bey's soup	zmaj zmaj::55_bosnisch_essen
+ražnjići	meat skewers	zmaj zmaj::55_bosnisch_essen
+petica	five ćevapi	zmaj zmaj::55_bosnisch_essen
+punjene paprike	stuffed peppers	zmaj zmaj::55_bosnisch_essen
+sogan-dolma	stuffed onions	zmaj zmaj::55_bosnisch_essen
+sudžukice	grilled sausages	zmaj zmaj::55_bosnisch_essen
+sedam ćevapa	seven ćevapi	zmaj zmaj::55_bosnisch_essen
+klepe	filled dumplings	zmaj zmaj::55_bosnisch_essen
+ispod sača	under the iron bell (sač)	zmaj zmaj::55_bosnisch_essen
+desetka	ten ćevapi	zmaj zmaj::55_bosnisch_essen
+inostranstvo	abroad	zmaj zmaj::56_laender
+Bosna	Bosnia	zmaj zmaj::56_laender
+Bosna i Hercegovina	Bosnia and Herzegovina	zmaj zmaj::56_laender
+Njemačka	Germany	zmaj zmaj::56_laender
+Holandija	the Netherlands	zmaj zmaj::56_laender
+Švicarska	Switzerland	zmaj zmaj::56_laender
+Turska	Turkey (country)	zmaj zmaj::56_laender
+Danska	Denmark	zmaj zmaj::56_laender
+Francuska	France	zmaj zmaj::56_laender
+domovina	homeland	zmaj zmaj::56_laender
+Hercegovina	Herzegovina	zmaj zmaj::56_laender
+Rođen sam u Njemačkoj / Rođena sam u Njemačkoj	I was born in Germany (m/f)	zmaj zmaj::56_laender
+Ja sam iz Bosne	I am from Bosnia	zmaj zmaj::56_laender
+Ja sam iz Njemačke	I am from Germany	zmaj zmaj::56_laender
+Živim u Njemačkoj	I live in Germany	zmaj zmaj::56_laender
+Hrvatska	Croatia	zmaj zmaj::56_laender
+država	country / state	zmaj zmaj::56_laender
+Moja porodica je iz Bosne	My family is from Bosnia	zmaj zmaj::56_laender
+Crna Gora	Montenegro	zmaj zmaj::56_laender
+Norveška	Norway	zmaj zmaj::56_laender
+Švedska	Sweden	zmaj zmaj::56_laender
+Srbija	Serbia	zmaj zmaj::56_laender
+Slovenija	Slovenia	zmaj zmaj::56_laender
+svijet	world	zmaj zmaj::56_laender
+Gdje si rođen? / Gdje si rođena?	Where were you born? (m/f)	zmaj zmaj::56_laender
+Austrija	Austria	zmaj zmaj::56_laender
+Bošnjak / Bošnjakinja	Bosniak (m) / Bosniak (f)	zmaj zmaj::57_nationalitaeten
+Bosanac / Bosanka	Bosnian (m) / Bosnian (f)	zmaj zmaj::57_nationalitaeten
+Nijemac / Njemica	German (m) / German (f)	zmaj zmaj::57_nationalitaeten
+Danac / Dankinja	Dane (m) / Dane (f)	zmaj zmaj::57_nationalitaeten
+Francuz / Francuskinja	Frenchman / Frenchwoman	zmaj zmaj::57_nationalitaeten
+Ja sam Bosanac / Ja sam Bosanka	I am Bosnian (m) / I am Bosnian (f)	zmaj zmaj::57_nationalitaeten
+Ja sam Nijemac / Ja sam Njemica	I am German (m) / I am German (f)	zmaj zmaj::57_nationalitaeten
+Hrvat / Hrvatica	Croat (m) / Croat (f)	zmaj zmaj::57_nationalitaeten
+Crnogorac / Crnogorka	Montenegrin (m) / Montenegrin (f)	zmaj zmaj::57_nationalitaeten
+Holanđanin / Holanđanka	Dutchman / Dutchwoman	zmaj zmaj::57_nationalitaeten
+Norvežanin / Norvežanka	Norwegian (m) / Norwegian (f)	zmaj zmaj::57_nationalitaeten
+vjera	religion / faith	zmaj zmaj::57_nationalitaeten
+Šveđanin / Šveđanka	Swede (m) / Swede (f)	zmaj zmaj::57_nationalitaeten
+Švicarac / Švicarka	Swiss man / Swiss woman	zmaj zmaj::57_nationalitaeten
+Srbin / Srpkinja	Serb (m) / Serb (f)	zmaj zmaj::57_nationalitaeten
+Turčin / Turkinja	Turk (m) / Turk (f)	zmaj zmaj::57_nationalitaeten
+narod	people (nation)	zmaj zmaj::57_nationalitaeten
+Austrijanac / Austrijanka	Austrian (m) / Austrian (f)	zmaj zmaj::57_nationalitaeten
+bosanski	Bosnian (the language)	zmaj zmaj::57_nationalitaeten
+njemački	German (the language)	zmaj zmaj::57_nationalitaeten
+engleski	English (the language)	zmaj zmaj::57_nationalitaeten
+Govorim njemački	I speak German	zmaj zmaj::57_nationalitaeten
+Ne govorim bosanski	I do not speak Bosnian	zmaj zmaj::57_nationalitaeten
+Možeš li ponoviti?	Can you repeat that?	zmaj zmaj::57_nationalitaeten
+maternji jezik	native language	zmaj zmaj::57_nationalitaeten
+jezik	language	zmaj zmaj::57_nationalitaeten
+Molim te, pričaj sporije	Please speak more slowly	zmaj zmaj::57_nationalitaeten
+Govoriš li bosanski?	Do you speak Bosnian?	zmaj zmaj::57_nationalitaeten
+Šta to znači?	What does that mean?	zmaj zmaj::57_nationalitaeten
+Kako se to kaže na bosanskom?	How do you say that in Bosnian?	zmaj zmaj::57_nationalitaeten
+Alejkumu selam	(reply to this)	zmaj zmaj::58_kennenlernen
+posjeta	visit	zmaj zmaj::58_kennenlernen
+Hvala na svemu	Thank you for everything	zmaj zmaj::58_kennenlernen
+Da te upoznam: ...	May I introduce: ...	zmaj zmaj::58_kennenlernen
+Ovo je moj prijatelj	This is my friend	zmaj zmaj::58_kennenlernen
+Ovo je moja žena	This is my wife	zmaj zmaj::58_kennenlernen
+pozdrav / pozdravi	greeting / greetings	zmaj zmaj::58_kennenlernen
+Pozdravi ... od mene!	Say hello to ... from me!	zmaj zmaj::58_kennenlernen
+Selam alejkum	Hello (Muslim greeting)	zmaj zmaj::58_kennenlernen
+Izvinjavam se	I apologize	zmaj zmaj::58_kennenlernen
+posjetiti	to visit someone	zmaj zmaj::58_kennenlernen
+upoznati	to get to know someone	zmaj zmaj::58_kennenlernen
+Dođi nam u posjetu!	Come visit us!	zmaj zmaj::58_kennenlernen
+Drago mi je što smo se upoznali	Nice to have met you	zmaj zmaj::58_kennenlernen
+Sjedi, popij kahvu	Sit down, have a coffee	zmaj zmaj::58_kennenlernen
+zahvaliti se	to say thank you	zmaj zmaj::58_kennenlernen
+izviniti se	to apologize	zmaj zmaj::58_kennenlernen
+Oprosti mi	Forgive me	zmaj zmaj::58_kennenlernen
+oprostiti	to forgive	zmaj zmaj::58_kennenlernen
+Puno pozdrava porodici	Best regards to the family	zmaj zmaj::58_kennenlernen
+Kako je tvoja porodica?	How is your family?	zmaj zmaj::58_kennenlernen
+Poznajemo se	We know each other	zmaj zmaj::58_kennenlernen
+poznanik / poznanica	acquaintance (m) / acquaintance (f)	zmaj zmaj::58_kennenlernen
+raja	circle of friends / the gang	zmaj zmaj::58_kennenlernen
+domaćin	host	zmaj zmaj::58_kennenlernen
+koleginica	colleague (f)	zmaj zmaj::58_kennenlernen
+jaran	buddy (slang, mainly Sarajevo)	zmaj zmaj::58_kennenlernen
+drug / drugarica	buddy (m) / buddy (f) (informal)	zmaj zmaj::58_kennenlernen
+komšije	neighbors (plural)	zmaj zmaj::58_kennenlernen
+harmonika	accordion	zmaj zmaj::59_kulturlevel
+ples	dance	zmaj zmaj::59_kulturlevel
+svirati	to play an instrument	zmaj zmaj::59_kulturlevel
+folklor / folklorna grupa	folklore / folklore group	zmaj zmaj::59_kulturlevel
+kolo	kolo (Bosnian circle dance)	zmaj zmaj::59_kulturlevel
+pjevač / pjevačica	singer (m) / singer (f)	zmaj zmaj::59_kulturlevel
+saz	saz (traditional stringed instrument)	zmaj zmaj::59_kulturlevel
+sevdah	sevdah (wistful longing)	zmaj zmaj::59_kulturlevel
+sevdalinka	sevdalinka (Bosnian love song)	zmaj zmaj::59_kulturlevel
+sijelo	sijelo (evening get-together)	zmaj zmaj::59_kulturlevel
+teferič	teferič (outdoor festivity in nature)	zmaj zmaj::59_kulturlevel
+narodna muzika	folk music	zmaj zmaj::59_kulturlevel
+Allah razi olsun	reply to the Bajram greeting	zmaj zmaj::59_kulturlevel
+post	fasting	zmaj zmaj::59_kulturlevel
+Sretan Bajram!	Happy Bajram!	zmaj zmaj::59_kulturlevel
+Bog	God	zmaj zmaj::59_kulturlevel
+Hvala Bogu	Thank God	zmaj zmaj::59_kulturlevel
+iftar	iftar (breaking of the fast)	zmaj zmaj::59_kulturlevel
+inšallah	inšallah (God willing)	zmaj zmaj::59_kulturlevel
+mašallah	mašallah (how lovely, may God protect it)	zmaj zmaj::59_kulturlevel
+Ramazanski bajram / Kurban-bajram	Ramadan Bajram / Kurban Bajram (Eid al-Fitr / Eid al-Adha)	zmaj zmaj::59_kulturlevel
+Ako Bog da	God willing / hopefully	zmaj zmaj::59_kulturlevel
+bujrum	bujrum (please, help yourself / come in)	zmaj zmaj::59_kulturlevel
+Hvala na pozivu	Thank you for the invitation	zmaj zmaj::59_kulturlevel
+Hvala, sit sam / sita sam	Thank you, I am full (m/f)	zmaj zmaj::59_kulturlevel
+Bilo je jako ukusno	It was very tasty	zmaj zmaj::59_kulturlevel
+domaćin / domaćica	host / hostess	zmaj zmaj::59_kulturlevel
+častiti	to treat someone (to pay for them)	zmaj zmaj::59_kulturlevel
+Još malo?	A bit more?	zmaj zmaj::59_kulturlevel
+Vi	you (polite)	zmaj zmaj::60_formell
+gospodin	Mr	zmaj zmaj::60_formell
+gospođa	Mrs	zmaj zmaj::60_formell
+gospođica	Miss	zmaj zmaj::60_formell
+Dobar dan, kako ste?	Good day, how are you?	zmaj zmaj::60_formell
+Izvolite	Here you are (handing something over)	zmaj zmaj::60_formell
+Izvinite, molim Vas	Excuse me, please	zmaj zmaj::60_formell
+Možete li mi pomoći?	Could you help me?	zmaj zmaj::60_formell
+Smijem li?	May I?	zmaj zmaj::60_formell
+Naravno	Of course	zmaj zmaj::60_formell
+Žao mi je	I am sorry	zmaj zmaj::60_formell
+Molim za izvinjenje	I apologize / I do apologize	zmaj zmaj::60_formell
+Trenutak, molim	One moment, please	zmaj zmaj::60_formell
+Molim?	Pardon?	zmaj zmaj::60_formell
+Zahvaljujem Vam	Thank you (formal)	zmaj zmaj::60_formell
+Hvala Vam na pomoći	Thank you for your help	zmaj zmaj::60_formell
+Poštovani gospodine	Dear Sir	zmaj zmaj::60_formell
+Poštovana gospođo	Dear Madam	zmaj zmaj::60_formell
+S poštovanjem	Yours sincerely	zmaj zmaj::60_formell
+općina	municipality / municipal office	zmaj zmaj::61_amt
+zahtjev	application	zmaj zmaj::61_amt
+obrazac	form	zmaj zmaj::61_amt
+dokument	document	zmaj zmaj::61_amt
+lična karta	ID card	zmaj zmaj::61_amt
+pasoš	passport	zmaj zmaj::61_amt
+vozačka dozvola	driver's license	zmaj zmaj::61_amt
+rodni list	birth certificate	zmaj zmaj::61_amt
+vjenčani list	marriage certificate	zmaj zmaj::61_amt
+državljanstvo	citizenship	zmaj zmaj::61_amt
+potvrda	certificate	zmaj zmaj::61_amt
+prebivalište	place of residence	zmaj zmaj::61_amt
+prijava prebivališta	residence registration	zmaj zmaj::61_amt
+boravišna dozvola	residence permit	zmaj zmaj::61_amt
+radna dozvola	work permit	zmaj zmaj::61_amt
+potpis	signature	zmaj zmaj::61_amt
+pečat	stamp	zmaj zmaj::61_amt
+ovjera	certification	zmaj zmaj::61_amt
+kopija	copy	zmaj zmaj::61_amt
+original	original	zmaj zmaj::61_amt
+termin	appointment	zmaj zmaj::61_amt
+rok	deadline	zmaj zmaj::61_amt
+taksa	fee	zmaj zmaj::61_amt
+porez	tax	zmaj zmaj::61_amt
+osiguranje	insurance	zmaj zmaj::61_amt
+zdravstveno osiguranje	health insurance	zmaj zmaj::61_amt
+ugovor	contract	zmaj zmaj::61_amt
+banka	bank	zmaj zmaj::61_amt
+račun	account	zmaj zmaj::61_amt
+pošta	post office	zmaj zmaj::61_amt
+policija	police	zmaj zmaj::61_amt
+sud	court	zmaj zmaj::61_amt
+advokat	lawyer	zmaj zmaj::61_amt
+notar	notary	zmaj zmaj::61_amt
+ambasada	embassy	zmaj zmaj::61_amt
+granica	border	zmaj zmaj::61_amt
+carina	customs	zmaj zmaj::61_amt
+Trebam potvrdu	I need a certificate	zmaj zmaj::61_amt
+Gdje trebam potpisati?	Where do I have to sign?	zmaj zmaj::61_amt
+Koji dokumenti mi trebaju?	Which documents do I need?	zmaj zmaj::61_amt
+bankovni račun	bank account	zmaj zmaj::62_bank
+otvoriti račun	to open an account	zmaj zmaj::62_bank
+kredit	loan	zmaj zmaj::62_bank
+kamata	interest	zmaj zmaj::62_bank
+rata	installment	zmaj zmaj::62_bank
+uplata	deposit	zmaj zmaj::62_bank
+isplata	withdrawal	zmaj zmaj::62_bank
+bankovni prijenos	bank transfer	zmaj zmaj::62_bank
+nalog za plaćanje	payment order	zmaj zmaj::62_bank
+bankovna kartica	bank card	zmaj zmaj::62_bank
+bankomat	ATM	zmaj zmaj::62_bank
+podići novac	to withdraw money	zmaj zmaj::62_bank
+uplatiti novac	to deposit money	zmaj zmaj::62_bank
+izvod	account statement	zmaj zmaj::62_bank
+naknada	fee (bank)	zmaj zmaj::62_bank
+štednja	savings	zmaj zmaj::62_bank
+dug	debt	zmaj zmaj::62_bank
+prihod	income	zmaj zmaj::62_bank
+troškovi	expenses	zmaj zmaj::62_bank
+mjenjačnica	currency exchange office	zmaj zmaj::62_bank
+kurs	exchange rate	zmaj zmaj::62_bank
+konvertibilna marka	convertible mark (currency of Bosnia, KM)	zmaj zmaj::62_bank
+euro	euro	zmaj zmaj::62_bank
+Želim otvoriti račun	I would like to open an account	zmaj zmaj::62_bank
+Kolika je kamata?	What is the interest rate?	zmaj zmaj::62_bank
+Mogu li platiti na rate?	Can I pay in installments?	zmaj zmaj::62_bank
+nekretnina	real estate	zmaj zmaj::63_immobilien
+kupiti kuću	to buy a house	zmaj zmaj::63_immobilien
+kupoprodajni ugovor	purchase contract	zmaj zmaj::63_immobilien
+prodavac	seller	zmaj zmaj::63_immobilien
+kupac	buyer	zmaj zmaj::63_immobilien
+vlasnik	owner	zmaj zmaj::63_immobilien
+vlasništvo	ownership	zmaj zmaj::63_immobilien
+zemljišna knjiga / gruntovnica	land register	zmaj zmaj::63_immobilien
+katastar	cadastre	zmaj zmaj::63_immobilien
+zemljište	plot of land	zmaj zmaj::63_immobilien
+hipoteka	mortgage	zmaj zmaj::63_immobilien
+kapara	down payment	zmaj zmaj::63_immobilien
+agent za nekretnine	real estate agent	zmaj zmaj::63_immobilien
+procjena	appraisal	zmaj zmaj::63_immobilien
+pregovarati o cijeni	to negotiate the price	zmaj zmaj::63_immobilien
+građevinska dozvola	building permit	zmaj zmaj::63_immobilien
+kirija	rent	zmaj zmaj::63_immobilien
+iznajmiti	to rent	zmaj zmaj::63_immobilien
+podstanar	tenant	zmaj zmaj::63_immobilien
+stanodavac	landlord	zmaj zmaj::63_immobilien
+ugovor o najmu	rental agreement	zmaj zmaj::63_immobilien
+režije	utilities	zmaj zmaj::63_immobilien
+kvadratni metar	square meter	zmaj zmaj::63_immobilien
+sprat	storey	zmaj zmaj::63_immobilien
+prizemlje	ground floor	zmaj zmaj::63_immobilien
+selidba	move	zmaj zmaj::63_immobilien
+useliti se	to move in	zmaj zmaj::63_immobilien
+Želim kupiti kuću	I would like to buy a house	zmaj zmaj::63_immobilien
+Koliko košta kuća?	How much does the house cost?	zmaj zmaj::63_immobilien
+Je li kuća upisana u gruntovnicu?	Is the house entered in the land register?	zmaj zmaj::63_immobilien
+ugovor o radu	employment contract	zmaj zmaj::64_arbeitsvertrag
+poslodavac	employer	zmaj zmaj::64_arbeitsvertrag
+zaposlenik	employee	zmaj zmaj::64_arbeitsvertrag
+prijava za posao	job application	zmaj zmaj::64_arbeitsvertrag
+biografija	résumé	zmaj zmaj::64_arbeitsvertrag
+razgovor za posao	job interview	zmaj zmaj::64_arbeitsvertrag
+radno vrijeme	working hours	zmaj zmaj::64_arbeitsvertrag
+puno radno vrijeme	full time	zmaj zmaj::64_arbeitsvertrag
+nepuno radno vrijeme	part time	zmaj zmaj::64_arbeitsvertrag
+probni rad	probation period	zmaj zmaj::64_arbeitsvertrag
+otkaz	notice of termination	zmaj zmaj::64_arbeitsvertrag
+bruto plata	gross salary	zmaj zmaj::64_arbeitsvertrag
+neto plata	net salary	zmaj zmaj::64_arbeitsvertrag
+prekovremeni rad	overtime	zmaj zmaj::64_arbeitsvertrag
+penzija	pension	zmaj zmaj::64_arbeitsvertrag
+bolovanje	sick leave	zmaj zmaj::64_arbeitsvertrag
+socijalno osiguranje	social insurance	zmaj zmaj::64_arbeitsvertrag
+porezni broj	tax number	zmaj zmaj::64_arbeitsvertrag
+svjedočanstvo	certificate (school)	zmaj zmaj::64_arbeitsvertrag
+diploma	diploma	zmaj zmaj::64_arbeitsvertrag
+kvalifikacija	qualification	zmaj zmaj::64_arbeitsvertrag
+iskustvo	experience	zmaj zmaj::64_arbeitsvertrag
+odgovornost	responsibility	zmaj zmaj::64_arbeitsvertrag
+Tražim posao	I am looking for work	zmaj zmaj::64_arbeitsvertrag
+Imam pet godina iskustva	I have five years of experience	zmaj zmaj::64_arbeitsvertrag
+zdravstvena knjižica	health insurance card	zmaj zmaj::65_gesundheit
+uputnica	referral (to a specialist)	zmaj zmaj::65_gesundheit
+recept	prescription	zmaj zmaj::65_gesundheit
+pregled	examination	zmaj zmaj::65_gesundheit
+termin kod doktora	doctor's appointment	zmaj zmaj::65_gesundheit
+hitni prijem / hitna pomoć	emergency room / ambulance service	zmaj zmaj::65_gesundheit
+porodični ljekar	family doctor	zmaj zmaj::65_gesundheit
+specijalista	specialist	zmaj zmaj::65_gesundheit
+zubar	dentist	zmaj zmaj::65_gesundheit
+medicinska sestra	nurse	zmaj zmaj::65_gesundheit
+dijagnoza	diagnosis	zmaj zmaj::65_gesundheit
+liječenje	treatment	zmaj zmaj::65_gesundheit
+operacija	surgery	zmaj zmaj::65_gesundheit
+vakcina	vaccination	zmaj zmaj::65_gesundheit
+krvni pritisak	blood pressure	zmaj zmaj::65_gesundheit
+alergija	allergy	zmaj zmaj::65_gesundheit
+lijek protiv bolova	painkiller	zmaj zmaj::65_gesundheit
+participacija	co-payment	zmaj zmaj::65_gesundheit
+Trebam termin	I need an appointment	zmaj zmaj::65_gesundheit
+Na bolovanju sam	I am on sick leave	zmaj zmaj::65_gesundheit
+Gdje Vas boli?	Where does it hurt?	zmaj zmaj::65_gesundheit
+Alergičan sam na ... / Alergična sam na ...	I am allergic to ... (m/f)	zmaj zmaj::65_gesundheit

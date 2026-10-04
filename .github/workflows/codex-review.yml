@@ -1,0 +1,103 @@
+# Codex reviews every pull request against the rules in AGENTS.md.
+# Inactive until the repository has an OPENAI_API_KEY secret.
+# Pull requests from forks get no secrets and are skipped. Adding the label
+# "codex-review" re-runs the review on a branch of this repository.
+name: Codex review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, labeled]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codex-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    # Only branches of this repository: a fork never reaches a job that holds
+    # the API key. (Forks get no secrets anyway; this makes it explicit.)
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.draft == false &&
+      (github.event.action != 'labeled' || github.event.label.name == 'codex-review')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    outputs:
+      final_message: ${{ steps.codex.outputs.final-message }}
+    steps:
+      - name: Is Codex configured?
+        id: key
+        env:
+          KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: echo "present=$([ -n "$KEY" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.key.outputs.present == 'true'
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # The review instructions come from the base branch, never from the PR:
+      # a pull request must not be able to rewrite its own review.
+      - name: Take the review prompt from the base branch
+        if: steps.key.outputs.present == 'true'
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          git fetch --no-tags --depth=1 origin "$BASE_REF"
+          git show "origin/$BASE_REF:.github/codex/review.md" > "$RUNNER_TEMP/review.md"
+
+      - name: Write PR metadata to a file (never into the prompt)
+        if: steps.key.outputs.present == 'true'
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+          BODY: ${{ github.event.pull_request.body }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+          NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          mkdir -p .codex
+          {
+            echo "PR #$NUMBER"
+            echo "BASE=$BASE"
+            echo "HEAD=$HEAD"
+            echo
+            echo "## Title (untrusted)"
+            printf '%s\n' "$TITLE"
+            echo
+            echo "## Body (untrusted)"
+            printf '%s\n' "$BODY"
+          } > .codex/pr.md
+
+      - name: Run Codex
+        id: codex
+        if: steps.key.outputs.present == 'true'
+        uses: openai/codex-action@86365089eb2b84e0a8fb0717b304f8bdcb13b20e # v1.12
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: ${{ runner.temp }}/review.md
+          permission-profile: ":read-only"
+          safety-strategy: drop-sudo
+
+  comment:
+    needs: review
+    if: needs.review.outputs.final_message != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          MESSAGE: ${{ needs.review.outputs.final_message }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: `### Codex review\n\n${process.env.MESSAGE}\n\n<sub>Automated review following [AGENTS.md](../blob/master/AGENTS.md). A maintainer decides.</sub>`,
+            });
