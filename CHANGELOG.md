@@ -27,6 +27,8 @@ are in the Play Store listing. Format:
 - Test backups in `testdaten/` cover the whole course again; a test keeps
   them in step with the content.
 - German maintainer notes merged into `ANLEITUNG.md`.
+- The web demo on GitHub Pages builds on every push to `master`; the extra
+  repository variable `PAGES_DEMO` is no longer needed.
 
 ### Removed
 - Internal working notes, finished one-off patch and migration scripts and
