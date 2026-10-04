@@ -11,16 +11,20 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | # | Wer | Punkt | Abnahmekriterium | Hebel (PLAN §3) |
 |---|---|---|---|---|
 | 8 | A | M1 (inkl. Live-Demo einschalten): PR mergen, Beschreibung, Topics, Discussions, Private Vulnerability Reporting, Branch-Schutz, Labels, Profil | Checkliste in PLAN.md M1 vollständig | C, E |
-| 9 | A | M2: Tag `v1.0.0`, Zenodo einschalten → DOI | Release mit 3 Dateien, DOI-Badge | B |
+| 9 | A | M2: Zenodo einschalten, dann nächstes Release → DOI (Releases v1.0.0/v1.1.0 sind erledigt) | DOI-Badge | B |
 | 10 | A | M3: Play-Produktion (ab 07.10.2026) | öffentlicher Play-Link im README | A |
 | 11 | A | `OPENAI_API_KEY` als Secret, damit Codex-Reviews sichtbar laufen | erster PR mit Kommentar „Codex review“ | D |
 | 12 | A | Entscheidung: Level 52/58 fragen Wörter aus Level 60 ab (`formell`) | `BEKANNT` in `tests/test_inhalt.py` leer | C |
-| 16 | A | Nach dem 07.10.: `python import_richten.py --schreiben`, dann Build (Sicherheitsfix Backup-Import) | App startet nach Import einer kaputten Sicherung weiter | C |
+| 16 | A | Nach dem 07.10.: `python import_richten.py --schreiben`, `python sicherheit2_richten.py --schreiben`, `python barrierefreiheit_richten.py --schreiben`, dann `inhalt_bauen.py`, `seite_bauen.py`, Build | App-Härtung und Barrierefreiheit im Store | C |
 | 15 | A | OpenSSF-Best-Practices-Badge beantragen (Antworten in `BEST_PRACTICES.md`) | Badge „passing“ im README | B, C |
 | 17 | A | PyPI: Projekt `zmaj-bosnian` auf pypi.org mit Trusted Publisher (Workflow `pypi.yml`, Umgebung `pypi`) anlegen, Variable `PYPI_PUBLISH=true` | `pip install zmaj-bosnian` funktioniert | A |
 | 18 | A | Hugging Face: Konto `zmaj-lernapp`, Token als Secret `HF_TOKEN` → nächstes Release lädt hoch | Datensatz-Seite auf huggingface.co | A, B |
 | 19 | A | AnkiWeb: Stapel en/de teilen (Texte in `ANKIWEB.md`) | Stapel öffentlich | A |
 | 20 | A | `README.bs.md` gegenlesen | Kommentar oben entfernt | A |
+| 21 | A | Entscheidung: *japrak* ist noch im Kurs, obwohl `WORTSCHATZ_KORREKTUREN.md` „japrak fällt raus“ sagt (#10, Zeile 1) | entschieden, ggf. entfernt | C |
+| 22 | A | Entscheidung: ~30 deutsche Bedeutungen mit ae/oe/ue oder ohne Háček („Baer“, „Hurmasica“) – Korrektur setzt den Lernstand dieser Wörter zurück | entschieden | C |
+| 23 | A | Muttersprachler für die Kandidatenlisten in #2–#10 finden; bestätigte Punkte in `uebersetzungen.py` übernehmen | erste Liste abgearbeitet | A |
+| 24 | A | Design: Kontrast der ausgewählten richtigen Antwort (`.opt.right`) auf kräftigen Sektionsfarben bleibt unter 4,5:1 | entschieden | C |
 | 14 | A | M6: Bewerbung abschicken | Bestätigungsmail | Ziel |
 
 ## Erledigt
@@ -47,4 +51,6 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #16 PyPI-Paket `zmaj-bosnian` (`paket/`, `paket_bauen.py`, Trusted Publishing) | `c662cb3` |
 | #17 Hugging-Face-Upload im Release, wöchentliche Kennzahlen, AnkiWeb-Texte, README auf Bosnisch, Version 1.0.0 | `057136c` |
 | Release `v1.0.0` mit 11 Dateien, 8 Übersetzungs-Issues (#2–#6, #8–#10) | PR #1, PR #11 |
-| #13 `mappe/`, `PROJEKTMAPPE.md`, `NACH_DER_VEROEFFENTLICHUNG.md` aus `master` entfernt (Namen Dritter), lokal per `.gitignore` | dieser Commit |
+| #13 `mappe/`, `PROJEKTMAPPE.md`, `NACH_DER_VEROEFFENTLICHUNG.md` aus `master` entfernt (Namen Dritter), lokal per `.gitignore` | PR #13 |
+| Runde 4: 20 Browser-Tests, Barrierefreiheit (axe 20/102 → 0/0, `barrierefreiheit_richten.py`), 2. Sicherheitsprüfung (`sicherheit2_richten.py`), Parallelkorpus TMX/JSONL/TSV, KI-Vorprüfung der Übersetzungen (59 Kandidaten in #2–#10), 7 Code-Review-Befunde behoben | PR #14 |
+| Release `v1.1.0` (11 Dateien, Prüfsummen und Anki-Kennungen je Sprache geprüft); Tag-Prüfung im Release-Workflow korrigiert | PR #15 |

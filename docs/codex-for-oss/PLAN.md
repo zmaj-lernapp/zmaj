@@ -122,14 +122,15 @@ Nur im Browser möglich, Claude hat dafür keine Rechte:
 
 **Abnahme:** CI auf `master` grün; Scorecard-Badge zeigt eine Zahl ≥ 6.
 
-### M2 – Erste Veröffentlichung · Tag 1 · Ajdin
-```bash
-git tag -a v1.0.0 -m "Zmaj 1.0.0" && git push origin v1.0.0
-```
-Der Release-Workflow hängt Datensatz-Zip, Anki-Zip und Prüfsummen an.
-Danach in Zenodo (zenodo.org → GitHub) das Repository einschalten und einen
-weiteren Tag pushen: das gibt eine **DOI** – zitierbar, ein starkes Signal für B.
-**Abnahme:** Release mit 3 Dateien; DOI-Badge im README.
+### M2 – Erste Veröffentlichung · Release erledigt 04.10.2026 · DOI: Ajdin
+`v1.0.0` und `v1.1.0` sind veröffentlicht (je 11 Dateien: Datensatz-Zip,
+Anki-Zip, 8 Anki-Pakete mit Ton, Prüfsummen; v1.1.0 zusätzlich mit
+Parallelkorpus). Ein neues Release: Actions → *Release* → *Run workflow* auf
+`master` mit dem neuen Tag; der Workflow legt Tag und Release an und startet
+den PyPI-Workflow.
+Offen: Zenodo (zenodo.org → GitHub) einschalten, dann das nächste Release
+auslösen – das gibt eine **DOI**, zitierbar, ein starkes Signal für B.
+**Abnahme:** DOI-Badge im README.
 
 ### M3 – Play Store öffentlich · ab 07.10.2026 · Ajdin
 Der geschlossene Test läuft seit 23.09.; die 14 Tage sind am 07.10. um.
