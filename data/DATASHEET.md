@@ -14,6 +14,7 @@ source files disagree, so this folder is never stale.
 | License | [CC BY-SA 4.0](../LICENSE-CONTENT) |
 | Attribution | *Zmaj – Bosnian learning content, © 2026 Ajdin Hasic, CC BY-SA 4.0, https://github.com/zmaj-lernapp/zmaj* |
 | Format version | 1.0 (see `manifest.json`) |
+| DOI | [10.5281/zenodo.23146609](https://doi.org/10.5281/zenodo.23146609) (all versions, archived on Zenodo) |
 | Target language | Bosnian (`bs`) |
 | Translation languages | German `de` · English `en` · Turkish `tr` · Swedish `sv` · Dutch `nl` · Norwegian Bokmål `nb` · Danish `da` · French `fr` |
 
