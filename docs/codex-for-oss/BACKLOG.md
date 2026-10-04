@@ -16,6 +16,7 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | 11 | A | `OPENAI_API_KEY` als Secret, damit Codex-Reviews sichtbar laufen | erster PR mit Kommentar „Codex review“ | D |
 | 12 | A | Entscheidung: Level 52/58 fragen Wörter aus Level 60 ab (`formell`) | `BEKANNT` in `tests/test_inhalt.py` leer | C |
 | 13 | A | Entscheidung: `mappe/` (Schulunterlagen, Name des Betreuers) öffentlich lassen? | entschieden und umgesetzt | Risiko |
+| 16 | A | Nach dem 07.10.: `python import_richten.py --schreiben`, dann Build (Sicherheitsfix Backup-Import) | App startet nach Import einer kaputten Sicherung weiter | C |
 | 15 | A | OpenSSF-Best-Practices-Badge beantragen (Antworten in `BEST_PRACTICES.md`) | Badge „passing“ im README | B, C |
 | 14 | A | M6: Bewerbung abschicken | Bestätigungsmail | Ziel |
 
@@ -37,4 +38,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #10 `docs/ARCHITECTURE.md` auf Englisch | `d8acf36` |
 | #11 Test: 39 relative Links in der Doku zeigen auf vorhandene Dateien | `c2bd25f` |
 | #12 Social-Preview-Bild 1280×640 auf Englisch (`docs/assets/social-preview.png`) | `7b05ba0` |
-| #13 Antworthilfe für das OpenSSF-Best-Practices-Badge | dieser Commit |
+| #13 Antworthilfe für das OpenSSF-Best-Practices-Badge | `4ccf2c3` |
+| #14 Sicherheitsprüfung Backup-Import: 3 bestätigte Befunde, Fix als `import_richten.py` (im Browser vorher/nachher geprüft) | dieser Commit |
