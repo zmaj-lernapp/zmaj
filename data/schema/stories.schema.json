@@ -1,0 +1,44 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://github.com/zmaj-lernapp/zmaj/blob/master/data/schema/stories.schema.json",
+ "title": "Zmaj Bosnian graded reading stories",
+ "type": "object",
+ "required": ["dataset", "kind", "license", "entries"],
+ "properties": {
+  "dataset": {"const": "zmaj-bosnian"},
+  "kind": {"const": "stories"},
+  "license": {"const": "CC-BY-SA-4.0"},
+  "entries": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": ["id", "title", "bs", "translations", "glossary", "questions", "audio"],
+    "properties": {
+     "id": {"type": "string"},
+     "title": {"type": "string"},
+     "level_hint": {"type": ["string", "null"]},
+     "stage": {"type": "object", "additionalProperties": {"type": "string"}},
+     "bs": {"type": "string", "minLength": 1},
+     "translations": {"type": "object", "additionalProperties": {"type": "string"}},
+     "glossary": {"type": "object", "additionalProperties": {"type": "object", "additionalProperties": {"type": "string"}}},
+     "questions": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "required": ["frage", "optionen", "richtig"],
+        "properties": {
+         "frage": {"type": "string"},
+         "optionen": {"type": "array", "items": {"type": "string"}, "minItems": 2},
+         "richtig": {"type": "string"}
+        }
+       }
+      }
+     },
+     "audio": {"type": ["string", "null"]}
+    }
+   }
+  }
+ }
+}

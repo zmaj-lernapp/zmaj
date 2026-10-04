@@ -1,0 +1,1733 @@
+#separator:tab
+#html:false
+#notetype:Basic (and reversed card)
+#columns:Bosnian	sv	Tags
+#tags column:3
+Merhaba	Hej	zmaj zmaj::01_basics
+Dobar dan	God dag	zmaj zmaj::01_basics
+Dobro jutro	God morgon	zmaj zmaj::01_basics
+Dobro veče	God kväll	zmaj zmaj::01_basics
+Laku noć / Lahku noć	God natt	zmaj zmaj::01_basics
+Doviđenja	Hej då	zmaj zmaj::01_basics
+Ćao	Vi ses	zmaj zmaj::01_basics
+Dobro došli	Välkommen	zmaj zmaj::01_basics
+Da	Ja	zmaj zmaj::01_basics
+Ne	Nej	zmaj zmaj::01_basics
+Hvala	Tack	zmaj zmaj::01_basics
+Hvala puno	Tack så mycket	zmaj zmaj::01_basics
+Molim	Varsågod / snälla (artigt)	zmaj zmaj::01_basics
+Nema na čemu	Ingen orsak	zmaj zmaj::01_basics
+Izvini	Förlåt (du)	zmaj zmaj::01_basics
+Izvinite	Ursäkta (ni)	zmaj zmaj::01_basics
+Kako si?	Hur mår du?	zmaj zmaj::01_basics
+Kako ste?	Hur mår ni? (artigt)	zmaj zmaj::01_basics
+Dobro	Bra	zmaj zmaj::01_basics
+Loše	Dåligt	zmaj zmaj::01_basics
+Kako se zoveš?	Vad heter du?	zmaj zmaj::01_basics
+Zovem se ...	Jag heter ...	zmaj zmaj::01_basics
+Drago mi je	Trevligt att träffas	zmaj zmaj::01_basics
+Razumijem	Jag förstår	zmaj zmaj::01_basics
+Ne razumijem	Jag förstår inte	zmaj zmaj::01_basics
+Ne znam	Jag vet inte	zmaj zmaj::01_basics
+Govoriš li njemački?	Talar du tyska?	zmaj zmaj::01_basics
+Govorim malo bosanski	Jag talar lite bosniska	zmaj zmaj::01_basics
+U redu	Okej	zmaj zmaj::01_basics
+Možda	Kanske	zmaj zmaj::01_basics
+Živjeli!	Skål!	zmaj zmaj::01_basics
+Prijatno	Smaklig måltid	zmaj zmaj::01_basics
+Zdravo	Hej (neutralt, överallt)	zmaj zmaj::01_basics
+nula	noll	zmaj zmaj::02_zahlen
+jedan	ett	zmaj zmaj::02_zahlen
+dva	två	zmaj zmaj::02_zahlen
+tri	tre	zmaj zmaj::02_zahlen
+četiri	fyra	zmaj zmaj::02_zahlen
+pet	fem	zmaj zmaj::02_zahlen
+šest	sex	zmaj zmaj::02_zahlen
+sedam	sju	zmaj zmaj::02_zahlen
+osam	åtta	zmaj zmaj::02_zahlen
+devet	nio	zmaj zmaj::02_zahlen
+deset	tio	zmaj zmaj::02_zahlen
+jedanaest	elva	zmaj zmaj::02_zahlen
+dvanaest	tolv	zmaj zmaj::02_zahlen
+trinaest	tretton	zmaj zmaj::02_zahlen
+četrnaest	fjorton	zmaj zmaj::02_zahlen
+petnaest	femton	zmaj zmaj::02_zahlen
+šesnaest	sexton	zmaj zmaj::02_zahlen
+sedamnaest	sjutton	zmaj zmaj::02_zahlen
+osamnaest	arton	zmaj zmaj::02_zahlen
+devetnaest	nitton	zmaj zmaj::02_zahlen
+dvadeset	tjugo	zmaj zmaj::02_zahlen
+dvadeset jedan	tjugoett	zmaj zmaj::02_zahlen
+trideset	trettio	zmaj zmaj::02_zahlen
+četrdeset	fyrtio	zmaj zmaj::02_zahlen
+pedeset	femtio	zmaj zmaj::02_zahlen
+šezdeset	sextio	zmaj zmaj::02_zahlen
+sedamdeset	sjuttio	zmaj zmaj::02_zahlen
+osamdeset	åttio	zmaj zmaj::02_zahlen
+devedeset	nittio	zmaj zmaj::02_zahlen
+sto	hundra	zmaj zmaj::02_zahlen
+dvjesto	tvåhundra	zmaj zmaj::02_zahlen
+hiljada	tusen	zmaj zmaj::02_zahlen
+boja	färg	zmaj zmaj::03_farben
+crvena	röd	zmaj zmaj::03_farben
+plava	blå	zmaj zmaj::03_farben
+zelena	grön	zmaj zmaj::03_farben
+žuta	gul	zmaj zmaj::03_farben
+crna	svart	zmaj zmaj::03_farben
+bijela	vit	zmaj zmaj::03_farben
+kafena	brun	zmaj zmaj::03_farben
+siva	grå	zmaj zmaj::03_farben
+narandžasta	orange	zmaj zmaj::03_farben
+ljubičasta	lila	zmaj zmaj::03_farben
+roza	rosa	zmaj zmaj::03_farben
+majka	mor	zmaj zmaj::04_familie
+mama	mamma	zmaj zmaj::04_familie
+otac	far	zmaj zmaj::04_familie
+babo	pappa (bosniska babo)	zmaj zmaj::04_familie
+brat	bror	zmaj zmaj::04_familie
+sestra	syster	zmaj zmaj::04_familie
+sin	son	zmaj zmaj::04_familie
+kćerka	dotter	zmaj zmaj::04_familie
+dijete	barn	zmaj zmaj::04_familie
+djeca	barn (flera)	zmaj zmaj::04_familie
+žena	hustru	zmaj zmaj::04_familie
+muž	make	zmaj zmaj::04_familie
+nana	mormor / farmor	zmaj zmaj::04_familie
+dedo	morfar / farfar	zmaj zmaj::04_familie
+tetka	moster / faster	zmaj zmaj::04_familie
+amidža	farbror	zmaj zmaj::04_familie
+daidža	morbror	zmaj zmaj::04_familie
+rođak	kusin	zmaj zmaj::04_familie
+beba	bebis	zmaj zmaj::04_familie
+porodica	Familj	zmaj zmaj::04_familie
+prijatelj	vän (man)	zmaj zmaj::04_familie
+prijateljica	vän (kvinna)	zmaj zmaj::04_familie
+voda	vatten	zmaj zmaj::05_essen
+hljeb	bröd	zmaj zmaj::05_essen
+kahva / kafa	kaffe	zmaj zmaj::05_essen
+fildžan	liten kaffekopp (traditionell)	zmaj zmaj::05_essen
+čaj	te	zmaj zmaj::05_essen
+mlijeko	mjölk	zmaj zmaj::05_essen
+sok	juice	zmaj zmaj::05_essen
+pivo	öl	zmaj zmaj::05_essen
+meso	kött	zmaj zmaj::05_essen
+piletina	kyckling	zmaj zmaj::05_essen
+riba	fisk	zmaj zmaj::05_essen
+sir	ost	zmaj zmaj::05_essen
+jaje	ägg	zmaj zmaj::05_essen
+jabuka	äpple	zmaj zmaj::05_essen
+voće	frukt	zmaj zmaj::05_essen
+povrće	grönsaker	zmaj zmaj::05_essen
+krompir	potatis	zmaj zmaj::05_essen
+paradajz	tomat	zmaj zmaj::05_essen
+luk	lök	zmaj zmaj::05_essen
+riža	ris	zmaj zmaj::05_essen
+so	salt	zmaj zmaj::05_essen
+šećer	socker	zmaj zmaj::05_essen
+supa	soppa	zmaj zmaj::05_essen
+pita	pita (inbakad filodegspaj)	zmaj zmaj::05_essen
+ćevapi	ćevapi (grillade köttkorvar)	zmaj zmaj::05_essen
+doručak	frukost	zmaj zmaj::05_essen
+ručak	lunch	zmaj zmaj::05_essen
+večera	middag	zmaj zmaj::05_essen
+Gladan sam / Gladna sam	Jag är hungrig (m/k)	zmaj zmaj::05_essen
+Žedan sam / Žedna sam	Jag är törstig (m/k)	zmaj zmaj::05_essen
+Račun, molim	Notan, tack	zmaj zmaj::05_essen
+ponedjeljak	måndag	zmaj zmaj::06_wochentage
+utorak	tisdag	zmaj zmaj::06_wochentage
+srijeda	onsdag	zmaj zmaj::06_wochentage
+četvrtak	torsdag	zmaj zmaj::06_wochentage
+petak	fredag	zmaj zmaj::06_wochentage
+subota	lördag	zmaj zmaj::06_wochentage
+nedjelja	söndag	zmaj zmaj::06_wochentage
+vikend	helg	zmaj zmaj::06_wochentage
+sedmica	vecka	zmaj zmaj::06_wochentage
+januar	januari	zmaj zmaj::07_monate
+februar	februari	zmaj zmaj::07_monate
+mart	mars	zmaj zmaj::07_monate
+april	april	zmaj zmaj::07_monate
+maj	maj	zmaj zmaj::07_monate
+juni	juni	zmaj zmaj::07_monate
+juli	juli	zmaj zmaj::07_monate
+august	augusti	zmaj zmaj::07_monate
+septembar	september	zmaj zmaj::07_monate
+oktobar	oktober	zmaj zmaj::07_monate
+novembar	november	zmaj zmaj::07_monate
+decembar	december	zmaj zmaj::07_monate
+mjesec	månad	zmaj zmaj::07_monate
+godina	år	zmaj zmaj::07_monate
+danas	i dag	zmaj zmaj::08_zeit
+sutra	i morgon	zmaj zmaj::08_zeit
+jučer	i går	zmaj zmaj::08_zeit
+sada	nu	zmaj zmaj::08_zeit
+kasnije	senare	zmaj zmaj::08_zeit
+dan	dag	zmaj zmaj::08_zeit
+jutro	morgon	zmaj zmaj::08_zeit
+podne	mitt på dagen	zmaj zmaj::08_zeit
+večer	kväll	zmaj zmaj::08_zeit
+noć	natt	zmaj zmaj::08_zeit
+sat	timme / klockan	zmaj zmaj::08_zeit
+minuta	minut	zmaj zmaj::08_zeit
+Koliko je sati?	Vad är klockan?	zmaj zmaj::08_zeit
+Vidimo se sutra!	Vi ses i morgon!	zmaj zmaj::08_zeit
+stan	lägenhet	zmaj zmaj::09_zuhause
+soba	rum	zmaj zmaj::09_zuhause
+kuhinja	kök	zmaj zmaj::09_zuhause
+kupatilo	badrum	zmaj zmaj::09_zuhause
+spavaća soba	sovrum	zmaj zmaj::09_zuhause
+dnevna soba	vardagsrum	zmaj zmaj::09_zuhause
+vrata	dörr	zmaj zmaj::09_zuhause
+prozor	fönster	zmaj zmaj::09_zuhause
+sto	bord	zmaj zmaj::09_zuhause
+stolica	stol	zmaj zmaj::09_zuhause
+krevet	säng	zmaj zmaj::09_zuhause
+ključ	nyckel	zmaj zmaj::09_zuhause
+lampa	lampa	zmaj zmaj::09_zuhause
+televizor	tv	zmaj zmaj::09_zuhause
+mobitel	mobiltelefon	zmaj zmaj::09_zuhause
+frižider	kylskåp	zmaj zmaj::09_zuhause
+šporet	spis	zmaj zmaj::09_zuhause
+tepih	matta	zmaj zmaj::09_zuhause
+peškir	handduk	zmaj zmaj::09_zuhause
+sapun	tvål	zmaj zmaj::09_zuhause
+stepenice	trappa	zmaj zmaj::09_zuhause
+balkon	balkong	zmaj zmaj::09_zuhause
+bašta	trädgård	zmaj zmaj::09_zuhause
+komšija	granne	zmaj zmaj::09_zuhause
+vrijeme	väder	zmaj zmaj::10_wetter
+sunce	sol	zmaj zmaj::10_wetter
+kiša	regn	zmaj zmaj::10_wetter
+snijeg	snö	zmaj zmaj::10_wetter
+vjetar	vind	zmaj zmaj::10_wetter
+oblak	moln	zmaj zmaj::10_wetter
+toplo	varmt	zmaj zmaj::10_wetter
+hladno	kallt	zmaj zmaj::10_wetter
+vruće	hett	zmaj zmaj::10_wetter
+Pada kiša	Det regnar	zmaj zmaj::10_wetter
+Pada snijeg	Det snöar	zmaj zmaj::10_wetter
+proljeće	vår	zmaj zmaj::10_wetter
+ljeto	sommar	zmaj zmaj::10_wetter
+jesen	höst	zmaj zmaj::10_wetter
+zima	vinter	zmaj zmaj::10_wetter
+planina	berg	zmaj zmaj::10_wetter
+rijeka	flod	zmaj zmaj::10_wetter
+more	hav	zmaj zmaj::10_wetter
+jezero	sjö	zmaj zmaj::10_wetter
+šuma	skog	zmaj zmaj::10_wetter
+drvo	träd	zmaj zmaj::10_wetter
+cvijet	blomma	zmaj zmaj::10_wetter
+nebo	himmel	zmaj zmaj::10_wetter
+zvijezda	stjärna	zmaj zmaj::10_wetter
+pas	hund	zmaj zmaj::10_wetter
+mačka	katt	zmaj zmaj::10_wetter
+ptica	fågel	zmaj zmaj::10_wetter
+pčela	bi	zmaj zmaj::10_wetter
+munja	blixt	zmaj zmaj::10_wetter
+grmljavina	åska	zmaj zmaj::10_wetter
+led	is (fruset vatten)	zmaj zmaj::10_wetter
+magla	dimma	zmaj zmaj::10_wetter
+duga	regnbåge	zmaj zmaj::10_wetter
+hlad	skugga	zmaj zmaj::10_wetter
+oluja	storm	zmaj zmaj::10_wetter
+glava	huvud	zmaj zmaj::11_koerper
+kosa	hår	zmaj zmaj::11_koerper
+oko	öga	zmaj zmaj::11_koerper
+uho	öra	zmaj zmaj::11_koerper
+nos	näsa	zmaj zmaj::11_koerper
+usta	mun	zmaj zmaj::11_koerper
+zub	tand	zmaj zmaj::11_koerper
+vrat	hals	zmaj zmaj::11_koerper
+ruka	hand / arm	zmaj zmaj::11_koerper
+prst	finger	zmaj zmaj::11_koerper
+noga	ben	zmaj zmaj::11_koerper
+stomak	mage	zmaj zmaj::11_koerper
+leđa	rygg	zmaj zmaj::11_koerper
+srce	hjärta	zmaj zmaj::11_koerper
+bolestan / bolesna	sjuk (m/k)	zmaj zmaj::11_koerper
+zdrav / zdrava	frisk (m/k)	zmaj zmaj::11_koerper
+doktor	läkare	zmaj zmaj::11_koerper
+bolnica	sjukhus	zmaj zmaj::11_koerper
+apoteka	apotek	zmaj zmaj::11_koerper
+bol	smärta	zmaj zmaj::11_koerper
+Boli me	Det gör ont	zmaj zmaj::11_koerper
+glavobolja	huvudvärk	zmaj zmaj::11_koerper
+temperatura	feber	zmaj zmaj::11_koerper
+lijek	medicin	zmaj zmaj::11_koerper
+Brz oporavak	Krya på dig!	zmaj zmaj::11_koerper
+radnja	affär	zmaj zmaj::12_einkaufen
+tržni centar	köpcentrum	zmaj zmaj::12_einkaufen
+kasa	kassa	zmaj zmaj::12_einkaufen
+cijena	pris	zmaj zmaj::12_einkaufen
+popust	rabatt	zmaj zmaj::12_einkaufen
+gotovina	kontanter	zmaj zmaj::12_einkaufen
+kartica	kort (bankkort)	zmaj zmaj::12_einkaufen
+torba	väska	zmaj zmaj::12_einkaufen
+odjeća	kläder	zmaj zmaj::12_einkaufen
+košulja	skjorta	zmaj zmaj::12_einkaufen
+majica	t-shirt	zmaj zmaj::12_einkaufen
+pantalone	byxor	zmaj zmaj::12_einkaufen
+jakna	jacka	zmaj zmaj::12_einkaufen
+haljina	klänning	zmaj zmaj::12_einkaufen
+suknja	kjol	zmaj zmaj::12_einkaufen
+cipele	skor	zmaj zmaj::12_einkaufen
+čarape	strumpor	zmaj zmaj::12_einkaufen
+kapa	mössa	zmaj zmaj::12_einkaufen
+veličina	storlek	zmaj zmaj::12_einkaufen
+veliko	stor	zmaj zmaj::12_einkaufen
+malo	liten	zmaj zmaj::12_einkaufen
+novo	ny	zmaj zmaj::12_einkaufen
+staro	gammal	zmaj zmaj::12_einkaufen
+Tražim ...	Jag letar efter ...	zmaj zmaj::12_einkaufen
+Imate li ...?	Har ni ...?	zmaj zmaj::12_einkaufen
+Uzet ću ovo	Jag tar den här	zmaj zmaj::12_einkaufen
+Mogu li platiti karticom?	Kan jag betala med kort?	zmaj zmaj::12_einkaufen
+Gdje je ...?	Var ligger ...?	zmaj zmaj::13_unterwegs
+lijevo	vänster	zmaj zmaj::13_unterwegs
+desno	höger	zmaj zmaj::13_unterwegs
+pravo	rakt fram	zmaj zmaj::13_unterwegs
+ulica	gata	zmaj zmaj::13_unterwegs
+kuća	hus	zmaj zmaj::13_unterwegs
+grad	stad	zmaj zmaj::13_unterwegs
+selo	by	zmaj zmaj::13_unterwegs
+stanica	station / hållplats	zmaj zmaj::13_unterwegs
+auto	bil	zmaj zmaj::13_unterwegs
+autobus	buss	zmaj zmaj::13_unterwegs
+prodavnica	butik	zmaj zmaj::13_unterwegs
+pijaca	marknad	zmaj zmaj::13_unterwegs
+novac	pengar	zmaj zmaj::13_unterwegs
+Koliko košta?	Vad kostar det?	zmaj zmaj::13_unterwegs
+skupo	dyrt	zmaj zmaj::13_unterwegs
+jeftino	billigt	zmaj zmaj::13_unterwegs
+otvoreno	öppet	zmaj zmaj::13_unterwegs
+zatvoreno	stängt	zmaj zmaj::13_unterwegs
+biti	vara	zmaj zmaj::14_verben
+imati	ha	zmaj zmaj::14_verben
+ići	gå	zmaj zmaj::14_verben
+doći	komma	zmaj zmaj::14_verben
+jesti	äta	zmaj zmaj::14_verben
+piti	dricka	zmaj zmaj::14_verben
+govoriti	tala	zmaj zmaj::14_verben
+razumjeti	förstå	zmaj zmaj::14_verben
+znati	veta	zmaj zmaj::14_verben
+htjeti	vilja	zmaj zmaj::14_verben
+moći	kunna	zmaj zmaj::14_verben
+voljeti	älska	zmaj zmaj::14_verben
+raditi	arbeta	zmaj zmaj::14_verben
+spavati	sova	zmaj zmaj::14_verben
+učiti	lära sig	zmaj zmaj::14_verben
+vidjeti	se	zmaj zmaj::14_verben
+kupiti	köpa	zmaj zmaj::14_verben
+stanovati	bo	zmaj zmaj::14_verben
+Šta ima?	Vad händer? / Hur går det?	zmaj zmaj::15_smalltalk
+Sve je dobro	Allt är bra	zmaj zmaj::15_smalltalk
+Nema problema	Inga problem	zmaj zmaj::15_smalltalk
+Ne brini	Oroa dig inte	zmaj zmaj::15_smalltalk
+Hajde!	Kom igen!	zmaj zmaj::15_smalltalk
+Hajmo!	Nu kör vi!	zmaj zmaj::15_smalltalk
+Vidi	Titta	zmaj zmaj::15_smalltalk
+Stvarno?	Verkligen?	zmaj zmaj::15_smalltalk
+Super!	Toppen!	zmaj zmaj::15_smalltalk
+lijepo	fint	zmaj zmaj::15_smalltalk
+Ništa	Ingenting	zmaj zmaj::15_smalltalk
+Sve	Allt	zmaj zmaj::15_smalltalk
+Šta radiš?	Vad gör du?	zmaj zmaj::15_smalltalk
+Gdje si?	Var är du?	zmaj zmaj::15_smalltalk
+Nemam vremena	Jag har ingen tid	zmaj zmaj::15_smalltalk
+Umoran sam / Umorna sam	Jag är trött (m/k)	zmaj zmaj::15_smalltalk
+sretan / sretna	glad (m/k)	zmaj zmaj::15_smalltalk
+tužan / tužna	ledsen (m/k)	zmaj zmaj::15_smalltalk
+ljubav	kärlek	zmaj zmaj::15_smalltalk
+Volim te	Jag älskar dig	zmaj zmaj::15_smalltalk
+Nedostaješ mi	Jag saknar dig	zmaj zmaj::15_smalltalk
+dušo	älskling (tilltal)	zmaj zmaj::15_smalltalk
+Sviđa mi se	Jag gillar det	zmaj zmaj::15_smalltalk
+Htio bih / Htjela bih	Jag skulle vilja (m/k)	zmaj zmaj::15_smalltalk
+Molim te	Snälla (när man ber om något, du)	zmaj zmaj::15_smalltalk
+Znaš ...	Vet du ...	zmaj zmaj::15_smalltalk
+ananas	ananas	zmaj zmaj::16_obst
+kajsija	aprikos	zmaj zmaj::16_obst
+banana	banan	zmaj zmaj::16_obst
+kruška	päron	zmaj zmaj::16_obst
+kupina	björnbär	zmaj zmaj::16_obst
+jagoda	jordgubbe	zmaj zmaj::16_obst
+smokva	fikon	zmaj zmaj::16_obst
+nar	granatäpple	zmaj zmaj::16_obst
+lješnjak	hasselnöt	zmaj zmaj::16_obst
+borovnica	blåbär	zmaj zmaj::16_obst
+malina	hallon	zmaj zmaj::16_obst
+dinja	honungsmelon	zmaj zmaj::16_obst
+kesten	kastanj	zmaj zmaj::16_obst
+trešnja	körsbär	zmaj zmaj::16_obst
+mandarina	mandarin (frukt)	zmaj zmaj::16_obst
+badem	mandel	zmaj zmaj::16_obst
+nektarina	nektarin	zmaj zmaj::16_obst
+breskva	persika	zmaj zmaj::16_obst
+dunja	kvitten	zmaj zmaj::16_obst
+višnja	surkörsbär	zmaj zmaj::16_obst
+suho voće	torkad frukt	zmaj zmaj::16_obst
+lubenica	vattenmelon	zmaj zmaj::16_obst
+grožđe	vindruva	zmaj zmaj::16_obst
+limun	citron	zmaj zmaj::16_obst
+patlidžan	aubergine	zmaj zmaj::17_gemuese
+karfiol	blomkål	zmaj zmaj::17_gemuese
+brokula	broccoli	zmaj zmaj::17_gemuese
+grašak	ärtor	zmaj zmaj::17_gemuese
+mladi luk	salladslök	zmaj zmaj::17_gemuese
+boranija	gröna bönor	zmaj zmaj::17_gemuese
+krastavac	gurka	zmaj zmaj::17_gemuese
+mrkva	morot	zmaj zmaj::17_gemuese
+bijeli luk	vitlök	zmaj zmaj::17_gemuese
+kupus	kål	zmaj zmaj::17_gemuese
+zelena salata	huvudsallat	zmaj zmaj::17_gemuese
+bundeva	pumpa	zmaj zmaj::17_gemuese
+praziluk	purjolök	zmaj zmaj::17_gemuese
+kukuruz	majs	zmaj zmaj::17_gemuese
+blitva	mangold	zmaj zmaj::17_gemuese
+bamija	okra	zmaj zmaj::17_gemuese
+paprika	paprika	zmaj zmaj::17_gemuese
+peršun	persilja	zmaj zmaj::17_gemuese
+gljive	svamp	zmaj zmaj::17_gemuese
+rotkvica	rädisa	zmaj zmaj::17_gemuese
+cvekla	rödbeta	zmaj zmaj::17_gemuese
+crveni luk	rödlök	zmaj zmaj::17_gemuese
+ljuta paprika	stark paprika (chili)	zmaj zmaj::17_gemuese
+celer	selleri	zmaj zmaj::17_gemuese
+špinat	spenat	zmaj zmaj::17_gemuese
+kelj	savojkål	zmaj zmaj::17_gemuese
+tikvica	zucchini	zmaj zmaj::17_gemuese
+prašak za pecivo	bakpulver	zmaj zmaj::18_lebensmittel
+maslac / puter	smör	zmaj zmaj::18_lebensmittel
+turšija	inlagda grönsaker	zmaj zmaj::18_lebensmittel
+sladoled	glass	zmaj zmaj::18_lebensmittel
+začini	kryddor	zmaj zmaj::18_lebensmittel
+griz	mannagryn	zmaj zmaj::18_lebensmittel
+mljeveno meso	köttfärs	zmaj zmaj::18_lebensmittel
+kvasac	jäst	zmaj zmaj::18_lebensmittel
+teletina	kalvkött	zmaj zmaj::18_lebensmittel
+keks	kex	zmaj zmaj::18_lebensmittel
+kečap	ketchup	zmaj zmaj::18_lebensmittel
+konzerva	konserv	zmaj zmaj::18_lebensmittel
+janjetina	lammkött	zmaj zmaj::18_lebensmittel
+pašteta	leverpastej	zmaj zmaj::18_lebensmittel
+leća	linser	zmaj zmaj::18_lebensmittel
+margarin	margarin	zmaj zmaj::18_lebensmittel
+džem	sylt	zmaj zmaj::18_lebensmittel
+majonez	majonnäs	zmaj zmaj::18_lebensmittel
+mineralna voda	mineralvatten	zmaj zmaj::18_lebensmittel
+pekmez	pekmez (plommonmos)	zmaj zmaj::18_lebensmittel
+junetina	nötkött	zmaj zmaj::18_lebensmittel
+slatka pavlaka	grädde	zmaj zmaj::18_lebensmittel
+salama	salami	zmaj zmaj::18_lebensmittel
+kiseli kupus	surkål	zmaj zmaj::18_lebensmittel
+kiselo mlijeko	surmjölk	zmaj zmaj::18_lebensmittel
+kisela pavlaka	gräddfil	zmaj zmaj::18_lebensmittel
+šunka	skinka	zmaj zmaj::18_lebensmittel
+šlag	vispad grädde	zmaj zmaj::18_lebensmittel
+čokolada	choklad	zmaj zmaj::18_lebensmittel
+senf	senap	zmaj zmaj::18_lebensmittel
+kisela voda	kolsyrat vatten	zmaj zmaj::18_lebensmittel
+sudžuk	sudžuk (kryddig korv)	zmaj zmaj::18_lebensmittel
+tunjevina	tonfisk	zmaj zmaj::18_lebensmittel
+zimnica	vinterförråd	zmaj zmaj::18_lebensmittel
+kobasica	korv	zmaj zmaj::18_lebensmittel
+sirće	vinäger	zmaj zmaj::19_vorrat
+med	honung	zmaj zmaj::19_vorrat
+jogurt	yoghurt	zmaj zmaj::19_vorrat
+brašno	mjöl	zmaj zmaj::19_vorrat
+tjestenina	pasta	zmaj zmaj::19_vorrat
+biber	peppar	zmaj zmaj::19_vorrat
+pavlaka	gräddfil / crème fraîche	zmaj zmaj::19_vorrat
+ulje	matolja	zmaj zmaj::19_vorrat
+jufka	filodeg	zmaj zmaj::19_vorrat
+pogača	tunnbröd (runt)	zmaj zmaj::19_vorrat
+pecivo	bakverk	zmaj zmaj::19_vorrat
+kifla	giffel	zmaj zmaj::19_vorrat
+šampita	šampita (marängbakelse)	zmaj zmaj::19_vorrat
+kadaif	kadaif (trådbakelse)	zmaj zmaj::19_vorrat
+hurmašice	hurmašice (sirapsbakelse)	zmaj zmaj::19_vorrat
+rakija	rakija (fruktbrännvin)	zmaj zmaj::19_vorrat
+vino	vin	zmaj zmaj::19_vorrat
+bosanska kahva	bosniskt kaffe	zmaj zmaj::19_vorrat
+Jednu bosansku kahvu, molim	Ett bosniskt kaffe, tack	zmaj zmaj::19_vorrat
+džezva	kopparkanna	zmaj zmaj::19_vorrat
+polako	långsamt	zmaj zmaj::19_vorrat
+šećer u kocki	bitsocker	zmaj zmaj::19_vorrat
+U zdravlje!	Skål! (för hälsan)	zmaj zmaj::19_vorrat
+Jednu rakiju, molim	En rakija, tack	zmaj zmaj::19_vorrat
+travarica	örtbrännvin	zmaj zmaj::19_vorrat
+domaća rakija	hembränt	zmaj zmaj::19_vorrat
+loza	druvbrännvin	zmaj zmaj::19_vorrat
+šljivovica	plommonbrännvin (slivovits)	zmaj zmaj::19_vorrat
+kućni ljubimac	husdjur	zmaj zmaj::20_tiere
+životinja	djur	zmaj zmaj::20_tiere
+stoka	boskap / lantbruksdjur	zmaj zmaj::20_tiere
+patka	anka	zmaj zmaj::20_tiere
+magarac	åsna	zmaj zmaj::20_tiere
+guska	gås	zmaj zmaj::20_tiere
+horoz	tupp	zmaj zmaj::20_tiere
+avlija	gård / innergård	zmaj zmaj::20_tiere
+kokoš	höna	zmaj zmaj::20_tiere
+tele	kalv	zmaj zmaj::20_tiere
+pile	kycklingunge / kyckling	zmaj zmaj::20_tiere
+krava	ko	zmaj zmaj::20_tiere
+jagnje	lamm	zmaj zmaj::20_tiere
+konj	häst	zmaj zmaj::20_tiere
+ovca	får	zmaj zmaj::20_tiere
+svinja	gris	zmaj zmaj::20_tiere
+svinjetina	fläskkött	zmaj zmaj::20_tiere
+štala	stall	zmaj zmaj::20_tiere
+bik	tjur	zmaj zmaj::20_tiere
+štene	valp	zmaj zmaj::20_tiere
+koza	get	zmaj zmaj::20_tiere
+orao	örn	zmaj zmaj::20_tiere
+sova	uggla	zmaj zmaj::20_tiere
+vrana	kråka	zmaj zmaj::20_tiere
+gnijezdo	bo (fågelbo)	zmaj zmaj::20_tiere
+lastavica	svala	zmaj zmaj::20_tiere
+vrabac	sparv	zmaj zmaj::20_tiere
+roda	stork	zmaj zmaj::20_tiere
+golub	duva	zmaj zmaj::20_tiere
+medvjed	björn	zmaj zmaj::21_tiere_wild
+zmaj	drake	zmaj zmaj::21_tiere_wild
+vjeverica	ekorre	zmaj zmaj::21_tiere_wild
+žaba	groda	zmaj zmaj::21_tiere_wild
+lisica	räv	zmaj zmaj::21_tiere_wild
+zec	hare	zmaj zmaj::21_tiere_wild
+jelen	hjort	zmaj zmaj::21_tiere_wild
+jež	igelkott	zmaj zmaj::21_tiere_wild
+kunić	kanin	zmaj zmaj::21_tiere_wild
+ris	lodjur	zmaj zmaj::21_tiere_wild
+miš	mus	zmaj zmaj::21_tiere_wild
+pacov	råtta	zmaj zmaj::21_tiere_wild
+srna	rådjur	zmaj zmaj::21_tiere_wild
+zmija	orm	zmaj zmaj::21_tiere_wild
+divlja svinja	vildsvin	zmaj zmaj::21_tiere_wild
+vuk	varg	zmaj zmaj::21_tiere_wild
+mrav	myra	zmaj zmaj::21_tiere_wild
+muha	fluga	zmaj zmaj::21_tiere_wild
+buha	loppa	zmaj zmaj::21_tiere_wild
+pastrmka	öring	zmaj zmaj::21_tiere_wild
+komarac	mygga	zmaj zmaj::21_tiere_wild
+leptir	fjäril	zmaj zmaj::21_tiere_wild
+puž	snigel	zmaj zmaj::21_tiere_wild
+pauk	spindel	zmaj zmaj::21_tiere_wild
+osa	geting	zmaj zmaj::21_tiere_wild
+crv	mask (djur)	zmaj zmaj::21_tiere_wild
+krpelj	fästing	zmaj zmaj::21_tiere_wild
+buvljak	loppmarknad	zmaj zmaj::21_tiere_wild
+pero	fjäder (fågel)	zmaj zmaj::22_tiere_umgang
+krzno	päls	zmaj zmaj::22_tiere_umgang
+krilo	vinge	zmaj zmaj::22_tiere_umgang
+rog	horn	zmaj zmaj::22_tiere_umgang
+povodac	koppel	zmaj zmaj::22_tiere_umgang
+rep	svans	zmaj zmaj::22_tiere_umgang
+veterinar	veterinär	zmaj zmaj::22_tiere_umgang
+ugristi	bita	zmaj zmaj::22_tiere_umgang
+Hoće li ujesti?	Bits den?	zmaj zmaj::22_tiere_umgang
+lajati	skälla	zmaj zmaj::22_tiere_umgang
+hraniti	mata	zmaj zmaj::22_tiere_umgang
+Bojim se pasa	Jag är rädd för hundar	zmaj zmaj::22_tiere_umgang
+šetati	promenera	zmaj zmaj::22_tiere_umgang
+šetnja	promenad	zmaj zmaj::22_tiere_umgang
+ubosti	sticka (insekt)	zmaj zmaj::22_tiere_umgang
+Čuvaj se psa!	Varning för hunden!	zmaj zmaj::22_tiere_umgang
+Pas me je ujeo	Hunden har bitit mig	zmaj zmaj::22_tiere_umgang
+opasno	farligt	zmaj zmaj::22_tiere_umgang
+opasnost	fara	zmaj zmaj::22_tiere_umgang
+mina	mina (landmina)	zmaj zmaj::22_tiere_umgang
+zabranjeno	förbjudet	zmaj zmaj::22_tiere_umgang
+Pazi!	Se upp! / Var försiktig!	zmaj zmaj::22_tiere_umgang
+potok	bäck	zmaj zmaj::23_natur
+list	löv	zmaj zmaj::23_natur
+bunar	brunn	zmaj zmaj::23_natur
+zemlja	jord / mark	zmaj zmaj::23_natur
+polje	fält / åker	zmaj zmaj::23_natur
+stijena	klippa	zmaj zmaj::23_natur
+vatra	eld	zmaj zmaj::23_natur
+vrh	topp (berg)	zmaj zmaj::23_natur
+trava	gräs	zmaj zmaj::23_natur
+pećina	grotta	zmaj zmaj::23_natur
+brdo	kulle	zmaj zmaj::23_natur
+ostrvo	ö	zmaj zmaj::23_natur
+zrak	luft	zmaj zmaj::23_natur
+priroda	natur	zmaj zmaj::23_natur
+izvor	källa (vattenkälla)	zmaj zmaj::23_natur
+pijesak	sand	zmaj zmaj::23_natur
+kamen	sten	zmaj zmaj::23_natur
+dolina	dal	zmaj zmaj::23_natur
+obala	strand	zmaj zmaj::23_natur
+vodopad	vattenfall	zmaj zmaj::23_natur
+put / staza	väg / stig	zmaj zmaj::23_natur
+livada	äng	zmaj zmaj::23_natur
+grana	gren / kvist	zmaj zmaj::23_natur
+kamilica	kamomill	zmaj zmaj::23_natur
+lipa	lind	zmaj zmaj::23_natur
+nana (auch: metvica)	mynta	zmaj zmaj::23_natur
+biljka	växt	zmaj zmaj::23_natur
+šljiva	plommon / plommonträd	zmaj zmaj::23_natur
+orah	valnöt / valnötsträd	zmaj zmaj::23_natur
+korijen	rot (växt)	zmaj zmaj::23_natur
+rerna	ugn	zmaj zmaj::24_kueche_bad
+flaša	flaska	zmaj zmaj::24_kueche_bad
+viljuška	gaffel	zmaj zmaj::24_kueche_bad
+zamrzivač	frys	zmaj zmaj::24_kueche_bad
+suđe	disk (tallrikar och glas)	zmaj zmaj::24_kueche_bad
+prati suđe	diska	zmaj zmaj::24_kueche_bad
+tava	stekpanna	zmaj zmaj::24_kueche_bad
+tanjir	tallrik	zmaj zmaj::24_kueche_bad
+lonac	kastrull	zmaj zmaj::24_kueche_bad
+kesa	påse / plastpåse	zmaj zmaj::24_kueche_bad
+posteljina	sängkläder	zmaj zmaj::24_kueche_bad
+deka	täcke (sängtäcke)	zmaj zmaj::24_kueche_bad
+jastuk	kudde	zmaj zmaj::24_kueche_bad
+polica	hylla / hyllplan	zmaj zmaj::24_kueche_bad
+ormar	skåp	zmaj zmaj::24_kueche_bad
+kauč	soffa	zmaj zmaj::24_kueche_bad
+zavjesa	gardin	zmaj zmaj::24_kueche_bad
+tuš	dusch	zmaj zmaj::24_kueche_bad
+ogledalo	spegel	zmaj zmaj::24_kueche_bad
+WC	toalett	zmaj zmaj::24_kueche_bad
+toalet papir	toalettpapper	zmaj zmaj::24_kueche_bad
+lavabo	handfat	zmaj zmaj::24_kueche_bad
+četkica za zube	tandborste	zmaj zmaj::24_kueche_bad
+pasta za zube	tandkräm	zmaj zmaj::24_kueche_bad
+pospremiti	städa upp	zmaj zmaj::25_putzen
+metla	kvast	zmaj zmaj::25_putzen
+pegla	strykjärn	zmaj zmaj::25_putzen
+peglati	stryka (kläder)	zmaj zmaj::25_putzen
+kanta	hink	zmaj zmaj::25_putzen
+smeće	sopor	zmaj zmaj::25_putzen
+kanta za smeće	sophink / soptunna	zmaj zmaj::25_putzen
+čisto	rent	zmaj zmaj::25_putzen
+prljavo	smutsigt	zmaj zmaj::25_putzen
+usisivač	dammsugare	zmaj zmaj::25_putzen
+veš mašina	tvättmaskin	zmaj zmaj::25_putzen
+deterdžent	tvättmedel	zmaj zmaj::25_putzen
+veš	tvätt	zmaj zmaj::25_putzen
+štrik	klädstreck	zmaj zmaj::25_putzen
+lift	hiss	zmaj zmaj::25_putzen
+poštansko sanduče	brevlåda	zmaj zmaj::25_putzen
+krov	tak	zmaj zmaj::25_putzen
+tavan	vind (loft)	zmaj zmaj::25_putzen
+pod	golv	zmaj zmaj::25_putzen
+domar	fastighetsskötare	zmaj zmaj::25_putzen
+podrum	källare	zmaj zmaj::25_putzen
+zvono	dörrklocka	zmaj zmaj::25_putzen
+zvoniti	ringa på	zmaj zmaj::25_putzen
+komšinica	granne (kvinna)	zmaj zmaj::25_putzen
+zid	vägg	zmaj zmaj::25_putzen
+ograda	staket	zmaj zmaj::25_putzen
+ugasiti	stänga av / släcka	zmaj zmaj::26_technik
+bojler	varmvattenberedare	zmaj zmaj::26_technik
+drva	ved	zmaj zmaj::26_technik
+upaliti	sätta på / tända	zmaj zmaj::26_technik
+Nema struje	Det finns ingen ström	zmaj zmaj::26_technik
+sijalica	glödlampa	zmaj zmaj::26_technik
+grijanje	värme (uppvärmning)	zmaj zmaj::26_technik
+ugalj	kol (bränsle)	zmaj zmaj::26_technik
+svjetlo	ljus (belysning)	zmaj zmaj::26_technik
+peć	kamin (för värme)	zmaj zmaj::26_technik
+osigurač	säkring	zmaj zmaj::26_technik
+utičnica	eluttag	zmaj zmaj::26_technik
+utikač	stickkontakt	zmaj zmaj::26_technik
+struja	el	zmaj zmaj::26_technik
+topla voda	varmt vatten	zmaj zmaj::26_technik
+Ne radi	Det fungerar inte	zmaj zmaj::26_technik
+Curi voda	Det läcker / det droppar	zmaj zmaj::26_technik
+čekić	hammare	zmaj zmaj::26_technik
+majstor	hantverkare / fackman	zmaj zmaj::26_technik
+pokvaren / pokvarena / pokvareno	trasigt	zmaj zmaj::26_technik
+merdevine	stege	zmaj zmaj::26_technik
+ekser	spik	zmaj zmaj::26_technik
+popraviti	reparera	zmaj zmaj::26_technik
+brava	lås (dörrlås)	zmaj zmaj::26_technik
+šaraf	skruv	zmaj zmaj::26_technik
+slavina	vattenkran	zmaj zmaj::26_technik
+alat	verktyg	zmaj zmaj::26_technik
+gorivo	bränsle	zmaj zmaj::27_auto_werkstatt
+sipati gorivo	tanka	zmaj zmaj::27_auto_werkstatt
+guma	däck	zmaj zmaj::27_auto_werkstatt
+Pukla mi je guma.	Jag har fått punktering.	zmaj zmaj::27_auto_werkstatt
+kočnica	broms	zmaj zmaj::27_auto_werkstatt
+motor	motor	zmaj zmaj::27_auto_werkstatt
+akumulator	bilbatteri	zmaj zmaj::27_auto_werkstatt
+sigurnosni pojas	säkerhetsbälte	zmaj zmaj::27_auto_werkstatt
+parkiralište	parkeringsplats	zmaj zmaj::27_auto_werkstatt
+parkirati	parkera	zmaj zmaj::27_auto_werkstatt
+semafor	trafikljus	zmaj zmaj::27_auto_werkstatt
+raskrsnica	korsning	zmaj zmaj::27_auto_werkstatt
+saobraćaj	trafik	zmaj zmaj::27_auto_werkstatt
+zastoj	bilkö	zmaj zmaj::27_auto_werkstatt
+kazna	böter	zmaj zmaj::27_auto_werkstatt
+registracija	registreringsskylt	zmaj zmaj::27_auto_werkstatt
+tehnički pregled	bilbesiktning	zmaj zmaj::27_auto_werkstatt
+autoservis	bilverkstad	zmaj zmaj::27_auto_werkstatt
+šlep služba	bärgningstjänst	zmaj zmaj::27_auto_werkstatt
+pomoć na cesti	vägassistans	zmaj zmaj::27_auto_werkstatt
+odvijač / šrafciger	skruvmejsel	zmaj zmaj::27_auto_werkstatt
+kliješta	tång	zmaj zmaj::27_auto_werkstatt
+bušilica	borrmaskin	zmaj zmaj::27_auto_werkstatt
+bušiti	borra	zmaj zmaj::27_auto_werkstatt
+testera	såg	zmaj zmaj::27_auto_werkstatt
+francuski ključ	skiftnyckel	zmaj zmaj::27_auto_werkstatt
+metar	måttband	zmaj zmaj::27_auto_werkstatt
+ljepilo	lim	zmaj zmaj::27_auto_werkstatt
+produžni kabl	förlängningssladd	zmaj zmaj::27_auto_werkstatt
+radionica	verkstad	zmaj zmaj::27_auto_werkstatt
+punjač	laddare	zmaj zmaj::28_geraete
+baterija	batteri	zmaj zmaj::28_geraete
+Baterija je prazna.	Batteriet är slut.	zmaj zmaj::28_geraete
+napuniti	ladda	zmaj zmaj::28_geraete
+šifra / lozinka	lösenord	zmaj zmaj::28_geraete
+Koja je šifra za WiFi?	Vad är wifi-lösenordet?	zmaj zmaj::28_geraete
+internet	internet	zmaj zmaj::28_geraete
+Nema signala.	Ingen täckning.	zmaj zmaj::28_geraete
+poruka	meddelande	zmaj zmaj::28_geraete
+poslati poruku	skicka ett meddelande	zmaj zmaj::28_geraete
+nazvati	ringa (i telefon)	zmaj zmaj::28_geraete
+aplikacija	app	zmaj zmaj::28_geraete
+ekran	skärm	zmaj zmaj::28_geraete
+tastatura	tangentbord	zmaj zmaj::28_geraete
+štampač	skrivare	zmaj zmaj::28_geraete
+slušalice	hörlurar	zmaj zmaj::28_geraete
+slikati	fotografera	zmaj zmaj::28_geraete
+ažurirati	uppdatera	zmaj zmaj::28_geraete
+mašina za suđe	diskmaskin	zmaj zmaj::28_geraete
+sušilica za veš	torktumlare	zmaj zmaj::28_geraete
+mikrovalna	mikrovågsugn	zmaj zmaj::28_geraete
+toster	brödrost	zmaj zmaj::28_geraete
+kuhalo za vodu	vattenkokare	zmaj zmaj::28_geraete
+fen	hårtork	zmaj zmaj::28_geraete
+klima	luftkonditionering	zmaj zmaj::28_geraete
+ventilator	fläkt	zmaj zmaj::28_geraete
+daljinski	fjärrkontroll	zmaj zmaj::28_geraete
+aparat za kahvu / aparat za kafu	kaffebryggare	zmaj zmaj::28_geraete
+uputstvo	bruksanvisning	zmaj zmaj::28_geraete
+garancija	garanti	zmaj zmaj::28_geraete
+Ko?	Vem?	zmaj zmaj::29_fragen
+Šta?	Vad?	zmaj zmaj::29_fragen
+Gdje?	Var?	zmaj zmaj::29_fragen
+Kuda?	Vart?	zmaj zmaj::29_fragen
+Odakle?	Varifrån?	zmaj zmaj::29_fragen
+Kada?	När?	zmaj zmaj::29_fragen
+Zašto?	Varför?	zmaj zmaj::29_fragen
+Kako?	Hur?	zmaj zmaj::29_fragen
+Koliko?	Hur mycket?	zmaj zmaj::29_fragen
+Koji?	Vilken?	zmaj zmaj::29_fragen
+Čiji?	Vems?	zmaj zmaj::29_fragen
+Da li ...?	Ja/nej-fråga: Är ...?	zmaj zmaj::29_fragen
+Je li to ...?	Är det ...?	zmaj zmaj::29_fragen
+Ko si ti?	Vem är du?	zmaj zmaj::29_fragen
+Odakle si?	Varifrån kommer du?	zmaj zmaj::29_fragen
+Kuda ideš?	Vart går du?	zmaj zmaj::29_fragen
+Kada dolaziš?	När kommer du?	zmaj zmaj::29_fragen
+Zašto ne?	Varför inte?	zmaj zmaj::29_fragen
+Šta je to?	Vad är det?	zmaj zmaj::29_fragen
+Koliko imaš godina?	Hur gammal är du?	zmaj zmaj::29_fragen
+Imaš li vremena?	Har du tid?	zmaj zmaj::29_fragen
+Govoriš li engleski?	Talar du engelska?	zmaj zmaj::29_fragen
+Mogu li pomoći?	Kan jag hjälpa till?	zmaj zmaj::29_fragen
+Gdje stanuješ?	Var bor du?	zmaj zmaj::29_fragen
+Šta misliš?	Vad tycker du?	zmaj zmaj::29_fragen
+on	han	zmaj zmaj::30_genus
+ona	hon	zmaj zmaj::30_genus
+ono	det	zmaj zmaj::30_genus
+oni	de (maskulinum)	zmaj zmaj::30_genus
+one	de (femininum)	zmaj zmaj::30_genus
+moj / moja / moje	min (m/f/n)	zmaj zmaj::30_genus
+tvoj / tvoja / tvoje	din (m/f/n)	zmaj zmaj::30_genus
+njegov / njegova / njegovo	hans (m/f/n)	zmaj zmaj::30_genus
+njen / njena / njeno	hennes (m/f/n)	zmaj zmaj::30_genus
+naš / naša / naše	vår (m/f/n)	zmaj zmaj::30_genus
+vaš / vaša / vaše	er / ert (m/f/n)	zmaj zmaj::30_genus
+ovaj / ova / ovo	den här / det här (m/f/n)	zmaj zmaj::30_genus
+onaj / ona / ono	den där / det där (m/f/n)	zmaj zmaj::30_genus
+muškarac	mannen	zmaj zmaj::30_genus
+djevojka	flickan	zmaj zmaj::30_genus
+dječak	pojken	zmaj zmaj::30_genus
+nastavnik / nastavnica	lärare (m/k)	zmaj zmaj::30_genus
+student / studentica	student (m/k)	zmaj zmaj::30_genus
+konobar / konobarica	servitör / servitris	zmaj zmaj::30_genus
+doktor / doktorica	läkare (m/k)	zmaj zmaj::30_genus
+prodavač / prodavačica	expedit (m/k)	zmaj zmaj::30_genus
+velik / velika / veliko	stor (m/f/n)	zmaj zmaj::30_genus
+lijep / lijepa / lijepo	vacker (m/f/n)	zmaj zmaj::30_genus
+dobar / dobra / dobro	bra (m/f/n)	zmaj zmaj::30_genus
+nov / nova / novo	ny (m/f/n)	zmaj zmaj::30_genus
+pismo	brevet	zmaj zmaj::30_genus
+stvar	saken	zmaj zmaj::30_genus
+ja sam	jag är	zmaj zmaj::31_konjugation
+ti si	du är	zmaj zmaj::31_konjugation
+on je / ona je	han / hon är	zmaj zmaj::31_konjugation
+mi smo	vi är	zmaj zmaj::31_konjugation
+vi ste	ni är	zmaj zmaj::31_konjugation
+oni su	de är	zmaj zmaj::31_konjugation
+imam	jag har	zmaj zmaj::31_konjugation
+imaš	du har	zmaj zmaj::31_konjugation
+ima	han / hon har	zmaj zmaj::31_konjugation
+imamo	vi har	zmaj zmaj::31_konjugation
+imate	ni har	zmaj zmaj::31_konjugation
+imaju	de har	zmaj zmaj::31_konjugation
+idem	jag går	zmaj zmaj::31_konjugation
+ideš	du går	zmaj zmaj::31_konjugation
+idemo	vi går	zmaj zmaj::31_konjugation
+idu	de går	zmaj zmaj::31_konjugation
+jedem	jag äter	zmaj zmaj::31_konjugation
+jedeš	du äter	zmaj zmaj::31_konjugation
+pijem	jag dricker	zmaj zmaj::31_konjugation
+govorim	jag talar	zmaj zmaj::31_konjugation
+znam	jag vet	zmaj zmaj::31_konjugation
+znaš	du vet	zmaj zmaj::31_konjugation
+mogu	jag kan	zmaj zmaj::31_konjugation
+možeš	du kan	zmaj zmaj::31_konjugation
+hoću	jag vill	zmaj zmaj::31_konjugation
+radim	jag arbetar	zmaj zmaj::31_konjugation
+stanujem	jag bor	zmaj zmaj::31_konjugation
+učim	jag lär mig	zmaj zmaj::31_konjugation
+volim	jag älskar / tycker om	zmaj zmaj::31_konjugation
+brat → braća	bror → bröder	zmaj zmaj::32_mehrzahl
+sestra → sestre	syster → systrar	zmaj zmaj::32_mehrzahl
+kuća → kuće	hus → hus	zmaj zmaj::32_mehrzahl
+grad → gradovi	stad → städer	zmaj zmaj::32_mehrzahl
+dijete → djeca	barn → barn	zmaj zmaj::32_mehrzahl
+žena → žene	kvinna → kvinnor	zmaj zmaj::32_mehrzahl
+muškarac → muškarci	man → män	zmaj zmaj::32_mehrzahl
+prijatelj → prijatelji	vän → vänner	zmaj zmaj::32_mehrzahl
+jabuka → jabuke	äpple → äpplen	zmaj zmaj::32_mehrzahl
+knjiga → knjige	bok → böcker	zmaj zmaj::32_mehrzahl
+sto → stolovi	bord → bord	zmaj zmaj::32_mehrzahl
+stolica → stolice	stol → stolar	zmaj zmaj::32_mehrzahl
+auto → auti	bil → bilar	zmaj zmaj::32_mehrzahl
+dan → dani	dag → dagar	zmaj zmaj::32_mehrzahl
+godina → godine	år → år	zmaj zmaj::32_mehrzahl
+riječ → riječi	ord → ord	zmaj zmaj::32_mehrzahl
+oko → oči	öga → ögon	zmaj zmaj::32_mehrzahl
+ruka → ruke	hand → händer	zmaj zmaj::32_mehrzahl
+čovjek → ljudi	människa → människor	zmaj zmaj::32_mehrzahl
+prozor → prozori	fönster → fönster	zmaj zmaj::32_mehrzahl
+selo → sela	by → byar	zmaj zmaj::32_mehrzahl
+jaje → jaja	ägg → ägg	zmaj zmaj::32_mehrzahl
+ključ → ključevi	nyckel → nycklar	zmaj zmaj::32_mehrzahl
+zub → zubi	tand → tänder	zmaj zmaj::32_mehrzahl
+noć → noći	natt → nätter	zmaj zmaj::32_mehrzahl
+pas → psi	hund → hundar	zmaj zmaj::32_mehrzahl
+čovjek	människa	zmaj zmaj::32_mehrzahl
+ljudi	människor (flera)	zmaj zmaj::32_mehrzahl
+ne	inte	zmaj zmaj::33_satzbau
+nisam	jag är inte	zmaj zmaj::33_satzbau
+nisi	du är inte	zmaj zmaj::33_satzbau
+nije	han / hon är inte	zmaj zmaj::33_satzbau
+nemam	jag har inte	zmaj zmaj::33_satzbau
+ne mogu	jag kan inte	zmaj zmaj::33_satzbau
+neću	jag vill inte	zmaj zmaj::33_satzbau
+i	och	zmaj zmaj::33_satzbau
+ali	men	zmaj zmaj::33_satzbau
+ili	eller	zmaj zmaj::33_satzbau
+jer	för att	zmaj zmaj::33_satzbau
+da	att	zmaj zmaj::33_satzbau
+da li	om (i frågor)	zmaj zmaj::33_satzbau
+ako	om (villkor)	zmaj zmaj::33_satzbau
+kad	när (i tiden)	zmaj zmaj::33_satzbau
+zato	därför	zmaj zmaj::33_satzbau
+Mislim da ...	Jag tror att ...	zmaj zmaj::33_satzbau
+Ne znam gdje ...	Jag vet inte var ...	zmaj zmaj::33_satzbau
+Pitam se da li ...	Jag undrar om ...	zmaj zmaj::33_satzbau
+Kaže da ...	Han säger att ...	zmaj zmaj::33_satzbau
+Nadam se da ...	Jag hoppas att ...	zmaj zmaj::33_satzbau
+Ne vjerujem	Jag tror inte det	zmaj zmaj::33_satzbau
+niko	ingen	zmaj zmaj::33_satzbau
+nikad	aldrig	zmaj zmaj::33_satzbau
+uvijek	alltid	zmaj zmaj::33_satzbau
+također	också	zmaj zmaj::33_satzbau
+samo	bara	zmaj zmaj::33_satzbau
+već	redan	zmaj zmaj::33_satzbau
+još ne	inte än	zmaj zmaj::33_satzbau
+Vidim brata	Jag ser brodern	zmaj zmaj::34_faelle1
+Vidim sestru	Jag ser systern	zmaj zmaj::34_faelle1
+Vidim dijete	Jag ser barnet	zmaj zmaj::34_faelle1
+Pijem kahvu	Jag dricker kaffe	zmaj zmaj::34_faelle1
+Jedem hljeb	Jag äter bröd	zmaj zmaj::34_faelle1
+Imam pitanje	Jag har en fråga	zmaj zmaj::34_faelle1
+Imam auto	Jag har en bil	zmaj zmaj::34_faelle1
+Volim svoju majku	Jag älskar min mor	zmaj zmaj::34_faelle1
+Kupujem jaknu	Jag köper en jacka	zmaj zmaj::34_faelle1
+Čitam knjigu	Jag läser en bok	zmaj zmaj::34_faelle1
+Zovem doktora	Jag ringer läkaren	zmaj zmaj::34_faelle1
+On ima psa	Han har en hund	zmaj zmaj::34_faelle1
+Ona ima mačku	Hon har en katt	zmaj zmaj::34_faelle1
+Tražimo ulicu	Vi letar efter gatan	zmaj zmaj::34_faelle1
+Trebam vodu	Jag behöver vatten	zmaj zmaj::34_faelle1
+Trebam ključ	Jag behöver en nyckel	zmaj zmaj::34_faelle1
+Znam tvog brata	Jag känner din bror	zmaj zmaj::34_faelle1
+pitanje	fråga	zmaj zmaj::34_faelle1
+odgovor	svar	zmaj zmaj::34_faelle1
+čitati	läsa	zmaj zmaj::34_faelle1
+tražiti	leta efter	zmaj zmaj::34_faelle1
+trebati	behöva	zmaj zmaj::34_faelle1
+zvati	ropa / ringa	zmaj zmaj::34_faelle1
+kupujem	jag köper	zmaj zmaj::34_faelle1
+vidim	jag ser	zmaj zmaj::34_faelle1
+mene / me	mig	zmaj zmaj::34_faelle1
+tebe / te	dig	zmaj zmaj::34_faelle1
+njega / ga	honom	zmaj zmaj::34_faelle1
+nju / je	henne	zmaj zmaj::34_faelle1
+bez šećera	utan socker	zmaj zmaj::35_faelle2
+bez mlijeka	utan mjölk	zmaj zmaj::35_faelle2
+iz Bosne	från Bosnien	zmaj zmaj::35_faelle2
+iz Njemačke	från Tyskland	zmaj zmaj::35_faelle2
+iz grada	från staden	zmaj zmaj::35_faelle2
+od mog brata	från min bror	zmaj zmaj::35_faelle2
+do sutra	till i morgon	zmaj zmaj::35_faelle2
+do stanice	fram till hållplatsen	zmaj zmaj::35_faelle2
+pored kuće	bredvid huset	zmaj zmaj::35_faelle2
+kod nane	hos mormor	zmaj zmaj::35_faelle2
+kod prijatelja	hos min vän	zmaj zmaj::35_faelle2
+kuća moje sestre	min systers hus	zmaj zmaj::35_faelle2
+auto oca	faderns bil	zmaj zmaj::35_faelle2
+čaša vode	ett glas vatten	zmaj zmaj::35_faelle2
+šolja kahve	en kopp kaffe	zmaj zmaj::35_faelle2
+kilogram jabuka	ett kilo äpplen	zmaj zmaj::35_faelle2
+mnogo ljudi	många människor	zmaj zmaj::35_faelle2
+malo vremena	lite tid	zmaj zmaj::35_faelle2
+Nemam novca	Jag har inga pengar	zmaj zmaj::35_faelle2
+Nema hljeba	Det finns inget bröd	zmaj zmaj::35_faelle2
+Ima mnogo djece	Det finns många barn	zmaj zmaj::35_faelle2
+čaša	glas	zmaj zmaj::35_faelle2
+šolja	kopp	zmaj zmaj::35_faelle2
+kilogram	kilo	zmaj zmaj::35_faelle2
+mnogo	mycket / många	zmaj zmaj::35_faelle2
+malo	lite	zmaj zmaj::35_faelle2
+dosta	tillräckligt	zmaj zmaj::35_faelle2
+blizu	nära	zmaj zmaj::35_faelle2
+zbog	på grund av	zmaj zmaj::35_faelle2
+u	i (var)	zmaj zmaj::36_praepositionen
+na	på (var)	zmaj zmaj::36_praepositionen
+iz	från	zmaj zmaj::36_praepositionen
+od	av	zmaj zmaj::36_praepositionen
+do	till	zmaj zmaj::36_praepositionen
+sa	med	zmaj zmaj::36_praepositionen
+za	för	zmaj zmaj::36_praepositionen
+kod	hos	zmaj zmaj::36_praepositionen
+bez	utan	zmaj zmaj::36_praepositionen
+prema	mot	zmaj zmaj::36_praepositionen
+iznad	ovanför	zmaj zmaj::36_praepositionen
+ispod	under	zmaj zmaj::36_praepositionen
+između	mellan	zmaj zmaj::36_praepositionen
+iza	bakom	zmaj zmaj::36_praepositionen
+ispred	framför	zmaj zmaj::36_praepositionen
+pored	bredvid	zmaj zmaj::36_praepositionen
+poslije	efter	zmaj zmaj::36_praepositionen
+prije	före	zmaj zmaj::36_praepositionen
+kroz	genom	zmaj zmaj::36_praepositionen
+oko	runt	zmaj zmaj::36_praepositionen
+u gradu	i staden	zmaj zmaj::36_praepositionen
+u kući	i huset	zmaj zmaj::36_praepositionen
+na stolu	på bordet	zmaj zmaj::36_praepositionen
+na pijaci	på marknaden	zmaj zmaj::36_praepositionen
+s mojom ženom	med min fru	zmaj zmaj::36_praepositionen
+za tebe	för dig	zmaj zmaj::36_praepositionen
+za djecu	för barnen	zmaj zmaj::36_praepositionen
+u autu	i bilen	zmaj zmaj::36_praepositionen
+poslije posla	efter jobbet	zmaj zmaj::36_praepositionen
+prije jela	före maten	zmaj zmaj::36_praepositionen
+Dajem bratu	Jag ger till brodern	zmaj zmaj::37_faelle3
+Dajem sestri	Jag ger till systern	zmaj zmaj::37_faelle3
+Dajem djetetu	Jag ger till barnet	zmaj zmaj::37_faelle3
+Pomažem majci	Jag hjälper min mor	zmaj zmaj::37_faelle3
+Kažem prijatelju	Jag säger till min vän	zmaj zmaj::37_faelle3
+Pišem nani	Jag skriver till mormor	zmaj zmaj::37_faelle3
+meni / mi	till mig	zmaj zmaj::37_faelle3
+tebi / ti	till dig	zmaj zmaj::37_faelle3
+njemu / mu	till honom	zmaj zmaj::37_faelle3
+njoj / joj	till henne	zmaj zmaj::37_faelle3
+nama / nam	till oss	zmaj zmaj::37_faelle3
+vama / vam	till er	zmaj zmaj::37_faelle3
+Daj mi	Ge mig	zmaj zmaj::37_faelle3
+Reci mi	Säg mig	zmaj zmaj::37_faelle3
+Hladno mi je	Jag fryser	zmaj zmaj::37_faelle3
+u školi	i skolan	zmaj zmaj::37_faelle3
+u kuhinji	i köket	zmaj zmaj::37_faelle3
+na ulici	på gatan	zmaj zmaj::37_faelle3
+u Sarajevu	i Sarajevo	zmaj zmaj::37_faelle3
+u sobi	i rummet	zmaj zmaj::37_faelle3
+govoriti o poslu	prata om jobbet	zmaj zmaj::37_faelle3
+Mislim na tebe	Jag tänker på dig	zmaj zmaj::37_faelle3
+Stanujem u Berlinu	Jag bor i Berlin	zmaj zmaj::37_faelle3
+dati	ge	zmaj zmaj::37_faelle3
+pomoći	hjälpa	zmaj zmaj::37_faelle3
+pisati	skriva	zmaj zmaj::37_faelle3
+reći	säga	zmaj zmaj::37_faelle3
+pokloniti	ge i present	zmaj zmaj::37_faelle3
+pokazati	visa	zmaj zmaj::37_faelle3
+s bratom	med brodern	zmaj zmaj::38_faelle4
+sa sestrom	med systern	zmaj zmaj::38_faelle4
+s djecom	med barnen	zmaj zmaj::38_faelle4
+autom	med bil	zmaj zmaj::38_faelle4
+autobusom	med buss	zmaj zmaj::38_faelle4
+vozom	med tåg	zmaj zmaj::38_faelle4
+biciklom	med cykel	zmaj zmaj::38_faelle4
+pješke	till fots	zmaj zmaj::38_faelle4
+sa mnom	med mig	zmaj zmaj::38_faelle4
+s tobom	med dig	zmaj zmaj::38_faelle4
+s nama	med oss	zmaj zmaj::38_faelle4
+sa šećerom	med socker	zmaj zmaj::38_faelle4
+s mlijekom	med mjölk	zmaj zmaj::38_faelle4
+pod stolom	under bordet	zmaj zmaj::38_faelle4
+brate!	bror! (tilltal)	zmaj zmaj::38_faelle4
+sestro!	syster! (tilltal)	zmaj zmaj::38_faelle4
+prijatelju!	vän! (tilltal)	zmaj zmaj::38_faelle4
+gospodine!	herrn! (tilltal)	zmaj zmaj::38_faelle4
+gospođo!	frun! (tilltal)	zmaj zmaj::38_faelle4
+dušo!	älskling! (tilltal)	zmaj zmaj::38_faelle4
+babo!	pappa! (tilltal)	zmaj zmaj::38_faelle4
+nano!	mormor! (tilltal)	zmaj zmaj::38_faelle4
+sine!	min son! (tilltal)	zmaj zmaj::38_faelle4
+voz	tåg	zmaj zmaj::38_faelle4
+avion	flygplan	zmaj zmaj::38_faelle4
+bicikl	cykel	zmaj zmaj::38_faelle4
+kašika	sked	zmaj zmaj::38_faelle4
+kašikom	med skeden	zmaj zmaj::38_faelle4
+nož	kniv	zmaj zmaj::38_faelle4
+bio sam / bila sam	jag var (m/k)	zmaj zmaj::39_vergangenheit
+bio si / bila si	du var (m/k)	zmaj zmaj::39_vergangenheit
+bio je	han var	zmaj zmaj::39_vergangenheit
+bila je	hon var	zmaj zmaj::39_vergangenheit
+bili smo	vi var	zmaj zmaj::39_vergangenheit
+imao sam / imala sam	jag hade (m/k)	zmaj zmaj::39_vergangenheit
+radio sam / radila sam	jag arbetade (m/k)	zmaj zmaj::39_vergangenheit
+jeo sam / jela sam	jag åt (m/k)	zmaj zmaj::39_vergangenheit
+vidio sam / vidjela sam	jag såg (m/k)	zmaj zmaj::39_vergangenheit
+išao sam / išla sam	jag gick (m/k)	zmaj zmaj::39_vergangenheit
+rekao sam / rekla sam	jag sa (m/k)	zmaj zmaj::39_vergangenheit
+kupio sam / kupila sam	jag köpte (m/k)	zmaj zmaj::39_vergangenheit
+učio sam / učila sam	jag pluggade (m/k)	zmaj zmaj::39_vergangenheit
+stanovao sam / stanovala sam	jag bodde (m/k)	zmaj zmaj::39_vergangenheit
+prošle sedmice	förra veckan	zmaj zmaj::39_vergangenheit
+prošle godine	förra året	zmaj zmaj::39_vergangenheit
+prije dva dana	för två dagar sedan	zmaj zmaj::39_vergangenheit
+prije	tidigare	zmaj zmaj::39_vergangenheit
+tada	på den tiden	zmaj zmaj::39_vergangenheit
+Bio sam u Bosni / Bila sam u Bosni	Jag var i Bosnien (m/k)	zmaj zmaj::39_vergangenheit
+Bilo je lijepo	Det var fint	zmaj zmaj::39_vergangenheit
+Šta si radio? / Šta si radila?	Vad gjorde du? (m/k)	zmaj zmaj::39_vergangenheit
+ću	jag ska	zmaj zmaj::40_zukunft
+ćeš	du ska	zmaj zmaj::40_zukunft
+će	han / hon ska	zmaj zmaj::40_zukunft
+ćemo	vi ska	zmaj zmaj::40_zukunft
+ćete	ni ska	zmaj zmaj::40_zukunft
+Radit ću	Jag ska arbeta	zmaj zmaj::40_zukunft
+Doći ću	Jag ska komma	zmaj zmaj::40_zukunft
+Vidjet ćemo	Vi får se	zmaj zmaj::40_zukunft
+Učit ću	Jag ska plugga	zmaj zmaj::40_zukunft
+Nazvat ću te	Jag ska ringa dig	zmaj zmaj::40_zukunft
+Kada ćeš doći?	När ska du komma?	zmaj zmaj::40_zukunft
+prekosutra	i övermorgon	zmaj zmaj::40_zukunft
+sljedeće sedmice	nästa vecka	zmaj zmaj::40_zukunft
+sljedeće godine	nästa år	zmaj zmaj::40_zukunft
+uskoro	snart	zmaj zmaj::40_zukunft
+plan	plan	zmaj zmaj::40_zukunft
+Planiram ...	Jag planerar att ...	zmaj zmaj::40_zukunft
+Želim putovati	Jag vill resa	zmaj zmaj::40_zukunft
+putovanje	resa	zmaj zmaj::40_zukunft
+Idemo u Bosnu	Vi åker till Bosnien	zmaj zmaj::40_zukunft
+Pokušat ću	Jag ska försöka	zmaj zmaj::40_zukunft
+morati	måste	zmaj zmaj::41_modal
+moram	jag måste	zmaj zmaj::41_modal
+moraš	du måste	zmaj zmaj::41_modal
+moramo	vi måste	zmaj zmaj::41_modal
+može	han / hon kan	zmaj zmaj::41_modal
+možemo	vi kan	zmaj zmaj::41_modal
+hoćeš	du vill	zmaj zmaj::41_modal
+hoćemo	vi vill	zmaj zmaj::41_modal
+smjeti	få (ha lov)	zmaj zmaj::41_modal
+smijem	jag får	zmaj zmaj::41_modal
+trebao bih / trebala bih	jag borde (m/k)	zmaj zmaj::41_modal
+Moram raditi	Jag måste arbeta	zmaj zmaj::41_modal
+Moram ići	Jag måste gå	zmaj zmaj::41_modal
+Ne mogu doći	Jag kan inte komma	zmaj zmaj::41_modal
+Možeš li mi pomoći?	Kan du hjälpa mig?	zmaj zmaj::41_modal
+Hoću spavati	Jag vill sova	zmaj zmaj::41_modal
+Želim učiti	Jag vill plugga	zmaj zmaj::41_modal
+Smijem li pitati?	Får jag fråga?	zmaj zmaj::41_modal
+Ne moraš	Du behöver inte	zmaj zmaj::41_modal
+Moramo čekati	Vi måste vänta	zmaj zmaj::41_modal
+čekati	vänta	zmaj zmaj::41_modal
+Želim nešto jesti	Jag vill äta något	zmaj zmaj::41_modal
+nešto	något	zmaj zmaj::41_modal
+Mogu govoriti bosanski	Jag kan tala bosniska	zmaj zmaj::41_modal
+Ne znam plivati	Jag kan inte simma (färdighet)	zmaj zmaj::41_modal
+plivati	simma	zmaj zmaj::41_modal
+pitati	fråga	zmaj zmaj::41_modal
+pokušati	försöka	zmaj zmaj::41_modal
+se	sig (reflexivt pronomen)	zmaj zmaj::42_reflexiv
+zvati se	heta	zmaj zmaj::42_reflexiv
+prati se	tvätta sig	zmaj zmaj::42_reflexiv
+Perem se	Jag tvättar mig	zmaj zmaj::42_reflexiv
+radovati se	glädja sig	zmaj zmaj::42_reflexiv
+Radujem se	Jag gläder mig	zmaj zmaj::42_reflexiv
+osjećati se	känna sig	zmaj zmaj::42_reflexiv
+Osjećam se dobro	Jag mår bra	zmaj zmaj::42_reflexiv
+naći se	träffas	zmaj zmaj::42_reflexiv
+Nalazimo se u pet	Vi träffas klockan fem	zmaj zmaj::42_reflexiv
+sjećati se	minnas	zmaj zmaj::42_reflexiv
+Sjećam se	Jag minns	zmaj zmaj::42_reflexiv
+sjesti	sätta sig	zmaj zmaj::42_reflexiv
+Sjedi!	Sätt dig!	zmaj zmaj::42_reflexiv
+odmarati se	vila sig	zmaj zmaj::42_reflexiv
+Odmaram se	Jag vilar	zmaj zmaj::42_reflexiv
+oblačiti se	klä på sig	zmaj zmaj::42_reflexiv
+žuriti se	skynda sig	zmaj zmaj::42_reflexiv
+Požuri!	Skynda dig!	zmaj zmaj::42_reflexiv
+kasniti	komma för sent	zmaj zmaj::42_reflexiv
+Kasnim	Jag kommer för sent	zmaj zmaj::42_reflexiv
+svađati se	bråka	zmaj zmaj::42_reflexiv
+zaljubiti se	bli kär	zmaj zmaj::42_reflexiv
+Zaljubio sam se / Zaljubila sam se	Jag har blivit kär (m/k)	zmaj zmaj::42_reflexiv
+smijati se	skratta	zmaj zmaj::42_reflexiv
+Smijem se	Jag skrattar	zmaj zmaj::42_reflexiv
+igrati se	leka (barn)	zmaj zmaj::42_reflexiv
+Djeca se igraju	Barnen leker	zmaj zmaj::42_reflexiv
+brinuti se	oroa sig	zmaj zmaj::42_reflexiv
+ustajati	gå upp	zmaj zmaj::43_routine
+Ustajem u sedam	Jag går upp klockan sju	zmaj zmaj::43_routine
+tuširati se	duscha	zmaj zmaj::43_routine
+Tuširam se	Jag duschar	zmaj zmaj::43_routine
+prati zube	borsta tänderna	zmaj zmaj::43_routine
+doručkovati	äta frukost	zmaj zmaj::43_routine
+Doručkujem	Jag äter frukost	zmaj zmaj::43_routine
+ići na posao	gå till jobbet	zmaj zmaj::43_routine
+Idem na posao	Jag går till jobbet	zmaj zmaj::43_routine
+ručati	äta lunch	zmaj zmaj::43_routine
+Ručam	Jag äter lunch	zmaj zmaj::43_routine
+doći kući	komma hem	zmaj zmaj::43_routine
+Dolazim kući	Jag kommer hem	zmaj zmaj::43_routine
+kuhati	laga mat	zmaj zmaj::43_routine
+Kuham večeru	Jag lagar middag	zmaj zmaj::43_routine
+gledati televiziju	titta på tv	zmaj zmaj::43_routine
+ići spavati	gå och lägga sig	zmaj zmaj::43_routine
+Idem spavati	Jag går och lägger mig	zmaj zmaj::43_routine
+ići u kupovinu	gå och handla	zmaj zmaj::43_routine
+čistiti	städa	zmaj zmaj::43_routine
+prati veš	tvätta kläder	zmaj zmaj::43_routine
+rano	tidigt	zmaj zmaj::43_routine
+kasno	sent	zmaj zmaj::43_routine
+svaki dan	varje dag	zmaj zmaj::43_routine
+ponekad	ibland	zmaj zmaj::43_routine
+često	ofta	zmaj zmaj::43_routine
+rijetko	sällan	zmaj zmaj::43_routine
+ujutro	på morgonen	zmaj zmaj::43_routine
+popodne	på eftermiddagen	zmaj zmaj::43_routine
+navečer	på kvällen	zmaj zmaj::43_routine
+vikendom	på helgen	zmaj zmaj::43_routine
+velik / velika	stor (m/k)	zmaj zmaj::44_adjektive
+veći	större	zmaj zmaj::44_adjektive
+najveći	störst	zmaj zmaj::44_adjektive
+mali / mala	liten (m/k)	zmaj zmaj::44_adjektive
+manji	mindre	zmaj zmaj::44_adjektive
+dobar / dobra	bra (m/k)	zmaj zmaj::44_adjektive
+bolji	bättre	zmaj zmaj::44_adjektive
+najbolji	bäst	zmaj zmaj::44_adjektive
+loš / loša	dålig (m/k)	zmaj zmaj::44_adjektive
+gori	sämre	zmaj zmaj::44_adjektive
+lijep / lijepa	vacker (m/k)	zmaj zmaj::44_adjektive
+ljepši	vackrare	zmaj zmaj::44_adjektive
+nov / nova	ny (m/k)	zmaj zmaj::44_adjektive
+star / stara	gammal (m/k)	zmaj zmaj::44_adjektive
+stariji	äldre	zmaj zmaj::44_adjektive
+mlad / mlada	ung (m/k)	zmaj zmaj::44_adjektive
+mlađi	yngre	zmaj zmaj::44_adjektive
+skup / skupa / skupo	dyr (m/f/n)	zmaj zmaj::44_adjektive
+skuplji	dyrare	zmaj zmaj::44_adjektive
+jeftiniji	billigare	zmaj zmaj::44_adjektive
+brz / brza	snabb (m/k)	zmaj zmaj::44_adjektive
+spor / spora	långsam (m/k)	zmaj zmaj::44_adjektive
+nego / od	än (vid jämförelse)	zmaj zmaj::44_adjektive
+jako	mycket	zmaj zmaj::44_adjektive
+previše	för (för stor)	zmaj zmaj::44_adjektive
+To je bolje nego to	Det här är bättre än det där	zmaj zmaj::44_adjektive
+jedan brat	en bror	zmaj zmaj::45_mengen
+dva brata	två bröder	zmaj zmaj::45_mengen
+pet braće	fem bröder	zmaj zmaj::45_mengen
+jedna sestra	en syster	zmaj zmaj::45_mengen
+dvije sestre	två systrar	zmaj zmaj::45_mengen
+pet sestara	fem systrar	zmaj zmaj::45_mengen
+jedna godina	ett år	zmaj zmaj::45_mengen
+dvije godine	två år	zmaj zmaj::45_mengen
+pet godina	fem år	zmaj zmaj::45_mengen
+jedan dan	en dag	zmaj zmaj::45_mengen
+tri dana	tre dagar	zmaj zmaj::45_mengen
+deset dana	tio dagar	zmaj zmaj::45_mengen
+jedna kahva	en kaffe	zmaj zmaj::45_mengen
+dvije kahve	två kaffe	zmaj zmaj::45_mengen
+tri piva	tre öl	zmaj zmaj::45_mengen
+nekoliko	några	zmaj zmaj::45_mengen
+nekoliko dana	några dagar	zmaj zmaj::45_mengen
+pola	hälften	zmaj zmaj::45_mengen
+pola kilograma	ett halvt kilo	zmaj zmaj::45_mengen
+četvrt	en fjärdedel	zmaj zmaj::45_mengen
+prvi	den första	zmaj zmaj::45_mengen
+drugi	den andra	zmaj zmaj::45_mengen
+treći	den tredje	zmaj zmaj::45_mengen
+zadnji	den sista	zmaj zmaj::45_mengen
+jednom	en gång	zmaj zmaj::45_mengen
+dva puta	två gånger	zmaj zmaj::45_mengen
+prvi put	för första gången	zmaj zmaj::45_mengen
+oboje	båda	zmaj zmaj::45_mengen
+svi	alla	zmaj zmaj::45_mengen
+svaki	varje	zmaj zmaj::45_mengen
+nijedan / nijedna	ingen / inget	zmaj zmaj::45_mengen
+mišljenje	åsikt	zmaj zmaj::46_gefuehle
+Po mom mišljenju	Enligt min åsikt	zmaj zmaj::46_gefuehle
+Slažem se	Jag håller med	zmaj zmaj::46_gefuehle
+Ne slažem se	Jag håller inte med	zmaj zmaj::46_gefuehle
+Siguran sam / Sigurna sam	Jag är säker (m/k)	zmaj zmaj::46_gefuehle
+To je tačno	Det stämmer	zmaj zmaj::46_gefuehle
+To nije tačno	Det stämmer inte	zmaj zmaj::46_gefuehle
+važno	viktigt	zmaj zmaj::46_gefuehle
+Svejedno mi je	Det spelar ingen roll för mig	zmaj zmaj::46_gefuehle
+strah	rädsla	zmaj zmaj::46_gefuehle
+Bojim se	Jag är rädd	zmaj zmaj::46_gefuehle
+ljut / ljuta	arg (m/k)	zmaj zmaj::46_gefuehle
+nervozan / nervozna	nervös (m/k)	zmaj zmaj::46_gefuehle
+zadovoljan / zadovoljna	nöjd (m/k)	zmaj zmaj::46_gefuehle
+iznenađen / iznenađena	överraskad (m/k)	zmaj zmaj::46_gefuehle
+Dosadno mi je	Jag har tråkigt	zmaj zmaj::46_gefuehle
+usamljen / usamljena	ensam (m/k)	zmaj zmaj::46_gefuehle
+ponosan / ponosna	stolt (m/k)	zmaj zmaj::46_gefuehle
+Ponosan sam na tebe / Ponosna sam na tebe	Jag är stolt över dig (m/k)	zmaj zmaj::46_gefuehle
+nada	hopp	zmaj zmaj::46_gefuehle
+nadam se	förhoppningsvis	zmaj zmaj::46_gefuehle
+nažalost	tyvärr	zmaj zmaj::46_gefuehle
+srećom	som tur är	zmaj zmaj::46_gefuehle
+Brinem se	Jag är orolig	zmaj zmaj::46_gefuehle
+Drago mi je zbog tebe	Jag är glad för din skull	zmaj zmaj::46_gefuehle
+zanimljivo	intressant	zmaj zmaj::46_gefuehle
+dosadno	tråkigt	zmaj zmaj::46_gefuehle
+smiješno	roligt	zmaj zmaj::46_gefuehle
+teško	svårt	zmaj zmaj::46_gefuehle
+lako / lahko	lätt	zmaj zmaj::46_gefuehle
+aerodrom	flygplats	zmaj zmaj::47_reisen
+let	flyg	zmaj zmaj::47_reisen
+karta	biljett	zmaj zmaj::47_reisen
+povratna karta	tur och retur-biljett	zmaj zmaj::47_reisen
+polazak	avgång	zmaj zmaj::47_reisen
+dolazak	ankomst	zmaj zmaj::47_reisen
+kašnjenje	försening	zmaj zmaj::47_reisen
+prtljag	bagage	zmaj zmaj::47_reisen
+kofer	resväska	zmaj zmaj::47_reisen
+hotel	hotell	zmaj zmaj::47_reisen
+rezervisati sobu	boka ett rum	zmaj zmaj::47_reisen
+rezervacija	bokning	zmaj zmaj::47_reisen
+autobuska stanica	busstation	zmaj zmaj::47_reisen
+taksi	taxi	zmaj zmaj::47_reisen
+vozač	förare	zmaj zmaj::47_reisen
+benzinska pumpa	bensinstation	zmaj zmaj::47_reisen
+benzin	bensin	zmaj zmaj::47_reisen
+autoput	motorväg	zmaj zmaj::47_reisen
+mapa	karta	zmaj zmaj::47_reisen
+pravac	riktning	zmaj zmaj::47_reisen
+vožnja	resa / färd	zmaj zmaj::47_reisen
+Koliko traje vožnja?	Hur lång tid tar resan?	zmaj zmaj::47_reisen
+Kada polazi autobus?	När går bussen?	zmaj zmaj::47_reisen
+ulaz	ingång	zmaj zmaj::47_reisen
+izlaz	utgång	zmaj zmaj::47_reisen
+znamenitost	sevärdhet	zmaj zmaj::47_reisen
+most	bro	zmaj zmaj::47_reisen
+stari grad	gamla stan	zmaj zmaj::47_reisen
+džamija	moské	zmaj zmaj::47_reisen
+crkva	kyrka	zmaj zmaj::47_reisen
+prenoćiti	övernatta	zmaj zmaj::47_reisen
+Sretan put!	Trevlig resa!	zmaj zmaj::47_reisen
+proslava	fest	zmaj zmaj::48_feiern
+rođendan	födelsedag	zmaj zmaj::48_feiern
+Sretan rođendan!	Grattis på födelsedagen!	zmaj zmaj::48_feiern
+svadba	bröllop	zmaj zmaj::48_feiern
+mlada	brud	zmaj zmaj::48_feiern
+mladoženja	brudgum	zmaj zmaj::48_feiern
+gost	gäst	zmaj zmaj::48_feiern
+gosti	gäster	zmaj zmaj::48_feiern
+poklon	present	zmaj zmaj::48_feiern
+poziv	inbjudan	zmaj zmaj::48_feiern
+pozvati	bjuda in	zmaj zmaj::48_feiern
+Bajram	Bajram (Eid)	zmaj zmaj::48_feiern
+Bajram šerif mubarek olsun!	Välsignad Bajram!	zmaj zmaj::48_feiern
+Ramazan	Ramadan	zmaj zmaj::48_feiern
+postiti	fasta	zmaj zmaj::48_feiern
+Nova godina	nyår	zmaj zmaj::48_feiern
+Sretna Nova godina!	Gott nytt år!	zmaj zmaj::48_feiern
+Božić	jul	zmaj zmaj::48_feiern
+Uskrs	påsk	zmaj zmaj::48_feiern
+kolač	kaka	zmaj zmaj::48_feiern
+baklava	baklava	zmaj zmaj::48_feiern
+torta	tårta	zmaj zmaj::48_feiern
+plesati	dansa	zmaj zmaj::48_feiern
+pjevati	sjunga	zmaj zmaj::48_feiern
+pjesma	sång	zmaj zmaj::48_feiern
+muzika	musik	zmaj zmaj::48_feiern
+tradicija	tradition	zmaj zmaj::48_feiern
+Čestitam!	Grattis!	zmaj zmaj::48_feiern
+Izvolite, uđite!	Varsågoda, kom in!	zmaj zmaj::48_feiern
+poslužiti kahvu	servera kaffe	zmaj zmaj::48_feiern
+gostoprimstvo	gästfrihet	zmaj zmaj::48_feiern
+dženaza / sahrana	begravning	zmaj zmaj::48_feiern
+običaj	sed / bruk	zmaj zmaj::48_feiern
+slaviti	fira	zmaj zmaj::48_feiern
+čestitati	gratulera	zmaj zmaj::48_feiern
+narodna nošnja	folkdräkt	zmaj zmaj::48_feiern
+posao	arbete	zmaj zmaj::49_arbeit
+firma	företag	zmaj zmaj::49_arbeit
+šef	chef	zmaj zmaj::49_arbeit
+kolega	kollega	zmaj zmaj::49_arbeit
+kancelarija	kontor	zmaj zmaj::49_arbeit
+fabrika	fabrik	zmaj zmaj::49_arbeit
+mašina	maskin	zmaj zmaj::49_arbeit
+inženjer	ingenjör	zmaj zmaj::49_arbeit
+električar	elektriker	zmaj zmaj::49_arbeit
+zanimanje	yrke	zmaj zmaj::49_arbeit
+Šta si po zanimanju?	Vad jobbar du med?	zmaj zmaj::49_arbeit
+plata	lön	zmaj zmaj::49_arbeit
+godišnji odmor	semester	zmaj zmaj::49_arbeit
+škola	skola	zmaj zmaj::49_arbeit
+nastavnik	lärare	zmaj zmaj::49_arbeit
+učenik	elev	zmaj zmaj::49_arbeit
+student	student	zmaj zmaj::49_arbeit
+univerzitet	universitet	zmaj zmaj::49_arbeit
+ispit	prov	zmaj zmaj::49_arbeit
+zadaća	läxa	zmaj zmaj::49_arbeit
+knjiga	bok	zmaj zmaj::49_arbeit
+olovka	penna	zmaj zmaj::49_arbeit
+papir	papper	zmaj zmaj::49_arbeit
+računar	dator	zmaj zmaj::49_arbeit
+Imam dva brata	Jag har två bröder	zmaj zmaj::50_saetze
+Moja sestra ima pet godina	Min syster är fem år	zmaj zmaj::50_saetze
+Jedemo u sedam sati	Vi äter klockan sju	zmaj zmaj::50_saetze
+U ponedjeljak idem na posao	På måndag går jag till jobbet	zmaj zmaj::50_saetze
+Kahva je vruća	Kaffet är hett	zmaj zmaj::50_saetze
+Pijem vodu, hvala	Jag dricker vatten, tack	zmaj zmaj::50_saetze
+Moj babo ne radi u julu	Min pappa arbetar inte i juli	zmaj zmaj::50_saetze
+Gdje je crvena torba?	Var är den röda väskan?	zmaj zmaj::50_saetze
+Koliko košta hljeb?	Vad kostar brödet?	zmaj zmaj::50_saetze
+Danas je hladno i pada kiša	I dag är det kallt och det regnar	zmaj zmaj::50_saetze
+Razumijem malo bosanski	Jag förstår lite bosniska	zmaj zmaj::50_saetze
+Vidimo se u subotu	Vi ses på lördag	zmaj zmaj::50_saetze
+Htjela bih tri jabuke, molim	Jag skulle vilja ha tre äpplen, tack	zmaj zmaj::50_saetze
+Moja nana stanuje u selu	Min mormor bor i byn	zmaj zmaj::50_saetze
+Učim bosanski svaki dan	Jag pluggar bosniska varje dag	zmaj zmaj::50_saetze
+Autobus dolazi u deset	Bussen kommer klockan tio	zmaj zmaj::50_saetze
+Imam glavobolju i temperaturu	Jag har huvudvärk och feber	zmaj zmaj::50_saetze
+Voda u jezeru je plava	Vattnet i sjön är blått	zmaj zmaj::50_saetze
+Mislim da je moja sestra kod kuće	Jag tror att min syster är hemma	zmaj zmaj::50_saetze
+Ne znam kada dolazi autobus	Jag vet inte när bussen kommer	zmaj zmaj::50_saetze
+Ako pada kiša, ostajem kod kuće	Om det regnar stannar jag hemma	zmaj zmaj::50_saetze
+Jučer sam kupila hljeb i mlijeko	I går köpte jag bröd och mjölk (kvinna)	zmaj zmaj::50_saetze
+Sljedeće godine ćemo kupiti kuću	Nästa år ska vi köpa ett hus	zmaj zmaj::50_saetze
+Moj brat je stariji od mene, ali manji	Min bror är äldre än jag, men kortare	zmaj zmaj::50_saetze
+akcija	erbjudande (extrapris)	zmaj zmaj::51_einkauf_orte
+svježe	färskt	zmaj zmaj::51_einkauf_orte
+rok trajanja	bäst före-datum	zmaj zmaj::51_einkauf_orte
+domaće	hemlagat	zmaj zmaj::51_einkauf_orte
+tezga	marknadsstånd	zmaj zmaj::51_einkauf_orte
+mesar	slaktare	zmaj zmaj::51_einkauf_orte
+mesnica	köttaffär	zmaj zmaj::51_einkauf_orte
+sniženje	prisnedsättning (rabatt)	zmaj zmaj::51_einkauf_orte
+supermarket	matbutik (supermarket)	zmaj zmaj::51_einkauf_orte
+prodavač	säljare	zmaj zmaj::51_einkauf_orte
+prodavačica	expedit (kvinna)	zmaj zmaj::51_einkauf_orte
+platiti	betala	zmaj zmaj::51_einkauf_orte
+fening	fening (1/100 mark)	zmaj zmaj::51_einkauf_orte
+fiskalni račun	kassakvitto / kvitto	zmaj zmaj::51_einkauf_orte
+sitno	småpengar	zmaj zmaj::51_einkauf_orte
+marka	mark (KM, valutan i vardagen)	zmaj zmaj::51_einkauf_orte
+račun za struju	elräkning	zmaj zmaj::51_einkauf_orte
+bakšiš	dricks	zmaj zmaj::51_einkauf_orte
+kusur	växel / växelpengar	zmaj zmaj::51_einkauf_orte
+Banja Luka	Banja Luka	zmaj zmaj::51_einkauf_orte
+Bihać	Bihać	zmaj zmaj::51_einkauf_orte
+glavni grad	huvudstad	zmaj zmaj::51_einkauf_orte
+Idem u Mostar	Jag åker till Mostar	zmaj zmaj::51_einkauf_orte
+Živim u Sarajevu	Jag bor i Sarajevo	zmaj zmaj::51_einkauf_orte
+Mostar	Mostar	zmaj zmaj::51_einkauf_orte
+Sarajevo	Sarajevo	zmaj zmaj::51_einkauf_orte
+Tuzla	Tuzla	zmaj zmaj::51_einkauf_orte
+Zenica	Zenica	zmaj zmaj::51_einkauf_orte
+kafić	kafé	zmaj zmaj::52_resto1
+Jelovnik, molim	Menyn, tack	zmaj zmaj::52_resto1
+vani	ute	zmaj zmaj::52_resto1
+unutra	inne	zmaj zmaj::52_resto1
+Sto za dvoje, molim	Ett bord för två, tack	zmaj zmaj::52_resto1
+ćevabdžinica	grillrestaurang	zmaj zmaj::52_resto1
+Je li ovaj sto slobodan?	Är det här bordet ledigt?	zmaj zmaj::52_resto1
+slastičarna	konditori	zmaj zmaj::52_resto1
+terasa	terrass	zmaj zmaj::52_resto1
+aščinica	traditionell matservering	zmaj zmaj::52_resto1
+prilog	tillbehör	zmaj zmaj::52_resto1
+naručiti	beställa	zmaj zmaj::52_resto1
+To je sve	Det är allt	zmaj zmaj::52_resto1
+čorba	tjock soppa	zmaj zmaj::52_resto1
+Još jednu turu	En runda till	zmaj zmaj::52_resto1
+Za mene …	För mig, tack …	zmaj zmaj::52_resto1
+Može li jedna kahva?	Kan jag få ett kaffe?	zmaj zmaj::52_resto1
+glavno jelo	huvudrätt	zmaj zmaj::52_resto1
+Ja bih …	Jag skulle vilja ha …	zmaj zmaj::52_resto1
+Može, hvala	Ja, tack	zmaj zmaj::52_resto1
+sa …	med …	zmaj zmaj::52_resto1
+desert	efterrätt	zmaj zmaj::52_resto1
+Još jedno isto, molim	Samma en gång till	zmaj zmaj::52_resto1
+Još nešto?	Något mer? (kyparen)	zmaj zmaj::52_resto1
+bez …	utan …	zmaj zmaj::52_resto1
+predjelo	förrätt	zmaj zmaj::52_resto1
+Šta preporučujete?	Vad rekommenderar ni?	zmaj zmaj::52_resto1
+Ovo nisam naručio	Det har jag inte beställt	zmaj zmaj::53_resto2
+Prijalo mi je	Det smakade gott	zmaj zmaj::53_resto2
+Fino je	Det är fint	zmaj zmaj::53_resto2
+Ukusno je	Det smakar gott	zmaj zmaj::53_resto2
+Sit sam	Jag är mätt (m)	zmaj zmaj::53_resto2
+Sita sam	Jag är mätt (k)	zmaj zmaj::53_resto2
+slano	salt	zmaj zmaj::53_resto2
+kiselo	surt	zmaj zmaj::53_resto2
+ljuto	starkt (kryddstarkt)	zmaj zmaj::53_resto2
+slatko	sött	zmaj zmaj::53_resto2
+premalo	för lite	zmaj zmaj::53_resto2
+Zadržite kusur	Behåll växeln	zmaj zmaj::53_resto2
+odvojeno	separat	zmaj zmaj::53_resto2
+Svako plaća svoje	Var och en betalar för sig	zmaj zmaj::53_resto2
+Možemo li platiti?	Kan vi betala?	zmaj zmaj::53_resto2
+napojnica	dricks (formellt)	zmaj zmaj::53_resto2
+Koliko je?	Hur mycket blir det?	zmaj zmaj::53_resto2
+zajedno	tillsammans	zmaj zmaj::53_resto2
+Ovo je skupo	Det är dyrt	zmaj zmaj::53_resto2
+Pola kile, molim	Ett halvt kilo, tack	zmaj zmaj::53_resto2
+Jedan kilogram, molim	Ett kilo, tack	zmaj zmaj::53_resto2
+Jednu kesu, molim	En påse, tack	zmaj zmaj::53_resto2
+Malo više	Lite mer	zmaj zmaj::53_resto2
+Malo manje	Lite mindre	zmaj zmaj::53_resto2
+Može li jeftinije?	Kan det bli billigare?	zmaj zmaj::53_resto2
+Je li ovo svježe?	Är det färskt?	zmaj zmaj::53_resto2
+Je li ovo domaće?	Är det hemlagat?	zmaj zmaj::53_resto2
+Mogu li probati?	Kan jag smaka?	zmaj zmaj::53_resto2
+Pošto je …?	Vad kostar …? (marknad)	zmaj zmaj::53_resto2
+pekara	bageri	zmaj zmaj::54_essen_gehen
+jelo	maträtt / rätt	zmaj zmaj::54_essen_gehen
+kafana	kafana (traditionell krog)	zmaj zmaj::54_essen_gehen
+ukusno	gott	zmaj zmaj::54_essen_gehen
+porcija	portion	zmaj zmaj::54_essen_gehen
+restoran	restaurang	zmaj zmaj::54_essen_gehen
+jelovnik	meny	zmaj zmaj::54_essen_gehen
+Idemo na kahvu	Vi går och tar ett kaffe	zmaj zmaj::54_essen_gehen
+halva	halva (sötsak)	zmaj zmaj::54_essen_gehen
+hurmašica	hurmašica (sirapsbakelse)	zmaj zmaj::54_essen_gehen
+rahat lokum	rahat lokum (turkisk konfekt till kaffet)	zmaj zmaj::54_essen_gehen
+tufahija	tufahija (fyllt äpple i sirap)	zmaj zmaj::54_essen_gehen
+limenka	burk (dryck)	zmaj zmaj::54_essen_gehen
+lista za kupovinu	inköpslista	zmaj zmaj::54_essen_gehen
+kolica	kundvagn	zmaj zmaj::54_essen_gehen
+tegla	glasburk (för inläggning)	zmaj zmaj::54_essen_gehen
+gram	gram	zmaj zmaj::54_essen_gehen
+korpa	korg	zmaj zmaj::54_essen_gehen
+litar	liter	zmaj zmaj::54_essen_gehen
+pakovanje	paket	zmaj zmaj::54_essen_gehen
+vreća	säck	zmaj zmaj::54_essen_gehen
+kriška	skiva (bröd)	zmaj zmaj::54_essen_gehen
+šnita	skiva (korv)	zmaj zmaj::54_essen_gehen
+komad	stycke	zmaj zmaj::54_essen_gehen
+ajvar	ajvar (paprikapasta)	zmaj zmaj::55_bosnisch_essen
+grah	böngryta	zmaj zmaj::55_bosnisch_essen
+bosanski lonac	bosnisk gryta	zmaj zmaj::55_bosnisch_essen
+burek	burek (filodegsrulle med köttfärs)	zmaj zmaj::55_bosnisch_essen
+dolma	dolma (fyllda grönsaker)	zmaj zmaj::55_bosnisch_essen
+suho meso	rökt kött	zmaj zmaj::55_bosnisch_essen
+roštilj	grill / grillat	zmaj zmaj::55_bosnisch_essen
+japrak	japrak (fyllda vinblad)	zmaj zmaj::55_bosnisch_essen
+kajmak	kajmak (bredbar grädde)	zmaj zmaj::55_bosnisch_essen
+krompiruša	krompiruša (pita med potatis)	zmaj zmaj::55_bosnisch_essen
+pljeskavica	pljeskavica (köttfärsbiff)	zmaj zmaj::55_bosnisch_essen
+sarma	sarma (kåldolmar)	zmaj zmaj::55_bosnisch_essen
+sirnica	sirnica (pita med ost)	zmaj zmaj::55_bosnisch_essen
+somun	somun (tunnbröd till ćevapi)	zmaj zmaj::55_bosnisch_essen
+zeljanica	zeljanica (pita med spinat och ost)	zmaj zmaj::55_bosnisch_essen
+begova čorba	bey-soppa (kycklingsoppa)	zmaj zmaj::55_bosnisch_essen
+ražnjići	små köttspett	zmaj zmaj::55_bosnisch_essen
+petica	fem ćevapi	zmaj zmaj::55_bosnisch_essen
+punjene paprike	fylld paprika	zmaj zmaj::55_bosnisch_essen
+sogan-dolma	fyllda lökar	zmaj zmaj::55_bosnisch_essen
+sudžukice	små grillkorvar (sudžukice)	zmaj zmaj::55_bosnisch_essen
+sedam ćevapa	sju ćevapi	zmaj zmaj::55_bosnisch_essen
+klepe	klepe (små fyllda degknyten)	zmaj zmaj::55_bosnisch_essen
+ispod sača	under järnklockan (sač)	zmaj zmaj::55_bosnisch_essen
+desetka	tio ćevapi	zmaj zmaj::55_bosnisch_essen
+inostranstvo	utlandet	zmaj zmaj::56_laender
+Bosna	Bosnien	zmaj zmaj::56_laender
+Bosna i Hercegovina	Bosnien och Hercegovina	zmaj zmaj::56_laender
+Njemačka	Tyskland	zmaj zmaj::56_laender
+Holandija	Nederländerna	zmaj zmaj::56_laender
+Švicarska	Schweiz	zmaj zmaj::56_laender
+Turska	Turkiet	zmaj zmaj::56_laender
+Danska	Danmark	zmaj zmaj::56_laender
+Francuska	Frankrike	zmaj zmaj::56_laender
+domovina	hemland	zmaj zmaj::56_laender
+Hercegovina	Hercegovina	zmaj zmaj::56_laender
+Rođen sam u Njemačkoj / Rođena sam u Njemačkoj	Jag är född i Tyskland (m/k)	zmaj zmaj::56_laender
+Ja sam iz Bosne	Jag kommer från Bosnien	zmaj zmaj::56_laender
+Ja sam iz Njemačke	Jag kommer från Tyskland	zmaj zmaj::56_laender
+Živim u Njemačkoj	Jag bor i Tyskland	zmaj zmaj::56_laender
+Hrvatska	Kroatien	zmaj zmaj::56_laender
+država	land / stat	zmaj zmaj::56_laender
+Moja porodica je iz Bosne	Min familj är från Bosnien	zmaj zmaj::56_laender
+Crna Gora	Montenegro	zmaj zmaj::56_laender
+Norveška	Norge	zmaj zmaj::56_laender
+Švedska	Sverige	zmaj zmaj::56_laender
+Srbija	Serbien	zmaj zmaj::56_laender
+Slovenija	Slovenien	zmaj zmaj::56_laender
+svijet	värld	zmaj zmaj::56_laender
+Gdje si rođen? / Gdje si rođena?	Var är du född? (m/k)	zmaj zmaj::56_laender
+Austrija	Österrike	zmaj zmaj::56_laender
+Bošnjak / Bošnjakinja	bosniak / bosniakiska	zmaj zmaj::57_nationalitaeten
+Bosanac / Bosanka	bosnier / bosniska	zmaj zmaj::57_nationalitaeten
+Nijemac / Njemica	tysk / tyska	zmaj zmaj::57_nationalitaeten
+Danac / Dankinja	dansk / danska	zmaj zmaj::57_nationalitaeten
+Francuz / Francuskinja	fransman / fransyska	zmaj zmaj::57_nationalitaeten
+Ja sam Bosanac / Ja sam Bosanka	Jag är bosnier / bosniska	zmaj zmaj::57_nationalitaeten
+Ja sam Nijemac / Ja sam Njemica	Jag är tysk / tyska	zmaj zmaj::57_nationalitaeten
+Hrvat / Hrvatica	kroat / kroatiska	zmaj zmaj::57_nationalitaeten
+Crnogorac / Crnogorka	montenegrin / montenegrinska	zmaj zmaj::57_nationalitaeten
+Holanđanin / Holanđanka	holländare / holländska	zmaj zmaj::57_nationalitaeten
+Norvežanin / Norvežanka	norrman / norska	zmaj zmaj::57_nationalitaeten
+vjera	religion / tro	zmaj zmaj::57_nationalitaeten
+Šveđanin / Šveđanka	svensk / svenska	zmaj zmaj::57_nationalitaeten
+Švicarac / Švicarka	schweizare / schweiziska	zmaj zmaj::57_nationalitaeten
+Srbin / Srpkinja	serb / serbiska	zmaj zmaj::57_nationalitaeten
+Turčin / Turkinja	turk / turkiska	zmaj zmaj::57_nationalitaeten
+narod	folk	zmaj zmaj::57_nationalitaeten
+Austrijanac / Austrijanka	österrikare / österrikiska	zmaj zmaj::57_nationalitaeten
+bosanski	bosniska (språket)	zmaj zmaj::57_nationalitaeten
+njemački	tyska (språket)	zmaj zmaj::57_nationalitaeten
+engleski	engelska (språket)	zmaj zmaj::57_nationalitaeten
+Govorim njemački	Jag talar tyska	zmaj zmaj::57_nationalitaeten
+Ne govorim bosanski	Jag talar inte bosniska	zmaj zmaj::57_nationalitaeten
+Možeš li ponoviti?	Kan du upprepa det?	zmaj zmaj::57_nationalitaeten
+maternji jezik	modersmål	zmaj zmaj::57_nationalitaeten
+jezik	språk	zmaj zmaj::57_nationalitaeten
+Molim te, pričaj sporije	Prata långsammare, tack	zmaj zmaj::57_nationalitaeten
+Govoriš li bosanski?	Talar du bosniska?	zmaj zmaj::57_nationalitaeten
+Šta to znači?	Vad betyder det?	zmaj zmaj::57_nationalitaeten
+Kako se to kaže na bosanskom?	Hur säger man det på bosniska?	zmaj zmaj::57_nationalitaeten
+Alejkumu selam	(svar på det)	zmaj zmaj::58_kennenlernen
+posjeta	besök	zmaj zmaj::58_kennenlernen
+Hvala na svemu	Tack för allt	zmaj zmaj::58_kennenlernen
+Da te upoznam: ...	Får jag presentera: ...	zmaj zmaj::58_kennenlernen
+Ovo je moj prijatelj	Det här är min vän	zmaj zmaj::58_kennenlernen
+Ovo je moja žena	Det här är min fru	zmaj zmaj::58_kennenlernen
+pozdrav / pozdravi	hälsning / hälsningar	zmaj zmaj::58_kennenlernen
+Pozdravi ... od mene!	Hälsa ... från mig!	zmaj zmaj::58_kennenlernen
+Selam alejkum	Hej (muslimsk hälsning)	zmaj zmaj::58_kennenlernen
+Izvinjavam se	Jag ber om ursäkt	zmaj zmaj::58_kennenlernen
+posjetiti	besöka någon	zmaj zmaj::58_kennenlernen
+upoznati	lära känna någon	zmaj zmaj::58_kennenlernen
+Dođi nam u posjetu!	Kom och hälsa på oss!	zmaj zmaj::58_kennenlernen
+Drago mi je što smo se upoznali	Trevligt att ha träffat dig	zmaj zmaj::58_kennenlernen
+Sjedi, popij kahvu	Sätt dig, drick ett kaffe	zmaj zmaj::58_kennenlernen
+zahvaliti se	tacka	zmaj zmaj::58_kennenlernen
+izviniti se	be om ursäkt	zmaj zmaj::58_kennenlernen
+Oprosti mi	Förlåt mig	zmaj zmaj::58_kennenlernen
+oprostiti	förlåta	zmaj zmaj::58_kennenlernen
+Puno pozdrava porodici	Många hälsningar till familjen	zmaj zmaj::58_kennenlernen
+Kako je tvoja porodica?	Hur mår din familj?	zmaj zmaj::58_kennenlernen
+Poznajemo se	Vi känner varandra	zmaj zmaj::58_kennenlernen
+poznanik / poznanica	bekant	zmaj zmaj::58_kennenlernen
+raja	vänkrets / gänget	zmaj zmaj::58_kennenlernen
+domaćin	värd	zmaj zmaj::58_kennenlernen
+koleginica	kollega (kvinna)	zmaj zmaj::58_kennenlernen
+jaran	polare (slang, särskilt i Sarajevo)	zmaj zmaj::58_kennenlernen
+drug / drugarica	kompis (vardagligt)	zmaj zmaj::58_kennenlernen
+komšije	grannar (plural)	zmaj zmaj::58_kennenlernen
+harmonika	dragspel	zmaj zmaj::59_kulturlevel
+ples	dansen	zmaj zmaj::59_kulturlevel
+svirati	spela ett instrument	zmaj zmaj::59_kulturlevel
+folklor / folklorna grupa	folklore / folkdansgrupp	zmaj zmaj::59_kulturlevel
+kolo	kolo (bosnisk ringdans)	zmaj zmaj::59_kulturlevel
+pjevač / pjevačica	sångare / sångerska	zmaj zmaj::59_kulturlevel
+saz	saz (traditionellt stränginstrument)	zmaj zmaj::59_kulturlevel
+sevdah	sevdah (vemodig längtan)	zmaj zmaj::59_kulturlevel
+sevdalinka	sevdalinka (bosnisk kärlekssång)	zmaj zmaj::59_kulturlevel
+sijelo	sijelo (kvällssamvaro)	zmaj zmaj::59_kulturlevel
+teferič	teferič (utflyktsfest i det gröna)	zmaj zmaj::59_kulturlevel
+narodna muzika	folkmusik	zmaj zmaj::59_kulturlevel
+Allah razi olsun	svar på bajramhälsningen	zmaj zmaj::59_kulturlevel
+post	fastan	zmaj zmaj::59_kulturlevel
+Sretan Bajram!	Glad Bajram!	zmaj zmaj::59_kulturlevel
+Bog	Gud	zmaj zmaj::59_kulturlevel
+Hvala Bogu	Gud ske lov	zmaj zmaj::59_kulturlevel
+iftar	iftar (måltiden som bryter fastan)	zmaj zmaj::59_kulturlevel
+inšallah	inšallah (om Gud vill)	zmaj zmaj::59_kulturlevel
+mašallah	mašallah (vad vackert, må Gud bevara det)	zmaj zmaj::59_kulturlevel
+Ramazanski bajram / Kurban-bajram	ramadanfesten (id al-fitr) / offerhögtiden (id al-adha)	zmaj zmaj::59_kulturlevel
+Ako Bog da	om Gud vill / förhoppningsvis	zmaj zmaj::59_kulturlevel
+bujrum	bujrum (varsågod, ta för dig / stig in)	zmaj zmaj::59_kulturlevel
+Hvala na pozivu	Tack för inbjudan	zmaj zmaj::59_kulturlevel
+Hvala, sit sam / sita sam	Tack, jag är mätt (m/k)	zmaj zmaj::59_kulturlevel
+Bilo je jako ukusno	Det var mycket gott	zmaj zmaj::59_kulturlevel
+domaćin / domaćica	värd / värdinna	zmaj zmaj::59_kulturlevel
+častiti	bjuda någon (betala)	zmaj zmaj::59_kulturlevel
+Još malo?	Lite till?	zmaj zmaj::59_kulturlevel
+Vi	ni (artigt)	zmaj zmaj::60_formell
+gospodin	herr	zmaj zmaj::60_formell
+gospođa	fru	zmaj zmaj::60_formell
+gospođica	fröken	zmaj zmaj::60_formell
+Dobar dan, kako ste?	God dag, hur mår ni?	zmaj zmaj::60_formell
+Izvolite	Varsågod (när man räcker över något)	zmaj zmaj::60_formell
+Izvinite, molim Vas	Ursäkta mig	zmaj zmaj::60_formell
+Možete li mi pomoći?	Skulle ni kunna hjälpa mig?	zmaj zmaj::60_formell
+Smijem li?	Får jag lov?	zmaj zmaj::60_formell
+Naravno	Självklart	zmaj zmaj::60_formell
+Žao mi je	Jag är ledsen	zmaj zmaj::60_formell
+Molim za izvinjenje	Jag vill gärna be om ursäkt	zmaj zmaj::60_formell
+Trenutak, molim	Ett ögonblick, tack	zmaj zmaj::60_formell
+Molim?	Ursäkta, vad sa ni?	zmaj zmaj::60_formell
+Zahvaljujem Vam	Jag tackar er	zmaj zmaj::60_formell
+Hvala Vam na pomoći	Tack för er hjälp	zmaj zmaj::60_formell
+Poštovani gospodine	Bäste herr	zmaj zmaj::60_formell
+Poštovana gospođo	Bästa fru	zmaj zmaj::60_formell
+S poštovanjem	Med vänliga hälsningar	zmaj zmaj::60_formell
+općina	kommun / kommunkontor	zmaj zmaj::61_amt
+zahtjev	ansökan	zmaj zmaj::61_amt
+obrazac	blankett	zmaj zmaj::61_amt
+dokument	handling	zmaj zmaj::61_amt
+lična karta	id-kort	zmaj zmaj::61_amt
+pasoš	pass	zmaj zmaj::61_amt
+vozačka dozvola	körkort	zmaj zmaj::61_amt
+rodni list	födelsebevis	zmaj zmaj::61_amt
+vjenčani list	vigselbevis	zmaj zmaj::61_amt
+državljanstvo	medborgarskap	zmaj zmaj::61_amt
+potvrda	intyg	zmaj zmaj::61_amt
+prebivalište	folkbokföringsadress	zmaj zmaj::61_amt
+prijava prebivališta	folkbokföring	zmaj zmaj::61_amt
+boravišna dozvola	uppehållstillstånd	zmaj zmaj::61_amt
+radna dozvola	arbetstillstånd	zmaj zmaj::61_amt
+potpis	underskrift	zmaj zmaj::61_amt
+pečat	stämpel	zmaj zmaj::61_amt
+ovjera	bestyrkande	zmaj zmaj::61_amt
+kopija	kopia	zmaj zmaj::61_amt
+original	original	zmaj zmaj::61_amt
+termin	tid (bokad)	zmaj zmaj::61_amt
+rok	tidsfrist	zmaj zmaj::61_amt
+taksa	avgift	zmaj zmaj::61_amt
+porez	skatt	zmaj zmaj::61_amt
+osiguranje	försäkring	zmaj zmaj::61_amt
+zdravstveno osiguranje	sjukförsäkring	zmaj zmaj::61_amt
+ugovor	avtal	zmaj zmaj::61_amt
+banka	bank	zmaj zmaj::61_amt
+račun	konto	zmaj zmaj::61_amt
+pošta	post	zmaj zmaj::61_amt
+policija	polis	zmaj zmaj::61_amt
+sud	domstol	zmaj zmaj::61_amt
+advokat	advokat	zmaj zmaj::61_amt
+notar	notarius publicus	zmaj zmaj::61_amt
+ambasada	ambassad	zmaj zmaj::61_amt
+granica	gräns	zmaj zmaj::61_amt
+carina	tull	zmaj zmaj::61_amt
+Trebam potvrdu	Jag behöver ett intyg	zmaj zmaj::61_amt
+Gdje trebam potpisati?	Var ska jag skriva under?	zmaj zmaj::61_amt
+Koji dokumenti mi trebaju?	Vilka handlingar behöver jag?	zmaj zmaj::61_amt
+bankovni račun	bankkonto	zmaj zmaj::62_bank
+otvoriti račun	öppna ett konto	zmaj zmaj::62_bank
+kredit	lån	zmaj zmaj::62_bank
+kamata	ränta	zmaj zmaj::62_bank
+rata	avbetalning	zmaj zmaj::62_bank
+uplata	insättning	zmaj zmaj::62_bank
+isplata	uttag	zmaj zmaj::62_bank
+bankovni prijenos	överföring	zmaj zmaj::62_bank
+nalog za plaćanje	betalningsuppdrag	zmaj zmaj::62_bank
+bankovna kartica	bankkort	zmaj zmaj::62_bank
+bankomat	uttagsautomat	zmaj zmaj::62_bank
+podići novac	ta ut pengar	zmaj zmaj::62_bank
+uplatiti novac	sätta in pengar	zmaj zmaj::62_bank
+izvod	kontoutdrag	zmaj zmaj::62_bank
+naknada	avgift (bank)	zmaj zmaj::62_bank
+štednja	sparande / besparingar	zmaj zmaj::62_bank
+dug	skuld	zmaj zmaj::62_bank
+prihod	inkomst	zmaj zmaj::62_bank
+troškovi	utgifter	zmaj zmaj::62_bank
+mjenjačnica	växlingskontor	zmaj zmaj::62_bank
+kurs	växelkurs	zmaj zmaj::62_bank
+konvertibilna marka	konvertibel mark (Bosniens valuta, KM)	zmaj zmaj::62_bank
+euro	euro	zmaj zmaj::62_bank
+Želim otvoriti račun	Jag vill öppna ett konto	zmaj zmaj::62_bank
+Kolika je kamata?	Hur hög är räntan?	zmaj zmaj::62_bank
+Mogu li platiti na rate?	Kan jag delbetala?	zmaj zmaj::62_bank
+nekretnina	fastighet	zmaj zmaj::63_immobilien
+kupiti kuću	köpa ett hus	zmaj zmaj::63_immobilien
+kupoprodajni ugovor	köpekontrakt	zmaj zmaj::63_immobilien
+prodavac	säljare	zmaj zmaj::63_immobilien
+kupac	köpare	zmaj zmaj::63_immobilien
+vlasnik	ägare	zmaj zmaj::63_immobilien
+vlasništvo	äganderätt	zmaj zmaj::63_immobilien
+zemljišna knjiga / gruntovnica	fastighetsregistret	zmaj zmaj::63_immobilien
+katastar	fastighetskartan	zmaj zmaj::63_immobilien
+zemljište	tomt	zmaj zmaj::63_immobilien
+hipoteka	bolån	zmaj zmaj::63_immobilien
+kapara	handpenning	zmaj zmaj::63_immobilien
+agent za nekretnine	mäklare	zmaj zmaj::63_immobilien
+procjena	värdering	zmaj zmaj::63_immobilien
+pregovarati o cijeni	förhandla om priset	zmaj zmaj::63_immobilien
+građevinska dozvola	bygglov	zmaj zmaj::63_immobilien
+kirija	hyra	zmaj zmaj::63_immobilien
+iznajmiti	hyra (verb)	zmaj zmaj::63_immobilien
+podstanar	hyresgäst	zmaj zmaj::63_immobilien
+stanodavac	hyresvärd	zmaj zmaj::63_immobilien
+ugovor o najmu	hyresavtal	zmaj zmaj::63_immobilien
+režije	driftskostnader	zmaj zmaj::63_immobilien
+kvadratni metar	kvadratmeter	zmaj zmaj::63_immobilien
+sprat	våning	zmaj zmaj::63_immobilien
+prizemlje	bottenvåning	zmaj zmaj::63_immobilien
+selidba	flytt	zmaj zmaj::63_immobilien
+useliti se	flytta in	zmaj zmaj::63_immobilien
+Želim kupiti kuću	Jag vill köpa ett hus	zmaj zmaj::63_immobilien
+Koliko košta kuća?	Vad kostar huset?	zmaj zmaj::63_immobilien
+Je li kuća upisana u gruntovnicu?	Är huset inskrivet i fastighetsregistret?	zmaj zmaj::63_immobilien
+ugovor o radu	anställningsavtal	zmaj zmaj::64_arbeitsvertrag
+poslodavac	arbetsgivare	zmaj zmaj::64_arbeitsvertrag
+zaposlenik	anställd	zmaj zmaj::64_arbeitsvertrag
+prijava za posao	jobbansökan	zmaj zmaj::64_arbeitsvertrag
+biografija	cv	zmaj zmaj::64_arbeitsvertrag
+razgovor za posao	anställningsintervju	zmaj zmaj::64_arbeitsvertrag
+radno vrijeme	arbetstid	zmaj zmaj::64_arbeitsvertrag
+puno radno vrijeme	heltid	zmaj zmaj::64_arbeitsvertrag
+nepuno radno vrijeme	deltid	zmaj zmaj::64_arbeitsvertrag
+probni rad	provanställning	zmaj zmaj::64_arbeitsvertrag
+otkaz	uppsägning	zmaj zmaj::64_arbeitsvertrag
+bruto plata	bruttolön	zmaj zmaj::64_arbeitsvertrag
+neto plata	nettolön	zmaj zmaj::64_arbeitsvertrag
+prekovremeni rad	övertid	zmaj zmaj::64_arbeitsvertrag
+penzija	pension	zmaj zmaj::64_arbeitsvertrag
+bolovanje	sjukskrivning	zmaj zmaj::64_arbeitsvertrag
+socijalno osiguranje	socialförsäkring	zmaj zmaj::64_arbeitsvertrag
+porezni broj	skattenummer	zmaj zmaj::64_arbeitsvertrag
+svjedočanstvo	betyg	zmaj zmaj::64_arbeitsvertrag
+diploma	examensbevis	zmaj zmaj::64_arbeitsvertrag
+kvalifikacija	kvalifikation	zmaj zmaj::64_arbeitsvertrag
+iskustvo	erfarenhet	zmaj zmaj::64_arbeitsvertrag
+odgovornost	ansvar	zmaj zmaj::64_arbeitsvertrag
+Tražim posao	Jag söker jobb	zmaj zmaj::64_arbeitsvertrag
+Imam pet godina iskustva	Jag har fem års erfarenhet	zmaj zmaj::64_arbeitsvertrag
+zdravstvena knjižica	patientkort	zmaj zmaj::65_gesundheit
+uputnica	remiss (till specialist)	zmaj zmaj::65_gesundheit
+recept	recept	zmaj zmaj::65_gesundheit
+pregled	undersökning	zmaj zmaj::65_gesundheit
+termin kod doktora	läkartid	zmaj zmaj::65_gesundheit
+hitni prijem / hitna pomoć	akutmottagning / ambulans	zmaj zmaj::65_gesundheit
+porodični ljekar	husläkare	zmaj zmaj::65_gesundheit
+specijalista	specialistläkare	zmaj zmaj::65_gesundheit
+zubar	tandläkare	zmaj zmaj::65_gesundheit
+medicinska sestra	sjuksköterska	zmaj zmaj::65_gesundheit
+dijagnoza	diagnos	zmaj zmaj::65_gesundheit
+liječenje	behandling	zmaj zmaj::65_gesundheit
+operacija	operation	zmaj zmaj::65_gesundheit
+vakcina	vaccination	zmaj zmaj::65_gesundheit
+krvni pritisak	blodtryck	zmaj zmaj::65_gesundheit
+alergija	allergi	zmaj zmaj::65_gesundheit
+lijek protiv bolova	smärtstillande	zmaj zmaj::65_gesundheit
+participacija	patientavgift	zmaj zmaj::65_gesundheit
+Trebam termin	Jag behöver en tid	zmaj zmaj::65_gesundheit
+Na bolovanju sam	Jag är sjukskriven	zmaj zmaj::65_gesundheit
+Gdje Vas boli?	Var gör det ont?	zmaj zmaj::65_gesundheit
+Alergičan sam na ... / Alergična sam na ...	Jag är allergisk mot ... (m/k)	zmaj zmaj::65_gesundheit

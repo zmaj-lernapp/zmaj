@@ -1,0 +1,2 @@
+# Nur für hf_hochladen.py im Release-Workflow.
+huggingface_hub>=0.25

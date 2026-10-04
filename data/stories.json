@@ -1,0 +1,3385 @@
+{
+ "dataset": "zmaj-bosnian",
+ "kind": "stories",
+ "format_version": "1.0",
+ "license": "CC-BY-SA-4.0",
+ "attribution": "Zmaj – Bosnian learning content, (c) 2026 Ajdin Hasic, CC BY-SA 4.0, https://github.com/zmaj-lernapp/zmaj",
+ "source": "https://github.com/zmaj-lernapp/zmaj",
+ "target_language": "bs",
+ "translation_languages": [
+  "de",
+  "en",
+  "tr",
+  "sv",
+  "nl",
+  "nb",
+  "da",
+  "fr"
+ ],
+ "entries": [
+  {
+   "id": "mira",
+   "title": "Mira i Rex",
+   "level_hint": "farben",
+   "stage": {
+    "de": "Kinderbuch",
+    "en": "Picture book",
+    "tr": "Çocuk kitabı",
+    "sv": "Bilderbok",
+    "nl": "Kinderboek",
+    "nb": "Billedbok",
+    "da": "Billedbog",
+    "fr": "Album jeunesse"
+   },
+   "bs": "Ovo je Mira. Mira je djevojčica. Mira ima psa. Pas se zove Rex. Rex je kafen i mali. Mira voli Rexa. Rex voli Miru. Mira i Rex idu u park. U parku je sunce. Rex trči. Mira se smije. Onda idu kući. Mira jede jabuku. Rex spava.",
+   "translations": {
+    "de": "Das ist Mira. Mira ist ein Mädchen. Mira hat einen Hund. Der Hund heißt Rex. Rex ist braun und klein. Mira liebt Rex. Rex liebt Mira. Mira und Rex gehen in den Park. Im Park scheint die Sonne. Rex rennt. Mira lacht. Dann gehen sie nach Hause. Mira isst einen Apfel. Rex schläft.",
+    "en": "This is Mira. Mira is a girl. Mira has a dog. The dog is called Rex. Rex is brown and small. Mira loves Rex. Rex loves Mira. Mira and Rex go to the park. The sun is shining in the park. Rex runs. Mira laughs. Then they go home. Mira eats an apple. Rex sleeps.",
+    "tr": "Bu Mira. Mira bir kız. Mira'nın bir köpeği var. Köpeğin adı Rex. Rex kahverengi ve küçük. Mira Rex'i seviyor. Rex Mira'yı seviyor. Mira ve Rex parka gidiyor. Parkta güneş parlıyor. Rex koşuyor. Mira gülüyor. Sonra eve gidiyorlar. Mira bir elma yiyor. Rex uyuyor.",
+    "sv": "Det här är Mira. Mira är en flicka. Mira har en hund. Hunden heter Rex. Rex är brun och liten. Mira älskar Rex. Rex älskar Mira. Mira och Rex går till parken. I parken skiner solen. Rex springer. Mira skrattar. Sedan går de hem. Mira äter ett äpple. Rex sover.",
+    "nl": "Dit is Mira. Mira is een meisje. Mira heeft een hond. De hond heet Rex. Rex is bruin en klein. Mira houdt van Rex. Rex houdt van Mira. Mira en Rex gaan naar het park. In het park schijnt de zon. Rex rent. Mira lacht. Daarna gaan ze naar huis. Mira eet een appel. Rex slaapt.",
+    "nb": "Dette er Mira. Mira er en jente. Mira har en hund. Hunden heter Rex. Rex er brun og liten. Mira elsker Rex. Rex elsker Mira. Mira og Rex går til parken. I parken skinner sola. Rex løper. Mira ler. Så går de hjem. Mira spiser et eple. Rex sover.",
+    "da": "Det her er Mira. Mira er en pige. Mira har en hund. Hunden hedder Rex. Rex er brun og lille. Mira elsker Rex. Rex elsker Mira. Mira og Rex går i parken. I parken skinner solen. Rex løber. Mira griner. Så går de hjem. Mira spiser et æble. Rex sover.",
+    "fr": "Voici Mira. Mira est une petite fille. Mira a un chien. Le chien s'appelle Rex. Rex est marron et petit. Mira aime Rex. Rex aime Mira. Mira et Rex vont au parc. Au parc, le soleil brille. Rex court. Mira rit. Ensuite, ils rentrent à la maison. Mira mange une pomme. Rex dort."
+   },
+   "glossary": {
+    "de": {
+     "rexa": "Rex (Akk.)",
+     "miru": "Mira (Akk.)"
+    },
+    "en": {
+     "rexa": "Rex (acc.)",
+     "miru": "Mira (acc.)"
+    },
+    "tr": {
+     "rexa": "Rex (akuzatif)",
+     "miru": "Mira (akuzatif)"
+    },
+    "sv": {
+     "rexa": "Rex (ackusativ)",
+     "miru": "Mira (ackusativ)"
+    },
+    "nl": {
+     "rexa": "Rex (accusatief)",
+     "miru": "Mira (accusatief)"
+    },
+    "nb": {
+     "rexa": "Rex (akkusativ)",
+     "miru": "Mira (akkusativ)"
+    },
+    "da": {
+     "rexa": "Rex (akkusativ)",
+     "miru": "Mira (akkusativ)"
+    },
+    "fr": {
+     "rexa": "Rex (accusatif)",
+     "miru": "Mira (accusatif)"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wie heißt der Hund?",
+      "optionen": [
+       "Rex",
+       "Mira",
+       "Emir"
+      ],
+      "richtig": "Rex"
+     },
+     {
+      "frage": "Welche Farbe hat Rex?",
+      "optionen": [
+       "braun",
+       "weiß",
+       "schwarz"
+      ],
+      "richtig": "braun"
+     },
+     {
+      "frage": "Was isst Mira?",
+      "optionen": [
+       "einen Apfel",
+       "Brot",
+       "Käse"
+      ],
+      "richtig": "einen Apfel"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What is the dog called?",
+      "optionen": [
+       "Rex",
+       "Mira",
+       "Emir"
+      ],
+      "richtig": "Rex"
+     },
+     {
+      "frage": "What color is Rex?",
+      "optionen": [
+       "brown",
+       "white",
+       "black"
+      ],
+      "richtig": "brown"
+     },
+     {
+      "frage": "What does Mira eat?",
+      "optionen": [
+       "an apple",
+       "bread",
+       "cheese"
+      ],
+      "richtig": "an apple"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Köpeğin adı ne?",
+      "optionen": [
+       "Rex",
+       "Mira",
+       "Emir"
+      ],
+      "richtig": "Rex"
+     },
+     {
+      "frage": "Rex ne renk?",
+      "optionen": [
+       "kahverengi",
+       "beyaz",
+       "siyah"
+      ],
+      "richtig": "kahverengi"
+     },
+     {
+      "frage": "Mira ne yiyor?",
+      "optionen": [
+       "bir elma",
+       "ekmek",
+       "peynir"
+      ],
+      "richtig": "bir elma"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vad heter hunden?",
+      "optionen": [
+       "Rex",
+       "Mira",
+       "Emir"
+      ],
+      "richtig": "Rex"
+     },
+     {
+      "frage": "Vilken färg har Rex?",
+      "optionen": [
+       "brun",
+       "vit",
+       "svart"
+      ],
+      "richtig": "brun"
+     },
+     {
+      "frage": "Vad äter Mira?",
+      "optionen": [
+       "ett äpple",
+       "bröd",
+       "ost"
+      ],
+      "richtig": "ett äpple"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Hoe heet de hond?",
+      "optionen": [
+       "Rex",
+       "Mira",
+       "Emir"
+      ],
+      "richtig": "Rex"
+     },
+     {
+      "frage": "Welke kleur heeft Rex?",
+      "optionen": [
+       "bruin",
+       "wit",
+       "zwart"
+      ],
+      "richtig": "bruin"
+     },
+     {
+      "frage": "Wat eet Mira?",
+      "optionen": [
+       "een appel",
+       "brood",
+       "kaas"
+      ],
+      "richtig": "een appel"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hva heter hunden?",
+      "optionen": [
+       "Rex",
+       "Mira",
+       "Emir"
+      ],
+      "richtig": "Rex"
+     },
+     {
+      "frage": "Hvilken farge har Rex?",
+      "optionen": [
+       "brun",
+       "hvit",
+       "svart"
+      ],
+      "richtig": "brun"
+     },
+     {
+      "frage": "Hva spiser Mira?",
+      "optionen": [
+       "et eple",
+       "brød",
+       "ost"
+      ],
+      "richtig": "et eple"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvad hedder hunden?",
+      "optionen": [
+       "Rex",
+       "Mira",
+       "Emir"
+      ],
+      "richtig": "Rex"
+     },
+     {
+      "frage": "Hvilken farve har Rex?",
+      "optionen": [
+       "brun",
+       "hvid",
+       "sort"
+      ],
+      "richtig": "brun"
+     },
+     {
+      "frage": "Hvad spiser Mira?",
+      "optionen": [
+       "et æble",
+       "brød",
+       "ost"
+      ],
+      "richtig": "et æble"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Comment s'appelle le chien ?",
+      "optionen": [
+       "Rex",
+       "Mira",
+       "Emir"
+      ],
+      "richtig": "Rex"
+     },
+     {
+      "frage": "De quelle couleur est Rex ?",
+      "optionen": [
+       "marron",
+       "blanc",
+       "noir"
+      ],
+      "richtig": "marron"
+     },
+     {
+      "frage": "Qu'est-ce que Mira mange ?",
+      "optionen": [
+       "une pomme",
+       "pain",
+       "fromage"
+      ],
+      "richtig": "une pomme"
+     }
+    ]
+   },
+   "audio": "web/audio/g01.mp3"
+  },
+  {
+   "id": "kuca1",
+   "title": "Naša kuća",
+   "level_hint": "zuhause",
+   "stage": {
+    "de": "Kinderbuch",
+    "en": "Picture book",
+    "tr": "Çocuk kitabı",
+    "sv": "Bilderbok",
+    "nl": "Kinderboek",
+    "nb": "Billedbok",
+    "da": "Billedbog",
+    "fr": "Album jeunesse"
+   },
+   "bs": "Ovo je naša kuća. Kuća je bijela. Ima velika vrata i četiri prozora. U kući je kuhinja. Kuhinja je žuta. Tu su sto i četiri stolice. Moja soba je plava. U sobi su krevet i lampa. Iza kuće je bašta. U bašti su jedno drvo i mnogo cvijeća. Volim našu kuću.",
+   "translations": {
+    "de": "Das ist unser Haus. Das Haus ist weiß. Es hat eine große Tür und vier Fenster. Im Haus ist eine Küche. Die Küche ist gelb. Da sind ein Tisch und vier Stühle. Mein Zimmer ist blau. Im Zimmer sind ein Bett und eine Lampe. Hinter dem Haus ist ein Garten. Im Garten sind ein Baum und viele Blumen. Ich liebe unser Haus.",
+    "en": "This is our house. The house is white. It has a big door and four windows. Inside the house there is a kitchen. The kitchen is yellow. There is a table and four chairs. My room is blue. In the room there is a bed and a lamp. Behind the house there is a garden. In the garden there is a tree and many flowers. I love our house.",
+    "tr": "Bu bizim evimiz. Ev beyaz. Büyük bir kapısı ve dört penceresi var. Evde bir mutfak var. Mutfak sarı. Orada bir masa ve dört sandalye var. Benim odam mavi. Odada bir yatak ve bir lamba var. Evin arkasında bir bahçe var. Bahçede bir ağaç ve çok çiçek var. Evimizi seviyorum.",
+    "sv": "Det här är vårt hus. Huset är vitt. Det har en stor dörr och fyra fönster. I huset finns ett kök. Köket är gult. Där står ett bord och fyra stolar. Mitt rum är blått. I rummet finns en säng och en lampa. Bakom huset finns en trädgård. I trädgården finns ett träd och många blommor. Jag älskar vårt hus.",
+    "nl": "Dit is ons huis. Het huis is wit. Het heeft een grote deur en vier ramen. In het huis is een keuken. De keuken is geel. Daar staan een tafel en vier stoelen. Mijn kamer is blauw. In de kamer staan een bed en een lamp. Achter het huis is een tuin. In de tuin staan een boom en veel bloemen. Ik hou van ons huis.",
+    "nb": "Dette er huset vårt. Huset er hvitt. Det har en stor dør og fire vinduer. I huset er det et kjøkken. Kjøkkenet er gult. Der står et bord og fire stoler. Rommet mitt er blått. I rommet står en seng og en lampe. Bak huset er det en hage. I hagen står et tre og mange blomster. Jeg elsker huset vårt.",
+    "da": "Det her er vores hus. Huset er hvidt. Det har en stor dør og fire vinduer. I huset er der et køkken. Køkkenet er gult. Der står et bord og fire stole. Mit værelse er blåt. I værelset står en seng og en lampe. Bag huset er der en have. I haven står et træ og mange blomster. Jeg elsker vores hus.",
+    "fr": "Voici notre maison. La maison est blanche. Elle a une grande porte et quatre fenêtres. Dans la maison, il y a une cuisine. La cuisine est jaune. Il y a une table et quatre chaises. Ma chambre est bleue. Dans la chambre, il y a un lit et une lampe. Derrière la maison, il y a un jardin. Dans le jardin, il y a un arbre et beaucoup de fleurs. J'aime notre maison."
+   },
+   "glossary": {
+    "de": {
+     "kuće": "Haus (Gen.)"
+    },
+    "en": {
+     "kuće": "house (gen.)"
+    },
+    "tr": {
+     "kuće": "ev (genitif)"
+    },
+    "sv": {
+     "kuće": "hus (genitiv)"
+    },
+    "nl": {
+     "kuće": "huis (genitief)"
+    },
+    "nb": {
+     "kuće": "hus (genitiv)"
+    },
+    "da": {
+     "kuće": "hus (genitiv)"
+    },
+    "fr": {
+     "kuće": "maison (génitif)"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Welche Farbe hat das Haus?",
+      "optionen": [
+       "weiß",
+       "gelb",
+       "blau"
+      ],
+      "richtig": "weiß"
+     },
+     {
+      "frage": "Wie viele Fenster hat es?",
+      "optionen": [
+       "vier",
+       "zwei",
+       "sieben"
+      ],
+      "richtig": "vier"
+     },
+     {
+      "frage": "Was ist hinter dem Haus?",
+      "optionen": [
+       "ein Garten",
+       "ein Park",
+       "eine Straße"
+      ],
+      "richtig": "ein Garten"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What color is the house?",
+      "optionen": [
+       "white",
+       "yellow",
+       "blue"
+      ],
+      "richtig": "white"
+     },
+     {
+      "frage": "How many windows does it have?",
+      "optionen": [
+       "four",
+       "two",
+       "seven"
+      ],
+      "richtig": "four"
+     },
+     {
+      "frage": "What is behind the house?",
+      "optionen": [
+       "a garden",
+       "a park",
+       "a street"
+      ],
+      "richtig": "a garden"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Ev ne renk?",
+      "optionen": [
+       "beyaz",
+       "sarı",
+       "mavi"
+      ],
+      "richtig": "beyaz"
+     },
+     {
+      "frage": "Kaç penceresi var?",
+      "optionen": [
+       "dört",
+       "iki",
+       "yedi"
+      ],
+      "richtig": "dört"
+     },
+     {
+      "frage": "Evin arkasında ne var?",
+      "optionen": [
+       "bir bahçe",
+       "bir park",
+       "bir sokak"
+      ],
+      "richtig": "bir bahçe"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vilken färg har huset?",
+      "optionen": [
+       "vit",
+       "gul",
+       "blå"
+      ],
+      "richtig": "vit"
+     },
+     {
+      "frage": "Hur många fönster har det?",
+      "optionen": [
+       "fyra",
+       "två",
+       "sju"
+      ],
+      "richtig": "fyra"
+     },
+     {
+      "frage": "Vad finns bakom huset?",
+      "optionen": [
+       "en trädgård",
+       "en park",
+       "en gata"
+      ],
+      "richtig": "en trädgård"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Welke kleur heeft het huis?",
+      "optionen": [
+       "wit",
+       "geel",
+       "blauw"
+      ],
+      "richtig": "wit"
+     },
+     {
+      "frage": "Hoeveel ramen heeft het?",
+      "optionen": [
+       "vier",
+       "twee",
+       "zeven"
+      ],
+      "richtig": "vier"
+     },
+     {
+      "frage": "Wat is er achter het huis?",
+      "optionen": [
+       "een tuin",
+       "een park",
+       "een straat"
+      ],
+      "richtig": "een tuin"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvilken farge har huset?",
+      "optionen": [
+       "hvit",
+       "gul",
+       "blå"
+      ],
+      "richtig": "hvit"
+     },
+     {
+      "frage": "Hvor mange vinduer har det?",
+      "optionen": [
+       "fire",
+       "to",
+       "sju"
+      ],
+      "richtig": "fire"
+     },
+     {
+      "frage": "Hva er bak huset?",
+      "optionen": [
+       "en hage",
+       "en park",
+       "en gate"
+      ],
+      "richtig": "en hage"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvilken farve har huset?",
+      "optionen": [
+       "hvid",
+       "gul",
+       "blå"
+      ],
+      "richtig": "hvid"
+     },
+     {
+      "frage": "Hvor mange vinduer har det?",
+      "optionen": [
+       "fire",
+       "to",
+       "syv"
+      ],
+      "richtig": "fire"
+     },
+     {
+      "frage": "Hvad er der bag huset?",
+      "optionen": [
+       "en have",
+       "en park",
+       "en gade"
+      ],
+      "richtig": "en have"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "De quelle couleur est la maison ?",
+      "optionen": [
+       "blanc",
+       "jaune",
+       "bleu"
+      ],
+      "richtig": "blanc"
+     },
+     {
+      "frage": "Combien de fenêtres a-t-elle ?",
+      "optionen": [
+       "quatre",
+       "deux",
+       "sept"
+      ],
+      "richtig": "quatre"
+     },
+     {
+      "frage": "Qu'y a-t-il derrière la maison ?",
+      "optionen": [
+       "un jardin",
+       "un parc",
+       "une rue"
+      ],
+      "richtig": "un jardin"
+     }
+    ]
+   },
+   "audio": "web/audio/g02.mp3"
+  },
+  {
+   "id": "porodica",
+   "title": "Moja porodica",
+   "level_hint": "familie",
+   "stage": {
+    "de": "Einfach",
+    "en": "Easy",
+    "tr": "Kolay",
+    "sv": "Lätt",
+    "nl": "Makkelijk",
+    "nb": "Lett",
+    "da": "Let",
+    "fr": "Facile"
+   },
+   "bs": "Zovem se Amina. Imam dvadeset pet godina. Moja porodica je velika. Moj muž se zove Ajdin. On je inženjer. Imam jednog brata i jednu sestru. Moj brat se zove Emir, a moja sestra se zove Lejla. Moja majka je nastavnica, a moj babo je pčelar. Moja nana i moj dedo žive u Bosni. Volim svoju porodicu.",
+   "translations": {
+    "de": "Ich heiße Amina. Ich bin 25 Jahre alt. Meine Familie ist groß. Mein Mann heißt Ajdin. Er ist Ingenieur. Ich habe einen Bruder und eine Schwester. Mein Bruder heißt Emir und meine Schwester heißt Lejla. Meine Mutter ist Lehrerin und mein Papa ist Imker. Meine Oma und mein Opa leben in Bosnien. Ich liebe meine Familie.",
+    "en": "My name is Amina. I am 25 years old. My family is big. My husband is called Ajdin. He is an engineer. I have a brother and a sister. My brother is called Emir and my sister is called Lejla. My mother is a teacher and my dad is a beekeeper. My grandma and my grandpa live in Bosnia. I love my family.",
+    "tr": "Benim adım Amina. 25 yaşındayım. Ailem büyük. Eşimin adı Ajdin. O mühendis. Bir erkek kardeşim ve bir kız kardeşim var. Erkek kardeşimin adı Emir, kız kardeşimin adı Lejla. Annem öğretmen, babam arıcı. Ninem ve dedem Bosna'da yaşıyor. Ailemi seviyorum.",
+    "sv": "Jag heter Amina. Jag är 25 år. Min familj är stor. Min man heter Ajdin. Han är ingenjör. Jag har en bror och en syster. Min bror heter Emir och min syster heter Lejla. Min mor är lärare och min pappa är biodlare. Min mormor och min morfar bor i Bosnien. Jag älskar min familj.",
+    "nl": "Ik heet Amina. Ik ben 25 jaar. Mijn familie is groot. Mijn man heet Ajdin. Hij is ingenieur. Ik heb een broer en een zus. Mijn broer heet Emir en mijn zus heet Lejla. Mijn moeder is lerares en mijn papa is imker. Mijn oma en mijn opa wonen in Bosnië. Ik hou van mijn familie.",
+    "nb": "Jeg heter Amina. Jeg er 25 år. Familien min er stor. Mannen min heter Ajdin. Han er ingeniør. Jeg har en bror og en søster. Broren min heter Emir og søsteren min heter Lejla. Moren min er lærer og pappaen min er birøkter. Bestemoren og bestefaren min bor i Bosnia. Jeg elsker familien min.",
+    "da": "Jeg hedder Amina. Jeg er 25 år. Min familie er stor. Min mand hedder Ajdin. Han er ingeniør. Jeg har en bror og en søster. Min bror hedder Emir, og min søster hedder Lejla. Min mor er lærer, og min far er biavler. Min bedstemor og min bedstefar bor i Bosnien. Jeg elsker min familie.",
+    "fr": "Je m'appelle Amina. J'ai 25 ans. Ma famille est grande. Mon mari s'appelle Ajdin. Il est ingénieur. J'ai un frère et une sœur. Mon frère s'appelle Emir et ma sœur s'appelle Lejla. Ma mère est enseignante et mon papa est apiculteur. Ma grand-mère et mon grand-père vivent en Bosnie. J'aime ma famille."
+   },
+   "glossary": {
+    "de": {
+     "svoju": "meine eigene (Akk.)",
+     "emir": "Emir (Name)",
+     "lejla": "Lejla (Name)"
+    },
+    "en": {
+     "svoju": "my own (acc.)",
+     "emir": "Emir (name)",
+     "lejla": "Lejla (name)"
+    },
+    "tr": {
+     "svoju": "kendi (akuzatif)",
+     "emir": "Emir (isim)",
+     "lejla": "Lejla (isim)"
+    },
+    "sv": {
+     "svoju": "min egen (ackusativ)",
+     "emir": "Emir (namn)",
+     "lejla": "Lejla (namn)"
+    },
+    "nl": {
+     "svoju": "mijn eigen (accusatief)",
+     "emir": "Emir (naam)",
+     "lejla": "Lejla (naam)"
+    },
+    "nb": {
+     "svoju": "min egen (akkusativ)",
+     "emir": "Emir (navn)",
+     "lejla": "Lejla (navn)"
+    },
+    "da": {
+     "svoju": "min egen (akkusativ)",
+     "emir": "Emir (navn)",
+     "lejla": "Lejla (navn)"
+    },
+    "fr": {
+     "svoju": "la mienne (accusatif)",
+     "emir": "Emir (prénom)",
+     "lejla": "Lejla (prénom)"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wie alt ist Amina?",
+      "optionen": [
+       "25",
+       "20",
+       "35"
+      ],
+      "richtig": "25"
+     },
+     {
+      "frage": "Was ist Ajdin von Beruf?",
+      "optionen": [
+       "Ingenieur",
+       "Imker",
+       "Lehrer"
+      ],
+      "richtig": "Ingenieur"
+     },
+     {
+      "frage": "Wo leben Oma und Opa?",
+      "optionen": [
+       "in Bosnien",
+       "in Deutschland",
+       "bei Amina"
+      ],
+      "richtig": "in Bosnien"
+     }
+    ],
+    "en": [
+     {
+      "frage": "How old is Amina?",
+      "optionen": [
+       "25",
+       "20",
+       "35"
+      ],
+      "richtig": "25"
+     },
+     {
+      "frage": "What does Ajdin do for a living?",
+      "optionen": [
+       "engineer",
+       "a beekeeper",
+       "teacher"
+      ],
+      "richtig": "engineer"
+     },
+     {
+      "frage": "Where do grandma and grandpa live?",
+      "optionen": [
+       "in Bosnia",
+       "in Germany",
+       "at Amina's"
+      ],
+      "richtig": "in Bosnia"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Amina kaç yaşında?",
+      "optionen": [
+       "25",
+       "20",
+       "35"
+      ],
+      "richtig": "25"
+     },
+     {
+      "frage": "Ajdin'in mesleği ne?",
+      "optionen": [
+       "mühendis",
+       "arıcı",
+       "öğretmen"
+      ],
+      "richtig": "mühendis"
+     },
+     {
+      "frage": "Nine ve dede nerede yaşıyor?",
+      "optionen": [
+       "Bosna'da",
+       "Almanya'da",
+       "Amina'da"
+      ],
+      "richtig": "Bosna'da"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Hur gammal är Amina?",
+      "optionen": [
+       "25",
+       "20",
+       "35"
+      ],
+      "richtig": "25"
+     },
+     {
+      "frage": "Vad jobbar Ajdin med?",
+      "optionen": [
+       "ingenjör",
+       "biodlare",
+       "lärare"
+      ],
+      "richtig": "ingenjör"
+     },
+     {
+      "frage": "Var bor mormor och morfar?",
+      "optionen": [
+       "i Bosnien",
+       "i Tyskland",
+       "hos Amina"
+      ],
+      "richtig": "i Bosnien"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Hoe oud is Amina?",
+      "optionen": [
+       "25",
+       "20",
+       "35"
+      ],
+      "richtig": "25"
+     },
+     {
+      "frage": "Wat voor werk doet Ajdin?",
+      "optionen": [
+       "ingenieur",
+       "imker",
+       "leraar"
+      ],
+      "richtig": "ingenieur"
+     },
+     {
+      "frage": "Waar wonen oma en opa?",
+      "optionen": [
+       "in Bosnië",
+       "in Duitsland",
+       "bij Amina"
+      ],
+      "richtig": "in Bosnië"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvor gammel er Amina?",
+      "optionen": [
+       "25",
+       "20",
+       "35"
+      ],
+      "richtig": "25"
+     },
+     {
+      "frage": "Hva jobber Ajdin med?",
+      "optionen": [
+       "ingeniør",
+       "birøkter",
+       "lærer"
+      ],
+      "richtig": "ingeniør"
+     },
+     {
+      "frage": "Hvor bor bestemor og bestefar?",
+      "optionen": [
+       "i Bosnia",
+       "i Tyskland",
+       "hos Amina"
+      ],
+      "richtig": "i Bosnia"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvor gammel er Amina?",
+      "optionen": [
+       "25",
+       "20",
+       "35"
+      ],
+      "richtig": "25"
+     },
+     {
+      "frage": "Hvad arbejder Ajdin med?",
+      "optionen": [
+       "ingeniør",
+       "biavler",
+       "lærer"
+      ],
+      "richtig": "ingeniør"
+     },
+     {
+      "frage": "Hvor bor bedstemor og bedstefar?",
+      "optionen": [
+       "i Bosnien",
+       "i Tyskland",
+       "hos Amina"
+      ],
+      "richtig": "i Bosnien"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Quel âge a Amina ?",
+      "optionen": [
+       "25",
+       "20",
+       "35"
+      ],
+      "richtig": "25"
+     },
+     {
+      "frage": "Quel est le métier d'Ajdin ?",
+      "optionen": [
+       "ingénieur",
+       "apiculteur",
+       "enseignant"
+      ],
+      "richtig": "ingénieur"
+     },
+     {
+      "frage": "Où vivent grand-mère et grand-père ?",
+      "optionen": [
+       "en Bosnie",
+       "en Allemagne",
+       "chez Amina"
+      ],
+      "richtig": "en Bosnie"
+     }
+    ]
+   },
+   "audio": "web/audio/g03.mp3"
+  },
+  {
+   "id": "pijaca",
+   "title": "Na pijaci",
+   "level_hint": "einkaufen",
+   "stage": {
+    "de": "Einfach",
+    "en": "Easy",
+    "tr": "Kolay",
+    "sv": "Lätt",
+    "nl": "Makkelijk",
+    "nb": "Lett",
+    "da": "Let",
+    "fr": "Facile"
+   },
+   "bs": "Danas je subota. Amina ide na pijacu. Na pijaci ima mnogo voća i povrća. Amina kupuje jabuke, paradajz i luk. „Koliko koštaju jabuke?“ pita Amina. „Dvije marke za kilogram“, kaže prodavač. Amina uzima dva kilograma. Onda kupuje hljeb i sir. Sve zajedno košta deset maraka. Amina plaća gotovinom i ide kući.",
+   "translations": {
+    "de": "Heute ist Samstag. Amina geht auf den Markt. Auf dem Markt gibt es viel Obst und Gemüse. Amina kauft Äpfel, Tomaten und Zwiebeln. „Wie viel kosten die Äpfel?“ fragt Amina. „Zwei Mark pro Kilo“, sagt der Verkäufer. Amina nimmt zwei Kilo. Dann kauft sie Brot und Käse. Alles zusammen kostet zehn Mark. Amina zahlt bar und geht nach Hause.",
+    "en": "Today is Saturday. Amina is going to the market. At the market there is a lot of fruit and vegetables. Amina buys apples, tomatoes and onions. “How much do the apples cost?” Amina asks. “Two marks a kilo”, the seller says. Amina takes two kilos. Then she buys bread and cheese. Altogether it costs ten marks. Amina pays cash and goes home.",
+    "tr": "Bugün cumartesi. Amina pazara gidiyor. Pazarda çok meyve ve sebze var. Amina elma, domates ve soğan alıyor. “Elmalar kaça?” diye soruyor Amina. “Kilosu iki mark”, diyor satıcı. Amina iki kilo alıyor. Sonra ekmek ve peynir alıyor. Hepsi birlikte on mark tutuyor. Amina nakit ödüyor ve eve gidiyor.",
+    "sv": "I dag är det lördag. Amina går till marknaden. På marknaden finns det mycket frukt och grönsaker. Amina köper äpplen, tomater och lök. ”Vad kostar äpplena?” frågar Amina. ”Två mark kilot”, säger säljaren. Amina tar två kilo. Sedan köper hon bröd och ost. Allt tillsammans kostar tio mark. Amina betalar kontant och går hem.",
+    "nl": "Vandaag is het zaterdag. Amina gaat naar de markt. Op de markt is er veel fruit en groente. Amina koopt appels, tomaten en uien. ‘Hoeveel kosten de appels?’ vraagt Amina. ‘Twee mark per kilo’, zegt de verkoper. Amina neemt twee kilo. Daarna koopt ze brood en kaas. Alles samen kost tien mark. Amina betaalt contant en gaat naar huis.",
+    "nb": "I dag er det lørdag. Amina går på markedet. På markedet er det mye frukt og grønnsaker. Amina kjøper epler, tomater og løk. «Hva koster eplene?» spør Amina. «To mark kiloen», sier selgeren. Amina tar to kilo. Så kjøper hun brød og ost. Alt sammen koster ti mark. Amina betaler kontant og går hjem.",
+    "da": "I dag er det lørdag. Amina går på markedet. På markedet er der masser af frugt og grøntsager. Amina køber æbler, tomater og løg. »Hvad koster æblerne?« spørger Amina. »To mark kiloet«, siger sælgeren. Amina tager to kilo. Så køber hun brød og ost. Det hele koster ti mark. Amina betaler kontant og går hjem.",
+    "fr": "Aujourd'hui, c'est samedi. Amina va au marché. Au marché, il y a beaucoup de fruits et de légumes. Amina achète des pommes, des tomates et des oignons. « Combien coûtent les pommes ? » demande Amina. « Deux marks le kilo », dit le vendeur. Amina en prend deux kilos. Ensuite, elle achète du pain et du fromage. Le tout coûte dix marks. Amina paie en espèces et rentre à la maison."
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Welcher Tag ist heute?",
+      "optionen": [
+       "Samstag",
+       "Sonntag",
+       "Montag"
+      ],
+      "richtig": "Samstag"
+     },
+     {
+      "frage": "Wie viel kostet ein Kilo Äpfel?",
+      "optionen": [
+       "zwei Mark",
+       "zehn Mark",
+       "fünf Mark"
+      ],
+      "richtig": "zwei Mark"
+     },
+     {
+      "frage": "Wie bezahlt Amina?",
+      "optionen": [
+       "bar",
+       "mit Karte",
+       "gar nicht"
+      ],
+      "richtig": "bar"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What day is it today?",
+      "optionen": [
+       "Saturday",
+       "Sunday",
+       "Monday"
+      ],
+      "richtig": "Saturday"
+     },
+     {
+      "frage": "How much does a kilo of apples cost?",
+      "optionen": [
+       "two marks",
+       "ten marks",
+       "five marks"
+      ],
+      "richtig": "two marks"
+     },
+     {
+      "frage": "How does Amina pay?",
+      "optionen": [
+       "in cash",
+       "by card",
+       "not at all"
+      ],
+      "richtig": "in cash"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Bugün hangi gün?",
+      "optionen": [
+       "Cumartesi",
+       "Pazar",
+       "Pazartesi"
+      ],
+      "richtig": "Cumartesi"
+     },
+     {
+      "frage": "Bir kilo elma kaça?",
+      "optionen": [
+       "iki mark",
+       "on mark",
+       "beş mark"
+      ],
+      "richtig": "iki mark"
+     },
+     {
+      "frage": "Amina nasıl ödüyor?",
+      "optionen": [
+       "nakit",
+       "kartla",
+       "hiç"
+      ],
+      "richtig": "nakit"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vilken dag är det i dag?",
+      "optionen": [
+       "lördag",
+       "söndag",
+       "måndag"
+      ],
+      "richtig": "lördag"
+     },
+     {
+      "frage": "Vad kostar ett kilo äpplen?",
+      "optionen": [
+       "två mark",
+       "tio mark",
+       "fem mark"
+      ],
+      "richtig": "två mark"
+     },
+     {
+      "frage": "Hur betalar Amina?",
+      "optionen": [
+       "kontant",
+       "med kort",
+       "inte alls"
+      ],
+      "richtig": "kontant"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Welke dag is het vandaag?",
+      "optionen": [
+       "zaterdag",
+       "zondag",
+       "maandag"
+      ],
+      "richtig": "zaterdag"
+     },
+     {
+      "frage": "Hoeveel kost een kilo appels?",
+      "optionen": [
+       "twee mark",
+       "tien mark",
+       "vijf mark"
+      ],
+      "richtig": "twee mark"
+     },
+     {
+      "frage": "Hoe betaalt Amina?",
+      "optionen": [
+       "contant",
+       "met de pas",
+       "helemaal niet"
+      ],
+      "richtig": "contant"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvilken dag er det i dag?",
+      "optionen": [
+       "lørdag",
+       "søndag",
+       "mandag"
+      ],
+      "richtig": "lørdag"
+     },
+     {
+      "frage": "Hva koster en kilo epler?",
+      "optionen": [
+       "to mark",
+       "ti mark",
+       "fem mark"
+      ],
+      "richtig": "to mark"
+     },
+     {
+      "frage": "Hvordan betaler Amina?",
+      "optionen": [
+       "kontant",
+       "med kort",
+       "ikke i det hele tatt"
+      ],
+      "richtig": "kontant"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvilken dag er det i dag?",
+      "optionen": [
+       "lørdag",
+       "søndag",
+       "mandag"
+      ],
+      "richtig": "lørdag"
+     },
+     {
+      "frage": "Hvad koster et kilo æbler?",
+      "optionen": [
+       "to mark",
+       "ti mark",
+       "fem mark"
+      ],
+      "richtig": "to mark"
+     },
+     {
+      "frage": "Hvordan betaler Amina?",
+      "optionen": [
+       "kontant",
+       "med kort",
+       "slet ikke"
+      ],
+      "richtig": "kontant"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Quel jour sommes-nous ?",
+      "optionen": [
+       "samedi",
+       "dimanche",
+       "lundi"
+      ],
+      "richtig": "samedi"
+     },
+     {
+      "frage": "Combien coûte un kilo de pommes ?",
+      "optionen": [
+       "deux marks",
+       "dix marks",
+       "cinq marks"
+      ],
+      "richtig": "deux marks"
+     },
+     {
+      "frage": "Comment Amina paie-t-elle ?",
+      "optionen": [
+       "en espèces",
+       "par carte",
+       "pas du tout"
+      ],
+      "richtig": "en espèces"
+     }
+    ]
+   },
+   "audio": "web/audio/g04.mp3"
+  },
+  {
+   "id": "dan",
+   "title": "Moj dan",
+   "level_hint": "routine",
+   "stage": {
+    "de": "Einfach",
+    "en": "Easy",
+    "tr": "Kolay",
+    "sv": "Lätt",
+    "nl": "Makkelijk",
+    "nb": "Lett",
+    "da": "Let",
+    "fr": "Facile"
+   },
+   "bs": "Svaki dan ustajem u sedam sati. Prvo se tuširam, a onda doručkujem. Za doručak jedem hljeb sa sirom i pijem kahvu. U osam idem na posao. Radim u kancelariji do četiri. Poslije posla idem u kupovinu. Navečer kuham večeru i gledam televiziju. Ponekad čitam knjigu. Idem spavati u jedanaest. Vikendom spavam duže.",
+   "translations": {
+    "de": "Jeden Tag stehe ich um sieben Uhr auf. Zuerst dusche ich, dann frühstücke ich. Zum Frühstück esse ich Brot mit Käse und trinke Kaffee. Um acht gehe ich zur Arbeit. Ich arbeite im Büro bis vier. Nach der Arbeit gehe ich einkaufen. Abends koche ich Abendessen und sehe fern. Manchmal lese ich ein Buch. Ich gehe um elf schlafen. Am Wochenende schlafe ich länger.",
+    "en": "Every day I get up at seven o'clock. First I take a shower, then I have breakfast. For breakfast I eat bread with cheese and drink coffee. At eight I go to work. I work in the office until four. After work I go shopping. In the evening I cook dinner and watch television. Sometimes I read a book. I go to sleep at eleven. On the weekend I sleep longer.",
+    "tr": "Her gün saat yedide kalkıyorum. Önce duş alıyorum, sonra kahvaltı yapıyorum. Kahvaltıda peynirli ekmek yiyorum ve kahve içiyorum. Sekizde işe gidiyorum. Ofiste dörde kadar çalışıyorum. İşten sonra alışverişe gidiyorum. Akşamları akşam yemeği pişiriyorum ve televizyon izliyorum. Bazen bir kitap okuyorum. Saat on birde uyumaya gidiyorum. Hafta sonunda daha uzun uyuyorum.",
+    "sv": "Varje dag går jag upp klockan sju. Först duschar jag, sedan äter jag frukost. Till frukost äter jag bröd med ost och dricker kaffe. Klockan åtta går jag till jobbet. Jag arbetar på kontoret till fyra. Efter jobbet går jag och handlar. På kvällen lagar jag middag och tittar på tv. Ibland läser jag en bok. Jag går och lägger mig klockan elva. På helgen sover jag längre.",
+    "nl": "Elke dag sta ik om zeven uur op. Eerst douche ik, daarna ontbijt ik. Bij het ontbijt eet ik brood met kaas en drink ik koffie. Om acht uur ga ik naar het werk. Ik werk op kantoor tot vier uur. Na het werk doe ik boodschappen. 's Avonds kook ik het avondeten en kijk ik televisie. Soms lees ik een boek. Ik ga om elf uur slapen. In het weekend slaap ik langer.",
+    "nb": "Hver dag står jeg opp klokka sju. Først dusjer jeg, så spiser jeg frokost. Til frokost spiser jeg brød med ost og drikker kaffe. Klokka åtte går jeg på jobb. Jeg arbeider på kontoret til fire. Etter jobben går jeg og handler. Om kvelden lager jeg middag og ser på tv. Noen ganger leser jeg en bok. Jeg legger meg klokka elleve. I helga sover jeg lenger.",
+    "da": "Hver dag står jeg op klokken syv. Først går jeg i bad, så spiser jeg morgenmad. Til morgenmad spiser jeg brød med ost og drikker kaffe. Klokken otte tager jeg på arbejde. Jeg arbejder på kontoret til klokken fire. Efter arbejdet handler jeg ind. Om aftenen laver jeg aftensmad og ser fjernsyn. Nogle gange læser jeg en bog. Jeg går i seng klokken elleve. I weekenden sover jeg længere.",
+    "fr": "Chaque jour, je me lève à sept heures. D'abord je me douche, puis je prends mon petit-déjeuner. Au petit-déjeuner, je mange du pain avec du fromage et je bois du café. À huit heures, je vais au travail. Je travaille au bureau jusqu'à seize heures. Après le travail, je fais les courses. Le soir, je prépare le dîner et je regarde la télévision. Parfois, je lis un livre. Je vais me coucher à onze heures. Le week-end, je dors plus longtemps."
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wann steht sie auf?",
+      "optionen": [
+       "um sieben",
+       "um acht",
+       "um elf"
+      ],
+      "richtig": "um sieben"
+     },
+     {
+      "frage": "Bis wann arbeitet sie?",
+      "optionen": [
+       "bis vier",
+       "bis acht",
+       "bis elf"
+      ],
+      "richtig": "bis vier"
+     },
+     {
+      "frage": "Was macht sie am Wochenende?",
+      "optionen": [
+       "länger schlafen",
+       "arbeiten",
+       "einkaufen"
+      ],
+      "richtig": "länger schlafen"
+     }
+    ],
+    "en": [
+     {
+      "frage": "When does she get up?",
+      "optionen": [
+       "at seven",
+       "at eight",
+       "at eleven"
+      ],
+      "richtig": "at seven"
+     },
+     {
+      "frage": "Until when does she work?",
+      "optionen": [
+       "until four",
+       "until eight",
+       "until eleven"
+      ],
+      "richtig": "until four"
+     },
+     {
+      "frage": "What does she do on the weekend?",
+      "optionen": [
+       "sleeps longer",
+       "to work",
+       "goes shopping"
+      ],
+      "richtig": "sleeps longer"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Saat kaçta kalkıyor?",
+      "optionen": [
+       "yedide",
+       "sekizde",
+       "on birde"
+      ],
+      "richtig": "yedide"
+     },
+     {
+      "frage": "Saat kaça kadar çalışıyor?",
+      "optionen": [
+       "dörde kadar",
+       "sekize kadar",
+       "on bire kadar"
+      ],
+      "richtig": "dörde kadar"
+     },
+     {
+      "frage": "Hafta sonunda ne yapıyor?",
+      "optionen": [
+       "daha uzun uyuyor",
+       "çalışmak",
+       "alışverişe gidiyor"
+      ],
+      "richtig": "daha uzun uyuyor"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "När går hon upp?",
+      "optionen": [
+       "klockan sju",
+       "klockan åtta",
+       "klockan elva"
+      ],
+      "richtig": "klockan sju"
+     },
+     {
+      "frage": "Till när arbetar hon?",
+      "optionen": [
+       "till fyra",
+       "till åtta",
+       "till elva"
+      ],
+      "richtig": "till fyra"
+     },
+     {
+      "frage": "Vad gör hon på helgen?",
+      "optionen": [
+       "sover längre",
+       "arbeta",
+       "går och handlar"
+      ],
+      "richtig": "sover längre"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Hoe laat staat ze op?",
+      "optionen": [
+       "om zeven uur",
+       "om acht uur",
+       "om elf uur"
+      ],
+      "richtig": "om zeven uur"
+     },
+     {
+      "frage": "Tot hoe laat werkt ze?",
+      "optionen": [
+       "tot vier uur",
+       "tot acht uur",
+       "tot elf uur"
+      ],
+      "richtig": "tot vier uur"
+     },
+     {
+      "frage": "Wat doet ze in het weekend?",
+      "optionen": [
+       "slaapt langer",
+       "werken",
+       "doet boodschappen"
+      ],
+      "richtig": "slaapt langer"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Når står hun opp?",
+      "optionen": [
+       "klokka sju",
+       "klokka åtte",
+       "klokka elleve"
+      ],
+      "richtig": "klokka sju"
+     },
+     {
+      "frage": "Til når arbeider hun?",
+      "optionen": [
+       "til fire",
+       "til åtte",
+       "til elleve"
+      ],
+      "richtig": "til fire"
+     },
+     {
+      "frage": "Hva gjør hun i helga?",
+      "optionen": [
+       "sover lenger",
+       "arbeide",
+       "går og handler"
+      ],
+      "richtig": "sover lenger"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvornår står hun op?",
+      "optionen": [
+       "klokken syv",
+       "klokken otte",
+       "klokken elleve"
+      ],
+      "richtig": "klokken syv"
+     },
+     {
+      "frage": "Til hvornår arbejder hun?",
+      "optionen": [
+       "til fire",
+       "til otte",
+       "til elleve"
+      ],
+      "richtig": "til fire"
+     },
+     {
+      "frage": "Hvad laver hun i weekenden?",
+      "optionen": [
+       "sover længere",
+       "at arbejde",
+       "handler ind"
+      ],
+      "richtig": "sover længere"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "À quelle heure se lève-t-elle ?",
+      "optionen": [
+       "à sept heures",
+       "à huit heures",
+       "à onze heures"
+      ],
+      "richtig": "à sept heures"
+     },
+     {
+      "frage": "Jusqu'à quelle heure travaille-t-elle ?",
+      "optionen": [
+       "jusqu'à seize heures",
+       "jusqu'à vingt heures",
+       "jusqu'à vingt-trois heures"
+      ],
+      "richtig": "jusqu'à seize heures"
+     },
+     {
+      "frage": "Que fait-elle le week-end ?",
+      "optionen": [
+       "dormir plus longtemps",
+       "travailler",
+       "faire des courses"
+      ],
+      "richtig": "dormir plus longtemps"
+     }
+    ]
+   },
+   "audio": "web/audio/g05.mp3"
+  },
+  {
+   "id": "grad",
+   "title": "U gradu",
+   "level_hint": "praepositionen",
+   "stage": {
+    "de": "Mittel",
+    "en": "Medium",
+    "tr": "Orta",
+    "sv": "Medel",
+    "nl": "Gemiddeld",
+    "nb": "Middels",
+    "da": "Middel",
+    "fr": "Moyen"
+   },
+   "bs": "Ajdin i Amina su u Sarajevu. Hotel je u centru grada, pored rijeke. Ujutro idu na Baščaršiju. Tamo piju kahvu i jedu ćevape. Poslije ručka šetaju preko starog mosta. Amina kupuje poklon za nanu u maloj radnji. Navečer sjede na balkonu i gledaju grad. „Sarajevo je lijep grad“, kaže Amina.",
+   "translations": {
+    "de": "Ajdin und Amina sind in Sarajevo. Das Hotel ist im Zentrum der Stadt, neben dem Fluss. Morgens gehen sie zur Baščaršija. Dort trinken sie Kaffee und essen Ćevapi. Nach dem Mittagessen spazieren sie über die alte Brücke. Amina kauft in einem kleinen Laden ein Geschenk für die Oma. Abends sitzen sie auf dem Balkon und schauen auf die Stadt. „Sarajevo ist eine schöne Stadt“, sagt Amina.",
+    "en": "Ajdin and Amina are in Sarajevo. The hotel is in the center of the city, next to the river. In the morning they walk to Baščaršija. There they drink coffee and eat ćevapi. After lunch they stroll across the old bridge. Amina buys a present for her grandma in a small shop. In the evening they sit on the balcony and look out over the city. “Sarajevo is a beautiful city”, Amina says.",
+    "tr": "Ajdin ve Amina Saraybosna'da. Otel şehrin merkezinde, nehrin yanında. Sabahları Baščaršija'ya gidiyorlar. Orada kahve içiyor ve ćevapi yiyorlar. Öğle yemeğinden sonra eski köprüde geziniyorlar. Amina küçük bir dükkânda ninesi için hediye alıyor. Akşamları balkonda oturup şehri seyrediyorlar. “Saraybosna güzel bir şehir”, diyor Amina.",
+    "sv": "Ajdin och Amina är i Sarajevo. Hotellet ligger i stadens centrum, bredvid floden. På morgonen går de till Baščaršija. Där dricker de kaffe och äter ćevapi. Efter lunchen promenerar de över den gamla bron. Amina köper en present till sin mormor i en liten butik. På kvällen sitter de på balkongen och ser ut över staden. ”Sarajevo är en vacker stad”, säger Amina.",
+    "nl": "Ajdin en Amina zijn in Sarajevo. Het hotel staat in het centrum van de stad, naast de rivier. 's Ochtends gaan ze naar de Baščaršija. Daar drinken ze koffie en eten ze ćevapi. Na de lunch wandelen ze over de oude brug. Amina koopt in een klein winkeltje een cadeau voor oma. 's Avonds zitten ze op het balkon en kijken ze uit over de stad. ‘Sarajevo is een mooie stad’, zegt Amina.",
+    "nb": "Ajdin og Amina er i Sarajevo. Hotellet ligger i sentrum av byen, ved elva. Om morgenen går de til Baščaršija. Der drikker de kaffe og spiser ćevapi. Etter lunsjen går de en tur over den gamle brua. Amina kjøper en gave til bestemoren sin i en liten butikk. Om kvelden sitter de på balkongen og ser utover byen. «Sarajevo er en vakker by», sier Amina.",
+    "da": "Ajdin og Amina er i Sarajevo. Hotellet ligger i byens centrum, ved floden. Om morgenen går de til Baščaršija. Der drikker de kaffe og spiser ćevapi. Efter frokosten går de en tur over den gamle bro. Amina køber en gave til sin bedstemor i en lille butik. Om aftenen sidder de på altanen og ser ud over byen. »Sarajevo er en smuk by«, siger Amina.",
+    "fr": "Ajdin et Amina sont à Sarajevo. L'hôtel se trouve au centre de la ville, au bord de la rivière. Le matin, ils vont à Baščaršija. Là, ils boivent du café et mangent des ćevapi. Après le déjeuner, ils se promènent sur le vieux pont. Dans une petite boutique, Amina achète un cadeau pour sa grand-mère. Le soir, ils sont assis sur le balcon et regardent la ville. « Sarajevo est une belle ville », dit Amina."
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wo ist das Hotel?",
+      "optionen": [
+       "im Zentrum, neben dem Fluss",
+       "auf dem Berg",
+       "am Bahnhof"
+      ],
+      "richtig": "im Zentrum, neben dem Fluss"
+     },
+     {
+      "frage": "Was essen sie auf der Baščaršija?",
+      "optionen": [
+       "Ćevapi",
+       "Pita",
+       "Suppe"
+      ],
+      "richtig": "Ćevapi"
+     },
+     {
+      "frage": "Für wen ist das Geschenk?",
+      "optionen": [
+       "für die Oma",
+       "für den Bruder",
+       "für Ajdin"
+      ],
+      "richtig": "für die Oma"
+     }
+    ],
+    "en": [
+     {
+      "frage": "Where is the hotel?",
+      "optionen": [
+       "in the center, next to the river",
+       "on the mountain",
+       "at the station"
+      ],
+      "richtig": "in the center, next to the river"
+     },
+     {
+      "frage": "What do they eat at Baščaršija?",
+      "optionen": [
+       "ćevapi (grilled minced meat rolls)",
+       "Pita",
+       "soup"
+      ],
+      "richtig": "ćevapi (grilled minced meat rolls)"
+     },
+     {
+      "frage": "Who is the present for?",
+      "optionen": [
+       "for grandma",
+       "for her brother",
+       "for Ajdin"
+      ],
+      "richtig": "for grandma"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Otel nerede?",
+      "optionen": [
+       "merkezde, nehrin yanında",
+       "dağda",
+       "istasyonda"
+      ],
+      "richtig": "merkezde, nehrin yanında"
+     },
+     {
+      "frage": "Baščaršija'da ne yiyorlar?",
+      "optionen": [
+       "ćevapi (küçük köfteler)",
+       "Pita",
+       "çorba"
+      ],
+      "richtig": "ćevapi (küçük köfteler)"
+     },
+     {
+      "frage": "Hediye kimin için?",
+      "optionen": [
+       "ninesi için",
+       "erkek kardeşi için",
+       "Ajdin için"
+      ],
+      "richtig": "ninesi için"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Var ligger hotellet?",
+      "optionen": [
+       "i centrum, bredvid floden",
+       "på berget",
+       "vid stationen"
+      ],
+      "richtig": "i centrum, bredvid floden"
+     },
+     {
+      "frage": "Vad äter de på Baščaršija?",
+      "optionen": [
+       "ćevapi (grillade köttkorvar)",
+       "Pita",
+       "soppa"
+      ],
+      "richtig": "ćevapi (grillade köttkorvar)"
+     },
+     {
+      "frage": "Vem är presenten till?",
+      "optionen": [
+       "till mormor",
+       "till brodern",
+       "till Ajdin"
+      ],
+      "richtig": "till mormor"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Waar is het hotel?",
+      "optionen": [
+       "in het centrum, naast de rivier",
+       "op de berg",
+       "bij het station"
+      ],
+      "richtig": "in het centrum, naast de rivier"
+     },
+     {
+      "frage": "Wat eten ze op de Baščaršija?",
+      "optionen": [
+       "ćevapi (gegrilde gehaktrolletjes)",
+       "Pita",
+       "soep"
+      ],
+      "richtig": "ćevapi (gegrilde gehaktrolletjes)"
+     },
+     {
+      "frage": "Voor wie is het cadeau?",
+      "optionen": [
+       "voor oma",
+       "voor de broer",
+       "voor Ajdin"
+      ],
+      "richtig": "voor oma"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvor ligger hotellet?",
+      "optionen": [
+       "i sentrum, ved elva",
+       "på fjellet",
+       "ved stasjonen"
+      ],
+      "richtig": "i sentrum, ved elva"
+     },
+     {
+      "frage": "Hva spiser de på Baščaršija?",
+      "optionen": [
+       "ćevapi (grillede kjøttpølser)",
+       "Pita",
+       "suppe"
+      ],
+      "richtig": "ćevapi (grillede kjøttpølser)"
+     },
+     {
+      "frage": "Hvem er gaven til?",
+      "optionen": [
+       "til bestemor",
+       "til broren",
+       "til Ajdin"
+      ],
+      "richtig": "til bestemor"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvor ligger hotellet?",
+      "optionen": [
+       "i centrum, ved floden",
+       "på bjerget",
+       "ved stationen"
+      ],
+      "richtig": "i centrum, ved floden"
+     },
+     {
+      "frage": "Hvad spiser de på Baščaršija?",
+      "optionen": [
+       "ćevapi (grillede kødpølser)",
+       "Pita",
+       "suppe"
+      ],
+      "richtig": "ćevapi (grillede kødpølser)"
+     },
+     {
+      "frage": "Hvem er gaven til?",
+      "optionen": [
+       "til bedstemor",
+       "til broren",
+       "til Ajdin"
+      ],
+      "richtig": "til bedstemor"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Où se trouve l'hôtel ?",
+      "optionen": [
+       "au centre, au bord de la rivière",
+       "sur la montagne",
+       "à la gare"
+      ],
+      "richtig": "au centre, au bord de la rivière"
+     },
+     {
+      "frage": "Que mangent-ils à Baščaršija ?",
+      "optionen": [
+       "ćevapi (petites saucisses de viande grillée)",
+       "Pita",
+       "soupe"
+      ],
+      "richtig": "ćevapi (petites saucisses de viande grillée)"
+     },
+     {
+      "frage": "Pour qui est le cadeau ?",
+      "optionen": [
+       "pour grand-mère",
+       "pour le frère",
+       "pour Ajdin"
+      ],
+      "richtig": "pour grand-mère"
+     }
+    ]
+   },
+   "audio": "web/audio/g06.mp3"
+  },
+  {
+   "id": "jucer",
+   "title": "Jučer",
+   "level_hint": "vergangenheit",
+   "stage": {
+    "de": "Mittel",
+    "en": "Medium",
+    "tr": "Orta",
+    "sv": "Medel",
+    "nl": "Gemiddeld",
+    "nb": "Middels",
+    "da": "Middel",
+    "fr": "Moyen"
+   },
+   "bs": "Jučer je bio lijep dan. Ustala sam rano i otišla na pijacu. Kupila sam voće i cvijeće. Poslije sam bila kod nane. Pile smo kahvu i pričale o porodici. Nana mi je pokazala stare slike. Navečer je došao Ajdin i zajedno smo kuhali večeru. Bio je to dobar dan.",
+   "translations": {
+    "de": "Gestern war ein schöner Tag. Ich bin früh aufgestanden und auf den Markt gegangen. Ich habe Obst und Blumen gekauft. Danach war ich bei der Oma. Wir haben Kaffee getrunken und über die Familie geredet. Die Oma hat mir alte Bilder gezeigt. Abends kam Ajdin und wir haben zusammen Abendessen gekocht. Das war ein guter Tag.",
+    "en": "Yesterday was a beautiful day. I got up early and went to the market. I bought fruit and flowers. After that I was at my grandma's. We drank coffee and talked about the family. Grandma showed me old photos. In the evening Ajdin came and we cooked dinner together. That was a good day.",
+    "tr": "Dün güzel bir gündü. Erken kalktım ve pazara gittim. Meyve ve çiçek aldım. Sonra ninemdeydim. Kahve içtik ve aile hakkında konuştuk. Ninem bana eski fotoğraflar gösterdi. Akşam Ajdin geldi ve birlikte akşam yemeği pişirdik. Güzel bir gündü.",
+    "sv": "I går var en fin dag. Jag gick upp tidigt och gick till marknaden. Jag köpte frukt och blommor. Sedan var jag hos mormor. Vi drack kaffe och pratade om familjen. Mormor visade mig gamla foton. På kvällen kom Ajdin och vi lagade middag tillsammans. Det var en bra dag.",
+    "nl": "Gisteren was een mooie dag. Ik ben vroeg opgestaan en naar de markt gegaan. Ik heb fruit en bloemen gekocht. Daarna was ik bij oma. We hebben koffie gedronken en over de familie gepraat. Oma liet me oude foto's zien. 's Avonds kwam Ajdin en we hebben samen het avondeten gekookt. Dat was een goede dag.",
+    "nb": "I går var en fin dag. Jeg sto opp tidlig og gikk på markedet. Jeg kjøpte frukt og blomster. Etterpå var jeg hos bestemor. Vi drakk kaffe og snakket om familien. Bestemor viste meg gamle bilder. Om kvelden kom Ajdin, og vi lagde middag sammen. Det var en god dag.",
+    "da": "I går var en dejlig dag. Jeg stod tidligt op og gik på markedet. Jeg købte frugt og blomster. Bagefter var jeg hos bedstemor. Vi drak kaffe og talte om familien. Bedstemor viste mig gamle billeder. Om aftenen kom Ajdin, og vi lavede aftensmad sammen. Det var en god dag.",
+    "fr": "Hier était une belle journée. Je me suis levée tôt et je suis allée au marché. J'ai acheté des fruits et des fleurs. Ensuite, je suis allée chez ma grand-mère. Nous avons bu du café et parlé de la famille. Grand-mère m'a montré de vieilles photos. Le soir, Ajdin est arrivé et nous avons préparé le dîner ensemble. C'était une bonne journée."
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wo war sie nach dem Markt?",
+      "optionen": [
+       "bei der Oma",
+       "bei der Arbeit",
+       "zu Hause"
+      ],
+      "richtig": "bei der Oma"
+     },
+     {
+      "frage": "Was hat die Oma gezeigt?",
+      "optionen": [
+       "alte Bilder",
+       "den Garten",
+       "ein Buch"
+      ],
+      "richtig": "alte Bilder"
+     },
+     {
+      "frage": "Wer hat abends gekocht?",
+      "optionen": [
+       "Amina und Ajdin zusammen",
+       "nur die Oma",
+       "niemand"
+      ],
+      "richtig": "Amina und Ajdin zusammen"
+     }
+    ],
+    "en": [
+     {
+      "frage": "Where was she after the market?",
+      "optionen": [
+       "at grandma's",
+       "at work",
+       "at home"
+      ],
+      "richtig": "at grandma's"
+     },
+     {
+      "frage": "What did grandma show her?",
+      "optionen": [
+       "old photos",
+       "the garden",
+       "a book"
+      ],
+      "richtig": "old photos"
+     },
+     {
+      "frage": "Who cooked in the evening?",
+      "optionen": [
+       "Amina and Ajdin together",
+       "only grandma",
+       "nobody"
+      ],
+      "richtig": "Amina and Ajdin together"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Pazardan sonra neredeydi?",
+      "optionen": [
+       "ninemde",
+       "işte",
+       "evde"
+      ],
+      "richtig": "ninemde"
+     },
+     {
+      "frage": "Ninesi ne gösterdi?",
+      "optionen": [
+       "eski fotoğraflar",
+       "bahçeyi",
+       "bir kitap"
+      ],
+      "richtig": "eski fotoğraflar"
+     },
+     {
+      "frage": "Akşam kim yemek pişirdi?",
+      "optionen": [
+       "Amina ve Ajdin birlikte",
+       "sadece ninesi",
+       "hiç kimse"
+      ],
+      "richtig": "Amina ve Ajdin birlikte"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Var var hon efter marknaden?",
+      "optionen": [
+       "hos mormor",
+       "på jobbet",
+       "hemma"
+      ],
+      "richtig": "hos mormor"
+     },
+     {
+      "frage": "Vad visade mormor?",
+      "optionen": [
+       "gamla foton",
+       "trädgården",
+       "en bok"
+      ],
+      "richtig": "gamla foton"
+     },
+     {
+      "frage": "Vem lagade mat på kvällen?",
+      "optionen": [
+       "Amina och Ajdin tillsammans",
+       "bara mormor",
+       "ingen"
+      ],
+      "richtig": "Amina och Ajdin tillsammans"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Waar was ze na de markt?",
+      "optionen": [
+       "bij oma",
+       "op het werk",
+       "thuis"
+      ],
+      "richtig": "bij oma"
+     },
+     {
+      "frage": "Wat liet oma zien?",
+      "optionen": [
+       "oude foto's",
+       "de tuin",
+       "een boek"
+      ],
+      "richtig": "oude foto's"
+     },
+     {
+      "frage": "Wie kookte er 's avonds?",
+      "optionen": [
+       "Amina en Ajdin samen",
+       "alleen oma",
+       "niemand"
+      ],
+      "richtig": "Amina en Ajdin samen"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvor var hun etter markedet?",
+      "optionen": [
+       "hos bestemor",
+       "på jobben",
+       "hjemme"
+      ],
+      "richtig": "hos bestemor"
+     },
+     {
+      "frage": "Hva viste bestemor?",
+      "optionen": [
+       "gamle bilder",
+       "hagen",
+       "en bok"
+      ],
+      "richtig": "gamle bilder"
+     },
+     {
+      "frage": "Hvem lagde mat om kvelden?",
+      "optionen": [
+       "Amina og Ajdin sammen",
+       "bare bestemor",
+       "ingen"
+      ],
+      "richtig": "Amina og Ajdin sammen"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvor var hun efter markedet?",
+      "optionen": [
+       "hos bedstemor",
+       "på arbejdet",
+       "hjemme"
+      ],
+      "richtig": "hos bedstemor"
+     },
+     {
+      "frage": "Hvad viste bedstemor?",
+      "optionen": [
+       "gamle billeder",
+       "haven",
+       "en bog"
+      ],
+      "richtig": "gamle billeder"
+     },
+     {
+      "frage": "Hvem lavede mad om aftenen?",
+      "optionen": [
+       "Amina og Ajdin sammen",
+       "kun bedstemor",
+       "ingen"
+      ],
+      "richtig": "Amina og Ajdin sammen"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Où était-elle après le marché ?",
+      "optionen": [
+       "chez grand-mère",
+       "au travail",
+       "à la maison"
+      ],
+      "richtig": "chez grand-mère"
+     },
+     {
+      "frage": "Qu'est-ce que grand-mère a montré ?",
+      "optionen": [
+       "de vieilles photos",
+       "le jardin",
+       "un livre"
+      ],
+      "richtig": "de vieilles photos"
+     },
+     {
+      "frage": "Qui a cuisiné le soir ?",
+      "optionen": [
+       "Amina et Ajdin ensemble",
+       "seulement grand-mère",
+       "personne (négation)"
+      ],
+      "richtig": "Amina et Ajdin ensemble"
+     }
+    ]
+   },
+   "audio": "web/audio/g07.mp3"
+  },
+  {
+   "id": "put",
+   "title": "Put u Bosnu",
+   "level_hint": "reisen",
+   "stage": {
+    "de": "Mittel",
+    "en": "Medium",
+    "tr": "Orta",
+    "sv": "Medel",
+    "nl": "Gemiddeld",
+    "nb": "Middels",
+    "da": "Middel",
+    "fr": "Moyen"
+   },
+   "bs": "Sljedeće sedmice idemo u Bosnu. Putovat ćemo autom jer je jeftinije nego avionom. Vožnja traje oko dvanaest sati. Prvo ćemo prenoćiti u Zagrebu. Onda ćemo voziti do Sarajeva. U Sarajevu ćemo ostati tri dana kod amidže. Poslije toga idemo na more. Amina se već raduje. Nazvat ćemo nanu kad stignemo.",
+   "translations": {
+    "de": "Nächste Woche fahren wir nach Bosnien. Wir werden mit dem Auto reisen, weil es billiger ist als mit dem Flugzeug. Die Fahrt dauert etwa zwölf Stunden. Zuerst werden wir in Zagreb übernachten. Dann fahren wir bis Sarajevo. In Sarajevo bleiben wir drei Tage beim Onkel. Danach fahren wir ans Meer. Amina freut sich schon. Wir rufen die Oma an, wenn wir ankommen.",
+    "en": "Next week we are going to Bosnia. We will travel by car because it is cheaper than flying. The drive takes about twelve hours. First we will stay overnight in Zagreb. Then we drive on to Sarajevo. In Sarajevo we will stay three days at my uncle's. After that we drive to the sea. Amina is already looking forward to it. We will call grandma when we arrive.",
+    "tr": "Gelecek hafta Bosna'ya gidiyoruz. Arabayla seyahat edeceğiz çünkü uçaktan daha ucuz. Yolculuk yaklaşık on iki saat sürüyor. Önce Zagreb'de geceleyeceğiz. Sonra Saraybosna'ya kadar gideceğiz. Saraybosna'da üç gün amcamda kalacağız. Ondan sonra denize gideceğiz. Amina şimdiden seviniyor. Varınca ninemi arayacağız.",
+    "sv": "Nästa vecka åker vi till Bosnien. Vi ska resa med bil för att det är billigare än att flyga. Resan tar ungefär tolv timmar. Först ska vi övernatta i Zagreb. Sedan kör vi vidare till Sarajevo. I Sarajevo stannar vi tre dagar hos min farbror. Därefter åker vi till havet. Amina ser redan fram emot det. Vi ringer mormor när vi kommer fram.",
+    "nl": "Volgende week gaan we naar Bosnië. We zullen met de auto reizen, omdat het goedkoper is dan met het vliegtuig. De rit duurt ongeveer twaalf uur. Eerst zullen we in Zagreb overnachten. Daarna rijden we door naar Sarajevo. In Sarajevo blijven we drie dagen bij mijn oom. Daarna gaan we naar zee. Amina verheugt zich er al op. We bellen oma als we aankomen.",
+    "nb": "Neste uke drar vi til Bosnia. Vi skal reise med bil fordi det er billigere enn med fly. Turen tar omtrent tolv timer. Først skal vi overnatte i Zagreb. Så kjører vi videre til Sarajevo. I Sarajevo blir vi tre dager hos onkelen min. Etterpå drar vi til havet. Amina gleder seg allerede. Vi ringer bestemor når vi kommer fram.",
+    "da": "I næste uge tager vi til Bosnien. Vi rejser med bil, fordi det er billigere end med fly. Turen tager omkring tolv timer. Først overnatter vi i Zagreb. Derefter kører vi videre til Sarajevo. I Sarajevo bliver vi tre dage hos min onkel. Bagefter tager vi til havet. Amina glæder sig allerede. Vi ringer til bedstemor, når vi kommer frem.",
+    "fr": "La semaine prochaine, nous partons en Bosnie. Nous voyagerons en voiture, parce que c'est moins cher qu'en avion. Le trajet dure environ douze heures. D'abord, nous passerons la nuit à Zagreb. Ensuite, nous roulerons jusqu'à Sarajevo. À Sarajevo, nous resterons trois jours chez l'oncle. Après, nous irons à la mer. Amina s'en réjouit déjà. Nous appellerons grand-mère quand nous arriverons."
+   },
+   "glossary": {
+    "de": {
+     "nego": "als (Vergleich)",
+     "kad": "wenn / als"
+    },
+    "en": {
+     "nego": "than (comparison)",
+     "kad": "when"
+    },
+    "tr": {
+     "nego": "-den (karşılaştırma)",
+     "kad": "-dığı zaman"
+    },
+    "sv": {
+     "nego": "än (vid jämförelse)",
+     "kad": "när"
+    },
+    "nl": {
+     "nego": "dan (bij vergelijking)",
+     "kad": "wanneer"
+    },
+    "nb": {
+     "nego": "enn (ved sammenligning)",
+     "kad": "når"
+    },
+    "da": {
+     "nego": "end (ved sammenligning)",
+     "kad": "når"
+    },
+    "fr": {
+     "nego": "que (comparaison)",
+     "kad": "quand"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Womit reisen sie?",
+      "optionen": [
+       "mit dem Auto",
+       "mit dem Flugzeug",
+       "mit dem Bus"
+      ],
+      "richtig": "mit dem Auto"
+     },
+     {
+      "frage": "Wie lange dauert die Fahrt?",
+      "optionen": [
+       "etwa 12 Stunden",
+       "etwa 3 Stunden",
+       "2 Tage"
+      ],
+      "richtig": "etwa 12 Stunden"
+     },
+     {
+      "frage": "Bei wem bleiben sie in Sarajevo?",
+      "optionen": [
+       "beim Onkel",
+       "bei der Oma",
+       "im Hotel"
+      ],
+      "richtig": "beim Onkel"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What are they traveling by?",
+      "optionen": [
+       "by car",
+       "by plane",
+       "by bus"
+      ],
+      "richtig": "by car"
+     },
+     {
+      "frage": "How long does the ride take?",
+      "optionen": [
+       "about 12 hours",
+       "about 3 hours",
+       "2 days"
+      ],
+      "richtig": "about 12 hours"
+     },
+     {
+      "frage": "Who are they staying with in Sarajevo?",
+      "optionen": [
+       "at her uncle's",
+       "at grandma's",
+       "in a hotel"
+      ],
+      "richtig": "at her uncle's"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Neyle seyahat ediyorlar?",
+      "optionen": [
+       "arabayla",
+       "uçakla",
+       "otobüsle"
+      ],
+      "richtig": "arabayla"
+     },
+     {
+      "frage": "Yolculuk ne kadar sürüyor?",
+      "optionen": [
+       "yaklaşık 12 saat",
+       "yaklaşık 3 saat",
+       "2 gün"
+      ],
+      "richtig": "yaklaşık 12 saat"
+     },
+     {
+      "frage": "Saraybosna'da kimde kalıyorlar?",
+      "optionen": [
+       "amcasında",
+       "ninemde",
+       "otelde"
+      ],
+      "richtig": "amcasında"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vad reser de med?",
+      "optionen": [
+       "med bil",
+       "med flyg",
+       "med buss"
+      ],
+      "richtig": "med bil"
+     },
+     {
+      "frage": "Hur lång tid tar resan?",
+      "optionen": [
+       "ungefär 12 timmar",
+       "ungefär 3 timmar",
+       "2 dagar"
+      ],
+      "richtig": "ungefär 12 timmar"
+     },
+     {
+      "frage": "Hos vem bor de i Sarajevo?",
+      "optionen": [
+       "hos farbrorn",
+       "hos mormor",
+       "på hotell"
+      ],
+      "richtig": "hos farbrorn"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Waarmee reizen ze?",
+      "optionen": [
+       "met de auto",
+       "met het vliegtuig",
+       "met de bus"
+      ],
+      "richtig": "met de auto"
+     },
+     {
+      "frage": "Hoe lang duurt de rit?",
+      "optionen": [
+       "ongeveer 12 uur",
+       "ongeveer 3 uur",
+       "2 dagen"
+      ],
+      "richtig": "ongeveer 12 uur"
+     },
+     {
+      "frage": "Bij wie logeren ze in Sarajevo?",
+      "optionen": [
+       "bij de oom",
+       "bij oma",
+       "in een hotel"
+      ],
+      "richtig": "bij de oom"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hva reiser de med?",
+      "optionen": [
+       "med bil",
+       "med fly",
+       "med buss"
+      ],
+      "richtig": "med bil"
+     },
+     {
+      "frage": "Hvor lang tid tar turen?",
+      "optionen": [
+       "omtrent 12 timer",
+       "omtrent 3 timer",
+       "2 dager"
+      ],
+      "richtig": "omtrent 12 timer"
+     },
+     {
+      "frage": "Hos hvem bor de i Sarajevo?",
+      "optionen": [
+       "hos onkelen",
+       "hos bestemor",
+       "på hotell"
+      ],
+      "richtig": "hos onkelen"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvad rejser de med?",
+      "optionen": [
+       "med bil",
+       "med fly",
+       "med bus"
+      ],
+      "richtig": "med bil"
+     },
+     {
+      "frage": "Hvor lang tid tager turen?",
+      "optionen": [
+       "omkring 12 timer",
+       "omkring 3 timer",
+       "2 dage"
+      ],
+      "richtig": "omkring 12 timer"
+     },
+     {
+      "frage": "Hos hvem bor de i Sarajevo?",
+      "optionen": [
+       "hos onklen",
+       "hos bedstemor",
+       "på hotel"
+      ],
+      "richtig": "hos onklen"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Comment voyagent-ils ?",
+      "optionen": [
+       "en voiture",
+       "en avion",
+       "en bus"
+      ],
+      "richtig": "en voiture"
+     },
+     {
+      "frage": "Combien de temps dure le trajet ?",
+      "optionen": [
+       "environ 12 heures",
+       "environ 3 heures",
+       "2 jours"
+      ],
+      "richtig": "environ 12 heures"
+     },
+     {
+      "frage": "Chez qui logent-ils à Sarajevo ?",
+      "optionen": [
+       "chez l'oncle",
+       "chez grand-mère",
+       "à l'hôtel"
+      ],
+      "richtig": "chez l'oncle"
+     }
+    ]
+   },
+   "audio": "web/audio/g08.mp3"
+  },
+  {
+   "id": "pismo",
+   "title": "Pismo nani",
+   "level_hint": "zukunft",
+   "stage": {
+    "de": "Fortgeschritten",
+    "en": "Advanced",
+    "tr": "İleri",
+    "sv": "Avancerad",
+    "nl": "Gevorderd",
+    "nb": "Viderekommen",
+    "da": "Øvet",
+    "fr": "Avancé"
+   },
+   "bs": "Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. Kolege su ljubazne, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. Navečer učim bosanski, a vikendom idemo u prirodu. Mislim da ćemo u augustu doći kod tebe. Nadam se da ćeš nam skuhati pitu! Pozdravi dedu. Volim te, tvoja Amina.",
+   "translations": {
+    "de": "Liebe Oma, wie geht es dir? Uns geht es gut. Letzte Woche habe ich eine neue Arbeit in einer Firma im Stadtzentrum begonnen. Die Kollegen sind freundlich, aber ich verstehe noch nicht alles, weil sie schnell sprechen. Ajdin sagt, dass ich es lernen werde. Abends lerne ich Bosnisch, und am Wochenende gehen wir in die Natur. Ich denke, dass wir im August zu dir kommen. Ich hoffe, dass du uns eine Pita kochst! Grüß den Opa. Ich liebe dich, deine Amina.",
+    "en": "Dear grandma, how are you? We are doing well. Last week I started a new job at a company in the city center. My colleagues are friendly, but I do not understand everything yet because they speak fast. Ajdin says that I will learn it. In the evenings I study Bosnian, and on the weekend we go out into nature. I think that we will come to see you in August. I hope you will make us a pita! Say hello to grandpa. I love you, your Amina.",
+    "tr": "Sevgili ninem, nasılsın? Biz iyiyiz. Geçen hafta şehir merkezindeki bir şirkette yeni bir işe başladım. İş arkadaşları cana yakın ama hızlı konuştukları için henüz her şeyi anlamıyorum. Ajdin öğreneceğimi söylüyor. Akşamları Boşnakça öğreniyorum, hafta sonları da doğaya gidiyoruz. Sanırım ağustosta sana geliriz. Umarım bize pita yaparsın! Dedeme selam söyle. Seni seviyorum, Amina'n.",
+    "sv": "Kära mormor, hur mår du? Vi mår bra. Förra veckan började jag ett nytt jobb på ett företag i stadens centrum. Kollegerna är trevliga, men jag förstår inte allt än för att de pratar fort. Ajdin säger att jag kommer att lära mig. På kvällarna pluggar jag bosniska, och på helgen åker vi ut i naturen. Jag tror att vi kommer till dig i augusti. Jag hoppas att du gör en pita till oss! Hälsa morfar. Jag älskar dig, din Amina.",
+    "nl": "Lieve oma, hoe gaat het met je? Met ons gaat het goed. Vorige week ben ik begonnen aan een nieuwe baan bij een bedrijf in het centrum. De collega's zijn aardig, maar ik begrijp nog niet alles omdat ze snel praten. Ajdin zegt dat ik het wel zal leren. 's Avonds leer ik Bosnisch, en in het weekend gaan we de natuur in. Ik denk dat we in augustus naar je toe komen. Ik hoop dat je een pita voor ons maakt! Doe opa de groeten. Ik hou van je, je Amina.",
+    "nb": "Kjære bestemor, hvordan går det med deg? Det går bra med oss. Forrige uke begynte jeg i en ny jobb i et firma i sentrum. Kollegene er hyggelige, men jeg forstår ikke alt ennå fordi de snakker fort. Ajdin sier at jeg kommer til å lære det. Om kvelden lærer jeg bosnisk, og i helga drar vi ut i naturen. Jeg tror vi kommer til deg i august. Jeg håper du lager en pita til oss! Hils bestefar. Jeg er glad i deg. Din Amina.",
+    "da": "Kære bedstemor, hvordan går det med dig? Vi har det godt. I sidste uge begyndte jeg i et nyt job i et firma i centrum. Kollegerne er flinke, men jeg forstår ikke det hele endnu, fordi de taler hurtigt. Ajdin siger, at jeg nok skal lære det. Om aftenen lærer jeg bosnisk, og i weekenden tager vi ud i naturen. Jeg tror, at vi kommer til dig i august. Jeg håber, du laver en pita til os! Hils bedstefar. Jeg elsker dig, din Amina.",
+    "fr": "Chère grand-mère, comment vas-tu ? Nous, nous allons bien. La semaine dernière, j'ai commencé un nouveau travail dans une entreprise au centre-ville. Les collègues sont gentils, mais je ne comprends pas encore tout, parce qu'ils parlent vite. Ajdin dit que je vais l'apprendre. Le soir, j'apprends le bosnien, et le week-end nous allons dans la nature. Je pense que nous viendrons te voir en août. J'espère que tu nous feras une pita ! Embrasse grand-père. Je t'aime, ta Amina."
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Was hat Amina letzte Woche begonnen?",
+      "optionen": [
+       "eine neue Arbeit",
+       "einen Sprachkurs",
+       "eine Reise"
+      ],
+      "richtig": "eine neue Arbeit"
+     },
+     {
+      "frage": "Warum versteht sie nicht alles?",
+      "optionen": [
+       "die Kollegen sprechen schnell",
+       "sie ist müde",
+       "sie hört nicht zu"
+      ],
+      "richtig": "die Kollegen sprechen schnell"
+     },
+     {
+      "frage": "Wann wollen sie zur Oma kommen?",
+      "optionen": [
+       "im August",
+       "nächste Woche",
+       "im Winter"
+      ],
+      "richtig": "im August"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What did Amina start last week?",
+      "optionen": [
+       "a new job",
+       "a language course",
+       "a trip"
+      ],
+      "richtig": "a new job"
+     },
+     {
+      "frage": "Why does she not understand everything?",
+      "optionen": [
+       "her colleagues speak fast",
+       "she is tired",
+       "she is not listening"
+      ],
+      "richtig": "her colleagues speak fast"
+     },
+     {
+      "frage": "When do they want to visit grandma?",
+      "optionen": [
+       "in August",
+       "next week",
+       "in winter"
+      ],
+      "richtig": "in August"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Amina geçen hafta neye başladı?",
+      "optionen": [
+       "yeni bir iş",
+       "bir dil kursu",
+       "bir yolculuk"
+      ],
+      "richtig": "yeni bir iş"
+     },
+     {
+      "frage": "Neden her şeyi anlamıyor?",
+      "optionen": [
+       "iş arkadaşları hızlı konuşuyor",
+       "yorgun",
+       "dinlemiyor"
+      ],
+      "richtig": "iş arkadaşları hızlı konuşuyor"
+     },
+     {
+      "frage": "Nineye ne zaman gelmek istiyorlar?",
+      "optionen": [
+       "ağustosta",
+       "gelecek hafta",
+       "kışın"
+      ],
+      "richtig": "ağustosta"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vad började Amina med förra veckan?",
+      "optionen": [
+       "ett nytt jobb",
+       "en språkkurs",
+       "en resa"
+      ],
+      "richtig": "ett nytt jobb"
+     },
+     {
+      "frage": "Varför förstår hon inte allt?",
+      "optionen": [
+       "kollegerna pratar fort",
+       "hon är trött",
+       "hon lyssnar inte"
+      ],
+      "richtig": "kollegerna pratar fort"
+     },
+     {
+      "frage": "När vill de komma till mormor?",
+      "optionen": [
+       "i augusti",
+       "nästa vecka",
+       "på vintern"
+      ],
+      "richtig": "i augusti"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Waarmee is Amina vorige week begonnen?",
+      "optionen": [
+       "een nieuwe baan",
+       "een taalcursus",
+       "een reis"
+      ],
+      "richtig": "een nieuwe baan"
+     },
+     {
+      "frage": "Waarom begrijpt ze niet alles?",
+      "optionen": [
+       "de collega's praten snel",
+       "ze is moe",
+       "ze luistert niet"
+      ],
+      "richtig": "de collega's praten snel"
+     },
+     {
+      "frage": "Wanneer willen ze naar oma komen?",
+      "optionen": [
+       "in augustus",
+       "volgende week",
+       "in de winter"
+      ],
+      "richtig": "in augustus"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hva begynte Amina med forrige uke?",
+      "optionen": [
+       "en ny jobb",
+       "et språkkurs",
+       "en reise"
+      ],
+      "richtig": "en ny jobb"
+     },
+     {
+      "frage": "Hvorfor forstår hun ikke alt?",
+      "optionen": [
+       "kollegene snakker fort",
+       "hun er trøtt",
+       "hun hører ikke etter"
+      ],
+      "richtig": "kollegene snakker fort"
+     },
+     {
+      "frage": "Når vil de komme til bestemor?",
+      "optionen": [
+       "i august",
+       "neste uke",
+       "om vinteren"
+      ],
+      "richtig": "i august"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvad begyndte Amina på i sidste uge?",
+      "optionen": [
+       "et nyt job",
+       "et sprogkursus",
+       "en rejse"
+      ],
+      "richtig": "et nyt job"
+     },
+     {
+      "frage": "Hvorfor forstår hun ikke det hele?",
+      "optionen": [
+       "kollegerne taler hurtigt",
+       "hun er træt",
+       "hun lytter ikke"
+      ],
+      "richtig": "kollegerne taler hurtigt"
+     },
+     {
+      "frage": "Hvornår vil de komme til bedstemor?",
+      "optionen": [
+       "i august",
+       "i næste uge",
+       "om vinteren"
+      ],
+      "richtig": "i august"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Qu'est-ce qu'Amina a commencé la semaine dernière ?",
+      "optionen": [
+       "un nouveau travail",
+       "un cours de langue",
+       "un voyage"
+      ],
+      "richtig": "un nouveau travail"
+     },
+     {
+      "frage": "Pourquoi ne comprend-elle pas tout ?",
+      "optionen": [
+       "les collègues parlent vite",
+       "elle est fatiguée",
+       "elle n'écoute pas"
+      ],
+      "richtig": "les collègues parlent vite"
+     },
+     {
+      "frage": "Quand veulent-ils venir chez grand-mère ?",
+      "optionen": [
+       "en août",
+       "la semaine prochaine",
+       "en hiver"
+      ],
+      "richtig": "en août"
+     }
+    ]
+   },
+   "audio": "web/audio/g09.mp3"
+  },
+  {
+   "id": "opcina",
+   "title": "Na općini",
+   "level_hint": "amt",
+   "stage": {
+    "de": "Amtssprache",
+    "en": "Administrative language",
+    "tr": "Resmî dil",
+    "sv": "Myndighetsspråk",
+    "nl": "Ambtelijke taal",
+    "nb": "Myndighetsspråk",
+    "da": "Myndighedssprog",
+    "fr": "Langue administrative"
+   },
+   "bs": "Amina treba potvrdu o prebivalištu. Ide na općinu u osam sati. Na šalteru pita: „Dobar dan, trebam potvrdu o prebivalištu. Koji dokumenti mi trebaju?“ Službenica kaže: „Trebate ličnu kartu i obrazac. Taksa je pet maraka.“ Amina popunjava obrazac i potpisuje. Onda plaća taksu. Potvrda je gotova za deset minuta. „Hvala Vam na pomoći“, kaže Amina.",
+   "translations": {
+    "de": "Amina braucht eine Wohnsitzbescheinigung. Sie geht um acht Uhr zum Gemeindeamt. Am Schalter fragt sie: „Guten Tag, ich brauche eine Wohnsitzbescheinigung. Welche Dokumente brauche ich?“ Die Beamtin sagt: „Sie brauchen den Personalausweis und das Formular. Die Gebühr beträgt fünf Mark.“ Amina füllt das Formular aus und unterschreibt. Dann zahlt sie die Gebühr. Die Bescheinigung ist in zehn Minuten fertig. „Danke für Ihre Hilfe“, sagt Amina.",
+    "en": "Amina needs a certificate of residence. She goes to the municipal office at eight o'clock. At the counter she asks: “Good day, I need a certificate of residence. Which documents do I need?” The clerk says: “You need your ID card and the form. The fee is five marks.” Amina fills in the form and signs it. Then she pays the fee. The certificate is ready in ten minutes. “Thank you for your help”, Amina says.",
+    "tr": "Amina'nın ikametgâh belgesine ihtiyacı var. Saat sekizde belediyeye gidiyor. Gişede soruyor: “İyi günler, ikametgâh belgesine ihtiyacım var. Hangi belgeler gerekiyor?” Memur hanım diyor ki: “Kimlik kartı ve form gerekiyor. Harç beş mark.” Amina formu dolduruyor ve imzalıyor. Sonra harcı ödüyor. Belge on dakikada hazır oluyor. “Yardımınız için teşekkürler”, diyor Amina.",
+    "sv": "Amina behöver ett intyg om var hon bor. Hon går till kommunkontoret klockan åtta. Vid luckan frågar hon: ”God dag, jag behöver ett intyg om var jag bor. Vilka handlingar behöver jag?” Handläggaren säger: ”Ni behöver id-kortet och blanketten. Avgiften är fem mark.” Amina fyller i blanketten och skriver under. Sedan betalar hon avgiften. Intyget är klart på tio minuter. ”Tack för er hjälp”, säger Amina.",
+    "nl": "Amina heeft een bewijs van woonplaats nodig. Ze gaat om acht uur naar het gemeentehuis. Aan het loket vraagt ze: ‘Goedendag, ik heb een bewijs van woonplaats nodig. Welke documenten heb ik nodig?’ De ambtenaar zegt: ‘U heeft de identiteitskaart en het formulier nodig. De leges zijn vijf mark.’ Amina vult het formulier in en tekent. Daarna betaalt ze de leges. Het bewijs is in tien minuten klaar. ‘Dank u voor uw hulp’, zegt Amina.",
+    "nb": "Amina trenger en bostedsattest. Hun går til kommunekontoret klokka åtte. I luka spør hun: «God dag, jeg trenger en bostedsattest. Hvilke dokumenter trenger jeg?» Saksbehandleren sier: «De trenger ID-kortet og skjemaet. Gebyret er fem mark.» Amina fyller ut skjemaet og skriver under. Så betaler hun gebyret. Attesten er ferdig på ti minutter. «Takk for hjelpen», sier Amina.",
+    "da": "Amina har brug for en bopælsattest. Hun går til borgerservice klokken otte. Ved skranken spørger hun: »Goddag, jeg har brug for en bopælsattest. Hvilke dokumenter har jeg brug for?« Sagsbehandleren siger: »De skal bruge ID-kortet og blanketten. Gebyret er fem mark.« Amina udfylder blanketten og skriver under. Så betaler hun gebyret. Attesten er færdig på ti minutter. »Tak for Deres hjælp«, siger Amina.",
+    "fr": "Amina a besoin d'une attestation de domicile. Elle va à la mairie à huit heures. Au guichet, elle demande : « Bonjour, j'ai besoin d'une attestation de domicile. Quels documents me faut-il ? » L'employée répond : « Il vous faut la carte d'identité et le formulaire. Les frais s'élèvent à cinq marks. » Amina remplit le formulaire et signe. Ensuite, elle paie les frais. L'attestation est prête en dix minutes. « Merci pour votre aide », dit Amina."
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Was braucht Amina?",
+      "optionen": [
+       "eine Wohnsitzbescheinigung",
+       "einen Reisepass",
+       "einen Führerschein"
+      ],
+      "richtig": "eine Wohnsitzbescheinigung"
+     },
+     {
+      "frage": "Welche Dokumente braucht sie?",
+      "optionen": [
+       "Personalausweis und Formular",
+       "Reisepass und Foto",
+       "nur Geld"
+      ],
+      "richtig": "Personalausweis und Formular"
+     },
+     {
+      "frage": "Wie hoch ist die Gebühr?",
+      "optionen": [
+       "fünf Mark",
+       "zehn Mark",
+       "keine"
+      ],
+      "richtig": "fünf Mark"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What does Amina need?",
+      "optionen": [
+       "a certificate of residence",
+       "a passport",
+       "a driver's license"
+      ],
+      "richtig": "a certificate of residence"
+     },
+     {
+      "frage": "Which documents does she need?",
+      "optionen": [
+       "ID card and form",
+       "passport and photo",
+       "only money"
+      ],
+      "richtig": "ID card and form"
+     },
+     {
+      "frage": "How much is the fee?",
+      "optionen": [
+       "five marks",
+       "ten marks",
+       "none"
+      ],
+      "richtig": "five marks"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Amina'nın neye ihtiyacı var?",
+      "optionen": [
+       "bir ikametgâh belgesi",
+       "bir pasaport",
+       "bir ehliyet"
+      ],
+      "richtig": "bir ikametgâh belgesi"
+     },
+     {
+      "frage": "Hangi belgelere ihtiyacı var?",
+      "optionen": [
+       "kimlik kartı ve form",
+       "pasaport ve fotoğraf",
+       "sadece para"
+      ],
+      "richtig": "kimlik kartı ve form"
+     },
+     {
+      "frage": "Harç ne kadar?",
+      "optionen": [
+       "beş mark",
+       "on mark",
+       "hiçbiri"
+      ],
+      "richtig": "beş mark"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vad behöver Amina?",
+      "optionen": [
+       "ett intyg om var hon bor",
+       "ett pass",
+       "ett körkort"
+      ],
+      "richtig": "ett intyg om var hon bor"
+     },
+     {
+      "frage": "Vilka handlingar behöver hon?",
+      "optionen": [
+       "id-kort och blankett",
+       "pass och foto",
+       "bara pengar"
+      ],
+      "richtig": "id-kort och blankett"
+     },
+     {
+      "frage": "Hur hög är avgiften?",
+      "optionen": [
+       "fem mark",
+       "tio mark",
+       "inga"
+      ],
+      "richtig": "fem mark"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Wat heeft Amina nodig?",
+      "optionen": [
+       "een bewijs van woonplaats",
+       "een paspoort",
+       "een rijbewijs"
+      ],
+      "richtig": "een bewijs van woonplaats"
+     },
+     {
+      "frage": "Welke documenten heeft ze nodig?",
+      "optionen": [
+       "identiteitskaart en formulier",
+       "paspoort en foto",
+       "alleen geld"
+      ],
+      "richtig": "identiteitskaart en formulier"
+     },
+     {
+      "frage": "Hoe hoog zijn de leges?",
+      "optionen": [
+       "vijf mark",
+       "tien mark",
+       "geen"
+      ],
+      "richtig": "vijf mark"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hva trenger Amina?",
+      "optionen": [
+       "en bostedsattest",
+       "et pass",
+       "et førerkort"
+      ],
+      "richtig": "en bostedsattest"
+     },
+     {
+      "frage": "Hvilke dokumenter trenger hun?",
+      "optionen": [
+       "ID-kort og skjema",
+       "pass og bilde",
+       "bare penger"
+      ],
+      "richtig": "ID-kort og skjema"
+     },
+     {
+      "frage": "Hvor høyt er gebyret?",
+      "optionen": [
+       "fem mark",
+       "ti mark",
+       "ingen"
+      ],
+      "richtig": "fem mark"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvad har Amina brug for?",
+      "optionen": [
+       "en bopælsattest",
+       "et pas",
+       "et kørekort"
+      ],
+      "richtig": "en bopælsattest"
+     },
+     {
+      "frage": "Hvilke dokumenter har hun brug for?",
+      "optionen": [
+       "ID-kort og blanket",
+       "pas og foto",
+       "kun penge"
+      ],
+      "richtig": "ID-kort og blanket"
+     },
+     {
+      "frage": "Hvor højt er gebyret?",
+      "optionen": [
+       "fem mark",
+       "ti mark",
+       "ingen"
+      ],
+      "richtig": "fem mark"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "De quoi Amina a-t-elle besoin ?",
+      "optionen": [
+       "une attestation de domicile",
+       "un passeport",
+       "un permis de conduire"
+      ],
+      "richtig": "une attestation de domicile"
+     },
+     {
+      "frage": "Quels documents lui faut-il ?",
+      "optionen": [
+       "une carte d'identité et un formulaire",
+       "un passeport et une photo",
+       "seulement de l'argent"
+      ],
+      "richtig": "une carte d'identité et un formulaire"
+     },
+     {
+      "frage": "À combien s'élèvent les frais ?",
+      "optionen": [
+       "cinq marks",
+       "dix marks",
+       "aucuns frais"
+      ],
+      "richtig": "cinq marks"
+     }
+    ]
+   },
+   "audio": "web/audio/g10.mp3"
+  },
+  {
+   "id": "kuca",
+   "title": "Kupujemo kuću",
+   "level_hint": "immobilien",
+   "stage": {
+    "de": "Amtssprache",
+    "en": "Administrative language",
+    "tr": "Resmî dil",
+    "sv": "Myndighetsspråk",
+    "nl": "Ambtelijke taal",
+    "nb": "Myndighetsspråk",
+    "da": "Myndighedssprog",
+    "fr": "Langue administrative"
+   },
+   "bs": "Ajdin i Amina žele kupiti kuću u Bosni. Agent za nekretnine im pokazuje staru kuću na selu. Kuća ima tri sobe, veliku kuhinju i baštu. Cijena je osamdeset hiljada maraka. Ajdin pita: „Je li kuća upisana u gruntovnicu?“ Agent kaže da jeste. Oni pregovaraju o cijeni i dogovaraju kaparu. Sljedeće sedmice potpisuju kupoprodajni ugovor kod notara.",
+   "translations": {
+    "de": "Ajdin und Amina möchten ein Haus in Bosnien kaufen. Der Immobilienmakler zeigt ihnen ein altes Haus auf dem Dorf. Das Haus hat drei Zimmer, eine große Küche und einen Garten. Der Preis beträgt achtzigtausend Mark. Ajdin fragt: „Ist das Haus im Grundbuch eingetragen?“ Der Makler sagt, ja. Sie verhandeln über den Preis und vereinbaren eine Anzahlung. Nächste Woche unterschreiben sie den Kaufvertrag beim Notar.",
+    "en": "Ajdin and Amina want to buy a house in Bosnia. The real estate agent shows them an old house in the village. The house has three rooms, a big kitchen and a garden. The price is eighty thousand marks. Ajdin asks: “Is the house entered in the land register?” The agent says yes. They negotiate the price and agree on a down payment. Next week they will sign the purchase contract at the notary.",
+    "tr": "Ajdin ve Amina Bosna'da bir ev almak istiyorlar. Emlakçı onlara köyde eski bir ev gösteriyor. Evin üç odası, büyük bir mutfağı ve bir bahçesi var. Fiyatı seksen bin mark. Ajdin soruyor: “Ev tapu siciline kayıtlı mı?” Emlakçı evet diyor. Fiyat üzerinde pazarlık ediyorlar ve bir kapora üzerinde anlaşıyorlar. Gelecek hafta satış sözleşmesini noterde imzalayacaklar.",
+    "sv": "Ajdin och Amina vill köpa ett hus i Bosnien. Mäklaren visar dem ett gammalt hus i byn. Huset har tre rum, ett stort kök och en trädgård. Priset är åttiotusen mark. Ajdin frågar: ”Är huset inskrivet i fastighetsregistret?” Mäklaren säger ja. De förhandlar om priset och kommer överens om en handpenning. Nästa vecka skriver de under köpekontraktet hos notarius publicus.",
+    "nl": "Ajdin en Amina willen een huis in Bosnië kopen. De makelaar laat hun een oud huis in het dorp zien. Het huis heeft drie kamers, een grote keuken en een tuin. De prijs is tachtigduizend mark. Ajdin vraagt: ‘Staat het huis in het kadaster?’ De makelaar zegt ja. Ze onderhandelen over de prijs en spreken een aanbetaling af. Volgende week tekenen ze de koopakte bij de notaris.",
+    "nb": "Ajdin og Amina vil kjøpe et hus i Bosnia. Eiendomsmegleren viser dem et gammelt hus i landsbyen. Huset har tre rom, et stort kjøkken og en hage. Prisen er åttitusen mark. Ajdin spør: «Er huset tinglyst i grunnboka?» Megleren sier ja. De forhandler om prisen og blir enige om et forskudd. Neste uke skriver de under kjøpekontrakten hos notarius publicus.",
+    "da": "Ajdin og Amina vil købe et hus i Bosnien. Ejendomsmægleren viser dem et gammelt hus i landsbyen. Huset har tre værelser, et stort køkken og en have. Prisen er firstusind mark. Ajdin spørger: »Er huset tinglyst i tingbogen?« Mægleren siger ja. De forhandler om prisen og aftaler en udbetaling. I næste uge skriver de købsaftalen under hos notaren.",
+    "fr": "Ajdin et Amina veulent acheter une maison en Bosnie. L'agent immobilier leur montre une vieille maison au village. La maison a trois pièces, une grande cuisine et un jardin. Le prix s'élève à quatre-vingt mille marks. Ajdin demande : « La maison est-elle inscrite au registre foncier ? » L'agent dit que oui. Ils négocient le prix et conviennent d'un acompte. La semaine prochaine, ils signeront l'acte de vente chez le notaire."
+   },
+   "glossary": {
+    "de": {
+     "li": "(Fragepartikel)"
+    },
+    "en": {
+     "li": "(question particle)"
+    },
+    "tr": {
+     "li": "(soru edatı)"
+    },
+    "sv": {
+     "li": "(frågepartikel)"
+    },
+    "nl": {
+     "li": "(vraagpartikel)"
+    },
+    "nb": {
+     "li": "(spørrepartikkel)"
+    },
+    "da": {
+     "li": "(spørgepartikel)"
+    },
+    "fr": {
+     "li": "(particule interrogative)"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wo steht das Haus?",
+      "optionen": [
+       "auf dem Dorf",
+       "in der Stadt",
+       "am Meer"
+      ],
+      "richtig": "auf dem Dorf"
+     },
+     {
+      "frage": "Wie viel kostet es?",
+      "optionen": [
+       "80.000 Mark",
+       "8.000 Mark",
+       "800.000 Mark"
+      ],
+      "richtig": "80.000 Mark"
+     },
+     {
+      "frage": "Wo unterschreiben sie den Vertrag?",
+      "optionen": [
+       "beim Notar",
+       "auf dem Gemeindeamt",
+       "bei der Bank"
+      ],
+      "richtig": "beim Notar"
+     }
+    ],
+    "en": [
+     {
+      "frage": "Where is the house?",
+      "optionen": [
+       "in the village",
+       "in the city",
+       "by the sea"
+      ],
+      "richtig": "in the village"
+     },
+     {
+      "frage": "How much does it cost?",
+      "optionen": [
+       "80,000 marks",
+       "8,000 marks",
+       "800,000 marks"
+      ],
+      "richtig": "80,000 marks"
+     },
+     {
+      "frage": "Where do they sign the contract?",
+      "optionen": [
+       "at the notary",
+       "at the municipal office",
+       "at the bank"
+      ],
+      "richtig": "at the notary"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Ev nerede?",
+      "optionen": [
+       "köyde",
+       "şehirde",
+       "deniz kenarında"
+      ],
+      "richtig": "köyde"
+     },
+     {
+      "frage": "Kaça?",
+      "optionen": [
+       "80.000 mark",
+       "8.000 mark",
+       "800.000 mark"
+      ],
+      "richtig": "80.000 mark"
+     },
+     {
+      "frage": "Sözleşmeyi nerede imzalıyorlar?",
+      "optionen": [
+       "noterde",
+       "belediyede",
+       "bankada"
+      ],
+      "richtig": "noterde"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Var ligger huset?",
+      "optionen": [
+       "i byn",
+       "i staden",
+       "vid havet"
+      ],
+      "richtig": "i byn"
+     },
+     {
+      "frage": "Vad kostar det?",
+      "optionen": [
+       "80 000 mark",
+       "8 000 mark",
+       "800 000 mark"
+      ],
+      "richtig": "80 000 mark"
+     },
+     {
+      "frage": "Var skriver de under avtalet?",
+      "optionen": [
+       "hos notarius publicus",
+       "på kommunkontoret",
+       "på banken"
+      ],
+      "richtig": "hos notarius publicus"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Waar staat het huis?",
+      "optionen": [
+       "in het dorp",
+       "in de stad",
+       "aan zee"
+      ],
+      "richtig": "in het dorp"
+     },
+     {
+      "frage": "Hoeveel kost het?",
+      "optionen": [
+       "80.000 mark",
+       "8.000 mark",
+       "800.000 mark"
+      ],
+      "richtig": "80.000 mark"
+     },
+     {
+      "frage": "Waar tekenen ze het contract?",
+      "optionen": [
+       "bij de notaris",
+       "op het gemeentehuis",
+       "bij de bank"
+      ],
+      "richtig": "bij de notaris"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvor ligger huset?",
+      "optionen": [
+       "i landsbyen",
+       "i byen",
+       "ved havet"
+      ],
+      "richtig": "i landsbyen"
+     },
+     {
+      "frage": "Hva koster det?",
+      "optionen": [
+       "80 000 mark",
+       "8 000 mark",
+       "800 000 mark"
+      ],
+      "richtig": "80 000 mark"
+     },
+     {
+      "frage": "Hvor skriver de under avtalen?",
+      "optionen": [
+       "hos notarius publicus",
+       "på kommunekontoret",
+       "i banken"
+      ],
+      "richtig": "hos notarius publicus"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvor ligger huset?",
+      "optionen": [
+       "i landsbyen",
+       "i byen",
+       "ved havet"
+      ],
+      "richtig": "i landsbyen"
+     },
+     {
+      "frage": "Hvad koster det?",
+      "optionen": [
+       "80.000 mark",
+       "8.000 mark",
+       "800.000 mark"
+      ],
+      "richtig": "80.000 mark"
+     },
+     {
+      "frage": "Hvor skriver de kontrakten under?",
+      "optionen": [
+       "hos notaren",
+       "på borgerservice",
+       "i banken"
+      ],
+      "richtig": "hos notaren"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Où se trouve la maison ?",
+      "optionen": [
+       "au village",
+       "en ville",
+       "au bord de la mer"
+      ],
+      "richtig": "au village"
+     },
+     {
+      "frage": "Combien coûte-t-elle ?",
+      "optionen": [
+       "80 000 marks",
+       "8 000 marks",
+       "800 000 marks"
+      ],
+      "richtig": "80 000 marks"
+     },
+     {
+      "frage": "Où signent-ils le contrat ?",
+      "optionen": [
+       "chez le notaire",
+       "à la mairie",
+       "à la banque"
+      ],
+      "richtig": "chez le notaire"
+     }
+    ]
+   },
+   "audio": "web/audio/g11.mp3"
+  },
+  {
+   "id": "intervju",
+   "title": "Razgovor za posao",
+   "level_hint": "arbeitsvertrag",
+   "stage": {
+    "de": "Amtssprache",
+    "en": "Administrative language",
+    "tr": "Resmî dil",
+    "sv": "Myndighetsspråk",
+    "nl": "Ambtelijke taal",
+    "nb": "Myndighetsspråk",
+    "da": "Myndighedssprog",
+    "fr": "Langue administrative"
+   },
+   "bs": "Amina ima razgovor za posao u jednoj firmi. Direktor je pita: „Recite nam nešto o sebi.“ Amina odgovara: „Završila sam ekonomiju i imam tri godine iskustva u računovodstvu. Govorim njemački, engleski i malo bosanski.“ Direktor pita koliko bi željela zarađivati i kada bi mogla početi. Amina kaže da može početi sljedećeg mjeseca. Na kraju direktor objašnjava uslove: probni rad traje tri mjeseca, radno vrijeme je od osam do šesnaest sati, a plata se isplaćuje petog u mjesecu. Amina zahvaljuje i kaže da će čekati odgovor.",
+   "translations": {
+    "de": "Amina hat ein Vorstellungsgespräch in einer Firma. Der Direktor fragt sie: „Erzählen Sie uns etwas über sich.“ Amina antwortet: „Ich habe Wirtschaft studiert und habe drei Jahre Erfahrung in der Buchhaltung. Ich spreche Deutsch, Englisch und ein bisschen Bosnisch.“ Der Direktor fragt, wie viel sie verdienen möchte und wann sie anfangen könnte. Amina sagt, dass sie nächsten Monat anfangen kann. Am Ende erklärt der Direktor die Bedingungen: Die Probezeit dauert drei Monate, die Arbeitszeit ist von acht bis sechzehn Uhr, und das Gehalt wird am Fünften des Monats gezahlt. Amina bedankt sich und sagt, dass sie auf die Antwort warten wird.",
+    "en": "Amina has a job interview at a company. The director asks her: “Tell us something about yourself.” Amina answers: “I studied economics and I have three years of experience in accounting. I speak German, English and a little Bosnian.” The director asks how much she would like to earn and when she could start. Amina says that she can start next month. At the end the director explains the conditions: the probation period lasts three months, working hours are from eight to four, and the salary is paid on the fifth of the month. Amina thanks him and says that she will wait for the answer.",
+    "tr": "Amina'nın bir şirkette iş görüşmesi var. Müdür ona soruyor: “Bize kendinizden biraz bahsedin.” Amina cevap veriyor: “Ekonomi okudum ve muhasebede üç yıllık deneyimim var. Almanca, İngilizce ve biraz Boşnakça konuşuyorum.” Müdür ne kadar kazanmak istediğini ve ne zaman başlayabileceğini soruyor. Amina gelecek ay başlayabileceğini söylüyor. Sonunda müdür koşulları açıklıyor: deneme süresi üç ay sürüyor, çalışma saatleri sekizden on altıya kadar ve maaş ayın beşinde ödeniyor. Amina teşekkür ediyor ve cevabı bekleyeceğini söylüyor.",
+    "sv": "Amina har en anställningsintervju på ett företag. Direktören frågar henne: ”Berätta lite om er själv.” Amina svarar: ”Jag har läst ekonomi och har tre års erfarenhet av bokföring. Jag talar tyska, engelska och lite bosniska.” Direktören frågar hur mycket hon vill tjäna och när hon skulle kunna börja. Amina säger att hon kan börja nästa månad. Till sist förklarar direktören villkoren: provanställningen varar i tre månader, arbetstiden är från åtta till sexton, och lönen betalas ut den femte i månaden. Amina tackar och säger att hon ska vänta på svar.",
+    "nl": "Amina heeft een sollicitatiegesprek bij een bedrijf. De directeur vraagt haar: ‘Vertelt u eens iets over uzelf.’ Amina antwoordt: ‘Ik heb economie gestudeerd en heb drie jaar ervaring in de boekhouding. Ik spreek Duits, Engels en een beetje Bosnisch.’ De directeur vraagt hoeveel ze wil verdienen en wanneer ze zou kunnen beginnen. Amina zegt dat ze volgende maand kan beginnen. Tot slot legt de directeur de voorwaarden uit: de proeftijd duurt drie maanden, de werktijd is van acht tot vier, en het salaris wordt op de vijfde van de maand uitbetaald. Amina bedankt en zegt dat ze op het antwoord zal wachten.",
+    "nb": "Amina har et jobbintervju i et firma. Direktøren spør henne: «Fortell oss litt om Dem selv.» Amina svarer: «Jeg har studert økonomi og har tre års erfaring med regnskap. Jeg snakker tysk, engelsk og litt bosnisk.» Direktøren spør hvor mye hun vil tjene og når hun kunne begynne. Amina sier at hun kan begynne neste måned. Til slutt forklarer direktøren vilkårene: prøvetiden varer i tre måneder, arbeidstiden er fra åtte til seksten, og lønna utbetales den femte i måneden. Amina takker og sier at hun vil vente på svar.",
+    "da": "Amina er til jobsamtale i et firma. Direktøren spørger hende: »Fortæl os lidt om Dem selv.« Amina svarer: »Jeg har læst økonomi og har tre års erfaring med bogføring. Jeg taler tysk, engelsk og lidt bosnisk.« Direktøren spørger, hvor meget hun vil tjene, og hvornår hun kunne begynde. Amina siger, at hun kan begynde næste måned. Til sidst forklarer direktøren vilkårene: prøvetiden varer tre måneder, arbejdstiden er fra otte til seksten, og lønnen udbetales den femte i måneden. Amina takker og siger, at hun vil vente på svar.",
+    "fr": "Amina a un entretien d'embauche dans une entreprise. Le directeur lui demande : « Parlez-nous un peu de vous. » Amina répond : « J'ai fait des études d'économie et j'ai trois ans d'expérience en comptabilité. Je parle allemand, anglais et un peu bosnien. » Le directeur demande combien elle voudrait gagner et quand elle pourrait commencer. Amina dit qu'elle peut commencer le mois prochain. À la fin, le directeur explique les conditions : la période d'essai dure trois mois, les horaires vont de huit à seize heures, et le salaire est versé le cinq du mois. Amina le remercie et dit qu'elle attendra la réponse."
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wie viele Jahre Erfahrung hat Amina?",
+      "optionen": [
+       "drei",
+       "fünf",
+       "zehn"
+      ],
+      "richtig": "drei"
+     },
+     {
+      "frage": "Wie lange dauert die Probezeit?",
+      "optionen": [
+       "drei Monate",
+       "einen Monat",
+       "ein Jahr"
+      ],
+      "richtig": "drei Monate"
+     },
+     {
+      "frage": "Wann wird das Gehalt gezahlt?",
+      "optionen": [
+       "am Fünften des Monats",
+       "am Monatsende",
+       "jede Woche"
+      ],
+      "richtig": "am Fünften des Monats"
+     }
+    ],
+    "en": [
+     {
+      "frage": "How many years of experience does Amina have?",
+      "optionen": [
+       "three",
+       "five",
+       "ten"
+      ],
+      "richtig": "three"
+     },
+     {
+      "frage": "How long does the probation period last?",
+      "optionen": [
+       "three months",
+       "one month",
+       "one year"
+      ],
+      "richtig": "three months"
+     },
+     {
+      "frage": "When is the salary paid?",
+      "optionen": [
+       "on the fifth of the month",
+       "at the end of the month",
+       "every week"
+      ],
+      "richtig": "on the fifth of the month"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Amina'nın kaç yıllık deneyimi var?",
+      "optionen": [
+       "üç",
+       "beş",
+       "on"
+      ],
+      "richtig": "üç"
+     },
+     {
+      "frage": "Deneme süresi ne kadar sürüyor?",
+      "optionen": [
+       "üç ay",
+       "bir ay",
+       "bir yıl"
+      ],
+      "richtig": "üç ay"
+     },
+     {
+      "frage": "Maaş ne zaman ödeniyor?",
+      "optionen": [
+       "ayın beşinde",
+       "ay sonunda",
+       "her hafta"
+      ],
+      "richtig": "ayın beşinde"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Hur många års erfarenhet har Amina?",
+      "optionen": [
+       "tre",
+       "fem",
+       "tio"
+      ],
+      "richtig": "tre"
+     },
+     {
+      "frage": "Hur länge varar provanställningen?",
+      "optionen": [
+       "tre månader",
+       "en månad",
+       "ett år"
+      ],
+      "richtig": "tre månader"
+     },
+     {
+      "frage": "När betalas lönen ut?",
+      "optionen": [
+       "den femte i månaden",
+       "i slutet av månaden",
+       "varje vecka"
+      ],
+      "richtig": "den femte i månaden"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Hoeveel jaar ervaring heeft Amina?",
+      "optionen": [
+       "drie",
+       "vijf",
+       "tien"
+      ],
+      "richtig": "drie"
+     },
+     {
+      "frage": "Hoe lang duurt de proeftijd?",
+      "optionen": [
+       "drie maanden",
+       "een maand",
+       "één jaar"
+      ],
+      "richtig": "drie maanden"
+     },
+     {
+      "frage": "Wanneer wordt het salaris uitbetaald?",
+      "optionen": [
+       "op de vijfde van de maand",
+       "aan het eind van de maand",
+       "elke week"
+      ],
+      "richtig": "op de vijfde van de maand"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvor mange års erfaring har Amina?",
+      "optionen": [
+       "tre",
+       "fem",
+       "ti"
+      ],
+      "richtig": "tre"
+     },
+     {
+      "frage": "Hvor lenge varer prøvetiden?",
+      "optionen": [
+       "tre måneder",
+       "en måned",
+       "ett år"
+      ],
+      "richtig": "tre måneder"
+     },
+     {
+      "frage": "Når utbetales lønna?",
+      "optionen": [
+       "den femte i måneden",
+       "i slutten av måneden",
+       "hver uke"
+      ],
+      "richtig": "den femte i måneden"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvor mange års erfaring har Amina?",
+      "optionen": [
+       "tre",
+       "fem",
+       "ti"
+      ],
+      "richtig": "tre"
+     },
+     {
+      "frage": "Hvor længe varer prøvetiden?",
+      "optionen": [
+       "tre måneder",
+       "en måned",
+       "ét år"
+      ],
+      "richtig": "tre måneder"
+     },
+     {
+      "frage": "Hvornår udbetales lønnen?",
+      "optionen": [
+       "den femte i måneden",
+       "i slutningen af måneden",
+       "hver uge"
+      ],
+      "richtig": "den femte i måneden"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Combien d'années d'expérience a Amina ?",
+      "optionen": [
+       "trois",
+       "cinq",
+       "dix"
+      ],
+      "richtig": "trois"
+     },
+     {
+      "frage": "Combien de temps dure la période d'essai ?",
+      "optionen": [
+       "trois mois",
+       "un mois",
+       "un an"
+      ],
+      "richtig": "trois mois"
+     },
+     {
+      "frage": "Quand le salaire est-il versé ?",
+      "optionen": [
+       "le cinq du mois",
+       "à la fin du mois",
+       "chaque semaine"
+      ],
+      "richtig": "le cinq du mois"
+     }
+    ]
+   },
+   "audio": "web/audio/g12.mp3"
+  }
+ ]
+}

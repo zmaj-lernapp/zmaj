@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: "ci"
+  # requirements-dev.txt is locked with hashes from requirements-dev.in
+  # (uv pip compile, command in its header).
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "chore(deps-dev)"
+  - package-ecosystem: npm
+    directory: /mappe
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "chore(mappe)"

@@ -1,0 +1,93 @@
+{
+ "dataset": "zmaj-bosnian",
+ "kind": "manifest",
+ "format_version": "1.0",
+ "license": "CC-BY-SA-4.0",
+ "attribution": "Zmaj – Bosnian learning content, (c) 2026 Ajdin Hasic, CC BY-SA 4.0, https://github.com/zmaj-lernapp/zmaj",
+ "source": "https://github.com/zmaj-lernapp/zmaj",
+ "target_language": "bs",
+ "translation_languages": [
+  "de",
+  "en",
+  "tr",
+  "sv",
+  "nl",
+  "nb",
+  "da",
+  "fr"
+ ],
+ "counts": {
+  "sections": 9,
+  "levels": 65,
+  "words": 1728,
+  "words_with_audio": 1728,
+  "sentences": 300,
+  "sentences_with_audio": 300,
+  "stories": 12,
+  "glossary_entries": 406,
+  "grammar_lessons": 16,
+  "audio_files": 2332
+ },
+ "files": {
+  "anki/zmaj-bs-da.tsv": {
+   "sha256": "8e3fadd2bf271fa1d6d6d63daf8eb934f8e37628d23855f2a758554481927ce3",
+   "bytes": 78664
+  },
+  "anki/zmaj-bs-de.tsv": {
+   "sha256": "b4813811f1e5078f13ae3f8ac4697fde9da84a105d6435db81b29fc19792e287",
+   "bytes": 80061
+  },
+  "anki/zmaj-bs-en.tsv": {
+   "sha256": "a070c7d1e316f3e8034274143b104bbc66e3ca9db7c69253e4bfc865c476e763",
+   "bytes": 79404
+  },
+  "anki/zmaj-bs-fr.tsv": {
+   "sha256": "ce026ee794e8e751f8a024cf187ce55545414c41b91a0810329b54bd502d7c62",
+   "bytes": 81293
+  },
+  "anki/zmaj-bs-nb.tsv": {
+   "sha256": "315d8cc29277abeec21ac2bf3f9d6ba62406f5e02da62e62ef01b6c01215f245",
+   "bytes": 77935
+  },
+  "anki/zmaj-bs-nl.tsv": {
+   "sha256": "bd4a71c5f3100d9c05179a0ec8f4503e78c8da69d71f178ae69b253701ba7453",
+   "bytes": 79253
+  },
+  "anki/zmaj-bs-sv.tsv": {
+   "sha256": "fc7278a186ca5817415275aed1dcabed0e4b1d642b18f62792dfa6133e37119d",
+   "bytes": 78804
+  },
+  "anki/zmaj-bs-tr.tsv": {
+   "sha256": "0c7ed1f8b2ad5f559e9275fa57e92ade532f99137c3321c966a597aa6215afba",
+   "bytes": 80153
+  },
+  "glossary.json": {
+   "sha256": "7f0858c280ebb8d8baeba31e9e61031a8573bd5fc9aa2431993fc8c047e1c09e",
+   "bytes": 100734
+  },
+  "grammar.json": {
+   "sha256": "5c5ae3a53e805121afe04abc2a8514bd3875ec48cf0fb08312b16e9f41c3a728",
+   "bytes": 345224
+  },
+  "sentences.csv": {
+   "sha256": "aef8caab3656c339798b54e3a3345517bf561d5e49f2b7264a2ac2109d69af94",
+   "bytes": 82729
+  },
+  "sentences.json": {
+   "sha256": "2bdcf4b4e33a5dbb5aa28e0d44af1e5142e679fe107b7ad0709a2f5ae435765f",
+   "bytes": 149409
+  },
+  "stories.json": {
+   "sha256": "027a6b1e2aaf4bcccac090a02e4b2f6f18f24385cd4dedbb6aa8e6cf8c5ad034",
+   "bytes": 104762
+  },
+  "vocabulary.csv": {
+   "sha256": "6f61c762364ee5fc3d115727fb910954ef03ae3f45fe6134b86cb8afd88d14c7",
+   "bytes": 298836
+  },
+  "vocabulary.json": {
+   "sha256": "c97100eb8ba6033675fb749208321fe6b69f8bccfd3d48a619dee6a8a94ae91e",
+   "bytes": 770070
+  }
+ }
+}
