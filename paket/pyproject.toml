@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zmaj-bosnian"
-version = "1.1.0"
+version = "1.2.0"
 description = "Open Bosnian course data: 1,728 words, 300 sentences, 12 stories, 16 grammar lessons in 8 languages"
 readme = "README.md"
 requires-python = ">=3.10"
