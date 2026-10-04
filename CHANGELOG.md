@@ -4,6 +4,12 @@ All notable changes to this repository. The app's user-facing release notes
 are in the Play Store listing. Format:
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+- DOI 10.5281/zenodo.23146609 (Zenodo, all versions) in the README, `CITATION.cff` and the
+  dataset documentation.
+
 ## [1.2.1] – 2026-10-04
 
 ### Fixed

@@ -80,3 +80,4 @@ not, and its limitations: **[DATASHEET.md](DATASHEET.md)**.
 **License:** CC BY-SA 4.0. **Attribution:** *Zmaj – Bosnian learning content,
 © 2026 Ajdin Hasic, CC BY-SA 4.0, https://github.com/zmaj-lernapp/zmaj*.
 The audio is synthetic (Azure Neural TTS); say so when you republish it.
+**DOI:** [10.5281/zenodo.23146609](https://doi.org/10.5281/zenodo.23146609) (all versions, Zenodo).

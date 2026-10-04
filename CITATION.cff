@@ -16,6 +16,12 @@ authors:
 version: 1.2.1
 date-released: "2026-10-04"
 repository-code: "https://github.com/zmaj-lernapp/zmaj"
+# Konzept-DOI bei Zenodo: zeigt immer auf die neueste Version.
+doi: 10.5281/zenodo.23146609
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23146609
+    description: "Concept DOI, all versions (Zenodo)"
 # Zenodo liest nur eine Lizenz (04.10.2026: zwei liessen das Archivieren
 # scheitern). Die Inhalte stehen unter CC-BY-SA-4.0, siehe abstract und REUSE.toml.
 license: AGPL-3.0-or-later
