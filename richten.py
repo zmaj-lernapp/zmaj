@@ -27,6 +27,7 @@ import sys
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
 INDEX = os.path.join(ORDNER, "web", "index.html")
+SPRACHEN = os.path.join(ORDNER, "sprachen.py")
 
 # Paare, deren Bilanz eine Ersetzung nicht verändern darf
 PAARE = (("{", "}", "geschweifte Klammern"), ("(", ")", "runde Klammern"),
@@ -63,13 +64,14 @@ def schreibe(datei, text, crlf):
         f.write(text.replace("\n", "\r\n") if crlf else text)
 
 
-def main(argv, aenderungen, anwenden, skript):
+def main(argv, aenderungen, anwenden, skript, ziel=INDEX):
     """Probelauf oder --schreiben, mit --datei für eine andere Kopie.
+    `ziel` ist die Datei ohne --datei; werbung_texte.py richtet sprachen.py.
     Rückgabe 0 bei Erfolg, 1 bei Abbruch (nichts geschrieben)."""
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     argv = sys.argv[1:] if argv is None else argv
-    datei = argv[argv.index("--datei") + 1] if "--datei" in argv else INDEX
+    datei = argv[argv.index("--datei") + 1] if "--datei" in argv else ziel
     html, crlf = lies(datei)
     neu, fehler = anwenden(html)
     for name, _, _ in aenderungen:

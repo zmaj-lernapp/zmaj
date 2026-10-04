@@ -78,8 +78,8 @@ Einreichung setzt Googles Prüfuhr zurück. Reihenfolge wie in der Tabelle.
 | `import_richten.py` | eine von Hand geschriebene Sicherung kann die App nicht mehr lahmlegen | Probelauf sauber, getestet |
 | `sicherheit2_richten.py` | zwei kleine Härtungen (Konten-Links ohne Konten, Fest-Probe) | Probelauf sauber, getestet |
 | `barrierefreiheit_richten.py` | Bildschirmleser und Kontrast: 0 kritische und 0 ernste axe-Befunde statt 20 und 102 | Probelauf sauber, getestet |
-| `werbung_richten.py` | behebt die offenen Befunde der Werbeprüfung | **bricht ab**: nur 7 von 16 Ankern passen noch, ein Teil ist schon von Hand eingebaut. Vor dem Lauf durchsehen und die erledigten Änderungen herausnehmen |
-| `werbung_texte.py` | ergänzt die Datenschutzerklärung in acht Sprachen | Deutsch ist schon von Hand ergänzt, das Skript würde doppeln. Vorher prüfen |
+| `werbung_richten.py` | letzter Rest der Werbeprüfung: auch das belohnte Video wird vor dem Zeigen noch einmal geprüft (App noch vorne?) | Probelauf sauber, getestet. Am 04.10.2026 auf 2 Änderungen gekürzt, alles andere war von Hand drin oder bewusst anders gelöst (Liste im Skript) |
+| `werbung_texte.py` | Datenschutzerklärung in acht Sprachen: Zwecke der Werbung und Ausnahme beim Satz „keine Analyse-Dienste“ | Probelauf sauber, getestet. Die Messwerte standen schon von Hand in allen acht Sprachen und sind herausgenommen. Danach auch `seite_bauen.py` |
 | `admob_scharf.py` | tauscht die Testkennungen gegen die echten | zuletzt, nach den Werbe-Skripten |
 
 Alle folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
