@@ -43,9 +43,11 @@ for e in vocab["entries"][:3]:
 # Merhaba → Hello web/audio/w0001.mp3
 ```
 
-```bash
-# Anki: File → Import → data/anki/zmaj-bs-en.tsv (Anki 2.1.54 or newer)
-```
+**Anki:** each [release](https://github.com/zmaj-lernapp/zmaj/releases) has a
+`zmaj-bosnian-<lang>.apkg` per language with audio and cards in both
+directions (built by [`anki_bauen.py`](../anki_bauen.py)); re-importing a newer
+package updates the cards and keeps your review history. Without audio:
+File → Import → `data/anki/zmaj-bs-en.tsv` (Anki 2.1.54 or newer).
 
 ## How it was made
 

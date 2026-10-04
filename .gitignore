@@ -85,3 +85,6 @@ store/bilder_machen/_stand.json
 
 # Mails aus der Feedback-Durchsicht (feedback_holen.py): Namen und Adressen.
 feedback/
+
+# Gebaute Release-Dateien (anki_bauen.py, Release-Workflow)
+dist/
