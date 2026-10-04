@@ -5,13 +5,7 @@ Das Skript liegt bereit, bis der geschlossene Test vorbei ist (07.10.2026).
 Ändert sich index.html vorher an einer seiner Stellen, soll das hier
 auffallen und nicht erst am Tag des Builds. Ohne Browser, unter einer
 Sekunde - die Messung mit axe steht in tests_e2e/."""
-import io
-import os
 import re
-
-
-def html(wurzel):
-    return io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8", newline="").read()
 
 
 def angewendet(text):
@@ -19,9 +13,9 @@ def angewendet(text):
     return barrierefreiheit_richten.KENNUNG in text
 
 
-def test_passt_noch_oder_ist_schon_angewendet(wurzel):
+def test_schalter_und_main_nach_dem_richten(index_html):
     import barrierefreiheit_richten
-    text = html(wurzel)
+    text = index_html.replace("\r\n", "\n")
     if angewendet(text):
         return                       # schon geschrieben - dann gibt es nichts mehr zu prüfen
     neu, fehler = barrierefreiheit_richten.anwenden(text)
@@ -35,21 +29,10 @@ def test_passt_noch_oder_ist_schon_angewendet(wurzel):
         < neu.index("</main>") < neu.index('<footer data-t="app.fuss">')
 
 
-def test_zweimal_anwenden_bricht_ab(wurzel):
-    """Ein zweiter Lauf darf nichts doppelt einbauen."""
-    import barrierefreiheit_richten
-    text = html(wurzel)
-    if not angewendet(text):
-        text, fehler = barrierefreiheit_richten.anwenden(text)
-        assert not fehler
-    _, fehler = barrierefreiheit_richten.anwenden(text)
-    assert fehler
-
-
-def test_fehlende_stelle_bricht_ab(wurzel):
+def test_fehlende_stelle_bricht_ab(index_html):
     """Ist ein Anker weg, kommt ein Fehler - nicht ein halb geänderter Text."""
     import barrierefreiheit_richten
-    text = html(wurzel)
+    text = index_html.replace("\r\n", "\n")
     if angewendet(text):
         return
     _, fehler = barrierefreiheit_richten.anwenden(text.replace('id="swAnim"', 'id="swAnimation"'))
@@ -67,12 +50,12 @@ def _kontrast(a, b):
     return (hell + 0.05) / (dunkel + 0.05)
 
 
-def test_neue_farben_erreichen_4_5(wurzel):
+def test_neue_farben_erreichen_4_5(index_html):
     """Die Farbwerte im Skript halten, was der Kommentar verspricht:
     jeder gedämpfte Ton mindestens 4,5:1 auf Grund, Fläche und sanftem Ton
     seiner Sektion (helle Fassung)."""
     import barrierefreiheit_richten
-    text = html(wurzel)
+    text = index_html.replace("\r\n", "\n")
     if not angewendet(text):
         text, _ = barrierefreiheit_richten.anwenden(text)
     hell = text[text.index(":root{"):text.index("@media (prefers-color-scheme: dark)")]

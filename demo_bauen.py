@@ -25,7 +25,6 @@ wird nichts geändert, nur an der Kopie.
 """
 import argparse
 import io
-import json
 import os
 import shutil
 import sys
@@ -55,37 +54,21 @@ def werbung_aus_in_html(ziel):
     io.open(pfad, "w", encoding="utf-8", newline="").write(html.replace(WERBUNG_ALT, WERBUNG_NEU))
 
 
+def ohne_werbung(code, daten):
+    """Für inhalt_bauen.schreiben(): Texte ohne Werbehinweise."""
+    sprachen_neu = sys.modules["sprachen"]   # lade_daten() hat sprachen.py neu geladen ...
+    vorher = sprachen_neu.WERBUNG_LAEUFT
+    sprachen_neu.WERBUNG_LAEUFT = False      # ... deshalb erst danach umlegen
+    try:
+        daten["texte"] = sprachen_neu.texte(code)
+    finally:
+        sprachen_neu.WERBUNG_LAEUFT = vorher  # wer sprachen danach liest, sieht die App
+    daten["werbung_laeuft"] = False
+
+
 def inhalt_ohne_werbung(ziel):
     import inhalt_bauen
-    import start
-    import sprachen
-
-    ordner = os.path.join(ziel, "inhalt")
-    os.makedirs(ordner, exist_ok=True)
-    codes = [s["code"] for s in sprachen.SPRACHEN]
-    liste = []
-    for code in codes:
-        daten = start.lade_daten(code)       # lädt sprachen.py neu ...
-        sprachen_neu = sys.modules["sprachen"]
-        vorher = sprachen_neu.WERBUNG_LAEUFT
-        sprachen_neu.WERBUNG_LAEUFT = False  # ... deshalb erst danach umlegen
-        try:
-            daten["texte"] = sprachen_neu.texte(code)
-        finally:
-            sprachen_neu.WERBUNG_LAEUFT = vorher   # wer sprachen danach liest, sieht die App
-        daten["werbung_laeuft"] = False
-        for feld in inhalt_bauen.OHNE:
-            daten.pop(feld, None)
-        pfad = os.path.join(ordner, code + ".json")
-        io.open(pfad, "w", encoding="utf-8").write(
-            json.dumps(daten, ensure_ascii=False, separators=(",", ":")))
-        liste.append((code, os.path.getsize(pfad), daten))
-    io.open(os.path.join(ordner, "liste.json"), "w", encoding="utf-8").write(json.dumps({
-        "version": 1,
-        "grundsprache": sprachen.GRUNDSPRACHE,
-        "sprachen": sprachen.SPRACHEN,
-        "dateien": {c: c + ".json" for c in codes},
-    }, ensure_ascii=False, indent=1))
+    liste = inhalt_bauen.schreiben(os.path.join(ziel, "inhalt"), anpassen=ohne_werbung)
     inhalt_bauen.pruefen(liste)
     return liste
 
