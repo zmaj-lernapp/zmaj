@@ -71,7 +71,7 @@ A change is done when `pytest`, `ruff check .` and `reuse lint` pass and
   repository docs (README, CONTRIBUTING, SECURITY) are English. Match the file.
 - Comments explain **why**, often with the date and the bug that caused them.
   Keep that habit; do not strip existing comments.
-- Python 3.9+, standard library only for anything the app or the build uses.
+- Python 3.10+, standard library only for anything the app or the build uses.
 - Commit messages: short German or English summary line describing the effect
   for the learner, not the mechanics.
 

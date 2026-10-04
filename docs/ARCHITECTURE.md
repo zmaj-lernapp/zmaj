@@ -110,7 +110,7 @@ progress.
 ```mermaid
 flowchart TB
   P[push / pull request] --> T & R & K & Q & X
-  T["pytest · Python 3.9 + 3.13<br/>content, 8 languages, audio, dataset, links"]
+  T["pytest · Python 3.10 + 3.13<br/>content, 8 languages, audio, dataset, links"]
   R["reuse lint<br/>licence of every file"]
   K["gitleaks<br/>whole git history"]
   Q["CodeQL<br/>Python · JavaScript · Actions"]
@@ -126,7 +126,7 @@ flowchart TB
 
 | Check | Tool | Where |
 |---|---|---|
-| Content integrity in all 8 languages | `pytest` (`tests/`) | CI, Python 3.9 and 3.13 |
+| Content integrity in all 8 languages | `pytest` (`tests/`) | CI, Python 3.10 and 3.13 |
 | App content builds and all UI keys exist | `inhalt_bauen.py`, `texte_pruefen.py` | CI |
 | Dataset matches the sources | `daten_exportieren.py --pruefen` | CI and a test |
 | Lint | `ruff` | CI |
