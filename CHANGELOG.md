@@ -20,6 +20,8 @@ are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
   triage.
 - Contributor docs: README in English, CONTRIBUTING, CODE_OF_CONDUCT,
   SECURITY, SUPPORT, GOVERNANCE, issue forms, CITATION.cff.
+- `docs/codex-for-oss/`: plan with measurable milestones, application texts
+  for Codex for Open Source (character limits checked by a test), backlog.
 
 ### Fixed
 - French terms of service: the heading "Rétractation et remboursement" was
