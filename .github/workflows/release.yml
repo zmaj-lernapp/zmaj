@@ -34,7 +34,7 @@ jobs:
 
       - name: Test before packing
         run: |
-          python -m pip install -r requirements-dev.txt
+          python -m pip install --require-hashes -r requirements-dev.txt
           python -m pytest
           python daten_exportieren.py --pruefen
 

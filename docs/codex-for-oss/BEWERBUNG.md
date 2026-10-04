@@ -36,7 +36,7 @@ Primary maintainer and sole author since the first commit: I write the code, the
 ## Wodurch qualifiziert sich dieses Repository? (max. 500)
 
 <!-- feld: qualifikation -->
-Duolingo, Babbel, Busuu, Rosetta Stone and Lingoda teach no Bosnian. Zmaj fills that gap for the diaspora: an open course (1,728 words, 300 sentences, 12 stories, 16 grammar lessons, audio for every item, 8 languages) as an offline Android app (AGPL) and a CC BY-SA dataset (JSON/CSV/Anki) for low-resource NLP. [N] Play installs, [N] stars, [N] dataset downloads. CI, CodeQL, Scorecard, REUSE.
+Duolingo, Babbel, Busuu, Rosetta Stone and Lingoda teach no Bosnian. Zmaj fills that gap for the diaspora: an open course (1,728 words, 300 sentences, 12 stories, 16 grammar lessons, audio for every item, 8 languages) as an offline Android app (AGPL) and a CC BY-SA dataset (JSON/CSV/Anki) for low-resource NLP. [N] Play installs, [N] stars, [N] dataset downloads. CI, CodeQL, Scorecard, REUSE. Demo: zmaj-lernapp.github.io/zmaj
 <!-- ende -->
 
 ## Wie wirst du API-Credits für dein Projekt nutzen? (max. 500)

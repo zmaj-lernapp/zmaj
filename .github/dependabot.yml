@@ -9,6 +9,8 @@ updates:
         patterns: ["*"]
     commit-message:
       prefix: "ci"
+  # requirements-dev.txt is locked with hashes from requirements-dev.in
+  # (uv pip compile, command in its header).
   - package-ecosystem: pip
     directory: /
     schedule:
