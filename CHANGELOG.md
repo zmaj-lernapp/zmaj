@@ -4,6 +4,22 @@ All notable changes to this repository. The app's user-facing release notes
 are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+- Parallel corpus for machine translation: `data/parallel.tmx` (TMX 1.4b),
+  `data/parallel.jsonl` and `data/parallel/bs-<lang>.tsv`, with schema and tests.
+- 20 browser end-to-end tests (`tests_e2e/`, Playwright) in their own CI job.
+- Accessibility audit with axe-core; fixes prepared as
+  `barrierefreiheit_richten.py` (0 serious/critical findings after applying).
+- Second security review; two hardenings prepared as `sicherheit2_richten.py`.
+- AI pre-check of all seven translations: 59 candidates posted to the
+  translation issues for native speakers to confirm or reject.
+
+### Changed
+- `mappe/` (school project documents with names of third parties) removed
+  from the public repository.
+
 ## [1.0.0] – 2026-10-04
 
 First open-source release of the repository and the dataset.
