@@ -92,7 +92,9 @@ def test_keine_ernsten_verstoesse(seite_basis, browser, sprache, schema):
     seite = kontext.new_page()
     js = lambda code: seite.evaluate(  # noqa: E731
         "async () => { const warte = ms => new Promise(r => setTimeout(r, ms)); " + code + " }")
-    seite.goto(seite_basis + "/index.html")
+    # Stand auf einer leeren Seite desselben Ursprungs setzen (siehe conftest.py,
+    # Seite.starten): die laufende App wuerde ihn beim Wegnavigieren ueberschreiben.
+    seite.goto(seite_basis + "/leer")
     js("localStorage.clear(); localStorage.setItem('zmaj_stand', %s); "
        "localStorage.setItem('zmaj_einwilligung', JSON.stringify({wahl:'nein',stand:1,zeit:new Date().toISOString()})); "
        "localStorage.setItem('zmaj_sprache', %s); return 1"
@@ -103,12 +105,14 @@ def test_keine_ernsten_verstoesse(seite_basis, browser, sprache, schema):
     js(io.open(os.path.join(WURZEL, "store", "bilder_machen", "antworte.js"), encoding="utf-8").read())
     seite.add_script_tag(path=AXE)
     funde = []
-    for name, code in ANSICHTEN:
-        js(code + " return 1")
-        assert seite.evaluate("document.documentElement.lang") == sprache
-        verstoesse = seite.evaluate("""async () => (await axe.run(document, {resultTypes:['violations']}))
-            .violations.filter(v => v.impact === 'serious' || v.impact === 'critical')
-            .map(v => v.id + ' (' + v.impact + '): ' + v.nodes.map(n => n.target.join(' ')).join(', '))""")
-        funde += ["%s/%s %s" % (sprache, name, v) for v in verstoesse]
-    kontext.close()
+    try:
+        for name, code in ANSICHTEN:
+            js(code + " return 1")
+            assert seite.evaluate("document.documentElement.lang") == sprache
+            verstoesse = seite.evaluate("""async () => (await axe.run(document, {resultTypes:['violations']}))
+                .violations.filter(v => v.impact === 'serious' || v.impact === 'critical')
+                .map(v => v.id + ' (' + v.impact + '): ' + v.nodes.map(n => n.target.join(' ')).join(', '))""")
+            funde += ["%s/%s %s" % (sprache, name, v) for v in verstoesse]
+    finally:
+        kontext.close()
     assert not funde, "\n".join(funde)

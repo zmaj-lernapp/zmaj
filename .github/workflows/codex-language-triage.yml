@@ -12,15 +12,15 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: codex-triage-${{ github.event.issue.number }}
-  cancel-in-progress: true
-
 jobs:
   triage:
     if: github.event.label.name == 'codex-triage'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    # On the job: adding any other label must not cancel a running triage.
+    concurrency:
+      group: codex-triage-${{ github.event.issue.number }}
+      cancel-in-progress: true
     outputs:
       final_message: ${{ steps.codex.outputs.final-message }}
     steps:

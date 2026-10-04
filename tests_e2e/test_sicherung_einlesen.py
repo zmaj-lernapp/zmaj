@@ -25,6 +25,8 @@ BOESE = {
     # den Eintrag nie - dann gaebe es auch nichts zu pruefen.
     "topf_null": {"app": "zmaj", "stand": {"topf": {"w:WORT": None}}},
     "besitz_constructor": {"app": "zmaj", "stand": {"besitz": ["constructor"], "getragen": "constructor"}},
+    # Lerntage als Text: (d.tage||[]).filter warf. Jetzt werden sie ignoriert.
+    "tage_text": {"app": "zmaj", "stand": {"tage": "x", "frost": "y", "geschenk_jahr": 9999}},
 }
 
 # frage() oeffnet sonst das Ja/Nein-Fenster und wartet auf einen Finger.
@@ -78,3 +80,4 @@ def test_echte_sicherung_bleibt_vollstaendig(seite, heute_stand, vollversion):
     assert nach["einstellungen"]
     assert nach["drache"] == "ok"
     assert seite.fehler == []
+

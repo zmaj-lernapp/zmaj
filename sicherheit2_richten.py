@@ -60,7 +60,11 @@ def anwenden(html):
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     datei = argv[argv.index("--datei") + 1] if "--datei" in argv else INDEX
-    html = io.open(datei, encoding="utf-8", newline="").read()
+    roh = io.open(datei, encoding="utf-8", newline="").read()
+    # Git fuer Windows checkt mit CRLF aus. Die Anker kennen nur \n -
+    # also wie in sicherung_richten.py: normalisieren, beim Schreiben zurueck.
+    crlf = "\r\n" in roh
+    html = roh.replace("\r\n", "\n")
     neu, fehler = anwenden(html)
     for name, _, _ in AENDERUNGEN:
         print("   %s %s" % ("✗" if any(f.startswith(name) for f in fehler) else "✓", name))
@@ -70,7 +74,8 @@ def main(argv=None):
             print("   " + f)
         return 1
     if "--schreiben" in argv:
-        io.open(datei, "w", encoding="utf-8", newline="").write(neu)
+        io.open(datei, "w", encoding="utf-8", newline="").write(
+            neu.replace("\n", "\r\n") if crlf else neu)
         print("\ngeschrieben. Danach: app_bauen.py - aber NICHT vor dem 07.10.2026 einreichen.")
     else:
         print("\n(Probelauf. Zum Schreiben: python sicherheit2_richten.py --schreiben)")
