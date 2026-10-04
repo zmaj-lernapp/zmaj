@@ -10,6 +10,7 @@
   <a href="https://github.com/zmaj-lernapp/zmaj/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/zmaj-lernapp/zmaj/actions/workflows/ci.yml/badge.svg?branch=master"></a>
   <a href="https://github.com/zmaj-lernapp/zmaj/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/zmaj-lernapp/zmaj/actions/workflows/codeql.yml/badge.svg?branch=master"></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/zmaj-lernapp/zmaj"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/zmaj-lernapp/zmaj/badge"></a>
+  <a href="https://www.bestpractices.dev/projects/15225"><img alt="OpenSSF Best Practices" src="https://www.bestpractices.dev/projects/15225/badge"></a>
   <a href="LICENSE"><img alt="Code: AGPL-3.0" src="https://img.shields.io/badge/code-AGPL--3.0-blue"></a>
   <a href="LICENSE-CONTENT"><img alt="Content: CC BY-SA 4.0" src="https://img.shields.io/badge/content-CC%20BY--SA%204.0-lightgrey"></a>
   <a href="https://doi.org/10.5281/zenodo.23146609"><img alt="DOI 10.5281/zenodo.23146609" src="https://zenodo.org/badge/DOI/10.5281/zenodo.23146609.svg"></a>

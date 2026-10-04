@@ -1,5 +1,9 @@
 # Antworthilfe: OpenSSF Best Practices Badge („passing“)
 
+**Eingetragen am 04.10.2026:** https://www.bestpractices.dev/projects/15225 –
+das Abzeichen im README zeigt den aktuellen Stand. Bei Änderungen an Tests,
+CI oder SECURITY.md dort die Antworten nachziehen.
+
 Anmelden auf https://www.bestpractices.dev mit dem GitHub-Konto
 `zmaj-lernapp`, Projekt `https://github.com/zmaj-lernapp/zmaj` anlegen und
 die Fragen mit den Belegen unten beantworten. Erst **nach dem Merge** nach
