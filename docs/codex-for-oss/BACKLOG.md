@@ -15,7 +15,6 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | 10 | A | M3: Play-Produktion (ab 07.10.2026) | öffentlicher Play-Link im README | A |
 | 11 | A | `OPENAI_API_KEY` als Secret, damit Codex-Reviews sichtbar laufen | erster PR mit Kommentar „Codex review“ | D |
 | 12 | A | Entscheidung: Level 52/58 fragen Wörter aus Level 60 ab (`formell`) | `BEKANNT` in `tests/test_inhalt.py` leer | C |
-| 13 | A | Entscheidung: `mappe/` (Schulunterlagen, Name des Betreuers) öffentlich lassen? | entschieden und umgesetzt | Risiko |
 | 16 | A | Nach dem 07.10.: `python import_richten.py --schreiben`, dann Build (Sicherheitsfix Backup-Import) | App startet nach Import einer kaputten Sicherung weiter | C |
 | 15 | A | OpenSSF-Best-Practices-Badge beantragen (Antworten in `BEST_PRACTICES.md`) | Badge „passing“ im README | B, C |
 | 17 | A | PyPI: Projekt `zmaj-bosnian` auf pypi.org mit Trusted Publisher (Workflow `pypi.yml`, Umgebung `pypi`) anlegen, Variable `PYPI_PUBLISH=true` | `pip install zmaj-bosnian` funktioniert | A |
@@ -46,4 +45,6 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #14 Sicherheitsprüfung Backup-Import: 3 bestätigte Befunde, Fix als `import_richten.py` (im Browser vorher/nachher geprüft) | `a5cb5bb` |
 | #15 13 Mermaid-Diagramme (README, Architektur, Datenblatt, Mitmachen, Sicherheit, Governance, Plan), alle mit mermaid-cli gerendert; `test_mermaid.py` hält Zahlen am Datensatz | `33b8757` |
 | #16 PyPI-Paket `zmaj-bosnian` (`paket/`, `paket_bauen.py`, Trusted Publishing) | `c662cb3` |
-| #17 Hugging-Face-Upload im Release, wöchentliche Kennzahlen, AnkiWeb-Texte, README auf Bosnisch, Version 1.0.0 | dieser Commit |
+| #17 Hugging-Face-Upload im Release, wöchentliche Kennzahlen, AnkiWeb-Texte, README auf Bosnisch, Version 1.0.0 | `057136c` |
+| Release `v1.0.0` mit 11 Dateien, 8 Übersetzungs-Issues (#2–#6, #8–#10) | PR #1, PR #11 |
+| #13 `mappe/`, `PROJEKTMAPPE.md`, `NACH_DER_VEROEFFENTLICHUNG.md` aus `master` entfernt (Namen Dritter), lokal per `.gitignore` | dieser Commit |

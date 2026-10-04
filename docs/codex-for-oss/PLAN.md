@@ -35,8 +35,8 @@ beeinflussen können, und sagt ehrlich, wo die Grenze liegt.
 
 Die Stärke liegt nicht in Zahlen, sondern in der **Lücke**: Duolingo,
 Babbel, Busuu, Rosetta Stone und Lingoda bieten weder Bosnisch noch
-Kroatisch oder Serbisch an (Recherche der Projektmappe,
-`mappe/kapitel2.json`, Belege in `mappe/anhang_quellen.json`). Ein offener,
+Kroatisch oder Serbisch an (Recherche der Projektmappe vom September 2026,
+mit Belegen; die Mappe liegt nur lokal beim Maintainer). Ein offener,
 muttersprachlich geprüfter Bosnisch-Kurs mit Tonspur existiert sonst kaum.
 
 ## 3. Bewertungsmodell
@@ -206,7 +206,7 @@ Einfügen aus.
 | Übersetzungen fehlerhaft | Glaubwürdigkeit | Datenblatt sagt es offen; Korrektur-Formular; Sprachprüfer |
 | Ein Maintainer | Busfaktor 1 | GOVERNANCE.md, freie Lizenzen, alles im Repo |
 | Beschreibung „Private Sicherung“ bleibt stehen | Prüfer stutzt | M1 |
-| `mappe/` enthält Schulunterlagen mit Namen Dritter (Betreuer) | Datenschutz | prüfen, ob das öffentlich bleiben soll; sonst aus `master` entfernen |
+| `mappe/` enthielt Schulunterlagen mit Namen Dritter | Datenschutz | erledigt 04.10.2026: aus `master` entfernt, in `.gitignore` |
 | `vokabeln.py`: Level 52 und 58 fragen im Test Wörter aus Level 60 ab | Lernende sehen Ungelerntes | inhaltlich entscheiden (Liste `BEKANNT` in `tests/test_inhalt.py`) |
 
 ## 7. Arbeitsschleife („Loop“)
