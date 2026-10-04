@@ -144,10 +144,10 @@ flowchart LR
 | `daten_exportieren.py` | content → open dataset in `data/` |
 | `tests/` | content, translation, audio, dataset and repository checks |
 
-The Android shell (Capacitor) lives in a separate private repository because
-the signing key is next to it. Overview: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+The Android shell (Capacitor) lives in a separate private repository.
+Overview: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 Maintainer notes in German:
-[`docs/WARTUNG.md`](docs/WARTUNG.md), [`ANLEITUNG.md`](ANLEITUNG.md).
+[`ANLEITUNG.md`](ANLEITUNG.md).
 
 ## Quality
 
@@ -227,6 +227,6 @@ Der gesamte Lerninhalt steht unter CC BY-SA 4.0 als Datensatz in
 
 Fehler in einem Wort oder einer Übersetzung bitte über
 [Sprachkorrektur](https://github.com/zmaj-lernapp/zmaj/issues/new?template=language_correction.yml)
-melden. Notizen für den Betrieb: [`docs/WARTUNG.md`](docs/WARTUNG.md).
+melden. Notizen für den Betrieb: [`ANLEITUNG.md`](ANLEITUNG.md).
 
 </details>

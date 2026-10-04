@@ -7,7 +7,7 @@ Ein Tester, der aus Hilfsbereitschaft eine echte Anzeige anklickt, erzeugt
 ungueltigen Traffic - und der kann das AdMob-Konto kosten, nicht nur die
 paar Cent.
 
-REIHENFOLGE (siehe auch docs/WARTUNG.md):
+REIHENFOLGE (siehe auch ANLEITUNG.md, „Liegen bereit“):
   1. App ist in der Produktion live
   2. In AdMob unter App-Einstellungen mit dem App-Shop verknuepft
      (de.smartdragon.zmaj) und die Pruefung ist durch
