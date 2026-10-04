@@ -79,7 +79,7 @@ SPDX-License-Identifier = "MPL-2.0 AND MIT"
 
 # --- metadata files that describe licensing themselves ---------------------
 [[annotations]]
-path = ["REUSE.toml", "LICENSE-CONTENT", "CITATION.cff", ".gitignore", ".gitattributes", ".editorconfig", ".github/**", ".claude/**", "AGENTS.md", "pyproject.toml", "requirements-dev.txt", "requirements-dev.in", "requirements-hf.txt", "requirements-hf.in"]
+path = ["REUSE.toml", "LICENSE-CONTENT", "CITATION.cff", ".gitignore", ".gitattributes", ".editorconfig", ".github/**", ".claude/**", "AGENTS.md", "pyproject.toml", "requirements-dev.txt", "requirements-dev.in", "requirements-e2e.txt", "requirements-e2e.in", "requirements-hf.txt", "requirements-hf.in"]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Ajdin Hasic <zmaj.lernapp@gmail.com>"
 SPDX-License-Identifier = "CC0-1.0"

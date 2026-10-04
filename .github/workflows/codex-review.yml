@@ -1,5 +1,8 @@
 # Codex reviews every pull request against the rules in AGENTS.md.
-# Inactive until the repository has an OPENAI_API_KEY secret.
+# Off until the repository has the secret OPENAI_API_KEY and the variable
+# CODEX_AN is "true" (Settings → Secrets and variables → Actions). The
+# variable keeps GitHub from starting a runner for every pull request only to
+# find the key missing; the key check in the first step stays as a second guard.
 # Pull requests from forks get no secrets and are skipped. Adding the label
 # "codex-review" re-runs the review on a branch of this repository.
 name: Codex review
@@ -16,6 +19,7 @@ jobs:
     # Only branches of this repository: a fork never reaches a job that holds
     # the API key. (Forks get no secrets anyway; this makes it explicit.)
     if: >-
+      vars.CODEX_AN == 'true' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.event.pull_request.draft == false &&
       (github.event.action != 'labeled' || github.event.label.name == 'codex-review')

@@ -12,7 +12,7 @@ dazu als Paralleltext (TSV je Sprachpaar, JSONL, TMX) für maschinelle
     python3 daten_exportieren.py            # data/ neu schreiben
     python3 daten_exportieren.py --pruefen  # nur prüfen, ob data/ aktuell ist
 
-WARUM ES NICHT ABWEICHEN KANN: Wie inhalt_bauen.py ruft es start.lade_daten()
+WARUM ES NICHT ABWEICHEN KANN: Wie inhalt_bauen.py ruft es inhalt.lade_daten()
 auf, also dieselbe Funktion, die auch die App füttert. Die Ausgabe enthält
 kein Datum und keine Zufallswerte; zweimal laufen lassen ergibt Byte für Byte
 dieselben Dateien. Deshalb kann die CI mit --pruefen feststellen, ob jemand
@@ -67,12 +67,12 @@ def ton_pfad(datei):
 
 # ----------------------------------------------------------------- Sammeln ---
 def sammeln():
-    import start
+    import inhalt
     import sprachen
 
     codes = [s["code"] for s in sprachen.SPRACHEN]
     grund = sprachen.GRUNDSPRACHE
-    alle = {c: start.lade_daten(c) for c in codes}
+    alle = {c: inhalt.lade_daten(c) for c in codes}
     basis = alle[grund]
     toene = ton_verzeichnis()
 

@@ -23,9 +23,9 @@ def sprachcodes():
 
 @pytest.fixture(scope="session")
 def alle_daten(sprachcodes):
-    """start.lade_daten() je Sprache - genau das, was die App bekommt."""
-    import start
-    return {c: start.lade_daten(c) for c in sprachcodes}
+    """inhalt.lade_daten() je Sprache - genau das, was die App bekommt."""
+    import inhalt
+    return {c: inhalt.lade_daten(c) for c in sprachcodes}
 
 
 @pytest.fixture(scope="session")
