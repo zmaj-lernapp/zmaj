@@ -10,7 +10,6 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 
 | # | Wer | Punkt | Abnahmekriterium | Hebel (PLAN §3) |
 |---|---|---|---|---|
-| 5 | C | Ankündigungstexte: r/bih, r/languagelearning, r/Anki, Show HN, Vereine (EN/DE/BS) | je Kanal ein Text, ehrlich, mit Link; Regeln des Kanals beachtet | A |
 | 6 | C | Plattformunabhängiges Screenshot-Skript (Playwright) statt Windows/CDP | `python3 store/bilder_machen/bilder_playwright.py --sprache en` erzeugt die Bilder | B |
 | 7 | C | Weitere Inhaltstests: Grammatik-Tabellen rechteckig, Optionen ohne Dubletten, Wörterbuch ohne Leereinträge | Tests grün oder echte Befunde dokumentiert | C |
 | 8 | A | M1: PR mergen, Beschreibung, Topics, Discussions, Private Vulnerability Reporting, Branch-Schutz, Labels, Profil | Checkliste in PLAN.md M1 vollständig | C, E |
@@ -30,4 +29,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #1 Hugging-Face-Datenkarte `data/README.md` mit Test | `9e999cd` |
 | #2 Anki-Pakete mit Ton im Release (`anki_bauen.py`) | `752251d` |
 | #3 `kennzahlen.py` + `kennzahlen_manuell.json` | `046edbe` |
-| #4 Issue-Entwürfe für 7 Übersetzungssprachen + Bosnisch (`ISSUES.md`) | dieser Commit |
+| #4 Issue-Entwürfe für 7 Übersetzungssprachen + Bosnisch (`ISSUES.md`) | `4e09ded` |
+| #5 Ankündigungstexte für HN, Reddit, Vereine (`ANKUENDIGUNGEN.md`) | dieser Commit |
