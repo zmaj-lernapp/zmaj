@@ -5,6 +5,17 @@ a pull request.
 
 ## 1. Correct the language (no git needed)
 
+```mermaid
+flowchart LR
+  A["You: language correction<br/>(issue form)"] --> B["Maintainer adds<br/>label codex-triage"]
+  B --> C["Codex finds every entry,<br/>checks the native-speaker log,<br/>proposes a patch"]
+  C --> D{"native speaker<br/>decides"}
+  D -- not an error --> E[closed with a reason]
+  D -- confirmed --> F["fix in vokabeln.py /<br/>uebersetzungen.py"]
+  F --> G["daten_exportieren.py<br/>data/ regenerated"]
+  G --> H["next release:<br/>app, dataset, Anki"]
+```
+
 This is what Zmaj needs most. Bosnian content is reviewed by a native
 speaker, but the seven non-German translations (English, Turkish, Swedish,
 Dutch, Norwegian, Danish, French) were machine-translated and AI-reviewed and

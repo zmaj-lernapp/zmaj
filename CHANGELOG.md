@@ -29,6 +29,9 @@ are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
 - Hugging Face dataset card (`data/README.md`), English architecture overview
   (`docs/ARCHITECTURE.md`), social preview image.
 - `kennzahlen.py` measures the adoption thresholds from the plan.
+- 13 Mermaid diagrams (data flow, content model, quality gates, review
+  sequence, language-correction flow, backup import, governance, roadmap);
+  a test keeps their numbers in sync with the dataset.
 - Cross-platform store screenshots in any language
   (`store/bilder_machen/bilder_playwright.py`).
 - More tests: grammar tables, duplicate answer options, glossary, level

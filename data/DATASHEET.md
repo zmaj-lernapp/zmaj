@@ -19,6 +19,19 @@ source files disagree, so this folder is never stale.
 
 ## Contents
 
+```mermaid
+pie showData title Words per section (1,728)
+  "1 Basics & everyday life" : 341
+  "2 Things you can touch" : 114
+  "3 Animals & nature" : 109
+  "4 At home" : 137
+  "5 Building sentences" : 618
+  "6 Shopping & eating out" : 108
+  "7 Bosnia & origins" : 81
+  "8 People & culture" : 58
+  "9 Offices & contracts" : 162
+```
+
 | File | What | Count |
 |---|---|---|
 | `vocabulary.json` / `.csv` | words and phrases, 9 sections, 65 levels | 1,728 |
@@ -50,6 +63,20 @@ package updates the cards and keeps your review history. Without audio:
 File → Import → `data/anki/zmaj-bs-en.tsv` (Anki 2.1.54 or newer).
 
 ## How it was made
+
+```mermaid
+flowchart LR
+  R["AI research passes<br/>draft words, sentences, stories"] --> N{"native speaker<br/>review"}
+  N -- corrected --> K["WORTSCHATZ_KORREKTUREN.md<br/>overrides everything"]
+  N -- accepted --> B[Bosnian content]
+  K --> B
+  B --> DE["German meaning<br/>(source language)"]
+  DE --> MT["machine translation<br/>en tr sv nl nb da fr"]
+  MT --> AI["2 independent AI review passes<br/>141 confirmed findings"]
+  AI --> T["translations<br/>not yet native-reviewed"]
+  B --> TTS["Azure neural TTS<br/>2,332 MP3"]
+  TTS --> H["native speaker spot check<br/>TONBEFUNDE.md"]
+```
 
 **Bosnian text.** Words, sentences and stories were drafted with the help of
 AI research passes and then reviewed and corrected by the maintainer, a native

@@ -39,4 +39,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #11 Test: 39 relative Links in der Doku zeigen auf vorhandene Dateien | `c2bd25f` |
 | #12 Social-Preview-Bild 1280×640 auf Englisch (`docs/assets/social-preview.png`) | `7b05ba0` |
 | #13 Antworthilfe für das OpenSSF-Best-Practices-Badge | `4ccf2c3` |
-| #14 Sicherheitsprüfung Backup-Import: 3 bestätigte Befunde, Fix als `import_richten.py` (im Browser vorher/nachher geprüft) | dieser Commit |
+| #14 Sicherheitsprüfung Backup-Import: 3 bestätigte Befunde, Fix als `import_richten.py` (im Browser vorher/nachher geprüft) | `a5cb5bb` |
+| #15 13 Mermaid-Diagramme (README, Architektur, Datenblatt, Mitmachen, Sicherheit, Governance, Plan), alle mit mermaid-cli gerendert; `test_mermaid.py` hält Zahlen am Datensatz | dieser Commit |
