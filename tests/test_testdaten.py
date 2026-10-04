@@ -30,7 +30,7 @@ def sicherungen(wurzel):
 
 @pytest.fixture(scope="module")
 def inhalt(grunddaten):
-    """Kennungen so, wie die App sie von start.lade_daten() bekommt."""
+    """Kennungen so, wie die App sie von inhalt.lade_daten() bekommt."""
     woerter = {w["id"] for k in grunddaten["kategorien"] for w in k["words"]}
     level = [k["id"] for k in grunddaten["kategorien"]]
     gelesen = [g["id"] for g in grunddaten["geschichten"]]

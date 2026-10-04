@@ -1,10 +1,7 @@
 {
-  "_hinweis": "Diese Datei umbenennen in mail_zugang.json, dann verschickt die App echte Mails. Bis dahin landet alles in postausgang.txt.",
-  "_gmail": "Das Passwort ist NICHT dein Google-Passwort, sondern ein App-Passwort von myaccount.google.com/apppasswords (16 Zeichen). Leerzeichen darfst du drin lassen, die App entfernt sie.",
+  "_hinweis": "Vorlage fuer feedback_holen.py. Diese Datei nach mail_zugang.json kopieren (steht in der .gitignore) und Adresse und App-Passwort eintragen.",
+  "_gmail": "Das Passwort ist NICHT dein Google-Passwort, sondern ein App-Passwort von myaccount.google.com/apppasswords (16 Zeichen).",
 
-  "server": "smtp.gmail.com",
-  "port": 587,
   "benutzer": "DEINE.ADRESSE@gmail.com",
-  "passwort": "HIER DAS APP-PASSWORT",
-  "absender": "Zmaj <DEINE.ADRESSE@gmail.com>"
+  "passwort": "HIER DAS APP-PASSWORT"
 }

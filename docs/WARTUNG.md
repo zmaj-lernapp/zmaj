@@ -55,7 +55,7 @@ nicht** — der Interpreter steht unter
 
 | Skript | Was es tut |
 |---|---|
-| `start.py` | startet die App am PC zum Ausprobieren |
+| `start.py` | startet die App am PC zum Ausprobieren (nur Dateien und Inhalt, keine Konten) |
 | `inhalt_bauen.py` | macht aus den Python-Dateien das JSON fürs Handy |
 | `app_bauen.py` | bringt den Inhalt in die Android-Hülle und baut das Paket |
 
@@ -119,7 +119,9 @@ Store-Texte, Prüfpläne und Arbeitsnotizen liegen nur lokal in `privat/`.
 - **Der Signierschlüssel** und `keystore.properties` – ohne ihn gibt es nie
   wieder ein Update, mit ihm kann jeder eine gefälschte Version bauen.
   `projekt_sichern.py` nimmt ihn in die Geheim-Zip auf.
-- `fortschritt_*.json`, `sitzungen.json`, `codes.json` – echte Nutzerdaten
+- `fortschritt_*.json`, `sitzungen.json`, `codes.json` – echte Nutzerdaten aus
+  der Zeit mit Kontoserver (bis 04.10.2026). Es entstehen keine neuen mehr,
+  die Einträge in `.gitignore` bleiben für alte Reste stehen.
 - `feedback.txt`, `start.log`, `__pycache__/`
 
 ---

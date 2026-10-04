@@ -50,10 +50,11 @@ und 65 hatte – das Skript war richtig, es war nur nicht neu gelaufen.
 Seitdem prüft tests/test_testdaten.py, dass jede Kennung des Inhalts
 drinsteht. Schlägt der Test an: dieses Skript laufen lassen.
 
-Und: die Vollversion wirkt nur in der Geräteversion. Läuft `start.py`, holt
-der Server `premium` beim ersten Speichern aus der Profildatei zurück
-(start.py:875) – dann ist sie wieder aus. Am PC stattdessen `?alle=1` an
-die Adresse hängen, das schaltet zum Ausprobieren alles frei.
+Am PC schaltet auch `?alle=1` an der Adresse zum Ausprobieren alles frei.
+(Bis zum 04.10.2026 stand hier, dass die Vollversion unter `start.py` nicht
+wirkt: Der alte Kontoserver holte `premium` beim Speichern aus seiner
+Profildatei zurück. Den Kontoserver gibt es nicht mehr; der Lernstand liegt
+auch am PC im Browser.)
 """
 import argparse
 import datetime
@@ -66,9 +67,9 @@ HIER = os.path.dirname(os.path.abspath(__file__))
 ZIEL = os.path.join(HIER, "testdaten")
 sys.path.insert(0, HIER)
 
-# Der Server kappt den Muenzstand still bei dieser Grenze (start.py:554).
-# Ein groesserer Wert waere nach dem ersten Speichern lautlos wieder weg
-# und der Test saehe aus, als haette etwas nicht funktioniert.
+# Der alte Kontoserver kappte den Muenzstand still bei dieser Grenze. Den
+# gibt es seit dem 04.10.2026 nicht mehr; die Zahl bleibt, damit die
+# erzeugten Testdateien gleich bleiben.
 MUENZEN = 999999
 
 # So viele Lerntage bekommt die Testdatei mit. Ab 21 steht die
@@ -97,16 +98,16 @@ def lerntage(bis=None):
 def inhalt():
     """Alle Wort-Kennungen, Level und Geschichten - genau wie die App sie sieht.
 
-    Die Kennung baut start.mit_kennung(), dieselbe Funktion, die auch
-    start.lade_daten() benutzt. Früher stand die Regel hier ein zweites Mal;
+    Die Kennung baut inhalt.mit_kennung(), dieselbe Funktion, die auch
+    inhalt.lade_daten() benutzt. Früher stand die Regel hier ein zweites Mal;
     weicht sie je ab, erkennt die App die Wörter nicht wieder.
     Gezählt wird nichts von Hand: was im Inhalt steht, kommt in die Datei.
     """
     import geschichten
-    import start
+    import inhalt
     import vokabeln
 
-    daten = start.mit_kennung({"kategorien": vokabeln.KATEGORIEN})
+    daten = inhalt.mit_kennung({"kategorien": vokabeln.KATEGORIEN})
     woerter, level = [], []
     for k in daten["kategorien"]:
         level.append(k["id"])
