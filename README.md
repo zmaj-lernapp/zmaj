@@ -118,7 +118,8 @@ phrase pairs plus a pronunciation lexicon for low-resource Bosnian NLP.
 | `tests/` | content, translation, audio, dataset and repository checks |
 
 The Android shell (Capacitor) lives in a separate private repository because
-the signing key is next to it. Maintainer notes in German:
+the signing key is next to it. Overview: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+Maintainer notes in German:
 [`docs/WARTUNG.md`](docs/WARTUNG.md), [`ANLEITUNG.md`](ANLEITUNG.md).
 
 ## Quality
