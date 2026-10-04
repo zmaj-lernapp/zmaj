@@ -86,6 +86,7 @@ Einreichung setzt Googles Prüfuhr zurück.
 | `sicherung_richten.py` | die Meldung nach dem Sichern nennt den Dateinamen |
 | `import_richten.py` | eine von Hand geschriebene Sicherung kann die App nicht mehr lahmlegen (Sicherheitsprüfung 04.10.2026) |
 | `sicherheit2_richten.py` | zwei kleine Härtungen aus der zweiten Sicherheitsprüfung (Konten-Links ohne Konten, Fest-Probe) |
+| `barrierefreiheit_richten.py` | Bildschirmleser und Kontrast: 0 kritische und 0 ernste axe-Befunde statt 20 und 102 (Bericht in `Zmaj Berichte/`) |
 
 Alle drei folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
 Ohne den Schalter passiert nichts. Kommt ein gesuchter Textabschnitt nicht
