@@ -45,12 +45,9 @@ Googles Pruefuhr fuer den geschlossenen Test zurueck.
 Probelauf:  python import_richten.py
 Schreiben:  python import_richten.py --schreiben
 """
-import io
-import os
-import sys
+import richten
 
-ORDNER = os.path.dirname(os.path.abspath(__file__))
-INDEX = os.path.join(ORDNER, "web", "index.html")
+INDEX = richten.INDEX
 
 AENDERUNGEN = [
     ("Listen nur mit Texten",
@@ -120,49 +117,12 @@ AENDERUNGEN = [
 
 def anwenden(html):
     """(neuer Text, Fehlerliste). Ein Fehler heisst: nichts wird geschrieben."""
-    fehler = []
-    neu = html
-    for name, alt, ersatz in AENDERUNGEN:
-        n = neu.count(alt)
-        if n != 1:
-            fehler.append("%s: Stelle %d-mal gefunden statt einmal" % (name, n))
-            continue
-        neu = neu.replace(alt, ersatz)
-    # Nachkontrollen wie in den anderen *_richten.py
-    for auf, zu, was in (("{", "}", "geschweifte Klammern"), ("(", ")", "runde Klammern"),
-                         ("/*", "*/", "Kommentare"), ("<!--", "-->", "HTML-Kommentare")):
-        if neu.count(auf) - neu.count(zu) != html.count(auf) - html.count(zu):
-            fehler.append("%s aus dem Gleichgewicht" % was)
-    return neu, fehler
+    neu, fehler = richten.ersetze_einmal(html, AENDERUNGEN)
+    return neu, fehler + richten.gleichgewicht(html, neu)
 
 
 def main(argv=None):
-    argv = sys.argv[1:] if argv is None else argv
-    schreiben = "--schreiben" in argv
-    datei = INDEX
-    if "--datei" in argv:
-        datei = argv[argv.index("--datei") + 1]
-    roh = io.open(datei, encoding="utf-8", newline="").read()
-    # Git fuer Windows checkt mit CRLF aus. Die Anker kennen nur \n -
-    # also wie in sicherung_richten.py: normalisieren, beim Schreiben zurueck.
-    crlf = "\r\n" in roh
-    html = roh.replace("\r\n", "\n")
-    neu, fehler = anwenden(html)
-    for name, _, _ in AENDERUNGEN:
-        print("   %s %s" % ("✗" if any(f.startswith(name) for f in fehler) else "✓", name))
-    if fehler:
-        print("\nABBRUCH - nichts geschrieben:")
-        for f in fehler:
-            print("   " + f)
-        return 1
-    if schreiben:
-        io.open(datei, "w", encoding="utf-8", newline="").write(
-            neu.replace("\n", "\r\n") if crlf else neu)
-        print("\ngeschrieben: %s" % os.path.relpath(datei, ORDNER))
-        print("Danach: app_bauen.py - aber NICHT vor dem 07.10.2026 einreichen.")
-    else:
-        print("\n(Probelauf. Zum Schreiben: python import_richten.py --schreiben)")
-    return 0
+    return richten.main(argv, AENDERUNGEN, anwenden, "import_richten.py")
 
 
 if __name__ == "__main__":

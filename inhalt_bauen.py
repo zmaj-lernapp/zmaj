@@ -33,29 +33,29 @@ sys.path.insert(0, HIER)
 OHNE = ("audio",)
 
 
-def main():
+def schreiben(ziel, anpassen=None):
+    """Schreibt <code>.json je Sprache und liste.json nach ziel.
+
+    anpassen(code, daten) darf die Daten vor dem Schreiben ändern - die
+    Web-Demo schaltet damit die Werbetexte ab (demo_bauen.py). So gibt es
+    nur einen Weg, auf dem die App-Dateien entstehen.
+    Rückgabe: [(code, Bytes, daten), ...] für pruefen()."""
     import start
     import sprachen
 
-    os.makedirs(ZIEL, exist_ok=True)
+    os.makedirs(ziel, exist_ok=True)
     codes = [s["code"] for s in sprachen.SPRACHEN]
-    print("%d Sprachen: %s\n" % (len(codes), " ".join(codes)))
-
-    liste, gesamt = [], 0
+    liste = []
     for code in codes:
         daten = start.lade_daten(code)
+        if anpassen:
+            anpassen(code, daten)
         for feld in OHNE:
             daten.pop(feld, None)
-        pfad = os.path.join(ZIEL, code + ".json")
-        text = json.dumps(daten, ensure_ascii=False, separators=(",", ":"))
-        io.open(pfad, "w", encoding="utf-8").write(text)
-        gross = os.path.getsize(pfad)
-        gesamt += gross
-        liste.append((code, gross, daten))
-        print("  %-3s %6.0f KB   %d Level, %d Sätze, %d Geschichten, %d Texte"
-              % (code, gross / 1024.0, len(daten["kategorien"]),
-                 len(daten["saetze"]), len(daten["geschichten"]),
-                 len(daten["texte"])))
+        pfad = os.path.join(ziel, code + ".json")
+        with io.open(pfad, "w", encoding="utf-8") as f:
+            f.write(json.dumps(daten, ensure_ascii=False, separators=(",", ":")))
+        liste.append((code, os.path.getsize(pfad), daten))
 
     # Ein Verzeichnis, damit die App weiß, was es gibt, ohne zu raten
     verzeichnis = {
@@ -64,10 +64,20 @@ def main():
         "sprachen": sprachen.SPRACHEN,
         "dateien": {c: c + ".json" for c in codes},
     }
-    io.open(os.path.join(ZIEL, "liste.json"), "w", encoding="utf-8").write(
-        json.dumps(verzeichnis, ensure_ascii=False, indent=1))
+    with io.open(os.path.join(ziel, "liste.json"), "w", encoding="utf-8") as f:
+        f.write(json.dumps(verzeichnis, ensure_ascii=False, indent=1))
+    return liste
 
-    print("\n%.1f MB in web/inhalt, dazu liste.json" % (gesamt / 1048576.0))
+
+def main():
+    liste = schreiben(ZIEL)
+    print("%d Sprachen: %s\n" % (len(liste), " ".join(c for c, _, _ in liste)))
+    for code, gross, daten in liste:
+        print("  %-3s %6.0f KB   %d Level, %d Sätze, %d Geschichten, %d Texte"
+              % (code, gross / 1024.0, len(daten["kategorien"]),
+                 len(daten["saetze"]), len(daten["geschichten"]),
+                 len(daten["texte"])))
+    print("\n%.1f MB in web/inhalt, dazu liste.json" % (sum(g for _, g, _ in liste) / 1048576.0))
     pruefen(liste)
 
 
