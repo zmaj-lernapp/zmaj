@@ -172,7 +172,8 @@ native speaker overrides any model. Pull requests are reviewed by Codex
 against those rules ([workflow](.github/workflows/codex-review.yml)), and a
 maintainer can ask Codex for a first look at a reported language error
 ([workflow](.github/workflows/codex-language-triage.yml)). A human decides in
-both cases.
+both cases. Both workflows stay off (no runner starts) until the repository
+has the secret `OPENAI_API_KEY` and the variable `CODEX_AN` set to `true`.
 
 ```mermaid
 sequenceDiagram

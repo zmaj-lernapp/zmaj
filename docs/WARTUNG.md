@@ -26,6 +26,7 @@ Sprachen**
 | Texte der Oberfläche ändern | `sprachen.py` |
 | wissen, wie alles zusammenhängt | `ANLEITUNG.md` |
 | den nächsten Build vorbereiten | unten, „Liegen bereit“ |
+| Codex-Review und -Triage einschalten | GitHub, Settings → Secrets and variables → Actions: Secret `OPENAI_API_KEY` und Variable `CODEX_AN` = `true` |
 
 ---
 
