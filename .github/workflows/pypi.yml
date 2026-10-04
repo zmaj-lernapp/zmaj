@@ -1,0 +1,56 @@
+# Builds the zmaj-bosnian package on every tag v* and publishes it to PyPI
+# with Trusted Publishing (no token stored anywhere). Publishing stays off
+# until the repository variable PYPI_PUBLISH is "true" and the project on
+# pypi.org lists this workflow as a trusted publisher.
+name: PyPI
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: Build the package from data/
+        run: |
+          python -m pip install --require-hashes -r requirements-dev.txt
+          python paket_bauen.py
+      - name: Smoke test the wheel
+        run: |
+          python -m venv /tmp/probe
+          /tmp/probe/bin/pip install paket/dist/*.whl
+          cd /tmp && /tmp/probe/bin/python -c "import zmaj_bosnian as z; assert len(z.vocabulary()) == z.counts()['words']; print(z.counts())"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dist
+          path: paket/dist/
+          retention-days: 7
+
+  publish:
+    needs: build
+    if: vars.PYPI_PUBLISH == 'true' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/p/zmaj-bosnian
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@a892a5a61159132606e93a2fa6f4358831b04d26 # v1.14.2

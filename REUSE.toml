@@ -38,6 +38,7 @@ path = [
   "web/icon-256.png",
   "web/icon.ico",
   "docs/assets/**",
+  "paket/**",
   "store/**/*.png",
   "store/**/*.svg",
   "mappe/**/*.json",
