@@ -1,0 +1,1733 @@
+#separator:tab
+#html:false
+#notetype:Basic (and reversed card)
+#columns:Bosnian	tr	Tags
+#tags column:3
+Merhaba	Merhaba	zmaj zmaj::01_basics
+Dobar dan	İyi günler	zmaj zmaj::01_basics
+Dobro jutro	Günaydın	zmaj zmaj::01_basics
+Dobro veče	İyi akşamlar	zmaj zmaj::01_basics
+Laku noć / Lahku noć	İyi geceler	zmaj zmaj::01_basics
+Doviđenja	Hoşça kal	zmaj zmaj::01_basics
+Ćao	Görüşürüz	zmaj zmaj::01_basics
+Dobro došli	Hoş geldiniz	zmaj zmaj::01_basics
+Da	Evet	zmaj zmaj::01_basics
+Ne	Hayır	zmaj zmaj::01_basics
+Hvala	Teşekkürler	zmaj zmaj::01_basics
+Hvala puno	Çok teşekkürler	zmaj zmaj::01_basics
+Molim	Lütfen / Rica ederim (kibar, genel)	zmaj zmaj::01_basics
+Nema na čemu	Rica ederim	zmaj zmaj::01_basics
+Izvini	Affedersin (sen)	zmaj zmaj::01_basics
+Izvinite	Affedersiniz (siz)	zmaj zmaj::01_basics
+Kako si?	Nasılsın?	zmaj zmaj::01_basics
+Kako ste?	Nasılsınız?	zmaj zmaj::01_basics
+Dobro	İyi	zmaj zmaj::01_basics
+Loše	Kötü	zmaj zmaj::01_basics
+Kako se zoveš?	Adın ne?	zmaj zmaj::01_basics
+Zovem se ...	Benim adım ...	zmaj zmaj::01_basics
+Drago mi je	Memnun oldum	zmaj zmaj::01_basics
+Razumijem	Anlıyorum	zmaj zmaj::01_basics
+Ne razumijem	Anlamıyorum	zmaj zmaj::01_basics
+Ne znam	Bilmiyorum	zmaj zmaj::01_basics
+Govoriš li njemački?	Almanca konuşuyor musun?	zmaj zmaj::01_basics
+Govorim malo bosanski	Biraz Boşnakça konuşuyorum	zmaj zmaj::01_basics
+U redu	Tamam	zmaj zmaj::01_basics
+Možda	Belki	zmaj zmaj::01_basics
+Živjeli!	Şerefe!	zmaj zmaj::01_basics
+Prijatno	Afiyet olsun	zmaj zmaj::01_basics
+Zdravo	Merhaba (nötr, her yerde)	zmaj zmaj::01_basics
+nula	sıfır	zmaj zmaj::02_zahlen
+jedan	bir	zmaj zmaj::02_zahlen
+dva	iki	zmaj zmaj::02_zahlen
+tri	üç	zmaj zmaj::02_zahlen
+četiri	dört	zmaj zmaj::02_zahlen
+pet	beş	zmaj zmaj::02_zahlen
+šest	altı	zmaj zmaj::02_zahlen
+sedam	yedi	zmaj zmaj::02_zahlen
+osam	sekiz	zmaj zmaj::02_zahlen
+devet	dokuz	zmaj zmaj::02_zahlen
+deset	on	zmaj zmaj::02_zahlen
+jedanaest	on bir	zmaj zmaj::02_zahlen
+dvanaest	on iki	zmaj zmaj::02_zahlen
+trinaest	on üç	zmaj zmaj::02_zahlen
+četrnaest	on dört	zmaj zmaj::02_zahlen
+petnaest	on beş	zmaj zmaj::02_zahlen
+šesnaest	on altı	zmaj zmaj::02_zahlen
+sedamnaest	on yedi	zmaj zmaj::02_zahlen
+osamnaest	on sekiz	zmaj zmaj::02_zahlen
+devetnaest	on dokuz	zmaj zmaj::02_zahlen
+dvadeset	yirmi	zmaj zmaj::02_zahlen
+dvadeset jedan	yirmi bir	zmaj zmaj::02_zahlen
+trideset	otuz	zmaj zmaj::02_zahlen
+četrdeset	kırk	zmaj zmaj::02_zahlen
+pedeset	elli	zmaj zmaj::02_zahlen
+šezdeset	altmış	zmaj zmaj::02_zahlen
+sedamdeset	yetmiş	zmaj zmaj::02_zahlen
+osamdeset	seksen	zmaj zmaj::02_zahlen
+devedeset	doksan	zmaj zmaj::02_zahlen
+sto	yüz	zmaj zmaj::02_zahlen
+dvjesto	iki yüz	zmaj zmaj::02_zahlen
+hiljada	bin	zmaj zmaj::02_zahlen
+boja	renk	zmaj zmaj::03_farben
+crvena	kırmızı	zmaj zmaj::03_farben
+plava	mavi	zmaj zmaj::03_farben
+zelena	yeşil	zmaj zmaj::03_farben
+žuta	sarı	zmaj zmaj::03_farben
+crna	siyah	zmaj zmaj::03_farben
+bijela	beyaz	zmaj zmaj::03_farben
+kafena	kahverengi	zmaj zmaj::03_farben
+siva	gri	zmaj zmaj::03_farben
+narandžasta	turuncu	zmaj zmaj::03_farben
+ljubičasta	mor	zmaj zmaj::03_farben
+roza	pembe	zmaj zmaj::03_farben
+majka	anne	zmaj zmaj::04_familie
+mama	anneciğim	zmaj zmaj::04_familie
+otac	baba	zmaj zmaj::04_familie
+babo	babacığım (Boşnakça babo)	zmaj zmaj::04_familie
+brat	erkek kardeş	zmaj zmaj::04_familie
+sestra	kız kardeş	zmaj zmaj::04_familie
+sin	oğul	zmaj zmaj::04_familie
+kćerka	kız evlat	zmaj zmaj::04_familie
+dijete	çocuk	zmaj zmaj::04_familie
+djeca	çocuklar	zmaj zmaj::04_familie
+žena	eş (kadın)	zmaj zmaj::04_familie
+muž	eş (erkek)	zmaj zmaj::04_familie
+nana	nine	zmaj zmaj::04_familie
+dedo	dede	zmaj zmaj::04_familie
+tetka	teyze / hala	zmaj zmaj::04_familie
+amidža	amca	zmaj zmaj::04_familie
+daidža	dayı	zmaj zmaj::04_familie
+rođak	kuzen	zmaj zmaj::04_familie
+beba	bebek	zmaj zmaj::04_familie
+porodica	Aile	zmaj zmaj::04_familie
+prijatelj	arkadaş (erkek)	zmaj zmaj::04_familie
+prijateljica	arkadaş (kadın)	zmaj zmaj::04_familie
+voda	su	zmaj zmaj::05_essen
+hljeb	ekmek	zmaj zmaj::05_essen
+kahva / kafa	kahve	zmaj zmaj::05_essen
+fildžan	fincan (geleneksel kahve fincanı)	zmaj zmaj::05_essen
+čaj	çay	zmaj zmaj::05_essen
+mlijeko	süt	zmaj zmaj::05_essen
+sok	meyve suyu	zmaj zmaj::05_essen
+pivo	bira	zmaj zmaj::05_essen
+meso	et	zmaj zmaj::05_essen
+piletina	tavuk eti	zmaj zmaj::05_essen
+riba	balık	zmaj zmaj::05_essen
+sir	peynir	zmaj zmaj::05_essen
+jaje	yumurta	zmaj zmaj::05_essen
+jabuka	elma	zmaj zmaj::05_essen
+voće	meyve	zmaj zmaj::05_essen
+povrće	sebze	zmaj zmaj::05_essen
+krompir	patates	zmaj zmaj::05_essen
+paradajz	domates	zmaj zmaj::05_essen
+luk	soğan	zmaj zmaj::05_essen
+riža	pirinç	zmaj zmaj::05_essen
+so	tuz	zmaj zmaj::05_essen
+šećer	şeker	zmaj zmaj::05_essen
+supa	çorba	zmaj zmaj::05_essen
+pita	pita (yufkadan börek)	zmaj zmaj::05_essen
+ćevapi	ćevapi (küçük köfteler)	zmaj zmaj::05_essen
+doručak	kahvaltı	zmaj zmaj::05_essen
+ručak	öğle yemeği	zmaj zmaj::05_essen
+večera	akşam yemeği	zmaj zmaj::05_essen
+Gladan sam / Gladna sam	Açım (e/k)	zmaj zmaj::05_essen
+Žedan sam / Žedna sam	Susadım (e/k)	zmaj zmaj::05_essen
+Račun, molim	Hesap, lütfen	zmaj zmaj::05_essen
+ponedjeljak	Pazartesi	zmaj zmaj::06_wochentage
+utorak	Salı	zmaj zmaj::06_wochentage
+srijeda	Çarşamba	zmaj zmaj::06_wochentage
+četvrtak	Perşembe	zmaj zmaj::06_wochentage
+petak	Cuma	zmaj zmaj::06_wochentage
+subota	Cumartesi	zmaj zmaj::06_wochentage
+nedjelja	Pazar	zmaj zmaj::06_wochentage
+vikend	hafta sonu	zmaj zmaj::06_wochentage
+sedmica	hafta	zmaj zmaj::06_wochentage
+januar	Ocak	zmaj zmaj::07_monate
+februar	Şubat	zmaj zmaj::07_monate
+mart	Mart	zmaj zmaj::07_monate
+april	Nisan	zmaj zmaj::07_monate
+maj	Mayıs	zmaj zmaj::07_monate
+juni	Haziran	zmaj zmaj::07_monate
+juli	Temmuz	zmaj zmaj::07_monate
+august	Ağustos	zmaj zmaj::07_monate
+septembar	Eylül	zmaj zmaj::07_monate
+oktobar	Ekim	zmaj zmaj::07_monate
+novembar	Kasım	zmaj zmaj::07_monate
+decembar	Aralık	zmaj zmaj::07_monate
+mjesec	ay	zmaj zmaj::07_monate
+godina	yıl	zmaj zmaj::07_monate
+danas	bugün	zmaj zmaj::08_zeit
+sutra	yarın	zmaj zmaj::08_zeit
+jučer	dün	zmaj zmaj::08_zeit
+sada	şimdi	zmaj zmaj::08_zeit
+kasnije	sonra	zmaj zmaj::08_zeit
+dan	gün	zmaj zmaj::08_zeit
+jutro	sabah	zmaj zmaj::08_zeit
+podne	öğle	zmaj zmaj::08_zeit
+večer	akşam	zmaj zmaj::08_zeit
+noć	gece	zmaj zmaj::08_zeit
+sat	saat	zmaj zmaj::08_zeit
+minuta	dakika	zmaj zmaj::08_zeit
+Koliko je sati?	Saat kaç?	zmaj zmaj::08_zeit
+Vidimo se sutra!	Yarın görüşürüz!	zmaj zmaj::08_zeit
+stan	daire	zmaj zmaj::09_zuhause
+soba	oda	zmaj zmaj::09_zuhause
+kuhinja	mutfak	zmaj zmaj::09_zuhause
+kupatilo	banyo	zmaj zmaj::09_zuhause
+spavaća soba	yatak odası	zmaj zmaj::09_zuhause
+dnevna soba	oturma odası	zmaj zmaj::09_zuhause
+vrata	kapı	zmaj zmaj::09_zuhause
+prozor	pencere	zmaj zmaj::09_zuhause
+sto	masa	zmaj zmaj::09_zuhause
+stolica	sandalye	zmaj zmaj::09_zuhause
+krevet	yatak	zmaj zmaj::09_zuhause
+ključ	anahtar	zmaj zmaj::09_zuhause
+lampa	lamba	zmaj zmaj::09_zuhause
+televizor	televizyon	zmaj zmaj::09_zuhause
+mobitel	cep telefonu	zmaj zmaj::09_zuhause
+frižider	buzdolabı	zmaj zmaj::09_zuhause
+šporet	mutfak ocağı	zmaj zmaj::09_zuhause
+tepih	halı	zmaj zmaj::09_zuhause
+peškir	havlu	zmaj zmaj::09_zuhause
+sapun	sabun	zmaj zmaj::09_zuhause
+stepenice	merdiven	zmaj zmaj::09_zuhause
+balkon	balkon	zmaj zmaj::09_zuhause
+bašta	bahçe	zmaj zmaj::09_zuhause
+komšija	komşu	zmaj zmaj::09_zuhause
+vrijeme	hava durumu	zmaj zmaj::10_wetter
+sunce	güneş	zmaj zmaj::10_wetter
+kiša	yağmur	zmaj zmaj::10_wetter
+snijeg	kar	zmaj zmaj::10_wetter
+vjetar	rüzgâr	zmaj zmaj::10_wetter
+oblak	bulut	zmaj zmaj::10_wetter
+toplo	ılık	zmaj zmaj::10_wetter
+hladno	soğuk	zmaj zmaj::10_wetter
+vruće	sıcak	zmaj zmaj::10_wetter
+Pada kiša	Yağmur yağıyor	zmaj zmaj::10_wetter
+Pada snijeg	Kar yağıyor	zmaj zmaj::10_wetter
+proljeće	ilkbahar	zmaj zmaj::10_wetter
+ljeto	yaz	zmaj zmaj::10_wetter
+jesen	sonbahar	zmaj zmaj::10_wetter
+zima	kış	zmaj zmaj::10_wetter
+planina	dağ	zmaj zmaj::10_wetter
+rijeka	nehir	zmaj zmaj::10_wetter
+more	deniz	zmaj zmaj::10_wetter
+jezero	göl	zmaj zmaj::10_wetter
+šuma	orman	zmaj zmaj::10_wetter
+drvo	ağaç	zmaj zmaj::10_wetter
+cvijet	çiçek	zmaj zmaj::10_wetter
+nebo	gökyüzü	zmaj zmaj::10_wetter
+zvijezda	yıldız	zmaj zmaj::10_wetter
+pas	köpek	zmaj zmaj::10_wetter
+mačka	kedi	zmaj zmaj::10_wetter
+ptica	kuş	zmaj zmaj::10_wetter
+pčela	arı	zmaj zmaj::10_wetter
+munja	şimşek	zmaj zmaj::10_wetter
+grmljavina	gök gürültüsü	zmaj zmaj::10_wetter
+led	buz (donmuş su)	zmaj zmaj::10_wetter
+magla	sis	zmaj zmaj::10_wetter
+duga	gökkuşağı	zmaj zmaj::10_wetter
+hlad	gölge	zmaj zmaj::10_wetter
+oluja	fırtına	zmaj zmaj::10_wetter
+glava	baş	zmaj zmaj::11_koerper
+kosa	saç	zmaj zmaj::11_koerper
+oko	göz	zmaj zmaj::11_koerper
+uho	kulak	zmaj zmaj::11_koerper
+nos	burun	zmaj zmaj::11_koerper
+usta	ağız	zmaj zmaj::11_koerper
+zub	diş	zmaj zmaj::11_koerper
+vrat	boyun / boğaz	zmaj zmaj::11_koerper
+ruka	el / kol	zmaj zmaj::11_koerper
+prst	parmak	zmaj zmaj::11_koerper
+noga	bacak	zmaj zmaj::11_koerper
+stomak	karın	zmaj zmaj::11_koerper
+leđa	sırt	zmaj zmaj::11_koerper
+srce	kalp	zmaj zmaj::11_koerper
+bolestan / bolesna	hasta (e/k)	zmaj zmaj::11_koerper
+zdrav / zdrava	sağlıklı (e/k)	zmaj zmaj::11_koerper
+doktor	doktor	zmaj zmaj::11_koerper
+bolnica	hastane	zmaj zmaj::11_koerper
+apoteka	eczane	zmaj zmaj::11_koerper
+bol	ağrı	zmaj zmaj::11_koerper
+Boli me	Ağrıyor	zmaj zmaj::11_koerper
+glavobolja	baş ağrısı	zmaj zmaj::11_koerper
+temperatura	vücut ateşi	zmaj zmaj::11_koerper
+lijek	ilaç	zmaj zmaj::11_koerper
+Brz oporavak	Geçmiş olsun!	zmaj zmaj::11_koerper
+radnja	dükkân	zmaj zmaj::12_einkaufen
+tržni centar	alışveriş merkezi	zmaj zmaj::12_einkaufen
+kasa	kasa	zmaj zmaj::12_einkaufen
+cijena	fiyat	zmaj zmaj::12_einkaufen
+popust	indirim	zmaj zmaj::12_einkaufen
+gotovina	nakit	zmaj zmaj::12_einkaufen
+kartica	kart (banka kartı)	zmaj zmaj::12_einkaufen
+torba	çanta	zmaj zmaj::12_einkaufen
+odjeća	giysi	zmaj zmaj::12_einkaufen
+košulja	gömlek	zmaj zmaj::12_einkaufen
+majica	tişört	zmaj zmaj::12_einkaufen
+pantalone	pantolon	zmaj zmaj::12_einkaufen
+jakna	ceket	zmaj zmaj::12_einkaufen
+haljina	elbise	zmaj zmaj::12_einkaufen
+suknja	etek	zmaj zmaj::12_einkaufen
+cipele	ayakkabı	zmaj zmaj::12_einkaufen
+čarape	çorap	zmaj zmaj::12_einkaufen
+kapa	bere	zmaj zmaj::12_einkaufen
+veličina	beden	zmaj zmaj::12_einkaufen
+veliko	büyük	zmaj zmaj::12_einkaufen
+malo	küçük	zmaj zmaj::12_einkaufen
+novo	yeni	zmaj zmaj::12_einkaufen
+staro	eski	zmaj zmaj::12_einkaufen
+Tražim ...	... arıyorum	zmaj zmaj::12_einkaufen
+Imate li ...?	... var mı?	zmaj zmaj::12_einkaufen
+Uzet ću ovo	Bunu alıyorum	zmaj zmaj::12_einkaufen
+Mogu li platiti karticom?	Kartla ödeyebilir miyim?	zmaj zmaj::12_einkaufen
+Gdje je ...?	... nerede?	zmaj zmaj::13_unterwegs
+lijevo	sol	zmaj zmaj::13_unterwegs
+desno	sağ	zmaj zmaj::13_unterwegs
+pravo	dosdoğru	zmaj zmaj::13_unterwegs
+ulica	sokak	zmaj zmaj::13_unterwegs
+kuća	ev	zmaj zmaj::13_unterwegs
+grad	şehir	zmaj zmaj::13_unterwegs
+selo	köy	zmaj zmaj::13_unterwegs
+stanica	istasyon / durak	zmaj zmaj::13_unterwegs
+auto	araba	zmaj zmaj::13_unterwegs
+autobus	otobüs	zmaj zmaj::13_unterwegs
+prodavnica	mağaza	zmaj zmaj::13_unterwegs
+pijaca	pazar yeri	zmaj zmaj::13_unterwegs
+novac	para	zmaj zmaj::13_unterwegs
+Koliko košta?	Bu kaça?	zmaj zmaj::13_unterwegs
+skupo	pahalı	zmaj zmaj::13_unterwegs
+jeftino	ucuz	zmaj zmaj::13_unterwegs
+otvoreno	açık	zmaj zmaj::13_unterwegs
+zatvoreno	kapalı	zmaj zmaj::13_unterwegs
+biti	olmak	zmaj zmaj::14_verben
+imati	sahip olmak	zmaj zmaj::14_verben
+ići	gitmek	zmaj zmaj::14_verben
+doći	gelmek	zmaj zmaj::14_verben
+jesti	yemek	zmaj zmaj::14_verben
+piti	içmek	zmaj zmaj::14_verben
+govoriti	konuşmak	zmaj zmaj::14_verben
+razumjeti	anlamak	zmaj zmaj::14_verben
+znati	bilmek	zmaj zmaj::14_verben
+htjeti	istemek	zmaj zmaj::14_verben
+moći	-ebilmek	zmaj zmaj::14_verben
+voljeti	sevmek	zmaj zmaj::14_verben
+raditi	çalışmak	zmaj zmaj::14_verben
+spavati	uyumak	zmaj zmaj::14_verben
+učiti	öğrenmek	zmaj zmaj::14_verben
+vidjeti	görmek	zmaj zmaj::14_verben
+kupiti	satın almak	zmaj zmaj::14_verben
+stanovati	oturmak / yaşamak	zmaj zmaj::14_verben
+Šta ima?	Ne var ne yok?	zmaj zmaj::15_smalltalk
+Sve je dobro	Her şey yolunda	zmaj zmaj::15_smalltalk
+Nema problema	Sorun değil	zmaj zmaj::15_smalltalk
+Ne brini	Merak etme	zmaj zmaj::15_smalltalk
+Hajde!	Hadi!	zmaj zmaj::15_smalltalk
+Hajmo!	Hadi gidelim!	zmaj zmaj::15_smalltalk
+Vidi	Bak	zmaj zmaj::15_smalltalk
+Stvarno?	Gerçekten mi?	zmaj zmaj::15_smalltalk
+Super!	Süper!	zmaj zmaj::15_smalltalk
+lijepo	güzel	zmaj zmaj::15_smalltalk
+Ništa	Hiçbir şey	zmaj zmaj::15_smalltalk
+Sve	Her şey	zmaj zmaj::15_smalltalk
+Šta radiš?	Ne yapıyorsun?	zmaj zmaj::15_smalltalk
+Gdje si?	Neredesin?	zmaj zmaj::15_smalltalk
+Nemam vremena	Vaktim yok	zmaj zmaj::15_smalltalk
+Umoran sam / Umorna sam	Yorgunum (e/k)	zmaj zmaj::15_smalltalk
+sretan / sretna	mutlu (e/k)	zmaj zmaj::15_smalltalk
+tužan / tužna	üzgün (e/k)	zmaj zmaj::15_smalltalk
+ljubav	sevgi	zmaj zmaj::15_smalltalk
+Volim te	Seni seviyorum	zmaj zmaj::15_smalltalk
+Nedostaješ mi	Seni özledim	zmaj zmaj::15_smalltalk
+dušo	canım (hitap)	zmaj zmaj::15_smalltalk
+Sviđa mi se	Bu hoşuma gidiyor	zmaj zmaj::15_smalltalk
+Htio bih / Htjela bih	İstiyorum (e/k)	zmaj zmaj::15_smalltalk
+Molim te	Lütfen (rica ederken, sen)	zmaj zmaj::15_smalltalk
+Znaš ...	Biliyor musun ...	zmaj zmaj::15_smalltalk
+ananas	ananas	zmaj zmaj::16_obst
+kajsija	kayısı	zmaj zmaj::16_obst
+banana	muz	zmaj zmaj::16_obst
+kruška	armut	zmaj zmaj::16_obst
+kupina	böğürtlen	zmaj zmaj::16_obst
+jagoda	çilek	zmaj zmaj::16_obst
+smokva	incir	zmaj zmaj::16_obst
+nar	nar	zmaj zmaj::16_obst
+lješnjak	fındık	zmaj zmaj::16_obst
+borovnica	yaban mersini	zmaj zmaj::16_obst
+malina	ahududu	zmaj zmaj::16_obst
+dinja	kavun	zmaj zmaj::16_obst
+kesten	kestane	zmaj zmaj::16_obst
+trešnja	kiraz	zmaj zmaj::16_obst
+mandarina	mandalina	zmaj zmaj::16_obst
+badem	badem	zmaj zmaj::16_obst
+nektarina	nektarin	zmaj zmaj::16_obst
+breskva	şeftali	zmaj zmaj::16_obst
+dunja	ayva	zmaj zmaj::16_obst
+višnja	vişne	zmaj zmaj::16_obst
+suho voće	kuru meyve	zmaj zmaj::16_obst
+lubenica	karpuz	zmaj zmaj::16_obst
+grožđe	üzüm	zmaj zmaj::16_obst
+limun	limon	zmaj zmaj::16_obst
+patlidžan	patlıcan	zmaj zmaj::17_gemuese
+karfiol	karnabahar	zmaj zmaj::17_gemuese
+brokula	brokoli	zmaj zmaj::17_gemuese
+grašak	bezelye	zmaj zmaj::17_gemuese
+mladi luk	taze soğan	zmaj zmaj::17_gemuese
+boranija	taze fasulye	zmaj zmaj::17_gemuese
+krastavac	salatalık	zmaj zmaj::17_gemuese
+mrkva	havuç	zmaj zmaj::17_gemuese
+bijeli luk	sarımsak	zmaj zmaj::17_gemuese
+kupus	lahana	zmaj zmaj::17_gemuese
+zelena salata	marul	zmaj zmaj::17_gemuese
+bundeva	balkabağı	zmaj zmaj::17_gemuese
+praziluk	pırasa	zmaj zmaj::17_gemuese
+kukuruz	mısır	zmaj zmaj::17_gemuese
+blitva	pazı	zmaj zmaj::17_gemuese
+bamija	bamya	zmaj zmaj::17_gemuese
+paprika	biber (sebze)	zmaj zmaj::17_gemuese
+peršun	maydanoz	zmaj zmaj::17_gemuese
+gljive	mantar	zmaj zmaj::17_gemuese
+rotkvica	kırmızı turp	zmaj zmaj::17_gemuese
+cvekla	kırmızı pancar	zmaj zmaj::17_gemuese
+crveni luk	kırmızı soğan	zmaj zmaj::17_gemuese
+ljuta paprika	acı biber	zmaj zmaj::17_gemuese
+celer	kereviz	zmaj zmaj::17_gemuese
+špinat	ıspanak	zmaj zmaj::17_gemuese
+kelj	kıvırcık lahana	zmaj zmaj::17_gemuese
+tikvica	sakız kabağı	zmaj zmaj::17_gemuese
+prašak za pecivo	kabartma tozu	zmaj zmaj::18_lebensmittel
+maslac / puter	tereyağı	zmaj zmaj::18_lebensmittel
+turšija	turşu	zmaj zmaj::18_lebensmittel
+sladoled	dondurma	zmaj zmaj::18_lebensmittel
+začini	baharat	zmaj zmaj::18_lebensmittel
+griz	irmik	zmaj zmaj::18_lebensmittel
+mljeveno meso	kıyma	zmaj zmaj::18_lebensmittel
+kvasac	maya	zmaj zmaj::18_lebensmittel
+teletina	dana eti	zmaj zmaj::18_lebensmittel
+keks	bisküvi	zmaj zmaj::18_lebensmittel
+kečap	ketçap	zmaj zmaj::18_lebensmittel
+konzerva	konserve	zmaj zmaj::18_lebensmittel
+janjetina	kuzu eti	zmaj zmaj::18_lebensmittel
+pašteta	ciğer ezmesi	zmaj zmaj::18_lebensmittel
+leća	mercimek	zmaj zmaj::18_lebensmittel
+margarin	margarin	zmaj zmaj::18_lebensmittel
+džem	reçel	zmaj zmaj::18_lebensmittel
+majonez	mayonez	zmaj zmaj::18_lebensmittel
+mineralna voda	maden suyu	zmaj zmaj::18_lebensmittel
+pekmez	pekmez (erik pekmezi)	zmaj zmaj::18_lebensmittel
+junetina	sığır eti	zmaj zmaj::18_lebensmittel
+slatka pavlaka	krema (süt kreması)	zmaj zmaj::18_lebensmittel
+salama	salam	zmaj zmaj::18_lebensmittel
+kiseli kupus	lahana turşusu	zmaj zmaj::18_lebensmittel
+kiselo mlijeko	ekşi süt (yoğurda benzer içecek)	zmaj zmaj::18_lebensmittel
+kisela pavlaka	ekşi krema	zmaj zmaj::18_lebensmittel
+šunka	jambon	zmaj zmaj::18_lebensmittel
+šlag	krem şanti	zmaj zmaj::18_lebensmittel
+čokolada	çikolata	zmaj zmaj::18_lebensmittel
+senf	hardal	zmaj zmaj::18_lebensmittel
+kisela voda	gazlı su (soda)	zmaj zmaj::18_lebensmittel
+sudžuk	sudžuk (sucuk)	zmaj zmaj::18_lebensmittel
+tunjevina	ton balığı	zmaj zmaj::18_lebensmittel
+zimnica	kışlık erzak	zmaj zmaj::18_lebensmittel
+kobasica	sosis	zmaj zmaj::18_lebensmittel
+sirće	sirke	zmaj zmaj::19_vorrat
+med	bal	zmaj zmaj::19_vorrat
+jogurt	yoğurt	zmaj zmaj::19_vorrat
+brašno	un	zmaj zmaj::19_vorrat
+tjestenina	makarna	zmaj zmaj::19_vorrat
+biber	kara biber	zmaj zmaj::19_vorrat
+pavlaka	ekşi krema	zmaj zmaj::19_vorrat
+ulje	yemeklik yağ	zmaj zmaj::19_vorrat
+jufka	yufka	zmaj zmaj::19_vorrat
+pogača	pide (yuvarlak)	zmaj zmaj::19_vorrat
+pecivo	hamur işi (çörek)	zmaj zmaj::19_vorrat
+kifla	ay çöreği	zmaj zmaj::19_vorrat
+šampita	šampita (bezeli kremalı pasta)	zmaj zmaj::19_vorrat
+kadaif	tel kadayıf	zmaj zmaj::19_vorrat
+hurmašice	şerbetli hamur tatlısı	zmaj zmaj::19_vorrat
+rakija	rakija (meyveden yapılan sert içki)	zmaj zmaj::19_vorrat
+vino	şarap	zmaj zmaj::19_vorrat
+bosanska kahva	Bosna kahvesi	zmaj zmaj::19_vorrat
+Jednu bosansku kahvu, molim	Bir Bosna kahvesi, lütfen	zmaj zmaj::19_vorrat
+džezva	cezve	zmaj zmaj::19_vorrat
+polako	yavaş	zmaj zmaj::19_vorrat
+šećer u kocki	küp şeker	zmaj zmaj::19_vorrat
+U zdravlje!	Sağlığınıza!	zmaj zmaj::19_vorrat
+Jednu rakiju, molim	Bir rakija, lütfen	zmaj zmaj::19_vorrat
+travarica	otlu rakija	zmaj zmaj::19_vorrat
+domaća rakija	ev yapımı rakija	zmaj zmaj::19_vorrat
+loza	üzüm rakijası	zmaj zmaj::19_vorrat
+šljivovica	erik rakijası	zmaj zmaj::19_vorrat
+kućni ljubimac	evcil hayvan	zmaj zmaj::20_tiere
+životinja	hayvan	zmaj zmaj::20_tiere
+stoka	çiftlik hayvanları / besi hayvanları	zmaj zmaj::20_tiere
+patka	ördek	zmaj zmaj::20_tiere
+magarac	eşek	zmaj zmaj::20_tiere
+guska	kaz	zmaj zmaj::20_tiere
+horoz	horoz	zmaj zmaj::20_tiere
+avlija	avlu / iç avlu	zmaj zmaj::20_tiere
+kokoš	tavuk	zmaj zmaj::20_tiere
+tele	buzağı	zmaj zmaj::20_tiere
+pile	civciv / piliç	zmaj zmaj::20_tiere
+krava	inek	zmaj zmaj::20_tiere
+jagnje	kuzu	zmaj zmaj::20_tiere
+konj	at	zmaj zmaj::20_tiere
+ovca	koyun	zmaj zmaj::20_tiere
+svinja	domuz	zmaj zmaj::20_tiere
+svinjetina	domuz eti	zmaj zmaj::20_tiere
+štala	ahır	zmaj zmaj::20_tiere
+bik	boğa	zmaj zmaj::20_tiere
+štene	köpek yavrusu	zmaj zmaj::20_tiere
+koza	keçi	zmaj zmaj::20_tiere
+orao	kartal	zmaj zmaj::20_tiere
+sova	baykuş	zmaj zmaj::20_tiere
+vrana	karga	zmaj zmaj::20_tiere
+gnijezdo	yuva (kuş yuvası)	zmaj zmaj::20_tiere
+lastavica	kırlangıç	zmaj zmaj::20_tiere
+vrabac	serçe	zmaj zmaj::20_tiere
+roda	leylek	zmaj zmaj::20_tiere
+golub	güvercin	zmaj zmaj::20_tiere
+medvjed	ayı	zmaj zmaj::21_tiere_wild
+zmaj	ejderha	zmaj zmaj::21_tiere_wild
+vjeverica	sincap	zmaj zmaj::21_tiere_wild
+žaba	kurbağa	zmaj zmaj::21_tiere_wild
+lisica	tilki	zmaj zmaj::21_tiere_wild
+zec	yaban tavşanı	zmaj zmaj::21_tiere_wild
+jelen	geyik	zmaj zmaj::21_tiere_wild
+jež	kirpi	zmaj zmaj::21_tiere_wild
+kunić	evcil tavşan	zmaj zmaj::21_tiere_wild
+ris	vaşak	zmaj zmaj::21_tiere_wild
+miš	fare	zmaj zmaj::21_tiere_wild
+pacov	sıçan	zmaj zmaj::21_tiere_wild
+srna	karaca	zmaj zmaj::21_tiere_wild
+zmija	yılan	zmaj zmaj::21_tiere_wild
+divlja svinja	yaban domuzu	zmaj zmaj::21_tiere_wild
+vuk	kurt	zmaj zmaj::21_tiere_wild
+mrav	karınca	zmaj zmaj::21_tiere_wild
+muha	sinek	zmaj zmaj::21_tiere_wild
+buha	pire	zmaj zmaj::21_tiere_wild
+pastrmka	alabalık	zmaj zmaj::21_tiere_wild
+komarac	sivrisinek	zmaj zmaj::21_tiere_wild
+leptir	kelebek	zmaj zmaj::21_tiere_wild
+puž	salyangoz	zmaj zmaj::21_tiere_wild
+pauk	örümcek	zmaj zmaj::21_tiere_wild
+osa	yaban arısı	zmaj zmaj::21_tiere_wild
+crv	solucan	zmaj zmaj::21_tiere_wild
+krpelj	kene	zmaj zmaj::21_tiere_wild
+buvljak	bit pazarı	zmaj zmaj::21_tiere_wild
+pero	tüy (kuş tüyü)	zmaj zmaj::22_tiere_umgang
+krzno	kürk	zmaj zmaj::22_tiere_umgang
+krilo	kanat	zmaj zmaj::22_tiere_umgang
+rog	boynuz	zmaj zmaj::22_tiere_umgang
+povodac	tasma (gezdirme kayışı)	zmaj zmaj::22_tiere_umgang
+rep	kuyruk	zmaj zmaj::22_tiere_umgang
+veterinar	veteriner	zmaj zmaj::22_tiere_umgang
+ugristi	ısırmak	zmaj zmaj::22_tiere_umgang
+Hoće li ujesti?	Isırır mı?	zmaj zmaj::22_tiere_umgang
+lajati	havlamak	zmaj zmaj::22_tiere_umgang
+hraniti	beslemek	zmaj zmaj::22_tiere_umgang
+Bojim se pasa	Köpeklerden korkuyorum	zmaj zmaj::22_tiere_umgang
+šetati	yürüyüşe çıkmak	zmaj zmaj::22_tiere_umgang
+šetnja	yürüyüş	zmaj zmaj::22_tiere_umgang
+ubosti	sokmak (böcek)	zmaj zmaj::22_tiere_umgang
+Čuvaj se psa!	Köpeğe dikkat!	zmaj zmaj::22_tiere_umgang
+Pas me je ujeo	Köpek beni ısırdı	zmaj zmaj::22_tiere_umgang
+opasno	tehlikeli	zmaj zmaj::22_tiere_umgang
+opasnost	tehlike	zmaj zmaj::22_tiere_umgang
+mina	mayın (kara mayını)	zmaj zmaj::22_tiere_umgang
+zabranjeno	yasak	zmaj zmaj::22_tiere_umgang
+Pazi!	Dikkat! / Dikkat et!	zmaj zmaj::22_tiere_umgang
+potok	dere	zmaj zmaj::23_natur
+list	yaprak	zmaj zmaj::23_natur
+bunar	su kuyusu	zmaj zmaj::23_natur
+zemlja	toprak	zmaj zmaj::23_natur
+polje	tarla	zmaj zmaj::23_natur
+stijena	kaya	zmaj zmaj::23_natur
+vatra	ateş	zmaj zmaj::23_natur
+vrh	zirve	zmaj zmaj::23_natur
+trava	çimen	zmaj zmaj::23_natur
+pećina	mağara	zmaj zmaj::23_natur
+brdo	tepe	zmaj zmaj::23_natur
+ostrvo	ada	zmaj zmaj::23_natur
+zrak	hava	zmaj zmaj::23_natur
+priroda	doğa	zmaj zmaj::23_natur
+izvor	kaynak (su kaynağı)	zmaj zmaj::23_natur
+pijesak	kum	zmaj zmaj::23_natur
+kamen	taş	zmaj zmaj::23_natur
+dolina	vadi	zmaj zmaj::23_natur
+obala	kıyı	zmaj zmaj::23_natur
+vodopad	şelale	zmaj zmaj::23_natur
+put / staza	yol / patika	zmaj zmaj::23_natur
+livada	çayır	zmaj zmaj::23_natur
+grana	dal / ince dal	zmaj zmaj::23_natur
+kamilica	papatya	zmaj zmaj::23_natur
+lipa	ıhlamur	zmaj zmaj::23_natur
+nana (auch: metvica)	nane	zmaj zmaj::23_natur
+biljka	bitki	zmaj zmaj::23_natur
+šljiva	erik / erik ağacı	zmaj zmaj::23_natur
+orah	ceviz / ceviz ağacı	zmaj zmaj::23_natur
+korijen	kök	zmaj zmaj::23_natur
+rerna	fırın	zmaj zmaj::24_kueche_bad
+flaša	şişe	zmaj zmaj::24_kueche_bad
+viljuška	çatal	zmaj zmaj::24_kueche_bad
+zamrzivač	dondurucu	zmaj zmaj::24_kueche_bad
+suđe	tabak çanak (bulaşık)	zmaj zmaj::24_kueche_bad
+prati suđe	bulaşık yıkamak	zmaj zmaj::24_kueche_bad
+tava	tava	zmaj zmaj::24_kueche_bad
+tanjir	tabak	zmaj zmaj::24_kueche_bad
+lonac	tencere	zmaj zmaj::24_kueche_bad
+kesa	poşet / plastik poşet	zmaj zmaj::24_kueche_bad
+posteljina	nevresim	zmaj zmaj::24_kueche_bad
+deka	battaniye	zmaj zmaj::24_kueche_bad
+jastuk	yastık	zmaj zmaj::24_kueche_bad
+polica	raf	zmaj zmaj::24_kueche_bad
+ormar	dolap	zmaj zmaj::24_kueche_bad
+kauč	kanepe	zmaj zmaj::24_kueche_bad
+zavjesa	perde	zmaj zmaj::24_kueche_bad
+tuš	duş	zmaj zmaj::24_kueche_bad
+ogledalo	ayna	zmaj zmaj::24_kueche_bad
+WC	tuvalet	zmaj zmaj::24_kueche_bad
+toalet papir	tuvalet kâğıdı	zmaj zmaj::24_kueche_bad
+lavabo	lavabo	zmaj zmaj::24_kueche_bad
+četkica za zube	diş fırçası	zmaj zmaj::24_kueche_bad
+pasta za zube	diş macunu	zmaj zmaj::24_kueche_bad
+pospremiti	ortalığı toplamak	zmaj zmaj::25_putzen
+metla	süpürge	zmaj zmaj::25_putzen
+pegla	ütü	zmaj zmaj::25_putzen
+peglati	ütülemek	zmaj zmaj::25_putzen
+kanta	kova	zmaj zmaj::25_putzen
+smeće	çöp	zmaj zmaj::25_putzen
+kanta za smeće	çöp kovası / çöp bidonu	zmaj zmaj::25_putzen
+čisto	temiz	zmaj zmaj::25_putzen
+prljavo	kirli	zmaj zmaj::25_putzen
+usisivač	elektrikli süpürge	zmaj zmaj::25_putzen
+veš mašina	çamaşır makinesi	zmaj zmaj::25_putzen
+deterdžent	çamaşır deterjanı	zmaj zmaj::25_putzen
+veš	çamaşır	zmaj zmaj::25_putzen
+štrik	çamaşır ipi	zmaj zmaj::25_putzen
+lift	asansör	zmaj zmaj::25_putzen
+poštansko sanduče	posta kutusu	zmaj zmaj::25_putzen
+krov	çatı	zmaj zmaj::25_putzen
+tavan	tavan arası	zmaj zmaj::25_putzen
+pod	yer / zemin	zmaj zmaj::25_putzen
+domar	kapıcı	zmaj zmaj::25_putzen
+podrum	bodrum	zmaj zmaj::25_putzen
+zvono	kapı zili	zmaj zmaj::25_putzen
+zvoniti	zil çalmak	zmaj zmaj::25_putzen
+komšinica	komşu (kadın)	zmaj zmaj::25_putzen
+zid	duvar	zmaj zmaj::25_putzen
+ograda	çit	zmaj zmaj::25_putzen
+ugasiti	kapatmak / söndürmek	zmaj zmaj::26_technik
+bojler	termosifon / sıcak su deposu	zmaj zmaj::26_technik
+drva	odun (yakacak)	zmaj zmaj::26_technik
+upaliti	açmak / yakmak	zmaj zmaj::26_technik
+Nema struje	Elektrik yok	zmaj zmaj::26_technik
+sijalica	ampul	zmaj zmaj::26_technik
+grijanje	kalorifer / ısıtma	zmaj zmaj::26_technik
+ugalj	kömür	zmaj zmaj::26_technik
+svjetlo	ışık	zmaj zmaj::26_technik
+peć	soba (ısıtma sobası)	zmaj zmaj::26_technik
+osigurač	elektrik sigortası	zmaj zmaj::26_technik
+utičnica	priz	zmaj zmaj::26_technik
+utikač	fiş	zmaj zmaj::26_technik
+struja	elektrik	zmaj zmaj::26_technik
+topla voda	sıcak su	zmaj zmaj::26_technik
+Ne radi	Çalışmıyor	zmaj zmaj::26_technik
+Curi voda	Su sızıyor / damlıyor	zmaj zmaj::26_technik
+čekić	çekiç	zmaj zmaj::26_technik
+majstor	zanaatkâr / usta	zmaj zmaj::26_technik
+pokvaren / pokvarena / pokvareno	bozuk	zmaj zmaj::26_technik
+merdevine	el merdiveni	zmaj zmaj::26_technik
+ekser	çivi	zmaj zmaj::26_technik
+popraviti	tamir etmek	zmaj zmaj::26_technik
+brava	kilit (kapı kilidi)	zmaj zmaj::26_technik
+šaraf	vida	zmaj zmaj::26_technik
+slavina	musluk	zmaj zmaj::26_technik
+alat	alet	zmaj zmaj::26_technik
+gorivo	yakıt	zmaj zmaj::27_auto_werkstatt
+sipati gorivo	yakıt almak	zmaj zmaj::27_auto_werkstatt
+guma	lastik	zmaj zmaj::27_auto_werkstatt
+Pukla mi je guma.	Lastiğim patladı.	zmaj zmaj::27_auto_werkstatt
+kočnica	fren	zmaj zmaj::27_auto_werkstatt
+motor	motor	zmaj zmaj::27_auto_werkstatt
+akumulator	akü	zmaj zmaj::27_auto_werkstatt
+sigurnosni pojas	emniyet kemeri	zmaj zmaj::27_auto_werkstatt
+parkiralište	otopark	zmaj zmaj::27_auto_werkstatt
+parkirati	park etmek	zmaj zmaj::27_auto_werkstatt
+semafor	trafik lambası	zmaj zmaj::27_auto_werkstatt
+raskrsnica	kavşak	zmaj zmaj::27_auto_werkstatt
+saobraćaj	trafik	zmaj zmaj::27_auto_werkstatt
+zastoj	trafik sıkışıklığı	zmaj zmaj::27_auto_werkstatt
+kazna	trafik cezası	zmaj zmaj::27_auto_werkstatt
+registracija	plaka	zmaj zmaj::27_auto_werkstatt
+tehnički pregled	araç muayenesi	zmaj zmaj::27_auto_werkstatt
+autoservis	oto tamirhanesi	zmaj zmaj::27_auto_werkstatt
+šlep služba	çekici hizmeti	zmaj zmaj::27_auto_werkstatt
+pomoć na cesti	yol yardımı	zmaj zmaj::27_auto_werkstatt
+odvijač / šrafciger	tornavida	zmaj zmaj::27_auto_werkstatt
+kliješta	pense	zmaj zmaj::27_auto_werkstatt
+bušilica	matkap	zmaj zmaj::27_auto_werkstatt
+bušiti	delmek	zmaj zmaj::27_auto_werkstatt
+testera	testere	zmaj zmaj::27_auto_werkstatt
+francuski ključ	İngiliz anahtarı	zmaj zmaj::27_auto_werkstatt
+metar	şerit metre	zmaj zmaj::27_auto_werkstatt
+ljepilo	yapıştırıcı	zmaj zmaj::27_auto_werkstatt
+produžni kabl	uzatma kablosu	zmaj zmaj::27_auto_werkstatt
+radionica	atölye	zmaj zmaj::27_auto_werkstatt
+punjač	şarj aleti	zmaj zmaj::28_geraete
+baterija	batarya	zmaj zmaj::28_geraete
+Baterija je prazna.	Şarjım bitti.	zmaj zmaj::28_geraete
+napuniti	şarj etmek	zmaj zmaj::28_geraete
+šifra / lozinka	şifre	zmaj zmaj::28_geraete
+Koja je šifra za WiFi?	Wi-Fi şifresi ne?	zmaj zmaj::28_geraete
+internet	internet	zmaj zmaj::28_geraete
+Nema signala.	Sinyal yok.	zmaj zmaj::28_geraete
+poruka	mesaj	zmaj zmaj::28_geraete
+poslati poruku	mesaj göndermek	zmaj zmaj::28_geraete
+nazvati	aramak (telefonla)	zmaj zmaj::28_geraete
+aplikacija	uygulama	zmaj zmaj::28_geraete
+ekran	ekran	zmaj zmaj::28_geraete
+tastatura	klavye	zmaj zmaj::28_geraete
+štampač	yazıcı	zmaj zmaj::28_geraete
+slušalice	kulaklık	zmaj zmaj::28_geraete
+slikati	fotoğraf çekmek	zmaj zmaj::28_geraete
+ažurirati	güncellemek	zmaj zmaj::28_geraete
+mašina za suđe	bulaşık makinesi	zmaj zmaj::28_geraete
+sušilica za veš	çamaşır kurutma makinesi	zmaj zmaj::28_geraete
+mikrovalna	mikrodalga fırın	zmaj zmaj::28_geraete
+toster	ekmek kızartma makinesi	zmaj zmaj::28_geraete
+kuhalo za vodu	su ısıtıcısı	zmaj zmaj::28_geraete
+fen	saç kurutma makinesi	zmaj zmaj::28_geraete
+klima	klima	zmaj zmaj::28_geraete
+ventilator	vantilatör	zmaj zmaj::28_geraete
+daljinski	kumanda	zmaj zmaj::28_geraete
+aparat za kahvu / aparat za kafu	kahve makinesi	zmaj zmaj::28_geraete
+uputstvo	kullanım kılavuzu	zmaj zmaj::28_geraete
+garancija	garanti	zmaj zmaj::28_geraete
+Ko?	Kim?	zmaj zmaj::29_fragen
+Šta?	Ne?	zmaj zmaj::29_fragen
+Gdje?	Nerede?	zmaj zmaj::29_fragen
+Kuda?	Nereye?	zmaj zmaj::29_fragen
+Odakle?	Nereden?	zmaj zmaj::29_fragen
+Kada?	Ne zaman?	zmaj zmaj::29_fragen
+Zašto?	Neden?	zmaj zmaj::29_fragen
+Kako?	Nasıl?	zmaj zmaj::29_fragen
+Koliko?	Ne kadar?	zmaj zmaj::29_fragen
+Koji?	Hangi?	zmaj zmaj::29_fragen
+Čiji?	Kimin?	zmaj zmaj::29_fragen
+Da li ...?	Evet/hayır sorusu: ... mı?	zmaj zmaj::29_fragen
+Je li to ...?	Bu ... mı?	zmaj zmaj::29_fragen
+Ko si ti?	Sen kimsin?	zmaj zmaj::29_fragen
+Odakle si?	Nerelisin?	zmaj zmaj::29_fragen
+Kuda ideš?	Nereye gidiyorsun?	zmaj zmaj::29_fragen
+Kada dolaziš?	Ne zaman geliyorsun?	zmaj zmaj::29_fragen
+Zašto ne?	Neden olmasın?	zmaj zmaj::29_fragen
+Šta je to?	Bu ne?	zmaj zmaj::29_fragen
+Koliko imaš godina?	Kaç yaşındasın?	zmaj zmaj::29_fragen
+Imaš li vremena?	Vaktin var mı?	zmaj zmaj::29_fragen
+Govoriš li engleski?	İngilizce konuşuyor musun?	zmaj zmaj::29_fragen
+Mogu li pomoći?	Yardım edebilir miyim?	zmaj zmaj::29_fragen
+Gdje stanuješ?	Nerede oturuyorsun?	zmaj zmaj::29_fragen
+Šta misliš?	Ne düşünüyorsun?	zmaj zmaj::29_fragen
+on	o (erkek)	zmaj zmaj::30_genus
+ona	o (kadın)	zmaj zmaj::30_genus
+ono	o (nötr)	zmaj zmaj::30_genus
+oni	onlar (eril)	zmaj zmaj::30_genus
+one	onlar (dişil)	zmaj zmaj::30_genus
+moj / moja / moje	benim (e/d/n)	zmaj zmaj::30_genus
+tvoj / tvoja / tvoje	senin (e/d/n)	zmaj zmaj::30_genus
+njegov / njegova / njegovo	onun (erkek) (e/d/n)	zmaj zmaj::30_genus
+njen / njena / njeno	onun (kadın) (e/d/n)	zmaj zmaj::30_genus
+naš / naša / naše	bizim (e/d/n)	zmaj zmaj::30_genus
+vaš / vaša / vaše	sizin (e/d/n)	zmaj zmaj::30_genus
+ovaj / ova / ovo	bu (e/d/n)	zmaj zmaj::30_genus
+onaj / ona / ono	şu (e/d/n)	zmaj zmaj::30_genus
+muškarac	adam	zmaj zmaj::30_genus
+djevojka	genç kız	zmaj zmaj::30_genus
+dječak	oğlan	zmaj zmaj::30_genus
+nastavnik / nastavnica	öğretmen (e/k)	zmaj zmaj::30_genus
+student / studentica	öğrenci (e/k)	zmaj zmaj::30_genus
+konobar / konobarica	garson (e/k)	zmaj zmaj::30_genus
+doktor / doktorica	doktor (e/k)	zmaj zmaj::30_genus
+prodavač / prodavačica	satıcı (e/k)	zmaj zmaj::30_genus
+velik / velika / veliko	büyük (e/d/n)	zmaj zmaj::30_genus
+lijep / lijepa / lijepo	güzel (e/d/n)	zmaj zmaj::30_genus
+dobar / dobra / dobro	iyi (e/d/n)	zmaj zmaj::30_genus
+nov / nova / novo	yeni (e/d/n)	zmaj zmaj::30_genus
+pismo	mektup	zmaj zmaj::30_genus
+stvar	şey	zmaj zmaj::30_genus
+ja sam	ben ... -im	zmaj zmaj::31_konjugation
+ti si	sen ... -sin	zmaj zmaj::31_konjugation
+on je / ona je	o ... -dir	zmaj zmaj::31_konjugation
+mi smo	biz ... -iz	zmaj zmaj::31_konjugation
+vi ste	siz ... -siniz	zmaj zmaj::31_konjugation
+oni su	onlar ... -ler	zmaj zmaj::31_konjugation
+imam	bende var	zmaj zmaj::31_konjugation
+imaš	sende var	zmaj zmaj::31_konjugation
+ima	onda var	zmaj zmaj::31_konjugation
+imamo	bizde var	zmaj zmaj::31_konjugation
+imate	sizde var	zmaj zmaj::31_konjugation
+imaju	onlarda var	zmaj zmaj::31_konjugation
+idem	gidiyorum	zmaj zmaj::31_konjugation
+ideš	gidiyorsun	zmaj zmaj::31_konjugation
+idemo	gidiyoruz	zmaj zmaj::31_konjugation
+idu	gidiyorlar	zmaj zmaj::31_konjugation
+jedem	yiyorum	zmaj zmaj::31_konjugation
+jedeš	yiyorsun	zmaj zmaj::31_konjugation
+pijem	içiyorum	zmaj zmaj::31_konjugation
+govorim	konuşuyorum	zmaj zmaj::31_konjugation
+znam	biliyorum	zmaj zmaj::31_konjugation
+znaš	biliyorsun	zmaj zmaj::31_konjugation
+mogu	yapabilirim	zmaj zmaj::31_konjugation
+možeš	yapabilirsin	zmaj zmaj::31_konjugation
+hoću	istiyorum	zmaj zmaj::31_konjugation
+radim	çalışıyorum	zmaj zmaj::31_konjugation
+stanujem	oturuyorum	zmaj zmaj::31_konjugation
+učim	öğreniyorum	zmaj zmaj::31_konjugation
+volim	seviyorum	zmaj zmaj::31_konjugation
+brat → braća	erkek kardeş → erkek kardeşler	zmaj zmaj::32_mehrzahl
+sestra → sestre	kız kardeş → kız kardeşler	zmaj zmaj::32_mehrzahl
+kuća → kuće	ev → evler	zmaj zmaj::32_mehrzahl
+grad → gradovi	şehir → şehirler	zmaj zmaj::32_mehrzahl
+dijete → djeca	çocuk → çocuklar	zmaj zmaj::32_mehrzahl
+žena → žene	kadın → kadınlar	zmaj zmaj::32_mehrzahl
+muškarac → muškarci	adam → adamlar	zmaj zmaj::32_mehrzahl
+prijatelj → prijatelji	arkadaş → arkadaşlar	zmaj zmaj::32_mehrzahl
+jabuka → jabuke	elma → elmalar	zmaj zmaj::32_mehrzahl
+knjiga → knjige	kitap → kitaplar	zmaj zmaj::32_mehrzahl
+sto → stolovi	masa → masalar	zmaj zmaj::32_mehrzahl
+stolica → stolice	sandalye → sandalyeler	zmaj zmaj::32_mehrzahl
+auto → auti	araba → arabalar	zmaj zmaj::32_mehrzahl
+dan → dani	gün → günler	zmaj zmaj::32_mehrzahl
+godina → godine	yıl → yıllar	zmaj zmaj::32_mehrzahl
+riječ → riječi	kelime → kelimeler	zmaj zmaj::32_mehrzahl
+oko → oči	göz → gözler	zmaj zmaj::32_mehrzahl
+ruka → ruke	el → eller	zmaj zmaj::32_mehrzahl
+čovjek → ljudi	insan → insanlar	zmaj zmaj::32_mehrzahl
+prozor → prozori	pencere → pencereler	zmaj zmaj::32_mehrzahl
+selo → sela	köy → köyler	zmaj zmaj::32_mehrzahl
+jaje → jaja	yumurta → yumurtalar	zmaj zmaj::32_mehrzahl
+ključ → ključevi	anahtar → anahtarlar	zmaj zmaj::32_mehrzahl
+zub → zubi	diş → dişler	zmaj zmaj::32_mehrzahl
+noć → noći	gece → geceler	zmaj zmaj::32_mehrzahl
+pas → psi	köpek → köpekler	zmaj zmaj::32_mehrzahl
+čovjek	insan	zmaj zmaj::32_mehrzahl
+ljudi	insanlar	zmaj zmaj::32_mehrzahl
+ne	değil	zmaj zmaj::33_satzbau
+nisam	değilim	zmaj zmaj::33_satzbau
+nisi	değilsin	zmaj zmaj::33_satzbau
+nije	o değil	zmaj zmaj::33_satzbau
+nemam	bende yok	zmaj zmaj::33_satzbau
+ne mogu	yapamam	zmaj zmaj::33_satzbau
+neću	istemiyorum	zmaj zmaj::33_satzbau
+i	ve	zmaj zmaj::33_satzbau
+ali	ama	zmaj zmaj::33_satzbau
+ili	veya	zmaj zmaj::33_satzbau
+jer	çünkü	zmaj zmaj::33_satzbau
+da	ki	zmaj zmaj::33_satzbau
+da li	-ıp -madığı	zmaj zmaj::33_satzbau
+ako	eğer	zmaj zmaj::33_satzbau
+kad	-dığı zaman	zmaj zmaj::33_satzbau
+zato	bu yüzden	zmaj zmaj::33_satzbau
+Mislim da ...	Bence ... / ... diye düşünüyorum	zmaj zmaj::33_satzbau
+Ne znam gdje ...	Nerede olduğunu bilmiyorum ...	zmaj zmaj::33_satzbau
+Pitam se da li ...	Acaba ... mı diye merak ediyorum	zmaj zmaj::33_satzbau
+Kaže da ...	... diyor	zmaj zmaj::33_satzbau
+Nadam se da ...	Umarım ki ...	zmaj zmaj::33_satzbau
+Ne vjerujem	Sanmıyorum	zmaj zmaj::33_satzbau
+niko	hiç kimse	zmaj zmaj::33_satzbau
+nikad	asla	zmaj zmaj::33_satzbau
+uvijek	her zaman	zmaj zmaj::33_satzbau
+također	de / da	zmaj zmaj::33_satzbau
+samo	sadece	zmaj zmaj::33_satzbau
+već	zaten	zmaj zmaj::33_satzbau
+još ne	henüz değil	zmaj zmaj::33_satzbau
+Vidim brata	Erkek kardeşi görüyorum	zmaj zmaj::34_faelle1
+Vidim sestru	Kız kardeşi görüyorum	zmaj zmaj::34_faelle1
+Vidim dijete	Çocuğu görüyorum	zmaj zmaj::34_faelle1
+Pijem kahvu	Kahve içiyorum	zmaj zmaj::34_faelle1
+Jedem hljeb	Ekmek yiyorum	zmaj zmaj::34_faelle1
+Imam pitanje	Bir sorum var	zmaj zmaj::34_faelle1
+Imam auto	Arabam var	zmaj zmaj::34_faelle1
+Volim svoju majku	Annemi seviyorum	zmaj zmaj::34_faelle1
+Kupujem jaknu	Bir ceket alıyorum	zmaj zmaj::34_faelle1
+Čitam knjigu	Bir kitap okuyorum	zmaj zmaj::34_faelle1
+Zovem doktora	Doktoru arıyorum	zmaj zmaj::34_faelle1
+On ima psa	Onun köpeği var	zmaj zmaj::34_faelle1
+Ona ima mačku	Onun kedisi var	zmaj zmaj::34_faelle1
+Tražimo ulicu	Sokağı arıyoruz	zmaj zmaj::34_faelle1
+Trebam vodu	Suya ihtiyacım var	zmaj zmaj::34_faelle1
+Trebam ključ	Anahtara ihtiyacım var	zmaj zmaj::34_faelle1
+Znam tvog brata	Erkek kardeşini tanıyorum	zmaj zmaj::34_faelle1
+pitanje	soru	zmaj zmaj::34_faelle1
+odgovor	cevap	zmaj zmaj::34_faelle1
+čitati	okumak	zmaj zmaj::34_faelle1
+tražiti	aramak	zmaj zmaj::34_faelle1
+trebati	ihtiyaç duymak	zmaj zmaj::34_faelle1
+zvati	çağırmak / aramak	zmaj zmaj::34_faelle1
+kupujem	alıyorum	zmaj zmaj::34_faelle1
+vidim	görüyorum	zmaj zmaj::34_faelle1
+mene / me	beni	zmaj zmaj::34_faelle1
+tebe / te	seni	zmaj zmaj::34_faelle1
+njega / ga	onu (erkek)	zmaj zmaj::34_faelle1
+nju / je	onu (kadın)	zmaj zmaj::34_faelle1
+bez šećera	şekersiz	zmaj zmaj::35_faelle2
+bez mlijeka	sütsüz	zmaj zmaj::35_faelle2
+iz Bosne	Bosna'dan	zmaj zmaj::35_faelle2
+iz Njemačke	Almanya'dan	zmaj zmaj::35_faelle2
+iz grada	şehirden	zmaj zmaj::35_faelle2
+od mog brata	erkek kardeşimden	zmaj zmaj::35_faelle2
+do sutra	yarına kadar	zmaj zmaj::35_faelle2
+do stanice	durağa kadar	zmaj zmaj::35_faelle2
+pored kuće	evin yanında	zmaj zmaj::35_faelle2
+kod nane	ninemde	zmaj zmaj::35_faelle2
+kod prijatelja	arkadaşımda	zmaj zmaj::35_faelle2
+kuća moje sestre	kız kardeşimin evi	zmaj zmaj::35_faelle2
+auto oca	babanın arabası	zmaj zmaj::35_faelle2
+čaša vode	bir bardak su	zmaj zmaj::35_faelle2
+šolja kahve	bir fincan kahve	zmaj zmaj::35_faelle2
+kilogram jabuka	bir kilo elma	zmaj zmaj::35_faelle2
+mnogo ljudi	çok insan	zmaj zmaj::35_faelle2
+malo vremena	az vakit	zmaj zmaj::35_faelle2
+Nemam novca	Param yok	zmaj zmaj::35_faelle2
+Nema hljeba	Ekmek yok	zmaj zmaj::35_faelle2
+Ima mnogo djece	Çok çocuk var	zmaj zmaj::35_faelle2
+čaša	bardak	zmaj zmaj::35_faelle2
+šolja	fincan	zmaj zmaj::35_faelle2
+kilogram	kilo	zmaj zmaj::35_faelle2
+mnogo	çok / birçok	zmaj zmaj::35_faelle2
+malo	az	zmaj zmaj::35_faelle2
+dosta	yeterli	zmaj zmaj::35_faelle2
+blizu	yakınında	zmaj zmaj::35_faelle2
+zbog	yüzünden	zmaj zmaj::35_faelle2
+u	içinde (nerede)	zmaj zmaj::36_praepositionen
+na	üstünde (nerede)	zmaj zmaj::36_praepositionen
+iz	-den	zmaj zmaj::36_praepositionen
+od	-den / -in	zmaj zmaj::36_praepositionen
+do	-e kadar	zmaj zmaj::36_praepositionen
+sa	ile	zmaj zmaj::36_praepositionen
+za	için	zmaj zmaj::36_praepositionen
+kod	-de	zmaj zmaj::36_praepositionen
+bez	-siz	zmaj zmaj::36_praepositionen
+prema	-e doğru	zmaj zmaj::36_praepositionen
+iznad	üstünde	zmaj zmaj::36_praepositionen
+ispod	altında	zmaj zmaj::36_praepositionen
+između	arasında	zmaj zmaj::36_praepositionen
+iza	arkasında	zmaj zmaj::36_praepositionen
+ispred	önünde	zmaj zmaj::36_praepositionen
+pored	yanında	zmaj zmaj::36_praepositionen
+poslije	-den sonra	zmaj zmaj::36_praepositionen
+prije	-den önce	zmaj zmaj::36_praepositionen
+kroz	içinden	zmaj zmaj::36_praepositionen
+oko	etrafında	zmaj zmaj::36_praepositionen
+u gradu	şehirde	zmaj zmaj::36_praepositionen
+u kući	evde	zmaj zmaj::36_praepositionen
+na stolu	masada	zmaj zmaj::36_praepositionen
+na pijaci	pazarda	zmaj zmaj::36_praepositionen
+s mojom ženom	eşimle	zmaj zmaj::36_praepositionen
+za tebe	senin için	zmaj zmaj::36_praepositionen
+za djecu	çocuklar için	zmaj zmaj::36_praepositionen
+u autu	arabada	zmaj zmaj::36_praepositionen
+poslije posla	işten sonra	zmaj zmaj::36_praepositionen
+prije jela	yemekten önce	zmaj zmaj::36_praepositionen
+Dajem bratu	Erkek kardeşime veriyorum	zmaj zmaj::37_faelle3
+Dajem sestri	Kız kardeşime veriyorum	zmaj zmaj::37_faelle3
+Dajem djetetu	Çocuğa veriyorum	zmaj zmaj::37_faelle3
+Pomažem majci	Anneme yardım ediyorum	zmaj zmaj::37_faelle3
+Kažem prijatelju	Arkadaşıma söylüyorum	zmaj zmaj::37_faelle3
+Pišem nani	Nineme yazıyorum	zmaj zmaj::37_faelle3
+meni / mi	bana	zmaj zmaj::37_faelle3
+tebi / ti	sana	zmaj zmaj::37_faelle3
+njemu / mu	ona (erkek)	zmaj zmaj::37_faelle3
+njoj / joj	ona (kadın)	zmaj zmaj::37_faelle3
+nama / nam	bize	zmaj zmaj::37_faelle3
+vama / vam	size	zmaj zmaj::37_faelle3
+Daj mi	Bana ver	zmaj zmaj::37_faelle3
+Reci mi	Bana söyle	zmaj zmaj::37_faelle3
+Hladno mi je	Üşüyorum	zmaj zmaj::37_faelle3
+u školi	okulda	zmaj zmaj::37_faelle3
+u kuhinji	mutfakta	zmaj zmaj::37_faelle3
+na ulici	sokakta	zmaj zmaj::37_faelle3
+u Sarajevu	Saraybosna'da	zmaj zmaj::37_faelle3
+u sobi	odada	zmaj zmaj::37_faelle3
+govoriti o poslu	iş hakkında konuşmak	zmaj zmaj::37_faelle3
+Mislim na tebe	Seni düşünüyorum	zmaj zmaj::37_faelle3
+Stanujem u Berlinu	Berlin'de oturuyorum	zmaj zmaj::37_faelle3
+dati	vermek	zmaj zmaj::37_faelle3
+pomoći	yardım etmek	zmaj zmaj::37_faelle3
+pisati	yazmak	zmaj zmaj::37_faelle3
+reći	söylemek	zmaj zmaj::37_faelle3
+pokloniti	hediye etmek	zmaj zmaj::37_faelle3
+pokazati	göstermek	zmaj zmaj::37_faelle3
+s bratom	erkek kardeşle	zmaj zmaj::38_faelle4
+sa sestrom	kız kardeşle	zmaj zmaj::38_faelle4
+s djecom	çocuklarla	zmaj zmaj::38_faelle4
+autom	arabayla	zmaj zmaj::38_faelle4
+autobusom	otobüsle	zmaj zmaj::38_faelle4
+vozom	trenle	zmaj zmaj::38_faelle4
+biciklom	bisikletle	zmaj zmaj::38_faelle4
+pješke	yürüyerek	zmaj zmaj::38_faelle4
+sa mnom	benimle	zmaj zmaj::38_faelle4
+s tobom	seninle	zmaj zmaj::38_faelle4
+s nama	bizimle	zmaj zmaj::38_faelle4
+sa šećerom	şekerli	zmaj zmaj::38_faelle4
+s mlijekom	sütlü	zmaj zmaj::38_faelle4
+pod stolom	masanın altında	zmaj zmaj::38_faelle4
+brate!	kardeşim! (hitap)	zmaj zmaj::38_faelle4
+sestro!	kardeşim! (kadına hitap)	zmaj zmaj::38_faelle4
+prijatelju!	arkadaşım! (hitap)	zmaj zmaj::38_faelle4
+gospodine!	beyefendi! (hitap)	zmaj zmaj::38_faelle4
+gospođo!	hanımefendi! (hitap)	zmaj zmaj::38_faelle4
+dušo!	canım! (hitap)	zmaj zmaj::38_faelle4
+babo!	baba! (hitap)	zmaj zmaj::38_faelle4
+nano!	nine! (hitap)	zmaj zmaj::38_faelle4
+sine!	oğlum! (hitap)	zmaj zmaj::38_faelle4
+voz	tren	zmaj zmaj::38_faelle4
+avion	uçak	zmaj zmaj::38_faelle4
+bicikl	bisiklet	zmaj zmaj::38_faelle4
+kašika	kaşık	zmaj zmaj::38_faelle4
+kašikom	kaşıkla	zmaj zmaj::38_faelle4
+nož	bıçak	zmaj zmaj::38_faelle4
+bio sam / bila sam	-dim (e/k)	zmaj zmaj::39_vergangenheit
+bio si / bila si	-din (e/k)	zmaj zmaj::39_vergangenheit
+bio je	o -di (erkek)	zmaj zmaj::39_vergangenheit
+bila je	o -di (kadın)	zmaj zmaj::39_vergangenheit
+bili smo	-dik	zmaj zmaj::39_vergangenheit
+imao sam / imala sam	bende vardı (e/k)	zmaj zmaj::39_vergangenheit
+radio sam / radila sam	çalıştım (e/k)	zmaj zmaj::39_vergangenheit
+jeo sam / jela sam	yedim (e/k)	zmaj zmaj::39_vergangenheit
+vidio sam / vidjela sam	gördüm (e/k)	zmaj zmaj::39_vergangenheit
+išao sam / išla sam	gittim (e/k)	zmaj zmaj::39_vergangenheit
+rekao sam / rekla sam	söyledim (e/k)	zmaj zmaj::39_vergangenheit
+kupio sam / kupila sam	satın aldım (e/k)	zmaj zmaj::39_vergangenheit
+učio sam / učila sam	öğrendim (e/k)	zmaj zmaj::39_vergangenheit
+stanovao sam / stanovala sam	oturdum (e/k)	zmaj zmaj::39_vergangenheit
+prošle sedmice	geçen hafta	zmaj zmaj::39_vergangenheit
+prošle godine	geçen yıl	zmaj zmaj::39_vergangenheit
+prije dva dana	iki gün önce	zmaj zmaj::39_vergangenheit
+prije	daha önce	zmaj zmaj::39_vergangenheit
+tada	o zamanlar	zmaj zmaj::39_vergangenheit
+Bio sam u Bosni / Bila sam u Bosni	Bosna'daydım (e/k)	zmaj zmaj::39_vergangenheit
+Bilo je lijepo	Güzeldi	zmaj zmaj::39_vergangenheit
+Šta si radio? / Šta si radila?	Ne yaptın? (e/k)	zmaj zmaj::39_vergangenheit
+ću	-eceğim	zmaj zmaj::40_zukunft
+ćeš	-eceksin	zmaj zmaj::40_zukunft
+će	-ecek	zmaj zmaj::40_zukunft
+ćemo	-eceğiz	zmaj zmaj::40_zukunft
+ćete	-eceksiniz	zmaj zmaj::40_zukunft
+Radit ću	Çalışacağım	zmaj zmaj::40_zukunft
+Doći ću	Geleceğim	zmaj zmaj::40_zukunft
+Vidjet ćemo	Göreceğiz	zmaj zmaj::40_zukunft
+Učit ću	Öğreneceğim	zmaj zmaj::40_zukunft
+Nazvat ću te	Seni arayacağım	zmaj zmaj::40_zukunft
+Kada ćeš doći?	Ne zaman geleceksin?	zmaj zmaj::40_zukunft
+prekosutra	öbür gün	zmaj zmaj::40_zukunft
+sljedeće sedmice	gelecek hafta	zmaj zmaj::40_zukunft
+sljedeće godine	gelecek yıl	zmaj zmaj::40_zukunft
+uskoro	yakında	zmaj zmaj::40_zukunft
+plan	plan	zmaj zmaj::40_zukunft
+Planiram ...	... planlıyorum	zmaj zmaj::40_zukunft
+Želim putovati	Seyahat etmek istiyorum	zmaj zmaj::40_zukunft
+putovanje	seyahat	zmaj zmaj::40_zukunft
+Idemo u Bosnu	Bosna'ya gidiyoruz	zmaj zmaj::40_zukunft
+Pokušat ću	Deneyeceğim	zmaj zmaj::40_zukunft
+morati	zorunda olmak	zmaj zmaj::41_modal
+moram	-meliyim	zmaj zmaj::41_modal
+moraš	-melisin	zmaj zmaj::41_modal
+moramo	-meliyiz	zmaj zmaj::41_modal
+može	yapabilir	zmaj zmaj::41_modal
+možemo	yapabiliriz	zmaj zmaj::41_modal
+hoćeš	istiyorsun	zmaj zmaj::41_modal
+hoćemo	istiyoruz	zmaj zmaj::41_modal
+smjeti	izinli olmak	zmaj zmaj::41_modal
+smijem	iznim var	zmaj zmaj::41_modal
+trebao bih / trebala bih	-meliyim (e/k)	zmaj zmaj::41_modal
+Moram raditi	Çalışmam gerek	zmaj zmaj::41_modal
+Moram ići	Gitmem gerek	zmaj zmaj::41_modal
+Ne mogu doći	Gelemem	zmaj zmaj::41_modal
+Možeš li mi pomoći?	Bana yardım edebilir misin?	zmaj zmaj::41_modal
+Hoću spavati	Uyumak istiyorum	zmaj zmaj::41_modal
+Želim učiti	Öğrenmek istiyorum	zmaj zmaj::41_modal
+Smijem li pitati?	Sorabilir miyim?	zmaj zmaj::41_modal
+Ne moraš	Zorunda değilsin	zmaj zmaj::41_modal
+Moramo čekati	Beklememiz gerek	zmaj zmaj::41_modal
+čekati	beklemek	zmaj zmaj::41_modal
+Želim nešto jesti	Bir şey yemek istiyorum	zmaj zmaj::41_modal
+nešto	bir şey	zmaj zmaj::41_modal
+Mogu govoriti bosanski	Boşnakça konuşabilirim	zmaj zmaj::41_modal
+Ne znam plivati	Yüzme bilmiyorum (beceri)	zmaj zmaj::41_modal
+plivati	yüzmek	zmaj zmaj::41_modal
+pitati	sormak	zmaj zmaj::41_modal
+pokušati	denemek	zmaj zmaj::41_modal
+se	kendini (dönüşlü)	zmaj zmaj::42_reflexiv
+zvati se	adı olmak	zmaj zmaj::42_reflexiv
+prati se	yıkanmak	zmaj zmaj::42_reflexiv
+Perem se	Yıkanıyorum	zmaj zmaj::42_reflexiv
+radovati se	sevinmek	zmaj zmaj::42_reflexiv
+Radujem se	Seviniyorum	zmaj zmaj::42_reflexiv
+osjećati se	hissetmek	zmaj zmaj::42_reflexiv
+Osjećam se dobro	İyi hissediyorum	zmaj zmaj::42_reflexiv
+naći se	buluşmak	zmaj zmaj::42_reflexiv
+Nalazimo se u pet	Beşte buluşuyoruz	zmaj zmaj::42_reflexiv
+sjećati se	hatırlamak	zmaj zmaj::42_reflexiv
+Sjećam se	Hatırlıyorum	zmaj zmaj::42_reflexiv
+sjesti	oturmak	zmaj zmaj::42_reflexiv
+Sjedi!	Otur!	zmaj zmaj::42_reflexiv
+odmarati se	dinlenmek	zmaj zmaj::42_reflexiv
+Odmaram se	Dinleniyorum	zmaj zmaj::42_reflexiv
+oblačiti se	giyinmek	zmaj zmaj::42_reflexiv
+žuriti se	acele etmek	zmaj zmaj::42_reflexiv
+Požuri!	Acele et!	zmaj zmaj::42_reflexiv
+kasniti	geç kalmak	zmaj zmaj::42_reflexiv
+Kasnim	Geç kalıyorum	zmaj zmaj::42_reflexiv
+svađati se	tartışmak	zmaj zmaj::42_reflexiv
+zaljubiti se	âşık olmak	zmaj zmaj::42_reflexiv
+Zaljubio sam se / Zaljubila sam se	Âşık oldum (e/k)	zmaj zmaj::42_reflexiv
+smijati se	gülmek	zmaj zmaj::42_reflexiv
+Smijem se	Gülüyorum	zmaj zmaj::42_reflexiv
+igrati se	oynamak (çocuklar)	zmaj zmaj::42_reflexiv
+Djeca se igraju	Çocuklar oynuyor	zmaj zmaj::42_reflexiv
+brinuti se	endişelenmek	zmaj zmaj::42_reflexiv
+ustajati	kalkmak	zmaj zmaj::43_routine
+Ustajem u sedam	Yedide kalkıyorum	zmaj zmaj::43_routine
+tuširati se	duş almak	zmaj zmaj::43_routine
+Tuširam se	Duş alıyorum	zmaj zmaj::43_routine
+prati zube	diş fırçalamak	zmaj zmaj::43_routine
+doručkovati	kahvaltı yapmak	zmaj zmaj::43_routine
+Doručkujem	Kahvaltı yapıyorum	zmaj zmaj::43_routine
+ići na posao	işe gitmek	zmaj zmaj::43_routine
+Idem na posao	İşe gidiyorum	zmaj zmaj::43_routine
+ručati	öğle yemeği yemek	zmaj zmaj::43_routine
+Ručam	Öğle yemeği yiyorum	zmaj zmaj::43_routine
+doći kući	eve gelmek	zmaj zmaj::43_routine
+Dolazim kući	Eve geliyorum	zmaj zmaj::43_routine
+kuhati	yemek pişirmek	zmaj zmaj::43_routine
+Kuham večeru	Akşam yemeği pişiriyorum	zmaj zmaj::43_routine
+gledati televiziju	televizyon izlemek	zmaj zmaj::43_routine
+ići spavati	uyumaya gitmek	zmaj zmaj::43_routine
+Idem spavati	Uyumaya gidiyorum	zmaj zmaj::43_routine
+ići u kupovinu	alışverişe gitmek	zmaj zmaj::43_routine
+čistiti	temizlemek	zmaj zmaj::43_routine
+prati veš	çamaşır yıkamak	zmaj zmaj::43_routine
+rano	erken	zmaj zmaj::43_routine
+kasno	geç	zmaj zmaj::43_routine
+svaki dan	her gün	zmaj zmaj::43_routine
+ponekad	bazen	zmaj zmaj::43_routine
+često	sık sık	zmaj zmaj::43_routine
+rijetko	nadiren	zmaj zmaj::43_routine
+ujutro	sabahleyin	zmaj zmaj::43_routine
+popodne	öğleden sonra	zmaj zmaj::43_routine
+navečer	akşamleyin	zmaj zmaj::43_routine
+vikendom	hafta sonunda	zmaj zmaj::43_routine
+velik / velika	büyük (e/k)	zmaj zmaj::44_adjektive
+veći	daha büyük	zmaj zmaj::44_adjektive
+najveći	en büyük	zmaj zmaj::44_adjektive
+mali / mala	küçük (e/k)	zmaj zmaj::44_adjektive
+manji	daha küçük	zmaj zmaj::44_adjektive
+dobar / dobra	iyi (e/k)	zmaj zmaj::44_adjektive
+bolji	daha iyi	zmaj zmaj::44_adjektive
+najbolji	en iyi	zmaj zmaj::44_adjektive
+loš / loša	kötü (e/k)	zmaj zmaj::44_adjektive
+gori	daha kötü	zmaj zmaj::44_adjektive
+lijep / lijepa	güzel (e/k)	zmaj zmaj::44_adjektive
+ljepši	daha güzel	zmaj zmaj::44_adjektive
+nov / nova	yeni (e/k)	zmaj zmaj::44_adjektive
+star / stara	yaşlı / eski (e/k)	zmaj zmaj::44_adjektive
+stariji	daha yaşlı	zmaj zmaj::44_adjektive
+mlad / mlada	genç (e/k)	zmaj zmaj::44_adjektive
+mlađi	daha genç	zmaj zmaj::44_adjektive
+skup / skupa / skupo	pahalı (e/d/n)	zmaj zmaj::44_adjektive
+skuplji	daha pahalı	zmaj zmaj::44_adjektive
+jeftiniji	daha ucuz	zmaj zmaj::44_adjektive
+brz / brza	hızlı (e/k)	zmaj zmaj::44_adjektive
+spor / spora	yavaş (e/k)	zmaj zmaj::44_adjektive
+nego / od	-den (karşılaştırma)	zmaj zmaj::44_adjektive
+jako	çok	zmaj zmaj::44_adjektive
+previše	fazla (fazla büyük)	zmaj zmaj::44_adjektive
+To je bolje nego to	Bu ondan daha iyi	zmaj zmaj::44_adjektive
+jedan brat	bir erkek kardeş	zmaj zmaj::45_mengen
+dva brata	iki erkek kardeş	zmaj zmaj::45_mengen
+pet braće	beş erkek kardeş	zmaj zmaj::45_mengen
+jedna sestra	bir kız kardeş	zmaj zmaj::45_mengen
+dvije sestre	iki kız kardeş	zmaj zmaj::45_mengen
+pet sestara	beş kız kardeş	zmaj zmaj::45_mengen
+jedna godina	bir yıl	zmaj zmaj::45_mengen
+dvije godine	iki yıl	zmaj zmaj::45_mengen
+pet godina	beş yıl	zmaj zmaj::45_mengen
+jedan dan	bir gün	zmaj zmaj::45_mengen
+tri dana	üç gün	zmaj zmaj::45_mengen
+deset dana	on gün	zmaj zmaj::45_mengen
+jedna kahva	bir kahve	zmaj zmaj::45_mengen
+dvije kahve	iki kahve	zmaj zmaj::45_mengen
+tri piva	üç bira	zmaj zmaj::45_mengen
+nekoliko	birkaç	zmaj zmaj::45_mengen
+nekoliko dana	birkaç gün	zmaj zmaj::45_mengen
+pola	yarım	zmaj zmaj::45_mengen
+pola kilograma	yarım kilo	zmaj zmaj::45_mengen
+četvrt	çeyrek	zmaj zmaj::45_mengen
+prvi	birinci	zmaj zmaj::45_mengen
+drugi	ikinci	zmaj zmaj::45_mengen
+treći	üçüncü	zmaj zmaj::45_mengen
+zadnji	sonuncu	zmaj zmaj::45_mengen
+jednom	bir kez	zmaj zmaj::45_mengen
+dva puta	iki kez	zmaj zmaj::45_mengen
+prvi put	ilk kez	zmaj zmaj::45_mengen
+oboje	ikisi de	zmaj zmaj::45_mengen
+svi	hepsi	zmaj zmaj::45_mengen
+svaki	her	zmaj zmaj::45_mengen
+nijedan / nijedna	hiçbir (e/d)	zmaj zmaj::45_mengen
+mišljenje	görüş	zmaj zmaj::46_gefuehle
+Po mom mišljenju	Bence	zmaj zmaj::46_gefuehle
+Slažem se	Katılıyorum	zmaj zmaj::46_gefuehle
+Ne slažem se	Katılmıyorum	zmaj zmaj::46_gefuehle
+Siguran sam / Sigurna sam	Eminim (e/k)	zmaj zmaj::46_gefuehle
+To je tačno	Bu doğru	zmaj zmaj::46_gefuehle
+To nije tačno	Bu doğru değil	zmaj zmaj::46_gefuehle
+važno	önemli	zmaj zmaj::46_gefuehle
+Svejedno mi je	Benim için fark etmez	zmaj zmaj::46_gefuehle
+strah	korku	zmaj zmaj::46_gefuehle
+Bojim se	Korkuyorum	zmaj zmaj::46_gefuehle
+ljut / ljuta	kızgın (e/k)	zmaj zmaj::46_gefuehle
+nervozan / nervozna	gergin (e/k)	zmaj zmaj::46_gefuehle
+zadovoljan / zadovoljna	memnun (e/k)	zmaj zmaj::46_gefuehle
+iznenađen / iznenađena	şaşırmış (e/k)	zmaj zmaj::46_gefuehle
+Dosadno mi je	Canım sıkılıyor	zmaj zmaj::46_gefuehle
+usamljen / usamljena	yalnız (e/k)	zmaj zmaj::46_gefuehle
+ponosan / ponosna	gururlu (e/k)	zmaj zmaj::46_gefuehle
+Ponosan sam na tebe / Ponosna sam na tebe	Seninle gurur duyuyorum (e/k)	zmaj zmaj::46_gefuehle
+nada	umut	zmaj zmaj::46_gefuehle
+nadam se	umarım	zmaj zmaj::46_gefuehle
+nažalost	maalesef	zmaj zmaj::46_gefuehle
+srećom	neyse ki	zmaj zmaj::46_gefuehle
+Brinem se	Endişeleniyorum	zmaj zmaj::46_gefuehle
+Drago mi je zbog tebe	Senin adına sevindim	zmaj zmaj::46_gefuehle
+zanimljivo	ilginç	zmaj zmaj::46_gefuehle
+dosadno	sıkıcı	zmaj zmaj::46_gefuehle
+smiješno	komik	zmaj zmaj::46_gefuehle
+teško	zor	zmaj zmaj::46_gefuehle
+lako / lahko	kolay	zmaj zmaj::46_gefuehle
+aerodrom	havalimanı	zmaj zmaj::47_reisen
+let	uçuş	zmaj zmaj::47_reisen
+karta	bilet	zmaj zmaj::47_reisen
+povratna karta	gidiş dönüş bileti	zmaj zmaj::47_reisen
+polazak	kalkış	zmaj zmaj::47_reisen
+dolazak	varış	zmaj zmaj::47_reisen
+kašnjenje	gecikme	zmaj zmaj::47_reisen
+prtljag	bagaj	zmaj zmaj::47_reisen
+kofer	bavul	zmaj zmaj::47_reisen
+hotel	otel	zmaj zmaj::47_reisen
+rezervisati sobu	oda ayırtmak	zmaj zmaj::47_reisen
+rezervacija	rezervasyon	zmaj zmaj::47_reisen
+autobuska stanica	otogar	zmaj zmaj::47_reisen
+taksi	taksi	zmaj zmaj::47_reisen
+vozač	şoför	zmaj zmaj::47_reisen
+benzinska pumpa	benzin istasyonu	zmaj zmaj::47_reisen
+benzin	benzin	zmaj zmaj::47_reisen
+autoput	otoyol	zmaj zmaj::47_reisen
+mapa	harita	zmaj zmaj::47_reisen
+pravac	yön	zmaj zmaj::47_reisen
+vožnja	yolculuk	zmaj zmaj::47_reisen
+Koliko traje vožnja?	Yolculuk ne kadar sürüyor?	zmaj zmaj::47_reisen
+Kada polazi autobus?	Otobüs ne zaman kalkıyor?	zmaj zmaj::47_reisen
+ulaz	giriş	zmaj zmaj::47_reisen
+izlaz	çıkış	zmaj zmaj::47_reisen
+znamenitost	görülecek yer	zmaj zmaj::47_reisen
+most	köprü	zmaj zmaj::47_reisen
+stari grad	eski şehir	zmaj zmaj::47_reisen
+džamija	cami	zmaj zmaj::47_reisen
+crkva	kilise	zmaj zmaj::47_reisen
+prenoćiti	gecelemek	zmaj zmaj::47_reisen
+Sretan put!	İyi yolculuklar!	zmaj zmaj::47_reisen
+proslava	kutlama	zmaj zmaj::48_feiern
+rođendan	doğum günü	zmaj zmaj::48_feiern
+Sretan rođendan!	İyi ki doğdun!	zmaj zmaj::48_feiern
+svadba	düğün	zmaj zmaj::48_feiern
+mlada	gelin	zmaj zmaj::48_feiern
+mladoženja	damat	zmaj zmaj::48_feiern
+gost	misafir	zmaj zmaj::48_feiern
+gosti	misafirler	zmaj zmaj::48_feiern
+poklon	hediye	zmaj zmaj::48_feiern
+poziv	davet	zmaj zmaj::48_feiern
+pozvati	davet etmek	zmaj zmaj::48_feiern
+Bajram	Bayram	zmaj zmaj::48_feiern
+Bajram šerif mubarek olsun!	Bayramınız mübarek olsun!	zmaj zmaj::48_feiern
+Ramazan	Ramazan	zmaj zmaj::48_feiern
+postiti	oruç tutmak	zmaj zmaj::48_feiern
+Nova godina	Yılbaşı	zmaj zmaj::48_feiern
+Sretna Nova godina!	Yeni yılınız kutlu olsun!	zmaj zmaj::48_feiern
+Božić	Noel	zmaj zmaj::48_feiern
+Uskrs	Paskalya	zmaj zmaj::48_feiern
+kolač	kek	zmaj zmaj::48_feiern
+baklava	baklava	zmaj zmaj::48_feiern
+torta	pasta	zmaj zmaj::48_feiern
+plesati	dans etmek	zmaj zmaj::48_feiern
+pjevati	şarkı söylemek	zmaj zmaj::48_feiern
+pjesma	şarkı	zmaj zmaj::48_feiern
+muzika	müzik	zmaj zmaj::48_feiern
+tradicija	gelenek	zmaj zmaj::48_feiern
+Čestitam!	Tebrikler!	zmaj zmaj::48_feiern
+Izvolite, uđite!	Buyurun, girin!	zmaj zmaj::48_feiern
+poslužiti kahvu	kahve ikram etmek	zmaj zmaj::48_feiern
+gostoprimstvo	misafirperverlik	zmaj zmaj::48_feiern
+dženaza / sahrana	cenaze töreni	zmaj zmaj::48_feiern
+običaj	gelenek / âdet	zmaj zmaj::48_feiern
+slaviti	kutlamak	zmaj zmaj::48_feiern
+čestitati	tebrik etmek	zmaj zmaj::48_feiern
+narodna nošnja	geleneksel halk kıyafeti	zmaj zmaj::48_feiern
+posao	iş	zmaj zmaj::49_arbeit
+firma	şirket	zmaj zmaj::49_arbeit
+šef	patron	zmaj zmaj::49_arbeit
+kolega	iş arkadaşı	zmaj zmaj::49_arbeit
+kancelarija	ofis	zmaj zmaj::49_arbeit
+fabrika	fabrika	zmaj zmaj::49_arbeit
+mašina	makine	zmaj zmaj::49_arbeit
+inženjer	mühendis	zmaj zmaj::49_arbeit
+električar	elektrikçi	zmaj zmaj::49_arbeit
+zanimanje	meslek	zmaj zmaj::49_arbeit
+Šta si po zanimanju?	Mesleğin ne?	zmaj zmaj::49_arbeit
+plata	maaş	zmaj zmaj::49_arbeit
+godišnji odmor	yıllık izin	zmaj zmaj::49_arbeit
+škola	okul	zmaj zmaj::49_arbeit
+nastavnik	öğretmen	zmaj zmaj::49_arbeit
+učenik	öğrenci	zmaj zmaj::49_arbeit
+student	üniversite öğrencisi	zmaj zmaj::49_arbeit
+univerzitet	üniversite	zmaj zmaj::49_arbeit
+ispit	sınav	zmaj zmaj::49_arbeit
+zadaća	ödev	zmaj zmaj::49_arbeit
+knjiga	kitap	zmaj zmaj::49_arbeit
+olovka	kalem	zmaj zmaj::49_arbeit
+papir	kâğıt	zmaj zmaj::49_arbeit
+računar	bilgisayar	zmaj zmaj::49_arbeit
+Imam dva brata	İki erkek kardeşim var	zmaj zmaj::50_saetze
+Moja sestra ima pet godina	Kız kardeşim beş yaşında	zmaj zmaj::50_saetze
+Jedemo u sedam sati	Saat yedide yemek yiyoruz	zmaj zmaj::50_saetze
+U ponedjeljak idem na posao	Pazartesi işe gidiyorum	zmaj zmaj::50_saetze
+Kahva je vruća	Kahve sıcak	zmaj zmaj::50_saetze
+Pijem vodu, hvala	Su içiyorum, teşekkürler	zmaj zmaj::50_saetze
+Moj babo ne radi u julu	Babam temmuzda çalışmıyor	zmaj zmaj::50_saetze
+Gdje je crvena torba?	Kırmızı çanta nerede?	zmaj zmaj::50_saetze
+Koliko košta hljeb?	Ekmek kaça?	zmaj zmaj::50_saetze
+Danas je hladno i pada kiša	Bugün hava soğuk ve yağmur yağıyor	zmaj zmaj::50_saetze
+Razumijem malo bosanski	Biraz Boşnakça anlıyorum	zmaj zmaj::50_saetze
+Vidimo se u subotu	Cumartesi görüşürüz	zmaj zmaj::50_saetze
+Htjela bih tri jabuke, molim	Üç elma istiyorum, lütfen	zmaj zmaj::50_saetze
+Moja nana stanuje u selu	Ninem köyde oturuyor	zmaj zmaj::50_saetze
+Učim bosanski svaki dan	Her gün Boşnakça öğreniyorum	zmaj zmaj::50_saetze
+Autobus dolazi u deset	Otobüs onda geliyor	zmaj zmaj::50_saetze
+Imam glavobolju i temperaturu	Başım ağrıyor ve ateşim var	zmaj zmaj::50_saetze
+Voda u jezeru je plava	Göldeki su mavi	zmaj zmaj::50_saetze
+Mislim da je moja sestra kod kuće	Kız kardeşimin evde olduğunu düşünüyorum	zmaj zmaj::50_saetze
+Ne znam kada dolazi autobus	Otobüsün ne zaman geleceğini bilmiyorum	zmaj zmaj::50_saetze
+Ako pada kiša, ostajem kod kuće	Yağmur yağarsa evde kalıyorum	zmaj zmaj::50_saetze
+Jučer sam kupila hljeb i mlijeko	Dün ekmek ve süt aldım (kadın)	zmaj zmaj::50_saetze
+Sljedeće godine ćemo kupiti kuću	Gelecek yıl bir ev alacağız	zmaj zmaj::50_saetze
+Moj brat je stariji od mene, ali manji	Erkek kardeşim benden büyük ama daha kısa	zmaj zmaj::50_saetze
+akcija	kampanya (indirim)	zmaj zmaj::51_einkauf_orte
+svježe	taze	zmaj zmaj::51_einkauf_orte
+rok trajanja	son kullanma tarihi	zmaj zmaj::51_einkauf_orte
+domaće	ev yapımı	zmaj zmaj::51_einkauf_orte
+tezga	pazar tezgâhı	zmaj zmaj::51_einkauf_orte
+mesar	kasap	zmaj zmaj::51_einkauf_orte
+mesnica	kasap dükkânı	zmaj zmaj::51_einkauf_orte
+sniženje	fiyat indirimi	zmaj zmaj::51_einkauf_orte
+supermarket	süpermarket	zmaj zmaj::51_einkauf_orte
+prodavač	satıcı	zmaj zmaj::51_einkauf_orte
+prodavačica	satıcı (kadın)	zmaj zmaj::51_einkauf_orte
+platiti	ödemek	zmaj zmaj::51_einkauf_orte
+fening	fening (markın 1/100'ü)	zmaj zmaj::51_einkauf_orte
+fiskalni račun	fiş / makbuz	zmaj zmaj::51_einkauf_orte
+sitno	bozuk para	zmaj zmaj::51_einkauf_orte
+marka	marka (KM, günlük hayattaki para birimi)	zmaj zmaj::51_einkauf_orte
+račun za struju	elektrik faturası	zmaj zmaj::51_einkauf_orte
+bakšiš	bahşiş	zmaj zmaj::51_einkauf_orte
+kusur	para üstü	zmaj zmaj::51_einkauf_orte
+Banja Luka	Banja Luka	zmaj zmaj::51_einkauf_orte
+Bihać	Bihać	zmaj zmaj::51_einkauf_orte
+glavni grad	başkent	zmaj zmaj::51_einkauf_orte
+Idem u Mostar	Mostar'a gidiyorum	zmaj zmaj::51_einkauf_orte
+Živim u Sarajevu	Saraybosna'da oturuyorum	zmaj zmaj::51_einkauf_orte
+Mostar	Mostar	zmaj zmaj::51_einkauf_orte
+Sarajevo	Saraybosna	zmaj zmaj::51_einkauf_orte
+Tuzla	Tuzla	zmaj zmaj::51_einkauf_orte
+Zenica	Zenica	zmaj zmaj::51_einkauf_orte
+kafić	kafe	zmaj zmaj::52_resto1
+Jelovnik, molim	Menü, lütfen	zmaj zmaj::52_resto1
+vani	dışarıda	zmaj zmaj::52_resto1
+unutra	içeride	zmaj zmaj::52_resto1
+Sto za dvoje, molim	İki kişilik bir masa, lütfen	zmaj zmaj::52_resto1
+ćevabdžinica	ızgara lokantası (kebapçı)	zmaj zmaj::52_resto1
+Je li ovaj sto slobodan?	Bu masa boş mu?	zmaj zmaj::52_resto1
+slastičarna	pastane	zmaj zmaj::52_resto1
+terasa	teras	zmaj zmaj::52_resto1
+aščinica	geleneksel esnaf lokantası	zmaj zmaj::52_resto1
+prilog	garnitür (yan yemek)	zmaj zmaj::52_resto1
+naručiti	sipariş vermek	zmaj zmaj::52_resto1
+To je sve	Hepsi bu kadar	zmaj zmaj::52_resto1
+čorba	koyu çorba	zmaj zmaj::52_resto1
+Još jednu turu	Bir tur daha	zmaj zmaj::52_resto1
+Za mene …	Bana lütfen …	zmaj zmaj::52_resto1
+Može li jedna kahva?	Bir kahve olur mu?	zmaj zmaj::52_resto1
+glavno jelo	ana yemek	zmaj zmaj::52_resto1
+Ja bih …	… istiyorum	zmaj zmaj::52_resto1
+Može, hvala	Evet, teşekkürler	zmaj zmaj::52_resto1
+sa …	… ile	zmaj zmaj::52_resto1
+desert	tatlı	zmaj zmaj::52_resto1
+Još jedno isto, molim	Aynısından bir daha	zmaj zmaj::52_resto1
+Još nešto?	Başka bir şey? (garson)	zmaj zmaj::52_resto1
+bez …	… olmadan	zmaj zmaj::52_resto1
+predjelo	başlangıç (meze)	zmaj zmaj::52_resto1
+Šta preporučujete?	Ne tavsiye edersiniz?	zmaj zmaj::52_resto1
+Ovo nisam naručio	Bunu ben sipariş etmedim	zmaj zmaj::53_resto2
+Prijalo mi je	Çok beğendim	zmaj zmaj::53_resto2
+Fino je	Çok güzel	zmaj zmaj::53_resto2
+Ukusno je	Çok lezzetli	zmaj zmaj::53_resto2
+Sit sam	Doydum (erkek)	zmaj zmaj::53_resto2
+Sita sam	Doydum (kadın)	zmaj zmaj::53_resto2
+slano	tuzlu	zmaj zmaj::53_resto2
+kiselo	ekşi	zmaj zmaj::53_resto2
+ljuto	acı (baharatlı)	zmaj zmaj::53_resto2
+slatko	tatlı	zmaj zmaj::53_resto2
+premalo	çok az	zmaj zmaj::53_resto2
+Zadržite kusur	Üstü kalsın	zmaj zmaj::53_resto2
+odvojeno	ayrı ayrı	zmaj zmaj::53_resto2
+Svako plaća svoje	Herkes kendi hesabını öder	zmaj zmaj::53_resto2
+Možemo li platiti?	Ödeyebilir miyiz?	zmaj zmaj::53_resto2
+napojnica	bahşiş (resmî)	zmaj zmaj::53_resto2
+Koliko je?	Ne kadar tuttu?	zmaj zmaj::53_resto2
+zajedno	birlikte	zmaj zmaj::53_resto2
+Ovo je skupo	Bu pahalı	zmaj zmaj::53_resto2
+Pola kile, molim	Yarım kilo, lütfen	zmaj zmaj::53_resto2
+Jedan kilogram, molim	Bir kilo, lütfen	zmaj zmaj::53_resto2
+Jednu kesu, molim	Bir poşet, lütfen	zmaj zmaj::53_resto2
+Malo više	Biraz daha	zmaj zmaj::53_resto2
+Malo manje	Biraz daha az	zmaj zmaj::53_resto2
+Može li jeftinije?	Daha ucuz olur mu?	zmaj zmaj::53_resto2
+Je li ovo svježe?	Bu taze mi?	zmaj zmaj::53_resto2
+Je li ovo domaće?	Bu ev yapımı mı?	zmaj zmaj::53_resto2
+Mogu li probati?	Tadabilir miyim?	zmaj zmaj::53_resto2
+Pošto je …?	… kaça? (pazarda)	zmaj zmaj::53_resto2
+pekara	ekmek fırını	zmaj zmaj::54_essen_gehen
+jelo	yemek	zmaj zmaj::54_essen_gehen
+kafana	kafana (geleneksel kahve ve müzik mekânı)	zmaj zmaj::54_essen_gehen
+ukusno	lezzetli	zmaj zmaj::54_essen_gehen
+porcija	porsiyon	zmaj zmaj::54_essen_gehen
+restoran	restoran	zmaj zmaj::54_essen_gehen
+jelovnik	menü	zmaj zmaj::54_essen_gehen
+Idemo na kahvu	Kahve içmeye gidelim	zmaj zmaj::54_essen_gehen
+halva	helva	zmaj zmaj::54_essen_gehen
+hurmašica	hurmašica (şerbetli hamur tatlısı)	zmaj zmaj::54_essen_gehen
+rahat lokum	rahat lokum (kahve yanında yenen lokum)	zmaj zmaj::54_essen_gehen
+tufahija	tufahija (şerbette dolgulu elma tatlısı)	zmaj zmaj::54_essen_gehen
+limenka	kutu (içecek)	zmaj zmaj::54_essen_gehen
+lista za kupovinu	alışveriş listesi	zmaj zmaj::54_essen_gehen
+kolica	alışveriş arabası	zmaj zmaj::54_essen_gehen
+tegla	kavanoz	zmaj zmaj::54_essen_gehen
+gram	gram	zmaj zmaj::54_essen_gehen
+korpa	sepet	zmaj zmaj::54_essen_gehen
+litar	litre	zmaj zmaj::54_essen_gehen
+pakovanje	paket	zmaj zmaj::54_essen_gehen
+vreća	çuval	zmaj zmaj::54_essen_gehen
+kriška	dilim (ekmek)	zmaj zmaj::54_essen_gehen
+šnita	dilim (salam, sosis)	zmaj zmaj::54_essen_gehen
+komad	parça (adet)	zmaj zmaj::54_essen_gehen
+ajvar	ajvar (biber ezmesi)	zmaj zmaj::55_bosnisch_essen
+grah	kuru fasulye	zmaj zmaj::55_bosnisch_essen
+bosanski lonac	bosanski lonac (Bosna güveci)	zmaj zmaj::55_bosnisch_essen
+burek	burek (kıymalı börek)	zmaj zmaj::55_bosnisch_essen
+dolma	dolma (doldurulmuş sebze)	zmaj zmaj::55_bosnisch_essen
+suho meso	tütsülenmiş et	zmaj zmaj::55_bosnisch_essen
+roštilj	ızgara	zmaj zmaj::55_bosnisch_essen
+japrak	japrak (asma yaprağı sarması)	zmaj zmaj::55_bosnisch_essen
+kajmak	kajmak (sürülen tuzlu kaymak)	zmaj zmaj::55_bosnisch_essen
+krompiruša	krompiruša (patatesli börek)	zmaj zmaj::55_bosnisch_essen
+pljeskavica	pljeskavica (yayvan kıyma köftesi)	zmaj zmaj::55_bosnisch_essen
+sarma	sarma (lahana sarması)	zmaj zmaj::55_bosnisch_essen
+sirnica	sirnica (peynirli börek)	zmaj zmaj::55_bosnisch_essen
+somun	somun (ćevapi ile yenen pide)	zmaj zmaj::55_bosnisch_essen
+zeljanica	zeljanica (ıspanaklı ve peynirli börek)	zmaj zmaj::55_bosnisch_essen
+begova čorba	begova čorba (tavuklu, bamyalı çorba)	zmaj zmaj::55_bosnisch_essen
+ražnjići	şiş kebap	zmaj zmaj::55_bosnisch_essen
+petica	beş ćevapi	zmaj zmaj::55_bosnisch_essen
+punjene paprike	biber dolması	zmaj zmaj::55_bosnisch_essen
+sogan-dolma	soğan dolması	zmaj zmaj::55_bosnisch_essen
+sudžukice	ızgara sucuk	zmaj zmaj::55_bosnisch_essen
+sedam ćevapa	yedi ćevapi	zmaj zmaj::55_bosnisch_essen
+klepe	mantı	zmaj zmaj::55_bosnisch_essen
+ispod sača	sač altında (kor altında pişirme)	zmaj zmaj::55_bosnisch_essen
+desetka	on ćevapi	zmaj zmaj::55_bosnisch_essen
+inostranstvo	yurt dışı	zmaj zmaj::56_laender
+Bosna	Bosna	zmaj zmaj::56_laender
+Bosna i Hercegovina	Bosna-Hersek	zmaj zmaj::56_laender
+Njemačka	Almanya	zmaj zmaj::56_laender
+Holandija	Hollanda	zmaj zmaj::56_laender
+Švicarska	İsviçre	zmaj zmaj::56_laender
+Turska	Türkiye	zmaj zmaj::56_laender
+Danska	Danimarka	zmaj zmaj::56_laender
+Francuska	Fransa	zmaj zmaj::56_laender
+domovina	vatan	zmaj zmaj::56_laender
+Hercegovina	Hersek	zmaj zmaj::56_laender
+Rođen sam u Njemačkoj / Rođena sam u Njemačkoj	Almanya'da doğdum (erkek / kadın)	zmaj zmaj::56_laender
+Ja sam iz Bosne	Ben Bosna'danım	zmaj zmaj::56_laender
+Ja sam iz Njemačke	Ben Almanya'danım	zmaj zmaj::56_laender
+Živim u Njemačkoj	Almanya'da yaşıyorum	zmaj zmaj::56_laender
+Hrvatska	Hırvatistan	zmaj zmaj::56_laender
+država	ülke / devlet	zmaj zmaj::56_laender
+Moja porodica je iz Bosne	Ailem Bosna'dan	zmaj zmaj::56_laender
+Crna Gora	Karadağ	zmaj zmaj::56_laender
+Norveška	Norveç	zmaj zmaj::56_laender
+Švedska	İsveç	zmaj zmaj::56_laender
+Srbija	Sırbistan	zmaj zmaj::56_laender
+Slovenija	Slovenya	zmaj zmaj::56_laender
+svijet	dünya	zmaj zmaj::56_laender
+Gdje si rođen? / Gdje si rođena?	Nerede doğdun? (erkek / kadın)	zmaj zmaj::56_laender
+Austrija	Avusturya	zmaj zmaj::56_laender
+Bošnjak / Bošnjakinja	Boşnak (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Bosanac / Bosanka	Bosnalı (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Nijemac / Njemica	Alman (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Danac / Dankinja	Danimarkalı (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Francuz / Francuskinja	Fransız (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Ja sam Bosanac / Ja sam Bosanka	Ben Bosnalıyım (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Ja sam Nijemac / Ja sam Njemica	Ben Alman'ım (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Hrvat / Hrvatica	Hırvat (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Crnogorac / Crnogorka	Karadağlı (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Holanđanin / Holanđanka	Hollandalı (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Norvežanin / Norvežanka	Norveçli (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+vjera	din / inanç	zmaj zmaj::57_nationalitaeten
+Šveđanin / Šveđanka	İsveçli (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Švicarac / Švicarka	İsviçreli (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Srbin / Srpkinja	Sırp (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+Turčin / Turkinja	Türk (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+narod	halk	zmaj zmaj::57_nationalitaeten
+Austrijanac / Austrijanka	Avusturyalı (erkek / kadın)	zmaj zmaj::57_nationalitaeten
+bosanski	Boşnakça (dil)	zmaj zmaj::57_nationalitaeten
+njemački	Almanca (dil)	zmaj zmaj::57_nationalitaeten
+engleski	İngilizce (dil)	zmaj zmaj::57_nationalitaeten
+Govorim njemački	Almanca konuşuyorum	zmaj zmaj::57_nationalitaeten
+Ne govorim bosanski	Boşnakça konuşmuyorum	zmaj zmaj::57_nationalitaeten
+Možeš li ponoviti?	Tekrar edebilir misin?	zmaj zmaj::57_nationalitaeten
+maternji jezik	ana dili	zmaj zmaj::57_nationalitaeten
+jezik	dil	zmaj zmaj::57_nationalitaeten
+Molim te, pričaj sporije	Lütfen daha yavaş konuş	zmaj zmaj::57_nationalitaeten
+Govoriš li bosanski?	Boşnakça konuşuyor musun?	zmaj zmaj::57_nationalitaeten
+Šta to znači?	Bu ne demek?	zmaj zmaj::57_nationalitaeten
+Kako se to kaže na bosanskom?	Bunu Boşnakça nasıl derler?	zmaj zmaj::57_nationalitaeten
+Alejkumu selam	(buna verilen cevap)	zmaj zmaj::58_kennenlernen
+posjeta	ziyaret	zmaj zmaj::58_kennenlernen
+Hvala na svemu	Her şey için teşekkürler	zmaj zmaj::58_kennenlernen
+Da te upoznam: ...	Tanıştırayım: ...	zmaj zmaj::58_kennenlernen
+Ovo je moj prijatelj	Bu benim arkadaşım	zmaj zmaj::58_kennenlernen
+Ovo je moja žena	Bu benim eşim	zmaj zmaj::58_kennenlernen
+pozdrav / pozdravi	selam / selamlar	zmaj zmaj::58_kennenlernen
+Pozdravi ... od mene!	...'a benden selam söyle!	zmaj zmaj::58_kennenlernen
+Selam alejkum	Selamünaleyküm (Müslüman selamı)	zmaj zmaj::58_kennenlernen
+Izvinjavam se	Özür dilerim	zmaj zmaj::58_kennenlernen
+posjetiti	ziyaret etmek	zmaj zmaj::58_kennenlernen
+upoznati	tanışmak	zmaj zmaj::58_kennenlernen
+Dođi nam u posjetu!	Bizi ziyarete gel!	zmaj zmaj::58_kennenlernen
+Drago mi je što smo se upoznali	Tanıştığımıza memnun oldum	zmaj zmaj::58_kennenlernen
+Sjedi, popij kahvu	Otur, bir kahve iç	zmaj zmaj::58_kennenlernen
+zahvaliti se	teşekkür etmek	zmaj zmaj::58_kennenlernen
+izviniti se	özür dilemek	zmaj zmaj::58_kennenlernen
+Oprosti mi	Beni affet	zmaj zmaj::58_kennenlernen
+oprostiti	affetmek	zmaj zmaj::58_kennenlernen
+Puno pozdrava porodici	Aileye çok selam	zmaj zmaj::58_kennenlernen
+Kako je tvoja porodica?	Ailen nasıl?	zmaj zmaj::58_kennenlernen
+Poznajemo se	Birbirimizi tanıyoruz	zmaj zmaj::58_kennenlernen
+poznanik / poznanica	tanıdık (erkek / kadın)	zmaj zmaj::58_kennenlernen
+raja	arkadaş çevresi / tayfa	zmaj zmaj::58_kennenlernen
+domaćin	ev sahibi	zmaj zmaj::58_kennenlernen
+koleginica	iş arkadaşı (kadın)	zmaj zmaj::58_kennenlernen
+jaran	ahbap (argo, özellikle Saraybosna)	zmaj zmaj::58_kennenlernen
+drug / drugarica	arkadaş (samimi; erkek / kadın)	zmaj zmaj::58_kennenlernen
+komšije	komşular	zmaj zmaj::58_kennenlernen
+harmonika	akordeon	zmaj zmaj::59_kulturlevel
+ples	dans	zmaj zmaj::59_kulturlevel
+svirati	enstrüman çalmak	zmaj zmaj::59_kulturlevel
+folklor / folklorna grupa	folklor / folklor grubu	zmaj zmaj::59_kulturlevel
+kolo	kolo (geleneksel halka dansı)	zmaj zmaj::59_kulturlevel
+pjevač / pjevačica	şarkıcı (erkek / kadın)	zmaj zmaj::59_kulturlevel
+saz	saz (geleneksel telli çalgı)	zmaj zmaj::59_kulturlevel
+sevdah	sevdah (hüzünlü özlem)	zmaj zmaj::59_kulturlevel
+sevdalinka	sevdalinka (Boşnak aşk şarkısı)	zmaj zmaj::59_kulturlevel
+sijelo	sijelo (akşam buluşması)	zmaj zmaj::59_kulturlevel
+teferič	teferič (kırda yapılan gezinti şenliği)	zmaj zmaj::59_kulturlevel
+narodna muzika	halk müziği	zmaj zmaj::59_kulturlevel
+Allah razi olsun	bayram selamına verilen cevap	zmaj zmaj::59_kulturlevel
+post	oruç	zmaj zmaj::59_kulturlevel
+Sretan Bajram!	Bayramın kutlu olsun!	zmaj zmaj::59_kulturlevel
+Bog	Tanrı	zmaj zmaj::59_kulturlevel
+Hvala Bogu	Allah'a şükür	zmaj zmaj::59_kulturlevel
+iftar	iftar (oruç açma)	zmaj zmaj::59_kulturlevel
+inšallah	inşallah (Allah izin verirse)	zmaj zmaj::59_kulturlevel
+mašallah	maşallah (ne güzel, Allah korusun)	zmaj zmaj::59_kulturlevel
+Ramazanski bajram / Kurban-bajram	Ramazan Bayramı / Kurban Bayramı	zmaj zmaj::59_kulturlevel
+Ako Bog da	Allah izin verirse / umarım	zmaj zmaj::59_kulturlevel
+bujrum	bujrum (buyurun: al / içeri gel)	zmaj zmaj::59_kulturlevel
+Hvala na pozivu	Davet için teşekkürler	zmaj zmaj::59_kulturlevel
+Hvala, sit sam / sita sam	Teşekkürler, doydum (erkek / kadın)	zmaj zmaj::59_kulturlevel
+Bilo je jako ukusno	Çok lezzetliydi	zmaj zmaj::59_kulturlevel
+domaćin / domaćica	ev sahibi (erkek / kadın)	zmaj zmaj::59_kulturlevel
+častiti	ısmarlamak (hesabı ödemek)	zmaj zmaj::59_kulturlevel
+Još malo?	Biraz daha ister misin?	zmaj zmaj::59_kulturlevel
+Vi	siz (kibar)	zmaj zmaj::60_formell
+gospodin	Bay	zmaj zmaj::60_formell
+gospođa	Bayan	zmaj zmaj::60_formell
+gospođica	Küçük Hanım	zmaj zmaj::60_formell
+Dobar dan, kako ste?	İyi günler, nasılsınız?	zmaj zmaj::60_formell
+Izvolite	Buyurun (bir şey uzatırken)	zmaj zmaj::60_formell
+Izvinite, molim Vas	Affedersiniz lütfen	zmaj zmaj::60_formell
+Možete li mi pomoći?	Bana yardım edebilir misiniz?	zmaj zmaj::60_formell
+Smijem li?	İzin verir misiniz?	zmaj zmaj::60_formell
+Naravno	Elbette	zmaj zmaj::60_formell
+Žao mi je	Üzgünüm	zmaj zmaj::60_formell
+Molim za izvinjenje	Sizden özür dilerim	zmaj zmaj::60_formell
+Trenutak, molim	Bir dakika, lütfen	zmaj zmaj::60_formell
+Molim?	Efendim?	zmaj zmaj::60_formell
+Zahvaljujem Vam	Size teşekkür ederim	zmaj zmaj::60_formell
+Hvala Vam na pomoći	Yardımınız için çok teşekkürler	zmaj zmaj::60_formell
+Poštovani gospodine	Sayın Bay	zmaj zmaj::60_formell
+Poštovana gospođo	Sayın Bayan	zmaj zmaj::60_formell
+S poštovanjem	Saygılarımla	zmaj zmaj::60_formell
+općina	belediye	zmaj zmaj::61_amt
+zahtjev	başvuru	zmaj zmaj::61_amt
+obrazac	form	zmaj zmaj::61_amt
+dokument	belge	zmaj zmaj::61_amt
+lična karta	kimlik kartı	zmaj zmaj::61_amt
+pasoš	pasaport	zmaj zmaj::61_amt
+vozačka dozvola	ehliyet	zmaj zmaj::61_amt
+rodni list	doğum belgesi	zmaj zmaj::61_amt
+vjenčani list	evlenme belgesi	zmaj zmaj::61_amt
+državljanstvo	vatandaşlık	zmaj zmaj::61_amt
+potvrda	belge / onay yazısı	zmaj zmaj::61_amt
+prebivalište	ikametgâh	zmaj zmaj::61_amt
+prijava prebivališta	ikamet kaydı	zmaj zmaj::61_amt
+boravišna dozvola	oturma izni	zmaj zmaj::61_amt
+radna dozvola	çalışma izni	zmaj zmaj::61_amt
+potpis	imza	zmaj zmaj::61_amt
+pečat	mühür	zmaj zmaj::61_amt
+ovjera	onay / tasdik	zmaj zmaj::61_amt
+kopija	fotokopi	zmaj zmaj::61_amt
+original	asıl nüsha	zmaj zmaj::61_amt
+termin	randevu	zmaj zmaj::61_amt
+rok	süre	zmaj zmaj::61_amt
+taksa	harç	zmaj zmaj::61_amt
+porez	vergi	zmaj zmaj::61_amt
+osiguranje	sigorta	zmaj zmaj::61_amt
+zdravstveno osiguranje	sağlık sigortası	zmaj zmaj::61_amt
+ugovor	sözleşme	zmaj zmaj::61_amt
+banka	banka	zmaj zmaj::61_amt
+račun	hesap	zmaj zmaj::61_amt
+pošta	postane	zmaj zmaj::61_amt
+policija	polis	zmaj zmaj::61_amt
+sud	mahkeme	zmaj zmaj::61_amt
+advokat	avukat	zmaj zmaj::61_amt
+notar	noter	zmaj zmaj::61_amt
+ambasada	büyükelçilik	zmaj zmaj::61_amt
+granica	sınır	zmaj zmaj::61_amt
+carina	gümrük	zmaj zmaj::61_amt
+Trebam potvrdu	Bir belgeye ihtiyacım var	zmaj zmaj::61_amt
+Gdje trebam potpisati?	Nereyi imzalamam gerekiyor?	zmaj zmaj::61_amt
+Koji dokumenti mi trebaju?	Hangi belgeler gerekiyor?	zmaj zmaj::61_amt
+bankovni račun	banka hesabı	zmaj zmaj::62_bank
+otvoriti račun	hesap açmak	zmaj zmaj::62_bank
+kredit	kredi	zmaj zmaj::62_bank
+kamata	faiz	zmaj zmaj::62_bank
+rata	taksit	zmaj zmaj::62_bank
+uplata	para yatırma	zmaj zmaj::62_bank
+isplata	para çekme	zmaj zmaj::62_bank
+bankovni prijenos	havale	zmaj zmaj::62_bank
+nalog za plaćanje	ödeme talimatı	zmaj zmaj::62_bank
+bankovna kartica	banka kartı	zmaj zmaj::62_bank
+bankomat	bankamatik	zmaj zmaj::62_bank
+podići novac	para çekmek	zmaj zmaj::62_bank
+uplatiti novac	para yatırmak	zmaj zmaj::62_bank
+izvod	hesap özeti	zmaj zmaj::62_bank
+naknada	masraf (banka)	zmaj zmaj::62_bank
+štednja	tasarruf / birikim	zmaj zmaj::62_bank
+dug	borç	zmaj zmaj::62_bank
+prihod	gelir	zmaj zmaj::62_bank
+troškovi	giderler	zmaj zmaj::62_bank
+mjenjačnica	döviz bürosu	zmaj zmaj::62_bank
+kurs	döviz kuru	zmaj zmaj::62_bank
+konvertibilna marka	konvertibl mark (Bosna para birimi, KM)	zmaj zmaj::62_bank
+euro	avro	zmaj zmaj::62_bank
+Želim otvoriti račun	Hesap açmak istiyorum	zmaj zmaj::62_bank
+Kolika je kamata?	Faiz ne kadar?	zmaj zmaj::62_bank
+Mogu li platiti na rate?	Taksitle ödeyebilir miyim?	zmaj zmaj::62_bank
+nekretnina	gayrimenkul	zmaj zmaj::63_immobilien
+kupiti kuću	ev satın almak	zmaj zmaj::63_immobilien
+kupoprodajni ugovor	satış sözleşmesi	zmaj zmaj::63_immobilien
+prodavac	satıcı	zmaj zmaj::63_immobilien
+kupac	alıcı	zmaj zmaj::63_immobilien
+vlasnik	mülk sahibi	zmaj zmaj::63_immobilien
+vlasništvo	mülkiyet	zmaj zmaj::63_immobilien
+zemljišna knjiga / gruntovnica	tapu sicili	zmaj zmaj::63_immobilien
+katastar	kadastro	zmaj zmaj::63_immobilien
+zemljište	arsa	zmaj zmaj::63_immobilien
+hipoteka	ipotek	zmaj zmaj::63_immobilien
+kapara	kapora	zmaj zmaj::63_immobilien
+agent za nekretnine	emlakçı	zmaj zmaj::63_immobilien
+procjena	değerleme	zmaj zmaj::63_immobilien
+pregovarati o cijeni	fiyat üzerinde pazarlık etmek	zmaj zmaj::63_immobilien
+građevinska dozvola	yapı ruhsatı	zmaj zmaj::63_immobilien
+kirija	kira	zmaj zmaj::63_immobilien
+iznajmiti	kiralamak	zmaj zmaj::63_immobilien
+podstanar	kiracı	zmaj zmaj::63_immobilien
+stanodavac	kiraya veren	zmaj zmaj::63_immobilien
+ugovor o najmu	kira sözleşmesi	zmaj zmaj::63_immobilien
+režije	faturalar	zmaj zmaj::63_immobilien
+kvadratni metar	metrekare	zmaj zmaj::63_immobilien
+sprat	kat	zmaj zmaj::63_immobilien
+prizemlje	zemin kat	zmaj zmaj::63_immobilien
+selidba	taşınma	zmaj zmaj::63_immobilien
+useliti se	taşınmak	zmaj zmaj::63_immobilien
+Želim kupiti kuću	Bir ev almak istiyorum	zmaj zmaj::63_immobilien
+Koliko košta kuća?	Ev ne kadar?	zmaj zmaj::63_immobilien
+Je li kuća upisana u gruntovnicu?	Ev tapu siciline kayıtlı mı?	zmaj zmaj::63_immobilien
+ugovor o radu	iş sözleşmesi	zmaj zmaj::64_arbeitsvertrag
+poslodavac	işveren	zmaj zmaj::64_arbeitsvertrag
+zaposlenik	çalışan	zmaj zmaj::64_arbeitsvertrag
+prijava za posao	iş başvurusu	zmaj zmaj::64_arbeitsvertrag
+biografija	özgeçmiş	zmaj zmaj::64_arbeitsvertrag
+razgovor za posao	iş görüşmesi	zmaj zmaj::64_arbeitsvertrag
+radno vrijeme	çalışma saatleri	zmaj zmaj::64_arbeitsvertrag
+puno radno vrijeme	tam zamanlı	zmaj zmaj::64_arbeitsvertrag
+nepuno radno vrijeme	yarı zamanlı	zmaj zmaj::64_arbeitsvertrag
+probni rad	deneme süresi	zmaj zmaj::64_arbeitsvertrag
+otkaz	fesih	zmaj zmaj::64_arbeitsvertrag
+bruto plata	brüt maaş	zmaj zmaj::64_arbeitsvertrag
+neto plata	net maaş	zmaj zmaj::64_arbeitsvertrag
+prekovremeni rad	fazla mesai	zmaj zmaj::64_arbeitsvertrag
+penzija	emekli maaşı	zmaj zmaj::64_arbeitsvertrag
+bolovanje	istirahat raporu	zmaj zmaj::64_arbeitsvertrag
+socijalno osiguranje	sosyal sigorta	zmaj zmaj::64_arbeitsvertrag
+porezni broj	vergi numarası	zmaj zmaj::64_arbeitsvertrag
+svjedočanstvo	diploma belgesi	zmaj zmaj::64_arbeitsvertrag
+diploma	diploma	zmaj zmaj::64_arbeitsvertrag
+kvalifikacija	nitelik	zmaj zmaj::64_arbeitsvertrag
+iskustvo	deneyim	zmaj zmaj::64_arbeitsvertrag
+odgovornost	sorumluluk	zmaj zmaj::64_arbeitsvertrag
+Tražim posao	İş arıyorum	zmaj zmaj::64_arbeitsvertrag
+Imam pet godina iskustva	Beş yıllık deneyimim var	zmaj zmaj::64_arbeitsvertrag
+zdravstvena knjižica	sağlık karnesi	zmaj zmaj::65_gesundheit
+uputnica	sevk (uzmana)	zmaj zmaj::65_gesundheit
+recept	reçete	zmaj zmaj::65_gesundheit
+pregled	muayene	zmaj zmaj::65_gesundheit
+termin kod doktora	doktor randevusu	zmaj zmaj::65_gesundheit
+hitni prijem / hitna pomoć	acil servis / ambulans	zmaj zmaj::65_gesundheit
+porodični ljekar	aile hekimi	zmaj zmaj::65_gesundheit
+specijalista	uzman doktor	zmaj zmaj::65_gesundheit
+zubar	diş hekimi	zmaj zmaj::65_gesundheit
+medicinska sestra	hemşire	zmaj zmaj::65_gesundheit
+dijagnoza	teşhis	zmaj zmaj::65_gesundheit
+liječenje	tedavi	zmaj zmaj::65_gesundheit
+operacija	ameliyat	zmaj zmaj::65_gesundheit
+vakcina	aşı	zmaj zmaj::65_gesundheit
+krvni pritisak	tansiyon	zmaj zmaj::65_gesundheit
+alergija	alerji	zmaj zmaj::65_gesundheit
+lijek protiv bolova	ağrı kesici	zmaj zmaj::65_gesundheit
+participacija	katılım payı	zmaj zmaj::65_gesundheit
+Trebam termin	Randevuya ihtiyacım var	zmaj zmaj::65_gesundheit
+Na bolovanju sam	Raporluyum	zmaj zmaj::65_gesundheit
+Gdje Vas boli?	Neresi ağrıyor?	zmaj zmaj::65_gesundheit
+Alergičan sam na ... / Alergična sam na ...	... alerjim var (e/k)	zmaj zmaj::65_gesundheit

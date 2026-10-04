@@ -1,0 +1,5421 @@
+{
+ "dataset": "zmaj-bosnian",
+ "kind": "sentences",
+ "format_version": "1.0",
+ "license": "CC-BY-SA-4.0",
+ "attribution": "Zmaj – Bosnian learning content, (c) 2026 Ajdin Hasic, CC BY-SA 4.0, https://github.com/zmaj-lernapp/zmaj",
+ "source": "https://github.com/zmaj-lernapp/zmaj",
+ "target_language": "bs",
+ "translation_languages": [
+  "de",
+  "en",
+  "tr",
+  "sv",
+  "nl",
+  "nb",
+  "da",
+  "fr"
+ ],
+ "entries": [
+  {
+   "id": "s0001",
+   "level": "basics",
+   "cloze": "Dobar ___",
+   "answer": "dan",
+   "bs": "Dobar dan",
+   "translations": {
+    "de": "Guten Tag",
+    "en": "Good day",
+    "tr": "İyi günler",
+    "sv": "God dag",
+    "nl": "Goedendag",
+    "nb": "God dag",
+    "da": "Goddag",
+    "fr": "Bonjour"
+   },
+   "audio": "web/audio/w0002.mp3"
+  },
+  {
+   "id": "s0002",
+   "level": "basics",
+   "cloze": "___, kako si?",
+   "answer": "Merhaba",
+   "bs": "Merhaba, kako si?",
+   "translations": {
+    "de": "Hallo, wie geht's dir?",
+    "en": "Hello, how are you?",
+    "tr": "Merhaba, nasılsın?",
+    "sv": "Hej, hur mår du?",
+    "nl": "Hallo, hoe gaat het met je?",
+    "nb": "Hei, hvordan går det med deg?",
+    "da": "Hej, hvordan går det med dig?",
+    "fr": "Salut, comment ça va ?"
+   },
+   "audio": "web/audio/w1097.mp3"
+  },
+  {
+   "id": "s0003",
+   "level": "basics",
+   "cloze": "Kako ___?",
+   "answer": "si",
+   "bs": "Kako si?",
+   "translations": {
+    "de": "Wie geht's dir?",
+    "en": "How are you?",
+    "tr": "Nasılsın?",
+    "sv": "Hur mår du?",
+    "nl": "Hoe gaat het met je?",
+    "nb": "Hvordan går det med deg?",
+    "da": "Hvordan går det med dig?",
+    "fr": "Comment vas-tu ?"
+   },
+   "audio": "web/audio/w0017.mp3"
+  },
+  {
+   "id": "s0004",
+   "level": "basics",
+   "cloze": "Hvala ___!",
+   "answer": "puno",
+   "bs": "Hvala puno!",
+   "translations": {
+    "de": "Vielen Dank!",
+    "en": "Thank you very much!",
+    "tr": "Çok teşekkürler!",
+    "sv": "Tack så mycket!",
+    "nl": "Hartelijk dank!",
+    "nb": "Tusen takk!",
+    "da": "Mange tak!",
+    "fr": "Merci beaucoup !"
+   },
+   "audio": "web/audio/w1098.mp3"
+  },
+  {
+   "id": "s0005",
+   "level": "basics",
+   "cloze": "Laku ___!",
+   "answer": "noć",
+   "bs": "Laku noć!",
+   "translations": {
+    "de": "Gute Nacht!",
+    "en": "Good night!",
+    "tr": "İyi geceler!",
+    "sv": "God natt!",
+    "nl": "Welterusten!",
+    "nb": "God natt!",
+    "da": "Godnat!",
+    "fr": "Bonne nuit !"
+   },
+   "audio": "web/audio/w1099.mp3"
+  },
+  {
+   "id": "s0006",
+   "level": "basics",
+   "cloze": "Zovem ___ Amina.",
+   "answer": "se",
+   "bs": "Zovem se Amina.",
+   "translations": {
+    "de": "Ich heiße Amina.",
+    "en": "My name is Amina.",
+    "tr": "Benim adım Amina.",
+    "sv": "Jag heter Amina.",
+    "nl": "Ik heet Amina.",
+    "nb": "Jeg heter Amina.",
+    "da": "Jeg hedder Amina.",
+    "fr": "Je m'appelle Amina."
+   },
+   "audio": "web/audio/w1100.mp3"
+  },
+  {
+   "id": "s0007",
+   "level": "basics",
+   "cloze": "Ne ___.",
+   "answer": "razumijem",
+   "bs": "Ne razumijem.",
+   "translations": {
+    "de": "Ich verstehe nicht.",
+    "en": "I do not understand.",
+    "tr": "Anlamıyorum.",
+    "sv": "Jag förstår inte.",
+    "nl": "Ik begrijp het niet.",
+    "nb": "Jeg forstår ikke.",
+    "da": "Jeg forstår ikke.",
+    "fr": "Je ne comprends pas."
+   },
+   "audio": "web/audio/w1101.mp3"
+  },
+  {
+   "id": "s0008",
+   "level": "basics",
+   "cloze": "Drago ___ je.",
+   "answer": "mi",
+   "bs": "Drago mi je.",
+   "translations": {
+    "de": "Freut mich.",
+    "en": "Nice to meet you.",
+    "tr": "Memnun oldum.",
+    "sv": "Trevligt att träffas.",
+    "nl": "Aangenaam.",
+    "nb": "Hyggelig å møte deg.",
+    "da": "Hyggeligt at møde dig.",
+    "fr": "Enchanté."
+   },
+   "audio": "web/audio/w1102.mp3"
+  },
+  {
+   "id": "s0009",
+   "level": "basics",
+   "cloze": "Dobro ___!",
+   "answer": "jutro",
+   "bs": "Dobro jutro!",
+   "translations": {
+    "de": "Guten Morgen!",
+    "en": "Good morning!",
+    "tr": "Günaydın!",
+    "sv": "God morgon!",
+    "nl": "Goedemorgen!",
+    "nb": "God morgen!",
+    "da": "Godmorgen!",
+    "fr": "Bonjour !"
+   },
+   "audio": "web/audio/w1103.mp3"
+  },
+  {
+   "id": "s0010",
+   "level": "basics",
+   "cloze": "Nema na ___.",
+   "answer": "čemu",
+   "bs": "Nema na čemu.",
+   "translations": {
+    "de": "Gern geschehen.",
+    "en": "You are welcome.",
+    "tr": "Rica ederim.",
+    "sv": "Ingen orsak.",
+    "nl": "Graag gedaan.",
+    "nb": "Ingen årsak.",
+    "da": "Selv tak.",
+    "fr": "De rien."
+   },
+   "audio": "web/audio/w1104.mp3"
+  },
+  {
+   "id": "s0011",
+   "level": "zahlen",
+   "cloze": "Jedan, dva, ___",
+   "answer": "tri",
+   "bs": "Jedan, dva, tri",
+   "translations": {
+    "de": "eins, zwei, drei",
+    "en": "one, two, three",
+    "tr": "bir, iki, üç",
+    "sv": "ett, två, tre",
+    "nl": "een, twee, drie",
+    "nb": "en, to, tre",
+    "da": "en, to, tre",
+    "fr": "un, deux, trois"
+   },
+   "audio": "web/audio/w1105.mp3"
+  },
+  {
+   "id": "s0012",
+   "level": "zahlen",
+   "cloze": "___ i pet je deset.",
+   "answer": "Pet",
+   "bs": "Pet i pet je deset.",
+   "translations": {
+    "de": "Fünf und fünf ist zehn.",
+    "en": "Five and five is ten.",
+    "tr": "Beş artı beş on eder.",
+    "sv": "Fem plus fem är tio.",
+    "nl": "Vijf plus vijf is tien.",
+    "nb": "Fem pluss fem er ti.",
+    "da": "Fem plus fem er ti.",
+    "fr": "Cinq et cinq font dix."
+   },
+   "audio": "web/audio/w1106.mp3"
+  },
+  {
+   "id": "s0013",
+   "level": "zahlen",
+   "cloze": "Sedam, osam, ___",
+   "answer": "devet",
+   "bs": "Sedam, osam, devet",
+   "translations": {
+    "de": "sieben, acht, neun",
+    "en": "seven, eight, nine",
+    "tr": "yedi, sekiz, dokuz",
+    "sv": "sju, åtta, nio",
+    "nl": "zeven, acht, negen",
+    "nb": "sju, åtte, ni",
+    "da": "syv, otte, ni",
+    "fr": "sept, huit, neuf"
+   },
+   "audio": "web/audio/w1107.mp3"
+  },
+  {
+   "id": "s0014",
+   "level": "zahlen",
+   "cloze": "Deset, ___, trideset",
+   "answer": "dvadeset",
+   "bs": "Deset, dvadeset, trideset",
+   "translations": {
+    "de": "zehn, zwanzig, dreißig",
+    "en": "ten, twenty, thirty",
+    "tr": "on, yirmi, otuz",
+    "sv": "tio, tjugo, trettio",
+    "nl": "tien, twintig, dertig",
+    "nb": "ti, tjue, tretti",
+    "da": "ti, tyve, tredive",
+    "fr": "dix, vingt, trente"
+   },
+   "audio": "web/audio/w1108.mp3"
+  },
+  {
+   "id": "s0015",
+   "level": "zahlen",
+   "cloze": "Dva i dva su ___.",
+   "answer": "četiri",
+   "bs": "Dva i dva su četiri.",
+   "translations": {
+    "de": "Zwei und zwei sind vier.",
+    "en": "Two and two are four.",
+    "tr": "İki artı iki dört eder.",
+    "sv": "Två plus två är fyra.",
+    "nl": "Twee plus twee is vier.",
+    "nb": "To pluss to er fire.",
+    "da": "To plus to er fire.",
+    "fr": "Deux et deux font quatre."
+   },
+   "audio": "web/audio/w1109.mp3"
+  },
+  {
+   "id": "s0016",
+   "level": "wochentage",
+   "cloze": "Ponedjeljak, ___, srijeda",
+   "answer": "utorak",
+   "bs": "Ponedjeljak, utorak, srijeda",
+   "translations": {
+    "de": "Montag, Dienstag, Mittwoch",
+    "en": "Monday, Tuesday, Wednesday",
+    "tr": "Pazartesi, salı, çarşamba",
+    "sv": "måndag, tisdag, onsdag",
+    "nl": "maandag, dinsdag, woensdag",
+    "nb": "mandag, tirsdag, onsdag",
+    "da": "mandag, tirsdag, onsdag",
+    "fr": "lundi, mardi, mercredi"
+   },
+   "audio": "web/audio/w1110.mp3"
+  },
+  {
+   "id": "s0017",
+   "level": "wochentage",
+   "cloze": "Subota i ___ su vikend.",
+   "answer": "nedjelja",
+   "bs": "Subota i nedjelja su vikend.",
+   "translations": {
+    "de": "Samstag und Sonntag sind Wochenende.",
+    "en": "Saturday and Sunday are the weekend.",
+    "tr": "Cumartesi ve pazar hafta sonudur.",
+    "sv": "Lördag och söndag är helg.",
+    "nl": "Zaterdag en zondag zijn het weekend.",
+    "nb": "Lørdag og søndag er helg.",
+    "da": "Lørdag og søndag er weekend.",
+    "fr": "Samedi et dimanche, c'est le week-end."
+   },
+   "audio": "web/audio/w1111.mp3"
+  },
+  {
+   "id": "s0018",
+   "level": "wochentage",
+   "cloze": "Poslije četvrtka dolazi ___.",
+   "answer": "petak",
+   "bs": "Poslije četvrtka dolazi petak.",
+   "translations": {
+    "de": "Nach Donnerstag kommt Freitag.",
+    "en": "After Thursday comes Friday.",
+    "tr": "Perşembeden sonra cuma gelir.",
+    "sv": "Efter torsdag kommer fredag.",
+    "nl": "Na donderdag komt vrijdag.",
+    "nb": "Etter torsdag kommer fredag.",
+    "da": "Efter torsdag kommer fredag.",
+    "fr": "Après jeudi vient vendredi."
+   },
+   "audio": "web/audio/w1112.mp3"
+  },
+  {
+   "id": "s0019",
+   "level": "monate",
+   "cloze": "Januar, ___, mart",
+   "answer": "februar",
+   "bs": "Januar, februar, mart",
+   "translations": {
+    "de": "Januar, Februar, März",
+    "en": "January, February, March",
+    "tr": "Ocak, şubat, mart",
+    "sv": "januari, februari, mars",
+    "nl": "januari, februari, maart",
+    "nb": "januar, februar, mars",
+    "da": "januar, februar, marts",
+    "fr": "janvier, février, mars"
+   },
+   "audio": "web/audio/w1113.mp3"
+  },
+  {
+   "id": "s0020",
+   "level": "monate",
+   "cloze": "Poslije maja dolazi ___.",
+   "answer": "juni",
+   "bs": "Poslije maja dolazi juni.",
+   "translations": {
+    "de": "Nach Mai kommt Juni.",
+    "en": "After May comes June.",
+    "tr": "Mayıstan sonra haziran gelir.",
+    "sv": "Efter maj kommer juni.",
+    "nl": "Na mei komt juni.",
+    "nb": "Etter mai kommer juni.",
+    "da": "Efter maj kommer juni.",
+    "fr": "Après mai vient juin."
+   },
+   "audio": "web/audio/w1114.mp3"
+  },
+  {
+   "id": "s0021",
+   "level": "monate",
+   "cloze": "___ je zadnji mjesec u godini.",
+   "answer": "Decembar",
+   "bs": "Decembar je zadnji mjesec u godini.",
+   "translations": {
+    "de": "Dezember ist der letzte Monat im Jahr.",
+    "en": "December is the last month of the year.",
+    "tr": "Aralık yılın son ayıdır.",
+    "sv": "December är årets sista månad.",
+    "nl": "December is de laatste maand van het jaar.",
+    "nb": "Desember er den siste måneden i året.",
+    "da": "December er årets sidste måned.",
+    "fr": "Décembre est le dernier mois de l'année."
+   },
+   "audio": "web/audio/w1115.mp3"
+  },
+  {
+   "id": "s0022",
+   "level": "zeit",
+   "cloze": "Koliko je ___?",
+   "answer": "sati",
+   "bs": "Koliko je sati?",
+   "translations": {
+    "de": "Wie spät ist es?",
+    "en": "What time is it?",
+    "tr": "Saat kaç?",
+    "sv": "Vad är klockan?",
+    "nl": "Hoe laat is het?",
+    "nb": "Hva er klokka?",
+    "da": "Hvad er klokken?",
+    "fr": "Quelle heure est-il ?"
+   },
+   "audio": "web/audio/w0165.mp3"
+  },
+  {
+   "id": "s0023",
+   "level": "zeit",
+   "cloze": "Sada je ___ sati.",
+   "answer": "pet",
+   "bs": "Sada je pet sati.",
+   "translations": {
+    "de": "Jetzt ist es fünf Uhr.",
+    "en": "It is five o'clock now.",
+    "tr": "Şimdi saat beş.",
+    "sv": "Klockan är fem nu.",
+    "nl": "Het is nu vijf uur.",
+    "nb": "Klokka er fem nå.",
+    "da": "Klokken er fem nu.",
+    "fr": "Il est cinq heures."
+   },
+   "audio": "web/audio/w1116.mp3"
+  },
+  {
+   "id": "s0024",
+   "level": "zeit",
+   "cloze": "U ___ je vikend.",
+   "answer": "subotu",
+   "bs": "U subotu je vikend.",
+   "translations": {
+    "de": "Am Samstag ist Wochenende.",
+    "en": "Saturday is the weekend.",
+    "tr": "Cumartesi hafta sonudur.",
+    "sv": "På lördag är det helg.",
+    "nl": "Op zaterdag is het weekend.",
+    "nb": "På lørdag er det helg.",
+    "da": "Om lørdagen er der weekend.",
+    "fr": "Samedi, c'est le week-end."
+   },
+   "audio": "web/audio/w1117.mp3"
+  },
+  {
+   "id": "s0025",
+   "level": "zeit",
+   "cloze": "Vidimo se ___!",
+   "answer": "sutra",
+   "bs": "Vidimo se sutra!",
+   "translations": {
+    "de": "Wir sehen uns morgen!",
+    "en": "See you tomorrow!",
+    "tr": "Yarın görüşürüz!",
+    "sv": "Vi ses i morgon!",
+    "nl": "Tot morgen!",
+    "nb": "Vi ses i morgen!",
+    "da": "Vi ses i morgen!",
+    "fr": "À demain !"
+   },
+   "audio": "web/audio/w0166.mp3"
+  },
+  {
+   "id": "s0026",
+   "level": "zeit",
+   "cloze": "___ je lijep dan.",
+   "answer": "Danas",
+   "bs": "Danas je lijep dan.",
+   "translations": {
+    "de": "Heute ist ein schöner Tag.",
+    "en": "Today is a beautiful day.",
+    "tr": "Bugün güzel bir gün.",
+    "sv": "I dag är en fin dag.",
+    "nl": "Vandaag is een mooie dag.",
+    "nb": "I dag er en fin dag.",
+    "da": "I dag er en dejlig dag.",
+    "fr": "Aujourd'hui, c'est une belle journée."
+   },
+   "audio": "web/audio/w1118.mp3"
+  },
+  {
+   "id": "s0027",
+   "level": "familie",
+   "cloze": "Moja ___ se zove Amina.",
+   "answer": "sestra",
+   "bs": "Moja sestra se zove Amina.",
+   "translations": {
+    "de": "Meine Schwester heißt Amina.",
+    "en": "My sister's name is Amina.",
+    "tr": "Kız kardeşimin adı Amina.",
+    "sv": "Min syster heter Amina.",
+    "nl": "Mijn zus heet Amina.",
+    "nb": "Søsteren min heter Amina.",
+    "da": "Min søster hedder Amina.",
+    "fr": "Ma sœur s'appelle Amina."
+   },
+   "audio": "web/audio/w1119.mp3"
+  },
+  {
+   "id": "s0028",
+   "level": "familie",
+   "cloze": "Moj ___ se zove Ajdin.",
+   "answer": "muž",
+   "bs": "Moj muž se zove Ajdin.",
+   "translations": {
+    "de": "Mein Mann heißt Ajdin.",
+    "en": "My husband's name is Ajdin.",
+    "tr": "Eşimin adı Ajdin.",
+    "sv": "Min man heter Ajdin.",
+    "nl": "Mijn man heet Ajdin.",
+    "nb": "Mannen min heter Ajdin.",
+    "da": "Min mand hedder Ajdin.",
+    "fr": "Mon mari s'appelle Ajdin."
+   },
+   "audio": "web/audio/w1120.mp3"
+  },
+  {
+   "id": "s0029",
+   "level": "familie",
+   "cloze": "Moj ___ je pčelar.",
+   "answer": "amidža",
+   "bs": "Moj amidža je pčelar.",
+   "translations": {
+    "de": "Mein Onkel (Vaterseite) ist Imker.",
+    "en": "My uncle (father's side) is a beekeeper.",
+    "tr": "Amcam arıcı.",
+    "sv": "Min farbror är biodlare.",
+    "nl": "Mijn oom is imker.",
+    "nb": "Onkelen min (på farssiden) er birøkter.",
+    "da": "Min onkel er biavler.",
+    "fr": "Mon oncle paternel est apiculteur."
+   },
+   "audio": "web/audio/w1121.mp3"
+  },
+  {
+   "id": "s0030",
+   "level": "familie",
+   "cloze": "Moja majka i moj ___.",
+   "answer": "babo",
+   "bs": "Moja majka i moj babo.",
+   "translations": {
+    "de": "Meine Mutter und mein Papa.",
+    "en": "My mother and my dad.",
+    "tr": "Annem ve babam.",
+    "sv": "Min mor och min pappa.",
+    "nl": "Mijn moeder en mijn papa.",
+    "nb": "Moren min og pappaen min.",
+    "da": "Min mor og min far.",
+    "fr": "Ma mère et mon papa."
+   },
+   "audio": "web/audio/w1122.mp3"
+  },
+  {
+   "id": "s0031",
+   "level": "essen",
+   "cloze": "Hljeb i ___.",
+   "answer": "sir",
+   "bs": "Hljeb i sir.",
+   "translations": {
+    "de": "Brot und Käse.",
+    "en": "Bread and cheese.",
+    "tr": "Ekmek ve peynir.",
+    "sv": "Bröd och ost.",
+    "nl": "Brood en kaas.",
+    "nb": "Brød og ost.",
+    "da": "Brød og ost.",
+    "fr": "Du pain et du fromage."
+   },
+   "audio": "web/audio/w1123.mp3"
+  },
+  {
+   "id": "s0032",
+   "level": "essen",
+   "cloze": "___ kahve, molim.",
+   "answer": "Dvije",
+   "bs": "Dvije kahve, molim.",
+   "translations": {
+    "de": "Zwei Kaffee, bitte.",
+    "en": "Two coffees, please.",
+    "tr": "İki kahve, lütfen.",
+    "sv": "Två kaffe, tack.",
+    "nl": "Twee koffie, alstublieft.",
+    "nb": "To kaffe, takk.",
+    "da": "To kaffe, tak.",
+    "fr": "Deux cafés, s'il vous plaît."
+   },
+   "audio": "web/audio/w1124.mp3"
+  },
+  {
+   "id": "s0033",
+   "level": "essen",
+   "cloze": "Račun, ___.",
+   "answer": "molim",
+   "bs": "Račun, molim.",
+   "translations": {
+    "de": "Die Rechnung, bitte.",
+    "en": "The check, please.",
+    "tr": "Hesap, lütfen.",
+    "sv": "Notan, tack.",
+    "nl": "De rekening, alstublieft.",
+    "nb": "Regningen, takk.",
+    "da": "Regningen, tak.",
+    "fr": "L'addition, s'il vous plaît."
+   },
+   "audio": "web/audio/w1125.mp3"
+  },
+  {
+   "id": "s0034",
+   "level": "essen",
+   "cloze": "___ je hladna.",
+   "answer": "Voda",
+   "bs": "Voda je hladna.",
+   "translations": {
+    "de": "Das Wasser ist kalt.",
+    "en": "The water is cold.",
+    "tr": "Su soğuk.",
+    "sv": "Vattnet är kallt.",
+    "nl": "Het water is koud.",
+    "nb": "Vannet er kaldt.",
+    "da": "Vandet er koldt.",
+    "fr": "L'eau est froide."
+   },
+   "audio": "web/audio/w1126.mp3"
+  },
+  {
+   "id": "s0035",
+   "level": "essen",
+   "cloze": "Gladna ___.",
+   "answer": "sam",
+   "bs": "Gladna sam.",
+   "translations": {
+    "de": "Ich habe Hunger. (Frau)",
+    "en": "I am hungry. (female speaker)",
+    "tr": "Açım. (kadın)",
+    "sv": "Jag är hungrig. (kvinna)",
+    "nl": "Ik heb honger. (vrouw)",
+    "nb": "Jeg er sulten. (kvinne)",
+    "da": "Jeg er sulten. (kvinde)",
+    "fr": "J'ai faim. (femme)"
+   },
+   "audio": "web/audio/w1127.mp3"
+  },
+  {
+   "id": "s0036",
+   "level": "essen",
+   "cloze": "Jednu ___, molim.",
+   "answer": "kahvu",
+   "bs": "Jednu kahvu, molim.",
+   "translations": {
+    "de": "Einen Kaffee, bitte.",
+    "en": "One coffee, please.",
+    "tr": "Bir kahve, lütfen.",
+    "sv": "En kaffe, tack.",
+    "nl": "Eén koffie, alstublieft.",
+    "nb": "En kaffe, takk.",
+    "da": "En kaffe, tak.",
+    "fr": "Un café, s'il vous plaît."
+   },
+   "audio": "web/audio/w1128.mp3"
+  },
+  {
+   "id": "s0037",
+   "level": "farben",
+   "cloze": "Trava je ___.",
+   "answer": "zelena",
+   "bs": "Trava je zelena.",
+   "translations": {
+    "de": "Das Gras ist grün.",
+    "en": "The grass is green.",
+    "tr": "Çimen yeşil.",
+    "sv": "Gräset är grönt.",
+    "nl": "Het gras is groen.",
+    "nb": "Gresset er grønt.",
+    "da": "Græsset er grønt.",
+    "fr": "L'herbe est verte."
+   },
+   "audio": "web/audio/w1129.mp3"
+  },
+  {
+   "id": "s0038",
+   "level": "farben",
+   "cloze": "Jabuka je ___.",
+   "answer": "crvena",
+   "bs": "Jabuka je crvena.",
+   "translations": {
+    "de": "Der Apfel ist rot.",
+    "en": "The apple is red.",
+    "tr": "Elma kırmızı.",
+    "sv": "Äpplet är rött.",
+    "nl": "De appel is rood.",
+    "nb": "Eplet er rødt.",
+    "da": "Æblet er rødt.",
+    "fr": "La pomme est rouge."
+   },
+   "audio": "web/audio/w1130.mp3"
+  },
+  {
+   "id": "s0039",
+   "level": "farben",
+   "cloze": "Kahva je ___.",
+   "answer": "crna",
+   "bs": "Kahva je crna.",
+   "translations": {
+    "de": "Der Kaffee ist schwarz.",
+    "en": "The coffee is black.",
+    "tr": "Kahve siyah.",
+    "sv": "Kaffet är svart.",
+    "nl": "De koffie is zwart.",
+    "nb": "Kaffen er svart.",
+    "da": "Kaffen er sort.",
+    "fr": "Le café est noir."
+   },
+   "audio": "web/audio/w1131.mp3"
+  },
+  {
+   "id": "s0040",
+   "level": "farben",
+   "cloze": "Banana je ___.",
+   "answer": "žuta",
+   "bs": "Banana je žuta.",
+   "translations": {
+    "de": "Die Banane ist gelb.",
+    "en": "The banana is yellow.",
+    "tr": "Muz sarı.",
+    "sv": "Bananen är gul.",
+    "nl": "De banaan is geel.",
+    "nb": "Bananen er gul.",
+    "da": "Bananen er gul.",
+    "fr": "La banane est jaune."
+   },
+   "audio": "web/audio/w1132.mp3"
+  },
+  {
+   "id": "s0041",
+   "level": "unterwegs",
+   "cloze": "Gdje je ___?",
+   "answer": "stanica",
+   "bs": "Gdje je stanica?",
+   "translations": {
+    "de": "Wo ist die Haltestelle?",
+    "en": "Where is the stop?",
+    "tr": "Durak nerede?",
+    "sv": "Var är hållplatsen?",
+    "nl": "Waar is de halte?",
+    "nb": "Hvor er holdeplassen?",
+    "da": "Hvor er stoppestedet?",
+    "fr": "Où est l'arrêt ?"
+   },
+   "audio": "web/audio/w1133.mp3"
+  },
+  {
+   "id": "s0042",
+   "level": "unterwegs",
+   "cloze": "Koliko ___?",
+   "answer": "košta",
+   "bs": "Koliko košta?",
+   "translations": {
+    "de": "Wie viel kostet das?",
+    "en": "How much does it cost?",
+    "tr": "Bu kaça?",
+    "sv": "Vad kostar det?",
+    "nl": "Hoeveel kost dat?",
+    "nb": "Hva koster det?",
+    "da": "Hvad koster det?",
+    "fr": "Ça coûte combien ?"
+   },
+   "audio": "web/audio/w0284.mp3"
+  },
+  {
+   "id": "s0043",
+   "level": "unterwegs",
+   "cloze": "Skreni ___.",
+   "answer": "lijevo",
+   "bs": "Skreni lijevo.",
+   "translations": {
+    "de": "Bieg links ab.",
+    "en": "Turn left.",
+    "tr": "Sola dön.",
+    "sv": "Sväng vänster.",
+    "nl": "Sla linksaf.",
+    "nb": "Ta til venstre.",
+    "da": "Drej til venstre.",
+    "fr": "Tourne à gauche."
+   },
+   "audio": "web/audio/w1134.mp3"
+  },
+  {
+   "id": "s0044",
+   "level": "verben",
+   "cloze": "Ja ___ bosanski.",
+   "answer": "govorim",
+   "bs": "Ja govorim bosanski.",
+   "translations": {
+    "de": "Ich spreche Bosnisch.",
+    "en": "I speak Bosnian.",
+    "tr": "Boşnakça konuşuyorum.",
+    "sv": "Jag talar bosniska.",
+    "nl": "Ik spreek Bosnisch.",
+    "nb": "Jeg snakker bosnisk.",
+    "da": "Jeg taler bosnisk.",
+    "fr": "Je parle bosnien."
+   },
+   "audio": "web/audio/w1135.mp3"
+  },
+  {
+   "id": "s0045",
+   "level": "verben",
+   "cloze": "Ja ___ kahvu.",
+   "answer": "pijem",
+   "bs": "Ja pijem kahvu.",
+   "translations": {
+    "de": "Ich trinke Kaffee.",
+    "en": "I drink coffee.",
+    "tr": "Kahve içiyorum.",
+    "sv": "Jag dricker kaffe.",
+    "nl": "Ik drink koffie.",
+    "nb": "Jeg drikker kaffe.",
+    "da": "Jeg drikker kaffe.",
+    "fr": "Je bois du café."
+   },
+   "audio": "web/audio/w1136.mp3"
+  },
+  {
+   "id": "s0046",
+   "level": "verben",
+   "cloze": "Mi ___ bosanski.",
+   "answer": "učimo",
+   "bs": "Mi učimo bosanski.",
+   "translations": {
+    "de": "Wir lernen Bosnisch.",
+    "en": "We are learning Bosnian.",
+    "tr": "Boşnakça öğreniyoruz.",
+    "sv": "Vi lär oss bosniska.",
+    "nl": "Wij leren Bosnisch.",
+    "nb": "Vi lærer bosnisk.",
+    "da": "Vi lærer bosnisk.",
+    "fr": "Nous apprenons le bosnien."
+   },
+   "audio": "web/audio/w1137.mp3"
+  },
+  {
+   "id": "s0047",
+   "level": "smalltalk",
+   "cloze": "Volim ___.",
+   "answer": "te",
+   "bs": "Volim te.",
+   "translations": {
+    "de": "Ich liebe dich.",
+    "en": "I love you.",
+    "tr": "Seni seviyorum.",
+    "sv": "Jag älskar dig.",
+    "nl": "Ik hou van je.",
+    "nb": "Jeg elsker deg.",
+    "da": "Jeg elsker dig.",
+    "fr": "Je t'aime."
+   },
+   "audio": "web/audio/w1138.mp3"
+  },
+  {
+   "id": "s0048",
+   "level": "smalltalk",
+   "cloze": "___ mi.",
+   "answer": "Nedostaješ",
+   "bs": "Nedostaješ mi.",
+   "translations": {
+    "de": "Ich vermisse dich.",
+    "en": "I miss you.",
+    "tr": "Seni özledim.",
+    "sv": "Jag saknar dig.",
+    "nl": "Ik mis je.",
+    "nb": "Jeg savner deg.",
+    "da": "Jeg savner dig.",
+    "fr": "Tu me manques."
+   },
+   "audio": "web/audio/w1139.mp3"
+  },
+  {
+   "id": "s0049",
+   "level": "smalltalk",
+   "cloze": "Nema ___.",
+   "answer": "problema",
+   "bs": "Nema problema.",
+   "translations": {
+    "de": "Kein Problem.",
+    "en": "No problem.",
+    "tr": "Sorun değil.",
+    "sv": "Inga problem.",
+    "nl": "Geen probleem.",
+    "nb": "Ikke noe problem.",
+    "da": "Intet problem.",
+    "fr": "Pas de problème."
+   },
+   "audio": "web/audio/w1140.mp3"
+  },
+  {
+   "id": "s0050",
+   "level": "smalltalk",
+   "cloze": "Šta ___?",
+   "answer": "radiš",
+   "bs": "Šta radiš?",
+   "translations": {
+    "de": "Was machst du?",
+    "en": "What are you doing?",
+    "tr": "Ne yapıyorsun?",
+    "sv": "Vad gör du?",
+    "nl": "Wat doe je?",
+    "nb": "Hva gjør du?",
+    "da": "Hvad laver du?",
+    "fr": "Qu'est-ce que tu fais ?"
+   },
+   "audio": "web/audio/w0319.mp3"
+  },
+  {
+   "id": "s0051",
+   "level": "smalltalk",
+   "cloze": "___, idemo!",
+   "answer": "Hajde",
+   "bs": "Hajde, idemo!",
+   "translations": {
+    "de": "Komm, wir gehen!",
+    "en": "Come on, let's go!",
+    "tr": "Hadi gidelim!",
+    "sv": "Kom, vi går!",
+    "nl": "Kom, we gaan!",
+    "nb": "Kom, vi går!",
+    "da": "Kom, vi går!",
+    "fr": "Allez, on y va !"
+   },
+   "audio": "web/audio/w1141.mp3"
+  },
+  {
+   "id": "s0052",
+   "level": "zuhause",
+   "cloze": "Gdje je ___?",
+   "answer": "ključ",
+   "bs": "Gdje je ključ?",
+   "translations": {
+    "de": "Wo ist der Schlüssel?",
+    "en": "Where is the key?",
+    "tr": "Anahtar nerede?",
+    "sv": "Var är nyckeln?",
+    "nl": "Waar is de sleutel?",
+    "nb": "Hvor er nøkkelen?",
+    "da": "Hvor er nøglen?",
+    "fr": "Où est la clé ?"
+   },
+   "audio": "web/audio/w1142.mp3"
+  },
+  {
+   "id": "s0053",
+   "level": "zuhause",
+   "cloze": "Ovo je moja ___.",
+   "answer": "soba",
+   "bs": "Ovo je moja soba.",
+   "translations": {
+    "de": "Das ist mein Zimmer.",
+    "en": "This is my room.",
+    "tr": "Bu benim odam.",
+    "sv": "Det här är mitt rum.",
+    "nl": "Dit is mijn kamer.",
+    "nb": "Dette er rommet mitt.",
+    "da": "Det her er mit værelse.",
+    "fr": "C'est ma chambre."
+   },
+   "audio": "web/audio/w1143.mp3"
+  },
+  {
+   "id": "s0054",
+   "level": "zuhause",
+   "cloze": "Moj ___ je dobar čovjek.",
+   "answer": "komšija",
+   "bs": "Moj komšija je dobar čovjek.",
+   "translations": {
+    "de": "Mein Nachbar ist ein guter Mensch.",
+    "en": "My neighbor is a good person.",
+    "tr": "Komşum iyi bir insan.",
+    "sv": "Min granne är en bra människa.",
+    "nl": "Mijn buurman is een goed mens.",
+    "nb": "Naboen min er et godt menneske.",
+    "da": "Min nabo er et godt menneske.",
+    "fr": "Mon voisin est quelqu'un de bien."
+   },
+   "audio": "web/audio/w1144.mp3"
+  },
+  {
+   "id": "s0055",
+   "level": "koerper",
+   "cloze": "Boli me ___.",
+   "answer": "glava",
+   "bs": "Boli me glava.",
+   "translations": {
+    "de": "Mir tut der Kopf weh.",
+    "en": "My head hurts.",
+    "tr": "Başım ağrıyor.",
+    "sv": "Jag har ont i huvudet.",
+    "nl": "Ik heb hoofdpijn.",
+    "nb": "Jeg har vondt i hodet.",
+    "da": "Jeg har ondt i hovedet.",
+    "fr": "J'ai mal à la tête."
+   },
+   "audio": "web/audio/w1145.mp3"
+  },
+  {
+   "id": "s0056",
+   "level": "koerper",
+   "cloze": "Gdje je ___?",
+   "answer": "apoteka",
+   "bs": "Gdje je apoteka?",
+   "translations": {
+    "de": "Wo ist die Apotheke?",
+    "en": "Where is the pharmacy?",
+    "tr": "Eczane nerede?",
+    "sv": "Var ligger apoteket?",
+    "nl": "Waar is de apotheek?",
+    "nb": "Hvor er apoteket?",
+    "da": "Hvor er apoteket?",
+    "fr": "Où est la pharmacie ?"
+   },
+   "audio": "web/audio/w1146.mp3"
+  },
+  {
+   "id": "s0057",
+   "level": "koerper",
+   "cloze": "Brzo ___!",
+   "answer": "ozdravi",
+   "bs": "Brzo ozdravi!",
+   "translations": {
+    "de": "Gute Besserung!",
+    "en": "Get well soon!",
+    "tr": "Geçmiş olsun!",
+    "sv": "Krya på dig!",
+    "nl": "Beterschap!",
+    "nb": "God bedring!",
+    "da": "God bedring!",
+    "fr": "Bon rétablissement !"
+   },
+   "audio": "web/audio/w0242.mp3"
+  },
+  {
+   "id": "s0058",
+   "level": "einkaufen",
+   "cloze": "Kolika je ___?",
+   "answer": "cijena",
+   "bs": "Kolika je cijena?",
+   "translations": {
+    "de": "Wie hoch ist der Preis?",
+    "en": "What is the price?",
+    "tr": "Fiyat ne kadar?",
+    "sv": "Hur högt är priset?",
+    "nl": "Hoe hoog is de prijs?",
+    "nb": "Hvor høy er prisen?",
+    "da": "Hvor høj er prisen?",
+    "fr": "Quel est le prix ?"
+   },
+   "audio": "web/audio/w1147.mp3"
+  },
+  {
+   "id": "s0059",
+   "level": "einkaufen",
+   "cloze": "Tražim ___ haljinu.",
+   "answer": "plavu",
+   "bs": "Tražim plavu haljinu.",
+   "translations": {
+    "de": "Ich suche ein blaues Kleid.",
+    "en": "I am looking for a blue dress.",
+    "tr": "Mavi bir elbise arıyorum.",
+    "sv": "Jag letar efter en blå klänning.",
+    "nl": "Ik zoek een blauwe jurk.",
+    "nb": "Jeg ser etter en blå kjole.",
+    "da": "Jeg leder efter en blå kjole.",
+    "fr": "Je cherche une robe bleue."
+   },
+   "audio": "web/audio/w1148.mp3"
+  },
+  {
+   "id": "s0060",
+   "level": "einkaufen",
+   "cloze": "Jakna košta ___ maraka.",
+   "answer": "pedeset",
+   "bs": "Jakna košta pedeset maraka.",
+   "translations": {
+    "de": "Die Jacke kostet fünfzig Mark.",
+    "en": "The jacket costs fifty marks.",
+    "tr": "Ceket elli mark.",
+    "sv": "Jackan kostar femtio mark.",
+    "nl": "De jas kost vijftig mark.",
+    "nb": "Jakka koster femti mark.",
+    "da": "Jakken koster halvtreds mark.",
+    "fr": "La veste coûte cinquante marks."
+   },
+   "audio": "web/audio/w1149.mp3"
+  },
+  {
+   "id": "s0061",
+   "level": "einkaufen",
+   "cloze": "Mogu li platiti ___?",
+   "answer": "karticom",
+   "bs": "Mogu li platiti karticom?",
+   "translations": {
+    "de": "Kann ich mit Karte zahlen?",
+    "en": "Can I pay by card?",
+    "tr": "Kartla ödeyebilir miyim?",
+    "sv": "Kan jag betala med kort?",
+    "nl": "Kan ik met de pas betalen?",
+    "nb": "Kan jeg betale med kort?",
+    "da": "Kan jeg betale med kort?",
+    "fr": "Je peux payer par carte ?"
+   },
+   "audio": "web/audio/w0269.mp3"
+  },
+  {
+   "id": "s0062",
+   "level": "einkaufen",
+   "cloze": "Tražim ___.",
+   "answer": "cipele",
+   "bs": "Tražim cipele.",
+   "translations": {
+    "de": "Ich suche Schuhe.",
+    "en": "I am looking for shoes.",
+    "tr": "Ayakkabı arıyorum.",
+    "sv": "Jag letar efter skor.",
+    "nl": "Ik zoek schoenen.",
+    "nb": "Jeg ser etter sko.",
+    "da": "Jeg leder efter sko.",
+    "fr": "Je cherche des chaussures."
+   },
+   "audio": "web/audio/w1150.mp3"
+  },
+  {
+   "id": "s0063",
+   "level": "wetter",
+   "cloze": "Pada ___.",
+   "answer": "kiša",
+   "bs": "Pada kiša.",
+   "translations": {
+    "de": "Es regnet.",
+    "en": "It is raining.",
+    "tr": "Yağmur yağıyor.",
+    "sv": "Det regnar.",
+    "nl": "Het regent.",
+    "nb": "Det regner.",
+    "da": "Det regner.",
+    "fr": "Il pleut."
+   },
+   "audio": "web/audio/w1151.mp3"
+  },
+  {
+   "id": "s0064",
+   "level": "wetter",
+   "cloze": "Danas je ___.",
+   "answer": "hladno",
+   "bs": "Danas je hladno.",
+   "translations": {
+    "de": "Heute ist es kalt.",
+    "en": "It is cold today.",
+    "tr": "Bugün hava soğuk.",
+    "sv": "I dag är det kallt.",
+    "nl": "Vandaag is het koud.",
+    "nb": "I dag er det kaldt.",
+    "da": "I dag er det koldt.",
+    "fr": "Aujourd'hui il fait froid."
+   },
+   "audio": "web/audio/w1152.mp3"
+  },
+  {
+   "id": "s0065",
+   "level": "wetter",
+   "cloze": "___ je plavo.",
+   "answer": "Nebo",
+   "bs": "Nebo je plavo.",
+   "translations": {
+    "de": "Der Himmel ist blau.",
+    "en": "The sky is blue.",
+    "tr": "Gökyüzü mavi.",
+    "sv": "Himlen är blå.",
+    "nl": "De hemel is blauw.",
+    "nb": "Himmelen er blå.",
+    "da": "Himlen er blå.",
+    "fr": "Le ciel est bleu."
+   },
+   "audio": "web/audio/w1153.mp3"
+  },
+  {
+   "id": "s0066",
+   "level": "arbeit",
+   "cloze": "Sutra ___.",
+   "answer": "radim",
+   "bs": "Sutra radim.",
+   "translations": {
+    "de": "Morgen arbeite ich.",
+    "en": "Tomorrow I work.",
+    "tr": "Yarın çalışıyorum.",
+    "sv": "I morgon arbetar jag.",
+    "nl": "Morgen werk ik.",
+    "nb": "I morgen arbeider jeg.",
+    "da": "I morgen arbejder jeg.",
+    "fr": "Demain je travaille."
+   },
+   "audio": "web/audio/w1154.mp3"
+  },
+  {
+   "id": "s0067",
+   "level": "arbeit",
+   "cloze": "Imam ___.",
+   "answer": "ispit",
+   "bs": "Imam ispit.",
+   "translations": {
+    "de": "Ich habe eine Prüfung.",
+    "en": "I have an exam.",
+    "tr": "Sınavım var.",
+    "sv": "Jag har ett prov.",
+    "nl": "Ik heb een examen.",
+    "nb": "Jeg har en eksamen.",
+    "da": "Jeg har en eksamen.",
+    "fr": "J'ai un examen."
+   },
+   "audio": "web/audio/w1155.mp3"
+  },
+  {
+   "id": "s0068",
+   "level": "arbeit",
+   "cloze": "Šta si po ___?",
+   "answer": "zanimanju",
+   "bs": "Šta si po zanimanju?",
+   "translations": {
+    "de": "Was bist du von Beruf?",
+    "en": "What do you do for a living?",
+    "tr": "Mesleğin ne?",
+    "sv": "Vad jobbar du med?",
+    "nl": "Wat voor werk doe je?",
+    "nb": "Hva jobber du med?",
+    "da": "Hvad arbejder du med?",
+    "fr": "Qu'est-ce que tu fais comme métier ?"
+   },
+   "audio": "web/audio/w0898.mp3"
+  },
+  {
+   "id": "s0069",
+   "level": "formell",
+   "cloze": "Kako ___?",
+   "answer": "ste",
+   "bs": "Kako ste?",
+   "translations": {
+    "de": "Wie geht es Ihnen?",
+    "en": "How are you? (formal)",
+    "tr": "Nasılsınız?",
+    "sv": "Hur mår ni? (artigt)",
+    "nl": "Hoe gaat het met u?",
+    "nb": "Hvordan går det med Dem?",
+    "da": "Hvordan går det med Dem?",
+    "fr": "Comment allez-vous ?"
+   },
+   "audio": "web/audio/w0018.mp3"
+  },
+  {
+   "id": "s0070",
+   "level": "formell",
+   "cloze": "Možete li mi ___?",
+   "answer": "pomoći",
+   "bs": "Možete li mi pomoći?",
+   "translations": {
+    "de": "Können Sie mir helfen?",
+    "en": "Can you help me?",
+    "tr": "Bana yardım edebilir misiniz?",
+    "sv": "Kan ni hjälpa mig?",
+    "nl": "Kunt u mij helpen?",
+    "nb": "Kan De hjelpe meg?",
+    "da": "Kan De hjælpe mig?",
+    "fr": "Pouvez-vous m'aider ?"
+   },
+   "audio": "web/audio/w0941.mp3"
+  },
+  {
+   "id": "s0071",
+   "level": "formell",
+   "cloze": "S ___.",
+   "answer": "poštovanjem",
+   "bs": "S poštovanjem.",
+   "translations": {
+    "de": "Mit freundlichen Grüßen.",
+    "en": "Yours sincerely.",
+    "tr": "Saygılarımla.",
+    "sv": "Med vänliga hälsningar.",
+    "nl": "Met vriendelijke groet.",
+    "nb": "Med vennlig hilsen.",
+    "da": "Med venlig hilsen.",
+    "fr": "Cordialement."
+   },
+   "audio": "web/audio/w1156.mp3"
+  },
+  {
+   "id": "s0072",
+   "level": "formell",
+   "cloze": "___, molim Vas.",
+   "answer": "Izvinite",
+   "bs": "Izvinite, molim Vas.",
+   "translations": {
+    "de": "Entschuldigen Sie, bitte.",
+    "en": "Excuse me, please.",
+    "tr": "Affedersiniz, lütfen.",
+    "sv": "Ursäkta mig.",
+    "nl": "Neemt u mij niet kwalijk.",
+    "nb": "Unnskyld meg.",
+    "da": "Undskyld mig.",
+    "fr": "Excusez-moi, s'il vous plaît."
+   },
+   "audio": "web/audio/w1157.mp3"
+  },
+  {
+   "id": "s0073",
+   "level": "saetze",
+   "cloze": "Imam ___ brata.",
+   "answer": "dva",
+   "bs": "Imam dva brata.",
+   "translations": {
+    "de": "Ich habe zwei Brüder.",
+    "en": "I have two brothers.",
+    "tr": "İki erkek kardeşim var.",
+    "sv": "Jag har två bröder.",
+    "nl": "Ik heb twee broers.",
+    "nb": "Jeg har to brødre.",
+    "da": "Jeg har to brødre.",
+    "fr": "J'ai deux frères."
+   },
+   "audio": "web/audio/w1158.mp3"
+  },
+  {
+   "id": "s0074",
+   "level": "saetze",
+   "cloze": "Jedemo u ___ sati.",
+   "answer": "sedam",
+   "bs": "Jedemo u sedam sati.",
+   "translations": {
+    "de": "Wir essen um sieben Uhr.",
+    "en": "We eat at seven o'clock.",
+    "tr": "Saat yedide yemek yiyoruz.",
+    "sv": "Vi äter klockan sju.",
+    "nl": "We eten om zeven uur.",
+    "nb": "Vi spiser klokka sju.",
+    "da": "Vi spiser klokken syv.",
+    "fr": "Nous mangeons à sept heures."
+   },
+   "audio": "web/audio/w1159.mp3"
+  },
+  {
+   "id": "s0075",
+   "level": "saetze",
+   "cloze": "U ___ idem na posao.",
+   "answer": "ponedjeljak",
+   "bs": "U ponedjeljak idem na posao.",
+   "translations": {
+    "de": "Am Montag gehe ich zur Arbeit.",
+    "en": "On Monday I go to work.",
+    "tr": "Pazartesi işe gidiyorum.",
+    "sv": "På måndag går jag till jobbet.",
+    "nl": "Op maandag ga ik naar het werk.",
+    "nb": "På mandag går jeg på jobb.",
+    "da": "Om mandagen tager jeg på arbejde.",
+    "fr": "Le lundi, je vais au travail."
+   },
+   "audio": "web/audio/w1160.mp3"
+  },
+  {
+   "id": "s0076",
+   "level": "saetze",
+   "cloze": "Gdje je ___ torba?",
+   "answer": "crvena",
+   "bs": "Gdje je crvena torba?",
+   "translations": {
+    "de": "Wo ist die rote Tasche?",
+    "en": "Where is the red bag?",
+    "tr": "Kırmızı çanta nerede?",
+    "sv": "Var är den röda väskan?",
+    "nl": "Waar is de rode tas?",
+    "nb": "Hvor er den røde veska?",
+    "da": "Hvor er den røde taske?",
+    "fr": "Où est le sac rouge ?"
+   },
+   "audio": "web/audio/w0917.mp3"
+  },
+  {
+   "id": "s0077",
+   "level": "saetze",
+   "cloze": "Moja ___ stanuje u selu.",
+   "answer": "nana",
+   "bs": "Moja nana stanuje u selu.",
+   "translations": {
+    "de": "Meine Oma wohnt im Dorf.",
+    "en": "My grandma lives in the village.",
+    "tr": "Ninem köyde oturuyor.",
+    "sv": "Min mormor bor i byn.",
+    "nl": "Mijn oma woont in het dorp.",
+    "nb": "Bestemoren min bor i landsbyen.",
+    "da": "Min bedstemor bor i landsbyen.",
+    "fr": "Ma grand-mère habite au village."
+   },
+   "audio": "web/audio/w1161.mp3"
+  },
+  {
+   "id": "s0078",
+   "level": "saetze",
+   "cloze": "Danas je hladno i pada ___.",
+   "answer": "kiša",
+   "bs": "Danas je hladno i pada kiša.",
+   "translations": {
+    "de": "Heute ist es kalt und es regnet.",
+    "en": "Today it is cold and it is raining.",
+    "tr": "Bugün hava soğuk ve yağmur yağıyor.",
+    "sv": "I dag är det kallt och det regnar.",
+    "nl": "Vandaag is het koud en het regent.",
+    "nb": "I dag er det kaldt og det regner.",
+    "da": "I dag er det koldt, og det regner.",
+    "fr": "Aujourd'hui il fait froid et il pleut."
+   },
+   "audio": "web/audio/w1162.mp3"
+  },
+  {
+   "id": "s0079",
+   "level": "saetze",
+   "cloze": "Koliko ___ hljeb?",
+   "answer": "košta",
+   "bs": "Koliko košta hljeb?",
+   "translations": {
+    "de": "Wie viel kostet das Brot?",
+    "en": "How much does the bread cost?",
+    "tr": "Ekmek kaça?",
+    "sv": "Vad kostar brödet?",
+    "nl": "Hoeveel kost het brood?",
+    "nb": "Hva koster brødet?",
+    "da": "Hvad koster brødet?",
+    "fr": "Combien coûte le pain ?"
+   },
+   "audio": "web/audio/w0918.mp3"
+  },
+  {
+   "id": "s0080",
+   "level": "saetze",
+   "cloze": "___ bosanski svaki dan.",
+   "answer": "Učim",
+   "bs": "Učim bosanski svaki dan.",
+   "translations": {
+    "de": "Ich lerne jeden Tag Bosnisch.",
+    "en": "I study Bosnian every day.",
+    "tr": "Her gün Boşnakça öğreniyorum.",
+    "sv": "Jag pluggar bosniska varje dag.",
+    "nl": "Ik leer elke dag Bosnisch.",
+    "nb": "Jeg lærer bosnisk hver dag.",
+    "da": "Jeg lærer bosnisk hver dag.",
+    "fr": "J'apprends le bosnien chaque jour."
+   },
+   "audio": "web/audio/w1163.mp3"
+  },
+  {
+   "id": "s0081",
+   "level": "amt",
+   "cloze": "Trebam ___.",
+   "answer": "potvrdu",
+   "bs": "Trebam potvrdu.",
+   "translations": {
+    "de": "Ich brauche eine Bescheinigung.",
+    "en": "I need a certificate.",
+    "tr": "Bir belgeye ihtiyacım var.",
+    "sv": "Jag behöver ett intyg.",
+    "nl": "Ik heb een verklaring nodig.",
+    "nb": "Jeg trenger en attest.",
+    "da": "Jeg har brug for en attest.",
+    "fr": "J'ai besoin d'une attestation."
+   },
+   "audio": "web/audio/w1164.mp3"
+  },
+  {
+   "id": "s0082",
+   "level": "amt",
+   "cloze": "Imam ___ u ponedjeljak u deset sati.",
+   "answer": "termin",
+   "bs": "Imam termin u ponedjeljak u deset sati.",
+   "translations": {
+    "de": "Ich habe am Montag um zehn Uhr einen Termin.",
+    "en": "I have an appointment on Monday at ten o'clock.",
+    "tr": "Pazartesi saat onda randevum var.",
+    "sv": "Jag har en tid på måndag klockan tio.",
+    "nl": "Ik heb op maandag om tien uur een afspraak.",
+    "nb": "Jeg har time på mandag klokka ti.",
+    "da": "Jeg har en tid på mandag klokken ti.",
+    "fr": "J'ai un rendez-vous lundi à dix heures."
+   },
+   "audio": "web/audio/w1165.mp3"
+  },
+  {
+   "id": "s0083",
+   "level": "amt",
+   "cloze": "___ za pasoš je trideset maraka.",
+   "answer": "Taksa",
+   "bs": "Taksa za pasoš je trideset maraka.",
+   "translations": {
+    "de": "Die Gebühr für den Pass beträgt dreißig Mark.",
+    "en": "The fee for the passport is thirty marks.",
+    "tr": "Pasaport harcı otuz mark.",
+    "sv": "Avgiften för passet är trettio mark.",
+    "nl": "De leges voor het paspoort zijn dertig mark.",
+    "nb": "Gebyret for passet er tretti mark.",
+    "da": "Gebyret for passet er tredive mark.",
+    "fr": "Les frais pour le passeport s'élèvent à trente marks."
+   },
+   "audio": "web/audio/w1166.mp3"
+  },
+  {
+   "id": "s0084",
+   "level": "amt",
+   "cloze": "Gdje trebam ___?",
+   "answer": "potpisati",
+   "bs": "Gdje trebam potpisati?",
+   "translations": {
+    "de": "Wo muss ich unterschreiben?",
+    "en": "Where do I have to sign?",
+    "tr": "Nereyi imzalamam gerekiyor?",
+    "sv": "Var ska jag skriva under?",
+    "nl": "Waar moet ik tekenen?",
+    "nb": "Hvor skal jeg skrive under?",
+    "da": "Hvor skal jeg skrive under?",
+    "fr": "Où dois-je signer ?"
+   },
+   "audio": "web/audio/w0991.mp3"
+  },
+  {
+   "id": "s0085",
+   "level": "amt",
+   "cloze": "Imate li ___?",
+   "answer": "pasoš",
+   "bs": "Imate li pasoš?",
+   "translations": {
+    "de": "Haben Sie einen Reisepass?",
+    "en": "Do you have a passport?",
+    "tr": "Pasaportunuz var mı?",
+    "sv": "Har ni ett pass?",
+    "nl": "Heeft u een paspoort?",
+    "nb": "Har De et pass?",
+    "da": "Har De et pas?",
+    "fr": "Avez-vous un passeport ?"
+   },
+   "audio": "web/audio/w1167.mp3"
+  },
+  {
+   "id": "s0086",
+   "level": "amt",
+   "cloze": "Koji ___ mi trebaju?",
+   "answer": "dokumenti",
+   "bs": "Koji dokumenti mi trebaju?",
+   "translations": {
+    "de": "Welche Dokumente brauche ich?",
+    "en": "Which documents do I need?",
+    "tr": "Hangi belgeler gerekiyor?",
+    "sv": "Vilka handlingar behöver jag?",
+    "nl": "Welke documenten heb ik nodig?",
+    "nb": "Hvilke dokumenter trenger jeg?",
+    "da": "Hvilke dokumenter har jeg brug for?",
+    "fr": "Quels documents me faut-il ?"
+   },
+   "audio": "web/audio/w0992.mp3"
+  },
+  {
+   "id": "s0087",
+   "level": "fragen",
+   "cloze": "___ si?",
+   "answer": "Odakle",
+   "bs": "Odakle si?",
+   "translations": {
+    "de": "Woher kommst du?",
+    "en": "Where are you from?",
+    "tr": "Nerelisin?",
+    "sv": "Varifrån kommer du?",
+    "nl": "Waar kom je vandaan?",
+    "nb": "Hvor kommer du fra?",
+    "da": "Hvor kommer du fra?",
+    "fr": "D'où viens-tu ?"
+   },
+   "audio": "web/audio/w0347.mp3"
+  },
+  {
+   "id": "s0088",
+   "level": "fragen",
+   "cloze": "___ je to?",
+   "answer": "Šta",
+   "bs": "Šta je to?",
+   "translations": {
+    "de": "Was ist das?",
+    "en": "What is that?",
+    "tr": "Bu ne?",
+    "sv": "Vad är det?",
+    "nl": "Wat is dat?",
+    "nb": "Hva er det?",
+    "da": "Hvad er det?",
+    "fr": "Qu'est-ce que c'est ?"
+   },
+   "audio": "web/audio/w0351.mp3"
+  },
+  {
+   "id": "s0089",
+   "level": "fragen",
+   "cloze": "Koliko ___ godina?",
+   "answer": "imaš",
+   "bs": "Koliko imaš godina?",
+   "translations": {
+    "de": "Wie alt bist du?",
+    "en": "How old are you?",
+    "tr": "Kaç yaşındasın?",
+    "sv": "Hur gammal är du?",
+    "nl": "Hoe oud ben je?",
+    "nb": "Hvor gammel er du?",
+    "da": "Hvor gammel er du?",
+    "fr": "Quel âge as-tu ?"
+   },
+   "audio": "web/audio/w0352.mp3"
+  },
+  {
+   "id": "s0090",
+   "level": "fragen",
+   "cloze": "___ li vremena?",
+   "answer": "Imaš",
+   "bs": "Imaš li vremena?",
+   "translations": {
+    "de": "Hast du Zeit?",
+    "en": "Do you have time?",
+    "tr": "Vaktin var mı?",
+    "sv": "Har du tid?",
+    "nl": "Heb je tijd?",
+    "nb": "Har du tid?",
+    "da": "Har du tid?",
+    "fr": "Tu as le temps ?"
+   },
+   "audio": "web/audio/w0353.mp3"
+  },
+  {
+   "id": "s0091",
+   "level": "fragen",
+   "cloze": "___ ideš?",
+   "answer": "Kuda",
+   "bs": "Kuda ideš?",
+   "translations": {
+    "de": "Wohin gehst du?",
+    "en": "Where are you going?",
+    "tr": "Nereye gidiyorsun?",
+    "sv": "Vart går du?",
+    "nl": "Waar ga je heen?",
+    "nb": "Hvor skal du?",
+    "da": "Hvor skal du hen?",
+    "fr": "Où vas-tu ?"
+   },
+   "audio": "web/audio/w0348.mp3"
+  },
+  {
+   "id": "s0092",
+   "level": "konjugation",
+   "cloze": "Ja ___ iz Njemačke.",
+   "answer": "sam",
+   "bs": "Ja sam iz Njemačke.",
+   "translations": {
+    "de": "Ich bin aus Deutschland.",
+    "en": "I am from Germany.",
+    "tr": "Almanya'danım.",
+    "sv": "Jag är från Tyskland.",
+    "nl": "Ik kom uit Duitsland.",
+    "nb": "Jeg er fra Tyskland.",
+    "da": "Jeg er fra Tyskland.",
+    "fr": "Je viens d'Allemagne."
+   },
+   "audio": "web/audio/w1168.mp3"
+  },
+  {
+   "id": "s0093",
+   "level": "konjugation",
+   "cloze": "Mi ___ kod kuće.",
+   "answer": "smo",
+   "bs": "Mi smo kod kuće.",
+   "translations": {
+    "de": "Wir sind zu Hause.",
+    "en": "We are at home.",
+    "tr": "Evdeyiz.",
+    "sv": "Vi är hemma.",
+    "nl": "Wij zijn thuis.",
+    "nb": "Vi er hjemme.",
+    "da": "Vi er hjemme.",
+    "fr": "Nous sommes à la maison."
+   },
+   "audio": "web/audio/w1169.mp3"
+  },
+  {
+   "id": "s0094",
+   "level": "konjugation",
+   "cloze": "Ti ___ dva brata.",
+   "answer": "imaš",
+   "bs": "Ti imaš dva brata.",
+   "translations": {
+    "de": "Du hast zwei Brüder.",
+    "en": "You have two brothers.",
+    "tr": "İki erkek kardeşin var.",
+    "sv": "Du har två bröder.",
+    "nl": "Jij hebt twee broers.",
+    "nb": "Du har to brødre.",
+    "da": "Du har to brødre.",
+    "fr": "Tu as deux frères."
+   },
+   "audio": "web/audio/w1170.mp3"
+  },
+  {
+   "id": "s0095",
+   "level": "konjugation",
+   "cloze": "Oni ___ u školu.",
+   "answer": "idu",
+   "bs": "Oni idu u školu.",
+   "translations": {
+    "de": "Sie gehen in die Schule.",
+    "en": "They go to school.",
+    "tr": "Onlar okula gidiyor.",
+    "sv": "De går i skolan.",
+    "nl": "Zij gaan naar school.",
+    "nb": "De går på skolen.",
+    "da": "De går i skole.",
+    "fr": "Ils vont à l'école."
+   },
+   "audio": "web/audio/w1171.mp3"
+  },
+  {
+   "id": "s0096",
+   "level": "konjugation",
+   "cloze": "___ li ti bosanski?",
+   "answer": "Govoriš",
+   "bs": "Govoriš li ti bosanski?",
+   "translations": {
+    "de": "Sprichst du Bosnisch?",
+    "en": "Do you speak Bosnian?",
+    "tr": "Boşnakça konuşuyor musun?",
+    "sv": "Talar du bosniska?",
+    "nl": "Spreek jij Bosnisch?",
+    "nb": "Snakker du bosnisk?",
+    "da": "Taler du bosnisk?",
+    "fr": "Tu parles bosnien ?"
+   },
+   "audio": "web/audio/w1172.mp3"
+  },
+  {
+   "id": "s0097",
+   "level": "satzbau",
+   "cloze": "Mislim ___ je dobro.",
+   "answer": "da",
+   "bs": "Mislim da je dobro.",
+   "translations": {
+    "de": "Ich denke, dass es gut ist.",
+    "en": "I think that it is good.",
+    "tr": "Bunun iyi olduğunu düşünüyorum.",
+    "sv": "Jag tror att det är bra.",
+    "nl": "Ik denk dat het goed is.",
+    "nb": "Jeg tror at det er bra.",
+    "da": "Jeg tror, at det er godt.",
+    "fr": "Je pense que c'est bien."
+   },
+   "audio": "web/audio/w1173.mp3"
+  },
+  {
+   "id": "s0098",
+   "level": "satzbau",
+   "cloze": "Ne znam ___ je ključ.",
+   "answer": "gdje",
+   "bs": "Ne znam gdje je ključ.",
+   "translations": {
+    "de": "Ich weiß nicht, wo der Schlüssel ist.",
+    "en": "I do not know where the key is.",
+    "tr": "Anahtarın nerede olduğunu bilmiyorum.",
+    "sv": "Jag vet inte var nyckeln är.",
+    "nl": "Ik weet niet waar de sleutel is.",
+    "nb": "Jeg vet ikke hvor nøkkelen er.",
+    "da": "Jeg ved ikke, hvor nøglen er.",
+    "fr": "Je ne sais pas où est la clé."
+   },
+   "audio": "web/audio/w1174.mp3"
+  },
+  {
+   "id": "s0099",
+   "level": "satzbau",
+   "cloze": "Pitam se ___ li dolazi.",
+   "answer": "da",
+   "bs": "Pitam se da li dolazi.",
+   "translations": {
+    "de": "Ich frage mich, ob er kommt.",
+    "en": "I wonder whether he is coming.",
+    "tr": "Acaba geliyor mu diye merak ediyorum.",
+    "sv": "Jag undrar om han kommer.",
+    "nl": "Ik vraag me af of hij komt.",
+    "nb": "Jeg lurer på om han kommer.",
+    "da": "Jeg spekulerer på, om han kommer.",
+    "fr": "Je me demande s'il vient."
+   },
+   "audio": "web/audio/w1175.mp3"
+  },
+  {
+   "id": "s0100",
+   "level": "satzbau",
+   "cloze": "Nemam vremena ___ radim.",
+   "answer": "jer",
+   "bs": "Nemam vremena jer radim.",
+   "translations": {
+    "de": "Ich habe keine Zeit, weil ich arbeite.",
+    "en": "I have no time because I am working.",
+    "tr": "Vaktim yok çünkü çalışıyorum.",
+    "sv": "Jag har ingen tid för att jag arbetar.",
+    "nl": "Ik heb geen tijd omdat ik werk.",
+    "nb": "Jeg har ikke tid fordi jeg arbeider.",
+    "da": "Jeg har ikke tid, fordi jeg arbejder.",
+    "fr": "Je n'ai pas le temps parce que je travaille."
+   },
+   "audio": "web/audio/w1176.mp3"
+  },
+  {
+   "id": "s0101",
+   "level": "satzbau",
+   "cloze": "Ja ___ umoran.",
+   "answer": "nisam",
+   "bs": "Ja nisam umoran.",
+   "translations": {
+    "de": "Ich bin nicht müde.",
+    "en": "I am not tired.",
+    "tr": "Yorgun değilim.",
+    "sv": "Jag är inte trött.",
+    "nl": "Ik ben niet moe.",
+    "nb": "Jeg er ikke trøtt.",
+    "da": "Jeg er ikke træt.",
+    "fr": "Je ne suis pas fatigué."
+   },
+   "audio": "web/audio/w1177.mp3"
+  },
+  {
+   "id": "s0102",
+   "level": "satzbau",
+   "cloze": "Volim kahvu, ___ ne volim čaj.",
+   "answer": "ali",
+   "bs": "Volim kahvu, ali ne volim čaj.",
+   "translations": {
+    "de": "Ich mag Kaffee, aber ich mag keinen Tee.",
+    "en": "I like coffee, but I do not like tea.",
+    "tr": "Kahve severim ama çay sevmem.",
+    "sv": "Jag gillar kaffe, men jag gillar inte te.",
+    "nl": "Ik hou van koffie, maar ik hou niet van thee.",
+    "nb": "Jeg liker kaffe, men jeg liker ikke te.",
+    "da": "Jeg kan lide kaffe, men jeg kan ikke lide te.",
+    "fr": "J'aime le café, mais je n'aime pas le thé."
+   },
+   "audio": "web/audio/w1178.mp3"
+  },
+  {
+   "id": "s0103",
+   "level": "satzbau",
+   "cloze": "___ pada kiša, ostajem kod kuće.",
+   "answer": "Ako",
+   "bs": "Ako pada kiša, ostajem kod kuće.",
+   "translations": {
+    "de": "Wenn es regnet, bleibe ich zu Hause.",
+    "en": "If it rains, I stay at home.",
+    "tr": "Yağmur yağarsa evde kalıyorum.",
+    "sv": "Om det regnar stannar jag hemma.",
+    "nl": "Als het regent blijf ik thuis.",
+    "nb": "Hvis det regner, blir jeg hjemme.",
+    "da": "Hvis det regner, bliver jeg hjemme.",
+    "fr": "S'il pleut, je reste à la maison."
+   },
+   "audio": "web/audio/w1179.mp3"
+  },
+  {
+   "id": "s0104",
+   "level": "vergangenheit",
+   "cloze": "Jučer ___ radila.",
+   "answer": "sam",
+   "bs": "Jučer sam radila.",
+   "translations": {
+    "de": "Gestern habe ich gearbeitet. (Frau)",
+    "en": "Yesterday I worked. (female speaker)",
+    "tr": "Dün çalıştım. (kadın)",
+    "sv": "I går arbetade jag. (kvinna)",
+    "nl": "Gisteren heb ik gewerkt. (vrouw)",
+    "nb": "I går arbeidet jeg. (kvinne)",
+    "da": "I går arbejdede jeg. (kvinde)",
+    "fr": "Hier j'ai travaillé. (femme)"
+   },
+   "audio": "web/audio/w1180.mp3"
+  },
+  {
+   "id": "s0105",
+   "level": "vergangenheit",
+   "cloze": "___ je lijepo.",
+   "answer": "Bilo",
+   "bs": "Bilo je lijepo.",
+   "translations": {
+    "de": "Es war schön.",
+    "en": "It was nice.",
+    "tr": "Güzeldi.",
+    "sv": "Det var fint.",
+    "nl": "Het was mooi.",
+    "nb": "Det var fint.",
+    "da": "Det var dejligt.",
+    "fr": "C'était beau."
+   },
+   "audio": "web/audio/w1181.mp3"
+  },
+  {
+   "id": "s0106",
+   "level": "vergangenheit",
+   "cloze": "Prošle godine ___ bili u Bosni.",
+   "answer": "smo",
+   "bs": "Prošle godine smo bili u Bosni.",
+   "translations": {
+    "de": "Letztes Jahr waren wir in Bosnien.",
+    "en": "Last year we were in Bosnia.",
+    "tr": "Geçen yıl Bosna'daydık.",
+    "sv": "Förra året var vi i Bosnien.",
+    "nl": "Vorig jaar waren we in Bosnië.",
+    "nb": "I fjor var vi i Bosnia.",
+    "da": "Sidste år var vi i Bosnien.",
+    "fr": "L'année dernière, nous étions en Bosnie."
+   },
+   "audio": "web/audio/w1182.mp3"
+  },
+  {
+   "id": "s0107",
+   "level": "vergangenheit",
+   "cloze": "Šta si ___?",
+   "answer": "radio",
+   "bs": "Šta si radio?",
+   "translations": {
+    "de": "Was hast du gemacht? (zu einem Mann)",
+    "en": "What did you do? (to a man)",
+    "tr": "Ne yaptın? (bir erkeğe)",
+    "sv": "Vad gjorde du? (till en man)",
+    "nl": "Wat heb je gedaan? (tegen een man)",
+    "nb": "Hva gjorde du? (til en mann)",
+    "da": "Hvad lavede du? (til en mand)",
+    "fr": "Qu'est-ce que tu as fait ? (à un homme)"
+   },
+   "audio": "web/audio/w0632.mp3"
+  },
+  {
+   "id": "s0108",
+   "level": "zukunft",
+   "cloze": "Sutra ___ raditi.",
+   "answer": "ću",
+   "bs": "Sutra ću raditi.",
+   "translations": {
+    "de": "Morgen werde ich arbeiten.",
+    "en": "Tomorrow I will work.",
+    "tr": "Yarın çalışacağım.",
+    "sv": "I morgon ska jag arbeta.",
+    "nl": "Morgen zal ik werken.",
+    "nb": "I morgen skal jeg arbeide.",
+    "da": "I morgen skal jeg arbejde.",
+    "fr": "Demain je vais travailler."
+   },
+   "audio": "web/audio/w1183.mp3"
+  },
+  {
+   "id": "s0109",
+   "level": "zukunft",
+   "cloze": "___ ćemo.",
+   "answer": "Vidjet",
+   "bs": "Vidjet ćemo.",
+   "translations": {
+    "de": "Wir werden sehen.",
+    "en": "We will see.",
+    "tr": "Göreceğiz.",
+    "sv": "Vi får se.",
+    "nl": "We zullen zien.",
+    "nb": "Vi får se.",
+    "da": "Vi får se.",
+    "fr": "On verra."
+   },
+   "audio": "web/audio/w1184.mp3"
+  },
+  {
+   "id": "s0110",
+   "level": "zukunft",
+   "cloze": "Kada ___ doći?",
+   "answer": "ćeš",
+   "bs": "Kada ćeš doći?",
+   "translations": {
+    "de": "Wann wirst du kommen?",
+    "en": "When will you come?",
+    "tr": "Ne zaman geleceksin?",
+    "sv": "När ska du komma?",
+    "nl": "Wanneer zul je komen?",
+    "nb": "Når skal du komme?",
+    "da": "Hvornår skal du komme?",
+    "fr": "Quand est-ce que tu viendras ?"
+   },
+   "audio": "web/audio/w0643.mp3"
+  },
+  {
+   "id": "s0111",
+   "level": "zukunft",
+   "cloze": "Sljedeće ___ idemo u Bosnu.",
+   "answer": "godine",
+   "bs": "Sljedeće godine idemo u Bosnu.",
+   "translations": {
+    "de": "Nächstes Jahr fahren wir nach Bosnien.",
+    "en": "Next year we are going to Bosnia.",
+    "tr": "Gelecek yıl Bosna'ya gidiyoruz.",
+    "sv": "Nästa år åker vi till Bosnien.",
+    "nl": "Volgend jaar gaan we naar Bosnië.",
+    "nb": "Neste år drar vi til Bosnia.",
+    "da": "Næste år tager vi til Bosnien.",
+    "fr": "L'année prochaine, nous allons en Bosnie."
+   },
+   "audio": "web/audio/w1185.mp3"
+  },
+  {
+   "id": "s0112",
+   "level": "adjektive",
+   "cloze": "Ovo je ___ nego to.",
+   "answer": "bolje",
+   "bs": "Ovo je bolje nego to.",
+   "translations": {
+    "de": "Das ist besser als das.",
+    "en": "This is better than that.",
+    "tr": "Bu ondan daha iyi.",
+    "sv": "Det här är bättre än det där.",
+    "nl": "Dit is beter dan dat.",
+    "nb": "Dette er bedre enn det.",
+    "da": "Det her er bedre end det der.",
+    "fr": "Ceci est meilleur que cela."
+   },
+   "audio": "web/audio/w1186.mp3"
+  },
+  {
+   "id": "s0113",
+   "level": "adjektive",
+   "cloze": "Moj brat je ___ od mene.",
+   "answer": "stariji",
+   "bs": "Moj brat je stariji od mene.",
+   "translations": {
+    "de": "Mein Bruder ist älter als ich.",
+    "en": "My brother is older than me.",
+    "tr": "Erkek kardeşim benden büyük.",
+    "sv": "Min bror är äldre än jag.",
+    "nl": "Mijn broer is ouder dan ik.",
+    "nb": "Broren min er eldre enn meg.",
+    "da": "Min bror er ældre end mig.",
+    "fr": "Mon frère est plus âgé que moi."
+   },
+   "audio": "web/audio/w1187.mp3"
+  },
+  {
+   "id": "s0114",
+   "level": "adjektive",
+   "cloze": "Kahva je ___ vruća.",
+   "answer": "jako",
+   "bs": "Kahva je jako vruća.",
+   "translations": {
+    "de": "Der Kaffee ist sehr heiß.",
+    "en": "The coffee is very hot.",
+    "tr": "Kahve çok sıcak.",
+    "sv": "Kaffet är mycket hett.",
+    "nl": "De koffie is heel heet.",
+    "nb": "Kaffen er veldig varm.",
+    "da": "Kaffen er meget varm.",
+    "fr": "Le café est très chaud."
+   },
+   "audio": "web/audio/w1188.mp3"
+  },
+  {
+   "id": "s0115",
+   "level": "adjektive",
+   "cloze": "Ova jakna je ___ od one.",
+   "answer": "skuplja",
+   "bs": "Ova jakna je skuplja od one.",
+   "translations": {
+    "de": "Diese Jacke ist teurer als jene.",
+    "en": "This jacket is more expensive than that one.",
+    "tr": "Bu ceket şundan daha pahalı.",
+    "sv": "Den här jackan är dyrare än den där.",
+    "nl": "Deze jas is duurder dan die.",
+    "nb": "Denne jakka er dyrere enn den der.",
+    "da": "Denne jakke er dyrere end den der.",
+    "fr": "Cette veste est plus chère que celle-là."
+   },
+   "audio": "web/audio/w1189.mp3"
+  },
+  {
+   "id": "s0116",
+   "level": "bank",
+   "cloze": "Želim otvoriti ___.",
+   "answer": "račun",
+   "bs": "Želim otvoriti račun.",
+   "translations": {
+    "de": "Ich möchte ein Konto eröffnen.",
+    "en": "I would like to open an account.",
+    "tr": "Hesap açmak istiyorum.",
+    "sv": "Jag vill öppna ett konto.",
+    "nl": "Ik wil een rekening openen.",
+    "nb": "Jeg vil åpne en konto.",
+    "da": "Jeg vil gerne åbne en konto.",
+    "fr": "Je voudrais ouvrir un compte."
+   },
+   "audio": "web/audio/w1190.mp3"
+  },
+  {
+   "id": "s0117",
+   "level": "bank",
+   "cloze": "Kolika je ___?",
+   "answer": "kamata",
+   "bs": "Kolika je kamata?",
+   "translations": {
+    "de": "Wie hoch sind die Zinsen?",
+    "en": "What is the interest rate?",
+    "tr": "Faiz ne kadar?",
+    "sv": "Hur hög är räntan?",
+    "nl": "Hoe hoog is de rente?",
+    "nb": "Hvor høy er renta?",
+    "da": "Hvor høje er renterne?",
+    "fr": "Quel est le taux d'intérêt ?"
+   },
+   "audio": "web/audio/w1017.mp3"
+  },
+  {
+   "id": "s0118",
+   "level": "bank",
+   "cloze": "Mogu li platiti na ___?",
+   "answer": "rate",
+   "bs": "Mogu li platiti na rate?",
+   "translations": {
+    "de": "Kann ich in Raten zahlen?",
+    "en": "Can I pay in installments?",
+    "tr": "Taksitle ödeyebilir miyim?",
+    "sv": "Kan jag delbetala?",
+    "nl": "Kan ik in termijnen betalen?",
+    "nb": "Kan jeg betale i avdrag?",
+    "da": "Kan jeg betale i afdrag?",
+    "fr": "Je peux payer en plusieurs fois ?"
+   },
+   "audio": "web/audio/w1018.mp3"
+  },
+  {
+   "id": "s0119",
+   "level": "bank",
+   "cloze": "Gdje je najbliži ___?",
+   "answer": "bankomat",
+   "bs": "Gdje je najbliži bankomat?",
+   "translations": {
+    "de": "Wo ist der nächste Geldautomat?",
+    "en": "Where is the nearest ATM?",
+    "tr": "En yakın bankamatik nerede?",
+    "sv": "Var ligger närmaste uttagsautomat?",
+    "nl": "Waar is de dichtstbijzijnde geldautomaat?",
+    "nb": "Hvor er nærmeste minibank?",
+    "da": "Hvor er den nærmeste hæveautomat?",
+    "fr": "Où est le distributeur le plus proche ?"
+   },
+   "audio": "web/audio/w1191.mp3"
+  },
+  {
+   "id": "s0120",
+   "level": "immobilien",
+   "cloze": "Želim kupiti ___.",
+   "answer": "kuću",
+   "bs": "Želim kupiti kuću.",
+   "translations": {
+    "de": "Ich möchte ein Haus kaufen.",
+    "en": "I would like to buy a house.",
+    "tr": "Bir ev almak istiyorum.",
+    "sv": "Jag vill köpa ett hus.",
+    "nl": "Ik wil een huis kopen.",
+    "nb": "Jeg vil kjøpe et hus.",
+    "da": "Jeg vil gerne købe et hus.",
+    "fr": "Je voudrais acheter une maison."
+   },
+   "audio": "web/audio/w1192.mp3"
+  },
+  {
+   "id": "s0121",
+   "level": "immobilien",
+   "cloze": "Ko je ___ kuće?",
+   "answer": "vlasnik",
+   "bs": "Ko je vlasnik kuće?",
+   "translations": {
+    "de": "Wer ist der Eigentümer des Hauses?",
+    "en": "Who is the owner of the house?",
+    "tr": "Evin sahibi kim?",
+    "sv": "Vem äger huset?",
+    "nl": "Wie is de eigenaar van het huis?",
+    "nb": "Hvem eier huset?",
+    "da": "Hvem ejer huset?",
+    "fr": "Qui est le propriétaire de la maison ?"
+   },
+   "audio": "web/audio/w1193.mp3"
+  },
+  {
+   "id": "s0122",
+   "level": "immobilien",
+   "cloze": "Je li kuća upisana u ___?",
+   "answer": "gruntovnicu",
+   "bs": "Je li kuća upisana u gruntovnicu?",
+   "translations": {
+    "de": "Ist das Haus im Grundbuch eingetragen?",
+    "en": "Is the house entered in the land register?",
+    "tr": "Ev tapu siciline kayıtlı mı?",
+    "sv": "Är huset inskrivet i fastighetsregistret?",
+    "nl": "Staat het huis in het kadaster?",
+    "nb": "Er huset tinglyst i grunnboka?",
+    "da": "Er huset tinglyst i tingbogen?",
+    "fr": "La maison est-elle inscrite au registre foncier ?"
+   },
+   "audio": "web/audio/w1048.mp3"
+  },
+  {
+   "id": "s0123",
+   "level": "immobilien",
+   "cloze": "Kolika je ___ mjesečno?",
+   "answer": "kirija",
+   "bs": "Kolika je kirija mjesečno?",
+   "translations": {
+    "de": "Wie hoch ist die Miete im Monat?",
+    "en": "How much is the rent per month?",
+    "tr": "Aylık kira ne kadar?",
+    "sv": "Hur hög är hyran i månaden?",
+    "nl": "Hoe hoog is de huur per maand?",
+    "nb": "Hvor høy er husleia i måneden?",
+    "da": "Hvor høj er huslejen om måneden?",
+    "fr": "Quel est le montant du loyer par mois ?"
+   },
+   "audio": "web/audio/w1194.mp3"
+  },
+  {
+   "id": "s0124",
+   "level": "immobilien",
+   "cloze": "Potpisujemo ___ kod notara.",
+   "answer": "ugovor",
+   "bs": "Potpisujemo ugovor kod notara.",
+   "translations": {
+    "de": "Wir unterschreiben den Vertrag beim Notar.",
+    "en": "We sign the contract at the notary.",
+    "tr": "Sözleşmeyi noterde imzalıyoruz.",
+    "sv": "Vi skriver under avtalet hos notarius publicus.",
+    "nl": "We tekenen het contract bij de notaris.",
+    "nb": "Vi skriver under avtalen hos notarius publicus.",
+    "da": "Vi skriver kontrakten under hos notaren.",
+    "fr": "Nous signons le contrat chez le notaire."
+   },
+   "audio": "web/audio/w1195.mp3"
+  },
+  {
+   "id": "s0125",
+   "level": "arbeitsvertrag",
+   "cloze": "Tražim ___.",
+   "answer": "posao",
+   "bs": "Tražim posao.",
+   "translations": {
+    "de": "Ich suche Arbeit.",
+    "en": "I am looking for work.",
+    "tr": "İş arıyorum.",
+    "sv": "Jag söker jobb.",
+    "nl": "Ik zoek werk.",
+    "nb": "Jeg søker jobb.",
+    "da": "Jeg søger arbejde.",
+    "fr": "Je cherche du travail."
+   },
+   "audio": "web/audio/w1196.mp3"
+  },
+  {
+   "id": "s0126",
+   "level": "arbeitsvertrag",
+   "cloze": "Imam pet godina ___.",
+   "answer": "iskustva",
+   "bs": "Imam pet godina iskustva.",
+   "translations": {
+    "de": "Ich habe fünf Jahre Erfahrung.",
+    "en": "I have five years of experience.",
+    "tr": "Beş yıllık deneyimim var.",
+    "sv": "Jag har fem års erfarenhet.",
+    "nl": "Ik heb vijf jaar ervaring.",
+    "nb": "Jeg har fem års erfaring.",
+    "da": "Jeg har fem års erfaring.",
+    "fr": "J'ai cinq ans d'expérience."
+   },
+   "audio": "web/audio/w1197.mp3"
+  },
+  {
+   "id": "s0127",
+   "level": "arbeitsvertrag",
+   "cloze": "Probni ___ traje tri mjeseca.",
+   "answer": "rad",
+   "bs": "Probni rad traje tri mjeseca.",
+   "translations": {
+    "de": "Die Probezeit dauert drei Monate.",
+    "en": "The probation period lasts three months.",
+    "tr": "Deneme süresi üç ay sürüyor.",
+    "sv": "Provanställningen varar i tre månader.",
+    "nl": "De proeftijd duurt drie maanden.",
+    "nb": "Prøvetiden varer i tre måneder.",
+    "da": "Prøvetiden varer tre måneder.",
+    "fr": "La période d'essai dure trois mois."
+   },
+   "audio": "web/audio/w1198.mp3"
+  },
+  {
+   "id": "s0128",
+   "level": "arbeitsvertrag",
+   "cloze": "Kolika je ___ plata?",
+   "answer": "neto",
+   "bs": "Kolika je neto plata?",
+   "translations": {
+    "de": "Wie hoch ist das Nettogehalt?",
+    "en": "How much is the net salary?",
+    "tr": "Net maaş ne kadar?",
+    "sv": "Hur hög är nettolönen?",
+    "nl": "Hoe hoog is het nettosalaris?",
+    "nb": "Hvor høy er nettolønna?",
+    "da": "Hvor høj er nettolønnen?",
+    "fr": "Quel est le salaire net ?"
+   },
+   "audio": "web/audio/w1199.mp3"
+  },
+  {
+   "id": "s0129",
+   "level": "gesundheit",
+   "cloze": "Trebam ___ kod doktora.",
+   "answer": "termin",
+   "bs": "Trebam termin kod doktora.",
+   "translations": {
+    "de": "Ich brauche einen Termin beim Arzt.",
+    "en": "I need a doctor's appointment.",
+    "tr": "Doktordan randevu almam gerekiyor.",
+    "sv": "Jag behöver en läkartid.",
+    "nl": "Ik heb een afspraak bij de dokter nodig.",
+    "nb": "Jeg trenger en legetime.",
+    "da": "Jeg har brug for en lægetid.",
+    "fr": "J'ai besoin d'un rendez-vous chez le médecin."
+   },
+   "audio": "web/audio/w1200.mp3"
+  },
+  {
+   "id": "s0130",
+   "level": "gesundheit",
+   "cloze": "Na ___ sam.",
+   "answer": "bolovanju",
+   "bs": "Na bolovanju sam.",
+   "translations": {
+    "de": "Ich bin krankgeschrieben.",
+    "en": "I am on sick leave.",
+    "tr": "Raporluyum.",
+    "sv": "Jag är sjukskriven.",
+    "nl": "Ik ben ziekgemeld.",
+    "nb": "Jeg er sykmeldt.",
+    "da": "Jeg er sygemeldt.",
+    "fr": "Je suis en arrêt de travail."
+   },
+   "audio": "web/audio/w1201.mp3"
+  },
+  {
+   "id": "s0131",
+   "level": "gesundheit",
+   "cloze": "Gdje Vas ___?",
+   "answer": "boli",
+   "bs": "Gdje Vas boli?",
+   "translations": {
+    "de": "Wo tut es Ihnen weh?",
+    "en": "Where does it hurt?",
+    "tr": "Neresi ağrıyor?",
+    "sv": "Var gör det ont?",
+    "nl": "Waar doet het pijn?",
+    "nb": "Hvor gjør det vondt?",
+    "da": "Hvor gør det ondt?",
+    "fr": "Où avez-vous mal ?"
+   },
+   "audio": "web/audio/w1094.mp3"
+  },
+  {
+   "id": "s0132",
+   "level": "gesundheit",
+   "cloze": "Trebam ___ za specijalistu.",
+   "answer": "uputnicu",
+   "bs": "Trebam uputnicu za specijalistu.",
+   "translations": {
+    "de": "Ich brauche eine Überweisung zum Facharzt.",
+    "en": "I need a referral to a specialist.",
+    "tr": "Uzmana sevk belgesine ihtiyacım var.",
+    "sv": "Jag behöver en remiss till en specialist.",
+    "nl": "Ik heb een verwijsbrief naar de specialist nodig.",
+    "nb": "Jeg trenger en henvisning til spesialist.",
+    "da": "Jeg har brug for en henvisning til en speciallæge.",
+    "fr": "J'ai besoin d'une lettre d'adressage vers un spécialiste."
+   },
+   "audio": "web/audio/w1202.mp3"
+  },
+  {
+   "id": "s0133",
+   "level": "saetze",
+   "cloze": "Mislim da je moja sestra kod ___.",
+   "answer": "kuće",
+   "bs": "Mislim da je moja sestra kod kuće.",
+   "translations": {
+    "de": "Ich denke, dass meine Schwester zu Hause ist.",
+    "en": "I think that my sister is at home.",
+    "tr": "Kız kardeşimin evde olduğunu düşünüyorum.",
+    "sv": "Jag tror att min syster är hemma.",
+    "nl": "Ik denk dat mijn zus thuis is.",
+    "nb": "Jeg tror at søsteren min er hjemme.",
+    "da": "Jeg tror, at min søster er hjemme.",
+    "fr": "Je pense que ma sœur est à la maison."
+   },
+   "audio": "web/audio/w1203.mp3"
+  },
+  {
+   "id": "s0134",
+   "level": "saetze",
+   "cloze": "Ne znam kada ___ autobus.",
+   "answer": "dolazi",
+   "bs": "Ne znam kada dolazi autobus.",
+   "translations": {
+    "de": "Ich weiß nicht, wann der Bus kommt.",
+    "en": "I do not know when the bus comes.",
+    "tr": "Otobüsün ne zaman geleceğini bilmiyorum.",
+    "sv": "Jag vet inte när bussen kommer.",
+    "nl": "Ik weet niet wanneer de bus komt.",
+    "nb": "Jeg vet ikke når bussen kommer.",
+    "da": "Jeg ved ikke, hvornår bussen kommer.",
+    "fr": "Je ne sais pas quand le bus arrive."
+   },
+   "audio": "web/audio/w1204.mp3"
+  },
+  {
+   "id": "s0135",
+   "level": "saetze",
+   "cloze": "Jučer sam ___ hljeb i mlijeko.",
+   "answer": "kupila",
+   "bs": "Jučer sam kupila hljeb i mlijeko.",
+   "translations": {
+    "de": "Gestern habe ich Brot und Milch gekauft. (Frau)",
+    "en": "Yesterday I bought bread and milk. (female speaker)",
+    "tr": "Dün ekmek ve süt aldım. (kadın)",
+    "sv": "I går köpte jag bröd och mjölk. (kvinna)",
+    "nl": "Gisteren heb ik brood en melk gekocht. (vrouw)",
+    "nb": "I går kjøpte jeg brød og melk. (kvinne)",
+    "da": "I går købte jeg brød og mælk. (kvinde)",
+    "fr": "Hier j'ai acheté du pain et du lait. (femme)"
+   },
+   "audio": "web/audio/w1205.mp3"
+  },
+  {
+   "id": "s0136",
+   "level": "genus",
+   "cloze": "___ kuća je velika.",
+   "answer": "Moja",
+   "bs": "Moja kuća je velika.",
+   "translations": {
+    "de": "Mein Haus ist groß.",
+    "en": "My house is big.",
+    "tr": "Evim büyük.",
+    "sv": "Mitt hus är stort.",
+    "nl": "Mijn huis is groot.",
+    "nb": "Huset mitt er stort.",
+    "da": "Mit hus er stort.",
+    "fr": "Ma maison est grande."
+   },
+   "audio": "web/audio/w1206.mp3"
+  },
+  {
+   "id": "s0137",
+   "level": "genus",
+   "cloze": "___ brat je student.",
+   "answer": "Moj",
+   "bs": "Moj brat je student.",
+   "translations": {
+    "de": "Mein Bruder ist Student.",
+    "en": "My brother is a student.",
+    "tr": "Erkek kardeşim üniversite öğrencisi.",
+    "sv": "Min bror är student.",
+    "nl": "Mijn broer is student.",
+    "nb": "Broren min er student.",
+    "da": "Min bror er studerende.",
+    "fr": "Mon frère est étudiant."
+   },
+   "audio": "web/audio/w1207.mp3"
+  },
+  {
+   "id": "s0138",
+   "level": "genus",
+   "cloze": "___ je nastavnica.",
+   "answer": "Ona",
+   "bs": "Ona je nastavnica.",
+   "translations": {
+    "de": "Sie ist Lehrerin.",
+    "en": "She is a teacher.",
+    "tr": "O öğretmen.",
+    "sv": "Hon är lärare.",
+    "nl": "Zij is lerares.",
+    "nb": "Hun er lærer.",
+    "da": "Hun er lærer.",
+    "fr": "Elle est enseignante."
+   },
+   "audio": "web/audio/w1208.mp3"
+  },
+  {
+   "id": "s0139",
+   "level": "genus",
+   "cloze": "Ovo je ___ selo.",
+   "answer": "naše",
+   "bs": "Ovo je naše selo.",
+   "translations": {
+    "de": "Das ist unser Dorf.",
+    "en": "This is our village.",
+    "tr": "Bu bizim köyümüz.",
+    "sv": "Det här är vår by.",
+    "nl": "Dit is ons dorp.",
+    "nb": "Dette er landsbyen vår.",
+    "da": "Det her er vores landsby.",
+    "fr": "C'est notre village."
+   },
+   "audio": "web/audio/w1209.mp3"
+  },
+  {
+   "id": "s0140",
+   "level": "mehrzahl",
+   "cloze": "Imam dvije ___.",
+   "answer": "sestre",
+   "bs": "Imam dvije sestre.",
+   "translations": {
+    "de": "Ich habe zwei Schwestern.",
+    "en": "I have two sisters.",
+    "tr": "İki kız kardeşim var.",
+    "sv": "Jag har två systrar.",
+    "nl": "Ik heb twee zussen.",
+    "nb": "Jeg har to søstre.",
+    "da": "Jeg har to søstre.",
+    "fr": "J'ai deux sœurs."
+   },
+   "audio": "web/audio/w1210.mp3"
+  },
+  {
+   "id": "s0141",
+   "level": "mehrzahl",
+   "cloze": "___ se igraju.",
+   "answer": "Djeca",
+   "bs": "Djeca se igraju.",
+   "translations": {
+    "de": "Die Kinder spielen.",
+    "en": "The children are playing.",
+    "tr": "Çocuklar oynuyor.",
+    "sv": "Barnen leker.",
+    "nl": "De kinderen spelen.",
+    "nb": "Barna leker.",
+    "da": "Børnene leger.",
+    "fr": "Les enfants jouent."
+   },
+   "audio": "web/audio/w1211.mp3"
+  },
+  {
+   "id": "s0142",
+   "level": "mehrzahl",
+   "cloze": "Na pijaci ima mnogo ___.",
+   "answer": "ljudi",
+   "bs": "Na pijaci ima mnogo ljudi.",
+   "translations": {
+    "de": "Auf dem Markt sind viele Leute.",
+    "en": "There are many people at the market.",
+    "tr": "Pazarda çok insan var.",
+    "sv": "Det är mycket folk på marknaden.",
+    "nl": "Op de markt zijn veel mensen.",
+    "nb": "Det er mye folk på markedet.",
+    "da": "Der er mange mennesker på markedet.",
+    "fr": "Il y a beaucoup de monde au marché."
+   },
+   "audio": "web/audio/w1212.mp3"
+  },
+  {
+   "id": "s0143",
+   "level": "faelle1",
+   "cloze": "Vidim ___.",
+   "answer": "brata",
+   "bs": "Vidim brata.",
+   "translations": {
+    "de": "Ich sehe den Bruder.",
+    "en": "I see the brother.",
+    "tr": "Erkek kardeşi görüyorum.",
+    "sv": "Jag ser brodern.",
+    "nl": "Ik zie de broer.",
+    "nb": "Jeg ser broren.",
+    "da": "Jeg ser broren.",
+    "fr": "Je vois le frère."
+   },
+   "audio": "web/audio/w1213.mp3"
+  },
+  {
+   "id": "s0144",
+   "level": "faelle1",
+   "cloze": "Pijem ___.",
+   "answer": "kahvu",
+   "bs": "Pijem kahvu.",
+   "translations": {
+    "de": "Ich trinke Kaffee.",
+    "en": "I drink coffee.",
+    "tr": "Kahve içiyorum.",
+    "sv": "Jag dricker kaffe.",
+    "nl": "Ik drink koffie.",
+    "nb": "Jeg drikker kaffe.",
+    "da": "Jeg drikker kaffe.",
+    "fr": "Je bois du café."
+   },
+   "audio": "web/audio/w1214.mp3"
+  },
+  {
+   "id": "s0145",
+   "level": "faelle1",
+   "cloze": "Volim svoju ___.",
+   "answer": "majku",
+   "bs": "Volim svoju majku.",
+   "translations": {
+    "de": "Ich liebe meine Mutter.",
+    "en": "I love my mother.",
+    "tr": "Annemi seviyorum.",
+    "sv": "Jag älskar min mor.",
+    "nl": "Ik hou van mijn moeder.",
+    "nb": "Jeg elsker moren min.",
+    "da": "Jeg elsker min mor.",
+    "fr": "J'aime ma mère."
+   },
+   "audio": "web/audio/w1215.mp3"
+  },
+  {
+   "id": "s0146",
+   "level": "faelle1",
+   "cloze": "Čitam ___.",
+   "answer": "knjigu",
+   "bs": "Čitam knjigu.",
+   "translations": {
+    "de": "Ich lese ein Buch.",
+    "en": "I am reading a book.",
+    "tr": "Bir kitap okuyorum.",
+    "sv": "Jag läser en bok.",
+    "nl": "Ik lees een boek.",
+    "nb": "Jeg leser en bok.",
+    "da": "Jeg læser en bog.",
+    "fr": "Je lis un livre."
+   },
+   "audio": "web/audio/w1216.mp3"
+  },
+  {
+   "id": "s0147",
+   "level": "faelle2",
+   "cloze": "Kahva bez ___.",
+   "answer": "šećera",
+   "bs": "Kahva bez šećera.",
+   "translations": {
+    "de": "Kaffee ohne Zucker.",
+    "en": "Coffee without sugar.",
+    "tr": "Şekersiz kahve.",
+    "sv": "Kaffe utan socker.",
+    "nl": "Koffie zonder suiker.",
+    "nb": "Kaffe uten sukker.",
+    "da": "Kaffe uden sukker.",
+    "fr": "Café sans sucre."
+   },
+   "audio": "web/audio/w1217.mp3"
+  },
+  {
+   "id": "s0148",
+   "level": "faelle2",
+   "cloze": "Ja sam iz ___.",
+   "answer": "Bosne",
+   "bs": "Ja sam iz Bosne.",
+   "translations": {
+    "de": "Ich bin aus Bosnien.",
+    "en": "I am from Bosnia.",
+    "tr": "Bosna'danım.",
+    "sv": "Jag är från Bosnien.",
+    "nl": "Ik kom uit Bosnië.",
+    "nb": "Jeg er fra Bosnia.",
+    "da": "Jeg er fra Bosnien.",
+    "fr": "Je viens de Bosnie."
+   },
+   "audio": "web/audio/w1218.mp3"
+  },
+  {
+   "id": "s0149",
+   "level": "faelle2",
+   "cloze": "Čaša ___, molim.",
+   "answer": "vode",
+   "bs": "Čaša vode, molim.",
+   "translations": {
+    "de": "Ein Glas Wasser, bitte.",
+    "en": "A glass of water, please.",
+    "tr": "Bir bardak su, lütfen.",
+    "sv": "Ett glas vatten, tack.",
+    "nl": "Een glas water, alstublieft.",
+    "nb": "Et glass vann, takk.",
+    "da": "Et glas vand, tak.",
+    "fr": "Un verre d'eau, s'il vous plaît."
+   },
+   "audio": "web/audio/w1219.mp3"
+  },
+  {
+   "id": "s0150",
+   "level": "faelle2",
+   "cloze": "Nemam ___.",
+   "answer": "vremena",
+   "bs": "Nemam vremena.",
+   "translations": {
+    "de": "Ich habe keine Zeit.",
+    "en": "I have no time.",
+    "tr": "Vaktim yok.",
+    "sv": "Jag har ingen tid.",
+    "nl": "Ik heb geen tijd.",
+    "nb": "Jeg har ikke tid.",
+    "da": "Jeg har ikke tid.",
+    "fr": "Je n'ai pas le temps."
+   },
+   "audio": "web/audio/w1220.mp3"
+  },
+  {
+   "id": "s0151",
+   "level": "praepositionen",
+   "cloze": "Knjiga je ___ stolu.",
+   "answer": "na",
+   "bs": "Knjiga je na stolu.",
+   "translations": {
+    "de": "Das Buch ist auf dem Tisch.",
+    "en": "The book is on the table.",
+    "tr": "Kitap masada.",
+    "sv": "Boken ligger på bordet.",
+    "nl": "Het boek ligt op de tafel.",
+    "nb": "Boka ligger på bordet.",
+    "da": "Bogen ligger på bordet.",
+    "fr": "Le livre est sur la table."
+   },
+   "audio": "web/audio/w1221.mp3"
+  },
+  {
+   "id": "s0152",
+   "level": "praepositionen",
+   "cloze": "___ posla idem kući.",
+   "answer": "Poslije",
+   "bs": "Poslije posla idem kući.",
+   "translations": {
+    "de": "Nach der Arbeit gehe ich nach Hause.",
+    "en": "After work I go home.",
+    "tr": "İşten sonra eve gidiyorum.",
+    "sv": "Efter jobbet går jag hem.",
+    "nl": "Na het werk ga ik naar huis.",
+    "nb": "Etter jobben går jeg hjem.",
+    "da": "Efter arbejdet går jeg hjem.",
+    "fr": "Après le travail, je rentre à la maison."
+   },
+   "audio": "web/audio/w1222.mp3"
+  },
+  {
+   "id": "s0153",
+   "level": "praepositionen",
+   "cloze": "Poklon je ___ tebe.",
+   "answer": "za",
+   "bs": "Poklon je za tebe.",
+   "translations": {
+    "de": "Das Geschenk ist für dich.",
+    "en": "The present is for you.",
+    "tr": "Hediye senin için.",
+    "sv": "Presenten är till dig.",
+    "nl": "Het cadeau is voor jou.",
+    "nb": "Gaven er til deg.",
+    "da": "Gaven er til dig.",
+    "fr": "Le cadeau est pour toi."
+   },
+   "audio": "web/audio/w1223.mp3"
+  },
+  {
+   "id": "s0154",
+   "level": "praepositionen",
+   "cloze": "Kahva ___ mlijeka.",
+   "answer": "bez",
+   "bs": "Kahva bez mlijeka.",
+   "translations": {
+    "de": "Kaffee ohne Milch.",
+    "en": "Coffee without milk.",
+    "tr": "Sütsüz kahve.",
+    "sv": "Kaffe utan mjölk.",
+    "nl": "Koffie zonder melk.",
+    "nb": "Kaffe uten melk.",
+    "da": "Kaffe uden mælk.",
+    "fr": "Café sans lait."
+   },
+   "audio": "web/audio/w1224.mp3"
+  },
+  {
+   "id": "s0155",
+   "level": "faelle3",
+   "cloze": "Dajem poklon ___.",
+   "answer": "sestri",
+   "bs": "Dajem poklon sestri.",
+   "translations": {
+    "de": "Ich gebe der Schwester ein Geschenk.",
+    "en": "I am giving my sister a present.",
+    "tr": "Kız kardeşime hediye veriyorum.",
+    "sv": "Jag ger min syster en present.",
+    "nl": "Ik geef mijn zus een cadeau.",
+    "nb": "Jeg gir søsteren min en gave.",
+    "da": "Jeg giver min søster en gave.",
+    "fr": "Je donne un cadeau à ma sœur."
+   },
+   "audio": "web/audio/w1225.mp3"
+  },
+  {
+   "id": "s0156",
+   "level": "faelle3",
+   "cloze": "Stanujem u ___.",
+   "answer": "Sarajevu",
+   "bs": "Stanujem u Sarajevu.",
+   "translations": {
+    "de": "Ich wohne in Sarajevo.",
+    "en": "I live in Sarajevo.",
+    "tr": "Saraybosna'da oturuyorum.",
+    "sv": "Jag bor i Sarajevo.",
+    "nl": "Ik woon in Sarajevo.",
+    "nb": "Jeg bor i Sarajevo.",
+    "da": "Jeg bor i Sarajevo.",
+    "fr": "J'habite à Sarajevo."
+   },
+   "audio": "web/audio/w1226.mp3"
+  },
+  {
+   "id": "s0157",
+   "level": "faelle3",
+   "cloze": "Daj ___ vode.",
+   "answer": "mi",
+   "bs": "Daj mi vode.",
+   "translations": {
+    "de": "Gib mir Wasser.",
+    "en": "Give me water.",
+    "tr": "Bana su ver.",
+    "sv": "Ge mig vatten.",
+    "nl": "Geef mij water.",
+    "nb": "Gi meg vann.",
+    "da": "Giv mig vand.",
+    "fr": "Donne-moi de l'eau."
+   },
+   "audio": "web/audio/w1227.mp3"
+  },
+  {
+   "id": "s0158",
+   "level": "faelle3",
+   "cloze": "Pomažem ___.",
+   "answer": "majci",
+   "bs": "Pomažem majci.",
+   "translations": {
+    "de": "Ich helfe der Mutter.",
+    "en": "I am helping my mother.",
+    "tr": "Anneme yardım ediyorum.",
+    "sv": "Jag hjälper min mor.",
+    "nl": "Ik help mijn moeder.",
+    "nb": "Jeg hjelper moren min.",
+    "da": "Jeg hjælper min mor.",
+    "fr": "J'aide ma mère."
+   },
+   "audio": "web/audio/w1228.mp3"
+  },
+  {
+   "id": "s0159",
+   "level": "faelle4",
+   "cloze": "Idem s ___ u grad.",
+   "answer": "bratom",
+   "bs": "Idem s bratom u grad.",
+   "translations": {
+    "de": "Ich gehe mit dem Bruder in die Stadt.",
+    "en": "I am going to town with my brother.",
+    "tr": "Erkek kardeşimle şehre gidiyorum.",
+    "sv": "Jag går till stan med min bror.",
+    "nl": "Ik ga met mijn broer naar de stad.",
+    "nb": "Jeg går til byen med broren min.",
+    "da": "Jeg tager ind til byen med min bror.",
+    "fr": "Je vais en ville avec mon frère."
+   },
+   "audio": "web/audio/w1229.mp3"
+  },
+  {
+   "id": "s0160",
+   "level": "faelle4",
+   "cloze": "Putujemo ___.",
+   "answer": "autom",
+   "bs": "Putujemo autom.",
+   "translations": {
+    "de": "Wir reisen mit dem Auto.",
+    "en": "We are traveling by car.",
+    "tr": "Arabayla seyahat ediyoruz.",
+    "sv": "Vi reser med bil.",
+    "nl": "We reizen met de auto.",
+    "nb": "Vi reiser med bil.",
+    "da": "Vi rejser med bil.",
+    "fr": "Nous voyageons en voiture."
+   },
+   "audio": "web/audio/w1230.mp3"
+  },
+  {
+   "id": "s0161",
+   "level": "faelle4",
+   "cloze": "___, dođi ovamo!",
+   "answer": "Sine",
+   "bs": "Sine, dođi ovamo!",
+   "translations": {
+    "de": "Sohn, komm her!",
+    "en": "Son, come here!",
+    "tr": "Oğlum, buraya gel!",
+    "sv": "Min son, kom hit!",
+    "nl": "Zoon, kom hier!",
+    "nb": "Sønn, kom hit!",
+    "da": "Søn, kom her!",
+    "fr": "Mon fils, viens ici !"
+   },
+   "audio": "web/audio/w1231.mp3"
+  },
+  {
+   "id": "s0162",
+   "level": "faelle4",
+   "cloze": "Kahva sa ___.",
+   "answer": "šećerom",
+   "bs": "Kahva sa šećerom.",
+   "translations": {
+    "de": "Kaffee mit Zucker.",
+    "en": "Coffee with sugar.",
+    "tr": "Şekerli kahve.",
+    "sv": "Kaffe med socker.",
+    "nl": "Koffie met suiker.",
+    "nb": "Kaffe med sukker.",
+    "da": "Kaffe med sukker.",
+    "fr": "Café avec du sucre."
+   },
+   "audio": "web/audio/w1232.mp3"
+  },
+  {
+   "id": "s0163",
+   "level": "modal",
+   "cloze": "___ raditi sutra.",
+   "answer": "Moram",
+   "bs": "Moram raditi sutra.",
+   "translations": {
+    "de": "Ich muss morgen arbeiten.",
+    "en": "I have to work tomorrow.",
+    "tr": "Yarın çalışmam gerek.",
+    "sv": "Jag måste arbeta i morgon.",
+    "nl": "Ik moet morgen werken.",
+    "nb": "Jeg må arbeide i morgen.",
+    "da": "Jeg skal arbejde i morgen.",
+    "fr": "Je dois travailler demain."
+   },
+   "audio": "web/audio/w1233.mp3"
+  },
+  {
+   "id": "s0164",
+   "level": "modal",
+   "cloze": "___ li mi pomoći?",
+   "answer": "Možeš",
+   "bs": "Možeš li mi pomoći?",
+   "translations": {
+    "de": "Kannst du mir helfen?",
+    "en": "Can you help me?",
+    "tr": "Bana yardım edebilir misin?",
+    "sv": "Kan du hjälpa mig?",
+    "nl": "Kun je me helpen?",
+    "nb": "Kan du hjelpe meg?",
+    "da": "Kan du hjælpe mig?",
+    "fr": "Tu peux m'aider ?"
+   },
+   "audio": "web/audio/w0668.mp3"
+  },
+  {
+   "id": "s0165",
+   "level": "modal",
+   "cloze": "___ li pitati?",
+   "answer": "Smijem",
+   "bs": "Smijem li pitati?",
+   "translations": {
+    "de": "Darf ich fragen?",
+    "en": "May I ask?",
+    "tr": "Sorabilir miyim?",
+    "sv": "Får jag fråga?",
+    "nl": "Mag ik iets vragen?",
+    "nb": "Får jeg spørre?",
+    "da": "Må jeg spørge?",
+    "fr": "Je peux demander ?"
+   },
+   "audio": "web/audio/w0671.mp3"
+  },
+  {
+   "id": "s0166",
+   "level": "modal",
+   "cloze": "Ne ___ doći.",
+   "answer": "mogu",
+   "bs": "Ne mogu doći.",
+   "translations": {
+    "de": "Ich kann nicht kommen.",
+    "en": "I cannot come.",
+    "tr": "Gelemem.",
+    "sv": "Jag kan inte komma.",
+    "nl": "Ik kan niet komen.",
+    "nb": "Jeg kan ikke komme.",
+    "da": "Jeg kan ikke komme.",
+    "fr": "Je ne peux pas venir."
+   },
+   "audio": "web/audio/w1234.mp3"
+  },
+  {
+   "id": "s0167",
+   "level": "reflexiv",
+   "cloze": "Zovem ___ Amina.",
+   "answer": "se",
+   "bs": "Zovem se Amina.",
+   "translations": {
+    "de": "Ich heiße Amina.",
+    "en": "My name is Amina.",
+    "tr": "Benim adım Amina.",
+    "sv": "Jag heter Amina.",
+    "nl": "Ik heet Amina.",
+    "nb": "Jeg heter Amina.",
+    "da": "Jeg hedder Amina.",
+    "fr": "Je m'appelle Amina."
+   },
+   "audio": "web/audio/w1100.mp3"
+  },
+  {
+   "id": "s0168",
+   "level": "reflexiv",
+   "cloze": "___ se dobro.",
+   "answer": "Osjećam",
+   "bs": "Osjećam se dobro.",
+   "translations": {
+    "de": "Ich fühle mich gut.",
+    "en": "I feel good.",
+    "tr": "İyi hissediyorum.",
+    "sv": "Jag mår bra.",
+    "nl": "Ik voel me goed.",
+    "nb": "Jeg har det bra.",
+    "da": "Jeg har det godt.",
+    "fr": "Je me sens bien."
+   },
+   "audio": "web/audio/w1235.mp3"
+  },
+  {
+   "id": "s0169",
+   "level": "reflexiv",
+   "cloze": "Nalazimo ___ u pet.",
+   "answer": "se",
+   "bs": "Nalazimo se u pet.",
+   "translations": {
+    "de": "Wir treffen uns um fünf.",
+    "en": "We are meeting at five.",
+    "tr": "Beşte buluşuyoruz.",
+    "sv": "Vi träffas klockan fem.",
+    "nl": "We spreken om vijf uur af.",
+    "nb": "Vi møtes klokka fem.",
+    "da": "Vi mødes klokken fem.",
+    "fr": "On se retrouve à cinq heures."
+   },
+   "audio": "web/audio/w1236.mp3"
+  },
+  {
+   "id": "s0170",
+   "level": "reflexiv",
+   "cloze": "Djeca se ___.",
+   "answer": "igraju",
+   "bs": "Djeca se igraju.",
+   "translations": {
+    "de": "Die Kinder spielen.",
+    "en": "The children are playing.",
+    "tr": "Çocuklar oynuyor.",
+    "sv": "Barnen leker.",
+    "nl": "De kinderen spelen.",
+    "nb": "Barna leker.",
+    "da": "Børnene leger.",
+    "fr": "Les enfants jouent."
+   },
+   "audio": "web/audio/w1211.mp3"
+  },
+  {
+   "id": "s0171",
+   "level": "routine",
+   "cloze": "___ u sedam sati.",
+   "answer": "Ustajem",
+   "bs": "Ustajem u sedam sati.",
+   "translations": {
+    "de": "Ich stehe um sieben Uhr auf.",
+    "en": "I get up at seven o'clock.",
+    "tr": "Saat yedide kalkıyorum.",
+    "sv": "Jag går upp klockan sju.",
+    "nl": "Ik sta om zeven uur op.",
+    "nb": "Jeg står opp klokka sju.",
+    "da": "Jeg står op klokken syv.",
+    "fr": "Je me lève à sept heures."
+   },
+   "audio": "web/audio/w1237.mp3"
+  },
+  {
+   "id": "s0172",
+   "level": "routine",
+   "cloze": "Poslije posla ___ večeru.",
+   "answer": "kuham",
+   "bs": "Poslije posla kuham večeru.",
+   "translations": {
+    "de": "Nach der Arbeit koche ich Abendessen.",
+    "en": "After work I cook dinner.",
+    "tr": "İşten sonra akşam yemeği pişiriyorum.",
+    "sv": "Efter jobbet lagar jag middag.",
+    "nl": "Na het werk kook ik het avondeten.",
+    "nb": "Etter jobben lager jeg middag.",
+    "da": "Efter arbejdet laver jeg aftensmad.",
+    "fr": "Après le travail, je prépare le dîner."
+   },
+   "audio": "web/audio/w1238.mp3"
+  },
+  {
+   "id": "s0173",
+   "level": "routine",
+   "cloze": "Idem ___ u jedanaest.",
+   "answer": "spavati",
+   "bs": "Idem spavati u jedanaest.",
+   "translations": {
+    "de": "Ich gehe um elf schlafen.",
+    "en": "I go to sleep at eleven.",
+    "tr": "Saat on birde uyumaya gidiyorum.",
+    "sv": "Jag går och lägger mig klockan elva.",
+    "nl": "Ik ga om elf uur slapen.",
+    "nb": "Jeg legger meg klokka elleve.",
+    "da": "Jeg går i seng klokken elleve.",
+    "fr": "Je vais me coucher à onze heures."
+   },
+   "audio": "web/audio/w1239.mp3"
+  },
+  {
+   "id": "s0174",
+   "level": "routine",
+   "cloze": "___ dan pijem kahvu.",
+   "answer": "Svaki",
+   "bs": "Svaki dan pijem kahvu.",
+   "translations": {
+    "de": "Jeden Tag trinke ich Kaffee.",
+    "en": "Every day I drink coffee.",
+    "tr": "Her gün kahve içiyorum.",
+    "sv": "Varje dag dricker jag kaffe.",
+    "nl": "Elke dag drink ik koffie.",
+    "nb": "Hver dag drikker jeg kaffe.",
+    "da": "Hver dag drikker jeg kaffe.",
+    "fr": "Chaque jour, je bois du café."
+   },
+   "audio": "web/audio/w1240.mp3"
+  },
+  {
+   "id": "s0175",
+   "level": "mengen",
+   "cloze": "Imam dva ___.",
+   "answer": "brata",
+   "bs": "Imam dva brata.",
+   "translations": {
+    "de": "Ich habe zwei Brüder.",
+    "en": "I have two brothers.",
+    "tr": "İki erkek kardeşim var.",
+    "sv": "Jag har två bröder.",
+    "nl": "Ik heb twee broers.",
+    "nb": "Jeg har to brødre.",
+    "da": "Jeg har to brødre.",
+    "fr": "J'ai deux frères."
+   },
+   "audio": "web/audio/w1158.mp3"
+  },
+  {
+   "id": "s0176",
+   "level": "mengen",
+   "cloze": "Imam trideset ___.",
+   "answer": "godina",
+   "bs": "Imam trideset godina.",
+   "translations": {
+    "de": "Ich bin dreißig Jahre alt.",
+    "en": "I am thirty years old.",
+    "tr": "Otuz yaşındayım.",
+    "sv": "Jag är trettio år.",
+    "nl": "Ik ben dertig jaar.",
+    "nb": "Jeg er tretti år.",
+    "da": "Jeg er tredive år.",
+    "fr": "J'ai trente ans."
+   },
+   "audio": "web/audio/w1241.mp3"
+  },
+  {
+   "id": "s0177",
+   "level": "mengen",
+   "cloze": "___ kahve, molim.",
+   "answer": "Dvije",
+   "bs": "Dvije kahve, molim.",
+   "translations": {
+    "de": "Zwei Kaffee, bitte.",
+    "en": "Two coffees, please.",
+    "tr": "İki kahve, lütfen.",
+    "sv": "Två kaffe, tack.",
+    "nl": "Twee koffie, alstublieft.",
+    "nb": "To kaffe, takk.",
+    "da": "To kaffe, tak.",
+    "fr": "Deux cafés, s'il vous plaît."
+   },
+   "audio": "web/audio/w1124.mp3"
+  },
+  {
+   "id": "s0178",
+   "level": "mengen",
+   "cloze": "Ostajemo pet ___.",
+   "answer": "dana",
+   "bs": "Ostajemo pet dana.",
+   "translations": {
+    "de": "Wir bleiben fünf Tage.",
+    "en": "We are staying five days.",
+    "tr": "Beş gün kalıyoruz.",
+    "sv": "Vi stannar i fem dagar.",
+    "nl": "We blijven vijf dagen.",
+    "nb": "Vi blir i fem dager.",
+    "da": "Vi bliver fem dage.",
+    "fr": "Nous restons cinq jours."
+   },
+   "audio": "web/audio/w1242.mp3"
+  },
+  {
+   "id": "s0179",
+   "level": "gefuehle",
+   "cloze": "___ se s tobom.",
+   "answer": "Slažem",
+   "bs": "Slažem se s tobom.",
+   "translations": {
+    "de": "Ich stimme dir zu.",
+    "en": "I agree with you.",
+    "tr": "Sana katılıyorum.",
+    "sv": "Jag håller med dig.",
+    "nl": "Ik ben het met je eens.",
+    "nb": "Jeg er enig med deg.",
+    "da": "Jeg er enig med dig.",
+    "fr": "Je suis d'accord avec toi."
+   },
+   "audio": "web/audio/w1243.mp3"
+  },
+  {
+   "id": "s0180",
+   "level": "gefuehle",
+   "cloze": "Po mom ___, to je dobro.",
+   "answer": "mišljenju",
+   "bs": "Po mom mišljenju, to je dobro.",
+   "translations": {
+    "de": "Meiner Meinung nach ist das gut.",
+    "en": "In my opinion that is good.",
+    "tr": "Bence bu iyi.",
+    "sv": "Enligt min åsikt är det bra.",
+    "nl": "Volgens mij is dat goed.",
+    "nb": "Etter min mening er det bra.",
+    "da": "Efter min mening er det godt.",
+    "fr": "À mon avis, c'est bien."
+   },
+   "audio": "web/audio/w1244.mp3"
+  },
+  {
+   "id": "s0181",
+   "level": "gefuehle",
+   "cloze": "___ sam na tebe.",
+   "answer": "Ponosna",
+   "bs": "Ponosna sam na tebe.",
+   "translations": {
+    "de": "Ich bin stolz auf dich. (Frau)",
+    "en": "I am proud of you. (female speaker)",
+    "tr": "Seninle gurur duyuyorum. (kadın)",
+    "sv": "Jag är stolt över dig. (kvinna)",
+    "nl": "Ik ben trots op je. (vrouw)",
+    "nb": "Jeg er stolt av deg. (kvinne)",
+    "da": "Jeg er stolt af dig. (kvinde)",
+    "fr": "Je suis fière de toi. (femme)"
+   },
+   "audio": "web/audio/w1245.mp3"
+  },
+  {
+   "id": "s0182",
+   "level": "gefuehle",
+   "cloze": "___, nemam vremena.",
+   "answer": "Nažalost",
+   "bs": "Nažalost, nemam vremena.",
+   "translations": {
+    "de": "Leider habe ich keine Zeit.",
+    "en": "Unfortunately I have no time.",
+    "tr": "Maalesef vaktim yok.",
+    "sv": "Tyvärr har jag ingen tid.",
+    "nl": "Helaas heb ik geen tijd.",
+    "nb": "Dessverre har jeg ikke tid.",
+    "da": "Desværre har jeg ikke tid.",
+    "fr": "Malheureusement, je n'ai pas le temps."
+   },
+   "audio": "web/audio/w1246.mp3"
+  },
+  {
+   "id": "s0183",
+   "level": "reisen",
+   "cloze": "Koliko traje ___?",
+   "answer": "vožnja",
+   "bs": "Koliko traje vožnja?",
+   "translations": {
+    "de": "Wie lange dauert die Fahrt?",
+    "en": "How long does the ride take?",
+    "tr": "Yolculuk ne kadar sürüyor?",
+    "sv": "Hur lång tid tar resan?",
+    "nl": "Hoe lang duurt de rit?",
+    "nb": "Hvor lang tid tar turen?",
+    "da": "Hvor lang tid tager turen?",
+    "fr": "Combien de temps dure le trajet ?"
+   },
+   "audio": "web/audio/w0846.mp3"
+  },
+  {
+   "id": "s0184",
+   "level": "reisen",
+   "cloze": "Kada ___ autobus?",
+   "answer": "polazi",
+   "bs": "Kada polazi autobus?",
+   "translations": {
+    "de": "Wann fährt der Bus ab?",
+    "en": "When does the bus leave?",
+    "tr": "Otobüs ne zaman kalkıyor?",
+    "sv": "När går bussen?",
+    "nl": "Wanneer vertrekt de bus?",
+    "nb": "Når går bussen?",
+    "da": "Hvornår kører bussen?",
+    "fr": "Quand part le bus ?"
+   },
+   "audio": "web/audio/w0847.mp3"
+  },
+  {
+   "id": "s0185",
+   "level": "reisen",
+   "cloze": "Gdje je ___?",
+   "answer": "izlaz",
+   "bs": "Gdje je izlaz?",
+   "translations": {
+    "de": "Wo ist der Ausgang?",
+    "en": "Where is the exit?",
+    "tr": "Çıkış nerede?",
+    "sv": "Var är utgången?",
+    "nl": "Waar is de uitgang?",
+    "nb": "Hvor er utgangen?",
+    "da": "Hvor er udgangen?",
+    "fr": "Où est la sortie ?"
+   },
+   "audio": "web/audio/w1247.mp3"
+  },
+  {
+   "id": "s0186",
+   "level": "reisen",
+   "cloze": "Sretan ___!",
+   "answer": "put",
+   "bs": "Sretan put!",
+   "translations": {
+    "de": "Gute Reise!",
+    "en": "Have a good trip!",
+    "tr": "İyi yolculuklar!",
+    "sv": "Trevlig resa!",
+    "nl": "Goede reis!",
+    "nb": "God tur!",
+    "da": "God tur!",
+    "fr": "Bon voyage !"
+   },
+   "audio": "web/audio/w0856.mp3"
+  },
+  {
+   "id": "s0187",
+   "level": "feiern",
+   "cloze": "Sretan ___!",
+   "answer": "rođendan",
+   "bs": "Sretan rođendan!",
+   "translations": {
+    "de": "Alles Gute zum Geburtstag!",
+    "en": "Happy birthday!",
+    "tr": "İyi ki doğdun!",
+    "sv": "Grattis på födelsedagen!",
+    "nl": "Gefeliciteerd met je verjaardag!",
+    "nb": "Gratulerer med dagen!",
+    "da": "Tillykke med fødselsdagen!",
+    "fr": "Joyeux anniversaire !"
+   },
+   "audio": "web/audio/w0859.mp3"
+  },
+  {
+   "id": "s0188",
+   "level": "feiern",
+   "cloze": "Imam ___ za tebe.",
+   "answer": "poklon",
+   "bs": "Imam poklon za tebe.",
+   "translations": {
+    "de": "Ich habe ein Geschenk für dich.",
+    "en": "I have a present for you.",
+    "tr": "Sana bir hediyem var.",
+    "sv": "Jag har en present till dig.",
+    "nl": "Ik heb een cadeau voor je.",
+    "nb": "Jeg har en gave til deg.",
+    "da": "Jeg har en gave til dig.",
+    "fr": "J'ai un cadeau pour toi."
+   },
+   "audio": "web/audio/w1248.mp3"
+  },
+  {
+   "id": "s0189",
+   "level": "feiern",
+   "cloze": "Sretna Nova ___!",
+   "answer": "godina",
+   "bs": "Sretna Nova godina!",
+   "translations": {
+    "de": "Frohes neues Jahr!",
+    "en": "Happy New Year!",
+    "tr": "Yeni yılınız kutlu olsun!",
+    "sv": "Gott nytt år!",
+    "nl": "Gelukkig nieuwjaar!",
+    "nb": "Godt nyttår!",
+    "da": "Godt nytår!",
+    "fr": "Bonne année !"
+   },
+   "audio": "web/audio/w0873.mp3"
+  },
+  {
+   "id": "s0190",
+   "level": "feiern",
+   "cloze": "Svi ___ su došli.",
+   "answer": "gosti",
+   "bs": "Svi gosti su došli.",
+   "translations": {
+    "de": "Alle Gäste sind gekommen.",
+    "en": "All the guests have arrived.",
+    "tr": "Bütün misafirler geldi.",
+    "sv": "Alla gäster har kommit.",
+    "nl": "Alle gasten zijn gekomen.",
+    "nb": "Alle gjestene har kommet.",
+    "da": "Alle gæsterne er kommet.",
+    "fr": "Tous les invités sont arrivés."
+   },
+   "audio": "web/audio/w1249.mp3"
+  },
+  {
+   "id": "s0191",
+   "level": "obst",
+   "cloze": "Ovo je ___.",
+   "answer": "lubenica",
+   "bs": "Ovo je lubenica.",
+   "translations": {
+    "de": "Das ist eine Wassermelone.",
+    "en": "This is a watermelon.",
+    "tr": "Bu bir karpuz.",
+    "sv": "Det här är en vattenmelon.",
+    "nl": "Dit is een watermeloen.",
+    "nb": "Dette er en vannmelon.",
+    "da": "Det her er en vandmelon.",
+    "fr": "C'est une pastèque."
+   },
+   "audio": "web/audio/w2044.mp3"
+  },
+  {
+   "id": "s0192",
+   "level": "obst",
+   "cloze": "U torbi je ___.",
+   "answer": "limun",
+   "bs": "U torbi je limun.",
+   "translations": {
+    "de": "In der Tasche ist eine Zitrone.",
+    "en": "There is a lemon in the bag.",
+    "tr": "Çantada bir limon var.",
+    "sv": "Det ligger en citron i väskan.",
+    "nl": "In de tas zit een citroen.",
+    "nb": "Det er en sitron i veska.",
+    "da": "Der er en citron i tasken.",
+    "fr": "Il y a un citron dans le sac."
+   },
+   "audio": "web/audio/w2045.mp3"
+  },
+  {
+   "id": "s0193",
+   "level": "obst",
+   "cloze": "Moja mama voli ___.",
+   "answer": "kruške",
+   "bs": "Moja mama voli kruške.",
+   "translations": {
+    "de": "Meine Mama mag Birnen.",
+    "en": "My mum likes pears.",
+    "tr": "Annem armut sever.",
+    "sv": "Min mamma tycker om päron.",
+    "nl": "Mijn mama houdt van peren.",
+    "nb": "Mamma liker pærer.",
+    "da": "Min mor kan godt lide pærer.",
+    "fr": "Ma maman aime les poires."
+   },
+   "audio": "web/audio/w2046.mp3"
+  },
+  {
+   "id": "s0194",
+   "level": "obst",
+   "cloze": "Djeca jedu ___.",
+   "answer": "jagode",
+   "bs": "Djeca jedu jagode.",
+   "translations": {
+    "de": "Die Kinder essen Erdbeeren.",
+    "en": "The children are eating strawberries.",
+    "tr": "Çocuklar çilek yiyor.",
+    "sv": "Barnen äter jordgubbar.",
+    "nl": "De kinderen eten aardbeien.",
+    "nb": "Barna spiser jordbær.",
+    "da": "Børnene spiser jordbær.",
+    "fr": "Les enfants mangent des fraises."
+   },
+   "audio": "web/audio/w2047.mp3"
+  },
+  {
+   "id": "s0195",
+   "level": "obst",
+   "cloze": "Kupi ___ na pijaci.",
+   "answer": "grožđe",
+   "bs": "Kupi grožđe na pijaci.",
+   "translations": {
+    "de": "Kauf Weintrauben auf dem Markt.",
+    "en": "Buy grapes at the market.",
+    "tr": "Pazardan üzüm al.",
+    "sv": "Köp vindruvor på marknaden.",
+    "nl": "Koop druiven op de markt.",
+    "nb": "Kjøp druer på markedet.",
+    "da": "Køb vindruer på markedet.",
+    "fr": "Achète du raisin au marché."
+   },
+   "audio": "web/audio/w2048.mp3"
+  },
+  {
+   "id": "s0196",
+   "level": "gemuese",
+   "cloze": "Djeca ne vole ___.",
+   "answer": "špinat",
+   "bs": "Djeca ne vole špinat.",
+   "translations": {
+    "de": "Die Kinder mögen keinen Spinat.",
+    "en": "The children do not like spinach.",
+    "tr": "Çocuklar ıspanak sevmez.",
+    "sv": "Barnen tycker inte om spenat.",
+    "nl": "De kinderen houden niet van spinazie.",
+    "nb": "Barna liker ikke spinat.",
+    "da": "Børnene kan ikke lide spinat.",
+    "fr": "Les enfants n'aiment pas les épinards."
+   },
+   "audio": "web/audio/w2049.mp3"
+  },
+  {
+   "id": "s0197",
+   "level": "gemuese",
+   "cloze": "U supi je ___.",
+   "answer": "mrkva",
+   "bs": "U supi je mrkva.",
+   "translations": {
+    "de": "In der Suppe ist eine Karotte.",
+    "en": "There is a carrot in the soup.",
+    "tr": "Çorbada bir havuç var.",
+    "sv": "Det ligger en morot i soppan.",
+    "nl": "In de soep zit een wortel.",
+    "nb": "Det er en gulrot i suppa.",
+    "da": "Der er en gulerod i suppen.",
+    "fr": "Il y a une carotte dans la soupe."
+   },
+   "audio": "web/audio/w2050.mp3"
+  },
+  {
+   "id": "s0198",
+   "level": "gemuese",
+   "cloze": "U bašti je ___.",
+   "answer": "kukuruz",
+   "bs": "U bašti je kukuruz.",
+   "translations": {
+    "de": "Im Garten ist Mais.",
+    "en": "There is corn in the garden.",
+    "tr": "Bahçede mısır var.",
+    "sv": "Det finns majs i trädgården.",
+    "nl": "In de tuin staat maïs.",
+    "nb": "Det er mais i hagen.",
+    "da": "Der er majs i haven.",
+    "fr": "Il y a du maïs dans le jardin."
+   },
+   "audio": "web/audio/w2051.mp3"
+  },
+  {
+   "id": "s0199",
+   "level": "gemuese",
+   "cloze": "Na stolu su ___.",
+   "answer": "gljive",
+   "bs": "Na stolu su gljive.",
+   "translations": {
+    "de": "Auf dem Tisch sind Pilze.",
+    "en": "There are mushrooms on the table.",
+    "tr": "Masada mantarlar var.",
+    "sv": "Det ligger svampar på bordet.",
+    "nl": "Op de tafel liggen paddenstoelen.",
+    "nb": "Det er sopp på bordet.",
+    "da": "Der ligger svampe på bordet.",
+    "fr": "Il y a des champignons sur la table."
+   },
+   "audio": "web/audio/w2052.mp3"
+  },
+  {
+   "id": "s0200",
+   "level": "gemuese",
+   "cloze": "Danas jedem ___.",
+   "answer": "karfiol",
+   "bs": "Danas jedem karfiol.",
+   "translations": {
+    "de": "Heute esse ich Blumenkohl.",
+    "en": "Today I am eating cauliflower.",
+    "tr": "Bugün karnabahar yiyorum.",
+    "sv": "I dag äter jag blomkål.",
+    "nl": "Vandaag eet ik bloemkool.",
+    "nb": "I dag spiser jeg blomkål.",
+    "da": "I dag spiser jeg blomkål.",
+    "fr": "Aujourd'hui, je mange du chou-fleur."
+   },
+   "audio": "web/audio/w2053.mp3"
+  },
+  {
+   "id": "s0201",
+   "level": "lebensmittel",
+   "cloze": "Djeca jedu ___.",
+   "answer": "sladoled",
+   "bs": "Djeca jedu sladoled.",
+   "translations": {
+    "de": "Die Kinder essen Eis (Speiseeis).",
+    "en": "The children are eating ice cream.",
+    "tr": "Çocuklar dondurma yiyor.",
+    "sv": "Barnen äter glass.",
+    "nl": "De kinderen eten ijs (roomijs).",
+    "nb": "Barna spiser iskrem.",
+    "da": "Børnene spiser is.",
+    "fr": "Les enfants mangent de la glace."
+   },
+   "audio": "web/audio/w2054.mp3"
+  },
+  {
+   "id": "s0202",
+   "level": "lebensmittel",
+   "cloze": "Hljeb, ___ i sir.",
+   "answer": "šunka",
+   "bs": "Hljeb, šunka i sir.",
+   "translations": {
+    "de": "Brot, Schinken und Käse.",
+    "en": "Bread, ham and cheese.",
+    "tr": "Ekmek, jambon ve peynir.",
+    "sv": "Bröd, skinka och ost.",
+    "nl": "Brood, ham en kaas.",
+    "nb": "Brød, skinke og ost.",
+    "da": "Brød, skinke og ost.",
+    "fr": "Du pain, du jambon et du fromage."
+   },
+   "audio": "web/audio/w2055.mp3"
+  },
+  {
+   "id": "s0203",
+   "level": "lebensmittel",
+   "cloze": "Htjela bih ___.",
+   "answer": "kobasicu",
+   "bs": "Htjela bih kobasicu.",
+   "translations": {
+    "de": "Ich möchte Wurst.",
+    "en": "I would like a sausage.",
+    "tr": "Sosis istiyorum.",
+    "sv": "Jag skulle vilja ha en korv.",
+    "nl": "Ik wil graag worst.",
+    "nb": "Jeg vil gjerne ha en pølse.",
+    "da": "Jeg vil gerne have en pølse.",
+    "fr": "Je voudrais une saucisse."
+   },
+   "audio": "web/audio/w2056.mp3"
+  },
+  {
+   "id": "s0204",
+   "level": "lebensmittel",
+   "cloze": "Moja sestra voli ___.",
+   "answer": "čokoladu",
+   "bs": "Moja sestra voli čokoladu.",
+   "translations": {
+    "de": "Meine Schwester liebt Schokolade.",
+    "en": "My sister loves chocolate.",
+    "tr": "Kız kardeşim çikolatayı seviyor.",
+    "sv": "Min syster älskar choklad.",
+    "nl": "Mijn zus houdt van chocolade.",
+    "nb": "Søsteren min elsker sjokolade.",
+    "da": "Min søster elsker chokolade.",
+    "fr": "Ma sœur aime le chocolat."
+   },
+   "audio": "web/audio/w2057.mp3"
+  },
+  {
+   "id": "s0205",
+   "level": "lebensmittel",
+   "cloze": "Kečap i ___, molim.",
+   "answer": "senf",
+   "bs": "Kečap i senf, molim.",
+   "translations": {
+    "de": "Ketchup und Senf, bitte.",
+    "en": "Ketchup and mustard, please.",
+    "tr": "Ketçap ve hardal, lütfen.",
+    "sv": "Ketchup och senap, tack.",
+    "nl": "Ketchup en mosterd, graag.",
+    "nb": "Ketchup og sennep, takk.",
+    "da": "Ketchup og sennep, tak.",
+    "fr": "Du ketchup et de la moutarde, s'il vous plaît."
+   },
+   "audio": "web/audio/w2058.mp3"
+  },
+  {
+   "id": "s0206",
+   "level": "vorrat",
+   "cloze": "U frižideru je ___.",
+   "answer": "jogurt",
+   "bs": "U frižideru je jogurt.",
+   "translations": {
+    "de": "Im Kühlschrank ist Joghurt.",
+    "en": "There is yogurt in the fridge.",
+    "tr": "Buzdolabında yoğurt var.",
+    "sv": "Det finns yoghurt i kylskåpet.",
+    "nl": "In de koelkast staat yoghurt.",
+    "nb": "Det er yoghurt i kjøleskapet.",
+    "da": "Der er yoghurt i køleskabet.",
+    "fr": "Il y a du yaourt dans le frigo."
+   },
+   "audio": "web/audio/w2059.mp3"
+  },
+  {
+   "id": "s0207",
+   "level": "vorrat",
+   "cloze": "Volim ___ u čaju.",
+   "answer": "med",
+   "bs": "Volim med u čaju.",
+   "translations": {
+    "de": "Ich mag Honig im Tee.",
+    "en": "I like honey in my tea.",
+    "tr": "Çayda bal severim.",
+    "sv": "Jag tycker om honung i teet.",
+    "nl": "Ik hou van honing in de thee.",
+    "nb": "Jeg liker honning i teen.",
+    "da": "Jeg kan godt lide honning i teen.",
+    "fr": "J'aime le miel dans le thé."
+   },
+   "audio": "web/audio/w2060.mp3"
+  },
+  {
+   "id": "s0208",
+   "level": "vorrat",
+   "cloze": "Jednu ___, molim.",
+   "answer": "rakiju",
+   "bs": "Jednu rakiju, molim.",
+   "translations": {
+    "de": "Einen Rakija, bitte.",
+    "en": "One rakija, please.",
+    "tr": "Bir rakija, lütfen.",
+    "sv": "En rakija, tack.",
+    "nl": "Een rakija, graag.",
+    "nb": "En rakija, takk.",
+    "da": "En rakija, tak.",
+    "fr": "Une rakija, s'il vous plaît."
+   },
+   "audio": "web/audio/w2061.mp3"
+  },
+  {
+   "id": "s0209",
+   "level": "vorrat",
+   "cloze": "Kahva je u ___.",
+   "answer": "džezvi",
+   "bs": "Kahva je u džezvi.",
+   "translations": {
+    "de": "Der Kaffee ist im Kupferkännchen.",
+    "en": "The coffee is in the copper coffee pot.",
+    "tr": "Kahve cezvede.",
+    "sv": "Kaffet är i kopparkannan.",
+    "nl": "De koffie zit in het koperen kannetje.",
+    "nb": "Kaffen er i kobberkannen.",
+    "da": "Kaffen er i kobberkanden.",
+    "fr": "Le café est dans la petite cafetière en cuivre."
+   },
+   "audio": "web/audio/w2062.mp3"
+  },
+  {
+   "id": "s0210",
+   "level": "vorrat",
+   "cloze": "Uzet ću ___.",
+   "answer": "pogaču",
+   "bs": "Uzet ću pogaču.",
+   "translations": {
+    "de": "Ich nehme das Fladenbrot.",
+    "en": "I will take the flatbread.",
+    "tr": "Pideyi alacağım.",
+    "sv": "Jag tar tunnbrödet.",
+    "nl": "Ik neem het platbrood.",
+    "nb": "Jeg tar det runde brødet.",
+    "da": "Jeg tager fladbrødet.",
+    "fr": "Je prends le pain plat."
+   },
+   "audio": "web/audio/w2063.mp3"
+  },
+  {
+   "id": "s0211",
+   "level": "tiere",
+   "cloze": "Krava je u ___.",
+   "answer": "štali",
+   "bs": "Krava je u štali.",
+   "translations": {
+    "de": "Die Kuh ist im Stall.",
+    "en": "The cow is in the barn.",
+    "tr": "İnek ahırda.",
+    "sv": "Kon står i ladugården.",
+    "nl": "De koe staat in de stal.",
+    "nb": "Kua er i fjøset.",
+    "da": "Koen er i stalden.",
+    "fr": "La vache est dans l'étable."
+   },
+   "audio": "web/audio/w2064.mp3"
+  },
+  {
+   "id": "s0212",
+   "level": "tiere",
+   "cloze": "Pile i ___ su u avliji.",
+   "answer": "kokoš",
+   "bs": "Pile i kokoš su u avliji.",
+   "translations": {
+    "de": "Das Küken und das Huhn sind im Hof.",
+    "en": "The chick and the hen are in the yard.",
+    "tr": "Civciv ve tavuk avluda.",
+    "sv": "Kycklingen och hönan är på gården.",
+    "nl": "Het kuiken en de kip zijn op het erf.",
+    "nb": "Kyllingen og høna er på gårdsplassen.",
+    "da": "Kyllingen og hønen er i gården.",
+    "fr": "Le poussin et la poule sont dans la cour."
+   },
+   "audio": "web/audio/w2065.mp3"
+  },
+  {
+   "id": "s0213",
+   "level": "tiere",
+   "cloze": "Malo ___ spava.",
+   "answer": "štene",
+   "bs": "Malo štene spava.",
+   "translations": {
+    "de": "Der kleine Welpe schläft.",
+    "en": "The little puppy is sleeping.",
+    "tr": "Küçük köpek yavrusu uyuyor.",
+    "sv": "Den lilla valpen sover.",
+    "nl": "De kleine puppy slaapt.",
+    "nb": "Den lille valpen sover.",
+    "da": "Den lille hvalp sover.",
+    "fr": "Le petit chiot dort."
+   },
+   "audio": "web/audio/w2066.mp3"
+  },
+  {
+   "id": "s0214",
+   "level": "tiere",
+   "cloze": "Vidim ___ na vodi.",
+   "answer": "patku",
+   "bs": "Vidim patku na vodi.",
+   "translations": {
+    "de": "Ich sehe die Ente auf dem Wasser.",
+    "en": "I see the duck on the water.",
+    "tr": "Ördeği suda görüyorum.",
+    "sv": "Jag ser ankan på vattnet.",
+    "nl": "Ik zie de eend op het water.",
+    "nb": "Jeg ser anda på vannet.",
+    "da": "Jeg ser anden på vandet.",
+    "fr": "Je vois le canard sur l'eau."
+   },
+   "audio": "web/audio/w2067.mp3"
+  },
+  {
+   "id": "s0215",
+   "level": "tiere",
+   "cloze": "Ptica ima ___ na drvetu.",
+   "answer": "gnijezdo",
+   "bs": "Ptica ima gnijezdo na drvetu.",
+   "translations": {
+    "de": "Der Vogel hat ein Nest auf dem Baum.",
+    "en": "The bird has a nest in the tree.",
+    "tr": "Kuşun ağaçta yuvası var.",
+    "sv": "Fågeln har ett bo i trädet.",
+    "nl": "De vogel heeft een nest in de boom.",
+    "nb": "Fuglen har et reir i treet.",
+    "da": "Fuglen har en rede i træet.",
+    "fr": "L'oiseau a un nid dans l'arbre."
+   },
+   "audio": "web/audio/w2068.mp3"
+  },
+  {
+   "id": "s0216",
+   "level": "tiere_wild",
+   "cloze": "Vidi, ___!",
+   "answer": "zmija",
+   "bs": "Vidi, zmija!",
+   "translations": {
+    "de": "Schau mal, eine Schlange!",
+    "en": "Look, a snake!",
+    "tr": "Bak, bir yılan!",
+    "sv": "Titta, en orm!",
+    "nl": "Kijk, een slang!",
+    "nb": "Se, en slange!",
+    "da": "Se, en slange!",
+    "fr": "Regarde, un serpent !"
+   },
+   "audio": "web/audio/w2069.mp3"
+  },
+  {
+   "id": "s0217",
+   "level": "tiere_wild",
+   "cloze": "U šumi je ___.",
+   "answer": "medvjed",
+   "bs": "U šumi je medvjed.",
+   "translations": {
+    "de": "Im Wald ist ein Bär.",
+    "en": "There is a bear in the forest.",
+    "tr": "Ormanda bir ayı var.",
+    "sv": "Det finns en björn i skogen.",
+    "nl": "In het bos zit een beer.",
+    "nb": "Det er en bjørn i skogen.",
+    "da": "Der er en bjørn i skoven.",
+    "fr": "Il y a un ours dans la forêt."
+   },
+   "audio": "web/audio/w2070.mp3"
+  },
+  {
+   "id": "s0218",
+   "level": "tiere_wild",
+   "cloze": "Mačka vidi ___.",
+   "answer": "miša",
+   "bs": "Mačka vidi miša.",
+   "translations": {
+    "de": "Die Katze sieht eine Maus.",
+    "en": "The cat sees a mouse.",
+    "tr": "Kedi bir fare görüyor.",
+    "sv": "Katten ser en mus.",
+    "nl": "De kat ziet een muis.",
+    "nb": "Katten ser en mus.",
+    "da": "Katten ser en mus.",
+    "fr": "Le chat voit une souris."
+   },
+   "audio": "web/audio/w2071.mp3"
+  },
+  {
+   "id": "s0219",
+   "level": "tiere_wild",
+   "cloze": "Na cvijetu je ___.",
+   "answer": "leptir",
+   "bs": "Na cvijetu je leptir.",
+   "translations": {
+    "de": "Auf der Blume ist ein Schmetterling.",
+    "en": "There is a butterfly on the flower.",
+    "tr": "Çiçeğin üstünde bir kelebek var.",
+    "sv": "Det sitter en fjäril på blomman.",
+    "nl": "Op de bloem zit een vlinder.",
+    "nb": "Det er en sommerfugl på blomsten.",
+    "da": "Der sidder en sommerfugl på blomsten.",
+    "fr": "Il y a un papillon sur la fleur."
+   },
+   "audio": "web/audio/w2072.mp3"
+  },
+  {
+   "id": "s0220",
+   "level": "tiere_wild",
+   "cloze": "Ovo je ___.",
+   "answer": "zmaj",
+   "bs": "Ovo je zmaj.",
+   "translations": {
+    "de": "Das ist ein Drache.",
+    "en": "This is a dragon.",
+    "tr": "Bu bir ejderha.",
+    "sv": "Det här är en drake.",
+    "nl": "Dit is een draak.",
+    "nb": "Dette er en drage.",
+    "da": "Det her er en drage.",
+    "fr": "C'est un dragon."
+   },
+   "audio": "web/audio/w2073.mp3"
+  },
+  {
+   "id": "s0221",
+   "level": "tiere_umgang",
+   "cloze": "Mačka ima ___.",
+   "answer": "rep",
+   "bs": "Mačka ima rep.",
+   "translations": {
+    "de": "Die Katze hat einen Schwanz.",
+    "en": "The cat has a tail.",
+    "tr": "Kedinin kuyruğu var.",
+    "sv": "Katten har en svans.",
+    "nl": "De kat heeft een staart.",
+    "nb": "Katten har en hale.",
+    "da": "Katten har en hale.",
+    "fr": "Le chat a une queue."
+   },
+   "audio": "web/audio/w2074.mp3"
+  },
+  {
+   "id": "s0222",
+   "level": "tiere_umgang",
+   "cloze": "Moj pas ___.",
+   "answer": "laje",
+   "bs": "Moj pas laje.",
+   "translations": {
+    "de": "Mein Hund bellt.",
+    "en": "My dog is barking.",
+    "tr": "Köpeğim havlıyor.",
+    "sv": "Min hund skäller.",
+    "nl": "Mijn hond blaft.",
+    "nb": "Hunden min bjeffer.",
+    "da": "Min hund gør.",
+    "fr": "Mon chien aboie."
+   },
+   "audio": "web/audio/w2075.mp3"
+  },
+  {
+   "id": "s0223",
+   "level": "tiere_umgang",
+   "cloze": "Ja ___ mačku.",
+   "answer": "hranim",
+   "bs": "Ja hranim mačku.",
+   "translations": {
+    "de": "Ich füttere die Katze.",
+    "en": "I feed the cat.",
+    "tr": "Kediyi besliyorum.",
+    "sv": "Jag matar katten.",
+    "nl": "Ik voer de kat.",
+    "nb": "Jeg mater katten.",
+    "da": "Jeg fodrer katten.",
+    "fr": "Je nourris le chat."
+   },
+   "audio": "web/audio/w2076.mp3"
+  },
+  {
+   "id": "s0224",
+   "level": "tiere_umgang",
+   "cloze": "Moj brat je ___.",
+   "answer": "veterinar",
+   "bs": "Moj brat je veterinar.",
+   "translations": {
+    "de": "Mein Bruder ist Tierarzt.",
+    "en": "My brother is a veterinarian.",
+    "tr": "Erkek kardeşim veteriner.",
+    "sv": "Min bror är veterinär.",
+    "nl": "Mijn broer is dierenarts.",
+    "nb": "Broren min er veterinær.",
+    "da": "Min bror er dyrlæge.",
+    "fr": "Mon frère est vétérinaire."
+   },
+   "audio": "web/audio/w2077.mp3"
+  },
+  {
+   "id": "s0225",
+   "level": "tiere_umgang",
+   "cloze": "Gdje je ___?",
+   "answer": "povodac",
+   "bs": "Gdje je povodac?",
+   "translations": {
+    "de": "Wo ist die Leine?",
+    "en": "Where is the leash?",
+    "tr": "Gezdirme tasması nerede?",
+    "sv": "Var är kopplet?",
+    "nl": "Waar is de hondenlijn?",
+    "nb": "Hvor er hundebåndet?",
+    "da": "Hvor er hundesnoren?",
+    "fr": "Où est la laisse ?"
+   },
+   "audio": "web/audio/w2078.mp3"
+  },
+  {
+   "id": "s0226",
+   "level": "natur",
+   "cloze": "Vidi, ___!",
+   "answer": "vodopad",
+   "bs": "Vidi, vodopad!",
+   "translations": {
+    "de": "Schau mal, ein Wasserfall!",
+    "en": "Look, a waterfall!",
+    "tr": "Bak, bir şelale!",
+    "sv": "Titta, ett vattenfall!",
+    "nl": "Kijk, een waterval!",
+    "nb": "Se, en foss!",
+    "da": "Se, et vandfald!",
+    "fr": "Regarde, une cascade !"
+   },
+   "audio": "web/audio/w2079.mp3"
+  },
+  {
+   "id": "s0227",
+   "level": "natur",
+   "cloze": "Idemo na ___.",
+   "answer": "brdo",
+   "bs": "Idemo na brdo.",
+   "translations": {
+    "de": "Wir gehen auf den Hügel.",
+    "en": "We are going up the hill.",
+    "tr": "Tepeye gidiyoruz.",
+    "sv": "Vi går upp på kullen.",
+    "nl": "We gaan de heuvel op.",
+    "nb": "Vi går opp på haugen.",
+    "da": "Vi går op på bakken.",
+    "fr": "Nous allons sur la colline."
+   },
+   "audio": "web/audio/w2080.mp3"
+  },
+  {
+   "id": "s0228",
+   "level": "natur",
+   "cloze": "U ___ je hladno.",
+   "answer": "pećini",
+   "bs": "U pećini je hladno.",
+   "translations": {
+    "de": "In der Höhle ist es kalt.",
+    "en": "It is cold in the cave.",
+    "tr": "Mağarada soğuk.",
+    "sv": "Det är kallt i grottan.",
+    "nl": "In de grot is het koud.",
+    "nb": "Det er kaldt i hula.",
+    "da": "Der er koldt i hulen.",
+    "fr": "Il fait froid dans la grotte."
+   },
+   "audio": "web/audio/w2081.mp3"
+  },
+  {
+   "id": "s0229",
+   "level": "natur",
+   "cloze": "Djeca su na ___.",
+   "answer": "livadi",
+   "bs": "Djeca su na livadi.",
+   "translations": {
+    "de": "Die Kinder sind auf der Wiese.",
+    "en": "The children are in the meadow.",
+    "tr": "Çocuklar çayırda.",
+    "sv": "Barnen är på ängen.",
+    "nl": "De kinderen zijn in de wei.",
+    "nb": "Barna er på enga.",
+    "da": "Børnene er på engen.",
+    "fr": "Les enfants sont dans la prairie."
+   },
+   "audio": "web/audio/w2082.mp3"
+  },
+  {
+   "id": "s0230",
+   "level": "natur",
+   "cloze": "Volim ___ i more.",
+   "answer": "prirodu",
+   "bs": "Volim prirodu i more.",
+   "translations": {
+    "de": "Ich liebe die Natur und das Meer.",
+    "en": "I love nature and the sea.",
+    "tr": "Doğayı ve denizi seviyorum.",
+    "sv": "Jag älskar naturen och havet.",
+    "nl": "Ik hou van de natuur en de zee.",
+    "nb": "Jeg elsker naturen og havet.",
+    "da": "Jeg elsker naturen og havet.",
+    "fr": "J'aime la nature et la mer."
+   },
+   "audio": "web/audio/w2083.mp3"
+  },
+  {
+   "id": "s0231",
+   "level": "kueche_bad",
+   "cloze": "Voda je u ___.",
+   "answer": "flaši",
+   "bs": "Voda je u flaši.",
+   "translations": {
+    "de": "Das Wasser ist in der Flasche.",
+    "en": "The water is in the bottle.",
+    "tr": "Su şişede.",
+    "sv": "Vattnet är i flaskan.",
+    "nl": "Het water zit in de fles.",
+    "nb": "Vannet er i flaska.",
+    "da": "Vandet er i flasken.",
+    "fr": "L'eau est dans la bouteille."
+   },
+   "audio": "web/audio/w2084.mp3"
+  },
+  {
+   "id": "s0232",
+   "level": "kueche_bad",
+   "cloze": "Ovo je moj ___.",
+   "answer": "tanjir",
+   "bs": "Ovo je moj tanjir.",
+   "translations": {
+    "de": "Das ist mein Teller.",
+    "en": "This is my plate.",
+    "tr": "Bu benim tabağım.",
+    "sv": "Det här är min tallrik.",
+    "nl": "Dit is mijn bord.",
+    "nb": "Dette er tallerkenen min.",
+    "da": "Det her er min tallerken.",
+    "fr": "C'est mon assiette."
+   },
+   "audio": "web/audio/w2085.mp3"
+  },
+  {
+   "id": "s0233",
+   "level": "kueche_bad",
+   "cloze": "Supa je u ___.",
+   "answer": "loncu",
+   "bs": "Supa je u loncu.",
+   "translations": {
+    "de": "Die Suppe ist im Topf.",
+    "en": "The soup is in the pot.",
+    "tr": "Çorba tencerede.",
+    "sv": "Soppan är i kastrullen.",
+    "nl": "De soep zit in de pan.",
+    "nb": "Suppa er i gryta.",
+    "da": "Suppen er i gryden.",
+    "fr": "La soupe est dans la marmite."
+   },
+   "audio": "web/audio/w2086.mp3"
+  },
+  {
+   "id": "s0234",
+   "level": "kueche_bad",
+   "cloze": "Gdje je ___?",
+   "answer": "ogledalo",
+   "bs": "Gdje je ogledalo?",
+   "translations": {
+    "de": "Wo ist der Spiegel?",
+    "en": "Where is the mirror?",
+    "tr": "Ayna nerede?",
+    "sv": "Var är spegeln?",
+    "nl": "Waar is de spiegel?",
+    "nb": "Hvor er speilet?",
+    "da": "Hvor er spejlet?",
+    "fr": "Où est le miroir ?"
+   },
+   "audio": "web/audio/w2087.mp3"
+  },
+  {
+   "id": "s0235",
+   "level": "kueche_bad",
+   "cloze": "Deka je na ___.",
+   "answer": "kauču",
+   "bs": "Deka je na kauču.",
+   "translations": {
+    "de": "Die Bettdecke ist auf dem Sofa.",
+    "en": "The blanket is on the sofa.",
+    "tr": "Battaniye kanepede.",
+    "sv": "Filten ligger på soffan.",
+    "nl": "De deken ligt op de bank.",
+    "nb": "Teppet ligger på sofaen.",
+    "da": "Dynen ligger på sofaen.",
+    "fr": "La couverture est sur le canapé."
+   },
+   "audio": "web/audio/w2088.mp3"
+  },
+  {
+   "id": "s0236",
+   "level": "putzen",
+   "cloze": "Kupatilo je ___.",
+   "answer": "čisto",
+   "bs": "Kupatilo je čisto.",
+   "translations": {
+    "de": "Das Bad ist sauber.",
+    "en": "The bathroom is clean.",
+    "tr": "Banyo temiz.",
+    "sv": "Badrummet är rent.",
+    "nl": "De badkamer is schoon.",
+    "nb": "Badet er rent.",
+    "da": "Badeværelset er rent.",
+    "fr": "La salle de bain est propre."
+   },
+   "audio": "web/audio/w2089.mp3"
+  },
+  {
+   "id": "s0237",
+   "level": "putzen",
+   "cloze": "Sutra ___ veš.",
+   "answer": "peglam",
+   "bs": "Sutra peglam veš.",
+   "translations": {
+    "de": "Morgen bügle ich die Wäsche.",
+    "en": "Tomorrow I will iron the laundry.",
+    "tr": "Yarın çamaşırları ütülüyorum.",
+    "sv": "I morgon stryker jag tvätten.",
+    "nl": "Morgen strijk ik de was.",
+    "nb": "I morgen stryker jeg tøyet.",
+    "da": "I morgen stryger jeg tøjet.",
+    "fr": "Demain, je repasse le linge."
+   },
+   "audio": "web/audio/w2090.mp3"
+  },
+  {
+   "id": "s0238",
+   "level": "putzen",
+   "cloze": "Gdje je ___?",
+   "answer": "metla",
+   "bs": "Gdje je metla?",
+   "translations": {
+    "de": "Wo ist der Besen?",
+    "en": "Where is the broom?",
+    "tr": "Süpürge nerede?",
+    "sv": "Var är kvasten?",
+    "nl": "Waar is de bezem?",
+    "nb": "Hvor er kosten?",
+    "da": "Hvor er fejekosten?",
+    "fr": "Où est le balai ?"
+   },
+   "audio": "web/audio/w2091.mp3"
+  },
+  {
+   "id": "s0239",
+   "level": "putzen",
+   "cloze": "Komšinica ___ na vrata.",
+   "answer": "zvoni",
+   "bs": "Komšinica zvoni na vrata.",
+   "translations": {
+    "de": "Die Nachbarin klingelt an der Tür.",
+    "en": "The neighbour is ringing the doorbell.",
+    "tr": "Kadın komşu kapının zilini çalıyor.",
+    "sv": "Grannen ringer på dörren.",
+    "nl": "De buurvrouw belt aan de deur.",
+    "nb": "Naboen ringer på døra.",
+    "da": "Naboen ringer på døren.",
+    "fr": "La voisine sonne à la porte."
+   },
+   "audio": "web/audio/w2092.mp3"
+  },
+  {
+   "id": "s0240",
+   "level": "putzen",
+   "cloze": "Veš je na ___.",
+   "answer": "štriku",
+   "bs": "Veš je na štriku.",
+   "translations": {
+    "de": "Die Wäsche ist auf der Wäscheleine.",
+    "en": "The laundry is on the clothesline.",
+    "tr": "Çamaşırlar çamaşır ipinde.",
+    "sv": "Tvätten hänger på tvättlinan.",
+    "nl": "De was hangt aan de waslijn.",
+    "nb": "Tøyet henger på klessnora.",
+    "da": "Tøjet hænger på tørresnoren.",
+    "fr": "Le linge est sur la corde à linge."
+   },
+   "audio": "web/audio/w2093.mp3"
+  },
+  {
+   "id": "s0241",
+   "level": "technik",
+   "cloze": "Nema ___.",
+   "answer": "struje",
+   "bs": "Nema struje.",
+   "translations": {
+    "de": "Es gibt keinen Strom.",
+    "en": "There is no electricity.",
+    "tr": "Elektrik yok.",
+    "sv": "Det finns ingen ström.",
+    "nl": "Er is geen stroom.",
+    "nb": "Det er ingen strøm.",
+    "da": "Der er ingen strøm.",
+    "fr": "Il n'y a pas d'électricité."
+   },
+   "audio": "web/audio/w2094.mp3"
+  },
+  {
+   "id": "s0242",
+   "level": "technik",
+   "cloze": "Gdje je moj ___?",
+   "answer": "alat",
+   "bs": "Gdje je moj alat?",
+   "translations": {
+    "de": "Wo ist mein Werkzeug?",
+    "en": "Where is my tool?",
+    "tr": "Aletim nerede?",
+    "sv": "Var är mitt verktyg?",
+    "nl": "Waar is mijn gereedschap?",
+    "nb": "Hvor er verktøyet mitt?",
+    "da": "Hvor er mit værktøj?",
+    "fr": "Où est mon outil ?"
+   },
+   "audio": "web/audio/w2095.mp3"
+  },
+  {
+   "id": "s0243",
+   "level": "technik",
+   "cloze": "Upali ___, molim te.",
+   "answer": "svjetlo",
+   "bs": "Upali svjetlo, molim te.",
+   "translations": {
+    "de": "Mach bitte das Licht an.",
+    "en": "Turn on the light, please.",
+    "tr": "Işığı yak, lütfen.",
+    "sv": "Tänd ljuset, tack.",
+    "nl": "Doe het licht aan, alsjeblieft.",
+    "nb": "Skru på lyset, er du snill.",
+    "da": "Tænd lyset, tak.",
+    "fr": "Allume la lumière, s'il te plaît."
+   },
+   "audio": "web/audio/w2096.mp3"
+  },
+  {
+   "id": "s0244",
+   "level": "technik",
+   "cloze": "Ne radi ___.",
+   "answer": "bojler",
+   "bs": "Ne radi bojler.",
+   "translations": {
+    "de": "Der Boiler funktioniert nicht.",
+    "en": "The boiler does not work.",
+    "tr": "Boyler çalışmıyor.",
+    "sv": "Varmvattenberedaren fungerar inte.",
+    "nl": "De boiler werkt niet.",
+    "nb": "Varmtvannsberederen virker ikke.",
+    "da": "Vandvarmeren virker ikke.",
+    "fr": "Le chauffe-eau ne marche pas."
+   },
+   "audio": "web/audio/w2097.mp3"
+  },
+  {
+   "id": "s0245",
+   "level": "technik",
+   "cloze": "Ugasi ___.",
+   "answer": "grijanje",
+   "bs": "Ugasi grijanje.",
+   "translations": {
+    "de": "Mach die Heizung aus.",
+    "en": "Turn off the heating.",
+    "tr": "Isıtmayı kapat.",
+    "sv": "Stäng av värmen.",
+    "nl": "Doe de verwarming uit.",
+    "nb": "Skru av oppvarmingen.",
+    "da": "Sluk for varmen.",
+    "fr": "Éteins le chauffage."
+   },
+   "audio": "web/audio/w2098.mp3"
+  },
+  {
+   "id": "s0246",
+   "level": "auto_werkstatt",
+   "cloze": "Moram sipati ___.",
+   "answer": "gorivo",
+   "bs": "Moram sipati gorivo.",
+   "translations": {
+    "de": "Ich muss tanken.",
+    "en": "I need to fill up.",
+    "tr": "Yakıt almam lazım.",
+    "sv": "Jag måste tanka.",
+    "nl": "Ik moet tanken.",
+    "nb": "Jeg må tanke.",
+    "da": "Jeg skal tanke.",
+    "fr": "Je dois faire le plein."
+   },
+   "audio": "web/audio/w2310.mp3"
+  },
+  {
+   "id": "s0247",
+   "level": "auto_werkstatt",
+   "cloze": "Pukla mi je ___.",
+   "answer": "guma",
+   "bs": "Pukla mi je guma.",
+   "translations": {
+    "de": "Ich habe einen Platten.",
+    "en": "I have a flat tire.",
+    "tr": "Lastiğim patladı.",
+    "sv": "Jag har fått punktering.",
+    "nl": "Ik heb een lekke band.",
+    "nb": "Jeg har fått punktering.",
+    "da": "Jeg er punkteret.",
+    "fr": "J'ai crevé."
+   },
+   "audio": "web/audio/w2253.mp3"
+  },
+  {
+   "id": "s0248",
+   "level": "auto_werkstatt",
+   "cloze": "Gdje mogu ___ svoj auto?",
+   "answer": "parkirati",
+   "bs": "Gdje mogu parkirati svoj auto?",
+   "translations": {
+    "de": "Wo kann ich mein Auto parken?",
+    "en": "Where can I park my car?",
+    "tr": "Arabamı nereye park edebilirim?",
+    "sv": "Var kan jag parkera min bil?",
+    "nl": "Waar kan ik mijn auto parkeren?",
+    "nb": "Hvor kan jeg parkere bilen min?",
+    "da": "Hvor kan jeg parkere min bil?",
+    "fr": "Où est-ce que je peux garer ma voiture ?"
+   },
+   "audio": "web/audio/w2311.mp3"
+  },
+  {
+   "id": "s0249",
+   "level": "auto_werkstatt",
+   "cloze": "Na ___ je crveno.",
+   "answer": "semaforu",
+   "bs": "Na semaforu je crveno.",
+   "translations": {
+    "de": "Die Ampel ist rot.",
+    "en": "The light is red.",
+    "tr": "Işık kırmızı.",
+    "sv": "Det är rött ljus.",
+    "nl": "Het stoplicht staat op rood.",
+    "nb": "Det er rødt lys.",
+    "da": "Der er rødt lys.",
+    "fr": "Le feu est rouge."
+   },
+   "audio": "web/audio/w2312.mp3"
+  },
+  {
+   "id": "s0250",
+   "level": "auto_werkstatt",
+   "cloze": "Daj mi ___, molim te.",
+   "answer": "kliješta",
+   "bs": "Daj mi kliješta, molim te.",
+   "translations": {
+    "de": "Gib mir bitte die Zange.",
+    "en": "Please hand me the pliers.",
+    "tr": "Penseyi verir misin lütfen?",
+    "sv": "Ge mig tången, tack.",
+    "nl": "Geef me de tang even, alsjeblieft.",
+    "nb": "Gi meg tanga, er du snill.",
+    "da": "Giv mig lige tangen.",
+    "fr": "Passe-moi la pince, s'il te plaît."
+   },
+   "audio": "web/audio/w2313.mp3"
+  },
+  {
+   "id": "s0251",
+   "level": "geraete",
+   "cloze": "Koja je ___ za WiFi?",
+   "answer": "šifra",
+   "bs": "Koja je šifra za WiFi?",
+   "translations": {
+    "de": "Wie ist das WLAN-Passwort?",
+    "en": "What's the Wi-Fi password?",
+    "tr": "Wi-Fi şifresi ne?",
+    "sv": "Vad är wifi-lösenordet?",
+    "nl": "Wat is het wifi-wachtwoord?",
+    "nb": "Hva er wifi-passordet?",
+    "da": "Hvad er wifi-koden?",
+    "fr": "C'est quoi, le code wifi ?"
+   },
+   "audio": "web/audio/w2285.mp3"
+  },
+  {
+   "id": "s0252",
+   "level": "geraete",
+   "cloze": "Baterija je ___.",
+   "answer": "prazna",
+   "bs": "Baterija je prazna.",
+   "translations": {
+    "de": "Der Akku ist leer.",
+    "en": "The battery is dead.",
+    "tr": "Şarjım bitti.",
+    "sv": "Batteriet är slut.",
+    "nl": "Mijn batterij is leeg.",
+    "nb": "Batteriet er tomt.",
+    "da": "Batteriet er fladt.",
+    "fr": "Je n'ai plus de batterie."
+   },
+   "audio": "web/audio/w2282.mp3"
+  },
+  {
+   "id": "s0253",
+   "level": "geraete",
+   "cloze": "Gdje je moj ___?",
+   "answer": "punjač",
+   "bs": "Gdje je moj punjač?",
+   "translations": {
+    "de": "Wo ist mein Ladegerät?",
+    "en": "Where is my charger?",
+    "tr": "Şarj aletim nerede?",
+    "sv": "Var är min laddare?",
+    "nl": "Waar is mijn oplader?",
+    "nb": "Hvor er laderen min?",
+    "da": "Hvor er min oplader?",
+    "fr": "Où est mon chargeur ?"
+   },
+   "audio": "web/audio/w2314.mp3"
+  },
+  {
+   "id": "s0254",
+   "level": "geraete",
+   "cloze": "Pošalji mi ___.",
+   "answer": "poruku",
+   "bs": "Pošalji mi poruku.",
+   "translations": {
+    "de": "Schick mir eine Nachricht.",
+    "en": "Send me a message.",
+    "tr": "Bana mesaj at.",
+    "sv": "Skicka ett meddelande till mig.",
+    "nl": "Stuur me een bericht.",
+    "nb": "Send meg en melding.",
+    "da": "Send mig en besked.",
+    "fr": "Envoie-moi un message."
+   },
+   "audio": "web/audio/w2315.mp3"
+  },
+  {
+   "id": "s0255",
+   "level": "geraete",
+   "cloze": "Ne radi ___ za suđe.",
+   "answer": "mašina",
+   "bs": "Ne radi mašina za suđe.",
+   "translations": {
+    "de": "Die Spülmaschine funktioniert nicht.",
+    "en": "The dishwasher isn't working.",
+    "tr": "Bulaşık makinesi çalışmıyor.",
+    "sv": "Diskmaskinen fungerar inte.",
+    "nl": "De vaatwasser doet het niet.",
+    "nb": "Oppvaskmaskinen virker ikke.",
+    "da": "Opvaskemaskinen virker ikke.",
+    "fr": "Le lave-vaisselle ne marche pas."
+   },
+   "audio": "web/audio/w2316.mp3"
+  },
+  {
+   "id": "s0256",
+   "level": "einkauf_orte",
+   "cloze": "Idem u ___.",
+   "answer": "mesnicu",
+   "bs": "Idem u mesnicu.",
+   "translations": {
+    "de": "Ich gehe in die Metzgerei.",
+    "en": "I am going to the butcher's shop.",
+    "tr": "Kasap dükkânına gidiyorum.",
+    "sv": "Jag går till köttaffären.",
+    "nl": "Ik ga naar de slagerij.",
+    "nb": "Jeg går til slakterbutikken.",
+    "da": "Jeg går i slagterbutikken.",
+    "fr": "Je vais à la boucherie."
+   },
+   "audio": "web/audio/w2099.mp3"
+  },
+  {
+   "id": "s0257",
+   "level": "einkauf_orte",
+   "cloze": "Jabuke su na ___.",
+   "answer": "akciji",
+   "bs": "Jabuke su na akciji.",
+   "translations": {
+    "de": "Die Äpfel sind im Angebot.",
+    "en": "The apples are on special offer.",
+    "tr": "Elmalar indirimde.",
+    "sv": "Äpplena är på erbjudande.",
+    "nl": "De appels zijn in de aanbieding.",
+    "nb": "Eplene er på tilbud.",
+    "da": "Æblerne er på tilbud.",
+    "fr": "Les pommes sont en promotion."
+   },
+   "audio": "web/audio/w2100.mp3"
+  },
+  {
+   "id": "s0258",
+   "level": "einkauf_orte",
+   "cloze": "Ovo voće je ___.",
+   "answer": "svježe",
+   "bs": "Ovo voće je svježe.",
+   "translations": {
+    "de": "Dieses Obst ist frisch.",
+    "en": "This fruit is fresh.",
+    "tr": "Bu meyve taze.",
+    "sv": "Den här frukten är färsk.",
+    "nl": "Dit fruit is vers.",
+    "nb": "Denne frukten er fersk.",
+    "da": "Denne frugt er frisk.",
+    "fr": "Ce fruit est frais."
+   },
+   "audio": "web/audio/w2101.mp3"
+  },
+  {
+   "id": "s0259",
+   "level": "einkauf_orte",
+   "cloze": "Mogu li ___ karticom?",
+   "answer": "platiti",
+   "bs": "Mogu li platiti karticom?",
+   "translations": {
+    "de": "Kann ich mit Karte bezahlen?",
+    "en": "Can I pay by card?",
+    "tr": "Kartla ödeyebilir miyim?",
+    "sv": "Kan jag betala med kort?",
+    "nl": "Kan ik met de pas betalen?",
+    "nb": "Kan jeg betale med kort?",
+    "da": "Kan jeg betale med kort?",
+    "fr": "Je peux payer par carte ?"
+   },
+   "audio": "web/audio/w0269.mp3"
+  },
+  {
+   "id": "s0260",
+   "level": "einkauf_orte",
+   "cloze": "Gdje je moj ___?",
+   "answer": "kusur",
+   "bs": "Gdje je moj kusur?",
+   "translations": {
+    "de": "Wo ist mein Wechselgeld?",
+    "en": "Where is my change?",
+    "tr": "Para üstüm nerede?",
+    "sv": "Var är min växel?",
+    "nl": "Waar is mijn wisselgeld?",
+    "nb": "Hvor er vekslepengene mine?",
+    "da": "Hvor er mine byttepenge?",
+    "fr": "Où est ma monnaie ?"
+   },
+   "audio": "web/audio/w2102.mp3"
+  },
+  {
+   "id": "s0261",
+   "level": "resto1",
+   "cloze": "Idemo u ___.",
+   "answer": "kafić",
+   "bs": "Idemo u kafić.",
+   "translations": {
+    "de": "Wir gehen ins Café.",
+    "en": "We are going to the café.",
+    "tr": "Kafeye gidiyoruz.",
+    "sv": "Vi går till kaféet.",
+    "nl": "We gaan naar het café.",
+    "nb": "Vi går på kafé.",
+    "da": "Vi går på café.",
+    "fr": "Nous allons au café."
+   },
+   "audio": "web/audio/w2103.mp3"
+  },
+  {
+   "id": "s0262",
+   "level": "resto1",
+   "cloze": "Danas jedemo ___.",
+   "answer": "vani",
+   "bs": "Danas jedemo vani.",
+   "translations": {
+    "de": "Heute essen wir draußen.",
+    "en": "Today we are eating outside.",
+    "tr": "Bugün dışarıda yiyoruz.",
+    "sv": "I dag äter vi ute.",
+    "nl": "Vandaag eten we buiten.",
+    "nb": "I dag spiser vi ute.",
+    "da": "I dag spiser vi udenfor.",
+    "fr": "Aujourd'hui, nous mangeons dehors."
+   },
+   "audio": "web/audio/w2104.mp3"
+  },
+  {
+   "id": "s0263",
+   "level": "resto1",
+   "cloze": "Sto na ___, molim.",
+   "answer": "terasi",
+   "bs": "Sto na terasi, molim.",
+   "translations": {
+    "de": "Einen Tisch auf der Terrasse, bitte.",
+    "en": "A table on the terrace, please.",
+    "tr": "Terasta bir masa, lütfen.",
+    "sv": "Ett bord på terrassen, tack.",
+    "nl": "Een tafel op het terras, graag.",
+    "nb": "Et bord på terrassen, takk.",
+    "da": "Et bord på terrassen, tak.",
+    "fr": "Une table sur la terrasse, s'il vous plaît."
+   },
+   "audio": "web/audio/w2105.mp3"
+  },
+  {
+   "id": "s0264",
+   "level": "resto1",
+   "cloze": "Za mene ___, molim.",
+   "answer": "čorbu",
+   "bs": "Za mene čorbu, molim.",
+   "translations": {
+    "de": "Für mich eine Čorba, bitte.",
+    "en": "A čorba for me, please.",
+    "tr": "Bana čorba, lütfen.",
+    "sv": "För mig en čorba, tack.",
+    "nl": "Voor mij een čorba, graag.",
+    "nb": "For meg en čorba, takk.",
+    "da": "Til mig en čorba, tak.",
+    "fr": "Pour moi une čorba, s'il vous plaît."
+   },
+   "audio": "web/audio/w2106.mp3"
+  },
+  {
+   "id": "s0265",
+   "level": "resto1",
+   "cloze": "Želim ___.",
+   "answer": "naručiti",
+   "bs": "Želim naručiti.",
+   "translations": {
+    "de": "Ich möchte bestellen.",
+    "en": "I would like to order.",
+    "tr": "Sipariş vermek istiyorum.",
+    "sv": "Jag vill beställa.",
+    "nl": "Ik wil graag bestellen.",
+    "nb": "Jeg vil bestille.",
+    "da": "Jeg vil gerne bestille.",
+    "fr": "Je voudrais commander."
+   },
+   "audio": "web/audio/w2107.mp3"
+  },
+  {
+   "id": "s0266",
+   "level": "resto2",
+   "cloze": "Ovo meso je ___.",
+   "answer": "ljuto",
+   "bs": "Ovo meso je ljuto.",
+   "translations": {
+    "de": "Dieses Fleisch ist scharf.",
+    "en": "This meat is spicy.",
+    "tr": "Bu et acı.",
+    "sv": "Det här köttet är kryddstarkt.",
+    "nl": "Dit vlees is pikant.",
+    "nb": "Dette kjøttet er sterkt.",
+    "da": "Dette kød er stærkt.",
+    "fr": "Cette viande est piquante."
+   },
+   "audio": "web/audio/w2321.mp3"
+  },
+  {
+   "id": "s0267",
+   "level": "resto2",
+   "cloze": "Voće je ___.",
+   "answer": "slatko",
+   "bs": "Voće je slatko.",
+   "translations": {
+    "de": "Das Obst ist süß.",
+    "en": "The fruit is sweet.",
+    "tr": "Meyve tatlı.",
+    "sv": "Frukten är söt.",
+    "nl": "Het fruit is zoet.",
+    "nb": "Frukten er søt.",
+    "da": "Frugten er sød.",
+    "fr": "Le fruit est sucré."
+   },
+   "audio": "web/audio/w2109.mp3"
+  },
+  {
+   "id": "s0268",
+   "level": "resto2",
+   "cloze": "Možemo li platiti ___?",
+   "answer": "odvojeno",
+   "bs": "Možemo li platiti odvojeno?",
+   "translations": {
+    "de": "Können wir getrennt zahlen?",
+    "en": "Can we pay separately?",
+    "tr": "Ayrı ayrı ödeyebilir miyiz?",
+    "sv": "Kan vi betala separat?",
+    "nl": "Kunnen we apart betalen?",
+    "nb": "Kan vi betale separat?",
+    "da": "Kan vi betale hver for sig?",
+    "fr": "Nous pouvons payer séparément ?"
+   },
+   "audio": "web/audio/w2110.mp3"
+  },
+  {
+   "id": "s0269",
+   "level": "resto2",
+   "cloze": "Jedemo ___.",
+   "answer": "zajedno",
+   "bs": "Jedemo zajedno.",
+   "translations": {
+    "de": "Wir essen zusammen.",
+    "en": "We are eating together.",
+    "tr": "Birlikte yiyoruz.",
+    "sv": "Vi äter tillsammans.",
+    "nl": "We eten samen.",
+    "nb": "Vi spiser sammen.",
+    "da": "Vi spiser sammen.",
+    "fr": "Nous mangeons ensemble."
+   },
+   "audio": "web/audio/w2111.mp3"
+  },
+  {
+   "id": "s0270",
+   "level": "resto2",
+   "cloze": "Zadržite ___.",
+   "answer": "kusur",
+   "bs": "Zadržite kusur.",
+   "translations": {
+    "de": "Behalten Sie das Rückgeld.",
+    "en": "Keep the change.",
+    "tr": "Para üstü sizde kalsın.",
+    "sv": "Behåll växeln.",
+    "nl": "Houd het wisselgeld maar.",
+    "nb": "Behold vekslepengene.",
+    "da": "Behold byttepengene.",
+    "fr": "Gardez la monnaie."
+   },
+   "audio": "web/audio/w2112.mp3"
+  },
+  {
+   "id": "s0271",
+   "level": "essen_gehen",
+   "cloze": "Ovo je jako ___.",
+   "answer": "ukusno",
+   "bs": "Ovo je jako ukusno.",
+   "translations": {
+    "de": "Das ist sehr lecker.",
+    "en": "This is very tasty.",
+    "tr": "Bu çok lezzetli.",
+    "sv": "Det här är mycket gott.",
+    "nl": "Dit is heel lekker.",
+    "nb": "Dette er veldig velsmakende.",
+    "da": "Det her er meget lækkert.",
+    "fr": "C'est vraiment délicieux."
+   },
+   "audio": "web/audio/w2113.mp3"
+  },
+  {
+   "id": "s0272",
+   "level": "essen_gehen",
+   "cloze": "Idemo u ___.",
+   "answer": "restoran",
+   "bs": "Idemo u restoran.",
+   "translations": {
+    "de": "Wir gehen ins Restaurant.",
+    "en": "We are going to the restaurant.",
+    "tr": "Restorana gidiyoruz.",
+    "sv": "Vi går till restaurangen.",
+    "nl": "We gaan naar het restaurant.",
+    "nb": "Vi går på restaurant.",
+    "da": "Vi går på restaurant.",
+    "fr": "Nous allons au restaurant."
+   },
+   "audio": "web/audio/w2114.mp3"
+  },
+  {
+   "id": "s0273",
+   "level": "essen_gehen",
+   "cloze": "Gdje je ___?",
+   "answer": "pekara",
+   "bs": "Gdje je pekara?",
+   "translations": {
+    "de": "Wo ist die Bäckerei?",
+    "en": "Where is the bakery?",
+    "tr": "Ekmek fırını nerede?",
+    "sv": "Var är bageriet?",
+    "nl": "Waar is de bakkerij?",
+    "nb": "Hvor er bakeriet?",
+    "da": "Hvor er bageriet?",
+    "fr": "Où est la boulangerie ?"
+   },
+   "audio": "web/audio/w2115.mp3"
+  },
+  {
+   "id": "s0274",
+   "level": "essen_gehen",
+   "cloze": "Jedan ___ mlijeka, molim.",
+   "answer": "litar",
+   "bs": "Jedan litar mlijeka, molim.",
+   "translations": {
+    "de": "Einen Liter Milch, bitte.",
+    "en": "One liter of milk, please.",
+    "tr": "Bir litre süt, lütfen.",
+    "sv": "En liter mjölk, tack.",
+    "nl": "Een liter melk, graag.",
+    "nb": "En liter melk, takk.",
+    "da": "En liter mælk, tak.",
+    "fr": "Un litre de lait, s'il vous plaît."
+   },
+   "audio": "web/audio/w2116.mp3"
+  },
+  {
+   "id": "s0275",
+   "level": "essen_gehen",
+   "cloze": "Jedna ___ je dosta.",
+   "answer": "porcija",
+   "bs": "Jedna porcija je dosta.",
+   "translations": {
+    "de": "Eine Portion ist genug.",
+    "en": "One portion is enough.",
+    "tr": "Bir porsiyon yeter.",
+    "sv": "En portion räcker.",
+    "nl": "Eén portie is genoeg.",
+    "nb": "En porsjon er nok.",
+    "da": "En portion er nok.",
+    "fr": "Une portion suffit."
+   },
+   "audio": "web/audio/w2117.mp3"
+  },
+  {
+   "id": "s0276",
+   "level": "bosnisch_essen",
+   "cloze": "Ja bih jedan ___.",
+   "answer": "burek",
+   "bs": "Ja bih jedan burek.",
+   "translations": {
+    "de": "Ich hätte gern einen Burek.",
+    "en": "I would like one burek.",
+    "tr": "Bir burek istiyorum.",
+    "sv": "Jag skulle vilja ha en burek.",
+    "nl": "Ik wil graag een burek.",
+    "nb": "Jeg vil gjerne ha en burek.",
+    "da": "Jeg vil gerne have en burek.",
+    "fr": "Je voudrais un burek."
+   },
+   "audio": "web/audio/w2118.mp3"
+  },
+  {
+   "id": "s0277",
+   "level": "bosnisch_essen",
+   "cloze": "Za mene ___.",
+   "answer": "pljeskavicu",
+   "bs": "Za mene pljeskavicu.",
+   "translations": {
+    "de": "Für mich eine Pljeskavica.",
+    "en": "A pljeskavica for me.",
+    "tr": "Bana pljeskavica.",
+    "sv": "För mig en pljeskavica.",
+    "nl": "Voor mij een pljeskavica.",
+    "nb": "For meg en pljeskavica.",
+    "da": "Til mig en pljeskavica.",
+    "fr": "Pour moi une pljeskavica."
+   },
+   "audio": "web/audio/w2119.mp3"
+  },
+  {
+   "id": "s0278",
+   "level": "bosnisch_essen",
+   "cloze": "Imate li ___?",
+   "answer": "ajvar",
+   "bs": "Imate li ajvar?",
+   "translations": {
+    "de": "Haben Sie Ajvar?",
+    "en": "Do you have ajvar?",
+    "tr": "Ajvar var mı?",
+    "sv": "Har ni ajvar?",
+    "nl": "Heeft u ajvar?",
+    "nb": "Har De ajvar?",
+    "da": "Har De ajvar?",
+    "fr": "Avez-vous de l'ajvar ?"
+   },
+   "audio": "web/audio/w2120.mp3"
+  },
+  {
+   "id": "s0279",
+   "level": "bosnisch_essen",
+   "cloze": "Ja volim ___.",
+   "answer": "sarmu",
+   "bs": "Ja volim sarmu.",
+   "translations": {
+    "de": "Ich mag Sarma.",
+    "en": "I like sarma.",
+    "tr": "Ben sarma severim.",
+    "sv": "Jag tycker om sarma.",
+    "nl": "Ik hou van sarma.",
+    "nb": "Jeg liker sarma.",
+    "da": "Jeg kan godt lide sarma.",
+    "fr": "J'aime la sarma."
+   },
+   "audio": "web/audio/w2121.mp3"
+  },
+  {
+   "id": "s0280",
+   "level": "bosnisch_essen",
+   "cloze": "Danas jedemo ___.",
+   "answer": "grah",
+   "bs": "Danas jedemo grah.",
+   "translations": {
+    "de": "Heute essen wir Bohneneintopf.",
+    "en": "Today we are eating bean stew.",
+    "tr": "Bugün fasulye yiyoruz.",
+    "sv": "I dag äter vi böngryta.",
+    "nl": "Vandaag eten we bonenstoofpot.",
+    "nb": "I dag spiser vi bønnegryte.",
+    "da": "I dag spiser vi bønnegryde.",
+    "fr": "Aujourd'hui, nous mangeons du ragoût de haricots."
+   },
+   "audio": "web/audio/w2122.mp3"
+  },
+  {
+   "id": "s0281",
+   "level": "laender",
+   "cloze": "Ja sam iz ___.",
+   "answer": "Bosne",
+   "bs": "Ja sam iz Bosne.",
+   "translations": {
+    "de": "Ich komme aus Bosnien.",
+    "en": "I am from Bosnia.",
+    "tr": "Ben Bosna'danım.",
+    "sv": "Jag är från Bosnien.",
+    "nl": "Ik kom uit Bosnië.",
+    "nb": "Jeg er fra Bosnia.",
+    "da": "Jeg kommer fra Bosnien.",
+    "fr": "Je viens de Bosnie."
+   },
+   "audio": "web/audio/w1218.mp3"
+  },
+  {
+   "id": "s0282",
+   "level": "laender",
+   "cloze": "Živim u ___.",
+   "answer": "Njemačkoj",
+   "bs": "Živim u Njemačkoj.",
+   "translations": {
+    "de": "Ich lebe in Deutschland.",
+    "en": "I live in Germany.",
+    "tr": "Almanya'da yaşıyorum.",
+    "sv": "Jag bor i Tyskland.",
+    "nl": "Ik woon in Duitsland.",
+    "nb": "Jeg bor i Tyskland.",
+    "da": "Jeg bor i Tyskland.",
+    "fr": "Je vis en Allemagne."
+   },
+   "audio": "web/audio/w2123.mp3"
+  },
+  {
+   "id": "s0283",
+   "level": "laender",
+   "cloze": "Bosna je moja ___.",
+   "answer": "domovina",
+   "bs": "Bosna je moja domovina.",
+   "translations": {
+    "de": "Bosnien ist meine Heimat.",
+    "en": "Bosnia is my homeland.",
+    "tr": "Bosna benim vatanım.",
+    "sv": "Bosnien är mitt hemland.",
+    "nl": "Bosnië is mijn vaderland.",
+    "nb": "Bosnia er hjemlandet mitt.",
+    "da": "Bosnien er mit hjemland.",
+    "fr": "La Bosnie est ma patrie."
+   },
+   "audio": "web/audio/w2124.mp3"
+  },
+  {
+   "id": "s0284",
+   "level": "laender",
+   "cloze": "Moj brat radi u ___.",
+   "answer": "inostranstvu",
+   "bs": "Moj brat radi u inostranstvu.",
+   "translations": {
+    "de": "Mein Bruder arbeitet im Ausland.",
+    "en": "My brother works abroad.",
+    "tr": "Erkek kardeşim yurt dışında çalışıyor.",
+    "sv": "Min bror arbetar utomlands.",
+    "nl": "Mijn broer werkt in het buitenland.",
+    "nb": "Broren min arbeider i utlandet.",
+    "da": "Min bror arbejder i udlandet.",
+    "fr": "Mon frère travaille à l'étranger."
+   },
+   "audio": "web/audio/w2125.mp3"
+  },
+  {
+   "id": "s0285",
+   "level": "laender",
+   "cloze": "Švicarska je mala ___.",
+   "answer": "država",
+   "bs": "Švicarska je mala država.",
+   "translations": {
+    "de": "Die Schweiz ist ein kleiner Staat.",
+    "en": "Switzerland is a small state.",
+    "tr": "İsviçre küçük bir devlet.",
+    "sv": "Schweiz är en liten stat.",
+    "nl": "Zwitserland is een kleine staat.",
+    "nb": "Sveits er en liten stat.",
+    "da": "Schweiz er en lille stat.",
+    "fr": "La Suisse est un petit État."
+   },
+   "audio": "web/audio/w2126.mp3"
+  },
+  {
+   "id": "s0286",
+   "level": "nationalitaeten",
+   "cloze": "Moja majka je ___.",
+   "answer": "Bosanka",
+   "bs": "Moja majka je Bosanka.",
+   "translations": {
+    "de": "Meine Mutter ist Bosnierin.",
+    "en": "My mother is Bosnian.",
+    "tr": "Annem Bosnalı.",
+    "sv": "Min mor är bosniska.",
+    "nl": "Mijn moeder is een Bosnische.",
+    "nb": "Moren min er bosnier.",
+    "da": "Min mor er bosnier.",
+    "fr": "Ma mère est bosnienne."
+   },
+   "audio": "web/audio/w2127.mp3"
+  },
+  {
+   "id": "s0287",
+   "level": "nationalitaeten",
+   "cloze": "Moj muž je ___.",
+   "answer": "Nijemac",
+   "bs": "Moj muž je Nijemac.",
+   "translations": {
+    "de": "Mein Mann ist Deutscher.",
+    "en": "My husband is German.",
+    "tr": "Kocam Alman.",
+    "sv": "Min man är tysk.",
+    "nl": "Mijn man is een Duitser.",
+    "nb": "Mannen min er tysker.",
+    "da": "Min mand er tysker.",
+    "fr": "Mon mari est allemand."
+   },
+   "audio": "web/audio/w2128.mp3"
+  },
+  {
+   "id": "s0288",
+   "level": "nationalitaeten",
+   "cloze": "Bosanski je lijep ___.",
+   "answer": "jezik",
+   "bs": "Bosanski je lijep jezik.",
+   "translations": {
+    "de": "Bosnisch ist eine schöne Sprache.",
+    "en": "Bosnian is a beautiful language.",
+    "tr": "Boşnakça güzel bir dil.",
+    "sv": "Bosniska är ett vackert språk.",
+    "nl": "Bosnisch is een mooie taal.",
+    "nb": "Bosnisk er et vakkert språk.",
+    "da": "Bosnisk er et smukt sprog.",
+    "fr": "Le bosnien est une belle langue."
+   },
+   "audio": "web/audio/w2129.mp3"
+  },
+  {
+   "id": "s0289",
+   "level": "nationalitaeten",
+   "cloze": "Govorim ___ i bosanski.",
+   "answer": "njemački",
+   "bs": "Govorim njemački i bosanski.",
+   "translations": {
+    "de": "Ich spreche Deutsch und Bosnisch.",
+    "en": "I speak German and Bosnian.",
+    "tr": "Almanca ve Boşnakça konuşuyorum.",
+    "sv": "Jag talar tyska och bosniska.",
+    "nl": "Ik spreek Duits en Bosnisch.",
+    "nb": "Jeg snakker tysk og bosnisk.",
+    "da": "Jeg taler tysk og bosnisk.",
+    "fr": "Je parle allemand et bosnien."
+   },
+   "audio": "web/audio/w2130.mp3"
+  },
+  {
+   "id": "s0290",
+   "level": "nationalitaeten",
+   "cloze": "Moja ___ je važna.",
+   "answer": "vjera",
+   "bs": "Moja vjera je važna.",
+   "translations": {
+    "de": "Mein Glaube ist wichtig.",
+    "en": "My faith is important.",
+    "tr": "İnancım önemli.",
+    "sv": "Min tro är viktig.",
+    "nl": "Mijn geloof is belangrijk.",
+    "nb": "Troen min er viktig.",
+    "da": "Min tro er vigtig.",
+    "fr": "Ma foi est importante."
+   },
+   "audio": "web/audio/w2131.mp3"
+  },
+  {
+   "id": "s0291",
+   "level": "kennenlernen",
+   "cloze": "Da te ___: moj brat.",
+   "answer": "upoznam",
+   "bs": "Da te upoznam: moj brat.",
+   "translations": {
+    "de": "Darf ich vorstellen: mein Bruder.",
+    "en": "Let me introduce you: my brother.",
+    "tr": "Seni tanıştırayım: erkek kardeşim.",
+    "sv": "Får jag presentera: min bror.",
+    "nl": "Mag ik je voorstellen: mijn broer.",
+    "nb": "La meg gjøre deg kjent med broren min.",
+    "da": "Må jeg præsentere: min bror.",
+    "fr": "Je te présente : mon frère."
+   },
+   "audio": "web/audio/w2132.mp3"
+  },
+  {
+   "id": "s0292",
+   "level": "kennenlernen",
+   "cloze": "Hoću da te ___.",
+   "answer": "posjetim",
+   "bs": "Hoću da te posjetim.",
+   "translations": {
+    "de": "Ich will dich besuchen.",
+    "en": "I want to visit you.",
+    "tr": "Seni ziyaret etmek istiyorum.",
+    "sv": "Jag vill besöka dig.",
+    "nl": "Ik wil je bezoeken.",
+    "nb": "Jeg vil besøke deg.",
+    "da": "Jeg vil besøge dig.",
+    "fr": "Je veux te rendre visite."
+   },
+   "audio": "web/audio/w2133.mp3"
+  },
+  {
+   "id": "s0293",
+   "level": "kennenlernen",
+   "cloze": "Molim te, ___ mi.",
+   "answer": "oprosti",
+   "bs": "Molim te, oprosti mi.",
+   "translations": {
+    "de": "Bitte verzeih mir.",
+    "en": "Please forgive me.",
+    "tr": "Lütfen beni affet.",
+    "sv": "Snälla, förlåt mig.",
+    "nl": "Vergeef me alsjeblieft.",
+    "nb": "Vær så snill, tilgi meg.",
+    "da": "Vær sød at tilgive mig.",
+    "fr": "S'il te plaît, pardonne-moi."
+   },
+   "audio": "web/audio/w2134.mp3"
+  },
+  {
+   "id": "s0294",
+   "level": "kennenlernen",
+   "cloze": "Ovo je moja ___.",
+   "answer": "koleginica",
+   "bs": "Ovo je moja koleginica.",
+   "translations": {
+    "de": "Das ist meine Kollegin.",
+    "en": "This is my colleague (a woman).",
+    "tr": "Bu benim kadın iş arkadaşım.",
+    "sv": "Det här är min kollega.",
+    "nl": "Dit is mijn vrouwelijke collega.",
+    "nb": "Dette er kollegaen min.",
+    "da": "Det her er min kollega.",
+    "fr": "C'est ma collègue."
+   },
+   "audio": "web/audio/w2135.mp3"
+  },
+  {
+   "id": "s0295",
+   "level": "kennenlernen",
+   "cloze": "Moj babo je dobar ___.",
+   "answer": "domaćin",
+   "bs": "Moj babo je dobar domaćin.",
+   "translations": {
+    "de": "Mein Papa ist ein guter Gastgeber.",
+    "en": "My dad is a good host.",
+    "tr": "Babam iyi bir ev sahibi.",
+    "sv": "Min pappa är en bra värd.",
+    "nl": "Mijn papa is een goede gastheer.",
+    "nb": "Faren min er en god vert.",
+    "da": "Min far er en god vært.",
+    "fr": "Mon papa est un bon hôte."
+   },
+   "audio": "web/audio/w2136.mp3"
+  },
+  {
+   "id": "s0296",
+   "level": "kulturlevel",
+   "cloze": "Nana svira ___.",
+   "answer": "harmoniku",
+   "bs": "Nana svira harmoniku.",
+   "translations": {
+    "de": "Oma spielt Akkordeon.",
+    "en": "Grandma plays the accordion.",
+    "tr": "Nenem akordeon çalıyor.",
+    "sv": "Mormor spelar dragspel.",
+    "nl": "Oma speelt accordeon.",
+    "nb": "Bestemor spiller trekkspill.",
+    "da": "Bedstemor spiller harmonika.",
+    "fr": "Grand-mère joue de l'accordéon."
+   },
+   "audio": "web/audio/w2137.mp3"
+  },
+  {
+   "id": "s0297",
+   "level": "kulturlevel",
+   "cloze": "Plešemo ___.",
+   "answer": "kolo",
+   "bs": "Plešemo kolo.",
+   "translations": {
+    "de": "Wir tanzen Kolo.",
+    "en": "We are dancing kolo.",
+    "tr": "Kolo oynuyoruz.",
+    "sv": "Vi dansar kolo.",
+    "nl": "We dansen kolo.",
+    "nb": "Vi danser kolo.",
+    "da": "Vi danser kolo.",
+    "fr": "Nous dansons le kolo."
+   },
+   "audio": "web/audio/w2138.mp3"
+  },
+  {
+   "id": "s0298",
+   "level": "kulturlevel",
+   "cloze": "Ova ___ je jako lijepa.",
+   "answer": "sevdalinka",
+   "bs": "Ova sevdalinka je jako lijepa.",
+   "translations": {
+    "de": "Diese Sevdalinka ist sehr schön.",
+    "en": "This sevdalinka is very beautiful.",
+    "tr": "Bu sevdalinka çok güzel.",
+    "sv": "Den här sevdalinkan är mycket vacker.",
+    "nl": "Deze sevdalinka is heel mooi.",
+    "nb": "Denne sevdalinkaen er veldig vakker.",
+    "da": "Denne sevdalinka er meget smuk.",
+    "fr": "Cette sevdalinka est très belle."
+   },
+   "audio": "web/audio/w2139.mp3"
+  },
+  {
+   "id": "s0299",
+   "level": "kulturlevel",
+   "cloze": "Hvala ___, dobro sam.",
+   "answer": "Bogu",
+   "bs": "Hvala Bogu, dobro sam.",
+   "translations": {
+    "de": "Gott sei Dank, mir geht es gut.",
+    "en": "Thank God, I am well.",
+    "tr": "Tanrı'ya şükür, iyiyim.",
+    "sv": "Gud ske lov, jag mår bra.",
+    "nl": "God zij dank, het gaat goed met me.",
+    "nb": "Gud skje lov, jeg har det bra.",
+    "da": "Gud ske lov, jeg har det godt.",
+    "fr": "Dieu merci, je vais bien."
+   },
+   "audio": "web/audio/w2140.mp3"
+  },
+  {
+   "id": "s0300",
+   "level": "kulturlevel",
+   "cloze": "Idemo na ___ kod nane.",
+   "answer": "iftar",
+   "bs": "Idemo na iftar kod nane.",
+   "translations": {
+    "de": "Wir gehen zum Iftar zu Oma.",
+    "en": "We are going to iftar at grandma's.",
+    "tr": "İftar için neneme gidiyoruz.",
+    "sv": "Vi går på iftar hos mormor.",
+    "nl": "We gaan naar de iftar bij oma.",
+    "nb": "Vi går på iftar hos bestemor.",
+    "da": "Vi skal til iftar hos bedstemor.",
+    "fr": "Nous allons à l'iftar chez grand-mère."
+   },
+   "audio": "web/audio/w2141.mp3"
+  }
+ ]
+}
