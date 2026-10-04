@@ -3,6 +3,10 @@
 # log and proposes a patch as a comment. The maintainer (a native speaker)
 # decides. Only a label set by someone with write access starts a run, so
 # outside users cannot spend API credits.
+# Off until the repository has the secret OPENAI_API_KEY and the variable
+# CODEX_AN is "true" (Settings → Secrets and variables → Actions); without
+# the variable no runner starts at all. The key check in the first step stays
+# as a second guard.
 name: Codex language triage
 
 on:
@@ -14,7 +18,7 @@ permissions:
 
 jobs:
   triage:
-    if: github.event.label.name == 'codex-triage'
+    if: vars.CODEX_AN == 'true' && github.event.label.name == 'codex-triage'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     # On the job: adding any other label must not cancel a running triage.

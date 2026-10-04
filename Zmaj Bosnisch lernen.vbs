@@ -1,6 +1,8 @@
 ' Zmaj – Bosnisch lernen – Starter ohne schwarzes Fenster.
 ' Doppelklick: startet start.py unsichtbar im Hintergrund, der Browser öffnet sich.
-' Beenden über den Knopf "App beenden" unten in der App.
+' Ein zweiter Doppelklick öffnet nur den Browser. Den Knopf "App beenden"
+' gibt es nicht mehr; beenden über pythonw.exe im Task-Manager (oder einfach
+' laufen lassen, start.py schreibt seit dem 04.10.2026 nur noch start.log).
 Option Explicit
 Dim fso, sh, ordner, python, pythonw
 Set fso = CreateObject("Scripting.FileSystemObject")

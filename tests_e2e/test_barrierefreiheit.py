@@ -5,7 +5,7 @@ ernster und kein kritischer Verstoß mehr.
 Läuft NICHT mit dem normalen  python3 -m pytest  (testpaths = tests), weil
 es einen Browser braucht und etwa eine Minute dauert:
 
-    python3 -m pip install playwright
+    python3 -m pip install -r requirements-e2e.txt
     python3 -m pytest tests_e2e -q
     ZMAJ_CHROMIUM=/pfad/zu/chrome python3 -m pytest tests_e2e -q   # eigener Chromium
 

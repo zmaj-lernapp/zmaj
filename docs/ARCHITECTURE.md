@@ -19,7 +19,7 @@ flowchart LR
     S[geschichten.py]
     U["uebersetzungen.py<br/>sprachen.py (UI)"]
   end
-  L{{"start.lade_daten(lang)"}}
+  L{{"inhalt.lade_daten(lang)"}}
   V & G & S & U --> L
   L -->|inhalt_bauen.py| APP["web/inhalt/&lt;lang&gt;.json<br/>→ Android app (Capacitor)"]
   L -->|daten_exportieren.py| DS["data/ · JSON, CSV, Anki TSV<br/>→ releases, Hugging Face"]
@@ -30,9 +30,10 @@ flowchart LR
   DS -->|anki_bauen.py| AP["8 × .apkg with audio"]
 ```
 
-`start.lade_daten(lang)` is the single source of truth: the development
-server, `inhalt_bauen.py`, `daten_exportieren.py` and `demo_bauen.py` all call
-it, so the phone, the dataset and the demo can never disagree.
+`inhalt.lade_daten(lang)` is the single source of truth: the local starter
+`start.py`, `inhalt_bauen.py`, `daten_exportieren.py` and `demo_bauen.py` all call
+it, so the phone, the dataset and the demo can never disagree. (`start.lade_daten`
+still works as a re-export for older scripts.)
 
 ## Content model
 
@@ -40,7 +41,7 @@ it, so the phone, the dataset and the demo can never disagree.
 |---|---|---|
 | Section | `vokabeln.SEKTIONEN` | 9 sections group the levels on the learning path |
 | Level | `vokabeln.KATEGORIEN` | order in the list = level number; `baut_auf` names earlier levels whose words the level test reviews |
-| Word | `{"de": …, "bs": …}` inside a level | ID = `"<german meaning lowercased>:<bosnian>"`, computed in `start.mit_kennung()` |
+| Word | `{"de": …, "bs": …}` inside a level | ID = `"<german meaning lowercased>:<bosnian>"`, computed in `inhalt.mit_kennung()` |
 | Cloze sentence | `vokabeln.SAETZE` | `___` is the gap, `answer` fills it, `kat` is the level |
 | Grammar lesson | `grammatik.GRAMMATIK[level_id]` | explanation (text and tables) + multiple-choice exercises |
 | Story | `geschichten.GESCHICHTEN` | text, translation, glossary, questions; `WOERTERBUCH` makes every word tappable |
@@ -78,7 +79,7 @@ Plain JavaScript, no framework. Main parts, in file order:
 - **Storage**: everything in `localStorage` under `zmaj_*` keys, every access
   in `try` so private windows still work. `zmaj_stand` holds the whole progress
   (known word IDs, passed levels, learning days, lives, coins, items).
-- **Content loading** (`holeInhalt`): first `/api/daten` (the dev server),
+- **Content loading** (`holeInhalt`): first `/api/daten` (`start.py` on the PC),
   then `inhalt/<lang>.json`, then English, then German.
 - **Lesson engine** (`buildLesson`, `renderTask`): mixes new-word cards,
   multiple choice in both directions, typing, listening, speaking (device
@@ -110,7 +111,7 @@ progress.
 ```mermaid
 flowchart TB
   P[push / pull request] --> T & R & K & Q & X
-  T["pytest · Python 3.9 + 3.13<br/>content, 8 languages, audio, dataset, links"]
+  T["pytest · Python 3.10 + 3.13<br/>content, 8 languages, audio, dataset, links"]
   R["reuse lint<br/>licence of every file"]
   K["gitleaks<br/>whole git history"]
   Q["CodeQL<br/>Python · JavaScript · Actions"]
@@ -126,7 +127,7 @@ flowchart TB
 
 | Check | Tool | Where |
 |---|---|---|
-| Content integrity in all 8 languages | `pytest` (`tests/`) | CI, Python 3.9 and 3.13 |
+| Content integrity in all 8 languages | `pytest` (`tests/`) | CI, Python 3.10 and 3.13 |
 | App content builds and all UI keys exist | `inhalt_bauen.py`, `texte_pruefen.py` | CI |
 | Dataset matches the sources | `daten_exportieren.py --pruefen` | CI and a test |
 | Lint | `ruff` | CI |
@@ -134,4 +135,4 @@ flowchart TB
 | Secrets in history | gitleaks | CI |
 | Security analysis | CodeQL (Python, JavaScript, Actions) | CI, weekly |
 | Supply chain | OpenSSF Scorecard, SHA-pinned actions, hash-locked dev tools | CI, weekly |
-| Review | Codex against `AGENTS.md`, then a human | every pull request |
+| Review | Codex against `AGENTS.md`, then a human | every pull request (when secret `OPENAI_API_KEY` and variable `CODEX_AN=true` are set) |

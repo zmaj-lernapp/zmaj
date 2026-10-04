@@ -50,7 +50,7 @@ No account, no install; the interface follows your browser language. Append
 `?alle=1` to unlock every level. The web demo has no ads
 ([`demo_bauen.py`](demo_bauen.py)); it is hosted by GitHub Pages.
 
-**Locally,** with nothing but Python 3.9+:
+**Locally,** with nothing but Python 3.10+:
 
 ```bash
 git clone https://github.com/zmaj-lernapp/zmaj.git
@@ -110,7 +110,7 @@ phrase pairs plus a pronunciation lexicon for low-resource Bosnian NLP.
 
 ## How it is built
 
-One function, `start.lade_daten()`, turns the content files into what every
+One function, `inhalt.lade_daten()`, turns the content files into what every
 output needs, so the app, the dataset and the demo can never disagree:
 
 ```mermaid
@@ -121,7 +121,7 @@ flowchart LR
     S["geschichten.py<br/>12 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]
   end
-  L{{"start.lade_daten(lang)"}}
+  L{{"inhalt.lade_daten(lang)"}}
   V & G & S & U --> L
   A[("web/audio/<br/>2,332 MP3")]
   L --> APP["web/inhalt/*.json<br/>Android app"]
@@ -138,19 +138,20 @@ flowchart LR
 | `web/index.html` | the whole app: one file of HTML, CSS and JavaScript, no framework, no build step |
 | `vokabeln.py`, `grammatik.py`, `geschichten.py` | the course content |
 | `uebersetzungen.py`, `sprachen.py` | content translations and interface texts in 8 languages |
-| `start.py` | development server; reads the content live |
+| `inhalt.py` | `lade_daten(lang)`: content files → what the app gets, in one place |
+| `start.py` | local starter: serves `web/` on localhost and reads the content live |
 | `inhalt_bauen.py` | content → `web/inhalt/<lang>.json` for the Android shell |
 | `daten_exportieren.py` | content → open dataset in `data/` |
 | `tests/` | content, translation, audio, dataset and repository checks |
 
-The Android shell (Capacitor) lives in a separate private repository because
-the signing key is next to it. Overview: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+The Android shell (Capacitor) lives in a separate private repository.
+Overview: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 Maintainer notes in German:
-[`docs/WARTUNG.md`](docs/WARTUNG.md), [`ANLEITUNG.md`](ANLEITUNG.md).
+[`ANLEITUNG.md`](ANLEITUNG.md).
 
 ## Quality
 
-Every push runs `pytest` on Python 3.9 and 3.13 (word IDs, cloze gaps,
+Every push runs `pytest` on Python 3.10 and 3.13 (word IDs, cloze gaps,
 answers present in every language, placeholders and HTML balanced in all
 translations, an audio file for every item, dataset in sync with the
 sources), plus `ruff`, REUSE licensing, gitleaks over the full history,
@@ -172,7 +173,8 @@ native speaker overrides any model. Pull requests are reviewed by Codex
 against those rules ([workflow](.github/workflows/codex-review.yml)), and a
 maintainer can ask Codex for a first look at a reported language error
 ([workflow](.github/workflows/codex-language-triage.yml)). A human decides in
-both cases.
+both cases. Both workflows stay off (no runner starts) until the repository
+has the secret `OPENAI_API_KEY` and the variable `CODEX_AN` set to `true`.
 
 ```mermaid
 sequenceDiagram
@@ -225,6 +227,6 @@ Der gesamte Lerninhalt steht unter CC BY-SA 4.0 als Datensatz in
 
 Fehler in einem Wort oder einer Übersetzung bitte über
 [Sprachkorrektur](https://github.com/zmaj-lernapp/zmaj/issues/new?template=language_correction.yml)
-melden. Notizen für den Betrieb: [`docs/WARTUNG.md`](docs/WARTUNG.md).
+melden. Notizen für den Betrieb: [`ANLEITUNG.md`](ANLEITUNG.md).
 
 </details>

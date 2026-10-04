@@ -5,6 +5,7 @@ Getrennt von tests/, weil sie Playwright und einen Browser brauchen und
 eine halbe Minute laufen statt zwei Sekunden. `python3 -m pytest` laeuft
 weiter nur tests/ (testpaths in pyproject.toml); diese hier mit
 
+    python3 -m pip install -r requirements-e2e.txt
     python3 -m pytest tests_e2e -q
     ZMAJ_CHROMIUM=/pfad/zu/chromium python3 -m pytest tests_e2e -q
 

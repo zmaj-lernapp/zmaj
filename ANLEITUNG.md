@@ -5,6 +5,116 @@ und im Browser am PC. Ohne Server, ohne Konto: Der Lernstand bleibt auf dem
 Gerät. Die Oberfläche steckt ganz in `web/index.html`; der Inhalt wird aus
 den Python-Dateien daneben erzeugt.
 
+| | |
+|---|---|
+| Paketname | `de.smartdragon.zmaj` |
+| Stand | geschlossener Test, seit 23.09.2026 laufen die 14 Tage |
+| Finanzierung | Werbung über AdMob, Vollversion als Abo |
+
+---
+
+## Wo ich anfange, wenn ich lange nicht hier war
+
+| Ich will … | Datei |
+|---|---|
+| die App am PC starten | `start.py` in Thonny öffnen, **F5** |
+| am Lerninhalt arbeiten | `vokabeln.py`, `grammatik.py`, `geschichten.py` |
+| Texte der Oberfläche ändern | `sprachen.py` |
+| wissen, wie alles zusammenhängt | die Abschnitte ab „Starten“ |
+| den nächsten Build vorbereiten | „Liegen bereit für den Build nach dem Test“ |
+| Codex-Review und -Triage einschalten | GitHub, Settings → Secrets and variables → Actions: Secret `OPENAI_API_KEY` und Variable `CODEX_AN` = `true` |
+
+---
+
+## Die Android-Hülle
+
+Die Android-Hülle liegt **außerhalb** dieses Ordners, daneben unter
+`zmaj-android/`, in einem eigenen, privaten Repository. Alle Ordner stehen
+unten unter „Ordner“.
+
+---
+
+## Die Skripte
+
+Alle laufen mit dem Python aus Thonny. **`python` gibt es auf diesem Rechner
+nicht** — der Interpreter steht unter
+`C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe`.
+
+### Täglich
+
+| Skript | Was es tut |
+|---|---|
+| `start.py` | startet die App am PC zum Ausprobieren (nur Dateien und Inhalt, keine Konten) |
+| `inhalt_bauen.py` | macht aus den Python-Dateien das JSON fürs Handy |
+| `app_bauen.py` | bringt den Inhalt in die Android-Hülle und baut das Paket |
+
+### Beim Veröffentlichen
+
+| Skript | Was es tut |
+|---|---|
+| `seite_bauen.py` | erzeugt die Rechtstexte als Webseite, inklusive `app-ads.txt` |
+| `grafiken_bauen.py` | Symbol und Vorstellungsgrafik für den Store |
+| `logo_sichern.py` | holt das SmartDragon-Zeichen aus der App als eigene Datei |
+| `projekt_sichern.py` | packt den ganzen Stand in zwei Zip-Dateien |
+
+### Liegen bereit für den Build **nach** dem Test
+
+Diese Skripte dürfen erst laufen, wenn die 14 Tage durch sind — jede
+Einreichung setzt Googles Prüfuhr zurück. Reihenfolge wie in der Tabelle.
+
+| Skript | Was es tut | Stand 04.10.2026 |
+|---|---|---|
+| `import_richten.py` | eine von Hand geschriebene Sicherung kann die App nicht mehr lahmlegen | Probelauf sauber, getestet |
+| `sicherheit2_richten.py` | zwei kleine Härtungen (Konten-Links ohne Konten, Fest-Probe) | Probelauf sauber, getestet |
+| `barrierefreiheit_richten.py` | Bildschirmleser und Kontrast: 0 kritische und 0 ernste axe-Befunde statt 20 und 102 | Probelauf sauber, getestet |
+| `werbung_richten.py` | letzter Rest der Werbeprüfung: auch das belohnte Video wird vor dem Zeigen noch einmal geprüft (App noch vorne?) | Probelauf sauber, getestet. Am 04.10.2026 auf 2 Änderungen gekürzt, alles andere war von Hand drin oder bewusst anders gelöst (Liste im Skript) |
+| `werbung_texte.py` | Datenschutzerklärung in acht Sprachen: Zwecke der Werbung und Ausnahme beim Satz „keine Analyse-Dienste“ | Probelauf sauber, getestet. Die Messwerte standen schon von Hand in allen acht Sprachen und sind herausgenommen. Danach auch `seite_bauen.py` |
+| `admob_scharf.py` | tauscht die Testkennungen gegen die echten | zuletzt, nach den Werbe-Skripten |
+
+Alle folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
+Ohne den Schalter passiert nichts. Kommt ein gesuchter Textabschnitt nicht
+genau einmal vor, brechen sie ab und ändern gar nichts — ein halb geändertes
+Programm gibt es damit nicht. Danach `inhalt_bauen.py`, `seite_bauen.py`,
+`app_bauen.py`.
+
+Die früheren Patch-Skripte (Dialoge, Vorspann, Herz, Vorleser, Zurück,
+Sicherungsmeldung und andere) sind angewendet und wurden am 04.10.2026
+entfernt; sie stehen in der Git-Historie.
+
+---
+
+## Die Dokumentation
+
+| Datei | Inhalt |
+|---|---|
+| `ANLEITUNG.md` | diese Datei: wie das Projekt gebaut und betrieben wird |
+| `docs/ARCHITECTURE.md` | Überblick auf Englisch, mit Diagrammen |
+| `WORTSCHATZ_KORREKTUREN.md` | was der Muttersprachler korrigiert hat – geht allem vor |
+| `docs/TONBEFUNDE.md` | Prüfung der Aufnahmen |
+| `docs/uebersetzungen-pruefbericht-2026-09-18.md` | Prüfung der Übersetzungen |
+| `docs/barrierefreiheit-2026-10-04.md` | Prüfung der Barrierefreiheit (axe) |
+| `docs/BEST_PRACTICES.md` | Antworten für das OpenSSF-Abzeichen |
+
+Store-Texte, Prüfpläne und Arbeitsnotizen liegen nur lokal in `privat/`.
+
+---
+
+## Was nie in dieses Repository gehört
+
+`.gitignore` hält es draußen, aber zur Sicherheit hier noch einmal:
+
+- **`tts_zugang.json`** – der Azure-Schlüssel für die Sprachausgabe
+- **`mail_zugang.json`** – das Passwort des Postfachs
+- **Der Signierschlüssel** und `keystore.properties` – ohne ihn gibt es nie
+  wieder ein Update, mit ihm kann jeder eine gefälschte Version bauen.
+  `projekt_sichern.py` nimmt ihn in die Geheim-Zip auf.
+- `fortschritt_*.json`, `sitzungen.json`, `codes.json` – echte Nutzerdaten aus
+  der Zeit mit Kontoserver (bis 04.10.2026). Es entstehen keine neuen mehr,
+  die Einträge in `.gitignore` bleiben für alte Reste stehen.
+- `feedback.txt`, `start.log`, `__pycache__/`
+
+---
+
 ## Starten
 
 ### Am PC ansehen
@@ -29,24 +139,31 @@ alten Stand.
 
 ### Was mit `start.py` ist
 
-`start.py` ist der alte Server aus der Zeit mit Konten. Er läuft noch und
-bringt die Anmeldung mit: Wer `http://localhost:8000` öffnet, ist **sofort
-angemeldet**, die App speichert gleich darauf in eine Profildatei, und die
-zeitabhängige Logik läuft mit – Leben wachsen nach, ein Fehltag verbraucht
-einen Serienschutz. Zum Anschauen ist das der falsche Weg, weil es echte
-Daten verändert, ohne dass jemand etwas angeklickt hat.
+Seit dem 04.10.2026 ist `start.py` nur noch ein schlanker Starter: In Thonny
+öffnen, **F5**, der Browser geht auf `http://localhost:8000` auf. Er liefert
+den Ordner `web/` aus und dazu `/api/daten` – den Inhalt, bei jedem Aufruf
+frisch aus den Python-Dateien. Eine Änderung an `vokabeln.py` ist damit
+nach einem Neuladen im Browser sofort zu sehen, ohne `inhalt_bauen.py`.
 
-Gebraucht wird `start.py` trotzdem, aber nur als Werkzeug:
+Konten, Anmeldung, Profildateien und Mails gibt es dort nicht mehr (der
+alte Server mit `konten.py` und `mail.py` ist weg). Der Lernstand liegt
+auch am PC im Speicher des Browsers, genau wie auf dem Handy. Im
+Projektordner entsteht dabei nichts mehr außer `start.log`.
 
-- `inhalt_bauen.py` ruft `start.lade_daten()` auf – deshalb kann die
-  Handy-Fassung gar nicht vom PC abweichen.
+Außerdem:
+
 - `start.py --fehlende <code>` schreibt die Liste der fehlenden
   Übersetzungen (siehe „Weiter übersetzen“).
+- Der Inhalt selbst entsteht in `inhalt.py` (`lade_daten()`). Dieselbe
+  Funktion rufen `inhalt_bauen.py`, `daten_exportieren.py`, `demo_bauen.py`
+  und die Tests auf – deshalb kann die Handy-Fassung gar nicht vom PC
+  abweichen. `start.lade_daten()` geht weiter, es reicht nur durch.
 
 Die Desktop-Verknüpfung **„Zmaj Bosnisch lernen“** und
-`Zmaj Bosnisch lernen.vbs` starten ebenfalls `start.py`. Sie stammen aus
-derselben Zeit. Den Knopf „App beenden“, auf den die Datei im Kommentar
-verweist, gibt es nicht mehr – beendet wird in Thonny mit **Stop**.
+`Zmaj Bosnisch lernen.vbs` starten ebenfalls `start.py`, ohne Fenster. Ein
+zweiter Doppelklick öffnet nur den Browser. Beendet wird in Thonny mit
+**Stop**; über die Verknüpfung gestartet läuft er, bis der PC ausgeht (oder
+`pythonw.exe` im Task-Manager beenden).
 
 **Wichtig:** Die Datei `web/index.html` nie direkt per Doppelklick öffnen.
 Über `file://` darf der Browser die Inhaltsdateien nicht nachladen, die App
@@ -151,21 +268,17 @@ einem Knopf zum Kopieren.
 
 ### Was aus mail.py und konten.py geworden ist
 
-Beide Dateien liegen noch im Ordner und werden noch benutzt – aber nur von
-`start.py`, also nur im alten Serverbetrieb am PC:
+Am 04.10.2026 gelöscht, zusammen mit dem Kontoteil von `start.py`.
+`konten.py` hielt Passwörter, Sitzungen und Einmal-Codes, `mail.py`
+verschickte Bestätigungsmail, Passwort-Link und das Feedback. Die App rief
+seit `KONTEN_AN = false` (26.09.2026) nichts davon mehr auf, in der
+Android-Hülle waren beide nie dabei. Wer die Konten je zurückwill, findet
+alles in der Versionsgeschichte vor diesem Datum.
 
-- `konten.py` – Passwörter, Sitzungen, Einmal-Codes. `start.py` importiert
-  es in Zeile 49 und legt damit `sitzungen.json` und `codes.json` an.
-- `mail.py` – Bestätigungsmail, Passwort-Link und das weitergeleitete
-  Feedback. `start.py` ruft es an sechs Stellen auf.
-
-Die App selbst ruft nichts davon auf. In der Android-Hülle sind beide
-Dateien nicht einmal dabei: `app_bauen.py` kopiert nur `web/`. Wegwerfen
-kann man sie erst, wenn auch `start.py` weg soll – und der wird noch
-gebraucht (siehe „Was mit `start.py` ist“).
-
-`mail_zugang.json` und `mail_zugang.BEISPIEL.json` gehören zu `mail.py`. Die
-erste enthält ein Passwort und bleibt auf diesem Rechner.
+`mail_zugang.json` bleibt: `feedback_holen.py` holt damit die Rückmeldungen
+aus dem Postfach. Gebraucht werden nur `benutzer` und `passwort`, die
+Vorlage steht in `mail_zugang.BEISPIEL.json`. Die echte Datei enthält ein
+Passwort und bleibt auf diesem Rechner.
 
 ## Wo was liegt
 
@@ -195,8 +308,8 @@ nichts verlorengeht. Die Zeilen dafür können irgendwann raus.
 
 **Was es nicht mehr gibt:** `fortschritt_<Name>.json`, `sitzungen.json`,
 `codes.json`, `postausgang.txt` und `feedback.txt` im Projektordner. Die
-Profildateien liegen als Kopie in `sicherung_konten_2026-09-16`, die übrigen
-legt nur noch `start.py` an, wenn man ihn startet.
+Profildateien liegen als Kopie in `sicherung_konten_2026-09-16`. Seit dem
+04.10.2026 legt auch `start.py` keine davon mehr an.
 
 ## Die Zurück-Taste
 
@@ -339,8 +452,9 @@ Computerstimme. Gelesene Geschichten bleiben offen. Mit `?alle=1` sind auch
 hier alle Geschichten frei.
 
 Die Geschichten und das Wörterbuch stehen in `geschichten.py`. Fehlt ein Wort
-aus einem Geschichtentext im Wörterbuch, meldet das `start.py` beim Start –
-das ist der einzige Ort, an dem diese Prüfung läuft.
+aus einem Geschichtentext im Wörterbuch, meldet das `start.py` beim Start,
+und ein Test schlägt fehl. Die Prüfung selbst steht in `inhalt.py`
+(`fehlende_woerter()`).
 
 ## Die Lektion (wie bei Duolingo)
 
@@ -449,7 +563,7 @@ Die echten Kennungen (seit dem 20.09.2026) stehen in `admob_scharf.py`.
 Eingetragen werden sie nicht von Hand, sondern mit diesem Skript – es
 tauscht alle drei, legt `ADMOB_TEST` um und prüft danach nach, dass keine
 Testkennung übrig geblieben ist. Wann das dran ist und was vorher laufen
-muss, steht in `docs/WARTUNG.md`.
+muss, steht oben unter „Liegen bereit für den Build nach dem Test“.
 
 ### Die Einwilligung holt Google
 
@@ -497,7 +611,7 @@ WERBUNG_LAEUFT = True
   Gerät, kein Einwilligungsfenster. In der Datenschutzerklärung steht unter
   Abschnitt 6 „keine Werbenetzwerke“.
 
-Der Schalter wird durchgereicht: `sprachen.py` → `start.lade_daten()` →
+Der Schalter wird durchgereicht: `sprachen.py` → `inhalt.lade_daten()` →
 `web/inhalt/<code>.json` → `web/index.html` (`WERBUNG_ECHT`). Deshalb **nur
 diese eine Stelle anfassen** – so können Text und Verhalten nicht
 auseinanderlaufen. Beide Fassungen von Abschnitt 6 stehen in allen acht
@@ -645,11 +759,9 @@ Streak Freeze bei Duolingo, nur dass man ihn nicht kaufen muss:
 - Ein geschützter Tag zählt nicht als Lerntag. Die Serie reißt nicht ab,
   die Zahl steigt an diesem Tag aber auch nicht.
 
-Die Zahlen stehen in `web/index.html` (`SCHUTZ_MAX = 2`, `SCHUTZ_TAGE = 10`).
-Dieselben Zahlen stehen noch einmal in `start.py` (`SCHUTZ_MAX`,
-`SCHUTZ_START`, `SCHUTZ_TAGE`), wo sie das Gespeicherte begrenzen. Wer die
-eine Stelle ändert, ändert die andere mit – sonst schneidet der Server ab,
-was die App vergibt. Im Lernstand stehen die geretteten Tage unter `frost`
+Die Zahlen stehen in `web/index.html` (`SCHUTZ_MAX = 2`, `SCHUTZ_TAGE = 10`),
+nur dort. (Bis zum 04.10.2026 standen sie noch einmal im Kontoteil von
+`start.py`; den gibt es nicht mehr.) Im Lernstand stehen die geretteten Tage unter `frost`
 und der Vorrat unter `schutz`.
 
 Lektion abgebrochen, weil die Leben alle waren? Der Tag zählt trotzdem als
@@ -703,10 +815,9 @@ Gezaehlt wird in `tagwerk`, einer Zuordnung Tag -> Zaehler:
 Tage ohne Uebung stehen gar nicht erst drin. `zeit` ist die Lernzeit in
 Sekunden, alles andere sind Stueckzahlen.
 
-Obergrenzen kennt nur `start.py`: `TAGWERK_TAGE_MAX` (400 Tage bleiben in
-der Datei), `TAGWERK_MAX` (500 je Stueckzaehler) und `TAGWERK_ZEIT_MAX`
-(sechs Stunden). Sie greifen also nur im alten Serverbetrieb; auf dem Geraet
-waechst `tagwerk` ungebremst. Bei einer kurzen Zeile je Lerntag faellt das
+Obergrenzen gibt es keine: Die standen nur im alten Kontoserver in
+`start.py` (400 Tage, 500 je Stueckzaehler, sechs Stunden) und sind mit ihm
+am 04.10.2026 verschwunden. `tagwerk` waechst ungebremst. Bei einer kurzen Zeile je Lerntag faellt das
 auf Jahre hinaus nicht ins Gewicht.
 
 ### Lernzeit
@@ -928,7 +1039,8 @@ Test seine Wiederholungsfragen zieht. Das Level erscheint automatisch im
 Lernpfad.
 
 Die Prüfung auf doppelte Wörter, fehlende Felder und Sätze ohne Lücke steckt
-in `start.py` und läuft nur, wenn man ihn startet. `inhalt_bauen.py` prüft
+in `inhalt.py` (`pruefe_vokabeln()`). `start.py` meldet sie beim Start, und
+die Tests laufen sie bei jedem `pytest`. `inhalt_bauen.py` prüft
 etwas anderes: dass jede Sprache Inhalt hat, dass alle acht gleich viel
 enthalten und dass der bosnische Teil nirgends mitübersetzt wurde.
 
@@ -1243,15 +1355,14 @@ Bosnisch Lernapp/
 ├── ton_bauen.py      Erzeugt die Aufnahmen und web/audio/index.json
 ├── ton_pruefen.py    Prüft, ob die Tonspur vollständig ist
 │
-├── start.py          Der alte Server mit Konten. Liefert lade_daten() und
-│                     --fehlende; zum Benutzen der App nicht mehr gedacht
-├── konten.py         Passwörter, Sitzungen, Einmal-Codes – nur für start.py
-├── mail.py           Bestätigung und Passwort-Link – nur für start.py
+├── inhalt.py         lade_daten(): aus den fünf Dateien wird der Inhalt
+├── start.py          Startet die App am PC (web/ + /api/daten) und
+│                     --fehlende; keine Konten mehr
 ├── Zmaj Bosnisch lernen.vbs  Startet start.py ohne Fenster (Verknüpfung)
 ├── start.log         Meldungen, wenn über die Verknüpfung gestartet
 │
 ├── tts_zugang.json   Schlüssel für den Sprachdienst – nicht weitergeben
-├── mail_zugang.json  Zugang zum Mailserver – nicht weitergeben
+├── mail_zugang.json  Postfach für feedback_holen.py – nicht weitergeben
 ├── *.BEISPIEL.json   Vorlagen für die beiden Zugangsdateien
 │
 ├── ANLEITUNG.md      Diese Datei
@@ -1312,7 +1423,7 @@ wie sie im Text stehen).
 ## Was als Nächstes ansteht
 
 Was für den ersten Build nach dem geschlossenen Test der Reihe nach laufen
-muss, steht in `docs/WARTUNG.md`.
+muss, steht oben unter „Liegen bereit für den Build nach dem Test“.
 
 Danach, ohne Eile:
 

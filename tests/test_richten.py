@@ -20,6 +20,25 @@ OFFEN = {
                             ["if(neuesPw && KONTEN_AN)", "if(bestaetigen && KONTEN_AN)"]),
     "barrierefreiheit_richten": ("--good-text:#188049",
                                  ["<main>", "</main>", "--good-text:#188049"]),
+    "werbung_richten": ("}, ()=> !document.hidden);",
+                        ["}, ()=> !document.hidden);",
+                         "Punkt 1, nachgezogen fuers belohnte Video."]),
+}
+
+# Dasselbe fuer Skripte, die sprachen.py richten (Stand 04.10.2026: nur
+# werbung_texte.py). Spuren je genau einmal - in jeder der acht Sprachen.
+OFFEN_SPRACHEN = {
+    "werbung_texte": ("Google verwendet all das, um Anzeigen auszuspielen",
+                      ["Google verwendet all das, um Anzeigen auszuspielen",
+                       "Google uses all of this to serve ads",
+                       "Google bunların tamamını reklam göstermek",
+                       "Google använder allt detta för att visa annonser",
+                       "Google gebruikt dit alles om advertenties te tonen",
+                       "Google bruker alt dette til å vise annonser",
+                       "Google bruger alt dette til at vise annoncer",
+                       "Google utilise tout cela pour diffuser les annonces",
+                       "Außer Googles Werbebaustein bindet die App keine Analyse-Dienste",
+                       "analyse en dehors du module publicitaire de Google"]),
 }
 
 
@@ -93,3 +112,53 @@ def test_gleichgewicht_findet_aufgerissene_klammer():
     assert richten.gleichgewicht("f(){}", "f(){") == ["geschweifte Klammern aus dem Gleichgewicht"]
     assert richten.gleichgewicht("<!-- x -->", "<!-- x") == ["HTML-Kommentare aus dem Gleichgewicht"]
     assert richten.gleichgewicht("a", "a") == []
+
+
+@pytest.fixture(scope="module")
+def sprachen_py(wurzel):
+    """sprachen.py, wie es im Repository liegt, Zeilenenden auf \\n."""
+    import io
+    import os
+    roh = io.open(os.path.join(wurzel, "sprachen.py"), encoding="utf-8", newline="").read()
+    return roh.replace("\r\n", "\n")
+
+
+def sprachen_gerichtet(name, text):
+    skript = importlib.import_module(name)
+    if OFFEN_SPRACHEN[name][0] in text:
+        return skript, text
+    neu, fehler = skript.anwenden(text)
+    assert not fehler, fehler
+    return skript, neu
+
+
+@pytest.mark.parametrize("name", OFFEN_SPRACHEN)
+def test_sprachen_passt_noch_oder_ist_schon_angewendet(name, sprachen_py):
+    _, neu = sprachen_gerichtet(name, sprachen_py)
+    for spur in OFFEN_SPRACHEN[name][1]:
+        assert neu.count(spur) == 1, spur
+    compile(neu, "sprachen.py", "exec")
+
+
+@pytest.mark.parametrize("name", OFFEN_SPRACHEN)
+def test_sprachen_zweimal_anwenden_bricht_ab(name, sprachen_py):
+    skript, neu = sprachen_gerichtet(name, sprachen_py)
+    _, fehler = skript.anwenden(neu)
+    assert fehler
+
+
+@pytest.mark.parametrize("name", OFFEN_SPRACHEN)
+def test_sprachen_crlf_kopie_wird_gerichtet_und_bleibt_crlf(name, sprachen_py, tmp_path):
+    skript = importlib.import_module(name)
+    if OFFEN_SPRACHEN[name][0] in sprachen_py:
+        pytest.skip("schon angewendet")
+    kopie = tmp_path / "sprachen.py"
+    kopie.write_bytes(sprachen_py.replace("\n", "\r\n").encode("utf-8"))
+    vorher = kopie.read_bytes()
+    assert skript.main(["--datei", str(kopie)]) == 0
+    assert kopie.read_bytes() == vorher, "der Probelauf hat geschrieben"
+    assert skript.main(["--datei", str(kopie), "--schreiben"]) == 0
+    roh = kopie.read_bytes()
+    assert roh.count(b"\n") == roh.count(b"\r\n"), "Zeilenenden gemischt"
+    erwartet, _ = skript.anwenden(sprachen_py)
+    assert roh.decode("utf-8").replace("\r\n", "\n") == erwartet

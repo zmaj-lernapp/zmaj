@@ -9,7 +9,7 @@ import re
 
 import pytest
 
-# Befunde, die start.pruefe_vokabeln() schon meldet und die noch auf eine
+# Befunde, die inhalt.pruefe_vokabeln() schon meldet und die noch auf eine
 # inhaltliche Entscheidung warten. Ein NEUER Befund lässt den Test scheitern,
 # ein behobener auch - dann bitte hier streichen.
 BEKANNT = {
@@ -19,11 +19,11 @@ BEKANNT = {
 
 
 def test_projekteigene_pruefung(grunddaten):
-    import start
-    befunde = set(start.pruefe_vokabeln(grunddaten))
+    import inhalt
+    befunde = set(inhalt.pruefe_vokabeln(grunddaten))
     neu = befunde - BEKANNT
     behoben = BEKANNT - befunde
-    assert not neu, "Neue Befunde aus start.pruefe_vokabeln():\n" + "\n".join(sorted(neu))
+    assert not neu, "Neue Befunde aus inhalt.pruefe_vokabeln():\n" + "\n".join(sorted(neu))
     assert not behoben, "Behoben - bitte aus BEKANNT streichen:\n" + "\n".join(sorted(behoben))
 
 
@@ -104,6 +104,6 @@ def test_uebungen_haben_ihre_richtige_antwort_in_jeder_sprache(alle_daten):
 def test_geschichten_woerter_stehen_im_woerterbuch(grunddaten):
     """In den Geschichten lässt sich jedes Wort antippen. Fehlt es im
     Wörterbuch, kommt "Kein Eintrag"."""
-    import start
-    fehlt = start.fehlende_woerter(grunddaten)
+    import inhalt
+    fehlt = inhalt.fehlende_woerter(grunddaten)
     assert not fehlt, {k: sorted(v)[:10] for k, v in fehlt.items()}

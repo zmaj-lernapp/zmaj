@@ -11,10 +11,10 @@ eine Datei je Sprache.
 
 WANN LAUFEN LASSEN: Immer wenn du Wörter, Sätze, Geschichten, Grammatik oder
 Texte geändert hast und die Handy-App das sehen soll. Am PC brauchst du es
-nicht – dort liest der Server die Python-Dateien bei jedem Aufruf frisch ein.
+nicht – dort liest start.py die Python-Dateien bei jedem Aufruf frisch ein.
 
-WARUM ES NICHT ABWEICHEN KANN: Das Skript ruft dieselbe Funktion auf wie der
-Server, nämlich start.lade_daten(). Was hier herauskommt, ist Zeichen für
+WARUM ES NICHT ABWEICHEN KANN: Das Skript ruft dieselbe Funktion auf wie
+start.py am PC, nämlich inhalt.lade_daten(). Was hier herauskommt, ist Zeichen für
 Zeichen das, was der Browser am PC bekommt – nur als Datei statt als Antwort.
 """
 import io
@@ -40,14 +40,14 @@ def schreiben(ziel, anpassen=None):
     Web-Demo schaltet damit die Werbetexte ab (demo_bauen.py). So gibt es
     nur einen Weg, auf dem die App-Dateien entstehen.
     Rückgabe: [(code, Bytes, daten), ...] für pruefen()."""
-    import start
+    import inhalt
     import sprachen
 
     os.makedirs(ziel, exist_ok=True)
     codes = [s["code"] for s in sprachen.SPRACHEN]
     liste = []
     for code in codes:
-        daten = start.lade_daten(code)
+        daten = inhalt.lade_daten(code)
         if anpassen:
             anpassen(code, daten)
         for feld in OHNE:
