@@ -110,7 +110,7 @@ phrase pairs plus a pronunciation lexicon for low-resource Bosnian NLP.
 
 ## How it is built
 
-One function, `start.lade_daten()`, turns the content files into what every
+One function, `inhalt.lade_daten()`, turns the content files into what every
 output needs, so the app, the dataset and the demo can never disagree:
 
 ```mermaid
@@ -121,7 +121,7 @@ flowchart LR
     S["geschichten.py<br/>12 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]
   end
-  L{{"start.lade_daten(lang)"}}
+  L{{"inhalt.lade_daten(lang)"}}
   V & G & S & U --> L
   A[("web/audio/<br/>2,332 MP3")]
   L --> APP["web/inhalt/*.json<br/>Android app"]
@@ -138,7 +138,8 @@ flowchart LR
 | `web/index.html` | the whole app: one file of HTML, CSS and JavaScript, no framework, no build step |
 | `vokabeln.py`, `grammatik.py`, `geschichten.py` | the course content |
 | `uebersetzungen.py`, `sprachen.py` | content translations and interface texts in 8 languages |
-| `start.py` | development server; reads the content live |
+| `inhalt.py` | `lade_daten(lang)`: content files → what the app gets, in one place |
+| `start.py` | local starter: serves `web/` on localhost and reads the content live |
 | `inhalt_bauen.py` | content → `web/inhalt/<lang>.json` for the Android shell |
 | `daten_exportieren.py` | content → open dataset in `data/` |
 | `tests/` | content, translation, audio, dataset and repository checks |

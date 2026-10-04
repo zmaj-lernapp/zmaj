@@ -8,7 +8,10 @@ so machen, wenn ein Feedback kommt, dass du das direkt siehst und
 bearbeitest und gegebenenfalls direkt umsetzt in die neue Version".
 
 Liest nur, markiert nichts als gelesen (BODY.PEEK) und loescht nichts.
-Zugang: mail_zugang.json (dasselbe App-Passwort wie fuer mail.py).
+Zugang: mail_zugang.json, Vorlage in mail_zugang.BEISPIEL.json. Gebraucht
+werden nur "benutzer" und "passwort" (das Gmail-App-Passwort). Frueher
+verschickte mail.py damit auch Mails; mail.py ist seit dem 04.10.2026 weg,
+die Datei bleibt fuer dieses Skript.
 
   python feedback_holen.py                neue Mails seit dem letzten Merken
                                           als JSON ausgeben (nichts merken)
