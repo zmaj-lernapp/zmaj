@@ -47,6 +47,8 @@ python3 -m pytest                                # ~2 seconds
 Before you open the PR:
 
 - [ ] `python3 -m pytest` and `ruff check .` pass.
+- [ ] New functionality comes with tests in `tests/` (or `tests_e2e/` for
+      behaviour in the browser).
 - [ ] If you changed content, run `python3 daten_exportieren.py` and commit `data/`.
 - [ ] You did **not** change the German meaning (`de`) of an existing word in
       `vokabeln.py`, or you say so in the PR: it is the word's ID and changing
