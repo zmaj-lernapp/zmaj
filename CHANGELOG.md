@@ -4,6 +4,12 @@ All notable changes to this repository. The app's user-facing release notes
 are in the Play Store listing. Format:
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.2.1] – 2026-10-04
+
+### Fixed
+- Zenodo archiving: metadata now comes from `.zenodo.json`; Zenodo could not
+  read the two licences listed in `CITATION.cff`.
+
 ## [1.2.0] – 2026-10-04
 
 ### Changed
