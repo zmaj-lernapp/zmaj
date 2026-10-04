@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 r"""
-test_sicherung.py  –  Sicherungsdateien zum Durchtesten der ganzen App
+testdaten_bauen.py  –  Sicherungsdateien zum Durchtesten der ganzen App
 
 Zum Ausprobieren braucht man einen Stand, in dem nichts mehr gesperrt ist:
 alle Level offen, alle Wörter gelernt, alle Geschichten gelesen, Münzen
 genug. Von Hand zusammenzuklicken dauert Stunden.
 
-    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" test_sicherung.py
+    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" testdaten_bauen.py
 
 Die fertigen Dateien landen im Ordner `testdaten` und werden in der App
 über **Einstellungen → Sicherung → Sicherung einlesen** geladen.

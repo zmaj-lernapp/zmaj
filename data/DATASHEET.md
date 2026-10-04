@@ -97,7 +97,7 @@ flowchart LR
   MT --> AI["2 independent AI review passes<br/>141 confirmed findings"]
   AI --> T["translations<br/>not yet native-reviewed"]
   B --> TTS["Azure neural TTS<br/>2,332 MP3"]
-  TTS --> H["native speaker spot check<br/>TONBEFUNDE.md"]
+  TTS --> H["native speaker spot check<br/>docs/TONBEFUNDE.md"]
 ```
 
 **Bosnian text.** Words, sentences and stories were drafted with the help of
@@ -111,7 +111,7 @@ Settings → Sources. Regional variants are kept where families really use them
 
 **Translations.** German is the source language. The seven other languages
 were machine-translated and checked by two independent AI review passes; the
-[report](../Zmaj%20Berichte/uebersetzungen-pruefbericht-2026-09-18.md) lists 141
+[report](../docs/uebersetzungen-pruefbericht-2026-09-18.md) lists 141
 confirmed findings, 35 of them wrong meanings. They
 have **not yet been reviewed by native speakers**. Corrections are very welcome:
 use the *Language correction* issue form.
@@ -120,7 +120,7 @@ use the *Language correction* issue form.
 (2,307 files), `bs-BA-VesnaNeural` (12, story voices) and `hr-HR-SreckoNeural`
 (13, where the Bosnian voice mispronounced a word). It is synthetic speech,
 not a recording of a person. Known pronunciation issues are documented in
-[`TONBEFUNDE.md`](../TONBEFUNDE.md). If you republish the audio, say that it is
+[`docs/TONBEFUNDE.md`](../docs/TONBEFUNDE.md). If you republish the audio, say that it is
 synthetic.
 
 ## Intended uses

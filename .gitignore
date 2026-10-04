@@ -44,6 +44,26 @@ github-seite/
 
 # nur zum Ansehen beim Entwickeln, kommt ohnehin nicht in die App
 web/_probe/
+# Probestimmen von ton_bauen.py --probe
+web/audio/_probe/
+
+# Werkzeuge und Testläufe
+.ruff_cache/
+.venv/
+venv/
+node_modules/
+test-results/
+playwright-report/
+.coverage
+htmlcov/
+.env
+.idea/
+.vscode/
+.claude/
+
+# Gebaute App-Pakete
+*.apk
+*.aab
 
 
 # ------------------------------------------------------- Arbeitssicherungen ---
@@ -62,7 +82,7 @@ thumbs.db
 
 
 # ------------------------------------------------------- bewusst DRIN sind ---
-# web/audio/   – 24 MB fertige Sprachaufnahmen. Sie neu zu erzeugen kostet
+# web/audio/   – 34 MB fertige Sprachaufnahmen. Sie neu zu erzeugen kostet
 #                Geld bei Azure, deshalb gehören sie in die Sicherung.
 # web/maskottchen/ – klein, und ohne sie zeigt die Probeseite nichts.
 # testdaten/   – erfundene Lernstände zum Ausprobieren, nichts Persönliches.
@@ -99,9 +119,10 @@ paket/dist/
 paket/build/
 *.egg-info/
 
-# Projektmappe für die Technikerschule: bleibt nur lokal. Enthält Namen
-# Dritter (Betreuung) und gehört nicht ins öffentliche Repository und nicht
-# ins Zenodo-Archiv. Aus master entfernt am 04.10.2026.
+# Interne Unterlagen (Arbeitsnotizen, Prüfberichte, Schulunterlagen):
+# bleiben nur lokal, nicht im öffentlichen Repository und nicht im
+# Zenodo-Archiv. Aus master entfernt am 04.10.2026.
+privat/
 mappe/
 PROJEKTMAPPE.md
 NACH_DER_VEROEFFENTLICHUNG.md
