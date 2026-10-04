@@ -4,7 +4,7 @@ All notable changes to this repository. The app's user-facing release notes
 are in the Play Store listing. Format:
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [1.2.0] – 2026-10-04
 
 ### Changed
 - Patch scripts share one implementation of the dry-run, anchor and CRLF
