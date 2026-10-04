@@ -22,6 +22,21 @@ are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
   SECURITY, SUPPORT, GOVERNANCE, issue forms, CITATION.cff.
 - `docs/codex-for-oss/`: plan with measurable milestones, application texts
   for Codex for Open Source (character limits checked by a test), backlog.
+- Live web demo without ads (`demo_bauen.py`, GitHub Pages workflow, off
+  until enabled).
+- Anki packages with audio, one per language, attached to releases
+  (`anki_bauen.py`).
+- Hugging Face dataset card (`data/README.md`), English architecture overview
+  (`docs/ARCHITECTURE.md`), social preview image.
+- `kennzahlen.py` measures the adoption thresholds from the plan.
+- Cross-platform store screenshots in any language
+  (`store/bilder_machen/bilder_playwright.py`).
+- More tests: grammar tables, duplicate answer options, glossary, level
+  labels in all eight languages; dead links in the documentation.
+
+### Changed
+- Development tools are locked with hashes (`requirements-dev.in` →
+  `requirements-dev.txt`) and installed with `--require-hashes` in CI.
 
 ### Fixed
 - French terms of service: the heading "Rétractation et remboursement" was
