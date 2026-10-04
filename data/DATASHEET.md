@@ -40,8 +40,11 @@ pie showData title Words per section (1,728)
 | `glossary.json` | word-by-word reading glossary used by the stories | 406 |
 | `grammar.json` | grammar lessons (explanations, tables, exercises) per language | 16 |
 | `anki/zmaj-bs-<lang>.tsv` | ready-to-import Anki decks, tagged by level | 8 decks |
+| `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 2,028 pairs × 8 |
+| `parallel.jsonl` | one line per word, sentence and story with all translations | 2,040 lines |
+| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 2,040 `<tu>` |
 | `manifest.json` | counts and SHA-256 of every file above | – |
-| `schema/*.schema.json` | JSON Schema (2020-12) for the JSON files | – |
+| `schema/*.schema.json` | JSON Schema (2020-12) for the JSON files and one `parallel.jsonl` line | – |
 
 Audio paths (`web/audio/w0001.mp3` …) are relative to the repository root.
 There are 2,332 MP3 files (≈ 37 MB).
@@ -61,6 +64,25 @@ for e in vocab["entries"][:3]:
 directions (built by [`anki_bauen.py`](../anki_bauen.py)); re-importing a newer
 package updates the cards and keeps your review history. Without audio:
 File → Import → `data/anki/zmaj-bs-en.tsv` (Anki 2.1.54 or newer).
+
+## For machine translation
+
+The parallel files hold the same content as the course files, flattened into
+Bosnian–X pairs. Each TSV has a header `bs  <lang>  kind  id`, no quoting
+(no field contains a tab or line break) and skips empty translations:
+
+```text
+bs	en	kind	id
+Dobro jutro	Good morning	word	guten morgen:Dobro jutro
+Gdje je stanica?	Where is the stop?	sentence	s0041
+```
+
+`parallel.jsonl` and `parallel.tmx` also contain the 12 stories as whole
+texts; they are not sentence-aligned. Words are short phrases, often with
+variants separated by ` / ` (*Laku noć / Lahku noć*); split or drop them as
+your task requires. With 2,028 pairs per language this is evaluation or
+fine-tuning data, not a training corpus, and the translations other than
+German are not yet native-reviewed (see below).
 
 ## How it was made
 
