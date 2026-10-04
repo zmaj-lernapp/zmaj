@@ -16,6 +16,7 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | 11 | A | `OPENAI_API_KEY` als Secret, damit Codex-Reviews sichtbar laufen | erster PR mit Kommentar „Codex review“ | D |
 | 12 | A | Entscheidung: Level 52/58 fragen Wörter aus Level 60 ab (`formell`) | `BEKANNT` in `tests/test_inhalt.py` leer | C |
 | 13 | A | Entscheidung: `mappe/` (Schulunterlagen, Name des Betreuers) öffentlich lassen? | entschieden und umgesetzt | Risiko |
+| 15 | A | OpenSSF-Best-Practices-Badge beantragen (Antworten in `BEST_PRACTICES.md`) | Badge „passing“ im README | B, C |
 | 14 | A | M6: Bewerbung abschicken | Bestätigungsmail | Ziel |
 
 ## Erledigt
@@ -35,4 +36,5 @@ erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
 | #9 Test-Werkzeuge mit Prüfsummen gesperrt (Scorecard „Pinned-Dependencies“); Demo-Link in der Bewerbung | `08e8a3b` |
 | #10 `docs/ARCHITECTURE.md` auf Englisch | `d8acf36` |
 | #11 Test: 39 relative Links in der Doku zeigen auf vorhandene Dateien | `c2bd25f` |
-| #12 Social-Preview-Bild 1280×640 auf Englisch (`docs/assets/social-preview.png`) | dieser Commit |
+| #12 Social-Preview-Bild 1280×640 auf Englisch (`docs/assets/social-preview.png`) | `7b05ba0` |
+| #13 Antworthilfe für das OpenSSF-Best-Practices-Badge | dieser Commit |
