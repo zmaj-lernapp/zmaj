@@ -57,8 +57,23 @@ Before you open the PR:
 - [ ] No new network access in `web/index.html`: no CDN, no analytics.
 
 [AGENTS.md](AGENTS.md) explains these rules in more detail; it is written for
-coding agents but is the best short guide for humans too. Every PR gets an
-automated Codex review against it; a maintainer makes the decision.
+coding agents but is the best short guide for humans too. When the Codex
+workflows are switched on, PRs also get an automated review against it; a
+maintainer always makes the decision.
+
+### Hacktoberfest and first contributions
+
+Issues labelled
+[`good first issue`](https://github.com/zmaj-lernapp/zmaj/issues?q=is%3Aopen+label%3A%22good+first+issue%22)
+are scoped so you can finish them in an afternoon, without knowing Bosnian.
+Comment on the issue before you start, so two people don't do the same work.
+
+- One issue per PR, and say which one (`Closes #123`).
+- Pull requests that only reformat, rename or reword without a reason are
+  closed without review.
+- Accepted PRs get the `hacktoberfest-accepted` label in October.
+- Leave `web/index.html` alone unless the issue asks for it: the app file is
+  frozen while a store release is in review.
 
 ### Where things are
 
