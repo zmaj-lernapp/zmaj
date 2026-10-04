@@ -49,7 +49,13 @@ jobs:
           cp LICENSE-CONTENT "dist/$name/LICENSE"
           (cd dist && zip -qr "$name.zip" "$name")
           (cd dist && zip -qr "zmaj-anki-decks-${TAG}.zip" "$name/anki" "$name/LICENSE")
-          (cd dist && sha256sum ./*.zip > SHA256SUMS.txt)
+
+      - name: Build Anki packages with audio (one per language)
+        run: |
+          set -euo pipefail
+          python anki_bauen.py
+          mv dist/anki/*.apkg dist/
+          (cd dist && sha256sum ./*.zip ./*.apkg > SHA256SUMS.txt)
           ls -la dist
 
       - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
@@ -58,4 +64,5 @@ jobs:
           generate_release_notes: true
           files: |
             dist/*.zip
+            dist/*.apkg
             dist/SHA256SUMS.txt
