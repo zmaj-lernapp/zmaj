@@ -91,3 +91,10 @@ dist/
 
 # Gebaute Web-Demo (demo_bauen.py)
 _site/
+
+# Gebautes PyPI-Paket (paket_bauen.py) - die Daten kommen aus data/
+paket/src/zmaj_bosnian/daten/
+paket/LICENSE
+paket/dist/
+paket/build/
+*.egg-info/

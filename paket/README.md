@@ -1,0 +1,36 @@
+# zmaj-bosnian
+
+The open Bosnian course behind the [Zmaj](https://github.com/zmaj-lernapp/zmaj)
+app as a Python package: 1,728 words and phrases in 65 levels, 300 cloze
+sentences, 12 graded stories with glossary and questions, 16 grammar lessons,
+406 glossary entries. Bosnian (Ijekavian, Latin script) with translations
+into German, English, Turkish, Swedish, Dutch, Norwegian Bokmål, Danish and
+French. No dependencies.
+
+```bash
+pip install zmaj-bosnian
+```
+
+```python
+import zmaj_bosnian as zmaj
+
+for w in zmaj.vocabulary()[:3]:
+    print(w["bs"], "→", w["translations"]["en"])
+# Merhaba → Hello
+# Dobar dan → Good day
+# Dobro jutro → Good morning
+
+zmaj.sentences()[0]["cloze"]          # 'Dobar ___'
+zmaj.levels()[0]["label"]["de"]       # 'Grundlagen'
+zmaj.counts()["words"]                # 1728
+```
+
+Audio files are not in the package (37 MB); every entry has an `audio` path
+into the [repository](https://github.com/zmaj-lernapp/zmaj/tree/master/web/audio)
+and the dataset zip of each [release](https://github.com/zmaj-lernapp/zmaj/releases).
+
+How the data was made, what native speakers reviewed and what they did not:
+[DATASHEET](https://github.com/zmaj-lernapp/zmaj/blob/master/data/DATASHEET.md).
+
+**License:** CC BY-SA 4.0. **Attribution:** *Zmaj – Bosnian learning content,
+© 2026 Ajdin Hasic, CC BY-SA 4.0, https://github.com/zmaj-lernapp/zmaj*
