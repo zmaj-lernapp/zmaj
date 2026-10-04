@@ -1,0 +1,33 @@
+# Backlog
+
+Abgearbeitet nach [PLAN.md §7](PLAN.md#7-arbeitsschleife-loop): von oben
+nach unten, ein Commit je Punkt, erst abhaken, wenn das Abnahmekriterium
+erfüllt und `pytest`, `ruff check .` und `reuse lint` grün sind.
+
+**C** = kann ein Agent allein · **A** = braucht Ajdin (Konto, Entscheidung, Browser)
+
+## Offen
+
+| # | Wer | Punkt | Abnahmekriterium | Hebel (PLAN §3) |
+|---|---|---|---|---|
+| 1 | C | Hugging-Face-Datenkarte `data/README.md` mit HF-YAML-Kopf | YAML gültig, Lizenz/Sprachen/Größen stimmen mit `manifest.json`; Test prüft das | A, B |
+| 2 | C | Anki-Paket `.apkg` **mit Ton** im Release-Workflow | Release enthält je Sprache ein `.apkg`; Import in Anki spielt den Ton | A |
+| 3 | C | `kennzahlen.py`: Sterne, Forks, Release-Downloads, Issues per GitHub-API | gibt die Tabelle aus PLAN §5 aus; läuft ohne Token (öffentliche API) | Messen |
+| 4 | C | Vorlagen für 8 Issues „Review translations: <Sprache>“ | Datei mit Titel/Text/Labels je Sprache, mit Links auf die passenden Spalten in `data/` | A |
+| 5 | C | Ankündigungstexte: r/bih, r/languagelearning, r/Anki, Show HN, Vereine (EN/DE/BS) | je Kanal ein Text, ehrlich, mit Link; Regeln des Kanals beachtet | A |
+| 6 | C | Plattformunabhängiges Screenshot-Skript (Playwright) statt Windows/CDP | `python3 store/bilder_machen/bilder_playwright.py --sprache en` erzeugt die Bilder | B |
+| 7 | C | Weitere Inhaltstests: Grammatik-Tabellen rechteckig, Optionen ohne Dubletten, Wörterbuch ohne Leereinträge | Tests grün oder echte Befunde dokumentiert | C |
+| 8 | A | M1: PR mergen, Beschreibung, Topics, Discussions, Private Vulnerability Reporting, Branch-Schutz, Labels, Profil | Checkliste in PLAN.md M1 vollständig | C, E |
+| 9 | A | M2: Tag `v1.0.0`, Zenodo einschalten → DOI | Release mit 3 Dateien, DOI-Badge | B |
+| 10 | A | M3: Play-Produktion (ab 07.10.2026) | öffentlicher Play-Link im README | A |
+| 11 | A | `OPENAI_API_KEY` als Secret, damit Codex-Reviews sichtbar laufen | erster PR mit Kommentar „Codex review“ | D |
+| 12 | A | Entscheidung: Level 52/58 fragen Wörter aus Level 60 ab (`formell`) | `BEKANNT` in `tests/test_inhalt.py` leer | C |
+| 13 | A | Entscheidung: `mappe/` (Schulunterlagen, Name des Betreuers) öffentlich lassen? | entschieden und umgesetzt | Risiko |
+| 14 | A | M6: Bewerbung abschicken | Bestätigungsmail | Ziel |
+
+## Erledigt
+
+| Punkt | Commit |
+|---|---|
+| M0: Lizenzen, Datensatz, Tests, CI, AGENTS.md, Codex-Workflows, README, Community-Dateien | `445c8d2` … `01da6f4` |
+| Plan, Bewerbungstexte, Zeichengrenzen-Test | dieser Commit |
