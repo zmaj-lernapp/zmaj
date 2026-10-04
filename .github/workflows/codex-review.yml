@@ -11,10 +11,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: codex-review-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
   review:
     # Only branches of this repository: a fork never reaches a job that holds
@@ -25,6 +21,11 @@ jobs:
       (github.event.action != 'labeled' || github.event.label.name == 'codex-review')
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    # On the job, not the workflow: a label event whose job is skipped must
+    # not cancel a review that is already running (and already paid for).
+    concurrency:
+      group: codex-review-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
     outputs:
       final_message: ${{ steps.codex.outputs.final-message }}
     steps:

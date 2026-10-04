@@ -7,3 +7,6 @@ ruff>=0.6
 reuse>=4
 genanki>=0.13
 build>=1.2
+# Browser-Tests in tests_e2e/ (.github/workflows/e2e.yml). Den Browser selbst
+# holt  python -m playwright install --with-deps chromium
+playwright>=1.49

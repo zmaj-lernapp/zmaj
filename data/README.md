@@ -32,6 +32,8 @@ configs:
     default: true
   - config_name: sentences
     data_files: sentences.csv
+  - config_name: parallel
+    data_files: parallel.jsonl
 ---
 
 # Zmaj: open Bosnian course
@@ -54,6 +56,8 @@ an offline app for learning Bosnian. It is exported from the app's sources by
 | `glossary.json` | reading glossary |
 | `grammar.json` | grammar lessons per language |
 | `anki/zmaj-bs-<lang>.tsv` | Anki decks, tagged by level |
+| `parallel/bs-<lang>.tsv` | Bosnian–X pairs (words, then sentences) for machine translation |
+| `parallel.jsonl` / `.tmx` | every word, sentence and story with all translations; TMX 1.4b |
 | `manifest.json` | counts and SHA-256 of every file |
 | `schema/` | JSON Schemas |
 
@@ -65,6 +69,9 @@ contains the MP3 files.
 from datasets import load_dataset
 ds = load_dataset("csv", data_files="vocabulary.csv")["train"]
 print(ds[0]["bs"], ds[0]["en"])   # Merhaba Hello
+
+pairs = load_dataset("csv", data_files="parallel/bs-en.tsv", sep="\t",
+                     quoting=3)["train"]   # 3 = csv.QUOTE_NONE
 ```
 
 How the data was made, what has been reviewed by native speakers and what has

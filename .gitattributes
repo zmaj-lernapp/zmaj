@@ -7,3 +7,8 @@
 data/** linguist-generated=false
 web/lottie.min.js linguist-vendored
 uebersetzungen.py linguist-documentation=false
+
+# data/ wird Byte fuer Byte mit daten_exportieren.py verglichen (--pruefen)
+# und mit SHA-256 im Manifest geführt. Auf Windows mit core.autocrlf=true
+# hiesse jede Datei sonst "veraltet". Deshalb immer LF.
+data/** text eol=lf

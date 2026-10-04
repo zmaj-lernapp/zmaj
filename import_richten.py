@@ -63,6 +63,11 @@ AENDERUNGEN = [
     ("gefeiert nur Texte",
      "  gefeiert = new Set(d.gefeiert||[]);",
      "  gefeiert = new Set(nurTexte(d.gefeiert));"),
+    ("Lerntage nur als Liste",
+     "  days = new Set((d.tage||[]).filter(istDatum));\n  frost = new Set((d.frost||[]).filter(istDatum));",
+     "  // Kein Array (etwa \"tage\":\"x\") hiess bisher: .filter wirft. Jetzt: leer.\n"
+     "  days = new Set((Array.isArray(d.tage) ? d.tage : []).filter(istDatum));\n"
+     "  frost = new Set((Array.isArray(d.frost) ? d.frost : []).filter(istDatum));"),
     ("besitz nur Texte",
      "  besitz = new Set(d.besitz||[]);",
      "  besitz = new Set(nurTexte(d.besitz));"),
@@ -97,8 +102,15 @@ AENDERUNGEN = [
      "     der alte Stand zurueck - sonst speicherte das naechste saveProgress()\n"
      "     einen halb uebernommenen. import_richten.py, 04.10.2026. */\n"
      "  const vorher = standAlsObjekt();\n"
+     "  /* standUebernehmen() schreibt Geschenkjahr und getragenes Stueck sofort\n"
+     "     in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,\n"
+     "     sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */\n"
+     "  const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;\n"
      "  try{ standUebernehmen(d.stand); altenFortschrittUmschreiben(); }\n"
      "  catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();\n"
+     "           geschenk = geschenkVorher; getragen = getragenVorher;\n"
+     "           try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));\n"
+     "                localStorage.setItem('zmaj_getragen', getragen); }catch(e2){}\n"
      "           note.textContent = t('set.sicherung_keine'); return; }\n"),
     ("Umschreiben nicht doppelt",
      "  altenFortschrittUmschreiben();\n  seitNachEinlesen();",
@@ -130,7 +142,11 @@ def main(argv=None):
     datei = INDEX
     if "--datei" in argv:
         datei = argv[argv.index("--datei") + 1]
-    html = io.open(datei, encoding="utf-8", newline="").read()
+    roh = io.open(datei, encoding="utf-8", newline="").read()
+    # Git fuer Windows checkt mit CRLF aus. Die Anker kennen nur \n -
+    # also wie in sicherung_richten.py: normalisieren, beim Schreiben zurueck.
+    crlf = "\r\n" in roh
+    html = roh.replace("\r\n", "\n")
     neu, fehler = anwenden(html)
     for name, _, _ in AENDERUNGEN:
         print("   %s %s" % ("✗" if any(f.startswith(name) for f in fehler) else "✓", name))
@@ -140,7 +156,8 @@ def main(argv=None):
             print("   " + f)
         return 1
     if schreiben:
-        io.open(datei, "w", encoding="utf-8", newline="").write(neu)
+        io.open(datei, "w", encoding="utf-8", newline="").write(
+            neu.replace("\n", "\r\n") if crlf else neu)
         print("\ngeschrieben: %s" % os.path.relpath(datei, ORDNER))
         print("Danach: app_bauen.py - aber NICHT vor dem 07.10.2026 einreichen.")
     else:

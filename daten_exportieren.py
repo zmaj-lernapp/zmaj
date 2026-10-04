@@ -5,7 +5,9 @@ daten_exportieren.py  –  der Lerninhalt als offener Datensatz in data/
 Die App liest ihren Inhalt aus vokabeln.py, grammatik.py, geschichten.py und
 uebersetzungen.py. Für jeden anderen – ein Wörterbuch, eine Anki-Sammlung,
 eine Forschungsarbeit zu Bosnisch – ist Python der falsche Weg. Dieses Skript
-schreibt deshalb denselben Inhalt als JSON, CSV und Anki-Tabelle nach data/.
+schreibt deshalb denselben Inhalt als JSON, CSV und Anki-Tabelle nach data/,
+dazu als Paralleltext (TSV je Sprachpaar, JSONL, TMX) für maschinelle
+Übersetzung.
 
     python3 daten_exportieren.py            # data/ neu schreiben
     python3 daten_exportieren.py --pruefen  # nur prüfen, ob data/ aktuell ist
@@ -202,6 +204,93 @@ def anki_tsv(woerter, code):
     return "\n".join(zeilen) + "\n"
 
 
+# ---------------------------------------------------------- Paralleltexte ---
+# Für maschinelle Übersetzung und Low-Resource-NLP. Die JSON-Dateien oben
+# sind nach Lernstoff gegliedert (Level, Lücke, Glossar); wer ein MT-Modell
+# trainieren oder bewerten will, braucht dagegen nur Paare "bs ↔ Sprache".
+# Deshalb dieselben Inhalte noch einmal in den drei Formaten, die MT-Werkzeuge
+# ohne Umbau lesen: TSV je Sprachpaar, JSONL und TMX.
+
+def parallel_eintraege(s):
+    """Alle Paralleleinträge in fester Reihenfolge: Wörter nach Level (so
+    stehen sie schon in s["woerter"]), dann Sätze, dann Geschichten.
+    Die Geschichte steht als ganzer Text drin – sie ist nicht satzweise
+    ausgerichtet, und eine geratene Satzzuordnung wäre schlechter als keine."""
+    eintraege = []
+    for art, liste in (("word", s["woerter"]), ("sentence", s["saetze"]),
+                       ("story", s["geschichten"])):
+        for e in liste:
+            eintraege.append({"id": e["id"], "kind": art, "bs": e["bs"],
+                              "translations": dict(e["translations"])})
+    return eintraege
+
+
+def tsv_feld(text):
+    """Tabulator und Zeilenumbruch würden die Spalten verschieben. Heute
+    kommen sie in Wörtern und Sätzen nicht vor; ein Test wacht darüber."""
+    return " ".join(text.split()) if any(z in text for z in "\t\r\n") else text
+
+
+def parallel_tsv(eintraege, code):
+    """Ohne Anführungszeichen-Regeln (QUOTE_NONE): ein Feld enthält weder
+    Tabulator noch Zeilenumbruch, also braucht es keine. Leere Übersetzungen
+    fallen weg – ein Paar mit leerer Seite lehrt ein MT-Modell, nichts
+    auszugeben. Geschichten nicht: mehrere Absätze passen nicht in eine Zeile."""
+    zeilen = ["\t".join(["bs", code, "kind", "id"])]
+    for e in eintraege:
+        if e["kind"] == "story":
+            continue
+        ziel = e["translations"].get(code, "").strip()
+        if not ziel or not e["bs"].strip():
+            continue
+        zeilen.append("\t".join([tsv_feld(e["bs"]), tsv_feld(ziel), e["kind"], e["id"]]))
+    return "\n".join(zeilen) + "\n"
+
+
+def parallel_jsonl(eintraege, codes):
+    zeilen = []
+    for e in eintraege:
+        uebers = {c: e["translations"][c] for c in codes if e["translations"].get(c, "").strip()}
+        zeilen.append(json.dumps({"id": e["id"], "kind": e["kind"], "bs": e["bs"],
+                                  "translations": uebers}, ensure_ascii=False))
+    return "\n".join(zeilen) + "\n"
+
+
+def xml_text(text):
+    from xml.sax.saxutils import escape
+    return escape(text, {'"': "&quot;"})
+
+
+def parallel_tmx(eintraege, codes):
+    """TMX 1.4b. Bewusst ohne creationdate im Kopf: die Datei muss bei jedem
+    Lauf Byte für Byte gleich sein, sonst schlägt --pruefen in der CI an.
+    segtype je <tu>: Wörter sind "phrase", Geschichten "paragraph"."""
+    segtyp = {"word": "phrase", "sentence": "sentence", "story": "paragraph"}
+    zeilen = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<!DOCTYPE tmx SYSTEM "tmx14.dtd">',
+        '<tmx version="1.4">',
+        ' <header creationtool="zmaj daten_exportieren.py" creationtoolversion="%s"'
+        ' segtype="sentence" o-tmf="zmaj-json" adminlang="en" srclang="bs"'
+        ' datatype="plaintext">' % xml_text(FORMAT),
+        '  <prop type="x-license">%s</prop>' % xml_text(LIZENZ),
+        '  <prop type="x-attribution">%s</prop>' % xml_text(NENNUNG),
+        ' </header>',
+        ' <body>',
+    ]
+    for e in eintraege:
+        zeilen.append('  <tu tuid="%s" segtype="%s">' % (xml_text(e["id"]), segtyp[e["kind"]]))
+        zeilen.append('   <prop type="x-kind">%s</prop>' % e["kind"])
+        zeilen.append('   <tuv xml:lang="bs"><seg>%s</seg></tuv>' % xml_text(e["bs"]))
+        for c in codes:
+            ziel = e["translations"].get(c, "")
+            if ziel.strip():
+                zeilen.append('   <tuv xml:lang="%s"><seg>%s</seg></tuv>' % (c, xml_text(ziel)))
+        zeilen.append('  </tu>')
+    zeilen += [' </body>', '</tmx>']
+    return "\n".join(zeilen) + "\n"
+
+
 def dateien_erzeugen(s):
     """Alle Dateien als {relativer Pfad: Inhalt}. Nichts wird hier geschrieben."""
     codes = s["codes"]
@@ -235,6 +324,12 @@ def dateien_erzeugen(s):
 
     for code in codes:
         aus["anki/zmaj-bs-%s.tsv" % code] = anki_tsv(s["woerter"], code)
+
+    parallel = parallel_eintraege(s)
+    for code in codes:
+        aus["parallel/bs-%s.tsv" % code] = parallel_tsv(parallel, code)
+    aus["parallel.jsonl"] = parallel_jsonl(parallel, codes)
+    aus["parallel.tmx"] = parallel_tmx(parallel, codes)
 
     # Zuletzt das Verzeichnis: Mengen und Prüfsummen aller anderen Dateien
     mit_ton = sum(1 for w in s["woerter"] if w["audio"])
