@@ -89,7 +89,6 @@ def main():
     # (was gesprochen wurde), stimme.
     toene = index["toene"]
     paare = [(e["text"], e["datei"]) for e in toene]
-    stimme_von = {e["text"]: e.get("stimme", "?") for e in toene}
     print("%d Aufnahmen im Index." % len(paare))
     zaehler = {}
     for e in toene:

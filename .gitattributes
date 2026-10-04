@@ -1,0 +1,9 @@
+* text=auto
+*.mp3 binary
+*.png binary
+*.ico binary
+*.woff2 binary
+*.docx binary
+data/** linguist-generated=false
+web/lottie.min.js linguist-vendored
+uebersetzungen.py linguist-documentation=false
