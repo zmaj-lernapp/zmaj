@@ -18,7 +18,7 @@ in die Seite gespritzt. In web/ hat es nichts zu suchen: die App lädt
 nichts, was sie nicht braucht.
 
 Gemessen am 04.10.2026: vorher 4 kritische und bis zu 7 ernste Verstöße je
-Ansicht, nachher keine. Bericht: Zmaj Berichte/barrierefreiheit-2026-10-04.md
+Ansicht, nachher keine. Bericht: docs/barrierefreiheit-2026-10-04.md
 """
 import functools
 import http.server

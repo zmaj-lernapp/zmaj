@@ -129,12 +129,11 @@ Datei hinüberschicken, am neuen einlesen.
 
 ### Die alten Profile
 
-Die Profildateien von früher liegen in **`sicherung_konten_2026-09-16`**
-(Amina, GooglePruefung, Hasicko) und werden von nichts mehr gelesen.
-`konto_zu_sicherung.py` macht daraus Dateien, die die App über „Sicherung
-einlesen“ annimmt – die fertigen `zmaj-sicherung-<Name>.json` liegen schon
-daneben. Aus einer Profildatei übernimmt es nur den Lernstand; Passwort-Hash,
-E-Mail und Bestätigungsstand bleiben draußen.
+Die Profildateien von früher liegen nur lokal in
+**`sicherung_konten_2026-09-16`** und werden von nichts mehr gelesen. Daraus
+erzeugte Sicherungen (`zmaj-sicherung-<Name>.json`) liegen daneben; sie
+enthalten nur den Lernstand, kein Passwort und keine E-Mail. Das
+Umwandlungsskript ist erledigt und steht nur noch in der Git-Historie.
 
 ## Rückmeldung per Mail
 
@@ -446,19 +445,11 @@ diesen drei Stellen die echten Werte aus dem AdMob-Konto eintragen:
 Die App-ID muss dort stehen, auch wenn man sie nicht benutzt: Ohne den
 Eintrag stürzt die App beim Start ab, sobald das Werbe-SDK dabei ist.
 
-Die Kennungen gibt es seit dem 20.09.2026:
-
-| | |
-|---|---|
-| App-ID | `ca-app-pub-9105747905460295~9760526209` |
-| Interstitial | `ca-app-pub-9105747905460295/9764395638` |
-| Belohnt | `ca-app-pub-9105747905460295/8572576770` |
-
-Eingetragen werden sie nicht von Hand, sondern mit `admob_scharf.py` – das
-Skript tauscht alle drei, legt `ADMOB_TEST` um und prüft danach nach, dass
-keine Testkennung übrig geblieben ist. Wann das dran ist, steht in
-`PRODUKTIONSZUGRIFF.md`; vorher gehören die Befunde aus
-`WERBUNG_PRUEFUNG.md` abgearbeitet.
+Die echten Kennungen (seit dem 20.09.2026) stehen in `admob_scharf.py`.
+Eingetragen werden sie nicht von Hand, sondern mit diesem Skript – es
+tauscht alle drei, legt `ADMOB_TEST` um und prüft danach nach, dass keine
+Testkennung übrig geblieben ist. Wann das dran ist und was vorher laufen
+muss, steht in `docs/WARTUNG.md`.
 
 ### Die Einwilligung holt Google
 
@@ -536,14 +527,8 @@ Entschieden am 19.09.2026 und **eingebaut**: In der Android-Hülle steckt
 Produkt mit zwei Plänen, nicht zwei Produkte, sonst geht der Wechsel von
 Monat auf Jahr nicht sauber.
 
-| | Preis | abzüglich MwSt. und Google | bleibt |
-|---|---|---|---|
-| monatlich | 2,99 € | 19 % MwSt., 15 % Google | ca. 2,13 € |
-| jährlich | 19,99 € | dieselben Abzüge | ca. 14,28 € |
-
-Das Jahresabo ist gut 44 % günstiger als zwölf Monatszahlungen – genug,
-damit es sich für den Nutzer lohnt, und es bringt trotzdem mehr ein als
-sieben Monate einzeln.
+Das Jahresabo ist deutlich günstiger als zwölf Monatszahlungen, damit es
+sich für den Nutzer lohnt.
 
 **Die Preise stehen bewusst in keiner Datei** – weder hier in der App noch
 in den Store-Beschreibungen. Sie kommen zur Laufzeit von Google über
@@ -614,9 +599,7 @@ gemacht (die Anzeige zeigte „30 Tage" bei 15 Lerntagen), ein gekaufter alle
 zehn bis zwanzig Tage tut das nicht.
 
 **Die Vollversion gibt es nicht für Münzen**, und das ist keine Preisfrage.
-Sie soll das Abo sein, sonst hätte das Abo kein Argument mehr. Werbung zahlt
-unterhalb von rund 300 aktiven Nutzern ohnehin fast nichts aus – die Abos
-wären die einzige nennenswerte Einnahme.
+Sie soll das Abo sein, sonst hätte das Abo kein Argument mehr. 
 
 Im Lernstand stehen nicht Münzen, sondern zwei Summen, die beide nur wachsen:
 `muenzen_ges` (jemals verdient) und `muenzen_aus` (jemals ausgegeben). Der
@@ -863,8 +846,8 @@ ohnehin. Slowenisch wäre die kleinste Diaspora und lohnt sich nicht.
 
 **Wichtig:** Diese Übersetzungen sind nicht von Muttersprachlern. Vor der
 Veröffentlichung sollte jede Sprache jemand durchsehen, der sie wirklich
-spricht – so wie du das Bosnische prüfst. Für das Türkische wäre Kübra die
-erste Adresse; für die anderen sechs fehlt noch jemand.
+spricht – so wie du das Bosnische prüfst. Dafür werden noch
+Muttersprachler gesucht (Issues mit dem Label `translation`).
 
 ### Was die Prüfskripte abdecken
 
@@ -1259,7 +1242,6 @@ Bosnisch Lernapp/
 ├── zmaj_lottie.py    Erzeugt die Drachen-Animationen in web/maskottchen
 ├── ton_bauen.py      Erzeugt die Aufnahmen und web/audio/index.json
 ├── ton_pruefen.py    Prüft, ob die Tonspur vollständig ist
-├── konto_zu_sicherung.py  Macht aus alten Profildateien eine Sicherung
 │
 ├── start.py          Der alte Server mit Konten. Liefert lade_daten() und
 │                     --fehlende; zum Benutzen der App nicht mehr gedacht
@@ -1273,9 +1255,6 @@ Bosnisch Lernapp/
 ├── *.BEISPIEL.json   Vorlagen für die beiden Zugangsdateien
 │
 ├── ANLEITUNG.md      Diese Datei
-├── WAS_IST_NEU.md    Was sich zuletzt geändert hat
-├── STORE_TEXTE.md    Store-Beschreibungen in acht Sprachen (nur zum
-│                     Abschreiben, die App liest sie nicht)
 ├── sicherung_konten_2026-09-16/  Die Profildateien von früher, dazu die
 │                     daraus erzeugten zmaj-sicherung-<Name>.json
 ├── store/            icon-512.png und feature-1024x500.png für Google
@@ -1332,13 +1311,8 @@ wie sie im Text stehen).
 
 ## Was als Nächstes ansteht
 
-Auf dem Weg in den Play Store:
-
-- Die drei AdMob-Kennungen von Test auf echt tauschen
-- Google Play Billing einbauen, damit die Vollversion gekauft werden kann
-- Die Seiten aus `github-seite` hochladen und die Adresse im Play-Konto
-  eintragen
-- Signieren, `versionCode` und `versionName` festlegen, hochladen
+Was für den ersten Build nach dem geschlossenen Test der Reihe nach laufen
+muss, steht in `docs/WARTUNG.md`.
 
 Danach, ohne Eile:
 

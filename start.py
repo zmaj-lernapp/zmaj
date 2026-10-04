@@ -246,7 +246,7 @@ def oeffne_browser(url):
 # Profile aus START_PROFILE angelegt.
 # ---------------------------------------------------------------------------
 fortschritt_sperre = threading.Lock()
-START_PROFILE = ["Ajdin", "Kübra"]
+START_PROFILE = ["Ajdin"]
 PROFIL_PRAEFIX = "fortschritt_"
 
 
@@ -488,7 +488,7 @@ def schicke_passwort_link(name, basis, texte):
 def konto_passwort_setzen(name, neues, altes=None):
     """Legt ein Passwort fest oder ändert es.
 
-    Bei einem Profil, das noch keins hat (Ajdin und Kübra von früher),
+    Bei einem Profil, das noch keins hat (die Profile von früher),
     darf man ohne altes Passwort eins setzen. Hat es schon eins, muss das
     alte stimmen.
     """

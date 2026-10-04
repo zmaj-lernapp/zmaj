@@ -1,8 +1,15 @@
 # Changelog
 
 All notable changes to this repository. The app's user-facing release notes
-are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
+are in the Play Store listing. Format:
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+## [Unreleased]
+
+### Removed
+- Internal working notes, finished one-off patch and migration scripts and
+  their intermediate files. Audio and translation review reports moved to
+  `docs/`.
 
 ## [1.1.0] – 2026-10-04
 
@@ -46,15 +53,12 @@ First open-source release of the repository and the dataset.
   triage.
 - Contributor docs: README in English, CONTRIBUTING, CODE_OF_CONDUCT,
   SECURITY, SUPPORT, GOVERNANCE, issue forms, CITATION.cff.
-- `docs/codex-for-oss/`: plan with measurable milestones, application texts
-  for Codex for Open Source (character limits checked by a test), backlog.
 - Live web demo without ads (`demo_bauen.py`, GitHub Pages workflow, off
   until enabled).
 - Anki packages with audio, one per language, attached to releases
   (`anki_bauen.py`).
 - Hugging Face dataset card (`data/README.md`), English architecture overview
   (`docs/ARCHITECTURE.md`), social preview image.
-- `kennzahlen.py` measures the adoption thresholds from the plan.
 - 13 Mermaid diagrams (data flow, content model, quality gates, review
   sequence, language-correction flow, backup import, governance, roadmap);
   a test keeps their numbers in sync with the dataset.

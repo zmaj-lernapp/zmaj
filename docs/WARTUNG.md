@@ -25,7 +25,7 @@ Sprachen**
 | am Lerninhalt arbeiten | `vokabeln.py`, `grammatik.py`, `geschichten.py` |
 | Texte der Oberfläche ändern | `sprachen.py` |
 | wissen, wie alles zusammenhängt | `ANLEITUNG.md` |
-| in den Store | `PRODUKTIONSZUGRIFF.md` |
+| den nächsten Build vorbereiten | unten, „Liegen bereit“ |
 
 ---
 
@@ -34,14 +34,13 @@ Sprachen**
 ```
 web/           die App selbst - index.html ist das ganze Programm
 store/         Symbol, Vorstellungsgrafik, Screenshots, Logo
-mappe/         die Projektmappe für die Technikerschule (nur lokal, nicht im Repository)
+privat/        interne Unterlagen, nur lokal (in .gitignore)
 github-seite/  Impressum, Datenschutz, Nutzungsbedingungen (erzeugt)
 testdaten/     Profile zum Durchtesten
 ```
 
 Die Android-Hülle liegt **außerhalb** dieses Ordners, daneben unter
-`zmaj-android/`. Sie hat ihr eigenes Repository, weil dort der
-Signierschlüssel in der Nähe liegt.
+`zmaj-android/`, in einem eigenen, privaten Repository.
 
 ---
 
@@ -70,28 +69,27 @@ nicht** — der Interpreter steht unter
 
 ### Liegen bereit für den Build **nach** dem Test
 
-Diese drei dürfen erst laufen, wenn die 14 Tage durch sind — jede
-Einreichung setzt Googles Prüfuhr zurück.
+Diese Skripte dürfen erst laufen, wenn die 14 Tage durch sind — jede
+Einreichung setzt Googles Prüfuhr zurück. Reihenfolge wie in der Tabelle.
 
-| Skript | Was es tut |
-|---|---|
-| `werbung_richten.py` | behebt 17 der 20 Befunde aus `WERBUNG_PRUEFUNG.md` |
-| `werbung_texte.py` | ergänzt die Datenschutzerklärung in acht Sprachen |
-| `admob_scharf.py` | tauscht die Testkennungen gegen die echten |
-| `dialog_richten.py` | bringt die zwei Dialoge des versteckten Schalters ins App-Design |
-| `vorspann_richten.py` | behebt den eingefrorenen Vorspann bei abgeschalteten Animationen |
-| `herz_richten.py` | setzt den Lebens-Hinweis unter das Herz statt hinter die Münzen |
-| `vorleser_richten.py` | die Geschichte beginnt nach einem angetippten Wort nicht mehr von vorn |
-| `zurueck_richten.py` | ein Weg ins Hauptmenü nach Vokabeltest und Geschichte |
-| `sicherung_richten.py` | die Meldung nach dem Sichern nennt den Dateinamen |
-| `import_richten.py` | eine von Hand geschriebene Sicherung kann die App nicht mehr lahmlegen (Sicherheitsprüfung 04.10.2026) |
-| `sicherheit2_richten.py` | zwei kleine Härtungen aus der zweiten Sicherheitsprüfung (Konten-Links ohne Konten, Fest-Probe) |
-| `barrierefreiheit_richten.py` | Bildschirmleser und Kontrast: 0 kritische und 0 ernste axe-Befunde statt 20 und 102 (Bericht in `Zmaj Berichte/`) |
+| Skript | Was es tut | Stand 04.10.2026 |
+|---|---|---|
+| `import_richten.py` | eine von Hand geschriebene Sicherung kann die App nicht mehr lahmlegen | Probelauf sauber, getestet |
+| `sicherheit2_richten.py` | zwei kleine Härtungen (Konten-Links ohne Konten, Fest-Probe) | Probelauf sauber, getestet |
+| `barrierefreiheit_richten.py` | Bildschirmleser und Kontrast: 0 kritische und 0 ernste axe-Befunde statt 20 und 102 | Probelauf sauber, getestet |
+| `werbung_richten.py` | behebt die offenen Befunde der Werbeprüfung | **bricht ab**: nur 7 von 16 Ankern passen noch, ein Teil ist schon von Hand eingebaut. Vor dem Lauf durchsehen und die erledigten Änderungen herausnehmen |
+| `werbung_texte.py` | ergänzt die Datenschutzerklärung in acht Sprachen | Deutsch ist schon von Hand ergänzt, das Skript würde doppeln. Vorher prüfen |
+| `admob_scharf.py` | tauscht die Testkennungen gegen die echten | zuletzt, nach den Werbe-Skripten |
 
-Alle drei folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
+Alle folgen demselben Muster: **erst Probelauf, dann `--schreiben`.**
 Ohne den Schalter passiert nichts. Kommt ein gesuchter Textabschnitt nicht
 genau einmal vor, brechen sie ab und ändern gar nichts — ein halb geändertes
-Programm gibt es damit nicht.
+Programm gibt es damit nicht. Danach `inhalt_bauen.py`, `seite_bauen.py`,
+`app_bauen.py`.
+
+Die früheren Patch-Skripte (Dialoge, Vorspann, Herz, Vorleser, Zurück,
+Sicherungsmeldung und andere) sind angewendet und wurden am 04.10.2026
+entfernt; sie stehen in der Git-Historie.
 
 ---
 
@@ -100,12 +98,14 @@ Programm gibt es damit nicht.
 | Datei | Inhalt |
 |---|---|
 | `ANLEITUNG.md` | wie das Projekt gebaut und betrieben wird |
-| `PRODUKTIONSZUGRIFF.md` | der Weg durch die Play Console, mit allen Fristen |
-| `STORE_TEXTE.md` | Store-Eintrag, Data Safety, Inhaltseinstufung |
-| `WERBUNG_PRUEFUNG.md` | 20 geprüfte Befunde zur Werbeeinbindung |
-| `WAS_IST_NEU.md` | was sich zuletzt geändert hat |
-| `PROJEKTMAPPE.md` | die Arbeit für die Technikerschule (nur lokal) |
-| `mappe/SCHREIBREGELN.md` | wie in der Projektmappe geschrieben wird (nur lokal) |
+| `docs/ARCHITECTURE.md` | Überblick auf Englisch, mit Diagrammen |
+| `WORTSCHATZ_KORREKTUREN.md` | was der Muttersprachler korrigiert hat – geht allem vor |
+| `docs/TONBEFUNDE.md` | Prüfung der Aufnahmen |
+| `docs/uebersetzungen-pruefbericht-2026-09-18.md` | Prüfung der Übersetzungen |
+| `docs/barrierefreiheit-2026-10-04.md` | Prüfung der Barrierefreiheit (axe) |
+| `docs/BEST_PRACTICES.md` | Antworten für das OpenSSF-Abzeichen |
+
+Store-Texte, Prüfpläne und Arbeitsnotizen liegen nur lokal in `privat/`.
 
 ---
 
@@ -117,11 +117,7 @@ Programm gibt es damit nicht.
 - **`mail_zugang.json`** – das Passwort des Postfachs
 - **Der Signierschlüssel** und `keystore.properties` – ohne ihn gibt es nie
   wieder ein Update, mit ihm kann jeder eine gefälschte Version bauen.
-  Er liegt in `zmaj-schluessel/` neben dem Projekt, **und seit dem
-  23.09.2026 zusätzlich auf einem USB-Stick**. Das Passwort steht nirgends
-  geschrieben. `projekt_sichern.py` nimmt ihn seither in die Geheim-Zip
-  auf – davor fehlte er in jeder Sicherung, weil das Skript seinen Ordner
-  gar nicht ansah.
+  `projekt_sichern.py` nimmt ihn in die Geheim-Zip auf.
 - `fortschritt_*.json`, `sitzungen.json`, `codes.json` – echte Nutzerdaten
 - `feedback.txt`, `start.log`, `__pycache__/`
 
