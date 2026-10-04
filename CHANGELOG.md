@@ -4,7 +4,9 @@ All notable changes to this repository. The app's user-facing release notes
 are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [1.0.0] – 2026-10-04
+
+First open-source release of the repository and the dataset.
 
 ### Added
 - Open source: code under AGPL-3.0-or-later, learning content under
@@ -36,6 +38,9 @@ are in `STORE_TEXTE.md` (section *Versionshinweise*). Format:
   (`store/bilder_machen/bilder_playwright.py`).
 - More tests: grammar tables, duplicate answer options, glossary, level
   labels in all eight languages; dead links in the documentation.
+
+- PyPI package `zmaj-bosnian` (`paket/`), Hugging Face upload in the release
+  (`hf_hochladen.py`), weekly metrics workflow, AnkiWeb texts, Bosnian README.
 
 ### Changed
 - Development tools are locked with hashes (`requirements-dev.in` →
