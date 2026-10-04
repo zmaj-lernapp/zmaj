@@ -20,11 +20,21 @@ are in the Play Store listing. Format:
   `requirements-e2e.txt`, used only by the browser tests.
 - The Codex workflows start no runner unless the repository variable
   `CODEX_AN` is `true` (besides the `OPENAI_API_KEY` secret).
+- `start.py` only serves the app locally; content loading lives in
+  `inhalt.py` (`start.lade_daten` still works).
+- `werbung_richten.py` and `werbung_texte.py` reduced to the changes that are
+  still open; both dry-run cleanly again and are covered by tests.
+- Test backups in `testdaten/` cover the whole course again; a test keeps
+  them in step with the content.
+- German maintainer notes merged into `ANLEITUNG.md`.
 
 ### Removed
 - Internal working notes, finished one-off patch and migration scripts and
   their intermediate files. Audio and translation review reports moved to
   `docs/`.
+- The old local account server (`konten.py`, `mail.py`, accounts, sessions
+  and progress files in `start.py`). Accounts were already switched off in
+  the app.
 
 ## [1.1.0] – 2026-10-04
 
