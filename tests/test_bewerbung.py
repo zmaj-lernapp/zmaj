@@ -18,12 +18,20 @@ def felder(wurzel):
 
 
 def test_alle_felder_da(wurzel):
-    assert {"rolle", "qualifikation", "api", "sonstiges"} <= set(felder(wurzel))
+    assert {"rolle", "qualifikation", "api", "security", "sonstiges"} <= set(felder(wurzel))
 
 
 def test_zeichengrenze(wurzel):
     zu_lang = {k: len(v) for k, v in felder(wurzel).items() if len(v) > GRENZE}
     assert not zu_lang, zu_lang
+
+
+def test_ohne_striche(wurzel):
+    """Bindestriche und Gedankenstriche lesen sich wie Textbaustein; gewuenscht
+    am 04.10.2026. Ausgenommen sind Namen wie zmaj-lernapp."""
+    for k in ("rolle", "qualifikation", "api", "security", "sonstiges"):
+        text = felder(wurzel)[k].replace("zmaj-lernapp", "")
+        assert not set(text) & set("-\u2013\u2014"), k
 
 
 def test_zahlen_im_text_stimmen_mit_dem_inhalt(wurzel, grunddaten):
