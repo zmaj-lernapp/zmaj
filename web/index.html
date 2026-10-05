@@ -32,11 +32,16 @@
 <style>
   /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
   :root{
-    --bg:#D1D5FA; --surface:#F6F7FE; --ink:#0F1E4D; --muted:#66698A;
+    --bg:#D1D5FA; --surface:#F6F7FE; --ink:#0F1E4D; --muted:#585A77;
     --primary:#4049A5; --primary-dark:#31387D; --primary-soft:#D1D5FA;
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
     --primary-fill:#9EA3E0; --primary-fill-dark:#6F77D2; --on-fill:#0F1E4D;
     --line:#CBCEEB; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    /* Nur fuer Schrift. --good, --bad und --accent-dark sind auch Flaechen
+       und Raender, dort reichen 3:1 und dort stimmen sie. Als Schrift auf
+       der Flaeche lagen sie bei 3,2 / 4,1 / 2,3:1 statt 4,5:1 - axe am
+       04.10.2026, barrierefreiheit_richten.py. */
+    --good-text:#188049; --bad-text:#D0352C; --accent-text:#876A00;
     /* Eine Farbe je Sektion, neun Stueck. Vorher war jede Ueberschrift
        blau und jeder Balken gelb, dadurch standen auf dem Lernpfad nach
        Farbton nur vier Toene.
@@ -52,21 +57,22 @@
        Helligkeit.
        Hier sind die Toene dunkler als in der dunklen Fassung, sonst leuchten
        sie auf Weiss. */
-    --sek1:#4049A5; --sek1-dunkel:#30377C; --sek1-sanft:#D1D4FA; --sek1-grund:#D1D4FA; --sek1-flaeche:#F6F6FE; --sek1-linie:#CBCEEB; --sek1-matt:#66698A; --sek1-fuell:#9EA3E0; --sek1-fuell-dunkel:#6F77D2;   /* Blau */
-    --sek2:#5B40A5; --sek2-dunkel:#45307C; --sek2-sanft:#D0C2F4; --sek2-grund:#D0C2F4; --sek2-flaeche:#F8F6FE; --sek2-linie:#D4CBEB; --sek2-matt:#6F668A; --sek2-fuell:#AC9ADF; --sek2-fuell-dunkel:#866BD0;   /* Indigo */
-    --sek3:#7D40A5; --sek3-dunkel:#5E307C; --sek3-sanft:#EAD1FA; --sek3-grund:#EAD1FA; --sek3-flaeche:#FBF6FE; --sek3-linie:#DFCBEB; --sek3-matt:#7B668A; --sek3-fuell:#C69EE0; --sek3-fuell-dunkel:#AA6FD2;   /* Violett */
-    --sek4:#7F3384; --sek4-dunkel:#58245B; --sek4-sanft:#EABAEE; --sek4-grund:#EABAEE; --sek4-flaeche:#FDF6FE; --sek4-linie:#E9CBEB; --sek4-matt:#87668A; --sek4-fuell:#D58BDA; --sek4-fuell-dunkel:#C55CCC;   /* Purpur */
-    --sek5:#973B7E; --sek5-dunkel:#6F2B5D; --sek5-sanft:#F9CDED; --sek5-grund:#F9CDED; --sek5-flaeche:#FEF6FC; --sek5-linie:#EBCBE3; --sek5-matt:#8A6680; --sek5-fuell:#DE96CB; --sek5-fuell-dunkel:#CF68B3;   /* Magenta */
-    --sek6:#8C3658; --sek6-dunkel:#63273F; --sek6-sanft:#EFBED1; --sek6-grund:#EFBED1; --sek6-flaeche:#FEF6F9; --sek6-linie:#EBCBD8; --sek6-matt:#8A6674; --sek6-fuell:#DD92B1; --sek6-fuell-dunkel:#CE648F;   /* Rose */
-    --sek7:#296A65; --sek7-dunkel:#19413E; --sek7-sanft:#BAE8E4; --sek7-grund:#BAE8E4; --sek7-flaeche:#F6FEFD; --sek7-linie:#CBEBE9; --sek7-matt:#597876; --sek7-fuell:#58CAC1; --sek7-fuell-dunkel:#37AEA4;   /* Petrol */
-    --sek8:#295A6A; --sek8-dunkel:#193741; --sek8-sanft:#AED4E0; --sek8-grund:#AED4E0; --sek8-flaeche:#F6FCFE; --sek8-linie:#CBE3EB; --sek8-matt:#5D767E; --sek8-fuell:#64B4CE; --sek8-fuell-dunkel:#3B9BBA;   /* Tuerkis */
-    --sek9:#395F93; --sek9-dunkel:#29456A; --sek9-sanft:#C8DCF9; --sek9-grund:#C8DCF9; --sek9-flaeche:#F6F9FE; --sek9-linie:#CBD9EB; --sek9-matt:#647287; --sek9-fuell:#96B4DE; --sek9-fuell-dunkel:#6893CF;   /* Himmelblau */
+    --sek1:#4049A5; --sek1-dunkel:#30377C; --sek1-sanft:#D1D4FA; --sek1-grund:#D1D4FA; --sek1-flaeche:#F6F6FE; --sek1-linie:#CBCEEB; --sek1-matt:#585A77; --sek1-fuell:#9EA3E0; --sek1-fuell-dunkel:#6F77D2;   /* Blau */
+    --sek2:#5B40A5; --sek2-dunkel:#45307C; --sek2-sanft:#D0C2F4; --sek2-grund:#D0C2F4; --sek2-flaeche:#F8F6FE; --sek2-linie:#D4CBEB; --sek2-matt:#564F6C; --sek2-fuell:#AC9ADF; --sek2-fuell-dunkel:#866BD0;   /* Indigo */
+    --sek3:#7D40A5; --sek3-dunkel:#5E307C; --sek3-sanft:#EAD1FA; --sek3-grund:#EAD1FA; --sek3-flaeche:#FBF6FE; --sek3-linie:#DFCBEB; --sek3-matt:#695776; --sek3-fuell:#C69EE0; --sek3-fuell-dunkel:#AA6FD2;   /* Violett */
+    --sek4:#7F3384; --sek4-dunkel:#58245B; --sek4-sanft:#EABAEE; --sek4-grund:#EABAEE; --sek4-flaeche:#FDF6FE; --sek4-linie:#E9CBEB; --sek4-matt:#644C66; --sek4-fuell:#D58BDA; --sek4-fuell-dunkel:#C55CCC;   /* Purpur */
+    --sek5:#973B7E; --sek5-dunkel:#6F2B5D; --sek5-sanft:#F9CDED; --sek5-grund:#F9CDED; --sek5-flaeche:#FEF6FC; --sek5-linie:#EBCBE3; --sek5-matt:#73556B; --sek5-fuell:#DE96CB; --sek5-fuell-dunkel:#CF68B3;   /* Magenta */
+    --sek6:#8C3658; --sek6-dunkel:#63273F; --sek6-sanft:#EFBED1; --sek6-grund:#EFBED1; --sek6-flaeche:#FEF6F9; --sek6-linie:#EBCBD8; --sek6-matt:#694D58; --sek6-fuell:#DD92B1; --sek6-fuell-dunkel:#CE648F;   /* Rose */
+    --sek7:#296A65; --sek7-dunkel:#19413E; --sek7-sanft:#BAE8E4; --sek7-grund:#BAE8E4; --sek7-flaeche:#F6FEFD; --sek7-linie:#CBEBE9; --sek7-matt:#4C6665; --sek7-fuell:#58CAC1; --sek7-fuell-dunkel:#37AEA4;   /* Petrol */
+    --sek8:#295A6A; --sek8-dunkel:#193741; --sek8-sanft:#AED4E0; --sek8-grund:#AED4E0; --sek8-flaeche:#F6FCFE; --sek8-linie:#CBE3EB; --sek8-matt:#46595F; --sek8-fuell:#64B4CE; --sek8-fuell-dunkel:#3B9BBA;   /* Tuerkis */
+    --sek9:#395F93; --sek9-dunkel:#29456A; --sek9-sanft:#C8DCF9; --sek9-grund:#C8DCF9; --sek9-flaeche:#F6F9FE; --sek9-linie:#CBD9EB; --sek9-matt:#545F71; --sek9-fuell:#96B4DE; --sek9-fuell-dunkel:#6893CF;   /* Himmelblau */
     --font-display:"Spectral",Georgia,serif; --font-ui:"Nunito","Inter",system-ui,sans-serif;
     --radius:16px;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
+      --good-text:#55CE8A; --bad-text:#FF9E98; --accent-text:#DFB31F;   /* siehe oben, 04.10.2026 */
       --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
       --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
@@ -84,6 +90,7 @@
   }
   :root[data-theme="dark"]{
     --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
+    --good-text:#55CE8A; --bad-text:#FF9E98; --accent-text:#DFB31F;   /* siehe oben, 04.10.2026 */
     --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
     --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
@@ -352,7 +359,7 @@
      mit Haken, Zahl und einem duennen Balken je Zeile. Jetzt sind es drei
      Ringe, der Stil dafuer steht weiter unten bei .qringe. Die alten
      Regeln sind hier entfernt, es gab kein Element mehr dazu. */
-  .qalle{margin-top:6px; font-size:12px; font-weight:800; color:var(--good)}
+  .qalle{margin-top:6px; font-size:12px; font-weight:800; color:var(--good-text)}
   /* ---------- Laden ---------- */
   .ware{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--line)}
   /* Nur die Zeile mit ZWEI Wegen darf umbrechen. flex-wrap auf .ware
@@ -594,15 +601,15 @@
   .node .mini{height:5px; background:var(--primary-soft); border-radius:99px; margin-top:6px; overflow:hidden; width:120px}
   .node .mini i{display:block; height:100%; background:var(--accent); width:0}
   .node .state{font-size:12px; color:var(--muted); white-space:nowrap; font-weight:800}
-  .node.current .state{color:var(--accent-dark)}
-  .node.done .state{color:var(--good)}
+  .node.current .state{color:var(--accent-text)}
+  .node.done .state{color:var(--good-text)}
 
   /* Regeln fürs Passwort: hakt ab, was schon erfüllt ist */
   .pwregeln{font-size:12px; color:var(--muted); line-height:1.9; margin:-2px 0 2px}
   .pwregeln b{display:block; font-weight:700; margin-bottom:2px}
   .pwregeln span{display:inline-block; margin-right:12px; white-space:nowrap}
   .pwregeln span::before{content:"○ "; font-weight:700}
-  .pwregeln span.ok{color:var(--good)}
+  .pwregeln span.ok{color:var(--good-text)}
   .pwregeln span.ok::before{content:"✓ "}
   /* Werbung: ganzseitig über allem, damit sie nicht mit der App verwechselt
      wird. Der Rahmen und das Wort "Anzeige" sind Pflicht. */
@@ -866,7 +873,9 @@
      18.09.2026: dann heisst das Geld in der App so wie das Geld in dem Land,
      um das es die ganze Zeit geht. Kleiner und leiser als die Zahl, damit
      die Zahl die Hauptsache bleibt. */
-  .km{font-size:.78em; opacity:.7; font-weight:800; letter-spacing:.3px}
+  /* Ohne opacity und in --accent-text: mit .7 auf Gelb waren es 1,8:1 (hell)
+     und 3,8:1 (dunkel). Leiser als die Zahl bleibt KM durch die Groesse. */
+  .km{font-size:.78em; font-weight:800; letter-spacing:.3px; color:var(--accent-text)}
   /* Der Weg zu Googles Einwilligungsfenster ist jetzt der Schalter selbst -
      ein Tipp darauf oeffnet es. Damit ist Googles Forderung nach einem Weg
      dorthin erfuellt, ohne ein zweites Bedienelement. */
@@ -948,7 +957,7 @@
   .sprachzeile:last-child{border-bottom:0}
   .sprachzeile:hover{background:var(--primary-soft)}
   .sprachzeile.jetzt{background:var(--primary-soft); color:var(--primary)}
-  .sprachzeile .haken{margin-left:auto; color:var(--good)}
+  .sprachzeile .haken{margin-left:auto; color:var(--good-text)}
   @media (prefers-reduced-motion:reduce){ .sprachliste{animation:none} }
   /* Der Hinweis unter einer beantworteten Aufgabe. Er pulsiert leise,
      damit klar ist, dass die App auf einen wartet und nicht haengt. */
@@ -969,7 +978,7 @@
   .wordlist .bs{flex:0 1 auto; min-width:0; font-family:var(--font-display); color:var(--primary);
     font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .wordlist .bs.zu{color:var(--muted); opacity:.55; font-family:var(--font-ui)}
-  .wordlist .ok{color:var(--good); font-size:12px}
+  .wordlist .ok{color:var(--good-text); font-size:12px}
   @media (max-width:480px){.wordlist{grid-template-columns:1fr}}
 
   .card{background:var(--surface); border:2px solid var(--line); border-radius:var(--radius); padding:24px 20px; text-align:center}
@@ -1027,7 +1036,7 @@
   .blank-input:focus{outline:none; border-bottom-color:var(--primary)}
   .translation{font-size:14px; color:var(--muted); margin:14px 0 2px}
   .feedback{min-height:22px; font-size:14px; font-weight:800; margin-top:14px}
-  .feedback.ok{color:var(--good)} .feedback.no{color:var(--bad)} .feedback.almost{color:var(--accent-dark)}
+  .feedback.ok{color:var(--good-text)} .feedback.no{color:var(--bad-text)} .feedback.almost{color:var(--accent-text)}
 
   /* Nach der Antwort: was das Bosnische heisst. Bisher stand bei den
      Auswahlaufgaben nur da, welches Wort richtig gewesen waere - was es
@@ -1071,8 +1080,8 @@
   .opt.long{font-size:15px; font-family:var(--font-ui); font-weight:700}
   .opt:hover{border-color:var(--primary); background:var(--primary-soft)}
   .opt:active{transform:translateY(2px); box-shadow:none}
-  .opt.right{border-color:var(--good); background:var(--primary-soft); color:var(--good); box-shadow:0 3px 0 var(--good-dark)}
-  .opt.wrong{border-color:var(--bad); color:var(--bad); box-shadow:0 3px 0 var(--bad)}
+  .opt.right{border-color:var(--good); background:var(--primary-soft); color:var(--good-text); box-shadow:0 3px 0 var(--good-dark)}
+  .opt.wrong{border-color:var(--bad); color:var(--bad-text); box-shadow:0 3px 0 var(--bad)}
   .opt:disabled{cursor:default}
 
   .tbar{display:flex; gap:3px; margin-bottom:16px}
@@ -1284,6 +1293,9 @@
   </header>
 
   <div class="err" id="err"></div>
+  <!-- Hauptbereich, damit ein Bildschirmleser direkt zum Inhalt springen
+       kann. Kopf und Fuss stehen bewusst draussen. axe, 04.10.2026. -->
+  <main>
 
   <!-- ===== Profilauswahl ===== -->
   <div id="profileView" style="display:none">
@@ -1456,8 +1468,8 @@
     <div class="section" id="setVollBox" style="display:none">
       <h2 data-t="voll.titel"></h2>
       <div class="setting">
-        <div><div class="st" data-t="voll.sub"></div><div class="sd" id="setVollStand"></div></div>
-        <button class="switch" id="swVoll" role="switch" aria-checked="false"></button>
+        <div><div class="st" id="lblVoll" data-t="voll.sub"></div><div class="sd" id="setVollStand"></div></div>
+        <button class="switch" id="swVoll" role="switch" aria-checked="false" aria-labelledby="lblVoll"></button>
       </div>
       <div class="sd" id="setVollVerwalten" style="display:none; padding-bottom:12px">
         <button type="button" class="abolink" id="aboVerwalten"></button>
@@ -1496,9 +1508,9 @@
     </div>
     <div class="section">
       <h2 data-t="set.lernen"></h2>
-      <div class="setting"><div><div class="st" data-t="set.toene"></div><div class="sd" data-t="set.toene_sub"></div></div><button class="switch" id="swSound" role="switch" aria-checked="true"></button></div>
-      <div class="setting"><div><div class="st" data-t="set.vibration"></div><div class="sd" data-t="set.vibration_sub"></div></div><button class="switch" id="swHaptik" role="switch" aria-checked="true"></button></div>
-      <div class="setting"><div><div class="st" data-t="set.animationen"></div><div class="sd" data-t="set.animationen_sub"></div></div><button class="switch" id="swAnim" role="switch" aria-checked="true"></button></div>
+      <div class="setting"><div><div class="st" id="lblToene" data-t="set.toene"></div><div class="sd" data-t="set.toene_sub"></div></div><button class="switch" id="swSound" role="switch" aria-checked="true" aria-labelledby="lblToene"></button></div>
+      <div class="setting"><div><div class="st" id="lblVibration" data-t="set.vibration"></div><div class="sd" data-t="set.vibration_sub"></div></div><button class="switch" id="swHaptik" role="switch" aria-checked="true" aria-labelledby="lblVibration"></button></div>
+      <div class="setting"><div><div class="st" id="lblAnim" data-t="set.animationen"></div><div class="sd" data-t="set.animationen_sub"></div></div><button class="switch" id="swAnim" role="switch" aria-checked="true" aria-labelledby="lblAnim"></button></div>
       <!-- Tempo steht dort, wo es gebraucht wird: unter dem Vorlese-Knopf in
            der Geschichte. Und die Stimmenauswahl sagte auf dem Handy nichts
            Nuetzliches - dort gibt es gar keine Computerstimme. Beide Zeilen
@@ -1507,9 +1519,9 @@
     <!-- Nur auf dem Handy: am PC gibt es keine Benachrichtigungen. -->
     <div class="section" id="setBenBox" style="display:none">
       <h2 data-t="set.benachrichtigungen"></h2>
-      <div class="setting"><div><div class="st" data-t="set.ben_erinnerung"></div><div class="sd" data-t="set.ben_erinnerung_sub"></div></div><button class="switch" id="swBenErinnerung" role="switch" aria-checked="false"></button></div>
-      <div class="setting"><div><div class="st" data-t="set.ben_serie"></div><div class="sd" data-t="set.ben_serie_sub"></div></div><button class="switch" id="swBenSerie" role="switch" aria-checked="false"></button></div>
-      <div class="setting"><div><div class="st" data-t="set.ben_leben"></div><div class="sd" data-t="set.ben_leben_sub"></div></div><button class="switch" id="swBenLeben" role="switch" aria-checked="false"></button></div>
+      <div class="setting"><div><div class="st" id="lblBenErinnerung" data-t="set.ben_erinnerung"></div><div class="sd" data-t="set.ben_erinnerung_sub"></div></div><button class="switch" id="swBenErinnerung" role="switch" aria-checked="false" aria-labelledby="lblBenErinnerung"></button></div>
+      <div class="setting"><div><div class="st" id="lblBenSerie" data-t="set.ben_serie"></div><div class="sd" data-t="set.ben_serie_sub"></div></div><button class="switch" id="swBenSerie" role="switch" aria-checked="false" aria-labelledby="lblBenSerie"></button></div>
+      <div class="setting"><div><div class="st" id="lblBenLeben" data-t="set.ben_leben"></div><div class="sd" data-t="set.ben_leben_sub"></div></div><button class="switch" id="swBenLeben" role="switch" aria-checked="false" aria-labelledby="lblBenLeben"></button></div>
       <div class="note" id="benNote"></div>
     </div>
     <div class="section">
@@ -1560,8 +1572,8 @@
            eigenes Fenster und stellt sich danach auf das ein, was dort
            herauskam - er springt also nicht von selbst um.
            Ajdin am 18.09.2026. -->
-      <div class="setting" id="setWerbungBox" style="display:none"><div><div class="st" data-t="set.einwilligung"></div><div class="sd" id="setWerbungStand"></div></div>
-        <button class="switch" id="swWerbung" role="switch" aria-checked="false"></button></div>
+      <div class="setting" id="setWerbungBox" style="display:none"><div><div class="st" id="lblWerbung" data-t="set.einwilligung"></div><div class="sd" id="setWerbungStand"></div></div>
+        <button class="switch" id="swWerbung" role="switch" aria-checked="false" aria-labelledby="lblWerbung"></button></div>
       <!-- Nur fuer Abonnenten: sie sehen keine Werbung, koennen aber eine
            frueher erteilte Einwilligung immer noch bei Google zuruecknehmen.
            Kein Schalter, denn hier gibt es nichts umzulegen - der Knopf
@@ -1573,6 +1585,7 @@
     </div>
   </div>
 
+  </main>
   <footer data-t="app.fuss"></footer>
 </div>
 
@@ -1910,7 +1923,7 @@ function werbungGezaehlt(belohnt){
    Geht irgendetwas davon schief, bleibt AdMobP null und die App läuft
    einfach ohne Werbung weiter. Eine Lernapp, die wegen einer Anzeige nicht
    startet, wäre der schlechteste aller Tauschhandel. */
-const ADMOB_TEST = true;
+const ADMOB_TEST = false;
 /* Punkt 4 aus WERBUNG_PRUEFUNG.md: unsere eigenen Geraete bekommen auch
    nach dem Tausch auf die echten Kennungen weiter TESTanzeigen. Ohne das
    waere jeder eigene Klick beim Nachtesten ungueltiger Traffic auf dem
@@ -1954,8 +1967,8 @@ const ADMOB_TESTGERAETE = [
      jede Fassung ab. */
 ];
 const ADMOB_ID = {
-  interstitial: 'ca-app-pub-3940256099942544/1033173712',   // Googles Testkennung
-  belohnt:      'ca-app-pub-3940256099942544/5224354917',   // Googles Testkennung
+  interstitial: 'ca-app-pub-9105747905460295/9764395638',   // Zmaj, angelegt 20.09.2026
+  belohnt:      'ca-app-pub-9105747905460295/8572576770',   // Zmaj, angelegt 20.09.2026
 };
 let AdMobP = null;          // das Plugin, sobald es sich gemeldet hat
 let admobDarf = false;      // canRequestAds – vorher darf nichts geladen werden
@@ -2127,6 +2140,11 @@ async function admobZeigen(belohnt, darfNoch){
                                  : 'Ladefrist von 15 s abgelaufen';
         return false;
       }
+      /* Der zweite Blick, wie beim Interstitial unten: bis hierher
+         konnten 15 Sekunden vergehen, und wer die App inzwischen
+         weggelegt hat, bekaeme das Video sonst beim Zurueckkommen.
+         Punkt 1, nachgezogen fuers belohnte Video. */
+      if(darfNoch && !darfNoch()) return false;
       /* Punkt 11 und 16 aus WERBUNG_PRUEFUNG.md.
          Vorher entschied hier ein Rennen gegen zwei Minuten darueber, ob
          es ein Leben gibt. Zwei Wege liefen schief: wer waehrend des
@@ -2762,7 +2780,9 @@ const FARBEN = {
      geleert), dazu die drei Gelbtoene. */
   skelett: ['E6DFCB', 'F6F1E4', 'BDB398', '4A465C', '2C2A38', 'D6CCB0', 'A99F84', 'CFC4A5'],
 };
-const farbeVon = id => (FARBEN[id] || []).map(zuFarbe);
+/* hasOwnProperty: FARBEN['constructor'] waere sonst die eingebaute Funktion
+   Object, und .map darauf wirft - der Drache bliebe leer. 04.10.2026. */
+const farbeVon = id => (Object.prototype.hasOwnProperty.call(FARBEN, id) ? FARBEN[id] : []).map(zuFarbe);
 /* Alle Farbwerte in den Daten durchgehen und die fuenf Blautoene ersetzen.
    Farben stehen in Lottie als {a:0, k:[r,g,b,a]} - vier Zahlen. Positionen
    haben zwei oder drei, Groessen drei; ein Feld mit vier Zahlen ist also
@@ -2897,7 +2917,7 @@ function festZeiten(j){
    der App - nur wer am Geraet nachsehen will, wie ein Fest aussieht, ueber
    die Fernwartung. */
 function festHeute(){
-  try{ const p = localStorage.getItem('zmaj_fest_probe'); if(p && FESTE[p]) return p; }catch(e){}
+  try{ const p = localStorage.getItem('zmaj_fest_probe'); if(p && Object.prototype.hasOwnProperty.call(FESTE, p)) return p; }catch(e){}
   const n = heuteNr(), j = new Date().getFullYear();
   /* Zwei zugleich: taeglich abwechselnd, und zwar ab dem Tag, an dem das
      zweite dazukommt - mit diesem zuerst. Laeuft Weihnachten schon seit
@@ -3519,10 +3539,15 @@ applyAnim();
    Deshalb nur eine Stelle, die ihn uebernimmt. */
 function standUebernehmen(d){
   d = d || {};
-  known = new Set(d.gewusst||[]); passed = new Set(d.bestanden||[]); read = new Set(d.gelesen||[]);
+  /* Eine Sicherung kann jeder von Hand schreiben. Eine Zahl in gewusst
+     liess altenFortschrittUmschreiben() bei jedem Start werfen, bevor der
+     Einstellungsknopf erschien - siehe import_richten.py, 04.10.2026. */
+  const nurTexte = x => Array.isArray(x) ? x.filter(s => typeof s === 'string') : [];
+  known = new Set(nurTexte(d.gewusst)); passed = new Set(nurTexte(d.bestanden)); read = new Set(nurTexte(d.gelesen));
   // Nur echte Datumsangaben - siehe istDatum.
-  days = new Set((d.tage||[]).filter(istDatum));
-  frost = new Set((d.frost||[]).filter(istDatum));
+  // Kein Array (etwa "tage":"x") hiess bisher: .filter wirft. Jetzt: leer.
+  days = new Set((Array.isArray(d.tage) ? d.tage : []).filter(istDatum));
+  frost = new Set((Array.isArray(d.frost) ? d.frost : []).filter(istDatum));
   /* Unterschied zwischen "Feld fehlt" und "Feld ist leer":
        fehlt  = der Stand kommt von VOR den Wegmarken, etwa aus einer alten
                 Sicherungsdatei. Dann wird weiter unten alles schon
@@ -3532,7 +3557,7 @@ function standUebernehmen(d){
      Die Dateien in testdaten/ haben 30 Lerntage und kein Feld; ohne diese
      Unterscheidung feierte die App nach jedem Einlesen von vorn. */
   const gefeiertFehlt = (d.gefeiert === undefined);
-  gefeiert = new Set(d.gefeiert||[]);
+  gefeiert = new Set(nurTexte(d.gefeiert));
   wann = (d.wann && typeof d.wann==='object' && !Array.isArray(d.wann)) ? d.wann : {};
   rekord = Number(d.rekord) || 0;
   /* Steht noch kein Rekord da, wird er aus den vorhandenen Lerntagen
@@ -3548,17 +3573,29 @@ function standUebernehmen(d){
   }
   tagwerk = (d.tagwerk && typeof d.tagwerk==='object') ? d.tagwerk : {};
   muenzenGes = Number(d.muenzen_ges) || 0; muenzenAus = Number(d.muenzen_aus) || 0;
-  besitz = new Set(d.besitz||[]);
+  besitz = new Set(nurTexte(d.besitz));
   /* Fehlt das Feld, ist es ein Stand von vorher: nie eingestuft, nichts
      im Topf. Ob gefragt wird, entscheidet einstufungFaellig() - wer schon
      Fortschritt hat, wird es nie. */
   einstufung = (d.einstufung && typeof d.einstufung==='object' && !Array.isArray(d.einstufung)) ? d.einstufung : null;
-  topf = (d.topf && typeof d.topf==='object' && !Array.isArray(d.topf)) ? d.topf : {};
+  /* Nur Eintraege, die Objekte sind: topfAufgabe() liest e.typ. Object.fromEntries
+     legt auch "__proto__" als gewoehnlichen Schluessel an, nichts aendert den Prototyp. */
+  topf = (d.topf && typeof d.topf==='object' && !Array.isArray(d.topf))
+    ? Object.fromEntries(Object.entries(d.topf).filter(([, e]) => e && typeof e==='object' && !Array.isArray(e)))
+    : {};
   const bw = (d.bewertung && typeof d.bewertung==='object' && !Array.isArray(d.bewertung)) ? d.bewertung : {};
   bewertung = {gezeigt: Array.isArray(bw.gezeigt) ? bw.gezeigt.filter(istDatum) : [],
                nein: !!bw.nein, bewertet: !!bw.bewertet};
-  lives = (d.leben && typeof d.leben.anzahl==='number') ? {anzahl:d.leben.anzahl, zeit:d.leben.zeit||0} : {anzahl:LEBEN_MAX, zeit:0};
-  schutz = (d.schutz && typeof d.schutz.anzahl==='number') ? {anzahl:d.schutz.anzahl, zeit:d.schutz.zeit||0} : {anzahl:1, zeit:0};
+  /* Endliche Zahl zwischen 0 und dem Hoechstwert. Im Spiel kommt nie mehr
+     zustande - jede Stelle, die erhoeht, nimmt Math.min. 1e300 Herzen aus
+     einer Datei waeren die Vollversion umsonst, ein Text als zeit liess nie
+     wieder eins nachwachsen. */
+  const anzahlBis = (x, max) => (typeof x==='number' && isFinite(x)) ? Math.max(0, Math.min(max, Math.floor(x))) : null;
+  const zeitpunkt = x => (typeof x==='number' && isFinite(x)) ? x : 0;
+  const la = (d.leben && typeof d.leben==='object') ? anzahlBis(d.leben.anzahl, LEBEN_MAX) : null;
+  lives = la !== null ? {anzahl:la, zeit:zeitpunkt(d.leben.zeit)} : {anzahl:LEBEN_MAX, zeit:0};
+  const sa = (d.schutz && typeof d.schutz==='object') ? anzahlBis(d.schutz.anzahl, SCHUTZ_MAX) : null;
+  schutz = sa !== null ? {anzahl:sa, zeit:zeitpunkt(d.schutz.zeit)} : {anzahl:1, zeit:0};
   /* premium steht hier bewusst NICHT mehr. Der Lernstand kommt auch aus
      einer Sicherungsdatei, die jeder von Hand aufmachen kann - siehe
      vollversionLaden() weiter unten. */
@@ -5930,7 +5967,20 @@ async function sicherungEinlesen(datei){
   }
   if(!await frage(t('set.sicherung'), t('set.sicherung_frage'),
                   t('btn.ersetzen'), t('btn.abbrechen'))) return;
-  standUebernehmen(d.stand);
+  /* Wirft das Uebernehmen trotz der Pruefungen in standUebernehmen(), kommt
+     der alte Stand zurueck - sonst speicherte das naechste saveProgress()
+     einen halb uebernommenen. import_richten.py, 04.10.2026. */
+  const vorher = standAlsObjekt();
+  /* standUebernehmen() schreibt Geschenkjahr und getragenes Stueck sofort
+     in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
+     sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
+  const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
+  try{ standUebernehmen(d.stand); altenFortschrittUmschreiben(); }
+  catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
+           geschenk = geschenkVorher; getragen = getragenVorher;
+           try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
+                localStorage.setItem('zmaj_getragen', getragen); }catch(e2){}
+           note.textContent = t('set.sicherung_keine'); return; }
   /* Dieselbe Umschreibung wie beim normalen Start (nachAnmeldung). Die
      Kennung eines Wortes ist "bedeutung:wort"; wird eine deutsche Bedeutung
      berichtigt, aendert sich die Kennung mit. Eine Sicherung von vor der
@@ -5939,7 +5989,6 @@ async function sicherungEinlesen(datei){
      die naechste Lektion bot sie als neu an - und die Meldung darunter
      zaehlte sie ueber known.size trotzdem mit. Erst ein Neustart richtete es.
      Fall: hitna pomoc, "Notarzt" -> "Rettungsdienst". Gefunden am 26.09.2026. */
-  altenFortschrittUmschreiben();
   seitNachEinlesen();
   /* Gleich nachsehen statt erst beim naechsten Kaltstart: die Sicherung
      kann einen viel frueheren Anfang mitbringen, und dann ist das Geschenk
@@ -6629,7 +6678,7 @@ function renderTask(task, body, done, opts={}){
       }
       if(treffer){
         fin = true;
-        heard.innerHTML = '<span style="color:var(--good)">'+t('task.gehoert_ok',{text:esc(erstes)})+'</span>';
+        heard.innerHTML = '<span style="color:var(--good-text)">'+t('task.gehoert_ok',{text:esc(erstes)})+'</span>';
         sound('ok'); done({ok:true});
       } else if(!erstes){
         /* Die Erkennung hat nichts geliefert - geschwiegen, zu laut, Anruf,
@@ -6973,7 +7022,7 @@ function werbungFuerLeben(e){
     };
     if(!knopf || document.body.contains(knopf)) danach();
     else topfNachziehen();
-  });
+  }, ()=> !document.hidden);   // Punkt 1: App noch vorne?
 }
 
 /* Hier steht bewusst wenig: die Null, die Wartezeit, und was man jetzt tun
@@ -8278,13 +8327,13 @@ async function starten(){
   const bestaetigen = adresse.get('bestaetigen');
   const neuesPw = adresse.get('neues-passwort');
 
-  if(neuesPw){
+  if(neuesPw && KONTEN_AN){      // ohne Konten gibt es nichts zurueckzusetzen
     kontoCode = neuesPw;
     geschichteAufraeumen();
     zeigeAnmeldung('neupw');
     return;
   }
-  if(bestaetigen){
+  if(bestaetigen && KONTEN_AN){
     geschichteAufraeumen();
     const d = await postJSON('/api/konto/bestaetigen', {code: bestaetigen, bleiben: true});
     if(d.ok){
