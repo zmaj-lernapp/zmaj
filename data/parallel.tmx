@@ -18822,16 +18822,16 @@
    <tuv xml:lang="da"><seg>hr.</seg></tuv>
    <tuv xml:lang="fr"><seg>monsieur</seg></tuv>
   </tu>
-  <tu tuid="frau:gospođa" segtype="phrase">
+  <tu tuid="frau (anrede):gospođa" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>gospođa</seg></tuv>
-   <tuv xml:lang="de"><seg>Frau</seg></tuv>
+   <tuv xml:lang="de"><seg>Frau (Anrede)</seg></tuv>
    <tuv xml:lang="en"><seg>Mrs</seg></tuv>
    <tuv xml:lang="tr"><seg>Bayan</seg></tuv>
-   <tuv xml:lang="sv"><seg>fru</seg></tuv>
+   <tuv xml:lang="sv"><seg>fru (titel)</seg></tuv>
    <tuv xml:lang="nl"><seg>mevrouw</seg></tuv>
-   <tuv xml:lang="nb"><seg>fru</seg></tuv>
-   <tuv xml:lang="da"><seg>fru</seg></tuv>
+   <tuv xml:lang="nb"><seg>fru (tittel)</seg></tuv>
+   <tuv xml:lang="da"><seg>fru (titel)</seg></tuv>
    <tuv xml:lang="fr"><seg>madame</seg></tuv>
   </tu>
   <tu tuid="fräulein:gospođica" segtype="phrase">
@@ -19398,10 +19398,10 @@
    <tuv xml:lang="da"><seg>politi</seg></tuv>
    <tuv xml:lang="fr"><seg>police</seg></tuv>
   </tu>
-  <tu tuid="gericht:sud" segtype="phrase">
+  <tu tuid="gericht (justiz):sud" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>sud</seg></tuv>
-   <tuv xml:lang="de"><seg>Gericht</seg></tuv>
+   <tuv xml:lang="de"><seg>Gericht (Justiz)</seg></tuv>
    <tuv xml:lang="en"><seg>court</seg></tuv>
    <tuv xml:lang="tr"><seg>mahkeme</seg></tuv>
    <tuv xml:lang="sv"><seg>domstol</seg></tuv>
