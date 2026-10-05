@@ -8,11 +8,21 @@ ungueltigen Traffic - und der kann das AdMob-Konto kosten, nicht nur die
 paar Cent.
 
 REIHENFOLGE (siehe auch ANLEITUNG.md, „Liegen bereit“):
-  1. App ist in der Produktion live
-  2. In AdMob unter App-Einstellungen mit dem App-Shop verknuepft
-     (de.smartdragon.zmaj) und die Pruefung ist durch
-  3. app-ads.txt liegt oeffentlich auf zmaj-lernapp.github.io
-  4. DANN erst dieses Skript
+  1. Der geschlossene Test ist vorbei (frühestens 07.10.2026)
+  2. werbung_richten.py und werbung_texte.py sind angewendet
+  3. Die eigenen Geraete stehen in AdMob unter Einstellungen > Testgeraete
+     (per Werbe-ID - gilt dann fuer jede Signatur, auch die aus dem Play Store)
+  4. DANN dieses Skript, danach app_bauen.py --aab - VOR dem ersten Build
+     fuer die Produktion
+  5. Nach der Freigabe in der Produktion: in AdMob mit dem App-Shop
+     verknuepfen (de.smartdragon.zmaj); app-ads.txt liegt auf
+     zmaj-lernapp.github.io
+
+Bis 04.10.2026 stand hier "erst wenn die App in der Produktion live ist".
+Dann waere die erste oeffentliche Fassung mit Googles Testanzeigen
+erschienen - in einer veroeffentlichten App ein Regelverstoss. Die
+Verknuepfung mit dem Store geht erst nach der Veroeffentlichung; bis sie
+geprueft ist, liefert AdMob nur eingeschraenkt aus. Das ist unschaedlich.
 
 Danach app_bauen.py laufen lassen, sonst liegt in der Huelle weiter die
 alte index.html.
@@ -32,7 +42,10 @@ SCHREIBEN = "--schreiben" in sys.argv
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.join(ORDNER, "web", "index.html")
-XML = os.path.join(os.path.dirname(ORDNER), "zmaj-android", "android", "app",
+sys.path.insert(0, ORDNER)
+import huelle  # noqa: E402
+
+XML = os.path.join(huelle.ordner(), "android", "app",
                    "src", "main", "res", "values", "strings.xml")
 # Die Anleitung fuehrt dieselben Kennungen in einer Tabelle. Ohne sie hier
 # stuende dort nach dem Tausch weiter die Testkennung - beim naechsten
@@ -105,9 +118,15 @@ if not os.path.exists(XML):
     sys.exit(1)
 
 stand = {}
+# Zeilenenden je Datei merken: index.html ist am Windows-Rechner CRLF, die
+# strings.xml der Huelle LF. Bis 04.10.2026 schrieb das Skript alles als
+# CRLF, und Git zeigte strings.xml danach als komplett geaendert.
+crlf = {}
 for datei, name, alt, neu in A:
     if datei not in stand:
-        stand[datei] = io.open(datei, encoding="utf-8", newline="").read().replace("\r\n", "\n")
+        roh = io.open(datei, encoding="utf-8", newline="").read()
+        crlf[datei] = "\r\n" in roh
+        stand[datei] = roh.replace("\r\n", "\n")
     n = stand[datei].count(alt)
     if n != 1:
         print("ABBRUCH: %-14s %-34s %d Treffer" % (os.path.basename(datei), name, n))
@@ -153,7 +172,8 @@ print("\n   Nachkontrollen bestanden.")
 
 if SCHREIBEN:
     for datei, text in stand.items():
-        io.open(datei, "w", encoding="utf-8", newline="").write(text.replace("\n", "\r\n"))
+        with io.open(datei, "w", encoding="utf-8", newline="") as f:
+            f.write(text.replace("\n", "\r\n") if crlf[datei] else text)
         print("geschrieben: %s" % os.path.basename(datei))
     print("\nJETZT NOCH: app_bauen.py laufen lassen, sonst liegt in der Huelle")
     print("weiter die alte index.html mit den Testkennungen.")
