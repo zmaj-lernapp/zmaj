@@ -1567,7 +1567,7 @@ domaćin / domaćica	host / hostess	word	gastgeber / gastgeberin:domaćin / doma
 Još malo?	A bit more?	word	noch ein bisschen?:Još malo?
 Vi	you (polite)	word	sie (höflich):Vi
 gospodin	Mr	word	herr:gospodin
-gospođa	Mrs	word	frau:gospođa
+gospođa	Mrs	word	frau (anrede):gospođa
 gospođica	Miss	word	fräulein:gospođica
 Dobar dan, kako ste?	Good day, how are you?	word	guten tag, wie geht es ihnen?:Dobar dan, kako ste?
 Izvolite	Here you are (handing something over)	word	bitte sehr (beim überreichen):Izvolite
@@ -1615,7 +1615,7 @@ banka	bank	word	bank:banka
 račun	account	word	konto:račun
 pošta	post office	word	post:pošta
 policija	police	word	polizei:policija
-sud	court	word	gericht:sud
+sud	court	word	gericht (justiz):sud
 advokat	lawyer	word	anwalt:advokat
 notar	notary	word	notar:notar
 ambasada	embassy	word	botschaft:ambasada

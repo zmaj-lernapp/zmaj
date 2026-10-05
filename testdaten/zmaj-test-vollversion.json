@@ -1572,7 +1572,7 @@
    "noch ein bisschen?:Još malo?",
    "sie (höflich):Vi",
    "herr:gospodin",
-   "frau:gospođa",
+   "frau (anrede):gospođa",
    "fräulein:gospođica",
    "guten tag, wie geht es ihnen?:Dobar dan, kako ste?",
    "bitte sehr (beim überreichen):Izvolite",
@@ -1620,7 +1620,7 @@
    "konto:račun",
    "post:pošta",
    "polizei:policija",
-   "gericht:sud",
+   "gericht (justiz):sud",
    "anwalt:advokat",
    "notar:notar",
    "botschaft:ambasada",
@@ -1815,7 +1815,6 @@
    "intervju"
   ],
   "tage": [
-   "2026-09-04",
    "2026-09-05",
    "2026-09-06",
    "2026-09-07",
@@ -1844,7 +1843,8 @@
    "2026-09-30",
    "2026-10-01",
    "2026-10-02",
-   "2026-10-03"
+   "2026-10-03",
+   "2026-10-04"
   ],
   "frost": [],
   "besitz": [
