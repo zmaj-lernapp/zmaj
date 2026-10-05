@@ -352,7 +352,7 @@ Du behöver varken fråga oss eller få tag på oss: avinstallera appen, eller t
 Inlärda ord, klarade nivåer, lästa berättelser, inlärningsdagar, inlärningstid, dagsuppgifter, mynt, föremål du köpt, hjärtan, serieskydd, dina inställningar och den slumpmässiga identifierare som skapas när du startar appen första gången.</p>
 
 <p><b>Androids egen säkerhetskopiering</b><br>
-Har du slagit på den i ditt Google-konto finns en kopia av appens data där, och Android lägger tillbaka den när du installerar om. Den raderar du i ditt Google-konto (Google Drive eller Google One → Säkerhetskopior) – vi kommer inte åt den.</p>
+Har du slagit på den i ditt Google-konto finns en kopia av appens data där, och Android återställer den när du installerar om. Den raderar du i ditt Google-konto (Google Drive eller Google One → Säkerhetskopior) – vi kommer inte åt den.</p>
 
 <p><b>Din säkerhetskopia</b><br>
 Har du sparat en fil under <i>Inställningar → Säkerhetskopia</i> ligger den kvar där du lade den. Den måste du radera själv – vi kommer inte åt den.</p>
@@ -361,7 +361,7 @@ Har du sparat en fil under <i>Inställningar → Säkerhetskopia</i> ligger den 
 Ett mejl med feedback blir kvar i vår inkorg, tillsammans med din avsändaradress. Skriv till <a href="mailto:{mail}">{mail}</a>, så raderar vi det – inom 30 dagar.</p>
 
 <p><b>Fullversionen</b><br>
-Den är kopplad till ditt Google-konto, inte till oss. Du kan bara säga upp den och radera den där.</p>
+Den är kopplad till ditt Google-konto, inte till oss. Det är bara där du kan säga upp och radera den.</p>
 """,
     },
     "nl": {
@@ -380,13 +380,13 @@ Dat werkt meteen.</p>
 
 <p><b>Wat er gewist wordt</b><br>
 Geleerde woorden, gehaalde niveaus, gelezen verhalen, leerdagen,
-leertijd, dagtaken, munten, gekochte voorwerpen, levens,
-reeksbescherming, je instellingen en de willekeurige aanduiding die bij de
+leertijd, dagopdrachten, munten, gekochte voorwerpen, levens,
+reeksbescherming, je instellingen en de willekeurige ID-code die bij de
 eerste start wordt aangemaakt.</p>
 
 <p><b>De eigen back-up van Android</b><br>
 Heb je die in je Google-account aangezet, dan staat daar een kopie van de
-gegevens van de app, en Android zet die terug als je opnieuw installeert.
+gegevens van de app, en Android zet die terug als je de app opnieuw installeert.
 Die wis je in je Google-account (Google Drive of Google One → Back-ups) –
 wij kunnen er niet bij.</p>
 
@@ -401,7 +401,7 @@ afzenderadres. Schrijf naar <a href="mailto:{mail}">{mail}</a>, dan wissen
 we hem – binnen 30 dagen.</p>
 
 <p><b>De volledige versie</b><br>
-Die hangt aan je Google-account, niet aan ons. Opzeggen en laten verwijderen
+Die is gekoppeld aan je Google-account, niet aan ons. Opzeggen en laten verwijderen
 kan alleen daar.</p>
 """,
     },
@@ -412,38 +412,38 @@ kan alleen daar.</p>
 Det finnes ingen innlogging, intet passord og ingen e-postadresse. Framgangen din ligger på enheten din; appen laster den aldri opp noe sted – heller ikke til oss.</p>
 
 <p><b>Slik sletter du alt</b><br>
-Du trenger verken å spørre oss eller få tak i oss: slett appen, eller tøm lagringen dens i innstillingene på enheten din (<i>Innstillinger → Apper → Zmaj → Lagring → Tøm data</i>). Dermed er framgangen borte – hos oss også, for der har den aldri vært. Det virker med en gang.</p>
+Du trenger verken å spørre oss eller få tak i oss: Slett appen, eller tøm lagringen dens i innstillingene på enheten din (<i>Innstillinger → Apper → Zmaj → Lagring → Tøm data</i>). Dermed er framgangen borte – hos oss også, for der har den aldri vært. Det virker med en gang.</p>
 
 <p><b>Hva som blir slettet</b><br>
 Lærte ord, beståtte nivåer, leste fortellinger, læringsdager, læringstid, dagsoppdrag, mynter, gjenstander du har kjøpt, liv, rekkebeskyttelse, innstillingene dine og den tilfeldige ID-en som blir laget første gang du starter appen.</p>
 
 <p><b>Androids egen sikkerhetskopiering</b><br>
-Har du slått den på i Google-kontoen din, ligger det en kopi av appens data der, og Android legger den tilbake når du installerer på nytt. Den sletter du i Google-kontoen din (Google Disk eller Google One → Sikkerhetskopier) – vi kommer ikke til den.</p>
+Har du slått den på i Google-kontoen din, ligger det en kopi av appens data der, og Android gjenoppretter den når du installerer appen på nytt. Den sletter du i Google-kontoen din (Google Disk eller Google One → Sikkerhetskopier) – vi har ikke tilgang til den.</p>
 
 <p><b>Sikkerhetskopien din</b><br>
-Har du lagret en fil under <i>Innstillinger → Sikkerhetskopi</i>, ligger den der du la den. Den må du slette selv – vi kommer ikke til den.</p>
+Har du lagret en fil under <i>Innstillinger → Sikkerhetskopi</i>, ligger den der du la den. Den må du slette selv – vi har ikke tilgang til den.</p>
 
 <p><b>Hvis du har skrevet til oss</b><br>
 En tilbakemelding på e-post blir liggende i postkassen vår, sammen med avsenderadressen din. Skriv til <a href="mailto:{mail}">{mail}</a>, så sletter vi den – innen 30 dager.</p>
 
 <p><b>Fullversjonen</b><br>
-Den hører til Google-kontoen din, ikke til oss. Du kan bare si den opp og få den slettet der.</p>
+Den hører til Google-kontoen din, ikke til oss. Det er bare der du kan si den opp og få den slettet.</p>
 """,
     },
     "da": {
         "titel": "Slet dine data",
         "text": """
 <p><b>Zmaj har ingen konto</b><br>
-Der er ingen login, ingen adgangskode og ingen mailadresse. Dine fremskridt ligger på din enhed; appen sender dem ikke nogen steder hen – heller ikke til os.</p>
+Der er intet login, ingen adgangskode og ingen mailadresse. Dine fremskridt ligger på din enhed; appen sender dem ikke nogen steder hen – heller ikke til os.</p>
 
 <p><b>Sådan sletter du det hele</b><br>
 Du behøver ikke at spørge os eller få fat i os:
-slet appen, eller ryd dens lagrede data i din enheds indstillinger
-(<i>Indstillinger → Apps → Zmaj → Lager → Ryd data</i>).
+Slet appen, eller ryd dens lagrede data i din enheds indstillinger
+(<i>Indstillinger → Apps → Zmaj → Lagring → Ryd data</i>).
 Så er dine fremskridt væk – også hos os, for de har aldrig været der.
 Det virker med det samme.</p>
 
-<p><b>Hvad bliver slettet</b><br>
+<p><b>Hvad der bliver slettet</b><br>
 Lærte ord, beståede niveauer, læste fortællinger, læringsdage,
 læringstid, dagsopgaver, mønter, købte genstande, liv,
 rækkebeskyttelse, dine indstillinger og det tilfældige id, der bliver
@@ -466,7 +466,7 @@ din afsenderadresse. Skriv til <a href="mailto:{mail}">{mail}</a>, så
 sletter vi den – inden for 30 dage.</p>
 
 <p><b>Fuld version</b><br>
-Den hænger sammen med din Google-konto, ikke med os. Du kan kun opsige
+Den er knyttet til din Google-konto, ikke til os. Du kan kun opsige
 og slette den dér.</p>
 """,
     },
