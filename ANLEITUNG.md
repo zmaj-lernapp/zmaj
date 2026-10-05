@@ -59,8 +59,11 @@ nicht** — der Interpreter steht unter
 
 ### Liegen bereit für den Build **nach** dem Test
 
-Diese Skripte dürfen erst laufen, wenn die 14 Tage durch sind — jede
-Einreichung setzt Googles Prüfuhr zurück. Reihenfolge wie in der Tabelle.
+**Angewendet am 05.10.2026 für Build 91** (versionCode 91), in der
+Reihenfolge der Tabelle, `admob_scharf.py` zuletzt. Das Paket wird erst
+nach dem geschlossenen Test eingereicht — jede Einreichung vorher setzt
+Googles Prüfuhr zurück. Die Skripte bleiben vorerst liegen, weil die Tests
+auch den angewendeten Stand prüfen.
 
 | Skript | Was es tut | Stand 04.10.2026 |
 |---|---|---|
@@ -545,16 +548,15 @@ die Stelle prüfen, an der Werbung säße, ohne Werbung zu laden.
 
 ### Vor der Veröffentlichung: drei Kennungen tauschen
 
-Zurzeit laufen **Googles öffentliche Testanzeigen**. Die brauchen kein
-Konto, kosten nichts und bringen nichts ein. Testanzeigen in einer
-veröffentlichten App sind ein Regelverstoß, also vor dem ersten Hochladen an
-diesen drei Stellen die echten Werte aus dem AdMob-Konto eintragen:
+Die echten Kennungen aus dem AdMob-Konto sind eingetragen, gesetzt von
+`admob_scharf.py`. Testanzeigen in einer veröffentlichten App wären ein
+Regelverstoß; seitdem stehen an diesen drei Stellen die scharfen Werte:
 
 | Was | Wo | Steht dort jetzt |
 |---|---|---|
-| App-ID | `zmaj-android/android/app/src/main/res/values/strings.xml`, `admob_app_id` | `ca-app-pub-3940256099942544~3347511713` |
-| Anzeigen-IDs | `web/index.html`, `ADMOB_ID` (`interstitial`, `belohnt`) | Googles Testkennungen |
-| Testbetrieb | `web/index.html`, `ADMOB_TEST` | `true` → auf `false` |
+| App-ID | `zmaj-android/android/app/src/main/res/values/strings.xml`, `admob_app_id` | `ca-app-pub-9105747905460295~9760526209` |
+| Anzeigen-IDs | `web/index.html`, `ADMOB_ID` (`interstitial`, `belohnt`) | die echten Kennungen vom 20.09.2026 |
+| Testbetrieb | `web/index.html`, `ADMOB_TEST` | `false` |
 
 Die App-ID muss dort stehen, auch wenn man sie nicht benutzt: Ohne den
 Eintrag stürzt die App beim Start ab, sobald das Werbe-SDK dabei ist.
