@@ -1567,7 +1567,7 @@ domaćin / domaćica	ev sahibi (erkek / kadın)	word	gastgeber / gastgeberin:dom
 Još malo?	Biraz daha ister misin?	word	noch ein bisschen?:Još malo?
 Vi	siz (kibar)	word	sie (höflich):Vi
 gospodin	Bay	word	herr:gospodin
-gospođa	Bayan	word	frau:gospođa
+gospođa	Bayan	word	frau (anrede):gospođa
 gospođica	Küçük Hanım	word	fräulein:gospođica
 Dobar dan, kako ste?	İyi günler, nasılsınız?	word	guten tag, wie geht es ihnen?:Dobar dan, kako ste?
 Izvolite	Buyurun (bir şey uzatırken)	word	bitte sehr (beim überreichen):Izvolite
@@ -1615,7 +1615,7 @@ banka	banka	word	bank:banka
 račun	hesap	word	konto:račun
 pošta	postane	word	post:pošta
 policija	polis	word	polizei:policija
-sud	mahkeme	word	gericht:sud
+sud	mahkeme	word	gericht (justiz):sud
 advokat	avukat	word	anwalt:advokat
 notar	noter	word	notar:notar
 ambasada	büyükelçilik	word	botschaft:ambasada

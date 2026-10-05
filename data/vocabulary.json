@@ -30437,19 +30437,19 @@
    "audio": "web/audio/w0935.mp3"
   },
   {
-   "id": "frau:gospođa",
+   "id": "frau (anrede):gospođa",
    "bs": "gospođa",
    "level": "formell",
    "level_position": 60,
    "section": "amt",
    "translations": {
-    "de": "Frau",
+    "de": "Frau (Anrede)",
     "en": "Mrs",
     "tr": "Bayan",
-    "sv": "fru",
+    "sv": "fru (titel)",
     "nl": "mevrouw",
-    "nb": "fru",
-    "da": "fru",
+    "nb": "fru (tittel)",
+    "da": "fru (titel)",
     "fr": "madame"
    },
    "audio": "web/audio/w0936.mp3"
@@ -31301,13 +31301,13 @@
    "audio": "web/audio/w0983.mp3"
   },
   {
-   "id": "gericht:sud",
+   "id": "gericht (justiz):sud",
    "bs": "sud",
    "level": "amt",
    "level_position": 61,
    "section": "amt",
    "translations": {
-    "de": "Gericht",
+    "de": "Gericht (Justiz)",
     "en": "court",
     "tr": "mahkeme",
     "sv": "domstol",

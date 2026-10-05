@@ -1567,7 +1567,7 @@ domaćin / domaćica	gastheer / gastvrouw	word	gastgeber / gastgeberin:domaćin 
 Još malo?	Nog een beetje?	word	noch ein bisschen?:Još malo?
 Vi	u (beleefd)	word	sie (höflich):Vi
 gospodin	meneer	word	herr:gospodin
-gospođa	mevrouw	word	frau:gospođa
+gospođa	mevrouw	word	frau (anrede):gospođa
 gospođica	juffrouw	word	fräulein:gospođica
 Dobar dan, kako ste?	Goedendag, hoe gaat het met u?	word	guten tag, wie geht es ihnen?:Dobar dan, kako ste?
 Izvolite	Alstublieft (bij het aangeven)	word	bitte sehr (beim überreichen):Izvolite
@@ -1615,7 +1615,7 @@ banka	bank	word	bank:banka
 račun	rekening	word	konto:račun
 pošta	postkantoor	word	post:pošta
 policija	politie	word	polizei:policija
-sud	rechtbank	word	gericht:sud
+sud	rechtbank	word	gericht (justiz):sud
 advokat	advocaat	word	anwalt:advokat
 notar	notaris	word	notar:notar
 ambasada	ambassade	word	botschaft:ambasada

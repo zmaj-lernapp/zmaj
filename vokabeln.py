@@ -1904,7 +1904,7 @@ KATEGORIEN = [
      "words": [
         {"de": "Sie (höflich)",                     "bs": "Vi"},
         {"de": "Herr",                              "bs": "gospodin"},
-        {"de": "Frau",                              "bs": "gospođa"},
+        {"de": "Frau (Anrede)",                     "bs": "gospođa"},
         {"de": "Fräulein",                          "bs": "gospođica"},
         {"de": "Guten Tag, wie geht es Ihnen?",     "bs": "Dobar dan, kako ste?"},
         {"de": "Bitte sehr (beim Überreichen)",     "bs": "Izvolite"},
@@ -1956,7 +1956,7 @@ KATEGORIEN = [
         {"de": "Konto",                      "bs": "račun"},
         {"de": "Post",                       "bs": "pošta"},
         {"de": "Polizei",                    "bs": "policija"},
-        {"de": "Gericht",                    "bs": "sud"},
+        {"de": "Gericht (Justiz)",           "bs": "sud"},
         {"de": "Anwalt",                     "bs": "advokat"},
         {"de": "Notar",                      "bs": "notar"},
         {"de": "Botschaft",                  "bs": "ambasada"},
