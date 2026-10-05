@@ -7,6 +7,8 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- `huelle.py`: the build scripts find the Android shell as `../zmaj-android`
+  or `../zmaj-huelle` (fresh clone), or via `ZMAJ_HUELLE`.
 - OpenSSF Best Practices entry (project 15225) with badge in the README.
 - DOI 10.5281/zenodo.23146609 (Zenodo, all versions) in the README, `CITATION.cff` and the
   dataset documentation.
