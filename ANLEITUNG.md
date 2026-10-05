@@ -59,8 +59,11 @@ nicht** — der Interpreter steht unter
 
 ### Liegen bereit für den Build **nach** dem Test
 
-Diese Skripte dürfen erst laufen, wenn die 14 Tage durch sind — jede
-Einreichung setzt Googles Prüfuhr zurück. Reihenfolge wie in der Tabelle.
+**Angewendet am 05.10.2026 für Build 91** (versionCode 91), in der
+Reihenfolge der Tabelle, `admob_scharf.py` zuletzt. Das Paket wird erst
+nach dem geschlossenen Test eingereicht — jede Einreichung vorher setzt
+Googles Prüfuhr zurück. Die Skripte bleiben vorerst liegen, weil die Tests
+auch den angewendeten Stand prüfen.
 
 | Skript | Was es tut | Stand 04.10.2026 |
 |---|---|---|
