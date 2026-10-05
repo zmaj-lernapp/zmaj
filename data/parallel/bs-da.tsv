@@ -1567,7 +1567,7 @@ domaćin / domaćica	vært / værtinde	word	gastgeber / gastgeberin:domaćin / d
 Još malo?	Lidt til?	word	noch ein bisschen?:Još malo?
 Vi	De (høfligt)	word	sie (höflich):Vi
 gospodin	hr.	word	herr:gospodin
-gospođa	fru	word	frau:gospođa
+gospođa	fru (titel)	word	frau (anrede):gospođa
 gospođica	frøken	word	fräulein:gospođica
 Dobar dan, kako ste?	Goddag, hvordan går det med Dem?	word	guten tag, wie geht es ihnen?:Dobar dan, kako ste?
 Izvolite	Værsgo (når man rækker noget)	word	bitte sehr (beim überreichen):Izvolite
@@ -1615,7 +1615,7 @@ banka	bank	word	bank:banka
 račun	konto	word	konto:račun
 pošta	posthus	word	post:pošta
 policija	politi	word	polizei:policija
-sud	domstol	word	gericht:sud
+sud	domstol	word	gericht (justiz):sud
 advokat	advokat	word	anwalt:advokat
 notar	notar	word	notar:notar
 ambasada	ambassade	word	botschaft:ambasada

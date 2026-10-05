@@ -1571,7 +1571,7 @@ domaćin / domaćica	Gastgeber / Gastgeberin	zmaj zmaj::59_kulturlevel
 Još malo?	Noch ein bisschen?	zmaj zmaj::59_kulturlevel
 Vi	Sie (höflich)	zmaj zmaj::60_formell
 gospodin	Herr	zmaj zmaj::60_formell
-gospođa	Frau	zmaj zmaj::60_formell
+gospođa	Frau (Anrede)	zmaj zmaj::60_formell
 gospođica	Fräulein	zmaj zmaj::60_formell
 Dobar dan, kako ste?	Guten Tag, wie geht es Ihnen?	zmaj zmaj::60_formell
 Izvolite	Bitte sehr (beim Überreichen)	zmaj zmaj::60_formell
@@ -1619,7 +1619,7 @@ banka	Bank	zmaj zmaj::61_amt
 račun	Konto	zmaj zmaj::61_amt
 pošta	Post	zmaj zmaj::61_amt
 policija	Polizei	zmaj zmaj::61_amt
-sud	Gericht	zmaj zmaj::61_amt
+sud	Gericht (Justiz)	zmaj zmaj::61_amt
 advokat	Anwalt	zmaj zmaj::61_amt
 notar	Notar	zmaj zmaj::61_amt
 ambasada	Botschaft	zmaj zmaj::61_amt

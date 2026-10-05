@@ -1567,7 +1567,7 @@ jemanden einladen (bezahlen):častiti,59,kulturlevel,kultur,častiti,jemanden ei
 noch ein bisschen?:Još malo?,59,kulturlevel,kultur,Još malo?,Noch ein bisschen?,A bit more?,Biraz daha ister misin?,Lite till?,Nog een beetje?,Litt til?,Lidt til?,Encore un peu ?,web/audio/w2043.mp3
 sie (höflich):Vi,60,formell,amt,Vi,Sie (höflich),you (polite),siz (kibar),ni (artigt),u (beleefd),De (høflig),De (høfligt),vous (politesse),web/audio/w0934.mp3
 herr:gospodin,60,formell,amt,gospodin,Herr,Mr,Bay,herr,meneer,herr,hr.,monsieur,web/audio/w0935.mp3
-frau:gospođa,60,formell,amt,gospođa,Frau,Mrs,Bayan,fru,mevrouw,fru,fru,madame,web/audio/w0936.mp3
+frau (anrede):gospođa,60,formell,amt,gospođa,Frau (Anrede),Mrs,Bayan,fru (titel),mevrouw,fru (tittel),fru (titel),madame,web/audio/w0936.mp3
 fräulein:gospođica,60,formell,amt,gospođica,Fräulein,Miss,Küçük Hanım,fröken,juffrouw,frøken,frøken,mademoiselle,web/audio/w0937.mp3
 "guten tag, wie geht es ihnen?:Dobar dan, kako ste?",60,formell,amt,"Dobar dan, kako ste?","Guten Tag, wie geht es Ihnen?","Good day, how are you?","İyi günler, nasılsınız?","God dag, hur mår ni?","Goedendag, hoe gaat het met u?","God dag, hvordan går det med Dem?","Goddag, hvordan går det med Dem?","Bonjour, comment allez-vous ?",web/audio/w0938.mp3
 bitte sehr (beim überreichen):Izvolite,60,formell,amt,Izvolite,Bitte sehr (beim Überreichen),Here you are (handing something over),Buyurun (bir şey uzatırken),Varsågod (när man räcker över något),Alstublieft (bij het aangeven),Vær så god (når man rekker over noe),Værsgo (når man rækker noget),Voilà (en tendant quelque chose),web/audio/w0939.mp3
@@ -1615,7 +1615,7 @@ bank:banka,61,amt,amt,banka,Bank,bank,banka,bank,bank,bank,bank,banque,web/audio
 konto:račun,61,amt,amt,račun,Konto,account,hesap,konto,rekening,konto,konto,compte,web/audio/w0981.mp3
 post:pošta,61,amt,amt,pošta,Post,post office,postane,post,postkantoor,postkontor,posthus,bureau de poste,web/audio/w0982.mp3
 polizei:policija,61,amt,amt,policija,Polizei,police,polis,polis,politie,politi,politi,police,web/audio/w0983.mp3
-gericht:sud,61,amt,amt,sud,Gericht,court,mahkeme,domstol,rechtbank,domstol,domstol,tribunal,web/audio/w0984.mp3
+gericht (justiz):sud,61,amt,amt,sud,Gericht (Justiz),court,mahkeme,domstol,rechtbank,domstol,domstol,tribunal,web/audio/w0984.mp3
 anwalt:advokat,61,amt,amt,advokat,Anwalt,lawyer,avukat,advokat,advocaat,advokat,advokat,avocat,web/audio/w0985.mp3
 notar:notar,61,amt,amt,notar,Notar,notary,noter,notarius publicus,notaris,notarius publicus,notar,notaire,web/audio/w0986.mp3
 botschaft:ambasada,61,amt,amt,ambasada,Botschaft,embassy,büyükelçilik,ambassad,ambassade,ambassade,ambassade,ambassade,web/audio/w0987.mp3
