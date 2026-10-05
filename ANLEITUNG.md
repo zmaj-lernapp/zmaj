@@ -29,7 +29,7 @@ den Python-Dateien daneben erzeugt.
 ## Die Android-Hülle
 
 Die Android-Hülle liegt **außerhalb** dieses Ordners, daneben unter
-`zmaj-android/`, in einem eigenen, privaten Repository. Alle Ordner stehen
+`zmaj-android/` (frisch geklont: `zmaj-huelle/`), in einem eigenen, privaten Repository. Alle Ordner stehen
 unten unter „Ordner“.
 
 ---
@@ -1053,13 +1053,11 @@ Dateien, Zurück-Taste, AdMob).
 
 ### Wo was liegt
 
-Die Hülle liegt **nicht** in diesem Projekt, sondern daneben:
-
-    C:\Users\Ajdin\Desktop\zmaj-android
-
-Der Grund ist banal: Dieser Ordner heißt „Bosnisch Lernapp“, mit
-Leerzeichen, und Android-Builds stolpern darüber. Der Nachbarordner hat
-keins.
+Die Hülle liegt **nicht** in diesem Projekt, sondern daneben, als eigenes
+privates Repository `zmaj-lernapp/zmaj-huelle`. Der Ordner heißt
+`zmaj-android` (so am eigenen Rechner) oder `zmaj-huelle` (frischer
+`git clone`); `huelle.py` findet beide, ein anderer Ort geht über die
+Umgebungsvariable `ZMAJ_HUELLE`.
 
 Darin:
 
@@ -1080,7 +1078,7 @@ Ein Skript, ein Befehl:
 1. **Tonspur prüfen.** Es ruft `ton_pruefen.py` auf. Fehlt auch nur eine
    Aufnahme, bricht es ab und kopiert nichts. Ein halbes Paket soll niemand
    in die Hand bekommen.
-2. **Kopieren.** `web/` nach `zmaj-android/www`, vorher wird `www` geleert.
+2. **Kopieren.** `web/` nach `www/` der Hülle, vorher wird `www` geleert.
    Nicht mitkopiert werden die Probeaufnahmen (`_probe`), die Sicherungen
    von `index.html` (alles mit `.vor_` im Namen) und die LIESMICH-Dateien.
 3. **`npx cap sync android`.** Damit landen die Dateien und die Plugins im
@@ -1115,22 +1113,28 @@ Alles andere lässt sich später noch drehen.
 | `@capacitor/app` | die Zurück-Taste und das Schließen der App |
 | `@capacitor/filesystem` | die Sicherungsdatei schreiben |
 | `@capacitor/share` | sie ans Teilen-Menü übergeben |
+| `@capacitor/local-notifications` | die Lern-Erinnerung |
 | `@capacitor-community/admob` | Werbung und Googles Einwilligungsfenster |
+| `@capacitor-community/speech-recognition` | die Sprechaufgabe |
+| `ZmajAbo` (eigenes, Java) | das Abo über Google Play Billing |
+| `ZmajEinwilligung` (eigenes, Java) | liest Googles Einwilligung (IAB TCF) für die Werbung |
+| `ZmajBewertung` (eigenes, Java) | Googles Bewertungsfenster |
 
-Alle vier sind so eingebaut, dass ihr Fehlen nichts kaputt macht: Die App
+Stand 04.10.2026, nachgesehen in `package.json` und
+`android/app/src/main/java/de/smartdragon/zmaj/` der Hülle. Alle sind so eingebaut, dass ihr Fehlen nichts kaputt macht: Die App
 fragt jedes Mal `window.Capacitor && window.Capacitor.Plugins`, und wo
 nichts antwortet, nimmt sie den Weg für den Browser. Deshalb läuft dieselbe
 Datei am PC weiter.
 
-### Was vor dem ersten Hochladen noch fehlt
+### Vor dem ersten Produktions-Build (nach dem 07.10.2026)
 
-- Die drei AdMob-Kennungen tauschen (siehe „Vor der Veröffentlichung“).
-- `versionCode` und `versionName` in `android/app/build.gradle` stehen auf
-  `1` und `"1.0"`; die App meldet sich in der Oberfläche als **v0.9**. Das
-  gehört zusammengebracht.
-- Ein Schlüssel zum Signieren, und er darf nie verlorengehen.
-- Die Rechtstexte müssen öffentlich erreichbar sein (siehe „Die öffentliche
-  Seite“).
+- Die Patch-Skripte in der Reihenfolge aus „Liegen bereit für den Build
+  nach dem Test“, zuletzt `admob_scharf.py`.
+- Die eigenen Geräte vorher in AdMob unter *Einstellungen → Testgeräte*
+  eintragen (per Werbe-ID), sonst zählen eigene Klicks als ungültig.
+- Zielgruppe in der Play Console bei **16+** lassen: Die Werbung läuft mit
+  `maxAdContentRating: 'Teen'` und ohne Kennzeichnung als Kinder-App.
+- `versionCode` in `android/app/build.gradle` erhöhen (Stand 02.10.2026: 89).
 
 ## Die öffentliche Seite
 

@@ -29,11 +29,15 @@ sie neu zu erzeugen kostet Azure-Guthaben und braucht den Schlüssel. Weg
 sind sie schneller als bezahlt.
 """
 import os
+import sys
 import zipfile
 from datetime import date
 
 HIER = os.path.dirname(os.path.abspath(__file__))
-NEBENAN = os.path.join(os.path.dirname(HIER), "zmaj-android")
+sys.path.insert(0, HIER)
+import huelle  # noqa: E402
+
+NEBENAN = huelle.ordner()   # ../zmaj-android oder ../zmaj-huelle, siehe huelle.py
 # Der Freigabeschluessel liegt in einem eigenen Ordner, damit er beim
 # Hochladen des Projekts nicht versehentlich mitgeht. Genau deshalb fiel
 # er aus jeder Sicherung heraus: gesammelt wurden nur die beiden Ordner
@@ -140,13 +144,13 @@ def main():
     projekt = [(v, n) for v, n in projekt if not n.startswith("Bosnisch Lernapp/Zmaj Sicherungen")]
 
     # --- Android-Huelle dazu ---
-    huelle = sammeln(NEBENAN, "zmaj-android", HUELLE_WEG_ORDNER, HUELLE_WEG_DATEIEN)
+    huellen_dateien = sammeln(NEBENAN, "zmaj-android", HUELLE_WEG_ORDNER, HUELLE_WEG_DATEIEN)
     # Auch die Huelle wird geprueft. Dort liegt android/keystore.properties
     # mit den Passwoertern zum Freigabeschluessel; ungeprueft landete die
     # Datei in der Projekt-Zip - also in der, die hochgeladen werden darf.
-    geheim += [(v, n) for v, n in huelle if ist_geheim(n.split("/", 1)[1])]
-    huelle = [(v, n) for v, n in huelle if not ist_geheim(n.split("/", 1)[1])]
-    projekt += huelle
+    geheim += [(v, n) for v, n in huellen_dateien if ist_geheim(n.split("/", 1)[1])]
+    huellen_dateien = [(v, n) for v, n in huellen_dateien if not ist_geheim(n.split("/", 1)[1])]
+    projekt += huellen_dateien
 
     # --- Der Freigabeschluessel ---
     # Der ganze Ordner ist geheim, deshalb ohne Einzelpruefung.
@@ -154,8 +158,8 @@ def main():
         geheim += sammeln(SCHLUESSEL, "zmaj-schluessel")
 
     print("Sicherung vom %s\n" % heute)
-    print("  Projekt      %4d Dateien" % (len(projekt) - len(huelle)))
-    print("  Android      %4d Dateien" % len(huelle))
+    print("  Projekt      %4d Dateien" % (len(projekt) - len(huellen_dateien)))
+    print("  Android      %4d Dateien" % len(huellen_dateien))
     print("  geheim       %4d Dateien" % len(geheim))
 
     p1 = os.path.join(ZIEL, "zmaj-projekt-%s.zip" % heute)

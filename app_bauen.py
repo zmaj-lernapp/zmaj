@@ -2,9 +2,9 @@
 r"""
 app_bauen.py  –  bringt den Inhalt in die Android-Hülle
 
-Die Android-App liegt in einem eigenen Ordner neben diesem Projekt:
-
-    C:\Users\Ajdin\Desktop\App Zeugs\zmaj-android
+Die Android-App liegt in einem eigenen Ordner neben diesem Projekt,
+`zmaj-android` oder `zmaj-huelle` (frischer Klon von zmaj-lernapp/zmaj-huelle),
+siehe huelle.py. Ein anderer Ort geht über die Umgebungsvariable ZMAJ_HUELLE.
 
 Warum getrennt? Ursprünglich, weil dieser Ordner „Bosnisch Lernapp" heißt –
 mit Leerzeichen, und Android-Builds stolpern darüber. Das Ausweichen
@@ -33,7 +33,10 @@ import sys
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.join(HIER, "web")
-HUELLE = os.path.join(os.path.dirname(HIER), "zmaj-android")
+sys.path.insert(0, HIER)
+import huelle  # noqa: E402
+
+HUELLE = huelle.ordner()   # ../zmaj-android oder ../zmaj-huelle, siehe huelle.py
 WWW = os.path.join(HUELLE, "www")
 ANDROID = os.path.join(HUELLE, "android")
 # Hier stehen Pfad und Passwoerter des Freigabeschluessels. Die Datei gehoert
