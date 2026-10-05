@@ -25,6 +25,22 @@ zmaj.levels()[0]["label"]["de"]       # 'Grundlagen'
 zmaj.counts()["words"]                # 1728
 ```
 
+The same public data is available offline from the command line:
+
+```bash
+python -m zmaj_bosnian word
+python -m zmaj_bosnian word --lang de
+python -m zmaj_bosnian search kuća --lang en
+python -m zmaj_bosnian stats
+```
+
+`word` prints one random Bosnian word and its meaning. `search` matches
+Bosnian words or meanings without regard to case, including Bosnian letters,
+and prints every match in course order. Both default to English (`en`);
+`--lang` accepts `de`, `en`, `tr`, `sv`, `nl`, `nb`, `da` and `fr`.
+`stats` prints the counts returned by `counts()`. No network or extra
+dependencies are needed.
+
 Audio files are not in the package (37 MB); every entry has an `audio` path
 into the [repository](https://github.com/zmaj-lernapp/zmaj/tree/master/web/audio)
 and the dataset zip of each [release](https://github.com/zmaj-lernapp/zmaj/releases).
