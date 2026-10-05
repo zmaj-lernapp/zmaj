@@ -1923,7 +1923,7 @@ function werbungGezaehlt(belohnt){
    Geht irgendetwas davon schief, bleibt AdMobP null und die App läuft
    einfach ohne Werbung weiter. Eine Lernapp, die wegen einer Anzeige nicht
    startet, wäre der schlechteste aller Tauschhandel. */
-const ADMOB_TEST = true;
+const ADMOB_TEST = false;
 /* Punkt 4 aus WERBUNG_PRUEFUNG.md: unsere eigenen Geraete bekommen auch
    nach dem Tausch auf die echten Kennungen weiter TESTanzeigen. Ohne das
    waere jeder eigene Klick beim Nachtesten ungueltiger Traffic auf dem
@@ -1967,8 +1967,8 @@ const ADMOB_TESTGERAETE = [
      jede Fassung ab. */
 ];
 const ADMOB_ID = {
-  interstitial: 'ca-app-pub-3940256099942544/1033173712',   // Googles Testkennung
-  belohnt:      'ca-app-pub-3940256099942544/5224354917',   // Googles Testkennung
+  interstitial: 'ca-app-pub-9105747905460295/9764395638',   // Zmaj, angelegt 20.09.2026
+  belohnt:      'ca-app-pub-9105747905460295/8572576770',   // Zmaj, angelegt 20.09.2026
 };
 let AdMobP = null;          // das Plugin, sobald es sich gemeldet hat
 let admobDarf = false;      // canRequestAds – vorher darf nichts geladen werden
