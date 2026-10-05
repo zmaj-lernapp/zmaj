@@ -2117,18 +2117,27 @@ async function admobWarten(paare, frist){
    theoretisch direkt die naechste Lektion anklicken".
    Jetzt wird sie schon beim Start einer Lektion oder eines Tests geladen,
    wie Google es empfiehlt, und liegt am Ende bereit. Eine geladene Anzeige
-   ist bei AdMob eine Stunde gueltig; nach 50 Minuten wird neu geladen. */
+   ist bei AdMob eine Stunde gueltig; nach 50 Minuten wird neu geladen.
+   Die Anzeige gilt nur, solange die Wahl zur Personalisierung dieselbe
+   ist wie beim Laden. Wer sie abschaltet, bekommt nicht noch die Anzeige,
+   die vorher personalisiert angefordert wurde - der Schalter verspricht,
+   sofort zu wirken. Gefunden bei der Pruefung am 05.10.2026. */
 let interVorrat = 0;          // Zeitpunkt, zu dem eine Anzeige fertig geladen war
 let interLaedt = null;        // laufendes Laden, damit es nicht doppelt startet
+let interNpa = null;          // npa, mit dem die bereite Anzeige angefordert wurde
+let interLaedtNpa = null;     // npa des laufenden Ladens
 const INTER_GUELTIG_MS = 50 * 60 * 1000;
-const interstitialBereit = () => !!interVorrat && Date.now() - interVorrat < INTER_GUELTIG_MS;
+const interstitialBereit = () => !!interVorrat && Date.now() - interVorrat < INTER_GUELTIG_MS &&
+                                 interNpa === !werbungPersonalisiert();
 function interstitialVorladen(){
   if(!AdMobP || !admobDarf || !werbungErlaubt(false)) return Promise.resolve(false);
   if(interstitialBereit()) return Promise.resolve(true);
-  if(interLaedt) return interLaedt;
-  interLaedt = AdMobP.prepareInterstitial({adId: ADMOB_ID.interstitial, isTesting: ADMOB_TEST,
-                                           npa: !werbungPersonalisiert()})
-    .then(()=>{ interVorrat = Date.now(); return true; },
+  const npa = !werbungPersonalisiert();
+  // Laeuft noch ein Laden mit der alten Wahl: abwarten, dann neu anfordern.
+  if(interLaedt) return interLaedtNpa === npa ? interLaedt : interLaedt.then(()=> interstitialVorladen());
+  interLaedtNpa = npa;
+  interLaedt = AdMobP.prepareInterstitial({adId: ADMOB_ID.interstitial, isTesting: ADMOB_TEST, npa})
+    .then(()=>{ interVorrat = Date.now(); interNpa = npa; return true; },
           e => { interVorrat = 0;
                  admobFehler = (e && (e.message || e.code)) ? String(e.message || e.code) : 'Laden gescheitert';
                  return false; })
@@ -2211,12 +2220,16 @@ async function admobZeigen(belohnt, darfNoch){
       const geladen = await interstitialVorladen();
       if(!geladen) throw new Error(admobFehler || 'Interstitial nicht geladen');
     }
-    interVorrat = 0;               // wird jetzt gezeigt - beim naechsten Mal neu laden
     /* Hier der zweite Blick. Passt es nicht mehr, wird die geladene
-       Anzeige einfach nicht gezeigt - sie geht dadurch nicht verloren,
-       der naechste Aufruf laedt sie erneut. Lieber eine Einblendung
-       weniger als eine ueber einer laufenden Aufgabe. */
+       Anzeige einfach nicht gezeigt - sie bleibt im Plugin liegen und
+       kommt am Ende der naechsten Lektion. Lieber eine Einblendung
+       weniger als eine ueber einer laufenden Aufgabe.
+       Erst danach gilt sie als verbraucht. Stand das vorher, war sie nach
+       einem Tipp auf "Noch eine Lektion" waehrend des Ladens als weg
+       markiert, obwohl sie bereitlag, und wer immer schnell weitertippte,
+       sah die ganze Sitzung keine. Gefunden bei der Pruefung am 05.10.2026. */
     if(darfNoch && !darfNoch()) return false;
+    interVorrat = 0;               // wird jetzt gezeigt - beim naechsten Mal neu laden
     /* GEZAEHLT wird, sobald die Anzeige wirklich auf dem Schirm stand, und
        GEWARTET wird, bis der Nutzer sie geschlossen hat. Das sind zwei
        verschiedene Dinge, und bis zum 27.09.2026 hingen beide am
