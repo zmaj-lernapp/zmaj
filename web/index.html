@@ -6522,12 +6522,25 @@ const _bedeutung = s => String(s||'').toLowerCase().replace(/[.!?\u2026]+$/,'').
    ausdruecklich gleichwertig ueber "auch" in vokabeln.py (majka und mama
    auch im Deutschen, wo "Mutter" und "Mama" verschieden dastehen - Ajdin
    am 05.10.2026: "bei der einen Frage ist nur majka richtig und bei der
-   anderen nur mama"). "auch" gilt in beide Richtungen. */
+   anderen nur mama"). Fuer die Auswahl gilt "auch" in beide Richtungen,
+   beim Tippen nur fuer das Wort, bei dem es steht (annehmbar()): bei
+   "Hallo" (Merhaba) zaehlt auch Zdravo, bei "Hallo (neutral)" aber nicht
+   Merhaba. Verglichen wird je Form, weil "auch" auch einen Teil wie "drug"
+   aus "drug / drugarica" nennen darf. Ajdin am 05.10.2026, 34 Paare. */
+const _formen = s => String(s||'').split(' / ').map(_bedeutung);
 function geschwister(w){
   const b = _bedeutung(w.de);
-  const auch = new Set(w.auch || []);
+  const meineAuch = new Set((w.auch || []).flatMap(_formen));
+  const meineFormen = _formen(w.bs);
   return CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs &&
-    ((b && _bedeutung(x.de) === b) || auch.has(x.bs) || (x.auch || []).includes(w.bs)));
+    ((b && _bedeutung(x.de) === b) ||
+     _formen(x.bs).some(f => meineAuch.has(f)) ||
+     (x.auch || []).flatMap(_formen).some(f => meineFormen.includes(f))));
+}
+function annehmbar(w){
+  const b = _bedeutung(w.de);
+  const gleich = b ? CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs && _bedeutung(x.de) === b).map(x=>x.bs) : [];
+  return [w.bs, ...gleich, ...(w.auch || [])];
 }
 function distractors(target, words, n){
   /* Auch die Bedeutung vergleichen, nicht nur das bosnische Wort. Sonst
@@ -6669,10 +6682,10 @@ function renderTask(task, body, done, opts={}){
     const check=()=>{
       /* Traegt ein anderes Wort dieselbe Uebersetzung, ist es genauso
          richtig - der Bildschirm zeigt ja nur die Bedeutung. matches()
-         trennt ohnehin bei " / ", deshalb genuegt es, die Geschwister
-         anzuhaengen. */
+         trennt ohnehin bei " / ", deshalb genuegt es, die Antworten aus
+         annehmbar() anzuhaengen. */
       if(fin) return;
-      const auchOk = [w.bs, ...geschwister(w).map(x=>x.bs)].join(' / ');
+      const auchOk = annehmbar(w).join(' / ');
       const r=matches(inp.value, auchOk);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; return; }
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
