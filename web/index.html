@@ -2108,6 +2108,34 @@ async function admobWarten(paare, frist){
   return {warten};
 }
 
+/* ---- Interstitial vorladen ----
+   Bis zum 05.10.2026 wurde die Anzeige erst NACH der Lektion geladen. Das
+   dauert ein bis mehrere Sekunden, und in der Zeit stand schon der
+   Ergebnisschirm mit "Noch eine Lektion" da. Wer dort tippte, bekam die
+   Anzeige gar nicht (zweiter Blick in admobZeigen) - sie ging verloren.
+   Ajdin am 05.10.2026: "die kam aber bisschen verspaetet, man konnte
+   theoretisch direkt die naechste Lektion anklicken".
+   Jetzt wird sie schon beim Start einer Lektion oder eines Tests geladen,
+   wie Google es empfiehlt, und liegt am Ende bereit. Eine geladene Anzeige
+   ist bei AdMob eine Stunde gueltig; nach 50 Minuten wird neu geladen. */
+let interVorrat = 0;          // Zeitpunkt, zu dem eine Anzeige fertig geladen war
+let interLaedt = null;        // laufendes Laden, damit es nicht doppelt startet
+const INTER_GUELTIG_MS = 50 * 60 * 1000;
+const interstitialBereit = () => !!interVorrat && Date.now() - interVorrat < INTER_GUELTIG_MS;
+function interstitialVorladen(){
+  if(!AdMobP || !admobDarf || !werbungErlaubt(false)) return Promise.resolve(false);
+  if(interstitialBereit()) return Promise.resolve(true);
+  if(interLaedt) return interLaedt;
+  interLaedt = AdMobP.prepareInterstitial({adId: ADMOB_ID.interstitial, isTesting: ADMOB_TEST,
+                                           npa: !werbungPersonalisiert()})
+    .then(()=>{ interVorrat = Date.now(); return true; },
+          e => { interVorrat = 0;
+                 admobFehler = (e && (e.message || e.code)) ? String(e.message || e.code) : 'Laden gescheitert';
+                 return false; })
+    .finally(()=>{ interLaedt = null; });
+  return interLaedt;
+}
+
 /* Zeigt eine Anzeige und kommt zurück, wenn sie wieder zu ist.
    true heißt: sie lief wirklich. */
 /* darfNoch() ist die Bedingung, unter der die Anzeige ueberhaupt
@@ -2175,8 +2203,15 @@ async function admobZeigen(belohnt, darfNoch){
       if(lohnHorcher) try{ lohnHorcher.remove(); }catch(e){}
       return verdient;
     }
-    await AdMobP.prepareInterstitial({adId: ADMOB_ID.interstitial, isTesting: ADMOB_TEST,
-                                     npa: !werbungPersonalisiert()});
+    /* Vorgeladen ist die Anzeige meist schon (siehe interstitialVorladen).
+       Nur wenn nicht, wird wie frueher hier geladen. Liegt keine bereit
+       und das Laden scheitert, wirft prepare - das faengt der catch
+       unten ab wie bisher. */
+    if(!interstitialBereit()){
+      const geladen = await interstitialVorladen();
+      if(!geladen) throw new Error(admobFehler || 'Interstitial nicht geladen');
+    }
+    interVorrat = 0;               // wird jetzt gezeigt - beim naechsten Mal neu laden
     /* Hier der zweite Blick. Passt es nicht mehr, wird die geladene
        Anzeige einfach nicht gezeigt - sie geht dadurch nicht verloren,
        der naechste Aufruf laedt sie erneut. Lieber eine Einblendung
@@ -2203,6 +2238,7 @@ async function admobZeigen(belohnt, darfNoch){
     await AdMobP.showInterstitial();
     await zu.warten;
     if(gesehen) try{ gesehen.remove(); }catch(e){}
+    interstitialVorladen();        // fuer die naechste Lektion schon bereitlegen
     return gezeigt;
   }catch(e){
     /* Auch hier den Grund stehen lassen statt ihn zu verschlucken - sonst
@@ -6481,10 +6517,17 @@ function renderExplain(parts){
    die Schreibaufgabe nicht loesbar - eine richtige Antwort kostet ein Herz.
    Gefunden am 26.09.2026, elf Stellen ueber acht Sprachen. */
 const _bedeutung = s => String(s||'').toLowerCase().replace(/[.!?\u2026]+$/,'').replace(/\s+/g,' ').trim();
+/* Geschwister sind Woerter, die als Antwort genauso gelten: gleiche
+   Uebersetzung (im Daenischen zeigen majka und mama beide "mor") oder
+   ausdruecklich gleichwertig ueber "auch" in vokabeln.py (majka und mama
+   auch im Deutschen, wo "Mutter" und "Mama" verschieden dastehen - Ajdin
+   am 05.10.2026: "bei der einen Frage ist nur majka richtig und bei der
+   anderen nur mama"). "auch" gilt in beide Richtungen. */
 function geschwister(w){
   const b = _bedeutung(w.de);
-  if(!b) return [];
-  return CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs && _bedeutung(x.de) === b);
+  const auch = new Set(w.auch || []);
+  return CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs &&
+    ((b && _bedeutung(x.de) === b) || auch.has(x.bs) || (x.auch || []).includes(w.bs)));
 }
 function distractors(target, words, n){
   /* Auch die Bedeutung vergleichen, nicht nur das bosnische Wort. Sonst
@@ -7255,6 +7298,7 @@ function lebenWege(){
 function startLesson(){
   if(livesNow()===0){ renderLives(); $('lvNote').textContent=t('level.keine_leben',{zeit:fmtMin(nextLifeIn())}); lebenWege(); return; }
   buildLesson();
+  interstitialVorladen();   // liegt am Ende der Lektion bereit, siehe interstitialVorladen
   if(Lx.queue.some(a=>a.typ==='speak')) mikroVorbereiten();
   stilleBitte();   // Unteransicht, laeuft nicht ueber showView() - siehe showLevelHome
   $('levelHome').style.display='none'; $('test').style.display='none'; $('lesson').style.display='block';
@@ -7346,6 +7390,7 @@ function showTestResult(){
 }
 function startTest(){
   if(!testAllowed(cur())) return;
+  interstitialVorladen();   // liegt am Ende des Tests bereit (siehe dort)
   stilleBitte();   // Unteransicht, laeuft nicht ueber showView() - siehe showLevelHome
   buildTest(); $('levelHome').style.display='none'; $('lesson').style.display='none'; $('test').style.display='block';
   nurHerz(true);
@@ -7773,6 +7818,7 @@ function showTopf(){
 function startTopf(){
   const aufgaben = (livesNow() > 0) ? topfRunde() : [];
   if(!aufgaben.length){ topfSeite(); return; }
+  interstitialVorladen();   // eine Runde zaehlt wie eine Lektion, also auch hier
   showView('levelView');
   setzeZurueck(t('btn.zurueck'), topfSeite);
   $('tag').textContent = t('topf.titel');
