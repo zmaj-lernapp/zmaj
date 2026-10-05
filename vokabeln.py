@@ -151,8 +151,12 @@ KATEGORIEN = [
 
     {"id": "familie", "label": "Familie", "sektion": "alltag", "tipp": "Wer gehört dazu? Mit bosnischen Formen wie babo, nana, amidža.",
      "words": [
-        {"de": "Mutter",              "bs": "majka"},
-        {"de": "Mama",                "bs": "mama"},
+        # "auch": gleichwertige Antworten. Wer bei „Mutter“ mama tippt (oder
+        # umgekehrt), liegt richtig - Ajdin am 05.10.2026. Die App zaehlt
+        # sie als Geschwister: beim Tippen richtig, in der Auswahl nie als
+        # falsche Antwort daneben.
+        {"de": "Mutter",              "bs": "majka", "auch": ["mama"]},
+        {"de": "Mama",                "bs": "mama",  "auch": ["majka"]},
         {"de": "Vater",               "bs": "otac"},
         {"de": "Papa (bosnisch)",     "bs": "babo"},
         {"de": "Bruder",              "bs": "brat"},
