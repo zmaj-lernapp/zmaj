@@ -13,6 +13,13 @@ are in the Play Store listing. Format:
 - DOI 10.5281/zenodo.23146609 (Zenodo, all versions) in the README, `CITATION.cff` and the
   dataset documentation.
 
+### Changed
+- The dataset no longer names text-to-speech as a task or intended use
+  (Hugging Face card, datasheet, Zenodo, citation and package keywords). The
+  audio is Azure TTS output and must not be used to train speech synthesis;
+  the store version of the app uses other recordings that are not part of
+  the dataset.
+
 ## [1.2.1] – 2026-10-04
 
 ### Fixed

@@ -72,6 +72,12 @@ EGAL_DATEIEN = {"start.log", "desktop.ini", "thumbs.db", ".ds_store"}
 HUELLE_WEG_ORDNER = {
     "node_modules",      # npm install
     "www",               # Kopie von web/, macht app_bauen.py
+    # Die Aufnahmen mit der Stimme Emir (ElevenLabs), seit 06.10.2026. Sie
+    # duerfen nur in die App und ins private Repo der Huelle - die
+    # Projekt-Zip hier "darf ueberall hin", auch nach GitHub, und genau das
+    # verbietet ElevenLabs (siehe emir_drueber() in app_bauen.py). Gesichert
+    # sind sie im privaten Repo zmaj-huelle und in App Zeugs/Stimme_Emir_neu.
+    "audio_emir",
     "build",             # Bauergebnis
     ".gradle", ".idea",  # Werkzeugkram
     "assets",            # nur unter app/src/main – die Kopie der Web-App

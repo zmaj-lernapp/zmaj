@@ -28,6 +28,10 @@ zmaj.counts()["words"]                # 1728
 Audio files are not in the package (37 MB); every entry has an `audio` path
 into the [repository](https://github.com/zmaj-lernapp/zmaj/tree/master/web/audio)
 and the dataset zip of each [release](https://github.com/zmaj-lernapp/zmaj/releases).
+The audio is synthetic (Microsoft Azure Neural TTS) and must not be used to
+train speech synthesis or other speech or voice models, because Microsoft's
+terms for that output do not allow it; the store version of the Zmaj app uses
+other word and sentence recordings, which are not part of this dataset.
 
 How the data was made, what native speakers reviewed and what they did not:
 [DATASHEET](https://github.com/zmaj-lernapp/zmaj/blob/master/data/DATASHEET.md).
