@@ -390,10 +390,10 @@
    <tuv xml:lang="da"><seg>Velbekomme</seg></tuv>
    <tuv xml:lang="fr"><seg>Bon appétit</seg></tuv>
   </tu>
-  <tu tuid="hallo (neutral, ueberall):Zdravo" segtype="phrase">
+  <tu tuid="hallo (neutral, überall):Zdravo" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Zdravo</seg></tuv>
-   <tuv xml:lang="de"><seg>Hallo (neutral, ueberall)</seg></tuv>
+   <tuv xml:lang="de"><seg>Hallo (neutral, überall)</seg></tuv>
    <tuv xml:lang="en"><seg>Hello (neutral, anywhere)</seg></tuv>
    <tuv xml:lang="tr"><seg>Merhaba (nötr, her yerde)</seg></tuv>
    <tuv xml:lang="sv"><seg>Hej (neutralt, överallt)</seg></tuv>
@@ -5586,10 +5586,10 @@
    <tuv xml:lang="da"><seg>kalv</seg></tuv>
    <tuv xml:lang="fr"><seg>veau</seg></tuv>
   </tu>
-  <tu tuid="kueken / haehnchen:pile" segtype="phrase">
+  <tu tuid="küken / hähnchen:pile" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>pile</seg></tuv>
-   <tuv xml:lang="de"><seg>Kueken / Haehnchen</seg></tuv>
+   <tuv xml:lang="de"><seg>Küken / Hähnchen</seg></tuv>
    <tuv xml:lang="en"><seg>chick / young chicken</seg></tuv>
    <tuv xml:lang="tr"><seg>civciv / piliç</seg></tuv>
    <tuv xml:lang="sv"><seg>kycklingunge / kyckling</seg></tuv>
@@ -5742,10 +5742,10 @@
    <tuv xml:lang="da"><seg>ugle</seg></tuv>
    <tuv xml:lang="fr"><seg>chouette</seg></tuv>
   </tu>
-  <tu tuid="kraehe:vrana" segtype="phrase">
+  <tu tuid="krähe:vrana" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>vrana</seg></tuv>
-   <tuv xml:lang="de"><seg>Kraehe</seg></tuv>
+   <tuv xml:lang="de"><seg>Krähe</seg></tuv>
    <tuv xml:lang="en"><seg>crow</seg></tuv>
    <tuv xml:lang="tr"><seg>karga</seg></tuv>
    <tuv xml:lang="sv"><seg>kråka</seg></tuv>
@@ -5814,10 +5814,10 @@
    <tuv xml:lang="da"><seg>due</seg></tuv>
    <tuv xml:lang="fr"><seg>pigeon</seg></tuv>
   </tu>
-  <tu tuid="baer:medvjed" segtype="phrase">
+  <tu tuid="bär:medvjed" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>medvjed</seg></tuv>
-   <tuv xml:lang="de"><seg>Baer</seg></tuv>
+   <tuv xml:lang="de"><seg>Bär</seg></tuv>
    <tuv xml:lang="en"><seg>bear</seg></tuv>
    <tuv xml:lang="tr"><seg>ayı</seg></tuv>
    <tuv xml:lang="sv"><seg>björn</seg></tuv>
@@ -5838,10 +5838,10 @@
    <tuv xml:lang="da"><seg>drage</seg></tuv>
    <tuv xml:lang="fr"><seg>dragon</seg></tuv>
   </tu>
-  <tu tuid="eichhoernchen:vjeverica" segtype="phrase">
+  <tu tuid="eichhörnchen:vjeverica" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>vjeverica</seg></tuv>
-   <tuv xml:lang="de"><seg>Eichhoernchen</seg></tuv>
+   <tuv xml:lang="de"><seg>Eichhörnchen</seg></tuv>
    <tuv xml:lang="en"><seg>squirrel</seg></tuv>
    <tuv xml:lang="tr"><seg>sincap</seg></tuv>
    <tuv xml:lang="sv"><seg>ekorre</seg></tuv>
@@ -6054,10 +6054,10 @@
    <tuv xml:lang="da"><seg>ørred</seg></tuv>
    <tuv xml:lang="fr"><seg>truite</seg></tuv>
   </tu>
-  <tu tuid="muecke:komarac" segtype="phrase">
+  <tu tuid="mücke:komarac" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>komarac</seg></tuv>
-   <tuv xml:lang="de"><seg>Muecke</seg></tuv>
+   <tuv xml:lang="de"><seg>Mücke</seg></tuv>
    <tuv xml:lang="en"><seg>mosquito</seg></tuv>
    <tuv xml:lang="tr"><seg>sivrisinek</seg></tuv>
    <tuv xml:lang="sv"><seg>mygga</seg></tuv>
@@ -6174,10 +6174,10 @@
    <tuv xml:lang="da"><seg>pels</seg></tuv>
    <tuv xml:lang="fr"><seg>fourrure</seg></tuv>
   </tu>
-  <tu tuid="fluegel:krilo" segtype="phrase">
+  <tu tuid="flügel:krilo" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>krilo</seg></tuv>
-   <tuv xml:lang="de"><seg>Fluegel</seg></tuv>
+   <tuv xml:lang="de"><seg>Flügel</seg></tuv>
    <tuv xml:lang="en"><seg>wing</seg></tuv>
    <tuv xml:lang="tr"><seg>kanat</seg></tuv>
    <tuv xml:lang="sv"><seg>vinge</seg></tuv>
@@ -6234,10 +6234,10 @@
    <tuv xml:lang="da"><seg>dyrlæge</seg></tuv>
    <tuv xml:lang="fr"><seg>vétérinaire</seg></tuv>
   </tu>
-  <tu tuid="beissen:ugristi" segtype="phrase">
+  <tu tuid="beißen:ugristi" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>ugristi</seg></tuv>
-   <tuv xml:lang="de"><seg>beissen</seg></tuv>
+   <tuv xml:lang="de"><seg>beißen</seg></tuv>
    <tuv xml:lang="en"><seg>to bite</seg></tuv>
    <tuv xml:lang="tr"><seg>ısırmak</seg></tuv>
    <tuv xml:lang="sv"><seg>bita</seg></tuv>
@@ -6246,10 +6246,10 @@
    <tuv xml:lang="da"><seg>bide</seg></tuv>
    <tuv xml:lang="fr"><seg>mordre</seg></tuv>
   </tu>
-  <tu tuid="beisst er?:Hoće li ujesti?" segtype="phrase">
+  <tu tuid="beißt er?:Hoće li ujesti?" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Hoće li ujesti?</seg></tuv>
-   <tuv xml:lang="de"><seg>Beisst er?</seg></tuv>
+   <tuv xml:lang="de"><seg>Beißt er?</seg></tuv>
    <tuv xml:lang="en"><seg>Does he bite?</seg></tuv>
    <tuv xml:lang="tr"><seg>Isırır mı?</seg></tuv>
    <tuv xml:lang="sv"><seg>Bits den?</seg></tuv>
@@ -6270,10 +6270,10 @@
    <tuv xml:lang="da"><seg>gø</seg></tuv>
    <tuv xml:lang="fr"><seg>aboyer</seg></tuv>
   </tu>
-  <tu tuid="fuettern:hraniti" segtype="phrase">
+  <tu tuid="füttern:hraniti" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>hraniti</seg></tuv>
-   <tuv xml:lang="de"><seg>fuettern</seg></tuv>
+   <tuv xml:lang="de"><seg>füttern</seg></tuv>
    <tuv xml:lang="en"><seg>to feed</seg></tuv>
    <tuv xml:lang="tr"><seg>beslemek</seg></tuv>
    <tuv xml:lang="sv"><seg>mata</seg></tuv>
@@ -6354,10 +6354,10 @@
    <tuv xml:lang="da"><seg>Hunden har bidt mig</seg></tuv>
    <tuv xml:lang="fr"><seg>Le chien m'a mordu</seg></tuv>
   </tu>
-  <tu tuid="gefaehrlich:opasno" segtype="phrase">
+  <tu tuid="gefährlich:opasno" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>opasno</seg></tuv>
-   <tuv xml:lang="de"><seg>gefaehrlich</seg></tuv>
+   <tuv xml:lang="de"><seg>gefährlich</seg></tuv>
    <tuv xml:lang="en"><seg>dangerous</seg></tuv>
    <tuv xml:lang="tr"><seg>tehlikeli</seg></tuv>
    <tuv xml:lang="sv"><seg>farligt</seg></tuv>
@@ -6522,10 +6522,10 @@
    <tuv xml:lang="da"><seg>græs</seg></tuv>
    <tuv xml:lang="fr"><seg>herbe</seg></tuv>
   </tu>
-  <tu tuid="hoehle:pećina" segtype="phrase">
+  <tu tuid="höhle:pećina" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>pećina</seg></tuv>
-   <tuv xml:lang="de"><seg>Hoehle</seg></tuv>
+   <tuv xml:lang="de"><seg>Höhle</seg></tuv>
    <tuv xml:lang="en"><seg>cave</seg></tuv>
    <tuv xml:lang="tr"><seg>mağara</seg></tuv>
    <tuv xml:lang="sv"><seg>grotta</seg></tuv>
@@ -6534,10 +6534,10 @@
    <tuv xml:lang="da"><seg>hule</seg></tuv>
    <tuv xml:lang="fr"><seg>grotte</seg></tuv>
   </tu>
-  <tu tuid="huegel:brdo" segtype="phrase">
+  <tu tuid="hügel:brdo" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>brdo</seg></tuv>
-   <tuv xml:lang="de"><seg>Huegel</seg></tuv>
+   <tuv xml:lang="de"><seg>Hügel</seg></tuv>
    <tuv xml:lang="en"><seg>hill</seg></tuv>
    <tuv xml:lang="tr"><seg>tepe</seg></tuv>
    <tuv xml:lang="sv"><seg>kulle</seg></tuv>
@@ -16842,10 +16842,10 @@
    <tuv xml:lang="da"><seg>Hvad koster …? (marked)</seg></tuv>
    <tuv xml:lang="fr"><seg>Combien coûte … ? (au marché)</seg></tuv>
   </tu>
-  <tu tuid="baeckerei:pekara" segtype="phrase">
+  <tu tuid="bäckerei:pekara" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>pekara</seg></tuv>
-   <tuv xml:lang="de"><seg>Baeckerei</seg></tuv>
+   <tuv xml:lang="de"><seg>Bäckerei</seg></tuv>
    <tuv xml:lang="en"><seg>bakery</seg></tuv>
    <tuv xml:lang="tr"><seg>ekmek fırını</seg></tuv>
    <tuv xml:lang="sv"><seg>bageri</seg></tuv>
@@ -16950,10 +16950,10 @@
    <tuv xml:lang="da"><seg>halva</seg></tuv>
    <tuv xml:lang="fr"><seg>halva</seg></tuv>
   </tu>
-  <tu tuid="hurmasica (sirupgebaeck):hurmašica" segtype="phrase">
+  <tu tuid="hurmašica (sirupgebäck):hurmašica" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>hurmašica</seg></tuv>
-   <tuv xml:lang="de"><seg>Hurmasica (Sirupgebaeck)</seg></tuv>
+   <tuv xml:lang="de"><seg>Hurmašica (Sirupgebäck)</seg></tuv>
    <tuv xml:lang="en"><seg>hurmašica (syrup-soaked semolina cookie)</seg></tuv>
    <tuv xml:lang="tr"><seg>hurmašica (şerbetli hamur tatlısı)</seg></tuv>
    <tuv xml:lang="sv"><seg>hurmašica (sirapsbakelse)</seg></tuv>
@@ -16962,10 +16962,10 @@
    <tuv xml:lang="da"><seg>hurmašica (sirupskage)</seg></tuv>
    <tuv xml:lang="fr"><seg>hurmašica (pâtisserie au sirop)</seg></tuv>
   </tu>
-  <tu tuid="rahat lokum (geleewuerfel zum kaffee):rahat lokum" segtype="phrase">
+  <tu tuid="rahat lokum (geleewürfel zum kaffee):rahat lokum" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>rahat lokum</seg></tuv>
-   <tuv xml:lang="de"><seg>Rahat lokum (Geleewuerfel zum Kaffee)</seg></tuv>
+   <tuv xml:lang="de"><seg>Rahat lokum (Geleewürfel zum Kaffee)</seg></tuv>
    <tuv xml:lang="en"><seg>rahat lokum (jelly cubes served with coffee)</seg></tuv>
    <tuv xml:lang="tr"><seg>rahat lokum (kahve yanında yenen lokum)</seg></tuv>
    <tuv xml:lang="sv"><seg>rahat lokum (turkisk konfekt till kaffet)</seg></tuv>
@@ -16974,10 +16974,10 @@
    <tuv xml:lang="da"><seg>rahat lokum (geléterninger til kaffen)</seg></tuv>
    <tuv xml:lang="fr"><seg>rahat lokum (loukoum, gelée sucrée avec le café)</seg></tuv>
   </tu>
-  <tu tuid="tufahija (gefuellter apfel in sirup):tufahija" segtype="phrase">
+  <tu tuid="tufahija (gefüllter apfel in sirup):tufahija" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>tufahija</seg></tuv>
-   <tuv xml:lang="de"><seg>Tufahija (gefuellter Apfel in Sirup)</seg></tuv>
+   <tuv xml:lang="de"><seg>Tufahija (gefüllter Apfel in Sirup)</seg></tuv>
    <tuv xml:lang="en"><seg>tufahija (stuffed apple in syrup)</seg></tuv>
    <tuv xml:lang="tr"><seg>tufahija (şerbette dolgulu elma tatlısı)</seg></tuv>
    <tuv xml:lang="sv"><seg>tufahija (fyllt äpple i sirap)</seg></tuv>
@@ -17166,10 +17166,10 @@
    <tuv xml:lang="da"><seg>bosnisk gryderet</seg></tuv>
    <tuv xml:lang="fr"><seg>ragoût bosnien (bosanski lonac)</seg></tuv>
   </tu>
-  <tu tuid="burek (blaetterteigrolle mit fleisch):burek" segtype="phrase">
+  <tu tuid="burek (blätterteigrolle mit fleisch):burek" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>burek</seg></tuv>
-   <tuv xml:lang="de"><seg>Burek (Blaetterteigrolle mit Fleisch)</seg></tuv>
+   <tuv xml:lang="de"><seg>Burek (Blätterteigrolle mit Fleisch)</seg></tuv>
    <tuv xml:lang="en"><seg>burek (filo roll with meat)</seg></tuv>
    <tuv xml:lang="tr"><seg>burek (kıymalı börek)</seg></tuv>
    <tuv xml:lang="sv"><seg>burek (filodegsrulle med köttfärs)</seg></tuv>
@@ -17178,10 +17178,10 @@
    <tuv xml:lang="da"><seg>burek (rulle af fillodej med kød)</seg></tuv>
    <tuv xml:lang="fr"><seg>burek (rouleau de pâte filo à la viande)</seg></tuv>
   </tu>
-  <tu tuid="dolma (gefuelltes gemuese):dolma" segtype="phrase">
+  <tu tuid="dolma (gefülltes gemüse):dolma" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>dolma</seg></tuv>
-   <tuv xml:lang="de"><seg>Dolma (gefuelltes Gemuese)</seg></tuv>
+   <tuv xml:lang="de"><seg>Dolma (gefülltes Gemüse)</seg></tuv>
    <tuv xml:lang="en"><seg>dolma (stuffed vegetables)</seg></tuv>
    <tuv xml:lang="tr"><seg>dolma (doldurulmuş sebze)</seg></tuv>
    <tuv xml:lang="sv"><seg>dolma (fyllda grönsaker)</seg></tuv>
@@ -17190,10 +17190,10 @@
    <tuv xml:lang="da"><seg>dolma (fyldte grøntsager)</seg></tuv>
    <tuv xml:lang="fr"><seg>dolma (légumes farcis)</seg></tuv>
   </tu>
-  <tu tuid="geraeuchertes fleisch:suho meso" segtype="phrase">
+  <tu tuid="geräuchertes fleisch:suho meso" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>suho meso</seg></tuv>
-   <tuv xml:lang="de"><seg>geraeuchertes Fleisch</seg></tuv>
+   <tuv xml:lang="de"><seg>geräuchertes Fleisch</seg></tuv>
    <tuv xml:lang="en"><seg>smoked meat</seg></tuv>
    <tuv xml:lang="tr"><seg>tütsülenmiş et</seg></tuv>
    <tuv xml:lang="sv"><seg>rökt kött</seg></tuv>
@@ -17214,17 +17214,17 @@
    <tuv xml:lang="da"><seg>grill / grillmad</seg></tuv>
    <tuv xml:lang="fr"><seg>gril / grillades</seg></tuv>
   </tu>
-  <tu tuid="japrak (gefuellte weinblaetter):japrak" segtype="phrase">
+  <tu tuid="uštipci (frittierte teigbällchen):uštipci" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>japrak</seg></tuv>
-   <tuv xml:lang="de"><seg>Japrak (gefuellte Weinblaetter)</seg></tuv>
-   <tuv xml:lang="en"><seg>japrak (stuffed vine leaves)</seg></tuv>
-   <tuv xml:lang="tr"><seg>japrak (asma yaprağı sarması)</seg></tuv>
-   <tuv xml:lang="sv"><seg>japrak (fyllda vinblad)</seg></tuv>
-   <tuv xml:lang="nl"><seg>japrak (gevulde wijnbladeren)</seg></tuv>
-   <tuv xml:lang="nb"><seg>japrak (fylte vinblader)</seg></tuv>
-   <tuv xml:lang="da"><seg>japrak (fyldte vinblade)</seg></tuv>
-   <tuv xml:lang="fr"><seg>japrak (feuilles de vigne farcies)</seg></tuv>
+   <tuv xml:lang="bs"><seg>uštipci</seg></tuv>
+   <tuv xml:lang="de"><seg>Uštipci (frittierte Teigbällchen)</seg></tuv>
+   <tuv xml:lang="en"><seg>uštipci (fried dough balls)</seg></tuv>
+   <tuv xml:lang="tr"><seg>uštipci (kızarmış hamur topları)</seg></tuv>
+   <tuv xml:lang="sv"><seg>uštipci (friterade degbollar)</seg></tuv>
+   <tuv xml:lang="nl"><seg>uštipci (gefrituurde deegballetjes)</seg></tuv>
+   <tuv xml:lang="nb"><seg>uštipci (frityrstekte deigballer)</seg></tuv>
+   <tuv xml:lang="da"><seg>uštipci (friturestegte dejkugler)</seg></tuv>
+   <tuv xml:lang="fr"><seg>uštipci (petits beignets)</seg></tuv>
   </tu>
   <tu tuid="kajmak (rahmaufstrich):kajmak" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -17274,10 +17274,10 @@
    <tuv xml:lang="da"><seg>sarma (kåldolmere)</seg></tuv>
    <tuv xml:lang="fr"><seg>sarma (feuilles de chou farcies)</seg></tuv>
   </tu>
-  <tu tuid="sirnica (pita mit kaese):sirnica" segtype="phrase">
+  <tu tuid="sirnica (pita mit käse):sirnica" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>sirnica</seg></tuv>
-   <tuv xml:lang="de"><seg>Sirnica (Pita mit Kaese)</seg></tuv>
+   <tuv xml:lang="de"><seg>Sirnica (Pita mit Käse)</seg></tuv>
    <tuv xml:lang="en"><seg>sirnica (pita with cheese)</seg></tuv>
    <tuv xml:lang="tr"><seg>sirnica (peynirli börek)</seg></tuv>
    <tuv xml:lang="sv"><seg>sirnica (pita med ost)</seg></tuv>
@@ -17286,10 +17286,10 @@
    <tuv xml:lang="da"><seg>sirnica (pita med ost)</seg></tuv>
    <tuv xml:lang="fr"><seg>sirnica (pita au fromage)</seg></tuv>
   </tu>
-  <tu tuid="somun (fladenbrot zu cevapi):somun" segtype="phrase">
+  <tu tuid="somun (fladenbrot zu ćevapi):somun" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>somun</seg></tuv>
-   <tuv xml:lang="de"><seg>Somun (Fladenbrot zu Cevapi)</seg></tuv>
+   <tuv xml:lang="de"><seg>Somun (Fladenbrot zu Ćevapi)</seg></tuv>
    <tuv xml:lang="en"><seg>somun (flatbread served with ćevapi)</seg></tuv>
    <tuv xml:lang="tr"><seg>somun (ćevapi ile yenen pide)</seg></tuv>
    <tuv xml:lang="sv"><seg>somun (tunnbröd till ćevapi)</seg></tuv>
@@ -17298,10 +17298,10 @@
    <tuv xml:lang="da"><seg>somun (fladbrød til ćevapi)</seg></tuv>
    <tuv xml:lang="fr"><seg>somun (pain plat pour les ćevapi)</seg></tuv>
   </tu>
-  <tu tuid="zeljanica (pita mit spinat und kaese):zeljanica" segtype="phrase">
+  <tu tuid="zeljanica (pita mit spinat und käse):zeljanica" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>zeljanica</seg></tuv>
-   <tuv xml:lang="de"><seg>Zeljanica (Pita mit Spinat und Kaese)</seg></tuv>
+   <tuv xml:lang="de"><seg>Zeljanica (Pita mit Spinat und Käse)</seg></tuv>
    <tuv xml:lang="en"><seg>zeljanica (pita with spinach and cheese)</seg></tuv>
    <tuv xml:lang="tr"><seg>zeljanica (ıspanaklı ve peynirli börek)</seg></tuv>
    <tuv xml:lang="sv"><seg>zeljanica (pita med spinat och ost)</seg></tuv>
@@ -18510,10 +18510,10 @@
    <tuv xml:lang="da"><seg>kolo (bosnisk kædedans)</seg></tuv>
    <tuv xml:lang="fr"><seg>kolo (danse en ronde bosnienne)</seg></tuv>
   </tu>
-  <tu tuid="saenger / saengerin:pjevač / pjevačica" segtype="phrase">
+  <tu tuid="sänger / sängerin:pjevač / pjevačica" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>pjevač / pjevačica</seg></tuv>
-   <tuv xml:lang="de"><seg>Saenger / Saengerin</seg></tuv>
+   <tuv xml:lang="de"><seg>Sänger / Sängerin</seg></tuv>
    <tuv xml:lang="en"><seg>singer (m) / singer (f)</seg></tuv>
    <tuv xml:lang="tr"><seg>şarkıcı (erkek / kadın)</seg></tuv>
    <tuv xml:lang="sv"><seg>sångare / sångerska</seg></tuv>
@@ -18534,10 +18534,10 @@
    <tuv xml:lang="da"><seg>saz (traditionelt strengeinstrument)</seg></tuv>
    <tuv xml:lang="fr"><seg>saz (instrument à cordes traditionnel)</seg></tuv>
   </tu>
-  <tu tuid="sevdah (wehmuetige sehnsucht):sevdah" segtype="phrase">
+  <tu tuid="sevdah (wehmütige sehnsucht):sevdah" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>sevdah</seg></tuv>
-   <tuv xml:lang="de"><seg>Sevdah (wehmuetige Sehnsucht)</seg></tuv>
+   <tuv xml:lang="de"><seg>Sevdah (wehmütige Sehnsucht)</seg></tuv>
    <tuv xml:lang="en"><seg>sevdah (wistful longing)</seg></tuv>
    <tuv xml:lang="tr"><seg>sevdah (hüzünlü özlem)</seg></tuv>
    <tuv xml:lang="sv"><seg>sevdah (vemodig längtan)</seg></tuv>
@@ -18570,10 +18570,10 @@
    <tuv xml:lang="da"><seg>sijelo (samvær om aftenen)</seg></tuv>
    <tuv xml:lang="fr"><seg>sijelo (veillée entre voisins)</seg></tuv>
   </tu>
-  <tu tuid="teferic (ausflugsfest im gruenen):teferič" segtype="phrase">
+  <tu tuid="teferič (ausflugsfest im grünen):teferič" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>teferič</seg></tuv>
-   <tuv xml:lang="de"><seg>Teferic (Ausflugsfest im Gruenen)</seg></tuv>
+   <tuv xml:lang="de"><seg>Teferič (Ausflugsfest im Grünen)</seg></tuv>
    <tuv xml:lang="en"><seg>teferič (outdoor festivity in nature)</seg></tuv>
    <tuv xml:lang="tr"><seg>teferič (kırda yapılan gezinti şenliği)</seg></tuv>
    <tuv xml:lang="sv"><seg>teferič (utflyktsfest i det gröna)</seg></tuv>
@@ -18594,10 +18594,10 @@
    <tuv xml:lang="da"><seg>folkemusik</seg></tuv>
    <tuv xml:lang="fr"><seg>musique folklorique</seg></tuv>
   </tu>
-  <tu tuid="antwort auf den bajram-gruss:Allah razi olsun" segtype="phrase">
+  <tu tuid="antwort auf den bajram-gruß:Allah razi olsun" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Allah razi olsun</seg></tuv>
-   <tuv xml:lang="de"><seg>Antwort auf den Bajram-Gruss</seg></tuv>
+   <tuv xml:lang="de"><seg>Antwort auf den Bajram-Gruß</seg></tuv>
    <tuv xml:lang="en"><seg>reply to the Bajram greeting</seg></tuv>
    <tuv xml:lang="tr"><seg>bayram selamına verilen cevap</seg></tuv>
    <tuv xml:lang="sv"><seg>svar på bajramhälsningen</seg></tuv>
@@ -18666,10 +18666,10 @@
    <tuv xml:lang="da"><seg>iftar (fastebrud)</seg></tuv>
    <tuv xml:lang="fr"><seg>iftar (rupture du jeûne)</seg></tuv>
   </tu>
-  <tu tuid="insallah (so gott will):inšallah" segtype="phrase">
+  <tu tuid="inšallah (so gott will):inšallah" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>inšallah</seg></tuv>
-   <tuv xml:lang="de"><seg>Insallah (so Gott will)</seg></tuv>
+   <tuv xml:lang="de"><seg>Inšallah (so Gott will)</seg></tuv>
    <tuv xml:lang="en"><seg>inšallah (God willing)</seg></tuv>
    <tuv xml:lang="tr"><seg>inşallah (Allah izin verirse)</seg></tuv>
    <tuv xml:lang="sv"><seg>inšallah (om Gud vill)</seg></tuv>
@@ -18678,10 +18678,10 @@
    <tuv xml:lang="da"><seg>inšallah (hvis Gud vil)</seg></tuv>
    <tuv xml:lang="fr"><seg>inšallah (si Dieu le veut)</seg></tuv>
   </tu>
-  <tu tuid="masallah (wie schoen, gott schuetze es):mašallah" segtype="phrase">
+  <tu tuid="mašallah (wie schön, gott schütze es):mašallah" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>mašallah</seg></tuv>
-   <tuv xml:lang="de"><seg>Masallah (wie schoen, Gott schuetze es)</seg></tuv>
+   <tuv xml:lang="de"><seg>Mašallah (wie schön, Gott schütze es)</seg></tuv>
    <tuv xml:lang="en"><seg>mašallah (how lovely, may God protect it)</seg></tuv>
    <tuv xml:lang="tr"><seg>maşallah (ne güzel, Allah korusun)</seg></tuv>
    <tuv xml:lang="sv"><seg>mašallah (vad vackert, må Gud bevara det)</seg></tuv>
@@ -18726,10 +18726,10 @@
    <tuv xml:lang="da"><seg>bujrum (værsgo, tag for dig / kom indenfor)</seg></tuv>
    <tuv xml:lang="fr"><seg>bujrum (je t'en prie, sers-toi / entre)</seg></tuv>
   </tu>
-  <tu tuid="danke fuer die einladung:Hvala na pozivu" segtype="phrase">
+  <tu tuid="danke für die einladung:Hvala na pozivu" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Hvala na pozivu</seg></tuv>
-   <tuv xml:lang="de"><seg>Danke fuer die Einladung</seg></tuv>
+   <tuv xml:lang="de"><seg>Danke für die Einladung</seg></tuv>
    <tuv xml:lang="en"><seg>Thank you for the invitation</seg></tuv>
    <tuv xml:lang="tr"><seg>Davet için teşekkürler</seg></tuv>
    <tuv xml:lang="sv"><seg>Tack för inbjudan</seg></tuv>
@@ -21416,7 +21416,7 @@
   </tu>
   <tu tuid="s0057" segtype="sentence">
    <prop type="x-kind">sentence</prop>
-   <tuv xml:lang="bs"><seg>Brzo ozdravi!</seg></tuv>
+   <tuv xml:lang="bs"><seg>Brz oporavak</seg></tuv>
    <tuv xml:lang="de"><seg>Gute Besserung!</seg></tuv>
    <tuv xml:lang="en"><seg>Get well soon!</seg></tuv>
    <tuv xml:lang="tr"><seg>Geçmiş olsun!</seg></tuv>
