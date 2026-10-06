@@ -68,3 +68,38 @@ def test_datenkarte_passt_zum_manifest(wurzel):
                              ("16 grammar", "grammar_lessons")]:
         assert zahl in karte, zahl
         assert int(zahl.split()[0].replace(",", "")) == n[schluessel], schluessel
+
+
+def test_datensatz_wirbt_nicht_fuer_sprachsynthese(wurzel):
+    """06.10.2026: Die Tonspur ist Ausgabe von Azure TTS, und Microsofts
+    Bedingungen verbieten, sie zum Bauen oder Trainieren von Sprachsynthese
+    zu nutzen. Datenkarte, Datenblatt und Archivangaben dürfen deshalb
+    text-to-speech weder als Aufgabe noch als Zweck nennen, und überall, wo
+    die Tonspur weitergeht, muss der Hinweis darauf stehen. Die Store-App
+    spricht mit anderen Aufnahmen, die nie in dieses Repository gehören."""
+    import re
+
+    def text(*teile):
+        return io.open(os.path.join(wurzel, *teile), encoding="utf-8").read()
+
+    def flach(s):
+        # Kommentare raus, Zeilenumbrüche weg: der Hinweis ist umbrochen.
+        return " ".join(re.sub(r"<!--.*?-->", "", s, flags=re.S).split())
+
+    karte = text("data", "README.md")
+    kopf = karte.split("---")[1]
+    assert not re.search(r"^\s*- text-to-speech\s*$", kopf, re.M)
+    zenodo = json.loads(text(".zenodo.json"))
+    assert "text-to-speech" not in zenodo["keywords"]
+    assert not re.search(r"^\s*- text-to-speech\s*$", text("CITATION.cff"), re.M)
+    assert not re.search(r'^keywords = .*"tts"', text("pyproject.toml"), re.M)
+    blatt = text("data", "DATASHEET.md")
+    zwecke = flach(blatt.split("## Intended uses")[1].split("\n## ")[0])
+    assert not re.search(r"\bTTS\b|text-to-speech|speech synthesis", zwecke, re.I), zwecke
+
+    hinweis = "must not be used to train speech synthesis"
+    for name, inhalt in [("data/README.md", karte), ("data/DATASHEET.md", blatt),
+                         (".zenodo.json", zenodo["description"]),
+                         ("README.md", text("README.md")),
+                         ("paket/README.md", text("paket", "README.md"))]:
+        assert hinweis in flach(inhalt), name

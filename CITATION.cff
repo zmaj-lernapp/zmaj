@@ -32,6 +32,8 @@ keywords:
   - dataset
   - vocabulary
   - parallel-corpus
-  - text-to-speech
+  # 06.10.2026: text-to-speech gestrichen. Die Tonspur ist Ausgabe von Azure
+  # TTS, und Microsofts Bedingungen verbieten, sie zum Trainieren von
+  # Sprachsynthese zu nutzen; der Datensatz darf dafuer nicht werben.
   - anki
   - heritage-language

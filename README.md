@@ -90,7 +90,15 @@ print(vocab["entries"][0]["bs"], vocab["entries"][0]["translations"]["en"])  # M
 ```
 
 Uses: flashcards and classroom material, other learning apps, and parallel
-phrase pairs plus a pronunciation lexicon for low-resource Bosnian NLP.
+phrase pairs for low-resource Bosnian NLP. The audio is synthetic (Azure TTS)
+and must not be used to train speech synthesis or other speech or voice
+models, because Microsoft's terms for that output do not allow it; the store
+version of the app uses other word and sentence recordings, which are not
+part of the dataset.
+
+<!-- 06.10.2026: "pronunciation lexicon" gestrichen und Hinweis ergänzt. Die
+Tonspur ist Azure-TTS-Ausgabe; Microsofts Bedingungen verbieten, damit
+Sprachsynthese zu trainieren. Mehr in data/DATASHEET.md. -->
 
 ## What the app does
 
