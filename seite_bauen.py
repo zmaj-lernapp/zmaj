@@ -117,6 +117,13 @@ def kopf(titel):
     ) % (titel, STIL)
 
 
+# Die Kanaele von Zmaj, in jeder Sprache gleich: Plattformnamen werden
+# nicht uebersetzt. Nur Verweise, nichts wird eingebettet oder geladen.
+# 07.10.2026.
+SOZIAL = (("TikTok", "https://www.tiktok.com/@zmaj.learnbosnian"),
+          ("Instagram", "https://www.instagram.com/zmaj.learnbosnian/"),
+          ("YouTube", "https://www.youtube.com/@zmaj.learnbosnian"))
+
 # Das Wort fuer die Startseite. Die uebrigen vier Verweise holen sich ihre
 # Beschriftung aus sprachen.py und aus LOESCHEN; nur hierfuer gab es nichts.
 # Nachgesehen an Webseiten der jeweiligen Sprache, nicht uebersetzt.
@@ -159,7 +166,10 @@ def fuss(mit_skript=True, hier=None):
         % (s["code"], "" if s["code"] == sprachen.GRUNDSPRACHE else " hidden",
            zeile(s["code"]))
         for s in sprachen.SPRACHEN)
-    teil = '<footer><nav>%s</nav><br>%s</footer>\n</div>\n' % (fuesse, anbieter)
+    sozial = " · ".join('<a href="%s" rel="noopener">%s</a>' % (u, n)
+                        for n, u in SOZIAL)
+    teil = ('<footer><nav>%s</nav><br>%s<br>%s</footer>\n</div>\n'
+            % (fuesse, sozial, anbieter))
     if mit_skript:
         teil += "<script>%s</script>\n" % SKRIPT
     return teil + "</body>\n</html>\n"

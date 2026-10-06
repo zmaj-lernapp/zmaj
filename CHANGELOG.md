@@ -12,6 +12,24 @@ are in the Play Store listing. Format:
 - OpenSSF Best Practices entry (project 15225) with badge in the README.
 - DOI 10.5281/zenodo.23146609 (Zenodo, all versions) in the README, `CITATION.cff` and the
   dataset documentation.
+- Settings: "Rate Zmaj", "Recommend Zmaj" and links to Zmaj on TikTok,
+  Instagram and YouTube; the website footer links the same channels.
+- Settings: a short notice with a link to Google Play when a subscription is
+  on hold because a payment failed.
+
+### Fixed
+- Ads: the maximum ad content rating is "General", matching the app's content
+  rating; a session started offline now retries AdMob once the device is
+  back online; a rewarded video closed early no longer reports "no ad".
+- The rating card no longer appears right after a full-screen ad.
+- Every purchase button opens the purchase sheet directly.
+- "Words in this level" is complete in all interface languages, the
+  "level test unlocked" hint appears, and the daily tasks no longer change
+  in the middle of the day.
+- Speech check: double letters are collapsed again (broken back-reference).
+- The dragon rests when animations are off or reduced motion is set, and
+  pauses in hidden views.
+- Cancelling "Save backup" shows a neutral note instead of an error.
 
 ### Changed
 - The dataset no longer names text-to-speech as a task or intended use
