@@ -1,7 +1,7 @@
 {
   "title": "Zmaj: an open Bosnian course and learning app",
   "upload_type": "software",
-  "description": "<p>Offline app for learning Bosnian (Ijekavian) and the open dataset behind it: 1,728 words and phrases in 65 levels, 300 cloze sentences, 12 graded reading stories with glossary and questions, and 16 grammar lessons, each translated into German, English, Turkish, Swedish, Dutch, Norwegian, Danish and French, with synthetic Bosnian audio for every item.</p><p>Licences: program code AGPL-3.0-or-later; learning content, translations, audio and the dataset in <code>data/</code> CC BY-SA 4.0. Details in REUSE.toml.</p>",
+  "description": "<p>Offline app for learning Bosnian (Ijekavian) and the open dataset behind it: 1,728 words and phrases in 65 levels, 300 cloze sentences, 12 graded reading stories with glossary and questions, and 16 grammar lessons, each translated into German, English, Turkish, Swedish, Dutch, Norwegian, Danish and French, with synthetic Bosnian audio for every item.</p><p>The audio is synthetic speech from Microsoft Azure Neural TTS. It must not be used to train speech synthesis or other speech or voice models, because Microsoft's terms for Azure TTS output do not allow that; the store version of the Zmaj app uses other word and sentence recordings, which are not part of this archive.</p><p>Licences: program code AGPL-3.0-or-later; learning content, translations, audio and the dataset in <code>data/</code> CC BY-SA 4.0. Details in REUSE.toml.</p>",
   "creators": [
     {"name": "Hasic, Ajdin"}
   ],
@@ -14,7 +14,6 @@
     "dataset",
     "vocabulary",
     "parallel corpus",
-    "text-to-speech",
     "anki",
     "heritage language"
   ],

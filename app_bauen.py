@@ -23,8 +23,13 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
 
 Nicht mitkopiert werden: die Probeaufnahmen, die Sicherungen von index.html
 und die LIESMICH-Dateien. Die gehören nicht in die App.
+
+Liegt in der Hülle ein Ordner audio_emir/, kommen dessen Aufnahmen danach
+über die Kopie in www/audio – die Stimme Emir für die Store-App. Sie liegen
+nur dort und nie hier, siehe emir_drueber(). Seit 06.10.2026.
 """
 import io
+import json
 import re
 import os
 import shutil
@@ -81,6 +86,97 @@ def kopieren():
                   for w, _, ns in os.walk(WWW) for n in ns)
     print("%d Dateien kopiert, %.1f MB" % (dateien, groesse / 1048576.0))
     return dateien
+
+
+# ------------------------------------------------------------ Stimme Emir ---
+# Seit dem 06.10.2026 sprechen in der App aus dem Play Store alle Woerter und
+# Saetze mit der Stimme Emir (ElevenLabs Voice Library, Modell eleven_v4).
+# Die Geschichten g01-g12 behalten die Frauenstimme von Azure.
+#
+# Diese Aufnahmen duerfen NIE in dieses Repo. web/audio steht ueber
+# REUSE.toml unter CC BY-SA und geht von hier in die Releases, die
+# Anki-Pakete, die Demo auf GitHub Pages, nach Hugging Face und nach Zenodo.
+# ElevenLabs verbietet, seine Ausgabe in einen Datensatz zu geben, mit dem
+# sich KI trainieren laesst, und sie unter freieren Bedingungen
+# weiterzugeben, als man sie selbst bekommen hat (Prohibited Use Policy,
+# Punkt 9 (k), (l), (n)).
+#
+# Deshalb liegen sie nur in der privaten Huelle unter audio_emir/, und erst
+# hier kommen sie ueber die KOPIE in www/audio. web/audio bleibt Azure.
+# Fehlt der Ordner - frischer Klon dieses Repos, die Demo, jemand anderes
+# baut -, aendert sich nichts.
+EMIR = os.path.join(HUELLE, "audio_emir")
+EMIR_DATEI = re.compile(r"w\d{4}\.mp3")
+
+
+def _liegt_in(pfad, ordner):
+    """Liegt `pfad` in `ordner` (oder ist es selbst)?"""
+    pfad, ordner = (os.path.normcase(os.path.realpath(p)) for p in (pfad, ordner))
+    try:
+        return os.path.commonpath([pfad, ordner]) == ordner
+    except ValueError:                      # verschiedene Laufwerke
+        return False
+
+
+def emir_drueber():
+    """Legt die Emir-Aufnahmen ueber die kopierte Tonspur in www/audio.
+
+    Getauscht wird nur, was gleich heisst und in index.json steht - eine
+    Datei ohne Eintrag spielte die App nie ab. In der KOPIE von index.json
+    steht danach bei diesen Eintraegen "stimme": "emir". Die App selbst
+    liest das Feld nicht (sie nimmt nur key und datei); es steht dort fuer
+    den, der das Paket aufmacht und wissen will, welche Stimme drin ist.
+
+    Gibt die Zahl der getauschten Dateien zurueck.
+    """
+    if not os.path.isdir(EMIR):
+        print("\nKein audio_emir/ in der Huelle - die Tonspur bleibt Azure.")
+        return 0
+    audio = os.path.join(WWW, "audio")
+    # Nie ins oeffentliche web/ schreiben - auch dann nicht, wenn ZMAJ_HUELLE
+    # aus Versehen auf dieses Projekt zeigt. Dann lieber gar kein Paket.
+    if _liegt_in(audio, WEB):
+        raise SystemExit("\nABBRUCH: %s liegt in web/. Emir darf nie dorthin." % audio)
+    from ton_pruefen import MINDEST         # dieselbe Grenze fuer "stumm"
+    index_pfad = os.path.join(audio, "index.json")
+    index = json.load(io.open(index_pfad, encoding="utf-8"))
+    eintraege = {e["datei"]: e for e in index.get("toene", [])}
+
+    getauscht, fremd, stumm = 0, [], []
+    for name in sorted(os.listdir(EMIR)):
+        if not EMIR_DATEI.fullmatch(name):
+            continue                        # LIESMICH.txt und was sonst dort liegt
+        quelle = os.path.join(EMIR, name)
+        if name not in eintraege or not os.path.isfile(os.path.join(audio, name)):
+            fremd.append(name)
+            continue
+        if os.path.getsize(quelle) < MINDEST:
+            stumm.append(name)
+            continue
+        shutil.copyfile(quelle, os.path.join(audio, name))
+        eintraege[name]["stimme"] = "emir"
+        getauscht += 1
+    io.open(index_pfad, "w", encoding="utf-8").write(
+        json.dumps(index, ensure_ascii=False, indent=1))
+
+    def liste(namen):
+        return ", ".join(namen[:10]) + (" ..." if len(namen) > 10 else "")
+
+    azure = sorted(d for d, e in eintraege.items()
+                   if EMIR_DATEI.fullmatch(d) and e.get("stimme") != "emir")
+    geschichten = sum(1 for d in eintraege if not EMIR_DATEI.fullmatch(d))
+    print("\nStimme Emir: %d Aufnahmen aus audio_emir/ ueber www/audio gelegt."
+          % getauscht)
+    print("   Geschichten bleiben bei Azure: %d" % geschichten)
+    if azure:
+        print("   Woerter ohne Emir, bleiben Azure: %d  (%s)" % (len(azure), liste(azure)))
+    if fremd:
+        print("   WARNUNG: steht in keinem Index, nicht kopiert: %s" % liste(fremd))
+    if stumm:
+        print("   WARNUNG: kleiner als %d Byte, nicht kopiert: %s" % (MINDEST, liste(stumm)))
+    if not getauscht:
+        print("   WARNUNG: audio_emir/ ist da, aber nichts passte - das Paket spricht Azure.")
+    return getauscht
 
 
 # Aus diesen Dateien baut inhalt_bauen.py die JSON-Dateien für das Handy.
@@ -300,6 +396,11 @@ def main():
     pruefen()
     print("\nInhalt kopieren ...")
     kopieren()
+    # Gleich nach dem Kopieren und VOR capacitor(): `cap sync` traegt www/
+    # nach android/app/src/main/assets/public, und nur was dann in www/
+    # liegt, kommt ins Paket. Hier, vor der Weiche, gilt es fuer das
+    # Debug-Paket, fuer --aab und fuer --nur-abgleich gleich. 06.10.2026.
+    emir_drueber()
     # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst
     # Nummern verbrannt, ohne dass ein Paket entstand.
     if not nur:
