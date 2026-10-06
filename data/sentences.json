@@ -1028,9 +1028,9 @@
   {
    "id": "s0057",
    "level": "koerper",
-   "cloze": "Brzo ___!",
-   "answer": "ozdravi",
-   "bs": "Brzo ozdravi!",
+   "cloze": "Brz ___",
+   "answer": "oporavak",
+   "bs": "Brz oporavak",
    "translations": {
     "de": "Gute Besserung!",
     "en": "Get well soon!",
@@ -1041,7 +1041,7 @@
     "da": "God bedring!",
     "fr": "Bon rétablissement !"
    },
-   "audio": "web/audio/w0242.mp3"
+   "audio": "web/audio/w1491.mp3"
   },
   {
    "id": "s0058",

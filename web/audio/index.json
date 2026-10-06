@@ -11564,12 +11564,6 @@
    "stimme": "bs-BA-GoranNeural"
   },
   {
-   "key": "japrak",
-   "datei": "w1916.mp3",
-   "text": "japrak",
-   "stimme": "bs-BA-GoranNeural"
-  },
-  {
    "key": "kajmak",
    "datei": "w1917.mp3",
    "text": "kajmak",
@@ -13991,6 +13985,12 @@
    "key": "ovo meso je ljuto.",
    "datei": "w2321.mp3",
    "text": "Ovo meso je ljuto.",
+   "stimme": "bs-BA-GoranNeural"
+  },
+  {
+   "key": "uštipci",
+   "datei": "w2322.mp3",
+   "text": "uštipci",
    "stimme": "bs-BA-GoranNeural"
   }
  ]
