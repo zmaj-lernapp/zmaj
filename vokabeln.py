@@ -100,7 +100,7 @@ KATEGORIEN = [
         {"de": "Vielleicht",                  "bs": "Možda"},
         {"de": "Prost!",                      "bs": "Živjeli!", "auch": ["U zdravlje!"]},
         {"de": "Guten Appetit",               "bs": "Prijatno"},
-        {"de": "Hallo (neutral, ueberall)", "bs": "Zdravo"},
+        {"de": "Hallo (neutral, überall)", "bs": "Zdravo"},
     ]},
 
     {"id": "zahlen", "label": "Zahlen", "sektion": "alltag", "tipp": "Zählen von null bis tausend.",
@@ -506,7 +506,9 @@ KATEGORIEN = [
      "words": [
         {"de": "Aubergine",        "bs": "patlidžan"},
         {"de": "Blumenkohl",       "bs": "karfiol"},
-        {"de": "Brokkoli",         "bs": "brokula"},
+        # brokoli gilt beim Tippen ebenso: Ajdin am 24.09.2026 "beides geht"
+        # (WORTSCHATZ_KORREKTUREN.md), eingetragen bei der Pruefung am 06.10.2026.
+        {"de": "Brokkoli",         "bs": "brokula", "auch": ["brokoli"]},
         {"de": "Erbsen",           "bs": "grašak"},
         {"de": "Frühlingszwiebel", "bs": "mladi luk"},
         {"de": "grüne Bohnen",     "bs": "boranija"},
@@ -524,7 +526,9 @@ KATEGORIEN = [
         {"de": "Petersilie",       "bs": "peršun"},
         {"de": "Pilze",            "bs": "gljive"},
         {"de": "Radieschen",       "bs": "rotkvica"},
-        {"de": "Rote Bete",        "bs": "cvekla"},
+        # cikla gilt beim Tippen ebenso: cvekla ist gaengig, cikla auch moeglich,
+        # Ajdin am 24.09.2026. Eingetragen bei der Pruefung am 06.10.2026.
+        {"de": "Rote Bete",        "bs": "cvekla", "auch": ["cikla"]},
         {"de": "rote Zwiebel",     "bs": "crveni luk"},
         {"de": "scharfe Paprika",  "bs": "ljuta paprika"},
         {"de": "Sellerie",         "bs": "celer"},
@@ -549,7 +553,10 @@ KATEGORIEN = [
         {"de": "Konserve",           "bs": "konzerva"},
         {"de": "Lammfleisch",        "bs": "janjetina"},
         {"de": "Leberpastete",       "bs": "pašteta"},
-        {"de": "Linsen",             "bs": "leća"},
+        # sočivo ist dieselbe Huelsenfrucht (serbischer Standard, in Bosnien
+        # ebenso gelaeufig) und gilt beim Tippen als richtig. Ajdin am
+        # 25.09.2026, eingetragen bei der Pruefung am 06.10.2026.
+        {"de": "Linsen",             "bs": "leća", "auch": ["sočivo"]},
         {"de": "Margarine",          "bs": "margarin"},
         {"de": "Marmelade",          "bs": "džem"},
         {"de": "Mayonnaise",         "bs": "majonez"},
@@ -616,7 +623,7 @@ KATEGORIEN = [
         {"de": "Hof / Innenhof",     "bs": "avlija"},
         {"de": "Huhn",               "bs": "kokoš"},
         {"de": "Kalb",               "bs": "tele"},
-        {"de": "Kueken / Haehnchen", "bs": "pile"},
+        {"de": "Küken / Hähnchen", "bs": "pile"},
         {"de": "Kuh",                "bs": "krava"},
         {"de": "Lamm",               "bs": "jagnje"},
         {"de": "Pferd",              "bs": "konj"},
@@ -629,7 +636,7 @@ KATEGORIEN = [
         {"de": "Ziege",              "bs": "koza"},
         {"de": "Adler",              "bs": "orao"},
         {"de": "Eule",               "bs": "sova"},
-        {"de": "Kraehe",             "bs": "vrana"},
+        {"de": "Krähe",             "bs": "vrana"},
         {"de": "Nest",               "bs": "gnijezdo"},
         {"de": "Schwalbe",           "bs": "lastavica"},
         {"de": "Spatz",              "bs": "vrabac"},
@@ -639,9 +646,9 @@ KATEGORIEN = [
     {"id": "tiere_wild", "label": "Tiere draußen", "sektion": "tiernatur", "tipp": "Wald, Wild, Insekten. Was draußen kreucht und fleucht.",
      "baut_auf": ["tiere"],
      "words": [
-        {"de": "Baer",          "bs": "medvjed"},
+        {"de": "Bär",          "bs": "medvjed"},
         {"de": "Drache",        "bs": "zmaj"},
-        {"de": "Eichhoernchen", "bs": "vjeverica"},
+        {"de": "Eichhörnchen", "bs": "vjeverica"},
         {"de": "Frosch",        "bs": "žaba"},
         {"de": "Fuchs",         "bs": "lisica"},
         {"de": "Hase",          "bs": "zec"},
@@ -659,7 +666,7 @@ KATEGORIEN = [
         {"de": "Fliege",        "bs": "muha"},
         {"de": "Floh",          "bs": "buha"},
         {"de": "Forelle",       "bs": "pastrmka"},
-        {"de": "Muecke",        "bs": "komarac"},
+        {"de": "Mücke",        "bs": "komarac"},
         {"de": "Schmetterling", "bs": "leptir"},
         {"de": "Schnecke",      "bs": "puž"},
         {"de": "Spinne",        "bs": "pauk"},
@@ -673,22 +680,22 @@ KATEGORIEN = [
      "words": [
         {"de": "Feder",                      "bs": "pero"},
         {"de": "Fell",                       "bs": "krzno"},
-        {"de": "Fluegel",                    "bs": "krilo"},
+        {"de": "Flügel",                    "bs": "krilo"},
         {"de": "Horn",                       "bs": "rog"},
         {"de": "Leine",                      "bs": "povodac"},
         {"de": "Schwanz",                    "bs": "rep"},
         {"de": "Tierarzt",                   "bs": "veterinar"},
-        {"de": "beissen",                    "bs": "ugristi"},
-        {"de": "Beisst er?",                 "bs": "Hoće li ujesti?"},
+        {"de": "beißen",                    "bs": "ugristi"},
+        {"de": "Beißt er?",                 "bs": "Hoće li ujesti?"},
         {"de": "bellen",                     "bs": "lajati"},
-        {"de": "fuettern",                   "bs": "hraniti"},
+        {"de": "füttern",                   "bs": "hraniti"},
         {"de": "Ich habe Angst vor Hunden",  "bs": "Bojim se pasa"},
         {"de": "spazieren gehen",            "bs": "šetati"},
         {"de": "Spaziergang",                "bs": "šetnja"},
         {"de": "stechen (Insekt)",           "bs": "ubosti"},
         {"de": "Vorsicht vor dem Hund!",     "bs": "Čuvaj se psa!"},
         {"de": "Der Hund hat mich gebissen", "bs": "Pas me je ujeo"},
-        {"de": "gefaehrlich",                "bs": "opasno"},
+        {"de": "gefährlich",                "bs": "opasno"},
         {"de": "Gefahr",                     "bs": "opasnost"},
         {"de": "Mine (Landmine)",            "bs": "mina"},
         {"de": "verboten",                   "bs": "zabranjeno"},
@@ -706,8 +713,8 @@ KATEGORIEN = [
         {"de": "Feuer",                  "bs": "vatra"},
         {"de": "Gipfel",                 "bs": "vrh"},
         {"de": "Gras",                   "bs": "trava"},
-        {"de": "Hoehle",                 "bs": "pećina"},
-        {"de": "Huegel",                 "bs": "brdo"},
+        {"de": "Höhle",                 "bs": "pećina"},
+        {"de": "Hügel",                 "bs": "brdo"},
         {"de": "Insel",                  "bs": "ostrvo"},
         {"de": "Luft",                   "bs": "zrak"},
         {"de": "Natur",                  "bs": "priroda"},
@@ -1649,7 +1656,12 @@ KATEGORIEN = [
         {"de": "Zenica",                           "bs": "Zenica"},
     ]},
     {"id": "resto1", "label": "Im Restaurant: ankommen", "sektion": "einkauf", "tipp": "Einen Tisch bekommen und bestellen.",
-     "baut_auf": ["essen", "formell"],
+     # Bis zum 06.10.2026 stand hier "formell" - das ist aber erst Level 60.
+     # Der Level-Test holt 3 von 10 Fragen aus baut_auf und fragte so Woerter
+     # ab, die noch nicht dran waren. Gefunden bei der Pruefung am 06.10.2026.
+     # Stattdessen, was hier wirklich gebraucht wird: Molim/Hvala aus den
+     # Grundlagen und die li-Fragen ("Je li ovaj sto slobodan?").
+     "baut_auf": ["essen", "basics", "fragen"],
      "words": [
         {"de": "Café",                        "bs": "kafić"},
         {"de": "Die Karte, bitte",            "bs": "Jelovnik, molim"},
@@ -1715,7 +1727,7 @@ KATEGORIEN = [
     {"id": "essen_gehen", "label": "Essen gehen & Mengen", "sektion": "einkauf", "tipp": "Verabreden, einladen, und wie viel wovon.",
      "baut_auf": ["resto1", "resto2", "mengen"],
      "words": [
-        {"de": "Baeckerei",                             "bs": "pekara"},
+        {"de": "Bäckerei",                             "bs": "pekara"},
         {"de": "Gericht / Speise",                      "bs": "jelo"},
         {"de": "Kafana (traditionelle Wirtschaft)",     "bs": "kafana"},
         {"de": "lecker",                                "bs": "ukusno"},
@@ -1724,9 +1736,9 @@ KATEGORIEN = [
         {"de": "Speisekarte",                           "bs": "jelovnik"},
         {"de": "Gehen wir einen Kaffee trinken",        "bs": "Idemo na kahvu"},
         {"de": "Halva",                                 "bs": "halva"},
-        {"de": "Hurmasica (Sirupgebaeck)",              "bs": "hurmašica", "auch": ["hurmašice"]},
-        {"de": "Rahat lokum (Geleewuerfel zum Kaffee)", "bs": "rahat lokum"},
-        {"de": "Tufahija (gefuellter Apfel in Sirup)",  "bs": "tufahija"},
+        {"de": "Hurmašica (Sirupgebäck)",              "bs": "hurmašica", "auch": ["hurmašice"]},
+        {"de": "Rahat lokum (Geleewürfel zum Kaffee)", "bs": "rahat lokum"},
+        {"de": "Tufahija (gefüllter Apfel in Sirup)",  "bs": "tufahija"},
         {"de": "Dose (Getränk)",                        "bs": "limenka"},
         {"de": "Einkaufsliste",                         "bs": "lista za kupovinu"},
         {"de": "Einkaufswagen",                         "bs": "kolica"},
@@ -1746,18 +1758,23 @@ KATEGORIEN = [
         {"de": "Ajvar (Paprikapaste)",                  "bs": "ajvar"},
         {"de": "Bohneneintopf",                         "bs": "grah"},
         {"de": "Bosnischer Schmortopf",                 "bs": "bosanski lonac"},
-        {"de": "Burek (Blaetterteigrolle mit Fleisch)", "bs": "burek"},
-        {"de": "Dolma (gefuelltes Gemuese)",            "bs": "dolma"},
-        {"de": "geraeuchertes Fleisch",                 "bs": "suho meso"},
+        {"de": "Burek (Blätterteigrolle mit Fleisch)", "bs": "burek"},
+        {"de": "Dolma (gefülltes Gemüse)",            "bs": "dolma"},
+        {"de": "geräuchertes Fleisch",                 "bs": "suho meso"},
         {"de": "Grill / Gegrilltes",                    "bs": "roštilj"},
-        {"de": "Japrak (gefuellte Weinblaetter)",       "bs": "japrak"},
+        # japrak ist raus: Man sagt sarma, und sarma meint immer Kohlblaetter -
+        # Weinblaetter sind tuerkisch, nicht bosnisch (Ajdin am 24.09.2026,
+        # WORTSCHATZ_KORREKTUREN.md). Stand trotzdem noch hier, gefunden bei
+        # der Pruefung am 06.10.2026. Den Platz bekommen uštipci, Ajdins Wahl
+        # vom selben Tag.
+        {"de": "Uštipci (frittierte Teigbällchen)",     "bs": "uštipci"},
         {"de": "Kajmak (Rahmaufstrich)",                "bs": "kajmak"},
         {"de": "Krompiruša (Pita mit Kartoffeln)",      "bs": "krompiruša"},
         {"de": "Pljeskavica (Hacksteak)",               "bs": "pljeskavica"},
         {"de": "Sarma (Krautwickel)",                   "bs": "sarma"},
-        {"de": "Sirnica (Pita mit Kaese)",              "bs": "sirnica"},
-        {"de": "Somun (Fladenbrot zu Cevapi)",          "bs": "somun"},
-        {"de": "Zeljanica (Pita mit Spinat und Kaese)", "bs": "zeljanica"},
+        {"de": "Sirnica (Pita mit Käse)",              "bs": "sirnica"},
+        {"de": "Somun (Fladenbrot zu Ćevapi)",          "bs": "somun"},
+        {"de": "Zeljanica (Pita mit Spinat und Käse)", "bs": "zeljanica"},
         {"de": "Bey-Suppe",                             "bs": "begova čorba"},
         {"de": "Fleischspießchen",                      "bs": "ražnjići"},
         {"de": "fünf Ćevapi",                           "bs": "petica"},
@@ -1834,7 +1851,10 @@ KATEGORIEN = [
         {"de": "Wie sagt man das auf Bosnisch?",  "bs": "Kako se to kaže na bosanskom?"},
     ]},
     {"id": "kennenlernen", "label": "Vorstellen & Kennenlernen", "sektion": "kultur", "tipp": "Sich vorstellen, nachfragen, miteinander umgehen.",
-     "baut_auf": ["basics", "smalltalk", "formell"],
+     # Bis zum 06.10.2026 stand hier "formell" (Level 60, also spaeter) -
+     # derselbe Fehler wie bei resto1, gefunden bei der Pruefung am 06.10.2026.
+     # Stattdessen die Familie: "Ovo je moja žena", prijatelj, porodica.
+     "baut_auf": ["basics", "smalltalk", "familie"],
      "words": [
         {"de": "(Antwort darauf)",                   "bs": "Alejkumu selam"},
         {"de": "Besuch",                             "bs": "posjeta"},
@@ -1874,25 +1894,25 @@ KATEGORIEN = [
         {"de": "ein Instrument spielen",                  "bs": "svirati"},
         {"de": "Folklore / Folkloregruppe",               "bs": "folklor / folklorna grupa"},
         {"de": "Kolo (bosnischer Reigentanz)",            "bs": "kolo"},
-        {"de": "Saenger / Saengerin",                     "bs": "pjevač / pjevačica"},
+        {"de": "Sänger / Sängerin",                     "bs": "pjevač / pjevačica"},
         {"de": "Saz (traditionelles Saiteninstrument)",   "bs": "saz"},
-        {"de": "Sevdah (wehmuetige Sehnsucht)",           "bs": "sevdah"},
+        {"de": "Sevdah (wehmütige Sehnsucht)",           "bs": "sevdah"},
         {"de": "Sevdalinka (bosnisches Liebeslied)",      "bs": "sevdalinka"},
         {"de": "Sijelo (abendliches Beisammensein)",      "bs": "sijelo"},
-        {"de": "Teferic (Ausflugsfest im Gruenen)",       "bs": "teferič"},
+        {"de": "Teferič (Ausflugsfest im Grünen)",       "bs": "teferič"},
         {"de": "Volksmusik",                              "bs": "narodna muzika"},
-        {"de": "Antwort auf den Bajram-Gruss",            "bs": "Allah razi olsun"},
+        {"de": "Antwort auf den Bajram-Gruß",            "bs": "Allah razi olsun"},
         {"de": "das Fasten",                              "bs": "post"},
         {"de": "Frohes Bajram!",                          "bs": "Sretan Bajram!", "auch": ["Bajram šerif mubarek olsun!"]},
         {"de": "Gott",                                    "bs": "Bog"},
         {"de": "Gott sei Dank",                           "bs": "Hvala Bogu"},
         {"de": "Iftar (Fastenbrechen)",                   "bs": "iftar"},
-        {"de": "Insallah (so Gott will)",                 "bs": "inšallah", "auch": ["Ako Bog da"]},
-        {"de": "Masallah (wie schoen, Gott schuetze es)", "bs": "mašallah"},
+        {"de": "Inšallah (so Gott will)",                 "bs": "inšallah", "auch": ["Ako Bog da"]},
+        {"de": "Mašallah (wie schön, Gott schütze es)", "bs": "mašallah"},
         {"de": "Ramadanfest / Opferfest",                 "bs": "Ramazanski bajram / Kurban-bajram"},
         {"de": "So Gott will / hoffentlich",              "bs": "Ako Bog da", "auch": ["inšallah"]},
         {"de": "Bujrum (bitte, greif zu / komm herein)",  "bs": "bujrum"},
-        {"de": "Danke fuer die Einladung",                "bs": "Hvala na pozivu"},
+        {"de": "Danke für die Einladung",                "bs": "Hvala na pozivu"},
         {"de": "Danke, ich bin satt (m/w)",               "bs": "Hvala, sit sam / sita sam"},
         {"de": "Es war sehr lecker",                      "bs": "Bilo je jako ukusno", "auch": ["Prijalo mi je"]},
         {"de": "Gastgeber / Gastgeberin",                 "bs": "domaćin / domaćica"},
@@ -2176,7 +2196,14 @@ SAETZE = [
     # Körper & Gesundheit
     {"kat": "koerper", "text": "Boli me ___.",          "answer": "glava",    "de": "Mir tut der Kopf weh."},
     {"kat": "koerper", "text": "Gdje je ___?",          "answer": "apoteka",  "de": "Wo ist die Apotheke?"},
-    {"kat": "koerper", "text": "Brzo ___!",             "answer": "ozdravi",  "de": "Gute Besserung!"},
+    # Wie das Wort im Level: "Brz oporavak" statt "Brzo ozdravi!", das nur die
+    # Du-Anrede abdeckt (Ajdin am 26.09.2026, WORTSCHATZ_KORREKTUREN.md). Der
+    # Satz war dabei uebersehen worden - gefunden bei der Pruefung am
+    # 06.10.2026. Ohne Ausrufezeichen wie "Dobar ___": So ist der fertige Satz
+    # derselbe Text wie das Wort und spielt die Fassung, die Ajdin am
+    # 26.09.2026 ausgewaehlt hat (w1491.mp3). "Brz oporavak!" bekaeme von
+    # ton_bauen.py eine neue, nicht ausgewaehlte Aufnahme.
+    {"kat": "koerper", "text": "Brz ___",               "answer": "oporavak", "de": "Gute Besserung!"},
 
     # Einkaufen & Kleidung (nutzt Zahlen und Farben)
     {"kat": "einkaufen", "text": "Kolika je ___?",      "answer": "cijena",   "de": "Wie hoch ist der Preis?"},

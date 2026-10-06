@@ -1807,7 +1807,8 @@
    },
    "builds_on": [
     "essen",
-    "formell"
+    "basics",
+    "fragen"
    ],
    "word_count": 27
   },
@@ -1989,7 +1990,7 @@
    "builds_on": [
     "basics",
     "smalltalk",
-    "formell"
+    "familie"
    ],
    "word_count": 29
   },
@@ -2789,13 +2790,13 @@
    "audio": "web/audio/w0032.mp3"
   },
   {
-   "id": "hallo (neutral, ueberall):Zdravo",
+   "id": "hallo (neutral, überall):Zdravo",
    "bs": "Zdravo",
    "level": "basics",
    "level_position": 1,
    "section": "alltag",
    "translations": {
-    "de": "Hallo (neutral, ueberall)",
+    "de": "Hallo (neutral, überall)",
     "en": "Hello (neutral, anywhere)",
     "tr": "Merhaba (nötr, her yerde)",
     "sv": "Hej (neutralt, överallt)",
@@ -10583,13 +10584,13 @@
    "audio": "web/audio/w1623.mp3"
   },
   {
-   "id": "kueken / haehnchen:pile",
+   "id": "küken / hähnchen:pile",
    "bs": "pile",
    "level": "tiere",
    "level_position": 20,
    "section": "tiernatur",
    "translations": {
-    "de": "Kueken / Haehnchen",
+    "de": "Küken / Hähnchen",
     "en": "chick / young chicken",
     "tr": "civciv / piliç",
     "sv": "kycklingunge / kyckling",
@@ -10817,13 +10818,13 @@
    "audio": "web/audio/w1635.mp3"
   },
   {
-   "id": "kraehe:vrana",
+   "id": "krähe:vrana",
    "bs": "vrana",
    "level": "tiere",
    "level_position": 20,
    "section": "tiernatur",
    "translations": {
-    "de": "Kraehe",
+    "de": "Krähe",
     "en": "crow",
     "tr": "karga",
     "sv": "kråka",
@@ -10925,13 +10926,13 @@
    "audio": "web/audio/w1641.mp3"
   },
   {
-   "id": "baer:medvjed",
+   "id": "bär:medvjed",
    "bs": "medvjed",
    "level": "tiere_wild",
    "level_position": 21,
    "section": "tiernatur",
    "translations": {
-    "de": "Baer",
+    "de": "Bär",
     "en": "bear",
     "tr": "ayı",
     "sv": "björn",
@@ -10961,13 +10962,13 @@
    "audio": "web/audio/w1643.mp3"
   },
   {
-   "id": "eichhoernchen:vjeverica",
+   "id": "eichhörnchen:vjeverica",
    "bs": "vjeverica",
    "level": "tiere_wild",
    "level_position": 21,
    "section": "tiernatur",
    "translations": {
-    "de": "Eichhoernchen",
+    "de": "Eichhörnchen",
     "en": "squirrel",
     "tr": "sincap",
     "sv": "ekorre",
@@ -11285,13 +11286,13 @@
    "audio": "web/audio/w1661.mp3"
   },
   {
-   "id": "muecke:komarac",
+   "id": "mücke:komarac",
    "bs": "komarac",
    "level": "tiere_wild",
    "level_position": 21,
    "section": "tiernatur",
    "translations": {
-    "de": "Muecke",
+    "de": "Mücke",
     "en": "mosquito",
     "tr": "sivrisinek",
     "sv": "mygga",
@@ -11465,13 +11466,13 @@
    "audio": "web/audio/w1671.mp3"
   },
   {
-   "id": "fluegel:krilo",
+   "id": "flügel:krilo",
    "bs": "krilo",
    "level": "tiere_umgang",
    "level_position": 22,
    "section": "tiernatur",
    "translations": {
-    "de": "Fluegel",
+    "de": "Flügel",
     "en": "wing",
     "tr": "kanat",
     "sv": "vinge",
@@ -11555,13 +11556,13 @@
    "audio": "web/audio/w1676.mp3"
   },
   {
-   "id": "beissen:ugristi",
+   "id": "beißen:ugristi",
    "bs": "ugristi",
    "level": "tiere_umgang",
    "level_position": 22,
    "section": "tiernatur",
    "translations": {
-    "de": "beissen",
+    "de": "beißen",
     "en": "to bite",
     "tr": "ısırmak",
     "sv": "bita",
@@ -11573,13 +11574,13 @@
    "audio": "web/audio/w1677.mp3"
   },
   {
-   "id": "beisst er?:Hoće li ujesti?",
+   "id": "beißt er?:Hoće li ujesti?",
    "bs": "Hoće li ujesti?",
    "level": "tiere_umgang",
    "level_position": 22,
    "section": "tiernatur",
    "translations": {
-    "de": "Beisst er?",
+    "de": "Beißt er?",
     "en": "Does he bite?",
     "tr": "Isırır mı?",
     "sv": "Bits den?",
@@ -11609,13 +11610,13 @@
    "audio": "web/audio/w1679.mp3"
   },
   {
-   "id": "fuettern:hraniti",
+   "id": "füttern:hraniti",
    "bs": "hraniti",
    "level": "tiere_umgang",
    "level_position": 22,
    "section": "tiernatur",
    "translations": {
-    "de": "fuettern",
+    "de": "füttern",
     "en": "to feed",
     "tr": "beslemek",
     "sv": "mata",
@@ -11735,13 +11736,13 @@
    "audio": "web/audio/w1686.mp3"
   },
   {
-   "id": "gefaehrlich:opasno",
+   "id": "gefährlich:opasno",
    "bs": "opasno",
    "level": "tiere_umgang",
    "level_position": 22,
    "section": "tiernatur",
    "translations": {
-    "de": "gefaehrlich",
+    "de": "gefährlich",
     "en": "dangerous",
     "tr": "tehlikeli",
     "sv": "farligt",
@@ -11987,13 +11988,13 @@
    "audio": "web/audio/w1700.mp3"
   },
   {
-   "id": "hoehle:pećina",
+   "id": "höhle:pećina",
    "bs": "pećina",
    "level": "natur",
    "level_position": 23,
    "section": "tiernatur",
    "translations": {
-    "de": "Hoehle",
+    "de": "Höhle",
     "en": "cave",
     "tr": "mağara",
     "sv": "grotta",
@@ -12005,13 +12006,13 @@
    "audio": "web/audio/w1701.mp3"
   },
   {
-   "id": "huegel:brdo",
+   "id": "hügel:brdo",
    "bs": "brdo",
    "level": "natur",
    "level_position": 23,
    "section": "tiernatur",
    "translations": {
-    "de": "Huegel",
+    "de": "Hügel",
     "en": "hill",
     "tr": "tepe",
     "sv": "kulle",
@@ -27467,13 +27468,13 @@
    "audio": "web/audio/w1884.mp3"
   },
   {
-   "id": "baeckerei:pekara",
+   "id": "bäckerei:pekara",
    "bs": "pekara",
    "level": "essen_gehen",
    "level_position": 54,
    "section": "einkauf",
    "translations": {
-    "de": "Baeckerei",
+    "de": "Bäckerei",
     "en": "bakery",
     "tr": "ekmek fırını",
     "sv": "bageri",
@@ -27629,13 +27630,13 @@
    "audio": "web/audio/w1893.mp3"
   },
   {
-   "id": "hurmasica (sirupgebaeck):hurmašica",
+   "id": "hurmašica (sirupgebäck):hurmašica",
    "bs": "hurmašica",
    "level": "essen_gehen",
    "level_position": 54,
    "section": "einkauf",
    "translations": {
-    "de": "Hurmasica (Sirupgebaeck)",
+    "de": "Hurmašica (Sirupgebäck)",
     "en": "hurmašica (syrup-soaked semolina cookie)",
     "tr": "hurmašica (şerbetli hamur tatlısı)",
     "sv": "hurmašica (sirapsbakelse)",
@@ -27647,13 +27648,13 @@
    "audio": "web/audio/w1894.mp3"
   },
   {
-   "id": "rahat lokum (geleewuerfel zum kaffee):rahat lokum",
+   "id": "rahat lokum (geleewürfel zum kaffee):rahat lokum",
    "bs": "rahat lokum",
    "level": "essen_gehen",
    "level_position": 54,
    "section": "einkauf",
    "translations": {
-    "de": "Rahat lokum (Geleewuerfel zum Kaffee)",
+    "de": "Rahat lokum (Geleewürfel zum Kaffee)",
     "en": "rahat lokum (jelly cubes served with coffee)",
     "tr": "rahat lokum (kahve yanında yenen lokum)",
     "sv": "rahat lokum (turkisk konfekt till kaffet)",
@@ -27665,13 +27666,13 @@
    "audio": "web/audio/w1895.mp3"
   },
   {
-   "id": "tufahija (gefuellter apfel in sirup):tufahija",
+   "id": "tufahija (gefüllter apfel in sirup):tufahija",
    "bs": "tufahija",
    "level": "essen_gehen",
    "level_position": 54,
    "section": "einkauf",
    "translations": {
-    "de": "Tufahija (gefuellter Apfel in Sirup)",
+    "de": "Tufahija (gefüllter Apfel in Sirup)",
     "en": "tufahija (stuffed apple in syrup)",
     "tr": "tufahija (şerbette dolgulu elma tatlısı)",
     "sv": "tufahija (fyllt äpple i sirap)",
@@ -27953,13 +27954,13 @@
    "audio": "web/audio/w1911.mp3"
   },
   {
-   "id": "burek (blaetterteigrolle mit fleisch):burek",
+   "id": "burek (blätterteigrolle mit fleisch):burek",
    "bs": "burek",
    "level": "bosnisch_essen",
    "level_position": 55,
    "section": "herkunft",
    "translations": {
-    "de": "Burek (Blaetterteigrolle mit Fleisch)",
+    "de": "Burek (Blätterteigrolle mit Fleisch)",
     "en": "burek (filo roll with meat)",
     "tr": "burek (kıymalı börek)",
     "sv": "burek (filodegsrulle med köttfärs)",
@@ -27971,13 +27972,13 @@
    "audio": "web/audio/w1912.mp3"
   },
   {
-   "id": "dolma (gefuelltes gemuese):dolma",
+   "id": "dolma (gefülltes gemüse):dolma",
    "bs": "dolma",
    "level": "bosnisch_essen",
    "level_position": 55,
    "section": "herkunft",
    "translations": {
-    "de": "Dolma (gefuelltes Gemuese)",
+    "de": "Dolma (gefülltes Gemüse)",
     "en": "dolma (stuffed vegetables)",
     "tr": "dolma (doldurulmuş sebze)",
     "sv": "dolma (fyllda grönsaker)",
@@ -27989,13 +27990,13 @@
    "audio": "web/audio/w1913.mp3"
   },
   {
-   "id": "geraeuchertes fleisch:suho meso",
+   "id": "geräuchertes fleisch:suho meso",
    "bs": "suho meso",
    "level": "bosnisch_essen",
    "level_position": 55,
    "section": "herkunft",
    "translations": {
-    "de": "geraeuchertes Fleisch",
+    "de": "geräuchertes Fleisch",
     "en": "smoked meat",
     "tr": "tütsülenmiş et",
     "sv": "rökt kött",
@@ -28025,22 +28026,22 @@
    "audio": "web/audio/w1915.mp3"
   },
   {
-   "id": "japrak (gefuellte weinblaetter):japrak",
-   "bs": "japrak",
+   "id": "uštipci (frittierte teigbällchen):uštipci",
+   "bs": "uštipci",
    "level": "bosnisch_essen",
    "level_position": 55,
    "section": "herkunft",
    "translations": {
-    "de": "Japrak (gefuellte Weinblaetter)",
-    "en": "japrak (stuffed vine leaves)",
-    "tr": "japrak (asma yaprağı sarması)",
-    "sv": "japrak (fyllda vinblad)",
-    "nl": "japrak (gevulde wijnbladeren)",
-    "nb": "japrak (fylte vinblader)",
-    "da": "japrak (fyldte vinblade)",
-    "fr": "japrak (feuilles de vigne farcies)"
+    "de": "Uštipci (frittierte Teigbällchen)",
+    "en": "uštipci (fried dough balls)",
+    "tr": "uštipci (kızarmış hamur topları)",
+    "sv": "uštipci (friterade degbollar)",
+    "nl": "uštipci (gefrituurde deegballetjes)",
+    "nb": "uštipci (frityrstekte deigballer)",
+    "da": "uštipci (friturestegte dejkugler)",
+    "fr": "uštipci (petits beignets)"
    },
-   "audio": "web/audio/w1916.mp3"
+   "audio": "web/audio/w2322.mp3"
   },
   {
    "id": "kajmak (rahmaufstrich):kajmak",
@@ -28115,13 +28116,13 @@
    "audio": "web/audio/w1920.mp3"
   },
   {
-   "id": "sirnica (pita mit kaese):sirnica",
+   "id": "sirnica (pita mit käse):sirnica",
    "bs": "sirnica",
    "level": "bosnisch_essen",
    "level_position": 55,
    "section": "herkunft",
    "translations": {
-    "de": "Sirnica (Pita mit Kaese)",
+    "de": "Sirnica (Pita mit Käse)",
     "en": "sirnica (pita with cheese)",
     "tr": "sirnica (peynirli börek)",
     "sv": "sirnica (pita med ost)",
@@ -28133,13 +28134,13 @@
    "audio": "web/audio/w1921.mp3"
   },
   {
-   "id": "somun (fladenbrot zu cevapi):somun",
+   "id": "somun (fladenbrot zu ćevapi):somun",
    "bs": "somun",
    "level": "bosnisch_essen",
    "level_position": 55,
    "section": "herkunft",
    "translations": {
-    "de": "Somun (Fladenbrot zu Cevapi)",
+    "de": "Somun (Fladenbrot zu Ćevapi)",
     "en": "somun (flatbread served with ćevapi)",
     "tr": "somun (ćevapi ile yenen pide)",
     "sv": "somun (tunnbröd till ćevapi)",
@@ -28151,13 +28152,13 @@
    "audio": "web/audio/w1922.mp3"
   },
   {
-   "id": "zeljanica (pita mit spinat und kaese):zeljanica",
+   "id": "zeljanica (pita mit spinat und käse):zeljanica",
    "bs": "zeljanica",
    "level": "bosnisch_essen",
    "level_position": 55,
    "section": "herkunft",
    "translations": {
-    "de": "Zeljanica (Pita mit Spinat und Kaese)",
+    "de": "Zeljanica (Pita mit Spinat und Käse)",
     "en": "zeljanica (pita with spinach and cheese)",
     "tr": "zeljanica (ıspanaklı ve peynirli börek)",
     "sv": "zeljanica (pita med spinat och ost)",
@@ -29969,13 +29970,13 @@
    "audio": "web/audio/w2020.mp3"
   },
   {
-   "id": "saenger / saengerin:pjevač / pjevačica",
+   "id": "sänger / sängerin:pjevač / pjevačica",
    "bs": "pjevač / pjevačica",
    "level": "kulturlevel",
    "level_position": 59,
    "section": "kultur",
    "translations": {
-    "de": "Saenger / Saengerin",
+    "de": "Sänger / Sängerin",
     "en": "singer (m) / singer (f)",
     "tr": "şarkıcı (erkek / kadın)",
     "sv": "sångare / sångerska",
@@ -30005,13 +30006,13 @@
    "audio": "web/audio/w2022.mp3"
   },
   {
-   "id": "sevdah (wehmuetige sehnsucht):sevdah",
+   "id": "sevdah (wehmütige sehnsucht):sevdah",
    "bs": "sevdah",
    "level": "kulturlevel",
    "level_position": 59,
    "section": "kultur",
    "translations": {
-    "de": "Sevdah (wehmuetige Sehnsucht)",
+    "de": "Sevdah (wehmütige Sehnsucht)",
     "en": "sevdah (wistful longing)",
     "tr": "sevdah (hüzünlü özlem)",
     "sv": "sevdah (vemodig längtan)",
@@ -30059,13 +30060,13 @@
    "audio": "web/audio/w2025.mp3"
   },
   {
-   "id": "teferic (ausflugsfest im gruenen):teferič",
+   "id": "teferič (ausflugsfest im grünen):teferič",
    "bs": "teferič",
    "level": "kulturlevel",
    "level_position": 59,
    "section": "kultur",
    "translations": {
-    "de": "Teferic (Ausflugsfest im Gruenen)",
+    "de": "Teferič (Ausflugsfest im Grünen)",
     "en": "teferič (outdoor festivity in nature)",
     "tr": "teferič (kırda yapılan gezinti şenliği)",
     "sv": "teferič (utflyktsfest i det gröna)",
@@ -30095,13 +30096,13 @@
    "audio": "web/audio/w2027.mp3"
   },
   {
-   "id": "antwort auf den bajram-gruss:Allah razi olsun",
+   "id": "antwort auf den bajram-gruß:Allah razi olsun",
    "bs": "Allah razi olsun",
    "level": "kulturlevel",
    "level_position": 59,
    "section": "kultur",
    "translations": {
-    "de": "Antwort auf den Bajram-Gruss",
+    "de": "Antwort auf den Bajram-Gruß",
     "en": "reply to the Bajram greeting",
     "tr": "bayram selamına verilen cevap",
     "sv": "svar på bajramhälsningen",
@@ -30203,13 +30204,13 @@
    "audio": "web/audio/w2033.mp3"
   },
   {
-   "id": "insallah (so gott will):inšallah",
+   "id": "inšallah (so gott will):inšallah",
    "bs": "inšallah",
    "level": "kulturlevel",
    "level_position": 59,
    "section": "kultur",
    "translations": {
-    "de": "Insallah (so Gott will)",
+    "de": "Inšallah (so Gott will)",
     "en": "inšallah (God willing)",
     "tr": "inşallah (Allah izin verirse)",
     "sv": "inšallah (om Gud vill)",
@@ -30221,13 +30222,13 @@
    "audio": "web/audio/w2034.mp3"
   },
   {
-   "id": "masallah (wie schoen, gott schuetze es):mašallah",
+   "id": "mašallah (wie schön, gott schütze es):mašallah",
    "bs": "mašallah",
    "level": "kulturlevel",
    "level_position": 59,
    "section": "kultur",
    "translations": {
-    "de": "Masallah (wie schoen, Gott schuetze es)",
+    "de": "Mašallah (wie schön, Gott schütze es)",
     "en": "mašallah (how lovely, may God protect it)",
     "tr": "maşallah (ne güzel, Allah korusun)",
     "sv": "mašallah (vad vackert, må Gud bevara det)",
@@ -30293,13 +30294,13 @@
    "audio": "web/audio/w2038.mp3"
   },
   {
-   "id": "danke fuer die einladung:Hvala na pozivu",
+   "id": "danke für die einladung:Hvala na pozivu",
    "bs": "Hvala na pozivu",
    "level": "kulturlevel",
    "level_position": 59,
    "section": "kultur",
    "translations": {
-    "de": "Danke fuer die Einladung",
+    "de": "Danke für die Einladung",
     "en": "Thank you for the invitation",
     "tr": "Davet için teşekkürler",
     "sv": "Tack för inbjudan",
