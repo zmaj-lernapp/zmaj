@@ -114,6 +114,19 @@
     padding:16px 16px 48px;
   }
   .wrap{width:100%; max-width:540px}
+  /* Grosse Systemschrift. Android vergroessert in der App jede Schrift
+     mit (Einstellungen > Schriftgroesse), Kaesten und Abstaende in px
+     aber nicht. Ab 115 % passten die drei Reiter nicht mehr in ihre
+     Zeile, ab 130 % auch Antwortknoepfe und Knopfreihen - die Seite
+     wurde breiter als der Bildschirm und liess sich seitlich schieben.
+     Gefunden bei der Pruefung am 06.10.2026.
+     Was nicht mehr nebeneinander passt, rutscht jetzt in die naechste
+     Zeile: Reiter, Tagesaufgaben und Knopfreihen per flex-wrap,
+     Antwortknoepfe und Kopf per Skript (renderChoice, kopfEng).
+     break-word ist nur der letzte Ausweg fuer ein Wort, das allein
+     breiter ist als sein Kasten. Bei normaler Schrift greift all das
+     nur dort, wo vorher schon etwas ueber den Rand ragte. */
+  .wrap{overflow-wrap:break-word}
   /* Der Stern trifft alles - auch den Vorspann. Dessen Notaus-Animation
      muss aber bleiben: sie ist der einzige Weg, das Logo wegzunehmen,
      wenn das Skript nicht anlaeuft. Deshalb :not(#vorspann). */
@@ -280,12 +293,15 @@
   /* ---- Oben auf der Startseite: Serie und Drache nebeneinander ----
      Entwurf A+C+D, eingebaut am 26.09.2026. */
   .obenreihe{display:flex; align-items:center; gap:8px; margin-bottom:10px}
-  .serieblock{flex:1; min-width:0}
+  /* Eine dreistellige Serie ist bei grosser Schrift breiter als ihr Platz.
+     Dann gibt der Drache nach und wird schmaler, statt dass die Zahl in ihn
+     hineinlaeuft. 06.10.2026, siehe .wrap. */
+  .serieblock{flex:1}
   .seriezahl{font-family:var(--font-display); font-size:46px; font-weight:700;
              line-height:1; display:flex; align-items:baseline; gap:8px}
   .seriezahl span:first-child{font-size:30px}
   /* Am Handy naehme der Drache in seiner vollen Groesse die halbe Breite. */
-  .obenreihe .zmaj{width:120px; height:120px; flex:0 0 120px}
+  .obenreihe .zmaj{width:120px; height:120px; flex:0 1 120px; min-width:0}
   .obenreihe .streakline{margin:7px 0 0}
   /* ---- Festtage: Girlande, Gruss, fallende Blaetter und Flocken ----
      Die Farben je Fest setzt festSchmuck() in <style id="festStil">. */
@@ -313,11 +329,14 @@
   /* ---- Die drei Tagesaufgaben als Ringe ----
      Aus Entwurf B. Als Liste untereinander kosteten sie drei Zeilen und
      sagten trotzdem nicht auf einen Blick, wie weit man ist. */
-  .qringe{display:flex; gap:7px}
+  .qringe{display:flex; gap:7px; flex-wrap:wrap}
   /* --primary-soft statt --bg: der Grund ist dunkler als die Karte, in
      der die Ringe liegen - sie sahen aus wie Loecher. Der blasse Ton der
      Sektion legt sie darueber und faerbt sie mit. */
-  .qring{flex:1; min-width:0; text-align:center; background:var(--primary-soft);
+  /* Ohne min-width:0: ein langes Wort ("Hoeruebungen") macht seinen Ring
+     etwas breiter statt ueber den Rand zu ragen; passen die drei nicht
+     mehr nebeneinander, rutscht einer nach unten. 06.10.2026, siehe .wrap. */
+  .qring{flex:1; text-align:center; background:var(--primary-soft);
          border:1px solid var(--line); border-radius:11px; padding:9px 5px;
          font-size:11px; font-weight:800; color:var(--ink); line-height:1.25}
   /* Die Zahl im Ring hat dieselbe Schriftfarbe wie der Text darunter.
@@ -328,20 +347,32 @@
      blassen Ringgrund nur auf 3,9 zu 1 - die Schwelle ist 4,5.
      Welcher Ring offen und welcher geschafft ist, sagt ohnehin der Grund
      des Rings: blass oder gruen. */
-  .qring .kreisel{width:36px; height:36px; margin:0 auto 6px; border-radius:50%;
+  .qring .kreisel{width:fit-content; min-width:36px; max-width:100%; min-height:36px;
+                  /* waechst zur Pille, wenn die Zahl bei grosser Schrift nicht
+                     mehr in den Kreis passt - siehe .wrap, 06.10.2026 */
+                  margin:0 auto 6px; border-radius:99px;
                   display:grid; place-items:center; font-size:13px; font-weight:800;
                   background:var(--primary-soft); color:var(--ink)}
   .qring.fertig{color:var(--muted)}
   .qring.fertig .kreisel{background:var(--good); color:var(--on-primary)}
 
-  .mode{display:flex; gap:6px; background:var(--primary-soft); padding:5px; border-radius:99px; margin-bottom:12px}
+  /* Passen die drei Reiter nicht mehr in eine Zeile, rutscht der letzte
+     darunter (flex-wrap). Die Rundungen sind so gewaehlt, dass eine Zeile
+     genau wie bisher eine Pille bleibt; bei zwei Zeilen wird daraus ein
+     abgerundetes Feld statt eines Ovals, und Feld und Reiter laufen
+     parallel (27 = 22 + 5 Innenabstand). 06.10.2026, siehe .wrap. */
+  .mode{display:flex; flex-wrap:wrap; gap:6px; background:var(--primary-soft); padding:5px; border-radius:27px; margin-bottom:12px}
   .mode button{
     flex:1; border:0; background:transparent; color:var(--primary); font-family:inherit; font-size:14px; font-weight:800;
-    padding:10px 6px; border-radius:99px; cursor:pointer; white-space:nowrap;
+    padding:10px 6px; border-radius:22px; cursor:pointer; white-space:nowrap;
   }
   /* Drei Reiter werden auf schmalen Handys sonst umgebrochen */
   @media (max-width:430px){ .mode button{font-size:12.5px; padding:10px 4px} }
-  @media (max-width:340px){ .mode button{font-size:11.5px} }
+  /* 320 Punkte breit waren die Reiter auf Deutsch und Daenisch schon bei
+     normaler Schrift 2 Punkte zu breit - unsichtbar, aber mit flex-wrap
+     rutschte der letzte deshalb nach unten. Ein Punkt weniger Innenabstand
+     je Seite reicht. 06.10.2026. */
+  @media (max-width:340px){ .mode button{font-size:11.5px; padding:10px 3px} }
   .mode button[aria-selected="true"]{background:var(--primary-fill); color:var(--on-fill)}
   /* Dieselbe Leiste dient in den Einstellungen als Dreierwahl fuer das
      Aussehen. Dort ist es keine Reiterreihe, sondern eine Auswahl - deshalb
@@ -368,6 +399,7 @@
      auch komisch gemacht worden". */
   .ware.zweiwege{flex-wrap:wrap}
   .ware:first-of-type{border-top:0}
+  .ware > div:first-child{min-width:0}   /* langes Wort bei grosser Schrift, siehe .wrap */
   .ware .wt{font-weight:800; font-size:14px}
   .ware .wd{font-size:12px; color:var(--muted)}
   /* Alle Knoepfe im Laden gleich breit, damit die Spalte ruhig bleibt */
@@ -382,8 +414,11 @@
      sie gleichmaessig - dasselbe Bild wie .row.schmal.
      nowrap und weniger Polsterung, weil "Video ansehen" sonst umbrach und
      die Knoepfe 71 statt 50 Pixel hoch machte. */
-  .kaufwege{display:flex; gap:8px; flex:1 0 100%; margin-top:8px}
-  .kaufwege .btn.kauf{flex:1; min-width:0; white-space:nowrap;
+  /* Passen beide Knoepfe nicht mehr nebeneinander (grosse Schrift), stehen
+     sie untereinander - min-width:auto haelt dafuer die Breite des Texts.
+     06.10.2026, siehe .wrap. */
+  .kaufwege{display:flex; gap:8px; flex:1 0 100%; margin-top:8px; flex-wrap:wrap}
+  .kaufwege .btn.kauf{flex:1; min-width:auto; white-space:nowrap;
                       font-size:14px; padding-left:8px; padding-right:8px}
 
   /* ---------- Sprachwahl ---------- */
@@ -594,13 +629,22 @@
      bei langen Titeln ("Razgovor za posao") in die naechste Zeile, bei kurzen
      nicht - die Liste wirkte dadurch zerfasert. Ajdin am 18.09.2026.
      Jetzt kuerzt der Titel ab, das Schildchen bleibt stehen. */
-  .node .label.mitstufe{display:flex; align-items:center; gap:8px; min-width:0}
-  .node .label.mitstufe .titel{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .node .label.mitstufe .stufe{margin-left:0; flex:0 0 auto}
+  .node .label.mitstufe{display:flex; align-items:center; gap:8px; min-width:0; flex-wrap:wrap}
+  .node .label.mitstufe .titel{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+                               flex:1 1 48px; max-width:max-content}
+  .node .label.mitstufe .stufe{margin-left:0; flex:0 0 auto; max-width:100%;
+                               overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  /* Grosse Schrift: blieben neben dem Schildchen keine 48 Punkte fuer den
+     Titel, verschwand er ganz - jetzt rutscht das Schildchen darunter.
+     Sonst bleibt es wie oben beschrieben in einer Zeile, der Titel kuerzt
+     ab und waechst nie ueber seine eigene Breite. 06.10.2026, siehe .wrap. */
   .node .tipp{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  .node .mini{height:5px; background:var(--primary-soft); border-radius:99px; margin-top:6px; overflow:hidden; width:120px}
+  .node .mini{height:5px; background:var(--primary-soft); border-radius:99px; margin-top:6px; overflow:hidden; width:120px; max-width:100%}
   .node .mini i{display:block; height:100%; background:var(--accent); width:0}
-  .node .state{font-size:12px; color:var(--muted); white-space:nowrap; font-weight:800}
+  /* Bei 200 % nahm "A faire maintenant" der Zeile allen Platz, vom Titel
+     blieben 3 Punkte. Hoechstens die halbe Zeile, darueber bricht es um -
+     bei normaler Schrift ist jeder Zustand kuerzer. 06.10.2026, siehe .wrap. */
+  .node .state{font-size:12px; color:var(--muted); font-weight:800; max-width:50%}
   .node.current .state{color:var(--accent-text)}
   .node.done .state{color:var(--good-text)}
 
@@ -689,6 +733,12 @@
   .abovorschau .zmaj-anim, .abovorschau .zmaj{width:150px; height:150px}
   .abovorschau .wort{font-size:12px; font-weight:800; color:var(--muted); margin-top:2px}
   .abohinweis{font-size:12px; line-height:1.5; color:var(--muted); margin-top:8px}
+  /* Die Testwoche: Dauer und Preis danach stehen fett ueber dem Kaufknopf,
+     nicht im Kleingedruckten - wer bestellt, muss wissen, wann zum ersten
+     Mal abgebucht wird. Ohne Testwoche bleibt die Zeile leer und nimmt
+     keinen Platz. Gefunden bei der Pruefung am 06.10.2026. */
+  .abogratis{margin-top:10px; font-size:14px; font-weight:800; line-height:1.4; color:var(--ink)}
+  .abogratis:empty{display:none}
 
   /* ---- Einstufung und Wiederholen ----
      Die Einstufung benutzt die Karten der Vollversionswahl, Wiederholen
@@ -850,6 +900,13 @@
   .kopfleiste{display:contents}
   header .livesbar{grid-column:1; justify-self:start}
   header .muenzbar{grid-column:2; justify-self:center}
+  /* Passen Herzen, Muenzen und Knoepfe nicht mehr in eine Zeile (sehr
+     grosse Systemschrift), stehen die Muenzen darunter in der Mitte.
+     Vorher schoben sich die Pillen uebereinander. Die Klasse setzt
+     kopfEng(). 06.10.2026, siehe .wrap. */
+  header.eng{grid-template-columns:1fr 1fr}
+  header.eng .muenzbar{grid-column:1 / -1; grid-row:2}
+  header.eng .hbtns{grid-column:2}
   /* Alles in der Kopfzeile gleich hoch. Vorher: Herzen 42 Punkte, Muenzen 36,
      Knoepfe 37 - mittig ausgerichtet, aber sichtbar verschieden gross, und
      genau das machte die Zeile unruhig. Ajdin am 18.09.2026. */
@@ -939,6 +996,10 @@
   details{background:var(--surface); border:2px solid var(--line); border-radius:var(--radius); padding:0 16px; margin-bottom:10px}
   details summary{cursor:pointer; font-weight:800; font-size:14px; padding:12px 0; list-style:none; display:flex; justify-content:space-between; align-items:center}
   details summary::-webkit-details-marker{display:none}
+  /* "Nutzungsbedingungen" ist bei 200 % allein breiter als der Bildschirm.
+     Der Text steht ohne eigenes Element in der Zeile, deshalb anywhere:
+     es bricht nur, wenn das Wort sonst ueber den Rand ragte. 06.10.2026. */
+  details summary{overflow-wrap:anywhere}
   details summary::after{content:'+'; color:var(--primary); font-size:20px; font-weight:800}
   details[open] summary::after{content:'–'}
   details .inner{padding:0 0 14px}
@@ -1005,7 +1066,7 @@
   .listen.bigplay{width:96px; height:96px; border-radius:50%; justify-content:center; font-size:40px; margin:6px auto 12px; background:var(--primary-fill); color:var(--on-fill); border:0; box-shadow:0 5px 0 var(--primary-fill-dark)}
   .listen.bigplay:active{transform:translateY(3px); box-shadow:0 2px 0 var(--primary-dark)}
 
-  .row{display:flex; gap:10px; margin-top:20px}
+  .row{display:flex; gap:10px; margin-top:20px; flex-wrap:wrap}   /* grosse Schrift: untereinander, siehe .wrap */
   /* Nebenangebote – kleiner und leiser als der Hauptknopf darunter. */
   .row.schmal{margin-top:14px}
   .row.schmal .btn{font-size:13.5px; font-weight:700; padding:9px 10px; border-radius:11px}
@@ -1068,6 +1129,9 @@
 
   .options{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px}
   .options.one{grid-template-columns:1fr}
+  /* Untereinander darf ein Wort, das allein zu lang ist, auch brechen -
+     sonst schoebe es die eine Spalte ueber den Rand. 06.10.2026. */
+  .options.one .opt{overflow-wrap:anywhere}
   /* Kurze Antworten stehen nebeneinander - drei Woerter brauchen keine
      drei Zeilen. Passen sie nicht in eine Reihe, rutschen sie von selbst
      um; deshalb flex mit Umbruch statt fester Spalten. */
@@ -4275,6 +4339,12 @@ setInterval(uhrTakt, 10000);
 let uhrWarAn = false;
 document.addEventListener('visibilitychange', ()=>{
   if(document.hidden){
+    /* Eine vorgelesene Geschichte merkt sich die Stelle - wie beim Antippen
+       eines Wortes. stilleBitte() dreht currentTime auf null, und nach dem
+       Entsperren begann sie wieder ganz von vorn. laeuftVor steht nur beim
+       Vorlesen, auch in der Pause. Gefunden bei der Pruefung am 06.10.2026. */
+    if(laeuftVor && spieler.src && spieler.currentTime > 0)
+      geschichteStelle = {datei: spieler.src, sekunde: spieler.currentTime};
     uhrWarAn = uhrStart > 0; uhrAus(); stilleBitte(true);   // Aufgabe bleibt gueltig
     /* Den Werbewecker abraeumen. Die Anzeige ist damit nicht verloren:
        werbungSchuldig traegt sie in die naechste Lektion. */
@@ -4297,6 +4367,14 @@ document.addEventListener('visibilitychange', ()=>{
     tagPruefen();
     if(uhrWarAn){ uhrWarAn = false; uhrAn(); }
     topfNachziehen();
+    /* Gefunden bei der Pruefung am 06.10.2026: wer nach der Wartezeit
+       zurueckkam, sah das Herz noch bei 0 und den Lektionsknopf gesperrt,
+       bis zu 30 Sekunden lang - nachgezogen hat nur der Takt unten. Die
+       zwei Wege nicht, solange eine Anzeige laeuft: lebenWege() baut ihre
+       Knoepfe neu, und werbungFuerLeben() raeumt danach nur auf, wenn sein
+       Knopf noch im Dokument haengt. */
+    renderLives();
+    if(!anzeigeLaeuft) lebenWege();
   }
 });
 
@@ -4386,7 +4464,26 @@ function renderLives(){
                 + (zeigen ? '<span class="info">'+esc(lebenText(n))+'</span>' : '');
   $('livesKnopf').addEventListener('click', ()=>{ livesInfoAn = !livesInfoAn; renderLives(); });
   const b=$('btnLesson'); if(b){ b.disabled = n===0; b.textContent = n===0 ? t('leben.warten') : t('level.lektion'); }
+  kopfEng();
 }
+/* Grosse Systemschrift (Android): passen Herzen, Muenzen und Knoepfe
+   nicht mehr nebeneinander, bekommen die Muenzen eine eigene Zeile
+   (header.eng). Gemessen wird, wie breit der Kopf in EINER Zeile waere -
+   bei normaler Schrift passt das immer, dann bleibt alles wie bisher.
+   Ein versteckter Kopf (Lektion) misst nichts; beim Verlassen ruft
+   nurHerz(false) noch einmal hierher. Gefunden bei der Pruefung am
+   06.10.2026: bei 200 % lag das Herz halb ueber den Muenzen. */
+function kopfEng(){
+  const h = document.querySelector('header');
+  if(!h || !h.offsetParent) return;
+  h.classList.remove('eng');
+  h.style.gridTemplateColumns = 'auto auto auto'; h.style.width = 'max-content';
+  const noetig = h.offsetWidth;
+  h.style.gridTemplateColumns = ''; h.style.width = '';
+  if(noetig > h.offsetWidth) h.classList.add('eng');
+}
+window.addEventListener('resize', kopfEng);
+if(document.fonts) document.fonts.ready.then(kopfEng);
 /* Muenzanzeige, Einkaufswagen und Zahnrad stehen auch waehrend einer
    Lektion oben, weil Lektion und Test Unteransichten von levelView sind und
    nicht ueber showView() laufen. Wer einen davon antippt, verliert sonst die
@@ -5231,6 +5328,31 @@ async function vollWahlZeigen(){
                    .format(jahr.micros / 12 / 1000000);
     }catch(e){ proMonat = ''; }
   }
+  /* Die Testwoche. Bis Build 94 kaufte ZmajAbo immer den nackten Basisplan,
+     ein in der Play Console angelegtes "7 Tage kostenlos" kam nie an. Jetzt
+     nimmt es das Gratisangebot, wenn Google dem Nutzer eins anbietet, und
+     meldet dessen Dauer als "gratis" (ISO 8601: P7D, P1W, P8W4D ...).
+     Dauer und Preis danach stehen VOR dem Kaufknopf, sonst weiss niemand,
+     wann zum ersten Mal abgebucht wird. Google erlaubt drei Tage bis drei
+     Jahre, der Text braucht also nur die Mehrzahl; Monate und Jahre werden
+     ab heute in Tage umgerechnet. Gefunden bei der Pruefung am 06.10.2026. */
+  const gratisTage = iso => {
+    const m = /^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)W)?(?:(\d+)D)?$/.exec(iso || '');
+    if(!m) return 0;
+    const h = new Date(), heute = Date.UTC(h.getFullYear(), h.getMonth(), h.getDate());
+    const zielJahr = h.getFullYear() + (+m[1] || 0), zielMonat = h.getMonth() + (+m[2] || 0);
+    // 31. Januar plus ein Monat ist der 28. Februar, nicht der 3. Maerz
+    const letzter = new Date(Date.UTC(zielJahr, zielMonat + 1, 0)).getUTCDate();
+    const ende = Date.UTC(zielJahr, zielMonat,
+                          Math.min(h.getDate(), letzter) + 7 * (+m[3] || 0) + (+m[4] || 0));
+    return Math.round((ende - heute) / 86400000);
+  };
+  const gratisText = p => {
+    const n = gratisTage(p.gratis);
+    if(!n || !p.preis) return '';
+    return p.plan === 'jahr' ? t('voll.gratis_jahr', {n: n, preis: p.preis})
+                             : t('voll.gratis_monat', {n: n, preis: p.preis});
+  };
   /* Die Karte WAEHLT nur aus. Gekauft wird mit dem Knopf darunter, und der
      heißt "Zahlungspflichtig abonnieren".
 
@@ -5263,6 +5385,7 @@ async function vollWahlZeigen(){
               sparen > 0 ? tp('voll.sparen', sparen) : '',
               proMonat ? t('voll.pro_monat', {preis: proMonat}) : '') +
       '</div>' +
+      '<div class="abogratis" id="aboGratis"></div>' +
       '<div class="abohinweis">'+esc(t('voll.hinweis'))+'</div>' +
       '<button class="btn know" id="aboKauf"></button>' +
       '<button class="btn ghost" id="aboZu"></button>' +
@@ -5288,6 +5411,8 @@ async function vollWahlZeigen(){
     if(!b || b.disabled) return;
     gewaehlt = b;
     karten.forEach(x => x.setAttribute('aria-checked', x === b));
+    // Die Testwoche gilt je Plan - es zaehlt die gewaehlte Karte.
+    kasten.querySelector('#aboGratis').textContent = gratisText(b.dataset.plan === 'jahr' ? jahr : monat);
   };
   waehle(karten.find(b => b.dataset.plan === 'jahr' && !b.disabled) || karten.find(b => !b.disabled));
   karten.forEach(b => b.addEventListener('click', ()=> waehle(b)));
@@ -5667,7 +5792,41 @@ async function abmelden(){
    die Suche unten findet sie sonst nicht wieder. "skup / skupa" war
    mehrdeutig (auch: Treffen, zusammen); mit "skupo" ist klar, dass es
    teuer heisst. Ajdin am 01.10.2026. */
-const UMBENANNT = {'teuer (m/w):skup / skupa': 'teuer (m/w/s):skup / skupa / skupo',
+const UMBENANNT = {
+  /* Deutsche Bedeutungen mit Umlaut statt ae/oe/ue/ss, Pruefung am
+     06.10.2026. Die Kennung haengt an der deutschen Seite; ohne diese
+     Zeilen faende die Suche unten das Wort nur ueber das bosnische Wort
+     und haengte den Fortschritt an jeden gleichlautenden Eintrag. */
+  'hallo (neutral, ueberall):Zdravo': 'hallo (neutral, überall):Zdravo',
+  'kueken / haehnchen:pile': 'küken / hähnchen:pile',
+  'kraehe:vrana': 'krähe:vrana',
+  'baer:medvjed': 'bär:medvjed',
+  'eichhoernchen:vjeverica': 'eichhörnchen:vjeverica',
+  'muecke:komarac': 'mücke:komarac',
+  'fluegel:krilo': 'flügel:krilo',
+  'beissen:ugristi': 'beißen:ugristi',
+  'beisst er?:Hoće li ujesti?': 'beißt er?:Hoće li ujesti?',
+  'fuettern:hraniti': 'füttern:hraniti',
+  'gefaehrlich:opasno': 'gefährlich:opasno',
+  'hoehle:pećina': 'höhle:pećina',
+  'huegel:brdo': 'hügel:brdo',
+  'baeckerei:pekara': 'bäckerei:pekara',
+  'hurmasica (sirupgebaeck):hurmašica': 'hurmašica (sirupgebäck):hurmašica',
+  'rahat lokum (geleewuerfel zum kaffee):rahat lokum': 'rahat lokum (geleewürfel zum kaffee):rahat lokum',
+  'tufahija (gefuellter apfel in sirup):tufahija': 'tufahija (gefüllter apfel in sirup):tufahija',
+  'burek (blaetterteigrolle mit fleisch):burek': 'burek (blätterteigrolle mit fleisch):burek',
+  'dolma (gefuelltes gemuese):dolma': 'dolma (gefülltes gemüse):dolma',
+  'geraeuchertes fleisch:suho meso': 'geräuchertes fleisch:suho meso',
+  'sirnica (pita mit kaese):sirnica': 'sirnica (pita mit käse):sirnica',
+  'zeljanica (pita mit spinat und kaese):zeljanica': 'zeljanica (pita mit spinat und käse):zeljanica',
+  'saenger / saengerin:pjevač / pjevačica': 'sänger / sängerin:pjevač / pjevačica',
+  'sevdah (wehmuetige sehnsucht):sevdah': 'sevdah (wehmütige sehnsucht):sevdah',
+  'teferic (ausflugsfest im gruenen):teferič': 'teferič (ausflugsfest im grünen):teferič',
+  'antwort auf den bajram-gruss:Allah razi olsun': 'antwort auf den bajram-gruß:Allah razi olsun',
+  'masallah (wie schoen, gott schuetze es):mašallah': 'mašallah (wie schön, gott schütze es):mašallah',
+  'danke fuer die einladung:Hvala na pozivu': 'danke für die einladung:Hvala na pozivu',
+  'insallah (so gott will):inšallah': 'inšallah (so gott will):inšallah',
+  'somun (fladenbrot zu cevapi):somun': 'somun (fladenbrot zu ćevapi):somun','teuer (m/w):skup / skupa': 'teuer (m/w/s):skup / skupa / skupo',
   /* Ajdin am 01.10.2026: "auf einer bosnischen Kaffeepackung steht kafa nicht
      kahva - mach beides rein". */
   'kaffee:kahva': 'kaffee:kahva / kafa',
@@ -6260,6 +6419,41 @@ function openStory(i){
 $('sPrev').addEventListener('click',()=>{ if(rIdx>0) openStory(rIdx-1); });
 $('sNext2').addEventListener('click',()=>{ if(rIdx+1<STORIES.length && storyUnlocked(rIdx+1)) openStory(rIdx+1); });
 
+/* ---- Bildschirm an beim Vorlesen ----
+   Eine Geschichte ist eine einzige Aufnahme, 23 bis 36 Sekunden, bei 0,5x
+   doppelt so lang. Wer zuhoert, tippt nichts an - nach rund 30 Sekunden
+   ging der Bildschirm aus, die App lag im Hintergrund, der
+   visibilitychange-Horcher stellte den Ton ab, und die Geschichte begann
+   danach von vorn. Gefunden bei der Pruefung am 06.10.2026.
+   Deshalb bleibt der Bildschirm an, solange vorgelesen wird - in der Pause
+   nicht, und sonst nirgends in der App. Fehlt die Schnittstelle (WebView
+   vor Fassung 84) oder lehnt das Geraet ab (Stromsparmodus), bleibt alles
+   wie vorher, ohne Meldung. */
+let wachSperre = null, wachGewollt = false, wachAnfrage = false;
+function wachHalten(an){
+  wachGewollt = !!an;
+  if(!an){
+    const w = wachSperre; wachSperre = null;
+    if(w) try{ w.release().catch(()=>{}); }catch(e){}
+    return;
+  }
+  if(wachSperre || wachAnfrage || document.hidden) return;
+  try{
+    if(!navigator.wakeLock || !navigator.wakeLock.request) return;
+    wachAnfrage = true;
+    navigator.wakeLock.request('screen').then(w=>{
+      wachAnfrage = false;
+      // Waehrend der Anfrage abgestellt (Stopp, Ende, Zurueck): gleich wieder hergeben
+      if(!wachGewollt){ w.release().catch(()=>{}); return; }
+      wachSperre = w;
+      w.addEventListener('release', ()=>{ if(wachSperre === w) wachSperre = null; });
+    }).catch(()=>{ wachAnfrage = false; });
+  }catch(e){ wachAnfrage = false; }
+}
+/* Beim Verdecken gibt das System die Sperre von selbst frei. Heute stellt
+   der Horcher oben dabei auch den Ton ab, dann ist wachGewollt schon aus.
+   Laeuft das Vorlesen einmal weiter, wird sie bei der Rueckkehr neu geholt. */
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && wachGewollt) wachHalten(true); });
 function lookup(word, story){ const k=word.toLowerCase(); return (story.vokabeln||{})[k] || DICT[k] || null; }
 function showStory(){
   const s = STORIES[rIdx]; if(!s) return;
@@ -6318,14 +6512,15 @@ function showStory(){
     knopfVor.textContent = t('gesch.vorlesen');
     knopfVor.classList.remove('laeuft');
     knopfStop.hidden = true;
+    wachHalten(false);   // Stopp, Ende, Wort angetippt, Ansicht verlassen, verdeckt
   };
   knopfVor.addEventListener('click',()=>{
     if(pausiert){                      // angehalten -> an derselben Stelle weiter
-      if(tonWeiter()){ knopfVor.textContent = t('gesch.pause'); knopfVor.classList.add('laeuft'); }
+      if(tonWeiter()){ knopfVor.textContent = t('gesch.pause'); knopfVor.classList.add('laeuft'); wachHalten(true); }
       return;
     }
     if(laeuftVor){                     // laeuft -> anhalten, Stelle merken
-      if(tonPause()){ knopfVor.textContent = t('gesch.weiterlesen'); knopfVor.classList.remove('laeuft'); }
+      if(tonPause()){ knopfVor.textContent = t('gesch.weiterlesen'); knopfVor.classList.remove('laeuft'); wachHalten(false); }
       else stilleBitte();              // nichts zum Anhalten da: sauber abstellen
       return;
     }
@@ -6351,6 +6546,9 @@ function showStory(){
       if(meinLauf === tonMarke && spieler.src === weiterAb.datei)
         try{ spieler.currentTime = weiterAb.sekunde; }catch(e){}
     }, {once:true});
+    /* Vor speak(): endet der Ton sofort (keine Aufnahme, keine Stimme),
+       gibt wiederVorlesen() die Sperre gleich wieder frei. */
+    wachHalten(true);
     speak(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); });
   });
   /* Der kleine Knopf bricht wirklich ab - dann ist auch die gemerkte
@@ -6424,7 +6622,7 @@ function openLevel(i){
    showLevelHome() und showView() schalten ihn zurueck - alle Wege hinaus
    (Ergebnis, Abbrechen, Zurueck-Taste, topfSeite) gehen durch eine der
    beiden. */
-function nurHerz(an){ document.body.classList.toggle('nurHerz', !!an); if(an) renderLives(); }
+function nurHerz(an){ document.body.classList.toggle('nurHerz', !!an); if(an) renderLives(); else kopfEng(); }
 function showLevelHome(){
   stilleBitte();
   nurHerz(false);
@@ -6581,6 +6779,15 @@ function renderChoice(box, opts, correctKey, keyOf, onDone){
     });
     box.appendChild(b);
   });
+  /* Ragen zwei Knoepfe nebeneinander ueber den Rand der Karte, stehen sie
+     untereinander wie lange Antworten - sonst liess sich die ganze Seite
+     seitlich verschieben. Bei grosser Systemschrift ab 130 %, aber auch
+     bei normaler Schrift in spaeten Levels ("Bedienungsanleitung" neben
+     "Waeschetrockner"). Ein paar Punkte in den Innenabstand der Karte
+     hinein bleiben erlaubt, so sah es schon immer aus.
+     Gefunden bei der Pruefung am 06.10.2026. */
+  const karte = (box.closest('.card') || box.parentElement).getBoundingClientRect();
+  if(box.getBoundingClientRect().left + box.scrollWidth > karte.right) box.classList.add('one');
 }
 
 /* Die Frage einer Grammatikaufgabe: der bosnische Satz oben, die
@@ -6870,6 +7077,66 @@ function renderTask(task, body, done, opts={}){
 
 /* =================== LEKTION =================== */
 let Lx = null;
+/* ---- Lueckensaetze nur mit Woertern, die schon dran waren ----
+   Bis zum 06.10.2026 nahm buildLesson() zwei beliebige Saetze des Levels.
+   In der ersten Lektion eines Levels fragte die Luecke dann meist nach
+   einem Wort, das noch nie zu sehen war - in Level 1 bei drei von vier
+   Luecken, ueber alle Level bei fast zwei von dreien -, und jeder Fehler
+   kostet ein Leben. Gefunden bei der Pruefung am 06.10.2026.
+   Jetzt kommt ein Satz nur dran, wenn seine Antwort in einer Vokabel
+   steht, die schon gewusst ist oder in dieser Lektion neu vorgestellt
+   wird: als ganze Vokabel ("kiša") oder als Teil einer Wendung, die genau
+   so im fertigen Satz steht ("Dobar ___" mit "Dobar dan"). Verglichen wird
+   wie in matches(): Gross/klein, Satzzeichen und Haekchen zaehlen nicht
+   ("fast richtig" kostet dort kein Leben), jede Variante hinter " / " gilt,
+   und Zahlen gelten ueber ihren Wert - wer "dva" kennt, darf bei "Dvije"
+   auch "dva" schreiben. Gebeugte Formen wie "kruške" zu "kruška" zaehlen
+   nicht als gesehen. Reicht es im Level nicht fuer LEKTION_LUECKEN Saetze,
+   kommen welche aus frueheren, bestandenen Leveln dazu, sonst eben
+   weniger Luecken. Der Level-Test fragt keine Luecken, die Einstufung
+   kostet keine Leben, und der Fehlertopf holt nur Saetze zurueck, die
+   schon dran waren - dort bleibt alles, wie es ist. */
+const lueckeTeile = s => ' ' + strip(String(s || '')).split(/[^a-z0-9]+/).filter(Boolean).join(' ') + ' ';
+/* zahlWert() ueber alle Vokabeln dauert so lange, dass man es beim Start
+   jeder Lektion merken wuerde. Also nur, wenn eine Antwort eine Zahl ist,
+   und je Form nur einmal. */
+const _zahlJeForm = new Map();
+const zahlDerForm = f => { if(!_zahlJeForm.has(f)) _zahlJeForm.set(f, zahlWert(f)); return _zahlJeForm.get(f); };
+function gesehenFormen(ids){
+  const formen = [];
+  CATEGORIES.forEach(c => c.words.forEach(w => {
+    if(!ids.has(w.id)) return;
+    [w.bs, ...(w.auch || [])].forEach(x => String(x).split(' / ').forEach(f => {
+      const teile = lueckeTeile(f);
+      if(teile.trim()) formen.push(teile);
+    }));
+  }));
+  return {formen, zahlen: null};
+}
+function lueckeGesehen(s, g){
+  return String(s.answer).split(' / ').some(a => {
+    const z = zahlWert(a);
+    if(z !== null){
+      if(!g.zahlen) g.zahlen = new Set(g.formen.map(zahlDerForm));
+      if(g.zahlen.has(z)) return true;
+    }
+    const kern = lueckeTeile(a), satz = lueckeTeile(s.text.replace('___', a));
+    return !!kern.trim() && g.formen.some(f => f.includes(kern) && satz.includes(f));
+  });
+}
+function lueckenFuerLektion(ids){
+  const g = gesehenFormen(ids), schon = new Set(), out = [];
+  const nimm = liste => shuffle(liste.filter(s => lueckeGesehen(s, g))).forEach(s => {
+    const k = s.text + '|' + s.answer;   // derselbe Satz steht in manchen Leveln doppelt
+    if(out.length < LEKTION_LUECKEN && !schon.has(k)){ schon.add(k); out.push(s); }
+  });
+  nimm(curSentences());
+  if(out.length < LEKTION_LUECKEN){
+    const frueher = new Set(CATEGORIES.slice(0, catIdx).filter(x => passed.has(x.id)).map(x => x.id));
+    nimm(SENTENCES.filter(s => frueher.has(s.kat)));
+  }
+  return out;
+}
 function buildLesson(){
   const c = cur();
   const unknown = shuffle(c.words.filter(w=>!known.has(w.id)));
@@ -6883,7 +7150,7 @@ function buildLesson(){
   const pick = w => { for(let k=0;k<types.length;k++){ const t=types[(ti+k)%types.length]; if(t==='type' && !typable(w)) continue; ti=(ti+k+1)%types.length; return t; } return 'mc'; };
   const tasks = [];
   [...newW, ...revW].forEach(w=> tasks.push({typ:pick(w), w, neu:!known.has(w.id)}));
-  shuffle(curSentences()).slice(0, LEKTION_LUECKEN).forEach(s=> tasks.push({typ:'gap', s}));
+  lueckenFuerLektion(new Set([...known, ...newW.map(w=>w.id)])).forEach(s=> tasks.push({typ:'gap', s}));
   shuffle(((GRAMMAR[c.id]||{}).uebungen||[]).slice()).slice(0, LEKTION_GRAMMATIK).forEach(g=> tasks.push({typ:'gram', g}));
   shuffle(tasks);
   const intros = newW.map(w=>({typ:'intro', w}));
@@ -7062,6 +7329,17 @@ function werbungFuerLeben(e){
      eigenes Innenleben, das textContent unten zerstoeren wuerde. */
   const quelle = e && e.currentTarget;
   const knopf = (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd')) ? quelle : $('lAd');
+  /* Gefunden bei der Pruefung am 06.10.2026: der Knopf bleibt stehen,
+     waehrend die Leben nachwachsen - der Schirm ohne Leben wartet die zwei
+     Stunden ja gerade ab. Bei vollen Leben brachte das Video kein Herz,
+     verbrauchte aber eines der freiwilligen Videos des Tages. Dann gar
+     nicht erst starten, nur den Schirm auf den neuen Stand bringen. */
+  if(livesNow() >= LEBEN_MAX){
+    renderLives(); lebenWege(); topfNachziehen();
+    if(sichtbar('shopView')) renderLaden();
+    else if(knopf && knopf.id === 'lAd' && sichtbar('levelView') && sichtbar('lesson')) lektionVerlassen();
+    return;
+  }
   /* Punkt 17: bis zum ersten Bild der Anzeige vergehen Sekunden, in denen
      der AdMob-Weg gar keine Oberflaeche baut. Ohne ein Wort sieht die App
      unbeteiligt aus - und genau das loest den zweiten Tipp aus. */
@@ -7117,6 +7395,13 @@ function lessonOutOfLives(){
   // auch beim Scheitern wächst, sagt nichts mehr aus.
   saveProgress(); sound('no');
   ohneLeben++;
+  /* Gefunden bei der Pruefung am 06.10.2026: gefragt wurde nur in
+     lessonEnd(). Wer schon in der ersten Lektion alle Leben verliert, kam
+     dort nie an - und gerade ihm gilt die Nachricht, wenn die Leben wieder
+     voll sind. Dieselbe Zeile wie dort; gezeigt wird ganz unten. Zweimal
+     gefragt wird nicht: benDran faellt beim Zeigen, gefragt bei der
+     Antwort. */
+  if(benPlugin() && !benStand().gefragt) benDran = true;
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
@@ -7145,6 +7430,12 @@ function lessonOutOfLives(){
   vollZeileHorchen('lVoll');
   if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ kaufe('herz'); lektionVerlassen(); });
   renderLives();
+  /* Die Karte gleich hier und nicht erst auf der Startseite: auf diesem
+     Schirm kommt keine Anzeige nach dem Ergebnis, und wer ohne Leben die
+     App zumacht, saehe sie sonst nie. Nur fuer die Benachrichtigungen -
+     die Bitte um eine Bewertung passt nicht zu einer verlorenen Lektion
+     und wartet weiter auf die Startseite. */
+  if(benDran) kartenNachreichen();
 }
 function lessonEnd(){
   if(Lx && Lx.topf){ topfEnde(); return; }
@@ -8237,7 +8528,10 @@ function benSchalterZeigen(){
    einer Anzeige oder einer Wegmarke. Was jetzt nicht passt, bleibt dran. */
 function kartenNachreichen(){
   if(!benDran && !bewertungDran) return;
-  const frei = ()=> !frageSchliessen && !wegmarkeLaeuft && !Ex_laeuft() &&
+  /* anzeigeLaeuft seit dem 06.10.2026: die Karte kommt jetzt auch auf dem
+     Schirm ohne Leben, und dort steht der Knopf fuer das Video. Eine
+     AdMob-Anzeige hat kein Element im Dokument, das unten auffiele. */
+  const frei = ()=> !frageSchliessen && !wegmarkeLaeuft && !Ex_laeuft() && !anzeigeLaeuft &&
                     !document.querySelector('.nachfrage, .einwilligung, .werbung');
   if(!frei()) return;
   setTimeout(()=>{

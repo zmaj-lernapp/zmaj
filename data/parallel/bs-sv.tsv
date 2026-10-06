@@ -31,7 +31,7 @@ U redu	Okej	word	in ordnung / okay:U redu
 Možda	Kanske	word	vielleicht:Možda
 Živjeli!	Skål!	word	prost!:Živjeli!
 Prijatno	Smaklig måltid	word	guten appetit:Prijatno
-Zdravo	Hej (neutralt, överallt)	word	hallo (neutral, ueberall):Zdravo
+Zdravo	Hej (neutralt, överallt)	word	hallo (neutral, überall):Zdravo
 nula	noll	word	null:nula
 jedan	ett	word	eins:jedan
 dva	två	word	zwei:dva
@@ -464,7 +464,7 @@ horoz	tupp	word	hahn:horoz
 avlija	gård / innergård	word	hof / innenhof:avlija
 kokoš	höna	word	huhn:kokoš
 tele	kalv	word	kalb:tele
-pile	kycklingunge / kyckling	word	kueken / haehnchen:pile
+pile	kycklingunge / kyckling	word	küken / hähnchen:pile
 krava	ko	word	kuh:krava
 jagnje	lamm	word	lamm:jagnje
 konj	häst	word	pferd:konj
@@ -477,15 +477,15 @@ bik	tjur	word	stier:bik
 koza	get	word	ziege:koza
 orao	örn	word	adler:orao
 sova	uggla	word	eule:sova
-vrana	kråka	word	kraehe:vrana
+vrana	kråka	word	krähe:vrana
 gnijezdo	bo (fågelbo)	word	nest:gnijezdo
 lastavica	svala	word	schwalbe:lastavica
 vrabac	sparv	word	spatz:vrabac
 roda	stork	word	storch:roda
 golub	duva	word	taube:golub
-medvjed	björn	word	baer:medvjed
+medvjed	björn	word	bär:medvjed
 zmaj	drake	word	drache:zmaj
-vjeverica	ekorre	word	eichhoernchen:vjeverica
+vjeverica	ekorre	word	eichhörnchen:vjeverica
 žaba	groda	word	frosch:žaba
 lisica	räv	word	fuchs:lisica
 zec	hare	word	hase:zec
@@ -503,7 +503,7 @@ mrav	myra	word	ameise:mrav
 muha	fluga	word	fliege:muha
 buha	loppa	word	floh:buha
 pastrmka	öring	word	forelle:pastrmka
-komarac	mygga	word	muecke:komarac
+komarac	mygga	word	mücke:komarac
 leptir	fjäril	word	schmetterling:leptir
 puž	snigel	word	schnecke:puž
 pauk	spindel	word	spinne:pauk
@@ -513,22 +513,22 @@ krpelj	fästing	word	zecke:krpelj
 buvljak	loppmarknad	word	flohmarkt:buvljak
 pero	fjäder (fågel)	word	feder:pero
 krzno	päls	word	fell:krzno
-krilo	vinge	word	fluegel:krilo
+krilo	vinge	word	flügel:krilo
 rog	horn	word	horn:rog
 povodac	koppel	word	leine:povodac
 rep	svans	word	schwanz:rep
 veterinar	veterinär	word	tierarzt:veterinar
-ugristi	bita	word	beissen:ugristi
-Hoće li ujesti?	Bits den?	word	beisst er?:Hoće li ujesti?
+ugristi	bita	word	beißen:ugristi
+Hoće li ujesti?	Bits den?	word	beißt er?:Hoće li ujesti?
 lajati	skälla	word	bellen:lajati
-hraniti	mata	word	fuettern:hraniti
+hraniti	mata	word	füttern:hraniti
 Bojim se pasa	Jag är rädd för hundar	word	ich habe angst vor hunden:Bojim se pasa
 šetati	promenera	word	spazieren gehen:šetati
 šetnja	promenad	word	spaziergang:šetnja
 ubosti	sticka (insekt)	word	stechen (insekt):ubosti
 Čuvaj se psa!	Varning för hunden!	word	vorsicht vor dem hund!:Čuvaj se psa!
 Pas me je ujeo	Hunden har bitit mig	word	der hund hat mich gebissen:Pas me je ujeo
-opasno	farligt	word	gefaehrlich:opasno
+opasno	farligt	word	gefährlich:opasno
 opasnost	fara	word	gefahr:opasnost
 mina	mina (landmina)	word	mine (landmine):mina
 zabranjeno	förbjudet	word	verboten:zabranjeno
@@ -542,8 +542,8 @@ stijena	klippa	word	fels:stijena
 vatra	eld	word	feuer:vatra
 vrh	topp (berg)	word	gipfel:vrh
 trava	gräs	word	gras:trava
-pećina	grotta	word	hoehle:pećina
-brdo	kulle	word	huegel:brdo
+pećina	grotta	word	höhle:pećina
+brdo	kulle	word	hügel:brdo
 ostrvo	ö	word	insel:ostrvo
 zrak	luft	word	luft:zrak
 priroda	natur	word	natur:priroda
@@ -1402,7 +1402,7 @@ Je li ovo svježe?	Är det färskt?	word	ist das frisch?:Je li ovo svježe?
 Je li ovo domaće?	Är det hemlagat?	word	ist das hausgemacht?:Je li ovo domaće?
 Mogu li probati?	Kan jag smaka?	word	kann ich probieren?:Mogu li probati?
 Pošto je …?	Vad kostar …? (marknad)	word	was kostet …? (markt):Pošto je …?
-pekara	bageri	word	baeckerei:pekara
+pekara	bageri	word	bäckerei:pekara
 jelo	maträtt / rätt	word	gericht / speise:jelo
 kafana	kafana (traditionell krog)	word	kafana (traditionelle wirtschaft):kafana
 ukusno	gott	word	lecker:ukusno
@@ -1411,9 +1411,9 @@ restoran	restaurang	word	restaurant:restoran
 jelovnik	meny	word	speisekarte:jelovnik
 Idemo na kahvu	Vi går och tar ett kaffe	word	gehen wir einen kaffee trinken:Idemo na kahvu
 halva	halva (sötsak)	word	halva:halva
-hurmašica	hurmašica (sirapsbakelse)	word	hurmasica (sirupgebaeck):hurmašica
-rahat lokum	rahat lokum (turkisk konfekt till kaffet)	word	rahat lokum (geleewuerfel zum kaffee):rahat lokum
-tufahija	tufahija (fyllt äpple i sirap)	word	tufahija (gefuellter apfel in sirup):tufahija
+hurmašica	hurmašica (sirapsbakelse)	word	hurmašica (sirupgebäck):hurmašica
+rahat lokum	rahat lokum (turkisk konfekt till kaffet)	word	rahat lokum (geleewürfel zum kaffee):rahat lokum
+tufahija	tufahija (fyllt äpple i sirap)	word	tufahija (gefüllter apfel in sirup):tufahija
 limenka	burk (dryck)	word	dose (getränk):limenka
 lista za kupovinu	inköpslista	word	einkaufsliste:lista za kupovinu
 kolica	kundvagn	word	einkaufswagen:kolica
@@ -1429,18 +1429,18 @@ komad	stycke	word	stück:komad
 ajvar	ajvar (paprikapasta)	word	ajvar (paprikapaste):ajvar
 grah	böngryta	word	bohneneintopf:grah
 bosanski lonac	bosnisk gryta	word	bosnischer schmortopf:bosanski lonac
-burek	burek (filodegsrulle med köttfärs)	word	burek (blaetterteigrolle mit fleisch):burek
-dolma	dolma (fyllda grönsaker)	word	dolma (gefuelltes gemuese):dolma
-suho meso	rökt kött	word	geraeuchertes fleisch:suho meso
+burek	burek (filodegsrulle med köttfärs)	word	burek (blätterteigrolle mit fleisch):burek
+dolma	dolma (fyllda grönsaker)	word	dolma (gefülltes gemüse):dolma
+suho meso	rökt kött	word	geräuchertes fleisch:suho meso
 roštilj	grill / grillat	word	grill / gegrilltes:roštilj
-japrak	japrak (fyllda vinblad)	word	japrak (gefuellte weinblaetter):japrak
+uštipci	uštipci (friterade degbollar)	word	uštipci (frittierte teigbällchen):uštipci
 kajmak	kajmak (bredbar grädde)	word	kajmak (rahmaufstrich):kajmak
 krompiruša	krompiruša (pita med potatis)	word	krompiruša (pita mit kartoffeln):krompiruša
 pljeskavica	pljeskavica (köttfärsbiff)	word	pljeskavica (hacksteak):pljeskavica
 sarma	sarma (kåldolmar)	word	sarma (krautwickel):sarma
-sirnica	sirnica (pita med ost)	word	sirnica (pita mit kaese):sirnica
-somun	somun (tunnbröd till ćevapi)	word	somun (fladenbrot zu cevapi):somun
-zeljanica	zeljanica (pita med spinat och ost)	word	zeljanica (pita mit spinat und kaese):zeljanica
+sirnica	sirnica (pita med ost)	word	sirnica (pita mit käse):sirnica
+somun	somun (tunnbröd till ćevapi)	word	somun (fladenbrot zu ćevapi):somun
+zeljanica	zeljanica (pita med spinat och ost)	word	zeljanica (pita mit spinat und käse):zeljanica
 begova čorba	bey-soppa (kycklingsoppa)	word	bey-suppe:begova čorba
 ražnjići	små köttspett	word	fleischspießchen:ražnjići
 petica	fem ćevapi	word	fünf ćevapi:petica
@@ -1541,25 +1541,25 @@ ples	dansen	word	der tanz:ples
 svirati	spela ett instrument	word	ein instrument spielen:svirati
 folklor / folklorna grupa	folklore / folkdansgrupp	word	folklore / folkloregruppe:folklor / folklorna grupa
 kolo	kolo (bosnisk ringdans)	word	kolo (bosnischer reigentanz):kolo
-pjevač / pjevačica	sångare / sångerska	word	saenger / saengerin:pjevač / pjevačica
+pjevač / pjevačica	sångare / sångerska	word	sänger / sängerin:pjevač / pjevačica
 saz	saz (traditionellt stränginstrument)	word	saz (traditionelles saiteninstrument):saz
-sevdah	sevdah (vemodig längtan)	word	sevdah (wehmuetige sehnsucht):sevdah
+sevdah	sevdah (vemodig längtan)	word	sevdah (wehmütige sehnsucht):sevdah
 sevdalinka	sevdalinka (bosnisk kärlekssång)	word	sevdalinka (bosnisches liebeslied):sevdalinka
 sijelo	sijelo (kvällssamvaro)	word	sijelo (abendliches beisammensein):sijelo
-teferič	teferič (utflyktsfest i det gröna)	word	teferic (ausflugsfest im gruenen):teferič
+teferič	teferič (utflyktsfest i det gröna)	word	teferič (ausflugsfest im grünen):teferič
 narodna muzika	folkmusik	word	volksmusik:narodna muzika
-Allah razi olsun	svar på bajramhälsningen	word	antwort auf den bajram-gruss:Allah razi olsun
+Allah razi olsun	svar på bajramhälsningen	word	antwort auf den bajram-gruß:Allah razi olsun
 post	fastan	word	das fasten:post
 Sretan Bajram!	Glad Bajram!	word	frohes bajram!:Sretan Bajram!
 Bog	Gud	word	gott:Bog
 Hvala Bogu	Gud ske lov	word	gott sei dank:Hvala Bogu
 iftar	iftar (måltiden som bryter fastan)	word	iftar (fastenbrechen):iftar
-inšallah	inšallah (om Gud vill)	word	insallah (so gott will):inšallah
-mašallah	mašallah (vad vackert, må Gud bevara det)	word	masallah (wie schoen, gott schuetze es):mašallah
+inšallah	inšallah (om Gud vill)	word	inšallah (so gott will):inšallah
+mašallah	mašallah (vad vackert, må Gud bevara det)	word	mašallah (wie schön, gott schütze es):mašallah
 Ramazanski bajram / Kurban-bajram	ramadanfesten (id al-fitr) / offerhögtiden (id al-adha)	word	ramadanfest / opferfest:Ramazanski bajram / Kurban-bajram
 Ako Bog da	om Gud vill / förhoppningsvis	word	so gott will / hoffentlich:Ako Bog da
 bujrum	bujrum (varsågod, ta för dig / stig in)	word	bujrum (bitte, greif zu / komm herein):bujrum
-Hvala na pozivu	Tack för inbjudan	word	danke fuer die einladung:Hvala na pozivu
+Hvala na pozivu	Tack för inbjudan	word	danke für die einladung:Hvala na pozivu
 Hvala, sit sam / sita sam	Tack, jag är mätt (m/k)	word	danke, ich bin satt (m/w):Hvala, sit sam / sita sam
 Bilo je jako ukusno	Det var mycket gott	word	es war sehr lecker:Bilo je jako ukusno
 domaćin / domaćica	värd / värdinna	word	gastgeber / gastgeberin:domaćin / domaćica
@@ -1783,7 +1783,7 @@ Ovo je moja soba.	Det här är mitt rum.	sentence	s0053
 Moj komšija je dobar čovjek.	Min granne är en bra människa.	sentence	s0054
 Boli me glava.	Jag har ont i huvudet.	sentence	s0055
 Gdje je apoteka?	Var ligger apoteket?	sentence	s0056
-Brzo ozdravi!	Krya på dig!	sentence	s0057
+Brz oporavak	Krya på dig!	sentence	s0057
 Kolika je cijena?	Hur högt är priset?	sentence	s0058
 Tražim plavu haljinu.	Jag letar efter en blå klänning.	sentence	s0059
 Jakna košta pedeset maraka.	Jackan kostar femtio mark.	sentence	s0060

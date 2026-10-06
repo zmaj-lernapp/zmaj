@@ -12,10 +12,10 @@ import pytest
 # Befunde, die inhalt.pruefe_vokabeln() schon meldet und die noch auf eine
 # inhaltliche Entscheidung warten. Ein NEUER Befund lässt den Test scheitern,
 # ein behobener auch - dann bitte hier streichen.
-BEKANNT = {
-    "[resto1] baut_auf 'formell' kommt erst später in der Liste",
-    "[kennenlernen] baut_auf 'formell' kommt erst später in der Liste",
-}
+# Am 06.10.2026 gestrichen: resto1 und kennenlernen bauten auf das spätere
+# Level formell auf, ihr Level-Test fragte also Ungelerntes ab. Seitdem ist
+# die Liste leer und jedes baut_auf auf ein späteres Level ein Fehler.
+BEKANNT = set()
 
 
 def test_projekteigene_pruefung(grunddaten):

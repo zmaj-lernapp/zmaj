@@ -35,7 +35,7 @@ U redu	In Ordnung / Okay	zmaj zmaj::01_basics
 Možda	Vielleicht	zmaj zmaj::01_basics
 Živjeli!	Prost!	zmaj zmaj::01_basics
 Prijatno	Guten Appetit	zmaj zmaj::01_basics
-Zdravo	Hallo (neutral, ueberall)	zmaj zmaj::01_basics
+Zdravo	Hallo (neutral, überall)	zmaj zmaj::01_basics
 nula	null	zmaj zmaj::02_zahlen
 jedan	eins	zmaj zmaj::02_zahlen
 dva	zwei	zmaj zmaj::02_zahlen
@@ -468,7 +468,7 @@ horoz	Hahn	zmaj zmaj::20_tiere
 avlija	Hof / Innenhof	zmaj zmaj::20_tiere
 kokoš	Huhn	zmaj zmaj::20_tiere
 tele	Kalb	zmaj zmaj::20_tiere
-pile	Kueken / Haehnchen	zmaj zmaj::20_tiere
+pile	Küken / Hähnchen	zmaj zmaj::20_tiere
 krava	Kuh	zmaj zmaj::20_tiere
 jagnje	Lamm	zmaj zmaj::20_tiere
 konj	Pferd	zmaj zmaj::20_tiere
@@ -481,15 +481,15 @@ bik	Stier	zmaj zmaj::20_tiere
 koza	Ziege	zmaj zmaj::20_tiere
 orao	Adler	zmaj zmaj::20_tiere
 sova	Eule	zmaj zmaj::20_tiere
-vrana	Kraehe	zmaj zmaj::20_tiere
+vrana	Krähe	zmaj zmaj::20_tiere
 gnijezdo	Nest	zmaj zmaj::20_tiere
 lastavica	Schwalbe	zmaj zmaj::20_tiere
 vrabac	Spatz	zmaj zmaj::20_tiere
 roda	Storch	zmaj zmaj::20_tiere
 golub	Taube	zmaj zmaj::20_tiere
-medvjed	Baer	zmaj zmaj::21_tiere_wild
+medvjed	Bär	zmaj zmaj::21_tiere_wild
 zmaj	Drache	zmaj zmaj::21_tiere_wild
-vjeverica	Eichhoernchen	zmaj zmaj::21_tiere_wild
+vjeverica	Eichhörnchen	zmaj zmaj::21_tiere_wild
 žaba	Frosch	zmaj zmaj::21_tiere_wild
 lisica	Fuchs	zmaj zmaj::21_tiere_wild
 zec	Hase	zmaj zmaj::21_tiere_wild
@@ -507,7 +507,7 @@ mrav	Ameise	zmaj zmaj::21_tiere_wild
 muha	Fliege	zmaj zmaj::21_tiere_wild
 buha	Floh	zmaj zmaj::21_tiere_wild
 pastrmka	Forelle	zmaj zmaj::21_tiere_wild
-komarac	Muecke	zmaj zmaj::21_tiere_wild
+komarac	Mücke	zmaj zmaj::21_tiere_wild
 leptir	Schmetterling	zmaj zmaj::21_tiere_wild
 puž	Schnecke	zmaj zmaj::21_tiere_wild
 pauk	Spinne	zmaj zmaj::21_tiere_wild
@@ -517,22 +517,22 @@ krpelj	Zecke	zmaj zmaj::21_tiere_wild
 buvljak	Flohmarkt	zmaj zmaj::21_tiere_wild
 pero	Feder	zmaj zmaj::22_tiere_umgang
 krzno	Fell	zmaj zmaj::22_tiere_umgang
-krilo	Fluegel	zmaj zmaj::22_tiere_umgang
+krilo	Flügel	zmaj zmaj::22_tiere_umgang
 rog	Horn	zmaj zmaj::22_tiere_umgang
 povodac	Leine	zmaj zmaj::22_tiere_umgang
 rep	Schwanz	zmaj zmaj::22_tiere_umgang
 veterinar	Tierarzt	zmaj zmaj::22_tiere_umgang
-ugristi	beissen	zmaj zmaj::22_tiere_umgang
-Hoće li ujesti?	Beisst er?	zmaj zmaj::22_tiere_umgang
+ugristi	beißen	zmaj zmaj::22_tiere_umgang
+Hoće li ujesti?	Beißt er?	zmaj zmaj::22_tiere_umgang
 lajati	bellen	zmaj zmaj::22_tiere_umgang
-hraniti	fuettern	zmaj zmaj::22_tiere_umgang
+hraniti	füttern	zmaj zmaj::22_tiere_umgang
 Bojim se pasa	Ich habe Angst vor Hunden	zmaj zmaj::22_tiere_umgang
 šetati	spazieren gehen	zmaj zmaj::22_tiere_umgang
 šetnja	Spaziergang	zmaj zmaj::22_tiere_umgang
 ubosti	stechen (Insekt)	zmaj zmaj::22_tiere_umgang
 Čuvaj se psa!	Vorsicht vor dem Hund!	zmaj zmaj::22_tiere_umgang
 Pas me je ujeo	Der Hund hat mich gebissen	zmaj zmaj::22_tiere_umgang
-opasno	gefaehrlich	zmaj zmaj::22_tiere_umgang
+opasno	gefährlich	zmaj zmaj::22_tiere_umgang
 opasnost	Gefahr	zmaj zmaj::22_tiere_umgang
 mina	Mine (Landmine)	zmaj zmaj::22_tiere_umgang
 zabranjeno	verboten	zmaj zmaj::22_tiere_umgang
@@ -546,8 +546,8 @@ stijena	Fels	zmaj zmaj::23_natur
 vatra	Feuer	zmaj zmaj::23_natur
 vrh	Gipfel	zmaj zmaj::23_natur
 trava	Gras	zmaj zmaj::23_natur
-pećina	Hoehle	zmaj zmaj::23_natur
-brdo	Huegel	zmaj zmaj::23_natur
+pećina	Höhle	zmaj zmaj::23_natur
+brdo	Hügel	zmaj zmaj::23_natur
 ostrvo	Insel	zmaj zmaj::23_natur
 zrak	Luft	zmaj zmaj::23_natur
 priroda	Natur	zmaj zmaj::23_natur
@@ -1406,7 +1406,7 @@ Je li ovo svježe?	Ist das frisch?	zmaj zmaj::53_resto2
 Je li ovo domaće?	Ist das hausgemacht?	zmaj zmaj::53_resto2
 Mogu li probati?	Kann ich probieren?	zmaj zmaj::53_resto2
 Pošto je …?	Was kostet …? (Markt)	zmaj zmaj::53_resto2
-pekara	Baeckerei	zmaj zmaj::54_essen_gehen
+pekara	Bäckerei	zmaj zmaj::54_essen_gehen
 jelo	Gericht / Speise	zmaj zmaj::54_essen_gehen
 kafana	Kafana (traditionelle Wirtschaft)	zmaj zmaj::54_essen_gehen
 ukusno	lecker	zmaj zmaj::54_essen_gehen
@@ -1415,9 +1415,9 @@ restoran	Restaurant	zmaj zmaj::54_essen_gehen
 jelovnik	Speisekarte	zmaj zmaj::54_essen_gehen
 Idemo na kahvu	Gehen wir einen Kaffee trinken	zmaj zmaj::54_essen_gehen
 halva	Halva	zmaj zmaj::54_essen_gehen
-hurmašica	Hurmasica (Sirupgebaeck)	zmaj zmaj::54_essen_gehen
-rahat lokum	Rahat lokum (Geleewuerfel zum Kaffee)	zmaj zmaj::54_essen_gehen
-tufahija	Tufahija (gefuellter Apfel in Sirup)	zmaj zmaj::54_essen_gehen
+hurmašica	Hurmašica (Sirupgebäck)	zmaj zmaj::54_essen_gehen
+rahat lokum	Rahat lokum (Geleewürfel zum Kaffee)	zmaj zmaj::54_essen_gehen
+tufahija	Tufahija (gefüllter Apfel in Sirup)	zmaj zmaj::54_essen_gehen
 limenka	Dose (Getränk)	zmaj zmaj::54_essen_gehen
 lista za kupovinu	Einkaufsliste	zmaj zmaj::54_essen_gehen
 kolica	Einkaufswagen	zmaj zmaj::54_essen_gehen
@@ -1433,18 +1433,18 @@ komad	Stück	zmaj zmaj::54_essen_gehen
 ajvar	Ajvar (Paprikapaste)	zmaj zmaj::55_bosnisch_essen
 grah	Bohneneintopf	zmaj zmaj::55_bosnisch_essen
 bosanski lonac	Bosnischer Schmortopf	zmaj zmaj::55_bosnisch_essen
-burek	Burek (Blaetterteigrolle mit Fleisch)	zmaj zmaj::55_bosnisch_essen
-dolma	Dolma (gefuelltes Gemuese)	zmaj zmaj::55_bosnisch_essen
-suho meso	geraeuchertes Fleisch	zmaj zmaj::55_bosnisch_essen
+burek	Burek (Blätterteigrolle mit Fleisch)	zmaj zmaj::55_bosnisch_essen
+dolma	Dolma (gefülltes Gemüse)	zmaj zmaj::55_bosnisch_essen
+suho meso	geräuchertes Fleisch	zmaj zmaj::55_bosnisch_essen
 roštilj	Grill / Gegrilltes	zmaj zmaj::55_bosnisch_essen
-japrak	Japrak (gefuellte Weinblaetter)	zmaj zmaj::55_bosnisch_essen
+uštipci	Uštipci (frittierte Teigbällchen)	zmaj zmaj::55_bosnisch_essen
 kajmak	Kajmak (Rahmaufstrich)	zmaj zmaj::55_bosnisch_essen
 krompiruša	Krompiruša (Pita mit Kartoffeln)	zmaj zmaj::55_bosnisch_essen
 pljeskavica	Pljeskavica (Hacksteak)	zmaj zmaj::55_bosnisch_essen
 sarma	Sarma (Krautwickel)	zmaj zmaj::55_bosnisch_essen
-sirnica	Sirnica (Pita mit Kaese)	zmaj zmaj::55_bosnisch_essen
-somun	Somun (Fladenbrot zu Cevapi)	zmaj zmaj::55_bosnisch_essen
-zeljanica	Zeljanica (Pita mit Spinat und Kaese)	zmaj zmaj::55_bosnisch_essen
+sirnica	Sirnica (Pita mit Käse)	zmaj zmaj::55_bosnisch_essen
+somun	Somun (Fladenbrot zu Ćevapi)	zmaj zmaj::55_bosnisch_essen
+zeljanica	Zeljanica (Pita mit Spinat und Käse)	zmaj zmaj::55_bosnisch_essen
 begova čorba	Bey-Suppe	zmaj zmaj::55_bosnisch_essen
 ražnjići	Fleischspießchen	zmaj zmaj::55_bosnisch_essen
 petica	fünf Ćevapi	zmaj zmaj::55_bosnisch_essen
@@ -1545,25 +1545,25 @@ ples	der Tanz	zmaj zmaj::59_kulturlevel
 svirati	ein Instrument spielen	zmaj zmaj::59_kulturlevel
 folklor / folklorna grupa	Folklore / Folkloregruppe	zmaj zmaj::59_kulturlevel
 kolo	Kolo (bosnischer Reigentanz)	zmaj zmaj::59_kulturlevel
-pjevač / pjevačica	Saenger / Saengerin	zmaj zmaj::59_kulturlevel
+pjevač / pjevačica	Sänger / Sängerin	zmaj zmaj::59_kulturlevel
 saz	Saz (traditionelles Saiteninstrument)	zmaj zmaj::59_kulturlevel
-sevdah	Sevdah (wehmuetige Sehnsucht)	zmaj zmaj::59_kulturlevel
+sevdah	Sevdah (wehmütige Sehnsucht)	zmaj zmaj::59_kulturlevel
 sevdalinka	Sevdalinka (bosnisches Liebeslied)	zmaj zmaj::59_kulturlevel
 sijelo	Sijelo (abendliches Beisammensein)	zmaj zmaj::59_kulturlevel
-teferič	Teferic (Ausflugsfest im Gruenen)	zmaj zmaj::59_kulturlevel
+teferič	Teferič (Ausflugsfest im Grünen)	zmaj zmaj::59_kulturlevel
 narodna muzika	Volksmusik	zmaj zmaj::59_kulturlevel
-Allah razi olsun	Antwort auf den Bajram-Gruss	zmaj zmaj::59_kulturlevel
+Allah razi olsun	Antwort auf den Bajram-Gruß	zmaj zmaj::59_kulturlevel
 post	das Fasten	zmaj zmaj::59_kulturlevel
 Sretan Bajram!	Frohes Bajram!	zmaj zmaj::59_kulturlevel
 Bog	Gott	zmaj zmaj::59_kulturlevel
 Hvala Bogu	Gott sei Dank	zmaj zmaj::59_kulturlevel
 iftar	Iftar (Fastenbrechen)	zmaj zmaj::59_kulturlevel
-inšallah	Insallah (so Gott will)	zmaj zmaj::59_kulturlevel
-mašallah	Masallah (wie schoen, Gott schuetze es)	zmaj zmaj::59_kulturlevel
+inšallah	Inšallah (so Gott will)	zmaj zmaj::59_kulturlevel
+mašallah	Mašallah (wie schön, Gott schütze es)	zmaj zmaj::59_kulturlevel
 Ramazanski bajram / Kurban-bajram	Ramadanfest / Opferfest	zmaj zmaj::59_kulturlevel
 Ako Bog da	So Gott will / hoffentlich	zmaj zmaj::59_kulturlevel
 bujrum	Bujrum (bitte, greif zu / komm herein)	zmaj zmaj::59_kulturlevel
-Hvala na pozivu	Danke fuer die Einladung	zmaj zmaj::59_kulturlevel
+Hvala na pozivu	Danke für die Einladung	zmaj zmaj::59_kulturlevel
 Hvala, sit sam / sita sam	Danke, ich bin satt (m/w)	zmaj zmaj::59_kulturlevel
 Bilo je jako ukusno	Es war sehr lecker	zmaj zmaj::59_kulturlevel
 domaćin / domaćica	Gastgeber / Gastgeberin	zmaj zmaj::59_kulturlevel
