@@ -711,7 +711,11 @@
   .abolink{background:none; border:0; padding:0; cursor:pointer; font:inherit;
     color:var(--primary); text-decoration:underline; text-underline-offset:2px}
   .abowahl{display:flex; flex-direction:column; gap:10px; margin:14px 0 4px}
-  .abokarte{display:flex; align-items:center; justify-content:space-between; gap:12px;
+  /* flex-wrap und margin-left:auto am Preis: bei grosser Systemschrift
+     rutscht der Preis in eine eigene Zeile, statt ueber den Kasten
+     hinauszuragen - er muss vor "Zahlungspflichtig abonnieren" ganz
+     lesbar sein. Gefunden bei der Pruefung am 06.10.2026. */
+  .abokarte{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;
     width:100%; padding:14px; border-radius:var(--radius); border:1px solid var(--line);
     background:var(--bg); cursor:pointer; font:inherit; color:var(--ink); text-align:left}
   .abokarte:disabled{opacity:.45; cursor:default}
@@ -719,7 +723,7 @@
   .abokarte[aria-checked="true"]{border-color:var(--primary); background:var(--primary-soft)}
   .abokarte .haken{font-weight:800; color:var(--primary); margin-right:6px}
   .abokarte .n{font-weight:800; font-size:15px}
-  .abokarte .p{font-weight:800; font-size:17px; color:var(--primary); white-space:nowrap}
+  .abokarte .p{margin-left:auto; font-weight:800; font-size:17px; color:var(--primary); white-space:nowrap}
   /* Beides steht in derselben gelben Pille, untereinander: nebeneinander
      war die Zeile auf Deutsch zu lang, und in Grau darunter wirkte der
      Monatspreis wie eine Fussnote. Ajdin am 29.09.2026. */
@@ -907,6 +911,12 @@
   header.eng{grid-template-columns:1fr 1fr}
   header.eng .muenzbar{grid-column:1 / -1; grid-row:2}
   header.eng .hbtns{grid-column:2}
+  /* Im engen Kopf steht die Muenzpille direkt unter den Herzen. Der
+     Leben-Hinweis haengt dann am ganzen Kopf statt an der Herzpille, sonst
+     laege er genau ueber den Muenzen - bei 0 Leben, wo man sie braucht.
+     Gefunden bei der Pruefung am 06.10.2026. */
+  header.eng{position:relative}
+  header.eng .livesbar{position:static}
   /* Alles in der Kopfzeile gleich hoch. Vorher: Herzen 42 Punkte, Muenzen 36,
      Knoepfe 37 - mittig ausgerichtet, aber sichtbar verschieden gross, und
      genau das machte die Zeile unruhig. Ajdin am 18.09.2026. */
@@ -4375,6 +4385,7 @@ document.addEventListener('visibilitychange', ()=>{
        Knopf noch im Dokument haengt. */
     renderLives();
     if(!anzeigeLaeuft) lebenWege();
+    ohneLebenVorbei();
   }
 });
 
@@ -4553,7 +4564,7 @@ function tagPruefen(){
   if(sichtbar('pfad')) showHome();
   return true;
 }
-setInterval(()=>{ tagPruefen(); renderLives(); topfNachziehen(); }, 30000);
+setInterval(()=>{ tagPruefen(); renderLives(); topfNachziehen(); ohneLebenVorbei(); }, 30000);
 
 /* ---- Lernserie ----
    days  = Tage mit einer fertigen Lektion
@@ -7428,7 +7439,11 @@ function lessonOutOfLives(){
   $('lHome').addEventListener('click', lektionVerlassen);
   if($('lAd')) $('lAd').addEventListener('click', werbungFuerLeben);
   vollZeileHorchen('lVoll');
-  if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ kaufe('herz'); lektionVerlassen(); });
+  /* Nur kaufen, wenn wirklich noch kein Leben da ist: der Schirm wird nicht
+     nachgezogen, und wer nach Stunden zurueckkam, sah noch "♥ 0" und zahlte
+     100 Muenzen fuer ein Leben, das schon nachgewachsen war. Gefunden bei der
+     Pruefung am 06.10.2026. */
+  if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ if(livesNow() === 0) kaufe('herz'); lektionVerlassen(); });
   renderLives();
   /* Die Karte gleich hier und nicht erst auf der Startseite: auf diesem
      Schirm kommt keine Anzeige nach dem Ergebnis, und wer ohne Leben die
@@ -7436,6 +7451,16 @@ function lessonOutOfLives(){
      die Bitte um eine Bewertung passt nicht zu einer verlorenen Lektion
      und wartet weiter auf die Startseite. */
   if(benDran) kartenNachreichen();
+}
+/* Der Schirm ohne Leben wird einmal gebaut und nie nachgezogen. Sind
+   inzwischen Leben nachgewachsen - etwa nach der Nachricht "Leben wieder
+   voll", die seit Build 95 genau von hier aus angeboten wird -, stimmt er
+   nicht mehr: zurueck zur Uebersicht, wie werbungFuerLeben() es bei vollen
+   Leben schon tut. Neu aufbauen ginge nicht, lessonOutOfLives() zaehlt und
+   spielt den Fehlton. Gefunden bei der Pruefung am 06.10.2026. */
+function ohneLebenVorbei(){
+  if(!anzeigeLaeuft && livesNow() > 0 && sichtbar('levelView') && sichtbar('lesson')
+     && $('lBody').querySelector('.result-big.fail')) lektionVerlassen();
 }
 function lessonEnd(){
   if(Lx && Lx.topf){ topfEnde(); return; }
