@@ -14,9 +14,12 @@ language:
 multilinguality: multilingual
 size_categories:
   - 1K<n<10K
+# 06.10.2026: text-to-speech als Aufgabe gestrichen. Die Tonspur ist Ausgabe
+# von Azure TTS, und Microsofts Bedingungen verbieten, sie zum Bauen oder
+# Trainieren von Sprachsynthese zu nutzen - die Karte darf dafür nicht werben.
+# Der Hinweis für Nutzer steht unten im Text.
 task_categories:
   - translation
-  - text-to-speech
 tags:
   - bosnian
   - language-learning
@@ -80,4 +83,8 @@ not, and its limitations: **[DATASHEET.md](DATASHEET.md)**.
 **License:** CC BY-SA 4.0. **Attribution:** *Zmaj – Bosnian learning content,
 © 2026 Ajdin Hasic, CC BY-SA 4.0, https://github.com/zmaj-lernapp/zmaj*.
 The audio is synthetic (Azure Neural TTS); say so when you republish it.
+It must not be used to train speech synthesis or other speech or
+voice models, because Microsoft's terms for Azure TTS output do not allow
+that; the store version of the Zmaj app uses other word and sentence
+recordings, which are not part of this dataset.
 **DOI:** [10.5281/zenodo.23146609](https://doi.org/10.5281/zenodo.23146609) (all versions, Zenodo).

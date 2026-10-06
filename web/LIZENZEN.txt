@@ -63,6 +63,36 @@ Die Software wird ohne Gewähr bereitgestellt.
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+Die Aussprache / Pronunciation audio
+------------------------------------
+Stand 06.10.2026. Alle Aufnahmen sind synthetisch: Es spricht eine
+KI-Stimme, kein Mensch.
+
+Im öffentlichen Repository sind die Wörter und Sätze in web/audio mit
+Microsoft Azure Neural Text-to-Speech erzeugt. Sie stehen, wie in
+REUSE.toml angegeben, unter CC BY-SA 4.0. Welche Stimme eine Datei
+spricht, steht in web/audio/index.json unter "stimme".
+
+Die App bei Google Play spricht Wörter und Sätze mit einer anderen
+KI-Stimme (ElevenLabs). Diese Aufnahmen gehören weder zu diesem
+Repository noch zum offenen Datensatz, stehen nicht unter CC BY-SA und
+sind nur für die Verwendung in der App bestimmt. Die zwölf Geschichten
+behalten die Stimme, die in index.json steht.
+
+All recordings are synthetic: an AI voice speaks, not a person.
+
+In the public repository, the word and sentence audio in web/audio was
+generated with Microsoft Azure Neural Text-to-Speech and is licensed
+under CC BY-SA 4.0, as stated in REUSE.toml. The voice of each file is
+listed under "stimme" in web/audio/index.json.
+
+The app distributed on Google Play uses a different AI voice
+(ElevenLabs) for words and sentences. Those recordings are not part of
+this repository or of the open dataset, are not licensed under
+CC BY-SA and are provided for use within the app only. The twelve
+stories keep the voice listed in index.json.
+
+
 Was die App sonst noch nutzt
 ----------------------------
 Nichts. Der Rest – Server, Oberfläche, Inhalte, Maskottchen – ist

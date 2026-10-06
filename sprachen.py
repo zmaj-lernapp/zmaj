@@ -441,6 +441,11 @@ TEXTE = {
 "set.feedback_fehler": "Senden fehlgeschlagen. Läuft der Server?",
 "set.ueber": "Über die App",
 "set.quellen": "Quellen",
+# 06.10.2026: Die Aussprache ist synthetisch - im Repository Azure, in der
+# Store-App ab Build 96 die ElevenLabs-Stimme. Ein Satz, der fuer beide
+# Fassungen stimmt, unter "Über die App". Kurz gehalten; was zur Lizenz
+# gehoert, steht in web/LIZENZEN.txt und nicht in der Oberflaeche.
+"set.ki_stimme": "Die Aussprache stammt von einer KI-Stimme.",
 
 # ---- Fehlermeldungen ------------------------------------------------------
 "err.datei": "<b>So geht es nicht:</b> Die Datei index.html wurde direkt geöffnet. Die App braucht den Server aus <b>start.py</b>.<br><br><b>So geht es:</b> Auf dem Desktop die Verknüpfung <b>„Zmaj Bosnisch lernen“</b> doppelklicken. Oder in Thonny <b>start.py</b> öffnen und auf Run (F5) drücken.<br>Der Browser öffnet dann von selbst <b>http://localhost:8000</b>. Diese Adresse benutzen, nicht die Datei.",
@@ -954,6 +959,7 @@ TEXTE = {
 "set.feedback_fehler": "Could not send. Is the server running?",
 "set.ueber": "About the app",
 "set.quellen": "Sources",
+"set.ki_stimme": "The pronunciation comes from an AI voice.",
 
 "err.datei": "<b>This will not work:</b> the file index.html was opened directly. The app needs the server from <b>start.py</b>.<br><br><b>This will work:</b> double-click the shortcut <b>“Zmaj Bosnisch lernen”</b> on the desktop. Or open <b>start.py</b> in Thonny and press Run (F5).<br>The browser then opens <b>http://localhost:8000</b> by itself. Use that address, not the file.",
 "err.server": "Could not load the vocabulary. Is the server still running? Click the shortcut “Zmaj Bosnisch lernen” or start start.py in Thonny, then reload this page. Error: {fehler}",
@@ -1464,6 +1470,7 @@ TEXTE = {
 "set.feedback_fehler": "Gönderilemedi. Sunucu çalışıyor mu?",
 "set.ueber": "Uygulama hakkında",
 "set.quellen": "Kaynaklar",
+"set.ki_stimme": "Seslendirmede yapay zekâ sesi kullanılıyor.",
 "set.impressum": "Künye",
 "set.impressum_text": "<b>Alman hukuku uyarınca sağlayıcı bilgileri (§ 5 DDG)</b><br>{anbieter}<br><br><b>İletişim</b><br>Zmaj ile ilgili sorularını en hızlı şekilde yukarıdaki e-posta adresine yazarsan yanıtlarız.<br><br><b>Tüketici uyuşmazlıklarının çözümü</b><br>Bir tüketici uzlaştırma kurumu önünde yürütülecek uyuşmazlık çözüm sürecine katılma yükümlülüğümüz yoktur ve katılmaya hazır değiliz.",
 "set.anbieter": "[Ad Soyad]<br>[Sokak ve numara]<br>[Posta kodu, şehir]<br>[Sorular için e-posta adresi]",
@@ -1972,6 +1979,7 @@ TEXTE = {
 "set.feedback_fehler": "Det gick inte att skicka. Är servern igång?",
 "set.ueber": "Om appen",
 "set.quellen": "Källor",
+"set.ki_stimme": "Uttalet kommer från en AI-röst.",
 "set.impressum": "Juridisk information",
 "set.impressum_text": "<b>Leverantör – uppgifter enligt tysk lag (§ 5 DDG)</b><br>Zmaj drivs från Tyskland. Tysk rätt kräver att den som står bakom appen anges med namn, adress och e-post:<br>{anbieter}<br><br><b>Kontakt</b><br>Frågor om Zmaj svarar vi snabbast på via e-post till adressen ovan.<br><br><b>Tvistlösning för konsumenter</b><br>Vi är varken skyldiga eller villiga att delta i ett tvistlösningsförfarande vid en nämnd för konsumenttvister.",
 "set.anbieter": "[Förnamn Efternamn]<br>[Gata och nummer]<br>[Postnummer, ort]<br>[E-postadress för frågor]",
@@ -2476,6 +2484,7 @@ TEXTE = {
     "set.feedback_fehler": "Versturen is mislukt. Draait de server nog?",
     "set.ueber": "Over de app",
     "set.quellen": "Bronnen",
+    "set.ki_stimme": "De uitspraak komt van een AI-stem.",
 "set.impressum": "Colofon",
 "set.impressum_text": "<b>Gegevens van de aanbieder volgens Duits recht (§ 5 DDG)</b><br>{anbieter}<br><br><b>Contact</b><br>Vragen over Zmaj beantwoorden we het snelst per e-mail op het adres hierboven.<br><br><b>Geschillenbeslechting voor consumenten</b><br>Wij zijn niet verplicht en niet bereid om deel te nemen aan een geschillenbeslechtingsprocedure bij een geschillencommissie voor consumenten.",
 "set.anbieter": "[Voornaam Achternaam]<br>[Straat en nummer]<br>[Postcode, plaats]<br>[E-mailadres voor vragen]",
@@ -2982,6 +2991,7 @@ TEXTE = {
     "set.feedback_fehler": "Klarte ikke å sende. Kjører serveren?",
     "set.ueber": "Om appen",
     "set.quellen": "Kilder",
+    "set.ki_stimme": "Uttalen kommer fra en KI-stemme.",
 "set.impressum": "Juridisk informasjon",
 "set.impressum_text": "<b>Opplysninger etter tysk rett (§ 5 DDG)</b><br>{anbieter}<br><br><b>Kontakt</b><br>Spørsmål om Zmaj svarer vi raskest på e-post til adressen som står over.<br><br><b>Tvisteløsning i forbrukersaker</b><br>Vi er verken forpliktet til eller villige til å delta i tvisteløsning hos en forbrukerklagenemnd.",
 "set.anbieter": "[Fornavn Etternavn]<br>[Gate og nummer]<br>[Postnummer, sted]<br>[E-postadresse for spørsmål]",
@@ -3489,6 +3499,7 @@ TEXTE = {
     "set.feedback_fehler": "Kunne ikke sende. Kører serveren?",
     "set.ueber": "Om appen",
     "set.quellen": "Kilder",
+    "set.ki_stimme": "Udtalen kommer fra en AI-stemme.",
 "set.impressum": "Juridisk information",
 "set.impressum_text": "<b>Oplysninger om udbyderen</b><br>{anbieter}<br><br>Zmaj laves og udbydes fra Tyskland. Derfor skal disse oplysninger stå her – det kræver tysk ret (§ 5 DDG, den tyske lov om digitale tjenester).<br><br><b>Kontakt</b><br>Spørgsmål om Zmaj svarer vi hurtigst på pr. e-mail – brug e-mailadressen ovenfor.<br><br><b>Tvistløsning i forbrugersager</b><br>Vi er hverken forpligtede til eller villige til at deltage i en tvistløsningssag ved et forbrugerklagenævn.",
 "set.anbieter": "[Fornavn Efternavn]<br>[Gade og nummer]<br>[Postnummer, by]<br>[E-mailadresse til spørgsmål]",
@@ -3995,6 +4006,7 @@ TEXTE = {
     "set.feedback_fehler": "L'envoi a échoué. Le serveur tourne-t-il ?",
     "set.ueber": "À propos de l'application",
     "set.quellen": "Sources",
+    "set.ki_stimme": "La prononciation provient d'une voix générée par IA.",
 "set.impressum": "Mentions légales",
 "set.impressum_text": "<b>Mentions obligatoires selon le droit allemand (§ 5 DDG)</b><br>{anbieter}<br><br>L'application Zmaj est développée en Allemagne : ce sont donc les informations qu'exige le droit allemand, au § 5 de la loi sur les services numériques (Digitale-Dienste-Gesetz, DDG).<br><br><b>Contact</b><br>Pour toute question sur Zmaj, le plus rapide est de nous écrire par e-mail, à l'adresse indiquée ci-dessus.<br><br><b>Règlement des litiges de consommation</b><br>Nous ne sommes ni tenus ni disposés à participer à une procédure de règlement des litiges devant un organisme de médiation de la consommation.",
 "set.anbieter": "[Prénom Nom]<br>[Rue et numéro]<br>[Code postal, ville]<br>[Adresse e-mail pour les questions]",

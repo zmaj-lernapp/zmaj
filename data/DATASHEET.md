@@ -122,15 +122,26 @@ use the *Language correction* issue form.
 (13, where the Bosnian voice mispronounced a word). It is synthetic speech,
 not a recording of a person. Known pronunciation issues are documented in
 [`docs/TONBEFUNDE.md`](../docs/TONBEFUNDE.md). If you republish the audio, say that it is
-synthetic.
+synthetic. It must not be used to train speech synthesis or other speech or
+voice models, because Microsoft's terms for Azure TTS output do not allow
+that; the store version of the Zmaj app uses other word and sentence
+recordings, which are not part of this dataset.
 
 ## Intended uses
 
 - language-learning apps, flashcards and classroom material for Bosnian;
 - heritage-language learners in the diaspora (Germany, Austria, Scandinavia,
   Turkey, the Netherlands, France), which is why these eight languages exist;
-- low-resource NLP: parallel phrase pairs, a pronunciation lexicon, evaluation
-  data for Bosnian MT and TTS.
+- low-resource NLP: parallel phrase pairs and evaluation or fine-tuning data
+  for Bosnian machine translation.
+
+<!-- 06.10.2026: "TTS" und "pronunciation lexicon" als Verwendungszweck
+gestrichen. Die MP3 sind Ausgabe von Azure TTS; Microsofts Bedingungen
+verbieten, sie zum Bauen oder Trainieren von Sprachsynthese zu nutzen, also
+darf der offene Datensatz dafür nicht werben. Die Store-App spricht ab
+Build 96 Wörter und Sätze mit anderen Aufnahmen (ElevenLabs). Die gehören
+nie nach web/audio/ oder data/: ElevenLabs verbietet, sie in Datensätzen
+weiterzugeben, die für KI-Training taugen. -->
 
 ## Limitations
 
