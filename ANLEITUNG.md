@@ -1134,8 +1134,9 @@ Datei am PC weiter.
   nach dem Test“, zuletzt `admob_scharf.py`.
 - Die eigenen Geräte vorher in AdMob unter *Einstellungen → Testgeräte*
   eintragen (per Werbe-ID), sonst zählen eigene Klicks als ungültig.
-- Zielgruppe in der Play Console bei **16+** lassen: Die Werbung läuft mit
-  `maxAdContentRating: 'Teen'` und ohne Kennzeichnung als Kinder-App.
+- Zielgruppe in der Play Console bei **16+** lassen: Die Werbung läuft ohne
+  Kennzeichnung als Kinder-App. Die Obergrenze `maxAdContentRating` steht
+  seit v97 auf `'General'`, passend zur Einstufung USK 0 / PEGI 3.
 - `versionCode` in `android/app/build.gradle` erhöhen (Stand 02.10.2026: 89).
 
 ## Die öffentliche Seite
