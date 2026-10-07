@@ -1221,6 +1221,7 @@
   .switch[aria-checked="true"]::after{left:25px}
   .srcs{font-size:13px; line-height:1.7; margin:0; padding-left:18px}
   .srcs a{color:var(--primary); font-weight:700}
+  .kanaele a{color:var(--primary); font-weight:700}
   .legal{font-size:13px; color:var(--muted); line-height:1.6}
 
   footer{margin-top:24px; text-align:center; font-size:12px; color:var(--muted); line-height:1.6; font-weight:700}
@@ -1638,6 +1639,18 @@
            das siebenfache Tippen fuer die Dauer-Vollversion traegt.
            06.10.2026. -->
       <div class="sd" style="font-size:12px; color:var(--muted); margin:-4px 0 12px" data-t="set.ki_stimme"></div>
+      <!-- Zwei leise Wege, die immer da sind. Die Bewertungskarte kommt
+           hoechstens zweimal im Jahr und nach "Nein danke" nie wieder -
+           danach fuehrte nichts mehr in den Store. Und die App
+           weiterempfehlen ging gar nicht. 07.10.2026. -->
+      <div style="display:flex; flex-wrap:wrap; gap:4px 20px; font-size:14px; margin:0 0 12px">
+        <button type="button" class="abolink" id="setBewerten" data-t="set.bewerten" style="padding:4px 0"></button>
+        <button type="button" class="abolink" id="setEmpfehlen" data-t="set.empfehlen" style="padding:4px 0"></button>
+      </div>
+      <!-- Die Kanaele von Zmaj. Nur Verweise wie bei den Quellen: Android
+           oeffnet TikTok, Instagram oder YouTube selbst, die App laedt
+           nichts davon und gibt nichts weiter. 07.10.2026. -->
+      <div class="sd kanaele" style="font-size:13px; color:var(--muted); margin:-6px 0 12px"><span data-t="set.folgen"></span> <a href="https://www.tiktok.com/@zmaj.learnbosnian" target="_blank" rel="noopener">TikTok</a> · <a href="https://www.instagram.com/zmaj.learnbosnian/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@zmaj.learnbosnian" target="_blank" rel="noopener">YouTube</a></div>
       <details><summary data-t="set.quellen"></summary><div class="inner"><ul class="srcs">
         <li><a href="https://archive.org/stream/halilovic-senahid-pravopis-bosanskoga-jezika-za-osnovne-i-srednje-skole" target="_blank" rel="noopener">Senahid Halilović: Pravopis bosanskoga jezika</a></li>
         <li><a href="https://www.researchgate.net/publication/389063646_BOSANSKI_JEZIK_-_PRVI_STUPANJ" target="_blank" rel="noopener">Bosanski jezik – Prvi stupanj</a></li>
@@ -1959,7 +1972,9 @@ function werbungErlaubt(belohnt){
      der Knopf „Video ansehen“ sonst zwar da, liefe aber jedes Mal ins
      Leere. Lieber gar nicht erst anbieten. */
   const Pw = window.Capacitor && window.Capacitor.Plugins;
-  if(!admobDa() && Pw && Pw.AdMob) return false;
+  /* Ausnahme seit 07.10.2026: ein offener Zweitversuch nach einem Start
+     ohne Netz, siehe admobNachholbar(). Sonst kam er nie an die Reihe. */
+  if(!admobDa() && Pw && Pw.AdMob && !admobNachholbar()) return false;
   if(einwilligungFragen()) return false;         // erst fragen, dann werben
   /* today() ist der oertliche Tag. Vorher stand hier toISOString(), also
      UTC - der Zaehler sprang im Sommer um 2 Uhr nachts um, nicht um
@@ -2065,6 +2080,26 @@ let admobOptionen = false;  // Google verlangt einen Knopf zum Nachträglich-Än
 let admobGestartet = false;
 
 function admobDa(){ return !!AdMobP; }
+/* Zweitversuch nach einem Start ohne Netz. Pruefung vom 07.10.2026: bis
+   v96 sagte werbungErlaubt() nein, sobald das Plugin da und AdMobP null
+   war - und weil jeder Aufrufer vorher fragt, kam der Nachfass in
+   zeigeWerbung() nie dran. Wer die App im Flugmodus oder in der U-Bahn
+   startete, sah die ganze Sitzung keine Anzeige und kein „Video ansehen“.
+   Jetzt laesst werbungErlaubt() den naechsten Werbeanlass durch, solange
+   ein Versuch offen ist, und zeigeWerbung() startet AdMob dort neu.
+   Ein Versuch je Gelegenheit: zeigeWerbung() verbraucht ihn, erst das
+   zurueckgekehrte Netz oder die Rueckkehr in die App oeffnet ihn wieder.
+   Keine Schleife, und ohne Netz wird gar nicht erst gefragt. Gefragt wird
+   dabei nur Googles Einwilligung - geladen wird weiter erst nach
+   canRequestAds, wie in admobStart(). */
+function admobNachholbar(){
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  return WERBUNG_ECHT && !AdMobP && !!admobFehler && !admobZweitversuch &&
+         !!(P && P.AdMob) && navigator.onLine !== false;
+}
+function admobWiederOeffnen(){ if(!AdMobP && admobFehler) admobZweitversuch = false; }
+window.addEventListener('online', admobWiederOeffnen);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) admobWiederOeffnen(); });
 
 /* Reihenfolge nach Googles Vorgabe: erst fragen, dann das SDK starten. */
 async function admobStart(){
@@ -2100,17 +2135,22 @@ async function admobStart(){
     admobOptionen = info.privacyOptionsRequirementStatus === 'REQUIRED';
     /* maxAdContentRating: ohne diese Angabe entscheidet allein die
        Voreinstellung im AdMob-Konto, welche Anzeigen kommen duerfen -
-       und die steht nirgends im Projekt. „Teen“ passt zur Zielgruppe
-       16-17 und 18+ aus STORE_TEXTE.md. Hoeher darf es nur, wenn die
-       Angaben in der Play Console vorher dazu passen, nicht umgekehrt.
-       Punkt 3 aus WERBUNG_PRUEFUNG.md, behoben am 29.09.2026. */
+       und die steht nirgends im Projekt. Punkt 3 aus WERBUNG_PRUEFUNG.md,
+       behoben am 29.09.2026.
+       Bis v96 stand hier „Teen“, begruendet mit der Zielgruppe 16+. Googles
+       Werberichtlinie richtet sich aber nach der Inhaltseinstufung, nicht
+       nach der Zielgruppe, und die ist USK 0 / PEGI 3 (STORE_TEXTE.md).
+       Dazu passt „General“. Der Wert aus dem SDK geht der Einstellung in
+       der AdMob-Konsole vor, aendern laesst er sich also nur mit einem
+       Neubau. Hoeher darf er erst, wenn die Einstufung in der Play Console
+       dazu passt, nicht umgekehrt. Pruefung vom 07.10.2026. */
     if(admobDarf){
       await A.initialize({
         /* Siehe ADMOB_TESTGERAETE: ohne initializeForTesting bleibt die
            Liste unbeachtet. */
         initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
         testingDevices: ADMOB_TESTGERAETE,
-        maxAdContentRating: 'Teen'});
+        maxAdContentRating: 'General'});
       admobGestartet = true;
     }
   }catch(e){
@@ -2150,7 +2190,7 @@ async function einwilligungNachziehen(){
       await AdMobP.initialize({
         initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
         testingDevices: ADMOB_TESTGERAETE,
-        maxAdContentRating: 'Teen'});
+        maxAdContentRating: 'General'});
       admobGestartet = true;
     }
   }catch(e){}
@@ -2292,8 +2332,11 @@ async function admobZeigen(belohnt, darfNoch){
          Belohnung gibt. Kommt sie, wird sie hier trotzdem noch
          mitgenommen - doppelt haelt besser als der Zuhoerer allein. */
       AdMobP.showRewardVideoAd().then(lohn => { if(lohn) verdient = true; }, ()=>{});
-      await fertigLohn.warten;
+      /* true heisst: das Video stand und wurde geschlossen. Ohne Belohnung
+         hat der Nutzer es also vorher weggedrueckt. 07.10.2026. */
+      const geschlossen = await fertigLohn.warten;
       if(lohnHorcher) try{ lohnHorcher.remove(); }catch(e){}
+      lohnAbgebrochen = geschlossen === true && !verdient;
       return verdient;
     }
     /* Vorgeladen ist die Anzeige meist schon (siehe interstitialVorladen).
@@ -2773,7 +2816,10 @@ function lautlich(s){
     [/y/g,'j'], [/w/g,'v'], [/ph/g,'f'], [/f/g,'v'], [/th/g,'t'],
   ];
   for(const [a,b] of regeln) x = x.replace(a,b);
-  return x.replace(/[^a-z]/g,'').replace(/(.)+/g,'$1');
+  /* Hier stand bis 07.10.2026 statt des Rueckverweises auf (.) das
+     Steuerzeichen 0x01 - ein Patch hatte die Fluchtfolge verschluckt.
+     Der Ausdruck traf nie, Doppelbuchstaben blieben doppelt. */
+  return x.replace(/[^a-z]/g,'').replace(/(.)\1+/g,'$1');
 }
 /* Wie viele Buchstaben muesste man aendern, um aus a b zu machen. */
 function abstand(a, b){
@@ -3310,6 +3356,32 @@ function segOf(a, name){
   const m = (a.markers||[]).find(x => (x.payload && x.payload.name===name) || x.payload===name);
   return m ? [m.time, m.time + m.duration] : null;
 }
+/* Ruhen soll der Drache, wenn Bewegung aus ist - per Schalter
+   "Animationen" (Klasse no-anim) oder per Geraeteeinstellung - und wenn
+   seine Ansicht ausgeblendet ist. Bis zum 07.10.2026 lief er in allen drei
+   Faellen in Schleife weiter: der Schalter traf nur CSS-Animationen, und
+   der Drache der Startseite rechnete hinter der Lektion unsichtbar mit. */
+function zmajRuht(el){
+  if(document.body.classList.contains('no-anim')) return true;
+  try{ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return true; }catch(e){}
+  /* VIEWS steht weiter unten; bis dahin gilt alles als sichtbar */
+  try{ return VIEWS.some(v => { const w = $(v); return !!w && w.style.display === 'none' && w.contains(el); }); }
+  catch(e){ return false; }
+}
+/* Haelt jeden geladenen Drachen an, der ruhen soll, und weckt jeden, der
+   wieder darf. Laeuft beim Ansichtswechsel, beim Schalter "Animationen" und
+   wenn das Geraet die Bewegung umstellt. Geweckt wird ohne Jubel- oder
+   Kopfschuettel-Sprung: der war laengst vorbei. 07.10.2026. */
+function zmajeAnpassen(){
+  document.querySelectorAll('.zmaj-anim').forEach(el => {
+    const a = el._anim;
+    if(!a || !a.isLoaded) return;
+    const m = el.dataset.mood || 'idle';
+    if(zmajRuht(el)){ if(!a.isPaused) playMood(el, m); }
+    else if(a.isPaused) playMood(el, /^(ok|cheer|no)/.test(m) ? 'idle' : m);
+  });
+}
+try{ matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', ()=>zmajeAnpassen()); }catch(e){}
 function playMood(el, mood){
   const name = MOOD_SEG[mood] || 'idle';
   /* Alle Stimmungen stecken als Marker in derselben Datei, es wird also nie
@@ -3326,7 +3398,17 @@ function playMood(el, mood){
   const s = segOf(a, name) || (name.slice(0,3)==='no_' ? segOf(a, 'no') : null);
   const toIdle = ()=>{ if(el._back){ a.removeEventListener('complete', el._back); el._back=null; } if(el._timer){ clearTimeout(el._timer); el._timer=null; } if(el.dataset.mood===mood) playMood(el, 'idle'); };
   const frames = s ? (s[1]-s[0]) : (a.totalFrames || 30);
-  if(s){ a.loop = !once; a.playSegments(s, true); }
+  if(zmajRuht(el)){
+    /* Standbild statt Schleife (07.10.2026): fuer die Ruhepose ihr erstes
+       Bild, sonst die Mitte der Stimmung - dort lacht, schmollt oder weint
+       er deutlich. resetSegments, weil goToAndStop sonst im zuletzt
+       gespielten Abschnitt zaehlt und an dessen Ende abschneidet. Kurze
+       Stimmungen kehren ueber den Zeitgeber unten zur Ruhepose zurueck. */
+    a.loop = false;
+    a.resetSegments(true);
+    a.goToAndStop(!s ? 0 : (name === 'idle' ? s[0] : Math.floor((s[0] + s[1]) / 2)), true);
+  }
+  else if(s){ a.loop = !once; a.playSegments(s, true); }
   else { a.loop = !once; a.goToAndPlay(0, true); }   // Datei ohne Marker: ganze Animation
   if(once){
     el._back = toIdle; a.addEventListener('complete', el._back);
@@ -3427,7 +3509,10 @@ let soundOn = pref('zmaj_sound', true), haptikOn = pref('zmaj_haptik', true), an
 try{ getragen = localStorage.getItem('zmaj_getragen') || ''; }catch(e){}
 const canBuzz = 'vibrate' in navigator;
 function buzz(p){ if(haptikOn && canBuzz){ try{ navigator.vibrate(p); }catch(e){} } }
-function applyAnim(){ document.body.classList.toggle('no-anim', !animOn); }
+function applyAnim(){
+  document.body.classList.toggle('no-anim', !animOn);
+  zmajeAnpassen();   // der Schalter gilt auch fuer den Drachen (07.10.2026)
+}
 let actx = null;
 /* Lautstärke: Die Vokabeln kommen als fertige Aufnahme und damit in voller
    Höhe. Dagegen waren die berechneten Töne mit 0,18 deutlich zu leise –
@@ -4228,7 +4313,14 @@ const alleWoerter = () => CATEGORIES.reduce((n,c)=>n+c.words.length, 0);
 function neuNochMoeglich(){
   const alle = alleWoerter();
   if(!alle || known.size < alle) return true;   // !alle: Inhalt noch nicht geladen
-  if(!wann.alleWoerter){ wann.alleWoerter = today(); saveProgress(); }
+  /* Eingehaengt in QUESTS erst am 07.10.2026 - bis dahin stand dort
+     weiter known.size < alleWoerter(). Wer schon VOR diesem Update alle
+     Woerter konnte, hat noch keinen Tag in wann; der heutige waere
+     falsch und braechte 'neu' heute zurueck in den Topf - die Aufgaben
+     wechselten beim Update einmal mitten am Tag, und 'neu' waere nicht
+     zu schaffen. Faellt das letzte Wort wirklich heute, hat zaehle('neu')
+     schon gezaehlt, bevor die Auslosung hierher fragt. */
+  if(!wann.alleWoerter){ wann.alleWoerter = questStand('neu') > 0 ? today() : tagMinus(today(), 1); saveProgress(); }
   return wann.alleWoerter === today();
 }
 
@@ -4249,7 +4341,7 @@ const QUESTS = [
   {id:'gesch', art:'lesen',   dick:2, ohneLeben:true, ziele:[1,1,1],    txt:'quest.geschichte'},
   {id:'lue',   art:'typ',     dick:1, ziele:[4,6,8],  txt:'quest.luecken'},
   {id:'hoer',  art:'typ',     dick:1, ziele:[4,6,8],  txt:'quest.hoeren',     geht:()=>canListen},
-  {id:'neu',   art:'woerter', dick:2, ziele:[10,14,18], txt:'quest.woerter',  geht:()=>known.size < alleWoerter()},
+  {id:'neu',   art:'woerter', dick:2, ziele:[10,14,18], txt:'quest.woerter',  geht:neuNochMoeglich},
   {id:'lek',   art:'lektion', dick:2, ziele:[2,3,4],  txt:'quest.lektionen'},
   {id:'per',   art:'lektion', dick:3, ziele:[1,1,1],  txt:'quest.fehlerfrei', abStufe:2},
   // Zeit in Sekunden gespeichert, in Minuten angezeigt – siehe uhrTakt()
@@ -5148,6 +5240,7 @@ function showView(id){
   stilleBitte();          // kein Ton laeuft in die naechste Ansicht hinein
   uhrAus();               // und keine Lernzeit: Geschichte und Lektion rufen uhrAn() selbst
   VIEWS.forEach(v=>{ $(v).style.display = v===id ? 'block' : 'none'; });
+  zmajeAnpassen();        // Drachen ausgeblendeter Ansichten anhalten, die sichtbaren wecken
   $('kopfLeiste').style.display = '';     // wer sie nicht will, blendet sie danach aus
   nurHerz(false);                         // Lektion, Test und Runde setzen es selbst wieder
   // Vor der Anmeldung darf das Logo größer sein - siehe CSS oben
@@ -5237,11 +5330,18 @@ function vollversionGemerkt(){
 }
 let aboLaeuft = false;        // gerade eine Abfrage oder ein Kauf unterwegs
 let aboStoerung = false;      // Play Store hat zuletzt nicht geantwortet
+/* Das Abo ist da, aber Google hat es gesperrt: Zahlung geplatzt oder
+   pausiert. Zaehlt nicht als Vollversion, bekommt aber einen Hinweis und
+   den Weg zu Googles Abo-Seite statt eines neuen Kaufkastens. Bis Build 96
+   wurde so jemand still zum Gratisnutzer. 07.10.2026 */
+let aboGesperrt = false;
 /* Google hat geantwortet, kennt die Produkte aber nicht. Das ist etwas
    anderes als eine Stoerung: hier ist die Antwort eindeutig, es gibt gerade
    nichts zu kaufen. Solange die Abos in der Play Console nicht angelegt und
    freigeschaltet sind, ist das der Normalfall. */
 let aboProdukteFehlen = false;
+/* Der Plan, dessen Testwoche die Kauf-Einstiege nennen, siehe gratisMerken(). */
+let aboGratisPlan = null;
 
 function vollMeldung(text){
   const el = $('setVollNote'); if(!el) return;
@@ -5254,26 +5354,36 @@ function vollZeileZeigen(){
      Das "kaufbar" muss hier noch einmal geprueft werden: diese Funktion
      laeuft auch am PC, wo es das Plugin gar nicht gibt - ohne die Pruefung
      wuerde der Block dort auftauchen. */
-  box.style.display = ((!!aboPlugin()) && (an || !aboProdukteFehlen)) ? '' : 'none';
+  /* Bei einem gesperrten Abo auch dann, wenn Google gerade nichts zu
+     kaufen anbietet: hier stehen der Hinweis und der Weg zu Google.
+     07.10.2026 */
+  box.style.display = ((!!aboPlugin()) && (an || aboGesperrt || !aboProdukteFehlen)) ? '' : 'none';
   const s = $('swVoll');
   s.setAttribute('aria-checked', an);
   /* aria-disabled statt disabled: ein disabled-Knopf nimmt keinen Tipp mehr
      an - der Tipp soll aber zu Googles Abo-Seite führen. */
   s.setAttribute('aria-disabled', an);
   $('setVollStand').textContent = an ? t('voll.aktiv')
+    : aboGesperrt ? t('voll.gesperrt')
     : (geschenkLaeuft() ? t('voll.geschenk_rest', {n: geschenkRest()})
     : (aboLaeuft ? t('voll.laedt') : (aboStoerung ? t('voll.kein_store') : '')));
   const v = $('setVollVerwalten');
   /* Auch bei einer Störung zeigen: wer zahlt, aber gerade keine Antwort vom
      Play Store bekommt, fände sonst keinen Kündigungsweg - und einen in der
-     App verlangt Google. */
-  v.style.display = (an || aboStoerung) ? '' : 'none';
+     App verlangt Google. Ebenso bei einem gesperrten Abo: dort repariert
+     man die Zahlung (07.10.2026). */
+  v.style.display = (an || aboStoerung || aboGesperrt) ? '' : 'none';
   $('aboVerwalten').textContent = t('voll.verwalten');
   const w = $('widerrufKnopf');
   if(w) w.textContent = t('set.widerruf_knopf');
 }
+/* Die zuletzt gestartete Abfrage. vollKaufOeffnen() wartet auf sie: solange
+   sie laeuft, steht aboLaeuft, und vollWahlZeigen() bricht still ab.
+   07.10.2026 */
+let aboAbgleich = null;
+function vollAbgleichen(){ return (aboAbgleich = vollAbgleichenJetzt()); }
 /* Fragt Google. Ändert den gemerkten Stand nur bei einer echten Antwort. */
-async function vollAbgleichen(){
+async function vollAbgleichenJetzt(){
   const P = aboPlugin(); if(!P) return;
   aboLaeuft = true; vollZeileZeigen();
   let d = null;
@@ -5281,6 +5391,7 @@ async function vollAbgleichen(){
   aboLaeuft = false;
   if(d && d.bekannt){
     aboStoerung = false;
+    aboGesperrt = !!d.gesperrt && !d.aktiv;
     /* Nicht nur die Leben: mit der Vollversion gehen auch ihre Stuecke
        an oder aus. Ohne das neue Zeichnen funkelte der Drache nach dem
        Auslaufen weiter, bis der Nutzer den Schirm wechselte. */
@@ -5304,9 +5415,48 @@ async function produkteNachsehen(){
   try{ d = await P.preise(); }catch(e){ return; }
   if(!d || !d.ok) return;                      // keine Antwort: nichts aendern
   aboProdukteFehlen = !d.plaene || !d.plaene.length;
+  gratisMerken(d.plaene);
   vollZeileZeigen();
 }
 
+/* Die Testwoche. Bis Build 94 kaufte ZmajAbo immer den nackten Basisplan,
+   ein in der Play Console angelegtes "7 Tage kostenlos" kam nie an. Jetzt
+   nimmt es das Gratisangebot, wenn Google dem Nutzer eins anbietet, und
+   meldet dessen Dauer als "gratis" (ISO 8601: P7D, P1W, P8W4D ...).
+   Dauer und Preis danach stehen VOR dem Kaufknopf, sonst weiss niemand,
+   wann zum ersten Mal abgebucht wird. Google erlaubt drei Tage bis drei
+   Jahre, der Text braucht also nur die Mehrzahl; Monate und Jahre werden
+   ab heute in Tage umgerechnet. Gefunden bei der Pruefung am 06.10.2026.
+   Seit 07.10.2026 stehen beide hier draussen statt in vollWahlZeigen():
+   auch die Kauf-Einstiege im Laden und auf den Schirmen ohne Leben
+   nennen die Testwoche - mit demselben Text, und nur, wenn Google sie
+   diesem Nutzer anbietet. */
+function gratisTage(iso){
+  const m = /^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)W)?(?:(\d+)D)?$/.exec(iso || '');
+  if(!m) return 0;
+  const h = new Date(), heute = Date.UTC(h.getFullYear(), h.getMonth(), h.getDate());
+  const zielJahr = h.getFullYear() + (+m[1] || 0), zielMonat = h.getMonth() + (+m[2] || 0);
+  // 31. Januar plus ein Monat ist der 28. Februar, nicht der 3. Maerz
+  const letzter = new Date(Date.UTC(zielJahr, zielMonat + 1, 0)).getUTCDate();
+  const ende = Date.UTC(zielJahr, zielMonat,
+                        Math.min(h.getDate(), letzter) + 7 * (+m[3] || 0) + (+m[4] || 0));
+  return Math.round((ende - heute) / 86400000);
+}
+function gratisText(p){
+  if(!p) return '';
+  const n = gratisTage(p.gratis);
+  if(!n || !p.preis) return '';
+  return p.plan === 'jahr' ? t('voll.gratis_jahr', {n: n, preis: p.preis})
+                           : t('voll.gratis_monat', {n: n, preis: p.preis});
+}
+/* Der Plan, den der Kaufkasten vorauswaehlt: das Jahr, sonst der Monat.
+   Nur dessen Testwoche nennen die Einstiege - sonst stuende dort "gratis",
+   und im Kasten waere eine Karte ohne Testwoche gewaehlt. 07.10.2026 */
+function gratisMerken(plaene){
+  const hol = id => (plaene || []).find(p => p.plan === id) || {};
+  const jahr = hol('jahr');
+  aboGratisPlan = jahr.preis ? jahr : hol('monat');
+}
 /* Die Auswahl Monat oder Jahr. Preise und Zeiträume kommen von Google. */
 async function vollWahlZeigen(){
   const P = aboPlugin(); if(!P || aboLaeuft) return;
@@ -5323,6 +5473,7 @@ async function vollWahlZeigen(){
     aboStoerung = true; vollZeileZeigen(); vollMeldung(t('voll.fehler')); return;
   }
   aboStoerung = false; aboProdukteFehlen = false;
+  gratisMerken(d.plaene);
   /* Erst hier der Kaufkasten - und nur, wenn die Einstellungen noch offen
      sind. Google braucht fuer preise() eine bis mehrere Sekunden; wer in
      dieser Zeit mit der Zurueck-Taste weiterging, bekam "Vollversion holen"
@@ -5349,31 +5500,8 @@ async function vollWahlZeigen(){
                    .format(jahr.micros / 12 / 1000000);
     }catch(e){ proMonat = ''; }
   }
-  /* Die Testwoche. Bis Build 94 kaufte ZmajAbo immer den nackten Basisplan,
-     ein in der Play Console angelegtes "7 Tage kostenlos" kam nie an. Jetzt
-     nimmt es das Gratisangebot, wenn Google dem Nutzer eins anbietet, und
-     meldet dessen Dauer als "gratis" (ISO 8601: P7D, P1W, P8W4D ...).
-     Dauer und Preis danach stehen VOR dem Kaufknopf, sonst weiss niemand,
-     wann zum ersten Mal abgebucht wird. Google erlaubt drei Tage bis drei
-     Jahre, der Text braucht also nur die Mehrzahl; Monate und Jahre werden
-     ab heute in Tage umgerechnet. Gefunden bei der Pruefung am 06.10.2026. */
-  const gratisTage = iso => {
-    const m = /^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)W)?(?:(\d+)D)?$/.exec(iso || '');
-    if(!m) return 0;
-    const h = new Date(), heute = Date.UTC(h.getFullYear(), h.getMonth(), h.getDate());
-    const zielJahr = h.getFullYear() + (+m[1] || 0), zielMonat = h.getMonth() + (+m[2] || 0);
-    // 31. Januar plus ein Monat ist der 28. Februar, nicht der 3. Maerz
-    const letzter = new Date(Date.UTC(zielJahr, zielMonat + 1, 0)).getUTCDate();
-    const ende = Date.UTC(zielJahr, zielMonat,
-                          Math.min(h.getDate(), letzter) + 7 * (+m[3] || 0) + (+m[4] || 0));
-    return Math.round((ende - heute) / 86400000);
-  };
-  const gratisText = p => {
-    const n = gratisTage(p.gratis);
-    if(!n || !p.preis) return '';
-    return p.plan === 'jahr' ? t('voll.gratis_jahr', {n: n, preis: p.preis})
-                             : t('voll.gratis_monat', {n: n, preis: p.preis});
-  };
+  /* Die Testwoche: gratisTage() und gratisText() stehen seit 07.10.2026
+     vor vollWahlZeigen(), die Kauf-Einstiege brauchen sie auch. */
   /* Die Karte WAEHLT nur aus. Gekauft wird mit dem Knopf darunter, und der
      heißt "Zahlungspflichtig abonnieren".
 
@@ -5459,6 +5587,7 @@ async function vollWahlZeigen(){
     const aktiv = !!(d && d.aktiv);
     if(aktiv !== premium){ vollversionMerken(aktiv); renderLives(); }
     aboStoerung = false;
+    aboGesperrt = !!(d && d.gesperrt) && !aktiv;   // siehe vollAbgleichenJetzt()
     vollZeileZeigen();
     if(aktiv && d && d.neu){ vollMeldung(t('voll.gekauft')); sound('wegmarke'); }
   });
@@ -5513,8 +5642,29 @@ $('widerrufKnopf').addEventListener('click', widerrufZeigen);
 
 $('swVoll').addEventListener('click', ()=>{
   if(premium){ aboSeiteOeffnen(); return; }   // aus geht nur bei Google
+  /* Gesperrt: kein zweites Abo anbieten, das alte ist ja noch da. Google
+     will solche Nutzer im Abo-Center, wo sie die Zahlung reparieren.
+     07.10.2026 */
+  if(aboGesperrt){ aboSeiteOeffnen(); return; }
   vollWahlZeigen();
 });
+/* Alle Kauf-Einstiege ausserhalb der Einstellungen: die Zeile im Laden,
+   die Vollversions-Stuecke, "Nie wieder warten" auf den Schirmen ohne
+   Leben und "Werbung abschalten" auf dem Ersatz-Werbeschirm. Bis Build 96
+   oeffneten sie nur die Einstellungen, und wer kaufen wollte, musste dort
+   erst noch den Schalter antippen. Jetzt kommt gleich der Kaufkasten.
+   Vorher abwarten, was Google zum Abo sagt: showSettings() startet
+   vollAbgleichen(), und solange das laeuft, bricht vollWahlZeigen() an
+   aboLaeuft still ab. Laeuft das Abo schon oder ist es gesperrt, bleibt es
+   bei den Einstellungen - dort stehen der Stand und der Weg zu Google.
+   Gefunden bei der Pruefung am 07.10.2026. */
+async function vollKaufOeffnen(){
+  showSettings();
+  if(!aboPlugin() || unlimited() || aboGesperrt) return;
+  try{ await aboAbgleich; }catch(e){}
+  if(unlimited() || aboGesperrt || aboProdukteFehlen || !sichtbar('settingsView')) return;
+  vollWahlZeigen();
+}
 /* Auch die Standzeile ist antippbar: antwortet der Play Store gerade nicht,
    soll man es noch einmal versuchen können. Google empfiehlt das ausdrücklich. */
 $('setVollStand').addEventListener('click', ()=>{ if(!premium) vollAbgleichen(); });
@@ -6023,8 +6173,14 @@ function renderLaden(){
      noch eine anzeige hinbauen dann sieht man es eindeutig“. */
   const vollZeileLaden = () => {
     if(unlimited() || !aboPlugin() || aboProdukteFehlen) return '';
+    /* Die Testwoche schon hier und nicht erst im Kaufkasten - aber nur,
+       wenn Google sie diesem Nutzer anbietet, und mit dem Preis danach wie
+       dort. Gefunden bei der Pruefung am 07.10.2026. */
+    const gratis = gratisText(aboGratisPlan);
     return '<div class="ware"><div><div class="wt">' + esc(t('voll.wahl_titel')) + '</div>'
-         + '<div class="wd">' + esc(t('lektion.vollversion')) + '</div></div>'
+         + '<div class="wd">' + esc(t('lektion.vollversion')) + '</div>'
+         + (gratis ? '<div class="wd" style="font-weight:800; color:var(--ink)">' + esc(gratis) + '</div>' : '')
+         + '</div>'
          + '<button class="btn kauf know" id="ladenVoll">' + esc(t('laden.voll_knopf'))
          + '</button></div>';
   };
@@ -6037,10 +6193,11 @@ function renderLaden(){
     b.addEventListener('click', ()=> trage(b.dataset.tragen)));
   const vk = box.querySelector('button[data-videoleben]');
   if(vk && !vk.disabled) vk.addEventListener('click', werbungFuerLeben);
+  // Beide direkt zum Kaufkasten, siehe vollKaufOeffnen(). 07.10.2026
   const lv = box.querySelector('#ladenVoll');
-  if(lv) lv.addEventListener('click', ()=>{ showSettings(); });
+  if(lv) lv.addEventListener('click', ()=>{ vollKaufOeffnen(); });
   box.querySelectorAll('button[data-vollstueck]').forEach(b =>
-    b.addEventListener('click', ()=>{ showSettings(); }));
+    b.addEventListener('click', ()=>{ vollKaufOeffnen(); }));
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
@@ -6169,7 +6326,20 @@ async function sicherungSpeichern(){
     if(P && P.Filesystem && P.Share){
       await P.Filesystem.writeFile({path:name, data:text, directory:'CACHE', encoding:'utf8'});
       const ort = await P.Filesystem.getUri({path:name, directory:'CACHE'});
-      await P.Share.share({title:t('set.sicherung'), url:ort.uri});
+      /* Teilen-Menue ohne Auswahl geschlossen: das Plugin lehnt mit
+         "Share canceled" ab. Bis zum 07.10.2026 stand dann "Das hat nicht
+         geklappt." da, und man hielt die Sicherung fuer kaputt. Gespeichert
+         ist trotzdem nichts - die Datei liegt nur im Zwischenspeicher der
+         App -, also ein ruhiger Hinweis statt der Fehlermeldung.
+         Grenze des Plugins: Geht das gewaehlte Ziel nur als Fenster
+         ueber der App auf, wird die App nicht gestoppt, und es meldet
+         ebenfalls "Share canceled". Das laesst sich hier nicht
+         unterscheiden. */
+      try{ await P.Share.share({title:t('set.sicherung'), url:ort.uri}); }
+      catch(e){
+        if(/cancel/i.test(String((e && e.message) || e))){ note.textContent = t('set.sicherung_abgebrochen'); return; }
+        throw e;
+      }
     } else {
       const a = document.createElement('a');
       const adresse = URL.createObjectURL(new Blob([text], {type:'application/json'}));
@@ -6237,6 +6407,30 @@ $('sichDatei').addEventListener('change', async e=>{
   const datei = e.target.files && e.target.files[0];
   e.target.value = '';          // damit dieselbe Datei nochmal gewaehlt werden kann
   if(datei) await sicherungEinlesen(datei);
+});
+
+/* ===== Zmaj bewerten und empfehlen (Einstellungen, Ueber die App) =====
+   07.10.2026. Bewerten geht hier gleich in den Play Store und nicht ueber
+   Googles Fenster in der App: das hat ein Kontingent und kommt oft gar
+   nicht, deshalb raet Google bei Knoepfen davon ab (ZmajBewertung.java).
+   Empfehlen nutzt dasselbe Teilen-Menue wie die Sicherung - kein Netz,
+   keine neue Bibliothek. referrer=utm_source app_teilen laesst die Play
+   Console die Installationen ueber diesen Weg zaehlen (WERBEPLAN.md,
+   Abschnitt 2). Am PC ohne Teilen-Menue geht das Mailprogramm auf. */
+$('setBewerten').addEventListener('click', async ()=>{
+  const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajBewertung;
+  if(P){ try{ await P.storeOeffnen(); }catch(e){} return; }
+  try{ window.open('https://play.google.com/store/apps/details?id=' + ZMAJ_PAKET, '_blank', 'noopener'); }catch(e){}
+});
+$('setEmpfehlen').addEventListener('click', async ()=>{
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  const text = t('set.empfehlen_text');
+  const link = 'https://play.google.com/store/apps/details?id=' + ZMAJ_PAKET + '&referrer=utm_source%3Dapp_teilen';
+  try{
+    if(P && P.Share) await P.Share.share({title: 'Zmaj', text: text, url: link, dialogTitle: t('set.empfehlen')});
+    else if(navigator.share) await navigator.share({title: 'Zmaj', text: text, url: link});
+    else location.href = 'mailto:?subject=Zmaj&body=' + encodeURIComponent(text + ' ' + link);
+  }catch(e){}   // Menue ohne Auswahl geschlossen: nichts zu melden
 });
 
 const ZMAJ_MAIL = 'zmaj.lernapp@gmail.com';
@@ -7175,7 +7369,15 @@ function buildLesson(){
   shuffle(((GRAMMAR[c.id]||{}).uebungen||[]).slice()).slice(0, LEKTION_GRAMMATIK).forEach(g=> tasks.push({typ:'gram', g}));
   shuffle(tasks);
   const intros = newW.map(w=>({typ:'intro', w}));
-  Lx = {queue:[...intros, ...tasks], i:0, results:[], right:0, total:tasks.length, skipped:0, newWords:new Set(), retried:new Set()};
+  /* testVorher: ob der Level-Test schon VOR dieser Lektion frei war. Neue
+     Woerter kommen schon waehrend der Lektion in known (showLessonTask);
+     erst in lessonEnd() gemessen, war "vorher" also immer schon dasselbe
+     wie "nachher", und der Hinweis "Der Level-Test ist jetzt
+     freigeschaltet!" kam nie. Hier gemerkt, erscheint er genau in der
+     Lektion, die ihn freischaltet.
+     Gefunden bei der Pruefung am 07.10.2026. */
+  Lx = {queue:[...intros, ...tasks], i:0, results:[], right:0, total:tasks.length, skipped:0, newWords:new Set(), retried:new Set(),
+        testVorher: testAllowed(c)};
 }
 function lessonBar(){
   $('lBar').innerHTML = Lx.queue.map((t,i)=>'<i class="'+(i<Lx.i ? (Lx.results[i]==='intro'?'intro':(Lx.results[i]==='skip'?'skip':(Lx.results[i]?'ok':'no'))) : (i===Lx.i?'cur':''))+'"></i>').join('');
@@ -7254,9 +7456,17 @@ function kurzMeldung(text){
    auch der Zweitversuch ueber admobStart() geht durch diese Tuer. Jeder
    Ausgang laeuft ueber fertigEinmal(), damit er wieder aufgeht. */
 let anzeigeLaeuft = false;
+/* Zwei Merker vom 07.10.2026. anzeigeZuletzt: wann zuletzt eine Anzeige
+   zu Ende ging - daran haelt kartenNachreichen() die Bewertungskarte von
+   ihr fern. lohnAbgebrochen: das belohnte Video stand, wurde aber vor der
+   Belohnung weggedrueckt - dann meldet werbungFuerLeben() nicht „keine
+   Anzeige“. */
+let anzeigeZuletzt = 0;
+let lohnAbgebrochen = false;
 function zeigeWerbung(belohnt, fertig, darfNoch){
   if(anzeigeLaeuft){ fertig(false); return; }
   anzeigeLaeuft = true;
+  lohnAbgebrochen = false;
   let erledigt = false;
   /* Sicherheitsleine. Ohne sie bliebe der Riegel fuer immer zu, wenn ein
      Weg sein fertig() nie ruft - und die App koennte bis zum Neustart
@@ -7268,13 +7478,17 @@ function zeigeWerbung(belohnt, fertig, darfNoch){
     if(erledigt) return;          // ein Ausgang, einmal
     erledigt = true; anzeigeLaeuft = false;
     clearTimeout(wacht);
+    if(lief || lohnAbgebrochen) anzeigeZuletzt = Date.now();   // fuer die Bewertungskarte
     fertig(lief);
   };
-  const P = window.Capacitor && window.Capacitor.Plugins;
-  if(WERBUNG_ECHT && !AdMobP && admobFehler && P && P.AdMob && !admobZweitversuch){
+  /* Dieselbe Bedingung wie in werbungErlaubt(), siehe admobNachholbar().
+     Danach Googles Antwort abgleichen wie in werbungVorbereiten() - wer
+     erst im nachgeholten Fenster zugestimmt hat, bekaeme sonst bis zum
+     Neustart nur npa-Anzeigen. 07.10.2026. */
+  if(admobNachholbar()){
     admobZweitversuch = true;
-    admobStart().then(()=> zeigeWerbungJetzt(belohnt, fertigEinmal, darfNoch),
-                      ()=> zeigeWerbungJetzt(belohnt, fertigEinmal, darfNoch));
+    const weiter = ()=> zeigeWerbungJetzt(belohnt, fertigEinmal, darfNoch);
+    admobStart().then(()=> admobDa() ? werbungAbgleichen() : null).then(weiter, weiter);
     return;
   }
   zeigeWerbungJetzt(belohnt, fertigEinmal, darfNoch);
@@ -7337,7 +7551,8 @@ function zeigeWerbungJetzt(belohnt, fertig, darfNoch){
   };
   knopf.addEventListener('click', () => schliessen(true));
   const pk = kasten.querySelector('#werbePremium');
-  if(pk) pk.addEventListener('click', () => { schliessen(false); showSettings(); });
+  // Direkt zum Kaufkasten, siehe vollKaufOeffnen(). 07.10.2026
+  if(pk) pk.addEventListener('click', () => { schliessen(false); vollKaufOeffnen(); });
 }
 
 /* Ein belohntes Video: freiwillig, gibt ein Leben zurück. */
@@ -7349,7 +7564,14 @@ function werbungFuerLeben(e){
      selbst mit. Der Laden bleibt beim alten Weg - sein Knopf traegt
      eigenes Innenleben, das textContent unten zerstoeren wuerde. */
   const quelle = e && e.currentTarget;
-  const knopf = (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd')) ? quelle : $('lAd');
+  /* Der Laden-Knopf (data-videoleben, ohne id) fiel bis v96 auf $('lAd')
+     durch: im Laden meist null, also wurde nichts gesperrt - ein zweiter
+     Tipp lief in den Riegel und meldete „keine Anzeige“, waehrend das
+     Video schon lud. Er wird jetzt selbst gesperrt, aber nur ueber
+     disabled, sein Text bleibt. Pruefung vom 07.10.2026. */
+  const ladenKnopf = (quelle && quelle.hasAttribute && quelle.hasAttribute('data-videoleben')) ? quelle : null;
+  const knopf = ladenKnopf ? null
+              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd')) ? quelle : $('lAd');
   /* Gefunden bei der Pruefung am 06.10.2026: der Knopf bleibt stehen,
      waehrend die Leben nachwachsen - der Schirm ohne Leben wartet die zwei
      Stunden ja gerade ab. Bei vollen Leben brachte das Video kein Herz,
@@ -7365,11 +7587,18 @@ function werbungFuerLeben(e){
      der AdMob-Weg gar keine Oberflaeche baut. Ohne ein Wort sieht die App
      unbeteiligt aus - und genau das loest den zweiten Tipp aus. */
   if(knopf){ knopf.disabled = true; knopf.textContent = t('werbung.laedt'); }
+  if(ladenKnopf) ladenKnopf.disabled = true;
+  lohnAbgebrochen = false;
   zeigeWerbung(true, angesehen => {
     if(knopf){ knopf.disabled = false; knopf.textContent = t('werbung.leben_holen'); }
+    if(ladenKnopf) ladenKnopf.disabled = false;
     /* Ohne Anzeige kein Leben - und ein Wort dazu, sonst wirkt der Knopf
-       kaputt. */
-    if(!angesehen){ kurzMeldung(t('werbung.keine_anzeige')); return; }
+       kaputt. Wer das Video vor der Belohnung wegdrueckt, hatte aber eine
+       Anzeige: dann sagt die Meldung, warum es kein Leben gab. 07.10.2026. */
+    if(!angesehen){
+      kurzMeldung(lohnAbgebrochen ? t('werbung.lohn_abgebrochen') : t('werbung.keine_anzeige'));
+      return;
+    }
     lives = {anzahl: Math.min(LEBEN_MAX, lives.anzahl + WERBUNG_LEBEN_LOHN),
              zeit: lives.zeit || Date.now()};
     saveProgress(); renderLives(); sound('ok');
@@ -7386,6 +7615,10 @@ function werbungFuerLeben(e){
       else if(knopf && knopf.id === 'lAd'){
         if(sichtbar('levelView') && sichtbar('lesson')) lektionVerlassen();
       }
+      /* Aus dem Laden: den Laden neu zeichnen, damit Preis und Video zum
+         neuen Herz passen. showLevelHome() traf hier nur die unsichtbare
+         Levelansicht. 07.10.2026. */
+      else if(ladenKnopf){ if(sichtbar('shopView')) renderLaden(); }
       else showLevelHome();
     };
     if(!knopf || document.body.contains(knopf)) danach();
@@ -7475,7 +7708,7 @@ function ohneLebenVorbei(){
 function lessonEnd(){
   if(Lx && Lx.topf){ topfEnde(); return; }
   stilleBitte(); uhrAus();   // das letzte Wort nicht in den Ergebnisschirm reden lassen
-  const c=cur(); const wasAllowed = testAllowed(c);
+  const c=cur(); const wasAllowed = Lx.testVorher !== false;   // siehe buildLesson, 07.10.2026
   const scored = Lx.results.filter(r=>r!=='intro' && r!=='skip').length;
   zaehle('lek');
   // "Ohne Fehler" nur, wenn auch nichts übersprungen wurde – sonst holt man
@@ -7619,13 +7852,17 @@ function vollZeileLeben(id){
      Knopf zwischen den zwei Herz-Wegen sah sie nach Bettelei aus.
      Ajdin am 29.09.2026: „neee das sieht nicht gut aus, im laden schon
      aber da nicht“. Im Laden bleibt die eigene Zeile. */
+  /* Die Testwoche als leise zweite Zeile, nur wenn Google sie anbietet -
+     siehe vollZeileLaden(). 07.10.2026 */
+  const gratis = gratisText(aboGratisPlan);
   return '<div class="abohinweis" style="text-align:center">'
        + '<button type="button" class="abolink" id="' + id + '">'
-       + esc(t('voll.nie_warten')) + '</button></div>';
+       + esc(t('voll.nie_warten')) + '</button>'
+       + (gratis ? '<div>' + esc(gratis) + '</div>' : '') + '</div>';
 }
 function vollZeileHorchen(id){
   const k = document.getElementById(id);
-  if(k) k.addEventListener('click', ()=>{ showSettings(); });
+  if(k) k.addEventListener('click', ()=>{ vollKaufOeffnen(); });   // 07.10.2026
 }
 function lebenWege(){
   const kasten = $('lvLeben');
@@ -8558,6 +8795,17 @@ function benSchalterZeigen(){
   });
 });
 
+/* Abstand der Bewertungskarte zur letzten Anzeige. Pruefung vom
+   07.10.2026: der Ergebnisschirm des Level-Tests loest auch die Anzeige
+   aus, und die Karte kam 600 ms nach dem Verlassen - bei Gratisnutzern
+   fast immer direkt nach einer weggedrueckten Anzeige, und „Nein danke“
+   sperrt sie fuer immer. Ging die letzte Anzeige vor weniger als dieser
+   Frist zu Ende, bleibt die Karte vorgemerkt und kommt bei der naechsten
+   Rueckkehr zum Lernpfad. bewertungDran lebt nur im Arbeitsspeicher:
+   wer die App vorher schliesst, bekommt sie erst nach dem naechsten
+   bestandenen Level-Test. Die Regel „nach bestandenem Level-Test“ und
+   die Grenzen in bewertungFaellig() bleiben, wie sie sind. */
+const BEWERTUNG_NACH_ANZEIGE_MS = 60 * 1000;
 /* Karten, die auf das Verlassen eines Ergebnisschirms warten. Eine nach
    der anderen, nie zwei uebereinander, und nie ueber der Einwilligung,
    einer Anzeige oder einer Wegmarke. Was jetzt nicht passt, bleibt dran. */
@@ -8572,7 +8820,9 @@ function kartenNachreichen(){
   setTimeout(()=>{
     if(!frei()) return;
     if(benDran){ benDran = false; zeigeBenFrage(); return; }
-    if(bewertungDran){ bewertungDran = false; zeigeBewertung(); }
+    if(bewertungDran && Date.now() - anzeigeZuletzt >= BEWERTUNG_NACH_ANZEIGE_MS){
+      bewertungDran = false; zeigeBewertung();
+    }
   }, 600);
 }
 const Ex_laeuft = () => !!(Ex && !Ex.fertig && sichtbar('einstufungView'));
@@ -8683,6 +8933,12 @@ async function init(){
      Neuinstallation lief ein zahlender Abonnent deshalb als Gratisnutzer
      weiter. Gefunden am 20.09.2026. */
   vollAbgleichen();
+  /* Und ob es etwas zu kaufen gibt, mit oder ohne Testwoche. Bisher fragte
+     das nur showSettings(); die Kauf-Einstiege im Laden und auf den
+     Schirmen ohne Leben wussten es deshalb nicht und konnten die Testwoche
+     nicht nennen. Dieselbe Abfrage bei Google Play, nur frueher.
+     07.10.2026 */
+  produkteNachsehen();
   benPlanen();
   /* Jetzt erst die Werbung. vorspannVorbei löst auf, wenn das Logo
      ausgeblendet ist - oder spätestens nach elf Sekunden. */
@@ -8894,7 +9150,9 @@ function istWort(de){
    Daenisch fehlten im Level Tagesablauf zehn. Die Kennung w.id baut start.py
    als "bedeutung:wort" VOR dem Uebersetzen, sie ist in allen acht Sprachen
    dieselbe. Damit zeigt die Liste ueberall dieselben Zeilen wie auf Deutsch.
-   Gefunden am 26.09.2026. */
+   Gefunden am 26.09.2026. Eingehaengt erst am 07.10.2026: bis dahin stand
+   die Funktion hier, aber schonVokabel() und wortzeilen() fragten weiter
+   istWort(w.de), und in sieben Sprachen fehlten weiter Vokabeln. */
 function grundBedeutung(w){
   const id = String(w.id || ''), bs = String(w.bs || '');
   const schnitt = id.length - bs.length - 1;
@@ -8917,7 +9175,7 @@ function schonVokabel(){        // alle bosnischen Einzelwörter der ganzen App
   if(vokabelFormen) return vokabelFormen;
   vokabelFormen = new Set();
   CATEGORIES.forEach(k => k.words.forEach(w => {
-    if(!istWort(w.de)) return;
+    if(!istWort(grundBedeutung(w))) return;
     String(w.bs).split(' / ').forEach(v => {
       const t = v.trim();
       if(t && !t.includes(' ')) vokabelFormen.add(wortform(t));
@@ -8936,7 +9194,7 @@ function wortzeilen(c){
   const zeilen = [], gesehen = new Set(), schon = schonVokabel();
   c.words.forEach(w => {
     const kann = known.has(w.id);
-    if(istWort(w.de)){
+    if(istWort(grundBedeutung(w))){
       const f = wortform(String(w.bs).split(' / ')[0]);
       if(gesehen.has(f)) return;
       gesehen.add(f);
