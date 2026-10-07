@@ -37,7 +37,8 @@ STAND = os.path.join(ORDNER, "stand.json")
 # Kontomeldungen, dazu Zustellfehler. Die gehoeren nicht ins Feedback.
 MASCHINEN = re.compile(r"(no-?reply|noreply|mailer-daemon|postmaster|notifications?@|"
                        r"@(?:[\w.-]+\.)?(google|googlemail|youtube|github|firebase|admob)\.com$|"
-                       r"@accounts\.google\.com$|@payments\.google\.com$|@bestpractices\.dev$)", re.I)
+                       r"@accounts\.google\.com$|@payments\.google\.com$|@bestpractices\.dev$|"
+                       r"@mail\.instagram\.com$)", re.I)
 
 
 def zugang():
