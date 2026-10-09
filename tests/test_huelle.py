@@ -33,3 +33,16 @@ def test_alle_bauskripte_nutzen_huelle(wurzel):
     for name in ("app_bauen.py", "admob_scharf.py", "projekt_sichern.py"):
         text = open(os.path.join(wurzel, name), encoding="utf-8").read()
         assert "huelle.ordner()" in text, name
+
+
+def test_testwerbung_nur_in_der_kopie(tmp_path, wurzel):
+    """--testwerbung schaltet in der Paket-Kopie auf Testanzeigen; die Quelle
+    muss den Anker genau einmal haben, sonst bricht der Bau ab. 10.10.2026."""
+    import app_bauen
+    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    assert quelle.count(app_bauen.TESTWERBUNG_AUS) == 1
+    kopie = tmp_path / "index.html"
+    kopie.write_text("a\n" + app_bauen.TESTWERBUNG_AUS + "\nb\n", encoding="utf-8")
+    app_bauen.testwerbung_einschalten(str(kopie))
+    text = kopie.read_text(encoding="utf-8")
+    assert app_bauen.TESTWERBUNG_AN in text and app_bauen.TESTWERBUNG_AUS not in text

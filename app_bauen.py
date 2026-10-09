@@ -17,6 +17,9 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
 
     app_bauen.py                 Abgleich + Debug-Paket zum Aufspielen aufs Handy
     app_bauen.py --aab           Abgleich + signiertes Paket für Google Play
+    app_bauen.py --aab --testwerbung
+                                 dasselbe mit Googles Testanzeigen – nur für
+                                 den geschlossenen Test, nie für die Produktion
     app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen
 
     "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" app_bauen.py
@@ -116,6 +119,36 @@ def _liegt_in(pfad, ordner):
         return os.path.commonpath([pfad, ordner]) == ordner
     except ValueError:                      # verschiedene Laufwerke
         return False
+
+
+TESTWERBUNG_AUS = "const ADMOB_TEST = false;"
+TESTWERBUNG_AN = "const ADMOB_TEST = true;"
+
+
+def testwerbung_einschalten(pfad=None):
+    """Schaltet in der KOPIE www/index.html auf Googles Testanzeigen um.
+
+    Fuer Pakete, die in den geschlossenen Test gehen. Seit admob_scharf.py
+    stehen in web/index.html die echten Kennungen, und ein Tester, der aus
+    Hilfsbereitschaft eine echte Anzeige antippt, erzeugt ungueltigen
+    Traffic auf dem AdMob-Konto. Mit ADMOB_TEST = true nimmt das Plugin
+    Googles Test-Anzeigenbloecke. Die Quelle bleibt unberuehrt; ein Paket
+    fuer die Produktion entsteht ohne --testwerbung. Google hat den ersten
+    Antrag auf Produktionszugriff am 09.10.2026 abgelehnt, auch weil
+    waehrend des Tests kein Update kam - fuer diese Updates ist der
+    Schalter da.
+    """
+    pfad = pfad or os.path.join(WWW, "index.html")
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    if text.count(TESTWERBUNG_AUS) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s - "
+                         "Testwerbung laesst sich nicht sicher einschalten."
+                         % (TESTWERBUNG_AUS, pfad))
+    with io.open(pfad, "w", encoding="utf-8", newline="") as f:
+        f.write(text.replace(TESTWERBUNG_AUS, TESTWERBUNG_AN))
+    print("\nTESTWERBUNG: ADMOB_TEST = true im Paket. Nur fuer den "
+          "geschlossenen Test hochladen, NICHT in die Produktion.")
 
 
 def emir_drueber():
@@ -401,6 +434,8 @@ def main():
     # liegt, kommt ins Paket. Hier, vor der Weiche, gilt es fuer das
     # Debug-Paket, fuer --aab und fuer --nur-abgleich gleich. 06.10.2026.
     emir_drueber()
+    if "--testwerbung" in sys.argv:
+        testwerbung_einschalten()
     # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst
     # Nummern verbrannt, ohne dass ein Paket entstand.
     if not nur:
