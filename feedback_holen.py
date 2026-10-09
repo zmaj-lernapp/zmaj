@@ -14,7 +14,9 @@ verschickte mail.py damit auch Mails; mail.py ist seit dem 04.10.2026 weg,
 die Datei bleibt fuer dieses Skript.
 
   python feedback_holen.py                neue Mails seit dem letzten Merken
-                                          als JSON ausgeben (nichts merken)
+                                          als JSON ausgeben (nichts merken);
+                                          Play-Console- und AdMob-Mails stehen
+                                          gesondert unter "wichtig"
   python feedback_holen.py --merken       dasselbe, danach den Stand merken
   python feedback_holen.py --start        nur den Stand auf "jetzt" setzen
   python feedback_holen.py --entwurf DATEI
@@ -39,6 +41,12 @@ MASCHINEN = re.compile(r"(no-?reply|noreply|mailer-daemon|postmaster|notificatio
                        r"@(?:[\w.-]+\.)?(google|googlemail|youtube|github|firebase|admob)\.com$|"
                        r"@accounts\.google\.com$|@payments\.google\.com$|@bestpractices\.dev$|"
                        r"@mail\.instagram\.com$)", re.I)
+
+# Automaten, deren Mails trotzdem wichtig sind: Play Console und AdMob.
+# Die Ablehnung des Produktionsantrags (09.10.2026) ist vom Filter oben
+# stillschweigend verschluckt worden. Diese Mails kommen deshalb als
+# "wichtig" mit in die Ausgabe, aber nicht nach "neu" (keine Antwort).
+WICHTIG = re.compile(r"(googleplay|play-?console|admob)[\w.-]*@(?:[\w.-]+\.)?google\.com$", re.I)
 
 
 def zugang():
@@ -125,20 +133,25 @@ def abholen(merken):
             print(json.dumps({"hinweis": "Stand neu gesetzt, keine alten Mails", "neu": []}, ensure_ascii=False))
             return
         letzte = st.get("letzte_uid", 0)
-        neu, maschinen = [], 0
+        neu, wichtig, maschinen = [], [], 0
         for uid in [u for u in uids if u > letzte]:
             typ, d = m.uid("fetch", str(uid), "(BODY.PEEK[])")
             if typ != "OK" or not d or not isinstance(d[0], tuple):
                 continue
             n = email.message_from_bytes(d[0][1])
             name, adresse = email.utils.parseaddr(dekodiere(n.get("From")))
+            if WICHTIG.search(adresse or ""):
+                wichtig.append({"uid": uid, "von": adresse, "betreff": dekodiere(n.get("Subject")),
+                                "datum": n.get("Date", ""), "text": text_aus(n)[:2500]})
+                continue
             if MASCHINEN.search(adresse or ""):
                 maschinen += 1
                 continue
             neu.append({"uid": uid, "von_name": name, "von": adresse,
                         "betreff": dekodiere(n.get("Subject")), "datum": n.get("Date", ""),
                         "message_id": n.get("Message-ID", ""), "text": text_aus(n)})
-        print(json.dumps({"neu": neu, "maschinen_uebersprungen": maschinen}, ensure_ascii=False, indent=1))
+        print(json.dumps({"neu": neu, "wichtig": wichtig, "maschinen_uebersprungen": maschinen},
+                         ensure_ascii=False, indent=1))
         if merken and uids:
             stand_schreiben(uidvalidity, max(uids))
     finally:
