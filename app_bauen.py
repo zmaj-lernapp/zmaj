@@ -20,7 +20,18 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
     app_bauen.py --aab --testwerbung
                                  dasselbe mit Googles Testanzeigen – nur für
                                  den geschlossenen Test, nie für die Produktion
+    app_bauen.py --aab --pflicht signiertes Paket als PFLICHT-Update:
+                                 versionCode wird das nächste Vielfache von
+                                 100, und wer es aus Google Play bekommt,
+                                 kann die App erst nach dem Update weiter
+                                 benutzen. Nur bei schweren Sicherheitslücken
+                                 oder schweren Fehlern (Ajdin, 10.10.2026).
+                                 Ein normaler Bau überspringt Vielfache von
+                                 100, siehe naechste_versionsnummer()
     app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen
+
+Ein unbekannter oder vertippter Schalter bricht ab, bevor etwas passiert
+(seit 10.10.2026, siehe schalter_lesen()).
 
     "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" app_bauen.py
 
@@ -392,8 +403,81 @@ def freigabe_aab():
         print("dein Schlüssel ist der Upload-Schlüssel.")
 
 
-def versionsnummer_hochzaehlen():
-    """Zählt versionCode in app/build.gradle um eins hoch.
+# ------------------------------------------------------- Pflicht-Updates ---
+# Seit dem 10.10.2026 holt die App Updates selbst ueber Google Play (Plugin
+# ZmajUpdate in der Huelle). Normal kommen sie SANFT: Google fragt, laedt im
+# Hintergrund, man lernt weiter. PFLICHT - die App geht erst nach dem Update
+# weiter - ist ein Update, wenn Google die Prioritaet 4 oder 5 meldet ODER
+# sein versionCode ein Vielfaches von 100 ist. Die Prioritaet laesst sich nur
+# ueber die Play Developer API setzen, nicht in der Play Console; die Nummer
+# setzt dieses Skript mit --pflicht. Pflicht nur bei schweren
+# Sicherheitsluecken oder schweren Fehlern (Ajdin, 10.10.2026).
+#
+# Daraus folgt die andere Haelfte der Regel: Ein NORMALER Bau darf nie auf
+# einem Vielfachen von 100 landen. Weil jeder Bau hochzaehlt, kaeme der
+# Zaehler sonst alle hundert Bauten von allein dort an, und ein ganz
+# gewoehnliches Update waere fuer alle Pflicht.
+PFLICHT_SCHRITT = 100
+# Der hoechste versionCode, den Google Play annimmt.
+HOECHSTE_VERSIONSNUMMER = 2100000000
+SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich")
+
+
+def schalter_lesen(argv):
+    """Gibt die Schalter als Menge zurück und bricht bei einem unbekannten ab.
+
+    Bis zum 10.10.2026 ging ein vertippter Schalter stillschweigend unter.
+    Bei --pflicht wäre das gefährlich: Aus "--plicht" würde ein sanftes
+    Update, obwohl eine schwere Lücke sofort geschlossen werden soll. Dann
+    lieber gar kein Paket.
+    """
+    unbekannt = [a for a in argv if a not in SCHALTER]
+    if unbekannt:
+        raise SystemExit("ABBRUCH: unbekannter Schalter %s - erlaubt sind %s. "
+                         "Nichts gebaut." % (", ".join(unbekannt), " ".join(SCHALTER)))
+    schalter = set(argv)
+    if "--pflicht" in schalter and "--nur-abgleich" in schalter:
+        raise SystemExit("ABBRUCH: --pflicht setzt den versionCode, --nur-abgleich "
+                         "zählt ihn nicht hoch. Zusammen gäbe das kein Pflicht-Update.")
+    return schalter
+
+
+def naechste_versionsnummer(aktuell, pflicht=False):
+    """Der versionCode nach `aktuell`, nach der Regel oben.
+
+    Normal: eins weiter, aber nie ein Vielfaches von 100 - dann noch eins
+    (99 -> 101). Pflicht: das nächste Vielfache von 100, das größer ist als
+    `aktuell`, auch wenn `aktuell` selbst schon eins ist (100 -> 200), denn
+    Play nimmt jede Nummer nur einmal.
+
+    Ohne Datei, damit die Regel für sich getestet ist (tests/test_huelle.py).
+    """
+    if isinstance(aktuell, bool) or not isinstance(aktuell, int) or aktuell < 0:
+        raise ValueError("versionCode muss eine ganze Zahl ab 0 sein, nicht %r" % (aktuell,))
+    if pflicht:
+        neu = (aktuell // PFLICHT_SCHRITT + 1) * PFLICHT_SCHRITT
+    else:
+        neu = aktuell + 1
+        if neu % PFLICHT_SCHRITT == 0:
+            neu += 1
+    if neu > HOECHSTE_VERSIONSNUMMER:
+        raise ValueError("versionCode %d liegt über Googles Grenze %d"
+                         % (neu, HOECHSTE_VERSIONSNUMMER))
+    return neu
+
+
+def pflicht_melden(nummer):
+    """Unübersehbar - beim Hochzählen und noch einmal ganz am Ende."""
+    print("\n" + "!" * 64)
+    print("  PFLICHT-UPDATE: versionCode %d" % nummer)
+    print("  Wer es aus Google Play bekommt, kann die App erst nach dem")
+    print("  Update weiter benutzen. Nur bei schweren Sicherheitslücken")
+    print("  oder schweren Fehlern hochladen.")
+    print("!" * 64)
+
+
+def versionsnummer_hochzaehlen(pflicht=False, pfad=None):
+    """Zählt versionCode in app/build.gradle hoch, nach naechste_versionsnummer().
 
     Google Play nimmt jede Nummer nur EINMAL an – auch eine, die zu einem
     zurückgezogenen Paket gehörte. Wer das vergisst, merkt es erst beim
@@ -403,28 +487,60 @@ def versionsnummer_hochzaehlen():
     die Zahl schnell wachsen, aber das ist egal: Play verlangt nur, dass sie
     steigt, und bis 2.100.000.000 ist Platz. versionName bleibt von Hand –
     das ist die Nummer, die der Nutzer sieht.
+
+    Mit pflicht=True (--pflicht) springt die Nummer auf das nächste
+    Vielfache von 100 – daran erkennt die App das Pflicht-Update. Fehlt dann
+    build.gradle oder der versionCode darin, bricht der Bau ab: Ein Paket,
+    das man für Pflicht hält und das keins ist, wäre schlimmer als gar
+    keins. 10.10.2026.
+
+    Gibt die neue Nummer zurück, None wenn nichts geändert wurde. `pfad` ist
+    für die Tests, sonst die build.gradle der Hülle.
     """
-    pfad = os.path.join(HUELLE, "android", "app", "build.gradle")
+    pfad = pfad or os.path.join(HUELLE, "android", "app", "build.gradle")
     if not os.path.isfile(pfad):
+        if pflicht:
+            raise SystemExit("ABBRUCH: build.gradle nicht gefunden (%s) - ohne "
+                             "versionCode gibt es kein Pflicht-Update." % pfad)
         print("  build.gradle nicht gefunden – versionCode bleibt, wie er ist.")
-        return
+        return None
     text = io.open(pfad, encoding="utf-8", newline="").read()
     treffer = re.search(r"(versionCode\s+)(\d+)", text)
     if not treffer:
+        if pflicht:
+            raise SystemExit("ABBRUCH: Kein versionCode in %s - ohne ihn gibt es "
+                             "kein Pflicht-Update." % pfad)
         print("  Kein versionCode in build.gradle gefunden.")
-        return
+        return None
     alt = int(treffer.group(2))
-    neu = alt + 1
+    try:
+        neu = naechste_versionsnummer(alt, pflicht)
+    except ValueError as fehler:
+        raise SystemExit("ABBRUCH: %s" % fehler)
     text = text[:treffer.start()] + treffer.group(1) + str(neu) + text[treffer.end():]
     io.open(pfad, "w", encoding="utf-8", newline="").write(text)
     name = re.search(r'versionName\s+"([^"]+)"', text)
     print("  versionCode %d -> %d   (versionName %s, die bleibt von Hand)"
           % (alt, neu, name.group(1) if name else "?"))
+    if pflicht:
+        pflicht_melden(neu)
+    elif neu != alt + 1:
+        print("  %d übersprungen: Vielfache von %d sind Pflicht-Updates."
+              % (alt + 1, PFLICHT_SCHRITT))
+    return neu
 
 
-def main():
-    aab = "--aab" in sys.argv
-    nur = "--nur-abgleich" in sys.argv
+def main(argv=None):
+    # Erst die Schalter, dann alles andere: Ein vertippter Schalter oder
+    # --pflicht mit --nur-abgleich bricht ab, bevor irgendetwas kopiert oder
+    # hochgezaehlt ist. 10.10.2026.
+    schalter = schalter_lesen(sys.argv[1:] if argv is None else argv)
+    aab = "--aab" in schalter
+    nur = "--nur-abgleich" in schalter
+    pflicht = "--pflicht" in schalter
+    if pflicht:
+        print("PFLICHT-UPDATE (--pflicht): versionCode wird das nächste "
+              "Vielfache von %d.\n" % PFLICHT_SCHRITT)
     print("Tonspur prüfen ...")
     pruefen()
     print("\nInhalt kopieren ...")
@@ -434,13 +550,14 @@ def main():
     # liegt, kommt ins Paket. Hier, vor der Weiche, gilt es fuer das
     # Debug-Paket, fuer --aab und fuer --nur-abgleich gleich. 06.10.2026.
     emir_drueber()
-    if "--testwerbung" in sys.argv:
+    if "--testwerbung" in schalter:
         testwerbung_einschalten()
     # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst
     # Nummern verbrannt, ohne dass ein Paket entstand.
+    nummer = None
     if not nur:
         print("\nVersionsnummer ...")
-        versionsnummer_hochzaehlen()
+        nummer = versionsnummer_hochzaehlen(pflicht)
     capacitor()
     # Nach dem Abgleich, nicht davor: `cap sync` kann node_modules anfassen.
     plugins_flicken()
@@ -452,6 +569,13 @@ def main():
         freigabe_aab()
     else:
         debug_apk()
+    if pflicht:
+        # Noch einmal ganz unten: Gradle schreibt Hunderte Zeilen, und die
+        # Meldung vom Hochzaehlen steht dann weit oben. 10.10.2026.
+        pflicht_melden(nummer)
+        if not aab:
+            print("  Das ist das Debug-Paket. In-App-Updates gibt es nur, wenn die")
+            print("  App aus Google Play kommt; für den Store: --aab --pflicht.")
 
 
 if __name__ == "__main__":
