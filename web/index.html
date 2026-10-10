@@ -1573,6 +1573,11 @@
       <div class="sd" id="setVollVerwalten" style="display:none; padding-bottom:12px">
         <button type="button" class="abolink" id="aboVerwalten"></button>
       </div>
+      <!-- Wechsel vom Monats- aufs Jahresabo. Nur bei einem laufenden
+           MONATS-Abo, siehe vollZeileZeigen(). 10.10.2026 -->
+      <div class="sd" id="setVollWechsel" style="display:none; padding-bottom:12px">
+        <button type="button" class="abolink" id="aboWechsel"></button>
+      </div>
       <div class="sd" id="setVollNote" style="font-size:12px; color:var(--muted); padding-bottom:12px"></div>
       <!-- Widerrufsknopf nach § 356a BGB. Muss ständig verfügbar und
            hervorgehoben sein, deshalb steht er hier und nicht versteckt. -->
@@ -5375,6 +5380,13 @@ let aboGesperrt = false;
 let aboProdukteFehlen = false;
 /* Der Plan, dessen Testwoche die Kauf-Einstiege nennen, siehe gratisMerken(). */
 let aboGratisPlan = null;
+/* Der Basisplan des laufenden Abos, wie ZmajAbo ihn sich beim Kauf gemerkt
+   hat: 'monat', 'jahr' oder null (unbekannt). Google selbst verraet ihn der
+   App nicht, siehe planVon() in ZmajAbo.java. Nur bei 'monat' gibt es
+   "Auf jaehrlich wechseln", und der Jahrespreis dafuer kommt wie im
+   Kaufkasten aus preise(). 10.10.2026 */
+let aboPlan = null;
+let aboJahrPreis = '';
 
 function vollMeldung(text){
   const el = $('setVollNote'); if(!el) return;
@@ -5407,6 +5419,16 @@ function vollZeileZeigen(){
      man die Zahlung (07.10.2026). */
   v.style.display = (an || aboStoerung || aboGesperrt) ? '' : 'none';
   $('aboVerwalten').textContent = t('voll.verwalten');
+  /* Wechsel aufs Jahr: nur mit einem laufenden Monatsabo laut Google, nicht
+     gesperrt, ohne Stoerung und nur mit Preis. premium allein reicht nicht,
+     das setzt auch der Dauerschalter. 10.10.2026 */
+  const w2 = $('setVollWechsel');
+  if(w2){
+    const zeigen = aboPlan === 'monat' && !aboGesperrt && !aboStoerung && !!aboJahrPreis;
+    w2.style.display = zeigen ? '' : 'none';
+    $('aboWechsel').textContent = zeigen
+      ? t('voll.wechsel') + ' · ' + t('voll.pro_jahr', {preis: aboJahrPreis}) : '';
+  }
   const w = $('widerrufKnopf');
   if(w) w.textContent = t('set.widerruf_knopf');
 }
@@ -5425,6 +5447,7 @@ async function vollAbgleichenJetzt(){
   if(d && d.bekannt){
     aboStoerung = false;
     aboGesperrt = !!d.gesperrt && !d.aktiv;
+    aboPlanSetzen(d);
     /* Nicht nur die Leben: mit der Vollversion gehen auch ihre Stuecke
        an oder aus. Ohne das neue Zeichnen funkelte der Drache nach dem
        Auslaufen weiter, bis der Nutzer den Schirm wechselte. */
@@ -5449,6 +5472,23 @@ async function produkteNachsehen(){
   if(!d || !d.ok) return;                      // keine Antwort: nichts aendern
   aboProdukteFehlen = !d.plaene || !d.plaene.length;
   gratisMerken(d.plaene);
+  vollZeileZeigen();
+}
+/* Merkt sich den Plan aus einer Antwort von ZmajAbo und holt fuer ein
+   Monatsabo den Jahrespreis. produkteNachsehen() fragt bei laufendem Abo
+   nicht nach Preisen, deshalb hier eigens. Das frischt zugleich die
+   ProductDetails im Plugin auf, die aufJahrWechseln() braucht. 10.10.2026 */
+function aboPlanSetzen(d){
+  aboPlan = (d && d.aktiv && (d.plan === 'monat' || d.plan === 'jahr')) ? d.plan : null;
+  if(aboPlan === 'monat') jahrPreisHolen();
+}
+async function jahrPreisHolen(){
+  const P = aboPlugin(); if(!P) return;
+  let d = null;
+  try{ d = await P.preise(); }catch(e){ return; }
+  if(!d || !d.ok || !d.plaene) return;          // keine Antwort: nichts aendern
+  const jahr = d.plaene.find(p => p.plan === 'jahr') || {};
+  aboJahrPreis = jahr.preis || '';
   vollZeileZeigen();
 }
 
@@ -5621,6 +5661,7 @@ async function vollWahlZeigen(){
     if(aktiv !== premium){ vollversionMerken(aktiv); renderLives(); }
     aboStoerung = false;
     aboGesperrt = !!(d && d.gesperrt) && !aktiv;   // siehe vollAbgleichenJetzt()
+    aboPlanSetzen(d);
     vollZeileZeigen();
     if(aktiv && d && d.neu){ vollMeldung(t('voll.gekauft')); sound('wegmarke'); }
   });
@@ -5702,6 +5743,53 @@ async function vollKaufOeffnen(){
    soll man es noch einmal versuchen können. Google empfiehlt das ausdrücklich. */
 $('setVollStand').addEventListener('click', ()=>{ if(!premium) vollAbgleichen(); });
 $('aboVerwalten').addEventListener('click', aboSeiteOeffnen);
+/* "Auf jaehrlich wechseln". Wie im Kaufkasten startet nicht die Zeile
+   selbst den Kauf, sondern ein Knopf "Zahlungspflichtig abonnieren"
+   (§ 312j Abs. 3 BGB, siehe vollWahlZeigen()): der Wechsel ist ein neues
+   Jahresabo, und Google bucht sofort ab. Was dabei genau passiert, steht
+   bei aufJahrWechseln() in ZmajAbo.java. 10.10.2026 */
+function jahrWechselZeigen(){
+  const P = aboPlugin();
+  if(!P || aboLaeuft || aboPlan !== 'monat' || !aboJahrPreis) return;
+  const kasten = document.createElement('div');
+  kasten.className = 'nachfrage';
+  kasten.innerHTML =
+    '<div class="nachfragebox">' +
+      '<h3></h3><div class="txt"></div>' +
+      '<div class="abogratis"></div>' +
+      '<div class="abohinweis"></div>' +
+      '<button class="btn know" id="wechselOk"></button>' +
+      '<button class="btn ghost" id="wechselZu"></button>' +
+    '</div>';
+  kasten.querySelector('h3').textContent = t('voll.wechsel');
+  kasten.querySelector('.txt').textContent = t('voll.wechsel_text', {preis: aboJahrPreis});
+  /* Preis und Zeitraum fett direkt ueber dem Knopf, wie die Testwoche im
+     Kaufkasten: wer bestellt, muss sehen, was wie oft abgebucht wird. */
+  kasten.querySelector('.abogratis').textContent = t('voll.pro_jahr', {preis: aboJahrPreis});
+  kasten.querySelector('.abohinweis').textContent = t('voll.hinweis');
+  kasten.querySelector('#wechselOk').textContent = t('voll.kaufen');
+  kasten.querySelector('#wechselZu').textContent = t('btn.abbrechen');
+  document.body.appendChild(kasten);
+  const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
+  frageSchliessen = zu;                       // damit die Zurueck-Taste sie schliesst
+  kasten.querySelector('#wechselZu').addEventListener('click', zu);
+  kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
+  kasten.querySelector('#wechselOk').addEventListener('click', async ()=>{
+    if(aboLaeuft) return;                      // Sperre gegen Doppeltipp
+    aboLaeuft = true;
+    kasten.querySelector('#wechselOk').disabled = true;
+    vollMeldung('');
+    let r = null;
+    try{ r = await P.aufJahrWechseln(); }catch(e){}
+    aboLaeuft = false;
+    zu();
+    /* Ob gewechselt wurde, sagt wie beim Kauf erst die Meldung aboGeaendert
+       (dann "Vollversion aktiv"), kaufAbgebrochen oder kaufFehler. */
+    if(!r || !r.ok) vollMeldung(t('voll.fehler'));
+    vollZeileZeigen();
+  });
+}
+$('aboWechsel').addEventListener('click', jahrWechselZeigen);
 function aboSeiteOeffnen(){
   const u = 'https://play.google.com/store/account/subscriptions'
           + '?sku=vollversion&package=de.smartdragon.zmaj';
@@ -8618,12 +8706,34 @@ function zeigeVorschlag(){
    will nicht jeden Abend daran erinnert werden. Beides ist meine Wahl,
    nicht Ajdins - steht im Bericht vom 01.10.2026.
 
+   Ganz Schluss ist danach nicht mehr (10.10.2026, Pruefung vom
+   07.10.2026): Vierzehn Tage nach dem letzten Planen, also nach der
+   letzten Benutzung der App, kommt genau EINE leise Rueckhol-Nachricht
+   um 19 Uhr. Davor liegt eine Woche ganz ohne Nachricht, und gelernt
+   wurde dann mindestens vierzehn Tage nicht. Danach kommt nichts mehr,
+   auch nach dem naechsten Oeffnen nicht, bis wieder gelernt wurde -
+   mehr als ein freundliches Anstupsen nach zwei Wochen waere Druck. Sie
+   haengt am Schalter "Taegliche Erinnerung".
+   Ausserdem haben Erinnerung, Serienwarnung und Leben-Nachricht mehrere
+   Texte, die nach dem Kalendertag wechseln: Jeden Abend derselbe Satz
+   wird irgendwann nicht mehr gelesen. Die Uhrzeiten bleiben fest (19 und
+   20 Uhr, festgelegt am 30.09.2026). Die Pruefung schlug auch eine
+   waehlbare Uhrzeit vor; die ist nicht beauftragt.
+
    Die Leben-Nachricht kommt nur, wenn beim Planen alle Leben weg sind.
    Faellt sie in die Nacht (22 bis 8 Uhr), kommt sie um 8 Uhr; faellt sie
    auf einen Abend, an dem ohnehin eine Nachricht kommt, entfaellt sie. */
 const BEN_SCHLUESSEL = 'zmaj_benachrichtigung';
 const BEN_ERINNERUNG_UM = 19, BEN_SERIE_UM = 20, BEN_TAGE = 7;
 const BEN_ID_ABEND = 100, BEN_ID_LEBEN = 200, BEN_KANAL = 'erinnerungen';
+/* Rueckhol-Nachricht (10.10.2026). Die Nummer liegt zwischen den Abenden
+   (100-113) und den Leben (200), also in dem Bereich, den benPlanen vor
+   jedem Planen absagt. Eigener Kanal mit Wichtigkeit 2 (IMPORTANCE_LOW,
+   laut developer.android.com ohne Ton), denn sie soll leise sein. Ein
+   neuer Kanal statt des alten, weil Android die Wichtigkeit eines Kanals
+   nach dem Anlegen nicht mehr aendern laesst. Vor Android 8 (minSdk 24
+   ist Android 7) gibt es keine Kanaele, dort kommt sie wie die anderen. */
+const BEN_PAUSE_TAGE = 14, BEN_ID_RUECKHOL = 150, BEN_KANAL_LEISE = 'rueckhol';
 const benPlugin = () => (window.Capacitor && window.Capacitor.Plugins
                          && window.Capacitor.Plugins.LocalNotifications) || null;
 let benDran = false;
@@ -8651,18 +8761,33 @@ function benZeit(tag, stunde){ const d = new Date(tag + 'T12:00:00'); d.setHours
    zu heute: 14 Nummern im Kreis (100 bis 113). Vorher war es "100 + Tage
    ab heute" - eine behaltene Nachricht von gestern trug dann dieselbe
    Nummer wie ein kommender Abend, und der fiel weg. */
-function benAbendId(tag){
-  const t = tag.split('-').map(Number);
-  return BEN_ID_ABEND + (Math.round(Date.UTC(t[0], t[1] - 1, t[2]) / 86400000) % 14);
+function benTagNr(tag){
+  const z = tag.split('-').map(Number);
+  return Math.round(Date.UTC(z[0], z[1] - 1, z[2]) / 86400000);
 }
+function benAbendId(tag){
+  return BEN_ID_ABEND + (benTagNr(tag) % 14);
+}
+/* Welcher Text an welchem Tag: die Tagesnummer modulo der Zahl der
+   Fassungen. Kein Zufall - so bringen zwei Abende hintereinander nie
+   denselben Satz, und ein zweites Planen am selben Tag waehlt denselben
+   Text wie das erste. 10.10.2026 */
+function benFassung(tag, fassungen){ return fassungen[benTagNr(tag) % fassungen.length]; }
 function benPlan(){
   const s = benStand(), jetzt = Date.now(), heute = today(), plan = [];
   const heuteGeuebt = days.has(heute);
+  /* Der letzte Lerntag ('' ohne einen). Kam fuer ihn die
+     Rueckhol-Nachricht schon (s.rueckholFuer, gesetzt in benPlanen), bleibt
+     es still - keine Abendnachricht, keine zweite Rueckhol-Nachricht -,
+     bis wieder gelernt wird. Siehe BENACHRICHTIGUNGEN. 10.10.2026 */
+  let basis = '';
+  days.forEach(k => { if(k > basis) basis = k; });
+  const ruhe = s.rueckholFuer === basis;
   const schutzDa = schutzNow() > 0;
   const schutzRest = naechsterSchutzIn();
   const gesendet = new Set(s.gesendet || []);
   const abende = new Set();
-  for(let d = 0; d < BEN_TAGE; d++){
+  for(let d = 0; d < BEN_TAGE && !ruhe; d++){
     const tag = tagMinus(heute, -d);
     if(d === 0 && heuteGeuebt) continue;
     /* Kam heute schon eine Abendnachricht, kommt keine zweite - auch dann
@@ -8682,10 +8807,27 @@ function benPlan(){
     if(wann.getTime() <= jetzt + 60000) continue;
     abende.add(tag);
     const n = streak();
-    plan.push({id: benAbendId(tag), art, wann,
-               titel: art === 'serie' ? tp('ben.serie_titel', n) : t('ben.erinnerung_titel'),
-               text:  art === 'serie' ? t('ben.serie_text') : t('ben.erinnerung_text')});
+    /* Mehrere Fassungen je Art, Zmaj als Absender. Der Titel der
+       Serienwarnung bleibt einer, er traegt die Zahl. 10.10.2026 */
+    const [titel, text] = art === 'serie'
+      ? [tp('ben.serie_titel', n),
+         benFassung(tag, [t('ben.serie_text'), t('ben.serie_text_2'), t('ben.serie_text_3'), t('ben.serie_text_4')])]
+      : benFassung(tag, [[t('ben.erinnerung_titel'), t('ben.erinnerung_text')],
+                         [t('ben.erinnerung_titel_2'), t('ben.erinnerung_text_2')],
+                         [t('ben.erinnerung_titel_3'), t('ben.erinnerung_text_3')],
+                         [t('ben.erinnerung_titel_4'), t('ben.erinnerung_text_4')]]);
+    plan.push({id: benAbendId(tag), art, wann, titel, text});
   }
+  /* Die Rueckhol-Nachricht: vierzehn Tage ab heute. Die Abende oben
+     reichen bis heute + 6, dazwischen liegt eine Woche ohne Nachricht.
+     Jedes neue Planen schiebt sie nach hinten - sie kommt nur, wenn die
+     App so lange zu blieb. basis sagt, zu welchem Lerntag sie gehoert;
+     benPlanen traegt das nach dem Zustellen in s.rueckholFuer ein.
+     10.10.2026 */
+  if(s.erinnerung && !ruhe)
+    plan.push({id: BEN_ID_RUECKHOL, art: 'rueckhol', basis,
+               wann: benZeit(tagMinus(heute, -BEN_PAUSE_TAGE), BEN_ERINNERUNG_UM),
+               titel: t('ben.rueckhol_titel'), text: t('ben.rueckhol_text')});
   if(s.leben && !unlimited()){
     syncLives();
     if(lives.anzahl === 0 && lives.zeit){
@@ -8697,8 +8839,8 @@ function benPlan(){
       }
       const abend = h >= 18 && h < 22 && abende.has(dayKey(wann));
       if(!abend && wann.getTime() > jetzt + 60000)
-        plan.push({id: BEN_ID_LEBEN, art: 'leben', wann,
-                   titel: t('ben.leben_titel'), text: t('ben.leben_text')});
+        plan.push({id: BEN_ID_LEBEN, art: 'leben', wann, titel: t('ben.leben_titel'),
+                   text: benFassung(dayKey(wann), [t('ben.leben_text'), t('ben.leben_text_2'), t('ben.leben_text_3')])});
     }
   }
   return plan;
@@ -8727,6 +8869,9 @@ async function benPlanen(){
     (s.geplant || []).forEach(p => {
       if(!p.abend || p.at > jetzt) return;
       gesendet.add(p.tag);
+      /* Die Rueckhol-Nachricht ist gekommen: Fuer diesen Lerntag ist
+         Schluss, bis wieder gelernt wird. 10.10.2026 */
+      if(p.art === 'rueckhol') s.rueckholFuer = p.basis || '';
       if(p.tag === heute && !heuteGeuebt) behalten.add(p.id);
     });
     s.gesendet = [...gesendet].sort().slice(-10);
@@ -8746,6 +8891,9 @@ async function benPlanen(){
     const plan = benPlan().filter(p => !behalten.has(p.id));
     if(!plan.length) return;
     try{ await L.createChannel({id: BEN_KANAL, name: t('ben.kanal'), importance: 3, visibility: 1}); }catch(e){}
+    if(plan.some(p => p.art === 'rueckhol')){
+      try{ await L.createChannel({id: BEN_KANAL_LEISE, name: t('ben.kanal_leise'), importance: 2, visibility: 1}); }catch(e){}
+    }
     /* Genau, wo es ohne Rueckfrage geht, sonst ungenau. Unter Android 12
        meldet das Plugin immer "granted" - dort kommen die Nachrichten
        punktgenau wie vorher; ungenau darf ein Wecker dort bis zu 75 % der
@@ -8759,10 +8907,11 @@ async function benPlanen(){
     try{ const r = await L.checkExactNotificationSetting(); genau = !!r && r.exact_alarm === 'granted'; }catch(e){}
     try{
       await L.schedule({notifications: plan.map(p => ({
-        id: p.id, title: p.titel, body: p.text, channelId: BEN_KANAL,
+        id: p.id, title: p.titel, body: p.text, channelId: p.art === 'rueckhol' ? BEN_KANAL_LEISE : BEN_KANAL,
         isExactNotification: genau,
         schedule: {at: p.wann, allowWhileIdle: true}, extra: {art: p.art}}))});
-      s.geplant = s.geplant.concat(plan.map(p => ({id: p.id, at: p.wann.getTime(), tag: dayKey(p.wann), abend: p.art !== 'leben'})));
+      s.geplant = s.geplant.concat(plan.map(p => ({id: p.id, at: p.wann.getTime(), tag: dayKey(p.wann), abend: p.art !== 'leben',
+                                                   art: p.art, basis: p.basis})));
       benMerken(s);
     }catch(e){}
   })();
@@ -8824,6 +8973,12 @@ function benSchalterZeigen(){
       return;
     }
     s[feld] = an; s.gefragt = true;
+    /* Wer die Erinnerung selbst wieder einschaltet, will sie - auch wenn
+       die Rueckhol-Nachricht schon kam. 10.10.2026 */
+    if(an && feld === 'erinnerung'){
+      delete s.rueckholFuer;
+      s.geplant = (s.geplant || []).filter(p => p.art !== 'rueckhol');
+    }
     benMerken(s);
     k.setAttribute('aria-checked', an);
     $('benNote').textContent = '';
