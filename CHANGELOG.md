@@ -7,6 +7,10 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Settings: monthly subscribers can switch to the yearly plan in the app; the
+  price is shown right above the button.
+- Reminders: several texts per reminder type that change by day, with Zmaj as
+  the sender, and one gentle comeback note after a longer break.
 - `huelle.py`: the build scripts find the Android shell as `../zmaj-android`
   or `../zmaj-huelle` (fresh clone), or via `ZMAJ_HUELLE`.
 - OpenSSF Best Practices entry (project 15225) with badge in the README.
