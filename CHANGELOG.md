@@ -16,6 +16,14 @@ are in the Play Store listing. Format:
   Instagram and YouTube; the website footer links the same channels.
 - Settings: a short notice with a link to Google Play when a subscription is
   on hold because a payment failed.
+- In-app updates through Google Play: an update normally downloads in the
+  background while you keep learning, then a small bar offers a restart.
+  An update that fixes a severe security issue or another serious bug is
+  mandatory (Google's update priority 4 or higher, or a `versionCode` that is
+  a multiple of 100).
+- `app_bauen.py --pflicht` builds such a mandatory update (next multiple of
+  100); normal builds skip multiples of 100, and an unknown switch aborts the
+  build before anything is copied.
 
 ### Fixed
 - Ads: the maximum ad content rating is "General", matching the app's content

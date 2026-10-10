@@ -1092,6 +1092,54 @@ Am Ende steht der Pfad da, der in Android Studio zu öffnen ist. Dort dann
 Vor dem Bauen daran denken: Hat sich am Inhalt etwas geändert, muss erst
 `inhalt_bauen.py` laufen. `app_bauen.py` kopiert nur, es baut nichts neu.
 
+### Updates: sanft oder Pflicht
+
+Seit 10.10.2026 fragt die App über Google Play, ob es eine neuere Fassung
+gibt (Googles In-App-Updates, eigenes Plugin `ZmajUpdate`).
+
+- **Sanft** ist der Normalfall: Google fragt, lädt im Hintergrund, man lernt
+  weiter. Ist das Update geladen, zeigt die App eine kleine Leiste
+  „Update bereit · Neu starten“.
+- **Pflicht** heißt: Die App lässt sich erst nach dem Update weiter
+  benutzen. Pflicht ist ein Update, wenn Google die Priorität 4 oder 5
+  meldet **oder** sein `versionCode` ein Vielfaches von 100 ist.
+
+**Wann `--pflicht`?** Nur bei schweren Sicherheitslücken oder schweren
+Fehlern (Ajdin, 10.10.2026) – etwa wenn Lernstand verloren geht, die App
+beim Start abstürzt oder ein Kauf nicht ankommt. Alles andere bleibt sanft:
+Ein Pflicht-Update unterbricht jeden, der gerade lernt.
+
+    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" app_bauen.py --aab --pflicht
+
+Das setzt `versionCode` auf das nächste Vielfache von 100 (98 → 100,
+100 → 200) und meldet am Anfang und am Ende `PFLICHT-UPDATE: versionCode …`.
+Ein normaler Bau überspringt Vielfache von 100 (99 → 101), damit kein
+gewöhnliches Update aus Versehen Pflicht wird. Deshalb `versionCode` auch
+nie von Hand auf ein Vielfaches von 100 setzen. `--pflicht` zusammen mit
+`--nur-abgleich` bricht ab, ein vertippter Schalter auch.
+
+**Googles Priorität** (0 bis 5) lässt sich **nur über die Play Developer
+API** setzen (`inAppUpdatePriority` unter `Edits.tracks.releases`); die Play
+Console hat dafür kein Feld. Sie wird beim Ausrollen gesetzt und lässt sich
+danach nicht mehr ändern. Ein Skript dafür gibt es hier nicht; der Weg über
+die Nummer reicht.
+
+**Eine Grenze der Nummer:** Bei der Priorität rechnet Google alle
+übersprungenen Fassungen mit, bei der Nummer zählt nur die neueste. Wer noch
+150 hat, wenn schon 201 draußen ist, bekommt nur 201 angeboten – und das ist
+sanft, obwohl er das Pflicht-Update 200 nie hatte. Nach einem Pflicht-Update
+mit dem nächsten deshalb ein paar Tage warten oder es ebenfalls mit
+`--pflicht` bauen.
+
+**Ausprobieren** geht nur mit einer App aus Google Play, am einfachsten über
+die interne App-Freigabe der Play Console. Das Google-Konto auf dem Handy
+muss die App schon einmal aus Google Play geladen haben. Erst eine Fassung
+über einen Freigabe-Link installieren, dann eine mit höherem `versionCode`
+hochladen, deren Link öffnen, aber **nicht** im Store installieren, sondern
+die App starten. Die interne Freigabe kennt keine Priorität; Pflicht lässt
+sich dort nur über die Nummer (`--pflicht`) prüfen. Googles Anleitung:
+https://developer.android.com/guide/playcore/in-app-updates/test
+
 ### Zwei Werte, die nie wieder geändert werden dürfen
 
 Beide stehen in `zmaj-android/capacitor.config.json`:
@@ -1121,6 +1169,7 @@ Alles andere lässt sich später noch drehen.
 | `ZmajAbo` (eigenes, Java) | das Abo über Google Play Billing |
 | `ZmajEinwilligung` (eigenes, Java) | liest Googles Einwilligung (IAB TCF) für die Werbung |
 | `ZmajBewertung` (eigenes, Java) | Googles Bewertungsfenster |
+| `ZmajUpdate` (eigenes, Java) | Updates aus Google Play: sanft im Hintergrund oder Pflicht (seit 10.10.2026) |
 
 Stand 04.10.2026, nachgesehen in `package.json` und
 `android/app/src/main/java/de/smartdragon/zmaj/` der Hülle. Alle sind so eingebaut, dass ihr Fehlen nichts kaputt macht: Die App
@@ -1137,7 +1186,10 @@ Datei am PC weiter.
 - Zielgruppe in der Play Console bei **16+** lassen: Die Werbung läuft ohne
   Kennzeichnung als Kinder-App. Die Obergrenze `maxAdContentRating` steht
   seit v97 auf `'General'`, passend zur Einstufung USK 0 / PEGI 3.
-- `versionCode` in `android/app/build.gradle` erhöhen (Stand 02.10.2026: 89).
+- `versionCode` in `android/app/build.gradle` zählt `app_bauen.py` bei
+  jedem Bau selbst hoch (Stand 10.10.2026: 98). Nie von Hand auf ein
+  Vielfaches von 100 setzen – das wäre ein Pflicht-Update, siehe
+  „Updates: sanft oder Pflicht“.
 
 ## Die öffentliche Seite
 
