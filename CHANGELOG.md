@@ -44,6 +44,8 @@ are in the Play Store listing. Format:
 - Cancelling "Save backup" shows a neutral note instead of an error.
 
 ### Changed
+- Full version: the settings row and the purchase box also name the dragon
+  accessories that come with it, as the store listing already did.
 - The dataset no longer names text-to-speech as a task or intended use
   (Hugging Face card, datasheet, Zenodo, citation and package keywords). The
   audio is Azure TTS output and must not be used to train speech synthesis;
