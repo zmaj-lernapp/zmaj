@@ -29,7 +29,16 @@ are in the Play Store listing. Format:
   100); normal builds skip multiples of 100, and an unknown switch aborts the
   build before anything is copied.
 
+### Security
+- The hidden developer switch no longer compares against a word in the
+  source. `web/index.html` holds a placeholder; `app_bauen.py` inserts a
+  PBKDF2 check value from the private Android shell at build time
+  (`dauer_wort_setzen.py` creates it), and the build stops without it.
+  Switches set with the old word no longer count.
+
 ### Fixed
+- Settings: "Switch to yearly" is hidden during the free trial week, when
+  there is no paid month whose remaining days could be carried over.
 - Ads: the maximum ad content rating is "General", matching the app's content
   rating; a session started offline now retries AdMob once the device is
   back online; a rewarded video closed early no longer reports "no ad".
@@ -44,6 +53,13 @@ are in the Play Store listing. Format:
 - Cancelling "Save backup" shows a neutral note instead of an error.
 
 ### Changed
+- Full version: the settings row and the purchase box also name what Zmaj
+  gets with it (new skins, costumes and a sparkle effect), matching the
+  benefits listed on Google Play.
+- Terms of service (section 7, all languages, dated 11.10.2026): the full
+  version also gives Zmaj skins, costumes and a sparkle effect, which it
+  takes off again when the full version ends; "content" now reads
+  "learning content".
 - The dataset no longer names text-to-speech as a task or intended use
   (Hugging Face card, datasheet, Zenodo, citation and package keywords). The
   audio is Azure TTS output and must not be used to train speech synthesis;
