@@ -53,12 +53,25 @@ SCHRITTE = [
         if(ziel < 0) ziel = Lx.queue.findIndex(q => q.typ === 'mc');
         while(Lx.i < ziel){ await window.__antworte(true, 'lBody', ()=>Lx); }
         await new Promise(r=>setTimeout(r,800)); scrollTo(0,0); return Lx.i"""),
-    ("05-richtig", """
-        const q = Lx.queue[Lx.i];
-        [...document.querySelectorAll('#lBody .opt')].find(o => o.textContent === q.w.bs).click();
-        await new Promise(r=>setTimeout(r,1000)); return q.w.bs"""),
+    # Bis 11.10.2026 stand hier "05-richtig": dieselbe Aufgabe wie 04, nur
+    # beantwortet. Jetzt eine Grammatikaufgabe - die zeigte bisher kein Bild.
+    ("05-grammatik", """
+        // Konjugation: sieht nach Grammatik aus und fragt nicht schon wieder
+        // nach dem Preis wie 04.
+        let ziel = -1;
+        {
+          const k = CATEGORIES.findIndex(c => c.id === 'konjugation');
+          const lv = k >= 0 ? k : CATEGORIES.findIndex(c => ((GRAMMAR[c.id] || {}).uebungen || []).length);
+          openLevel(lv); await new Promise(r=>setTimeout(r,400)); startLesson();
+          await new Promise(r=>setTimeout(r,800));
+          ziel = Lx.queue.findIndex(q => q.typ === 'gram');
+        }
+        while(Lx.i < ziel){ await window.__antworte(true, 'lBody', ()=>Lx); }
+        await new Promise(r=>setTimeout(r,800)); scrollTo(0,0);
+        return Lx.queue[Lx.i].typ + ' ' + Lx.queue[Lx.i].g.frage"""),
     ("06-luecke", """
-        document.querySelector('#lBody .weiterbox .btn').click(); await new Promise(r=>setTimeout(r,500));
+        const wb = document.querySelector('#lBody .weiterbox .btn');
+        if(wb){ wb.click(); await new Promise(r=>setTimeout(r,500)); }
         let ziel = Lx.queue.findIndex((q, i) => i >= Lx.i && q.typ === 'gap');
         for(let n = 0; ziel < 0 && n < 8; n++){ startLesson(); await new Promise(r=>setTimeout(r,600)); ziel = Lx.queue.findIndex(q => q.typ === 'gap'); }
         while(Lx.i < ziel){ await window.__antworte(true, 'lBody', ()=>Lx); }
