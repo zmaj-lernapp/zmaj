@@ -44,8 +44,9 @@ are in the Play Store listing. Format:
 - Cancelling "Save backup" shows a neutral note instead of an error.
 
 ### Changed
-- Full version: the settings row and the purchase box also name the dragon
-  accessories that come with it, as the store listing already did.
+- Full version: the settings row and the purchase box also name what Zmaj
+  gets with it (new skins, costumes and a sparkle effect), matching the
+  benefits listed on Google Play.
 - The dataset no longer names text-to-speech as a task or intended use
   (Hugging Face card, datasheet, Zenodo, citation and package keywords). The
   audio is Azure TTS output and must not be used to train speech synthesis;
