@@ -4057,8 +4057,30 @@ function zeigeGeschenk(){
   frageSchliessen = zu;
   sound('done');
 }
-const DAUER_SCHLUESSEL = 'zmaj_dauer';
-const DAUER_WORT = 'dragon';        // hier aendern, falls es jemand erraet
+/* Neuer Schluessel seit 11.10.2026: was unter 'zmaj_dauer' steht, wurde
+   mit dem alten Wort eingeschaltet. Das stand im Klartext hier und damit
+   im oeffentlichen Repository - es zaehlt nicht mehr. */
+const DAUER_SCHLUESSEL = 'zmaj_dauer2';
+/* Nicht das Wort, sondern sein Pruefwert (PBKDF2-SHA-256). Aus ihm laesst
+   sich das Wort nicht zurueckrechnen, auch nicht aus der entpackten App.
+   In der Quelle steht nur der Platzhalter; app_bauen.py setzt beim Bauen
+   den Wert aus der privaten Huelle ein (dauer_pruefwert.txt, angelegt mit
+   dauer_wort_setzen.py). Ohne eingesetzten Wert, etwa in der Web-Demo,
+   schaltet kein Wort etwas frei. 11.10.2026 */
+const DAUER_PRUEFWERT = '__DAUER_PRUEFWERT__';
+const DAUER_SALZ = 'zmaj-dauer-2026';
+const DAUER_RUNDEN = 300000;
+async function dauerWortStimmt(w){
+  if(!/^[0-9a-f]{64}$/.test(DAUER_PRUEFWERT)) return false;
+  try{
+    const enc = new TextEncoder();
+    const schluessel = await crypto.subtle.importKey('raw', enc.encode(w), 'PBKDF2', false, ['deriveBits']);
+    const bits = await crypto.subtle.deriveBits(
+      {name: 'PBKDF2', hash: 'SHA-256', salt: enc.encode(DAUER_SALZ), iterations: DAUER_RUNDEN},
+      schluessel, 256);
+    return [...new Uint8Array(bits)].map(b => b.toString(16).padStart(2, '0')).join('') === DAUER_PRUEFWERT;
+  }catch(e){ return false; }
+}
 /* Dasselbe Versteck, anderes Wort: zeigt die Geraetekennung, statt
    etwas umzuschalten. Kein Geheimnis, nur nichts fuer die Oberflaeche. */
 const KENNUNG_WORT = 'kennung';
@@ -4158,7 +4180,7 @@ function dauerVollVerdrahten(){
     const w = wort.trim().toLowerCase();
     if(w === KENNUNG_WORT){ await kennungZeigen(); return; }
     if(w === PRUEF_WORT){ await pruefwerkzeugOeffnen(); return; }
-    if(w !== DAUER_WORT) return;
+    if(!(await dauerWortStimmt(w))) return;
     if(dauerVoll){
       if(await frage('Dauerhafte Vollversion',
                      'Sie ist eingeschaltet. Ausschalten?',
