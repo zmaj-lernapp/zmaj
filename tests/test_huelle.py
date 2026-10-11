@@ -151,7 +151,7 @@ def test_main_reicht_pflicht_durch(monkeypatch):
     """--pflicht kommt bei versionsnummer_hochzaehlen an, ein normaler Bau nicht."""
     import app_bauen
     aufrufe = []
-    for name in ("pruefen", "kopieren", "emir_drueber", "capacitor",
+    for name in ("pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "capacitor",
                  "plugins_flicken", "freigabe_aab", "debug_apk"):
         monkeypatch.setattr(app_bauen, name, lambda *args, n=name, **kwargs: aufrufe.append(n))
 
@@ -165,3 +165,62 @@ def test_main_reicht_pflicht_durch(monkeypatch):
     aufrufe.clear()
     app_bauen.main(["--aab"])
     assert ("nummer", False) in aufrufe and ("nummer", True) not in aufrufe
+
+
+# Dauer-Vollversion (11.10.2026): Das Wort stand im Klartext im oeffentlichen
+# Repository. Jetzt steht in der Quelle nur ein Platzhalter, und app_bauen.py
+# setzt den Pruefwert aus der privaten Huelle ein.
+def test_dauer_quelle_hat_nur_den_platzhalter(wurzel):
+    import app_bauen
+    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    assert quelle.count(app_bauen.DAUER_PLATZHALTER) == 1
+    assert "DAUER_WORT" not in quelle
+
+
+def test_dauer_einsetzen_nur_in_der_kopie(tmp_path):
+    import app_bauen
+    wert = "ab" * 32
+    datei = tmp_path / "dauer_pruefwert.txt"
+    datei.write_text(wert + "\n", encoding="utf-8")
+    kopie = tmp_path / "index.html"
+    kopie.write_text("a\n" + app_bauen.DAUER_PLATZHALTER + "\nb\n", encoding="utf-8")
+    app_bauen.dauer_einsetzen(str(kopie), str(datei))
+    text = kopie.read_text(encoding="utf-8")
+    assert "const DAUER_PRUEFWERT = '%s';" % wert in text
+    assert "__DAUER_PRUEFWERT__" not in text
+
+
+@pytest.mark.parametrize("inhalt", [None, "dragon", "AB" * 32])
+def test_dauer_bricht_ohne_gueltigen_wert_ab(tmp_path, inhalt):
+    import app_bauen
+    datei = tmp_path / "dauer_pruefwert.txt"
+    if inhalt is not None:
+        datei.write_text(inhalt, encoding="utf-8")
+    kopie = tmp_path / "index.html"
+    kopie.write_text(app_bauen.DAUER_PLATZHALTER, encoding="utf-8")
+    with pytest.raises(SystemExit):
+        app_bauen.dauer_einsetzen(str(kopie), str(datei))
+
+
+def test_dauer_pruefwert_wie_in_der_app(wurzel):
+    """dauer_wort_setzen.py und dauerWortStimmt() muessen denselben Wert
+    rechnen - sonst sperrt sich Ajdin mit dem richtigen Wort aus."""
+    import re
+    import shutil
+    import subprocess
+    import dauer_wort_setzen as d
+    quelle = open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8").read()
+    assert "const DAUER_SALZ = '%s';" % d.SALZ in quelle
+    assert "const DAUER_RUNDEN = %d;" % d.RUNDEN in quelle
+    assert re.search(r"const w = wort\.trim\(\)\.toLowerCase\(\);", quelle)
+    if not shutil.which("node"):
+        pytest.skip("node fehlt")
+    js = ("const c = globalThis.crypto.subtle, e = new TextEncoder();"
+          "c.importKey('raw', e.encode(process.argv[1]), 'PBKDF2', false, ['deriveBits'])"
+          ".then(k => c.deriveBits({name: 'PBKDF2', hash: 'SHA-256', salt: e.encode(process.argv[2]),"
+          " iterations: Number(process.argv[3])}, k, 256))"
+          ".then(b => console.log(Buffer.from(b).toString('hex')));")
+    wort = "  Kahva Na Bascarsiji  "
+    aus = subprocess.run(["node", "-e", js, wort.strip().lower(), d.SALZ, str(d.RUNDEN)],
+                         capture_output=True, text=True, check=True).stdout.strip()
+    assert aus == d.pruefwert(wort)

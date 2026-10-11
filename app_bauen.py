@@ -162,6 +162,39 @@ def testwerbung_einschalten(pfad=None):
           "geschlossenen Test hochladen, NICHT in die Produktion.")
 
 
+DAUER_PLATZHALTER = "const DAUER_PRUEFWERT = '__DAUER_PRUEFWERT__';"
+DAUER_DATEI = os.path.join(HUELLE, "dauer_pruefwert.txt")
+
+
+def dauer_einsetzen(pfad=None, datei=None):
+    """Setzt in der KOPIE www/index.html den Pruefwert des Dauer-Worts ein.
+
+    Das Wort fuer die versteckte Dauer-Vollversion (Ajdin und Kuebra) stand
+    bis 11.10.2026 im Klartext in web/index.html und damit im oeffentlichen
+    Repository. Jetzt steht dort nur ein Platzhalter; der Pruefwert liegt in
+    der privaten Huelle (dauer_wort_setzen.py legt ihn an). Fehlt er, bricht
+    der Bau ab - sonst kaeme eine App heraus, in der der Schalter still
+    nicht mehr geht.
+    """
+    pfad = pfad or os.path.join(WWW, "index.html")
+    datei = datei or DAUER_DATEI
+    if not os.path.exists(datei):
+        raise SystemExit("ABBRUCH: %s fehlt. Erst dauer_wort_setzen.py in Thonny "
+                         "laufen lassen und das Wort festlegen." % datei)
+    with io.open(datei, encoding="utf-8") as f:
+        wert = f.read().strip()
+    if not re.fullmatch(r"[0-9a-f]{64}", wert):
+        raise SystemExit("ABBRUCH: %s enthaelt keinen Pruefwert (64 Hex-Zeichen)." % datei)
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    if text.count(DAUER_PLATZHALTER) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s."
+                         % (DAUER_PLATZHALTER, pfad))
+    with io.open(pfad, "w", encoding="utf-8", newline="") as f:
+        f.write(text.replace(DAUER_PLATZHALTER,
+                             DAUER_PLATZHALTER.replace("__DAUER_PRUEFWERT__", wert)))
+
+
 def emir_drueber():
     """Legt die Emir-Aufnahmen ueber die kopierte Tonspur in www/audio.
 
@@ -550,6 +583,7 @@ def main(argv=None):
     # liegt, kommt ins Paket. Hier, vor der Weiche, gilt es fuer das
     # Debug-Paket, fuer --aab und fuer --nur-abgleich gleich. 06.10.2026.
     emir_drueber()
+    dauer_einsetzen()
     if "--testwerbung" in schalter:
         testwerbung_einschalten()
     # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst

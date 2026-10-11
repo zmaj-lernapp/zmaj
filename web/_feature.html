@@ -67,13 +67,37 @@ function schrift(){
   g.fillStyle = '#FFD23F';
   g.fillText('.', x + breite, y);
 
-  g.font = '700 44px Nunito, system-ui, sans-serif';
+  // Die beiden Zeilen je Sprache: _feature.html?sprache=en usw. Seit
+  // 11.10.2026; vorher stand die Grafik in allen Store-Sprachen auf Deutsch.
+  const [zeile1, zeile2] = ZEILEN[SPRACHE] || ZEILEN.de;
+  const platz = B - (x + 6) - 28;
+  passend(zeile1, 700, 44, platz);
   g.fillStyle = '#C9D6FF';
-  g.fillText('Bosnisch lernen', x + 4, y + 62);
+  g.fillText(zeile1, x + 4, y + 62);
 
-  g.font = '600 27px Nunito, system-ui, sans-serif';
+  passend(zeile2, 600, 27, platz);
   g.fillStyle = '#93A6DE';
-  g.fillText('65 Levels · Grammatik · Geschichten', x + 6, y + 116);
+  g.fillText(zeile2, x + 6, y + 116);
+}
+
+const ZEILEN = {
+  de: ['Bosnisch lernen', '65 Levels · Grammatik · Geschichten'],
+  en: ['Learn Bosnian', '65 levels · Grammar · Stories'],
+  tr: ['Boşnakça öğren', '65 seviye · Dil bilgisi · Hikâyeler'],
+  sv: ['Lär dig bosniska', '65 nivåer · Grammatik · Berättelser'],
+  nl: ['Bosnisch leren', '65 levels · Grammatica · Verhalen'],
+  nb: ['Lær bosnisk', '65 nivåer · Grammatikk · Historier'],
+  da: ['Lær bosnisk', '65 niveauer · Grammatik · Historier'],
+  fr: ['Apprendre le bosnien', '65 niveaux · Grammaire · Histoires'],
+};
+const SPRACHE = new URLSearchParams(location.search).get('sprache') || 'de';
+
+// Schrift so gross wie geplant, aber nie breiter als der Platz rechts vom Drachen.
+function passend(text, gewicht, groesse, platz){
+  let px = groesse;
+  do {
+    g.font = gewicht + ' ' + px + 'px Nunito, system-ui, sans-serif';
+  } while(g.measureText(text).width > platz && --px > 16);
 }
 
 function fertigstellen(drache){
