@@ -5477,9 +5477,13 @@ async function produkteNachsehen(){
 /* Merkt sich den Plan aus einer Antwort von ZmajAbo und holt fuer ein
    Monatsabo den Jahrespreis. produkteNachsehen() fragt bei laufendem Abo
    nicht nach Preisen, deshalb hier eigens. Das frischt zugleich die
-   ProductDetails im Plugin auf, die aufJahrWechseln() braucht. 10.10.2026 */
+   ProductDetails im Plugin auf, die aufJahrWechseln() braucht. 10.10.2026
+   In der Gratiswoche (d.probe) bleibt der Plan unbekannt: dort gibt es
+   keinen bezahlten Monat, dessen Rest der Wechsel anhaengen koennte, und
+   Google buchte sofort den Jahrespreis ab. Die Zeile kommt, sobald die
+   Gratiswoche vorbei ist, siehe probeLaeuft() in ZmajAbo.java. 11.10.2026 */
 function aboPlanSetzen(d){
-  aboPlan = (d && d.aktiv && (d.plan === 'monat' || d.plan === 'jahr')) ? d.plan : null;
+  aboPlan = (d && d.aktiv && !d.probe && (d.plan === 'monat' || d.plan === 'jahr')) ? d.plan : null;
   if(aboPlan === 'monat') jahrPreisHolen();
 }
 async function jahrPreisHolen(){
