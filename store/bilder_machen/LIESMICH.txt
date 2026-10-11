@@ -47,13 +47,24 @@ SO GEHT ES (Git Bash, im Projektordner)
 Python ist das von Thonny; es braucht das Paket websockets.
 
 
+MIT UEBERSCHRIFT UND FEATURE-GRAFIK JE SPRACHE (seit 11.10.2026)
+--------------------------------------------------------------
+beschriften.py setzt ueber jedes Rohbild eine kurze Ueberschrift und macht
+die Feature-Grafik (web/_feature.html?sprache=xx) als JPEG ohne Alpha:
+
+     python store/bilder_machen/beschriften.py ROH ZIEL de en tr sv nl nb da fr
+
+ROH/<sprache>/ enthaelt die acht Rohbilder. Die Texte stehen in
+UEBERSCHRIFTEN in beschriften.py. Braucht Chrome und websockets.
+
+
 WAS AUF DEN BILDERN IST
 -----------------------
   01-start        Startseite: Lernserie, Weitermachen, Tagesaufgaben
   02-lernpfad     Sektion 1 mit bestandenen und gesperrten Levels
   03-neues-wort   erste Karte einer Lektion
   04-auswahl      Auswahlaufgabe "Wie viel kostet das?"
-  05-richtig      dieselbe Aufgabe nach der richtigen Antwort
+  05-grammatik    Grammatikaufgabe (bis 11.10.2026: 04 nach der Antwort)
   06-luecke       Lueckensatz mit eingetippter Antwort
   07-geschichte   Geschichte "Na pijaci" mit angetipptem Wort
   08-wiederholen  Reiter Wiederholen mit sieben Aufgaben
