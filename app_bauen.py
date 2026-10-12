@@ -195,6 +195,91 @@ def dauer_einsetzen(pfad=None, datei=None):
                              DAUER_PLATZHALTER.replace("__DAUER_PRUEFWERT__", wert)))
 
 
+# Tonspur im Paket als Opus statt MP3 (12.10.2026). Die 2.332 MP3s mit
+# 48 kbit/s machten 17,5 von 25,3 MB des AAB aus; Opus mit 24 kbit/s klingt
+# bei Sprache mindestens gleich gut und ist halb so gross. Nur die Kopie in
+# www/audio wird umgewandelt - web/audio bleibt MP3 fuer Web-Demo,
+# Datensatz und Anki. Der Zwischenspeicher in der Huelle haelt jede
+# umgewandelte Datei unter dem Hash ihrer MP3, damit nicht jeder Bau alle
+# Dateien neu durch ffmpeg schickt.
+FFMPEG = os.path.join(os.path.dirname(HUELLE), "werkzeuge", "ffmpeg", "bin", "ffmpeg.exe")
+TON_ZWISCHENSPEICHER = os.path.join(HUELLE, ".ton_opus")
+TON_BITRATE = "24k"
+
+
+def ton_index_umschreiben(index):
+    """Ersetzt in index.json jede Endung .mp3 durch .ogg. Gibt die Zahl zurueck."""
+    n = 0
+    for e in index.get("toene", []):
+        d = e.get("datei", "")
+        if d.lower().endswith(".mp3"):
+            e["datei"] = d[:-4] + ".ogg"
+            n += 1
+    return n
+
+
+def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None):
+    """Wandelt www/audio/*.mp3 in Ogg/Opus um und passt index.json an.
+
+    Ohne ffmpeg bleibt die Tonspur MP3 (mit Hinweis) - die App spielt beides.
+    Gibt (vorher, nachher) in Bytes zurueck.
+    """
+    import hashlib
+    from concurrent.futures import ThreadPoolExecutor
+    audio = audio or os.path.join(WWW, "audio")
+    ffmpeg = ffmpeg or os.environ.get("ZMAJ_FFMPEG") or FFMPEG
+    zwischen = zwischen or TON_ZWISCHENSPEICHER
+    if _liegt_in(audio, WEB):
+        raise SystemExit("\nABBRUCH: %s liegt in web/. Umgewandelt wird nur die Kopie." % audio)
+    if not os.path.isfile(ffmpeg):
+        print("\nHINWEIS: ffmpeg fehlt (%s) - die Tonspur bleibt MP3." % ffmpeg)
+        return (0, 0)
+    os.makedirs(zwischen, exist_ok=True)
+    mp3s = sorted(n for n in os.listdir(audio) if n.lower().endswith(".mp3"))
+
+    def eine(name):
+        quelle = os.path.join(audio, name)
+        with open(quelle, "rb") as f:
+            schluessel = hashlib.sha256(f.read()).hexdigest()[:32] + "-" + TON_BITRATE
+        fertig = os.path.join(zwischen, schluessel + ".ogg")
+        if not os.path.isfile(fertig) or os.path.getsize(fertig) == 0:
+            tmp = fertig + ".tmp.ogg"
+            r = subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y",
+                                "-i", quelle, "-ac", "1", "-c:a", "libopus",
+                                "-b:a", TON_BITRATE, "-vbr", "on", "-application", "audio",
+                                tmp], capture_output=True)
+            if r.returncode != 0 or not os.path.isfile(tmp) or os.path.getsize(tmp) == 0:
+                raise RuntimeError("%s: %s" % (name, r.stderr.decode("utf-8", "replace")[-300:]))
+            os.replace(tmp, fertig)
+        ziel = os.path.join(audio, name[:-4] + ".ogg")
+        shutil.copyfile(fertig, ziel)
+        vorher = os.path.getsize(quelle)
+        os.remove(quelle)
+        return vorher, os.path.getsize(ziel)
+
+    print("\nTonspur nach Opus (%d Dateien, %s) ..." % (len(mp3s), TON_BITRATE))
+    try:
+        with ThreadPoolExecutor(max_workers=max(2, (os.cpu_count() or 4))) as pool:
+            groessen = list(pool.map(eine, mp3s))
+    except RuntimeError as e:
+        raise SystemExit("ABBRUCH: ffmpeg ist an einer Datei gescheitert: %s" % e)
+    index_pfad = os.path.join(audio, "index.json")
+    index = json.load(io.open(index_pfad, encoding="utf-8"))
+    umgeschrieben = ton_index_umschreiben(index)
+    fehlen = [e["datei"] for e in index.get("toene", [])
+              if not os.path.isfile(os.path.join(audio, e["datei"]))]
+    if fehlen:
+        raise SystemExit("ABBRUCH: %d Toene fehlen nach der Umwandlung, z. B. %s"
+                         % (len(fehlen), ", ".join(fehlen[:5])))
+    io.open(index_pfad, "w", encoding="utf-8").write(
+        json.dumps(index, ensure_ascii=False, indent=1))
+    vorher = sum(g[0] for g in groessen)
+    nachher = sum(g[1] for g in groessen)
+    print("   %d Eintraege umgeschrieben, %.1f MB -> %.1f MB"
+          % (umgeschrieben, vorher / 1e6, nachher / 1e6))
+    return (vorher, nachher)
+
+
 def emir_drueber():
     """Legt die Emir-Aufnahmen ueber die kopierte Tonspur in www/audio.
 
@@ -584,6 +669,8 @@ def main(argv=None):
     # Debug-Paket, fuer --aab und fuer --nur-abgleich gleich. 06.10.2026.
     emir_drueber()
     dauer_einsetzen()
+    # Nach Emir: dessen Aufnahmen sind MP3 und werden mit umgewandelt.
+    ton_verkleinern()
     if "--testwerbung" in schalter:
         testwerbung_einschalten()
     # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst
