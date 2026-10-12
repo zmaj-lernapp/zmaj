@@ -36,6 +36,13 @@ are in the Play Store listing. Format:
   (`dauer_wort_setzen.py` creates it), and the build stops without it.
   Switches set with the old word no longer count.
 
+### Added
+- A one-time notice after a material change to the terms of use (section 9
+  of the terms promised it). `AGB_WESENTLICH` in `web/index.html` holds the
+  date of the last material change; new installs only remember it.
+- Google Play's own payment-issue message ("fix payment") when a
+  subscription payment failed, shown when the app comes to the foreground.
+
 ### Fixed
 - First start on a device set to Norwegian reporting "no" or "nn" (instead of
   "nb") now opens in Norwegian instead of English.
