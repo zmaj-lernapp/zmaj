@@ -151,7 +151,7 @@ def test_main_reicht_pflicht_durch(monkeypatch):
     """--pflicht kommt bei versionsnummer_hochzaehlen an, ein normaler Bau nicht."""
     import app_bauen
     aufrufe = []
-    for name in ("pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "capacitor",
+    for name in ("pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "ton_verkleinern", "capacitor",
                  "plugins_flicken", "freigabe_aab", "debug_apk"):
         monkeypatch.setattr(app_bauen, name, lambda *args, n=name, **kwargs: aufrufe.append(n))
 
@@ -224,3 +224,66 @@ def test_dauer_pruefwert_wie_in_der_app(wurzel):
     aus = subprocess.run(["node", "-e", js, wort.strip().lower(), d.SALZ, str(d.RUNDEN)],
                          capture_output=True, text=True, check=True).stdout.strip()
     assert aus == d.pruefwert(wort)
+
+
+# Tonspur als Opus im Paket (12.10.2026): nur die Kopie in www/audio, und
+# index.json muss danach auf die .ogg zeigen - die App spielt nur, was dort
+# steht.
+def test_ton_index_umschreiben():
+    import app_bauen
+    index = {"toene": [{"key": "a", "datei": "w0001.mp3"},
+                       {"key": "b", "datei": "g01.MP3"},
+                       {"key": "c", "datei": "schon.ogg"}]}
+    assert app_bauen.ton_index_umschreiben(index) == 2
+    assert [e["datei"] for e in index["toene"]] == ["w0001.ogg", "g01.ogg", "schon.ogg"]
+
+
+def test_ton_verkleinern_nie_in_web(wurzel):
+    import app_bauen
+    with pytest.raises(SystemExit):
+        app_bauen.ton_verkleinern(os.path.join(wurzel, "web", "audio"), ffmpeg="gibt-es-nicht")
+
+
+def test_ton_verkleinern_mit_ffmpeg(tmp_path):
+    """Echte Umwandlung zweier kurzer Toene, wenn ffmpeg da ist."""
+    import json
+    import shutil
+    import subprocess
+    import app_bauen
+    ffmpeg = os.environ.get("ZMAJ_FFMPEG") or (
+        app_bauen.FFMPEG if os.path.isfile(app_bauen.FFMPEG) else shutil.which("ffmpeg"))
+    if not ffmpeg:
+        pytest.skip("ffmpeg fehlt")
+    audio = tmp_path / "audio"
+    audio.mkdir()
+    for name, hz in (("w0001.mp3", 440), ("w0002.mp3", 660)):
+        subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y", "-f", "lavfi",
+                        "-i", "sine=frequency=%d:duration=1" % hz, "-ar", "24000", "-ac", "1",
+                        "-b:a", "48k", str(audio / name)], check=True)
+    (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+        {"key": "eins", "datei": "w0001.mp3"}, {"key": "zwei", "datei": "w0002.mp3"}]}),
+        encoding="utf-8")
+    vorher, nachher = app_bauen.ton_verkleinern(str(audio), ffmpeg=ffmpeg,
+                                                zwischen=str(tmp_path / "zwischen"))
+    assert sorted(os.listdir(audio)) == ["index.json", "w0001.ogg", "w0002.ogg"]
+    index = json.loads((audio / "index.json").read_text(encoding="utf-8"))
+    assert [e["datei"] for e in index["toene"]] == ["w0001.ogg", "w0002.ogg"]
+    assert 0 < nachher < vorher
+    assert (audio / "w0001.ogg").read_bytes()[:4] == b"OggS"
+
+
+def test_projekt_zip_ohne_emir_und_pruefwert(tmp_path):
+    """Die Projekt-Zip "darf ueberall hin". Emirs Aufnahmen stecken in der
+    Huelle an drei Stellen (audio_emir, Opus-Zwischenspeicher, Git-Objekte)
+    und duerfen in keiner davon mit; der Dauer-Pruefwert auch nicht.
+    Review 12.10.2026."""
+    import projekt_sichern as ps
+    huelle = tmp_path / "zmaj-android"
+    for rel in ("audio_emir/w0001.mp3", ".ton_opus/abc-24k.ogg", ".git/objects/ab/cdef",
+                "dauer_pruefwert.txt", "android/app/src/main/java/X.java"):
+        p = huelle / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("x", encoding="utf-8")
+    namen = [n for _, n in ps.sammeln(str(huelle), "zmaj-android",
+                                      ps.HUELLE_WEG_ORDNER, ps.HUELLE_WEG_DATEIEN)]
+    assert namen == ["zmaj-android/android/app/src/main/java/X.java"]

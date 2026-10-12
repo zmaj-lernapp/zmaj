@@ -36,7 +36,22 @@ are in the Play Store listing. Format:
   (`dauer_wort_setzen.py` creates it), and the build stops without it.
   Switches set with the old word no longer count.
 
+### Added
+- A one-time notice after a material change to the terms of use (section 9
+  of the terms promised it). `AGB_WESENTLICH` in `web/index.html` holds the
+  date of the last material change; new installs only remember it.
+- Google Play's own payment-issue message ("fix payment") when a
+  subscription payment failed, shown when the app comes to the foreground.
+
+### Changed
+- `app_bauen.py` converts the audio in the app bundle to Ogg/Opus at
+  24 kbit/s (`ton_verkleinern()`, needs ffmpeg; cached in the shell): the
+  audio inside the package shrinks from 26.9 MB to 10.2 MB. `web/audio`
+  stays MP3 for the web demo, the dataset and the Anki decks.
+
 ### Fixed
+- First start on a device set to Norwegian reporting "no" or "nn" (instead of
+  "nb") now opens in Norwegian instead of English.
 - Settings: "Switch to yearly" is hidden during the free trial week, when
   there is no paid month whose remaining days could be carried over.
 - Ads: the maximum ad content rating is "General", matching the app's content

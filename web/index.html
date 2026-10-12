@@ -2429,6 +2429,10 @@ const ALLE_FREI = new URLSearchParams(location.search).get('alle') === '1';
 let SPRACHEN = [], T = {}, UEBERSETZT = {fertig:0, gesamt:0};
 let SPRACHE = 'de';
 try{ SPRACHE = localStorage.getItem('zmaj_sprache') || (navigator.language||'de').slice(0,2).toLowerCase(); }catch(e){}
+/* Norwegisch meldet nicht jedes Geraet als "nb": aeltere Android-Fassungen
+   und manche Browser sagen "no", Nynorsk-Einstellungen "nn". Ohne das
+   startete die App dort auf Englisch. 12.10.2026 */
+if(SPRACHE === 'no' || SPRACHE === 'nn') SPRACHE = 'nb';
 const FALLBACK = {   // nur nötig, wenn der Server gar nicht antwortet
   /* Updates aus Google Play, zweisprachig wie err.server: gerade eine
      Fassung, deren Inhalte nicht laden, braucht vielleicht das Pflicht-
@@ -6628,6 +6632,7 @@ function showHome(){
   if(homeMode==='words') showPath(); else if(homeMode==='topf') showTopf(); else showStoryPath();
   einstufungAnbieten();
   kartenNachreichen();
+  if(einstufungBereit) agbHinweis();
 }
 /* Der Laden ist keine Lernsache, deshalb steht er oben bei Profil und
    Einstellungen und nicht in der Reiterleiste. */
@@ -9445,6 +9450,49 @@ async function werbungVorbereiten(){
   }catch(e){}
 }
 
+/* Nutzungsbedingungen, Punkt 9: Aendern sie sich wesentlich, erfaehrt man es
+   beim naechsten Oeffnen. AGB_WESENTLICH ist das Datum der letzten
+   WESENTLICHEN Aenderung (neue Pflichten, Preise, Rechte) und wird nur dann
+   hochgesetzt - nicht bei Klarstellungen wie der vom 11.10.2026. Wer noch
+   nichts gemerkt hat (neu installiert oder vor diesem Build), kennt die
+   heutige Fassung: bei ihm wird das Datum nur gemerkt, ohne Hinweis.
+   Der Hinweis kommt nur in einem ruhigen Moment auf dem Lernpfad - nie
+   mitten in einer Lektion (dort braeche "Ansehen" sie ohne Rueckfrage ab),
+   nie ueber Googles Einwilligung oder einer Anzeige. Sonst probiert er es
+   noch ein paar Mal und dann wieder bei der naechsten Rueckkehr auf den
+   Lernpfad (showHome). Als gesehen gilt er erst, wenn jemand ihn bedient
+   hat. Punkt 9 versprach den Hinweis seit September, gebaut am 12.10.2026,
+   nachgebessert nach dem Review am selben Tag. */
+const AGB_WESENTLICH = '2026-09-19';
+let agbHinweisFertig = false, agbHinweisOffen = false;
+function agbRuhig(){
+  return updWerbungDurch && sichtbar('pfad') && !updLerntGerade() && !frageSchliessen &&
+         !wegmarkeLaeuft && !anzeigeLaeuft && $('err').style.display !== 'block' &&
+         !document.querySelector('.nachfrage, .einwilligung, .werbung');
+}
+async function agbHinweis(versuch = 0){
+  if(agbHinweisFertig || agbHinweisOffen) return;
+  let gemerkt = null;
+  try{ gemerkt = localStorage.getItem('zmaj_agb'); }catch(e){ agbHinweisFertig = true; return; }
+  const merken = ()=>{ try{ localStorage.setItem('zmaj_agb', AGB_WESENTLICH); }catch(e){} };
+  if(!gemerkt){ merken(); agbHinweisFertig = true; return; }
+  if(gemerkt >= AGB_WESENTLICH){ agbHinweisFertig = true; return; }
+  if(!agbRuhig()){
+    if(versuch < 20) setTimeout(()=>agbHinweis(versuch + 1), 3000);
+    return;
+  }
+  agbHinweisOffen = true;
+  const ansehen = await frage(t('agb.neu_titel'), t('agb.neu_text'), t('agb.ansehen'), t('agb.spaeter'));
+  agbHinweisOffen = false;
+  agbHinweisFertig = true;
+  merken();
+  if(ansehen){
+    showSettings();
+    const s = document.querySelector('summary[data-t="set.agb"]');
+    if(s){ s.parentElement.open = true; s.scrollIntoView({block: 'start'}); }
+  }
+}
+
 async function init(){
   dauerVollVerdrahten();
   try{ await starten(); }
@@ -9482,7 +9530,9 @@ async function init(){
      werbungVorbereiten() wirklich fertig ist, nicht schon nach den acht
      Sekunden - Googles Einwilligungsfenster steht nicht im Dokument.
      10.10.2026 */
-  const einstufungLos = ()=>{ einstufungBereit = true; einstufungAnbieten(); updNachreichen(); };
+  /* agbHinweis() kurz danach: zuerst kommen Einstufung und Update-Fenster
+     dran, der Hinweis wartet, bis keine Nachfrage mehr offen ist. */
+  const einstufungLos = ()=>{ einstufungBereit = true; einstufungAnbieten(); updNachreichen(); setTimeout(agbHinweis, 1500); };
   werbungVorbereiten().then(()=>{ updWerbungDurch = true; einstufungLos(); });
   setTimeout(einstufungLos, 8000);
   /* Updates aus Google Play: erst jetzt, nach dem Vorspann. Ein
