@@ -78,12 +78,21 @@ HUELLE_WEG_ORDNER = {
     # verbietet ElevenLabs (siehe emir_drueber() in app_bauen.py). Gesichert
     # sind sie im privaten Repo zmaj-huelle und in App Zeugs/Stimme_Emir_neu.
     "audio_emir",
+    # Dieselben Aufnahmen stecken auch hier (Review 12.10.2026): als Opus im
+    # Zwischenspeicher von ton_verkleinern() und als Git-Objekte, seit
+    # audio_emir/ im privaten Repo der Huelle versioniert ist. Die Huelle
+    # ist dort gesichert; in diese Zip gehoert ihr .git nicht.
+    ".ton_opus",
+    ".git",
     "build",             # Bauergebnis
     ".gradle", ".idea",  # Werkzeugkram
     "assets",            # nur unter app/src/main – die Kopie der Web-App
     "capture",
 }
-HUELLE_WEG_DATEIEN = {"local.properties"}   # zeigt auf DIESEN Rechner
+# local.properties zeigt auf DIESEN Rechner. dauer_pruefwert.txt ist kein
+# Passwort, aber mit ihm liesse sich ein kurzes Dauer-Wort durchprobieren -
+# es bleibt im privaten Repo der Huelle. 12.10.2026
+HUELLE_WEG_DATEIEN = {"local.properties", "dauer_pruefwert.txt"}
 
 
 def ist_geheim(rel):

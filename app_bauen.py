@@ -237,32 +237,45 @@ def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None):
     os.makedirs(zwischen, exist_ok=True)
     mp3s = sorted(n for n in os.listdir(audio) if n.lower().endswith(".mp3"))
 
-    def eine(name):
-        quelle = os.path.join(audio, name)
-        with open(quelle, "rb") as f:
-            schluessel = hashlib.sha256(f.read()).hexdigest()[:32] + "-" + TON_BITRATE
-        fertig = os.path.join(zwischen, schluessel + ".ogg")
-        if not os.path.isfile(fertig) or os.path.getsize(fertig) == 0:
-            tmp = fertig + ".tmp.ogg"
-            r = subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y",
-                                "-i", quelle, "-ac", "1", "-c:a", "libopus",
-                                "-b:a", TON_BITRATE, "-vbr", "on", "-application", "audio",
-                                tmp], capture_output=True)
-            if r.returncode != 0 or not os.path.isfile(tmp) or os.path.getsize(tmp) == 0:
-                raise RuntimeError("%s: %s" % (name, r.stderr.decode("utf-8", "replace")[-300:]))
-            os.replace(tmp, fertig)
-        ziel = os.path.join(audio, name[:-4] + ".ogg")
-        shutil.copyfile(fertig, ziel)
-        vorher = os.path.getsize(quelle)
-        os.remove(quelle)
-        return vorher, os.path.getsize(ziel)
+    # Erst alle Schluessel, dann jeden Inhalt genau einmal umwandeln: zwei
+    # byte-gleiche MP3s schrieben sonst gleichzeitig in dieselbe Datei
+    # (Review 12.10.2026; heute gibt es keine, aber eine doppelt
+    # vergebene Aufnahme reicht).
+    schluessel = {}
+    for name in mp3s:
+        with open(os.path.join(audio, name), "rb") as f:
+            schluessel[name] = hashlib.sha256(f.read()).hexdigest()[:32] + "-" + TON_BITRATE
+    quelle_je_schluessel = {}
+    for name in mp3s:
+        quelle_je_schluessel.setdefault(schluessel[name], name)
+
+    def umwandeln(paar):
+        s, name = paar
+        fertig = os.path.join(zwischen, s + ".ogg")
+        if os.path.isfile(fertig) and os.path.getsize(fertig) > 0:
+            return
+        tmp = fertig + ".tmp.ogg"
+        r = subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y",
+                            "-i", os.path.join(audio, name), "-ac", "1", "-c:a", "libopus",
+                            "-b:a", TON_BITRATE, "-vbr", "on", "-application", "audio",
+                            tmp], capture_output=True)
+        if r.returncode != 0 or not os.path.isfile(tmp) or os.path.getsize(tmp) == 0:
+            raise RuntimeError("%s: %s" % (name, r.stderr.decode("utf-8", "replace")[-300:]))
+        os.replace(tmp, fertig)
 
     print("\nTonspur nach Opus (%d Dateien, %s) ..." % (len(mp3s), TON_BITRATE))
     try:
         with ThreadPoolExecutor(max_workers=max(2, (os.cpu_count() or 4))) as pool:
-            groessen = list(pool.map(eine, mp3s))
-    except RuntimeError as e:
-        raise SystemExit("ABBRUCH: ffmpeg ist an einer Datei gescheitert: %s" % e)
+            list(pool.map(umwandeln, sorted(quelle_je_schluessel.items())))
+        groessen = []
+        for name in mp3s:
+            quelle = os.path.join(audio, name)
+            ziel = os.path.join(audio, name[:-4] + ".ogg")
+            shutil.copyfile(os.path.join(zwischen, schluessel[name] + ".ogg"), ziel)
+            groessen.append((os.path.getsize(quelle), os.path.getsize(ziel)))
+            os.remove(quelle)
+    except (RuntimeError, OSError) as e:
+        raise SystemExit("ABBRUCH: Umwandlung der Tonspur gescheitert: %s" % e)
     index_pfad = os.path.join(audio, "index.json")
     index = json.load(io.open(index_pfad, encoding="utf-8"))
     umgeschrieben = ton_index_umschreiben(index)
