@@ -37,6 +37,8 @@ are in the Play Store listing. Format:
   Switches set with the old word no longer count.
 
 ### Fixed
+- First start on a device set to Norwegian reporting "no" or "nn" (instead of
+  "nb") now opens in Norwegian instead of English.
 - Settings: "Switch to yearly" is hidden during the free trial week, when
   there is no paid month whose remaining days could be carried over.
 - Ads: the maximum ad content rating is "General", matching the app's content
