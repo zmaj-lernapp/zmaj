@@ -2429,6 +2429,10 @@ const ALLE_FREI = new URLSearchParams(location.search).get('alle') === '1';
 let SPRACHEN = [], T = {}, UEBERSETZT = {fertig:0, gesamt:0};
 let SPRACHE = 'de';
 try{ SPRACHE = localStorage.getItem('zmaj_sprache') || (navigator.language||'de').slice(0,2).toLowerCase(); }catch(e){}
+/* Norwegisch meldet nicht jedes Geraet als "nb": aeltere Android-Fassungen
+   und manche Browser sagen "no", Nynorsk-Einstellungen "nn". Ohne das
+   startete die App dort auf Englisch. 12.10.2026 */
+if(SPRACHE === 'no' || SPRACHE === 'nn') SPRACHE = 'nb';
 const FALLBACK = {   // nur nötig, wenn der Server gar nicht antwortet
   /* Updates aus Google Play, zweisprachig wie err.server: gerade eine
      Fassung, deren Inhalte nicht laden, braucht vielleicht das Pflicht-
