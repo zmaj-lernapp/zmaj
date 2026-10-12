@@ -6632,6 +6632,7 @@ function showHome(){
   if(homeMode==='words') showPath(); else if(homeMode==='topf') showTopf(); else showStoryPath();
   einstufungAnbieten();
   kartenNachreichen();
+  if(einstufungBereit) agbHinweis();
 }
 /* Der Laden ist keine Lernsache, deshalb steht er oben bei Profil und
    Einstellungen und nicht in der Reiterleiste. */
@@ -9455,24 +9456,37 @@ async function werbungVorbereiten(){
    hochgesetzt - nicht bei Klarstellungen wie der vom 11.10.2026. Wer noch
    nichts gemerkt hat (neu installiert oder vor diesem Build), kennt die
    heutige Fassung: bei ihm wird das Datum nur gemerkt, ohne Hinweis.
-   Steht gerade eine andere Nachfrage offen, wird es spaeter versucht.
-   Punkt 9 versprach den Hinweis seit September, gebaut erst am 12.10.2026. */
+   Der Hinweis kommt nur in einem ruhigen Moment auf dem Lernpfad - nie
+   mitten in einer Lektion (dort braeche "Ansehen" sie ohne Rueckfrage ab),
+   nie ueber Googles Einwilligung oder einer Anzeige. Sonst probiert er es
+   noch ein paar Mal und dann wieder bei der naechsten Rueckkehr auf den
+   Lernpfad (showHome). Als gesehen gilt er erst, wenn jemand ihn bedient
+   hat. Punkt 9 versprach den Hinweis seit September, gebaut am 12.10.2026,
+   nachgebessert nach dem Review am selben Tag. */
 const AGB_WESENTLICH = '2026-09-19';
-let agbHinweisFertig = false;
+let agbHinweisFertig = false, agbHinweisOffen = false;
+function agbRuhig(){
+  return updWerbungDurch && sichtbar('pfad') && !updLerntGerade() && !frageSchliessen &&
+         !wegmarkeLaeuft && !anzeigeLaeuft && $('err').style.display !== 'block' &&
+         !document.querySelector('.nachfrage, .einwilligung, .werbung');
+}
 async function agbHinweis(versuch = 0){
-  if(agbHinweisFertig) return;
+  if(agbHinweisFertig || agbHinweisOffen) return;
   let gemerkt = null;
   try{ gemerkt = localStorage.getItem('zmaj_agb'); }catch(e){ agbHinweisFertig = true; return; }
   const merken = ()=>{ try{ localStorage.setItem('zmaj_agb', AGB_WESENTLICH); }catch(e){} };
   if(!gemerkt){ merken(); agbHinweisFertig = true; return; }
   if(gemerkt >= AGB_WESENTLICH){ agbHinweisFertig = true; return; }
-  if(frageSchliessen || document.querySelector('.nachfrage')){
+  if(!agbRuhig()){
     if(versuch < 20) setTimeout(()=>agbHinweis(versuch + 1), 3000);
     return;
   }
+  agbHinweisOffen = true;
+  const ansehen = await frage(t('agb.neu_titel'), t('agb.neu_text'), t('agb.ansehen'), t('agb.spaeter'));
+  agbHinweisOffen = false;
   agbHinweisFertig = true;
   merken();
-  if(await frage(t('agb.neu_titel'), t('agb.neu_text'), t('agb.ansehen'), t('agb.spaeter'))){
+  if(ansehen){
     showSettings();
     const s = document.querySelector('summary[data-t="set.agb"]');
     if(s){ s.parentElement.open = true; s.scrollIntoView({block: 'start'}); }

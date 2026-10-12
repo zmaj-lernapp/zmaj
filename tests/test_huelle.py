@@ -270,3 +270,20 @@ def test_ton_verkleinern_mit_ffmpeg(tmp_path):
     assert [e["datei"] for e in index["toene"]] == ["w0001.ogg", "w0002.ogg"]
     assert 0 < nachher < vorher
     assert (audio / "w0001.ogg").read_bytes()[:4] == b"OggS"
+
+
+def test_projekt_zip_ohne_emir_und_pruefwert(tmp_path):
+    """Die Projekt-Zip "darf ueberall hin". Emirs Aufnahmen stecken in der
+    Huelle an drei Stellen (audio_emir, Opus-Zwischenspeicher, Git-Objekte)
+    und duerfen in keiner davon mit; der Dauer-Pruefwert auch nicht.
+    Review 12.10.2026."""
+    import projekt_sichern as ps
+    huelle = tmp_path / "zmaj-android"
+    for rel in ("audio_emir/w0001.mp3", ".ton_opus/abc-24k.ogg", ".git/objects/ab/cdef",
+                "dauer_pruefwert.txt", "android/app/src/main/java/X.java"):
+        p = huelle / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("x", encoding="utf-8")
+    namen = [n for _, n in ps.sammeln(str(huelle), "zmaj-android",
+                                      ps.HUELLE_WEG_ORDNER, ps.HUELLE_WEG_DATEIEN)]
+    assert namen == ["zmaj-android/android/app/src/main/java/X.java"]
