@@ -9449,6 +9449,36 @@ async function werbungVorbereiten(){
   }catch(e){}
 }
 
+/* Nutzungsbedingungen, Punkt 9: Aendern sie sich wesentlich, erfaehrt man es
+   beim naechsten Oeffnen. AGB_WESENTLICH ist das Datum der letzten
+   WESENTLICHEN Aenderung (neue Pflichten, Preise, Rechte) und wird nur dann
+   hochgesetzt - nicht bei Klarstellungen wie der vom 11.10.2026. Wer noch
+   nichts gemerkt hat (neu installiert oder vor diesem Build), kennt die
+   heutige Fassung: bei ihm wird das Datum nur gemerkt, ohne Hinweis.
+   Steht gerade eine andere Nachfrage offen, wird es spaeter versucht.
+   Punkt 9 versprach den Hinweis seit September, gebaut erst am 12.10.2026. */
+const AGB_WESENTLICH = '2026-09-19';
+let agbHinweisFertig = false;
+async function agbHinweis(versuch = 0){
+  if(agbHinweisFertig) return;
+  let gemerkt = null;
+  try{ gemerkt = localStorage.getItem('zmaj_agb'); }catch(e){ agbHinweisFertig = true; return; }
+  const merken = ()=>{ try{ localStorage.setItem('zmaj_agb', AGB_WESENTLICH); }catch(e){} };
+  if(!gemerkt){ merken(); agbHinweisFertig = true; return; }
+  if(gemerkt >= AGB_WESENTLICH){ agbHinweisFertig = true; return; }
+  if(frageSchliessen || document.querySelector('.nachfrage')){
+    if(versuch < 20) setTimeout(()=>agbHinweis(versuch + 1), 3000);
+    return;
+  }
+  agbHinweisFertig = true;
+  merken();
+  if(await frage(t('agb.neu_titel'), t('agb.neu_text'), t('agb.ansehen'), t('agb.spaeter'))){
+    showSettings();
+    const s = document.querySelector('summary[data-t="set.agb"]');
+    if(s){ s.parentElement.open = true; s.scrollIntoView({block: 'start'}); }
+  }
+}
+
 async function init(){
   dauerVollVerdrahten();
   try{ await starten(); }
@@ -9486,7 +9516,9 @@ async function init(){
      werbungVorbereiten() wirklich fertig ist, nicht schon nach den acht
      Sekunden - Googles Einwilligungsfenster steht nicht im Dokument.
      10.10.2026 */
-  const einstufungLos = ()=>{ einstufungBereit = true; einstufungAnbieten(); updNachreichen(); };
+  /* agbHinweis() kurz danach: zuerst kommen Einstufung und Update-Fenster
+     dran, der Hinweis wartet, bis keine Nachfrage mehr offen ist. */
+  const einstufungLos = ()=>{ einstufungBereit = true; einstufungAnbieten(); updNachreichen(); setTimeout(agbHinweis, 1500); };
   werbungVorbereiten().then(()=>{ updWerbungDurch = true; einstufungLos(); });
   setTimeout(einstufungLos, 8000);
   /* Updates aus Google Play: erst jetzt, nach dem Vorspann. Ein
