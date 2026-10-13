@@ -111,14 +111,21 @@ def satz_kacheln(satz):
 
 
 def satzbau_fuer_app(liste):
-    """Nur kat, bs, de und auch gehen an die App. formen, quelle und notiz
-    sind Arbeitsfelder für die Prüfung und für uns (13.10.2026) - auf dem
-    Handy wären sie bloß Ballast in acht Dateien."""
+    """Nur kat, bs, de, auch, ohne und grund (die Grundformen aus formen)
+    gehen an die App. quelle, notiz und die gebeugten Formen selbst sind
+    Arbeitsfelder für die Prüfung und für uns (13.10.2026) - auf dem Handy
+    wären sie bloß Ballast in acht Dateien."""
     raus = []
     for s in liste:
         neu = {"kat": s.get("kat"), "bs": s.get("bs", ""), "de": s.get("de", "")}
         if s.get("auch"):
             neu["auch"] = list(s["auch"])
+        # ohne (14.10.2026): Wörter, die bei diesem Satz nie als falsche Kachel
+        # kommen dürfen, weil sie ihn auch richtig machen (somun neben pogaču,
+        # ćao neben Merhaba). Die App sperrt sie in kachelAblenker().
+        # Keine Liste geht unverändert weiter, damit pruefe_vokabeln() es meldet.
+        if s.get("ohne"):
+            neu["ohne"] = list(s["ohne"]) if isinstance(s["ohne"], (list, tuple)) else s["ohne"]
         # Von formen nur die Grundformen: Steht "kahvu" im Satz, soll er erst
         # kommen, wenn "kahva" in dieser Lektion schon dran war. Die gebeugte
         # Form selbst kennt die App aus keinem Wort und könnte sie nicht prüfen.
@@ -226,6 +233,20 @@ def pruefe_vokabeln(daten):
                 probleme.append(f"{kennung}: Variante '{variante}' braucht Kacheln, die es nicht gibt: {fehlt}")
             if satz_kacheln(variante) == kacheln:
                 probleme.append(f"{kennung}: Variante '{variante}' ist derselbe Satz")
+        # ohne (14.10.2026): je ein Wort, das nie als falsche Kachel kommt.
+        # Steht es selbst im Satz, ist der Eintrag ein Irrtum - die Kacheln des
+        # Satzes sind ohnehin nie Ablenker. Mehr als ein Wort sperrt nichts,
+        # denn Ablenker sind immer einzelne Wörter.
+        ohne = satz.get("ohne", [])
+        if not isinstance(ohne, list):
+            probleme.append(f"{kennung}: 'ohne' ist keine Liste")
+            ohne = []
+        for wort in ohne:
+            teile = satz_kacheln(wort) if isinstance(wort, str) else []
+            if len(teile) != 1:
+                probleme.append(f"{kennung}: 'ohne' braucht einzelne Wörter, nicht {wort!r}")
+            elif teile[0] in kacheln:
+                probleme.append(f"{kennung}: 'ohne' nennt '{wort}', das im Satz steht")
         schluessel = " ".join(kacheln)
         if schluessel in satzbau_gesehen:
             probleme.append(f"{kennung}: doppelt")

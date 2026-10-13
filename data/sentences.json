@@ -427,7 +427,7 @@
     "nl": "Het is nu vijf uur.",
     "nb": "Klokka er fem nå.",
     "da": "Klokken er fem nu.",
-    "fr": "Il est cinq heures."
+    "fr": "Il est cinq heures maintenant."
    },
    "audio": "web/audio/w1116.mp3"
   },
@@ -439,7 +439,7 @@
    "bs": "U subotu je vikend.",
    "translations": {
     "de": "Am Samstag ist Wochenende.",
-    "en": "Saturday is the weekend.",
+    "en": "On Saturday it's the weekend.",
     "tr": "Cumartesi hafta sonudur.",
     "sv": "På lördag är det helg.",
     "nl": "Op zaterdag is het weekend.",
@@ -1267,7 +1267,7 @@
    "bs": "Možete li mi pomoći?",
    "translations": {
     "de": "Können Sie mir helfen?",
-    "en": "Can you help me?",
+    "en": "Can you help me? (formal)",
     "tr": "Bana yardım edebilir misiniz?",
     "sv": "Kan ni hjälpa mig?",
     "nl": "Kunt u mij helpen?",
@@ -1537,7 +1537,7 @@
    "bs": "Imate li pasoš?",
    "translations": {
     "de": "Haben Sie einen Reisepass?",
-    "en": "Do you have a passport?",
+    "en": "Do you have a passport? (formal)",
     "tr": "Pasaportunuz var mı?",
     "sv": "Har ni ett pass?",
     "nl": "Heeft u een paspoort?",
@@ -1987,7 +1987,7 @@
    "bs": "Kada ćeš doći?",
    "translations": {
     "de": "Wann wirst du kommen?",
-    "en": "When will you come?",
+    "en": "When will you come? (singular, informal)",
     "tr": "Ne zaman geleceksin?",
     "sv": "När ska du komma?",
     "nl": "Wanneer zul je komen?",
@@ -4309,12 +4309,12 @@
    "bs": "Komšinica zvoni na vrata.",
    "translations": {
     "de": "Die Nachbarin klingelt an der Tür.",
-    "en": "The neighbour is ringing the doorbell.",
+    "en": "The neighbor (f) is ringing the doorbell.",
     "tr": "Kadın komşu kapının zilini çalıyor.",
-    "sv": "Grannen ringer på dörren.",
+    "sv": "Grannen (kvinna) ringer på dörren.",
     "nl": "De buurvrouw belt aan de deur.",
-    "nb": "Naboen ringer på døra.",
-    "da": "Naboen ringer på døren.",
+    "nb": "Naboen (kvinne) ringer på døra.",
+    "da": "Naboen (kvinde) ringer på døren.",
     "fr": "La voisine sonne à la porte."
    },
    "audio": "web/audio/w2092.mp3"
@@ -5011,8 +5011,8 @@
    "bs": "Imate li ajvar?",
    "translations": {
     "de": "Haben Sie Ajvar?",
-    "en": "Do you have ajvar?",
-    "tr": "Ajvar var mı?",
+    "en": "Do you have ajvar? (formal)",
+    "tr": "Ajvarınız var mı?",
     "sv": "Har ni ajvar?",
     "nl": "Heeft u ajvar?",
     "nb": "Har De ajvar?",

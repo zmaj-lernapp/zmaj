@@ -7645,11 +7645,22 @@ const KACHEL_VERWECHSELBAR = new Set(('si ste ti vi te vas tvoj tvoja tvoje vaš
    Namen bleiben gross: die festen hier und jedes Wort, das irgendwo mitten
    im Satz gross steht ("Idem u Mostar", "Hvala Bogu"). Die Pronomen aus
    KACHEL_VERWECHSELBAR zaehlen dabei nicht - "molim Vas" ist Hoeflichkeit,
-   kein Name. Gesammelt wird einmal je Inhalt, ladeDaten() setzt zurueck. */
+   kein Name. Gesammelt wird einmal je Inhalt, ladeDaten() setzt zurueck.
+   Laender, Staedte und Nationalitaeten stehen oft nur allein im Wortschatz
+   ("Švicarska") und am Satzanfang ("Švicarska je mala država."), nie
+   mitten im Satz - die Kachel stand deshalb klein da, als Ablenker auch
+   "njemačka" oder "tuzla". Jedes grosse Wort aus dem Wortschatz als Namen
+   zu nehmen geht nicht: "Hvala", "Kako", "Gdje", "Šta" stehen dort genauso
+   gross, weil sie allein stehen, und blieben dann am Satzanfang gross - in
+   rund 60 Saetzen verriete das das erste Wort. Deshalb nur die Level, in
+   denen ein grosses Wort immer ein Name ist, und die Feste von Hand.
+   Gefunden im Review am 14.10.2026. */
+const KACHEL_NAMEN_LEVEL = new Set(['einkauf_orte', 'laender', 'nationalitaeten']);
 let _kachelNamen = null;
 function kachelNamen(){
   if(_kachelNamen) return _kachelNamen;
-  const namen = new Set(['amina', 'ajdin', 'emir', 'lejla', 'sarajevo', 'mostar', 'bosna']);
+  const namen = new Set(['amina', 'ajdin', 'emir', 'lejla', 'sarajevo', 'mostar', 'bosna',
+    'bajram', 'kurban-bajram', 'ramazan', 'božić', 'uskrs']);
   const sammle = satz => {
     let anfang = true;
     String(satz || '').split(/\s+/).forEach(roh => {
@@ -7662,6 +7673,11 @@ function kachelNamen(){
   };
   SATZBAU.forEach(s => sammle(s.bs));
   CATEGORIES.forEach(c => c.words.forEach(w => String(w.bs).split(' / ').forEach(sammle)));
+  CATEGORIES.filter(c => KACHEL_NAMEN_LEVEL.has(c.id)).forEach(c => c.words.forEach(w => kachelFormen(w).forEach(f => {
+    const teile = kachelRoh(f);
+    const klein = teile.length === 1 ? teile[0].toLowerCase() : '';
+    if(klein && /^\p{Lu}/u.test(teile[0]) && !KACHEL_VERWECHSELBAR.has(klein)) namen.add(klein);
+  })));
   return (_kachelNamen = namen);
 }
 /* Die Kacheln eines Satzes, wie sie dastehen: das erste Wort klein, ausser
@@ -7685,21 +7701,41 @@ const kachelFormen = w => [w.bs, ...(w.auch || [])].flatMap(x => String(x).split
    Satzes. Nie eine, die im Satz oder in einer erlaubten Variante steht, nie
    eine andere Form desselben Wortes (wer "kahva" legen soll, bekommt kein
    "kafa" daneben - "Hallo" ist Merhaba UND Zdravo), und nichts aus
-   KACHEL_VERWECHSELBAR. Reicht der Vorrat nicht, sind es eben weniger. */
+   KACHEL_VERWECHSELBAR. Reicht der Vorrat nicht, sind es eben weniger.
+   Was das Review am 14.10.2026 dazu noch fand - jedes davon machte aus
+   einer richtigen Uebersetzung einen Fehler, der ein Leben kostet:
+   - Andere Personen desselben Verbs: neben "Imate li ajvar?" lag "imaš",
+     neben "Kada ćeš doći?" lag "ćete", und "Do you have ajvar?" ist beides.
+     Gesperrt ist jedes Wort, das nach KACHEL_ENDUNG denselben Stamm hat wie
+     eine Kachel des Satzes. Das trifft auch ein paar unschuldige Woerter
+     ("samo" neben "sam", "dan" neben "danas") - nachgemessen fallen ueber
+     alle Saetze gut 100 von 243.000 moeglichen Ablenkern weg.
+   - s/sa und k/ka sind dieselbe Praeposition, die App lehrt beide.
+   - Die Grundform einer gebeugten Kachel und ihre anderen Formen: neben
+     "Uzet ću pogaču." lag "somun", das beim selben Wort steht.
+   - s.ohne: was die Autoren fuer diesen Satz von Hand sperren, meist
+     Synonyme, die kein Wort miteinander teilen (ćao neben Merhaba). */
+const KACHEL_ENDUNG = /(ate|ete|ite|amo|emo|imo|aju|ju|as|es|is|am|em|im)$/;
+const kachelStamm = x => strip(String(x)).replace(KACHEL_ENDUNG, '');
+const KACHEL_PAARE = [['s', 'sa'], ['k', 'ka']];
 function kachelAblenker(s, anzahl){
   const bis = CATEGORIES.findIndex(c => c.id === s.kat);
   const eigene = new Set([s.bs, ...(s.auch || [])].flatMap(x => kachelRoh(x).map(k => k.toLowerCase())));
-  const gesperrt = new Set([...eigene, ...KACHEL_VERWECHSELBAR]);
+  const grund = new Set((s.grund || []).map(kachelNorm));
+  const gesperrt = new Set([...eigene, ...KACHEL_VERWECHSELBAR, ...(s.ohne || []).map(kachelNorm)]);
+  KACHEL_PAARE.forEach(p => { if(p.some(x => eigene.has(x))) p.forEach(x => gesperrt.add(x)); });
   CATEGORIES.forEach(c => c.words.forEach(w => {
     const formen = kachelFormen(w).map(kachelNorm);
-    if(formen.some(f => eigene.has(f))) formen.forEach(f => gesperrt.add(f));
+    if(formen.some(f => eigene.has(f) || grund.has(f))) formen.forEach(f => gesperrt.add(f));
   }));
+  const staemme = new Set([...eigene].map(kachelStamm).filter(Boolean));
   const vorrat = new Map();
   CATEGORIES.slice(0, (bis < 0 ? catIdx : bis) + 1).forEach(c => c.words.forEach(w => kachelFormen(w).forEach(f => {
     const teile = kachelRoh(f);
     if(teile.length !== 1) return;
     const klein = teile[0].toLowerCase();
     if(gesperrt.has(klein) || vorrat.has(klein) || !/^\p{L}+(-\p{L}+)*$/u.test(klein)) return;
+    if(staemme.has(kachelStamm(klein))) return;
     vorrat.set(klein, kachelNamen().has(klein) ? teile[0] : klein);
   })));
   return shuffle([...vorrat.values()]).slice(0, anzahl);
@@ -7711,8 +7747,14 @@ function kachelAblenker(s, anzahl){
    lueckeTeile(): ohne Haekchen, Gross/klein egal. Gebeugte Formen
    ("kahvu") kennt die App nicht als Form eines Wortes - die stehen nur in
    vokabeln.py unter "formen" und werden dort geprueft. Reicht es nicht,
-   kommen Saetze aus frueheren, bestandenen Leveln dazu. */
-function kachelnFuerLektion(ids){
+   kommen Saetze aus frueheren, bestandenen Leveln dazu.
+   belegt: fertige Saetze der Luecken dieser Lektion (lueckeFertig()). Ein
+   Satz, der dort schon steht, kommt nicht noch einmal als Kacheln - sonst
+   zeigt die eine Aufgabe die Loesung der anderen samt Bedeutung, und in
+   gut jeder dritten Lektion war eine der Satzaufgaben nur Abschreiben
+   ("Drago ___ je." und "Drago mi je."). Gefunden im Review am 14.10.2026. */
+const lueckeFertig = s => String(s.answer).split(' / ').map(a => kachelNorm(String(s.text).replace('___', a.trim())));
+function kachelnFuerLektion(ids, belegt){
   const c = cur();
   const teileVon = w => kachelFormen(w).flatMap(f => lueckeTeile(f).trim().split(' ')).filter(Boolean);
   const hier = new Set(c.words.flatMap(teileVon));
@@ -7726,6 +7768,7 @@ function kachelnFuerLektion(ids){
   const schon = new Set(), out = [];
   const nimm = liste => shuffle(liste.slice()).forEach(s => {
     const k = kachelNorm(s.bs);
+    if(belegt && [s.bs, ...(s.auch || [])].some(x => belegt.has(kachelNorm(x)))) return;
     if(out.length < LEKTION_KACHELN && !schon.has(k)){ schon.add(k); out.push(s); }
   });
   nimm(SATZBAU.filter(s => s.kat === c.id && bereit(s)));
@@ -7749,9 +7792,11 @@ function buildLesson(){
   const tasks = [];
   [...newW, ...revW].forEach(w=> tasks.push({typ:pick(w), w, neu:!known.has(w.id)}));
   const gesehenIds = new Set([...known, ...newW.map(w=>w.id)]);
-  lueckenFuerLektion(gesehenIds).forEach(s=> tasks.push({typ:'gap', s}));
+  const luecken = lueckenFuerLektion(gesehenIds);
+  luecken.forEach(s=> tasks.push({typ:'gap', s}));
   // Ohne w: showLessonTask() traegt task.w als gewusst ein, ein Satz ist kein Wort.
-  kachelnFuerLektion(gesehenIds).forEach(s=> tasks.push({typ:'kacheln', s}));
+  // Die Luecken zuerst: ihre Saetze kommen nicht noch einmal als Kacheln.
+  kachelnFuerLektion(gesehenIds, new Set(luecken.flatMap(lueckeFertig))).forEach(s=> tasks.push({typ:'kacheln', s}));
   shuffle(((GRAMMAR[c.id]||{}).uebungen||[]).slice()).slice(0, LEKTION_GRAMMATIK).forEach(g=> tasks.push({typ:'gram', g}));
   shuffle(tasks);
   const intros = newW.map(w=>({typ:'intro', w}));
@@ -8732,12 +8777,27 @@ function topfAufraeumen(){
 }
 const topfAnzahl = () => Object.keys(topf).length;
 /* Die aeltesten zuerst - was einmal richtig war, steht damit bald wieder
-   an, und frisch Falsches bekommt etwas Abstand. */
+   an, und frisch Falsches bekommt etwas Abstand.
+   Steht derselbe Satz als Luecke (s:) und als Kacheln (k:) im Topf, kommt
+   in eine Runde nur die Luecke - wie in buildLesson(), sonst verraet die
+   eine Aufgabe die andere. Die Kacheln bleiben im Topf und kommen in einer
+   spaeteren Runde. Review vom 14.10.2026. */
 function topfRunde(){
   const liste = Object.keys(topf).map(k => ({k, e: topf[k]}))
     .sort((a, b) => (a.e.z || 0) - (b.e.z || 0))
     .map(x => topfAufgabe(x.k, x.e)).filter(Boolean);
-  return shuffle(liste.slice(0, TOPF_RUNDE));
+  const runde = [], belegt = new Set();
+  const doppelt = a => a.typ === 'kacheln' && [a.s.bs, ...(a.s.auch || [])].some(x => belegt.has(kachelNorm(x)));
+  for(const a of liste){
+    if(runde.length >= TOPF_RUNDE) break;
+    if(a.typ === 'gap'){
+      lueckeFertig(a.s).forEach(x => belegt.add(x));
+      // Lag die Kachel-Fassung schon in der Runde (sie war aelter), muss sie raus.
+      for(let i = runde.length - 1; i >= 0; i--) if(doppelt(runde[i])) runde.splice(i, 1);
+    } else if(doppelt(a)) continue;
+    runde.push(a);
+  }
+  return shuffle(runde);
 }
 /* Der Reiter Wiederholen entscheidet beim Zeichnen zwischen "Runde
    starten" und "keine Leben". Wachsen Leben nach, waehrend er offen ist,
