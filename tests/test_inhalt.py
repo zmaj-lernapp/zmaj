@@ -73,6 +73,10 @@ def test_bosnisch_bleibt_in_jeder_sprache_bosnisch(alle_daten, grunddaten):
         assert hier == basis, code
         assert [s["text"] for s in daten["saetze"]] == [s["text"] for s in grunddaten["saetze"]], code
         assert [g["text"] for g in daten["geschichten"]] == [g["text"] for g in grunddaten["geschichten"]], code
+        # Satzbau (13.10.2026): die Kacheln und jede erlaubte Reihenfolge
+        # sind der Lernstoff, übersetzt wird nur "de".
+        assert [(s["bs"], s.get("auch")) for s in daten["satzbau"]] == \
+            [(s["bs"], s.get("auch")) for s in grunddaten["satzbau"]], code
 
 
 def test_jede_sprache_ist_vollstaendig_uebersetzt(alle_daten):

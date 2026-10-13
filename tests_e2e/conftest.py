@@ -66,6 +66,16 @@ async ([feld, art]) => {
     else if(q.typ === 'gap' || q.typ === 'type'){
       body.querySelector('#xIn').value = (q.typ === 'gap' ? q.s.answer : q.w.bs).split(' / ')[0];
       body.querySelector('#xCheck').click();
+    } else if(q.typ === 'kacheln'){
+      // Satzbau (13.10.2026): die Kacheln in der Reihenfolge von bs antippen.
+      // Ohne diesen Zweig landete die Aufgabe unten bei q.w.bs - die hat kein w.
+      const rand = /^[.,!?¿¡:;"„“”«»…()]+|[.,!?¿¡:;"„“”«»…()]+$/g;
+      for(const soll of q.s.bs.split(/\s+/).map(x => x.replace(rand, '').toLowerCase()).filter(Boolean)){
+        const b = [...body.querySelectorAll('#xBank .kachel:not(.platz)')].find(o => o.textContent.toLowerCase() === soll);
+        if(!b) throw new Error('keine Kachel "' + soll + '" bei ' + q.s.bs);
+        b.click();
+      }
+      body.querySelector('#xCheck').click();
     } else {
       const soll = q.typ === 'gram' ? q.g.richtig : (q.typ === 'mcrev' ? q.w.de : q.w.bs);
       const b = [...body.querySelectorAll('.opt')].find(o => o.textContent === soll);
