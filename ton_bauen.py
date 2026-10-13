@@ -209,6 +209,16 @@ def sammle():
             if k not in gesehen:
                 gesehen.add(k)
                 posten.append({"art": "wort", "key": k, "text": w["bs"], "alle": True})
+
+    # Die Satzbau-Saetze (seit 14.10.2026): Nach der Antwort spricht die App
+    # den fertigen Satz. Die meisten gibt es schon als Wort oder Lueckensatz;
+    # neu dazu kommen nur die selbst geschriebenen. Ganz am Ende, damit die
+    # vergebenen Nummern gleich bleiben.
+    for s in getattr(v, "SATZBAU", []):
+        k = schluessel(s["bs"])
+        if k and k not in gesehen:
+            gesehen.add(k)
+            posten.append({"art": "wort", "key": k, "text": s["bs"]})
     return posten
 
 

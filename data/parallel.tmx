@@ -12214,7 +12214,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Kada ćeš doći?</seg></tuv>
    <tuv xml:lang="de"><seg>Wann wirst du kommen?</seg></tuv>
-   <tuv xml:lang="en"><seg>When will you come?</seg></tuv>
+   <tuv xml:lang="en"><seg>When will you come? (singular, informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Ne zaman geleceksin?</seg></tuv>
    <tuv xml:lang="sv"><seg>När ska du komma?</seg></tuv>
    <tuv xml:lang="nl"><seg>Wanneer zul je komen?</seg></tuv>
@@ -21016,13 +21016,13 @@
    <tuv xml:lang="nl"><seg>Het is nu vijf uur.</seg></tuv>
    <tuv xml:lang="nb"><seg>Klokka er fem nå.</seg></tuv>
    <tuv xml:lang="da"><seg>Klokken er fem nu.</seg></tuv>
-   <tuv xml:lang="fr"><seg>Il est cinq heures.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Il est cinq heures maintenant.</seg></tuv>
   </tu>
   <tu tuid="s0024" segtype="sentence">
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>U subotu je vikend.</seg></tuv>
    <tuv xml:lang="de"><seg>Am Samstag ist Wochenende.</seg></tuv>
-   <tuv xml:lang="en"><seg>Saturday is the weekend.</seg></tuv>
+   <tuv xml:lang="en"><seg>On Saturday it's the weekend.</seg></tuv>
    <tuv xml:lang="tr"><seg>Cumartesi hafta sonudur.</seg></tuv>
    <tuv xml:lang="sv"><seg>På lördag är det helg.</seg></tuv>
    <tuv xml:lang="nl"><seg>Op zaterdag is het weekend.</seg></tuv>
@@ -21574,7 +21574,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Možete li mi pomoći?</seg></tuv>
    <tuv xml:lang="de"><seg>Können Sie mir helfen?</seg></tuv>
-   <tuv xml:lang="en"><seg>Can you help me?</seg></tuv>
+   <tuv xml:lang="en"><seg>Can you help me? (formal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Bana yardım edebilir misiniz?</seg></tuv>
    <tuv xml:lang="sv"><seg>Kan ni hjälpa mig?</seg></tuv>
    <tuv xml:lang="nl"><seg>Kunt u mij helpen?</seg></tuv>
@@ -21754,7 +21754,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Imate li pasoš?</seg></tuv>
    <tuv xml:lang="de"><seg>Haben Sie einen Reisepass?</seg></tuv>
-   <tuv xml:lang="en"><seg>Do you have a passport?</seg></tuv>
+   <tuv xml:lang="en"><seg>Do you have a passport? (formal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Pasaportunuz var mı?</seg></tuv>
    <tuv xml:lang="sv"><seg>Har ni ett pass?</seg></tuv>
    <tuv xml:lang="nl"><seg>Heeft u een paspoort?</seg></tuv>
@@ -22054,7 +22054,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Kada ćeš doći?</seg></tuv>
    <tuv xml:lang="de"><seg>Wann wirst du kommen?</seg></tuv>
-   <tuv xml:lang="en"><seg>When will you come?</seg></tuv>
+   <tuv xml:lang="en"><seg>When will you come? (singular, informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Ne zaman geleceksin?</seg></tuv>
    <tuv xml:lang="sv"><seg>När ska du komma?</seg></tuv>
    <tuv xml:lang="nl"><seg>Wanneer zul je komen?</seg></tuv>
@@ -23602,12 +23602,12 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Komšinica zvoni na vrata.</seg></tuv>
    <tuv xml:lang="de"><seg>Die Nachbarin klingelt an der Tür.</seg></tuv>
-   <tuv xml:lang="en"><seg>The neighbour is ringing the doorbell.</seg></tuv>
+   <tuv xml:lang="en"><seg>The neighbor (f) is ringing the doorbell.</seg></tuv>
    <tuv xml:lang="tr"><seg>Kadın komşu kapının zilini çalıyor.</seg></tuv>
-   <tuv xml:lang="sv"><seg>Grannen ringer på dörren.</seg></tuv>
+   <tuv xml:lang="sv"><seg>Grannen (kvinna) ringer på dörren.</seg></tuv>
    <tuv xml:lang="nl"><seg>De buurvrouw belt aan de deur.</seg></tuv>
-   <tuv xml:lang="nb"><seg>Naboen ringer på døra.</seg></tuv>
-   <tuv xml:lang="da"><seg>Naboen ringer på døren.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Naboen (kvinne) ringer på døra.</seg></tuv>
+   <tuv xml:lang="da"><seg>Naboen (kvinde) ringer på døren.</seg></tuv>
    <tuv xml:lang="fr"><seg>La voisine sonne à la porte.</seg></tuv>
   </tu>
   <tu tuid="s0240" segtype="sentence">
@@ -24070,8 +24070,8 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Imate li ajvar?</seg></tuv>
    <tuv xml:lang="de"><seg>Haben Sie Ajvar?</seg></tuv>
-   <tuv xml:lang="en"><seg>Do you have ajvar?</seg></tuv>
-   <tuv xml:lang="tr"><seg>Ajvar var mı?</seg></tuv>
+   <tuv xml:lang="en"><seg>Do you have ajvar? (formal)</seg></tuv>
+   <tuv xml:lang="tr"><seg>Ajvarınız var mı?</seg></tuv>
    <tuv xml:lang="sv"><seg>Har ni ajvar?</seg></tuv>
    <tuv xml:lang="nl"><seg>Heeft u ajvar?</seg></tuv>
    <tuv xml:lang="nb"><seg>Har De ajvar?</seg></tuv>

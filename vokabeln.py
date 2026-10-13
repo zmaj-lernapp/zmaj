@@ -35,6 +35,11 @@ Aufbau:
                   "auch"  : optional, weitere richtige Reihenfolgen. Jede
                             muss sich aus den Kacheln von bs bauen lassen
                             (z. B. ohne das Pronomen) und darf nicht bs sein.
+                  "ohne"  : optional, Wörter (klein), die bei diesem Satz nie
+                            als falsche Kachel kommen dürfen, weil sie ihn
+                            ebenfalls richtig machen: "somun" neben "Uzet ću
+                            pogaču.", "ćao" neben "Merhaba, kako si?". Je ein
+                            einzelnes Wort, keins aus dem Satz selbst.
                   "formen": optional, gebeugte Kachel -> Grundform, die bis
                             zu diesem Level im Wortschatz steht, z. B.
                             {"kahvu": "kahva"}. Nur für die Prüfung.
@@ -2597,11 +2602,12 @@ SAETZE = [
 # füllen, und zwar ab Level 1 mit den Wörtern, die gerade dran waren. Ajdin
 # dazu: mehrere Reihenfolgen dürfen richtig sein ("auch"), und ein Satz kommt
 # erst, wenn alle seine Wörter schon da waren. Aufbau siehe oben im Kopf.
-# Die vier Sätze hier sind Platzhalter aus dem Wortschatz von Level 1, damit
-# der Ablauf steht; die eigentliche Liste kommt getrennt und ersetzt sie.
+# Die Liste ist vollständig: 357 Sätze in allen 65 Leveln (13.10.2026). Das
+# Review vom 14.10.2026 hat fehlende richtige Reihenfolgen in "auch" ergänzt
+# und mit "ohne" Ablenker gesperrt, die den Satz ebenfalls richtig machen.
 SATZBAU = [
     # Level 1 · Grundlagen
-    {"kat": "basics", "bs": "Merhaba, kako si?", "de": "Hallo, wie geht's dir?", "quelle": "saetze"},
+    {"kat": "basics", "bs": "Merhaba, kako si?", "de": "Hallo, wie geht's dir?", "ohne": ["ćao", "zdravo"], "quelle": "saetze"},
     {"kat": "basics", "bs": "Zovem se Amina.", "auch": ["Amina se zovem."], "de": "Ich heiße Amina.", "quelle": "saetze"},
     {"kat": "basics", "bs": "Drago mi je.", "de": "Freut mich.", "quelle": "saetze"},
     {"kat": "basics", "bs": "Nema na čemu.", "de": "Gern geschehen.", "quelle": "saetze"},
@@ -2631,7 +2637,7 @@ SATZBAU = [
     {"kat": "essen", "bs": "Dvije kahve, molim.", "auch": ["Molim dvije kahve."], "de": "Zwei Kaffee, bitte.", "formen": {"dvije": "dva", "kahve": "kahva"}, "quelle": "saetze"},
     # Level 6 · Wochentage
     {"kat": "wochentage", "bs": "Ponedjeljak, utorak, srijeda", "de": "Montag, Dienstag, Mittwoch", "quelle": "saetze"},
-    {"kat": "wochentage", "bs": "U subotu je vikend.", "auch": ["Vikend je u subotu."], "de": "Am Samstag ist Wochenende.", "formen": {"subotu": "subota"}, "quelle": "saetze"},
+    {"kat": "wochentage", "bs": "U subotu je vikend.", "auch": ["Vikend je u subotu."], "de": "Am Samstag ist Wochenende.", "formen": {"subotu": "subota"}, "ohne": ["subota"], "quelle": "saetze"},
     {"kat": "wochentage", "bs": "Petak je dobar dan.", "de": "Freitag ist ein guter Tag.", "quelle": "neu"},
     {"kat": "wochentage", "bs": "Ponedjeljak je loš dan.", "de": "Montag ist ein schlechter Tag.", "quelle": "neu"},
     # Level 7 · Monate
@@ -2682,7 +2688,7 @@ SATZBAU = [
     {"kat": "verben", "bs": "Koliko imaš godina?", "auch": ["Koliko godina imaš?"], "de": "Wie alt bist du?", "formen": {"imaš": "imati"}, "quelle": "saetze"},
     {"kat": "verben", "bs": "Jučer sam radila.", "auch": ["Radila sam jučer."], "de": "Gestern habe ich gearbeitet. (Frau)", "formen": {"radila": "raditi"}, "quelle": "saetze"},
     # Level 15 · Smalltalk & Gefühle
-    {"kat": "smalltalk", "bs": "Danas je lijep dan.", "auch": ["Lijep je dan danas.", "Lijep je danas dan.", "Lijep dan je danas."], "de": "Heute ist ein schöner Tag.", "quelle": "saetze"},
+    {"kat": "smalltalk", "bs": "Danas je lijep dan.", "auch": ["Lijep je dan danas.", "Lijep je danas dan.", "Lijep dan je danas.", "Dan je danas lijep."], "de": "Heute ist ein schöner Tag.", "quelle": "saetze"},
     {"kat": "smalltalk", "bs": "Sretna Nova godina!", "de": "Frohes neues Jahr!", "quelle": "saetze"},
     {"kat": "smalltalk", "bs": "Imaš li vremena?", "de": "Hast du Zeit?", "formen": {"imaš": "imati"}, "quelle": "saetze"},
     {"kat": "smalltalk", "bs": "Bilo je lijepo.", "auch": ["Lijepo je bilo."], "de": "Es war schön.", "formen": {"bilo": "biti"}, "quelle": "saetze"},
@@ -2693,36 +2699,36 @@ SATZBAU = [
     {"kat": "obst", "bs": "Banana je žuta.", "auch": ["Žuta je banana."], "de": "Die Banane ist gelb.", "quelle": "saetze"},
     {"kat": "obst", "bs": "Ovo je lubenica.", "auch": ["Lubenica je ovo."], "de": "Das ist eine Wassermelone.", "quelle": "saetze"},
     {"kat": "obst", "bs": "U torbi je limun.", "auch": ["Limun je u torbi."], "de": "In der Tasche ist eine Zitrone.", "formen": {"torbi": "torba"}, "quelle": "saetze"},
-    {"kat": "obst", "bs": "Djeca jedu jagode.", "de": "Die Kinder essen Erdbeeren.", "formen": {"jedu": "jesti", "jagode": "jagoda"}, "quelle": "saetze"},
-    {"kat": "obst", "bs": "Kupi grožđe na pijaci.", "auch": ["Na pijaci kupi grožđe.", "Kupi na pijaci grožđe.", "Grožđe kupi na pijaci."], "de": "Kauf Weintrauben auf dem Markt.", "formen": {"kupi": "kupiti", "pijaci": "pijaca"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (praepositionen) - dort später; beim Zusammenführen diese Fassung behalten."},
+    {"kat": "obst", "bs": "Djeca jedu jagode.", "auch": ["Djeca jagode jedu."], "de": "Die Kinder essen Erdbeeren.", "formen": {"jedu": "jesti", "jagode": "jagoda"}, "quelle": "saetze"},
+    {"kat": "obst", "bs": "Kupi grožđe na pijaci.", "auch": ["Na pijaci kupi grožđe.", "Kupi na pijaci grožđe.", "Grožđe kupi na pijaci."], "de": "Kauf Weintrauben auf dem Markt.", "formen": {"kupi": "kupiti", "pijaci": "pijaca"}, "quelle": "saetze"},
     # Level 17 · Gemüse
-    {"kat": "gemuese", "bs": "Djeca ne vole špinat.", "de": "Die Kinder mögen keinen Spinat.", "formen": {"vole": "voljeti"}, "quelle": "saetze"},
+    {"kat": "gemuese", "bs": "Djeca ne vole špinat.", "auch": ["Djeca špinat ne vole."], "de": "Die Kinder mögen keinen Spinat.", "formen": {"vole": "voljeti"}, "quelle": "saetze"},
     {"kat": "gemuese", "bs": "U supi je mrkva.", "auch": ["Mrkva je u supi."], "de": "In der Suppe ist eine Karotte.", "formen": {"supi": "supa"}, "quelle": "saetze"},
     {"kat": "gemuese", "bs": "U bašti je kukuruz.", "auch": ["Kukuruz je u bašti."], "de": "Im Garten ist Mais.", "formen": {"bašti": "bašta"}, "quelle": "saetze"},
-    {"kat": "gemuese", "bs": "Danas jedem karfiol.", "auch": ["Jedem karfiol danas.", "Jedem danas karfiol."], "de": "Heute esse ich Blumenkohl.", "formen": {"jedem": "jesti"}, "quelle": "saetze"},
-    {"kat": "gemuese", "bs": "Na stolu su gljive.", "auch": ["Gljive su na stolu."], "de": "Auf dem Tisch sind Pilze.", "formen": {"stolu": "sto", "su": "biti"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (praepositionen) - dort später; beim Zusammenführen diese Fassung behalten."},
+    {"kat": "gemuese", "bs": "Danas jedem karfiol.", "auch": ["Jedem karfiol danas.", "Jedem danas karfiol.", "Danas karfiol jedem.", "Karfiol jedem danas.", "Karfiol danas jedem."], "de": "Heute esse ich Blumenkohl.", "formen": {"jedem": "jesti"}, "quelle": "saetze"},
+    {"kat": "gemuese", "bs": "Na stolu su gljive.", "auch": ["Gljive su na stolu."], "de": "Auf dem Tisch sind Pilze.", "formen": {"stolu": "sto", "su": "biti"}, "quelle": "saetze"},
     # Level 18 · Lebensmittel
-    {"kat": "lebensmittel", "bs": "Djeca jedu sladoled.", "de": "Die Kinder essen Eis (Speiseeis).", "formen": {"jedu": "jesti"}, "quelle": "saetze"},
+    {"kat": "lebensmittel", "bs": "Djeca jedu sladoled.", "auch": ["Djeca sladoled jedu."], "de": "Die Kinder essen Eis (Speiseeis).", "formen": {"jedu": "jesti"}, "quelle": "saetze"},
     {"kat": "lebensmittel", "bs": "Htjela bih kobasicu.", "auch": ["Kobasicu bih htjela."], "de": "Ich möchte Wurst.", "formen": {"kobasicu": "kobasica"}, "quelle": "saetze", "notiz": "Die Kachel htjela legt die Sprecherin fest, der deutsche Satz nicht: htio nicht als Ablenker anbieten."},
     {"kat": "lebensmittel", "bs": "prašak za pecivo", "de": "Backpulver", "quelle": "vokabel"},
     # Level 19 · Vorrat & Getränke
     {"kat": "vorrat", "bs": "Jednu rakiju, molim.", "auch": ["Molim jednu rakiju."], "de": "Einen Rakija, bitte.", "quelle": "saetze"},
     {"kat": "vorrat", "bs": "U frižideru je jogurt.", "auch": ["Jogurt je u frižideru."], "de": "Im Kühlschrank ist Joghurt.", "formen": {"frižideru": "frižider"}, "quelle": "saetze"},
-    {"kat": "vorrat", "bs": "Volim med u čaju.", "auch": ["U čaju volim med."], "de": "Ich mag Honig im Tee.", "formen": {"čaju": "čaj"}, "quelle": "saetze"},
+    {"kat": "vorrat", "bs": "Volim med u čaju.", "auch": ["U čaju volim med.", "Med volim u čaju."], "de": "Ich mag Honig im Tee.", "formen": {"čaju": "čaj"}, "quelle": "saetze"},
     {"kat": "vorrat", "bs": "Kahva je u džezvi.", "auch": ["U džezvi je kahva."], "de": "Der Kaffee ist im Kupferkännchen.", "formen": {"džezvi": "džezva"}, "quelle": "saetze"},
-    {"kat": "vorrat", "bs": "Uzet ću pogaču.", "de": "Ich nehme das Fladenbrot.", "formen": {"pogaču": "pogača"}, "quelle": "saetze"},
+    {"kat": "vorrat", "bs": "Uzet ću pogaču.", "de": "Ich nehme das Fladenbrot.", "formen": {"pogaču": "pogača"}, "ohne": ["somun"], "quelle": "saetze"},
     # Level 20 · Tiere
     {"kat": "tiere", "bs": "Krava je u štali.", "auch": ["U štali je krava."], "de": "Die Kuh ist im Stall.", "formen": {"štali": "štala"}, "quelle": "saetze"},
     {"kat": "tiere", "bs": "Malo štene spava.", "de": "Der kleine Welpe schläft.", "formen": {"spava": "spavati"}, "quelle": "saetze", "notiz": "Nicht 'Štene malo spava' - das hiesse 'Der Welpe schläft ein bisschen'."},
-    {"kat": "tiere", "bs": "Vidim patku na vodi.", "auch": ["Na vodi vidim patku.", "Vidim na vodi patku."], "de": "Ich sehe die Ente auf dem Wasser.", "formen": {"vidim": "vidjeti", "patku": "patka", "vodi": "voda"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (faelle1) - dort später; beim Zusammenführen diese Fassung behalten."},
+    {"kat": "tiere", "bs": "Vidim patku na vodi.", "auch": ["Na vodi vidim patku.", "Vidim na vodi patku.", "Patku vidim na vodi."], "de": "Ich sehe die Ente auf dem Wasser.", "formen": {"vidim": "vidjeti", "patku": "patka", "vodi": "voda"}, "quelle": "saetze"},
     {"kat": "tiere", "bs": "Ptica ima gnijezdo na drvetu.", "auch": ["Ptica na drvetu ima gnijezdo.", "Na drvetu ptica ima gnijezdo.", "Ptica ima na drvetu gnijezdo."], "de": "Der Vogel hat ein Nest auf dem Baum.", "formen": {"drvetu": "drvo"}, "quelle": "saetze"},
     # Level 21 · Tiere draußen
     {"kat": "tiere_wild", "bs": "Ovo je zmaj.", "auch": ["Zmaj je ovo."], "de": "Das ist ein Drache.", "quelle": "saetze"},
     {"kat": "tiere_wild", "bs": "U šumi je medvjed.", "auch": ["Medvjed je u šumi."], "de": "Im Wald ist ein Bär.", "formen": {"šumi": "šuma"}, "quelle": "saetze"},
-    {"kat": "tiere_wild", "bs": "Mačka vidi miša.", "de": "Die Katze sieht eine Maus.", "formen": {"miša": "miš"}, "quelle": "saetze"},
+    {"kat": "tiere_wild", "bs": "Mačka vidi miša.", "auch": ["Mačka miša vidi."], "de": "Die Katze sieht eine Maus.", "formen": {"miša": "miš"}, "quelle": "saetze"},
     {"kat": "tiere_wild", "bs": "Na cvijetu je leptir.", "auch": ["Leptir je na cvijetu."], "de": "Auf der Blume ist ein Schmetterling.", "formen": {"cvijetu": "cvijet"}, "quelle": "saetze"},
     # Level 22 · Rund ums Tier
-    {"kat": "tiere_umgang", "bs": "Mačka ima rep.", "de": "Die Katze hat einen Schwanz.", "quelle": "saetze"},
+    {"kat": "tiere_umgang", "bs": "Mačka ima rep.", "auch": ["Mačka rep ima."], "de": "Die Katze hat einen Schwanz.", "quelle": "saetze"},
     {"kat": "tiere_umgang", "bs": "Gdje je povodac?", "de": "Wo ist die Leine?", "quelle": "saetze"},
     {"kat": "tiere_umgang", "bs": "Pas me je ujeo", "auch": ["Ujeo me je pas"], "de": "Der Hund hat mich gebissen", "quelle": "vokabel"},
     {"kat": "tiere_umgang", "bs": "Bojim se pasa", "auch": ["Pasa se bojim"], "de": "Ich habe Angst vor Hunden", "quelle": "vokabel"},
@@ -2740,8 +2746,8 @@ SATZBAU = [
     # Level 25 · Putzen & Nachbarschaft
     {"kat": "putzen", "bs": "Kupatilo je čisto.", "auch": ["Čisto je kupatilo."], "de": "Das Bad ist sauber.", "quelle": "saetze"},
     {"kat": "putzen", "bs": "Gdje je metla?", "de": "Wo ist der Besen?", "quelle": "saetze"},
-    {"kat": "putzen", "bs": "Sutra peglam veš.", "auch": ["Peglam veš sutra.", "Peglam sutra veš."], "de": "Morgen bügle ich die Wäsche.", "formen": {"peglam": "peglati"}, "quelle": "saetze"},
-    {"kat": "putzen", "bs": "Komšinica zvoni na vrata.", "de": "Die Nachbarin klingelt an der Tür.", "formen": {"zvoni": "zvoniti"}, "quelle": "saetze"},
+    {"kat": "putzen", "bs": "Sutra peglam veš.", "auch": ["Peglam veš sutra.", "Peglam sutra veš.", "Sutra veš peglam.", "Veš peglam sutra.", "Veš sutra peglam."], "de": "Morgen bügle ich die Wäsche.", "formen": {"peglam": "peglati"}, "quelle": "saetze"},
+    {"kat": "putzen", "bs": "Komšinica zvoni na vrata.", "de": "Die Nachbarin klingelt an der Tür.", "formen": {"zvoni": "zvoniti"}, "ohne": ["komšija"], "quelle": "saetze"},
     {"kat": "putzen", "bs": "Veš je na štriku.", "auch": ["Na štriku je veš."], "de": "Die Wäsche ist auf der Wäscheleine.", "formen": {"štriku": "štrik"}, "quelle": "saetze"},
     # Level 26 · Technik & Reparatur
     {"kat": "technik", "bs": "Ne radi bojler.", "auch": ["Bojler ne radi."], "de": "Der Boiler funktioniert nicht.", "quelle": "saetze"},
@@ -2755,13 +2761,13 @@ SATZBAU = [
     {"kat": "geraete", "bs": "Ne radi mašina za suđe.", "auch": ["Mašina za suđe ne radi."], "de": "Die Spülmaschine funktioniert nicht.", "quelle": "saetze", "notiz": "Von Level 26 nach 28 verschoben: die Kacheln wären ab 26 da, aber das Wort 'mašina za suđe' (Spülmaschine) lernt man erst in Level 28."},
     {"kat": "geraete", "bs": "Koja je šifra za WiFi?", "de": "Wie ist das WLAN-Passwort?", "quelle": "saetze"},
     {"kat": "geraete", "bs": "Baterija je prazna.", "auch": ["Prazna je baterija."], "de": "Der Akku ist leer.", "quelle": "saetze"},
-    {"kat": "geraete", "bs": "Pošalji mi poruku.", "de": "Schick mir eine Nachricht.", "formen": {"pošalji": "poslati"}, "quelle": "saetze"},
+    {"kat": "geraete", "bs": "Pošalji mi poruku.", "auch": ["Poruku mi pošalji."], "de": "Schick mir eine Nachricht.", "formen": {"pošalji": "poslati"}, "quelle": "saetze"},
     {"kat": "geraete", "bs": "kuhalo za vodu", "de": "Wasserkocher", "quelle": "vokabel"},
     # Level 29 · Fragen stellen
     {"kat": "fragen", "bs": "Šta je to?", "de": "Was ist das?", "quelle": "saetze"},
     {"kat": "fragen", "bs": "Govoriš li ti bosanski?", "auch": ["Govoriš li bosanski?"], "de": "Sprichst du Bosnisch?", "quelle": "saetze"},
-    {"kat": "fragen", "bs": "Možeš li mi pomoći?", "de": "Kannst du mir helfen?", "formen": {"možeš": "moći"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (modal) - dort später; beim Zusammenführen diese Fassung behalten."},
-    {"kat": "fragen", "bs": "Ti imaš dva brata.", "auch": ["Imaš dva brata.", "Dva brata imaš."], "de": "Du hast zwei Brüder.", "formen": {"brata": "brat"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (faelle1) - dort später; beim Zusammenführen diese Fassung behalten."},
+    {"kat": "fragen", "bs": "Možeš li mi pomoći?", "de": "Kannst du mir helfen?", "formen": {"možeš": "moći"}, "quelle": "saetze"},
+    {"kat": "fragen", "bs": "Ti imaš dva brata.", "auch": ["Imaš dva brata.", "Dva brata imaš.", "Ti dva brata imaš."], "de": "Du hast zwei Brüder.", "formen": {"brata": "brat"}, "quelle": "saetze"},
     # Level 30 · Geschlecht: on, ona, ono
     {"kat": "genus", "bs": "Ovo je moja soba.", "auch": ["Moja je ovo soba."], "de": "Das ist mein Zimmer.", "quelle": "saetze"},
     {"kat": "genus", "bs": "Moja kuća je velika.", "auch": ["Moja je kuća velika.", "Velika je moja kuća."], "de": "Mein Haus ist groß.", "quelle": "saetze"},
@@ -2774,22 +2780,22 @@ SATZBAU = [
     {"kat": "genus", "bs": "Gdje je moj punjač?", "de": "Wo ist mein Ladegerät?", "quelle": "saetze"},
     {"kat": "genus", "bs": "Moja sestra se zove Amina.", "auch": ["Moja se sestra zove Amina."], "de": "Meine Schwester heißt Amina.", "formen": {"zove": "zvati"}, "quelle": "saetze"},
     {"kat": "genus", "bs": "Moj muž se zove Ajdin.", "auch": ["Moj se muž zove Ajdin."], "de": "Mein Mann heißt Ajdin.", "formen": {"zove": "zvati"}, "quelle": "saetze"},
-    {"kat": "genus", "bs": "Moja mama voli kruške.", "de": "Meine Mama mag Birnen.", "formen": {"voli": "voljeti", "kruške": "kruška"}, "quelle": "saetze"},
-    {"kat": "genus", "bs": "Moja sestra voli čokoladu.", "de": "Meine Schwester liebt Schokolade.", "formen": {"voli": "voljeti", "čokoladu": "čokolada"}, "quelle": "saetze"},
+    {"kat": "genus", "bs": "Moja mama voli kruške.", "auch": ["Moja mama kruške voli."], "de": "Meine Mama mag Birnen.", "formen": {"voli": "voljeti", "kruške": "kruška"}, "quelle": "saetze"},
+    {"kat": "genus", "bs": "Moja sestra voli čokoladu.", "auch": ["Moja sestra čokoladu voli."], "de": "Meine Schwester liebt Schokolade.", "formen": {"voli": "voljeti", "čokoladu": "čokolada"}, "quelle": "saetze"},
     {"kat": "genus", "bs": "Moj pas laje.", "de": "Mein Hund bellt.", "formen": {"laje": "lajati"}, "quelle": "saetze"},
-    {"kat": "genus", "bs": "Moja nana stanuje u selu.", "auch": ["U selu stanuje moja nana."], "de": "Meine Oma wohnt im Dorf.", "formen": {"stanuje": "stanovati", "selu": "selo"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (saetze) - dort später; beim Zusammenführen diese Fassung behalten."},
+    {"kat": "genus", "bs": "Moja nana stanuje u selu.", "auch": ["U selu stanuje moja nana.", "Moja nana u selu stanuje.", "U selu moja nana stanuje."], "de": "Meine Oma wohnt im Dorf.", "formen": {"stanuje": "stanovati", "selu": "selo"}, "quelle": "saetze"},
     # Level 31 · Verben beugen
     {"kat": "konjugation", "bs": "Mi učimo bosanski.", "auch": ["Učimo bosanski.", "Bosanski učimo.", "Mi bosanski učimo."], "de": "Wir lernen Bosnisch.", "formen": {"učimo": "učiti"}, "quelle": "saetze", "notiz": "mi = wir lernt man erst in Konjugation (mi smo); bis Verben kennt der Lernende mi nur als mir (Drago mi je). Deshalb kat konjugation statt verben."},
-    {"kat": "konjugation", "bs": "Ja govorim bosanski.", "auch": ["Govorim bosanski.", "Bosanski govorim."], "de": "Ich spreche Bosnisch.", "quelle": "saetze"},
-    {"kat": "konjugation", "bs": "Ja pijem kahvu.", "auch": ["Pijem kahvu.", "Kahvu pijem."], "de": "Ich trinke Kaffee.", "quelle": "saetze"},
-    {"kat": "konjugation", "bs": "Ja hranim mačku.", "auch": ["Hranim mačku.", "Mačku hranim."], "de": "Ich füttere die Katze.", "formen": {"hranim": "hraniti", "mačku": "mačka"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (faelle1) - dort später; beim Zusammenführen diese Fassung behalten."},
+    {"kat": "konjugation", "bs": "Ja govorim bosanski.", "auch": ["Govorim bosanski.", "Bosanski govorim.", "Ja bosanski govorim."], "de": "Ich spreche Bosnisch.", "quelle": "saetze"},
+    {"kat": "konjugation", "bs": "Ja pijem kahvu.", "auch": ["Pijem kahvu.", "Kahvu pijem.", "Ja kahvu pijem."], "de": "Ich trinke Kaffee.", "quelle": "saetze"},
+    {"kat": "konjugation", "bs": "Ja hranim mačku.", "auch": ["Hranim mačku.", "Mačku hranim.", "Ja mačku hranim."], "de": "Ich füttere die Katze.", "formen": {"hranim": "hraniti", "mačku": "mačka"}, "quelle": "saetze"},
     {"kat": "konjugation", "bs": "Mi smo umorni.", "auch": ["Umorni smo."], "de": "Wir sind müde.", "formen": {"umorni": "umoran"}, "quelle": "neu", "notiz": "umorni = Mehrzahl (Männer oder gemischte Gruppe); umorne nicht als Ablenker anbieten, der deutsche Satz legt das Geschlecht nicht fest."},
     # Level 32 · Mehrzahl
     {"kat": "mehrzahl", "bs": "Moj komšija je dobar čovjek.", "auch": ["Moj je komšija dobar čovjek.", "Dobar je čovjek moj komšija."], "de": "Mein Nachbar ist ein guter Mensch.", "quelle": "saetze"},
-    {"kat": "mehrzahl", "bs": "Knjiga je na stolu.", "auch": ["Na stolu je knjiga."], "de": "Das Buch ist auf dem Tisch.", "formen": {"stolu": "sto"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (praepositionen) - dort später; beim Zusammenführen diese Fassung behalten."},
-    {"kat": "mehrzahl", "bs": "Imam dvije sestre.", "auch": ["Dvije sestre imam."], "de": "Ich habe zwei Schwestern.", "formen": {"dvije": "dva"}, "quelle": "saetze", "notiz": "Steht auch in satzbau_33_50.json (mengen) - dort später; beim Zusammenführen diese Fassung behalten."},
+    {"kat": "mehrzahl", "bs": "Knjiga je na stolu.", "auch": ["Na stolu je knjiga."], "de": "Das Buch ist auf dem Tisch.", "formen": {"stolu": "sto"}, "quelle": "saetze"},
+    {"kat": "mehrzahl", "bs": "Imam dvije sestre.", "auch": ["Dvije sestre imam."], "de": "Ich habe zwei Schwestern.", "formen": {"dvije": "dva"}, "quelle": "saetze"},
     {"kat": "mehrzahl", "bs": "Gdje su moji ključevi?", "de": "Wo sind meine Schlüssel?", "formen": {"moji": "moj"}, "quelle": "neu"},
-    {"kat": "mehrzahl", "bs": "To su moji prijatelji.", "auch": ["Moji su to prijatelji."], "de": "Das sind meine Freunde.", "formen": {"moji": "moj"}, "quelle": "neu"},
+    {"kat": "mehrzahl", "bs": "To su moji prijatelji.", "auch": ["Moji su to prijatelji."], "de": "Das sind meine Freunde.", "formen": {"moji": "moj"}, "ohne": ["ovo"], "quelle": "neu"},
     # Level 33 · Nebensätze & Verneinung
     {"kat": "satzbau", "bs": "Pet i pet je deset.", "de": "Fünf und fünf ist zehn.", "quelle": "saetze"},
     {"kat": "satzbau", "bs": "Dva i dva su četiri.", "de": "Zwei und zwei sind vier.", "quelle": "saetze"},
@@ -2807,8 +2813,8 @@ SATZBAU = [
     {"kat": "satzbau", "bs": "Pile i kokoš su u avliji.", "auch": ["Kokoš i pile su u avliji.", "U avliji su pile i kokoš.", "U avliji su kokoš i pile."], "de": "Das Küken und das Huhn sind im Hof.", "formen": {"avliji": "avlija"}, "quelle": "saetze"},
     # Level 34 · Fälle 1: Nominativ & Akkusativ
     {"kat": "faelle1", "bs": "Volim svoju majku.", "auch": ["Svoju majku volim."], "de": "Ich liebe meine Mutter.", "quelle": "saetze"},
-    {"kat": "faelle1", "bs": "On ima psa", "auch": ["Ima psa"], "de": "Er hat einen Hund", "quelle": "vokabel"},
-    {"kat": "faelle1", "bs": "Ona ima mačku", "auch": ["Ima mačku"], "de": "Sie hat eine Katze", "quelle": "vokabel"},
+    {"kat": "faelle1", "bs": "On ima psa", "auch": ["Ima psa", "Psa ima", "On psa ima"], "de": "Er hat einen Hund", "quelle": "vokabel"},
+    {"kat": "faelle1", "bs": "Ona ima mačku", "auch": ["Ima mačku", "Mačku ima", "Ona mačku ima"], "de": "Sie hat eine Katze", "quelle": "vokabel"},
     {"kat": "faelle1", "bs": "Znam tvog brata", "auch": ["Tvog brata znam"], "de": "Ich kenne deinen Bruder", "quelle": "vokabel"},
     {"kat": "faelle1", "bs": "Gdje mogu parkirati svoj auto?", "auch": ["Gdje mogu svoj auto parkirati?"], "de": "Wo kann ich mein Auto parken?", "formen": {"svoj": "svoju"}, "quelle": "saetze", "notiz": "svoj = Grundform; im Wortschatz steht bis hier nur svoju"},
     # Level 35 · Fälle 2: Genitiv
@@ -2827,10 +2833,10 @@ SATZBAU = [
     {"kat": "praepositionen", "bs": "Poslije posla idem kući.", "auch": ["Idem kući poslije posla.", "Idem poslije posla kući."], "de": "Nach der Arbeit gehe ich nach Hause.", "quelle": "saetze"},
     {"kat": "praepositionen", "bs": "Poslije četvrtka dolazi petak.", "auch": ["Petak dolazi poslije četvrtka."], "de": "Nach Donnerstag kommt Freitag.", "formen": {"četvrtka": "četvrtak", "dolazi": "dolaziš"}, "quelle": "saetze"},
     {"kat": "praepositionen", "bs": "Poslije maja dolazi juni.", "auch": ["Juni dolazi poslije maja."], "de": "Nach Mai kommt Juni.", "formen": {"maja": "maj", "dolazi": "dolaziš"}, "quelle": "saetze"},
-    {"kat": "praepositionen", "bs": "s mojom ženom", "de": "mit meiner Frau", "quelle": "vokabel"},
+    {"kat": "praepositionen", "bs": "s mojom ženom", "de": "mit meiner Frau", "ohne": ["sa"], "quelle": "vokabel"},
     # Level 37 · Fälle 3: Dativ & Lokativ
     {"kat": "faelle3", "bs": "Stanujem u Sarajevu.", "auch": ["U Sarajevu stanujem."], "de": "Ich wohne in Sarajevo.", "quelle": "saetze"},
-    {"kat": "faelle3", "bs": "Daj mi vode.", "de": "Gib mir Wasser.", "quelle": "saetze"},
+    {"kat": "faelle3", "bs": "Daj mi vode.", "auch": ["Vode mi daj."], "de": "Gib mir Wasser.", "quelle": "saetze"},
     {"kat": "faelle3", "bs": "Daj mi kliješta, molim te.", "auch": ["Molim te, daj mi kliješta.", "Daj mi, molim te, kliješta."], "de": "Gib mir bitte die Zange.", "quelle": "saetze"},
     {"kat": "faelle3", "bs": "Pomažem majci u kuhinji.", "auch": ["U kuhinji pomažem majci.", "Majci pomažem u kuhinji."], "de": "Ich helfe meiner Mutter in der Küche.", "quelle": "neu"},
     {"kat": "faelle3", "bs": "Hladno mi je", "de": "Mir ist kalt", "quelle": "vokabel"},
@@ -2838,43 +2844,43 @@ SATZBAU = [
     {"kat": "faelle3", "bs": "Stanujem u Berlinu", "auch": ["U Berlinu stanujem"], "de": "Ich wohne in Berlin", "quelle": "vokabel"},
     {"kat": "faelle3", "bs": "govoriti o poslu", "de": "über die Arbeit sprechen", "quelle": "vokabel"},
     # Level 38 · Fälle 4: Instrumental & Vokativ
-    {"kat": "faelle4", "bs": "Idem s bratom u grad.", "auch": ["Idem u grad s bratom.", "S bratom idem u grad.", "U grad idem s bratom."], "de": "Ich gehe mit dem Bruder in die Stadt.", "quelle": "saetze"},
+    {"kat": "faelle4", "bs": "Idem s bratom u grad.", "auch": ["Idem u grad s bratom.", "S bratom idem u grad.", "U grad idem s bratom."], "de": "Ich gehe mit dem Bruder in die Stadt.", "ohne": ["sa"], "quelle": "saetze"},
     {"kat": "faelle4", "bs": "Kahva sa šećerom.", "de": "Kaffee mit Zucker.", "quelle": "saetze"},
     {"kat": "faelle4", "bs": "Idemo vozom u Mostar.", "auch": ["Idemo u Mostar vozom.", "Vozom idemo u Mostar.", "U Mostar idemo vozom."], "de": "Wir fahren mit dem Zug nach Mostar.", "quelle": "neu"},
-    {"kat": "faelle4", "bs": "Pijem kahvu s mlijekom.", "auch": ["Kahvu pijem s mlijekom."], "de": "Ich trinke Kaffee mit Milch.", "quelle": "neu"},
+    {"kat": "faelle4", "bs": "Pijem kahvu s mlijekom.", "auch": ["Kahvu pijem s mlijekom.", "Kahvu s mlijekom pijem."], "de": "Ich trinke Kaffee mit Milch.", "ohne": ["sa"], "quelle": "neu"},
     {"kat": "faelle4", "bs": "Kako si, brate?", "auch": ["Brate, kako si?"], "de": "Wie geht es dir, Bruder?", "quelle": "neu", "notiz": "brate = Vokativ von brat"},
     # Level 39 · Vergangenheit
     {"kat": "vergangenheit", "bs": "Prošle godine smo bili u Bosni.", "auch": ["Bili smo u Bosni prošle godine.", "U Bosni smo bili prošle godine.", "Bili smo prošle godine u Bosni."], "de": "Letztes Jahr waren wir in Bosnien.", "quelle": "saetze"},
     {"kat": "vergangenheit", "bs": "Jučer sam kupila hljeb i mlijeko.", "auch": ["Jučer sam kupila mlijeko i hljeb.", "Kupila sam jučer hljeb i mlijeko.", "Kupila sam jučer mlijeko i hljeb.", "Kupila sam hljeb i mlijeko jučer.", "Kupila sam mlijeko i hljeb jučer."], "de": "Gestern habe ich Brot und Milch gekauft. (Frau)", "quelle": "saetze"},
     # Level 40 · Zukunft & Pläne
-    {"kat": "zukunft", "bs": "Kada ćeš doći?", "de": "Wann wirst du kommen?", "quelle": "saetze"},
+    {"kat": "zukunft", "bs": "Kada ćeš doći?", "de": "Wann wirst du kommen?", "ohne": ["ćete"], "quelle": "saetze"},
     {"kat": "zukunft", "bs": "Sljedeće godine idemo u Bosnu.", "auch": ["Idemo u Bosnu sljedeće godine.", "U Bosnu idemo sljedeće godine.", "Idemo sljedeće godine u Bosnu."], "de": "Nächstes Jahr fahren wir nach Bosnien.", "quelle": "saetze"},
     {"kat": "zukunft", "bs": "Doći ću prekosutra.", "auch": ["Prekosutra ću doći."], "de": "Ich werde übermorgen kommen.", "quelle": "neu"},
     {"kat": "zukunft", "bs": "Nazvat ću te", "de": "Ich werde dich anrufen", "quelle": "vokabel"},
     # Level 41 · Können, müssen, wollen
     {"kat": "modal", "bs": "Moram raditi sutra.", "auch": ["Sutra moram raditi.", "Moram sutra raditi."], "de": "Ich muss morgen arbeiten.", "quelle": "saetze"},
     {"kat": "modal", "bs": "Smijem li pitati?", "de": "Darf ich fragen?", "quelle": "saetze"},
-    {"kat": "modal", "bs": "Moram sipati gorivo.", "de": "Ich muss tanken.", "quelle": "saetze"},
+    {"kat": "modal", "bs": "Moram sipati gorivo.", "auch": ["Moram gorivo sipati.", "Gorivo moram sipati."], "de": "Ich muss tanken.", "quelle": "saetze"},
     {"kat": "modal", "bs": "Želim nešto jesti", "auch": ["Želim jesti nešto"], "de": "Ich möchte etwas essen", "quelle": "vokabel"},
-    {"kat": "modal", "bs": "Mogu govoriti bosanski", "auch": ["Mogu bosanski govoriti"], "de": "Ich kann Bosnisch sprechen", "quelle": "vokabel"},
+    {"kat": "modal", "bs": "Mogu govoriti bosanski", "auch": ["Mogu bosanski govoriti", "Bosanski mogu govoriti"], "de": "Ich kann Bosnisch sprechen", "quelle": "vokabel"},
     {"kat": "modal", "bs": "Ne znam plivati", "de": "Ich kann nicht schwimmen (Fähigkeit)", "quelle": "vokabel"},
     # Level 42 · Reflexive Verben (se)
     {"kat": "reflexiv", "bs": "Osjećam se dobro.", "auch": ["Dobro se osjećam."], "de": "Ich fühle mich gut.", "quelle": "saetze"},
     {"kat": "reflexiv", "bs": "Nalazimo se u pet.", "auch": ["U pet se nalazimo."], "de": "Wir treffen uns um fünf.", "quelle": "saetze"},
-    {"kat": "reflexiv", "bs": "Djeca se igraju.", "de": "Die Kinder spielen.", "quelle": "saetze"},
+    {"kat": "reflexiv", "bs": "Djeca se igraju.", "auch": ["Igraju se djeca."], "de": "Die Kinder spielen.", "quelle": "saetze"},
     {"kat": "reflexiv", "bs": "Ne sjećam se.", "de": "Ich erinnere mich nicht.", "quelle": "neu"},
     {"kat": "reflexiv", "bs": "Kako se osjećaš?", "de": "Wie fühlst du dich?", "formen": {"osjećaš": "osjećati"}, "quelle": "neu"},
     {"kat": "reflexiv", "bs": "Radujem se vikendu.", "auch": ["Vikendu se radujem."], "de": "Ich freue mich aufs Wochenende.", "formen": {"vikendu": "vikend"}, "quelle": "neu"},
     # Level 43 · Tagesablauf
     {"kat": "routine", "bs": "U ponedjeljak idem na posao.", "auch": ["Idem na posao u ponedjeljak.", "Na posao idem u ponedjeljak.", "Idem u ponedjeljak na posao."], "de": "Am Montag gehe ich zur Arbeit.", "quelle": "saetze"},
-    {"kat": "routine", "bs": "Učim bosanski svaki dan.", "auch": ["Svaki dan učim bosanski.", "Učim svaki dan bosanski.", "Bosanski učim svaki dan."], "de": "Ich lerne jeden Tag Bosnisch.", "quelle": "saetze"},
+    {"kat": "routine", "bs": "Učim bosanski svaki dan.", "auch": ["Svaki dan učim bosanski.", "Učim svaki dan bosanski.", "Bosanski učim svaki dan.", "Svaki dan bosanski učim.", "Bosanski svaki dan učim."], "de": "Ich lerne jeden Tag Bosnisch.", "quelle": "saetze"},
     {"kat": "routine", "bs": "Ustajem u sedam sati.", "auch": ["U sedam sati ustajem."], "de": "Ich stehe um sieben Uhr auf.", "quelle": "saetze"},
-    {"kat": "routine", "bs": "Poslije posla kuham večeru.", "auch": ["Kuham večeru poslije posla."], "de": "Nach der Arbeit koche ich Abendessen.", "quelle": "saetze"},
-    {"kat": "routine", "bs": "Svaki dan pijem kahvu.", "auch": ["Pijem kahvu svaki dan.", "Kahvu pijem svaki dan.", "Pijem svaki dan kahvu."], "de": "Jeden Tag trinke ich Kaffee.", "quelle": "saetze"},
+    {"kat": "routine", "bs": "Poslije posla kuham večeru.", "auch": ["Kuham večeru poslije posla.", "Večeru kuham poslije posla.", "Kuham poslije posla večeru.", "Poslije posla večeru kuham.", "Večeru poslije posla kuham."], "de": "Nach der Arbeit koche ich Abendessen.", "quelle": "saetze"},
+    {"kat": "routine", "bs": "Svaki dan pijem kahvu.", "auch": ["Pijem kahvu svaki dan.", "Kahvu pijem svaki dan.", "Pijem svaki dan kahvu.", "Svaki dan kahvu pijem.", "Kahvu svaki dan pijem."], "de": "Jeden Tag trinke ich Kaffee.", "quelle": "saetze"},
     {"kat": "routine", "bs": "Idem na posao", "auch": ["Na posao idem"], "de": "Ich gehe zur Arbeit", "quelle": "vokabel"},
     {"kat": "routine", "bs": "ići u kupovinu", "de": "einkaufen gehen", "quelle": "vokabel"},
     # Level 44 · Vergleichen & Beschreiben
-    {"kat": "adjektive", "bs": "Ovo je bolje nego to.", "de": "Das ist besser als das.", "quelle": "saetze"},
+    {"kat": "adjektive", "bs": "Ovo je bolje nego to.", "auch": ["Bolje je ovo nego to."], "de": "Das hier ist besser als das da.", "quelle": "saetze", "notiz": "Nicht 'Das ist besser als das.' wie beim Lückensatz: bei zweimal 'das' wäre auch 'To je bolje nego ovo.' richtig."},
     {"kat": "adjektive", "bs": "Moj brat je stariji od mene.", "auch": ["Moj je brat stariji od mene."], "de": "Mein Bruder ist älter als ich.", "quelle": "saetze"},
     {"kat": "adjektive", "bs": "Ova jakna je skuplja od one.", "auch": ["Ova je jakna skuplja od one."], "de": "Diese Jacke ist teurer als jene.", "formen": {"skuplja": "skuplji"}, "quelle": "saetze"},
     {"kat": "adjektive", "bs": "Auto je brži od bicikla.", "de": "Ein Auto ist schneller als ein Fahrrad.", "formen": {"brži": "brz", "bicikla": "bicikl"}, "quelle": "neu"},
@@ -2882,13 +2888,13 @@ SATZBAU = [
     {"kat": "mengen", "bs": "Decembar je zadnji mjesec u godini.", "auch": ["Zadnji mjesec u godini je decembar."], "de": "Dezember ist der letzte Monat im Jahr.", "formen": {"godini": "godina"}, "quelle": "saetze"},
     {"kat": "mengen", "bs": "Prvi put sam u Sarajevu.", "auch": ["U Sarajevu sam prvi put."], "de": "Ich bin zum ersten Mal in Sarajevo.", "quelle": "neu"},
     # Level 46 · Gefühle & Meinungen
-    {"kat": "gefuehle", "bs": "Slažem se s tobom.", "auch": ["S tobom se slažem."], "de": "Ich stimme dir zu.", "quelle": "saetze"},
-    {"kat": "gefuehle", "bs": "Po mom mišljenju, to je dobro.", "auch": ["Po mom mišljenju je to dobro.", "To je dobro, po mom mišljenju.", "To je, po mom mišljenju, dobro."], "de": "Meiner Meinung nach ist das gut.", "quelle": "saetze"},
+    {"kat": "gefuehle", "bs": "Slažem se s tobom.", "auch": ["S tobom se slažem."], "de": "Ich stimme dir zu.", "ohne": ["sa"], "quelle": "saetze"},
+    {"kat": "gefuehle", "bs": "Po mom mišljenju, to je dobro.", "auch": ["Po mom mišljenju je to dobro.", "To je dobro, po mom mišljenju.", "To je, po mom mišljenju, dobro."], "de": "Meiner Meinung nach ist das gut.", "ohne": ["ovo"], "quelle": "saetze"},
     {"kat": "gefuehle", "bs": "Ponosna sam na tebe.", "auch": ["Na tebe sam ponosna."], "de": "Ich bin stolz auf dich. (Frau)", "quelle": "saetze"},
     {"kat": "gefuehle", "bs": "Nažalost, nemam vremena.", "auch": ["Nemam vremena, nažalost.", "Nemam, nažalost, vremena."], "de": "Leider habe ich keine Zeit.", "quelle": "saetze"},
     {"kat": "gefuehle", "bs": "Ne slažem se", "de": "Ich stimme nicht zu", "quelle": "vokabel"},
-    {"kat": "gefuehle", "bs": "To je tačno", "de": "Das stimmt", "quelle": "vokabel"},
-    {"kat": "gefuehle", "bs": "To nije tačno", "auch": ["Nije to tačno"], "de": "Das stimmt nicht", "quelle": "vokabel"},
+    {"kat": "gefuehle", "bs": "To je tačno", "de": "Das stimmt", "ohne": ["ovo"], "quelle": "vokabel"},
+    {"kat": "gefuehle", "bs": "To nije tačno", "auch": ["Nije to tačno"], "de": "Das stimmt nicht", "ohne": ["ovo"], "quelle": "vokabel"},
     {"kat": "gefuehle", "bs": "Svejedno mi je", "de": "Mir ist es egal", "quelle": "vokabel"},
     {"kat": "gefuehle", "bs": "Dosadno mi je", "de": "Mir ist langweilig", "quelle": "vokabel"},
     {"kat": "gefuehle", "bs": "Drago mi je zbog tebe", "auch": ["Zbog tebe mi je drago"], "de": "Ich freue mich für dich", "quelle": "vokabel"},
@@ -2897,35 +2903,35 @@ SATZBAU = [
     {"kat": "reisen", "bs": "Kada polazi autobus?", "auch": ["Kada autobus polazi?"], "de": "Wann fährt der Bus ab?", "quelle": "saetze"},
     {"kat": "reisen", "bs": "Gdje je izlaz?", "de": "Wo ist der Ausgang?", "quelle": "saetze"},
     {"kat": "reisen", "bs": "Gdje je autobuska stanica?", "de": "Wo ist der Busbahnhof?", "quelle": "neu"},
-    {"kat": "reisen", "bs": "Taksi čeka ispred hotela.", "auch": ["Ispred hotela čeka taksi."], "de": "Das Taxi wartet vor dem Hotel.", "formen": {"čeka": "čekati", "hotela": "hotel"}, "quelle": "neu"},
+    {"kat": "reisen", "bs": "Taksi čeka ispred hotela.", "auch": ["Ispred hotela čeka taksi.", "Taksi ispred hotela čeka.", "Ispred hotela taksi čeka."], "de": "Das Taxi wartet vor dem Hotel.", "formen": {"čeka": "čekati", "hotela": "hotel"}, "quelle": "neu"},
     # Level 48 · Feste & Traditionen
     {"kat": "feiern", "bs": "Poklon je za tebe.", "auch": ["Za tebe je poklon."], "de": "Das Geschenk ist für dich.", "quelle": "saetze"},
-    {"kat": "feiern", "bs": "Dajem poklon sestri.", "auch": ["Dajem sestri poklon.", "Sestri dajem poklon."], "de": "Ich gebe der Schwester ein Geschenk.", "quelle": "saetze"},
-    {"kat": "feiern", "bs": "Imam poklon za tebe.", "auch": ["Za tebe imam poklon.", "Imam za tebe poklon."], "de": "Ich habe ein Geschenk für dich.", "quelle": "saetze"},
+    {"kat": "feiern", "bs": "Dajem poklon sestri.", "auch": ["Dajem sestri poklon.", "Sestri dajem poklon.", "Poklon dajem sestri."], "de": "Ich gebe der Schwester ein Geschenk.", "quelle": "saetze"},
+    {"kat": "feiern", "bs": "Imam poklon za tebe.", "auch": ["Za tebe imam poklon.", "Imam za tebe poklon.", "Poklon imam za tebe."], "de": "Ich habe ein Geschenk für dich.", "quelle": "saetze"},
     {"kat": "feiern", "bs": "Svi gosti su došli.", "auch": ["Svi su gosti došli.", "Došli su svi gosti."], "de": "Alle Gäste sind gekommen.", "quelle": "saetze"},
     {"kat": "feiern", "bs": "Bajram šerif mubarek olsun!", "de": "Gesegnetes Bajram!", "quelle": "vokabel"},
     # Level 49 · Arbeit & Schule
     {"kat": "arbeit", "bs": "Šta si po zanimanju?", "de": "Was bist du von Beruf?", "quelle": "saetze"},
-    {"kat": "arbeit", "bs": "Oni idu u školu.", "auch": ["Idu u školu."], "de": "Sie gehen in die Schule.", "formen": {"školu": "škola"}, "quelle": "saetze"},
-    {"kat": "arbeit", "bs": "Moj brat radi u fabrici.", "auch": ["U fabrici radi moj brat."], "de": "Mein Bruder arbeitet in der Fabrik.", "formen": {"fabrici": "fabrika"}, "quelle": "neu"},
-    {"kat": "arbeit", "bs": "Sutra imam ispit.", "auch": ["Imam ispit sutra.", "Imam sutra ispit."], "de": "Morgen habe ich eine Prüfung.", "quelle": "neu"},
+    {"kat": "arbeit", "bs": "Oni idu u školu.", "auch": ["Idu u školu.", "U školu idu.", "Oni u školu idu."], "de": "Sie gehen in die Schule.", "formen": {"školu": "škola"}, "quelle": "saetze"},
+    {"kat": "arbeit", "bs": "Moj brat radi u fabrici.", "auch": ["U fabrici radi moj brat.", "Moj brat u fabrici radi.", "U fabrici moj brat radi."], "de": "Mein Bruder arbeitet in der Fabrik.", "formen": {"fabrici": "fabrika"}, "quelle": "neu"},
+    {"kat": "arbeit", "bs": "Sutra imam ispit.", "auch": ["Imam ispit sutra.", "Imam sutra ispit.", "Ispit imam sutra."], "de": "Morgen habe ich eine Prüfung.", "quelle": "neu"},
     # Level 50 · Ganze Sätze
     {"kat": "saetze", "bs": "Pitam se da li dolazi.", "de": "Ich frage mich, ob er kommt.", "quelle": "saetze"},
     {"kat": "saetze", "bs": "Ako pada kiša, ostajem kod kuće.", "auch": ["Ako kiša pada, ostajem kod kuće.", "Ostajem kod kuće ako pada kiša.", "Ostajem kod kuće ako kiša pada."], "de": "Wenn es regnet, bleibe ich zu Hause.", "quelle": "saetze"},
     {"kat": "saetze", "bs": "Ne znam kada dolazi autobus.", "auch": ["Ne znam kada autobus dolazi."], "de": "Ich weiß nicht, wann der Bus kommt.", "quelle": "saetze"},
     {"kat": "saetze", "bs": "Kahva je jako vruća.", "de": "Der Kaffee ist sehr heiß.", "quelle": "saetze"},
-    {"kat": "saetze", "bs": "Želim kupiti kuću.", "auch": ["Želim kuću kupiti."], "de": "Ich möchte ein Haus kaufen.", "quelle": "saetze"},
+    {"kat": "saetze", "bs": "Želim kupiti kuću.", "auch": ["Želim kuću kupiti.", "Kuću želim kupiti."], "de": "Ich möchte ein Haus kaufen.", "quelle": "saetze"},
     {"kat": "saetze", "bs": "Ostajemo pet dana.", "auch": ["Pet dana ostajemo."], "de": "Wir bleiben fünf Tage.", "formen": {"ostajemo": "ostajem"}, "quelle": "saetze"},
     {"kat": "saetze", "bs": "Moja sestra ima pet godina", "de": "Meine Schwester ist fünf Jahre alt", "quelle": "vokabel"},
-    {"kat": "saetze", "bs": "Pijem vodu, hvala", "auch": ["Vodu pijem, hvala", "Hvala, pijem vodu"], "de": "Ich trinke Wasser, danke", "quelle": "vokabel"},
+    {"kat": "saetze", "bs": "Pijem vodu, hvala", "auch": ["Vodu pijem, hvala", "Hvala, pijem vodu", "Hvala, vodu pijem"], "de": "Ich trinke Wasser, danke", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Moj babo ne radi u julu", "auch": ["U julu moj babo ne radi", "Moj babo u julu ne radi", "U julu ne radi moj babo"], "de": "Mein Papa arbeitet im Juli nicht", "quelle": "vokabel"},
-    {"kat": "saetze", "bs": "Razumijem malo bosanski", "auch": ["Malo razumijem bosanski", "Bosanski razumijem malo"], "de": "Ich verstehe ein bisschen Bosnisch", "quelle": "vokabel"},
+    {"kat": "saetze", "bs": "Razumijem malo bosanski", "auch": ["Malo razumijem bosanski", "Bosanski razumijem malo", "Bosanski malo razumijem", "Malo bosanski razumijem", "Razumijem bosanski malo"], "de": "Ich verstehe ein bisschen Bosnisch", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Vidimo se u subotu", "auch": ["U subotu se vidimo"], "de": "Wir sehen uns am Samstag", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Htjela bih tri jabuke, molim", "de": "Ich möchte drei Äpfel, bitte", "quelle": "vokabel", "notiz": "htjela = Frauenform; die Kacheln legen sie fest"},
-    {"kat": "saetze", "bs": "Autobus dolazi u deset", "auch": ["U deset dolazi autobus"], "de": "Der Bus kommt um zehn", "quelle": "vokabel"},
+    {"kat": "saetze", "bs": "Autobus dolazi u deset", "auch": ["U deset dolazi autobus", "Autobus u deset dolazi"], "de": "Der Bus kommt um zehn", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Imam glavobolju i temperaturu", "auch": ["Imam temperaturu i glavobolju"], "de": "Ich habe Kopfschmerzen und Fieber", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Voda u jezeru je plava", "de": "Das Wasser im See ist blau", "quelle": "vokabel"},
-    {"kat": "saetze", "bs": "Sljedeće godine ćemo kupiti kuću", "auch": ["Kuću ćemo kupiti sljedeće godine"], "de": "Nächstes Jahr werden wir ein Haus kaufen", "quelle": "vokabel"},
+    {"kat": "saetze", "bs": "Sljedeće godine ćemo kupiti kuću", "auch": ["Kuću ćemo kupiti sljedeće godine", "Sljedeće godine ćemo kuću kupiti", "Kuću ćemo sljedeće godine kupiti"], "de": "Nächstes Jahr werden wir ein Haus kaufen", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Moj brat je stariji od mene, ali manji", "auch": ["Moj je brat stariji od mene, ali manji"], "de": "Mein Bruder ist älter als ich, aber kleiner", "quelle": "vokabel"},
     # Level 51 · Einkaufen & Orte
     {"kat": "einkauf_orte", "bs": "Ovo voće je svježe.", "auch": ["Svježe je ovo voće."], "de": "Dieses Obst ist frisch.", "quelle": "saetze"},
@@ -2973,7 +2979,7 @@ SATZBAU = [
     {"kat": "nationalitaeten", "bs": "Moj muž je Nijemac.", "auch": ["Nijemac je moj muž.", "Moj je muž Nijemac."], "de": "Mein Mann ist Deutscher.", "quelle": "saetze"},
     {"kat": "nationalitaeten", "bs": "Bosanski je lijep jezik.", "auch": ["Bosanski jezik je lijep.", "Lijep je bosanski jezik."], "de": "Bosnisch ist eine schöne Sprache.", "quelle": "saetze"},
     {"kat": "nationalitaeten", "bs": "Moja vjera je važna.", "auch": ["Važna je moja vjera.", "Moja je vjera važna."], "de": "Mein Glaube ist wichtig.", "formen": {"važna": "važno"}, "quelle": "saetze"},
-    {"kat": "nationalitaeten", "bs": "Kako se to kaže na bosanskom?", "auch": ["Kako se to na bosanskom kaže?", "Kako se kaže to na bosanskom?", "Kako se na bosanskom kaže to?", "Kako se na bosanskom to kaže?", "Na bosanskom, kako se to kaže?"], "de": "Wie sagt man das auf Bosnisch?", "quelle": "vokabel"},
+    {"kat": "nationalitaeten", "bs": "Kako se to kaže na bosanskom?", "auch": ["Kako se to na bosanskom kaže?", "Kako se kaže to na bosanskom?", "Kako se na bosanskom kaže to?", "Kako se na bosanskom to kaže?", "Na bosanskom, kako se to kaže?"], "de": "Wie sagt man das auf Bosnisch?", "ohne": ["ovo"], "quelle": "vokabel"},
     {"kat": "nationalitaeten", "bs": "Molim te, pričaj sporije", "auch": ["Molim te, sporije pričaj", "Pričaj sporije, molim te", "Pričaj, molim te, sporije", "Sporije pričaj, molim te", "Sporije, molim te, pričaj"], "de": "Sprich bitte langsamer", "quelle": "vokabel"},
     # Level 58 · Vorstellen & Kennenlernen
     {"kat": "kennenlernen", "bs": "Da te upoznam: moj brat.", "de": "Darf ich vorstellen: mein Bruder.", "quelle": "saetze"},

@@ -5,6 +5,7 @@ Jede Prüfung hier steht für einen Fehler, den ein Lernender sehen würde:
 eine Tabelle mit verrutschter Spalte, zwei gleiche Antwortknöpfe, ein
 angetipptes Wort ohne Übersetzung.
 """
+import pytest
 
 
 def tabellen(erklaerung):
@@ -182,10 +183,47 @@ def test_satzbau_ohne_dubletten(grunddaten):
 
 def test_satzbau_geht_ohne_arbeitsfelder_an_die_app(grunddaten):
     """formen, quelle und notiz sind nur für die Prüfung und für uns. Von
-    formen geht nur die Liste der Grundformen mit (grund)."""
-    erlaubt = {"kat", "bs", "de", "auch", "grund"}
+    formen geht nur die Liste der Grundformen mit (grund). ohne (seit
+    14.10.2026) braucht die App für die falschen Kacheln."""
+    erlaubt = {"kat", "bs", "de", "auch", "grund", "ohne"}
     fremd = [(s["bs"], sorted(set(s) - erlaubt)) for s in grunddaten["satzbau"] if set(s) - erlaubt]
     assert not fremd, fremd[:20]
+
+
+def _satzbau_daten(**satz):
+    """Kleinster Inhalt, an dem pruefe_vokabeln() einen Satzbau-Satz prüft."""
+    s = {"kat": "basics", "bs": "Uzet ću pogaču.", "de": "Ich nehme das Fladenbrot."}
+    s.update(satz)
+    return {"kategorien": [{"id": "basics", "label": "Basics", "words": []}],
+            "saetze": [], "satzbau": [s]}
+
+
+def test_satzbau_ohne_geht_an_die_app():
+    """Ohne das Feld in der JSON sperrt kachelAblenker() nichts - das Feld
+    stünde in vokabeln.py und wirkte nie."""
+    import inhalt
+    raus = inhalt.satzbau_fuer_app([{"kat": "vorrat", "bs": "Uzet ću pogaču.", "de": "x",
+                                      "ohne": ["somun"], "notiz": "nur für uns"}])
+    assert raus == [{"kat": "vorrat", "bs": "Uzet ću pogaču.", "de": "x", "ohne": ["somun"]}]
+
+
+@pytest.mark.parametrize("ohne, meldung", [
+    (["somun"], None),
+    (["Somun!"], None),                     # Satzzeichen und Grossbuchstabe zählen nicht
+    (["pogaču"], "das im Satz steht"),
+    (["Ću"], "das im Satz steht"),
+    (["dva hljeba"], "einzelne Wörter"),
+    ([""], "einzelne Wörter"),
+    ([3], "einzelne Wörter"),
+    ("somun", "keine Liste"),
+])
+def test_satzbau_ohne_wird_geprueft(ohne, meldung):
+    import inhalt
+    befunde = [b for b in inhalt.pruefe_vokabeln(_satzbau_daten(ohne=ohne)) if "ohne" in b]
+    if meldung is None:
+        assert not befunde, befunde
+    else:
+        assert len(befunde) == 1 and meldung in befunde[0], befunde
 
 
 def test_uebersetzungen_ohne_doppelte_schluessel(wurzel):
