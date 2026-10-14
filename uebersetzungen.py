@@ -3591,6 +3591,12 @@ INHALT = {
     "Ich brauche ein Schmerzmittel.": "I need a painkiller.",
     "Ich habe einen Termin beim Zahnarzt.": "I have an appointment with the dentist.",
     "Das hier ist besser als das da.": "This is better than that.",
+    # ---- Satzbau, Ajdins Durchsicht 14.10.2026 ----
+    "Ich möchte eine Wurst.": "I would like a sausage.",
+    "Ich weiß nicht, vielleicht fünf Mark.": "I don't know, maybe five marks.",
+    "Zwei plus zwei ist vier.": "Two plus two is four.",
+    "Fünf plus fünf ist zehn.": "Five plus five is ten.",
+    "Dieses Obst ist süß.": "This fruit is sweet.",
     # ENDE en texte
 },
 },
@@ -6720,6 +6726,12 @@ INHALT = {
     "Ich brauche ein Schmerzmittel.": "Bir ağrı kesiciye ihtiyacım var.",
     "Ich habe einen Termin beim Zahnarzt.": "Dişçide randevum var.",
     "Das hier ist besser als das da.": "Bu ondan daha iyi.",
+    # ---- Satzbau, Ajdins Durchsicht 14.10.2026 ----
+    "Ich möchte eine Wurst.": "Bir sosis istiyorum.",
+    "Ich weiß nicht, vielleicht fünf Mark.": "Bilmiyorum, belki beş mark.",
+    "Zwei plus zwei ist vier.": "İki artı iki dört eder.",
+    "Fünf plus fünf ist zehn.": "Beş artı beş on eder.",
+    "Dieses Obst ist süß.": "Bu meyve tatlı.",
     # ENDE tr texte
 },
 },
@@ -9842,6 +9854,12 @@ INHALT = {
     "Ich brauche ein Schmerzmittel.": "Jag behöver något smärtstillande.",
     "Ich habe einen Termin beim Zahnarzt.": "Jag har en tid hos tandläkaren.",
     "Das hier ist besser als das da.": "Det här är bättre än det där.",
+    # ---- Satzbau, Ajdins Durchsicht 14.10.2026 ----
+    "Ich möchte eine Wurst.": "Jag vill ha en korv.",
+    "Ich weiß nicht, vielleicht fünf Mark.": "Jag vet inte, kanske fem mark.",
+    "Zwei plus zwei ist vier.": "Två plus två är fyra.",
+    "Fünf plus fünf ist zehn.": "Fem plus fem är tio.",
+    "Dieses Obst ist süß.": "Den här frukten är söt.",
     # ENDE sv texte
 },
 },
@@ -12963,6 +12981,12 @@ INHALT = {
     "Ich brauche ein Schmerzmittel.": "Ik heb een pijnstiller nodig.",
     "Ich habe einen Termin beim Zahnarzt.": "Ik heb een afspraak bij de tandarts.",
     "Das hier ist besser als das da.": "Dit is beter dan dat.",
+    # ---- Satzbau, Ajdins Durchsicht 14.10.2026 ----
+    "Ich möchte eine Wurst.": "Ik wil graag een worst.",
+    "Ich weiß nicht, vielleicht fünf Mark.": "Ik weet het niet, misschien vijf mark.",
+    "Zwei plus zwei ist vier.": "Twee plus twee is vier.",
+    "Fünf plus fünf ist zehn.": "Vijf plus vijf is tien.",
+    "Dieses Obst ist süß.": "Dit fruit is zoet.",
     # ENDE nl texte
 },
 },
@@ -16083,6 +16107,12 @@ INHALT = {
     "Ich brauche ein Schmerzmittel.": "Jeg trenger noe smertestillende.",
     "Ich habe einen Termin beim Zahnarzt.": "Jeg har time hos tannlegen.",
     "Das hier ist besser als das da.": "Dette er bedre enn det.",
+    # ---- Satzbau, Ajdins Durchsicht 14.10.2026 ----
+    "Ich möchte eine Wurst.": "Jeg vil gjerne ha en pølse.",
+    "Ich weiß nicht, vielleicht fünf Mark.": "Jeg vet ikke, kanskje fem mark.",
+    "Zwei plus zwei ist vier.": "To pluss to er fire.",
+    "Fünf plus fünf ist zehn.": "Fem pluss fem er ti.",
+    "Dieses Obst ist süß.": "Denne frukten er søt.",
     # ENDE nb texte
 },
 },
@@ -19206,6 +19236,12 @@ INHALT = {
     "Ich brauche ein Schmerzmittel.": "Jeg har brug for noget smertestillende.",
     "Ich habe einen Termin beim Zahnarzt.": "Jeg har en tid hos tandlægen.",
     "Das hier ist besser als das da.": "Det her er bedre end det der.",
+    # ---- Satzbau, Ajdins Durchsicht 14.10.2026 ----
+    "Ich möchte eine Wurst.": "Jeg vil gerne have en pølse.",
+    "Ich weiß nicht, vielleicht fünf Mark.": "Jeg ved det ikke, måske fem mark.",
+    "Zwei plus zwei ist vier.": "To plus to er fire.",
+    "Fünf plus fünf ist zehn.": "Fem plus fem er ti.",
+    "Dieses Obst ist süß.": "Denne frugt er sød.",
     # ENDE da texte
 },
 },
@@ -22335,6 +22371,12 @@ INHALT = {
     "Ich brauche ein Schmerzmittel.": "J'ai besoin d'un antidouleur.",
     "Ich habe einen Termin beim Zahnarzt.": "J'ai un rendez-vous chez le dentiste.",
     "Das hier ist besser als das da.": "Ceci est meilleur que cela.",
+    # ---- Satzbau, Ajdins Durchsicht 14.10.2026 ----
+    "Ich möchte eine Wurst.": "Je voudrais une saucisse.",
+    "Ich weiß nicht, vielleicht fünf Mark.": "Je ne sais pas, peut-être cinq marks.",
+    "Zwei plus zwei ist vier.": "Deux plus deux font quatre.",
+    "Fünf plus fünf ist zehn.": "Cinq plus cinq font dix.",
+    "Dieses Obst ist süß.": "Ce fruit est sucré.",
     # ENDE fr texte
 },
 },
