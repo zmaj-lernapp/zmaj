@@ -1189,15 +1189,28 @@
      rutschten die anderen nach und man tippte daneben. Kacheln sind kleiner
      als Antwortknoepfe und strecken sich nicht, sonst passen bei 360 Punkten
      Breite keine drei in eine Reihe. */
-  .kachelzeile{display:flex; flex-wrap:wrap; align-content:flex-start; align-items:flex-start; gap:8px;
-    min-height:112px; padding:4px 0 10px; margin-top:4px; border-bottom:2px dashed var(--line)}
-  .kachelzeile:empty::before{content:attr(data-leer); margin:auto; padding:0 8px; text-align:center;
+  /* Linien wie im Heft, jede Kachelreihe steht auf ihrer eigenen (Ajdin,
+     14.10.2026: "die sind nicht auf der linie" - vorher hingen die Kacheln
+     oben und eine einzige gestrichelte Linie lag zwei Reihen tiefer). Dafuer
+     sind Kacheln genau --kh hoch und der Reihenabstand fest: dann ist der
+     Abstand der Linien immer --kh + 12px. --kh in em, damit Linien und
+     Kacheln gemeinsam mitwachsen, wenn das Handy die Schrift groesser
+     stellt; deshalb hat die Zeile dieselbe Schriftgroesse wie die Kacheln. */
+  .kachelzeile{--kh:2.35em; --kz-linie:var(--line); font-size:19px;
+    display:flex; flex-wrap:wrap; align-content:flex-start; align-items:flex-start; gap:12px 8px;
+    min-height:calc(2 * (var(--kh) + 12px)); padding:0 0 12px; margin-top:6px;
+    background:linear-gradient(to bottom, transparent calc(var(--kh) + 5px), var(--kz-linie) calc(var(--kh) + 5px),
+      var(--kz-linie) calc(var(--kh) + 7px), transparent calc(var(--kh) + 7px)) 0 0 / 100% calc(var(--kh) + 12px) repeat-y}
+  /* Der Hinweis steht mittig in der ersten Reihe, ueber deren Linie -
+     auch wenn er auf schmalen Handys zweizeilig wird. */
+  .kachelzeile:empty::before{content:attr(data-leer); flex:1 1 100%; min-height:44px; display:flex;
+    align-items:center; justify-content:center; padding:0 8px; text-align:center;
     color:var(--muted); font-size:14px; font-weight:700; line-height:1.4}
-  .kachelzeile.ok{border-bottom-color:var(--good)}
-  .kachelzeile.no{border-bottom-color:var(--bad)}
+  .kachelzeile.ok{--kz-linie:var(--good)}
+  .kachelzeile.no{--kz-linie:var(--bad)}
   .options.kachelbank{justify-content:center; gap:8px}
-  .opt.kachel, .options.waagrecht .opt.kachel, #lesson .opt.kachel{flex:0 0 auto; max-width:100%; min-height:44px;
-    font-size:19px; padding:7px 12px; border-radius:12px; overflow-wrap:anywhere}
+  .opt.kachel, .options.waagrecht .opt.kachel, #lesson .opt.kachel{flex:0 0 auto; max-width:100%; height:2.35em;
+    font-size:19px; padding:0 12px; border-radius:12px; white-space:nowrap}
   /* Der Platzhalter ist eine sichtbare leere Mulde, kein Loch: unsichtbar
      sah eine einzelne Kachel im Vorrat aus, als sei sie verrutscht, und nach
      acht gelegten Kacheln stand unter der Linie nur noch leere Flaeche
@@ -1744,6 +1757,8 @@ const LEKTION_WOERTER = 10;      // Wortaufgaben pro Lektion
 const LEKTION_NEU_MAX = 5;       // davon höchstens so viele neue Wörter (wenn es schon bekannte gibt)
 const LEKTION_LUECKEN = 2;       // Lückentexte pro Lektion
 const LEKTION_KACHELN = 2;       // Sätze aus Kacheln pro Lektion (wenn ihre Wörter schon dran waren), seit 13.10.2026
+// Wer am Handy "Bewegung reduzieren" eingestellt hat, bekommt die Kacheln ohne Gleiten.
+const KACHEL_RUHIG = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
 const LEKTION_GRAMMATIK = 2;     // Grammatik-Aufgaben pro Lektion (wenn vorhanden)
 /* Ajdin am 27.09.2026: "mach die pruefung statt bei 80% auf 100% sonst lernt
    man nicht alles". Der Test geht jetzt erst auf, wenn JEDES Wort des Levels
@@ -7497,6 +7512,13 @@ function renderTask(task, body, done, opts={}){
       // Mit der Tastatur bleibt man in den Kacheln, statt nach dem Antippen
       // im Nichts zu stehen. Am Handy aendert das nichts Sichtbares.
       const hatteFokus = document.activeElement === b;
+      /* Gleiten statt springen (Ajdin, 14.10.2026: "die kacheln
+         teleportieren sich"). Vor dem Umhaengen merken, wo jede Kachel
+         steht, danach jede von dort an ihren neuen Platz ziehen - die
+         angetippte und alle, die dabei nachruecken oder mit der Zeile nach
+         unten wandern. Mitten im Flug gemessen, startet ein zweiter Tipp dort,
+         wo die Kachel gerade ist. */
+      const vorher = new Map([...body.querySelectorAll('.kachel')].map(k => [k, k.getBoundingClientRect()]));
       let weiter = null;
       if(b.parentElement === vorrat){
         /* Ein unsichtbarer Platzhalter haelt die Stelle frei. Ohne ihn
@@ -7515,6 +7537,14 @@ function renderTask(task, body, done, opts={}){
         const rest = gelegt();
         weiter = rest[stelle] || rest[rest.length - 1] || b;
       }
+      if(!KACHEL_RUHIG) vorher.forEach((r, k) => {
+        if(!k.isConnected || !k.animate) return;
+        if(k.getAnimations) k.getAnimations().forEach(a => a.cancel());
+        const n = k.getBoundingClientRect(), dx = r.left - n.left, dy = r.top - n.top;
+        if(Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+        k.animate([{transform:'translate('+dx+'px,'+dy+'px)'}, {transform:'none'}],
+          {duration: k === b ? 260 : 200, easing:'cubic-bezier(.2,.8,.2,1)'});
+      });
       pruef.disabled = !gelegt().length;
       if(hatteFokus && weiter && !weiter.disabled) try{ weiter.focus({preventScroll:true}); }catch(e){}
     };

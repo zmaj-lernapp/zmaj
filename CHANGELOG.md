@@ -12,6 +12,9 @@ are in the Play Store listing. Format:
   a sentence only appears once its words have been met, and mistakes go to
   the Review tab. 357 sentences across all 65 levels (`SATZBAU` in
   `vokabeln.py`), 48 of them new with audio; requested by a tester.
+  The answer area is ruled like a notebook with each row of tiles standing
+  on its own line, and tiles glide to their place instead of jumping
+  (unless "reduce motion" is switched on).
 - Settings: monthly subscribers can switch to the yearly plan in the app; the
   price is shown right above the button.
 - Reminders: several texts per reminder type that change by day, with Zmaj as
