@@ -48,7 +48,7 @@ pie showData title Words per section (1,728)
 | `schema/*.schema.json` | JSON Schema (2020-12) for the JSON files and one `parallel.jsonl` line | – |
 
 Audio paths (`web/audio/w0001.mp3` …) are relative to the repository root.
-There are 2,332 MP3 files (≈ 37 MB).
+There are 2,411 MP3 files (≈ 37 MB).
 
 ## Quick start
 
@@ -97,7 +97,7 @@ flowchart LR
   DE --> MT["machine translation<br/>en tr sv nl nb da fr"]
   MT --> AI["2 independent AI review passes<br/>141 confirmed findings"]
   AI --> T["translations<br/>not yet native-reviewed"]
-  B --> TTS["Azure neural TTS<br/>2,332 MP3"]
+  B --> TTS["Azure neural TTS<br/>2,411 MP3"]
   TTS --> H["native speaker spot check<br/>docs/TONBEFUNDE.md"]
 ```
 

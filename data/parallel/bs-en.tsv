@@ -1016,7 +1016,7 @@ Doći ću	I will come	word	ich werde kommen:Doći ću
 Vidjet ćemo	We will see	word	wir werden sehen:Vidjet ćemo
 Učit ću	I will study	word	ich werde lernen:Učit ću
 Nazvat ću te	I will call you	word	ich werde dich anrufen:Nazvat ću te
-Kada ćeš doći?	When will you come?	word	wann wirst du kommen?:Kada ćeš doći?
+Kada ćeš doći?	When will you come? (singular, informal)	word	wann wirst du kommen?:Kada ćeš doći?
 prekosutra	the day after tomorrow	word	übermorgen:prekosutra
 sljedeće sedmice	next week	word	nächste woche:sljedeće sedmice
 sljedeće godine	next year	word	nächstes jahr:sljedeće godine
@@ -1750,7 +1750,7 @@ Poslije maja dolazi juni.	After May comes June.	sentence	s0020
 Decembar je zadnji mjesec u godini.	December is the last month of the year.	sentence	s0021
 Koliko je sati?	What time is it?	sentence	s0022
 Sada je pet sati.	It is five o'clock now.	sentence	s0023
-U subotu je vikend.	Saturday is the weekend.	sentence	s0024
+U subotu je vikend.	On Saturday it's the weekend.	sentence	s0024
 Vidimo se sutra!	See you tomorrow!	sentence	s0025
 Danas je lijep dan.	Today is a beautiful day.	sentence	s0026
 Moja sestra se zove Amina.	My sister's name is Amina.	sentence	s0027
@@ -1796,7 +1796,7 @@ Sutra radim.	Tomorrow I work.	sentence	s0066
 Imam ispit.	I have an exam.	sentence	s0067
 Šta si po zanimanju?	What do you do for a living?	sentence	s0068
 Kako ste?	How are you? (formal)	sentence	s0069
-Možete li mi pomoći?	Can you help me?	sentence	s0070
+Možete li mi pomoći?	Can you help me? (formal)	sentence	s0070
 S poštovanjem.	Yours sincerely.	sentence	s0071
 Izvinite, molim Vas.	Excuse me, please.	sentence	s0072
 Imam dva brata.	I have two brothers.	sentence	s0073
@@ -1811,7 +1811,7 @@ Trebam potvrdu.	I need a certificate.	sentence	s0081
 Imam termin u ponedjeljak u deset sati.	I have an appointment on Monday at ten o'clock.	sentence	s0082
 Taksa za pasoš je trideset maraka.	The fee for the passport is thirty marks.	sentence	s0083
 Gdje trebam potpisati?	Where do I have to sign?	sentence	s0084
-Imate li pasoš?	Do you have a passport?	sentence	s0085
+Imate li pasoš?	Do you have a passport? (formal)	sentence	s0085
 Koji dokumenti mi trebaju?	Which documents do I need?	sentence	s0086
 Odakle si?	Where are you from?	sentence	s0087
 Šta je to?	What is that?	sentence	s0088
@@ -1836,7 +1836,7 @@ Prošle godine smo bili u Bosni.	Last year we were in Bosnia.	sentence	s0106
 Šta si radio?	What did you do? (to a man)	sentence	s0107
 Sutra ću raditi.	Tomorrow I will work.	sentence	s0108
 Vidjet ćemo.	We will see.	sentence	s0109
-Kada ćeš doći?	When will you come?	sentence	s0110
+Kada ćeš doći?	When will you come? (singular, informal)	sentence	s0110
 Sljedeće godine idemo u Bosnu.	Next year we are going to Bosnia.	sentence	s0111
 Ovo je bolje nego to.	This is better than that.	sentence	s0112
 Moj brat je stariji od mene.	My brother is older than me.	sentence	s0113
@@ -1965,7 +1965,7 @@ Deka je na kauču.	The blanket is on the sofa.	sentence	s0235
 Kupatilo je čisto.	The bathroom is clean.	sentence	s0236
 Sutra peglam veš.	Tomorrow I will iron the laundry.	sentence	s0237
 Gdje je metla?	Where is the broom?	sentence	s0238
-Komšinica zvoni na vrata.	The neighbour is ringing the doorbell.	sentence	s0239
+Komšinica zvoni na vrata.	The neighbor (f) is ringing the doorbell.	sentence	s0239
 Veš je na štriku.	The laundry is on the clothesline.	sentence	s0240
 Nema struje.	There is no electricity.	sentence	s0241
 Gdje je moj alat?	Where is my tool?	sentence	s0242
@@ -2004,7 +2004,7 @@ Jedan litar mlijeka, molim.	One liter of milk, please.	sentence	s0274
 Jedna porcija je dosta.	One portion is enough.	sentence	s0275
 Ja bih jedan burek.	I would like one burek.	sentence	s0276
 Za mene pljeskavicu.	A pljeskavica for me.	sentence	s0277
-Imate li ajvar?	Do you have ajvar?	sentence	s0278
+Imate li ajvar?	Do you have ajvar? (formal)	sentence	s0278
 Ja volim sarmu.	I like sarma.	sentence	s0279
 Danas jedemo grah.	Today we are eating bean stew.	sentence	s0280
 Ja sam iz Bosne.	I am from Bosnia.	sentence	s0281

@@ -52,6 +52,7 @@ def lade_daten(sprache=None):
         "sektionen": getattr(vokabeln, "SEKTIONEN", []),
         "kategorien": vokabeln.KATEGORIEN,
         "saetze": vokabeln.SAETZE,
+        "satzbau": satzbau_fuer_app(getattr(vokabeln, "SATZBAU", [])),
         "grammatik": getattr(grammatik, "GRAMMATIK", {}),
         "geschichten": getattr(geschichten, "GESCHICHTEN", []),
         "woerterbuch": getattr(geschichten, "WOERTERBUCH", {}),
@@ -91,6 +92,48 @@ def mit_kennung(daten):
                        for w in k.get("words", [])])
         for k in daten.get("kategorien", [])]
     return daten
+
+
+# Satzzeichen, die am Rand einer Kachel wegfallen. Dieselben stehen in
+# web/index.html (KACHEL_RAND) - die App trennt die Sätze genauso.
+SATZZEICHEN = ".,!?¿¡:;\"„“”«»…()"
+
+
+def satz_kacheln(satz):
+    """Die Kacheln eines Satzes, wie die App sie zeigt und vergleicht: an
+    Leerzeichen getrennt, Satzzeichen am Rand weg, klein geschrieben."""
+    teile = []
+    for roh in str(satz or "").split():
+        wort = roh.strip(SATZZEICHEN).lower()
+        if wort:
+            teile.append(wort)
+    return teile
+
+
+def satzbau_fuer_app(liste):
+    """Nur kat, bs, de, auch, ohne und grund (die Grundformen aus formen)
+    gehen an die App. quelle, notiz und die gebeugten Formen selbst sind
+    Arbeitsfelder für die Prüfung und für uns (13.10.2026) - auf dem Handy
+    wären sie bloß Ballast in acht Dateien."""
+    raus = []
+    for s in liste:
+        neu = {"kat": s.get("kat"), "bs": s.get("bs", ""), "de": s.get("de", "")}
+        if s.get("auch"):
+            neu["auch"] = list(s["auch"])
+        # ohne (14.10.2026): Wörter, die bei diesem Satz nie als falsche Kachel
+        # kommen dürfen, weil sie ihn auch richtig machen (somun neben pogaču,
+        # ćao neben Merhaba). Die App sperrt sie in kachelAblenker().
+        # Keine Liste geht unverändert weiter, damit pruefe_vokabeln() es meldet.
+        if s.get("ohne"):
+            neu["ohne"] = list(s["ohne"]) if isinstance(s["ohne"], (list, tuple)) else s["ohne"]
+        # Von formen nur die Grundformen: Steht "kahvu" im Satz, soll er erst
+        # kommen, wenn "kahva" in dieser Lektion schon dran war. Die gebeugte
+        # Form selbst kennt die App aus keinem Wort und könnte sie nicht prüfen.
+        grund = sorted({str(g).lower() for g in (s.get("formen") or {}).values()})
+        if grund:
+            neu["grund"] = grund
+        raus.append(neu)
+    return raus
 
 
 def maskottchen_bilder():
@@ -158,6 +201,56 @@ def pruefe_vokabeln(daten):
             probleme.append(f"Satz ohne Lücke '___': {satz.get('text')}")
         if satz.get("kat") not in ids:
             probleme.append(f"Satz mit unbekannter Kategorie '{satz.get('kat')}': {satz.get('text')}")
+
+    # Sätze zum Bauen aus Kacheln (13.10.2026). Was hier durchrutscht, sieht
+    # der Lernende als Aufgabe, die er nicht lösen kann: eine Variante mit
+    # einem Wort, für das es keine Kachel gibt, oder "..." als Kachel.
+    satzbau_gesehen = set()
+    for satz in daten.get("satzbau", []):
+        bs = str(satz.get("bs", "") or "")
+        kennung = f"Satzbau [{satz.get('kat')}] '{bs}'"
+        if satz.get("kat") not in ids:
+            probleme.append(f"{kennung}: unbekanntes Level")
+        if not bs.strip():
+            probleme.append(f"Satzbau ohne 'bs': {satz}")
+            continue
+        if not str(satz.get("de", "") or "").strip():
+            probleme.append(f"{kennung}: 'de' fehlt")
+        if "..." in bs or "…" in bs or " / " in bs:
+            probleme.append(f"{kennung}: enthält '...' oder ' / '")
+        kacheln = satz_kacheln(bs)
+        if not 2 <= len(kacheln) <= 8:
+            probleme.append(f"{kennung}: {len(kacheln)} Kacheln, erlaubt sind 2 bis 8")
+        for variante in satz.get("auch", []) or []:
+            rest = list(kacheln)
+            fehlt = []
+            for wort in satz_kacheln(variante):
+                if wort in rest:
+                    rest.remove(wort)
+                else:
+                    fehlt.append(wort)
+            if fehlt:
+                probleme.append(f"{kennung}: Variante '{variante}' braucht Kacheln, die es nicht gibt: {fehlt}")
+            if satz_kacheln(variante) == kacheln:
+                probleme.append(f"{kennung}: Variante '{variante}' ist derselbe Satz")
+        # ohne (14.10.2026): je ein Wort, das nie als falsche Kachel kommt.
+        # Steht es selbst im Satz, ist der Eintrag ein Irrtum - die Kacheln des
+        # Satzes sind ohnehin nie Ablenker. Mehr als ein Wort sperrt nichts,
+        # denn Ablenker sind immer einzelne Wörter.
+        ohne = satz.get("ohne", [])
+        if not isinstance(ohne, list):
+            probleme.append(f"{kennung}: 'ohne' ist keine Liste")
+            ohne = []
+        for wort in ohne:
+            teile = satz_kacheln(wort) if isinstance(wort, str) else []
+            if len(teile) != 1:
+                probleme.append(f"{kennung}: 'ohne' braucht einzelne Wörter, nicht {wort!r}")
+            elif teile[0] in kacheln:
+                probleme.append(f"{kennung}: 'ohne' nennt '{wort}', das im Satz steht")
+        schluessel = " ".join(kacheln)
+        if schluessel in satzbau_gesehen:
+            probleme.append(f"{kennung}: doppelt")
+        satzbau_gesehen.add(schluessel)
 
     # Grammatik-Lektionen
     for kid, lektion in daten.get("grammatik", {}).items():

@@ -73,10 +73,10 @@ def main():
     liste = schreiben(ZIEL)
     print("%d Sprachen: %s\n" % (len(liste), " ".join(c for c, _, _ in liste)))
     for code, gross, daten in liste:
-        print("  %-3s %6.0f KB   %d Level, %d Sätze, %d Geschichten, %d Texte"
+        print("  %-3s %6.0f KB   %d Level, %d Sätze, %d Satzbau, %d Geschichten, %d Texte"
               % (code, gross / 1024.0, len(daten["kategorien"]),
-                 len(daten["saetze"]), len(daten["geschichten"]),
-                 len(daten["texte"])))
+                 len(daten["saetze"]), len(daten.get("satzbau", [])),
+                 len(daten["geschichten"]), len(daten["texte"])))
     print("\n%.1f MB in web/inhalt, dazu liste.json" % (sum(g for _, g, _ in liste) / 1048576.0))
     pruefen(liste)
 
@@ -97,7 +97,7 @@ def pruefen(liste):
             fehler.append("%s: erstes Wort ist %r statt Merhaba" % (code, erstes.get("bs")))
 
     # Alle Sprachen müssen dieselbe Menge Lernstoff haben
-    mengen = {(len(d["kategorien"]), len(d["saetze"]), len(d["geschichten"]))
+    mengen = {(len(d["kategorien"]), len(d["saetze"]), len(d["satzbau"]), len(d["geschichten"]))
               for _, _, d in liste}
     if len(mengen) != 1:
         fehler.append("Sprachen haben unterschiedlich viel Inhalt: %s" % mengen)
