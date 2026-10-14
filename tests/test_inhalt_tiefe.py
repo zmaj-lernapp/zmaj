@@ -5,6 +5,7 @@ Jede Prüfung hier steht für einen Fehler, den ein Lernender sehen würde:
 eine Tabelle mit verrutschter Spalte, zwei gleiche Antwortknöpfe, ein
 angetipptes Wort ohne Übersetzung.
 """
+import pytest
 
 
 def tabellen(erklaerung):
@@ -93,3 +94,164 @@ def test_jede_satzluecke_gehoert_zu_einem_level_mit_woertern(grunddaten):
     mit_woertern = {k["id"] for k in grunddaten["kategorien"] if k["words"]}
     verwaist = [s["text"] for s in grunddaten["saetze"] if s["kat"] not in mit_woertern]
     assert not verwaist, verwaist[:20]
+
+
+# ---------------------------------------------------------------------------
+# Satzbau aus Kacheln (13.10.2026). Kübra wollte ganze Sätze aus den Wörtern
+# legen, die gerade dran waren - ein Satz mit einem Wort, das erst drei Level
+# später kommt, wäre genau das Gegenteil. Geprüft wird an vokabeln.SATZBAU,
+# weil nur dort "formen" steht; die App bekommt es nicht.
+# ---------------------------------------------------------------------------
+# Namen dürfen Kacheln sein, ohne im Wortschatz zu stehen. Dazu die
+# Personalpronomen und "plus": Ajdin wollte am 14.10.2026 "Ja se zovem
+# Amina" statt "Zovem se Amina" schon in Level 1, gelehrt wird "ja" aber
+# erst in Level 31. Der deutsche Satz ("Ich ...", "plus") zeigt sie eindeutig.
+NAMEN = {"amina", "ajdin", "emir", "lejla", "sarajevo", "mostar", "tuzla",
+         "zenica", "bosna", "hercegovina", "njemačka",
+         "ja", "ti", "on", "ona", "ono", "mi", "vi", "oni", "one", "plus"}
+
+
+def _wortformen(wort):
+    """Alle Kacheln, die ein Wort hergibt: bs und auch, Varianten hinter
+    " / " einzeln, "..." weg."""
+    import inhalt
+    formen = set()
+    for feld in [wort.get("bs", "")] + list(wort.get("auch", []) or []):
+        for alt in str(feld).split(" / "):
+            formen.update(inhalt.satz_kacheln(alt.replace("...", " ")))
+    return formen
+
+
+def _bekannt_bis_level():
+    """Level-id -> alle Kacheln aus den Wörtern von Level 1 bis hier."""
+    import vokabeln
+    bis_hier, tabelle = set(), {}
+    for k in vokabeln.KATEGORIEN:
+        for w in k["words"]:
+            bis_hier |= _wortformen(w)
+        tabelle[k["id"]] = set(bis_hier)
+    return tabelle
+
+
+def test_satzbau_kacheln_sind_bis_zu_ihrem_level_bekannt():
+    import inhalt
+    import vokabeln
+    tabelle = _bekannt_bis_level()
+    fehler = []
+    for s in vokabeln.SATZBAU:
+        bekannt = tabelle.get(s["kat"])
+        if bekannt is None:
+            fehler.append((s["bs"], "unbekanntes Level", s["kat"]))
+            continue
+        formen = {a.lower(): b.lower() for a, b in (s.get("formen") or {}).items()}
+        for kachel in inhalt.satz_kacheln(s["bs"]):
+            if kachel in bekannt or kachel in NAMEN:
+                continue
+            if kachel in formen and formen[kachel] in bekannt:
+                continue
+            fehler.append((s["kat"], s["bs"], kachel, formen.get(kachel)))
+    assert not fehler, fehler[:20]
+
+
+def test_satzbau_varianten_lassen_sich_aus_den_kacheln_bauen():
+    """Eine Variante braucht genau die Kacheln, die auch daliegen - darf aber
+    welche übrig lassen (das weggelassene Pronomen)."""
+    import collections
+    import inhalt
+    import vokabeln
+    fehler = []
+    for s in vokabeln.SATZBAU:
+        vorrat = collections.Counter(inhalt.satz_kacheln(s["bs"]))
+        for v in s.get("auch", []) or []:
+            gebraucht = collections.Counter(inhalt.satz_kacheln(v))
+            if gebraucht - vorrat:
+                fehler.append((s["bs"], v, dict(gebraucht - vorrat)))
+            if inhalt.satz_kacheln(v) == inhalt.satz_kacheln(s["bs"]):
+                fehler.append((s["bs"], v, "gleicht dem Satz"))
+    assert not fehler, fehler[:20]
+
+
+def test_satzbau_gibt_es_schon_im_ersten_level(grunddaten):
+    """Kübra wollte es ab Level 1."""
+    erstes = grunddaten["kategorien"][0]["id"]
+    assert erstes == "basics"
+    assert any(s["kat"] == erstes for s in grunddaten["satzbau"])
+
+
+def test_satzbau_ohne_dubletten(grunddaten):
+    import inhalt
+    gesehen = [" ".join(inhalt.satz_kacheln(s["bs"])) for s in grunddaten["satzbau"]]
+    doppelt = sorted({x for x in gesehen if gesehen.count(x) > 1})
+    assert not doppelt, doppelt
+
+
+def test_satzbau_geht_ohne_arbeitsfelder_an_die_app(grunddaten):
+    """formen, quelle und notiz sind nur für die Prüfung und für uns. Von
+    formen geht nur die Liste der Grundformen mit (grund). ohne (seit
+    14.10.2026) braucht die App für die falschen Kacheln."""
+    erlaubt = {"kat", "bs", "de", "auch", "grund", "ohne"}
+    fremd = [(s["bs"], sorted(set(s) - erlaubt)) for s in grunddaten["satzbau"] if set(s) - erlaubt]
+    assert not fremd, fremd[:20]
+
+
+def _satzbau_daten(**satz):
+    """Kleinster Inhalt, an dem pruefe_vokabeln() einen Satzbau-Satz prüft."""
+    s = {"kat": "basics", "bs": "Uzet ću pogaču.", "de": "Ich nehme das Fladenbrot."}
+    s.update(satz)
+    return {"kategorien": [{"id": "basics", "label": "Basics", "words": []}],
+            "saetze": [], "satzbau": [s]}
+
+
+def test_satzbau_ohne_geht_an_die_app():
+    """Ohne das Feld in der JSON sperrt kachelAblenker() nichts - das Feld
+    stünde in vokabeln.py und wirkte nie."""
+    import inhalt
+    raus = inhalt.satzbau_fuer_app([{"kat": "vorrat", "bs": "Uzet ću pogaču.", "de": "x",
+                                      "ohne": ["somun"], "notiz": "nur für uns"}])
+    assert raus == [{"kat": "vorrat", "bs": "Uzet ću pogaču.", "de": "x", "ohne": ["somun"]}]
+
+
+@pytest.mark.parametrize("ohne, meldung", [
+    (["somun"], None),
+    (["Somun!"], None),                     # Satzzeichen und Grossbuchstabe zählen nicht
+    (["pogaču"], "das im Satz steht"),
+    (["Ću"], "das im Satz steht"),
+    (["dva hljeba"], "einzelne Wörter"),
+    ([""], "einzelne Wörter"),
+    ([3], "einzelne Wörter"),
+    ("somun", "keine Liste"),
+])
+def test_satzbau_ohne_wird_geprueft(ohne, meldung):
+    import inhalt
+    befunde = [b for b in inhalt.pruefe_vokabeln(_satzbau_daten(ohne=ohne)) if "ohne" in b]
+    if meldung is None:
+        assert not befunde, befunde
+    else:
+        assert len(befunde) == 1 and meldung in befunde[0], befunde
+
+
+def test_uebersetzungen_ohne_doppelte_schluessel(wurzel):
+    """Steht ein deutscher Text in einem Sprachblock zweimal, behält Python
+    stillschweigend den letzten - eine Korrektur weiter oben wirkt dann nie.
+    Mit den Satzbau-Sätzen (13.10.2026) kommen viele neue Einträge dazu,
+    deshalb wird das jetzt am Quelltext geprüft."""
+    import ast
+    import collections
+    import io
+    import os
+    quelle = io.open(os.path.join(wurzel, "uebersetzungen.py"), encoding="utf-8").read()
+    inhalt = None
+    for knoten in ast.parse(quelle).body:
+        if isinstance(knoten, ast.Assign) and any(isinstance(z, ast.Name) and z.id == "INHALT" for z in knoten.targets):
+            inhalt = knoten.value
+    assert isinstance(inhalt, ast.Dict), "INHALT nicht gefunden"
+    fehler = []
+    for teil in ast.walk(inhalt):
+        if not isinstance(teil, ast.Dict):
+            continue
+        schluessel = [k.value for k in teil.keys if isinstance(k, ast.Constant)]
+        for k, n in collections.Counter(schluessel).items():
+            if n > 1:
+                zeilen = [s.lineno for s in teil.keys if isinstance(s, ast.Constant) and s.value == k]
+                fehler.append((k, zeilen))
+    assert not fehler, fehler[:20]
