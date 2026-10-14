@@ -102,9 +102,13 @@ def test_jede_satzluecke_gehoert_zu_einem_level_mit_woertern(grunddaten):
 # später kommt, wäre genau das Gegenteil. Geprüft wird an vokabeln.SATZBAU,
 # weil nur dort "formen" steht; die App bekommt es nicht.
 # ---------------------------------------------------------------------------
-# Namen dürfen Kacheln sein, ohne im Wortschatz zu stehen.
+# Namen dürfen Kacheln sein, ohne im Wortschatz zu stehen. Dazu die
+# Personalpronomen und "plus": Ajdin wollte am 14.10.2026 "Ja se zovem
+# Amina" statt "Zovem se Amina" schon in Level 1, gelehrt wird "ja" aber
+# erst in Level 31. Der deutsche Satz ("Ich ...", "plus") zeigt sie eindeutig.
 NAMEN = {"amina", "ajdin", "emir", "lejla", "sarajevo", "mostar", "tuzla",
-         "zenica", "bosna", "hercegovina", "njemačka"}
+         "zenica", "bosna", "hercegovina", "njemačka",
+         "ja", "ti", "on", "ona", "ono", "mi", "vi", "oni", "one", "plus"}
 
 
 def _wortformen(wort):
