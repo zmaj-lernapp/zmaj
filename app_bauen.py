@@ -99,7 +99,31 @@ def kopieren():
     groesse = sum(os.path.getsize(os.path.join(w, n))
                   for w, _, ns in os.walk(WWW) for n in ns)
     print("%d Dateien kopiert, %.1f MB" % (dateien, groesse / 1048576.0))
+    for zeile in maskottchen_groessen(os.path.join(WWW, "maskottchen")):
+        print("   " + zeile)
     return dateien
+
+
+def _ordner_groesse(ordner):
+    return sum(os.path.getsize(os.path.join(w, n)) for w, _, ns in os.walk(ordner) for n in ns)
+
+
+def maskottchen_groessen(ordner):
+    """Wie viel der Drache im Paket wiegt. Seit dem 15.10.2026 ist er aus
+    Bildern (teile/ und je Hautfarbe haut/<farbe>/, siehe zmaj_lottie.py und
+    haut_einbauen.py); das ist der groesste Brocken nach der Tonspur, darum
+    steht es beim Bauen da. Beide Ordner kommen ueber kopieren() mit - sie
+    fangen nicht mit "_" an und stehen in keiner Ausschlussliste."""
+    if not os.path.isdir(ordner):
+        return ["maskottchen/ fehlt"]
+    zeilen = ["maskottchen/ %.2f MB, davon teile/ %d KB" % (_ordner_groesse(ordner) / 1048576.0,
+                                                          _ordner_groesse(os.path.join(ordner, "teile")) // 1024)]
+    haut = os.path.join(ordner, "haut")
+    if os.path.isdir(haut):
+        farben = sorted(f for f in os.listdir(haut) if os.path.isdir(os.path.join(haut, f)))
+        zeilen.append("haut/ %d KB: %s" % (_ordner_groesse(haut) // 1024, ", ".join(
+            "%s %d KB" % (f, _ordner_groesse(os.path.join(haut, f)) // 1024) for f in farben)))
+    return zeilen
 
 
 # ------------------------------------------------------------ Stimme Emir ---
@@ -382,6 +406,19 @@ def inhalt_aktuell():
         pfad = os.path.join(HIER, quelle)
         if os.path.exists(pfad) and os.path.getmtime(pfad) > juengste:
             veraltet.append(quelle)
+    # Die Liste der Drachen-Dateien steht ebenfalls in web/inhalt
+    # ("maskottchen"). Die App laedt einen Hautsatz haut/<farbe>/ nur, wenn
+    # er dort steht - kommt einer per haut_einbauen.py dazu und niemand baut
+    # den Inhalt neu, bliebe die Farbe am Handy stillschweigend die alte
+    # (Bild-Drache, 15.10.2026).
+    import inhalt
+    for d in gebaut:
+        with io.open(d, encoding="utf-8") as f:
+            stand = json.load(f)
+        if isinstance(stand, dict) and "maskottchen" in stand:
+            if stand["maskottchen"] != inhalt.maskottchen_bilder():
+                veraltet.append("web/maskottchen")
+            break
     return veraltet
 
 

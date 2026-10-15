@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="store/feature-1024x500.png" width="640" alt="Zmaj – a blue dragon sitting on a stack of books. Learn Bosnian: 65 levels, grammar, stories.">
+  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 65 levels, 1,728 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
 </p>
 
 <h1 align="center">Zmaj – learn Bosnian</h1>
@@ -25,7 +25,7 @@ eight languages. No account and no server: learning progress never leaves the
 phone. All of the content is free to reuse as a dataset.
 
 <p align="center">
-  <img src="docs/assets/screenshots-en.png" width="100%" alt="Five screens of the app in English: the home screen with a 47-day streak and daily goals; the learning path with passed and locked levels; a new word card 'otvoreno – open' with a Listen button; a multiple-choice question 'station / stop' with four Bosnian answers; a reading story 'Na pijaci' with the tapped word 'povrća' translated as 'vegetables (gen.)'.">
+  <img src="docs/assets/screenshots-en.png" width="100%" alt="Five screens of the app in English, dark theme: the home screen with a 47-day streak, daily goals and the dragon mascot wearing reading glasses and a Bosnia scarf; the learning path with passed and locked levels; a new word card 'zatvoreno – closed' with a Listen button; a multiple-choice question 'money' with four Bosnian answers; a reading story 'Na pijaci' with the tapped word 'povrća' translated as 'vegetables (gen.)'. The dragon is an illustration created with Google Gemini, edited.">
 </p>
 
 ## Why this exists
@@ -218,6 +218,10 @@ no git needed. For code, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 - Code: [AGPL-3.0-or-later](LICENSE)
 - Learning content, audio, artwork and documentation: [CC BY-SA 4.0](LICENSE-CONTENT)
+- The dragon mascot and the app icon are AI-generated: illustrations created
+  with Google Gemini, edited by the maintainer (the mascot cut into parts and
+  animated, the icon cropped). They are marked as such in
+  [`REUSE.toml`](REUSE.toml) and `web/LIZENZEN.txt`.
 - Third-party files keep their licenses (Nunito and Spectral fonts: OFL-1.1, lottie-web: MIT)
 - Per-file details in [`REUSE.toml`](REUSE.toml). "Zmaj" and the app icon are
   trademarks; forks are welcome under a different name ([TRADEMARK.md](TRADEMARK.md)).

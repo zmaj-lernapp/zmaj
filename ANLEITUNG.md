@@ -727,17 +727,37 @@ beide Summen auf ihren Stand zurück, wie alles andere auch.
 
 ## App-Icon
 
-Überall dasselbe Symbol: die bosnische Flagge in einem abgerundeten Quadrat.
-Im Browser-Tab, in der Kopfzeile und auf der Desktop-Verknüpfung.
+Seit dem 15.10.2026 ist das App-Symbol der Drache („Entwurf 4“, mit Google
+Gemini erzeugt) statt der bosnischen Flagge: auf dem Handy (Android-Hülle),
+im Play Store und auf der Desktop-Verknüpfung (`web/icon.ico`, sieben Größen
+von 16 bis 256 Pixel, und `web/icon-256.png`, beide mit runden Ecken). Im
+Browser-Tab und in der Kopfzeile der App steht weiter die Flagge
+(`web/flagge.png`).
 
-Die Dateien liegen fertig im Ordner: `web/icon.ico` (Verknüpfung, sieben
-Größen von 16 bis 256 Pixel), `web/icon-256.png` und `web/flagge.png`. Wer
-ein anderes Symbol will, tauscht diese drei Dateien aus.
+Für den Play Store braucht es andere Maße: quadratisch, 512 × 512 und
+**ohne** runde Ecken, weil Google selbst abrundet – sonst wäre es doppelt
+gerundet. Das liegt in `store/icon-512.png`, daneben der breite Banner
+`feature-1024x500.png`. Alle Drachen-Symbole (auch die der Android-Hülle)
+entstehen aus einer Quelle mit `icon_bauen.py` in
+`App Zeugs\Profilbild\Drache_Bildteile\icon\` (braucht Pillow, liegt darum
+nicht im Repo). `grafiken_bauen.py` zeichnet die Flagge nur noch, wenn man
+dort `FLAGGE_ALS_SYMBOL` einschaltet, und macht sonst den Banner.
 
-Für den Play Store braucht es andere Maße. `grafiken_bauen.py` zeichnet die
-Flagge dafür neu: quadratisch, 512 × 512 und **ohne** runde Ecken, weil
-Google selbst abrundet – sonst wäre es doppelt gerundet. Das Ergebnis liegt
-in `store/icon-512.png`, daneben der breite Banner `feature-1024x500.png`.
+Derselbe Drache steht seit dem 15.10.2026 auch außerhalb der App:
+
+| Wo | Datei | Woher |
+|---|---|---|
+| Browser-Tab der öffentlichen Seite | `github-seite/favicon.ico`, `icon-256.png` | `seite_bauen.py` kopiert `web/icon.ico` und `web/icon-256.png` |
+| Kopfbild im README, Vorschaubild für geteilte Links | `docs/assets/social-preview.jpg` (1280 × 640) | gezeichnet in headless Chrome aus dem gerenderten Bild-Drachen; Vorlage in `App Zeugs\Profilbild\Drache_Bildteile\readme_bilder\` |
+| Bildleiste im README | `docs/assets/screenshots-en.png` | fünf englische Store-Rohbilder, zusammengesetzt mit `montage()` in `store/bilder_machen/bilder_playwright.py` |
+
+Alle Drachen-Bilder sind KI-Bilder (Google Gemini, von uns bearbeitet).
+Wo sie öffentlich zu sehen sind, steht das dabei: „Illustration created with
+Google Gemini, edited“ – im Vorschaubild unten links, im README im Alt-Text
+und unter „License“, auf der öffentlichen Seite in der Fußzeile. In
+`REUSE.toml` und `web/LIZENZEN.txt` ist es ebenfalls vermerkt. Als
+Vorschaubild für Links (Reddit, Messenger) nimmt GitHub das Bild erst,
+wenn es von Hand hochgeladen ist: Settings → General → Social preview.
 
 Windows merkt sich Symbole. Zeigt der Desktop noch das alte, hilft ein
 Rechtsklick auf den Desktop und „Aktualisieren“, sonst einmal ab- und anmelden.
@@ -1197,15 +1217,17 @@ Google Play verlangt eine **öffentliche Adresse**, unter der die
 Datenschutzerklärung ohne Anmeldung lesbar ist. In der App allein reicht
 nicht.
 
-`seite_bauen.py` macht aus den Rechtstexten in `sprachen.py` vier fertige
-Dateien im Ordner `github-seite`:
+`seite_bauen.py` macht aus den Rechtstexten in `sprachen.py` fünf fertige
+Seiten im Ordner `github-seite`:
 
 | Datei | Was drinsteht |
 |---|---|
 | `index.html` | Startseite mit den Links |
 | `datenschutz.html` | Datenschutzerklärung, alle acht Sprachen |
 | `nutzungsbedingungen.html` | Nutzungsbedingungen, alle acht Sprachen |
+| `impressum.html` | Impressum nach § 5 DDG, alle acht Sprachen |
 | `konto-loeschen.html` | „Daten löschen“ – erklärt, dass es kein Konto gibt und wie man seinen Lernstand loswird. Google fragt im Data-Safety-Formular danach |
+| `favicon.ico`, `icon-256.png` | das Symbol im Browser-Tab, Kopien des App-Symbols (Drache, seit 15.10.2026); die Fußzeile jeder Seite sagt, dass es ein KI-Bild ist |
 
 Die Seiten laden nichts von fremden Servern: keine Schriften, keine
 Skripte. Ein Doppelklick öffnet sie auch ohne Internet zum Anschauen.
@@ -1408,8 +1430,10 @@ Bosnisch Lernapp/
 │
 ├── inhalt_bauen.py   Macht aus den fünf Dateien web/inhalt/<code>.json
 ├── app_bauen.py      Kopiert web/ in die Android-Hülle und ruft Capacitor
-├── seite_bauen.py    Erzeugt die vier Seiten in github-seite
-├── grafiken_bauen.py Zeichnet store/icon-512.png für den Play Store
+├── seite_bauen.py    Erzeugt die Seiten in github-seite, dazu das Tab-Symbol
+├── grafiken_bauen.py Nimmt den Store-Banner feature-1024x500.png aus
+│                     web/_feature.html entgegen (das App-Symbol macht
+│                     icon_bauen.py, siehe „App-Icon“)
 ├── zmaj_lottie.py    Erzeugt die Drachen-Animationen in web/maskottchen
 ├── ton_bauen.py      Erzeugt die Aufnahmen und web/audio/index.json
 ├── ton_pruefen.py    Prüft, ob die Tonspur vollständig ist
@@ -1428,7 +1452,10 @@ Bosnisch Lernapp/
 ├── sicherung_konten_2026-09-16/  Die Profildateien von früher, dazu die
 │                     daraus erzeugten zmaj-sicherung-<Name>.json
 ├── store/            icon-512.png und feature-1024x500.png für Google
-├── github-seite/     Die vier öffentlichen HTML-Seiten, siehe LIESMICH.txt
+├── docs/assets/      Bilder fürs README: social-preview.jpg (auch das
+│                     Vorschaubild für geteilte Links), screenshots-en.png
+├── github-seite/     Die öffentlichen HTML-Seiten und das Tab-Symbol,
+│                     siehe LIESMICH.txt
 └── web/              ← das ist die App. Nur dieser Ordner wandert ins Handy
     ├── index.html    Die Oberfläche: Aussehen, Bedienung, alle Regeln
     ├── index.html.vor_*  Sicherungen früherer Fassungen (nicht in der App)
@@ -1437,15 +1464,16 @@ Bosnisch Lernapp/
     ├── audio/        index.json (Zuordnung Text → Datei) und 2153 Töne
     │                 w0001.mp3 …, g01.mp3 …, siehe LIESMICH.txt dort;
     │                 _probe/ mit den Probeaufnahmen bleibt draußen
-    ├── maskottchen/  zmaj.json = Drache als Lottie-Animation, dazu je eine
-    │                 Datei mit Brille, Kopfhörer, Mütze, Krone
+    ├── maskottchen/  zmaj.json = Drache als Lottie-Animation aus Bildern
+    │                 (teile/, je Hautfarbe haut/<farbe>/), zmajz-*.json die
+    │                 Kostüme, zmaj-*.png Standbilder, siehe LIESMICH.txt dort
     ├── fonts/        Die Schriftdateien (Nunito, Spectral)
     ├── schriften.css Bindet sie ein – kein fremder Server
     ├── lottie.min.js Spielt die Drachen-Animation ab (liegt mit im Ordner)
     ├── LIZENZEN.txt  Lizenzen der Schriften und von lottie (SIL OFL, MIT)
-    ├── icon.ico      Symbol der Desktop-Verknüpfung (Flagge, 16 bis 256 px)
+    ├── icon.ico      Symbol der Desktop-Verknüpfung (Drache, 16 bis 256 px)
     ├── icon-256.png  Dasselbe Symbol als PNG
-    ├── flagge.png    Dasselbe Symbol für Browser-Tab und Kopfzeile
+    ├── flagge.png    Die Flagge für Browser-Tab und Kopfzeile
     └── _feature.html Vorlage für den Store-Banner, siehe grafiken_bauen.py
 ```
 

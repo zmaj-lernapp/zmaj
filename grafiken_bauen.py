@@ -7,15 +7,21 @@ in `web/` ist nur 256 Pixel groß und hat runde Ecken eingebacken – beides
 geht im Store nicht: Google rundet selbst ab, sonst sieht es doppelt
 gerundet aus.
 
-Dieses Skript zeichnet die bosnische Flagge neu, quadratisch und ohne
-runde Ecken, und legt sie unter `store/icon-512.png` ab.
+Seit dem 15.10.2026 ist das App-Symbol der Drache ("Entwurf 4", Google
+Gemini, Ajdins Entscheidung nach den Vorschauen) statt der bosnischen
+Flagge. Dieses Symbol entsteht NICHT hier, sondern mit icon_bauen.py in
+App Zeugs\\Profilbild\\Drache_Bildteile\\icon\\ (Pillow, ausserhalb des Repos):
+store/icon-512.png, web/icon-256.png, web/icon.ico und die mipmaps der
+Android-Hülle aus einer Quelle.
 
-Gezeichnet wird mit Bordmitteln – kein Zusatzpaket nötig. Geglättet wird
+Darum lässt ein Lauf in Thonny (F5) store/icon-512.png jetzt in Ruhe. Bis
+zum 15.10.2026 zeichnete er dort die Flagge neu - und ein Lauf nach Anleitung
+hätte das neue Symbol stillschweigend wieder zur Flagge gemacht. Wer die
+Flagge doch wieder als Symbol will, stellt unten FLAGGE_ALS_SYMBOL auf True.
+Gezeichnet wird sie mit Bordmitteln – kein Zusatzpaket nötig. Geglättet wird
 durch Überabtastung: Erst wird alles dreifach so groß gerechnet, dann
 gemittelt. Dadurch werden die schrägen Kanten des Dreiecks und die
 Sternzacken weich.
-
-In Thonny öffnen und auf Run (F5) drücken.
 
 ---
 
@@ -27,9 +33,13 @@ kann nur der Browser. Der Weg dafür:
     1. Die App starten (Desktop-Verknüpfung oder start.py)
     2. Hier unten ZWEITE_GRAFIK auf True stellen und das Skript laufen
        lassen. Es wartet dann auf das Bild.
-    3. Im Browser http://localhost:8000/_feature.html öffnen.
-       Die Seite zeichnet die Grafik und schickt sie hierher.
+    3. Im Browser http://localhost:8000/_feature.html?senden=1 öffnen.
+       Die Seite zeichnet die Grafik und schickt sie hierher (ohne
+       ?senden=1 zeigt sie sie nur an).
     4. Fertig: store/feature-1024x500.png
+
+Die Grafiken je Store-Sprache (JPEG) macht store/bilder_machen/beschriften.py
+aus derselben Seite.
 
 Das Aussehen der Bannergrafik steht in web/_feature.html – Farben, Text
 und Größen lassen sich dort ändern.
@@ -43,6 +53,7 @@ import zlib
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 ZWEITE_GRAFIK = False      # True: auf den Banner aus dem Browser warten
+FLAGGE_ALS_SYMBOL = False  # True: store/icon-512.png wieder als Flagge zeichnen (siehe oben)
 PORT = 8199
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
@@ -211,7 +222,9 @@ class Empfang(BaseHTTPRequestHandler):
 
 def auf_banner_warten():
     print("Warte auf den Banner aus dem Browser …")
-    print("Jetzt http://localhost:8000/_feature.html öffnen.")
+    # Mit ?senden=1 - ohne den Zusatz zeigt die Seite das Bild nur an und
+    # dieses Skript wartete endlos (15.10.2026, beim Neumachen der Store-Bilder).
+    print("Jetzt http://localhost:8000/_feature.html?senden=1 öffnen.")
     print("(Die App muss dafür laufen.)")
     try:
         HTTPServer(("127.0.0.1", PORT), Empfang).serve_forever()
@@ -224,6 +237,12 @@ def auf_banner_warten():
 if __name__ == "__main__":
     if ZWEITE_GRAFIK:
         auf_banner_warten()
+        raise SystemExit(0)
+    if not FLAGGE_ALS_SYMBOL:
+        print("Das App-Symbol ist seit dem 15.10.2026 der Drache und entsteht mit")
+        print("icon_bauen.py (App Zeugs\\Profilbild\\Drache_Bildteile\\icon).")
+        print("store/icon-512.png bleibt, wie es ist.")
+        print("Für den Banner: ZWEITE_GRAFIK = True, siehe oben im Skript.")
         raise SystemExit(0)
 
     os.makedirs(ZIEL, exist_ok=True)

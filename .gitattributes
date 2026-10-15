@@ -1,6 +1,7 @@
 * text=auto
 *.mp3 binary
 *.png binary
+*.webp binary
 *.ico binary
 *.woff2 binary
 *.docx binary
