@@ -1,0 +1,28 @@
+QUELLEN DES DRACHEN (Bildteile, seit 15.10.2026)
+
+Der Drache der App besteht aus Bildern, die mit Google Gemini erzeugt und in
+Teile geschnitten wurden (siehe zmaj_lottie.py, Abschnitt "Bild-Drache", und
+web/maskottchen/LIESMICH.txt). In der App liegen davon nur die fertigen
+WebP-Dateien (web/maskottchen/teile/ und haut/<farbe>/).
+
+teile.json  Woher jedes Teil kommt: aus welchem Gemini-Bogen, welchem
+            Kasten, mit welcher Maske und welcher Freistellung, dazu Groesse
+            und Drehpunkt (pivot_px). Die Zahlen in BILD_TEILE in
+            zmaj_lottie.py stammen von hier. Dazu die beiden abgeleiteten
+            Teile oberarmL_hoch / oberarmR_hoch und die Nachbearbeitung vom
+            15.10.2026 (lose Linienreste entfernt).
+
+Die Quellen selbst sind zu gross fuer das Repository (Gemini-Boegen in
+2048 x 2048, PNG-Teile, Masken, Hautboegen - zusammen rund 120 MB). Sie
+liegen ausserhalb, aber nicht im Temp-Ordner:
+
+  App Zeugs\Profilbild\Drache_Bildteile\   (LIESMICH.txt dort)
+    fertig\teile\      PNG-Teile des Grundsatzes -> haut_einbauen.py --teile
+    fertig\haut\       PNG-Teile je Hautfarbe    -> haut_einbauen.py
+    gemini\            Gemini-Boegen, Masken, Schneidewerkzeuge, teile.json
+    haut\              Gemini-Boegen der Hautfarben und ihre Werkzeuge
+    icon\              App-Symbol "Entwurf 4" (icon_bauen.py)
+    werkzeuge\         teile_richten.py, der Lottie-Renderer render.js
+
+Die Werkzeuge dort brauchen Pillow und numpy; die App und der Bau brauchen
+sie nicht.

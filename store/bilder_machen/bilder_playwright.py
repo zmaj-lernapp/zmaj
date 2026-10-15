@@ -162,15 +162,37 @@ def bilder_machen(sprache, ziel, chrome=None):
 
 
 def montage(pfade, ausgabe, auswahl=(0, 1, 2, 3, 6)):
-    """Fünf Bilder nebeneinander, für das README."""
+    """Fünf Bilder nebeneinander, für das README.
+
+    Die Lücken sind durchsichtig (15.10.2026): Seit die Bilder dunkel sind,
+    standen weiße Streifen dazwischen, auf GitHub im dunklen Modus grell.
+    Die Palette bleibt MEDIANCUT - FASTOCTREE könnte zwar Alpha, verlor aber
+    den weichen Schatten um den Drachen. Darum bekommen die Lücken eine
+    Farbe, die in der App nicht vorkommt, und genau dieser Paletteneintrag
+    wird durchsichtig. Trifft er auch nur ein Pixel der Bilder, bleiben die
+    Lücken weiß wie vorher."""
     from PIL import Image
     breite, hoehe, luecke = 540, 960, 16
+    loch = (255, 0, 255)
     bilder = [Image.open(pfade[i]).convert("RGB").resize((breite, hoehe), Image.LANCZOS) for i in auswahl]
-    leinwand = Image.new("RGB", (breite * len(bilder) + luecke * (len(bilder) - 1), hoehe), (255, 255, 255))
+    leinwand = Image.new("RGB", (breite * len(bilder) + luecke * (len(bilder) - 1), hoehe), loch)
     for i, b in enumerate(bilder):
         leinwand.paste(b, (i * (breite + luecke), 0))
-    leinwand.quantize(colors=256, method=Image.MEDIANCUT, dither=Image.Dither.NONE).save(ausgabe, optimize=True)
-    print("Montage: %s (%.0f KB)" % (ausgabe, os.path.getsize(ausgabe) / 1024.0))
+    bild = leinwand.quantize(colors=256, method=Image.MEDIANCUT, dither=Image.Dither.NONE)
+    extra = {}
+    if len(bilder) > 1:
+        idx = bild.getpixel((breite + luecke // 2, hoehe // 2))
+        nur_luecken = bild.histogram()[idx] == luecke * (len(bilder) - 1) * hoehe
+        if nur_luecken and tuple(bild.getpalette()[idx * 3:idx * 3 + 3]) == loch:
+            extra["transparency"] = idx
+    if not extra:
+        leinwand = Image.new("RGB", leinwand.size, (255, 255, 255))
+        for i, b in enumerate(bilder):
+            leinwand.paste(b, (i * (breite + luecke), 0))
+        bild = leinwand.quantize(colors=256, method=Image.MEDIANCUT, dither=Image.Dither.NONE)
+    bild.save(ausgabe, optimize=True, **extra)
+    print("Montage: %s (%.0f KB, Lücken %s)" % (ausgabe, os.path.getsize(ausgabe) / 1024.0,
+                                                "durchsichtig" if extra else "weiß"))
 
 
 def main(argv=None):
