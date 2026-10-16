@@ -54,27 +54,53 @@ haut/<farbe>/  Dieselben 32 Bilder in einer Hautfarbe aus dem Laden (gruen,
             gemeinsamen Bogen aller Teile (damit Kopf, Rumpf und Fluegel
             denselben Ton haben), danach wie teile/ geschnitten. Die Raender
             sind ohne gruenen Farbsaum - seitdem auch die von teile/.
-            Einen Satz "skelett" gibt es bewusst nicht (siehe unten).
+            haut/skelett/ (16.10.2026) ist das Halloween-Skelett, von
+            Gemini als Skelett gemalt (siehe unten). Die Hand an der Wange
+            hat in allen Saetzen ein Feld von 114 x 220 Pixeln: das Skelett
+            braucht es fuer die Knochenhaende vor den Augenhoehlen, die
+            anderen Saetze sind durchsichtig erweitert (haut_einbauen.py).
 
-zmajz-*.json  Zierrat aus dem Laden: je Stueck nur seine Ebene(n), als Vektor
-            gezeichnet. Die App haengt sie an zmaj.json an und sortiert nach
+zierrat/<id>/  Die gemalten Kostueme (16.10.2026), WebP wie teile/: Huete
+            und Kronen je vorne.webp, links.webp, rechts.webp (fuer den Kopf
+            von vorn und den abgewandten Kopf), Kleidung rumpf.webp bzw.
+            mantel.webp und kragen.webp, dazu die Aermel je Armteil
+            (oberarmL.webp, oberarmL_hoch.webp, unterarmL_offen.webp ...).
+            Sie haengen nicht an der Hautfarbe. Der Schnipsel des Stuecks
+            nennt sie (siehe zmajz-*.json).
+
+zmajz-*.json  Zierrat aus dem Laden: je Stueck nur seine Ebene(n). Seit
+            16.10.2026 sind 15 Stuecke gemalt (Kappe, Fes, Muetze,
+            Doktorhut, Krone, grosse Krone, Nikolausmuetze, Bajram-Fes,
+            Trikot, Strick- und Lederjacke, Koenigsmantel, Jelek, beide
+            Schals): ihr Schnipsel ist {"layers": [Bild-Ebenen], "assets":
+            [Bilder in zierrat/<id>/]}. Die Huete wechseln mit dem Kopf
+            zwischen vorne/links/rechts und nehmen die Hornspitzen heraus,
+            die Aermel wechseln mit dem Arm (erhoben, Faust, Wange), der
+            Mantel haengt hinter Koerper und Schwanz. Die uebrigen Stuecke
+            sind als Vektor gezeichnet (eine Liste von Ebenen).
+            Die App haengt sie an zmaj.json an und sortiert nach
             "ind" (siehe zmajDaten() in web/index.html). Alle Stuecke haengen
             an Kopf, Koerper, Ober- oder Unterarm, Fluegel oder Schwanz und
             gehen in jeder Stimmung mit; die Brillen ruecken am abgewandten
             Kopf (no_l, no_r) ein Stueck zur Seite und werden schmaler.
             Manche Stuecke bringen mehrere Ebenen mit: Trikot und Jacken
             ihre Aermel (die Jacken auch am Unterarm), der Koenigsmantel
-            seinen Hermelinkragen (liegt vor den Armen), der Fanschal den
+            seinen Hermelinkragen (gemalt seit 16.10.2026 eine schmale
+            Stola hinter den Armen, als Vektor vor ihnen), der Fanschal den
             Schriftzug, die Galaxie Sterne auf Fluegeln und Schwanz (zum
             Hautsatz haut/galaxie/ dazu).
-            Das Skelett (Halloween) ist immer das Vektor-Skelett aus
-            Knochen, wie am 01.10.2026 festgelegt (nur Knochen, runde
-            schwarze Hoehlen mit gelbem Punkt, kein Fleisch, keine Augen mit
-            Iris): "zmaj_leert" leert die Rig-Ebenen und nimmt alle
-            Bild-Ebenen heraus, und das Stueck bringt das Vektor-Gesicht mit.
-            Ein Bildsatz haut/skelett/ (15.10.2026) zeigte statt Knochen
-            einen elfenbeinfarbenen Drachen mit blauen Augen und ist nicht
-            in der App.
+            Das Skelett (Halloween) ist nur Knochen, wie am 01.10.2026
+            festgelegt (runde schwarze Hoehlen mit gelbem Punkt, kein
+            Fleisch, keine Augen mit Iris). Seit 16.10.2026 ist es der
+            gemalte Satz haut/skelett/ am selben Rig - dieselbe Bewegung wie
+            der Drache, durchgehend boeser Blick, Nasenbein statt
+            "Schweinsnase"; das Vektor-Stueck zmajz-skelett.json weicht ihm
+            ("zmaj_ohne_haut"). Fehlt der Satz, ist es der Rueckfall:
+            "zmaj_leert" leert die Rig-Ebenen und nimmt alle Bild-Ebenen
+            heraus, und das Stueck bringt das Vektor-Gesicht mit.
+            Ein frueherer Bildsatz haut/skelett/ (15.10.2026) zeigte statt
+            Knochen einen elfenbeinfarbenen Drachen mit blauen Augen und
+            flog wieder raus.
 
 Farben: Beim Bild-Drachen ist eine Hautfarbe ein eigener Bildsatz (haut/).
 Umgefaerbt wird nur noch ohne Satz: dann tauscht die App acht Farben exakt

@@ -19,21 +19,30 @@
 # aus den PNG-Teilen. In zmaj.json steht u = "teile/" relativ zur Datei; die
 # App setzt den Pfad beim Laden selbst (zmajDaten in web/index.html) und
 # nimmt den Hautsatz der getragenen Farbe, wenn es ihn gibt.
-# Die Vektor-Kostueme (Zierrat) bleiben, wie sie sind, und haengen weiter an
-# den Rig-Ebenen; nur die Brillen ruecken am abgewandten Kopf (no_l/no_r)
-# ein Stueck mit und werden schmaler (BRILLE_GEDREHT). Das Skelett (Halloween)
-# bleibt das Vektor-Skelett aus Knochen: es nimmt alle Bilder heraus und
-# bringt das Vektor-Gesicht mit (siehe HAUT_ERSETZT - ein Bildsatz
-# haut/skelett/ war ein Drache mit Fleisch und blauer Iris, das widerspricht
-# der Fest-Entscheidung vom 01.10.2026).
+# Kostueme (Zierrat): Seit 16.10.2026 sind 15 Stuecke von Gemini gemalt -
+# Huete und Kronen je fuer den Kopf von vorn und abgewandt, Kleidung mit
+# Aermeln je Armteil (Abschnitt "Gemalte Kostueme", GEMALT); ihre Bilder
+# liegen in web/maskottchen/zierrat/<stueck>/. Die uebrigen sind weiter
+# Vektor und haengen an den Rig-Ebenen; die Brillen ruecken am abgewandten
+# Kopf ein Stueck mit und werden schmaler (BRILLE_GEDREHT), Hexenhut,
+# Ohrenschuetzer, Kopfhoerer und Hasenohren ruecken auf den Schaedel -
+# alles nach dem Kopfplan (KOPFPLAN). Das Skelett (Halloween) ist seit
+# 16.10.2026 der gemalte Hautsatz haut/skelett/ (nur Knochen, wie die
+# Fest-Entscheidung vom 01.10.2026 verlangt); das Vektor-Skelett weicht ihm
+# und bleibt der Rueckfall (HAUT_ERSETZT).
 # Bewegung: Nach Ajdins Rueckmeldung zum Probevideo (15.10.2026) hat der
 # Bild-Drache eigene, ruhigere Zeitleisten ("Bewegung des Bild-Drachen"):
 # beim Jubel liegen die Arme vor den Fluegeln statt darin, der Kopf neigt
 # sich hoechstens 4,5 Grad um den Halspunkt und rutscht nicht vom Hals, und
 # jede Stimmung beginnt und endet in der Ruhe. Der Kopf wechselt hart, mit
-# einem kurzen Blinzeln dazwischen (KOPF_WECHSEL), am abgewandten Kopf im
-# Moment, in dem er schmal wird (DREHEN). --vektor behaelt die alten
-# Zeitleisten.
+# einem kurzen Blinzeln dazwischen (KOPF_WECHSEL). Bei einer falschen
+# Antwort (no, no_l, no_r) schuettelt er seit 16.10.2026 richtig den Kopf:
+# die gemalten abgewandten Koepfe links und rechts im Wechsel, dazwischen
+# der finstere Frontkopf, ohne den Kopf um den Hals zu kippen (SCHUETTELN).
+# Welcher Kopf in welchem Bild zu sehen ist, steht an EINER Stelle, im
+# Kopfplan (KOPFPLAN, kopf_deckkraft, kopf_spur); Kopfbilder, Hornspitzen,
+# Kopf-Kostueme und das Vektor-Skelett richten sich alle danach.
+# --vektor behaelt die alten Zeitleisten.
 #   python zmaj_lottie.py           Bild-Drache, schreibt nach web/maskottchen
 #   python zmaj_lottie.py --vektor  der gezeichnete Drache v6 wie bisher
 #                                   (Kopf 1.2) - nur noch zum Vergleichen, er
@@ -58,7 +67,9 @@
 #   no_l und no_r sind zwei Fassungen fuer eine falsche Antwort: Der Drache
 #   wendet den Kopf ab - einmal nach links, einmal nach rechts - und schaut
 #   dabei traurig. Die App wechselt sich damit ab, damit es nach mehreren
-#   Fehlern nicht immer gleich aussieht.
+#   Fehlern nicht immer gleich aussieht. Beim Bild-Drachen (seit 16.10.2026)
+#   schuetteln no, no_l und no_r den Kopf und schauen dabei durchgehend
+#   finster; no_l beginnt nach links, no_r nach rechts (SCHUETTELN).
 #   Ebenennamen: an "head", "body", "armL"/"armR", "wingL"/"wingR", "tail"
 #   haengen Kostueme (seit 15.10.2026 auch an "unterarmL"/"unterarmR": die
 #   langen Jackenaermel); "skelett" leert per zmaj_leert die Fleisch-Ebenen.
@@ -399,7 +410,7 @@ NUR_MIT["galaxie"] = ["galaxie_wingL", "galaxie_wingR", "galaxie_schwanz"]
 # Die Dateien liegen als <teil>.webp in web/maskottchen/teile/, je
 # Hautfarbe dieselben Namen in haut/<farbe>/ (haut_einbauen.py).
 # sichtbar: None = immer; "kopf" = Kopf- und Hornbilder, sie folgen
-# kopf_folge() unten; sonst Stimmungen aus SEG, dazu "cheer_hoch" (die
+# dem Kopfplan (KOPFPLAN) unten; sonst Stimmungen aus SEG, dazu "cheer_hoch" (die
 # Bilder des Jubels mit erhobenen Armen, JUBEL_HOCH) und "cheer_ruhe" (die
 # uebrigen Jubelbilder, Arme unten).
 PX_JE_EINHEIT = 2.0
@@ -426,8 +437,14 @@ BILD_TEILE = {
     # ganzen Jubel, und am Ende sprang die haengende Faust zur offenen Hand.
     "unterarmL_faust":  ("unterarmL",  83, 145, 54.86, 21.4, ("cheer_hoch",)),
     "unterarmR_faust":  ("unterarmR",  83, 145, 28.14, 21.4, ("cheer_hoch",)),
-    "unterarmL_wange":  ("unterarmL",  88, 151, 58.86, 23.4, ("cry",)),
-    "unterarmR_wange":  ("unterarmR",  88, 151, 29.14, 23.4, ("cry",)),
+    # Seit 16.10.2026 ist das Feld der Hand an der Wange 114 x 220 statt
+    # 88 x 151: das gemalte Skelett (haut/skelett/) haelt sich beim Weinen
+    # die Knochenhaende vor die Augenhoehlen, seine Finger reichen weiter.
+    # Alle Saetze teilen sich ein Asset; die kleineren Bilder der anderen
+    # Saetze erweitert haut_einbauen.py durchsichtig (FELD dort) - rechts um
+    # 26 Pixel nach links, darum dort der Drehpunkt 55.14 statt 29.14.
+    "unterarmL_wange":  ("unterarmL", 114, 220, 58.86, 23.4, ("cry",)),
+    "unterarmR_wange":  ("unterarmR", 114, 220, 55.14, 23.4, ("cry",)),
     "kopf_blinzeln":    ("head",      245, 306, 122.0, 295.5, "kopf"),
     "kopf_jubel":       ("head",      244, 322, 122.0, 295.5, "kopf"),
     "kopf_froh":        ("head",      245, 324, 122.0, 295.5, "kopf"),
@@ -458,18 +475,35 @@ BLINZELN = [(30, 34), (64, 68)]
 GESICHT = ["eyes", "lids", "eyes_happy", "eyes_cry", "brows", "mouth_idle", "mouth_open", "mouth_sad", "mouth_cry", "tears"]
 # Welcher Hautsatz ein Stueck ueberfluessig macht: die App laesst jede Ebene
 # mit "zmaj_ohne_haut": <farbe> weg, wenn sie den Hautsatz haut/<farbe>/
-# laedt. Zurzeit gibt es keinen solchen Fall mehr.
-# Bis 15.10.2026 stand hier {"skelett": "skelett"}: mit einem Bildsatz
-# haut/skelett/ zeigten die Bilder statt der Knochen einen elfenbeinfarbenen
-# Drachen mit Fleisch, Bauchschuppen und blauen Augen mit Iris. Das
-# widerspricht der Fest-Entscheidung vom 01.10.2026 (Skelett = nur Knochen
-# wie Knochentrocken, runde schwarze Hoehlen mit gelbem Punkt, kein Fleisch,
-# ausdruecklich keine Augen mit Iris) - Pruefung 15.10.2026. Der Satz ist
-# aus der App genommen (Quellen: Drache_Bildteile\haut_skelett_verworfen).
-# Das Skelett ist darum immer das Vektor-Skelett: zmaj_leert nimmt die
-# Bild-Ebenen heraus, und das Stueck bringt das Vektor-Gesicht mit, das der
-# Bild-Drache selbst nicht mehr hat - so sieht es aus wie mit --vektor.
-HAUT_ERSETZT = {}
+# laedt.
+# Bis 15.10.2026 stand hier schon einmal {"skelett": "skelett"}: der
+# damalige Bildsatz haut/skelett/ zeigte statt der Knochen einen
+# elfenbeinfarbenen Drachen mit Fleisch, Bauchschuppen und blauen Augen mit
+# Iris. Das widerspricht der Fest-Entscheidung vom 01.10.2026 (Skelett =
+# nur Knochen wie Knochentrocken, runde schwarze Hoehlen mit gelbem Punkt,
+# kein Fleisch, ausdruecklich keine Augen mit Iris); der Satz flog raus
+# (Quellen: Drache_Bildteile\haut_skelett_verworfen), und einen Tag lang
+# war das Skelett immer das Vektor-Skelett.
+# 16.10.2026: Gemini hat das Skelett auf den Original-Boegen neu GEMALT -
+# nur Knochen, die Schaedel in der Form des Originalkopfs mit runden
+# schwarzen Hoehlen und gelbem Punkt, ohne Iris, Schwanz nur Wirbel, und
+# nach Ajdins Wunsch vom 15.10.2026 durchgehend boese, mit Nasenbein-Linie
+# und schmalen Nasenoeffnungen statt "Schweinsnase", das Becken auf den
+# Oberschenkeln, Krallenknochen statt "komischer" Finger. Es hat dieselben
+# 32 Teile mit denselben Drehpunkten (bis auf die Haende an der Wange,
+# siehe BILD_TEILE) und haengt darum am selben Rig: dieselbe Bewegung wie
+# der normale Drache, auch beim Kopfschuetteln, und die Brauen sind Teil
+# jedes Kopfbilds, drehen also mit. Damit ist es wieder der Hautsatz
+# haut/skelett/ (Quellen: Drache_Bildteile\fertig\haut\skelett), und das
+# Vektor-Skelett weicht ihm. Fehlt der Satz in der App, bleibt das
+# Vektor-Skelett der Rueckfall: zmaj_leert nimmt die Bild-Ebenen heraus, und
+# das Stueck bringt das Vektor-Gesicht mit - wie mit --vektor.
+# Nachpruefung 16.10.2026: Gemini hatte die Nasenbein-Linie gemalt, die
+# Nasenloecher blieben aber runde Tropfen; sie sind im Bildsatz jetzt
+# schmale, kantige Oeffnungen (Drache_Bildteile\werkzeuge\befunde_16_10\
+# nase_kantig.py). Dort auch weg: ein loser Dorn und gerade Schnittkanten
+# ohne Umriss am Schwanz, Halsreste unter dem Kinn des Jubelkopfs.
+HAUT_ERSETZT = {"skelett": "skelett"}
 # Ebenen, die der Bild-Drache gar nicht ausliefert. "eyes" (Augenweiss mit
 # blauer Iris) blieb bis 15.10.2026 in der Grunddatei stehen und lag mit
 # offenen Vektor-Augen ueber jedem Kopfbild - das Blinzeln war unsichtbar,
@@ -481,6 +515,150 @@ WEG_IM_BILD = [] if VEKTOR else ["eyes"]
 if not VEKTOR:
     NUR_MIT["skelett"] = SKELETT_EBENEN + [g for g in GESICHT if g not in WEG_IM_BILD]
 ZIERRAT_ALLE = ZIERRAT + [n for v in NUR_MIT.values() for n in v]
+
+# ======================= Gemalte Kostueme (v7, 16.10.2026) =======================
+# Ajdin am 15.10.2026 nach der Seite mit allen Kostuemen: die Huete besser
+# machen (Kappe, Fes, Muetze, am meisten Doktorhut, Krone und grosse Krone -
+# "die grosse Krone sah vorher doch ganz anders aus"), Nikolausmuetze,
+# Bajram-Fes und Jelek "sehen noch nicht gut aus", der Schal ist "viel zu
+# starr, als waere das nicht aus Stoff", und an Trikot, Strick- und
+# Lederjacke und am Koenigsmantel "sind die Oberarme viel zu sehr betont, als
+# waere die Schulter nicht mehr am Torso dran". Diese 15 Stuecke hat Gemini
+# darum im Stil des Drachen GEMALT (dunkelblauer Umriss, weiche
+# Zellschattierung, Stoff mit Falten, Metall mit Glanz), direkt auf den
+# gemalten Drachen: die Huete auf Frontkopf und abgewandtem Kopf zugleich,
+# die Kleidung am stehenden Drachen und - fuer die erhobenen Arme - auf den
+# Teilebogen. Ausgeschnitten wurde mit denselben Kaesten, Masken und
+# Matrizen wie die Teile des Drachen; jedes Bild liegt also genau auf
+# seinem Teil. Brillen, Ohrenschuetzer, Kopfhoerer, Hexenhut, Hasenohren,
+# Funkeln und Galaxie bleiben vorerst Vektor (Entscheidung 15.10.2026).
+# Quellen: Drache_Bildteile\fertig\zierrat\ (PNG, so wie haut_einbauen.py
+# --zierrat sie umwandelt), Lage, Herkunft und Kontrollboegen in
+# Drache_Bildteile\kostueme_quellen\ (die Zahlen unten stammen aus den
+# anker.json dort).
+# Jedes Stueck ist eine Liste von Bild-Ebenen (ty 2) wie die des Drachen:
+#   web/maskottchen/zierrat/<stueck>/<teil>.webp, im Schnipsel als Asset
+#   "<stueck>_<teil>" mit u = "zierrat/<stueck>/" (relativ zu zmaj.json),
+#   Ebene "bild_<stueck>_<teil>" mit der Rig-Ebene als Eltern, 2 Pixel je
+#   Leinwand-Einheit (am Kopf wie die Kopfbilder umgerechnet).
+# Sie ersetzen die Vektor-Ebene des Stuecks und stehen in ORDER genau an
+# ihrer Stelle ("vor": die Bild-Ebene liegt direkt vor dieser Ebene) - so
+# bleibt die Tiefe, die oben bei KOPF_TEILE/HALS_TEILE begruendet ist.
+# Einzige Ausnahme ist der Mantel (siehe GEMALTE_RUMPFSTUECKE).
+#
+# Kopfstuecke: je eine Fassung fuer den Kopf von vorn (alle Frontkoepfe)
+# und fuer den abgewandten Kopf; welche zu sehen ist, sagt der Kopfplan
+# (kopf_deckkraft(seite=...)) - beim Kopfschuetteln springt der Hut im
+# selben Bild wie der Kopf. "rechts" ist "links" gespiegelt, wie kopf_rechts
+# der gespiegelte kopf_links ist (mittlere Abweichung 3/255); die Datei
+# rechts.webp ist schon gespiegelt, ihr Drehpunkt also Breite - x.
+#   stueck: ((vorne: Breite, Hoehe, Drehpunkt x, y), (links: ...)) in
+#   Pixeln; der Drehpunkt liegt auf dem Anker der Kopf-Ebene.
+# Gemini setzte Kappe, Muetze, Bajram-Fes, Doktorhut und grosse Krone etwas
+# zu tief; ihre Frontfassungen sitzen 2 bis 7 Kopf-Einheiten hoeher als
+# gemalt, damit die Brauen auch beim Jubel frei bleiben (Drehpunkt schon
+# darum verschoben). Wo Gemini ein Horn VOR den Hut gemalt hat, hat das
+# Bild ein Loch und das Horn des Kopfbilds schaut durch. Die Hornspitzen
+# (bild_hoerner_*, vor den Vektor-Hueten) leert ein gemalter Hut darum mit
+# zmaj_leert: am abgewandten Kopf lag sonst das FERNE Horn vor Muetze,
+# grosser Krone und Nikolausmuetze, und vorn stach das rechte Horn durch
+# die Nikolausmuetze (Pruefung 16.10.2026).
+# Nachpruefung 16.10.2026: Die grosse Krone verdeckte vorn beide Hoerner,
+# am abgewandten Kopf stand das nahe Horn davor, und mit sieben
+# Perlenzacken, Samt und geschliffenem Rubin hatte sie nichts vom alten
+# Entwurf ("die grosse Krone sah vorher doch ganz anders aus"). Sie ist
+# neu gemalt nach dem Entwurf auf master (breiter Reif, vier Zacken, zwei
+# Perlen, aussen zwei rote Steine, ein grosser runder Stein); Gemini bekam
+# dafuer eine flache Skizze an der richtigen Stelle, frei gemalt schwebte
+# die Krone ueber den Hoernern. Bei ihr und bei der Nikolausmuetze (vorn
+# ragte nur ein Horn heraus) stehen jetzt in BEIDEN Ansichten beide Hoerner
+# ganz vor dem Stueck, und der Kopfstachel liegt unter dem Fellrand der
+# Muetze, statt ihn zu durchstechen.
+GEMALTE_HUETE = {
+    "kappe":          ((195, 121,  97.09, 280.12), (198, 134,  80.56, 269.1)),
+    "fes":            ((151, 144,  74.63, 333.1),  (165, 165,  55.98, 314.02)),
+    "hut":            ((215, 226, 106.84, 379.29), (211, 212,  87.76, 353.86)),
+    "doktorhut":      ((335, 185, 166.59, 326.74), (304, 206, 119.55, 320.81)),
+    "krone":          ((132, 116,  65.3,  288.6),  (123, 106,  58.94, 283.51)),
+    "krone_gross":    ((278, 273, 138.62, 433.12), (255, 265, 100.05, 418.71)),
+    "nikolausmuetze": ((293, 239, 110.23, 311.48), (264, 245,  77.59, 292.41)),
+    "bajramfes":      ((151, 173,  74.2,  333.52), (157, 176,  64.88, 323.77)),
+}
+# Kleidung am Rumpf (Eltern "body"): stueck: {teil: (Breite, Hoehe,
+# Drehpunkt x, y, vor)}. Das Bild ist alles, was Gemini am Drachen
+# veraendert hat und nicht mit nackter Haut verbunden ist - so bleibt auch
+# die gelbe Schaerpe des Trikots ueber dem gelben Bauch erhalten. Was der
+# Kopf oder die Arme verdecken, fehlt im Bild nicht: Gemini hat den Rumpf
+# ein zweites Mal ohne Arme angezogen.
+# Der Mantel des Koenigsmantels haengt HINTER dem Koerper und dem Schwanz
+# (vor "skelett_wingL", also direkt hinter "tail"), aber vor den Fluegeln:
+# Gemini hat ihn so gemalt, Schwanz und Beine liegen vor dem Samt. Vor dem
+# Koerper, wo die Vektor-Ebene "umhang" sass, haette er nur Loecher, wo der
+# Koerper durchschaut - und der Schwanz, der im Jubel um 9 Grad schwingt,
+# waere am Lochrand abgeschnitten. Der Fanschal traegt "BOSNA" im Bild;
+# die Textebene schal_bih_text faellt beim gemalten Schal weg.
+# Hermelinkragen (Nachpruefung 16.10.2026): Er bestand aus zwei getrennten
+# runden Fellpolstern, die seitlich ueber die Schulterlinie standen - wieder
+# "Schulter/Oberarm betont", wie Ajdin es am Mantel bemaengelt hatte, und
+# beim Jubel kamen die Arme aus den Polstern. Jetzt eine schmale Stola: um
+# den Hals, flach auf den abfallenden Schultern, vorn zwei Baender bis zur
+# Brustmitte mit goldener Spange. Sie liegt HINTER den Armen (Platz der
+# Vektor-Ebene umhang, wie die anderen Halssachen) - vor den Armen haetten
+# ihre Baender beim Weinen die Unterarme auf der Brust zugedeckt.
+GEMALTE_RUMPFSTUECKE = {
+    "trikot":       {"rumpf":  (245, 273, 121.94, 456.47, "trikot")},
+    "weste_leder":  {"rumpf":  (264, 295, 130.38, 493.99, "weste_leder")},
+    "weste_strick": {"rumpf":  (247, 284, 122.88, 462.57, "weste_strick")},
+    "jelek":        {"rumpf":  (266, 359, 132.26, 562.94, "jelek")},
+    "umhang":       {"mantel": (742, 517, 370.05, 514.16, "skelett_wingL"),
+                     "kragen": (248, 305, 122.88, 505.72, "umhang")},
+    "schal_winter": {"rumpf":  (191, 288,  94.74, 545.58, "schal_winter")},
+    "schal_bih":    {"rumpf":  (243, 396, 120.53, 556.37, "schal_bih")},
+}
+# Aermel (Trikot kurz, die Jacken lang): je Armteil des Drachen ein Bild an
+# derselben Rig-Ebene, mit 12 Pixeln (Unterarm an Faust und Wange: 10) Rand
+# um das Feld des Armteils, sonst derselbe Drehpunkt. Ein Aermel ist genau
+# dann zu sehen, wenn sein Armteil zu sehen ist (BILD_TEILE): erhobener
+# Oberarm mit runder Kappe an der Schulter, Unterarm offen, als Faust oder
+# an der Wange. "_hoch" nutzt das Feld des haengenden Oberarms.
+#   Armteil: (Breite, Hoehe, Drehpunkt x, y)
+# Die Aermel sind schlank und gehen oben weich in den Rumpf ueber - Ajdins
+# "es muss nach innen gehen" (15.10.2026).
+GEMALTE_AERMEL = {
+    "oberarmL":        (128, 170, 80.58, 40.8),  "oberarmR":        (128, 171, 47.42, 41.8),
+    "unterarmL_offen": (116, 191, 72.86, 36.4),  "unterarmR_offen": (116, 191, 42.14, 36.4),
+    "unterarmL_faust": (109, 171, 67.86, 34.4),  "unterarmR_faust": (109, 171, 41.14, 34.4),
+    "unterarmL_wange": (108, 171, 68.86, 33.4),  "unterarmR_wange": (108, 171, 39.14, 33.4),
+}
+OBERARME = ["oberarmL", "oberarmL_hoch", "oberarmR", "oberarmR_hoch"]
+UNTERARME = [u + "_" + v for u in ("unterarmL", "unterarmR") for v in ("offen", "faust", "wange")]
+ZIERRAT_ORDNER = "zierrat"
+
+
+def gemalte_kostueme():
+    """{stueck: [(teil, Rig-Ebene, Breite, Hoehe, Drehpunkt x, y, sichtbar, vor)]}
+    sichtbar: None = immer, "vorn"/"links"/"rechts" = Seite im Kopfplan,
+    sonst Stimmungen wie in BILD_TEILE."""
+    t = {}
+    for st, (vorne, links) in GEMALTE_HUETE.items():
+        b, h, x, y = links
+        t[st] = [("vorne", "head") + vorne + ("vorn", st), ("links", "head") + links + ("links", st),
+                 ("rechts", "head", b, h, round(b - x, 2), y, "rechts", st)]
+    for st, teile in GEMALTE_RUMPFSTUECKE.items():
+        t[st] = [(n, "body", b, h, x, y, None, vor) for n, (b, h, x, y, vor) in teile.items()]
+    for st in AERMEL_STUECKE:
+        for arm in OBERARME + (UNTERARME if st in LANGE_AERMEL else []):
+            ebene, sichtbar = BILD_TEILE[arm][0], BILD_TEILE[arm][5]
+            vor = st + ("_arm" + arm[7] if arm.startswith("oberarm") else "_unterarm" + arm[8])
+            t[st].append((arm, ebene) + GEMALTE_AERMEL[arm.replace("_hoch", "")] + (sichtbar, vor))
+    return t
+
+
+# Nur beim Bild-Drachen: der Vektor-Drache (--vektor) behaelt seine
+# gezeichneten Kostueme und bleibt Byte fuer Byte, wie er war.
+GEMALT = {} if VEKTOR else gemalte_kostueme()
+GEMALT_EBENEN = ["bild_%s_%s" % (st, e[0]) for st, teile in GEMALT.items() for e in teile]
+ZIERRAT_ALLE += GEMALT_EBENEN
 
 
 # Kopfwechsel (Ajdin nach dem Probevideo, 15.10.2026: "die Koepfe bewegen
@@ -496,23 +674,84 @@ ZIERRAT_ALLE = ZIERRAT + [n for v in NUR_MIT.values() for n in v]
 # auf, das liest sich wie ein Lidschlag. Der Jubelkopf hat ohnehin
 # geschlossene Augen; er kommt direkt und geht ueber das Blinzeln.
 #   Stimmung: (Bilder am Anfang, Bilder am Ende, Kopf in diesen Bildern)
-# Der abgewandte Kopf (no_l, no_r) wechselt in dem Bild, in dem der Kopf fuer
-# einen Augenblick schmal wird (head_scale unten, DREHEN) - das liest sich
-# wie eine Drehung. Die Stimmungen in Schleife (sad, cry) schneiden hart:
-# ein Uebergang am Anfang kaeme bei jeder Runde wieder.
-DREHEN = {"no_l": (2, 3), "no_r": (2, 3)}    # Wechsel so viele Bilder nach Beginn / vor Ende
+# Die Stimmungen in Schleife (sad, cry) schneiden hart: ein Uebergang am
+# Anfang kaeme bei jeder Runde wieder.
+# Bis 15.10.2026 wandten no_l und no_r den Kopf einmal ab und hielten ihn
+# dort (Wechsel auf kopf_links bzw. kopf_rechts zwei Bilder nach Beginn, im
+# Moment, in dem der Kopf kurz schmal wurde - DREHEN und head_scale), und no
+# wiegte den Kopf um den Hals. Ajdin am 15.10.2026: "er soll nicht den Kopf
+# wackeln wie ein Inder, sondern richtig den Kopf schuetteln", und dabei
+# "durchgehend boese gucken" - beim Abwenden kamen links/rechts der neutrale
+# Kopf und das Blinzeln dazwischen. Jetzt SCHUETTELN unten.
 KOPF_JE_STIMMUNG = {"idle": "neutral", "cheer": "jubel", "sad": "traurig", "ok": "froh", "no": "finster",
-                    "cry": "weinen", "no_l": "links", "no_r": "rechts"}
-KOPF_WECHSEL = {"cheer": (0, 2, "blinzeln"), "ok": (2, 2, "blinzeln"), "no": (2, 2, "blinzeln")}
-KOPF_WECHSEL.update({m: (a, e, "neutral") for m, (a, e) in DREHEN.items()})
+                    "cry": "weinen", "no_l": "finster", "no_r": "finster"}
+KOPF_WECHSEL = {"cheer": (0, 2, "blinzeln"), "ok": (2, 2, "blinzeln")}
+# Kopfschuetteln bei einer falschen Antwort (16.10.2026): Der Kopf dreht
+# abwechselnd nach links und rechts - die gemalten abgewandten Koepfe -, und
+# auf dem Weg durch die Mitte steht fuer zwei Bilder der finstere Frontkopf.
+# Vorweg zwei Bilder finster (er schaut erst boese, dann schuettelt er), am
+# Ende bleibt er finster bis zum letzten Bild; zurueck in die Ruhe (neutral)
+# geht es erst mit idle danach. Nie der neutrale Kopf und kein Blinzeln im
+# Abschnitt: der Blinzelkopf laechelt. Der Kopf kippt dabei nicht mehr um
+# den Hals (head_rot/head_pos ruhen in no, no_l, no_r) - das war das Wackeln.
+# Tempo: 4 Bilder je Seite + 2 Bilder Mitte = 0,2 s je Schwung, gut zwei
+# Hin-und-her je Sekunde - so schuettelt man energisch den Kopf; no_l und
+# no_r sind 10 Bilder laenger und schwingen mit 5 Bildern je Seite etwas
+# ruhiger, danach 0,4 s finsterer Blick. Die App wechselt bei falschen
+# Antworten zwischen no_l und no_r (zmajReact in web/index.html), darum
+# beginnt das eine links und das andere rechts.
+#   Stimmung: (Seiten nacheinander, Bilder finster vorweg, Bilder je Seite,
+#              Bilder finster dazwischen)
+SCHUETTELN = {"no":   ("LRLR", 2, 4, 2),
+              "no_l": ("LRLR", 2, 5, 2),
+              "no_r": ("RLRL", 2, 5, 2)}
+SEITEN = {"L": "links", "R": "rechts"}
 # Die Bilder des Jubels, in denen die Arme oben sind (relativ zum Beginn):
 # dort Faust und Oberarm mit Kappe, davor und danach die haengende Hand.
 JUBEL_HOCH = (1, 56)
 
 
-def kopf_folge():
-    """Welcher Kopf (Name ohne "kopf_") in jedem Bild 0..OP-1 zu sehen ist."""
-    folge = []
+def schuettel_folge(name):
+    """Die Koepfe eines Schuettel-Abschnitts, Bild fuer Bild ab Beginn."""
+    seiten, vorweg, je_seite, dazwischen = SCHUETTELN[name]
+    a, e = SEG[name]
+    folge = ["finster"] * vorweg
+    for i, s in enumerate(seiten):
+        folge += ["finster"] * (dazwischen if i else 0) + [SEITEN[s]] * je_seite
+    assert len(folge) < e - a, (name, "Schuetteln laenger als der Abschnitt")
+    return folge + ["finster"] * (e - a - len(folge))
+
+
+# ======================= Kopfplan =======================
+# 16.10.2026: EIN Plan dafuer, welcher Kopf in welchem Bild zu sehen ist.
+# Bis dahin rechneten die Kopfbilder (kopf_folge), die Brillen (umschalten
+# mit DREHEN) und die Huete (_mitruecken, ganze Stimmung lang) je fuer sich
+# aus, wann der Kopf abgewandt ist. Beim Schuetteln wechselt er aber viermal
+# je Abschnitt die Seite - drei Rechnungen laufen da leicht auseinander, und
+# dann sitzt der Hut einen Augenblick auf dem falschen Kopf. Jetzt fragt
+# jede Ebene am Kopf denselben Plan:
+#   KOPFPLAN[t] = (kopf, seite) fuer jedes Bild t = 0..OP-1
+#     kopf   Name des Kopfbilds ohne "kopf_"/"hoerner_": neutral, blinzeln,
+#            jubel, froh, traurig, weinen, finster, links, rechts
+#     seite  wohin die Schnauze zeigt: "vorn", "links" oder "rechts"
+#   kopf_deckkraft(kopf=None, seite=None)
+#            Halte-Keyframes 100/0 fuer eine Ebene, die nur bei diesem Kopf
+#            und/oder auf dieser Seite zu sehen ist. So schalten die Kopf- und
+#            Hornbilder (bild_deckkraft), und genauso die gemalten Huete
+#            (je ein Bild vorn/links/rechts, sichtbar_werte). Das gemalte
+#            Skelett braucht nichts Eigenes: es ist ein Hautsatz mit
+#            denselben Kopfbildern.
+#   kopf_spur(je_seite, ruhe)
+#            Halte-Keyframes fuer einen beliebigen Wert je Seite, z. B. Ort
+#            und Breite: Brillen (BRILLE_GEDREHT), Huete und Kronen
+#            (SCHAEDEL_GEDREHT) und das Gesicht des Vektor-Skeletts
+#            (GESICHT_GEDREHT).
+# Blenden gibt es keine, mit Absicht: jeder Wechsel ist hart und faellt fuer
+# alle Ebenen auf dasselbe Bild (eine Blende zeigte zwei Gesichter
+# uebereinander, siehe oben; test_immer_genau_ein_kopf prueft es). Weiche
+# Uebergaenge macht der Plan mit einem Zwischenkopf (Blinzeln, KOPF_WECHSEL).
+def kopfplan():
+    plan = []
     for t in range(OP):
         name = next(n for n, (a, e) in SEG.items() if a <= t < e)
         a, e = SEG[name]
@@ -523,8 +762,51 @@ def kopf_folge():
             vorn, hinten, zwischen = KOPF_WECHSEL[name]
             if t < a + vorn or t >= e - hinten:
                 k = zwischen
-        folge.append(k)
-    return folge
+        if name in SCHUETTELN:
+            k = schuettel_folge(name)[t - a]
+        plan.append((k, k if k in SEITEN.values() else "vorn"))
+    return plan
+
+
+KOPFPLAN = kopfplan()
+
+
+def _halten(werte):
+    """Halte-Keyframes nur dort, wo sich der Wert aendert, dazu einer am
+    Ende (OP) mit dem Wert von Bild 0, wie bei allen Zeitleisten hier."""
+    ks = [hold(t, werte[t]) for t in range(OP) if t == 0 or werte[t] != werte[t - 1]]
+    return anim(ks + [hold(OP, werte[0])])
+
+
+def kopf_deckkraft(kopf=None, seite=None):
+    """100, wo der Kopfplan diesen Kopf und/oder diese Seite zeigt, sonst 0."""
+    return _halten([100.0 if kopf in (None, k) and seite in (None, s) else 0.0 for k, s in KOPFPLAN])
+
+
+def kopf_spur(je_seite, ruhe):
+    """Ein Wert je Seite des Kopfplans ({"links": ..., "rechts": ...}),
+    sonst ruhe - gehalten, damit er im selben Bild springt wie das Kopfbild."""
+    return _halten([je_seite.get(s, ruhe) for _k, s in KOPFPLAN])
+
+
+# Wie weit Schaedel und Gesicht am abgewandten Kopf wandern, in Kopf-
+# Einheiten (Hk). Im Bild kopf_links liegt die Schaedeldecke weiter rechts
+# (Kopfraster 15.10.2026: Mitte bei +10 bis +15 statt 0), Augen und Schnauze
+# ruecken zur Schnauzenseite und stehen enger. kopf_rechts ist der Spiegel.
+#   SCHAEDEL_GEDREHT: Huete, Kronen, Ohrensachen und der Schaedel des
+#     Vektor-Skeletts ruecken so weit mit (dx) - seit 16.10.2026 nur noch
+#     die Vektor-Stuecke; die gemalten Huete haben eigene Seitenbilder.
+#   GESICHT_GEDREHT: Augenhoehlen, Brauen, Mund und Schnauze des Vektor-
+#     Skeletts (dx, dy, Breite %). Weniger weit als die Augen im Bild (die
+#     Brillen ruecken um 27, BRILLE_GEDREHT unten): der Vektor-Schaedel
+#     bleibt von vorn gesehen, und weiter aussen staende die Augenhoehle
+#     ueber seinen Rand hinaus. Gegen den mitgerueckten Schaedel sind es
+#     18 Einheiten, dazu 80 % Breite - das liest sich als Drehung.
+# Das Vektor-Skelett hat keine gemalten Seitenkoepfe; so dreht es den Kopf
+# in denselben Bildern wie der Bild-Drache (Ajdin, 15.10.2026: bei Kopf
+# links/rechts machte das Skelett "eine ganz andere Animation").
+SCHAEDEL_GEDREHT = {"links": 12, "rechts": -12}
+GESICHT_GEDREHT = {"links": (-6, 4, 80), "rechts": (6, 4, 80)}
 
 
 def _bilder(z):
@@ -536,14 +818,14 @@ def _bilder(z):
     return range(*SEG[z])
 
 
-def bild_werte(teil):
-    """Deckkraft (0..100) eines Bildteils fuer jedes Bild 0..OP-1."""
-    sichtbar = BILD_TEILE[teil][5]
+def sichtbar_werte(sichtbar):
+    """Deckkraft (0..100) fuer jedes Bild 0..OP-1 zu einem Eintrag
+    "sichtbar": None = immer, eine Seite des Kopfplans ("vorn", "links",
+    "rechts" - die gemalten Huete) oder eine Liste von Stimmungen."""
     if sichtbar is None:
         return [100.0] * OP
-    if sichtbar == "kopf":
-        name = teil.split("_", 1)[1]
-        return [100.0 if k == name else 0.0 for k in kopf_folge()]
+    if sichtbar in ("vorn", "links", "rechts"):
+        return [100.0 if s == sichtbar else 0.0 for _k, s in KOPFPLAN]
     w = [0.0] * OP
     for z in sichtbar:
         for t in _bilder(z):
@@ -551,12 +833,19 @@ def bild_werte(teil):
     return w
 
 
+def bild_werte(teil):
+    """Deckkraft (0..100) eines Bildteils fuer jedes Bild 0..OP-1."""
+    sichtbar = BILD_TEILE[teil][5]
+    if sichtbar == "kopf":
+        name = teil.split("_", 1)[1]
+        return [100.0 if k == name else 0.0 for k, _s in KOPFPLAN]
+    return sichtbar_werte(sichtbar)
+
+
 def bild_deckkraft(teil):
     """Halte-Keyframes je Wechsel. Die Eltern-Ebene gibt ihre Deckkraft in
     Lottie nicht weiter - darum schaltet jedes Bild selbst."""
-    w = bild_werte(teil)
-    ks = [hold(t, w[t]) for t in range(OP) if t == 0 or w[t] != w[t - 1]]
-    return anim(ks + [hold(OP, w[0])])
+    return _halten(bild_werte(teil))
 
 
 # "hoerner" ganz vorn: die Hutebenen liegen dahinter, also ragen die Spitzen
@@ -581,8 +870,16 @@ ORDER = ["funkeln", "hoerner"] + KOPF_TEILE + BRILLEN + \
 # sortiert: mit neuen, hohen Nummern laege der Rumpf ueber dem Kopf (so ist
 # es beim ersten Probelauf passiert), und die Kostueme passten nicht mehr
 # dazwischen.
+# 16.10.2026: Die Bild-Ebenen der gemalten Kostueme stehen direkt vor der
+# Ebene, die ihr "vor" nennt (GEMALT) - meist die Vektor-Ebene, die sie
+# ersetzen. Die Vektor-Ebene bleibt in ORDER (put() braucht ihre Nummer),
+# wird aber nicht mehr ausgeliefert (ZIERRAT_ALLE).
 if not VEKTOR:
-    ORDER = [b for n in ORDER for b in ["bild_" + t for t, v in BILD_TEILE.items() if v[0] == n] + [n]]
+    _vor = {}
+    for _st, _teile in GEMALT.items():
+        for _e in _teile:
+            _vor.setdefault(_e[7], []).append("bild_%s_%s" % (_st, _e[0]))
+    ORDER = [b for n in ORDER for b in _vor.get(n, []) + ["bild_" + t for t, v in BILD_TEILE.items() if v[0] == n] + [n]]
 IDX = {n: i+1 for i, n in enumerate(ORDER)}
 built = {}
 def put(name, shapes, parent=None, p=(0, 0), a=(0, 0), r=0, animk=None, s=100, masken=None):
@@ -815,6 +1112,12 @@ schatten_scale = spur({
 #     Faust gibt es nur, solange die Arme oben sind (JUBEL_HOCH); unten
 #     steht schon die offene Hand von idle.
 #     sad und cry setzen weiter hart ein: es sind Schleifen, Anfang = Ende.
+#  4. 16.10.2026, Kopfschuetteln (SCHUETTELN, KOPFPLAN): in no, no_l und no_r
+#     kippt und rutscht der Kopf nicht mehr um den Hals - das Schuetteln
+#     machen allein die gemalten Seitenkoepfe. Auch das kurze Schmalwerden
+#     des Kopfes beim Abwenden (head_scale, DREHEN) ist weg: bei vier
+#     Wechseln je Abschnitt pumpte der Kopf. Das Vektor-Gesicht (nur noch
+#     am Skelett) schaut in no_l und no_r so finster wie in no.
 # Der Vektor-Drache (--vektor) behaelt die alten Zeitleisten unveraendert.
 if not VEKTOR:
     _schluchz_bild = [(0, SQ)] + [(t, S3(102, 97) if k % 2 == 0 else S3(100.8, 98.6))
@@ -834,24 +1137,12 @@ if not VEKTOR:
         "cheer": [(0, 0), (14, -2.5), (28, 0.8), (42, -2.5), (54, 0), (59, 0)],
         "sad":   [(0, 0), (30, 2), (59, 0)],
         "ok":    [(0, 0), (10, -2.5), (20, 1), (29, 0)],
-        "no":    [(0, 0), (6, -3.5), (13, 3.5), (20, -2.5), (26, 0.8), (29, 0)],
         "cry":   [(0, 0), (22, -1.5), (45, 0), (67, 1.5), (89, 0)],
-        "no_l":  [(0, 0), (10, -4), (30, -4.5), (39, 0)],
-        "no_r":  [(0, 0), (10, 4), (30, 4.5), (39, 0)],
     }, 0)
     head_pos = spur({
         "sad":  [(0, HP()), (30, HP(0, 3)), (59, HP())],
-        "no":   [(0, HP()), (6, HP(-2)), (13, HP(2)), (20, HP(-1.2)), (29, HP())],
         "cry":  [(0, HP()), (22, HP(0, 2.5)), (45, HP()), (67, HP(0, 2.5)), (89, HP())],
-        "no_l": [(0, HP()), (10, HP(-1.5, 1)), (30, HP(-1.5, 1)), (39, HP())],
-        "no_r": [(0, HP()), (10, HP(1.5, 1)), (30, HP(1.5, 1)), (39, HP())],
     }, HP(), dims=3)
-    # Kurz schmal beim Wechsel auf den abgewandten Kopf und zurueck (DREHEN).
-    _ks = round(K / U * KOPF * 100, 3)
-
-    def _schmal(f): return S3(round(_ks * f, 3), _ks)
-    _dreh = [(0, _schmal(1)), (2, _schmal(0.9)), (4, _schmal(1)), (34, _schmal(1)), (36, _schmal(0.9)), (39, _schmal(1))]
-    head_scale = spur({"no_l": _dreh, "no_r": _dreh}, _schmal(1), dims=3)
 
     def wing_rot(sg):
         # positiv hebt die Spitze - und schiebt den inneren Knochen zum Arm hin
@@ -899,21 +1190,25 @@ if not VEKTOR:
     # Das Vektor-Gesicht traegt nur noch das Skelett. Auch dort sollen no,
     # no_l und no_r in der Ruhe enden - bisher blieben Blick, Lider und
     # Brauen schraeg stehen und schnappten in idle zurueck.
+    # 16.10.2026: no_l und no_r schauen finster wie no (zusammengekniffene
+    # Lider, Brauen innen runter, Blick geradeaus) statt traurig zur Seite -
+    # die Seite macht jetzt der Kopfplan (GESICHT_GEDREHT).
+    def _finster(lang, ruhe, an, halb):
+        """Finsterer Blick ueber einen ganzen Schuettel-Abschnitt: in 5 Bildern
+        auf, bis 5 Bilder vor Schluss halten, dann zurueck in die Ruhe."""
+        return [(0, ruhe), (5, an), (lang - 6, halb), (lang - 1, ruhe)]
+    _NO = {n: SEG[n][1] - SEG[n][0] for n in SCHUETTELN}
     lids_scale = spur({
         "idle": [(0, S3(100, 0)), (28, S3(100, 0)), (31, S3(100, 100)), (34, S3(100, 0)), (62, S3(100, 0)),
                  (65, S3(100, 100)), (68, S3(100, 0)), (89, S3(100, 0))],
         "sad":  [(0, S3(100, 12)), (40, S3(100, 12)), (43, S3(100, 100)), (46, S3(100, 12)), (59, S3(100, 12))],
-        "no":   [(0, S3(100, 0)), (5, S3(100, 24)), (24, S3(100, 12)), (29, S3(100, 0))],
-        "no_l": [(0, S3(100, 0)), (10, S3(100, 22)), (32, S3(100, 18)), (39, S3(100, 0))],
-        "no_r": [(0, S3(100, 0)), (10, S3(100, 22)), (32, S3(100, 18)), (39, S3(100, 0))],
+        **{n: _finster(lang, S3(100, 0), S3(100, 24), S3(100, 12)) for n, lang in _NO.items()},
     }, S3(100, 0), dims=3)
     pupil_pos = spur({
         "idle": [(0, [0, 0]), (25, [3, 0.5]), (45, [3, 0.5]), (60, [-3, 0.5]), (75, [-3, 0.5]), (89, [0, 0])],
         "sad":  [(0, [0, 4])],
         "ok":   [(0, [0, 0]), (8, [0, -2]), (29, [0, 0])],
-        "no":   [(0, [0, 0]), (5, [0, 1]), (24, [0, 1]), (29, [0, 0])],
-        "no_l": [(0, [0, 0]), (10, [-6, 3]), (32, [-5, 2.5]), (39, [0, 0])],
-        "no_r": [(0, [0, 0]), (10, [6, 3]), (32, [5, 2.5]), (39, [0, 0])],
+        **{n: _finster(lang, [0, 0], [0, 1], [0, 1]) for n, lang in _NO.items()},
     }, [0, 0], dims=2)
 
     def brow_rot(sg):
@@ -921,16 +1216,14 @@ if not VEKTOR:
             "cheer": [(0, -6*sg)],
             "sad":   [(0, -22*sg)],
             "ok":    [(0, -5*sg)],
-            "no":    [(0, 0), (5, 18*sg), (24, 16*sg), (29, 0)],
             "cry":   [(0, -20*sg)],
-            "no_l":  [(0, 0), (10, -14*sg), (32, -12*sg), (39, 0)],
-            "no_r":  [(0, 0), (10, -14*sg), (32, -12*sg), (39, 0)],
+            **{n: _finster(lang, 0, 18*sg, 16*sg) for n, lang in _NO.items()},
         }, 0)
 
     def brow_pos(p):
         def q(dy): return [p[0], round(p[1] + dy, 2)]
-        return spur({"cheer": [(0, q(-5))], "sad": [(0, q(-4))], "ok": [(0, q(-4))],
-                     "no": [(0, q(0)), (5, q(3)), (24, q(3)), (29, q(0))], "cry": [(0, q(-1))]}, q(0), dims=2)
+        return spur({"cheer": [(0, q(-5))], "sad": [(0, q(-4))], "ok": [(0, q(-4))], "cry": [(0, q(-1))],
+                     **{n: _finster(lang, q(0), q(3), q(3)) for n, lang in _NO.items()}}, q(0), dims=2)
 
 
 # ======================= Die Figur =======================
@@ -1199,17 +1492,23 @@ def horn_formen(sp):
              flaeche(HL(f(HORN_DUNKEL)), YEL_D, 45), flaeche(HL(f(HORN_HELL)), WHITE, 35)]
     teile.append(group(*[arc(Hk(*f([a])[0]), Hk(*f([b])[0]), wb * U) for a, b, wb in HORN_RILLEN], stroke(YEL_D, LWK * 0.55, 90)))
     return teile
-def kopf_formen(sp_breite=1.0):
+def kopf_formen(sp_breite=1.0, gesicht_dazu=(), gesicht_tr=None):
     """Hoerner, Ohrflossen, Kopf, Stachel, Schnauze. sp_breite < 1 macht den
-    Kopf schmaler (Schaedel des Skeletts)."""
+    Kopf schmaler (Schaedel des Skeletts). gesicht_dazu: weitere Formen, die
+    zum Gesicht gehoeren (die Nasenloecher des Skeletts). gesicht_tr: ein
+    Lottie-"tr" - dann stehen Schnauze, Augenpartie, Nasenruecken und
+    Nasenloecher in einer eigenen Gruppe mit dieser Bewegung, und das
+    Gesicht rueckt gegen den Schaedel: so dreht das Vektor-Skelett den Kopf
+    (GESICHT_GEDREHT, 16.10.2026). Ohne gesicht_tr ist alles wie bisher."""
     def sch(pts): return [(round(x * sp_breite, 2), y) for x, y in pts]
     def flossen(sp):
         f = SP if sp else (lambda q: q)
         return [group(smooth(sch(HL(f(FLOSSE_OBEN))), tension=0.45, scharf=(5,)), stroke(BLUE_D, LWK), fill(BLUE)),
                 group(smooth(sch(HL(f(FLOSSE_UNTEN))), tension=0.45, scharf=(5,)), stroke(BLUE_D, LWK), fill(BLUE)),
                 flaeche(sch(HL(f([(780, 470), (779, 500), (790, 535), (812, 562), (800, 520), (790, 480)]))), BLUE_L, 70)]
-    return paarweise(horn_formen(False), horn_formen(True)) + paarweise(flossen(False), flossen(True)) + [
-        group(smooth(sch(HL(SYM(KOPF_L))), tension=0.5), stroke(BLUE_D, LWK), fill(BLUE)),
+    schaedel = paarweise(horn_formen(False), horn_formen(True)) + paarweise(flossen(False), flossen(True)) + [
+        group(smooth(sch(HL(SYM(KOPF_L))), tension=0.5), stroke(BLUE_D, LWK), fill(BLUE))]
+    gesicht = [
         # Schnauze heller, Kinn und Wangen unten etwas dunkler
         group(ellipse(*Hk(1024, 698), 250 * U * sp_breite, 118 * U), fill(BLUE_L, 32)),
         flaeche(sch(HL([(842, 700), (868, 745), (920, 790), (980, 818), (1024, 824), (1068, 818), (1128, 790), (1180, 745),
@@ -1217,20 +1516,30 @@ def kopf_formen(sp_breite=1.0):
         linie(sch(HL([(866, 476), (859, 505), (855, 540), (850, 580), (843, 615), (837, 645), (835, 672)])), BLUE_L, LWK * 0.5),
         # Augenpartie etwas heller
         group(ellipse(*Hk(1024 - 112 * sp_breite, 562), 126 * U, 128 * U), ellipse(*Hk(1024 + 112 * sp_breite, 562), 126 * U, 128 * U),
-              fill(BLUE_L, 30)),
+              fill(BLUE_L, 30))]
+    stachel = [
         # Stachel in der Kopfmitte
         group(smooth(HL(STACHEL), tension=0.5, scharf=(0, 5)), stroke(BLUE_D, LWK * 0.85), fill(BLUE)),
-        flaeche(HL([(1020, 336), (1006, 362), (1000, 400), (1004, 440), (1016, 472), (1021, 430), (1022, 380)]), BLUE_L, 70),
+        flaeche(HL([(1020, 336), (1006, 362), (1000, 400), (1004, 440), (1016, 472), (1021, 430), (1022, 380)]), BLUE_L, 70)]
+    nase = [
         # Nasenruecken: ein Bogen ueber die Schnauze, der sich an beiden Enden
         # um die Nasenloecher legt; darin je ein tropfenfoermiges Loch
         linie(sch(HL([(952, 700), (947, 682), (957, 664), (985, 651), (1024, 644), (1063, 651), (1091, 664), (1101, 682),
                       (1096, 700)])), BLUE_D, LWK * 0.62),
         flaechen([sch(HL([(962, 680), (978, 674), (990, 686), (986, 702), (971, 707), (962, 696)])),
                   sch(HL(SP([(962, 680), (978, 674), (990, 686), (986, 702), (971, 707), (962, 696)])))], BLUE_D),
-    ]
+    ] + list(gesicht_dazu)
+    if gesicht_tr is None:
+        return schaedel + gesicht + stachel + nase
+    # Der Stachel liegt ueber der Stirn und beruehrt das Gesicht nicht - er
+    # darf darunter rutschen. In einer Lottie-Gruppe liegt das erste Stueck
+    # oben; put() dreht nur die oberste Liste um, darum hier selbst.
+    return schaedel + stachel + [{"ty": "gr", "it": list(reversed(gesicht + nase)) + [gesicht_tr]}]
 KOPF_SKALA = round(K / U * KOPF * 100, 3)
+# Bis 15.10.2026 hatte der Bild-Drache hier noch head_scale (kurz schmal
+# beim Abwenden); seit dem Kopfschuetteln (16.10.2026) steht die Groesse.
 put("head", kopf_formen(), parent="body", p=V(*HALS), a=Hk(*HALS), s=KOPF_SKALA,
-    animk={"r": head_rot, "p": head_pos} if VEKTOR else {"r": head_rot, "p": head_pos, "s": head_scale})
+    animk={"r": head_rot, "p": head_pos})
 
 # Nur die SPITZEN der beiden Hoerner, als Ebene vor den Hueten: ein Hut deckt
 # den Hornansatz zu, und es sieht aus, als kaemen die Hoerner oben heraus.
@@ -2186,10 +2495,22 @@ built["skelett"]["zmaj_leert"] = SKELETT_LEERT
 # schmaler, weil keine Haut und keine Muskeln und Fett dran sind" - v6: 92 %
 # der Breite), und die Nasenloecher sind schwarze Loecher.
 # "head" wird geleert, damit nicht der breite Kopf dahinter hervorschaut.
-put("skelett_kopf", kopf_formen(0.92) + [
+# 16.10.2026: Beim Kopfschuetteln dreht auch der Schaedel nach dem Kopfplan
+# den Kopf - der Schaedel rueckt wie die Huete (SCHAEDEL_GEDREHT), Schnauze
+# und Nasenloecher dorthin, wo Augenhoehlen und Brauen hinruecken
+# (GESICHT_GEDREHT, gerechnet gegen den schon verschobenen Schaedel).
+_NASENLOECHER = [
     group(ellipse(0, 0, 26 * U, 18 * U), fill(SKEL_D), r=-25, p=Hk(1024 - 52 * 0.92, 690)),
     group(ellipse(0, 0, 26 * U, 18 * U), fill(SKEL_D), r=25, p=Hk(1024 + 52 * 0.92, 690)),
-], parent="head")
+]
+if VEKTOR:
+    put("skelett_kopf", kopf_formen(0.92, gesicht_dazu=_NASENLOECHER), parent="head")
+else:
+    _schnauze_tr = {"ty": "tr", "a": const([0, 0]), "r": const(0), "o": const(100),
+                    "p": kopf_spur({s: [dx - SCHAEDEL_GEDREHT[s], dy] for s, (dx, dy, _b) in GESICHT_GEDREHT.items()}, [0, 0]),
+                    "s": kopf_spur({s: [b, 100] for s, (_x, _y, b) in GESICHT_GEDREHT.items()}, [100, 100])}
+    put("skelett_kopf", kopf_formen(0.92, gesicht_dazu=_NASENLOECHER, gesicht_tr=_schnauze_tr), parent="head",
+        animk={"p": kopf_spur({s: [dx, 0, 0] for s, dx in SCHAEDEL_GEDREHT.items()}, [0, 0, 0])})
 
 # Augen: runde schwarze Hoehlen, so gross wie die Augen des Originals, darin
 # nur ein gelber Punkt, der dem Blick folgt (Ajdin: "es reicht ein gelber
@@ -2376,8 +2697,10 @@ def kompakt(x, schluessel=None):
 # ---------- Bild-Drache: Bilder an das Rig haengen (v7) ----------
 # Die Rig-Ebenen bleiben mit allen Keyframes stehen und tragen die Bewegung,
 # Kostueme und Bilder haengen an ihnen; nur ihre Formen fallen weg.
-def bildebene(teil):
-    ebene, _b, _h, ax, ay, sichtbar = BILD_TEILE[teil]
+def _bild_ebene(name, ref, ebene, ax, ay, o):
+    """Eine Bild-Ebene (ty 2) an der Rig-Ebene "ebene", Drehpunkt ax/ay im
+    Bild auf deren Anker, Deckkraft o. Fuer die Teile des Drachen und seit
+    16.10.2026 auch fuer die gemalten Kostueme."""
     # Die Hornspitzen-Ebene hat keine eigene Lage: sie rechnet in den
     # Einheiten des Kopfes, dessen Drehpunkt also auch ihrer ist.
     anker = built["head" if ebene == "hoerner" else ebene]["ks"]["a"]["k"]
@@ -2385,38 +2708,61 @@ def bildebene(teil):
     # Bilder am Kopf: 2 Pixel je LEINWAND-Einheit bei Kopf 1.0, der Kopf
     # selbst ist aber um K/U verkleinert - daher die Umrechnung.
     s = round(100 / (PX_JE_EINHEIT * (K / U if am_kopf else 1)), 3)
-    return {"ddd": 0, "ind": IDX["bild_" + teil], "ty": 2, "nm": "bild_" + teil, "refId": teil, "sr": 1,
+    return {"ddd": 0, "ind": IDX[name], "ty": 2, "nm": name, "refId": ref, "sr": 1,
             "parent": IDX[ebene],
-            "ks": {"o": const(100) if sichtbar is None else bild_deckkraft(teil),
+            "ks": {"o": o,
                    "r": const(0), "p": const([anker[0], anker[1], 0]), "a": const([ax, ay, 0]), "s": const([s, s, 100])},
             "ao": 0, "ip": 0, "op": OP, "st": 0, "bm": 0}
-def umschalten(ruhe, je_stimmung):
-    """Halte-Keyframes: ruhe, in den Stimmungen aus je_stimmung aber deren
-    Wert - und zwar genau in den Bildern, in denen der abgewandte Kopf zu
-    sehen ist (DREHEN), damit beides zugleich wechselt."""
-    ks = [hold(0, ruhe)]
-    for name, wert in je_stimmung.items():
-        a, e = SEG[name]
-        ks += [hold(a + DREHEN[name][0], wert), hold(e - DREHEN[name][1], ruhe)]
-    return anim(sorted(ks, key=lambda k: k[0]) + [hold(OP, ruhe)])
+
+
+def bildebene(teil):
+    ebene, _b, _h, ax, ay, sichtbar = BILD_TEILE[teil]
+    return _bild_ebene("bild_" + teil, teil, ebene, ax, ay, const(100) if sichtbar is None else bild_deckkraft(teil))
+
+
+def zierrat_bildebene(stueck, eintrag):
+    """Bild-Ebene eines gemalten Kostuems (GEMALT); Asset "<stueck>_<teil>"."""
+    teil, ebene, _b, _h, ax, ay, sichtbar, _vor = eintrag
+    return _bild_ebene("bild_%s_%s" % (stueck, teil), "%s_%s" % (stueck, teil), ebene, ax, ay,
+                       const(100) if sichtbar is None else _halten(sichtbar_werte(sichtbar)))
 
 
 # Kostueme auf dem abgewandten Kopf (v7, 15.10.2026). Die Stuecke sind fuer
 # den Kopf von vorn gebaut. Im Bild kopf_links stehen die Augen enger, etwas
 # tiefer und ein wenig zur Schnauze hin; mittig gelassen sah bei der
-# Sonnenbrille das nahe Auge daneben heraus. Die Brillen rutschen darum mit
-# dem Kopfwechsel 4 Einheiten zur Seite und 4 nach unten und werden auf 90 %
-# schmal (no_r gespiegelt) - ausprobiert in Stufen von -29 bis 0 und 80 bis
+# Sonnenbrille das nahe Auge daneben heraus. Die Brillen rutschten darum (bis
+# 16.10.2026, siehe unten) mit dem Kopfwechsel 4 Einheiten zur Seite und 4
+# nach unten und wurden auf 90 %
+# schmal (rechts gespiegelt) - ausprobiert in Stufen von -29 bis 0 und 80 bis
 # 90 %, so liegen Brille, Sonnenbrille, Lesebrille und Monokel auf den Augen.
-# Huete, Ohrenschuetzer und Kopfhoerer sitzen auf dem Schaedel; sie bleiben.
-BRILLE_GEDREHT = {"no_l": (-4, 4, 90), "no_r": (4, 4, 90)}     # dx, dy, Breite %
+# Huete, Ohrenschuetzer und Kopfhoerer sitzen auf dem Schaedel; sie ruecken
+# um SCHAEDEL_GEDREHT mit (unten).
+# 16.10.2026: Bis dahin schaltete umschalten() die Brillen nach DREHEN, also
+# einmal je Stimmung no_l/no_r. Jetzt nach der Seite im Kopfplan (kopf_spur):
+# bei jedem Schwung des Kopfschuettelns, im selben Bild wie das Kopfbild.
+# Dabei neu ausgemessen: im Bild kopf_links liegen die Augen (das Weisse) bei
+# x = -62,6 und +8,5 Kopf-Einheiten, 7,5 tiefer als von vorn (-41,5/+41,1);
+# mit -4/4/90 % stand die Brille weit rechts davon, und das nahe Auge
+# schaute zwischen den Glaesern hervor (Kontaktbogen 16.10.2026). Jetzt
+# Mitte -27, 7 tiefer, Abstand 86 % - beide Glaeser liegen auf den Augen,
+# das Monokel auf dem nahen bzw. fernen Auge.
+BRILLE_GEDREHT = {"links": (-27, 7, 86), "rechts": (27, 7, 86)}     # dx, dy, Breite %
+# Das Gesicht des Vektor-Skeletts rueckt mit dem Kopf (GESICHT_GEDREHT, siehe
+# Kopfplan). Diese Ebenen haengen am Kopf, liegen mit Anker 0/0 in Kopf-
+# Einheiten und haben selbst keine Ortsbewegung - ihr Ort und ihre Breite
+# kommen ganz aus dem Kopfplan. mouth_open und mouth_cry fehlen mit Absicht:
+# sie haben eigenen Anker und eigene Groesse und sind nur in cheer, ok und
+# cry zu sehen, wo der Kopf immer vorn ist.
+GESICHT_SKELETT = ["skelett_augen", "skelett_zaehne", "lids", "brows", "mouth_idle", "mouth_sad",
+                   "eyes_happy", "eyes_cry", "tears"]
 ASSETS = []
+ZIERRAT_ASSETS = {}      # stueck: Assets seines Schnipsels (gemalte Kostueme)
 if not VEKTOR:
     _mitte = [0, AUG_Y, 0]
     for _n in BRILLEN:
         built[_n]["ks"]["a"] = const(_mitte)
-        built[_n]["ks"]["p"] = umschalten(_mitte, {m: [dx, round(AUG_Y + dy, 2), 0] for m, (dx, dy, _b) in BRILLE_GEDREHT.items()})
-        built[_n]["ks"]["s"] = umschalten([100, 100, 100], {m: [b, 100, 100] for m, (_x, _y, b) in BRILLE_GEDREHT.items()})
+        built[_n]["ks"]["p"] = kopf_spur({s: [dx, round(AUG_Y + dy, 2), 0] for s, (dx, dy, _b) in BRILLE_GEDREHT.items()}, _mitte)
+        built[_n]["ks"]["s"] = kopf_spur({s: [b, 100, 100] for s, (_x, _y, b) in BRILLE_GEDREHT.items()}, [100, 100, 100])
     for _n in BILD_EBENEN:
         built[_n]["shapes"] = []
     for _t in BILD_TEILE:
@@ -2429,39 +2775,62 @@ if not VEKTOR:
     for _stueck, _farbe in HAUT_ERSETZT.items():
         for _n in [_stueck] + NUR_MIT.get(_stueck, []):
             built[_n]["zmaj_ohne_haut"] = _farbe
-    # Kopfstuecke am abgewandten Kopf. Die Kopfbilder fuer no_l/no_r zeigen
-    # den Kopf gedreht: der Schaedel liegt dann weiter hinten, also im Bild
-    # zur anderen Seite hin (Kopfraster 15.10.2026: Mitte der Schaedeldecke
-    # bei +10 bis +15 Kopf-Einheiten statt 0, der nahe Ohrlappen bei +85..+100).
-    # Huete, Kronen und Ohrensachen ruecken in diesen beiden Stimmungen darum
-    # um 12 Einheiten mit; ohne das sass der Hut auf der Stirn und das linke
-    # Ohrpolster neben dem Kopf in der Luft. Die Brillen bleiben, wo sie
-    # sind - sie lagen schon auf beiden Augen. Gehalten, wie die Kopfbilder
-    # selbst: das Stueck springt mit dem Bild um, nicht dazwischen.
-    def _mitruecken(name, dx):
-        tr_ = {"ty": "tr", "p": spur({s: [(0, [v, 0])] for s, v in dx.items()}, [0, 0], dims=2), "a": const([0, 0]),
-               "s": const([100, 100]), "r": const(0), "o": const(100)}
+    # Gemalte Kostueme (16.10.2026, GEMALT): ihre Bild-Ebenen und Assets.
+    # Die Assets stehen NICHT in zmaj.json, sondern im Schnipsel des Stuecks
+    # (unten): die App laedt die Bilder nur, wenn das Stueck getragen wird.
+    # Sie haengen nicht von der Hautfarbe ab - u zeigt immer auf zierrat/.
+    _hornspitzen = ["bild_" + t for t in BILD_TEILE if t.startswith("hoerner_")]
+    for _st, _teile in GEMALT.items():
+        for _e in _teile:
+            built["bild_%s_%s" % (_st, _e[0])] = zierrat_bildebene(_st, _e)
+        if _st in GEMALTE_HUETE:
+            built["bild_%s_vorne" % _st]["zmaj_leert"] = _hornspitzen
+        ZIERRAT_ASSETS[_st] = [{"id": "%s_%s" % (_st, e[0]), "w": e[2], "h": e[3], "u": "%s/%s/" % (ZIERRAT_ORDNER, _st),
+                                "p": e[0] + ".webp", "e": 0} for e in _teile]
+    # Kopfstuecke am abgewandten Kopf. Die Kopfbilder kopf_links/kopf_rechts
+    # zeigen den Kopf gedreht: der Schaedel liegt dann weiter hinten, also im
+    # Bild zur anderen Seite hin (Kopfraster 15.10.2026: Mitte der
+    # Schaedeldecke bei +10 bis +15 Kopf-Einheiten statt 0, der nahe
+    # Ohrlappen bei +85..+100). Huete, Kronen und Ohrensachen ruecken darum
+    # um 12 Einheiten mit (SCHAEDEL_GEDREHT); ohne das sass der Hut auf der
+    # Stirn und das linke Ohrpolster neben dem Kopf in der Luft. Gehalten, wie
+    # die Kopfbilder selbst: das Stueck springt mit dem Bild um, nicht
+    # dazwischen. Bis 15.10.2026 rueckte es die ganze Stimmung no_l/no_r lang
+    # mit, auch in den Bildern, in denen noch der Frontkopf stand; seit dem
+    # Kopfschuetteln (16.10.2026) Bild fuer Bild nach dem Kopfplan.
+    def _mitruecken(name):
+        tr_ = {"ty": "tr", "p": kopf_spur({s: [dx, 0] for s, dx in SCHAEDEL_GEDREHT.items()}, [0, 0]),
+               "a": const([0, 0]), "s": const([100, 100]), "r": const(0), "o": const(100)}
         built[name]["shapes"] = [{"ty": "gr", "it": built[name]["shapes"] + [tr_]}]
+    # Die gemalten Huete haben je Seite ein eigenes Bild (GEMALTE_HUETE) -
+    # mitruecken muessen nur noch die Vektor-Stuecke.
     for _n in KOPF_TEILE:
-        _mitruecken(_n, {"no_l": 12, "no_r": -12})
+        if _n not in GEMALT:
+            _mitruecken(_n)
+    # Das Gesicht des Vektor-Skeletts (GESICHT_SKELETT oben).
+    for _n in GESICHT_SKELETT:
+        _ks = built[_n]["ks"]
+        assert _ks["p"] == const([0, 0, 0]) and _ks["a"] == const([0, 0, 0]) and _ks["s"] == const([100, 100, 100]), _n
+        _ks["p"] = kopf_spur({s: [dx, dy, 0] for s, (dx, dy, _b) in GESICHT_GEDREHT.items()}, [0, 0, 0])
+        _ks["s"] = kopf_spur({s: [b, 100, 100] for s, (_x, _y, b) in GESICHT_GEDREHT.items()}, [100, 100, 100])
     # Liegen die Bilder schon da, und passen sie? Fehlt eines, zeigt Lottie
     # an seiner Stelle nichts - das soll nicht erst in der App auffallen.
     try:
         from haut_einbauen import webp_groesse
     except ImportError:
         webp_groesse = None
-    _ordner = os.path.join("web", "maskottchen", "teile")
     _fehler = []
-    for _t, _v in BILD_TEILE.items():
-        _p = os.path.join(_ordner, _t + ".webp")
+    for _a in ASSETS + [a for v in ZIERRAT_ASSETS.values() for a in v]:
+        _p = os.path.join("web", "maskottchen", _a["u"], _a["p"])
         if not os.path.isfile(_p):
             _fehler.append("fehlt: " + _p)
-        elif webp_groesse and webp_groesse(_p) != (_v[1], _v[2]):
-            _fehler.append("%s ist %s gross, erwartet %dx%d" % (_p, webp_groesse(_p), _v[1], _v[2]))
+        elif webp_groesse and webp_groesse(_p) != (_a["w"], _a["h"]):
+            _fehler.append("%s ist %s gross, erwartet %dx%d" % (_p, webp_groesse(_p), _a["w"], _a["h"]))
     if _fehler:
         print("ACHTUNG, Bilder des Drachen:\n  " + "\n  ".join(_fehler[:8])
               + ("\n  ... und %d weitere" % (len(_fehler) - 8) if len(_fehler) > 8 else "")
-              + "\n  Erst: python haut_einbauen.py --teile <Ordner mit den PNG-Teilen>")
+              + "\n  Erst: python haut_einbauen.py --teile <Ordner mit den PNG-Teilen>"
+              + "\n  bzw. --zierrat <Ordner mit den gemalten Kostuemen>")
 
 built = {n: kompakt(L) for n, L in built.items()}
 fehlt = [n for n in ORDER if n not in built]
@@ -2483,12 +2852,21 @@ print("%s, Kopf %.2f  %-20s %7d Bytes, %2d Ebenen, %d Bilder" % ("Vektor" if VEK
                                                               os.path.getsize(grund), len(doc["layers"]), len(ASSETS)))
 
 # Jeder Schnipsel ist eine LISTE von Ebenen - meist eine, beim Fanschal zwei.
+# Seit 16.10.2026 ist der Schnipsel eines gemalten Stuecks (GEMALT) ein
+# Objekt {"layers": [...], "assets": [...]}: seine Bild-Ebenen und die
+# Bilder dazu (zierrat/<stueck>/). zmajDaten() in web/index.html vertraegt
+# alle drei Formen (dazu das einzelne Objekt der aeltesten Schnipsel).
 gesamt = 0
 for stueck in ZIERRAT:
     pfad = os.path.join(AUSGABE, "zmajz-%s.json" % stueck)
-    ebenen = [built[stueck]] + [built[n] for n in NUR_MIT.get(stueck, [])]
+    if stueck in GEMALT:
+        ebenen = [built["bild_%s_%s" % (stueck, e[0])] for e in GEMALT[stueck]]
+        inhalt = {"layers": ebenen, "assets": ZIERRAT_ASSETS[stueck]}
+    else:
+        ebenen = [built[stueck]] + [built[n] for n in NUR_MIT.get(stueck, [])]
+        inhalt = ebenen
     with open(pfad, "w", encoding="utf-8") as f:
-        json.dump(ebenen, f, separators=(",", ":"))
+        json.dump(inhalt, f, separators=(",", ":"))
     gesamt += os.path.getsize(pfad)
     print("   %-23s %7d Bytes  (%d Ebene%s, ind %s)"
           % (stueck, os.path.getsize(pfad), len(ebenen), "" if len(ebenen) == 1 else "n",

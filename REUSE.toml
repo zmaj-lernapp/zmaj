@@ -58,9 +58,14 @@ SPDX-License-Identifier = "CC-BY-SA-4.0"
 # They are AI-generated, not hand-drawn; web/LIZENZEN.txt says so as well.
 # Whether purely AI-generated material is protected by copyright differs by
 # jurisdiction. Where rights exist, they are licensed like the rest of the
-# content. The Lottie files and costumes next to them (zmaj.json,
-# zmajz-*.json) are drawn as vectors in zmaj_lottie.py and stay covered by
-# the "learning content" entry above.
+# content. The Lottie files next to them (zmaj.json, zmajz-*.json) are
+# written by zmaj_lottie.py and stay covered by the "learning content" entry
+# above; the costumes that are still vectors (glasses, ear muffs,
+# headphones, witch hat, bunny ears, sparkle, galaxy) are drawn there too.
+# Since 16 October 2026 the other 15 costumes (hats, crowns, jackets,
+# jersey, royal cloak, jelek, scarves) are Gemini paintings as well, in
+# web/maskottchen/zierrat, and so is the Halloween skeleton
+# (web/maskottchen/haut/skelett, covered by haut/**).
 # The app icon ("Entwurf 4", replacing the flag on the same day) is also a
 # Gemini image, cropped and scaled by the author, and the store banner shows
 # the Gemini dragon - both are listed here as well (review 15 Oct 2026).
@@ -70,6 +75,7 @@ SPDX-License-Identifier = "CC-BY-SA-4.0"
 path = [
   "web/maskottchen/teile/**",
   "web/maskottchen/haut/**",
+  "web/maskottchen/zierrat/**",
   "web/maskottchen/zmaj-frei.png",
   "web/maskottchen/zmaj-jubel.png",
   "web/maskottchen/zmaj-traurig.png",

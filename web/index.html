@@ -3418,10 +3418,18 @@ async function zmajDaten(vorgabe){
   }
   /* Ein Schnipsel ist eine Liste von Ebenen - meist eine, beim Fanschal
      zwei, weil der Schriftzug eine eigene Textebene braucht. Aeltere
-     Schnipsel waren ein einzelnes Objekt; beides wird vertragen. */
-  const ebenen = zmajBasis.layers.slice();
+     Schnipsel waren ein einzelnes Objekt; beides wird vertragen.
+     Seit 16.10.2026 sind 15 Stuecke von Gemini gemalt (Huete, Kronen,
+     Jacken, Trikot, Mantel, Jelek, Schals - siehe GEMALT in
+     zmaj_lottie.py). Ihr Schnipsel ist ein Objekt {layers, assets}: Bild-
+     Ebenen am Rig und die Bilder dazu in maskottchen/zierrat/<id>/. Die
+     Bilder stehen im Schnipsel und nicht in zmaj.json, damit nur geladen
+     wird, was der Drache traegt. */
+  const ebenen = zmajBasis.layers.slice(), zierBilder = [];
   ids.forEach(id => { const teil = zmajTeile.get(id);
-    if(Array.isArray(teil)) ebenen.push(...teil); else if(teil) ebenen.push(teil); });
+    if(Array.isArray(teil)) ebenen.push(...teil);
+    else if(teil && Array.isArray(teil.layers)){ ebenen.push(...teil.layers); zierBilder.push(...(teil.assets || [])); }
+    else if(teil) ebenen.push(teil); });
   ebenen.sort((a, b) => a.ind - b.ind);
   /* Bild-Drache (15.10.2026): Seit Ajdins Entscheidung nach den Vorschauen
      ist der Drache aus Bildern zusammengesetzt (Google Gemini, 32 Teile in
@@ -3438,10 +3446,13 @@ async function zmajDaten(vorgabe){
   const bilder = (zmajBasis.assets || []).some(a => a.p && !a.e);
   const haut = bilder ? hautSatz(farbe) : '';
   /* Ein Stueck, das ein Hautsatz ueberfluessig macht ("zmaj_ohne_haut"),
-     faellt mit ihm weg. Bis 15.10.2026 war das das Skelett mit
-     haut/skelett/; dieser Satz zeigte aber Fleisch und Augen mit Iris statt
-     Knochen (gegen die Fest-Entscheidung vom 01.10.2026) und ist nicht mehr
-     in der App - das Skelett ist wieder immer das Vektor-Skelett. */
+     faellt mit ihm weg: das Vektor-Skelett, wenn es haut/skelett/ gibt.
+     Der Satz vom 15.10.2026 zeigte Fleisch und Augen mit Iris statt
+     Knochen (gegen die Fest-Entscheidung vom 01.10.2026) und flog wieder
+     raus. Seit 16.10.2026 ist haut/skelett/ ein von Gemini als Skelett
+     gemaltes Bildset - nur Knochen, runde schwarze Hoehlen mit gelbem
+     Punkt, boeser Blick -, am selben Rig wie der Drache, also mit genau
+     seiner Bewegung. Fehlt der Satz, bleibt das Vektor-Skelett. */
   let liste = haut ? ebenen.filter(l => l.zmaj_ohne_haut !== haut) : ebenen;
   /* Ein Stueck kann Ebenen des Grunddrachens leeren - das Skelett hat kein
      Fleisch, also weg mit Koerper, Kopf, Armen, Beinen, Fluegeln und
@@ -3455,10 +3466,14 @@ async function zmajDaten(vorgabe){
   /* Nur Bilder, die eine Ebene noch zeigt - lottie laedt sonst alle. Der
      Pfad steht in zmaj.json relativ zur Datei (teile/); die App laedt mit
      animationData, also setzt sie ihn hier relativ zu index.html. So liegen
-     die Bilder auch in der Android-App als Dateien im Paket: kein Netz. */
+     die Bilder auch in der Android-App als Dateien im Paket: kein Netz.
+     Die Bilder der gemalten Kostueme haengen nicht an der Hautfarbe: ihr
+     Pfad bleibt zierrat/<id>/ (16.10.2026). */
   const benutzt = new Set(liste.map(l => l.refId).filter(Boolean));
   const assets = (zmajBasis.assets || []).filter(a => !a.p || a.e || benutzt.has(a.id))
-    .map(a => (a.p && !a.e) ? Object.assign({}, a, {u: 'maskottchen/' + (haut ? 'haut/' + haut + '/' : (a.u || ''))}) : a);
+    .map(a => (a.p && !a.e) ? Object.assign({}, a, {u: 'maskottchen/' + (haut ? 'haut/' + haut + '/' : (a.u || ''))}) : a)
+    .concat(zierBilder.filter(a => benutzt.has(a.id))
+      .map(a => (a.p && !a.e) ? Object.assign({}, a, {u: 'maskottchen/' + (a.u || '')}) : a));
   const roh = Object.assign({}, zmajBasis, {layers: liste, assets});
   /* Beim Faerben MUSS auf einer Kopie gearbeitet werden: zmajBasis und die
      Schnipsel bleiben im Speicher stehen, und ein Farbwechsel wuerde sonst
@@ -3482,7 +3497,9 @@ function zmaj(mood='happy'){
 }
 /* no_l und no_r: zwei Fassungen für eine falsche Antwort – der Drache
    wendet den Kopf ab, einmal nach links, einmal nach rechts. Die App
-   wechselt ab, damit mehrere Fehler hintereinander nicht gleich aussehen. */
+   wechselt ab, damit mehrere Fehler hintereinander nicht gleich aussehen.
+   Seit 16.10.2026 schüttelt der Bild-Drache dabei finster den Kopf: no_l
+   beginnt links, no_r rechts (SCHUETTELN in zmaj_lottie.py). */
 const MOOD_SEG = {happy:'idle', idle:'idle', cheer:'cheer', sad:'sad', ok:'ok',
                   no:'no', no_l:'no_l', no_r:'no_r', cry:'cry'};
 function segOf(a, name){
