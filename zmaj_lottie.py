@@ -746,6 +746,46 @@ EIGENES_RECHTS = {"monokel": (54, 76, -55.06, 149.58)}
 #              (neigt sich zur Kopfmitte, liegt wie aufgesetzt auf dem
 #              Schaedel), und hinter dem Schaedel (nur halb zu sehen).
 #              Werkzeug: befunde_16_10\korrektur6\krone6b.py.
+#              Siebte Fassung 16.10.2026 abends (Ajdin: "bei Kopf links sitzt
+#              sie einfach oben auf dem Kopf, haengt an keinem Horn", und:
+#              "weil die ja seitlich am Kopf runterhaengt, muss sie sich auch
+#              seitlich sein ... wenn die Krone von uns weg dreht, ist nur
+#              noch die Haelfte zu sehen ... sie darf sich nicht auf der
+#              Stelle drehen, die Juwelen muessen sich beim Kopfdrehen
+#              mitbewegen"). Bis dahin waren links und rechts dieselbe
+#              Frontkrone, nur verschoben und in der Bildebene gedreht. Jetzt
+#              dreht sie mit dem Kopf um die Senkrechte (45 Grad wie die
+#              Seitenkoepfe): die Frontkrone als Reif (Kegelmantel) gedeutet,
+#              rundum ergaenzt (acht Zacken, Perlen und rote Steine im
+#              Wechsel), gedreht und als Skizze auf kopf_links bzw. den
+#              gespiegelten Kopf gelegt; Gemini hat beide fertig gemalt.
+#              links (nahes Horn): die Krone zeigt ihre Seite und ist zu uns
+#              gekippt (man sieht in den Reif hinein), der grosse Stein ist
+#              zur Schnauze hin nach links gewandert, das Horn steigt innen
+#              auf und steht vor der Innenwand.
+#              rechts (fernes Horn, eigenes Bild): sie haengt hinten am Kopf,
+#              Schaedel, Stacheln und nahes Horn liegen davor - nur die obere
+#              Haelfte mit dem Stein am rechten Ende schaut heraus, die
+#              Spitze des fernen Horns ragt oben aus ihr heraus.
+#              Vorn bleibt die Krone, wie sie ist. Werkzeuge:
+#              befunde_16_10\korrektur7\ (krone3d.py, volltextur.py, krone7.py).
+#              Nachpruefung 16.10.2026 spaet abends: rechts stand die Krone
+#              trotzdem waagerecht hinter dem Kopf (Band etwa -6 Grad, vorn
+#              +31, links +22) - Gemini hatte die schraege Skizze beim Malen
+#              geradegerueckt; wieder "aufgesetzt" statt am Horn. Dazu endete
+#              das Band rechts ohne Kontur, ein halber roter Stein ragte
+#              heraus. Rechts kommt jetzt direkt aus dem 3D-Modell (ohne
+#              Gemini): die gemalte Frontkrone rundum, mit dem Kopf um 45 Grad
+#              gedreht - die Schraeglage ist die der Frontkrone, mitgedreht
+#              (das Band faellt nach rechts aussen ab), der Stein sitzt am
+#              Schnauzenende des Bands, das ferne Horn steht in der Krone und
+#              ragt zwischen den Zacken heraus. Perlen und Steine sind runde
+#              Bilder an ihrer 3D-Stelle (in der Textur wurden sie zur Kante
+#              hin zu Splittern); halb hinter einer Zacke verdeckte fallen
+#              weg; ringsum ein dunkler Umriss. Links: die halbierte Perle
+#              neben der roten Zacke und der weisse Splitter rechts aussen
+#              sind weg, beide Seitenkronen leicht nachgeschaerft.
+#              Werkzeuge: befunde_16_10\korrektur8\ (krone8.py, links8.py).
 #   "innen"    (A): ein breiter, niedriger Reif tief auf dem Schaedel um beide
 #              Hornansaetze; die Hoerner wachsen innen aus der Krone heraus.
 #              Rechts = links gespiegelt (die Krone ist symmetrisch).
@@ -760,7 +800,7 @@ EIGENES_RECHTS = {"monokel": (54, 76, -55.06, 149.58)}
 #   Form: (vorne, links, eigenes rechts oder None) wie in GEMALTE_HUETE
 KRONE_GROSS = "laessig"
 KRONE_GROSS_FORMEN = {
-    "laessig": ((173, 155, -9.71, 285.63), (171, 153, -8.44, 274.61), (143, 129, 36.06, 260.2)),
+    "laessig": ((173, 155, -9.71, 285.63), (173, 165, -18.19, 292.41), (145, 111, 21.22, 273.34)),
     "innen":   ((262, 108, 130.57, 272.07), (229, 119, 96.66, 276.3), None),
 }
 GEMALTE_HUETE["krone_gross"] = KRONE_GROSS_FORMEN[KRONE_GROSS][:2]
@@ -959,8 +999,55 @@ OHNE_JUBEL = ("idle", "sad", "ok", "no", "no_l", "no_r", "cheer_ruhe", "cheer_qu
 # Drachen aus Geminis Bild, im Jubel und bei Traurig zu sehen) - aus dem
 # Samt ringsum zugewachsen. Werkzeuge: befunde_16_10\korrektur6\
 # (mantel_striche.py).
-MANTEL_RUHE = tuple(z for z in OHNE_JUBEL if z != "cheer_quer")
-MANTEL_JUBEL = ("cheer_oben", "cheer_quer")
+# Fuenfte Durchsicht 16.10.2026 abends (Ajdin: beim Weinen verschwanden die
+# Oberarme unter dem Fellkragen und die Haende kamen aus dem Pelz an die
+# Wangen; dazu seine Idee: "Wenn man mit einem Umhang die Haende hebt, geht
+# der Umhang von den Schultern runter. Wir brauchen 2 Bilder fuer den
+# Umhang"). Der Mantel hat jetzt zwei Zustaende:
+#   Arme unten (MANTEL_RUHE: idle, sad, ok, no, no_l, no_r, Anfang und Ende
+#     des Jubels) - Schulterumhang mit Fell auf den Schultern, die Arme
+#     kommen darunter hervor (kragen, saum, baender wie bisher).
+#   Arme oben (MANTEL_RUTSCH: Jubel mit erhobenen Armen und das ganze
+#     Weinen) - der Umhang ist nach hinten von den Schultern gerutscht:
+#     Hermelinkragen und Spange haengen tiefer, hinter den Oberarmen;
+#     Schultern und Arme liegen ganz frei davor, keine Hand kommt aus dem
+#     Pelz. Bild "rutsch" am Rumpf, Platz "umhang" (hinter den Armen, vor dem
+#     Koerper). Gemini hat es am Jubelbild 120 gemalt - Vorlage war der
+#     Drache mit nur dem langen Mantel, Muster der Ruhemantel. EIN Bild fuer
+#     Jubel und Weinen, wie Ajdin es beschrieben hat; Geminis eigenes
+#     Weinbild war unbrauchbar (es hatte den ganzen Drachen neu gezeichnet,
+#     Fluegel und Bauch verschoben). Was die erhobenen Arme im Jubelbild
+#     verdecken, stammt aus einem zweiten Gemini-Bild desselben Mantels
+#     ohne Arme (nur das Fell) - beim Weinen liegen die Arme anders, und dort
+#     lief der Kragen sonst mit einer Kante am alten Armumriss aus.
+#   Dazwischen, in den je drei Bildern, in denen die Arme waagerecht hoch-
+#   und runtergehen (cheer_quer): "rutsch_quer", das Bild ohne Arme ganz -
+#   der Fellkragen liegt lose als Bogen ueber den Schultern, darunter das
+#   rote Futter, die waagerechten Arme davor. Mit "rutsch" lag dort, wo im
+#   Jubelbild der Arm stand, die gerade Oberkante des langen Mantels frei.
+#   So rutscht der Umhang mit der Armbewegung: auf den Schultern - lose -
+#   heruntergerutscht, und beim Senken der Arme zurueck; beim Weinen
+#   wechselt er mit dem harten Schnitt der Stimmung. Die bisherigen
+#   Jubelbilder kragen_jubel, stola_jubel und baender_jubel fallen weg
+#   (Sicherung in Drache_Bildteile\werkzeuge\befunde_16_10\vor_korrektur7\).
+#   Werkzeuge: befunde_16_10\korrektur7\ (mantel7.py).
+# Nachpruefung 16.10.2026 spaet abends: in beiden Rutschbildern gab es nur
+#   Fellbogen und Spange - das rote Schulterstueck mit der Goldborte
+#   verschwand zwischen Bild 90 und 91 und kam zwischen 145 und 146 wieder
+#   (Weinen: 269/270). Jetzt haengt in jedem Fellbogen genau das
+#   Schulterstueck aus der Ruhe (Samt und Borte aus kragen, ohne Fell),
+#   40 Rumpfpixel tiefer und 8 nach aussen, unter dem Fell und hinter den
+#   Armen; oben im Bogen, wo es nicht hinreicht, setzt sich der Samt im
+#   Schatten des Kragens fort. Ein Bild "rutsch" fuer ALLE Bilder mit
+#   gehobenen Armen (waagerecht, oben, Weinen): der Mantel ohne Arme ganz
+#   (bisher rutsch_quer) - beim Weinen lief der Pelz neben dem Hals im
+#   alten Jubelbild stumpf hinter dem Arm aus, jetzt laeuft der Fellbogen
+#   dahinter durch; und zwischen waagerechten und erhobenen Armen wechselt
+#   kein Bild mehr. Gemini hatte statt des gerutschten Schulterstuecks den
+#   ganzen Ruhemantel nachgemalt (Kragen wieder am Hals) - nicht genommen.
+#   Werkzeuge: befunde_16_10\korrektur8\ (mantel8.py).
+MANTEL_RUHE = tuple(z for z in OHNE_JUBEL if z not in ("cheer_quer", "cry"))
+MANTEL_RUTSCH = ("cheer_quer", "cheer_oben", "cry")
 # Stimmungen mit haengenden Armen (Saum des Koenigsmantels vor den Unterarmen)
 SAUM_ZEIT = ("idle", "sad", "ok", "no", "no_l", "no_r", "cheer_ruhe")
 #   stueck: {teil: (Breite, Hoehe, Drehpunkt x, y, vor[, sichtbar])}
@@ -977,11 +1064,7 @@ GEMALTE_RUMPFSTUECKE = {
                      "kragen":        (428, 208, 213.0, 503.0, "trikot_armL", MANTEL_RUHE),
                      "saum":          (428, 221, 213.0, 503.0, "tears", SAUM_ZEIT),
                      "baender":       (129, 180, 63.0, 385.0, "umhang", MANTEL_RUHE),
-                     # Reihenfolge: die Baender vor dem Jubel-Umhang (beide
-                     # stehen vor "umhang", das erste Bild liegt vorn)
-                     "baender_jubel": (128, 179, 63.0, 385.0, "umhang", MANTEL_JUBEL),
-                     "kragen_jubel":  (412, 229, 205.0, 527.0, "umhang", MANTEL_JUBEL),
-                     "stola_jubel":   (412, 229, 205.0, 527.0, "trikot_armL", MANTEL_JUBEL)},
+                     "rutsch":        (483, 281, 241.0, 485.0, "umhang", MANTEL_RUTSCH)},
     "schal_winter": {"rumpf":  (191, 288,  94.74, 545.58, "trikot_armL")},
     "schal_bih":    {"rumpf":  (243, 396, 120.53, 556.37, "trikot_armL")},
 }
