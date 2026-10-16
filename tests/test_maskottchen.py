@@ -218,27 +218,26 @@ def test_mantel_haengt_hinter_dem_koerper(grund, maskottchen):
     Seit 16.10.2026 nachmittags (Ajdin: "die Arme sind beim Mantel komisch
     abgeschnitten, und beim Jubel geht er durch den Mantel"): der Saum des
     Umhangs liegt VOR den Unterarmen, solange sie haengen - die Hand kommt
-    unter der Borte hervor, statt mit geradem Ende auf ihr zu liegen. Im
-    Jubel liegt der Umhang HINTER den erhobenen Armen und nur die Stola
-    davor, also stossen die Arme nirgends durch den Samt."""
+    unter der Borte hervor, statt mit geradem Ende auf ihr zu liegen.
+    Seit 16.10.2026 abends (Ajdin: "wenn man mit einem Umhang die Haende
+    hebt, geht der Umhang von den Schultern runter"): mit erhobenen Armen
+    liegt der heruntergerutschte Umhang ganz HINTER den Armen (rutsch), vor
+    dem Koerper - kein Arm kommt aus dem Fell."""
     _bild_drache(grund)
     alle = _ebenen_nach_name(grund, maskottchen)
-    ind = {n: alle[n]["ind"] for n in ("bild_umhang_mantel", "bild_umhang_kragen", "bild_umhang_kragen_jubel",
-                                       "bild_umhang_baender", "bild_umhang_baender_jubel", "bild_umhang_saum",
-                                       "bild_umhang_stola_jubel", "bild_body", "bild_tail",
+    ind = {n: alle[n]["ind"] for n in ("bild_umhang_mantel", "bild_umhang_kragen", "bild_umhang_rutsch",
+                                       "bild_umhang_baender", "bild_umhang_saum",
+                                       "bild_body", "bild_tail",
                                        "bild_wingL", "bild_wingR", "bild_oberarmL", "bild_oberarmR",
                                        "bild_oberarmL_hoch", "bild_oberarmR_hoch", "bild_unterarmL_offen",
                                        "bild_unterarmR_offen", "bild_unterarmL_faust", "bild_unterarmR_faust",
                                        "bild_kopf_neutral", "bild_kopf_jubel")}
     arme = [ind[n] for n in ("bild_oberarmL", "bild_oberarmR", "bild_oberarmL_hoch", "bild_oberarmR_hoch")]
     assert ind["bild_body"] < ind["bild_tail"] < ind["bild_umhang_mantel"] < min(ind["bild_wingL"], ind["bild_wingR"])
-    for b in ("bild_umhang_baender", "bild_umhang_baender_jubel", "bild_umhang_kragen_jubel"):
+    for b in ("bild_umhang_baender", "bild_umhang_rutsch"):
         assert max(arme) < ind[b] < ind["bild_body"], b
-    assert ind["bild_umhang_baender_jubel"] < ind["bild_umhang_kragen_jubel"]
     assert max(ind["bild_kopf_neutral"], ind["bild_unterarmL_offen"], ind["bild_unterarmR_offen"]) \
         < ind["bild_umhang_kragen"] < min(arme)
-    assert max(ind["bild_kopf_jubel"], ind["bild_unterarmL_faust"], ind["bild_unterarmR_faust"]) \
-        < ind["bild_umhang_stola_jubel"] < min(arme)
     assert ind["bild_umhang_saum"] < min(ind["bild_unterarmL_offen"], ind["bild_unterarmR_offen"])
     # Der Saum nur mit haengenden Armen und nur zusammen mit dem Kragen
     for b in range(grund["op"]):
@@ -255,19 +254,14 @@ def test_jubelbilder_am_rumpf_wechseln_mit_den_armen(grund, maskottchen):
     Jubelbild zeigt (die Arme stehen oben). Das Jubel-Jelek liegt vor den
     Oberarmen (der Rand des Armlochs deckt den Armansatz), aber hinter Kopf
     und Unterarmen.
-    Seit 16.10.2026 abends gilt der Jubel-Umhang schon in den
-    Uebergangsbildern (cheer_quer), solange auch der Jubel-Aermel des
-    Trikots gilt: unter dem Ruhekragen kamen die waagerechten Arme dort
-    seitlich aus dem Umhang wie aus einem Schlitz."""
+    Der Koenigsmantel hat seit 16.10.2026 abends eigene Zustaende (siehe
+    test_mantel_rutscht_mit_erhobenen_armen)."""
     _bild_drache(grund)
     alle = _ebenen_nach_name(grund, maskottchen)
     oben = [_deckkraft(alle["bild_trikot_rumpf_jubel"], b) for b in range(grund["op"])]
     hoch = [_deckkraft(alle["bild_trikot_oberarmL_jubel"], b) for b in range(grund["op"])]
     assert 0 < oben.count(100) < hoch.count(100) < len(oben)
-    for alt, jubel, wann in (("bild_jelek_rumpf", "bild_jelek_rumpf_jubel", oben),
-                             ("bild_umhang_kragen", "bild_umhang_kragen_jubel", hoch),
-                             ("bild_umhang_kragen", "bild_umhang_stola_jubel", hoch),
-                             ("bild_umhang_baender", "bild_umhang_baender_jubel", hoch)):
+    for alt, jubel, wann in (("bild_jelek_rumpf", "bild_jelek_rumpf_jubel", oben),):
         for b in range(grund["op"]):
             a, j = _deckkraft(alle[alt], b), _deckkraft(alle[jubel], b)
             assert a + j == 100 and a * j == 0, (alt, b)
@@ -276,6 +270,33 @@ def test_jubelbilder_am_rumpf_wechseln_mit_den_armen(grund, maskottchen):
                                        "bild_unterarmL_faust", "bild_kopf_jubel")}
     assert max(ind["bild_kopf_jubel"], ind["bild_unterarmL_faust"]) < ind["bild_jelek_rumpf_jubel"] \
         < min(ind["bild_oberarmL_hoch"], ind["bild_oberarmR_hoch"])
+
+
+def test_mantel_rutscht_mit_erhobenen_armen(grund, maskottchen):
+    """Ajdin am 16.10.2026 abends: "Wenn man mit einem Umhang die Haende
+    hebt, geht der Umhang von den Schultern runter. Wir brauchen 2 Bilder
+    fuer den Umhang." In jedem Bild ist genau einer der zwei Zustaende zu
+    sehen: auf den Schultern (kragen mit baendern) solange die Arme haengen,
+    heruntergerutscht (rutsch) sobald sie gehoben sind - waagerecht und oben
+    im Jubel und beim ganzen Weinen (Haende an den Wangen).
+    Seit 16.10.2026 spaet abends ist das EIN Bild (das eigene Bild fuer die
+    waagerechten Arme, rutsch_quer, ist darin aufgegangen): mit dem
+    Schulterstueck im Fellbogen wechselte sonst zwischen waagerechten und
+    erhobenen Armen ein zweites Mal das Bild."""
+    _bild_drache(grund)
+    alle = _ebenen_nach_name(grund, maskottchen)
+    op = grund["op"]
+    oben = [_deckkraft(alle["bild_trikot_rumpf_jubel"], b) for b in range(op)]
+    hoch = [_deckkraft(alle["bild_trikot_oberarmL_jubel"], b) for b in range(op)]
+    wange = [_deckkraft(alle["bild_unterarmL_wange"], b) for b in range(op)]
+    assert wange.count(100) > 0
+    assert "bild_umhang_rutsch_quer" not in alle
+    for b in range(op):
+        k, r = (_deckkraft(alle["bild_umhang_" + n], b) for n in ("kragen", "rutsch"))
+        assert sorted((k, r)) == [0, 100], b
+        assert _deckkraft(alle["bild_umhang_baender"], b) == k, b
+        assert _deckkraft(alle["bild_umhang_mantel"], b) == 100, b
+        assert r == (100 if hoch[b] == 100 or oben[b] == 100 or wange[b] == 100 else 0), b
 
 
 def test_kostueme_faerben_nicht_mit(index_html, maskottchen):
