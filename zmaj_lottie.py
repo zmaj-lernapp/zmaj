@@ -19,14 +19,14 @@
 # aus den PNG-Teilen. In zmaj.json steht u = "teile/" relativ zur Datei; die
 # App setzt den Pfad beim Laden selbst (zmajDaten in web/index.html) und
 # nimmt den Hautsatz der getragenen Farbe, wenn es ihn gibt.
-# Kostueme (Zierrat): Seit 16.10.2026 sind 15 Stuecke von Gemini gemalt -
-# Huete und Kronen je fuer den Kopf von vorn und abgewandt, Kleidung mit
-# Aermeln je Armteil (Abschnitt "Gemalte Kostueme", GEMALT); ihre Bilder
-# liegen in web/maskottchen/zierrat/<stueck>/. Die uebrigen sind weiter
-# Vektor und haengen an den Rig-Ebenen; die Brillen ruecken am abgewandten
-# Kopf ein Stueck mit und werden schmaler (BRILLE_GEDREHT), Hexenhut,
-# Ohrenschuetzer, Kopfhoerer und Hasenohren ruecken auf den Schaedel -
-# alles nach dem Kopfplan (KOPFPLAN). Das Skelett (Halloween) ist seit
+# Kostueme (Zierrat): Seit 16.10.2026 sind 24 Stuecke von Gemini gemalt -
+# Huete, Kronen, Brillen und Ohrensachen je fuer den Kopf von vorn und
+# abgewandt, Kleidung mit Aermeln je Armteil, die Funkelsterne einzeln
+# (Abschnitt "Gemalte Kostueme", GEMALT); ihre Bilder liegen in
+# web/maskottchen/zierrat/<stueck>/. Was am Kopf sitzt, wechselt die
+# Fassung nach dem Kopfplan (KOPFPLAN). Vektor sind nur noch die Galaxie-
+# Sterne und der Rueckfall des Skeletts; die Vektor-Fassungen der anderen
+# Stuecke liefert nur noch --vektor aus. Das Skelett (Halloween) ist seit
 # 16.10.2026 der gemalte Hautsatz haut/skelett/ (nur Knochen, wie die
 # Fest-Entscheidung vom 01.10.2026 verlangt); das Vektor-Skelett weicht ihm
 # und bleibt der Rueckfall (HAUT_ERSETZT).
@@ -503,6 +503,22 @@ GESICHT = ["eyes", "lids", "eyes_happy", "eyes_cry", "brows", "mouth_idle", "mou
 # schmale, kantige Oeffnungen (Drache_Bildteile\werkzeuge\befunde_16_10\
 # nase_kantig.py). Dort auch weg: ein loser Dorn und gerade Schnittkanten
 # ohne Umriss am Schwanz, Halsreste unter dem Kinn des Jubelkopfs.
+# Korrektur 16.10.2026 nach Ajdins Rueckmeldung ("zu dicke Halswirbel; beim
+# Schwanz fehlt ein Schwanzwirbel, der ist abgeschnitten; die Schultern
+# gucken zu sehr raus"): Lendenwirbel zwischen Brustkorb und Becken auf 68 %
+# Breite und das Brustbein unter dem Kinn schmaler (der Hals selbst liegt in
+# jeder Stimmung hinter dem Kopf), die zwei oben abgeschnittenen Wirbel am
+# Schwanzansatz durch ganze Wirbel ersetzt, und die Oberarmkoepfe ruecken
+# 15 Bildpixel zum Rumpf (Knochen um den Ellbogen gedreht, Drehpunkte und
+# Bildgroessen unveraendert). Werkzeug: Drache_Bildteile\werkzeuge\
+# befunde_16_10\korrektur_1610.py (alter Stand daneben in vor_korrektur_1610).
+# Nachpruefung 16.10.2026: Zwischen Becken und erstem Schwanzwirbel blieb
+# eine Luecke - der Schwanz schwebte frei zwischen den Beinen (beim Drachen
+# mit Haut liegt dort der Koerper davor, beim Skelett sieht man durch). Das
+# ist der fehlende Wirbel: tail hat jetzt einen Wirbel mehr am Ansatz, in
+# der Kruemmung weitergefuehrt, hinter dem ersten und oben hinter dem Becken
+# (Ebene "tail" liegt hinter "body") - der Schwanz haengt am Becken.
+# Bildgroesse bleibt. Werkzeug: befunde_16_10\skelett_wirbel.py.
 HAUT_ERSETZT = {"skelett": "skelett"}
 # Ebenen, die der Bild-Drache gar nicht ausliefert. "eyes" (Augenweiss mit
 # blauer Iris) blieb bis 15.10.2026 in der Grunddatei stehen und lag mit
@@ -531,7 +547,8 @@ ZIERRAT_ALLE = ZIERRAT + [n for v in NUR_MIT.values() for n in v]
 # Teilebogen. Ausgeschnitten wurde mit denselben Kaesten, Masken und
 # Matrizen wie die Teile des Drachen; jedes Bild liegt also genau auf
 # seinem Teil. Brillen, Ohrenschuetzer, Kopfhoerer, Hexenhut, Hasenohren,
-# Funkeln und Galaxie bleiben vorerst Vektor (Entscheidung 15.10.2026).
+# Funkeln und Galaxie blieben vorerst Vektor (Entscheidung 15.10.2026) -
+# bis auf die Galaxie sind sie seit 16.10.2026 auch gemalt (siehe unten).
 # Quellen: Drache_Bildteile\fertig\zierrat\ (PNG, so wie haut_einbauen.py
 # --zierrat sie umwandelt), Lage, Herkunft und Kontrollboegen in
 # Drache_Bildteile\kostueme_quellen\ (die Zahlen unten stammen aus den
@@ -574,16 +591,76 @@ ZIERRAT_ALLE = ZIERRAT + [n for v in NUR_MIT.values() for n in v]
 # ragte nur ein Horn heraus) stehen jetzt in BEIDEN Ansichten beide Hoerner
 # ganz vor dem Stueck, und der Kopfstachel liegt unter dem Fellrand der
 # Muetze, statt ihn zu durchstechen.
+# Korrektur 16.10.2026 (Ajdin: "Die grosse Krone sieht sehr komisch auf dem
+# Kopf aus"): Gemini hatte die Skizze nicht eingehalten - die Krone war fast
+# so hoch wie der Kopf, ihr Reif schwebte auf Hoehe der Hoerner ueber dem
+# Schaedel (die goldenen Hoerner standen wie Zierrat IN der Krone), die
+# Seitensteine sassen auf langen Stielen, und am abgewandten Kopf stand sie
+# frontal. Jetzt hat Gemini die Krone frei gemalt (von vorn und dreiviertel
+# gedreht, Entwurf wie oben: breit und niedrig, vier kurze Zacken, Perlen und
+# Steine direkt auf den Spitzen), und Groesse und Sitz sind gesetzt statt
+# gemalt: 168 Kopf-Einheiten breit, der Reif sitzt mit der Unterkante bei
+# -104 auf dem Schaedel (Brauen frei), am abgewandten Kopf 10 Einheiten zum
+# Hinterkopf; die Hoerner stehen ganz davor (Loch im Kronenbild, wo das
+# Kopfbild Horn ist). Werkzeug: kostueme2\korrektur\werk\krone.py.
+#
+# Die restlichen neun (16.10.2026, Ajdin nach dem Vergleich gemalt gegen
+# gezeichnet: "mal auch die restlichen"): Brille, Sonnenbrille, Lesebrille,
+# Monokel, Ohrenschuetzer, Kopfhoerer, Hexenhut, Hasenohren und Funkeln.
+# Gemalt wie die Huete auf Frontkopf und kopf_links; Lage und Herkunft in
+# Drache_Bildteile\kostueme_quellen\rest_anker.json (Kontrollbogen
+# rest_bogen.png daneben). Sie stehen unten in GEMALTE_HUETE, mit drei
+# Besonderheiten:
+# - Brillen: Gemini malt das Auge hinter dem Glas mit. Die Glaeser sind
+#   darum ersetzt durch eine leichte Toenung (24 % deckend) mit Geminis
+#   Glanzlichtern - durch das Glas sieht man das Auge des jeweiligen
+#   Kopfbilds, also auch Blinzeln, Jubel- und Weinaugen. Die Sonnenbrille
+#   ist ganz deckend. Die Brillen lassen die Hornspitzen stehen
+#   (HORNSPITZEN_BLEIBEN): sie beruehren die Hoerner nicht. BRILLE_GEDREHT
+#   (Verschieben und Stauchen der Vektor-Brille am abgewandten Kopf) faellt
+#   fuer sie weg - die Seitenbilder sind fuer kopf_links gemalt.
+# - Monokel: es sitzt immer auf demselben Auge des Drachen. Gespiegelt
+#   sprang es beim Kopfschuetteln von einem Auge aufs andere; rechts ist
+#   darum ein eigenes Bild (EIGENES_RECHTS), gemalt auf dem gespiegelten
+#   abgewandten Kopf.
+# - Hexenhut und Hasenohren: frei gemalt reichten sie bis -314 bzw. -300
+#   Kopf-Einheiten, im Jubelsprung schneidet die Leinwand aber ab etwa -278
+#   ab. Gemini bekam darum eine flache Skizze an der richtigen Stelle; jetzt
+#   endet der Hut bei -217, die Ohren bei -234 (vorn) bzw. -239.
+# Die Funkelsterne stehen in GEMALTE_FUNKEN.
 GEMALTE_HUETE = {
     "kappe":          ((195, 121,  97.09, 280.12), (198, 134,  80.56, 269.1)),
     "fes":            ((151, 144,  74.63, 333.1),  (165, 165,  55.98, 314.02)),
     "hut":            ((215, 226, 106.84, 379.29), (211, 212,  87.76, 353.86)),
     "doktorhut":      ((335, 185, 166.59, 326.74), (304, 206, 119.55, 320.81)),
     "krone":          ((132, 116,  65.3,  288.6),  (123, 106,  58.94, 283.51)),
-    "krone_gross":    ((278, 273, 138.62, 433.12), (255, 265, 100.05, 418.71)),
+    "krone_gross":    ((206, 154, 103.0,  322.5),  (187, 154,  52.0,  322.5)),
     "nikolausmuetze": ((293, 239, 110.23, 311.48), (264, 245,  77.59, 292.41)),
     "bajramfes":      ((151, 173,  74.2,  333.52), (157, 176,  64.88, 323.77)),
+    "ohrenschuetzer": ((348, 218, 173.38, 272.07), (314, 231, 140.32, 276.3)),
+    "kopfhoerer":     ((362, 296, 180.58, 341.57), (336, 302, 149.64, 339.45)),
+    "hexenhut":       ((278, 153, 138.62, 310.63), (278, 153, 124.21, 310.63)),
+    "hasenohren":     ((186, 182,  92.85, 331.83), (198, 188, 119.55, 337.34)),
+    "brille":         ((208,  89, 103.45, 155.52), (235,  93, 123.37, 152.13)),
+    "sonnenbrille":   ((203,  77, 100.48, 148.73), (192,  81, 119.55, 144.92)),
+    "lesebrille":     ((181,  60,  89.88, 127.54), (180,  70, 120.4,  127.54)),
+    "monokel":        (( 91, 140, -10.56, 152.55), ( 93, 132,  40.3,  144.07)),
 }
+# Stuecke mit eigenem Bild fuer kopf_rechts statt des gespiegelten linken.
+EIGENES_RECHTS = {"monokel": (54, 76, -55.06, 149.58)}
+# Gemalte Kopfstuecke, die die Hornspitzen (bild_hoerner_*) NICHT leeren.
+HORNSPITZEN_BLEIBEN = ["brille", "sonnenbrille", "lesebrille", "monokel"]
+# Funkeln (16.10.2026): sieben gemalte Sterne, je eine Bild-Ebene an "body"
+# auf dem Platz des Vektorsterns (FUNKEN), mit denselben Keyframes fuer
+# Groesse, Drehung und Deckkraft (funke_zeit) - sie blitzen also wie bisher
+# der Reihe nach auf. Die Sternmitte liegt in der Bildmitte (64/64), die
+# laengste Spitze 62,5 Pixel davon; so gross wie der Vektorstern ist das
+# Bild bei Skala 100 * Radius / 62,5. Gelb und weiss wie die Vektorsterne,
+# mit dunkelblauem Umriss wie der Drache (auf hellem Grund sichtbar).
+#   Platz (Nummer in FUNKEN): (Bild, Radius der laengsten Spitze in Pixeln)
+GEMALTE_FUNKEN = {0: ("stern_5", 62.53), 1: ("stern_6", 62.29), 2: ("stern_1", 62.54), 3: ("stern_2", 62.29),
+                  4: ("stern_3", 62.54), 5: ("stern_7", 62.53), 6: ("stern_8", 62.28)}
+STERN_PX = 128
 # Kleidung am Rumpf (Eltern "body"): stueck: {teil: (Breite, Hoehe,
 # Drehpunkt x, y, vor)}. Das Bild ist alles, was Gemini am Drachen
 # veraendert hat und nicht mit nackter Haut verbunden ist - so bleibt auch
@@ -605,15 +682,77 @@ GEMALTE_HUETE = {
 # Brustmitte mit goldener Spange. Sie liegt HINTER den Armen (Platz der
 # Vektor-Ebene umhang, wie die anderen Halssachen) - vor den Armen haetten
 # ihre Baender beim Weinen die Unterarme auf der Brust zugedeckt.
+#
+# Korrektur nach Ajdins Rueckmeldung vom 16.10.2026 (Quellen, Werkzeuge,
+# Vorher/Nachher: kostueme2\korrektur\ im Arbeitsordner des Drachen):
+# - Oberteile beim Jubel: "wenn der Drache sich freut, sind die Arme sehr
+#   komisch, am meisten an den Schultern". Die Oberteile waren fuer haengende
+#   Arme gemalt; erhoben sassen die Aermel wie Roehren mit runder Kappe vorn
+#   auf der Brust, daneben standen die Ecken der Armloecher. Gemini hat den
+#   angezogenen Drachen im Jubelbild 120 neu gemalt (Aermel wachsen aus den
+#   Achseln, die Schulter steigt in den Aermel). Daraus "rumpf_jubel" am Rumpf
+#   und die Aermel "oberarmL/R_jubel" (GEMALTE_AERMEL, JUBEL_OBERTEILE); sie
+#   gelten, solange die Arme im Jubel oben stehen (cheer_oben, JUBEL_OBEN),
+#   sonst das bisherige Rumpfbild. Der Arm steht dort relativ zum Rumpf
+#   zwischen 119 und 136 Grad, darum passt eine Fassung fuer den ganzen
+#   Jubel. Beim Weinen (Arme an den Wangen) bleibt es beim alten; in den je
+#   drei Bildern, in denen die Arme waagerecht hoch- und runtergehen
+#   (cheer_quer), bleibt das alte Rumpfbild, die Aermel sind aber schon die
+#   Jubel-Aermel (Nachpruefung unten).
+#   Nachpruefung 16.10.2026: Beim Trikot hatte der Schnitt nur genommen, was
+#   sich deutlich vom nackten Drachen abhebt - blauer Stoff auf blauer Haut
+#   und die gelbe Schaerpe auf dem gelben Bauch fielen weg: Loecher im Rumpf,
+#   vom Aermel nur Umriss und Borte, kein Saum. Ausserdem hatten Trikot und
+#   Lederjacke die Masken der Strickjacke bekommen (gleicher Name im
+#   Zwischenspeicher) - daher Schlitze am Kragen und Kerben an den Achseln.
+#   Neu geschnitten: Stoff ist, was innerhalb des Umrisses liegt, den Gemini
+#   um das Stueck gemalt hat (Flaeche von aussen geflutet), jede Jacke mit
+#   ihren eigenen Masken; unten (ab der Taille) geht das Bild weich ins alte
+#   Rumpfbild ueber - es ist heil, hat den Saum, und der Wechsel in Bild 94
+#   und 142 springt dort nicht. Die alten erhobenen Aermel standen in den
+#   Uebergangsbildern (cheer_quer) als steife Polster waagerecht ab, beim
+#   Trikot wie ein hartes T; dort gelten jetzt die schlanken Jubel-Aermel.
+#   Werkzeug: Drache_Bildteile\werkzeuge\befunde_16_10\schulter2.py.
+# - Jelek: sass mit den Schulterecken neben dem Hals auf den Fluegeln (oberer
+#   Rand 278 Einheiten ueber dem Drehpunkt, Trikot 225). Jetzt 95 % breit,
+#   88 % hoch und 4 Einheiten tiefer: oben am Halsansatz, die Ecken auf den
+#   Schultern, unten an der Taille.
+# - Schals: "Beim Freuen geht der Schal komisch in den Arm rein, am meisten
+#   beim bosnischen Schal." Die Enden sind 36 Einheiten breit und haengen bis
+#   an die Seiten der Brust; die Oberarme lagen in jedem Bild mit 5 bis 11
+#   Einheiten darauf (beim Jubel und bei ok, wenn die Arme nach innen
+#   schwingen, bis zu 25). Der Schal liegt jetzt VOR den Oberarmen (direkt
+#   vor den Aermeln, "trikot_armL" - Trikot und Schal sind beide Halssachen,
+#   also nie zusammen), hinter Kopf und Unterarmen: um den Hals auf den
+#   Schultern, die Enden ueber der Brust; erhobene Arme gehen hinter dem
+#   Wickel hoch, statt ihn zu durchstossen.
+# - Koenigsmantel: zwischen den Haelften war nur gemalt, was neben Koerper
+#   und haengenden Armen zu sehen war - beim Jubel ein Loch mit den Umrissen
+#   der Arme. Der Mantel ist jetzt innen ganz (dunkelroter Samt unter den
+#   gemalten Haelften), gleiche Groesse und Lage.
+# - Farben: Jelek, Schal und Muetze (Winter), Nikolausmuetze, Fes, Bajram-Fes,
+#   Mantel in dunklerem Rot, die Kappe in dunklerem Gruen - auf roter bzw.
+#   gruener Haut waren sie kaum vom Drachen zu unterscheiden. Nachpruefung
+#   16.10.2026: auch die spaeter gemalten Ohrenschuetzer (Rot auf roter Haut
+#   wie beim Jelek, als einziges der neun Stuecke). Dunkle Stuecke auf der
+#   Haut "nacht" (Sonnenbrille, Kopfhoerer, Doktorhut) und der Hexenhut auf
+#   "galaxie" bleiben: sie stehen mit Umriss, Glanzlichtern bzw. Goldband
+#   vor allem ueber dem Kopf, gegen den Hintergrund.
+JUBEL_OBERTEILE = ["trikot", "weste_leder", "weste_strick"]
+OHNE_JUBEL = ("idle", "sad", "ok", "no", "no_l", "no_r", "cheer_ruhe", "cheer_quer", "cry")
+#   stueck: {teil: (Breite, Hoehe, Drehpunkt x, y, vor[, sichtbar])}
 GEMALTE_RUMPFSTUECKE = {
-    "trikot":       {"rumpf":  (245, 273, 121.94, 456.47, "trikot")},
-    "weste_leder":  {"rumpf":  (264, 295, 130.38, 493.99, "weste_leder")},
-    "weste_strick": {"rumpf":  (247, 284, 122.88, 462.57, "weste_strick")},
-    "jelek":        {"rumpf":  (266, 359, 132.26, 562.94, "jelek")},
+    "trikot":       {"rumpf":       (245, 273, 121.94, 456.47, "trikot", OHNE_JUBEL),
+                     "rumpf_jubel": (325, 323, 161.94, 496.47, "trikot", ("cheer_oben",))},
+    "weste_leder":  {"rumpf":       (264, 295, 130.38, 493.99, "weste_leder", OHNE_JUBEL),
+                     "rumpf_jubel": (344, 345, 170.38, 533.99, "weste_leder", ("cheer_oben",))},
+    "weste_strick": {"rumpf":       (247, 284, 122.88, 462.57, "weste_strick", OHNE_JUBEL),
+                     "rumpf_jubel": (327, 334, 162.88, 502.57, "weste_strick", ("cheer_oben",))},
+    "jelek":        {"rumpf":  (253, 316, 125.8, 487.51, "jelek")},
     "umhang":       {"mantel": (742, 517, 370.05, 514.16, "skelett_wingL"),
                      "kragen": (248, 305, 122.88, 505.72, "umhang")},
-    "schal_winter": {"rumpf":  (191, 288,  94.74, 545.58, "schal_winter")},
-    "schal_bih":    {"rumpf":  (243, 396, 120.53, 556.37, "schal_bih")},
+    "schal_winter": {"rumpf":  (191, 288,  94.74, 545.58, "trikot_armL")},
+    "schal_bih":    {"rumpf":  (243, 396, 120.53, 556.37, "trikot_armL")},
 }
 # Aermel (Trikot kurz, die Jacken lang): je Armteil des Drachen ein Bild an
 # derselben Rig-Ebene, mit 12 Pixeln (Unterarm an Faust und Wange: 10) Rand
@@ -642,15 +781,29 @@ def gemalte_kostueme():
     t = {}
     for st, (vorne, links) in GEMALTE_HUETE.items():
         b, h, x, y = links
+        rechts = EIGENES_RECHTS.get(st, (b, h, round(b - x, 2), y))
         t[st] = [("vorne", "head") + vorne + ("vorn", st), ("links", "head") + links + ("links", st),
-                 ("rechts", "head", b, h, round(b - x, 2), y, "rechts", st)]
+                 ("rechts", "head") + rechts + ("rechts", st)]
+    # Funkeln: die Lage setzt erst der Bau unten (funken_ebene), hier nur
+    # Bild, Groesse und Bildmitte als Drehpunkt.
+    t["funkeln"] = [(GEMALTE_FUNKEN[i][0], "body", STERN_PX, STERN_PX, STERN_PX / 2, STERN_PX / 2, None, "funkeln")
+                    for i in sorted(GEMALTE_FUNKEN)]
     for st, teile in GEMALTE_RUMPFSTUECKE.items():
-        t[st] = [(n, "body", b, h, x, y, None, vor) for n, (b, h, x, y, vor) in teile.items()]
+        t[st] = [(n, "body") + e[:4] + (e[5] if len(e) > 5 else None, e[4]) for n, e in teile.items()]
     for st in AERMEL_STUECKE:
         for arm in OBERARME + (UNTERARME if st in LANGE_AERMEL else []):
             ebene, sichtbar = BILD_TEILE[arm][0], BILD_TEILE[arm][5]
             vor = st + ("_arm" + arm[7] if arm.startswith("oberarm") else "_unterarm" + arm[8])
-            t[st].append((arm, ebene) + GEMALTE_AERMEL[arm.replace("_hoch", "")] + (sichtbar, vor))
+            feld = GEMALTE_AERMEL[arm.replace("_hoch", "")]
+            # Jubel-Aermel (16.10.2026, siehe JUBEL_OBERTEILE): im Feld des
+            # Oberarms, solange die Arme im Jubel erhoben sind - seit der
+            # Nachpruefung vom 16.10.2026 auch in den Uebergangsbildern mit
+            # waagerechten Armen (cheer_quer), wo der alte erhobene Aermel
+            # als steifes Polster abstand. Der alte bleibt fuers Weinen.
+            if st in JUBEL_OBERTEILE and arm.endswith("_hoch"):
+                t[st].append((arm.replace("_hoch", "_jubel"), ebene) + feld + (("cheer_oben", "cheer_quer"), vor))
+                sichtbar = tuple(z for z in sichtbar if z != "cheer_hoch")
+            t[st].append((arm, ebene) + feld + (sichtbar, vor))
     return t
 
 
@@ -709,6 +862,14 @@ SEITEN = {"L": "links", "R": "rechts"}
 # Die Bilder des Jubels, in denen die Arme oben sind (relativ zum Beginn):
 # dort Faust und Oberarm mit Kappe, davor und danach die haengende Hand.
 JUBEL_HOCH = (1, 56)
+# Darin die Bilder, in denen die Arme wirklich oben stehen (16.10.2026,
+# gemessen: Oberarm 119 bis 136 Grad gegen den Rumpf; in den drei Bildern
+# davor und danach geht er waagerecht durch, 25 bis 60 Grad). Nur hier gelten
+# die Jubel-Fassungen der Oberteile (JUBEL_OBERTEILE): mit waagerechten Armen
+# standen ihre hochgezogenen Schultern neben dem Hals. "cheer_quer" sind die
+# Bilder von JUBEL_HOCH ausserhalb davon (dort altes Rumpfbild, aber schon
+# die Jubel-Aermel - Nachpruefung 16.10.2026, siehe gemalte_kostueme).
+JUBEL_OBEN = (4, 53)
 
 
 def schuettel_folge(name):
@@ -811,10 +972,13 @@ GESICHT_GEDREHT = {"links": (-6, 4, 80), "rechts": (6, 4, 80)}
 
 def _bilder(z):
     """Die Bildnummern zu einem Eintrag in "sichtbar" (siehe BILD_TEILE)."""
-    if z in ("cheer_hoch", "cheer_ruhe"):
+    if z in ("cheer_hoch", "cheer_ruhe", "cheer_oben", "cheer_quer"):
         a, e = SEG["cheer"]
         hoch = range(a + JUBEL_HOCH[0], a + JUBEL_HOCH[1])
-        return hoch if z == "cheer_hoch" else [t for t in range(a, e) if t not in hoch]
+        oben = range(a + JUBEL_OBEN[0], a + JUBEL_OBEN[1])
+        return {"cheer_hoch": hoch, "cheer_oben": oben,
+                "cheer_quer": [t for t in hoch if t not in oben],
+                "cheer_ruhe": [t for t in range(a, e) if t not in hoch]}[z]
     return range(*SEG[z])
 
 
@@ -1889,7 +2053,10 @@ def stern(cx, cy, r, c, o=100):
 # 01.10.2026). Mindestens 2/255 Abstand in einem Kanal, sonst zaehlt es
 # in faerbe() noch als YEL.
 FUNKE_GELB = col("FFCE22")
-def funke(cx, cy, r, c, platz, anzahl=7, o=100):
+def funke_zeit(platz, anzahl=7, o=100):
+    """Keyframes eines Sterns: (Groesse, Deckkraft, Drehung), je eine Liste
+    (Bild, Wert). Seit 16.10.2026 eigene Funktion: die gemalten Sterne
+    (GEMALTE_FUNKEN) blitzen genauso wie die Vektorsterne."""
     # Bild, Groesse, Deckkraft, Drehung. Schnell auf, langsam wieder weg -
     # so blitzt es, statt zu pulsieren. 26 Bilder, damit auch die kurzen
     # Abschnitte (ok und no sind nur 30 lang) noch einen ganzen Blitz fassen.
@@ -1909,7 +2076,13 @@ def funke(cx, cy, r, c, platz, anzahl=7, o=100):
         start = a + (fenster * platz) // max(1, anzahl - 1)
         for dt, sv, ov, rv in schritte:
             k = start + dt
-            gs.append((k, [sv, sv])); go.append((k, ov)); gr.append((k, rv))
+            gs.append((k, sv)); go.append((k, ov)); gr.append((k, rv))
+    return gs, go, gr
+
+
+def funke(cx, cy, r, c, platz, anzahl=7, o=100):
+    gs, go, gr = funke_zeit(platz, anzahl, o)
+    gs = [(k, [sv, sv]) for k, sv in gs]
     e = r * 0.26
     zeiger = {"ty": "tr", "p": const([cx, cy]), "a": const([0, 0]),
               "s": anim(gs, dims=2), "r": anim(gr), "o": anim(go)}
@@ -1968,15 +2141,12 @@ put("galaxie_schwanz", himmel([("p", 1330, 1640, 2.6, 75), ("s", 1450, 1640, 4.6
 # unter den Fluegelspitzen, neben dem linken Fuss und unter dem Schwanz -
 # alle mindestens 20 Punkte von der Figur und vom Rand entfernt, auch im
 # Jubelsprung.
-put("funkeln", [
-    funke(-130, -262, 16, WHITE, 0),
-    funke(-205, 15, 13, WHITE, 1),
-    funke(212, -4, 14, FUNKE_GELB, 2),
-    funke(150, -250, 11, FUNKE_GELB, 3),
-    funke(-226, -150, 14, FUNKE_GELB, 4),
-    funke(-120, 100, 11, WHITE, 5),
-    funke(132, 124, 12, WHITE, 6),
-], parent="body")
+# 16.10.2026: Die Plaetze stehen in FUNKEN, weil die gemalten Sterne
+# (GEMALTE_FUNKEN) dieselben brauchen - (x, y, Radius, Farbe) in Koerper-
+# Einheiten, der Index ist der Platz in der Reihe.
+FUNKEN = [(-130, -262, 16, WHITE), (-205, 15, 13, WHITE), (212, -4, 14, FUNKE_GELB), (150, -250, 11, FUNKE_GELB),
+          (-226, -150, 14, FUNKE_GELB), (-120, 100, 11, WHITE), (132, 124, 12, WHITE)]
+put("funkeln", [funke(x, y, r, c, i) for i, (x, y, r, c) in enumerate(FUNKEN)], parent="body")
 
 # ---------- Monokel (nur Vollversion) ----------
 # Ein Glas ueber dem rechten Auge, Goldrand, Kettchen nach unten. Die
@@ -2759,7 +2929,10 @@ ASSETS = []
 ZIERRAT_ASSETS = {}      # stueck: Assets seines Schnipsels (gemalte Kostueme)
 if not VEKTOR:
     _mitte = [0, AUG_Y, 0]
-    for _n in BRILLEN:
+    # Seit 16.10.2026 sind alle Brillen gemalt (GEMALTE_HUETE) und haben eigene
+    # Seitenbilder; BRILLE_GEDREHT bleibt fuer eine Vektor-Brille, falls eine
+    # wieder dazukommt.
+    for _n in [b for b in BRILLEN if b not in GEMALT]:
         built[_n]["ks"]["a"] = const(_mitte)
         built[_n]["ks"]["p"] = kopf_spur({s: [dx, round(AUG_Y + dy, 2), 0] for s, (dx, dy, _b) in BRILLE_GEDREHT.items()}, _mitte)
         built[_n]["ks"]["s"] = kopf_spur({s: [b, 100, 100] for s, (_x, _y, b) in BRILLE_GEDREHT.items()}, [100, 100, 100])
@@ -2783,10 +2956,20 @@ if not VEKTOR:
     for _st, _teile in GEMALT.items():
         for _e in _teile:
             built["bild_%s_%s" % (_st, _e[0])] = zierrat_bildebene(_st, _e)
-        if _st in GEMALTE_HUETE:
+        if _st in GEMALTE_HUETE and _st not in HORNSPITZEN_BLEIBEN:
             built["bild_%s_vorne" % _st]["zmaj_leert"] = _hornspitzen
         ZIERRAT_ASSETS[_st] = [{"id": "%s_%s" % (_st, e[0]), "w": e[2], "h": e[3], "u": "%s/%s/" % (ZIERRAT_ORDNER, _st),
                                 "p": e[0] + ".webp", "e": 0} for e in _teile]
+    # Gemalte Funkelsterne (GEMALTE_FUNKEN): auf den Platz des Vektorsterns,
+    # Groesse, Drehung und Deckkraft wie funke() - die Skala rechnet die
+    # Bildpixel auf den Radius des Vektorsterns um.
+    for _i, (_bild, _radius) in GEMALTE_FUNKEN.items():
+        _x, _y, _r, _c = FUNKEN[_i]
+        _gs, _go, _gr = funke_zeit(_i, len(FUNKEN))
+        _k = _r / _radius
+        built["bild_funkeln_" + _bild]["ks"].update(
+            {"p": const([_x, _y, 0]), "s": anim([(t, [round(v * _k, 2), round(v * _k, 2), 100]) for t, v in _gs]),
+             "r": anim(_gr), "o": anim(_go)})
     # Kopfstuecke am abgewandten Kopf. Die Kopfbilder kopf_links/kopf_rechts
     # zeigen den Kopf gedreht: der Schaedel liegt dann weiter hinten, also im
     # Bild zur anderen Seite hin (Kopfraster 15.10.2026: Mitte der
@@ -2803,7 +2986,8 @@ if not VEKTOR:
                "a": const([0, 0]), "s": const([100, 100]), "r": const(0), "o": const(100)}
         built[name]["shapes"] = [{"ty": "gr", "it": built[name]["shapes"] + [tr_]}]
     # Die gemalten Huete haben je Seite ein eigenes Bild (GEMALTE_HUETE) -
-    # mitruecken muessen nur noch die Vektor-Stuecke.
+    # mitruecken muessen nur noch die Vektor-Stuecke (seit 16.10.2026 ist
+    # keins mehr am Kopf; die Schleife bleibt fuer ein neues Vektor-Stueck).
     for _n in KOPF_TEILE:
         if _n not in GEMALT:
             _mitruecken(_n)

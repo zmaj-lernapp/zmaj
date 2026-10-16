@@ -95,7 +95,10 @@ def test_gemalte_kostueme_bringen_ihre_bilder_mit(grund, maskottchen):
     _bild_drache(grund)
     gemalt = {n: v for n, v in _schnipsel(maskottchen).items() if v[1]}
     assert {"kappe", "fes", "hut", "doktorhut", "krone", "krone_gross", "nikolausmuetze", "bajramfes",
-            "trikot", "weste_strick", "weste_leder", "umhang", "jelek", "schal_winter", "schal_bih"} <= set(gemalt)
+            "trikot", "weste_strick", "weste_leder", "umhang", "jelek", "schal_winter", "schal_bih",
+            # seit 16.10.2026 auch die restlichen ("mal auch die restlichen")
+            "brille", "sonnenbrille", "lesebrille", "monokel", "ohrenschuetzer", "kopfhoerer",
+            "hexenhut", "hasenohren", "funkeln"} <= set(gemalt)
     namen = [a["id"] for a in grund["assets"]]
     for name, (ebenen, assets) in gemalt.items():
         ids = {a["id"]: a for a in assets}
@@ -123,14 +126,21 @@ def test_gemalte_huete_folgen_dem_kopfplan(grund, maskottchen):
     beim Kopfschuetteln springt der Hut im selben Bild wie der Kopf. Und er
     nimmt die Hornspitzen heraus (zmaj_leert): wo Gemini ein Horn vor den
     Hut gemalt hat, hat das Bild ein Loch, und die Spitzen darueber legten
-    am abgewandten Kopf das ferne Horn vor den Hut (16.10.2026)."""
+    am abgewandten Kopf das ferne Horn vor den Hut (16.10.2026).
+    Seit 16.10.2026 sind auch Brillen, Ohrensachen, Hexenhut und Hasenohren
+    gemalt - 16 Kopfstuecke. Die Brillen beruehren die Hoerner nicht und
+    lassen die Hornspitzen stehen."""
     _bild_drache(grund)
     alle = _ebenen_nach_name(grund, maskottchen)
     hornspitzen = {n for n in alle if n.startswith("bild_hoerner_")}
     huete = [n[:-len("_vorne")] for n in alle if n.endswith("_vorne") and n.startswith("bild_")]
-    assert len(huete) == 8, huete
+    assert len(huete) == 16, huete
+    brillen = {"bild_brille", "bild_sonnenbrille", "bild_lesebrille", "bild_monokel"}
     for hut in huete:
-        assert set(alle[hut + "_vorne"]["zmaj_leert"]) == hornspitzen, hut
+        if hut in brillen:
+            assert "zmaj_leert" not in alle[hut + "_vorne"], hut
+        else:
+            assert set(alle[hut + "_vorne"]["zmaj_leert"]) == hornspitzen, hut
         for bild in range(grund["op"]):
             seite = {s: _deckkraft(alle[hut + "_" + s], bild) for s in ("vorne", "links", "rechts")}
             kopf = {s: _deckkraft(alle["bild_kopf_" + s], bild) for s in ("links", "rechts")}
@@ -138,21 +148,63 @@ def test_gemalte_huete_folgen_dem_kopfplan(grund, maskottchen):
             assert seite == {s: (100 if s == erwartet else 0) for s in seite}, (hut, bild, seite)
 
 
+def test_gemalte_funken_blitzen(grund, maskottchen):
+    """Funkeln (gemalt seit 16.10.2026): sieben Sterne, jeder eine eigene
+    Bild-Ebene am Rumpf, vor allem anderen. Jeder blitzt auf (Deckkraft und
+    Groesse animiert, am Anfang unsichtbar) und steht auf seinem eigenen
+    Platz - die Ajdin-Regel vom 29.09.2026: funkeln, nicht kreisen."""
+    _bild_drache(grund)
+    ebenen, assets = _schnipsel(maskottchen)["funkeln"]
+    rumpf = next(e["ind"] for e in grund["layers"] if e["nm"] == "body")
+    assert len(ebenen) == 7 and len(assets) == 7
+    plaetze = set()
+    for e in ebenen:
+        assert e["ty"] == 2 and e["parent"] == rumpf, e["nm"]
+        assert e["ind"] < min(g["ind"] for g in grund["layers"]), e["nm"]
+        ks = e["ks"]
+        assert ks["o"]["a"] == 1 and ks["s"]["a"] == 1 and ks["p"]["a"] == 0, e["nm"]
+        assert _deckkraft(e, 0) == 0 and max(k["s"][0] for k in ks["o"]["k"]) == 100, e["nm"]
+        plaetze.add(tuple(ks["p"]["k"][:2]))
+    assert len(plaetze) == 7
+
+
 def test_aermel_folgen_ihrem_arm(grund, maskottchen):
     """Ein gemalter Aermel haengt an derselben Rig-Ebene wie sein Armteil
     und ist in genau denselben Bildern zu sehen - erhoben, als Faust, an
-    der Wange. Er liegt vor dem Arm (kleinere "ind")."""
+    der Wange. Er liegt vor dem Arm (kleinere "ind").
+    Seit 16.10.2026 haben die drei Oberteile fuer die Bilder, in denen die
+    Arme im Jubel oben stehen, eigene Aermel (oberarm*_jubel) und ein eigenes
+    Rumpfbild (rumpf_jubel) - vorher sassen die Aermel dort wie Roehren auf
+    der Brust. Jubel-Aermel und alter erhobener Aermel teilen sich die Bilder
+    des erhobenen Oberarms, nie beide zugleich. Das Jubel-Rumpfbild gilt nur,
+    wenn auch der Jubel-Aermel zu sehen ist; seit der Nachpruefung vom
+    16.10.2026 tragen die Uebergangsbilder mit waagerechten Armen schon die
+    Jubel-Aermel, aber noch das alte Rumpfbild - genau ein Rumpfbild ist
+    immer zu sehen."""
     _bild_drache(grund)
     alle = _ebenen_nach_name(grund, maskottchen)
     geprueft = 0
     for stueck in ("trikot", "weste_strick", "weste_leder"):
+        rumpf, rumpf_jubel = alle["bild_%s_rumpf" % stueck], alle["bild_%s_rumpf_jubel" % stueck]
         for nm in [n for n in alle if n.startswith("bild_%s_" % stueck) and "arm" in n]:
-            arm = alle["bild_" + nm[len("bild_%s_" % stueck):]]
+            teil = nm[len("bild_%s_" % stueck):]
+            arm = alle["bild_" + teil.replace("_jubel", "_hoch")]
             assert alle[nm]["parent"] == arm["parent"] and alle[nm]["ind"] < arm["ind"], nm
-            for bild in range(grund["op"]):
-                assert _deckkraft(alle[nm], bild) == _deckkraft(arm, bild), (nm, bild)
+            if teil.endswith(("_hoch", "_jubel")):
+                hoch, jubel = alle[nm.replace("_jubel", "_hoch")], alle[nm.replace("_hoch", "_jubel")]
+                nur_aermel = 0
+                for bild in range(grund["op"]):
+                    h, j = _deckkraft(hoch, bild), _deckkraft(jubel, bild)
+                    rj, r = _deckkraft(rumpf_jubel, bild), _deckkraft(rumpf, bild)
+                    assert h + j == _deckkraft(arm, bild) and h * j == 0, (nm, bild)
+                    assert rj in (0, j) and r == 100 - rj, (nm, bild)
+                    nur_aermel += j == 100 and rj == 0
+                assert nur_aermel == 6, nm      # je drei Bilder hoch und runter
+            else:
+                for bild in range(grund["op"]):
+                    assert _deckkraft(alle[nm], bild) == _deckkraft(arm, bild), (nm, bild)
             geprueft += 1
-    assert geprueft == 4 + 10 + 10
+    assert geprueft == 6 + 12 + 12
 
 
 def test_mantel_haengt_hinter_dem_koerper(grund, maskottchen):
