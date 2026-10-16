@@ -519,6 +519,34 @@ GESICHT = ["eyes", "lids", "eyes_happy", "eyes_cry", "brows", "mouth_idle", "mou
 # der Kruemmung weitergefuehrt, hinter dem ersten und oben hinter dem Becken
 # (Ebene "tail" liegt hinter "body") - der Schwanz haengt am Becken.
 # Bildgroesse bleibt. Werkzeug: befunde_16_10\skelett_wirbel.py.
+# Zweite Korrektur 16.10.2026 nach Ajdins Rueckmeldung ("immer noch breite
+# Halswirbel, die muessen duenner sein wie die Schwanzwirbel; die Schultern
+# sind nicht im Schluesselbein; unter der Schulter sieht etwas aus wie ein
+# Beckenknochen"): Gemini hatte Brustkorb, Schluesselbeine und Schulterknaufe
+# an den langen Hals des blauen Drachen gemalt, die Arme haengen im Rig aber
+# viel tiefer (SCHULTER). Unter dem Kiefer sah man darum die oberen Rippen
+# (wie breite Halswirbel), die Arme setzten an den unteren Rippen an, und
+# deren nach aussen gebogene Enden wirkten unter der Schulter wie ein
+# Beckenkamm. Der Oberkoerper in body ist neu: schlanke Halswirbel (schmaler
+# als die Schwanzwirbel) bis zum Brustbein, Schluesselbeine leicht abfallend
+# bis zu den Schultergelenken genau am Oberarmkopf, kleine Schulterblatt-
+# spitzen, darunter ein kurzer, breiter Brustkorb mit drei Rippenpaaren
+# (mehr passen zwischen Schulter und Becken nicht), schlanke Lende bis ins
+# Becken; Becken, Beine und Fuesse unveraendert. Gezeichnet und von Gemini
+# im Nahausschnitt an Ort und Stelle nachgemalt (befunde_16_10\rumpf_neu.py);
+# vor dem schlanken Hals standen an jedem Schaedel unter den Kieferecken
+# Halsstriche frei in der Luft - weg (befunde_16_10\kinn_reste.py).
+# Bildgroessen und Drehpunkte bleiben, das Rig ist unveraendert. Damit sind
+# die Saetze oben vom schmaleren Brustbein unter dem Kinn und vom Hals, der
+# hinter dem Kopf liegt, ueberholt: der Hals ist jetzt eine duenne Wirbel-
+# kette und unter dem Kinn zu sehen.
+# Nachpruefung 16.10.2026 nachmittags: Dadurch lag das Kinn frei, und die
+# Schaedelbilder endeten unten mit einer geraden Kante ohne Umriss - unter
+# dem dunklen U des Unterkiefers hing ein Stummel vom alten Hals (beige, mit
+# senkrechten Strichen), beim Jubel war das U selbst abgeschnitten. Jetzt
+# endet jeder Schaedel am U: darunter durchsichtig, wo das U fehlte, ist es
+# rund geschlossen und der Umriss nachgezogen (Bildgroessen bleiben).
+# Werkzeug: befunde_16_10\korrektur4\kinn4.py.
 HAUT_ERSETZT = {"skelett": "skelett"}
 # Ebenen, die der Bild-Drache gar nicht ausliefert. "eyes" (Augenweiss mit
 # blauer Iris) blieb bis 15.10.2026 in der Grunddatei stehen und lag mit
@@ -603,6 +631,8 @@ ZIERRAT_ALLE = ZIERRAT + [n for v in NUR_MIT.values() for n in v]
 # -104 auf dem Schaedel (Brauen frei), am abgewandten Kopf 10 Einheiten zum
 # Hinterkopf; die Hoerner stehen ganz davor (Loch im Kronenbild, wo das
 # Kopfbild Horn ist). Werkzeug: kostueme2\korrektur\werk\krone.py.
+# Dritte Fassung (16.10.2026 mittags, "Hoerner innen" oder "laessig am Horn"):
+# siehe KRONE_GROSS unten.
 #
 # Die restlichen neun (16.10.2026, Ajdin nach dem Vergleich gemalt gegen
 # gezeichnet: "mal auch die restlichen"): Brille, Sonnenbrille, Lesebrille,
@@ -634,7 +664,7 @@ GEMALTE_HUETE = {
     "hut":            ((215, 226, 106.84, 379.29), (211, 212,  87.76, 353.86)),
     "doktorhut":      ((335, 185, 166.59, 326.74), (304, 206, 119.55, 320.81)),
     "krone":          ((132, 116,  65.3,  288.6),  (123, 106,  58.94, 283.51)),
-    "krone_gross":    ((206, 154, 103.0,  322.5),  (187, 154,  52.0,  322.5)),
+    "krone_gross":    None,      # Form nach KRONE_GROSS, siehe unten
     "nikolausmuetze": ((293, 239, 110.23, 311.48), (264, 245,  77.59, 292.41)),
     "bajramfes":      ((151, 173,  74.2,  333.52), (157, 176,  64.88, 323.77)),
     "ohrenschuetzer": ((348, 218, 173.38, 272.07), (314, 231, 140.32, 276.3)),
@@ -648,6 +678,51 @@ GEMALTE_HUETE = {
 }
 # Stuecke mit eigenem Bild fuer kopf_rechts statt des gespiegelten linken.
 EIGENES_RECHTS = {"monokel": (54, 76, -55.06, 149.58)}
+# Grosse Krone, dritte Fassung (16.10.2026 mittags). Ajdin zur Krone von
+# heute morgen (sie sass zwischen den Hoernern, die Hoerner davor): "mach doch
+# bei der Krone, dass die Hoerner innen sind und die Krone aussen, oder so
+# laessig, die Krone haengt so seitlich ab und haengt an einem Horn". Gemini
+# hat beides gemalt, auf den Koepfen und nach einer Skizze an der richtigen
+# Stelle (dieselbe Krone wie bisher: vier Zacken, zwei Perlen, zwei rote
+# Steine, grosser runder Stein):
+#   "laessig"  (B, Standard - Ajdin hat es ausfuehrlicher beschrieben): die
+#              Krone sitzt schraeg und haengt seitlich am linken Horn des
+#              Drachen (vorn rechts im Bild). Das Horn sticht innen durch die
+#              Kronenoeffnung: unten liegt der Reif davor, darueber steht das
+#              Horn vor der Rueckwand (Loch im Kronenbild, das Horn des
+#              Kopfbilds schaut durch). Es ist in allen Ansichten DASSELBE
+#              Horn - am nach rechts gedrehten Kopf das ferne, darum hat
+#              rechts ein eigenes Bild (EIGENES_RECHTS); gespiegelt sprang die
+#              Krone beim Kopfschuetteln von Horn zu Horn (Gemini hatte sie
+#              im ersten Versuch dort auch ans nahe Horn gehaengt).
+#              Nachpruefung 16.10.2026 nachmittags: Geminis zweites rechts-
+#              Bild stand aufrecht hinter dem Kopf auf einem gemalten goldenen
+#              Hornstreifen wie auf einem Stiel, unten fehlte ein Stueck Reif.
+#              Rechts ist jetzt die Frontkrone selbst, an das ferne Horn
+#              gelegt (41 Einheiten zur Mitte, in der Breite auf 92 %
+#              gestaucht): das Horn geht durch die Luecke ueber dem Reif, die
+#              Spitze ragt oben heraus, das nahe Horn steht davor
+#              (befunde_16_10\korrektur4\krone4.py).
+#   "innen"    (A): ein breiter, niedriger Reif tief auf dem Schaedel um beide
+#              Hornansaetze; die Hoerner wachsen innen aus der Krone heraus.
+#              Rechts = links gespiegelt (die Krone ist symmetrisch).
+# Umschalten: KRONE_GROSS unten aendern UND die Bilder der Form nach
+# web/maskottchen/zierrat/krone_gross/ legen - die von "innen" liegen fertig
+# in Drache_Bildteile\werkzeuge\befunde_16_10\korrektur3\krone_A\ (Kopie
+# von kostueme2\korrektur3\krone_A\, dort LIESMICH.txt mit dem Befehl;
+# die von "laessig" in Drache_Bildteile\fertig\zierrat\krone_gross\).
+# Passen Bilder und Zahlen nicht zusammen,
+# meldet dieser Bau "ACHTUNG, Bilder des Drachen" und der Test schlaegt fehl.
+# Werkzeuge: kostueme2\korrektur3\werk\kronen_skizze.py und krone3.py.
+#   Form: (vorne, links, eigenes rechts oder None) wie in GEMALTE_HUETE
+KRONE_GROSS = "laessig"
+KRONE_GROSS_FORMEN = {
+    "laessig": ((173, 155, -9.71, 285.63), (171, 153, -8.44, 274.61), (161, 157, 35.63, 286.05)),
+    "innen":   ((262, 108, 130.57, 272.07), (229, 119, 96.66, 276.3), None),
+}
+GEMALTE_HUETE["krone_gross"] = KRONE_GROSS_FORMEN[KRONE_GROSS][:2]
+if KRONE_GROSS_FORMEN[KRONE_GROSS][2]:
+    EIGENES_RECHTS["krone_gross"] = KRONE_GROSS_FORMEN[KRONE_GROSS][2]
 # Gemalte Kopfstuecke, die die Hornspitzen (bild_hoerner_*) NICHT leeren.
 HORNSPITZEN_BLEIBEN = ["brille", "sonnenbrille", "lesebrille", "monokel"]
 # Funkeln (16.10.2026): sieben gemalte Sterne, je eine Bild-Ebene an "body"
@@ -682,6 +757,8 @@ STERN_PX = 128
 # Brustmitte mit goldener Spange. Sie liegt HINTER den Armen (Platz der
 # Vektor-Ebene umhang, wie die anderen Halssachen) - vor den Armen haetten
 # ihre Baender beim Weinen die Unterarme auf der Brust zugedeckt.
+# (Seit 16.10.2026 mittags liegt ein Schulterumhang darueber - siehe "Dritte
+# Durchsicht" unten; die Baender liegen weiter hinter den Armen.)
 #
 # Korrektur nach Ajdins Rueckmeldung vom 16.10.2026 (Quellen, Werkzeuge,
 # Vorher/Nachher: kostueme2\korrektur\ im Arbeitsordner des Drachen):
@@ -738,6 +815,63 @@ STERN_PX = 128
 #   Haut "nacht" (Sonnenbrille, Kopfhoerer, Doktorhut) und der Hexenhut auf
 #   "galaxie" bleiben: sie stehen mit Umriss, Glanzlichtern bzw. Goldband
 #   vor allem ueber dem Kopf, gegen den Hintergrund.
+#
+# Dritte Durchsicht 16.10.2026 mittags (Ajdin nach dem Video der Kostueme;
+# Quellen, Werkzeuge und Vorher/Nachher: kostueme2\korrektur3\):
+# - Koenigsmantel: "die Schultern gucken raus, die muessen im Gewand sein".
+#   Zwischen der schmalen Stola und dem Mantel hinter dem Koerper standen in
+#   jeder Stimmung die blauen Schultern frei. Gemini hat den Mantel im
+#   Ruhebild 0 und im Jubelbild 120 neu gemalt: ein kurzer roter
+#   Schulterumhang mit Goldborte liegt ueber beiden Schultern und dem oberen
+#   Oberarm, die Stola obenauf, die Arme kommen unter der Borte hervor (beim
+#   Jubel hebt der Umhang sich mit, die Arme kommen oben heraus). Daraus
+#   "kragen" (Umhang + Stola) und "baender" (die zwei Hermelinbaender auf der
+#   Brust), beide am Rumpf; beim Jubel mit erhobenen Armen (cheer_oben) die
+#   Fassungen "_jubel". Der Kragen liegt VOR den Oberarmen (Platz
+#   "trikot_armL", Halssachen gibt es nur einzeln): der Umhang deckt die
+#   Schultern, die Arme schwingen darunter (idle/ok/sad hoechstens 9 Grad,
+#   beim Weinen gehen sie unter dem Umhang hoch). Am Arm haengt nichts - so
+#   bricht die Borte nirgends. Die Baender bleiben HINTER den Armen wie die
+#   alte Stola: schwingen die Arme nach innen, liegen sie vor den Baendern.
+#   Unten blendet der Kragen ueber 7 Einheiten aus, darunter haengt der
+#   bisherige lange Mantel (unveraendert). Werkzeug: korrektur3\werk\mantel3.py.
+# - Jelek: "wenn der Drache sich freut, ist das Jelek zu niedrig, es muss sich
+#   mitbewegen". Es hing richtig am Rumpf (Sprung und Strecken macht es mit),
+#   war aber fuer haengende Arme gemalt: mit erhobenen Armen steigen die
+#   Schultern, und die Schulterteile des Jeleks endeten darunter. Wie bei den
+#   Jacken jetzt ein Jubelbild "rumpf_jubel" (Gemini, Bild 120): die
+#   Schulterteile liegen auf den Schultern, die Armloecher oeffnen sich nach
+#   oben. Ein Jelek hat keine Aermel - das Bild liegt darum VOR den Oberarmen
+#   (der Rand des Armlochs deckt den Armansatz) und gilt nur, solange die
+#   Arme im Jubel oben stehen (cheer_oben). Beim Weinen bleibt das alte Bild:
+#   dort liegen die Arme vor der Brust, das Jubelbild deckte sie zu
+#   (ausprobiert). Unter dem Kinn gemalter Kragen bleibt im Bild, obwohl der
+#   Kopf ihn in Bild 120 verdeckt - ohne ihn endete das Jelek mit einer
+#   geraden Kante, sobald der Kopf beim Huepfen hoeher steht. Unten geht es
+#   weich ins alte Bild ueber (Saum gleich, kein Sprung). Werkzeug:
+#   korrektur3\werk\jelek3.py.
+# - Trikot, Jacken und Schals geprueft: Trikot und Jacken haben ihre
+#   Jubelbilder schon, die Schals liegen um den Hals und gehen mit ihm hoch.
+# Nachpruefung 16.10.2026 nachmittags (Werkzeuge in
+# Drache_Bildteile\werkzeuge\befunde_16_10\korrektur4\, Quellen davor in
+# vor_korrektur4\; dieselben Gemini-Antworten, nur neu geschnitten):
+# - Koenigsmantel: Schulterumhang (Jubel) und Hermelin am Hals (sonst) waren
+#   oben mit dem Lineal abgeschnitten - das Bildfeld begann 120 Rumpfpixel
+#   unter dem Oberrand des Rumpfbilds, der Umhang reicht hoeher. Jetzt hat er
+#   oben Geminis Umriss (kragen 428 x 208, kragen_jubel 412 x 229). Dazu
+#   raus: drachenblaue Hautreste neben der Goldborte (auf gold- und rosa-Haut
+#   als Flecken sichtbar) und Reste der Baender im Kragenbild (grauer Rand,
+#   weisse Fetzen, goldene Splitter an den Enden) - der Kragen liegt vor den
+#   Armen, die beim ok-Schwung vor die Baender gehen; die eckigen Kerben am
+#   Bandrand sind rund geschlossen. Werkzeug: mantel4.py.
+# - Jelek-Jubelbild: Kragen- und Schulterspitzen waren oben waagerecht
+#   gekappt, an den Armloechern standen Schnittstufen und blaue Hautreste.
+#   Ursache war das Oeffnen der Maske mit einem 11x11-Quadrat (aus Spitzen
+#   werden flache Kanten); jetzt rund und klein, jedes Drachenblau ist kein
+#   Stoff (250 x 314). Werkzeug: jelek4.py.
+# - Bewusst geblieben: in den je drei Uebergangsbildern des Jubels
+#   (cheer_quer) gilt beim Jelek noch das Ruhebild - wie bei Trikot und
+#   Jacken; ein Jubelbild dort deckte die waagerechten Arme zu.
 JUBEL_OBERTEILE = ["trikot", "weste_leder", "weste_strick"]
 OHNE_JUBEL = ("idle", "sad", "ok", "no", "no_l", "no_r", "cheer_ruhe", "cheer_quer", "cry")
 #   stueck: {teil: (Breite, Hoehe, Drehpunkt x, y, vor[, sichtbar])}
@@ -748,9 +882,13 @@ GEMALTE_RUMPFSTUECKE = {
                      "rumpf_jubel": (344, 345, 170.38, 533.99, "weste_leder", ("cheer_oben",))},
     "weste_strick": {"rumpf":       (247, 284, 122.88, 462.57, "weste_strick", OHNE_JUBEL),
                      "rumpf_jubel": (327, 334, 162.88, 502.57, "weste_strick", ("cheer_oben",))},
-    "jelek":        {"rumpf":  (253, 316, 125.8, 487.51, "jelek")},
-    "umhang":       {"mantel": (742, 517, 370.05, 514.16, "skelett_wingL"),
-                     "kragen": (248, 305, 122.88, 505.72, "umhang")},
+    "jelek":        {"rumpf":       (253, 316, 125.8, 487.51, "jelek", OHNE_JUBEL),
+                     "rumpf_jubel": (250, 314, 124.8, 485.51, "trikot_armL", ("cheer_oben",))},
+    "umhang":       {"mantel":        (742, 517, 370.05, 514.16, "skelett_wingL"),
+                     "kragen":        (428, 208, 213.0, 503.0, "trikot_armL", OHNE_JUBEL),
+                     "baender":       (129, 180, 63.0, 385.0, "umhang", OHNE_JUBEL),
+                     "kragen_jubel":  (412, 229, 205.0, 527.0, "trikot_armL", ("cheer_oben",)),
+                     "baender_jubel": (128, 179, 63.0, 385.0, "umhang", ("cheer_oben",))},
     "schal_winter": {"rumpf":  (191, 288,  94.74, 545.58, "trikot_armL")},
     "schal_bih":    {"rumpf":  (243, 396, 120.53, 556.37, "trikot_armL")},
 }

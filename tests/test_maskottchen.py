@@ -209,15 +209,51 @@ def test_aermel_folgen_ihrem_arm(grund, maskottchen):
 
 def test_mantel_haengt_hinter_dem_koerper(grund, maskottchen):
     """Der gemalte Koenigsmantel haengt hinter Koerper und Schwanz, aber vor
-    den Fluegeln. Der Hermelinkragen (seit 16.10.2026 eine schmale Stola mit
-    Baendern auf der Brust) liegt hinter den Armen und vor dem Koerper - vor
-    den Armen deckten die Baender beim Weinen die Unterarme zu."""
+    den Fluegeln. Die Hermelinbaender auf der Brust liegen hinter den Armen
+    und vor dem Koerper - vor den Armen deckten sie beim Weinen die Unterarme
+    zu. Seit 16.10.2026 mittags (Ajdin: "die Schultern gucken raus, die
+    muessen im Gewand sein") liegt der Kragen mit dem Schulterumhang VOR den
+    Oberarmen, aber hinter Kopf und Unterarmen: er deckt die Schultern, die
+    Arme kommen unter ihm hervor."""
     _bild_drache(grund)
     alle = _ebenen_nach_name(grund, maskottchen)
-    ind = {n: alle[n]["ind"] for n in ("bild_umhang_mantel", "bild_umhang_kragen", "bild_body", "bild_tail",
-                                       "bild_wingL", "bild_wingR", "bild_oberarmL", "bild_oberarmR")}
+    ind = {n: alle[n]["ind"] for n in ("bild_umhang_mantel", "bild_umhang_kragen", "bild_umhang_kragen_jubel",
+                                       "bild_umhang_baender", "bild_umhang_baender_jubel", "bild_body", "bild_tail",
+                                       "bild_wingL", "bild_wingR", "bild_oberarmL", "bild_oberarmR",
+                                       "bild_oberarmL_hoch", "bild_oberarmR_hoch", "bild_unterarmL_offen",
+                                       "bild_unterarmR_offen", "bild_kopf_neutral")}
+    arme = [ind[n] for n in ("bild_oberarmL", "bild_oberarmR", "bild_oberarmL_hoch", "bild_oberarmR_hoch")]
     assert ind["bild_body"] < ind["bild_tail"] < ind["bild_umhang_mantel"] < min(ind["bild_wingL"], ind["bild_wingR"])
-    assert max(ind["bild_oberarmL"], ind["bild_oberarmR"]) < ind["bild_umhang_kragen"] < ind["bild_body"]
+    for b in ("bild_umhang_baender", "bild_umhang_baender_jubel"):
+        assert max(arme) < ind[b] < ind["bild_body"], b
+    for k in ("bild_umhang_kragen", "bild_umhang_kragen_jubel"):
+        assert max(ind["bild_kopf_neutral"], ind["bild_unterarmL_offen"], ind["bild_unterarmR_offen"]) < ind[k] \
+            < min(arme), k
+
+
+def test_jubelbilder_am_rumpf_wechseln_mit_den_armen(grund, maskottchen):
+    """Jelek und Koenigsmantel haben seit 16.10.2026 mittags eigene Bilder
+    fuer den Jubel mit erhobenen Armen (das Jelek blieb sonst "zu niedrig",
+    der Mantel liess die Schultern frei). Je Paar ist in jedem Bild genau
+    eines zu sehen, und das Jubelbild genau dann, wenn auch das Trikot sein
+    Jubelbild zeigt (die Arme stehen oben). Das Jubel-Jelek liegt vor den
+    Oberarmen (der Rand des Armlochs deckt den Armansatz), aber hinter Kopf
+    und Unterarmen."""
+    _bild_drache(grund)
+    alle = _ebenen_nach_name(grund, maskottchen)
+    oben = [_deckkraft(alle["bild_trikot_rumpf_jubel"], b) for b in range(grund["op"])]
+    assert 0 < oben.count(100) < len(oben)
+    for alt, jubel in (("bild_jelek_rumpf", "bild_jelek_rumpf_jubel"),
+                       ("bild_umhang_kragen", "bild_umhang_kragen_jubel"),
+                       ("bild_umhang_baender", "bild_umhang_baender_jubel")):
+        for b in range(grund["op"]):
+            a, j = _deckkraft(alle[alt], b), _deckkraft(alle[jubel], b)
+            assert a + j == 100 and a * j == 0, (alt, b)
+            assert j == oben[b], (jubel, b)
+    ind = {n: alle[n]["ind"] for n in ("bild_jelek_rumpf_jubel", "bild_oberarmL_hoch", "bild_oberarmR_hoch",
+                                       "bild_unterarmL_faust", "bild_kopf_jubel")}
+    assert max(ind["bild_kopf_jubel"], ind["bild_unterarmL_faust"]) < ind["bild_jelek_rumpf_jubel"] \
+        < min(ind["bild_oberarmL_hoch"], ind["bild_oberarmR_hoch"])
 
 
 def test_kostueme_faerben_nicht_mit(index_html, maskottchen):
