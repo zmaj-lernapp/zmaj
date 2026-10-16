@@ -547,6 +547,18 @@ GESICHT = ["eyes", "lids", "eyes_happy", "eyes_cry", "brows", "mouth_idle", "mou
 # endet jeder Schaedel am U: darunter durchsichtig, wo das U fehlte, ist es
 # rund geschlossen und der Umriss nachgezogen (Bildgroessen bleiben).
 # Werkzeug: befunde_16_10\korrektur4\kinn4.py.
+# Dritte Korrektur 16.10.2026 nachmittags nach Ajdins Rueckmeldung ("die
+# Halswirbel sind jetzt viel zu duenn, mach sie etwas dicker"): Die
+# schlanke Wirbelkette war schmaler als die Lendenwirbel und wirkte unter
+# dem grossen Schaedel wie ein Faden. Die Halskette in body ist jetzt
+# gleichmaessig 1,5-fach vergroessert - um den Punkt, an dem der unterste
+# Wirbel auf dem Schluesselbein sitzt; Form und Umriss der gemalten Wirbel
+# bleiben, sie sind nur kraeftiger (so breit wie die Lendenwirbel, deutlich
+# schmaler als die alten Rippenbaender), und der Hals geht hinter dem
+# Schluesselbein hinab. Damit ist "schlanke Halswirbel (schmaler als die
+# Schwanzwirbel)" oben ueberholt. Alles andere in body bleibt Pixel fuer
+# Pixel, Bildgroesse und Drehpunkt auch. Werkzeug: befunde_16_10\
+# korrektur5_hals\hals_dicker.py (Stand davor in vor_korrektur5_hals).
 HAUT_ERSETZT = {"skelett": "skelett"}
 # Ebenen, die der Bild-Drache gar nicht ausliefert. "eyes" (Augenweiss mit
 # blauer Iris) blieb bis 15.10.2026 in der Grunddatei stehen und lag mit
@@ -703,6 +715,37 @@ EIGENES_RECHTS = {"monokel": (54, 76, -55.06, 149.58)}
 #              gestaucht): das Horn geht durch die Luecke ueber dem Reif, die
 #              Spitze ragt oben heraus, das nahe Horn steht davor
 #              (befunde_16_10\korrektur4\krone4.py).
+#              Korrektur 16.10.2026 nachmittags (Ajdin zum Kontrollbogen: "bei
+#              Krone Kopf links muss das anders aussehen, sieht komisch aus
+#              ... nimm die Krone auf einem Horn"): so sass die Krone mittig
+#              oben auf dem Schaedel und deckte das ferne Horn bis auf die
+#              Spitze zu - wie eine normale Krone, nicht am Horn. Geprueft im
+#              Kopfschuetteln: (a) dasselbe Horn, (b) immer das nahe Horn
+#              (rechts = links gespiegelt). (b) haengt sichtbar am Horn, die
+#              Krone springt dabei aber bei jedem Schwung ueber den Kopf auf
+#              die andere Seite (vorn rechts, abgewandt links). Genommen ist
+#              (a) neu gelegt: die Krone haengt am fernen Horn nach aussen
+#              herunter (22 Einheiten zur Mitte, 12 tiefer, 18 Grad mehr
+#              geneigt, 88 % breit und 92 % gross - das ferne Horn ist
+#              weiter weg), das Horn steht hinter ihr und ragt links oben
+#              heraus; sie bleibt beim Schuetteln auf derselben Seite und
+#              schwingt nur mit. Das alte Hornloch der Frontkrone ist
+#              zugemalt (befunde_16_10\korrektur5\krone5.py).
+#              Nachpruefung 16.10.2026 abends: so lehnte sie 45 Grad schraeg
+#              vor dem Hinterkopf, und das ferne Horn kam links oben NEBEN
+#              ihrem Rand heraus statt durch die Oeffnung - sie lehnte neben
+#              dem Horn, statt darauf zu haengen. Rechts ist jetzt die Krone
+#              vom nahen Horn (links.png, Geminis Dreiviertelansicht) so an
+#              das ferne Horn gelegt, wie sie am nahen haengt: abgebildet
+#              ueber die Hornachse (Spitze und Mitte 55 Einheiten darunter
+#              vom nahen auf das ferne Horn), dann 25 Grad zurueckgedreht -
+#              sie neigt sich wie vorn und am nahen Horn nach rechts -,
+#              85 % gross (weiter weg) und 4 Einheiten tiefer. Das ferne Horn
+#              steht IN der Krone und ragt zwischen den Zacken heraus, das
+#              nahe Horn steht davor. Ausprobiert und verworfen: gespiegelt
+#              (neigt sich zur Kopfmitte, liegt wie aufgesetzt auf dem
+#              Schaedel), und hinter dem Schaedel (nur halb zu sehen).
+#              Werkzeug: befunde_16_10\korrektur6\krone6b.py.
 #   "innen"    (A): ein breiter, niedriger Reif tief auf dem Schaedel um beide
 #              Hornansaetze; die Hoerner wachsen innen aus der Krone heraus.
 #              Rechts = links gespiegelt (die Krone ist symmetrisch).
@@ -717,7 +760,7 @@ EIGENES_RECHTS = {"monokel": (54, 76, -55.06, 149.58)}
 #   Form: (vorne, links, eigenes rechts oder None) wie in GEMALTE_HUETE
 KRONE_GROSS = "laessig"
 KRONE_GROSS_FORMEN = {
-    "laessig": ((173, 155, -9.71, 285.63), (171, 153, -8.44, 274.61), (161, 157, 35.63, 286.05)),
+    "laessig": ((173, 155, -9.71, 285.63), (171, 153, -8.44, 274.61), (143, 129, 36.06, 260.2)),
     "innen":   ((262, 108, 130.57, 272.07), (229, 119, 96.66, 276.3), None),
 }
 GEMALTE_HUETE["krone_gross"] = KRONE_GROSS_FORMEN[KRONE_GROSS][:2]
@@ -872,8 +915,54 @@ STERN_PX = 128
 # - Bewusst geblieben: in den je drei Uebergangsbildern des Jubels
 #   (cheer_quer) gilt beim Jelek noch das Ruhebild - wie bei Trikot und
 #   Jacken; ein Jubelbild dort deckte die waagerechten Arme zu.
+# Vierte Durchsicht 16.10.2026 nachmittags (Ajdin: "Die Arme sind beim
+# Mantel komisch abgeschnitten, und beim Jubel geht er durch den Mantel";
+# Werkzeuge, Quellen, Vorher/Nachher: kostueme2\korrektur5\ bzw.
+# Drache_Bildteile\werkzeuge\befunde_16_10\korrektur5\):
+# - In Ruhe begann der Unterarm schon unter der Goldborte. Er liegt aber VOR
+#   dem Kragen (die Unterarme liegen vor allem, auch vor dem Kopf), also lag
+#   sein oberes Ende auf Borte und Samt - eine gerade Kante quer ueber dem
+#   Umhang. Dazu fehlte im Kragenbild genau dort ein Stueck (beim Schneiden
+#   war die Flaeche der Unterarme aus Bild 0 herausgenommen worden). Jetzt
+#   ist der Kragen dort ganz (mantel5.py), und ein eigenes Bild "saum" - die
+#   zwei Fluegel des Umhangs mit Borte, Pixel fuer Pixel wie im Kragen -
+#   liegt VOR den Unterarmen (Platz "tears"): der Arm kommt unter der Borte
+#   hervor. Wo der Saum liegt, ist in keiner Stimmung der Kopf, und die
+#   Unterarme bleiben mehr als 8 Bildpixel von seinen inneren Kanten weg
+#   (gemessen ueber alle Bilder: saum_analyse.py), also schneidet er sie
+#   nirgends; die Borte hat dort ihren vollen unteren Umriss. Der Saum gilt
+#   nur, solange die Arme haengen (SAUM_ZEIT) - beim Weinen und in den
+#   Uebergangsbildern des Jubels gehen die Unterarme vor dem Umhang hoch.
+# - Jubel: Gemini hatte die erhobenen Arme oben AUS dem Schulterumhang
+#   kommen lassen; als Bild vor den Oberarmen sah das aus, als stiessen sie
+#   durch den Samt. Jetzt liegt der Umhang (kragen_jubel) HINTER den Armen
+#   wie ein Umhang, der ueber die Schultern nach hinten faellt; die zwei
+#   Zipfel am Hals, aus denen bei Gemini die Arme kamen, sind abgeschnitten,
+#   die Kante faellt vom Fell schraeg zur Schulterborte ab. Die Stola mit
+#   Spange (stola_jubel) liegt VOR den Oberarmen: die Arme kommen unter dem
+#   Fell hervor, ihr runder Ansatz liegt nicht sichtbar auf dem Fell
+#   (jubel5.py). Ausprobiert und verworfen: der Ruhekragen hinter den
+#   erhobenen Armen - er liegt zu tief, Schultern und Fell schauten frei.
 JUBEL_OBERTEILE = ["trikot", "weste_leder", "weste_strick"]
 OHNE_JUBEL = ("idle", "sad", "ok", "no", "no_l", "no_r", "cheer_ruhe", "cheer_quer", "cry")
+# Koenigsmantel (16.10.2026 abends, Nachpruefung nach Ajdins "die Arme sind
+# beim Mantel komisch abgeschnitten"): in den je drei Uebergangsbildern des
+# Jubels (cheer_quer) lag noch der Ruhekragen ueber den Oberarmen - die
+# waagerechten bzw. halb erhobenen Unterarme kamen seitlich aus dem
+# Umhangrand wie aus einem Schlitz, und beim ersten Jubelbild sprang der
+# Kragen auf die Stola. Jetzt gilt dort schon der Jubel-Umhang (hinter den
+# Armen) mit der Stola vor den Oberarmen: die Arme sind von der Schulter an
+# zu sehen, und der Wechsel faellt auf das Bild, in dem die Arme ohnehin
+# hochschnellen. Beim Weinen bleibt der Ruhekragen (die Unterarme liegen
+# dort vor ihm). Im Mantelbild sind ausserdem die feinen blauvioletten
+# Striche im roten Samt neben den Beinen weg (Reste vom Umriss des blauen
+# Drachen aus Geminis Bild, im Jubel und bei Traurig zu sehen) - aus dem
+# Samt ringsum zugewachsen. Werkzeuge: befunde_16_10\korrektur6\
+# (mantel_striche.py).
+MANTEL_RUHE = tuple(z for z in OHNE_JUBEL if z != "cheer_quer")
+MANTEL_JUBEL = ("cheer_oben", "cheer_quer")
+# Stimmungen mit haengenden Armen (Saum des Koenigsmantels vor den Unterarmen)
+SAUM_ZEIT = ("idle", "sad", "ok", "no", "no_l", "no_r", "cheer_ruhe")
 #   stueck: {teil: (Breite, Hoehe, Drehpunkt x, y, vor[, sichtbar])}
 GEMALTE_RUMPFSTUECKE = {
     "trikot":       {"rumpf":       (245, 273, 121.94, 456.47, "trikot", OHNE_JUBEL),
@@ -885,10 +974,14 @@ GEMALTE_RUMPFSTUECKE = {
     "jelek":        {"rumpf":       (253, 316, 125.8, 487.51, "jelek", OHNE_JUBEL),
                      "rumpf_jubel": (250, 314, 124.8, 485.51, "trikot_armL", ("cheer_oben",))},
     "umhang":       {"mantel":        (742, 517, 370.05, 514.16, "skelett_wingL"),
-                     "kragen":        (428, 208, 213.0, 503.0, "trikot_armL", OHNE_JUBEL),
-                     "baender":       (129, 180, 63.0, 385.0, "umhang", OHNE_JUBEL),
-                     "kragen_jubel":  (412, 229, 205.0, 527.0, "trikot_armL", ("cheer_oben",)),
-                     "baender_jubel": (128, 179, 63.0, 385.0, "umhang", ("cheer_oben",))},
+                     "kragen":        (428, 208, 213.0, 503.0, "trikot_armL", MANTEL_RUHE),
+                     "saum":          (428, 221, 213.0, 503.0, "tears", SAUM_ZEIT),
+                     "baender":       (129, 180, 63.0, 385.0, "umhang", MANTEL_RUHE),
+                     # Reihenfolge: die Baender vor dem Jubel-Umhang (beide
+                     # stehen vor "umhang", das erste Bild liegt vorn)
+                     "baender_jubel": (128, 179, 63.0, 385.0, "umhang", MANTEL_JUBEL),
+                     "kragen_jubel":  (412, 229, 205.0, 527.0, "umhang", MANTEL_JUBEL),
+                     "stola_jubel":   (412, 229, 205.0, 527.0, "trikot_armL", MANTEL_JUBEL)},
     "schal_winter": {"rumpf":  (191, 288,  94.74, 545.58, "trikot_armL")},
     "schal_bih":    {"rumpf":  (243, 396, 120.53, 556.37, "trikot_armL")},
 }
