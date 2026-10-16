@@ -59,19 +59,113 @@ def test_bild_ebenen_stehen_auf_der_tiefe_ihrer_rig_ebene(grund):
                 (e["nm"], dazwischen and dazwischen["nm"])
 
 
+def _schnipsel(maskottchen):
+    """{id: (Ebenen, Assets)} aller zmajz-<id>.json. Ein Schnipsel ist eine
+    Liste von Ebenen oder - seit 16.10.2026, bei den gemalten Stuecken -
+    ein Objekt {layers, assets} (zmajDaten() in web/index.html)."""
+    alle = {}
+    for name in sorted(os.listdir(maskottchen)):
+        if name.startswith("zmajz-") and name.endswith(".json"):
+            with io.open(os.path.join(maskottchen, name), encoding="utf-8") as f:
+                teil = json.load(f)
+            if isinstance(teil, dict):
+                alle[name[6:-5]] = (teil["layers"], teil.get("assets", []))
+            else:
+                alle[name[6:-5]] = (teil, [])
+    return alle
+
+
 def test_zierrat_passt_zwischen_die_ebenen(grund, maskottchen):
     """Kein Schnipsel benutzt eine "ind" der Grunddatei, und jede Eltern-
     Ebene, an der er haengt, gibt es (in der Grunddatei oder im Schnipsel)."""
     vergeben = {e["ind"] for e in grund["layers"]}
-    for name in sorted(os.listdir(maskottchen)):
-        if not name.startswith("zmajz-"):
-            continue
-        with io.open(os.path.join(maskottchen, name), encoding="utf-8") as f:
-            teil = json.load(f)
+    for name, (teil, _assets) in _schnipsel(maskottchen).items():
         eigene = {e["ind"] for e in teil}
         assert not eigene & vergeben, name
         for e in teil:
             assert "parent" not in e or e["parent"] in vergeben | eigene, (name, e["nm"])
+
+
+def test_gemalte_kostueme_bringen_ihre_bilder_mit(grund, maskottchen):
+    """Die gemalten Stuecke (16.10.2026): jede Bild-Ebene zeigt ein Asset
+    ihres eigenen Schnipsels, das Bild liegt unter zierrat/<id>/ und hat die
+    Groesse, die das Asset nennt - sonst bliebe das Stueck in der App leer
+    oder verzerrt. Kein Asset-Name kommt zweimal vor (auch nicht in
+    zmaj.json): Lottie findet die Bilder ueber den Namen."""
+    _bild_drache(grund)
+    gemalt = {n: v for n, v in _schnipsel(maskottchen).items() if v[1]}
+    assert {"kappe", "fes", "hut", "doktorhut", "krone", "krone_gross", "nikolausmuetze", "bajramfes",
+            "trikot", "weste_strick", "weste_leder", "umhang", "jelek", "schal_winter", "schal_bih"} <= set(gemalt)
+    namen = [a["id"] for a in grund["assets"]]
+    for name, (ebenen, assets) in gemalt.items():
+        ids = {a["id"]: a for a in assets}
+        namen += list(ids)
+        for e in ebenen:
+            assert e["ty"] == 2 and e["refId"] in ids, (name, e["nm"])
+        for a in assets:
+            assert a["u"] == "zierrat/%s/" % name, a
+            pfad = os.path.join(maskottchen, a["u"], a["p"])
+            assert os.path.isfile(pfad), "fehlt: %s - haut_einbauen.py --zierrat laufen lassen" % pfad
+            assert haut_einbauen.webp_groesse(pfad) == (a["w"], a["h"]), pfad
+    assert len(namen) == len(set(namen))
+
+
+def _ebenen_nach_name(grund, maskottchen):
+    alle = {e["nm"]: e for e in grund["layers"]}
+    for ebenen, _a in _schnipsel(maskottchen).values():
+        alle.update({e["nm"]: e for e in ebenen})
+    return alle
+
+
+def test_gemalte_huete_folgen_dem_kopfplan(grund, maskottchen):
+    """Je Hut drei Bilder: vorne auf allen Frontkoepfen, links/rechts genau
+    dann, wenn der abgewandte Kopf kopf_links/kopf_rechts zu sehen ist -
+    beim Kopfschuetteln springt der Hut im selben Bild wie der Kopf. Und er
+    nimmt die Hornspitzen heraus (zmaj_leert): wo Gemini ein Horn vor den
+    Hut gemalt hat, hat das Bild ein Loch, und die Spitzen darueber legten
+    am abgewandten Kopf das ferne Horn vor den Hut (16.10.2026)."""
+    _bild_drache(grund)
+    alle = _ebenen_nach_name(grund, maskottchen)
+    hornspitzen = {n for n in alle if n.startswith("bild_hoerner_")}
+    huete = [n[:-len("_vorne")] for n in alle if n.endswith("_vorne") and n.startswith("bild_")]
+    assert len(huete) == 8, huete
+    for hut in huete:
+        assert set(alle[hut + "_vorne"]["zmaj_leert"]) == hornspitzen, hut
+        for bild in range(grund["op"]):
+            seite = {s: _deckkraft(alle[hut + "_" + s], bild) for s in ("vorne", "links", "rechts")}
+            kopf = {s: _deckkraft(alle["bild_kopf_" + s], bild) for s in ("links", "rechts")}
+            erwartet = "links" if kopf["links"] == 100 else "rechts" if kopf["rechts"] == 100 else "vorne"
+            assert seite == {s: (100 if s == erwartet else 0) for s in seite}, (hut, bild, seite)
+
+
+def test_aermel_folgen_ihrem_arm(grund, maskottchen):
+    """Ein gemalter Aermel haengt an derselben Rig-Ebene wie sein Armteil
+    und ist in genau denselben Bildern zu sehen - erhoben, als Faust, an
+    der Wange. Er liegt vor dem Arm (kleinere "ind")."""
+    _bild_drache(grund)
+    alle = _ebenen_nach_name(grund, maskottchen)
+    geprueft = 0
+    for stueck in ("trikot", "weste_strick", "weste_leder"):
+        for nm in [n for n in alle if n.startswith("bild_%s_" % stueck) and "arm" in n]:
+            arm = alle["bild_" + nm[len("bild_%s_" % stueck):]]
+            assert alle[nm]["parent"] == arm["parent"] and alle[nm]["ind"] < arm["ind"], nm
+            for bild in range(grund["op"]):
+                assert _deckkraft(alle[nm], bild) == _deckkraft(arm, bild), (nm, bild)
+            geprueft += 1
+    assert geprueft == 4 + 10 + 10
+
+
+def test_mantel_haengt_hinter_dem_koerper(grund, maskottchen):
+    """Der gemalte Koenigsmantel haengt hinter Koerper und Schwanz, aber vor
+    den Fluegeln. Der Hermelinkragen (seit 16.10.2026 eine schmale Stola mit
+    Baendern auf der Brust) liegt hinter den Armen und vor dem Koerper - vor
+    den Armen deckten die Baender beim Weinen die Unterarme zu."""
+    _bild_drache(grund)
+    alle = _ebenen_nach_name(grund, maskottchen)
+    ind = {n: alle[n]["ind"] for n in ("bild_umhang_mantel", "bild_umhang_kragen", "bild_body", "bild_tail",
+                                       "bild_wingL", "bild_wingR", "bild_oberarmL", "bild_oberarmR")}
+    assert ind["bild_body"] < ind["bild_tail"] < ind["bild_umhang_mantel"] < min(ind["bild_wingL"], ind["bild_wingR"])
+    assert max(ind["bild_oberarmL"], ind["bild_oberarmR"]) < ind["bild_umhang_kragen"] < ind["bild_body"]
 
 
 def test_kostueme_faerben_nicht_mit(index_html, maskottchen):
@@ -101,21 +195,65 @@ def test_kostueme_faerben_nicht_mit(index_html, maskottchen):
 
 def test_skelett_ist_nur_knochen(grund, maskottchen):
     """Fest-Entscheidung vom 01.10.2026: das Halloween-Skelett ist nur
-    Knochen - kein Fleisch, keine Augen mit Iris. Bis 15.10.2026 ersetzte
-    ein Bildsatz haut/skelett/ die Knochen durch einen elfenbeinfarbenen
-    Drachen mit blauen Augen. Jetzt nimmt das Stueck alle Bilder heraus und
+    Knochen - kein Fleisch, keine Augen mit Iris. Seit 16.10.2026 ist es
+    das von Gemini gemalte Skelett, der Hautsatz haut/skelett/ (am selben
+    Rig, also dieselbe Bewegung wie der Drache). Das Vektor-Skelett weicht
+    ihm ganz (zmaj_ohne_haut auf jeder seiner Ebenen) und bleibt der
+    Rueckfall, wenn der Satz fehlt: dann nimmt es alle Bilder heraus und
     bringt das Vektor-Gesicht mit, ohne das Augenweiss mit Iris."""
     _bild_drache(grund)
-    with io.open(os.path.join(maskottchen, "zmajz-skelett.json"), encoding="utf-8") as f:
-        teil = json.load(f)
-    assert not any("zmaj_ohne_haut" in e for e in teil), "das Skelett darf keinem Hautsatz weichen"
-    assert not os.path.isdir(os.path.join(maskottchen, "haut", "skelett"))
+    teil, _assets = _schnipsel(maskottchen)["skelett"]
+    assert all(e.get("zmaj_ohne_haut") == "skelett" for e in teil), "das Vektor-Skelett muss dem Bildsatz weichen"
+    assert "haut/skelett/" in inhalt.maskottchen_bilder(maskottchen), "der gemalte Satz ist nicht vollstaendig"
     leert = set(teil[0]["zmaj_leert"])
     bilder = {e["nm"] for e in grund["layers"] if e.get("ty") == 2}
-    assert bilder <= leert, "es blieben Bilder unter den Knochen stehen"
+    assert bilder <= leert, "im Rueckfall blieben Bilder unter den Knochen stehen"
     namen = {e["nm"] for e in teil}
     assert {"skelett_augen", "lids", "mouth_idle"} <= namen
     assert "eyes" not in namen
+
+
+def test_feld_der_haende_an_der_wange(grund):
+    """Die Knochenhaende des Skeletts vor den Augenhoehlen sind groesser als
+    die Hand an der Wange; alle Saetze teilen sich ein Asset, die kleineren
+    Bilder erweitert haut_einbauen.py durchsichtig (FELD, 16.10.2026)."""
+    assert haut_einbauen.im_feld("unterarmR_wange", (88, 151)) == (114, 220)
+    assert haut_einbauen.im_feld("unterarmR_wange", (114, 220)) == (114, 220)
+    assert haut_einbauen.im_feld("unterarmR_wange", (100, 151)) == (100, 151)   # passt nicht ins Feld
+    assert haut_einbauen.im_feld("body", (328, 575)) == (328, 575)
+    _bild_drache(grund)
+    groesse = {a["id"]: (a["w"], a["h"]) for a in grund["assets"]}
+    for teil, (b, h, _x, _y) in haut_einbauen.FELD.items():
+        assert groesse[teil] == (b, h), teil
+
+
+def test_umwandeln_erweitert_auf_das_feld(tmp_path, monkeypatch):
+    """umwandeln() gibt ffmpeg den pad-Filter mit, wenn ein Teil kleiner als
+    sein Feld ist - aber nicht bei den Kostuemen (feld=False). Bis 16.10.2026
+    ueberschrieb eine lokale Variable den Parameter, und der Filter kam nie
+    mit; im_feld() allein hatte das nicht gezeigt."""
+    quelle = tmp_path / "quelle"
+    quelle.mkdir()
+    for teil, (b, h) in (("unterarmL_wange", (88, 151)), ("body", (328, 575))):
+        (quelle / (teil + ".png")).write_bytes(
+            b"\x89PNG\r\n\x1a\n" + bytes(4) + b"IHDR" + b.to_bytes(4, "big") + h.to_bytes(4, "big"))
+    aufrufe = []
+
+    class Fertig:
+        returncode = 0
+        stderr = ""
+
+    def ffmpeg(cmd, **_):
+        aufrufe.append(cmd)
+        return Fertig()
+
+    monkeypatch.setattr(haut_einbauen.subprocess, "run", ffmpeg)
+    haut_einbauen.umwandeln("ffmpeg", str(quelle), str(tmp_path / "ziel"))
+    vf = {os.path.basename(c[c.index("-i") + 1]): c[c.index("-vf") + 1] if "-vf" in c else None for c in aufrufe}
+    assert vf == {"body.png": None, "unterarmL_wange.png": "format=rgba,pad=114:220:0:0:color=0x00000000"}
+    aufrufe.clear()
+    haut_einbauen.umwandeln("ffmpeg", str(quelle), str(tmp_path / "ziel"), feld=False)
+    assert not any("-vf" in c for c in aufrufe)
 
 
 def test_grunddatei_ohne_vektorgesicht(grund):
@@ -154,6 +292,36 @@ def test_immer_genau_ein_kopf(grund):
             assert sorted(werte) == [0] * (len(werte) - 1) + [100], (vorsilbe, bild, werte)
 
 
+def test_kopfschuetteln(grund):
+    """Ajdin, 15.10.2026: bei einer falschen Antwort soll der Drache "richtig
+    den Kopf schuetteln" und "durchgehend boese gucken", statt den Kopf um
+    den Hals zu wiegen. In no, no_l und no_r wechseln sich darum die
+    abgewandten Koepfe links und rechts ab, dazwischen steht nur der finstere
+    Kopf (nie der neutrale, nie das Blinzeln), no_l beginnt links, no_r
+    rechts, und der Kopf kippt und rutscht dabei nicht (16.10.2026)."""
+    _bild_drache(grund)
+    koepfe = [e for e in grund["layers"] if e["nm"].startswith("bild_kopf_")]
+    kopf = next(e for e in grund["layers"] if e["nm"] == "head")
+    marken = {m["cm"]: (m["tm"], m["tm"] + m["dr"]) for m in grund["markers"]}
+
+    def im_bild(t):
+        return next(e["nm"].split("_", 2)[2] for e in koepfe if _deckkraft(e, t) == 100)
+
+    def werte(spur, a, e):
+        return [json.dumps(k["s"]) for k in spur["k"] if a <= k["t"] < e]
+
+    for name, zuerst in (("no", "links"), ("no_l", "links"), ("no_r", "rechts")):
+        a, e = marken[name]
+        folge = [im_bild(t) for t in range(a, e)]
+        assert set(folge) == {"finster", "links", "rechts"}, (name, folge)
+        schwuenge = [k for i, k in enumerate(folge) if k != "finster" and folge[i - 1] != k]
+        assert schwuenge[0] == zuerst and len(schwuenge) >= 4, (name, schwuenge)
+        assert all(x != y for x, y in zip(schwuenge, schwuenge[1:])), (name, schwuenge)
+        assert folge[0] == folge[-1] == "finster", name
+        assert set(werte(kopf["ks"]["r"], a, e)) <= {"[0]"}, name
+        assert len(set(werte(kopf["ks"]["p"], a, e))) <= 1, name
+
+
 def test_hautsaetze_sind_vollstaendig(maskottchen):
     soll = haut_einbauen.grundsatz()
     haut = os.path.join(maskottchen, "haut")
@@ -170,7 +338,8 @@ def test_hautsaetze_sind_vollstaendig(maskottchen):
 
 def test_hautfarben_gibt_es_in_der_app(index_html):
     """Jede Farbe der App hat entweder einen Platz fuer einen Hautsatz oder
-    steht bewusst in OHNE_HAUTSATZ (das Skelett, siehe haut_einbauen.py)."""
+    steht bewusst in OHNE_HAUTSATZ (siehe haut_einbauen.py; bis 16.10.2026
+    das Skelett, seitdem ist es ein gemalter Satz)."""
     block = re.search(r"const FARBEN = \{([\s\S]*?)\n\};", index_html.replace("\r\n", "\n")).group(1)
     block = re.sub(r"/\*[\s\S]*?\*/", "", block)
     assert not set(haut_einbauen.FARBEN) & set(haut_einbauen.OHNE_HAUTSATZ)
@@ -184,6 +353,17 @@ def test_vektor_drache_nimmt_keinen_hautsatz(index_html):
     rumpf = t[t.index("async function zmajDaten("):t.index("function zmaj(mood")]
     assert re.search(r"const haut = bilder \? hautSatz\(farbe\) : ''", rumpf)
     assert re.search(r"const bilder = \(zmajBasis\.assets \|\| \[\]\)\.some\(", rumpf)
+
+
+def test_app_nimmt_die_bilder_der_kostueme_mit(index_html):
+    """zmajDaten() muss die neue Form {layers, assets} kennen und deren
+    Bilder unabhaengig von der Hautfarbe unter maskottchen/zierrat/ suchen -
+    sonst traegt der Drache leere Bild-Ebenen (16.10.2026)."""
+    t = index_html.replace("\r\n", "\n")
+    rumpf = t[t.index("async function zmajDaten("):t.index("function zmaj(mood")]
+    assert "Array.isArray(teil.layers)" in rumpf and "zierBilder.push(...(teil.assets || []))" in rumpf
+    assert re.search(r"zierBilder\.filter\(a => benutzt\.has\(a\.id\)\)", rumpf)
+    assert re.search(r"\{u: 'maskottchen/' \+ \(a\.u \|\| ''\)\}", rumpf)
 
 
 def test_maskottchen_bilder_meldet_nur_ganze_hautsaetze(tmp_path):

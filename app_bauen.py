@@ -123,6 +123,16 @@ def maskottchen_groessen(ordner):
         farben = sorted(f for f in os.listdir(haut) if os.path.isdir(os.path.join(haut, f)))
         zeilen.append("haut/ %d KB: %s" % (_ordner_groesse(haut) // 1024, ", ".join(
             "%s %d KB" % (f, _ordner_groesse(os.path.join(haut, f)) // 1024) for f in farben)))
+    # Seit 16.10.2026 die gemalten Kostueme (zierrat/<stueck>/, siehe GEMALT
+    # in zmaj_lottie.py). Auch sie kommen ueber kopieren() mit; die App
+    # laedt sie nur, wenn das Stueck getragen wird.
+    zierrat = os.path.join(ordner, "zierrat")
+    if os.path.isdir(zierrat):
+        stuecke = sorted(f for f in os.listdir(zierrat) if os.path.isdir(os.path.join(zierrat, f)))
+        zeilen.append("zierrat/ %d KB: %d Stuecke, das groesste %s" % (
+            _ordner_groesse(zierrat) // 1024, len(stuecke),
+            max(("%s %d KB" % (f, _ordner_groesse(os.path.join(zierrat, f)) // 1024) for f in stuecke),
+                key=lambda z: int(z.split()[-2])) if stuecke else "-"))
     return zeilen
 
 

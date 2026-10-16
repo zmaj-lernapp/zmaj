@@ -1466,7 +1466,8 @@ Bosnisch Lernapp/
     │                 _probe/ mit den Probeaufnahmen bleibt draußen
     ├── maskottchen/  zmaj.json = Drache als Lottie-Animation aus Bildern
     │                 (teile/, je Hautfarbe haut/<farbe>/), zmajz-*.json die
-    │                 Kostüme, zmaj-*.png Standbilder, siehe LIESMICH.txt dort
+    │                 Kostüme (gemalte mit Bildern in zierrat/<id>/),
+    │                 zmaj-*.png Standbilder, siehe LIESMICH.txt dort
     ├── fonts/        Die Schriftdateien (Nunito, Spectral)
     ├── schriften.css Bindet sie ein – kein fremder Server
     ├── lottie.min.js Spielt die Drachen-Animation ab (liegt mit im Ordner)
