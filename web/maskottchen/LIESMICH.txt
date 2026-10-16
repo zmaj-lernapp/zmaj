@@ -60,29 +60,32 @@ haut/<farbe>/  Dieselben 32 Bilder in einer Hautfarbe aus dem Laden (gruen,
             braucht es fuer die Knochenhaende vor den Augenhoehlen, die
             anderen Saetze sind durchsichtig erweitert (haut_einbauen.py).
 
-zierrat/<id>/  Die gemalten Kostueme (16.10.2026), WebP wie teile/: Huete
-            und Kronen je vorne.webp, links.webp, rechts.webp (fuer den Kopf
-            von vorn und den abgewandten Kopf), Kleidung rumpf.webp bzw.
+zierrat/<id>/  Die gemalten Kostueme (16.10.2026), WebP wie teile/: alles am
+            Kopf (Huete, Kronen, Brillen, Ohrensachen, Hasenohren) je
+            vorne.webp, links.webp, rechts.webp (fuer den Kopf von vorn und
+            den abgewandten Kopf; beim Monokel ist rechts ein eigenes Bild,
+            sonst links gespiegelt), Funkeln stern_N.webp (sieben Sterne),
+            Kleidung rumpf.webp bzw.
             mantel.webp und kragen.webp, dazu die Aermel je Armteil
             (oberarmL.webp, oberarmL_hoch.webp, unterarmL_offen.webp ...).
             Sie haengen nicht an der Hautfarbe. Der Schnipsel des Stuecks
             nennt sie (siehe zmajz-*.json).
 
 zmajz-*.json  Zierrat aus dem Laden: je Stueck nur seine Ebene(n). Seit
-            16.10.2026 sind 15 Stuecke gemalt (Kappe, Fes, Muetze,
-            Doktorhut, Krone, grosse Krone, Nikolausmuetze, Bajram-Fes,
-            Trikot, Strick- und Lederjacke, Koenigsmantel, Jelek, beide
-            Schals): ihr Schnipsel ist {"layers": [Bild-Ebenen], "assets":
+            16.10.2026 sind 24 Stuecke gemalt - alle bis auf Galaxie und
+            Skelett (das ist ein Hautsatz, haut/skelett/): ihr Schnipsel ist {"layers": [Bild-Ebenen], "assets":
             [Bilder in zierrat/<id>/]}. Die Huete wechseln mit dem Kopf
-            zwischen vorne/links/rechts und nehmen die Hornspitzen heraus,
+            zwischen vorne/links/rechts und nehmen die Hornspitzen heraus
+            (die Brillen lassen sie stehen), die Funkelsterne blitzen
+            einzeln auf,
             die Aermel wechseln mit dem Arm (erhoben, Faust, Wange), der
-            Mantel haengt hinter Koerper und Schwanz. Die uebrigen Stuecke
-            sind als Vektor gezeichnet (eine Liste von Ebenen).
+            Mantel haengt hinter Koerper und Schwanz. Galaxie und der
+            Rueckfall des Skeletts sind als Vektor gezeichnet (eine Liste
+            von Ebenen).
             Die App haengt sie an zmaj.json an und sortiert nach
             "ind" (siehe zmajDaten() in web/index.html). Alle Stuecke haengen
             an Kopf, Koerper, Ober- oder Unterarm, Fluegel oder Schwanz und
-            gehen in jeder Stimmung mit; die Brillen ruecken am abgewandten
-            Kopf (no_l, no_r) ein Stueck zur Seite und werden schmaler.
+            gehen in jeder Stimmung mit.
             Manche Stuecke bringen mehrere Ebenen mit: Trikot und Jacken
             ihre Aermel (die Jacken auch am Unterarm), der Koenigsmantel
             seinen Hermelinkragen (gemalt seit 16.10.2026 eine schmale

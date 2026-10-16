@@ -60,10 +60,10 @@ SPDX-License-Identifier = "CC-BY-SA-4.0"
 # jurisdiction. Where rights exist, they are licensed like the rest of the
 # content. The Lottie files next to them (zmaj.json, zmajz-*.json) are
 # written by zmaj_lottie.py and stay covered by the "learning content" entry
-# above; the costumes that are still vectors (glasses, ear muffs,
-# headphones, witch hat, bunny ears, sparkle, galaxy) are drawn there too.
-# Since 16 October 2026 the other 15 costumes (hats, crowns, jackets,
-# jersey, royal cloak, jelek, scarves) are Gemini paintings as well, in
+# above; the stars of the galaxy skin are still vectors drawn there too.
+# Since 16 October 2026 the 24 costumes (hats, crowns, glasses, ear muffs,
+# headphones, witch hat, bunny ears, jackets, jersey, royal cloak, jelek,
+# scarves, sparkle stars) are Gemini paintings as well, in
 # web/maskottchen/zierrat, and so is the Halloween skeleton
 # (web/maskottchen/haut/skelett, covered by haut/**).
 # The app icon ("Entwurf 4", replacing the flag on the same day) is also a
