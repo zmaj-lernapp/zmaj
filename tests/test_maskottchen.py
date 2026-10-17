@@ -222,22 +222,44 @@ def test_mantel_haengt_hinter_dem_koerper(grund, maskottchen):
     Seit 16.10.2026 abends (Ajdin: "wenn man mit einem Umhang die Haende
     hebt, geht der Umhang von den Schultern runter"): mit erhobenen Armen
     liegt der heruntergerutschte Umhang ganz HINTER den Armen (rutsch), vor
-    dem Koerper - kein Arm kommt aus dem Fell."""
+    dem Koerper - kein Arm kommt aus dem Fell.
+    Seit 17.10.2026 (nach hinten geworfen, Ajdins abgenommenes Konzept): die
+    Goldboegen mit Fell und Spange liegen ebenso hinter den Armen und vor
+    dem Koerper (rutsch, beim Weinen rutsch_weinen), der hoeher gezogene
+    Samt hinter den Schultern (rutsch_hinten) hinter Koerper und Schwanz,
+    aber vor dem langen Mantel - er deckt dessen gerade Oberkante.
+    Seit 17.10.2026 nachmittags liegt dort auch der Bogen ueber den
+    Schultern fuer die waagerechten Arme (rutsch_quer).
+    Seit 17.10.2026 abends (Ajdin: "man sieht den Umhang immer noch hinter
+    den Armen", Vorlage das rechte Konzeptbild wurf_2): mit gehobenen Armen
+    haengt statt des breiten Mantels ein schlanker (rutsch_hinten, bei
+    waagerechten Armen rutsch_hinten_quer) am selben Platz hinter Koerper
+    und Schwanz, vor den Fluegeln - seit 17.10.2026 spaet abends mit
+    waagerechten Armen die Zwischenstufen mantel_quer1 bis mantel_quer3
+    (breit -> schlank). Der Stehkragen (rutsch) liegt wie der
+    Kragen mit haengenden Armen VOR den Oberarmen, hinter Kopf und
+    Unterarmen - das Goldband liegt im Konzept dort, wo beim Drachen die
+    Innenkante des Oberarms ist."""
     _bild_drache(grund)
     alle = _ebenen_nach_name(grund, maskottchen)
     ind = {n: alle[n]["ind"] for n in ("bild_umhang_mantel", "bild_umhang_kragen", "bild_umhang_rutsch",
                                        "bild_umhang_baender", "bild_umhang_saum",
+                                       "bild_umhang_rutsch_hinten", "bild_umhang_mantel_quer1",
+                                       "bild_umhang_mantel_quer2", "bild_umhang_mantel_quer3",
                                        "bild_body", "bild_tail",
                                        "bild_wingL", "bild_wingR", "bild_oberarmL", "bild_oberarmR",
                                        "bild_oberarmL_hoch", "bild_oberarmR_hoch", "bild_unterarmL_offen",
                                        "bild_unterarmR_offen", "bild_unterarmL_faust", "bild_unterarmR_faust",
                                        "bild_kopf_neutral", "bild_kopf_jubel")}
     arme = [ind[n] for n in ("bild_oberarmL", "bild_oberarmR", "bild_oberarmL_hoch", "bild_oberarmR_hoch")]
-    assert ind["bild_body"] < ind["bild_tail"] < ind["bild_umhang_mantel"] < min(ind["bild_wingL"], ind["bild_wingR"])
-    for b in ("bild_umhang_baender", "bild_umhang_rutsch"):
-        assert max(arme) < ind[b] < ind["bild_body"], b
-    assert max(ind["bild_kopf_neutral"], ind["bild_unterarmL_offen"], ind["bild_unterarmR_offen"]) \
-        < ind["bild_umhang_kragen"] < min(arme)
+    for b in ("bild_umhang_mantel", "bild_umhang_rutsch_hinten", "bild_umhang_mantel_quer1",
+              "bild_umhang_mantel_quer2", "bild_umhang_mantel_quer3"):
+        assert ind["bild_body"] < ind["bild_tail"] < ind[b] < min(ind["bild_wingL"], ind["bild_wingR"]), b
+    assert max(arme) < ind["bild_umhang_baender"] < ind["bild_body"]
+    for b in ("bild_umhang_kragen", "bild_umhang_rutsch"):
+        assert max(ind["bild_kopf_neutral"], ind["bild_kopf_jubel"], ind["bild_unterarmL_offen"],
+                   ind["bild_unterarmR_offen"], ind["bild_unterarmL_faust"], ind["bild_unterarmR_faust"]) \
+            < ind[b] < min(arme), b
     assert ind["bild_umhang_saum"] < min(ind["bild_unterarmL_offen"], ind["bild_unterarmR_offen"])
     # Der Saum nur mit haengenden Armen und nur zusammen mit dem Kragen
     for b in range(grund["op"]):
@@ -282,7 +304,25 @@ def test_mantel_rutscht_mit_erhobenen_armen(grund, maskottchen):
     Seit 16.10.2026 spaet abends ist das EIN Bild (das eigene Bild fuer die
     waagerechten Arme, rutsch_quer, ist darin aufgegangen): mit dem
     Schulterstueck im Fellbogen wechselte sonst zwischen waagerechten und
-    erhobenen Armen ein zweites Mal das Bild."""
+    erhobenen Armen ein zweites Mal das Bild.
+    Seit 17.10.2026 ist der Umhang mit gehobenen Armen nach hinten geworfen
+    (Ajdins abgenommenes Konzept): vorn die Goldboegen fuer den Jubel
+    (rutsch, waagerecht und oben) und fuer die Haende an den Wangen
+    (rutsch_weinen, die Oberarme stehen dort anders), dazu in beiden der
+    hoeher gezogene Samt hinter den Schultern (rutsch_hinten).
+    Seit 17.10.2026 nachmittags hat der Jubel wieder ein eigenes Bild fuer
+    die waagerechten Arme (rutsch_quer): der Bogen geht dort ueber die
+    Schulter, statt neben dem Kinn frei zu stehen; rutsch gilt nur, solange
+    die Arme oben stehen.
+    Seit 17.10.2026 abends (Konzept wurf_2) ist vorn wieder EIN Bild fuer alle
+    gehobenen Arme, der Stehkragen rutsch (rutsch_quer und rutsch_weinen
+    fallen weg), und der lange Mantel wechselt mit: mantel mit haengenden
+    Armen, der schlanke rutsch_hinten mit erhobenen Armen und beim Weinen,
+    rutsch_hinten_quer mit waagerechten Armen - in jedem Bild genau einer.
+    Seit 17.10.2026 spaet abends (Pruefung: "harter Kostuemwechsel mitten im
+    Jubel") haengen in den drei Bildern mit waagerechten Armen statt
+    rutsch_hinten_quer die Zwischenstufen mantel_quer1-3: beim Heben 1, 2, 3
+    (von breit nach schlank), beim Senken 3, 2, 1."""
     _bild_drache(grund)
     alle = _ebenen_nach_name(grund, maskottchen)
     op = grund["op"]
@@ -290,13 +330,70 @@ def test_mantel_rutscht_mit_erhobenen_armen(grund, maskottchen):
     hoch = [_deckkraft(alle["bild_trikot_oberarmL_jubel"], b) for b in range(op)]
     wange = [_deckkraft(alle["bild_unterarmL_wange"], b) for b in range(op)]
     assert wange.count(100) > 0
-    assert "bild_umhang_rutsch_quer" not in alle
+    assert "bild_umhang_rutsch_quer" not in alle and "bild_umhang_rutsch_weinen" not in alle
+    assert "bild_umhang_rutsch_hinten_quer" not in alle
+    stufen = ["mantel_quer1", "mantel_quer2", "mantel_quer3"]
+    quer_folge = []
     for b in range(op):
         k, r = (_deckkraft(alle["bild_umhang_" + n], b) for n in ("kragen", "rutsch"))
+        m, h = (_deckkraft(alle["bild_umhang_" + n], b) for n in ("mantel", "rutsch_hinten"))
+        q = [_deckkraft(alle["bild_umhang_" + n], b) for n in stufen]
         assert sorted((k, r)) == [0, 100], b
-        assert _deckkraft(alle["bild_umhang_baender"], b) == k, b
-        assert _deckkraft(alle["bild_umhang_mantel"], b) == 100, b
-        assert r == (100 if hoch[b] == 100 or oben[b] == 100 or wange[b] == 100 else 0), b
+        assert sorted([m, h] + q) == [0, 0, 0, 0, 100], b
+        assert _deckkraft(alle["bild_umhang_baender"], b) == k == m, b
+        quer = hoch[b] == 100 and oben[b] != 100
+        assert r == (100 if hoch[b] == 100 or wange[b] == 100 else 0), b
+        assert max(q) == (100 if quer else 0), b
+        assert h == (100 if oben[b] == 100 or wange[b] == 100 else 0), b
+        if quer:
+            quer_folge.append(q.index(100) + 1)
+    assert quer_folge == [1, 2, 3, 3, 2, 1], quer_folge
+
+
+def _gehalten(spur, bild):
+    """Wert einer Zeitleiste mit Halte-Keyframes in einem Bild."""
+    if not spur.get("a"):
+        return spur["k"]
+    wert = spur["k"][0]["s"]
+    for k in spur["k"]:
+        if k["t"] <= bild:
+            wert = k["s"]
+    return wert
+
+
+def test_stehkragen_waechst_mit_den_armen(grund, maskottchen):
+    """Pruefung vom 17.10.2026 abends: mit waagerechten Armen standen die
+    Spitzen des Stehkragens (rutsch) wie Hoerner neben dem Kinn, dazwischen
+    Hintergrund. Dort ist er senkrecht gestaucht und waechst mit dem Heben
+    auf volle Hoehe (beim Senken umgekehrt); sonst volle Hoehe, und nie
+    breiter oder schmaler. Gestaucht wird um einen Punkt unten im Bild
+    (zwischen den Knoepfen): Knoepfe und Kette bleiben, die Spitzen sinken.
+    Gehalten wie alle Wechsel - keine Zwischenwerte zwischen den Bildern."""
+    _bild_drache(grund)
+    alle = _ebenen_nach_name(grund, maskottchen)
+    op = grund["op"]
+    ks = alle["bild_umhang_rutsch"]["ks"]
+    oben = [_deckkraft(alle["bild_trikot_rumpf_jubel"], b) for b in range(op)]
+    hoch = [_deckkraft(alle["bild_trikot_oberarmL_jubel"], b) for b in range(op)]
+    assert ks["s"].get("a") and all(k.get("h") == 1 for k in ks["s"]["k"])
+    voll = _gehalten(ks["s"], 0)
+    assert voll[0] == voll[1]
+    folge = []
+    for b in range(op):
+        sx, sy = _gehalten(ks["s"], b)[:2]
+        assert sx == voll[0], b
+        if hoch[b] == 100 and oben[b] != 100:
+            assert 0.7 * voll[1] <= sy < voll[1], b
+            folge.append(sy)
+        else:
+            assert sy == voll[1], b
+    assert len(folge) == 6
+    assert folge[:3] == sorted(folge[:3]) and len(set(folge[:3])) == 3
+    assert folge[3:] == folge[:3][::-1]
+    _, schnipsel = _schnipsel(maskottchen)["umhang"]
+    w, h = next((a["w"], a["h"]) for a in schnipsel if a["id"] == alle["bild_umhang_rutsch"]["refId"])
+    ax, ay = ks["a"]["k"][:2]
+    assert 0.3 * w < ax < 0.7 * w and 0.6 * h < ay < h
 
 
 def test_kostueme_faerben_nicht_mit(index_html, maskottchen):

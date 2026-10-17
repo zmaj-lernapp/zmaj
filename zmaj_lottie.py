@@ -1046,8 +1046,138 @@ OHNE_JUBEL = ("idle", "sad", "ok", "no", "no_l", "no_r", "cheer_ruhe", "cheer_qu
 #   kein Bild mehr. Gemini hatte statt des gerutschten Schulterstuecks den
 #   ganzen Ruhemantel nachgemalt (Kragen wieder am Hals) - nicht genommen.
 #   Werkzeuge: befunde_16_10\korrektur8\ (mantel8.py).
+# 17.10.2026 (Ajdin nach dem Video: das Fell passte nicht, "dieses Rote an
+#   der Schulter soll ja weggehen, so maessig nach hinten geworfen werden";
+#   nachts hat er dazu ein Konzeptbild von Gemini abgenommen: "jaaa genau
+#   sooo"). Mit gehobenen Armen ist der Umhang jetzt nach hinten geworfen:
+#   seine vorderen Kanten liegen als Goldboegen neben dem Hals, von der
+#   Spange (zwei Knoepfe mit Steg) hinauf bis unter die Wangen, innen rotes
+#   Futter und ein schmales Hermelinband am Hals; hinter den Schultern
+#   bauscht sich der Samt. Schultern und Arme liegen frei davor. Drei
+#   Bilder statt des einen Rutschbilds:
+#   "rutsch"        Jubel (Arme waagerecht und oben): Boegen, Futter, Fell,
+#                   Spange - vor dem Koerper, hinter den Armen.
+#   "rutsch_weinen" dasselbe fuer die Haende an den Wangen. Die Oberarme
+#                   stehen dort anders, darum ein eigenes Gemini-Bild der
+#                   Weinpose (Vorlage: das Konzept und der Drache bei Bild 300).
+#   "rutsch_hinten" der lange Mantel hinter den Schultern hoeher gezogen
+#                   (jede Spalte oben bis zu einer runden Kante gestreckt) -
+#                   hinter dem Koerper, vor dem langen Mantel, fuer Jubel und
+#                   Weinen. Er deckt die gerade Oberkante des langen Mantels,
+#                   die mit waagerechten Armen frei lag; nach unten ist er
+#                   Pixel fuer Pixel der lange Mantel, also ohne Naht.
+#   Im Konzept stehen Geminis Arme weiter aussen als die des Drachen: an
+#   Ort und Stelle laegen die Goldboegen ganz hinter den Oberarmen, und den
+#   ganzen Kragen schmaler zu verzerren zerdrueckte Knoepfe und Fell. Die
+#   Teile sind darum neu zusammengesetzt: das Goldband laeuft mit seinem
+#   Querschnitt aus dem Konzept an der Innenkante der Oberarme entlang (in
+#   dem Bild, in dem sie am weitesten innen stehen - in allen anderen ist
+#   der Bogen ganz zu sehen), das Fell ist nur gedreht, Spange und Steg
+#   sind Geminis Pixel. Der Wechsel vom Kragen auf den Schultern zum
+#   geworfenen Umhang faellt wie bisher auf das Bild, in dem die Arme
+#   hochschnellen (beim Weinen auf den harten Schnitt der Stimmung).
+#   Werkzeuge: befunde_16_10\korrektur10\ (vorn10.py, montage10.py, hinten10.py).
+# 17.10.2026 nachmittags (Pruefung der zehnten Runde gegen das Konzept): der
+#   Kragen sah nur ungefaehr aus wie dort - ein schmales V, die Goldboegen
+#   duenne Streifen innen an den Oberarmen ("wie Hosentraeger"), das Fell
+#   halb so breit, das rote Futter bis auf einen Zwickel weg, mit der Haut
+#   "gold" verschwanden Boegen und Spange fast; bei waagerechten Armen
+#   standen die Boegen frei wie zwei Pfaehle bis unters Kinn; der Samt
+#   hinter den Schultern war spaltenweise gestreckt (Strichcode, Naehte, ein
+#   Stueck Goldborte darin); beim Weinen endeten Bogenspitzen und Futter oben
+#   mit gerader Kante, ein Bogen hatte eine Delle, dazu vier lose Pixel.
+#   Der Vorderteil ist darum neu gebaut statt aus Geminis Pixeln geschnitten:
+#   - EIN durchgehender Goldbogen in U-Form, gemalt mit dem Querschnitt des
+#     Konzept-Goldbands (dunkle Kante, Gold, heller Glanzstreif), breiter als
+#     vorher, mit dunklem Umriss rundum (hebt ihn auch von goldener Haut ab)
+#     und runden Spitzen wie im Konzept. Er liegt 4 Pixel unter den
+#     Oberarmen (in dem Bild, in dem sie am weitesten innen stehen), so ist
+#     er in jedem Bild breit zu sehen.
+#   - das Hermelin des Konzepts als volle Sichel am Bogen entlang, unten
+#     hinter dem Knopf; zwischen Gold und Fell das rote Futter, oben ein
+#     Zwickel mit dunkler, leicht gewoelbter Kante (keine Schnittkante).
+#   - Knoepfe und Steg aus dem Konzept, fuer Jubel und Weinen dieselben.
+#   Drei Vorderbilder: "rutsch" (Arme oben, cheer_oben), "rutsch_quer" (die
+#   je drei Bilder mit waagerechten Armen, cheer_quer: der Bogen steigt am
+#   Hals nur bis unter das Fell und geht dann ueber die Schulter nach aussen
+#   hinab hinter den Arm - dort liegt er wirklich ueber den Schultern, statt
+#   neben dem Kinn frei zu stehen; der Wechsel zum hohen Kragen faellt auf
+#   das Bild, in dem die Arme hochschnellen) und "rutsch_weinen" (die runde
+#   Spitze endet oben am Unterarm). "rutsch_hinten" ist glatter Samt:
+#   die Farbe je Spalte aus dem langen Mantel knapp unter seiner Oberkante,
+#   breit geglaettet, oben ein heller Wulst mit dunklem Umriss, unten weich
+#   in den langen Mantel geblendet. Geminis Arme stehen im Konzept weiter
+#   aussen als die des Drachen; neben den Oberarmen ist weniger Platz, darum
+#   bleibt der Kragen in der Mitte etwas schmaler als im Konzept.
+#   Werkzeuge: befunde_16_10\korrektur11\ (kragen11.py, hinten11.py).
+# 17.10.2026 abends (Ajdin mit beiden Konzeptbildern daneben: "man sieht den
+#   Umhang immer noch hinter den Armen" - "nimm dafuer rechtes Bild", also
+#   umhang_konzept\wurf_2.png). Dort ist der Mantel schlank: neben dem Kopf
+#   und hinter den erhobenen Armen ist kein Rot, der Samt beginnt erst an
+#   der Schulter und faellt neben dem Rumpf zu Boden, die Goldkanten laufen
+#   fast senkrecht hinab. In der App ragte der breite lange Mantel (dazu der
+#   hochgezogene Samt) hinter den Armen bis an Ellbogen und Faeuste. wurf_2
+#   ist aus Bild 120 gemalt und liegt pixelgenau darauf; die Teile sind
+#   daraus geschnitten:
+#   "rutsch_hinten"       der lange Mantel fuer Arme oben und Weinen, statt
+#                         "mantel" (der gilt nur noch mit haengenden Armen).
+#                         Was in Bild 120 hinter Koerper, Armen und Schwanz
+#                         liegt, ist von der anderen Seite gespiegelt (der
+#                         Mantel ist symmetrisch) bzw. aus dem Samt ringsum
+#                         zugewachsen. Ueber einer Schulterlinie ist er
+#                         durchsichtig: im Spalt zwischen Hals und erhobenem
+#                         Arm liegt nie Rot, aussen beginnt er wie im
+#                         Konzept am Oberarm.
+#   "rutsch_hinten_quer"  derselbe Mantel fuer die waagerechten Arme
+#                         (cheer_quer); seine Oberkante liegt in allen sechs
+#                         Bildern unter dem Oberarm - kein Samt darueber.
+#   "rutsch"              der Stehkragen aus wurf_2: Goldband, rotes Futter,
+#                         Hermelin, zwei Knoepfe mit Kette. Ein Bild fuer
+#                         alle gehobenen Arme (waagerecht, oben, Weinen) -
+#                         kein Kragenwechsel mehr, wenn die Arme
+#                         hochschnellen. Er liegt VOR den Oberarmen (hinter
+#                         Unterarmen und Kopf, wie der Kragen mit haengenden
+#                         Armen): Geminis Oberarme sind schmaler, das
+#                         Goldband liegt dort, wo beim Drachen die Innenkante
+#                         des Oberarms ist. Hinter den Armen war es fast ganz
+#                         verdeckt - daher der schmale Kragen der Runden davor.
+#   rutsch_quer und rutsch_weinen fallen weg (Sicherung in
+#   Drache_Bildteile\werkzeuge\befunde_16_10\vor_korrektur12\umhang\).
+#   Werkzeuge: befunde_16_10\korrektur12\ (ausschnitt12.py, hinten12.py,
+#   vorn12.py, teile12.py).
+# 17.10.2026 spaet abends (Pruefung der zwoelften Runde):
+#   - Gruener Rand: rutsch_hinten hatte an Saum, Goldkante und Unterkante
+#     einen olivgruenen Saum vom Greenscreen (die Kanten aus wurf_2 waren
+#     nicht entgruent). Jetzt hat kein Pixel einen Gruenueberhang, der
+#     Umriss ist dunkelbraun wie sonst. Dazu sind duenne Spalten im Samt
+#     unter dem Schwanz zu - beim Sprung schien dort der Hintergrund durch.
+#   - Harter Wechsel im Jubel: mit den Armen sprang auch der lange Mantel in
+#     einem Bild von breit (mantel) auf schlank (rutsch_hinten) und zurueck.
+#     In den drei Bildern mit waagerechten Armen (cheer_quer: 91-93 beim
+#     Heben, 143-145 beim Senken) haengen jetzt Zwischenstufen
+#     "mantel_quer1" bis "mantel_quer3" (25, 50 und 75 % des Weges; die
+#     Goldbaender sind Zeile fuer Zeile aufeinander verzerrt, kein doppeltes
+#     Band): der Mantel schwingt in drei Bildern von breit nach schlank.
+#     "rutsch_hinten_quer" faellt weg. Der Kragen wechselt weiter in dem
+#     Bild, in dem die Arme hochschnellen (Schulterumhang mit Stola ->
+#     Stehkragen) - dort bewegt sich ohnehin alles.
+#   - Stehkragen bei waagerechten Armen: die Spitzen des Goldbands standen
+#     wie zwei Hoerner neben dem Kinn, dazwischen Hintergrund. Dort ist er
+#     senkrecht gestaucht (KRAGEN_STAUCHEN, um KRAGEN_FUSS zwischen den
+#     Knoepfen) und waechst mit dem Heben auf volle Hoehe.
+#   Werkzeuge: befunde_16_10\korrektur13\ (putzen13.py, morph13.py,
+#   teile13.py).
 MANTEL_RUHE = tuple(z for z in OHNE_JUBEL if z not in ("cheer_quer", "cry"))
 MANTEL_RUTSCH = ("cheer_quer", "cheer_oben", "cry")
+# Die drei Bilder mit waagerechten Armen als Stufen (17.10.2026 spaet
+# abends): Stufe 1 liegt an der Ruhe, 3 an den erhobenen Armen - beim Heben
+# 91/92/93, beim Senken 145/144/143 (_bilder). Je Stufe eine Zwischenstufe
+# des langen Mantels (mantel_quer1-3) und eine Hoehe des Stehkragens
+# (Anteil der vollen Hoehe, gestaucht um KRAGEN_FUSS, Bildpunkt in
+# rutsch.webp unten zwischen den Knoepfen).
+MANTEL_STUFEN = ("cheer_quer_1", "cheer_quer_2", "cheer_quer_3")
+KRAGEN_STAUCHEN = {"cheer_quer_1": 0.72, "cheer_quer_2": 0.81, "cheer_quer_3": 0.90}
+KRAGEN_FUSS = (107.0, 112.0)
 # Stimmungen mit haengenden Armen (Saum des Koenigsmantels vor den Unterarmen)
 SAUM_ZEIT = ("idle", "sad", "ok", "no", "no_l", "no_r", "cheer_ruhe")
 #   stueck: {teil: (Breite, Hoehe, Drehpunkt x, y, vor[, sichtbar])}
@@ -1060,11 +1190,15 @@ GEMALTE_RUMPFSTUECKE = {
                      "rumpf_jubel": (327, 334, 162.88, 502.57, "weste_strick", ("cheer_oben",))},
     "jelek":        {"rumpf":       (253, 316, 125.8, 487.51, "jelek", OHNE_JUBEL),
                      "rumpf_jubel": (250, 314, 124.8, 485.51, "trikot_armL", ("cheer_oben",))},
-    "umhang":       {"mantel":        (742, 517, 370.05, 514.16, "skelett_wingL"),
-                     "kragen":        (428, 208, 213.0, 503.0, "trikot_armL", MANTEL_RUHE),
-                     "saum":          (428, 221, 213.0, 503.0, "tears", SAUM_ZEIT),
-                     "baender":       (129, 180, 63.0, 385.0, "umhang", MANTEL_RUHE),
-                     "rutsch":        (483, 281, 241.0, 485.0, "umhang", MANTEL_RUTSCH)},
+    "umhang":       {"rutsch_hinten":      (693, 474, 346.0, 473.0, "skelett_wingL", ("cheer_oben", "cry")),
+                     "mantel_quer1":       (729, 411, 364.0, 410.0, "skelett_wingL", (MANTEL_STUFEN[0],)),
+                     "mantel_quer2":       (717, 411, 358.0, 410.0, "skelett_wingL", (MANTEL_STUFEN[1],)),
+                     "mantel_quer3":       (705, 411, 352.0, 410.0, "skelett_wingL", (MANTEL_STUFEN[2],)),
+                     "mantel":             (742, 517, 370.05, 514.16, "skelett_wingL", MANTEL_RUHE),
+                     "kragen":             (428, 208, 213.0, 503.0, "trikot_armL", MANTEL_RUHE),
+                     "rutsch":             (215, 142, 107.0, 523.0, "trikot_armL", MANTEL_RUTSCH),
+                     "saum":               (428, 221, 213.0, 503.0, "tears", SAUM_ZEIT),
+                     "baender":            (129, 180, 63.0, 385.0, "umhang", MANTEL_RUHE)},
     "schal_winter": {"rumpf":  (191, 288,  94.74, 545.58, "trikot_armL")},
     "schal_bih":    {"rumpf":  (243, 396, 120.53, 556.37, "trikot_armL")},
 }
@@ -1184,6 +1318,9 @@ JUBEL_HOCH = (1, 56)
 # Bilder von JUBEL_HOCH ausserhalb davon (dort altes Rumpfbild, aber schon
 # die Jubel-Aermel - Nachpruefung 16.10.2026, siehe gemalte_kostueme).
 JUBEL_OBEN = (4, 53)
+# Je drei Bilder mit waagerechten Armen beim Heben und beim Senken - so
+# viele Stufen hat der Uebergang des Koenigsmantels (MANTEL_STUFEN).
+assert JUBEL_OBEN[0] - JUBEL_HOCH[0] == JUBEL_HOCH[1] - JUBEL_OBEN[1] == len(MANTEL_STUFEN)
 
 
 def schuettel_folge(name):
@@ -1286,6 +1423,12 @@ GESICHT_GEDREHT = {"links": (-6, 4, 80), "rechts": (6, 4, 80)}
 
 def _bilder(z):
     """Die Bildnummern zu einem Eintrag in "sichtbar" (siehe BILD_TEILE)."""
+    if z.startswith("cheer_quer_"):
+        # Stufe k der waagerechten Arme (MANTEL_STUFEN): beim Heben das k-te,
+        # beim Senken das k-letzte Bild von cheer_quer
+        a, _e = SEG["cheer"]
+        k = int(z[len("cheer_quer_"):])
+        return [a + JUBEL_HOCH[0] + k - 1, a + JUBEL_HOCH[1] - k]
     if z in ("cheer_hoch", "cheer_ruhe", "cheer_oben", "cheer_quer"):
         a, e = SEG["cheer"]
         hoch = range(a + JUBEL_HOCH[0], a + JUBEL_HOCH[1])
@@ -3211,6 +3354,26 @@ def zierrat_bildebene(stueck, eintrag):
                        const(100) if sichtbar is None else _halten(sichtbar_werte(sichtbar)))
 
 
+def kragen_stauchen(L):
+    """Den Stehkragen (bild_umhang_rutsch) in den Bildern mit waagerechten
+    Armen senkrecht stauchen (KRAGEN_STAUCHEN, 17.10.2026 spaet abends): um
+    KRAGEN_FUSS, so bleiben Knoepfe und Kette am Platz und nur die Spitzen
+    liegen tiefer - sie standen sonst wie Hoerner neben dem Kinn. Mit dem
+    Heben der Arme waechst er auf volle Hoehe. Anker und Lage werden auf
+    KRAGEN_FUSS umgerechnet; bei voller Hoehe liegt das Bild wie vorher."""
+    ax, ay = L["ks"]["a"]["k"][:2]
+    px, py = L["ks"]["p"]["k"][:2]
+    s = L["ks"]["s"]["k"][0]
+    fx, fy = KRAGEN_FUSS
+    L["ks"]["a"] = const([fx, fy, 0])
+    L["ks"]["p"] = const([round(px + (fx - ax) * s / 100, 3), round(py + (fy - ay) * s / 100, 3), 0])
+    f = [1.0] * OP
+    for z, k in KRAGEN_STAUCHEN.items():
+        for t in _bilder(z):
+            f[t] = k
+    L["ks"]["s"] = _halten([[s, round(s * k, 3), 100] for k in f])
+
+
 # Kostueme auf dem abgewandten Kopf (v7, 15.10.2026). Die Stuecke sind fuer
 # den Kopf von vorn gebaut. Im Bild kopf_links stehen die Augen enger, etwas
 # tiefer und ein wenig zur Schnauze hin; mittig gelassen sah bei der
@@ -3274,6 +3437,9 @@ if not VEKTOR:
             built["bild_%s_vorne" % _st]["zmaj_leert"] = _hornspitzen
         ZIERRAT_ASSETS[_st] = [{"id": "%s_%s" % (_st, e[0]), "w": e[2], "h": e[3], "u": "%s/%s/" % (ZIERRAT_ORDNER, _st),
                                 "p": e[0] + ".webp", "e": 0} for e in _teile]
+    # Stehkragen des Koenigsmantels bei waagerechten Armen gestaucht
+    if "umhang" in GEMALT:
+        kragen_stauchen(built["bild_umhang_rutsch"])
     # Gemalte Funkelsterne (GEMALTE_FUNKEN): auf den Platz des Vektorsterns,
     # Groesse, Drehung und Deckkraft wie funke() - die Skala rechnet die
     # Bildpixel auf den Radius des Vektorsterns um.
