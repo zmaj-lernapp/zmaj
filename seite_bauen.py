@@ -12,6 +12,8 @@ Seiten im Ordner `github-seite`:
     nutzungsbedingungen.html  Nutzungsbedingungen, acht Sprachen
     app-ads.txt               eine Zeile für AdMob
     README.md                 Startseite des Repositories, aus seite_readme.md
+    favicon.ico, icon-256.png Symbol im Browser-Tab, Kopie von web/icon.ico
+                              und web/icon-256.png (der Drache, seit 15.10.2026)
 
 Die Seiten kommen ohne fremde Server aus: keine Schriften, keine Skripte
 von außen, alles steht in der Datei selbst.
@@ -24,6 +26,7 @@ Wie die Seiten online kommen, steht in github-seite/LIESMICH.txt.
 
 import io
 import os
+import shutil
 import sys
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
@@ -111,6 +114,13 @@ def kopf(titel):
         '<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         '<title>%s</title>\n'
+        # Symbol im Browser-Tab: das App-Symbol (Drache), seit 15.10.2026.
+        # Bis dahin hatte die Seite keins, und der Browser fragte vergeblich
+        # nach /favicon.ico. Die Dateien liegen neben den Seiten, nichts
+        # kommt von fremden Servern. Die App selbst zeigt im Tab weiter die
+        # Flagge (web/flagge.png).
+        '<link rel="icon" href="favicon.ico" sizes="any">\n'
+        '<link rel="icon" type="image/png" href="icon-256.png">\n'
         '<style>%s</style>\n'
         '</head>\n<body>\n<div class="wrap">\n'
         '<header><div class="marke">Zmaj<span>.</span></div></header>\n'
@@ -168,8 +178,12 @@ def fuss(mit_skript=True, hier=None):
         for s in sprachen.SPRACHEN)
     sozial = " · ".join('<a href="%s" rel="noopener">%s</a>' % (u, n)
                         for n, u in SOZIAL)
-    teil = ('<footer><nav>%s</nav><br>%s<br>%s</footer>\n</div>\n'
-            % (fuesse, sozial, anbieter))
+    # Das Symbol im Tab ist ein KI-Bild; das sagen wir offen, wie im README
+    # und in web/LIZENZEN.txt. Englisch in jeder Sprache - es ist ein
+    # Bildnachweis, kein Text der Seite. 15.10.2026.
+    ki = "App icon: illustration created with Google Gemini, edited."
+    teil = ('<footer><nav>%s</nav><br>%s<br>%s<br><small>%s</small></footer>\n</div>\n'
+            % (fuesse, sozial, anbieter, ki))
     if mit_skript:
         teil += "<script>%s</script>\n" % SKRIPT
     return teil + "</body>\n</html>\n"
@@ -639,5 +653,11 @@ if __name__ == "__main__":
         schreibe("README.md", io.open(quelle, encoding="utf-8").read())
     else:
         print("  Hinweis: seite_readme.md fehlt - README wird nicht erzeugt.")
+    # Das Symbol fuer den Browser-Tab, siehe kopf(). Kopiert, nicht neu
+    # gezeichnet: Quelle ist icon_bauen.py (ANLEITUNG.md, "App-Icon").
+    for quelle, datei in (("icon.ico", "favicon.ico"), ("icon-256.png", "icon-256.png")):
+        pfad = os.path.join(ZIEL, datei)
+        shutil.copyfile(os.path.join(ORDNER, "web", quelle), pfad)
+        print("  %-26s %6d Bytes" % (datei, os.path.getsize(pfad)))
     print("\nFertig in: %s" % ZIEL)
     print("Wie es online kommt, steht in github-seite/LIESMICH.txt")

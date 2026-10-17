@@ -1848,12 +1848,10 @@
   ],
   "frost": [],
   "besitz": [
-   "brille",
-   "kopfhoerer",
-   "hut",
-   "krone"
+   "fes",
+   "schal_bih"
   ],
-  "getragen": "krone",
+  "getragen": "fes,schal_bih",
   "leben": {
    "anzahl": 5,
    "zeit": 0
@@ -1863,8 +1861,8 @@
    "zeit": 0
   },
   "tagwerk": {},
-  "muenzen_ges": 999999,
-  "muenzen_aus": 0,
+  "muenzen_ges": 1860,
+  "muenzen_aus": 1700,
   "premium": true
  }
 }

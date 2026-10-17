@@ -12,6 +12,7 @@ Behebung, wenn hier etwas rot wird:  python3 testdaten_bauen.py
 import io
 import json
 import os
+import re
 
 import pytest
 
@@ -60,6 +61,44 @@ def test_alles_offen_hat_nichts_gelernt(sicherungen):
     s = sicherungen["zmaj-test-alles-offen.json"]["stand"]
     assert s["gewusst"] == [] and s["besitz"] == [] and s["premium"] is False
     assert sicherungen["zmaj-test-vollversion.json"]["stand"]["premium"] is True
+
+
+def _app_grenzen(wurzel):
+    """Muenzen je Lerntag und Preise des Zierrats, so wie web/index.html sie
+    rechnet - nicht abgeschrieben, sonst merkt niemand, wenn sie wandern."""
+    with io.open(os.path.join(wurzel, "web", "index.html"), encoding="utf-8") as f:
+        html = f.read()
+    konst = {"MUENZEN_PRO_QUEST": int(re.search(r"const MUENZEN_PRO_QUEST = (\d+);", html).group(1))}
+    formel = re.search(r"const MUENZEN_JE_TAG_HOECHSTENS = ([^;]+);", html).group(1)
+    je_tag = 1
+    for faktor in formel.split("*"):
+        faktor = faktor.strip()
+        je_tag *= konst[faktor] if faktor in konst else int(faktor)
+    preise = {m.group(1): int(m.group(2)) for m in
+              re.finditer(r"\{id:'(\w+)',\s*gruppe:'\w+',\s*preis:(\d+)\}", html)}
+    return je_tag, preise
+
+
+@pytest.mark.parametrize("name", DATEIEN)
+def test_kommt_beim_einlesen_vollstaendig_an(wurzel, sicherungen, name):
+    """Gegenpruefung 17.10.2026: die Dateien versprachen 999999 Muenzen und
+    vier Stuecke Zierrat fuer 6000, beim Einlesen kamen 1860 Muenzen an.
+    Seitdem steht nur drin, was sicherungPlausibel() annimmt: hoechstens
+    60 Muenzen je Lerntag und ein Tag dazu, nur kaufbarer Zierrat, und der
+    ist bezahlt. Ob es im Browser wirklich unveraendert ankommt, prueft
+    tests_e2e/test_sicherung_haerten.py."""
+    import testdaten_bauen
+    je_tag, preise = _app_grenzen(wurzel)
+    assert testdaten_bauen.MUENZEN_JE_TAG == je_tag, "MUENZEN_JE_TAG weicht von web/index.html ab"
+    s = sicherungen[name]["stand"]
+    assert s["muenzen_ges"] <= je_tag * (len(set(s["tage"])) + 1), HINWEIS
+    unbekannt = [w for w in s["besitz"] if w not in preise]
+    assert not unbekannt, "nicht kaufbar: %s" % unbekannt
+    if name == "zmaj-test-vollversion.json":
+        assert testdaten_bauen.GEKAUFT == {w: preise[w] for w in testdaten_bauen.GEKAUFT}, \
+            "Preise in GEKAUFT weichen von ZIERRAT ab"
+    assert sum(preise[w] for w in s["besitz"]) <= s["muenzen_aus"] <= s["muenzen_ges"], HINWEIS
+    assert all(w in s["besitz"] for w in s["getragen"].split(",") if w)
 
 
 @pytest.mark.parametrize("name", DATEIEN)

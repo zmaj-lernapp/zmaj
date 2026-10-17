@@ -93,10 +93,42 @@ CC BY-SA and are provided for use within the app only. The twelve
 stories keep the voice listed in index.json.
 
 
+Der Drache / The dragon mascot
+------------------------------
+Stand 16.10.2026. Der Drache Zmaj ist aus Bildern zusammengesetzt, die mit
+Google Gemini erzeugt und bearbeitet wurden (KI-Bildgenerierung nach
+unseren Vorgaben). Wir haben sie in Teile geschnitten, freigestellt und als
+Animation zusammengesetzt. Die Bilder in web/maskottchen/teile und
+web/maskottchen/haut sowie zmaj-frei.png, zmaj-jubel.png und
+zmaj-traurig.png sind also KI-generiert. Seit dem 16.10.2026 gilt das
+auch für die Kostüme (Hüte, Kronen, Brillen, Ohrenschützer, Kopfhörer,
+Hexenhut, Hasenohren, Jacken, Trikot, Mantel, Jelek, Schals und die
+Funkelsterne in web/maskottchen/zierrat) und das Halloween-Skelett
+(web/maskottchen/haut/skelett): auch sie hat Google Gemini gemalt. Soweit
+an ihnen Rechte bestehen, stehen sie wie in REUSE.toml angegeben unter
+CC BY-SA 4.0. Die Bewegung und die Sterne der Galaxie-Haut sind selbst
+gezeichnet.
+Auch das App-Symbol (der Drachenkopf in icon-256.png und icon.ico, im Store
+icon-512.png) ist mit Google Gemini erzeugt und von uns zugeschnitten.
+
+The dragon is assembled from images generated and edited with Google
+Gemini (AI image generation from our prompts), which we cut into parts,
+masked and animated. The images in web/maskottchen/teile and
+web/maskottchen/haut and the still images zmaj-*.png are AI-generated.
+Since 16 October 2026 the costumes (hats, crowns, glasses, ear muffs,
+headphones, witch hat, bunny ears, jackets, jersey, cloak, jelek, scarves
+and the sparkle stars in web/maskottchen/zierrat) and the Halloween skeleton
+(web/maskottchen/haut/skelett) are Gemini paintings as well.
+Where rights exist, they are licensed under CC BY-SA 4.0 as stated in
+REUSE.toml. The animation and the stars of the galaxy skin are drawn by us.
+The app icon (the dragon head in icon-256.png and icon.ico, icon-512.png in
+the store) is AI-generated with Google Gemini as well and cropped by us.
+
+
 Was die App sonst noch nutzt
 ----------------------------
-Nichts. Der Rest – Server, Oberfläche, Inhalte, Maskottchen – ist
-selbst geschrieben. Es werden keine Analyse-Dienste, keine Werbenetzwerke
+Nichts. Der Rest – Server, Oberfläche, Inhalte, die gezeichneten Kostüme
+des Drachen – ist selbst geschrieben. Es werden keine Analyse-Dienste, keine Werbenetzwerke
 und keine Schriften oder Skripte von fremden Servern eingebunden.
 
 Die Quellen für die Lerninhalte (Wörterbücher, Sprachratgeber) stehen in

@@ -51,10 +51,28 @@ ANSICHTEN = [
     ("lektion-richtig", "const q = Lx.queue[Lx.i];"
      " const o = [...document.querySelectorAll('#lBody .opt')].find(o => o.textContent === q.w.bs);"
      " if(o) o.click(); await warte(900);"),
+    # Satzbau (17.10.2026): eine Kachelaufgabe mit zwei gelegten Kacheln
+    ("lektion-kacheln", "openLevel(0); await warte(300); startLesson();"
+     " const s = SATZBAU.find(x => satzKacheln(x.bs).length >= 3);"
+     " Lx.queue = [{typ:'kacheln', s}]; Lx.i = 0; Lx.total = 1; showLessonTask(); await warte(400);"
+     " [...document.querySelectorAll('#lBody #xBank .kachel')].slice(0, 2).forEach(b => b.click());"
+     " await warte(600);"),
+    # Luecke und Schreiben (17.10.2026): die beiden Aufgaben mit Eingabefeld.
+    # Das Lueckenfeld hatte bis dahin keinen Namen (axe-Regel label, kritisch),
+    # und keine Ansicht hier zeigte es.
+    ("lektion-luecke", "openLevel(0); await warte(300); startLesson();"
+     " const s = SENTENCES.find(x => x.text.indexOf('___') >= 0);"
+     " Lx.queue = [{typ:'gap', s}]; Lx.i = 0; Lx.total = 1; showLessonTask(); await warte(500);"),
+    ("lektion-schreiben", "openLevel(0); await warte(300); startLesson();"
+     " const w = CATEGORIES[0].words.find(x => typable(x));"
+     " Lx.queue = [{typ:'type', w, pool: CATEGORIES[0].words}]; Lx.i = 0; Lx.total = 1; showLessonTask();"
+     " await warte(500);"),
     ("test", "Lx=null; openLevel(3); await warte(400); startTest(); await warte(900);"),
     ("einstellungen", "Lx=null; showSettings(); await warte(800);"),
     ("geschichte", "openStory(3); await warte(800); stilleBitte();"),
     ("laden", "showLaden(); await warte(800);"),
+    # der Reiter mit den Kostuemen: Tragen, Preis und Vollversion (17.10.2026)
+    ("laden-kostueme", "ladenReiter = 'kopf'; renderLaden(); await warte(500);"),
 ]
 
 

@@ -1,0 +1,2481 @@
+{
+ "version": 1,
+ "boegen": {
+  "rumpf": {
+   "datei": "boegen/rumpf.png",
+   "groesse": [
+    2048,
+    2048
+   ],
+   "hinweis": "Bearbeitung von pro_vorne.png: Rumpf mit Hals und Beinen, ohne Kopf/Arme/Fluegel/Schwanz (Versuch 14.10.)"
+  },
+  "fluegel_schwanz": {
+   "datei": "boegen/fluegel_schwanz.png",
+   "groesse": [
+    2048,
+    2048
+   ],
+   "hinweis": "zweifache Bearbeitung von pro_vorne.png: Fluegel mit Wurzel, Schwanz mit Ansatz (15.10.)"
+  },
+  "arme": {
+   "datei": "boegen/arme.png",
+   "groesse": [
+    2048,
+    2048
+   ],
+   "hinweis": "Bearbeitung von pro_vorne.png: haengende Arme an Ort und Stelle (15.10.)"
+  },
+  "koepfe": {
+   "datei": "boegen/koepfe.png",
+   "groesse": [
+    2048,
+    2048
+   ],
+   "hinweis": "Ausdrucksbogen 4x3 Koepfe (Versuch 14.10.)"
+  },
+  "teile": {
+   "datei": "boegen/teile.png",
+   "groesse": [
+    2048,
+    2048
+   ],
+   "hinweis": "Teilebogen fuer Puppenanimation: erhobene Faeuste, Haende an der Wange (Versuch 14.10.)"
+  }
+ },
+ "teile": {
+  "body": {
+   "ebene": "body",
+   "eltern": null,
+   "datei": "teile/body.png",
+   "groesse": [
+    328,
+    575
+   ],
+   "pivot_px": [
+    163.0,
+    569.0
+   ],
+   "pivot_rig": [
+    0,
+    129
+   ],
+   "pivot_leinwand": [
+    260.0,
+    474.0
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    1870.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": "immer",
+   "herkunft": {
+    "bogen": "rumpf",
+    "box": [
+     662,
+     644,
+     1386,
+     1894
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/body.png",
+    "matrix": [
+     [
+      0.46901102,
+      0.0,
+      -6.31199009
+     ],
+     [
+      0.0,
+      0.46901102,
+      -6.13188897
+     ]
+    ],
+    "groesse": [
+     328,
+     575
+    ]
+   },
+   "hinweis": "Rumpf mit Hals, Oberschenkeln, Unterschenkeln und Fuessen: die Ebene 'legs' des Rigs steht still am Koerper und bekommt darum kein eigenes Bild."
+  },
+  "wingL": {
+   "ebene": "wingL",
+   "eltern": "body",
+   "datei": "teile/wingL.png",
+   "groesse": [
+    415,
+    381
+   ],
+   "pivot_px": [
+    384.32,
+    245.9
+   ],
+   "pivot_rig": [
+    -33.8,
+    -89.5
+   ],
+   "pivot_leinwand": [
+    226.16,
+    255.45
+   ],
+   "pivot_vorlage": [
+    880.0,
+    940.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": "immer",
+   "herkunft": {
+    "bogen": "fluegel_schwanz",
+    "box": [
+     40,
+     370,
+     960,
+     1250
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/wingL.png",
+    "ergaenzen": [
+     {
+      "form": "band",
+      "punkte": [
+       [
+        854.0,
+        686.0
+       ],
+       [
+        852.0,
+        690.0
+       ],
+       [
+        850.0,
+        694.0
+       ],
+       [
+        849.0,
+        698.0
+       ],
+       [
+        848.0,
+        702.0
+       ],
+       [
+        846.0,
+        706.0
+       ],
+       [
+        845.0,
+        710.0
+       ],
+       [
+        843.0,
+        714.0
+       ],
+       [
+        842.0,
+        718.0
+       ],
+       [
+        841.0,
+        722.0
+       ],
+       [
+        839.0,
+        726.0
+       ],
+       [
+        838.0,
+        730.0
+       ],
+       [
+        837.0,
+        734.0
+       ],
+       [
+        835.0,
+        738.0
+       ],
+       [
+        834.0,
+        742.0
+       ],
+       [
+        832.0,
+        746.0
+       ],
+       [
+        831.0,
+        750.0
+       ],
+       [
+        829.0,
+        754.0
+       ],
+       [
+        828.0,
+        758.0
+       ],
+       [
+        826.0,
+        762.0
+       ],
+       [
+        825.0,
+        766.0
+       ],
+       [
+        823.0,
+        770.0
+       ],
+       [
+        822.0,
+        774.0
+       ],
+       [
+        820.0,
+        778.0
+       ],
+       [
+        818.0,
+        782.0
+       ],
+       [
+        816.0,
+        786.0
+       ],
+       [
+        815.0,
+        790.0
+       ],
+       [
+        813.0,
+        794.0
+       ],
+       [
+        811.0,
+        798.0
+       ],
+       [
+        810.0,
+        802.0
+       ],
+       [
+        808.0,
+        806.0
+       ],
+       [
+        807.0,
+        810.0
+       ],
+       [
+        805.0,
+        814.0
+       ]
+      ],
+      "breite": 20.0,
+      "probe": [
+       [
+        520.5,
+        835.5
+       ],
+       [
+        557.5,
+        780.5
+       ],
+       [
+        594.5,
+        754.5
+       ],
+       [
+        641.5,
+        737.5
+       ],
+       [
+        680.5,
+        735.5
+       ]
+      ]
+     }
+    ],
+    "matrix": [
+     [
+      0.47,
+      0.0,
+      -10.48
+     ],
+     [
+      0.0,
+      0.47,
+      -22.0
+     ]
+    ],
+    "groesse": [
+     415,
+     381
+    ]
+   },
+   "hinweis": "Fluegel mit runder Wurzel (von Gemini ergaenzt). Die Innenkante der Flughaut lag hinter dem Koerper und hatte keinen Umriss; sie bekommt einen, weil sie beim Fluegelschlag hervorkommt."
+  },
+  "wingR": {
+   "ebene": "wingR",
+   "eltern": "body",
+   "datei": "teile/wingR.png",
+   "groesse": [
+    416,
+    381
+   ],
+   "pivot_px": [
+    30.68,
+    245.9
+   ],
+   "pivot_rig": [
+    33.8,
+    -89.5
+   ],
+   "pivot_leinwand": [
+    293.84,
+    255.45
+   ],
+   "pivot_vorlage": [
+    1168.0,
+    940.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": "immer",
+   "herkunft": {
+    "bogen": "fluegel_schwanz",
+    "box": [
+     1088,
+     370,
+     2008,
+     1250
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/wingR.png",
+    "ergaenzen": [
+     {
+      "form": "band",
+      "punkte": [
+       [
+        68.0,
+        686.0
+       ],
+       [
+        69.0,
+        690.0
+       ],
+       [
+        71.0,
+        694.0
+       ],
+       [
+        72.0,
+        698.0
+       ],
+       [
+        73.0,
+        702.0
+       ],
+       [
+        75.0,
+        706.0
+       ],
+       [
+        76.0,
+        710.0
+       ],
+       [
+        78.0,
+        714.0
+       ],
+       [
+        79.0,
+        718.0
+       ],
+       [
+        80.0,
+        722.0
+       ],
+       [
+        82.0,
+        726.0
+       ],
+       [
+        83.0,
+        730.0
+       ],
+       [
+        85.0,
+        734.0
+       ],
+       [
+        86.0,
+        738.0
+       ],
+       [
+        87.0,
+        742.0
+       ],
+       [
+        89.0,
+        746.0
+       ],
+       [
+        90.0,
+        750.0
+       ],
+       [
+        92.0,
+        754.0
+       ],
+       [
+        93.0,
+        758.0
+       ],
+       [
+        95.0,
+        762.0
+       ],
+       [
+        97.0,
+        766.0
+       ],
+       [
+        98.0,
+        770.0
+       ],
+       [
+        100.0,
+        774.0
+       ],
+       [
+        102.0,
+        778.0
+       ],
+       [
+        104.0,
+        782.0
+       ],
+       [
+        105.0,
+        786.0
+       ],
+       [
+        107.0,
+        790.0
+       ],
+       [
+        109.0,
+        794.0
+       ],
+       [
+        110.0,
+        798.0
+       ],
+       [
+        112.0,
+        802.0
+       ],
+       [
+        114.0,
+        806.0
+       ],
+       [
+        115.0,
+        810.0
+       ],
+       [
+        115.0,
+        814.0
+       ],
+       [
+        118.0,
+        818.0
+       ]
+      ],
+      "breite": 20.0,
+      "probe": [
+       [
+        118.5,
+        818.5
+       ],
+       [
+        158.5,
+        770.5
+       ],
+       [
+        194.5,
+        748.5
+       ],
+       [
+        234.5,
+        736.5
+       ],
+       [
+        281.5,
+        737.5
+       ]
+      ]
+     }
+    ],
+    "matrix": [
+     [
+      0.47,
+      0.0,
+      -6.92
+     ],
+     [
+      0.0,
+      0.47,
+      -22.0
+     ]
+    ],
+    "groesse": [
+     416,
+     381
+    ]
+   },
+   "hinweis": "Fluegel mit runder Wurzel (von Gemini ergaenzt). Die Innenkante der Flughaut lag hinter dem Koerper und hatte keinen Umriss; sie bekommt einen, weil sie beim Fluegelschlag hervorkommt."
+  },
+  "tail": {
+   "ebene": "tail",
+   "eltern": "body",
+   "datei": "teile/tail.png",
+   "groesse": [
+    372,
+    270
+   ],
+   "pivot_px": [
+    90.32,
+    212.6
+   ],
+   "pivot_rig": [
+    36.7,
+    77.3
+   ],
+   "pivot_leinwand": [
+    296.66,
+    422.3
+   ],
+   "pivot_vorlage": [
+    1180.0,
+    1650.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": "immer",
+   "herkunft": {
+    "bogen": "fluegel_schwanz",
+    "box": [
+     960,
+     1180,
+     1800,
+     1800
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/tail.png",
+    "ergaenzen": [
+     {
+      "form": "band",
+      "punkte": [
+       [
+        190.0,
+        351.0
+       ],
+       [
+        340.0,
+        309.0
+       ]
+      ],
+      "breite": 20.0,
+      "probe": [
+       [
+        371.5,
+        345.5
+       ],
+       [
+        403.5,
+        370.5
+       ],
+       [
+        484.5,
+        408.5
+       ]
+      ]
+     }
+    ],
+    "matrix": [
+     [
+      0.47,
+      0.0,
+      -13.08
+     ],
+     [
+      0.0,
+      0.47,
+      -8.3
+     ]
+    ],
+    "groesse": [
+     372,
+     270
+    ]
+   },
+   "hinweis": "Schwanz wie in pro_vorne.png; den von Gemini verlaengerten Ansatz (hinter dem Bein) gerade abgeschnitten und mit Umriss versehen."
+  },
+  "kopf_neutral": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_neutral.png",
+   "groesse": [
+    245,
+    307
+   ],
+   "pivot_px": [
+    122.0,
+    295.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "idle (ohne Blinzeln)"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     64,
+     40,
+     508,
+     652
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_neutral.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.87185778
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.45742559
+     ]
+    ],
+    "groesse": [
+     245,
+     307
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten"
+  },
+  "hoerner_neutral": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_neutral.png",
+   "groesse": [
+    245,
+    72
+   ],
+   "pivot_px": [
+    122.0,
+    295.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "idle (ohne Blinzeln)"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     64,
+     40,
+     508,
+     652
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_neutral.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.87185778
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.45742559
+     ]
+    ],
+    "groesse": [
+     245,
+     72
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "kopf_blinzeln": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_blinzeln.png",
+   "groesse": [
+    245,
+    306
+   ],
+   "pivot_px": [
+    122.0,
+    295.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "idle: Blinzeln"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     556,
+     40,
+     1000,
+     652
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_blinzeln.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.8342092
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.46555042
+     ]
+    ],
+    "groesse": [
+     245,
+     306
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten"
+  },
+  "hoerner_blinzeln": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_blinzeln.png",
+   "groesse": [
+    244,
+    72
+   ],
+   "pivot_px": [
+    121.0,
+    295.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "idle: Blinzeln"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     556,
+     40,
+     1000,
+     652
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_blinzeln.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -5.8342092
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.46555042
+     ]
+    ],
+    "groesse": [
+     244,
+     72
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "kopf_jubel": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_jubel.png",
+   "groesse": [
+    244,
+    322
+   ],
+   "pivot_px": [
+    122.0,
+    295.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "cheer"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1048,
+     40,
+     1492,
+     652
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_jubel.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.43728282
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.63843149
+     ]
+    ],
+    "groesse": [
+     244,
+     322
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten"
+  },
+  "hoerner_jubel": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_jubel.png",
+   "groesse": [
+    244,
+    73
+   ],
+   "pivot_px": [
+    122.0,
+    295.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "cheer"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1048,
+     40,
+     1492,
+     652
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_jubel.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.43728282
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.63843149
+     ]
+    ],
+    "groesse": [
+     244,
+     73
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "kopf_froh": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_froh.png",
+   "groesse": [
+    245,
+    324
+   ],
+   "pivot_px": [
+    122.0,
+    295.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "ok"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1540,
+     40,
+     1984,
+     652
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_froh.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.19931563
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.68711906
+     ]
+    ],
+    "groesse": [
+     245,
+     324
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten"
+  },
+  "hoerner_froh": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_froh.png",
+   "groesse": [
+    244,
+    73
+   ],
+   "pivot_px": [
+    122.0,
+    295.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "ok"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1540,
+     40,
+     1984,
+     652
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_froh.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.19931563
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.68711906
+     ]
+    ],
+    "groesse": [
+     244,
+     73
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "kopf_traurig": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_traurig.png",
+   "groesse": [
+    249,
+    310
+   ],
+   "pivot_px": [
+    124.0,
+    298.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "sad"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     60,
+     668,
+     512,
+     1288
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_traurig.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -5.05859803
+     ],
+     [
+      0.0,
+      0.57149485,
+      -4.83129439
+     ]
+    ],
+    "groesse": [
+     249,
+     310
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten"
+  },
+  "hoerner_traurig": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_traurig.png",
+   "groesse": [
+    249,
+    75
+   ],
+   "pivot_px": [
+    124.0,
+    298.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "sad"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     60,
+     668,
+     512,
+     1288
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_traurig.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -5.05859803
+     ],
+     [
+      0.0,
+      0.57149485,
+      -4.83129439
+     ]
+    ],
+    "groesse": [
+     249,
+     75
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "kopf_weinen": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_weinen.png",
+   "groesse": [
+    249,
+    319
+   ],
+   "pivot_px": [
+    124.0,
+    299.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "cry"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     552,
+     668,
+     1004,
+     1288
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_weinen.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.81461853
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.98369795
+     ]
+    ],
+    "groesse": [
+     249,
+     319
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten"
+  },
+  "hoerner_weinen": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_weinen.png",
+   "groesse": [
+    249,
+    76
+   ],
+   "pivot_px": [
+    124.0,
+    299.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "cry"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     552,
+     668,
+     1004,
+     1288
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_weinen.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.81461853
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.98369795
+     ]
+    ],
+    "groesse": [
+     249,
+     76
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "kopf_finster": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_finster.png",
+   "groesse": [
+    249,
+    310
+   ],
+   "pivot_px": [
+    124.0,
+    299.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "no"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1044,
+     668,
+     1496,
+     1288
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_finster.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.53266005
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.8634824
+     ]
+    ],
+    "groesse": [
+     249,
+     310
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten"
+  },
+  "hoerner_finster": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_finster.png",
+   "groesse": [
+    249,
+    76
+   ],
+   "pivot_px": [
+    124.0,
+    299.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "no"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1044,
+     668,
+     1496,
+     1288
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_finster.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -4.53266005
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.8634824
+     ]
+    ],
+    "groesse": [
+     249,
+     76
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "kopf_links": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_links.png",
+   "groesse": [
+    250,
+    303
+   ],
+   "pivot_px": [
+    117.0,
+    291.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "no_l"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1536,
+     1344,
+     1992,
+     1956
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_links.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -5.19523313
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.69742559
+     ]
+    ],
+    "groesse": [
+     250,
+     303
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten"
+  },
+  "hoerner_links": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_links.png",
+   "groesse": [
+    190,
+    69
+   ],
+   "pivot_px": [
+    57.0,
+    291.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "no_l"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1536,
+     1344,
+     1992,
+     1956
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_links.png",
+    "matrix": [
+     [
+      0.57149485,
+      0.0,
+      -65.19523313
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.69742559
+     ]
+    ],
+    "groesse": [
+     190,
+     69
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "kopf_rechts": {
+   "ebene": "head",
+   "eltern": "body",
+   "datei": "teile/kopf_rechts.png",
+   "groesse": [
+    250,
+    303
+   ],
+   "pivot_px": [
+    133.0,
+    291.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "no_r"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1536,
+     1344,
+     1992,
+     1956
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/kopf_rechts.png",
+    "matrix": [
+     [
+      -0.57149485,
+      0.0,
+      255.19523313
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.69742559
+     ]
+    ],
+    "groesse": [
+     250,
+     303
+    ]
+   },
+   "hinweis": "vollstaendiges Gesicht; Halsstummel unter dem Kiefer weggeschnitten, gespiegelt aus dem nach links gewandten Kopf"
+  },
+  "hoerner_rechts": {
+   "ebene": "hoerner",
+   "eltern": "head",
+   "datei": "teile/hoerner_rechts.png",
+   "groesse": [
+    190,
+    69
+   ],
+   "pivot_px": [
+    133.0,
+    291.5
+   ],
+   "pivot_rig": [
+    0,
+    33.4
+   ],
+   "pivot_leinwand": [
+    260.0,
+    227.25
+   ],
+   "pivot_vorlage": [
+    1024.0,
+    820.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 1.23,
+   "sichtbar": [
+    "no_r"
+   ],
+   "herkunft": {
+    "bogen": "koepfe",
+    "box": [
+     1536,
+     1344,
+     1992,
+     1956
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/hoerner_rechts.png",
+    "matrix": [
+     [
+      -0.57149485,
+      0.0,
+      255.19523313
+     ],
+     [
+      0.0,
+      0.57149485,
+      -3.69742559
+     ]
+    ],
+    "groesse": [
+     190,
+     69
+    ]
+   },
+   "hinweis": "nur die Hornspitzen dieses Kopfes; liegen vor den Kopf-Kostuemen"
+  },
+  "oberarmL": {
+   "ebene": "armL",
+   "eltern": "body",
+   "datei": "teile/oberarmL.png",
+   "groesse": [
+    104,
+    146
+   ],
+   "pivot_px": [
+    68.58,
+    28.8
+   ],
+   "pivot_rig": [
+    -43.7,
+    -73.1
+   ],
+   "pivot_leinwand": [
+    216.29,
+    271.9
+   ],
+   "pivot_vorlage": [
+    838.0,
+    1010.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": "immer",
+   "herkunft": {
+    "bogen": "arme",
+    "box": [
+     560,
+     900,
+     1000,
+     1540
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/oberarmL.png",
+    "ergaenzen": [
+     {
+      "form": "kreis",
+      "mitte": [
+       202.95,
+       290.3
+      ],
+      "radius": 51.0,
+      "probe": [
+       [
+        214.62246958835829,
+        262.6645114149363
+       ],
+       [
+        220.45705014396373,
+        248.84576799376555
+       ]
+      ],
+      "umriss": {
+       "breite": 11.0,
+       "probe": [
+        [
+         162.5,
+         245.5
+        ],
+        [
+         269.5,
+         290.5
+        ]
+       ]
+      }
+     }
+    ],
+    "matrix": [
+     [
+      0.47,
+      0.0,
+      -62.08
+     ],
+     [
+      0.0,
+      0.47,
+      -22.9
+     ]
+    ],
+    "groesse": [
+     104,
+     146
+    ]
+   },
+   "hinweis": "Oberarm bis zum Ellbogen, unten runde Kappe mit Umriss (Gelenk), oben weich in den Rumpf auslaufend (keine Naht an der Schulter)."
+  },
+  "unterarmL_offen": {
+   "ebene": "unterarmL",
+   "eltern": "armL",
+   "datei": "teile/unterarmL_offen.png",
+   "groesse": [
+    92,
+    167
+   ],
+   "pivot_px": [
+    60.86,
+    24.4
+   ],
+   "pivot_rig": [
+    -61.6,
+    -30.8
+   ],
+   "pivot_leinwand": [
+    198.43,
+    314.2
+   ],
+   "pivot_vorlage": [
+    762.0,
+    1190.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": [
+    "idle",
+    "sad",
+    "ok",
+    "no",
+    "no_l",
+    "no_r"
+   ],
+   "herkunft": {
+    "bogen": "arme",
+    "box": [
+     560,
+     900,
+     1000,
+     1540
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/unterarmL_offen.png",
+    "matrix": [
+     [
+      0.47,
+      0.0,
+      -34.08
+     ],
+     [
+      0.0,
+      0.47,
+      -111.9
+     ]
+    ],
+    "groesse": [
+     92,
+     167
+    ]
+   },
+   "hinweis": "Unterarm mit offener Hand; die Scheibe ueber dem Schnitt deckt das Gelenk beim Beugen."
+  },
+  "oberarmR": {
+   "ebene": "armR",
+   "eltern": "body",
+   "datei": "teile/oberarmR.png",
+   "groesse": [
+    104,
+    147
+   ],
+   "pivot_px": [
+    35.42,
+    29.8
+   ],
+   "pivot_rig": [
+    43.7,
+    -73.1
+   ],
+   "pivot_leinwand": [
+    303.71,
+    271.9
+   ],
+   "pivot_vorlage": [
+    1210.0,
+    1010.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": "immer",
+   "herkunft": {
+    "bogen": "arme",
+    "box": [
+     1048,
+     900,
+     1488,
+     1540
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/oberarmR.png",
+    "ergaenzen": [
+     {
+      "form": "kreis",
+      "mitte": [
+       238.0,
+       290.0
+      ],
+      "radius": 51.0,
+      "probe": [
+       [
+        226.33083888878912,
+        262.36251315765844
+       ],
+       [
+        220.49625833318368,
+        248.54376973648766
+       ]
+      ],
+      "umriss": {
+       "breite": 11.0,
+       "probe": [
+        [
+         173.5,
+         293.5
+        ],
+        [
+         280.5,
+         247.5
+        ]
+       ]
+      }
+     }
+    ],
+    "matrix": [
+     [
+      0.47,
+      0.0,
+      -40.72
+     ],
+     [
+      0.0,
+      0.47,
+      -21.9
+     ]
+    ],
+    "groesse": [
+     104,
+     147
+    ]
+   },
+   "hinweis": "Oberarm bis zum Ellbogen, unten runde Kappe mit Umriss (Gelenk), oben weich in den Rumpf auslaufend (keine Naht an der Schulter)."
+  },
+  "unterarmR_offen": {
+   "ebene": "unterarmR",
+   "eltern": "armR",
+   "datei": "teile/unterarmR_offen.png",
+   "groesse": [
+    92,
+    167
+   ],
+   "pivot_px": [
+    30.14,
+    24.4
+   ],
+   "pivot_rig": [
+    61.6,
+    -30.8
+   ],
+   "pivot_leinwand": [
+    321.57,
+    314.2
+   ],
+   "pivot_vorlage": [
+    1286.0,
+    1190.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": [
+    "idle",
+    "sad",
+    "ok",
+    "no",
+    "no_l",
+    "no_r"
+   ],
+   "herkunft": {
+    "bogen": "arme",
+    "box": [
+     1048,
+     900,
+     1488,
+     1540
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/unterarmR_offen.png",
+    "matrix": [
+     [
+      0.47,
+      0.0,
+      -81.72
+     ],
+     [
+      0.0,
+      0.47,
+      -111.9
+     ]
+    ],
+    "groesse": [
+     92,
+     167
+    ]
+   },
+   "hinweis": "Unterarm mit offener Hand; die Scheibe ueber dem Schnitt deckt das Gelenk beim Beugen."
+  },
+  "unterarmL_faust": {
+   "ebene": "unterarmL",
+   "eltern": "armL",
+   "datei": "teile/unterarmL_faust.png",
+   "groesse": [
+    83,
+    145
+   ],
+   "pivot_px": [
+    54.86,
+    21.4
+   ],
+   "pivot_rig": [
+    -61.6,
+    -30.8
+   ],
+   "pivot_leinwand": [
+    198.43,
+    314.2
+   ],
+   "pivot_vorlage": [
+    762.0,
+    1190.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": [
+    "cheer"
+   ],
+   "herkunft": {
+    "bogen": "teile",
+    "box": [
+     984,
+     700,
+     1416,
+     1316
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/unterarmL_faust.png",
+    "matrix": [
+     [
+      -0.26513668,
+      0.23686534,
+      37.53593561
+     ],
+     [
+      -0.18637281,
+      -0.30539956,
+      164.58259227
+     ]
+    ],
+    "groesse": [
+     83,
+     145
+    ]
+   },
+   "hinweis": "geballte Faust (Jubel), aus dem erhobenen Arm des Teilebogens",
+   "pose": {
+    "arm_r": 118,
+    "arm_s": [
+     1.0,
+     1.2
+    ],
+    "unterarm_r": 46,
+    "hinweis": "Bild ist in die Ruhelage zurueckgerechnet; in dieser Pose des Rigs liegt es so, wie Gemini es gezeichnet hat."
+   }
+  },
+  "unterarmR_faust": {
+   "ebene": "unterarmR",
+   "eltern": "armR",
+   "datei": "teile/unterarmR_faust.png",
+   "groesse": [
+    83,
+    145
+   ],
+   "pivot_px": [
+    28.14,
+    21.4
+   ],
+   "pivot_rig": [
+    61.6,
+    -30.8
+   ],
+   "pivot_leinwand": [
+    321.57,
+    314.2
+   ],
+   "pivot_vorlage": [
+    1286.0,
+    1190.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": [
+    "cheer"
+   ],
+   "herkunft": {
+    "bogen": "teile",
+    "box": [
+     1504,
+     700,
+     1940,
+     1316
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/unterarmR_faust.png",
+    "matrix": [
+     [
+      -0.26512885,
+      -0.2368741,
+      159.99267966
+     ],
+     [
+      0.18638289,
+      -0.30539341,
+      84.06931902
+     ]
+    ],
+    "groesse": [
+     83,
+     145
+    ]
+   },
+   "hinweis": "geballte Faust (Jubel), aus dem erhobenen Arm des Teilebogens",
+   "pose": {
+    "arm_r": -118,
+    "arm_s": [
+     1.0,
+     1.2
+    ],
+    "unterarm_r": -46,
+    "hinweis": "Bild ist in die Ruhelage zurueckgerechnet; in dieser Pose des Rigs liegt es so, wie Gemini es gezeichnet hat."
+   }
+  },
+  "unterarmL_wange": {
+   "ebene": "unterarmL",
+   "eltern": "armL",
+   "datei": "teile/unterarmL_wange.png",
+   "groesse": [
+    88,
+    151
+   ],
+   "pivot_px": [
+    58.86,
+    23.4
+   ],
+   "pivot_rig": [
+    -61.6,
+    -30.8
+   ],
+   "pivot_leinwand": [
+    198.43,
+    314.2
+   ],
+   "pivot_vorlage": [
+    762.0,
+    1190.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": [
+    "cry"
+   ],
+   "herkunft": {
+    "bogen": "teile",
+    "box": [
+     1116,
+     1436,
+     1464,
+     1960
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/unterarmL_wange.png",
+    "matrix": [
+     [
+      -0.32746234,
+      -0.06549247,
+      118.39265272
+     ],
+     [
+      0.06549247,
+      -0.32746234,
+      135.45761144
+     ]
+    ],
+    "groesse": [
+     88,
+     151
+    ]
+   },
+   "hinweis": "Hand an der Wange (Weinen), aus dem gebeugten Arm des Teilebogens",
+   "pose": {
+    "arm_r": 115,
+    "arm_s": [
+     1.0,
+     1.0
+    ],
+    "unterarm_r": 101,
+    "hinweis": "Bild ist in die Ruhelage zurueckgerechnet; in dieser Pose des Rigs liegt es so, wie Gemini es gezeichnet hat."
+   }
+  },
+  "unterarmR_wange": {
+   "ebene": "unterarmR",
+   "eltern": "armR",
+   "datei": "teile/unterarmR_wange.png",
+   "groesse": [
+    88,
+    151
+   ],
+   "pivot_px": [
+    29.14,
+    23.4
+   ],
+   "pivot_rig": [
+    61.6,
+    -30.8
+   ],
+   "pivot_leinwand": [
+    321.57,
+    314.2
+   ],
+   "pivot_vorlage": [
+    1286.0,
+    1190.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": [
+    "cry"
+   ],
+   "herkunft": {
+    "bogen": "teile",
+    "box": [
+     1480,
+     1436,
+     1828,
+     1960
+    ],
+    "freistellen": {
+     "lo": 25.0,
+     "hi": null,
+     "rand": 3,
+     "spill": 15.0
+    },
+    "maske": "masken/unterarmR_wange.png",
+    "matrix": [
+     [
+      -0.32963096,
+      0.06592619,
+      82.60614186
+     ],
+     [
+      -0.06592619,
+      -0.32963096,
+      158.87832494
+     ]
+    ],
+    "groesse": [
+     88,
+     151
+    ]
+   },
+   "hinweis": "Hand an der Wange (Weinen), aus dem gebeugten Arm des Teilebogens",
+   "pose": {
+    "arm_r": -115,
+    "arm_s": [
+     1.0,
+     1.0
+    ],
+    "unterarm_r": -101,
+    "hinweis": "Bild ist in die Ruhelage zurueckgerechnet; in dieser Pose des Rigs liegt es so, wie Gemini es gezeichnet hat."
+   }
+  },
+  "oberarmL_hoch": {
+   "ebene": "armL",
+   "eltern": "body",
+   "datei": "../../fertig/teile/oberarmL_hoch.png",
+   "groesse": [
+    104,
+    146
+   ],
+   "pivot_px": [
+    68.58,
+    28.8
+   ],
+   "pivot_rig": [
+    -43.7,
+    -73.1
+   ],
+   "pivot_leinwand": [
+    216.29,
+    271.9
+   ],
+   "pivot_vorlage": [
+    838.0,
+    1010.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": "cheer (Arme oben) und cry",
+   "herkunft": {
+    "abgeleitet_von": "oberarmL",
+    "werkzeug": "werkzeuge/teile_richten.py (oberarm_hoch)",
+    "datum": "2026-10-15",
+    "was": "weich auslaufende Innenseite oben mit Umriss geschlossen, oben runde Kappe mit Umriss um die Mitte des Querschnitts auf Hoehe des Drehpunkts; Fuell- und Umrissfarbe je Satz am unteren Teil des Arms gemessen"
+   },
+   "hinweis": "Erhoben (Jubel, Weinen) lag das weiche Schulterende des Oberarms frei ueber dem Fluegel und sah verwaschen aus (Pruefung 15.10.2026)."
+  },
+  "oberarmR_hoch": {
+   "ebene": "armR",
+   "eltern": "body",
+   "datei": "../../fertig/teile/oberarmR_hoch.png",
+   "groesse": [
+    104,
+    147
+   ],
+   "pivot_px": [
+    35.42,
+    29.8
+   ],
+   "pivot_rig": [
+    43.7,
+    -73.1
+   ],
+   "pivot_leinwand": [
+    303.71,
+    271.9
+   ],
+   "pivot_vorlage": [
+    1210.0,
+    1010.0
+   ],
+   "px_je_leinwand": 2.0,
+   "px_je_einheit": 2.0,
+   "sichtbar": "cheer (Arme oben) und cry",
+   "herkunft": {
+    "abgeleitet_von": "oberarmR",
+    "werkzeug": "werkzeuge/teile_richten.py (oberarm_hoch)",
+    "datum": "2026-10-15",
+    "was": "weich auslaufende Innenseite oben mit Umriss geschlossen, oben runde Kappe mit Umriss um die Mitte des Querschnitts auf Hoehe des Drehpunkts; Fuell- und Umrissfarbe je Satz am unteren Teil des Arms gemessen"
+   },
+   "hinweis": "Erhoben (Jubel, Weinen) lag das weiche Schulterende des Oberarms frei ueber dem Fluegel und sah verwaschen aus (Pruefung 15.10.2026)."
+  }
+ },
+ "leinwand": {
+  "breite": 520,
+  "hoehe": 500,
+  "px_je_einheit": 2.0,
+  "K_vorlage": 0.235,
+  "vorlage_nach_leinwand": "x = 260 + (X - 1024) * 0.235, y = 474 + (Y - 1870) * 0.235 (Ruhepose)",
+  "rig": "zmaj_lottie.py --kopf 1.0 (Variante B): Kopf-Ebene Skala 61.5 %, Anker (0, 33.4)",
+  "lottie_bild_ebene": "Bild-Ebene als Kind der Rig-Ebene 'ebene': p = pivot_rig, a = pivot_px, s = 100 / px_je_einheit * 100 %; sichtbar je Stimmung ueber die Deckkraft"
+ },
+ "nachbearbeitung": {
+  "datum": "2026-10-15",
+  "werkzeug": "werkzeuge/teile_richten.py --ton",
+  "was": "lose Inseln unter 300 Pixel (Alpha > 40) an allen Teilen ausser den Hornspitzen entfernt (Linienreste neben dem Hals an den Koepfen); Hautton von Ober-/Unterarmen (Ziel: Mitte zwischen Rumpf und Kopf) und Schwanz (Ziel: Rumpf mal Verhaeltnis im blauen Grundsatz) kanalweise angeglichen, wo er um mehr als 12 abwich (Gelb/Gold bleibt); danach oberarmL_hoch/oberarmR_hoch gebaut. Je Teil in fertig/bericht_teile_richten.json",
+  "ergebnis": "fertig/teile (Grundsatz) und fertig/haut/<farbe> im Archiv Drache_Bildteile"
+ },
+ "archiv": "App Zeugs\\Profilbild\\Drache_Bildteile (Pfade in 'datei' und 'maske' relativ zu gemini\\final dort)"
+}

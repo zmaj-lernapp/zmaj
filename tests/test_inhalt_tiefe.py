@@ -50,6 +50,41 @@ def test_grammatik_uebungen_vollstaendig(alle_daten):
     assert not fehler, fehler[:20]
 
 
+def test_bosnische_antworten_bleiben_bosnisch(alle_daten, grunddaten):
+    """AGENTS.md, Regel 2: Bosnisches wird nie übersetzt. Ein Antwortknopf
+    oder eine Tabellenzelle aus uebersetzungen.GLEICH steht in jeder
+    Sprache so da wie auf Deutsch. Bis zum 17.10.2026 wurde "Sarajevo" in
+    faelle3 im türkischen Menü zu "Saraybosna" - die Bedeutung der Vokabel
+    "Sarajevo" hatte den bosnischen Knopf gleich mit übersetzt."""
+    import uebersetzungen
+    gleich = uebersetzungen.GLEICH
+    fehler = []
+    for code, daten in alle_daten.items():
+        for kid, lektion in daten["grammatik"].items():
+            vorlage = grunddaten["grammatik"][kid]
+            for ue, ue_de in zip(lektion.get("uebungen", []), vorlage.get("uebungen", [])):
+                for o, o_de in zip(ue["optionen"] + [ue["richtig"]], ue_de["optionen"] + [ue_de["richtig"]]):
+                    if o_de in gleich and o != o_de:
+                        fehler.append((code, kid, o_de, o))
+            for tab, tab_de in zip(tabellen(lektion.get("erklaerung", [])),
+                                   tabellen(vorlage.get("erklaerung", []))):
+                for zeile, zeile_de in zip(tab, tab_de):
+                    for z, z_de in zip(zeile, zeile_de):
+                        if z_de in gleich and z != z_de:
+                            fehler.append((code, kid, z_de, z))
+    assert not fehler, fehler[:20]
+
+
+def test_sarajevo_als_bedeutung_bleibt_uebersetzt(alle_daten):
+    """Die Gegenprobe: als Bedeutung der Vokabel bleibt es türkisch."""
+    worte = [w for k in alle_daten["tr"]["kategorien"] for w in k["words"] if w["bs"] == "Sarajevo"]
+    assert worte and all(w["de"] == "Saraybosna" for w in worte)
+    tr = alle_daten["tr"]["grammatik"]["faelle3"]["uebungen"]
+    ue = next(u for u in tr if u["richtig"] == "Sarajevu")
+    assert ue["optionen"] == ["Sarajevo", "Sarajevu", "Sarajeva"]
+    assert "Saraybosna" in ue["frage"]
+
+
 def test_woerterbuch_ohne_leere_eintraege(alle_daten):
     fehler = []
     for code, daten in alle_daten.items():

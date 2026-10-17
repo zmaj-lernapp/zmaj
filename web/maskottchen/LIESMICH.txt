@@ -1,31 +1,169 @@
 MASKOTTCHEN ZMAJ
 
-zmaj.json   Lottie-Animation des Drachen. Frontansicht, sitzt auf einem
-            Bücherstapel, runde weiche Formen. Ebenen-Skelett: Körper, Kopf,
-            Arme, Beine, zwei Flügel, Schwanz, Augen, Lider, Brauen, vier
-            Münder, Tränen, Sitzplatz. Abschnitte per Marker:
-              idle   Leerlauf: atmen, blinzeln, Augen wandern, Flügel, Schwanz
-              cheer  Jubel: Sprung mit Vorspannung, Arme hoch, offener Mund
-              sad    Traurig: sackt zusammen, Kopf sinkt, Brauen, halbe Lider
-              ok     kurzer Hüpfer mit Lachen nach richtiger Antwort (einmal)
-              no     Kopfschütteln mit finsterer Braue nach falscher Antwort
-              cry    Weinen: Tränen fallen, Mund zittert, Körper bebt
+zmaj.json   Lottie-Animation des Drachen (v7, 15.10.2026: der Bild-Drache).
+            Frontansicht, der Drache STEHT und schaut den Lernenden an:
+            blauer Koerper mit dunkelblauem Umriss, grosse Flughaeute,
+            goldene geriffelte Hoerner, gelber gerippter Bauch, Schwanz mit
+            Stacheln. Die Figur ist aus 32 Bildern zusammengesetzt, die mit
+            Google Gemini erzeugt und dann in Teile geschnitten wurden (KI-
+            generiert, siehe REUSE.toml und LIZENZEN.txt). Die Bilder haengen
+            als Bild-Ebenen an einem Skelett aus Lottie-Ebenen (Rig) und
+            bewegen sich mit ihm.
+            Leinwand 520 x 500, 30 Bilder/s. Rig-Ebenen: Koerper, Beine,
+            Schwanz, zwei Fluegel, Ober- und Unterarme (Ellbogen), Kopf,
+            Hornspitzen, Schatten am Boden. Das Gesicht steckt im Kopfbild:
+            je Stimmung ein eigener Kopf (neutral, blinzeln, jubel, froh,
+            traurig, weinen, finster, links, rechts); es gibt keine
+            Vektor-Augen mehr darueber. Die Unterarme gibt es offen, als
+            Faust (Jubel, nur solange die Arme oben sind) und an der Wange
+            (Weinen); den Oberarm haengend und erhoben ("_hoch", mit runder
+            Kappe an der Schulter statt des weichen Endes).
+            Abschnitte per Marker:
+              idle   Leerlauf: atmen, zweimal blinzeln, Fluegel, Schwanz
+              cheer  Jubel: zwei Spruenge, Faeuste hoch, Augen zu, Mund offen
+              sad    Traurig: sackt zusammen, trauriger Kopf
+              ok     kurzer Hopser mit Lachen nach richtiger Antwort (einmal)
+              no     Kopfschuetteln mit finsterem Blick nach falscher Antwort
+              cry    Weinen: Haende an den Wangen, Traenen, Koerper schluchzt
                      (bei 0 Leben)
-            Abspielen mit lottie-web (aus dem Internet); ohne Internet
-            erscheint der einfache Vektor-Drache.
+              no_l   falsche Antwort: Kopf nach links abwenden
+              no_r   dasselbe nach rechts (die App wechselt ab)
+            Bewegung (nach Ajdins Rueckmeldung zum Probevideo und der
+            Pruefung vom 15.10.2026): ruhig - der Kopf neigt sich hoechstens
+            4,5 Grad um den Hals; cheer, ok, no, no_l und no_r beginnen und
+            enden in der Ruhepose (sad und cry sind Schleifen und setzen
+            hart ein). Beim Jubel liegen die Arme vor den Fluegeln, der
+            Ellbogen fuehrt auf und ab. Der Kopf wechselt hart, bei froh,
+            finster und am Ende des Jubels mit einem kurzen Blinzeln
+            dazwischen; der abgewandte Kopf im Moment, in dem er schmal wird.
+            Abspielen mit lottie-web (web/lottie.min.js, liegt in der App).
 
-Erzeugt von zmaj_lottie.py im Projektordner (Thonny, F5). Formen stehen
-dort als Punktlisten, Bewegung als Keyframes. Formen in einer Ebene sind
-von unten nach oben aufgelistet, das Skript dreht sie für Lottie um.
+teile/      Die 32 Bilder des Drachen in der Grundfarbe, WebP mit Alpha,
+            2 Pixel je Leinwand-Einheit. zmaj.json nennt sie mit u = "teile/"
+            und p = <teil>.webp.
 
-Bessere Figur einbauen:
-  - Eigene Lottie-Datei mit denselben sechs Marker-Namen als zmaj.json ablegen.
-  - ODER je Zustand eine eigene Lottie-Datei (z. B. von lottiefiles.com):
-        zmaj-idle.json  zmaj-cheer.json  zmaj-sad.json
-        zmaj-ok.json    zmaj-no.json     zmaj-cry.json
-    Jede Datei wird ganz abgespielt (idle/cheer/sad/cry in Schleife, ok/no
-    einmal). Fehlt ein Zustand, springt zmaj.json ein.
+haut/<farbe>/  Dieselben 32 Bilder in einer Hautfarbe aus dem Laden (gruen,
+            rosa, rot, lila, nacht, gold, silber, kupfer, galaxie) - gleiche
+            Namen, gleiche Groessen. Die App laedt nur den Satz der
+            getragenen Farbe. Einen Satz nimmt sie nur, wenn zmaj.json
+            Bilder hat (nicht beim Vergleichs-Drachen mit --vektor), der
+            Satz vollstaendig ist und web/inhalt ihn kennt (Eintrag
+            "haut/<farbe>/" in der Liste "maskottchen"); sonst bleibt der
+            Drache in der Grundfarbe.
+            Entstanden am 15.10.2026: je Farbe ein Gemini-Aufruf fuer einen
+            gemeinsamen Bogen aller Teile (damit Kopf, Rumpf und Fluegel
+            denselben Ton haben), danach wie teile/ geschnitten. Die Raender
+            sind ohne gruenen Farbsaum - seitdem auch die von teile/.
+            haut/skelett/ (16.10.2026) ist das Halloween-Skelett, von
+            Gemini als Skelett gemalt (siehe unten). Die Hand an der Wange
+            hat in allen Saetzen ein Feld von 114 x 220 Pixeln: das Skelett
+            braucht es fuer die Knochenhaende vor den Augenhoehlen, die
+            anderen Saetze sind durchsichtig erweitert (haut_einbauen.py).
+
+zierrat/<id>/  Die gemalten Kostueme (16.10.2026), WebP wie teile/: alles am
+            Kopf (Huete, Kronen, Brillen, Ohrensachen, Hasenohren) je
+            vorne.webp, links.webp, rechts.webp (fuer den Kopf von vorn und
+            den abgewandten Kopf; beim Monokel ist rechts ein eigenes Bild,
+            sonst links gespiegelt), Funkeln stern_N.webp (sieben Sterne),
+            Kleidung rumpf.webp bzw.
+            mantel.webp und kragen.webp, dazu die Aermel je Armteil
+            (oberarmL.webp, oberarmL_hoch.webp, unterarmL_offen.webp ...).
+            Sie haengen nicht an der Hautfarbe. Der Schnipsel des Stuecks
+            nennt sie (siehe zmajz-*.json).
+
+zmajz-*.json  Zierrat aus dem Laden: je Stueck nur seine Ebene(n). Seit
+            16.10.2026 sind 24 Stuecke gemalt - alle bis auf Galaxie und
+            Skelett (das ist ein Hautsatz, haut/skelett/): ihr Schnipsel ist {"layers": [Bild-Ebenen], "assets":
+            [Bilder in zierrat/<id>/]}. Die Huete wechseln mit dem Kopf
+            zwischen vorne/links/rechts und nehmen die Hornspitzen heraus
+            (die Brillen lassen sie stehen), die Funkelsterne blitzen
+            einzeln auf,
+            die Aermel wechseln mit dem Arm (erhoben, Faust, Wange), der
+            Mantel haengt hinter Koerper und Schwanz. Galaxie und der
+            Rueckfall des Skeletts sind als Vektor gezeichnet (eine Liste
+            von Ebenen).
+            Die App haengt sie an zmaj.json an und sortiert nach
+            "ind" (siehe zmajDaten() in web/index.html). Alle Stuecke haengen
+            an Kopf, Koerper, Ober- oder Unterarm, Fluegel oder Schwanz und
+            gehen in jeder Stimmung mit.
+            Manche Stuecke bringen mehrere Ebenen mit: Trikot und Jacken
+            ihre Aermel (die Jacken auch am Unterarm), der Koenigsmantel
+            seinen Hermelinkragen (gemalt seit 16.10.2026 eine schmale
+            Stola hinter den Armen, als Vektor vor ihnen), der Fanschal den
+            Schriftzug, die Galaxie Sterne auf Fluegeln und Schwanz (zum
+            Hautsatz haut/galaxie/ dazu).
+            Das Skelett (Halloween) ist nur Knochen, wie am 01.10.2026
+            festgelegt (runde schwarze Hoehlen mit gelbem Punkt, kein
+            Fleisch, keine Augen mit Iris). Seit 16.10.2026 ist es der
+            gemalte Satz haut/skelett/ am selben Rig - dieselbe Bewegung wie
+            der Drache, durchgehend boeser Blick, Nasenbein statt
+            "Schweinsnase"; das Vektor-Stueck zmajz-skelett.json weicht ihm
+            ("zmaj_ohne_haut"). Fehlt der Satz, ist es der Rueckfall:
+            "zmaj_leert" leert die Rig-Ebenen und nimmt alle Bild-Ebenen
+            heraus, und das Stueck bringt das Vektor-Gesicht mit.
+            Ein frueherer Bildsatz haut/skelett/ (15.10.2026) zeigte statt
+            Knochen einen elfenbeinfarbenen Drachen mit blauen Augen und
+            flog wieder raus.
+
+Farben: Beim Bild-Drachen ist eine Hautfarbe ein eigener Bildsatz (haut/).
+Umgefaerbt wird nur noch ohne Satz: dann tauscht die App acht Farben exakt
+(FARB_QUELLE und FARBEN in web/index.html), und das trifft nur Vektor-
+Ebenen - das Skelett wird so knochenweiss. Die Farben der Kostueme liegen
+alle ausserhalb von FARB_QUELLE und faerben nie mit.
+
+Erzeugt von zmaj_lottie.py im Projektordner (Thonny, F5). Bewegung als
+Keyframes, die Lage jedes Bildes in BILD_TEILE.
+  python zmaj_lottie.py              Bild-Drache (Kopf wie im Bild), schreibt
+                                     hierher - das ist die Fassung der App
+  python zmaj_lottie.py --vektor --aus ORDNER
+                                     der gezeichnete Drache v6 (Kopf 20 %
+                                     groesser), nur noch zum Vergleichen.
+                                     Ohne --aus ersetzt er hier die Datei
+                                     der App.
+  --aus ORDNER                       an einen anderen Ort schreiben
+Die Bilder kommen aus den PNG-Teilen ueber haut_einbauen.py:
+  python haut_einbauen.py --teile ORDNER   Grundsatz nach teile/
+  python haut_einbauen.py ORDNER           ORDNER/<farbe>/ nach haut/<farbe>/
+  python haut_einbauen.py --pruefen        nur pruefen
+Danach inhalt_bauen.py laufen lassen, damit die App neue Hautsaetze kennt
+(app_bauen.py bricht sonst ab).
+
+Quellen der Bilder (ausserhalb des Repos, nicht im Temp-Ordner):
+  App Zeugs\Profilbild\Drache_Bildteile\   mit LIESMICH.txt
+    fertig\teile\  die PNG-Teile des Grundsatzes  (-> --teile)
+    fertig\haut\   die PNG-Teile je Hautfarbe      (-> ORDNER)
+    gemini\        die Gemini-Boegen, Masken, Schneidewerkzeuge und
+                   gemini\final\teile.json (aus welchem Bogen, Kasten und
+                   welcher Maske jedes Teil stammt)
+    haut\          die Gemini-Boegen der Hautfarben und ihre Werkzeuge
+    icon\          das App-Symbol (icon_bauen.py)
+  Eine Kopie von teile.json liegt im Repo unter grafik/drache/teile.json.
+
+Standbilder ohne Animation: zmaj-frei.png, zmaj-jubel.png und
+zmaj-traurig.png (transparent, aus dem Bild-Drachen gerendert). Die App
+zeigt sie nur, wenn lottie-web oder zmaj.json fehlt (zmaj() in
+web/index.html); dann bewegt sich das Bild per CSS.
+
+Der Drache ausserhalb der App (Stand 15.10.2026):
+  App-Symbol      der Drachenkopf ("Entwurf 4", ebenfalls mit Google Gemini
+                  erzeugt, von uns zugeschnitten) statt der bosnischen
+                  Flagge: store/icon-512.png, web/icon-256.png, web/icon.ico
+                  und die Symbole der Android-Huelle, alle aus icon_bauen.py
+                  (siehe oben, icon\). Im Browser-Tab und in der Kopfzeile
+                  der App bleibt die Flagge (web/flagge.png).
+  Store-Banner    store/feature-1024x500.png (web/_feature.html)
+  README          docs/assets/social-preview.jpg (Kopfbild, auch das
+                  Vorschaubild fuer geteilte Links) und
+                  docs/assets/screenshots-en.png (Bildleiste)
+  Website         github-seite/favicon.ico und icon-256.png, kopiert von
+                  seite_bauen.py
+  Kennzeichnung   Wo die Bilder oeffentlich zu sehen sind, steht dabei, dass
+                  es KI-Bilder sind: "Illustration created with Google
+                  Gemini, edited" (Alt-Text im README, unten links im
+                  Vorschaubild, Fusszeile der Website), dazu REUSE.toml und
+                  LIZENZEN.txt.
+
+Andere Figur einbauen:
+  - Eigene Lottie-Datei mit denselben acht Marker-Namen als zmaj.json ablegen.
   - Rive-Datei (zmaj.riv): Claude bindet dann den Rive-Player ein. Rive-Dateien
     kann nur der Rive-Editor schreiben (rive.app, kostenlos im Browser).
-  - Standbilder statt Animation: zmaj-frei.png, optional zmaj-jubel.png und
-    zmaj-traurig.png (transparent). Nur genutzt, wenn keine zmaj.json da ist.

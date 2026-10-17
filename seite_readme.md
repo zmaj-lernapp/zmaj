@@ -47,6 +47,7 @@ Quelltext angezeigt. Das ist keine Einstellung, die man umlegen kann.
 | `impressum.html` | Impressum nach § 5 DDG, acht Sprachen |
 | `konto-loeschen.html` | wie man seine Daten löscht — fragt Google im Data-Safety-Formular ab |
 | `app-ads.txt` | eine Zeile, die AdMob bestätigt, dass die Werbeplätze in der App wirklich zu diesem Konto gehören |
+| `favicon.ico`, `icon-256.png` | das Symbol im Browser-Tab: der Drache aus dem App-Symbol (mit Google Gemini erzeugt, bearbeitet) |
 
 ---
 

@@ -136,14 +136,28 @@ def satzbau_fuer_app(liste):
     return raus
 
 
-def maskottchen_bilder():
+def maskottchen_bilder(ordner=None):
     """Bilder in web/maskottchen: zmaj-frei.png (normal), optional zmaj-jubel.png,
-    zmaj-traurig.png. Fehlen sie, zeichnet die App den Drachen als Vektor."""
-    ordner = os.path.join(WEB_ORDNER, "maskottchen")
+    zmaj-traurig.png. Fehlen sie, zeichnet die App den Drachen als Vektor.
+
+    Seit dem 15.10.2026 (Bild-Drache) dazu je vollstaendigem Hautsatz ein
+    Eintrag "haut/<farbe>/": die App laedt die Bilder einer Hautfarbe nur,
+    wenn er in der Liste steht. Vollstaendig heisst: jedes Teil aus teile/
+    liegt auch in haut/<farbe>/ - ein halber Satz liesse Teile des Drachen
+    leer, dann lieber die Grundfarbe."""
+    ordner = ordner or os.path.join(WEB_ORDNER, "maskottchen")
     try:
-        return sorted(f for f in os.listdir(ordner) if f.lower().endswith((".png", ".webp", ".jpg", ".jpeg", ".gif", ".json", ".riv")))
+        dateien = sorted(f for f in os.listdir(ordner) if f.lower().endswith((".png", ".webp", ".jpg", ".jpeg", ".gif", ".json", ".riv")))
     except OSError:
         return []
+    try:
+        teile = {f for f in os.listdir(os.path.join(ordner, "teile")) if f.endswith(".webp")}
+        haut = os.path.join(ordner, "haut")
+        farben = sorted(f for f in os.listdir(haut) if os.path.isdir(os.path.join(haut, f)) and not f.startswith("_"))
+    except OSError:
+        return dateien
+    return dateien + ["haut/%s/" % f for f in farben
+                      if teile and teile <= set(os.listdir(os.path.join(haut, f)))]
 
 
 def eigene_aufnahmen():

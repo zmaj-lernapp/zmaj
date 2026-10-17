@@ -3,8 +3,8 @@ r"""
 testdaten_bauen.py  –  Sicherungsdateien zum Durchtesten der ganzen App
 
 Zum Ausprobieren braucht man einen Stand, in dem nichts mehr gesperrt ist:
-alle Level offen, alle Wörter gelernt, alle Geschichten gelesen, Münzen
-genug. Von Hand zusammenzuklicken dauert Stunden.
+alle Level offen, alle Wörter gelernt, alle Geschichten gelesen. Von Hand
+zusammenzuklicken dauert Stunden.
 
     "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" testdaten_bauen.py
 
@@ -13,11 +13,11 @@ Die fertigen Dateien landen im Ordner `testdaten` und werden in der App
 
 Es entstehen zwei, weil sich manches gegenseitig ausschließt:
 
-  zmaj-test-vollversion.json   Alles geschafft. Vollversion an, keine
-                               Werbung, unbegrenzte Leben, 999 999 Münzen,
-                               jedes Wort sitzt, der Drache trägt die Krone.
-                               Zum Anschauen: so sieht die App ganz am Ende
-                               aus, und nichts ist gesperrt.
+  zmaj-test-vollversion.json   Alles geschafft: jedes Wort sitzt, der Drache
+                               trägt Fes und Schal. Zum Anschauen: so sieht
+                               die App ganz am Ende aus, und nichts ist
+                               gesperrt. Die Vollversion selbst kommt nicht
+                               mit (siehe unten).
   zmaj-test-alles-offen.json   Jedes Level und jede Geschichte offen, aber
                                NICHTS gelernt und nichts gekauft, und ohne
                                Vollversion. Zum Spielen: die Lektionen
@@ -50,6 +50,14 @@ und 65 hatte – das Skript war richtig, es war nur nicht neu gelaufen.
 Seitdem prüft tests/test_testdaten.py, dass jede Kennung des Inhalts
 drinsteht. Schlägt der Test an: dieses Skript laufen lassen.
 
+VIERTE ACHTUNG (17.10.2026): Eine Sicherung bringt nur, was sich ehrlich
+erreichen lässt. Seit sicherungPlausibel() in web/index.html nimmt die App
+beim Einlesen höchstens 60 Münzen je Lerntag (plus einen Tag) und nur so
+viel Zierrat, wie diese Münzen bezahlen. Bei 30 Lerntagen sind das 1860
+Münzen - deshalb steht hier keine 999 999 mehr. Die Vollversion kommt über
+eine Datei gar nicht, sie steht nicht im Lernstand. Wie man für den Laden
+trotzdem viele Münzen bekommt, steht in testdaten/LIESMICH.txt.
+
 Am PC schaltet auch `?alle=1` an der Adresse zum Ausprobieren alles frei.
 (Bis zum 04.10.2026 stand hier, dass die Vollversion unter `start.py` nicht
 wirkt: Der alte Kontoserver holte `premium` beim Speichern aus seiner
@@ -67,15 +75,30 @@ HIER = os.path.dirname(os.path.abspath(__file__))
 ZIEL = os.path.join(HIER, "testdaten")
 sys.path.insert(0, HIER)
 
-# Der alte Kontoserver kappte den Muenzstand still bei dieser Grenze. Den
-# gibt es seit dem 04.10.2026 nicht mehr; die Zahl bleibt, damit die
-# erzeugten Testdateien gleich bleiben.
-MUENZEN = 999999
-
 # So viele Lerntage bekommt die Testdatei mit. Ab 21 steht die
 # Tagesaufgaben-Stufe auf 3 - erst dann tauchen alle Aufgabenarten und die
 # hoechsten Ziele ueberhaupt auf.
 LERNTAGE = 30
+
+# Muenzen: genau so viele, wie die App beim Einlesen annimmt (17.10.2026).
+# Bis dahin standen hier 999999 - die Grenze des alten Kontoservers. Seit
+# sicherungPlausibel() in web/index.html nimmt eine Sicherung hoechstens 60
+# Muenzen je Lerntag und einen Tag Vorschuss an (MUENZEN_JE_TAG_HOECHSTENS),
+# aus 999999 wurden beim Einlesen still 1860, und testdaten/LIESMICH.txt
+# versprach etwas, das nicht ankam. Gerechnet statt eingetragen, damit es mit
+# LERNTAGE mitgeht; tests/test_testdaten.py vergleicht mit der App.
+# Viele Muenzen fuer den Laden: siehe testdaten/LIESMICH.txt.
+MUENZEN_JE_TAG = 60
+MUENZEN = MUENZEN_JE_TAG * (LERNTAGE + 1)
+
+# Was die Datei mit allem schon gekauft hat, mit den Preisen aus ZIERRAT in
+# web/index.html. Seit dem 17.10.2026 nimmt die App beim Einlesen nur so viel
+# Zierrat an, wie die Muenzen bezahlen - der ganze Laden kostet 23 800, die
+# vier Stuecke von vorher (Brille, Kopfhoerer, Hut, Krone) 6000, es gehen also
+# nur 1860. Fes und bosnischer Schal: ein Stueck fuer den Kopf, eins fuer den
+# Hals, beide traegt der Drache. Gekauft heisst bezahlt - sie stehen auch in
+# muenzen_aus. tests/test_testdaten.py prueft Preise und Summe.
+GEKAUFT = {"fes": 900, "schal_bih": 800}
 
 
 def lerntage(bis=None):
@@ -138,13 +161,14 @@ def stand(premium, alles_gewusst=True, bis=None):
         # damit wäre ein ganzer Zweig der App gar nicht anschaubar.
         "tage": lerntage(bis),
         "frost": [],
-        # Alles aus dem Laden schon gekauft, damit man den Drachen
-        # anziehen kann, ohne erst sparen zu müssen. In der zweiten Datei
-        # nicht: dort soll der Laden ja gerade ausprobiert werden.
-        "besitz": ["brille", "kopfhoerer", "hut", "krone"] if alles_gewusst else [],
-        # Und eines davon gleich aufgesetzt – sonst steht der Drache nackt
-        # da, obwohl alles gekauft ist.
-        "getragen": "krone" if alles_gewusst else "",
+        # Schon etwas aus dem Laden gekauft, damit man den Drachen
+        # angezogen sieht, ohne erst sparen zu müssen - so viel, wie die
+        # Münzen bezahlen (siehe GEKAUFT). In der zweiten Datei nicht: dort
+        # soll der Laden ja gerade ausprobiert werden.
+        "besitz": list(GEKAUFT) if alles_gewusst else [],
+        # Und gleich aufgesetzt – sonst steht der Drache nackt da, obwohl
+        # alles gekauft ist.
+        "getragen": ",".join(GEKAUFT) if alles_gewusst else "",
         "leben": {"anzahl": 5, "zeit": 0},
         "schutz": {"anzahl": 2, "zeit": 0},
         # Leer lassen: Münzen gibt es nur in dem Augenblick, in dem ein
@@ -152,7 +176,10 @@ def stand(premium, alles_gewusst=True, bis=None):
         # wieder eine Münze und nie die Jubelmeldung.
         "tagwerk": {},
         "muenzen_ges": MUENZEN,
-        "muenzen_aus": 0,
+        "muenzen_aus": sum(GEKAUFT.values()) if alles_gewusst else 0,
+        # Wirkt beim Einlesen nicht: die Vollversion steht seit September
+        # 2026 nicht mehr im Lernstand (vollversionLaden() in web/index.html).
+        # Bleibt als Merker, welche Datei welche ist.
         "premium": premium,
     }
 
@@ -165,7 +192,7 @@ def schreibe(name, premium, hinweis, alles_gewusst=True, bis=None):
         json.dumps(d, ensure_ascii=False, indent=1))
     s = d["stand"]
     print("  %-30s %4d Wörter, %2d Level, %2d Geschichten, %2d Lerntage, "
-          "%d Münzen, Vollversion %s"
+          "%d Münzen, Merker premium %s"
           % (name, len(s["gewusst"]), len(s["bestanden"]), len(s["gelesen"]),
              len(s["tage"]), s["muenzen_ges"], "an " if premium else "aus"))
     return pfad
