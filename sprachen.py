@@ -197,6 +197,9 @@ TEXTE = {
 "laden.hut": "Mütze",
 "laden.hut_sub": "Eine rote Wintermütze mit Bommel.",
 "laden.gekauft": "Gekauft.",
+# Ansage nach Tragen/Abnehmen, nur fuer Screenreader (17.10.2026)
+"laden.angezogen": "Angezogen.",
+"laden.abgenommen": "Abgenommen.",
 "set.agb_text": "<b>1. Anbieter</b><br>{anbieter}<br><br><b>2. Gegenstand der Nutzung</b><br>Zmaj ist eine Lernhilfe für die bosnische Sprache. Die App ersetzt keinen Unterricht, keine Übersetzung durch einen Menschen und keine Rechtsberatung. Das gilt besonders für die Level zu Amt, Bank, Immobilien und Arbeitsvertrag: Die Wörter dort sollen helfen, ein Gespräch zu verstehen – sie sind keine verbindliche Auskunft. Die App ist für Menschen ab 16 Jahren; wer jünger ist, braucht die Zustimmung der Eltern.<br><br><b>3. Kein Konto bei uns, deine Daten bleiben bei dir</b><br>Du brauchst dich nicht anzumelden. Nur für den Kauf der Vollversion brauchst du ein Google-Konto – zum Lernen nicht. Die App speichert deinen Lernfortschritt nur auf deinem Gerät. Das heißt auch: Geht das Gerät verloren oder löschst du die App, ist der Fortschritt weg – es sei denn, Androids eigene Sicherung in deinem Google-Konto bringt ihn zurück; darauf haben wir keinen Einfluss. Unter Einstellungen → Sicherung kannst du ihn als Datei sichern. Diese Sicherung liegt in deiner Verantwortung – wir haben keine Kopie und können nichts wiederherstellen. Die Vollversion steckt nicht in dieser Datei: Sie hängt an deinem Google-Konto und ist auf einem neuen Gerät von selbst wieder da.<br><br><b>4. Inhalte und Haftung</b><br>Alle Wörter, Sätze, Grammatik-Erklärungen und Geschichten sind nach bestem Wissen erstellt. Fehler sind trotzdem möglich, und die Übersetzungen in die einzelnen Oberflächensprachen stammen nicht durchweg von Muttersprachlern. Es besteht kein Anspruch auf Richtigkeit oder Vollständigkeit. Wenn dir ein Fehler auffällt, schreib uns über das Feedback-Feld in den Einstellungen.<br><br><b>5. Verfügbarkeit</b><br>Die App läuft auf deinem Gerät und funktioniert auch ohne Internet – nur Werbung, Käufe und die Frage an den Play Store, ob deine Vollversion läuft, brauchen eine Verbindung. Sie wird in der Freizeit entwickelt; es gibt keine Zusage, dass sie dauerhaft weitergepflegt oder im Store angeboten wird. Eine bereits installierte App läuft weiter, auch wenn wir aufhören. Solange dein Abonnement läuft, halten wir die Vollversion am Laufen und liefern die nötigen Updates. Hören wir auf, beenden wir das Abonnement – dann zahlst du nichts mehr.<br><br><b>6. Nutzungsrechte und unzulässige Nutzung</b><br>Die Inhalte sind für den eigenen Gebrauch da. Sie dürfen nicht kopiert und als eigenes Angebot weiterverbreitet werden.<br><br><b>7. Werbung, Vollversion und Münzen</b><br>Die App ist kostenlos und zeigt Werbung.<br><b>Vollversion:</b> Sie entfernt die Werbung und gibt dir unbegrenzte Leben. Dazu bekommt Zmaj neue Skins, Kostüme und einen Funkel-Effekt; endet die Vollversion, legt er sie wieder ab. Lerninhalte werden dadurch nicht freigeschaltet – ohne Vollversion sind alle Level, Wörter und Geschichten genauso zugänglich. Preis und Zeitraum zeigt dir die App, bevor du kaufst, und Google noch einmal in seinem Kauffenster. Abgeschlossen wird das Abonnement über den Google Play Store; Verkäufer ist dort Google Commerce Limited, 70 Sir John Rogerson’s Quay, Dublin 2, D02 R296, Irland. Es hängt an dem Google-Konto, mit dem du kaufst – nicht am Gerät; über die Google-Familienmediathek lässt es sich nicht teilen. Für die Vollversion gelten die gesetzlichen Mängelrechte bei digitalen Produkten (§§ 327d ff. BGB); die Einschränkung in Punkt 4 gilt dafür nicht.<br><b>Verlängerung und Zahlung:</b> Das Abonnement verlängert sich automatisch um den gewählten Zeitraum und wird jedes Mal neu abgebucht, bis du kündigst. Geht eine Zahlung schief, bleibt die Vollversion zunächst noch aktiv; danach sperrt Google das Abonnement, und Werbung und die normale Zahl an Leben sind zurück. Beide Zeiträume zusammen dauern bis zu 60 Tage. Holst du die Zahlung bis dahin nach, geht es weiter – sonst endet das Abonnement und du müsstest es neu abschließen. Eine Preiserhöhung kündigt Google dir mindestens 30 Tage vorher an; je nach Art der Erhöhung musst du ihr zustimmen, sonst endet das Abonnement zum Ende des bezahlten Zeitraums.<br><b>Kündigung:</b> Du kündigst jederzeit in deinem Google-Konto oder in der App unter „Abo verwalten“. Die Vollversion bleibt bis zum Ende des bezahlten Zeitraums aktiv. Beim Jahresabo bietet dir Google in Deutschland zusätzlich an, sofort zu kündigen – dann endet die Vollversion sofort und du bekommst den Rest anteilig zurück.<br><b>Widerruf und Erstattung:</b> Du hast 14 Tage Widerrufsrecht ab dem Kauf. Wir haben die Vollversion bei Google ausdrücklich als Dienst eingestuft – deshalb bleibt dir das Recht auch dann, wenn du sie schon benutzt hast. Am einfachsten widerrufst du über Google Play; dort läuft auch die Erstattung. Genauso kannst du uns formlos schreiben, an die Anschrift in Punkt 1, oder in den Einstellungen auf „Vertrag widerrufen“ tippen. Wir bestätigen dir den Eingang per E-Mail.<br><b>Münzen:</b> Münzen verdienst du durch geschaffte Tagesaufgaben. Sie sind nicht käuflich, haben keinen Geldwert, lassen sich nicht auszahlen, nicht übertragen und nicht zurücktauschen. Sie gelten nur innerhalb der App und verfallen, wenn du sie löschst.<br><br><b>8. Nutzung beenden</b><br>Lösche die App oder leere ihren Speicher – damit endet die Nutzung, ohne Frist und ohne Begründung. Ein laufendes Abonnement endet dadurch <b>nicht</b>; wie du es kündigst, steht in Punkt 7.<br><br><b>9. Änderung dieser Bedingungen</b><br>Ändern sich diese Bedingungen wesentlich, wird beim nächsten Öffnen der App darauf hingewiesen.<br><br><b>10. Anwendbares Recht</b><br>Es gilt deutsches Recht. Zwingende Verbraucherschutzvorschriften deines Wohnsitzlandes bleiben davon unberührt.<br><br><i>Stand: 11.10.2026</i>",
 "set.sicherung": "Sicherung",
 "set.sicherung_sub": "Die App speichert deinen Lernstand nur auf diesem Gerät. Speichere ab und zu eine Sicherung, dann ist er bei einem neuen Handy nicht weg.",
@@ -383,6 +386,9 @@ TEXTE = {
 "task.kacheln": "Bilde den Satz",
 "task.kacheln_hinweis": "Tippe die Wörter in der richtigen Reihenfolge an.",
 "task.kacheln_skip": "Überspringen",
+# Namen von Zeile und Vorrat fuer Screenreader (17.10.2026)
+"task.kacheln_zeile": "Dein Satz",
+"task.kacheln_vorrat": "Wörter",
 "task.grammatik": "Grammatik",
 "task.wiederholung": "Wiederholung: {label}",
 "task.nochmal": "Noch einmal",
@@ -777,6 +783,9 @@ TEXTE = {
 "laden.hut": "Beanie",
 "laden.hut_sub": "A red winter hat with a pompom.",
 "laden.gekauft": "Purchased.",
+# Ansage nach Tragen/Abnehmen, nur fuer Screenreader (17.10.2026)
+"laden.angezogen": "Now wearing.",
+"laden.abgenommen": "Taken off.",
 "set.sicherung": "Backup",
 "set.sicherung_sub": "The app keeps your progress on this device only. Save a backup now and then, so it survives a new phone.",
 "set.sicherung_speichern": "Save backup",
@@ -954,6 +963,9 @@ TEXTE = {
 "task.kacheln": "Build the sentence",
 "task.kacheln_hinweis": "Tap the words in the right order.",
 "task.kacheln_skip": "Skip",
+# Namen von Zeile und Vorrat fuer Screenreader (17.10.2026)
+"task.kacheln_zeile": "Your sentence",
+"task.kacheln_vorrat": "Words",
 "task.grammatik": "Grammar",
 "task.wiederholung": "Review: {label}",
 "task.nochmal": "Try again",
@@ -1324,6 +1336,9 @@ TEXTE = {
 "laden.hut": "Bere",
 "laden.hut_sub": "Ponponlu kırmızı bir bere.",
 "laden.gekauft": "Alındı.",
+# Ansage nach Tragen/Abnehmen, nur fuer Screenreader (17.10.2026)
+"laden.angezogen": "Takıldı.",
+"laden.abgenommen": "Çıkarıldı.",
 "set.sicherung": "Yedek",
 "set.sicherung_sub": "Uygulama ilerlemeni yalnızca bu cihazda saklıyor. Arada bir yedek al, böylece yeni telefonda kaybolmaz.",
 "set.sicherung_speichern": "Yedeği kaydet",
@@ -1501,6 +1516,9 @@ TEXTE = {
 "task.kacheln": "Cümleyi kur",
 "task.kacheln_hinweis": "Kelimelere doğru sırayla dokun.",
 "task.kacheln_skip": "Atla",
+# Namen von Zeile und Vorrat fuer Screenreader (17.10.2026)
+"task.kacheln_zeile": "Cümlen",
+"task.kacheln_vorrat": "Kelimeler",
 "task.grammatik": "Dilbilgisi",
 "task.wiederholung": "Tekrar: {label}",
 "task.nochmal": "Bir daha",
@@ -1869,6 +1887,9 @@ TEXTE = {
 "laden.hut": "Mössa",
 "laden.hut_sub": "En röd mössa med tofs.",
 "laden.gekauft": "Köpt.",
+# Ansage nach Tragen/Abnehmen, nur fuer Screenreader (17.10.2026)
+"laden.angezogen": "Påsatt.",
+"laden.abgenommen": "Avtagen.",
 "set.sicherung": "Säkerhetskopia",
 "set.sicherung_sub": "Appen sparar dina framsteg bara på den här enheten. Spara en kopia då och då, så följer de med till en ny telefon.",
 "set.sicherung_speichern": "Spara kopia",
@@ -2046,6 +2067,9 @@ TEXTE = {
 "task.kacheln": "Bygg meningen",
 "task.kacheln_hinweis": "Tryck på orden i rätt ordning.",
 "task.kacheln_skip": "Hoppa över",
+# Namen von Zeile und Vorrat fuer Screenreader (17.10.2026)
+"task.kacheln_zeile": "Din mening",
+"task.kacheln_vorrat": "Ord",
 "task.grammatik": "Grammatik",
 "task.wiederholung": "Repetition: {label}",
 "task.nochmal": "En gång till",
@@ -2412,6 +2436,9 @@ TEXTE = {
     "laden.hut": "Muts",
     "laden.hut_sub": "Een rode wintermuts met pompon.",
     "laden.gekauft": "Gekocht.",
+    # Ansage nach Tragen/Abnehmen, nur fuer Screenreader (17.10.2026)
+    "laden.angezogen": "Opgezet.",
+    "laden.abgenommen": "Afgezet.",
     "set.sicherung": "Reservekopie",
     "set.sicherung_sub": "De app bewaart je voortgang alleen op dit apparaat. Sla af en toe een kopie op, dan gaat hij bij een nieuwe telefoon niet verloren.",
     "set.sicherung_speichern": "Kopie opslaan",
@@ -2588,6 +2615,9 @@ TEXTE = {
     "task.kacheln": "Maak de zin",
     "task.kacheln_hinweis": "Tik de woorden in de juiste volgorde aan.",
     "task.kacheln_skip": "Overslaan",
+    # Namen von Zeile und Vorrat fuer Screenreader (17.10.2026)
+    "task.kacheln_zeile": "Jouw zin",
+    "task.kacheln_vorrat": "Woorden",
     "task.grammatik": "Grammatica",
     "task.wiederholung": "Herhaling: {label}",
     "task.nochmal": "Nog een keer",
@@ -2955,6 +2985,9 @@ TEXTE = {
     "laden.hut": "Lue",
     "laden.hut_sub": "En rød vinterlue med dusk.",
     "laden.gekauft": "Kjøpt.",
+    # Ansage nach Tragen/Abnehmen, nur fuer Screenreader (17.10.2026)
+    "laden.angezogen": "Tatt på.",
+    "laden.abgenommen": "Tatt av.",
     "set.sicherung": "Sikkerhetskopi",
     "set.sicherung_sub": "Appen lagrer framgangen din bare på denne enheten. Lagre en kopi nå og da, så følger den med til en ny telefon.",
     "set.sicherung_speichern": "Lagre kopi",
@@ -3131,6 +3164,9 @@ TEXTE = {
     "task.kacheln": "Bygg setningen",
     "task.kacheln_hinweis": "Trykk på ordene i riktig rekkefølge.",
     "task.kacheln_skip": "Hopp over",
+    # Namen von Zeile und Vorrat fuer Screenreader (17.10.2026)
+    "task.kacheln_zeile": "Din setning",
+    "task.kacheln_vorrat": "Ord",
     "task.grammatik": "Grammatikk",
     "task.wiederholung": "Repetisjon: {label}",
     "task.nochmal": "Prøv igjen",
@@ -3499,6 +3535,9 @@ TEXTE = {
     "laden.hut": "Hue",
     "laden.hut_sub": "En rød vinterhue med pompon.",
     "laden.gekauft": "Købt.",
+    # Ansage nach Tragen/Abnehmen, nur fuer Screenreader (17.10.2026)
+    "laden.angezogen": "Taget på.",
+    "laden.abgenommen": "Taget af.",
     "set.sicherung": "Sikkerhedskopi",
     "set.sicherung_sub": "Appen gemmer dine fremskridt kun på denne enhed. Gem en kopi en gang imellem, så følger de med til en ny telefon.",
     "set.sicherung_speichern": "Gem kopi",
@@ -3675,6 +3714,9 @@ TEXTE = {
     "task.kacheln": "Byg sætningen",
     "task.kacheln_hinweis": "Tryk på ordene i den rigtige rækkefølge.",
     "task.kacheln_skip": "Spring over",
+    # Namen von Zeile und Vorrat fuer Screenreader (17.10.2026)
+    "task.kacheln_zeile": "Din sætning",
+    "task.kacheln_vorrat": "Ord",
     "task.grammatik": "Grammatik",
     "task.wiederholung": "Repetition: {label}",
     "task.nochmal": "Prøv igen",
@@ -4042,6 +4084,9 @@ TEXTE = {
     "laden.hut": "Bonnet",
     "laden.hut_sub": "Un bonnet rouge à pompon.",
     "laden.gekauft": "Acheté.",
+    # Ansage nach Tragen/Abnehmen, nur fuer Screenreader (17.10.2026)
+    "laden.angezogen": "Équipé.",
+    "laden.abgenommen": "Retiré.",
     "set.sicherung": "Sauvegarde",
     "set.sicherung_sub": "L'application ne conserve ta progression que sur cet appareil. Enregistre une sauvegarde de temps en temps, elle survivra à un nouveau téléphone.",
     "set.sicherung_speichern": "Enregistrer la sauvegarde",
@@ -4218,6 +4263,9 @@ TEXTE = {
     "task.kacheln": "Construis la phrase",
     "task.kacheln_hinweis": "Touche les mots dans le bon ordre.",
     "task.kacheln_skip": "Passer",
+    # Namen von Zeile und Vorrat fuer Screenreader (17.10.2026)
+    "task.kacheln_zeile": "Ta phrase",
+    "task.kacheln_vorrat": "Mots",
     "task.grammatik": "Grammaire",
     "task.wiederholung": "Révision : {label}",
     "task.nochmal": "Réessayer",

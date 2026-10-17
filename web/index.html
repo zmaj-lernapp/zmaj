@@ -684,6 +684,11 @@
     font-size:14px; font-weight:700; line-height:1.4;
     opacity:0; transition:opacity .25s}
   .kurznote.an{opacity:1}
+  /* Nur fuer Screenreader (17.10.2026): auf dem Bildschirm nicht zu sehen,
+     im Vorlesebaum aber da. Nicht display:none und nicht hidden - das nimmt
+     den Inhalt auch dem Screenreader weg. Gebraucht fuer #ansage. */
+  .nurleser{position:absolute!important; width:1px; height:1px; margin:-1px; padding:0; border:0;
+    overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap}
   /* ---- Update aus Google Play (10.10.2026) ----
      Die Leiste "Update bereit · Neu starten": klein, unten, im Kartenstil
      der App. Sie liegt ueber dem Inhalt, aber unter Anzeige (999) und jeder
@@ -1751,6 +1756,11 @@
   </main>
   <footer data-t="app.fuss"></footer>
 </div>
+<!-- Kurze Ansagen fuer Screenreader (17.10.2026, WCAG 4.1.3): Ergebnis einer
+     Aufgabe, gelegte Kachel, Kauf im Laden. Unsichtbar, gefuellt von ansagen().
+     Sie steht von Anfang an im Dokument - eine Region, die erst mit ihrem Text
+     dazukommt, lesen manche Screenreader nicht vor. -->
+<div id="ansage" class="nurleser" aria-live="polite" aria-atomic="true"></div>
 
 <script>
 /* Der Inhalt kommt aus vokabeln.py, grammatik.py und geschichten.py – hier muss nichts geändert werden. */
@@ -1758,8 +1768,18 @@ const LEKTION_WOERTER = 10;      // Wortaufgaben pro Lektion
 const LEKTION_NEU_MAX = 5;       // davon höchstens so viele neue Wörter (wenn es schon bekannte gibt)
 const LEKTION_LUECKEN = 2;       // Lückentexte pro Lektion
 const LEKTION_KACHELN = 2;       // Sätze aus Kacheln pro Lektion (wenn ihre Wörter schon dran waren), seit 13.10.2026
-// Wer am Handy "Bewegung reduzieren" eingestellt hat, bekommt die Kacheln ohne Gleiten.
-const KACHEL_RUHIG = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+/* Ohne Gleiten legen die Kacheln, wer am Handy "Bewegung reduzieren"
+   eingestellt oder in der App den Schalter "Animationen" ausgeschaltet hat.
+   Bis zum 17.10.2026 stand hier eine Konstante: sie las nur die
+   Geraeteeinstellung, und die nur einmal beim Start - der Schalter in der App
+   blieb ohne Wirkung, weil .no-anim nur CSS-Bewegung abschaltet und das
+   Gleiten ueber k.animate() laeuft. Jetzt wird bei jedem Legen gefragt, genau
+   wie zmajRuht() es fuer den Drachen tut. */
+function kachelnRuhig(){
+  if(document.body.classList.contains('no-anim')) return true;
+  try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  catch(e){ return false; }
+}
 const LEKTION_GRAMMATIK = 2;     // Grammatik-Aufgaben pro Lektion (wenn vorhanden)
 /* Ajdin am 27.09.2026: "mach die pruefung statt bei 80% auf 100% sonst lernt
    man nicht alles". Der Test geht jetzt erst auf, wenn JEDES Wort des Levels
@@ -2940,6 +2960,40 @@ function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
    sagt "🔊 Hören" alles; vorgelesen wird daraus je nach Programm
    "Lautsprecher mit Schallwellen Hören" oder gar nichts. */
 const nurWort = s => String(s).replace(/^[^\p{L}\p{N}]+/u, '').trim();
+/* ---- Ansagen fuer Screenreader (17.10.2026, WCAG 4.1.3) ----
+   Schreibt eine kurze Meldung in die unsichtbare Region #ansage
+   (aria-live="polite"). Erst leeren, dann kurz darauf fuellen: derselbe
+   Text zweimal hintereinander ("Gekauft.") wuerde sonst kein zweites Mal
+   vorgelesen. html ist schon maskiert - so kann ein bosnisches Wort als
+   <span lang="bs"> mitkommen und klingt dann bosnisch statt deutsch.
+   Nach ANSAGE_STEHT wird die Region wieder leer, damit beim Durchwischen am
+   Seitenende keine alte Meldung steht. ansagen('') bricht eine wartende ab.
+   WEITER_NACH: so lange wartet weiterBeiTipp(), bevor es den Fokus auf
+   Weiter legt. Das Ergebnis einer Aufgabe kommt erst danach - der
+   Fokuswechsel schnitte die Ansage sonst mitten im Wort ab. Weil beide
+   Zeitgeber getrennt starten, setzt weiterBeiTipp() die Ansage nach dem
+   Fokus noch einmal an (ansageNachFokus). */
+const ANSAGE_STEHT = 6000, WEITER_NACH = 900;
+let ansageUhr = 0, ansageWegUhr = 0, ansageText = '';
+function ansagen(html, warte){
+  const el = $('ansage'); if(!el) return;
+  clearTimeout(ansageUhr); clearTimeout(ansageWegUhr);
+  el.textContent = '';
+  ansageText = html || '';
+  if(!html) return;
+  ansageUhr = setTimeout(()=>{
+    el.innerHTML = html;
+    ansageWegUhr = setTimeout(()=>{ el.textContent = ''; ansageText = ''; }, ANSAGE_STEHT);
+  }, warte || 60);
+}
+/* Nach dem Fokus auf Weiter: eine noch wartende oder schon gelaufene
+   Ansage des Ergebnisses einmal neu ansetzen, 80 ms nach dem Fokus. Der
+   allererste Ton einer Sitzung legt den AudioContext an und braucht bis zu
+   0,7 s; er laeuft zwischen der Rueckmeldung und done(). Dann kam die
+   Ansage vor dem Fokuswechsel und wurde von ihm abgeschnitten (gemessen in
+   der Code-Pruefung, 18.10.2026). Im Normalfall wartet sie noch und wird
+   nur auf denselben Augenblick verschoben - doppelt kommt nichts. */
+function ansageNachFokus(){ if(ansageText) ansagen(ansageText, 80); }
 /* ABRUNDEN, nicht runden. Math.round machte aus 199 von 200 Wörtern glatte
    100 Prozent - die Anzeige stand auf 100, und mit TEST_FREI_AB=100 wäre der
    Test aufgegangen, obwohl ein Wort fehlt. Bei den heutigen Levelgrößen (bis
@@ -2969,6 +3023,27 @@ const istDatum = s => {
   const d = new Date(s + 'T12:00:00');
   return !isNaN(d.getTime()) && dayKey(d) === s;
 };
+/* ---- Der frueheste moegliche Tag (17.10.2026) ----
+   Die Form allein reichte auch sonst nicht. Lerntage kommen aus einer
+   Sicherungsdatei, und die kann jeder von Hand schreiben: ein Lerntag
+   "1990-01-01" kam durch, seitNachEinlesen() setzte zmaj_seit auf ihn, und
+   geschenkPruefen() rechnete 36 Jahre aus - fuenf Tage Vollversion. Mit
+   1980, 1970 ... gleich noch einmal, beliebig oft. So in der
+   Sicherheitspruefung am 17.10.2026 in Chrome gemessen. Ajdin dazu:
+   "binde es am Handy-Datum".
+
+   Vor APP_START kann es keinen Lerntag geben. Belegt am 17.10.2026: erster
+   Commit am 19.09.2026, die Technikerarbeit laeuft ab dem 10.08.2026
+   (PROJEKTMAPPE.md), der frueheste Tag in irgendeiner Sicherung oder
+   Testdatei ist der 04.08.2026 (testdaten/zmaj-screenshots.json), auf einem
+   echten Handy der 18.08.2026. Lieber ein paar Tage zu frueh als einen
+   echten Lernenden abzuschneiden - deshalb der Monatserste davor.
+   Verglichen wird als Zeichenkette: 'JJJJ-MM-TT' sortiert wie das Datum. */
+const APP_START = '2026-08-01';
+/* Ein Tag aus einer Sicherungsdatei: echtes Datum, nicht vor APP_START und
+   nicht nach heute - heute nach der Uhr des Handys, wie today(). Beim
+   normalen Laden gilt nur die untere Grenze, siehe standUebernehmen(). */
+const tagMoeglich = s => istDatum(s) && s >= APP_START && s <= today();
 
 function matches(guess, answer){
   const g = guess.trim(); if(!g) return 'leer';
@@ -3546,7 +3621,13 @@ function playMood(el, mood){
   const once = (name==='ok' || name==='cheer' || name.slice(0,2)==='no');
   // Ältere zmaj.json kennt no_l und no_r noch nicht - dann das alte 'no'
   const s = segOf(a, name) || (name.slice(0,3)==='no_' ? segOf(a, 'no') : null);
-  const toIdle = ()=>{ if(el._back){ a.removeEventListener('complete', el._back); el._back=null; } if(el._timer){ clearTimeout(el._timer); el._timer=null; } if(el.dataset.mood===mood) playMood(el, 'idle'); };
+  /* Der Zeitgeber kann ablaufen, wenn diese Animation schon abgebaut ist
+     (17.10.2026): die Ansicht wurde kurz nach einer Antwort neu gezeichnet und
+     der Beobachter unter mountZmaj() hat sie zerstoert, oder mountZmaj() hat
+     eine neue aufgebaut. Dann gibt es hier nichts mehr zurueckzustellen -
+     removeEventListener an der zerstoerten Animation warf bis dahin einen
+     Skriptfehler. */
+  const toIdle = ()=>{ if(el._anim !== a || !el.isConnected) return; if(el._back){ a.removeEventListener('complete', el._back); el._back=null; } if(el._timer){ clearTimeout(el._timer); el._timer=null; } if(el.dataset.mood===mood) playMood(el, 'idle'); };
   const frames = s ? (s[1]-s[0]) : (a.totalFrames || 30);
   if(zmajRuht(el)){
     /* Standbild statt Schleife (07.10.2026): fuer die Ruhepose ihr erstes
@@ -3565,13 +3646,30 @@ function playMood(el, mood){
     el._timer = setTimeout(toIdle, frames / (a.frameRate || 30) * 1000 + 80);   // Sicherheitsnetz, falls kein complete-Ereignis kommt
   }
 }
+/* Umziehen waehrend des Ladens (17.10.2026): drachenNeu() nach jedem Tragen
+   ruft mountZmaj(); laedt der Drache da noch, kehrt es sofort zurueck, und
+   die laufende Ladung baute danach den ALTEN Aufzug auf - nach schnellem
+   Umziehen trug er das erste Stueck statt des letzten, bis die Startseite
+   sich das naechste Mal zeichnete. Jetzt merkt sich die Ladung, fuer welchen
+   Stand sie laeuft (fuer); ist der am Ende nicht mehr der gewuenschte, wird
+   ihr Ergebnis verworfen und einmal neu geladen. Die Tracht haengt nur am
+   Gespeicherten und am Kalender, ein neuer Durchgang trifft also den
+   aktuellen Stand; NACHLADEN_MAX ist nur die Sicherung gegen eine Schleife. */
+const NACHLADEN_MAX = 3;
 function mountZmaj(el, mood, vorgabe){
   if(!hasLottie() || el._laedt) return;
   if(mood) el.dataset.mood = mood;
   el._laedt = true;
+  const fuer = vorgabe ? zierratSchluessel(vorgabe.ids, vorgabe.farbe) : zierratSchluessel();
   zmajDaten(vorgabe).then(daten => {
     el._laedt = false;
     if(!daten || !el.isConnected) return;
+    if(!vorgabe && fuer !== zierratSchluessel() && (el._nachgeladen || 0) < NACHLADEN_MAX){
+      el._nachgeladen = (el._nachgeladen || 0) + 1;
+      mountZmaj(el);
+      return;
+    }
+    el._nachgeladen = 0;
     if(el._anim){ try{ el._anim.destroy(); }catch(e){} el._anim = null; el.innerHTML = ''; }
     /* lottie schreibt beim Aufbauen in die Daten hinein. Jede Anzeige
        bekommt deshalb ihre eigene Kopie – sonst stören sich der große
@@ -3579,7 +3677,7 @@ function mountZmaj(el, mood, vorgabe){
     const a = lottie.loadAnimation({container: el, renderer: 'svg', loop: true, autoplay: false,
       animationData: JSON.parse(JSON.stringify(daten)),
       rendererSettings: {preserveAspectRatio: 'xMidYMid meet', progressiveLoad: false}});
-    el._anim = a; el._stand = zmajFertigFuer;
+    el._anim = a; el._stand = fuer;   // nicht zmajFertigFuer: das kann inzwischen eine andere Ladung gesetzt haben
     a.addEventListener('DOMLoaded', ()=>{ a.isLoaded = true; playMood(el, el.dataset.mood || 'happy'); });
   }).catch(()=>{ el._laedt = false; });
 }
@@ -3904,6 +4002,67 @@ $('swWerbung').addEventListener('click', async ()=>{
 applyAnim();
 
 /* ---- Fortschritt: mit dem Python-Server abgleichen ---- */
+/* Eine Zahl wie Muenzen oder Rekord: endlich, nicht negativ, ganz - sonst
+   0 (17.10.2026). */
+const ganzAbNull = x => { const n = Number(x); return (isFinite(n) && n > 0) ? Math.floor(n) : 0; };
+/* ---- Was nur fuer eine Sicherungsdatei gilt (17.10.2026) ----
+   Sie kommt von aussen und kann von Hand geschrieben sein, der eigene
+   Geraetespeicher nicht. Deshalb hier und nicht in standUebernehmen().
+   Gibt eine Kopie zurueck; was hier nicht steht, geht unveraendert weiter,
+   und Unplausibles faellt still heraus - der Rest der Sicherung kommt
+   vollstaendig an.
+     tage, frost  nur Tage von APP_START bis heute (tagMoeglich). Aeltere
+                  schoben zmaj_seit und damit das Jahresgeschenk beliebig
+                  weit zurueck, Tage in der Zukunft zaehlten bei "Tage
+                  gelernt" und den Wegmarken mit.
+     rekord       hoechstens so lang, wie es Lerntage gibt: streak() und
+                  laengsteSerie() zaehlen nur Tage aus days.
+     Muenzen      hoechstens, was sich mit diesen Lerntagen verdienen
+                  laesst. Die Rechnung: Muenzen gibt es an genau einer
+                  Stelle, in zaehle() - MUENZEN_PRO_QUEST (10) je geschaffter
+                  Tagesaufgabe, und zieh() waehlt drei am Tag. Das sind
+                  hoechstens 30 am Tag. Wegmarken, Jahresgeschenk,
+                  Werbevideos (die geben Leben) und der Laden geben keine,
+                  ein Startguthaben gibt es nicht: muenzenGes beginnt bei 0.
+                  Grenze grosszuegig das Doppelte, 60 je Lerntag - das deckt
+                  auch einen Tag, an dem die Auswahl wechselt (q.geht()) -,
+                  und ein Tag mehr: Muenzen fallen schon mitten in der
+                  Lektion (zaehle('auf')), den Lerntag gibt es erst an ihrem
+                  Ende (markToday). 100 Lerntage -> hoechstens 6060 Muenzen.
+                  Ausgegeben nie mehr als verdient.
+     besitz       (Gegenpruefung 17.10.2026) nur Zierrat, den es im Laden
+                  fuer Muenzen gibt, und nur so viel, wie die verdienten
+                  Muenzen hergeben - das Billigste zuerst. Vorher kam per
+                  Datei der ganze Laden an, 20 Stuecke fuer zusammen 23 800
+                  Muenzen bei 0 Muenzen, und die Grenze darueber war fuer
+                  den Zierrat wirkungslos. Stuecke der Vollversion kauft
+                  niemand (sie haengen an unlimited()), unbekannte
+                  Kennungen gibt es nicht - beide fallen heraus. Was
+                  bleibt, ist bezahlt: ausgegeben mindestens die Preise
+                  davon. Ein echter Stand hat Preise <= ausgegeben <=
+                  verdient - kaufe() bucht jeden Kauf in muenzenAus - und
+                  verliert nichts, auch nicht die Reihenfolge. */
+const MUENZEN_JE_TAG_HOECHSTENS = 2 * 3 * MUENZEN_PRO_QUEST;
+function sicherungPlausibel(s){
+  const p = Object.assign({}, s);
+  p.tage = Array.isArray(s.tage) ? s.tage.filter(tagMoeglich) : [];
+  p.frost = Array.isArray(s.frost) ? s.frost.filter(tagMoeglich) : [];
+  const lerntage = new Set(p.tage).size;
+  p.rekord = Math.min(ganzAbNull(s.rekord), lerntage);
+  p.muenzen_ges = Math.min(ganzAbNull(s.muenzen_ges), MUENZEN_JE_TAG_HOECHSTENS * (lerntage + 1));
+  const preis = id => { const w = ZIERRAT.find(x => x.id === id && !x.voll); return w ? w.preis : 0; };
+  const liste = [...new Set((Array.isArray(s.besitz) ? s.besitz : [])
+    .filter(id => typeof id === 'string' && preis(id) > 0))];
+  const behalten = new Set();
+  let summe = 0;
+  for(const id of [...liste].sort((a, b) => preis(a) - preis(b))){
+    if(summe + preis(id) > p.muenzen_ges) break;
+    summe += preis(id); behalten.add(id);
+  }
+  p.besitz = liste.filter(id => behalten.has(id));
+  p.muenzen_aus = Math.max(Math.min(ganzAbNull(s.muenzen_aus), p.muenzen_ges), summe);
+  return p;
+}
 /* Ein Stand sieht ueberall gleich aus - egal ob er aus der Profildatei des
    Servers kommt, aus dem Gerätespeicher oder aus einer Sicherungsdatei.
    Deshalb nur eine Stelle, die ihn uebernimmt. */
@@ -3916,8 +4075,15 @@ function standUebernehmen(d){
   known = new Set(nurTexte(d.gewusst)); passed = new Set(nurTexte(d.bestanden)); read = new Set(nurTexte(d.gelesen));
   // Nur echte Datumsangaben - siehe istDatum.
   // Kein Array (etwa "tage":"x") hiess bisher: .filter wirft. Jetzt: leer.
-  days = new Set((Array.isArray(d.tage) ? d.tage : []).filter(istDatum));
-  frost = new Set((Array.isArray(d.frost) ? d.frost : []).filter(istDatum));
+  /* Und keine vor APP_START (17.10.2026): die kann es nicht geben, ein
+     solcher Tag stammt aus einer gefaelschten Sicherung von vor dieser
+     Pruefung. Die obere Grenze "nicht nach heute" gilt hier bewusst NICHT,
+     nur beim Einlesen (sicherungPlausibel): springt die Uhr des Handys
+     zurueck, etwa nach leerem Akku, verloere sonst schon der naechste
+     Start alle Lerntage - und speicherte das gleich so. */
+  const abStart = s => istDatum(s) && s >= APP_START;
+  days = new Set((Array.isArray(d.tage) ? d.tage : []).filter(abStart));
+  frost = new Set((Array.isArray(d.frost) ? d.frost : []).filter(abStart));
   /* Unterschied zwischen "Feld fehlt" und "Feld ist leer":
        fehlt  = der Stand kommt von VOR den Wegmarken, etwa aus einer alten
                 Sicherungsdatei. Dann wird weiter unten alles schon
@@ -3929,7 +4095,13 @@ function standUebernehmen(d){
   const gefeiertFehlt = (d.gefeiert === undefined);
   gefeiert = new Set(nurTexte(d.gefeiert));
   wann = (d.wann && typeof d.wann==='object' && !Array.isArray(d.wann)) ? d.wann : {};
-  rekord = Number(d.rekord) || 0;
+  /* Nie laenger als es Lerntage gibt (Gegenpruefung 17.10.2026): streak()
+     und laengsteSerie() zaehlen nur Tage aus days, ein Frosttag ueberbrueckt
+     nur. Ein Rekord von 1e9 aus einer gefaelschten Sicherung von vor der
+     Pruefung blieb sonst im Geraetespeicher stehen. Anders als die
+     Lerntage selbst sicher gegen eine zurueckspringende Uhr - days.size
+     haengt nicht am heutigen Datum. Ein echter Stand verliert nichts. */
+  rekord = Math.min(ganzAbNull(d.rekord), days.size);
   /* Steht noch kein Rekord da, wird er aus den vorhandenen Lerntagen
      nachgerechnet. Sonst finge Kübra bei null an, obwohl sie die Tage
      längst hinter sich hat. Passiert genau einmal je Lernstand. */
@@ -3942,7 +4114,24 @@ function standUebernehmen(d){
     MEILENSTEINE.forEach(m => { if(days.size >= m.ziel) gefeiert.add(m.id); });
   }
   tagwerk = (d.tagwerk && typeof d.tagwerk==='object') ? d.tagwerk : {};
-  muenzenGes = Number(d.muenzen_ges) || 0; muenzenAus = Number(d.muenzen_aus) || 0;
+  /* Endlich und nicht negativ (17.10.2026). "1e999" liest JSON.parse als
+     Infinity, und Number(...) || 0 liess das durch - unendlich viele
+     Muenzen, Leben und Zierrat umsonst. Die Obergrenze fuer eine
+     Sicherungsdatei steht in sicherungPlausibel(). */
+  /* Beim normalen Start bewusst KEINE Obergrenze fuer Muenzen und Zierrat
+     (Gegenpruefung 17.10.2026). Ein ueberhoehter Stand im Geraetespeicher
+     kann nur von einer Datei stammen, die vor der Pruefung eingelesen
+     wurde - also von einem Geraet aus dem geschlossenen Test. Dort liegt
+     er auch wirklich, und mit Absicht: Ajdins Handy hatte am 27.09.2026
+     1 000 029 Muenzen aus testdaten/ und den ganzen Laden, eine
+     Handysicherung vom 07.10. 1110 Muenzen bei 7 Lerntagen (Grenze 480).
+     Kuerzen hiesse, beim Update still und unwiderruflich zu nehmen; das
+     Geld kauft nur Zierrat, Herzen und Serienschutz. Dazu kommen Muenzen
+     auch an Tagen ohne Lerntag (abgebrochene Lektion, nicht bestandener
+     Test - in jener Sicherung 2 von 9 Tagen), die Grenze ist also eine
+     Schaetzung und keine Rechnung. Lerntage nach heute bleiben aus dem
+     Grund, der oben bei abStart() steht. */
+  muenzenGes = ganzAbNull(d.muenzen_ges); muenzenAus = ganzAbNull(d.muenzen_aus);
   besitz = new Set(nurTexte(d.besitz));
   /* Fehlt das Feld, ist es ein Stand von vorher: nie eingestuft, nichts
      im Topf. Ob gefragt wird, entscheidet einstufungFaellig() - wer schon
@@ -3979,7 +4168,9 @@ function standUebernehmen(d){
   }
   /* Siehe standAlsObjekt: nur nach oben. Eine aeltere Sicherung darf ein
      schon gegebenes Geschenk nicht wieder aufmachen. */
-  const jahrAusStand = Number(d.geschenk_jahr) || 0;
+  /* Und nie ueber das hinaus, was seit APP_START moeglich ist (17.10.2026) -
+     siehe geschenkJahreMax(). */
+  const jahrAusStand = Math.min(Number(d.geschenk_jahr) || 0, geschenkJahreMax());
   if(jahrAusStand > (geschenk.jahr || 0)){
     geschenk = {jahr: jahrAusStand, bis: geschenk.bis || 0};
     try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk)); }catch(e){}
@@ -4018,7 +4209,13 @@ function standAlsObjekt(){
              Geraetespeicher, holte man sich die fuenf Tage beliebig oft -
              App-Daten loeschen, Sicherung einlesen, wieder faellig. Die
              Frist bleibt draussen, sonst waeren laufende Geschenktage
-             verschenkbar. Gefunden in der Gegenpruefung am 29.09.2026. */
+             verschenkbar. Gefunden in der Gegenpruefung am 29.09.2026.
+             Das hilft nur bei einer ehrlichen Datei von nach dem
+             Geschenk. Eine von davor, oder eine mit 0 von Hand, holt es
+             nach "App-Daten loeschen" wieder - alle fuenf Tage einmal
+             loeschen und einlesen (Gegenpruefung 17.10.2026). Bewusst
+             hingenommen: dagegen hilft nur ein Merker, der das Loeschen
+             der App-Daten uebersteht, und den gibt es ohne Server nicht. */
           geschenk_jahr: (geschenk.jahr || 0),
           /* Beide gehoeren zum Lernenden und muessen mit auf ein neues
              Handy - die Einstufung haelt die uebersprungenen Level offen. */
@@ -4096,17 +4293,61 @@ let geschenk = {jahr: 0, bis: 0};
    ist. Gefunden in der Gegenpruefung am 29.09.2026. */
 let geschenkOffen = false;
 try{ geschenk = JSON.parse(localStorage.getItem(GESCHENK_SCHLUESSEL) || 'null') || geschenk; }catch(e){}
-const geschenkLaeuft = () => (geschenk.bis || 0) > Date.now();
-const geschenkRest = () => Math.max(0, Math.ceil(((geschenk.bis || 0) - Date.now()) / 86400000));
+/* ---- Am Handy-Datum festgemacht (17.10.2026) ----
+   Ganze Jahre zu 365 Tagen, wie bisher in geschenkPruefen(). Mehr als die
+   Jahre seit APP_START kann niemand dabei sein - also kann es auch nie ein
+   hoeheres Geschenkjahr geben. */
+const JAHR_MS = 365 * 86400000;
+const jahreSeit = tag => Math.floor((Date.now() - new Date(tag + 'T00:00:00').getTime()) / JAHR_MS);
+function geschenkJahreMax(){ return Math.max(0, jahreSeit(APP_START)); }
+/* Ob das gespeicherte Geschenk gerade laeuft - nach dem Handy-Datum
+   gerechnet, aber nie zurueckgeschrieben. Es laeuft nur in seinen fuenf
+   Tagen, also von bis - GESCHENK_TAGE bis bis, und nur, wenn sein Jahr
+   nach dem Handy-Datum schon erreicht ist:
+     Jahr ueber dem Hoechstwert  stammt aus einer gefaelschten Sicherung
+                                 von vor dieser Pruefung (jahr 56), oder
+                                 die Uhr steht gerade vor dem Tag, an dem
+                                 es gegeben wurde.
+     Frist weiter weg als fuenf  die Uhr wurde nach dem Geschenk zurueck-
+     Tage                        gestellt; sonst liefe es bis zu dem Tag,
+                                 der vorher galt.
+   Die erste Fassung (geschenkBegrenzen, auch 17.10.2026) schrieb beides
+   als Korrektur in den Speicher: Jahr auf den Hoechstwert, Frist gekuerzt.
+   Damit gab es das Geschenk mit der Uhr beliebig oft - zurueckstellen
+   schrieb jahr 0, wieder vorstellen gab Jahr 1 neu, fuenf Tage je Runde.
+   In der Gegenpruefung am selben Tag gemessen. Jetzt bleibt das Jahr
+   stehen, wie es gegeben wurde, und "schon gegeben" in geschenkPruefen()
+   haelt in beide Richtungen; ein echter Lernender, dessen Uhr kurz falsch
+   geht, verliert auch nichts mehr. Dieselbe Regel wie bei den Lerntagen
+   (standUebernehmen) und bei zmaj_seit (seitWann): eine Uhr, die gerade
+   falsch gehen kann, schreibt nichts fest. Eine gefaelschte 56 sperrt
+   damit nur noch die eigenen Geschenke. Der Anker bleibt die Uhr: wer sie
+   vorstellt, bekommt das Jahr, das sie zeigt - das ging vorher auch. */
+const geschenkLaeuft = () => {
+  const jahr = Number(geschenk && geschenk.jahr) || 0, bis = Number(geschenk && geschenk.bis) || 0;
+  const jetzt = Date.now();
+  return jahr <= geschenkJahreMax() && bis > jetzt && bis - GESCHENK_TAGE * 86400000 <= jetzt;
+};
+const geschenkRest = () => geschenkLaeuft() ? Math.ceil((Number(geschenk.bis) - Date.now()) / 86400000) : 0;
+/* zmaj_seit liegt nie vor APP_START und nie nach heute (17.10.2026). Ein
+   Eintrag von davor wird berichtigt gespeichert - er kann nur aus einer
+   gefaelschten Sicherung stammen. Einer nach heute wird nur so gelesen,
+   nicht gespeichert: steht die Uhr des Handys gerade falsch, soll das den
+   echten Anfang nicht ueberschreiben. Kein Datum zaehlt wie kein Eintrag. */
 function seitWann(){
   let s = null;
   try{ s = localStorage.getItem(SEIT_SCHLUESSEL); }catch(e){}
-  if(s) return s;
-  /* Noch nichts eingetragen: der fruheste Lerntag, sonst heute. */
-  const tage = [...days].sort();
-  s = tage.length ? tage[0] : today();
-  try{ localStorage.setItem(SEIT_SCHLUESSEL, s); }catch(e){}
-  return s;
+  if(!istDatum(s) || s < APP_START){
+    /* Noch nichts eingetragen (oder etwas von vor APP_START): der fruheste
+       Lerntag, sonst heute. Die Lerntage sind schon ab APP_START gefiltert;
+       liegt trotzdem heute davor, geht die Uhr falsch - dann nichts
+       speichern. */
+    const tage = [...days].sort();
+    s = tage.length ? tage[0] : today();
+    if(s >= APP_START){ try{ localStorage.setItem(SEIT_SCHLUESSEL, s); }catch(e){} }
+    else s = APP_START;
+  }
+  return s > today() ? today() : s;
 }
 /* Nach dem Einlesen einer Sicherung: "seit wann dabei" auf den fruehesten
    Lerntag zurueckdatieren. Auf einem neuen Geraet steht dort sonst der Tag
@@ -4124,15 +4365,23 @@ function seitNachEinlesen(){
   if(!tage.length) return;
   let alt = null;
   try{ alt = localStorage.getItem(SEIT_SCHLUESSEL); }catch(e){}
-  if(alt && alt <= tage[0]) return;
+  /* Als "schon frueher" zaehlt seit dem 17.10.2026 nur ein echtes Datum ab
+     APP_START. Ein gefaelschtes 1970 von vor dieser Pruefung hielte sonst
+     jeden echten Anfang auf. tage[0] selbst liegt schon zwischen APP_START
+     und heute - die Lerntage kamen durch sicherungPlausibel(). */
+  if(istDatum(alt) && alt >= APP_START && alt <= tage[0]) return;
   try{ localStorage.setItem(SEIT_SCHLUESSEL, tage[0]); }catch(e){}
 }
 /* Laeuft beim Start und bei jedem Tageswechsel. Gibt zurueck, ob gerade
    ein Geschenk faellig geworden ist - die Karte zeigt jemand anders. */
 function geschenkPruefen(){
   if(!standGeladen) return 0;
-  const seit = new Date(seitWann() + 'T00:00:00');
-  const jahre = Math.floor((Date.now() - seit.getTime()) / (365 * 86400000));
+  /* Kein neues, solange eins laeuft (17.10.2026). Faellig nur, wenn seit
+     dem ersten Lerntag - ab APP_START, nach dem Handy-Datum - wirklich ein
+     weiteres volles Jahr vergangen ist. Das Math.min haelt die Grenze aus
+     geschenkJahreMax() auch dann, wenn zmaj_seit je anders hereinkaeme. */
+  if(geschenkLaeuft()) return 0;
+  const jahre = Math.min(jahreSeit(seitWann()), geschenkJahreMax());
   if(jahre < 1 || jahre <= (geschenk.jahr || 0)) return 0;
   geschenk = {jahr: jahre, bis: Date.now() + GESCHENK_TAGE * 86400000};
   try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk)); }catch(e){}
@@ -6382,8 +6631,11 @@ function renderLaden(){
         '<button type="button" class="sprachzeile'+(g.id===ladenReiter?' jetzt':'')+'" data-gruppe="'+g.id+'">'
       + esc(t(g.titel)) + (g.id===ladenReiter ? ' <span class="haken">\u2713</span>' : '') + '</button>').join('');
     kopf.onclick = ()=>{ ladenOffen = !ladenOffen; renderLaden(); };
+    // Die Zeile, auf der der Fokus lag, gibt es nach dem Neuzeichnen nicht
+    // mehr - er geht zurueck auf die Reiterwahl (17.10.2026).
     liste.querySelectorAll('.sprachzeile').forEach(b => b.onclick = ()=>{
       ladenOffen = false; ladenReiter = b.dataset.gruppe; renderLaden();
+      try{ kopf.focus({preventScroll:true}); }catch(e){}
     });
   }
   /* Bei den Farben ein Tupfer neben dem Namen: sonst muesste man kaufen, um
@@ -6393,10 +6645,18 @@ function renderLaden(){
   const zeile = (w, knopf, extra) =>
     '<div class="ware'+(extra ? ' '+extra : '')+'"><div><div class="wt">'+tupfer(w)+t(w.titel)+'</div>'+
     '<div class="wd">'+t(w.sub)+'</div></div>'+knopf+'</div>';
+  /* Jeder Knopf nennt seinen Artikel (17.10.2026): "Tragen, Mütze" statt nur
+     "Tragen". Wer mit Screenreader von Knopf zu Knopf geht, hoerte sonst
+     fuenfmal "Tragen" und wusste nicht, wofuer. Der sichtbare Text steht
+     vorn im Namen (WCAG 2.5.3). Getragen oder nicht sagt der Text selbst:
+     "Abnehmen" heisst, er sitzt. aria-pressed gibt es bewusst nicht - der
+     Text wechselt mit dem Zustand, und "Abnehmen, gedrueckt" hiesse das
+     Gegenteil. */
+  const knopfName = (w, sicht) => ' aria-label="'+esc(sicht+', '+t(w.titel))+'"';
   const preisKnopf = w => {
     const geht = muenzen() >= w.preis && w.geht();
     return '<button class="btn kauf '+(geht?'know':'ghost')+'" data-ware="'+w.id+'"'+
-           (geht?'':' disabled')+'>🪙 '+w.preis+'</button>';
+           knopfName(w, '🪙 '+w.preis)+(geht?'':' disabled')+'>🪙 '+w.preis+'</button>';
   };
   /* Ein Stueck der Vollversion hat keinen Preis. Laeuft sie, steht dort
      Tragen oder Abnehmen wie bei gekaufter Ware; laeuft sie nicht, ein
@@ -6408,13 +6668,14 @@ function renderLaden(){
      ausgegraut: nichts zu tun, aber auch kein falsches Versprechen.
      Dieselbe Bedingung benutzen vollZeileLaden() und vollZeileLeben().
      Gefunden in der Gegenpruefung am 29.09.2026. */
-  const tragenKnopf = w => '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'">'+
+  const tragenKnopf = w => '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'"'+
+        knopfName(w, t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen'))+'>'+
         t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen')+'</button>';
-  const vollKnopf = () => (!aboPlugin() || aboProdukteFehlen)
-    ? '<button class="btn kauf ghost" disabled>'+t('laden.nur_voll')+'</button>'
-    : '<button class="btn kauf ghost" data-vollstueck="1">'+t('laden.nur_voll')+'</button>';
+  const vollKnopf = w => (!aboPlugin() || aboProdukteFehlen)
+    ? '<button class="btn kauf ghost"'+knopfName(w, t('laden.nur_voll'))+' disabled>'+t('laden.nur_voll')+'</button>'
+    : '<button class="btn kauf ghost" data-vollstueck="1"'+knopfName(w, t('laden.nur_voll'))+'>'+t('laden.nur_voll')+'</button>';
   const zierratZeile = w => w.voll
-    ? zeile(w, unlimited() ? tragenKnopf(w) : vollKnopf())
+    ? zeile(w, unlimited() ? tragenKnopf(w) : vollKnopf(w))
     : (besitz.has(w.id) ? zeile(w, tragenKnopf(w)) : zeile(w, preisKnopf(w)));
   /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
      ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
@@ -6477,7 +6738,29 @@ function trage(id){
   const rest = getragenRoh().filter(x => x !== id && gruppeVon(x) !== g);
   setzeGetragen(runter ? rest : rest.concat([id]));
   sound(runter ? 'ablegen' : 'anziehen');
+  const imLaden = ladenHatFokus();
   renderLaden(); drachenNeu();
+  if(imLaden) ladenFokusAuf(id);
+  ansagen(esc(t(runter ? 'laden.abgenommen' : 'laden.angezogen')));
+}
+/* Nach Kaufen und Anziehen zeichnet renderLaden() die Warenliste neu, und
+   der Knopf, auf dem der Fokus lag, ist weg - mit Tastatur oder
+   Screenreader stand man danach am Seitenanfang (17.10.2026). Jetzt geht
+   der Fokus auf den Knopf desselben Artikels zurueck; ist der aus (Geld
+   reicht nicht mehr, Serienschutz voll), auf einen anderen Knopf derselben
+   Zeile, sonst auf die Reiterwahl. Nur, wenn er vorher im Laden lag: wer
+   vom Bildschirm ohne Leben aus kauft, dem wird nichts verschoben. */
+function ladenHatFokus(){
+  const box = $('ladenWaren');
+  return !!box && box.contains(document.activeElement);
+}
+function ladenFokusAuf(id){
+  const box = $('ladenWaren'); if(!box) return;
+  const knoepfe = [...box.querySelectorAll('button[data-tragen="'+id+'"], button[data-ware="'+id+'"]')];
+  let ziel = knoepfe.find(b => !b.disabled);
+  if(!ziel && knoepfe[0]) ziel = [...knoepfe[0].closest('.ware').querySelectorAll('button')].find(b => !b.disabled);
+  if(!ziel) ziel = $('ladenKopf');
+  if(ziel) try{ ziel.focus({preventScroll:true}); }catch(e){}
 }
 /* Nach dem Wechsel muss die Animation neu geladen werden - jedes Stueck
    steckt in einer eigenen Datei. */
@@ -6507,8 +6790,11 @@ function kaufe(id){
   saveProgress(); sound('kauf');
   // Gekauft wird auch außerhalb des Ladens - vom Bildschirm ohne Leben aus.
   // Dort gibt es weder Notizzeile noch Warenliste, deshalb überall prüfen.
+  const imLaden = ladenHatFokus();
   if($('ladenNote')) $('ladenNote').textContent = t('laden.gekauft');
   if($('ladenWaren')) renderLaden();
+  if(imLaden) ladenFokusAuf(id);
+  ansagen(esc(t('laden.gekauft')));   // die Notizzeile oben liest kein Screenreader von selbst vor
   renderLives();
   if(ZIERRAT.some(x => x.id === id)) drachenNeu();
   if($('setSchutz')) $('setSchutz').textContent = tp('serie.schutz', schutzNow());
@@ -6640,7 +6926,10 @@ async function sicherungEinlesen(datei){
      in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
      sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
   const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
-  try{ standUebernehmen(d.stand); altenFortschrittUmschreiben(); }
+  /* sicherungPlausibel(): Lerntage nur von APP_START bis heute, Muenzen nur
+     so viele, wie sich damit verdienen lassen, Zierrat nur so viel, wie
+     diese Muenzen bezahlen (17.10.2026). */
+  try{ standUebernehmen(sicherungPlausibel(d.stand)); altenFortschrittUmschreiben(); }
   catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
            geschenk = geschenkVorher; getragen = getragenVorher;
            try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
@@ -7040,6 +7329,7 @@ function showStory(){
   showStoryQ(s, 0, 0);
 }
 function showStoryQ(s, qi, right){
+  ansagen('');   // die Ansage der vorigen Frage nicht in diese hineinlaufen lassen (17.10.2026)
   const box=$('rQ'); const fragen=s.fragen||[];
   if(!fragen.length){ box.innerHTML=''; return; }
   if(qi>=fragen.length){
@@ -7079,9 +7369,12 @@ function showStoryQ(s, qi, right){
   // irgendwo im Fragenfeld die nächste Frage – genau wie in der Lektion.
   // Der Horcher sitzt nur auf dem Fragenfeld, damit das Nachschlagen eines
   // Wortes im Text darüber nicht versehentlich weiterblättert.
+  /* Die Rueckmeldung wie in der Lektion: sichtbar in #rFb und angesagt.
+     Bis zum 17.10.2026 stand sie nur da - wer mit Screenreader antwortete,
+     hoerte nach 900 ms nur "Weiter" und erfuhr nie, ob es richtig war. Die
+     Antworten sind in der Sprache der App, also nicht als Bosnisch markiert. */
   renderChoice($('rOpts'), shuffle(q.optionen.map(o=>({k:o}))), q.richtig, o=>o.k, r=>{
-    $('rFb').textContent = r?t('task.richtig'):t('task.falsch',{wort:q.richtig});
-    $('rFb').className='feedback '+(r?'ok':'no');
+    rueckmeldungZeigen($('rFb'), r?'ok':'no', r?'task.richtig':'task.falsch', q.richtig, false);
     uhrTakt(true); zaehle('auf'); if(r) zaehle('ric');
     weiterBeiTipp('rQ', ()=> showStoryQ(s, qi+1, right+(r?1:0)));
   });
@@ -7249,12 +7542,19 @@ function distractors(target, words, n){
   for(const w of shuffle(pool.slice())){ if(!seen.has(w.bs)){ seen.add(w.bs); out.push(w); if(out.length===n) break; } }
   return out;
 }
-function renderChoice(box, opts, correctKey, keyOf, onDone){
+/* sprache: 'bs', wenn die Antworten bosnisch sind (17.10.2026) - dann traegt
+   jeder Knopf lang="bs" und wird bosnisch vorgelesen. Bei mcrev sind es
+   Bedeutungen in der Sprache der App, dort bleibt es leer. Bei der Grammatik
+   ist es eine Funktion: sie bekommt die Antwort und sagt fuer jede einzeln
+   'bs' oder '' (siehe gramAntwortBosnisch). */
+function renderChoice(box, opts, correctKey, keyOf, onDone, sprache){
   box.innerHTML='';
   let answered=false;
   opts.forEach(o=>{
     const b=document.createElement('button'); const label=keyOf(o);
     b.className='opt'+(label.length>14?' long':''); b.textContent=label;
+    const lang = typeof sprache === 'function' ? sprache(label) : sprache;
+    if(lang) b.lang = lang;
     b.addEventListener('click',()=>{
       if(answered) return; answered=true;
       box.querySelectorAll('.opt').forEach(x=>{ x.disabled=true; if(x.textContent===correctKey) x.classList.add('right'); });
@@ -7324,6 +7624,37 @@ function gramLoesung(g){
   return inhalt ? [g.richtig, inhalt] : null;
 }
 
+/* Ist die Antwort einer Grammatikaufgabe bosnisch? (17.10.2026) Fast immer:
+   "moja", "smo", "Gdje" - dann lang="bs". Nicht bei der Frage nach dem
+   Geschlecht ("Welches Geschlecht hat „kuća“?"): dort heissen die Antworten
+   "weiblich (ona)", auf Englisch "feminine (ona)" - ein Wort in der Sprache
+   der App, dahinter das bosnische Fuerwort in Klammern. Mit lang="bs" laese
+   ein Screenreader "weiblich" mit bosnischer Stimme (WCAG 3.1.2). Erkannt
+   wird genau diese Klammer am Ende, sie steht in jeder Sprache gleich da
+   (grammatik.py, Lektion genus). */
+const GESCHLECHT_KLAMMER = /\((on|ona|ono)\)\s*$/;
+const gramAntwortBosnisch = antwort => !GESCHLECHT_KLAMMER.test(String(antwort || ''));
+
+/* Die Rueckmeldung nach der Antwort, in das Feld feld (#xFb einer Aufgabe,
+   #rFb einer Geschichten-Frage). Das Wort darin ist meist bosnisch und
+   steht seit dem 17.10.2026 als <span lang="bs"> da - ein Screenreader
+   liest es dann bosnisch statt deutsch; zu sehen ist alles wie vorher.
+   Bosnisch ist auch das Lob "Tačno!" (in allen Sprachen gleich). Nicht
+   bosnisch sind die Bedeutung bei mcrev, die Geschlechter der Grammatik und
+   die Antworten der Geschichten-Fragen: dort bosnisch === false.
+   Danach wird die Rueckmeldung angesagt (#ansage, siehe ansagen()) - erst
+   nach WEITER_NACH, wenn der Fokus auf Weiter liegt. */
+function rueckmeldungZeigen(feld, klasse, schluessel, wort, bosnisch, anhang){
+  if(!feld) return;
+  const W = '\u0001';
+  const teile = esc(t(schluessel, {wort: W})).split(W);
+  const wortHtml = bosnisch === false ? esc(wort) : '<span lang="bs">'+esc(wort)+'</span>';
+  feld.innerHTML = (schluessel === 'task.richtig' ? '<span lang="bs">'+teile.join('')+'</span>' : teile.join(wortHtml))
+                 + (anhang ? esc(' ('+anhang+')') : '');
+  feld.className = 'feedback '+klasse;
+  ansagen(feld.innerHTML, WEITER_NACH + 80);
+}
+
 function renderTask(task, body, done, opts={}){
   /* NUR innerhalb dieser Aufgabe suchen. Lektion und Test benutzen dieselben
      Kennungen (xOpts, xFb, ...). Sind beide gefuellt, liefert
@@ -7332,11 +7663,15 @@ function renderTask(task, body, done, opts={}){
      Lektionskoerper und stand selbst ohne Knoepfe da. */
   const $$ = id => body.querySelector('#'+id);
   stilleBitte();                       // das Wort der vorigen Aufgabe nicht hineinreden lassen
+  ansagen('');                         // ebenso ihr Ergebnis, falls es noch auf seine Ansage wartet
   const meineAufgabe = aufgabeMarke;   // gilt fuer verspaetete Erkennungs-Ergebnisse
   const pool = task.pool || curWords();
   const w = task.w;
   const kick = (text)=> '<div class="kicker aufgabe">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
-  const fb = (ok, right, extra)=>{ $$('xFb').textContent = ok?t('task.richtig'):t('task.falsch',{wort:right})+(extra?' ('+extra+')':''); $$('xFb').className='feedback '+(ok?'ok':'no'); };
+  const rueckmeldung = (klasse, schluessel, wort, bosnisch, anhang)=>
+    rueckmeldungZeigen($$('xFb'), klasse, schluessel, wort, bosnisch, anhang);
+  const fb = (ok, right, extra, bosnisch)=> ok ? rueckmeldung('ok', 'task.richtig')
+                                               : rueckmeldung('no', 'task.falsch', right, bosnisch, extra);
   /* Nach der Antwort: das Bosnische und darunter, was es heißt. Vorher
      konnte man eine Auswahlaufgabe richtig lösen, ohne je zu erfahren, was
      das Wort bedeutet - und bei den Höraufgaben stand überhaupt nichts
@@ -7345,14 +7680,14 @@ function renderTask(task, body, done, opts={}){
     const feld = $$('xFb');
     if(!feld || !bs || body.querySelector('.loesung')) return;
     feld.insertAdjacentHTML('afterend',
-      '<div class="loesung"><span class="lbs">'+esc(bs)+'</span>'+
+      '<div class="loesung"><span class="lbs" lang="bs">'+esc(bs)+'</span>'+
       (de ? '<span class="lde">'+esc(de)+'</span>' : '')+'</div>');
   };
   const skipBtn = (text)=> opts.noSkip ? '' : '<button class="skip" id="xSkip">'+text+' ⏭</button>';
   const wireSkip = ()=>{ const b=$$('xSkip'); if(b) b.addEventListener('click',()=>done({ok:false, skipped:true})); };
 
   if(task.typ==='intro'){
-    body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'">'+esc(w.bs)+'</div>'+
+    body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+t('task.hoeren')+'</button>':'')+
       '<div class="row unten"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
     if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 250); }
@@ -7361,11 +7696,11 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='mc'){
     body.innerHTML = kick(t('task.was_heisst'))+'<div class="prompt'+(w.de.length>18?' long':'')+'">'+esc(w.de)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); });
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); }, 'bs');
     return;
   }
   if(task.typ==='mcrev'){
-    body.innerHTML = kick(t('task.was_bedeutet'))+'<div class="big'+(w.bs.length>16?' long':'')+'">'+esc(w.bs)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
+    body.innerHTML = kick(t('task.was_bedeutet'))+'<div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
     /* Hier steht das bosnische Wort gross da und die Bedeutung wird gesucht -
        ein Hoerknopf verraet also nichts. Kein Autoplay: erst lesen, dann auf
        Wunsch hoeren. Nach der Antwort spricht es von selbst, damit man die
@@ -7376,7 +7711,7 @@ function renderTask(task, body, done, opts={}){
       '<button class="listen" data-hoer="1">'+t('task.hoeren')+'</button>');
     const hoerKnopf = body.querySelector('[data-hoer]');
     if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(w.bs); });
-    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); });
+    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); });
     return;
   }
   if(task.typ==='type'){
@@ -7392,15 +7727,15 @@ function renderTask(task, body, done, opts={}){
       if(fin) return;
       const auchOk = annehmbar(w).join(' / ');
       const r=matches(inp.value, auchOk);
-      if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; return; }
+      if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_wort'))); return; }
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
       const pruefKnopf = $$('xCheck');
       if(pruefKnopf && pruefKnopf.parentElement) pruefKnopf.parentElement.hidden = true;
       const ok = r==='ok' || r==='almost';
-      $$('xFb').textContent = r==='ok' ? t('task.richtig') : (r==='almost' ? t('task.fast',{wort:w.bs}) : t('task.falsch',{wort:w.bs}));
-      $$('xFb').className='feedback '+(r==='ok'?'ok':(r==='almost'?'almost':'no'));
+      if(r==='ok') rueckmeldung('ok', 'task.richtig');
+      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', w.bs);
       loesung(w.bs, w.de);
       sound(ok?'ok':'no'); spaeterSprechen(w.bs, 450); done({ok});
     };
@@ -7411,12 +7746,12 @@ function renderTask(task, body, done, opts={}){
   if(task.typ==='listen'){
     body.innerHTML = kick(t('task.hoerfrage'))+'<button class="listen bigplay" id="xPlay" aria-label="'+t('task.abspielen')+'">🔊</button><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.hoeren_skip'));
     $$('xPlay').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 300);
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); });
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); }, 'bs');
     wireSkip();
     return;
   }
   if(task.typ==='speak'){
-    body.innerHTML = kick(t('task.sprechen'))+'<div class="big'+(w.bs.length>16?' long':'')+'">'+esc(w.bs)+'</div><div class="de">'+esc(w.de)+'</div>'+
+    body.innerHTML = kick(t('task.sprechen'))+'<div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div><div class="de">'+esc(w.de)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+t('task.vorsprechen')+'</button>':'')+
       '<button class="mic" id="xMic" aria-label="'+t('task.mikro')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></button>'+
       '<div class="heard" id="xHeard">'+t('task.mikro_tipp')+'</div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.sprechen_skip'));
@@ -7440,6 +7775,7 @@ function renderTask(task, body, done, opts={}){
       if(treffer){
         fin = true;
         heard.innerHTML = '<span style="color:var(--good-text)">'+t('task.gehoert_ok',{text:esc(erstes)})+'</span>';
+        ansagen(esc(heard.textContent), WEITER_NACH + 80);   // wie bei den anderen Aufgaben (17.10.2026)
         sound('ok'); done({ok:true});
       } else if(!erstes){
         /* Die Erkennung hat nichts geliefert - geschwiegen, zu laut, Anruf,
@@ -7447,8 +7783,10 @@ function renderTask(task, body, done, opts={}){
            verstanden" mit einem leeren Wort darin, dazu der Fehlerton. Der
            Nutzer bekam gesagt, er habe falsch gesprochen. */
         heard.textContent = t(navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline');
+        ansagen(esc(heard.textContent));
       } else {
         heard.textContent = t('task.gehoert_no',{text:erstes}); sound('no');
+        ansagen(esc(heard.textContent));
       }
     };
 
@@ -7522,20 +7860,28 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='gap'){
     const s=task.s;
-    body.innerHTML = kick(t('task.luecke'))+'<div class="sentence">'+esc(s.text).replace('___','<input class="blank-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false">')+'</div>'+
+    /* Die Luecke ist ein Eingabefeld mitten im Satz. Seit dem 17.10.2026 hat
+       es einen Namen, "Tippe das fehlende Wort ein" (WCAG 4.1.2) - vorher
+       meldete ein Screenreader nur "Eingabefeld". Bosnisch sind nur die
+       Satzteile davor und danach: laege das Feld selbst in lang="bs", hoerte
+       man seinen Namen mit bosnischer Stimme. */
+    const [vorLuecke, ...nachLuecke] = esc(s.text).split('___');
+    const bsTeil = x => x ? '<span lang="bs">'+x+'</span>' : '';
+    const lueckeHtml = '<input class="blank-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="'+esc(t('task.tippe_luecke'))+'">';
+    body.innerHTML = kick(t('task.luecke'))+'<div class="sentence">'+bsTeil(vorLuecke)+(nachLuecke.length ? lueckeHtml+bsTeil(nachLuecke.join('___')) : '')+'</div>'+
       '<div class="translation">'+inZitat(esc(s.de))+'</div><div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
     const check=()=>{
       if(fin) return; const r=matches(inp.value, s.answer);
-      if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; return; }
+      if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_luecke'))); return; }
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
       const pruefKnopf = $$('xCheck');
       if(pruefKnopf && pruefKnopf.parentElement) pruefKnopf.parentElement.hidden = true;
       const ok = r==='ok' || r==='almost';
-      $$('xFb').textContent = r==='ok' ? t('task.richtig') : (r==='almost' ? t('task.fast',{wort:s.answer}) : t('task.falsch',{wort:s.answer}));
-      $$('xFb').className='feedback '+(r==='ok'?'ok':(r==='almost'?'almost':'no'));
+      if(r==='ok') rueckmeldung('ok', 'task.richtig');
+      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', s.answer);
       loesung(s.text.replace('___', s.answer), s.de);
       sound(ok?'ok':'no');
       /* Erst jetzt den FERTIGEN Satz sprechen - vorher waere die Loesung
@@ -7569,14 +7915,29 @@ function renderTask(task, body, done, opts={}){
       shuffle(bank);
       if(bank.filter(k => k.satz).map(k => k.x).join(' ') !== teile.join(' ')) break;
     }
+    /* Zeile und Vorrat sind benannte Gruppen (17.10.2026): "Dein Satz" und
+       "Woerter". Vorher hiess die Zeile wie der Hinweis, und der Vorrat hatte
+       gar keinen Namen - mit Screenreader war nicht zu hoeren, ob eine Kachel
+       schon liegt oder noch wartet. Der Hinweis steht weiter in der leeren
+       Zeile (data-leer) und wird dort mit vorgelesen. Die Gruppen selbst
+       tragen kein lang="bs": ihr Name ist in der Sprache der App. */
     body.innerHTML = kick(t('task.kacheln'))+'<div class="prompt'+(s.de.length>18?' long':'')+'">'+esc(s.de)+'</div>'+
-      '<div class="kachelzeile" id="xZeile" role="group" aria-label="'+esc(t('task.kacheln_hinweis'))+'" data-leer="'+esc(t('task.kacheln_hinweis'))+'"></div>'+
-      '<div class="options waagrecht kachelbank" id="xBank"></div>'+
+      '<div class="kachelzeile" id="xZeile" role="group" aria-label="'+esc(t('task.kacheln_zeile'))+'" data-leer="'+esc(t('task.kacheln_hinweis'))+'"></div>'+
+      '<div class="options waagrecht kachelbank" id="xBank" role="group" aria-label="'+esc(t('task.kacheln_vorrat'))+'"></div>'+
       '<div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck" disabled>'+t('task.pruefen')+'</button></div>'+
       skipBtn(t('task.kacheln_skip'));
     const zeile = $$('xZeile'), vorrat = $$('xBank'), pruef = $$('xCheck');
     let fin = false;
     const gelegt = () => [...zeile.querySelectorAll('.kachel')];
+    /* Nach jedem Legen und Zuruecklegen wird angesagt, wie der Satz jetzt
+       dasteht - "Dein Satz: Ja sam" (17.10.2026). Ist die Zeile leer, der
+       Hinweis, der dann auch auf dem Bildschirm steht. Die Kacheln sind
+       bosnisch und kommen als lang="bs" mit. */
+    const satzAnsagen = () => {
+      const woerter = gelegt().map(k => k.textContent).join(' ');
+      ansagen(esc(t('task.kacheln_zeile')) + ': '
+        + (woerter ? '<span lang="bs">' + esc(woerter) + '</span>' : esc(t('task.kacheln_hinweis'))));
+    };
     const legen = (b) => {
       if(fin) return;
       // Mit der Tastatur bleibt man in den Kacheln, statt nach dem Antippen
@@ -7599,7 +7960,14 @@ function renderTask(task, body, done, opts={}){
         platz.setAttribute('aria-hidden', 'true');
         vorrat.replaceChild(platz, b);
         zeile.appendChild(b);
-        weiter = vorrat.querySelector('.kachel:not(.platz)') || pruef;
+        /* Der Fokus geht zur naechsten Kachel rechts von der Luecke, gibt es
+           keine mehr, zur naechsten links davon, und erst bei leerem Vorrat
+           auf Pruefen (17.10.2026). Bis dahin sprang er immer auf die erste
+           Kachel im Vorrat - wer mit Tastatur oder Screenreader von vorn nach
+           hinten legt, stand nach jedem Legen wieder am Anfang. */
+        const alle = [...vorrat.children], stelle = alle.indexOf(platz);
+        const frei = k => !k.classList.contains('platz');
+        weiter = alle.slice(stelle + 1).find(frei) || alle.slice(0, stelle).reverse().find(frei) || pruef;
       } else {
         const stelle = gelegt().indexOf(b);
         const platz = vorrat.querySelector('.platz[data-nr="'+b.dataset.nr+'"]');
@@ -7607,9 +7975,13 @@ function renderTask(task, body, done, opts={}){
         const rest = gelegt();
         weiter = rest[stelle] || rest[rest.length - 1] || b;
       }
-      if(!KACHEL_RUHIG) vorher.forEach((r, k) => {
+      // Ohne Bewegung wird auch ein Gleiten von vorhin abgebrochen: die
+      // Kachel steht dann gleich an ihrem Platz.
+      const ruhig = kachelnRuhig();
+      vorher.forEach((r, k) => {
         if(!k.isConnected || !k.animate) return;
         if(k.getAnimations) k.getAnimations().forEach(a => a.cancel());
+        if(ruhig) return;
         const n = k.getBoundingClientRect(), dx = r.left - n.left, dy = r.top - n.top;
         if(Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
         k.animate([{transform:'translate('+dx+'px,'+dy+'px)'}, {transform:'none'}],
@@ -7617,10 +7989,12 @@ function renderTask(task, body, done, opts={}){
       });
       pruef.disabled = !gelegt().length;
       if(hatteFokus && weiter && !weiter.disabled) try{ weiter.focus({preventScroll:true}); }catch(e){}
+      satzAnsagen();
     };
     bank.forEach((k, nr) => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'opt kachel'; b.textContent = k.x; b.dataset.nr = nr;
+      b.lang = 'bs';   // die Kachel ist ein bosnisches Wort (17.10.2026); der Platzhalter erbt es beim Klonen
       b.addEventListener('click', () => legen(b));
       vorrat.appendChild(b);
     });
@@ -7649,7 +8023,12 @@ function renderTask(task, body, done, opts={}){
     body.innerHTML = kick(t('task.grammatik'))+gramFrageHtml(g.frage)+'<div class="options'+(g.optionen.some(o=>o.length>22)?' one':'')+'" id="xOpts"></div><div class="feedback" id="xFb"></div><div class="ex-tipp" id="xTipp"></div>';
     // Nach der Antwort die richtige Form sprechen, wenn es sie als Aufnahme
     // gibt - bei „imaš“ gegen „ima“ entscheidet die Aussprache mit.
-    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(vorlesbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); });
+    // lang="bs" nur an bosnischen Antworten, auch in der Rueckmeldung (17.10.2026).
+    // Vorgelesen auch nur dann: "weiblich (ona)" sprach sonst die bosnische
+    // Stimme der Sprachausgabe - ein deutsches Wort mit bosnischer Aussprache.
+    const bsRichtig = gramAntwortBosnisch(g.richtig);
+    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); },
+      o => gramAntwortBosnisch(o) ? 'bs' : '');
     return;
   }
 }
@@ -7910,8 +8289,24 @@ function buildLesson(){
   Lx = {queue:[...intros, ...tasks], i:0, results:[], right:0, total:tasks.length, skipped:0, newWords:new Set(), retried:new Set(),
         testVorher: testAllowed(c)};
 }
+/* Die Punktereihe ueber einer Aufgabe (Lektion, Level-Test, Einstufung) ist
+   fuer Screenreader eine Fortschrittsanzeige (17.10.2026, WCAG 1.1.1) -
+   vorher waren es nur leere Punkte ohne jeden Text. Der Name ist
+   "Frage 3 von 12", der Text aus den Geschichten: es braucht keinen neuen.
+   aria-valuenow zaehlt die schon beantworteten. Die Punkte darin liest
+   niemand einzeln vor: eine Fortschrittsanzeige hat keine Kinder. */
+function punkteStand(el, i, n){
+  if(!el) return;
+  if(!n){ ['role', 'aria-valuemin', 'aria-valuemax', 'aria-valuenow', 'aria-label'].forEach(a => el.removeAttribute(a)); return; }
+  el.setAttribute('role', 'progressbar');
+  el.setAttribute('aria-valuemin', '0');
+  el.setAttribute('aria-valuemax', String(n));
+  el.setAttribute('aria-valuenow', String(Math.min(i, n)));
+  el.setAttribute('aria-label', t('gesch.frage_n', {i: Math.min(i + 1, n), n}));
+}
 function lessonBar(){
   $('lBar').innerHTML = Lx.queue.map((t,i)=>'<i class="'+(i<Lx.i ? (Lx.results[i]==='intro'?'intro':(Lx.results[i]==='skip'?'skip':(Lx.results[i]?'ok':'no'))) : (i===Lx.i?'cur':''))+'"></i>').join('');
+  punkteStand($('lBar'), Lx.i, Lx.queue.length);
 }
 function showLessonTask(){
   lessonBar();
@@ -8454,7 +8849,7 @@ function buildTest(){
   gram.forEach(g => qs.push({g, typ:'gram'}));
   Tx = {qs:shuffle(qs), i:0, right:0, results:[]};
 }
-function testBar(){ $('tBar').innerHTML = Tx.qs.map((q,i)=>'<i class="'+(i<Tx.i?(Tx.results[i]?'ok':'no'):(i===Tx.i?'cur':''))+'"></i>').join(''); }
+function testBar(){ $('tBar').innerHTML = Tx.qs.map((q,i)=>'<i class="'+(i<Tx.i?(Tx.results[i]?'ok':'no'):(i===Tx.i?'cur':''))+'"></i>').join(''); punkteStand($('tBar'), Tx.i, Tx.qs.length); }
 function showTestQ(){
   testBar();
   if(Tx.i >= Tx.qs.length){ showTestResult(); return; }
@@ -8724,6 +9119,7 @@ function einstufungStarten(){
 function einstufungBar(){
   $('eBar').innerHTML = Ex.qs.map((q, i) => '<i class="' +
     (i < Ex.results.length ? (Ex.results[i] ? 'ok' : 'no') : (i === Ex.i && !Ex.fertig ? 'cur' : '')) + '"></i>').join('');
+  punkteStand($('eBar'), Ex.results.length, Ex.qs.length);
 }
 function einstufungFrageZeigen(){
   if(!Ex || Ex.fertig) return;
@@ -10107,12 +10503,15 @@ function weiterBeiTipp(feldId, weiter){
   // tippt, soll es wenigstens angehört haben können. Der Knopf selbst
   // bekommt seinen Rahmen erst dann - vorher könnte ihn derselbe Klick
   // treffen, der gerade geantwortet hat.
+  // WEITER_NACH steht bei ansagen(): die Ansage des Ergebnisses wartet
+  // darauf, dass der Fokus hier auf Weiter liegt (17.10.2026).
   setTimeout(()=>{
     if(schon) return;
     feld.addEventListener('click', los, true);
     const k = feld.querySelector('.weiterbox .btn');
     if(k) try{ k.focus({preventScroll:true}); }catch(e){ k.focus(); }
-  }, 900);
+    ansageNachFokus();
+  }, WEITER_NACH);
 }
 
 function sichtbar(id){ const e = $(id); return !!e && e.style.display !== 'none'; }

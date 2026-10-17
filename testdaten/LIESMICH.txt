@@ -4,24 +4,64 @@ TESTDATEN - ALLES FREIGESCHALTET
 Zwei Sicherungen zum Durchtesten der App. Erzeugt von testdaten_bauen.py
 im Ordner darueber, immer aus dem aktuellen Inhalt (vokabeln.py,
 geschichten.py). In beiden ist jedes Level bestanden und jede Geschichte
-gelesen, beide haben 999999 Muenzen und 30 Lerntage bis gestern.
+gelesen, beide haben 30 Lerntage bis gestern und 1860 Muenzen verdient.
 
 Der Unterschied:
 
-  zmaj-test-vollversion.json   Vollversion AN.
-                               Jedes Wort des Kurses gelernt, alles aus dem
-                               Laden gekauft, der Drache traegt die Krone.
-                               Keine Werbung, unbegrenzte Leben.
-                               So sieht es fuer einen zahlenden Nutzer aus,
-                               der alles geschafft hat.
+  zmaj-test-vollversion.json   Alles geschafft.
+                               Jedes Wort des Kurses gelernt, Fes und
+                               bosnischer Schal gekauft und angezogen,
+                               160 Muenzen uebrig.
+                               So sieht es fuer jemanden aus, der den
+                               ganzen Kurs hinter sich hat.
 
-  zmaj-test-alles-offen.json   Vollversion AUS.
-                               Alles offen, aber NICHTS gelernt und nichts
-                               gekauft. Lektionen zeigen Vorstellkarten,
-                               Leben, Werbung und Laden laufen normal.
+  zmaj-test-alles-offen.json   Alles offen, aber NICHTS gelernt und nichts
+                               gekauft, 1860 Muenzen fuer den Laden.
+                               Lektionen zeigen Vorstellkarten, Leben,
+                               Werbung und Laden laufen normal.
                                So sieht es fuer alle anderen aus.
 
 Man kann nicht beides gleichzeitig testen - deshalb zwei Dateien.
+
+
+WAS EINE SICHERUNG NICHT MITBRINGT (seit 17.10.2026)
+----------------------------------------------------
+Beim Einlesen nimmt die App nur an, was sich ehrlich erreichen laesst
+(sicherungPlausibel in web/index.html):
+
+  Muenzen    hoechstens 60 je Lerntag und einen Tag dazu. Bei 30
+             Lerntagen 1860 - deshalb stehen genau so viele drin. Bis
+             zum 17.10.2026 versprach diese Datei 999999; angekommen
+             waeren davon auch nur 1860.
+  Zierrat    nur so viel, wie diese Muenzen bezahlen, das Billigste
+             zuerst. Der ganze Laden kostet 23 800 Muenzen.
+  Lerntage   nur von 01.08.2026 (APP_START) bis heute.
+
+Die Vollversion kommt ueber eine Datei gar nicht: sie steht nicht im
+Lernstand, sondern getrennt auf dem Geraet. In der Datei steht noch ein
+Feld "premium" - das liest die App nicht. Am PC schaltet ?alle=1 an der
+Adresse alles frei, auch die unbegrenzten Leben.
+
+
+VIELE MUENZEN FUER DEN LADEN
+----------------------------
+Ueber "Sicherung einlesen" geht das nicht mehr. Stattdessen in der
+laufenden App, in der Konsole der Entwicklerwerkzeuge (am PC F12, am
+Handy ueber chrome://inspect mit USB-Debugging, wenn die WebView das
+zulaesst):
+
+    muenzenGes += 30000; saveProgress(); renderLives();
+
+Das bleibt im Geraetespeicher, auch nach dem Neustart. Beim normalen
+Start kuerzt die App bewusst nichts - nur beim Einlesen einer Datei.
+
+
+zmaj-screenshots.json
+---------------------
+Der Vorfuehrstand fuer die Store-Bilder. store/bilder_machen schreibt ihn
+direkt in den Geraetespeicher des Browsers und nicht ueber "Sicherung
+einlesen" - seine Muenzen (4440 in 47 Lerntagen) liegen ueber der Grenze
+oben und kaemen beim Einlesen nicht vollstaendig an.
 
 Wie viele Woerter, Level und Geschichten genau drinstehen, steht hier
 absichtlich nicht: die Zahlen wachsen mit dem Kurs. Das Skript nennt sie
