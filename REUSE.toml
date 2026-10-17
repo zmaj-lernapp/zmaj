@@ -44,9 +44,50 @@ path = [
   "**/*.md",
   "**/LIESMICH.txt",
   "web/LIZENZEN.txt",
+  "grafik/drache/teile.json",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Ajdin Hasic <zmaj.lernapp@gmail.com>"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+# --- AI-generated mascot images (Google Gemini) ----------------------------
+# Since 15 October 2026 the dragon in the app is assembled from raster images
+# that were generated and edited with Google Gemini from the author's
+# prompts, then cut into parts, masked and converted by the author
+# (zmaj_lottie.py, haut_einbauen.py).
+# They are AI-generated, not hand-drawn; web/LIZENZEN.txt says so as well.
+# Whether purely AI-generated material is protected by copyright differs by
+# jurisdiction. Where rights exist, they are licensed like the rest of the
+# content. The Lottie files next to them (zmaj.json, zmajz-*.json) are
+# written by zmaj_lottie.py and stay covered by the "learning content" entry
+# above; the stars of the galaxy skin are still vectors drawn there too.
+# Since 16 October 2026 the 24 costumes (hats, crowns, glasses, ear muffs,
+# headphones, witch hat, bunny ears, jackets, jersey, royal cloak, jelek,
+# scarves, sparkle stars) are Gemini paintings as well, in
+# web/maskottchen/zierrat, and so is the Halloween skeleton
+# (web/maskottchen/haut/skelett, covered by haut/**).
+# The app icon ("Entwurf 4", replacing the flag on the same day) is also a
+# Gemini image, cropped and scaled by the author, and the store banner shows
+# the Gemini dragon - both are listed here as well (review 15 Oct 2026).
+# So are the README images in docs/assets (social preview and the strip of
+# English screenshots): they show the same Gemini dragon (15 Oct 2026).
+[[annotations]]
+path = [
+  "web/maskottchen/teile/**",
+  "web/maskottchen/haut/**",
+  "web/maskottchen/zierrat/**",
+  "web/maskottchen/zmaj-frei.png",
+  "web/maskottchen/zmaj-jubel.png",
+  "web/maskottchen/zmaj-traurig.png",
+  "web/icon-256.png",
+  "web/icon.ico",
+  "store/icon-512.png",
+  "store/feature-1024x500.png",
+  "docs/assets/social-preview.jpg",
+  "docs/assets/screenshots-en.png",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Ajdin Hasic <zmaj.lernapp@gmail.com>, images generated with Google Gemini"
 SPDX-License-Identifier = "CC-BY-SA-4.0"
 
 # --- third party ------------------------------------------------------------

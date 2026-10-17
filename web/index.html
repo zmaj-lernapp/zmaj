@@ -6,8 +6,9 @@
 <title>Zmaj · Bosnisch lernen</title>
 <!-- Die Zahl hinter ?v= bei jeder Änderung des Symbols erhöhen. Browser merken sich
      das Tab-Symbol sonst sehr lange, auch ohne Zwischenspeicher. -->
-<link rel="icon" type="image/png" href="flagge.png?v=2">
-<link rel="apple-touch-icon" href="flagge.png?v=2">
+<!-- Seit 16.10.2026 zeigt der Browser-Tab das App-Symbol (Flagge mit Drache, Ajdins Wahl), die Kopfzeile behaelt die Flagge. -->
+<link rel="icon" type="image/png" href="icon-256.png?v=3">
+<link rel="apple-touch-icon" href="icon-256.png?v=3">
 <!-- Schriften und Animationsbibliothek liegen hier im Ordner, nicht bei
      Google oder Cloudflare. So baut die App beim Start keine Verbindung
      nach außen auf und überträgt keine IP-Adresse an Dritte.
@@ -683,6 +684,11 @@
     font-size:14px; font-weight:700; line-height:1.4;
     opacity:0; transition:opacity .25s}
   .kurznote.an{opacity:1}
+  /* Nur fuer Screenreader (17.10.2026): auf dem Bildschirm nicht zu sehen,
+     im Vorlesebaum aber da. Nicht display:none und nicht hidden - das nimmt
+     den Inhalt auch dem Screenreader weg. Gebraucht fuer #ansage. */
+  .nurleser{position:absolute!important; width:1px; height:1px; margin:-1px; padding:0; border:0;
+    overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap}
   /* ---- Update aus Google Play (10.10.2026) ----
      Die Leiste "Update bereit · Neu starten": klein, unten, im Kartenstil
      der App. Sie liegt ueber dem Inhalt, aber unter Anzeige (999) und jeder
@@ -1750,6 +1756,11 @@
   </main>
   <footer data-t="app.fuss"></footer>
 </div>
+<!-- Kurze Ansagen fuer Screenreader (17.10.2026, WCAG 4.1.3): Ergebnis einer
+     Aufgabe, gelegte Kachel, Kauf im Laden. Unsichtbar, gefuellt von ansagen().
+     Sie steht von Anfang an im Dokument - eine Region, die erst mit ihrem Text
+     dazukommt, lesen manche Screenreader nicht vor. -->
+<div id="ansage" class="nurleser" aria-live="polite" aria-atomic="true"></div>
 
 <script>
 /* Der Inhalt kommt aus vokabeln.py, grammatik.py und geschichten.py – hier muss nichts geändert werden. */
@@ -1757,8 +1768,18 @@ const LEKTION_WOERTER = 10;      // Wortaufgaben pro Lektion
 const LEKTION_NEU_MAX = 5;       // davon höchstens so viele neue Wörter (wenn es schon bekannte gibt)
 const LEKTION_LUECKEN = 2;       // Lückentexte pro Lektion
 const LEKTION_KACHELN = 2;       // Sätze aus Kacheln pro Lektion (wenn ihre Wörter schon dran waren), seit 13.10.2026
-// Wer am Handy "Bewegung reduzieren" eingestellt hat, bekommt die Kacheln ohne Gleiten.
-const KACHEL_RUHIG = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+/* Ohne Gleiten legen die Kacheln, wer am Handy "Bewegung reduzieren"
+   eingestellt oder in der App den Schalter "Animationen" ausgeschaltet hat.
+   Bis zum 17.10.2026 stand hier eine Konstante: sie las nur die
+   Geraeteeinstellung, und die nur einmal beim Start - der Schalter in der App
+   blieb ohne Wirkung, weil .no-anim nur CSS-Bewegung abschaltet und das
+   Gleiten ueber k.animate() laeuft. Jetzt wird bei jedem Legen gefragt, genau
+   wie zmajRuht() es fuer den Drachen tut. */
+function kachelnRuhig(){
+  if(document.body.classList.contains('no-anim')) return true;
+  try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  catch(e){ return false; }
+}
 const LEKTION_GRAMMATIK = 2;     // Grammatik-Aufgaben pro Lektion (wenn vorhanden)
 /* Ajdin am 27.09.2026: "mach die pruefung statt bei 80% auf 100% sonst lernt
    man nicht alles". Der Test geht jetzt erst auf, wenn JEDES Wort des Levels
@@ -2939,6 +2960,40 @@ function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
    sagt "🔊 Hören" alles; vorgelesen wird daraus je nach Programm
    "Lautsprecher mit Schallwellen Hören" oder gar nichts. */
 const nurWort = s => String(s).replace(/^[^\p{L}\p{N}]+/u, '').trim();
+/* ---- Ansagen fuer Screenreader (17.10.2026, WCAG 4.1.3) ----
+   Schreibt eine kurze Meldung in die unsichtbare Region #ansage
+   (aria-live="polite"). Erst leeren, dann kurz darauf fuellen: derselbe
+   Text zweimal hintereinander ("Gekauft.") wuerde sonst kein zweites Mal
+   vorgelesen. html ist schon maskiert - so kann ein bosnisches Wort als
+   <span lang="bs"> mitkommen und klingt dann bosnisch statt deutsch.
+   Nach ANSAGE_STEHT wird die Region wieder leer, damit beim Durchwischen am
+   Seitenende keine alte Meldung steht. ansagen('') bricht eine wartende ab.
+   WEITER_NACH: so lange wartet weiterBeiTipp(), bevor es den Fokus auf
+   Weiter legt. Das Ergebnis einer Aufgabe kommt erst danach - der
+   Fokuswechsel schnitte die Ansage sonst mitten im Wort ab. Weil beide
+   Zeitgeber getrennt starten, setzt weiterBeiTipp() die Ansage nach dem
+   Fokus noch einmal an (ansageNachFokus). */
+const ANSAGE_STEHT = 6000, WEITER_NACH = 900;
+let ansageUhr = 0, ansageWegUhr = 0, ansageText = '';
+function ansagen(html, warte){
+  const el = $('ansage'); if(!el) return;
+  clearTimeout(ansageUhr); clearTimeout(ansageWegUhr);
+  el.textContent = '';
+  ansageText = html || '';
+  if(!html) return;
+  ansageUhr = setTimeout(()=>{
+    el.innerHTML = html;
+    ansageWegUhr = setTimeout(()=>{ el.textContent = ''; ansageText = ''; }, ANSAGE_STEHT);
+  }, warte || 60);
+}
+/* Nach dem Fokus auf Weiter: eine noch wartende oder schon gelaufene
+   Ansage des Ergebnisses einmal neu ansetzen, 80 ms nach dem Fokus. Der
+   allererste Ton einer Sitzung legt den AudioContext an und braucht bis zu
+   0,7 s; er laeuft zwischen der Rueckmeldung und done(). Dann kam die
+   Ansage vor dem Fokuswechsel und wurde von ihm abgeschnitten (gemessen in
+   der Code-Pruefung, 18.10.2026). Im Normalfall wartet sie noch und wird
+   nur auf denselben Augenblick verschoben - doppelt kommt nichts. */
+function ansageNachFokus(){ if(ansageText) ansagen(ansageText, 80); }
 /* ABRUNDEN, nicht runden. Math.round machte aus 199 von 200 Wörtern glatte
    100 Prozent - die Anzeige stand auf 100, und mit TEST_FREI_AB=100 wäre der
    Test aufgegangen, obwohl ein Wort fehlt. Bei den heutigen Levelgrößen (bis
@@ -2968,6 +3023,27 @@ const istDatum = s => {
   const d = new Date(s + 'T12:00:00');
   return !isNaN(d.getTime()) && dayKey(d) === s;
 };
+/* ---- Der frueheste moegliche Tag (17.10.2026) ----
+   Die Form allein reichte auch sonst nicht. Lerntage kommen aus einer
+   Sicherungsdatei, und die kann jeder von Hand schreiben: ein Lerntag
+   "1990-01-01" kam durch, seitNachEinlesen() setzte zmaj_seit auf ihn, und
+   geschenkPruefen() rechnete 36 Jahre aus - fuenf Tage Vollversion. Mit
+   1980, 1970 ... gleich noch einmal, beliebig oft. So in der
+   Sicherheitspruefung am 17.10.2026 in Chrome gemessen. Ajdin dazu:
+   "binde es am Handy-Datum".
+
+   Vor APP_START kann es keinen Lerntag geben. Belegt am 17.10.2026: erster
+   Commit am 19.09.2026, die Technikerarbeit laeuft ab dem 10.08.2026
+   (PROJEKTMAPPE.md), der frueheste Tag in irgendeiner Sicherung oder
+   Testdatei ist der 04.08.2026 (testdaten/zmaj-screenshots.json), auf einem
+   echten Handy der 18.08.2026. Lieber ein paar Tage zu frueh als einen
+   echten Lernenden abzuschneiden - deshalb der Monatserste davor.
+   Verglichen wird als Zeichenkette: 'JJJJ-MM-TT' sortiert wie das Datum. */
+const APP_START = '2026-08-01';
+/* Ein Tag aus einer Sicherungsdatei: echtes Datum, nicht vor APP_START und
+   nicht nach heute - heute nach der Uhr des Handys, wie today(). Beim
+   normalen Laden gilt nur die untere Grenze, siehe standUebernehmen(). */
+const tagMoeglich = s => istDatum(s) && s >= APP_START && s <= today();
 
 function matches(guess, answer){
   const g = guess.trim(); if(!g) return 'leer';
@@ -3003,43 +3079,57 @@ const hasLottie = () => !!window.lottie && MASCOT.has('zmaj.json');
    ORDER festgelegt hat, also liegt der Hut vorn und der Schal hinter dem Kopf.
    Jede Kombination kostet damit keine einzige Datei extra. */
 /* ---- Die Farbe des Drachen ----
-   Der Drache besteht aus fuenf Blautoenen: Koerper, Aufhellung, Schatten,
+   Der Drache besteht aus fuenf Blautoenen: Koerper, Aufhellung, Dunkel,
    Fluegelhaut, Fluegelschatten. Eine andere Farbe heisst: diese fuenf gegen
    fuenf andere tauschen, in derselben Reihenfolge und mit demselben
    Helligkeitsgefaelle - sonst verliert die Figur ihre Plastik.
-   Gelb bleibt ueberall stehen: Bauch, Hoerner, Augen. Das ist der Gegenpol,
-   an dem man den Drachen erkennt.
+   Seit dem Drachen v6 (14.10.2026, neue Figur nach den Vorlagen) ist
+   "Dunkel" auch der UMRISS der ganzen Figur, dazu Brauen, Mund und
+   Nasenloecher - darum muss der dritte Ton jeder Farbe richtig dunkel sein.
+   Gelb bleibt ueberall stehen: Bauch und Hoerner. Das ist der Gegenpol,
+   an dem man den Drachen erkennt. Die Augen sind blau und faerben nie um.
    Die Zahlen sind dieselben wie in zmaj_lottie.py. Wer sie dort aendert,
    muss FARB_QUELLE hier mitaendern. */
 const zuFarbe = h => [parseInt(h.slice(0, 2), 16) / 255,
                       parseInt(h.slice(2, 4), 16) / 255,
                       parseInt(h.slice(4, 6), 16) / 255];
-/* Dazu seit dem 01.10.2026 die drei Gelbtoene (Bauch, Bauchschatten,
-   Hoerner) als Nummer 6 bis 8. Getauscht wird nur, was eine Farbe auch
-   angibt: die Kauffarben haben fuenf Toene und lassen Gelb stehen, das
-   Skelett hat acht und macht auch Hoerner und Krallen zu Knochen. */
-const FARB_QUELLE = ['2448B8', '3F66DF', '17307F', '6C90FF', '3A5CD0', 'FFCB1F', 'D9A400', 'F2A900'].map(zuFarbe);
+/* Dazu seit dem 01.10.2026 die drei Gelbtoene als Nummer 6 bis 8 - seit
+   v6: Bauch und Hoerner, Bauchrillen und Schatten auf Gold, Umriss der
+   Hoerner. Getauscht wird nur, was eine Farbe auch angibt: die Kauffarben
+   haben fuenf Toene und lassen Gelb stehen, das Skelett hat acht und macht
+   auch die Hoerner zu Knochen.
+   v6-Werte, abgemessen an der Vorlage pro_vorne.png (14.10.2026); bis v5
+   stand hier 2448B8, 3F66DF, 17307F, 6C90FF, 3A5CD0, FFCB1F, D9A400, F2A900. */
+const FARB_QUELLE = ['415EA1', '5281B3', '26366A', '7E9CDF', '6282CC', 'F6C044', 'D79536', 'A86D27'].map(zuFarbe);
+/* v6 (14.10.2026): Der fuenfte Ton, der Fluegelschatten, liegt jetzt
+   zwischen Koerper und Fluegelhaut (60 % zur Haut hin) wie beim blauen
+   Drachen der Vorlage. Vorher war er fast so dunkel wie der Koerper - bei
+   der neuen Figur verschwanden damit die Fingerknochen der Fluegel, die die
+   Koerperfarbe tragen, im Schatten der Haut. Rosa und Silber haben einen
+   dunkleren dritten Ton bekommen, weil der jetzt der Umriss ist. */
 const FARBEN = {
-  gruen:   ['1E9E52', '32C169', '136434', '62DE98', '28A05C'],
-  rosa:    ['D94E8C', 'EE74A8', '952F5E', 'FF9CC4', 'D1679B'],
-  rot:     ['C0392B', 'E05A4A', '7E1C14', 'FF8878', 'C24F3E'],
-  lila:    ['7A3FBF', '9C63DB', '4A2277', 'BE8DF0', '8352C4'],
-  nacht:   ['3A3F4C', '575E70', '22252D', '7C8598', '4B5364'],
+  gruen:   ['1E9E52', '32C169', '136434', '62DE98', '47C47C'],
+  rosa:    ['D94E8C', 'EE74A8', '7E2450', 'FF9CC4', 'F07DAE'],
+  rot:     ['C0392B', 'E05A4A', '7E1C14', 'FF8878', 'E66859'],
+  lila:    ['7A3FBF', '9C63DB', '4A2277', 'BE8DF0', 'A36EDC'],
+  nacht:   ['3A3F4C', '575E70', '22252D', '7C8598', '62697A'],
   /* Nur mit der Vollversion. Die fuenf Toene stehen fuer dieselben fuenf
      Blautoene wie bei den anderen Farben: Grund, hell, dunkel, Fluegel,
      Fluegelschatten. */
-  gold:    ['D9A520', 'F2C94C', '8A6508', 'FFDE7A', 'C79A2E'],
-  silber:  ['9AA3B0', 'C3CAD6', '5E6673', 'E2E7EF', '8892A1'],
-  kupfer:  ['B06A2C', 'D08C45', '7A4417', 'E8A867', 'A66330'],
+  gold:    ['D9A520', 'F2C94C', '8A6508', 'FFDE7A', 'F0C756'],
+  silber:  ['9AA3B0', 'C3CAD6', '4D5563', 'E2E7EF', 'C5CCD6'],
+  kupfer:  ['B06A2C', 'D08C45', '7A4417', 'E8A867', 'D28F4F'],
   /* Die Galaxie ist mehr als eine Farbe: zu diesen fuenf dunklen Toenen
      gehoert die Ebene zmajz-galaxie.json mit den Sternen darauf. Weil
      die Kennung in beiden Listen steht - hier und im Laden -, laedt
      getrageneTeile() sie von selbst mit. */
-  galaxie: ['241A4D', '3A2C73', '150F30', '4C3C93', '2C2160'],
+  galaxie: ['241A4D', '3A2C73', '150F30', '4C3C93', '3A2D74'],
   /* Kein Kaufartikel: die Haut des Skelett-Drachen zu Halloween. Acht
      Toene - knochenweiss, die Fluegelhaut dunkel (sie wird ohnehin
-     geleert), dazu die drei Gelbtoene. */
-  skelett: ['E6DFCB', 'F6F1E4', 'BDB398', '4A465C', '2C2A38', 'D6CCB0', 'A99F84', 'CFC4A5'],
+     geleert), dazu die drei Gelbtoene. v6: der dritte und der achte Ton
+     sind dunkler (8E846C, 8A7F66), denn sie sind jetzt die Umrisse von
+     Schaedel und Hoernern - hell auf hell verschwand der Schaedel. */
+  skelett: ['E6DFCB', 'F6F1E4', '8E846C', '4A465C', '2C2A38', 'D6CCB0', 'A99F84', '8A7F66'],
 };
 /* hasOwnProperty: FARBEN['constructor'] waere sonst die eingebaute Funktion
    Object, und .map darauf wirft - der Drache bliebe leer. 04.10.2026. */
@@ -3074,6 +3164,10 @@ let zmajBasis = null;              // Grunddatei, einmal geholt
 const zmajTeile = new Map();       // id -> Ebene, einmal geholt
 let zmajFertig = null, zmajFertigFuer = null;
 const zierratDatei = id => 'zmajz-' + id + '.json';
+/* Bildsatz einer Hautfarbe: nur, wenn web/maskottchen/haut/<farbe>/ alle
+   Teile hat (maskottchen_bilder() in inhalt.py meldet ihn dann als
+   "haut/<farbe>/"). Sonst '' - der Drache bleibt in der Grundfarbe. */
+const hautSatz = farbe => (farbe && MASCOT.has('haut/' + farbe + '/')) ? farbe : '';
 /* Auch hier die Ausnahme fuer die Stuecke der Vollversion: sie stehen in
    keinem Besitz, weil sie nicht gekauft werden. Ohne sie haengt der
    Umhang zwar in getragen, kommt aber nie an den Drachen. */
@@ -3400,38 +3494,87 @@ async function zmajDaten(vorgabe){
   }
   /* Ein Schnipsel ist eine Liste von Ebenen - meist eine, beim Fanschal
      zwei, weil der Schriftzug eine eigene Textebene braucht. Aeltere
-     Schnipsel waren ein einzelnes Objekt; beides wird vertragen. */
-  const ebenen = zmajBasis.layers.slice();
+     Schnipsel waren ein einzelnes Objekt; beides wird vertragen.
+     Seit 16.10.2026 sind 24 Stuecke von Gemini gemalt (alle bis auf
+     Galaxie und Skelett - siehe GEMALT in zmaj_lottie.py). Ihr Schnipsel ist ein Objekt {layers, assets}: Bild-
+     Ebenen am Rig und die Bilder dazu in maskottchen/zierrat/<id>/. Die
+     Bilder stehen im Schnipsel und nicht in zmaj.json, damit nur geladen
+     wird, was der Drache traegt. */
+  const ebenen = zmajBasis.layers.slice(), zierBilder = [];
   ids.forEach(id => { const teil = zmajTeile.get(id);
-    if(Array.isArray(teil)) ebenen.push(...teil); else if(teil) ebenen.push(teil); });
+    if(Array.isArray(teil)) ebenen.push(...teil);
+    else if(teil && Array.isArray(teil.layers)){ ebenen.push(...teil.layers); zierBilder.push(...(teil.assets || [])); }
+    else if(teil) ebenen.push(teil); });
   ebenen.sort((a, b) => a.ind - b.ind);
+  /* Bild-Drache (15.10.2026): Seit Ajdins Entscheidung nach den Vorschauen
+     ist der Drache aus Bildern zusammengesetzt (Google Gemini, 32 Teile in
+     maskottchen/teile/, Bild-Ebenen am Rig in zmaj.json - siehe
+     zmaj_lottie.py). Eine Hautfarbe ist dann kein Farbtausch mehr, sondern
+     ein eigener Bildsatz in maskottchen/haut/<farbe>/ mit denselben Namen.
+     Nur der Satz der getragenen Farbe wird geladen. Fehlt er (MASCOT kennt
+     "haut/<farbe>/" nicht), bleibt der Drache in der Grundfarbe.
+     Nur, wenn zmaj.json ueberhaupt Bilder hat: mit dem Vergleichs-Schalter
+     (zmaj_lottie.py --vektor) ist sie wieder der gezeichnete Drache, und
+     ein liegengebliebener Hautsatz schaltete sonst faerbe() ab - der
+     gruene Drache blieb blau, das Skelett behielt einen blauen Schaedel
+     (Pruefung 15.10.2026). */
+  const bilder = (zmajBasis.assets || []).some(a => a.p && !a.e);
+  const haut = bilder ? hautSatz(farbe) : '';
+  /* Ein Stueck, das ein Hautsatz ueberfluessig macht ("zmaj_ohne_haut"),
+     faellt mit ihm weg: das Vektor-Skelett, wenn es haut/skelett/ gibt.
+     Der Satz vom 15.10.2026 zeigte Fleisch und Augen mit Iris statt
+     Knochen (gegen die Fest-Entscheidung vom 01.10.2026) und flog wieder
+     raus. Seit 16.10.2026 ist haut/skelett/ ein von Gemini als Skelett
+     gemaltes Bildset - nur Knochen, runde schwarze Hoehlen mit gelbem
+     Punkt, boeser Blick -, am selben Rig wie der Drache, also mit genau
+     seiner Bewegung. Fehlt der Satz, bleibt das Vektor-Skelett. */
+  let liste = haut ? ebenen.filter(l => l.zmaj_ohne_haut !== haut) : ebenen;
   /* Ein Stueck kann Ebenen des Grunddrachens leeren - das Skelett hat kein
      Fleisch, also weg mit Koerper, Kopf, Armen, Beinen, Fluegeln und
      Schwanz (zmaj_leert in zmajz-skelett.json). Die Ebene bleibt stehen,
      nur ohne Formen: an ihr haengt die Bewegung, und die Knochen haengen
-     an ihr. */
-  const leer = new Set(ebenen.flatMap(l => l.zmaj_leert || []));
-  if(leer.size) ebenen.forEach((l, i) => { if(leer.has(l.nm)) ebenen[i] = Object.assign({}, l, {shapes: []}); });
+     an ihr. Bild-Ebenen (ty 2) haben keine Formen; sie fallen ganz weg -
+     an ihnen haengt nichts. */
+  const leer = new Set(liste.flatMap(l => l.zmaj_leert || []));
+  if(leer.size) liste = liste.filter(l => !(l.ty === 2 && leer.has(l.nm)))
+    .map(l => leer.has(l.nm) ? Object.assign({}, l, {shapes: []}) : l);
+  /* Nur Bilder, die eine Ebene noch zeigt - lottie laedt sonst alle. Der
+     Pfad steht in zmaj.json relativ zur Datei (teile/); die App laedt mit
+     animationData, also setzt sie ihn hier relativ zu index.html. So liegen
+     die Bilder auch in der Android-App als Dateien im Paket: kein Netz.
+     Die Bilder der gemalten Kostueme haengen nicht an der Hautfarbe: ihr
+     Pfad bleibt zierrat/<id>/ (16.10.2026). */
+  const benutzt = new Set(liste.map(l => l.refId).filter(Boolean));
+  const assets = (zmajBasis.assets || []).filter(a => !a.p || a.e || benutzt.has(a.id))
+    .map(a => (a.p && !a.e) ? Object.assign({}, a, {u: 'maskottchen/' + (haut ? 'haut/' + haut + '/' : (a.u || ''))}) : a)
+    .concat(zierBilder.filter(a => benutzt.has(a.id))
+      .map(a => (a.p && !a.e) ? Object.assign({}, a, {u: 'maskottchen/' + (a.u || '')}) : a));
+  const roh = Object.assign({}, zmajBasis, {layers: liste, assets});
   /* Beim Faerben MUSS auf einer Kopie gearbeitet werden: zmajBasis und die
      Schnipsel bleiben im Speicher stehen, und ein Farbwechsel wuerde sonst
-     auf dem Ergebnis des vorigen aufsetzen. */
-  const fertig = farbe
-    ? faerbe(JSON.parse(JSON.stringify(Object.assign({}, zmajBasis, {layers: ebenen}))), farbeVon(farbe))
-    : Object.assign({}, zmajBasis, {layers: ebenen});
+     auf dem Ergebnis des vorigen aufsetzen. Mit Hautsatz wird nicht
+     gefaerbt - die Farbe steckt in den Bildern, und die Kostueme haben
+     ihre eigenen Farben (keine davon steht in FARB_QUELLE, geprueft
+     15.10.2026). Ohne Hautsatz trifft faerbe() beim Bild-Drachen nur noch
+     Vektor-Ebenen: das Skelett wird so knochenweiss. */
+  const fertig = (farbe && !haut) ? faerbe(JSON.parse(JSON.stringify(roh)), farbeVon(farbe)) : roh;
   if(vorgabe) return fertig;
   zmajFertig = fertig; zmajFertigFuer = schluessel;
   return zmajFertig;
 }
 function zmaj(mood='happy'){
   if(hasLottie()) return '<div class="zmaj-anim" data-mood="'+esc(mood)+'"></div>';
-  const want = mood==='cheer' ? ['zmaj-jubel.png'] : (mood==='sad' ? ['zmaj-traurig.png'] : []);
+  /* cry: das traurige Standbild (15.10.2026, Standbilder des Bild-Drachen) */
+  const want = mood==='cheer' ? ['zmaj-jubel.png'] : ((mood==='sad' || mood==='cry') ? ['zmaj-traurig.png'] : []);
   const file = [...want, 'zmaj-frei.png', 'zmaj.png'].find(f=>MASCOT.has(f));
   if(file) return '<img src="maskottchen/'+file+'" alt="Zmaj, der Lerndrache">';
   return zmajSvg(mood);
 }
 /* no_l und no_r: zwei Fassungen für eine falsche Antwort – der Drache
    wendet den Kopf ab, einmal nach links, einmal nach rechts. Die App
-   wechselt ab, damit mehrere Fehler hintereinander nicht gleich aussehen. */
+   wechselt ab, damit mehrere Fehler hintereinander nicht gleich aussehen.
+   Seit 16.10.2026 schüttelt der Bild-Drache dabei finster den Kopf: no_l
+   beginnt links, no_r rechts (SCHUETTELN in zmaj_lottie.py). */
 const MOOD_SEG = {happy:'idle', idle:'idle', cheer:'cheer', sad:'sad', ok:'ok',
                   no:'no', no_l:'no_l', no_r:'no_r', cry:'cry'};
 function segOf(a, name){
@@ -3478,7 +3621,13 @@ function playMood(el, mood){
   const once = (name==='ok' || name==='cheer' || name.slice(0,2)==='no');
   // Ältere zmaj.json kennt no_l und no_r noch nicht - dann das alte 'no'
   const s = segOf(a, name) || (name.slice(0,3)==='no_' ? segOf(a, 'no') : null);
-  const toIdle = ()=>{ if(el._back){ a.removeEventListener('complete', el._back); el._back=null; } if(el._timer){ clearTimeout(el._timer); el._timer=null; } if(el.dataset.mood===mood) playMood(el, 'idle'); };
+  /* Der Zeitgeber kann ablaufen, wenn diese Animation schon abgebaut ist
+     (17.10.2026): die Ansicht wurde kurz nach einer Antwort neu gezeichnet und
+     der Beobachter unter mountZmaj() hat sie zerstoert, oder mountZmaj() hat
+     eine neue aufgebaut. Dann gibt es hier nichts mehr zurueckzustellen -
+     removeEventListener an der zerstoerten Animation warf bis dahin einen
+     Skriptfehler. */
+  const toIdle = ()=>{ if(el._anim !== a || !el.isConnected) return; if(el._back){ a.removeEventListener('complete', el._back); el._back=null; } if(el._timer){ clearTimeout(el._timer); el._timer=null; } if(el.dataset.mood===mood) playMood(el, 'idle'); };
   const frames = s ? (s[1]-s[0]) : (a.totalFrames || 30);
   if(zmajRuht(el)){
     /* Standbild statt Schleife (07.10.2026): fuer die Ruhepose ihr erstes
@@ -3497,13 +3646,30 @@ function playMood(el, mood){
     el._timer = setTimeout(toIdle, frames / (a.frameRate || 30) * 1000 + 80);   // Sicherheitsnetz, falls kein complete-Ereignis kommt
   }
 }
+/* Umziehen waehrend des Ladens (17.10.2026): drachenNeu() nach jedem Tragen
+   ruft mountZmaj(); laedt der Drache da noch, kehrt es sofort zurueck, und
+   die laufende Ladung baute danach den ALTEN Aufzug auf - nach schnellem
+   Umziehen trug er das erste Stueck statt des letzten, bis die Startseite
+   sich das naechste Mal zeichnete. Jetzt merkt sich die Ladung, fuer welchen
+   Stand sie laeuft (fuer); ist der am Ende nicht mehr der gewuenschte, wird
+   ihr Ergebnis verworfen und einmal neu geladen. Die Tracht haengt nur am
+   Gespeicherten und am Kalender, ein neuer Durchgang trifft also den
+   aktuellen Stand; NACHLADEN_MAX ist nur die Sicherung gegen eine Schleife. */
+const NACHLADEN_MAX = 3;
 function mountZmaj(el, mood, vorgabe){
   if(!hasLottie() || el._laedt) return;
   if(mood) el.dataset.mood = mood;
   el._laedt = true;
+  const fuer = vorgabe ? zierratSchluessel(vorgabe.ids, vorgabe.farbe) : zierratSchluessel();
   zmajDaten(vorgabe).then(daten => {
     el._laedt = false;
     if(!daten || !el.isConnected) return;
+    if(!vorgabe && fuer !== zierratSchluessel() && (el._nachgeladen || 0) < NACHLADEN_MAX){
+      el._nachgeladen = (el._nachgeladen || 0) + 1;
+      mountZmaj(el);
+      return;
+    }
+    el._nachgeladen = 0;
     if(el._anim){ try{ el._anim.destroy(); }catch(e){} el._anim = null; el.innerHTML = ''; }
     /* lottie schreibt beim Aufbauen in die Daten hinein. Jede Anzeige
        bekommt deshalb ihre eigene Kopie – sonst stören sich der große
@@ -3511,7 +3677,7 @@ function mountZmaj(el, mood, vorgabe){
     const a = lottie.loadAnimation({container: el, renderer: 'svg', loop: true, autoplay: false,
       animationData: JSON.parse(JSON.stringify(daten)),
       rendererSettings: {preserveAspectRatio: 'xMidYMid meet', progressiveLoad: false}});
-    el._anim = a; el._stand = zmajFertigFuer;
+    el._anim = a; el._stand = fuer;   // nicht zmajFertigFuer: das kann inzwischen eine andere Ladung gesetzt haben
     a.addEventListener('DOMLoaded', ()=>{ a.isLoaded = true; playMood(el, el.dataset.mood || 'happy'); });
   }).catch(()=>{ el._laedt = false; });
 }
@@ -3537,52 +3703,54 @@ function zmajReact(ok){ // kleiner Drache in der Lektion reagiert auf die Antwor
   el.innerHTML = zmaj(ok?'happy':'sad');
   setTimeout(()=>{ el.classList.remove('ok','no'); el.classList.add('idle'); el.innerHTML=zmaj('happy'); }, ok?700:1500);
 }
-let zmajN = 0;
+/* ---- Ersatz-Drache ohne Lottie ----
+   Nur in Gebrauch, wenn lottie.min.js fehlt und kein Bild in web/maskottchen
+   liegt. v6, 15.10.2026: statt des alten runden Drachen eine vereinfachte,
+   stehende Fassung der neuen Figur (Variante A, Kopf 1.2) - die Punkte sind
+   aus zmaj_lottie.py abgeleitet und ausgeduennt, Farben wie FARB_QUELLE.
+   Die Stimmung zeigt nur das Gesicht: happy (Ruhe), cheer (Augen zu, Maul
+   offen), sad (Blick und Brauen), cry (Augen zu, Traenen). Alles andere
+   gilt als happy. %b, %d ... stehen fuer die Farben des Drachen, damit die
+   Zeichenketten kurz bleiben. Ein Stueck mit ~ vorn ist die linke Haelfte
+   eines Paares (Fluegel, Bein, Arm, Horn, Flosse, Auge mit Braue); die
+   rechte ist dasselbe gespiegelt. Alles steht IN der Funktion: so kann
+   sie auch aufgerufen werden, bevor das Skript bis hierher gelaufen ist. */
 function zmajSvg(mood='happy'){
-  // Ersatz, wenn kein Bild in web/maskottchen liegt: Vektor-Drache.
-  if(mood==='cry') mood='sad';
-  const id = 'z'+(zmajN++);
-  const ink = '#0F1E4D';
-  const mouth = mood==='sad' ? '<path d="M50 84 Q60 78 70 84" stroke="'+ink+'" stroke-width="3.2" fill="none" stroke-linecap="round"/>' :
-    (mood==='cheer' ? '<path d="M46 80 Q60 96 74 80 Z" fill="#7A1F2B"/><path d="M50 82 Q60 90 70 82 Z" fill="#FF7B8E"/><path d="M46 80 Q60 96 74 80" stroke="'+ink+'" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M52 81 l3 5 l3 -5" fill="#fff"/><path d="M62 81 l3 5 l3 -5" fill="#fff"/>' :
-     '<path d="M48 80 Q60 92 72 80" stroke="'+ink+'" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M53 81 l3 5 l3 -5" fill="#fff"/>');
-  const eyes = mood==='cheer' ?
-    '<path d="M40 60 q7 -9 14 0" stroke="'+ink+'" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M66 60 q7 -9 14 0" stroke="'+ink+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>' :
-    '<ellipse cx="47" cy="60" rx="8.5" ry="10" fill="#fff"/><ellipse cx="73" cy="60" rx="8.5" ry="10" fill="#fff"/>'+
-    '<circle cx="48.5" cy="62" r="4.6" fill="'+ink+'"/><circle cx="74.5" cy="62" r="4.6" fill="'+ink+'"/>'+
-    '<circle cx="50" cy="59.5" r="1.7" fill="#fff"/><circle cx="76" cy="59.5" r="1.7" fill="#fff"/>';
-  const brows = mood==='sad' ? '<path d="M38 49 l12 5" stroke="'+ink+'" stroke-width="3" stroke-linecap="round"/><path d="M82 49 l-12 5" stroke="'+ink+'" stroke-width="3" stroke-linecap="round"/>' : '';
-  return '<svg viewBox="0 0 120 120" aria-hidden="true">'+
-    '<defs><linearGradient id="'+id+'b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3D63D9"/><stop offset="1" stop-color="#1B3A9E"/></linearGradient>'+
-    '<linearGradient id="'+id+'y" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD84A"/><stop offset="1" stop-color="#F0B800"/></linearGradient>'+
-    '<linearGradient id="'+id+'w" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C9BFF"/><stop offset="1" stop-color="#4A6FE0"/></linearGradient></defs>'+
-    // Flügel
-    '<path d="M28 70 C10 66 4 50 8 36 C16 44 22 50 30 52 C26 44 28 36 34 30 C36 42 40 52 46 60 Z" fill="url(#'+id+'w)"/>'+
-    '<path d="M92 70 C110 66 116 50 112 36 C104 44 98 50 90 52 C94 44 92 36 86 30 C84 42 80 52 74 60 Z" fill="url(#'+id+'w)"/>'+
-    '<path d="M14 42 L30 52 M22 34 L34 46" stroke="#2F53C4" stroke-width="1.6" opacity=".6"/><path d="M106 42 L90 52 M98 34 L86 46" stroke="#2F53C4" stroke-width="1.6" opacity=".6"/>'+
-    // Schwanz
-    '<path d="M42 104 C24 108 10 104 8 92 C14 98 26 98 36 92" fill="none" stroke="url(#'+id+'b)" stroke-width="9" stroke-linecap="round"/>'+
-    '<path d="M4 94 L14 86 L16 98 Z" fill="url(#'+id+'y)"/>'+
-    // Rückenzacken
-    '<path d="M50 30 l4 -9 l4 9 z M60 27 l4 -9 l4 9 z M70 30 l4 -9 l4 9 z" fill="url(#'+id+'y)"/>'+
-    // Körper und Bauch
-    '<ellipse cx="60" cy="90" rx="30" ry="24" fill="url(#'+id+'b)"/>'+
-    '<ellipse cx="60" cy="95" rx="18" ry="15" fill="url(#'+id+'y)"/>'+
-    '<path d="M46 92 h28 M47 99 h26 M50 106 h20" stroke="#D9A700" stroke-width="1.6" opacity=".5" stroke-linecap="round"/>'+
-    // Füße und Arme
-    '<ellipse cx="44" cy="112" rx="9" ry="5" fill="url(#'+id+'y)"/><ellipse cx="76" cy="112" rx="9" ry="5" fill="url(#'+id+'y)"/>'+
-    '<ellipse cx="34" cy="90" rx="7" ry="5" fill="#2A4FC2" transform="rotate(-20 34 90)"/><ellipse cx="86" cy="90" rx="7" ry="5" fill="#2A4FC2" transform="rotate(20 86 90)"/>'+
-    // Kopf
-    '<ellipse cx="60" cy="62" rx="32" ry="30" fill="url(#'+id+'b)"/>'+
-    '<ellipse cx="60" cy="78" rx="19" ry="12" fill="#3D63D9" opacity=".55"/>'+
-    '<circle cx="55" cy="74" r="1.8" fill="'+ink+'" opacity=".6"/><circle cx="65" cy="74" r="1.8" fill="'+ink+'" opacity=".6"/>'+
-    // Hörner
-    '<path d="M38 40 C30 30 30 22 34 16 C40 22 44 30 46 38 Z" fill="url(#'+id+'y)"/><path d="M82 40 C90 30 90 22 86 16 C80 22 76 30 74 38 Z" fill="url(#'+id+'y)"/>'+
-    // Wangen
-    '<circle cx="38" cy="70" r="5" fill="#FF8FA3" opacity=".75"/><circle cx="82" cy="70" r="5" fill="#FF8FA3" opacity=".75"/>'+
-    eyes+brows+mouth+
-    '<ellipse cx="46" cy="42" rx="9" ry="4" fill="#fff" opacity=".18" transform="rotate(-25 46 42)"/>'+
-    '</svg>';
+  const FARBE = {b:'#415EA1', h:'#5281B3', d:'#26366A', w:'#7E9CDF', v:'#6282CC', y:'#F6C044', g:'#D79536', a:'#A86D27'};
+  const FIGUR = [
+    '<ellipse cx="60" cy="111.4" rx="25.9" ry="2.2" fill="#0B1533" opacity=".13"/>',
+    '~<path d="M39.4,27.9C39.1,26.8 41.5,25.9 38.3,26.9C35.1,27.9 32.5,28.2 26.7,31.9C20.9,35.6 19.7,36.4 15.1,41.8C10.5,47.2 10.8,46.8 8.1,53.4C5.5,59.9 4.7,68.2 4.7,68.2C4.7,68.2 7.5,63.5 9.4,61.5C11.3,59.5 10.8,59.8 12.2,60.2C13.6,60.5 14,60.7 15,62.9C15.9,65 16,68.8 16,68.8C16,68.8 17.6,65.9 20,64.7C22.4,63.5 23.4,63.4 25.7,63.9C27.9,64.4 27.4,64.5 29.1,66.7C30.9,68.9 32.6,72.7 32.6,72.7C32.6,72.7 34.3,69 37.7,67.3C41.2,65.5 43.4,66.7 46.4,65.8C49.5,64.8 48.5,65.1 49.9,63.6C51.3,62 51.5,61.2 51.9,59.5C52.4,57.8 53,58.2 51.6,56.6C50.3,55 49,55.4 46.5,53C44.1,50.7 43.7,50.7 42,47.2C40.3,43.8 40.5,43.2 39.8,39.2C39.1,35.2 39.5,33.9 39.4,31.1C39.2,28.3 39.6,28.9 39.4,27.9Z" fill="%w" stroke="%d" stroke-width=".8"/><path d="M33.6,32.2C30.5,40.9 18.3,66.6 16.2,68.5C14,70.5 21,49.4 24,40.8C27.1,32.1 27.6,32.1 29.8,30.2C31.9,28.3 36.6,23.6 33.6,32.2Z" fill="%v"/><path d="M35.8,33.7C36.1,42.6 34,66.9 32.7,72.5C31.4,78.1 30.3,67.6 30,58.7C29.6,49.9 30,38.7 31.3,33.1C32.6,27.5 35.4,24.8 35.8,33.7Z" fill="%v"/><path d="M39.4,28.1C40.1,30.8 38.6,35.7 39,39.8C39.4,43.9 39,42.8 41.2,46.2C43.4,49.6 47.6,52.3 48.7,54.9C49.9,57.4 48.2,57.6 46.5,57.5C44.7,57.4 43.3,56.6 41,54.6C38.7,52.6 37.9,51.7 36.2,48.6C34.5,45.5 34.1,44.3 33.5,40.9C33,37.4 33.3,36.2 33.8,33.3C34.3,30.3 34.6,28.8 35.9,27.6C37.2,26.4 38.7,25.3 39.4,28.1Z" fill="%v"/><path d="M38.6,28.3C35.9,28.8 32.3,29.8 27.3,32.8C22.3,35.8 19.7,38.4 16.3,41.5C12.9,44.7 14.4,42.6 12.2,46.7C10.1,50.9 5.2,60.7 6.7,60.1C8.2,59.5 11.6,50.6 18.9,44C26.2,37.3 34.8,34.1 39.2,30.5C43.6,27 41.3,27.8 38.6,28.3Z" fill="%v"/><path d="M38.1,26.6C36.5,26.2 35.4,27.1 32.5,28.3C29.6,29.5 29.5,29.7 26.5,31.5C23.5,33.4 23.4,33.4 20.6,35.7C17.8,38 17.7,38 15.3,40.7C13,43.3 13,43.1 11.2,46.1C9.4,49.1 9.4,49.3 8.1,52.7C6.8,56.2 6.8,56.3 6,59.9C5.1,63.5 4.8,65.3 4.7,67.2C4.5,69.1 4,70.8 5.4,67.4C6.7,63.9 8,58.5 9.9,53.5C11.9,48.5 11.4,50.1 13.2,47.4C15,44.6 14.9,44.8 17.2,42.4C19.5,40 19.6,39.9 22.4,37.9C25.1,35.8 25.2,35.7 28.1,34.1C30.9,32.5 30.9,32.3 33.7,31.3C36.4,30.3 37.9,31.1 39.1,30C40.2,28.8 39.8,27 38.1,26.6Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M32.5,31.7C30.6,34 31.1,33 27,42.2C22.8,51.4 18.6,61.9 15.9,68.5C13.3,75.1 13.2,75 16.4,68.6C19.6,62.3 24.2,52.1 28.8,43.1C33.3,34.2 33.7,35.7 34.6,32.8C35.6,30 34.4,29.3 32.5,31.7Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M34.5,33.5C33.6,36.6 33.7,36.3 33.2,46.1C32.6,55.8 32.5,65.9 32.5,72.5C32.4,79.1 32.2,79.1 32.9,72.5C33.6,65.9 34.1,55.9 35.1,46.3C36.1,36.6 37.1,37 37,33.8C36.8,30.7 35.5,30.5 34.5,33.5Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M37.6,27.8C36.5,29.1 37,30.3 37,33.3C36.9,36.4 36.7,36.7 37.4,40.1C38.1,43.5 38.2,43.8 39.7,46.9C41.3,50 40.6,49.5 43.4,52.5C46.3,55.4 48.7,57.9 51.1,58.7C53.5,59.5 54.4,57.8 53.1,55.7C51.8,53.6 48.6,52.8 46,50.3C43.3,47.7 44,48.1 42.7,45.4C41.3,42.7 41.2,42.5 40.6,39.5C40,36.5 40.2,36.2 40.3,33.4C40.5,30.7 41.8,29.7 41.1,28.3C40.4,26.9 38.6,26.6 37.6,27.8Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M36.9,27.9C37.1,27.3 37,26.7 38.7,26.7C40.3,26.7 44.1,27.9 44.1,27.9C44.1,27.9 39.3,29.3 37.7,29.3C36.1,29.3 36.7,28.5 36.9,27.9Z" fill="%w" stroke="%d" stroke-width=".8"/>',
+    '<path d="M76.9,94C75.9,93 76.5,90.6 77.2,89.4C77.9,88.1 79.2,88.6 80.1,88.6C81,88.5 80.8,87.9 81.2,89.1C81.6,90.3 82.9,92.9 81.9,94C81,95.1 78,95.1 76.9,94Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M82.6,94.6C82,93.7 84.2,90.6 85.4,90.6C86.6,90.7 88.6,93.8 88,94.6C87.3,95.5 83.2,95.5 82.6,94.6Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M88.4,94.6C87.9,93.9 89.6,90.5 90.7,90.3C91.8,90.1 93.7,92.7 93.2,93.7C92.7,94.7 89,95.4 88.4,94.6Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M93.2,92.9C92.4,92.7 93.4,89.7 93.8,88.4C94.1,87.1 94,87.3 94.7,87C95.3,86.7 96,86.3 96.6,86.9C97.2,87.4 98,88 97.2,89.4C96.5,90.7 94,93.1 93.2,92.9Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M66.7,94.4C69.9,92.7 73.8,93.3 79.5,93.1C85.1,93 85.7,94.3 89.3,93.8C93,93.4 91.9,93.9 94.1,91.3C96.3,88.7 98,83.4 98,83.4C98,83.4 94.5,84.1 94.5,84.1C94.5,84.1 96.2,79.4 96.3,76.4C96.5,73.4 95,72.1 95,72.1C95,72.1 98.9,74.4 100.9,77.5C103,80.5 103.2,84.3 103.2,84.3C103.2,84.3 100.1,83.5 100.1,83.5C100.1,83.5 101.2,84 101.2,86.3C101.2,88.6 101.3,89.8 100,92.8C98.7,95.9 97.8,96.4 96,98.4C94.2,100.3 96.7,99.2 92.8,100.7C89,102.2 85.7,103.7 80.6,104.4C75.6,105.1 76,104.5 72.5,103.4C69,102.3 68.2,102.3 66.7,100.1C65.3,97.9 63.5,96.2 66.7,94.4Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M67,100.1C68.2,101.3 69.1,102.2 72.5,103.2C75.9,104.3 76.5,104.4 80.6,104.2C84.8,104 84.9,104.3 89.1,102.4C93.2,100.5 96.5,97.3 97.1,96.6C97.7,96 94.8,98.5 91.4,99.8C88,101 87.6,101.3 83.5,101.6C79.5,101.9 79.3,101.8 75.4,101C71.5,100.3 70,98.8 67.9,98.6C65.8,98.4 65.9,98.9 67,100.1Z" fill="%y" stroke="%g" stroke-width=".5"/>',
+    '~<path d="M48.7,97.2C47,98.4 49.5,100.5 47.9,102.4C46.3,104.4 43.4,104.6 41.7,105.9C39.9,107.2 40.3,107.4 40.3,108.3C40.2,109.2 39.6,109.4 41.5,110C43.4,110.5 46.1,111.3 48.7,110.9C51.4,110.5 51.8,110.3 53.3,108.2C54.8,106.1 55,104 55.5,101.5C56,99.1 57.1,98.2 55.6,97.2C54.1,96.2 50.5,96 48.7,97.2Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M42.6,109.7C42.9,108.9 43.6,107.3 43.9,106.5M46.2,110.3C46.5,109.4 47.1,107.6 47.4,106.7" fill="none" stroke="%d" stroke-width=".6"/>',
+    '<path d="M60,46.7C57.3,47 55.2,45.9 53.4,47.9C51.6,49.9 53.8,51.7 52.8,54.6C51.7,57.5 50.7,52.9 49.2,59.5C47.7,66.1 48.2,73.3 46.9,81C45.6,88.6 44.7,86.2 43.9,90.2C43.2,94.2 43.7,94.8 44,97C44.3,99.2 44.3,98.2 45,99.1C45.7,99.9 44.7,99.8 46.7,100.4C48.7,101 50.9,101.3 53.1,101.4C55.3,101.4 54.4,102.1 55.4,100.7C56.4,99.3 56.4,97.2 57.2,95.7C58,94.3 57.2,94.9 58.6,94.9C60,94.9 61.3,94.3 62.8,95.7C64.3,97.2 63.6,99.3 64.6,100.7C65.6,102.1 64.7,101.4 66.9,101.4C69.1,101.3 71,101.5 73.3,100.4C75.6,99.3 75.3,99.5 76,97C76.7,94.4 76.8,94.2 76.1,90.2C75.3,86.2 74.4,88.6 73.1,81C71.8,73.3 72.3,66.1 70.8,59.5C69.3,52.9 68.3,57.5 67.2,54.6C66.2,51.7 67.4,49.8 66.6,47.9C65.8,46 65.7,47.3 64,47C62.3,46.7 62.7,46.5 60,46.7Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M64.4,48.5C65.7,49.3 68.2,52.8 70.2,61.2C72.2,69.6 71,74.6 72.4,82.1C73.8,89.7 75.3,87 75.9,91.4C76.5,95.7 75.9,97.1 74.7,99.5C73.6,101.9 73.1,100.8 71.4,100.9C69.7,101.1 68.4,106.7 67.9,100.1C67.4,93.5 70.1,85.2 69.4,74.6C68.7,64 66.4,64.3 65.1,57.8C63.9,51.2 63.1,47.6 64.4,48.5Z" fill="%d" opacity=".23"/><path d="M49.4,86.3C50,86.9 50.6,87.2 51.8,88.6C52.9,90 53.1,90.2 54.1,91.9C55.1,93.5 55.3,94.4 55.7,95.2M70.6,86.3C70,86.9 69.4,87.2 68.2,88.6C67.1,90 66.9,90.2 65.9,91.9C64.9,93.5 64.7,94.4 64.3,95.2" fill="none" stroke="%d" stroke-width=".7"/><path d="M60,47.9C57.7,47.9 56.8,45.1 55.5,48.2C54.1,51.3 55.5,54.9 54.5,60.4C53.6,65.8 52.6,65.5 51.7,69.9C50.8,74.4 50.7,73.4 50.8,78.1C50.9,82.7 50.9,84.3 52.1,88.6C53.4,93 53.9,92.9 55.8,95.5C57.8,98 57.9,98.8 60,98.8C62.1,98.8 62.2,98 64.2,95.5C66.1,92.9 66.7,91.5 67.9,88.6C69.1,85.7 68.6,87.2 68.9,83.9C69.2,80.5 69.9,81 69,75.2C68.2,69.3 66.6,67.1 65.5,60.4C64.3,53.6 65.9,51.3 64.5,48.2C63.2,45.1 62.3,47.9 60,47.9Z" fill="%y" stroke="%g" stroke-width=".5"/><path d="M55.8,51.7C59.6,53.2 60.4,53.2 64.2,51.7M55.5,57.8C59.5,59.2 60.5,59.2 64.5,57.8M54,63.7C59.4,65.4 60.6,65.4 66,63.7M52.1,70.5C59.2,72.7 60.8,72.7 67.9,70.5M51.4,78.4C59.1,80.6 60.9,80.6 68.6,78.4M51.9,86C59.2,88.2 60.8,88.2 68.1,86M55,92.7C59.5,94.4 60.5,94.4 65,92.7" fill="none" stroke="%g" stroke-width=".6" opacity=".9"/>',
+    '~<path d="M47.9,72.4C45.6,75.8 46,74.7 44.2,74.4C42.4,74.1 41,75.4 41.4,71.3C41.9,67.1 43.9,63.1 45.8,59.2C47.7,55.3 47.1,57.7 48.2,57.1C49.3,56.5 48.7,56.5 49.9,57C51,57.5 51.7,57.5 52.5,58.9C53.2,60.3 53.9,58.4 52.6,62.1C51.4,65.8 50.2,69 47.9,72.4Z" fill="%b"/><path d="M51.6,57.8C50.8,57.6 50.1,56.7 48.6,57C47,57.3 48,54.9 46,58.8C44,62.7 42.4,67 41.4,71.1C40.5,75.1 41.1,72.6 42.4,73.5C43.7,74.3 43.8,76.1 46.1,74.2C48.3,72.4 49.3,68.8 50.5,66.7" fill="none" stroke="%d" stroke-width=".8"/><path d="M41.4,71.1C40.4,74.3 38.5,77.9 37.7,82.1C36.9,86.3 37.8,86.4 38.3,87.8C38.8,89.3 39.3,88.4 39.6,87.9C40,87.4 39.9,85.7 39.9,85.7C39.9,85.7 40.7,88.9 41.2,89C41.7,89 41.7,85.8 41.7,85.8C41.7,85.8 42.6,88.6 43.1,88.4C43.5,88.3 43.5,85.1 43.5,85.1C43.5,85.1 44.1,87.1 44.5,87.6C44.9,88.1 44.6,90 45.1,87.2C45.6,84.3 45.7,80.3 46.4,76.3C47.2,72.3 48.2,73.2 48.2,71.1C48.2,69 47.7,68.8 46.4,68C45.2,67.3 44.3,67.7 43.2,68C42,68.3 42.3,68.5 41.8,69.2C41.4,70 42.5,67.9 41.4,71.1Z" fill="%b"/><path d="M41.4,71.1C40.5,73.9 38.5,77.9 37.7,82.1C36.9,86.3 37.8,86.4 38.3,87.8C38.8,89.3 39.3,88.4 39.6,87.9C40,87.4 39.9,85.7 39.9,85.7C39.9,85.7 40.7,88.9 41.2,89C41.7,89 41.7,85.8 41.7,85.8C41.7,85.8 42.6,88.6 43.1,88.4C43.5,88.3 43.5,85.1 43.5,85.1C43.5,85.1 44.1,87.1 44.5,87.6C44.9,88.1 44.6,90 45.1,87.2C45.6,84.3 45.7,80.3 46.4,76.3C47.2,72.3 47.7,72.4 48.2,71.1" fill="none" stroke="%d" stroke-width=".8"/><path d="M39.9,85.7C39.8,85.3 39.8,84.4 39.8,84M41.7,85.8C41.7,85.4 41.7,84.4 41.7,84M43.5,85.1C43.5,84.7 43.6,83.9 43.7,83.5" fill="none" stroke="%d" stroke-width=".6"/>',
+    '~<path d="M45.7,6C45.7,6 44.1,7.7 43.4,10C42.6,12.3 41.7,11.2 42.8,15.2C43.9,19.2 45.5,23.5 47.6,26C49.8,28.5 49.5,26.3 51.4,25.3C53.3,24.2 54.9,24.1 55.2,21.8C55.5,19.5 54.4,18.7 52.4,16.2C50.4,13.8 48.8,14.4 47.2,12.1C45.6,9.7 46.5,8.3 46.1,6.8C45.8,5.3 45.7,6 45.7,6Z" fill="%y" stroke="%a" stroke-width=".7"/><path d="M45.2,6.8C44.6,7.5 43.7,8.9 43.1,11C42.5,13.1 41.7,11.4 42.8,15.2C43.9,18.9 46,23.5 47.6,26C49.3,28.5 50.2,27.7 49.4,25.3C48.7,22.8 45.7,20.4 44.6,16.2C43.6,12 45.1,10.8 45.2,8.4C45.4,6.1 45.7,6.2 45.2,6.8Z" fill="%g" opacity=".45"/><path d="M46.2,7.5C46.7,8.5 46.1,10.3 47.6,12.4C49.1,14.5 50.5,14.2 52.2,16.1C53.9,18 55.8,20.7 54.5,20.1C53.2,19.4 49.4,16.3 47.2,13.4C45,10.6 46.1,10.2 45.9,8.7C45.6,7.2 45.8,6.6 46.2,7.5Z" fill="#fff" opacity=".35"/><path d="M43.7,10.4C44.8,9.8 45.1,9.5 46.1,10.2M43.3,13.4C45.4,12.3 45.9,12.3 48,13.4M43.6,16.4C47.3,14.9 48.1,14.8 51.7,16.3M45.4,19.4C49.1,17.9 49.9,18 53.7,19.6" fill="none" stroke="%g" stroke-width=".5" opacity=".9"/>',
+    '~<path d="M47.9,26.8C46.9,24.9 42.7,23.6 42.7,23.6C42.7,23.6 43,27.9 43.6,29.8C44.2,31.7 44.5,31.6 45.3,32.2C46.2,32.7 46.8,33.4 47.3,32.2C47.9,31 48.9,28.8 47.9,26.8Z" fill="%b" stroke="%d" stroke-width="1"/><path d="M47.2,32C46.3,31.5 42.5,34.3 42.5,34.3C42.5,34.3 45.6,36.8 46.6,36.3C47.7,35.7 48.1,32.4 47.2,32Z" fill="%b" stroke="%d" stroke-width="1"/>',
+    '<path d="M60,20.3C58,20.4 57.7,19.7 54.8,20.8C52,21.8 51.1,19.7 48.7,24.3C46.4,28.9 46.1,34.7 45.5,39.2C44.9,43.7 45.3,40.6 46.2,42.1C47.1,43.7 45.7,43.2 49.1,45.3C52.6,47.4 54.6,50.5 60,50.5C65.4,50.5 67.4,47.4 70.9,45.3C74.3,43.2 72.9,43.7 73.8,42.1C74.7,40.6 75.1,43.7 74.5,39.2C73.9,34.7 73,28.7 71.3,24.3C69.6,19.9 69.7,22.6 67.6,21.7C65.4,20.7 64.6,20.8 62.7,20.4C60.8,20.1 62,20.2 60,20.3Z" fill="%b" stroke="%d" stroke-width="1"/><ellipse cx="60" cy="41.1" rx="8.7" ry="4.1" fill="%h" opacity=".32"/><ellipse cx="52.2" cy="31.7" rx="4.4" ry="4.5" fill="%h" opacity=".3"/><ellipse cx="67.8" cy="31.7" rx="4.4" ry="4.5" fill="%h" opacity=".3"/><path d="M59.9,15.3C59.9,15.3 61.8,19.4 61.9,22.1C61.9,24.9 60,26.4 60,26.4C60,26.4 58.4,24.5 58.1,22.1C57.8,19.7 58.5,18.5 58.9,16.8C59.3,15.1 59.9,15.3 59.9,15.3Z" fill="%b" stroke="%d" stroke-width=".8"/><path d="M55,41.3C55.1,40.7 54.1,39.8 55.3,38.8C56.6,37.8 57.7,37.4 60,37.4C62.3,37.4 63.4,37.8 64.7,38.8C65.9,39.8 64.9,40.7 65,41.3" fill="none" stroke="%d" stroke-width=".6"/><path d="M55.7,39.9C56,39.5 56.3,39.4 56.8,39.5C57.3,39.6 57.5,39.8 57.6,40.3C57.8,40.8 57.7,41.1 57.4,41.4C57,41.8 56.7,41.9 56.3,41.8C55.9,41.7 55.8,41.5 55.7,41C55.5,40.5 55.4,40.3 55.7,39.9ZM64.3,39.9C64,39.5 63.7,39.4 63.2,39.5C62.7,39.6 62.5,39.8 62.4,40.3C62.2,40.8 62.3,41.1 62.6,41.4C63,41.8 63.3,41.9 63.7,41.8C64.1,41.7 64.2,41.5 64.3,41C64.5,40.5 64.6,40.3 64.3,39.9Z" fill="%d"/>',
+  ];
+  const GESICHT = {
+    happy: [
+      '~<ellipse cx="52.6" cy="33.2" rx="3.2" ry="3.5" fill="#fff" stroke="%d" stroke-width=".6"/><ellipse cx="53.3" cy="34" rx="2.2" ry="2.5" fill="#3C6BB3" stroke="#2A4F8F" stroke-width=".3"/><ellipse cx="53.5" cy="34.3" rx="1.1" ry="1.5" fill="#112649"/><ellipse cx="52.3" cy="32.4" rx=".8" ry=".8" fill="#fff"/><ellipse cx="54.4" cy="35.7" rx=".3" ry=".3" fill="#fff" opacity=".85"/><path d="M49.4,33.2C49.5,33 49.5,32.5 49.6,32C49.8,31.5 49.9,31.3 50.2,30.9C50.5,30.6 50.6,30.4 51,30.1C51.4,29.9 51.6,29.8 52.1,29.7C52.5,29.6 52.7,29.6 53.2,29.7C53.6,29.8 53.8,29.9 54.2,30.1C54.6,30.4 54.8,30.6 55.1,30.9C55.4,31.3 55.5,31.5 55.6,32C55.8,32.5 55.8,33 55.8,33.2" fill="none" stroke="%d" stroke-width=".8"/><path d="M49.4,27.9C49.7,27.5 50,26.9 50.7,26.3C51.4,25.6 51.4,25.5 52.3,25.3C53.1,25.2 53.7,25.7 54.2,25.8" fill="none" stroke="%d" stroke-width=".9"/>',
+      '<path d="M50,39.3C50.2,39.7 49.7,39.5 50.9,40.6C52.1,41.7 52.6,42.5 54.8,43.6C57.1,44.7 57.4,44.9 60,44.9C62.6,44.9 62.9,44.7 65.2,43.6C67.4,42.5 67.9,41.7 69.1,40.6C70.3,39.5 69.8,39.7 70,39.3" fill="none" stroke="%d" stroke-width=".7"/>',
+    ],
+    cheer: [
+      '~<path d="M49.8,34.5C50.2,34.1 50.5,33.4 51.2,32.9C51.9,32.3 51.9,32.3 52.6,32.3C53.4,32.3 53.4,32.3 54.1,32.9C54.8,33.4 55.1,34.1 55.4,34.5" fill="none" stroke="%d" stroke-width=".8"/><path d="M49.6,27.3C49.9,26.8 50,26.2 50.7,25.5C51.3,24.7 51.3,24.6 52.2,24.4C53,24.2 53.6,24.6 54.1,24.6" fill="none" stroke="%d" stroke-width=".9"/>',
+      '<path d="M51.2,41.3C51.2,41.3 53.4,42.3 55.5,42.8C57.7,43.3 57.8,43.2 60,43.2C62.2,43.2 62.3,43.3 64.5,42.8C66.6,42.3 68.8,41.3 68.8,41.3C68.8,41.3 68.5,42.7 67.5,44.1C66.6,45.4 66.2,45.7 64.9,46.7C63.7,47.7 63.7,47.7 62.5,48.1C61.3,48.5 61.3,48.5 60,48.5C58.7,48.5 58.7,48.5 57.5,48.1C56.3,47.7 56.3,47.7 55.1,46.7C53.8,45.7 53.4,45.4 52.5,44.1C51.5,42.7 51.2,41.3 51.2,41.3Z" fill="#7A1F2B"/><path d="M55.7,47.7C55.7,47.2 56.6,46.7 57.6,46.3C58.7,45.9 58.8,46 60,46C61.2,46 61.3,45.9 62.4,46.3C63.4,46.7 64.3,47.2 64.3,47.7C64.4,48.2 63.6,48.1 62.5,48.2C61.4,48.4 61.3,48.5 60,48.5C58.7,48.5 58.6,48.4 57.5,48.2C56.4,48.1 55.7,48.2 55.7,47.7Z" fill="#FF7B8E"/><path d="M53.3,42.1L54.4,44.3L55.4,42.6Z" fill="#fff"/><path d="M64.6,42.6L65.6,44.3L66.7,42.1Z" fill="#fff"/><path d="M51.2,41.3C51.2,41.3 53.4,42.3 55.5,42.8C57.7,43.3 57.8,43.2 60,43.2C62.2,43.2 62.3,43.3 64.5,42.8C66.6,42.3 68.8,41.3 68.8,41.3C68.8,41.3 68.5,42.7 67.5,44.1C66.6,45.4 66.2,45.7 64.9,46.7C63.7,47.7 63.7,47.7 62.5,48.1C61.3,48.5 61.3,48.5 60,48.5C58.7,48.5 58.7,48.5 57.5,48.1C56.3,47.7 56.3,47.7 55.1,46.7C53.8,45.7 53.4,45.4 52.5,44.1C51.5,42.7 51.2,41.3 51.2,41.3Z" fill="none" stroke="%d" stroke-width=".6"/><path d="M50.3,40.3C50.5,40.6 51,41 51.2,41.3M69.7,40.3C69.5,40.6 69,41 68.8,41.3" fill="none" stroke="%d" stroke-width=".6"/>',
+    ],
+    sad: [
+      '~<ellipse cx="52.6" cy="33.2" rx="3.2" ry="3.5" fill="#fff" stroke="%d" stroke-width=".6"/><ellipse cx="53.3" cy="34.8" rx="2.2" ry="2.5" fill="#3C6BB3" stroke="#2A4F8F" stroke-width=".3"/><ellipse cx="53.5" cy="35.1" rx="1.1" ry="1.5" fill="#112649"/><ellipse cx="52.3" cy="33.1" rx=".8" ry=".8" fill="#fff"/><ellipse cx="54.4" cy="36.5" rx=".3" ry=".3" fill="#fff" opacity=".85"/><path d="M50.5,30.5A3.2,3.5 0 0 1 54.7,30.5Z" fill="%b" stroke="%d" stroke-width=".6"/><path d="M49.4,33.2C49.5,33 49.5,32.5 49.6,32C49.8,31.5 49.9,31.3 50.2,30.9C50.5,30.6 50.6,30.4 51,30.1C51.4,29.9 51.6,29.8 52.1,29.7C52.5,29.6 52.7,29.6 53.2,29.7C53.6,29.8 53.8,29.9 54.2,30.1C54.6,30.4 54.8,30.6 55.1,30.9C55.4,31.3 55.5,31.5 55.6,32C55.8,32.5 55.8,33 55.8,33.2" fill="none" stroke="%d" stroke-width=".8"/><path d="M50.2,28C50.3,27.5 50.3,26.8 50.7,26C51.1,25.1 51.1,25 51.8,24.5C52.6,24.1 53.3,24.3 53.7,24.2" fill="none" stroke="%d" stroke-width=".9"/>',
+      '<path d="M55,45.6C55.6,45.3 56.2,44.7 57.5,44.2C58.7,43.8 58.7,43.8 60,43.8C61.3,43.8 61.3,43.8 62.5,44.2C63.8,44.7 64.4,45.3 65,45.6" fill="none" stroke="%d" stroke-width=".7"/>',
+    ],
+    cry: [
+      '~<path d="M49.8,34.5C50.2,34.1 50.5,33.4 51.2,32.9C51.9,32.3 51.9,32.3 52.6,32.3C53.4,32.3 53.4,32.3 54.1,32.9C54.8,33.4 55.1,34.1 55.4,34.5" fill="none" stroke="%d" stroke-width=".8"/><path d="M50.3,34.7C50.8,34.6 51.4,34.2 52.6,34.2C53.8,34.2 54.4,34.6 55,34.7" fill="none" stroke="%d" stroke-width=".5"/><ellipse cx="52.6" cy="35.4" rx="2.2" ry=".6" fill="#8FD3FF" opacity=".85"/><path d="M50.1,28.5C50.2,28 50.2,27.3 50.7,26.5C51.1,25.6 51.1,25.5 51.9,25.1C52.7,24.7 53.3,24.9 53.8,24.8" fill="none" stroke="%d" stroke-width=".9"/>',
+      '<path d="M53.5,44.2C53.5,44.2 55,43.4 56.6,43.2C58.2,43.1 58.3,43.7 60,43.7C61.7,43.7 61.8,43.1 63.4,43.2C65,43.4 66.5,44.2 66.5,44.2C66.5,44.2 66.3,45.4 65.3,46.3C64.3,47.2 64,47.3 62.6,47.7C61.3,48.1 61.3,48 60,48C58.7,48 58.7,48.1 57.4,47.7C56,47.3 55.7,47.2 54.7,46.3C53.7,45.4 53.5,44.2 53.5,44.2Z" fill="#7A1F2B"/><ellipse cx="60" cy="47.1" rx="2.4" ry=".8" fill="#FF7B8E"/><path d="M54.6,43.9L55.3,45.5L56.1,43.6Z" fill="#fff"/><path d="M63.9,43.6L64.7,45.5L65.4,43.9Z" fill="#fff"/><path d="M53.5,44.2C53.5,44.2 55,43.4 56.6,43.2C58.2,43.1 58.3,43.7 60,43.7C61.7,43.7 61.8,43.1 63.4,43.2C65,43.4 66.5,44.2 66.5,44.2C66.5,44.2 66.3,45.4 65.3,46.3C64.3,47.2 64,47.3 62.6,47.7C61.3,48.1 61.3,48 60,48C58.7,48 58.7,48.1 57.4,47.7C56,47.3 55.7,47.2 54.7,46.3C53.7,45.4 53.5,44.2 53.5,44.2Z" fill="none" stroke="%d" stroke-width=".6"/><path d="M49,37.1c1.2,1.6 1.6,2.6 1.6,3.4a1.6,1.6 0 0 1-3.2,0c0-.8.4-1.8 1.6-3.4Z" fill="#8FD3FF" opacity=".9"/><path d="M71,37.5c1.2,1.6 1.6,2.6 1.6,3.4a1.6,1.6 0 0 1-3.2,0c0-.8.4-1.8 1.6-3.4Z" fill="#8FD3FF" opacity=".9"/><path d="M49.4,42.1c1.2,1.6 1.6,2.6 1.6,3.4a1.6,1.6 0 0 1-3.2,0c0-.8.4-1.8 1.6-3.4Z" fill="#8FD3FF" opacity=".9"/>',
+    ],
+  };
+  const teile = liste => liste.map(s => s[0] === '~'
+    ? s.slice(1) + '<g transform="matrix(-1 0 0 1 120 0)">' + s.slice(1) + '</g>' : s).join('');
+  const gesicht = Object.prototype.hasOwnProperty.call(GESICHT, mood) ? GESICHT[mood] : GESICHT.happy;
+  return ('<svg viewBox="0 0 120 120" aria-hidden="true" stroke-linejoin="round" stroke-linecap="round">'
+    + teile(FIGUR) + teile(gesicht) + '</svg>').replace(/%([a-z])/g, (m, c) => FARBE[c] || m);
 }
 
 /* ---- Einstellungen: Töne, Vibration, Animationen ---- */
@@ -3834,6 +4002,67 @@ $('swWerbung').addEventListener('click', async ()=>{
 applyAnim();
 
 /* ---- Fortschritt: mit dem Python-Server abgleichen ---- */
+/* Eine Zahl wie Muenzen oder Rekord: endlich, nicht negativ, ganz - sonst
+   0 (17.10.2026). */
+const ganzAbNull = x => { const n = Number(x); return (isFinite(n) && n > 0) ? Math.floor(n) : 0; };
+/* ---- Was nur fuer eine Sicherungsdatei gilt (17.10.2026) ----
+   Sie kommt von aussen und kann von Hand geschrieben sein, der eigene
+   Geraetespeicher nicht. Deshalb hier und nicht in standUebernehmen().
+   Gibt eine Kopie zurueck; was hier nicht steht, geht unveraendert weiter,
+   und Unplausibles faellt still heraus - der Rest der Sicherung kommt
+   vollstaendig an.
+     tage, frost  nur Tage von APP_START bis heute (tagMoeglich). Aeltere
+                  schoben zmaj_seit und damit das Jahresgeschenk beliebig
+                  weit zurueck, Tage in der Zukunft zaehlten bei "Tage
+                  gelernt" und den Wegmarken mit.
+     rekord       hoechstens so lang, wie es Lerntage gibt: streak() und
+                  laengsteSerie() zaehlen nur Tage aus days.
+     Muenzen      hoechstens, was sich mit diesen Lerntagen verdienen
+                  laesst. Die Rechnung: Muenzen gibt es an genau einer
+                  Stelle, in zaehle() - MUENZEN_PRO_QUEST (10) je geschaffter
+                  Tagesaufgabe, und zieh() waehlt drei am Tag. Das sind
+                  hoechstens 30 am Tag. Wegmarken, Jahresgeschenk,
+                  Werbevideos (die geben Leben) und der Laden geben keine,
+                  ein Startguthaben gibt es nicht: muenzenGes beginnt bei 0.
+                  Grenze grosszuegig das Doppelte, 60 je Lerntag - das deckt
+                  auch einen Tag, an dem die Auswahl wechselt (q.geht()) -,
+                  und ein Tag mehr: Muenzen fallen schon mitten in der
+                  Lektion (zaehle('auf')), den Lerntag gibt es erst an ihrem
+                  Ende (markToday). 100 Lerntage -> hoechstens 6060 Muenzen.
+                  Ausgegeben nie mehr als verdient.
+     besitz       (Gegenpruefung 17.10.2026) nur Zierrat, den es im Laden
+                  fuer Muenzen gibt, und nur so viel, wie die verdienten
+                  Muenzen hergeben - das Billigste zuerst. Vorher kam per
+                  Datei der ganze Laden an, 20 Stuecke fuer zusammen 23 800
+                  Muenzen bei 0 Muenzen, und die Grenze darueber war fuer
+                  den Zierrat wirkungslos. Stuecke der Vollversion kauft
+                  niemand (sie haengen an unlimited()), unbekannte
+                  Kennungen gibt es nicht - beide fallen heraus. Was
+                  bleibt, ist bezahlt: ausgegeben mindestens die Preise
+                  davon. Ein echter Stand hat Preise <= ausgegeben <=
+                  verdient - kaufe() bucht jeden Kauf in muenzenAus - und
+                  verliert nichts, auch nicht die Reihenfolge. */
+const MUENZEN_JE_TAG_HOECHSTENS = 2 * 3 * MUENZEN_PRO_QUEST;
+function sicherungPlausibel(s){
+  const p = Object.assign({}, s);
+  p.tage = Array.isArray(s.tage) ? s.tage.filter(tagMoeglich) : [];
+  p.frost = Array.isArray(s.frost) ? s.frost.filter(tagMoeglich) : [];
+  const lerntage = new Set(p.tage).size;
+  p.rekord = Math.min(ganzAbNull(s.rekord), lerntage);
+  p.muenzen_ges = Math.min(ganzAbNull(s.muenzen_ges), MUENZEN_JE_TAG_HOECHSTENS * (lerntage + 1));
+  const preis = id => { const w = ZIERRAT.find(x => x.id === id && !x.voll); return w ? w.preis : 0; };
+  const liste = [...new Set((Array.isArray(s.besitz) ? s.besitz : [])
+    .filter(id => typeof id === 'string' && preis(id) > 0))];
+  const behalten = new Set();
+  let summe = 0;
+  for(const id of [...liste].sort((a, b) => preis(a) - preis(b))){
+    if(summe + preis(id) > p.muenzen_ges) break;
+    summe += preis(id); behalten.add(id);
+  }
+  p.besitz = liste.filter(id => behalten.has(id));
+  p.muenzen_aus = Math.max(Math.min(ganzAbNull(s.muenzen_aus), p.muenzen_ges), summe);
+  return p;
+}
 /* Ein Stand sieht ueberall gleich aus - egal ob er aus der Profildatei des
    Servers kommt, aus dem Gerätespeicher oder aus einer Sicherungsdatei.
    Deshalb nur eine Stelle, die ihn uebernimmt. */
@@ -3846,8 +4075,15 @@ function standUebernehmen(d){
   known = new Set(nurTexte(d.gewusst)); passed = new Set(nurTexte(d.bestanden)); read = new Set(nurTexte(d.gelesen));
   // Nur echte Datumsangaben - siehe istDatum.
   // Kein Array (etwa "tage":"x") hiess bisher: .filter wirft. Jetzt: leer.
-  days = new Set((Array.isArray(d.tage) ? d.tage : []).filter(istDatum));
-  frost = new Set((Array.isArray(d.frost) ? d.frost : []).filter(istDatum));
+  /* Und keine vor APP_START (17.10.2026): die kann es nicht geben, ein
+     solcher Tag stammt aus einer gefaelschten Sicherung von vor dieser
+     Pruefung. Die obere Grenze "nicht nach heute" gilt hier bewusst NICHT,
+     nur beim Einlesen (sicherungPlausibel): springt die Uhr des Handys
+     zurueck, etwa nach leerem Akku, verloere sonst schon der naechste
+     Start alle Lerntage - und speicherte das gleich so. */
+  const abStart = s => istDatum(s) && s >= APP_START;
+  days = new Set((Array.isArray(d.tage) ? d.tage : []).filter(abStart));
+  frost = new Set((Array.isArray(d.frost) ? d.frost : []).filter(abStart));
   /* Unterschied zwischen "Feld fehlt" und "Feld ist leer":
        fehlt  = der Stand kommt von VOR den Wegmarken, etwa aus einer alten
                 Sicherungsdatei. Dann wird weiter unten alles schon
@@ -3859,7 +4095,13 @@ function standUebernehmen(d){
   const gefeiertFehlt = (d.gefeiert === undefined);
   gefeiert = new Set(nurTexte(d.gefeiert));
   wann = (d.wann && typeof d.wann==='object' && !Array.isArray(d.wann)) ? d.wann : {};
-  rekord = Number(d.rekord) || 0;
+  /* Nie laenger als es Lerntage gibt (Gegenpruefung 17.10.2026): streak()
+     und laengsteSerie() zaehlen nur Tage aus days, ein Frosttag ueberbrueckt
+     nur. Ein Rekord von 1e9 aus einer gefaelschten Sicherung von vor der
+     Pruefung blieb sonst im Geraetespeicher stehen. Anders als die
+     Lerntage selbst sicher gegen eine zurueckspringende Uhr - days.size
+     haengt nicht am heutigen Datum. Ein echter Stand verliert nichts. */
+  rekord = Math.min(ganzAbNull(d.rekord), days.size);
   /* Steht noch kein Rekord da, wird er aus den vorhandenen Lerntagen
      nachgerechnet. Sonst finge Kübra bei null an, obwohl sie die Tage
      längst hinter sich hat. Passiert genau einmal je Lernstand. */
@@ -3872,7 +4114,24 @@ function standUebernehmen(d){
     MEILENSTEINE.forEach(m => { if(days.size >= m.ziel) gefeiert.add(m.id); });
   }
   tagwerk = (d.tagwerk && typeof d.tagwerk==='object') ? d.tagwerk : {};
-  muenzenGes = Number(d.muenzen_ges) || 0; muenzenAus = Number(d.muenzen_aus) || 0;
+  /* Endlich und nicht negativ (17.10.2026). "1e999" liest JSON.parse als
+     Infinity, und Number(...) || 0 liess das durch - unendlich viele
+     Muenzen, Leben und Zierrat umsonst. Die Obergrenze fuer eine
+     Sicherungsdatei steht in sicherungPlausibel(). */
+  /* Beim normalen Start bewusst KEINE Obergrenze fuer Muenzen und Zierrat
+     (Gegenpruefung 17.10.2026). Ein ueberhoehter Stand im Geraetespeicher
+     kann nur von einer Datei stammen, die vor der Pruefung eingelesen
+     wurde - also von einem Geraet aus dem geschlossenen Test. Dort liegt
+     er auch wirklich, und mit Absicht: Ajdins Handy hatte am 27.09.2026
+     1 000 029 Muenzen aus testdaten/ und den ganzen Laden, eine
+     Handysicherung vom 07.10. 1110 Muenzen bei 7 Lerntagen (Grenze 480).
+     Kuerzen hiesse, beim Update still und unwiderruflich zu nehmen; das
+     Geld kauft nur Zierrat, Herzen und Serienschutz. Dazu kommen Muenzen
+     auch an Tagen ohne Lerntag (abgebrochene Lektion, nicht bestandener
+     Test - in jener Sicherung 2 von 9 Tagen), die Grenze ist also eine
+     Schaetzung und keine Rechnung. Lerntage nach heute bleiben aus dem
+     Grund, der oben bei abStart() steht. */
+  muenzenGes = ganzAbNull(d.muenzen_ges); muenzenAus = ganzAbNull(d.muenzen_aus);
   besitz = new Set(nurTexte(d.besitz));
   /* Fehlt das Feld, ist es ein Stand von vorher: nie eingestuft, nichts
      im Topf. Ob gefragt wird, entscheidet einstufungFaellig() - wer schon
@@ -3909,7 +4168,9 @@ function standUebernehmen(d){
   }
   /* Siehe standAlsObjekt: nur nach oben. Eine aeltere Sicherung darf ein
      schon gegebenes Geschenk nicht wieder aufmachen. */
-  const jahrAusStand = Number(d.geschenk_jahr) || 0;
+  /* Und nie ueber das hinaus, was seit APP_START moeglich ist (17.10.2026) -
+     siehe geschenkJahreMax(). */
+  const jahrAusStand = Math.min(Number(d.geschenk_jahr) || 0, geschenkJahreMax());
   if(jahrAusStand > (geschenk.jahr || 0)){
     geschenk = {jahr: jahrAusStand, bis: geschenk.bis || 0};
     try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk)); }catch(e){}
@@ -3948,7 +4209,13 @@ function standAlsObjekt(){
              Geraetespeicher, holte man sich die fuenf Tage beliebig oft -
              App-Daten loeschen, Sicherung einlesen, wieder faellig. Die
              Frist bleibt draussen, sonst waeren laufende Geschenktage
-             verschenkbar. Gefunden in der Gegenpruefung am 29.09.2026. */
+             verschenkbar. Gefunden in der Gegenpruefung am 29.09.2026.
+             Das hilft nur bei einer ehrlichen Datei von nach dem
+             Geschenk. Eine von davor, oder eine mit 0 von Hand, holt es
+             nach "App-Daten loeschen" wieder - alle fuenf Tage einmal
+             loeschen und einlesen (Gegenpruefung 17.10.2026). Bewusst
+             hingenommen: dagegen hilft nur ein Merker, der das Loeschen
+             der App-Daten uebersteht, und den gibt es ohne Server nicht. */
           geschenk_jahr: (geschenk.jahr || 0),
           /* Beide gehoeren zum Lernenden und muessen mit auf ein neues
              Handy - die Einstufung haelt die uebersprungenen Level offen. */
@@ -4026,17 +4293,61 @@ let geschenk = {jahr: 0, bis: 0};
    ist. Gefunden in der Gegenpruefung am 29.09.2026. */
 let geschenkOffen = false;
 try{ geschenk = JSON.parse(localStorage.getItem(GESCHENK_SCHLUESSEL) || 'null') || geschenk; }catch(e){}
-const geschenkLaeuft = () => (geschenk.bis || 0) > Date.now();
-const geschenkRest = () => Math.max(0, Math.ceil(((geschenk.bis || 0) - Date.now()) / 86400000));
+/* ---- Am Handy-Datum festgemacht (17.10.2026) ----
+   Ganze Jahre zu 365 Tagen, wie bisher in geschenkPruefen(). Mehr als die
+   Jahre seit APP_START kann niemand dabei sein - also kann es auch nie ein
+   hoeheres Geschenkjahr geben. */
+const JAHR_MS = 365 * 86400000;
+const jahreSeit = tag => Math.floor((Date.now() - new Date(tag + 'T00:00:00').getTime()) / JAHR_MS);
+function geschenkJahreMax(){ return Math.max(0, jahreSeit(APP_START)); }
+/* Ob das gespeicherte Geschenk gerade laeuft - nach dem Handy-Datum
+   gerechnet, aber nie zurueckgeschrieben. Es laeuft nur in seinen fuenf
+   Tagen, also von bis - GESCHENK_TAGE bis bis, und nur, wenn sein Jahr
+   nach dem Handy-Datum schon erreicht ist:
+     Jahr ueber dem Hoechstwert  stammt aus einer gefaelschten Sicherung
+                                 von vor dieser Pruefung (jahr 56), oder
+                                 die Uhr steht gerade vor dem Tag, an dem
+                                 es gegeben wurde.
+     Frist weiter weg als fuenf  die Uhr wurde nach dem Geschenk zurueck-
+     Tage                        gestellt; sonst liefe es bis zu dem Tag,
+                                 der vorher galt.
+   Die erste Fassung (geschenkBegrenzen, auch 17.10.2026) schrieb beides
+   als Korrektur in den Speicher: Jahr auf den Hoechstwert, Frist gekuerzt.
+   Damit gab es das Geschenk mit der Uhr beliebig oft - zurueckstellen
+   schrieb jahr 0, wieder vorstellen gab Jahr 1 neu, fuenf Tage je Runde.
+   In der Gegenpruefung am selben Tag gemessen. Jetzt bleibt das Jahr
+   stehen, wie es gegeben wurde, und "schon gegeben" in geschenkPruefen()
+   haelt in beide Richtungen; ein echter Lernender, dessen Uhr kurz falsch
+   geht, verliert auch nichts mehr. Dieselbe Regel wie bei den Lerntagen
+   (standUebernehmen) und bei zmaj_seit (seitWann): eine Uhr, die gerade
+   falsch gehen kann, schreibt nichts fest. Eine gefaelschte 56 sperrt
+   damit nur noch die eigenen Geschenke. Der Anker bleibt die Uhr: wer sie
+   vorstellt, bekommt das Jahr, das sie zeigt - das ging vorher auch. */
+const geschenkLaeuft = () => {
+  const jahr = Number(geschenk && geschenk.jahr) || 0, bis = Number(geschenk && geschenk.bis) || 0;
+  const jetzt = Date.now();
+  return jahr <= geschenkJahreMax() && bis > jetzt && bis - GESCHENK_TAGE * 86400000 <= jetzt;
+};
+const geschenkRest = () => geschenkLaeuft() ? Math.ceil((Number(geschenk.bis) - Date.now()) / 86400000) : 0;
+/* zmaj_seit liegt nie vor APP_START und nie nach heute (17.10.2026). Ein
+   Eintrag von davor wird berichtigt gespeichert - er kann nur aus einer
+   gefaelschten Sicherung stammen. Einer nach heute wird nur so gelesen,
+   nicht gespeichert: steht die Uhr des Handys gerade falsch, soll das den
+   echten Anfang nicht ueberschreiben. Kein Datum zaehlt wie kein Eintrag. */
 function seitWann(){
   let s = null;
   try{ s = localStorage.getItem(SEIT_SCHLUESSEL); }catch(e){}
-  if(s) return s;
-  /* Noch nichts eingetragen: der fruheste Lerntag, sonst heute. */
-  const tage = [...days].sort();
-  s = tage.length ? tage[0] : today();
-  try{ localStorage.setItem(SEIT_SCHLUESSEL, s); }catch(e){}
-  return s;
+  if(!istDatum(s) || s < APP_START){
+    /* Noch nichts eingetragen (oder etwas von vor APP_START): der fruheste
+       Lerntag, sonst heute. Die Lerntage sind schon ab APP_START gefiltert;
+       liegt trotzdem heute davor, geht die Uhr falsch - dann nichts
+       speichern. */
+    const tage = [...days].sort();
+    s = tage.length ? tage[0] : today();
+    if(s >= APP_START){ try{ localStorage.setItem(SEIT_SCHLUESSEL, s); }catch(e){} }
+    else s = APP_START;
+  }
+  return s > today() ? today() : s;
 }
 /* Nach dem Einlesen einer Sicherung: "seit wann dabei" auf den fruehesten
    Lerntag zurueckdatieren. Auf einem neuen Geraet steht dort sonst der Tag
@@ -4054,15 +4365,23 @@ function seitNachEinlesen(){
   if(!tage.length) return;
   let alt = null;
   try{ alt = localStorage.getItem(SEIT_SCHLUESSEL); }catch(e){}
-  if(alt && alt <= tage[0]) return;
+  /* Als "schon frueher" zaehlt seit dem 17.10.2026 nur ein echtes Datum ab
+     APP_START. Ein gefaelschtes 1970 von vor dieser Pruefung hielte sonst
+     jeden echten Anfang auf. tage[0] selbst liegt schon zwischen APP_START
+     und heute - die Lerntage kamen durch sicherungPlausibel(). */
+  if(istDatum(alt) && alt >= APP_START && alt <= tage[0]) return;
   try{ localStorage.setItem(SEIT_SCHLUESSEL, tage[0]); }catch(e){}
 }
 /* Laeuft beim Start und bei jedem Tageswechsel. Gibt zurueck, ob gerade
    ein Geschenk faellig geworden ist - die Karte zeigt jemand anders. */
 function geschenkPruefen(){
   if(!standGeladen) return 0;
-  const seit = new Date(seitWann() + 'T00:00:00');
-  const jahre = Math.floor((Date.now() - seit.getTime()) / (365 * 86400000));
+  /* Kein neues, solange eins laeuft (17.10.2026). Faellig nur, wenn seit
+     dem ersten Lerntag - ab APP_START, nach dem Handy-Datum - wirklich ein
+     weiteres volles Jahr vergangen ist. Das Math.min haelt die Grenze aus
+     geschenkJahreMax() auch dann, wenn zmaj_seit je anders hereinkaeme. */
+  if(geschenkLaeuft()) return 0;
+  const jahre = Math.min(jahreSeit(seitWann()), geschenkJahreMax());
   if(jahre < 1 || jahre <= (geschenk.jahr || 0)) return 0;
   geschenk = {jahr: jahre, bis: Date.now() + GESCHENK_TAGE * 86400000};
   try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk)); }catch(e){}
@@ -6312,8 +6631,11 @@ function renderLaden(){
         '<button type="button" class="sprachzeile'+(g.id===ladenReiter?' jetzt':'')+'" data-gruppe="'+g.id+'">'
       + esc(t(g.titel)) + (g.id===ladenReiter ? ' <span class="haken">\u2713</span>' : '') + '</button>').join('');
     kopf.onclick = ()=>{ ladenOffen = !ladenOffen; renderLaden(); };
+    // Die Zeile, auf der der Fokus lag, gibt es nach dem Neuzeichnen nicht
+    // mehr - er geht zurueck auf die Reiterwahl (17.10.2026).
     liste.querySelectorAll('.sprachzeile').forEach(b => b.onclick = ()=>{
       ladenOffen = false; ladenReiter = b.dataset.gruppe; renderLaden();
+      try{ kopf.focus({preventScroll:true}); }catch(e){}
     });
   }
   /* Bei den Farben ein Tupfer neben dem Namen: sonst muesste man kaufen, um
@@ -6323,10 +6645,18 @@ function renderLaden(){
   const zeile = (w, knopf, extra) =>
     '<div class="ware'+(extra ? ' '+extra : '')+'"><div><div class="wt">'+tupfer(w)+t(w.titel)+'</div>'+
     '<div class="wd">'+t(w.sub)+'</div></div>'+knopf+'</div>';
+  /* Jeder Knopf nennt seinen Artikel (17.10.2026): "Tragen, Mütze" statt nur
+     "Tragen". Wer mit Screenreader von Knopf zu Knopf geht, hoerte sonst
+     fuenfmal "Tragen" und wusste nicht, wofuer. Der sichtbare Text steht
+     vorn im Namen (WCAG 2.5.3). Getragen oder nicht sagt der Text selbst:
+     "Abnehmen" heisst, er sitzt. aria-pressed gibt es bewusst nicht - der
+     Text wechselt mit dem Zustand, und "Abnehmen, gedrueckt" hiesse das
+     Gegenteil. */
+  const knopfName = (w, sicht) => ' aria-label="'+esc(sicht+', '+t(w.titel))+'"';
   const preisKnopf = w => {
     const geht = muenzen() >= w.preis && w.geht();
     return '<button class="btn kauf '+(geht?'know':'ghost')+'" data-ware="'+w.id+'"'+
-           (geht?'':' disabled')+'>🪙 '+w.preis+'</button>';
+           knopfName(w, '🪙 '+w.preis)+(geht?'':' disabled')+'>🪙 '+w.preis+'</button>';
   };
   /* Ein Stueck der Vollversion hat keinen Preis. Laeuft sie, steht dort
      Tragen oder Abnehmen wie bei gekaufter Ware; laeuft sie nicht, ein
@@ -6338,13 +6668,14 @@ function renderLaden(){
      ausgegraut: nichts zu tun, aber auch kein falsches Versprechen.
      Dieselbe Bedingung benutzen vollZeileLaden() und vollZeileLeben().
      Gefunden in der Gegenpruefung am 29.09.2026. */
-  const tragenKnopf = w => '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'">'+
+  const tragenKnopf = w => '<button class="btn kauf '+(traegt(w.id)?'know':'ghost')+'" data-tragen="'+w.id+'"'+
+        knopfName(w, t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen'))+'>'+
         t(traegt(w.id) ? 'laden.abnehmen' : 'laden.tragen')+'</button>';
-  const vollKnopf = () => (!aboPlugin() || aboProdukteFehlen)
-    ? '<button class="btn kauf ghost" disabled>'+t('laden.nur_voll')+'</button>'
-    : '<button class="btn kauf ghost" data-vollstueck="1">'+t('laden.nur_voll')+'</button>';
+  const vollKnopf = w => (!aboPlugin() || aboProdukteFehlen)
+    ? '<button class="btn kauf ghost"'+knopfName(w, t('laden.nur_voll'))+' disabled>'+t('laden.nur_voll')+'</button>'
+    : '<button class="btn kauf ghost" data-vollstueck="1"'+knopfName(w, t('laden.nur_voll'))+'>'+t('laden.nur_voll')+'</button>';
   const zierratZeile = w => w.voll
-    ? zeile(w, unlimited() ? tragenKnopf(w) : vollKnopf())
+    ? zeile(w, unlimited() ? tragenKnopf(w) : vollKnopf(w))
     : (besitz.has(w.id) ? zeile(w, tragenKnopf(w)) : zeile(w, preisKnopf(w)));
   /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
      ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
@@ -6407,7 +6738,29 @@ function trage(id){
   const rest = getragenRoh().filter(x => x !== id && gruppeVon(x) !== g);
   setzeGetragen(runter ? rest : rest.concat([id]));
   sound(runter ? 'ablegen' : 'anziehen');
+  const imLaden = ladenHatFokus();
   renderLaden(); drachenNeu();
+  if(imLaden) ladenFokusAuf(id);
+  ansagen(esc(t(runter ? 'laden.abgenommen' : 'laden.angezogen')));
+}
+/* Nach Kaufen und Anziehen zeichnet renderLaden() die Warenliste neu, und
+   der Knopf, auf dem der Fokus lag, ist weg - mit Tastatur oder
+   Screenreader stand man danach am Seitenanfang (17.10.2026). Jetzt geht
+   der Fokus auf den Knopf desselben Artikels zurueck; ist der aus (Geld
+   reicht nicht mehr, Serienschutz voll), auf einen anderen Knopf derselben
+   Zeile, sonst auf die Reiterwahl. Nur, wenn er vorher im Laden lag: wer
+   vom Bildschirm ohne Leben aus kauft, dem wird nichts verschoben. */
+function ladenHatFokus(){
+  const box = $('ladenWaren');
+  return !!box && box.contains(document.activeElement);
+}
+function ladenFokusAuf(id){
+  const box = $('ladenWaren'); if(!box) return;
+  const knoepfe = [...box.querySelectorAll('button[data-tragen="'+id+'"], button[data-ware="'+id+'"]')];
+  let ziel = knoepfe.find(b => !b.disabled);
+  if(!ziel && knoepfe[0]) ziel = [...knoepfe[0].closest('.ware').querySelectorAll('button')].find(b => !b.disabled);
+  if(!ziel) ziel = $('ladenKopf');
+  if(ziel) try{ ziel.focus({preventScroll:true}); }catch(e){}
 }
 /* Nach dem Wechsel muss die Animation neu geladen werden - jedes Stueck
    steckt in einer eigenen Datei. */
@@ -6437,8 +6790,11 @@ function kaufe(id){
   saveProgress(); sound('kauf');
   // Gekauft wird auch außerhalb des Ladens - vom Bildschirm ohne Leben aus.
   // Dort gibt es weder Notizzeile noch Warenliste, deshalb überall prüfen.
+  const imLaden = ladenHatFokus();
   if($('ladenNote')) $('ladenNote').textContent = t('laden.gekauft');
   if($('ladenWaren')) renderLaden();
+  if(imLaden) ladenFokusAuf(id);
+  ansagen(esc(t('laden.gekauft')));   // die Notizzeile oben liest kein Screenreader von selbst vor
   renderLives();
   if(ZIERRAT.some(x => x.id === id)) drachenNeu();
   if($('setSchutz')) $('setSchutz').textContent = tp('serie.schutz', schutzNow());
@@ -6570,7 +6926,10 @@ async function sicherungEinlesen(datei){
      in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
      sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
   const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
-  try{ standUebernehmen(d.stand); altenFortschrittUmschreiben(); }
+  /* sicherungPlausibel(): Lerntage nur von APP_START bis heute, Muenzen nur
+     so viele, wie sich damit verdienen lassen, Zierrat nur so viel, wie
+     diese Muenzen bezahlen (17.10.2026). */
+  try{ standUebernehmen(sicherungPlausibel(d.stand)); altenFortschrittUmschreiben(); }
   catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
            geschenk = geschenkVorher; getragen = getragenVorher;
            try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
@@ -6970,6 +7329,7 @@ function showStory(){
   showStoryQ(s, 0, 0);
 }
 function showStoryQ(s, qi, right){
+  ansagen('');   // die Ansage der vorigen Frage nicht in diese hineinlaufen lassen (17.10.2026)
   const box=$('rQ'); const fragen=s.fragen||[];
   if(!fragen.length){ box.innerHTML=''; return; }
   if(qi>=fragen.length){
@@ -7009,9 +7369,12 @@ function showStoryQ(s, qi, right){
   // irgendwo im Fragenfeld die nächste Frage – genau wie in der Lektion.
   // Der Horcher sitzt nur auf dem Fragenfeld, damit das Nachschlagen eines
   // Wortes im Text darüber nicht versehentlich weiterblättert.
+  /* Die Rueckmeldung wie in der Lektion: sichtbar in #rFb und angesagt.
+     Bis zum 17.10.2026 stand sie nur da - wer mit Screenreader antwortete,
+     hoerte nach 900 ms nur "Weiter" und erfuhr nie, ob es richtig war. Die
+     Antworten sind in der Sprache der App, also nicht als Bosnisch markiert. */
   renderChoice($('rOpts'), shuffle(q.optionen.map(o=>({k:o}))), q.richtig, o=>o.k, r=>{
-    $('rFb').textContent = r?t('task.richtig'):t('task.falsch',{wort:q.richtig});
-    $('rFb').className='feedback '+(r?'ok':'no');
+    rueckmeldungZeigen($('rFb'), r?'ok':'no', r?'task.richtig':'task.falsch', q.richtig, false);
     uhrTakt(true); zaehle('auf'); if(r) zaehle('ric');
     weiterBeiTipp('rQ', ()=> showStoryQ(s, qi+1, right+(r?1:0)));
   });
@@ -7179,12 +7542,19 @@ function distractors(target, words, n){
   for(const w of shuffle(pool.slice())){ if(!seen.has(w.bs)){ seen.add(w.bs); out.push(w); if(out.length===n) break; } }
   return out;
 }
-function renderChoice(box, opts, correctKey, keyOf, onDone){
+/* sprache: 'bs', wenn die Antworten bosnisch sind (17.10.2026) - dann traegt
+   jeder Knopf lang="bs" und wird bosnisch vorgelesen. Bei mcrev sind es
+   Bedeutungen in der Sprache der App, dort bleibt es leer. Bei der Grammatik
+   ist es eine Funktion: sie bekommt die Antwort und sagt fuer jede einzeln
+   'bs' oder '' (siehe gramAntwortBosnisch). */
+function renderChoice(box, opts, correctKey, keyOf, onDone, sprache){
   box.innerHTML='';
   let answered=false;
   opts.forEach(o=>{
     const b=document.createElement('button'); const label=keyOf(o);
     b.className='opt'+(label.length>14?' long':''); b.textContent=label;
+    const lang = typeof sprache === 'function' ? sprache(label) : sprache;
+    if(lang) b.lang = lang;
     b.addEventListener('click',()=>{
       if(answered) return; answered=true;
       box.querySelectorAll('.opt').forEach(x=>{ x.disabled=true; if(x.textContent===correctKey) x.classList.add('right'); });
@@ -7254,6 +7624,37 @@ function gramLoesung(g){
   return inhalt ? [g.richtig, inhalt] : null;
 }
 
+/* Ist die Antwort einer Grammatikaufgabe bosnisch? (17.10.2026) Fast immer:
+   "moja", "smo", "Gdje" - dann lang="bs". Nicht bei der Frage nach dem
+   Geschlecht ("Welches Geschlecht hat „kuća“?"): dort heissen die Antworten
+   "weiblich (ona)", auf Englisch "feminine (ona)" - ein Wort in der Sprache
+   der App, dahinter das bosnische Fuerwort in Klammern. Mit lang="bs" laese
+   ein Screenreader "weiblich" mit bosnischer Stimme (WCAG 3.1.2). Erkannt
+   wird genau diese Klammer am Ende, sie steht in jeder Sprache gleich da
+   (grammatik.py, Lektion genus). */
+const GESCHLECHT_KLAMMER = /\((on|ona|ono)\)\s*$/;
+const gramAntwortBosnisch = antwort => !GESCHLECHT_KLAMMER.test(String(antwort || ''));
+
+/* Die Rueckmeldung nach der Antwort, in das Feld feld (#xFb einer Aufgabe,
+   #rFb einer Geschichten-Frage). Das Wort darin ist meist bosnisch und
+   steht seit dem 17.10.2026 als <span lang="bs"> da - ein Screenreader
+   liest es dann bosnisch statt deutsch; zu sehen ist alles wie vorher.
+   Bosnisch ist auch das Lob "Tačno!" (in allen Sprachen gleich). Nicht
+   bosnisch sind die Bedeutung bei mcrev, die Geschlechter der Grammatik und
+   die Antworten der Geschichten-Fragen: dort bosnisch === false.
+   Danach wird die Rueckmeldung angesagt (#ansage, siehe ansagen()) - erst
+   nach WEITER_NACH, wenn der Fokus auf Weiter liegt. */
+function rueckmeldungZeigen(feld, klasse, schluessel, wort, bosnisch, anhang){
+  if(!feld) return;
+  const W = '\u0001';
+  const teile = esc(t(schluessel, {wort: W})).split(W);
+  const wortHtml = bosnisch === false ? esc(wort) : '<span lang="bs">'+esc(wort)+'</span>';
+  feld.innerHTML = (schluessel === 'task.richtig' ? '<span lang="bs">'+teile.join('')+'</span>' : teile.join(wortHtml))
+                 + (anhang ? esc(' ('+anhang+')') : '');
+  feld.className = 'feedback '+klasse;
+  ansagen(feld.innerHTML, WEITER_NACH + 80);
+}
+
 function renderTask(task, body, done, opts={}){
   /* NUR innerhalb dieser Aufgabe suchen. Lektion und Test benutzen dieselben
      Kennungen (xOpts, xFb, ...). Sind beide gefuellt, liefert
@@ -7262,11 +7663,15 @@ function renderTask(task, body, done, opts={}){
      Lektionskoerper und stand selbst ohne Knoepfe da. */
   const $$ = id => body.querySelector('#'+id);
   stilleBitte();                       // das Wort der vorigen Aufgabe nicht hineinreden lassen
+  ansagen('');                         // ebenso ihr Ergebnis, falls es noch auf seine Ansage wartet
   const meineAufgabe = aufgabeMarke;   // gilt fuer verspaetete Erkennungs-Ergebnisse
   const pool = task.pool || curWords();
   const w = task.w;
   const kick = (text)=> '<div class="kicker aufgabe">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
-  const fb = (ok, right, extra)=>{ $$('xFb').textContent = ok?t('task.richtig'):t('task.falsch',{wort:right})+(extra?' ('+extra+')':''); $$('xFb').className='feedback '+(ok?'ok':'no'); };
+  const rueckmeldung = (klasse, schluessel, wort, bosnisch, anhang)=>
+    rueckmeldungZeigen($$('xFb'), klasse, schluessel, wort, bosnisch, anhang);
+  const fb = (ok, right, extra, bosnisch)=> ok ? rueckmeldung('ok', 'task.richtig')
+                                               : rueckmeldung('no', 'task.falsch', right, bosnisch, extra);
   /* Nach der Antwort: das Bosnische und darunter, was es heißt. Vorher
      konnte man eine Auswahlaufgabe richtig lösen, ohne je zu erfahren, was
      das Wort bedeutet - und bei den Höraufgaben stand überhaupt nichts
@@ -7275,14 +7680,14 @@ function renderTask(task, body, done, opts={}){
     const feld = $$('xFb');
     if(!feld || !bs || body.querySelector('.loesung')) return;
     feld.insertAdjacentHTML('afterend',
-      '<div class="loesung"><span class="lbs">'+esc(bs)+'</span>'+
+      '<div class="loesung"><span class="lbs" lang="bs">'+esc(bs)+'</span>'+
       (de ? '<span class="lde">'+esc(de)+'</span>' : '')+'</div>');
   };
   const skipBtn = (text)=> opts.noSkip ? '' : '<button class="skip" id="xSkip">'+text+' ⏭</button>';
   const wireSkip = ()=>{ const b=$$('xSkip'); if(b) b.addEventListener('click',()=>done({ok:false, skipped:true})); };
 
   if(task.typ==='intro'){
-    body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'">'+esc(w.bs)+'</div>'+
+    body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+t('task.hoeren')+'</button>':'')+
       '<div class="row unten"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
     if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 250); }
@@ -7291,11 +7696,11 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='mc'){
     body.innerHTML = kick(t('task.was_heisst'))+'<div class="prompt'+(w.de.length>18?' long':'')+'">'+esc(w.de)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); });
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); }, 'bs');
     return;
   }
   if(task.typ==='mcrev'){
-    body.innerHTML = kick(t('task.was_bedeutet'))+'<div class="big'+(w.bs.length>16?' long':'')+'">'+esc(w.bs)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
+    body.innerHTML = kick(t('task.was_bedeutet'))+'<div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
     /* Hier steht das bosnische Wort gross da und die Bedeutung wird gesucht -
        ein Hoerknopf verraet also nichts. Kein Autoplay: erst lesen, dann auf
        Wunsch hoeren. Nach der Antwort spricht es von selbst, damit man die
@@ -7306,7 +7711,7 @@ function renderTask(task, body, done, opts={}){
       '<button class="listen" data-hoer="1">'+t('task.hoeren')+'</button>');
     const hoerKnopf = body.querySelector('[data-hoer]');
     if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(w.bs); });
-    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); });
+    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); });
     return;
   }
   if(task.typ==='type'){
@@ -7322,15 +7727,15 @@ function renderTask(task, body, done, opts={}){
       if(fin) return;
       const auchOk = annehmbar(w).join(' / ');
       const r=matches(inp.value, auchOk);
-      if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; return; }
+      if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_wort'))); return; }
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
       const pruefKnopf = $$('xCheck');
       if(pruefKnopf && pruefKnopf.parentElement) pruefKnopf.parentElement.hidden = true;
       const ok = r==='ok' || r==='almost';
-      $$('xFb').textContent = r==='ok' ? t('task.richtig') : (r==='almost' ? t('task.fast',{wort:w.bs}) : t('task.falsch',{wort:w.bs}));
-      $$('xFb').className='feedback '+(r==='ok'?'ok':(r==='almost'?'almost':'no'));
+      if(r==='ok') rueckmeldung('ok', 'task.richtig');
+      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', w.bs);
       loesung(w.bs, w.de);
       sound(ok?'ok':'no'); spaeterSprechen(w.bs, 450); done({ok});
     };
@@ -7341,12 +7746,12 @@ function renderTask(task, body, done, opts={}){
   if(task.typ==='listen'){
     body.innerHTML = kick(t('task.hoerfrage'))+'<button class="listen bigplay" id="xPlay" aria-label="'+t('task.abspielen')+'">🔊</button><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.hoeren_skip'));
     $$('xPlay').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 300);
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); });
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); }, 'bs');
     wireSkip();
     return;
   }
   if(task.typ==='speak'){
-    body.innerHTML = kick(t('task.sprechen'))+'<div class="big'+(w.bs.length>16?' long':'')+'">'+esc(w.bs)+'</div><div class="de">'+esc(w.de)+'</div>'+
+    body.innerHTML = kick(t('task.sprechen'))+'<div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div><div class="de">'+esc(w.de)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+t('task.vorsprechen')+'</button>':'')+
       '<button class="mic" id="xMic" aria-label="'+t('task.mikro')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></button>'+
       '<div class="heard" id="xHeard">'+t('task.mikro_tipp')+'</div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.sprechen_skip'));
@@ -7370,6 +7775,7 @@ function renderTask(task, body, done, opts={}){
       if(treffer){
         fin = true;
         heard.innerHTML = '<span style="color:var(--good-text)">'+t('task.gehoert_ok',{text:esc(erstes)})+'</span>';
+        ansagen(esc(heard.textContent), WEITER_NACH + 80);   // wie bei den anderen Aufgaben (17.10.2026)
         sound('ok'); done({ok:true});
       } else if(!erstes){
         /* Die Erkennung hat nichts geliefert - geschwiegen, zu laut, Anruf,
@@ -7377,8 +7783,10 @@ function renderTask(task, body, done, opts={}){
            verstanden" mit einem leeren Wort darin, dazu der Fehlerton. Der
            Nutzer bekam gesagt, er habe falsch gesprochen. */
         heard.textContent = t(navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline');
+        ansagen(esc(heard.textContent));
       } else {
         heard.textContent = t('task.gehoert_no',{text:erstes}); sound('no');
+        ansagen(esc(heard.textContent));
       }
     };
 
@@ -7452,20 +7860,28 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='gap'){
     const s=task.s;
-    body.innerHTML = kick(t('task.luecke'))+'<div class="sentence">'+esc(s.text).replace('___','<input class="blank-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false">')+'</div>'+
+    /* Die Luecke ist ein Eingabefeld mitten im Satz. Seit dem 17.10.2026 hat
+       es einen Namen, "Tippe das fehlende Wort ein" (WCAG 4.1.2) - vorher
+       meldete ein Screenreader nur "Eingabefeld". Bosnisch sind nur die
+       Satzteile davor und danach: laege das Feld selbst in lang="bs", hoerte
+       man seinen Namen mit bosnischer Stimme. */
+    const [vorLuecke, ...nachLuecke] = esc(s.text).split('___');
+    const bsTeil = x => x ? '<span lang="bs">'+x+'</span>' : '';
+    const lueckeHtml = '<input class="blank-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="'+esc(t('task.tippe_luecke'))+'">';
+    body.innerHTML = kick(t('task.luecke'))+'<div class="sentence">'+bsTeil(vorLuecke)+(nachLuecke.length ? lueckeHtml+bsTeil(nachLuecke.join('___')) : '')+'</div>'+
       '<div class="translation">'+inZitat(esc(s.de))+'</div><div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
     const check=()=>{
       if(fin) return; const r=matches(inp.value, s.answer);
-      if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; return; }
+      if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_luecke'))); return; }
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
       const pruefKnopf = $$('xCheck');
       if(pruefKnopf && pruefKnopf.parentElement) pruefKnopf.parentElement.hidden = true;
       const ok = r==='ok' || r==='almost';
-      $$('xFb').textContent = r==='ok' ? t('task.richtig') : (r==='almost' ? t('task.fast',{wort:s.answer}) : t('task.falsch',{wort:s.answer}));
-      $$('xFb').className='feedback '+(r==='ok'?'ok':(r==='almost'?'almost':'no'));
+      if(r==='ok') rueckmeldung('ok', 'task.richtig');
+      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', s.answer);
       loesung(s.text.replace('___', s.answer), s.de);
       sound(ok?'ok':'no');
       /* Erst jetzt den FERTIGEN Satz sprechen - vorher waere die Loesung
@@ -7499,14 +7915,29 @@ function renderTask(task, body, done, opts={}){
       shuffle(bank);
       if(bank.filter(k => k.satz).map(k => k.x).join(' ') !== teile.join(' ')) break;
     }
+    /* Zeile und Vorrat sind benannte Gruppen (17.10.2026): "Dein Satz" und
+       "Woerter". Vorher hiess die Zeile wie der Hinweis, und der Vorrat hatte
+       gar keinen Namen - mit Screenreader war nicht zu hoeren, ob eine Kachel
+       schon liegt oder noch wartet. Der Hinweis steht weiter in der leeren
+       Zeile (data-leer) und wird dort mit vorgelesen. Die Gruppen selbst
+       tragen kein lang="bs": ihr Name ist in der Sprache der App. */
     body.innerHTML = kick(t('task.kacheln'))+'<div class="prompt'+(s.de.length>18?' long':'')+'">'+esc(s.de)+'</div>'+
-      '<div class="kachelzeile" id="xZeile" role="group" aria-label="'+esc(t('task.kacheln_hinweis'))+'" data-leer="'+esc(t('task.kacheln_hinweis'))+'"></div>'+
-      '<div class="options waagrecht kachelbank" id="xBank"></div>'+
+      '<div class="kachelzeile" id="xZeile" role="group" aria-label="'+esc(t('task.kacheln_zeile'))+'" data-leer="'+esc(t('task.kacheln_hinweis'))+'"></div>'+
+      '<div class="options waagrecht kachelbank" id="xBank" role="group" aria-label="'+esc(t('task.kacheln_vorrat'))+'"></div>'+
       '<div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck" disabled>'+t('task.pruefen')+'</button></div>'+
       skipBtn(t('task.kacheln_skip'));
     const zeile = $$('xZeile'), vorrat = $$('xBank'), pruef = $$('xCheck');
     let fin = false;
     const gelegt = () => [...zeile.querySelectorAll('.kachel')];
+    /* Nach jedem Legen und Zuruecklegen wird angesagt, wie der Satz jetzt
+       dasteht - "Dein Satz: Ja sam" (17.10.2026). Ist die Zeile leer, der
+       Hinweis, der dann auch auf dem Bildschirm steht. Die Kacheln sind
+       bosnisch und kommen als lang="bs" mit. */
+    const satzAnsagen = () => {
+      const woerter = gelegt().map(k => k.textContent).join(' ');
+      ansagen(esc(t('task.kacheln_zeile')) + ': '
+        + (woerter ? '<span lang="bs">' + esc(woerter) + '</span>' : esc(t('task.kacheln_hinweis'))));
+    };
     const legen = (b) => {
       if(fin) return;
       // Mit der Tastatur bleibt man in den Kacheln, statt nach dem Antippen
@@ -7529,7 +7960,14 @@ function renderTask(task, body, done, opts={}){
         platz.setAttribute('aria-hidden', 'true');
         vorrat.replaceChild(platz, b);
         zeile.appendChild(b);
-        weiter = vorrat.querySelector('.kachel:not(.platz)') || pruef;
+        /* Der Fokus geht zur naechsten Kachel rechts von der Luecke, gibt es
+           keine mehr, zur naechsten links davon, und erst bei leerem Vorrat
+           auf Pruefen (17.10.2026). Bis dahin sprang er immer auf die erste
+           Kachel im Vorrat - wer mit Tastatur oder Screenreader von vorn nach
+           hinten legt, stand nach jedem Legen wieder am Anfang. */
+        const alle = [...vorrat.children], stelle = alle.indexOf(platz);
+        const frei = k => !k.classList.contains('platz');
+        weiter = alle.slice(stelle + 1).find(frei) || alle.slice(0, stelle).reverse().find(frei) || pruef;
       } else {
         const stelle = gelegt().indexOf(b);
         const platz = vorrat.querySelector('.platz[data-nr="'+b.dataset.nr+'"]');
@@ -7537,9 +7975,13 @@ function renderTask(task, body, done, opts={}){
         const rest = gelegt();
         weiter = rest[stelle] || rest[rest.length - 1] || b;
       }
-      if(!KACHEL_RUHIG) vorher.forEach((r, k) => {
+      // Ohne Bewegung wird auch ein Gleiten von vorhin abgebrochen: die
+      // Kachel steht dann gleich an ihrem Platz.
+      const ruhig = kachelnRuhig();
+      vorher.forEach((r, k) => {
         if(!k.isConnected || !k.animate) return;
         if(k.getAnimations) k.getAnimations().forEach(a => a.cancel());
+        if(ruhig) return;
         const n = k.getBoundingClientRect(), dx = r.left - n.left, dy = r.top - n.top;
         if(Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
         k.animate([{transform:'translate('+dx+'px,'+dy+'px)'}, {transform:'none'}],
@@ -7547,10 +7989,12 @@ function renderTask(task, body, done, opts={}){
       });
       pruef.disabled = !gelegt().length;
       if(hatteFokus && weiter && !weiter.disabled) try{ weiter.focus({preventScroll:true}); }catch(e){}
+      satzAnsagen();
     };
     bank.forEach((k, nr) => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'opt kachel'; b.textContent = k.x; b.dataset.nr = nr;
+      b.lang = 'bs';   // die Kachel ist ein bosnisches Wort (17.10.2026); der Platzhalter erbt es beim Klonen
       b.addEventListener('click', () => legen(b));
       vorrat.appendChild(b);
     });
@@ -7579,7 +8023,12 @@ function renderTask(task, body, done, opts={}){
     body.innerHTML = kick(t('task.grammatik'))+gramFrageHtml(g.frage)+'<div class="options'+(g.optionen.some(o=>o.length>22)?' one':'')+'" id="xOpts"></div><div class="feedback" id="xFb"></div><div class="ex-tipp" id="xTipp"></div>';
     // Nach der Antwort die richtige Form sprechen, wenn es sie als Aufnahme
     // gibt - bei „imaš“ gegen „ima“ entscheidet die Aussprache mit.
-    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(vorlesbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); });
+    // lang="bs" nur an bosnischen Antworten, auch in der Rueckmeldung (17.10.2026).
+    // Vorgelesen auch nur dann: "weiblich (ona)" sprach sonst die bosnische
+    // Stimme der Sprachausgabe - ein deutsches Wort mit bosnischer Aussprache.
+    const bsRichtig = gramAntwortBosnisch(g.richtig);
+    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); },
+      o => gramAntwortBosnisch(o) ? 'bs' : '');
     return;
   }
 }
@@ -7840,8 +8289,24 @@ function buildLesson(){
   Lx = {queue:[...intros, ...tasks], i:0, results:[], right:0, total:tasks.length, skipped:0, newWords:new Set(), retried:new Set(),
         testVorher: testAllowed(c)};
 }
+/* Die Punktereihe ueber einer Aufgabe (Lektion, Level-Test, Einstufung) ist
+   fuer Screenreader eine Fortschrittsanzeige (17.10.2026, WCAG 1.1.1) -
+   vorher waren es nur leere Punkte ohne jeden Text. Der Name ist
+   "Frage 3 von 12", der Text aus den Geschichten: es braucht keinen neuen.
+   aria-valuenow zaehlt die schon beantworteten. Die Punkte darin liest
+   niemand einzeln vor: eine Fortschrittsanzeige hat keine Kinder. */
+function punkteStand(el, i, n){
+  if(!el) return;
+  if(!n){ ['role', 'aria-valuemin', 'aria-valuemax', 'aria-valuenow', 'aria-label'].forEach(a => el.removeAttribute(a)); return; }
+  el.setAttribute('role', 'progressbar');
+  el.setAttribute('aria-valuemin', '0');
+  el.setAttribute('aria-valuemax', String(n));
+  el.setAttribute('aria-valuenow', String(Math.min(i, n)));
+  el.setAttribute('aria-label', t('gesch.frage_n', {i: Math.min(i + 1, n), n}));
+}
 function lessonBar(){
   $('lBar').innerHTML = Lx.queue.map((t,i)=>'<i class="'+(i<Lx.i ? (Lx.results[i]==='intro'?'intro':(Lx.results[i]==='skip'?'skip':(Lx.results[i]?'ok':'no'))) : (i===Lx.i?'cur':''))+'"></i>').join('');
+  punkteStand($('lBar'), Lx.i, Lx.queue.length);
 }
 function showLessonTask(){
   lessonBar();
@@ -8384,7 +8849,7 @@ function buildTest(){
   gram.forEach(g => qs.push({g, typ:'gram'}));
   Tx = {qs:shuffle(qs), i:0, right:0, results:[]};
 }
-function testBar(){ $('tBar').innerHTML = Tx.qs.map((q,i)=>'<i class="'+(i<Tx.i?(Tx.results[i]?'ok':'no'):(i===Tx.i?'cur':''))+'"></i>').join(''); }
+function testBar(){ $('tBar').innerHTML = Tx.qs.map((q,i)=>'<i class="'+(i<Tx.i?(Tx.results[i]?'ok':'no'):(i===Tx.i?'cur':''))+'"></i>').join(''); punkteStand($('tBar'), Tx.i, Tx.qs.length); }
 function showTestQ(){
   testBar();
   if(Tx.i >= Tx.qs.length){ showTestResult(); return; }
@@ -8654,6 +9119,7 @@ function einstufungStarten(){
 function einstufungBar(){
   $('eBar').innerHTML = Ex.qs.map((q, i) => '<i class="' +
     (i < Ex.results.length ? (Ex.results[i] ? 'ok' : 'no') : (i === Ex.i && !Ex.fertig ? 'cur' : '')) + '"></i>').join('');
+  punkteStand($('eBar'), Ex.results.length, Ex.qs.length);
 }
 function einstufungFrageZeigen(){
   if(!Ex || Ex.fertig) return;
@@ -10037,12 +10503,15 @@ function weiterBeiTipp(feldId, weiter){
   // tippt, soll es wenigstens angehört haben können. Der Knopf selbst
   // bekommt seinen Rahmen erst dann - vorher könnte ihn derselbe Klick
   // treffen, der gerade geantwortet hat.
+  // WEITER_NACH steht bei ansagen(): die Ansage des Ergebnisses wartet
+  // darauf, dass der Fokus hier auf Weiter liegt (17.10.2026).
   setTimeout(()=>{
     if(schon) return;
     feld.addEventListener('click', los, true);
     const k = feld.querySelector('.weiterbox .btn');
     if(k) try{ k.focus({preventScroll:true}); }catch(e){ k.focus(); }
-  }, 900);
+    ansageNachFokus();
+  }, WEITER_NACH);
 }
 
 function sichtbar(id){ const e = $(id); return !!e && e.style.display !== 'none'; }

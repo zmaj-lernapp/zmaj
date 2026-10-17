@@ -108,12 +108,21 @@ function fertigstellen(drache){
   window._png = c.toDataURL('image/png');
   window._fertig = true;
   document.title = 'fertig';
+  /* _feature.html?senden=1: das Bild an grafiken_bauen.py schicken
+     (ZWEITE_GRAFIK = True, wartet auf 127.0.0.1:8199). Ohne den Schalter
+     geht nichts nach draussen. 15.10.2026 - vorher beschrieb
+     grafiken_bauen.py diesen Weg, die Seite schickte aber nichts. */
+  if(new URLSearchParams(location.search).has('senden'))
+    fetch('http://127.0.0.1:8199/', {method: 'POST', body: window._png}).catch(() => {});
 }
 
 /* Der Drache wird als SVG gezeichnet (die Leinwand-Fassung von lottie
    blieb leer) und danach in ein Bild verwandelt, das sich auf die große
-   Leinwand malen lässt. Das SVG enthält nur Formen, keine fremden
-   Dateien – deshalb funktioniert der Umweg über die Daten-URL. */
+   Leinwand malen lässt. Seit dem 15.10.2026 besteht der Drache aus Bildern
+   (maskottchen/teile/*.webp, siehe zmaj_lottie.py). Ein SVG, das als Bild
+   über eine Daten-URL gezeichnet wird, lädt keine fremden Dateien - der
+   Banner zeigte darum nur noch Hintergrund und Schrift. Deshalb werden die
+   Bilder vorher selbst als Daten-URL ins SVG geschrieben (einbetten). */
 const behaelter = document.getElementById('versteck');
 behaelter.style.width = '420px';
 behaelter.style.height = '404px';
@@ -131,9 +140,25 @@ a.addEventListener('DOMLoaded', () => {
   document.fonts.ready.then(() => setTimeout(drachenBild, 400));
 });
 
-function drachenBild(){
+const XLINK = 'http://www.w3.org/1999/xlink';
+async function einbetten(svg){
+  for(const el of svg.querySelectorAll('image')){
+    const href = el.getAttributeNS(XLINK, 'href') || el.getAttribute('href');
+    if(!href || href.startsWith('data:')) continue;
+    const blob = await (await fetch(href)).blob();
+    const url = await new Promise((ok, fehler) => {
+      const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = fehler; r.readAsDataURL(blob);
+    });
+    el.setAttributeNS(XLINK, 'xlink:href', url);
+    el.setAttribute('href', url);
+  }
+}
+
+async function drachenBild(){
   const svg = behaelter.querySelector('svg');
   if(!svg){ fertigstellen(null); return; }
+  try{ await einbetten(svg); }
+  catch(e){ fertigstellen(null); return; }   // ohne Bilder lieber gar kein Drache als zwei Augen
   svg.setAttribute('width', 420);
   svg.setAttribute('height', 404);
   svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
