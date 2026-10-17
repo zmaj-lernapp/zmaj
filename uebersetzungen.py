@@ -22388,17 +22388,28 @@ INHALT = {
 # machen. Alles, wofür es oben keinen Eintrag gibt, bleibt deutsch.
 # ---------------------------------------------------------------------------
 def _lektion(lektion, t):
+    # Bosnisches bleibt bosnisch (AGENTS.md, Regel 2) - auch dann, wenn
+    # derselbe Text oben als deutsche Bedeutung eine Übersetzung hat.
+    # "Sarajevo" ist die Bedeutung einer Vokabel und heißt auf Türkisch
+    # richtig "Saraybosna"; in faelle3 („Stanujem u ___.“) ist es aber ein
+    # bosnischer Antwortknopf neben "Sarajevu" und "Sarajeva" und stand bis
+    # zum 17.10.2026 im türkischen Menü als "Saraybosna" da. Was in GLEICH
+    # steht, ist bosnisch - Antworten und Tabellenzellen daraus werden nie
+    # übersetzt.
+    def bs(text):
+        return text if isinstance(text, str) and text in GLEICH else t(text)
+
     erklaerung = []
     for teil in lektion.get("erklaerung", []):
         if isinstance(teil, dict) and "tabelle" in teil:
-            erklaerung.append({"tabelle": [[t(zelle) for zelle in reihe] for reihe in teil["tabelle"]]})
+            erklaerung.append({"tabelle": [[bs(zelle) for zelle in reihe] for reihe in teil["tabelle"]]})
         else:
             erklaerung.append(t(teil))
     uebungen = [dict(u,
                      frage=t(u.get("frage", "")),
                      tipp=t(u.get("tipp", "")),
-                     optionen=[t(o) for o in u.get("optionen", [])],
-                     richtig=t(u.get("richtig", "")))
+                     optionen=[bs(o) for o in u.get("optionen", [])],
+                     richtig=bs(u.get("richtig", "")))
                 for u in lektion.get("uebungen", [])]
     return dict(lektion, erklaerung=erklaerung, uebungen=uebungen)
 
