@@ -183,7 +183,10 @@
      oben, und der Drache darf groesser sein. Ajdin am 01.10.2026: "in den
      lektionen ist nur das herz sichtbar", "mit den fragen in den kasten".
      Der Satz unten verweist aufs Zahnrad oben rechts - das ist dann nicht
-     zu sehen, also weg damit. Die Klasse setzt nurHerz(). */
+     zu sehen, also weg damit. Die Klasse setzt nurHerz().
+     Seit 19.10.2026 auch in der Einstufung: dort standen Kopf und Fuss
+     noch da und schoben den Fragenkasten 54 px nach unten (siehe
+     einstufungStarten). */
   body.nurHerz header, body.nurHerz footer{display:none}
   .back{
     border:2px solid var(--line); background:var(--surface); color:var(--ink); font-family:inherit; font-size:13px; font-weight:800;
@@ -220,38 +223,60 @@
        wir den kasten dynamisch".
      Rueckmeldung, Loesung und Weiter stehen nach der Antwort zusammen
      direkt unter der Aufgabe (.antwortfeld, gebaut in weiterBeiTipp).
-     Gilt fuer Lektion, Wiederholen-Runde (beide #lesson) und Level-Test. */
+     Gilt fuer Lektion, Wiederholen-Runde (beide #lesson), Level-Test
+     (#test) und Einstufung (#einstufungView).
+     Bis zum 19.10.2026 galt ein Teil davon nur fuer #lesson: der Level-Test
+     hatte keinen Drachen, kein Herz, kleinere Schrift und einen eigenen
+     Abstand unter den Punkten, die Einstufung dazu noch die
+     Anweisungszeile und keinen .kastenkopf. Im Test standen die
+     Antwortknoepfe dadurch 140 px hoeher als in der Lektion, in der
+     Einstufung bis zu 65 px - Kuebra: "im Test sind die Knoepfe viel
+     hoeher als in der normalen Level-Umgebung". Seitdem bauen alle drei
+     ihren Kasten gleich (Kopfzeile, Drache .zmaj.mini, Aufgabenfeld), und
+     jede Regel hier nennt alle drei Orte ausgeschrieben: #lesson X,
+     #test X, #einstufungView X bzw. #lBody, #tBody, #eBody.
+     Ausgeschrieben, weil Chrome und die Android-WebView die kuerzere
+     Schreibweise mit der Pseudoklasse "is" erst ab Version 88 kennen.
+     Aeltere WebViews (die App laeuft ab Android 7) verwerfen eine Regel mit
+     unbekanntem Selektor ganz - samt dem Teil fuer die Lektion. Und nicht
+     ueber eine gemeinsame Klasse, weil erst die Kennung (#...) der Regel
+     ihr Gewicht gibt: mit einer Klasse wuerden z. B.
+     .options.waagrecht .opt und .opt.long die Regeln hier in der Lektion
+     ueberstimmen. tests_e2e/test_layout_test.py misst die Gleichheit nach. */
   .zmaj.mini{width:120px; height:120px; margin:2px auto 6px; filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
-  #lesson .card, #test .card{padding-top:16px}
+  #lesson .card, #test .card, #einstufungView .card{padding-top:16px}
   .antwortfeld{margin-top:12px}
   .antwortfeld .feedback{margin-top:0}
   .antwortfeld .weiterbox{margin-top:10px}
   /* Nur die Aufgabenzeile aus kick(), nicht jede .kicker: der Level-Test
      haengt "Alle Levels geschafft" ebenfalls als .kicker an. */
-  #lesson .kicker.aufgabe, #test .kicker.aufgabe{font-size:0; margin:0 0 8px; min-height:0}
-  #lesson .kicker.aufgabe .rep, #test .kicker.aufgabe .rep{font-size:13px}
-  #lesson .kicker.aufgabe .rep + .rep, #test .kicker.aufgabe .rep + .rep{margin-left:8px}
+  #lesson .kicker.aufgabe, #test .kicker.aufgabe, #einstufungView .kicker.aufgabe{font-size:0; margin:0 0 8px; min-height:0}
+  #lesson .kicker.aufgabe .rep, #test .kicker.aufgabe .rep, #einstufungView .kicker.aufgabe .rep{font-size:13px}
+  #lesson .kicker.aufgabe .rep + .rep, #test .kicker.aufgabe .rep + .rep, #einstufungView .kicker.aufgabe .rep + .rep{margin-left:8px}
   /* Nach der Antwort ist "Gerade nicht hoeren, ueberspringen" ohne Sinn und
-     kostet nur Hoehe. */
+     kostet nur Hoehe. #eBody fehlt hier mit Absicht: Test und Einstufung
+     rufen renderTask mit noSkip, dort gibt es kein .skip (19.10.2026). */
   #lBody:has(.weiterbox) > .skip, #tBody:has(.weiterbox) > .skip{display:none}
-  #lBody > .feedback, #tBody > .feedback{margin-top:10px}
+  #lBody > .feedback, #tBody > .feedback, #eBody > .feedback{margin-top:10px}
   /* Vor der Antwort ist die Rueckmeldung leer und wandert danach ohnehin
      ins Antwortfeld - ihr Platz in der Aufgabe waere nur Luecke. */
-  #lBody > .feedback:empty, #tBody > .feedback:empty{display:none}
-  #lesson .options, #test .options{margin-top:12px}
+  #lBody > .feedback:empty, #tBody > .feedback:empty, #eBody > .feedback:empty{display:none}
+  #lesson .options, #test .options, #einstufungView .options{margin-top:12px}
   .antwortfeld .loesung{margin-top:8px; padding-top:7px; padding-bottom:7px}
-  #lesson .listen.bigplay{width:84px; height:84px; font-size:34px}
+  #lesson .listen.bigplay, #test .listen.bigplay, #einstufungView .listen.bigplay{width:84px; height:84px; font-size:34px}
   /* Gemessen am 01.10.2026: Ajdins S21 hat in der App 360 x 726 Punkte.
      Mit dem grossen Drachen rutschte Weiter dort bei der Hoeraufgabe nach
      der Antwort unter den Bildrand. */
-  @media (max-height:820px){ #lesson .zmaj.mini{width:100px; height:100px} }
+  @media (max-height:820px){ #lesson .zmaj.mini, #test .zmaj.mini, #einstufungView .zmaj.mini{width:100px; height:100px} }
   .type-input::placeholder{font-family:var(--font-ui); font-size:17px; font-weight:700}
-  #lesson .prompt{font-size:29px}
-  #lesson .prompt.long{font-size:22px}
-  #lesson .opt{font-size:21px; padding:14px 10px}
-  #lesson .opt.long{font-size:16px}
+  #lesson .prompt, #test .prompt, #einstufungView .prompt{font-size:29px}
+  #lesson .prompt.long, #test .prompt.long, #einstufungView .prompt.long{font-size:22px}
+  #lesson .opt, #test .opt, #einstufungView .opt{font-size:21px; padding:14px 10px}
+  #lesson .opt.long, #test .opt.long, #einstufungView .opt.long{font-size:16px}
+  /* Bis 19.10.2026 stand hier "#test .kastenkopf{margin-bottom:18px}" -
+     ein Ausgleich dafuer, dass dem Test der Drache fehlte. Mit Drache ist
+     der Abstand derselbe wie in der Lektion. */
   .kastenkopf{display:flex; align-items:center; gap:10px; margin-bottom:10px}
-  #test .kastenkopf{margin-bottom:18px}
   .kastenkopf .tbar{flex:1; min-width:0; margin:0; gap:4px}
   .kastenkopf .tbar i{height:14px; background:var(--line); background:color-mix(in srgb, var(--ink) 16%, transparent)}
   .kastenkopf .tbar i.intro{background:var(--muted); background:color-mix(in srgb, var(--ink) 42%, transparent)}
@@ -265,6 +290,16 @@
   .kastenherz b{color:var(--ink)}
   .kastenherz.zero{border-color:var(--bad)}
   .kastenherz:empty{display:none}
+  /* Level-Test und Einstufung kosten keine Leben und zeigen deshalb kein
+     Herz. Die Pille bestimmt aber die Hoehe der Kopfzeile (37 statt 14 px),
+     und ohne sie stuende alles darunter hoeher als in der Lektion. Darum
+     steht dort eine unsichtbare Pille mit derselben Klasse: renderLives()
+     fuellt sie wie das echte Herz, sie ist also auch bei grosser
+     Systemschrift genau so hoch - aber null breit, damit die Punkte die
+     ganze Zeile bekommen, und -10 px gleichen den Abstand (gap) aus.
+     19.10.2026. */
+  .kastenherz.platzhalter{visibility:hidden; width:0; padding-left:0; padding-right:0;
+    border-left:0; border-right:0; margin-right:-10px; overflow:hidden}
   /* Auf Ergebnis und "Keine Leben mehr" ist die Punktreihe leer, und die
      Leben stehen dort ohnehin gross in der Auswertung - ohne die Reihe
      staende das Herz doppelt da. */
@@ -694,8 +729,10 @@
      der App. Sie liegt ueber dem Inhalt, aber unter Anzeige (999) und jeder
      Nachfrage (1000), damit sie nichts davon verdeckt. In Lektion, Test und
      Wiederholen-Runde blendet body.nurHerz sie aus - auch dann, wenn das
-     Skript es einmal nicht tut. Solange sie steht, bekommt die Seite unten
-     so viel Platz, wie die Leiste hoch ist (--upd-hoehe misst das Skript),
+     Skript es einmal nicht tut. Seit 19.10.2026 ebenso in der Einstufung
+     samt ihrem Ergebnis: einstufungStarten() setzt nurHerz jetzt auch, erst
+     showView() beim Verlassen nimmt es zurueck.
+     Solange sie steht, bekommt die Seite unten so viel Platz, wie die Leiste hoch ist (--upd-hoehe misst das Skript),
      sonst laege sie auf den letzten Knoepfen. Gemessen und nicht fest, weil
      sie bei grosser Systemschrift zweizeilig wird: Android vergroessert die
      Schrift, px-Abstaende aber nicht. flex-wrap: der Knopf rutscht dann in
@@ -1215,7 +1252,10 @@
   .kachelzeile.ok{--kz-linie:var(--good)}
   .kachelzeile.no{--kz-linie:var(--bad)}
   .options.kachelbank{justify-content:center; gap:8px}
-  .opt.kachel, .options.waagrecht .opt.kachel, #lesson .opt.kachel{flex:0 0 auto; max-width:100%; height:2.35em;
+  /* #test und #einstufungView: siehe .zmaj.mini oben - sonst machte die
+     Kastenregel fuer .opt die Kacheln in Test und Einstufung groesser
+     (19.10.2026). Ausgeschrieben aus demselben Grund wie dort. */
+  .opt.kachel, .options.waagrecht .opt.kachel, #lesson .opt.kachel, #test .opt.kachel, #einstufungView .opt.kachel{flex:0 0 auto; max-width:100%; height:2.35em;
     font-size:19px; padding:0 12px; border-radius:12px; white-space:nowrap}
   /* Der Platzhalter ist eine sichtbare leere Mulde, kein Loch: unsichtbar
      sah eine einzelne Kachel im Vorrat aus, als sei sie verrutscht, und nach
@@ -1556,8 +1596,12 @@
       <div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>
     </section>
 
+    <!-- Der Kasten ist gebaut wie der der Lektion, nur mit unsichtbarem
+         Herz (.platzhalter, der Test kostet keine Leben) und eigenem
+         Drachen. So stehen Knoepfe und Weiter an derselben Stelle wie in
+         der Lektion. Kuebra am 19.10.2026, siehe .zmaj.mini im CSS. -->
     <section id="test" style="display:none">
-      <div class="card"><div class="kastenkopf"><div class="tbar" id="tBar"></div></div><div id="tBody"></div></div>
+      <div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" aria-hidden="true"></div><div class="tbar" id="tBar"></div></div><div class="zmaj mini idle" id="zmajTest"></div><div id="tBody"></div></div>
       <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>
     </section>
   </div>
@@ -1565,7 +1609,8 @@
   <!-- ===== Einstufung ===== -->
   <div id="einstufungView" style="display:none">
     <section>
-      <div class="card"><div class="tbar" id="eBar"></div><div id="eBody"></div></div>
+      <!-- Derselbe Kasten wie in Lektion und Level-Test (19.10.2026) -->
+      <div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" aria-hidden="true"></div><div class="tbar" id="eBar"></div></div><div class="zmaj mini idle" id="zmajEinst"></div><div id="eBody"></div></div>
       <div class="nav"><button id="eQuit" data-t="einst.abbrechen"></button><span></span></div>
     </section>
   </div>
@@ -3695,8 +3740,10 @@ function setMood(el, mood){ // Bewegung passend zur Stimmung
   el.classList.remove('idle','cheer','sad','ok','no'); el.classList.add(mood==='cheer'?'cheer':((mood==='sad'||mood==='cry')?'sad':'idle'));
 }
 let falschSeite = 0;   // wechselt zwischen "Kopf nach links" und "nach rechts"
-function zmajReact(ok){ // kleiner Drache in der Lektion reagiert auf die Antwort
-  const el=$('zmajLesson'); if(!el) return;
+/* Kleiner Drache im Fragenkasten reagiert auf die Antwort. Seit 19.10.2026
+   haben auch Level-Test (zmajTest) und Einstufung (zmajEinst) einen. */
+function zmajReact(ok, id){
+  const el=$(id || 'zmajLesson'); if(!el) return;
   const la = el.querySelector('.zmaj-anim');
   if(la){ playMood(la, ok ? 'ok' : (falschSeite++ % 2 ? 'no_r' : 'no_l')); return; }
   el.classList.remove('ok','no','idle'); void el.offsetWidth; el.classList.add(ok?'ok':'no');
@@ -4987,8 +5034,10 @@ function renderLives(){
   if(mb){ mb.hidden = !profil; if(profil) mb.innerHTML = '🪙 <b>'+muenzen()+'</b> <span class="km">KM</span>'; }
   const bar=$('livesBar'); if(!profil){ bar.style.display='none'; return; } bar.style.display='inline-flex';
   const n = livesNow();
-  /* Das Herz im Fragenkasten. Gibt es nur in der Lektion (#lHerz); der
-     Level-Test kostet keine Leben und hat deshalb keins. */
+  /* Das Herz im Fragenkasten. Sichtbar nur in der Lektion (#lHerz); der
+     Level-Test und die Einstufung kosten keine Leben und haben deshalb
+     keins. Ihre unsichtbare Pille (.kastenherz.platzhalter) wird trotzdem
+     mitgefuellt - sie haelt die Hoehe der Kopfzeile frei (19.10.2026). */
   document.querySelectorAll('.kastenherz').forEach(k => {
     k.innerHTML = '♥ <b>' + (unlimited() ? '∞' : n) + '</b>';
     k.classList.toggle('zero', n === 0 && !unlimited());
@@ -7410,6 +7459,13 @@ function showLevelHome(){
   // Test dieselben. Bliebe die abgebrochene Lektion stehen, würde der Test
   // seine Knöpfe an die alten Felder hängen und auf nichts mehr reagieren.
   $('lBody').innerHTML=''; $('tBody').innerHTML='';
+  /* Ebenso die kleinen Drachen von Lektion und Test (19.10.2026): #lesson
+     und #test sind keine Ansichten im Sinne von zmajRuht(), ihre
+     Lottie-Drachen liefen hinter der Uebersicht unsichtbar in Schleife
+     weiter - nach Abbruch, Ergebnis und Zurueck-Taste. Leer geraeumt baut
+     der Beobachter unter mountZmaj() sie ab; startLesson(), startTopf()
+     und startTest() setzen sie neu ein. */
+  $('zmajLesson').innerHTML=''; $('zmajTest').innerHTML='';
   uhrAus();
   const c = cur(); const s = SECTIONS.find(x=>x.id===c.sektion);
   $('lvTitle').innerHTML = t('level.titel',{i:catIdx+1, label:esc(c.label)})+'<small>'+esc(s ? s.label.replace(/ ·.*$/,'') : '')+'</small>';
@@ -8585,7 +8641,7 @@ function lessonOutOfLives(){
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
-  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('lHerz').style.display='none';
+  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('zmajLesson').innerHTML=''; $('lHerz').style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.aus')+'</div><div class="celebrate"><div class="zmaj sad">'+zmaj('cry')+'</div></div>'+
     '<div class="result-big fail">♥ 0</div>'+
@@ -8651,7 +8707,7 @@ function lessonEnd(){
   if(questLob) setTimeout(()=>sound('quest'), 850);   // nach der Fanfare, nicht darueber
   if(benPlugin() && !benStand().gefragt) benDran = true;
   const pct=levelPct(c), nowAllowed=testAllowed(c);
-  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('lHerz').style.display='none';
+  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('zmajLesson').innerHTML=''; $('lHerz').style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.geschafft')+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
     '<div class="result-big">'+Lx.right+' / '+scored+'</div>'+
@@ -8819,6 +8875,10 @@ function startLesson(){
   $('levelHome').style.display='none'; $('test').style.display='none'; $('lesson').style.display='block';
   nurHerz(true);
   $('tBody').innerHTML='';   // siehe showLevelHome: gleiche ids in beiden Feldern
+  /* Der Drache des Tests (seit 19.10.2026) liefe sonst unsichtbar in
+     Schleife weiter: zmajRuht() kennt nur ausgeblendete Ansichten, und
+     #test ist keine. Leer geraeumt baut der Beobachter ihn ab. */
+  $('zmajTest').innerHTML='';
   uhrNeu();
   const zl=$('zmajLesson'); zl.style.display='block'; $('lHerz').style.display=''; zl.innerHTML=zmaj('happy'); setMood(zl,'happy');
   showLessonTask(); window.scrollTo({top:0, behavior:'smooth'});
@@ -8857,6 +8917,7 @@ function showTestQ(){
   renderTask(Tx.qs[Tx.i], $('tBody'), res=>{
     topfMerken(Tx.qs[Tx.i], !!res.ok);
     Tx.results.push(!!res.ok); if(res.ok) Tx.right++; Tx.i++; uhrTakt(true); zaehle('auf'); if(res.ok) zaehle('ric');
+    zmajReact(!!res.ok, 'zmajTest');   // wie in der Lektion (19.10.2026)
     weiterBeiTipp('tBody', showTestQ);
   }, {noSkip:true});
 }
@@ -8889,6 +8950,10 @@ function showTestResult(){
      nachgeholt ist. Zaehlt also, was DIESER Test neu abgeschlossen hat.
      Wer ein schon bestandenes Level wiederholt, bekommt die alte Regel. */
   const nextSec = sektionFertig && (neuBestanden || (hasNext && CATEGORIES[catIdx+1].sektion !== c.sektion));
+  /* Das Ergebnis hat seinen grossen Drachen, wie lessonEnd(). Der kleine
+     wird dabei auch abgebaut, nicht nur versteckt: versteckt liefe er
+     unsichtbar weiter (siehe showLevelHome). */
+  $('zmajTest').style.display='none'; $('zmajTest').innerHTML='';
   $('tBody').innerHTML =
     '<div class="ergebnis-titel">'+t('level.titel',{i:catIdx+1, label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
@@ -8910,7 +8975,11 @@ function startTest(){
   buildTest(); $('levelHome').style.display='none'; $('lesson').style.display='none'; $('test').style.display='block';
   nurHerz(true);
   $('lBody').innerHTML='';   // siehe showLevelHome: gleiche ids in beiden Feldern
+  $('zmajLesson').innerHTML='';   // siehe startLesson: kein Drache laeuft unsichtbar weiter
   uhrNeu();
+  /* Derselbe kleine Drache wie in der Lektion - ohne ihn standen die
+     Knoepfe im Test 126 px hoeher (Kuebra, 19.10.2026). */
+  const zt=$('zmajTest'); zt.style.display='block'; zt.innerHTML=zmaj('happy'); setMood(zt,'happy');
   showTestQ(); window.scrollTo({top:0, behavior:'smooth'});
 }
 $('btnTest').addEventListener('click', startTest);
@@ -9104,16 +9173,24 @@ function einstufungErklaeren(wahl){
 function einstufungStarten(){
   if(!Ex || !Ex.qs.length){ einstufungMerken(Ex ? Ex.wahl : 'etwas', ''); Ex = null; return; }
   showView('einstufungView');
-  /* Keine Leben, keine Muenzen - die Leiste oben haette hier nichts zu
-     sagen. Die Uhr fuer die Tagesaufgabe "Minuten" laeuft bewusst nicht:
-     der Test bringt keine Muenzen. */
-  $('kopfLeiste').style.display = 'none';
+  /* Die Uhr fuer die Tagesaufgabe "Minuten" laeuft bewusst nicht: der Test
+     bringt keine Muenzen.
+     Seit 19.10.2026 ganz ohne Kopf und Fuss, wie Lektion und Level-Test:
+     sie schoben den Kasten 54 px nach unten, und bei 360 px Breite brach
+     "Zurueck" oben in zwei Zeilen um. Hinaus geht es weiter ueber
+     "Test beenden" und die Zurueck-Taste des Handys (backTarget unten).
+     Bis dahin blendete die Einstufung hier die Leiste mit Leben und
+     Muenzen aus und schrieb "Einstufung" unter das Logo - beides sitzt im
+     Kopf, den nurHerz jetzt ganz verbirgt, und beim Verlassen setzen
+     showView() und showPath() beides neu. setzeZurueck bleibt: der Knopf
+     ist zwar unsichtbar, aber backTarget gilt fuer die Zurueck-Taste. */
+  nurHerz(true);
   setzeZurueck(t('btn.zurueck'), ()=>{
     if(Ex && !Ex.fertig) $('eQuit').click(); else { homeMode = 'words'; showHome(); }
   });
-  $('tag').textContent = t('einst.kopf');
   $('eQuit').style.display = '';
   $('eBody').innerHTML = '';
+  const ze = $('zmajEinst'); ze.style.display = 'block'; ze.innerHTML = zmaj('happy'); setMood(ze, 'happy');
   einstufungFrageZeigen();
 }
 function einstufungBar(){
@@ -9134,6 +9211,7 @@ function einstufungFrageZeigen(){
     if(!res.ok) Ex.fehler++;
     Ex.i++;
     einstufungBar();
+    zmajReact(!!res.ok, 'zmajEinst');   // wie in der Lektion (19.10.2026)
     weiterBeiTipp('eBody', einstufungFrageZeigen);
   }, {noSkip:true});
 }
@@ -9147,6 +9225,8 @@ function einstufungEnde(){
   einstufungMerken(Ex.wahl, ziel > 0 ? c.id : '', richtig, Ex.results.length);
   einstufungBar();
   $('eQuit').style.display = 'none';
+  // Das Ergebnis hat seinen grossen Drachen; der kleine wird abgebaut, wie in showTestResult()
+  $('zmajEinst').style.display = 'none'; $('zmajEinst').innerHTML = '';
   $('eBody').innerHTML =
     '<div class="ergebnis-titel">' + esc(t('einst.ergebnis_titel')) + '</div>' +
     '<div class="celebrate"><div class="zmaj ' + (ziel > 0 ? 'cheer' : 'idle') + '">' + zmaj(ziel > 0 ? 'cheer' : 'happy') + '</div></div>' +
@@ -9315,6 +9395,7 @@ function topfSeite(){
   homeMode = 'topf';
   $('lesson').style.display = 'none';
   $('lBody').innerHTML = '';
+  $('zmajLesson').innerHTML = '';   // wie showLevelHome (19.10.2026)
   showHome();
 }
 /* Nach dem Ende einer Lektion oder Runde: wohin zurueck. */
@@ -9367,6 +9448,7 @@ function startTopf(){
   $('levelHome').style.display = 'none'; $('test').style.display = 'none'; $('lesson').style.display = 'block';
   nurHerz(true);
   $('tBody').innerHTML = '';   // siehe showLevelHome: gleiche ids in beiden Feldern
+  $('zmajTest').innerHTML = '';   // siehe startLesson
   uhrNeu();
   const zl = $('zmajLesson'); zl.style.display = 'block'; $('lHerz').style.display = ''; zl.innerHTML = zmaj('happy'); setMood(zl, 'happy');
   Lx = {queue: aufgaben, i:0, results:[], right:0, total: aufgaben.length, skipped:0,
@@ -9385,7 +9467,7 @@ function topfEnde(){
   const questLob = questZeilen();
   if(questLob) setTimeout(()=>sound('quest'), 850);
   const rest = topfAnzahl();
-  $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('lHerz').style.display = 'none';
+  $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('zmajLesson').innerHTML = ''; $('lHerz').style.display = 'none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
@@ -9914,7 +9996,9 @@ function updHeuteMerken(){
   try{ localStorage.setItem(UPD_MERKER, updGefragtAm); }catch(e){}
 }
 /* Mitten im Lernen. Lektion, Test und Wiederholen-Runde setzen nurHerz,
-   Einstufung und Geschichte nicht - die zaehlen hier eigens mit. */
+   Einstufung und Geschichte nicht - die zaehlen hier eigens mit. (Die
+   Einstufung setzt es seit 19.10.2026 auch; Ex_laeuft() bleibt trotzdem
+   stehen, es schadet nicht und haengt nicht an der Kopfzeile.) */
 function updLerntGerade(){
   return document.body.classList.contains('nurHerz') || Ex_laeuft() || sichtbar('storyView');
 }
@@ -10480,11 +10564,12 @@ function weiterBeiTipp(feldId, weiter){
     const kasten = document.createElement('div');
     kasten.className = 'row weiterbox';
     kasten.innerHTML = '<button type="button" class="btn know">'+esc(t('task.weiter'))+'</button>';
-    if(feldId === 'lBody' || feldId === 'tBody'){
+    if(feldId === 'lBody' || feldId === 'tBody' || feldId === 'eBody'){
       /* Rueckmeldung, Loesung und Weiter zusammen unter die Aufgabe - bei
          Schreib- und Lueckenaufgaben stand sonst der leere Pruefen-Platz
          dazwischen. Es sind dieselben Knoten (#xFb), spaetere Aenderungen
-         daran kommen also an. */
+         daran kommen also an. Die Einstufung (eBody) seit 19.10.2026: ihr
+         Weiter stand bis zu 43 px anders als in der Lektion. */
       const unten = document.createElement('div');
       unten.className = 'antwortfeld';
       feld.querySelectorAll(':scope > .feedback, :scope > .loesung').forEach(e => unten.appendChild(e));
