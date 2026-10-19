@@ -26,6 +26,11 @@ Zwei Formate: 412 x 915 (Drache 120 px) und 360 x 726, Ajdins S21 in der
 App (gemessen 01.10.2026). Dort greift max-height:820px und der Drache ist
 100 px gross - auch das muss an allen drei Orten gleich sein.
 
+Am Abend desselben Tages entschied Ajdin, dass der Level-Test Leben kostet
+wie die Lektion. Seitdem ist das Herz im Test kein unsichtbarer Platzhalter
+mehr, sondern echt - es muss sichtbar sein und genau dort stehen, wo es in
+der Lektion steht. Nur die Einstufung behaelt den Platzhalter.
+
 Dazu prueft test_kleine_drachen_laufen_nicht_unsichtbar, dass die kleinen
 Lottie-Drachen nach Abbruch und Ergebnis nicht hinter der Level-Uebersicht
 weiterlaufen.
@@ -129,9 +134,12 @@ async ([ort, typ, seed, feld]) => {
   const drache = sec.querySelector('.zmaj.mini');
   const herz = sec.querySelector('.kastenherz');
   const kopf = document.querySelector('header');
+  const hb = herz ? herz.getBoundingClientRect() : null;
   const info = {
     drache: drache ? Math.round(drache.getBoundingClientRect().height) : 0,
     herz: herz ? getComputedStyle(herz).visibility : null,
+    herz_box: hb ? [Math.round(hb.left), Math.round(hb.top + window.scrollY), Math.round(hb.width), Math.round(hb.height)] : null,
+    herz_text: herz ? herz.textContent : null,
     kopf_sichtbar: !!(kopf && kopf.getClientRects().length),
   };
   stilleBitte();
@@ -194,10 +202,16 @@ def test_test_und_einstufung_wie_lektion(handy, heute_stand, viewport, dpr, drac
         info = messung[(ort, "mc")]["info"]
         assert info["drache"] == drache, "%s: kleiner Drache %s px statt %s px" % (ort, info["drache"], drache)
         assert not info["kopf_sichtbar"], "%s: Kopfzeile der App sichtbar" % ort
-    # Test und Einstufung kosten keine Leben - ihr Herz haelt nur den Platz.
+    # Der Level-Test kostet seit dem 19.10.2026 Leben wie die Lektion und
+    # zeigt dasselbe echte Herz. Die Einstufung kostet keine - ihr Herz
+    # haelt nur den Platz. Die Positionen oben sind trotzdem dieselben.
     assert messung[("lektion", "mc")]["info"]["herz"] == "visible"
-    assert messung[("test", "mc")]["info"]["herz"] == "hidden"
+    assert messung[("test", "mc")]["info"]["herz"] == "visible"
     assert messung[("einstufung", "mc")]["info"]["herz"] == "hidden"
+    herz_l, herz_t = messung[("lektion", "mc")]["info"], messung[("test", "mc")]["info"]
+    assert herz_t["herz_text"] == herz_l["herz_text"] == "♥ 5", (herz_l["herz_text"], herz_t["herz_text"])
+    assert all(abs(a - b) <= TOLERANZ for a, b in zip(herz_l["herz_box"], herz_t["herz_box"])), \
+        "Herz im Test %s, in der Lektion %s" % (herz_t["herz_box"], herz_l["herz_box"])
 
 
 # Jeder Lottie-Drache, der laeuft, ohne dass man ihn sieht - als Kennung des
