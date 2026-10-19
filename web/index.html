@@ -823,6 +823,65 @@
   .topfwort{text-align:center; font-weight:800; color:var(--muted); font-size:13px; margin-bottom:4px}
   .topfleer{font-size:14px; line-height:1.6; color:var(--muted); margin-top:12px}
 
+  /* ---- Stern: eine Aufgabe markieren (19.10.2026) ----
+     Ajdins Wahl aus dem Entwurf vom 19.10.2026: Variante 1 "Ring". Rund,
+     44 x 44 px, unten rechts in der Leiste unter der Aufgabe, gegenueber
+     von "Lektion abbrechen" - die Form der runden Knoepfe oben, das
+     Material von "Lektion abbrechen" (2-px-Rand --line, Flaeche --surface).
+     Leer ein Umriss in --muted, markiert ein Goldring und ein Goldstern
+     (Verlauf #sternGold) mit dunklerem Goldrand. Alles genau wie im Entwurf:
+       - margin -2.5px: die Leiste bleibt 39 px hoch, "Lektion abbrechen"
+         verschiebt sich um 0 px (gemessen bei 412 und 360 px, hell und dunkel);
+       - Goldrand hell #B07D00: 3,28:1 auf dem hellgoldenen Grund #FFF4C2;
+       - dunkel liegt der markierte Knopf auf --surface statt auf dem
+         olivfarbenen --accent-soft. Das laeuft ueber --an-grund, am Knopf
+         selbst gesetzt, damit --surface die Sektionsfarbe mitnimmt;
+       - Trefferflaeche 48 x 48 ueber ::before mit inset -4px (absolut
+         positioniert zaehlt ab der Innenkante, die 2 px Rand sind drin);
+       - der Stern ist 26 x 25,3 px (58 % der Knopfhoehe); die viewBox liegt
+         um seinen Flaechenschwerpunkt, so sitzt er optisch in der Mitte
+         (nachgemessen < 0,5 Geraetepixel, tests_e2e/test_stern.py);
+       - beim Antippen ploppt er kurz auf (.pop), nicht bei reduzierter
+         Bewegung und nicht mit dem Schalter "Animationen" aus.
+     Mit .nav davor: ".nav button" gibt jedem Knopf der Leiste Polster und
+     Pillenform und waere sonst gewichtiger als eine einzelne Klasse.
+     Kein :has() und kein :is() - siehe oben bei .zmaj.mini. */
+  :root{--stern-gold-hell:#FFD84D; --stern-gold-tief:#F5B400; --stern-rand:#B07D00}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700} }
+  :root[data-theme="dark"]{--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700}
+  .nav .stern{--an-grund:var(--accent-soft)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .nav .stern{--an-grund:var(--surface)} }
+  :root[data-theme="dark"] .nav .stern{--an-grund:var(--surface)}
+  .nav .stern{position:relative; flex:0 0 auto; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0; margin:0; font:inherit; cursor:pointer; color:var(--muted); -webkit-tap-highlight-color:transparent; transition:transform .12s, background-color .15s, border-color .15s, box-shadow .12s}
+  .nav .stern[hidden]{display:none}   /* display:flex oben schlaegt sonst das hidden-Attribut */
+  .nav .stern::before{content:''; position:absolute}
+  .nav .stern svg{display:block; flex:none; overflow:visible; pointer-events:none}
+  .sternsym{overflow:visible}
+  .sternsym path{fill:none; stroke:currentColor; stroke-linejoin:round}
+  .sternsym.an path{fill:url(#sternGold); stroke:var(--stern-rand)}
+  .nav .stern:focus-visible{outline:3px solid var(--primary); outline-offset:3px}
+  #lesson .nav, #test .nav{align-items:center}
+  @keyframes sternPop{0%{transform:scale(1)} 45%{transform:scale(1.22)} 100%{transform:scale(1)}}
+  .nav .stern.pop svg{animation:sternPop .28s ease-out}
+  @media (prefers-reduced-motion: reduce){ .nav .stern.pop svg{animation:none} }
+  .nav .stern.v1{width:44px; height:44px; margin:-2.5px 0; border-radius:50%; border:2px solid var(--line); background:var(--surface)}
+  .nav .stern.v1::before{inset:-4px}   /* ab Innenkante 40 px: 48 x 48 */
+  .nav .stern.v1[aria-pressed="true"]{border-color:var(--accent); background:var(--an-grund)}
+  .nav .stern.v1:active{transform:scale(.92)}
+
+  /* ---- Wiederholen: der Kasten "Markiert" (19.10.2026) ----
+     Unter dem Kasten fuer Fehler, der bleibt, wie er ist. Gebaut genau wie
+     er (siehe topfKasten und sternKasten): .section, h2, .desc, .topfzahl,
+     .topfwort, .row mit .btn.know - gleiche Schrift, Abstaende, Knopf und
+     Hoehe. Neu ist nur der kleine Stern vor dem Titel, 22 px, gold, sobald
+     etwas markiert ist, und im leeren Kasten der 17-px-Stern im Satz.
+     Beide sitzen auf der Mitte der Versalhoehe (gemessen ueber die
+     Schriftmetrik von Nunito 800 18 px bzw. 14 px): top -1px im Titel,
+     vertical-align -3.5px im Satz, die Zeilenhoehe bleibt. */
+  #sternBox h2{display:flex; align-items:center; gap:7px}
+  #sternBox h2 .sternsym{flex:none; color:var(--muted); position:relative; top:-1px}
+  .topfleer .sternsym{display:inline-block; vertical-align:-3.5px; margin:0 1px; color:var(--muted)}
+
   /* ---- Wegmarke ----
      Dieselbe Huelle wie die Nachfrage, nur mit einer sehr grossen Zahl.
      Bewusst nichts Neues erfunden: ein zweiter Overlay-Bau waere eine
@@ -1541,9 +1600,11 @@
       <div class="summary" id="sSummary"></div>
       <div class="section" id="storyList"></div>
     </div>
-    <!-- Wiederholen: der Sammeltopf fuer falsch Beantwortetes -->
+    <!-- Wiederholen: der Sammeltopf fuer falsch Beantwortetes. Darunter
+         seit 19.10.2026 die markierten Aufgaben (Stern), siehe STERN. -->
     <div id="topfHome" style="display:none">
       <div class="section" id="topfBox"></div>
+      <div class="section" id="sternBox"></div>
     </div>
   </div>
 
@@ -1594,7 +1655,10 @@
 
     <section id="lesson" style="display:none">
       <div class="card"><div class="kastenkopf"><div class="kastenherz" id="lHerz"></div><div class="tbar" id="lBar"></div></div><div class="zmaj mini idle" id="zmajLesson"></div><div id="lBody"></div></div>
-      <div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>
+      <!-- Rechts der Stern (19.10.2026): ausserhalb von #lBody, damit der
+           Weiter-Horcher aus weiterBeiTipp() ihn nicht greift. Name und
+           Zustand setzt sternKnopf(), siehe STERN. -->
+      <div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><button type="button" class="stern v1" id="lStern" aria-pressed="false" hidden><svg class="sternsym" viewBox="-12 -12 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path style="stroke-width:1.9" d="M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.544 1.544 0 0 1 9.662 -1.657L6.026 1.62A0.643 0.643 0 0 0 5.827 2.231L6.843 7.02A1.544 1.544 0 0 1 4.561 8.677L0.321 6.232A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z"/></svg></button></div>
     </section>
 
     <!-- Der Kasten ist gebaut wie der der Lektion, mit eigenem Herz und
@@ -1605,7 +1669,7 @@
          ist es echt (#tHerz). -->
     <section id="test" style="display:none">
       <div class="card"><div class="kastenkopf"><div class="kastenherz" id="tHerz"></div><div class="tbar" id="tBar"></div></div><div class="zmaj mini idle" id="zmajTest"></div><div id="tBody"></div></div>
-      <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>
+      <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><button type="button" class="stern v1" id="tStern" aria-pressed="false" hidden><svg class="sternsym" viewBox="-12 -12 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path style="stroke-width:1.9" d="M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.544 1.544 0 0 1 9.662 -1.657L6.026 1.62A0.643 0.643 0 0 0 5.827 2.231L6.843 7.02A1.544 1.544 0 0 1 4.561 8.677L0.321 6.232A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z"/></svg></button></div>
     </section>
   </div>
 
@@ -1809,6 +1873,9 @@
      Sie steht von Anfang an im Dokument - eine Region, die erst mit ihrem Text
      dazukommt, lesen manche Screenreader nicht vor. -->
 <div id="ansage" class="nurleser" aria-live="polite" aria-atomic="true"></div>
+<!-- Der Goldverlauf aller markierten Sterne (19.10.2026), einmal im Dokument.
+     Nicht display:none: dann malt Chrome den Verlauf nicht. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="sternGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--stern-gold-hell)"/><stop offset="1" style="stop-color:var(--stern-gold-tief)"/></linearGradient></defs></svg>
 
 <script>
 /* Der Inhalt kommt aus vokabeln.py, grammatik.py und geschichten.py – hier muss nichts geändert werden. */
@@ -2614,6 +2681,8 @@ let gefeiert = new Set();
    WIEDERHOLEN. Hier oben, weil standUebernehmen() sie setzt. */
 let einstufung = null;    // null = noch nie gefragt, sonst {tag, wahl, bis}
 let topf = {};            // Schluessel -> {typ, n, z}
+let stern = {};           // Schluessel -> {z, r}, siehe STERN (19.10.2026)
+const STERN_MAX = 300;    // so viele Sterne hoechstens; hier oben, standUebernehmen() braucht ihn
 let bewertung = {gezeigt:[], nein:false, bewertet:false};   // siehe BEWERTUNG
 let rekord = 0;
 let wann = {};
@@ -4111,6 +4180,9 @@ function sicherungPlausibel(s){
   }
   p.besitz = liste.filter(id => behalten.has(id));
   p.muenzen_aus = Math.max(Math.min(ganzAbNull(s.muenzen_aus), p.muenzen_ges), summe);
+  /* Sterne (19.10.2026): nur gueltige Kennungen und Zahlen, hoechstens
+     STERN_MAX, und kein Zeitpunkt nach jetzt - siehe sternPruefen(). */
+  p.stern = sternPruefen(s.stern);
   return p;
 }
 /* Ein Stand sieht ueberall gleich aus - egal ob er aus der Profildatei des
@@ -4192,6 +4264,9 @@ function standUebernehmen(d){
   topf = (d.topf && typeof d.topf==='object' && !Array.isArray(d.topf))
     ? Object.fromEntries(Object.entries(d.topf).filter(([, e]) => e && typeof e==='object' && !Array.isArray(e)))
     : {};
+  /* Fehlt das Feld (Stand oder Sicherung von vor dem 19.10.2026), ist
+     nichts markiert. Kaputte Eintraege fallen hier still heraus. */
+  stern = sternPruefen(d.stern);
   const bw = (d.bewertung && typeof d.bewertung==='object' && !Array.isArray(d.bewertung)) ? d.bewertung : {};
   bewertung = {gezeigt: Array.isArray(bw.gezeigt) ? bw.gezeigt.filter(istDatum) : [],
                nein: !!bw.nein, bewertet: !!bw.bewertet};
@@ -4269,7 +4344,11 @@ function standAlsObjekt(){
           geschenk_jahr: (geschenk.jahr || 0),
           /* Beide gehoeren zum Lernenden und muessen mit auf ein neues
              Handy - die Einstufung haelt die uebersprungenen Level offen. */
-          einstufung: einstufung, topf: topf, bewertung: bewertung};
+          einstufung: einstufung, topf: topf, bewertung: bewertung,
+          /* Die Sterne gehoeren wie der Topf zum Lernenden (19.10.2026). Die
+             Sicherungsdatei bleibt version 1: eine alte App liest das Feld
+             nicht, eine neue nimmt ein fehlendes als "nichts markiert". */
+          stern: stern};
 }
 /* ---- Die Vollversion ----
    Sie gehoert nicht in den Lernstand. Vorher stand sie dort, und damit
@@ -6609,7 +6688,11 @@ function altenFortschrittUmschreiben(){
     else neu.add(x);          // unbekannt, zum Beispiel ein gelöschtes Wort
   });
   if(geaendert) known = neu;
-  return geaendert;
+  /* Die Sterne haengen an denselben Kennungen (19.10.2026). Erst
+     ausrechnen, dann verknuepfen - mit || liefe es nach einer
+     Wort-Umschreibung gar nicht mehr. */
+  const sternNeu = sternUmschreiben(nachWort);
+  return geaendert || sternNeu;
 }
 
 // Der Knopf mit dem Namen oben rechts führt in die Einstellungen -
@@ -8328,6 +8411,13 @@ function kachelnFuerLektion(ids, belegt){
   }
   return out;
 }
+/* Die Aufgabenart eines Wortes reihum, ab einer zufaelligen Stelle;
+   Schreiben nur bei Woertern, die sich tippen lassen. Seit 19.10.2026 ein
+   eigenes Stueck: die Markiert-Runde (sternRunde) waehlt genauso. */
+function artenReihum(types){
+  let ti = Math.floor(Math.random()*types.length);
+  return w => { for(let k=0;k<types.length;k++){ const t=types[(ti+k)%types.length]; if(t==='type' && !typable(w)) continue; ti=(ti+k+1)%types.length; return t; } return 'mc'; };
+}
 function buildLesson(){
   const c = cur();
   const unknown = shuffle(c.words.filter(w=>!known.has(w.id)));
@@ -8337,8 +8427,7 @@ function buildLesson(){
   if(nRev < LEKTION_WOERTER - nNew) nNew = Math.min(unknown.length, Math.max(nNew, Math.min(8, LEKTION_WOERTER - nRev)));
   const newW = unknown.slice(0,nNew), revW = knownW.slice(0,nRev);
   const types = ['mc','mcrev','type']; if(canListen) types.push('listen'); if(canSpeak) types.push('speak');
-  let ti = Math.floor(Math.random()*types.length);
-  const pick = w => { for(let k=0;k<types.length;k++){ const t=types[(ti+k)%types.length]; if(t==='type' && !typable(w)) continue; ti=(ti+k+1)%types.length; return t; } return 'mc'; };
+  const pick = artenReihum(types);
   const tasks = [];
   [...newW, ...revW].forEach(w=> tasks.push({typ:pick(w), w, neu:!known.has(w.id)}));
   const gesehenIds = new Set([...known, ...newW.map(w=>w.id)]);
@@ -8381,6 +8470,8 @@ function lessonBar(){
 }
 function showLessonTask(){
   lessonBar();
+  // Der Stern gilt der Aufgabe, die jetzt kommt - auf dem Ergebnis keiner (19.10.2026)
+  sternKnopf('lStern', Lx.i < Lx.queue.length ? Lx.queue[Lx.i] : null);
   if(Lx.i >= Lx.queue.length){ lessonEnd(); return; }
   const task = Lx.queue[Lx.i];
   $('lBody').dataset.i = Lx.i;
@@ -8390,6 +8481,7 @@ function showLessonTask(){
     else {
       Lx.results[Lx.i]=res.ok; zmajReact(res.ok); uhrTakt(true); zaehle('auf');
       topfMerken(task, res.ok);
+      if(Lx.quelle === 'stern') sternGeuebt(task);
       if(res.ok){
         Lx.right++; zaehle('ric');
         if(task.typ==='gap') zaehle('lue');
@@ -8560,6 +8652,11 @@ function werbungFuerLeben(e){
   /* Aus der Levelansicht und aus dem Wiederholen-Reiter kommt der Knopf
      selbst mit. Der Laden bleibt beim alten Weg - sein Knopf traegt
      eigenes Innenleben, das textContent unten zerstoeren wuerde. */
+  /* Laeuft schon ein Video, still aussteigen (19.10.2026): Im Reiter
+     Wiederholen gibt es ohne Leben zwei Video-Knoepfe (topfAd, sternAd).
+     Der zweite Tipp lief sonst in den Riegel von zeigeWerbung() und
+     meldete "keine Anzeige", waehrend das Video schon lud. */
+  if(anzeigeLaeuft) return;
   const quelle = e && e.currentTarget;
   /* Der Laden-Knopf (data-videoleben, ohne id) fiel bis v96 auf $('lAd')
      durch: im Laden meist null, also wurde nichts gesperrt - ein zweiter
@@ -8568,7 +8665,7 @@ function werbungFuerLeben(e){
      disabled, sein Text bleibt. Pruefung vom 07.10.2026. */
   const ladenKnopf = (quelle && quelle.hasAttribute && quelle.hasAttribute('data-videoleben')) ? quelle : null;
   const knopf = ladenKnopf ? null
-              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd')) ? quelle : $('lAd');
+              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd' || quelle.id === 'sternAd')) ? quelle : $('lAd');
   /* Gefunden bei der Pruefung am 06.10.2026: der Knopf bleibt stehen,
      waehrend die Leben nachwachsen - der Schirm ohne Leben wartet die zwei
      Stunden ja gerade ab. Bei vollen Leben brachte das Video kein Herz,
@@ -8608,7 +8705,7 @@ function werbungFuerLeben(e){
        dieser Knoten noch im Dokument haengt, steht auch der alte Schirm
        noch. Dieselbe Vorsicht wie beim Interstitial seit dem 29.09.2026. */
     const danach = ()=>{
-      if(knopf && knopf.id === 'topfAd') showTopf();
+      if(knopf && (knopf.id === 'topfAd' || knopf.id === 'sternAd')) showTopf();   // sternAd: Kasten "Markiert", 19.10.2026
       else if(knopf && knopf.id === 'lAd') ohneLebenVerlassen();
       /* Aus dem Laden: den Laden neu zeichnen, damit Preis und Video zum
          neuen Herz passen. showLevelHome() traf hier nur die unsichtbare
@@ -8654,6 +8751,7 @@ function lessonOutOfLives(imTest){
   const weg = imTest ? showLevelHome : lektionVerlassen;
   const k = imTest ? {bar:'tBar', drache:'zmajTest', herz:'tHerz', body:'tBody'}
                    : {bar:'lBar', drache:'zmajLesson', herz:'lHerz', body:'lBody'};
+  sternKnopf(imTest ? 'tStern' : 'lStern', null);   // keine Aufgabe mehr, also kein Stern (19.10.2026)
   // Der Tag zählt hier NICHT für die Lernserie. Das war früher anders
   // gedacht - wer übt, hat geübt -, aber Ajdin am 17.09.2026: die Serie
   // war gestiegen, obwohl die Lektion nicht geschafft war. Eine Serie, die
@@ -8959,6 +9057,7 @@ function buildTest(){
 function testBar(){ $('tBar').innerHTML = Tx.qs.map((q,i)=>'<i class="'+(i<Tx.i?(Tx.results[i]?'ok':'no'):(i===Tx.i?'cur':''))+'"></i>').join(''); punkteStand($('tBar'), Tx.i, Tx.qs.length); }
 function showTestQ(){
   testBar();
+  sternKnopf('tStern', Tx.i < Tx.qs.length ? Tx.qs[Tx.i] : null);   // wie in showLessonTask (19.10.2026)
   if(Tx.i >= Tx.qs.length){ showTestResult(); return; }
   $('tBody').dataset.i = Tx.i;
   renderTask(Tx.qs[Tx.i], $('tBody'), res=>{
@@ -8984,6 +9083,7 @@ function showTestQ(){
 }
 function showTestResult(){
   stilleBitte(); uhrAus(); testBar();   // das letzte Wort nicht ins Ergebnis reden lassen
+  sternKnopf('tStern', null);
   /* Ein Test ist eine ganze Lektion wert und zaehlt deshalb auch fuer die
      Anzeige. Bis zum 27.09.2026 fehlte das ganz. */
   werbungZaehler++;
@@ -9425,9 +9525,15 @@ const topfAnzahl = () => Object.keys(topf).length;
    eine Aufgabe die andere. Die Kacheln bleiben im Topf und kommen in einer
    spaeteren Runde. Review vom 14.10.2026. */
 function topfRunde(){
-  const liste = Object.keys(topf).map(k => ({k, e: topf[k]}))
+  return rundeAus(Object.keys(topf).map(k => ({k, e: topf[k]}))
     .sort((a, b) => (a.e.z || 0) - (b.e.z || 0))
-    .map(x => topfAufgabe(x.k, x.e)).filter(Boolean);
+    .map(x => topfAufgabe(x.k, x.e)).filter(Boolean));
+}
+/* Aus einer schon sortierten Liste von Aufgaben eine Runde: die ersten
+   TOPF_RUNDE, ohne Luecke und Kacheln desselben Satzes, gemischt. Seit
+   19.10.2026 ein eigenes Stueck, weil die Markiert-Runde (sternRunde)
+   dieselbe Regel braucht. */
+function rundeAus(liste){
   const runde = [], belegt = new Set();
   const doppelt = a => a.typ === 'kacheln' && [a.s.bs, ...(a.s.auch || [])].some(x => belegt.has(kachelNorm(x)));
   for(const a of liste){
@@ -9449,8 +9555,11 @@ function topfNachziehen(){
   /* Nur den Kasten und den Weitermachen-Knopf neu zeichnen, nicht die
      ganze Startseite: showHome() springt an den Seitenanfang, und dieser
      Aufruf kommt nicht vom Nutzer. */
-  if(sichtbar('pfad') && homeMode === 'topf' && topfAnzahl() &&
-     (livesNow() > 0) !== !!$('topfLos')){ renderHero(); showTopf(); }
+  /* Der Kasten "Markiert" (19.10.2026) hat denselben Knopf und dieselbe
+     Sperre ohne Leben. */
+  if(sichtbar('pfad') && homeMode === 'topf' &&
+     ((topfAnzahl() && (livesNow() > 0) !== !!$('topfLos')) ||
+      (sternAnzahl() && (livesNow() > 0) !== !!$('sternLos')))){ renderHero(); showTopf(); }
 }
 /* Wie showLevelHome() die Lektion wegraeumen. Ohne das blieb #lesson
    sichtbar geschaltet und Lx halb durchgelaufen stehen: lektionDarfWeg()
@@ -9466,7 +9575,13 @@ function topfSeite(){
 }
 /* Nach dem Ende einer Lektion oder Runde: wohin zurueck. */
 function lektionVerlassen(){ if(Lx && Lx.topf) topfSeite(); else showLevelHome(); }
+/* Der Reiter Wiederholen: oben der Kasten fuer Fehler, unveraendert,
+   darunter seit 19.10.2026 der Kasten "Markiert" (sternKasten). */
 function showTopf(){
+  topfKasten();
+  sternKasten();
+}
+function topfKasten(){
   const box = $('topfBox');
   if(!box) return;
   topfAufraeumen();
@@ -9503,13 +9618,20 @@ function showTopf(){
   }
   vollZeileHorchen('topfVoll');
 }
-function startTopf(){
-  const aufgaben = (livesNow() > 0) ? topfRunde() : [];
+/* Ohne Argumente: beide haengen auch direkt als Klick-Horcher und als
+   onclick des Weitermachen-Knopfs, und der Klick kaeme sonst als Quelle an. */
+function startTopf(){ rundeStarten('topf'); }
+function startStern(){ rundeStarten('stern'); }
+/* quelle: 'topf' (Fehler) oder 'stern' (Markiert, seit 19.10.2026). Beide
+   Runden laufen gleich - Leben, Serie, Tagesaufgaben, Muenzen -, Lx.topf
+   bleibt fuer beide gesetzt, Lx.quelle sagt, woher die Aufgaben kommen. */
+function rundeStarten(quelle){
+  const aufgaben = (livesNow() > 0) ? (quelle === 'stern' ? sternRunde() : topfRunde()) : [];
   if(!aufgaben.length){ topfSeite(); return; }
   interstitialVorladen();   // eine Runde zaehlt wie eine Lektion, also auch hier
   showView('levelView');
   setzeZurueck(t('btn.zurueck'), topfSeite);
-  $('tag').textContent = t('topf.titel');
+  $('tag').textContent = t(quelle === 'stern' ? 'stern.titel' : 'topf.titel');
   stilleBitte();
   $('levelHome').style.display = 'none'; $('test').style.display = 'none'; $('lesson').style.display = 'block';
   nurHerz(true);
@@ -9518,13 +9640,16 @@ function startTopf(){
   uhrNeu();
   const zl = $('zmajLesson'); zl.style.display = 'block'; $('lHerz').style.display = ''; zl.innerHTML = zmaj('happy'); setMood(zl, 'happy');
   Lx = {queue: aufgaben, i:0, results:[], right:0, total: aufgaben.length, skipped:0,
-        newWords: new Set(), retried: new Set(), topf: true};
+        newWords: new Set(), retried: new Set(), topf: true, quelle: quelle};
   showLessonTask();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 /* Das Ende einer Runde. Wie lessonEnd(), nur ohne Level: kein Fortschritt
-   im Level, kein Test, der frei wird. Dafuer steht da, was noch uebrig ist. */
+   im Level, kein Test, der frei wird. Dafuer steht da, was noch uebrig ist -
+   nach der Markiert-Runde, wie viele markiert sind. "Alles wiederholt"
+   gibt es dort nicht: Sterne bleiben, bis man sie wegnimmt. */
 function topfEnde(){
+  const mitStern = Lx.quelle === 'stern';
   stilleBitte(); uhrAus();
   const scored = Lx.results.filter(r => r !== 'intro' && r !== 'skip').length;
   zaehle('lek');
@@ -9532,24 +9657,220 @@ function topfEnde(){
   const newDay = markToday(); saveProgress(); sound('done');
   const questLob = questZeilen();
   if(questLob) setTimeout(()=>sound('quest'), 850);
-  const rest = topfAnzahl();
+  const rest = mitStern ? sternAnzahl() : topfAnzahl();
   $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('zmajLesson').innerHTML = ''; $('lHerz').style.display = 'none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
-    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp('topf.rest', rest)) + '</div>' +
+    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp(mitStern ? 'stern.rest' : 'topf.rest', rest)) + '</div>' +
       '<div class="stat"><b>🔥 ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
       '<div class="stat"><b>♥ ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
-    (rest === 0 ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
+    (rest === 0 && !mitStern ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
     (newDay ? '<div class="feedback ok">' + t('lektion.heute_geuebt') + '</div>' : '') +
     questLob +
     '<div class="row"><button class="btn ghost" id="lHome"></button>' +
       (rest ? '<button class="btn know" id="lMore"></button>' : '') + '</div>';
   $('lHome').textContent = t('topf.zurueck');
   $('lHome').addEventListener('click', topfSeite);
-  if($('lMore')){ $('lMore').textContent = t('topf.noch'); $('lMore').addEventListener('click', startTopf); }
+  if($('lMore')){ $('lMore').textContent = t('topf.noch'); $('lMore').addEventListener('click', mitStern ? startStern : startTopf); }
   werbungZaehler++;
   werbungNachDemErgebnis('lesson', ()=> Lx);
+}
+
+/* =================== STERN ===================
+   Aufgaben selbst zum Wiederholen markieren - festgelegt von Ajdin am
+   19.10.2026. Anders als der Fehler-Topf entscheidet hier der Lernende:
+   ein Stern bleibt, bis er ihn wieder wegnimmt, auch nach richtigen
+   Antworten.
+     - Markierbar ist jede Aufgabe mit einer Kennung aus topfSchluessel():
+       Woerter (w:), Luecken (s:), Kacheln (k:) und Grammatik (g:). Ein
+       Stern je Wort, egal in welcher Aufgabenart markiert. Keine Level.
+     - Der Knopf (Variante 1 "Ring" aus dem Entwurf, CSS bei .nav .stern)
+       steht unten rechts unter der Aufgabe, gegenueber von "Lektion
+       abbrechen" bzw. "Test abbrechen": in der Lektion, in beiden
+       Wiederhol-Runden und im Level-Test - nicht in der Einstufung, nicht
+       auf dem Ergebnis und nicht auf dem Schirm ohne Leben.
+     - stern[kennung] = {z: wann markiert, r: wann zuletzt in der
+       Markiert-Runde geuebt, 0 = nie}. Hoechstens STERN_MAX; ist es voll,
+       wird nichts still geloescht - der Stern geht nicht an, und eine
+       kurze Meldung sagt warum.
+     - Die Runde: bis zu TOPF_RUNDE, die am laengsten nicht geuebten
+       zuerst (nie geuebte vor allen), sonst die zuerst markierten,
+       gemischt. Woerter bekommen ihre Aufgabenart reihum wie in
+       buildLesson(), Saetze und Grammatik bleiben, was sie sind. Nach
+       jeder Antwort ist die Aufgabe "jetzt geuebt"; der Stern bleibt auch
+       bei richtiger Antwort. Falsch kostet ein Leben, kommt am Ende noch
+       einmal und landet im Fehler-Topf - wie in jeder Lektion.
+     - Der grosse Weitermachen-Knopf oben bleibt, wie er war: er startet
+       nie die Markiert-Runde, nur der Knopf im Kasten "Markiert". */
+const sternAnzahl = () => Object.keys(stern).length;
+const STERN_ART = /^[wskg]:./;
+/* Ein Stand von aussen - Geraetespeicher oder Sicherungsdatei - wird nur
+   so uebernommen: Kennung ein Text mit gueltigem Anfang und hoechstens 200
+   Zeichen, z und r endliche Zahlen ab 0 (r darf fehlen), hoechstens
+   STERN_MAX Eintraege, bei mehr die zuletzt markierten. Kein Zeitpunkt
+   nach jetzt - wie bei den Lerntagen -, sonst stuende ein Eintrag fuer
+   immer hinten in der Runde; er wird auf jetzt gesetzt, nicht verworfen,
+   denn eine falsch gestellte Uhr macht den Stern nicht kaputt. */
+function sternPruefen(roh){
+  if(!roh || typeof roh !== 'object' || Array.isArray(roh)) return {};
+  const jetzt = Date.now();
+  const zahl = x => (typeof x === 'number' && isFinite(x) && x >= 0) ? Math.min(x, jetzt) : null;
+  const liste = [];
+  Object.keys(roh).forEach(k => {
+    const e = roh[k];
+    if(k.length > 200 || !STERN_ART.test(k)) return;
+    if(!e || typeof e !== 'object' || Array.isArray(e)) return;
+    const z = zahl(e.z), r = e.r === undefined ? 0 : zahl(e.r);
+    if(z === null || r === null) return;
+    liste.push([k, {z, r}]);
+  });
+  if(liste.length > STERN_MAX) liste.sort((a, b) => b[1].z - a[1].z);
+  return Object.fromEntries(liste.slice(0, STERN_MAX));
+}
+/* Beim Laden und Einlesen, aus altenFortschrittUmschreiben(): umbenannte
+   Woerter auf ihre neue Kennung ziehen (UMBENANNT, sonst ueber das
+   bosnische Wort, wenn es genau ein Wort damit gibt - bei "sto" fuer
+   hundert und Tisch waere ein Stern auf beiden falsch). Was danach zu
+   keiner Aufgabe mehr fuehrt, faellt still weg, wie in topfAufraeumen().
+   Gibt zurueck, ob sich etwas geaendert hat. */
+function sternUmschreiben(nachWort){
+  if(!CATEGORIES.length) return false;
+  const neu = {};
+  let geaendert = false;
+  Object.keys(stern).forEach(k => {
+    let ziel = k;
+    if(k.slice(0, 2) === 'w:' && !wortNachId(k.slice(2))){
+      const id = k.slice(2);
+      const kand = (UMBENANNT[id] && wortNachId(UMBENANNT[id])) ? [UMBENANNT[id]]
+                 : ((nachWort && nachWort.get(id.slice(id.lastIndexOf(':') + 1))) || []);
+      ziel = kand.length === 1 ? 'w:' + kand[0] : '';
+    }
+    if(!ziel || !topfAufgabe(ziel, {typ: 'mc'})){ geaendert = true; return; }
+    if(ziel !== k) geaendert = true;
+    const e = stern[k], da = neu[ziel];
+    neu[ziel] = da ? {z: Math.min(da.z, e.z), r: Math.max(da.r, e.r)} : e;
+  });
+  if(geaendert) stern = neu;
+  return geaendert;
+}
+/* Der Stern selbst, genau wie im Entwurf: ein regelmaessiger, verrundeter
+   Fuenfzack, die viewBox um seinen Flaechenschwerpunkt. Leer ein Umriss
+   (Strich 1,9), markiert gold gefuellt (Strich 1,25, Verlauf #sternGold
+   unten im Dokument). px: 28 im Knopf, 22 vor dem Titel des Kastens,
+   17 im Satz. bild: der Stern im Satz wird vorgelesen ("... auf Stern."),
+   die anderen sind Schmuck neben einem Namen. */
+const STERN_PFAD = 'M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.544 1.544 0 0 1 9.662 -1.657L6.026 1.62A0.643 0.643 0 0 0 5.827 2.231L6.843 7.02A1.544 1.544 0 0 1 4.561 8.677L0.321 6.232A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z';
+function sternSvg(an, px, bild){
+  return '<svg class="sternsym' + (an ? ' an' : '') + '" viewBox="-12 -12 24 24" width="' + px + '" height="' + px + '" ' +
+    (bild ? 'role="img" aria-label="' + esc(t('stern.symbol')) + '"' : 'aria-hidden="true"') +
+    ' focusable="false"><path style="stroke-width:' + (an ? '1.25' : '1.9') + '" d="' + STERN_PFAD + '"/></svg>';
+}
+/* Den Knopf unter der Aufgabe auf diese Aufgabe stellen. Ohne Aufgabe
+   oder ohne Kennung verschwindet er. Der Name kommt jedes Mal neu, damit
+   er nach einem Sprachwechsel stimmt. */
+function sternKnopf(id, task){
+  const b = $(id);
+  if(!b) return;
+  const k = task ? topfSchluessel(task) : '';
+  b.dataset.k = k;
+  b.hidden = !k;
+  b.classList.remove('pop');
+  if(!k) return;
+  b.setAttribute('aria-label', t('stern.knopf'));
+  sternZeigen(b, !!stern[k]);
+}
+function sternZeigen(b, an){
+  b.setAttribute('aria-pressed', an ? 'true' : 'false');
+  b.innerHTML = sternSvg(an, 28);
+}
+function sternUmschalten(e){
+  const b = e.currentTarget, k = b.dataset.k;
+  if(!k || b.hidden) return;
+  if(stern[k]){
+    delete stern[k];
+    sternZeigen(b, false);
+    ansagen(esc(t('stern.weg')));
+  } else {
+    if(sternAnzahl() >= STERN_MAX){ kurzMeldung(t('stern.voll', {n: STERN_MAX})); return; }
+    stern[k] = {z: Date.now(), r: 0};
+    sternZeigen(b, true);
+    ansagen(esc(t('stern.titel')));
+  }
+  /* Kurz aufploppen - nur mit Bewegung (Schalter "Animationen" und
+     Geraeteeinstellung, wie beim Legen der Kacheln). Ohne Bewegung kaeme
+     kein animationend, und .pop bliebe stehen. */
+  if(!kachelnRuhig()){ b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }
+  buzz(12);
+  saveProgress();
+}
+['lStern', 'tStern'].forEach(id => {
+  $(id).addEventListener('click', sternUmschalten);
+  $(id).addEventListener('animationend', e => e.currentTarget.classList.remove('pop'));
+});
+/* Nach jeder beantworteten Aufgabe der Markiert-Runde: jetzt geuebt. Nur,
+   solange sie noch markiert ist - wer den Stern unterwegs wegnimmt, will
+   sie nicht mehr sehen. */
+function sternGeuebt(task){
+  const e = stern[topfSchluessel(task)];
+  if(e) e.r = Date.now();
+}
+function sternRunde(){
+  const runde = rundeAus(Object.keys(stern).map(k => ({k, e: stern[k]}))
+    .sort((a, b) => (a.e.r - b.e.r) || (a.e.z - b.e.z))
+    .map(x => topfAufgabe(x.k, {typ: 'mc'})).filter(Boolean));
+  /* Wie in buildLesson(), nur ohne Sprechen: das laesst sich ueberspringen,
+     und dann zaehlte es nicht als geuebt. Schreiben nur bei tippbaren
+     Woertern (artenReihum), Hoeren nur, wenn das Geraet vorlesen kann. */
+  const types = ['mc', 'mcrev', 'type']; if(canListen) types.push('listen');
+  const pick = artenReihum(types);
+  runde.forEach(a => { if(a.w) a.typ = pick(a.w); });
+  return runde;
+}
+/* Der Kasten "Markiert" im Reiter Wiederholen, gebaut genau wie der Kasten
+   darueber (topfKasten): dieselben Klassen, dieselbe Zahl, derselbe Knopf.
+   Neu ist nur der Stern vor dem Titel - gold, sobald etwas markiert ist.
+   Ohne Leben wie der Kasten darueber: kein "Runde starten", dafuer der
+   Hinweis und dieselben zwei Wege zu einem Leben. */
+function sternKasten(){
+  const box = $('sternBox');
+  if(!box) return;
+  const n = sternAnzahl();
+  let html = '<h2 id="sternTitel">' + sternSvg(n > 0, 22) + esc(t('stern.titel')) + '</h2><div class="desc">' + esc(t('stern.desc')) + '</div>';
+  if(!n){
+    /* {stern} im Text ist der Stern selbst, als Bild mit Namen */
+    const teile = t('stern.leer').split('{stern}');
+    box.innerHTML = html + '<div class="topfleer">' + esc(teile[0]) +
+      (teile.length > 1 ? sternSvg(false, 17, true) + esc(teile.slice(1).join('')) : '') + '</div>';
+    return;
+  }
+  html += '<div class="topfzahl">' + n + '</div><div class="topfwort">' + esc(tp('stern.anzahl', n)) + '</div>';
+  if(livesNow() > 0){
+    /* aria-describedby: zwei Knoepfe "Runde starten" auf einer Seite - der
+       Screenreader sagt dazu, zu welchem Kasten dieser gehoert. */
+    html += '<div class="row"><button class="btn know" id="sternLos" aria-describedby="sternTitel"></button></div>';
+    box.innerHTML = html;
+    $('sternLos').textContent = t('topf.start');
+    $('sternLos').addEventListener('click', startStern);
+    return;
+  }
+  const herz = VERBRAUCH.find(w => w.id === 'herz');
+  const perVideo = werbungErlaubt(true);
+  const perMuenzen = muenzen() >= herz.preis && herz.geht();
+  html += '<div class="note">' + esc(t('level.keine_leben', {zeit: fmtMin(nextLifeIn())})) + '</div>' +
+    ((perVideo || perMuenzen) ?
+      '<div class="row schmal">' +
+        (perVideo ? '<button class="btn ghost" id="sternAd"></button>' : '') +
+        (perMuenzen ? '<button class="btn ghost" id="sternCoin"></button>' : '') +
+      '</div>' : '') +
+    vollZeileLeben('sternVoll');
+  box.innerHTML = html;
+  if($('sternAd')){ $('sternAd').textContent = t('werbung.leben_holen'); $('sternAd').addEventListener('click', werbungFuerLeben); }
+  if($('sternCoin')){
+    $('sternCoin').textContent = t('lektion.leben_muenzen', {n: herz.preis});
+    $('sternCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); showTopf(); });
+  }
+  vollZeileHorchen('sternVoll');
 }
 
 /* =================== BEWERTUNG ===================
