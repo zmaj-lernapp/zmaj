@@ -151,7 +151,8 @@ def test_main_reicht_pflicht_durch(monkeypatch):
     """--pflicht kommt bei versionsnummer_hochzaehlen an, ein normaler Bau nicht."""
     import app_bauen
     aufrufe = []
-    for name in ("pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "ton_verkleinern", "capacitor",
+    for name in ("pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "cloud_einsetzen",
+                 "ton_verkleinern", "capacitor",
                  "plugins_flicken", "freigabe_aab", "debug_apk"):
         monkeypatch.setattr(app_bauen, name, lambda *args, n=name, **kwargs: aufrufe.append(n))
 
@@ -280,7 +281,7 @@ def test_projekt_zip_ohne_emir_und_pruefwert(tmp_path):
     import projekt_sichern as ps
     huelle = tmp_path / "zmaj-android"
     for rel in ("audio_emir/w0001.mp3", ".ton_opus/abc-24k.ogg", ".git/objects/ab/cdef",
-                "dauer_pruefwert.txt", "android/app/src/main/java/X.java"):
+                "dauer_pruefwert.txt", "cloud_zugang.json", "android/app/src/main/java/X.java"):
         p = huelle / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text("x", encoding="utf-8")

@@ -58,7 +58,10 @@ A change is done when `pytest`, `ruff check .` and `reuse lint` pass and
    `<br>` must appear in every language exactly as in German. Tests check this.
 6. **No network at runtime.** The app loads no fonts, scripts or analytics from
    other servers. Do not add CDNs. Third-party files go into `web/` with an
-   entry in `web/LIZENZEN.txt` and `REUSE.toml`.
+   entry in `web/LIZENZEN.txt` and `REUSE.toml`. The optional cloud backup
+   (`CLOUD_AN` in `web/index.html`, switched off; see `FIREBASE_EINRICHTEN.md`)
+   is the one planned exception: it talks only to Firebase, only after the
+   learner signs in, and never with keys or project IDs from this repository.
 7. **Patch scripts are all-or-nothing.** The `*_richten.py` pattern: dry run by
    default, `--schreiben` to write, abort without changes if an anchor is not
    found exactly once. New ones build on `richten.py`, which implements this
