@@ -1611,7 +1611,9 @@
   <!-- ===== Laden ===== -->
   <div id="shopView" style="display:none">
     <div class="section">
-      <h2 data-t="laden.titel"></h2>
+      <!-- id fuer hautAlleVerdrahten(); ohne Tippfarbe, damit die
+           Ueberschrift beim Antippen nicht aufleuchtet. 19.10.2026 -->
+      <h2 id="ladenTitel" data-t="laden.titel" style="-webkit-tap-highlight-color:transparent"></h2>
       <!-- Die Muenzzahl steht oben in der Kopfleiste, nicht mehr als Satz. -->
       <div class="sprachwahl" id="ladenWahl" style="margin-bottom:12px">
         <button type="button" class="field sprachkopf" id="ladenKopf" aria-expanded="false"></button>
@@ -1973,7 +1975,7 @@ const ZIERRAT = [
   {id:'funkeln',        gruppe:'effekt', voll:true},
 ].map(w => Object.assign(w, {
   titel: 'laden.' + w.id, sub: 'laden.' + w.id + '_sub',
-  geht: w.voll ? (() => unlimited()) : (() => !besitz.has(w.id)),
+  geht: w.voll ? (() => unlimited()) : (() => !hatStueck(w.id)),
 }));
 const VOLL_STUECKE = new Set(ZIERRAT.filter(w => w.voll).map(w => w.id));
 const istVollStueck = id => VOLL_STUECKE.has(id);
@@ -2688,6 +2690,17 @@ let rekord = 0;
 let wann = {};
 let muenzenGes = 0, muenzenAus = 0;   // jemals verdient / jemals ausgegeben
 let besitz = new Set();   // gekaufter Zierrat, z. B. "hut"
+/* Alle Muenz-Farben ohne Kauf, nur fuer uns - siehe hautAlleVerdrahten().
+   Wie der Dauerschalter nur im Geraetespeicher, nie im Lernstand und nie in
+   der Sicherungsdatei: besitz bleibt, was wirklich gekauft ist. 19.10.2026 */
+const HAUT_ALLE_SCHLUESSEL = 'zmaj_hautalle';
+let hautAlle = false;
+try{ hautAlle = localStorage.getItem(HAUT_ALLE_SCHLUESSEL) === '1'; }catch(e){}
+/* Zaehlt fuer Laden, Tragen und Drachen als besessen: gekauft, oder bei
+   eingeschaltetem Schalter eine Farbe mit Muenzpreis. Die Farben der
+   Vollversion haengen weiter allein an unlimited(). */
+const hatStueck = id => besitz.has(id)
+  || (hautAlle && ZIERRAT.some(w => w.id === id && w.gruppe === 'farbe' && !w.voll));
 // Aufsetzen oder abnehmen ist eine Geraeteeinstellung wie Ton und Animation.
 // Der Wert kommt weiter unten aus localStorage, sobald pref() bereitsteht.
 /* Getragen wird jetzt mehreres: eine durch Komma getrennte Liste, hoechstens
@@ -3297,7 +3310,7 @@ function getrageneTeile(){
    gekauft. Ohne diese Ausnahme blieb der Drache blau, obwohl Gold
    getragen war. Beim Bauen in der Vorschau aufgefallen, 29.09.2026. */
 const getrageneFarbe = () => getragenListe()
-  .find(id => FARBEN[id] && (besitz.has(id) || istVollStueck(id))) || '';
+  .find(id => FARBEN[id] && (hatStueck(id) || istVollStueck(id))) || '';
 /* Ohne Vorgabe zeigt der Drache, was der Nutzer wirklich traegt. Mit
    Vorgabe zeigt er etwas anderes - gebraucht wird das genau einmal, im
    Kaufkasten: dort steht er in voller Montur, damit man sieht, was man
@@ -4350,6 +4363,165 @@ function standAlsObjekt(){
              nicht, eine neue nimmt ein fehlendes als "nichts markiert". */
           stern: stern};
 }
+/* ---- Zwei Lernstaende zusammenfuehren (19.10.2026) ----
+   Fuer die Cloud-Sicherung (siehe CLOUD-SICHERUNG weiter unten): a ist der
+   Stand dieses Geraets, b der aus der Cloud - von einem zweiten Geraet oder
+   einer frueheren Installation. Zusammenfuehren statt ueberschreiben: das
+   alte start.py ersetzte die Listen, und das zweite Geraet loeschte, was
+   das erste gelernt hatte.
+   Rein: liest a und b, aendert weder sie noch die App und gibt einen neuen
+   Stand im Format von standAlsObjekt() zurueck. Idempotent (m mit m ergibt
+   m) und kommutativ (a mit b gleich b mit a) - bis auf "getragen", siehe
+   dort. Listen kommen sortiert heraus, damit beide Richtungen dasselbe
+   ergeben; in der App sind es ohnehin Mengen.
+   Jedes Feld aus standAlsObjekt() ist hier bewusst behandelt (der Test
+   tests_e2e/test_cloud.py vergleicht die Schluessel):
+     gewusst, bestanden,   Vereinigung. Gelernt ist gelernt, egal auf
+     gelesen               welchem Geraet.
+     tage, frost           Vereinigung. Ein Lerntag auf dem Tablet zaehlt
+                           fuer die Serie wie einer auf dem Handy.
+     gefeiert              Vereinigung. Was ein Geraet gefeiert hat, feiert
+                           das andere nicht noch einmal.
+     besitz                Vereinigung. Gekauft ist gekauft; bezahlt wird es
+                           ueber muenzen_aus.
+     muenzen_ges,          je das Maximum. Beides sind Zaehler, die nur
+     muenzen_aus           wachsen ("jemals verdient / ausgegeben"); die
+                           Summe zaehlte die gemeinsame Vorgeschichte doppelt,
+                           und jeder weitere Abgleich noch einmal. Was zwei
+                           Geraete getrennt verdient haben, zaehlt so nur
+                           einmal - lieber zu wenig als erfundene Muenzen.
+                           Ausgegeben aber mindestens die Preise von allem in
+                           besitz (dieselbe Regel wie in sicherungPlausibel):
+                           wer auf zwei Geraeten getrennt je fuer 100 gekauft
+                           hat, hat 200 ausgegeben.
+     rekord                Maximum. standUebernehmen() kappt ihn danach an
+                           den Lerntagen und rechnet aus den vereinigten
+                           Tagen nach.
+     geschenk_jahr         Maximum - ein gegebenes Geschenk geht nie wieder
+                           auf, wie in standUebernehmen().
+     wann                  je Schluessel das fruehere Datum: "wann zuerst
+                           geschafft".
+     tagwerk               je Tag und Zaehler das Maximum. Die Summe waere bei
+                           zwei Geraeten am selben Tag genauer, aber nicht
+                           idempotent - jeder Abgleich zaehlte den Tag noch
+                           einmal dazu, und die Tagesaufgaben gaeben neue
+                           Muenzen.
+     topf                  Vereinigung der Schluessel. Steht ein Fehler auf
+                           beiden Seiten, gewinnt der neuere Fehler (groesseres
+                           z): seine Zaehlung n beginnt bei ihm, die andere
+                           gehoert zu einem frueheren. Bei gleichem z das
+                           kleinere n - lieber einmal mehr ueben als einen
+                           Fehler verlieren, der nur auf einem Geraet geuebt
+                           wurde. Hoechstens TOPF_MAX, es bleiben die
+                           neuesten, wie in topfMerken().
+     stern                 Vereinigung. Auf beiden Seiten markiert: das
+                           neuere z (zuletzt markiert) und das groessere r
+                           (zuletzt geuebt). Danach sternPruefen().
+     leben, schutz         die Seite mit dem neueren Zeitstempel zeit - dort
+                           ist zuletzt etwas passiert (Herz verloren, Schutz
+                           verbraucht). Bei gleicher Zeit die kleinere
+                           Anzahl: ein Abgleich verschenkt keine Herzen.
+     einstufung            die neuere (tag); fehlt sie auf einer Seite, die
+                           andere. Bei gleichem Tag entscheidet der Text -
+                           nur damit beide Richtungen dasselbe ergeben.
+     bewertung             gezeigt vereinigt, nein und bewertet je "oder":
+                           wer auf einem Geraet abgelehnt oder bewertet hat,
+                           wird auf keinem mehr gefragt. Einen Zeitstempel
+                           hat sie nicht; beide Merker gehen nur von false
+                           nach true, das "oder" ist also der neuere Stand.
+     getragen              eine Wahl, kein Fortschritt: das Geraet (a)
+                           gewinnt, traegt es nichts, die Cloud. Die einzige
+                           Stelle, die nicht kommutativ ist - mit Absicht,
+                           das Geraet bleibt massgeblich.
+   Was sonst im Stand steht (etwa premium aus einer alten Datei), faellt weg.
+   Nicht hier, sondern drumherum geprueft wird, ob etwas plausibel ist: b
+   kommt von aussen wie eine Sicherungsdatei und geht vorher durch
+   sicherungPlausibel(), das Ergebnis durch standUebernehmen() - siehe
+   cloudUebernehmen(). sicherungPlausibel() auf das Ergebnis hiesse, die
+   eigenen Muenzen und Lerntage dieses Geraets zu kappen; genau das schliesst
+   der Kommentar in standUebernehmen() fuer den eigenen Stand aus. */
+function standZusammenfuehren(a, b){
+  const objekt = x => (x && typeof x === 'object' && !Array.isArray(x)) ? x : null;
+  a = objekt(a) || {}; b = objekt(b) || {};
+  const texte = x => Array.isArray(x) ? x.filter(s => typeof s === 'string') : [];
+  const vereint = (x, y) => [...new Set(texte(x).concat(texte(y)))].sort();
+  const zahl = x => (typeof x === 'number' && isFinite(x) && x >= 0) ? x : 0;
+  const schluessel = (x, y) => [...new Set(Object.keys(x).concat(Object.keys(y)))].sort();
+  const textVergleich = (x, y) => x < y ? -1 : (x > y ? 1 : 0);
+  const m = {};
+  ['gewusst', 'bestanden', 'gelesen', 'tage', 'frost', 'gefeiert', 'besitz']
+    .forEach(k => { m[k] = vereint(a[k], b[k]); });
+  const preis = id => { const w = ZIERRAT.find(x => x.id === id && !x.voll); return w ? w.preis : 0; };
+  m.muenzen_ges = Math.max(ganzAbNull(a.muenzen_ges), ganzAbNull(b.muenzen_ges));
+  m.muenzen_aus = Math.max(ganzAbNull(a.muenzen_aus), ganzAbNull(b.muenzen_aus),
+                           m.besitz.reduce((s, id) => s + preis(id), 0));
+  m.rekord = Math.max(ganzAbNull(a.rekord), ganzAbNull(b.rekord));
+  m.geschenk_jahr = Math.max(ganzAbNull(a.geschenk_jahr), ganzAbNull(b.geschenk_jahr));
+  /* Nichts aus der Zukunft (Pruefbefund 19.10.2026): eine vorgestellte
+     Handy-Uhr oder ein gefaelschtes Cloud-Dokument brachte sonst einen
+     Fehler mit z weit voraus mit. topfRunde() nimmt das kleinste z zuerst,
+     topfMerken() verdraengt das kleinste - so ein Fehler kaeme nie mehr
+     dran und ginge nie mehr weg, und die Cloud truege ihn auf jedes
+     Geraet. z wird darum wie in sternPruefen() auf jetzt gekappt; Tage
+     und Daten nach heute fallen weg. */
+  const jetzt = Date.now(), heute = today();
+  const bisHeute = d => istDatum(d) && d <= heute;
+  /* Object.fromEntries statt Zuweisung: ein Schluessel "__proto__" aus einer
+     fremden Datei wird so ein gewoehnlicher Eintrag, wie bei topf. */
+  const wa = objekt(a.wann) || {}, wb = objekt(b.wann) || {};
+  m.wann = Object.fromEntries(schluessel(wa, wb).map(k => {
+    const x = bisHeute(wa[k]) ? wa[k] : '', y = bisHeute(wb[k]) ? wb[k] : '';
+    return [k, (x && y) ? (x < y ? x : y) : (x || y)];
+  }).filter(([, d]) => d));
+  const ta = objekt(a.tagwerk) || {}, tb = objekt(b.tagwerk) || {};
+  m.tagwerk = Object.fromEntries(schluessel(ta, tb).filter(bisHeute).map(tag => {
+    const x = objekt(ta[tag]) || {}, y = objekt(tb[tag]) || {};
+    return [tag, Object.fromEntries(schluessel(x, y).map(id => [id, Math.max(zahl(x[id]), zahl(y[id]))]))];
+  }));
+  const eintrag = e => { e = objekt(e); return (e && typeof e.typ === 'string') ? {typ: e.typ, n: ganzAbNull(e.n), z: Math.min(zahl(e.z), jetzt)} : null; };
+  const pa = objekt(a.topf) || {}, pb = objekt(b.topf) || {};
+  const topfListe = schluessel(pa, pb).filter(k => k.length <= 200 && STERN_ART.test(k)).map(k => {
+    const x = eintrag(pa[k]), y = eintrag(pb[k]);
+    if(!x || !y) return [k, x || y];
+    if(x.z !== y.z) return [k, x.z > y.z ? x : y];
+    if(x.n !== y.n) return [k, x.n < y.n ? x : y];
+    return [k, x.typ <= y.typ ? x : y];
+  }).filter(([, e]) => e);
+  topfListe.sort((p, q) => (q[1].z - p[1].z) || textVergleich(p[0], q[0]));
+  m.topf = Object.fromEntries(topfListe.slice(0, TOPF_MAX));
+  const sa = objekt(a.stern) || {}, sb = objekt(b.stern) || {};
+  m.stern = sternPruefen(Object.fromEntries(schluessel(sa, sb).map(k => {
+    const x = objekt(sa[k]), y = objekt(sb[k]);
+    return [k, (x && y) ? {z: Math.max(zahl(x.z), zahl(y.z)), r: Math.max(zahl(x.r), zahl(y.r))} : (x || y)];
+  })));
+  const zeitWahl = (x, y, max, leer) => {
+    const gut = e => {
+      e = objekt(e);
+      if(!e || typeof e.anzahl !== 'number' || !isFinite(e.anzahl)) return null;
+      return {anzahl: Math.max(0, Math.min(max, Math.floor(e.anzahl))),
+              zeit: (typeof e.zeit === 'number' && isFinite(e.zeit)) ? e.zeit : 0};
+    };
+    x = gut(x); y = gut(y);
+    if(!x || !y) return x || y || leer;
+    if(x.zeit !== y.zeit) return x.zeit > y.zeit ? x : y;
+    return x.anzahl <= y.anzahl ? x : y;
+  };
+  m.leben = zeitWahl(a.leben, b.leben, LEBEN_MAX, {anzahl: LEBEN_MAX, zeit: 0});
+  m.schutz = zeitWahl(a.schutz, b.schutz, SCHUTZ_MAX, {anzahl: 1, zeit: 0});
+  const ea = objekt(a.einstufung), eb = objekt(b.einstufung);
+  const tagVon = e => istDatum(e.tag) ? e.tag : '';
+  m.einstufung = (!ea || !eb) ? (ea || eb || null)
+    : (tagVon(ea) !== tagVon(eb)) ? (tagVon(ea) > tagVon(eb) ? ea : eb)
+    : (JSON.stringify(ea) >= JSON.stringify(eb) ? ea : eb);
+  const ba = objekt(a.bewertung) || {}, bb = objekt(b.bewertung) || {};
+  m.bewertung = {gezeigt: vereint(ba.gezeigt, bb.gezeigt).filter(istDatum),
+                 nein: !!(ba.nein || bb.nein), bewertet: !!(ba.bewertet || bb.bewertet)};
+  const ga = typeof a.getragen === 'string' ? a.getragen : '';
+  m.getragen = ga || (typeof b.getragen === 'string' ? b.getragen : '');
+  /* Eine tiefe Kopie: das Ergebnis teilt nichts mit a oder b. Sonst haengte
+     standUebernehmen() etwa die einstufung des alten Stands wieder ein. */
+  return JSON.parse(JSON.stringify(m));
+}
 /* ---- Die Vollversion ----
    Sie gehoert nicht in den Lernstand. Vorher stand sie dort, und damit
    wanderte sie durch die Sicherungsdatei: wer eine fremde Sicherung einlas,
@@ -4682,6 +4854,42 @@ function dauerVollVerdrahten(){
       return;
     }
     dauerVollSetzen(true); renderLives(); vollZeileZeigen();
+  });
+}
+/* ---- Alle Muenz-Farben fuer uns ----
+   Ajdin am 19.10.2026: alle Farben, die es fuer Muenzen gibt, tragen, ohne
+   sie zu kaufen - nur fuer sich. Dasselbe Wort wie beim Dauerschalter
+   (derselbe Pruefwert, dauerWortStimmt), aber eine andere Stelle: siebenmal
+   auf die Ueberschrift "Laden", waehrend der Reiter Farben gewaehlt ist,
+   hoechstens zwei Sekunden zwischen zwei Tipps. Nochmal so schaltet aus.
+   Warum dort: die Ueberschrift ist kein Knopf und tut sonst nichts, der
+   Zaehler stoert also keine Bedienung, und siebenmal schnell tippt dort
+   niemand. Die Muenzanzeige fuehrt in den Laden, der Reiterkopf klappt die
+   Liste auf - beide fielen deshalb weg. Und die Wirkung steht gleich
+   darunter: "Tragen" statt Preis.
+   Gekauft wird nichts, besitz und Muenzen bleiben, wie sie sind. Ist der
+   Schalter aus, faellt eine nicht gekaufte Farbe vom Drachen wie ein Stueck
+   der Vollversion nach dem Abo; gespeichert bleibt sie. */
+function hautAlleSetzen(an){
+  hautAlle = !!an;
+  try{ localStorage.setItem(HAUT_ALLE_SCHLUESSEL, an ? '1' : '0'); }catch(e){}
+}
+function hautAlleVerdrahten(){
+  const z = $('ladenTitel'); if(!z) return;
+  let n = 0, uhr = 0;
+  z.addEventListener('click', async ()=>{
+    if(ladenReiter !== 'farbe'){ n = 0; return; }
+    clearTimeout(uhr); uhr = setTimeout(()=>{ n = 0; }, 2000);
+    if(++n < 7) return;
+    n = 0; clearTimeout(uhr);
+    const wort = await frageWort('Wort?');
+    if(wort === null) return;
+    if(!(await dauerWortStimmt(wort.trim().toLowerCase()))) return;
+    if(hautAlle && !(await frage(t('laden.reiter_farbe'),
+                                 'Sie sind eingeschaltet. Ausschalten?',
+                                 'Ausschalten', 'Anlassen'))) return;
+    hautAlleSetzen(!hautAlle);
+    renderLaden(); drachenNeu();
   });
 }
 async function loadProgress(){
@@ -5854,8 +6062,9 @@ function frage(titel, text, ja, nein){
 }
 
 /* Wie frage(), aber mit einem Eingabefeld. Liefert den Text oder null.
-   Gebraucht wird das einmal: für den versteckten Schalter der dauerhaften
-   Vollversion. prompt() täte es auch, sieht aber nach Browser aus. */
+   Gebraucht wird das für den versteckten Schalter der dauerhaften
+   Vollversion und seit 19.10.2026 für den der Farben (hautAlleVerdrahten).
+   prompt() täte es auch, sieht aber nach Browser aus. */
 function frageWort(titel, text){
   if(frageSchliessen) return Promise.resolve(null);
   return new Promise(fertig => {
@@ -6823,7 +7032,7 @@ function renderLaden(){
     : '<button class="btn kauf ghost" data-vollstueck="1"'+knopfName(w, t('laden.nur_voll'))+'>'+t('laden.nur_voll')+'</button>';
   const zierratZeile = w => w.voll
     ? zeile(w, unlimited() ? tragenKnopf(w) : vollKnopf(w))
-    : (besitz.has(w.id) ? zeile(w, tragenKnopf(w)) : zeile(w, preisKnopf(w)));
+    : (hatStueck(w.id) ? zeile(w, tragenKnopf(w)) : zeile(w, preisKnopf(w)));
   /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
      ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
      Tageskontingent, siehe WERBUNG_MAX_LOHN.
@@ -6877,7 +7086,7 @@ function renderLaden(){
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
    dasselbe tippen nimmt es ab. */
 function trage(id){
-  if(!besitz.has(id) && !(istVollStueck(id) && unlimited())) return;
+  if(!hatStueck(id) && !(istVollStueck(id) && unlimited())) return;
   const g = gruppeVon(id);
   const runter = traegt(id);
   // Rohe Liste: siehe getragenRoh(). Sonst faellt hier heraus, was das
@@ -7010,10 +7219,43 @@ $('wegForm').addEventListener('submit', async e=>{
    Datei ueber Capacitor in den Zwischenspeicher und reichen sie ans
    Teilen-Menue weiter; der Nutzer schickt sie sich dann selbst zu oder legt
    sie in seine Cloud. Im Browser am PC bleibt es beim normalen Download. */
+/* Die Datei als Objekt. Die Cloud-Sicherung speichert genau dieses JSON
+   (ohne Einrueckung), damit ein Stand aus der Cloud auch als Datei
+   eingelesen werden kann und umgekehrt. 19.10.2026 */
+function sicherungObjekt(stand){
+  return {app:'zmaj', version:1,
+          datum:new Date().toISOString().slice(0,10),
+          stand: stand || standAlsObjekt()};
+}
 function sicherungInhalt(){
-  return JSON.stringify({app:'zmaj', version:1,
-                         datum:new Date().toISOString().slice(0,10),
-                         stand:standAlsObjekt()}, null, 1);
+  return JSON.stringify(sicherungObjekt(), null, 1);
+}
+/* Der Lernstand aus einer Sicherung, oder null, wenn es keine ist. */
+function sicherungStandAus(d){
+  // typeof [] ist auch 'object'. Eine Datei mit "stand": [] kaeme sonst
+  // durch und wuerde den Lernstand nicht ersetzen, sondern loeschen.
+  if(!d || d.app !== 'zmaj' || !d.stand || typeof d.stand !== 'object' || Array.isArray(d.stand)) return null;
+  return d.stand;
+}
+/* Einen neuen Stand uebernehmen - mit Rueckweg. machen() liefert ihn und
+   laeuft schon innerhalb der Absicherung. Gibt zurueck, ob es geklappt hat.
+   Gebraucht beim Einlesen einer Datei und seit 19.10.2026 beim
+   Zusammenfuehren mit der Cloud (cloudUebernehmen). */
+function standErsetzen(machen){
+  /* Wirft das Uebernehmen trotz der Pruefungen in standUebernehmen(), kommt
+     der alte Stand zurueck - sonst speicherte das naechste saveProgress()
+     einen halb uebernommenen. import_richten.py, 04.10.2026. */
+  const vorher = standAlsObjekt();
+  /* standUebernehmen() schreibt Geschenkjahr und getragenes Stueck sofort
+     in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
+     sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
+  const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
+  try{ standUebernehmen(machen()); altenFortschrittUmschreiben(); return true; }
+  catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
+           geschenk = geschenkVorher; getragen = getragenVorher;
+           try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
+                localStorage.setItem('zmaj_getragen', getragen); }catch(e2){}
+           return false; }
 }
 function sicherungName(){ return 'zmaj-sicherung-' + new Date().toISOString().slice(0,10) + '.json'; }
 
@@ -7058,30 +7300,20 @@ async function sicherungEinlesen(datei){
   let d;
   try{ d = JSON.parse(await datei.text()); }
   catch(e){ note.textContent = t('set.sicherung_keine'); return; }
-  // typeof [] ist auch 'object'. Eine Datei mit "stand": [] kaeme sonst
-  // durch und wuerde den Lernstand nicht ersetzen, sondern loeschen.
-  if(!d || d.app !== 'zmaj' || !d.stand || typeof d.stand !== 'object' || Array.isArray(d.stand)){
+  // Die Pruefung der Form steht in sicherungStandAus() (19.10.2026).
+  if(!sicherungStandAus(d)){
     note.textContent = t('set.sicherung_keine'); return;
   }
   if(!await frage(t('set.sicherung'), t('set.sicherung_frage'),
                   t('btn.ersetzen'), t('btn.dialog_abbrechen'))) return;
-  /* Wirft das Uebernehmen trotz der Pruefungen in standUebernehmen(), kommt
-     der alte Stand zurueck - sonst speicherte das naechste saveProgress()
-     einen halb uebernommenen. import_richten.py, 04.10.2026. */
-  const vorher = standAlsObjekt();
-  /* standUebernehmen() schreibt Geschenkjahr und getragenes Stueck sofort
-     in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
-     sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
-  const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
-  /* sicherungPlausibel(): Lerntage nur von APP_START bis heute, Muenzen nur
+  /* Der Rueckweg, falls das Uebernehmen wirft, steht seit 19.10.2026 in
+     standErsetzen() - die Cloud-Sicherung braucht ihn genauso.
+     sicherungPlausibel(): Lerntage nur von APP_START bis heute, Muenzen nur
      so viele, wie sich damit verdienen lassen, Zierrat nur so viel, wie
      diese Muenzen bezahlen (17.10.2026). */
-  try{ standUebernehmen(sicherungPlausibel(d.stand)); altenFortschrittUmschreiben(); }
-  catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
-           geschenk = geschenkVorher; getragen = getragenVorher;
-           try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
-                localStorage.setItem('zmaj_getragen', getragen); }catch(e2){}
-           note.textContent = t('set.sicherung_keine'); return; }
+  if(!standErsetzen(() => sicherungPlausibel(d.stand))){
+    note.textContent = t('set.sicherung_keine'); return;
+  }
   /* Dieselbe Umschreibung wie beim normalen Start (nachAnmeldung). Die
      Kennung eines Wortes ist "bedeutung:wort"; wird eine deutsche Bedeutung
      berichtigt, aendert sich die Kennung mit. Eine Sicherung von vor der
@@ -7110,6 +7342,334 @@ $('sichDatei').addEventListener('change', async e=>{
   e.target.value = '';          // damit dieselbe Datei nochmal gewaehlt werden kann
   if(datei) await sicherungEinlesen(datei);
 });
+
+/* =================== CLOUD-SICHERUNG (vorbereitet, aus) ===================
+   19.10.2026. Ajdin am 18.10.2026: "dann machen wir firebase" - eingeschaltet
+   wird aber erst nach dem Produktionsstart. Bis dahin steht CLOUD_AN auf
+   false, und dann passiert hier NICHTS: keine Anfrage ins Netz, keine
+   Oberflaeche, kein Eintrag im Geraetespeicher. Ohne Adapter tut keine
+   Funktion unten etwas, und einen Adapter gibt es nur mit CLOUD_AN und
+   eingesetzten Zugangsdaten (cloudAdapter). Einschalten: siehe
+   FIREBASE_EINRICHTEN.md.
+
+   Die Regeln aus der Recherche vom 18.10.2026:
+     - Das Geraet bleibt massgeblich, die Cloud ist nur Sicherung. Gelernt
+       und gerechnet wird weiter mit dem Geraetespeicher.
+     - Hoechstens ein Schreibvorgang je Nutzer und Tag und nur, wenn sich
+       etwas geaendert hat (Spark: 20 000 am Tag fuer alle zusammen), dazu
+       einer beim ersten Anmelden. Gelesen wird beim ersten Start des Tages
+       und vor jedem Schreiben.
+     - In der Cloud steht dasselbe JSON wie in der Sicherungsdatei
+       (sicherungObjekt), als ein Text in users/{uid}. Keine
+       Firebase-Sonderfunktionen: fuer einen anderen Anbieter genuegt ein
+       neuer Adapter mit anmelden, laden, speichern und loeschen.
+     - Zusammenfuehren statt ueberschreiben, siehe standZusammenfuehren().
+       Zusammengefuehrt wird aber nur, wenn seit dem eigenen letzten
+       Abgleich jemand anderes geschrieben hat (rev passt nicht mehr). Sonst
+       schreibt das Geraet seinen Stand einfach drueber - sonst kaeme ein
+       hier weggenommener Stern oder ein fertig geuebter Fehler aus der
+       eigenen alten Sicherung wieder zurueck.
+     - Fehler oder kein Netz: still, beim naechsten Anlass noch einmal.
+   Angestossen wird der Abgleich beim Start (nur lesen) und wenn die App in
+   den Hintergrund geht (schreiben, hoechstens einmal am Tag) - dann ist der
+   Stand des Tages am vollstaendigsten. */
+const CLOUD_AN = false;
+/* Platzhalter wie beim Dauer-Pruefwert: app_bauen.py (cloud_einsetzen)
+   setzt beim Bauen die Werte aus der privaten Huelle ein
+   (cloud_zugang.json). Im Repository stehen sie nie. */
+const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';
+const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';
+/* Was dieses Geraet sich merkt, erst nach dem Anmelden:
+     art, uid  das Konto ('google' oder 'anonym')
+     token     der Erneuerungsschluessel der Anmeldung - liegt im
+               App-Speicher wie der Lernstand selbst
+     rev       Kennung des Cloud-Stands, den dieses Geraet zuletzt
+               geschrieben oder eingearbeitet hat
+     fp        Fingerabdruck des zuletzt hochgeladenen Stands
+     tag       Tag des letzten Schreibens, gelesen der des letzten Lesens */
+const CLOUD_MERKER = 'zmaj_cloud';
+/* Auch nach Jahren wird ein Stand nicht so gross (alle Woerter, Topf und
+   Sterne voll: rund 150 000 Zeichen). Dieselbe Grenze steht in
+   firestore.rules. */
+const CLOUD_GROESSE_MAX = 400000;
+let cloudLaeuft = false;   // immer nur ein Abgleich zur Zeit
+let cloudFirestoreAdapter = null;
+const cloudEingerichtet = () => /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/.test(CLOUD_PROJEKT)
+  && /^AIza[0-9A-Za-z_-]{35}$/.test(CLOUD_SCHLUESSEL);
+function cloudAdapter(){
+  if(!CLOUD_AN || !cloudEingerichtet()) return null;
+  if(!cloudFirestoreAdapter) cloudFirestoreAdapter = cloudFirestore(CLOUD_PROJEKT, CLOUD_SCHLUESSEL);
+  return cloudFirestoreAdapter;
+}
+function cloudMerker(){
+  try{
+    const m = JSON.parse(localStorage.getItem(CLOUD_MERKER) || 'null');
+    return (m && typeof m === 'object' && !Array.isArray(m) && typeof m.uid === 'string' && m.uid) ? m : null;
+  }catch(e){ return null; }
+}
+/* nurWennGleich: nur, wenn noch dasselbe Konto angemeldet ist. Wer sich
+   waehrend eines Abgleichs abmeldet, waere sonst gleich wieder angemeldet. */
+function cloudMerkerSetzen(m, nurWennGleich){
+  if(nurWennGleich){ const jetzt = cloudMerker(); if(!jetzt || jetzt.uid !== m.uid) return; }
+  try{ localStorage.setItem(CLOUD_MERKER, JSON.stringify(m)); }catch(e){}
+}
+/* Ob sich seit dem letzten Hochladen etwas geaendert hat. Ein kurzer
+   Fingerabdruck (cyrb53, 64 Bit) statt des ganzen Texts, der sonst ein
+   zweites Mal im Geraetespeicher laege. */
+function cloudFingerabdruck(stand){
+  const s = JSON.stringify(stand);
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for(let i = 0; i < s.length; i++){
+    const c = s.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
+}
+function cloudStandAus(text){
+  try{ return typeof text === 'string' ? sicherungStandAus(JSON.parse(text)) : null; }
+  catch(e){ return null; }
+}
+/* Den Stand aus der Cloud einarbeiten. Er kommt von aussen wie eine
+   Sicherungsdatei, also zuerst durch sicherungPlausibel(); das Ergebnis
+   geht in standErsetzen() durch standUebernehmen(). Danach dasselbe wie
+   nach dem Einlesen einer Datei (sicherungEinlesen). */
+function cloudUebernehmen(fremd){
+  if(!standErsetzen(() => standZusammenfuehren(standAlsObjekt(), sicherungPlausibel(fremd)))) return false;
+  seitNachEinlesen();
+  geschenkPruefen();
+  syncLives(); pruefeSchutz();
+  saveProgress();
+  renderLives();
+  /* Auf der Startseite gleich zeigen, was dazugekommen ist. Mitten in einer
+     Lektion nicht - dort gilt der neue Stand ab der naechsten. */
+  if(sichtbar('pfad') && !frageSchliessen) showHome();
+  return true;
+}
+/* Der Abgleich. anlass: 'start' (nur lesen, einmal am Tag), 'pause' (App
+   geht in den Hintergrund: schreiben, hoechstens einmal am Tag) oder
+   'anmelden' (lesen und schreiben, zaehlt nicht als der eine am Tag).
+   Gibt zurueck, was passiert ist - nur fuer die Tests. */
+async function cloudAbgleich(anlass, adapter = cloudAdapter()){
+  const m = cloudMerker();
+  if(!adapter || !m || cloudLaeuft || !standGeladen || MIT_SERVER) return 'nichts';
+  const heute = today(), erstes = anlass === 'anmelden';
+  const schreiben = erstes || (anlass === 'pause' && m.tag !== heute);
+  if(!schreiben && m.gelesen === heute) return 'nichts';
+  /* Heute schon gelesen und seit dem letzten Hochladen nichts Neues: dann
+     auch keine Anfrage. */
+  if(schreiben && !erstes && m.gelesen === heute && m.fp === cloudFingerabdruck(standAlsObjekt())) return 'unveraendert';
+  cloudLaeuft = true;
+  try{
+    const dok = await adapter.laden(m);
+    m.gelesen = heute;
+    const fremd = !!dok && dok.rev !== m.rev;
+    if(fremd){
+      /* Ist der Text dort kaputt, gibt es nichts einzuarbeiten - dann
+         ersetzt ihn unten der eigene Stand. Wirft das Einarbeiten, wird
+         lieber nicht geschrieben: dort koennte ein anderes Geraet stehen. */
+      const s = cloudStandAus(dok.text);
+      if(s && !cloudUebernehmen(s)) return 'fehler';
+      m.rev = dok.rev;
+    }
+    if(!schreiben){ cloudMerkerSetzen(m, true); return fremd ? 'zusammengefuehrt' : 'gelesen'; }
+    const stand = standAlsObjekt(), fp = cloudFingerabdruck(stand);
+    if(!erstes && dok && !fremd && fp === m.fp){ cloudMerkerSetzen(m, true); return 'unveraendert'; }
+    const text = JSON.stringify(sicherungObjekt(stand));
+    if(text.length > CLOUD_GROESSE_MAX){ cloudMerkerSetzen(m, true); return 'zu gross'; }
+    const rev = geraetId() + '.' + Date.now().toString(36);
+    await adapter.speichern(m, {text, rev});
+    m.rev = rev; m.fp = fp;
+    if(!erstes) m.tag = heute;
+    cloudMerkerSetzen(m, true);
+    return 'gespeichert';
+  }catch(e){
+    // Kein Netz oder abgelehnt: der Tag ist nicht verbraucht.
+    cloudMerkerSetzen(m, true);
+    return 'fehler';
+  }finally{ cloudLaeuft = false; }
+}
+/* art: 'google' oder 'anonym'. Gibt zurueck, ob die Anmeldung geklappt hat;
+   ob der erste Abgleich gleich durchkam, ist egal - sonst eben beim
+   naechsten Anlass. */
+async function cloudAnmelden(art, adapter = cloudAdapter()){
+  if(!adapter || !standGeladen || MIT_SERVER || cloudLaeuft) return false;
+  let konto = null;
+  try{ konto = await adapter.anmelden(art); }catch(e){}
+  if(!konto || typeof konto.uid !== 'string' || !konto.uid) return false;
+  /* Dasselbe Konto noch einmal: rev und fp bleiben. Ein anderes faengt von
+     vorn an - sein Stand wird beim Abgleich zusammengefuehrt. */
+  const alt = cloudMerker();
+  cloudMerkerSetzen(alt && alt.uid === konto.uid
+    ? Object.assign(alt, {art, token: konto.token || ''})
+    : {art, uid: konto.uid, token: konto.token || ''});
+  await cloudAbgleich('anmelden', adapter);
+  return true;
+}
+/* Abmelden ist nur Vergessen auf diesem Geraet - ohne Netz. */
+function cloudAbmelden(){ try{ localStorage.removeItem(CLOUD_MERKER); }catch(e){} }
+/* Konto und Sicherung in der Cloud loeschen. Google Play verlangt das fuer
+   jede App, in der man ein Konto anlegen kann. Der Stand auf dem Geraet
+   bleibt. Gibt zurueck: true (beides weg), 'konto bleibt' (die Sicherung
+   ist weg, das Konto nicht - siehe loeschen im Adapter) oder false (nichts
+   geloescht, angemeldet bleiben fuer einen neuen Versuch).
+   19.10.2026: Ist die Sicherung weg, wird immer abgemeldet - sonst laedt
+   das naechste 'pause' den Stand wieder hoch, und die Loeschung haette
+   nicht gewirkt. cloudLaeuft haelt so lange jeden Abgleich auf, auch den,
+   den Googles Kontoauswahl beim Verdecken der App anstossen koennte. */
+async function cloudLoeschen(adapter = cloudAdapter()){
+  const m = cloudMerker();
+  if(!adapter || !m || cloudLaeuft) return false;
+  cloudLaeuft = true;
+  try{
+    let ganz;
+    try{ ganz = await adapter.loeschen(m); }catch(e){ return false; }
+    cloudAbmelden();
+    return ganz === false ? 'konto bleibt' : true;
+  }finally{ cloudLaeuft = false; }
+}
+/* Googles ID-Token aus der Huelle. Google sperrt die Anmeldung in einer
+   WebView; das Plugin ZmajAnmeldung (noch zu bauen, siehe
+   FIREBASE_EINRICHTEN.md) fragt nativ ueber den Credential Manager. */
+async function cloudGoogleAusweis(){
+  const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajAnmeldung;
+  if(!P || !P.googleAusweis) return null;
+  try{ const r = await P.googleAusweis(); return (r && typeof r.idToken === 'string' && r.idToken) || null; }
+  catch(e){ return null; }   // abgebrochen oder kein Google-Konto
+}
+/* ---- Adapter: Firebase Auth und Cloud Firestore ueber REST ----
+   Ohne Firebase-Bibliothek, nur fetch an vier Adressen. Anonym geht ohne
+   Plugin (accounts:signUp), mit Google wird das ID-Token aus
+   cloudGoogleAusweis() bei Firebase eingetauscht (accounts:signInWithIdp).
+   Der Ausweis fuer Firestore (ID-Token, eine Stunde gueltig) bleibt nur im
+   Arbeitsspeicher; neu geholt wird er mit dem token aus dem Merker
+   (securetoken). In users/{uid} stehen zwei Textfelder: daten und rev. */
+function cloudFirestore(projekt, schluessel){
+  const KONTO = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+  const ERNEUERN = 'https://securetoken.googleapis.com/v1/token?key=';
+  const dokument = uid => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(projekt)
+    + '/databases/(default)/documents/users/' + encodeURIComponent(uid);
+  const post = daten => ({method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(daten)});
+  let ausweis = null;   // {uid, id, bis}
+  const merken = (uid, id, sekunden) => { ausweis = {uid, id, bis: Date.now() + (Number(sekunden) || 3600) * 1000}; };
+  /* Nach 20 Sekunden ohne Antwort gilt es als gescheitert - sonst hielte
+     ein haengendes Netz cloudLaeuft fuer immer fest. fehltOk: 404 heisst
+     beim Dokument "noch nichts gesichert" und ist kein Fehler.
+     19.10.2026: Der Fehler traegt Firebases Grund (error.message, etwa
+     CREDENTIAL_TOO_OLD_LOGIN_AGAIN) - loeschen() braucht ihn. */
+  async function senden(url, optionen, fehltOk){
+    const ab = new AbortController(), uhr = setTimeout(() => ab.abort(), 20000);
+    try{
+      const r = await fetch(url, Object.assign({cache: 'no-store', signal: ab.signal}, optionen));
+      if(r.status === 404 && fehltOk) return null;
+      if(!r.ok){
+        const f = new Error('cloud ' + r.status);
+        try{ const d = await r.json(); f.grund = String((d && d.error && d.error.message) || ''); }catch(e){}
+        throw f;
+      }
+      return r;
+    }finally{ clearTimeout(uhr); }
+  }
+  async function idToken(m){
+    if(ausweis && ausweis.uid === m.uid && ausweis.bis > Date.now() + 60000) return ausweis.id;
+    const r = await senden(ERNEUERN + schluessel, {method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(m.token || '')});
+    const d = await r.json();
+    if(!d || !d.id_token || d.user_id !== m.uid) throw new Error('cloud anmeldung');
+    if(d.refresh_token) m.token = d.refresh_token;
+    merken(m.uid, d.id_token, d.expires_in);
+    return ausweis.id;
+  }
+  const mitAusweis = async m => ({Authorization: 'Bearer ' + await idToken(m)});
+  /* Googles Ausweis aus der Huelle bei Firebase eintauschen - beim Anmelden
+     und noch einmal vor dem Loeschen des Kontos. null: abgebrochen. */
+  async function mitGoogle(){
+    const google = await cloudGoogleAusweis();
+    if(!google) return null;
+    return (await senden(KONTO + 'signInWithIdp?key=' + schluessel, post({
+      postBody: 'id_token=' + encodeURIComponent(google) + '&providerId=google.com',
+      requestUri: 'http://localhost', returnIdpCredential: true, returnSecureToken: true}))).json();
+  }
+  /* Das Konto selbst: true geloescht oder schon weg, 'alt' verlangt eine
+     frische Anmeldung, false sonst gescheitert. */
+  async function kontoWeg(id){
+    try{ await senden(KONTO + 'delete?key=' + schluessel, post({idToken: id})); return true; }
+    catch(e){
+      const g = (e && e.grund) || '';
+      if(/^USER_NOT_FOUND/.test(g)) return true;
+      return /^(CREDENTIAL_TOO_OLD_LOGIN_AGAIN|INVALID_ID_TOKEN)/.test(g) ? 'alt' : false;
+    }
+  }
+  return {
+    async anmelden(art){
+      let d = null;
+      if(art === 'anonym'){
+        d = await (await senden(KONTO + 'signUp?key=' + schluessel, post({returnSecureToken: true}))).json();
+      }else if(art === 'google'){
+        d = await mitGoogle();
+      }
+      if(!d || typeof d.localId !== 'string' || !d.idToken) return null;
+      merken(d.localId, d.idToken, d.expiresIn);
+      return {uid: d.localId, token: d.refreshToken || ''};
+    },
+    async laden(m){
+      const r = await senden(dokument(m.uid), {headers: await mitAusweis(m)}, true);
+      if(!r) return null;
+      const f = (await r.json()).fields || {};
+      return {text: (f.daten && f.daten.stringValue) || '', rev: (f.rev && f.rev.stringValue) || ''};
+    },
+    async speichern(m, dok){
+      await senden(dokument(m.uid), {method: 'PATCH',
+        headers: Object.assign({'Content-Type': 'application/json'}, await mitAusweis(m)),
+        body: JSON.stringify({fields: {daten: {stringValue: dok.text}, rev: {stringValue: dok.rev}}})});
+      return true;
+    },
+    /* 19.10.2026: Zuerst die Sicherung - scheitert das, wirft es, und es
+       ist nichts passiert. Danach das Konto. Firebase loescht es nur nach
+       einer frischen Anmeldung (CREDENTIAL_TOO_OLD_LOGIN_AGAIN); der Ausweis
+       aus dem Erneuerungsschluessel zaehlt nicht. Mit Google fragt die App
+       dann noch einmal nach dem Konto, nur dasselbe (uid) wird geloescht.
+       Anonym gibt es keine neue Anmeldung - dort bleibt eine leere Kennung.
+       Gibt zurueck, ob auch das Konto weg ist; die Sicherung ist es dann
+       in jedem Fall. */
+    async loeschen(m){
+      const id = await idToken(m);
+      await senden(dokument(m.uid), {method: 'DELETE', headers: {Authorization: 'Bearer ' + id}}, true);
+      ausweis = null;
+      let weg = await kontoWeg(id);
+      if(weg === 'alt' && m.art === 'google'){
+        let d = null;
+        try{ d = await mitGoogle(); }catch(e){}
+        weg = (d && d.localId === m.uid && d.idToken) ? await kontoWeg(d.idToken) : false;
+      }
+      return weg === true;
+    },
+  };
+}
+/* ---- Adapter fuer die Tests ----
+   Haelt den Cloud-Stand in einem gewoehnlichen Objekt (ablage) statt bei
+   einem Anbieter und zaehlt, wie oft wirklich gelesen und geschrieben
+   wurde. ablage.offline = true laesst jede Anfrage scheitern wie ohne
+   Netz. Nur tests_e2e/test_cloud.py reicht ihn herein; cloudAdapter()
+   waehlt ihn nie. */
+function cloudSpeicherAdapter(ablage){
+  ablage.zaehler = ablage.zaehler || {anmelden: 0, laden: 0, speichern: 0, loeschen: 0};
+  const netz = was => { if(ablage.offline) throw new Error('offline'); ablage.zaehler[was]++; };
+  return {
+    async anmelden(art){ netz('anmelden'); return {uid: ablage.uid || 'probe-' + art, token: 'probe'}; },
+    async laden(){ netz('laden'); return ablage.dok ? {text: ablage.dok.text, rev: ablage.dok.rev} : null; },
+    async speichern(m, dok){ netz('speichern'); ablage.dok = {text: dok.text, rev: dok.rev}; return true; },
+    async loeschen(){ netz('loeschen'); ablage.dok = null; return true; },
+  };
+}
+/* Nur mit CLOUD_AN haengt sich die Cloud ueberhaupt irgendwo ein. Der
+   Start steht in init(). saveProgress() hat beim Verstecken schon lokal
+   gespeichert (Horcher weiter oben), dieser Horcher kommt danach. */
+if(CLOUD_AN){
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) cloudAbgleich('pause'); });
+}
 
 /* ===== Zmaj bewerten und empfehlen (Einstellungen, Ueber die App) =====
    07.10.2026. Bewerten geht hier gleich in den Play Store und nicht ueber
@@ -10763,8 +11323,12 @@ async function agbHinweis(versuch = 0){
 
 async function init(){
   dauerVollVerdrahten();
+  hautAlleVerdrahten();
   try{ await starten(); }
   finally{ vorspannWeg(); }
+  /* Cloud-Sicherung: beim Start nur lesen, siehe CLOUD-SICHERUNG. Mit
+     CLOUD_AN = false passiert hier nichts. 19.10.2026 */
+  if(CLOUD_AN) cloudAbgleich('start');
   /* Einmal selbst nachsehen, ob das Abo laeuft. Bisher verliess sich die
      App allein auf die Meldung aboGeaendert - die aber beim Kaltstart
      abgeschickt wird, bevor es einen Zuhoerer gibt, und wegen der

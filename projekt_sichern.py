@@ -92,7 +92,10 @@ HUELLE_WEG_ORDNER = {
 # local.properties zeigt auf DIESEN Rechner. dauer_pruefwert.txt ist kein
 # Passwort, aber mit ihm liesse sich ein kurzes Dauer-Wort durchprobieren -
 # es bleibt im privaten Repo der Huelle. 12.10.2026
-HUELLE_WEG_DATEIEN = {"local.properties", "dauer_pruefwert.txt"}
+# cloud_zugang.json (Firebase-Projekt und -Schluessel, 19.10.2026) aus
+# demselben Grund: kein Passwort, aber zusammen eine Einladung, fremde
+# Konten im Projekt anzulegen.
+HUELLE_WEG_DATEIEN = {"local.properties", "dauer_pruefwert.txt", "cloud_zugang.json"}
 
 
 def ist_geheim(rel):

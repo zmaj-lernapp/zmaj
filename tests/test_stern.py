@@ -158,5 +158,6 @@ def test_kasten_wie_der_bestehende(index_html):
 def test_stern_grenzen(index_html):
     assert "const STERN_MAX = 300;" in index_html
     assert "const TOPF_RUNDE = 10," in index_html
-    # die Sicherungsdatei bleibt version 1
-    assert "JSON.stringify({app:'zmaj', version:1," in index_html
+    # die Sicherungsdatei bleibt version 1 - seit 19.10.2026 baut sie
+    # sicherungObjekt(), das auch die Cloud-Sicherung benutzt
+    assert "return {app:'zmaj', version:1," in index_html

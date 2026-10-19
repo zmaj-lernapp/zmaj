@@ -229,6 +229,67 @@ def dauer_einsetzen(pfad=None, datei=None):
                              DAUER_PLATZHALTER.replace("__DAUER_PRUEFWERT__", wert)))
 
 
+# Cloud-Sicherung (19.10.2026): vorbereitet, aber aus (CLOUD_AN = false in
+# web/index.html), eingeschaltet wird erst nach dem Produktionsstart.
+# Projekt-ID und Web-API-Schluessel von Firebase stehen nie im oeffentlichen
+# Repository, sondern in der privaten Huelle (cloud_zugang.json, Aufbau in
+# FIREBASE_EINRICHTEN.md), und kommen wie der Dauer-Pruefwert nur in die
+# KOPIE www/index.html.
+CLOUD_PLATZHALTER = {
+    "projekt": "const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';",
+    "schluessel": "const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';",
+}
+# Dieselben Muster prueft cloudEingerichtet() in der App.
+CLOUD_MUSTER = {
+    "projekt": r"[a-z][a-z0-9-]{4,28}[a-z0-9]",
+    "schluessel": r"AIza[0-9A-Za-z_-]{35}",
+}
+CLOUD_SCHALTER_AN = "const CLOUD_AN = true;"
+CLOUD_DATEI = os.path.join(HUELLE, "cloud_zugang.json")
+
+
+def cloud_einsetzen(pfad=None, datei=None):
+    """Setzt in der KOPIE www/index.html Projekt-ID und Schluessel ein.
+
+    Fehlt cloud_zugang.json, bleiben die Platzhalter stehen; die App findet
+    dann keinen Adapter, und die Cloud bleibt aus. Das ist bis zum
+    Produktionsstart der Normalfall. Steht CLOUD_AN aber auf true, bricht
+    der Bau ohne Datei ab - sonst kaeme eine App heraus, die still nichts
+    sichert. Die Werte selbst erscheinen in keiner Meldung.
+    Gibt zurueck, ob eingesetzt wurde.
+    """
+    pfad = pfad or os.path.join(WWW, "index.html")
+    datei = datei or CLOUD_DATEI
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    for platzhalter in CLOUD_PLATZHALTER.values():
+        if text.count(platzhalter) != 1:
+            raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s."
+                             % (platzhalter, pfad))
+    if not os.path.exists(datei):
+        if CLOUD_SCHALTER_AN in text:
+            raise SystemExit("ABBRUCH: CLOUD_AN steht auf true, aber %s fehlt "
+                             "(siehe FIREBASE_EINRICHTEN.md)." % datei)
+        print("  Cloud-Sicherung: keine cloud_zugang.json - sie bleibt aus.")
+        return False
+    with io.open(datei, encoding="utf-8") as f:
+        try:
+            werte = json.load(f)
+        except ValueError:
+            raise SystemExit("ABBRUCH: %s ist kein gueltiges JSON." % datei)
+    for name, muster in CLOUD_MUSTER.items():
+        wert = werte.get(name) if isinstance(werte, dict) else None
+        if not isinstance(wert, str) or not re.fullmatch(muster, wert):
+            raise SystemExit("ABBRUCH: In %s fehlt '%s' oder hat nicht die "
+                             "erwartete Form." % (datei, name))
+        platzhalter = CLOUD_PLATZHALTER[name]
+        text = text.replace(platzhalter, platzhalter.replace("__CLOUD_%s__" % name.upper(), wert))
+    with io.open(pfad, "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+    print("  Cloud-Sicherung: Projekt und Schluessel eingesetzt.")
+    return True
+
+
 # Tonspur im Paket als Opus statt MP3 (12.10.2026). Die 2.332 MP3s mit
 # 48 kbit/s machten 17,5 von 25,3 MB des AAB aus; Opus mit 24 kbit/s klingt
 # bei Sprache mindestens gleich gut und ist halb so gross. Nur die Kopie in
@@ -729,6 +790,7 @@ def main(argv=None):
     # Debug-Paket, fuer --aab und fuer --nur-abgleich gleich. 06.10.2026.
     emir_drueber()
     dauer_einsetzen()
+    cloud_einsetzen()
     # Nach Emir: dessen Aufnahmen sind MP3 und werden mit umgewandelt.
     ton_verkleinern()
     if "--testwerbung" in schalter:
