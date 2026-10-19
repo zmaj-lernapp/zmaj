@@ -491,11 +491,15 @@ Regeln der Lektion:
 ## Leben
 
 Die App hat 5 Leben, sie gelten für die ganze App. Jede falsche Antwort in
-einer Lektion kostet ein Leben. Übersprungene Aufgaben und der Level-Test
-kosten nichts. Bei 0 Leben wird die Lektion abgebrochen, richtig gelernte
-Wörter bleiben gespeichert. Alle 120 Minuten wächst ein Leben nach, die
-Anzeige oben zeigt die Wartezeit. Solange kann man Geschichten lesen und die
-Grammatik-Erklärungen anschauen.
+einer Lektion und (seit dem 19.10.2026) im Level-Test kostet ein Leben.
+Übersprungene Aufgaben und die Einstufung beim ersten Start kosten nichts.
+Bei 0 Leben wird die Lektion bzw. der Test abgebrochen – der Test gilt dann
+als nicht bestanden –, richtig gelernte Wörter bleiben gespeichert. Das gilt
+bei jeder Testfrage: Wer mit 1 Leben in den Test geht, hat keinen Fehler frei,
+mit 2 Leben nur einen, obwohl der Test mit 8 von 10 bestanden wäre. Ab
+3 Leben ändert sich nichts. Alle
+120 Minuten wächst ein Leben nach, die Anzeige oben zeigt die Wartezeit.
+Solange kann man Geschichten lesen und die Grammatik-Erklärungen anschauen.
 
 Die Wartezeit steht in `web/index.html` in der Zeile
 `LEBEN_NACHFUELLEN_MIN = 120` und lässt sich dort ändern.

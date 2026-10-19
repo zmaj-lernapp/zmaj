@@ -290,14 +290,15 @@
   .kastenherz b{color:var(--ink)}
   .kastenherz.zero{border-color:var(--bad)}
   .kastenherz:empty{display:none}
-  /* Level-Test und Einstufung kosten keine Leben und zeigen deshalb kein
-     Herz. Die Pille bestimmt aber die Hoehe der Kopfzeile (37 statt 14 px),
-     und ohne sie stuende alles darunter hoeher als in der Lektion. Darum
-     steht dort eine unsichtbare Pille mit derselben Klasse: renderLives()
-     fuellt sie wie das echte Herz, sie ist also auch bei grosser
-     Systemschrift genau so hoch - aber null breit, damit die Punkte die
-     ganze Zeile bekommen, und -10 px gleichen den Abstand (gap) aus.
-     19.10.2026. */
+  /* Die Einstufung kostet keine Leben und zeigt deshalb kein Herz. Die
+     Pille bestimmt aber die Hoehe der Kopfzeile (37 statt 14 px), und ohne
+     sie stuende alles darunter hoeher als in der Lektion. Darum steht dort
+     eine unsichtbare Pille mit derselben Klasse: renderLives() fuellt sie
+     wie das echte Herz, sie ist also auch bei grosser Systemschrift genau
+     so hoch - aber null breit, damit die Punkte die ganze Zeile bekommen,
+     und -10 px gleichen den Abstand (gap) aus. 19.10.2026.
+     Der Level-Test hatte bis zum selben Abend auch nur diese Pille; seit er
+     Leben kostet, traegt er das echte Herz (#tHerz) wie die Lektion. */
   .kastenherz.platzhalter{visibility:hidden; width:0; padding-left:0; padding-right:0;
     border-left:0; border-right:0; margin-right:-10px; overflow:hidden}
   /* Auf Ergebnis und "Keine Leben mehr" ist die Punktreihe leer, und die
@@ -1596,12 +1597,14 @@
       <div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>
     </section>
 
-    <!-- Der Kasten ist gebaut wie der der Lektion, nur mit unsichtbarem
-         Herz (.platzhalter, der Test kostet keine Leben) und eigenem
-         Drachen. So stehen Knoepfe und Weiter an derselben Stelle wie in
-         der Lektion. Kuebra am 19.10.2026, siehe .zmaj.mini im CSS. -->
+    <!-- Der Kasten ist gebaut wie der der Lektion, mit eigenem Herz und
+         eigenem Drachen. So stehen Knoepfe und Weiter an derselben Stelle
+         wie in der Lektion. Kuebra am 19.10.2026, siehe .zmaj.mini im CSS.
+         Das Herz war zuerst ein unsichtbarer Platzhalter; seit Ajdin am
+         selben Tag entschied, dass der Test Leben kostet wie die Lektion,
+         ist es echt (#tHerz). -->
     <section id="test" style="display:none">
-      <div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" aria-hidden="true"></div><div class="tbar" id="tBar"></div></div><div class="zmaj mini idle" id="zmajTest"></div><div id="tBody"></div></div>
+      <div class="card"><div class="kastenkopf"><div class="kastenherz" id="tHerz"></div><div class="tbar" id="tBar"></div></div><div class="zmaj mini idle" id="zmajTest"></div><div id="tBody"></div></div>
       <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>
     </section>
   </div>
@@ -5034,10 +5037,11 @@ function renderLives(){
   if(mb){ mb.hidden = !profil; if(profil) mb.innerHTML = '🪙 <b>'+muenzen()+'</b> <span class="km">KM</span>'; }
   const bar=$('livesBar'); if(!profil){ bar.style.display='none'; return; } bar.style.display='inline-flex';
   const n = livesNow();
-  /* Das Herz im Fragenkasten. Sichtbar nur in der Lektion (#lHerz); der
-     Level-Test und die Einstufung kosten keine Leben und haben deshalb
-     keins. Ihre unsichtbare Pille (.kastenherz.platzhalter) wird trotzdem
-     mitgefuellt - sie haelt die Hoehe der Kopfzeile frei (19.10.2026). */
+  /* Das Herz im Fragenkasten. Sichtbar in der Lektion (#lHerz) und im
+     Level-Test (#tHerz), der seit dem 19.10.2026 Leben kostet wie die
+     Lektion. Die Einstufung kostet keine und hat deshalb keins. Ihre
+     unsichtbare Pille (.kastenherz.platzhalter) wird trotzdem mitgefuellt -
+     sie haelt die Hoehe der Kopfzeile frei (19.10.2026). */
   document.querySelectorAll('.kastenherz').forEach(k => {
     k.innerHTML = '♥ <b>' + (unlimited() ? '∞' : n) + '</b>';
     k.classList.toggle('zero', n === 0 && !unlimited());
@@ -5049,7 +5053,18 @@ function renderLives(){
                 + (zeigen ? '<span class="info">'+esc(lebenText(n))+'</span>' : '');
   $('livesKnopf').addEventListener('click', ()=>{ livesInfoAn = !livesInfoAn; renderLives(); });
   const b=$('btnLesson'); if(b){ b.disabled = n===0; b.textContent = n===0 ? t('leben.warten') : t('level.lektion'); }
+  testKnopf(n);
   kopfEng();
+}
+/* Der Level-Test kostet seit dem 19.10.2026 Leben wie die Lektion (Ajdin:
+   "genau wie in der Lektion") - ohne Leben ist sein Knopf deshalb ebenso
+   gesperrt. Er behaelt seine Beschriftung: "Keine Leben · warten" steht
+   schon auf dem Lektionsknopf daneben, zweimal derselbe Satz waere zu viel.
+   Hier und in updateProgress(), damit der Knopf auch wieder aufgeht, wenn
+   ein Leben nachwaechst, waehrend die Level-Uebersicht offen steht. */
+function testKnopf(n){
+  const bt = $('btnTest'), c = cur();
+  if(bt && c) bt.disabled = !testAllowed(c) || n === 0;
 }
 /* Grosse Systemschrift (Android): passen Herzen, Muenzen und Knoepfe
    nicht mehr nebeneinander, bekommen die Muenzen eine eigene Zeile
@@ -7511,7 +7526,7 @@ function updateProgress(){
   marke.style.left = TEST_FREI_AB + '%';
   marke.title = t('level.test_marke',{p:TEST_FREI_AB});
   const bt=$('btnTest'), allowed=testAllowed(c);
-  bt.disabled = !allowed;
+  testKnopf(livesNow());
   if(passed.has(c.id)){ bt.textContent=t('level.test_bestanden'); }
   else bt.textContent = allowed ? t('level.test') : t('level.test_gesperrt',{p:TEST_FREI_AB});
   $('lvNote').textContent = passed.has(c.id) ? t('level.note_bestanden') :
@@ -8562,7 +8577,7 @@ function werbungFuerLeben(e){
   if(livesNow() >= LEBEN_MAX){
     renderLives(); lebenWege(); topfNachziehen();
     if(sichtbar('shopView')) renderLaden();
-    else if(knopf && knopf.id === 'lAd' && sichtbar('levelView') && sichtbar('lesson')) lektionVerlassen();
+    else if(knopf && knopf.id === 'lAd') ohneLebenVerlassen();
     return;
   }
   /* Punkt 17: bis zum ersten Bild der Anzeige vergehen Sekunden, in denen
@@ -8594,9 +8609,7 @@ function werbungFuerLeben(e){
        noch. Dieselbe Vorsicht wie beim Interstitial seit dem 29.09.2026. */
     const danach = ()=>{
       if(knopf && knopf.id === 'topfAd') showTopf();
-      else if(knopf && knopf.id === 'lAd'){
-        if(sichtbar('levelView') && sichtbar('lesson')) lektionVerlassen();
-      }
+      else if(knopf && knopf.id === 'lAd') ohneLebenVerlassen();
       /* Aus dem Laden: den Laden neu zeichnen, damit Preis und Video zum
          neuen Herz passen. showLevelHome() traf hier nur die unsichtbare
          Levelansicht. 07.10.2026. */
@@ -8613,9 +8626,17 @@ function werbungFuerLeben(e){
    ohnehin auf der Startseite. Und unten nur ein Knopf, denn ohne Leben
    gibt es nur einen Weg.
    Die Vollversion kommt nicht jedes Mal, sondern bei jedem dritten Mal.
-   Ein Hinweis, der immer da steht, wird nicht gelesen, sondern lästig. */
+   Ein Hinweis, der immer da steht, wird nicht gelesen, sondern lästig.
+   Seit dem 19.10.2026 derselbe Schirm fuer den Level-Test (imTest): er
+   kostet jetzt Leben wie die Lektion, und bei null ist er genauso vorbei -
+   nicht bestanden, ohne Ergebnis und ohne Anzeige danach. Wer ueber Video
+   oder Muenzen ein Leben holt, landet wie in der Lektion auf der
+   Level-Uebersicht und faengt den Test von vorn an. Anders als in der
+   Lektion steht oben der Name des Levels wie auf dem Testergebnis, denn
+   "Lektion abgebrochen" stimmt hier nicht. */
 let ohneLeben = 0;
-function lessonOutOfLives(){
+function testOutOfLives(){ lessonOutOfLives(true); }
+function lessonOutOfLives(imTest){
   stilleBitte(); uhrAus();   // das letzte Wort nicht in den Ergebnisschirm reden lassen
   /* Hier ist die Lektion zu Ende - das muss auch Lx sagen. Bei der letzten
      falschen Antwort wuchs die Warteschlange um die Wiederholung,
@@ -8623,8 +8644,16 @@ function lessonOutOfLives(){
      Schirm "Lektion abbrechen?", und "Weitermachen" setzte nichts fort, weil
      showLessonTask() nie wieder gerufen wird - der Nutzer musste zweimal
      zurueck. Gefunden am 26.09.2026. Dasselbe traf Muenzen, Laden und Zahnrad
-     oben, die in lektionDarfWeg() dieselbe Bedingung pruefen. */
-  Lx.i = Lx.queue.length;
+     oben, die in lektionDarfWeg() dieselbe Bedingung pruefen.
+     Beim Test dasselbe mit Tx: tQuit und lektionDarfWeg() fragen sonst
+     "Test abbrechen?" fuer einen Test, der schon vorbei ist. */
+  if(imTest) Tx.i = Tx.qs.length; else Lx.i = Lx.queue.length;
+  /* Aus dem Test geht es immer zur Level-Uebersicht. lektionVerlassen()
+     schaut auf Lx.topf - und Lx kann noch die Wiederholen-Runde von vorhin
+     sein. */
+  const weg = imTest ? showLevelHome : lektionVerlassen;
+  const k = imTest ? {bar:'tBar', drache:'zmajTest', herz:'tHerz', body:'tBody'}
+                   : {bar:'lBar', drache:'zmajLesson', herz:'lHerz', body:'lBody'};
   // Der Tag zählt hier NICHT für die Lernserie. Das war früher anders
   // gedacht - wer übt, hat geübt -, aber Ajdin am 17.09.2026: die Serie
   // war gestiegen, obwohl die Lektion nicht geschafft war. Eine Serie, die
@@ -8641,10 +8670,14 @@ function lessonOutOfLives(){
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
-  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('zmajLesson').innerHTML=''; $('lHerz').style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
-  $('lBody').innerHTML =
-    '<div class="ergebnis-titel">'+t('lektion.aus')+'</div><div class="celebrate"><div class="zmaj sad">'+zmaj('cry')+'</div></div>'+
-    '<div class="result-big fail">♥ 0</div>'+
+  $(k.bar).innerHTML=''; $(k.drache).style.display='none'; $(k.drache).innerHTML=''; $(k.herz).style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
+  const titel = imTest ? t('level.titel', {i:catIdx+1, label:esc(cur().label)}) : t('lektion.aus');
+  /* .ohneleben: daran erkennt ohneLebenVorbei() diesen Schirm. Im Test
+     reicht .result-big.fail nicht, das traegt auch ein nicht bestandenes
+     Ergebnis. */
+  $(k.body).innerHTML =
+    '<div class="ergebnis-titel">'+titel+'</div><div class="celebrate"><div class="zmaj sad">'+zmaj('cry')+'</div></div>'+
+    '<div class="result-big fail ohneleben">♥ 0</div>'+
     '<div class="feedback no">'+t('lektion.keine_leben')+'</div>'+
     '<div class="stats"><div class="stat"><b>'+fmtMin(nextLifeIn())+'</b>'+t('lektion.bis_naechstes')+'</div></div>'+
     // Zwei Wege zu einem Leben, nebeneinander und klein: ansehen oder zahlen
@@ -8660,15 +8693,19 @@ function lessonOutOfLives(){
        eine Luecke in den Schirm. */
     (perVideo ? '<div class="feedback" id="lAdNote" style="display:none; color:var(--muted)"></div>' : '')+
     (ohneLeben % 3 === 0 ? '<div class="feedback" style="color:var(--muted)">'+t('lektion.vollversion')+'</div>' : '')+
-    '<div class="row"><button class="btn know" id="lHome">'+t(Lx.topf ? 'topf.zurueck' : 'lektion.zurueck')+'</button></div>';
-  $('lHome').addEventListener('click', lektionVerlassen);
+    '<div class="row"><button class="btn know" id="lHome">'+t(!imTest && Lx.topf ? 'topf.zurueck' : 'lektion.zurueck')+'</button></div>';
+  /* Die Knoepfe heissen auch im Test lAd, lCoin und lHome: werbungFuerLeben()
+     kennt den Video-Knopf unter lAd, und es steht immer nur einer dieser
+     Schirme im Dokument - startTest() und startLesson() leeren das andere
+     Feld. */
+  $('lHome').addEventListener('click', ()=> weg());
   if($('lAd')) $('lAd').addEventListener('click', werbungFuerLeben);
   vollZeileHorchen('lVoll');
   /* Nur kaufen, wenn wirklich noch kein Leben da ist: der Schirm wird nicht
      nachgezogen, und wer nach Stunden zurueckkam, sah noch "♥ 0" und zahlte
      100 Muenzen fuer ein Leben, das schon nachgewachsen war. Gefunden bei der
      Pruefung am 06.10.2026. */
-  if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ if(livesNow() === 0) kaufe('herz'); lektionVerlassen(); });
+  if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ if(livesNow() === 0) kaufe('herz'); weg(); });
   renderLives();
   /* Die Karte gleich hier und nicht erst auf der Startseite: auf diesem
      Schirm kommt keine Anzeige nach dem Ergebnis, und wer ohne Leben die
@@ -8682,10 +8719,20 @@ function lessonOutOfLives(){
    voll", die seit Build 95 genau von hier aus angeboten wird -, stimmt er
    nicht mehr: zurueck zur Uebersicht, wie werbungFuerLeben() es bei vollen
    Leben schon tut. Neu aufbauen ginge nicht, lessonOutOfLives() zaehlt und
-   spielt den Fehlton. Gefunden bei der Pruefung am 06.10.2026. */
+   spielt den Fehlton. Gefunden bei der Pruefung am 06.10.2026.
+   Seit dem 19.10.2026 auch fuer den Schirm im Level-Test. */
 function ohneLebenVorbei(){
-  if(!anzeigeLaeuft && livesNow() > 0 && sichtbar('levelView') && sichtbar('lesson')
-     && $('lBody').querySelector('.result-big.fail')) lektionVerlassen();
+  if(!anzeigeLaeuft && livesNow() > 0 && sichtbar('levelView')
+     && ((sichtbar('lesson') && $('lBody').querySelector('.ohneleben')) ||
+         (sichtbar('test')   && $('tBody').querySelector('.ohneleben')))) ohneLebenVerlassen();
+}
+/* Weg vom Schirm ohne Leben, sofern er noch steht: aus der Lektion (oder
+   Wiederholen-Runde) wie bisher ueber lektionVerlassen(), aus dem
+   Level-Test zur Level-Uebersicht (siehe lessonOutOfLives). */
+function ohneLebenVerlassen(){
+  if(!sichtbar('levelView')) return;
+  if(sichtbar('lesson')) lektionVerlassen();
+  else if(sichtbar('test')) showLevelHome();
 }
 function lessonEnd(){
   if(Lx && Lx.topf){ topfEnde(); return; }
@@ -8918,6 +8965,20 @@ function showTestQ(){
     topfMerken(Tx.qs[Tx.i], !!res.ok);
     Tx.results.push(!!res.ok); if(res.ok) Tx.right++; Tx.i++; uhrTakt(true); zaehle('auf'); if(res.ok) zaehle('ric');
     zmajReact(!!res.ok, 'zmajTest');   // wie in der Lektion (19.10.2026)
+    /* Eine falsche Antwort kostet ein Leben, genau wie in der Lektion
+       (Ajdin am 19.10.2026). Bei null ist der Test vorbei und nicht
+       bestanden - wie in der Lektion, die bei null nie fertig wird. Das
+       gilt bei jeder Frage, nicht nur bei der letzten: wer mit 1 Leben
+       anfaengt, hat keinen Fehler frei, mit 2 Leben nur einen, obwohl
+       TEST_BESTANDEN_AB zwei erlaubt (9 von 10 und trotzdem verloren). Ab
+       3 Leben aendert sich nichts, der dritte Fehler laesst ohnehin
+       durchfallen. Bewusst so gelassen; Ajdin kennt die Folge noch nicht
+       vollstaendig und entscheidet, ob es dabei bleibt. Gemessen in
+       test_test_leben.py::test_wenige_leben_weniger_fehler_frei. */
+    if(!res.ok){
+      loseLife();
+      if(livesNow()===0){ weiterBeiTipp('tBody', testOutOfLives); return; }
+    }
     weiterBeiTipp('tBody', showTestQ);
   }, {noSkip:true});
 }
@@ -8970,6 +9031,9 @@ function showTestResult(){
 }
 function startTest(){
   if(!testAllowed(cur())) return;
+  /* Ohne Leben kein Test, wie bei startLesson() - der Knopf ist dann zwar
+     gesperrt (testKnopf), aber "Nochmal" auf dem Ergebnis ruft hierher. */
+  if(livesNow()===0){ showLevelHome(); $('lvNote').textContent=t('level.keine_leben',{zeit:fmtMin(nextLifeIn())}); lebenWege(); return; }
   interstitialVorladen();   // liegt am Ende des Tests bereit (siehe dort)
   stilleBitte();   // Unteransicht, laeuft nicht ueber showView() - siehe showLevelHome
   buildTest(); $('levelHome').style.display='none'; $('lesson').style.display='none'; $('test').style.display='block';
@@ -8979,7 +9043,9 @@ function startTest(){
   uhrNeu();
   /* Derselbe kleine Drache wie in der Lektion - ohne ihn standen die
      Knoepfe im Test 126 px hoeher (Kuebra, 19.10.2026). */
-  const zt=$('zmajTest'); zt.style.display='block'; zt.innerHTML=zmaj('happy'); setMood(zt,'happy');
+  /* Das Herz wie in startLesson() wieder einblenden: der Schirm ohne Leben
+     blendet es aus (19.10.2026). */
+  const zt=$('zmajTest'); zt.style.display='block'; $('tHerz').style.display=''; zt.innerHTML=zmaj('happy'); setMood(zt,'happy');
   showTestQ(); window.scrollTo({top:0, behavior:'smooth'});
 }
 $('btnTest').addEventListener('click', startTest);
