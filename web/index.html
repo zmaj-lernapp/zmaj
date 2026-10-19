@@ -6150,7 +6150,7 @@ async function vollWahlZeigen(){
       '<button class="btn ghost" id="aboZu"></button>' +
     '</div>';
   kasten.querySelector('#aboKauf').textContent = t('voll.kaufen');
-  kasten.querySelector('#aboZu').textContent = t('btn.abbrechen');
+  kasten.querySelector('#aboZu').textContent = t('btn.dialog_abbrechen');
   document.body.appendChild(kasten);
   /* Der Drache in voller Montur - unabhaengig davon, was der Nutzer
      gerade traegt. Genau das ist ja das Angebot. */
@@ -6232,7 +6232,7 @@ function widerrufZeigen(){
   kasten.querySelector('h3').textContent = t('set.widerruf_knopf');
   kasten.querySelector('.txt').textContent = t('set.widerruf_text');
   kasten.querySelector('#widOk').textContent = t('set.widerruf_bestaetigen');
-  kasten.querySelector('#widZu').textContent = t('btn.abbrechen');
+  kasten.querySelector('#widZu').textContent = t('btn.dialog_abbrechen');
   document.body.appendChild(kasten);
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;
@@ -6305,7 +6305,7 @@ function jahrWechselZeigen(){
   kasten.querySelector('.abogratis').textContent = t('voll.pro_jahr', {preis: aboJahrPreis});
   kasten.querySelector('.abohinweis').textContent = t('voll.hinweis');
   kasten.querySelector('#wechselOk').textContent = t('voll.kaufen');
-  kasten.querySelector('#wechselZu').textContent = t('btn.abbrechen');
+  kasten.querySelector('#wechselZu').textContent = t('btn.dialog_abbrechen');
   document.body.appendChild(kasten);
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;                       // damit die Zurueck-Taste sie schliesst
@@ -7064,7 +7064,7 @@ async function sicherungEinlesen(datei){
     note.textContent = t('set.sicherung_keine'); return;
   }
   if(!await frage(t('set.sicherung'), t('set.sicherung_frage'),
-                  t('btn.ersetzen'), t('btn.abbrechen'))) return;
+                  t('btn.ersetzen'), t('btn.dialog_abbrechen'))) return;
   /* Wirft das Uebernehmen trotz der Pruefungen in standUebernehmen(), kommt
      der alte Stand zurueck - sonst speicherte das naechste saveProgress()
      einen halb uebernommenen. import_richten.py, 04.10.2026. */
