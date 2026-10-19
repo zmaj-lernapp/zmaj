@@ -13,7 +13,8 @@ Was hier im echten Browser nachgeprueft wird:
     Versionszeile; ohne eingesetzten Pruefwert (Web-Demo) tut auch das
     Testwort nichts;
   - das richtige Wort schaltet ein und, mit Rueckfrage, wieder aus;
-  - eingeschaltet sind alle fuenf Muenz-Farben tragbar, ohne dass besitz
+  - eingeschaltet sind alle fuenf Muenz-Farben tragbar (seit 20.10.2026
+    auch Huete, Brillen und Halsstuecke), ohne dass besitz
     oder Muenzen sich aendern; die Farben der Vollversion bleiben an
     unlimited() gebunden;
   - der Schalter steht weder im Lernstand noch in der Sicherungsdatei, und
@@ -278,4 +279,43 @@ def test_ueberschrift_sonst_ohne_wirkung(probe, heute_stand):
     probe.page.locator('#ladenWaren button[data-ware="gruen"]').click()
     assert probe.js("() => [[...besitz], muenzen(), getrageneFarbe()]") == [["gruen"], 4100, "gruen"]
     assert _knoepfe(probe)["gruen"] == "tragen"
+    assert probe.fehler == []
+
+
+def test_auch_huete_brillen_und_halsstuecke(probe, heute_stand):
+    """Ajdin 20.10.2026: "gib alle skins" - der Schalter gilt fuer jedes
+    Muenz-Stueck. Getragen kommt es an den Drachen, ausgeschaltet faellt es
+    wieder ab; die Stuecke der Vollversion bleiben an unlimited()."""
+    probe.starten(stand=heute_stand(muenzen_ges=5000, besitz=["kappe"]))
+    _laden(probe, "kopf")
+    k = _knoepfe(probe)
+    assert k["kappe"] == "tragen" and k["krone"] == "preis" and k["krone_gross"] == "voll", k
+
+    _laden(probe)
+    _einschalten(probe)
+    for reiter in ("kopf", "brille", "hals"):
+        _laden(probe, reiter)
+        k = _knoepfe(probe)
+        muenz = probe.js("(r) => ZIERRAT.filter(w => w.gruppe === r && !w.voll).map(w => w.id)", reiter)
+        voll = probe.js("(r) => ZIERRAT.filter(w => w.gruppe === r && w.voll).map(w => w.id)", reiter)
+        assert muenz and all(k[i] == "tragen" for i in muenz), (reiter, k)
+        assert all(k[i] == "voll" for i in voll), (reiter, k)
+
+    # Tragen ohne Kauf: die Krone sitzt am Drachen, Muenzen und besitz bleiben
+    _laden(probe, "kopf")
+    probe.page.locator('#ladenWaren button[data-tragen="krone"]').click()
+    teile = "() => [getrageneTeile(), getragenRoh(), muenzen(), [...besitz]]"
+    assert probe.js(teile) == [["krone"], ["krone"], 5000, ["kappe"]]
+
+    # Ausschalten: die Krone faellt ab, gespeichert bleibt sie; Gekauftes bleibt
+    _laden(probe)
+    _tippen(probe)
+    _wort(probe, TEST_WORT)
+    probe.page.locator("#frJa").wait_for()
+    probe.page.locator("#frJa").click()
+    probe.page.wait_for_function("() => localStorage.getItem('zmaj_hautalle') === '0'")
+    assert probe.js(teile) == [[], ["krone"], 5000, ["kappe"]]
+    _laden(probe, "kopf")
+    k = _knoepfe(probe)
+    assert k["kappe"] == "tragen" and k["krone"] == "preis", k
     assert probe.fehler == []
