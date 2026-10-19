@@ -2690,17 +2690,19 @@ let rekord = 0;
 let wann = {};
 let muenzenGes = 0, muenzenAus = 0;   // jemals verdient / jemals ausgegeben
 let besitz = new Set();   // gekaufter Zierrat, z. B. "hut"
-/* Alle Muenz-Farben ohne Kauf, nur fuer uns - siehe hautAlleVerdrahten().
+/* Alle Muenz-Stuecke ohne Kauf, nur fuer uns - siehe hautAlleVerdrahten().
    Wie der Dauerschalter nur im Geraetespeicher, nie im Lernstand und nie in
    der Sicherungsdatei: besitz bleibt, was wirklich gekauft ist. 19.10.2026 */
 const HAUT_ALLE_SCHLUESSEL = 'zmaj_hautalle';
 let hautAlle = false;
 try{ hautAlle = localStorage.getItem(HAUT_ALLE_SCHLUESSEL) === '1'; }catch(e){}
 /* Zaehlt fuer Laden, Tragen und Drachen als besessen: gekauft, oder bei
-   eingeschaltetem Schalter eine Farbe mit Muenzpreis. Die Farben der
-   Vollversion haengen weiter allein an unlimited(). */
+   eingeschaltetem Schalter jedes Stueck mit Muenzpreis - erst nur die
+   Farben, seit 20.10.2026 auch Kopf, Brille und Hals (Ajdin: "gib alle
+   skins, muss die austesten"). Die Stuecke der Vollversion haengen
+   weiter allein an unlimited(). */
 const hatStueck = id => besitz.has(id)
-  || (hautAlle && ZIERRAT.some(w => w.id === id && w.gruppe === 'farbe' && !w.voll));
+  || (hautAlle && ZIERRAT.some(w => w.id === id && !w.voll));
 // Aufsetzen oder abnehmen ist eine Geraeteeinstellung wie Ton und Animation.
 // Der Wert kommt weiter unten aus localStorage, sobald pref() bereitsteht.
 /* Getragen wird jetzt mehreres: eine durch Komma getrennte Liste, hoechstens
@@ -3300,10 +3302,12 @@ const zierratDatei = id => 'zmajz-' + id + '.json';
 const hautSatz = farbe => (farbe && MASCOT.has('haut/' + farbe + '/')) ? farbe : '';
 /* Auch hier die Ausnahme fuer die Stuecke der Vollversion: sie stehen in
    keinem Besitz, weil sie nicht gekauft werden. Ohne sie haengt der
-   Umhang zwar in getragen, kommt aber nie an den Drachen. */
+   Umhang zwar in getragen, kommt aber nie an den Drachen. hatStueck statt
+   besitz.has: sonst kaeme ein freigeschalteter Hut nie an den Drachen,
+   und nach dem Ausschalten faellt er wieder ab (20.10.2026). */
 function getrageneTeile(){
   return getragenListe()
-    .filter(id => (besitz.has(id) || istVollStueck(id)) && MASCOT.has(zierratDatei(id)));
+    .filter(id => (hatStueck(id) || istVollStueck(id)) && MASCOT.has(zierratDatei(id)));
 }
 // Welche Farbe getragen wird. Leer heisst blau, die Grundfarbe.
 /* Die Farbe der Vollversion steht in keinem Besitz - sie wird nicht
@@ -4856,9 +4860,10 @@ function dauerVollVerdrahten(){
     dauerVollSetzen(true); renderLives(); vollZeileZeigen();
   });
 }
-/* ---- Alle Muenz-Farben fuer uns ----
+/* ---- Alle Muenz-Stuecke fuer uns ----
    Ajdin am 19.10.2026: alle Farben, die es fuer Muenzen gibt, tragen, ohne
-   sie zu kaufen - nur fuer sich. Dasselbe Wort wie beim Dauerschalter
+   sie zu kaufen - nur fuer sich. Am 20.10.2026 dazu auch Huete, Brillen
+   und Halsstuecke ("gib alle skins"), siehe hatStueck(). Dasselbe Wort wie beim Dauerschalter
    (derselbe Pruefwert, dauerWortStimmt), aber eine andere Stelle: siebenmal
    auf die Ueberschrift "Laden", waehrend der Reiter Farben gewaehlt ist,
    hoechstens zwei Sekunden zwischen zwei Tipps. Nochmal so schaltet aus.
@@ -4868,8 +4873,8 @@ function dauerVollVerdrahten(){
    Liste auf - beide fielen deshalb weg. Und die Wirkung steht gleich
    darunter: "Tragen" statt Preis.
    Gekauft wird nichts, besitz und Muenzen bleiben, wie sie sind. Ist der
-   Schalter aus, faellt eine nicht gekaufte Farbe vom Drachen wie ein Stueck
-   der Vollversion nach dem Abo; gespeichert bleibt sie. */
+   Schalter aus, faellt ein nicht gekauftes Stueck vom Drachen wie eins
+   der Vollversion nach dem Abo; gespeichert bleibt es. */
 function hautAlleSetzen(an){
   hautAlle = !!an;
   try{ localStorage.setItem(HAUT_ALLE_SCHLUESSEL, an ? '1' : '0'); }catch(e){}
@@ -4885,7 +4890,7 @@ function hautAlleVerdrahten(){
     const wort = await frageWort('Wort?');
     if(wort === null) return;
     if(!(await dauerWortStimmt(wort.trim().toLowerCase()))) return;
-    if(hautAlle && !(await frage(t('laden.reiter_farbe'),
+    if(hautAlle && !(await frage(t('laden.titel'),
                                  'Sie sind eingeschaltet. Ausschalten?',
                                  'Ausschalten', 'Anlassen'))) return;
     hautAlleSetzen(!hautAlle);
