@@ -19,7 +19,7 @@ separate, private repository; nothing here needs Android tooling.
 | `uebersetzungen.py` | translations of all content into en, tr, sv, nl, nb, da, fr | yes |
 | `sprachen.py` | interface texts in 8 languages, legal texts | yes |
 | `web/index.html` | the app | yes |
-| `web/audio/` | 2,411 synthesised MP3s + `index.json` | **no** – produced by `ton_bauen.py`, costs money |
+| `web/audio/` | 2,411 synthesised MP3s + `index.json` | **no** – produced by `ton_bauen.py` (story word timings `"w"`: `wortzeiten_holen.py`), costs money |
 | `web/inhalt/` | app content as JSON | **no** – `python3 inhalt_bauen.py` (gitignored) |
 | `data/` | open dataset | **no** – `python3 daten_exportieren.py` |
 | `*_richten.py` | one-off patch scripts for `web/index.html` | run only when asked |

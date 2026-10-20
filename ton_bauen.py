@@ -29,6 +29,20 @@ WICHTIG ZUR LIZENZ: Bei Azure muss die Ressource im bezahlten Tarif S0 laufen,
 nicht im kostenlosen F0. Der kostenlose Tarif trägt die Rechte zur
 kommerziellen Verwendung nicht. S0 hat keine Grundgebühr; dieser Lauf kostet
 ein paar Cent. Siehe LIESMICH in web/audio.
+
+WORTZEITEN (seit 20.10.2026): Bei den zwölf Geschichten steht in index.json
+zusätzlich "w" – für jedes Wort, das die App in der Geschichte antippbar
+anzeigt, ein Paar [start_ms, ende_ms] in der Aufnahme. Damit markiert die App
+beim Vorlesen das Wort, das gerade gesprochen wird. Dieses Skript holt sie
+NICHT: Der REST-Aufruf unten (cognitiveservices/v1) liefert nur die MP3. Die
+Zeiten kommen aus Azures WordBoundary-Ereignissen über das Speech SDK, siehe
+wortzeiten_holen.py – das spricht die Geschichte dafür noch einmal mit
+derselben Stimme und demselben SSML (ssml_normal) und ersetzt die MP3, damit
+Zeiten und Datei sicher zusammengehören.
+Dieses Skript lässt "w" stehen, solange Text und Datei bleiben. Erzeugt es
+eine Geschichte neu (Datei fehlt) oder hat sich ihr Text geändert, fällt "w"
+weg – die App liest dann ohne Markierung vor, bis wortzeiten_holen.py --holen
+gelaufen ist.
 """
 import base64
 import io
@@ -142,6 +156,17 @@ def textwoerter(text):
         if any(c.isalpha() or unicodedata.category(c).startswith("M") for c in s):
             raus.append(s)
     return raus
+
+
+def wortzeiten_passen(eintrag, text):
+    """Gehoeren die Wortzeiten "w" eines Index-Eintrags noch zu `text`?
+
+    Nur wenn der Text derselbe ist, unter dem sie geholt wurden, und es genau
+    ein Paar je App-Wort gibt. Sonst markierte die App beim Vorlesen das
+    falsche Wort - lieber gar keins. 20.10.2026."""
+    w = eintrag.get("w")
+    return (isinstance(w, list) and eintrag.get("text") == text
+            and len(w) == len(textwoerter(text)))
 
 
 def sammle():
@@ -267,6 +292,21 @@ def lautschrift(wort):
     return s
 
 
+def ssml_normal(text, stimme, langsam):
+    """Das SSML fuer jede Aufnahme ohne Eintrag in ton_ausnahmen.json - also
+    auch fuer die Geschichten.
+
+    Seit 20.10.2026 eine eigene Funktion: wortzeiten_holen.py spricht die
+    Geschichten noch einmal ueber das Speech SDK, um die Wortzeiten zu
+    bekommen, und muss dafuer GENAU dieses SSML schicken. Eine Kopie dort
+    koennte still auseinanderlaufen - dann klaenge die neue Datei anders als
+    das, was dieses Skript erzeugt."""
+    roh = _xml(text)
+    tempo = "<prosody rate='-10%%'>%s</prosody>" % roh if langsam else roh
+    return ("<speak version='1.0' xml:lang='bs-BA'><voice name='%s'>%s</voice></speak>"
+            % (stimme, tempo))
+
+
 def azure(zugang, text, stimme, langsam):
     gebiet = zugang["azure"]["region"]
     roh = _xml(text)
@@ -304,9 +344,7 @@ def azure(zugang, text, stimme, langsam):
         with urllib.request.urlopen(anfrage, timeout=30) as a:
             return a.read()
 
-    tempo = "<prosody rate='-10%%'>%s</prosody>" % roh if langsam else roh
-    ssml = ("<speak version='1.0' xml:lang='bs-BA'><voice name='%s'>%s</voice></speak>"
-            % (stimme, tempo))
+    ssml = ssml_normal(text, stimme, langsam)
     anfrage = urllib.request.Request(
         "https://%s.tts.speech.microsoft.com/cognitiveservices/v1" % gebiet,
         data=ssml.encode("utf-8"),
@@ -402,6 +440,15 @@ def grosser_lauf(dienst, zugang, stimme, stimme_gesch):
     neu = fehlt = 0
     for p in posten:
         vorhanden = bekannt.get(p["key"])
+        # Bekannte Eintraege bleiben mit ALLEN Feldern stehen, auch mit den
+        # Wortzeiten "w" der Geschichten (seit 20.10.2026) - die holt nur
+        # wortzeiten_holen.py, und ein Lauf hier darf sie nicht verlieren.
+        # Passt der Text nicht mehr (der Schluessel ist kleingeschrieben,
+        # "Rex" und "rex" landen also beim selben Eintrag), fliegt nur "w".
+        if vorhanden and "w" in vorhanden and not wortzeiten_passen(vorhanden, p["text"]):
+            del vorhanden["w"]
+            print("  Wortzeiten verworfen, Text geaendert: %s - danach "
+                  "wortzeiten_holen.py --holen" % vorhanden["datei"])
         if vorhanden and os.path.exists(os.path.join(AUDIO, vorhanden["datei"])):
             continue
         if vorhanden:
@@ -420,6 +467,8 @@ def grosser_lauf(dienst, zugang, stimme, stimme_gesch):
                   % (datei, len(ton)))
             fehlt += 1
         io.open(os.path.join(AUDIO, datei), "wb").write(ton)
+        # Ein neuer Eintrag ohne "w": Neue Aufnahme heisst neue Zeiten, die
+        # alten gehoerten zur alten Datei. 20.10.2026.
         bekannt[p["key"]] = {"key": p["key"], "datei": datei,
                              "text": p["text"], "stimme": stimme_gesch if lang else stimme}
         neu += 1
@@ -440,10 +489,22 @@ def grosser_lauf(dienst, zugang, stimme, stimme_gesch):
 
 
 def _schreibe_index(bekannt):
-    raus = {"version": 1,
-            "toene": sorted(bekannt.values(), key=lambda e: e["datei"])}
-    io.open(INDEX, "w", encoding="utf-8").write(
-        json.dumps(raus, ensure_ascii=False, indent=1))
+    # Die Wortzeiten "w" stehen je Geschichte in EINER Zeile. Mit indent=1
+    # stuende jede Zahl auf einer eigenen Zeile - rund 2.700 Zeilen mehr fuer
+    # 666 Wortpaare, und jeder Diff waere unlesbar. Platzhalter statt eigenem
+    # Encoder, damit json.dumps fuer alles andere zustaendig bleibt und der
+    # Rest der Datei Zeichen fuer Zeichen so aussieht wie bisher. 20.10.2026.
+    ersatz, toene = {}, []
+    for e in sorted(bekannt.values(), key=lambda e: e["datei"]):
+        if "w" in e:
+            platz = "\x00wortzeiten%d\x00" % len(ersatz)
+            ersatz[json.dumps(platz)] = json.dumps(e["w"], separators=(",", ":"))
+            e = dict(e, w=platz)
+        toene.append(e)
+    text = json.dumps({"version": 1, "toene": toene}, ensure_ascii=False, indent=1)
+    for platz, w in ersatz.items():
+        text = text.replace(platz, w, 1)
+    io.open(INDEX, "w", encoding="utf-8").write(text)
 
 
 # --------------------------------------------------------------------- Start

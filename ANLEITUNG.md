@@ -1370,6 +1370,19 @@ Index stehen, und ob jeder `key` noch zu seinem Text passt. Rückgabe 0 heißt:
 vollständig. Vor jeder Weitergabe laufen lassen – am PC fällt ein fehlender
 Ton nicht auf, am Handy schon.
 
+**`wortzeiten_holen.py`** (seit 20.10.2026) holt die Wortzeiten der zwölf
+Geschichten: In `index.json` steht bei jeder Geschichte ein Feld `"w"` mit
+einem Paar `[start_ms, ende_ms]` je Wort, das die App antippbar anzeigt –
+damit markiert sie beim Vorlesen das gesprochene Wort. Die Zeiten kommen aus
+Azures WordBoundary-Ereignissen, und die gibt es nur über das Speech SDK
+(`azure-cognitiveservices-speech`), nicht über den REST-Aufruf von
+`ton_bauen.py`. Deshalb spricht das Skript die Geschichte mit derselben Stimme
+und demselben SSML neu und ersetzt die MP3 – Zeiten und Datei kommen so aus
+demselben Aufruf. Das SDK gehört in eine eigene Umgebung, nicht in Thonny;
+wie, steht oben im Skript. Ohne `--holen` zeigt es nur, was fehlt.
+`ton_bauen.py` lässt `"w"` stehen, solange Text und Datei bleiben, und wirft
+es weg, sobald sich der Text einer Geschichte ändert.
+
 **Zugang:** `ton_bauen.py` braucht `tts_zugang.json` neben sich, nach dem
 Muster in `tts_zugang.BEISPIEL.json`. Diese Datei enthält einen Schlüssel und
 bleibt auf diesem Rechner – sie gehört nicht in die App und nicht auf GitHub.
@@ -1441,6 +1454,7 @@ Bosnisch Lernapp/
 ├── zmaj_lottie.py    Erzeugt die Drachen-Animationen in web/maskottchen
 ├── ton_bauen.py      Erzeugt die Aufnahmen und web/audio/index.json
 ├── ton_pruefen.py    Prüft, ob die Tonspur vollständig ist
+├── wortzeiten_holen.py Holt die Wortzeiten der Geschichten (Azure Speech SDK)
 │
 ├── inhalt.py         lade_daten(): aus den fünf Dateien wird der Inhalt
 ├── start.py          Startet die App am PC (web/ + /api/daten) und
