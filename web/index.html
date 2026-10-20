@@ -337,6 +337,60 @@
   .seriezahl{font-family:var(--font-display); font-size:46px; font-weight:700;
              line-height:1; display:flex; align-items:baseline; gap:8px}
   .seriezahl span:first-child{font-size:30px}
+  /* ---- Die Flamme zeigt, ob heute schon gelernt wurde ----
+     Wunsch von Kuebra und Ajdin, entschieden am 20.10.2026 nach einer
+     Vorschau mit drei Varianten (A aus, B glimmt, C Glut). Ajdin: "nimm a
+     fuer 0 tage und den rest fuer c".
+       .aus   Serie 0 und heute nichts: grau, blass und still (A)
+       .glut  die Serie laeuft, heute noch nichts: klein, entsaettigt und
+              unruhig flackernd wie letzte Glut (C) - sie erinnert, ohne
+              zu schimpfen
+       ohne   heute gelernt: die volle Flamme wie bisher
+       .auf   lodert einmal kurz auf, wenn sie IN DIESER SITZUNG von kalt
+              auf an wechselt, also nach der ersten Lektion des Tages.
+              Beim Start brennt sie einfach. Gesetzt von flammeZeigen().
+     Ohne Bewegung (Schalter "Animationen" = .no-anim, oder die
+     Geraeteeinstellung) nehmen die allgemeinen Regeln oben und unten jede
+     animation weg; die Glut steht dann als ruhiges Bild da, und .auf setzt
+     flammeZeigen() gar nicht erst.
+
+     Hoehe: Ajdin am selben Tag, "die zahl und das feuer nicht auf einer
+     ebene". Auf der gemeinsamen Grundlinie stand die sichtbare Mitte der
+     Flamme 4,5 px tiefer als die der Ziffern, bei grosser Schrift 6 bis
+     9 px (nachgemessen in Chrome an den Pixeln eines Bildschirmfotos,
+     tests_e2e/test_flamme.py). Das Emoji reicht unter die Grundlinie, die
+     Ziffern nicht. Das translateY in % rechnet mit der Hoehe des eigenen
+     Kastens und waechst so mit der Schriftgroesse des Handys mit.
+     Gemessen mit beiden Emoji-Schriften: Segoe UI Emoji (Windows) und
+     Noto Color Emoji, die Schrift von Android (aus Android Studio,
+     Pruefung vom 20.10.2026). Die Android-Flamme ist etwas groesser,
+     sitzt aber ebenso hoechstens 1 px neben der Mitte der Ziffern - in
+     allen drei Zustaenden, bei Pixeldichte 1 bis 3 und bis 200 % Schrift.
+     JEDE Regel hier, die transform setzt, muss es mitnehmen - sonst
+     sackt die Flamme waehrend der Animation wieder ab.
+     transform-origin liegt auf der sichtbaren Mitte des Emojis (44 % von
+     oben, ebenso gemessen): so schrumpft die Glut um ihre Mitte und
+     bleibt mit der Zahl auf einer Hoehe, statt nach unten zu sacken. */
+  .seriezahl .flamme{transform:translateY(-15.5%); transform-origin:50% 44%}
+  .seriezahl .flamme.aus{filter:grayscale(1); opacity:.32}
+  .seriezahl .flamme.glut{transform:translateY(-15.5%) scale(.7); filter:grayscale(.55) brightness(.75);
+                          opacity:.45; animation:flammeGlut 2.2s linear infinite}
+  .seriezahl .flamme.auf{animation:flammeAuf .8s ease-out}
+  @keyframes flammeGlut{
+    0%,100%{filter:grayscale(.55) brightness(.75); opacity:.45}
+    20%{filter:grayscale(.35) brightness(.95); opacity:.7}
+    35%{filter:grayscale(.6) brightness(.7); opacity:.4}
+    60%{filter:grayscale(.3) brightness(1); opacity:.75}
+    80%{filter:grayscale(.55) brightness(.8); opacity:.5}}
+  /* In jedem Schritt dieselbe Liste von Filtern: nur dann gleitet der
+     Browser von einem zum naechsten, sonst springt er. */
+  @keyframes flammeAuf{
+    0%{transform:translateY(-15.5%) scale(.7); opacity:.45;
+       filter:grayscale(.55) brightness(.75) drop-shadow(0 0 0 rgba(255,140,0,0))}
+    45%{transform:translateY(-15.5%) scale(1.28); opacity:1;
+        filter:grayscale(0) brightness(1.15) drop-shadow(0 0 8px rgba(255,140,0,.9))}
+    100%{transform:translateY(-15.5%) scale(1); opacity:1;
+         filter:grayscale(0) brightness(1) drop-shadow(0 0 0 rgba(255,140,0,0))}}
   /* Am Handy naehme der Drache in seiner vollen Groesse die halbe Breite. */
   .obenreihe .zmaj{width:120px; height:120px; flex:0 1 120px; min-width:0}
   .obenreihe .streakline{margin:7px 0 0}
@@ -1363,6 +1417,34 @@
   .story .txt{font-family:var(--font-display); font-size:20px; line-height:1.75; font-weight:500}
   .story .w{cursor:pointer; border-bottom:2px dotted var(--line); border-radius:3px; transition:.12s}
   .story .w:hover,.story .w.on{background:var(--accent-soft); color:var(--primary); border-bottom-color:var(--accent)}
+  /* ---- Mitlesen (20.10.2026) ----
+     Kuebras Wunsch: beim Vorlesen einer Geschichte zeigt die App das Wort,
+     das die Stimme gerade spricht, damit man im Text folgen kann. Ajdin
+     nach der Vorschau: "mach die buchstaben gelb nicht aussenrum" - also
+     nur die Schrift gelb, kein Kasten, kein Hintergrund. Und "das es
+     blasser wird": schon Gesprochenes wird blasser (.gelesen).
+     Gelb auf dem hellen Grund (#F6F7FE) laege bei 1,5:1 und waere nicht zu
+     lesen. Im Hellen deshalb --accent-text #876A00, dasselbe Gold wie
+     "Jetzt dran" am Geschichtenpfad: mindestens 4,8:1 auf der Flaeche
+     jeder der neun Sektionen, 4,6:1 auf dem Hellgelb eines angetippten
+     Worts. Im Dunkeln das volle --accent #FFD23F, mindestens 6,3:1.
+     Gelesen mit .65: in jeder Sektion hell mindestens 5,0:1, dunkel 4,6:1.
+     Die erste Fassung vom selben Tag hatte #A07D00 und .55 - ein wenig
+     heller golden, aber nur 3,6 und 3,7:1. axe meldete beides als ernst:
+     die Schrift ist 20px und nicht fett, gefordert sind 4,5:1, und das
+     ist seit dem 04.10.2026 der Massstab der App
+     (docs/barrierefreiheit-2026-10-04.md). Geprueft in
+     tests_e2e/test_mitlesen.py, test_axe_beim_mitlesen. Blasser als der
+     Rest bleibt Gelesenes auch mit .65 deutlich.
+     Keine andere Schriftstaerke: sonst wuerde der Text beim Mitlesen
+     springen. Steht NACH .w.on, damit ein angetipptes Wort, wenn die Stimme
+     es spricht, trotzdem gelb wird. Das transition von .w oben laesst die
+     Farbe sanft wechseln; ohne Animationen springt sie. */
+  .story{--mitlesen:var(--accent-text)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .story{--mitlesen:var(--accent)} }
+  :root[data-theme="dark"] .story{--mitlesen:var(--accent)}
+  .story .w.gelesen{opacity:.65}
+  .story .w.mitlesen{color:var(--mitlesen)}
   .bubble{margin-top:14px; padding:10px 14px; border-radius:12px; background:var(--accent-soft); color:var(--ink); font-size:14px; min-height:40px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-weight:700}
   .bubble b{font-family:var(--font-display); font-size:18px; color:var(--primary)}
   .bubble.empty{color:var(--muted); background:transparent; border:2px dashed var(--line)}
@@ -1578,7 +1660,7 @@
          Den Kasten selbst gibt es weiter, die Profilseite benutzt ihn. -->
     <div class="obenreihe">
       <div class="serieblock">
-        <div class="seriezahl"><span aria-hidden="true">🔥</span><span id="serieZahl">0</span></div>
+        <div class="seriezahl"><span class="flamme" id="serieFlamme" aria-hidden="true">🔥</span><span id="serieZahl">0</span></div>
         <div class="streakline" id="streakLine"></div>
       </div>
       <div class="zmaj idle" id="zmajHome"></div>
@@ -5522,6 +5604,29 @@ function renderSerie(){
    Der Tag gehoert mit in den Vergleich: Bleibt die App ueber Mitternacht
    in einem Level offen, galt sonst der Jubel von gestern schon als der von
    heute, und nach der ersten Lektion des neuen Tages kam keiner. */
+/* Die Flamme neben der Serie (20.10.2026, siehe .flamme im Stil): aus bei
+   Serie 0, Glut, solange heute noch nichts gelernt ist, sonst an.
+   flammeVorher ist der Zustand beim letzten Zeichnen in dieser Sitzung.
+   Aufgelodert wird nur beim Wechsel von kalt (aus oder Glut) auf an. Beim
+   ersten Zeichnen nach dem Start ist flammeVorher noch null - wer heute
+   schon gelernt hat und die App oeffnet, sieht sie einfach brennen.
+   Ob Bewegung erlaubt ist, fragt dieselbe Funktion wie bei den Kacheln:
+   Schalter "Animationen" und Geraeteeinstellung, bei jedem Aufruf neu. */
+let flammeVorher = null;
+function flammeZeigen(){
+  const f = $('serieFlamme'); if(!f) return;
+  const zustand = days.has(today()) ? 'an' : (streak() > 0 ? 'glut' : 'aus');
+  f.classList.toggle('aus', zustand === 'aus');
+  f.classList.toggle('glut', zustand === 'glut');
+  if(zustand !== 'an') f.classList.remove('auf');
+  else if(flammeVorher && flammeVorher !== 'an' && !kachelnRuhig()){
+    f.classList.remove('auf'); void f.offsetWidth; f.classList.add('auf');
+  }
+  flammeVorher = zustand;
+}
+$('serieFlamme').addEventListener('animationend', e => {
+  if(e.animationName === 'flammeAuf') e.currentTarget.classList.remove('auf');
+});
 let heroStand = null;
 function renderHero(){
   festSchmuck();
@@ -5538,6 +5643,7 @@ function renderHero(){
     mountZmaj(anim);
   }
   $('serieZahl').textContent = streak();
+  flammeZeigen();
   /* Der Einstiegsknopf traegt den Namen dessen, was als naechstes dran ist.
      btn.weitermachen gibt es schon in allen acht Sprachen, es muss also
      kein neuer Text dazu.
@@ -5677,6 +5783,9 @@ async function hoerenPruefen(){
   return canSpeak;
 }
 let AUDIO = new Map();
+/* Wortzeiten der Geschichten fuer das Mitlesen (20.10.2026): Datei ->
+   [[start_ms, ende_ms], ...], ein Paar je Wort. Siehe ---- Mitlesen ----. */
+let WORTZEITEN = new Map();
 let voiceName = ''; try{ voiceName = localStorage.getItem('zmaj_voice') || ''; }catch(e){}
 const audioKey = text => text.split(' / ')[0].replace(/[.!?…]+$/,'').trim().toLowerCase();
 function bosnianVoices(){
@@ -5739,6 +5848,9 @@ let laeuftVor = null, tonMarke = 0;
    grundsaetzlich zurueck. Deshalb wird die Stelle vorher gesichert.
    Gemeldet am 24.09.2026. */
 let geschichteStelle = null;
+/* Das laufende Mitlesen einer Geschichte, sonst null (20.10.2026). Steht
+   hier oben bei den anderen Zustaenden, weil stilleBitte() es abraeumt. */
+let mitlesen = null;
 /* aufgabeMarke: welche Aufgabe gerade steht. Die Spracherkennung antwortet
    verzoegert - wer waehrenddessen ueberspringt oder abbricht, bekaeme sonst
    das Ergebnis in die NAECHSTE Aufgabe geliefert, samt Piepton und einem
@@ -5773,6 +5885,7 @@ function stilleBitte(behalteAufgabe){
   const h = hoererAbbrechen; hoererAbbrechen = null;
   if(h) try{ h(); }catch(e){}
   knopfZurueck();
+  mitlesenAus();           // keine Markierung ohne Ton (20.10.2026)
 }
 /* Haelt das System den Ton von aussen an - Kopfhoerer abgezogen, ein Anruf,
    eine andere App holt sich den Ton -, kommt kein 'ended'. Der Knopf
@@ -5782,6 +5895,121 @@ function stilleBitte(behalteAufgabe){
    Ton und `paused` ist schon wieder false. Deshalb die Pruefung. */
 spieler.addEventListener('pause', ()=>{ if(spieler.paused && !pausiert) knopfZurueck(); });
 spieler.addEventListener('error', knopfZurueck);
+/* ---- Mitlesen ----
+   Kuebras Wunsch, umgesetzt am 20.10.2026: beim Vorlesen einer Geschichte
+   ist das Wort markiert, das die Stimme gerade spricht - so kann man im
+   Text folgen. Schon Gesprochenes wird blasser. Aussehen: .w.mitlesen und
+   .w.gelesen im Stil.
+   Die Zeiten liefert wortzeiten_holen.py als Feld "w" in audio/index.json:
+   je Wort ein Paar [start_ms, ende_ms] ab Anfang der Aufnahme bei Tempo 1,
+   in der Reihenfolge der .w in showStory(). Gelesen wird
+   spieler.currentTime - das ist Zeit in der Aufnahme, nicht auf der Uhr.
+   Deshalb passt es bei jedem Tempo ohne Umrechnung, auch wenn das Tempo
+   mitten im Lesen wechselt, und nach einem Sprung (Weiterlesen ab der
+   gemerkten Stelle) setzt die Markierung gleich am richtigen Wort ein.
+   requestAnimationFrame statt 'timeupdate': das kommt nur etwa viermal in
+   der Sekunde, kurze Woerter wie "i" oder "je" fielen durch.
+   Die Schleife laeuft nur, solange der Ton laeuft. In der Pause steht sie,
+   die Markierung bleibt stehen, 'play' weckt sie wieder. Abgeraeumt wird
+   bei allem, was das Vorlesen beendet: Stopp, Ende, Wort angetippt, andere
+   Geschichte, Ansicht verlassen, App verdeckt - alles laeuft ueber
+   stilleBitte() oder wiederVorlesen() in showStory().
+   Die Computerstimme am PC bekommt keine Markierung: sie spricht
+   fuerStimme(text) ("Rex" als "Reks"), die Stellen aus onboundary passen
+   also nicht Zeichen fuer Zeichen zum angezeigten Text. Auf dem Handy gibt
+   es sie ohnehin nicht. */
+const MITLESEN_NACHLAUF = 120;   // ms, die ein Wort nach seinem Ende noch stehen bleibt
+/* Die Zeiten nur, wenn sie zur Geschichte passen: genau ein Paar je Wort,
+   Zahlen, Anfaenge aufsteigend. Wurde der Text geaendert und die Aufnahme
+   nicht, stimmt die Anzahl nicht mehr - dann lieber keine Markierung als
+   eine, die neben der Stimme herlaeuft. Still, ohne Meldung. */
+function mitlesZeiten(datei, anzahl){
+  const z = datei ? WORTZEITEN.get(datei) : null;
+  if(!Array.isArray(z) || !anzahl || z.length !== anzahl) return null;
+  let vorher = -Infinity;
+  for(let i = 0; i < z.length; i++){
+    const p = z[i];
+    if(!Array.isArray(p) || p.length < 2 || !Number.isFinite(p[0]) ||
+       !Number.isFinite(p[1]) || p[0] < vorher) return null;
+    vorher = p[0];
+  }
+  return z;
+}
+/* Nach speak() rufen: dann steht die Aufnahme schon im spieler, und die
+   Marke ist die dieses Laufs. */
+function mitlesenStart(datei, woerter){
+  mitlesenAus();
+  const liste = Array.prototype.slice.call(woerter || []);
+  const zeiten = mitlesZeiten(datei, liste.length);
+  if(!zeiten) return;
+  mitlesen = {woerter: liste, zeiten: zeiten, quelle: spieler.src, marke: tonMarke,
+              akt: -1, gelesen: 0, bild: 0};
+  mitlesen.bild = requestAnimationFrame(mitlesenTakt);
+}
+function mitlesenAus(){
+  const m = mitlesen; mitlesen = null;
+  if(!m) return;
+  if(m.bild) try{ cancelAnimationFrame(m.bild); }catch(e){}
+  m.woerter.forEach(w => w.classList.remove('mitlesen', 'gelesen'));
+}
+function mitlesenTakt(){
+  const m = mitlesen; if(!m) return;
+  m.bild = 0;
+  /* Ein anderer Ton oder ein Stopp dazwischen: aus. stilleBitte() raeumt
+     schon selbst ab - das hier ist die zweite Sicherung. */
+  if(m.marke !== tonMarke || spieler.src !== m.quelle){ mitlesenAus(); return; }
+  mitlesenZeigen(m, spieler.currentTime * 1000);
+  if(!spieler.paused) m.bild = requestAnimationFrame(mitlesenTakt);
+}
+spieler.addEventListener('play', ()=>{
+  const m = mitlesen;
+  if(m && !m.bild) m.bild = requestAnimationFrame(mitlesenTakt);
+});
+/* Wort i ist dran ab seinem Anfang bis kurz nach seinem Ende, laengstens
+   bis das naechste beginnt. In der Pause nach einem Satz bleibt es also
+   einen Augenblick stehen, dann ist keins markiert. Gelesen ist alles
+   davor - in so einer Pause auch das zuletzt gesprochene. Angefasst wird
+   das DOM nur, wenn sich etwas aendert, nicht in jedem Bild. */
+function mitlesenZeigen(m, t){
+  const z = m.zeiten, n = z.length;
+  let begonnen = 0;
+  while(begonnen < n && z[begonnen][0] <= t) begonnen++;
+  let akt = -1;
+  if(begonnen > 0){
+    const i = begonnen - 1;
+    const ende = Math.min(z[i][1] + MITLESEN_NACHLAUF, i + 1 < n ? z[i + 1][0] : Infinity);
+    if(t < ende) akt = i;
+  }
+  const gelesen = akt >= 0 ? akt : begonnen;
+  if(akt === m.akt && gelesen === m.gelesen) return;
+  m.woerter.forEach((w, j) => {
+    w.classList.toggle('mitlesen', j === akt);
+    w.classList.toggle('gelesen', j < gelesen);
+  });
+  const neu = akt >= 0 && akt !== m.akt;
+  m.akt = akt; m.gelesen = gelesen;
+  if(neu) mitlesenImBlick(m.woerter[akt], akt > 0 ? m.woerter[akt - 1] : null);
+}
+/* Ist die Geschichte laenger als der Bildschirm (die laengste hat 85
+   Woerter), bleibt das aktuelle Wort im Blick. Gescrollt wird erst, wenn es
+   den sichtbaren Bereich verlaesst, und dann gleich in die Mitte - so
+   rueckt die Seite einmal je halbem Bildschirm nach, nicht bei jeder
+   Zeile. Und nur, wenn das Wort davor noch zu sehen war: wer beim Zuhoeren
+   zu den Fragen hinuntergescrollt ist, wird nicht zurueckgerissen. Sanft
+   nur mit Animationen (Schalter und Geraeteeinstellung, wie bei den
+   Kacheln). */
+function mitlesenImBlick(el, davor){
+  try{
+    const h = window.innerHeight || document.documentElement.clientHeight;
+    const r = el.getBoundingClientRect();
+    if(r.top >= 0 && r.bottom <= h) return;
+    if(davor){
+      const d = davor.getBoundingClientRect();
+      if(d.bottom <= 0 || d.top >= h) return;
+    }
+    el.scrollIntoView({block: 'center', behavior: kachelnRuhig() ? 'auto' : 'smooth'});
+  }catch(e){}
+}
 /* ---- Anhalten, weitermachen, Tempo ----
    Stopp setzt an den Anfang zurueck, Pause nicht: `currentTime` bleibt
    stehen, und weil `pausiert` gesetzt ist, faellt der Knopf nicht auf
@@ -5909,7 +6137,10 @@ async function ladeAudio(){
     const r = await fetch('audio/index.json', {cache:'no-cache'});
     const idx = await r.json();
     AUDIO = new Map((idx.toene||[]).map(e=>[String(e.key).toLowerCase(), e.datei]));
-  }catch(e){ AUDIO = new Map(); }
+    /* Mitlesen (20.10.2026): nach der Datei, nicht nach dem Text - so
+       gehoeren die Zeiten sicher zu genau der Aufnahme, die speak() spielt. */
+    WORTZEITEN = new Map((idx.toene||[]).filter(e=>e && e.datei && Array.isArray(e.w)).map(e=>[e.datei, e.w]));
+  }catch(e){ AUDIO = new Map(); WORTZEITEN = new Map(); }
   canListen = hasTTS || AUDIO.size > 0;
 }
 /* Woher der Inhalt kommt, haengt davon ab, wo die App laeuft.
@@ -7996,6 +8227,9 @@ function showStory(){
     knopfVor.classList.remove('laeuft');
     knopfStop.hidden = true;
     wachHalten(false);   // Stopp, Ende, Wort angetippt, Ansicht verlassen, verdeckt
+    /* Auch wenn das System den Ton von aussen anhaelt (Anruf, Kopfhoerer):
+       dann kommt kein stilleBitte(), nur dieser Rueckruf. (20.10.2026) */
+    mitlesenAus();
   };
   knopfVor.addEventListener('click',()=>{
     if(pausiert){                      // angehalten -> an derselben Stelle weiter
@@ -8033,6 +8267,9 @@ function showStory(){
        gibt wiederVorlesen() die Sperre gleich wieder frei. */
     wachHalten(true);
     speak(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); });
+    /* Mitlesen (20.10.2026). Ohne passende Wortzeiten oder ohne Aufnahme
+       (Computerstimme) bleibt der Text einfach ohne Markierung. */
+    mitlesenStart(audioDatei(s.text), $('rBody').querySelectorAll('.txt .w'));
   });
   /* Der kleine Knopf bricht wirklich ab - dann ist auch die gemerkte
      Stelle hinfaellig, sonst spraenge der naechste Start mittenhinein. */
