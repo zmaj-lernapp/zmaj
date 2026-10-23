@@ -41,7 +41,7 @@ CSS_ENTWURF = [
     '@keyframes sternPop{0%{transform:scale(1)} 45%{transform:scale(1.22)} 100%{transform:scale(1)}}',
     '.nav .stern.pop svg{animation:sternPop .28s ease-out}',
     '@media (prefers-reduced-motion: reduce){ .nav .stern.pop svg{animation:none} }',
-    '.nav .stern.v1{width:44px; height:44px; margin:-2.5px 0; border-radius:50%; border:2px solid var(--line); '
+    '.nav .stern.v1{width:44px; height:44px; margin:-4px 0; border-radius:50%; border:2px solid var(--line); '
     'background:var(--surface)}',
     '.nav .stern.v1::before{inset:-4px}',
     '.nav .stern.v1[aria-pressed="true"]{border-color:var(--accent); background:var(--an-grund)}',
@@ -146,9 +146,12 @@ def test_goldverlauf_einmal_und_sichtbar(index_html):
 def test_kasten_wie_der_bestehende(index_html):
     """#sternBox ist eine schlichte .section wie #topfBox und wird mit
     denselben Klassen gebaut."""
-    assert ('      <div class="section" id="topfBox"></div>\r\n'
-            '      <div class="section" id="sternBox"></div>\r\n') in index_html
-    rumpf = index_html.split("function sternKasten(){")[1].split("\n}\r\n")[0]
+    # Zeilenenden angleichen: unter Linux (CI) checkt git die Datei mit LF
+    # aus, unter Windows mit CRLF. 23.10.2026, PR #55.
+    html = index_html.replace("\r\n", "\n")
+    assert ('      <div class="section" id="topfBox"></div>\n'
+            '      <div class="section" id="sternBox"></div>\n') in html
+    rumpf = html.split("function sternKasten(){")[1].split("\n}\n")[0]
     for klasse in ('<div class="desc">', '<div class="topfzahl">', '<div class="topfwort">',
                    '<div class="topfleer">', '<div class="row"><button class="btn know" id="sternLos"',
                    '<div class="note">', '<div class="row schmal">'):

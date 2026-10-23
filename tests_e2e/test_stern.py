@@ -316,7 +316,9 @@ def test_leiste_bleibt_39_px_und_trefferflaeche_48(seite, heute_stand, knopf):
     ohne = seite.js(LEISTE, knopf)
     seite.js("(id) => { document.getElementById(id).hidden = false; }", knopf)
     mit = seite.js(LEISTE, knopf)
-    assert ohne["navH"] == mit["navH"] == 39, (ohne, mit)
+    # Die Leiste ist 39 px (Windows) bzw. 38 px (Linux-CI, Noto): der Stern
+    # darf sie nie veraendern. 23.10.2026, PR #55.
+    assert ohne["navH"] == mit["navH"] and abs(mit["navH"] - 39) <= 1, (ohne, mit)
     assert mit["quitTop"] == ohne["quitTop"], "abbrechen rutscht"
     assert abs(mit["mitte"]) < 0.01 and abs(mit["rechts"]) < 0.01, mit
     t = seite.js(TREFFER, knopf)
