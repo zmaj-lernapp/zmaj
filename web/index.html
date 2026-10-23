@@ -7294,7 +7294,17 @@ const UMBENANNT = {
   /* Ajdin am 22.10.2026: "die vokabel salz am besten zu so/sol aendern weil
      man es so oder so sagt". Die Suche unten ueber das bosnische Wort
      faende "so" nicht mehr wieder - es heisst jetzt "so / sol". */
-  'salz:so': 'salz:so / sol'};
+  'salz:so': 'salz:so / sol',
+  /* Ajdin am 23.10.2026: "tetka ujna strina fuer die verschiedenen tanten
+     und striko ujak amidza=stric tetak daidza=ujak usw". Tanten und Onkel
+     heissen seitdem nach ihrer Seite, amidža und daidža haben eine zweite
+     Form (stric, ujak). Die Suche unten faende amidža und daidža ueber das
+     bosnische Wort nicht mehr wieder; tetka und rođak faende sie, aber nur
+     solange kein zweites Wort so heisst. */
+  'tante:tetka': 'tante (schwester von vater oder mutter):tetka',
+  'onkel (vaterseite):amidža': 'onkel (bruder des vaters):amidža / stric',
+  'onkel (mutterseite):daidža': 'onkel (bruder der mutter):daidža / ujak',
+  'cousin:rođak': 'cousin, verwandter (allgemein):rođak'};
 function altenFortschrittUmschreiben(){
   const gueltig = new Set(), nachWort = new Map(), nachLevel = new Map();
   CATEGORIES.forEach(c => c.words.forEach(w => {
@@ -9023,7 +9033,12 @@ function renderTask(task, body, done, opts={}){
       '<div class="translation">'+inZitat(esc(s.de))+'</div><div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
     const check=()=>{
-      if(fin) return; const r=matches(inp.value, s.answer);
+      if(fin) return;
+      /* "auch" am Lueckensatz (23.10.2026): weitere richtige Antworten, wie
+         bei den Woertern. Bei "Moj ___ je pčelar." gelten auch stric und die
+         Koseformen striko und adžo (WORTSCHATZ_KORREKTUREN.md). Gezeigt und
+         gesprochen wird weiter s.answer. matches() trennt bei " / ". */
+      const r=matches(inp.value, [s.answer, ...(s.auch || [])].join(' / '));
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_luecke'))); return; }
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.

@@ -341,7 +341,7 @@
     "fr": "Qui en fait partie ? Avec les formes bosniennes comme babo, nana, amidža."
    },
    "builds_on": [],
-   "word_count": 22
+   "word_count": 34
   },
   {
    "id": "essen",
@@ -3852,76 +3852,292 @@
    "audio": "web/audio/w0090.mp3"
   },
   {
-   "id": "tante:tetka",
+   "id": "onkel (bruder des vaters):amidža / stric",
+   "bs": "amidža / stric",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Onkel (Bruder des Vaters)",
+    "en": "uncle (father's brother)",
+    "tr": "amca",
+    "sv": "farbror",
+    "nl": "oom (broer van vader)",
+    "nb": "farbror",
+    "da": "farbror",
+    "fr": "oncle (frère du père)"
+   },
+   "audio": "web/audio/w0092.mp3"
+  },
+  {
+   "id": "onkel (bruder der mutter):daidža / ujak",
+   "bs": "daidža / ujak",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Onkel (Bruder der Mutter)",
+    "en": "uncle (mother's brother)",
+    "tr": "dayı",
+    "sv": "morbror",
+    "nl": "oom (broer van moeder)",
+    "nb": "morbror",
+    "da": "morbror",
+    "fr": "oncle (frère de la mère)"
+   },
+   "audio": "web/audio/w0093.mp3"
+  },
+  {
+   "id": "onkel (mann der tante):tetak",
+   "bs": "tetak",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Onkel (Mann der Tante)",
+    "en": "uncle (aunt's husband)",
+    "tr": "enişte (halanın veya teyzenin eşi)",
+    "sv": "fasters eller mosters man",
+    "nl": "oom (man van tante)",
+    "nb": "onkel (gift med faster eller moster)",
+    "da": "onkel (gift med faster eller moster)",
+    "fr": "oncle (mari de la tante)"
+   },
+   "audio": null
+  },
+  {
+   "id": "tante (schwester von vater oder mutter):tetka",
    "bs": "tetka",
    "level": "familie",
    "level_position": 4,
    "section": "alltag",
    "translations": {
-    "de": "Tante",
-    "en": "aunt",
-    "tr": "teyze / hala",
-    "sv": "moster / faster",
-    "nl": "tante",
-    "nb": "tante",
-    "da": "tante",
-    "fr": "tante"
+    "de": "Tante (Schwester von Vater oder Mutter)",
+    "en": "aunt (father's or mother's sister)",
+    "tr": "hala / teyze",
+    "sv": "faster / moster",
+    "nl": "tante (zus van vader of moeder)",
+    "nb": "faster / moster",
+    "da": "faster / moster",
+    "fr": "tante (sœur du père ou de la mère)"
    },
    "audio": "web/audio/w0091.mp3"
   },
   {
-   "id": "onkel (vaterseite):amidža",
-   "bs": "amidža",
+   "id": "tante (frau des onkels väterlicherseits):strina / amidžinica",
+   "bs": "strina / amidžinica",
    "level": "familie",
    "level_position": 4,
    "section": "alltag",
    "translations": {
-    "de": "Onkel (Vaterseite)",
-    "en": "uncle (father's side)",
-    "tr": "amca",
-    "sv": "farbror",
-    "nl": "oom (van vaderskant)",
-    "nb": "farbror",
-    "da": "farbror",
-    "fr": "oncle (côté paternel)"
+    "de": "Tante (Frau des Onkels väterlicherseits)",
+    "en": "aunt (wife of father's brother)",
+    "tr": "yenge (amcanın eşi)",
+    "sv": "farbrors fru",
+    "nl": "tante (vrouw van vaders broer)",
+    "nb": "tante (gift med farbror)",
+    "da": "tante (gift med farbror)",
+    "fr": "tante (femme de l'oncle paternel)"
    },
-   "audio": "web/audio/w0092.mp3"
+   "audio": null
   },
   {
-   "id": "onkel (mutterseite):daidža",
-   "bs": "daidža",
+   "id": "tante (frau des onkels mütterlicherseits):ujna / daidžinica",
+   "bs": "ujna / daidžinica",
    "level": "familie",
    "level_position": 4,
    "section": "alltag",
    "translations": {
-    "de": "Onkel (Mutterseite)",
-    "en": "uncle (mother's side)",
-    "tr": "dayı",
-    "sv": "morbror",
-    "nl": "oom (van moederskant)",
-    "nb": "morbror",
-    "da": "morbror",
-    "fr": "oncle (côté maternel)"
+    "de": "Tante (Frau des Onkels mütterlicherseits)",
+    "en": "aunt (wife of mother's brother)",
+    "tr": "yenge (dayının eşi)",
+    "sv": "morbrors fru",
+    "nl": "tante (vrouw van moeders broer)",
+    "nb": "tante (gift med morbror)",
+    "da": "tante (gift med morbror)",
+    "fr": "tante (femme de l'oncle maternel)"
    },
-   "audio": "web/audio/w0093.mp3"
+   "audio": null
   },
   {
-   "id": "cousin:rođak",
+   "id": "cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže",
+   "bs": "amidžić / brat od amidže",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Cousin (Sohn des Onkels väterlicherseits)",
+    "en": "cousin (son of father's brother)",
+    "tr": "amca oğlu",
+    "sv": "kusin (farbrors son)",
+    "nl": "neef (zoon van vaders broer)",
+    "nb": "fetter (sønn av farbror)",
+    "da": "fætter (søn af farbror)",
+    "fr": "cousin (fils de l'oncle paternel)"
+   },
+   "audio": null
+  },
+  {
+   "id": "cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže",
+   "bs": "amidžična / sestra od amidže",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Cousine (Tochter des Onkels väterlicherseits)",
+    "en": "cousin (daughter of father's brother)",
+    "tr": "amca kızı",
+    "sv": "kusin (farbrors dotter)",
+    "nl": "nicht (dochter van vaders broer)",
+    "nb": "kusine (datter av farbror)",
+    "da": "kusine (datter af farbror)",
+    "fr": "cousine (fille de l'oncle paternel)"
+   },
+   "audio": null
+  },
+  {
+   "id": "cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže",
+   "bs": "daidžić / brat od daidže",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Cousin (Sohn des Onkels mütterlicherseits)",
+    "en": "cousin (son of mother's brother)",
+    "tr": "dayı oğlu",
+    "sv": "kusin (morbrors son)",
+    "nl": "neef (zoon van moeders broer)",
+    "nb": "fetter (sønn av morbror)",
+    "da": "fætter (søn af morbror)",
+    "fr": "cousin (fils de l'oncle maternel)"
+   },
+   "audio": null
+  },
+  {
+   "id": "cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže",
+   "bs": "daidžična / sestra od daidže",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Cousine (Tochter des Onkels mütterlicherseits)",
+    "en": "cousin (daughter of mother's brother)",
+    "tr": "dayı kızı",
+    "sv": "kusin (morbrors dotter)",
+    "nl": "nicht (dochter van moeders broer)",
+    "nb": "kusine (datter av morbror)",
+    "da": "kusine (datter af morbror)",
+    "fr": "cousine (fille de l'oncle maternel)"
+   },
+   "audio": null
+  },
+  {
+   "id": "cousin (sohn der tante):tetić / brat od tetke",
+   "bs": "tetić / brat od tetke",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Cousin (Sohn der Tante)",
+    "en": "cousin (aunt's son)",
+    "tr": "hala oğlu / teyze oğlu",
+    "sv": "kusin (fasters eller mosters son)",
+    "nl": "neef (zoon van tante)",
+    "nb": "fetter (sønn av faster eller moster)",
+    "da": "fætter (søn af faster eller moster)",
+    "fr": "cousin (fils de la tante)"
+   },
+   "audio": null
+  },
+  {
+   "id": "cousine (tochter der tante):tetična / sestra od tetke",
+   "bs": "tetična / sestra od tetke",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Cousine (Tochter der Tante)",
+    "en": "cousin (aunt's daughter)",
+    "tr": "hala kızı / teyze kızı",
+    "sv": "kusin (fasters eller mosters dotter)",
+    "nl": "nicht (dochter van tante)",
+    "nb": "kusine (datter av faster eller moster)",
+    "da": "kusine (datter af faster eller moster)",
+    "fr": "cousine (fille de la tante)"
+   },
+   "audio": null
+  },
+  {
+   "id": "cousin, verwandter (allgemein):rođak",
    "bs": "rođak",
    "level": "familie",
    "level_position": 4,
    "section": "alltag",
    "translations": {
-    "de": "Cousin",
-    "en": "cousin",
-    "tr": "kuzen",
-    "sv": "kusin",
-    "nl": "neef",
-    "nb": "fetter",
-    "da": "fætter",
-    "fr": "cousin"
+    "de": "Cousin, Verwandter (allgemein)",
+    "en": "cousin, relative (male, general term)",
+    "tr": "kuzen, akraba (erkek, genel anlamda)",
+    "sv": "kusin, släkting (man, allmänt)",
+    "nl": "neef, familielid (man, algemeen)",
+    "nb": "fetter, slektning (mann, generelt)",
+    "da": "fætter, slægtning (mand, generelt)",
+    "fr": "cousin, parent (en général)"
    },
    "audio": "web/audio/w0094.mp3"
+  },
+  {
+   "id": "cousine, verwandte (allgemein):rođaka / rođakinja",
+   "bs": "rođaka / rođakinja",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Cousine, Verwandte (allgemein)",
+    "en": "cousin, relative (female, general term)",
+    "tr": "kuzen, akraba (kadın, genel anlamda)",
+    "sv": "kusin, släkting (kvinna, allmänt)",
+    "nl": "nicht, familielid (vrouw, algemeen)",
+    "nb": "kusine, slektning (kvinne, generelt)",
+    "da": "kusine, slægtning (kvinde, generelt)",
+    "fr": "cousine, parente (en général)"
+   },
+   "audio": null
+  },
+  {
+   "id": "neffe:nećak",
+   "bs": "nećak",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Neffe",
+    "en": "nephew",
+    "tr": "erkek yeğen",
+    "sv": "brorson / systerson",
+    "nl": "neef (zoon van broer of zus)",
+    "nb": "nevø",
+    "da": "nevø",
+    "fr": "neveu"
+   },
+   "audio": null
+  },
+  {
+   "id": "nichte:nećakinja",
+   "bs": "nećakinja",
+   "level": "familie",
+   "level_position": 4,
+   "section": "alltag",
+   "translations": {
+    "de": "Nichte",
+    "en": "niece",
+    "tr": "kız yeğen",
+    "sv": "brorsdotter / systerdotter",
+    "nl": "nicht (dochter van broer of zus)",
+    "nb": "niese",
+    "da": "niece",
+    "fr": "nièce"
+   },
+   "audio": null
   },
   {
    "id": "baby:beba",

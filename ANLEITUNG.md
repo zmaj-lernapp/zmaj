@@ -991,7 +991,7 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 1728 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 1740 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, und
   keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
 

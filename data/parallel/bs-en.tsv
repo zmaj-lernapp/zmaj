@@ -90,10 +90,22 @@ djeca	children	word	kinder:djeca
 muž	husband	word	ehemann:muž
 nana	grandma	word	oma:nana
 dedo	grandpa	word	opa:dedo
-tetka	aunt	word	tante:tetka
-amidža	uncle (father's side)	word	onkel (vaterseite):amidža
-daidža	uncle (mother's side)	word	onkel (mutterseite):daidža
-rođak	cousin	word	cousin:rođak
+amidža / stric	uncle (father's brother)	word	onkel (bruder des vaters):amidža / stric
+daidža / ujak	uncle (mother's brother)	word	onkel (bruder der mutter):daidža / ujak
+tetak	uncle (aunt's husband)	word	onkel (mann der tante):tetak
+tetka	aunt (father's or mother's sister)	word	tante (schwester von vater oder mutter):tetka
+strina / amidžinica	aunt (wife of father's brother)	word	tante (frau des onkels väterlicherseits):strina / amidžinica
+ujna / daidžinica	aunt (wife of mother's brother)	word	tante (frau des onkels mütterlicherseits):ujna / daidžinica
+amidžić / brat od amidže	cousin (son of father's brother)	word	cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže
+amidžična / sestra od amidže	cousin (daughter of father's brother)	word	cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže
+daidžić / brat od daidže	cousin (son of mother's brother)	word	cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže
+daidžična / sestra od daidže	cousin (daughter of mother's brother)	word	cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže
+tetić / brat od tetke	cousin (aunt's son)	word	cousin (sohn der tante):tetić / brat od tetke
+tetična / sestra od tetke	cousin (aunt's daughter)	word	cousine (tochter der tante):tetična / sestra od tetke
+rođak	cousin, relative (male, general term)	word	cousin, verwandter (allgemein):rođak
+rođaka / rođakinja	cousin, relative (female, general term)	word	cousine, verwandte (allgemein):rođaka / rođakinja
+nećak	nephew	word	neffe:nećak
+nećakinja	niece	word	nichte:nećakinja
 beba	baby	word	baby:beba
 porodica	Family	word	familie:porodica
 prijatelj	friend (male)	word	freund:prijatelj
@@ -1755,7 +1767,7 @@ Vidimo se sutra!	See you tomorrow!	sentence	s0025
 Danas je lijep dan.	Today is a beautiful day.	sentence	s0026
 Moja sestra se zove Amina.	My sister's name is Amina.	sentence	s0027
 Moj muž se zove Ajdin.	My husband's name is Ajdin.	sentence	s0028
-Moj amidža je pčelar.	My uncle (father's side) is a beekeeper.	sentence	s0029
+Moj amidža je pčelar.	My uncle (father's brother) is a beekeeper.	sentence	s0029
 Moja majka i moj babo.	My mother and my dad.	sentence	s0030
 Hljeb i sir.	Bread and cheese.	sentence	s0031
 Dvije kahve, molim.	Two coffees, please.	sentence	s0032

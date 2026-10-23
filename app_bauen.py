@@ -453,10 +453,17 @@ def emir_drueber():
     liest das Feld nicht (sie nimmt nur key und datei); es steht dort fuer
     den, der das Paket aufmacht und wissen will, welche Stimme drin ist.
 
+    Dazu kommen seit dem 23.10.2026 die Woerter aus ton_nur_emir.json,
+    die es NUR von Emir gibt: Eintrag und Datei, siehe unten.
+
     Gibt die Zahl der getauschten Dateien zurueck.
     """
+    import ton_bauen
     if not os.path.isdir(EMIR):
         print("\nKein audio_emir/ in der Huelle - die Tonspur bleibt Azure.")
+        if ton_bauen.nur_emir():
+            print("   Ohne Ton bleiben %d Texte aus ton_nur_emir.json - die gibt es nur von Emir."
+                  % len(ton_bauen.nur_emir()))
         return 0
     audio = os.path.join(WWW, "audio")
     # Nie ins oeffentliche web/ schreiben - auch dann nicht, wenn ZMAJ_HUELLE
@@ -467,6 +474,29 @@ def emir_drueber():
     index_pfad = os.path.join(audio, "index.json")
     index = json.load(io.open(index_pfad, encoding="utf-8"))
     eintraege = {e["datei"]: e for e in index.get("toene", [])}
+
+    # Woerter, die es NUR von Emir gibt (ton_nur_emir.json, 23.10.2026): in
+    # web/audio stehen weder ihr Eintrag noch ihre Datei - die Web-Demo bleibt
+    # fuer sie stumm, statt eine fehlende Datei zu laden. Hier kommen beide
+    # dazu, der Eintrag in die KOPIE von index.json, die Datei aus audio_emir/.
+    # Die Schleife darunter zaehlt sie dann mit und setzt "stimme": "emir".
+    # Fehlt eine Datei oder ist ihre Nummer schon vergeben, lieber kein Paket
+    # als ein stummes Wort oder eines mit fremdem Ton. ton_pruefen.py (in
+    # pruefen()) hat beides schon geprueft; das hier ist die zweite Wache.
+    nur_von_emir = 0
+    for e in sorted(ton_bauen.nur_emir().values(), key=lambda e: e["datei"]):
+        quelle = os.path.join(EMIR, e["datei"])
+        if e["datei"] in eintraege:
+            raise SystemExit("\nABBRUCH: %s steht in index.json (%s) und in ton_nur_emir.json (%s)."
+                             % (e["datei"], eintraege[e["datei"]].get("text"), e["text"]))
+        if not os.path.isfile(quelle) or os.path.getsize(quelle) < MINDEST:
+            raise SystemExit("\nABBRUCH: Emir-Aufnahme fehlt oder ist stumm: %s (%s)"
+                             % (quelle, e["text"]))
+        shutil.copyfile(quelle, os.path.join(audio, e["datei"]))
+        eintrag = {"key": e["key"], "datei": e["datei"], "text": e["text"]}
+        index["toene"].append(eintrag)
+        eintraege[e["datei"]] = eintrag
+        nur_von_emir += 1
 
     getauscht, fremd, stumm = 0, [], []
     for name in sorted(os.listdir(EMIR)):
@@ -493,6 +523,8 @@ def emir_drueber():
     geschichten = sum(1 for d in eintraege if not EMIR_DATEI.fullmatch(d))
     print("\nStimme Emir: %d Aufnahmen aus audio_emir/ ueber www/audio gelegt."
           % getauscht)
+    if nur_von_emir:
+        print("   davon nur von Emir, neu im Index (ton_nur_emir.json): %d" % nur_von_emir)
     print("   Geschichten bleiben bei Azure: %d" % geschichten)
     if azure:
         print("   Woerter ohne Emir, bleiben Azure: %d  (%s)" % (len(azure), liste(azure)))

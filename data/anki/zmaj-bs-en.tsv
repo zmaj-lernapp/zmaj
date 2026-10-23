@@ -94,10 +94,22 @@ djeca	children	zmaj zmaj::04_familie
 muž	husband	zmaj zmaj::04_familie
 nana	grandma	zmaj zmaj::04_familie
 dedo	grandpa	zmaj zmaj::04_familie
-tetka	aunt	zmaj zmaj::04_familie
-amidža	uncle (father's side)	zmaj zmaj::04_familie
-daidža	uncle (mother's side)	zmaj zmaj::04_familie
-rođak	cousin	zmaj zmaj::04_familie
+amidža / stric	uncle (father's brother)	zmaj zmaj::04_familie
+daidža / ujak	uncle (mother's brother)	zmaj zmaj::04_familie
+tetak	uncle (aunt's husband)	zmaj zmaj::04_familie
+tetka	aunt (father's or mother's sister)	zmaj zmaj::04_familie
+strina / amidžinica	aunt (wife of father's brother)	zmaj zmaj::04_familie
+ujna / daidžinica	aunt (wife of mother's brother)	zmaj zmaj::04_familie
+amidžić / brat od amidže	cousin (son of father's brother)	zmaj zmaj::04_familie
+amidžična / sestra od amidže	cousin (daughter of father's brother)	zmaj zmaj::04_familie
+daidžić / brat od daidže	cousin (son of mother's brother)	zmaj zmaj::04_familie
+daidžična / sestra od daidže	cousin (daughter of mother's brother)	zmaj zmaj::04_familie
+tetić / brat od tetke	cousin (aunt's son)	zmaj zmaj::04_familie
+tetična / sestra od tetke	cousin (aunt's daughter)	zmaj zmaj::04_familie
+rođak	cousin, relative (male, general term)	zmaj zmaj::04_familie
+rođaka / rođakinja	cousin, relative (female, general term)	zmaj zmaj::04_familie
+nećak	nephew	zmaj zmaj::04_familie
+nećakinja	niece	zmaj zmaj::04_familie
 beba	baby	zmaj zmaj::04_familie
 porodica	Family	zmaj zmaj::04_familie
 prijatelj	friend (male)	zmaj zmaj::04_familie

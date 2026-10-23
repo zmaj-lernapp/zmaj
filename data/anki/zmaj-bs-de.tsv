@@ -94,10 +94,22 @@ djeca	Kinder	zmaj zmaj::04_familie
 muž	Ehemann	zmaj zmaj::04_familie
 nana	Oma	zmaj zmaj::04_familie
 dedo	Opa	zmaj zmaj::04_familie
-tetka	Tante	zmaj zmaj::04_familie
-amidža	Onkel (Vaterseite)	zmaj zmaj::04_familie
-daidža	Onkel (Mutterseite)	zmaj zmaj::04_familie
-rođak	Cousin	zmaj zmaj::04_familie
+amidža / stric	Onkel (Bruder des Vaters)	zmaj zmaj::04_familie
+daidža / ujak	Onkel (Bruder der Mutter)	zmaj zmaj::04_familie
+tetak	Onkel (Mann der Tante)	zmaj zmaj::04_familie
+tetka	Tante (Schwester von Vater oder Mutter)	zmaj zmaj::04_familie
+strina / amidžinica	Tante (Frau des Onkels väterlicherseits)	zmaj zmaj::04_familie
+ujna / daidžinica	Tante (Frau des Onkels mütterlicherseits)	zmaj zmaj::04_familie
+amidžić / brat od amidže	Cousin (Sohn des Onkels väterlicherseits)	zmaj zmaj::04_familie
+amidžična / sestra od amidže	Cousine (Tochter des Onkels väterlicherseits)	zmaj zmaj::04_familie
+daidžić / brat od daidže	Cousin (Sohn des Onkels mütterlicherseits)	zmaj zmaj::04_familie
+daidžična / sestra od daidže	Cousine (Tochter des Onkels mütterlicherseits)	zmaj zmaj::04_familie
+tetić / brat od tetke	Cousin (Sohn der Tante)	zmaj zmaj::04_familie
+tetična / sestra od tetke	Cousine (Tochter der Tante)	zmaj zmaj::04_familie
+rođak	Cousin, Verwandter (allgemein)	zmaj zmaj::04_familie
+rođaka / rođakinja	Cousine, Verwandte (allgemein)	zmaj zmaj::04_familie
+nećak	Neffe	zmaj zmaj::04_familie
+nećakinja	Nichte	zmaj zmaj::04_familie
 beba	Baby	zmaj zmaj::04_familie
 porodica	Familie	zmaj zmaj::04_familie
 prijatelj	Freund	zmaj zmaj::04_familie

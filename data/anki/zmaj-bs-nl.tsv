@@ -94,10 +94,22 @@ djeca	kinderen	zmaj zmaj::04_familie
 muž	echtgenoot	zmaj zmaj::04_familie
 nana	oma	zmaj zmaj::04_familie
 dedo	opa	zmaj zmaj::04_familie
-tetka	tante	zmaj zmaj::04_familie
-amidža	oom (van vaderskant)	zmaj zmaj::04_familie
-daidža	oom (van moederskant)	zmaj zmaj::04_familie
-rođak	neef	zmaj zmaj::04_familie
+amidža / stric	oom (broer van vader)	zmaj zmaj::04_familie
+daidža / ujak	oom (broer van moeder)	zmaj zmaj::04_familie
+tetak	oom (man van tante)	zmaj zmaj::04_familie
+tetka	tante (zus van vader of moeder)	zmaj zmaj::04_familie
+strina / amidžinica	tante (vrouw van vaders broer)	zmaj zmaj::04_familie
+ujna / daidžinica	tante (vrouw van moeders broer)	zmaj zmaj::04_familie
+amidžić / brat od amidže	neef (zoon van vaders broer)	zmaj zmaj::04_familie
+amidžična / sestra od amidže	nicht (dochter van vaders broer)	zmaj zmaj::04_familie
+daidžić / brat od daidže	neef (zoon van moeders broer)	zmaj zmaj::04_familie
+daidžična / sestra od daidže	nicht (dochter van moeders broer)	zmaj zmaj::04_familie
+tetić / brat od tetke	neef (zoon van tante)	zmaj zmaj::04_familie
+tetična / sestra od tetke	nicht (dochter van tante)	zmaj zmaj::04_familie
+rođak	neef, familielid (man, algemeen)	zmaj zmaj::04_familie
+rođaka / rođakinja	nicht, familielid (vrouw, algemeen)	zmaj zmaj::04_familie
+nećak	neef (zoon van broer of zus)	zmaj zmaj::04_familie
+nećakinja	nicht (dochter van broer of zus)	zmaj zmaj::04_familie
 beba	baby	zmaj zmaj::04_familie
 porodica	Familie	zmaj zmaj::04_familie
 prijatelj	vriend	zmaj zmaj::04_familie

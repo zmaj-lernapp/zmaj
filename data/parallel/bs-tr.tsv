@@ -90,10 +90,22 @@ djeca	çocuklar	word	kinder:djeca
 muž	eş (erkek)	word	ehemann:muž
 nana	nine	word	oma:nana
 dedo	dede	word	opa:dedo
-tetka	teyze / hala	word	tante:tetka
-amidža	amca	word	onkel (vaterseite):amidža
-daidža	dayı	word	onkel (mutterseite):daidža
-rođak	kuzen	word	cousin:rođak
+amidža / stric	amca	word	onkel (bruder des vaters):amidža / stric
+daidža / ujak	dayı	word	onkel (bruder der mutter):daidža / ujak
+tetak	enişte (halanın veya teyzenin eşi)	word	onkel (mann der tante):tetak
+tetka	hala / teyze	word	tante (schwester von vater oder mutter):tetka
+strina / amidžinica	yenge (amcanın eşi)	word	tante (frau des onkels väterlicherseits):strina / amidžinica
+ujna / daidžinica	yenge (dayının eşi)	word	tante (frau des onkels mütterlicherseits):ujna / daidžinica
+amidžić / brat od amidže	amca oğlu	word	cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže
+amidžična / sestra od amidže	amca kızı	word	cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže
+daidžić / brat od daidže	dayı oğlu	word	cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže
+daidžična / sestra od daidže	dayı kızı	word	cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže
+tetić / brat od tetke	hala oğlu / teyze oğlu	word	cousin (sohn der tante):tetić / brat od tetke
+tetična / sestra od tetke	hala kızı / teyze kızı	word	cousine (tochter der tante):tetična / sestra od tetke
+rođak	kuzen, akraba (erkek, genel anlamda)	word	cousin, verwandter (allgemein):rođak
+rođaka / rođakinja	kuzen, akraba (kadın, genel anlamda)	word	cousine, verwandte (allgemein):rođaka / rođakinja
+nećak	erkek yeğen	word	neffe:nećak
+nećakinja	kız yeğen	word	nichte:nećakinja
 beba	bebek	word	baby:beba
 porodica	Aile	word	familie:porodica
 prijatelj	arkadaş (erkek)	word	freund:prijatelj
