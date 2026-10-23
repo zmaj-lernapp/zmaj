@@ -231,7 +231,11 @@ KATEGORIEN = [
         {"de": "Tomate",              "bs": "paradajz"},
         {"de": "Zwiebel",             "bs": "luk"},
         {"de": "Reis",                "bs": "riža"},
-        {"de": "Salz",                "bs": "so"},
+        # Ajdin am 22.10.2026: "die vokabel salz am besten zu so/sol aendern
+        # weil man es so oder so sagt". Wie bei kahva / kafa stehen beide
+        # Formen da. Die Kennung wird damit "salz:so / sol"; den alten
+        # Lernstand unter "salz:so" zieht UMBENANNT in web/index.html mit.
+        {"de": "Salz",                "bs": "so / sol"},
         {"de": "Zucker",              "bs": "šećer"},
         {"de": "Suppe",               "bs": "supa"},
         {"de": "Pita (Blätterteig-Gericht)", "bs": "pita"},

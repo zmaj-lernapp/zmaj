@@ -273,6 +273,83 @@ def test_ton_verkleinern_mit_ffmpeg(tmp_path):
     assert (audio / "w0001.ogg").read_bytes()[:4] == b"OggS"
 
 
+# Stille am Anfang (22.10.2026, Ajdin: "der sprecher sagt viel zu spaet die
+# woerter oder saetze"): ton_verkleinern() kuerzt sie bei Woertern und
+# Saetzen auf rund 30 ms, die Geschichten bleiben, wie sie sind.
+def test_ton_filter_nur_fuer_woerter():
+    import app_bauen
+    assert app_bauen.ton_filter("w0001.mp3") == app_bauen.TON_ANFANG
+    assert "silenceremove" in app_bauen.TON_ANFANG and "start_periods=1" in app_bauen.TON_ANFANG
+    assert "stop_periods" not in app_bauen.TON_ANFANG          # das Ende bleibt dran
+    for name in ("g01.mp3", "g12.mp3", "index.json", "w001.mp3"):
+        assert app_bauen.ton_filter(name) is None, name
+
+
+def test_ton_schluessel_kennt_den_filter(monkeypatch):
+    """Ohne den Filter im Schluessel kaemen aus .ton_opus die alten,
+    ungekuerzten Dateien - und eine Aenderung am Filter wuerde nie wirksam."""
+    import app_bauen
+    h = "ab" * 32
+    wort, geschichte = app_bauen.ton_schluessel(h, "w0001.mp3"), app_bauen.ton_schluessel(h, "g01.mp3")
+    assert geschichte == h[:32] + "-24k"
+    assert wort.startswith(geschichte + "-a") and wort != geschichte
+    monkeypatch.setattr(app_bauen, "TON_ANFANG", app_bauen.TON_ANFANG.replace("0.03", "0.06"))
+    assert app_bauen.ton_schluessel(h, "w0001.mp3") != wort
+
+
+def _pcm(ffmpeg, pfad):
+    """Mono, 48 kHz, 16 Bit - so wie die App die Opus-Datei abspielt."""
+    import array
+    import subprocess
+    roh = subprocess.run([ffmpeg, "-v", "error", "-i", str(pfad), "-ac", "1", "-ar", "48000",
+                          "-f", "s16le", "-acodec", "pcm_s16le", "-"],
+                         capture_output=True, check=True).stdout
+    a = array.array("h")
+    a.frombytes(roh[:len(roh) // 2 * 2])
+    return a
+
+
+def _einsatz_ms(proben, db=-45):
+    """Erster Ausschlag ueber `db` (Spitze), in ms ab Dateianfang."""
+    grenze = 32768 * 10 ** (db / 20.0)
+    return next((i / 48.0 for i, x in enumerate(proben) if abs(x) > grenze), None)
+
+
+def test_ton_verkleinern_kuerzt_den_anfang(tmp_path):
+    """w0001 und g01 beginnen beide mit 200 ms Stille. Nach dem Umwandeln
+    setzt das Wort nach 20-60 ms ein, die Geschichte weiter bei 200 ms (ihre
+    Wortzeiten zaehlen ab Dateianfang). Hinten fehlt nichts: der Ton ist
+    danach noch volle 1,5 s lang. Im Zwischenspeicher liegen beide unter
+    verschiedenen Schluesseln."""
+    import json
+    import shutil
+    import subprocess
+    import app_bauen
+    ffmpeg = os.environ.get("ZMAJ_FFMPEG") or (
+        app_bauen.FFMPEG if os.path.isfile(app_bauen.FFMPEG) else shutil.which("ffmpeg"))
+    if not ffmpeg:
+        pytest.skip("ffmpeg fehlt")
+    audio = tmp_path / "audio"
+    audio.mkdir()
+    for name in ("w0001.mp3", "g01.mp3"):
+        subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y", "-f", "lavfi",
+                        "-i", "sine=frequency=440:duration=1.5", "-af", "adelay=200:all=1",
+                        "-ar", "24000", "-ac", "1", "-b:a", "48k", str(audio / name)], check=True)
+    (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+        {"key": "eins", "datei": "w0001.mp3"}, {"key": "g1", "datei": "g01.mp3", "w": [[200, 900]]}]}),
+        encoding="utf-8")
+    zwischen = tmp_path / "zwischen"
+    app_bauen.ton_verkleinern(str(audio), ffmpeg=ffmpeg, zwischen=str(zwischen))
+    wort, geschichte = _pcm(ffmpeg, audio / "w0001.ogg"), _pcm(ffmpeg, audio / "g01.ogg")
+    assert 20 <= _einsatz_ms(wort) <= 60, _einsatz_ms(wort)
+    assert 180 <= _einsatz_ms(geschichte) <= 230, _einsatz_ms(geschichte)
+    # Hinten: der Sinus laeuft bis zum Schluss weiter, gekuerzt wurde nur vorn.
+    ende = max(i for i, x in enumerate(wort) if abs(x) > 1000) / 48.0
+    assert ende - _einsatz_ms(wort) >= 1480, ende
+    namen = sorted(os.listdir(zwischen))
+    assert len(namen) == 2 and sum(1 for n in namen if "-24k-a" in n) == 1, namen
+
+
 def test_projekt_zip_ohne_emir_und_pruefwert(tmp_path):
     """Die Projekt-Zip "darf ueberall hin". Emirs Aufnahmen stecken in der
     Huelle an drei Stellen (audio_emir, Opus-Zwischenspeicher, Git-Objekte)

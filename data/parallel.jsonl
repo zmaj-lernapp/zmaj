@@ -117,7 +117,7 @@
 {"id": "tomate:paradajz", "kind": "word", "bs": "paradajz", "translations": {"de": "Tomate", "en": "tomato", "tr": "domates", "sv": "tomat", "nl": "tomaat", "nb": "tomat", "da": "tomat", "fr": "tomate"}}
 {"id": "zwiebel:luk", "kind": "word", "bs": "luk", "translations": {"de": "Zwiebel", "en": "onion", "tr": "soğan", "sv": "lök", "nl": "ui", "nb": "løk", "da": "løg", "fr": "oignon"}}
 {"id": "reis:riža", "kind": "word", "bs": "riža", "translations": {"de": "Reis", "en": "rice", "tr": "pirinç", "sv": "ris", "nl": "rijst", "nb": "ris", "da": "ris", "fr": "riz"}}
-{"id": "salz:so", "kind": "word", "bs": "so", "translations": {"de": "Salz", "en": "salt", "tr": "tuz", "sv": "salt", "nl": "zout", "nb": "salt", "da": "salt", "fr": "sel"}}
+{"id": "salz:so / sol", "kind": "word", "bs": "so / sol", "translations": {"de": "Salz", "en": "salt", "tr": "tuz", "sv": "salt", "nl": "zout", "nb": "salt", "da": "salt", "fr": "sel"}}
 {"id": "zucker:šećer", "kind": "word", "bs": "šećer", "translations": {"de": "Zucker", "en": "sugar", "tr": "şeker", "sv": "socker", "nl": "suiker", "nb": "sukker", "da": "sukker", "fr": "sucre"}}
 {"id": "suppe:supa", "kind": "word", "bs": "supa", "translations": {"de": "Suppe", "en": "soup", "tr": "çorba", "sv": "soppa", "nl": "soep", "nb": "suppe", "da": "suppe", "fr": "soupe"}}
 {"id": "pita (blätterteig-gericht):pita", "kind": "word", "bs": "pita", "translations": {"de": "Pita (Blätterteig-Gericht)", "en": "pita (filled filo pastry)", "tr": "pita (yufkadan börek)", "sv": "pita (inbakad filodegspaj)", "nl": "pita (gevuld filodeeggebak)", "nb": "pita (fylt filodeigpai)", "da": "pita (fyldt filodejstærte)", "fr": "pita (tourte en pâte filo)"}}

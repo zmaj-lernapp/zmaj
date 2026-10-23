@@ -214,3 +214,35 @@ existiert dagegen nicht, Hähne haben keine.
 
 Die Belege liegen in `sonderzeichen_korrekturen.json`, je mit URL und
 wörtlichem Zitat.
+
+---
+
+## Nachtrag vom 22.10.2026: Salz heißt `so` oder `sol`
+
+Ajdin:
+
+> die vokabel salz am besten zu so/sol aendern weil man es so oder so sagt
+
+**`so` → `so / sol`** (vokabeln.py, Level „Essen & Trinken")
+
+Beide Formen gelten, wie bei *kahva / kafa*. Nachgeschlagen: Wiktionary
+führt *sol* (weiblich, „Salz") als Form in Kroatien und *so* als die
+bosnische, montenegrinische und serbische. Dass in Bosnien beide gesagt
+werden, ist Ajdins Auskunft und gilt hier.
+
+In der App heißt das, ohne dass dafür etwas Neues gebaut wurde: In der
+Auswahl steht „so / sol", beim Sprechen zählt jede der beiden Formen. Als
+eigene Tippaufgabe kommt das Wort nicht mehr – Wörter mit „ / " kommen nie
+als Tippaufgabe (`typable()`), wie *kahva / kafa*.
+
+**Was daran hängt:**
+
+- Die Kennung wird von `salz:so` zu `salz:so / sol`. Der Lernstand wandert
+  über `UMBENANNT` in `web/index.html` mit: gelernt, Fehler-Topf und
+  Sterne. Der Fehler-Topf zog dabei vorher gar nicht mit, das ist seit
+  diesem Tag behoben (`topfUmschreiben()`).
+- Eine Aufnahme mit beiden Formen fehlt noch. Bis dahin spielt die App
+  die vorhandene Aufnahme „so" (`w0119.mp3`). `ton_bauen.py` erzeugt die
+  neue beim nächsten Lauf (kostet Geld, Ajdin entscheidet). Danach den
+  Eintrag in `NUR_ERSTE_FORM` in `ton_pruefen.py` löschen – die Prüfung
+  meldet ihn dann als überflüssig.

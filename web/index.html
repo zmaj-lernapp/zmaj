@@ -367,30 +367,103 @@
      sitzt aber ebenso hoechstens 1 px neben der Mitte der Ziffern - in
      allen drei Zustaenden, bei Pixeldichte 1 bis 3 und bis 200 % Schrift.
      JEDE Regel hier, die transform setzt, muss es mitnehmen - sonst
-     sackt die Flamme waehrend der Animation wieder ab.
+     sackt die Flamme waehrend der Animation wieder ab. Seit dem
+     22.10.2026 steht die Anhebung deshalb an einer Stelle, in --hoch.
      transform-origin liegt auf der sichtbaren Mitte des Emojis (44 % von
      oben, ebenso gemessen): so schrumpft die Glut um ihre Mitte und
-     bleibt mit der Zahl auf einer Hoehe, statt nach unten zu sacken. */
-  .seriezahl .flamme{transform:translateY(-15.5%); transform-origin:50% 44%}
-  .seriezahl .flamme.aus{filter:grayscale(1); opacity:.32}
-  .seriezahl .flamme.glut{transform:translateY(-15.5%) scale(.7); filter:grayscale(.55) brightness(.75);
-                          opacity:.45; animation:flammeGlut 2.2s linear infinite}
-  .seriezahl .flamme.auf{animation:flammeAuf .8s ease-out}
+     bleibt mit der Zahl auf einer Hoehe, statt nach unten zu sacken.
+
+     Ueberall gleich (22.10.2026, Ajdin: "beachte das nicht das es 2
+     verschiedene desgins sind"): dieselbe Flamme steht auch in der
+     Statistik am Ende einer Lektion und einer Wiederholungsrunde. Dort
+     baut sie flammeHtml(), die Klassen kommen an jedem Ort aus
+     flammeKlassen(). Die Regeln haengen deshalb an .flamme allein, nicht
+     mehr an .seriezahl. Je Ort eigen ist nur --hoch: daneben steht jeweils
+     eine andere Schrift in anderer Groesse (oben Spectral 46 px neben
+     30 px Emoji, in der Statistik Nunito 18 px neben 18 px Emoji), jede
+     Stelle einzeln an den Pixeln nachgemessen wie oben.
+     inline-block, weil transform an einem gewoehnlichen inline-Element
+     nichts tut: in der Statistik steht die Flamme mitten im Text, oben in
+     .flammenbox, dem Halt fuer die Funken. Aufgelodert (.auf) wird nur
+     oben; flammeHtml() setzt es nie. */
+  .flammenbox{position:relative; display:inline-block}
+  .flamme{display:inline-block; --hoch:0%; transform:translateY(var(--hoch)); transform-origin:50% 44%}
+  .seriezahl .flamme{--hoch:-15.5%}
+  /* In der Statistik keine Anhebung: dort steht die sichtbare Mitte der
+     Flamme ohnehin hoechstens 0,25 px neben der Mitte der Ziffern -
+     nachgemessen am 22.10.2026 mit beiden Emoji-Schriften bei 100, 130
+     und 200 % Schrift. Nunito-Ziffern sind im Verhaeltnis hoeher als die
+     von Spectral oben. Die Zeile bleibt, damit man sieht: gemessen. */
+  .stat .flamme{--hoch:0%}
+  /* ---- Stufen fuer lange Serien (22.10.2026) ----
+     Ajdin: "Mit Stufen". Nach streak(), Schwellen nicht ohne ihn aendern:
+       unter 30  orange wie bisher, keine Klasse
+       ab 30     .stufe-blau
+       ab 100    .stufe-lila
+       ab 365    .stufe-gold, weissgold mit kleinen Funken (.funke)
+     Gefaerbt wird das Emoji selbst (hue-rotate), wie in der Vorschau vom
+     20.10.2026 - je nach Emoji-Schrift des Handys sieht es etwas anders aus.
+     --ton ist der Farbfilter der Stufe. Er steht VOR jedem Filter der
+     Zustaende, auch in den Keyframes: so behaelt die Glut die Farbe ihrer
+     Stufe, und das Auflodern ebenso. var(--ton,) mit leerem Ersatz: ohne
+     Stufe bleibt jede Filterliste genau die von vorher. Die graue Flamme
+     (.aus) hat nie eine Stufe, sie gehoert zur Serie 0.
+     --ruhe ist der stille Schein der brennenden Flamme, --glanz seine
+     Farbe auf dem Hoehepunkt des Aufloderns. Masse in em, damit der Schein
+     an der kleinen Flamme der Statistik nicht groesser wirkt als oben. */
+  .flamme.stufe-blau{--ton:hue-rotate(190deg) saturate(1.35); --glanz:rgba(60,150,255,.9);
+                     --ruhe:drop-shadow(0 0 .2em rgba(60,150,255,.55)); filter:var(--ton) var(--ruhe)}
+  .flamme.stufe-lila{--ton:hue-rotate(245deg) saturate(1.45); --glanz:rgba(170,90,255,.9);
+                     --ruhe:drop-shadow(0 0 .2em rgba(170,90,255,.55)); filter:var(--ton) var(--ruhe)}
+  .flamme.stufe-gold{--ton:saturate(.45) brightness(1.3); --glanz:rgba(255,214,90,1);
+                     --ruhe:drop-shadow(0 0 .3em rgba(255,214,90,.9)); filter:var(--ton) var(--ruhe)}
+  /* Die Zustaende stehen NACH den Stufen: gleiches Gewicht, also gewinnt
+     bei der Glut ihr eigener Filter - der --ton schon enthaelt. */
+  .flamme.aus{filter:grayscale(1); opacity:.32}
+  .flamme.glut{transform:translateY(var(--hoch)) scale(.7); filter:var(--ton,) grayscale(.55) brightness(.75);
+               opacity:.45; animation:flammeGlut 2.2s linear infinite}
+  .flamme.auf{animation:flammeAuf .8s ease-out}
   @keyframes flammeGlut{
-    0%,100%{filter:grayscale(.55) brightness(.75); opacity:.45}
-    20%{filter:grayscale(.35) brightness(.95); opacity:.7}
-    35%{filter:grayscale(.6) brightness(.7); opacity:.4}
-    60%{filter:grayscale(.3) brightness(1); opacity:.75}
-    80%{filter:grayscale(.55) brightness(.8); opacity:.5}}
+    0%,100%{filter:var(--ton,) grayscale(.55) brightness(.75); opacity:.45}
+    20%{filter:var(--ton,) grayscale(.35) brightness(.95); opacity:.7}
+    35%{filter:var(--ton,) grayscale(.6) brightness(.7); opacity:.4}
+    60%{filter:var(--ton,) grayscale(.3) brightness(1); opacity:.75}
+    80%{filter:var(--ton,) grayscale(.55) brightness(.8); opacity:.5}}
   /* In jedem Schritt dieselbe Liste von Filtern: nur dann gleitet der
-     Browser von einem zum naechsten, sonst springt er. */
+     Browser von einem zum naechsten, sonst springt er. Der letzte Schritt
+     endet im stillen Schein der Stufe (--ruhe), ohne Stufe in einem
+     unsichtbaren - beides genau das Bild danach, am Ende springt nichts. */
   @keyframes flammeAuf{
-    0%{transform:translateY(-15.5%) scale(.7); opacity:.45;
-       filter:grayscale(.55) brightness(.75) drop-shadow(0 0 0 rgba(255,140,0,0))}
-    45%{transform:translateY(-15.5%) scale(1.28); opacity:1;
-        filter:grayscale(0) brightness(1.15) drop-shadow(0 0 8px rgba(255,140,0,.9))}
-    100%{transform:translateY(-15.5%) scale(1); opacity:1;
-         filter:grayscale(0) brightness(1) drop-shadow(0 0 0 rgba(255,140,0,0))}}
+    0%{transform:translateY(var(--hoch)) scale(.7); opacity:.45;
+       filter:var(--ton,) grayscale(.55) brightness(.75) drop-shadow(0 0 0 rgba(255,140,0,0))}
+    45%{transform:translateY(var(--hoch)) scale(1.28); opacity:1;
+        filter:var(--ton,) grayscale(0) brightness(1.15) drop-shadow(0 0 .27em var(--glanz, rgba(255,140,0,.9)))}
+    100%{transform:translateY(var(--hoch)) scale(1); opacity:1;
+         filter:var(--ton,) grayscale(0) brightness(1) var(--ruhe, drop-shadow(0 0 0 rgba(255,140,0,0)))}}
+  /* Die Funken der Gold-Stufe: drei kleine Sterne um die Flamme, absolut
+     gesetzt - sie verschieben nichts, Flamme und Zahl stehen wie ohne sie
+     (nachgemessen). Im Grundzustand unsichtbar (opacity 0); nur die
+     Animation blendet sie ein. Ohne Gold, bei Glut, mit dem Schalter
+     "Animationen" aus (.no-anim) oder "Bewegung reduzieren" am Geraet
+     laeuft keine, dann bleiben sie unsichtbar - funkeln heisst hier
+     immer: die Flamme brennt und Bewegung ist erlaubt.
+     Groesse und Lage wie in der Vorschau (11 px an 30 px Flamme), in em
+     des Funkens, damit sie mit der Flamme wachsen. Oben auf der Startseite
+     ist die Flamme um --hoch angehoben (4,65 px bei 30 px), die Funken
+     gehen mit: margin-top -.42em des Funkens, das sind dieselben 15,5 %
+     der Flamme. In der Statistik steht sie unverschoben, dort auch sie. */
+  .flammenbox .funke{position:absolute; font-size:.37em; line-height:1; opacity:0; pointer-events:none;
+                     animation:2.4s ease-in-out infinite}
+  .flammenbox .funke.f1{left:-.73em; top:-.36em}
+  .flammenbox .funke.f2{right:-.82em; top:.18em; animation-delay:.8s}
+  .flammenbox .funke.f3{left:.55em; top:-1.27em; animation-delay:1.6s}
+  .seriezahl .funke{margin-top:-.42em}
+  .flamme.stufe-gold ~ .funke{animation-name:flammeFunke}
+  .flamme.glut ~ .funke{animation-name:none}
+  @keyframes flammeFunke{
+    0%,100%{opacity:0; transform:scale(.4)}
+    40%{opacity:1; transform:scale(1)}
+    70%{opacity:0; transform:scale(.6)}}
   /* Am Handy naehme der Drache in seiner vollen Groesse die halbe Breite. */
   .obenreihe .zmaj{width:120px; height:120px; flex:0 1 120px; min-width:0}
   .obenreihe .streakline{margin:7px 0 0}
@@ -1660,7 +1733,9 @@
          Den Kasten selbst gibt es weiter, die Profilseite benutzt ihn. -->
     <div class="obenreihe">
       <div class="serieblock">
-        <div class="seriezahl"><span class="flamme" id="serieFlamme" aria-hidden="true">🔥</span><span id="serieZahl">0</span></div>
+        <!-- Die Flamme genau so, wie flammeHtml() sie baut (22.10.2026),
+             nur mit id. Ihre Klassen setzt flammeZeigen(). -->
+        <div class="seriezahl"><span class="flammenbox" aria-hidden="true"><span class="flamme" id="serieFlamme" aria-hidden="true">🔥</span><span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span><span id="serieZahl">0</span></div>
         <div class="streakline" id="streakLine"></div>
       </div>
       <div class="zmaj idle" id="zmajHome"></div>
@@ -5611,15 +5686,39 @@ function renderSerie(){
    ersten Zeichnen nach dem Start ist flammeVorher noch null - wer heute
    schon gelernt hat und die App oeffnet, sieht sie einfach brennen.
    Ob Bewegung erlaubt ist, fragt dieselbe Funktion wie bei den Kacheln:
-   Schalter "Animationen" und Geraeteeinstellung, bei jedem Aufruf neu. */
+   Schalter "Animationen" und Geraeteeinstellung, bei jedem Aufruf neu.
+
+   Seit dem 22.10.2026 dieselbe Flamme ueberall (Ajdin: "beachte das nicht
+   das es 2 verschiedene desgins sind"): Zustand und Stufe kommen fuer
+   jeden Ort aus flammeKlassen(), die Statistik am Ende einer Lektion und
+   einer Wiederholungsrunde baut ihre mit flammeHtml(). Nur hier oben
+   lodert sie auf. Neue Orte, an denen die laufende Serie mit Flamme
+   steht, nehmen flammeHtml() - keine eigene Flamme. */
+function flammeZustand(){ return days.has(today()) ? 'an' : (streak() > 0 ? 'glut' : 'aus'); }
+/* Stufen nach der laufenden Serie, Ajdin: "Mit Stufen" (20.10.2026).
+   Schwellen nicht ohne ihn aendern. Farben im Stil bei .stufe-blau. */
+function flammeStufe(n){ return n >= 365 ? 'gold' : (n >= 100 ? 'lila' : (n >= 30 ? 'blau' : '')); }
+function flammeKlassen(){
+  const z = flammeZustand(), st = flammeStufe(streak());
+  return 'flamme' + (z === 'an' ? '' : ' ' + z) + (st ? ' stufe-' + st : '');
+}
+/* Genau der Aufbau oben auf der Startseite (#serieFlamme im HTML), ohne id.
+   Die Funken stehen immer drin; sichtbar sind sie nur in der Gold-Stufe,
+   siehe .funke im Stil. */
+function flammeHtml(){
+  return '<span class="flammenbox" aria-hidden="true"><span class="' + flammeKlassen() + '" aria-hidden="true">🔥</span>' +
+    '<span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span>';
+}
 let flammeVorher = null;
 function flammeZeigen(){
   const f = $('serieFlamme'); if(!f) return;
-  const zustand = days.has(today()) ? 'an' : (streak() > 0 ? 'glut' : 'aus');
-  f.classList.toggle('aus', zustand === 'aus');
-  f.classList.toggle('glut', zustand === 'glut');
-  if(zustand !== 'an') f.classList.remove('auf');
-  else if(flammeVorher && flammeVorher !== 'an' && !kachelnRuhig()){
+  const zustand = flammeZustand();
+  /* .auf bleibt stehen, solange es laeuft - renderHero() kommt waehrend
+     der 0,8 s auch mal ein zweites Mal vorbei. Gleiche Klassen starten die
+     Animation nicht neu. */
+  const lodert = zustand === 'an' && f.classList.contains('auf');
+  f.className = flammeKlassen() + (lodert ? ' auf' : '');
+  if(zustand === 'an' && flammeVorher && flammeVorher !== 'an' && !kachelnRuhig()){
     f.classList.remove('auf'); void f.offsetWidth; f.classList.add('auf');
   }
   flammeVorher = zustand;
@@ -5820,8 +5919,13 @@ let pausiert = false;
 /* Ein einziges Audio-Element fuer alles. Fuer jedes Wort ein neues anzulegen
    laesst den vorigen Ton weiterlaufen und fuellt mit der Zeit den Speicher. */
 const spieler = new Audio(); spieler.preload = 'none';
+/* Der laufende stumme Anlauf aus tonVorwaermen(), sonst null (22.10.2026). */
+let vorwaermen = null;
 function spieleDatei(datei, fertig){
   pausiert = false;        // ein neuer Ton hebt eine alte Pause auf
+  /* Ein echtes Wort ist nie stumm: laeuft noch das Vorwaermen, ist es
+     hiermit vorbei, und sein Abschluss laesst den spieler in Ruhe. */
+  vorwaermen = null; spieler.muted = false;
   spieler.pause(); spieler.currentTime = 0;
   spieler.onended = fertig || null;
   spieler.src = 'audio/' + datei;
@@ -6066,6 +6170,88 @@ function tempoLeiste(id, mitWort){
 function spaeterSprechen(text, ms){
   const marke = ++tonMarke;
   setTimeout(()=>{ if(marke === tonMarke) speak(text); }, ms);
+}
+/* ---- Wann das Wort kommt (22.10.2026) ----
+   Ajdin: "der sprecher sagt viel zu spaet die woerter oder saetze die
+   muessen frueher kommen man wartet zu lange bis er anfaengt". Nach einer
+   Antwort war das Wort am PC erst nach rund 0,7 s zu hoeren: 450 ms
+   Wartezeit, rund 70 ms Abspielweg und rund 190 ms Stille am Anfang der
+   Aufnahme (die kuerzt seitdem app_bauen.py im Paket, siehe TON_ANFANG
+   dort). Mit allem zusammen sind es jetzt rund 0,29 s.
+   Gewartet wird jetzt nur so lange, dass das Wort nicht in den
+   Rueckmeldeton hineinredet: 'ok' ist bis etwa 0,2 s hoerbar, 'no' bis
+   etwa 0,27 s (siehe sound()). Abspielweg und die kurze Reststille kommen
+   noch dazu - das Wort setzt gleich nach dem Ton ein, ueberdeckt ihn aber
+   nicht. Ohne Toene gibt es nichts abzuwarten.
+   Beim Erscheinen einer Aufgabe (neues Wort, Hoerfrage) waren es 250 bzw.
+   300 ms, damit der Bildschirm erst steht. Der steht nach ein, zwei
+   Bildern - 100 ms reichen. */
+const nachAntwort = ok => soundOn ? (ok ? 180 : 250) : 40;
+const BEIM_ERSCHEINEN = 100;
+/* Das Wort fuer nach der Antwort schon beim Erscheinen der Aufgabe in den
+   spieler zu legen (Vorladen), war ebenfalls gebaut und gemessen: 0-3 ms
+   frueher, auch mit vierfach gedrosselter CPU. Der Rest des Abspielwegs
+   ist der Anlauf der Ausgabe, nicht das Laden. Deshalb wieder heraus - es
+   haette den einen spieler mit Geschichten, Pause und Weiterlesen teilen
+   muessen. 22.10.2026 */
+/* ---- Vorwaermen (22.10.2026) ----
+   Zwei Verzoegerungen gab es nur einmal je Sitzung, dafuer grosse. Das
+   erste Wort nach dem Start war am PC erst rund 1,1 s nach dem Erscheinen
+   der Aufgabe zu hoeren, jedes weitere nach 0,5 s: beim ersten play()
+   lief die ganze Tonausgabe kalt an. Und den AudioContext fuer die
+   Rueckmeldetoene legte erst die erste Antwort an - lief vorher noch kein
+   Wort, hielt das die Seite bis zu 0,6 s fest, und das Wort danach kam um
+   so viel spaeter. Beides passiert jetzt einmal beim Start: den AudioContext
+   anlegen (nur mit Toenen an) und eine Zehntelsekunde Stille STUMM
+   abspielen. Stumm, weil ein lautes Abspielen auf dem Handy die Musik
+   anderer Apps anhalten kann. Die Stille entsteht als WAV im Speicher
+   (stilleWav): eine echte Aufnahme dafuer abzurufen brachte das erste Wort
+   nur 0,02 s frueher, kostete aber beim Start eine Anfrage mehr, genau
+   wenn der Drache seine Bilder laedt. Im Paket geht das ohne Antippen (Capacitor
+   laesst Abspielen ohne Geste zu), stummes Abspielen erlaubt auch jeder
+   Browser; der AudioContext wartet dort bis zur ersten Antwort (resume()
+   in sound()). Laeuft schon etwas, ist etwas angehalten oder lag schon
+   eine Aufnahme im spieler, bleibt es aus. spieleDatei() bricht den Anlauf
+   ab und stellt den Ton wieder an - ein echtes Wort bleibt nie stumm. */
+function stilleWav(){
+  const n = 4800, puffer = new ArrayBuffer(44 + n * 2), d = new DataView(puffer);   // 0,1 s, 48 kHz, 16 Bit, mono
+  const text = (o, s) => { for(let i = 0; i < s.length; i++) d.setUint8(o + i, s.charCodeAt(i)); };
+  text(0, 'RIFF'); d.setUint32(4, 36 + n * 2, true); text(8, 'WAVEfmt ');
+  d.setUint32(16, 16, true); d.setUint16(20, 1, true); d.setUint16(22, 1, true);
+  d.setUint32(24, 48000, true); d.setUint32(28, 96000, true); d.setUint16(32, 2, true); d.setUint16(34, 16, true);
+  text(36, 'data'); d.setUint32(40, n * 2, true);
+  return URL.createObjectURL(new Blob([puffer], {type: 'audio/wav'}));
+}
+function tonVorwaermen(){
+  if(!AUDIO.size) return;              // keine Aufnahmen, also auch keine Lektion
+  if(soundOn && !actx) try{ actx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  if(!spieler.paused || pausiert || laeuftVor || spieler.getAttribute('src')) return;
+  let adresse = null;
+  try{ adresse = stilleWav(); }catch(e){ return; }
+  const lauf = vorwaermen = {};
+  const ende = ()=>{
+    if(vorwaermen === lauf){           // sonst spielt inzwischen ein echtes Wort
+      vorwaermen = null;
+      try{ spieler.pause(); spieler.removeAttribute('src'); spieler.load(); }catch(e){}
+      spieler.muted = false;           // erst nach pause(): laut ohne Geste haelt Chrome sonst an
+    }
+    try{ URL.revokeObjectURL(adresse); }catch(e){}
+  };
+  spieler.muted = true;
+  spieler.src = adresse;
+  let p = null;
+  try{ p = spieler.play(); }catch(e){}
+  if(p && p.then) p.then(()=>setTimeout(ende, 120), ende);
+  else setTimeout(ende, 120);
+}
+/* Der ruhige Moment: die App steht, und der Vorspann bewegt sich nicht mehr
+   (danach steht er noch VORSPANN_HALT still da). Das Anlegen des
+   AudioContext haelt die Seite kurz fest - mitten in der Bewegung saehe
+   man das als Ruckeln. Ohne Bewegung (Schalter, Geraeteeinstellung) gleich. */
+function tonVorwaermenPlanen(){
+  const warten = vorspannOhneBewegung() ? 0
+               : Math.max(0, VORSPANN_ABLAUF - (performance.now() - vorspannAb));
+  setTimeout(tonVorwaermen, warten);
 }
 /* Erst den vollen Text suchen, dann den gekuerzten Schluessel. Dadurch koennen
    "Molim" und "Molim?" eigene Aufnahmen haben, muessen aber nicht. */
@@ -7104,7 +7290,11 @@ const UMBENANNT = {
   /* Ajdin am 01.10.2026: "auf einer bosnischen Kaffeepackung steht kafa nicht
      kahva - mach beides rein". */
   'kaffee:kahva': 'kaffee:kahva / kafa',
-  'kaffeemaschine:aparat za kahvu': 'kaffeemaschine:aparat za kahvu / aparat za kafu'};
+  'kaffeemaschine:aparat za kahvu': 'kaffeemaschine:aparat za kahvu / aparat za kafu',
+  /* Ajdin am 22.10.2026: "die vokabel salz am besten zu so/sol aendern weil
+     man es so oder so sagt". Die Suche unten ueber das bosnische Wort
+     faende "so" nicht mehr wieder - es heisst jetzt "so / sol". */
+  'salz:so': 'salz:so / sol'};
 function altenFortschrittUmschreiben(){
   const gueltig = new Set(), nachWort = new Map(), nachLevel = new Map();
   CATEGORIES.forEach(c => c.words.forEach(w => {
@@ -7137,7 +7327,12 @@ function altenFortschrittUmschreiben(){
      ausrechnen, dann verknuepfen - mit || liefe es nach einer
      Wort-Umschreibung gar nicht mehr. */
   const sternNeu = sternUmschreiben(nachWort);
-  return geaendert || sternNeu;
+  /* Der Fehler-Topf ebenso (22.10.2026). Bis dahin zog hier nur known um,
+     und topfAufraeumen() warf "w:salz:so" beim naechsten Oeffnen von
+     Wiederholen still weg - ein offener Fehler waere ohne Wiederholung
+     verschwunden. Gefunden beim Umbenennen von Salz auf "so / sol". */
+  const topfNeu = topfUmschreiben(nachWort);
+  return geaendert || sternNeu || topfNeu;
 }
 
 // Der Knopf mit dem Namen oben rechts führt in die Einstellungen -
@@ -8646,13 +8841,13 @@ function renderTask(task, body, done, opts={}){
     body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+t('task.hoeren')+'</button>':'')+
       '<div class="row unten"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
-    if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 250); }
+    if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN); }
     $$('xNext').addEventListener('click',()=>done({ok:true, intro:true})); $$('xNext').focus();
     return;
   }
   if(task.typ==='mc'){
     body.innerHTML = kick(t('task.was_heisst'))+'<div class="prompt'+(w.de.length>18?' long':'')+'">'+esc(w.de)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); }, 'bs');
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok}); }, 'bs');
     return;
   }
   if(task.typ==='mcrev'){
@@ -8667,7 +8862,7 @@ function renderTask(task, body, done, opts={}){
       '<button class="listen" data-hoer="1">'+t('task.hoeren')+'</button>');
     const hoerKnopf = body.querySelector('[data-hoer]');
     if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(w.bs); });
-    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); });
+    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok}); });
     return;
   }
   if(task.typ==='type'){
@@ -8693,7 +8888,7 @@ function renderTask(task, body, done, opts={}){
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
       else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', w.bs);
       loesung(w.bs, w.de);
-      sound(ok?'ok':'no'); spaeterSprechen(w.bs, 450); done({ok});
+      sound(ok?'ok':'no'); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok});
     };
     inp.addEventListener('keydown',e=>{ if(e.key==='Enter') check(); });
     $$('xCheck').addEventListener('click',check);
@@ -8701,7 +8896,7 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='listen'){
     body.innerHTML = kick(t('task.hoerfrage'))+'<button class="listen bigplay" id="xPlay" aria-label="'+t('task.abspielen')+'">🔊</button><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.hoeren_skip'));
-    $$('xPlay').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 300);
+    $$('xPlay').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN);
     renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); }, 'bs');
     wireSkip();
     return;
@@ -8844,8 +9039,8 @@ function renderTask(task, body, done, opts={}){
          verraten. Gehoert wird der Satz mit eingesetztem Wort, nicht der
          mit der Luecke. */
       const ganz = s.text.replace('___', s.answer);
-      if(hoerbar(ganz)) spaeterSprechen(ganz, 450);
-      else if(hoerbar(s.answer)) spaeterSprechen(s.answer, 450);
+      if(hoerbar(ganz)) spaeterSprechen(ganz, nachAntwort(ok));
+      else if(hoerbar(s.answer)) spaeterSprechen(s.answer, nachAntwort(ok));
       done({ok});
     };
     inp.addEventListener('keydown',e=>{ if(e.key==='Enter') check(); });
@@ -8966,7 +9161,7 @@ function renderTask(task, body, done, opts={}){
       loesung(s.bs, s.de);
       sound(ok?'ok':'no');
       // Erst jetzt vorlesen - vorher waere die Loesung verraten.
-      if(hoerbar(s.bs)) spaeterSprechen(s.bs, 450);
+      if(hoerbar(s.bs)) spaeterSprechen(s.bs, nachAntwort(ok));
       done({ok});
     };
     pruef.addEventListener('click', check);
@@ -8983,7 +9178,7 @@ function renderTask(task, body, done, opts={}){
     // Vorgelesen auch nur dann: "weiblich (ona)" sprach sonst die bosnische
     // Stimme der Sprachausgabe - ein deutsches Wort mit bosnischer Aussprache.
     const bsRichtig = gramAntwortBosnisch(g.richtig);
-    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); },
+    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, nachAntwort(ok)); done({ok, slow:!ok && !!g.tipp}); },
       o => gramAntwortBosnisch(o) ? 'bs' : '');
     return;
   }
@@ -9658,7 +9853,7 @@ function lessonEnd(){
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.geschafft')+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
     '<div class="result-big">'+Lx.right+' / '+scored+'</div>'+
-    '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>🔥 '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>♥ '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
+    '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>'+flammeHtml()+' '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>♥ '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
     (nowAllowed && !wasAllowed && !passed.has(c.id) ? '<div class="feedback ok">'+t('lektion.test_frei')+'</div>' : '')+
     (newDay ? '<div class="feedback ok">'+t('lektion.heute_geuebt')+'</div>' : '')+
     questLob+
@@ -10313,6 +10508,33 @@ function topfAufgabe(k, e){
   }
   return null;
 }
+/* Umbenannte Woerter im Fehler-Topf auf ihre neue Kennung ziehen, nach
+   derselben Regel wie sternUmschreiben(): UMBENANNT, sonst das bosnische
+   Wort, wenn genau ein Wort es traegt. Anders als dort faellt hier nichts
+   weg - was zu keiner Aufgabe mehr fuehrt, raeumt wie bisher
+   topfAufraeumen() ab. Treffen alter und neuer Eintrag zusammen, gilt der
+   juengere Fehler: topfMerken() setzt bei jedem Fehler neu auf n = 0.
+   Ueber eine Map und Object.fromEntries wie in standUebernehmen(), damit
+   ein Schluessel "__proto__" aus einer Sicherung nichts verbiegt.
+   Gibt zurueck, ob sich etwas geaendert hat. 22.10.2026. */
+function topfUmschreiben(nachWort){
+  if(!CATEGORIES.length) return false;
+  const neu = new Map();
+  let geaendert = false;
+  Object.keys(topf).forEach(k => {
+    let ziel = k;
+    if(k.slice(0, 2) === 'w:' && !wortNachId(k.slice(2))){
+      const id = k.slice(2);
+      const kand = (UMBENANNT[id] && wortNachId(UMBENANNT[id])) ? [UMBENANNT[id]]
+                 : ((nachWort && nachWort.get(id.slice(id.lastIndexOf(':') + 1))) || []);
+      if(kand.length === 1){ ziel = 'w:' + kand[0]; geaendert = true; }
+    }
+    const e = topf[k], da = neu.get(ziel);
+    neu.set(ziel, (da && (da.z || 0) >= (e.z || 0)) ? da : e);
+  });
+  if(geaendert) topf = Object.fromEntries(neu);
+  return geaendert;
+}
 function topfAufraeumen(){
   if(!CATEGORIES.length) return;
   let weg = false;
@@ -10465,7 +10687,7 @@ function topfEnde(){
     '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
     '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp(mitStern ? 'stern.rest' : 'topf.rest', rest)) + '</div>' +
-      '<div class="stat"><b>🔥 ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
+      '<div class="stat"><b>' + flammeHtml() + ' ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
       '<div class="stat"><b>♥ ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
     (rest === 0 && !mitStern ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
     (newDay ? '<div class="feedback ok">' + t('lektion.heute_geuebt') + '</div>' : '') +
@@ -11568,6 +11790,7 @@ async function init(){
   hautAlleVerdrahten();
   try{ await starten(); }
   finally{ vorspannWeg(); }
+  tonVorwaermenPlanen();   // den Kaltstart der Tonausgabe vorwegnehmen (22.10.2026)
   /* Cloud-Sicherung: beim Start nur lesen, siehe CLOUD-SICHERUNG. Mit
      CLOUD_AN = false passiert hier nichts. 19.10.2026 */
   if(CLOUD_AN) cloudAbgleich('start');

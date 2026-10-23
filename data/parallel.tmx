@@ -1434,9 +1434,9 @@
    <tuv xml:lang="da"><seg>ris</seg></tuv>
    <tuv xml:lang="fr"><seg>riz</seg></tuv>
   </tu>
-  <tu tuid="salz:so" segtype="phrase">
+  <tu tuid="salz:so / sol" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>so</seg></tuv>
+   <tuv xml:lang="bs"><seg>so / sol</seg></tuv>
    <tuv xml:lang="de"><seg>Salz</seg></tuv>
    <tuv xml:lang="en"><seg>salt</seg></tuv>
    <tuv xml:lang="tr"><seg>tuz</seg></tuv>

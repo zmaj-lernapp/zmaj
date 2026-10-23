@@ -127,6 +127,19 @@ def wurzelordner(tmp_path_factory):
     return str(ordner)
 
 
+class Dateiserver(socketserver.ThreadingTCPServer):
+    """Der Server der Browser-Tests, mit Warteschlange 128 (22.10.2026).
+
+    ThreadingTCPServer ruft listen() mit request_queue_size = 5 auf. Die App
+    holt beim Start die 32 Drachenteile auf einmal, und was ueber die fuenf
+    hinaus ankommt, bevor der Server es annimmt, lehnt Windows ab. Folge:
+    mal dieser, mal jener Test rot mit net::ERR_CONNECTION_REFUSED auf
+    maskottchen/teile/*.webp, obwohl an der App nichts falsch war.
+    Gemessen und abgesichert in test_dateiserver.py."""
+    request_queue_size = 128
+    daemon_threads = True
+
+
 @pytest.fixture(scope="session")
 def basis(wurzelordner):
     """Dateiserver auf einem freien Port, wie in bilder_playwright.py."""
@@ -134,8 +147,7 @@ def basis(wurzelordner):
         def log_message(self, *args):
             pass
 
-    srv = socketserver.ThreadingTCPServer(("127.0.0.1", 0), functools.partial(Leise, directory=wurzelordner))
-    srv.daemon_threads = True
+    srv = Dateiserver(("127.0.0.1", 0), functools.partial(Leise, directory=wurzelordner))
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     yield "http://127.0.0.1:%d" % srv.server_address[1]
     srv.shutdown()
