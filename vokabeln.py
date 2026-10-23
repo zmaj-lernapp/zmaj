@@ -25,6 +25,9 @@ Aufbau:
                              beiden nie als falsche Antwort nebeneinander.
   SAETZE      = Lückentexte. "___" ist die Lücke, "answer" das fehlende Wort,
                 "de" die deutsche Übersetzung, "kat" die Kategorie-id.
+                Optional "auch": weitere Antworten, die in der Lücke ebenso
+                richtig sind (seit 23.10.2026, bei „Moj ___ je pčelar.“ stric
+                und die Koseformen). Gesprochen wird nur der Satz mit "answer".
   SATZBAU     = ganze Sätze zum Bauen aus Wort-Kacheln (seit 13.10.2026).
                   "kat"   : Level-id, in dem der Satz zum ersten Mal kommt
                   "bs"    : der Satz, z. B. "Dobar dan, kako ste?". Die
@@ -199,10 +202,33 @@ KATEGORIEN = [
         {"de": "Ehemann",             "bs": "muž"},
         {"de": "Oma",                 "bs": "nana"},
         {"de": "Opa",                 "bs": "dedo"},
-        {"de": "Tante",               "bs": "tetka"},
-        {"de": "Onkel (Vaterseite)",  "bs": "amidža"},
-        {"de": "Onkel (Mutterseite)", "bs": "daidža"},
-        {"de": "Cousin",              "bs": "rođak"},
+        # Verwandte nach ihrer Seite, Ajdin am 23.10.2026: "tetka ujna strina
+        # fuer die verschiedenen tanten und striko ujak amidza=stric tetak
+        # daidza=ujak usw" - siehe WORTSCHATZ_KORREKTUREN.md. Bis dahin standen
+        # hier nur Tante, Onkel (Vaterseite), Onkel (Mutterseite) und Cousin.
+        # Deren Kennungen haben sich geaendert; den alten Lernstand zieht
+        # UMBENANNT in web/index.html mit.
+        # "auch" bei amidža und daidža sind die Koseformen: beim Tippen
+        # richtig, aber keine eigenen Lernwoerter. Gesprochen werden sie nie,
+        # ton_bauen.py spricht nur "bs".
+        # Bewusst nicht: bratić, sestrična, bratučed - je nach Gegend Cousin
+        # oder Neffe/Nichte.
+        {"de": "Onkel (Bruder des Vaters)",                      "bs": "amidža / stric", "auch": ["striko", "adžo"]},
+        {"de": "Onkel (Bruder der Mutter)",                      "bs": "daidža / ujak", "auch": ["ujo", "dajo"]},
+        {"de": "Onkel (Mann der Tante)",                         "bs": "tetak"},
+        {"de": "Tante (Schwester von Vater oder Mutter)",        "bs": "tetka"},
+        {"de": "Tante (Frau des Onkels väterlicherseits)",       "bs": "strina / amidžinica"},
+        {"de": "Tante (Frau des Onkels mütterlicherseits)",      "bs": "ujna / daidžinica"},
+        {"de": "Cousin (Sohn des Onkels väterlicherseits)",      "bs": "amidžić / brat od amidže"},
+        {"de": "Cousine (Tochter des Onkels väterlicherseits)",  "bs": "amidžična / sestra od amidže"},
+        {"de": "Cousin (Sohn des Onkels mütterlicherseits)",     "bs": "daidžić / brat od daidže"},
+        {"de": "Cousine (Tochter des Onkels mütterlicherseits)", "bs": "daidžična / sestra od daidže"},
+        {"de": "Cousin (Sohn der Tante)",                        "bs": "tetić / brat od tetke"},
+        {"de": "Cousine (Tochter der Tante)",                    "bs": "tetična / sestra od tetke"},
+        {"de": "Cousin, Verwandter (allgemein)",                 "bs": "rođak"},
+        {"de": "Cousine, Verwandte (allgemein)",                 "bs": "rođaka / rođakinja"},
+        {"de": "Neffe",                                          "bs": "nećak"},
+        {"de": "Nichte",                                         "bs": "nećakinja"},
         {"de": "Baby",                "bs": "beba"},
         {"de": "Familie",             "bs": "porodica"},
         {"de": "Freund",              "bs": "prijatelj", "auch": ["drug"]},
@@ -2182,7 +2208,10 @@ SAETZE = [
     # Familie
     {"kat": "familie", "text": "Moja ___ se zove Amina.",  "answer": "sestra", "de": "Meine Schwester heißt Amina."},
     {"kat": "familie", "text": "Moj ___ se zove Ajdin.",   "answer": "muž",    "de": "Mein Mann heißt Ajdin."},
-    {"kat": "familie", "text": "Moj ___ je pčelar.",       "answer": "amidža", "de": "Mein Onkel (Vaterseite) ist Imker."},
+    # "auch" (23.10.2026): stric und die Koseformen von amidža / stric gelten
+    # in der Luecke ebenso ("Moj striko je pčelar."). Gezeigt und gesprochen
+    # wird weiter der Satz mit "answer".
+    {"kat": "familie", "text": "Moj ___ je pčelar.",       "answer": "amidža", "auch": ["stric", "striko", "adžo"], "de": "Mein Onkel (Bruder des Vaters) ist Imker."},
     {"kat": "familie", "text": "Moja majka i moj ___.",    "answer": "babo",   "de": "Meine Mutter und mein Papa."},
 
     # Essen & Trinken (nutzt Zahlen und Molim/Hvala aus den Grundlagen)

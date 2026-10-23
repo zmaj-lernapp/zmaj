@@ -6,7 +6,7 @@
 [English](README.md) · **Bosanski**
 
 **Besplatna aplikacija za učenje bosanskog jezika i otvoreni kurs iza nje.**
-65 nivoa od prvog „Merhaba“ do ugovora o radu, 1.728 riječi s izgovorom,
+65 nivoa od prvog „Merhaba“ do ugovora o radu, 1.740 riječi s izgovorom,
 16 lekcija gramatike, 12 priča za čitanje, interfejs na osam jezika. Bez
 korisničkog računa i bez servera: napredak ostaje na telefonu.
 

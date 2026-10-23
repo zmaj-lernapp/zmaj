@@ -45,8 +45,13 @@ def test_jede_datei_im_index_existiert_und_ist_nicht_leer(index, wurzel):
 
 
 def test_jedes_wort_findet_seine_aufnahme(grunddaten, index):
+    """In der App aus dem Store: web/audio und dazu, was es nur von Emir
+    gibt (ton_nur_emir.json, 23.10.2026). Die Web-Demo bleibt fuer diese
+    Woerter stumm - so entschieden."""
     import daten_exportieren as de
-    toene = {str(e["key"]).lower(): e["datei"] for e in index["toene"]}
+    import ton_bauen
+    toene = {str(e["key"]).lower(): e["datei"]
+             for e in index["toene"] + list(ton_bauen.nur_emir().values())}
     ohne = [w["bs"] for k in grunddaten["kategorien"] for w in k["words"]
             if not de.ton_datei(w["bs"], toene)]
     assert not ohne, ohne[:20]

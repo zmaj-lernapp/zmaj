@@ -350,6 +350,41 @@ def test_ton_verkleinern_kuerzt_den_anfang(tmp_path):
     assert len(namen) == 2 and sum(1 for n in namen if "-24k-a" in n) == 1, namen
 
 
+def test_ton_verkleinern_neue_aufnahme_unter_altem_namen(tmp_path):
+    """23.10.2026: audio_emir/w0119.mp3 ("so") wurde neu gesprochen, der Name
+    blieb. Der Zwischenspeicher muss das als neue Datei erkennen - hinge sein
+    Schluessel am Namen, kaeme aus .ton_opus die alte Opus-Datei ins Paket.
+    Er haengt am Inhalt (sha256 der MP3, ton_schluessel())."""
+    import hashlib
+    import json
+    import shutil
+    import subprocess
+    import app_bauen
+    ffmpeg = os.environ.get("ZMAJ_FFMPEG") or (
+        app_bauen.FFMPEG if os.path.isfile(app_bauen.FFMPEG) else shutil.which("ffmpeg"))
+    if not ffmpeg:
+        pytest.skip("ffmpeg fehlt")
+    zwischen = tmp_path / "zwischen"
+    ergebnis = []
+    for lauf, hz in enumerate((440, 880)):
+        audio = tmp_path / ("audio%d" % lauf)       # jeder Bau kopiert www/ frisch
+        audio.mkdir()
+        subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y", "-f", "lavfi",
+                        "-i", "sine=frequency=%d:duration=1" % hz, "-ar", "24000", "-ac", "1",
+                        "-b:a", "48k", str(audio / "w0119.mp3")], check=True)
+        (audio / "index.json").write_text(json.dumps({"version": 1, "toene": [
+            {"key": "so", "datei": "w0119.mp3"}]}), encoding="utf-8")
+        s = app_bauen.ton_schluessel(hashlib.sha256((audio / "w0119.mp3").read_bytes()).hexdigest(),
+                                     "w0119.mp3")
+        app_bauen.ton_verkleinern(str(audio), ffmpeg=ffmpeg, zwischen=str(zwischen))
+        ogg = (audio / "w0119.ogg").read_bytes()
+        assert ogg == (zwischen / (s + ".ogg")).read_bytes()
+        ergebnis.append((s, ogg))
+    (s_alt, ogg_alt), (s_neu, ogg_neu) = ergebnis
+    assert s_alt != s_neu and ogg_alt != ogg_neu
+    assert sorted(os.listdir(zwischen)) == sorted([s_alt + ".ogg", s_neu + ".ogg"])
+
+
 def test_projekt_zip_ohne_emir_und_pruefwert(tmp_path):
     """Die Projekt-Zip "darf ueberall hin". Emirs Aufnahmen stecken in der
     Huelle an drei Stellen (audio_emir, Opus-Zwischenspeicher, Git-Objekte)

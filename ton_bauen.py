@@ -43,6 +43,14 @@ Dieses Skript lässt "w" stehen, solange Text und Datei bleiben. Erzeugt es
 eine Geschichte neu (Datei fehlt) oder hat sich ihr Text geändert, fällt "w"
 weg – die App liest dann ohne Markierung vor, bis wortzeiten_holen.py --holen
 gelaufen ist.
+
+NUR EMIR (seit 23.10.2026): Was in ton_nur_emir.json steht, spricht nur die
+Stimme Emir. Die Aufnahme liegt allein in der privaten Hülle (audio_emir/),
+nie in web/audio - warum, steht bei EMIR in app_bauen.py. Ajdin zu den neuen
+Verwandtschaftswörtern: „nicht auf azure sondern emir soll sprechen“. Für
+diese Texte erzeugt der große Lauf nichts, und ihre Nummern vergibt er nicht
+noch einmal. Die Web-Demo hat für sie keinen Ton; app_bauen.py trägt sie in
+die Kopie von index.json ein. Siehe nur_emir().
 """
 import base64
 import io
@@ -59,6 +67,8 @@ ORDNER = os.path.dirname(os.path.abspath(__file__))
 AUDIO = os.path.join(ORDNER, "web", "audio")
 INDEX = os.path.join(AUDIO, "index.json")
 ZUGANG = os.path.join(ORDNER, "tts_zugang.json")
+# Aufnahmen, die es nur von Emir gibt (23.10.2026), siehe nur_emir().
+NUR_EMIR = os.path.join(ORDNER, "ton_nur_emir.json")
 
 # Diese 30 Wörter entscheiden, ob die Stimme taugt. Bosnische Eigenheiten,
 # ijekavische Formen und die Laute, die kroatische Stimmen zusammenwerfen.
@@ -167,6 +177,24 @@ def wortzeiten_passen(eintrag, text):
     w = eintrag.get("w")
     return (isinstance(w, list) and eintrag.get("text") == text
             and len(w) == len(textwoerter(text)))
+
+
+def nur_emir():
+    """Die Eintraege aus ton_nur_emir.json als {key: eintrag} (23.10.2026).
+
+    Woerter und Saetze, die nur Emir spricht: ihre Aufnahme liegt allein in
+    der privaten Huelle unter audio_emir/, nie in web/audio (ElevenLabs,
+    siehe EMIR in app_bauen.py). Jeder Eintrag hat key, datei und text wie
+    in index.json, mehr nicht. Die Nummer ist damit vergeben:
+    grosser_lauf() zaehlt sie mit und erzeugt fuer diese Texte nichts.
+    In web/audio/index.json stehen sie bewusst NICHT - sonst wollte die
+    Web-Demo eine Datei laden, die es dort nicht gibt. In die Kopie fuer
+    die App traegt sie app_bauen.emir_drueber() ein. Fehlt die Datei,
+    gibt es nichts davon."""
+    if not os.path.exists(NUR_EMIR):
+        return {}
+    daten = json.load(io.open(NUR_EMIR, encoding="utf-8"))
+    return {e["key"]: e for e in daten.get("toene", [])}
 
 
 def sammle():
@@ -432,13 +460,20 @@ def grosser_lauf(dienst, zugang, stimme, stimme_gesch):
     print("%d Wörter, %d Geschichten, %d schon vorhanden\n"
           % (len(woerter), len(posten) - len(woerter), len(bekannt)))
 
-    nr_w = max([int(e["datei"][1:5]) for e in bekannt.values()
+    # Die Nummern aus ton_nur_emir.json sind vergeben, auch wenn ihre
+    # Dateien nur in der Huelle liegen (23.10.2026). Sonst bekaeme das
+    # naechste neue Wort hier eine Nummer, unter der in audio_emir/ schon
+    # ein anderes Wort liegt - und spraeche in der App mit dessen Ton.
+    emir = nur_emir()
+    nr_w = max([int(e["datei"][1:5]) for e in list(bekannt.values()) + list(emir.values())
                 if e["datei"].startswith("w")] or [0])
     nr_g = max([int(e["datei"][1:3]) for e in bekannt.values()
                 if e["datei"].startswith("g")] or [0])
 
     neu = fehlt = 0
     for p in posten:
+        if p["key"] in emir:
+            continue                        # spricht nur Emir, siehe nur_emir()
         vorhanden = bekannt.get(p["key"])
         # Bekannte Eintraege bleiben mit ALLEN Feldern stehen, auch mit den
         # Wortzeiten "w" der Geschichten (seit 20.10.2026) - die holt nur

@@ -94,10 +94,22 @@ djeca	barn (flera)	zmaj zmaj::04_familie
 muž	make	zmaj zmaj::04_familie
 nana	mormor / farmor	zmaj zmaj::04_familie
 dedo	morfar / farfar	zmaj zmaj::04_familie
-tetka	moster / faster	zmaj zmaj::04_familie
-amidža	farbror	zmaj zmaj::04_familie
-daidža	morbror	zmaj zmaj::04_familie
-rođak	kusin	zmaj zmaj::04_familie
+amidža / stric	farbror	zmaj zmaj::04_familie
+daidža / ujak	morbror	zmaj zmaj::04_familie
+tetak	fasters eller mosters man	zmaj zmaj::04_familie
+tetka	faster / moster	zmaj zmaj::04_familie
+strina / amidžinica	farbrors fru	zmaj zmaj::04_familie
+ujna / daidžinica	morbrors fru	zmaj zmaj::04_familie
+amidžić / brat od amidže	kusin (farbrors son)	zmaj zmaj::04_familie
+amidžična / sestra od amidže	kusin (farbrors dotter)	zmaj zmaj::04_familie
+daidžić / brat od daidže	kusin (morbrors son)	zmaj zmaj::04_familie
+daidžična / sestra od daidže	kusin (morbrors dotter)	zmaj zmaj::04_familie
+tetić / brat od tetke	kusin (fasters eller mosters son)	zmaj zmaj::04_familie
+tetična / sestra od tetke	kusin (fasters eller mosters dotter)	zmaj zmaj::04_familie
+rođak	kusin, släkting (man, allmänt)	zmaj zmaj::04_familie
+rođaka / rođakinja	kusin, släkting (kvinna, allmänt)	zmaj zmaj::04_familie
+nećak	brorson / systerson	zmaj zmaj::04_familie
+nećakinja	brorsdotter / systerdotter	zmaj zmaj::04_familie
 beba	bebis	zmaj zmaj::04_familie
 porodica	Familj	zmaj zmaj::04_familie
 prijatelj	vän (man)	zmaj zmaj::04_familie

@@ -22,7 +22,7 @@ def _lade(name):
 
 
 def vocabulary():
-    """All 1,728 words: id, bs, level, level_position, section, translations, audio."""
+    """All 1,740 words: id, bs, level, level_position, section, translations, audio."""
     return _lade("vocabulary")["entries"]
 
 

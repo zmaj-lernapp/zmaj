@@ -94,10 +94,22 @@ djeca	børn	zmaj zmaj::04_familie
 muž	mand	zmaj zmaj::04_familie
 nana	bedstemor	zmaj zmaj::04_familie
 dedo	bedstefar	zmaj zmaj::04_familie
-tetka	tante	zmaj zmaj::04_familie
-amidža	farbror	zmaj zmaj::04_familie
-daidža	morbror	zmaj zmaj::04_familie
-rođak	fætter	zmaj zmaj::04_familie
+amidža / stric	farbror	zmaj zmaj::04_familie
+daidža / ujak	morbror	zmaj zmaj::04_familie
+tetak	onkel (gift med faster eller moster)	zmaj zmaj::04_familie
+tetka	faster / moster	zmaj zmaj::04_familie
+strina / amidžinica	tante (gift med farbror)	zmaj zmaj::04_familie
+ujna / daidžinica	tante (gift med morbror)	zmaj zmaj::04_familie
+amidžić / brat od amidže	fætter (søn af farbror)	zmaj zmaj::04_familie
+amidžična / sestra od amidže	kusine (datter af farbror)	zmaj zmaj::04_familie
+daidžić / brat od daidže	fætter (søn af morbror)	zmaj zmaj::04_familie
+daidžična / sestra od daidže	kusine (datter af morbror)	zmaj zmaj::04_familie
+tetić / brat od tetke	fætter (søn af faster eller moster)	zmaj zmaj::04_familie
+tetična / sestra od tetke	kusine (datter af faster eller moster)	zmaj zmaj::04_familie
+rođak	fætter, slægtning (mand, generelt)	zmaj zmaj::04_familie
+rođaka / rođakinja	kusine, slægtning (kvinde, generelt)	zmaj zmaj::04_familie
+nećak	nevø	zmaj zmaj::04_familie
+nećakinja	niece	zmaj zmaj::04_familie
 beba	baby	zmaj zmaj::04_familie
 porodica	Familie	zmaj zmaj::04_familie
 prijatelj	ven	zmaj zmaj::04_familie
