@@ -90,10 +90,22 @@ djeca	enfants	word	kinder:djeca
 muž	mari	word	ehemann:muž
 nana	grand-mère	word	oma:nana
 dedo	grand-père	word	opa:dedo
-tetka	tante	word	tante:tetka
-amidža	oncle (côté paternel)	word	onkel (vaterseite):amidža
-daidža	oncle (côté maternel)	word	onkel (mutterseite):daidža
-rođak	cousin	word	cousin:rođak
+amidža / stric	oncle (frère du père)	word	onkel (bruder des vaters):amidža / stric
+daidža / ujak	oncle (frère de la mère)	word	onkel (bruder der mutter):daidža / ujak
+tetak	oncle (mari de la tante)	word	onkel (mann der tante):tetak
+tetka	tante (sœur du père ou de la mère)	word	tante (schwester von vater oder mutter):tetka
+strina / amidžinica	tante (femme de l'oncle paternel)	word	tante (frau des onkels väterlicherseits):strina / amidžinica
+ujna / daidžinica	tante (femme de l'oncle maternel)	word	tante (frau des onkels mütterlicherseits):ujna / daidžinica
+amidžić / brat od amidže	cousin (fils de l'oncle paternel)	word	cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže
+amidžična / sestra od amidže	cousine (fille de l'oncle paternel)	word	cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže
+daidžić / brat od daidže	cousin (fils de l'oncle maternel)	word	cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže
+daidžična / sestra od daidže	cousine (fille de l'oncle maternel)	word	cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže
+tetić / brat od tetke	cousin (fils de la tante)	word	cousin (sohn der tante):tetić / brat od tetke
+tetična / sestra od tetke	cousine (fille de la tante)	word	cousine (tochter der tante):tetična / sestra od tetke
+rođak	cousin, parent (en général)	word	cousin, verwandter (allgemein):rođak
+rođaka / rođakinja	cousine, parente (en général)	word	cousine, verwandte (allgemein):rođaka / rođakinja
+nećak	neveu	word	neffe:nećak
+nećakinja	nièce	word	nichte:nećakinja
 beba	bébé	word	baby:beba
 porodica	La famille	word	familie:porodica
 prijatelj	ami	word	freund:prijatelj
@@ -118,7 +130,7 @@ krompir	pomme de terre	word	kartoffel:krompir
 paradajz	tomate	word	tomate:paradajz
 luk	oignon	word	zwiebel:luk
 riža	riz	word	reis:riža
-so	sel	word	salz:so
+so / sol	sel	word	salz:so / sol
 šećer	sucre	word	zucker:šećer
 supa	soupe	word	suppe:supa
 pita	pita (tourte en pâte filo)	word	pita (blätterteig-gericht):pita
@@ -1755,7 +1767,7 @@ Vidimo se sutra!	À demain !	sentence	s0025
 Danas je lijep dan.	Aujourd'hui, c'est une belle journée.	sentence	s0026
 Moja sestra se zove Amina.	Ma sœur s'appelle Amina.	sentence	s0027
 Moj muž se zove Ajdin.	Mon mari s'appelle Ajdin.	sentence	s0028
-Moj amidža je pčelar.	Mon oncle paternel est apiculteur.	sentence	s0029
+Moj amidža je pčelar.	Mon oncle (frère de mon père) est apiculteur.	sentence	s0029
 Moja majka i moj babo.	Ma mère et mon papa.	sentence	s0030
 Hljeb i sir.	Du pain et du fromage.	sentence	s0031
 Dvije kahve, molim.	Deux cafés, s'il vous plaît.	sentence	s0032

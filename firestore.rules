@@ -1,0 +1,41 @@
+// Sicherheitsregeln fuer die Cloud-Sicherung von Zmaj (Cloud Firestore).
+//
+// Vorbereitet am 19.10.2026, eingeschaltet wird die Cloud erst nach dem
+// Produktionsstart (CLOUD_AN in web/index.html). Einspielen: Firebase
+// Console -> Firestore Database -> Regeln, Inhalt dieser Datei einfuegen,
+// "Veroeffentlichen". Schritt fuer Schritt in FIREBASE_EINRICHTEN.md.
+//
+// Es gibt genau eine Sorte Dokument: users/{uid}, eins je Konto. Darin zwei
+// Textfelder, die die App schreibt (cloudFirestore in index.html):
+//   daten  der Lernstand, dasselbe JSON wie in der Sicherungsdatei
+//   rev    eine kurze Kennung des Stands, damit ein zweites Geraet merkt,
+//          dass jemand anderes geschrieben hat
+// Jeder sieht und schreibt nur sein eigenes Dokument. Alles andere - jede
+// Sammlung, jedes Dokument, jede Abfrage ueber mehrere Nutzer - ist
+// verboten, weil keine Regel es erlaubt.
+//
+// Die Groessengrenze steht auch in der App (CLOUD_GROESSE_MAX). Ein Stand
+// mit allen Woertern, vollem Topf und allen Sternen hat rund 150 000
+// Zeichen; 400 000 lassen Luft fuer Jahre und bleiben weit unter der
+// Grenze von Firestore (1 MiB je Dokument).
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      function istEigenes() {
+        return request.auth != null && request.auth.uid == uid;
+      }
+      function gueltig() {
+        let d = request.resource.data;
+        return d.keys().hasAll(['daten', 'rev'])
+          && d.keys().hasOnly(['daten', 'rev'])
+          && d.daten is string && d.daten.size() <= 400000
+          && d.rev is string && d.rev.size() <= 100;
+      }
+      allow get: if istEigenes();
+      allow create, update: if istEigenes() && gueltig();
+      // Loeschen gehoert zum Konto-Loeschen (Google Play und DSGVO Art. 17).
+      allow delete: if istEigenes();
+    }
+  }
+}

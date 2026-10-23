@@ -214,3 +214,96 @@ existiert dagegen nicht, Hähne haben keine.
 
 Die Belege liegen in `sonderzeichen_korrekturen.json`, je mit URL und
 wörtlichem Zitat.
+
+---
+
+## Nachtrag vom 22.10.2026: Salz heißt `so` oder `sol`
+
+Ajdin:
+
+> die vokabel salz am besten zu so/sol aendern weil man es so oder so sagt
+
+**`so` → `so / sol`** (vokabeln.py, Level „Essen & Trinken")
+
+Beide Formen gelten, wie bei *kahva / kafa*. Nachgeschlagen: Wiktionary
+führt *sol* (weiblich, „Salz") als Form in Kroatien und *so* als die
+bosnische, montenegrinische und serbische. Dass in Bosnien beide gesagt
+werden, ist Ajdins Auskunft und gilt hier.
+
+In der App heißt das, ohne dass dafür etwas Neues gebaut wurde: In der
+Auswahl steht „so / sol", beim Sprechen zählt jede der beiden Formen. Als
+eigene Tippaufgabe kommt das Wort nicht mehr – Wörter mit „ / " kommen nie
+als Tippaufgabe (`typable()`), wie *kahva / kafa*.
+
+**Was daran hängt:**
+
+- Die Kennung wird von `salz:so` zu `salz:so / sol`. Der Lernstand wandert
+  über `UMBENANNT` in `web/index.html` mit: gelernt, Fehler-Topf und
+  Sterne. Der Fehler-Topf zog dabei vorher gar nicht mit, das ist seit
+  diesem Tag behoben (`topfUmschreiben()`).
+- Eine Aufnahme mit beiden Formen fehlt noch. Bis dahin spielt die App
+  die vorhandene Aufnahme „so" (`w0119.mp3`). `ton_bauen.py` erzeugt die
+  neue beim nächsten Lauf (kostet Geld, Ajdin entscheidet). Danach den
+  Eintrag in `NUR_ERSTE_FORM` in `ton_pruefen.py` löschen – die Prüfung
+  meldet ihn dann als überflüssig.
+
+---
+
+## Nachtrag vom 23.10.2026: Tanten, Onkel und Cousins nach ihrer Seite
+
+Ajdin:
+
+> tetka ujna strina fuer die verschiedenen tanten und striko ujak amidza=stric tetak daidza=ujak usw
+
+Zur nachgeschlagenen und gegengeprüften Liste danach: „1 ja passt, 2 ja
+nimm, 3 mach alles in einem, 4 ja“. Bis dahin gab es im Level „Familie“ nur
+„Tante“ = *tetka*, „Onkel (Vaterseite)“ = *amidža*, „Onkel (Mutterseite)“ =
+*daidža* und „Cousin“ = *rođak*.
+
+Alles steht im Level „Familie“ (vokabeln.py), das damit 34 statt 22 Wörter
+hat:
+
+| Deutsch | Bosnisch |
+|---|---|
+| Onkel (Bruder des Vaters) | amidža / stric |
+| Onkel (Bruder der Mutter) | daidža / ujak |
+| Onkel (Mann der Tante) | tetak |
+| Tante (Schwester von Vater oder Mutter) | tetka |
+| Tante (Frau des Onkels väterlicherseits) | strina / amidžinica |
+| Tante (Frau des Onkels mütterlicherseits) | ujna / daidžinica |
+| Cousin (Sohn des Onkels väterlicherseits) | amidžić / brat od amidže |
+| Cousine (Tochter des Onkels väterlicherseits) | amidžična / sestra od amidže |
+| Cousin (Sohn des Onkels mütterlicherseits) | daidžić / brat od daidže |
+| Cousine (Tochter des Onkels mütterlicherseits) | daidžična / sestra od daidže |
+| Cousin (Sohn der Tante) | tetić / brat od tetke |
+| Cousine (Tochter der Tante) | tetična / sestra od tetke |
+| Cousin, Verwandter (allgemein) | rođak |
+| Cousine, Verwandte (allgemein) | rođaka / rođakinja |
+| Neffe | nećak |
+| Nichte | nećakinja |
+
+**Koseformen:** *striko* und *adžo* (zu amidža / stric), *ujo* und *dajo*
+(zu daidža / ujak) zählen beim Tippen als richtig, sind aber keine eigenen
+Lernwörter. Sie stehen als `"auch"` am Wort und werden nie gesprochen.
+Getippt wird amidža heute nur in der Lücke „Moj ___ je pčelar.“; die nimmt
+seitdem auch *stric*, *striko* und *adžo* (`"auch"` am Satz). Als eigene
+Tippaufgabe kommen amidža / stric und daidža / ujak nicht: Wörter mit „ / “
+kommen nie als Tippaufgabe (`typable()`), wie *kahva / kafa*.
+
+**Bewusst weggelassen:** *bratić*, *sestrična*, *bratučed*. Sie sind
+mehrdeutig, je nach Gegend heißen sie Cousin oder Neffe.
+
+**Was daran hängt:**
+
+- Vier Kennungen ändern sich: `tante:tetka`, `onkel (vaterseite):amidža`,
+  `onkel (mutterseite):daidža` und `cousin:rođak`. Der Lernstand wandert
+  über `UMBENANNT` in `web/index.html` mit: gelernt, Fehler-Topf und Sterne.
+- Der Lückensatz heißt auf Deutsch jetzt „Mein Onkel (Bruder des Vaters) ist
+  Imker.“ Seine Kennung hängt am bosnischen Satz und bleibt.
+- Ajdin: „nicht auf azure sondern emir soll sprechen“. Die neuen Wörter,
+  amidža / stric und daidža / ujak mit beiden Formen und *so / sol* hat Emir
+  gesprochen. Diese Aufnahmen liegen nur in der Hülle (`audio_emir/`), ihre
+  Nummern stehen in `ton_nur_emir.json`. Die Web-Demo, der offene Datensatz
+  und die Anki-Pakete haben für die zwölf neuen Wörter keine Aufnahme, bei
+  den Wörtern mit zwei Formen klingt dort die erste. Der Eintrag „so / sol“
+  in `NUR_ERSTE_FORM` (ton_pruefen.py) ist damit gelöscht.

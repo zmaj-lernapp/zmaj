@@ -13,13 +13,14 @@ separate, private repository; nothing here needs Android tooling.
 
 | Path | What it is | Edit by hand? |
 |---|---|---|
-| `vokabeln.py` | 9 sections, 65 levels, 1,728 words, 300 cloze sentences | yes |
+| `vokabeln.py` | 9 sections, 65 levels, 1,740 words, 300 cloze sentences | yes |
 | `grammatik.py` | 16 grammar lessons with exercises | yes |
 | `geschichten.py` | 12 reading stories and their glossary | yes |
 | `uebersetzungen.py` | translations of all content into en, tr, sv, nl, nb, da, fr | yes |
 | `sprachen.py` | interface texts in 8 languages, legal texts | yes |
 | `web/index.html` | the app | yes |
-| `web/audio/` | 2,411 synthesised MP3s + `index.json` | **no** – produced by `ton_bauen.py`, costs money |
+| `web/audio/` | 2,411 synthesised MP3s + `index.json` | **no** – produced by `ton_bauen.py` (story word timings `"w"`: `wortzeiten_holen.py`), costs money |
+| `ton_nur_emir.json` | numbers of recordings that exist only in the private Android shell (voice Emir), with no file in `web/audio` | only together with the shell's `audio_emir/` |
 | `web/inhalt/` | app content as JSON | **no** – `python3 inhalt_bauen.py` (gitignored) |
 | `data/` | open dataset | **no** – `python3 daten_exportieren.py` |
 | `*_richten.py` | one-off patch scripts for `web/index.html` | run only when asked |
@@ -58,7 +59,10 @@ A change is done when `pytest`, `ruff check .` and `reuse lint` pass and
    `<br>` must appear in every language exactly as in German. Tests check this.
 6. **No network at runtime.** The app loads no fonts, scripts or analytics from
    other servers. Do not add CDNs. Third-party files go into `web/` with an
-   entry in `web/LIZENZEN.txt` and `REUSE.toml`.
+   entry in `web/LIZENZEN.txt` and `REUSE.toml`. The optional cloud backup
+   (`CLOUD_AN` in `web/index.html`, switched off; see `FIREBASE_EINRICHTEN.md`)
+   is the one planned exception: it talks only to Firebase, only after the
+   learner signs in, and never with keys or project IDs from this repository.
 7. **Patch scripts are all-or-nothing.** The `*_richten.py` pattern: dry run by
    default, `--schreiben` to write, abort without changes if an anchor is not
    found exactly once. New ones build on `richten.py`, which implements this

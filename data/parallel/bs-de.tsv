@@ -90,10 +90,22 @@ djeca	Kinder	word	kinder:djeca
 muž	Ehemann	word	ehemann:muž
 nana	Oma	word	oma:nana
 dedo	Opa	word	opa:dedo
-tetka	Tante	word	tante:tetka
-amidža	Onkel (Vaterseite)	word	onkel (vaterseite):amidža
-daidža	Onkel (Mutterseite)	word	onkel (mutterseite):daidža
-rođak	Cousin	word	cousin:rođak
+amidža / stric	Onkel (Bruder des Vaters)	word	onkel (bruder des vaters):amidža / stric
+daidža / ujak	Onkel (Bruder der Mutter)	word	onkel (bruder der mutter):daidža / ujak
+tetak	Onkel (Mann der Tante)	word	onkel (mann der tante):tetak
+tetka	Tante (Schwester von Vater oder Mutter)	word	tante (schwester von vater oder mutter):tetka
+strina / amidžinica	Tante (Frau des Onkels väterlicherseits)	word	tante (frau des onkels väterlicherseits):strina / amidžinica
+ujna / daidžinica	Tante (Frau des Onkels mütterlicherseits)	word	tante (frau des onkels mütterlicherseits):ujna / daidžinica
+amidžić / brat od amidže	Cousin (Sohn des Onkels väterlicherseits)	word	cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže
+amidžična / sestra od amidže	Cousine (Tochter des Onkels väterlicherseits)	word	cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže
+daidžić / brat od daidže	Cousin (Sohn des Onkels mütterlicherseits)	word	cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže
+daidžična / sestra od daidže	Cousine (Tochter des Onkels mütterlicherseits)	word	cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže
+tetić / brat od tetke	Cousin (Sohn der Tante)	word	cousin (sohn der tante):tetić / brat od tetke
+tetična / sestra od tetke	Cousine (Tochter der Tante)	word	cousine (tochter der tante):tetična / sestra od tetke
+rođak	Cousin, Verwandter (allgemein)	word	cousin, verwandter (allgemein):rođak
+rođaka / rođakinja	Cousine, Verwandte (allgemein)	word	cousine, verwandte (allgemein):rođaka / rođakinja
+nećak	Neffe	word	neffe:nećak
+nećakinja	Nichte	word	nichte:nećakinja
 beba	Baby	word	baby:beba
 porodica	Familie	word	familie:porodica
 prijatelj	Freund	word	freund:prijatelj
@@ -118,7 +130,7 @@ krompir	Kartoffel	word	kartoffel:krompir
 paradajz	Tomate	word	tomate:paradajz
 luk	Zwiebel	word	zwiebel:luk
 riža	Reis	word	reis:riža
-so	Salz	word	salz:so
+so / sol	Salz	word	salz:so / sol
 šećer	Zucker	word	zucker:šećer
 supa	Suppe	word	suppe:supa
 pita	Pita (Blätterteig-Gericht)	word	pita (blätterteig-gericht):pita
@@ -1755,7 +1767,7 @@ Vidimo se sutra!	Wir sehen uns morgen!	sentence	s0025
 Danas je lijep dan.	Heute ist ein schöner Tag.	sentence	s0026
 Moja sestra se zove Amina.	Meine Schwester heißt Amina.	sentence	s0027
 Moj muž se zove Ajdin.	Mein Mann heißt Ajdin.	sentence	s0028
-Moj amidža je pčelar.	Mein Onkel (Vaterseite) ist Imker.	sentence	s0029
+Moj amidža je pčelar.	Mein Onkel (Bruder des Vaters) ist Imker.	sentence	s0029
 Moja majka i moj babo.	Meine Mutter und mein Papa.	sentence	s0030
 Hljeb i sir.	Brot und Käse.	sentence	s0031
 Dvije kahve, molim.	Zwei Kaffee, bitte.	sentence	s0032

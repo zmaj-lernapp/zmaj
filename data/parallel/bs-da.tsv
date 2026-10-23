@@ -90,10 +90,22 @@ djeca	børn	word	kinder:djeca
 muž	mand	word	ehemann:muž
 nana	bedstemor	word	oma:nana
 dedo	bedstefar	word	opa:dedo
-tetka	tante	word	tante:tetka
-amidža	farbror	word	onkel (vaterseite):amidža
-daidža	morbror	word	onkel (mutterseite):daidža
-rođak	fætter	word	cousin:rođak
+amidža / stric	farbror	word	onkel (bruder des vaters):amidža / stric
+daidža / ujak	morbror	word	onkel (bruder der mutter):daidža / ujak
+tetak	onkel (gift med faster eller moster)	word	onkel (mann der tante):tetak
+tetka	faster / moster	word	tante (schwester von vater oder mutter):tetka
+strina / amidžinica	tante (gift med farbror)	word	tante (frau des onkels väterlicherseits):strina / amidžinica
+ujna / daidžinica	tante (gift med morbror)	word	tante (frau des onkels mütterlicherseits):ujna / daidžinica
+amidžić / brat od amidže	fætter (søn af farbror)	word	cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže
+amidžična / sestra od amidže	kusine (datter af farbror)	word	cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže
+daidžić / brat od daidže	fætter (søn af morbror)	word	cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže
+daidžična / sestra od daidže	kusine (datter af morbror)	word	cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže
+tetić / brat od tetke	fætter (søn af faster eller moster)	word	cousin (sohn der tante):tetić / brat od tetke
+tetična / sestra od tetke	kusine (datter af faster eller moster)	word	cousine (tochter der tante):tetična / sestra od tetke
+rođak	fætter, slægtning (mand, generelt)	word	cousin, verwandter (allgemein):rođak
+rođaka / rođakinja	kusine, slægtning (kvinde, generelt)	word	cousine, verwandte (allgemein):rođaka / rođakinja
+nećak	nevø	word	neffe:nećak
+nećakinja	niece	word	nichte:nećakinja
 beba	baby	word	baby:beba
 porodica	Familie	word	familie:porodica
 prijatelj	ven	word	freund:prijatelj
@@ -118,7 +130,7 @@ krompir	kartoffel	word	kartoffel:krompir
 paradajz	tomat	word	tomate:paradajz
 luk	løg	word	zwiebel:luk
 riža	ris	word	reis:riža
-so	salt	word	salz:so
+so / sol	salt	word	salz:so / sol
 šećer	sukker	word	zucker:šećer
 supa	suppe	word	suppe:supa
 pita	pita (fyldt filodejstærte)	word	pita (blätterteig-gericht):pita
@@ -1755,7 +1767,7 @@ Vidimo se sutra!	Vi ses i morgen!	sentence	s0025
 Danas je lijep dan.	I dag er en dejlig dag.	sentence	s0026
 Moja sestra se zove Amina.	Min søster hedder Amina.	sentence	s0027
 Moj muž se zove Ajdin.	Min mand hedder Ajdin.	sentence	s0028
-Moj amidža je pčelar.	Min onkel er biavler.	sentence	s0029
+Moj amidža je pčelar.	Min farbror er biavler.	sentence	s0029
 Moja majka i moj babo.	Min mor og min far.	sentence	s0030
 Hljeb i sir.	Brød og ost.	sentence	s0031
 Dvije kahve, molim.	To kaffe, tak.	sentence	s0032

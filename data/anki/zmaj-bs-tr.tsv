@@ -94,10 +94,22 @@ djeca	çocuklar	zmaj zmaj::04_familie
 muž	eş (erkek)	zmaj zmaj::04_familie
 nana	nine	zmaj zmaj::04_familie
 dedo	dede	zmaj zmaj::04_familie
-tetka	teyze / hala	zmaj zmaj::04_familie
-amidža	amca	zmaj zmaj::04_familie
-daidža	dayı	zmaj zmaj::04_familie
-rođak	kuzen	zmaj zmaj::04_familie
+amidža / stric	amca	zmaj zmaj::04_familie
+daidža / ujak	dayı	zmaj zmaj::04_familie
+tetak	enişte (halanın veya teyzenin eşi)	zmaj zmaj::04_familie
+tetka	hala / teyze	zmaj zmaj::04_familie
+strina / amidžinica	yenge (amcanın eşi)	zmaj zmaj::04_familie
+ujna / daidžinica	yenge (dayının eşi)	zmaj zmaj::04_familie
+amidžić / brat od amidže	amca oğlu	zmaj zmaj::04_familie
+amidžična / sestra od amidže	amca kızı	zmaj zmaj::04_familie
+daidžić / brat od daidže	dayı oğlu	zmaj zmaj::04_familie
+daidžična / sestra od daidže	dayı kızı	zmaj zmaj::04_familie
+tetić / brat od tetke	hala oğlu / teyze oğlu	zmaj zmaj::04_familie
+tetična / sestra od tetke	hala kızı / teyze kızı	zmaj zmaj::04_familie
+rođak	kuzen, akraba (erkek, genel anlamda)	zmaj zmaj::04_familie
+rođaka / rođakinja	kuzen, akraba (kadın, genel anlamda)	zmaj zmaj::04_familie
+nećak	erkek yeğen	zmaj zmaj::04_familie
+nećakinja	kız yeğen	zmaj zmaj::04_familie
 beba	bebek	zmaj zmaj::04_familie
 porodica	Aile	zmaj zmaj::04_familie
 prijatelj	arkadaş (erkek)	zmaj zmaj::04_familie
@@ -122,7 +134,7 @@ krompir	patates	zmaj zmaj::05_essen
 paradajz	domates	zmaj zmaj::05_essen
 luk	soğan	zmaj zmaj::05_essen
 riža	pirinç	zmaj zmaj::05_essen
-so	tuz	zmaj zmaj::05_essen
+so / sol	tuz	zmaj zmaj::05_essen
 šećer	şeker	zmaj zmaj::05_essen
 supa	çorba	zmaj zmaj::05_essen
 pita	pita (yufkadan börek)	zmaj zmaj::05_essen

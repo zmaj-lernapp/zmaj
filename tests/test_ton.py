@@ -17,6 +17,21 @@ def test_ton_pruefen_meldet_nichts(wurzel):
     assert ton_pruefen.main() in (0, None)
 
 
+def test_nur_erste_form_nur_fuer_echte_mehrfachformen(index):
+    """ton_pruefen.NUR_ERSTE_FORM laesst eine fehlende Aufnahme mit allen
+    Formen durch (22.10.2026, "so / sol" - die neue Aufnahme kostet Geld,
+    Ajdin entscheidet spaeter). Das darf nur fuer ein Wort mit mehreren
+    Formen gelten, dessen erste Form klingt; sonst verdeckte die Ausnahme
+    ein stummes Wort."""
+    import ton_bauen
+    import ton_pruefen
+    alle = {p["key"]: p["text"] for p in ton_bauen.sammle() if p.get("alle")}
+    haben = {e["key"] for e in index["toene"]}
+    for k in ton_pruefen.NUR_ERSTE_FORM:
+        assert k in alle, "kein Wort mit mehreren Formen: %r" % k
+        assert ton_bauen.schluessel(alle[k]) in haben, "auch die erste Form fehlt: %r" % k
+
+
 def test_jede_datei_im_index_existiert_und_ist_nicht_leer(index, wurzel):
     fehlt, leer = [], []
     for e in index["toene"]:
@@ -30,8 +45,13 @@ def test_jede_datei_im_index_existiert_und_ist_nicht_leer(index, wurzel):
 
 
 def test_jedes_wort_findet_seine_aufnahme(grunddaten, index):
+    """In der App aus dem Store: web/audio und dazu, was es nur von Emir
+    gibt (ton_nur_emir.json, 23.10.2026). Die Web-Demo bleibt fuer diese
+    Woerter stumm - so entschieden."""
     import daten_exportieren as de
-    toene = {str(e["key"]).lower(): e["datei"] for e in index["toene"]}
+    import ton_bauen
+    toene = {str(e["key"]).lower(): e["datei"]
+             for e in index["toene"] + list(ton_bauen.nur_emir().values())}
     ohne = [w["bs"] for k in grunddaten["kategorien"] for w in k["words"]
             if not de.ton_datei(w["bs"], toene)]
     assert not ohne, ohne[:20]

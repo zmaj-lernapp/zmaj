@@ -528,14 +528,14 @@
    "answer": "amidža",
    "bs": "Moj amidža je pčelar.",
    "translations": {
-    "de": "Mein Onkel (Vaterseite) ist Imker.",
-    "en": "My uncle (father's side) is a beekeeper.",
+    "de": "Mein Onkel (Bruder des Vaters) ist Imker.",
+    "en": "My uncle (father's brother) is a beekeeper.",
     "tr": "Amcam arıcı.",
     "sv": "Min farbror är biodlare.",
-    "nl": "Mijn oom is imker.",
-    "nb": "Onkelen min (på farssiden) er birøkter.",
-    "da": "Min onkel er biavler.",
-    "fr": "Mon oncle paternel est apiculteur."
+    "nl": "Mijn oom (broer van vader) is imker.",
+    "nb": "Farbroren min er birøkter.",
+    "da": "Min farbror er biavler.",
+    "fr": "Mon oncle (frère de mon père) est apiculteur."
    },
    "audio": "web/audio/w1121.mp3"
   },

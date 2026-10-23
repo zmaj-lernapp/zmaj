@@ -90,10 +90,22 @@ djeca	barn (flera)	word	kinder:djeca
 muž	make	word	ehemann:muž
 nana	mormor / farmor	word	oma:nana
 dedo	morfar / farfar	word	opa:dedo
-tetka	moster / faster	word	tante:tetka
-amidža	farbror	word	onkel (vaterseite):amidža
-daidža	morbror	word	onkel (mutterseite):daidža
-rođak	kusin	word	cousin:rođak
+amidža / stric	farbror	word	onkel (bruder des vaters):amidža / stric
+daidža / ujak	morbror	word	onkel (bruder der mutter):daidža / ujak
+tetak	fasters eller mosters man	word	onkel (mann der tante):tetak
+tetka	faster / moster	word	tante (schwester von vater oder mutter):tetka
+strina / amidžinica	farbrors fru	word	tante (frau des onkels väterlicherseits):strina / amidžinica
+ujna / daidžinica	morbrors fru	word	tante (frau des onkels mütterlicherseits):ujna / daidžinica
+amidžić / brat od amidže	kusin (farbrors son)	word	cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže
+amidžična / sestra od amidže	kusin (farbrors dotter)	word	cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže
+daidžić / brat od daidže	kusin (morbrors son)	word	cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže
+daidžična / sestra od daidže	kusin (morbrors dotter)	word	cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže
+tetić / brat od tetke	kusin (fasters eller mosters son)	word	cousin (sohn der tante):tetić / brat od tetke
+tetična / sestra od tetke	kusin (fasters eller mosters dotter)	word	cousine (tochter der tante):tetična / sestra od tetke
+rođak	kusin, släkting (man, allmänt)	word	cousin, verwandter (allgemein):rođak
+rođaka / rođakinja	kusin, släkting (kvinna, allmänt)	word	cousine, verwandte (allgemein):rođaka / rođakinja
+nećak	brorson / systerson	word	neffe:nećak
+nećakinja	brorsdotter / systerdotter	word	nichte:nećakinja
 beba	bebis	word	baby:beba
 porodica	Familj	word	familie:porodica
 prijatelj	vän (man)	word	freund:prijatelj
@@ -118,7 +130,7 @@ krompir	potatis	word	kartoffel:krompir
 paradajz	tomat	word	tomate:paradajz
 luk	lök	word	zwiebel:luk
 riža	ris	word	reis:riža
-so	salt	word	salz:so
+so / sol	salt	word	salz:so / sol
 šećer	socker	word	zucker:šećer
 supa	soppa	word	suppe:supa
 pita	pita (inbakad filodegspaj)	word	pita (blätterteig-gericht):pita

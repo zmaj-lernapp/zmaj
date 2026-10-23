@@ -94,10 +94,22 @@ djeca	enfants	zmaj zmaj::04_familie
 muž	mari	zmaj zmaj::04_familie
 nana	grand-mère	zmaj zmaj::04_familie
 dedo	grand-père	zmaj zmaj::04_familie
-tetka	tante	zmaj zmaj::04_familie
-amidža	oncle (côté paternel)	zmaj zmaj::04_familie
-daidža	oncle (côté maternel)	zmaj zmaj::04_familie
-rođak	cousin	zmaj zmaj::04_familie
+amidža / stric	oncle (frère du père)	zmaj zmaj::04_familie
+daidža / ujak	oncle (frère de la mère)	zmaj zmaj::04_familie
+tetak	oncle (mari de la tante)	zmaj zmaj::04_familie
+tetka	tante (sœur du père ou de la mère)	zmaj zmaj::04_familie
+strina / amidžinica	tante (femme de l'oncle paternel)	zmaj zmaj::04_familie
+ujna / daidžinica	tante (femme de l'oncle maternel)	zmaj zmaj::04_familie
+amidžić / brat od amidže	cousin (fils de l'oncle paternel)	zmaj zmaj::04_familie
+amidžična / sestra od amidže	cousine (fille de l'oncle paternel)	zmaj zmaj::04_familie
+daidžić / brat od daidže	cousin (fils de l'oncle maternel)	zmaj zmaj::04_familie
+daidžična / sestra od daidže	cousine (fille de l'oncle maternel)	zmaj zmaj::04_familie
+tetić / brat od tetke	cousin (fils de la tante)	zmaj zmaj::04_familie
+tetična / sestra od tetke	cousine (fille de la tante)	zmaj zmaj::04_familie
+rođak	cousin, parent (en général)	zmaj zmaj::04_familie
+rođaka / rođakinja	cousine, parente (en général)	zmaj zmaj::04_familie
+nećak	neveu	zmaj zmaj::04_familie
+nećakinja	nièce	zmaj zmaj::04_familie
 beba	bébé	zmaj zmaj::04_familie
 porodica	La famille	zmaj zmaj::04_familie
 prijatelj	ami	zmaj zmaj::04_familie
@@ -122,7 +134,7 @@ krompir	pomme de terre	zmaj zmaj::05_essen
 paradajz	tomate	zmaj zmaj::05_essen
 luk	oignon	zmaj zmaj::05_essen
 riža	riz	zmaj zmaj::05_essen
-so	sel	zmaj zmaj::05_essen
+so / sol	sel	zmaj zmaj::05_essen
 šećer	sucre	zmaj zmaj::05_essen
 supa	soupe	zmaj zmaj::05_essen
 pita	pita (tourte en pâte filo)	zmaj zmaj::05_essen

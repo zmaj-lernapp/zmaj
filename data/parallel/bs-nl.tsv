@@ -90,10 +90,22 @@ djeca	kinderen	word	kinder:djeca
 muž	echtgenoot	word	ehemann:muž
 nana	oma	word	oma:nana
 dedo	opa	word	opa:dedo
-tetka	tante	word	tante:tetka
-amidža	oom (van vaderskant)	word	onkel (vaterseite):amidža
-daidža	oom (van moederskant)	word	onkel (mutterseite):daidža
-rođak	neef	word	cousin:rođak
+amidža / stric	oom (broer van vader)	word	onkel (bruder des vaters):amidža / stric
+daidža / ujak	oom (broer van moeder)	word	onkel (bruder der mutter):daidža / ujak
+tetak	oom (man van tante)	word	onkel (mann der tante):tetak
+tetka	tante (zus van vader of moeder)	word	tante (schwester von vater oder mutter):tetka
+strina / amidžinica	tante (vrouw van vaders broer)	word	tante (frau des onkels väterlicherseits):strina / amidžinica
+ujna / daidžinica	tante (vrouw van moeders broer)	word	tante (frau des onkels mütterlicherseits):ujna / daidžinica
+amidžić / brat od amidže	neef (zoon van vaders broer)	word	cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže
+amidžična / sestra od amidže	nicht (dochter van vaders broer)	word	cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže
+daidžić / brat od daidže	neef (zoon van moeders broer)	word	cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže
+daidžična / sestra od daidže	nicht (dochter van moeders broer)	word	cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže
+tetić / brat od tetke	neef (zoon van tante)	word	cousin (sohn der tante):tetić / brat od tetke
+tetična / sestra od tetke	nicht (dochter van tante)	word	cousine (tochter der tante):tetična / sestra od tetke
+rođak	neef, familielid (man, algemeen)	word	cousin, verwandter (allgemein):rođak
+rođaka / rođakinja	nicht, familielid (vrouw, algemeen)	word	cousine, verwandte (allgemein):rođaka / rođakinja
+nećak	neef (zoon van broer of zus)	word	neffe:nećak
+nećakinja	nicht (dochter van broer of zus)	word	nichte:nećakinja
 beba	baby	word	baby:beba
 porodica	Familie	word	familie:porodica
 prijatelj	vriend	word	freund:prijatelj
@@ -118,7 +130,7 @@ krompir	aardappel	word	kartoffel:krompir
 paradajz	tomaat	word	tomate:paradajz
 luk	ui	word	zwiebel:luk
 riža	rijst	word	reis:riža
-so	zout	word	salz:so
+so / sol	zout	word	salz:so / sol
 šećer	suiker	word	zucker:šećer
 supa	soep	word	suppe:supa
 pita	pita (gevuld filodeeggebak)	word	pita (blätterteig-gericht):pita
@@ -1755,7 +1767,7 @@ Vidimo se sutra!	Tot morgen!	sentence	s0025
 Danas je lijep dan.	Vandaag is een mooie dag.	sentence	s0026
 Moja sestra se zove Amina.	Mijn zus heet Amina.	sentence	s0027
 Moj muž se zove Ajdin.	Mijn man heet Ajdin.	sentence	s0028
-Moj amidža je pčelar.	Mijn oom is imker.	sentence	s0029
+Moj amidža je pčelar.	Mijn oom (broer van vader) is imker.	sentence	s0029
 Moja majka i moj babo.	Mijn moeder en mijn papa.	sentence	s0030
 Hljeb i sir.	Brood en kaas.	sentence	s0031
 Dvije kahve, molim.	Twee koffie, alstublieft.	sentence	s0032

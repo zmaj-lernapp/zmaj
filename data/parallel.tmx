@@ -1098,53 +1098,197 @@
    <tuv xml:lang="da"><seg>bedstefar</seg></tuv>
    <tuv xml:lang="fr"><seg>grand-père</seg></tuv>
   </tu>
-  <tu tuid="tante:tetka" segtype="phrase">
+  <tu tuid="onkel (bruder des vaters):amidža / stric" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>tetka</seg></tuv>
-   <tuv xml:lang="de"><seg>Tante</seg></tuv>
-   <tuv xml:lang="en"><seg>aunt</seg></tuv>
-   <tuv xml:lang="tr"><seg>teyze / hala</seg></tuv>
-   <tuv xml:lang="sv"><seg>moster / faster</seg></tuv>
-   <tuv xml:lang="nl"><seg>tante</seg></tuv>
-   <tuv xml:lang="nb"><seg>tante</seg></tuv>
-   <tuv xml:lang="da"><seg>tante</seg></tuv>
-   <tuv xml:lang="fr"><seg>tante</seg></tuv>
-  </tu>
-  <tu tuid="onkel (vaterseite):amidža" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>amidža</seg></tuv>
-   <tuv xml:lang="de"><seg>Onkel (Vaterseite)</seg></tuv>
-   <tuv xml:lang="en"><seg>uncle (father's side)</seg></tuv>
+   <tuv xml:lang="bs"><seg>amidža / stric</seg></tuv>
+   <tuv xml:lang="de"><seg>Onkel (Bruder des Vaters)</seg></tuv>
+   <tuv xml:lang="en"><seg>uncle (father's brother)</seg></tuv>
    <tuv xml:lang="tr"><seg>amca</seg></tuv>
    <tuv xml:lang="sv"><seg>farbror</seg></tuv>
-   <tuv xml:lang="nl"><seg>oom (van vaderskant)</seg></tuv>
+   <tuv xml:lang="nl"><seg>oom (broer van vader)</seg></tuv>
    <tuv xml:lang="nb"><seg>farbror</seg></tuv>
    <tuv xml:lang="da"><seg>farbror</seg></tuv>
-   <tuv xml:lang="fr"><seg>oncle (côté paternel)</seg></tuv>
+   <tuv xml:lang="fr"><seg>oncle (frère du père)</seg></tuv>
   </tu>
-  <tu tuid="onkel (mutterseite):daidža" segtype="phrase">
+  <tu tuid="onkel (bruder der mutter):daidža / ujak" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>daidža</seg></tuv>
-   <tuv xml:lang="de"><seg>Onkel (Mutterseite)</seg></tuv>
-   <tuv xml:lang="en"><seg>uncle (mother's side)</seg></tuv>
+   <tuv xml:lang="bs"><seg>daidža / ujak</seg></tuv>
+   <tuv xml:lang="de"><seg>Onkel (Bruder der Mutter)</seg></tuv>
+   <tuv xml:lang="en"><seg>uncle (mother's brother)</seg></tuv>
    <tuv xml:lang="tr"><seg>dayı</seg></tuv>
    <tuv xml:lang="sv"><seg>morbror</seg></tuv>
-   <tuv xml:lang="nl"><seg>oom (van moederskant)</seg></tuv>
+   <tuv xml:lang="nl"><seg>oom (broer van moeder)</seg></tuv>
    <tuv xml:lang="nb"><seg>morbror</seg></tuv>
    <tuv xml:lang="da"><seg>morbror</seg></tuv>
-   <tuv xml:lang="fr"><seg>oncle (côté maternel)</seg></tuv>
+   <tuv xml:lang="fr"><seg>oncle (frère de la mère)</seg></tuv>
   </tu>
-  <tu tuid="cousin:rođak" segtype="phrase">
+  <tu tuid="onkel (mann der tante):tetak" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>tetak</seg></tuv>
+   <tuv xml:lang="de"><seg>Onkel (Mann der Tante)</seg></tuv>
+   <tuv xml:lang="en"><seg>uncle (aunt's husband)</seg></tuv>
+   <tuv xml:lang="tr"><seg>enişte (halanın veya teyzenin eşi)</seg></tuv>
+   <tuv xml:lang="sv"><seg>fasters eller mosters man</seg></tuv>
+   <tuv xml:lang="nl"><seg>oom (man van tante)</seg></tuv>
+   <tuv xml:lang="nb"><seg>onkel (gift med faster eller moster)</seg></tuv>
+   <tuv xml:lang="da"><seg>onkel (gift med faster eller moster)</seg></tuv>
+   <tuv xml:lang="fr"><seg>oncle (mari de la tante)</seg></tuv>
+  </tu>
+  <tu tuid="tante (schwester von vater oder mutter):tetka" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>tetka</seg></tuv>
+   <tuv xml:lang="de"><seg>Tante (Schwester von Vater oder Mutter)</seg></tuv>
+   <tuv xml:lang="en"><seg>aunt (father's or mother's sister)</seg></tuv>
+   <tuv xml:lang="tr"><seg>hala / teyze</seg></tuv>
+   <tuv xml:lang="sv"><seg>faster / moster</seg></tuv>
+   <tuv xml:lang="nl"><seg>tante (zus van vader of moeder)</seg></tuv>
+   <tuv xml:lang="nb"><seg>faster / moster</seg></tuv>
+   <tuv xml:lang="da"><seg>faster / moster</seg></tuv>
+   <tuv xml:lang="fr"><seg>tante (sœur du père ou de la mère)</seg></tuv>
+  </tu>
+  <tu tuid="tante (frau des onkels väterlicherseits):strina / amidžinica" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>strina / amidžinica</seg></tuv>
+   <tuv xml:lang="de"><seg>Tante (Frau des Onkels väterlicherseits)</seg></tuv>
+   <tuv xml:lang="en"><seg>aunt (wife of father's brother)</seg></tuv>
+   <tuv xml:lang="tr"><seg>yenge (amcanın eşi)</seg></tuv>
+   <tuv xml:lang="sv"><seg>farbrors fru</seg></tuv>
+   <tuv xml:lang="nl"><seg>tante (vrouw van vaders broer)</seg></tuv>
+   <tuv xml:lang="nb"><seg>tante (gift med farbror)</seg></tuv>
+   <tuv xml:lang="da"><seg>tante (gift med farbror)</seg></tuv>
+   <tuv xml:lang="fr"><seg>tante (femme de l'oncle paternel)</seg></tuv>
+  </tu>
+  <tu tuid="tante (frau des onkels mütterlicherseits):ujna / daidžinica" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>ujna / daidžinica</seg></tuv>
+   <tuv xml:lang="de"><seg>Tante (Frau des Onkels mütterlicherseits)</seg></tuv>
+   <tuv xml:lang="en"><seg>aunt (wife of mother's brother)</seg></tuv>
+   <tuv xml:lang="tr"><seg>yenge (dayının eşi)</seg></tuv>
+   <tuv xml:lang="sv"><seg>morbrors fru</seg></tuv>
+   <tuv xml:lang="nl"><seg>tante (vrouw van moeders broer)</seg></tuv>
+   <tuv xml:lang="nb"><seg>tante (gift med morbror)</seg></tuv>
+   <tuv xml:lang="da"><seg>tante (gift med morbror)</seg></tuv>
+   <tuv xml:lang="fr"><seg>tante (femme de l'oncle maternel)</seg></tuv>
+  </tu>
+  <tu tuid="cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>amidžić / brat od amidže</seg></tuv>
+   <tuv xml:lang="de"><seg>Cousin (Sohn des Onkels väterlicherseits)</seg></tuv>
+   <tuv xml:lang="en"><seg>cousin (son of father's brother)</seg></tuv>
+   <tuv xml:lang="tr"><seg>amca oğlu</seg></tuv>
+   <tuv xml:lang="sv"><seg>kusin (farbrors son)</seg></tuv>
+   <tuv xml:lang="nl"><seg>neef (zoon van vaders broer)</seg></tuv>
+   <tuv xml:lang="nb"><seg>fetter (sønn av farbror)</seg></tuv>
+   <tuv xml:lang="da"><seg>fætter (søn af farbror)</seg></tuv>
+   <tuv xml:lang="fr"><seg>cousin (fils de l'oncle paternel)</seg></tuv>
+  </tu>
+  <tu tuid="cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>amidžična / sestra od amidže</seg></tuv>
+   <tuv xml:lang="de"><seg>Cousine (Tochter des Onkels väterlicherseits)</seg></tuv>
+   <tuv xml:lang="en"><seg>cousin (daughter of father's brother)</seg></tuv>
+   <tuv xml:lang="tr"><seg>amca kızı</seg></tuv>
+   <tuv xml:lang="sv"><seg>kusin (farbrors dotter)</seg></tuv>
+   <tuv xml:lang="nl"><seg>nicht (dochter van vaders broer)</seg></tuv>
+   <tuv xml:lang="nb"><seg>kusine (datter av farbror)</seg></tuv>
+   <tuv xml:lang="da"><seg>kusine (datter af farbror)</seg></tuv>
+   <tuv xml:lang="fr"><seg>cousine (fille de l'oncle paternel)</seg></tuv>
+  </tu>
+  <tu tuid="cousin (sohn des onkels mütterlicherseits):daidžić / brat od daidže" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>daidžić / brat od daidže</seg></tuv>
+   <tuv xml:lang="de"><seg>Cousin (Sohn des Onkels mütterlicherseits)</seg></tuv>
+   <tuv xml:lang="en"><seg>cousin (son of mother's brother)</seg></tuv>
+   <tuv xml:lang="tr"><seg>dayı oğlu</seg></tuv>
+   <tuv xml:lang="sv"><seg>kusin (morbrors son)</seg></tuv>
+   <tuv xml:lang="nl"><seg>neef (zoon van moeders broer)</seg></tuv>
+   <tuv xml:lang="nb"><seg>fetter (sønn av morbror)</seg></tuv>
+   <tuv xml:lang="da"><seg>fætter (søn af morbror)</seg></tuv>
+   <tuv xml:lang="fr"><seg>cousin (fils de l'oncle maternel)</seg></tuv>
+  </tu>
+  <tu tuid="cousine (tochter des onkels mütterlicherseits):daidžična / sestra od daidže" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>daidžična / sestra od daidže</seg></tuv>
+   <tuv xml:lang="de"><seg>Cousine (Tochter des Onkels mütterlicherseits)</seg></tuv>
+   <tuv xml:lang="en"><seg>cousin (daughter of mother's brother)</seg></tuv>
+   <tuv xml:lang="tr"><seg>dayı kızı</seg></tuv>
+   <tuv xml:lang="sv"><seg>kusin (morbrors dotter)</seg></tuv>
+   <tuv xml:lang="nl"><seg>nicht (dochter van moeders broer)</seg></tuv>
+   <tuv xml:lang="nb"><seg>kusine (datter av morbror)</seg></tuv>
+   <tuv xml:lang="da"><seg>kusine (datter af morbror)</seg></tuv>
+   <tuv xml:lang="fr"><seg>cousine (fille de l'oncle maternel)</seg></tuv>
+  </tu>
+  <tu tuid="cousin (sohn der tante):tetić / brat od tetke" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>tetić / brat od tetke</seg></tuv>
+   <tuv xml:lang="de"><seg>Cousin (Sohn der Tante)</seg></tuv>
+   <tuv xml:lang="en"><seg>cousin (aunt's son)</seg></tuv>
+   <tuv xml:lang="tr"><seg>hala oğlu / teyze oğlu</seg></tuv>
+   <tuv xml:lang="sv"><seg>kusin (fasters eller mosters son)</seg></tuv>
+   <tuv xml:lang="nl"><seg>neef (zoon van tante)</seg></tuv>
+   <tuv xml:lang="nb"><seg>fetter (sønn av faster eller moster)</seg></tuv>
+   <tuv xml:lang="da"><seg>fætter (søn af faster eller moster)</seg></tuv>
+   <tuv xml:lang="fr"><seg>cousin (fils de la tante)</seg></tuv>
+  </tu>
+  <tu tuid="cousine (tochter der tante):tetična / sestra od tetke" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>tetična / sestra od tetke</seg></tuv>
+   <tuv xml:lang="de"><seg>Cousine (Tochter der Tante)</seg></tuv>
+   <tuv xml:lang="en"><seg>cousin (aunt's daughter)</seg></tuv>
+   <tuv xml:lang="tr"><seg>hala kızı / teyze kızı</seg></tuv>
+   <tuv xml:lang="sv"><seg>kusin (fasters eller mosters dotter)</seg></tuv>
+   <tuv xml:lang="nl"><seg>nicht (dochter van tante)</seg></tuv>
+   <tuv xml:lang="nb"><seg>kusine (datter av faster eller moster)</seg></tuv>
+   <tuv xml:lang="da"><seg>kusine (datter af faster eller moster)</seg></tuv>
+   <tuv xml:lang="fr"><seg>cousine (fille de la tante)</seg></tuv>
+  </tu>
+  <tu tuid="cousin, verwandter (allgemein):rođak" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>rođak</seg></tuv>
-   <tuv xml:lang="de"><seg>Cousin</seg></tuv>
-   <tuv xml:lang="en"><seg>cousin</seg></tuv>
-   <tuv xml:lang="tr"><seg>kuzen</seg></tuv>
-   <tuv xml:lang="sv"><seg>kusin</seg></tuv>
-   <tuv xml:lang="nl"><seg>neef</seg></tuv>
-   <tuv xml:lang="nb"><seg>fetter</seg></tuv>
-   <tuv xml:lang="da"><seg>fætter</seg></tuv>
-   <tuv xml:lang="fr"><seg>cousin</seg></tuv>
+   <tuv xml:lang="de"><seg>Cousin, Verwandter (allgemein)</seg></tuv>
+   <tuv xml:lang="en"><seg>cousin, relative (male, general term)</seg></tuv>
+   <tuv xml:lang="tr"><seg>kuzen, akraba (erkek, genel anlamda)</seg></tuv>
+   <tuv xml:lang="sv"><seg>kusin, släkting (man, allmänt)</seg></tuv>
+   <tuv xml:lang="nl"><seg>neef, familielid (man, algemeen)</seg></tuv>
+   <tuv xml:lang="nb"><seg>fetter, slektning (mann, generelt)</seg></tuv>
+   <tuv xml:lang="da"><seg>fætter, slægtning (mand, generelt)</seg></tuv>
+   <tuv xml:lang="fr"><seg>cousin, parent (en général)</seg></tuv>
+  </tu>
+  <tu tuid="cousine, verwandte (allgemein):rođaka / rođakinja" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>rođaka / rođakinja</seg></tuv>
+   <tuv xml:lang="de"><seg>Cousine, Verwandte (allgemein)</seg></tuv>
+   <tuv xml:lang="en"><seg>cousin, relative (female, general term)</seg></tuv>
+   <tuv xml:lang="tr"><seg>kuzen, akraba (kadın, genel anlamda)</seg></tuv>
+   <tuv xml:lang="sv"><seg>kusin, släkting (kvinna, allmänt)</seg></tuv>
+   <tuv xml:lang="nl"><seg>nicht, familielid (vrouw, algemeen)</seg></tuv>
+   <tuv xml:lang="nb"><seg>kusine, slektning (kvinne, generelt)</seg></tuv>
+   <tuv xml:lang="da"><seg>kusine, slægtning (kvinde, generelt)</seg></tuv>
+   <tuv xml:lang="fr"><seg>cousine, parente (en général)</seg></tuv>
+  </tu>
+  <tu tuid="neffe:nećak" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>nećak</seg></tuv>
+   <tuv xml:lang="de"><seg>Neffe</seg></tuv>
+   <tuv xml:lang="en"><seg>nephew</seg></tuv>
+   <tuv xml:lang="tr"><seg>erkek yeğen</seg></tuv>
+   <tuv xml:lang="sv"><seg>brorson / systerson</seg></tuv>
+   <tuv xml:lang="nl"><seg>neef (zoon van broer of zus)</seg></tuv>
+   <tuv xml:lang="nb"><seg>nevø</seg></tuv>
+   <tuv xml:lang="da"><seg>nevø</seg></tuv>
+   <tuv xml:lang="fr"><seg>neveu</seg></tuv>
+  </tu>
+  <tu tuid="nichte:nećakinja" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>nećakinja</seg></tuv>
+   <tuv xml:lang="de"><seg>Nichte</seg></tuv>
+   <tuv xml:lang="en"><seg>niece</seg></tuv>
+   <tuv xml:lang="tr"><seg>kız yeğen</seg></tuv>
+   <tuv xml:lang="sv"><seg>brorsdotter / systerdotter</seg></tuv>
+   <tuv xml:lang="nl"><seg>nicht (dochter van broer of zus)</seg></tuv>
+   <tuv xml:lang="nb"><seg>niese</seg></tuv>
+   <tuv xml:lang="da"><seg>niece</seg></tuv>
+   <tuv xml:lang="fr"><seg>nièce</seg></tuv>
   </tu>
   <tu tuid="baby:beba" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -1434,9 +1578,9 @@
    <tuv xml:lang="da"><seg>ris</seg></tuv>
    <tuv xml:lang="fr"><seg>riz</seg></tuv>
   </tu>
-  <tu tuid="salz:so" segtype="phrase">
+  <tu tuid="salz:so / sol" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>so</seg></tuv>
+   <tuv xml:lang="bs"><seg>so / sol</seg></tuv>
    <tuv xml:lang="de"><seg>Salz</seg></tuv>
    <tuv xml:lang="en"><seg>salt</seg></tuv>
    <tuv xml:lang="tr"><seg>tuz</seg></tuv>
@@ -21081,14 +21225,14 @@
   <tu tuid="s0029" segtype="sentence">
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Moj amidža je pčelar.</seg></tuv>
-   <tuv xml:lang="de"><seg>Mein Onkel (Vaterseite) ist Imker.</seg></tuv>
-   <tuv xml:lang="en"><seg>My uncle (father's side) is a beekeeper.</seg></tuv>
+   <tuv xml:lang="de"><seg>Mein Onkel (Bruder des Vaters) ist Imker.</seg></tuv>
+   <tuv xml:lang="en"><seg>My uncle (father's brother) is a beekeeper.</seg></tuv>
    <tuv xml:lang="tr"><seg>Amcam arıcı.</seg></tuv>
    <tuv xml:lang="sv"><seg>Min farbror är biodlare.</seg></tuv>
-   <tuv xml:lang="nl"><seg>Mijn oom is imker.</seg></tuv>
-   <tuv xml:lang="nb"><seg>Onkelen min (på farssiden) er birøkter.</seg></tuv>
-   <tuv xml:lang="da"><seg>Min onkel er biavler.</seg></tuv>
-   <tuv xml:lang="fr"><seg>Mon oncle paternel est apiculteur.</seg></tuv>
+   <tuv xml:lang="nl"><seg>Mijn oom (broer van vader) is imker.</seg></tuv>
+   <tuv xml:lang="nb"><seg>Farbroren min er birøkter.</seg></tuv>
+   <tuv xml:lang="da"><seg>Min farbror er biavler.</seg></tuv>
+   <tuv xml:lang="fr"><seg>Mon oncle (frère de mon père) est apiculteur.</seg></tuv>
   </tu>
   <tu tuid="s0030" segtype="sentence">
    <prop type="x-kind">sentence</prop>

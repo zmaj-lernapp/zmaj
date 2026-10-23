@@ -7,6 +7,23 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Family level: twelve more relatives, so that aunts, uncles and cousins
+  are named by side as in Bosnian (strina / amidžinica, ujna / daidžinica,
+  tetak, amidžić, daidžić, tetić and their female forms, rođaka, nećak,
+  nećakinja). amidža and daidža now also show stric and ujak; the pet
+  names striko, adžo, ujo and dajo count as correct when typed. Progress
+  on the four renamed words (tetka, amidža, daidža, rođak) carries over.
+  The app speaks the new words with recordings that only the store
+  version contains (`ton_nur_emir.json`); the web demo, the dataset and
+  the Anki decks have no audio for them.
+- Lessons, review rounds and level tests: a round star button at the bottom
+  right, opposite "Cancel lesson", marks a word, cloze sentence, tile
+  sentence or grammar exercise for later (one star per word, up to 300; not
+  in the placement test or on result screens). The Review tab shows a second
+  box, "Marked", built like the unchanged mistakes box above it; its round
+  picks up to ten marked items, least recently practised first, costs lives
+  like a lesson, and stars stay until the learner removes them. The big
+  "Continue" button is unchanged. Stars are part of the backup file.
 - Lessons: a new exercise builds whole Bosnian sentences from word tiles
   (two per lesson, from level 1 on). Several word orders count as correct,
   a sentence only appears once its words have been met, and mistakes go to
