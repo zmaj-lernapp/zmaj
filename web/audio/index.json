@@ -5,73 +5,85 @@
    "key": "ovo je mira. mira je djevojčica. mira ima psa. pas se zove rex. rex je kafen i mali. mira voli rexa. rex voli miru. mira i rex idu u park. u parku je sunce. rex trči. mira se smije. onda idu kući. mira jede jabuku. rex spava.",
    "datei": "g01.mp3",
    "text": "Ovo je Mira. Mira je djevojčica. Mira ima psa. Pas se zove Rex. Rex je kafen i mali. Mira voli Rexa. Rex voli Miru. Mira i Rex idu u park. U parku je sunce. Rex trči. Mira se smije. Onda idu kući. Mira jede jabuku. Rex spava.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[138,288],[400,462],[488,875],[1838,2025],[2138,2225],[2250,2962],[3912,4150],[4262,4538],[4575,4875],[5812,5925],[6038,6162],[6188,6550],[6600,7088],[8038,8288],[8400,8488],[8525,8988],[9038,9100],[9125,9500],[10450,10675],[10788,11050],[11075,11512],[12462,12812],[12925,13188],[13212,13550],[14512,14762],[14888,14988],[15012,15412],[15450,15675],[15712,15800],[15838,16200],[17162,17250],[17250,17612],[17638,17725],[17750,18325],[19275,19600],[19738,20150],[21112,21338],[21450,21588],[21612,22075],[23038,23238],[23350,23600],[23638,24112],[25050,25275],[25400,25700],[25738,26225],[27175,27462],[27600,28162]]
   },
   {
    "key": "ovo je naša kuća. kuća je bijela. ima velika vrata i četiri prozora. u kući je kuhinja. kuhinja je žuta. tu su sto i četiri stolice. moja soba je plava. u sobi su krevet i lampa. iza kuće je bašta. u bašti su jedno drvo i mnogo cvijeća. volim našu kuću.",
    "datei": "g02.mp3",
    "text": "Ovo je naša kuća. Kuća je bijela. Ima velika vrata i četiri prozora. U kući je kuhinja. Kuhinja je žuta. Tu su sto i četiri stolice. Moja soba je plava. U sobi su krevet i lampa. Iza kuće je bašta. U bašti su jedno drvo i mnogo cvijeća. Volim našu kuću.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[125,262],[362,425],[450,762],[788,1212],[2162,2362],[2462,2562],[2588,3012],[3975,4088],[4212,4588],[4612,5050],[5088,5162],[5200,5575],[5600,6075],[7012,7100],[7100,7412],[7438,7525],[7550,8100],[9038,9362],[9450,9550],[9575,9988],[10938,11050],[11050,11188],[11212,11425],[11450,11512],[11550,11900],[11925,12525],[13488,13675],[13788,14100],[14125,14212],[14250,14712],[15688,15738],[15738,16050],[16075,16225],[16250,16738],[16775,16850],[16875,17338],[18300,18462],[18575,18862],[18888,18962],[18988,19425],[20388,20438],[20438,20788],[20812,20950],[20988,21250],[21288,21600],[21638,21700],[21725,22025],[22050,22512],[23488,23712],[23850,24212],[24250,24712]]
   },
   {
    "key": "zovem se amina. imam dvadeset pet godina. moja porodica je velika. moj muž se zove ajdin. on je inženjer. imam jednog brata i jednu sestru. moj brat se zove emir, a moja sestra se zove lejla. moja majka je nastavnica, a moj babo je pčelar. moja nana i moj dedo žive u bosni. volim svoju porodicu.",
    "datei": "g03.mp3",
    "text": "Zovem se Amina. Imam dvadeset pet godina. Moja porodica je velika. Moj muž se zove Ajdin. On je inženjer. Imam jednog brata i jednu sestru. Moj brat se zove Emir, a moja sestra se zove Lejla. Moja majka je nastavnica, a moj babo je pčelar. Moja nana i moj dedo žive u Bosni. Volim svoju porodicu.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[138,438],[550,725],[750,1212],[2175,2338],[2462,3000],[3038,3250],[3275,3712],[4675,4900],[5025,5538],[5562,5638],[5662,6100],[7062,7175],[7300,7512],[7538,7675],[7700,8038],[8062,8525],[9500,9600],[9725,9838],[9875,10512],[11475,11638],[11762,12050],[12075,12512],[12550,12612],[12650,12912],[12938,13400],[14338,14450],[14562,14800],[14825,14950],[14975,15275],[15312,15662],[15850,15938],[15962,16212],[16238,16600],[16625,16750],[16775,17012],[17038,17425],[18375,18538],[18650,18988],[19012,19075],[19100,19850],[19975,20038],[20062,20275],[20312,20588],[20612,20675],[20712,21188],[22150,22338],[22462,22788],[22825,22888],[22912,23138],[23162,23388],[23412,23725],[23750,23800],[23825,24250],[25212,25450],[25575,25912],[25950,26588]]
   },
   {
    "key": "danas je subota. amina ide na pijacu. na pijaci ima mnogo voća i povrća. amina kupuje jabuke, paradajz i luk. „koliko koštaju jabuke?“ pita amina. „dvije marke za kilogram“, kaže prodavač. amina uzima dva kilograma. onda kupuje hljeb i sir. sve zajedno košta deset maraka. amina plaća gotovinom i ide kući.",
    "datei": "g04.mp3",
    "text": "Danas je subota. Amina ide na pijacu. Na pijaci ima mnogo voća i povrća. Amina kupuje jabuke, paradajz i luk. „Koliko koštaju jabuke?“ pita Amina. „Dvije marke za kilogram“, kaže prodavač. Amina uzima dva kilograma. Onda kupuje hljeb i sir. Sve zajedno košta deset maraka. Amina plaća gotovinom i ide kući.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[150,438],[562,625],[650,1225],[2200,2488],[2612,2850],[2875,3000],[3038,3588],[4538,4562],[4688,5125],[5162,5350],[5375,5675],[5700,6012],[6038,6112],[6150,6612],[7575,7850],[7962,8325],[8350,8925],[9062,9675],[9725,9800],[9825,10150],[11050,11312],[11425,11862],[11900,12475],[12675,13012],[13038,13488],[14462,14600],[14725,15088],[15112,15238],[15275,15838],[15962,16300],[16325,17062],[18012,18300],[18412,18812],[18850,19075],[19112,19775],[20725,20900],[21012,21450],[21475,21788],[21812,21862],[21888,22212],[23162,23312],[23425,23788],[23825,24225],[24262,24612],[24638,25100],[26062,26325],[26450,26812],[26838,27462],[27500,27600],[27625,27862],[27900,28350]]
   },
   {
    "key": "svaki dan ustajem u sedam sati. prvo se tuširam, a onda doručkujem. za doručak jedem hljeb sa sirom i pijem kahvu. u osam idem na posao. radim u kancelariji do četiri. poslije posla idem u kupovinu. navečer kuham večeru i gledam televiziju. ponekad čitam knjigu. idem spavati u jedanaest. vikendom spavam duže.",
    "datei": "g05.mp3",
    "text": "Svaki dan ustajem u sedam sati. Prvo se tuširam, a onda doručkujem. Za doručak jedem hljeb sa sirom i pijem kahvu. U osam idem na posao. Radim u kancelariji do četiri. Poslije posla idem u kupovinu. Navečer kuham večeru i gledam televiziju. Ponekad čitam knjigu. Idem spavati u jedanaest. Vikendom spavam duže.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[138,438],[550,788],[825,1238],[1275,1312],[1338,1662],[1688,2125],[3062,3188],[3288,3425],[3462,4038],[4188,4262],[4288,4525],[4562,5212],[6188,6212],[6338,6800],[6838,7112],[7138,7362],[7400,7525],[7550,7975],[8025,8125],[8162,8412],[8438,8850],[9800,9900],[9900,10250],[10288,10525],[10562,10675],[10712,11212],[12162,12462],[12600,12650],[12675,13375],[13412,13500],[13538,13950],[14900,15150],[15262,15612],[15638,15962],[16000,16062],[16100,16662],[17625,18038],[18175,18500],[18538,19000],[19050,19125],[19150,19500],[19538,20200],[21138,21488],[21600,21950],[21975,22400],[23350,23500],[23638,24175],[24212,24262],[24288,25012],[25962,26412],[26538,27025],[27062,27475]]
   },
   {
    "key": "ajdin i amina su u sarajevu. hotel je u centru grada, pored rijeke. ujutro idu na baščaršiju. tamo piju kahvu i jedu ćevape. poslije ručka šetaju preko starog mosta. amina kupuje poklon za nanu u maloj radnji. navečer sjede na balkonu i gledaju grad. „sarajevo je lijep grad“, kaže amina.",
    "datei": "g06.mp3",
    "text": "Ajdin i Amina su u Sarajevu. Hotel je u centru grada, pored rijeke. Ujutro idu na Baščaršiju. Tamo piju kahvu i jedu ćevape. Poslije ručka šetaju preko starog mosta. Amina kupuje poklon za nanu u maloj radnji. Navečer sjede na balkonu i gledaju grad. „Sarajevo je lijep grad“, kaže Amina.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[138,488],[638,738],[762,1088],[1112,1262],[1288,1325],[1350,1912],[2825,3150],[3225,3300],[3325,3375],[3400,3775],[3800,4275],[4400,4662],[4688,5138],[6088,6425],[6550,6762],[6800,6900],[6925,7662],[8588,8762],[8888,9112],[9138,9600],[9638,9700],[9725,9938],[9975,10525],[11475,11712],[11812,12150],[12175,12625],[12662,12900],[12925,13312],[13338,13762],[14712,14950],[15075,15488],[15525,15900],[15938,16050],[16075,16425],[16462,16512],[16538,16850],[16875,17300],[18262,18638],[18775,19088],[19112,19212],[19238,19800],[19850,19938],[19962,20338],[20362,20738],[21712,22212],[22338,22425],[22450,22712],[22738,23100],[23275,23675],[23700,24162]]
   },
   {
    "key": "jučer je bio lijep dan. ustala sam rano i otišla na pijacu. kupila sam voće i cvijeće. poslije sam bila kod nane. pile smo kahvu i pričale o porodici. nana mi je pokazala stare slike. navečer je došao ajdin i zajedno smo kuhali večeru. bio je to dobar dan.",
    "datei": "g07.mp3",
    "text": "Jučer je bio lijep dan. Ustala sam rano i otišla na pijacu. Kupila sam voće i cvijeće. Poslije sam bila kod nane. Pile smo kahvu i pričale o porodici. Nana mi je pokazala stare slike. Navečer je došao Ajdin i zajedno smo kuhali večeru. Bio je to dobar dan.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[150,388],[512,588],[612,850],[875,1188],[1225,1562],[2525,2800],[2925,3150],[3175,3500],[3538,3650],[3675,4050],[4075,4200],[4238,4725],[5662,5962],[6062,6288],[6325,6738],[6775,6850],[6875,7400],[8338,8575],[8675,8888],[8925,9200],[9225,9388],[9425,9825],[10775,10862],[10975,11175],[11212,11625],[11662,11738],[11775,12250],[12275,12362],[12400,13025],[13988,14162],[14288,14388],[14412,14500],[14538,15062],[15088,15462],[15488,15925],[16888,17225],[17350,17412],[17450,17838],[17862,18300],[18362,18425],[18450,18788],[18812,19000],[19038,19388],[19412,19775],[20738,20825],[20962,21075],[21112,21262],[21300,21625],[21662,21988]]
   },
   {
    "key": "sljedeće sedmice idemo u bosnu. putovat ćemo autom jer je jeftinije nego avionom. vožnja traje oko dvanaest sati. prvo ćemo prenoćiti u zagrebu. onda ćemo voziti do sarajeva. u sarajevu ćemo ostati tri dana kod amidže. poslije toga idemo na more. amina se već raduje. nazvat ćemo nanu kad stignemo.",
    "datei": "g08.mp3",
    "text": "Sljedeće sedmice idemo u Bosnu. Putovat ćemo autom jer je jeftinije nego avionom. Vožnja traje oko dvanaest sati. Prvo ćemo prenoćiti u Zagrebu. Onda ćemo voziti do Sarajeva. U Sarajevu ćemo ostati tri dana kod amidže. Poslije toga idemo na more. Amina se već raduje. Nazvat ćemo nanu kad stignemo.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[138,512],[625,1150],[1188,1525],[1550,1588],[1612,2012],[2962,3275],[3375,3612],[3638,4112],[4188,4338],[4362,4425],[4450,4938],[4975,5225],[5250,5800],[6762,7088],[7212,7488],[7512,7738],[7775,8262],[8300,8725],[9675,9825],[9938,10188],[10212,10762],[10800,10850],[10875,11388],[12350,12500],[12612,12850],[12875,13238],[13262,13350],[13375,13988],[14950,14988],[14988,15488],[15525,15762],[15788,16188],[16225,16412],[16438,16738],[16762,16938],[16962,17412],[18338,18575],[18688,18975],[19012,19362],[19388,19488],[19512,19850],[20812,21075],[21188,21338],[21362,21575],[21600,22100],[23075,23362],[23488,23725],[23750,24050],[24075,24212],[24238,24875]]
   },
   {
    "key": "draga nano, kako si? mi smo dobro. prošle sedmice sam počela novi posao u jednoj firmi u centru grada. kolege su ljubazne, ali još ne razumijem sve jer govore brzo. ajdin kaže da ću naučiti. navečer učim bosanski, a vikendom idemo u prirodu. mislim da ćemo u augustu doći kod tebe. nadam se da ćeš nam skuhati pitu! pozdravi dedu. volim te, tvoja amina.",
    "datei": "g09.mp3",
    "text": "Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. Kolege su ljubazne, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. Navečer učim bosanski, a vikendom idemo u prirodu. Mislim da ćemo u augustu doći kod tebe. Nadam se da ćeš nam skuhati pitu! Pozdravi dedu. Volim te, tvoja Amina.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[162,375],[525,950],[1125,1412],[1450,1712],[2725,2762],[2875,3112],[3150,3550],[4488,4662],[4775,5250],[5275,5475],[5512,5888],[5912,6175],[6212,6675],[6712,6775],[6800,7075],[7100,7462],[7500,7538],[7562,7925],[7950,8362],[9288,9550],[9650,9788],[9812,10338],[10438,10600],[10625,10850],[10888,10975],[11000,11475],[11500,11725],[11762,11912],[11950,12300],[12325,12688],[13638,13950],[14075,14438],[14462,14550],[14575,14700],[14725,15262],[16225,16600],[16738,17012],[17038,17675],[17800,17875],[17900,18412],[18450,18775],[18800,18850],[18875,19312],[20288,20525],[20662,20750],[20775,21012],[21038,21125],[21150,21612],[21638,21912],[21938,22088],[22125,22462],[23412,23638],[23762,23900],[23925,24012],[24038,24262],[24288,24412],[24450,24938],[24975,25325],[26300,26662],[26775,27175],[28125,28400],[28550,28825],[28950,29300],[29325,29788]]
   },
   {
    "key": "amina treba potvrdu o prebivalištu. ide na općinu u osam sati. na šalteru pita: „dobar dan, trebam potvrdu o prebivalištu. koji dokumenti mi trebaju?“ službenica kaže: „trebate ličnu kartu i obrazac. taksa je pet maraka.“ amina popunjava obrazac i potpisuje. onda plaća taksu. potvrda je gotova za deset minuta. „hvala vam na pomoći“, kaže amina.",
    "datei": "g10.mp3",
    "text": "Amina treba potvrdu o prebivalištu. Ide na općinu u osam sati. Na šalteru pita: „Dobar dan, trebam potvrdu o prebivalištu. Koji dokumenti mi trebaju?“ Službenica kaže: „Trebate ličnu kartu i obrazac. Taksa je pet maraka.“ Amina popunjava obrazac i potpisuje. Onda plaća taksu. Potvrda je gotova za deset minuta. „Hvala Vam na pomoći“, kaže Amina.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[138,400],[525,825],[850,1325],[1362,1450],[1475,2250],[3212,3325],[3450,3550],[3588,4012],[4050,4138],[4162,4450],[4475,4962],[5938,6038],[6038,6525],[6562,6962],[7112,7438],[7475,7788],[7938,8275],[8312,8775],[8812,8900],[8925,9650],[10588,10650],[10750,11275],[11300,11412],[11450,11850],[12025,12612],[12638,12975],[13100,13488],[13512,13838],[13862,14262],[14300,14400],[14425,15012],[15950,16162],[16275,16362],[16400,16625],[16650,17138],[17275,17662],[17688,18212],[18238,18738],[18762,18838],[18862,19512],[20475,20675],[20800,21175],[21212,21688],[22612,22912],[23012,23100],[23125,23538],[23562,23688],[23712,24100],[24125,24588],[25512,25825],[25900,26025],[26050,26162],[26188,26700],[26800,27188],[27212,27662]]
   },
   {
    "key": "ajdin i amina žele kupiti kuću u bosni. agent za nekretnine im pokazuje staru kuću na selu. kuća ima tri sobe, veliku kuhinju i baštu. cijena je osamdeset hiljada maraka. ajdin pita: „je li kuća upisana u gruntovnicu?“ agent kaže da jeste. oni pregovaraju o cijeni i dogovaraju kaparu. sljedeće sedmice potpisuju kupoprodajni ugovor kod notara.",
    "datei": "g11.mp3",
    "text": "Ajdin i Amina žele kupiti kuću u Bosni. Agent za nekretnine im pokazuje staru kuću na selu. Kuća ima tri sobe, veliku kuhinju i baštu. Cijena je osamdeset hiljada maraka. Ajdin pita: „Je li kuća upisana u gruntovnicu?“ Agent kaže da jeste. Oni pregovaraju o cijeni i dogovaraju kaparu. Sljedeće sedmice potpisuju kupoprodajni ugovor kod notara.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[138,475],[612,712],[738,1050],[1075,1375],[1412,1825],[1862,2212],[2238,2288],[2312,2712],[3675,3938],[4050,4150],[4175,4788],[4812,4925],[4950,5438],[5462,5825],[5850,6150],[6175,6250],[6275,6625],[7562,7750],[7850,8075],[8112,8275],[8300,8762],[8912,9288],[9325,9762],[9800,9850],[9875,10262],[11200,11450],[11562,11638],[11662,12275],[12300,12662],[12688,13162],[14125,14412],[14538,15012],[15138,15225],[15250,15350],[15375,15700],[15725,16200],[16225,16275],[16300,17012],[17238,17600],[17625,17962],[17988,18062],[18088,18500],[19438,19575],[19688,20338],[20362,20425],[20450,20850],[20888,20950],[20975,21550],[21575,22062],[23000,23362],[23475,24000],[24038,24588],[24625,25338],[25375,25738],[25775,25912],[25950,26412]]
   },
   {
    "key": "amina ima razgovor za posao u jednoj firmi. direktor je pita: „recite nam nešto o sebi.“ amina odgovara: „završila sam ekonomiju i imam tri godine iskustva u računovodstvu. govorim njemački, engleski i malo bosanski.“ direktor pita koliko bi željela zarađivati i kada bi mogla početi. amina kaže da može početi sljedećeg mjeseca. na kraju direktor objašnjava uslove: probni rad traje tri mjeseca, radno vrijeme je od osam do šesnaest sati, a plata se isplaćuje petog u mjesecu. amina zahvaljuje i kaže da će čekati odgovor.",
    "datei": "g12.mp3",
    "text": "Amina ima razgovor za posao u jednoj firmi. Direktor je pita: „Recite nam nešto o sebi.“ Amina odgovara: „Završila sam ekonomiju i imam tri godine iskustva u računovodstvu. Govorim njemački, engleski i malo bosanski.“ Direktor pita koliko bi željela zarađivati i kada bi mogla početi. Amina kaže da može početi sljedećeg mjeseca. Na kraju direktor objašnjava uslove: probni rad traje tri mjeseca, radno vrijeme je od osam do šesnaest sati, a plata se isplaćuje petog u mjesecu. Amina zahvaljuje i kaže da će čekati odgovor.",
-   "stimme": "bs-BA-VesnaNeural"
+   "stimme": "bs-BA-VesnaNeural",
+   "w": [[150,400],[525,725],[750,1225],[1250,1388],[1412,1850],[1888,1950],[1988,2275],[2300,2712],[3675,3988],[4112,4188],[4225,4600],[4750,5150],[5175,5312],[5338,5638],[5662,5700],[5725,6125],[6262,6588],[6612,7162],[7262,7738],[7762,7962],[7988,8562],[8600,8675],[8700,8962],[9000,9175],[9200,9550],[9588,10088],[10112,10175],[10200,11000],[11975,12250],[12375,12962],[13075,13612],[13650,13700],[13725,13962],[13988,14612],[14725,15188],[15212,15575],[15612,15938],[15962,16050],[16075,16475],[16500,17162],[17200,17262],[17288,17488],[17512,17600],[17625,17938],[17962,18388],[19338,19600],[19712,20075],[20100,20188],[20212,20500],[20538,20912],[20938,21438],[21462,22012],[23000,23112],[23112,23362],[23388,23812],[23838,24375],[24400,24800],[24912,25212],[25238,25438],[25475,25712],[25750,25912],[25938,26538],[26625,26912],[26938,27225],[27262,27338],[27362,27462],[27488,27738],[27775,27850],[27875,28312],[28338,28788],[29012,29112],[29138,29425],[29450,29575],[29600,30112],[30150,30462],[30488,30525],[30550,31100],[32075,32312],[32438,32988],[33025,33088],[33112,33450],[33475,33550],[33575,33675],[33712,34125],[34162,34612]]
   },
   {
    "key": "merhaba",

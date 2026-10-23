@@ -94,10 +94,22 @@ djeca	barn (flere)	zmaj zmaj::04_familie
 muž	ektemann	zmaj zmaj::04_familie
 nana	bestemor	zmaj zmaj::04_familie
 dedo	bestefar	zmaj zmaj::04_familie
-tetka	tante	zmaj zmaj::04_familie
-amidža	farbror	zmaj zmaj::04_familie
-daidža	morbror	zmaj zmaj::04_familie
-rođak	fetter	zmaj zmaj::04_familie
+amidža / stric	farbror	zmaj zmaj::04_familie
+daidža / ujak	morbror	zmaj zmaj::04_familie
+tetak	onkel (gift med faster eller moster)	zmaj zmaj::04_familie
+tetka	faster / moster	zmaj zmaj::04_familie
+strina / amidžinica	tante (gift med farbror)	zmaj zmaj::04_familie
+ujna / daidžinica	tante (gift med morbror)	zmaj zmaj::04_familie
+amidžić / brat od amidže	fetter (sønn av farbror)	zmaj zmaj::04_familie
+amidžična / sestra od amidže	kusine (datter av farbror)	zmaj zmaj::04_familie
+daidžić / brat od daidže	fetter (sønn av morbror)	zmaj zmaj::04_familie
+daidžična / sestra od daidže	kusine (datter av morbror)	zmaj zmaj::04_familie
+tetić / brat od tetke	fetter (sønn av faster eller moster)	zmaj zmaj::04_familie
+tetična / sestra od tetke	kusine (datter av faster eller moster)	zmaj zmaj::04_familie
+rođak	fetter, slektning (mann, generelt)	zmaj zmaj::04_familie
+rođaka / rođakinja	kusine, slektning (kvinne, generelt)	zmaj zmaj::04_familie
+nećak	nevø	zmaj zmaj::04_familie
+nećakinja	niese	zmaj zmaj::04_familie
 beba	baby	zmaj zmaj::04_familie
 porodica	Familie	zmaj zmaj::04_familie
 prijatelj	venn (mann)	zmaj zmaj::04_familie
@@ -122,7 +134,7 @@ krompir	potet	zmaj zmaj::05_essen
 paradajz	tomat	zmaj zmaj::05_essen
 luk	løk	zmaj zmaj::05_essen
 riža	ris	zmaj zmaj::05_essen
-so	salt	zmaj zmaj::05_essen
+so / sol	salt	zmaj zmaj::05_essen
 šećer	sukker	zmaj zmaj::05_essen
 supa	suppe	zmaj zmaj::05_essen
 pita	pita (fylt filodeigpai)	zmaj zmaj::05_essen

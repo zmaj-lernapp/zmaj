@@ -183,7 +183,10 @@
      oben, und der Drache darf groesser sein. Ajdin am 01.10.2026: "in den
      lektionen ist nur das herz sichtbar", "mit den fragen in den kasten".
      Der Satz unten verweist aufs Zahnrad oben rechts - das ist dann nicht
-     zu sehen, also weg damit. Die Klasse setzt nurHerz(). */
+     zu sehen, also weg damit. Die Klasse setzt nurHerz().
+     Seit 19.10.2026 auch in der Einstufung: dort standen Kopf und Fuss
+     noch da und schoben den Fragenkasten 54 px nach unten (siehe
+     einstufungStarten). */
   body.nurHerz header, body.nurHerz footer{display:none}
   .back{
     border:2px solid var(--line); background:var(--surface); color:var(--ink); font-family:inherit; font-size:13px; font-weight:800;
@@ -220,38 +223,60 @@
        wir den kasten dynamisch".
      Rueckmeldung, Loesung und Weiter stehen nach der Antwort zusammen
      direkt unter der Aufgabe (.antwortfeld, gebaut in weiterBeiTipp).
-     Gilt fuer Lektion, Wiederholen-Runde (beide #lesson) und Level-Test. */
+     Gilt fuer Lektion, Wiederholen-Runde (beide #lesson), Level-Test
+     (#test) und Einstufung (#einstufungView).
+     Bis zum 19.10.2026 galt ein Teil davon nur fuer #lesson: der Level-Test
+     hatte keinen Drachen, kein Herz, kleinere Schrift und einen eigenen
+     Abstand unter den Punkten, die Einstufung dazu noch die
+     Anweisungszeile und keinen .kastenkopf. Im Test standen die
+     Antwortknoepfe dadurch 140 px hoeher als in der Lektion, in der
+     Einstufung bis zu 65 px - Kuebra: "im Test sind die Knoepfe viel
+     hoeher als in der normalen Level-Umgebung". Seitdem bauen alle drei
+     ihren Kasten gleich (Kopfzeile, Drache .zmaj.mini, Aufgabenfeld), und
+     jede Regel hier nennt alle drei Orte ausgeschrieben: #lesson X,
+     #test X, #einstufungView X bzw. #lBody, #tBody, #eBody.
+     Ausgeschrieben, weil Chrome und die Android-WebView die kuerzere
+     Schreibweise mit der Pseudoklasse "is" erst ab Version 88 kennen.
+     Aeltere WebViews (die App laeuft ab Android 7) verwerfen eine Regel mit
+     unbekanntem Selektor ganz - samt dem Teil fuer die Lektion. Und nicht
+     ueber eine gemeinsame Klasse, weil erst die Kennung (#...) der Regel
+     ihr Gewicht gibt: mit einer Klasse wuerden z. B.
+     .options.waagrecht .opt und .opt.long die Regeln hier in der Lektion
+     ueberstimmen. tests_e2e/test_layout_test.py misst die Gleichheit nach. */
   .zmaj.mini{width:120px; height:120px; margin:2px auto 6px; filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
-  #lesson .card, #test .card{padding-top:16px}
+  #lesson .card, #test .card, #einstufungView .card{padding-top:16px}
   .antwortfeld{margin-top:12px}
   .antwortfeld .feedback{margin-top:0}
   .antwortfeld .weiterbox{margin-top:10px}
   /* Nur die Aufgabenzeile aus kick(), nicht jede .kicker: der Level-Test
      haengt "Alle Levels geschafft" ebenfalls als .kicker an. */
-  #lesson .kicker.aufgabe, #test .kicker.aufgabe{font-size:0; margin:0 0 8px; min-height:0}
-  #lesson .kicker.aufgabe .rep, #test .kicker.aufgabe .rep{font-size:13px}
-  #lesson .kicker.aufgabe .rep + .rep, #test .kicker.aufgabe .rep + .rep{margin-left:8px}
+  #lesson .kicker.aufgabe, #test .kicker.aufgabe, #einstufungView .kicker.aufgabe{font-size:0; margin:0 0 8px; min-height:0}
+  #lesson .kicker.aufgabe .rep, #test .kicker.aufgabe .rep, #einstufungView .kicker.aufgabe .rep{font-size:13px}
+  #lesson .kicker.aufgabe .rep + .rep, #test .kicker.aufgabe .rep + .rep, #einstufungView .kicker.aufgabe .rep + .rep{margin-left:8px}
   /* Nach der Antwort ist "Gerade nicht hoeren, ueberspringen" ohne Sinn und
-     kostet nur Hoehe. */
+     kostet nur Hoehe. #eBody fehlt hier mit Absicht: Test und Einstufung
+     rufen renderTask mit noSkip, dort gibt es kein .skip (19.10.2026). */
   #lBody:has(.weiterbox) > .skip, #tBody:has(.weiterbox) > .skip{display:none}
-  #lBody > .feedback, #tBody > .feedback{margin-top:10px}
+  #lBody > .feedback, #tBody > .feedback, #eBody > .feedback{margin-top:10px}
   /* Vor der Antwort ist die Rueckmeldung leer und wandert danach ohnehin
      ins Antwortfeld - ihr Platz in der Aufgabe waere nur Luecke. */
-  #lBody > .feedback:empty, #tBody > .feedback:empty{display:none}
-  #lesson .options, #test .options{margin-top:12px}
+  #lBody > .feedback:empty, #tBody > .feedback:empty, #eBody > .feedback:empty{display:none}
+  #lesson .options, #test .options, #einstufungView .options{margin-top:12px}
   .antwortfeld .loesung{margin-top:8px; padding-top:7px; padding-bottom:7px}
-  #lesson .listen.bigplay{width:84px; height:84px; font-size:34px}
+  #lesson .listen.bigplay, #test .listen.bigplay, #einstufungView .listen.bigplay{width:84px; height:84px; font-size:34px}
   /* Gemessen am 01.10.2026: Ajdins S21 hat in der App 360 x 726 Punkte.
      Mit dem grossen Drachen rutschte Weiter dort bei der Hoeraufgabe nach
      der Antwort unter den Bildrand. */
-  @media (max-height:820px){ #lesson .zmaj.mini{width:100px; height:100px} }
+  @media (max-height:820px){ #lesson .zmaj.mini, #test .zmaj.mini, #einstufungView .zmaj.mini{width:100px; height:100px} }
   .type-input::placeholder{font-family:var(--font-ui); font-size:17px; font-weight:700}
-  #lesson .prompt{font-size:29px}
-  #lesson .prompt.long{font-size:22px}
-  #lesson .opt{font-size:21px; padding:14px 10px}
-  #lesson .opt.long{font-size:16px}
+  #lesson .prompt, #test .prompt, #einstufungView .prompt{font-size:29px}
+  #lesson .prompt.long, #test .prompt.long, #einstufungView .prompt.long{font-size:22px}
+  #lesson .opt, #test .opt, #einstufungView .opt{font-size:21px; padding:14px 10px}
+  #lesson .opt.long, #test .opt.long, #einstufungView .opt.long{font-size:16px}
+  /* Bis 19.10.2026 stand hier "#test .kastenkopf{margin-bottom:18px}" -
+     ein Ausgleich dafuer, dass dem Test der Drache fehlte. Mit Drache ist
+     der Abstand derselbe wie in der Lektion. */
   .kastenkopf{display:flex; align-items:center; gap:10px; margin-bottom:10px}
-  #test .kastenkopf{margin-bottom:18px}
   .kastenkopf .tbar{flex:1; min-width:0; margin:0; gap:4px}
   .kastenkopf .tbar i{height:14px; background:var(--line); background:color-mix(in srgb, var(--ink) 16%, transparent)}
   .kastenkopf .tbar i.intro{background:var(--muted); background:color-mix(in srgb, var(--ink) 42%, transparent)}
@@ -265,6 +290,17 @@
   .kastenherz b{color:var(--ink)}
   .kastenherz.zero{border-color:var(--bad)}
   .kastenherz:empty{display:none}
+  /* Die Einstufung kostet keine Leben und zeigt deshalb kein Herz. Die
+     Pille bestimmt aber die Hoehe der Kopfzeile (37 statt 14 px), und ohne
+     sie stuende alles darunter hoeher als in der Lektion. Darum steht dort
+     eine unsichtbare Pille mit derselben Klasse: renderLives() fuellt sie
+     wie das echte Herz, sie ist also auch bei grosser Systemschrift genau
+     so hoch - aber null breit, damit die Punkte die ganze Zeile bekommen,
+     und -10 px gleichen den Abstand (gap) aus. 19.10.2026.
+     Der Level-Test hatte bis zum selben Abend auch nur diese Pille; seit er
+     Leben kostet, traegt er das echte Herz (#tHerz) wie die Lektion. */
+  .kastenherz.platzhalter{visibility:hidden; width:0; padding-left:0; padding-right:0;
+    border-left:0; border-right:0; margin-right:-10px; overflow:hidden}
   /* Auf Ergebnis und "Keine Leben mehr" ist die Punktreihe leer, und die
      Leben stehen dort ohnehin gross in der Auswertung - ohne die Reihe
      staende das Herz doppelt da. */
@@ -301,6 +337,133 @@
   .seriezahl{font-family:var(--font-display); font-size:46px; font-weight:700;
              line-height:1; display:flex; align-items:baseline; gap:8px}
   .seriezahl span:first-child{font-size:30px}
+  /* ---- Die Flamme zeigt, ob heute schon gelernt wurde ----
+     Wunsch von Kuebra und Ajdin, entschieden am 20.10.2026 nach einer
+     Vorschau mit drei Varianten (A aus, B glimmt, C Glut). Ajdin: "nimm a
+     fuer 0 tage und den rest fuer c".
+       .aus   Serie 0 und heute nichts: grau, blass und still (A)
+       .glut  die Serie laeuft, heute noch nichts: klein, entsaettigt und
+              unruhig flackernd wie letzte Glut (C) - sie erinnert, ohne
+              zu schimpfen
+       ohne   heute gelernt: die volle Flamme wie bisher
+       .auf   lodert einmal kurz auf, wenn sie IN DIESER SITZUNG von kalt
+              auf an wechselt, also nach der ersten Lektion des Tages.
+              Beim Start brennt sie einfach. Gesetzt von flammeZeigen().
+     Ohne Bewegung (Schalter "Animationen" = .no-anim, oder die
+     Geraeteeinstellung) nehmen die allgemeinen Regeln oben und unten jede
+     animation weg; die Glut steht dann als ruhiges Bild da, und .auf setzt
+     flammeZeigen() gar nicht erst.
+
+     Hoehe: Ajdin am selben Tag, "die zahl und das feuer nicht auf einer
+     ebene". Auf der gemeinsamen Grundlinie stand die sichtbare Mitte der
+     Flamme 4,5 px tiefer als die der Ziffern, bei grosser Schrift 6 bis
+     9 px (nachgemessen in Chrome an den Pixeln eines Bildschirmfotos,
+     tests_e2e/test_flamme.py). Das Emoji reicht unter die Grundlinie, die
+     Ziffern nicht. Das translateY in % rechnet mit der Hoehe des eigenen
+     Kastens und waechst so mit der Schriftgroesse des Handys mit.
+     Gemessen mit beiden Emoji-Schriften: Segoe UI Emoji (Windows) und
+     Noto Color Emoji, die Schrift von Android (aus Android Studio,
+     Pruefung vom 20.10.2026). Die Android-Flamme ist etwas groesser,
+     sitzt aber ebenso hoechstens 1 px neben der Mitte der Ziffern - in
+     allen drei Zustaenden, bei Pixeldichte 1 bis 3 und bis 200 % Schrift.
+     JEDE Regel hier, die transform setzt, muss es mitnehmen - sonst
+     sackt die Flamme waehrend der Animation wieder ab. Seit dem
+     22.10.2026 steht die Anhebung deshalb an einer Stelle, in --hoch.
+     transform-origin liegt auf der sichtbaren Mitte des Emojis (44 % von
+     oben, ebenso gemessen): so schrumpft die Glut um ihre Mitte und
+     bleibt mit der Zahl auf einer Hoehe, statt nach unten zu sacken.
+
+     Ueberall gleich (22.10.2026, Ajdin: "beachte das nicht das es 2
+     verschiedene desgins sind"): dieselbe Flamme steht auch in der
+     Statistik am Ende einer Lektion und einer Wiederholungsrunde. Dort
+     baut sie flammeHtml(), die Klassen kommen an jedem Ort aus
+     flammeKlassen(). Die Regeln haengen deshalb an .flamme allein, nicht
+     mehr an .seriezahl. Je Ort eigen ist nur --hoch: daneben steht jeweils
+     eine andere Schrift in anderer Groesse (oben Spectral 46 px neben
+     30 px Emoji, in der Statistik Nunito 18 px neben 18 px Emoji), jede
+     Stelle einzeln an den Pixeln nachgemessen wie oben.
+     inline-block, weil transform an einem gewoehnlichen inline-Element
+     nichts tut: in der Statistik steht die Flamme mitten im Text, oben in
+     .flammenbox, dem Halt fuer die Funken. Aufgelodert (.auf) wird nur
+     oben; flammeHtml() setzt es nie. */
+  .flammenbox{position:relative; display:inline-block}
+  .flamme{display:inline-block; --hoch:0%; transform:translateY(var(--hoch)); transform-origin:50% 44%}
+  .seriezahl .flamme{--hoch:-15.5%}
+  /* In der Statistik keine Anhebung: dort steht die sichtbare Mitte der
+     Flamme ohnehin hoechstens 0,25 px neben der Mitte der Ziffern -
+     nachgemessen am 22.10.2026 mit beiden Emoji-Schriften bei 100, 130
+     und 200 % Schrift. Nunito-Ziffern sind im Verhaeltnis hoeher als die
+     von Spectral oben. Die Zeile bleibt, damit man sieht: gemessen. */
+  .stat .flamme{--hoch:0%}
+  /* ---- Stufen fuer lange Serien (22.10.2026) ----
+     Ajdin: "Mit Stufen". Nach streak(), Schwellen nicht ohne ihn aendern:
+       unter 30  orange wie bisher, keine Klasse
+       ab 30     .stufe-blau
+       ab 100    .stufe-lila
+       ab 365    .stufe-gold, weissgold mit kleinen Funken (.funke)
+     Gefaerbt wird das Emoji selbst (hue-rotate), wie in der Vorschau vom
+     20.10.2026 - je nach Emoji-Schrift des Handys sieht es etwas anders aus.
+     --ton ist der Farbfilter der Stufe. Er steht VOR jedem Filter der
+     Zustaende, auch in den Keyframes: so behaelt die Glut die Farbe ihrer
+     Stufe, und das Auflodern ebenso. var(--ton,) mit leerem Ersatz: ohne
+     Stufe bleibt jede Filterliste genau die von vorher. Die graue Flamme
+     (.aus) hat nie eine Stufe, sie gehoert zur Serie 0.
+     --ruhe ist der stille Schein der brennenden Flamme, --glanz seine
+     Farbe auf dem Hoehepunkt des Aufloderns. Masse in em, damit der Schein
+     an der kleinen Flamme der Statistik nicht groesser wirkt als oben. */
+  .flamme.stufe-blau{--ton:hue-rotate(190deg) saturate(1.35); --glanz:rgba(60,150,255,.9);
+                     --ruhe:drop-shadow(0 0 .2em rgba(60,150,255,.55)); filter:var(--ton) var(--ruhe)}
+  .flamme.stufe-lila{--ton:hue-rotate(245deg) saturate(1.45); --glanz:rgba(170,90,255,.9);
+                     --ruhe:drop-shadow(0 0 .2em rgba(170,90,255,.55)); filter:var(--ton) var(--ruhe)}
+  .flamme.stufe-gold{--ton:saturate(.45) brightness(1.3); --glanz:rgba(255,214,90,1);
+                     --ruhe:drop-shadow(0 0 .3em rgba(255,214,90,.9)); filter:var(--ton) var(--ruhe)}
+  /* Die Zustaende stehen NACH den Stufen: gleiches Gewicht, also gewinnt
+     bei der Glut ihr eigener Filter - der --ton schon enthaelt. */
+  .flamme.aus{filter:grayscale(1); opacity:.32}
+  .flamme.glut{transform:translateY(var(--hoch)) scale(.7); filter:var(--ton,) grayscale(.55) brightness(.75);
+               opacity:.45; animation:flammeGlut 2.2s linear infinite}
+  .flamme.auf{animation:flammeAuf .8s ease-out}
+  @keyframes flammeGlut{
+    0%,100%{filter:var(--ton,) grayscale(.55) brightness(.75); opacity:.45}
+    20%{filter:var(--ton,) grayscale(.35) brightness(.95); opacity:.7}
+    35%{filter:var(--ton,) grayscale(.6) brightness(.7); opacity:.4}
+    60%{filter:var(--ton,) grayscale(.3) brightness(1); opacity:.75}
+    80%{filter:var(--ton,) grayscale(.55) brightness(.8); opacity:.5}}
+  /* In jedem Schritt dieselbe Liste von Filtern: nur dann gleitet der
+     Browser von einem zum naechsten, sonst springt er. Der letzte Schritt
+     endet im stillen Schein der Stufe (--ruhe), ohne Stufe in einem
+     unsichtbaren - beides genau das Bild danach, am Ende springt nichts. */
+  @keyframes flammeAuf{
+    0%{transform:translateY(var(--hoch)) scale(.7); opacity:.45;
+       filter:var(--ton,) grayscale(.55) brightness(.75) drop-shadow(0 0 0 rgba(255,140,0,0))}
+    45%{transform:translateY(var(--hoch)) scale(1.28); opacity:1;
+        filter:var(--ton,) grayscale(0) brightness(1.15) drop-shadow(0 0 .27em var(--glanz, rgba(255,140,0,.9)))}
+    100%{transform:translateY(var(--hoch)) scale(1); opacity:1;
+         filter:var(--ton,) grayscale(0) brightness(1) var(--ruhe, drop-shadow(0 0 0 rgba(255,140,0,0)))}}
+  /* Die Funken der Gold-Stufe: drei kleine Sterne um die Flamme, absolut
+     gesetzt - sie verschieben nichts, Flamme und Zahl stehen wie ohne sie
+     (nachgemessen). Im Grundzustand unsichtbar (opacity 0); nur die
+     Animation blendet sie ein. Ohne Gold, bei Glut, mit dem Schalter
+     "Animationen" aus (.no-anim) oder "Bewegung reduzieren" am Geraet
+     laeuft keine, dann bleiben sie unsichtbar - funkeln heisst hier
+     immer: die Flamme brennt und Bewegung ist erlaubt.
+     Groesse und Lage wie in der Vorschau (11 px an 30 px Flamme), in em
+     des Funkens, damit sie mit der Flamme wachsen. Oben auf der Startseite
+     ist die Flamme um --hoch angehoben (4,65 px bei 30 px), die Funken
+     gehen mit: margin-top -.42em des Funkens, das sind dieselben 15,5 %
+     der Flamme. In der Statistik steht sie unverschoben, dort auch sie. */
+  .flammenbox .funke{position:absolute; font-size:.37em; line-height:1; opacity:0; pointer-events:none;
+                     animation:2.4s ease-in-out infinite}
+  .flammenbox .funke.f1{left:-.73em; top:-.36em}
+  .flammenbox .funke.f2{right:-.82em; top:.18em; animation-delay:.8s}
+  .flammenbox .funke.f3{left:.55em; top:-1.27em; animation-delay:1.6s}
+  .seriezahl .funke{margin-top:-.42em}
+  .flamme.stufe-gold ~ .funke{animation-name:flammeFunke}
+  .flamme.glut ~ .funke{animation-name:none}
+  @keyframes flammeFunke{
+    0%,100%{opacity:0; transform:scale(.4)}
+    40%{opacity:1; transform:scale(1)}
+    70%{opacity:0; transform:scale(.6)}}
   /* Am Handy naehme der Drache in seiner vollen Groesse die halbe Breite. */
   .obenreihe .zmaj{width:120px; height:120px; flex:0 1 120px; min-width:0}
   .obenreihe .streakline{margin:7px 0 0}
@@ -694,8 +857,10 @@
      der App. Sie liegt ueber dem Inhalt, aber unter Anzeige (999) und jeder
      Nachfrage (1000), damit sie nichts davon verdeckt. In Lektion, Test und
      Wiederholen-Runde blendet body.nurHerz sie aus - auch dann, wenn das
-     Skript es einmal nicht tut. Solange sie steht, bekommt die Seite unten
-     so viel Platz, wie die Leiste hoch ist (--upd-hoehe misst das Skript),
+     Skript es einmal nicht tut. Seit 19.10.2026 ebenso in der Einstufung
+     samt ihrem Ergebnis: einstufungStarten() setzt nurHerz jetzt auch, erst
+     showView() beim Verlassen nimmt es zurueck.
+     Solange sie steht, bekommt die Seite unten so viel Platz, wie die Leiste hoch ist (--upd-hoehe misst das Skript),
      sonst laege sie auf den letzten Knoepfen. Gemessen und nicht fest, weil
      sie bei grosser Systemschrift zweizeilig wird: Android vergroessert die
      Schrift, px-Abstaende aber nicht. flex-wrap: der Knopf rutscht dann in
@@ -784,6 +949,65 @@
     letter-spacing:-1px; color:var(--primary); text-align:center; margin:16px 0 2px}
   .topfwort{text-align:center; font-weight:800; color:var(--muted); font-size:13px; margin-bottom:4px}
   .topfleer{font-size:14px; line-height:1.6; color:var(--muted); margin-top:12px}
+
+  /* ---- Stern: eine Aufgabe markieren (19.10.2026) ----
+     Ajdins Wahl aus dem Entwurf vom 19.10.2026: Variante 1 "Ring". Rund,
+     44 x 44 px, unten rechts in der Leiste unter der Aufgabe, gegenueber
+     von "Lektion abbrechen" - die Form der runden Knoepfe oben, das
+     Material von "Lektion abbrechen" (2-px-Rand --line, Flaeche --surface).
+     Leer ein Umriss in --muted, markiert ein Goldring und ein Goldstern
+     (Verlauf #sternGold) mit dunklerem Goldrand. Alles genau wie im Entwurf:
+       - margin -2.5px: die Leiste bleibt 39 px hoch, "Lektion abbrechen"
+         verschiebt sich um 0 px (gemessen bei 412 und 360 px, hell und dunkel);
+       - Goldrand hell #B07D00: 3,28:1 auf dem hellgoldenen Grund #FFF4C2;
+       - dunkel liegt der markierte Knopf auf --surface statt auf dem
+         olivfarbenen --accent-soft. Das laeuft ueber --an-grund, am Knopf
+         selbst gesetzt, damit --surface die Sektionsfarbe mitnimmt;
+       - Trefferflaeche 48 x 48 ueber ::before mit inset -4px (absolut
+         positioniert zaehlt ab der Innenkante, die 2 px Rand sind drin);
+       - der Stern ist 26 x 25,3 px (58 % der Knopfhoehe); die viewBox liegt
+         um seinen Flaechenschwerpunkt, so sitzt er optisch in der Mitte
+         (nachgemessen < 0,5 Geraetepixel, tests_e2e/test_stern.py);
+       - beim Antippen ploppt er kurz auf (.pop), nicht bei reduzierter
+         Bewegung und nicht mit dem Schalter "Animationen" aus.
+     Mit .nav davor: ".nav button" gibt jedem Knopf der Leiste Polster und
+     Pillenform und waere sonst gewichtiger als eine einzelne Klasse.
+     Kein :has() und kein :is() - siehe oben bei .zmaj.mini. */
+  :root{--stern-gold-hell:#FFD84D; --stern-gold-tief:#F5B400; --stern-rand:#B07D00}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700} }
+  :root[data-theme="dark"]{--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700}
+  .nav .stern{--an-grund:var(--accent-soft)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .nav .stern{--an-grund:var(--surface)} }
+  :root[data-theme="dark"] .nav .stern{--an-grund:var(--surface)}
+  .nav .stern{position:relative; flex:0 0 auto; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0; margin:0; font:inherit; cursor:pointer; color:var(--muted); -webkit-tap-highlight-color:transparent; transition:transform .12s, background-color .15s, border-color .15s, box-shadow .12s}
+  .nav .stern[hidden]{display:none}   /* display:flex oben schlaegt sonst das hidden-Attribut */
+  .nav .stern::before{content:''; position:absolute}
+  .nav .stern svg{display:block; flex:none; overflow:visible; pointer-events:none}
+  .sternsym{overflow:visible}
+  .sternsym path{fill:none; stroke:currentColor; stroke-linejoin:round}
+  .sternsym.an path{fill:url(#sternGold); stroke:var(--stern-rand)}
+  .nav .stern:focus-visible{outline:3px solid var(--primary); outline-offset:3px}
+  #lesson .nav, #test .nav{align-items:center}
+  @keyframes sternPop{0%{transform:scale(1)} 45%{transform:scale(1.22)} 100%{transform:scale(1)}}
+  .nav .stern.pop svg{animation:sternPop .28s ease-out}
+  @media (prefers-reduced-motion: reduce){ .nav .stern.pop svg{animation:none} }
+  .nav .stern.v1{width:44px; height:44px; margin:-4px 0; border-radius:50%; border:2px solid var(--line); background:var(--surface)}
+  .nav .stern.v1::before{inset:-4px}   /* ab Innenkante 40 px: 48 x 48 */
+  .nav .stern.v1[aria-pressed="true"]{border-color:var(--accent); background:var(--an-grund)}
+  .nav .stern.v1:active{transform:scale(.92)}
+
+  /* ---- Wiederholen: der Kasten "Markiert" (19.10.2026) ----
+     Unter dem Kasten fuer Fehler, der bleibt, wie er ist. Gebaut genau wie
+     er (siehe topfKasten und sternKasten): .section, h2, .desc, .topfzahl,
+     .topfwort, .row mit .btn.know - gleiche Schrift, Abstaende, Knopf und
+     Hoehe. Neu ist nur der kleine Stern vor dem Titel, 22 px, gold, sobald
+     etwas markiert ist, und im leeren Kasten der 17-px-Stern im Satz.
+     Beide sitzen auf der Mitte der Versalhoehe (gemessen ueber die
+     Schriftmetrik von Nunito 800 18 px bzw. 14 px): top -1px im Titel,
+     vertical-align -3.5px im Satz, die Zeilenhoehe bleibt. */
+  #sternBox h2{display:flex; align-items:center; gap:7px}
+  #sternBox h2 .sternsym{flex:none; color:var(--muted); position:relative; top:-1px}
+  .topfleer .sternsym{display:inline-block; vertical-align:-3.5px; margin:0 1px; color:var(--muted)}
 
   /* ---- Wegmarke ----
      Dieselbe Huelle wie die Nachfrage, nur mit einer sehr grossen Zahl.
@@ -1215,7 +1439,10 @@
   .kachelzeile.ok{--kz-linie:var(--good)}
   .kachelzeile.no{--kz-linie:var(--bad)}
   .options.kachelbank{justify-content:center; gap:8px}
-  .opt.kachel, .options.waagrecht .opt.kachel, #lesson .opt.kachel{flex:0 0 auto; max-width:100%; height:2.35em;
+  /* #test und #einstufungView: siehe .zmaj.mini oben - sonst machte die
+     Kastenregel fuer .opt die Kacheln in Test und Einstufung groesser
+     (19.10.2026). Ausgeschrieben aus demselben Grund wie dort. */
+  .opt.kachel, .options.waagrecht .opt.kachel, #lesson .opt.kachel, #test .opt.kachel, #einstufungView .opt.kachel{flex:0 0 auto; max-width:100%; height:2.35em;
     font-size:19px; padding:0 12px; border-radius:12px; white-space:nowrap}
   /* Der Platzhalter ist eine sichtbare leere Mulde, kein Loch: unsichtbar
      sah eine einzelne Kachel im Vorrat aus, als sei sie verrutscht, und nach
@@ -1263,6 +1490,34 @@
   .story .txt{font-family:var(--font-display); font-size:20px; line-height:1.75; font-weight:500}
   .story .w{cursor:pointer; border-bottom:2px dotted var(--line); border-radius:3px; transition:.12s}
   .story .w:hover,.story .w.on{background:var(--accent-soft); color:var(--primary); border-bottom-color:var(--accent)}
+  /* ---- Mitlesen (20.10.2026) ----
+     Kuebras Wunsch: beim Vorlesen einer Geschichte zeigt die App das Wort,
+     das die Stimme gerade spricht, damit man im Text folgen kann. Ajdin
+     nach der Vorschau: "mach die buchstaben gelb nicht aussenrum" - also
+     nur die Schrift gelb, kein Kasten, kein Hintergrund. Und "das es
+     blasser wird": schon Gesprochenes wird blasser (.gelesen).
+     Gelb auf dem hellen Grund (#F6F7FE) laege bei 1,5:1 und waere nicht zu
+     lesen. Im Hellen deshalb --accent-text #876A00, dasselbe Gold wie
+     "Jetzt dran" am Geschichtenpfad: mindestens 4,8:1 auf der Flaeche
+     jeder der neun Sektionen, 4,6:1 auf dem Hellgelb eines angetippten
+     Worts. Im Dunkeln das volle --accent #FFD23F, mindestens 6,3:1.
+     Gelesen mit .65: in jeder Sektion hell mindestens 5,0:1, dunkel 4,6:1.
+     Die erste Fassung vom selben Tag hatte #A07D00 und .55 - ein wenig
+     heller golden, aber nur 3,6 und 3,7:1. axe meldete beides als ernst:
+     die Schrift ist 20px und nicht fett, gefordert sind 4,5:1, und das
+     ist seit dem 04.10.2026 der Massstab der App
+     (docs/barrierefreiheit-2026-10-04.md). Geprueft in
+     tests_e2e/test_mitlesen.py, test_axe_beim_mitlesen. Blasser als der
+     Rest bleibt Gelesenes auch mit .65 deutlich.
+     Keine andere Schriftstaerke: sonst wuerde der Text beim Mitlesen
+     springen. Steht NACH .w.on, damit ein angetipptes Wort, wenn die Stimme
+     es spricht, trotzdem gelb wird. Das transition von .w oben laesst die
+     Farbe sanft wechseln; ohne Animationen springt sie. */
+  .story{--mitlesen:var(--accent-text)}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .story{--mitlesen:var(--accent)} }
+  :root[data-theme="dark"] .story{--mitlesen:var(--accent)}
+  .story .w.gelesen{opacity:.65}
+  .story .w.mitlesen{color:var(--mitlesen)}
   .bubble{margin-top:14px; padding:10px 14px; border-radius:12px; background:var(--accent-soft); color:var(--ink); font-size:14px; min-height:40px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-weight:700}
   .bubble b{font-family:var(--font-display); font-size:18px; color:var(--primary)}
   .bubble.empty{color:var(--muted); background:transparent; border:2px dashed var(--line)}
@@ -1478,7 +1733,9 @@
          Den Kasten selbst gibt es weiter, die Profilseite benutzt ihn. -->
     <div class="obenreihe">
       <div class="serieblock">
-        <div class="seriezahl"><span aria-hidden="true">🔥</span><span id="serieZahl">0</span></div>
+        <!-- Die Flamme genau so, wie flammeHtml() sie baut (22.10.2026),
+             nur mit id. Ihre Klassen setzt flammeZeigen(). -->
+        <div class="seriezahl"><span class="flammenbox" aria-hidden="true"><span class="flamme" id="serieFlamme" aria-hidden="true">🔥</span><span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span><span id="serieZahl">0</span></div>
         <div class="streakline" id="streakLine"></div>
       </div>
       <div class="zmaj idle" id="zmajHome"></div>
@@ -1500,16 +1757,20 @@
       <div class="summary" id="sSummary"></div>
       <div class="section" id="storyList"></div>
     </div>
-    <!-- Wiederholen: der Sammeltopf fuer falsch Beantwortetes -->
+    <!-- Wiederholen: der Sammeltopf fuer falsch Beantwortetes. Darunter
+         seit 19.10.2026 die markierten Aufgaben (Stern), siehe STERN. -->
     <div id="topfHome" style="display:none">
       <div class="section" id="topfBox"></div>
+      <div class="section" id="sternBox"></div>
     </div>
   </div>
 
   <!-- ===== Laden ===== -->
   <div id="shopView" style="display:none">
     <div class="section">
-      <h2 data-t="laden.titel"></h2>
+      <!-- id fuer hautAlleVerdrahten(); ohne Tippfarbe, damit die
+           Ueberschrift beim Antippen nicht aufleuchtet. 19.10.2026 -->
+      <h2 id="ladenTitel" data-t="laden.titel" style="-webkit-tap-highlight-color:transparent"></h2>
       <!-- Die Muenzzahl steht oben in der Kopfleiste, nicht mehr als Satz. -->
       <div class="sprachwahl" id="ladenWahl" style="margin-bottom:12px">
         <button type="button" class="field sprachkopf" id="ladenKopf" aria-expanded="false"></button>
@@ -1553,19 +1814,29 @@
 
     <section id="lesson" style="display:none">
       <div class="card"><div class="kastenkopf"><div class="kastenherz" id="lHerz"></div><div class="tbar" id="lBar"></div></div><div class="zmaj mini idle" id="zmajLesson"></div><div id="lBody"></div></div>
-      <div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>
+      <!-- Rechts der Stern (19.10.2026): ausserhalb von #lBody, damit der
+           Weiter-Horcher aus weiterBeiTipp() ihn nicht greift. Name und
+           Zustand setzt sternKnopf(), siehe STERN. -->
+      <div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><button type="button" class="stern v1" id="lStern" aria-pressed="false" hidden><svg class="sternsym" viewBox="-12 -12 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path style="stroke-width:1.9" d="M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.544 1.544 0 0 1 9.662 -1.657L6.026 1.62A0.643 0.643 0 0 0 5.827 2.231L6.843 7.02A1.544 1.544 0 0 1 4.561 8.677L0.321 6.232A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z"/></svg></button></div>
     </section>
 
+    <!-- Der Kasten ist gebaut wie der der Lektion, mit eigenem Herz und
+         eigenem Drachen. So stehen Knoepfe und Weiter an derselben Stelle
+         wie in der Lektion. Kuebra am 19.10.2026, siehe .zmaj.mini im CSS.
+         Das Herz war zuerst ein unsichtbarer Platzhalter; seit Ajdin am
+         selben Tag entschied, dass der Test Leben kostet wie die Lektion,
+         ist es echt (#tHerz). -->
     <section id="test" style="display:none">
-      <div class="card"><div class="kastenkopf"><div class="tbar" id="tBar"></div></div><div id="tBody"></div></div>
-      <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>
+      <div class="card"><div class="kastenkopf"><div class="kastenherz" id="tHerz"></div><div class="tbar" id="tBar"></div></div><div class="zmaj mini idle" id="zmajTest"></div><div id="tBody"></div></div>
+      <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><button type="button" class="stern v1" id="tStern" aria-pressed="false" hidden><svg class="sternsym" viewBox="-12 -12 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path style="stroke-width:1.9" d="M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.544 1.544 0 0 1 9.662 -1.657L6.026 1.62A0.643 0.643 0 0 0 5.827 2.231L6.843 7.02A1.544 1.544 0 0 1 4.561 8.677L0.321 6.232A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z"/></svg></button></div>
     </section>
   </div>
 
   <!-- ===== Einstufung ===== -->
   <div id="einstufungView" style="display:none">
     <section>
-      <div class="card"><div class="tbar" id="eBar"></div><div id="eBody"></div></div>
+      <!-- Derselbe Kasten wie in Lektion und Level-Test (19.10.2026) -->
+      <div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" aria-hidden="true"></div><div class="tbar" id="eBar"></div></div><div class="zmaj mini idle" id="zmajEinst"></div><div id="eBody"></div></div>
       <div class="nav"><button id="eQuit" data-t="einst.abbrechen"></button><span></span></div>
     </section>
   </div>
@@ -1761,6 +2032,9 @@
      Sie steht von Anfang an im Dokument - eine Region, die erst mit ihrem Text
      dazukommt, lesen manche Screenreader nicht vor. -->
 <div id="ansage" class="nurleser" aria-live="polite" aria-atomic="true"></div>
+<!-- Der Goldverlauf aller markierten Sterne (19.10.2026), einmal im Dokument.
+     Nicht display:none: dann malt Chrome den Verlauf nicht. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="sternGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--stern-gold-hell)"/><stop offset="1" style="stop-color:var(--stern-gold-tief)"/></linearGradient></defs></svg>
 
 <script>
 /* Der Inhalt kommt aus vokabeln.py, grammatik.py und geschichten.py – hier muss nichts geändert werden. */
@@ -1858,7 +2132,7 @@ const ZIERRAT = [
   {id:'funkeln',        gruppe:'effekt', voll:true},
 ].map(w => Object.assign(w, {
   titel: 'laden.' + w.id, sub: 'laden.' + w.id + '_sub',
-  geht: w.voll ? (() => unlimited()) : (() => !besitz.has(w.id)),
+  geht: w.voll ? (() => unlimited()) : (() => !hatStueck(w.id)),
 }));
 const VOLL_STUECKE = new Set(ZIERRAT.filter(w => w.voll).map(w => w.id));
 const istVollStueck = id => VOLL_STUECKE.has(id);
@@ -2566,11 +2840,26 @@ let gefeiert = new Set();
    WIEDERHOLEN. Hier oben, weil standUebernehmen() sie setzt. */
 let einstufung = null;    // null = noch nie gefragt, sonst {tag, wahl, bis}
 let topf = {};            // Schluessel -> {typ, n, z}
+let stern = {};           // Schluessel -> {z, r}, siehe STERN (19.10.2026)
+const STERN_MAX = 300;    // so viele Sterne hoechstens; hier oben, standUebernehmen() braucht ihn
 let bewertung = {gezeigt:[], nein:false, bewertet:false};   // siehe BEWERTUNG
 let rekord = 0;
 let wann = {};
 let muenzenGes = 0, muenzenAus = 0;   // jemals verdient / jemals ausgegeben
 let besitz = new Set();   // gekaufter Zierrat, z. B. "hut"
+/* Alle Muenz-Stuecke ohne Kauf, nur fuer uns - siehe hautAlleVerdrahten().
+   Wie der Dauerschalter nur im Geraetespeicher, nie im Lernstand und nie in
+   der Sicherungsdatei: besitz bleibt, was wirklich gekauft ist. 19.10.2026 */
+const HAUT_ALLE_SCHLUESSEL = 'zmaj_hautalle';
+let hautAlle = false;
+try{ hautAlle = localStorage.getItem(HAUT_ALLE_SCHLUESSEL) === '1'; }catch(e){}
+/* Zaehlt fuer Laden, Tragen und Drachen als besessen: gekauft, oder bei
+   eingeschaltetem Schalter jedes Stueck mit Muenzpreis - erst nur die
+   Farben, seit 20.10.2026 auch Kopf, Brille und Hals (Ajdin: "gib alle
+   skins, muss die austesten"). Die Stuecke der Vollversion haengen
+   weiter allein an unlimited(). */
+const hatStueck = id => besitz.has(id)
+  || (hautAlle && ZIERRAT.some(w => w.id === id && !w.voll));
 // Aufsetzen oder abnehmen ist eine Geraeteeinstellung wie Ton und Animation.
 // Der Wert kommt weiter unten aus localStorage, sobald pref() bereitsteht.
 /* Getragen wird jetzt mehreres: eine durch Komma getrennte Liste, hoechstens
@@ -3170,17 +3459,19 @@ const zierratDatei = id => 'zmajz-' + id + '.json';
 const hautSatz = farbe => (farbe && MASCOT.has('haut/' + farbe + '/')) ? farbe : '';
 /* Auch hier die Ausnahme fuer die Stuecke der Vollversion: sie stehen in
    keinem Besitz, weil sie nicht gekauft werden. Ohne sie haengt der
-   Umhang zwar in getragen, kommt aber nie an den Drachen. */
+   Umhang zwar in getragen, kommt aber nie an den Drachen. hatStueck statt
+   besitz.has: sonst kaeme ein freigeschalteter Hut nie an den Drachen,
+   und nach dem Ausschalten faellt er wieder ab (20.10.2026). */
 function getrageneTeile(){
   return getragenListe()
-    .filter(id => (besitz.has(id) || istVollStueck(id)) && MASCOT.has(zierratDatei(id)));
+    .filter(id => (hatStueck(id) || istVollStueck(id)) && MASCOT.has(zierratDatei(id)));
 }
 // Welche Farbe getragen wird. Leer heisst blau, die Grundfarbe.
 /* Die Farbe der Vollversion steht in keinem Besitz - sie wird nicht
    gekauft. Ohne diese Ausnahme blieb der Drache blau, obwohl Gold
    getragen war. Beim Bauen in der Vorschau aufgefallen, 29.09.2026. */
 const getrageneFarbe = () => getragenListe()
-  .find(id => FARBEN[id] && (besitz.has(id) || istVollStueck(id))) || '';
+  .find(id => FARBEN[id] && (hatStueck(id) || istVollStueck(id))) || '';
 /* Ohne Vorgabe zeigt der Drache, was der Nutzer wirklich traegt. Mit
    Vorgabe zeigt er etwas anderes - gebraucht wird das genau einmal, im
    Kaufkasten: dort steht er in voller Montur, damit man sieht, was man
@@ -3695,8 +3986,10 @@ function setMood(el, mood){ // Bewegung passend zur Stimmung
   el.classList.remove('idle','cheer','sad','ok','no'); el.classList.add(mood==='cheer'?'cheer':((mood==='sad'||mood==='cry')?'sad':'idle'));
 }
 let falschSeite = 0;   // wechselt zwischen "Kopf nach links" und "nach rechts"
-function zmajReact(ok){ // kleiner Drache in der Lektion reagiert auf die Antwort
-  const el=$('zmajLesson'); if(!el) return;
+/* Kleiner Drache im Fragenkasten reagiert auf die Antwort. Seit 19.10.2026
+   haben auch Level-Test (zmajTest) und Einstufung (zmajEinst) einen. */
+function zmajReact(ok, id){
+  const el=$(id || 'zmajLesson'); if(!el) return;
   const la = el.querySelector('.zmaj-anim');
   if(la){ playMood(la, ok ? 'ok' : (falschSeite++ % 2 ? 'no_r' : 'no_l')); return; }
   el.classList.remove('ok','no','idle'); void el.offsetWidth; el.classList.add(ok?'ok':'no');
@@ -4061,6 +4354,9 @@ function sicherungPlausibel(s){
   }
   p.besitz = liste.filter(id => behalten.has(id));
   p.muenzen_aus = Math.max(Math.min(ganzAbNull(s.muenzen_aus), p.muenzen_ges), summe);
+  /* Sterne (19.10.2026): nur gueltige Kennungen und Zahlen, hoechstens
+     STERN_MAX, und kein Zeitpunkt nach jetzt - siehe sternPruefen(). */
+  p.stern = sternPruefen(s.stern);
   return p;
 }
 /* Ein Stand sieht ueberall gleich aus - egal ob er aus der Profildatei des
@@ -4142,6 +4438,9 @@ function standUebernehmen(d){
   topf = (d.topf && typeof d.topf==='object' && !Array.isArray(d.topf))
     ? Object.fromEntries(Object.entries(d.topf).filter(([, e]) => e && typeof e==='object' && !Array.isArray(e)))
     : {};
+  /* Fehlt das Feld (Stand oder Sicherung von vor dem 19.10.2026), ist
+     nichts markiert. Kaputte Eintraege fallen hier still heraus. */
+  stern = sternPruefen(d.stern);
   const bw = (d.bewertung && typeof d.bewertung==='object' && !Array.isArray(d.bewertung)) ? d.bewertung : {};
   bewertung = {gezeigt: Array.isArray(bw.gezeigt) ? bw.gezeigt.filter(istDatum) : [],
                nein: !!bw.nein, bewertet: !!bw.bewertet};
@@ -4219,7 +4518,170 @@ function standAlsObjekt(){
           geschenk_jahr: (geschenk.jahr || 0),
           /* Beide gehoeren zum Lernenden und muessen mit auf ein neues
              Handy - die Einstufung haelt die uebersprungenen Level offen. */
-          einstufung: einstufung, topf: topf, bewertung: bewertung};
+          einstufung: einstufung, topf: topf, bewertung: bewertung,
+          /* Die Sterne gehoeren wie der Topf zum Lernenden (19.10.2026). Die
+             Sicherungsdatei bleibt version 1: eine alte App liest das Feld
+             nicht, eine neue nimmt ein fehlendes als "nichts markiert". */
+          stern: stern};
+}
+/* ---- Zwei Lernstaende zusammenfuehren (19.10.2026) ----
+   Fuer die Cloud-Sicherung (siehe CLOUD-SICHERUNG weiter unten): a ist der
+   Stand dieses Geraets, b der aus der Cloud - von einem zweiten Geraet oder
+   einer frueheren Installation. Zusammenfuehren statt ueberschreiben: das
+   alte start.py ersetzte die Listen, und das zweite Geraet loeschte, was
+   das erste gelernt hatte.
+   Rein: liest a und b, aendert weder sie noch die App und gibt einen neuen
+   Stand im Format von standAlsObjekt() zurueck. Idempotent (m mit m ergibt
+   m) und kommutativ (a mit b gleich b mit a) - bis auf "getragen", siehe
+   dort. Listen kommen sortiert heraus, damit beide Richtungen dasselbe
+   ergeben; in der App sind es ohnehin Mengen.
+   Jedes Feld aus standAlsObjekt() ist hier bewusst behandelt (der Test
+   tests_e2e/test_cloud.py vergleicht die Schluessel):
+     gewusst, bestanden,   Vereinigung. Gelernt ist gelernt, egal auf
+     gelesen               welchem Geraet.
+     tage, frost           Vereinigung. Ein Lerntag auf dem Tablet zaehlt
+                           fuer die Serie wie einer auf dem Handy.
+     gefeiert              Vereinigung. Was ein Geraet gefeiert hat, feiert
+                           das andere nicht noch einmal.
+     besitz                Vereinigung. Gekauft ist gekauft; bezahlt wird es
+                           ueber muenzen_aus.
+     muenzen_ges,          je das Maximum. Beides sind Zaehler, die nur
+     muenzen_aus           wachsen ("jemals verdient / ausgegeben"); die
+                           Summe zaehlte die gemeinsame Vorgeschichte doppelt,
+                           und jeder weitere Abgleich noch einmal. Was zwei
+                           Geraete getrennt verdient haben, zaehlt so nur
+                           einmal - lieber zu wenig als erfundene Muenzen.
+                           Ausgegeben aber mindestens die Preise von allem in
+                           besitz (dieselbe Regel wie in sicherungPlausibel):
+                           wer auf zwei Geraeten getrennt je fuer 100 gekauft
+                           hat, hat 200 ausgegeben.
+     rekord                Maximum. standUebernehmen() kappt ihn danach an
+                           den Lerntagen und rechnet aus den vereinigten
+                           Tagen nach.
+     geschenk_jahr         Maximum - ein gegebenes Geschenk geht nie wieder
+                           auf, wie in standUebernehmen().
+     wann                  je Schluessel das fruehere Datum: "wann zuerst
+                           geschafft".
+     tagwerk               je Tag und Zaehler das Maximum. Die Summe waere bei
+                           zwei Geraeten am selben Tag genauer, aber nicht
+                           idempotent - jeder Abgleich zaehlte den Tag noch
+                           einmal dazu, und die Tagesaufgaben gaeben neue
+                           Muenzen.
+     topf                  Vereinigung der Schluessel. Steht ein Fehler auf
+                           beiden Seiten, gewinnt der neuere Fehler (groesseres
+                           z): seine Zaehlung n beginnt bei ihm, die andere
+                           gehoert zu einem frueheren. Bei gleichem z das
+                           kleinere n - lieber einmal mehr ueben als einen
+                           Fehler verlieren, der nur auf einem Geraet geuebt
+                           wurde. Hoechstens TOPF_MAX, es bleiben die
+                           neuesten, wie in topfMerken().
+     stern                 Vereinigung. Auf beiden Seiten markiert: das
+                           neuere z (zuletzt markiert) und das groessere r
+                           (zuletzt geuebt). Danach sternPruefen().
+     leben, schutz         die Seite mit dem neueren Zeitstempel zeit - dort
+                           ist zuletzt etwas passiert (Herz verloren, Schutz
+                           verbraucht). Bei gleicher Zeit die kleinere
+                           Anzahl: ein Abgleich verschenkt keine Herzen.
+     einstufung            die neuere (tag); fehlt sie auf einer Seite, die
+                           andere. Bei gleichem Tag entscheidet der Text -
+                           nur damit beide Richtungen dasselbe ergeben.
+     bewertung             gezeigt vereinigt, nein und bewertet je "oder":
+                           wer auf einem Geraet abgelehnt oder bewertet hat,
+                           wird auf keinem mehr gefragt. Einen Zeitstempel
+                           hat sie nicht; beide Merker gehen nur von false
+                           nach true, das "oder" ist also der neuere Stand.
+     getragen              eine Wahl, kein Fortschritt: das Geraet (a)
+                           gewinnt, traegt es nichts, die Cloud. Die einzige
+                           Stelle, die nicht kommutativ ist - mit Absicht,
+                           das Geraet bleibt massgeblich.
+   Was sonst im Stand steht (etwa premium aus einer alten Datei), faellt weg.
+   Nicht hier, sondern drumherum geprueft wird, ob etwas plausibel ist: b
+   kommt von aussen wie eine Sicherungsdatei und geht vorher durch
+   sicherungPlausibel(), das Ergebnis durch standUebernehmen() - siehe
+   cloudUebernehmen(). sicherungPlausibel() auf das Ergebnis hiesse, die
+   eigenen Muenzen und Lerntage dieses Geraets zu kappen; genau das schliesst
+   der Kommentar in standUebernehmen() fuer den eigenen Stand aus. */
+function standZusammenfuehren(a, b){
+  const objekt = x => (x && typeof x === 'object' && !Array.isArray(x)) ? x : null;
+  a = objekt(a) || {}; b = objekt(b) || {};
+  const texte = x => Array.isArray(x) ? x.filter(s => typeof s === 'string') : [];
+  const vereint = (x, y) => [...new Set(texte(x).concat(texte(y)))].sort();
+  const zahl = x => (typeof x === 'number' && isFinite(x) && x >= 0) ? x : 0;
+  const schluessel = (x, y) => [...new Set(Object.keys(x).concat(Object.keys(y)))].sort();
+  const textVergleich = (x, y) => x < y ? -1 : (x > y ? 1 : 0);
+  const m = {};
+  ['gewusst', 'bestanden', 'gelesen', 'tage', 'frost', 'gefeiert', 'besitz']
+    .forEach(k => { m[k] = vereint(a[k], b[k]); });
+  const preis = id => { const w = ZIERRAT.find(x => x.id === id && !x.voll); return w ? w.preis : 0; };
+  m.muenzen_ges = Math.max(ganzAbNull(a.muenzen_ges), ganzAbNull(b.muenzen_ges));
+  m.muenzen_aus = Math.max(ganzAbNull(a.muenzen_aus), ganzAbNull(b.muenzen_aus),
+                           m.besitz.reduce((s, id) => s + preis(id), 0));
+  m.rekord = Math.max(ganzAbNull(a.rekord), ganzAbNull(b.rekord));
+  m.geschenk_jahr = Math.max(ganzAbNull(a.geschenk_jahr), ganzAbNull(b.geschenk_jahr));
+  /* Nichts aus der Zukunft (Pruefbefund 19.10.2026): eine vorgestellte
+     Handy-Uhr oder ein gefaelschtes Cloud-Dokument brachte sonst einen
+     Fehler mit z weit voraus mit. topfRunde() nimmt das kleinste z zuerst,
+     topfMerken() verdraengt das kleinste - so ein Fehler kaeme nie mehr
+     dran und ginge nie mehr weg, und die Cloud truege ihn auf jedes
+     Geraet. z wird darum wie in sternPruefen() auf jetzt gekappt; Tage
+     und Daten nach heute fallen weg. */
+  const jetzt = Date.now(), heute = today();
+  const bisHeute = d => istDatum(d) && d <= heute;
+  /* Object.fromEntries statt Zuweisung: ein Schluessel "__proto__" aus einer
+     fremden Datei wird so ein gewoehnlicher Eintrag, wie bei topf. */
+  const wa = objekt(a.wann) || {}, wb = objekt(b.wann) || {};
+  m.wann = Object.fromEntries(schluessel(wa, wb).map(k => {
+    const x = bisHeute(wa[k]) ? wa[k] : '', y = bisHeute(wb[k]) ? wb[k] : '';
+    return [k, (x && y) ? (x < y ? x : y) : (x || y)];
+  }).filter(([, d]) => d));
+  const ta = objekt(a.tagwerk) || {}, tb = objekt(b.tagwerk) || {};
+  m.tagwerk = Object.fromEntries(schluessel(ta, tb).filter(bisHeute).map(tag => {
+    const x = objekt(ta[tag]) || {}, y = objekt(tb[tag]) || {};
+    return [tag, Object.fromEntries(schluessel(x, y).map(id => [id, Math.max(zahl(x[id]), zahl(y[id]))]))];
+  }));
+  const eintrag = e => { e = objekt(e); return (e && typeof e.typ === 'string') ? {typ: e.typ, n: ganzAbNull(e.n), z: Math.min(zahl(e.z), jetzt)} : null; };
+  const pa = objekt(a.topf) || {}, pb = objekt(b.topf) || {};
+  const topfListe = schluessel(pa, pb).filter(k => k.length <= 200 && STERN_ART.test(k)).map(k => {
+    const x = eintrag(pa[k]), y = eintrag(pb[k]);
+    if(!x || !y) return [k, x || y];
+    if(x.z !== y.z) return [k, x.z > y.z ? x : y];
+    if(x.n !== y.n) return [k, x.n < y.n ? x : y];
+    return [k, x.typ <= y.typ ? x : y];
+  }).filter(([, e]) => e);
+  topfListe.sort((p, q) => (q[1].z - p[1].z) || textVergleich(p[0], q[0]));
+  m.topf = Object.fromEntries(topfListe.slice(0, TOPF_MAX));
+  const sa = objekt(a.stern) || {}, sb = objekt(b.stern) || {};
+  m.stern = sternPruefen(Object.fromEntries(schluessel(sa, sb).map(k => {
+    const x = objekt(sa[k]), y = objekt(sb[k]);
+    return [k, (x && y) ? {z: Math.max(zahl(x.z), zahl(y.z)), r: Math.max(zahl(x.r), zahl(y.r))} : (x || y)];
+  })));
+  const zeitWahl = (x, y, max, leer) => {
+    const gut = e => {
+      e = objekt(e);
+      if(!e || typeof e.anzahl !== 'number' || !isFinite(e.anzahl)) return null;
+      return {anzahl: Math.max(0, Math.min(max, Math.floor(e.anzahl))),
+              zeit: (typeof e.zeit === 'number' && isFinite(e.zeit)) ? e.zeit : 0};
+    };
+    x = gut(x); y = gut(y);
+    if(!x || !y) return x || y || leer;
+    if(x.zeit !== y.zeit) return x.zeit > y.zeit ? x : y;
+    return x.anzahl <= y.anzahl ? x : y;
+  };
+  m.leben = zeitWahl(a.leben, b.leben, LEBEN_MAX, {anzahl: LEBEN_MAX, zeit: 0});
+  m.schutz = zeitWahl(a.schutz, b.schutz, SCHUTZ_MAX, {anzahl: 1, zeit: 0});
+  const ea = objekt(a.einstufung), eb = objekt(b.einstufung);
+  const tagVon = e => istDatum(e.tag) ? e.tag : '';
+  m.einstufung = (!ea || !eb) ? (ea || eb || null)
+    : (tagVon(ea) !== tagVon(eb)) ? (tagVon(ea) > tagVon(eb) ? ea : eb)
+    : (JSON.stringify(ea) >= JSON.stringify(eb) ? ea : eb);
+  const ba = objekt(a.bewertung) || {}, bb = objekt(b.bewertung) || {};
+  m.bewertung = {gezeigt: vereint(ba.gezeigt, bb.gezeigt).filter(istDatum),
+                 nein: !!(ba.nein || bb.nein), bewertet: !!(ba.bewertet || bb.bewertet)};
+  const ga = typeof a.getragen === 'string' ? a.getragen : '';
+  m.getragen = ga || (typeof b.getragen === 'string' ? b.getragen : '');
+  /* Eine tiefe Kopie: das Ergebnis teilt nichts mit a oder b. Sonst haengte
+     standUebernehmen() etwa die einstufung des alten Stands wieder ein. */
+  return JSON.parse(JSON.stringify(m));
 }
 /* ---- Die Vollversion ----
    Sie gehoert nicht in den Lernstand. Vorher stand sie dort, und damit
@@ -4553,6 +5015,43 @@ function dauerVollVerdrahten(){
       return;
     }
     dauerVollSetzen(true); renderLives(); vollZeileZeigen();
+  });
+}
+/* ---- Alle Muenz-Stuecke fuer uns ----
+   Ajdin am 19.10.2026: alle Farben, die es fuer Muenzen gibt, tragen, ohne
+   sie zu kaufen - nur fuer sich. Am 20.10.2026 dazu auch Huete, Brillen
+   und Halsstuecke ("gib alle skins"), siehe hatStueck(). Dasselbe Wort wie beim Dauerschalter
+   (derselbe Pruefwert, dauerWortStimmt), aber eine andere Stelle: siebenmal
+   auf die Ueberschrift "Laden", waehrend der Reiter Farben gewaehlt ist,
+   hoechstens zwei Sekunden zwischen zwei Tipps. Nochmal so schaltet aus.
+   Warum dort: die Ueberschrift ist kein Knopf und tut sonst nichts, der
+   Zaehler stoert also keine Bedienung, und siebenmal schnell tippt dort
+   niemand. Die Muenzanzeige fuehrt in den Laden, der Reiterkopf klappt die
+   Liste auf - beide fielen deshalb weg. Und die Wirkung steht gleich
+   darunter: "Tragen" statt Preis.
+   Gekauft wird nichts, besitz und Muenzen bleiben, wie sie sind. Ist der
+   Schalter aus, faellt ein nicht gekauftes Stueck vom Drachen wie eins
+   der Vollversion nach dem Abo; gespeichert bleibt es. */
+function hautAlleSetzen(an){
+  hautAlle = !!an;
+  try{ localStorage.setItem(HAUT_ALLE_SCHLUESSEL, an ? '1' : '0'); }catch(e){}
+}
+function hautAlleVerdrahten(){
+  const z = $('ladenTitel'); if(!z) return;
+  let n = 0, uhr = 0;
+  z.addEventListener('click', async ()=>{
+    if(ladenReiter !== 'farbe'){ n = 0; return; }
+    clearTimeout(uhr); uhr = setTimeout(()=>{ n = 0; }, 2000);
+    if(++n < 7) return;
+    n = 0; clearTimeout(uhr);
+    const wort = await frageWort('Wort?');
+    if(wort === null) return;
+    if(!(await dauerWortStimmt(wort.trim().toLowerCase()))) return;
+    if(hautAlle && !(await frage(t('laden.titel'),
+                                 'Sie sind eingeschaltet. Ausschalten?',
+                                 'Ausschalten', 'Anlassen'))) return;
+    hautAlleSetzen(!hautAlle);
+    renderLaden(); drachenNeu();
   });
 }
 async function loadProgress(){
@@ -4987,8 +5486,11 @@ function renderLives(){
   if(mb){ mb.hidden = !profil; if(profil) mb.innerHTML = '🪙 <b>'+muenzen()+'</b> <span class="km">KM</span>'; }
   const bar=$('livesBar'); if(!profil){ bar.style.display='none'; return; } bar.style.display='inline-flex';
   const n = livesNow();
-  /* Das Herz im Fragenkasten. Gibt es nur in der Lektion (#lHerz); der
-     Level-Test kostet keine Leben und hat deshalb keins. */
+  /* Das Herz im Fragenkasten. Sichtbar in der Lektion (#lHerz) und im
+     Level-Test (#tHerz), der seit dem 19.10.2026 Leben kostet wie die
+     Lektion. Die Einstufung kostet keine und hat deshalb keins. Ihre
+     unsichtbare Pille (.kastenherz.platzhalter) wird trotzdem mitgefuellt -
+     sie haelt die Hoehe der Kopfzeile frei (19.10.2026). */
   document.querySelectorAll('.kastenherz').forEach(k => {
     k.innerHTML = '♥ <b>' + (unlimited() ? '∞' : n) + '</b>';
     k.classList.toggle('zero', n === 0 && !unlimited());
@@ -5000,7 +5502,18 @@ function renderLives(){
                 + (zeigen ? '<span class="info">'+esc(lebenText(n))+'</span>' : '');
   $('livesKnopf').addEventListener('click', ()=>{ livesInfoAn = !livesInfoAn; renderLives(); });
   const b=$('btnLesson'); if(b){ b.disabled = n===0; b.textContent = n===0 ? t('leben.warten') : t('level.lektion'); }
+  testKnopf(n);
   kopfEng();
+}
+/* Der Level-Test kostet seit dem 19.10.2026 Leben wie die Lektion (Ajdin:
+   "genau wie in der Lektion") - ohne Leben ist sein Knopf deshalb ebenso
+   gesperrt. Er behaelt seine Beschriftung: "Keine Leben · warten" steht
+   schon auf dem Lektionsknopf daneben, zweimal derselbe Satz waere zu viel.
+   Hier und in updateProgress(), damit der Knopf auch wieder aufgeht, wenn
+   ein Leben nachwaechst, waehrend die Level-Uebersicht offen steht. */
+function testKnopf(n){
+  const bt = $('btnTest'), c = cur();
+  if(bt && c) bt.disabled = !testAllowed(c) || n === 0;
 }
 /* Grosse Systemschrift (Android): passen Herzen, Muenzen und Knoepfe
    nicht mehr nebeneinander, bekommen die Muenzen eine eigene Zeile
@@ -5166,6 +5679,53 @@ function renderSerie(){
    Der Tag gehoert mit in den Vergleich: Bleibt die App ueber Mitternacht
    in einem Level offen, galt sonst der Jubel von gestern schon als der von
    heute, und nach der ersten Lektion des neuen Tages kam keiner. */
+/* Die Flamme neben der Serie (20.10.2026, siehe .flamme im Stil): aus bei
+   Serie 0, Glut, solange heute noch nichts gelernt ist, sonst an.
+   flammeVorher ist der Zustand beim letzten Zeichnen in dieser Sitzung.
+   Aufgelodert wird nur beim Wechsel von kalt (aus oder Glut) auf an. Beim
+   ersten Zeichnen nach dem Start ist flammeVorher noch null - wer heute
+   schon gelernt hat und die App oeffnet, sieht sie einfach brennen.
+   Ob Bewegung erlaubt ist, fragt dieselbe Funktion wie bei den Kacheln:
+   Schalter "Animationen" und Geraeteeinstellung, bei jedem Aufruf neu.
+
+   Seit dem 22.10.2026 dieselbe Flamme ueberall (Ajdin: "beachte das nicht
+   das es 2 verschiedene desgins sind"): Zustand und Stufe kommen fuer
+   jeden Ort aus flammeKlassen(), die Statistik am Ende einer Lektion und
+   einer Wiederholungsrunde baut ihre mit flammeHtml(). Nur hier oben
+   lodert sie auf. Neue Orte, an denen die laufende Serie mit Flamme
+   steht, nehmen flammeHtml() - keine eigene Flamme. */
+function flammeZustand(){ return days.has(today()) ? 'an' : (streak() > 0 ? 'glut' : 'aus'); }
+/* Stufen nach der laufenden Serie, Ajdin: "Mit Stufen" (20.10.2026).
+   Schwellen nicht ohne ihn aendern. Farben im Stil bei .stufe-blau. */
+function flammeStufe(n){ return n >= 365 ? 'gold' : (n >= 100 ? 'lila' : (n >= 30 ? 'blau' : '')); }
+function flammeKlassen(){
+  const z = flammeZustand(), st = flammeStufe(streak());
+  return 'flamme' + (z === 'an' ? '' : ' ' + z) + (st ? ' stufe-' + st : '');
+}
+/* Genau der Aufbau oben auf der Startseite (#serieFlamme im HTML), ohne id.
+   Die Funken stehen immer drin; sichtbar sind sie nur in der Gold-Stufe,
+   siehe .funke im Stil. */
+function flammeHtml(){
+  return '<span class="flammenbox" aria-hidden="true"><span class="' + flammeKlassen() + '" aria-hidden="true">🔥</span>' +
+    '<span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span>';
+}
+let flammeVorher = null;
+function flammeZeigen(){
+  const f = $('serieFlamme'); if(!f) return;
+  const zustand = flammeZustand();
+  /* .auf bleibt stehen, solange es laeuft - renderHero() kommt waehrend
+     der 0,8 s auch mal ein zweites Mal vorbei. Gleiche Klassen starten die
+     Animation nicht neu. */
+  const lodert = zustand === 'an' && f.classList.contains('auf');
+  f.className = flammeKlassen() + (lodert ? ' auf' : '');
+  if(zustand === 'an' && flammeVorher && flammeVorher !== 'an' && !kachelnRuhig()){
+    f.classList.remove('auf'); void f.offsetWidth; f.classList.add('auf');
+  }
+  flammeVorher = zustand;
+}
+$('serieFlamme').addEventListener('animationend', e => {
+  if(e.animationName === 'flammeAuf') e.currentTarget.classList.remove('auf');
+});
 let heroStand = null;
 function renderHero(){
   festSchmuck();
@@ -5182,6 +5742,7 @@ function renderHero(){
     mountZmaj(anim);
   }
   $('serieZahl').textContent = streak();
+  flammeZeigen();
   /* Der Einstiegsknopf traegt den Namen dessen, was als naechstes dran ist.
      btn.weitermachen gibt es schon in allen acht Sprachen, es muss also
      kein neuer Text dazu.
@@ -5321,6 +5882,9 @@ async function hoerenPruefen(){
   return canSpeak;
 }
 let AUDIO = new Map();
+/* Wortzeiten der Geschichten fuer das Mitlesen (20.10.2026): Datei ->
+   [[start_ms, ende_ms], ...], ein Paar je Wort. Siehe ---- Mitlesen ----. */
+let WORTZEITEN = new Map();
 let voiceName = ''; try{ voiceName = localStorage.getItem('zmaj_voice') || ''; }catch(e){}
 const audioKey = text => text.split(' / ')[0].replace(/[.!?…]+$/,'').trim().toLowerCase();
 function bosnianVoices(){
@@ -5355,8 +5919,13 @@ let pausiert = false;
 /* Ein einziges Audio-Element fuer alles. Fuer jedes Wort ein neues anzulegen
    laesst den vorigen Ton weiterlaufen und fuellt mit der Zeit den Speicher. */
 const spieler = new Audio(); spieler.preload = 'none';
+/* Der laufende stumme Anlauf aus tonVorwaermen(), sonst null (22.10.2026). */
+let vorwaermen = null;
 function spieleDatei(datei, fertig){
   pausiert = false;        // ein neuer Ton hebt eine alte Pause auf
+  /* Ein echtes Wort ist nie stumm: laeuft noch das Vorwaermen, ist es
+     hiermit vorbei, und sein Abschluss laesst den spieler in Ruhe. */
+  vorwaermen = null; spieler.muted = false;
   spieler.pause(); spieler.currentTime = 0;
   spieler.onended = fertig || null;
   spieler.src = 'audio/' + datei;
@@ -5383,6 +5952,9 @@ let laeuftVor = null, tonMarke = 0;
    grundsaetzlich zurueck. Deshalb wird die Stelle vorher gesichert.
    Gemeldet am 24.09.2026. */
 let geschichteStelle = null;
+/* Das laufende Mitlesen einer Geschichte, sonst null (20.10.2026). Steht
+   hier oben bei den anderen Zustaenden, weil stilleBitte() es abraeumt. */
+let mitlesen = null;
 /* aufgabeMarke: welche Aufgabe gerade steht. Die Spracherkennung antwortet
    verzoegert - wer waehrenddessen ueberspringt oder abbricht, bekaeme sonst
    das Ergebnis in die NAECHSTE Aufgabe geliefert, samt Piepton und einem
@@ -5417,6 +5989,7 @@ function stilleBitte(behalteAufgabe){
   const h = hoererAbbrechen; hoererAbbrechen = null;
   if(h) try{ h(); }catch(e){}
   knopfZurueck();
+  mitlesenAus();           // keine Markierung ohne Ton (20.10.2026)
 }
 /* Haelt das System den Ton von aussen an - Kopfhoerer abgezogen, ein Anruf,
    eine andere App holt sich den Ton -, kommt kein 'ended'. Der Knopf
@@ -5426,6 +5999,121 @@ function stilleBitte(behalteAufgabe){
    Ton und `paused` ist schon wieder false. Deshalb die Pruefung. */
 spieler.addEventListener('pause', ()=>{ if(spieler.paused && !pausiert) knopfZurueck(); });
 spieler.addEventListener('error', knopfZurueck);
+/* ---- Mitlesen ----
+   Kuebras Wunsch, umgesetzt am 20.10.2026: beim Vorlesen einer Geschichte
+   ist das Wort markiert, das die Stimme gerade spricht - so kann man im
+   Text folgen. Schon Gesprochenes wird blasser. Aussehen: .w.mitlesen und
+   .w.gelesen im Stil.
+   Die Zeiten liefert wortzeiten_holen.py als Feld "w" in audio/index.json:
+   je Wort ein Paar [start_ms, ende_ms] ab Anfang der Aufnahme bei Tempo 1,
+   in der Reihenfolge der .w in showStory(). Gelesen wird
+   spieler.currentTime - das ist Zeit in der Aufnahme, nicht auf der Uhr.
+   Deshalb passt es bei jedem Tempo ohne Umrechnung, auch wenn das Tempo
+   mitten im Lesen wechselt, und nach einem Sprung (Weiterlesen ab der
+   gemerkten Stelle) setzt die Markierung gleich am richtigen Wort ein.
+   requestAnimationFrame statt 'timeupdate': das kommt nur etwa viermal in
+   der Sekunde, kurze Woerter wie "i" oder "je" fielen durch.
+   Die Schleife laeuft nur, solange der Ton laeuft. In der Pause steht sie,
+   die Markierung bleibt stehen, 'play' weckt sie wieder. Abgeraeumt wird
+   bei allem, was das Vorlesen beendet: Stopp, Ende, Wort angetippt, andere
+   Geschichte, Ansicht verlassen, App verdeckt - alles laeuft ueber
+   stilleBitte() oder wiederVorlesen() in showStory().
+   Die Computerstimme am PC bekommt keine Markierung: sie spricht
+   fuerStimme(text) ("Rex" als "Reks"), die Stellen aus onboundary passen
+   also nicht Zeichen fuer Zeichen zum angezeigten Text. Auf dem Handy gibt
+   es sie ohnehin nicht. */
+const MITLESEN_NACHLAUF = 120;   // ms, die ein Wort nach seinem Ende noch stehen bleibt
+/* Die Zeiten nur, wenn sie zur Geschichte passen: genau ein Paar je Wort,
+   Zahlen, Anfaenge aufsteigend. Wurde der Text geaendert und die Aufnahme
+   nicht, stimmt die Anzahl nicht mehr - dann lieber keine Markierung als
+   eine, die neben der Stimme herlaeuft. Still, ohne Meldung. */
+function mitlesZeiten(datei, anzahl){
+  const z = datei ? WORTZEITEN.get(datei) : null;
+  if(!Array.isArray(z) || !anzahl || z.length !== anzahl) return null;
+  let vorher = -Infinity;
+  for(let i = 0; i < z.length; i++){
+    const p = z[i];
+    if(!Array.isArray(p) || p.length < 2 || !Number.isFinite(p[0]) ||
+       !Number.isFinite(p[1]) || p[0] < vorher) return null;
+    vorher = p[0];
+  }
+  return z;
+}
+/* Nach speak() rufen: dann steht die Aufnahme schon im spieler, und die
+   Marke ist die dieses Laufs. */
+function mitlesenStart(datei, woerter){
+  mitlesenAus();
+  const liste = Array.prototype.slice.call(woerter || []);
+  const zeiten = mitlesZeiten(datei, liste.length);
+  if(!zeiten) return;
+  mitlesen = {woerter: liste, zeiten: zeiten, quelle: spieler.src, marke: tonMarke,
+              akt: -1, gelesen: 0, bild: 0};
+  mitlesen.bild = requestAnimationFrame(mitlesenTakt);
+}
+function mitlesenAus(){
+  const m = mitlesen; mitlesen = null;
+  if(!m) return;
+  if(m.bild) try{ cancelAnimationFrame(m.bild); }catch(e){}
+  m.woerter.forEach(w => w.classList.remove('mitlesen', 'gelesen'));
+}
+function mitlesenTakt(){
+  const m = mitlesen; if(!m) return;
+  m.bild = 0;
+  /* Ein anderer Ton oder ein Stopp dazwischen: aus. stilleBitte() raeumt
+     schon selbst ab - das hier ist die zweite Sicherung. */
+  if(m.marke !== tonMarke || spieler.src !== m.quelle){ mitlesenAus(); return; }
+  mitlesenZeigen(m, spieler.currentTime * 1000);
+  if(!spieler.paused) m.bild = requestAnimationFrame(mitlesenTakt);
+}
+spieler.addEventListener('play', ()=>{
+  const m = mitlesen;
+  if(m && !m.bild) m.bild = requestAnimationFrame(mitlesenTakt);
+});
+/* Wort i ist dran ab seinem Anfang bis kurz nach seinem Ende, laengstens
+   bis das naechste beginnt. In der Pause nach einem Satz bleibt es also
+   einen Augenblick stehen, dann ist keins markiert. Gelesen ist alles
+   davor - in so einer Pause auch das zuletzt gesprochene. Angefasst wird
+   das DOM nur, wenn sich etwas aendert, nicht in jedem Bild. */
+function mitlesenZeigen(m, t){
+  const z = m.zeiten, n = z.length;
+  let begonnen = 0;
+  while(begonnen < n && z[begonnen][0] <= t) begonnen++;
+  let akt = -1;
+  if(begonnen > 0){
+    const i = begonnen - 1;
+    const ende = Math.min(z[i][1] + MITLESEN_NACHLAUF, i + 1 < n ? z[i + 1][0] : Infinity);
+    if(t < ende) akt = i;
+  }
+  const gelesen = akt >= 0 ? akt : begonnen;
+  if(akt === m.akt && gelesen === m.gelesen) return;
+  m.woerter.forEach((w, j) => {
+    w.classList.toggle('mitlesen', j === akt);
+    w.classList.toggle('gelesen', j < gelesen);
+  });
+  const neu = akt >= 0 && akt !== m.akt;
+  m.akt = akt; m.gelesen = gelesen;
+  if(neu) mitlesenImBlick(m.woerter[akt], akt > 0 ? m.woerter[akt - 1] : null);
+}
+/* Ist die Geschichte laenger als der Bildschirm (die laengste hat 85
+   Woerter), bleibt das aktuelle Wort im Blick. Gescrollt wird erst, wenn es
+   den sichtbaren Bereich verlaesst, und dann gleich in die Mitte - so
+   rueckt die Seite einmal je halbem Bildschirm nach, nicht bei jeder
+   Zeile. Und nur, wenn das Wort davor noch zu sehen war: wer beim Zuhoeren
+   zu den Fragen hinuntergescrollt ist, wird nicht zurueckgerissen. Sanft
+   nur mit Animationen (Schalter und Geraeteeinstellung, wie bei den
+   Kacheln). */
+function mitlesenImBlick(el, davor){
+  try{
+    const h = window.innerHeight || document.documentElement.clientHeight;
+    const r = el.getBoundingClientRect();
+    if(r.top >= 0 && r.bottom <= h) return;
+    if(davor){
+      const d = davor.getBoundingClientRect();
+      if(d.bottom <= 0 || d.top >= h) return;
+    }
+    el.scrollIntoView({block: 'center', behavior: kachelnRuhig() ? 'auto' : 'smooth'});
+  }catch(e){}
+}
 /* ---- Anhalten, weitermachen, Tempo ----
    Stopp setzt an den Anfang zurueck, Pause nicht: `currentTime` bleibt
    stehen, und weil `pausiert` gesetzt ist, faellt der Knopf nicht auf
@@ -5482,6 +6170,88 @@ function tempoLeiste(id, mitWort){
 function spaeterSprechen(text, ms){
   const marke = ++tonMarke;
   setTimeout(()=>{ if(marke === tonMarke) speak(text); }, ms);
+}
+/* ---- Wann das Wort kommt (22.10.2026) ----
+   Ajdin: "der sprecher sagt viel zu spaet die woerter oder saetze die
+   muessen frueher kommen man wartet zu lange bis er anfaengt". Nach einer
+   Antwort war das Wort am PC erst nach rund 0,7 s zu hoeren: 450 ms
+   Wartezeit, rund 70 ms Abspielweg und rund 190 ms Stille am Anfang der
+   Aufnahme (die kuerzt seitdem app_bauen.py im Paket, siehe TON_ANFANG
+   dort). Mit allem zusammen sind es jetzt rund 0,29 s.
+   Gewartet wird jetzt nur so lange, dass das Wort nicht in den
+   Rueckmeldeton hineinredet: 'ok' ist bis etwa 0,2 s hoerbar, 'no' bis
+   etwa 0,27 s (siehe sound()). Abspielweg und die kurze Reststille kommen
+   noch dazu - das Wort setzt gleich nach dem Ton ein, ueberdeckt ihn aber
+   nicht. Ohne Toene gibt es nichts abzuwarten.
+   Beim Erscheinen einer Aufgabe (neues Wort, Hoerfrage) waren es 250 bzw.
+   300 ms, damit der Bildschirm erst steht. Der steht nach ein, zwei
+   Bildern - 100 ms reichen. */
+const nachAntwort = ok => soundOn ? (ok ? 180 : 250) : 40;
+const BEIM_ERSCHEINEN = 100;
+/* Das Wort fuer nach der Antwort schon beim Erscheinen der Aufgabe in den
+   spieler zu legen (Vorladen), war ebenfalls gebaut und gemessen: 0-3 ms
+   frueher, auch mit vierfach gedrosselter CPU. Der Rest des Abspielwegs
+   ist der Anlauf der Ausgabe, nicht das Laden. Deshalb wieder heraus - es
+   haette den einen spieler mit Geschichten, Pause und Weiterlesen teilen
+   muessen. 22.10.2026 */
+/* ---- Vorwaermen (22.10.2026) ----
+   Zwei Verzoegerungen gab es nur einmal je Sitzung, dafuer grosse. Das
+   erste Wort nach dem Start war am PC erst rund 1,1 s nach dem Erscheinen
+   der Aufgabe zu hoeren, jedes weitere nach 0,5 s: beim ersten play()
+   lief die ganze Tonausgabe kalt an. Und den AudioContext fuer die
+   Rueckmeldetoene legte erst die erste Antwort an - lief vorher noch kein
+   Wort, hielt das die Seite bis zu 0,6 s fest, und das Wort danach kam um
+   so viel spaeter. Beides passiert jetzt einmal beim Start: den AudioContext
+   anlegen (nur mit Toenen an) und eine Zehntelsekunde Stille STUMM
+   abspielen. Stumm, weil ein lautes Abspielen auf dem Handy die Musik
+   anderer Apps anhalten kann. Die Stille entsteht als WAV im Speicher
+   (stilleWav): eine echte Aufnahme dafuer abzurufen brachte das erste Wort
+   nur 0,02 s frueher, kostete aber beim Start eine Anfrage mehr, genau
+   wenn der Drache seine Bilder laedt. Im Paket geht das ohne Antippen (Capacitor
+   laesst Abspielen ohne Geste zu), stummes Abspielen erlaubt auch jeder
+   Browser; der AudioContext wartet dort bis zur ersten Antwort (resume()
+   in sound()). Laeuft schon etwas, ist etwas angehalten oder lag schon
+   eine Aufnahme im spieler, bleibt es aus. spieleDatei() bricht den Anlauf
+   ab und stellt den Ton wieder an - ein echtes Wort bleibt nie stumm. */
+function stilleWav(){
+  const n = 4800, puffer = new ArrayBuffer(44 + n * 2), d = new DataView(puffer);   // 0,1 s, 48 kHz, 16 Bit, mono
+  const text = (o, s) => { for(let i = 0; i < s.length; i++) d.setUint8(o + i, s.charCodeAt(i)); };
+  text(0, 'RIFF'); d.setUint32(4, 36 + n * 2, true); text(8, 'WAVEfmt ');
+  d.setUint32(16, 16, true); d.setUint16(20, 1, true); d.setUint16(22, 1, true);
+  d.setUint32(24, 48000, true); d.setUint32(28, 96000, true); d.setUint16(32, 2, true); d.setUint16(34, 16, true);
+  text(36, 'data'); d.setUint32(40, n * 2, true);
+  return URL.createObjectURL(new Blob([puffer], {type: 'audio/wav'}));
+}
+function tonVorwaermen(){
+  if(!AUDIO.size) return;              // keine Aufnahmen, also auch keine Lektion
+  if(soundOn && !actx) try{ actx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  if(!spieler.paused || pausiert || laeuftVor || spieler.getAttribute('src')) return;
+  let adresse = null;
+  try{ adresse = stilleWav(); }catch(e){ return; }
+  const lauf = vorwaermen = {};
+  const ende = ()=>{
+    if(vorwaermen === lauf){           // sonst spielt inzwischen ein echtes Wort
+      vorwaermen = null;
+      try{ spieler.pause(); spieler.removeAttribute('src'); spieler.load(); }catch(e){}
+      spieler.muted = false;           // erst nach pause(): laut ohne Geste haelt Chrome sonst an
+    }
+    try{ URL.revokeObjectURL(adresse); }catch(e){}
+  };
+  spieler.muted = true;
+  spieler.src = adresse;
+  let p = null;
+  try{ p = spieler.play(); }catch(e){}
+  if(p && p.then) p.then(()=>setTimeout(ende, 120), ende);
+  else setTimeout(ende, 120);
+}
+/* Der ruhige Moment: die App steht, und der Vorspann bewegt sich nicht mehr
+   (danach steht er noch VORSPANN_HALT still da). Das Anlegen des
+   AudioContext haelt die Seite kurz fest - mitten in der Bewegung saehe
+   man das als Ruckeln. Ohne Bewegung (Schalter, Geraeteeinstellung) gleich. */
+function tonVorwaermenPlanen(){
+  const warten = vorspannOhneBewegung() ? 0
+               : Math.max(0, VORSPANN_ABLAUF - (performance.now() - vorspannAb));
+  setTimeout(tonVorwaermen, warten);
 }
 /* Erst den vollen Text suchen, dann den gekuerzten Schluessel. Dadurch koennen
    "Molim" und "Molim?" eigene Aufnahmen haben, muessen aber nicht. */
@@ -5553,7 +6323,10 @@ async function ladeAudio(){
     const r = await fetch('audio/index.json', {cache:'no-cache'});
     const idx = await r.json();
     AUDIO = new Map((idx.toene||[]).map(e=>[String(e.key).toLowerCase(), e.datei]));
-  }catch(e){ AUDIO = new Map(); }
+    /* Mitlesen (20.10.2026): nach der Datei, nicht nach dem Text - so
+       gehoeren die Zeiten sicher zu genau der Aufnahme, die speak() spielt. */
+    WORTZEITEN = new Map((idx.toene||[]).filter(e=>e && e.datei && Array.isArray(e.w)).map(e=>[e.datei, e.w]));
+  }catch(e){ AUDIO = new Map(); WORTZEITEN = new Map(); }
   canListen = hasTTS || AUDIO.size > 0;
 }
 /* Woher der Inhalt kommt, haengt davon ab, wo die App laeuft.
@@ -5711,8 +6484,9 @@ function frage(titel, text, ja, nein){
 }
 
 /* Wie frage(), aber mit einem Eingabefeld. Liefert den Text oder null.
-   Gebraucht wird das einmal: für den versteckten Schalter der dauerhaften
-   Vollversion. prompt() täte es auch, sieht aber nach Browser aus. */
+   Gebraucht wird das für den versteckten Schalter der dauerhaften
+   Vollversion und seit 19.10.2026 für den der Farben (hautAlleVerdrahten).
+   prompt() täte es auch, sieht aber nach Browser aus. */
 function frageWort(titel, text){
   if(frageSchliessen) return Promise.resolve(null);
   return new Promise(fertig => {
@@ -6007,7 +6781,7 @@ async function vollWahlZeigen(){
       '<button class="btn ghost" id="aboZu"></button>' +
     '</div>';
   kasten.querySelector('#aboKauf').textContent = t('voll.kaufen');
-  kasten.querySelector('#aboZu').textContent = t('btn.abbrechen');
+  kasten.querySelector('#aboZu').textContent = t('btn.dialog_abbrechen');
   document.body.appendChild(kasten);
   /* Der Drache in voller Montur - unabhaengig davon, was der Nutzer
      gerade traegt. Genau das ist ja das Angebot. */
@@ -6089,7 +6863,7 @@ function widerrufZeigen(){
   kasten.querySelector('h3').textContent = t('set.widerruf_knopf');
   kasten.querySelector('.txt').textContent = t('set.widerruf_text');
   kasten.querySelector('#widOk').textContent = t('set.widerruf_bestaetigen');
-  kasten.querySelector('#widZu').textContent = t('btn.abbrechen');
+  kasten.querySelector('#widZu').textContent = t('btn.dialog_abbrechen');
   document.body.appendChild(kasten);
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;
@@ -6162,7 +6936,7 @@ function jahrWechselZeigen(){
   kasten.querySelector('.abogratis').textContent = t('voll.pro_jahr', {preis: aboJahrPreis});
   kasten.querySelector('.abohinweis').textContent = t('voll.hinweis');
   kasten.querySelector('#wechselOk').textContent = t('voll.kaufen');
-  kasten.querySelector('#wechselZu').textContent = t('btn.abbrechen');
+  kasten.querySelector('#wechselZu').textContent = t('btn.dialog_abbrechen');
   document.body.appendChild(kasten);
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;                       // damit die Zurueck-Taste sie schliesst
@@ -6516,7 +7290,21 @@ const UMBENANNT = {
   /* Ajdin am 01.10.2026: "auf einer bosnischen Kaffeepackung steht kafa nicht
      kahva - mach beides rein". */
   'kaffee:kahva': 'kaffee:kahva / kafa',
-  'kaffeemaschine:aparat za kahvu': 'kaffeemaschine:aparat za kahvu / aparat za kafu'};
+  'kaffeemaschine:aparat za kahvu': 'kaffeemaschine:aparat za kahvu / aparat za kafu',
+  /* Ajdin am 22.10.2026: "die vokabel salz am besten zu so/sol aendern weil
+     man es so oder so sagt". Die Suche unten ueber das bosnische Wort
+     faende "so" nicht mehr wieder - es heisst jetzt "so / sol". */
+  'salz:so': 'salz:so / sol',
+  /* Ajdin am 23.10.2026: "tetka ujna strina fuer die verschiedenen tanten
+     und striko ujak amidza=stric tetak daidza=ujak usw". Tanten und Onkel
+     heissen seitdem nach ihrer Seite, amidža und daidža haben eine zweite
+     Form (stric, ujak). Die Suche unten faende amidža und daidža ueber das
+     bosnische Wort nicht mehr wieder; tetka und rođak faende sie, aber nur
+     solange kein zweites Wort so heisst. */
+  'tante:tetka': 'tante (schwester von vater oder mutter):tetka',
+  'onkel (vaterseite):amidža': 'onkel (bruder des vaters):amidža / stric',
+  'onkel (mutterseite):daidža': 'onkel (bruder der mutter):daidža / ujak',
+  'cousin:rođak': 'cousin, verwandter (allgemein):rođak'};
 function altenFortschrittUmschreiben(){
   const gueltig = new Set(), nachWort = new Map(), nachLevel = new Map();
   CATEGORIES.forEach(c => c.words.forEach(w => {
@@ -6545,7 +7333,16 @@ function altenFortschrittUmschreiben(){
     else neu.add(x);          // unbekannt, zum Beispiel ein gelöschtes Wort
   });
   if(geaendert) known = neu;
-  return geaendert;
+  /* Die Sterne haengen an denselben Kennungen (19.10.2026). Erst
+     ausrechnen, dann verknuepfen - mit || liefe es nach einer
+     Wort-Umschreibung gar nicht mehr. */
+  const sternNeu = sternUmschreiben(nachWort);
+  /* Der Fehler-Topf ebenso (22.10.2026). Bis dahin zog hier nur known um,
+     und topfAufraeumen() warf "w:salz:so" beim naechsten Oeffnen von
+     Wiederholen still weg - ein offener Fehler waere ohne Wiederholung
+     verschwunden. Gefunden beim Umbenennen von Salz auf "so / sol". */
+  const topfNeu = topfUmschreiben(nachWort);
+  return geaendert || sternNeu || topfNeu;
 }
 
 // Der Knopf mit dem Namen oben rechts führt in die Einstellungen -
@@ -6676,7 +7473,7 @@ function renderLaden(){
     : '<button class="btn kauf ghost" data-vollstueck="1"'+knopfName(w, t('laden.nur_voll'))+'>'+t('laden.nur_voll')+'</button>';
   const zierratZeile = w => w.voll
     ? zeile(w, unlimited() ? tragenKnopf(w) : vollKnopf(w))
-    : (besitz.has(w.id) ? zeile(w, tragenKnopf(w)) : zeile(w, preisKnopf(w)));
+    : (hatStueck(w.id) ? zeile(w, tragenKnopf(w)) : zeile(w, preisKnopf(w)));
   /* Beim Herz steht neben dem Preis auch das freiwillige Video - der Laden
      ist die Stelle, an der man nach "auffuellen" sucht. Eigenes
      Tageskontingent, siehe WERBUNG_MAX_LOHN.
@@ -6730,7 +7527,7 @@ function renderLaden(){
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
    dasselbe tippen nimmt es ab. */
 function trage(id){
-  if(!besitz.has(id) && !(istVollStueck(id) && unlimited())) return;
+  if(!hatStueck(id) && !(istVollStueck(id) && unlimited())) return;
   const g = gruppeVon(id);
   const runter = traegt(id);
   // Rohe Liste: siehe getragenRoh(). Sonst faellt hier heraus, was das
@@ -6863,10 +7660,43 @@ $('wegForm').addEventListener('submit', async e=>{
    Datei ueber Capacitor in den Zwischenspeicher und reichen sie ans
    Teilen-Menue weiter; der Nutzer schickt sie sich dann selbst zu oder legt
    sie in seine Cloud. Im Browser am PC bleibt es beim normalen Download. */
+/* Die Datei als Objekt. Die Cloud-Sicherung speichert genau dieses JSON
+   (ohne Einrueckung), damit ein Stand aus der Cloud auch als Datei
+   eingelesen werden kann und umgekehrt. 19.10.2026 */
+function sicherungObjekt(stand){
+  return {app:'zmaj', version:1,
+          datum:new Date().toISOString().slice(0,10),
+          stand: stand || standAlsObjekt()};
+}
 function sicherungInhalt(){
-  return JSON.stringify({app:'zmaj', version:1,
-                         datum:new Date().toISOString().slice(0,10),
-                         stand:standAlsObjekt()}, null, 1);
+  return JSON.stringify(sicherungObjekt(), null, 1);
+}
+/* Der Lernstand aus einer Sicherung, oder null, wenn es keine ist. */
+function sicherungStandAus(d){
+  // typeof [] ist auch 'object'. Eine Datei mit "stand": [] kaeme sonst
+  // durch und wuerde den Lernstand nicht ersetzen, sondern loeschen.
+  if(!d || d.app !== 'zmaj' || !d.stand || typeof d.stand !== 'object' || Array.isArray(d.stand)) return null;
+  return d.stand;
+}
+/* Einen neuen Stand uebernehmen - mit Rueckweg. machen() liefert ihn und
+   laeuft schon innerhalb der Absicherung. Gibt zurueck, ob es geklappt hat.
+   Gebraucht beim Einlesen einer Datei und seit 19.10.2026 beim
+   Zusammenfuehren mit der Cloud (cloudUebernehmen). */
+function standErsetzen(machen){
+  /* Wirft das Uebernehmen trotz der Pruefungen in standUebernehmen(), kommt
+     der alte Stand zurueck - sonst speicherte das naechste saveProgress()
+     einen halb uebernommenen. import_richten.py, 04.10.2026. */
+  const vorher = standAlsObjekt();
+  /* standUebernehmen() schreibt Geschenkjahr und getragenes Stueck sofort
+     in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
+     sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
+  const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
+  try{ standUebernehmen(machen()); altenFortschrittUmschreiben(); return true; }
+  catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
+           geschenk = geschenkVorher; getragen = getragenVorher;
+           try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
+                localStorage.setItem('zmaj_getragen', getragen); }catch(e2){}
+           return false; }
 }
 function sicherungName(){ return 'zmaj-sicherung-' + new Date().toISOString().slice(0,10) + '.json'; }
 
@@ -6911,30 +7741,20 @@ async function sicherungEinlesen(datei){
   let d;
   try{ d = JSON.parse(await datei.text()); }
   catch(e){ note.textContent = t('set.sicherung_keine'); return; }
-  // typeof [] ist auch 'object'. Eine Datei mit "stand": [] kaeme sonst
-  // durch und wuerde den Lernstand nicht ersetzen, sondern loeschen.
-  if(!d || d.app !== 'zmaj' || !d.stand || typeof d.stand !== 'object' || Array.isArray(d.stand)){
+  // Die Pruefung der Form steht in sicherungStandAus() (19.10.2026).
+  if(!sicherungStandAus(d)){
     note.textContent = t('set.sicherung_keine'); return;
   }
   if(!await frage(t('set.sicherung'), t('set.sicherung_frage'),
-                  t('btn.ersetzen'), t('btn.abbrechen'))) return;
-  /* Wirft das Uebernehmen trotz der Pruefungen in standUebernehmen(), kommt
-     der alte Stand zurueck - sonst speicherte das naechste saveProgress()
-     einen halb uebernommenen. import_richten.py, 04.10.2026. */
-  const vorher = standAlsObjekt();
-  /* standUebernehmen() schreibt Geschenkjahr und getragenes Stueck sofort
-     in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
-     sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
-  const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
-  /* sicherungPlausibel(): Lerntage nur von APP_START bis heute, Muenzen nur
+                  t('btn.ersetzen'), t('btn.dialog_abbrechen'))) return;
+  /* Der Rueckweg, falls das Uebernehmen wirft, steht seit 19.10.2026 in
+     standErsetzen() - die Cloud-Sicherung braucht ihn genauso.
+     sicherungPlausibel(): Lerntage nur von APP_START bis heute, Muenzen nur
      so viele, wie sich damit verdienen lassen, Zierrat nur so viel, wie
      diese Muenzen bezahlen (17.10.2026). */
-  try{ standUebernehmen(sicherungPlausibel(d.stand)); altenFortschrittUmschreiben(); }
-  catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
-           geschenk = geschenkVorher; getragen = getragenVorher;
-           try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
-                localStorage.setItem('zmaj_getragen', getragen); }catch(e2){}
-           note.textContent = t('set.sicherung_keine'); return; }
+  if(!standErsetzen(() => sicherungPlausibel(d.stand))){
+    note.textContent = t('set.sicherung_keine'); return;
+  }
   /* Dieselbe Umschreibung wie beim normalen Start (nachAnmeldung). Die
      Kennung eines Wortes ist "bedeutung:wort"; wird eine deutsche Bedeutung
      berichtigt, aendert sich die Kennung mit. Eine Sicherung von vor der
@@ -6963,6 +7783,334 @@ $('sichDatei').addEventListener('change', async e=>{
   e.target.value = '';          // damit dieselbe Datei nochmal gewaehlt werden kann
   if(datei) await sicherungEinlesen(datei);
 });
+
+/* =================== CLOUD-SICHERUNG (vorbereitet, aus) ===================
+   19.10.2026. Ajdin am 18.10.2026: "dann machen wir firebase" - eingeschaltet
+   wird aber erst nach dem Produktionsstart. Bis dahin steht CLOUD_AN auf
+   false, und dann passiert hier NICHTS: keine Anfrage ins Netz, keine
+   Oberflaeche, kein Eintrag im Geraetespeicher. Ohne Adapter tut keine
+   Funktion unten etwas, und einen Adapter gibt es nur mit CLOUD_AN und
+   eingesetzten Zugangsdaten (cloudAdapter). Einschalten: siehe
+   FIREBASE_EINRICHTEN.md.
+
+   Die Regeln aus der Recherche vom 18.10.2026:
+     - Das Geraet bleibt massgeblich, die Cloud ist nur Sicherung. Gelernt
+       und gerechnet wird weiter mit dem Geraetespeicher.
+     - Hoechstens ein Schreibvorgang je Nutzer und Tag und nur, wenn sich
+       etwas geaendert hat (Spark: 20 000 am Tag fuer alle zusammen), dazu
+       einer beim ersten Anmelden. Gelesen wird beim ersten Start des Tages
+       und vor jedem Schreiben.
+     - In der Cloud steht dasselbe JSON wie in der Sicherungsdatei
+       (sicherungObjekt), als ein Text in users/{uid}. Keine
+       Firebase-Sonderfunktionen: fuer einen anderen Anbieter genuegt ein
+       neuer Adapter mit anmelden, laden, speichern und loeschen.
+     - Zusammenfuehren statt ueberschreiben, siehe standZusammenfuehren().
+       Zusammengefuehrt wird aber nur, wenn seit dem eigenen letzten
+       Abgleich jemand anderes geschrieben hat (rev passt nicht mehr). Sonst
+       schreibt das Geraet seinen Stand einfach drueber - sonst kaeme ein
+       hier weggenommener Stern oder ein fertig geuebter Fehler aus der
+       eigenen alten Sicherung wieder zurueck.
+     - Fehler oder kein Netz: still, beim naechsten Anlass noch einmal.
+   Angestossen wird der Abgleich beim Start (nur lesen) und wenn die App in
+   den Hintergrund geht (schreiben, hoechstens einmal am Tag) - dann ist der
+   Stand des Tages am vollstaendigsten. */
+const CLOUD_AN = false;
+/* Platzhalter wie beim Dauer-Pruefwert: app_bauen.py (cloud_einsetzen)
+   setzt beim Bauen die Werte aus der privaten Huelle ein
+   (cloud_zugang.json). Im Repository stehen sie nie. */
+const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';
+const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';
+/* Was dieses Geraet sich merkt, erst nach dem Anmelden:
+     art, uid  das Konto ('google' oder 'anonym')
+     token     der Erneuerungsschluessel der Anmeldung - liegt im
+               App-Speicher wie der Lernstand selbst
+     rev       Kennung des Cloud-Stands, den dieses Geraet zuletzt
+               geschrieben oder eingearbeitet hat
+     fp        Fingerabdruck des zuletzt hochgeladenen Stands
+     tag       Tag des letzten Schreibens, gelesen der des letzten Lesens */
+const CLOUD_MERKER = 'zmaj_cloud';
+/* Auch nach Jahren wird ein Stand nicht so gross (alle Woerter, Topf und
+   Sterne voll: rund 150 000 Zeichen). Dieselbe Grenze steht in
+   firestore.rules. */
+const CLOUD_GROESSE_MAX = 400000;
+let cloudLaeuft = false;   // immer nur ein Abgleich zur Zeit
+let cloudFirestoreAdapter = null;
+const cloudEingerichtet = () => /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/.test(CLOUD_PROJEKT)
+  && /^AIza[0-9A-Za-z_-]{35}$/.test(CLOUD_SCHLUESSEL);
+function cloudAdapter(){
+  if(!CLOUD_AN || !cloudEingerichtet()) return null;
+  if(!cloudFirestoreAdapter) cloudFirestoreAdapter = cloudFirestore(CLOUD_PROJEKT, CLOUD_SCHLUESSEL);
+  return cloudFirestoreAdapter;
+}
+function cloudMerker(){
+  try{
+    const m = JSON.parse(localStorage.getItem(CLOUD_MERKER) || 'null');
+    return (m && typeof m === 'object' && !Array.isArray(m) && typeof m.uid === 'string' && m.uid) ? m : null;
+  }catch(e){ return null; }
+}
+/* nurWennGleich: nur, wenn noch dasselbe Konto angemeldet ist. Wer sich
+   waehrend eines Abgleichs abmeldet, waere sonst gleich wieder angemeldet. */
+function cloudMerkerSetzen(m, nurWennGleich){
+  if(nurWennGleich){ const jetzt = cloudMerker(); if(!jetzt || jetzt.uid !== m.uid) return; }
+  try{ localStorage.setItem(CLOUD_MERKER, JSON.stringify(m)); }catch(e){}
+}
+/* Ob sich seit dem letzten Hochladen etwas geaendert hat. Ein kurzer
+   Fingerabdruck (cyrb53, 64 Bit) statt des ganzen Texts, der sonst ein
+   zweites Mal im Geraetespeicher laege. */
+function cloudFingerabdruck(stand){
+  const s = JSON.stringify(stand);
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for(let i = 0; i < s.length; i++){
+    const c = s.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
+}
+function cloudStandAus(text){
+  try{ return typeof text === 'string' ? sicherungStandAus(JSON.parse(text)) : null; }
+  catch(e){ return null; }
+}
+/* Den Stand aus der Cloud einarbeiten. Er kommt von aussen wie eine
+   Sicherungsdatei, also zuerst durch sicherungPlausibel(); das Ergebnis
+   geht in standErsetzen() durch standUebernehmen(). Danach dasselbe wie
+   nach dem Einlesen einer Datei (sicherungEinlesen). */
+function cloudUebernehmen(fremd){
+  if(!standErsetzen(() => standZusammenfuehren(standAlsObjekt(), sicherungPlausibel(fremd)))) return false;
+  seitNachEinlesen();
+  geschenkPruefen();
+  syncLives(); pruefeSchutz();
+  saveProgress();
+  renderLives();
+  /* Auf der Startseite gleich zeigen, was dazugekommen ist. Mitten in einer
+     Lektion nicht - dort gilt der neue Stand ab der naechsten. */
+  if(sichtbar('pfad') && !frageSchliessen) showHome();
+  return true;
+}
+/* Der Abgleich. anlass: 'start' (nur lesen, einmal am Tag), 'pause' (App
+   geht in den Hintergrund: schreiben, hoechstens einmal am Tag) oder
+   'anmelden' (lesen und schreiben, zaehlt nicht als der eine am Tag).
+   Gibt zurueck, was passiert ist - nur fuer die Tests. */
+async function cloudAbgleich(anlass, adapter = cloudAdapter()){
+  const m = cloudMerker();
+  if(!adapter || !m || cloudLaeuft || !standGeladen || MIT_SERVER) return 'nichts';
+  const heute = today(), erstes = anlass === 'anmelden';
+  const schreiben = erstes || (anlass === 'pause' && m.tag !== heute);
+  if(!schreiben && m.gelesen === heute) return 'nichts';
+  /* Heute schon gelesen und seit dem letzten Hochladen nichts Neues: dann
+     auch keine Anfrage. */
+  if(schreiben && !erstes && m.gelesen === heute && m.fp === cloudFingerabdruck(standAlsObjekt())) return 'unveraendert';
+  cloudLaeuft = true;
+  try{
+    const dok = await adapter.laden(m);
+    m.gelesen = heute;
+    const fremd = !!dok && dok.rev !== m.rev;
+    if(fremd){
+      /* Ist der Text dort kaputt, gibt es nichts einzuarbeiten - dann
+         ersetzt ihn unten der eigene Stand. Wirft das Einarbeiten, wird
+         lieber nicht geschrieben: dort koennte ein anderes Geraet stehen. */
+      const s = cloudStandAus(dok.text);
+      if(s && !cloudUebernehmen(s)) return 'fehler';
+      m.rev = dok.rev;
+    }
+    if(!schreiben){ cloudMerkerSetzen(m, true); return fremd ? 'zusammengefuehrt' : 'gelesen'; }
+    const stand = standAlsObjekt(), fp = cloudFingerabdruck(stand);
+    if(!erstes && dok && !fremd && fp === m.fp){ cloudMerkerSetzen(m, true); return 'unveraendert'; }
+    const text = JSON.stringify(sicherungObjekt(stand));
+    if(text.length > CLOUD_GROESSE_MAX){ cloudMerkerSetzen(m, true); return 'zu gross'; }
+    const rev = geraetId() + '.' + Date.now().toString(36);
+    await adapter.speichern(m, {text, rev});
+    m.rev = rev; m.fp = fp;
+    if(!erstes) m.tag = heute;
+    cloudMerkerSetzen(m, true);
+    return 'gespeichert';
+  }catch(e){
+    // Kein Netz oder abgelehnt: der Tag ist nicht verbraucht.
+    cloudMerkerSetzen(m, true);
+    return 'fehler';
+  }finally{ cloudLaeuft = false; }
+}
+/* art: 'google' oder 'anonym'. Gibt zurueck, ob die Anmeldung geklappt hat;
+   ob der erste Abgleich gleich durchkam, ist egal - sonst eben beim
+   naechsten Anlass. */
+async function cloudAnmelden(art, adapter = cloudAdapter()){
+  if(!adapter || !standGeladen || MIT_SERVER || cloudLaeuft) return false;
+  let konto = null;
+  try{ konto = await adapter.anmelden(art); }catch(e){}
+  if(!konto || typeof konto.uid !== 'string' || !konto.uid) return false;
+  /* Dasselbe Konto noch einmal: rev und fp bleiben. Ein anderes faengt von
+     vorn an - sein Stand wird beim Abgleich zusammengefuehrt. */
+  const alt = cloudMerker();
+  cloudMerkerSetzen(alt && alt.uid === konto.uid
+    ? Object.assign(alt, {art, token: konto.token || ''})
+    : {art, uid: konto.uid, token: konto.token || ''});
+  await cloudAbgleich('anmelden', adapter);
+  return true;
+}
+/* Abmelden ist nur Vergessen auf diesem Geraet - ohne Netz. */
+function cloudAbmelden(){ try{ localStorage.removeItem(CLOUD_MERKER); }catch(e){} }
+/* Konto und Sicherung in der Cloud loeschen. Google Play verlangt das fuer
+   jede App, in der man ein Konto anlegen kann. Der Stand auf dem Geraet
+   bleibt. Gibt zurueck: true (beides weg), 'konto bleibt' (die Sicherung
+   ist weg, das Konto nicht - siehe loeschen im Adapter) oder false (nichts
+   geloescht, angemeldet bleiben fuer einen neuen Versuch).
+   19.10.2026: Ist die Sicherung weg, wird immer abgemeldet - sonst laedt
+   das naechste 'pause' den Stand wieder hoch, und die Loeschung haette
+   nicht gewirkt. cloudLaeuft haelt so lange jeden Abgleich auf, auch den,
+   den Googles Kontoauswahl beim Verdecken der App anstossen koennte. */
+async function cloudLoeschen(adapter = cloudAdapter()){
+  const m = cloudMerker();
+  if(!adapter || !m || cloudLaeuft) return false;
+  cloudLaeuft = true;
+  try{
+    let ganz;
+    try{ ganz = await adapter.loeschen(m); }catch(e){ return false; }
+    cloudAbmelden();
+    return ganz === false ? 'konto bleibt' : true;
+  }finally{ cloudLaeuft = false; }
+}
+/* Googles ID-Token aus der Huelle. Google sperrt die Anmeldung in einer
+   WebView; das Plugin ZmajAnmeldung (noch zu bauen, siehe
+   FIREBASE_EINRICHTEN.md) fragt nativ ueber den Credential Manager. */
+async function cloudGoogleAusweis(){
+  const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajAnmeldung;
+  if(!P || !P.googleAusweis) return null;
+  try{ const r = await P.googleAusweis(); return (r && typeof r.idToken === 'string' && r.idToken) || null; }
+  catch(e){ return null; }   // abgebrochen oder kein Google-Konto
+}
+/* ---- Adapter: Firebase Auth und Cloud Firestore ueber REST ----
+   Ohne Firebase-Bibliothek, nur fetch an vier Adressen. Anonym geht ohne
+   Plugin (accounts:signUp), mit Google wird das ID-Token aus
+   cloudGoogleAusweis() bei Firebase eingetauscht (accounts:signInWithIdp).
+   Der Ausweis fuer Firestore (ID-Token, eine Stunde gueltig) bleibt nur im
+   Arbeitsspeicher; neu geholt wird er mit dem token aus dem Merker
+   (securetoken). In users/{uid} stehen zwei Textfelder: daten und rev. */
+function cloudFirestore(projekt, schluessel){
+  const KONTO = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+  const ERNEUERN = 'https://securetoken.googleapis.com/v1/token?key=';
+  const dokument = uid => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(projekt)
+    + '/databases/(default)/documents/users/' + encodeURIComponent(uid);
+  const post = daten => ({method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(daten)});
+  let ausweis = null;   // {uid, id, bis}
+  const merken = (uid, id, sekunden) => { ausweis = {uid, id, bis: Date.now() + (Number(sekunden) || 3600) * 1000}; };
+  /* Nach 20 Sekunden ohne Antwort gilt es als gescheitert - sonst hielte
+     ein haengendes Netz cloudLaeuft fuer immer fest. fehltOk: 404 heisst
+     beim Dokument "noch nichts gesichert" und ist kein Fehler.
+     19.10.2026: Der Fehler traegt Firebases Grund (error.message, etwa
+     CREDENTIAL_TOO_OLD_LOGIN_AGAIN) - loeschen() braucht ihn. */
+  async function senden(url, optionen, fehltOk){
+    const ab = new AbortController(), uhr = setTimeout(() => ab.abort(), 20000);
+    try{
+      const r = await fetch(url, Object.assign({cache: 'no-store', signal: ab.signal}, optionen));
+      if(r.status === 404 && fehltOk) return null;
+      if(!r.ok){
+        const f = new Error('cloud ' + r.status);
+        try{ const d = await r.json(); f.grund = String((d && d.error && d.error.message) || ''); }catch(e){}
+        throw f;
+      }
+      return r;
+    }finally{ clearTimeout(uhr); }
+  }
+  async function idToken(m){
+    if(ausweis && ausweis.uid === m.uid && ausweis.bis > Date.now() + 60000) return ausweis.id;
+    const r = await senden(ERNEUERN + schluessel, {method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(m.token || '')});
+    const d = await r.json();
+    if(!d || !d.id_token || d.user_id !== m.uid) throw new Error('cloud anmeldung');
+    if(d.refresh_token) m.token = d.refresh_token;
+    merken(m.uid, d.id_token, d.expires_in);
+    return ausweis.id;
+  }
+  const mitAusweis = async m => ({Authorization: 'Bearer ' + await idToken(m)});
+  /* Googles Ausweis aus der Huelle bei Firebase eintauschen - beim Anmelden
+     und noch einmal vor dem Loeschen des Kontos. null: abgebrochen. */
+  async function mitGoogle(){
+    const google = await cloudGoogleAusweis();
+    if(!google) return null;
+    return (await senden(KONTO + 'signInWithIdp?key=' + schluessel, post({
+      postBody: 'id_token=' + encodeURIComponent(google) + '&providerId=google.com',
+      requestUri: 'http://localhost', returnIdpCredential: true, returnSecureToken: true}))).json();
+  }
+  /* Das Konto selbst: true geloescht oder schon weg, 'alt' verlangt eine
+     frische Anmeldung, false sonst gescheitert. */
+  async function kontoWeg(id){
+    try{ await senden(KONTO + 'delete?key=' + schluessel, post({idToken: id})); return true; }
+    catch(e){
+      const g = (e && e.grund) || '';
+      if(/^USER_NOT_FOUND/.test(g)) return true;
+      return /^(CREDENTIAL_TOO_OLD_LOGIN_AGAIN|INVALID_ID_TOKEN)/.test(g) ? 'alt' : false;
+    }
+  }
+  return {
+    async anmelden(art){
+      let d = null;
+      if(art === 'anonym'){
+        d = await (await senden(KONTO + 'signUp?key=' + schluessel, post({returnSecureToken: true}))).json();
+      }else if(art === 'google'){
+        d = await mitGoogle();
+      }
+      if(!d || typeof d.localId !== 'string' || !d.idToken) return null;
+      merken(d.localId, d.idToken, d.expiresIn);
+      return {uid: d.localId, token: d.refreshToken || ''};
+    },
+    async laden(m){
+      const r = await senden(dokument(m.uid), {headers: await mitAusweis(m)}, true);
+      if(!r) return null;
+      const f = (await r.json()).fields || {};
+      return {text: (f.daten && f.daten.stringValue) || '', rev: (f.rev && f.rev.stringValue) || ''};
+    },
+    async speichern(m, dok){
+      await senden(dokument(m.uid), {method: 'PATCH',
+        headers: Object.assign({'Content-Type': 'application/json'}, await mitAusweis(m)),
+        body: JSON.stringify({fields: {daten: {stringValue: dok.text}, rev: {stringValue: dok.rev}}})});
+      return true;
+    },
+    /* 19.10.2026: Zuerst die Sicherung - scheitert das, wirft es, und es
+       ist nichts passiert. Danach das Konto. Firebase loescht es nur nach
+       einer frischen Anmeldung (CREDENTIAL_TOO_OLD_LOGIN_AGAIN); der Ausweis
+       aus dem Erneuerungsschluessel zaehlt nicht. Mit Google fragt die App
+       dann noch einmal nach dem Konto, nur dasselbe (uid) wird geloescht.
+       Anonym gibt es keine neue Anmeldung - dort bleibt eine leere Kennung.
+       Gibt zurueck, ob auch das Konto weg ist; die Sicherung ist es dann
+       in jedem Fall. */
+    async loeschen(m){
+      const id = await idToken(m);
+      await senden(dokument(m.uid), {method: 'DELETE', headers: {Authorization: 'Bearer ' + id}}, true);
+      ausweis = null;
+      let weg = await kontoWeg(id);
+      if(weg === 'alt' && m.art === 'google'){
+        let d = null;
+        try{ d = await mitGoogle(); }catch(e){}
+        weg = (d && d.localId === m.uid && d.idToken) ? await kontoWeg(d.idToken) : false;
+      }
+      return weg === true;
+    },
+  };
+}
+/* ---- Adapter fuer die Tests ----
+   Haelt den Cloud-Stand in einem gewoehnlichen Objekt (ablage) statt bei
+   einem Anbieter und zaehlt, wie oft wirklich gelesen und geschrieben
+   wurde. ablage.offline = true laesst jede Anfrage scheitern wie ohne
+   Netz. Nur tests_e2e/test_cloud.py reicht ihn herein; cloudAdapter()
+   waehlt ihn nie. */
+function cloudSpeicherAdapter(ablage){
+  ablage.zaehler = ablage.zaehler || {anmelden: 0, laden: 0, speichern: 0, loeschen: 0};
+  const netz = was => { if(ablage.offline) throw new Error('offline'); ablage.zaehler[was]++; };
+  return {
+    async anmelden(art){ netz('anmelden'); return {uid: ablage.uid || 'probe-' + art, token: 'probe'}; },
+    async laden(){ netz('laden'); return ablage.dok ? {text: ablage.dok.text, rev: ablage.dok.rev} : null; },
+    async speichern(m, dok){ netz('speichern'); ablage.dok = {text: dok.text, rev: dok.rev}; return true; },
+    async loeschen(){ netz('loeschen'); ablage.dok = null; return true; },
+  };
+}
+/* Nur mit CLOUD_AN haengt sich die Cloud ueberhaupt irgendwo ein. Der
+   Start steht in init(). saveProgress() hat beim Verstecken schon lokal
+   gespeichert (Horcher weiter oben), dieser Horcher kommt danach. */
+if(CLOUD_AN){
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) cloudAbgleich('pause'); });
+}
 
 /* ===== Zmaj bewerten und empfehlen (Einstellungen, Ueber die App) =====
    07.10.2026. Bewerten geht hier gleich in den Play Store und nicht ueber
@@ -7284,6 +8432,9 @@ function showStory(){
     knopfVor.classList.remove('laeuft');
     knopfStop.hidden = true;
     wachHalten(false);   // Stopp, Ende, Wort angetippt, Ansicht verlassen, verdeckt
+    /* Auch wenn das System den Ton von aussen anhaelt (Anruf, Kopfhoerer):
+       dann kommt kein stilleBitte(), nur dieser Rueckruf. (20.10.2026) */
+    mitlesenAus();
   };
   knopfVor.addEventListener('click',()=>{
     if(pausiert){                      // angehalten -> an derselben Stelle weiter
@@ -7321,6 +8472,9 @@ function showStory(){
        gibt wiederVorlesen() die Sperre gleich wieder frei. */
     wachHalten(true);
     speak(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); });
+    /* Mitlesen (20.10.2026). Ohne passende Wortzeiten oder ohne Aufnahme
+       (Computerstimme) bleibt der Text einfach ohne Markierung. */
+    mitlesenStart(audioDatei(s.text), $('rBody').querySelectorAll('.txt .w'));
   });
   /* Der kleine Knopf bricht wirklich ab - dann ist auch die gemerkte
      Stelle hinfaellig, sonst spraenge der naechste Start mittenhinein. */
@@ -7410,6 +8564,13 @@ function showLevelHome(){
   // Test dieselben. Bliebe die abgebrochene Lektion stehen, würde der Test
   // seine Knöpfe an die alten Felder hängen und auf nichts mehr reagieren.
   $('lBody').innerHTML=''; $('tBody').innerHTML='';
+  /* Ebenso die kleinen Drachen von Lektion und Test (19.10.2026): #lesson
+     und #test sind keine Ansichten im Sinne von zmajRuht(), ihre
+     Lottie-Drachen liefen hinter der Uebersicht unsichtbar in Schleife
+     weiter - nach Abbruch, Ergebnis und Zurueck-Taste. Leer geraeumt baut
+     der Beobachter unter mountZmaj() sie ab; startLesson(), startTopf()
+     und startTest() setzen sie neu ein. */
+  $('zmajLesson').innerHTML=''; $('zmajTest').innerHTML='';
   uhrAus();
   const c = cur(); const s = SECTIONS.find(x=>x.id===c.sektion);
   $('lvTitle').innerHTML = t('level.titel',{i:catIdx+1, label:esc(c.label)})+'<small>'+esc(s ? s.label.replace(/ ·.*$/,'') : '')+'</small>';
@@ -7455,7 +8616,7 @@ function updateProgress(){
   marke.style.left = TEST_FREI_AB + '%';
   marke.title = t('level.test_marke',{p:TEST_FREI_AB});
   const bt=$('btnTest'), allowed=testAllowed(c);
-  bt.disabled = !allowed;
+  testKnopf(livesNow());
   if(passed.has(c.id)){ bt.textContent=t('level.test_bestanden'); }
   else bt.textContent = allowed ? t('level.test') : t('level.test_gesperrt',{p:TEST_FREI_AB});
   $('lvNote').textContent = passed.has(c.id) ? t('level.note_bestanden') :
@@ -7690,13 +8851,13 @@ function renderTask(task, body, done, opts={}){
     body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+t('task.hoeren')+'</button>':'')+
       '<div class="row unten"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
-    if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 250); }
+    if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN); }
     $$('xNext').addEventListener('click',()=>done({ok:true, intro:true})); $$('xNext').focus();
     return;
   }
   if(task.typ==='mc'){
     body.innerHTML = kick(t('task.was_heisst'))+'<div class="prompt'+(w.de.length>18?' long':'')+'">'+esc(w.de)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); }, 'bs');
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok}); }, 'bs');
     return;
   }
   if(task.typ==='mcrev'){
@@ -7711,7 +8872,7 @@ function renderTask(task, body, done, opts={}){
       '<button class="listen" data-hoer="1">'+t('task.hoeren')+'</button>');
     const hoerKnopf = body.querySelector('[data-hoer]');
     if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(w.bs); });
-    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, 450); done({ok}); });
+    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok}); });
     return;
   }
   if(task.typ==='type'){
@@ -7737,7 +8898,7 @@ function renderTask(task, body, done, opts={}){
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
       else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', w.bs);
       loesung(w.bs, w.de);
-      sound(ok?'ok':'no'); spaeterSprechen(w.bs, 450); done({ok});
+      sound(ok?'ok':'no'); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok});
     };
     inp.addEventListener('keydown',e=>{ if(e.key==='Enter') check(); });
     $$('xCheck').addEventListener('click',check);
@@ -7745,7 +8906,7 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='listen'){
     body.innerHTML = kick(t('task.hoerfrage'))+'<button class="listen bigplay" id="xPlay" aria-label="'+t('task.abspielen')+'">🔊</button><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.hoeren_skip'));
-    $$('xPlay').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, 300);
+    $$('xPlay').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN);
     renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); }, 'bs');
     wireSkip();
     return;
@@ -7872,7 +9033,12 @@ function renderTask(task, body, done, opts={}){
       '<div class="translation">'+inZitat(esc(s.de))+'</div><div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
     const check=()=>{
-      if(fin) return; const r=matches(inp.value, s.answer);
+      if(fin) return;
+      /* "auch" am Lueckensatz (23.10.2026): weitere richtige Antworten, wie
+         bei den Woertern. Bei "Moj ___ je pčelar." gelten auch stric und die
+         Koseformen striko und adžo (WORTSCHATZ_KORREKTUREN.md). Gezeigt und
+         gesprochen wird weiter s.answer. matches() trennt bei " / ". */
+      const r=matches(inp.value, [s.answer, ...(s.auch || [])].join(' / '));
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_luecke'))); return; }
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
@@ -7888,8 +9054,8 @@ function renderTask(task, body, done, opts={}){
          verraten. Gehoert wird der Satz mit eingesetztem Wort, nicht der
          mit der Luecke. */
       const ganz = s.text.replace('___', s.answer);
-      if(hoerbar(ganz)) spaeterSprechen(ganz, 450);
-      else if(hoerbar(s.answer)) spaeterSprechen(s.answer, 450);
+      if(hoerbar(ganz)) spaeterSprechen(ganz, nachAntwort(ok));
+      else if(hoerbar(s.answer)) spaeterSprechen(s.answer, nachAntwort(ok));
       done({ok});
     };
     inp.addEventListener('keydown',e=>{ if(e.key==='Enter') check(); });
@@ -8010,7 +9176,7 @@ function renderTask(task, body, done, opts={}){
       loesung(s.bs, s.de);
       sound(ok?'ok':'no');
       // Erst jetzt vorlesen - vorher waere die Loesung verraten.
-      if(hoerbar(s.bs)) spaeterSprechen(s.bs, 450);
+      if(hoerbar(s.bs)) spaeterSprechen(s.bs, nachAntwort(ok));
       done({ok});
     };
     pruef.addEventListener('click', check);
@@ -8027,7 +9193,7 @@ function renderTask(task, body, done, opts={}){
     // Vorgelesen auch nur dann: "weiblich (ona)" sprach sonst die bosnische
     // Stimme der Sprachausgabe - ein deutsches Wort mit bosnischer Aussprache.
     const bsRichtig = gramAntwortBosnisch(g.richtig);
-    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, 450); done({ok, slow:!ok && !!g.tipp}); },
+    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, nachAntwort(ok)); done({ok, slow:!ok && !!g.tipp}); },
       o => gramAntwortBosnisch(o) ? 'bs' : '');
     return;
   }
@@ -8257,6 +9423,13 @@ function kachelnFuerLektion(ids, belegt){
   }
   return out;
 }
+/* Die Aufgabenart eines Wortes reihum, ab einer zufaelligen Stelle;
+   Schreiben nur bei Woertern, die sich tippen lassen. Seit 19.10.2026 ein
+   eigenes Stueck: die Markiert-Runde (sternRunde) waehlt genauso. */
+function artenReihum(types){
+  let ti = Math.floor(Math.random()*types.length);
+  return w => { for(let k=0;k<types.length;k++){ const t=types[(ti+k)%types.length]; if(t==='type' && !typable(w)) continue; ti=(ti+k+1)%types.length; return t; } return 'mc'; };
+}
 function buildLesson(){
   const c = cur();
   const unknown = shuffle(c.words.filter(w=>!known.has(w.id)));
@@ -8266,8 +9439,7 @@ function buildLesson(){
   if(nRev < LEKTION_WOERTER - nNew) nNew = Math.min(unknown.length, Math.max(nNew, Math.min(8, LEKTION_WOERTER - nRev)));
   const newW = unknown.slice(0,nNew), revW = knownW.slice(0,nRev);
   const types = ['mc','mcrev','type']; if(canListen) types.push('listen'); if(canSpeak) types.push('speak');
-  let ti = Math.floor(Math.random()*types.length);
-  const pick = w => { for(let k=0;k<types.length;k++){ const t=types[(ti+k)%types.length]; if(t==='type' && !typable(w)) continue; ti=(ti+k+1)%types.length; return t; } return 'mc'; };
+  const pick = artenReihum(types);
   const tasks = [];
   [...newW, ...revW].forEach(w=> tasks.push({typ:pick(w), w, neu:!known.has(w.id)}));
   const gesehenIds = new Set([...known, ...newW.map(w=>w.id)]);
@@ -8310,6 +9482,8 @@ function lessonBar(){
 }
 function showLessonTask(){
   lessonBar();
+  // Der Stern gilt der Aufgabe, die jetzt kommt - auf dem Ergebnis keiner (19.10.2026)
+  sternKnopf('lStern', Lx.i < Lx.queue.length ? Lx.queue[Lx.i] : null);
   if(Lx.i >= Lx.queue.length){ lessonEnd(); return; }
   const task = Lx.queue[Lx.i];
   $('lBody').dataset.i = Lx.i;
@@ -8319,6 +9493,7 @@ function showLessonTask(){
     else {
       Lx.results[Lx.i]=res.ok; zmajReact(res.ok); uhrTakt(true); zaehle('auf');
       topfMerken(task, res.ok);
+      if(Lx.quelle === 'stern') sternGeuebt(task);
       if(res.ok){
         Lx.right++; zaehle('ric');
         if(task.typ==='gap') zaehle('lue');
@@ -8489,6 +9664,11 @@ function werbungFuerLeben(e){
   /* Aus der Levelansicht und aus dem Wiederholen-Reiter kommt der Knopf
      selbst mit. Der Laden bleibt beim alten Weg - sein Knopf traegt
      eigenes Innenleben, das textContent unten zerstoeren wuerde. */
+  /* Laeuft schon ein Video, still aussteigen (19.10.2026): Im Reiter
+     Wiederholen gibt es ohne Leben zwei Video-Knoepfe (topfAd, sternAd).
+     Der zweite Tipp lief sonst in den Riegel von zeigeWerbung() und
+     meldete "keine Anzeige", waehrend das Video schon lud. */
+  if(anzeigeLaeuft) return;
   const quelle = e && e.currentTarget;
   /* Der Laden-Knopf (data-videoleben, ohne id) fiel bis v96 auf $('lAd')
      durch: im Laden meist null, also wurde nichts gesperrt - ein zweiter
@@ -8497,7 +9677,7 @@ function werbungFuerLeben(e){
      disabled, sein Text bleibt. Pruefung vom 07.10.2026. */
   const ladenKnopf = (quelle && quelle.hasAttribute && quelle.hasAttribute('data-videoleben')) ? quelle : null;
   const knopf = ladenKnopf ? null
-              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd')) ? quelle : $('lAd');
+              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd' || quelle.id === 'sternAd')) ? quelle : $('lAd');
   /* Gefunden bei der Pruefung am 06.10.2026: der Knopf bleibt stehen,
      waehrend die Leben nachwachsen - der Schirm ohne Leben wartet die zwei
      Stunden ja gerade ab. Bei vollen Leben brachte das Video kein Herz,
@@ -8506,7 +9686,7 @@ function werbungFuerLeben(e){
   if(livesNow() >= LEBEN_MAX){
     renderLives(); lebenWege(); topfNachziehen();
     if(sichtbar('shopView')) renderLaden();
-    else if(knopf && knopf.id === 'lAd' && sichtbar('levelView') && sichtbar('lesson')) lektionVerlassen();
+    else if(knopf && knopf.id === 'lAd') ohneLebenVerlassen();
     return;
   }
   /* Punkt 17: bis zum ersten Bild der Anzeige vergehen Sekunden, in denen
@@ -8537,10 +9717,8 @@ function werbungFuerLeben(e){
        dieser Knoten noch im Dokument haengt, steht auch der alte Schirm
        noch. Dieselbe Vorsicht wie beim Interstitial seit dem 29.09.2026. */
     const danach = ()=>{
-      if(knopf && knopf.id === 'topfAd') showTopf();
-      else if(knopf && knopf.id === 'lAd'){
-        if(sichtbar('levelView') && sichtbar('lesson')) lektionVerlassen();
-      }
+      if(knopf && (knopf.id === 'topfAd' || knopf.id === 'sternAd')) showTopf();   // sternAd: Kasten "Markiert", 19.10.2026
+      else if(knopf && knopf.id === 'lAd') ohneLebenVerlassen();
       /* Aus dem Laden: den Laden neu zeichnen, damit Preis und Video zum
          neuen Herz passen. showLevelHome() traf hier nur die unsichtbare
          Levelansicht. 07.10.2026. */
@@ -8557,9 +9735,17 @@ function werbungFuerLeben(e){
    ohnehin auf der Startseite. Und unten nur ein Knopf, denn ohne Leben
    gibt es nur einen Weg.
    Die Vollversion kommt nicht jedes Mal, sondern bei jedem dritten Mal.
-   Ein Hinweis, der immer da steht, wird nicht gelesen, sondern lästig. */
+   Ein Hinweis, der immer da steht, wird nicht gelesen, sondern lästig.
+   Seit dem 19.10.2026 derselbe Schirm fuer den Level-Test (imTest): er
+   kostet jetzt Leben wie die Lektion, und bei null ist er genauso vorbei -
+   nicht bestanden, ohne Ergebnis und ohne Anzeige danach. Wer ueber Video
+   oder Muenzen ein Leben holt, landet wie in der Lektion auf der
+   Level-Uebersicht und faengt den Test von vorn an. Anders als in der
+   Lektion steht oben der Name des Levels wie auf dem Testergebnis, denn
+   "Lektion abgebrochen" stimmt hier nicht. */
 let ohneLeben = 0;
-function lessonOutOfLives(){
+function testOutOfLives(){ lessonOutOfLives(true); }
+function lessonOutOfLives(imTest){
   stilleBitte(); uhrAus();   // das letzte Wort nicht in den Ergebnisschirm reden lassen
   /* Hier ist die Lektion zu Ende - das muss auch Lx sagen. Bei der letzten
      falschen Antwort wuchs die Warteschlange um die Wiederholung,
@@ -8567,8 +9753,17 @@ function lessonOutOfLives(){
      Schirm "Lektion abbrechen?", und "Weitermachen" setzte nichts fort, weil
      showLessonTask() nie wieder gerufen wird - der Nutzer musste zweimal
      zurueck. Gefunden am 26.09.2026. Dasselbe traf Muenzen, Laden und Zahnrad
-     oben, die in lektionDarfWeg() dieselbe Bedingung pruefen. */
-  Lx.i = Lx.queue.length;
+     oben, die in lektionDarfWeg() dieselbe Bedingung pruefen.
+     Beim Test dasselbe mit Tx: tQuit und lektionDarfWeg() fragen sonst
+     "Test abbrechen?" fuer einen Test, der schon vorbei ist. */
+  if(imTest) Tx.i = Tx.qs.length; else Lx.i = Lx.queue.length;
+  /* Aus dem Test geht es immer zur Level-Uebersicht. lektionVerlassen()
+     schaut auf Lx.topf - und Lx kann noch die Wiederholen-Runde von vorhin
+     sein. */
+  const weg = imTest ? showLevelHome : lektionVerlassen;
+  const k = imTest ? {bar:'tBar', drache:'zmajTest', herz:'tHerz', body:'tBody'}
+                   : {bar:'lBar', drache:'zmajLesson', herz:'lHerz', body:'lBody'};
+  sternKnopf(imTest ? 'tStern' : 'lStern', null);   // keine Aufgabe mehr, also kein Stern (19.10.2026)
   // Der Tag zählt hier NICHT für die Lernserie. Das war früher anders
   // gedacht - wer übt, hat geübt -, aber Ajdin am 17.09.2026: die Serie
   // war gestiegen, obwohl die Lektion nicht geschafft war. Eine Serie, die
@@ -8585,10 +9780,14 @@ function lessonOutOfLives(){
   const herz = VERBRAUCH.find(w => w.id === 'herz');
   const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
-  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('lHerz').style.display='none';
-  $('lBody').innerHTML =
-    '<div class="ergebnis-titel">'+t('lektion.aus')+'</div><div class="celebrate"><div class="zmaj sad">'+zmaj('cry')+'</div></div>'+
-    '<div class="result-big fail">♥ 0</div>'+
+  $(k.bar).innerHTML=''; $(k.drache).style.display='none'; $(k.drache).innerHTML=''; $(k.herz).style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
+  const titel = imTest ? t('level.titel', {i:catIdx+1, label:esc(cur().label)}) : t('lektion.aus');
+  /* .ohneleben: daran erkennt ohneLebenVorbei() diesen Schirm. Im Test
+     reicht .result-big.fail nicht, das traegt auch ein nicht bestandenes
+     Ergebnis. */
+  $(k.body).innerHTML =
+    '<div class="ergebnis-titel">'+titel+'</div><div class="celebrate"><div class="zmaj sad">'+zmaj('cry')+'</div></div>'+
+    '<div class="result-big fail ohneleben">♥ 0</div>'+
     '<div class="feedback no">'+t('lektion.keine_leben')+'</div>'+
     '<div class="stats"><div class="stat"><b>'+fmtMin(nextLifeIn())+'</b>'+t('lektion.bis_naechstes')+'</div></div>'+
     // Zwei Wege zu einem Leben, nebeneinander und klein: ansehen oder zahlen
@@ -8604,15 +9803,19 @@ function lessonOutOfLives(){
        eine Luecke in den Schirm. */
     (perVideo ? '<div class="feedback" id="lAdNote" style="display:none; color:var(--muted)"></div>' : '')+
     (ohneLeben % 3 === 0 ? '<div class="feedback" style="color:var(--muted)">'+t('lektion.vollversion')+'</div>' : '')+
-    '<div class="row"><button class="btn know" id="lHome">'+t(Lx.topf ? 'topf.zurueck' : 'lektion.zurueck')+'</button></div>';
-  $('lHome').addEventListener('click', lektionVerlassen);
+    '<div class="row"><button class="btn know" id="lHome">'+t(!imTest && Lx.topf ? 'topf.zurueck' : 'lektion.zurueck')+'</button></div>';
+  /* Die Knoepfe heissen auch im Test lAd, lCoin und lHome: werbungFuerLeben()
+     kennt den Video-Knopf unter lAd, und es steht immer nur einer dieser
+     Schirme im Dokument - startTest() und startLesson() leeren das andere
+     Feld. */
+  $('lHome').addEventListener('click', ()=> weg());
   if($('lAd')) $('lAd').addEventListener('click', werbungFuerLeben);
   vollZeileHorchen('lVoll');
   /* Nur kaufen, wenn wirklich noch kein Leben da ist: der Schirm wird nicht
      nachgezogen, und wer nach Stunden zurueckkam, sah noch "♥ 0" und zahlte
      100 Muenzen fuer ein Leben, das schon nachgewachsen war. Gefunden bei der
      Pruefung am 06.10.2026. */
-  if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ if(livesNow() === 0) kaufe('herz'); lektionVerlassen(); });
+  if($('lCoin')) $('lCoin').addEventListener('click', ()=>{ if(livesNow() === 0) kaufe('herz'); weg(); });
   renderLives();
   /* Die Karte gleich hier und nicht erst auf der Startseite: auf diesem
      Schirm kommt keine Anzeige nach dem Ergebnis, und wer ohne Leben die
@@ -8626,10 +9829,20 @@ function lessonOutOfLives(){
    voll", die seit Build 95 genau von hier aus angeboten wird -, stimmt er
    nicht mehr: zurueck zur Uebersicht, wie werbungFuerLeben() es bei vollen
    Leben schon tut. Neu aufbauen ginge nicht, lessonOutOfLives() zaehlt und
-   spielt den Fehlton. Gefunden bei der Pruefung am 06.10.2026. */
+   spielt den Fehlton. Gefunden bei der Pruefung am 06.10.2026.
+   Seit dem 19.10.2026 auch fuer den Schirm im Level-Test. */
 function ohneLebenVorbei(){
-  if(!anzeigeLaeuft && livesNow() > 0 && sichtbar('levelView') && sichtbar('lesson')
-     && $('lBody').querySelector('.result-big.fail')) lektionVerlassen();
+  if(!anzeigeLaeuft && livesNow() > 0 && sichtbar('levelView')
+     && ((sichtbar('lesson') && $('lBody').querySelector('.ohneleben')) ||
+         (sichtbar('test')   && $('tBody').querySelector('.ohneleben')))) ohneLebenVerlassen();
+}
+/* Weg vom Schirm ohne Leben, sofern er noch steht: aus der Lektion (oder
+   Wiederholen-Runde) wie bisher ueber lektionVerlassen(), aus dem
+   Level-Test zur Level-Uebersicht (siehe lessonOutOfLives). */
+function ohneLebenVerlassen(){
+  if(!sichtbar('levelView')) return;
+  if(sichtbar('lesson')) lektionVerlassen();
+  else if(sichtbar('test')) showLevelHome();
 }
 function lessonEnd(){
   if(Lx && Lx.topf){ topfEnde(); return; }
@@ -8651,11 +9864,11 @@ function lessonEnd(){
   if(questLob) setTimeout(()=>sound('quest'), 850);   // nach der Fanfare, nicht darueber
   if(benPlugin() && !benStand().gefragt) benDran = true;
   const pct=levelPct(c), nowAllowed=testAllowed(c);
-  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('lHerz').style.display='none';
+  $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('zmajLesson').innerHTML=''; $('lHerz').style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.geschafft')+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
     '<div class="result-big">'+Lx.right+' / '+scored+'</div>'+
-    '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>🔥 '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>♥ '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
+    '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>'+flammeHtml()+' '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>♥ '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
     (nowAllowed && !wasAllowed && !passed.has(c.id) ? '<div class="feedback ok">'+t('lektion.test_frei')+'</div>' : '')+
     (newDay ? '<div class="feedback ok">'+t('lektion.heute_geuebt')+'</div>' : '')+
     questLob+
@@ -8819,6 +10032,10 @@ function startLesson(){
   $('levelHome').style.display='none'; $('test').style.display='none'; $('lesson').style.display='block';
   nurHerz(true);
   $('tBody').innerHTML='';   // siehe showLevelHome: gleiche ids in beiden Feldern
+  /* Der Drache des Tests (seit 19.10.2026) liefe sonst unsichtbar in
+     Schleife weiter: zmajRuht() kennt nur ausgeblendete Ansichten, und
+     #test ist keine. Leer geraeumt baut der Beobachter ihn ab. */
+  $('zmajTest').innerHTML='';
   uhrNeu();
   const zl=$('zmajLesson'); zl.style.display='block'; $('lHerz').style.display=''; zl.innerHTML=zmaj('happy'); setMood(zl,'happy');
   showLessonTask(); window.scrollTo({top:0, behavior:'smooth'});
@@ -8852,16 +10069,33 @@ function buildTest(){
 function testBar(){ $('tBar').innerHTML = Tx.qs.map((q,i)=>'<i class="'+(i<Tx.i?(Tx.results[i]?'ok':'no'):(i===Tx.i?'cur':''))+'"></i>').join(''); punkteStand($('tBar'), Tx.i, Tx.qs.length); }
 function showTestQ(){
   testBar();
+  sternKnopf('tStern', Tx.i < Tx.qs.length ? Tx.qs[Tx.i] : null);   // wie in showLessonTask (19.10.2026)
   if(Tx.i >= Tx.qs.length){ showTestResult(); return; }
   $('tBody').dataset.i = Tx.i;
   renderTask(Tx.qs[Tx.i], $('tBody'), res=>{
     topfMerken(Tx.qs[Tx.i], !!res.ok);
     Tx.results.push(!!res.ok); if(res.ok) Tx.right++; Tx.i++; uhrTakt(true); zaehle('auf'); if(res.ok) zaehle('ric');
+    zmajReact(!!res.ok, 'zmajTest');   // wie in der Lektion (19.10.2026)
+    /* Eine falsche Antwort kostet ein Leben, genau wie in der Lektion
+       (Ajdin am 19.10.2026). Bei null ist der Test vorbei und nicht
+       bestanden - wie in der Lektion, die bei null nie fertig wird. Das
+       gilt bei jeder Frage, nicht nur bei der letzten: wer mit 1 Leben
+       anfaengt, hat keinen Fehler frei, mit 2 Leben nur einen, obwohl
+       TEST_BESTANDEN_AB zwei erlaubt (9 von 10 und trotzdem verloren). Ab
+       3 Leben aendert sich nichts, der dritte Fehler laesst ohnehin
+       durchfallen. Bewusst so gelassen; Ajdin kennt die Folge noch nicht
+       vollstaendig und entscheidet, ob es dabei bleibt. Gemessen in
+       test_test_leben.py::test_wenige_leben_weniger_fehler_frei. */
+    if(!res.ok){
+      loseLife();
+      if(livesNow()===0){ weiterBeiTipp('tBody', testOutOfLives); return; }
+    }
     weiterBeiTipp('tBody', showTestQ);
   }, {noSkip:true});
 }
 function showTestResult(){
   stilleBitte(); uhrAus(); testBar();   // das letzte Wort nicht ins Ergebnis reden lassen
+  sternKnopf('tStern', null);
   /* Ein Test ist eine ganze Lektion wert und zaehlt deshalb auch fuer die
      Anzeige. Bis zum 27.09.2026 fehlte das ganz. */
   werbungZaehler++;
@@ -8889,6 +10123,10 @@ function showTestResult(){
      nachgeholt ist. Zaehlt also, was DIESER Test neu abgeschlossen hat.
      Wer ein schon bestandenes Level wiederholt, bekommt die alte Regel. */
   const nextSec = sektionFertig && (neuBestanden || (hasNext && CATEGORIES[catIdx+1].sektion !== c.sektion));
+  /* Das Ergebnis hat seinen grossen Drachen, wie lessonEnd(). Der kleine
+     wird dabei auch abgebaut, nicht nur versteckt: versteckt liefe er
+     unsichtbar weiter (siehe showLevelHome). */
+  $('zmajTest').style.display='none'; $('zmajTest').innerHTML='';
   $('tBody').innerHTML =
     '<div class="ergebnis-titel">'+t('level.titel',{i:catIdx+1, label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
@@ -8905,12 +10143,21 @@ function showTestResult(){
 }
 function startTest(){
   if(!testAllowed(cur())) return;
+  /* Ohne Leben kein Test, wie bei startLesson() - der Knopf ist dann zwar
+     gesperrt (testKnopf), aber "Nochmal" auf dem Ergebnis ruft hierher. */
+  if(livesNow()===0){ showLevelHome(); $('lvNote').textContent=t('level.keine_leben',{zeit:fmtMin(nextLifeIn())}); lebenWege(); return; }
   interstitialVorladen();   // liegt am Ende des Tests bereit (siehe dort)
   stilleBitte();   // Unteransicht, laeuft nicht ueber showView() - siehe showLevelHome
   buildTest(); $('levelHome').style.display='none'; $('lesson').style.display='none'; $('test').style.display='block';
   nurHerz(true);
   $('lBody').innerHTML='';   // siehe showLevelHome: gleiche ids in beiden Feldern
+  $('zmajLesson').innerHTML='';   // siehe startLesson: kein Drache laeuft unsichtbar weiter
   uhrNeu();
+  /* Derselbe kleine Drache wie in der Lektion - ohne ihn standen die
+     Knoepfe im Test 126 px hoeher (Kuebra, 19.10.2026). */
+  /* Das Herz wie in startLesson() wieder einblenden: der Schirm ohne Leben
+     blendet es aus (19.10.2026). */
+  const zt=$('zmajTest'); zt.style.display='block'; $('tHerz').style.display=''; zt.innerHTML=zmaj('happy'); setMood(zt,'happy');
   showTestQ(); window.scrollTo({top:0, behavior:'smooth'});
 }
 $('btnTest').addEventListener('click', startTest);
@@ -9104,16 +10351,24 @@ function einstufungErklaeren(wahl){
 function einstufungStarten(){
   if(!Ex || !Ex.qs.length){ einstufungMerken(Ex ? Ex.wahl : 'etwas', ''); Ex = null; return; }
   showView('einstufungView');
-  /* Keine Leben, keine Muenzen - die Leiste oben haette hier nichts zu
-     sagen. Die Uhr fuer die Tagesaufgabe "Minuten" laeuft bewusst nicht:
-     der Test bringt keine Muenzen. */
-  $('kopfLeiste').style.display = 'none';
+  /* Die Uhr fuer die Tagesaufgabe "Minuten" laeuft bewusst nicht: der Test
+     bringt keine Muenzen.
+     Seit 19.10.2026 ganz ohne Kopf und Fuss, wie Lektion und Level-Test:
+     sie schoben den Kasten 54 px nach unten, und bei 360 px Breite brach
+     "Zurueck" oben in zwei Zeilen um. Hinaus geht es weiter ueber
+     "Test beenden" und die Zurueck-Taste des Handys (backTarget unten).
+     Bis dahin blendete die Einstufung hier die Leiste mit Leben und
+     Muenzen aus und schrieb "Einstufung" unter das Logo - beides sitzt im
+     Kopf, den nurHerz jetzt ganz verbirgt, und beim Verlassen setzen
+     showView() und showPath() beides neu. setzeZurueck bleibt: der Knopf
+     ist zwar unsichtbar, aber backTarget gilt fuer die Zurueck-Taste. */
+  nurHerz(true);
   setzeZurueck(t('btn.zurueck'), ()=>{
     if(Ex && !Ex.fertig) $('eQuit').click(); else { homeMode = 'words'; showHome(); }
   });
-  $('tag').textContent = t('einst.kopf');
   $('eQuit').style.display = '';
   $('eBody').innerHTML = '';
+  const ze = $('zmajEinst'); ze.style.display = 'block'; ze.innerHTML = zmaj('happy'); setMood(ze, 'happy');
   einstufungFrageZeigen();
 }
 function einstufungBar(){
@@ -9134,6 +10389,7 @@ function einstufungFrageZeigen(){
     if(!res.ok) Ex.fehler++;
     Ex.i++;
     einstufungBar();
+    zmajReact(!!res.ok, 'zmajEinst');   // wie in der Lektion (19.10.2026)
     weiterBeiTipp('eBody', einstufungFrageZeigen);
   }, {noSkip:true});
 }
@@ -9147,6 +10403,8 @@ function einstufungEnde(){
   einstufungMerken(Ex.wahl, ziel > 0 ? c.id : '', richtig, Ex.results.length);
   einstufungBar();
   $('eQuit').style.display = 'none';
+  // Das Ergebnis hat seinen grossen Drachen; der kleine wird abgebaut, wie in showTestResult()
+  $('zmajEinst').style.display = 'none'; $('zmajEinst').innerHTML = '';
   $('eBody').innerHTML =
     '<div class="ergebnis-titel">' + esc(t('einst.ergebnis_titel')) + '</div>' +
     '<div class="celebrate"><div class="zmaj ' + (ziel > 0 ? 'cheer' : 'idle') + '">' + zmaj(ziel > 0 ? 'cheer' : 'happy') + '</div></div>' +
@@ -9265,6 +10523,33 @@ function topfAufgabe(k, e){
   }
   return null;
 }
+/* Umbenannte Woerter im Fehler-Topf auf ihre neue Kennung ziehen, nach
+   derselben Regel wie sternUmschreiben(): UMBENANNT, sonst das bosnische
+   Wort, wenn genau ein Wort es traegt. Anders als dort faellt hier nichts
+   weg - was zu keiner Aufgabe mehr fuehrt, raeumt wie bisher
+   topfAufraeumen() ab. Treffen alter und neuer Eintrag zusammen, gilt der
+   juengere Fehler: topfMerken() setzt bei jedem Fehler neu auf n = 0.
+   Ueber eine Map und Object.fromEntries wie in standUebernehmen(), damit
+   ein Schluessel "__proto__" aus einer Sicherung nichts verbiegt.
+   Gibt zurueck, ob sich etwas geaendert hat. 22.10.2026. */
+function topfUmschreiben(nachWort){
+  if(!CATEGORIES.length) return false;
+  const neu = new Map();
+  let geaendert = false;
+  Object.keys(topf).forEach(k => {
+    let ziel = k;
+    if(k.slice(0, 2) === 'w:' && !wortNachId(k.slice(2))){
+      const id = k.slice(2);
+      const kand = (UMBENANNT[id] && wortNachId(UMBENANNT[id])) ? [UMBENANNT[id]]
+                 : ((nachWort && nachWort.get(id.slice(id.lastIndexOf(':') + 1))) || []);
+      if(kand.length === 1){ ziel = 'w:' + kand[0]; geaendert = true; }
+    }
+    const e = topf[k], da = neu.get(ziel);
+    neu.set(ziel, (da && (da.z || 0) >= (e.z || 0)) ? da : e);
+  });
+  if(geaendert) topf = Object.fromEntries(neu);
+  return geaendert;
+}
 function topfAufraeumen(){
   if(!CATEGORIES.length) return;
   let weg = false;
@@ -9279,9 +10564,15 @@ const topfAnzahl = () => Object.keys(topf).length;
    eine Aufgabe die andere. Die Kacheln bleiben im Topf und kommen in einer
    spaeteren Runde. Review vom 14.10.2026. */
 function topfRunde(){
-  const liste = Object.keys(topf).map(k => ({k, e: topf[k]}))
+  return rundeAus(Object.keys(topf).map(k => ({k, e: topf[k]}))
     .sort((a, b) => (a.e.z || 0) - (b.e.z || 0))
-    .map(x => topfAufgabe(x.k, x.e)).filter(Boolean);
+    .map(x => topfAufgabe(x.k, x.e)).filter(Boolean));
+}
+/* Aus einer schon sortierten Liste von Aufgaben eine Runde: die ersten
+   TOPF_RUNDE, ohne Luecke und Kacheln desselben Satzes, gemischt. Seit
+   19.10.2026 ein eigenes Stueck, weil die Markiert-Runde (sternRunde)
+   dieselbe Regel braucht. */
+function rundeAus(liste){
   const runde = [], belegt = new Set();
   const doppelt = a => a.typ === 'kacheln' && [a.s.bs, ...(a.s.auch || [])].some(x => belegt.has(kachelNorm(x)));
   for(const a of liste){
@@ -9303,8 +10594,11 @@ function topfNachziehen(){
   /* Nur den Kasten und den Weitermachen-Knopf neu zeichnen, nicht die
      ganze Startseite: showHome() springt an den Seitenanfang, und dieser
      Aufruf kommt nicht vom Nutzer. */
-  if(sichtbar('pfad') && homeMode === 'topf' && topfAnzahl() &&
-     (livesNow() > 0) !== !!$('topfLos')){ renderHero(); showTopf(); }
+  /* Der Kasten "Markiert" (19.10.2026) hat denselben Knopf und dieselbe
+     Sperre ohne Leben. */
+  if(sichtbar('pfad') && homeMode === 'topf' &&
+     ((topfAnzahl() && (livesNow() > 0) !== !!$('topfLos')) ||
+      (sternAnzahl() && (livesNow() > 0) !== !!$('sternLos')))){ renderHero(); showTopf(); }
 }
 /* Wie showLevelHome() die Lektion wegraeumen. Ohne das blieb #lesson
    sichtbar geschaltet und Lx halb durchgelaufen stehen: lektionDarfWeg()
@@ -9315,11 +10609,18 @@ function topfSeite(){
   homeMode = 'topf';
   $('lesson').style.display = 'none';
   $('lBody').innerHTML = '';
+  $('zmajLesson').innerHTML = '';   // wie showLevelHome (19.10.2026)
   showHome();
 }
 /* Nach dem Ende einer Lektion oder Runde: wohin zurueck. */
 function lektionVerlassen(){ if(Lx && Lx.topf) topfSeite(); else showLevelHome(); }
+/* Der Reiter Wiederholen: oben der Kasten fuer Fehler, unveraendert,
+   darunter seit 19.10.2026 der Kasten "Markiert" (sternKasten). */
 function showTopf(){
+  topfKasten();
+  sternKasten();
+}
+function topfKasten(){
   const box = $('topfBox');
   if(!box) return;
   topfAufraeumen();
@@ -9356,27 +10657,38 @@ function showTopf(){
   }
   vollZeileHorchen('topfVoll');
 }
-function startTopf(){
-  const aufgaben = (livesNow() > 0) ? topfRunde() : [];
+/* Ohne Argumente: beide haengen auch direkt als Klick-Horcher und als
+   onclick des Weitermachen-Knopfs, und der Klick kaeme sonst als Quelle an. */
+function startTopf(){ rundeStarten('topf'); }
+function startStern(){ rundeStarten('stern'); }
+/* quelle: 'topf' (Fehler) oder 'stern' (Markiert, seit 19.10.2026). Beide
+   Runden laufen gleich - Leben, Serie, Tagesaufgaben, Muenzen -, Lx.topf
+   bleibt fuer beide gesetzt, Lx.quelle sagt, woher die Aufgaben kommen. */
+function rundeStarten(quelle){
+  const aufgaben = (livesNow() > 0) ? (quelle === 'stern' ? sternRunde() : topfRunde()) : [];
   if(!aufgaben.length){ topfSeite(); return; }
   interstitialVorladen();   // eine Runde zaehlt wie eine Lektion, also auch hier
   showView('levelView');
   setzeZurueck(t('btn.zurueck'), topfSeite);
-  $('tag').textContent = t('topf.titel');
+  $('tag').textContent = t(quelle === 'stern' ? 'stern.titel' : 'topf.titel');
   stilleBitte();
   $('levelHome').style.display = 'none'; $('test').style.display = 'none'; $('lesson').style.display = 'block';
   nurHerz(true);
   $('tBody').innerHTML = '';   // siehe showLevelHome: gleiche ids in beiden Feldern
+  $('zmajTest').innerHTML = '';   // siehe startLesson
   uhrNeu();
   const zl = $('zmajLesson'); zl.style.display = 'block'; $('lHerz').style.display = ''; zl.innerHTML = zmaj('happy'); setMood(zl, 'happy');
   Lx = {queue: aufgaben, i:0, results:[], right:0, total: aufgaben.length, skipped:0,
-        newWords: new Set(), retried: new Set(), topf: true};
+        newWords: new Set(), retried: new Set(), topf: true, quelle: quelle};
   showLessonTask();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 /* Das Ende einer Runde. Wie lessonEnd(), nur ohne Level: kein Fortschritt
-   im Level, kein Test, der frei wird. Dafuer steht da, was noch uebrig ist. */
+   im Level, kein Test, der frei wird. Dafuer steht da, was noch uebrig ist -
+   nach der Markiert-Runde, wie viele markiert sind. "Alles wiederholt"
+   gibt es dort nicht: Sterne bleiben, bis man sie wegnimmt. */
 function topfEnde(){
+  const mitStern = Lx.quelle === 'stern';
   stilleBitte(); uhrAus();
   const scored = Lx.results.filter(r => r !== 'intro' && r !== 'skip').length;
   zaehle('lek');
@@ -9384,24 +10696,220 @@ function topfEnde(){
   const newDay = markToday(); saveProgress(); sound('done');
   const questLob = questZeilen();
   if(questLob) setTimeout(()=>sound('quest'), 850);
-  const rest = topfAnzahl();
-  $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('lHerz').style.display = 'none';
+  const rest = mitStern ? sternAnzahl() : topfAnzahl();
+  $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('zmajLesson').innerHTML = ''; $('lHerz').style.display = 'none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
-    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp('topf.rest', rest)) + '</div>' +
-      '<div class="stat"><b>🔥 ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
+    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp(mitStern ? 'stern.rest' : 'topf.rest', rest)) + '</div>' +
+      '<div class="stat"><b>' + flammeHtml() + ' ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
       '<div class="stat"><b>♥ ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
-    (rest === 0 ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
+    (rest === 0 && !mitStern ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
     (newDay ? '<div class="feedback ok">' + t('lektion.heute_geuebt') + '</div>' : '') +
     questLob +
     '<div class="row"><button class="btn ghost" id="lHome"></button>' +
       (rest ? '<button class="btn know" id="lMore"></button>' : '') + '</div>';
   $('lHome').textContent = t('topf.zurueck');
   $('lHome').addEventListener('click', topfSeite);
-  if($('lMore')){ $('lMore').textContent = t('topf.noch'); $('lMore').addEventListener('click', startTopf); }
+  if($('lMore')){ $('lMore').textContent = t('topf.noch'); $('lMore').addEventListener('click', mitStern ? startStern : startTopf); }
   werbungZaehler++;
   werbungNachDemErgebnis('lesson', ()=> Lx);
+}
+
+/* =================== STERN ===================
+   Aufgaben selbst zum Wiederholen markieren - festgelegt von Ajdin am
+   19.10.2026. Anders als der Fehler-Topf entscheidet hier der Lernende:
+   ein Stern bleibt, bis er ihn wieder wegnimmt, auch nach richtigen
+   Antworten.
+     - Markierbar ist jede Aufgabe mit einer Kennung aus topfSchluessel():
+       Woerter (w:), Luecken (s:), Kacheln (k:) und Grammatik (g:). Ein
+       Stern je Wort, egal in welcher Aufgabenart markiert. Keine Level.
+     - Der Knopf (Variante 1 "Ring" aus dem Entwurf, CSS bei .nav .stern)
+       steht unten rechts unter der Aufgabe, gegenueber von "Lektion
+       abbrechen" bzw. "Test abbrechen": in der Lektion, in beiden
+       Wiederhol-Runden und im Level-Test - nicht in der Einstufung, nicht
+       auf dem Ergebnis und nicht auf dem Schirm ohne Leben.
+     - stern[kennung] = {z: wann markiert, r: wann zuletzt in der
+       Markiert-Runde geuebt, 0 = nie}. Hoechstens STERN_MAX; ist es voll,
+       wird nichts still geloescht - der Stern geht nicht an, und eine
+       kurze Meldung sagt warum.
+     - Die Runde: bis zu TOPF_RUNDE, die am laengsten nicht geuebten
+       zuerst (nie geuebte vor allen), sonst die zuerst markierten,
+       gemischt. Woerter bekommen ihre Aufgabenart reihum wie in
+       buildLesson(), Saetze und Grammatik bleiben, was sie sind. Nach
+       jeder Antwort ist die Aufgabe "jetzt geuebt"; der Stern bleibt auch
+       bei richtiger Antwort. Falsch kostet ein Leben, kommt am Ende noch
+       einmal und landet im Fehler-Topf - wie in jeder Lektion.
+     - Der grosse Weitermachen-Knopf oben bleibt, wie er war: er startet
+       nie die Markiert-Runde, nur der Knopf im Kasten "Markiert". */
+const sternAnzahl = () => Object.keys(stern).length;
+const STERN_ART = /^[wskg]:./;
+/* Ein Stand von aussen - Geraetespeicher oder Sicherungsdatei - wird nur
+   so uebernommen: Kennung ein Text mit gueltigem Anfang und hoechstens 200
+   Zeichen, z und r endliche Zahlen ab 0 (r darf fehlen), hoechstens
+   STERN_MAX Eintraege, bei mehr die zuletzt markierten. Kein Zeitpunkt
+   nach jetzt - wie bei den Lerntagen -, sonst stuende ein Eintrag fuer
+   immer hinten in der Runde; er wird auf jetzt gesetzt, nicht verworfen,
+   denn eine falsch gestellte Uhr macht den Stern nicht kaputt. */
+function sternPruefen(roh){
+  if(!roh || typeof roh !== 'object' || Array.isArray(roh)) return {};
+  const jetzt = Date.now();
+  const zahl = x => (typeof x === 'number' && isFinite(x) && x >= 0) ? Math.min(x, jetzt) : null;
+  const liste = [];
+  Object.keys(roh).forEach(k => {
+    const e = roh[k];
+    if(k.length > 200 || !STERN_ART.test(k)) return;
+    if(!e || typeof e !== 'object' || Array.isArray(e)) return;
+    const z = zahl(e.z), r = e.r === undefined ? 0 : zahl(e.r);
+    if(z === null || r === null) return;
+    liste.push([k, {z, r}]);
+  });
+  if(liste.length > STERN_MAX) liste.sort((a, b) => b[1].z - a[1].z);
+  return Object.fromEntries(liste.slice(0, STERN_MAX));
+}
+/* Beim Laden und Einlesen, aus altenFortschrittUmschreiben(): umbenannte
+   Woerter auf ihre neue Kennung ziehen (UMBENANNT, sonst ueber das
+   bosnische Wort, wenn es genau ein Wort damit gibt - bei "sto" fuer
+   hundert und Tisch waere ein Stern auf beiden falsch). Was danach zu
+   keiner Aufgabe mehr fuehrt, faellt still weg, wie in topfAufraeumen().
+   Gibt zurueck, ob sich etwas geaendert hat. */
+function sternUmschreiben(nachWort){
+  if(!CATEGORIES.length) return false;
+  const neu = {};
+  let geaendert = false;
+  Object.keys(stern).forEach(k => {
+    let ziel = k;
+    if(k.slice(0, 2) === 'w:' && !wortNachId(k.slice(2))){
+      const id = k.slice(2);
+      const kand = (UMBENANNT[id] && wortNachId(UMBENANNT[id])) ? [UMBENANNT[id]]
+                 : ((nachWort && nachWort.get(id.slice(id.lastIndexOf(':') + 1))) || []);
+      ziel = kand.length === 1 ? 'w:' + kand[0] : '';
+    }
+    if(!ziel || !topfAufgabe(ziel, {typ: 'mc'})){ geaendert = true; return; }
+    if(ziel !== k) geaendert = true;
+    const e = stern[k], da = neu[ziel];
+    neu[ziel] = da ? {z: Math.min(da.z, e.z), r: Math.max(da.r, e.r)} : e;
+  });
+  if(geaendert) stern = neu;
+  return geaendert;
+}
+/* Der Stern selbst, genau wie im Entwurf: ein regelmaessiger, verrundeter
+   Fuenfzack, die viewBox um seinen Flaechenschwerpunkt. Leer ein Umriss
+   (Strich 1,9), markiert gold gefuellt (Strich 1,25, Verlauf #sternGold
+   unten im Dokument). px: 28 im Knopf, 22 vor dem Titel des Kastens,
+   17 im Satz. bild: der Stern im Satz wird vorgelesen ("... auf Stern."),
+   die anderen sind Schmuck neben einem Namen. */
+const STERN_PFAD = 'M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.544 1.544 0 0 1 9.662 -1.657L6.026 1.62A0.643 0.643 0 0 0 5.827 2.231L6.843 7.02A1.544 1.544 0 0 1 4.561 8.677L0.321 6.232A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z';
+function sternSvg(an, px, bild){
+  return '<svg class="sternsym' + (an ? ' an' : '') + '" viewBox="-12 -12 24 24" width="' + px + '" height="' + px + '" ' +
+    (bild ? 'role="img" aria-label="' + esc(t('stern.symbol')) + '"' : 'aria-hidden="true"') +
+    ' focusable="false"><path style="stroke-width:' + (an ? '1.25' : '1.9') + '" d="' + STERN_PFAD + '"/></svg>';
+}
+/* Den Knopf unter der Aufgabe auf diese Aufgabe stellen. Ohne Aufgabe
+   oder ohne Kennung verschwindet er. Der Name kommt jedes Mal neu, damit
+   er nach einem Sprachwechsel stimmt. */
+function sternKnopf(id, task){
+  const b = $(id);
+  if(!b) return;
+  const k = task ? topfSchluessel(task) : '';
+  b.dataset.k = k;
+  b.hidden = !k;
+  b.classList.remove('pop');
+  if(!k) return;
+  b.setAttribute('aria-label', t('stern.knopf'));
+  sternZeigen(b, !!stern[k]);
+}
+function sternZeigen(b, an){
+  b.setAttribute('aria-pressed', an ? 'true' : 'false');
+  b.innerHTML = sternSvg(an, 28);
+}
+function sternUmschalten(e){
+  const b = e.currentTarget, k = b.dataset.k;
+  if(!k || b.hidden) return;
+  if(stern[k]){
+    delete stern[k];
+    sternZeigen(b, false);
+    ansagen(esc(t('stern.weg')));
+  } else {
+    if(sternAnzahl() >= STERN_MAX){ kurzMeldung(t('stern.voll', {n: STERN_MAX})); return; }
+    stern[k] = {z: Date.now(), r: 0};
+    sternZeigen(b, true);
+    ansagen(esc(t('stern.titel')));
+  }
+  /* Kurz aufploppen - nur mit Bewegung (Schalter "Animationen" und
+     Geraeteeinstellung, wie beim Legen der Kacheln). Ohne Bewegung kaeme
+     kein animationend, und .pop bliebe stehen. */
+  if(!kachelnRuhig()){ b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }
+  buzz(12);
+  saveProgress();
+}
+['lStern', 'tStern'].forEach(id => {
+  $(id).addEventListener('click', sternUmschalten);
+  $(id).addEventListener('animationend', e => e.currentTarget.classList.remove('pop'));
+});
+/* Nach jeder beantworteten Aufgabe der Markiert-Runde: jetzt geuebt. Nur,
+   solange sie noch markiert ist - wer den Stern unterwegs wegnimmt, will
+   sie nicht mehr sehen. */
+function sternGeuebt(task){
+  const e = stern[topfSchluessel(task)];
+  if(e) e.r = Date.now();
+}
+function sternRunde(){
+  const runde = rundeAus(Object.keys(stern).map(k => ({k, e: stern[k]}))
+    .sort((a, b) => (a.e.r - b.e.r) || (a.e.z - b.e.z))
+    .map(x => topfAufgabe(x.k, {typ: 'mc'})).filter(Boolean));
+  /* Wie in buildLesson(), nur ohne Sprechen: das laesst sich ueberspringen,
+     und dann zaehlte es nicht als geuebt. Schreiben nur bei tippbaren
+     Woertern (artenReihum), Hoeren nur, wenn das Geraet vorlesen kann. */
+  const types = ['mc', 'mcrev', 'type']; if(canListen) types.push('listen');
+  const pick = artenReihum(types);
+  runde.forEach(a => { if(a.w) a.typ = pick(a.w); });
+  return runde;
+}
+/* Der Kasten "Markiert" im Reiter Wiederholen, gebaut genau wie der Kasten
+   darueber (topfKasten): dieselben Klassen, dieselbe Zahl, derselbe Knopf.
+   Neu ist nur der Stern vor dem Titel - gold, sobald etwas markiert ist.
+   Ohne Leben wie der Kasten darueber: kein "Runde starten", dafuer der
+   Hinweis und dieselben zwei Wege zu einem Leben. */
+function sternKasten(){
+  const box = $('sternBox');
+  if(!box) return;
+  const n = sternAnzahl();
+  let html = '<h2 id="sternTitel">' + sternSvg(n > 0, 22) + esc(t('stern.titel')) + '</h2><div class="desc">' + esc(t('stern.desc')) + '</div>';
+  if(!n){
+    /* {stern} im Text ist der Stern selbst, als Bild mit Namen */
+    const teile = t('stern.leer').split('{stern}');
+    box.innerHTML = html + '<div class="topfleer">' + esc(teile[0]) +
+      (teile.length > 1 ? sternSvg(false, 17, true) + esc(teile.slice(1).join('')) : '') + '</div>';
+    return;
+  }
+  html += '<div class="topfzahl">' + n + '</div><div class="topfwort">' + esc(tp('stern.anzahl', n)) + '</div>';
+  if(livesNow() > 0){
+    /* aria-describedby: zwei Knoepfe "Runde starten" auf einer Seite - der
+       Screenreader sagt dazu, zu welchem Kasten dieser gehoert. */
+    html += '<div class="row"><button class="btn know" id="sternLos" aria-describedby="sternTitel"></button></div>';
+    box.innerHTML = html;
+    $('sternLos').textContent = t('topf.start');
+    $('sternLos').addEventListener('click', startStern);
+    return;
+  }
+  const herz = VERBRAUCH.find(w => w.id === 'herz');
+  const perVideo = werbungErlaubt(true);
+  const perMuenzen = muenzen() >= herz.preis && herz.geht();
+  html += '<div class="note">' + esc(t('level.keine_leben', {zeit: fmtMin(nextLifeIn())})) + '</div>' +
+    ((perVideo || perMuenzen) ?
+      '<div class="row schmal">' +
+        (perVideo ? '<button class="btn ghost" id="sternAd"></button>' : '') +
+        (perMuenzen ? '<button class="btn ghost" id="sternCoin"></button>' : '') +
+      '</div>' : '') +
+    vollZeileLeben('sternVoll');
+  box.innerHTML = html;
+  if($('sternAd')){ $('sternAd').textContent = t('werbung.leben_holen'); $('sternAd').addEventListener('click', werbungFuerLeben); }
+  if($('sternCoin')){
+    $('sternCoin').textContent = t('lektion.leben_muenzen', {n: herz.preis});
+    $('sternCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); showTopf(); });
+  }
+  vollZeileHorchen('sternVoll');
 }
 
 /* =================== BEWERTUNG ===================
@@ -9914,7 +11422,9 @@ function updHeuteMerken(){
   try{ localStorage.setItem(UPD_MERKER, updGefragtAm); }catch(e){}
 }
 /* Mitten im Lernen. Lektion, Test und Wiederholen-Runde setzen nurHerz,
-   Einstufung und Geschichte nicht - die zaehlen hier eigens mit. */
+   Einstufung und Geschichte nicht - die zaehlen hier eigens mit. (Die
+   Einstufung setzt es seit 19.10.2026 auch; Ex_laeuft() bleibt trotzdem
+   stehen, es schadet nicht und haengt nicht an der Kopfzeile.) */
 function updLerntGerade(){
   return document.body.classList.contains('nurHerz') || Ex_laeuft() || sichtbar('storyView');
 }
@@ -10292,8 +11802,13 @@ async function agbHinweis(versuch = 0){
 
 async function init(){
   dauerVollVerdrahten();
+  hautAlleVerdrahten();
   try{ await starten(); }
   finally{ vorspannWeg(); }
+  tonVorwaermenPlanen();   // den Kaltstart der Tonausgabe vorwegnehmen (22.10.2026)
+  /* Cloud-Sicherung: beim Start nur lesen, siehe CLOUD-SICHERUNG. Mit
+     CLOUD_AN = false passiert hier nichts. 19.10.2026 */
+  if(CLOUD_AN) cloudAbgleich('start');
   /* Einmal selbst nachsehen, ob das Abo laeuft. Bisher verliess sich die
      App allein auf die Meldung aboGeaendert - die aber beim Kaltstart
      abgeschickt wird, bevor es einen Zuhoerer gibt, und wegen der
@@ -10480,11 +11995,12 @@ function weiterBeiTipp(feldId, weiter){
     const kasten = document.createElement('div');
     kasten.className = 'row weiterbox';
     kasten.innerHTML = '<button type="button" class="btn know">'+esc(t('task.weiter'))+'</button>';
-    if(feldId === 'lBody' || feldId === 'tBody'){
+    if(feldId === 'lBody' || feldId === 'tBody' || feldId === 'eBody'){
       /* Rueckmeldung, Loesung und Weiter zusammen unter die Aufgabe - bei
          Schreib- und Lueckenaufgaben stand sonst der leere Pruefen-Platz
          dazwischen. Es sind dieselben Knoten (#xFb), spaetere Aenderungen
-         daran kommen also an. */
+         daran kommen also an. Die Einstufung (eBody) seit 19.10.2026: ihr
+         Weiter stand bis zu 43 px anders als in der Lektion. */
       const unten = document.createElement('div');
       unten.className = 'antwortfeld';
       feld.querySelectorAll(':scope > .feedback, :scope > .loesung').forEach(e => unten.appendChild(e));

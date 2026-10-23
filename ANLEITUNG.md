@@ -491,11 +491,15 @@ Regeln der Lektion:
 ## Leben
 
 Die App hat 5 Leben, sie gelten für die ganze App. Jede falsche Antwort in
-einer Lektion kostet ein Leben. Übersprungene Aufgaben und der Level-Test
-kosten nichts. Bei 0 Leben wird die Lektion abgebrochen, richtig gelernte
-Wörter bleiben gespeichert. Alle 120 Minuten wächst ein Leben nach, die
-Anzeige oben zeigt die Wartezeit. Solange kann man Geschichten lesen und die
-Grammatik-Erklärungen anschauen.
+einer Lektion und (seit dem 19.10.2026) im Level-Test kostet ein Leben.
+Übersprungene Aufgaben und die Einstufung beim ersten Start kosten nichts.
+Bei 0 Leben wird die Lektion bzw. der Test abgebrochen – der Test gilt dann
+als nicht bestanden –, richtig gelernte Wörter bleiben gespeichert. Das gilt
+bei jeder Testfrage: Wer mit 1 Leben in den Test geht, hat keinen Fehler frei,
+mit 2 Leben nur einen, obwohl der Test mit 8 von 10 bestanden wäre. Ab
+3 Leben ändert sich nichts. Alle
+120 Minuten wächst ein Leben nach, die Anzeige oben zeigt die Wartezeit.
+Solange kann man Geschichten lesen und die Grammatik-Erklärungen anschauen.
 
 Die Wartezeit steht in `web/index.html` in der Zeile
 `LEBEN_NACHFUELLEN_MIN = 120` und lässt sich dort ändern.
@@ -987,7 +991,7 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 1728 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 1740 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, und
   keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
 
@@ -1366,6 +1370,19 @@ Index stehen, und ob jeder `key` noch zu seinem Text passt. Rückgabe 0 heißt:
 vollständig. Vor jeder Weitergabe laufen lassen – am PC fällt ein fehlender
 Ton nicht auf, am Handy schon.
 
+**`wortzeiten_holen.py`** (seit 20.10.2026) holt die Wortzeiten der zwölf
+Geschichten: In `index.json` steht bei jeder Geschichte ein Feld `"w"` mit
+einem Paar `[start_ms, ende_ms]` je Wort, das die App antippbar anzeigt –
+damit markiert sie beim Vorlesen das gesprochene Wort. Die Zeiten kommen aus
+Azures WordBoundary-Ereignissen, und die gibt es nur über das Speech SDK
+(`azure-cognitiveservices-speech`), nicht über den REST-Aufruf von
+`ton_bauen.py`. Deshalb spricht das Skript die Geschichte mit derselben Stimme
+und demselben SSML neu und ersetzt die MP3 – Zeiten und Datei kommen so aus
+demselben Aufruf. Das SDK gehört in eine eigene Umgebung, nicht in Thonny;
+wie, steht oben im Skript. Ohne `--holen` zeigt es nur, was fehlt.
+`ton_bauen.py` lässt `"w"` stehen, solange Text und Datei bleiben, und wirft
+es weg, sobald sich der Text einer Geschichte ändert.
+
 **Zugang:** `ton_bauen.py` braucht `tts_zugang.json` neben sich, nach dem
 Muster in `tts_zugang.BEISPIEL.json`. Diese Datei enthält einen Schlüssel und
 bleibt auf diesem Rechner – sie gehört nicht in die App und nicht auf GitHub.
@@ -1437,6 +1454,7 @@ Bosnisch Lernapp/
 ├── zmaj_lottie.py    Erzeugt die Drachen-Animationen in web/maskottchen
 ├── ton_bauen.py      Erzeugt die Aufnahmen und web/audio/index.json
 ├── ton_pruefen.py    Prüft, ob die Tonspur vollständig ist
+├── wortzeiten_holen.py Holt die Wortzeiten der Geschichten (Azure Speech SDK)
 │
 ├── inhalt.py         lade_daten(): aus den fünf Dateien wird der Inhalt
 ├── start.py          Startet die App am PC (web/ + /api/daten) und

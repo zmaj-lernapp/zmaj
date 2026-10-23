@@ -1,0 +1,126 @@
+{
+ "zweck": "Aufnahmen, die es nur von Emir gibt (ElevenLabs). Die Dateien liegen nur in der privaten Hülle unter audio_emir/, nie in web/audio. Siehe ton_bauen.nur_emir().",
+ "version": 1,
+ "toene": [
+  {
+   "key": "tetak",
+   "datei": "w2402.mp3",
+   "text": "tetak"
+  },
+  {
+   "key": "strina",
+   "datei": "w2403.mp3",
+   "text": "strina / amidžinica"
+  },
+  {
+   "key": "ujna",
+   "datei": "w2404.mp3",
+   "text": "ujna / daidžinica"
+  },
+  {
+   "key": "amidžić",
+   "datei": "w2405.mp3",
+   "text": "amidžić / brat od amidže"
+  },
+  {
+   "key": "amidžična",
+   "datei": "w2406.mp3",
+   "text": "amidžična / sestra od amidže"
+  },
+  {
+   "key": "daidžić",
+   "datei": "w2407.mp3",
+   "text": "daidžić / brat od daidže"
+  },
+  {
+   "key": "daidžična",
+   "datei": "w2408.mp3",
+   "text": "daidžična / sestra od daidže"
+  },
+  {
+   "key": "tetić",
+   "datei": "w2409.mp3",
+   "text": "tetić / brat od tetke"
+  },
+  {
+   "key": "tetična",
+   "datei": "w2410.mp3",
+   "text": "tetična / sestra od tetke"
+  },
+  {
+   "key": "rođaka",
+   "datei": "w2411.mp3",
+   "text": "rođaka / rođakinja"
+  },
+  {
+   "key": "nećak",
+   "datei": "w2412.mp3",
+   "text": "nećak"
+  },
+  {
+   "key": "nećakinja",
+   "datei": "w2413.mp3",
+   "text": "nećakinja"
+  },
+  {
+   "key": "amidža / stric",
+   "datei": "w2414.mp3",
+   "text": "amidža / stric"
+  },
+  {
+   "key": "daidža / ujak",
+   "datei": "w2415.mp3",
+   "text": "daidža / ujak"
+  },
+  {
+   "key": "strina / amidžinica",
+   "datei": "w2416.mp3",
+   "text": "strina / amidžinica"
+  },
+  {
+   "key": "ujna / daidžinica",
+   "datei": "w2417.mp3",
+   "text": "ujna / daidžinica"
+  },
+  {
+   "key": "amidžić / brat od amidže",
+   "datei": "w2418.mp3",
+   "text": "amidžić / brat od amidže"
+  },
+  {
+   "key": "amidžična / sestra od amidže",
+   "datei": "w2419.mp3",
+   "text": "amidžična / sestra od amidže"
+  },
+  {
+   "key": "daidžić / brat od daidže",
+   "datei": "w2420.mp3",
+   "text": "daidžić / brat od daidže"
+  },
+  {
+   "key": "daidžična / sestra od daidže",
+   "datei": "w2421.mp3",
+   "text": "daidžična / sestra od daidže"
+  },
+  {
+   "key": "tetić / brat od tetke",
+   "datei": "w2422.mp3",
+   "text": "tetić / brat od tetke"
+  },
+  {
+   "key": "tetična / sestra od tetke",
+   "datei": "w2423.mp3",
+   "text": "tetična / sestra od tetke"
+  },
+  {
+   "key": "rođaka / rođakinja",
+   "datei": "w2424.mp3",
+   "text": "rođaka / rođakinja"
+  },
+  {
+   "key": "so / sol",
+   "datei": "w2425.mp3",
+   "text": "so / sol"
+  }
+ ]
+}

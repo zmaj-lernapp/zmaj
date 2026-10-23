@@ -19,6 +19,10 @@ Der Reihe nach: 30 Probewörter anhören, dann der große Lauf, dann prüfen.
 Das letzte vor jedem Verpacken laufen lassen. Am PC fällt ein fehlender Ton
 nicht auf, auf dem Handy schon.
 
+Die Wortzeiten der Geschichten (Feld "w" in index.json, seit 20.10.2026)
+holt wortzeiten_holen.py. Es braucht das Azure Speech SDK – wie man es
+einrichtet, steht oben in dem Skript.
+
 
 EIGENE AUFNAHMEN – so klingt die App wie ein Muttersprachler
 
@@ -33,6 +37,12 @@ Stück ersetzen, in eurem Tempo, und zwischendurch ist nie etwas kaputt.
 
 Erlaubte Endungen: .mp3 .m4a .wav .ogg .webm. Wenn du eine andere Endung
 nimmst, muss sie auch in index.json stehen.
+
+Bei einer Geschichte (g01.mp3 bis g12.mp3) in index.json zusätzlich das Feld
+"w" dieses Eintrags löschen. Es hält fest, wann in der erzeugten Aufnahme
+welches Wort beginnt und endet – damit markiert die App beim Vorlesen das
+gesprochene Wort. Zu einer eigenen Aufnahme passt es nicht; ohne "w" liest
+die App einfach ohne Markierung vor.
 
 
 WARUM DIE DATEIEN NUMMERIERT SIND UND NICHT NACH DEM WORT HEISSEN

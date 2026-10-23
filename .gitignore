@@ -16,6 +16,10 @@
 # Aufbau, ohne etwas zu verraten.
 mail_zugang.json
 tts_zugang.json
+# Firebase-Projekt und -Schluessel gehoeren in die Huelle, nie hierher
+# (FIREBASE_EINRICHTEN.md, 19.10.2026).
+cloud_zugang.json
+google-services.json
 
 # Persönliches: Konten, Sitzungen, fremde Lernstände.
 sicherung_konten_*/
