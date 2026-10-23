@@ -41,6 +41,7 @@ import datetime
 import io
 import json
 import os
+import sys
 import re
 
 import pytest
@@ -114,6 +115,10 @@ ZEILEN = """async ([bilder, dpr]) => {
 # Studio bringt die Schrift fuer seine Vorschau mit; ZMAJ_ANDROID_EMOJI kann
 # auf eine andere Kopie zeigen. Fehlt sie, misst nur der Test mit der
 # Schrift des Rechners. (Pruefung vom 20.10.2026)
+# Windows (Segoe UI Emoji) zeichnet 30 px Emoji ~30 px hoch, Linux und
+# Android (Noto Color Emoji) ~33,5 px. In der CI (Linux) gilt Noto.
+# 23.10.2026, PR #55.
+SYSTEM_EMOJI = 1.0 if sys.platform == "win32" else 33.5 / 30
 ANDROID_EMOJI = os.environ.get("ZMAJ_ANDROID_EMOJI") or (
     "C:/Program Files/Android/Android Studio/plugins/design-tools/resources/layoutlib/data/fonts/NotoColorEmoji.ttf")
 
@@ -366,7 +371,7 @@ def test_flamme_und_zahl_auf_einer_hoehe(browser, basis, heute_stand, zustand, s
     try:
         _starten(seite, heute_stand, zustand)
         _vorspann_weg(seite)
-        emoji = 30
+        emoji = 30 * SYSTEM_EMOJI
         if schrift == "android":
             _android_emoji(ctx, seite)
             emoji = 33.5
@@ -402,7 +407,7 @@ def test_auflodern_bleibt_auf_einer_hoehe(browser, basis, heute_stand):
             a.pause(); a.currentTime = 0.45 * 800; }""")
         m = _messen(seite, dpr)
         assert abs(m["dy"]) <= 2, m
-        soll = 30 * 1.3 * 1.28
+        soll = 30 * SYSTEM_EMOJI * 1.3 * 1.28
         assert abs(m["flamme"]["hoehe"] - soll) <= 0.1 * soll, m
         seite.js("() => document.getElementById('serieFlamme').getAnimations()[0].finish()")
         assert seite.fehler == []
@@ -608,7 +613,7 @@ def test_gold_flamme_auf_einer_hoehe(browser, basis):
             m = _messen(seite, dpr)
             funde[faktor] = m
             assert abs(m["dy"]) <= 2, (faktor, m)
-            soll = 30 * faktor
+            soll = 30 * SYSTEM_EMOJI * faktor
             assert abs(m["flamme"]["hoehe"] - soll) <= 0.1 * soll, (faktor, m)
         assert seite.fehler == []
     finally:
@@ -705,7 +710,7 @@ def test_statistik_flamme_und_zahl_auf_einer_hoehe(browser, basis, heute_stand, 
         seite.durchspielen("lBody", "Lx")
         seite.js("""() => { const f = document.querySelector('#lBody .stat .flamme');
             f.id = 'messFlamme'; f.closest('b').id = 'messZahl'; window.scrollTo(0, 0); }""")
-        emoji = 18
+        emoji = 18 * SYSTEM_EMOJI
         if schrift == "android":
             _android_emoji(ctx, seite, "messFlamme")
             emoji = 18 * 33.5 / 30
