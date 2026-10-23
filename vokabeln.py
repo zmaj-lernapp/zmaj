@@ -311,7 +311,7 @@ KATEGORIEN = [
         {"de": "morgen (der nächste Tag)",    "bs": "sutra"},
         {"de": "gestern",             "bs": "jučer"},
         {"de": "jetzt",               "bs": "sada"},
-        {"de": "später",              "bs": "kasnije"},
+        {"de": "später",              "bs": "kasnije", "auch": ["poslije"]},
         {"de": "Tag",                 "bs": "dan"},
         {"de": "Morgen (Tageszeit)",  "bs": "jutro"},
         {"de": "Mittag",              "bs": "podne"},
