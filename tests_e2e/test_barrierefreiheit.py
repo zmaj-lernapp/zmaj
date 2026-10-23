@@ -25,12 +25,12 @@ import http.server
 import io
 import json
 import os
-import socketserver
 import sys
 import threading
 import time
 
 import pytest
+from conftest import Dateiserver
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, WURZEL)
@@ -93,7 +93,9 @@ def seite_basis(tmp_path_factory):
         def log_message(self, *args):
             pass
 
-    srv = socketserver.ThreadingTCPServer(("127.0.0.1", 0), functools.partial(Leise, directory=ziel))
+    # Dateiserver statt ThreadingTCPServer: dessen Warteschlange von 5 lehnte
+    # beim Start Drachenteile ab (22.10.2026, siehe conftest.py).
+    srv = Dateiserver(("127.0.0.1", 0), functools.partial(Leise, directory=ziel))
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     yield "http://127.0.0.1:%d" % srv.server_address[1]
     srv.shutdown()

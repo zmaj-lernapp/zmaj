@@ -301,6 +301,56 @@ FFMPEG = os.path.join(os.path.dirname(HUELLE), "werkzeuge", "ffmpeg", "bin", "ff
 TON_ZWISCHENSPEICHER = os.path.join(HUELLE, ".ton_opus")
 TON_BITRATE = "24k"
 
+# Stille am Anfang kuerzen (22.10.2026). Ajdin: "der sprecher sagt viel zu
+# spaet die woerter oder saetze die muessen frueher kommen man wartet zu
+# lange bis er anfaengt". Gemessen lagen vor dem ersten Laut einer
+# Emir-Aufnahme im Median 188 ms Stille (bis 270 ms): 36 ms bringt
+# ElevenLabs mit, 150 ms setzt emir_lauf.py mit adelay davor. Die
+# Azure-Aufnahmen haben rund 240 ms. Das wartet man bei jedem Wort ab,
+# auch beim Antippen.
+# silenceremove nimmt nur die Stille VOR dem ersten Laut (start_periods=1)
+# und laesst davon 30 ms stehen (start_silence): Vorlauf fuer Handys und
+# Bluetooth-Kopfhoerer, die den Anfang der Ausgabe verschlucken. Als Laut
+# zaehlt schon, was in einem 1-ms-Fenster ueber -65 dB ausschlaegt (Spitze,
+# nicht Mittel) - also auch der leise Hauch, mit dem ein h oder f beginnt.
+# Erst stand hier -55 dB; das nahm bei 13 der 2.399 Emir-Aufnahmen etwas
+# zwischen -65 und -55 dB mit, bei "hoću" 32 ms vom Anhauchen. Mit -65 dB
+# geht in keiner Aufnahme etwas ueber -65 dB verloren, und gespart werden
+# trotzdem im Median 151 ms (mit -55 dB: 155 ms). Nachgemessen am
+# 22.10.2026 an allen Aufnahmen, Quelle gegen Ergebnis.
+# Die Azure-Aufnahmen rauschen vor dem Wort bei -60 bis -66 dB. Dort greift
+# die Kante also oft schon am Rauschen, und es wird weniger gekuerzt (im
+# Median 112 ms) - lieber das als ein Stueck vom Laut. Das betrifft im
+# Paket nur die zwei Goran-Woerter ohne Emir und wer ohne audio_emir baut.
+# Das Ende bleibt unberuehrt: der Nachlauf kam am 06.10.2026 gegen
+# abgeschnittene Wortenden hinein.
+# Nur Woerter und Saetze (w####.mp3, wie EMIR_DATEI). Die Geschichten
+# nicht: ihre Wortzeiten "w" in index.json zaehlen ab Dateianfang, das
+# Mitlesen liefe sonst um den geschnittenen Betrag hinterher.
+# web/audio bleibt, wie es ist (Web-Demo, Datensatz, Anki) - gekuerzt wird
+# nur beim Umwandeln der Kopie. Der Filter steckt im Schluessel des
+# Zwischenspeichers (ton_schluessel()): sonst kaemen aus .ton_opus die
+# alten, ungekuerzten Dateien, und eine Aenderung am Filter wandelt neu um.
+TON_ANFANG = ("silenceremove=start_periods=1:start_threshold=-65dB:start_silence=0.03"
+              ":detection=peak:window=0.001")
+
+
+def ton_filter(name):
+    """Der ffmpeg-Filter fuer diese Datei: TON_ANFANG fuer Woerter und
+    Saetze, None fuer die Geschichten."""
+    return TON_ANFANG if EMIR_DATEI.fullmatch(name) else None
+
+
+def ton_schluessel(inhalt_hash, name):
+    """Name im Zwischenspeicher: Inhalt und Bitrate, bei gekuerzten Dateien
+    dazu ein Kennzeichen des Filters ("-a" und 8 Zeichen seines Hashes)."""
+    import hashlib
+    s = inhalt_hash[:32] + "-" + TON_BITRATE
+    f = ton_filter(name)
+    if f:
+        s += "-a" + hashlib.sha256(f.encode("ascii")).hexdigest()[:8]
+    return s
+
 
 def ton_index_umschreiben(index):
     """Ersetzt in index.json jede Endung .mp3 durch .ogg. Gibt die Zahl zurueck."""
@@ -339,7 +389,7 @@ def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None):
     schluessel = {}
     for name in mp3s:
         with open(os.path.join(audio, name), "rb") as f:
-            schluessel[name] = hashlib.sha256(f.read()).hexdigest()[:32] + "-" + TON_BITRATE
+            schluessel[name] = ton_schluessel(hashlib.sha256(f.read()).hexdigest(), name)
     quelle_je_schluessel = {}
     for name in mp3s:
         quelle_je_schluessel.setdefault(schluessel[name], name)
@@ -350,15 +400,21 @@ def ton_verkleinern(audio=None, ffmpeg=None, zwischen=None):
         if os.path.isfile(fertig) and os.path.getsize(fertig) > 0:
             return
         tmp = fertig + ".tmp.ogg"
+        # Gleicher Schluessel heisst gleicher Filter (er steckt im
+        # Schluessel), also genuegt der Name der ersten Quelle.
+        f = ton_filter(name)
         r = subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y",
-                            "-i", os.path.join(audio, name), "-ac", "1", "-c:a", "libopus",
-                            "-b:a", TON_BITRATE, "-vbr", "on", "-application", "audio",
-                            tmp], capture_output=True)
+                            "-i", os.path.join(audio, name)]
+                           + (["-af", f] if f else [])
+                           + ["-ac", "1", "-c:a", "libopus",
+                              "-b:a", TON_BITRATE, "-vbr", "on", "-application", "audio",
+                              tmp], capture_output=True)
         if r.returncode != 0 or not os.path.isfile(tmp) or os.path.getsize(tmp) == 0:
             raise RuntimeError("%s: %s" % (name, r.stderr.decode("utf-8", "replace")[-300:]))
         os.replace(tmp, fertig)
 
-    print("\nTonspur nach Opus (%d Dateien, %s) ..." % (len(mp3s), TON_BITRATE))
+    print("\nTonspur nach Opus (%d Dateien, %s, %d davon mit gekuerzter Stille am Anfang) ..."
+          % (len(mp3s), TON_BITRATE, sum(1 for n in mp3s if ton_filter(n))))
     try:
         with ThreadPoolExecutor(max_workers=max(2, (os.cpu_count() or 4))) as pool:
             list(pool.map(umwandeln, sorted(quelle_je_schluessel.items())))

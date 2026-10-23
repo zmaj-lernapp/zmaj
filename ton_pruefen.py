@@ -21,6 +21,20 @@ INDEX = os.path.join(AUDIO, "index.json")
 MINDEST = 800          # kleiner heißt: abgebrochen oder stumm
 TONARTEN = (".mp3", ".m4a", ".wav", ".ogg", ".webm")
 
+# Woerter mit mehreren Formen, bei denen die Aufnahme mit ALLEN Formen
+# bewusst noch fehlt. audioDatei() in web/index.html spielt dann die erste
+# Form - der Rueckfall, den es seit dem 01.10.2026 gibt. Eine neue Aufnahme
+# kostet Geld (Azure), ob und wann, entscheidet Ajdin. Gilt nur fuer die
+# Texte hier (Schluessel wie schluessel_alle() in ton_bauen.py), jeder andere
+# fehlende Ton bleibt ein Fehler, und die erste Form muss ihre Aufnahme
+# haben. Hat ton_bauen.py die Aufnahme erzeugt, meldet die Pruefung den
+# Eintrag als ueberfluessig - dann hier loeschen.
+NUR_ERSTE_FORM = {
+    # Ajdin am 22.10.2026: "die vokabel salz am besten zu so/sol aendern
+    # weil man es so oder so sagt". Bis zur neuen Aufnahme klingt nur "so".
+    "so / sol",
+}
+
 
 def main():
     import ton_bauen                       # dieselbe Sammel-Logik, keine Kopie
@@ -59,8 +73,16 @@ def main():
     haben = {e["key"] for e in toene}
     posten = ton_bauen.sammle()
     for p in posten:
-        if p["key"] not in haben:
-            fehler.append("kein Ton für: %s" % p["text"][:60])
+        if p["key"] in haben:
+            if p.get("alle") and p["key"] in NUR_ERSTE_FORM:
+                warnung.append("Aufnahme ist da, aus NUR_ERSTE_FORM loeschen: %s" % p["text"][:60])
+            continue
+        if (p.get("alle") and p["key"] in NUR_ERSTE_FORM
+                and ton_bauen.schluessel(p["text"]) in haben):
+            warnung.append("nur die erste Form klingt, Aufnahme mit allen Formen fehlt: %s"
+                           % p["text"][:60])
+            continue
+        fehler.append("kein Ton für: %s" % p["text"][:60])
 
     # 4) Keine verwaisten Dateien im Ordner
     if os.path.isdir(AUDIO):

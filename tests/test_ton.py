@@ -17,6 +17,21 @@ def test_ton_pruefen_meldet_nichts(wurzel):
     assert ton_pruefen.main() in (0, None)
 
 
+def test_nur_erste_form_nur_fuer_echte_mehrfachformen(index):
+    """ton_pruefen.NUR_ERSTE_FORM laesst eine fehlende Aufnahme mit allen
+    Formen durch (22.10.2026, "so / sol" - die neue Aufnahme kostet Geld,
+    Ajdin entscheidet spaeter). Das darf nur fuer ein Wort mit mehreren
+    Formen gelten, dessen erste Form klingt; sonst verdeckte die Ausnahme
+    ein stummes Wort."""
+    import ton_bauen
+    import ton_pruefen
+    alle = {p["key"]: p["text"] for p in ton_bauen.sammle() if p.get("alle")}
+    haben = {e["key"] for e in index["toene"]}
+    for k in ton_pruefen.NUR_ERSTE_FORM:
+        assert k in alle, "kein Wort mit mehreren Formen: %r" % k
+        assert ton_bauen.schluessel(alle[k]) in haben, "auch die erste Form fehlt: %r" % k
+
+
 def test_jede_datei_im_index_existiert_und_ist_nicht_leer(index, wurzel):
     fehlt, leer = [], []
     for e in index["toene"]:
