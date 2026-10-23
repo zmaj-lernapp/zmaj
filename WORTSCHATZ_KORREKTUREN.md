@@ -307,3 +307,11 @@ mehrdeutig, je nach Gegend heißen sie Cousin oder Neffe.
   und die Anki-Pakete haben für die zwölf neuen Wörter keine Aufnahme, bei
   den Wörtern mit zwei Formen klingt dort die erste. Der Eintrag „so / sol“
   in `NUR_ERSTE_FORM` (ton_pruefen.py) ist damit gelöscht.
+
+## 23.10.2026 – „später“: auch poslije
+
+Ajdin: „ich sehe später kann sowohl poslije als auch kasnije bedeuten im moment ist nur kasnije richtig und es kommt auf dem kontext an was man wann verwendet“.
+
+| Kennung | Änderung |
+|---|---|
+| `später:kasnije` | `"auch": ["poslije"]` – beim Tippen zählt poslije, in der Auswahl erscheint poslije nicht mehr als falsche Antwort. Wort und Kennung bleiben, kein Fortschritt geht verloren. |
