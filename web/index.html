@@ -1185,7 +1185,7 @@
   header .livesbar{padding-left:6px; padding-right:6px}
   header .livesbar .herz{padding-top:0; padding-bottom:0}
   .muenzbar{
-    display:inline-flex; align-items:center; gap:6px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:6px;
     background:var(--surface); border:2px solid var(--line); border-radius:99px;
     padding:5px 12px; font:800 15px var(--font-ui); color:var(--accent-dark);
   }
@@ -1200,7 +1200,6 @@
   /* Der Weg zu Googles Einwilligungsfenster ist jetzt der Schalter selbst -
      ein Tipp darauf oeffnet es. Damit ist Googles Forderung nach einem Weg
      dorthin erfuellt, ohne ein zweites Bedienelement. */
-  .muenzbar:hover{border-color:var(--accent)}
   .livesbar{
     display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:2px solid var(--line);
     border-radius:99px; padding:3px 8px 3px 4px; font-size:13px; color:var(--muted); font-weight:700;
@@ -1678,7 +1677,10 @@
     </div>
     <div class="kopfleiste" id="kopfLeiste">
       <div class="livesbar" id="livesBar" style="display:none"></div>
-      <button type="button" class="muenzbar" id="muenzBar" hidden></button>
+      <!-- Nur Anzeige, kein Knopf: in den Laden fuehrt allein der Einkaufswagen.
+           Ajdin am 23.10.2026: "warum kann man beim muenzen icon auch auf den
+           shop zugreifen es sollte nur der shop button dafuer funktionieren". -->
+      <div class="muenzbar" id="muenzBar" hidden></div>
     </div>
     <div class="hbtns">
       <button class="back" id="btnShop" style="display:none" data-t-title="laden.titel">&#128722;</button>
@@ -5026,7 +5028,7 @@ function dauerVollVerdrahten(){
    hoechstens zwei Sekunden zwischen zwei Tipps. Nochmal so schaltet aus.
    Warum dort: die Ueberschrift ist kein Knopf und tut sonst nichts, der
    Zaehler stoert also keine Bedienung, und siebenmal schnell tippt dort
-   niemand. Die Muenzanzeige fuehrt in den Laden, der Reiterkopf klappt die
+   niemand. Die Muenzanzeige fuehrte damals in den Laden, der Reiterkopf klappt die
    Liste auf - beide fielen deshalb weg. Und die Wirkung steht gleich
    darunter: "Tragen" statt Preis.
    Gekauft wird nichts, besitz und Muenzen bleiben, wie sie sind. Ist der
@@ -5562,11 +5564,8 @@ async function lektionDarfWeg(){
   return await frage(t('lektion.abbrechen_frage'), t('lektion.abbrechen_hinweis'),
                      t('btn.abbrechen'), t('btn.weitermachen'));
 }
-// Ein Tipp auf die Muenzen fuehrt dorthin, wo man sie ausgibt.
-$('muenzBar').addEventListener('click', async ()=>{
-  if(!await lektionDarfWeg()) return;
-  await saveProgress(); showLaden();
-});
+/* Bis zum 23.10.2026 fuehrte ein Tipp auf die Muenzen in den Laden. Jetzt
+   nur noch der Einkaufswagen (#btnShop), siehe #muenzBar. */
 /* Wer die App abends auf der Startseite liegen laesst und sie morgens
    wieder hervorholt, sah bisher den Stand von gestern: "Heute geuebt",
    die alte Serienzahl und alle drei Tagesaufgaben abgehakt. renderHero()
