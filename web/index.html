@@ -517,6 +517,64 @@
     0%,100%{opacity:0; transform:scale(.4)}
     40%{opacity:1; transform:scale(1)}
     70%{opacity:0; transform:scale(.6)}}
+  /* ---- Funkenflug (24.10.2026) ----
+     Ajdin nach dem Test der gemalten Flamme: "kann man das feuer animieren
+     so das immer so kurze funken raus kommen". Aus der Vorschau mit drei
+     Varianten (A Funkenflug, B Knistern, C Sanft) nahm er A, "aber fuer
+     365 tage da ist schon eine shiny animation das waere dann zu viel".
+     Also:
+       - vier kleine Funken (.fk) steigen staendig aus der Flamme auf,
+         schlaengeln leicht und verglimmen
+       - nur orange, blau und lila, und nur wenn die Flamme brennt
+       - NICHT bei Gold (ab 365): dort funkeln schon die drei Sterne
+         (.funke), die bleiben, wie sie sind
+       - nicht bei Glut und kalter Kohle, nicht waehrend des Aufbaus (erst
+         danach), nicht ohne Bewegung (.no-anim oder Geraeteeinstellung)
+     Angelegt werden sie nur, wenn sie gebraucht werden: oben von
+     funkenRichten(), in der Statistik von flammeHtml() - beide mit
+     funkenHtml(), also ueberall gleich. display:none unten ist nur das
+     Netz fuer den Augenblick, bevor neu gezeichnet wird. Ohne Bewegung
+     nehmen die allgemeinen Regeln oben und unten jede animation weg, und
+     ohne Animation bleibt ein Funke unsichtbar (opacity 0).
+     Bewegt werden nur transform und opacity, das rechnet die Grafikkarte.
+     Auch der Startpunkt im Rahmen steckt im transform (--px, --py; left
+     und top bleiben 0), ein neuer Startpunkt verschiebt also nichts im
+     Layout. Absolut gesetzt, pointer-events:none, im Kasten mit
+     aria-hidden: Flamme und Zahl stehen wie ohne sie (nachgemessen in
+     tests_e2e/test_funken.py).
+     Masse wie in der Vorschau in Rahmenhoehen (--fh), so passen sie oben
+     und in der Statistik gleich zur Flamme. Je Runde setzt funkeWuerfeln()
+     neu (bei animationiteration): Startpunkt --x/--y (Anteil an
+     Breite/Hoehe des Rahmens), Flugweite --dx/--dy, Schlaengeln --wk,
+     Groesse --g. Dauer --dauer und Verzoegerung --warte hat jeder Funke
+     fest, wie in der Vorschau - siehe funkeWuerfeln(). Die Farbe kommt von
+     der Stufe: --sp1 innen, --sp2 aussen und im Schein - die Farben der
+     Vorschau.
+     --hub, die Steighoehe, ist hoechstens 19 px: Zwischen Kopfleiste und
+     Rahmen liegen im engsten Fall nur gut 19 px (14 px Abstand unter dem
+     Kopf, dazu der Rand der Zahlzeile) - bei grosser Schrift, oder wenn
+     die Zeile unter der Serie so lang ist, dass .serieblock ganz oben in
+     .obenreihe steht. Ohne die Grenze flogen die Funken bei 130 % Schrift
+     und 320 px Breite bis ins Herz der Kopfleiste. Bei normaler Schrift
+     steigen sie oben 17 bis 19 px, in der Statistik 9 bis 14 px. */
+  .flammenbox .fk{position:absolute; left:0; top:0; pointer-events:none; opacity:0; border-radius:50%;
+      --sp1:#FFD36B; --sp2:#FF5A0A;
+      --gr:max(4px, calc(var(--fh) * var(--g, .06)));
+      --px:calc(var(--x, .5) * var(--fh) * 403 / 512); --py:calc(var(--y, .2) * var(--fh));
+      --hub:max(calc(var(--dy, -.6) * var(--fh)), -19px);
+      width:var(--gr); height:var(--gr); margin:calc(var(--gr) / -2);
+      background:radial-gradient(circle, #FFFFFF 0 22%, var(--sp1) 40%, var(--sp2) 72%, transparent 74%);
+      box-shadow:0 0 max(3px, calc(var(--fh) * .06)) var(--sp2);
+      animation:flammeFlug var(--dauer, 1.8s) ease-out var(--warte, 0s) infinite}
+  .flamme.stufe-blau ~ .fk{--sp1:#BDE3FF; --sp2:#1E7BFF}
+  .flamme.stufe-lila ~ .fk{--sp1:#E9CCFF; --sp2:#9440FF}
+  .flamme.stufe-gold ~ .fk, .flamme.glut ~ .fk, .flamme.aus ~ .fk, .flamme.auf ~ .fk{display:none}
+  @keyframes flammeFlug{
+    0%{opacity:0; transform:translate(var(--px), var(--py)) scale(.6)}
+    8%{opacity:1; transform:translate(var(--px), var(--py)) scale(1)}
+    45%{opacity:1; transform:translate(calc(var(--px) + var(--dx, 0) * var(--fh) * .45 + var(--wk, 0) * var(--fh)),
+                                       calc(var(--py) + var(--hub) * .5)) scale(.85)}
+    100%{opacity:0; transform:translate(calc(var(--px) + var(--dx, 0) * var(--fh)), calc(var(--py) + var(--hub))) scale(.25)}}
   /* ---- Der Aufbau Glut -> Flamme (24.10.2026) ----
      Ajdin am 23.10.2026: "wenn man wieder zum startbildschirm zurueckkehrt
      soll man eine animation bekommen wie die flamme aufsteigt von klein zu
@@ -1979,7 +2037,9 @@
       <div class="serieblock">
         <!-- Die Flamme genau so, wie flammeHtml() sie baut (22.10.2026),
              nur mit id. Ihre Klassen und ihr Bild setzt flammeZeigen().
-             Seit dem 24.10.2026 ein gemaltes Bild statt des Emojis. -->
+             Seit dem 24.10.2026 ein gemaltes Bild statt des Emojis. Die
+             Funken des Funkenflugs (.fk, 24.10.2026) legt funkenRichten()
+             dazu, sobald sie gebraucht werden. -->
         <div class="seriezahl"><span class="flammenbox" aria-hidden="true"><span class="flamme" id="serieFlamme" aria-hidden="true"><img class="flammenbild" src="flamme/flamme.webp" alt=""></span><span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span><span id="serieZahl">0</span></div>
         <div class="streakline" id="streakLine"></div>
       </div>
@@ -6173,13 +6233,68 @@ function flammeKlassen(){
 function flammeBild(z){ return 'flamme/' + (z === 'an' ? 'flamme' : z) + '.webp'; }
 /* Genau der Aufbau oben auf der Startseite (#serieFlamme im HTML), ohne id.
    Das Bild ist Schmuck: alt="" im Kasten mit aria-hidden, vorgelesen wird
-   die Zahl daneben. Die Funken stehen immer drin; sichtbar sind sie nur in
-   der Gold-Stufe, siehe .funke im Stil. */
+   die Zahl daneben. Die Sterne (.funke) stehen immer drin; sichtbar sind
+   sie nur in der Gold-Stufe, siehe .funke im Stil. Die Funken des
+   Funkenflugs (.fk) kommen nur dazu, wenn sie fliegen sollen. */
 function flammeHtml(){
   return '<span class="flammenbox" aria-hidden="true"><span class="' + flammeKlassen() + '" aria-hidden="true">' +
     '<img class="flammenbild" src="' + flammeBild(flammeZustand()) + '" alt=""></span>' +
-    '<span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span>';
+    '<span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span>' +
+    (funkenSoll() ? funkenHtml() : '') + '</span>';
 }
+/* Funkenflug (24.10.2026), siehe .fk im Stil. Ajdin: "kann man das feuer
+   animieren so das immer so kurze funken raus kommen", und aus der
+   Vorschau: "nimm A aber fuer 365 tage da ist schon eine shiny animation
+   das waere dann zu viel". Funken also nur, wenn die Flamme brennt, nicht
+   in der Gold-Stufe und nur mit Bewegung (Schalter "Animationen" und
+   Geraeteeinstellung, wie bei den Kacheln). Waehrend des Aufbaus oben
+   keine - das prueft funkenRichten() an .auf.
+   Die Bereiche sind die der Vorschau (Variante A, ART.flug). Die erste
+   Runde ist fest (FUNKEN_ERSTE, ueber den Rahmen verteilt und nacheinander
+   gestartet): so baut flammeHtml() in der Statistik genau dasselbe wie
+   funkenRichten() oben, und gewuerfelt wird nur bei animationiteration -
+   kein Zeitgeber, kein Zufall beim Zeichnen. Dauer und Verzoegerung
+   bleiben je Funke, wie sie hier stehen: 1,6 bis 2 s, aus dem Bereich der
+   Vorschau (1,5 bis 2,1 s), die auch nur einmal je Funke wuerfelt.
+   FUNKEN_BEREICH sind die Bereiche fuer jede neue Runde. */
+const FUNKEN_BEREICH = {x: [.36, .64], y: [.08, .3], dx: [-.35, .35], dy: [-.75, -.5], wk: [-.08, .08], g: [.055, .08]};
+const FUNKEN_ERSTE = [
+  {dauer: 1.7, warte: 0,    x: .44, y: .14, dx: -.22, dy: -.66, wk: .05,  g: .06},
+  {dauer: 1.9, warte: .45,  x: .57, y: .22, dx: .16,  dy: -.58, wk: -.04, g: .07},
+  {dauer: 1.6, warte: .9,   x: .4,  y: .26, dx: -.3,  dy: -.52, wk: -.06, g: .065},
+  {dauer: 2,   warte: 1.35, x: .6,  y: .1,  dx: .26,  dy: -.72, wk: .03,  g: .075}];
+function funkenSoll(){ return flammeZustand() === 'an' && flammeStufe(streak()) !== 'gold' && !kachelnRuhig(); }
+function funkenHtml(){
+  return FUNKEN_ERSTE.map(w => '<span class="fk" style="' + Object.keys(w).map(k =>
+    '--' + k + ':' + w[k] + (k === 'dauer' || k === 'warte' ? 's' : '')).join(';') + '"></span>').join('');
+}
+/* Oben: Funken anlegen oder wegnehmen. Liegen sie schon da und sollen
+   bleiben, bleiben sie - sonst finge ihr Flug bei jedem renderHero() von
+   vorn an. Die Farbe wechselt mit der Stufe von selbst (Stil). */
+function funkenRichten(f){
+  const box = f.parentElement, da = box.querySelectorAll('.fk');
+  const soll = funkenSoll() && !f.classList.contains('auf');
+  if(soll && !da.length) box.insertAdjacentHTML('beforeend', funkenHtml());
+  else if(!soll) da.forEach(x => x.remove());
+}
+/* Eine neue Runde fuer einen Funken (24.10.2026): Startpunkt, Flugweite,
+   Schlaengeln und Groesse neu gewuerfelt, wie in der Vorschau. Dauer und
+   Verzoegerung bleiben, wie FUNKEN_ERSTE sie angelegt hat. Vier Funken mit
+   eigener Dauer laufen ohnehin nie im Gleichschritt.
+   Zuerst wurde auch die Dauer je Runde neu gewuerfelt. Damit eine neue
+   Dauer nicht mitten in den Flug springt, rueckte dabei die Verzoegerung
+   jede Runde nach - nach ein paar Minuten stand sie bei mehreren Sekunden.
+   Kam man dann aus dem Laden, den Einstellungen oder einer Lektion zurueck,
+   fing die Animation neu an (die Startseite war ausgeblendet), und ein
+   Funke blieb so lange weg, wie seine Verzoegerung war. Gefunden bei der
+   Pruefung, nachgestellt in tests_e2e/test_funken.py. */
+function funkeWuerfeln(fk){
+  const s = fk.style, B = FUNKEN_BEREICH;
+  for(const k in B) s.setProperty('--' + k, (B[k][0] + Math.random() * (B[k][1] - B[k][0])).toFixed(3));
+}
+document.addEventListener('animationiteration', e => {
+  if(e.animationName === 'flammeFlug') funkeWuerfeln(e.target);
+});
 /* Alle Bilder der Flamme einmal beim Start holen (24.10.2026): Flamme, Glut,
    kalte Kohle und die Ebenen des Aufbaus liegen dann schon bereit, wenn sie
    zum ersten Mal gebraucht werden - sonst stuende beim ersten Wechsel einen
@@ -6228,7 +6343,7 @@ function flammeWache(f){
       const x = f.querySelector('.gf-feuer');
       laeuft = !!x && x.getAnimations().some(a => a.playState === 'running' || a.playState === 'paused');
     }catch(e){}
-    if(laeuft) flammeWache(f); else flammeFertig(f);
+    if(laeuft) flammeWache(f); else { flammeFertig(f); funkenRichten(f); }
   }, FLAMME_DAUER + 300);
 }
 let flammeVorher = null;
@@ -6250,10 +6365,12 @@ function flammeZeigen(){
     flammeWache(f);
   }
   flammeVorher = zustand;
+  funkenRichten(f);
 }
-/* gfLodern laeuft auf .gf-feuer und endet mit allen anderen Teilen. */
+/* gfLodern laeuft auf .gf-feuer und endet mit allen anderen Teilen. Erst
+   danach setzen die Funken ein. */
 $('serieFlamme').addEventListener('animationend', e => {
-  if(e.animationName === 'gfLodern') flammeFertig(e.currentTarget);
+  if(e.animationName === 'gfLodern'){ flammeFertig(e.currentTarget); funkenRichten(e.currentTarget); }
 });
 let heroStand = null;
 function renderHero(){
