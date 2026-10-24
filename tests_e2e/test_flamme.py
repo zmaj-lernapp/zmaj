@@ -4,22 +4,34 @@ und Ajdin, entschieden nach einer Vorschau mit drei Varianten).
 
 Ajdin: "nimm a fuer 0 tage und den rest fuer c". Die Flamme zeigt also,
 ob heute schon gelernt wurde:
-  - Serie 0, heute nichts:          .aus  - grau, blass, steht still (A)
-  - Serie laeuft, heute noch nichts: .glut - klein, entsaettigt, flackert (C)
-  - heute gelernt:                   volle Flamme wie bisher
+  - Serie 0, heute nichts:          .aus  - kalte graue Kohle, steht still (A)
+  - Serie laeuft, heute noch nichts: .glut - gluehende Kohlen, flackern (C)
+  - heute gelernt:                   die volle Flamme
   - Wechsel von kalt auf an IN DER SITZUNG (erste Lektion des Tages):
-    .auf - einmal kurz auflodern. Beim Start nicht.
+    .auf - die Flamme baut sich einmal aus der Glut auf. Beim Start nicht.
 
-Und: "die zahl und das feuer nicht auf einer ebene". Gemessen wird hier
-nicht mit getBoundingClientRect - der Kasten eines Emojis sagt nichts darueber,
-wo die Flamme sichtbar sitzt -, sondern an den Pixeln: je ein Bildschirmfoto
-mit nur der Flamme und nur der Zahl, daraus die Zeilen mit Farbe. Verglichen
-wird die Mitte zwischen oberster und unterster Zeile, in CSS-Pixeln.
+Seit dem 24.10.2026 gemalt statt Emoji. Das Emoji sah auf Ajdins Samsung
+anders aus als am Rechner, die Glut sass zu hoch ("die kleine flamme ist zu
+weit oben"). Jetzt steht in einem Rahmen 403:512, gleich gross in allen
+Zustaenden, je ein Bild aus web/flamme: flamme.webp, glut.webp (kleine
+gluehende Kohlen, KEINE verkleinerte Flamme), aus.webp (kalte Kohle). Der
+Aufbau Glut -> Flamme ist Fassung 2 der Vorschau ("feuer ist gut geworden
+wir nehmen den"): die Ebenen ebene_*.webp, gestapelt, 1,5 s, danach das eine
+Bild flamme.webp - ohne Sprung.
+
+Und: "die zahl und das feuer nicht auf einer ebene". Der Rahmen sitzt mit
+seiner Mitte auf der Mitte der Ziffern. Gemessen wird die Zahl an den
+Pixeln: je ein Bildschirmfoto mit nur der Flamme und nur der Zahl, daraus
+die Zeilen mit Farbe, verglichen wird die Mitte zwischen oberster und
+unterster Zeile, in CSS-Pixeln. Der Rahmen ist ein Bild-Kasten, seine Lage
+sagt getBoundingClientRect; bei der brennenden Flamme wird zusaetzlich das
+sichtbare Bild an den Pixeln gemessen. Keine Emoji-Schrift mehr im Spiel -
+die Masse sind auf jedem Rechner und in der CI (Linux) dieselben.
 
 Grosse Schrift: Android vergroessert in der WebView jede Schriftgroesse
 (Einstellungen > Schriftgroesse), Kaesten in px aber nicht. Chrome hat dafuer
 keinen Schalter; SCHRIFT macht dasselbe von Hand - jede berechnete
-Schriftgroesse mal Faktor.
+Schriftgroesse mal Faktor. Der Rahmen steht in em und waechst mit.
 
 Aufbau wie test_stern.py: jeder Test mit eigenem Browserkontext im
 Geraetemodus; die Bewegung (prefers-reduced-motion) ist immer ausdruecklich
@@ -28,24 +40,36 @@ gesetzt, sonst haengt das Ergebnis an der Einstellung des Rechners.
 Seit dem 22.10.2026 (unten ab "Stufen"):
   - Stufen nach der laufenden Serie, Ajdin: "Mit Stufen" - unter 30 orange,
     ab 30 blau, ab 100 lila, ab 365 weissgold mit Funken. Die Glut behaelt
-    die Farbe ihrer Stufe, das Auflodern ebenso. Funken nur, wenn die
-    Flamme brennt und Bewegung erlaubt ist.
+    die Farbe ihrer Stufe, der Aufbau ebenso. Funken nur, wenn die Flamme
+    brennt und Bewegung erlaubt ist.
   - Dieselbe Flamme ueberall, Ajdin: "beachte das nicht das es 2
     verschiedene desgins sind": auch in der Statistik am Ende einer
-    Lektion und einer Wiederholungsrunde, mit demselben Zustand und
-    derselben Stufe (flammeKlassen/flammeHtml), dort ebenfalls an den
-    Pixeln auf Hoehe der Zahl gemessen. Aufgelodert wird nur oben.
+    Lektion und einer Wiederholungsrunde, mit demselben Zustand, derselben
+    Stufe und demselben Bild (flammeKlassen/flammeBild/flammeHtml), dort
+    ebenfalls an den Pixeln auf Hoehe der Zahl gemessen. Aufgebaut wird
+    nur oben.
 """
 import base64
 import datetime
 import io
 import json
 import os
-import sys
 import re
 
 import pytest
 from conftest import WURZEL, Seite
+
+# Alle Bilder der Flamme: die drei Zustaende und die Ebenen des Aufbaus.
+BILDER = ["flamme", "glut", "aus", "kohle", "ebene_flaemmchen", "ebene_kohle_heiss",
+          "ebene_rot", "ebene_orange", "ebene_gelb", "ebene_kern"]
+BILD = {"an": "flamme/flamme.webp", "glut": "flamme/glut.webp", "aus": "flamme/aus.webp"}
+# Rahmenhoehe oben (34 px neben Spectral 46 px) und in der Statistik
+# (18 px neben Nunito 18 px), Seitenverhaeltnis 403:512
+OBEN = 34
+STATISTIK = 18
+SEITEN = 403 / 512
+# Die sichtbare Flamme reicht im Rahmen von Zeile 2 bis 190 (von 192)
+FLAMME_ANTEIL = 188 / 192
 
 GLUT_TAKT = """() => { const f = document.getElementById('serieFlamme'), a = f.getAnimations()[0];
   a.pause(); const aus = {};
@@ -53,21 +77,41 @@ GLUT_TAKT = """() => { const f = document.getElementById('serieFlamme'), a = f.g
     aus[p] = [s.filter, s.opacity]; }
   a.play(); return aus; }"""
 
-FLAMME = """() => { const f = document.getElementById('serieFlamme'), s = getComputedStyle(f);
-  return {klasse: f.className, aria: f.getAttribute('aria-hidden'), text: f.textContent,
+FLAMME = """() => { const f = document.getElementById('serieFlamme'), s = getComputedStyle(f), b = f.parentElement,
+  i = f.querySelector('.flammenbild'), r = b.getBoundingClientRect();
+  return {klasse: f.className, aria: f.getAttribute('aria-hidden'), boxAria: b.getAttribute('aria-hidden'),
+          text: f.textContent, bild: i.getAttribute('src'), alt: i.getAttribute('alt'),
+          geladen: i.complete && i.naturalWidth > 0, sichtbar: getComputedStyle(i).visibility,
+          rahmen: [r.left, r.top, r.width, r.height],
           zahl: document.getElementById('serieZahl').textContent,
           filter: s.filter, opacity: s.opacity, transform: s.transform,
           animation: s.animationName, dauer: s.animationDuration, wdh: s.animationIterationCount,
           laufend: f.getAnimations().map(a => a.animationName),
+          stapel: f.querySelector('.gf') ? [...f.querySelectorAll('.gf img')].map(x => x.className) : null,
           noAnim: document.body.classList.contains('no-anim'),
           alle: document.querySelectorAll('.flamme').length}; }"""
 
+# Die Animationen des Aufbaus (im Stapel unter #serieFlamme), mit Dauer.
+AUFBAU = """() => { const f = document.getElementById('serieFlamme');
+  return document.getAnimations().filter(a => a.effect && a.effect.target !== f && f.contains(a.effect.target))
+    .map(a => [a.animationName, a.effect.getTiming().duration]); }"""
+
+# Den Aufbau auf t ms stellen und anhalten.
+ANHALTEN = """(t) => { const f = document.getElementById('serieFlamme');
+  const an = document.getAnimations().filter(a => a.effect && a.effect.target !== f && f.contains(a.effect.target));
+  an.forEach(a => { a.pause(); a.currentTime = t; }); return an.length; }"""
+WEITER = """() => { const f = document.getElementById('serieFlamme');
+  document.getAnimations().filter(a => a.effect && f.contains(a.effect.target)).forEach(a => a.play()); }"""
+
 # Die erste Lektion des Tages, kurz: markToday() wie am Ende einer Lektion,
 # dann zurueck auf die Startseite. Der Test mit der echten Lektion steht
-# weiter unten (test_auflodern_nach_der_ersten_lektion).
+# weiter unten (test_aufbau_nach_der_ersten_lektion).
 ERSTE_LEKTION = """() => { markToday(); homeMode = 'words'; showHome();
   const f = document.getElementById('serieFlamme');
-  return {klasse: f.className, laufend: f.getAnimations().map(a => a.animationName)}; }"""
+  return {klasse: f.className, bild: f.querySelector('.flammenbild').getAttribute('src'),
+          stapel: f.querySelector('.gf') ? [...f.querySelectorAll('.gf img')].map(x => x.className) : null}; }"""
+
+FERTIG = "() => !document.getElementById('serieFlamme').classList.contains('auf')"
 
 # Wie Android "Schriftgroesse": jede berechnete Schriftgroesse mal f. Erst alle
 # lesen, dann schreiben - sonst rechnete ein Kind mit der schon vergroesserten
@@ -77,18 +121,16 @@ SCHRIFT = """(f) => { const els = [...document.querySelectorAll('body *')];
   els.forEach((e, i) => e.style.fontSize = (g[i] * f) + 'px'); }"""
 
 # Nur eines von beiden sichtbar, alles andere unsichtbar (auch Festschmuck,
-# Drache und die Funken der Gold-Stufe). Die Flamme mit voller Deckkraft und
-# ohne Filter: gemessen wird wo sie steht, nicht wie blass sie ist oder wie
-# weit ihr Schein reicht. transform bleibt unberuehrt - genau darum geht es
-# (Verschiebung, kleine Glut, Auflodern).
+# Drache und die Funken der Gold-Stufe). Die Flamme ohne Filter: gemessen
+# wird, wo sie steht, nicht wie weit ihr Schein reicht.
 # f und z sind die ids von Flamme und Zahl. In der Statistik ist die Zahl
 # kein eigenes Element, nur Text im <b> neben der Flamme: das <b> wird
-# sichtbar, seine Kinder (die Flamme) bleiben es nicht, der Text erbt.
+# sichtbar, sein Kind (der Kasten der Flamme) bleibt es nicht, der Text erbt.
 MESS_STIL = """([art, f, z]) => { let s = document.getElementById('messStil');
   if(!s){ s = document.createElement('style'); s.id = 'messStil'; document.head.appendChild(s); }
   const T = {
-    flamme: 'body *{visibility:hidden!important} #' + f + '{visibility:visible!important;'
-            + ' opacity:1!important; filter:none!important}',
+    flamme: 'body *{visibility:hidden!important} #' + f + ', #' + f + ' *{visibility:visible!important}'
+            + ' #' + f + '{filter:none!important}',
     zahl: 'body *{visibility:hidden!important} #' + z + '{visibility:visible!important}',
     echt: ''};
   s.textContent = T[art]; }"""
@@ -105,40 +147,21 @@ ZEILEN = """async ([bilder, dpr]) => {
         if(y < oben) oben = y; if(y > unten) unten = y; } }
     return {oben: oben / dpr, unten: (unten + 1) / dpr, hoehe: (unten + 1 - oben) / dpr,
             mitte: (oben + unten + 1) / 2 / dpr}; };
-  const f = box(await lade(bilder.flamme)), z = box(await lade(bilder.zahl));
-  return {flamme: f, zahl: z, dy: f.mitte - z.mitte};
+  return {flamme: box(await lade(bilder.flamme)), zahl: box(await lade(bilder.zahl))};
 }"""
 
-# Noto Color Emoji, die Emoji-Schrift von Android. Am Rechner zeichnet Chrome
-# seine eigene (Windows: Segoe UI Emoji), und deren Flamme sitzt anders im
-# Kasten - es zaehlt aber das Handy, dort hat Ajdin es gesehen. Android
-# Studio bringt die Schrift fuer seine Vorschau mit; ZMAJ_ANDROID_EMOJI kann
-# auf eine andere Kopie zeigen. Fehlt sie, misst nur der Test mit der
-# Schrift des Rechners. (Pruefung vom 20.10.2026)
-# Windows (Segoe UI Emoji) zeichnet 30 px Emoji ~30 px hoch, Linux und
-# Android (Noto Color Emoji) ~33,5 px. In der CI (Linux) gilt Noto.
-# 23.10.2026, PR #55.
-SYSTEM_EMOJI = 1.0 if sys.platform == "win32" else 33.5 / 30
-ANDROID_EMOJI = os.environ.get("ZMAJ_ANDROID_EMOJI") or (
-    "C:/Program Files/Android/Android Studio/plugins/design-tools/resources/layoutlib/data/fonts/NotoColorEmoji.ttf")
-
-# Als zweite Schrift der Flamme, gleich hinter Spectral: Grundlinie und Hoehe
-# des Kastens bestimmt weiter Spectral, wie auf dem Handy; nur das Emoji
-# kommt aus Noto statt aus dem Rueckfall des Rechners.
-ANDROID_STIL = """([url, id]) => { const f = document.getElementById(id);
-  const s = document.createElement('style');
-  s.textContent = "@font-face{font-family:'ZmajAndroidEmoji'; src:url('" + url + "') format('truetype')}";
-  document.head.appendChild(s);
-  const fam = getComputedStyle(f).fontFamily.split(',');
-  fam.splice(1, 0, "'ZmajAndroidEmoji'");
-  f.style.fontFamily = fam.join(',');
-  return document.fonts.load("30px 'ZmajAndroidEmoji'", '🔥').then(l => l.length); }"""
-
-
-def _android_emoji(ctx, seite, ziel="serieFlamme"):
-    ctx.route("**/__android_emoji.ttf", lambda r: r.fulfill(path=ANDROID_EMOJI, content_type="font/ttf"))
-    assert seite.js(ANDROID_STIL, [seite.basis + "/__android_emoji.ttf", ziel]) >= 1
-    seite.page.wait_for_timeout(100)
+# Zwei Bildschirmfotos Pixel fuer Pixel: groesster Unterschied eines
+# Farbkanals und wie viele Pixel um mehr als 32 abweichen.
+VERGLEICH = """async ([a, b]) => {
+  const lade = async s => { const img = new Image(); img.src = 'data:image/png;base64,' + s; await img.decode();
+    const c = document.createElement('canvas'); c.width = img.naturalWidth; c.height = img.naturalHeight;
+    const x = c.getContext('2d'); x.drawImage(img, 0, 0); return x.getImageData(0, 0, c.width, c.height); };
+  const A = await lade(a), B = await lade(b); let max = 0, viele = 0;
+  for(let i = 0; i < A.data.length; i += 4){
+    const d = Math.max(Math.abs(A.data[i] - B.data[i]), Math.abs(A.data[i+1] - B.data[i+1]),
+                       Math.abs(A.data[i+2] - B.data[i+2]));
+    if(d > max) max = d; if(d > 32) viele++; }
+  return {max, viele, pixel: A.data.length / 4}; }"""
 
 
 def _tage(zustand):
@@ -168,13 +191,9 @@ def _vorspann_weg(seite):
     seite.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
 
 
-def _matrix(transform):
-    """'matrix(a, b, c, d, e, f)' -> [a, b, c, d, e, f]"""
-    assert transform.startswith("matrix("), transform
-    return [float(x) for x in transform[7:-1].split(",")]
-
-
 def _messen(seite, dpr, kasten=".seriezahl", f="serieFlamme", z="serieZahl"):
+    """Pixel von Flamme und Zahl, dazu der Rahmen (der Kasten der Flamme) -
+    alles in CSS-px ab der Oberkante des Fotos."""
     r = seite.js("(k) => { const r = document.querySelector(k).getBoundingClientRect();"
                  " return {x: r.left, y: r.top - 14, width: r.width, height: r.height + 28}; }", kasten)
     # Das Foto nimmt nur, was im Fenster steht - der Kasten muss ganz hinein.
@@ -185,88 +204,124 @@ def _messen(seite, dpr, kasten=".seriezahl", f="serieFlamme", z="serieZahl"):
         seite.page.wait_for_timeout(30)
         bilder[art] = base64.b64encode(seite.page.screenshot(clip=r)).decode("ascii")
     seite.js(MESS_STIL, ["echt", f, z])
-    return seite.js(ZEILEN, [bilder, dpr])
+    m = seite.js(ZEILEN, [bilder, dpr])
+    oben, hoehe, breite = seite.js("(f) => { const r = document.getElementById(f).parentElement.getBoundingClientRect();"
+                                   " return [r.top, r.height, r.width]; }", f)
+    m["rahmen"] = {"oben": oben - r["y"], "unten": oben - r["y"] + hoehe, "hoehe": hoehe, "breite": breite,
+                   "mitte": oben - r["y"] + hoehe / 2}
+    return m
+
+
+def _foto(seite, rand=12):
+    """Bildschirmfoto rund um den Rahmen oben, ohne die Zahl daneben."""
+    r = seite.js("""(rand) => { const r = document.querySelector('.seriezahl .flammenbox').getBoundingClientRect();
+        return {x: r.left - rand, y: r.top - rand, width: r.width + rand + 4, height: r.height + 2 * rand}; }""", rand)
+    return base64.b64encode(seite.page.screenshot(clip=r)).decode("ascii")
 
 
 # ---------------------------------------------------------------------------
-# Die drei Zustaende
+# Die drei Zustaende: je ein Bild im selben Rahmen
 # ---------------------------------------------------------------------------
 
-def test_aus_bei_serie_null(browser, basis, heute_stand):
+@pytest.mark.parametrize("zustand,zahl", [("aus", "0"), ("glut", "7"), ("an", "8")])
+def test_zustand_zeigt_sein_bild(browser, basis, heute_stand, zustand, zahl):
+    """aus: kalte Kohle, grau, still. glut: gluehende Kohlen, flackern in
+    der Helligkeit (2,2 s, endlos). an: die Flamme, ohne Filter. Alle drei
+    in voller Deckkraft und ohne Verschiebung oder Verkleinerung."""
     ctx, seite = _kontext(browser, basis)
     try:
-        _starten(seite, heute_stand, "aus")
+        _starten(seite, heute_stand, zustand)
+        seite.page.wait_for_function("() => document.querySelector('#serieFlamme .flammenbild').complete")
         f = seite.js(FLAMME)
-        assert f["zahl"] == "0"
-        assert f["klasse"].split() == ["flamme", "aus"]
-        assert f["filter"] == "grayscale(1)" and f["opacity"] == "0.32"
-        assert f["animation"] == "none" and f["laufend"] == []     # steht still
-        a, b, c, d, _, ty = _matrix(f["transform"])
-        assert (a, b, c, d) == (1, 0, 0, 1) and ty < 0              # nur angehoben
-        assert seite.fehler == []
+        assert f["zahl"] == zahl
+        assert f["klasse"].split() == ["flamme"] + ([zustand] if zustand != "an" else [])
+        assert f["bild"] == BILD[zustand] and f["geladen"] and f["sichtbar"] == "visible"
+        assert f["opacity"] == "1" and f["transform"] == "none" and f["stapel"] is None
+        if zustand == "aus":
+            assert f["filter"] == "grayscale(1)" and f["laufend"] == []
+        elif zustand == "glut":
+            assert f["animation"] == "flammeGlut" and f["dauer"] == "2.2s" and f["wdh"] == "infinite"
+            assert f["laufend"] == ["flammeGlut"]
+            # an drei Stellen des Takts abgelesen
+            werte = seite.js(GLUT_TAKT)
+            assert werte["0"] == ["brightness(1)", "1"]
+            assert werte["0.35"] == ["brightness(0.9)", "1"]
+            assert werte["0.6"] == ["brightness(1.18)", "1"]
+        else:
+            assert f["filter"] == "none" and f["laufend"] == []
+        assert seite.fehler == [] and seite.fremd == []
     finally:
         ctx.close()
 
 
-def test_glut_bei_laufender_serie_ohne_heute(browser, basis, heute_stand):
-    ctx, seite = _kontext(browser, basis)
-    try:
-        _starten(seite, heute_stand, "glut")
-        f = seite.js(FLAMME)
-        assert f["zahl"] == "7"
-        assert f["klasse"].split() == ["flamme", "glut"]
-        a, b, c, d, _, ty = _matrix(f["transform"])
-        assert (round(a, 3), b, c, round(d, 3)) == (0.7, 0, 0, 0.7) and ty < 0
-        assert f["animation"] == "flammeGlut" and f["dauer"] == "2.2s" and f["wdh"] == "infinite"
-        assert f["laufend"] == ["flammeGlut"]
-        # Die Vorlage aus der Vorschau, an drei Stellen des Takts abgelesen
-        werte = seite.js(GLUT_TAKT)
-        assert werte["0"] == ["grayscale(0.55) brightness(0.75)", "0.45"]
-        assert werte["0.35"] == ["grayscale(0.6) brightness(0.7)", "0.4"]
-        assert werte["0.6"] == ["grayscale(0.3) brightness(1)", "0.75"]
-        assert seite.fehler == []
-    finally:
-        ctx.close()
-
-
-def test_an_wenn_heute_gelernt(browser, basis, heute_stand):
-    ctx, seite = _kontext(browser, basis)
-    try:
-        _starten(seite, heute_stand, "an")
-        f = seite.js(FLAMME)
-        assert f["zahl"] == "8"
-        assert f["klasse"].split() == ["flamme"]
-        assert f["filter"] == "none" and f["opacity"] == "1"
-        assert f["animation"] == "none" and f["laufend"] == []
-        a, b, c, d, _, ty = _matrix(f["transform"])
-        assert (a, b, c, d) == (1, 0, 0, 1) and ty < 0
-        assert seite.fehler == []
-    finally:
-        ctx.close()
+def test_rahmen_in_allen_zustaenden_gleich(browser, basis, heute_stand):
+    """Derselbe Rahmen in allen drei Zustaenden: gleiche Lage, gleiche
+    Groesse (34 px hoch, 403:512). Die drei Bilder und alle Ebenen haben
+    dasselbe Format, die Kohlen liegen also an derselben Stelle im Rahmen,
+    an der die Flamme ihren Fuss hat."""
+    rahmen = {}
+    for zustand in ("aus", "glut", "an"):
+        ctx, seite = _kontext(browser, basis)
+        try:
+            _starten(seite, heute_stand, zustand)
+            _vorspann_weg(seite)
+            rahmen[zustand] = seite.js(FLAMME)["rahmen"]
+            groessen = seite.js("""() => Promise.all(flammeVorrat.map(i => i.decode().then(() =>
+                [i.getAttribute('src'), i.naturalWidth, i.naturalHeight])))""")
+            assert all(g[1:] == [151, 192] for g in groessen), groessen
+            assert seite.fehler == []
+        finally:
+            ctx.close()
+    # Die Zahl ist ueberall einstellig (0, 7, 8): links und oben gleich
+    assert rahmen["aus"] == rahmen["glut"] == rahmen["an"], rahmen
+    _, _, breite, hoehe = rahmen["an"]
+    assert abs(hoehe - OBEN) <= 0.05 and abs(breite / hoehe - SEITEN) <= 0.005, rahmen
+    print("Rahmen", json.dumps(rahmen))
 
 
 def test_barrierefreiheit_unveraendert(browser, basis, heute_stand):
-    """Die Flamme bleibt Schmuck fuer Bildschirmleser (aria-hidden), samt
-    ihrem Kasten mit den Funken; nach dem Start gibt es sie einmal (die
+    """Die Flamme bleibt Schmuck fuer Bildschirmleser: Kasten und Flamme mit
+    aria-hidden, das Bild mit alt="". Nach dem Start gibt es sie einmal (die
     Statistik am Lektionsende kommt erst mit der Lektion), und vorgelesen
-    wird weiter die Zahl."""
+    wird weiter die Zahl. Kein Emoji mehr."""
     ctx, seite = _kontext(browser, basis)
     try:
         _starten(seite, heute_stand, "glut")
         f = seite.js(FLAMME)
-        assert f["aria"] == "true" and f["text"] == "🔥" and f["alle"] == 1
-        assert seite.js("() => document.getElementById('serieFlamme').parentElement.getAttribute('aria-hidden')") == "true"
+        assert f["aria"] == "true" and f["boxAria"] == "true" and f["alt"] == "" and f["alle"] == 1
+        assert f["text"] == ""
         assert seite.js("() => document.getElementById('serieZahl').getAttribute('aria-hidden')") is None
         assert seite.fehler == []
     finally:
         ctx.close()
 
 
+def test_bilder_beim_start_vorgeladen(browser, basis, heute_stand):
+    """Alle zehn Bilder (drei Zustaende, sieben Ebenen des Aufbaus) holt die
+    App einmal beim Start, nur vom eigenen Ursprung - beim ersten Wechsel
+    laedt nichts nach. Die Liste in der App deckt genau den Ordner
+    web/flamme ab."""
+    ctx, seite = _kontext(browser, basis)
+    try:
+        _starten(seite, heute_stand, "an")
+        assert sorted(seite.js("() => FLAMME_BILDER")) == sorted(BILDER)
+        seite.page.wait_for_function("() => flammeVorrat.every(i => i.complete && i.naturalWidth > 0)", timeout=5000)
+        geholt = seite.js("""() => performance.getEntriesByType('resource').map(e => e.name)
+            .filter(n => n.includes('/flamme/'))""")
+        assert sorted({n.rsplit("/", 1)[1] for n in geholt}) == sorted(b + ".webp" for b in BILDER), geholt
+        assert all(n.startswith(seite.basis) for n in geholt)
+        assert seite.fehler == [] and seite.fremd == []
+    finally:
+        ctx.close()
+    im_ordner = sorted(n[:-5] for n in os.listdir(os.path.join(WURZEL, "web", "flamme")) if n.endswith(".webp"))
+    assert im_ordner == sorted(BILDER)
+
+
 # ---------------------------------------------------------------------------
-# Auflodern: nur beim Wechsel in der Sitzung
+# Der Aufbau Glut -> Flamme: nur beim Wechsel in der Sitzung
 # ---------------------------------------------------------------------------
 
-def test_kein_auflodern_beim_start(browser, basis, heute_stand):
+def test_kein_aufbau_beim_start(browser, basis, heute_stand):
     """Wer heute schon gelernt hat und die App oeffnet, sieht sie einfach
     brennen - auch nach dem Neuladen und beim Reiterwechsel."""
     ctx, seite = _kontext(browser, basis)
@@ -280,38 +335,50 @@ def test_kein_auflodern_beim_start(browser, basis, heute_stand):
                 seite.js("() => { document.getElementById('modeStories').click(); }")
                 seite.js("() => { document.getElementById('modeWords').click(); }")
             f = seite.js(FLAMME)
-            assert "auf" not in f["klasse"].split() and f["laufend"] == [], (schritt, f)
+            assert "auf" not in f["klasse"].split() and f["stapel"] is None, (schritt, f)
+            assert f["bild"] == BILD["an"] and seite.js(AUFBAU) == [], schritt
         assert seite.fehler == []
     finally:
         ctx.close()
 
 
+# Die Ebenen des Stapels, von unten nach oben. Aus kalter Kohle: kein
+# Flaemmchen, dafuer die graue Kohle obenauf.
+STAPEL = {"glut": ["gf-flaemmchen", "gf-kohle", "gf-heiss", "gf-rot", "gf-orange", "gf-gelb", "gf-kern"],
+          "aus": ["gf-kohle", "gf-heiss", "gf-asche", "gf-rot", "gf-orange", "gf-gelb", "gf-kern"]}
+
+
 @pytest.mark.parametrize("vorher", ["aus", "glut"])
-def test_auflodern_nach_der_ersten_lektion(browser, basis, heute_stand, vorher):
-    """Eine echte Lektion, dann "Zurueck zum Lernpfad": die Flamme lodert
-    einmal auf und brennt danach normal. Ein zweiter Besuch der Startseite
-    loest nichts mehr aus."""
+def test_aufbau_nach_der_ersten_lektion(browser, basis, heute_stand, vorher):
+    """Eine echte Lektion, dann "Zurueck zum Lernpfad": die Flamme baut sich
+    einmal auf - der Stapel aus Ebenen, alle Teile 1,5 s, das eine Bild so
+    lange versteckt (es traegt schon flamme.webp). Danach ist der Stapel weg
+    und das Bild steht da. Ein zweiter Besuch der Startseite loest nichts
+    mehr aus."""
     ctx, seite = _kontext(browser, basis)
     try:
         _starten(seite, heute_stand, vorher)
         assert seite.js(FLAMME)["klasse"].split() == ["flamme", vorher]
         seite.js("() => { openLevel(0); startLesson(); }")
         seite.durchspielen("lBody", "Lx")
-        nachher = seite.js("""() => { document.getElementById('lPfad').click();
-            const f = document.getElementById('serieFlamme');
-            return {klasse: f.className, laufend: f.getAnimations().map(a => a.animationName),
-                    dauer: getComputedStyle(f).animationDuration}; }""")
-        assert nachher["klasse"].split() == ["flamme", "auf"], nachher
-        assert nachher["laufend"] == ["flammeAuf"] and nachher["dauer"] == "0.8s"
-        # animationend nimmt .auf wieder weg
-        seite.page.wait_for_function("() => !document.getElementById('serieFlamme').classList.contains('auf')",
-                                     timeout=3000)
+        seite.js("() => document.getElementById('lPfad').click()")
         f = seite.js(FLAMME)
-        assert f["klasse"].split() == ["flamme"] and f["laufend"] == [] and f["filter"] == "none"
+        assert f["klasse"].split() == ["flamme", "auf"], f
+        assert f["stapel"] == STAPEL[vorher], f
+        assert f["bild"] == BILD["an"] and f["sichtbar"] == "hidden"
+        teile = seite.js(AUFBAU)
+        assert {n for n, _ in teile} >= {"gfHeiss", "gfKern", "gfGelb", "gfOrange", "gfRot", "gfLodern", "gfGlut"}, teile
+        assert ("gfAsche" in {n for n, _ in teile}) is (vorher == "aus")
+        assert {d for _, d in teile} == {1500}, teile
+        # animationend von gfLodern nimmt Stapel und .auf wieder weg
+        seite.page.wait_for_function(FERTIG, timeout=4000)
+        f = seite.js(FLAMME)
+        assert f["klasse"].split() == ["flamme"] and f["stapel"] is None and f["filter"] == "none"
+        assert f["bild"] == BILD["an"] and f["sichtbar"] == "visible" and seite.js(AUFBAU) == []
         seite.js("() => { document.getElementById('modeStories').click(); document.getElementById('modeWords').click(); }")
         f = seite.js(FLAMME)
-        assert f["klasse"].split() == ["flamme"] and f["laufend"] == []
-        assert seite.fehler == []
+        assert f["klasse"].split() == ["flamme"] and f["stapel"] is None
+        assert seite.fehler == [] and seite.fremd == []
     finally:
         ctx.close()
 
@@ -319,62 +386,119 @@ def test_auflodern_nach_der_ersten_lektion(browser, basis, heute_stand, vorher):
 @pytest.mark.parametrize("weg", ["schalter", "geraet"])
 def test_ohne_animationen_steht_alles_still(browser, basis, heute_stand, weg):
     """Schalter "Animationen" aus oder "Bewegung reduzieren" am Geraet: die
-    Glut steht als ruhiges Bild da (klein, entsaettigt, blass), und nach der
-    ersten Lektion wird nicht aufgelodert."""
+    Glut steht als ruhiges Bild da, und nach der ersten Lektion steht sofort
+    die Flamme - kein Stapel, kein Ablauf."""
     ctx, seite = _kontext(browser, basis, bewegung="reduce" if weg == "geraet" else "no-preference")
     try:
         _starten(seite, heute_stand, "glut", animationen=(weg != "schalter"))
         f = seite.js(FLAMME)
         assert f["noAnim"] is (weg == "schalter")
-        assert f["klasse"].split() == ["flamme", "glut"]
+        assert f["klasse"].split() == ["flamme", "glut"] and f["bild"] == BILD["glut"]
         assert f["animation"] == "none" and f["laufend"] == []
-        assert f["filter"] == "grayscale(0.55) brightness(0.75)" and f["opacity"] == "0.45"
-        assert round(_matrix(f["transform"])[0], 3) == 0.7
+        assert f["filter"] == "brightness(1)" and f["opacity"] == "1"
         nachher = seite.js(ERSTE_LEKTION)
-        assert nachher["klasse"].split() == ["flamme"] and nachher["laufend"] == [], nachher
+        assert nachher == {"klasse": "flamme", "bild": BILD["an"], "stapel": None}, nachher
+        assert seite.js(AUFBAU) == []
         assert seite.fehler == []
     finally:
         ctx.close()
 
 
-def test_mit_animationen_lodert_auch_der_kurzweg(browser, basis, heute_stand):
+def test_mit_animationen_baut_auch_der_kurzweg(browser, basis, heute_stand):
     """Gegenprobe zu oben mit demselben Kurzweg (markToday + showHome)."""
     ctx, seite = _kontext(browser, basis)
     try:
         _starten(seite, heute_stand, "glut")
         nachher = seite.js(ERSTE_LEKTION)
-        assert nachher["klasse"].split() == ["flamme", "auf"] and nachher["laufend"] == ["flammeAuf"]
+        assert nachher["klasse"].split() == ["flamme", "auf"] and nachher["stapel"] == STAPEL["glut"], nachher
+        assert "gfLodern" in [n for n, _ in seite.js(AUFBAU)]
+        seite.page.wait_for_function(FERTIG, timeout=4000)
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
+@pytest.mark.parametrize("vorher", ["aus", "glut"])
+def test_aufbau_ohne_sprung(browser, basis, heute_stand, vorher):
+    """Der Aufbau beginnt genau im Bild davor (Glut bzw. kalte Kohle) und
+    endet genau in flamme.webp, gegen das der Stapel dann getauscht wird:
+    Pixel fuer Pixel verglichen, bei Pixeldichte 2. Kleine Abweichungen
+    kommen nur vom Uebereinanderlegen der einzeln gespeicherten Ebenen:
+    am 24.10.2026 hoechstens 55 in einem Farbkanal, an 10 von 9576 Pixeln
+    ueber 32, alle auf dem Umriss. Ein falsches Bild oder ein Versatz um
+    ein Pixel aendert Tausende."""
+    ctx, seite = _kontext(browser, basis, dpr=2)
+    try:
+        _starten(seite, heute_stand, vorher)
+        _vorspann_weg(seite)
+        if vorher == "glut":   # das Flackern anhalten, wo es bei brightness(1) steht
+            seite.js("() => { const a = document.getElementById('serieFlamme').getAnimations()[0];"
+                     " a.pause(); a.currentTime = 0; }")
+        seite.page.wait_for_timeout(50)
+        davor = _foto(seite)
+        seite.js(ERSTE_LEKTION)
+        assert seite.js(ANHALTEN, 0) >= 10
+        seite.page.wait_for_timeout(50)
+        anfang = _foto(seite)
+        seite.js(ANHALTEN, 1499.9)
+        seite.page.wait_for_timeout(50)
+        ende = _foto(seite)
+        seite.js(WEITER)
+        seite.page.wait_for_function(FERTIG, timeout=3000)
+        seite.page.wait_for_timeout(50)
+        danach = _foto(seite)
+        vorn = seite.js(VERGLEICH, [davor, anfang])
+        hinten = seite.js(VERGLEICH, [ende, danach])
+        for v in (vorn, hinten):
+            assert v["max"] <= 64 and v["viele"] <= 0.002 * v["pixel"], (vorn, hinten)
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+    print("ohne Sprung", vorher, json.dumps({"anfang": vorn, "ende": hinten}))
+
+
+@pytest.mark.parametrize("wie", ["startseite_weg", "animationen_aus"])
+def test_unterbrochener_aufbau_wird_fertig(browser, basis, heute_stand, wie):
+    """Verschwindet die Startseite mitten im Aufbau (gleich ins naechste
+    Level) oder werden die Animationen mittendrin ausgeschaltet, kommt kein
+    animationend. Das Sicherheitsnetz (flammeWache) raeumt den Stapel
+    trotzdem weg - sonst stuende er still in seinem ersten Bild, Glut statt
+    Flamme."""
+    ctx, seite = _kontext(browser, basis)
+    try:
+        _starten(seite, heute_stand, "glut")
+        assert seite.js(ERSTE_LEKTION)["stapel"] == STAPEL["glut"]
+        if wie == "startseite_weg":
+            seite.js("() => openLevel(0)")
+        else:
+            seite.js("() => document.body.classList.add('no-anim')")
+        seite.page.wait_for_function("() => !document.querySelector('#serieFlamme .gf')", timeout=5000)
+        seite.js("() => showHome()")
+        f = seite.js(FLAMME)
+        assert f["klasse"].split() == ["flamme"] and f["stapel"] is None
+        assert f["bild"] == BILD["an"] and f["sichtbar"] == "visible"
         assert seite.fehler == []
     finally:
         ctx.close()
 
 
 # ---------------------------------------------------------------------------
-# Flamme und Zahl auf einer Hoehe
+# Rahmen und Zahl auf einer Hoehe
 # ---------------------------------------------------------------------------
 
-@pytest.mark.parametrize("schrift", ["rechner", "android"])
 @pytest.mark.parametrize("zustand", ["aus", "glut", "an"])
-def test_flamme_und_zahl_auf_einer_hoehe(browser, basis, heute_stand, zustand, schrift):
-    """Sichtbare Mitte der Flamme gegen sichtbare Mitte der Ziffern, bei
-    normaler Schrift, 130 % und 200 %. Vor dem 20.10.2026 stand die Flamme
-    4,5 / 6,25 / 9,25 px tiefer. Bei der Glut ausserdem: sie ist wirklich
-    kleiner (um 0,7), schrumpft also um ihre Mitte und nicht nach unten.
-    Zweimal: mit der Emoji-Schrift des Rechners und mit der von Android
-    (ANDROID_EMOJI). Deren Flamme ist etwas groesser, 33,5 statt 29,5 px
-    bei 30 px Schrift."""
-    if schrift == "android" and not os.path.isfile(ANDROID_EMOJI):
-        pytest.skip("Noto Color Emoji nicht gefunden, siehe ANDROID_EMOJI")
+def test_rahmen_mittig_zur_zahl(browser, basis, heute_stand, zustand):
+    """Die Mitte des Rahmens auf der sichtbaren Mitte der Ziffern, bei
+    normaler Schrift, 130 % und 200 % (Toleranz 1,5 px). Der Rahmen waechst
+    mit der Schrift (34 px mal Faktor). Die brennende Flamme fuellt ihn:
+    ihre sichtbare Mitte steht ebenso auf der Mitte der Ziffern. Glut und
+    kalte Kohle liegen unten im Rahmen, ihre Unterkante auf seiner."""
     dpr = 2
     ctx, seite = _kontext(browser, basis, dpr=dpr)
     funde = {}
     try:
         _starten(seite, heute_stand, zustand)
         _vorspann_weg(seite)
-        emoji = 30 * SYSTEM_EMOJI
-        if schrift == "android":
-            _android_emoji(ctx, seite)
-            emoji = 33.5
         groesse = 1.0
         for faktor in (1.0, 1.3, 2.0):
             if faktor != groesse:
@@ -382,34 +506,41 @@ def test_flamme_und_zahl_auf_einer_hoehe(browser, basis, heute_stand, zustand, s
                 groesse = faktor
             m = _messen(seite, dpr)
             funde[faktor] = m
-            assert abs(m["dy"]) <= 2, (zustand, faktor, m)
-            # Groesse der Flamme gegen die Schrift: 30 px Emoji ~ 29,5 px hoch
-            # (Android 33,5) - und zugleich der Beweis, dass die Schrift wirkt
-            soll = emoji * faktor * (0.7 if zustand == "glut" else 1)
-            assert abs(m["flamme"]["hoehe"] - soll) <= 0.1 * soll, (zustand, faktor, m)
+            rahmen, bild, zahl = m["rahmen"], m["flamme"], m["zahl"]
+            assert abs(rahmen["mitte"] - zahl["mitte"]) <= 1.5, (zustand, faktor, m)
+            assert abs(rahmen["hoehe"] - OBEN * faktor) <= 0.1, (zustand, faktor, m)
+            if zustand == "an":
+                assert abs(bild["mitte"] - zahl["mitte"]) <= 1.5, (zustand, faktor, m)
+                assert abs(bild["hoehe"] - FLAMME_ANTEIL * rahmen["hoehe"]) <= 1.5, (zustand, faktor, m)
+            else:
+                assert abs(bild["unten"] - rahmen["unten"]) <= 1.5, (zustand, faktor, m)
+                assert bild["mitte"] > zahl["mitte"] + 0.15 * rahmen["hoehe"], (zustand, faktor, m)
         assert seite.fehler == [] and seite.fremd == []
     finally:
         ctx.close()
-    print(schrift, zustand, json.dumps({k: round(v["dy"], 2) for k, v in funde.items()}))   # mit -s sichtbar
+    print(zustand, json.dumps({k: [round(v["rahmen"]["mitte"] - v["zahl"]["mitte"], 2),
+                                   round(v["flamme"]["mitte"] - v["zahl"]["mitte"], 2)] for k, v in funde.items()}))
 
 
-def test_auflodern_bleibt_auf_einer_hoehe(browser, basis, heute_stand):
-    """Auf dem Hoehepunkt des Aufloderns (45 %, scale 1,28) waechst die
-    Flamme um ihre Mitte - auch bei grosser Schrift."""
-    dpr = 2
-    ctx, seite = _kontext(browser, basis, dpr=dpr)
+def test_aufbau_bleibt_im_rahmen(browser, basis, heute_stand):
+    """Waehrend des Aufbaus (angehalten bei 0,75 s) steht der Stapel genau im
+    Rahmen, und der Rahmen genau da, wo vorher die Glut stand - auch bei
+    grosser Schrift."""
+    ctx, seite = _kontext(browser, basis, dpr=2)
     try:
         _starten(seite, heute_stand, "glut")
         _vorspann_weg(seite)
         seite.js(SCHRIFT, 1.3)
-        assert seite.js(ERSTE_LEKTION)["laufend"] == ["flammeAuf"]
-        seite.js("""() => { const a = document.getElementById('serieFlamme').getAnimations()[0];
-            a.pause(); a.currentTime = 0.45 * 800; }""")
-        m = _messen(seite, dpr)
-        assert abs(m["dy"]) <= 2, m
-        soll = 30 * SYSTEM_EMOJI * 1.3 * 1.28
-        assert abs(m["flamme"]["hoehe"] - soll) <= 0.1 * soll, m
-        seite.js("() => document.getElementById('serieFlamme').getAnimations()[0].finish()")
+        vorher = seite.js(FLAMME)["rahmen"]
+        assert seite.js(ERSTE_LEKTION)["stapel"] == STAPEL["glut"]
+        seite.js(ANHALTEN, 750)
+        lage = seite.js("""() => { const f = document.getElementById('serieFlamme');
+            const r = e => { const x = e.getBoundingClientRect(); return [x.left, x.top, x.width, x.height]; };
+            return {rahmen: r(f.parentElement), stapel: r(f.querySelector('.gf')), kohle: r(f.querySelector('.gf-kohle'))}; }""")
+        assert lage["rahmen"] == vorher == lage["stapel"] == lage["kohle"], (vorher, lage)
+        seite.js(WEITER)
+        seite.page.wait_for_function(FERTIG, timeout=3000)
+        assert seite.js(FLAMME)["rahmen"] == vorher
         assert seite.fehler == []
     finally:
         ctx.close()
@@ -431,12 +562,11 @@ with io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8") as _f:
 SPAETER = APP_START + datetime.timedelta(days=400)
 
 # Der Farbfilter je Stufe und die Farbe ihres stillen Scheins, so wie Chrome
-# sie ausschreibt.
+# sie ausschreibt. Der Schein ist 0,2 (Gold 0,3) Rahmenhoehen weit.
 TON = {"": "", "blau": "hue-rotate(190deg) saturate(1.35) ", "lila": "hue-rotate(245deg) saturate(1.45) ",
        "gold": "saturate(0.45) brightness(1.3) "}
 SCHEIN = {"blau": "rgba(60, 150, 255, 0.55)", "lila": "rgba(170, 90, 255, 0.55)", "gold": "rgba(255, 214, 90, 0.9)"}
-GLANZ = {"": "rgba(255, 140, 0, 0.9)", "blau": "rgba(60, 150, 255, 0.9)", "lila": "rgba(170, 90, 255, 0.9)",
-         "gold": "rgb(255, 214, 90)"}
+WEITE = {"blau": 0.2, "lila": 0.2, "gold": 0.3}
 STUFEN = [(29, ""), (30, "blau"), (99, "blau"), (100, "lila"), (364, "lila"), (365, "gold")]
 
 FUNKEN = """(wo) => [...document.querySelectorAll(wo + ' .funke')].map(x => { const s = getComputedStyle(x);
@@ -455,10 +585,16 @@ LAGE = """() => Object.fromEntries(['.obenreihe', '.seriezahl', '.flammenbox', '
 
 # Die Flamme in der Statistik am Ende (Lektion oder Wiederholungsrunde), und
 # was flammeKlassen() gerade sagt.
-STAT_FLAMME = """() => { const f = document.querySelector('#lBody .stat .flamme'), s = getComputedStyle(f), b = f.parentElement;
+STAT_FLAMME = """() => { const f = document.querySelector('#lBody .stat .flamme'), s = getComputedStyle(f), b = f.parentElement,
+  i = f.querySelector('.flammenbild'), r = b.getBoundingClientRect();
   return {klasse: f.className, soll: flammeKlassen(), filter: s.filter, laufend: f.getAnimations().map(a => a.animationName),
           box: b.className, aria: b.getAttribute('aria-hidden'), text: f.textContent, zahl: f.closest('b').textContent,
-          gleich: b.outerHTML === flammeHtml(), funken: b.querySelectorAll('.funke').length}; }"""
+          bild: i.getAttribute('src'), alt: i.getAttribute('alt'), hoehe: r.height, breite: r.width,
+          gleich: b.outerHTML === flammeHtml(), funken: b.querySelectorAll('.funke').length,
+          stapel: !!f.querySelector('.gf')}; }"""
+
+# Der Kasten oben ohne seine id - so muss ihn flammeHtml() bauen.
+OBEN_HTML = """() => document.getElementById('serieFlamme').parentElement.outerHTML.replace(' id="serieFlamme"', '')"""
 
 # Das Ende einer Wiederholungsrunde, ohne die Runde: topfEnde() mit einer
 # leeren Runde. Es setzt den Lerntag wie das Ende einer Lektion.
@@ -468,17 +604,12 @@ TOPF_ENDE = """() => { showView('levelView');
         topf: true, quelle: 'topf'};
   topfEnde(); }"""
 
-# Die Flamme oben auf dem Hoehepunkt des Aufloderns (45 %), angehalten.
-AUF_HOEHEPUNKT = """() => { const f = document.getElementById('serieFlamme'), a = f.getAnimations()[0];
-  a.pause(); a.currentTime = 0.45 * 800; const w = getComputedStyle(f).filter; a.play(); return w; }"""
 
-
-def _lodert_in_stufenfarbe(filter_, stufe):
-    """Auf dem Hoehepunkt: erst der Farbfilter der Stufe, dann der volle
-    Glanz in ihrer Farbe. grayscale steht dort bei fast 0 - Chrome schreibt
-    wegen der Kurve z. B. 6.1e-17, deshalb nur der Anfang."""
-    return (filter_.startswith(TON[stufe] + "grayscale(")
-            and ("brightness(1.15) drop-shadow(" + GLANZ[stufe]) in filter_)
+def _schein(filter_, stufe, hoehe):
+    """Der stille Schein der Stufe: erst ihr Farbfilter, dann drop-shadow in
+    ihrer Farbe, so weit wie WEITE Rahmenhoehen."""
+    m = re.fullmatch(re.escape(TON[stufe] + "drop-shadow(" + SCHEIN[stufe]) + r" 0px 0px ([0-9.]+)px\)", filter_)
+    return bool(m) and abs(float(m.group(1)) - WEITE[stufe] * hoehe) <= 0.05
 
 
 def _serie_starten(seite, n, zustand, animationen=True):
@@ -505,8 +636,9 @@ def _serie_tage(n, zustand):
 def test_stufe_nach_der_serie(browser, basis, tage, stufe, zustand):
     """29 Tage orange, 30 und 99 blau, 100 und 364 lila, 365 weissgold.
     Brennend mit dem stillen Schein der Stufe (orange: kein Filter, wie
-    bisher), als Glut in der Farbe der Stufe: ihr Farbfilter steht vor dem
-    der Glut, in jedem Schritt des Flackerns. Die Zahl ist die Serie."""
+    gemalt), als Glut in der Farbe der Stufe: ihr Farbfilter steht vor dem
+    der Glut, in jedem Schritt des Flackerns. Das Bild ist je Zustand
+    dasselbe, nur gefaerbt. Die Zahl ist die Serie."""
     ctx, seite = _kontext(browser, basis)
     try:
         _serie_starten(seite, tage, zustand)
@@ -514,21 +646,20 @@ def test_stufe_nach_der_serie(browser, basis, tage, stufe, zustand):
         assert f["zahl"] == str(tage)
         soll = ["flamme"] + (["glut"] if zustand == "glut" else []) + (["stufe-" + stufe] if stufe else [])
         assert f["klasse"].split() == soll
+        assert f["bild"] == BILD[zustand] and f["opacity"] == "1"
         ton = TON[stufe]
         if zustand == "an":
-            assert f["laufend"] == [] and f["opacity"] == "1"
+            assert f["laufend"] == []
             if stufe:
-                assert f["filter"].startswith(ton + "drop-shadow(" + SCHEIN[stufe]), f["filter"]
+                assert _schein(f["filter"], stufe, f["rahmen"][3]), f["filter"]
             else:
                 assert f["filter"] == "none"
         else:
             assert f["laufend"] == ["flammeGlut"]
-            a, b, c, d, _, ty = _matrix(f["transform"])
-            assert (round(a, 3), round(d, 3)) == (0.7, 0.7) and ty < 0
             werte = seite.js(GLUT_TAKT)
-            assert werte["0"] == [ton + "grayscale(0.55) brightness(0.75)", "0.45"]
-            assert werte["0.35"] == [ton + "grayscale(0.6) brightness(0.7)", "0.4"]
-            assert werte["0.6"] == [ton + "grayscale(0.3) brightness(1)", "0.75"]
+            assert werte["0"] == [ton + "brightness(1)", "1"]
+            assert werte["0.35"] == [ton + "brightness(0.9)", "1"]
+            assert werte["0.6"] == [ton + "brightness(1.18)", "1"]
         assert seite.fehler == []
     finally:
         ctx.close()
@@ -545,7 +676,7 @@ def test_glut_ohne_animationen_in_stufenfarbe(browser, basis, weg):
         assert f["noAnim"] is (weg == "schalter")
         assert f["klasse"].split() == ["flamme", "glut", "stufe-lila"]
         assert f["animation"] == "none" and f["laufend"] == []
-        assert f["filter"] == TON["lila"] + "grayscale(0.55) brightness(0.75)" and f["opacity"] == "0.45"
+        assert f["filter"] == TON["lila"] + "brightness(1)" and f["opacity"] == "1"
         assert seite.fehler == []
     finally:
         ctx.close()
@@ -612,13 +743,13 @@ def test_gold_flamme_auf_einer_hoehe(browser, basis):
                 groesse = faktor
             m = _messen(seite, dpr)
             funde[faktor] = m
-            assert abs(m["dy"]) <= 2, (faktor, m)
-            soll = 30 * SYSTEM_EMOJI * faktor
-            assert abs(m["flamme"]["hoehe"] - soll) <= 0.1 * soll, (faktor, m)
+            assert abs(m["rahmen"]["mitte"] - m["zahl"]["mitte"]) <= 1.5, (faktor, m)
+            assert abs(m["flamme"]["mitte"] - m["zahl"]["mitte"]) <= 1.5, (faktor, m)
+            assert abs(m["rahmen"]["hoehe"] - OBEN * faktor) <= 0.1, (faktor, m)
         assert seite.fehler == []
     finally:
         ctx.close()
-    print("gold", json.dumps({k: round(v["dy"], 2) for k, v in funde.items()}))
+    print("gold", json.dumps({k: round(v["flamme"]["mitte"] - v["zahl"]["mitte"], 2) for k, v in funde.items()}))
 
 
 # ---------------------------------------------------------------------------
@@ -628,9 +759,10 @@ def test_gold_flamme_auf_einer_hoehe(browser, basis):
 def test_lektionsende_und_startseite_zeigen_dieselbe_flamme(browser, basis, heute_stand):
     """29 Tage bis gestern: oben eine orange Glut. Eine echte Lektion macht
     daraus 30 - die Statistik am Lektionsende zeigt die blaue Flamme,
-    brennend, ohne Auflodern, gebaut von flammeHtml(). Zurueck auf der
-    Startseite lodert sie auf, schon in Blau (auch auf dem Hoehepunkt), und
-    brennt danach mit genau denselben Klassen wie in der Statistik."""
+    brennend, ohne Aufbau, gebaut von flammeHtml(). Zurueck auf der
+    Startseite baut sie sich auf, schon in Blau (der Filter liegt auf dem
+    Stapel), und brennt danach mit genau denselben Klassen, demselben Bild
+    und demselben Aufbau des Kastens wie in der Statistik."""
     ctx, seite = _kontext(browser, basis)
     try:
         seite.starten(stand=heute_stand(tage=_serie_tage(29, "glut")))
@@ -639,25 +771,22 @@ def test_lektionsende_und_startseite_zeigen_dieselbe_flamme(browser, basis, heut
         seite.durchspielen("lBody", "Lx")
         st = seite.js(STAT_FLAMME)
         assert st["klasse"] == st["soll"] == "flamme stufe-blau", st
-        assert st["laufend"] == [] and st["filter"].startswith(TON["blau"] + "drop-shadow(" + SCHEIN["blau"]), st
-        assert st["box"] == "flammenbox" and st["aria"] == "true" and st["text"] == "🔥" and st["funken"] == 3
+        assert st["laufend"] == [] and _schein(st["filter"], "blau", st["hoehe"]), st
+        assert st["box"] == "flammenbox" and st["aria"] == "true" and st["text"] == "" and st["funken"] == 3
+        assert st["bild"] == BILD["an"] and st["alt"] == "" and not st["stapel"]
+        assert abs(st["hoehe"] - STATISTIK) <= 0.05 and abs(st["breite"] / st["hoehe"] - SEITEN) <= 0.005, st
         assert st["gleich"] and st["zahl"].strip().endswith(" 30"), st
-        oben = seite.js("""() => { document.getElementById('lPfad').click();
-            const f = document.getElementById('serieFlamme');
-            return {klasse: f.className, laufend: f.getAnimations().map(a => a.animationName)}; }""")
-        assert oben["klasse"].split() == ["flamme", "stufe-blau", "auf"] and oben["laufend"] == ["flammeAuf"], oben
-        assert _lodert_in_stufenfarbe(seite.js(AUF_HOEHEPUNKT), "blau")
-        seite.page.wait_for_function("() => !document.getElementById('serieFlamme').classList.contains('auf')",
-                                     timeout=3000)
+        stat_html = seite.js("() => document.querySelector('#lBody .stat .flammenbox').outerHTML")
+        seite.js("() => document.getElementById('lPfad').click()")
         f = seite.js(FLAMME)
-        assert f["klasse"] == st["klasse"] and f["zahl"] == "30"
-        # Derselbe Filter; nur die Weite des Scheins steht in em und ist an
-        # der kleineren Flamme der Statistik kleiner (6 px an 30 px, 3,6 px
-        # an 18 px).
-        ohne_weite = re.compile(r" [0-9.]+px\)$")
-        assert ohne_weite.sub("", f["filter"]) == ohne_weite.sub("", st["filter"]), (f["filter"], st["filter"])
-        assert f["filter"].endswith(" 6px)") and st["filter"].endswith(" 3.6px)")
-        # Die Statistik hat nicht aufgelodert und tut es auch jetzt nicht
+        assert f["klasse"].split() == ["flamme", "stufe-blau", "auf"] and f["stapel"] == STAPEL["glut"], f
+        assert _schein(f["filter"], "blau", f["rahmen"][3]), f["filter"]
+        seite.page.wait_for_function(FERTIG, timeout=4000)
+        f = seite.js(FLAMME)
+        assert f["klasse"] == st["klasse"] and f["zahl"] == "30" and f["bild"] == st["bild"]
+        assert _schein(f["filter"], "blau", f["rahmen"][3]), f["filter"]
+        assert seite.js(OBEN_HTML) == stat_html
+        # Die Statistik hat sich nicht aufgebaut und tut es auch jetzt nicht
         assert seite.js("() => document.querySelector('#lBody .stat .flamme').getAnimations().length") == 0
         assert seite.fehler == []
     finally:
@@ -668,7 +797,7 @@ def test_lektionsende_und_startseite_zeigen_dieselbe_flamme(browser, basis, heut
 def test_wiederholungsrunde_zeigt_dieselbe_flamme(browser, basis, tage, stufe):
     """Das Ende einer Wiederholungsrunde (topfEnde) setzt den Lerntag wie eine
     Lektion: 29 -> 30 blau, 364 -> 365 gold. Die Statistik zeigt dieselbe
-    Flamme wie danach die Startseite, ohne Auflodern; in Gold funkeln die
+    Flamme wie danach die Startseite, ohne Aufbau; in Gold funkeln die
     Funken dort ebenso."""
     ctx, seite = _kontext(browser, basis)
     try:
@@ -677,29 +806,29 @@ def test_wiederholungsrunde_zeigt_dieselbe_flamme(browser, basis, tage, stufe):
         st = seite.js(STAT_FLAMME)
         assert st["klasse"] == st["soll"] == "flamme stufe-" + stufe, st
         assert st["laufend"] == [] and st["gleich"] and st["zahl"].strip().endswith(" " + str(tage + 1)), st
+        assert st["bild"] == BILD["an"] and not st["stapel"]
         funken = seite.js(FUNKEN, "#lBody .stat")
         laeuft = [["flammeFunke"]] * 3 if stufe == "gold" else [[]] * 3
         assert [x["laufend"] for x in funken] == laeuft, funken
+        stat_html = seite.js("() => document.querySelector('#lBody .stat .flammenbox').outerHTML")
         oben = seite.js("() => { showHome(); return document.getElementById('serieFlamme').className; }")
         assert oben.split() == ["flamme", "stufe-" + stufe, "auf"]
-        assert _lodert_in_stufenfarbe(seite.js(AUF_HOEHEPUNKT), stufe)
-        seite.page.wait_for_function("() => !document.getElementById('serieFlamme').classList.contains('auf')",
-                                     timeout=3000)
+        f = seite.js(FLAMME)
+        assert f["stapel"] == STAPEL["glut"] and _schein(f["filter"], stufe, f["rahmen"][3]), f
+        seite.page.wait_for_function(FERTIG, timeout=4000)
         assert seite.js("() => document.getElementById('serieFlamme').className") == st["klasse"]
+        assert seite.js(OBEN_HTML) == stat_html
         assert seite.fehler == []
     finally:
         ctx.close()
 
 
-@pytest.mark.parametrize("schrift", ["rechner", "android"])
-def test_statistik_flamme_und_zahl_auf_einer_hoehe(browser, basis, heute_stand, schrift):
+def test_statistik_flamme_und_zahl_auf_einer_hoehe(browser, basis, heute_stand):
     """Die Flamme in der Statistik am Lektionsende neben ihrer Zahl (Nunito
-    18 px): sichtbare Mitte gegen sichtbare Mitte, bei 100, 130 und 200 %
-    Schrift, mit beiden Emoji-Schriften. Gemessen wie oben; das Fenster ist
-    hoch genug, dass die Statistik auch bei doppelter Schrift ganz darin
-    steht."""
-    if schrift == "android" and not os.path.isfile(ANDROID_EMOJI):
-        pytest.skip("Noto Color Emoji nicht gefunden, siehe ANDROID_EMOJI")
+    18 px): die Mitte des Rahmens und die sichtbare Mitte der Flamme auf der
+    sichtbaren Mitte der Ziffern, bei 100, 130 und 200 % Schrift (Toleranz
+    1,5 px). Das Fenster ist hoch genug, dass die Statistik auch bei
+    doppelter Schrift ganz darin steht."""
     dpr = 2
     ctx, seite = _kontext(browser, basis, dpr=dpr, hoehe=1600)
     funde = {}
@@ -710,10 +839,6 @@ def test_statistik_flamme_und_zahl_auf_einer_hoehe(browser, basis, heute_stand, 
         seite.durchspielen("lBody", "Lx")
         seite.js("""() => { const f = document.querySelector('#lBody .stat .flamme');
             f.id = 'messFlamme'; f.closest('b').id = 'messZahl'; window.scrollTo(0, 0); }""")
-        emoji = 18 * SYSTEM_EMOJI
-        if schrift == "android":
-            _android_emoji(ctx, seite, "messFlamme")
-            emoji = 18 * 33.5 / 30
         groesse = 1.0
         for faktor in (1.0, 1.3, 2.0):
             if faktor != groesse:
@@ -722,11 +847,12 @@ def test_statistik_flamme_und_zahl_auf_einer_hoehe(browser, basis, heute_stand, 
             seite.page.wait_for_timeout(50)
             m = _messen(seite, dpr, "#messZahl", "messFlamme", "messZahl")
             funde[faktor] = m
-            assert abs(m["dy"]) <= 1.5, (faktor, m)
-            soll = emoji * faktor
-            assert abs(m["flamme"]["hoehe"] - soll) <= 0.1 * soll, (faktor, m)
+            assert abs(m["rahmen"]["mitte"] - m["zahl"]["mitte"]) <= 1.5, (faktor, m)
+            assert abs(m["flamme"]["mitte"] - m["zahl"]["mitte"]) <= 1.5, (faktor, m)
+            assert abs(m["rahmen"]["hoehe"] - STATISTIK * faktor) <= 0.1, (faktor, m)
         assert seite.fehler == [] and seite.fremd == []
     finally:
         ctx.close()
-    print("statistik", schrift, json.dumps({k: [round(v["dy"], 2), round(v["flamme"]["hoehe"], 2),
-                                                round(v["zahl"]["hoehe"], 2)] for k, v in funde.items()}))
+    print("statistik", json.dumps({k: [round(v["rahmen"]["mitte"] - v["zahl"]["mitte"], 2),
+                                       round(v["flamme"]["mitte"] - v["zahl"]["mitte"], 2),
+                                       round(v["zahl"]["hoehe"], 2)] for k, v in funde.items()}))

@@ -139,7 +139,9 @@ async ([ort, typ, seed, feld]) => {
     drache: drache ? Math.round(drache.getBoundingClientRect().height) : 0,
     herz: herz ? getComputedStyle(herz).visibility : null,
     herz_box: hb ? [Math.round(hb.left), Math.round(hb.top + window.scrollY), Math.round(hb.width), Math.round(hb.height)] : null,
-    herz_text: herz ? herz.textContent : null,
+    // Das Herz ist seit dem 24.10.2026 ein Bild (web/symbole/herz.webp):
+    // als ♥ mitzaehlen, wenn es da ist.
+    herz_text: herz ? (herz.querySelector('img.sym-herz') ? '♥' : '') + herz.textContent : null,
     kopf_sichtbar: !!(kopf && kopf.getClientRects().length),
   };
   stilleBitte();
