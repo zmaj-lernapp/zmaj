@@ -213,10 +213,18 @@ def _messen(seite, dpr, kasten=".seriezahl", f="serieFlamme", z="serieZahl"):
 
 
 def _foto(seite, rand=12):
-    """Bildschirmfoto rund um den Rahmen oben, ohne die Zahl daneben."""
+    """Bildschirmfoto rund um den Rahmen oben, ohne die Zahl daneben - und
+    ohne die Funken des Funkenflugs (24.10.2026): Sie setzen gleich nach dem
+    Aufbau ein, verglichen wird hier aber das Bild der Flamme. Die Funken
+    prueft test_funken.py."""
     r = seite.js("""(rand) => { const r = document.querySelector('.seriezahl .flammenbox').getBoundingClientRect();
+        let s = document.getElementById('ohneFunken');
+        if(!s){ s = document.createElement('style'); s.id = 'ohneFunken'; document.head.appendChild(s); }
+        s.textContent = '.fk{visibility:hidden!important}';
         return {x: r.left - rand, y: r.top - rand, width: r.width + rand + 4, height: r.height + 2 * rand}; }""", rand)
-    return base64.b64encode(seite.page.screenshot(clip=r)).decode("ascii")
+    bild = base64.b64encode(seite.page.screenshot(clip=r)).decode("ascii")
+    seite.js("() => { document.getElementById('ohneFunken').textContent = ''; }")
+    return bild
 
 
 # ---------------------------------------------------------------------------
@@ -583,18 +591,31 @@ FUNKEN_HOEHEPUNKT = """(wo) => [...document.querySelectorAll(wo + ' .funke')].ma
 LAGE = """() => Object.fromEntries(['.obenreihe', '.seriezahl', '.flammenbox', '#serieFlamme', '#serieZahl', '#streakLine']
   .map(k => { const r = document.querySelector(k).getBoundingClientRect(); return [k, [r.left, r.top, r.width, r.height]]; }))"""
 
+# Der Kasten als HTML, bei den Funken des Funkenflugs (.fk) ohne das, was
+# jeder Funke bei jeder Runde neu wuerfelt (die Schluessel von
+# FUNKEN_BEREICH; 24.10.2026, test_funken.py). Gleich sein muessen Aufbau,
+# Klassen, Bild, die Zahl der Funken und ihre Dauer und Verzoegerung.
+OHNE_WURF = """const ohneWurf = h => { const t = document.createElement('template');
+  t.innerHTML = typeof h === 'string' ? h : h.outerHTML;
+  t.content.querySelectorAll('.fk').forEach(x => Object.keys(FUNKEN_BEREICH).forEach(k => x.style.removeProperty('--' + k)));
+  return t.innerHTML; };"""
+
 # Die Flamme in der Statistik am Ende (Lektion oder Wiederholungsrunde), und
 # was flammeKlassen() gerade sagt.
-STAT_FLAMME = """() => { const f = document.querySelector('#lBody .stat .flamme'), s = getComputedStyle(f), b = f.parentElement,
+STAT_FLAMME = """() => { """ + OHNE_WURF + """
+  const f = document.querySelector('#lBody .stat .flamme'), s = getComputedStyle(f), b = f.parentElement,
   i = f.querySelector('.flammenbild'), r = b.getBoundingClientRect();
   return {klasse: f.className, soll: flammeKlassen(), filter: s.filter, laufend: f.getAnimations().map(a => a.animationName),
           box: b.className, aria: b.getAttribute('aria-hidden'), text: f.textContent, zahl: f.closest('b').textContent,
           bild: i.getAttribute('src'), alt: i.getAttribute('alt'), hoehe: r.height, breite: r.width,
-          gleich: b.outerHTML === flammeHtml(), funken: b.querySelectorAll('.funke').length,
+          gleich: ohneWurf(b) === ohneWurf(flammeHtml()), funken: b.querySelectorAll('.funke').length,
           stapel: !!f.querySelector('.gf')}; }"""
 
-# Der Kasten oben ohne seine id - so muss ihn flammeHtml() bauen.
-OBEN_HTML = """() => document.getElementById('serieFlamme').parentElement.outerHTML.replace(' id="serieFlamme"', '')"""
+# Der Kasten oben ohne seine id - so muss ihn flammeHtml() bauen. Dazu der
+# Kasten in der Statistik, beide ohne das Gewuerfelte der Funken.
+OBEN_HTML = ("""() => { """ + OHNE_WURF + """
+  return ohneWurf(document.getElementById('serieFlamme').parentElement.outerHTML.replace(' id="serieFlamme"', '')); }""")
+STAT_HTML = """() => { """ + OHNE_WURF + """ return ohneWurf(document.querySelector('#lBody .stat .flammenbox')); }"""
 
 # Das Ende einer Wiederholungsrunde, ohne die Runde: topfEnde() mit einer
 # leeren Runde. Es setzt den Lerntag wie das Ende einer Lektion.
@@ -776,7 +797,7 @@ def test_lektionsende_und_startseite_zeigen_dieselbe_flamme(browser, basis, heut
         assert st["bild"] == BILD["an"] and st["alt"] == "" and not st["stapel"]
         assert abs(st["hoehe"] - STATISTIK) <= 0.05 and abs(st["breite"] / st["hoehe"] - SEITEN) <= 0.005, st
         assert st["gleich"] and st["zahl"].strip().endswith(" 30"), st
-        stat_html = seite.js("() => document.querySelector('#lBody .stat .flammenbox').outerHTML")
+        stat_html = seite.js(STAT_HTML)
         seite.js("() => document.getElementById('lPfad').click()")
         f = seite.js(FLAMME)
         assert f["klasse"].split() == ["flamme", "stufe-blau", "auf"] and f["stapel"] == STAPEL["glut"], f
@@ -810,7 +831,7 @@ def test_wiederholungsrunde_zeigt_dieselbe_flamme(browser, basis, tage, stufe):
         funken = seite.js(FUNKEN, "#lBody .stat")
         laeuft = [["flammeFunke"]] * 3 if stufe == "gold" else [[]] * 3
         assert [x["laufend"] for x in funken] == laeuft, funken
-        stat_html = seite.js("() => document.querySelector('#lBody .stat .flammenbox').outerHTML")
+        stat_html = seite.js(STAT_HTML)
         oben = seite.js("() => { showHome(); return document.getElementById('serieFlamme').className; }")
         assert oben.split() == ["flamme", "stufe-" + stufe, "auf"]
         f = seite.js(FLAMME)
