@@ -3645,6 +3645,127 @@ function matches(guess, answer){
   return 'no';
 }
 
+/* ---------- Tippfehler: erst ein Hinweis, nicht gleich falsch ----------
+   Ajdin am 24.10.2026: "wenn man beim schreiben ausversehen einen buchstaben
+   falsch geschrieben hat dann soll ein hinweis kommen das wort ist falsch
+   geschrieben und nicht das es direkt falsch ist weil sowas schnell
+   passieren kann". Von den Vorschlaegen hat er B gewaehlt ("b"):
+   - Liegt die Eingabe GENAU EINEN Tippfehler neben einer richtigen Antwort,
+     kommt ein gelber Hinweis (task.tippfehler). Die Loesung verraet er nicht.
+   - Die Eingabe bleibt offen, der zweite Versuch zaehlt wie immer: richtig
+     oder "fast richtig" ist richtig, alles andere falsch. Ein Hinweis je
+     Aufgabe, er kostet kein Leben und spielt keinen Ton (tippHinweis() in
+     renderTask).
+   - Erst ab 4 Buchstaben der Antwort. Bei "sir" ist ein anderer Buchstabe
+     schon ein Drittel des Wortes.
+   - Kein Hinweis, wenn das Getippte selbst ein echtes bosnisches Wort ist
+     (echteWoerter()): wer "deset" statt "devet" schreibt, hat sich nicht
+     vertippt, sondern zehn und neun verwechselt.
+   Verglichen wird auf den Formen von clean(): ohne Haekchen, Gross/klein und
+   Satzzeichen am Ende. Fehlen nur Haekchen, hat matches() schon 'almost'
+   gesagt - hierher kommt nur, was 'no' war. So vermischt sich nichts: ein
+   fehlendes Haekchen ist nie "der eine Tippfehler", und bei "kruskq" fuer
+   "kruška" ist es genau einer (q statt s), das Haekchen zaehlt nicht mit. */
+
+/* Genau ein Tippfehler zwischen a und b: ein Buchstabe ersetzt, einer
+   fehlt, einer zu viel, oder zwei Nachbarn vertauscht - der Abstand 1 nach
+   Damerau-Levenshtein in der eingeschraenkten Form (OSA). Fuer genau 1
+   braucht es keine Tabelle: bis zur ersten Abweichung ist alles gleich,
+   dahinter muss der Rest passen. */
+function einTippfehler(a, b){
+  if(a === b || Math.abs(a.length - b.length) > 1) return false;
+  let i = 0;
+  while(i < a.length && i < b.length && a[i] === b[i]) i++;
+  if(a.length === b.length)
+    return a.slice(i + 1) === b.slice(i + 1) ||                                         // ersetzt
+           (a[i] === b[i + 1] && a[i + 1] === b[i] && a.slice(i + 2) === b.slice(i + 2));  // vertauscht
+  const [lang, kurz] = a.length > b.length ? [a, b] : [b, a];
+  return lang.slice(i + 1) === kurz.slice(i);                                           // fehlt, zu viel
+}
+
+/* ---- Was als "echtes Wort" zaehlt ----
+   Ein Rechtschreibwoerterbuch des Bosnischen hat die App nicht, und fragen
+   kann sie niemanden - sie laeuft ohne Netz. Sie kennt nur ihren Inhalt aus
+   web/inhalt/<sprache>.json, den inhalt_bauen.py aus vokabeln.py,
+   geschichten.py und grammatik.py schreibt. Daraus zwei Mengen, einmal
+   gebaut (beim ersten Tippfehler) und in ladeDaten() verworfen:
+   - wortschatz: jede Vokabel aller Level (CATEGORIES), w.bs und w.auch, jede
+     Schreibweise hinter " / ", als Ganzes und Wort fuer Wort ("Laku noć",
+     "laku", "noć"). Das sind die Woerter, die man hier lernt und also
+     verwechseln kann. Das Bosnische ist in allen Sprachen der App dasselbe.
+   - formen: der wortschatz und dazu jedes Wort aus den bosnischen Saetzen
+     der App - Lueckensaetze mit eingesetzter Antwort (SENTENCES), Satzbau
+     (SATZBAU), die Geschichten (STORIES) und ihr Woerterbuch (DICT). Dort
+     stehen die gebeugten Formen ("bila", "kupila", "Rexa").
+   Die Schreibaufgabe zeigt eine Bedeutung und fragt nach der Vokabel. Dort
+   gilt der wortschatz: ein anderes Wort daraus ist eine Verwechslung, kein
+   Tippfehler.
+   Im Lueckensatz ist die FORM die Aufgabe: "Subota i ___ su vikend." will
+   "nedjelja", und "nedjelji" ist ein falscher Fall, kein verrutschter
+   Finger. Dort gelten deshalb die formen und dazu andereEndung(): gebeugte
+   Formen gibt es weit mehr, als im Inhalt der App stehen. */
+let _echteWoerter = null;
+function echteWoerter(){
+  if(_echteWoerter) return _echteWoerter;
+  const wortschatz = new Set(), formen = new Set();
+  const nimm = (ziel, text, ganz) => String(text || '').split(' / ').forEach(f => {
+    const c = clean(f);
+    if(ganz && c) ziel.add(c);
+    c.split(/[^a-z]+/).forEach(x => { if(x) ziel.add(x); });
+  });
+  CATEGORIES.forEach(k => k.words.forEach(w => [w.bs, ...(w.auch || [])].forEach(x => nimm(wortschatz, x, true))));
+  wortschatz.forEach(x => formen.add(x));
+  (SENTENCES || []).forEach(s => [s.answer, ...(s.auch || [])].forEach(a => {
+    nimm(formen, a, true);
+    nimm(formen, String(s.text || '').replace('___', a), false);
+  }));
+  (SATZBAU || []).forEach(s => [s.bs, ...(s.auch || [])].forEach(x => nimm(formen, x, false)));
+  (STORIES || []).forEach(g => {
+    nimm(formen, g.text, false);
+    Object.keys(g.vokabeln || {}).forEach(k => nimm(formen, k, true));
+  });
+  Object.keys(DICT || {}).forEach(k => nimm(formen, k, true));
+  return (_echteWoerter = {wortschatz, formen});
+}
+
+/* Nur die Endung anders: der letzte Selbstlaut gegen einen anderen
+   getauscht ("kruške" - "kruški", "nedjelja" - "nedjelji") oder einer
+   angehaengt ("brat" - "brata"). Im Bosnischen ist das fast immer ein
+   anderer Fall, eine andere Zahl oder ein anderes Geschlecht. Einer
+   weggelassen ("jabuk" fuer "jabuke") zaehlt nicht dazu: das ist keine
+   Form, sondern ein verschluckter Buchstabe. Gilt nur im Lueckensatz.
+   Derselbe Buchstabe noch einmal ("sutraa" fuer "sutra", "nedjeljaa") ist
+   auch keine Form, sondern die Taste zweimal getroffen - der Hinweis kommt
+   wie in der Schreibaufgabe. Bis zum Pruefer am 24.10.2026 galt es als
+   angehaengte Endung und kostete ein Leben. */
+const SELBSTLAUT_AM_ENDE = /[aeiou]$/;
+function andereEndung(eingabe, antwort){
+  if(eingabe.length === antwort.length)
+    return eingabe.slice(0, -1) === antwort.slice(0, -1) &&
+           SELBSTLAUT_AM_ENDE.test(eingabe) && SELBSTLAUT_AM_ENDE.test(antwort);
+  return eingabe.length === antwort.length + 1 && eingabe.startsWith(antwort) && SELBSTLAUT_AM_ENDE.test(eingabe) &&
+         eingabe.slice(-1) !== antwort.slice(-1);
+}
+
+/* Bekommt diese Eingabe den Hinweis? antworten wie bei matches(), mit
+   " / " getrennt - jede richtige Antwort wird geprueft. luecke ist true im
+   Lueckensatz. Die 4 Buchstaben zaehlen an der Antwort, nicht an der
+   Eingabe: "voad" fuer "voda" bekommt den Hinweis, "sur" fuer "sir" nicht.
+   Gezaehlt werden getippte Zeichen nach clean(): lj, nj und dž sind zwei
+   Tasten, "konj" und "džem" haben also 4 - vertippen kann man sich auf
+   jeder Taste. Ob sie wie im Alphabet als ein Buchstabe zaehlen sollen,
+   war am 24.10.2026 noch offen. */
+function nurVertippt(eingabe, antworten, luecke){
+  const g = clean(String(eingabe || ''));
+  const echt = echteWoerter();
+  if(!g || (luecke ? echt.formen : echt.wortschatz).has(g)) return false;
+  return String(antworten || '').split(' / ').map(clean).some(a =>
+    (a.match(/[a-z]/g) || []).length >= 4 && einTippfehler(g, a) && !(luecke && andereEndung(g, a)));
+}
+/* So lange nach dem Hinweis ist derselbe Text noch kein zweiter Versuch,
+   siehe tippHinweis(). */
+const DOPPELT_MS = 1000;
+
 /* ---- Maskottchen Zmaj (Drache, wie die Nationalelf „Zmajevi“) ---- */
 let MASCOT = new Set();   // Dateien in web/maskottchen
 /* Reihenfolge: 1. Lottie-Animation zmaj.json (Skelett, Keyframes, echte Bewegung)
@@ -6787,6 +6908,7 @@ async function ladeDaten(){
      "Ustajem" weiter "ich stehe auf" statt "je me leve", in 28 von 43 Leveln,
      bis die App geschlossen und neu geoeffnet wurde. Gefunden am 26.09.2026. */
   vokabelFormen = null; dictFormen = null;
+  _echteWoerter = null;   // ebenso die Woerter fuer den Tippfehler-Hinweis (24.10.2026)
   /* Jede Grammatikaufgabe weiss, zu welchem Level sie gehoert und die
      wievielte sie ist. Daran erkennt der Wiederholen-Topf sie wieder, auch
      nach einem Sprachwechsel. Und die Wortsuche des Topfs neu aufbauen. */
@@ -9253,6 +9375,44 @@ function renderTask(task, body, done, opts={}){
       '<div class="loesung"><span class="lbs" lang="bs">'+esc(bs)+'</span>'+
       (de ? '<span class="lde">'+esc(de)+'</span>' : '')+'</div>');
   };
+  /* Der Tippfehler-Hinweis (24.10.2026, siehe nurVertippt()) fuer die
+     Schreibaufgabe und den Lueckensatz - in Lektion, Wiederholen, Level-Test
+     und Einstufung, die alle hier durchgehen. Einmal je Aufgabe. Er steht
+     gelb wie "fast richtig" im Rueckmeldefeld, die Eingabe bleibt offen und
+     bekommt den Fokus zurueck, der Text bleibt stehen. Kein done(), also
+     nichts gezaehlt und kein Leben weg, kein Ton, keine Loesung, nichts
+     gesprochen. Angesagt wird gleich und nicht erst nach WEITER_NACH: der
+     Fokus wandert ja nicht zu Weiter, er bleibt im Feld.
+     vertippt(r, antworten) sagt true, wenn check() hier aufhoeren soll.
+     Das gilt auch, wenn derselbe Text innerhalb von DOPPELT_MS noch einmal
+     kommt - Enter zweimal, Enter und gleich Pruefen. Danach ist derselbe
+     Text der zweite Versuch: wer den Fehler nicht findet und noch einmal
+     prueft, bekommt die Loesung und haengt nicht fest.
+     Bei grosser Schrift oder offener Tastatur stand der Hinweis unter dem
+     Rand, und er hat keinen Ton: wer ihn nicht sah, merkte nichts und
+     verlor beim naechsten Pruefen ein Leben (Pruefer 24.10.2026). Deshalb
+     holt scrollIntoView ihn ins Bild wie weiterBeiTipp() den Weiter-Knopf -
+     'nearest' bewegt nichts, solange er zu sehen ist. Der Fokus bleibt im
+     Feld, damit die Tastatur offen bleibt. */
+  const tippHinweis = (inp, luecke)=>{
+    let gezeigt = null;
+    return (r, antworten)=>{
+      if(gezeigt){
+        const doppelt = inp.value === gezeigt.text && Date.now() - gezeigt.zeit < DOPPELT_MS;
+        if(doppelt) inp.focus();
+        return doppelt;
+      }
+      if(r !== 'no' || !nurVertippt(inp.value, antworten, luecke)) return false;
+      gezeigt = {text: inp.value, zeit: Date.now()};
+      const feld = $$('xFb');
+      feld.textContent = t('task.tippfehler');
+      feld.className = 'feedback almost';
+      inp.focus();
+      try{ feld.scrollIntoView({block:'nearest', behavior: kachelnRuhig() ? 'auto' : 'smooth'}); }catch(e){}
+      ansagen(esc(t('task.tippfehler')), 80);
+      return true;
+    };
+  };
   const skipBtn = (text)=> opts.noSkip ? '' : '<button class="skip" id="xSkip">'+text+' ⏭</button>';
   const wireSkip = ()=>{ const b=$$('xSkip'); if(b) b.addEventListener('click',()=>done({ok:false, skipped:true})); };
 
@@ -9289,6 +9449,7 @@ function renderTask(task, body, done, opts={}){
       '<input class="type-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(t('task.schreib'))+'">'+
       '<div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
+    const vertippt = tippHinweis(inp, false);
     const check=()=>{
       /* Traegt ein anderes Wort dieselbe Uebersetzung, ist es genauso
          richtig - der Bildschirm zeigt ja nur die Bedeutung. matches()
@@ -9298,6 +9459,7 @@ function renderTask(task, body, done, opts={}){
       const auchOk = annehmbar(w).join(' / ');
       const r=matches(inp.value, auchOk);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_wort'))); return; }
+      if(vertippt(r, auchOk)) return;   // ein Tippfehler: erst der Hinweis (24.10.2026)
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
@@ -9309,7 +9471,7 @@ function renderTask(task, body, done, opts={}){
       loesung(w.bs, w.de);
       sound(ok?'ok':'no'); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok});
     };
-    inp.addEventListener('keydown',e=>{ if(e.key==='Enter') check(); });
+    inp.addEventListener('keydown',e=>{ if(e.key==='Enter' && !e.repeat) check(); });   // festgehalten ist kein zweiter Versuch
     $$('xCheck').addEventListener('click',check);
     return;
   }
@@ -9441,14 +9603,17 @@ function renderTask(task, body, done, opts={}){
     body.innerHTML = kick(t('task.luecke'))+'<div class="sentence">'+bsTeil(vorLuecke)+(nachLuecke.length ? lueckeHtml+bsTeil(nachLuecke.join('___')) : '')+'</div>'+
       '<div class="translation">'+inZitat(esc(s.de))+'</div><div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
+    const vertippt = tippHinweis(inp, true);
     const check=()=>{
       if(fin) return;
       /* "auch" am Lueckensatz (23.10.2026): weitere richtige Antworten, wie
          bei den Woertern. Bei "Moj ___ je pčelar." gelten auch stric und die
          Koseformen striko und adžo (WORTSCHATZ_KORREKTUREN.md). Gezeigt und
          gesprochen wird weiter s.answer. matches() trennt bei " / ". */
-      const r=matches(inp.value, [s.answer, ...(s.auch || [])].join(' / '));
+      const antworten = [s.answer, ...(s.auch || [])].join(' / ');
+      const r=matches(inp.value, antworten);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_luecke'))); return; }
+      if(vertippt(r, antworten)) return;   // wie in der Schreibaufgabe, hier mit den gebeugten Formen
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
@@ -9467,7 +9632,7 @@ function renderTask(task, body, done, opts={}){
       else if(hoerbar(s.answer)) spaeterSprechen(s.answer, nachAntwort(ok));
       done({ok});
     };
-    inp.addEventListener('keydown',e=>{ if(e.key==='Enter') check(); });
+    inp.addEventListener('keydown',e=>{ if(e.key==='Enter' && !e.repeat) check(); });   // festgehalten ist kein zweiter Versuch
     $$('xCheck').addEventListener('click',check);
     return;
   }
