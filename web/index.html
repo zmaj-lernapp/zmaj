@@ -38,6 +38,12 @@
     --accent:#F5C400; --accent-dark:#C99E00; --accent-soft:#FFF4C2;
     --primary-fill:#9EA3E0; --primary-fill-dark:#6F77D2; --on-fill:#0F1E4D;
     --line:#CBCEEB; --good:#1E9E5A; --good-dark:#157A44; --bad:#D6453D; --on-primary:#FFFFFF; --on-accent:#0F1E4D;
+    /* Serienschutz (24.10.2026, siehe .schutzplaetze): Rand und Schrift
+       des Eises, Rand der Meldung "gerissen", Grund der zwei Plaetze und
+       der Filter fuer ein Schild, das noch nicht da ist. --eis-text liegt
+       auf jedem der neun Sektionsgruende bei mindestens 5,1:1. */
+    --eis-rand:#A6D1F1; --eis-text:#12507F; --bad-rand:#F1B2AC;
+    --schutz-platz:rgba(255,255,255,.5); --schutz-blass:grayscale(1) opacity(.38);
     /* Nur fuer Schrift. --good, --bad und --accent-dark sind auch Flaechen
        und Raender, dort reichen 3:1 und dort stimmen sie. Als Schrift auf
        der Flaeche lagen sie bei 3,2 / 4,1 / 2,3:1 statt 4,5:1 - axe am
@@ -78,6 +84,8 @@
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
       --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
       --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --eis-rand:#34608C; --eis-text:#93CFFF; --bad-rand:#77404C;   /* Serienschutz, siehe oben */
+      --schutz-platz:rgba(255,255,255,.05); --schutz-blass:grayscale(1) brightness(.8) opacity(.42);
       --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD; --sek1-fuell:#8F95DC; --sek1-fuell-dunkel:#686FBB;   /* Blau */
       --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD; --sek2-fuell:#A38FDC; --sek2-fuell-dunkel:#7E68BB;   /* Indigo */
       --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD; --sek3-fuell:#BD8FDC; --sek3-fuell-dunkel:#9A68BB;   /* Violett */
@@ -96,6 +104,8 @@
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
     --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
       --line:#41456D; --good:#4CCB84; --good-dark:#2E9C62; --bad:#FF7A72; --on-primary:#0B1330; --on-accent:#0B1330;
+      --eis-rand:#34608C; --eis-text:#93CFFF; --bad-rand:#77404C;   /* Serienschutz, siehe oben */
+      --schutz-platz:rgba(255,255,255,.05); --schutz-blass:grayscale(1) brightness(.8) opacity(.42);
     --sek1:#8F95DC; --sek1-dunkel:#686FBB; --sek1-sanft:#292D56; --sek1-grund:#151728; --sek1-flaeche:#2C2F4E; --sek1-linie:#41456C; --sek1-matt:#ADAFCD; --sek1-fuell:#8F95DC; --sek1-fuell-dunkel:#686FBB;   /* Blau */
     --sek2:#A38FDC; --sek2-dunkel:#7E68BB; --sek2-sanft:#352956; --sek2-grund:#1A1528; --sek2-flaeche:#352C4E; --sek2-linie:#4D416C; --sek2-matt:#B5ADCD; --sek2-fuell:#A38FDC; --sek2-fuell-dunkel:#7E68BB;   /* Indigo */
     --sek3:#BD8FDC; --sek3-dunkel:#9A68BB; --sek3-sanft:#442956; --sek3-grund:#201528; --sek3-flaeche:#412C4E; --sek3-linie:#5B416C; --sek3-matt:#C0ADCD; --sek3-fuell:#BD8FDC; --sek3-fuell-dunkel:#9A68BB;   /* Violett */
@@ -177,6 +187,12 @@
     .hero .zmaj{width:96px; height:96px; flex:0 0 96px}
   }
   .hbtns{display:flex; gap:6px}
+  /* "← Geschichten" in einer Zeile. Im engen Kopf (header.eng) ist die
+     Spalte der Knoepfe schmaler, und der Pfeil stand ueber dem Wort - in
+     einer Pille von fester Hoehe ragte das Wort unten heraus. So ist die
+     Spalte so breit wie die Taste. Pruefbefund vom 24.10.2026, siehe
+     setzeZurueck(). */
+  .hbtns .back{white-space:nowrap}
   /* In Lektion, Level-Test und Wiederholen-Runde gibt es keine Kopfzeile:
      keine Muenzen, kein Laden, kein Zahnrad. Das Herz steht im Fragenkasten
      neben den Fortschrittspunkten (.kastenkopf), der Kasten rueckt nach
@@ -193,6 +209,44 @@
     padding:7px 12px; border-radius:99px; cursor:pointer; transition:.15s;
   }
   .back:hover{border-color:var(--primary); color:var(--primary)}
+  /* ---- Gemalte Symbole statt Emojis (24.10.2026) ----
+     Ajdin am 23.10.2026: "die emojis die muessten mal anders gemacht
+     werden". Entschieden ist Symbol-Satz V1 aus web/symbole, komplett
+     ("nimm v1 komplett"), das Profil als Figur ("bei einem benutzer emoji
+     weiss man es direkt"). Gemalt hat sie Google Gemini im Stil des
+     Drachen. Die Emojis sahen je Handymarke anders aus und passten nicht
+     zum gemalten Drachen.
+     Eine Klasse fuer alle Orte; das Bild baut symbol() bzw. steht so im
+     Kopf. Die Seitenlaenge --sg ist in em der Schrift daneben, damit das
+     Symbol mit grosser Systemschrift mitwaechst. Breite gleich Hoehe wie
+     die Bilder (128 x 128): verzerrt wird nichts. vertical-align setzt die
+     Mitte des Bildes auf .35 em ueber der Grundlinie, die Mitte von
+     Ziffern und Grossbuchstaben (wie --zmitte bei der Flamme) - so steht
+     es in Text und Knoepfen mittig zur Schrift. In Flex-Zeilen
+     (Kopfleiste, Herz im Fragenkasten, Hoerknopf, Kreis der Level)
+     zentriert align-items, dort wirkt vertical-align nicht.
+     --sg je Ort darunter, etwa so gross wie vorher das Emoji. */
+  .sym{--sg:1.25em; display:inline-block; flex:none; width:var(--sg); height:var(--sg);
+       vertical-align:calc(.35em - var(--sg) / 2); object-fit:contain;
+       -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
+  /* Laden und Zahnrad tragen nur das Bild: etwas weniger Polster, damit
+     die Knoepfe trotz groesserem Symbol so breit bleiben wie vorher. */
+  /* In der Kopfleiste nur bis 30 px: ihre Pillen sind fest 38 px hoch
+     ("Alles in der Kopfzeile gleich hoch"). Bei 200 % Schrift ragten
+     Einkaufstasche und Zahnrad sonst 3 px oben und unten heraus
+     (tests_e2e/test_symbole.py). Bis 130 % Schrift wachsen sie frei. */
+  .hbtns .back .sym{--sg:min(1.7em, 30px)}
+  .hbtns .back.nursymbol{padding-left:9px; padding-right:9px}
+  .muenzbar .sym{--sg:min(1.35em, 30px)}
+  .livesbar .herz .sym{--sg:min(1.15em, 30px)}
+  .kastenherz .sym{--sg:1.1em}
+  .mode .sym{--sg:1.35em}
+  .node .circle .sym{--sg:1.4em}
+  .listen .sym{--sg:1.4em}
+  .listen.bigplay .sym{--sg:1.15em}
+  .wortton .sym{--sg:1.2em}
+  .stat .sym{--sg:1em}
+  .result-big .sym{--sg:.9em}
 
   /* ---------- Maskottchen ---------- */
   /* Maskottchen: Bild aus web/maskottchen (wenn vorhanden), sonst Vektor. Bewegung per CSS. */
@@ -336,110 +390,112 @@
   .serieblock{flex:1}
   .seriezahl{font-family:var(--font-display); font-size:46px; font-weight:700;
              line-height:1; display:flex; align-items:baseline; gap:8px}
-  .seriezahl span:first-child{font-size:30px}
   /* ---- Die Flamme zeigt, ob heute schon gelernt wurde ----
      Wunsch von Kuebra und Ajdin, entschieden am 20.10.2026 nach einer
      Vorschau mit drei Varianten (A aus, B glimmt, C Glut). Ajdin: "nimm a
      fuer 0 tage und den rest fuer c".
-       .aus   Serie 0 und heute nichts: grau, blass und still (A)
-       .glut  die Serie laeuft, heute noch nichts: klein, entsaettigt und
-              unruhig flackernd wie letzte Glut (C) - sie erinnert, ohne
-              zu schimpfen
-       ohne   heute gelernt: die volle Flamme wie bisher
-       .auf   lodert einmal kurz auf, wenn sie IN DIESER SITZUNG von kalt
+       .aus   Serie 0 und heute nichts: kalte graue Kohle, steht still (A)
+       .glut  die Serie laeuft, heute noch nichts: gluehende Kohlen, die
+              leise flackern (C) - sie erinnern, ohne zu schimpfen
+       ohne   heute gelernt: die volle Flamme
+       .auf   baut sich einmal auf, wenn sie IN DIESER SITZUNG von kalt
               auf an wechselt, also nach der ersten Lektion des Tages.
-              Beim Start brennt sie einfach. Gesetzt von flammeZeigen().
+              Beim Start brennt sie einfach. Gesetzt von flammeZeigen(),
+              siehe "Der Aufbau" weiter unten.
      Ohne Bewegung (Schalter "Animationen" = .no-anim, oder die
      Geraeteeinstellung) nehmen die allgemeinen Regeln oben und unten jede
      animation weg; die Glut steht dann als ruhiges Bild da, und .auf setzt
      flammeZeigen() gar nicht erst.
 
-     Hoehe: Ajdin am selben Tag, "die zahl und das feuer nicht auf einer
-     ebene". Auf der gemeinsamen Grundlinie stand die sichtbare Mitte der
-     Flamme 4,5 px tiefer als die der Ziffern, bei grosser Schrift 6 bis
-     9 px (nachgemessen in Chrome an den Pixeln eines Bildschirmfotos,
-     tests_e2e/test_flamme.py). Das Emoji reicht unter die Grundlinie, die
-     Ziffern nicht. Das translateY in % rechnet mit der Hoehe des eigenen
-     Kastens und waechst so mit der Schriftgroesse des Handys mit.
-     Gemessen mit beiden Emoji-Schriften: Segoe UI Emoji (Windows) und
-     Noto Color Emoji, die Schrift von Android (aus Android Studio,
-     Pruefung vom 20.10.2026). Die Android-Flamme ist etwas groesser,
-     sitzt aber ebenso hoechstens 1 px neben der Mitte der Ziffern - in
-     allen drei Zustaenden, bei Pixeldichte 1 bis 3 und bis 200 % Schrift.
-     JEDE Regel hier, die transform setzt, muss es mitnehmen - sonst
-     sackt die Flamme waehrend der Animation wieder ab. Seit dem
-     22.10.2026 steht die Anhebung deshalb an einer Stelle, in --hoch.
-     transform-origin liegt auf der sichtbaren Mitte des Emojis (44 % von
-     oben, ebenso gemessen): so schrumpft die Glut um ihre Mitte und
-     bleibt mit der Zahl auf einer Hoehe, statt nach unten zu sacken.
+     Gemalt statt Emoji (24.10.2026). Bis dahin war die Flamme das Emoji
+     (U+1F525), gefaerbt und verschoben per CSS. Jede Emoji-Schrift zeichnet
+     es anders gross und an anderer Stelle in seinem Kasten; auf Ajdins
+     Samsung sass die Glut deshalb zu hoch: "die kleine flamme ist zu weit
+     oben". Jetzt sind es drei Bilder, die Gemini im Stil des Drachen
+     gemalt hat (web/flamme), alle im selben Rahmen 403:512:
+       flamme.webp  die Flamme (Ajdin am 23.10.2026: "ja passt")
+       glut.webp    kleine gluehende Kohlen mit einem Flaemmchen - KEINE
+                    verkleinerte Flamme. Ajdin: "es soll so richtig
+                    aussehen das es nur eine kleine glut ist nicht einfach
+                    die gleiche grosse flamme in klein gemacht"
+       aus.webp     dieselben Kohlen kalt und grau
+     Der Rahmen ist in allen Zustaenden gleich gross. Die Kohlen liegen
+     unten darin, dort, wo die Flamme ihren Fuss hat.
+
+     Hoehe: Ajdin am 20.10.2026, "die zahl und das feuer nicht auf einer
+     ebene". Mit Bildern ist die Lage berechenbar und haengt an keiner
+     Schrift des Handys. Der Rahmen (.flammenbox) ist ein inline-block ohne
+     Text: seine Unterkante steht auf der Grundlinie der Zahl - als Teil
+     einer Zeile (Statistik) ebenso wie als Flex-Kind (oben, .seriezahl
+     richtet nach der Grundlinie aus). top verschiebt ihn dann so, dass
+     seine Mitte auf der Mitte der Ziffern steht:
+         top = Rahmenhoehe / 2 - Ziffernmitte
+     --fh ist die Rahmenhoehe, --zmitte die Hoehe der Ziffernmitte ueber der
+     Grundlinie, beides in em der Schrift daneben - so waechst alles mit der
+     Schriftgroesse des Handys mit. Die Ziffernmitte gehoert zur
+     mitgelieferten Schrift (web/fonts), gemessen mit measureText: die
+     Ziffern von Spectral 700 reichen 0,675 em ueber die Grundlinie, die von
+     Nunito 800 0,715 em. Nachgemessen an den Pixeln in
+     tests_e2e/test_flamme.py, bei 100, 130 und 200 % Schrift. Die alte
+     Anhebung --hoch (-15,5 % fuer die Masse des Emojis) ist damit weg.
 
      Ueberall gleich (22.10.2026, Ajdin: "beachte das nicht das es 2
      verschiedene desgins sind"): dieselbe Flamme steht auch in der
      Statistik am Ende einer Lektion und einer Wiederholungsrunde. Dort
-     baut sie flammeHtml(), die Klassen kommen an jedem Ort aus
-     flammeKlassen(). Die Regeln haengen deshalb an .flamme allein, nicht
-     mehr an .seriezahl. Je Ort eigen ist nur --hoch: daneben steht jeweils
-     eine andere Schrift in anderer Groesse (oben Spectral 46 px neben
-     30 px Emoji, in der Statistik Nunito 18 px neben 18 px Emoji), jede
-     Stelle einzeln an den Pixeln nachgemessen wie oben.
-     inline-block, weil transform an einem gewoehnlichen inline-Element
-     nichts tut: in der Statistik steht die Flamme mitten im Text, oben in
-     .flammenbox, dem Halt fuer die Funken. Aufgelodert (.auf) wird nur
-     oben; flammeHtml() setzt es nie. */
-  .flammenbox{position:relative; display:inline-block}
-  .flamme{display:inline-block; --hoch:0%; transform:translateY(var(--hoch)); transform-origin:50% 44%}
-  .seriezahl .flamme{--hoch:-15.5%}
-  /* In der Statistik keine Anhebung: dort steht die sichtbare Mitte der
-     Flamme ohnehin hoechstens 0,25 px neben der Mitte der Ziffern -
-     nachgemessen am 22.10.2026 mit beiden Emoji-Schriften bei 100, 130
-     und 200 % Schrift. Nunito-Ziffern sind im Verhaeltnis hoeher als die
-     von Spectral oben. Die Zeile bleibt, damit man sieht: gemessen. */
-  .stat .flamme{--hoch:0%}
+     baut sie flammeHtml(); Klassen und Bild kommen an jedem Ort aus
+     flammeKlassen() und flammeBild(). Je Ort eigen sind nur --fh und
+     --zmitte: oben 34 px neben Spectral 46 px, in der Statistik 18 px neben
+     Nunito 18 px - die Groessen der Vorschau, die Ajdin am 23.10.2026
+     gesehen hat. Aufgebaut (.auf) wird nur oben; flammeHtml() setzt es
+     nie. */
+  .flammenbox{--fh:1em; --zmitte:.35em; position:relative; display:inline-block;
+              height:var(--fh); width:calc(var(--fh) * 403 / 512); top:calc(var(--fh) / 2 - var(--zmitte))}
+  .seriezahl .flammenbox{--fh:.7391em; --zmitte:.333em}
+  .stat .flammenbox{--fh:1em; --zmitte:.355em}
+  .flamme, .flamme > img, .gf, .gf > span, .gf-glut > img, .gf-feuer > img{
+    position:absolute; left:0; top:0; width:100%; height:100%}
+  .flamme > img, .gf img{display:block; -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
   /* ---- Stufen fuer lange Serien (22.10.2026) ----
      Ajdin: "Mit Stufen". Nach streak(), Schwellen nicht ohne ihn aendern:
-       unter 30  orange wie bisher, keine Klasse
+       unter 30  orange wie gemalt, keine Klasse
        ab 30     .stufe-blau
        ab 100    .stufe-lila
        ab 365    .stufe-gold, weissgold mit kleinen Funken (.funke)
-     Gefaerbt wird das Emoji selbst (hue-rotate), wie in der Vorschau vom
-     20.10.2026 - je nach Emoji-Schrift des Handys sieht es etwas anders aus.
+     Gefaerbt wird das Bild selbst (hue-rotate), wie in der Vorschau vom
+     20.10.2026 das Emoji. Seit dem 24.10.2026 vorerst mit denselben
+     Filtern auf dem gemalten Bild; Ajdin beurteilt die Farben in der
+     Test-App.
      --ton ist der Farbfilter der Stufe. Er steht VOR jedem Filter der
      Zustaende, auch in den Keyframes: so behaelt die Glut die Farbe ihrer
-     Stufe, und das Auflodern ebenso. var(--ton,) mit leerem Ersatz: ohne
-     Stufe bleibt jede Filterliste genau die von vorher. Die graue Flamme
-     (.aus) hat nie eine Stufe, sie gehoert zur Serie 0.
-     --ruhe ist der stille Schein der brennenden Flamme, --glanz seine
-     Farbe auf dem Hoehepunkt des Aufloderns. Masse in em, damit der Schein
-     an der kleinen Flamme der Statistik nicht groesser wirkt als oben. */
-  .flamme.stufe-blau{--ton:hue-rotate(190deg) saturate(1.35); --glanz:rgba(60,150,255,.9);
-                     --ruhe:drop-shadow(0 0 .2em rgba(60,150,255,.55)); filter:var(--ton) var(--ruhe)}
-  .flamme.stufe-lila{--ton:hue-rotate(245deg) saturate(1.45); --glanz:rgba(170,90,255,.9);
-                     --ruhe:drop-shadow(0 0 .2em rgba(170,90,255,.55)); filter:var(--ton) var(--ruhe)}
-  .flamme.stufe-gold{--ton:saturate(.45) brightness(1.3); --glanz:rgba(255,214,90,1);
-                     --ruhe:drop-shadow(0 0 .3em rgba(255,214,90,.9)); filter:var(--ton) var(--ruhe)}
+     Stufe. var(--ton,) mit leerem Ersatz: ohne Stufe bleibt jede
+     Filterliste genau die von vorher. Die graue Kohle (.aus) hat nie eine
+     Stufe, sie gehoert zur Serie 0. Waehrend des Aufbaus (.auf) liegt der
+     Filter auf dem ganzen Stapel - die Flamme baut sich schon in der Farbe
+     ihrer Stufe auf.
+     --ruhe ist der stille Schein der brennenden Flamme, seine Weite ein
+     Teil der Rahmenhoehe (--fh): so wirkt er an der kleinen Flamme der
+     Statistik nicht groesser als oben. */
+  .flamme.stufe-blau{--ton:hue-rotate(190deg) saturate(1.35);
+                     --ruhe:drop-shadow(0 0 calc(var(--fh) * .2) rgba(60,150,255,.55)); filter:var(--ton) var(--ruhe)}
+  .flamme.stufe-lila{--ton:hue-rotate(245deg) saturate(1.45);
+                     --ruhe:drop-shadow(0 0 calc(var(--fh) * .2) rgba(170,90,255,.55)); filter:var(--ton) var(--ruhe)}
+  .flamme.stufe-gold{--ton:saturate(.45) brightness(1.3);
+                     --ruhe:drop-shadow(0 0 calc(var(--fh) * .3) rgba(255,214,90,.9)); filter:var(--ton) var(--ruhe)}
   /* Die Zustaende stehen NACH den Stufen: gleiches Gewicht, also gewinnt
-     bei der Glut ihr eigener Filter - der --ton schon enthaelt. */
-  .flamme.aus{filter:grayscale(1); opacity:.32}
-  .flamme.glut{transform:translateY(var(--hoch)) scale(.7); filter:var(--ton,) grayscale(.55) brightness(.75);
-               opacity:.45; animation:flammeGlut 2.2s linear infinite}
-  .flamme.auf{animation:flammeAuf .8s ease-out}
+     bei der Glut ihr eigener Filter - der --ton schon enthaelt.
+     Bis zum 24.10.2026 war die Glut die kleine Flamme (scale .7),
+     entsaettigt und halb durchsichtig, und "aus" ein blasses graues Emoji.
+     Die gemalten Bilder sind schon Glut und kalte Kohle: sie stehen in
+     voller Deckkraft da wie in der Vorschau, die Glut flackert nur in der
+     Helligkeit. */
+  .flamme.aus{filter:grayscale(1)}
+  .flamme.glut{filter:var(--ton,) brightness(1); animation:flammeGlut 2.2s linear infinite}
   @keyframes flammeGlut{
-    0%,100%{filter:var(--ton,) grayscale(.55) brightness(.75); opacity:.45}
-    20%{filter:var(--ton,) grayscale(.35) brightness(.95); opacity:.7}
-    35%{filter:var(--ton,) grayscale(.6) brightness(.7); opacity:.4}
-    60%{filter:var(--ton,) grayscale(.3) brightness(1); opacity:.75}
-    80%{filter:var(--ton,) grayscale(.55) brightness(.8); opacity:.5}}
-  /* In jedem Schritt dieselbe Liste von Filtern: nur dann gleitet der
-     Browser von einem zum naechsten, sonst springt er. Der letzte Schritt
-     endet im stillen Schein der Stufe (--ruhe), ohne Stufe in einem
-     unsichtbaren - beides genau das Bild danach, am Ende springt nichts. */
-  @keyframes flammeAuf{
-    0%{transform:translateY(var(--hoch)) scale(.7); opacity:.45;
-       filter:var(--ton,) grayscale(.55) brightness(.75) drop-shadow(0 0 0 rgba(255,140,0,0))}
-    45%{transform:translateY(var(--hoch)) scale(1.28); opacity:1;
-        filter:var(--ton,) grayscale(0) brightness(1.15) drop-shadow(0 0 .27em var(--glanz, rgba(255,140,0,.9)))}
-    100%{transform:translateY(var(--hoch)) scale(1); opacity:1;
-         filter:var(--ton,) grayscale(0) brightness(1) var(--ruhe, drop-shadow(0 0 0 rgba(255,140,0,0)))}}
+    0%,100%{filter:var(--ton,) brightness(1)}
+    20%{filter:var(--ton,) brightness(1.15)}
+    35%{filter:var(--ton,) brightness(.9)}
+    60%{filter:var(--ton,) brightness(1.18)}
+    80%{filter:var(--ton,) brightness(.96)}}
   /* Die Funken der Gold-Stufe: drei kleine Sterne um die Flamme, absolut
      gesetzt - sie verschieben nichts, Flamme und Zahl stehen wie ohne sie
      (nachgemessen). Im Grundzustand unsichtbar (opacity 0); nur die
@@ -447,26 +503,149 @@
      "Animationen" aus (.no-anim) oder "Bewegung reduzieren" am Geraet
      laeuft keine, dann bleiben sie unsichtbar - funkeln heisst hier
      immer: die Flamme brennt und Bewegung ist erlaubt.
-     Groesse und Lage wie in der Vorschau (11 px an 30 px Flamme), in em
-     des Funkens, damit sie mit der Flamme wachsen. Oben auf der Startseite
-     ist die Flamme um --hoch angehoben (4,65 px bei 30 px), die Funken
-     gehen mit: margin-top -.42em des Funkens, das sind dieselben 15,5 %
-     der Flamme. In der Statistik steht sie unverschoben, dort auch sie. */
-  .flammenbox .funke{position:absolute; font-size:.37em; line-height:1; opacity:0; pointer-events:none;
+     Groesse wie in der Vorschau (11 px an 30 px Flamme): ein Drittel der
+     Rahmenhoehe. Lage in em des Funkens, am Rahmen ausgerichtet (seit dem
+     24.10.2026 der Kasten selbst) - so wachsen sie mit der Flamme. */
+  .flammenbox .funke{position:absolute; font-size:calc(var(--fh) * .33); line-height:1; opacity:0; pointer-events:none;
                      animation:2.4s ease-in-out infinite}
-  .flammenbox .funke.f1{left:-.73em; top:-.36em}
-  .flammenbox .funke.f2{right:-.82em; top:.18em; animation-delay:.8s}
-  .flammenbox .funke.f3{left:.55em; top:-1.27em; animation-delay:1.6s}
-  .seriezahl .funke{margin-top:-.42em}
+  .flammenbox .funke.f1{left:-.75em; top:-.2em}
+  .flammenbox .funke.f2{right:-.6em; top:.45em; animation-delay:.8s}
+  .flammenbox .funke.f3{left:.6em; top:-1.05em; animation-delay:1.6s}
   .flamme.stufe-gold ~ .funke{animation-name:flammeFunke}
   .flamme.glut ~ .funke{animation-name:none}
   @keyframes flammeFunke{
     0%,100%{opacity:0; transform:scale(.4)}
     40%{opacity:1; transform:scale(1)}
     70%{opacity:0; transform:scale(.6)}}
+  /* ---- Der Aufbau Glut -> Flamme (24.10.2026) ----
+     Ajdin am 23.10.2026: "wenn man wieder zum startbildschirm zurueckkehrt
+     soll man eine animation bekommen wie die flamme aufsteigt von klein zu
+     gross", und nur einmal: "ja nur beim ersten mal am tag". Die erste
+     Fassung (die Flamme steigt von unten hinter den Kohlen hoch) lehnte er
+     ab: "das Feuer soll nicht von unten nach oben aufsteigen sondern sich
+     nach und nach aufbauen und die Kohle geht langsam weg". Die zweite
+     nahm er: "feuer ist gut geworden wir nehmen den". Das ist sie.
+     Den Stapel (.gf) baut flammeStapel() nur fuer die Dauer des Aufbaus in
+     #serieFlamme hinein, das eine Bild ist so lange versteckt. Alle Ebenen
+     liegen deckungsgleich im Rahmen: unten der Schein, dann die Kohlen (das
+     Flaemmchen dahinter, die heissen Kohlen darueber), der helle Glutkern,
+     oben die Flamme in vier Schichten rot (mit Umriss), orange, gelb, Kern.
+     Alle Teile laufen gleich lang (--d), die Abschnitte stehen in den
+     Keyframes in %:
+       0,0 s   die Kohlen gluehen auf, das Flaemmchen zuckt hoch
+       0,1 s   an der hellsten Stelle der Glut erscheint der weisse Kern
+       0,3 s   Gelb waechst um den Kern
+       0,45 s  Orange kommt dazu, die Kohlen werden blasser
+       0,65 s  zuletzt der rote Rand mit Umriss
+       1,0 s   die drei Zungen zuengeln hoch, die Kohlen sind fast weg
+       1,5 s   die Flamme steht - genau wie flamme.webp, gegen das
+               flammeFertig() den Stapel dann ohne Sprung tauscht
+     Kommt die Flamme aus "aus" (Serie 0), liegt die kalte Kohle (.gf-asche)
+     obenauf und blendet aus, waehrend die Kohlen aufgluehen. */
+  .flamme.auf > .flammenbild{visibility:hidden}
+  .gf{--d:1500ms}
+  .gf-schein, .gf-glutkern, .gf-heiss{opacity:0}
+  .gf-schein::before{content:""; position:absolute; left:-18%; right:-18%; top:36%; bottom:-10%;
+      background:radial-gradient(closest-side, rgba(255,150,50,.5), rgba(255,120,40,.22) 55%, rgba(255,120,40,0))}
+  /* heller Glutkern: dort, wo die Glutspalten zusammenlaufen, wird es
+     weiss-gelb; aus diesem Licht kommt der Kern der Flamme */
+  .gf-glutkern::before{content:""; position:absolute; left:19%; right:19%; top:51%; bottom:7%;
+      background:radial-gradient(closest-side, rgba(255,247,218,.95), rgba(255,220,130,.75) 38%, rgba(255,175,70,.32) 68%, rgba(255,150,50,0))}
+  .gf-flaemmchen{transform-origin:51.4% 63.1%}
+  /* Alle Schichten wachsen um den Punkt, an dem die Glutspalten
+     zusammenlaufen (202 | 372 im Rahmen 403 x 512): dort, wo die Glut am
+     hellsten ist. So waechst die Flamme an ihrem Platz nach oben UND
+     unten, statt von unten hochzusteigen. Orange und Rot wachsen um einen
+     tieferen Punkt (202 | 430): so bleibt ihr Fuss nah an seinem Platz,
+     und die Zungen zuengeln hoch. Das Lodern am Schluss streckt die ganze
+     Flamme vom Fuss aus. */
+  .gf-feuer > img{transform-origin:50.12% 72.66%}
+  .gf-feuer > .gf-orange, .gf-feuer > .gf-rot{transform-origin:50.12% 83.98%}
+  .gf-feuer{transform-origin:50% 98.6%}
+  .gf-schein{animation:gfSchein var(--d) linear both}
+  .gf-glutkern{animation:gfGlutkern var(--d) linear both}
+  .gf-glut{animation:gfGlut var(--d) linear both}
+  .gf-heiss{animation:gfHeiss var(--d) linear both}
+  .gf-asche{animation:gfAsche var(--d) linear both}
+  /* Aus kalter Kohle kommen auch die gluehenden Kohlen erst herein, so
+     wie das Grau geht: am Anfang steht dann genau aus.webp da, ohne den
+     roten Rand der Glut-Kohle an den weichen Kanten (nachgemessen). */
+  .gf.von-aus .gf-kohle{animation:gfHeiss var(--d) linear both}
+  .gf-flaemmchen{animation:gfFlaemmchen var(--d) linear both}
+  .gf-kern{animation:gfKern var(--d) linear both}
+  .gf-gelb{animation:gfGelb var(--d) linear both}
+  .gf-orange{animation:gfOrange var(--d) linear both}
+  .gf-rot{animation:gfRot var(--d) linear both}
+  .gf-feuer{animation:gfLodern var(--d) linear both}
+  /* 1) Die Kohlen gluehen auf: Glutspalten heller und gelber, warmer
+     Schein; aus kalter Kohle blendet erst das Grau weg */
+  @keyframes gfHeiss{
+    0%{opacity:0; animation-timing-function:cubic-bezier(.3,0,.3,1)}
+    18%,100%{opacity:1}}
+  @keyframes gfAsche{
+    0%{opacity:1; animation-timing-function:cubic-bezier(.3,0,.3,1)}
+    18%,100%{opacity:0}}
+  @keyframes gfSchein{
+    0%{opacity:0; animation-timing-function:cubic-bezier(.3,0,.3,1)}
+    18%{opacity:1; animation-timing-function:cubic-bezier(.45,0,.55,1)}
+    100%{opacity:0}}
+  /* das kleine Flaemmchen zuckt einmal hoch und geht im Kern auf */
+  @keyframes gfFlaemmchen{
+    0%{opacity:1; transform:none; animation-timing-function:cubic-bezier(.3,0,.3,1)}
+    14%{opacity:1; transform:scale(1.1,1.35); animation-timing-function:cubic-bezier(.4,0,.6,1)}
+    27%,100%{opacity:0; transform:scale(.85,1.55)}}
+  /* 2) an der hellsten Stelle der Glut wird es weiss-gelb */
+  @keyframes gfGlutkern{
+    0%{opacity:0; transform:scale(.55); animation-timing-function:cubic-bezier(.3,0,.3,1)}
+    15%{opacity:1; transform:scale(1)}
+    26%{opacity:1; animation-timing-function:cubic-bezier(.45,0,.55,1)}
+    52%,100%{opacity:0; transform:scale(1.15)}}
+  /* 2) bis 5) die Flamme baut sich auf: jede Schicht kommt hinter der
+     vorigen hervor (Anfangsmassstab so, dass sie dort noch fast ganz
+     verdeckt ist), waechst etwas ueber ihre Groesse und setzt sich */
+  @keyframes gfKern{
+    0%,6%{opacity:0; transform:scale(.3); animation-timing-function:cubic-bezier(.3,.4,.4,1)}
+    20%{opacity:1}
+    34%{transform:scale(1.05); animation-timing-function:cubic-bezier(.45,0,.55,1)}
+    44%,100%{opacity:1; transform:scale(1)}}
+  @keyframes gfGelb{
+    0%,18%{opacity:0; transform:scale(.26); animation-timing-function:cubic-bezier(.3,.5,.4,1)}
+    24%{opacity:1}
+    47%{transform:scale(1.035); animation-timing-function:cubic-bezier(.45,0,.55,1)}
+    56%,100%{opacity:1; transform:scale(1)}}
+  @keyframes gfOrange{
+    0%,30%{opacity:0; transform:scale(.5); animation-timing-function:cubic-bezier(.3,.5,.4,1)}
+    35%{opacity:1}
+    60%{transform:scale(1.03); animation-timing-function:cubic-bezier(.45,0,.55,1)}
+    69%,100%{opacity:1; transform:scale(1)}}
+  /* 5) der rote Rand mit Umriss zuletzt */
+  @keyframes gfRot{
+    0%,42%{opacity:0; transform:scale(.52); animation-timing-function:cubic-bezier(.3,.5,.4,1)}
+    47%{opacity:1}
+    72%{transform:scale(1.015); animation-timing-function:cubic-bezier(.45,0,.55,1)}
+    82%,100%{opacity:1; transform:scale(1)}}
+  /* ... und die drei Zungen zuengeln zum Schluss hoch: die ganze Flamme
+     streckt sich vom Fuss aus einmal kurz und setzt sich */
+  @keyframes gfLodern{
+    0%,64%{transform:none; animation-timing-function:cubic-bezier(.35,0,.45,1)}
+    79%{transform:scale(1.005,1.055) skewX(-1.2deg); animation-timing-function:cubic-bezier(.45,0,.55,1)}
+    90%{transform:scale(1,.99) skewX(.7deg); animation-timing-function:cubic-bezier(.45,0,.55,1)}
+    100%{transform:none}}
+  /* die Kohlen werden blasser und verschwinden, waehrend die Flamme sie
+     ueberwaechst (kein Schrumpfen, kein Wischen) */
+  @keyframes gfGlut{
+    0%,20%{opacity:1; filter:brightness(1); animation-timing-function:cubic-bezier(.4,0,.6,1)}
+    72%,100%{opacity:0; filter:brightness(1.12)}}
   /* Am Handy naehme der Drache in seiner vollen Groesse die halbe Breite. */
   .obenreihe .zmaj{width:120px; height:120px; flex:0 1 120px; min-width:0}
-  .obenreihe .streakline{margin:7px 0 0}
+  /* Fuer die Mindestbreite der Spalte zaehlt die Zeile des Schutzes nicht
+     mit (width:0), sie nimmt dann aber doch die ganze Spalte ein
+     (min-width:100%). So gibt der Drache nur fuer die Zahl der Serie nach,
+     die sich nicht brechen laesst (siehe .serieblock), nie fuer den Text
+     daneben. Pruefbefund vom 24.10.2026: "reeksbeschermingen" (nl) setzte
+     die Mindestbreite der Spalte, und der Drache wurde bei 360 px und 130 %
+     Schrift bis auf 59 px schmal, in da und nb auf 76 bzw. 82 px. */
+  .obenreihe .streakline{margin:7px 0 0; width:0; min-width:100%}
   /* ---- Festtage: Girlande, Gruss, fallende Blaetter und Flocken ----
      Die Farben je Fest setzt festSchmuck() in <style id="festStil">. */
   .festgirlande{display:block; width:100%; height:auto; margin:-6px 0 2px}
@@ -542,10 +721,73 @@
      Aussehen. Dort ist es keine Reiterreihe, sondern eine Auswahl - deshalb
      aria-checked statt aria-selected. Beide sehen gleich aus. */
   .mode button[aria-checked="true"]{background:var(--primary-fill); color:var(--on-fill)}
-  .streakline{display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:13px; color:var(--muted); font-weight:700; margin:0 0 12px 4px}
-  .streakline b{color:var(--ink)}
-  .streakline .frost{color:var(--primary); background:var(--primary-soft); border-radius:99px; padding:2px 10px; font-weight:800}
-  .streakline .lost{color:var(--bad); font-weight:800}
+  /* ---- Serienschutz: zwei Plaetze (Entwurf B) ----
+     Bis zum 24.10.2026 stand hier eine Zeile Text, "❄ 1 Schutz · noch
+     9 Tage bis zum naechsten". Ajdin am 23.10.2026: sie ist "nackt". Aus
+     drei Entwuerfen hat er B gewaehlt ("Nimm B sieht am besten aus"):
+     zwei Schilde nebeneinander, so viele, wie hoechstens gehen
+     (SCHUTZ_MAX). Gefuellt heisst vorhanden, blass heisst noch nicht da.
+     Der naechste leere Platz friert von unten zu, Tag fuer Tag, bis nach
+     SCHUTZ_TAGE Tagen das Schild ganz da ist. Daneben nur noch "1 Schutz"
+     und "noch 9 Tage" bzw. "voll".
+     Das Schild ist das gemalte web/symbole/serienschutz.webp (Gemini,
+     Symbol-Satz V1, Ajdin: "nimm v1 komplett"). Ein leerer Platz zeigt
+     dasselbe Bild entsaettigt und blass (--schutz-blass); beim Zufrieren
+     liegt es darueber noch einmal in Farbe, oben abgeschnitten: --zu ist
+     der Abstand von oben, den renderSerie() ausrechnet.
+     Die Schilde sind Schmuck (aria-hidden), den Stand sagt der Text - der
+     Bildschirmleser liest "1 Schutz, noch 9 Tage".
+     Ist der Text zu breit (grosse Schrift, lange Sprache), bricht er neben
+     den Schilden an den Leerzeichen um. Unter die Schilde rutscht er nur,
+     wenn ein einzelnes Wort daneben keinen Platz hat - "reeksbeschermingen"
+     (nl), "raekkebeskyttelser" (da), "rekkebeskyttelser" (nb) -, statt
+     mitten im Wort zu brechen (Pruefbefund 24.10.2026, siehe .schutztext). */
+  .streakline{display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; font-size:13px; color:var(--muted); font-weight:700; margin:0 0 12px 4px}
+  .schutzplaetze{flex:none; display:flex; gap:2px; padding:3px 5px; border-radius:13px;
+                 background:var(--schutz-platz); border:1.5px solid var(--line)}
+  .schutzplatz{position:relative; display:block; width:30px; height:30px}
+  .schutzplatz img, .schutzblase .bild img{position:absolute; left:0; top:0; width:100%; height:100%; display:block;
+    -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
+  .schutzplatz .blass{filter:var(--schutz-blass)}
+  .schutzplatz .eis{clip-path:inset(var(--zu, 100%) 0 0 0)}
+  /* Die Oberkante des Eises als feine helle Linie, wie im Entwurf. Die
+     Maske ist das Bild selbst, etwas kleiner: so bleibt die Linie innerhalb
+     des dunklen Umrisses, statt ihn zu durchstreichen. */
+  .schutzplatz.friert::after{content:""; position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none;
+    background:linear-gradient(to bottom, transparent var(--zu), rgba(255,255,255,.8) var(--zu),
+                               rgba(255,255,255,.8) calc(var(--zu) + 1.2px), transparent calc(var(--zu) + 1.2px));
+    -webkit-mask:url(symbole/serienschutz.webp) 50% 45%/80% 84% no-repeat;
+    mask:url(symbole/serienschutz.webp) 50% 45%/80% 84% no-repeat}
+  /* Der Text will so breit sein wie sein laengstes Wort, hoechstens so
+     breit wie die Zeile, und waechst dann bis zum Rand. Passt das laengste
+     Wort nicht neben die Schilde, kommt der Text in die naechste Reihe
+     (flex-wrap oben). Ist es sogar fuer die ganze Zeile zu lang (320 px
+     und 130 % Schrift, nl), bricht es dort - overflow-wrap von .wrap, der
+     letzte Ausweg. Pruefbefund vom 24.10.2026. */
+  .schutztext{display:flex; flex-direction:column; flex:1 1 auto; width:min-content; max-width:100%;
+              min-width:0; line-height:1.2}
+  /* 14 und 12 px, als Teil der 13 px der Zeile: so wachsen sie mit ihr,
+     auch wenn renderSerie() sie neu baut, nachdem die Schrift der Zeile
+     vergroessert wurde (tests_e2e/test_flamme.py, SCHRIFT). */
+  .schutztext b{font-size:1.077em; font-weight:800; color:var(--ink)}
+  .schutztext small{font-size:.923em; font-weight:700; color:var(--muted)}
+  .schutztext small.voll{color:var(--eis-text); font-weight:800}
+  /* Die Meldungen "gerettet" und "gerissen" spricht der Drache: eine
+     kleine Sprechblase unter der Reihe, ihr Zipfel zeigt nach oben auf ihn
+     (Entwurf B, 23.10.2026). Bei "gerettet" das Schild, bei "gerissen"
+     die kalte Kohle der Flamme - von web/flamme/aus.webp nur die Kohlen,
+     die unten im Rahmen liegen. Die Blase steht nach der .obenreihe, der
+     Zipfel 52 px vom rechten Rand: das ist die Mitte des Drachen (120 px). */
+  .schutzblase{position:relative; display:flex; align-items:center; gap:11px; margin:4px 0 14px;
+               padding:10px 13px 10px 10px; border-radius:16px; background:var(--surface);
+               border:2px solid var(--eis-rand); font-size:13px; font-weight:700; line-height:1.35; color:var(--ink)}
+  .schutzblase[hidden]{display:none}
+  .schutzblase::before{content:""; position:absolute; top:-8px; right:52px; width:13px; height:13px;
+                       background:var(--surface); border-left:2px solid var(--eis-rand); border-top:2px solid var(--eis-rand);
+                       transform:rotate(45deg)}
+  .schutzblase.verloren, .schutzblase.verloren::before{border-color:var(--bad-rand)}
+  .schutzblase .bild{position:relative; flex:none; width:32px; height:32px}
+  .schutzblase .kohle{flex:none; width:34px; height:21px; background:url(flamme/aus.webp) center bottom/100% auto no-repeat}
   /* ---------- Tagesaufgaben ---------- */
   .quests{margin:0 0 12px; padding:10px 12px; border:2px solid var(--line); border-radius:14px; background:var(--surface)}
   .qkopf{display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; color:var(--muted); margin-bottom:6px}
@@ -1683,9 +1925,9 @@
       <div class="muenzbar" id="muenzBar" hidden></div>
     </div>
     <div class="hbtns">
-      <button class="back" id="btnShop" style="display:none" data-t-title="laden.titel">&#128722;</button>
-      <button class="back" id="btnProfil" style="display:none" data-t-title="btn.profil">&#128100;</button>
-      <button class="back" id="btnSettings" style="display:none" data-t-title="btn.einstellungen">&#9881;</button>
+      <button class="back nursymbol" id="btnShop" style="display:none" data-t-title="laden.titel"><img class="sym" src="symbole/laden.webp" alt="" aria-hidden="true"></button>
+      <button class="back" id="btnProfil" style="display:none" data-t-title="btn.profil"><img class="sym" src="symbole/profil.webp" alt="" aria-hidden="true"></button>
+      <button class="back nursymbol" id="btnSettings" style="display:none" data-t-title="btn.einstellungen"><img class="sym" src="symbole/einstellungen.webp" alt="" aria-hidden="true"></button>
       <button class="back" id="btnBack" style="display:none" data-t="btn.zurueck"></button>
     </div>
   </header>
@@ -1736,20 +1978,26 @@
     <div class="obenreihe">
       <div class="serieblock">
         <!-- Die Flamme genau so, wie flammeHtml() sie baut (22.10.2026),
-             nur mit id. Ihre Klassen setzt flammeZeigen(). -->
-        <div class="seriezahl"><span class="flammenbox" aria-hidden="true"><span class="flamme" id="serieFlamme" aria-hidden="true">🔥</span><span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span><span id="serieZahl">0</span></div>
+             nur mit id. Ihre Klassen und ihr Bild setzt flammeZeigen().
+             Seit dem 24.10.2026 ein gemaltes Bild statt des Emojis. -->
+        <div class="seriezahl"><span class="flammenbox" aria-hidden="true"><span class="flamme" id="serieFlamme" aria-hidden="true"><img class="flammenbild" src="flamme/flamme.webp" alt=""></span><span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span><span id="serieZahl">0</span></div>
         <div class="streakline" id="streakLine"></div>
       </div>
       <div class="zmaj idle" id="zmajHome"></div>
     </div>
+    <!-- Die Meldungen des Serienschutzes, "gerettet" oder "gerissen", als
+         Sprechblase des Drachen (Entwurf B, 24.10.2026). Bis dahin standen
+         sie als bunte Schrift in der Zeile unter der Serie. Den Inhalt
+         setzt renderSerie(). -->
+    <div class="schutzblase" id="schutzMeldung" hidden></div>
     <!-- Der Einstieg. Er traegt den Namen des Levels, das als naechstes dran
          ist, und fuehrt direkt hinein. -->
     <button class="btn know weiterknopf" id="weiterKnopf"></button>
     <div class="quests" id="questBox"></div>
     <div class="mode" role="tablist">
-      <button role="tab" id="modeWords" aria-selected="true" data-t="tab.lernpfad"></button>
-      <button role="tab" id="modeStories" aria-selected="false" data-t="tab.geschichten"></button>
-      <button role="tab" id="modeTopf" aria-selected="false" data-t="tab.wiederholen"></button>
+      <button role="tab" id="modeWords" aria-selected="true"><img class="sym" src="symbole/lernpfad.webp" alt="" aria-hidden="true"> <span data-t="tab.lernpfad"></span></button>
+      <button role="tab" id="modeStories" aria-selected="false"><img class="sym" src="symbole/geschichten.webp" alt="" aria-hidden="true"> <span data-t="tab.geschichten"></span></button>
+      <button role="tab" id="modeTopf" aria-selected="false"><img class="sym" src="symbole/wiederholen.webp" alt="" aria-hidden="true"> <span data-t="tab.wiederholen"></span></button>
     </div>
     <div id="wordsHome">
       <div class="summary" id="summary"></div>
@@ -2818,7 +3066,10 @@ function applyTexts(){
   // {anbieter} steht in den Rechtstexten und wird überall gleich gefüllt,
   // damit Name und Anschrift nur an einer Stelle gepflegt werden müssen.
   const anbieter = t('set.anbieter');
-  document.querySelectorAll('[data-t]').forEach(el=>{ el.innerHTML = t(el.dataset.t, {anbieter}); });
+  // Dazu die gemalten Symbole fuer {herz}, {muenze} und {einstellungen}
+  // (24.10.2026, siehe symbol()) - im Fuss steht das Zahnrad.
+  const vars = symbolTexte({anbieter});
+  document.querySelectorAll('[data-t]').forEach(el=>{ el.innerHTML = t(el.dataset.t, vars); });
   document.querySelectorAll('[data-t-title]').forEach(el=>{ el.title = t(el.dataset.tTitle); });
   document.querySelectorAll('[data-t-ph]').forEach(el=>{ el.placeholder = t(el.dataset.tPh); });
 }
@@ -2964,9 +3215,16 @@ function setzeZurueck(text, ziel){
   backTarget = ziel;
   const k = $('btnBack');
   if(!k) return;
-  if(!ziel || geraeteZurueck()){ k.style.display = 'none'; return; }
-  k.style.display = 'inline-block';
-  k.textContent = text;
+  const vorher = k.style.display + '|' + k.textContent;
+  if(!ziel || geraeteZurueck()) k.style.display = 'none';
+  else { k.style.display = 'inline-block'; k.textContent = text; }
+  /* Die Taste macht den Kopf breiter (oder schmaler): neu messen, ob er
+     noch in eine Zeile passt. Pruefbefund vom 24.10.2026: bei 360 px und
+     130 % Schrift ragte "← Geschichten" 52 px ueber den Rand, die Seite
+     liess sich seitlich schieben - kopfEng() lief nur, wenn die Leben neu
+     gezeichnet wurden. Auf dem Handy bleibt die Taste immer versteckt,
+     dort aendert sich nichts und es wird nichts gemessen. */
+  if(k.style.display + '|' + k.textContent !== vorher) kopfEng();
 }
 let catIdx = 0;
 
@@ -3251,6 +3509,42 @@ function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
    sagt "🔊 Hören" alles; vorgelesen wird daraus je nach Programm
    "Lautsprecher mit Schallwellen Hören" oder gar nichts. */
 const nurWort = s => String(s).replace(/^[^\p{L}\p{N}]+/u, '').trim();
+/* ---- Gemalte Symbole statt Emojis (24.10.2026) ----
+   Ajdin: "die emojis die muessten mal anders gemacht werden". Symbol-Satz
+   V1 aus web/symbole, siehe .sym im Stil. symbol(name) ist Schmuck: alt=""
+   und aria-hidden, die Bedeutung traegt der Text daneben ("Hören",
+   "500 KM", "Lernpfad"). Traegt sie kein Wort - neben dem Herz steht nur
+   "5", neben der Muenze nur "+10" -, bekommt das Bild mit sagt einen
+   Ersatztext: bei den Leben das Wort der Sprache (stat.leben), sonst das
+   Emoji, das es ersetzt (SYMBOL_SAGT). Dessen Namen liest ein
+   Bildschirmleser in der Sprache des Geraets vor, genau wie vorher im
+   Text - ohne neue Uebersetzung.
+   Steht ein Symbol mitten im Satz, heisst es in sprachen.py {herz},
+   {muenze} oder {einstellungen}; symbolTexte() liefert die Bilder dazu.
+   Am Anfang eines Knopfs steht es nicht im Text, sondern davor:
+   mitSymbol('lautsprecher', t('task.hoeren')). */
+const SYMBOL_SAGT = {muenze: '🪙', einstellungen: '⚙'};
+function symbol(name, sagt){
+  return '<img class="sym sym-' + name + '" src="symbole/' + name + '.webp" '
+       + (sagt ? 'alt="' + esc(sagt) + '"' : 'alt="" aria-hidden="true"') + '>';
+}
+function mitSymbol(name, html){ return symbol(name) + ' ' + html; }
+function symbolTexte(vars){
+  return Object.assign({herz: symbol('herz', t('stat.leben')),
+                        muenze: symbol('muenze', SYMBOL_SAGT.muenze),
+                        einstellungen: symbol('einstellungen', SYMBOL_SAGT.einstellungen)}, vars || {});
+}
+/* Alle einmal beim Start holen, wie die Flamme (FLAMME_BILDER): sonst
+   stuende beim ersten Herz im Fragenkasten oder dem ersten Schloss einen
+   Augenblick lang ein leerer Platz. Nur eigene Dateien. Die Liste haelt
+   die Bilder fest, damit der Browser sie nicht wieder verwirft. */
+const SYMBOLE = ['lernpfad', 'geschichten', 'wiederholen', 'muenze', 'herz', 'laden',
+                 'einstellungen', 'profil', 'lautsprecher', 'schloss'];
+const symbolVorrat = SYMBOLE.map(n => {
+  const i = new Image(); i.src = 'symbole/' + n + '.webp';
+  if(i.decode) i.decode().catch(() => {});
+  return i;
+});
 /* ---- Ansagen fuer Screenreader (17.10.2026, WCAG 4.1.3) ----
    Schreibt eine kurze Meldung in die unsichtbare Region #ansage
    (aria-live="polite"). Erst leeren, dann kurz darauf fuellen: derselbe
@@ -3760,7 +4054,11 @@ function festSchmuck(){
   :root[data-theme="dark"] #pfad{--fest-schrift:${f.dunkel}}
   ` + s.css;
   ober.insertAdjacentHTML('beforebegin', s.oben);
-  ober.insertAdjacentHTML('afterend', '<div class="festgruss festteil"><div><b lang="bs"></b><span></span></div></div>');
+  /* Der Gruss kommt unter die Sprechblase des Serienschutzes. Stuende er
+     zwischen ihr und dem Drachen, zeigte ihr Zipfel auf den Gruss
+     (24.10.2026). Die Wiese bleibt direkt unter der Reihe, sie liegt dem
+     Drachen zu Fuessen. */
+  ($('schutzMeldung') || ober).insertAdjacentHTML('afterend', '<div class="festgruss festteil"><div><b lang="bs"></b><span></span></div></div>');
   const gruss = document.querySelector('#pfad .festgruss'), zeile = gruss.querySelector('span');
   gruss.querySelector('b').textContent = f.gruss;
   const schluessel = 'fest.' + id;        // fest.weihnachten, fest.bajram, fest.ostern, fest.halloween
@@ -5485,7 +5783,7 @@ function renderLives(){
      mitgezeichnet - so stimmen sie nach jedem Kauf und jeder Tagesaufgabe,
      ohne dass jede Stelle daran denken muss. */
   const mb=$('muenzBar');
-  if(mb){ mb.hidden = !profil; if(profil) mb.innerHTML = '🪙 <b>'+muenzen()+'</b> <span class="km">KM</span>'; }
+  if(mb){ mb.hidden = !profil; if(profil) mb.innerHTML = symbol('muenze')+' <b>'+muenzen()+'</b> <span class="km">KM</span>'; }
   const bar=$('livesBar'); if(!profil){ bar.style.display='none'; return; } bar.style.display='inline-flex';
   const n = livesNow();
   /* Das Herz im Fragenkasten. Sichtbar in der Lektion (#lHerz) und im
@@ -5494,16 +5792,16 @@ function renderLives(){
      unsichtbare Pille (.kastenherz.platzhalter) wird trotzdem mitgefuellt -
      sie haelt die Hoehe der Kopfzeile frei (19.10.2026). */
   document.querySelectorAll('.kastenherz').forEach(k => {
-    k.innerHTML = '♥ <b>' + (unlimited() ? '∞' : n) + '</b>';
+    k.innerHTML = symbol('herz', t('stat.leben')) + ' <b>' + (unlimited() ? '∞' : n) + '</b>';
     k.classList.toggle('zero', n === 0 && !unlimited());
   });
   const zeigen = livesInfoAn || n === 0;
   bar.className='livesbar'+(unlimited()?' premium':'')+(n===0?' zero':'');
   bar.innerHTML = '<button type="button" class="herz" id="livesKnopf" aria-expanded="'+zeigen+'">'
-                + '♥ <b>'+(unlimited()?'∞':n)+'</b></button>'
+                + symbol('herz', t('stat.leben'))+' <b>'+(unlimited()?'∞':n)+'</b></button>'
                 + (zeigen ? '<span class="info">'+esc(lebenText(n))+'</span>' : '');
   $('livesKnopf').addEventListener('click', ()=>{ livesInfoAn = !livesInfoAn; renderLives(); });
-  const b=$('btnLesson'); if(b){ b.disabled = n===0; b.textContent = n===0 ? t('leben.warten') : t('level.lektion'); }
+  const b=$('btnLesson'); if(b){ b.disabled = n===0; b.innerHTML = n===0 ? mitSymbol('herz', esc(t('leben.warten'))) : esc(t('level.lektion')); }
   testKnopf(n);
   kopfEng();
 }
@@ -5654,17 +5952,64 @@ function renderSerie(){
   const el=$('streakLine'); if(!el) return;
   if(schutzMeldung < 0 && days.has(today())) schutzMeldung = 0;   // heute gelernt: neue Serie laeuft
   const n=streak(), s=schutzNow(), rest=naechsterSchutzIn();
-  const nach = s>=SCHUTZ_MAX ? ' · '+t('serie.schutz_voll') : (rest ? ' · '+t('serie.schutz_naechster',{zeit:fmtTage(rest)}) : '');
   /* Die Serie selbst steht seit dem 26.09.2026 gross darueber, mit ihrer
      eigenen Flamme. Stuende sie hier noch einmal, saehe man "🔥 0" und
      direkt darunter "🔥 Noch keine Lernserie" - dieselbe Flamme und
      dieselbe Zahl zweimal. Diese Zeile traegt deshalb nur noch den
      Schutz und die Meldungen dazu.
      n wird weiter gebraucht: schutzMeldung haengt daran. */
-  el.innerHTML =
-    '<span>'+tp('serie.schutz', s)+nach+'</span>' +
-    (schutzMeldung > 0 ? '<span class="frost">'+tp('serie.gerettet', schutzMeldung)+'</span>' : '') +
-    (schutzMeldung < 0 ? '<span class="lost">'+t('serie.verloren')+'</span>' : '');
+  /* Seit dem 24.10.2026 Entwurf B, "zwei Plaetze" (Stil bei
+     .schutzplaetze): je Platz ein Schild, dazu kurz "1 Schutz" und
+     "noch 9 Tage" bzw. "voll". Die lange Fassung "noch 9 Tage bis zum
+     naechsten" (serie.schutz_naechster) bleibt den Einstellungen.
+     Zwischen den zwei Zeilen ein Komma nur fuer den Bildschirmleser,
+     sonst liest er "1 Schutz noch 9 Tage" in einem Zug. */
+  const unten = s >= SCHUTZ_MAX ? '<small class="voll">'+t('serie.schutz_voll')+'</small>'
+    : (rest ? '<small>'+t('serie.schutz_noch', {zeit: fmtTage(rest)})+'</small>' : '');
+  const html =
+    '<span class="schutzplaetze" aria-hidden="true">' + schutzPlaetze(s, rest) + '</span>' +
+    '<span class="schutztext"><b>'+tp('serie.schutz', s)+'</b>' + (unten ? '<span class="nurleser">, </span>' + unten : '') + '</span>';
+  /* renderSerie() laeuft bei jedem Reiterwechsel (ueber renderHero). Neu
+     aufgebaut wird nur, was sich geaendert hat - sonst entstuenden die
+     Bilder jedes Mal neu. */
+  if(el._html !== html){ el.innerHTML = html; el._html = html; }
+  const m = $('schutzMeldung');
+  if(m){
+    const blase = schutzMeldung > 0
+      ? '<span class="bild" aria-hidden="true"><img src="'+SCHUTZ_BILD+'" alt=""></span><span>'+tp('serie.gerettet', schutzMeldung)+'</span>'
+      : (schutzMeldung < 0 ? '<span class="kohle" aria-hidden="true"></span><span>'+t('serie.verloren')+'</span>' : '');
+    if(m._html !== blase){
+      m.innerHTML = blase; m._html = blase;
+      m.className = 'schutzblase' + (schutzMeldung > 0 ? ' gerettet' : (schutzMeldung < 0 ? ' verloren' : ''));
+    }
+    m.hidden = !blase;
+  }
+}
+/* Die Plaetze des Serienschutzes, Entwurf B (24.10.2026): so viele, wie
+   hoechstens gehen. Vorhanden ist ein Schild in Farbe ('voll'). Der erste
+   freie Platz friert zu ('friert'): ueber dem blassen Bild liegt das
+   farbige, von unten her so weit sichtbar, wie Tage um sind. Gezaehlt
+   wird wie im Text daneben (fmtTage rundet ab): bei "noch 9 Tage" ein
+   Zehntel, bei "noch 1 Tag" neun Zehntel - so stand es im Entwurf. In
+   den letzten Stunden bleibt es bei neun Zehnteln: ein ganzes Schild
+   gibt es erst, wenn es wirklich da ist. Weitere freie Plaetze bleiben
+   blass ('leer'). So stand es im Entwurf B, Ajdin am 23.10.2026: "Nimm B
+   sieht am besten aus". */
+const SCHUTZ_BILD = 'symbole/serienschutz.webp';
+function schutzPlaetze(s, rest){
+  const bild = k => '<img class="'+k+'" src="'+SCHUTZ_BILD+'" alt="">';
+  const um = Math.min(SCHUTZ_TAGE - 1, Math.max(0, SCHUTZ_TAGE - Math.floor(rest / 86400000)));
+  /* Das Bild reicht in seinem Quadrat von 2,3 bis 97,7 Prozent der Hoehe.
+     Das Schild laeuft unten spitz zu; mit hoch 0,6 waechst die Eisflaeche
+     ungefaehr so gleichmaessig wie die Tage, nicht nur die Hoehe. */
+  const oben = (97.7 - Math.pow(um / SCHUTZ_TAGE, .6) * 95.4).toFixed(1);
+  let html = '';
+  for(let i = 0; i < SCHUTZ_MAX; i++){
+    if(i < s) html += '<span class="schutzplatz voll">' + bild('ganz') + '</span>';
+    else if(i === s) html += '<span class="schutzplatz friert" data-tage="'+um+'" style="--zu:'+oben+'%">' + bild('blass') + bild('eis') + '</span>';
+    else html += '<span class="schutzplatz leer">' + bild('blass') + '</span>';
+  }
+  return html;
 }
 /* Bis zum 01.10.2026 baute renderHero() den Drachen bei JEDEM Aufruf neu
    auf. renderHero() laeuft aber bei jedem Reiterwechsel und bei jeder
@@ -5681,7 +6026,7 @@ function renderSerie(){
 /* Die Flamme neben der Serie (20.10.2026, siehe .flamme im Stil): aus bei
    Serie 0, Glut, solange heute noch nichts gelernt ist, sonst an.
    flammeVorher ist der Zustand beim letzten Zeichnen in dieser Sitzung.
-   Aufgelodert wird nur beim Wechsel von kalt (aus oder Glut) auf an. Beim
+   Aufgebaut wird nur beim Wechsel von kalt (aus oder Glut) auf an. Beim
    ersten Zeichnen nach dem Start ist flammeVorher noch null - wer heute
    schon gelernt hat und die App oeffnet, sieht sie einfach brennen.
    Ob Bewegung erlaubt ist, fragt dieselbe Funktion wie bei den Kacheln:
@@ -5689,10 +6034,11 @@ function renderSerie(){
 
    Seit dem 22.10.2026 dieselbe Flamme ueberall (Ajdin: "beachte das nicht
    das es 2 verschiedene desgins sind"): Zustand und Stufe kommen fuer
-   jeden Ort aus flammeKlassen(), die Statistik am Ende einer Lektion und
-   einer Wiederholungsrunde baut ihre mit flammeHtml(). Nur hier oben
-   lodert sie auf. Neue Orte, an denen die laufende Serie mit Flamme
-   steht, nehmen flammeHtml() - keine eigene Flamme. */
+   jeden Ort aus flammeKlassen(), seit dem 24.10.2026 das Bild aus
+   flammeBild(); die Statistik am Ende einer Lektion und einer
+   Wiederholungsrunde baut ihre mit flammeHtml(). Nur hier oben baut sie
+   sich auf. Neue Orte, an denen die laufende Serie mit Flamme steht,
+   nehmen flammeHtml() - keine eigene Flamme. */
 function flammeZustand(){ return days.has(today()) ? 'an' : (streak() > 0 ? 'glut' : 'aus'); }
 /* Stufen nach der laufenden Serie, Ajdin: "Mit Stufen" (20.10.2026).
    Schwellen nicht ohne ihn aendern. Farben im Stil bei .stufe-blau. */
@@ -5701,29 +6047,92 @@ function flammeKlassen(){
   const z = flammeZustand(), st = flammeStufe(streak());
   return 'flamme' + (z === 'an' ? '' : ' ' + z) + (st ? ' stufe-' + st : '');
 }
+/* Das gemalte Bild je Zustand (24.10.2026, vorher das Emoji): an ->
+   flamme.webp, glut -> glut.webp, aus -> aus.webp. Alle im selben Rahmen. */
+function flammeBild(z){ return 'flamme/' + (z === 'an' ? 'flamme' : z) + '.webp'; }
 /* Genau der Aufbau oben auf der Startseite (#serieFlamme im HTML), ohne id.
-   Die Funken stehen immer drin; sichtbar sind sie nur in der Gold-Stufe,
-   siehe .funke im Stil. */
+   Das Bild ist Schmuck: alt="" im Kasten mit aria-hidden, vorgelesen wird
+   die Zahl daneben. Die Funken stehen immer drin; sichtbar sind sie nur in
+   der Gold-Stufe, siehe .funke im Stil. */
 function flammeHtml(){
-  return '<span class="flammenbox" aria-hidden="true"><span class="' + flammeKlassen() + '" aria-hidden="true">🔥</span>' +
+  return '<span class="flammenbox" aria-hidden="true"><span class="' + flammeKlassen() + '" aria-hidden="true">' +
+    '<img class="flammenbild" src="' + flammeBild(flammeZustand()) + '" alt=""></span>' +
     '<span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span>';
+}
+/* Alle Bilder der Flamme einmal beim Start holen (24.10.2026): Flamme, Glut,
+   kalte Kohle und die Ebenen des Aufbaus liegen dann schon bereit, wenn sie
+   zum ersten Mal gebraucht werden - sonst stuende beim ersten Wechsel einen
+   Augenblick lang ein leerer Rahmen da. Nur eigene Dateien, keine Anfrage
+   nach draussen. Die Liste haelt die Bilder fest, damit der Browser sie
+   nicht wieder aus dem Speicher wirft. */
+const FLAMME_BILDER = ['flamme', 'glut', 'aus', 'kohle', 'ebene_flaemmchen', 'ebene_kohle_heiss',
+                       'ebene_rot', 'ebene_orange', 'ebene_gelb', 'ebene_kern'];
+const flammeVorrat = FLAMME_BILDER.map(n => {
+  const i = new Image(); i.src = 'flamme/' + n + '.webp';
+  if(i.decode) i.decode().catch(() => {});
+  return i;
+});
+/* Der Aufbau Glut -> Flamme (24.10.2026), Fassung 2 der Vorschau - siehe
+   "Der Aufbau" im Stil. Die Ebenen sind dieselben Dateien wie oben im
+   Vorrat. Aus kalter Kohle (Serie 0) gibt es kein Flaemmchen, dafuer liegt
+   die graue Kohle obenauf und blendet aus. */
+const FLAMME_DAUER = 1500;
+function flammeStapel(vonAus){
+  const b = (k, n) => '<img class="gf-' + k + '" src="flamme/' + n + '.webp" alt="">';
+  return '<span class="gf' + (vonAus ? ' von-aus' : '') + '" aria-hidden="true"><span class="gf-schein"></span>' +
+    '<span class="gf-glut">' + (vonAus ? '' : b('flaemmchen', 'ebene_flaemmchen')) + b('kohle', 'kohle') +
+      b('heiss', 'ebene_kohle_heiss') + (vonAus ? b('asche', 'aus') : '') + '</span>' +
+    '<span class="gf-glutkern"></span>' +
+    '<span class="gf-feuer">' + b('rot', 'ebene_rot') + b('orange', 'ebene_orange') + b('gelb', 'ebene_gelb') +
+      b('kern', 'ebene_kern') + '</span></span>';
+}
+let flammeUhr = 0;
+/* Stapel weg, das eine Bild wieder sichtbar. Es traegt schon flamme.webp,
+   und der Stapel endet genau in diesem Bild - deshalb springt nichts. */
+function flammeFertig(f){
+  clearTimeout(flammeUhr);
+  const s = f.querySelector('.gf'); if(s) s.remove();
+  f.classList.remove('auf');
+}
+/* Sicherheitsnetz zu animationend: Laeuft der Aufbau nicht mehr, weil die
+   Startseite mittendrin verschwand oder die Animationen ausgeschaltet
+   wurden, kaeme kein animationend - und der Stapel stuende still in
+   seinem ersten Bild, Glut statt Flamme. Laeuft er noch (oder ist er
+   angehalten), wird spaeter wieder nachgesehen. */
+function flammeWache(f){
+  clearTimeout(flammeUhr);
+  flammeUhr = setTimeout(() => {
+    let laeuft = false;
+    try{
+      const x = f.querySelector('.gf-feuer');
+      laeuft = !!x && x.getAnimations().some(a => a.playState === 'running' || a.playState === 'paused');
+    }catch(e){}
+    if(laeuft) flammeWache(f); else flammeFertig(f);
+  }, FLAMME_DAUER + 300);
 }
 let flammeVorher = null;
 function flammeZeigen(){
   const f = $('serieFlamme'); if(!f) return;
   const zustand = flammeZustand();
-  /* .auf bleibt stehen, solange es laeuft - renderHero() kommt waehrend
-     der 0,8 s auch mal ein zweites Mal vorbei. Gleiche Klassen starten die
-     Animation nicht neu. */
-  const lodert = zustand === 'an' && f.classList.contains('auf');
-  f.className = flammeKlassen() + (lodert ? ' auf' : '');
-  if(zustand === 'an' && flammeVorher && flammeVorher !== 'an' && !kachelnRuhig()){
-    f.classList.remove('auf'); void f.offsetWidth; f.classList.add('auf');
+  /* .auf und der Stapel bleiben stehen, solange der Aufbau laeuft -
+     renderHero() kommt waehrend der 1,5 s auch mal ein zweites Mal vorbei.
+     Ohne Bewegung oder wenn die Flamme nicht mehr brennt (Mitternacht) ist
+     er sofort fertig. */
+  const baut = zustand === 'an' && f.classList.contains('auf') && !kachelnRuhig();
+  if(!baut) flammeFertig(f);
+  f.className = flammeKlassen() + (baut ? ' auf' : '');
+  const bild = f.querySelector('.flammenbild'), soll = flammeBild(zustand);
+  if(bild.getAttribute('src') !== soll) bild.setAttribute('src', soll);
+  if(zustand === 'an' && flammeVorher && flammeVorher !== 'an' && !baut && !kachelnRuhig()){
+    f.insertAdjacentHTML('beforeend', flammeStapel(flammeVorher === 'aus'));
+    f.classList.add('auf');
+    flammeWache(f);
   }
   flammeVorher = zustand;
 }
+/* gfLodern laeuft auf .gf-feuer und endet mit allen anderen Teilen. */
 $('serieFlamme').addEventListener('animationend', e => {
-  if(e.animationName === 'flammeAuf') e.currentTarget.classList.remove('auf');
+  if(e.animationName === 'gfLodern') flammeFertig(e.currentTarget);
 });
 let heroStand = null;
 function renderHero(){
@@ -5817,7 +6226,7 @@ function questZeilen(){
   if(!questFrisch.length) return '';
   const alle = questsHeute().every(questFertig);
   const zeilen = questFrisch.map(q =>
-    '<div class="feedback ok">'+t('quest.fertig',{n:MUENZEN_PRO_QUEST})+' · '+
+    '<div class="feedback ok">'+t('quest.fertig', symbolTexte({n:MUENZEN_PRO_QUEST}))+' · '+
     tp(q.txt, q.min ? Math.round(q.ziel/60) : q.ziel)+'</div>').join('');
   questFrisch = [];
   return zeilen + (alle ? '<div class="feedback ok"><b>'+t('quest.alle')+'</b></div>' : '');
@@ -7230,7 +7639,7 @@ async function nachAnmeldung(info){
   // E-Mail, kein Abmelden. Dann bleibt der Knopf weg und mit ihm die
   // ganze Kontoansicht - erreichbar ist sie nur ueber ihn.
   $('btnProfil').style.display = MIT_SERVER ? 'inline-block' : 'none';
-  $('btnProfil').textContent='👤 '+profil;
+  $('btnProfil').innerHTML = mitSymbol('profil', esc(profil));
   $('btnSettings').style.display='inline-block';
   $('btnShop').style.display='inline-block';
   homeMode='words'; showHome();
@@ -7355,7 +7764,7 @@ function showKonto(){
   showView('kontoView'); $('kopfLeiste').style.display='none';
   setzeZurueck(t('btn.zurueck'), showHome);
   $('tag').textContent=t('set.profil');
-  $('setProfilName').textContent='👤 '+profil+(premium?' · '+t('profil.vollversion'):'');
+  $('setProfilName').innerHTML = mitSymbol('profil', esc(profil+(premium?' · '+t('profil.vollversion'):'')));
   $('setProfilMail').textContent = kontoMail ? '✉ '+kontoMail : '';
   $('setSerie').textContent = tp('set.serie_stand', streak());
   const s=schutzNow(), rest=naechsterSchutzIn();
@@ -7452,7 +7861,7 @@ function renderLaden(){
   const preisKnopf = w => {
     const geht = muenzen() >= w.preis && w.geht();
     return '<button class="btn kauf '+(geht?'know':'ghost')+'" data-ware="'+w.id+'"'+
-           knopfName(w, '🪙 '+w.preis)+(geht?'':' disabled')+'>🪙 '+w.preis+'</button>';
+           knopfName(w, w.preis+' '+SYMBOL_SAGT.muenze)+(geht?'':' disabled')+'>'+mitSymbol('muenze', w.preis)+'</button>';
   };
   /* Ein Stueck der Vollversion hat keinen Preis. Laeuft sie, steht dort
      Tragen oder Abnehmen wie bei gekaufter Ware; laeuft sie nicht, ein
@@ -7484,7 +7893,7 @@ function renderLaden(){
   const videoKnopf = w => {
     const geht = w.geht() && werbungErlaubt(true);
     return '<button class="btn kauf ' + (geht ? 'know' : 'ghost') + '" data-videoleben="1"'
-         + (geht ? '' : ' disabled') + '>' + t('werbung.leben_holen') + '</button>';
+         + (geht ? '' : ' disabled') + '>' + mitSymbol('herz', t('werbung.leben_holen')) + '</button>';
   };
   const knoepfe = w => w.id === 'herz'
     ? '<span class="kaufwege">' + preisKnopf(w) + videoKnopf(w) + '</span>'
@@ -8266,7 +8675,7 @@ function showPath(){
       const d=passed.has(c.id), o=isUnlocked(i), isCur=(i===next && !d), pct=levelPct(c);
       b.className='node'+(d?' done':'')+(isCur?' current':'')+(o?'':' locked');
       const extras = GRAMMAR[c.id]?t('pfad.grammatik'):'';
-      b.innerHTML = '<div class="circle">'+(d?'✓':(o?(i+1):'🔒'))+'</div>'+
+      b.innerHTML = '<div class="circle">'+(d?'✓':(o?(i+1):symbol('schloss')))+'</div>'+
         '<div class="txt"><div class="label">'+esc(c.label)+'<span style="font-weight:600;font-size:12px;color:var(--muted)">'+esc(extras)+'</span></div><div class="tipp">'+esc(c.tipp||'')+'</div>'+
         (o && !d ? '<div class="mini"><i style="width:'+pct+'%"></i></div>' : '')+'</div>'+
         '<div class="state">'+(d?t('zustand.bestanden'):(isCur?t('zustand.jetzt'):(o?(pct>0?pct+' %':t('zustand.offen')):t('zustand.gesperrt'))))+'</div>';
@@ -8314,7 +8723,7 @@ function showStoryPath(){
     const d=read.has(s.id), o=storyUnlocked(i), isCur=(i===next && !d);
     b.className='node'+(d?' done':'')+(isCur?' current':'')+(o?'':' locked');
     const lvl = byId(s.passt_zu);
-    b.innerHTML = '<div class="circle">'+(d?'✓':(o?(i+1):'🔒'))+'</div>'+
+    b.innerHTML = '<div class="circle">'+(d?'✓':(o?(i+1):symbol('schloss')))+'</div>'+
       '<div class="txt"><div class="label'+(s.stufe?' mitstufe':'')+'"><span class="titel">'+esc(s.titel)+'</span>'+
         (s.stufe?'<span class="stufe">'+esc(s.stufe)+'</span>':'')+'</div><div class="tipp">'+(lvl?t('gesch.passt_zu',{label:esc(lvl.label)}):'')+'</div></div>'+
       '<div class="state">'+(d?t('gesch.gelesen'):(isCur?t('zustand.jetzt'):(o?t('zustand.offen'):t('zustand.gesperrt'))))+'</div>';
@@ -8382,7 +8791,7 @@ function showStory(){
   html += '<h3>'+esc(s.titel)+'</h3><div class="txt">'+tokens.map(x=> /[\p{L}\p{M}]/u.test(x) ? '<span class="w">'+esc(x)+'</span>' : esc(x)).join('')+'</div>';
   html += '<div class="bubble empty" id="rBubble" hidden></div>';
   html += '<div class="row"><button class="btn ghost" id="rTrans">'+t('gesch.zeigen')+'</button>'+
-          '<button class="btn again" id="rListen">'+t('gesch.vorlesen')+'</button>'+
+          '<button class="btn again" id="rListen">'+mitSymbol('lautsprecher', t('gesch.vorlesen'))+'</button>'+
           '<button class="btn ghost" id="rStop" style="flex:0 0 54px" aria-label="'+esc(nurWort(t('gesch.stopp')))+'" hidden>\u23f9</button></div>';
   html += '<div class="tempo" id="rTempo"></div>';
   html += '<div class="trans" id="rTransText" hidden>'+esc(s.uebersetzung||'')+'</div>';
@@ -8413,7 +8822,7 @@ function showStory(){
       /* task.hoeren, NICHT gesch.vorlesen: dieser Knopf spricht ein einzelnes
          Wort. Sobald eine Sprache aus dem Vorlese-Knopf "Hör die Geschichte"
          macht, stünde hier sonst etwas Falsches. */
-      b.insertAdjacentHTML('beforeend', '<button type="button" class="wortton" aria-label="'+esc(nurWort(t('task.hoeren')))+'">🔊</button>');
+      b.insertAdjacentHTML('beforeend', '<button type="button" class="wortton" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>');
       b.querySelector('.wortton').addEventListener('click', ()=>{ stilleBitte(); speak(wort); });
       speak(wort);
     }
@@ -8427,7 +8836,7 @@ function showStory(){
   geschichteStelle = null;   // neue Geschichte, alte Stelle gilt nicht mehr
   const knopfVor = $('rListen'), knopfStop = $('rStop');
   const wiederVorlesen = ()=>{
-    knopfVor.textContent = t('gesch.vorlesen');
+    knopfVor.innerHTML = mitSymbol('lautsprecher', esc(t('gesch.vorlesen')));
     knopfVor.classList.remove('laeuft');
     knopfStop.hidden = true;
     wachHalten(false);   // Stopp, Ende, Wort angetippt, Ansicht verlassen, verdeckt
@@ -8593,7 +9002,7 @@ function showLevelHome(){
       '<div><span class="de">'+esc(z.de)+'</span>'
     + '<span class="bs'+(z.kann?'':' zu')+'">'
     + (z.kann ? esc(z.bs)+' <span class="ok">✓</span>'
-                + (hoerbar(z.bs) ? '<button type="button" class="wortton" data-bs="'+esc(z.bs)+'" aria-label="'+esc(nurWort(t('task.hoeren')))+'">🔊</button>' : '')
+                + (hoerbar(z.bs) ? '<button type="button" class="wortton" data-bs="'+esc(z.bs)+'" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>' : '')
               : '?')
     + '</span></div>').join('');
   $('wordList').querySelectorAll('.wortton').forEach(b=>b.addEventListener('click', e=>{
@@ -8617,7 +9026,8 @@ function updateProgress(){
   const bt=$('btnTest'), allowed=testAllowed(c);
   testKnopf(livesNow());
   if(passed.has(c.id)){ bt.textContent=t('level.test_bestanden'); }
-  else bt.textContent = allowed ? t('level.test') : t('level.test_gesperrt',{p:TEST_FREI_AB});
+  else if(allowed) bt.textContent = t('level.test');
+  else bt.innerHTML = mitSymbol('schloss', esc(t('level.test_gesperrt',{p:TEST_FREI_AB})));
   $('lvNote').textContent = passed.has(c.id) ? t('level.note_bestanden') :
     (allowed ? t('level.note_frei',{a:TEST_BESTANDEN_AB, b:TEST_FRAGEN}) : t('level.note_zu',{p:TEST_FREI_AB}));
 }
@@ -8848,7 +9258,7 @@ function renderTask(task, body, done, opts={}){
 
   if(task.typ==='intro'){
     body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div>'+
-      (canListen?'<button class="listen" id="xListen">'+t('task.hoeren')+'</button>':'')+
+      (canListen?'<button class="listen" id="xListen">'+mitSymbol('lautsprecher', t('task.hoeren'))+'</button>':'')+
       '<div class="row unten"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
     if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN); }
     $$('xNext').addEventListener('click',()=>done({ok:true, intro:true})); $$('xNext').focus();
@@ -8868,7 +9278,7 @@ function renderTask(task, body, done, opts={}){
        body.querySelector statt $(): die Kennung xListen gibt es in der
        Lektion UND im Test, und $() findet immer nur die erste im Dokument. */
     if(hoerbar(w.bs)) body.querySelector('.options').insertAdjacentHTML('beforebegin',
-      '<button class="listen" data-hoer="1">'+t('task.hoeren')+'</button>');
+      '<button class="listen" data-hoer="1">'+mitSymbol('lautsprecher', t('task.hoeren'))+'</button>');
     const hoerKnopf = body.querySelector('[data-hoer]');
     if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(w.bs); });
     renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok}); });
@@ -8904,7 +9314,7 @@ function renderTask(task, body, done, opts={}){
     return;
   }
   if(task.typ==='listen'){
-    body.innerHTML = kick(t('task.hoerfrage'))+'<button class="listen bigplay" id="xPlay" aria-label="'+t('task.abspielen')+'">🔊</button><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.hoeren_skip'));
+    body.innerHTML = kick(t('task.hoerfrage'))+'<button class="listen bigplay" id="xPlay" aria-label="'+t('task.abspielen')+'">'+symbol('lautsprecher')+'</button><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.hoeren_skip'));
     $$('xPlay').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN);
     renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); done({ok}); }, 'bs');
     wireSkip();
@@ -8912,7 +9322,7 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='speak'){
     body.innerHTML = kick(t('task.sprechen'))+'<div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div><div class="de">'+esc(w.de)+'</div>'+
-      (canListen?'<button class="listen" id="xListen">'+t('task.vorsprechen')+'</button>':'')+
+      (canListen?'<button class="listen" id="xListen">'+mitSymbol('lautsprecher', t('task.vorsprechen'))+'</button>':'')+
       '<button class="mic" id="xMic" aria-label="'+t('task.mikro')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></button>'+
       '<div class="heard" id="xHeard">'+t('task.mikro_tipp')+'</div><div class="feedback" id="xFb"></div>'+skipBtn(t('task.sprechen_skip'));
     if(canListen) $$('xListen').addEventListener('click',()=>speak(w.bs));
@@ -9635,8 +10045,9 @@ function zeigeWerbungJetzt(belohnt, fertig, darfNoch){
   const note = kasten.querySelector('#werbeNote');
   note.textContent = belohnt ? t('werbung.lohn_laeuft') : '';
   const tick = () => {
-    knopf.textContent = rest > 0 ? t('werbung.warten', {n: rest})
-                                 : t(belohnt ? 'werbung.lohn_abholen' : 'werbung.weiter');
+    if(rest > 0) knopf.textContent = t('werbung.warten', {n: rest});
+    else if(belohnt) knopf.innerHTML = mitSymbol('herz', esc(t('werbung.lohn_abholen')));
+    else knopf.textContent = t('werbung.weiter');
     knopf.disabled = rest > 0;
     if(rest-- > 0) return;
     clearInterval(uhr);
@@ -9691,11 +10102,11 @@ function werbungFuerLeben(e){
   /* Punkt 17: bis zum ersten Bild der Anzeige vergehen Sekunden, in denen
      der AdMob-Weg gar keine Oberflaeche baut. Ohne ein Wort sieht die App
      unbeteiligt aus - und genau das loest den zweiten Tipp aus. */
-  if(knopf){ knopf.disabled = true; knopf.textContent = t('werbung.laedt'); }
+  if(knopf){ knopf.disabled = true; knopf.innerHTML = mitSymbol('herz', esc(t('werbung.laedt'))); }
   if(ladenKnopf) ladenKnopf.disabled = true;
   lohnAbgebrochen = false;
   zeigeWerbung(true, angesehen => {
-    if(knopf){ knopf.disabled = false; knopf.textContent = t('werbung.leben_holen'); }
+    if(knopf){ knopf.disabled = false; knopf.innerHTML = mitSymbol('herz', esc(t('werbung.leben_holen'))); }
     if(ladenKnopf) ladenKnopf.disabled = false;
     /* Ohne Anzeige kein Leben - und ein Wort dazu, sonst wirkt der Knopf
        kaputt. Wer das Video vor der Belohnung wegdrueckt, hatte aber eine
@@ -9786,14 +10197,14 @@ function lessonOutOfLives(imTest){
      Ergebnis. */
   $(k.body).innerHTML =
     '<div class="ergebnis-titel">'+titel+'</div><div class="celebrate"><div class="zmaj sad">'+zmaj('cry')+'</div></div>'+
-    '<div class="result-big fail ohneleben">♥ 0</div>'+
+    '<div class="result-big fail ohneleben">'+symbol('herz', t('stat.leben'))+' 0</div>'+
     '<div class="feedback no">'+t('lektion.keine_leben')+'</div>'+
     '<div class="stats"><div class="stat"><b>'+fmtMin(nextLifeIn())+'</b>'+t('lektion.bis_naechstes')+'</div></div>'+
     // Zwei Wege zu einem Leben, nebeneinander und klein: ansehen oder zahlen
     ((perVideo || perMuenzen) ?
       '<div class="row schmal">'+
-        (perVideo   ? '<button class="btn ghost" id="lAd">'+t('werbung.leben_holen')+'</button>' : '')+
-        (perMuenzen ? '<button class="btn ghost" id="lCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '')+
+        (perVideo   ? '<button class="btn ghost" id="lAd">'+mitSymbol('herz', t('werbung.leben_holen'))+'</button>' : '')+
+        (perMuenzen ? '<button class="btn ghost" id="lCoin">'+t('lektion.leben_muenzen', symbolTexte({n:herz.preis}))+'</button>' : '')+
       '</div>' : '')+
     vollZeileLeben('lVoll')+
     /* Platz fuer die Rueckmeldung des Video-Knopfs (Ajdin am 26.09.2026).
@@ -9867,7 +10278,7 @@ function lessonEnd(){
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.geschafft')+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
     '<div class="result-big">'+Lx.right+' / '+scored+'</div>'+
-    '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>'+flammeHtml()+' '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>♥ '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
+    '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>'+flammeHtml()+' '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>'+symbol('herz')+' '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
     (nowAllowed && !wasAllowed && !passed.has(c.id) ? '<div class="feedback ok">'+t('lektion.test_frei')+'</div>' : '')+
     (newDay ? '<div class="feedback ok">'+t('lektion.heute_geuebt')+'</div>' : '')+
     questLob+
@@ -10013,8 +10424,8 @@ function lebenWege(){
     kasten.style.display = 'none'; kasten.innerHTML = ''; return;
   }
   kasten.innerHTML =
-      (perVideo   ? '<button class="btn ghost" id="lvAd">'+t('werbung.leben_holen')+'</button>' : '')
-    + (perMuenzen ? '<button class="btn ghost" id="lvCoin">'+t('lektion.leben_muenzen',{n:herz.preis})+'</button>' : '')
+      (perVideo   ? '<button class="btn ghost" id="lvAd">'+mitSymbol('herz', t('werbung.leben_holen'))+'</button>' : '')
+    + (perMuenzen ? '<button class="btn ghost" id="lvCoin">'+t('lektion.leben_muenzen', symbolTexte({n:herz.preis}))+'</button>' : '')
     + vollZeile;
   kasten.style.display = 'flex';
   if($('lvAd'))   $('lvAd').addEventListener('click', werbungFuerLeben);
@@ -10649,9 +11060,9 @@ function topfKasten(){
       '</div>' : '') +
     vollZeileLeben('topfVoll');
   box.innerHTML = html;
-  if($('topfAd')){ $('topfAd').textContent = t('werbung.leben_holen'); $('topfAd').addEventListener('click', werbungFuerLeben); }
+  if($('topfAd')){ $('topfAd').innerHTML = mitSymbol('herz', esc(t('werbung.leben_holen'))); $('topfAd').addEventListener('click', werbungFuerLeben); }
   if($('topfCoin')){
-    $('topfCoin').textContent = t('lektion.leben_muenzen', {n: herz.preis});
+    $('topfCoin').innerHTML = t('lektion.leben_muenzen', symbolTexte({n: herz.preis}));
     $('topfCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); showTopf(); });
   }
   vollZeileHorchen('topfVoll');
@@ -10702,7 +11113,7 @@ function topfEnde(){
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
     '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp(mitStern ? 'stern.rest' : 'topf.rest', rest)) + '</div>' +
       '<div class="stat"><b>' + flammeHtml() + ' ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
-      '<div class="stat"><b>♥ ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
+      '<div class="stat"><b>' + symbol('herz') + ' ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
     (rest === 0 && !mitStern ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
     (newDay ? '<div class="feedback ok">' + t('lektion.heute_geuebt') + '</div>' : '') +
     questLob +
@@ -10903,9 +11314,9 @@ function sternKasten(){
       '</div>' : '') +
     vollZeileLeben('sternVoll');
   box.innerHTML = html;
-  if($('sternAd')){ $('sternAd').textContent = t('werbung.leben_holen'); $('sternAd').addEventListener('click', werbungFuerLeben); }
+  if($('sternAd')){ $('sternAd').innerHTML = mitSymbol('herz', esc(t('werbung.leben_holen'))); $('sternAd').addEventListener('click', werbungFuerLeben); }
   if($('sternCoin')){
-    $('sternCoin').textContent = t('lektion.leben_muenzen', {n: herz.preis});
+    $('sternCoin').innerHTML = t('lektion.leben_muenzen', symbolTexte({n: herz.preis}));
     $('sternCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); showTopf(); });
   }
   vollZeileHorchen('sternVoll');

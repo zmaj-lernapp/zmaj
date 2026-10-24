@@ -66,9 +66,13 @@ async (feld) => {
 # Teil der Levelansicht offen ist.
 LAGE = r"""
 () => {
+  // Seit dem 24.10.2026 ist das Herz ein Bild (web/symbole/herz.webp) und
+  // steht nicht mehr im Text. mitHerz() schreibt es wieder als ♥ davor -
+  // aber nur, wenn das gemalte Herz wirklich da ist.
+  const mitHerz = e => (e.querySelector('img.sym-herz') ? '♥' : '') + e.textContent;
   const herz = id => {
     const e = document.getElementById(id);
-    return {text: e.textContent, null_: e.classList.contains('zero'),
+    return {text: mitHerz(e), null_: e.classList.contains('zero'),
             sichtbar: e.getClientRects().length > 0 && getComputedStyle(e).visibility === 'visible'};
   };
   let gespeichert = null;
@@ -86,9 +90,11 @@ SCHIRM = r"""
 (feld) => {
   const b = document.getElementById(feld), sec = b.closest('section');
   const txt = e => e ? e.textContent : null;
+  // Das grosse Herz ist seit dem 24.10.2026 ein Bild, siehe LAGE
+  const mitHerz = e => e ? (e.querySelector('img.sym-herz') ? '♥' : '') + e.textContent : null;
   return {
     titel: txt(b.querySelector('.ergebnis-titel')),
-    gross: txt(b.querySelector('.result-big.fail.ohneleben')),
+    gross: mitHerz(b.querySelector('.result-big.fail.ohneleben')),
     weinen: !!b.querySelector('.celebrate .zmaj.sad'),
     zeilen: [...b.querySelectorAll('.feedback')].filter(e => e.style.display !== 'none').map(txt),
     stats: [...b.querySelectorAll('.stat')].map(e => txt(e).replace(/[0-9]+/g, '#')),
