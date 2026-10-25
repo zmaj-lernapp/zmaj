@@ -7,6 +7,17 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Cloze and tile sentences: in 36 sentences the number now changes from
+  task to task ("Sada je sedam sati." – "It is 7 o'clock now."), only with
+  the numbers a native speaker approved (`"zahl"` in `vokabeln.py`). The
+  Bosnian sentence spells the number out, the translation shows it as a
+  digit (Turkish with the right suffix: 7'de, 3'te). Another number only
+  comes once its word has been learned (or the numbers level has been
+  passed or skipped by the placement test) and the sentence has a recording;
+  the new recordings exist only in the store version, so the web demo keeps
+  today's number. A retry keeps the number, and mistakes and stars stay one
+  entry per sentence. "Dva plus dva je četiri." is now "Dva plus dva su
+  četiri."; mistakes and stars on it carry over.
 - Family level: twelve more relatives, so that aunts, uncles and cousins
   are named by side as in Bosnian (strina / amidžinica, ujna / daidžinica,
   tetak, amidžić, daidžić, tetić and their female forms, rođaka, nećak,
