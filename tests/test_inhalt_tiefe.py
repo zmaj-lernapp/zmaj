@@ -223,8 +223,9 @@ def test_satzbau_ohne_dubletten(grunddaten):
 def test_satzbau_geht_ohne_arbeitsfelder_an_die_app(grunddaten):
     """formen, quelle und notiz sind nur für die Prüfung und für uns. Von
     formen geht nur die Liste der Grundformen mit (grund). ohne (seit
-    14.10.2026) braucht die App für die falschen Kacheln."""
-    erlaubt = {"kat", "bs", "de", "auch", "grund", "ohne"}
+    14.10.2026) braucht die App für die falschen Kacheln, zahl (seit
+    25.10.2026) für die wechselnde Zahl im Satz."""
+    erlaubt = {"kat", "bs", "de", "auch", "grund", "ohne", "zahl"}
     fremd = [(s["bs"], sorted(set(s) - erlaubt)) for s in grunddaten["satzbau"] if set(s) - erlaubt]
     assert not fremd, fremd[:20]
 

@@ -3513,6 +3513,104 @@ function zahlWert(s){
   }
   return null;
 }
+/* ---- Zahlen, die wechseln (25.10.2026) ----
+   Ajdin: "die sätze immer mit der gleichen zahl ist und nicht mal
+   variiert". Gemeint ist die Zahl im Satz: "Sada je pet sati." kam immer
+   mit fuenf. Ein Satz mit zahl (vokabeln.py) kommt jetzt je Aufgabe mit
+   einer der Zahlen aus zahl.werte - welche Saetze und welche Zahlen, hat
+   Ajdin in einer Tabelle freigegeben ("Ja, alle so"). Bosnisch steht die
+   Zahl als Wort, in der Bedeutung als Ziffer: zahl.de ist die uebersetzte
+   Vorlage mit {n} ("Jetzt ist es {n} Uhr."), auf Tuerkisch bei der Uhrzeit
+   mit {lok} fuer "7'de", "3'te".
+   - Gezogen wird einmal je Aufgabe, in renderTask() (task.v). Die
+     Wiederholung nach einem Fehler ist eine Kopie der Aufgabe und behaelt
+     die Zahl. Fehler-Topf und Stern merken sich den Grundsatz
+     (topfSchluessel nimmt task.s, nicht die Fassung) - eine andere Zahl
+     ist kein anderer Eintrag.
+   - Eine andere als die heutige Zahl nur, wenn der fertige Satz eine
+     Aufnahme hat - auf dem Handy bliebe er sonst stumm - und ihr Zahlwort
+     schon gelernt ist. Gesucht wird das Wort im Level zahlen ueber seinen
+     Wert und gefragt nach seiner Kennung: "dvije" zaehlt so als "zwei:dva",
+     und "sto" ist hundert, nicht der Tisch ("tisch:sto" steht in einem
+     anderen Level). Sonst bleibt die heutige Zahl samt der Bedeutung von
+     heute - so auch in der Web-Demo, die fuer diese Saetze keine Aufnahmen
+     hat (sie spricht nur Emir, siehe ton_nur_emir.json).
+     Gelernt heisst: in known - oder der Level zahlen liegt schon hinter
+     dem Lernenden (zahlLevelHinter()). Bis zur Pruefung am 25.10.2026 galt
+     nur known, und wer per Einstufung ("etwas", "gut") hinter dem Level
+     zahlen anfaengt, hat dessen Woerter nie in known: er sah die Saetze
+     immer mit der gleichen Zahl, also genau das, was Ajdin bemaengelt hat.
+   - Ersetzt wird das Zahlwort als ganzes Wort, mit der Grossschreibung des
+     Originals, in text, answer, bs und jedem auch. Genau so baut
+     zahl_fassung() in inhalt.py die Saetze, nach denen die Aufnahmen
+     heissen; tests_e2e/test_zahlen.py vergleicht beide.
+   - Ist die Zahl die Loesung, gilt eine getippte Ziffer weiter als richtig
+     (zahlWert() in matches()). */
+const ZAHL_LEVEL = 'zahlen';
+/* Tuerkisch "um 7": die Endung haengt am letzten gesprochenen Wort der Zahl
+   (Vokalharmonie a/e, nach ç t ş k wird aus d ein t). Dieselbe Tabelle wie
+   tr_lokativ() in inhalt.py. */
+const TR_LOK_EINER = ['da', 'de', 'de', 'te', 'te', 'te', 'da', 'de', 'de', 'da'];
+const TR_LOK_ZEHNER = ['', 'da', 'de', 'da', 'ta', 'de', 'ta', 'te', 'de', 'da'];
+function trLokativ(n){
+  const e = n % 10, z = Math.floor(n / 10) % 10;
+  return n + "'" + (n === 0 ? 'da' : e ? TR_LOK_EINER[e] : z ? TR_LOK_ZEHNER[z] : 'de');
+}
+const zahlVorlage = (vorlage, n) => String(vorlage || '').split('{n}').join(String(n)).split('{lok}').join(trLokativ(n));
+const zahlWortFuer = (z, n) => (z.weiblich && n === 2) ? 'dvije' : zahlAlsWort(n);
+/* Ohne Lookbehind, das alte WebViews nicht kennen: das Zeichen davor wird
+   mitgenommen und wieder vorangestellt. */
+function zahlTausch(text, alt, neu){
+  if(typeof text !== 'string' || !alt || !neu) return text;
+  const muster = new RegExp('(^|[^\\p{L}\\p{M}])(' + alt.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?=[^\\p{L}\\p{M}]|$)', 'giu');
+  return text.replace(muster, (m, vor, wort) => vor + (/^\p{Lu}/u.test(wort) ? neu.charAt(0).toUpperCase() + neu.slice(1) : neu));
+}
+/* Der Satz s mit der Zahl n. Ohne zahl oder ohne gezogene Zahl (null) der
+   Satz selbst, unveraendert. */
+function zahlFassung(s, n){
+  const z = s && s.zahl;
+  if(!z || typeof n !== 'number') return s;
+  const neu = zahlWortFuer(z, n), tausch = x => zahlTausch(x, z.wort, neu);
+  const f = Object.assign({}, s, {de: zahlVorlage(z.de, n)});
+  ['text', 'answer', 'bs'].forEach(k => { if(typeof s[k] === 'string') f[k] = tausch(s[k]); });
+  if(Array.isArray(s.auch)) f.auch = s.auch.map(tausch);
+  return f;
+}
+/* Was nach der Antwort gesprochen wird: die Luecke mit Loesung, sonst bs. */
+const zahlGanz = f => typeof f.text === 'string' ? f.text.replace('___', f.answer) : f.bs;
+let _zahlKennung = null;
+function zahlKennung(n){
+  if(!_zahlKennung){
+    _zahlKennung = new Map();
+    const c = CATEGORIES.find(x => x.id === ZAHL_LEVEL);
+    (c ? c.words : []).forEach(w => { const v = zahlWert(w.bs); if(v !== null && !_zahlKennung.has(v)) _zahlKennung.set(v, w.id); });
+  }
+  return _zahlKennung.get(n) || null;
+}
+/* Ob der Level zahlen schon hinter dem Lernenden liegt: bestanden, ein
+   spaeterer Level bestanden, oder die Einstufung beginnt dahinter. Dann
+   gelten seine Woerter als gelernt, wie "vorher" in kachelnFuerLektion()
+   die Woerter frueherer Level als begegnet gelten. Dieselbe Grenze wie
+   isUnlocked(): offen ist alles bis max(hoechsterBestanden()+1,
+   einstufungIndex()) - liegt der Level danach noch darin, ist zahlen
+   vorbei. Wer AM Level zahlen einsteigt, lernt die Zahlen erst noch.
+   Pruefbefund 25.10.2026 (Ajdin: "die sätze immer mit der gleichen zahl
+   ist und nicht mal variiert"). */
+function zahlLevelHinter(){
+  const i = CATEGORIES.findIndex(c => c.id === ZAHL_LEVEL);
+  return i >= 0 && i < Math.max(hoechsterBestanden() + 1, einstufungIndex());
+}
+/* Die Zahl fuer eine Aufgabe, oder null fuer "wie bisher". */
+function zahlZiehen(s){
+  const z = s && s.zahl;
+  if(!z || !Array.isArray(z.werte)) return null;
+  const heute = zahlWert(z.wort);
+  const hinter = zahlLevelHinter();
+  const geht = z.werte.filter(n => n === heute ||
+    (!!zahlKennung(n) && (hinter || known.has(zahlKennung(n))) && !!audioDatei(zahlGanz(zahlFassung(s, n)))));
+  if(!geht.some(n => n !== heute)) return null;
+  return geht[Math.floor(Math.random() * geht.length)];
+}
 function lautlich(s){
   let x = strip(zahlenAusschreiben(s));
   const regeln = [
@@ -7031,6 +7129,7 @@ async function ladeDaten(){
      nach einem Sprachwechsel. Und die Wortsuche des Topfs neu aufbauen. */
   Object.keys(GRAMMAR).forEach(id => ((GRAMMAR[id] || {}).uebungen || []).forEach((g, i) => { g._lv = id; g._nr = i; }));
   _wortNachId = null;
+  _zahlKennung = null;    // die Zahlwoerter fuer zahlZiehen() (25.10.2026)
   MASCOT = new Set(d.maskottchen||[]);
   SPRACHEN = d.sprachen || []; T = d.texte || {}; UEBERSETZT = d.uebersetzt || {fertig:0, gesamt:0};
   WERBUNG_ECHT = !!d.werbung_laeuft;      // Schalter aus sprachen.py
@@ -7952,6 +8051,21 @@ const UMBENANNT = {
   'onkel (vaterseite):amidža': 'onkel (bruder des vaters):amidža / stric',
   'onkel (mutterseite):daidža': 'onkel (bruder der mutter):daidža / ujak',
   'cousin:rođak': 'cousin, verwandter (allgemein):rođak'};
+/* Dasselbe fuer Saetze (25.10.2026): Fehler-Topf und Sterne merken sich
+   einen Satz als "s:<Level>|<Lueckentext>" bzw. "k:<Level>|<Satz>"
+   (topfSchluessel). Aendert sich der bosnische Text, fuehrt der alte
+   Schluessel zu keiner Aufgabe mehr - topfAufraeumen() und
+   sternUmschreiben() warfen ihn still weg. Hier steht, wohin er zieht.
+   Ajdin am 25.10.2026 zu "Dva plus dva je četiri.": "Auf „su“ ändern" -
+   bei dva, tri, četiri im Subjekt steht das Verb im Plural (Gramatika
+   bosanskoga jezika, § 241). */
+const SAETZE_UMBENANNT = {
+  'k:zahlen|Dva plus dva je četiri.': 'k:zahlen|Dva plus dva su četiri.'};
+/* Ob ein Satz-Schluessel umgezogen ist: nur wenn der alte zu keiner Aufgabe
+   mehr fuehrt und der neue zu einer. hasOwnProperty, damit "constructor"
+   aus einer Sicherung nichts findet. */
+const satzUmbenannt = k => Object.prototype.hasOwnProperty.call(SAETZE_UMBENANNT, k)
+  && !topfAufgabe(k, {typ: 'mc'}) && !!topfAufgabe(SAETZE_UMBENANNT[k], {typ: 'mc'});
 function altenFortschrittUmschreiben(){
   const gueltig = new Set(), nachWort = new Map(), nachLevel = new Map();
   CATEGORIES.forEach(c => c.words.forEach(w => {
@@ -9476,6 +9590,10 @@ function renderTask(task, body, done, opts={}){
   const meineAufgabe = aufgabeMarke;   // gilt fuer verspaetete Erkennungs-Ergebnisse
   const pool = task.pool || curWords();
   const w = task.w;
+  /* Zahlen, die wechseln (25.10.2026): einmal je Aufgabe ziehen, siehe
+     zahlZiehen(). Die Wiederholung ({...task, retry:true}) hat task.v schon
+     und kommt mit derselben Zahl. */
+  if(task.s && task.s.zahl && task.v === undefined) task.v = zahlZiehen(task.s);
   const kick = (text)=> '<div class="kicker aufgabe">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
   const rueckmeldung = (klasse, schluessel, wort, bosnisch, anhang)=>
     rueckmeldungZeigen($$('xFb'), klasse, schluessel, wort, bosnisch, anhang);
@@ -9708,7 +9826,9 @@ function renderTask(task, body, done, opts={}){
     return;
   }
   if(task.typ==='gap'){
-    const s=task.s;
+    /* Die Fassung mit der gezogenen Zahl (25.10.2026): Satz, Loesung,
+       Bedeutung und der gesprochene Satz passen damit zusammen. */
+    const s = zahlFassung(task.s, task.v);
     /* Die Luecke ist ein Eingabefeld mitten im Satz. Seit dem 17.10.2026 hat
        es einen Namen, "Tippe das fehlende Wort ein" (WCAG 4.1.2) - vorher
        meldete ein Screenreader nur "Eingabefeld". Bosnisch sind nur die
@@ -9761,7 +9881,9 @@ function renderTask(task, body, done, opts={}){
        Gemischt wird erst hier und nicht beim Bauen der Lektion: eine falsche
        Antwort kommt als {...task, retry:true} ans Ende und soll dann nicht
        wieder genauso daliegen. */
-    const s = task.s;
+    /* Mit der gezogenen Zahl (25.10.2026): Kacheln, falsche Kacheln
+       (kachelAblenker), richtige Reihenfolgen und Ton von dieser Fassung. */
+    const s = zahlFassung(task.s, task.v);
     const richtige = [s.bs, ...(s.auch || [])].map(kachelNorm);
     const teile = satzKacheln(s.bs);
     const bank = teile.map(x => ({x, satz:true}))
@@ -11134,6 +11256,10 @@ $('eQuit').addEventListener('click', async ()=>{
      w:<Wort-Kennung>             das Wort, wie in known
      s:<Level>|<bosnischer Satz>  ein Lueckensatz
      k:<Level>|<bosnischer Satz>  ein Satz aus Kacheln (seit 13.10.2026)
+                                  Bei s: und k: immer der Satz aus vokabeln.py,
+                                  auch wenn er mit einer anderen Zahl kam
+                                  (task.v, 25.10.2026). Umbenannte Saetze:
+                                  SAETZE_UMBENANNT.
      g:<Level>|<Nummer>           eine Grammatikaufgabe. Die Nummer statt
                                   der Loesung, weil sechs Loesungen mit
                                   uebersetzt werden ("weiblich (ona)").
@@ -11236,6 +11362,7 @@ function topfUmschreiben(nachWort){
                  : ((nachWort && nachWort.get(id.slice(id.lastIndexOf(':') + 1))) || []);
       if(kand.length === 1){ ziel = 'w:' + kand[0]; geaendert = true; }
     }
+    else if(satzUmbenannt(k)){ ziel = SAETZE_UMBENANNT[k]; geaendert = true; }   // 25.10.2026
     const e = topf[k], da = neu.get(ziel);
     neu.set(ziel, (da && (da.z || 0) >= (e.z || 0)) ? da : e);
   });
@@ -11477,6 +11604,7 @@ function sternUmschreiben(nachWort){
                  : ((nachWort && nachWort.get(id.slice(id.lastIndexOf(':') + 1))) || []);
       ziel = kand.length === 1 ? 'w:' + kand[0] : '';
     }
+    else if(satzUmbenannt(k)) ziel = SAETZE_UMBENANNT[k];   // umbenannte Saetze, 25.10.2026
     if(!ziel || !topfAufgabe(ziel, {typ: 'mc'})){ geaendert = true; return; }
     if(ziel !== k) geaendert = true;
     const e = stern[k], da = neu[ziel];

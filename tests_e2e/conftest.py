@@ -61,18 +61,21 @@ async ([feld, art]) => {
     const i = X().i, q = liste()[i];
     await bis(() => body.dataset.i === String(i) && !body.querySelector('.weiterbox'), 'Aufgabe ' + i);
     typen.push(q.typ);
+    // Zahlen, die wechseln (25.10.2026): Luecke und Kacheln zeigen die
+    // Fassung mit der gezogenen Zahl q.v - geantwortet wird auf sie.
+    const s = q.s && typeof zahlFassung === 'function' ? zahlFassung(q.s, q.v) : q.s;
     if(q.typ === 'intro'){ body.querySelector('#xNext').click(); }
     else if(q.typ === 'speak'){ body.querySelector('#xSkip').click(); }
     else if(q.typ === 'gap' || q.typ === 'type'){
-      body.querySelector('#xIn').value = (q.typ === 'gap' ? q.s.answer : q.w.bs).split(' / ')[0];
+      body.querySelector('#xIn').value = (q.typ === 'gap' ? s.answer : q.w.bs).split(' / ')[0];
       body.querySelector('#xCheck').click();
     } else if(q.typ === 'kacheln'){
       // Satzbau (13.10.2026): die Kacheln in der Reihenfolge von bs antippen.
       // Ohne diesen Zweig landete die Aufgabe unten bei q.w.bs - die hat kein w.
       const rand = /^[.,!?¿¡:;"„“”«»…()]+|[.,!?¿¡:;"„“”«»…()]+$/g;
-      for(const soll of q.s.bs.split(/\s+/).map(x => x.replace(rand, '').toLowerCase()).filter(Boolean)){
+      for(const soll of s.bs.split(/\s+/).map(x => x.replace(rand, '').toLowerCase()).filter(Boolean)){
         const b = [...body.querySelectorAll('#xBank .kachel:not(.platz)')].find(o => o.textContent.toLowerCase() === soll);
-        if(!b) throw new Error('keine Kachel "' + soll + '" bei ' + q.s.bs);
+        if(!b) throw new Error('keine Kachel "' + soll + '" bei ' + s.bs);
         b.click();
       }
       body.querySelector('#xCheck').click();
