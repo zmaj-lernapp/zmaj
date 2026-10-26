@@ -4380,6 +4380,41 @@ function zierratSchluessel(ids, farbe){
   if(ids === undefined){ const tr = festTracht(); ids = tr.ids; farbe = tr.farbe; }
   return ids.join(',') + '|' + farbe;
 }
+/* Sonnenbrille ohne Blinzeln (26.10.2026). Ajdin nach einem Bildschirm-
+   video: "nur bei der sonnenbrille weil man die augen nicht sieht sieht es
+   so aus das sein gesicht bugged aber er macht einfach nur die augen zu und
+   wieder auf" - und dazu "ja mach das so". Die Sonnenbrille ist ganz
+   deckend (zmaj_lottie.py, GEMALTE_HUETE); beim Blinzeln wechselt darunter
+   das Kopf- und das Hornbild, und am Rand der Brille sieht das wie ein
+   Zucken aus. Mit ihr bleibt das offene Bild stehen: in den Bildern, in
+   denen der Kopfplan das Blinzelbild zeigt, zeigt jetzt das neutrale, und
+   die Blinzel-Ebene faellt weg - weiter genau ein Kopf je Bild. Die
+   anderen Brillen sind durchsichtig, dort sieht man das Blinzeln, es
+   bleibt. Gearbeitet wird auf Kopien der Ebenen; zmajBasis bleibt, wie es
+   ist. Die Deckkraft steht als Halte-Keyframes (h:1) da, wie
+   kopf_deckkraft() in zmaj_lottie.py sie schreibt. */
+function ohneBlinzeln(ebenen, op){
+  const werte = o => {
+    const w = [];
+    for(let t = 0; t < op; t++){
+      let v = (o && !o.a) ? o.k : 0;
+      if(o && o.a) for(const f of o.k){ if(f.t <= t) v = f.s[0]; else break; }
+      w.push(+v || 0);
+    }
+    return w;
+  };
+  const halten = w => ({a: 1, k: w.map((v, t) => (t === 0 || v !== w[t - 1]) ? {t: t, s: [v], h: 1} : null)
+    .filter(Boolean).concat([{t: op, s: [w[0]], h: 1}])});
+  for(const teil of ['kopf', 'hoerner']){
+    const zu = ebenen.findIndex(l => l.nm === 'bild_' + teil + '_blinzeln');
+    const offen = ebenen.findIndex(l => l.nm === 'bild_' + teil + '_neutral');
+    if(zu < 0 || offen < 0) continue;
+    const z = werte(ebenen[zu].ks.o), n = werte(ebenen[offen].ks.o);
+    const o = halten(n.map((v, t) => Math.max(v, z[t])));
+    ebenen[offen] = Object.assign({}, ebenen[offen], {ks: Object.assign({}, ebenen[offen].ks, {o: o})});
+    ebenen.splice(zu, 1);
+  }
+}
 async function zmajDaten(vorgabe){
   const tracht = vorgabe || festTracht();
   const ids = tracht.ids, farbe = tracht.farbe;
@@ -4405,6 +4440,7 @@ async function zmajDaten(vorgabe){
     else if(teil && Array.isArray(teil.layers)){ ebenen.push(...teil.layers); zierBilder.push(...(teil.assets || [])); }
     else if(teil) ebenen.push(teil); });
   ebenen.sort((a, b) => a.ind - b.ind);
+  if(ids.includes('sonnenbrille')) ohneBlinzeln(ebenen, zmajBasis.op || 0);   // siehe ohneBlinzeln()
   /* Bild-Drache (15.10.2026): Seit Ajdins Entscheidung nach den Vorschauen
      ist der Drache aus Bildern zusammengesetzt (Google Gemini, 32 Teile in
      maskottchen/teile/, Bild-Ebenen am Rig in zmaj.json - siehe
