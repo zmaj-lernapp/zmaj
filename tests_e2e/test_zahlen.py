@@ -40,11 +40,18 @@ def _toene():
 
 # Wie in der App aus dem Store: die Emir-Aufnahmen stehen in AUDIO, alle
 # Zahlwoerter sind gelernt, und abgespielt wird nichts - nur mitgeschrieben.
+# Seit dem 26.10.2026 auf beiden Wegen: ueber WebAudio, wenn der Puffer der
+# Datei bereitliegt (pufferSpielen), sonst ueber den spieler (spieleDatei).
 VORBEREITEN = """([emir, gelernt]) => {
   emir.forEach(([k, d]) => AUDIO.set(k, d));
   if(gelernt) CATEGORIES.find(x => x.id === 'zahlen').words.forEach(w => known.add(w.id));
   window.__gespielt = [];
   spieleDatei = (datei, fertig) => { window.__gespielt.push(datei); if(fertig) setTimeout(fertig, 0); return Promise.resolve(); };
+  pufferSpielen = (text) => {
+    const d = audioDatei(text), p = d && puffer.get(d);
+    if(!p || !p.buf) return false;
+    window.__gespielt.push(d); return true;
+  };
 }"""
 
 # Eine Aufgabe in eine frische Lektion legen. v: null = ziehen lassen.
