@@ -1278,14 +1278,23 @@
          zusammen wie vorher - Drache und Aufgabe stehen auf den Pixel wie
          ohne Huelle (tests_e2e/test_layout_test.py vergleicht Lektion, Test
          und Einstufung, die keine Huelle hat);
-       - darin steht der Stern absolut: rechts buendig mit dem Ende der
-         Punktreihe, senkrecht auf der Mitte des Drachen. top 50 % mit
-         margin-top -22px statt translate: :active setzt transform selbst;
+       - darin steht der Stern absolut, senkrecht auf der Mitte des
+         Drachen. top 50 % mit margin-top -22px statt translate: :active
+         setzt transform selbst;
+       - waagrecht seit dem 26.10.2026 abends mittig im freien Platz
+         zwischen rechter Drachenkante und rechtem Innenrand der Karte
+         (vorher buendig am Innenrand). Ajdin hat die Stelle im
+         Bildschirmfoto eingekreist. Der freie Platz ist (Breite - Drache)/2
+         breit, seine Mitte liegt (Breite - Drache)/4 vom Innenrand, davon
+         ab der halbe Knopf: right = (100% - --drache)/4 - 22px. --drache
+         ist die Breite von .zmaj.mini (120 px, unter 821 px Hoehe 100 px,
+         siehe oben) - beides zusammen aendern;
        - Flaeche --bg und Rand --line wie die Herz-Pille links oben. Mit
          --surface wie in der Leiste waere er auf der Karte (selbst
          --surface) nur ein duenner Ring. Der leere Stern (--muted) hat auf
          --bg in allen neun Sektionen hell mindestens 4,6:1, dunkel 8,2:1;
-       - Luecke zum Drachen bei 320 px mindestens 18 px; er ueberdeckt
+       - Luecke zum Drachen bei 320 px mindestens 8 px (320 x 900 mit
+         dem grossen Drachen: 9 px); er ueberdeckt
          weder Drache, Punktreihe noch Aufgabe (tests_e2e/test_stern.py).
      Die Leiste unter der Karte hat wieder nur "abbrechen" und den leeren
      Platzhalter, wie vor dem 19.10.2026 und wie in der Einstufung.
@@ -1293,11 +1302,12 @@
   :root{--stern-gold-hell:#FFD84D; --stern-gold-tief:#F5B400; --stern-rand:#B07D00}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700} }
   :root[data-theme="dark"]{--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700}
-  .zmajreihe{position:relative}
+  .zmajreihe{position:relative; --drache:120px}
+  @media (max-height:820px){ #lesson .zmajreihe, #test .zmajreihe{--drache:100px} }   /* wie #lesson .zmaj.mini oben */
   .zmajreihe .stern{--an-grund:var(--accent-soft)}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zmajreihe .stern{--an-grund:var(--surface)} }
   :root[data-theme="dark"] .zmajreihe .stern{--an-grund:var(--surface)}
-  .zmajreihe .stern{position:absolute; right:0; top:50%; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0; margin:0; font:inherit; cursor:pointer; color:var(--muted); -webkit-tap-highlight-color:transparent; transition:transform .12s, background-color .15s, border-color .15s, box-shadow .12s}
+  .zmajreihe .stern{position:absolute; right:calc((100% - var(--drache)) / 4 - 22px); top:50%; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0; margin:0; font:inherit; cursor:pointer; color:var(--muted); -webkit-tap-highlight-color:transparent; transition:transform .12s, background-color .15s, border-color .15s, box-shadow .12s}
   .zmajreihe .stern[hidden]{display:none}   /* display:flex oben schlaegt sonst das hidden-Attribut */
   .zmajreihe .stern::before{content:''; position:absolute}
   .zmajreihe .stern svg{display:block; flex:none; overflow:visible; pointer-events:none}
@@ -10266,9 +10276,11 @@ function buildLesson(){
   const c = cur();
   /* Ajdin am 26.10.2026: "bei der zahlen sektion am besten die zahlen in
      reihenfolge lernen sowie wochentage und wo es noch passt". Ein Level
-     mit "reihenfolge" (vokabeln.py: zahlen, wochentage, monate und
-     mengen) stellt seine neuen Woerter in der Reihenfolge der Liste vor -
-     nula, jedan, dva ..., ponedjeljak bis nedjelja, jedan brat vor dva
+     mit "reihenfolge" (vokabeln.py: zahlen, wochentage, monate,
+     mengen, seit 26.10.2026 abends auch konjugation, zukunft und routine)
+     stellt seine neuen Woerter in der Reihenfolge der Liste vor -
+     jedan bis deset und dann nula (Ajdin: Zahlen fangen mit jedan an),
+     ja sam, ti si ... oni su, ponedjeljak bis nedjelja, jedan brat vor dva
      brata vor pet braće -, die Einfuehrungskarten (intros unten) also
      auch. Wer schon mitten im Level ist, bekommt die
      noch fehlenden ebenso der Reihe nach, und ein Wort, das in einer
@@ -10278,9 +10290,29 @@ function buildLesson(){
      die Einstufung, Fehler-Topf und Markiert. Gespeichert wird nichts
      Neues: es haengt nur an known, wie bisher. */
   const offen = c.words.filter(w=>!known.has(w.id));
-  const unknown = c.reihenfolge === true ? offen : shuffle(offen);
+  let unknown = c.reihenfolge === true ? offen : shuffle(offen);
+  /* Teil-Reihen (26.10.2026), Ajdin: "und auch reihenfolge
+     beruecksichtigen wo es noch sinn ergibt geh durch die app durch".
+     In einem sonst gemischten Level steht eine kurze Reihe ("reihe" in
+     vokabeln.py: die Tageszeiten in zeit, die Jahreszeiten in wetter).
+     Regel: Die uebrigen Woerter werden gemischt gezogen wie bisher. Die
+     noch offenen Reihen-Woerter bilden einen Block in ihrer Folge und
+     nehmen den Platz des ersten Reihen-Worts ein, das beim Mischen
+     gezogen wurde. Wann die Reihe drankommt, bleibt so zufaellig wie
+     vorher, nur kommt sie geschlossen und geordnet. Ist sie schon
+     angefangen (ein Reihen-Wort gewusst), kommt der Rest ganz vorn: eine
+     Reihe, die an der Lektionsgrenze abgeschnitten wurde, geht in der
+     naechsten Lektion gleich weiter. Nichts Neues gespeichert. */
+  const reihe = c.reihenfolge !== true && Array.isArray(c.reihe) ? c.reihe : [];
+  const inReihe = w => reihe.indexOf(w.bs) >= 0;
+  const block = offen.filter(inReihe).sort((a, b) => reihe.indexOf(a.bs) - reihe.indexOf(b.bs));
+  if(block.length){
+    const stelle = c.words.some(w => inReihe(w) && known.has(w.id)) ? 0 : unknown.findIndex(inReihe);
+    unknown = unknown.filter(w => !inReihe(w));
+    unknown.splice(stelle, 0, ...block);
+  }
   // Die Wiederholung bleibt gemischt, auch bei "reihenfolge" - sonst kaemen
-  // in zahlen nur nula, jedan ... dran und spaetere Zahlen nie wieder
+  // in zahlen nur jedan, dva ... dran und spaetere Zahlen nie wieder
   // (26.10.2026, tests_e2e/test_reihenfolge.py: test_wiederholung_bleibt_gemischt).
   const knownW = shuffle(c.words.filter(w=>known.has(w.id)));
   let nNew = Math.min(LEKTION_NEU_MAX, unknown.length);

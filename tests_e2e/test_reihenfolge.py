@@ -5,9 +5,15 @@ Ajdin: „bei der zahlen sektion am besten die zahlen in reihenfolge lernen
 sowie wochentage und wo es noch passt“. Die Level zahlen, wochentage,
 monate und mengen (Zahlen im Satz) tragen in vokabeln.py "reihenfolge":
 True; buildLesson() stellt ihre neuen Wörter dann in der Reihenfolge der
-Liste vor statt gemischt. Hier:
+Liste vor statt gemischt. Seit dem 26.10.2026 abends (Ajdin: „und auch
+reihenfolge berücksichtigen wo es noch sinn ergibt geh durch die app
+durch“) auch konjugation, zukunft und routine; zahlen beginnt mit jedan,
+nula kommt nach deset; zeit und wetter ordnen mit "reihe" nur ihre
+Tageszeiten und Jahreszeiten, der Rest bleibt gemischt. Hier:
   - die ersten zwei echten Lektionen "Zahlen" zeigen ihre Einführungskarten
-    der Reihe nach (nula, jedan, dva ...);
+    der Reihe nach (jedan, dva ... deset, nula);
+  - Teil-Reihen: geschlossen und in Folge, an zufälliger Stelle, der Rest
+    gemischt; eine angefangene Reihe geht vorn weiter;
   - über alle Lektionen kommen zahlen, wochentage, monate und mengen
     vollständig in der Reihenfolge der Liste;
   - ein Level ohne Reihe (farben) bleibt gemischt;
@@ -79,11 +85,11 @@ def _flach(lektionen):
 
 def test_erste_zwei_lektionen_zahlen_der_reihe_nach(seite, heute_stand):
     """Zwei echte Lektionen, alles richtig: die Karten "Neues Wort" kommen
-    als nula, jedan, dva ... und danach mit dem nächsten noch offenen Wort
+    als jedan, dva ... und danach mit dem nächsten noch offenen Wort
     weiter. Die Aufgaben dazwischen bleiben gemischt, das ist hier egal."""
     seite.starten(stand=heute_stand())
     erste = seite.js(STARTEN, "zahlen")
-    assert erste["intros"] == ["nula", "jedan", "dva", "tri", "četiri", "pet", "šest", "sedam"]
+    assert erste["intros"] == ["jedan", "dva", "tri", "četiri", "pet", "šest", "sedam", "osam"]
     assert seite.js(KARTEN) == erste["intros"]
     seite.durchspielen("lBody", "Lx")
     assert seite.js("() => !!document.getElementById('lMore')"), "kein Ergebnisschirm"
@@ -93,7 +99,7 @@ def test_erste_zwei_lektionen_zahlen_der_reihe_nach(seite, heute_stand):
     zweite = seite.js(STARTEN, "zahlen")
     assert len(zweite["intros"]) >= 5
     assert zweite["intros"] == zweite["offen"][:len(zweite["intros"])]
-    assert "osam" in zweite["intros"], zweite
+    assert "devet" in zweite["intros"], zweite
     assert seite.js(KARTEN) == zweite["intros"]
     seite.durchspielen("lBody", "Lx")
     assert seite.fehler == []
@@ -104,6 +110,9 @@ def test_erste_zwei_lektionen_zahlen_der_reihe_nach(seite, heute_stand):
     ("wochentage", [8, 1]),
     ("monate", [8, 5, 1]),
     ("mengen", [8, 5, 5, 5, 5, 3]),
+    ("konjugation", [8, 5, 5, 5, 5, 1]),
+    ("zukunft", [8, 5, 5, 3]),
+    ("routine", [8, 5, 5, 5, 5, 3]),
 ])
 def test_ganzes_level_der_reihe_nach(seite, heute_stand, kid, groessen):
     """Von der ersten bis zur letzten Lektion: zusammen genau die Liste aus
@@ -114,6 +123,15 @@ def test_ganzes_level_der_reihe_nach(seite, heute_stand, kid, groessen):
     erg = seite.js(ALLE_LEKTIONEN, [kid, []])
     assert _flach(erg["lektionen"]) == erg["liste"]
     assert [len(x) for x in erg["lektionen"]] == groessen
+    if kid == "zahlen":                               # jedan zuerst, nula nach deset
+        assert erg["lektionen"][0][0] == "jedan"
+        assert _flach(erg["lektionen"])[9:11] == ["deset", "nula"]
+    if kid == "konjugation":
+        assert erg["lektionen"][0][:6] == ["ja sam", "ti si", "on je / ona je", "mi smo", "vi ste", "oni su"]
+    if kid == "zukunft":
+        assert erg["lektionen"][0][:5] == ["ću", "ćeš", "će", "ćemo", "ćete"]
+    if kid == "routine":
+        assert erg["lektionen"][0][:3] == ["ustajati", "Ustajem u sedam", "tuširati se"]
     assert seite.fehler == []
 
 
@@ -190,7 +208,7 @@ def test_lernstand_mitten_im_level(seite, heute_stand):
 
     lektion = seite.js(STARTEN, "zahlen")
     assert "sto" in lektion["offen"]                 # hundert:sto ist noch offen
-    assert lektion["intros"][:4] == ["nula", "dva", "tri", "četiri"], lektion["intros"]
+    assert lektion["intros"][:4] == ["dva", "tri", "četiri", "šest"], lektion["intros"]
     assert lektion["intros"] == lektion["offen"][:len(lektion["intros"])]
     assert not {"jedan", "pet", "deset"} & set(lektion["intros"])
     wiederholt = seite.js("() => Lx.queue.filter(q => q.w && q.typ !== 'intro' && !q.neu).map(q => q.w.id)")
@@ -219,10 +237,90 @@ def test_lernstand_mitten_im_level(seite, heute_stand):
 def test_nicht_gewusstes_wort_steht_wieder_vorn(seite, heute_stand):
     """In der ersten Lektion "tri" falsch beantwortet: es ist noch nicht
     gewusst und kommt in der zweiten Lektion als erstes neues Wort, danach
-    geht es mit osam weiter."""
+    geht es mit devet weiter."""
     seite.starten(stand=heute_stand())
     erg = seite.js(ALLE_LEKTIONEN, ["zahlen", ["drei:tri"]])
-    assert erg["lektionen"][0][:4] == ["nula", "jedan", "dva", "tri"]
-    assert erg["lektionen"][1][:3] == ["tri", "osam", "devet"], erg["lektionen"][1]
+    assert erg["lektionen"][0][:4] == ["jedan", "dva", "tri", "četiri"]
+    assert erg["lektionen"][1][:3] == ["tri", "devet", "deset"], erg["lektionen"][1]
     assert _flach(erg["lektionen"]).count("tri") == 2
+    assert seite.fehler == []
+
+
+# ---------------------------------------------------------------------------
+# Teil-Reihen in sonst gemischten Leveln (26.10.2026)
+# ---------------------------------------------------------------------------
+
+# Ein Level mit "reihe" n-mal von vorn bis zum Ende durchbauen, jedes Mal
+# vom selben Stand aus, alles richtig beantwortet.
+REIHE_RUNDEN = """([kid, n]) => {
+  const i = CATEGORIES.findIndex(c => c.id === kid), c = CATEGORIES[i];
+  const vorher = [...known];
+  const zurueck = () => { known.clear(); vorher.forEach(x => known.add(x)); };
+  openLevel(i);
+  const runden = [];
+  for(let r = 0; r < n; r++){
+    zurueck();
+    const lektionen = [];
+    for(let k = 0; k < 30; k++){
+      buildLesson();
+      const neu = Lx.queue.filter(q => q.typ === 'intro').map(q => q.w);
+      if(!neu.length) break;
+      lektionen.push(neu.map(w => w.bs));
+      neu.forEach(w => known.add(w.id));
+    }
+    runden.push(lektionen);
+  }
+  zurueck();
+  return {runden, reihe: c.reihe, liste: c.words.map(w => w.bs), ohneFeld: c.reihenfolge === undefined};
+}"""
+
+
+@pytest.mark.parametrize("kid, reihe", [
+    ("zeit", ["jutro", "podne", "večer", "noć"]),
+    ("wetter", ["proljeće", "ljeto", "jesen", "zima"]),
+])
+def test_teil_reihe_in_folge_rest_gemischt(seite, heute_stand, kid, reihe):
+    """Fünfzehnmal das ganze Level: die Reihe kommt jedes Mal geschlossen
+    und in ihrer Folge (auch über eine Lektionsgrenze hinweg), an
+    wechselnder Stelle; die übrigen Wörter kommen gemischt."""
+    seite.starten(stand=heute_stand())
+    erg = seite.js(REIHE_RUNDEN, [kid, 15])
+    assert erg["reihe"] == reihe and erg["ohneFeld"]
+    for lektionen in erg["runden"]:
+        flach = _flach(lektionen)
+        assert sorted(flach) == sorted(erg["liste"])
+        stellen = [flach.index(x) for x in reihe]
+        assert stellen == list(range(stellen[0], stellen[0] + len(reihe))), (flach, stellen)
+    ohne = [x for x in erg["liste"] if x not in reihe]
+    rest = {" ".join(x for x in _flach(lek) if x not in reihe) for lek in erg["runden"]}
+    assert len(rest) > 1, rest                                  # der Rest gemischt
+    assert rest != {" ".join(ohne)}
+    beginn = {_flach(lek).index(reihe[0]) for lek in erg["runden"]}
+    assert len(beginn) > 1, beginn                              # Stelle zufällig
+    assert seite.fehler == []
+
+
+def test_angefangene_reihe_geht_vorn_weiter(seite, heute_stand):
+    """jutro ist schon gewusst: podne, večer, noć kommen in der nächsten
+    Lektion als erste neue Wörter, dahinter der Rest gemischt."""
+    seite.starten(stand=heute_stand(gewusst=["morgen (tageszeit):jutro"]))
+    reihen = seite.js("""() => { openLevel(CATEGORIES.findIndex(c => c.id === 'zeit'));
+      return Array.from({length: 12}, () => { buildLesson(); return Lx.queue.filter(q => q.typ === 'intro').map(q => q.w.bs); }); }""")
+    for r in reihen:
+        assert r[:3] == ["podne", "večer", "noć"] and "jutro" not in r, r
+    assert len({" ".join(r[3:]) for r in reihen}) > 1
+    assert seite.fehler == []
+
+
+def test_wiederholung_in_teil_reihe_bleibt_gemischt(seite, heute_stand):
+    """Die Wiederholung gewusster Wörter mischt auch in zeit."""
+    seite.starten(stand=heute_stand())
+    runden = seite.js("""() => {
+      const i = CATEGORIES.findIndex(c => c.id === 'zeit');
+      CATEGORIES[i].words.slice(0, 10).forEach(w => known.add(w.id));
+      openLevel(i);
+      return Array.from({length: 10}, () => { buildLesson();
+        return Lx.queue.filter(q => q.w && q.typ !== 'intro' && !q.neu).map(q => q.w.bs).sort().join(' '); });
+    }""")
+    assert len(set(runden)) > 1, runden
     assert seite.fehler == []

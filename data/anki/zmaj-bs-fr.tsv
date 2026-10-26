@@ -36,7 +36,6 @@ Možda	Peut-être	zmaj zmaj::01_basics
 Živjeli!	Santé !	zmaj zmaj::01_basics
 Prijatno	Bon appétit	zmaj zmaj::01_basics
 Zdravo	Salut (neutre, partout)	zmaj zmaj::01_basics
-nula	zéro	zmaj zmaj::02_zahlen
 jedan	un	zmaj zmaj::02_zahlen
 dva	deux	zmaj zmaj::02_zahlen
 tri	trois	zmaj zmaj::02_zahlen
@@ -47,6 +46,7 @@ sedam	sept	zmaj zmaj::02_zahlen
 osam	huit	zmaj zmaj::02_zahlen
 devet	neuf	zmaj zmaj::02_zahlen
 deset	dix	zmaj zmaj::02_zahlen
+nula	zéro	zmaj zmaj::02_zahlen
 jedanaest	onze	zmaj zmaj::02_zahlen
 dvanaest	douze	zmaj zmaj::02_zahlen
 trinaest	treize	zmaj zmaj::02_zahlen

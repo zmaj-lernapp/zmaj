@@ -36,7 +36,6 @@ Možda	Belki	zmaj zmaj::01_basics
 Živjeli!	Şerefe!	zmaj zmaj::01_basics
 Prijatno	Afiyet olsun	zmaj zmaj::01_basics
 Zdravo	Merhaba (nötr, her yerde)	zmaj zmaj::01_basics
-nula	sıfır	zmaj zmaj::02_zahlen
 jedan	bir	zmaj zmaj::02_zahlen
 dva	iki	zmaj zmaj::02_zahlen
 tri	üç	zmaj zmaj::02_zahlen
@@ -47,6 +46,7 @@ sedam	yedi	zmaj zmaj::02_zahlen
 osam	sekiz	zmaj zmaj::02_zahlen
 devet	dokuz	zmaj zmaj::02_zahlen
 deset	on	zmaj zmaj::02_zahlen
+nula	sıfır	zmaj zmaj::02_zahlen
 jedanaest	on bir	zmaj zmaj::02_zahlen
 dvanaest	on iki	zmaj zmaj::02_zahlen
 trinaest	on üç	zmaj zmaj::02_zahlen

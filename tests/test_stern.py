@@ -31,11 +31,13 @@ CSS_ENTWURF = [
     '@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--stern-gold-hell:#FFDF5E; '
     '--stern-gold-tief:#F7BC12; --stern-rand:#E3A700} }',
     ':root[data-theme="dark"]{--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700}',
-    '.zmajreihe{position:relative}',
+    # 26.10.2026 abends: mittig im freien Platz rechts vom Drachen (Ajdins Kreis)
+    '.zmajreihe{position:relative; --drache:120px}',
+    '@media (max-height:820px){ #lesson .zmajreihe, #test .zmajreihe{--drache:100px} }',
     '.zmajreihe .stern{--an-grund:var(--accent-soft)}',
     '@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zmajreihe .stern{--an-grund:var(--surface)} }',
     ':root[data-theme="dark"] .zmajreihe .stern{--an-grund:var(--surface)}',
-    '.zmajreihe .stern{position:absolute; right:0; top:50%; display:flex; align-items:center; justify-content:center; '
+    '.zmajreihe .stern{position:absolute; right:calc((100% - var(--drache)) / 4 - 22px); top:50%; display:flex; align-items:center; justify-content:center; '
     'box-sizing:border-box; padding:0; margin:0; font:inherit; cursor:pointer; color:var(--muted); '
     '-webkit-tap-highlight-color:transparent; transition:transform .12s, background-color .15s, '
     'border-color .15s, box-shadow .12s}',

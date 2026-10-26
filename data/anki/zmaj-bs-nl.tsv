@@ -36,7 +36,6 @@ Možda	Misschien	zmaj zmaj::01_basics
 Živjeli!	Proost!	zmaj zmaj::01_basics
 Prijatno	Eet smakelijk	zmaj zmaj::01_basics
 Zdravo	Hallo (neutraal, overal)	zmaj zmaj::01_basics
-nula	nul	zmaj zmaj::02_zahlen
 jedan	een	zmaj zmaj::02_zahlen
 dva	twee	zmaj zmaj::02_zahlen
 tri	drie	zmaj zmaj::02_zahlen
@@ -47,6 +46,7 @@ sedam	zeven	zmaj zmaj::02_zahlen
 osam	acht	zmaj zmaj::02_zahlen
 devet	negen	zmaj zmaj::02_zahlen
 deset	tien	zmaj zmaj::02_zahlen
+nula	nul	zmaj zmaj::02_zahlen
 jedanaest	elf	zmaj zmaj::02_zahlen
 dvanaest	twaalf	zmaj zmaj::02_zahlen
 trinaest	dertien	zmaj zmaj::02_zahlen

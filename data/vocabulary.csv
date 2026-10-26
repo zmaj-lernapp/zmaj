@@ -32,7 +32,6 @@ vielleicht:Možda,1,basics,alltag,Možda,Vielleicht,Maybe,Belki,Kanske,Misschien
 prost!:Živjeli!,1,basics,alltag,Živjeli!,Prost!,Cheers!,Şerefe!,Skål!,Proost!,Skål!,Skål!,Santé !,web/audio/w0031.mp3
 guten appetit:Prijatno,1,basics,alltag,Prijatno,Guten Appetit,Enjoy your meal,Afiyet olsun,Smaklig måltid,Eet smakelijk,Vel bekomme,Velbekomme,Bon appétit,web/audio/w0032.mp3
 "hallo (neutral, überall):Zdravo",1,basics,alltag,Zdravo,"Hallo (neutral, überall)","Hello (neutral, anywhere)","Merhaba (nötr, her yerde)","Hej (neutralt, överallt)","Hallo (neutraal, overal)","Hei (nøytralt, overalt)","Hej (neutralt, overalt)","Salut (neutre, partout)",web/audio/w1492.mp3
-null:nula,2,zahlen,alltag,nula,null,zero,sıfır,noll,nul,null,nul,zéro,web/audio/w0033.mp3
 eins:jedan,2,zahlen,alltag,jedan,eins,one,bir,ett,een,en,en,un,web/audio/w0034.mp3
 zwei:dva,2,zahlen,alltag,dva,zwei,two,iki,två,twee,to,to,deux,web/audio/w0035.mp3
 drei:tri,2,zahlen,alltag,tri,drei,three,üç,tre,drie,tre,tre,trois,web/audio/w0036.mp3
@@ -43,6 +42,7 @@ sieben:sedam,2,zahlen,alltag,sedam,sieben,seven,yedi,sju,zeven,sju,syv,sept,web/
 acht:osam,2,zahlen,alltag,osam,acht,eight,sekiz,åtta,acht,åtte,otte,huit,web/audio/w0041.mp3
 neun:devet,2,zahlen,alltag,devet,neun,nine,dokuz,nio,negen,ni,ni,neuf,web/audio/w0042.mp3
 zehn:deset,2,zahlen,alltag,deset,zehn,ten,on,tio,tien,ti,ti,dix,web/audio/w0043.mp3
+null:nula,2,zahlen,alltag,nula,null,zero,sıfır,noll,nul,null,nul,zéro,web/audio/w0033.mp3
 elf:jedanaest,2,zahlen,alltag,jedanaest,elf,eleven,on bir,elva,elf,elleve,elleve,onze,web/audio/w0044.mp3
 zwölf:dvanaest,2,zahlen,alltag,dvanaest,zwölf,twelve,on iki,tolv,twaalf,tolv,tolv,douze,web/audio/w0045.mp3
 dreizehn:trinaest,2,zahlen,alltag,trinaest,dreizehn,thirteen,on üç,tretton,dertien,tretten,tretten,treize,web/audio/w0046.mp3
