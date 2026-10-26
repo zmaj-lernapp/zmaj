@@ -16,6 +16,18 @@ Aufbau:
                   "baut_auf": Liste früherer Level-ids, deren Wörter hier
                              gebraucht werden. Der Level-Test holt daraus seine
                              Wiederholungsfragen (3 von 10 Fragen).
+                  "reihenfolge": optional True (seit 26.10.2026): die neuen
+                             Wörter kommen in der Reihenfolge von "words"
+                             dran statt gemischt (nula, jedan, dva ...). Ajdin:
+                             „bei der zahlen sektion am besten die zahlen in
+                             reihenfolge lernen sowie wochentage und wo es
+                             noch passt“. Gesetzt bei zahlen, wochentage,
+                             monate und mengen (Zahlen im Satz: jedan brat,
+                             dva brata, pet braće - je Hauptwort erst eins,
+                             dann die Mehrzahl), den Leveln mit einer
+                             eindeutigen Reihe.
+                             Die Aufgaben einer Lektion, die Wiederholung, der
+                             Level-Test und die Einstufung bleiben gemischt.
                   "words"  : Liste von Wörtern {"de": "Deutsch", "bs": "Bosnisch"}
                              Optional "auch": weitere Antworten, die beim
                              Tippen ebenfalls richtig sind, z. B. bei „groß“
@@ -151,6 +163,7 @@ KATEGORIEN = [
     ]},
 
     {"id": "zahlen", "label": "Zahlen", "sektion": "alltag", "tipp": "Zählen von null bis tausend.",
+     "reihenfolge": True,   # nach dem Zahlwert, siehe oben (26.10.2026)
      "words": [
         {"de": "null",        "bs": "nula"},
         {"de": "eins",        "bs": "jedan"},
@@ -295,6 +308,7 @@ KATEGORIEN = [
     ]},
 
     {"id": "wochentage", "label": "Wochentage", "sektion": "alltag", "baut_auf": ["zahlen"], "tipp": "Die Woche von ponedjeljak bis nedjelja.",
+     "reihenfolge": True,   # Montag bis Sonntag, dann vikend und sedmica (26.10.2026)
      "words": [
         {"de": "Montag",      "bs": "ponedjeljak"},
         {"de": "Dienstag",    "bs": "utorak"},
@@ -308,6 +322,7 @@ KATEGORIEN = [
     ]},
 
     {"id": "monate", "label": "Monate", "sektion": "alltag", "baut_auf": ["wochentage", "zahlen"], "tipp": "Monate und das Jahr.",
+     "reihenfolge": True,   # Januar bis Dezember, dann mjesec und godina (26.10.2026)
      "words": [
         {"de": "Januar",      "bs": "januar"},
         {"de": "Februar",     "bs": "februar"},
@@ -1493,6 +1508,7 @@ KATEGORIEN = [
 
     {"id": "mengen", "label": "Zahlen im Satz", "sektion": "saetze", "tipp": "Jedan brat, dva brata, pet braće: nach Zahlen ändert sich das Wort.",
      "baut_auf": ["zahlen", "faelle2", "mehrzahl"],
+     "reihenfolge": True,   # je Hauptwort erst eins, dann zwei bis vier, dann fünf (26.10.2026)
      "words": [
         {"de": "ein Bruder",                "bs": "jedan brat"},
         {"de": "zwei Brüder",               "bs": "dva brata"},

@@ -410,6 +410,10 @@ def pruefe_vokabeln(daten):
         kid = kat.get("id", "?")
         if kid in ids:
             probleme.append(f"Level-id doppelt: '{kid}'")
+        # reihenfolge (26.10.2026): die App fragt "=== true". Ein "ja" oder
+        # eine 1 hiesse dort still "gemischt" - deshalb nur True oder False.
+        if "reihenfolge" in kat and not isinstance(kat["reihenfolge"], bool):
+            probleme.append(f"[{kid}] reihenfolge muss True oder False sein: {kat['reihenfolge']!r}")
         ids.add(kid)
         if sektionen and kat.get("sektion") not in sektionen:
             probleme.append(f"[{kid}] unbekannte Sektion '{kat.get('sektion')}'")
