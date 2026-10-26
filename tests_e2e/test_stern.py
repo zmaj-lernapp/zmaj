@@ -4,22 +4,24 @@
 Entwurf, Variante 1 "Ring").
 
 Was hier im echten Browser nachgeprueft wird:
-  - der Knopf oben rechts in der Lernkarte, neben dem Drachen (seit dem
-    26.10.2026, Ajdin: "den stern markieren knopf kannst du oben rechts
-    neben den drachen hinmachen weil er zu schlecht sichtbar war"; bis
-    dahin unten rechts in der Leiste): setzen und wegnehmen (aria-pressed,
+  - der Knopf oben rechts in der Kopfzeile der Lernkarte, rechts neben den
+    Punkten (seit dem 26.10.2026 spaet, Ajdin: "nimm A"; davor am selben
+    Tag neben dem Drachen - "im moment steht es so mitten im nirgendwo" -,
+    bis dahin unten rechts in der Leiste): setzen und wegnehmen (aria-pressed,
     Ansage, Goldstern), Pop nur mit Bewegung, er bleibt nach dem
     Neuladen, ein Stern je Wort ueber alle Aufgabenarten, Saetze und
     Grammatik lassen sich markieren;
-  - die Lage: mittig im freien Platz zwischen Drache und rechtem
-    Innenrand der Karte (seit 26.10.2026 abends, Ajdins Kreis im
-    Bildschirmfoto), auf der Mitte des Drachen, Luecke zum Drachen, Trefferflaeche 48 x 48 - und dass er
-    nichts ueberdeckt, bei allen Aufgabenarten (auch Sprechen und die
+  - die Lage: in .kastenkopf direkt hinter .tbar, senkrecht auf der Mitte
+    der Herz-Pille, rechte Kante am Innenrand der Karte, die Zeile so hoch
+    wie die Herz-Pille, Trefferflaeche 48 x 48 - und dass er nichts
+    ueberdeckt (Herz, Punkte, Drache, Aufgabe), bei allen Aufgabenarten (auch Sprechen und die
     groesste Kachelbank), vor und nach der Antwort, bei 100, 130 und
     200 % Schrift, in Lektion, Markiert-Runde und Level-Test;
   - gut sichtbar in allen neun Sektionsfarben, hell und dunkel;
   - die Leiste unter der Karte hat nur noch "abbrechen", 39 px hoch;
-  - Masse aus dem Entwurf: 44 x 44, und der Stern sitzt per Pixelmessung
+  - versteckt haelt er seinen Platz: der Balken bleibt gleich breit, und
+    der versteckte Knopf ist weder fokussierbar noch im Vorlesebaum;
+  - Masse: 40 x 40 (im Entwurf 44 x 44), und der Stern sitzt per Pixelmessung
     auf weniger als 0,5 Geraetepixel in der Mitte (hell und dunkel, leer
     und markiert, 412 x 915 und 360 x 726);
   - wo er steht und wo nicht: Level-Test ja; Einstufung, Ergebnis und
@@ -148,8 +150,8 @@ def test_stern_setzen_und_entfernen(seite, heute_stand):
     knopf = seite.js(KNOPF, "lStern")
     assert knopf["sichtbar"] and knopf["gedrueckt"] == "false" and not knopf["gold"]
     assert knopf["name"] == "Markieren" and knopf["typ"] == "button"
-    assert (knopf["w"], knopf["h"]) == (44, 44), knopf
-    assert knopf["svg"] == ["28", "28"]
+    assert (knopf["w"], knopf["h"]) == (40, 40), knopf
+    assert knopf["svg"] == ["24", "24"]
     assert not knopf["imKoerper"], "der Stern gehoert nicht ins Aufgabenfeld (weiterBeiTipp)"
 
     seite.page.click("#lStern")
@@ -296,17 +298,18 @@ def test_fokus_sichtbar_mit_tastatur(seite, heute_stand):
 
 
 # ---------------------------------------------------------------------------
-# Lage: oben rechts neben dem Drachen (26.10.2026)
+# Lage: in der Kopfzeile, rechts neben den Punkten (26.10.2026 spaet)
 # ---------------------------------------------------------------------------
 
 # Wo der Stern steht und was um ihn herum ist. Trefferflaeche: der Knopf
-# plus 4 px (::before). Geschnitten wird mit dem Kasten des Drachen, mit der
-# Kopfzeile (Herz und Punkte) und mit jedem sichtbaren Teil der Aufgabe.
+# plus 4 px (::before). Geschnitten wird mit der Herz-Pille, dem Balken, dem
+# Kasten des Drachen und jedem sichtbaren Teil der Aufgabe.
 LAGE = """(id) => { const b = document.getElementById(id), sec = b.closest('section'), card = sec.querySelector('.card');
   const R = e => e.getBoundingClientRect();
   if(!b.hidden){ const v = R(b); if(v.top < 0 || v.bottom > innerHeight) b.scrollIntoView({block: 'center'}); }
-  const s = R(b), d = R(sec.querySelector('.zmaj.mini')), k = R(sec.querySelector('.kastenkopf')),
-        bar = R(sec.querySelector('.kastenkopf .tbar')), c = R(card), cs = getComputedStyle(card);
+  const kopf = sec.querySelector('.kastenkopf'), herzEl = kopf.querySelector('.kastenherz'), barEl = kopf.querySelector('.tbar');
+  const s = R(b), d = R(sec.querySelector('.zmaj.mini')), k = R(kopf), herz = R(herzEl), bar = R(barEl),
+        c = R(card), cs = getComputedStyle(card);
   const innen = c.right - parseFloat(cs.borderRightWidth) - parseFloat(cs.paddingRight);
   const body = sec.querySelector('#lBody, #tBody');
   const teile = [...body.querySelectorAll('*')].filter(e => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden')
@@ -314,40 +317,43 @@ LAGE = """(id) => { const b = document.getElementById(id), sec = b.closest('sect
   const t = {left: s.left - 4, top: s.top - 4, right: s.right + 4, bottom: s.bottom + 4};
   const schneidet = r => !(t.right <= r.left || t.left >= r.right || t.bottom <= r.top || t.top >= r.bottom);
   const mitte = document.elementFromPoint(s.left + s.width / 2, s.top + s.height / 2);
-  return {huelle: b.parentElement.className, inKarte: card.contains(b), sichtbar: !b.hidden && !!b.offsetParent,
-          w: s.width, h: s.height, rechtsBar: bar.right - s.right, rechtsInnen: innen - s.right,
-          frei: (s.left + s.width / 2) - (d.right + innen) / 2,
-          hoehe: (s.top + s.height / 2) - (d.top + d.height / 2), luecke: s.left - d.right, drache: d.height,
-          unterKopf: t.top - k.bottom, ueberAufgabe: Math.min(...teile.map(([e, r]) => r.top)) - t.bottom,
-          schneidet: {drache: schneidet(d), kopf: schneidet(k),
+  return {imKopf: b.parentElement === kopf, hinterBar: b.previousElementSibling === barEl, letzter: kopf.lastElementChild === b,
+          inKarte: card.contains(b), sichtbar: !b.hidden && !!b.offsetParent,
+          w: s.width, h: s.height, rechtsInnen: innen - s.right, abstandBar: s.left - bar.right,
+          hoehe: (s.top + s.height / 2) - (herz.top + herz.height / 2), kopfH: k.height - herz.height,
+          inKarteOben: t.top - (c.top + parseFloat(cs.borderTopWidth)), drache: d.height,
+          ueberDrache: d.top - t.bottom, ueberAufgabe: Math.min(...teile.map(([e, r]) => r.top)) - t.bottom,
+          schneidet: {herz: schneidet(herz), bar: schneidet(bar), drache: schneidet(d),
                       aufgabe: teile.filter(([e, r]) => schneidet(r)).map(([e]) => e.tagName + '.' + e.className)},
           oben: mitte === b || b.contains(mitte)}; }"""
 
 
 def _lage_ok(m, wo):
-    assert m["huelle"] == "zmajreihe" and m["inKarte"] and m["sichtbar"], (wo, m)
-    assert (m["w"], m["h"]) == (44, 44), (wo, m)
-    # Mitte des freien Platzes zwischen rechter Drachenkante und rechtem
-    # Innenrand der Karte, +-2 px (26.10.2026: "den stern markieren knopf
-    # kannst du oben rechts neben den drachen hinmachen", Ajdins Kreis),
-    # und ganz innerhalb der Karte
-    assert abs(m["frei"]) <= 2 and m["rechtsInnen"] > 0, (wo, m)
-    # auf Hoehe des Drachen: senkrecht auf seiner Mitte, rechts daneben
-    assert abs(m["hoehe"]) < 0.01 and m["luecke"] >= 8, (wo, m)
-    # ueberdeckt nichts, auch nicht mit der Trefferflaeche
-    assert m["schneidet"] == {"drache": False, "kopf": False, "aufgabe": []}, (wo, m)
-    assert m["unterKopf"] >= 0 and m["ueberAufgabe"] >= 0, (wo, m)
+    # in der Kopfzeile, direkt hinter dem Balken und als letztes darin
+    # (26.10.2026: "nimm A")
+    assert m["imKopf"] and m["hinterBar"] and m["letzter"] and m["inKarte"] and m["sichtbar"], (wo, m)
+    assert (m["w"], m["h"]) == (40, 40), (wo, m)
+    # auf einer Linie mit der Herz-Pille, rechte Kante am Innenrand der
+    # Karte, je +-2 px; zwischen Balken und Knopf der Abstand der Zeile
+    assert abs(m["hoehe"]) <= 2 and abs(m["rechtsInnen"]) <= 2, (wo, m)
+    assert 8 <= m["abstandBar"] <= 12, (wo, m)
+    # die Zeile bleibt so hoch wie die Herz-Pille - nichts darunter rutscht
+    assert abs(m["kopfH"]) <= 0.5, (wo, m)
+    # ueberdeckt nichts, auch nicht mit der Trefferflaeche, und bleibt in der Karte
+    assert m["schneidet"] == {"herz": False, "bar": False, "drache": False, "aufgabe": []}, (wo, m)
+    assert m["inKarteOben"] >= 0 and m["ueberDrache"] >= 0 and m["ueberAufgabe"] >= 0, (wo, m)
     assert m["oben"], (wo, "etwas liegt ueber dem Stern", m)
 
 
-# Breite x Hoehe: 320 x 900 hat den grossen Drachen (120 px, erst unter 821 px
-# Hoehe 100 px) bei kleinster Breite - die engste Luecke, 9 px.
+# Breite x Hoehe: 320 ist die engste Breite (der Balken am kuerzesten),
+# 320 x 900 hat dabei den grossen Drachen (120 px, erst unter 821 px Hoehe
+# 100 px).
 FORMATE = [(320, 640), (320, 900), (360, 726), (390, 844), (412, 915)]
 
 
 @pytest.mark.parametrize("breite,hoehe", FORMATE)
 @pytest.mark.parametrize("knopf", ["lStern", "tStern"])
-def test_stern_oben_rechts_neben_dem_drachen(browser, basis, heute_stand, knopf, breite, hoehe):
+def test_stern_in_der_kopfzeile_rechts_neben_den_punkten(browser, basis, heute_stand, knopf, breite, hoehe):
     ctx = browser.new_context(viewport={"width": breite, "height": hoehe}, locale="de-DE", service_workers="block")
     seite = Seite(ctx.new_page(), basis)
     try:
@@ -360,15 +366,68 @@ def test_stern_oben_rechts_neben_dem_drachen(browser, basis, heute_stand, knopf,
         m = seite.js(LAGE, knopf)
         _lage_ok(m, (knopf, breite, hoehe))
         assert m["drache"] == (100 if hoehe <= 820 else 120), m
-        if (breite, hoehe) == (320, 900):
-            assert 8 <= m["luecke"] <= 10, m
         # Vor der Antwort ganz im Bild, ohne zu scrollen
         assert seite.js("""(id) => { const r = document.getElementById(id).getBoundingClientRect();
                            return scrollY === 0 && r.top >= 0 && r.bottom <= innerHeight; }""", knopf)
         t = seite.js(TREFFER, knopf)
         # Das Raster zaehlt beide Randpunkte mit: 48 px Flaeche ergeben 48,75
-        # (so auch im Entwurf gemessen); 44 px ohne ::before ergaeben 44,75.
+        # (so auch im Entwurf gemessen); 40 px ohne ::before ergaeben 40,75.
         assert t["vor"] == ["48px", "48px"] and 48 <= t["w"] <= 48.75 and 48 <= t["h"] <= 48.75 and t["ecken"], t
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
+# Balken, Kopfzeile und Drache messen; den Knopf verstecken (wie die App
+# es bei einer Aufgabe ohne Kennung tut) und wieder auf die Aufgabe stellen.
+VERSTECKT = """(id) => { const b = document.getElementById(id), sec = b.closest('section');
+  const R = s => sec.querySelector(s).getBoundingClientRect();
+  const mass = () => ({bar: R('.kastenkopf .tbar').width, kopf: R('.kastenkopf').height, drache: R('.zmaj.mini').top,
+                       platz: b.getBoundingClientRect().width});
+  const aufgabe = id === 'tStern' ? Tx.qs[Tx.i] : Lx.queue[Lx.i];
+  const sichtbar = mass();
+  sternKnopf(id, null);
+  const weg = mass();
+  b.focus();
+  const fokus = document.activeElement === b;
+  const stil = getComputedStyle(b);
+  const r = b.getBoundingClientRect(), e = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+  const zustand = {hidden: b.hidden, sichtbarkeit: stil.visibility, display: stil.display, fokus,
+                   trifft: !!e && (e === b || b.contains(e))};
+  sternKnopf(id, aufgabe);
+  return {sichtbar, weg, wieder: mass(), zustand, wiederHidden: b.hidden}; }"""
+
+
+@pytest.mark.parametrize("breite", [320, 360, 412])
+@pytest.mark.parametrize("knopf", ["lStern", "tStern"])
+def test_balken_springt_nicht_wenn_der_stern_versteckt_ist(browser, basis, heute_stand, knopf, breite):
+    """Versteckt (hidden) haelt der Stern seinen Platz (visibility:hidden):
+    der Balken bleibt gleich breit, die Kopfzeile gleich hoch, der Drache
+    an seiner Stelle. Und er ist dann wirklich weg: nicht fokussierbar,
+    nicht im Vorlesebaum, faengt keinen Tipp ab."""
+    ctx = browser.new_context(viewport={"width": breite, "height": 726}, locale="de-DE", service_workers="block")
+    seite = Seite(ctx.new_page(), basis)
+    try:
+        seite.starten(stand=heute_stand())
+        if knopf == "lStern":
+            seite.js(LEGEN, [{"typ": "mc"}])
+        else:
+            _test_starten(seite)
+        _vorspann_weg(seite)
+        rolle = seite.page.get_by_role("button", name="Markieren")
+        assert rolle.count() == 1
+        m = seite.js(VERSTECKT, knopf)
+        assert m["sichtbar"] == m["weg"] == m["wieder"], m
+        assert m["sichtbar"]["platz"] == 40 and m["sichtbar"]["bar"] > 0, m
+        assert m["zustand"] == {"hidden": True, "sichtbarkeit": "hidden", "display": "flex", "fokus": False,
+                                "trifft": False}, m
+        assert m["wiederHidden"] is False
+        # im Vorlesebaum: versteckt keiner, danach wieder genau einer
+        seite.js("(id) => sternKnopf(id, null)", knopf)
+        assert rolle.count() == 0
+        assert seite.page.locator("#" + knopf).is_hidden()
+        seite.js("(id) => sternKnopf(id, id === 'tStern' ? Tx.qs[Tx.i] : Lx.queue[Lx.i])", knopf)
+        assert rolle.count() == 1
         assert seite.fehler == []
     finally:
         ctx.close()
@@ -432,9 +491,11 @@ ARTEN = {"lektion": ["mc", "mcrev", "type", "listen", "gap", "kacheln", "kacheln
 def test_stern_ueberdeckt_nichts(browser, basis, heute_stand, faktor):
     """Bei 320 px, der engsten Breite: jede Aufgabenart in Lektion,
     Markiert-Runde und Level-Test, vor und nach der Antwort - der Stern
-    bleibt an seiner Stelle und ueberdeckt weder Drache noch Kopfzeile noch
-    irgendeinen Teil der Aufgabe. Nach einer langen Aufgabe scrollt die App
-    zu "Weiter"; dann wird erst zum Stern zurueckgescrollt."""
+    bleibt an seiner Stelle in der Kopfzeile und ueberdeckt weder Herz,
+    Punkte und Drache noch irgendeinen Teil der Aufgabe. Bei 130 und 200 %
+    Schrift waechst die Herz-Pille und mit ihr die Zeile, der Knopf bleibt
+    auf ihrer Mitte. Nach einer langen Aufgabe scrollt die App zu "Weiter";
+    dann wird erst zum Stern zurueckgescrollt."""
     ctx = browser.new_context(viewport={"width": 320, "height": 640}, locale="de-DE", service_workers="block",
                               reduced_motion="reduce")
     seite = Seite(ctx.new_page(), basis)
@@ -553,15 +614,15 @@ TREFFER = """(id) => { const b = document.getElementById(id), r = b.getBoundingC
 MESS_STIL = """(art) => {
   let st = document.getElementById('messStil');
   if(!st){ st = document.createElement('style'); st.id = 'messStil'; document.head.appendChild(st); }
-  const ruhig = '.zmajreihe .stern, .zmajreihe .stern *{transition:none!important; animation:none!important}';
+  const ruhig = '.kastenkopf .stern, .kastenkopf .stern *{transition:none!important; animation:none!important}';
   const T = {
     echt: '',
-    ohneStern: '.zmajreihe .stern svg{visibility:hidden!important}',
-    maskeStern: '.zmajreihe .stern{background:transparent!important; border-color:transparent!important}' +
-                ' .zmajreihe .stern .sternsym path{stroke:#000!important} .zmajreihe .stern .sternsym.an path{fill:#000!important}',
-    maskeLeer: '.zmajreihe .stern{background:transparent!important; border-color:transparent!important}' +
-               ' .zmajreihe .stern svg{visibility:hidden!important}',
-    maskeKreis: '.zmajreihe .stern{background:#000!important; border-color:#000!important} .zmajreihe .stern svg{visibility:hidden!important}',
+    ohneStern: '.kastenkopf .stern svg{visibility:hidden!important}',
+    maskeStern: '.kastenkopf .stern{background:transparent!important; border-color:transparent!important}' +
+                ' .kastenkopf .stern .sternsym path{stroke:#000!important} .kastenkopf .stern .sternsym.an path{fill:#000!important}',
+    maskeLeer: '.kastenkopf .stern{background:transparent!important; border-color:transparent!important}' +
+               ' .kastenkopf .stern svg{visibility:hidden!important}',
+    maskeKreis: '.kastenkopf .stern{background:#000!important; border-color:#000!important} .kastenkopf .stern svg{visibility:hidden!important}',
   };
   st.textContent = ruhig + T[art];
 }"""
@@ -623,7 +684,7 @@ def test_stern_sitzt_in_der_mitte(browser, basis, heute_stand, schema):
                 lay = seite.js(DREHPUNKT, "lStern")
                 fall = "%d_%s" % (breite, "an" if an else "leer")
                 funde[fall] = m
-                assert abs(m["breite"] - (44 + 16) * dpr) <= 1, m
+                assert abs(m["breite"] - (40 + 16) * dpr) <= 1, m
                 for k in ("dx_geo", "dy_geo", "dx_echt", "dy_echt"):
                     assert abs(m[k]) < 0.5, (schema, fall, k, m)
                 assert abs(lay["dx"]) < 0.01 and abs(lay["dy"]) < 0.01, (schema, fall, lay)
@@ -689,7 +750,7 @@ def test_level_test_stern_und_ergebnis(seite, heute_stand):
     _test_starten(seite)
     knopf = seite.js(KNOPF, "tStern")
     assert knopf["sichtbar"] and knopf["gedrueckt"] == "false" and not knopf["imKoerper"]
-    assert knopf["name"] == "Markieren" and (knopf["w"], knopf["h"]) == (44, 44)
+    assert knopf["name"] == "Markieren" and (knopf["w"], knopf["h"]) == (40, 40)
     k = seite.js("() => topfSchluessel(Tx.qs[Tx.i])")
     seite.page.click("#tStern")
     assert seite.js("(k) => !!stern[k]", k)

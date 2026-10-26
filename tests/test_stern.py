@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Stern (19.10.2026): was sich ohne Browser pruefen laesst. Das Verhalten
-selbst - Knopf, Reiter, Runde, Sicherungsdatei, Zentrierung, Lage neben
-dem Drachen - prueft tests_e2e/test_stern.py im echten Browser."""
+selbst - Knopf, Reiter, Runde, Sicherungsdatei, Zentrierung, Lage in der
+Kopfzeile - prueft tests_e2e/test_stern.py im echten Browser."""
 import re
 
 STERN_TEXTE = ["stern.knopf", "stern.titel", "stern.weg", "stern.desc", "stern.leer",
@@ -14,51 +14,52 @@ PFAD = ("M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.
         "A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231"
         "A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853"
         "A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z")
-SVG_LEER = ('<svg class="sternsym" viewBox="-12 -12 24 24" width="28" height="28" aria-hidden="true" '
+SVG_LEER = ('<svg class="sternsym" viewBox="-12 -12 24 24" width="24" height="24" aria-hidden="true" '
             'focusable="false"><path style="stroke-width:1.9" d="' + PFAD + '"/></svg>')
 
 # Das CSS des Entwurfs, Zeile fuer Zeile (GEWAEHLT_variante1.md). Abweichungen:
-# .stern[hidden], weil display:flex das Attribut schlaegt, und seit dem
-# 26.10.2026 die Lage. Ajdin: "den stern markieren knopf kannst du oben rechts
-# neben den drachen hinmachen weil er zu schlecht sichtbar war". Statt in der
-# Leiste (.nav .stern, position:relative, margin -4px 0, Flaeche --surface)
-# steht er jetzt in .zmajreihe neben dem Drachen: absolut, rechts, senkrecht
-# mittig (top 50 %, margin-top -22px) und mit der Flaeche --bg wie die
-# Herz-Pille - auf der Karte (--surface) waere ein --surface-Kreis kaum zu
-# sehen. Form, Farben, Masse und Stern sind sonst die des Entwurfs.
+# .stern[hidden] und die Lage. Bis zum 26.10.2026 stand er in der Leiste
+# (.nav .stern), dann kurz neben dem Drachen (.zmajreihe .stern, absolut,
+# 44 x 44 - Ajdin: "im moment steht es so mitten im nirgendwo"). Seit dem
+# 26.10.2026 spaet steht er in der Kopfzeile der Karte, rechts neben den
+# Punkten (Ajdin: "nimm A"): im Fluss der Flex-Zeile, 40 x 40 mit 24-px-Stern,
+# Trefferflaeche 48 ueber ::before inset -6px, margin -20px 0, damit die
+# Zeile so hoch bleibt wie die Herz-Pille, und versteckt mit
+# visibility:hidden statt display:none, damit der Balken nicht springt. Die
+# Flaeche ist --bg wie die Herz-Pille - auf der Karte (--surface) waere ein
+# --surface-Kreis kaum zu sehen. Form, Farben und Stern sind sonst die des
+# Entwurfs.
 CSS_ENTWURF = [
     ':root{--stern-gold-hell:#FFD84D; --stern-gold-tief:#F5B400; --stern-rand:#B07D00}',
     '@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--stern-gold-hell:#FFDF5E; '
     '--stern-gold-tief:#F7BC12; --stern-rand:#E3A700} }',
     ':root[data-theme="dark"]{--stern-gold-hell:#FFDF5E; --stern-gold-tief:#F7BC12; --stern-rand:#E3A700}',
-    # 26.10.2026 abends: mittig im freien Platz rechts vom Drachen (Ajdins Kreis)
-    '.zmajreihe{position:relative; --drache:120px}',
-    '@media (max-height:820px){ #lesson .zmajreihe, #test .zmajreihe{--drache:100px} }',
-    '.zmajreihe .stern{--an-grund:var(--accent-soft)}',
-    '@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zmajreihe .stern{--an-grund:var(--surface)} }',
-    ':root[data-theme="dark"] .zmajreihe .stern{--an-grund:var(--surface)}',
-    '.zmajreihe .stern{position:absolute; right:calc((100% - var(--drache)) / 4 - 22px); top:50%; display:flex; align-items:center; justify-content:center; '
-    'box-sizing:border-box; padding:0; margin:0; font:inherit; cursor:pointer; color:var(--muted); '
+    '.kastenkopf .stern{--an-grund:var(--accent-soft)}',
+    '@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .kastenkopf .stern{--an-grund:var(--surface)} }',
+    ':root[data-theme="dark"] .kastenkopf .stern{--an-grund:var(--surface)}',
+    '.kastenkopf .stern{position:relative; flex:0 0 auto; display:flex; align-items:center; justify-content:center; '
+    'box-sizing:border-box; padding:0; margin:-20px 0; font:inherit; cursor:pointer; color:var(--muted); '
     '-webkit-tap-highlight-color:transparent; transition:transform .12s, background-color .15s, '
     'border-color .15s, box-shadow .12s}',
-    ".zmajreihe .stern::before{content:''; position:absolute}",
-    '.zmajreihe .stern svg{display:block; flex:none; overflow:visible; pointer-events:none}',
+    ".kastenkopf .stern::before{content:''; position:absolute}",
+    '.kastenkopf .stern svg{display:block; flex:none; overflow:visible; pointer-events:none}',
     '.sternsym{overflow:visible}',
     '.sternsym path{fill:none; stroke:currentColor; stroke-linejoin:round}',
     '.sternsym.an path{fill:url(#sternGold); stroke:var(--stern-rand)}',
-    '.zmajreihe .stern:focus-visible{outline:3px solid var(--primary); outline-offset:3px}',
+    '.kastenkopf .stern:focus-visible{outline:3px solid var(--primary); outline-offset:3px}',
     '@keyframes sternPop{0%{transform:scale(1)} 45%{transform:scale(1.22)} 100%{transform:scale(1)}}',
-    '.zmajreihe .stern.pop svg{animation:sternPop .28s ease-out}',
-    '@media (prefers-reduced-motion: reduce){ .zmajreihe .stern.pop svg{animation:none} }',
-    '.zmajreihe .stern.v1{width:44px; height:44px; margin-top:-22px; border-radius:50%; border:2px solid var(--line); '
+    '.kastenkopf .stern.pop svg{animation:sternPop .28s ease-out}',
+    '@media (prefers-reduced-motion: reduce){ .kastenkopf .stern.pop svg{animation:none} }',
+    '.kastenkopf .stern.v1{width:40px; height:40px; border-radius:50%; border:2px solid var(--line); '
     'background:var(--bg)}',
-    '.zmajreihe .stern.v1::before{inset:-4px}',
-    '.zmajreihe .stern.v1[aria-pressed="true"]{border-color:var(--accent); background:var(--an-grund)}',
-    '.zmajreihe .stern.v1:active{transform:scale(.92)}',
+    '.kastenkopf .stern.v1::before{inset:-6px}',
+    '.kastenkopf .stern.v1[aria-pressed="true"]{border-color:var(--accent); background:var(--an-grund)}',
+    '.kastenkopf .stern.v1:active{transform:scale(.92)}',
     '#sternBox h2{display:flex; align-items:center; gap:7px}',
     '#sternBox h2 .sternsym{flex:none; color:var(--muted); position:relative; top:-1px}',
     '.topfleer .sternsym{display:inline-block; vertical-align:-3.5px; margin:0 1px; color:var(--muted)}',
-    '.zmajreihe .stern[hidden]{display:none}',
+    # Versteckt haelt er seinen Platz; !important gegen [hidden]{display:none !important}
+    '.kastenkopf .stern[hidden]{display:flex !important; visibility:hidden}',
 ]
 
 
@@ -136,32 +137,42 @@ def test_stern_css_ohne_neue_pseudoklassen(index_html):
     """Alte WebViews (ab Android 7) verwerfen eine ganze Regel, wenn sie
     einen Teil davon nicht kennen - siehe .zmaj.mini in index.html."""
     regeln = [z for z in index_html.splitlines()
-              if re.search(r"\.stern\b|\.sternsym\b|#sternBox|--stern-|--an-grund|\.zmajreihe", z) and "{" in z]
+              if re.search(r"\.stern\b|\.sternsym\b|#sternBox|--stern-|--an-grund", z) and "{" in z]
     assert len(regeln) >= 20
     for z in regeln:
         assert not re.search(r":(is|where|has)\(|color-mix\(", z), z
 
 
-def test_stern_knopf_steht_neben_dem_drachen(index_html):
-    """Seit dem 26.10.2026 in der Lernkarte, in .zmajreihe direkt hinter dem
-    kleinen Drachen und vor dem Aufgabenfeld (ausserhalb davon, wegen
-    weiterBeiTipp) - nur in Lektion und Level-Test, nicht in der
-    Einstufung. Leer und versteckt, bis sternKnopf() ihn auf eine Aufgabe
-    stellt. Die Leiste darunter hat wieder nur "abbrechen" und den leeren
-    Platzhalter, genau wie vor dem 19.10.2026 und wie in der Einstufung."""
+def test_stern_knopf_steht_in_der_kopfzeile(index_html):
+    """Seit dem 26.10.2026 spaet in der Kopfzeile der Karte (.kastenkopf),
+    direkt hinter den Punkten (.tbar) - Ajdin: "nimm A". Damit ausserhalb
+    des Aufgabenfelds (wegen weiterBeiTipp), nur in Lektion und Level-Test,
+    nicht in der Einstufung. Leer und versteckt, bis sternKnopf() ihn auf
+    eine Aufgabe stellt. Die Huelle um den Drachen (.zmajreihe, neben dem
+    Drachen am 26.10.2026) ist wieder weg: der Drache steht wie in der
+    Einstufung direkt in der Karte. Die Leiste darunter hat nur "abbrechen"
+    und den leeren Platzhalter, genau wie vor dem 19.10.2026."""
     for ort, herz, bar, drache, knopf, body in (("l", "lHerz", "lBar", "zmajLesson", "lStern", "lBody"),
                                                 ("t", "tHerz", "tBar", "zmajTest", "tStern", "tBody")):
         karte = ('<div class="card"><div class="kastenkopf"><div class="kastenherz" id="%s"></div>'
-                 '<div class="tbar" id="%s"></div></div><div class="zmajreihe"><div class="zmaj mini idle" id="%s"></div>'
+                 '<div class="tbar" id="%s"></div>'
                  '<button type="button" class="stern v1" id="%s" aria-pressed="false" hidden>%s</button></div>'
-                 '<div id="%s"></div></div>' % (herz, bar, drache, knopf, SVG_LEER, body))
+                 '<div class="zmaj mini idle" id="%s"></div><div id="%s"></div></div>'
+                 % (herz, bar, knopf, SVG_LEER, drache, body))
         assert karte in index_html, knopf
+    assert ('<div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" aria-hidden="true"></div>'
+            '<div class="tbar" id="eBar"></div></div><div class="zmaj mini idle" id="zmajEinst"></div>'
+            '<div id="eBody"></div></div>') in index_html, "die Einstufung bekommt keinen Stern"
     assert '<div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>' in index_html
     assert '<div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>' in index_html
     assert '<div class="nav"><button id="eQuit" data-t="einst.abbrechen"></button><span></span></div>' in index_html
     assert index_html.count('class="stern v1"') == 2
-    assert index_html.count('<div class="zmajreihe">') == 2
+    assert 'class="zmajreihe"' not in index_html
+    regeln = [z for z in index_html.splitlines() if "{" in z and not z.lstrip().startswith(("/*", "-", "*"))]
+    assert not [z for z in regeln if ".zmajreihe" in z], "Regeln fuer die alte Huelle"
     assert 'class="stern' not in index_html.split('id="einstufungView"')[1].split("</section>")[0]
+    # 24 px im Knopf, wie in der gewaehlten Vorschau
+    assert "  b.innerHTML = sternSvg(an, 24);" in index_html
 
 
 def test_stern_nicht_mehr_in_der_leiste(index_html):
