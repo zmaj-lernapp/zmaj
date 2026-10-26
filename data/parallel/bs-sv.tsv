@@ -32,7 +32,6 @@ Možda	Kanske	word	vielleicht:Možda
 Živjeli!	Skål!	word	prost!:Živjeli!
 Prijatno	Smaklig måltid	word	guten appetit:Prijatno
 Zdravo	Hej (neutralt, överallt)	word	hallo (neutral, überall):Zdravo
-nula	noll	word	null:nula
 jedan	ett	word	eins:jedan
 dva	två	word	zwei:dva
 tri	tre	word	drei:tri
@@ -43,6 +42,7 @@ sedam	sju	word	sieben:sedam
 osam	åtta	word	acht:osam
 devet	nio	word	neun:devet
 deset	tio	word	zehn:deset
+nula	noll	word	null:nula
 jedanaest	elva	word	elf:jedanaest
 dvanaest	tolv	word	zwölf:dvanaest
 trinaest	tretton	word	dreizehn:trinaest

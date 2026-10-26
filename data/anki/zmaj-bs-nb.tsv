@@ -36,7 +36,6 @@ Možda	Kanskje	zmaj zmaj::01_basics
 Živjeli!	Skål!	zmaj zmaj::01_basics
 Prijatno	Vel bekomme	zmaj zmaj::01_basics
 Zdravo	Hei (nøytralt, overalt)	zmaj zmaj::01_basics
-nula	null	zmaj zmaj::02_zahlen
 jedan	en	zmaj zmaj::02_zahlen
 dva	to	zmaj zmaj::02_zahlen
 tri	tre	zmaj zmaj::02_zahlen
@@ -47,6 +46,7 @@ sedam	sju	zmaj zmaj::02_zahlen
 osam	åtte	zmaj zmaj::02_zahlen
 devet	ni	zmaj zmaj::02_zahlen
 deset	ti	zmaj zmaj::02_zahlen
+nula	null	zmaj zmaj::02_zahlen
 jedanaest	elleve	zmaj zmaj::02_zahlen
 dvanaest	tolv	zmaj zmaj::02_zahlen
 trinaest	tretten	zmaj zmaj::02_zahlen

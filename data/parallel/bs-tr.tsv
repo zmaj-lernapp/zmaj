@@ -32,7 +32,6 @@ Možda	Belki	word	vielleicht:Možda
 Živjeli!	Şerefe!	word	prost!:Živjeli!
 Prijatno	Afiyet olsun	word	guten appetit:Prijatno
 Zdravo	Merhaba (nötr, her yerde)	word	hallo (neutral, überall):Zdravo
-nula	sıfır	word	null:nula
 jedan	bir	word	eins:jedan
 dva	iki	word	zwei:dva
 tri	üç	word	drei:tri
@@ -43,6 +42,7 @@ sedam	yedi	word	sieben:sedam
 osam	sekiz	word	acht:osam
 devet	dokuz	word	neun:devet
 deset	on	word	zehn:deset
+nula	sıfır	word	null:nula
 jedanaest	on bir	word	elf:jedanaest
 dvanaest	on iki	word	zwölf:dvanaest
 trinaest	on üç	word	dreizehn:trinaest

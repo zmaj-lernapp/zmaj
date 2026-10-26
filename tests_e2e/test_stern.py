@@ -11,8 +11,9 @@ Was hier im echten Browser nachgeprueft wird:
     Ansage, Goldstern), Pop nur mit Bewegung, er bleibt nach dem
     Neuladen, ein Stern je Wort ueber alle Aufgabenarten, Saetze und
     Grammatik lassen sich markieren;
-  - die Lage: rechts buendig mit der Punktreihe, auf der Mitte des
-    Drachen, Luecke zum Drachen, Trefferflaeche 48 x 48 - und dass er
+  - die Lage: mittig im freien Platz zwischen Drache und rechtem
+    Innenrand der Karte (seit 26.10.2026 abends, Ajdins Kreis im
+    Bildschirmfoto), auf der Mitte des Drachen, Luecke zum Drachen, Trefferflaeche 48 x 48 - und dass er
     nichts ueberdeckt, bei allen Aufgabenarten (auch Sprechen und die
     groesste Kachelbank), vor und nach der Antwort, bei 100, 130 und
     200 % Schrift, in Lektion, Markiert-Runde und Level-Test;
@@ -315,6 +316,7 @@ LAGE = """(id) => { const b = document.getElementById(id), sec = b.closest('sect
   const mitte = document.elementFromPoint(s.left + s.width / 2, s.top + s.height / 2);
   return {huelle: b.parentElement.className, inKarte: card.contains(b), sichtbar: !b.hidden && !!b.offsetParent,
           w: s.width, h: s.height, rechtsBar: bar.right - s.right, rechtsInnen: innen - s.right,
+          frei: (s.left + s.width / 2) - (d.right + innen) / 2,
           hoehe: (s.top + s.height / 2) - (d.top + d.height / 2), luecke: s.left - d.right, drache: d.height,
           unterKopf: t.top - k.bottom, ueberAufgabe: Math.min(...teile.map(([e, r]) => r.top)) - t.bottom,
           schneidet: {drache: schneidet(d), kopf: schneidet(k),
@@ -325,10 +327,13 @@ LAGE = """(id) => { const b = document.getElementById(id), sec = b.closest('sect
 def _lage_ok(m, wo):
     assert m["huelle"] == "zmajreihe" and m["inKarte"] and m["sichtbar"], (wo, m)
     assert (m["w"], m["h"]) == (44, 44), (wo, m)
-    # rechts buendig mit dem Ende der Punktreihe und dem Innenrand der Karte
-    assert abs(m["rechtsBar"]) < 0.01 and abs(m["rechtsInnen"]) < 0.01, (wo, m)
+    # Mitte des freien Platzes zwischen rechter Drachenkante und rechtem
+    # Innenrand der Karte, +-2 px (26.10.2026: "den stern markieren knopf
+    # kannst du oben rechts neben den drachen hinmachen", Ajdins Kreis),
+    # und ganz innerhalb der Karte
+    assert abs(m["frei"]) <= 2 and m["rechtsInnen"] > 0, (wo, m)
     # auf Hoehe des Drachen: senkrecht auf seiner Mitte, rechts daneben
-    assert abs(m["hoehe"]) < 0.01 and m["luecke"] >= 18, (wo, m)
+    assert abs(m["hoehe"]) < 0.01 and m["luecke"] >= 8, (wo, m)
     # ueberdeckt nichts, auch nicht mit der Trefferflaeche
     assert m["schneidet"] == {"drache": False, "kopf": False, "aufgabe": []}, (wo, m)
     assert m["unterKopf"] >= 0 and m["ueberAufgabe"] >= 0, (wo, m)
@@ -336,7 +341,7 @@ def _lage_ok(m, wo):
 
 
 # Breite x Hoehe: 320 x 900 hat den grossen Drachen (120 px, erst unter 821 px
-# Hoehe 100 px) bei kleinster Breite - die engste Luecke, 18 px.
+# Hoehe 100 px) bei kleinster Breite - die engste Luecke, 9 px.
 FORMATE = [(320, 640), (320, 900), (360, 726), (390, 844), (412, 915)]
 
 
@@ -356,7 +361,7 @@ def test_stern_oben_rechts_neben_dem_drachen(browser, basis, heute_stand, knopf,
         _lage_ok(m, (knopf, breite, hoehe))
         assert m["drache"] == (100 if hoehe <= 820 else 120), m
         if (breite, hoehe) == (320, 900):
-            assert m["luecke"] == 18, m
+            assert 8 <= m["luecke"] <= 10, m
         # Vor der Antwort ganz im Bild, ohne zu scrollen
         assert seite.js("""(id) => { const r = document.getElementById(id).getBoundingClientRect();
                            return scrollY === 0 && r.top >= 0 && r.bottom <= innerHeight; }""", knopf)

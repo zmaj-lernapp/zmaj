@@ -414,6 +414,20 @@ def pruefe_vokabeln(daten):
         # eine 1 hiesse dort still "gemischt" - deshalb nur True oder False.
         if "reihenfolge" in kat and not isinstance(kat["reihenfolge"], bool):
             probleme.append(f"[{kid}] reihenfolge muss True oder False sein: {kat['reihenfolge']!r}")
+        # reihe (26.10.2026): bs-Wörter dieses Levels, die buildLesson() in
+        # dieser Folge vorstellt. Ein Tippfehler hieße in der App still
+        # "gemischt" - deshalb hier gemeldet.
+        if "reihe" in kat:
+            r = kat["reihe"]
+            bs_hier = [w.get("bs") for w in kat.get("words", [])]
+            if not isinstance(r, list) or len(r) < 2 or len(set(map(str, r))) != len(r):
+                probleme.append(f"[{kid}] reihe muss eine Liste aus mindestens zwei verschiedenen Wörtern sein: {r!r}")
+            else:
+                for x in r:
+                    if bs_hier.count(x) != 1:
+                        probleme.append(f"[{kid}] reihe nennt '{x}', das nicht genau einmal im Level steht")
+            if kat.get("reihenfolge") is True:
+                probleme.append(f"[{kid}] reihe und reihenfolge zugleich - reihenfolge ordnet schon alles")
         ids.add(kid)
         if sektionen and kat.get("sektion") not in sektionen:
             probleme.append(f"[{kid}] unbekannte Sektion '{kat.get('sektion')}'")

@@ -18,16 +18,28 @@ Aufbau:
                              Wiederholungsfragen (3 von 10 Fragen).
                   "reihenfolge": optional True (seit 26.10.2026): die neuen
                              Wörter kommen in der Reihenfolge von "words"
-                             dran statt gemischt (nula, jedan, dva ...). Ajdin:
+                             dran statt gemischt (jedan, dva ... deset, nula). Ajdin:
                              „bei der zahlen sektion am besten die zahlen in
                              reihenfolge lernen sowie wochentage und wo es
                              noch passt“. Gesetzt bei zahlen, wochentage,
                              monate und mengen (Zahlen im Satz: jedan brat,
                              dva brata, pet braće - je Hauptwort erst eins,
                              dann die Mehrzahl), den Leveln mit einer
-                             eindeutigen Reihe.
+                             eindeutigen Reihe. Seit 26.10.2026 abends auch
+                             bei konjugation und zukunft (je Verb ja, ti,
+                             on/ona, mi, vi, oni) und routine (aufstehen bis
+                             schlafen gehen). Ajdin: „und auch reihenfolge
+                             berücksichtigen wo es noch sinn ergibt geh
+                             durch die app durch“. Was nicht in die Folge
+                             passt, steht in der Liste danach.
                              Die Aufgaben einer Lektion, die Wiederholung, der
                              Level-Test und die Einstufung bleiben gemischt.
+                  "reihe"  : optional (seit 26.10.2026): bs-Wörter dieses
+                             Levels, die in einem sonst gemischten Level in
+                             dieser Folge vorgestellt werden (zeit: jutro,
+                             podne, večer, noć; wetter: die Jahreszeiten).
+                             Der Rest bleibt gemischt; die Regel steht in
+                             buildLesson() in web/index.html.
                   "words"  : Liste von Wörtern {"de": "Deutsch", "bs": "Bosnisch"}
                              Optional "auch": weitere Antworten, die beim
                              Tippen ebenfalls richtig sind, z. B. bei „groß“
@@ -163,9 +175,8 @@ KATEGORIEN = [
     ]},
 
     {"id": "zahlen", "label": "Zahlen", "sektion": "alltag", "tipp": "Zählen von null bis tausend.",
-     "reihenfolge": True,   # nach dem Zahlwert, siehe oben (26.10.2026)
+     "reihenfolge": True,   # jedan bis deset, dann nula, dann nach dem Zahlwert (26.10.2026)
      "words": [
-        {"de": "null",        "bs": "nula"},
         {"de": "eins",        "bs": "jedan"},
         {"de": "zwei",        "bs": "dva"},
         {"de": "drei",        "bs": "tri"},
@@ -176,6 +187,8 @@ KATEGORIEN = [
         {"de": "acht",        "bs": "osam"},
         {"de": "neun",        "bs": "devet"},
         {"de": "zehn",        "bs": "deset"},
+        # Ajdin am 26.10.2026: Zahlen fangen mit jedan an, nula kommt nach deset.
+        {"de": "null",        "bs": "nula"},
         {"de": "elf",         "bs": "jedanaest"},
         {"de": "zwölf",       "bs": "dvanaest"},
         {"de": "dreizehn",    "bs": "trinaest"},
@@ -341,6 +354,7 @@ KATEGORIEN = [
     ]},
 
     {"id": "zeit", "label": "Zeit", "sektion": "alltag", "baut_auf": ["zahlen", "wochentage", "monate"], "tipp": "Uhrzeit und Tageszeiten. Ohne Zahlen geht hier nichts.",
+     "reihe": ["jutro", "podne", "večer", "noć"],   # Tageszeiten in Folge, der Rest gemischt (26.10.2026)
      "words": [
         {"de": "heute",               "bs": "danas"},
         {"de": "morgen (der nächste Tag)",    "bs": "sutra"},
@@ -387,6 +401,7 @@ KATEGORIEN = [
     ]},
 
     {"id": "wetter", "label": "Wetter & Natur", "sektion": "alltag", "baut_auf": ["farben", "monate"], "tipp": "Wetter, Jahreszeiten, Tiere.",
+     "reihe": ["proljeće", "ljeto", "jesen", "zima"],   # Jahreszeiten in Folge, der Rest gemischt (26.10.2026)
      "words": [
         {"de": "Wetter",        "bs": "vrijeme"},
         {"de": "Sonne",         "bs": "sunce"},
@@ -1049,6 +1064,7 @@ KATEGORIEN = [
 
     {"id": "konjugation", "label": "Verben beugen", "sektion": "saetze", "tipp": "Ich bin, du bist, er ist: die Gegenwart der wichtigsten Verben.",
      "baut_auf": ["verben", "basics", "familie"],
+     "reihenfolge": True,   # je Verb ja, ti, on/ona, mi, vi, oni (26.10.2026)
      "words": [
         {"de": "ich bin",         "bs": "ja sam"},
         {"de": "du bist",         "bs": "ti si"},
@@ -1348,6 +1364,7 @@ KATEGORIEN = [
 
     {"id": "zukunft", "label": "Zukunft & Pläne", "sektion": "saetze", "tipp": "Ću, ćeš, će: über morgen sprechen.",
      "baut_auf": ["konjugation", "zeit", "monate"],
+     "reihenfolge": True,   # ću, ćeš, će, ćemo, ćete, dann die Sätze (26.10.2026)
      "words": [
         {"de": "ich werde",                 "bs": "ću"},
         {"de": "du wirst",                  "bs": "ćeš"},
@@ -1441,6 +1458,7 @@ KATEGORIEN = [
 
     {"id": "routine", "label": "Tagesablauf", "sektion": "saetze", "tipp": "Aufstehen, duschen, arbeiten, kochen, schlafen: den Tag erzählen.",
      "baut_auf": ["reflexiv", "zeit", "essen"],
+     "reihenfolge": True,   # aufstehen bis schlafen gehen, dann der Rest (26.10.2026)
      "words": [
         {"de": "aufstehen",                 "bs": "ustajati"},
         {"de": "Ich stehe um sieben auf",   "bs": "Ustajem u sedam"},
