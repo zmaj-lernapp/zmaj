@@ -4665,6 +4665,13 @@ function applyAnim(){
   zmajeAnpassen();   // der Schalter gilt auch fuer den Drachen (07.10.2026)
 }
 let actx = null;
+/* tonNull: waehrend sound() die gemeinsame Startzeit aller Toene eines
+   Klangs auf der Uhr von actx. rueckTon: welcher Rueckmeldeton ('ok'/'no')
+   zuletzt angestimmt wurde und wann - auf ihn setzt spaeterSprechen() das
+   Wort nach einer Antwort (26.10.2026, siehe "Wann das Wort kommt, Teil 2").
+   Bis dahin las jeder tone() die Uhr selbst, die Toene eines Klangs
+   konnten also um einen Rechenblock (2,7 ms) auseinanderliegen. */
+let tonNull = null, rueckTon = null;
 /* Lautstärke: Die Vokabeln kommen als fertige Aufnahme und damit in voller
    Höhe. Dagegen waren die berechneten Töne mit 0,18 deutlich zu leise –
    man hörte das Wort, aber kaum, ob es richtig war. Jetzt 0,38. Ein
@@ -4674,7 +4681,7 @@ function tone(freq, start, dur, type='sine', gain=0.38){
   const o=actx.createOscillator(), g=actx.createGain();
   o.type=type; o.frequency.value=freq; g.gain.value=0;
   o.connect(g); g.connect(actx.destination);
-  const ab=actx.currentTime+start;
+  const ab=(tonNull !== null ? tonNull : actx.currentTime)+start;
   g.gain.setValueAtTime(0,ab); g.gain.linearRampToValueAtTime(gain,ab+0.01); g.gain.exponentialRampToValueAtTime(0.0001,ab+dur);
   o.start(ab); o.stop(ab+dur+0.05);
 }
@@ -4688,6 +4695,7 @@ function sound(kind){
   try{
     if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
     if(actx.state==='suspended') actx.resume();
+    tonNull = actx.currentTime;
     if(kind==='ok'){ tone(660,0,0.12); tone(880,0.11,0.18); }
     else if(kind==='no'){ tone(200,0,0.22,'sawtooth',0.26); tone(160,0.12,0.25,'sawtooth',0.22); }
     else if(kind==='done'){ tone(523,0,0.14); tone(659,0.13,0.14); tone(784,0.26,0.14); tone(1047,0.39,0.35); }
@@ -4723,7 +4731,9 @@ function sound(kind){
                                 tone(1047,0.33,0.15); tone(1319,0.45,0.50);
                                 tone(1568,0.50,0.46,'triangle',0.20);
                                 tone(2093,0.56,0.40,'sine',0.11); }
+    if(kind==='ok' || kind==='no') rueckTon = {art: kind, zeit: tonNull, um: performance.now()};
   }catch(e){}
+  tonNull = null;
 }
 function wireSwitch(id, get, set){
   const b=$(id); b.setAttribute('aria-checked', get());
@@ -6695,6 +6705,7 @@ const spieler = new Audio(); spieler.preload = 'none';
 /* Der laufende stumme Anlauf aus tonVorwaermen(), sonst null (22.10.2026). */
 let vorwaermen = null;
 function spieleDatei(datei, fertig){
+  waStopp();               // nie zwei Woerter uebereinander (26.10.2026)
   pausiert = false;        // ein neuer Ton hebt eine alte Pause auf
   /* Ein echtes Wort ist nie stumm: laeuft noch das Vorwaermen, ist es
      hiermit vorbei, und sein Abschluss laesst den spieler in Ruhe. */
@@ -6719,6 +6730,10 @@ function spieleDatei(datei, fertig){
    `laeuftVor` ist gesetzt, solange ein Knopf mitlaufen soll - er faerbt
    sich zurueck, wenn der Ton endet oder abgebrochen wird. */
 let laeuftVor = null, tonMarke = 0;
+/* Das Wort, das gerade ueber WebAudio laeuft oder dort bestellt ist (eine
+   AudioBufferSourceNode), sonst null - siehe pufferSpielen() (26.10.2026).
+   Steht hier oben, weil stilleBitte() es abstellt. */
+let waQuelle = null;
 /* Wo eine vorgelesene Geschichte unterbrochen wurde: {datei, sekunde}.
    Wer ein Wort antippt, um es uebersetzt zu bekommen, soll danach nicht
    wieder bei Sekunde null landen - stilleBitte() dreht currentTime aber
@@ -6758,6 +6773,7 @@ function stilleBitte(behalteAufgabe){
   pausiert = false;        // Stopp ist keine Pause: der Knopf darf zurueck
   spieler.onended = null;  // zuerst, und ausserhalb des try: das darf nie haengenbleiben
   try{ spieler.pause(); spieler.currentTime = 0; }catch(e){}
+  waStopp();               // auch ein Wort ueber WebAudio, laufend oder erst bestellt (26.10.2026)
   if(hasTTS){ try{ speechSynthesis.cancel(); }catch(e){} }
   const h = hoererAbbrechen; hoererAbbrechen = null;
   if(h) try{ h(); }catch(e){}
@@ -6940,8 +6956,17 @@ function tempoLeiste(id, mitWort){
    Viertelsekunde, kaeme der Ton NACH dem Abstellen - und liefe wieder in
    die naechste Ansicht hinein. Deshalb eine Marke: was vor dem letzten
    stilleBitte() bestellt wurde, wird nicht mehr ausgeliefert. */
-function spaeterSprechen(text, ms){
+/* Seit dem 26.10.2026: ok (true/false) heisst "nach einer Antwort". Liegt
+   der Puffer bereit, kommt das Wort dann auf der Uhr des Rueckmeldetons
+   (rueckTon), ohne ok (neues Wort, Hoerfrage) sofort - siehe "Wann das
+   Wort kommt, Teil 2" gleich darunter. Sonst wie bisher: ms warten, dann
+   speak(). Die Marke gilt fuer beide Wege: ein bestelltes Wort ueber
+   WebAudio stellt stilleBitte() ab (waStopp), bevor es zu hoeren ist. */
+function spaeterSprechen(text, ms, ok){
   const marke = ++tonMarke;
+  const ton = ok === undefined ? null : rueckTonNehmen();
+  const wann = ton && soundOn ? ton.zeit + (ton.art === 'no' ? ABSTAND_NO : ABSTAND_OK) : 0;
+  if(pufferSpielen(text, null, wann)) return;
   setTimeout(()=>{ if(marke === tonMarke) speak(text); }, ms);
 }
 /* ---- Wann das Wort kommt (22.10.2026) ----
@@ -6961,6 +6986,140 @@ function spaeterSprechen(text, ms){
    Bildern - 100 ms reichen. */
 const nachAntwort = ok => soundOn ? (ok ? 180 : 250) : 40;
 const BEIM_ERSCHEINEN = 100;
+/* ---- Wann das Wort kommt, Teil 2 (26.10.2026) ----
+   Ajdin: "die sprecher stimme kommt immernoch etwas zu langsam". Auf seinem
+   S21 gemessen, vom Tippen bis zum ersten hoerbaren Laut: nach einer
+   richtigen Antwort 273 ms (bis 367), nach einer falschen 326 ms, beim
+   Erscheinen eines neuen Worts 199 ms. Davon sind 180, 250 und 100 ms die
+   Wartezeiten oben, der Rest ist der Anlauf des spielers (Datei holen,
+   dekodieren, Ausgabe anwerfen) - und der schwankt, weil er erst nach dem
+   Zeitgeber beginnt.
+   Jetzt laufen Woerter und Saetze ueber WebAudio, und der spieler ist der
+   Rueckfall:
+   - Erscheint eine Aufgabe, wird ihr Wort schon geholt und dekodiert
+     (pufferLaden(), 10-37 ms auf dem S21, waehrend man noch liest), ebenso
+     das der naechsten Aufgabe - genau der Text, den die Aufgabe spricht
+     (aufgabeText() vor renderTask()). Sechs Puffer reichen fuer die
+     aktuelle, die naechste und die Wiederholungen.
+   - Nach einer Antwort wird das Wort im selben Augenblick bestellt wie der
+     Rueckmeldeton, auf dessen Uhr: Start bei Tonbeginn + ABSTAND_OK bzw.
+     ABSTAND_NO, in der Datei ab kurz vor dem ersten Laut (Vorlauf). Kein
+     Zeitgeber und kein Anlauf dazwischen. Ohne Toene sofort.
+   - Neues Wort und Hoerfrage: sofort, sobald die Aufgabe steht.
+   - Der Abstand ist gemessen (abstand_messen.py, Arbeitsordner
+     sprecher_einbau): sound('ok') und sound('no') offline gerendert,
+     Huellkurve und Welle. 'ok' ist ab 171 ms nach Tonbeginn dauerhaft
+     leiser als -30 dBFS, 'no' ab 191 ms. Die Datei startet 5 ms vor ihrem
+     ersten Laut (VORLAUF_RAND) - also 167 und 186 ms: setzt das Wort ein,
+     ist der Ton hoechstens noch -30 dBFS laut. Je der kleinste solche Wert.
+   - Der Vorlauf ist die Stille am Anfang der Datei, gemessen am Puffer
+     selbst (erster Wert ueber -65 dBFS; bei den Emir-Woertern im Paket 25
+     bis 41 ms, meist 30). Sie wird uebersprungen statt abgewartet.
+   Am PC nachgemessen (Median vom Tippen bis zum ersten hoerbaren Laut,
+   Messweg 'eingebaut' aus werkzeuge/handy_messen/mess.js, Opus-Dateien
+   wie im Paket): nach richtig 339 -> 226 ms, nach falsch 420 -> 248 ms,
+   neues Wort 273 -> 68 ms. Auf dem Handy misst es handy_messen.py mit den
+   Gruppen eingebaut_*.
+   Rueckfall auf den spieler wie bisher (Wartezeiten oben), wenn der Puffer
+   noch nicht da ist, das Tempo nicht 1 ist (WebAudio kennt kein
+   preservesPitch, 0,75x klaenge tiefer), es keinen AudioContext gibt oder
+   die Datei nicht laedt. Die Geschichten bleiben ganz beim spieler
+   (sprichMitSpieler): Mitlesen, Pause und Weiterlesen haengen an ihm. */
+const ABSTAND_OK = 0.167, ABSTAND_NO = 0.186;   // s ab Tonbeginn bis zum Start der Datei
+const VORLAUF_SCHWELLE = Math.pow(10, -65 / 20), VORLAUF_RAND = 0.005;
+const PUFFER_MAX = 6;
+/* Datei -> {buf, vorlauf}; buf ist null, solange sie laedt. Die
+   Reihenfolge der Map ist die der letzten Benutzung, vorn faellt heraus. */
+const puffer = new Map();
+/* Der AudioContext fuer Toene und Woerter. Seit dem 26.10.2026 auch bei
+   Toenen aus - die Woerter laufen darueber. */
+function tonKontext(){
+  if(!actx) try{ actx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  return actx;
+}
+/* Sekunden bis kurz vor dem ersten Laut im Puffer. */
+function vorlaufMessen(buf){
+  let erst = Infinity;
+  try{
+    for(let k = 0; k < buf.numberOfChannels; k++){
+      const d = buf.getChannelData(k), n = Math.min(d.length, erst);
+      for(let i = 0; i < n; i++) if(d[i] > VORLAUF_SCHWELLE || d[i] < -VORLAUF_SCHWELLE){ erst = i; break; }
+    }
+  }catch(e){ return 0; }
+  return erst === Infinity ? 0 : Math.max(0, erst / buf.sampleRate - VORLAUF_RAND);
+}
+/* Holt und dekodiert eine Datei in den Zwischenspeicher. Schlaegt es
+   fehl, bleibt nichts liegen - dann spielt der spieler. */
+function pufferLaden(datei){
+  if(!datei || tempo !== 1) return;
+  const da = puffer.get(datei);
+  if(da){ puffer.delete(datei); puffer.set(datei, da); return; }
+  const ctx = tonKontext();
+  if(!ctx || typeof fetch !== 'function') return;
+  const p = {buf: null, vorlauf: 0};
+  puffer.set(datei, p);
+  while(puffer.size > PUFFER_MAX) puffer.delete(puffer.keys().next().value);
+  fetch('audio/' + datei)
+    .then(a => { if(!a.ok) throw new Error('HTTP ' + a.status); return a.arrayBuffer(); })
+    .then(daten => ctx.decodeAudioData(daten))
+    .then(buf => { p.vorlauf = vorlaufMessen(buf); p.buf = buf; })
+    .catch(() => { if(puffer.get(datei) === p) puffer.delete(datei); });
+}
+function pufferNehmen(datei){
+  const p = puffer.get(datei);
+  if(!p || !p.buf) return null;
+  puffer.delete(datei); puffer.set(datei, p);
+  return p;
+}
+/* Der Rueckmeldeton dieser Antwort - nur einmal, und nur frisch. */
+function rueckTonNehmen(){
+  const t = rueckTon; rueckTon = null;
+  return t && performance.now() - t.um < 1000 ? t : null;
+}
+function waStopp(){
+  const q = waQuelle; waQuelle = null;
+  if(q){ q.onended = null; try{ q.stop(); }catch(e){} }
+}
+/* Spielt die Aufnahme zu text ueber WebAudio, wenn ihr Puffer bereitliegt.
+   wann: Startzeit auf der Uhr von actx, 0 = sofort. false heisst: geht
+   nicht, der Aufrufer nimmt den spieler. Es laeuft immer nur ein Wort:
+   ein laufendes oder bestelltes wird abgestellt, der spieler angehalten
+   (nicht waehrend des stummen Vorwaermens, das endet von selbst). */
+function pufferSpielen(text, fertig, wann){
+  if(tempo !== 1 || !actx || actx.state === 'closed') return false;
+  const datei = audioDatei(text);
+  const p = datei ? pufferNehmen(datei) : null;
+  if(!p) return false;
+  let q;
+  try{
+    q = actx.createBufferSource();
+    q.buffer = p.buf;
+    q.connect(actx.destination);
+  }catch(e){ return false; }
+  waStopp();
+  pausiert = false;
+  if(!spieler.paused && !vorwaermen) try{ spieler.pause(); }catch(e){}
+  q.onended = ()=>{ if(waQuelle === q){ waQuelle = null; if(fertig) try{ fertig(); }catch(e){} } };
+  waQuelle = q;
+  try{ q.start(Math.max(wann || 0, actx.currentTime), p.vorlauf); }
+  catch(e){ waQuelle = null; return false; }
+  if(actx.state !== 'running') kontextWecken(q, text, fertig);
+  return true;
+}
+/* Android legt den AudioContext nach rund 30 s Stille still. Dann vor dem
+   Start fortsetzen - das Wort ist schon bestellt und kommt, sobald er
+   laeuft. Laeuft er nach WECKEN_MS noch immer nicht (ein Browser ohne
+   Geste), kommt das Wort ueber den spieler, und die Quelle wird
+   abgestellt, damit sie nicht spaeter doch noch hineinredet. */
+const WECKEN_MS = 250;
+function kontextWecken(q, text, fertig){
+  const marke = tonMarke, ctx = actx;
+  try{ const p = ctx.resume(); if(p && p.catch) p.catch(()=>{}); }catch(e){}
+  setTimeout(()=>{
+    if(waQuelle !== q || marke !== tonMarke || ctx.state === 'running') return;
+    waStopp(); sprichMitSpieler(text, fertig);
+  }, WECKEN_MS);
+}
 /* Das Wort fuer nach der Antwort schon beim Erscheinen der Aufgabe in den
    spieler zu legen (Vorladen), war ebenfalls gebaut und gemessen: 0-3 ms
    frueher, auch mit vierfach gedrosselter CPU. Der Rest des Abspielwegs
@@ -6975,7 +7134,7 @@ const BEIM_ERSCHEINEN = 100;
    Rueckmeldetoene legte erst die erste Antwort an - lief vorher noch kein
    Wort, hielt das die Seite bis zu 0,6 s fest, und das Wort danach kam um
    so viel spaeter. Beides passiert jetzt einmal beim Start: den AudioContext
-   anlegen (nur mit Toenen an) und eine Zehntelsekunde Stille STUMM
+   anlegen (bis 26.10.2026 nur mit Toenen an, seitdem immer) und eine Zehntelsekunde Stille STUMM
    abspielen. Stumm, weil ein lautes Abspielen auf dem Handy die Musik
    anderer Apps anhalten kann. Die Stille entsteht als WAV im Speicher
    (stilleWav): eine echte Aufnahme dafuer abzurufen brachte das erste Wort
@@ -6997,7 +7156,7 @@ function stilleWav(){
 }
 function tonVorwaermen(){
   if(!AUDIO.size) return;              // keine Aufnahmen, also auch keine Lektion
-  if(soundOn && !actx) try{ actx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  tonKontext();                        // seit dem 26.10.2026 auch bei Toenen aus: die Woerter laufen ueber ihn
   if(!spieler.paused || pausiert || laeuftVor || spieler.getAttribute('src')) return;
   let adresse = null;
   try{ adresse = stilleWav(); }catch(e){ return; }
@@ -7043,6 +7202,7 @@ function sprichMitStimme(text, fertig){
   pausiert = false;
   // Sonst laegen am PC eine noch laufende Aufnahme und die Stimme uebereinander
   try{ spieler.pause(); spieler.currentTime = 0; }catch(e){}
+  waStopp();                 // ebenso ein Wort ueber WebAudio (26.10.2026)
   const u = new SpeechSynthesisUtterance(fuerStimme(text));
   const v = pickVoice();
   if(v){ u.lang=v.lang; u.voice=v; } else { u.lang='hr-HR'; }
@@ -7055,6 +7215,19 @@ function sprichMitStimme(text, fertig){
 /* `fertig` wird gerufen, wenn der Ton von selbst zu Ende ist - daran haengt
    der Knopf, der dann von "Stopp" wieder auf "Vorlesen" springt. */
 function speak(text, fertig){
+  /* Liegt die Aufnahme dekodiert bereit, sofort ueber WebAudio (26.10.2026)
+     - auch fuer den Hoeren-Knopf und die Lautsprecher. Sonst wie bisher. */
+  /* Ein noch wartendes spaeterSprechen() kommt nicht hinterher: wer in den
+     100 ms nach dem Erscheinen auf Hoeren tippt, hoerte das Wort sonst ein
+     zweites Mal von vorn (26.10.2026). */
+  tonMarke++;
+  if(pufferSpielen(text, fertig, 0)) return;
+  sprichMitSpieler(text, fertig);
+}
+/* Der Weg ueber den spieler - bis zum 26.10.2026 war das speak() selbst.
+   Die Geschichten nehmen immer ihn: Mitlesen, Pause, Weiterlesen und der
+   Sprung zur gemerkten Stelle lesen spieler.currentTime. */
+function sprichMitSpieler(text, fertig){
   const datei = audioDatei(text);
   if(!datei){ sprichMitStimme(text, fertig); return; }
   /* Faellt die Datei aus (fehlt, Autoplay gesperrt), springt die Stimme ein.
@@ -9205,8 +9378,9 @@ function showStory(){
          Wort. Sobald eine Sprache aus dem Vorlese-Knopf "Hör die Geschichte"
          macht, stünde hier sonst etwas Falsches. */
       b.insertAdjacentHTML('beforeend', '<button type="button" class="wortton" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>');
-      b.querySelector('.wortton').addEventListener('click', ()=>{ stilleBitte(); speak(wort); });
-      speak(wort);
+      // Ueber den spieler wie die ganze Geschichte, nie ueber WebAudio (26.10.2026)
+      b.querySelector('.wortton').addEventListener('click', ()=>{ stilleBitte(); sprichMitSpieler(wort); });
+      sprichMitSpieler(wort);
     }
   }));
   $('rTrans').addEventListener('click',()=>{ const box=$('rTransText'); box.hidden=!box.hidden; $('rTrans').textContent = box.hidden?t('gesch.zeigen'):t('gesch.verbergen'); });
@@ -9261,7 +9435,8 @@ function showStory(){
     /* Vor speak(): endet der Ton sofort (keine Aufnahme, keine Stimme),
        gibt wiederVorlesen() die Sperre gleich wieder frei. */
     wachHalten(true);
-    speak(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); });
+    // nie ueber WebAudio: das Mitlesen liest spieler.currentTime (26.10.2026)
+    sprichMitSpieler(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); });
     /* Mitlesen (20.10.2026). Ohne passende Wortzeiten oder ohne Aufnahme
        (Computerstimme) bleibt der Text einfach ohne Markierung. */
     mitlesenStart(audioDatei(s.text), $('rBody').querySelectorAll('.txt .w'));
@@ -9607,6 +9782,45 @@ function rueckmeldungZeigen(feld, klasse, schluessel, wort, bosnisch, anhang){
   ansagen(feld.innerHTML, WEITER_NACH + 80);
 }
 
+/* ---- Was eine Aufgabe vorliest (26.10.2026) ----
+   Fuer pufferLaden(): genau der Text, den renderTask() an speak() bzw.
+   spaeterSprechen() gibt - sonst laege der falsche Puffer bereit. Woerter:
+   w.bs. Lueckensatz: der fertige Satz, sonst die Loesung (lueckeText,
+   dieselbe Funktion wie in renderTask). Kacheln: der Satz. Mit wechselnder
+   Zahl die gezogene Fassung; bei der naechsten Aufgabe ist sie noch nicht
+   gezogen (das tut erst renderTask), dann nichts - ein Satz kommt ohnehin
+   erst nach der Antwort, bis dahin ist sein Puffer laengst da.
+   Grammatik: die Antwort, wenn sie bosnisch ist. */
+function lueckeText(s){
+  const ganz = s.text.replace('___', s.answer);
+  return hoerbar(ganz) ? ganz : hoerbar(s.answer) ? s.answer : null;
+}
+function aufgabeText(task){
+  if(!task) return null;
+  if(task.typ === 'gap' || task.typ === 'kacheln'){
+    if(!task.s || (task.s.zahl && task.v === undefined)) return null;
+    const s = zahlFassung(task.s, task.v);
+    return task.typ === 'gap' ? lueckeText(s) : s.bs;
+  }
+  if(task.typ === 'gram') return task.g && gramAntwortBosnisch(task.g.richtig) ? task.g.richtig : null;
+  return task.w ? task.w.bs : null;
+}
+/* Die Aufgabe nach dieser - in Lektion, Level-Test oder Einstufung. */
+function folgeAufgabe(task){
+  for(const liste of [Lx && Lx.queue, Tx && Tx.qs, Ex && Ex.qs]){
+    const i = Array.isArray(liste) ? liste.indexOf(task) : -1;
+    if(i >= 0) return liste[i + 1] || null;
+  }
+  return null;
+}
+function woerterVorladen(task){
+  if(!canListen || tempo !== 1) return;
+  [task, folgeAufgabe(task)].forEach(a => {
+    const text = aufgabeText(a);
+    if(text) pufferLaden(audioDatei(text));
+  });
+}
+
 function renderTask(task, body, done, opts={}){
   /* NUR innerhalb dieser Aufgabe suchen. Lektion und Test benutzen dieselben
      Kennungen (xOpts, xFb, ...). Sind beide gefuellt, liefert
@@ -9623,6 +9837,7 @@ function renderTask(task, body, done, opts={}){
      zahlZiehen(). Die Wiederholung ({...task, retry:true}) hat task.v schon
      und kommt mit derselben Zahl. */
   if(task.s && task.s.zahl && task.v === undefined) task.v = zahlZiehen(task.s);
+  woerterVorladen(task);               // ihr Wort und das der naechsten Aufgabe dekodieren (26.10.2026)
   const kick = (text)=> '<div class="kicker aufgabe">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
   const rueckmeldung = (klasse, schluessel, wort, bosnisch, anhang)=>
     rueckmeldungZeigen($$('xFb'), klasse, schluessel, wort, bosnisch, anhang);
@@ -9690,7 +9905,7 @@ function renderTask(task, body, done, opts={}){
   }
   if(task.typ==='mc'){
     body.innerHTML = kick(t('task.was_heisst'))+'<div class="prompt'+(w.de.length>18?' long':'')+'">'+esc(w.de)+'</div><div class="options" id="xOpts"></div><div class="feedback" id="xFb"></div>';
-    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok}); }, 'bs');
+    renderChoice($$('xOpts'), shuffle([w, ...distractors(w, pool, 3)]), w.bs, o=>o.bs, ok=>{ fb(ok, w.bs); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok}); }, 'bs');
     return;
   }
   if(task.typ==='mcrev'){
@@ -9705,7 +9920,7 @@ function renderTask(task, body, done, opts={}){
       '<button class="listen" data-hoer="1">'+mitSymbol('lautsprecher', t('task.hoeren'))+'</button>');
     const hoerKnopf = body.querySelector('[data-hoer]');
     if(hoerKnopf) hoerKnopf.addEventListener('click',()=>{ stilleBitte(); speak(w.bs); });
-    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok}); });
+    renderChoice(body.querySelector('.options'), shuffle([w, ...distractors(w, pool, 3)]), w.de, o=>o.de, ok=>{ fb(ok, w.de, '', false); loesung(w.bs, w.de); spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok}); });
     return;
   }
   if(task.typ==='type'){
@@ -9733,7 +9948,7 @@ function renderTask(task, body, done, opts={}){
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
       else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', w.bs);
       loesung(w.bs, w.de);
-      sound(ok?'ok':'no'); spaeterSprechen(w.bs, nachAntwort(ok)); done({ok});
+      sound(ok?'ok':'no'); spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok});
     };
     inp.addEventListener('keydown',e=>{ if(e.key==='Enter' && !e.repeat) check(); });   // festgehalten ist kein zweiter Versuch
     $$('xCheck').addEventListener('click',check);
@@ -9893,9 +10108,8 @@ function renderTask(task, body, done, opts={}){
       /* Erst jetzt den FERTIGEN Satz sprechen - vorher waere die Loesung
          verraten. Gehoert wird der Satz mit eingesetztem Wort, nicht der
          mit der Luecke. */
-      const ganz = s.text.replace('___', s.answer);
-      if(hoerbar(ganz)) spaeterSprechen(ganz, nachAntwort(ok));
-      else if(hoerbar(s.answer)) spaeterSprechen(s.answer, nachAntwort(ok));
+      const gesagt = lueckeText(s);    // derselbe Text, den woerterVorladen() dekodiert hat (26.10.2026)
+      if(gesagt) spaeterSprechen(gesagt, nachAntwort(ok), ok);
       done({ok});
     };
     inp.addEventListener('keydown',e=>{ if(e.key==='Enter' && !e.repeat) check(); });   // festgehalten ist kein zweiter Versuch
@@ -10018,7 +10232,7 @@ function renderTask(task, body, done, opts={}){
       loesung(s.bs, s.de);
       sound(ok?'ok':'no');
       // Erst jetzt vorlesen - vorher waere die Loesung verraten.
-      if(hoerbar(s.bs)) spaeterSprechen(s.bs, nachAntwort(ok));
+      if(hoerbar(s.bs)) spaeterSprechen(s.bs, nachAntwort(ok), ok);
       done({ok});
     };
     pruef.addEventListener('click', check);
@@ -10035,7 +10249,7 @@ function renderTask(task, body, done, opts={}){
     // Vorgelesen auch nur dann: "weiblich (ona)" sprach sonst die bosnische
     // Stimme der Sprachausgabe - ein deutsches Wort mit bosnischer Aussprache.
     const bsRichtig = gramAntwortBosnisch(g.richtig);
-    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, nachAntwort(ok)); done({ok, slow:!ok && !!g.tipp}); },
+    renderChoice($$('xOpts'), shuffle(g.optionen.map(o=>({k:o}))), g.richtig, o=>o.k, ok=>{ fb(ok, g.richtig, '', bsRichtig ? undefined : false); const gl=gramLoesung(g); if(gl) loesung(gl[0], gl[1]); if(!ok && g.tipp) $$('xTipp').textContent=g.tipp; if(bsRichtig && vorlesbar(g.richtig)) spaeterSprechen(g.richtig, nachAntwort(ok), ok); done({ok, slow:!ok && !!g.tipp}); },
       o => gramAntwortBosnisch(o) ? 'bs' : '');
     return;
   }
