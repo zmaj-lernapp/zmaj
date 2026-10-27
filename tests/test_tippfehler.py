@@ -34,3 +34,28 @@ def test_hinweis_in_allen_acht_sprachen(sprachcodes):
 def test_app_fragt_genau_diesen_schluessel():
     html = io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8").read()
     assert re.findall(r"t\('task\.tippfehler'\)", html), "index.html zeigt den Hinweis nicht"
+
+
+def test_endungs_hinweis_in_allen_acht_sprachen(sprachcodes):
+    """Im Lueckensatz bekommt seit dem 27.10.2026 auch eine andere Endung
+    einen Hinweis (Ajdin: "Auch bei Endung Hinweis"). Er hat einen eigenen
+    Text, der die Endung nennt und nicht von einem Tippfehler spricht, und
+    faengt mit demselben "Fast!" an. Auch er verraet die Loesung nicht."""
+    assert sprachen.TEXTE["de"]["task.endung"] == "Fast! Achte auf die Endung."
+    gesehen = set()
+    for code in sprachcodes:
+        texte = sprachen.TEXTE[code]
+        text = texte.get("task.endung")
+        assert text and text.strip() == text, code
+        assert "{" not in text and "}" not in text, "verraet die Loesung: " + code
+        assert text not in (texte["task.fast"], texte["task.tippfehler"]), code
+        assert text.split()[0] == texte["task.tippfehler"].split()[0], code
+        assert text not in gesehen, "nicht uebersetzt: " + code
+        gesehen.add(text)
+    assert "\xa0!" in sprachen.TEXTE["fr"]["task.endung"]
+    assert " !" not in sprachen.TEXTE["fr"]["task.endung"]
+
+
+def test_app_fragt_den_endungs_schluessel():
+    html = io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8").read()
+    assert re.findall(r"t\('task\.endung'\)", html), "index.html zeigt den Endungs-Hinweis nicht"

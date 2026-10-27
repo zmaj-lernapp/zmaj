@@ -32,12 +32,22 @@ Aufbau:
                              berücksichtigen wo es noch sinn ergibt geh
                              durch die app durch“. Was nicht in die Folge
                              passt, steht in der Liste danach.
+                             Seit 27.10.2026 (von Ajdin auf Rückfrage zu
+                             diesem Wunsch so ausgewählt) auch bei
+                             vergangenheit (bio sam, bio si, bio je, bila
+                             je, bili smo), modal (je Verb der Infinitiv,
+                             dann ja, ti, on/ona, mi: morati, moram, moraš,
+                             moramo) und adjektive (je Adjektiv groß,
+                             größer, am größten: velik, veći, najveći).
                              Die Aufgaben einer Lektion, die Wiederholung, der
                              Level-Test und die Einstufung bleiben gemischt.
                   "reihe"  : optional (seit 26.10.2026): bs-Wörter dieses
                              Levels, die in einem sonst gemischten Level in
                              dieser Folge vorgestellt werden (zeit: jutro,
-                             podne, večer, noć; wetter: die Jahreszeiten).
+                             podne, večer, noć; wetter: die Jahreszeiten;
+                             seit 27.10.2026 basics: die Grüße nach
+                             Tageszeit, Dobro jutro, Dobar dan, Dobro veče,
+                             Laku noć).
                              Der Rest bleibt gemischt; die Regel steht in
                              buildLesson() in web/index.html.
                   "words"  : Liste von Wörtern {"de": "Deutsch", "bs": "Bosnisch"}
@@ -138,10 +148,14 @@ SEKTIONEN = [
 
 KATEGORIEN = [
     {"id": "basics", "label": "Grundlagen", "sektion": "alltag", "tipp": "Erste Wörter: Grüßen, Danke, Ja und Nein.",
+     "reihe": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"],   # Grüße nach Tageszeit in Folge, der Rest gemischt (27.10.2026)
      "words": [
         {"de": "Hallo",                       "bs": "Merhaba", "auch": ["Zdravo"]},
-        {"de": "Guten Tag",                   "bs": "Dobar dan"},
+        # Die Grüße auch in der Liste in Tagesfolge wie in "reihe": Anki,
+        # die Exporte und die Wortliste des Levels gehen nach der Liste
+        # (Prüfer 27.10.2026).
         {"de": "Guten Morgen",                "bs": "Dobro jutro"},
+        {"de": "Guten Tag",                   "bs": "Dobar dan"},
         {"de": "Guten Abend",                 "bs": "Dobro veče"},
         {"de": "Gute Nacht",                  "bs": "Laku noć / Lahku noć"},
         {"de": "Auf Wiedersehen",             "bs": "Doviđenja", "auch": ["Ćao"]},
@@ -1337,6 +1351,7 @@ KATEGORIEN = [
 
     {"id": "vergangenheit", "label": "Vergangenheit", "sektion": "saetze", "tipp": "Was gestern war. Männer sagen -o, Frauen -la.",
      "baut_auf": ["konjugation", "zeit", "verben"],
+     "reihenfolge": True,   # biti in ja, ti, on, ona, mi, dann die Ich-Formen, dann der Rest (27.10.2026)
      "words": [
         {"de": "ich war (m/w)",             "bs": "bio sam / bila sam"},
         {"de": "du warst (m/w)",            "bs": "bio si / bila si"},
@@ -1391,6 +1406,7 @@ KATEGORIEN = [
 
     {"id": "modal", "label": "Können, müssen, wollen", "sektion": "saetze", "tipp": "Modalverben: was man muss, kann, darf und will.",
      "baut_auf": ["konjugation", "satzbau", "verben"],
+     "reihenfolge": True,   # je Verb Infinitiv, ja, ti, on/ona, mi, dann der Rest (27.10.2026)
      "words": [
         {"de": "müssen",                    "bs": "morati"},
         {"de": "ich muss",                  "bs": "moram"},
@@ -1409,16 +1425,18 @@ KATEGORIEN = [
         {"de": "Kannst du mir helfen?",     "bs": "Možeš li mi pomoći?"},
         {"de": "Ich will schlafen",         "bs": "Hoću spavati"},
         {"de": "Ich möchte lernen",         "bs": "Želim učiti"},
+        # 27.10.2026: pitati, čekati, nešto und plivati stehen vor ihrem Satz,
+        # wie in routine das Verb vor dem Ich-Satz.
+        {"de": "fragen",                    "bs": "pitati"},
         {"de": "Darf ich fragen?",          "bs": "Smijem li pitati?"},
         {"de": "Du musst nicht",            "bs": "Ne moraš"},
-        {"de": "Wir müssen warten",         "bs": "Moramo čekati"},
         {"de": "warten",                    "bs": "čekati"},
-        {"de": "Ich möchte etwas essen",    "bs": "Želim nešto jesti"},
+        {"de": "Wir müssen warten",         "bs": "Moramo čekati"},
         {"de": "etwas",                     "bs": "nešto"},
+        {"de": "Ich möchte etwas essen",    "bs": "Želim nešto jesti"},
         {"de": "Ich kann Bosnisch sprechen", "bs": "Mogu govoriti bosanski"},
-        {"de": "Ich kann nicht schwimmen (Fähigkeit)", "bs": "Ne znam plivati"},
         {"de": "schwimmen",                 "bs": "plivati"},
-        {"de": "fragen",                    "bs": "pitati"},
+        {"de": "Ich kann nicht schwimmen (Fähigkeit)", "bs": "Ne znam plivati"},
         {"de": "versuchen",                 "bs": "pokušati"},
     ]},
 
@@ -1495,6 +1513,7 @@ KATEGORIEN = [
 
     {"id": "adjektive", "label": "Vergleichen & Beschreiben", "sektion": "saetze", "tipp": "Groß, größer, am größten. Männlich und weiblich unterscheiden.",
      "baut_auf": ["genus", "farben", "einkaufen"],
+     "reihenfolge": True,   # je Adjektiv Grundform, Komparativ, Superlativ, dann der Rest (27.10.2026)
      "words": [
         {"de": "groß (m/w)",        "bs": "velik / velika"},
         {"de": "größer",            "bs": "veći"},

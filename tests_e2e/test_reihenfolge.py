@@ -9,13 +9,17 @@ Liste vor statt gemischt. Seit dem 26.10.2026 abends (Ajdin: „und auch
 reihenfolge berücksichtigen wo es noch sinn ergibt geh durch die app
 durch“) auch konjugation, zukunft und routine; zahlen beginnt mit jedan,
 nula kommt nach deset; zeit und wetter ordnen mit "reihe" nur ihre
-Tageszeiten und Jahreszeiten, der Rest bleibt gemischt. Hier:
+Tageszeiten und Jahreszeiten, der Rest bleibt gemischt. Am 27.10.2026 von
+Ajdin auf Rückfrage zu diesem Wunsch ausgewählt: vergangenheit, modal und
+adjektive ganz der Reihe nach (je Verb die Personen, je Adjektiv groß,
+größer, am größten), in basics die Grüße nach Tageszeit als "reihe".
+Hier:
   - die ersten zwei echten Lektionen "Zahlen" zeigen ihre Einführungskarten
     der Reihe nach (jedan, dva ... deset, nula);
   - Teil-Reihen: geschlossen und in Folge, an zufälliger Stelle, der Rest
     gemischt; eine angefangene Reihe geht vorn weiter;
-  - über alle Lektionen kommen zahlen, wochentage, monate und mengen
-    vollständig in der Reihenfolge der Liste;
+  - über alle Lektionen kommen zahlen, wochentage, monate, mengen und
+    die Verb- und Adjektiv-Level vollständig in der Reihenfolge der Liste;
   - ein Level ohne Reihe (farben) bleibt gemischt;
   - die Wiederholung gewusster Wörter bleibt auch in einem Level mit Reihe
     gemischt;
@@ -113,6 +117,9 @@ def test_erste_zwei_lektionen_zahlen_der_reihe_nach(seite, heute_stand):
     ("konjugation", [8, 5, 5, 5, 5, 1]),
     ("zukunft", [8, 5, 5, 3]),
     ("routine", [8, 5, 5, 5, 5, 3]),
+    ("vergangenheit", [8, 5, 5, 4]),
+    ("modal", [8, 5, 5, 5, 5]),
+    ("adjektive", [8, 5, 5, 5, 3]),
 ])
 def test_ganzes_level_der_reihe_nach(seite, heute_stand, kid, groessen):
     """Von der ersten bis zur letzten Lektion: zusammen genau die Liste aus
@@ -132,6 +139,16 @@ def test_ganzes_level_der_reihe_nach(seite, heute_stand, kid, groessen):
         assert erg["lektionen"][0][:5] == ["ću", "ćeš", "će", "ćemo", "ćete"]
     if kid == "routine":
         assert erg["lektionen"][0][:3] == ["ustajati", "Ustajem u sedam", "tuširati se"]
+    if kid == "vergangenheit":                        # 27.10.2026
+        assert erg["lektionen"][0][:5] == ["bio sam / bila sam", "bio si / bila si", "bio je", "bila je", "bili smo"]
+    if kid == "modal":
+        assert erg["lektionen"][0] == ["morati", "moram", "moraš", "moramo", "može", "možemo", "hoćeš", "hoćemo"]
+        assert erg["lektionen"][1][:2] == ["smjeti", "smijem"]
+        flach = _flach(erg["lektionen"])
+        assert flach.index("čekati") < flach.index("Moramo čekati")
+    if kid == "adjektive":
+        assert erg["lektionen"][0] == ["velik / velika", "veći", "najveći", "mali / mala", "manji",
+                                       "dobar / dobra", "bolji", "najbolji"]
     assert seite.fehler == []
 
 
@@ -278,6 +295,7 @@ REIHE_RUNDEN = """([kid, n]) => {
 @pytest.mark.parametrize("kid, reihe", [
     ("zeit", ["jutro", "podne", "večer", "noć"]),
     ("wetter", ["proljeće", "ljeto", "jesen", "zima"]),
+    ("basics", ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"]),   # 27.10.2026
 ])
 def test_teil_reihe_in_folge_rest_gemischt(seite, heute_stand, kid, reihe):
     """Fünfzehnmal das ganze Level: die Reihe kommt jedes Mal geschlossen
@@ -300,14 +318,20 @@ def test_teil_reihe_in_folge_rest_gemischt(seite, heute_stand, kid, reihe):
     assert seite.fehler == []
 
 
-def test_angefangene_reihe_geht_vorn_weiter(seite, heute_stand):
+@pytest.mark.parametrize("kid, gewusst, weiter", [
+    ("zeit", "morgen (tageszeit):jutro", ["podne", "večer", "noć"]),
+    ("basics", "guten morgen:Dobro jutro", ["Dobar dan", "Dobro veče", "Laku noć / Lahku noć"]),   # 27.10.2026
+])
+def test_angefangene_reihe_geht_vorn_weiter(seite, heute_stand, kid, gewusst, weiter):
     """jutro ist schon gewusst: podne, večer, noć kommen in der nächsten
-    Lektion als erste neue Wörter, dahinter der Rest gemischt."""
-    seite.starten(stand=heute_stand(gewusst=["morgen (tageszeit):jutro"]))
-    reihen = seite.js("""() => { openLevel(CATEGORIES.findIndex(c => c.id === 'zeit'));
-      return Array.from({length: 12}, () => { buildLesson(); return Lx.queue.filter(q => q.typ === 'intro').map(q => q.w.bs); }); }""")
+    Lektion als erste neue Wörter, dahinter der Rest gemischt. Ebenso in
+    basics nach Dobro jutro: Dobar dan, Dobro veče, Laku noć."""
+    seite.starten(stand=heute_stand(gewusst=[gewusst]))
+    reihen = seite.js("""(kid) => { openLevel(CATEGORIES.findIndex(c => c.id === kid));
+      return Array.from({length: 12}, () => { buildLesson(); return Lx.queue.filter(q => q.typ === 'intro').map(q => q.w.bs); }); }""", kid)
+    erstes = gewusst.split(":", 1)[1]
     for r in reihen:
-        assert r[:3] == ["podne", "večer", "noć"] and "jutro" not in r, r
+        assert r[:3] == weiter and erstes not in r, r
     assert len({" ".join(r[3:]) for r in reihen}) > 1
     assert seite.fehler == []
 

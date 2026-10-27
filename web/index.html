@@ -3906,7 +3906,8 @@ function einTippfehler(a, b){
    Im Lueckensatz ist die FORM die Aufgabe: "Subota i ___ su vikend." will
    "nedjelja", und "nedjelji" ist ein falscher Fall, kein verrutschter
    Finger. Dort gelten deshalb die formen und dazu andereEndung(): gebeugte
-   Formen gibt es weit mehr, als im Inhalt der App stehen. */
+   Formen gibt es weit mehr, als im Inhalt der App stehen. Eine andere
+   Endung bekommt seit dem 27.10.2026 ihren eigenen Hinweis, nurEndung(). */
 let _echteWoerter = null;
 function echteWoerter(){
   if(_echteWoerter) return _echteWoerter;
@@ -3964,6 +3965,28 @@ function nurVertippt(eingabe, antworten, luecke){
   if(!g || (luecke ? echt.formen : echt.wortschatz).has(g)) return false;
   return String(antworten || '').split(' / ').map(clean).some(a =>
     (a.match(/[a-z]/g) || []).length >= 4 && einTippfehler(g, a) && !(luecke && andereEndung(g, a)));
+}
+/* Nur die Endung anders - im Lueckensatz ein eigener Hinweis.
+   Ajdin am 27.10.2026 auf die Rueckfrage, ob eine andere Endung dort
+   weiter sofort falsch sein soll: "Auch bei Endung Hinweis" - bei falscher
+   Endung im Lueckensatz auch "Fast!" und ein zweiter Versuch. Der Text ist
+   ein eigener (task.endung, "Fast! Achte auf die Endung."): "nedjelji" fuer
+   "nedjelja" ist kein Tippfehler, sondern der falsche Fall, und der Hinweis
+   sagt, wo man suchen muss. Sonst alles wie beim Tippfehler: ein Hinweis je
+   Aufgabe (tippHinweis()), der zweite Versuch zaehlt wie immer, und
+   gezaehlt wird wie in nurVertippt() - ab 4 getippten Zeichen der Antwort,
+   lj, nj und dž sind zwei. Bei "je" und "ja" ist der letzte Buchstabe ein
+   anderes Wort und keine Endung.
+   Ob das Getippte ein echtes Wort ist, prueft nurEndung() nicht: eine
+   andere Endung ist fast immer eins. "kahva" fuer "kahvu" und "sestre" fuer
+   "sestra" stehen im Wortschatz - mit der Pruefung bliebe der Hinweis
+   gerade bei der Grundform aus, dem haeufigsten Fehler. Falsch ist er dabei
+   nie, es unterscheidet sich ja nur die Endung. In der Schreibaufgabe
+   bleibt eine andere Endung ein Tippfehler (nurVertippt()). */
+function nurEndung(eingabe, antworten){
+  const g = clean(String(eingabe || ''));
+  return !!g && String(antworten || '').split(' / ').map(clean).some(a =>
+    (a.match(/[a-z]/g) || []).length >= 4 && andereEndung(g, a));
 }
 /* So lange nach dem Hinweis ist derselbe Text noch kein zweiter Versuch,
    siehe tippHinweis(). */
@@ -9924,7 +9947,16 @@ function renderTask(task, body, done, opts={}){
      verlor beim naechsten Pruefen ein Leben (Pruefer 24.10.2026). Deshalb
      holt scrollIntoView ihn ins Bild wie weiterBeiTipp() den Weiter-Knopf -
      'nearest' bewegt nichts, solange er zu sehen ist. Der Fokus bleibt im
-     Feld, damit die Tastatur offen bleibt. */
+     Feld, damit die Tastatur offen bleibt.
+     Im Lueckensatz kommt hier seit dem 27.10.2026 auch der Hinweis auf die
+     Endung (nurEndung(), task.endung). Passt beides, geht er vor:
+     "strico" bei "Moj ___ je pčelar." ist stric mit Endung und striko
+     mit Tippfehler - es heisst dann Endung, nicht Tippfehler
+     (tests_e2e/test_tippfehler.py: test_endung_geht_vor_dem_tippfehler).
+     Bei "nedjelji" fuer "nedjelja" kaeme der Tippfehler-Hinweis ohnehin
+     nicht, nurVertippt() laesst im Lueckensatz andere Endungen aus
+     (Pruefer 27.10.2026). Auch zusammen bleibt es ein Hinweis je
+     Aufgabe - nach dem einen zaehlt der naechste Versuch. */
   const tippHinweis = (inp, luecke)=>{
     let gezeigt = null;
     return (r, antworten)=>{
@@ -9933,14 +9965,17 @@ function renderTask(task, body, done, opts={}){
         if(doppelt) inp.focus();
         return doppelt;
       }
-      if(r !== 'no' || !nurVertippt(inp.value, antworten, luecke)) return false;
+      if(r !== 'no') return false;
+      const hinweis = luecke && nurEndung(inp.value, antworten) ? t('task.endung')
+                    : nurVertippt(inp.value, antworten, luecke) ? t('task.tippfehler') : '';
+      if(!hinweis) return false;
       gezeigt = {text: inp.value, zeit: Date.now()};
       const feld = $$('xFb');
-      feld.textContent = t('task.tippfehler');
+      feld.textContent = hinweis;
       feld.className = 'feedback almost';
       inp.focus();
       try{ feld.scrollIntoView({block:'nearest', behavior: kachelnRuhig() ? 'auto' : 'smooth'}); }catch(e){}
-      ansagen(esc(t('task.tippfehler')), 80);
+      ansagen(esc(hinweis), 80);
       return true;
     };
   };
@@ -10146,7 +10181,7 @@ function renderTask(task, body, done, opts={}){
       const antworten = [s.answer, ...(s.auch || [])].join(' / ');
       const r=matches(inp.value, antworten);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_luecke'))); return; }
-      if(vertippt(r, antworten)) return;   // wie in der Schreibaufgabe, hier mit den gebeugten Formen
+      if(vertippt(r, antworten)) return;   // wie in der Schreibaufgabe, dazu die andere Endung (27.10.2026)
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
@@ -10543,10 +10578,14 @@ function buildLesson(){
   /* Ajdin am 26.10.2026: "bei der zahlen sektion am besten die zahlen in
      reihenfolge lernen sowie wochentage und wo es noch passt". Ein Level
      mit "reihenfolge" (vokabeln.py: zahlen, wochentage, monate,
-     mengen, seit 26.10.2026 abends auch konjugation, zukunft und routine)
+     mengen, seit 26.10.2026 abends auch konjugation, zukunft und routine,
+     seit 27.10.2026 vergangenheit, modal und adjektive - von Ajdin auf
+     Rueckfrage zu diesem Wunsch ausgewaehlt)
      stellt seine neuen Woerter in der Reihenfolge der Liste vor -
      jedan bis deset und dann nula (Ajdin: Zahlen fangen mit jedan an),
-     ja sam, ti si ... oni su, ponedjeljak bis nedjelja, jedan brat vor dva
+     ja sam, ti si ... oni su, bio sam, bio si, bio je, bila je, bili smo,
+     morati, moram, moraš, moramo, velik, veći, najveći,
+     ponedjeljak bis nedjelja, jedan brat vor dva
      brata vor pet braće -, die Einfuehrungskarten (intros unten) also
      auch. Wer schon mitten im Level ist, bekommt die
      noch fehlenden ebenso der Reihe nach, und ein Wort, das in einer
@@ -10560,7 +10599,9 @@ function buildLesson(){
   /* Teil-Reihen (26.10.2026), Ajdin: "und auch reihenfolge
      beruecksichtigen wo es noch sinn ergibt geh durch die app durch".
      In einem sonst gemischten Level steht eine kurze Reihe ("reihe" in
-     vokabeln.py: die Tageszeiten in zeit, die Jahreszeiten in wetter).
+     vokabeln.py: die Tageszeiten in zeit, die Jahreszeiten in wetter,
+     seit 27.10.2026 die Gruesse nach Tageszeit in basics: Dobro jutro,
+     Dobar dan, Dobro veče, Laku noć).
      Regel: Die uebrigen Woerter werden gemischt gezogen wie bisher. Die
      noch offenen Reihen-Woerter bilden einen Block in ihrer Folge und
      nehmen den Platz des ersten Reihen-Worts ein, das beim Mischen

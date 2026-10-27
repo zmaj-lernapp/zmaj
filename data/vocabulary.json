@@ -2232,24 +2232,6 @@
    "audio": "web/audio/w0001.mp3"
   },
   {
-   "id": "guten tag:Dobar dan",
-   "bs": "Dobar dan",
-   "level": "basics",
-   "level_position": 1,
-   "section": "alltag",
-   "translations": {
-    "de": "Guten Tag",
-    "en": "Good day",
-    "tr": "İyi günler",
-    "sv": "God dag",
-    "nl": "Goedendag",
-    "nb": "God dag",
-    "da": "Goddag",
-    "fr": "Bonjour"
-   },
-   "audio": "web/audio/w0002.mp3"
-  },
-  {
    "id": "guten morgen:Dobro jutro",
    "bs": "Dobro jutro",
    "level": "basics",
@@ -2266,6 +2248,24 @@
     "fr": "Bonjour (le matin)"
    },
    "audio": "web/audio/w0003.mp3"
+  },
+  {
+   "id": "guten tag:Dobar dan",
+   "bs": "Dobar dan",
+   "level": "basics",
+   "level_position": 1,
+   "section": "alltag",
+   "translations": {
+    "de": "Guten Tag",
+    "en": "Good day",
+    "tr": "İyi günler",
+    "sv": "God dag",
+    "nl": "Goedendag",
+    "nb": "God dag",
+    "da": "Goddag",
+    "fr": "Bonjour"
+   },
+   "audio": "web/audio/w0002.mp3"
   },
   {
    "id": "guten abend:Dobro veče",
@@ -21240,6 +21240,24 @@
    "audio": "web/audio/w0670.mp3"
   },
   {
+   "id": "fragen:pitati",
+   "bs": "pitati",
+   "level": "modal",
+   "level_position": 41,
+   "section": "saetze",
+   "translations": {
+    "de": "fragen",
+    "en": "to ask",
+    "tr": "sormak",
+    "sv": "fråga",
+    "nl": "vragen",
+    "nb": "spørre",
+    "da": "at spørge",
+    "fr": "demander"
+   },
+   "audio": "web/audio/w0680.mp3"
+  },
+  {
    "id": "darf ich fragen?:Smijem li pitati?",
    "bs": "Smijem li pitati?",
    "level": "modal",
@@ -21276,24 +21294,6 @@
    "audio": "web/audio/w0672.mp3"
   },
   {
-   "id": "wir müssen warten:Moramo čekati",
-   "bs": "Moramo čekati",
-   "level": "modal",
-   "level_position": 41,
-   "section": "saetze",
-   "translations": {
-    "de": "Wir müssen warten",
-    "en": "We have to wait",
-    "tr": "Beklememiz gerek",
-    "sv": "Vi måste vänta",
-    "nl": "We moeten wachten",
-    "nb": "Vi må vente",
-    "da": "Vi må vente",
-    "fr": "Nous devons attendre"
-   },
-   "audio": "web/audio/w0673.mp3"
-  },
-  {
    "id": "warten:čekati",
    "bs": "čekati",
    "level": "modal",
@@ -21312,22 +21312,22 @@
    "audio": "web/audio/w0674.mp3"
   },
   {
-   "id": "ich möchte etwas essen:Želim nešto jesti",
-   "bs": "Želim nešto jesti",
+   "id": "wir müssen warten:Moramo čekati",
+   "bs": "Moramo čekati",
    "level": "modal",
    "level_position": 41,
    "section": "saetze",
    "translations": {
-    "de": "Ich möchte etwas essen",
-    "en": "I want to eat something",
-    "tr": "Bir şey yemek istiyorum",
-    "sv": "Jag vill äta något",
-    "nl": "Ik wil iets eten",
-    "nb": "Jeg vil spise noe",
-    "da": "Jeg vil gerne spise noget",
-    "fr": "Je veux manger quelque chose"
+    "de": "Wir müssen warten",
+    "en": "We have to wait",
+    "tr": "Beklememiz gerek",
+    "sv": "Vi måste vänta",
+    "nl": "We moeten wachten",
+    "nb": "Vi må vente",
+    "da": "Vi må vente",
+    "fr": "Nous devons attendre"
    },
-   "audio": "web/audio/w0675.mp3"
+   "audio": "web/audio/w0673.mp3"
   },
   {
    "id": "etwas:nešto",
@@ -21348,6 +21348,24 @@
    "audio": "web/audio/w0676.mp3"
   },
   {
+   "id": "ich möchte etwas essen:Želim nešto jesti",
+   "bs": "Želim nešto jesti",
+   "level": "modal",
+   "level_position": 41,
+   "section": "saetze",
+   "translations": {
+    "de": "Ich möchte etwas essen",
+    "en": "I want to eat something",
+    "tr": "Bir şey yemek istiyorum",
+    "sv": "Jag vill äta något",
+    "nl": "Ik wil iets eten",
+    "nb": "Jeg vil spise noe",
+    "da": "Jeg vil gerne spise noget",
+    "fr": "Je veux manger quelque chose"
+   },
+   "audio": "web/audio/w0675.mp3"
+  },
+  {
    "id": "ich kann bosnisch sprechen:Mogu govoriti bosanski",
    "bs": "Mogu govoriti bosanski",
    "level": "modal",
@@ -21364,24 +21382,6 @@
     "fr": "Je peux parler bosnien"
    },
    "audio": "web/audio/w0677.mp3"
-  },
-  {
-   "id": "ich kann nicht schwimmen (fähigkeit):Ne znam plivati",
-   "bs": "Ne znam plivati",
-   "level": "modal",
-   "level_position": 41,
-   "section": "saetze",
-   "translations": {
-    "de": "Ich kann nicht schwimmen (Fähigkeit)",
-    "en": "I cannot swim (ability)",
-    "tr": "Yüzme bilmiyorum (beceri)",
-    "sv": "Jag kan inte simma (färdighet)",
-    "nl": "Ik kan niet zwemmen (vaardigheid)",
-    "nb": "Jeg kan ikke svømme (ferdighet)",
-    "da": "Jeg kan ikke svømme (færdighed)",
-    "fr": "Je ne sais pas nager (savoir-faire)"
-   },
-   "audio": "web/audio/w0678.mp3"
   },
   {
    "id": "schwimmen:plivati",
@@ -21402,22 +21402,22 @@
    "audio": "web/audio/w0679.mp3"
   },
   {
-   "id": "fragen:pitati",
-   "bs": "pitati",
+   "id": "ich kann nicht schwimmen (fähigkeit):Ne znam plivati",
+   "bs": "Ne znam plivati",
    "level": "modal",
    "level_position": 41,
    "section": "saetze",
    "translations": {
-    "de": "fragen",
-    "en": "to ask",
-    "tr": "sormak",
-    "sv": "fråga",
-    "nl": "vragen",
-    "nb": "spørre",
-    "da": "at spørge",
-    "fr": "demander"
+    "de": "Ich kann nicht schwimmen (Fähigkeit)",
+    "en": "I cannot swim (ability)",
+    "tr": "Yüzme bilmiyorum (beceri)",
+    "sv": "Jag kan inte simma (färdighet)",
+    "nl": "Ik kan niet zwemmen (vaardigheid)",
+    "nb": "Jeg kan ikke svømme (ferdighet)",
+    "da": "Jeg kan ikke svømme (færdighed)",
+    "fr": "Je ne sais pas nager (savoir-faire)"
    },
-   "audio": "web/audio/w0680.mp3"
+   "audio": "web/audio/w0678.mp3"
   },
   {
    "id": "versuchen:pokušati",

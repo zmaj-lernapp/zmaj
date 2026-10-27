@@ -1,7 +1,7 @@
 bs	tr	kind	id
 Merhaba	Merhaba	word	hallo:Merhaba
-Dobar dan	İyi günler	word	guten tag:Dobar dan
 Dobro jutro	Günaydın	word	guten morgen:Dobro jutro
+Dobar dan	İyi günler	word	guten tag:Dobar dan
 Dobro veče	İyi akşamlar	word	guten abend:Dobro veče
 Laku noć / Lahku noć	İyi geceler	word	gute nacht:Laku noć / Lahku noć
 Doviđenja	Hoşça kal	word	auf wiedersehen:Doviđenja
@@ -1056,16 +1056,16 @@ Ne mogu doći	Gelemem	word	ich kann nicht kommen:Ne mogu doći
 Možeš li mi pomoći?	Bana yardım edebilir misin?	word	kannst du mir helfen?:Možeš li mi pomoći?
 Hoću spavati	Uyumak istiyorum	word	ich will schlafen:Hoću spavati
 Želim učiti	Öğrenmek istiyorum	word	ich möchte lernen:Želim učiti
+pitati	sormak	word	fragen:pitati
 Smijem li pitati?	Sorabilir miyim?	word	darf ich fragen?:Smijem li pitati?
 Ne moraš	Zorunda değilsin	word	du musst nicht:Ne moraš
-Moramo čekati	Beklememiz gerek	word	wir müssen warten:Moramo čekati
 čekati	beklemek	word	warten:čekati
-Želim nešto jesti	Bir şey yemek istiyorum	word	ich möchte etwas essen:Želim nešto jesti
+Moramo čekati	Beklememiz gerek	word	wir müssen warten:Moramo čekati
 nešto	bir şey	word	etwas:nešto
+Želim nešto jesti	Bir şey yemek istiyorum	word	ich möchte etwas essen:Želim nešto jesti
 Mogu govoriti bosanski	Boşnakça konuşabilirim	word	ich kann bosnisch sprechen:Mogu govoriti bosanski
-Ne znam plivati	Yüzme bilmiyorum (beceri)	word	ich kann nicht schwimmen (fähigkeit):Ne znam plivati
 plivati	yüzmek	word	schwimmen:plivati
-pitati	sormak	word	fragen:pitati
+Ne znam plivati	Yüzme bilmiyorum (beceri)	word	ich kann nicht schwimmen (fähigkeit):Ne znam plivati
 pokušati	denemek	word	versuchen:pokušati
 se	kendini (dönüşlü)	word	sich (reflexivpronomen):se
 zvati se	adı olmak	word	sich nennen / heißen:zvati se
@@ -1911,7 +1911,7 @@ Nalazimo se u pet.	Beşte buluşuyoruz.	sentence	s0169
 Djeca se igraju.	Çocuklar oynuyor.	sentence	s0170
 Ustajem u sedam sati.	Saat yedide kalkıyorum.	sentence	s0171
 Poslije posla kuham večeru.	İşten sonra akşam yemeği pişiriyorum.	sentence	s0172
-Idem spavati u jedanaest.	Saat on birde uyumaya gidiyorum.	sentence	s0173
+Idem spavati u jedanaest.	Saat on birde yatıyorum.	sentence	s0173
 Svaki dan pijem kahvu.	Her gün kahve içiyorum.	sentence	s0174
 Imam dva brata.	İki erkek kardeşim var.	sentence	s0175
 Imam trideset godina.	Otuz yaşındayım.	sentence	s0176

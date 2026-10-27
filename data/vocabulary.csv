@@ -1,7 +1,7 @@
 id,level_position,level,section,bs,de,en,tr,sv,nl,nb,da,fr,audio
 hallo:Merhaba,1,basics,alltag,Merhaba,Hallo,Hello,Merhaba,Hej,Hallo,Hei,Hej,Salut,web/audio/w0001.mp3
-guten tag:Dobar dan,1,basics,alltag,Dobar dan,Guten Tag,Good day,İyi günler,God dag,Goedendag,God dag,Goddag,Bonjour,web/audio/w0002.mp3
 guten morgen:Dobro jutro,1,basics,alltag,Dobro jutro,Guten Morgen,Good morning,Günaydın,God morgon,Goedemorgen,God morgen,Godmorgen,Bonjour (le matin),web/audio/w0003.mp3
+guten tag:Dobar dan,1,basics,alltag,Dobar dan,Guten Tag,Good day,İyi günler,God dag,Goedendag,God dag,Goddag,Bonjour,web/audio/w0002.mp3
 guten abend:Dobro veče,1,basics,alltag,Dobro veče,Guten Abend,Good evening,İyi akşamlar,God kväll,Goedenavond,God kveld,Godaften,Bonsoir,web/audio/w0004.mp3
 gute nacht:Laku noć / Lahku noć,1,basics,alltag,Laku noć / Lahku noć,Gute Nacht,Good night,İyi geceler,God natt,Welterusten,God natt,Godnat,Bonne nuit,web/audio/w2142.mp3
 auf wiedersehen:Doviđenja,1,basics,alltag,Doviđenja,Auf Wiedersehen,Goodbye,Hoşça kal,Hej då,Tot ziens,Ha det,Farvel,Au revoir,web/audio/w0006.mp3
@@ -1056,16 +1056,16 @@ ich kann nicht kommen:Ne mogu doći,41,modal,saetze,Ne mogu doći,Ich kann nicht
 kannst du mir helfen?:Možeš li mi pomoći?,41,modal,saetze,Možeš li mi pomoći?,Kannst du mir helfen?,Can you help me?,Bana yardım edebilir misin?,Kan du hjälpa mig?,Kun je me helpen?,Kan du hjelpe meg?,Kan du hjælpe mig?,Tu peux m'aider ?,web/audio/w0668.mp3
 ich will schlafen:Hoću spavati,41,modal,saetze,Hoću spavati,Ich will schlafen,I want to sleep,Uyumak istiyorum,Jag vill sova,Ik wil slapen,Jeg vil sove,Jeg vil sove,Je veux dormir,web/audio/w0669.mp3
 ich möchte lernen:Želim učiti,41,modal,saetze,Želim učiti,Ich möchte lernen,I want to study,Öğrenmek istiyorum,Jag vill plugga,Ik wil leren,Jeg vil lære,Jeg vil gerne lære,Je veux apprendre,web/audio/w0670.mp3
+fragen:pitati,41,modal,saetze,pitati,fragen,to ask,sormak,fråga,vragen,spørre,at spørge,demander,web/audio/w0680.mp3
 darf ich fragen?:Smijem li pitati?,41,modal,saetze,Smijem li pitati?,Darf ich fragen?,May I ask?,Sorabilir miyim?,Får jag fråga?,Mag ik iets vragen?,Får jeg spørre?,Må jeg spørge?,Je peux demander ?,web/audio/w0671.mp3
 du musst nicht:Ne moraš,41,modal,saetze,Ne moraš,Du musst nicht,You do not have to,Zorunda değilsin,Du behöver inte,Je hoeft niet,Du trenger ikke,Du behøver ikke,Tu n'es pas obligé,web/audio/w0672.mp3
-wir müssen warten:Moramo čekati,41,modal,saetze,Moramo čekati,Wir müssen warten,We have to wait,Beklememiz gerek,Vi måste vänta,We moeten wachten,Vi må vente,Vi må vente,Nous devons attendre,web/audio/w0673.mp3
 warten:čekati,41,modal,saetze,čekati,warten,to wait,beklemek,vänta,wachten,vente,at vente,attendre,web/audio/w0674.mp3
-ich möchte etwas essen:Želim nešto jesti,41,modal,saetze,Želim nešto jesti,Ich möchte etwas essen,I want to eat something,Bir şey yemek istiyorum,Jag vill äta något,Ik wil iets eten,Jeg vil spise noe,Jeg vil gerne spise noget,Je veux manger quelque chose,web/audio/w0675.mp3
+wir müssen warten:Moramo čekati,41,modal,saetze,Moramo čekati,Wir müssen warten,We have to wait,Beklememiz gerek,Vi måste vänta,We moeten wachten,Vi må vente,Vi må vente,Nous devons attendre,web/audio/w0673.mp3
 etwas:nešto,41,modal,saetze,nešto,etwas,something,bir şey,något,iets,noe,noget,quelque chose,web/audio/w0676.mp3
+ich möchte etwas essen:Želim nešto jesti,41,modal,saetze,Želim nešto jesti,Ich möchte etwas essen,I want to eat something,Bir şey yemek istiyorum,Jag vill äta något,Ik wil iets eten,Jeg vil spise noe,Jeg vil gerne spise noget,Je veux manger quelque chose,web/audio/w0675.mp3
 ich kann bosnisch sprechen:Mogu govoriti bosanski,41,modal,saetze,Mogu govoriti bosanski,Ich kann Bosnisch sprechen,I can speak Bosnian,Boşnakça konuşabilirim,Jag kan tala bosniska,Ik kan Bosnisch spreken,Jeg kan snakke bosnisk,Jeg kan tale bosnisk,Je peux parler bosnien,web/audio/w0677.mp3
-ich kann nicht schwimmen (fähigkeit):Ne znam plivati,41,modal,saetze,Ne znam plivati,Ich kann nicht schwimmen (Fähigkeit),I cannot swim (ability),Yüzme bilmiyorum (beceri),Jag kan inte simma (färdighet),Ik kan niet zwemmen (vaardigheid),Jeg kan ikke svømme (ferdighet),Jeg kan ikke svømme (færdighed),Je ne sais pas nager (savoir-faire),web/audio/w0678.mp3
 schwimmen:plivati,41,modal,saetze,plivati,schwimmen,to swim,yüzmek,simma,zwemmen,svømme,at svømme,nager,web/audio/w0679.mp3
-fragen:pitati,41,modal,saetze,pitati,fragen,to ask,sormak,fråga,vragen,spørre,at spørge,demander,web/audio/w0680.mp3
+ich kann nicht schwimmen (fähigkeit):Ne znam plivati,41,modal,saetze,Ne znam plivati,Ich kann nicht schwimmen (Fähigkeit),I cannot swim (ability),Yüzme bilmiyorum (beceri),Jag kan inte simma (färdighet),Ik kan niet zwemmen (vaardigheid),Jeg kan ikke svømme (ferdighet),Jeg kan ikke svømme (færdighed),Je ne sais pas nager (savoir-faire),web/audio/w0678.mp3
 versuchen:pokušati,41,modal,saetze,pokušati,versuchen,to try,denemek,försöka,proberen,prøve,at prøve,essayer,web/audio/w0681.mp3
 sich (reflexivpronomen):se,42,reflexiv,saetze,se,sich (Reflexivpronomen),oneself (reflexive pronoun),kendini (dönüşlü),sig (reflexivt pronomen),zich (wederkerend voornaamwoord),seg (refleksivt pronomen),sig (refleksivt stedord),se (pronom réfléchi),web/audio/w0682.mp3
 sich nennen / heißen:zvati se,42,reflexiv,saetze,zvati se,sich nennen / heißen,to be called,adı olmak,heta,heten,hete,at hedde,s'appeler,web/audio/w0683.mp3
