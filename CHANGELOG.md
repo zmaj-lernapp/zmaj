@@ -7,6 +7,12 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Typing exercises and cloze sentences: an answer one keystroke away from a
+  correct one (a letter wrong, missing, extra or two swapped; answers of four
+  letters or more) shows "Almost right!" and leaves the field open for one
+  more try, without costing a life. This includes a wrong ending ("nedjelji"
+  for "nedjelja") and another real word ("deset" for "devet"). One hint
+  per task; missing diacritics still count as correct straight away.
 - Cloze and tile sentences: in 36 sentences the number now changes from
   task to task ("Sada je sedam sati." – "It is 7 o'clock now."), only with
   the numbers a native speaker approved (`"zahl"` in `vokabeln.py`). The
