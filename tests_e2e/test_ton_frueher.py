@@ -16,6 +16,12 @@ tests/test_huelle.py):
 Zum Abspielen braucht es einen Browser, der wie die WebView ohne Geste
 abspielen darf (Capacitor: setMediaPlaybackRequiresUserGesture(false)).
 Der aus conftest.py darf das nicht; er reicht fuer die Wartezeiten.
+
+Seit dem 26.10.2026 (Ajdin: "die sprecher stimme kommt immernoch etwas zu
+langsam") laufen Woerter, deren Puffer bereitliegt, ueber WebAudio - auf
+der Uhr des Rueckmeldetons, siehe test_wort_webaudio.py. Die Wartezeiten
+hier gelten seitdem fuer den Rueckfall ueber den spieler, und
+spaeterSprechen() bekommt nach einer Antwort ok mit.
 """
 import os
 
@@ -23,13 +29,14 @@ import pytest
 from conftest import Seite
 
 # Jede bestellte Wartezeit mitschreiben, samt Aufgabenart. Gesprochen wird
-# trotzdem - der Spion reicht nur durch.
+# trotzdem - der Spion reicht nur durch, seit dem 26.10.2026 samt ok.
 SPION = """() => {
-  window.__wann = [];
+  window.__wann = []; window.__ok = [];
   const echt = spaeterSprechen;
-  spaeterSprechen = (text, ms) => {
-    window.__wann.push([Lx && Lx.queue[Lx.i] ? Lx.queue[Lx.i].typ : '?', ms]);
-    echt(text, ms);
+  spaeterSprechen = (text, ms, ok) => {
+    const typ = Lx && Lx.queue[Lx.i] ? Lx.queue[Lx.i].typ : '?';
+    window.__wann.push([typ, ms]); window.__ok.push([typ, ok === undefined ? null : ok]);
+    echt(text, ms, ok);
   };
 }"""
 
@@ -57,6 +64,9 @@ def test_kuerzer_warten_nach_der_antwort(seite, heute_stand):
     for typ, ms in wann:
         assert ms == (100 if typ in ("intro", "listen") else 180), (typ, ms)
     assert {t for t, _ in wann} >= {"intro", "mc"}, (typen, wann)
+    # Nach einer Antwort mit ok (dann die Uhr des Tons), beim Erscheinen ohne (26.10.2026)
+    for typ, ok in seite.js("() => window.__ok"):
+        assert ok is (None if typ in ("intro", "listen") else True), (typ, ok)
 
     seite.js(MC)
     seite.js("() => [...document.querySelectorAll('#lBody .opt')].find(o => o.textContent !== Lx.queue[0].w.bs).click()")
@@ -143,11 +153,16 @@ def test_wort_waehrend_des_vorwaermens_bleibt_laut(webview_seite, heute_stand):
 def test_wort_nach_der_antwort_frueh_und_laut(webview_seite, heute_stand):
     """Nach einer richtigen Antwort laeuft das Wort laut, und 'playing' kommt
     deutlich vor den 450 ms, die die App bis zum 22.10.2026 allein gewartet
-    hat (jetzt 180 ms Wartezeit plus Abspielweg)."""
+    hat (jetzt 180 ms Wartezeit plus Abspielweg).
+    Seit dem 26.10.2026 ist das der Rueckfall ohne Puffer: der wird hier
+    vor der Antwort verworfen, sonst kaeme das Wort ueber WebAudio."""
     seite = webview_seite
     seite.starten(stand=heute_stand())
     seite.page.wait_for_function(VORGEWAERMT, timeout=10000)
     aufgabe = seite.js(MC)
+    seite.page.wait_for_function("(z) => { const p = puffer.get(z.slice(6)); return p && p.buf; }",
+                                 arg=aufgabe["ziel"], timeout=10000)
+    seite.js("() => puffer.clear()")
     r = seite.js("""async (bs) => {
       let playing = null;
       const t0 = performance.now();

@@ -36,7 +36,6 @@ Možda	Kanske	zmaj zmaj::01_basics
 Živjeli!	Skål!	zmaj zmaj::01_basics
 Prijatno	Smaklig måltid	zmaj zmaj::01_basics
 Zdravo	Hej (neutralt, överallt)	zmaj zmaj::01_basics
-nula	noll	zmaj zmaj::02_zahlen
 jedan	ett	zmaj zmaj::02_zahlen
 dva	två	zmaj zmaj::02_zahlen
 tri	tre	zmaj zmaj::02_zahlen
@@ -47,6 +46,7 @@ sedam	sju	zmaj zmaj::02_zahlen
 osam	åtta	zmaj zmaj::02_zahlen
 devet	nio	zmaj zmaj::02_zahlen
 deset	tio	zmaj zmaj::02_zahlen
+nula	noll	zmaj zmaj::02_zahlen
 jedanaest	elva	zmaj zmaj::02_zahlen
 dvanaest	tolv	zmaj zmaj::02_zahlen
 trinaest	tretton	zmaj zmaj::02_zahlen

@@ -4,14 +4,26 @@
 Entwurf, Variante 1 "Ring").
 
 Was hier im echten Browser nachgeprueft wird:
-  - der Knopf unten rechts unter der Aufgabe: setzen und wegnehmen
-    (aria-pressed, Ansage, Goldstern), Pop nur mit Bewegung, er bleibt
-    nach dem Neuladen, ein Stern je Wort ueber alle Aufgabenarten, Saetze
-    und Grammatik lassen sich markieren;
-  - Masse aus dem Entwurf: 44 x 44, Trefferflaeche 48 x 48, die Leiste
-    bleibt 39 px hoch, "Lektion abbrechen" rutscht nicht, und der Stern
-    sitzt per Pixelmessung auf weniger als 0,5 Geraetepixel in der Mitte
-    (hell und dunkel, leer und markiert, 412 x 915 und 360 x 726);
+  - der Knopf oben rechts in der Kopfzeile der Lernkarte, rechts neben den
+    Punkten (seit dem 26.10.2026 spaet, Ajdin: "nimm A"; davor am selben
+    Tag neben dem Drachen - "im moment steht es so mitten im nirgendwo" -,
+    bis dahin unten rechts in der Leiste): setzen und wegnehmen (aria-pressed,
+    Ansage, Goldstern), Pop nur mit Bewegung, er bleibt nach dem
+    Neuladen, ein Stern je Wort ueber alle Aufgabenarten, Saetze und
+    Grammatik lassen sich markieren;
+  - die Lage: in .kastenkopf direkt hinter .tbar, senkrecht auf der Mitte
+    der Herz-Pille, rechte Kante am Innenrand der Karte, die Zeile so hoch
+    wie die Herz-Pille, Trefferflaeche 48 x 48 - und dass er nichts
+    ueberdeckt (Herz, Punkte, Drache, Aufgabe), bei allen Aufgabenarten (auch Sprechen und die
+    groesste Kachelbank), vor und nach der Antwort, bei 100, 130 und
+    200 % Schrift, in Lektion, Markiert-Runde und Level-Test;
+  - gut sichtbar in allen neun Sektionsfarben, hell und dunkel;
+  - die Leiste unter der Karte hat nur noch "abbrechen", 39 px hoch;
+  - versteckt haelt er seinen Platz: der Balken bleibt gleich breit, und
+    der versteckte Knopf ist weder fokussierbar noch im Vorlesebaum;
+  - Masse: 40 x 40 (im Entwurf 44 x 44), und der Stern sitzt per Pixelmessung
+    auf weniger als 0,5 Geraetepixel in der Mitte (hell und dunkel, leer
+    und markiert, 412 x 915 und 360 x 726);
   - wo er steht und wo nicht: Level-Test ja; Einstufung, Ergebnis und
     Schirm ohne Leben (Lektion und Test) nein;
   - die Obergrenze von 300 - voll heisst: nichts wird still geloescht;
@@ -138,8 +150,8 @@ def test_stern_setzen_und_entfernen(seite, heute_stand):
     knopf = seite.js(KNOPF, "lStern")
     assert knopf["sichtbar"] and knopf["gedrueckt"] == "false" and not knopf["gold"]
     assert knopf["name"] == "Markieren" and knopf["typ"] == "button"
-    assert (knopf["w"], knopf["h"]) == (44, 44), knopf
-    assert knopf["svg"] == ["28", "28"]
+    assert (knopf["w"], knopf["h"]) == (40, 40), knopf
+    assert knopf["svg"] == ["24", "24"]
     assert not knopf["imKoerper"], "der Stern gehoert nicht ins Aufgabenfeld (weiterBeiTipp)"
 
     seite.page.click("#lStern")
@@ -162,8 +174,10 @@ def test_stern_setzen_und_entfernen(seite, heute_stand):
 
 
 def test_farben_wie_im_entwurf(seite, heute_stand):
-    """Leer: Rand --line, Flaeche --surface, Stern-Umriss --muted. Markiert:
-    Goldring --accent, hell auf --accent-soft, Goldstern mit Rand #B07D00."""
+    """Leer: Rand --line, Stern-Umriss --muted, Flaeche seit dem 26.10.2026
+    --bg wie die Herz-Pille (vorher --surface wie "Lektion abbrechen" - auf
+    der Karte waere das nur ein duenner Ring). Markiert: Goldring --accent,
+    hell auf --accent-soft, Goldstern mit Rand #B07D00."""
     seite.starten(stand=heute_stand())
     seite.js(LEGEN, [{"typ": "mc"}])
     # Die Werte der Variablen genau dort, wo der Knopf steht (die Sektion
@@ -175,10 +189,10 @@ def test_farben_wie_im_entwurf(seite, heute_stand):
       return {rand: s.borderTopColor, grund: s.backgroundColor, strich: p.stroke, fuell: p.fill,
               randBreite: s.borderTopWidth, rund: s.borderRadius,
               line: v('--line'), surface: v('--surface'), muted: v('--muted'), accent: v('--accent'),
-              accentSoft: v('--accent-soft')}; }"""
+              accentSoft: v('--accent-soft'), bg: v('--bg')}; }"""
     leer = seite.js(farben)
     assert leer["rand"] == leer["line"] and leer["randBreite"] == "2px" and leer["rund"] == "50%"
-    assert leer["grund"] == leer["surface"]
+    assert leer["grund"] == leer["bg"] != leer["surface"]
     assert leer["strich"] == leer["muted"] and leer["fuell"] == "none"
     seite.page.click("#lStern")
     seite.page.wait_for_timeout(400)            # Farbwechsel laeuft 0,15 s
@@ -284,13 +298,306 @@ def test_fokus_sichtbar_mit_tastatur(seite, heute_stand):
 
 
 # ---------------------------------------------------------------------------
-# Masse und Zentrierung aus dem Entwurf
+# Lage: in der Kopfzeile, rechts neben den Punkten (26.10.2026 spaet)
 # ---------------------------------------------------------------------------
 
-LEISTE = """(id) => { const b = document.getElementById(id), nav = b.parentElement, q = nav.firstElementChild;
-  const n = nav.getBoundingClientRect(), r = q.getBoundingClientRect(), k = b.getBoundingClientRect();
-  return {navH: n.height, quitTop: r.top - n.top, quitH: r.height, rechts: n.right - k.right,
-          mitte: (k.top + k.height / 2) - (r.top + r.height / 2)}; }"""
+# Wo der Stern steht und was um ihn herum ist. Trefferflaeche: der Knopf
+# plus 4 px (::before). Geschnitten wird mit der Herz-Pille, dem Balken, dem
+# Kasten des Drachen und jedem sichtbaren Teil der Aufgabe.
+LAGE = """(id) => { const b = document.getElementById(id), sec = b.closest('section'), card = sec.querySelector('.card');
+  const R = e => e.getBoundingClientRect();
+  if(!b.hidden){ const v = R(b); if(v.top < 0 || v.bottom > innerHeight) b.scrollIntoView({block: 'center'}); }
+  const kopf = sec.querySelector('.kastenkopf'), herzEl = kopf.querySelector('.kastenherz'), barEl = kopf.querySelector('.tbar');
+  const s = R(b), d = R(sec.querySelector('.zmaj.mini')), k = R(kopf), herz = R(herzEl), bar = R(barEl),
+        c = R(card), cs = getComputedStyle(card);
+  const innen = c.right - parseFloat(cs.borderRightWidth) - parseFloat(cs.paddingRight);
+  const body = sec.querySelector('#lBody, #tBody');
+  const teile = [...body.querySelectorAll('*')].filter(e => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden')
+    .map(e => [e, R(e)]).filter(([e, r]) => r.width > 0 && r.height > 0);
+  const t = {left: s.left - 4, top: s.top - 4, right: s.right + 4, bottom: s.bottom + 4};
+  const schneidet = r => !(t.right <= r.left || t.left >= r.right || t.bottom <= r.top || t.top >= r.bottom);
+  const mitte = document.elementFromPoint(s.left + s.width / 2, s.top + s.height / 2);
+  return {imKopf: b.parentElement === kopf, hinterBar: b.previousElementSibling === barEl, letzter: kopf.lastElementChild === b,
+          inKarte: card.contains(b), sichtbar: !b.hidden && !!b.offsetParent,
+          w: s.width, h: s.height, rechtsInnen: innen - s.right, abstandBar: s.left - bar.right,
+          hoehe: (s.top + s.height / 2) - (herz.top + herz.height / 2), kopfH: k.height - herz.height,
+          inKarteOben: t.top - (c.top + parseFloat(cs.borderTopWidth)), drache: d.height,
+          ueberDrache: d.top - t.bottom, ueberAufgabe: Math.min(...teile.map(([e, r]) => r.top)) - t.bottom,
+          schneidet: {herz: schneidet(herz), bar: schneidet(bar), drache: schneidet(d),
+                      aufgabe: teile.filter(([e, r]) => schneidet(r)).map(([e]) => e.tagName + '.' + e.className)},
+          oben: mitte === b || b.contains(mitte)}; }"""
+
+
+def _lage_ok(m, wo):
+    # in der Kopfzeile, direkt hinter dem Balken und als letztes darin
+    # (26.10.2026: "nimm A")
+    assert m["imKopf"] and m["hinterBar"] and m["letzter"] and m["inKarte"] and m["sichtbar"], (wo, m)
+    assert (m["w"], m["h"]) == (40, 40), (wo, m)
+    # auf einer Linie mit der Herz-Pille, rechte Kante am Innenrand der
+    # Karte, je +-2 px; zwischen Balken und Knopf der Abstand der Zeile
+    assert abs(m["hoehe"]) <= 2 and abs(m["rechtsInnen"]) <= 2, (wo, m)
+    assert 8 <= m["abstandBar"] <= 12, (wo, m)
+    # die Zeile bleibt so hoch wie die Herz-Pille - nichts darunter rutscht
+    assert abs(m["kopfH"]) <= 0.5, (wo, m)
+    # ueberdeckt nichts, auch nicht mit der Trefferflaeche, und bleibt in der Karte
+    assert m["schneidet"] == {"herz": False, "bar": False, "drache": False, "aufgabe": []}, (wo, m)
+    assert m["inKarteOben"] >= 0 and m["ueberDrache"] >= 0 and m["ueberAufgabe"] >= 0, (wo, m)
+    assert m["oben"], (wo, "etwas liegt ueber dem Stern", m)
+
+
+# Breite x Hoehe: 320 ist die engste Breite (der Balken am kuerzesten),
+# 320 x 900 hat dabei den grossen Drachen (120 px, erst unter 821 px Hoehe
+# 100 px).
+FORMATE = [(320, 640), (320, 900), (360, 726), (390, 844), (412, 915)]
+
+
+@pytest.mark.parametrize("breite,hoehe", FORMATE)
+@pytest.mark.parametrize("knopf", ["lStern", "tStern"])
+def test_stern_in_der_kopfzeile_rechts_neben_den_punkten(browser, basis, heute_stand, knopf, breite, hoehe):
+    ctx = browser.new_context(viewport={"width": breite, "height": hoehe}, locale="de-DE", service_workers="block")
+    seite = Seite(ctx.new_page(), basis)
+    try:
+        seite.starten(stand=heute_stand())
+        if knopf == "lStern":
+            seite.js(LEGEN, [{"typ": "mc"}])
+        else:
+            _test_starten(seite)
+        _vorspann_weg(seite)
+        m = seite.js(LAGE, knopf)
+        _lage_ok(m, (knopf, breite, hoehe))
+        assert m["drache"] == (100 if hoehe <= 820 else 120), m
+        # Vor der Antwort ganz im Bild, ohne zu scrollen
+        assert seite.js("""(id) => { const r = document.getElementById(id).getBoundingClientRect();
+                           return scrollY === 0 && r.top >= 0 && r.bottom <= innerHeight; }""", knopf)
+        t = seite.js(TREFFER, knopf)
+        # Das Raster zaehlt beide Randpunkte mit: 48 px Flaeche ergeben 48,75
+        # (so auch im Entwurf gemessen); 40 px ohne ::before ergaeben 40,75.
+        assert t["vor"] == ["48px", "48px"] and 48 <= t["w"] <= 48.75 and 48 <= t["h"] <= 48.75 and t["ecken"], t
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
+# Balken, Kopfzeile und Drache messen; den Knopf verstecken (wie die App
+# es bei einer Aufgabe ohne Kennung tut) und wieder auf die Aufgabe stellen.
+VERSTECKT = """(id) => { const b = document.getElementById(id), sec = b.closest('section');
+  const R = s => sec.querySelector(s).getBoundingClientRect();
+  const mass = () => ({bar: R('.kastenkopf .tbar').width, kopf: R('.kastenkopf').height, drache: R('.zmaj.mini').top,
+                       platz: b.getBoundingClientRect().width});
+  const aufgabe = id === 'tStern' ? Tx.qs[Tx.i] : Lx.queue[Lx.i];
+  const sichtbar = mass();
+  sternKnopf(id, null);
+  const weg = mass();
+  b.focus();
+  const fokus = document.activeElement === b;
+  const stil = getComputedStyle(b);
+  const r = b.getBoundingClientRect(), e = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+  const zustand = {hidden: b.hidden, sichtbarkeit: stil.visibility, display: stil.display, fokus,
+                   trifft: !!e && (e === b || b.contains(e))};
+  sternKnopf(id, aufgabe);
+  return {sichtbar, weg, wieder: mass(), zustand, wiederHidden: b.hidden}; }"""
+
+
+@pytest.mark.parametrize("breite", [320, 360, 412])
+@pytest.mark.parametrize("knopf", ["lStern", "tStern"])
+def test_balken_springt_nicht_wenn_der_stern_versteckt_ist(browser, basis, heute_stand, knopf, breite):
+    """Versteckt (hidden) haelt der Stern seinen Platz (visibility:hidden):
+    der Balken bleibt gleich breit, die Kopfzeile gleich hoch, der Drache
+    an seiner Stelle. Und er ist dann wirklich weg: nicht fokussierbar,
+    nicht im Vorlesebaum, faengt keinen Tipp ab."""
+    ctx = browser.new_context(viewport={"width": breite, "height": 726}, locale="de-DE", service_workers="block")
+    seite = Seite(ctx.new_page(), basis)
+    try:
+        seite.starten(stand=heute_stand())
+        if knopf == "lStern":
+            seite.js(LEGEN, [{"typ": "mc"}])
+        else:
+            _test_starten(seite)
+        _vorspann_weg(seite)
+        rolle = seite.page.get_by_role("button", name="Markieren")
+        assert rolle.count() == 1
+        m = seite.js(VERSTECKT, knopf)
+        assert m["sichtbar"] == m["weg"] == m["wieder"], m
+        assert m["sichtbar"]["platz"] == 40 and m["sichtbar"]["bar"] > 0, m
+        assert m["zustand"] == {"hidden": True, "sichtbarkeit": "hidden", "display": "flex", "fokus": False,
+                                "trifft": False}, m
+        assert m["wiederHidden"] is False
+        # im Vorlesebaum: versteckt keiner, danach wieder genau einer
+        seite.js("(id) => sternKnopf(id, null)", knopf)
+        assert rolle.count() == 0
+        assert seite.page.locator("#" + knopf).is_hidden()
+        seite.js("(id) => sternKnopf(id, id === 'tStern' ? Tx.qs[Tx.i] : Lx.queue[Lx.i])", knopf)
+        assert rolle.count() == 1
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
+# Eine Aufgabe jeder Art bauen und an die erste Stelle legen - Lektion,
+# Markiert-Runde oder Level-Test. kachelnGross: die Kachelbank mit den
+# meisten Kacheln, speak: das laengste Wort.
+LEGEN_ART = """async ([ort, typ]) => {
+  lives = {anzahl: LEBEN_MAX, zeit: Date.now()};
+  const c = CATEGORIES[0], ws = c.words.filter(x => typable(x));
+  const bau = typ => {
+    if(typ === 'gap') return {typ, s: SENTENCES.find(x => x.text.indexOf('___') >= 0)};
+    if(typ === 'kacheln' || typ === 'kachelnGross'){
+      const alle = SATZBAU.filter(x => satzKacheln(x.bs).length >= 2);
+      return {typ: 'kacheln', s: typ === 'kacheln' ? alle[0]
+        : alle.slice().sort((a, b) => satzKacheln(b.bs).length - satzKacheln(a.bs).length || b.bs.length - a.bs.length)[0]};
+    }
+    if(typ === 'gram'){ const lv = Object.keys(GRAMMAR).find(id => (GRAMMAR[id].uebungen || []).length);
+      return {typ, g: GRAMMAR[lv].uebungen[0]}; }
+    return {typ, w: typ === 'speak' ? c.words.slice().sort((a, b) => b.bs.length - a.bs.length)[0] : ws[0], pool: c.words};
+  };
+  const a = bau(typ);
+  if(ort === 'lektion'){ openLevel(0); startLesson(); Lx.queue = [a, bau('mc')]; Lx.i = 0; Lx.total = 2; Lx.results = []; Lx.right = 0; showLessonTask(); }
+  else if(ort === 'runde'){
+    stern = {}; CATEGORIES.flatMap(c => c.words).slice(0, 3).forEach((w, i) => { stern['w:' + w.id] = {z: i + 1, r: 0}; });
+    homeMode = 'topf'; showHome(); startStern(); Lx.queue[0] = a; Lx.i = 0; showLessonTask();
+  } else { passed.add(c.id); openLevel(0); startTest(); Tx.qs[0] = a; Tx.i = 0; Tx.results = []; Tx.right = 0; showTestQ(); }
+  await document.fonts.ready; await new Promise(r => setTimeout(r, 200));
+  return ort === 'runde' ? Lx.quelle : ort;
+}"""
+
+# Irgendwie antworten (falsch: dann steht auch die Loesung da, das Feld ist
+# am groessten); Sprechen wird uebersprungen.
+ANTWORT_ART = """async (ort) => {
+  const X = ort === 'test' ? Tx : Lx, liste = ort === 'test' ? Tx.qs : Lx.queue;
+  const body = document.getElementById(ort === 'test' ? 'tBody' : 'lBody'), q = liste[X.i], i = X.i;
+  if(q.typ === 'speak') body.querySelector('#xSkip').click();
+  else if(q.typ === 'intro') body.querySelector('#xNext').click();
+  else if(q.typ === 'kacheln'){ [...body.querySelectorAll('#xBank .kachel:not(.platz)')].forEach(b => b.click()); body.querySelector('#xCheck').click(); }
+  else if(q.typ === 'gap' || q.typ === 'type'){ body.querySelector('#xIn').value = 'qqqq'; body.querySelector('#xCheck').click(); }
+  else body.querySelector('.opt').click();
+  const ende = Date.now() + 5000;
+  while(X.i === i && Date.now() < ende) await new Promise(r => setTimeout(r, 15));
+  await new Promise(r => setTimeout(r, 250));
+}"""
+
+# Wie die Schrift des Handys (test_symbole.py): jede Groesse mal f. Vorher
+# zuruecksetzen, damit nichts doppelt waechst.
+SCHRIFT = """(f) => { document.querySelectorAll('[data-schrift]').forEach(e => { e.style.fontSize = ''; delete e.dataset.schrift; });
+  if(f === 1) return;
+  const els = [...document.querySelectorAll('body *')], g = els.map(e => parseFloat(getComputedStyle(e).fontSize));
+  els.forEach((e, i) => { e.style.fontSize = (g[i] * f) + 'px'; e.dataset.schrift = '1'; }); }"""
+
+ARTEN = {"lektion": ["mc", "mcrev", "type", "listen", "gap", "kacheln", "kachelnGross", "speak", "gram", "intro"],
+         "runde": ["mc", "type", "gap", "kachelnGross", "gram"],
+         "test": ["mc", "listen", "gap", "kachelnGross", "gram"]}
+
+
+@pytest.mark.parametrize("faktor", [1, 1.3, 2])
+def test_stern_ueberdeckt_nichts(browser, basis, heute_stand, faktor):
+    """Bei 320 px, der engsten Breite: jede Aufgabenart in Lektion,
+    Markiert-Runde und Level-Test, vor und nach der Antwort - der Stern
+    bleibt an seiner Stelle in der Kopfzeile und ueberdeckt weder Herz,
+    Punkte und Drache noch irgendeinen Teil der Aufgabe. Bei 130 und 200 %
+    Schrift waechst die Herz-Pille und mit ihr die Zeile, der Knopf bleibt
+    auf ihrer Mitte. Nach einer langen Aufgabe scrollt die App zu "Weiter";
+    dann wird erst zum Stern zurueckgescrollt."""
+    ctx = browser.new_context(viewport={"width": 320, "height": 640}, locale="de-DE", service_workers="block",
+                              reduced_motion="reduce")
+    seite = Seite(ctx.new_page(), basis)
+    try:
+        seite.starten(stand=heute_stand())
+        _vorspann_weg(seite)
+        gemessen = 0
+        for ort, arten in ARTEN.items():
+            knopf = "tStern" if ort == "test" else "lStern"
+            for typ in arten:
+                assert seite.js(LEGEN_ART, [ort, typ]) == ("stern" if ort == "runde" else ort)
+                seite.js(SCHRIFT, faktor)
+                _lage_ok(seite.js(LAGE, knopf), (ort, typ, faktor, "vor"))
+                seite.js(ANTWORT_ART, ort)
+                seite.js(SCHRIFT, faktor)
+                _lage_ok(seite.js(LAGE, knopf), (ort, typ, faktor, "nach"))
+                gemessen += 2
+        assert gemessen == 40
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
+# Farben genau dort, wo der Knopf steht, ohne Uebergang (der Knopf blendet
+# Farben in 0,15 s um).
+KNOPF_FARBEN = """([nr, an]) => {
+  let st = document.getElementById('ohneUebergang');
+  if(!st){ st = document.createElement('style'); st.id = 'ohneUebergang'; st.textContent = '*{transition:none!important}'; document.head.appendChild(st); }
+  document.documentElement.dataset.sek = String(nr);
+  const b = document.getElementById('lStern');
+  sternZeigen(b, an);
+  const z = c => c.match(/[\\d.]+/g).slice(0, 3).map(Number);
+  const s = getComputedStyle(b), p = getComputedStyle(b.querySelector('path'));
+  return {grund: z(s.backgroundColor), strich: z(p.stroke), karte: z(getComputedStyle(document.querySelector('#lesson .card')).backgroundColor)}; }"""
+
+
+def _kontrast(a, b):
+    def hell(c):
+        k = [x / 255.0 for x in c]
+        k = [x / 12.92 if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4 for x in k]
+        return 0.2126 * k[0] + 0.7152 * k[1] + 0.0722 * k[2]
+    h = sorted((hell(a), hell(b)), reverse=True)
+    return (h[0] + 0.05) / (h[1] + 0.05)
+
+
+@pytest.mark.parametrize("schema", ["light", "dark"])
+def test_stern_gut_sichtbar_in_allen_sektionen(browser, basis, heute_stand, schema):
+    """Ajdin am 26.10.2026: "weil er zu schlecht sichtbar war". In allen neun
+    Sektionsfarben: der leere Stern hebt sich mit mindestens 4,5:1 von
+    seinem Knopf ab, der Knopf als Scheibe von der Karte (vorher dieselbe
+    Farbe, 1:1), und der markierte Goldstern hat einen Rand mit mindestens
+    3:1 zu seinem Grund."""
+    ctx = browser.new_context(viewport={"width": 360, "height": 726}, locale="de-DE", service_workers="block",
+                              color_scheme=schema)
+    seite = Seite(ctx.new_page(), basis)
+    try:
+        seite.starten(stand=heute_stand())
+        seite.js(LEGEN, [{"typ": "mc"}])
+        werte = {}
+        for nr in range(1, 10):
+            leer = seite.js(KNOPF_FARBEN, [nr, False])
+            an = seite.js(KNOPF_FARBEN, [nr, True])
+            werte[nr] = (round(_kontrast(leer["strich"], leer["grund"]), 2),
+                         round(_kontrast(leer["grund"], leer["karte"]), 2),
+                         round(_kontrast(an["strich"], an["grund"]), 2))
+        assert all(s >= 4.5 and k >= 1.25 and g >= 3 for s, k, g in werte.values()), (schema, werte)
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
+# ---------------------------------------------------------------------------
+# Die Leiste unter der Karte
+# ---------------------------------------------------------------------------
+
+LEISTE = """(id) => { const nav = document.getElementById(id).parentElement, q = nav.firstElementChild;
+  const n = nav.getBoundingClientRect(), r = q.getBoundingClientRect();
+  return {kinder: [...nav.children].map(e => e.tagName + (e.id ? '#' + e.id : '')), navH: n.height, quitH: r.height,
+          links: r.left - n.left, quitTop: r.top - n.top, sterne: nav.querySelectorAll('.stern').length}; }"""
+
+
+@pytest.mark.parametrize("quit", ["lQuit", "tQuit"])
+def test_leiste_nur_noch_abbrechen(seite, heute_stand, quit):
+    """Die Leiste hat wieder nur "abbrechen" links und den leeren Platzhalter
+    (wie vor dem 19.10.2026 und wie in der Einstufung) und ist so hoch wie
+    der Knopf: 39 px (Windows) bzw. 38 px (Linux-CI, Noto). Mit dem Stern war
+    sie genau so hoch - an ihr aendert sich nichts."""
+    seite.starten(stand=heute_stand())
+    if quit == "lQuit":
+        seite.js(LEGEN, [{"typ": "mc"}])
+    else:
+        _test_starten(seite)
+    _vorspann_weg(seite)
+    m = seite.js(LEISTE, quit)
+    assert m["kinder"] == ["BUTTON#" + quit, "SPAN"] and m["sterne"] == 0, m
+    assert abs(m["navH"] - 39) <= 1 and m["navH"] == m["quitH"] and m["quitTop"] == 0 and m["links"] == 0, m
+    assert seite.fehler == []
+
+
+# ---------------------------------------------------------------------------
+# Masse und Zentrierung aus dem Entwurf
+# ---------------------------------------------------------------------------
 
 # Trefferflaeche wie im Entwurf nachgemessen: elementFromPoint im
 # 0,25-px-Raster durch die Mitte, waagrecht und senkrecht, dazu die Ecken.
@@ -304,42 +611,18 @@ TREFFER = """(id) => { const b = document.getElementById(id), r = b.getBoundingC
           ecken: [[-23, -23], [23, -23], [-23, 23], [23, 23]].every(([dx, dy]) => trifft(mx + dx, my + dy))}; }"""
 
 
-@pytest.mark.parametrize("knopf", ["lStern", "tStern"])
-def test_leiste_bleibt_39_px_und_trefferflaeche_48(seite, heute_stand, knopf):
-    seite.starten(stand=heute_stand())
-    if knopf == "lStern":
-        seite.js(LEGEN, [{"typ": "mc"}])
-    else:
-        _test_starten(seite)
-    _vorspann_weg(seite)
-    seite.js("(id) => { document.getElementById(id).hidden = true; }", knopf)
-    ohne = seite.js(LEISTE, knopf)
-    seite.js("(id) => { document.getElementById(id).hidden = false; }", knopf)
-    mit = seite.js(LEISTE, knopf)
-    # Die Leiste ist 39 px (Windows) bzw. 38 px (Linux-CI, Noto): der Stern
-    # darf sie nie veraendern. 23.10.2026, PR #55.
-    assert ohne["navH"] == mit["navH"] and abs(mit["navH"] - 39) <= 1, (ohne, mit)
-    assert mit["quitTop"] == ohne["quitTop"], "abbrechen rutscht"
-    assert abs(mit["mitte"]) < 0.01 and abs(mit["rechts"]) < 0.01, mit
-    t = seite.js(TREFFER, knopf)
-    # Das Raster zaehlt beide Randpunkte mit: 48 px Flaeche ergeben 48,75
-    # (so auch im Entwurf gemessen); 44 px ohne ::before ergaeben 44,75.
-    assert t["vor"] == ["48px", "48px"] and 48 <= t["w"] <= 48.75 and 48 <= t["h"] <= 48.75 and t["ecken"], t
-    assert seite.fehler == []
-
-
 MESS_STIL = """(art) => {
   let st = document.getElementById('messStil');
   if(!st){ st = document.createElement('style'); st.id = 'messStil'; document.head.appendChild(st); }
-  const ruhig = '.nav .stern, .nav .stern *{transition:none!important; animation:none!important}';
+  const ruhig = '.kastenkopf .stern, .kastenkopf .stern *{transition:none!important; animation:none!important}';
   const T = {
     echt: '',
-    ohneStern: '.nav .stern svg{visibility:hidden!important}',
-    maskeStern: '.nav .stern{background:transparent!important; border-color:transparent!important}' +
-                ' .nav .stern .sternsym path{stroke:#000!important} .nav .stern .sternsym.an path{fill:#000!important}',
-    maskeLeer: '.nav .stern{background:transparent!important; border-color:transparent!important}' +
-               ' .nav .stern svg{visibility:hidden!important}',
-    maskeKreis: '.nav .stern{background:#000!important; border-color:#000!important} .nav .stern svg{visibility:hidden!important}',
+    ohneStern: '.kastenkopf .stern svg{visibility:hidden!important}',
+    maskeStern: '.kastenkopf .stern{background:transparent!important; border-color:transparent!important}' +
+                ' .kastenkopf .stern .sternsym path{stroke:#000!important} .kastenkopf .stern .sternsym.an path{fill:#000!important}',
+    maskeLeer: '.kastenkopf .stern{background:transparent!important; border-color:transparent!important}' +
+               ' .kastenkopf .stern svg{visibility:hidden!important}',
+    maskeKreis: '.kastenkopf .stern{background:#000!important; border-color:#000!important} .kastenkopf .stern svg{visibility:hidden!important}',
   };
   st.textContent = ruhig + T[art];
 }"""
@@ -401,7 +684,7 @@ def test_stern_sitzt_in_der_mitte(browser, basis, heute_stand, schema):
                 lay = seite.js(DREHPUNKT, "lStern")
                 fall = "%d_%s" % (breite, "an" if an else "leer")
                 funde[fall] = m
-                assert abs(m["breite"] - (44 + 16) * dpr) <= 1, m
+                assert abs(m["breite"] - (40 + 16) * dpr) <= 1, m
                 for k in ("dx_geo", "dy_geo", "dx_echt", "dy_echt"):
                     assert abs(m[k]) < 0.5, (schema, fall, k, m)
                 assert abs(lay["dx"]) < 0.01 and abs(lay["dy"]) < 0.01, (schema, fall, lay)
@@ -421,7 +704,7 @@ def test_kein_stern_in_einstufung(seite, heute_stand):
     seite.js("() => { baueEinstufung('etwas'); einstufungStarten(); }")
     seite.page.locator("#eBody .opt, #eBody #xIn").first.wait_for()
     assert seite.js("() => document.querySelectorAll('#einstufungView .stern').length") == 0
-    assert seite.page.locator(".nav .stern:visible").count() == 0
+    assert seite.page.locator(".stern.v1:visible").count() == 0
     assert seite.fehler == []
 
 
@@ -458,7 +741,7 @@ def test_kein_stern_ohne_leben_im_test(seite, heute_stand):
     seite.js(WEITER, "tBody")
     seite.page.locator("#tBody .result-big.fail.ohneleben").wait_for()
     assert not seite.js(KNOPF, "tStern")["sichtbar"]
-    assert seite.page.locator(".nav .stern:visible").count() == 0
+    assert seite.page.locator(".stern.v1:visible").count() == 0
     assert seite.fehler == []
 
 
@@ -467,7 +750,7 @@ def test_level_test_stern_und_ergebnis(seite, heute_stand):
     _test_starten(seite)
     knopf = seite.js(KNOPF, "tStern")
     assert knopf["sichtbar"] and knopf["gedrueckt"] == "false" and not knopf["imKoerper"]
-    assert knopf["name"] == "Markieren" and (knopf["w"], knopf["h"]) == (44, 44)
+    assert knopf["name"] == "Markieren" and (knopf["w"], knopf["h"]) == (40, 40)
     k = seite.js("() => topfSchluessel(Tx.qs[Tx.i])")
     seite.page.click("#tStern")
     assert seite.js("(k) => !!stern[k]", k)
@@ -601,7 +884,7 @@ def test_reiter_wiederholen_leer(seite, heute_stand):
     k = seite.js(KAESTEN)
     assert k["topfHtml"] == seite.js(TOPF_ALT)
     assert k["sternKlasse"] == "section"
-    assert k["leer"] == "Noch nichts markiert. Tippe in einer Aufgabe unten rechts auf [Stern]."
+    assert k["leer"] == "Noch nichts markiert. Tippe in einer Aufgabe oben rechts auf [Stern]."
     assert k["leerStern"] == {"rolle": "img", "w": "17"}
     assert k["titelStern"] == {"gold": False, "w": "22", "versteckt": "true"}
     assert k["knopf"] is None and k["zahl"] is None

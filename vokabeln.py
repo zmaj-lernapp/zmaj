@@ -16,6 +16,30 @@ Aufbau:
                   "baut_auf": Liste früherer Level-ids, deren Wörter hier
                              gebraucht werden. Der Level-Test holt daraus seine
                              Wiederholungsfragen (3 von 10 Fragen).
+                  "reihenfolge": optional True (seit 26.10.2026): die neuen
+                             Wörter kommen in der Reihenfolge von "words"
+                             dran statt gemischt (jedan, dva ... deset, nula). Ajdin:
+                             „bei der zahlen sektion am besten die zahlen in
+                             reihenfolge lernen sowie wochentage und wo es
+                             noch passt“. Gesetzt bei zahlen, wochentage,
+                             monate und mengen (Zahlen im Satz: jedan brat,
+                             dva brata, pet braće - je Hauptwort erst eins,
+                             dann die Mehrzahl), den Leveln mit einer
+                             eindeutigen Reihe. Seit 26.10.2026 abends auch
+                             bei konjugation und zukunft (je Verb ja, ti,
+                             on/ona, mi, vi, oni) und routine (aufstehen bis
+                             schlafen gehen). Ajdin: „und auch reihenfolge
+                             berücksichtigen wo es noch sinn ergibt geh
+                             durch die app durch“. Was nicht in die Folge
+                             passt, steht in der Liste danach.
+                             Die Aufgaben einer Lektion, die Wiederholung, der
+                             Level-Test und die Einstufung bleiben gemischt.
+                  "reihe"  : optional (seit 26.10.2026): bs-Wörter dieses
+                             Levels, die in einem sonst gemischten Level in
+                             dieser Folge vorgestellt werden (zeit: jutro,
+                             podne, večer, noć; wetter: die Jahreszeiten).
+                             Der Rest bleibt gemischt; die Regel steht in
+                             buildLesson() in web/index.html.
                   "words"  : Liste von Wörtern {"de": "Deutsch", "bs": "Bosnisch"}
                              Optional "auch": weitere Antworten, die beim
                              Tippen ebenfalls richtig sind, z. B. bei „groß“
@@ -52,6 +76,26 @@ Aufbau:
                 Jedes Wort muss bis zum Level "kat" schon gelernt sein,
                 sonst schlägt tests/test_inhalt_tiefe.py an. Die App zeigt
                 einen Satz erst, wenn seine Wörter dran waren.
+  "zahl"      = optional an SAETZE und SATZBAU (seit 25.10.2026): die Zahl
+                im Satz wechselt. Ajdin: „die sätze immer mit der gleichen
+                zahl ist und nicht mal variiert“. Welche Sätze und Zahlen,
+                hat er in einer Tabelle freigegeben („Ja, alle so“).
+                  "wort"    : das Zahlwort, wie es heute im Satz steht
+                              ("pet", "dvije"); genau einmal im Satz
+                  "werte"   : die Zahlen, die vorkommen dürfen, samt der
+                              heutigen. Jede braucht eine Aufnahme.
+                  "de"      : die Bedeutung mit {n} für die Ziffer
+                              („Jetzt ist es {n} Uhr.“), wird übersetzt;
+                              Türkisch nimmt bei der Uhrzeit {lok} (7'de)
+                  "weiblich": optional, 2 heißt dann dvije (kahve, sestre)
+                  "frei"    : optional, "uhrzeit" (u pet, ohne Nomen) oder
+                              "dana" (dva dana wie pet dana) - dann dürfen
+                              2-4 und ab 5 gemischt sein, sonst nicht.
+                Die App nimmt eine andere Zahl nur, wenn es den fertigen
+                Satz als Aufnahme gibt und ihr Zahlwort schon gelernt ist -
+                oder der Level zahlen schon hinter dem Lernenden liegt
+                (bestanden oder per Einstufung übersprungen).
+                Geprüft in inhalt.pruefe_zahlen().
 
 Neues Wort:      eine Zeile im passenden "words"-Block ergänzen.
 Neues Level:     einen ganzen Block nach demselben Muster kopieren und an der
@@ -131,8 +175,8 @@ KATEGORIEN = [
     ]},
 
     {"id": "zahlen", "label": "Zahlen", "sektion": "alltag", "tipp": "Zählen von null bis tausend.",
+     "reihenfolge": True,   # jedan bis deset, dann nula, dann nach dem Zahlwert (26.10.2026)
      "words": [
-        {"de": "null",        "bs": "nula"},
         {"de": "eins",        "bs": "jedan"},
         {"de": "zwei",        "bs": "dva"},
         {"de": "drei",        "bs": "tri"},
@@ -143,6 +187,8 @@ KATEGORIEN = [
         {"de": "acht",        "bs": "osam"},
         {"de": "neun",        "bs": "devet"},
         {"de": "zehn",        "bs": "deset"},
+        # Ajdin am 26.10.2026: Zahlen fangen mit jedan an, nula kommt nach deset.
+        {"de": "null",        "bs": "nula"},
         {"de": "elf",         "bs": "jedanaest"},
         {"de": "zwölf",       "bs": "dvanaest"},
         {"de": "dreizehn",    "bs": "trinaest"},
@@ -275,6 +321,7 @@ KATEGORIEN = [
     ]},
 
     {"id": "wochentage", "label": "Wochentage", "sektion": "alltag", "baut_auf": ["zahlen"], "tipp": "Die Woche von ponedjeljak bis nedjelja.",
+     "reihenfolge": True,   # Montag bis Sonntag, dann vikend und sedmica (26.10.2026)
      "words": [
         {"de": "Montag",      "bs": "ponedjeljak"},
         {"de": "Dienstag",    "bs": "utorak"},
@@ -288,6 +335,7 @@ KATEGORIEN = [
     ]},
 
     {"id": "monate", "label": "Monate", "sektion": "alltag", "baut_auf": ["wochentage", "zahlen"], "tipp": "Monate und das Jahr.",
+     "reihenfolge": True,   # Januar bis Dezember, dann mjesec und godina (26.10.2026)
      "words": [
         {"de": "Januar",      "bs": "januar"},
         {"de": "Februar",     "bs": "februar"},
@@ -306,12 +354,13 @@ KATEGORIEN = [
     ]},
 
     {"id": "zeit", "label": "Zeit", "sektion": "alltag", "baut_auf": ["zahlen", "wochentage", "monate"], "tipp": "Uhrzeit und Tageszeiten. Ohne Zahlen geht hier nichts.",
+     "reihe": ["jutro", "podne", "večer", "noć"],   # Tageszeiten in Folge, der Rest gemischt (26.10.2026)
      "words": [
         {"de": "heute",               "bs": "danas"},
         {"de": "morgen (der nächste Tag)",    "bs": "sutra"},
         {"de": "gestern",             "bs": "jučer"},
         {"de": "jetzt",               "bs": "sada"},
-        {"de": "später",              "bs": "kasnije"},
+        {"de": "später",              "bs": "kasnije", "auch": ["poslije"]},
         {"de": "Tag",                 "bs": "dan"},
         {"de": "Morgen (Tageszeit)",  "bs": "jutro"},
         {"de": "Mittag",              "bs": "podne"},
@@ -352,6 +401,7 @@ KATEGORIEN = [
     ]},
 
     {"id": "wetter", "label": "Wetter & Natur", "sektion": "alltag", "baut_auf": ["farben", "monate"], "tipp": "Wetter, Jahreszeiten, Tiere.",
+     "reihe": ["proljeće", "ljeto", "jesen", "zima"],   # Jahreszeiten in Folge, der Rest gemischt (26.10.2026)
      "words": [
         {"de": "Wetter",        "bs": "vrijeme"},
         {"de": "Sonne",         "bs": "sunce"},
@@ -1014,6 +1064,7 @@ KATEGORIEN = [
 
     {"id": "konjugation", "label": "Verben beugen", "sektion": "saetze", "tipp": "Ich bin, du bist, er ist: die Gegenwart der wichtigsten Verben.",
      "baut_auf": ["verben", "basics", "familie"],
+     "reihenfolge": True,   # je Verb ja, ti, on/ona, mi, vi, oni (26.10.2026)
      "words": [
         {"de": "ich bin",         "bs": "ja sam"},
         {"de": "du bist",         "bs": "ti si"},
@@ -1313,6 +1364,7 @@ KATEGORIEN = [
 
     {"id": "zukunft", "label": "Zukunft & Pläne", "sektion": "saetze", "tipp": "Ću, ćeš, će: über morgen sprechen.",
      "baut_auf": ["konjugation", "zeit", "monate"],
+     "reihenfolge": True,   # ću, ćeš, će, ćemo, ćete, dann die Sätze (26.10.2026)
      "words": [
         {"de": "ich werde",                 "bs": "ću"},
         {"de": "du wirst",                  "bs": "ćeš"},
@@ -1406,6 +1458,7 @@ KATEGORIEN = [
 
     {"id": "routine", "label": "Tagesablauf", "sektion": "saetze", "tipp": "Aufstehen, duschen, arbeiten, kochen, schlafen: den Tag erzählen.",
      "baut_auf": ["reflexiv", "zeit", "essen"],
+     "reihenfolge": True,   # aufstehen bis schlafen gehen, dann der Rest (26.10.2026)
      "words": [
         {"de": "aufstehen",                 "bs": "ustajati"},
         {"de": "Ich stehe um sieben auf",   "bs": "Ustajem u sedam"},
@@ -1473,6 +1526,7 @@ KATEGORIEN = [
 
     {"id": "mengen", "label": "Zahlen im Satz", "sektion": "saetze", "tipp": "Jedan brat, dva brata, pet braće: nach Zahlen ändert sich das Wort.",
      "baut_auf": ["zahlen", "faelle2", "mehrzahl"],
+     "reihenfolge": True,   # je Hauptwort erst eins, dann zwei bis vier, dann fünf (26.10.2026)
      "words": [
         {"de": "ein Bruder",                "bs": "jedan brat"},
         {"de": "zwei Brüder",               "bs": "dva brata"},
@@ -2200,7 +2254,8 @@ SAETZE = [
 
     # Zeit (nutzt Zahlen und Wochentage aus früheren Levels)
     {"kat": "zeit", "text": "Koliko je ___?",           "answer": "sati",   "de": "Wie spät ist es?"},
-    {"kat": "zeit", "text": "Sada je ___ sati.",        "answer": "pet",    "de": "Jetzt ist es fünf Uhr."},
+    {"kat": "zeit", "text": "Sada je ___ sati.",        "answer": "pet",    "de": "Jetzt ist es fünf Uhr.",
+     "zahl": {"wort": "pet", "werte": [5, 6, 7, 8, 9, 10, 11, 12], "de": "Jetzt ist es {n} Uhr."}},
     {"kat": "zeit", "text": "U ___ je vikend.",         "answer": "subotu", "de": "Am Samstag ist Wochenende."},
     {"kat": "zeit", "text": "Vidimo se ___!",           "answer": "sutra",  "de": "Wir sehen uns morgen!"},
     {"kat": "zeit", "text": "___ je lijep dan.",        "answer": "Danas",  "de": "Heute ist ein schöner Tag."},
@@ -2216,7 +2271,8 @@ SAETZE = [
 
     # Essen & Trinken (nutzt Zahlen und Molim/Hvala aus den Grundlagen)
     {"kat": "essen", "text": "Hljeb i ___.",            "answer": "sir",    "de": "Brot und Käse."},
-    {"kat": "essen", "text": "___ kahve, molim.",       "answer": "Dvije",  "de": "Zwei Kaffee, bitte."},
+    {"kat": "essen", "text": "___ kahve, molim.",       "answer": "Dvije",  "de": "Zwei Kaffee, bitte.",
+     "zahl": {"wort": "dvije", "werte": [2, 3, 4], "weiblich": True, "de": "{n} Kaffee, bitte."}},
     {"kat": "essen", "text": "Račun, ___.",             "answer": "molim",  "de": "Die Rechnung, bitte."},
     {"kat": "essen", "text": "___ je hladna.",          "answer": "Voda",   "de": "Das Wasser ist kalt."},
     {"kat": "essen", "text": "Gladna ___.",             "answer": "sam",    "de": "Ich habe Hunger. (Frau)"},
@@ -2265,7 +2321,8 @@ SAETZE = [
     # Einkaufen & Kleidung (nutzt Zahlen und Farben)
     {"kat": "einkaufen", "text": "Kolika je ___?",      "answer": "cijena",   "de": "Wie hoch ist der Preis?"},
     {"kat": "einkaufen", "text": "Tražim ___ haljinu.", "answer": "plavu",    "de": "Ich suche ein blaues Kleid."},
-    {"kat": "einkaufen", "text": "Jakna košta ___ maraka.", "answer": "pedeset", "de": "Die Jacke kostet fünfzig Mark."},
+    {"kat": "einkaufen", "text": "Jakna košta ___ maraka.", "answer": "pedeset", "de": "Die Jacke kostet fünfzig Mark.",
+     "zahl": {"wort": "pedeset", "werte": [30, 40, 50, 60, 70, 80, 90, 100], "de": "Die Jacke kostet {n} Mark."}},
     {"kat": "einkaufen", "text": "Mogu li platiti ___?", "answer": "karticom", "de": "Kann ich mit Karte zahlen?"},
     {"kat": "einkaufen", "text": "Tražim ___.",         "answer": "cipele",   "de": "Ich suche Schuhe."},
 
@@ -2286,8 +2343,10 @@ SAETZE = [
     {"kat": "formell", "text": "___, molim Vas.",       "answer": "Izvinite", "de": "Entschuldigen Sie, bitte."},
 
     # Ganze Sätze – Lücken sind bewusst Wörter aus früheren Levels
-    {"kat": "saetze", "text": "Imam ___ brata.",               "answer": "dva",       "de": "Ich habe zwei Brüder."},
-    {"kat": "saetze", "text": "Jedemo u ___ sati.",            "answer": "sedam",     "de": "Wir essen um sieben Uhr."},
+    {"kat": "saetze", "text": "Imam ___ brata.",               "answer": "dva",       "de": "Ich habe zwei Brüder.",
+     "zahl": {"wort": "dva", "werte": [2, 3, 4], "de": "Ich habe {n} Brüder."}},
+    {"kat": "saetze", "text": "Jedemo u ___ sati.",            "answer": "sedam",     "de": "Wir essen um sieben Uhr.",
+     "zahl": {"wort": "sedam", "werte": [6, 7, 8, 9, 12], "de": "Wir essen um {n} Uhr."}},
     {"kat": "saetze", "text": "U ___ idem na posao.",          "answer": "ponedjeljak", "de": "Am Montag gehe ich zur Arbeit."},
     {"kat": "saetze", "text": "Gdje je ___ torba?",            "answer": "crvena",    "de": "Wo ist die rote Tasche?"},
     {"kat": "saetze", "text": "Moja ___ stanuje u selu.",      "answer": "nana",      "de": "Meine Oma wohnt im Dorf."},
@@ -2297,8 +2356,10 @@ SAETZE = [
 
     # Amt & Behörde
     {"kat": "amt", "text": "Trebam ___.",               "answer": "potvrdu",  "de": "Ich brauche eine Bescheinigung."},
-    {"kat": "amt", "text": "Imam ___ u ponedjeljak u deset sati.", "answer": "termin", "de": "Ich habe am Montag um zehn Uhr einen Termin."},
-    {"kat": "amt", "text": "___ za pasoš je trideset maraka.", "answer": "Taksa",    "de": "Die Gebühr für den Pass beträgt dreißig Mark."},
+    {"kat": "amt", "text": "Imam ___ u ponedjeljak u deset sati.", "answer": "termin", "de": "Ich habe am Montag um zehn Uhr einen Termin.",
+     "zahl": {"wort": "deset", "werte": [8, 9, 10, 11, 12], "de": "Ich habe am Montag um {n} Uhr einen Termin."}},
+    {"kat": "amt", "text": "___ za pasoš je trideset maraka.", "answer": "Taksa",    "de": "Die Gebühr für den Pass beträgt dreißig Mark.",
+     "zahl": {"wort": "trideset", "werte": [30, 40, 50, 60], "de": "Die Gebühr für den Pass beträgt {n} Mark."}},
     {"kat": "amt", "text": "Gdje trebam ___?",          "answer": "potpisati", "de": "Wo muss ich unterschreiben?"},
     {"kat": "amt", "text": "Imate li ___?",             "answer": "pasoš",    "de": "Haben Sie einen Reisepass?"},
     {"kat": "amt", "text": "Koji ___ mi trebaju?",      "answer": "dokumenti", "de": "Welche Dokumente brauche ich?"},
@@ -2313,7 +2374,8 @@ SAETZE = [
     # Verben beugen
     {"kat": "konjugation", "text": "Ja ___ iz Njemačke.",    "answer": "sam",     "de": "Ich bin aus Deutschland."},
     {"kat": "konjugation", "text": "Mi ___ kod kuće.",       "answer": "smo",     "de": "Wir sind zu Hause."},
-    {"kat": "konjugation", "text": "Ti ___ dva brata.",      "answer": "imaš",    "de": "Du hast zwei Brüder."},
+    {"kat": "konjugation", "text": "Ti ___ dva brata.",      "answer": "imaš",    "de": "Du hast zwei Brüder.",
+     "zahl": {"wort": "dva", "werte": [2, 3, 4], "de": "Du hast {n} Brüder."}},
     {"kat": "konjugation", "text": "Oni ___ u školu.",       "answer": "idu",     "de": "Sie gehen in die Schule."},
     {"kat": "konjugation", "text": "___ li ti bosanski?",    "answer": "Govoriš", "de": "Sprichst du Bosnisch?"},
 
@@ -2359,8 +2421,10 @@ SAETZE = [
 
     # Arbeitsvertrag & Bewerbung
     {"kat": "arbeitsvertrag", "text": "Tražim ___.",         "answer": "posao",   "de": "Ich suche Arbeit."},
-    {"kat": "arbeitsvertrag", "text": "Imam pet godina ___.", "answer": "iskustva", "de": "Ich habe fünf Jahre Erfahrung."},
-    {"kat": "arbeitsvertrag", "text": "Probni ___ traje tri mjeseca.", "answer": "rad", "de": "Die Probezeit dauert drei Monate."},
+    {"kat": "arbeitsvertrag", "text": "Imam pet godina ___.", "answer": "iskustva", "de": "Ich habe fünf Jahre Erfahrung.",
+     "zahl": {"wort": "pet", "werte": [5, 6, 7, 8, 10, 12, 15, 20], "de": "Ich habe {n} Jahre Erfahrung."}},
+    {"kat": "arbeitsvertrag", "text": "Probni ___ traje tri mjeseca.", "answer": "rad", "de": "Die Probezeit dauert drei Monate.",
+     "zahl": {"wort": "tri", "werte": [2, 3, 4], "de": "Die Probezeit dauert {n} Monate."}},
     {"kat": "arbeitsvertrag", "text": "Kolika je ___ plata?", "answer": "neto",   "de": "Wie hoch ist das Nettogehalt?"},
 
     # Arzt & Versicherung
@@ -2381,7 +2445,8 @@ SAETZE = [
     {"kat": "genus", "text": "Ovo je ___ selo.",           "answer": "naše",    "de": "Das ist unser Dorf."},
 
     # Mehrzahl
-    {"kat": "mehrzahl", "text": "Imam dvije ___.",         "answer": "sestre",  "de": "Ich habe zwei Schwestern."},
+    {"kat": "mehrzahl", "text": "Imam dvije ___.",         "answer": "sestre",  "de": "Ich habe zwei Schwestern.",
+     "zahl": {"wort": "dvije", "werte": [2, 3, 4], "weiblich": True, "de": "Ich habe {n} Schwestern."}},
     {"kat": "mehrzahl", "text": "___ se igraju.",          "answer": "Djeca",   "de": "Die Kinder spielen."},
     {"kat": "mehrzahl", "text": "Na pijaci ima mnogo ___.", "answer": "ljudi",  "de": "Auf dem Markt sind viele Leute."},
 
@@ -2424,20 +2489,26 @@ SAETZE = [
     # Reflexive Verben
     {"kat": "reflexiv", "text": "Zovem ___ Amina.",        "answer": "se",      "de": "Ich heiße Amina."},
     {"kat": "reflexiv", "text": "___ se dobro.",           "answer": "Osjećam", "de": "Ich fühle mich gut."},
-    {"kat": "reflexiv", "text": "Nalazimo ___ u pet.",     "answer": "se",      "de": "Wir treffen uns um fünf."},
+    {"kat": "reflexiv", "text": "Nalazimo ___ u pet.",     "answer": "se",      "de": "Wir treffen uns um fünf.",
+     "zahl": {"wort": "pet", "werte": [3, 4, 5, 6, 7, 8], "frei": "uhrzeit", "de": "Wir treffen uns um {n}."}},
     {"kat": "reflexiv", "text": "Djeca se ___.",           "answer": "igraju",  "de": "Die Kinder spielen."},
 
     # Tagesablauf
-    {"kat": "routine", "text": "___ u sedam sati.",        "answer": "Ustajem", "de": "Ich stehe um sieben Uhr auf."},
+    {"kat": "routine", "text": "___ u sedam sati.",        "answer": "Ustajem", "de": "Ich stehe um sieben Uhr auf.",
+     "zahl": {"wort": "sedam", "werte": [5, 6, 7, 8, 9], "de": "Ich stehe um {n} Uhr auf."}},
     {"kat": "routine", "text": "Poslije posla ___ večeru.", "answer": "kuham",  "de": "Nach der Arbeit koche ich Abendessen."},
-    {"kat": "routine", "text": "Idem ___ u jedanaest.",    "answer": "spavati", "de": "Ich gehe um elf schlafen."},
+    {"kat": "routine", "text": "Idem ___ u jedanaest.",    "answer": "spavati", "de": "Ich gehe um elf schlafen.",
+     "zahl": {"wort": "jedanaest", "werte": [9, 10, 11, 12], "frei": "uhrzeit", "de": "Ich gehe um {n} schlafen."}},
     {"kat": "routine", "text": "___ dan pijem kahvu.",     "answer": "Svaki",   "de": "Jeden Tag trinke ich Kaffee."},
 
     # Zahlen im Satz
-    {"kat": "mengen", "text": "Imam dva ___.",             "answer": "brata",   "de": "Ich habe zwei Brüder."},
-    {"kat": "mengen", "text": "Imam trideset ___.",        "answer": "godina",  "de": "Ich bin dreißig Jahre alt."},
+    {"kat": "mengen", "text": "Imam dva ___.",             "answer": "brata",   "de": "Ich habe zwei Brüder.",
+     "zahl": {"wort": "dva", "werte": [2, 3, 4], "de": "Ich habe {n} Brüder."}},
+    {"kat": "mengen", "text": "Imam trideset ___.",        "answer": "godina",  "de": "Ich bin dreißig Jahre alt.",
+     "zahl": {"wort": "trideset", "werte": [18, 20, 30, 40, 50, 60, 70], "de": "Ich bin {n} Jahre alt."}},
     {"kat": "mengen", "text": "___ kahve, molim.",         "answer": "Dvije",   "de": "Zwei Kaffee, bitte."},
-    {"kat": "mengen", "text": "Ostajemo pet ___.",         "answer": "dana",    "de": "Wir bleiben fünf Tage."},
+    {"kat": "mengen", "text": "Ostajemo pet ___.",         "answer": "dana",    "de": "Wir bleiben fünf Tage.",
+     "zahl": {"wort": "pet", "werte": [2, 3, 4, 5, 6, 7, 10, 14], "frei": "dana", "de": "Wir bleiben {n} Tage."}},
 
     # Gefühle & Meinungen
     {"kat": "gefuehle", "text": "___ se s tobom.",         "answer": "Slažem",  "de": "Ich stimme dir zu."},
@@ -2655,7 +2726,19 @@ SATZBAU = [
     {"kat": "zahlen", "bs": "Sedam, osam, devet", "de": "sieben, acht, neun", "quelle": "saetze"},
     {"kat": "zahlen", "bs": "Deset, dvadeset, trideset", "de": "zehn, zwanzig, dreißig", "quelle": "saetze"},
     {"kat": "zahlen", "bs": "Pet plus pet je deset.", "de": "Fünf plus fünf ist zehn.", "quelle": "neu"},
-    {"kat": "zahlen", "bs": "Dva plus dva je četiri.", "de": "Zwei plus zwei ist vier.", "quelle": "neu"},
+    # 25.10.2026, Ajdin: „Auf „su“ ändern“ - bei dva, tri, četiri im Subjekt
+    # steht das Verb im Plural (Gramatika bosanskoga jezika, § 241). Vorher
+    # „je“. Fehler-Topf und Stern ziehen über SAETZE_UMBENANNT in
+    # web/index.html mit.
+    # BEWUSSTE AUSNAHME bei "formen": "su" ist eine Form von biti, nicht von
+    # "je" - die anderen Sätze tragen es als "su": "biti" ("Na stolu su
+    # gljive."). biti kommt aber erst viel später dran, und "su" steht in
+    # keinem Wort bis zum Level zahlen. "je" steht hier nur, damit
+    # tests/test_inhalt_tiefe.py es bis dahin gelten lässt ("je" kennt der
+    # Lernende aus „Drago mi je“). In der App heißt das: die Kachel "su"
+    # kommt im Level Zahlen, ohne dass das Wort vorher eingeführt wurde.
+    # Ob das so bleiben darf, entscheidet Ajdin (Prüfbefund 25.10.2026).
+    {"kat": "zahlen", "bs": "Dva plus dva su četiri.", "de": "Zwei plus zwei ist vier.", "formen": {"su": "je"}, "quelle": "neu"},
     # Level 3 · Farben
     {"kat": "farben", "bs": "Boja je dobra.", "auch": ["Dobra je boja."], "de": "Die Farbe ist gut.", "quelle": "neu"},
     {"kat": "farben", "bs": "Plava je dobra boja.", "de": "Blau ist eine gute Farbe.", "quelle": "neu"},
@@ -2668,7 +2751,8 @@ SATZBAU = [
     {"kat": "essen", "bs": "Jabuka je crvena.", "auch": ["Crvena je jabuka."], "de": "Der Apfel ist rot.", "quelle": "saetze"},
     {"kat": "essen", "bs": "Kahva je crna.", "auch": ["Crna je kahva."], "de": "Der Kaffee ist schwarz.", "quelle": "saetze"},
     {"kat": "essen", "bs": "Jednu kahvu, molim.", "auch": ["Molim jednu kahvu."], "de": "Einen Kaffee, bitte.", "formen": {"jednu": "jedan", "kahvu": "kahva"}, "quelle": "saetze"},
-    {"kat": "essen", "bs": "Dvije kahve, molim.", "auch": ["Molim dvije kahve."], "de": "Zwei Kaffee, bitte.", "formen": {"dvije": "dva", "kahve": "kahva"}, "quelle": "saetze"},
+    {"kat": "essen", "bs": "Dvije kahve, molim.", "auch": ["Molim dvije kahve."], "de": "Zwei Kaffee, bitte.", "formen": {"dvije": "dva", "kahve": "kahva"}, "quelle": "saetze",
+     "zahl": {"wort": "dvije", "werte": [2, 3, 4], "weiblich": True, "de": "{n} Kaffee, bitte."}},
     # Level 6 · Wochentage
     {"kat": "wochentage", "bs": "Ponedjeljak, utorak, srijeda", "de": "Montag, Dienstag, Mittwoch", "quelle": "saetze"},
     {"kat": "wochentage", "bs": "U subotu je vikend.", "auch": ["Vikend je u subotu."], "de": "Am Samstag ist Wochenende.", "formen": {"subotu": "subota"}, "quelle": "saetze"},
@@ -2680,7 +2764,8 @@ SATZBAU = [
     {"kat": "monate", "bs": "Ne znam, možda u maju.", "auch": ["Možda u maju, ne znam."], "de": "Ich weiß nicht, vielleicht im Mai.", "formen": {"maju": "maj"}, "quelle": "neu"},
     # Level 8 · Zeit
     {"kat": "zeit", "bs": "Koliko je sati?", "de": "Wie spät ist es?", "quelle": "saetze"},
-    {"kat": "zeit", "bs": "Sada je pet sati.", "de": "Jetzt ist es fünf Uhr.", "quelle": "saetze"},
+    {"kat": "zeit", "bs": "Sada je pet sati.", "de": "Jetzt ist es fünf Uhr.", "quelle": "saetze",
+     "zahl": {"wort": "pet", "werte": [5, 6, 7, 8, 9, 10, 11, 12], "de": "Jetzt ist es {n} Uhr."}},
     {"kat": "zeit", "bs": "Vidimo se sutra!", "auch": ["Sutra se vidimo!"], "de": "Wir sehen uns morgen!", "quelle": "saetze"},
     {"kat": "zeit", "bs": "Vidimo se u petak!", "auch": ["U petak se vidimo!"], "de": "Wir sehen uns am Freitag!", "quelle": "neu"},
     {"kat": "zeit", "bs": "Sutra je subota.", "auch": ["Subota je sutra."], "de": "Morgen ist Samstag.", "quelle": "neu"},
@@ -2715,10 +2800,14 @@ SATZBAU = [
     # Level 14 · Verben
     {"kat": "verben", "bs": "Sutra ću raditi.", "de": "Morgen werde ich arbeiten.", "quelle": "saetze", "notiz": "Radit ću sutra wäre auch richtig, braucht aber die Kachel radit."},
     {"kat": "verben", "bs": "Ne mogu doći.", "de": "Ich kann nicht kommen.", "quelle": "saetze"},
-    {"kat": "verben", "bs": "Idem spavati u jedanaest.", "auch": ["U jedanaest idem spavati.", "Idem u jedanaest spavati."], "de": "Ich gehe um elf schlafen.", "formen": {"idem": "ići"}, "quelle": "saetze"},
-    {"kat": "verben", "bs": "Imam dva brata.", "auch": ["Dva brata imam."], "de": "Ich habe zwei Brüder.", "formen": {"imam": "imati", "brata": "brat"}, "quelle": "saetze"},
-    {"kat": "verben", "bs": "Imam trideset godina.", "auch": ["Trideset godina imam."], "de": "Ich bin dreißig Jahre alt.", "formen": {"imam": "imati"}, "quelle": "saetze"},
-    {"kat": "verben", "bs": "Jedemo u sedam sati.", "auch": ["U sedam sati jedemo."], "de": "Wir essen um sieben Uhr.", "formen": {"jedemo": "jesti"}, "quelle": "saetze"},
+    {"kat": "verben", "bs": "Idem spavati u jedanaest.", "auch": ["U jedanaest idem spavati.", "Idem u jedanaest spavati."], "de": "Ich gehe um elf schlafen.", "formen": {"idem": "ići"}, "quelle": "saetze",
+     "zahl": {"wort": "jedanaest", "werte": [9, 10, 11, 12], "frei": "uhrzeit", "de": "Ich gehe um {n} schlafen."}},
+    {"kat": "verben", "bs": "Imam dva brata.", "auch": ["Dva brata imam."], "de": "Ich habe zwei Brüder.", "formen": {"imam": "imati", "brata": "brat"}, "quelle": "saetze",
+     "zahl": {"wort": "dva", "werte": [2, 3, 4], "de": "Ich habe {n} Brüder."}},
+    {"kat": "verben", "bs": "Imam trideset godina.", "auch": ["Trideset godina imam."], "de": "Ich bin dreißig Jahre alt.", "formen": {"imam": "imati"}, "quelle": "saetze",
+     "zahl": {"wort": "trideset", "werte": [18, 20, 30, 40, 50, 60, 70], "de": "Ich bin {n} Jahre alt."}},
+    {"kat": "verben", "bs": "Jedemo u sedam sati.", "auch": ["U sedam sati jedemo."], "de": "Wir essen um sieben Uhr.", "formen": {"jedemo": "jesti"}, "quelle": "saetze",
+     "zahl": {"wort": "sedam", "werte": [6, 7, 8, 9, 12], "de": "Wir essen um {n} Uhr."}},
     {"kat": "verben", "bs": "Koliko imaš godina?", "auch": ["Koliko godina imaš?"], "de": "Wie alt bist du?", "formen": {"imaš": "imati"}, "quelle": "saetze"},
     {"kat": "verben", "bs": "Jučer sam radila.", "auch": ["Radila sam jučer."], "de": "Gestern habe ich gearbeitet. (Frau)", "formen": {"radila": "raditi"}, "quelle": "saetze"},
     # Level 15 · Smalltalk & Gefühle
@@ -2800,7 +2889,8 @@ SATZBAU = [
     {"kat": "fragen", "bs": "Šta je to?", "de": "Was ist das?", "quelle": "saetze"},
     {"kat": "fragen", "bs": "Govoriš li ti bosanski?", "auch": ["Govoriš li bosanski?"], "de": "Sprichst du Bosnisch?", "quelle": "saetze"},
     {"kat": "fragen", "bs": "Možeš li mi pomoći?", "de": "Kannst du mir helfen?", "formen": {"možeš": "moći"}, "quelle": "saetze"},
-    {"kat": "fragen", "bs": "Ti imaš dva brata.", "auch": ["Imaš dva brata.", "Dva brata imaš.", "Ti dva brata imaš."], "de": "Du hast zwei Brüder.", "formen": {"brata": "brat"}, "quelle": "saetze"},
+    {"kat": "fragen", "bs": "Ti imaš dva brata.", "auch": ["Imaš dva brata.", "Dva brata imaš.", "Ti dva brata imaš."], "de": "Du hast zwei Brüder.", "formen": {"brata": "brat"}, "quelle": "saetze",
+     "zahl": {"wort": "dva", "werte": [2, 3, 4], "de": "Du hast {n} Brüder."}},
     # Level 30 · Geschlecht: on, ona, ono
     {"kat": "genus", "bs": "Ovo je moja soba.", "auch": ["Moja je ovo soba."], "de": "Das ist mein Zimmer.", "quelle": "saetze"},
     {"kat": "genus", "bs": "Moja kuća je velika.", "auch": ["Moja je kuća velika.", "Velika je moja kuća."], "de": "Mein Haus ist groß.", "quelle": "saetze"},
@@ -2826,7 +2916,8 @@ SATZBAU = [
     # Level 32 · Mehrzahl
     {"kat": "mehrzahl", "bs": "Moj komšija je dobar čovjek.", "auch": ["Moj je komšija dobar čovjek.", "Dobar je čovjek moj komšija."], "de": "Mein Nachbar ist ein guter Mensch.", "quelle": "saetze"},
     {"kat": "mehrzahl", "bs": "Knjiga je na stolu.", "auch": ["Na stolu je knjiga."], "de": "Das Buch ist auf dem Tisch.", "formen": {"stolu": "sto"}, "quelle": "saetze"},
-    {"kat": "mehrzahl", "bs": "Imam dvije sestre.", "auch": ["Dvije sestre imam."], "de": "Ich habe zwei Schwestern.", "formen": {"dvije": "dva"}, "quelle": "saetze"},
+    {"kat": "mehrzahl", "bs": "Imam dvije sestre.", "auch": ["Dvije sestre imam."], "de": "Ich habe zwei Schwestern.", "formen": {"dvije": "dva"}, "quelle": "saetze",
+     "zahl": {"wort": "dvije", "werte": [2, 3, 4], "weiblich": True, "de": "Ich habe {n} Schwestern."}},
     {"kat": "mehrzahl", "bs": "Gdje su moji ključevi?", "de": "Wo sind meine Schlüssel?", "formen": {"moji": "moj"}, "quelle": "neu"},
     {"kat": "mehrzahl", "bs": "To su moji prijatelji.", "auch": ["Moji su to prijatelji."], "de": "Das sind meine Freunde.", "formen": {"moji": "moj"}, "quelle": "neu"},
     # Level 33 · Nebensätze & Verneinung
@@ -2898,7 +2989,8 @@ SATZBAU = [
     {"kat": "modal", "bs": "Ne znam plivati", "de": "Ich kann nicht schwimmen (Fähigkeit)", "quelle": "vokabel"},
     # Level 42 · Reflexive Verben (se)
     {"kat": "reflexiv", "bs": "Osjećam se dobro.", "auch": ["Dobro se osjećam."], "de": "Ich fühle mich gut.", "quelle": "saetze"},
-    {"kat": "reflexiv", "bs": "Nalazimo se u pet.", "auch": ["U pet se nalazimo."], "de": "Wir treffen uns um fünf.", "quelle": "saetze"},
+    {"kat": "reflexiv", "bs": "Nalazimo se u pet.", "auch": ["U pet se nalazimo."], "de": "Wir treffen uns um fünf.", "quelle": "saetze",
+     "zahl": {"wort": "pet", "werte": [3, 4, 5, 6, 7, 8], "frei": "uhrzeit", "de": "Wir treffen uns um {n}."}},
     {"kat": "reflexiv", "bs": "Djeca se igraju.", "auch": ["Igraju se djeca."], "de": "Die Kinder spielen.", "quelle": "saetze"},
     {"kat": "reflexiv", "bs": "Ne sjećam se.", "de": "Ich erinnere mich nicht.", "quelle": "neu"},
     {"kat": "reflexiv", "bs": "Kako se osjećaš?", "de": "Wie fühlst du dich?", "formen": {"osjećaš": "osjećati"}, "quelle": "neu"},
@@ -2906,7 +2998,8 @@ SATZBAU = [
     # Level 43 · Tagesablauf
     {"kat": "routine", "bs": "U ponedjeljak idem na posao.", "auch": ["Idem na posao u ponedjeljak.", "Na posao idem u ponedjeljak.", "Idem u ponedjeljak na posao."], "de": "Am Montag gehe ich zur Arbeit.", "quelle": "saetze"},
     {"kat": "routine", "bs": "Učim bosanski svaki dan.", "auch": ["Svaki dan učim bosanski.", "Učim svaki dan bosanski.", "Bosanski učim svaki dan.", "Svaki dan bosanski učim.", "Bosanski svaki dan učim."], "de": "Ich lerne jeden Tag Bosnisch.", "quelle": "saetze"},
-    {"kat": "routine", "bs": "Ustajem u sedam sati.", "auch": ["U sedam sati ustajem."], "de": "Ich stehe um sieben Uhr auf.", "quelle": "saetze"},
+    {"kat": "routine", "bs": "Ustajem u sedam sati.", "auch": ["U sedam sati ustajem."], "de": "Ich stehe um sieben Uhr auf.", "quelle": "saetze",
+     "zahl": {"wort": "sedam", "werte": [5, 6, 7, 8, 9], "de": "Ich stehe um {n} Uhr auf."}},
     {"kat": "routine", "bs": "Poslije posla kuham večeru.", "auch": ["Kuham večeru poslije posla.", "Večeru kuham poslije posla.", "Kuham poslije posla večeru.", "Poslije posla večeru kuham.", "Večeru poslije posla kuham."], "de": "Nach der Arbeit koche ich Abendessen.", "quelle": "saetze"},
     {"kat": "routine", "bs": "Svaki dan pijem kahvu.", "auch": ["Pijem kahvu svaki dan.", "Kahvu pijem svaki dan.", "Pijem svaki dan kahvu.", "Svaki dan kahvu pijem.", "Kahvu svaki dan pijem."], "de": "Jeden Tag trinke ich Kaffee.", "quelle": "saetze"},
     {"kat": "routine", "bs": "Idem na posao", "auch": ["Na posao idem"], "de": "Ich gehe zur Arbeit", "quelle": "vokabel"},
@@ -2953,20 +3046,25 @@ SATZBAU = [
     {"kat": "saetze", "bs": "Ne znam kada dolazi autobus.", "auch": ["Ne znam kada autobus dolazi."], "de": "Ich weiß nicht, wann der Bus kommt.", "quelle": "saetze"},
     {"kat": "saetze", "bs": "Kahva je jako vruća.", "de": "Der Kaffee ist sehr heiß.", "quelle": "saetze"},
     {"kat": "saetze", "bs": "Želim kupiti kuću.", "auch": ["Želim kuću kupiti.", "Kuću želim kupiti."], "de": "Ich möchte ein Haus kaufen.", "quelle": "saetze"},
-    {"kat": "saetze", "bs": "Mi ostajemo pet dana.", "auch": ["Ostajemo pet dana.", "Pet dana ostajemo."], "de": "Wir bleiben fünf Tage.", "formen": {"ostajemo": "ostajem"}, "quelle": "neu"},
-    {"kat": "saetze", "bs": "Moja sestra ima pet godina", "de": "Meine Schwester ist fünf Jahre alt", "quelle": "vokabel"},
+    {"kat": "saetze", "bs": "Mi ostajemo pet dana.", "auch": ["Ostajemo pet dana.", "Pet dana ostajemo."], "de": "Wir bleiben fünf Tage.", "formen": {"ostajemo": "ostajem"}, "quelle": "neu",
+     "zahl": {"wort": "pet", "werte": [2, 3, 4, 5, 6, 7, 10, 14], "frei": "dana", "de": "Wir bleiben {n} Tage."}},
+    {"kat": "saetze", "bs": "Moja sestra ima pet godina", "de": "Meine Schwester ist fünf Jahre alt", "quelle": "vokabel",
+     "zahl": {"wort": "pet", "werte": [5, 6, 7, 8, 10, 12, 15, 18], "de": "Meine Schwester ist {n} Jahre alt"}},
     {"kat": "saetze", "bs": "Ja pijem vodu, hvala", "auch": ["Pijem vodu, hvala", "Vodu pijem, hvala", "Hvala, pijem vodu", "Hvala, vodu pijem", "Hvala, ja pijem vodu"], "de": "Ich trinke Wasser, danke", "quelle": "neu"},
     {"kat": "saetze", "bs": "Moj babo ne radi u julu", "auch": ["U julu moj babo ne radi", "Moj babo u julu ne radi", "U julu ne radi moj babo"], "de": "Mein Papa arbeitet im Juli nicht", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Ja razumijem malo bosanski", "auch": ["Razumijem malo bosanski", "Malo razumijem bosanski", "Bosanski razumijem malo", "Bosanski malo razumijem", "Malo bosanski razumijem", "Razumijem bosanski malo", "Ja malo razumijem bosanski"], "de": "Ich verstehe ein bisschen Bosnisch", "quelle": "neu"},
     {"kat": "saetze", "bs": "Vidimo se u subotu", "auch": ["U subotu se vidimo"], "de": "Wir sehen uns am Samstag", "quelle": "vokabel"},
-    {"kat": "saetze", "bs": "Ja bih htjela tri jabuke, molim", "auch": ["Htjela bih tri jabuke, molim"], "de": "Ich möchte drei Äpfel, bitte", "quelle": "neu", "notiz": "htjela = Frauenform; die Kacheln legen sie fest"},
-    {"kat": "saetze", "bs": "Autobus dolazi u deset", "auch": ["U deset dolazi autobus", "Autobus u deset dolazi"], "de": "Der Bus kommt um zehn", "quelle": "vokabel"},
+    {"kat": "saetze", "bs": "Ja bih htjela tri jabuke, molim", "auch": ["Htjela bih tri jabuke, molim"], "de": "Ich möchte drei Äpfel, bitte", "quelle": "neu", "notiz": "htjela = Frauenform; die Kacheln legen sie fest",
+     "zahl": {"wort": "tri", "werte": [2, 3, 4], "weiblich": True, "de": "Ich möchte {n} Äpfel, bitte"}},
+    {"kat": "saetze", "bs": "Autobus dolazi u deset", "auch": ["U deset dolazi autobus", "Autobus u deset dolazi"], "de": "Der Bus kommt um zehn", "quelle": "vokabel",
+     "zahl": {"wort": "deset", "werte": [7, 8, 9, 10, 11, 12], "frei": "uhrzeit", "de": "Der Bus kommt um {n}"}},
     {"kat": "saetze", "bs": "Ja imam glavobolju i temperaturu", "auch": ["Imam glavobolju i temperaturu", "Imam temperaturu i glavobolju"], "de": "Ich habe Kopfschmerzen und Fieber", "quelle": "neu"},
     {"kat": "saetze", "bs": "Voda u jezeru je plava", "de": "Das Wasser im See ist blau", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Sljedeće godine ćemo kupiti kuću", "auch": ["Kuću ćemo kupiti sljedeće godine", "Sljedeće godine ćemo kuću kupiti", "Kuću ćemo sljedeće godine kupiti"], "de": "Nächstes Jahr werden wir ein Haus kaufen", "quelle": "vokabel"},
     {"kat": "saetze", "bs": "Moj brat je stariji od mene, ali manji", "auch": ["Moj je brat stariji od mene, ali manji"], "de": "Mein Bruder ist älter als ich, aber kleiner", "quelle": "vokabel"},
     # Level 51 · Einkaufen & Orte
-    {"kat": "einkauf_orte", "bs": "Ne znam, možda pet maraka.", "auch": ["Možda pet maraka, ne znam."], "de": "Ich weiß nicht, vielleicht fünf Mark.", "formen": {"maraka": "marka"}, "quelle": "neu"},
+    {"kat": "einkauf_orte", "bs": "Ne znam, možda pet maraka.", "auch": ["Možda pet maraka, ne znam."], "de": "Ich weiß nicht, vielleicht fünf Mark.", "formen": {"maraka": "marka"}, "quelle": "neu",
+     "zahl": {"wort": "pet", "werte": [5, 6, 7, 8, 10, 15, 20], "de": "Ich weiß nicht, vielleicht {n} Mark."}},
     {"kat": "einkauf_orte", "bs": "Ovo voće je svježe.", "auch": ["Svježe je ovo voće."], "de": "Dieses Obst ist frisch.", "quelle": "saetze"},
     {"kat": "einkauf_orte", "bs": "Gdje je moj kusur?", "de": "Wo ist mein Rückgeld?", "quelle": "saetze"},
     {"kat": "einkauf_orte", "bs": "Ja idem u mesnicu.", "auch": ["Idem u mesnicu.", "U mesnicu idem."], "de": "Ich gehe in die Metzgerei.", "formen": {"mesnicu": "mesnica"}, "quelle": "neu"},
@@ -3035,12 +3133,14 @@ SATZBAU = [
     {"kat": "formell", "bs": "Hvala Vam na pomoći", "de": "Vielen Dank für Ihre Hilfe", "quelle": "vokabel"},
     {"kat": "formell", "bs": "Žao mi je", "de": "Es tut mir leid", "quelle": "vokabel"},
     # Level 61 · Amt & Behörde
-    {"kat": "amt", "bs": "Imam termin u ponedjeljak u deset sati.", "auch": ["U ponedjeljak imam termin u deset sati.", "U ponedjeljak u deset sati imam termin.", "Imam termin u deset sati u ponedjeljak.", "Termin imam u ponedjeljak u deset sati.", "Imam u ponedjeljak termin u deset sati.", "Imam u ponedjeljak u deset sati termin.", "U ponedjeljak imam u deset sati termin."], "de": "Ich habe am Montag um zehn Uhr einen Termin.", "quelle": "saetze"},
+    {"kat": "amt", "bs": "Imam termin u ponedjeljak u deset sati.", "auch": ["U ponedjeljak imam termin u deset sati.", "U ponedjeljak u deset sati imam termin.", "Imam termin u deset sati u ponedjeljak.", "Termin imam u ponedjeljak u deset sati.", "Imam u ponedjeljak termin u deset sati.", "Imam u ponedjeljak u deset sati termin.", "U ponedjeljak imam u deset sati termin."], "de": "Ich habe am Montag um zehn Uhr einen Termin.", "quelle": "saetze",
+     "zahl": {"wort": "deset", "werte": [8, 9, 10, 11, 12], "de": "Ich habe am Montag um {n} Uhr einen Termin."}},
     {"kat": "amt", "bs": "Gdje trebam potpisati?", "de": "Wo muss ich unterschreiben?", "quelle": "saetze"},
     {"kat": "amt", "bs": "Imate li pasoš?", "de": "Haben Sie einen Reisepass?", "quelle": "saetze"},
     {"kat": "amt", "bs": "Koji dokumenti mi trebaju?", "auch": ["Koji mi dokumenti trebaju?"], "de": "Welche Dokumente brauche ich?", "quelle": "saetze"},
     {"kat": "amt", "bs": "Ja trebam termin kod doktora.", "auch": ["Trebam termin kod doktora.", "Kod doktora trebam termin.", "Termin trebam kod doktora."], "de": "Ich brauche einen Termin beim Arzt.", "quelle": "neu"},
-    {"kat": "amt", "bs": "Taksa za pasoš je trideset maraka.", "auch": ["Za pasoš je taksa trideset maraka.", "Trideset maraka je taksa za pasoš."], "de": "Die Gebühr für den Pass beträgt dreißig Mark.", "formen": {"maraka": "marka"}, "quelle": "saetze"},
+    {"kat": "amt", "bs": "Taksa za pasoš je trideset maraka.", "auch": ["Za pasoš je taksa trideset maraka.", "Trideset maraka je taksa za pasoš."], "de": "Die Gebühr für den Pass beträgt dreißig Mark.", "formen": {"maraka": "marka"}, "quelle": "saetze",
+     "zahl": {"wort": "trideset", "werte": [30, 40, 50, 60], "de": "Die Gebühr für den Pass beträgt {n} Mark."}},
     # Level 62 · Bank & Geld
     {"kat": "bank", "bs": "Želim otvoriti račun.", "auch": ["Želim račun otvoriti.", "Račun želim otvoriti."], "de": "Ich möchte ein Konto eröffnen.", "quelle": "saetze"},
     {"kat": "bank", "bs": "Kolika je kamata?", "de": "Wie hoch sind die Zinsen?", "quelle": "saetze"},
@@ -3052,9 +3152,11 @@ SATZBAU = [
     {"kat": "immobilien", "bs": "Koliko košta kuća?", "auch": ["Koliko kuća košta?"], "de": "Wie viel kostet das Haus?", "quelle": "vokabel"},
     {"kat": "immobilien", "bs": "Stan je na trećem spratu.", "auch": ["Na trećem spratu je stan."], "de": "Die Wohnung ist im dritten Stock.", "formen": {"trećem": "treći", "spratu": "sprat"}, "quelle": "neu"},
     # Level 64 · Arbeitsvertrag & Bewerbung
-    {"kat": "arbeitsvertrag", "bs": "Imam pet godina iskustva.", "auch": ["Pet godina iskustva imam.", "Iskustva imam pet godina."], "de": "Ich habe fünf Jahre Erfahrung.", "quelle": "saetze"},
+    {"kat": "arbeitsvertrag", "bs": "Imam pet godina iskustva.", "auch": ["Pet godina iskustva imam.", "Iskustva imam pet godina."], "de": "Ich habe fünf Jahre Erfahrung.", "quelle": "saetze",
+     "zahl": {"wort": "pet", "werte": [5, 6, 7, 8, 10, 12, 15, 20], "de": "Ich habe {n} Jahre Erfahrung."}},
     {"kat": "arbeitsvertrag", "bs": "Kolika je neto plata?", "de": "Wie hoch ist das Nettogehalt?", "quelle": "saetze"},
-    {"kat": "arbeitsvertrag", "bs": "Probni rad traje tri mjeseca.", "auch": ["Tri mjeseca traje probni rad."], "de": "Die Probezeit dauert drei Monate.", "formen": {"mjeseca": "mjesec"}, "quelle": "saetze"},
+    {"kat": "arbeitsvertrag", "bs": "Probni rad traje tri mjeseca.", "auch": ["Tri mjeseca traje probni rad."], "de": "Die Probezeit dauert drei Monate.", "formen": {"mjeseca": "mjesec"}, "quelle": "saetze",
+     "zahl": {"wort": "tri", "werte": [2, 3, 4], "de": "Die Probezeit dauert {n} Monate."}},
     {"kat": "arbeitsvertrag", "bs": "Sutra imam razgovor za posao.", "auch": ["Imam sutra razgovor za posao.", "Imam razgovor za posao sutra.", "Razgovor za posao imam sutra."], "de": "Morgen habe ich ein Vorstellungsgespräch.", "quelle": "neu"},
     # Level 65 · Arzt & Versicherung
     {"kat": "gesundheit", "bs": "Na bolovanju sam.", "de": "Ich bin krankgeschrieben.", "quelle": "saetze"},

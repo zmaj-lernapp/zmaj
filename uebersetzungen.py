@@ -3609,6 +3609,30 @@ INHALT = {
     "Zwei plus zwei ist vier.": "Two plus two is four.",
     "Fünf plus fünf ist zehn.": "Five plus five is ten.",
     "Dieses Obst ist süß.": "This fruit is sweet.",
+    # ---- Sätze mit wechselnder Zahl, 25.10.2026 ----
+    # Ajdin: „die sätze immer mit der gleichen zahl ist und nicht mal
+    # variiert“. Die Bedeutung zeigt die Zahl als Ziffer: {n} ist die
+    # Zahl, die die App gezogen hat (vokabeln.py, Feld "zahl").
+    "Jetzt ist es {n} Uhr.": "It is {n} o'clock now.",
+    "{n} Kaffee, bitte.": "{n} coffees, please.",
+    "Die Jacke kostet {n} Mark.": "The jacket costs {n} marks.",
+    "Ich habe {n} Brüder.": "I have {n} brothers.",
+    "Du hast {n} Brüder.": "You have {n} brothers.",
+    "Wir essen um {n} Uhr.": "We eat at {n} o'clock.",
+    "Ich habe am Montag um {n} Uhr einen Termin.": "I have an appointment on Monday at {n} o'clock.",
+    "Die Gebühr für den Pass beträgt {n} Mark.": "The fee for the passport is {n} marks.",
+    "Ich habe {n} Jahre Erfahrung.": "I have {n} years of experience.",
+    "Die Probezeit dauert {n} Monate.": "The probation period lasts {n} months.",
+    "Ich habe {n} Schwestern.": "I have {n} sisters.",
+    "Wir treffen uns um {n}.": "We are meeting at {n}.",
+    "Ich stehe um {n} Uhr auf.": "I get up at {n} o'clock.",
+    "Ich gehe um {n} schlafen.": "I go to sleep at {n}.",
+    "Ich bin {n} Jahre alt.": "I am {n} years old.",
+    "Wir bleiben {n} Tage.": "We are staying {n} days.",
+    "Meine Schwester ist {n} Jahre alt": "My sister is {n} years old",
+    "Ich möchte {n} Äpfel, bitte": "I would like {n} apples, please",
+    "Der Bus kommt um {n}": "The bus comes at {n}",
+    "Ich weiß nicht, vielleicht {n} Mark.": "I don't know, maybe {n} marks.",
     # ENDE en texte
 },
 },
@@ -6756,6 +6780,31 @@ INHALT = {
     "Zwei plus zwei ist vier.": "İki artı iki dört eder.",
     "Fünf plus fünf ist zehn.": "Beş artı beş on eder.",
     "Dieses Obst ist süß.": "Bu meyve tatlı.",
+    # ---- Sätze mit wechselnder Zahl, 25.10.2026 ----
+    # Ajdin: „die sätze immer mit der gleichen zahl ist und nicht mal
+    # variiert“. Die Bedeutung zeigt die Zahl als Ziffer: {n} ist die
+    # Zahl, die die App gezogen hat (vokabeln.py, Feld "zahl").
+    # {lok} ist sie mit Endung für „um“: 7'de, 3'te, 10'da (inhalt.tr_lokativ).
+    "Jetzt ist es {n} Uhr.": "Şimdi saat {n}.",
+    "{n} Kaffee, bitte.": "{n} kahve, lütfen.",
+    "Die Jacke kostet {n} Mark.": "Ceket {n} mark.",
+    "Ich habe {n} Brüder.": "{n} erkek kardeşim var.",
+    "Du hast {n} Brüder.": "{n} erkek kardeşin var.",
+    "Wir essen um {n} Uhr.": "Saat {lok} yemek yiyoruz.",
+    "Ich habe am Montag um {n} Uhr einen Termin.": "Pazartesi saat {lok} randevum var.",
+    "Die Gebühr für den Pass beträgt {n} Mark.": "Pasaport harcı {n} mark.",
+    "Ich habe {n} Jahre Erfahrung.": "{n} yıllık deneyimim var.",
+    "Die Probezeit dauert {n} Monate.": "Deneme süresi {n} ay sürüyor.",
+    "Ich habe {n} Schwestern.": "{n} kız kardeşim var.",
+    "Wir treffen uns um {n}.": "Saat {lok} buluşuyoruz.",
+    "Ich stehe um {n} Uhr auf.": "Saat {lok} kalkıyorum.",
+    "Ich gehe um {n} schlafen.": "Saat {lok} uyumaya gidiyorum.",
+    "Ich bin {n} Jahre alt.": "{n} yaşındayım.",
+    "Wir bleiben {n} Tage.": "{n} gün kalıyoruz.",
+    "Meine Schwester ist {n} Jahre alt": "Kız kardeşim {n} yaşında",
+    "Ich möchte {n} Äpfel, bitte": "{n} elma istiyorum, lütfen",
+    "Der Bus kommt um {n}": "Otobüs saat {lok} geliyor",
+    "Ich weiß nicht, vielleicht {n} Mark.": "Bilmiyorum, belki {n} mark.",
     # ENDE tr texte
 },
 },
@@ -9896,6 +9945,30 @@ INHALT = {
     "Zwei plus zwei ist vier.": "Två plus två är fyra.",
     "Fünf plus fünf ist zehn.": "Fem plus fem är tio.",
     "Dieses Obst ist süß.": "Den här frukten är söt.",
+    # ---- Sätze mit wechselnder Zahl, 25.10.2026 ----
+    # Ajdin: „die sätze immer mit der gleichen zahl ist und nicht mal
+    # variiert“. Die Bedeutung zeigt die Zahl als Ziffer: {n} ist die
+    # Zahl, die die App gezogen hat (vokabeln.py, Feld "zahl").
+    "Jetzt ist es {n} Uhr.": "Klockan är {n} nu.",
+    "{n} Kaffee, bitte.": "{n} kaffe, tack.",
+    "Die Jacke kostet {n} Mark.": "Jackan kostar {n} mark.",
+    "Ich habe {n} Brüder.": "Jag har {n} bröder.",
+    "Du hast {n} Brüder.": "Du har {n} bröder.",
+    "Wir essen um {n} Uhr.": "Vi äter klockan {n}.",
+    "Ich habe am Montag um {n} Uhr einen Termin.": "Jag har en tid på måndag klockan {n}.",
+    "Die Gebühr für den Pass beträgt {n} Mark.": "Avgiften för passet är {n} mark.",
+    "Ich habe {n} Jahre Erfahrung.": "Jag har {n} års erfarenhet.",
+    "Die Probezeit dauert {n} Monate.": "Provanställningen varar i {n} månader.",
+    "Ich habe {n} Schwestern.": "Jag har {n} systrar.",
+    "Wir treffen uns um {n}.": "Vi träffas klockan {n}.",
+    "Ich stehe um {n} Uhr auf.": "Jag går upp klockan {n}.",
+    "Ich gehe um {n} schlafen.": "Jag går och lägger mig klockan {n}.",
+    "Ich bin {n} Jahre alt.": "Jag är {n} år.",
+    "Wir bleiben {n} Tage.": "Vi stannar i {n} dagar.",
+    "Meine Schwester ist {n} Jahre alt": "Min syster är {n} år",
+    "Ich möchte {n} Äpfel, bitte": "Jag skulle vilja ha {n} äpplen, tack",
+    "Der Bus kommt um {n}": "Bussen kommer klockan {n}",
+    "Ich weiß nicht, vielleicht {n} Mark.": "Jag vet inte, kanske {n} mark.",
     # ENDE sv texte
 },
 },
@@ -13035,6 +13108,30 @@ INHALT = {
     "Zwei plus zwei ist vier.": "Twee plus twee is vier.",
     "Fünf plus fünf ist zehn.": "Vijf plus vijf is tien.",
     "Dieses Obst ist süß.": "Dit fruit is zoet.",
+    # ---- Sätze mit wechselnder Zahl, 25.10.2026 ----
+    # Ajdin: „die sätze immer mit der gleichen zahl ist und nicht mal
+    # variiert“. Die Bedeutung zeigt die Zahl als Ziffer: {n} ist die
+    # Zahl, die die App gezogen hat (vokabeln.py, Feld "zahl").
+    "Jetzt ist es {n} Uhr.": "Het is nu {n} uur.",
+    "{n} Kaffee, bitte.": "{n} koffie, alstublieft.",
+    "Die Jacke kostet {n} Mark.": "De jas kost {n} mark.",
+    "Ich habe {n} Brüder.": "Ik heb {n} broers.",
+    "Du hast {n} Brüder.": "Jij hebt {n} broers.",
+    "Wir essen um {n} Uhr.": "We eten om {n} uur.",
+    "Ich habe am Montag um {n} Uhr einen Termin.": "Ik heb op maandag om {n} uur een afspraak.",
+    "Die Gebühr für den Pass beträgt {n} Mark.": "De leges voor het paspoort zijn {n} mark.",
+    "Ich habe {n} Jahre Erfahrung.": "Ik heb {n} jaar ervaring.",
+    "Die Probezeit dauert {n} Monate.": "De proeftijd duurt {n} maanden.",
+    "Ich habe {n} Schwestern.": "Ik heb {n} zussen.",
+    "Wir treffen uns um {n}.": "We spreken om {n} uur af.",
+    "Ich stehe um {n} Uhr auf.": "Ik sta om {n} uur op.",
+    "Ich gehe um {n} schlafen.": "Ik ga om {n} uur slapen.",
+    "Ich bin {n} Jahre alt.": "Ik ben {n} jaar.",
+    "Wir bleiben {n} Tage.": "We blijven {n} dagen.",
+    "Meine Schwester ist {n} Jahre alt": "Mijn zus is {n} jaar",
+    "Ich möchte {n} Äpfel, bitte": "Ik wil graag {n} appels, alstublieft",
+    "Der Bus kommt um {n}": "De bus komt om {n} uur",
+    "Ich weiß nicht, vielleicht {n} Mark.": "Ik weet het niet, misschien {n} mark.",
     # ENDE nl texte
 },
 },
@@ -16173,6 +16270,30 @@ INHALT = {
     "Zwei plus zwei ist vier.": "To pluss to er fire.",
     "Fünf plus fünf ist zehn.": "Fem pluss fem er ti.",
     "Dieses Obst ist süß.": "Denne frukten er søt.",
+    # ---- Sätze mit wechselnder Zahl, 25.10.2026 ----
+    # Ajdin: „die sätze immer mit der gleichen zahl ist und nicht mal
+    # variiert“. Die Bedeutung zeigt die Zahl als Ziffer: {n} ist die
+    # Zahl, die die App gezogen hat (vokabeln.py, Feld "zahl").
+    "Jetzt ist es {n} Uhr.": "Klokka er {n} nå.",
+    "{n} Kaffee, bitte.": "{n} kaffe, takk.",
+    "Die Jacke kostet {n} Mark.": "Jakka koster {n} mark.",
+    "Ich habe {n} Brüder.": "Jeg har {n} brødre.",
+    "Du hast {n} Brüder.": "Du har {n} brødre.",
+    "Wir essen um {n} Uhr.": "Vi spiser klokka {n}.",
+    "Ich habe am Montag um {n} Uhr einen Termin.": "Jeg har time på mandag klokka {n}.",
+    "Die Gebühr für den Pass beträgt {n} Mark.": "Gebyret for passet er {n} mark.",
+    "Ich habe {n} Jahre Erfahrung.": "Jeg har {n} års erfaring.",
+    "Die Probezeit dauert {n} Monate.": "Prøvetiden varer i {n} måneder.",
+    "Ich habe {n} Schwestern.": "Jeg har {n} søstre.",
+    "Wir treffen uns um {n}.": "Vi møtes klokka {n}.",
+    "Ich stehe um {n} Uhr auf.": "Jeg står opp klokka {n}.",
+    "Ich gehe um {n} schlafen.": "Jeg legger meg klokka {n}.",
+    "Ich bin {n} Jahre alt.": "Jeg er {n} år.",
+    "Wir bleiben {n} Tage.": "Vi blir i {n} dager.",
+    "Meine Schwester ist {n} Jahre alt": "Søsteren min er {n} år",
+    "Ich möchte {n} Äpfel, bitte": "Jeg vil gjerne ha {n} epler, takk",
+    "Der Bus kommt um {n}": "Bussen kommer klokka {n}",
+    "Ich weiß nicht, vielleicht {n} Mark.": "Jeg vet ikke, kanskje {n} mark.",
     # ENDE nb texte
 },
 },
@@ -19314,6 +19435,30 @@ INHALT = {
     "Zwei plus zwei ist vier.": "To plus to er fire.",
     "Fünf plus fünf ist zehn.": "Fem plus fem er ti.",
     "Dieses Obst ist süß.": "Denne frugt er sød.",
+    # ---- Sätze mit wechselnder Zahl, 25.10.2026 ----
+    # Ajdin: „die sätze immer mit der gleichen zahl ist und nicht mal
+    # variiert“. Die Bedeutung zeigt die Zahl als Ziffer: {n} ist die
+    # Zahl, die die App gezogen hat (vokabeln.py, Feld "zahl").
+    "Jetzt ist es {n} Uhr.": "Klokken er {n} nu.",
+    "{n} Kaffee, bitte.": "{n} kaffe, tak.",
+    "Die Jacke kostet {n} Mark.": "Jakken koster {n} mark.",
+    "Ich habe {n} Brüder.": "Jeg har {n} brødre.",
+    "Du hast {n} Brüder.": "Du har {n} brødre.",
+    "Wir essen um {n} Uhr.": "Vi spiser klokken {n}.",
+    "Ich habe am Montag um {n} Uhr einen Termin.": "Jeg har en tid på mandag klokken {n}.",
+    "Die Gebühr für den Pass beträgt {n} Mark.": "Gebyret for passet er {n} mark.",
+    "Ich habe {n} Jahre Erfahrung.": "Jeg har {n} års erfaring.",
+    "Die Probezeit dauert {n} Monate.": "Prøvetiden varer {n} måneder.",
+    "Ich habe {n} Schwestern.": "Jeg har {n} søstre.",
+    "Wir treffen uns um {n}.": "Vi mødes klokken {n}.",
+    "Ich stehe um {n} Uhr auf.": "Jeg står op klokken {n}.",
+    "Ich gehe um {n} schlafen.": "Jeg går i seng klokken {n}.",
+    "Ich bin {n} Jahre alt.": "Jeg er {n} år.",
+    "Wir bleiben {n} Tage.": "Vi bliver {n} dage.",
+    "Meine Schwester ist {n} Jahre alt": "Min søster er {n} år",
+    "Ich möchte {n} Äpfel, bitte": "Jeg vil gerne have {n} æbler, tak",
+    "Der Bus kommt um {n}": "Bussen kommer klokken {n}",
+    "Ich weiß nicht, vielleicht {n} Mark.": "Jeg ved det ikke, måske {n} mark.",
     # ENDE da texte
 },
 },
@@ -22461,6 +22606,30 @@ INHALT = {
     "Zwei plus zwei ist vier.": "Deux plus deux font quatre.",
     "Fünf plus fünf ist zehn.": "Cinq plus cinq font dix.",
     "Dieses Obst ist süß.": "Ce fruit est sucré.",
+    # ---- Sätze mit wechselnder Zahl, 25.10.2026 ----
+    # Ajdin: „die sätze immer mit der gleichen zahl ist und nicht mal
+    # variiert“. Die Bedeutung zeigt die Zahl als Ziffer: {n} ist die
+    # Zahl, die die App gezogen hat (vokabeln.py, Feld "zahl").
+    "Jetzt ist es {n} Uhr.": "Il est {n} heures maintenant.",
+    "{n} Kaffee, bitte.": "{n} cafés, s'il vous plaît.",
+    "Die Jacke kostet {n} Mark.": "La veste coûte {n} marks.",
+    "Ich habe {n} Brüder.": "J'ai {n} frères.",
+    "Du hast {n} Brüder.": "Tu as {n} frères.",
+    "Wir essen um {n} Uhr.": "Nous mangeons à {n} heures.",
+    "Ich habe am Montag um {n} Uhr einen Termin.": "J'ai un rendez-vous lundi à {n} heures.",
+    "Die Gebühr für den Pass beträgt {n} Mark.": "Les frais pour le passeport s'élèvent à {n} marks.",
+    "Ich habe {n} Jahre Erfahrung.": "J'ai {n} ans d'expérience.",
+    "Die Probezeit dauert {n} Monate.": "La période d'essai dure {n} mois.",
+    "Ich habe {n} Schwestern.": "J'ai {n} sœurs.",
+    "Wir treffen uns um {n}.": "On se retrouve à {n} heures.",
+    "Ich stehe um {n} Uhr auf.": "Je me lève à {n} heures.",
+    "Ich gehe um {n} schlafen.": "Je vais me coucher à {n} heures.",
+    "Ich bin {n} Jahre alt.": "J'ai {n} ans.",
+    "Wir bleiben {n} Tage.": "Nous restons {n} jours.",
+    "Meine Schwester ist {n} Jahre alt": "Ma sœur a {n} ans",
+    "Ich möchte {n} Äpfel, bitte": "Je voudrais {n} pommes, s'il vous plaît",
+    "Der Bus kommt um {n}": "Le bus arrive à {n} heures",
+    "Ich weiß nicht, vielleicht {n} Mark.": "Je ne sais pas, peut-être {n} marks.",
     # ENDE fr texte
 },
 },
@@ -22532,10 +22701,18 @@ def anwenden(daten, code):
                               words=[dict(w, de=woerter.get(w.get("bs", ""), t(w.get("de", ""))))
                                      for w in k.get("words", [])])
                          for k in daten.get("kategorien", [])]
-    neu["saetze"] = [dict(s, de=t(s.get("de", ""))) for s in daten.get("saetze", [])]
+    # Zahlen, die wechseln (25.10.2026): die Vorlage zahl.de mit {n} wird
+    # übersetzt wie die Bedeutung. Das Zahlwort selbst ist bosnisch und bleibt.
+    def satz(s):
+        neu_s = dict(s, de=t(s.get("de", "")))
+        if isinstance(s.get("zahl"), dict):
+            neu_s["zahl"] = dict(s["zahl"], de=t(s["zahl"].get("de", "")))
+        return neu_s
+
+    neu["saetze"] = [satz(s) for s in daten.get("saetze", [])]
     # Satzbau (13.10.2026): nur die Bedeutung. bs und auch sind die
     # Kacheln selbst und bleiben in jeder Sprache bosnisch.
-    neu["satzbau"] = [dict(s, de=t(s.get("de", ""))) for s in daten.get("satzbau", [])]
+    neu["satzbau"] = [satz(s) for s in daten.get("satzbau", [])]
     neu["grammatik"] = {kid: _lektion(l, t) for kid, l in daten.get("grammatik", {}).items()}
     neu["geschichten"] = [_geschichte(g, t) for g in daten.get("geschichten", [])]
     neu["woerterbuch"] = {k: t(v) for k, v in daten.get("woerterbuch", {}).items()}
@@ -22558,6 +22735,11 @@ def sammle(daten):
             woerter[w.get("bs", "")] = w.get("de", "")
     texte.update(s.get("de", "") for s in daten.get("saetze", []) if s.get("de"))
     texte.update(s.get("de", "") for s in daten.get("satzbau", []) if s.get("de"))
+    # Die Vorlagen der Sätze mit wechselnder Zahl (25.10.2026)
+    for s in list(daten.get("saetze", [])) + list(daten.get("satzbau", [])):
+        z = s.get("zahl")
+        if isinstance(z, dict) and z.get("de"):
+            texte.add(z["de"])
     for lektion in daten.get("grammatik", {}).values():
         for teil in lektion.get("erklaerung", []):
             if isinstance(teil, dict) and "tabelle" in teil:

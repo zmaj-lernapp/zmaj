@@ -125,6 +125,26 @@ The app icon (the dragon head in icon-256.png and icon.ico, icon-512.png in
 the store) is AI-generated with Google Gemini as well and cropped by us.
 
 
+Symbole und Flamme / Icons and flame
+------------------------------------
+Stand 24.10.2026. Die Symbole der Oberfläche in web/symbole (Lernpfad,
+Geschichten, Wiederholen, Münze, Herz, Laden, Einstellungen, Profil,
+Serienschutz, Lautsprecher, Schloss) und die Flamme der Lernserie in
+web/flamme (Flamme, Glut, kalte Kohle und die Ebenen der Animation von
+der Glut zur Flamme) hat wie den Drachen Google Gemini gemalt. Wir haben
+sie freigestellt, verkleinert und als WebP gespeichert. Soweit an ihnen
+Rechte bestehen, stehen sie wie in REUSE.toml angegeben unter
+CC BY-SA 4.0.
+
+The interface icons in web/symbole (learning path, stories, review, coin,
+heart, shop, settings, profile, streak freeze, speaker, lock) and the
+streak flame in web/flamme (flame, embers, cold coals and the layers of the
+animation from embers to flame) are AI-generated with Google Gemini, like
+the dragon. We cut them out, scaled them down and saved them as WebP.
+Where rights exist, they are licensed under CC BY-SA 4.0 as stated in
+REUSE.toml.
+
+
 Was die App sonst noch nutzt
 ----------------------------
 Nichts. Der Rest – Server, Oberfläche, Inhalte, die gezeichneten Kostüme

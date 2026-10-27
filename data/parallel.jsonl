@@ -31,7 +31,6 @@
 {"id": "prost!:Živjeli!", "kind": "word", "bs": "Živjeli!", "translations": {"de": "Prost!", "en": "Cheers!", "tr": "Şerefe!", "sv": "Skål!", "nl": "Proost!", "nb": "Skål!", "da": "Skål!", "fr": "Santé !"}}
 {"id": "guten appetit:Prijatno", "kind": "word", "bs": "Prijatno", "translations": {"de": "Guten Appetit", "en": "Enjoy your meal", "tr": "Afiyet olsun", "sv": "Smaklig måltid", "nl": "Eet smakelijk", "nb": "Vel bekomme", "da": "Velbekomme", "fr": "Bon appétit"}}
 {"id": "hallo (neutral, überall):Zdravo", "kind": "word", "bs": "Zdravo", "translations": {"de": "Hallo (neutral, überall)", "en": "Hello (neutral, anywhere)", "tr": "Merhaba (nötr, her yerde)", "sv": "Hej (neutralt, överallt)", "nl": "Hallo (neutraal, overal)", "nb": "Hei (nøytralt, overalt)", "da": "Hej (neutralt, overalt)", "fr": "Salut (neutre, partout)"}}
-{"id": "null:nula", "kind": "word", "bs": "nula", "translations": {"de": "null", "en": "zero", "tr": "sıfır", "sv": "noll", "nl": "nul", "nb": "null", "da": "nul", "fr": "zéro"}}
 {"id": "eins:jedan", "kind": "word", "bs": "jedan", "translations": {"de": "eins", "en": "one", "tr": "bir", "sv": "ett", "nl": "een", "nb": "en", "da": "en", "fr": "un"}}
 {"id": "zwei:dva", "kind": "word", "bs": "dva", "translations": {"de": "zwei", "en": "two", "tr": "iki", "sv": "två", "nl": "twee", "nb": "to", "da": "to", "fr": "deux"}}
 {"id": "drei:tri", "kind": "word", "bs": "tri", "translations": {"de": "drei", "en": "three", "tr": "üç", "sv": "tre", "nl": "drie", "nb": "tre", "da": "tre", "fr": "trois"}}
@@ -42,6 +41,7 @@
 {"id": "acht:osam", "kind": "word", "bs": "osam", "translations": {"de": "acht", "en": "eight", "tr": "sekiz", "sv": "åtta", "nl": "acht", "nb": "åtte", "da": "otte", "fr": "huit"}}
 {"id": "neun:devet", "kind": "word", "bs": "devet", "translations": {"de": "neun", "en": "nine", "tr": "dokuz", "sv": "nio", "nl": "negen", "nb": "ni", "da": "ni", "fr": "neuf"}}
 {"id": "zehn:deset", "kind": "word", "bs": "deset", "translations": {"de": "zehn", "en": "ten", "tr": "on", "sv": "tio", "nl": "tien", "nb": "ti", "da": "ti", "fr": "dix"}}
+{"id": "null:nula", "kind": "word", "bs": "nula", "translations": {"de": "null", "en": "zero", "tr": "sıfır", "sv": "noll", "nl": "nul", "nb": "null", "da": "nul", "fr": "zéro"}}
 {"id": "elf:jedanaest", "kind": "word", "bs": "jedanaest", "translations": {"de": "elf", "en": "eleven", "tr": "on bir", "sv": "elva", "nl": "elf", "nb": "elleve", "da": "elleve", "fr": "onze"}}
 {"id": "zwölf:dvanaest", "kind": "word", "bs": "dvanaest", "translations": {"de": "zwölf", "en": "twelve", "tr": "on iki", "sv": "tolv", "nl": "twaalf", "nb": "tolv", "da": "tolv", "fr": "douze"}}
 {"id": "dreizehn:trinaest", "kind": "word", "bs": "trinaest", "translations": {"de": "dreizehn", "en": "thirteen", "tr": "on üç", "sv": "tretton", "nl": "dertien", "nb": "tretten", "da": "tretten", "fr": "treize"}}

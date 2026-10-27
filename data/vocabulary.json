@@ -2808,24 +2808,6 @@
    "audio": "web/audio/w1492.mp3"
   },
   {
-   "id": "null:nula",
-   "bs": "nula",
-   "level": "zahlen",
-   "level_position": 2,
-   "section": "alltag",
-   "translations": {
-    "de": "null",
-    "en": "zero",
-    "tr": "sıfır",
-    "sv": "noll",
-    "nl": "nul",
-    "nb": "null",
-    "da": "nul",
-    "fr": "zéro"
-   },
-   "audio": "web/audio/w0033.mp3"
-  },
-  {
    "id": "eins:jedan",
    "bs": "jedan",
    "level": "zahlen",
@@ -3004,6 +2986,24 @@
     "fr": "dix"
    },
    "audio": "web/audio/w0043.mp3"
+  },
+  {
+   "id": "null:nula",
+   "bs": "nula",
+   "level": "zahlen",
+   "level_position": 2,
+   "section": "alltag",
+   "translations": {
+    "de": "null",
+    "en": "zero",
+    "tr": "sıfır",
+    "sv": "noll",
+    "nl": "nul",
+    "nb": "null",
+    "da": "nul",
+    "fr": "zéro"
+   },
+   "audio": "web/audio/w0033.mp3"
   },
   {
    "id": "elf:jedanaest",
