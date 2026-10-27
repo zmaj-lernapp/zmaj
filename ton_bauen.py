@@ -272,6 +272,22 @@ def sammle():
         if k and k not in gesehen:
             gesehen.add(k)
             posten.append({"art": "wort", "key": k, "text": s["bs"]})
+
+    # Zahlen, die wechseln (25.10.2026). Ajdin: „die sätze immer mit der
+    # gleichen zahl ist und nicht mal variiert“. Ein Satz mit "zahl" kommt in
+    # der App auch mit den anderen Zahlen aus "werte" und wird danach so
+    # gesprochen - also braucht jede Fassung ihren Ton. Gebaut von
+    # inhalt.zahl_fassung(), derselben Regel wie zahlFassung() in index.html.
+    # Die Aufnahmen spricht Emir (ton_nur_emir.json), der große Lauf erzeugt
+    # für sie nichts. Ganz am Ende, damit die vergebenen Nummern bleiben.
+    import inhalt
+    for s in list(getattr(v, "SAETZE", [])) + list(getattr(v, "SATZBAU", [])):
+        for _, f in inhalt.zahl_fassungen(s):
+            ganz = inhalt.fertiger_satz(f)
+            k = schluessel(ganz)
+            if k and k not in gesehen:
+                gesehen.add(k)
+                posten.append({"art": "wort", "key": k, "text": ganz})
     return posten
 
 

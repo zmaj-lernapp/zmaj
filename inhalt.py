@@ -111,8 +111,8 @@ def satz_kacheln(satz):
 
 
 def satzbau_fuer_app(liste):
-    """Nur kat, bs, de, auch, ohne und grund (die Grundformen aus formen)
-    gehen an die App. quelle, notiz und die gebeugten Formen selbst sind
+    """Nur kat, bs, de, auch, ohne, grund (die Grundformen aus formen) und
+    zahl gehen an die App. quelle, notiz und die gebeugten Formen selbst sind
     Arbeitsfelder für die Prüfung und für uns (13.10.2026) - auf dem Handy
     wären sie bloß Ballast in acht Dateien."""
     raus = []
@@ -132,8 +132,231 @@ def satzbau_fuer_app(liste):
         grund = sorted({str(g).lower() for g in (s.get("formen") or {}).values()})
         if grund:
             neu["grund"] = grund
+        # zahl (25.10.2026): die Zahlen, mit denen der Satz kommen darf, siehe
+        # zahl_fassung() unten. Unverändert, damit pruefe_zahlen() auch einen
+        # kaputten Eintrag sieht.
+        if "zahl" in s:
+            neu["zahl"] = dict(s["zahl"]) if isinstance(s["zahl"], dict) else s["zahl"]
         raus.append(neu)
     return raus
+
+
+# ---------------------------------------------------------------------------
+# Zahlen, die wechseln (25.10.2026)
+# ---------------------------------------------------------------------------
+# Ajdin am 25.10.2026: „die sätze immer mit der gleichen zahl ist und nicht
+# mal variiert“. Gemeint ist die Zahl im Satz: „Sada je pet sati.“ kam immer
+# mit fünf. Ein Satz mit "zahl" (vokabeln.py) kommt in der App je Aufgabe mit
+# einer der Zahlen aus "werte" - bosnisch als Wort, in der Bedeutung als
+# Ziffer („Jetzt ist es 7 Uhr.“). Welche Sätze und welche Zahlen, hat Ajdin in
+# einer Tabelle freigegeben („Ja, alle so“); mehr kommt nicht dazu.
+#
+# zahl_fassung() hier und zahlFassung() in web/index.html müssen Zeichen für
+# Zeichen dasselbe bauen: ton_bauen.sammle() nimmt die Fassungen von hier, und
+# die App sucht die Aufnahme unter dem Satz, den sie selbst gebaut hat. Weicht
+# eins ab, bleibt der Satz stumm. tests_e2e/test_zahlen.py vergleicht beide.
+
+# Wie zahlAlsWort() in index.html, aber nur einzelne Wörter: 0 bis 19, die
+# glatten Zehner und 100. Mehr brauchen die Sätze nicht, und ein Zahlwort aus
+# zwei Wörtern ("dvadeset jedan") gäbe im Satzbau eine Kachel mehr.
+ZAHL_EINER = ("nula", "jedan", "dva", "tri", "četiri", "pet", "šest", "sedam", "osam", "devet",
+              "deset", "jedanaest", "dvanaest", "trinaest", "četrnaest", "petnaest",
+              "šesnaest", "sedamnaest", "osamnaest", "devetnaest")
+ZAHL_ZEHNER = {2: "dvadeset", 3: "trideset", 4: "četrdeset", 5: "pedeset",
+               6: "šezdeset", 7: "sedamdeset", 8: "osamdeset", 9: "devedeset"}
+# "frei": Hier dürfen 2-4 und ab 5 gemischt sein. "uhrzeit": die Uhrzeit ohne
+# Nomen („u pet“, „u tri“). "dana": dva dana wie pet dana - die Form ist gleich.
+ZAHL_FREI = ("uhrzeit", "dana")
+ZAHL_FELDER = {"wort", "werte", "de", "weiblich", "frei"}
+
+
+def zahl_wort(n, weiblich=False):
+    """Das bosnische Zahlwort für n, sonst None. weiblich: 2 heißt dvije
+    (dvije kahve, dvije sestre, dvije jabuke)."""
+    if isinstance(n, bool) or not isinstance(n, int) or n < 0:
+        return None
+    if weiblich and n == 2:
+        return "dvije"
+    if n < 20:
+        return ZAHL_EINER[n]
+    if n < 100 and n % 10 == 0:
+        return ZAHL_ZEHNER[n // 10]
+    return "sto" if n == 100 else None
+
+
+def zahl_wert(wort, weiblich=False):
+    """Umkehrung von zahl_wort(): "pet" -> 5, "dvije" -> 2 (nur weiblich)."""
+    w = str(wort or "").strip().lower()
+    for n in range(101):
+        if zahl_wort(n, weiblich) == w:
+            return n
+    return None
+
+
+def zahl_klasse(n):
+    """Welche Form das Nomen nach n braucht: "1" (jedan brat), "2-4" (dva
+    brata, tri sestre) oder "5+" (pet godina, deset sati). 11 bis 14 gehen
+    wie ab 5, 21 und 22 wieder wie 1 und 2."""
+    if n % 10 == 1 and n % 100 != 11:
+        return "1"
+    if n % 10 in (2, 3, 4) and n % 100 not in (12, 13, 14):
+        return "2-4"
+    return "5+"
+
+
+def _zahl_muster(wort):
+    """Das Wort als ganzes Wort: davor und danach kein Buchstabe. Dieselbe
+    Regel wie zahlTausch() in index.html."""
+    return re.compile(r"(^|[\W\d_])(%s)(?=[\W\d_]|$)" % re.escape(wort), re.IGNORECASE)
+
+
+def zahl_zaehlen(text, wort):
+    """Wie oft wort als ganzes Wort in text steht, Groß/klein egal."""
+    return len(_zahl_muster(wort).findall(str(text or "")))
+
+
+def zahl_ersetzen(text, alt, neu):
+    """Das Zahlwort alt als ganzes Wort durch neu ersetzen, mit der
+    Großschreibung des Originals: "Dvije kahve" -> "Tri kahve"."""
+    def tausch(m):
+        gross = m.group(2)[:1].isupper()
+        return m.group(1) + (neu[:1].upper() + neu[1:] if gross else neu)
+    return _zahl_muster(alt).sub(tausch, text)
+
+
+# Türkisch „um 7“: 7'de, 3'te, 10'da. Die Endung hängt am letzten gesprochenen
+# Wort der Zahl (bir, iki, üç, dört, beş, altı, yedi, sekiz, dokuz; on, yirmi,
+# otuz, kırk, elli, altmış, yetmiş, seksen, doksan; yüz): a oder e nach der
+# Vokalharmonie, und nach ç, t, ş, k wird aus d ein t (üçte, dörtte, beşte,
+# kırkta, altmışta, yetmişte). Ohne Einer gilt der Zehner, bei 100 yüzde.
+# Gebraucht wird es nur bei der Uhrzeit bis 12; die Zehner stehen für den
+# Fall, dass einmal mehr dazukommt. Dieselbe Tabelle steht in index.html.
+TR_LOK_EINER = ("da", "de", "de", "te", "te", "te", "da", "de", "de", "da")
+TR_LOK_ZEHNER = ("", "da", "de", "da", "ta", "de", "ta", "te", "de", "da")
+
+
+def tr_lokativ(n):
+    e, z = n % 10, (n // 10) % 10
+    endung = "da" if n == 0 else TR_LOK_EINER[e] if e else TR_LOK_ZEHNER[z] if z else "de"
+    return "%d'%s" % (n, endung)
+
+
+def zahl_vorlage(vorlage, n):
+    """Die Bedeutung mit Ziffer: {n} -> "7", {lok} -> "7'de"."""
+    return str(vorlage or "").replace("{n}", str(n)).replace("{lok}", tr_lokativ(n))
+
+
+def zahl_fassung(satz, n):
+    """Der Satz mit der Zahl n: text, answer, bs und jedes auch mit dem neuen
+    Zahlwort, de aus der Vorlage mit der Ziffer. Alles andere bleibt."""
+    z = satz["zahl"]
+    alt, neu = z["wort"], zahl_wort(n, z.get("weiblich"))
+    f = dict(satz, de=zahl_vorlage(z.get("de"), n))
+    for feld in ("text", "answer", "bs"):
+        if isinstance(satz.get(feld), str):
+            f[feld] = zahl_ersetzen(satz[feld], alt, neu)
+    if satz.get("auch"):
+        f["auch"] = [zahl_ersetzen(a, alt, neu) for a in satz["auch"]]
+    return f
+
+
+def zahl_fassungen(satz):
+    """[(n, Fassung), ...] für jede Zahl aus werte, die heutige eingeschlossen.
+    Ohne "zahl" eine leere Liste."""
+    z = satz.get("zahl") if isinstance(satz, dict) else None
+    if not isinstance(z, dict):
+        return []
+    return [(n, zahl_fassung(satz, n)) for n in z.get("werte", [])
+            if zahl_wort(n, z.get("weiblich"))]
+
+
+def fertiger_satz(satz):
+    """Was die App nach der Antwort spricht: den Lückensatz mit eingesetzter
+    Lösung, den Satzbau-Satz, wie er ist."""
+    if "text" in satz:
+        return satz["text"].replace("___", satz.get("answer", ""))
+    return satz.get("bs", "")
+
+
+def _zahl_formen(satz):
+    """Jede Form, in der das Zahlwort stehen muss: beim Lückensatz der
+    fertige Satz mit answer und mit jeder Antwort aus auch, beim Satzbau bs
+    und jede Reihenfolge aus auch."""
+    auch = [a for a in (satz.get("auch") or []) if isinstance(a, str)]
+    if "text" in satz:
+        return [str(satz.get("text", "")).replace("___", a) for a in [str(satz.get("answer", ""))] + auch]
+    return [str(satz.get("bs", ""))] + auch
+
+
+def pruefe_zahlen(daten):
+    """Die Sätze mit "zahl" (25.10.2026). Befunde wie in pruefe_vokabeln(),
+    das sie mit aufnimmt. Die Vorlage "de" wird in der Sprache der Daten
+    geprüft - nach uebersetzungen.anwenden() ist sie dort schon übersetzt."""
+    probleme = []
+    sprache = daten.get("sprache") or "de"
+    for art, liste in (("Lückensatz", daten.get("saetze", [])), ("Satzbau", daten.get("satzbau", []))):
+        for satz in liste:
+            if "zahl" not in satz:
+                continue
+            z = satz["zahl"]
+            kennung = "Zahl im %s [%s] '%s'" % (art, satz.get("kat"), satz.get("text", satz.get("bs")))
+            if not isinstance(z, dict):
+                probleme.append(f"{kennung}: 'zahl' ist kein dict")
+                continue
+            fremd = sorted(set(z) - ZAHL_FELDER)
+            if fremd:
+                probleme.append(f"{kennung}: unbekannte Felder {fremd}")
+            wort, werte, frei = z.get("wort"), z.get("werte"), z.get("frei")
+            weiblich = bool(z.get("weiblich"))
+            if not isinstance(wort, str) or not isinstance(werte, list) or not werte:
+                probleme.append(f"{kennung}: 'wort' oder 'werte' fehlt")
+                continue
+            heute = zahl_wert(wort, weiblich)
+            if heute is None or zahl_wort(heute, weiblich) != wort:
+                probleme.append(f"{kennung}: '{wort}' ist kein Zahlwort (klein, wie zahl_wort())")
+            elif heute not in werte:
+                probleme.append(f"{kennung}: die heutige Zahl {heute} fehlt in 'werte'")
+            if len(set(map(repr, werte))) != len(werte):
+                probleme.append(f"{kennung}: Zahl doppelt in 'werte'")
+            gut = [n for n in werte if zahl_wort(n, weiblich)]
+            for n in werte:
+                if n not in gut:
+                    probleme.append(f"{kennung}: kein Zahlwort für {n!r}")
+            for form in _zahl_formen(satz):
+                anzahl = zahl_zaehlen(form, wort)
+                if anzahl != 1:
+                    probleme.append(f"{kennung}: '{wort}' steht {anzahl}-mal in '{form}', erlaubt ist genau einmal")
+            if frei is None:
+                klassen = sorted({zahl_klasse(n) for n in gut + ([heute] if heute is not None else [])})
+                if len(klassen) > 1:
+                    probleme.append(f"{kennung}: Zahlen mit verschiedenen Formen des Nomens {klassen}"
+                                    " - geht nur mit 'frei'")
+            elif frei not in ZAHL_FREI:
+                probleme.append(f"{kennung}: 'frei' ist {frei!r}, erlaubt sind {list(ZAHL_FREI)}")
+            else:
+                for form in _zahl_formen(satz):
+                    woerter = re.findall(r"[^\W\d_]+", form.lower())
+                    i = woerter.index(wort) if wort in woerter else -1
+                    if frei == "uhrzeit" and (i < 1 or woerter[i - 1] != "u"):
+                        probleme.append(f"{kennung}: 'frei: uhrzeit' braucht 'u' vor der Zahl: '{form}'")
+                    if frei == "dana" and (i < 0 or woerter[i + 1:i + 2] != ["dana"]):
+                        probleme.append(f"{kennung}: 'frei: dana' braucht 'dana' nach der Zahl: '{form}'")
+            de = z.get("de")
+            if not isinstance(de, str) or not de.strip():
+                probleme.append(f"{kennung}: 'de' fehlt")
+                continue
+            platz = de.count("{n}") + de.count("{lok}")
+            if platz != 1:
+                probleme.append(f"{kennung} ({sprache}): {platz} Platzhalter in '{de}', erlaubt ist genau ein {{n}}")
+            if "{lok}" in de and sprache != "tr":
+                probleme.append(f"{kennung} ({sprache}): {{lok}} gibt es nur im Türkischen: '{de}'")
+            rest = de.replace("{n}", "").replace("{lok}", "")
+            if "{" in rest or "}" in rest or re.search(r"\d", rest):
+                probleme.append(f"{kennung} ({sprache}): Ziffer oder fremder Platzhalter in '{de}'")
+            # „at 14 o'clock“ sagt man nicht - o'clock nur bis 12.
+            if sprache == "en" and "o'clock" in de and gut and max(gut) > 12:
+                probleme.append(f"{kennung} (en): o'clock nur bis 12: '{de}'")
+    return probleme
 
 
 def maskottchen_bilder(ordner=None):
@@ -187,6 +410,24 @@ def pruefe_vokabeln(daten):
         kid = kat.get("id", "?")
         if kid in ids:
             probleme.append(f"Level-id doppelt: '{kid}'")
+        # reihenfolge (26.10.2026): die App fragt "=== true". Ein "ja" oder
+        # eine 1 hiesse dort still "gemischt" - deshalb nur True oder False.
+        if "reihenfolge" in kat and not isinstance(kat["reihenfolge"], bool):
+            probleme.append(f"[{kid}] reihenfolge muss True oder False sein: {kat['reihenfolge']!r}")
+        # reihe (26.10.2026): bs-Wörter dieses Levels, die buildLesson() in
+        # dieser Folge vorstellt. Ein Tippfehler hieße in der App still
+        # "gemischt" - deshalb hier gemeldet.
+        if "reihe" in kat:
+            r = kat["reihe"]
+            bs_hier = [w.get("bs") for w in kat.get("words", [])]
+            if not isinstance(r, list) or len(r) < 2 or len(set(map(str, r))) != len(r):
+                probleme.append(f"[{kid}] reihe muss eine Liste aus mindestens zwei verschiedenen Wörtern sein: {r!r}")
+            else:
+                for x in r:
+                    if bs_hier.count(x) != 1:
+                        probleme.append(f"[{kid}] reihe nennt '{x}', das nicht genau einmal im Level steht")
+            if kat.get("reihenfolge") is True:
+                probleme.append(f"[{kid}] reihe und reihenfolge zugleich - reihenfolge ordnet schon alles")
         ids.add(kid)
         if sektionen and kat.get("sektion") not in sektionen:
             probleme.append(f"[{kid}] unbekannte Sektion '{kat.get('sektion')}'")
@@ -265,6 +506,9 @@ def pruefe_vokabeln(daten):
         if schluessel in satzbau_gesehen:
             probleme.append(f"{kennung}: doppelt")
         satzbau_gesehen.add(schluessel)
+
+    # Sätze, deren Zahl wechselt (25.10.2026)
+    probleme += pruefe_zahlen(daten)
 
     # Grammatik-Lektionen
     for kid, lektion in daten.get("grammatik", {}).items():

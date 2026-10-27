@@ -7,6 +7,17 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Cloze and tile sentences: in 36 sentences the number now changes from
+  task to task ("Sada je sedam sati." – "It is 7 o'clock now."), only with
+  the numbers a native speaker approved (`"zahl"` in `vokabeln.py`). The
+  Bosnian sentence spells the number out, the translation shows it as a
+  digit (Turkish with the right suffix: 7'de, 3'te). Another number only
+  comes once its word has been learned (or the numbers level has been
+  passed or skipped by the placement test) and the sentence has a recording;
+  the new recordings exist only in the store version, so the web demo keeps
+  today's number. A retry keeps the number, and mistakes and stars stay one
+  entry per sentence. "Dva plus dva je četiri." is now "Dva plus dva su
+  četiri."; mistakes and stars on it carry over.
 - Family level: twelve more relatives, so that aunts, uncles and cousins
   are named by side as in Bosnian (strina / amidžinica, ujna / daidžinica,
   tetak, amidžić, daidžić, tetić and their female forms, rođaka, nećak,
@@ -16,14 +27,15 @@ are in the Play Store listing. Format:
   The app speaks the new words with recordings that only the store
   version contains (`ton_nur_emir.json`); the web demo, the dataset and
   the Anki decks have no audio for them.
-- Lessons, review rounds and level tests: a round star button at the bottom
-  right, opposite "Cancel lesson", marks a word, cloze sentence, tile
-  sentence or grammar exercise for later (one star per word, up to 300; not
-  in the placement test or on result screens). The Review tab shows a second
-  box, "Marked", built like the unchanged mistakes box above it; its round
-  picks up to ten marked items, least recently practised first, costs lives
-  like a lesson, and stars stay until the learner removes them. The big
-  "Continue" button is unchanged. Stars are part of the backup file.
+- Lessons, review rounds and level tests: a round star button at the top
+  right of the exercise card, next to the dragon, marks a word, cloze
+  sentence, tile sentence or grammar exercise for later (one star per
+  word, up to 300; not in the placement test or on result screens). The
+  Review tab shows a second box, "Marked", built like the unchanged
+  mistakes box above it; its round picks up to ten marked items, least
+  recently practised first, costs lives like a lesson, and stars stay
+  until the learner removes them. The big "Continue" button is
+  unchanged. Stars are part of the backup file.
 - Lessons: a new exercise builds whole Bosnian sentences from word tiles
   (two per lesson, from level 1 on). Several word orders count as correct,
   a sentence only appears once its words have been met, and mistakes go to
@@ -69,6 +81,13 @@ are in the Play Store listing. Format:
   subscription payment failed, shown when the app comes to the foreground.
 
 ### Changed
+- Lessons in the levels Numbers, Days of the week, Months and Numbers in
+  a sentence introduce their new words in order (nula, jedan, dva …;
+  ponedjeljak to nedjelja; januar to decembar; jedan brat, dva brata,
+  pet braće …) instead of at random (`"reihenfolge": True` in
+  `vokabeln.py`). Learners already part-way through such a level get the
+  words they have not learned yet in the same order; exercises within a
+  lesson, reviews, level tests and the placement test stay shuffled.
 - `app_bauen.py` converts the audio in the app bundle to Ogg/Opus at
   24 kbit/s (`ton_verkleinern()`, needs ffmpeg; cached in the shell): the
   audio inside the package shrinks from 26.9 MB to 10.2 MB. `web/audio`

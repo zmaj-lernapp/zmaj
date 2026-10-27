@@ -36,7 +36,6 @@ Možda	Maybe	zmaj zmaj::01_basics
 Živjeli!	Cheers!	zmaj zmaj::01_basics
 Prijatno	Enjoy your meal	zmaj zmaj::01_basics
 Zdravo	Hello (neutral, anywhere)	zmaj zmaj::01_basics
-nula	zero	zmaj zmaj::02_zahlen
 jedan	one	zmaj zmaj::02_zahlen
 dva	two	zmaj zmaj::02_zahlen
 tri	three	zmaj zmaj::02_zahlen
@@ -47,6 +46,7 @@ sedam	seven	zmaj zmaj::02_zahlen
 osam	eight	zmaj zmaj::02_zahlen
 devet	nine	zmaj zmaj::02_zahlen
 deset	ten	zmaj zmaj::02_zahlen
+nula	zero	zmaj zmaj::02_zahlen
 jedanaest	eleven	zmaj zmaj::02_zahlen
 dvanaest	twelve	zmaj zmaj::02_zahlen
 trinaest	thirteen	zmaj zmaj::02_zahlen

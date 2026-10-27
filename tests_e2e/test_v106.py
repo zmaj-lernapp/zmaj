@@ -548,6 +548,10 @@ def _erwartete_teile(kostueme, farbe):
             if farbe and ebene.get("zmaj_ohne_haut") == farbe:
                 continue
             weg.update(je_ebene[n] for n in ebene.get("zmaj_leert", []) if n in je_ebene)
+    # Mit der Sonnenbrille blinzelt der Drache nicht (26.10.2026, ohneBlinzeln()
+    # in index.html): Kopf- und Hornbild zum Blinzeln fallen mit Absicht weg.
+    if "sonnenbrille" in kostueme:
+        weg.update(je_ebene[n] for n in ("bild_kopf_blinzeln", "bild_hoerner_blinzeln") if n in je_ebene)
     return set(je_ebene.values()) - weg
 
 

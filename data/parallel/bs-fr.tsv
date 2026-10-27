@@ -32,7 +32,6 @@ Možda	Peut-être	word	vielleicht:Možda
 Živjeli!	Santé !	word	prost!:Živjeli!
 Prijatno	Bon appétit	word	guten appetit:Prijatno
 Zdravo	Salut (neutre, partout)	word	hallo (neutral, überall):Zdravo
-nula	zéro	word	null:nula
 jedan	un	word	eins:jedan
 dva	deux	word	zwei:dva
 tri	trois	word	drei:tri
@@ -43,6 +42,7 @@ sedam	sept	word	sieben:sedam
 osam	huit	word	acht:osam
 devet	neuf	word	neun:devet
 deset	dix	word	zehn:deset
+nula	zéro	word	null:nula
 jedanaest	onze	word	elf:jedanaest
 dvanaest	douze	word	zwölf:dvanaest
 trinaest	treize	word	dreizehn:trinaest

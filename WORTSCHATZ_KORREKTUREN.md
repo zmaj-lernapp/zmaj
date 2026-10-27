@@ -307,3 +307,61 @@ mehrdeutig, je nach Gegend heißen sie Cousin oder Neffe.
   und die Anki-Pakete haben für die zwölf neuen Wörter keine Aufnahme, bei
   den Wörtern mit zwei Formen klingt dort die erste. Der Eintrag „so / sol“
   in `NUR_ERSTE_FORM` (ton_pruefen.py) ist damit gelöscht.
+
+## 23.10.2026 – „später“: auch poslije
+
+Ajdin: „ich sehe später kann sowohl poslije als auch kasnije bedeuten im moment ist nur kasnije richtig und es kommt auf dem kontext an was man wann verwendet“.
+
+| Kennung | Änderung |
+|---|---|
+| `später:kasnije` | `"auch": ["poslije"]` – beim Tippen zählt poslije, in der Auswahl erscheint poslije nicht mehr als falsche Antwort. Wort und Kennung bleiben, kein Fortschritt geht verloren. |
+
+## 25.10.2026 – Die Zahl im Satz wechselt, und „Dva plus dva su četiri.“
+
+Ajdin: „die sätze immer mit der gleichen zahl ist und nicht mal variiert“.
+Gemeint ist die Zahl im Satz. Seitdem kommen diese Sätze je Aufgabe mit
+einer der Zahlen aus seiner Tabelle (Ajdin: „Ja, alle so“), bosnisch als
+Wort, in der Bedeutung als Ziffer („Jetzt ist es 7 Uhr.“). Feld `"zahl"` in
+`vokabeln.py`; nur genau diese Zahlen:
+
+| # | Sätze | heute | Zahlen |
+|---|---|---|---|
+| 1 | Sada je ___ sati. / Sada je pet sati. | pet | 5–12 |
+| 2 | ___ kahve, molim. (Level essen) / Dvije kahve, molim. | dvije | dvije, tri, četiri |
+| 3 | Jakna košta ___ maraka. | pedeset | 30, 40, 50, 60, 70, 80, 90, 100 |
+| 4 | Imam ___ brata. / Imam dva ___. / Imam dva brata. | dva | dva, tri, četiri |
+| 5 | Ti ___ dva brata. / Ti imaš dva brata. | dva | dva, tri, četiri |
+| 6 | Jedemo u ___ sati. / Jedemo u sedam sati. | sedam | 6, 7, 8, 9, 12 |
+| 7 | Imam ___ u ponedjeljak u deset sati. / Imam termin u ponedjeljak u deset sati. | deset | 8–12 |
+| 8 | ___ za pasoš je trideset maraka. / Taksa za pasoš je trideset maraka. | trideset | 30, 40, 50, 60 |
+| 9 | Imam pet godina ___. / Imam pet godina iskustva. | pet | 5, 6, 7, 8, 10, 12, 15, 20 |
+| 10 | Probni ___ traje tri mjeseca. / Probni rad traje tri mjeseca. | tri | dva, tri, četiri |
+| 11 | Imam dvije ___. / Imam dvije sestre. | dvije | dvije, tri, četiri |
+| 12 | Nalazimo ___ u pet. / Nalazimo se u pet. | pet | 3–8 |
+| 13 | ___ u sedam sati. / Ustajem u sedam sati. | sedam | 5–9 |
+| 14 | Idem ___ u jedanaest. / Idem spavati u jedanaest. | jedanaest | 9–12 |
+| 15 | Imam trideset ___. / Imam trideset godina. | trideset | 18, 20, 30, 40, 50, 60, 70 |
+| 16 | Ostajemo pet ___. / Mi ostajemo pet dana. | pet | 2, 3, 4, 5, 6, 7, 10, 14 |
+| 17 | Moja sestra ima pet godina | pet | 5, 6, 7, 8, 10, 12, 15, 18 |
+| 18 | Ja bih htjela tri jabuke, molim | tri | dvije, tri, četiri |
+| 19 | Autobus dolazi u deset | deset | 7–12 |
+| 20 | Ne znam, možda pet maraka. | pet | 5, 6, 7, 8, 10, 15, 20 |
+
+**Fest bleiben:** Menge 1 (*jednu kahvu* usw.), „___ kahve, molim.“ im Level
+Mengen, die Grammatik-Aufgaben, das Level Zahlen (Reihen, Rechnungen), *Sto
+za dvoje* (Sammelzahl), das Stockwerk und alle Geschichten. 13 und 14 Uhr
+und 20 KM für den Pass sind bewusst nicht dabei.
+
+**Was daran hängt:**
+
+- Eine andere Zahl kommt nur, wenn ihr Zahlwort schon gelernt ist (oder
+  der Level Zahlen schon bestanden bzw. per Einstufung übersprungen) und der
+  fertige Satz eine Aufnahme hat. Die 94 neuen Fassungen hat Emir gesprochen
+  (`ton_nur_emir.json`, w2426–w2519); die Web-Demo hat sie nicht und zeigt
+  die heutige Zahl.
+- Fehler-Topf und Sterne merken sich den Satz wie bisher, egal mit welcher
+  Zahl er kam. Kein Lernstand ändert sich.
+
+| Kennung | Änderung |
+|---|---|
+| `k:zahlen\|Dva plus dva je četiri.` | Jetzt **Dva plus dva su četiri.** Ajdin: „Auf „su“ ändern“ – bei *dva, tri, četiri* im Subjekt steht das Verb im Plural (Gramatika bosanskoga jezika, § 241). Fehler-Topf und Sterne ziehen über `SAETZE_UMBENANNT` in `web/index.html` mit. Neue Aufnahme von Emir (w2520); die alte (w2374) bleibt im Index liegen, ihre Nummer wird nie neu vergeben. „su“ steht in `vokabeln.py` als Form von „je“ (`formen`), nur damit die Prüfung es im Level Zahlen gelten lässt – sprachlich ist es eine Form von *biti*. |

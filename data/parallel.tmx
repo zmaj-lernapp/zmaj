@@ -402,18 +402,6 @@
    <tuv xml:lang="da"><seg>Hej (neutralt, overalt)</seg></tuv>
    <tuv xml:lang="fr"><seg>Salut (neutre, partout)</seg></tuv>
   </tu>
-  <tu tuid="null:nula" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>nula</seg></tuv>
-   <tuv xml:lang="de"><seg>null</seg></tuv>
-   <tuv xml:lang="en"><seg>zero</seg></tuv>
-   <tuv xml:lang="tr"><seg>sıfır</seg></tuv>
-   <tuv xml:lang="sv"><seg>noll</seg></tuv>
-   <tuv xml:lang="nl"><seg>nul</seg></tuv>
-   <tuv xml:lang="nb"><seg>null</seg></tuv>
-   <tuv xml:lang="da"><seg>nul</seg></tuv>
-   <tuv xml:lang="fr"><seg>zéro</seg></tuv>
-  </tu>
   <tu tuid="eins:jedan" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>jedan</seg></tuv>
@@ -533,6 +521,18 @@
    <tuv xml:lang="nb"><seg>ti</seg></tuv>
    <tuv xml:lang="da"><seg>ti</seg></tuv>
    <tuv xml:lang="fr"><seg>dix</seg></tuv>
+  </tu>
+  <tu tuid="null:nula" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>nula</seg></tuv>
+   <tuv xml:lang="de"><seg>null</seg></tuv>
+   <tuv xml:lang="en"><seg>zero</seg></tuv>
+   <tuv xml:lang="tr"><seg>sıfır</seg></tuv>
+   <tuv xml:lang="sv"><seg>noll</seg></tuv>
+   <tuv xml:lang="nl"><seg>nul</seg></tuv>
+   <tuv xml:lang="nb"><seg>null</seg></tuv>
+   <tuv xml:lang="da"><seg>nul</seg></tuv>
+   <tuv xml:lang="fr"><seg>zéro</seg></tuv>
   </tu>
   <tu tuid="elf:jedanaest" segtype="phrase">
    <prop type="x-kind">word</prop>
