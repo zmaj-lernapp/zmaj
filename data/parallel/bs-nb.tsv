@@ -1,7 +1,7 @@
 bs	nb	kind	id
 Merhaba	Hei	word	hallo:Merhaba
-Dobar dan	God dag	word	guten tag:Dobar dan
 Dobro jutro	God morgen	word	guten morgen:Dobro jutro
+Dobar dan	God dag	word	guten tag:Dobar dan
 Dobro veče	God kveld	word	guten abend:Dobro veče
 Laku noć / Lahku noć	God natt	word	gute nacht:Laku noć / Lahku noć
 Doviđenja	Ha det	word	auf wiedersehen:Doviđenja
@@ -1056,16 +1056,16 @@ Ne mogu doći	Jeg kan ikke komme	word	ich kann nicht kommen:Ne mogu doći
 Možeš li mi pomoći?	Kan du hjelpe meg?	word	kannst du mir helfen?:Možeš li mi pomoći?
 Hoću spavati	Jeg vil sove	word	ich will schlafen:Hoću spavati
 Želim učiti	Jeg vil lære	word	ich möchte lernen:Želim učiti
+pitati	spørre	word	fragen:pitati
 Smijem li pitati?	Får jeg spørre?	word	darf ich fragen?:Smijem li pitati?
 Ne moraš	Du trenger ikke	word	du musst nicht:Ne moraš
-Moramo čekati	Vi må vente	word	wir müssen warten:Moramo čekati
 čekati	vente	word	warten:čekati
-Želim nešto jesti	Jeg vil spise noe	word	ich möchte etwas essen:Želim nešto jesti
+Moramo čekati	Vi må vente	word	wir müssen warten:Moramo čekati
 nešto	noe	word	etwas:nešto
+Želim nešto jesti	Jeg vil spise noe	word	ich möchte etwas essen:Želim nešto jesti
 Mogu govoriti bosanski	Jeg kan snakke bosnisk	word	ich kann bosnisch sprechen:Mogu govoriti bosanski
-Ne znam plivati	Jeg kan ikke svømme (ferdighet)	word	ich kann nicht schwimmen (fähigkeit):Ne znam plivati
 plivati	svømme	word	schwimmen:plivati
-pitati	spørre	word	fragen:pitati
+Ne znam plivati	Jeg kan ikke svømme (ferdighet)	word	ich kann nicht schwimmen (fähigkeit):Ne znam plivati
 pokušati	prøve	word	versuchen:pokušati
 se	seg (refleksivt pronomen)	word	sich (reflexivpronomen):se
 zvati se	hete	word	sich nennen / heißen:zvati se

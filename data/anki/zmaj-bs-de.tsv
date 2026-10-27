@@ -4,8 +4,8 @@
 #columns:Bosnian	de	Tags
 #tags column:3
 Merhaba	Hallo	zmaj zmaj::01_basics
-Dobar dan	Guten Tag	zmaj zmaj::01_basics
 Dobro jutro	Guten Morgen	zmaj zmaj::01_basics
+Dobar dan	Guten Tag	zmaj zmaj::01_basics
 Dobro veče	Guten Abend	zmaj zmaj::01_basics
 Laku noć / Lahku noć	Gute Nacht	zmaj zmaj::01_basics
 Doviđenja	Auf Wiedersehen	zmaj zmaj::01_basics
@@ -1060,16 +1060,16 @@ Ne mogu doći	Ich kann nicht kommen	zmaj zmaj::41_modal
 Možeš li mi pomoći?	Kannst du mir helfen?	zmaj zmaj::41_modal
 Hoću spavati	Ich will schlafen	zmaj zmaj::41_modal
 Želim učiti	Ich möchte lernen	zmaj zmaj::41_modal
+pitati	fragen	zmaj zmaj::41_modal
 Smijem li pitati?	Darf ich fragen?	zmaj zmaj::41_modal
 Ne moraš	Du musst nicht	zmaj zmaj::41_modal
-Moramo čekati	Wir müssen warten	zmaj zmaj::41_modal
 čekati	warten	zmaj zmaj::41_modal
-Želim nešto jesti	Ich möchte etwas essen	zmaj zmaj::41_modal
+Moramo čekati	Wir müssen warten	zmaj zmaj::41_modal
 nešto	etwas	zmaj zmaj::41_modal
+Želim nešto jesti	Ich möchte etwas essen	zmaj zmaj::41_modal
 Mogu govoriti bosanski	Ich kann Bosnisch sprechen	zmaj zmaj::41_modal
-Ne znam plivati	Ich kann nicht schwimmen (Fähigkeit)	zmaj zmaj::41_modal
 plivati	schwimmen	zmaj zmaj::41_modal
-pitati	fragen	zmaj zmaj::41_modal
+Ne znam plivati	Ich kann nicht schwimmen (Fähigkeit)	zmaj zmaj::41_modal
 pokušati	versuchen	zmaj zmaj::41_modal
 se	sich (Reflexivpronomen)	zmaj zmaj::42_reflexiv
 zvati se	sich nennen / heißen	zmaj zmaj::42_reflexiv

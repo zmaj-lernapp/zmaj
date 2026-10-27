@@ -263,7 +263,7 @@ def test_englisch_und_tuerkisch(seite, heute_stand):
             ("en", "kacheln", "saetze", "Ja bih htjela tri jabuke, molim", 2, "I would like 2 apples, please"),
             ("tr", "gap", "saetze", "Jedemo u ___ sati.", 9, "Saat 9'da yemek yiyoruz."),
             ("tr", "kacheln", "reflexiv", "Nalazimo se u pet.", 3, "Saat 3'te buluşuyoruz."),
-            ("tr", "gap", "routine", "Idem ___ u jedanaest.", 10, "Saat 10'da uyumaya gidiyorum."),
+            ("tr", "gap", "routine", "Idem ___ u jedanaest.", 10, "Saat 10'da yatıyorum."),
             ("tr", "gap", "zeit", "Sada je ___ sati.", 7, "Şimdi saat 7.")):
         seite.starten(stand=heute_stand(), sprache=code)
         _vorbereiten(seite)

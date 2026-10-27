@@ -18,18 +18,6 @@
    <tuv xml:lang="da"><seg>Hej</seg></tuv>
    <tuv xml:lang="fr"><seg>Salut</seg></tuv>
   </tu>
-  <tu tuid="guten tag:Dobar dan" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>Dobar dan</seg></tuv>
-   <tuv xml:lang="de"><seg>Guten Tag</seg></tuv>
-   <tuv xml:lang="en"><seg>Good day</seg></tuv>
-   <tuv xml:lang="tr"><seg>İyi günler</seg></tuv>
-   <tuv xml:lang="sv"><seg>God dag</seg></tuv>
-   <tuv xml:lang="nl"><seg>Goedendag</seg></tuv>
-   <tuv xml:lang="nb"><seg>God dag</seg></tuv>
-   <tuv xml:lang="da"><seg>Goddag</seg></tuv>
-   <tuv xml:lang="fr"><seg>Bonjour</seg></tuv>
-  </tu>
   <tu tuid="guten morgen:Dobro jutro" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Dobro jutro</seg></tuv>
@@ -41,6 +29,18 @@
    <tuv xml:lang="nb"><seg>God morgen</seg></tuv>
    <tuv xml:lang="da"><seg>Godmorgen</seg></tuv>
    <tuv xml:lang="fr"><seg>Bonjour (le matin)</seg></tuv>
+  </tu>
+  <tu tuid="guten tag:Dobar dan" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Dobar dan</seg></tuv>
+   <tuv xml:lang="de"><seg>Guten Tag</seg></tuv>
+   <tuv xml:lang="en"><seg>Good day</seg></tuv>
+   <tuv xml:lang="tr"><seg>İyi günler</seg></tuv>
+   <tuv xml:lang="sv"><seg>God dag</seg></tuv>
+   <tuv xml:lang="nl"><seg>Goedendag</seg></tuv>
+   <tuv xml:lang="nb"><seg>God dag</seg></tuv>
+   <tuv xml:lang="da"><seg>Goddag</seg></tuv>
+   <tuv xml:lang="fr"><seg>Bonjour</seg></tuv>
   </tu>
   <tu tuid="guten abend:Dobro veče" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -12690,6 +12690,18 @@
    <tuv xml:lang="da"><seg>Jeg vil gerne lære</seg></tuv>
    <tuv xml:lang="fr"><seg>Je veux apprendre</seg></tuv>
   </tu>
+  <tu tuid="fragen:pitati" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>pitati</seg></tuv>
+   <tuv xml:lang="de"><seg>fragen</seg></tuv>
+   <tuv xml:lang="en"><seg>to ask</seg></tuv>
+   <tuv xml:lang="tr"><seg>sormak</seg></tuv>
+   <tuv xml:lang="sv"><seg>fråga</seg></tuv>
+   <tuv xml:lang="nl"><seg>vragen</seg></tuv>
+   <tuv xml:lang="nb"><seg>spørre</seg></tuv>
+   <tuv xml:lang="da"><seg>at spørge</seg></tuv>
+   <tuv xml:lang="fr"><seg>demander</seg></tuv>
+  </tu>
   <tu tuid="darf ich fragen?:Smijem li pitati?" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Smijem li pitati?</seg></tuv>
@@ -12714,18 +12726,6 @@
    <tuv xml:lang="da"><seg>Du behøver ikke</seg></tuv>
    <tuv xml:lang="fr"><seg>Tu n'es pas obligé</seg></tuv>
   </tu>
-  <tu tuid="wir müssen warten:Moramo čekati" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>Moramo čekati</seg></tuv>
-   <tuv xml:lang="de"><seg>Wir müssen warten</seg></tuv>
-   <tuv xml:lang="en"><seg>We have to wait</seg></tuv>
-   <tuv xml:lang="tr"><seg>Beklememiz gerek</seg></tuv>
-   <tuv xml:lang="sv"><seg>Vi måste vänta</seg></tuv>
-   <tuv xml:lang="nl"><seg>We moeten wachten</seg></tuv>
-   <tuv xml:lang="nb"><seg>Vi må vente</seg></tuv>
-   <tuv xml:lang="da"><seg>Vi må vente</seg></tuv>
-   <tuv xml:lang="fr"><seg>Nous devons attendre</seg></tuv>
-  </tu>
   <tu tuid="warten:čekati" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>čekati</seg></tuv>
@@ -12738,17 +12738,17 @@
    <tuv xml:lang="da"><seg>at vente</seg></tuv>
    <tuv xml:lang="fr"><seg>attendre</seg></tuv>
   </tu>
-  <tu tuid="ich möchte etwas essen:Želim nešto jesti" segtype="phrase">
+  <tu tuid="wir müssen warten:Moramo čekati" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>Želim nešto jesti</seg></tuv>
-   <tuv xml:lang="de"><seg>Ich möchte etwas essen</seg></tuv>
-   <tuv xml:lang="en"><seg>I want to eat something</seg></tuv>
-   <tuv xml:lang="tr"><seg>Bir şey yemek istiyorum</seg></tuv>
-   <tuv xml:lang="sv"><seg>Jag vill äta något</seg></tuv>
-   <tuv xml:lang="nl"><seg>Ik wil iets eten</seg></tuv>
-   <tuv xml:lang="nb"><seg>Jeg vil spise noe</seg></tuv>
-   <tuv xml:lang="da"><seg>Jeg vil gerne spise noget</seg></tuv>
-   <tuv xml:lang="fr"><seg>Je veux manger quelque chose</seg></tuv>
+   <tuv xml:lang="bs"><seg>Moramo čekati</seg></tuv>
+   <tuv xml:lang="de"><seg>Wir müssen warten</seg></tuv>
+   <tuv xml:lang="en"><seg>We have to wait</seg></tuv>
+   <tuv xml:lang="tr"><seg>Beklememiz gerek</seg></tuv>
+   <tuv xml:lang="sv"><seg>Vi måste vänta</seg></tuv>
+   <tuv xml:lang="nl"><seg>We moeten wachten</seg></tuv>
+   <tuv xml:lang="nb"><seg>Vi må vente</seg></tuv>
+   <tuv xml:lang="da"><seg>Vi må vente</seg></tuv>
+   <tuv xml:lang="fr"><seg>Nous devons attendre</seg></tuv>
   </tu>
   <tu tuid="etwas:nešto" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -12762,6 +12762,18 @@
    <tuv xml:lang="da"><seg>noget</seg></tuv>
    <tuv xml:lang="fr"><seg>quelque chose</seg></tuv>
   </tu>
+  <tu tuid="ich möchte etwas essen:Želim nešto jesti" segtype="phrase">
+   <prop type="x-kind">word</prop>
+   <tuv xml:lang="bs"><seg>Želim nešto jesti</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich möchte etwas essen</seg></tuv>
+   <tuv xml:lang="en"><seg>I want to eat something</seg></tuv>
+   <tuv xml:lang="tr"><seg>Bir şey yemek istiyorum</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag vill äta något</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik wil iets eten</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg vil spise noe</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg vil gerne spise noget</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je veux manger quelque chose</seg></tuv>
+  </tu>
   <tu tuid="ich kann bosnisch sprechen:Mogu govoriti bosanski" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Mogu govoriti bosanski</seg></tuv>
@@ -12773,18 +12785,6 @@
    <tuv xml:lang="nb"><seg>Jeg kan snakke bosnisk</seg></tuv>
    <tuv xml:lang="da"><seg>Jeg kan tale bosnisk</seg></tuv>
    <tuv xml:lang="fr"><seg>Je peux parler bosnien</seg></tuv>
-  </tu>
-  <tu tuid="ich kann nicht schwimmen (fähigkeit):Ne znam plivati" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>Ne znam plivati</seg></tuv>
-   <tuv xml:lang="de"><seg>Ich kann nicht schwimmen (Fähigkeit)</seg></tuv>
-   <tuv xml:lang="en"><seg>I cannot swim (ability)</seg></tuv>
-   <tuv xml:lang="tr"><seg>Yüzme bilmiyorum (beceri)</seg></tuv>
-   <tuv xml:lang="sv"><seg>Jag kan inte simma (färdighet)</seg></tuv>
-   <tuv xml:lang="nl"><seg>Ik kan niet zwemmen (vaardigheid)</seg></tuv>
-   <tuv xml:lang="nb"><seg>Jeg kan ikke svømme (ferdighet)</seg></tuv>
-   <tuv xml:lang="da"><seg>Jeg kan ikke svømme (færdighed)</seg></tuv>
-   <tuv xml:lang="fr"><seg>Je ne sais pas nager (savoir-faire)</seg></tuv>
   </tu>
   <tu tuid="schwimmen:plivati" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -12798,17 +12798,17 @@
    <tuv xml:lang="da"><seg>at svømme</seg></tuv>
    <tuv xml:lang="fr"><seg>nager</seg></tuv>
   </tu>
-  <tu tuid="fragen:pitati" segtype="phrase">
+  <tu tuid="ich kann nicht schwimmen (fähigkeit):Ne znam plivati" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>pitati</seg></tuv>
-   <tuv xml:lang="de"><seg>fragen</seg></tuv>
-   <tuv xml:lang="en"><seg>to ask</seg></tuv>
-   <tuv xml:lang="tr"><seg>sormak</seg></tuv>
-   <tuv xml:lang="sv"><seg>fråga</seg></tuv>
-   <tuv xml:lang="nl"><seg>vragen</seg></tuv>
-   <tuv xml:lang="nb"><seg>spørre</seg></tuv>
-   <tuv xml:lang="da"><seg>at spørge</seg></tuv>
-   <tuv xml:lang="fr"><seg>demander</seg></tuv>
+   <tuv xml:lang="bs"><seg>Ne znam plivati</seg></tuv>
+   <tuv xml:lang="de"><seg>Ich kann nicht schwimmen (Fähigkeit)</seg></tuv>
+   <tuv xml:lang="en"><seg>I cannot swim (ability)</seg></tuv>
+   <tuv xml:lang="tr"><seg>Yüzme bilmiyorum (beceri)</seg></tuv>
+   <tuv xml:lang="sv"><seg>Jag kan inte simma (färdighet)</seg></tuv>
+   <tuv xml:lang="nl"><seg>Ik kan niet zwemmen (vaardigheid)</seg></tuv>
+   <tuv xml:lang="nb"><seg>Jeg kan ikke svømme (ferdighet)</seg></tuv>
+   <tuv xml:lang="da"><seg>Jeg kan ikke svømme (færdighed)</seg></tuv>
+   <tuv xml:lang="fr"><seg>Je ne sais pas nager (savoir-faire)</seg></tuv>
   </tu>
   <tu tuid="versuchen:pokušati" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -22955,7 +22955,7 @@
    <tuv xml:lang="bs"><seg>Idem spavati u jedanaest.</seg></tuv>
    <tuv xml:lang="de"><seg>Ich gehe um elf schlafen.</seg></tuv>
    <tuv xml:lang="en"><seg>I go to sleep at eleven.</seg></tuv>
-   <tuv xml:lang="tr"><seg>Saat on birde uyumaya gidiyorum.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Saat on birde yatıyorum.</seg></tuv>
    <tuv xml:lang="sv"><seg>Jag går och lägger mig klockan elva.</seg></tuv>
    <tuv xml:lang="nl"><seg>Ik ga om elf uur slapen.</seg></tuv>
    <tuv xml:lang="nb"><seg>Jeg legger meg klokka elleve.</seg></tuv>
@@ -24539,7 +24539,7 @@
    <tuv xml:lang="bs"><seg>Svaki dan ustajem u sedam sati. Prvo se tuširam, a onda doručkujem. Za doručak jedem hljeb sa sirom i pijem kahvu. U osam idem na posao. Radim u kancelariji do četiri. Poslije posla idem u kupovinu. Navečer kuham večeru i gledam televiziju. Ponekad čitam knjigu. Idem spavati u jedanaest. Vikendom spavam duže.</seg></tuv>
    <tuv xml:lang="de"><seg>Jeden Tag stehe ich um sieben Uhr auf. Zuerst dusche ich, dann frühstücke ich. Zum Frühstück esse ich Brot mit Käse und trinke Kaffee. Um acht gehe ich zur Arbeit. Ich arbeite im Büro bis vier. Nach der Arbeit gehe ich einkaufen. Abends koche ich Abendessen und sehe fern. Manchmal lese ich ein Buch. Ich gehe um elf schlafen. Am Wochenende schlafe ich länger.</seg></tuv>
    <tuv xml:lang="en"><seg>Every day I get up at seven o'clock. First I take a shower, then I have breakfast. For breakfast I eat bread with cheese and drink coffee. At eight I go to work. I work in the office until four. After work I go shopping. In the evening I cook dinner and watch television. Sometimes I read a book. I go to sleep at eleven. On the weekend I sleep longer.</seg></tuv>
-   <tuv xml:lang="tr"><seg>Her gün saat yedide kalkıyorum. Önce duş alıyorum, sonra kahvaltı yapıyorum. Kahvaltıda peynirli ekmek yiyorum ve kahve içiyorum. Sekizde işe gidiyorum. Ofiste dörde kadar çalışıyorum. İşten sonra alışverişe gidiyorum. Akşamları akşam yemeği pişiriyorum ve televizyon izliyorum. Bazen bir kitap okuyorum. Saat on birde uyumaya gidiyorum. Hafta sonunda daha uzun uyuyorum.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Her gün saat yedide kalkıyorum. Önce duş alıyorum, sonra kahvaltı yapıyorum. Kahvaltıda peynirli ekmek yiyorum ve kahve içiyorum. Sekizde işe gidiyorum. Ofiste dörde kadar çalışıyorum. İşten sonra alışverişe gidiyorum. Akşamları akşam yemeği pişiriyorum ve televizyon izliyorum. Bazen bir kitap okuyorum. Saat on birde yatıyorum. Hafta sonunda daha uzun uyuyorum.</seg></tuv>
    <tuv xml:lang="sv"><seg>Varje dag går jag upp klockan sju. Först duschar jag, sedan äter jag frukost. Till frukost äter jag bröd med ost och dricker kaffe. Klockan åtta går jag till jobbet. Jag arbetar på kontoret till fyra. Efter jobbet går jag och handlar. På kvällen lagar jag middag och tittar på tv. Ibland läser jag en bok. Jag går och lägger mig klockan elva. På helgen sover jag längre.</seg></tuv>
    <tuv xml:lang="nl"><seg>Elke dag sta ik om zeven uur op. Eerst douche ik, daarna ontbijt ik. Bij het ontbijt eet ik brood met kaas en drink ik koffie. Om acht uur ga ik naar het werk. Ik werk op kantoor tot vier uur. Na het werk doe ik boodschappen. 's Avonds kook ik het avondeten en kijk ik televisie. Soms lees ik een boek. Ik ga om elf uur slapen. In het weekend slaap ik langer.</seg></tuv>
    <tuv xml:lang="nb"><seg>Hver dag står jeg opp klokka sju. Først dusjer jeg, så spiser jeg frokost. Til frokost spiser jeg brød med ost og drikker kaffe. Klokka åtte går jeg på jobb. Jeg arbeider på kontoret til fire. Etter jobben går jeg og handler. Om kvelden lager jeg middag og ser på tv. Noen ganger leser jeg en bok. Jeg legger meg klokka elleve. I helga sover jeg lenger.</seg></tuv>

@@ -81,13 +81,20 @@ are in the Play Store listing. Format:
   subscription payment failed, shown when the app comes to the foreground.
 
 ### Changed
-- Lessons in the levels Numbers, Days of the week, Months and Numbers in
-  a sentence introduce their new words in order (nula, jedan, dva …;
+- Lessons in the levels Numbers, Days of the week, Months, Numbers in a
+  sentence, the verb levels (Conjugating verbs, Past tense, Future &
+  plans, "Can, must, want", Daily routine) and Comparing & describing
+  introduce their new words in order (jedan to deset, then nula;
   ponedjeljak to nedjelja; januar to decembar; jedan brat, dva brata,
-  pet braće …) instead of at random (`"reihenfolge": True` in
-  `vokabeln.py`). Learners already part-way through such a level get the
-  words they have not learned yet in the same order; exercises within a
-  lesson, reviews, level tests and the placement test stay shuffled.
+  pet braće …; ja sam, ti si … oni su; bio sam, bio si, bio je …;
+  morati, moram, moraš …; velik, veći, najveći; from getting up to going
+  to bed) instead of at random (`"reihenfolge": True` in `vokabeln.py`).
+  In Basics, Time and Weather & nature only a short series keeps its
+  order (the greetings from Dobro jutro to Laku noć, the times of day,
+  the seasons; `"reihe"`), the rest stays random. Learners already
+  part-way through such a level get the words they have not learned yet
+  in the same order; exercises within a lesson, reviews, level tests and
+  the placement test stay shuffled.
 - `app_bauen.py` converts the audio in the app bundle to Ogg/Opus at
   24 kbit/s (`ton_verkleinern()`, needs ffmpeg; cached in the shell): the
   audio inside the package shrinks from 26.9 MB to 10.2 MB. `web/audio`
