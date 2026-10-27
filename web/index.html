@@ -3848,22 +3848,37 @@ function matches(guess, answer){
   return 'no';
 }
 
-/* ---------- Tippfehler: erst ein Hinweis, nicht gleich falsch ----------
+/* ---------- Fast richtig: erst ein Hinweis, nicht gleich falsch ----------
    Ajdin am 24.10.2026: "wenn man beim schreiben ausversehen einen buchstaben
    falsch geschrieben hat dann soll ein hinweis kommen das wort ist falsch
    geschrieben und nicht das es direkt falsch ist weil sowas schnell
    passieren kann". Von den Vorschlaegen hat er B gewaehlt ("b"):
    - Liegt die Eingabe GENAU EINEN Tippfehler neben einer richtigen Antwort,
-     kommt ein gelber Hinweis (task.tippfehler). Die Loesung verraet er nicht.
+     kommt ein gelber Hinweis (task.fast_richtig). Die Loesung verraet er
+     nicht.
    - Die Eingabe bleibt offen, der zweite Versuch zaehlt wie immer: richtig
      oder "fast richtig" ist richtig, alles andere falsch. Ein Hinweis je
      Aufgabe, er kostet kein Leben und spielt keinen Ton (tippHinweis() in
      renderTask).
    - Erst ab 4 Buchstaben der Antwort. Bei "sir" ist ein anderer Buchstabe
      schon ein Drittel des Wortes.
-   - Kein Hinweis, wenn das Getippte selbst ein echtes bosnisches Wort ist
-     (echteWoerter()): wer "deset" statt "devet" schreibt, hat sich nicht
-     vertippt, sondern zehn und neun verwechselt.
+   Am 27.10.2026 kam im Lueckensatz die andere Endung dazu ("Auch bei Endung
+   Hinweis": "nedjelji" fuer "nedjelja"), zuerst mit eigenem Text. Auf die
+   Rueckfrage, ob der Hinweis auch kommen soll, wenn das Getippte ein anderes
+   echtes Wort ist ("zvono" - Klingel - fuer "zvoni" - klingelt), sagte Ajdin
+   am selben Tag: "mach doch einfach nur fast richtig dann bezieht es sich
+   auf alle wörter und wenn es ein andere wort ist ist doch egal es ist doch
+   trotzdem fast richtig". Seitdem gilt eine Regel fuer Schreibaufgabe und
+   Lueckensatz: ein Tippfehler Abstand, ein Text, "Fast richtig!".
+   Weggefallen sind dabei
+   - die Ausnahme fuer echte Woerter (echteWoerter()): bis dahin bekam
+     "deset" fuer "devet" keinen Hinweis, weil wer zehn fuer neun schreibt,
+     sich nicht vertippt, sondern die Zahlen verwechselt hat;
+   - der eigene Hinweis auf die Endung (nurEndung(), task.endung) und
+     andereEndung(), nach der eine andere Endung im Lueckensatz kein
+     Tippfehler war. Eine andere Endung ist immer auch ein Tippfehler
+     Abstand - ein Buchstabe anders oder einer mehr -, die eine Regel deckt
+     sie mit ab.
    Verglichen wird auf den Formen von clean(): ohne Haekchen, Gross/klein und
    Satzzeichen am Ende. Fehlen nur Haekchen, hat matches() schon 'almost'
    gesagt - hierher kommt nur, was 'no' war. So vermischt sich nichts: ein
@@ -3886,107 +3901,18 @@ function einTippfehler(a, b){
   return lang.slice(i + 1) === kurz.slice(i);                                           // fehlt, zu viel
 }
 
-/* ---- Was als "echtes Wort" zaehlt ----
-   Ein Rechtschreibwoerterbuch des Bosnischen hat die App nicht, und fragen
-   kann sie niemanden - sie laeuft ohne Netz. Sie kennt nur ihren Inhalt aus
-   web/inhalt/<sprache>.json, den inhalt_bauen.py aus vokabeln.py,
-   geschichten.py und grammatik.py schreibt. Daraus zwei Mengen, einmal
-   gebaut (beim ersten Tippfehler) und in ladeDaten() verworfen:
-   - wortschatz: jede Vokabel aller Level (CATEGORIES), w.bs und w.auch, jede
-     Schreibweise hinter " / ", als Ganzes und Wort fuer Wort ("Laku noć",
-     "laku", "noć"). Das sind die Woerter, die man hier lernt und also
-     verwechseln kann. Das Bosnische ist in allen Sprachen der App dasselbe.
-   - formen: der wortschatz und dazu jedes Wort aus den bosnischen Saetzen
-     der App - Lueckensaetze mit eingesetzter Antwort (SENTENCES), Satzbau
-     (SATZBAU), die Geschichten (STORIES) und ihr Woerterbuch (DICT). Dort
-     stehen die gebeugten Formen ("bila", "kupila", "Rexa").
-   Die Schreibaufgabe zeigt eine Bedeutung und fragt nach der Vokabel. Dort
-   gilt der wortschatz: ein anderes Wort daraus ist eine Verwechslung, kein
-   Tippfehler.
-   Im Lueckensatz ist die FORM die Aufgabe: "Subota i ___ su vikend." will
-   "nedjelja", und "nedjelji" ist ein falscher Fall, kein verrutschter
-   Finger. Dort gelten deshalb die formen und dazu andereEndung(): gebeugte
-   Formen gibt es weit mehr, als im Inhalt der App stehen. Eine andere
-   Endung bekommt seit dem 27.10.2026 ihren eigenen Hinweis, nurEndung(). */
-let _echteWoerter = null;
-function echteWoerter(){
-  if(_echteWoerter) return _echteWoerter;
-  const wortschatz = new Set(), formen = new Set();
-  const nimm = (ziel, text, ganz) => String(text || '').split(' / ').forEach(f => {
-    const c = clean(f);
-    if(ganz && c) ziel.add(c);
-    c.split(/[^a-z]+/).forEach(x => { if(x) ziel.add(x); });
-  });
-  CATEGORIES.forEach(k => k.words.forEach(w => [w.bs, ...(w.auch || [])].forEach(x => nimm(wortschatz, x, true))));
-  wortschatz.forEach(x => formen.add(x));
-  (SENTENCES || []).forEach(s => [s.answer, ...(s.auch || [])].forEach(a => {
-    nimm(formen, a, true);
-    nimm(formen, String(s.text || '').replace('___', a), false);
-  }));
-  (SATZBAU || []).forEach(s => [s.bs, ...(s.auch || [])].forEach(x => nimm(formen, x, false)));
-  (STORIES || []).forEach(g => {
-    nimm(formen, g.text, false);
-    Object.keys(g.vokabeln || {}).forEach(k => nimm(formen, k, true));
-  });
-  Object.keys(DICT || {}).forEach(k => nimm(formen, k, true));
-  return (_echteWoerter = {wortschatz, formen});
-}
-
-/* Nur die Endung anders: der letzte Selbstlaut gegen einen anderen
-   getauscht ("kruške" - "kruški", "nedjelja" - "nedjelji") oder einer
-   angehaengt ("brat" - "brata"). Im Bosnischen ist das fast immer ein
-   anderer Fall, eine andere Zahl oder ein anderes Geschlecht. Einer
-   weggelassen ("jabuk" fuer "jabuke") zaehlt nicht dazu: das ist keine
-   Form, sondern ein verschluckter Buchstabe. Gilt nur im Lueckensatz.
-   Derselbe Buchstabe noch einmal ("sutraa" fuer "sutra", "nedjeljaa") ist
-   auch keine Form, sondern die Taste zweimal getroffen - der Hinweis kommt
-   wie in der Schreibaufgabe. Bis zum Pruefer am 24.10.2026 galt es als
-   angehaengte Endung und kostete ein Leben. */
-const SELBSTLAUT_AM_ENDE = /[aeiou]$/;
-function andereEndung(eingabe, antwort){
-  if(eingabe.length === antwort.length)
-    return eingabe.slice(0, -1) === antwort.slice(0, -1) &&
-           SELBSTLAUT_AM_ENDE.test(eingabe) && SELBSTLAUT_AM_ENDE.test(antwort);
-  return eingabe.length === antwort.length + 1 && eingabe.startsWith(antwort) && SELBSTLAUT_AM_ENDE.test(eingabe) &&
-         eingabe.slice(-1) !== antwort.slice(-1);
-}
-
 /* Bekommt diese Eingabe den Hinweis? antworten wie bei matches(), mit
-   " / " getrennt - jede richtige Antwort wird geprueft. luecke ist true im
-   Lueckensatz. Die 4 Buchstaben zaehlen an der Antwort, nicht an der
-   Eingabe: "voad" fuer "voda" bekommt den Hinweis, "sur" fuer "sir" nicht.
-   Gezaehlt werden getippte Zeichen nach clean(): lj, nj und dž sind zwei
-   Tasten, "konj" und "džem" haben also 4 - vertippen kann man sich auf
-   jeder Taste. Ob sie wie im Alphabet als ein Buchstabe zaehlen sollen,
-   war am 24.10.2026 noch offen. */
-function nurVertippt(eingabe, antworten, luecke){
-  const g = clean(String(eingabe || ''));
-  const echt = echteWoerter();
-  if(!g || (luecke ? echt.formen : echt.wortschatz).has(g)) return false;
-  return String(antworten || '').split(' / ').map(clean).some(a =>
-    (a.match(/[a-z]/g) || []).length >= 4 && einTippfehler(g, a) && !(luecke && andereEndung(g, a)));
-}
-/* Nur die Endung anders - im Lueckensatz ein eigener Hinweis.
-   Ajdin am 27.10.2026 auf die Rueckfrage, ob eine andere Endung dort
-   weiter sofort falsch sein soll: "Auch bei Endung Hinweis" - bei falscher
-   Endung im Lueckensatz auch "Fast!" und ein zweiter Versuch. Der Text ist
-   ein eigener (task.endung, "Fast! Achte auf die Endung."): "nedjelji" fuer
-   "nedjelja" ist kein Tippfehler, sondern der falsche Fall, und der Hinweis
-   sagt, wo man suchen muss. Sonst alles wie beim Tippfehler: ein Hinweis je
-   Aufgabe (tippHinweis()), der zweite Versuch zaehlt wie immer, und
-   gezaehlt wird wie in nurVertippt() - ab 4 getippten Zeichen der Antwort,
-   lj, nj und dž sind zwei. Bei "je" und "ja" ist der letzte Buchstabe ein
-   anderes Wort und keine Endung.
-   Ob das Getippte ein echtes Wort ist, prueft nurEndung() nicht: eine
-   andere Endung ist fast immer eins. "kahva" fuer "kahvu" und "sestre" fuer
-   "sestra" stehen im Wortschatz - mit der Pruefung bliebe der Hinweis
-   gerade bei der Grundform aus, dem haeufigsten Fehler. Falsch ist er dabei
-   nie, es unterscheidet sich ja nur die Endung. In der Schreibaufgabe
-   bleibt eine andere Endung ein Tippfehler (nurVertippt()). */
-function nurEndung(eingabe, antworten){
+   " / " getrennt - jede richtige Antwort wird geprueft. Die 4 Buchstaben
+   zaehlen an der Antwort, nicht an der Eingabe: "voad" fuer "voda" bekommt
+   den Hinweis, "sur" fuer "sir" nicht. Gezaehlt werden getippte Zeichen
+   nach clean(): lj, nj und dž sind zwei Tasten, "konj" und "džem" haben
+   also 4 - vertippen kann man sich auf jeder Taste. Ob sie wie im Alphabet
+   als ein Buchstabe zaehlen sollen, war am 24.10.2026 noch offen; auf die
+   Rueckfrage am 27.10.2026 blieb es bei zwei. */
+function fastRichtig(eingabe, antworten){
   const g = clean(String(eingabe || ''));
   return !!g && String(antworten || '').split(' / ').map(clean).some(a =>
-    (a.match(/[a-z]/g) || []).length >= 4 && andereEndung(g, a));
+    (a.match(/[a-z]/g) || []).length >= 4 && einTippfehler(g, a));
 }
 /* So lange nach dem Hinweis ist derselbe Text noch kein zweiter Versuch,
    siehe tippHinweis(). */
@@ -7400,7 +7326,6 @@ async function ladeDaten(){
      "Ustajem" weiter "ich stehe auf" statt "je me leve", in 28 von 43 Leveln,
      bis die App geschlossen und neu geoeffnet wurde. Gefunden am 26.09.2026. */
   vokabelFormen = null; dictFormen = null;
-  _echteWoerter = null;   // ebenso die Woerter fuer den Tippfehler-Hinweis (24.10.2026)
   /* Jede Grammatikaufgabe weiss, zu welchem Level sie gehoert und die
      wievielte sie ist. Daran erkennt der Wiederholen-Topf sie wieder, auch
      nach einem Sprachwechsel. Und die Wortsuche des Topfs neu aufbauen. */
@@ -9929,7 +9854,7 @@ function renderTask(task, body, done, opts={}){
       '<div class="loesung"><span class="lbs" lang="bs">'+esc(bs)+'</span>'+
       (de ? '<span class="lde">'+esc(de)+'</span>' : '')+'</div>');
   };
-  /* Der Tippfehler-Hinweis (24.10.2026, siehe nurVertippt()) fuer die
+  /* Der Hinweis "Fast richtig!" (24.10.2026, siehe fastRichtig()) fuer die
      Schreibaufgabe und den Lueckensatz - in Lektion, Wiederholen, Level-Test
      und Einstufung, die alle hier durchgehen. Einmal je Aufgabe. Er steht
      gelb wie "fast richtig" im Rueckmeldefeld, die Eingabe bleibt offen und
@@ -9948,16 +9873,11 @@ function renderTask(task, body, done, opts={}){
      holt scrollIntoView ihn ins Bild wie weiterBeiTipp() den Weiter-Knopf -
      'nearest' bewegt nichts, solange er zu sehen ist. Der Fokus bleibt im
      Feld, damit die Tastatur offen bleibt.
-     Im Lueckensatz kommt hier seit dem 27.10.2026 auch der Hinweis auf die
-     Endung (nurEndung(), task.endung). Passt beides, geht er vor:
-     "strico" bei "Moj ___ je pčelar." ist stric mit Endung und striko
-     mit Tippfehler - es heisst dann Endung, nicht Tippfehler
-     (tests_e2e/test_tippfehler.py: test_endung_geht_vor_dem_tippfehler).
-     Bei "nedjelji" fuer "nedjelja" kaeme der Tippfehler-Hinweis ohnehin
-     nicht, nurVertippt() laesst im Lueckensatz andere Endungen aus
-     (Pruefer 27.10.2026). Auch zusammen bleibt es ein Hinweis je
-     Aufgabe - nach dem einen zaehlt der naechste Versuch. */
-  const tippHinweis = (inp, luecke)=>{
+     Seit dem 27.10.2026 steht hier fuer alles derselbe Text, auch fuer eine
+     andere Endung im Lueckensatz und fuer ein anderes echtes Wort (siehe
+     fastRichtig()). Ein Hinweis je Aufgabe - nach dem einen zaehlt der
+     naechste Versuch. */
+  const tippHinweis = (inp)=>{
     let gezeigt = null;
     return (r, antworten)=>{
       if(gezeigt){
@@ -9965,10 +9885,8 @@ function renderTask(task, body, done, opts={}){
         if(doppelt) inp.focus();
         return doppelt;
       }
-      if(r !== 'no') return false;
-      const hinweis = luecke && nurEndung(inp.value, antworten) ? t('task.endung')
-                    : nurVertippt(inp.value, antworten, luecke) ? t('task.tippfehler') : '';
-      if(!hinweis) return false;
+      if(r !== 'no' || !fastRichtig(inp.value, antworten)) return false;
+      const hinweis = t('task.fast_richtig');
       gezeigt = {text: inp.value, zeit: Date.now()};
       const feld = $$('xFb');
       feld.textContent = hinweis;
@@ -10015,7 +9933,7 @@ function renderTask(task, body, done, opts={}){
       '<input class="type-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(t('task.schreib'))+'">'+
       '<div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
-    const vertippt = tippHinweis(inp, false);
+    const vertippt = tippHinweis(inp);
     const check=()=>{
       /* Traegt ein anderes Wort dieselbe Uebersetzung, ist es genauso
          richtig - der Bildschirm zeigt ja nur die Bedeutung. matches()
@@ -10171,7 +10089,7 @@ function renderTask(task, body, done, opts={}){
     body.innerHTML = kick(t('task.luecke'))+'<div class="sentence">'+bsTeil(vorLuecke)+(nachLuecke.length ? lueckeHtml+bsTeil(nachLuecke.join('___')) : '')+'</div>'+
       '<div class="translation">'+inZitat(esc(s.de))+'</div><div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
-    const vertippt = tippHinweis(inp, true);
+    const vertippt = tippHinweis(inp);
     const check=()=>{
       if(fin) return;
       /* "auch" am Lueckensatz (23.10.2026): weitere richtige Antworten, wie
