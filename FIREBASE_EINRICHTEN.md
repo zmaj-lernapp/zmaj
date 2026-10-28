@@ -1,40 +1,44 @@
-# Cloud-Sicherung mit Firebase einrichten
+# Anmeldung und Cloud-Sicherung mit Firebase einrichten
 
-Stand 19.10.2026. Entschieden am 18.10.2026: Firebase, kostenloser Tarif
-Spark, eingeschaltet wird erst **nach dem Produktionsstart**. Bis dahin ist
-alles vorbereitet und **aus**.
+Stand 28.10.2026 (v109). Entschieden am 18.10.2026: Firebase, kostenloser
+Tarif Spark. Seit dem 27.10.2026: Die Anmeldung kommt mit v109 und ist
+**Pflicht** – mit Google oder mit E-Mail und Passwort, nach der ersten
+Lektion. Der ganze Bauplan steht in `Release\Firebase_Plan_v109.md`.
 
 In dieser Datei stehen **keine** Schlüssel, Projekt-IDs oder Client-IDs, und
 dort gehören auch nie welche hin – das Repository ist öffentlich. Alles, was
-geheim oder projektbezogen ist, liegt in der privaten Hülle `zmaj-android`.
+zu genau diesem Projekt gehört, liegt in der privaten Hülle `zmaj-android`.
+
+**Ohne Projekt bleibt alles wie vor v109.** In der Quelle steht
+`const CLOUD_AN = false;`. Eingeschaltet wird nur im Bau: `app_bauen.py`
+(`cloud_einsetzen`) setzt Projekt-ID, Web-API-Schlüssel und Web-Client-ID in
+die Kopie `www/index.html` ein und schaltet dort `CLOUD_AN` ein – aber nur,
+wenn `zmaj-android/cloud_zugang.json` existiert. Ohne die Datei: kein Netz,
+keine Anmeldeseite, nichts im Gerätespeicher, kein Aufruf des Plugins. Ein
+Freigabe-Bau (`app_bauen.py --aab`) bricht ohne die Datei ab; wer bewusst
+ohne Anmeldung bauen will, schreibt `--ohne-anmeldung` dazu.
 
 ---
 
-## Was schon fertig ist
+## Was gebaut ist
 
-| Teil | Wo | Stand |
-|---|---|---|
-| Schalter `CLOUD_AN = false` | `web/index.html`, Abschnitt CLOUD-SICHERUNG | aus: kein Netz, keine Oberfläche, nichts im Gerätespeicher |
-| Zusammenführen zweier Lernstände | `standZusammenfuehren()` in `web/index.html` | fertig, jedes Feld begründet |
-| Abgleich: höchstens 1× schreiben am Tag | `cloudAbgleich()` | fertig |
-| Firebase über REST (ohne Firebase-Bibliothek) | `cloudFirestore()` | fertig, noch nie gegen ein echtes Projekt gelaufen |
-| Sicherheitsregeln | `firestore.rules` | fertig, noch nicht eingespielt |
-| Werte beim Bauen einsetzen | `cloud_einsetzen()` in `app_bauen.py` | fertig |
-| Tests | `tests_e2e/test_cloud.py`, `tests/test_cloud.py` | grün |
+| Teil | Wo |
+|---|---|
+| Schalter, Platzhalter `CLOUD_PROJEKT`, `CLOUD_SCHLUESSEL`, `CLOUD_CLIENT` | `web/index.html`, Abschnitt CLOUD-SICHERUNG UND ANMELDUNG |
+| Firebase über REST, ohne Firebase-Bibliothek: Google, E-Mail/Passwort, Konto anlegen, Passwort vergessen, Bestätigungsmail | `cloudFirestore()` |
+| Abgleich: höchstens 1× schreiben am Tag, dazu beim An- und Abmelden | `cloudAbgleich()` |
+| Zusammenführen zweier Lernstände | `standZusammenfuehren()` |
+| Das Tor nach der ersten Lektion, die Anmeldeseite, Abmelden, Konto löschen | `anmeldungFaellig()`, `anmeldungZeigen()`, `cloudAbmeldenGanz()`, `cloudKontoLoeschen()` |
+| Plugin `ZmajAnmeldung`: Google über den Credential Manager, Kopie der Sitzung, Restore-Schlüssel | Hülle, `android/app/src/main/java/de/smartdragon/zmaj/ZmajAnmeldung.java` |
+| Werte beim Bauen einsetzen, Abbruch ohne Datei bei `--aab` | `cloud_einsetzen()`, `anmeldung_pruefen()` in `app_bauen.py` |
+| Sicherheitsregeln | `firestore.rules` |
+| Löschseite, `.nojekyll`, `.well-known/assetlinks.json` | `seite_bauen.py` |
+| Tests | `tests/test_cloud.py`, `tests/test_seite.py`, `tests_e2e/test_cloud.py`, `tests_e2e/test_anmeldung.py` (Firebase als Attrappe in `tests_e2e/firebase_attrappe.py`) |
 
-## Was vor dem Einschalten noch fehlt
-
-1. **Das Plugin für die Google-Anmeldung** in der Hülle (Abschnitt 8).
-   Google sperrt die Anmeldung in einer WebView, deshalb geht sie nur nativ.
-2. **Eine Zeile in den Einstellungen** – „Mit Google sichern", darunter
-   „Zuletzt gesichert: …", „Abmelden" und „Konto löschen". Kurz halten,
-   Texte in allen acht Sprachen in `sprachen.py`. `cloudLoeschen()` kann
-   drei Dinge melden: `true` (alles weg), `'konto bleibt'` (Sicherung weg,
-   abgemeldet; Firebase wollte für das Konto eine frische Anmeldung, die
-   abgebrochen wurde oder anonym nicht geht) und `false` (nichts gelöscht,
-   noch einmal versuchen).
-3. **Datenschutzerklärung und Datensicherheits-Formular** (Abschnitt 9 und 10).
-4. Dann erst `const CLOUD_AN = true;` in `web/index.html`.
+Kein Firebase-SDK und keine `google-services.json`: Die Seite spricht
+Firebase über REST an, und die Hülle baut so auch ohne Projekt. So bleibt
+auch ein späterer Wechsel des Anbieters einfach – ein neuer Adapter mit
+`anmelden`, `registrieren`, `laden`, `speichern` und `loeschen` genügt.
 
 ---
 
@@ -42,205 +46,199 @@ geheim oder projektbezogen ist, liegt in der privaten Hülle `zmaj-android`.
 
 1. <https://console.firebase.google.com> öffnen, mit dem Google-Konto der App
    anmelden.
-2. **Projekt hinzufügen**. Name zum Beispiel „Zmaj". Die vorgeschlagene
-   Projekt-ID notieren – sie lässt sich später nicht mehr ändern.
-3. **Google Analytics: aus.** Die App bindet keine Analyse ein, und das soll
-   so bleiben.
+2. **Projekt hinzufügen**, Name „Zmaj“. Als Projekt-ID ist `zmaj-lernapp`
+   ein guter Vorschlag. Sie steht später in den Links der Mails und lässt
+   sich **nie mehr ändern**.
+3. **Google Analytics: aus.** Die App bindet keine Analyse ein.
 4. Tarif: **Spark lassen.** Kein Upgrade auf Blaze, keine Kreditkarte.
 
 ## 2. Firestore anlegen
 
 1. Links **Firestore Database** → **Datenbank erstellen**.
 2. Edition: **Standard**.
-3. Speicherort: **`europe-west3` (Frankfurt)**. Achtung: Der Ort lässt sich
-   nie mehr ändern.
+3. Speicherort: **`europe-west3` (Frankfurt)**. Der Ort lässt sich nie mehr
+   ändern.
 4. Im **Produktionsmodus** starten (alles gesperrt). Die richtigen Regeln
-   kommen in Schritt 6.
+   kommen in Schritt 7.
 
 ## 3. Anmeldung einschalten
 
 1. Links **Authentication** → **Jetzt starten**.
 2. Reiter **Anmeldemethode**:
-   - **Google** aktivieren, Support-E-Mail auswählen, speichern. Danach
-     zeigt Firebase dort unter „Web SDK-Konfiguration" eine **Web-Client-ID**
-     (endet auf `.apps.googleusercontent.com`). Die braucht das Plugin
-     (Abschnitt 8).
-   - **Anonym** aktivieren. Das ist die Ausweichmöglichkeit ohne
-     Google-Konto. Achtung: Wer anonym sichert und die App-Daten löscht,
-     kommt nicht mehr an seine Sicherung.
-3. **Nicht** auf „Identity Platform" upgraden, auch wenn Firebase es anbietet.
-   Mit dem Upgrade gilt eine Grenze von 3.000 täglich aktiven Nutzern im
-   kostenlosen Tarif.
+   - **Google** aktivieren, Support-E-Mail auswählen, speichern. Unter
+     „Web SDK-Konfiguration“ steht danach die **Web-Client-ID** (endet auf
+     `.apps.googleusercontent.com`) – sie kommt in `cloud_zugang.json` als
+     `client`.
+   - **E-Mail/Passwort** aktivieren, aber **nicht** „E-Mail-Link (Anmeldung
+     ohne Passwort)“.
+   - **Anonym: aus.** Der Code dafür steht noch im Adapter (für die Tests),
+     angeboten wird es nicht.
+3. Reiter **Einstellungen**: „Schutz vor E-Mail-Aufzählung“ an lassen, ebenso
+   „Registrierung erlauben“ und „Löschen erlauben“.
+4. **Nicht** auf **Identity Platform** upgraden, auch wenn Firebase es
+   anbietet. Mit dem Upgrade gilt im kostenlosen Tarif eine Grenze von 3.000
+   täglich aktiven Nutzern. Mehrfaktor-Anmeldung, Blocking Functions und
+   eine Passwort-Richtlinie in der Konsole gibt es deshalb nicht; die App
+   verlangt selbst mindestens 8 Zeichen.
+5. **Vorlagen:** Absendername „Zmaj“, „Antwort an“ die Support-Adresse. Die
+   Mails kommen in der Sprache der App (die App schickt `X-Firebase-Locale`
+   mit).
 
-## 4. Android-App eintragen und SHA-1-Fingerabdrücke
+## 4. Android-Apps eintragen (SHA-1)
 
 Ohne die richtigen Fingerabdrücke lehnt Google die Anmeldung auf dem Handy
-ab.
+ab. **Projekteinstellungen** (Zahnrad) → **Allgemein** → **App hinzufügen**
+→ Android, zweimal:
 
-1. **Projekteinstellungen** (Zahnrad) → **Allgemein** → **App hinzufügen** →
-   Android. Paketname: `de.smartdragon.zmaj` (steht als `ZMAJ_PAKET` in
-   `web/index.html`).
-2. Die angebotene `google-services.json` wird **nicht** gebraucht – die App
-   spricht Firebase über REST an. Nicht herunterladen, nie ins Repository
-   (sie steht vorsorglich in `.gitignore`).
-3. Fingerabdrücke eintragen (**Fingerabdruck hinzufügen**), alle drei:
-   - **App-Signaturschlüssel** von Google Play: Play Console → Zmaj →
-     **App-Integrität** → **App-Signatur** → SHA-1 des Zertifikats des
-     App-Signaturschlüssels. So unterschreibt Google die App, die aus dem
-     Store kommt.
-   - **Upload-Schlüssel**: auf derselben Seite, SHA-1 des
-     Upload-Zertifikats. Damit läuft ein selbst gebautes Release-Paket.
-   - **Debug-Schlüssel** zum Testen mit `app_bauen.py` ohne `--aab`:
-     `keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android`
-     (Zeile „SHA1").
+- `de.smartdragon.zmaj` mit dem **SHA-1** des **App-Signaturschlüssels**
+  und des **Upload-Schlüssels** (beide in der Play Console → Testen und
+  veröffentlichen → App-Integrität → App-Signatur).
+- `de.smartdragon.zmaj.test` (die Test-App) mit dem **SHA-1** des
+  **Debug-Schlüssels** (`keytool -list -v -keystore
+  %USERPROFILE%\.android\debug.keystore -alias androiddebugkey -storepass
+  android`).
 
-## 5. Projekt-ID und Schlüssel in die Hülle legen
+Die angebotene `google-services.json` brauchen wir nicht – den Schritt
+überspringen.
 
-1. **Projekteinstellungen** → **Allgemein**: dort stehen **Projekt-ID** und
-   **Web-API-Schlüssel** (beginnt mit `AIza`).
-2. In der Hülle die Datei `zmaj-android\cloud_zugang.json` anlegen:
+## 5. Die Werte in die Hülle
 
-   ```json
-   {"projekt": "PROJEKT-ID", "schluessel": "WEB-API-SCHLUESSEL"}
-   ```
+In `zmaj-android\cloud_zugang.json` (steht in der `.gitignore` der Hülle):
 
-   Nur dort. `app_bauen.py` setzt beide Werte beim Bauen in die Kopie
-   `www/index.html` ein (`cloud_einsetzen()`), so wie den Dauer-Prüfwert.
-   `projekt_sichern.py` lässt die Datei aus der Projekt-Zip heraus.
-3. Ohne die Datei bleibt die Cloud aus. Steht `CLOUD_AN` auf `true` und die
-   Datei fehlt, bricht der Bau mit einer Meldung ab.
-4. Den Schlüssel in der **Google Cloud Console** einschränken
-   (<https://console.cloud.google.com> → das Firebase-Projekt → APIs und
-   Dienste → Anmeldedaten → der Schlüssel „Browser key" bzw. „Android key"):
-   - **API-Einschränkungen**: nur *Identity Toolkit API*, *Token Service API*
-     und *Cloud Firestore API*.
-   - **Anwendungseinschränkung: keine.** Eine Einschränkung auf Android-Apps
-     greift hier nicht – die WebView schickt die Kennung der App nicht mit,
-     und jede Anfrage würde abgelehnt.
+```json
+{"projekt": "<Projekt-ID>", "schluessel": "<Web-API-Schlüssel>", "client": "<Web-Client-ID>"}
+```
 
-   Der Web-API-Schlüssel ist kein Passwort; er steht in jeder Firebase-App.
-   Geschützt werden die Daten durch die Regeln aus Schritt 6.
+- Projekt-ID und Web-API-Schlüssel: Projekteinstellungen → Allgemein.
+- Web-Client-ID: Schritt 3.
 
-## 6. Sicherheitsregeln einspielen
+`app_bauen.py` prüft die Form aller drei Werte und bricht sonst ab, ohne
+einen Wert in der Meldung zu zeigen. Der Web-API-Schlüssel ist kein
+Geheimnis im engeren Sinn (er steht in jeder App), aber er gehört zu genau
+diesem Projekt.
 
-1. **Firestore Database** → Reiter **Regeln**.
-2. Den ganzen Inhalt von `firestore.rules` einfügen, **Veröffentlichen**.
-3. Prüfen im **Regel-Playground** (gleiche Seite):
-   - `get` auf `/users/abc` mit Anmeldung als `abc` → erlaubt
-   - `get` auf `/users/abc` mit Anmeldung als `xyz` → abgelehnt
-   - `get` auf `/users/abc` ohne Anmeldung → abgelehnt
+## 6. Fingerabdrücke für die Webseite (SHA-256)
 
-Die Regeln erlauben nur das eigene Dokument `users/{uid}` mit genau zwei
-Textfeldern (`daten` höchstens 400.000 Zeichen, `rev` höchstens 100).
+In `zmaj-android\fingerabdruecke.json` die **SHA-256**-Werte derselben drei
+Schlüssel, für `seite_bauen.py` (`.well-known/assetlinks.json`, gebraucht
+für die Restore-Schlüssel beim Handywechsel):
 
-## 7. Datenverarbeitung (AVV)
+```json
+{"de.smartdragon.zmaj": ["<SHA-256 App-Signatur>", "<SHA-256 Upload>"],
+ "de.smartdragon.zmaj.test": ["<SHA-256 Debug>"]}
+```
 
-**Projekteinstellungen** → **Datenschutz**: die Bedingungen zur
-Datenverarbeitung (Data Processing Terms) prüfen und annehmen und die
-Kontaktdaten für den Datenschutz eintragen. Das ist der
-Auftragsverarbeitungsvertrag mit Google.
+Die Werte stehen auf denselben Seiten wie die SHA-1, in der Form
+`AA:BB:…` (32 Paare).
 
-## 8. Plugin für die Google-Anmeldung (Hülle)
+## 7. Sicherheitsregeln einspielen
 
-Die App ruft `Capacitor.Plugins.ZmajAnmeldung.googleAusweis()` auf und
-erwartet `{idToken: "…"}` zurück (`cloudGoogleAusweis()` in `index.html`).
-Gebaut wird es in der Hülle wie die anderen eigenen Plugins:
+1. **Firestore Database** → **Regeln**.
+2. Den ganzen Inhalt von `firestore.rules` aus diesem Repository einfügen,
+   **Veröffentlichen**.
+3. Im **Regel-Playground** drei Fälle prüfen:
+   - angemeldet als `abc`, `get` auf `users/abc` → erlaubt,
+   - angemeldet als `abc`, `get` auf `users/xyz` → verweigert,
+   - nicht angemeldet, `get` auf `users/abc` → verweigert.
 
-- Bibliotheken: `androidx.credentials:credentials`,
-  `androidx.credentials:credentials-play-services-auth`,
-  `com.google.android.libraries.identity.googleid:googleid`.
-- `GetGoogleIdOption` (oder `GetSignInWithGoogleOption` für den Knopf) mit
-  `setServerClientId(<Web-Client-ID aus Schritt 3>)`. Die Web-Client-ID
-  kommt wie der Schlüssel aus der Hülle, nicht aus dem Repository.
-- Aus der Antwort `GoogleIdTokenCredential.idToken` an die App geben.
-  Abbruch durch den Nutzer: ablehnen – die App nimmt das als „nicht
-  angemeldet".
-- Die App tauscht das Token selbst bei Firebase ein
-  (`accounts:signInWithIdp`).
+Erlaubt ist nur das eigene Dokument `users/{uid}` mit genau zwei Feldern,
+`daten` (höchstens 400.000 Zeichen) und `rev`. Die E-Mail-Adresse steht
+nicht in Firestore, nur bei Firebase Authentication.
 
-## 9. Datenschutzerklärung (alle acht Sprachen, `sprachen.py`)
+## 8. Schlüssel einschränken, Google Auth Platform, Vertrag
 
-Vor dem Einschalten ergänzen:
+1. **Google Cloud Console** → APIs und Dienste → **Anmeldedaten** → der
+   Browser-Schlüssel des Projekts → **API-Einschränkungen**: nur Identity
+   Toolkit API, Token Service API und Cloud Firestore API. **Keine**
+   App-Einschränkung setzen – sonst lehnt Google jede Anfrage aus der
+   WebView ab.
+2. **Google Auth Platform** → **Zielgruppe**: Status „In Produktion“, sonst
+   können sich nur Testnutzer mit Google anmelden. **Branding**: App-Name
+   „Zmaj“, Support-Mail, Startseite `https://zmaj-lernapp.github.io/`,
+   Datenschutz `https://zmaj-lernapp.github.io/datenschutz.html`. Vorerst
+   kein Logo hochladen (könnte eine Markenprüfung auslösen).
+3. **Projekteinstellungen** → **Datenschutz**: die
+   Datenverarbeitungsbedingungen annehmen und den Kontakt eintragen. Das ist
+   der Vertrag mit Google über die Auftragsverarbeitung.
 
-- **Freiwillig:** Die Cloud-Sicherung ist aus, bis der Nutzer sie selbst
-  einschaltet; die App funktioniert ohne sie vollständig.
-- **Zweck:** Sicherung des Lernstands und Umzug auf ein neues Gerät.
-- **Welche Daten:** der Lernstand (gelernte Wörter, Level, Lerntage,
-  Münzen, gekaufter und getragener Zierrat, Fehler- und Stern-Liste,
-  Einstufung), eine zufällige Gerätekennung im Feld `rev`, die
-  Firebase-Nutzerkennung; bei Anmeldung mit Google zusätzlich E-Mail-Adresse,
-  Name und Profilbild-Adresse aus dem Google-Konto (speichert Firebase
-  Authentication). Technisch dazu die IP-Adresse bei jeder Anfrage.
-- **Empfänger:** Google Ireland Ltd. (Firebase) als Auftragsverarbeiter.
-  Der Lernstand liegt in Frankfurt (`europe-west3`), die **Anmeldedaten von
-  Firebase Authentication werden in den USA verarbeitet** – Übermittlung auf
-  Grundlage des EU-US Data Privacy Framework (Google LLC ist zertifiziert)
-  und der Standardvertragsklauseln.
-- **Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO (die vom Nutzer gewählte
-  Funktion).
-- **Speicherdauer:** bis der Nutzer die Sicherung löscht.
-- **Löschen:** in der App „Konto löschen" (löscht Sicherung und Konto) oder
-  per Mail an die Adresse im Impressum.
-- Die Premium-Freischaltung steht nie in der Cloud (sie ist nicht Teil des
-  Lernstands), und die App überträgt weiterhin keine Analysedaten.
+## 9. Testen
 
-## 10. Play Console
+1. Test-App bauen: `app_bauen.py --nur-abgleich --testwerbung`, dann in
+   `zmaj-android\android` `gradlew assembleDebug`. Die Hülle baut auch
+   ohne `cloud_zugang.json`; dann ist die Anmeldung einfach aus.
+2. Am Handy: Google-Anmeldung, Konto mit E-Mail anlegen (Bestätigungs- und
+   Rücksetzmail: Sprache? Spam-Ordner?), abmelden und wieder anmelden,
+   Konto löschen (beide Arten), Flugmodus nach Lektion 1, App neu starten,
+   Update darüber installieren.
+3. Handywechsel (Restore Credentials): Android Studio → Geräteoptionen →
+   **Backup App Data**, App deinstallieren und neu installieren, **Restore
+   App Data**, App öffnen – man soll angemeldet sein, der Lernstand soll da
+   sein. Dabei auch prüfen, ob der Restore-Schlüssel ohne
+   `assetlinks.json` angelegt wird.
+4. In der Konsole unter **Nutzung** nachsehen, dass es höchstens einen
+   Schreibvorgang je Nutzer und Tag gibt.
+5. Danach den Freigabe-Bau (R8) aus dem internen Test einmal ganz
+   durchspielen: Anmeldung, Kauf, Werbung, Erinnerung, Sprechaufgabe,
+   Sicherung.
 
-**App-Inhalte → Datensicherheit** neu ausfüllen:
+## 10. Play Console (mit dem Upload von v109)
 
-- Daten werden erhoben: **ja**.
-- **Persönliche Daten → E-Mail-Adresse** (nur bei Google-Anmeldung) und
-  **Nutzer-IDs** – Zweck: App-Funktionen, Kontoverwaltung.
-- **App-Aktivitäten → Sonstige Aktionen** (der Lernstand) – Zweck:
-  App-Funktionen.
-- Bei allen: **optional** (der Nutzer entscheidet), **nicht geteilt**
-  (Google ist hier Auftragsverarbeiter), **bei der Übertragung
-  verschlüsselt** (HTTPS), **Löschung kann beantragt werden**.
-- **Kontolöschung:** Google Play verlangt bei Apps mit Konten einen Weg in
-  der App **und** eine Webadresse, über die man die Löschung beantragen kann
-  – zum Beispiel ein Abschnitt auf der GitHub-Seite mit der Mailadresse.
-  Die Adresse im Formular eintragen.
+- **Datensicherheit** neu ausfüllen. Konten: ja, Anlegen per „Benutzername
+  und Passwort“ und „OAuth“. Erhoben: **E-Mail-Adresse** (erforderlich,
+  App-Funktionen und Kontoverwaltung), **Nutzer-IDs** (erforderlich, wie
+  oben), **Name** (optional, nur bei Google), **App-Aktivitäten → Sonstige
+  Aktionen** (der Lernstand, erforderlich, App-Funktionen). Nichts davon wird
+  geteilt, alles ist bei der Übertragung verschlüsselt, die Löschung kann
+  beantragt werden. Die AdMob-Angaben bleiben. Geräte-IDs: nein – die
+  Zufallskennung bleibt auf dem Gerät.
+- **Kontolöschung:** in der App ja; als URL
+  `https://zmaj-lernapp.github.io/konto-loeschen.html`.
+- **App-Zugriff:** „Alle oder einige Funktionen sind eingeschränkt“, dazu
+  E-Mail und Passwort eines Testkontos (selbst anlegen, in der Test-App über
+  „Mit E-Mail anmelden“ → „Konto anlegen“, mit einer Adresse, die man lesen
+  kann) und der Hinweis: *“Complete the first lesson (any answers), then tap
+  ‘Sign in with email’ and use the account below. Sign-in is kept; no second
+  factor.”*
+- Store-Eintrag auf Sätze wie „ohne Konto“ prüfen.
+- **Verzeichnis der Verarbeitungstätigkeiten:** Eintrag „Konto und
+  Cloud-Sicherung“.
 
-## 11. Einschalten und prüfen
+## 11. Datenschutz und Nutzungsbedingungen
 
-1. Abschnitte 1 bis 10 erledigt, Plugin und Einstellungszeile gebaut.
-2. `const CLOUD_AN = true;` in `web/index.html`.
-3. Tests: `pytest`, `ruff check .`, `texte_pruefen.py`, dann die
-   Browser-Tests (`tests_e2e`, darin `test_cloud.py`).
-4. Auf dem Handy: anmelden, lernen, App in den Hintergrund → in der Firebase
-   Console unter Firestore steht `users/<uid>`. Zweites Gerät oder
-   Neuinstallation: anmelden → der Lernstand ist zusammengeführt, nichts
-   fehlt.
-5. In der Firebase Console unter **Nutzung** nachsehen: höchstens ein
-   Schreibvorgang je Nutzer und Tag (plus einer beim ersten Anmelden).
+Stehen seit v109 in `sprachen.py` (`set.datenschutz_text`, Abschnitt 3
+„Konto und Sicherung in der Cloud“, und `set.agb_text`, Punkte 3, 5 und 8),
+in allen acht Sprachen. Die Seiten für GitHub Pages baut `seite_bauen.py`;
+**hochladen erst zusammen mit v109**, sonst stimmen sie für v108 nicht.
+Die sieben Übersetzungen hat kein Muttersprachler gegengelesen.
 
-## 12. Grenzen und wann es Geld kostet
+## 12. Konto löschen per Mail
 
-- **Spark:** 20.000 Schreibvorgänge und 50.000 Lesevorgänge am Tag, 1 GiB
-  gespeichert, 10 GiB Datenverkehr im Monat. Darüber antwortet Firestore bis
-  zum nächsten Tag mit einem Fehler (`RESOURCE_EXHAUSTED`); die App versucht
-  es dann still später noch einmal, auf dem Gerät geht nichts verloren.
-- Die App schreibt höchstens einmal am Tag je Nutzer und liest höchstens
-  zweimal. Eng wird es ab etwa **12.000–15.000 täglich aktiven Nutzern**.
-  Dann auf **Blaze** wechseln und sofort eine **Budget-Warnung von etwa 5 €
-  im Monat** setzen – Blaze hat keine harte Kostenbremse.
-- Preise und Grenzen vor dem Einschalten noch einmal nachsehen; sie ändern
-  sich.
+Ein Löschantrag per Mail (Betreff „Konto löschen“, von der Adresse des
+Kontos) wird von Hand bearbeitet, innerhalb von 30 Tagen:
+**Authentication** → **Nutzer** → Konto suchen → **Konto löschen**, dann
+**Firestore** → `users/<uid>` löschen, danach dem Absender bestätigen.
 
-## 13. Anbieter wechseln
+## 13. Grenzen im Spark-Tarif
 
-Die App kennt Firebase nur in `cloudFirestore()`. Ein anderer Anbieter
-(Ausweiche laut Recherche: Cloudflare Workers + D1) braucht einen neuen
-Adapter mit denselben vier Funktionen – `anmelden`, `laden`, `speichern`,
-`loeschen` – und dasselbe JSON. Am Zusammenführen und an der Bündelung
-ändert sich nichts.
+- Firestore: 20.000 Schreibvorgänge und 50.000 Lesevorgänge am Tag für alle
+  zusammen. Die App schreibt höchstens einmal am Tag je Nutzer (dazu beim
+  An- und Abmelden) – eng wird es ab etwa 12.000 bis 15.000 täglich aktiven
+  Nutzern. Dann Blaze mit Budget-Warnung.
+- Authentication: 150 Mails zum Zurücksetzen und 1.000 Bestätigungsmails am
+  Tag, 100 neue Konten je Stunde und IP-Adresse.
+- Wird eine Grenze überschritten, meldet Firebase `RESOURCE_EXHAUSTED` bzw.
+  `TOO_MANY_ATTEMPTS_TRY_LATER`. Es geht nichts verloren: Die App lernt mit
+  dem Gerätespeicher weiter und versucht es beim nächsten Anlass noch einmal.
 
-## Was man nicht tun sollte
+## 14. Restore Credentials (Pflicht ab April 2027)
 
-- Keine Schlüssel, Projekt- oder Client-IDs in dieses Repository – auch
-  nicht in Tests oder Beispiele.
-- Kein Upgrade auf Identity Platform.
-- Den Firestore-Speicherort nicht „mal eben" anders wählen – er bleibt für
-  immer.
-- Kein Firebase-SDK und keine `google-services.json` einbauen; die App
-  kommt mit REST aus, und so bleibt der Wechsel einfach.
+Google verlangt für Apps mit Anmeldung die Restore-Credentials-API
+(Play-Hilfe 17492799) und misst, ob der Schlüssel auf dem neuen Gerät
+abgerufen wird. `ZmajAnmeldung` legt ihn nach jeder Anmeldung an
+(`restoreSichern`, user.id = Firebase-uid, keine E-Mail), ruft ihn beim
+ersten Start nach einer Installation ab (`restoreHolen`) und löscht ihn beim
+Abmelden und beim Löschen des Kontos. Angemeldet wird auf dem neuen Gerät
+mit der Sitzung, die Androids Sicherung zurückspielt (Gerätespeicher oder
+die Kopie in den SharedPreferences `zmaj_konto`). Eine Prüfung der Signatur
+auf einem eigenen Server gibt es nicht; reicht das Google später nicht,
+wäre der Ausweg eine Cloud Function (Blaze) oder ein Cloudflare Worker.

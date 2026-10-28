@@ -1,7 +1,8 @@
 // Sicherheitsregeln fuer die Cloud-Sicherung von Zmaj (Cloud Firestore).
 //
-// Vorbereitet am 19.10.2026, eingeschaltet wird die Cloud erst nach dem
-// Produktionsstart (CLOUD_AN in web/index.html). Einspielen: Firebase
+// Vorbereitet am 19.10.2026, seit v109 (28.10.2026) gehoert sie zur
+// Pflicht-Anmeldung (CLOUD_AN in web/index.html, eingeschaltet nur im Bau
+// durch app_bauen.py). Einspielen: Firebase
 // Console -> Firestore Database -> Regeln, Inhalt dieser Datei einfuegen,
 // "Veroeffentlichen". Schritt fuer Schritt in FIREBASE_EINRICHTEN.md.
 //
@@ -9,7 +10,10 @@
 // Textfelder, die die App schreibt (cloudFirestore in index.html):
 //   daten  der Lernstand, dasselbe JSON wie in der Sicherungsdatei
 //   rev    eine kurze Kennung des Stands, damit ein zweites Geraet merkt,
-//          dass jemand anderes geschrieben hat
+//          dass jemand anderes geschrieben hat. Seit 28.10.2026 ein
+//          Zufallswert je Schreiben plus Zeit, ohne Geraetekennung
+//          (cloudRev in index.html) - in der Cloud liegt keine Geraete-ID.
+// Die E-Mail-Adresse steht nicht hier, nur bei Firebase Authentication.
 // Jeder sieht und schreibt nur sein eigenes Dokument. Alles andere - jede
 // Sammlung, jedes Dokument, jede Abfrage ueber mehrere Nutzer - ist
 // verboten, weil keine Regel es erlaubt.

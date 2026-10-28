@@ -8,8 +8,11 @@ is [`ANLEITUNG.md`](../ANLEITUNG.md) (German).
 One HTML file is the whole app. The learning content lives in Python data
 files because they are easy to edit, comment and review. A few scripts turn
 that content into JSON for the app, into the open dataset, into Anki decks and
-into a web demo. There is no server in production and no build step for the
-app itself.
+into a web demo. There is no server of our own and no build step for the app
+itself. Since v109 the Android build talks to Firebase (Auth and Cloud
+Firestore, over REST, no SDK) for the mandatory account and a daily backup;
+`CLOUD_AN` in `web/index.html` stays `false` in the source and is switched on
+only by `app_bauen.py` when the private shell has `cloud_zugang.json`.
 
 ```mermaid
 flowchart LR

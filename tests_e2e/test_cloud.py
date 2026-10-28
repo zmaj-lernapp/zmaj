@@ -27,13 +27,10 @@ Produktionsstart. Geprueft wird hier:
 """
 import datetime
 import json
-import os
-import shutil
-import urllib.parse
 
-import pytest
-
-FIREBASE = ("identitytoolkit.googleapis.com", "securetoken.googleapis.com", "firestore.googleapis.com")
+# Die Attrappe steht seit 28.10.2026 in firebase_attrappe.py, die Demo mit
+# eingeschalteter Anmeldung (cloud_html) in conftest.py.
+from firebase_attrappe import FIREBASE, PROJEKT, UID, Attrappe
 
 # Speicher-Adapter einrichten: window.ablage haelt den "Cloud"-Stand.
 ADAPTER = """() => { window.ablage = {}; window.adapter = cloudSpeicherAdapter(window.ablage); return true; }"""
@@ -369,109 +366,6 @@ def test_zweites_geraet_wird_eingearbeitet_weggenommenes_bleibt_weg(seite, heute
 
 
 # ------------------------------------------- Firestore gegen eine Attrappe ---
-
-PROJEKT = "zmaj-probe"
-SCHLUESSEL = "AIza" + "Probe" * 7          # erfunden, nur fuer diesen Test
-UID = "uidProbe1"
-
-
-class Attrappe:
-    """Beantwortet die Anfragen an Firebase im Browser selbst.
-
-    19.10.2026, fuers Loeschen: alt sind Ausweise, mit denen Firebase das
-    Konto nicht mehr loescht (CREDENTIAL_TOO_OLD_LOGIN_AGAIN - die Anmeldung
-    liegt zu lange zurueck); google_uid ist das Konto, das Googles Auswahl
-    liefert; dok_fehler laesst das Loeschen der Sicherung scheitern."""
-
-    def __init__(self):
-        self.dok = None
-        self.anfragen = []
-        self.gueltig = {"id-1", "id-2"}
-        self.alt = set()
-        self.google_uid = UID
-        self.google_n = 0
-        self.dok_fehler = False
-        self.konto_weg = False
-        self.geloescht_mit = []
-
-    def __call__(self, route, request):
-        url, art = request.url, request.method
-        kopf = {"Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "authorization, content-type",
-                "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS"}
-        if art == "OPTIONS":
-            return route.fulfill(status=204, headers=kopf)
-        teile = urllib.parse.urlsplit(url)
-        ausweis = request.headers.get("authorization", "")
-        self.anfragen.append((art, teile.netloc + urllib.parse.unquote(teile.path), ausweis))
-
-        def antwort(status, daten):
-            route.fulfill(status=status, headers=kopf, content_type="application/json", body=json.dumps(daten))
-
-        schluessel = urllib.parse.parse_qs(teile.query).get("key", [""])[0]
-        if teile.netloc != "firestore.googleapis.com" and schluessel != SCHLUESSEL:
-            return antwort(400, {"error": {"message": "API_KEY_INVALID"}})
-        if teile.path == "/v1/accounts:signUp":
-            return antwort(200, {"localId": UID, "idToken": "id-1", "refreshToken": "r-1", "expiresIn": "3600"})
-        if teile.netloc == "securetoken.googleapis.com":
-            form = urllib.parse.parse_qs(request.post_data or "")
-            if form.get("grant_type") != ["refresh_token"] or form.get("refresh_token") != ["r-1"]:
-                return antwort(400, {"error": {"message": "INVALID_REFRESH_TOKEN"}})
-            return antwort(200, {"id_token": "id-2", "refresh_token": "r-1", "expires_in": "3600",
-                                 "user_id": UID, "project_id": "1"})
-        if teile.path == "/v1/accounts:signInWithIdp":
-            daten = json.loads(request.post_data or "{}")
-            if daten.get("postBody") != "id_token=google-probe&providerId=google.com":
-                return antwort(400, {"error": {"message": "INVALID_IDP_RESPONSE"}})
-            self.google_n += 1
-            neu = "id-g%d" % self.google_n
-            self.gueltig.add(neu)
-            return antwort(200, {"localId": self.google_uid, "idToken": neu, "refreshToken": "r-1",
-                                 "expiresIn": "3600"})
-        if teile.path == "/v1/accounts:delete":
-            token = json.loads(request.post_data or "{}").get("idToken")
-            self.geloescht_mit.append(token)
-            if token not in self.gueltig:
-                return antwort(400, {"error": {"code": 400, "message": "INVALID_ID_TOKEN"}})
-            if token in self.alt:
-                return antwort(400, {"error": {"code": 400, "message": "CREDENTIAL_TOO_OLD_LOGIN_AGAIN"}})
-            if self.konto_weg:
-                return antwort(400, {"error": {"code": 400, "message": "USER_NOT_FOUND"}})
-            self.konto_weg = True
-            return antwort(200, {})
-        pfad = "/v1/projects/%s/databases/(default)/documents/users/%s" % (PROJEKT, UID)
-        if teile.netloc == "firestore.googleapis.com" and urllib.parse.unquote(teile.path) == pfad:
-            if not ausweis.startswith("Bearer ") or ausweis[len("Bearer "):] not in self.gueltig:
-                return antwort(403, {"error": {"status": "PERMISSION_DENIED"}})
-            if art == "GET":
-                return antwort(200, {"fields": self.dok}) if self.dok else antwort(404, {"error": {"status": "NOT_FOUND"}})
-            if art == "PATCH":
-                self.dok = json.loads(request.post_data)["fields"]
-                return antwort(200, {"fields": self.dok})
-            if art == "DELETE":
-                if self.dok_fehler:
-                    return antwort(503, {"error": {"code": 503, "status": "UNAVAILABLE"}})
-                self.dok = None
-                return antwort(200, {})
-        return antwort(404, {"error": {"message": "unbekannt"}})
-
-
-@pytest.fixture(scope="module")
-def cloud_html(wurzelordner, tmp_path_factory):
-    """Die Demo mit CLOUD_AN = true und erfundenen Zugangsdaten."""
-    import app_bauen
-
-    ordner = tmp_path_factory.mktemp("cloudprobe")
-    kopie = ordner / "index.html"
-    shutil.copyfile(os.path.join(wurzelordner, "app", "index.html"), str(kopie))
-    text = kopie.read_bytes().decode("utf-8")
-    assert text.count("const CLOUD_AN = false;") == 1
-    kopie.write_bytes(text.replace("const CLOUD_AN = false;", "const CLOUD_AN = true;").encode("utf-8"))
-    zugang = ordner / "cloud_zugang.json"
-    zugang.write_text(json.dumps({"projekt": PROJEKT, "schluessel": SCHLUESSEL}), encoding="utf-8")
-    assert app_bauen.cloud_einsetzen(str(kopie), str(zugang)) is True
-    return kopie.read_bytes()
-
 
 def test_firestore_adapter_gegen_attrappe(seite, heute_stand, cloud_html):
     attrappe = Attrappe()

@@ -1,8 +1,9 @@
 # Zmaj – Bosnisch lernen
 
 Eine Lern-App (Deutsch → Bosnisch). Sie läuft als Android-App auf dem Handy
-und im Browser am PC. Ohne Server, ohne Konto: Der Lernstand bleibt auf dem
-Gerät. Die Oberfläche steckt ganz in `web/index.html`; der Inhalt wird aus
+und im Browser am PC. Der Lernstand bleibt auf dem
+Gerät; seit v109 sichert ihn die Android-App in einem Pflicht-Konto bei
+Firebase (siehe „Konto (seit v109)“). Die Oberfläche steckt ganz in `web/index.html`; der Inhalt wird aus
 den Python-Dateien daneben erzeugt.
 
 | | |
@@ -211,7 +212,37 @@ keine zusätzliche Datei, rund 3 KB. Sollte das Skript gar nicht erst
 anlaufen, blendet sich der Vorspann nach zehn Sekunden von selbst weg – dann
 steht niemand davor fest.
 
+## Konto (seit v109)
+
+Ajdin am 26./27.10.2026: Die Anmeldung kommt mit v109 und ist **Pflicht**.
+Alles Technische steht in `FIREBASE_EINRICHTEN.md` und im Abschnitt
+CLOUD-SICHERUNG UND ANMELDUNG in `web/index.html`, hier nur der Ablauf:
+
+- **Neue Nutzer** machen die erste Lektion (oder den Einstufungstest) ohne
+  Konto. Auf dem Ergebnis steht dann nur „Weiter“, und das führt zur
+  Anmeldung. Ohne sie geht es nicht weiter – auch nicht nach einem Neustart.
+- **Bestehende Nutzer** sehen die Anmeldung beim nächsten Start. Ihr
+  Lernstand bleibt und wird mit dem im Konto zusammengeführt.
+- **Anmelden:** mit Google (Androids Kontoauswahl über das Plugin
+  `ZmajAnmeldung` der Hülle) oder mit E-Mail und Passwort, dazu „Passwort
+  vergessen“. Nach dem Anlegen geht einmal eine Bestätigungsmail raus,
+  bestätigen muss niemand. Passwort: mindestens 8 Zeichen.
+- **Einmal angemeldet, immer angemeldet:** Der Erneuerungsschlüssel liegt im
+  Gerätespeicher (`zmaj_cloud`) und als Kopie in der Hülle. Nur „Abmelden“,
+  „Konto löschen“ oder ein Konto, das Firebase nicht mehr kennt, beenden das.
+- **Ohne Internet** wird einfach gelernt; die Anmeldung kommt, sobald wieder
+  Netz da ist – nie mitten in einer Lektion.
+- **Abmelden** und **Konto löschen** stehen auf der Profilseite (Knopf oben
+  rechts). Beides setzt den Lernstand auf dem Gerät auf den Anfang; beim
+  Abmelden liegt er vorher noch einmal im Konto.
+- **Ohne Firebase-Projekt** (keine `cloud_zugang.json` in der Hülle) bleibt
+  `CLOUD_AN` aus, und alles ist wie im Abschnitt darunter. Ein Freigabe-Bau
+  (`--aab`) bricht dann ab, außer mit `--ohne-anmeldung`.
+
 ## Kein Konto
+
+Das galt bis v108 und gilt weiter für die Browser-Demo und `start.py`, siehe
+„Konto (seit v109)“ darüber.
 
 Seit dem 16.09.2026 gibt es **keine Anmeldung mehr**: kein Passwort, keine
 E-Mail-Adresse, keine Bestätigungsmail, kein „Passwort vergessen“, keinen
@@ -1230,7 +1261,9 @@ Seiten im Ordner `github-seite`:
 | `datenschutz.html` | Datenschutzerklärung, alle acht Sprachen |
 | `nutzungsbedingungen.html` | Nutzungsbedingungen, alle acht Sprachen |
 | `impressum.html` | Impressum nach § 5 DDG, alle acht Sprachen |
-| `konto-loeschen.html` | „Daten löschen“ – erklärt, dass es kein Konto gibt und wie man seinen Lernstand loswird. Google fragt im Data-Safety-Formular danach |
+| `konto-loeschen.html` | „Konto und Daten löschen“ – seit v109 der Weg in der App und per Mail, was gelöscht wird und was bleibt. Google verlangt die Seite für jede App mit Konto |
+| `.nojekyll` | leer; ohne sie liefert GitHub Pages den Ordner `.well-known` nicht aus |
+| `.well-known/assetlinks.json` | verbindet die Seite mit der App (Restore-Schlüssel der Anmeldung). Nur, wenn `zmaj-android/fingerabdruecke.json` da ist |
 | `favicon.ico`, `icon-256.png` | das Symbol im Browser-Tab, Kopien des App-Symbols (Drache, seit 15.10.2026); die Fußzeile jeder Seite sagt, dass es ein KI-Bild ist |
 
 Die Seiten laden nichts von fremden Servern: keine Schriften, keine

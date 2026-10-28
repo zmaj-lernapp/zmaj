@@ -1479,6 +1479,21 @@
     font-size:13px; line-height:1.5; color:var(--muted)}
   .kontowechsel{margin-top:14px; display:grid; gap:8px}
   .kontowechsel .btn{width:100%}
+  /* Pflicht-Anmeldung (28.10.2026). Der Google-Knopf nach Googles
+     Markenregeln fuer "Sign in with Google": weisser Grund, Rand #747775,
+     Schrift #1F1F1F, das "G" unveraendert in seinen Farben. Auch im
+     dunklen Modus hell - die Regeln erlauben dort die neutrale Fassung,
+     eigene Farben nicht. */
+  .anmwahl{display:grid; gap:10px; margin-top:16px}
+  .googleknopf{display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+    min-height:48px; padding:10px 16px; border:1px solid #747775; border-radius:14px;
+    background:#FFFFFF; color:#1F1F1F; font-family:Roboto, Arial, sans-serif; font-size:15px;
+    font-weight:500; letter-spacing:.25px; cursor:pointer}
+  .googleknopf img{width:20px; height:20px; flex:none}
+  .googleknopf:disabled{opacity:.6; cursor:default}
+  .googleknopf:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+  .anmrecht{margin-top:2px; font-size:13px}
+  .anmrecht summary{cursor:pointer; color:var(--muted); font-weight:700; padding:6px 0}
   input.field,textarea.field,select.field,button.field{
     font-family:inherit; font-size:15px; padding:11px 12px; border:2px solid var(--line); border-radius:12px; background:var(--surface); color:var(--ink); width:100%;
   }
@@ -2042,9 +2057,24 @@
     <h1 class="seitentitel" id="kontoTitel"></h1>
     <div class="hero"><div class="zmaj idle" id="zmajProfile"></div><div class="bubble"><span data-t="profil.gruss"></span><small id="kontoFrage"></small></div></div>
     <div class="langbar" id="langBar"></div>
+    <!-- Die Pflicht-Anmeldung mit Firebase (28.10.2026, v109): erst die Wahl,
+         Google oder E-Mail, darunter Datenschutz und Nutzungsbedingungen zum
+         Aufklappen. Nur im Cloud-Modus sichtbar, siehe anmeldungZeigen().
+         Der Google-Knopf nach Googles Markenregeln, das "G" in
+         Originalfarben aus Googles Knopf-Paket (symbole/google-g.svg). -->
+    <div class="anmwahl" id="anmWahl" hidden>
+      <button type="button" class="googleknopf" id="anmGoogle" hidden><img src="symbole/google-g.svg" alt="" aria-hidden="true" width="20" height="20"><span id="anmGoogleText"></span></button>
+      <button type="button" class="btn know" id="anmMail"></button>
+      <div class="note" id="anmNote" role="status"></div>
+      <details class="anmrecht"><summary id="anmDsKopf"></summary><div class="inner legal" id="anmDs"></div></details>
+      <details class="anmrecht"><summary id="anmAgbKopf"></summary><div class="inner legal" id="anmAgb"></div></details>
+    </div>
     <!-- Eine Maske für drei Fälle: anmelden, Konto anlegen, Passwort festlegen.
          Welche Felder sichtbar sind, entscheidet zeigeAnmeldung(). -->
-    <form class="kontoform" id="kontoForm" autocomplete="on">
+    <!-- novalidate (28.10.2026): die App prueft die Adresse selbst und sagt
+         es in ihrer Sprache - die Sprechblase des Browsers sah nach Browser
+         aus und nicht nach App. -->
+    <form class="kontoform" id="kontoForm" autocomplete="on" novalidate>
       <input class="field" id="kontoName" maxlength="20" data-t-ph="konto.kennung"
              autocomplete="username" autocapitalize="none" spellcheck="false">
       <div class="feldhinweis" id="kontoNameSub" hidden data-t="konto.benutzername_sub"></div>
@@ -2065,6 +2095,9 @@
     <div class="kontowechsel">
       <button class="btn ghost" id="kontoWechsel"></button>
       <button class="btn ghost" id="kontoVergessen" data-t="konto.vergessen_link"></button>
+      <!-- Ohne Netz: erst einmal weiterlernen, die Anmeldung kommt, sobald
+           wieder Internet da ist (28.10.2026). -->
+      <button class="btn ghost" id="anmOffline" hidden></button>
     </div>
   </div>
 
@@ -2200,9 +2233,10 @@
   <div id="kontoView" style="display:none">
     <div class="section">
       <h2 data-t="set.profil"></h2>
-      <div class="setting"><div><div class="st" id="setProfilName">–</div><div class="sd" id="setProfilMail"></div><div class="sd" data-t="set.profil_sub"></div></div></div>
+      <div class="setting"><div><div class="st" id="setProfilName">–</div><div class="sd" id="setProfilMail"></div><div class="sd" id="setProfilSub" data-t="set.profil_sub"></div><div class="sd" id="setGesichert" hidden></div></div></div>
       <div class="row" style="margin-top:6px; margin-bottom:10px"><button class="btn ghost" id="setLogout" data-t="set.abmelden"></button></div>
-      <div class="setting"><div><div class="st" data-t="set.passwort"></div><div class="sd" data-t="set.passwort_sub"></div></div>
+      <div class="note" id="setLogoutNote" role="status" style="margin:-4px 0 10px"></div>
+      <div class="setting" id="setPwZeile"><div><div class="st" data-t="set.passwort"></div><div class="sd" data-t="set.passwort_sub"></div></div>
         <button class="btn ghost" id="setPwAuf" data-t="set.passwort_knopf"></button></div>
       <form id="pwForm" style="display:none; margin:8px 0 12px">
         <input class="field" id="pwAlt" type="password" maxlength="128" data-t-ph="konto.passwort_alt" autocomplete="current-password" style="margin-bottom:8px">
@@ -2212,7 +2246,7 @@
         <button class="btn know" type="submit" data-t="konto.speichern"></button>
         <div class="note" id="pwNote"></div>
       </form>
-      <div class="setting"><div><div class="st" data-t="set.konto_loeschen"></div><div class="sd" data-t="set.konto_loeschen_sub"></div></div>
+      <div class="setting"><div><div class="st" data-t="set.konto_loeschen"></div><div class="sd" id="setWegSub" data-t="set.konto_loeschen_sub"></div></div>
         <button class="btn ghost" id="setKontoWeg" data-t="set.konto_loeschen_knopf"></button></div>
       <form id="wegForm" style="display:none; margin:8px 0 12px">
         <input class="field" id="wegPw" type="password" maxlength="128" data-t-ph="konto.passwort" autocomplete="current-password" style="margin-bottom:8px">
@@ -7349,7 +7383,9 @@ async function setzeSprache(code){
   try{ await ladeDaten(); }catch(e){ SPRACHE = vorher; return; }
   if(!STORIES.length) $('modeStories').hidden = true;
   if(warAuf === 'settingsView') showSettings();          // dort steht die Auswahlliste
-  else if(warAuf === 'profileView') zeigeAnmeldung(kontoModus);   // dort stehen die Flaggen
+  else if(warAuf === 'profileView'){      // dort stehen die Flaggen
+    if(cloudModus()) anmeldungZeigen(anmAnlass, anmModus); else zeigeAnmeldung(kontoModus);
+  }
   else if(profil) showHome(); else zeigeAnmeldung('anmelden');
 }
 function renderLangBar(){
@@ -7385,7 +7421,13 @@ function renderLangSel(){
 
 /* =================== ANSICHTEN =================== */
 const VIEWS = ['profileView','pfad','storyView','levelView','kontoView','settingsView','shopView','einstufungView'];
+/* Hinter dem Tor der Pflicht-Anmeldung (28.10.2026): diese Ansichten gibt
+   es erst nach dem Anmelden, siehe anmeldungSperre(). Das ist das Netz
+   darunter - die Einstiege (showHome, startLesson ...) fragen selbst
+   vorher, damit dort weder Ton noch Uhr anlaufen. */
+const TOR_ANSICHTEN = ['pfad','levelView','storyView','shopView','einstufungView'];
 function showView(id){
+  if(TOR_ANSICHTEN.indexOf(id) >= 0 && anmeldungSperre()) return;
   stilleBitte();          // kein Ton laeuft in die naechste Ansicht hinein
   uhrAus();               // und keine Lernzeit: Geschichte und Lektion rufen uhrAn() selbst
   VIEWS.forEach(v=>{ $(v).style.display = v===id ? 'block' : 'none'; });
@@ -8005,7 +8047,8 @@ function zeigeAnmeldung(modus, daten){
 $('kontoPw').addEventListener('input', e=>{
   if(!$('kontoRegeln').hidden) zeigeRegeln($('kontoRegeln'), e.target.value);
 });
-$('kontoVergessen').addEventListener('click', ()=> zeigeAnmeldung('vergessen'));
+$('kontoVergessen').addEventListener('click', ()=>
+  cloudModus() ? anmeldungZeigen(anmAnlass, 'mail_vergessen') : zeigeAnmeldung('vergessen'));
 
 /* Dieselben Regeln wie in konten.py. Verbindlich ist immer der Server;
    hier stehen sie nur, damit man beim Tippen sieht, was noch fehlt. */
@@ -8019,11 +8062,15 @@ const PW_REGELN = [
   ['passwort_leerzeichen', 'konto.regel_leer', p => !/\s/.test(p)]
 ];
 
+/* Mit der Pflicht-Anmeldung (28.10.2026) gilt nur die Laenge, siehe
+   PW_MIN_CLOUD. */
 function zeigeRegeln(kasten, passwort){
+  const cloud = cloudModus();
+  const regeln = cloud ? [['passwort_kurz', 'konto.regel_laenge', p => p.length >= PW_MIN_CLOUD]] : PW_REGELN;
   kasten.innerHTML = '<b>'+esc(t('konto.regeln_titel'))+'</b>' +
-    PW_REGELN.map(([, schluessel, erfuellt]) =>
+    regeln.map(([, schluessel, erfuellt]) =>
       '<span class="'+(erfuellt(passwort)?'ok':'')+'">'+
-      esc(t(schluessel, {n: PW_MIN}))+'</span>').join('');
+      esc(t(schluessel, {n: cloud ? PW_MIN_CLOUD : PW_MIN}))+'</span>').join('');
 }
 
 /* Serverfehler in einen Satz übersetzen, den man lesen kann. */
@@ -8061,10 +8108,14 @@ function fmtDauer(sek){
   return m >= 1 ? tp('zeit.min_lang', m) : tp('zeit.sekunden', Math.max(1, sek));
 }
 
-$('kontoWechsel').addEventListener('click', ()=> zeigeAnmeldung(kontoModus==='anmelden' ? 'neu' : 'anmelden'));
+$('kontoWechsel').addEventListener('click', ()=> cloudModus()
+  ? anmeldungZeigen(anmAnlass, anmModus === 'mail_an' ? 'mail_neu' : 'mail_an')
+  : zeigeAnmeldung(kontoModus==='anmelden' ? 'neu' : 'anmelden'));
 
 $('kontoForm').addEventListener('submit', async e=>{
   e.preventDefault();
+  // Pflicht-Anmeldung mit Firebase (28.10.2026), der Server-Zweig darunter bleibt fuer start.py
+  if(cloudModus()) return cloudFormularSenden();
   const m    = kontoModus;
   const name = $('kontoName').value.trim();
   const adr  = $('kontoMail').value.trim();
@@ -8169,6 +8220,10 @@ async function nachAnmeldung(info){
   kontoMail = info.email || '';
   await loadProgress(); syncLives(); pruefeSchutz();
   if(altenFortschrittUmschreiben() | funkelnUmzug()) saveProgress();
+  /* Pflicht-Anmeldung (28.10.2026): Sitzung mit der Kopie in der Huelle
+     abgleichen und einmal nach einem Restore-Schluessel fragen. Ohne
+     Cloud passiert hier nichts. */
+  if(cloudModus()) await cloudSitzungAbgleichen();
   /* Das Jahresgeschenk hing bisher allein an tagPruefen() - und das
      schlaegt nur an, wenn die App offen ist, waehrend der Tag wechselt.
      Wer sie abends schliesst und morgens neu oeffnet, kam nie an sein
@@ -8178,7 +8233,9 @@ async function nachAnmeldung(info){
   // Ohne Server gibt es kein Konto zu verwalten: kein Passwort, keine
   // E-Mail, kein Abmelden. Dann bleibt der Knopf weg und mit ihm die
   // ganze Kontoansicht - erreichbar ist sie nur ueber ihn.
-  $('btnProfil').style.display = MIT_SERVER ? 'inline-block' : 'none';
+  /* Seit v109 auch mit der Pflicht-Anmeldung, sobald jemand angemeldet ist
+     (28.10.2026). */
+  $('btnProfil').style.display = (MIT_SERVER || (cloudModus() && !!cloudMerker())) ? 'inline-block' : 'none';
   $('btnProfil').innerHTML = mitSymbol('profil', esc(profil));
   $('btnSettings').style.display='inline-block';
   $('btnShop').style.display='inline-block';
@@ -8186,6 +8243,7 @@ async function nachAnmeldung(info){
 }
 
 async function abmelden(){
+  if(cloudModus()) return cloudAbmeldenGanz();     // 28.10.2026
   await saveProgress();
   await postJSON('/api/konto/abmelden', {});
   profil=''; kontoMail=''; known=new Set(); passed=new Set(); read=new Set(); days=new Set(); frost=new Set();
@@ -8326,6 +8384,7 @@ function showKonto(){
   $('setSchutz').textContent = tp('serie.schutz', s) +
     (s>=SCHUTZ_MAX ? ' · '+t('serie.schutz_voll') : (rest ? ' · '+t('serie.schutz_naechster',{zeit:fmtTage(rest)}) : ''));
   $('setSchutzInfo').textContent = t('set.serie_schutz_sub',{tage:SCHUTZ_TAGE, max:SCHUTZ_MAX});
+  if(cloudModus()) kontoSeiteCloud();     // Pflicht-Anmeldung, 28.10.2026
 }
 function showSettings(){
   showView('settingsView'); $('kopfLeiste').style.display='none';
@@ -8598,6 +8657,7 @@ $('pwForm').addEventListener('submit', async e=>{
 
 /* ---- Konto löschen ---- */
 $('setKontoWeg').addEventListener('click', ()=>{
+  if(cloudModus()) return kontoWegKlick();     // 28.10.2026
   const f=$('wegForm'); const auf = f.style.display==='none';
   f.style.display = auf ? 'block' : 'none';
   $('wegNote').textContent=''; $('wegPw').value='';
@@ -8605,6 +8665,7 @@ $('setKontoWeg').addEventListener('click', ()=>{
 });
 $('wegForm').addEventListener('submit', async e=>{
   e.preventDefault();
+  if(cloudModus()) return cloudKontoLoeschen($('wegPw').value);     // 28.10.2026
   if(!confirm(t('set.konto_loeschen_frage',{name:profil}))) return;
   const d = await postJSON('/api/konto/loeschen', {passwort: $('wegPw').value});
   if(d.ok){
@@ -8747,26 +8808,36 @@ $('sichDatei').addEventListener('change', async e=>{
   if(datei) await sicherungEinlesen(datei);
 });
 
-/* =================== CLOUD-SICHERUNG (vorbereitet, aus) ===================
-   19.10.2026. Ajdin am 18.10.2026: "dann machen wir firebase" - eingeschaltet
-   wird aber erst nach dem Produktionsstart. Bis dahin steht CLOUD_AN auf
-   false, und dann passiert hier NICHTS: keine Anfrage ins Netz, keine
-   Oberflaeche, kein Eintrag im Geraetespeicher. Ohne Adapter tut keine
-   Funktion unten etwas, und einen Adapter gibt es nur mit CLOUD_AN und
-   eingesetzten Zugangsdaten (cloudAdapter). Einschalten: siehe
-   FIREBASE_EINRICHTEN.md.
+/* =================== CLOUD-SICHERUNG UND ANMELDUNG ===================
+   19.10.2026 vorbereitet, seit 28.10.2026 (v109) die Pflicht-Anmeldung.
+   Ajdin am 18.10.2026: "dann machen wir firebase". Am 26./27.10.2026: die
+   Anmeldung kommt schon in v109 und ist Pflicht, mit Google und mit E-Mail
+   und Passwort; neue Nutzer machen erst die 1. Lektion, bestehende melden
+   sich beim naechsten Start an; "anmelden soll nur einmal passieren wie
+   bei duolingo"; ohne Internet wird trotzdem gelernt. Der Bauplan steht in
+   Release\Firebase_Plan_v109.md.
+
+   Eingeschaltet wird nur im Bau: In der Quelle steht CLOUD_AN auf false,
+   app_bauen.py (cloud_einsetzen) setzt es in der KOPIE www/index.html auf
+   true - und nur, wenn die private Huelle cloud_zugang.json hat. Ohne die
+   Datei, in der Browser-Demo, mit start.py und in allen Tests mit der
+   Quelle passiert hier NICHTS: keine Anfrage ins Netz, keine Oberflaeche,
+   kein Eintrag im Geraetespeicher, kein Aufruf des Plugins. Ohne Adapter
+   tut keine Funktion unten etwas, und einen Adapter gibt es nur mit
+   CLOUD_AN und eingesetzten Zugangsdaten (cloudAdapter).
 
    Die Regeln aus der Recherche vom 18.10.2026:
      - Das Geraet bleibt massgeblich, die Cloud ist nur Sicherung. Gelernt
        und gerechnet wird weiter mit dem Geraetespeicher.
      - Hoechstens ein Schreibvorgang je Nutzer und Tag und nur, wenn sich
        etwas geaendert hat (Spark: 20 000 am Tag fuer alle zusammen), dazu
-       einer beim ersten Anmelden. Gelesen wird beim ersten Start des Tages
-       und vor jedem Schreiben.
+       einer beim Anmelden und einer beim Abmelden. Gelesen wird beim ersten
+       Start des Tages und vor jedem Schreiben.
      - In der Cloud steht dasselbe JSON wie in der Sicherungsdatei
        (sicherungObjekt), als ein Text in users/{uid}. Keine
        Firebase-Sonderfunktionen: fuer einen anderen Anbieter genuegt ein
-       neuer Adapter mit anmelden, laden, speichern und loeschen.
+       neuer Adapter mit anmelden, registrieren, laden, speichern und
+       loeschen.
      - Zusammenfuehren statt ueberschreiben, siehe standZusammenfuehren().
        Zusammengefuehrt wird aber nur, wenn seit dem eigenen letzten
        Abgleich jemand anderes geschrieben hat (rev passt nicht mehr). Sonst
@@ -8780,31 +8851,51 @@ $('sichDatei').addEventListener('change', async e=>{
 const CLOUD_AN = false;
 /* Platzhalter wie beim Dauer-Pruefwert: app_bauen.py (cloud_einsetzen)
    setzt beim Bauen die Werte aus der privaten Huelle ein
-   (cloud_zugang.json). Im Repository stehen sie nie. */
+   (cloud_zugang.json). Im Repository stehen sie nie. CLOUD_CLIENT ist die
+   Web-Client-ID fuer die Anmeldung mit Google (28.10.2026). */
 const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';
 const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';
+const CLOUD_CLIENT = '__CLOUD_CLIENT__';
 /* Was dieses Geraet sich merkt, erst nach dem Anmelden:
-     art, uid  das Konto ('google' oder 'anonym')
+     art, uid  das Konto ('google', 'passwort' oder 'anonym')
      token     der Erneuerungsschluessel der Anmeldung - liegt im
-               App-Speicher wie der Lernstand selbst
+               App-Speicher wie der Lernstand selbst, dazu als Kopie in
+               der Huelle (ZmajAnmeldung.sitzungMerken), siehe
+               cloudSitzungAbgleichen()
+     email     die Adresse des Kontos, nur zum Anzeigen und fuer die
+               frische Anmeldung vor dem Loeschen
      rev       Kennung des Cloud-Stands, den dieses Geraet zuletzt
                geschrieben oder eingearbeitet hat
      fp        Fingerabdruck des zuletzt hochgeladenen Stands
-     tag       Tag des letzten Schreibens, gelesen der des letzten Lesens */
+     tag       Tag des letzten Schreibens beim Verlassen, gelesen der des
+               letzten Lesens, gesichert der des letzten Schreibens
+               ueberhaupt (fuer "Zuletzt gesichert" in der Kontoseite) */
 const CLOUD_MERKER = 'zmaj_cloud';
+/* Wer sich abgemeldet hat oder dessen Konto von aussen weg ist, sieht beim
+   naechsten Start gleich die Anmeldung - auch mit leerem Lernstand. */
+const ABGEMELDET = 'zmaj_abgemeldet';
 /* Auch nach Jahren wird ein Stand nicht so gross (alle Woerter, Topf und
    Sterne voll: rund 150 000 Zeichen). Dieselbe Grenze steht in
    firestore.rules. */
 const CLOUD_GROESSE_MAX = 400000;
+/* Firebase verlangt mindestens 6 Zeichen. Ajdin hatte die Frage offen
+   gelassen; gebaut nach dem Vorschlag im Plan (Frage 3): nur die Laenge,
+   mindestens 8 - einfacher als die 10 Zeichen mit vier Zeichenarten der
+   alten Server-Anmeldung. 28.10.2026 */
+const PW_MIN_CLOUD = 8;
 let cloudLaeuft = false;   // immer nur ein Abgleich zur Zeit
 let cloudFirestoreAdapter = null;
+let cloudFehlerGrund = '';   // der letzte Grund, fuer die Meldung in der Oberflaeche
 const cloudEingerichtet = () => /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/.test(CLOUD_PROJEKT)
-  && /^AIza[0-9A-Za-z_-]{35}$/.test(CLOUD_SCHLUESSEL);
+  && /^AIza[0-9A-Za-z_-]{35}$/.test(CLOUD_SCHLUESSEL) && /^[0-9]{6,20}-[0-9a-z]{16,40}\.apps\.googleusercontent\.com$/.test(CLOUD_CLIENT);
 function cloudAdapter(){
   if(!CLOUD_AN || !cloudEingerichtet()) return null;
   if(!cloudFirestoreAdapter) cloudFirestoreAdapter = cloudFirestore(CLOUD_PROJEKT, CLOUD_SCHLUESSEL);
   return cloudFirestoreAdapter;
 }
+/* Die Anmeldung gilt nur mit Adapter und nicht neben dem alten Server von
+   start.py (KONTEN_AN, MIT_SERVER) - dort gibt es dessen eigene. */
+const cloudModus = () => !!cloudAdapter() && !MIT_SERVER;
 function cloudMerker(){
   try{
     const m = JSON.parse(localStorage.getItem(CLOUD_MERKER) || 'null');
@@ -8812,10 +8903,13 @@ function cloudMerker(){
   }catch(e){ return null; }
 }
 /* nurWennGleich: nur, wenn noch dasselbe Konto angemeldet ist. Wer sich
-   waehrend eines Abgleichs abmeldet, waere sonst gleich wieder angemeldet. */
+   waehrend eines Abgleichs abmeldet, waere sonst gleich wieder angemeldet.
+   28.10.2026: Hat sich der Erneuerungsschluessel geaendert, bekommt die
+   Huelle eine neue Kopie der Sitzung. */
 function cloudMerkerSetzen(m, nurWennGleich){
   if(nurWennGleich){ const jetzt = cloudMerker(); if(!jetzt || jetzt.uid !== m.uid) return; }
   try{ localStorage.setItem(CLOUD_MERKER, JSON.stringify(m)); }catch(e){}
+  cloudNativMerken(m);
 }
 /* Ob sich seit dem letzten Hochladen etwas geaendert hat. Ein kurzer
    Fingerabdruck (cyrb53, 64 Bit) statt des ganzen Texts, der sonst ein
@@ -8830,6 +8924,16 @@ function cloudFingerabdruck(stand){
   h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
   h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
   return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
+}
+/* Die Kennung eines Cloud-Stands. Bis zum 28.10.2026 stand hier
+   geraetId() + Zeit - dann laege in der Cloud eine Geraete-ID, und das
+   Datensicherheits-Formular muesste sie nennen. Fuer "jemand anderes hat
+   geschrieben" genuegt ein Zufallswert je Schreiben. */
+function cloudRev(){
+  let z = '';
+  try{ z = Array.from(crypto.getRandomValues(new Uint32Array(2)), x => x.toString(36)).join(''); }
+  catch(e){ z = Math.random().toString(36).slice(2); }
+  return z + '.' + Date.now().toString(36);
 }
 function cloudStandAus(text){
   try{ return typeof text === 'string' ? sicherungStandAus(JSON.parse(text)) : null; }
@@ -8852,18 +8956,19 @@ function cloudUebernehmen(fremd){
   return true;
 }
 /* Der Abgleich. anlass: 'start' (nur lesen, einmal am Tag), 'pause' (App
-   geht in den Hintergrund: schreiben, hoechstens einmal am Tag) oder
-   'anmelden' (lesen und schreiben, zaehlt nicht als der eine am Tag).
-   Gibt zurueck, was passiert ist - nur fuer die Tests. */
+   geht in den Hintergrund: schreiben, hoechstens einmal am Tag),
+   'anmelden' (lesen und schreiben, zaehlt nicht als der eine am Tag) oder
+   seit 28.10.2026 'abmelden' (dasselbe, ein letztes Mal vor dem Abmelden).
+   Gibt zurueck, was passiert ist - fuer die Tests und fuers Abmelden. */
 async function cloudAbgleich(anlass, adapter = cloudAdapter()){
   const m = cloudMerker();
   if(!adapter || !m || cloudLaeuft || !standGeladen || MIT_SERVER) return 'nichts';
-  const heute = today(), erstes = anlass === 'anmelden';
-  const schreiben = erstes || (anlass === 'pause' && m.tag !== heute);
+  const heute = today(), erstes = anlass === 'anmelden', zuletzt = anlass === 'abmelden';
+  const schreiben = erstes || zuletzt || (anlass === 'pause' && m.tag !== heute);
   if(!schreiben && m.gelesen === heute) return 'nichts';
   /* Heute schon gelesen und seit dem letzten Hochladen nichts Neues: dann
      auch keine Anfrage. */
-  if(schreiben && !erstes && m.gelesen === heute && m.fp === cloudFingerabdruck(standAlsObjekt())) return 'unveraendert';
+  if(schreiben && !erstes && !zuletzt && m.gelesen === heute && m.fp === cloudFingerabdruck(standAlsObjekt())) return 'unveraendert';
   cloudLaeuft = true;
   try{
     const dok = await adapter.laden(m);
@@ -8882,70 +8987,186 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
     if(!erstes && dok && !fremd && fp === m.fp){ cloudMerkerSetzen(m, true); return 'unveraendert'; }
     const text = JSON.stringify(sicherungObjekt(stand));
     if(text.length > CLOUD_GROESSE_MAX){ cloudMerkerSetzen(m, true); return 'zu gross'; }
-    const rev = geraetId() + '.' + Date.now().toString(36);
+    const rev = cloudRev();
     await adapter.speichern(m, {text, rev});
-    m.rev = rev; m.fp = fp;
-    if(!erstes) m.tag = heute;
+    m.rev = rev; m.fp = fp; m.gesichert = heute;
+    if(!erstes && !zuletzt) m.tag = heute;
     cloudMerkerSetzen(m, true);
     return 'gespeichert';
   }catch(e){
     // Kein Netz oder abgelehnt: der Tag ist nicht verbraucht.
     cloudMerkerSetzen(m, true);
+    /* Die Anmeldung ist bei Firebase ungueltig geworden (Konto geloescht,
+       gesperrt, Passwort anderswo geaendert) - nicht bei Netzfehlern. */
+    if(e && e.abgemeldet) cloudVonAussenAbgemeldet(m.uid);
     return 'fehler';
   }finally{ cloudLaeuft = false; }
 }
-/* art: 'google' oder 'anonym'. Gibt zurueck, ob die Anmeldung geklappt hat;
-   ob der erste Abgleich gleich durchkam, ist egal - sonst eben beim
-   naechsten Anlass. */
-async function cloudAnmelden(art, adapter = cloudAdapter()){
+/* Der Grund eines Fehlers, wie ihn kontoFirebaseFehler() versteht: Firebases
+   error.message, 'netz' oder einer der Gruende aus cloudGoogleAusweis(). */
+function cloudGrund(e){
+  if(!e) return 'fehler';
+  if(e.grund) return String(e.grund);
+  if(e.netz || e.name === 'AbortError' || e instanceof TypeError) return 'netz';
+  return 'fehler';
+}
+/* art: 'google', 'passwort' (daten: email, pw), 'neu' (Konto mit E-Mail
+   anlegen, daten wie bei 'passwort') oder 'anonym'. Gibt zurueck, ob die
+   Anmeldung geklappt hat; den Grund fuer ein Nein legt sie in
+   cloudFehlerGrund. Ob der erste Abgleich gleich durchkam, ist egal -
+   sonst eben beim naechsten Anlass. */
+async function cloudAnmelden(art, adapter = cloudAdapter(), daten){
+  cloudFehlerGrund = '';
   if(!adapter || !standGeladen || MIT_SERVER || cloudLaeuft) return false;
   let konto = null;
-  try{ konto = await adapter.anmelden(art); }catch(e){}
-  if(!konto || typeof konto.uid !== 'string' || !konto.uid) return false;
+  try{
+    konto = art === 'neu' ? await adapter.registrieren((daten || {}).email, (daten || {}).pw)
+                          : await adapter.anmelden(art, daten);
+  }catch(e){ cloudFehlerGrund = cloudGrund(e); }
+  if(!konto || typeof konto.uid !== 'string' || !konto.uid){
+    cloudFehlerGrund = cloudFehlerGrund || 'fehler';
+    return false;
+  }
   /* Dasselbe Konto noch einmal: rev und fp bleiben. Ein anderes faengt von
      vorn an - sein Stand wird beim Abgleich zusammengefuehrt. */
   const alt = cloudMerker();
-  cloudMerkerSetzen(alt && alt.uid === konto.uid
-    ? Object.assign(alt, {art, token: konto.token || ''})
-    : {art, uid: konto.uid, token: konto.token || ''});
+  const neu = {art: art === 'neu' ? 'passwort' : art, token: konto.token || ''};
+  if(konto.email) neu.email = konto.email;
+  cloudMerkerSetzen(alt && alt.uid === konto.uid ? Object.assign(alt, neu) : Object.assign({uid: konto.uid}, neu));
+  try{ localStorage.removeItem(ABGEMELDET); }catch(e){}
+  restoreUid = '';
+  /* Die Bestaetigungsmail einmal nach dem Anlegen (Frage 4 im Plan, nach
+     dem Vorschlag gebaut). Bestaetigen muss niemand - Ajdin am 27.10.2026:
+     keine Bestaetigungspflicht. Nicht warten, Fehler sind egal. */
+  if(art === 'neu' && konto.idToken && adapter.bestaetigungSchicken){
+    adapter.bestaetigungSchicken(konto.idToken).catch(()=>{});
+  }
   await cloudAbgleich('anmelden', adapter);
+  anmAufruf('restoreSichern', {uid: konto.uid}, 20000);
   return true;
 }
-/* Abmelden ist nur Vergessen auf diesem Geraet - ohne Netz. */
+/* Abmelden ist nur Vergessen auf diesem Geraet - ohne Netz. Die Oberflaeche
+   (cloudAbmeldenGanz) schreibt vorher ein letztes Mal. */
 function cloudAbmelden(){ try{ localStorage.removeItem(CLOUD_MERKER); }catch(e){} }
 /* Konto und Sicherung in der Cloud loeschen. Google Play verlangt das fuer
-   jede App, in der man ein Konto anlegen kann. Der Stand auf dem Geraet
-   bleibt. Gibt zurueck: true (beides weg), 'konto bleibt' (die Sicherung
-   ist weg, das Konto nicht - siehe loeschen im Adapter) oder false (nichts
-   geloescht, angemeldet bleiben fuer einen neuen Versuch).
+   jede App, in der man ein Konto anlegen kann. Gibt zurueck: true (beides
+   weg), 'konto bleibt' (die Sicherung ist weg, das Konto nicht - siehe
+   loeschen im Adapter) oder false (nichts geloescht, angemeldet bleiben
+   fuer einen neuen Versuch). optionen.passwort: bei E-Mail-Konten, fuer
+   die frische Anmeldung davor (28.10.2026).
    19.10.2026: Ist die Sicherung weg, wird immer abgemeldet - sonst laedt
    das naechste 'pause' den Stand wieder hoch, und die Loeschung haette
    nicht gewirkt. cloudLaeuft haelt so lange jeden Abgleich auf, auch den,
    den Googles Kontoauswahl beim Verdecken der App anstossen koennte. */
-async function cloudLoeschen(adapter = cloudAdapter()){
+async function cloudLoeschen(adapter = cloudAdapter(), optionen){
+  cloudFehlerGrund = '';
   const m = cloudMerker();
   if(!adapter || !m || cloudLaeuft) return false;
   cloudLaeuft = true;
   try{
     let ganz;
-    try{ ganz = await adapter.loeschen(m); }catch(e){ return false; }
+    try{ ganz = await adapter.loeschen(m, optionen || {}); }
+    catch(e){ cloudFehlerGrund = cloudGrund(e); return false; }
     cloudAbmelden();
     return ganz === false ? 'konto bleibt' : true;
   }finally{ cloudLaeuft = false; }
 }
+
+/* ---- Die Huelle: Plugin ZmajAnmeldung ----
+   Google (Credential Manager), die Kopie der Sitzung und die
+   Restore-Schluessel fuer den Handywechsel, siehe ZmajAnmeldung.java in
+   der Huelle. Gerufen wird es nur im Cloud-Modus. Jede Frage hat eine
+   Frist: eine haengende Antwort darf den Start nicht aufhalten. */
+const anmPlugin = () => (window.Capacitor && window.Capacitor.Plugins
+                         && window.Capacitor.Plugins.ZmajAnmeldung) || null;
+async function anmAufruf(name, daten, ms){
+  const P = anmPlugin();
+  if(!P || typeof P[name] !== 'function') return null;
+  let uhr = 0;
+  try{
+    return await Promise.race([P[name](daten || {}),
+      new Promise(fertig => { uhr = setTimeout(() => fertig(null), ms || 5000); })]);
+  }catch(e){ return null; }
+  finally{ clearTimeout(uhr); }
+}
+let cloudNativToken = null;   // was zuletzt als Kopie in der Huelle steht
+function cloudNativMerken(m){
+  if(!m || !m.uid || !m.token || m.token === cloudNativToken || !anmPlugin()) return;
+  cloudNativToken = m.token;
+  anmAufruf('sitzungMerken', {art: m.art || '', uid: m.uid, token: m.token, email: m.email || ''});
+}
+/* Die uid aus einem Restore-Schluessel des alten Handys - nur auf einem
+   neuen Geraet, und nur solange niemand angemeldet ist. */
+let restoreUid = '';
+/* Beim Start, nach loadProgress(): Merker und Kopie in der Huelle
+   abgleichen und einmal nach einem Restore-Schluessel fragen.
+   Kein Merker, aber eine Kopie: das ist der Handywechsel, bei dem Android
+   die Daten der WebView nicht mitgebracht hat - angemeldet ist man
+   trotzdem, und der Lernstand kommt beim Abgleich aus der Cloud. Ein
+   Merker ohne Kopie stammt von vor der Kopie und zieht um. */
+async function cloudSitzungAbgleichen(){
+  if(!cloudModus() || !anmPlugin()) return;
+  const k = await anmAufruf('sitzungHolen', {}, 3000);
+  const kopie = k && typeof k.uid === 'string' && k.uid && typeof k.token === 'string' && k.token ? k : null;
+  const m = cloudMerker();
+  if(!m && kopie){
+    cloudNativToken = kopie.token;
+    cloudMerkerSetzen({art: kopie.art || 'google', uid: kopie.uid, token: kopie.token,
+                       email: typeof kopie.email === 'string' ? kopie.email : ''});
+    try{ localStorage.removeItem(ABGEMELDET); }catch(e){}
+  }else if(m){
+    if(kopie && kopie.uid === m.uid && kopie.token === m.token) cloudNativToken = m.token;
+    else cloudNativMerken(m);
+  }
+  /* Nur beim ersten Start nach einer Installation fragt das Plugin wirklich
+     (das zaehlt Google), danach gibt es die gemerkte Antwort. */
+  const r = await anmAufruf('restoreHolen', {}, 4000);
+  const jetzt = cloudMerker();
+  restoreUid = (!jetzt && r && typeof r.uid === 'string' && r.uid) ? r.uid : '';
+  if(jetzt) anmAufruf('restoreSichern', {uid: jetzt.uid}, 20000);   // ohne Warten
+}
+/* Firebase sagt, die Anmeldung gilt nicht mehr (Konto geloescht oder
+   gesperrt, Passwort anderswo geaendert). Merker, Kopie und
+   Restore-Schluessel weg; der Lernstand auf dem Geraet bleibt. Die
+   Anmeldung kommt gleich auf der Startseite, sonst beim naechsten Wechsel
+   der Ansicht - mitten in einer Lektion nie. */
+function cloudVonAussenAbgemeldet(uid){
+  const m = cloudMerker();
+  if(!m || m.uid !== uid) return;
+  cloudAbmelden();
+  cloudNativToken = null; restoreUid = '';
+  try{ localStorage.setItem(ABGEMELDET, '1'); }catch(e){}
+  anmAufruf('abmelden', {}, 8000);
+  $('btnProfil').style.display = 'none';
+  torPruefen();
+}
 /* Googles ID-Token aus der Huelle. Google sperrt die Anmeldung in einer
-   WebView; das Plugin ZmajAnmeldung (noch zu bauen, siehe
-   FIREBASE_EINRICHTEN.md) fragt nativ ueber den Credential Manager. */
+   WebView; das Plugin ZmajAnmeldung fragt nativ ueber den Credential
+   Manager. Wirft mit grund GOOGLE_ABGEBROCHEN, GOOGLE_KEIN_KONTO (kein
+   Google-Konto auf dem Handy) oder GOOGLE_FEHLER. */
+const googleMoeglich = () => !!anmPlugin() && typeof anmPlugin().googleAusweis === 'function'
+  && /^[0-9]{6,20}-[0-9a-z]{16,40}\.apps\.googleusercontent\.com$/.test(CLOUD_CLIENT);
 async function cloudGoogleAusweis(){
-  const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajAnmeldung;
-  if(!P || !P.googleAusweis) return null;
-  try{ const r = await P.googleAusweis(); return (r && typeof r.idToken === 'string' && r.idToken) || null; }
-  catch(e){ return null; }   // abgebrochen oder kein Google-Konto
+  const P = anmPlugin();
+  const fehler = grund => { const f = new Error('google'); f.grund = grund; return f; };
+  if(!P || !P.googleAusweis) throw fehler('GOOGLE_FEHLER');
+  let r;
+  try{ r = await P.googleAusweis({client: CLOUD_CLIENT}); }
+  catch(e){
+    const c = String((e && (e.code || e.message)) || '');
+    throw fehler(c === 'abgebrochen' ? 'GOOGLE_ABGEBROCHEN' : c === 'kein_konto' ? 'GOOGLE_KEIN_KONTO' : 'GOOGLE_FEHLER');
+  }
+  if(!r || typeof r.idToken !== 'string' || !r.idToken) throw fehler('GOOGLE_FEHLER');
+  return r.idToken;
 }
 /* ---- Adapter: Firebase Auth und Cloud Firestore ueber REST ----
-   Ohne Firebase-Bibliothek, nur fetch an vier Adressen. Anonym geht ohne
-   Plugin (accounts:signUp), mit Google wird das ID-Token aus
-   cloudGoogleAusweis() bei Firebase eingetauscht (accounts:signInWithIdp).
+   Ohne Firebase-Bibliothek, nur fetch an vier Adressen. Mit Google wird
+   das ID-Token aus cloudGoogleAusweis() bei Firebase eingetauscht
+   (accounts:signInWithIdp), mit E-Mail und Passwort meldet
+   accounts:signInWithPassword an und accounts:signUp legt das Konto an
+   (28.10.2026, statt des Firebase-JS-SDK: kein Fremdcode, dieselbe
+   Sitzung im selben Merker, siehe Plan 2.2). Anonym (signUp ohne Adresse)
+   bleibt fuer die Tests, angeboten wird es nicht.
    Der Ausweis fuer Firestore (ID-Token, eine Stunde gueltig) bleibt nur im
    Arbeitsspeicher; neu geholt wird er mit dem token aus dem Merker
    (securetoken). In users/{uid} stehen zwei Textfelder: daten und rev. */
@@ -8954,18 +9175,26 @@ function cloudFirestore(projekt, schluessel){
   const ERNEUERN = 'https://securetoken.googleapis.com/v1/token?key=';
   const dokument = uid => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(projekt)
     + '/databases/(default)/documents/users/' + encodeURIComponent(uid);
-  const post = daten => ({method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(daten)});
+  const post = (daten, kopf) => ({method: 'POST', headers: Object.assign({'Content-Type': 'application/json'}, kopf || {}),
+                                  body: JSON.stringify(daten)});
+  /* Die Mails von Firebase (Bestaetigen, Passwort zuruecksetzen) in der
+     Sprache der App. Norwegisch heisst bei Firebase "no". */
+  const sprachKopf = () => ({'X-Firebase-Locale': SPRACHE === 'nb' ? 'no' : SPRACHE});
   let ausweis = null;   // {uid, id, bis}
   const merken = (uid, id, sekunden) => { ausweis = {uid, id, bis: Date.now() + (Number(sekunden) || 3600) * 1000}; };
   /* Nach 20 Sekunden ohne Antwort gilt es als gescheitert - sonst hielte
      ein haengendes Netz cloudLaeuft fuer immer fest. fehltOk: 404 heisst
      beim Dokument "noch nichts gesichert" und ist kein Fehler.
      19.10.2026: Der Fehler traegt Firebases Grund (error.message, etwa
-     CREDENTIAL_TOO_OLD_LOGIN_AGAIN) - loeschen() braucht ihn. */
+     CREDENTIAL_TOO_OLD_LOGIN_AGAIN) - loeschen() braucht ihn.
+     28.10.2026: Kein Netz oder keine Antwort traegt netz - die Anmeldung
+     sagt dann "Keine Verbindung" statt "hat nicht geklappt". */
   async function senden(url, optionen, fehltOk){
     const ab = new AbortController(), uhr = setTimeout(() => ab.abort(), 20000);
     try{
-      const r = await fetch(url, Object.assign({cache: 'no-store', signal: ab.signal}, optionen));
+      let r;
+      try{ r = await fetch(url, Object.assign({cache: 'no-store', signal: ab.signal}, optionen)); }
+      catch(e){ const f = new Error('cloud netz'); f.netz = true; throw f; }
       if(r.status === 404 && fehltOk) return null;
       if(!r.ok){
         const f = new Error('cloud ' + r.status);
@@ -8977,9 +9206,17 @@ function cloudFirestore(projekt, schluessel){
   }
   async function idToken(m){
     if(ausweis && ausweis.uid === m.uid && ausweis.bis > Date.now() + 60000) return ausweis.id;
-    const r = await senden(ERNEUERN + schluessel, {method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(m.token || '')});
+    let r;
+    try{
+      r = await senden(ERNEUERN + schluessel, {method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(m.token || '')});
+    }catch(e){
+      /* 28.10.2026: Nur diese Gruende heissen "die Anmeldung ist weg". Bei
+         Netzfehlern, Zeitueberschreitung oder 5xx bleibt man angemeldet. */
+      if(/^(TOKEN_EXPIRED|INVALID_REFRESH_TOKEN|USER_NOT_FOUND|USER_DISABLED)/.test((e && e.grund) || '')) e.abgemeldet = true;
+      throw e;
+    }
     const d = await r.json();
     if(!d || !d.id_token || d.user_id !== m.uid) throw new Error('cloud anmeldung');
     if(d.refresh_token) m.token = d.refresh_token;
@@ -8988,13 +9225,20 @@ function cloudFirestore(projekt, schluessel){
   }
   const mitAusweis = async m => ({Authorization: 'Bearer ' + await idToken(m)});
   /* Googles Ausweis aus der Huelle bei Firebase eintauschen - beim Anmelden
-     und noch einmal vor dem Loeschen des Kontos. null: abgebrochen. */
+     und noch einmal vor dem Loeschen des Kontos. */
   async function mitGoogle(){
     const google = await cloudGoogleAusweis();
-    if(!google) return null;
     return (await senden(KONTO + 'signInWithIdp?key=' + schluessel, post({
       postBody: 'id_token=' + encodeURIComponent(google) + '&providerId=google.com',
       requestUri: 'http://localhost', returnIdpCredential: true, returnSecureToken: true}))).json();
+  }
+  /* E-Mail und Passwort - beim Anmelden und vor dem Loeschen des Kontos.
+     Mit dem Schutz vor E-Mail-Aufzaehlung (bei neuen Projekten an) meldet
+     Firebase fuer unbekannte Adresse und falsches Passwort dasselbe:
+     INVALID_LOGIN_CREDENTIALS. */
+  async function mitPasswort(email, pw){
+    return (await senden(KONTO + 'signInWithPassword?key=' + schluessel,
+      post({email: String(email || ''), password: String(pw || ''), returnSecureToken: true}))).json();
   }
   /* Das Konto selbst: true geloescht oder schon weg, 'alt' verlangt eine
      frische Anmeldung, false sonst gescheitert. */
@@ -9006,17 +9250,37 @@ function cloudFirestore(projekt, schluessel){
       return /^(CREDENTIAL_TOO_OLD_LOGIN_AGAIN|INVALID_ID_TOKEN)/.test(g) ? 'alt' : false;
     }
   }
+  const konto = (d, email) => {
+    if(!d || typeof d.localId !== 'string' || !d.idToken) return null;
+    merken(d.localId, d.idToken, d.expiresIn);
+    return {uid: d.localId, token: d.refreshToken || '', email: String(d.email || email || ''), idToken: d.idToken};
+  };
   return {
-    async anmelden(art){
+    async anmelden(art, daten){
       let d = null;
       if(art === 'anonym'){
         d = await (await senden(KONTO + 'signUp?key=' + schluessel, post({returnSecureToken: true}))).json();
       }else if(art === 'google'){
         d = await mitGoogle();
+      }else if(art === 'passwort'){
+        d = await mitPasswort((daten || {}).email, (daten || {}).pw);
       }
-      if(!d || typeof d.localId !== 'string' || !d.idToken) return null;
-      merken(d.localId, d.idToken, d.expiresIn);
-      return {uid: d.localId, token: d.refreshToken || ''};
+      return konto(d, art === 'passwort' ? (daten || {}).email : '');
+    },
+    async registrieren(email, pw){
+      return konto(await (await senden(KONTO + 'signUp?key=' + schluessel,
+        post({email: String(email || ''), password: String(pw || ''), returnSecureToken: true}))).json(), email);
+    },
+    /* Firebase sagt nie, ob es die Adresse gibt - die Meldung in der App
+       auch nicht (konto.vergessen_raus). */
+    async passwortVergessen(email){
+      await senden(KONTO + 'sendOobCode?key=' + schluessel,
+        post({requestType: 'PASSWORD_RESET', email: String(email || '')}, sprachKopf()));
+      return true;
+    },
+    async bestaetigungSchicken(id){
+      await senden(KONTO + 'sendOobCode?key=' + schluessel, post({requestType: 'VERIFY_EMAIL', idToken: id}, sprachKopf()));
+      return true;
     },
     async laden(m){
       const r = await senden(dokument(m.uid), {headers: await mitAusweis(m)}, true);
@@ -9035,11 +9299,22 @@ function cloudFirestore(projekt, schluessel){
        einer frischen Anmeldung (CREDENTIAL_TOO_OLD_LOGIN_AGAIN); der Ausweis
        aus dem Erneuerungsschluessel zaehlt nicht. Mit Google fragt die App
        dann noch einmal nach dem Konto, nur dasselbe (uid) wird geloescht.
-       Anonym gibt es keine neue Anmeldung - dort bleibt eine leere Kennung.
-       Gibt zurueck, ob auch das Konto weg ist; die Sicherung ist es dann
-       in jedem Fall. */
-    async loeschen(m){
-      const id = await idToken(m);
+       28.10.2026: Bei E-Mail-Konten meldet die App sich mit dem Passwort
+       ZUERST frisch an - bei falschem Passwort ist dann noch nichts
+       geloescht. Anonym gibt es keine neue Anmeldung - dort bleibt eine
+       leere Kennung. Gibt zurueck, ob auch das Konto weg ist; die
+       Sicherung ist es dann in jedem Fall. */
+    async loeschen(m, optionen){
+      let id;
+      if(m.art === 'passwort'){
+        const d = await mitPasswort(m.email, (optionen || {}).passwort);
+        if(!d || d.localId !== m.uid || !d.idToken){
+          const f = new Error('cloud anderes konto'); f.grund = 'INVALID_LOGIN_CREDENTIALS'; throw f;
+        }
+        id = d.idToken;
+      }else{
+        id = await idToken(m);
+      }
       await senden(dokument(m.uid), {method: 'DELETE', headers: {Authorization: 'Bearer ' + id}}, true);
       ausweis = null;
       let weg = await kontoWeg(id);
@@ -9060,19 +9335,373 @@ function cloudFirestore(projekt, schluessel){
    waehlt ihn nie. */
 function cloudSpeicherAdapter(ablage){
   ablage.zaehler = ablage.zaehler || {anmelden: 0, laden: 0, speichern: 0, loeschen: 0};
-  const netz = was => { if(ablage.offline) throw new Error('offline'); ablage.zaehler[was]++; };
+  const netz = was => {
+    if(ablage.offline){ const f = new Error('offline'); f.netz = true; throw f; }
+    ablage.zaehler[was] = (ablage.zaehler[was] || 0) + 1;
+  };
   return {
-    async anmelden(art){ netz('anmelden'); return {uid: ablage.uid || 'probe-' + art, token: 'probe'}; },
+    async anmelden(art, daten){
+      netz('anmelden');
+      return {uid: ablage.uid || 'probe-' + art, token: 'probe', email: (daten && daten.email) || ''};
+    },
+    async registrieren(email){ netz('registrieren'); return {uid: ablage.uid || 'probe-neu', token: 'probe', email, idToken: 'probe-id'}; },
+    async passwortVergessen(){ netz('vergessen'); return true; },
+    async bestaetigungSchicken(){ netz('bestaetigen'); return true; },
     async laden(){ netz('laden'); return ablage.dok ? {text: ablage.dok.text, rev: ablage.dok.rev} : null; },
     async speichern(m, dok){ netz('speichern'); ablage.dok = {text: dok.text, rev: dok.rev}; return true; },
     async loeschen(){ netz('loeschen'); ablage.dok = null; return true; },
   };
 }
+
+/* ---- Das Tor: ohne Anmeldung geht es nach der 1. Lektion nicht weiter ----
+   28.10.2026, Ajdin am 27.10.: "nach der 1. Lektion, wie bei Duolingo".
+   Wer noch nichts gelernt hat, lernt ohne Konto. Wer etwas gelernt hat
+   (oder dessen altes Handy einen Restore-Schluessel hinterlassen hat, oder
+   der sich abgemeldet hat), sieht nur noch die Anmeldung - auch beim
+   naechsten Start. Ohne Internet gibt es kein Tor: dann wird einfach
+   weitergelernt, die Serie haengt nur am Geraet. netzWeg: die Anmeldung
+   ist eben am Netz gescheitert, obwohl navigator.onLine Netz meldete, und
+   der Lernende hat "Erst einmal weiterlernen" gewaehlt - bis zum naechsten
+   'online' oder Start. */
+let netzWeg = false;
+let anmeldungLaeuft = false;
+let anmAnlass = 'sichern', anmModus = 'wahl';
+/* Die Einstufung zaehlt, sobald der Test gelaufen ist (fragen steht dann
+   da, auch als 0 bei einem Abbruch gleich am Anfang) - nicht bei "Ich
+   fange neu an". */
+const hatGelernt = () => days.size > 0 || known.size > 0 || passed.size > 0
+  || !!(einstufung && typeof einstufung.fragen === 'number');
+function warAbgemeldet(){ try{ return localStorage.getItem(ABGEMELDET) === '1'; }catch(e){ return false; } }
+function anmeldungFaellig(){
+  return cloudModus() && standGeladen && !cloudMerker()
+    && (hatGelernt() || !!restoreUid || warAbgemeldet())
+    && navigator.onLine !== false && !netzWeg;
+}
+function anmeldungAnlass(){
+  if(restoreUid && !hatGelernt()) return 'zurueck';
+  if(warAbgemeldet()) return 'abgemeldet';
+  return days.size > 1 ? 'bestand' : 'sichern';
+}
+/* true: die Anmeldung steht (oder steht jetzt), der Aufrufer bricht ab. */
+function anmeldungSperre(){
+  if(!anmeldungFaellig()) return false;
+  if(!sichtbar('profileView')) anmeldungZeigen(anmeldungAnlass());
+  return true;
+}
+/* Nach 'online' und beim Zurueckkommen in die App: auf der Startseite gleich,
+   sonst beim naechsten Wechsel der Ansicht (showView) - mitten in einer
+   Lektion nie, und nicht ueber einer offenen Karte. */
+function torPruefen(){
+  if(!anmeldungFaellig() || !sichtbar('pfad') || frageSchliessen) return;
+  if(document.querySelector('.nachfrage, .einwilligung, .werbung, .updsperre')) return;
+  anmeldungSperre();
+}
+/* Statt der Knoepfe auf einem Ergebnisschirm nur "Weiter" zur Anmeldung. */
+function torStattKnoepfe(ids){
+  const erster = $(ids[0]);
+  if(!erster || !erster.parentElement) return;
+  const feld = erster.parentElement.parentElement;
+  ids.forEach(id => { const b = $(id); if(b && b.parentElement) b.parentElement.remove(); });
+  const reihe = document.createElement('div');
+  reihe.className = 'row';
+  reihe.innerHTML = '<button class="btn know" id="anmWeiter"></button>';
+  const k = reihe.querySelector('button');
+  k.textContent = t('anm.weiter');
+  k.addEventListener('click', ()=>{ if(!anmeldungSperre()){ homeMode = 'words'; showHome(); } });
+  feld.appendChild(reihe);
+}
+function kopfZurueck(){
+  $('btnSettings').style.display = 'inline-block';
+  $('btnShop').style.display = 'inline-block';
+  $('btnProfil').style.display = cloudMerker() ? 'inline-block' : 'none';
+}
+
+/* ---- Die Anmeldeseite ----
+   Dieselbe Seite wie die alte Server-Anmeldung (profileView, kontoForm),
+   die fuer start.py unveraendert bleibt (zeigeAnmeldung). anlass bestimmt
+   Titel und Text, modus die Felder:
+     wahl            Mit Google / Mit E-Mail, darunter Datenschutz und
+                     Nutzungsbedingungen zum Aufklappen
+     mail_an         E-Mail und Passwort
+     mail_neu        Konto anlegen: E-Mail, Passwort, Wiederholung
+     mail_vergessen  E-Mail, Link zum Zuruecksetzen schicken
+   Die Flaggen fuer die Sprache stehen oben wie bisher. */
+function anmeldungZeigen(anlass, modus = 'wahl', daten = {}){
+  anmAnlass = anlass || anmAnlass;
+  anmModus = modus;
+  showView('profileView'); $('kopfLeiste').style.display = 'none';
+  $('btnProfil').style.display = 'none'; $('btnSettings').style.display = 'none'; $('btnShop').style.display = 'none';
+  $('zmajProfile').innerHTML = zmaj('happy'); setMood($('zmajProfile'), 'happy');
+  renderLangBar();
+  $('tag').textContent = '';
+  const wahl = modus === 'wahl';
+  const titel = modus === 'mail_neu' ? 'konto.anlegen_titel' : modus === 'mail_vergessen' ? 'konto.vergessen_titel'
+    : modus === 'mail_an' ? 'konto.anmelden_titel'
+    : ({sichern: 'anm.titel_sichern', bestand: 'anm.titel_bestand', zurueck: 'anm.titel_zurueck'}[anmAnlass] || 'konto.anmelden_titel');
+  const text = modus === 'mail_vergessen' ? 'konto.vergessen_frage'
+    : ({sichern: 'anm.text_sichern', bestand: 'anm.text_bestand', zurueck: 'anm.text_zurueck',
+        konto: 'anm.text_zurueck'}[anmAnlass] || 'anm.text_abgemeldet');
+  $('kontoTitel').textContent = t(titel);
+  $('kontoFrage').textContent = t(text);
+  $('anmWahl').hidden = !wahl;
+  $('kontoForm').hidden = wahl;
+  $('anmOffline').hidden = !daten.netz;
+  $('anmOffline').textContent = t('anm.weiterlernen');
+  /* Wer ueber "Ich habe schon ein Konto" kam und noch gar nicht muss, kommt
+     hier auch wieder heraus. Wer muss, hat in der Wahl keinen Weg zurueck -
+     die Zurueck-Taste fragt dann wie auf der Startseite, ob Zmaj zugehen soll. */
+  const zurueck = !wahl ? ()=> anmeldungZeigen(anmAnlass, 'wahl')
+    : (anmeldungFaellig() ? null : ()=>{ kopfZurueck(); homeMode = 'words'; showHome(); });
+  setzeZurueck(zurueck ? t('btn.zurueck') : '', zurueck);
+  if(wahl){
+    $('anmGoogle').hidden = !googleMoeglich();
+    $('anmGoogleText').textContent = t('anm.google');
+    $('anmMail').textContent = t('anm.mail');
+    $('anmNote').textContent = daten.hinweis || '';
+    $('anmNote').className = daten.hinweis ? 'note feedback no' : 'note';
+    $('anmDsKopf').textContent = t('set.datenschutz');
+    $('anmDs').innerHTML = t('set.datenschutz_text', {anbieter: t('set.anbieter')});
+    $('anmAgbKopf').textContent = t('set.agb');
+    $('anmAgb').innerHTML = t('set.agb_text', {anbieter: t('set.anbieter')});
+    $('kontoWechsel').hidden = true; $('kontoVergessen').hidden = true;
+    return;
+  }
+  const neu = modus === 'mail_neu', vergessen = modus === 'mail_vergessen';
+  $('kontoName').hidden = true; $('kontoNameSub').hidden = true; $('kontoBleibenZeile').hidden = true;
+  $('kontoMail').hidden = false;
+  $('kontoPw').hidden = vergessen;
+  $('kontoPw2').hidden = !neu;
+  $('kontoRegeln').hidden = !neu;
+  $('kontoSpam').hidden = true;
+  $('kontoSpam').textContent = t('konto.spam_hinweis');
+  $('kontoPw').placeholder = t(neu ? 'konto.passwort_neu' : 'konto.passwort');
+  $('kontoPw').setAttribute('autocomplete', neu ? 'new-password' : 'current-password');
+  $('kontoSenden').textContent = t(neu ? 'konto.neu' : vergessen ? 'konto.vergessen_senden' : 'konto.anmelden');
+  $('kontoWechsel').hidden = false;
+  $('kontoWechsel').textContent = t(modus === 'mail_an' ? 'konto.neu' : 'konto.zurueck_anmelden');
+  $('kontoVergessen').hidden = modus !== 'mail_an';
+  $('kontoNote').textContent = daten.hinweis || '';
+  $('kontoNote').className = daten.hinweis ? 'note feedback no' : 'note';
+  $('kontoPw').value = ''; $('kontoPw2').value = '';
+  if(neu) zeigeRegeln($('kontoRegeln'), '');
+  $('kontoMail').focus();
+}
+/* Eine Firebase-Antwort als Satz. Firebase haengt manchmal " : ..." an,
+   deshalb zaehlt nur der Anfang (wie in kontoWeg). Leer: nichts zu sagen
+   (Google-Auswahl abgebrochen). */
+function kontoFirebaseFehler(g){
+  g = String(g || '');
+  if(g === 'netz') return t('konto.fehler_netz');
+  if(/^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD)/.test(g)) return t('konto.fehler_mail_pw');
+  if(/^EMAIL_EXISTS/.test(g)) return t('konto.fehler_email_da');
+  if(/^(INVALID_EMAIL|MISSING_EMAIL)/.test(g)) return t('konto.fehler_email');
+  if(/^WEAK_PASSWORD/.test(g)) return t('konto.fehler_kurz', {n: PW_MIN_CLOUD});
+  if(/^TOO_MANY_ATTEMPTS_TRY_LATER/.test(g)) return t('konto.fehler_zu_oft');
+  if(/^USER_DISABLED/.test(g)) return t('konto.fehler_konto_gesperrt');
+  if(g === 'GOOGLE_ABGEBROCHEN') return '';
+  if(g === 'GOOGLE_KEIN_KONTO') return t('konto.fehler_google_keins');
+  if(/^(GOOGLE_FEHLER|INVALID_IDP_RESPONSE)/.test(g)) return t('konto.fehler_google');
+  return t('konto.fehler_allgemein');
+}
+function anmFehlerZeigen(grund, note){
+  const text = kontoFirebaseFehler(grund);
+  note.textContent = text;
+  note.className = text ? 'note feedback no' : 'note';
+  if(grund === 'netz') $('anmOffline').hidden = false;
+}
+/* Angemeldet: hinein. Nach dem Anlegen eines Kontos sagt eine Karte, dass
+   die Bestaetigungsmail unterwegs ist - sonst nur eine kurze Zeile oben. */
+function cloudNachAnmeldung(neu){
+  netzWeg = false;
+  kopfZurueck();
+  homeMode = 'words';
+  showHome();
+  if(neu){
+    const {kasten, zu} = einstufungKarte(
+      '<div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
+      '<h3></h3><div class="txt"></div><button class="btn know" id="anmFertigOk"></button>');
+    kasten.querySelector('h3').textContent = t('anm.fertig');
+    kasten.querySelector('.txt').textContent = t('konto.bestaetigung_raus');
+    kasten.querySelector('#anmFertigOk').textContent = t('task.weiter');
+    kasten.querySelector('#anmFertigOk').addEventListener('click', zu);
+    return;
+  }
+  const balken = $('livesBar');
+  if(balken){
+    balken.innerHTML = '<span class="feedback ok">' + esc(t('anm.fertig')) + ' ✓</span>';
+    setTimeout(()=>{ renderLives(); }, 3500);
+  }
+}
+async function cloudFormularSenden(){
+  if(anmeldungLaeuft) return;
+  const m = anmModus, note = $('kontoNote'), knopf = $('kontoSenden');
+  const adr = $('kontoMail').value.trim(), pw = $('kontoPw').value, pw2 = $('kontoPw2').value;
+  note.className = 'note';
+  if(!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(adr)){ note.textContent = t('konto.fehler_email'); return; }
+  if(m === 'mail_an' && !pw){ note.textContent = t('konto.fehler_mail_pw'); return; }
+  if(m === 'mail_neu'){
+    if(pw.length < PW_MIN_CLOUD){ note.textContent = t('konto.fehler_kurz', {n: PW_MIN_CLOUD}); return; }
+    if(pw !== pw2){ note.textContent = t('konto.fehler_wdh'); return; }
+  }
+  anmeldungLaeuft = true;
+  knopf.disabled = true; note.textContent = t('konto.laeuft');
+  try{
+    if(m === 'mail_vergessen'){
+      try{ await cloudAdapter().passwortVergessen(adr); }
+      catch(e){
+        const g = cloudGrund(e);
+        if(g === 'netz' || /^(INVALID_EMAIL|MISSING_EMAIL|TOO_MANY_ATTEMPTS_TRY_LATER)/.test(g)){ anmFehlerZeigen(g, note); return; }
+        // sonst dieselbe Antwort wie bei Erfolg - verraten wird nichts
+      }
+      note.textContent = t('konto.vergessen_raus');
+      note.className = 'note feedback ok';
+      $('kontoSpam').hidden = false;      // jetzt gibt es etwas zu suchen
+      return;
+    }
+    const art = m === 'mail_neu' ? 'neu' : 'passwort';
+    if(await cloudAnmelden(art, cloudAdapter(), {email: adr, pw})){
+      $('kontoPw').value = ''; $('kontoPw2').value = '';
+      note.textContent = '';
+      cloudNachAnmeldung(art === 'neu');
+      return;
+    }
+    anmFehlerZeigen(cloudFehlerGrund, note);
+  }finally{
+    anmeldungLaeuft = false;
+    knopf.disabled = false;
+  }
+}
+$('anmGoogle').addEventListener('click', async ()=>{
+  if(anmeldungLaeuft || !cloudModus()) return;
+  const note = $('anmNote');
+  anmeldungLaeuft = true;
+  $('anmGoogle').disabled = true;
+  note.className = 'note'; note.textContent = t('konto.laeuft');
+  try{
+    if(await cloudAnmelden('google')){ note.textContent = ''; cloudNachAnmeldung(false); return; }
+    anmFehlerZeigen(cloudFehlerGrund, note);
+  }finally{
+    anmeldungLaeuft = false;
+    $('anmGoogle').disabled = false;
+  }
+});
+$('anmMail').addEventListener('click', ()=> anmeldungZeigen(anmAnlass, 'mail_an'));
+$('anmOffline').addEventListener('click', ()=>{
+  netzWeg = true;
+  kopfZurueck();
+  homeMode = 'words';
+  showHome();
+});
+
+/* ---- Kontoseite, Abmelden, Konto loeschen ---- */
+/* Den Lernstand auf diesem Geraet auf den Anfang setzen - nach dem
+   Abmelden und nach dem Loeschen des Kontos. Ajdins Antwort auf die Fragen
+   1 und 2 im Plan stand aus; gebaut nach dem Vorschlag "wie bei Duolingo":
+   nach dem Abmelden liegt der Stand im Konto, nach dem Loeschen landete
+   der alte sonst im naechsten Konto. Sprache, Toene, Erinnerungen,
+   Einwilligung, Vollversion, Nutzungsbedingungen und die Zufallskennung
+   bleiben. 28.10.2026 */
+function standLeeren(){
+  standErsetzen(() => ({}));
+  setzeGetragen([]);
+  try{ localStorage.removeItem(SEIT_SCHLUESSEL); }catch(e){}
+  syncLives();
+  saveProgress();
+  renderLives();
+}
+function kontoSeiteCloud(){
+  const m = cloudMerker() || {};
+  $('setProfilMail').textContent = m.email ? '✉ ' + m.email : '';
+  $('setProfilSub').hidden = true;
+  const g = $('setGesichert');
+  g.hidden = false;
+  g.textContent = m.gesichert ? t('set.gesichert', {datum: new Date(m.gesichert + 'T12:00:00').toLocaleDateString(SPRACHE)})
+                              : t('set.gesichert_nie');
+  $('setPwZeile').hidden = true; $('pwForm').style.display = 'none';
+  $('setWegSub').textContent = t('set.konto_weg_sub');
+  $('wegForm').style.display = 'none';
+  $('setLogoutNote').textContent = ''; $('setLogoutNote').className = 'note';
+}
+async function cloudAbmeldenGanz(){
+  const note = $('setLogoutNote');
+  note.className = 'note'; note.textContent = '';
+  if(navigator.onLine === false){ note.textContent = t('set.abmelden_netz'); note.className = 'note feedback no'; return; }
+  if(!await frage(t('set.abmelden'), t('set.abmelden_frage'), t('set.abmelden'), t('btn.dialog_abbrechen'))) return;
+  note.textContent = t('konto.laeuft');
+  await saveProgress();
+  // Laeuft gerade ein Abgleich (etwa vom Start), auf ihn warten.
+  for(let i = 0; cloudLaeuft && i < 60; i++) await new Promise(f => setTimeout(f, 500));
+  const r = await cloudAbgleich('abmelden');
+  /* Hat Firebase die Anmeldung eben selbst fuer ungueltig erklaert
+     (cloudVonAussenAbgemeldet), ist der Merker schon weg - dann gibt es
+     nichts mehr hochzuladen, und abgemeldet wird trotzdem. */
+  if(!cloudMerker()){ note.textContent = ''; await abmeldenFertig(); anmeldungZeigen('abgemeldet'); return; }
+  if(r !== 'gespeichert' && r !== 'unveraendert'){
+    note.textContent = t('set.abmelden_netz'); note.className = 'note feedback no';
+    return;
+  }
+  note.textContent = '';
+  cloudAbmelden();
+  await abmeldenFertig();
+  anmeldungZeigen('abgemeldet');
+}
+async function abmeldenFertig(){
+  cloudNativToken = null; restoreUid = '';
+  try{ localStorage.setItem(ABGEMELDET, '1'); }catch(e){}
+  await anmAufruf('abmelden', {}, 8000);
+  standLeeren();
+}
+async function kontoWegKlick(){
+  const m = cloudMerker();
+  if(!m) return;
+  $('wegNote').textContent = ''; $('wegNote').className = 'note';
+  if(m.art === 'passwort'){
+    const f = $('wegForm'), auf = f.style.display === 'none';
+    f.style.display = auf ? 'block' : 'none';
+    $('wegPw').value = '';
+    if(auf) $('wegPw').focus();
+    return;
+  }
+  await cloudKontoLoeschen('');
+}
+async function cloudKontoLoeschen(passwort){
+  const m = cloudMerker(), note = $('wegNote');
+  if(!m || anmeldungLaeuft) return;
+  if(m.art === 'passwort' && !passwort){ note.textContent = t('konto.fehler_mail_pw'); note.className = 'note feedback no'; return; }
+  const frageText = t('set.konto_weg_frage') + (m.art === 'google' ? ' ' + t('set.konto_weg_google') : '');
+  if(!await frage(t('set.konto_loeschen'), frageText, t('set.konto_loeschen_knopf'), t('btn.dialog_abbrechen'))) return;
+  anmeldungLaeuft = true;
+  note.className = 'note'; note.textContent = t('konto.laeuft');
+  let r;
+  try{ r = await cloudLoeschen(cloudAdapter(), {passwort}); }
+  finally{ anmeldungLaeuft = false; }
+  if(r === false){
+    note.textContent = /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD)/.test(cloudFehlerGrund)
+      ? t('konto.fehler_mail_pw') : t(cloudFehlerGrund === 'netz' ? 'konto.fehler_netz' : 'konto.fehler_allgemein');
+    note.className = 'note feedback no';
+    return;
+  }
+  note.textContent = '';
+  $('wegPw').value = ''; $('wegForm').style.display = 'none';
+  await abmeldenFertig();
+  anmeldungZeigen('abgemeldet', 'wahl', {hinweis: ''});
+  const n = $('anmNote');
+  n.textContent = t(r === true ? 'set.konto_weg_fertig' : 'set.konto_weg_teil');
+  n.className = r === true ? 'note feedback ok' : 'note feedback no';
+}
+
 /* Nur mit CLOUD_AN haengt sich die Cloud ueberhaupt irgendwo ein. Der
    Start steht in init(). saveProgress() hat beim Verstecken schon lokal
-   gespeichert (Horcher weiter oben), dieser Horcher kommt danach. */
+   gespeichert (Horcher weiter oben), dieser Horcher kommt danach.
+   28.10.2026: Beim Zurueckkommen und wenn das Netz wiederkommt, wird das
+   Tor neu geprueft; ohne Netz zeigt die Anmeldeseite "Erst einmal
+   weiterlernen". */
 if(CLOUD_AN){
-  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) cloudAbgleich('pause'); });
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) cloudAbgleich('pause'); else torPruefen(); });
+  window.addEventListener('online', ()=>{ netzWeg = false; torPruefen(); });
+  window.addEventListener('offline', ()=>{
+    if(cloudModus() && sichtbar('profileView') && !cloudMerker()) $('anmOffline').hidden = false;
+  });
 }
 
 /* ===== Zmaj bewerten und empfehlen (Einstellungen, Ueber die App) =====
@@ -9137,6 +9766,7 @@ $('fbSend').addEventListener('click', async ()=>{
 /* =================== STARTSEITE =================== */
 function showHome(){
   uhrAus();
+  if(anmeldungSperre()) return;     // Pflicht-Anmeldung, 28.10.2026
   showView('pfad'); setzeZurueck('', null);
   $('modeWords').setAttribute('aria-selected', homeMode==='words'); $('modeStories').setAttribute('aria-selected', homeMode==='stories');
   $('modeTopf').setAttribute('aria-selected', homeMode==='topf');
@@ -9153,6 +9783,7 @@ function showHome(){
    Einstellungen und nicht in der Reiterleiste. */
 function showLaden(){
   uhrAus();
+  if(anmeldungSperre()) return;
   // Im Laden bleibt die Leiste stehen: dort will man sehen, was man hat.
   showView('shopView'); $('kopfLeiste').style.display='';
   ladenOffen = false;
@@ -9291,6 +9922,7 @@ function showStoryPath(){
 }
 let rIdx = 0;
 function openStory(i){
+  if(anmeldungSperre()) return;
   rIdx=i; showView('storyView'); uhrNeu();
   setzeZurueck(t('btn.zurueck_geschichten'), ()=>{ homeMode='stories'; showHome(); });
   $('tag').textContent=t('gesch.zaehler',{i:i+1, n:STORIES.length});
@@ -9501,6 +10133,7 @@ function showStoryQ(s, qi, right){
 
 /* =================== LEVEL =================== */
 function openLevel(i){
+  if(anmeldungSperre()) return;
   catIdx=i; showView('levelView');
   setzeZurueck(t('btn.zurueck_pfad'), ()=>{ homeMode='words'; showHome(); });
   $('tag').textContent=t('level.zaehler',{i:i+1, n:CATEGORIES.length});
@@ -10988,6 +11621,9 @@ function lessonEnd(){
   $('lHome').addEventListener('click', lektionVerlassen);
   $('lMore').addEventListener('click', startLesson);
   $('lPfad').addEventListener('click', ()=>{ homeMode='words'; showHome(); });
+  /* Pflicht-Anmeldung (28.10.2026): nach der ersten Lektion steht statt
+     der drei Knoepfe nur "Weiter" da, und der fuehrt zur Anmeldung. */
+  if(anmeldungFaellig()) torStattKnoepfe(['lHome', 'lMore', 'lPfad']);
 
   // Werbung erst nach dem Ergebnis, nie mittendrin. Die ersten Lektionen
   // bleiben frei, danach jede WERBUNG_JEDE_X-te.
@@ -11131,6 +11767,7 @@ function lebenWege(){
 }
 
 function startLesson(){
+  if(anmeldungSperre()) return;
   if(livesNow()===0){ renderLives(); $('lvNote').textContent=t('level.keine_leben',{zeit:fmtMin(nextLifeIn())}); lebenWege(); return; }
   buildLesson();
   interstitialVorladen();   // liegt am Ende der Lektion bereit, siehe interstitialVorladen
@@ -11249,6 +11886,7 @@ function showTestResult(){
   if(ok && allesFertig && (neuBestanden || !hasNext)){ $('tBody').insertAdjacentHTML('beforeend','<div class="kicker" style="margin-top:12px">'+t('test.alles_geschafft')+'</div>'); }
 }
 function startTest(){
+  if(anmeldungSperre()) return;
   if(!testAllowed(cur())) return;
   /* Ohne Leben kein Test, wie bei startLesson() - der Knopf ist dann zwar
      gesperrt (testKnopf), aber "Nochmal" auf dem Ergebnis ruft hierher. */
@@ -11433,7 +12071,17 @@ function einstufungWahl(){
       [['neu', t('einst.neu')], ['etwas', t('einst.etwas')], ['gut', t('einst.gut')]].map(([w, text]) =>
         '<button type="button" class="abokarte einstwahl" data-wahl="' + w + '"><span class="n">' +
         esc(text) + '</span></button>').join('') +
-    '</div>');
+    '</div>' +
+    /* Wer neu installiert hat und schon ein Konto hat, holt hier seinen
+       Stand zurueck, ohne erst Lektion 1 zu machen. Nur mit der
+       Pflicht-Anmeldung, 28.10.2026. */
+    (cloudModus() ? '<div class="abohinweis" style="text-align:center; margin-top:10px">' +
+                    '<button type="button" class="abolink" id="eKonto"></button></div>' : ''));
+  if(cloudModus()){
+    const k = kasten.querySelector('#eKonto');
+    k.textContent = t('konto.zurueck_anmelden');
+    k.addEventListener('click', ()=>{ zu(); anmeldungZeigen('konto'); });
+  }
   kasten.querySelectorAll('[data-wahl]').forEach(b => b.addEventListener('click', ()=>{
     const wahl = b.dataset.wahl;
     zu();
@@ -11456,6 +12104,7 @@ function einstufungErklaeren(wahl){
   kasten.querySelector('#eNeu').addEventListener('click', ()=>{ zu(); Ex = null; einstufungMerken(wahl, ''); });
 }
 function einstufungStarten(){
+  if(anmeldungSperre()) return;
   if(!Ex || !Ex.qs.length){ einstufungMerken(Ex ? Ex.wahl : 'etwas', ''); Ex = null; return; }
   showView('einstufungView');
   /* Die Uhr fuer die Tagesaufgabe "Minuten" laeuft bewusst nicht: der Test
@@ -11521,6 +12170,8 @@ function einstufungEnde(){
     (ziel > 0 ? '<div class="feedback" style="color:var(--muted)">' + esc(t('einst.ergebnis_offen')) + '</div>' : '') +
     '<div class="row"><button class="btn know" id="eLos"></button></div>';
   $('eLos').textContent = t('einst.los');
+  // Danach kommt die Anmeldung (28.10.2026): showHome() fuehrt hin.
+  if(anmeldungFaellig()) $('eLos').textContent = t('anm.weiter');
   sound(ziel > 0 ? 'done' : 'ok');
   $('eLos').addEventListener('click', ()=>{
     homeMode = 'words';
@@ -11777,6 +12428,7 @@ function startStern(){ rundeStarten('stern'); }
    Runden laufen gleich - Leben, Serie, Tagesaufgaben, Muenzen -, Lx.topf
    bleibt fuer beide gesetzt, Lx.quelle sagt, woher die Aufgaben kommen. */
 function rundeStarten(quelle){
+  if(anmeldungSperre()) return;
   const aufgaben = (livesNow() > 0) ? (quelle === 'stern' ? sternRunde() : topfRunde()) : [];
   if(!aufgaben.length){ topfSeite(); return; }
   interstitialVorladen();   // eine Runde zaehlt wie eine Lektion, also auch hier
@@ -12461,6 +13113,7 @@ function kartenNachreichen(){
      Schirm ohne Leben, und dort steht der Knopf fuer das Video. Eine
      AdMob-Anzeige hat kein Element im Dokument, das unten auffiele. */
   const frei = ()=> !frageSchliessen && !wegmarkeLaeuft && !Ex_laeuft() && !anzeigeLaeuft &&
+                    !sichtbar('profileView') &&      // nie ueber der Anmeldung, 28.10.2026
                     !document.querySelector('.nachfrage, .einwilligung, .werbung');
   if(!frei()) return;
   setTimeout(()=>{
@@ -12556,6 +13209,7 @@ function updLerntGerade(){
    nicht, und es laegen zwei Fenster von Google uebereinander. */
 function updRuhig(){
   return updWerbungDurch && !document.hidden && !updLerntGerade() &&
+         !sichtbar('profileView') &&      // nie ueber der Anmeldung, 28.10.2026
          !frageSchliessen && !wegmarkeLaeuft && !anzeigeLaeuft && !werbungLaeuft &&
          Date.now() - anzeigeZuletzt >= 10000 &&
          !document.querySelector('.nachfrage, .einwilligung, .werbung');
@@ -12889,7 +13543,9 @@ async function werbungVorbereiten(){
    Lernpfad (showHome). Als gesehen gilt er erst, wenn jemand ihn bedient
    hat. Punkt 9 versprach den Hinweis seit September, gebaut am 12.10.2026,
    nachgebessert nach dem Review am selben Tag. */
-const AGB_WESENTLICH = '2026-09-19';
+/* 28.10.2026 (v109): Das Konto ist Pflicht - Punkte 3, 5 und 8 sind neu
+   (Frage 6 im Plan, nach dem Vorschlag gebaut). */
+const AGB_WESENTLICH = '2026-10-28';
 let agbHinweisFertig = false, agbHinweisOffen = false;
 function agbRuhig(){
   return updWerbungDurch && sichtbar('pfad') && !updLerntGerade() && !frageSchliessen &&
