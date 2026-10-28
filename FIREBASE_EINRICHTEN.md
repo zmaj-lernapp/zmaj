@@ -38,7 +38,8 @@ ohne Anmeldung bauen will, schreibt `--ohne-anmeldung` dazu.
 | Werte beim Bauen einsetzen, Abbruch ohne Datei bei `--aab` | `cloud_einsetzen()`, `anmeldung_pruefen()` in `app_bauen.py` |
 | Sicherheitsregeln | `firestore.rules` |
 | Löschseite, `.nojekyll`, `.well-known/assetlinks.json` | `seite_bauen.py` |
-| Tests | `tests/test_cloud.py`, `tests/test_seite.py`, `tests_e2e/test_cloud.py`, `tests_e2e/test_anmeldung.py` (Firebase als Attrappe in `tests_e2e/firebase_attrappe.py`) |
+| Kontaktformular (Schalter `KONTAKT_FORMULAR`, Standard aus): Seite `kontakt.html` und Weiterleitung ins Postfach | `seite_bauen.py`, `kontakt_weiterleitung.gs`, Abschnitt 15 |
+| Tests | `tests/test_cloud.py`, `tests/test_seite.py`, `tests/test_kontakt.py`, `tests_e2e/test_cloud.py`, `tests_e2e/test_anmeldung.py`, `tests_e2e/test_kontakt.py` (Firebase als Attrappe in `tests_e2e/firebase_attrappe.py`) |
 
 Kein Firebase-SDK und keine `google-services.json`: Die Seite spricht
 Firebase über REST an, und die Hülle baut so auch ohne Projekt. So bleibt
@@ -77,7 +78,9 @@ auch ein späterer Wechsel des Anbieters einfach – ein neuer Adapter mit
    - **E-Mail/Passwort** aktivieren, aber **nicht** „E-Mail-Link (Anmeldung
      ohne Passwort)“.
    - **Anonym: aus.** Der Code dafür steht noch im Adapter (für die Tests),
-     angeboten wird es nicht.
+     angeboten wird es nicht. Eingeschaltet wird es erst für das
+     Kontaktformular (Abschnitt 15); `firestore.rules` sperrt `users/{uid}`
+     für anonyme Anmeldungen, die App bekommt dadurch nichts Neues.
 3. Reiter **Einstellungen**: „Schutz vor E-Mail-Aufzählung“ an lassen, ebenso
    „Registrierung erlauben“ und „Löschen erlauben“.
 4. **Nicht** auf **Identity Platform** upgraden, auch wenn Firebase es
@@ -156,6 +159,15 @@ daraus.
 Erlaubt ist nur das eigene Dokument `users/{uid}` mit genau zwei Feldern,
 `daten` (höchstens 400.000 Zeichen) und `rev`. Die E-Mail-Adresse steht
 nicht in Firestore, nur bei Firebase Authentication.
+
+Seit dem 28.10.2026 stehen in `firestore.rules` auch die Regeln für das
+Kontaktformular (`nachrichten/{uid}`, Abschnitt 15) mit dem Platzhalter
+`MELDER_UID`. Solange er dort steht und „Anonym“ aus ist, kann niemand
+Nachrichten anlegen oder lesen; die Regeln dürfen also schon jetzt so
+veröffentlicht werden. Ist das Kontaktformular eingerichtet, muss
+`MELDER_UID` bei jedem neuen Veröffentlichen wieder durch die UID des
+Melders ersetzt werden. Sonst bekommt die Weiterleitung 403, und die
+Nachrichten bleiben liegen.
 
 ## 8. Schlüssel einschränken, Google Auth Platform, Vertrag
 
@@ -273,3 +285,96 @@ mit der Sitzung, die Androids Sicherung zurückspielt (Gerätespeicher oder
 die Kopie in den SharedPreferences `zmaj_konto`). Eine Prüfung der Signatur
 auf einem eigenen Server gibt es nicht; reicht das Google später nicht,
 wäre der Ausweg eine Cloud Function (Blaze) oder ein Cloudflare Worker.
+
+## 15. Kontaktformular
+
+Entschieden am 28.10.2026 (Weg A aus `Release\Kontaktformular_Vorschlag.md`):
+ein zweiter Weg zur „schnellen elektronischen Kontaktaufnahme“ nach § 5
+Abs. 1 Nr. 2 DDG neben der E-Mail, ohne Telefonnummer. Es kostet nichts,
+jetzt nicht und später nicht: Firebase bleibt im Tarif Spark ohne
+Zahlungsmittel, die Weiterleitung läuft als Apps Script im Gratis-Gmail-Konto
+`zmaj.lernapp@gmail.com`. Ajdins Handgriffe stehen in
+`Release\Firebase_Anleitung.md`, Schritt 12.
+
+So kommt eine Nachricht an:
+
+1. `kontakt.html` meldet sich anonym an (`accounts:signUp`), legt genau ein
+   Dokument `nachrichten/{uid}` an (`text`, `antwort`, `sprache`, `zeit` vom
+   Server) und löscht die Anmeldung gleich wieder (`accounts:delete`).
+2. `kontakt_weiterleitung.gs` meldet sich alle 5 Minuten als Melder an
+   (E-Mail/Passwort), liest `nachrichten`, schickt jede Nachricht als Mail an
+   `zmaj.lernapp@gmail.com` (Betreff beginnt mit `[Zmaj-Formular]`, „Antworten
+   an“ ist die Adresse aus dem Formular) und löscht das Dokument erst nach dem
+   Versand. Die Mail geht nie an die Adresse aus dem Formular.
+
+| Teil | Wo |
+|---|---|
+| Schalter `KONTAKT_FORMULAR` (Standard: aus), Seitentexte `kontakt.*`, `set.impressum_text_mit_formular`, `set.dsgvo_formular` | `sprachen.py` |
+| Die Seite, nur mit Schalter **und** `cloud_zugang.json` (Projekt-ID und Web-API-Schlüssel, dieselbe Datei wie für die App); sonst nennt keine Seite das Formular | `seite_bauen.py`, `baue_kontaktseite()` |
+| Anlegen nur anonym unter der eigenen uid, Lesen und Löschen nur für den Melder | `firestore.rules`, `match /nachrichten/{uid}` |
+| Weiterleitung, Einrichtung im Kopfkommentar | `kontakt_weiterleitung.gs` |
+
+Einschalten, in dieser Reihenfolge. Der Gmail-Filter kommt zuerst: Sobald
+„Anonym“ an ist und die Regeln stehen, kann jeder mit dem öffentlichen
+Web-API-Schlüssel per REST eine Nachricht mit fremder Antwortadresse anlegen.
+Liefe dann schon das Skript, ginge die Sofortantwort an diese Adresse.
+
+1. Gmail-Filter der Sofortantwort: `-subject:"[Zmaj-Formular]"` dazu. Sonst
+   schickt Gmail die Vorlage an die Adresse aus „Antworten an“, also an eine
+   Adresse, die jeder ins Formular schreiben kann.
+2. **Authentication** → **Anmeldemethode** → **Anonym** aktivieren. Unter
+   **Einstellungen** bleiben „Registrierung erlauben“ und „Löschen erlauben“
+   an – die Seite braucht beides.
+3. **Authentication** → **Nutzer** → **Nutzer hinzufügen**: das Melder-Konto
+   (z. B. `zmaj.lernapp+melder@gmail.com`) mit einem eigenen, langen
+   Passwort. Das Passwort kommt nur in die Skripteigenschaften.
+4. `firestore.rules` in der Konsole neu einfügen, dort `MELDER_UID` durch die
+   UID des Melders ersetzen, **Veröffentlichen**. Im Repository bleibt der
+   Platzhalter stehen (`tests/test_kontakt.py`), also bei jedem späteren
+   Veröffentlichen wieder ersetzen (Abschnitt 7).
+5. script.google.com mit `zmaj.lernapp@gmail.com`: Projekt anlegen,
+   `kontakt_weiterleitung.gs` einfügen, Skripteigenschaften `PROJEKT`,
+   `SCHLUESSEL`, `MELDER_MAIL`, `MELDER_PASSWORT` setzen, `einrichten`
+   einmal ausführen und erlauben. Das legt den Auslöser „alle 5 Minuten“ an.
+6. In `sprachen.py` `KONTAKT_FORMULAR = True` und `KONTAKT_STAND` auf den Tag
+   des Umlegens (`"TT.MM.JJJJ"`); damit geht der „Stand“ der
+   Datenschutzerklärung in allen acht Sprachen mit, ohne Datum bricht
+   `texte()` ab. Dann `seite_bauen.py` (baut `kontakt.html` und nennt das
+   Formular im Impressum der Webseite und in den Fußzeilen) und die App neu
+   bauen (Datenschutzerklärung; ein Impressum zeigt die App nicht). Seiten
+   hochladen.
+7. Probe: eine Nachricht über die Seite schicken. Nach höchstens 5 Minuten
+   liegt die Mail im Postfach, `nachrichten` ist wieder leer, und unter
+   **Nutzer** steht kein anonymes Konto mehr.
+
+Eine Nachricht, die sich nicht verschicken lässt, hält die anderen nicht
+auf: Das Skript versucht es noch einmal ohne „Antworten an“ und mit festem
+Betreff, und nach drei gescheiterten Läufen schickt es nur einen Hinweis
+ohne Inhalt und löscht das Dokument (Kopfkommentar in
+`kontakt_weiterleitung.gs`, geprüft in `tests_e2e/test_kontakt.py`).
+
+Grenzen, alle im Gratistarif:
+
+- Authentication: 100 neue Konten je Stunde und IP-Adresse – die anonymen
+  Anmeldungen der Seite zählen mit.
+- Firestore: Jede Nachricht kostet einen Schreib-, einen Lese- und einen
+  Löschvorgang. Die Weiterleitung liest bei jedem Lauf, auch ohne Nachricht
+  (eine leere Abfrage zählt als ein Lesevorgang): 288 am Tag von 50.000.
+- Apps Script (Gmail-Konto): 100 Mail-Empfänger am Tag, 20.000 Abrufe am Tag,
+  90 Minuten Laufzeit für Auslöser am Tag. Im Normalfall reicht das weit.
+  Kommen an einem Tag mehr Nachrichten, bleiben die übrigen in Firestore und
+  gehen der Reihe nach an den folgenden Tagen hinaus; die letzte Mail des
+  Tages meldet den Stau („[Zmaj-Formular] Stau: …“, höchstens einmal am Tag).
+- Ohne App Check kann jemand mit vielen anonymen Anmeldungen die
+  Schreibvorgänge des Tages aufbrauchen. Dann warten die Cloud-Sicherungen
+  bis zum Zurücksetzen; verloren geht nichts (Abschnitt 13).
+
+Notbremse bei Spam: Das Fallenfeld prüft nur der Browser. Ein Skript kommt
+daran vorbei und schafft je IP-Adresse rund 100 Nachrichten in der Stunde;
+weil die Weiterleitung streng der Reihe nach arbeitet, kämen echte
+Nachrichten dann tagelang nicht an. Abhilfe: **Authentication** →
+**Anmeldemethode** → **Anonym** deaktivieren. Dann nimmt das Formular nichts
+mehr an (es meldet „hat nicht geklappt“ und nennt die E-Mail-Adresse), App
+und Mail laufen weiter. Danach in **Firestore Database** die Sammlung
+`nachrichten` löschen; echte Nachrichten, die dort noch warten, sind damit
+auch weg. Ist es vorbei, „Anonym“ wieder einschalten.
