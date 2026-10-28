@@ -196,8 +196,10 @@ def test_neu_erst_lektion_dann_nur_noch_anmeldung(seite, heute_stand, cloud_html
                               document.getElementById('anmGoogleText').textContent,
                               document.getElementById('anmDs').textContent.length > 500,
                               document.getElementById('anmAgb').textContent.length > 500,
+                              document.getElementById('anmImpKopf').textContent,
+                              document.getElementById('anmImp').textContent.includes(t('set.anbieter').split('<br>')[0]),
                               document.getElementById('btnSettings').style.display]""") \
-        == [True, _t(seite, "anm.google"), True, True, "none"]
+        == [True, _t(seite, "anm.google"), True, True, _t(seite, "set.impressum"), True, "none"]
     # Kein Weg daran vorbei.
     for weg in ("showHome()", "openLevel(0)", "showLaden()", "openStory(0)", "startLesson()",
                 "startTest()", "rundeStarten('topf')", "einstufungStarten()", "showView('pfad')"):

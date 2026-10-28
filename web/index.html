@@ -2068,6 +2068,10 @@
       <div class="note" id="anmNote" role="status"></div>
       <details class="anmrecht"><summary id="anmDsKopf"></summary><div class="inner legal" id="anmDs"></div></details>
       <details class="anmrecht"><summary id="anmAgbKopf"></summary><div class="inner legal" id="anmAgb"></div></details>
+      <!-- Seit 28.10.2026 auch das Impressum: Wer sich anmelden muss, kommt
+           nicht in die Einstellungen, und es soll unmittelbar erreichbar
+           sein. -->
+      <details class="anmrecht"><summary id="anmImpKopf"></summary><div class="inner legal" id="anmImp"></div></details>
     </div>
     <!-- Eine Maske für drei Fälle: anmelden, Konto anlegen, Passwort festlegen.
          Welche Felder sichtbar sind, entscheidet zeigeAnmeldung(). -->
@@ -2410,6 +2414,13 @@
         <button class="btn ghost" id="einwWiderruf" data-t="set.einwilligung_knopf"></button></div>
       <details><summary data-t="set.agb"></summary><div class="inner legal" data-t="set.agb_text"></div></details>
       <details><summary data-t="set.datenschutz"></summary><div class="inner legal" data-t="set.datenschutz_text"></div></details>
+      <!-- Das Impressum auch in der App (Ajdin am 28.10.2026): derselbe Text
+           wie auf zmaj-lernapp.github.io/impressum.html (set.impressum_text,
+           mit KONTAKT_FORMULAR die Fassung mit Formular, die texte() in
+           sprachen.py einsetzt), in der Sprache der App und offline lesbar
+           wie die beiden Texte darueber. Bis dahin stand es nur auf der
+           Webseite. -->
+      <details><summary data-t="set.impressum"></summary><div class="inner legal" data-t="set.impressum_text"></div></details>
     </div>
   </div>
 
@@ -3212,6 +3223,17 @@ function applyTexts(){
   document.querySelectorAll('[data-t-title]').forEach(el=>{ el.title = t(el.dataset.tTitle); });
   document.querySelectorAll('[data-t-ph]').forEach(el=>{ el.placeholder = t(el.dataset.tPh); });
 }
+/* Verweise in den Rechtstexten (28.10.2026). Mit Kontaktformular nennt das
+   Impressum zmaj-lernapp.github.io/kontakt.html als Verweis. Angetippt
+   oeffnet er im Browser des Geraets, wie der Play Store und die Kanaele -
+   ohne das verliesse die App ihre eigene Seite. Erst auf Tippen, nie von
+   allein: kein Netz zur Laufzeit (AGENTS.md, Regel 6). */
+document.addEventListener('click', e=>{
+  const a = (e.target && e.target.closest) ? e.target.closest('.legal a[href^="https://"]') : null;
+  if(!a) return;
+  e.preventDefault();
+  try{ window.open(a.href, '_blank', 'noopener'); }catch(x){}
+});
 
 let SECTIONS = [], CATEGORIES = [], SENTENCES = [], GRAMMAR = {}, STORIES = [], DICT = {};
 let SATZBAU = [];          // Sätze aus Kacheln (vokabeln.py SATZBAU), seit 13.10.2026
@@ -5016,11 +5038,83 @@ function sicherungPlausibel(s){
   p.stern = sternPruefen(s.stern);
   return p;
 }
+/* ---- Felder einer neueren Fassung (28.10.2026, Vorarbeit fuer v110) ----
+   Mit v110 kommt die zeitgesteuerte Wiederholung, und mit ihr kommen neue
+   Felder in den Lernstand. Eine Fassung, die sie nicht kennt - diese
+   hier -, darf sie nicht wegwerfen: Bis dahin fiel alles weg, was
+   standAlsObjekt() nicht nennt. Ein Handy mit v109 haette so beim
+   naechsten Abgleich die Wiederholungsdaten geloescht, die ein Tablet mit
+   v110 in die Cloud geschrieben hat, und eine Sicherungsdatei von v110
+   verloere sie beim Einlesen.
+   Jetzt legt standUebernehmen() solche Felder unveraendert in standFremd
+   ab, standAlsObjekt() schreibt sie wieder mit - in den Geraetespeicher,
+   die Sicherungsdatei und die Cloud -, und standZusammenfuehren()
+   behaelt sie (siehe dort).
+     STAND_FELDER  was diese Fassung selbst liest und schreibt, genau die
+                   Schluessel von standAlsObjekt() (tests_e2e/test_cloud.py
+                   vergleicht beides)
+     STAND_ALT     was frueher im Stand stand und mit Absicht wegfaellt:
+                   premium gehoert nicht mehr hinein (siehe
+                   vollversionLaden) und wandert auch nicht als fremdes
+                   Feld mit
+   Was die App nicht kennt, prueft sie nicht - sie traegt es nur. Damit
+   eine Datei damit nicht den Geraetespeicher sprengt, gilt fuer alle
+   fremden Felder zusammen die Grenze der Cloud (CLOUD_GROESSE_MAX, in
+   UTF-8-Bytes). Was darueber hinausgeht, faellt Feld fuer Feld weg, nie
+   alle auf einmal (Pruefbefund 28.10.2026: vorher fielen bei Ueberlauf
+   alle weg, auch die aktuellen aus der Cloud, und der naechste Abgleich
+   loeschte sie dort). "__proto__" wird nie ein Feld.
+   Fuer v110 und jede spaetere Fassung heisst das (Pruefbefund
+   28.10.2026): eigene Daten - etwa die der zeitgesteuerten Wiederholung -
+   gehoeren ausschliesslich in eigene, neue Felder auf oberster Ebene des
+   Stands, nie in topf, stern oder ein anderes Feld aus STAND_FELDER.
+   Die behandelt diese Fassung nach ihren eigenen Regeln und verliert
+   dabei, was sie nicht kennt: topfMerken() schreibt einen Eintrag bei
+   jedem Fehler neu und loescht ihn nach TOPF_RAUS richtigen Antworten,
+   topfAufraeumen() wirft Schluessel weg, die zu keiner Aufgabe fuehren,
+   sternPruefen() behaelt nur z und r. */
+const STAND_FELDER = new Set(['gewusst', 'bestanden', 'gelesen', 'tage', 'frost', 'besitz', 'leben',
+  'schutz', 'tagwerk', 'muenzen_ges', 'muenzen_aus', 'getragen', 'gefeiert', 'rekord', 'wann',
+  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern']);
+const STAND_ALT = new Set(['premium']);
+let standFremd = {};
+/* Die fremden Felder eines Stands als tiefe Kopie - sie teilen nichts mit
+   dem Stand, aus dem sie kommen. Hoechstens platz Bytes fuer alle
+   zusammen, gezaehlt mit fremdGroesse(): Feld fuer Feld in der
+   Reihenfolge des Stands, und passt eins nicht mehr, faellt nur dieses
+   weg. Ein Feld, das sich nicht als JSON schreiben laesst, ebenso. */
+const fremdGroesse = (k, text) => utf8Laenge(JSON.stringify(k)) + utf8Laenge(text) + 2;
+function standFremdAus(d, platz = CLOUD_GROESSE_MAX){
+  if(!d || typeof d !== 'object' || Array.isArray(d)) return {};
+  const aus = [];
+  let summe = 0;
+  Object.keys(d).forEach(k => {
+    if(STAND_FELDER.has(k) || STAND_ALT.has(k) || k === '__proto__' || d[k] === undefined) return;
+    let text;
+    try{ text = JSON.stringify(d[k]); }catch(e){ return; }
+    if(typeof text !== 'string') return;
+    const g = fremdGroesse(k, text);
+    if(summe + g > platz) return;
+    summe += g;
+    aus.push([k, JSON.parse(text)]);
+  });
+  return Object.fromEntries(aus);
+}
+/* So viele Bytes bringen fremde Felder zu einem Stand ohne sie hoechstens
+   mit (Schluessel, Doppelpunkt, Wert, Komma), gezaehlt wie in
+   standFremdAus(). */
+function fremdPlatz(f){
+  return Object.keys(f).reduce((s, k) => s + fremdGroesse(k, JSON.stringify(f[k])), 0);
+}
 /* Ein Stand sieht ueberall gleich aus - egal ob er aus der Profildatei des
    Servers kommt, aus dem Gerätespeicher oder aus einer Sicherungsdatei.
    Deshalb nur eine Stelle, die ihn uebernimmt. */
 function standUebernehmen(d){
   d = d || {};
+  /* Was diese Fassung nicht kennt, bleibt unveraendert (28.10.2026, siehe
+     standFremd). Vor allem anderen: wirft unten etwas, nimmt
+     standErsetzen() mit dem alten Stand auch dessen fremde Felder zurueck. */
+  standFremd = standFremdAus(d);
   /* Eine Sicherung kann jeder von Hand schreiben. Eine Zahl in gewusst
      liess altenFortschrittUmschreiben() bei jedem Start werfen, bevor der
      Einstellungsknopf erschien - siehe import_richten.py, 04.10.2026. */
@@ -5152,7 +5246,7 @@ function funkelnUmzug(){
   return true;
 }
 function standAlsObjekt(){
-  return {gewusst:[...known], bestanden:[...passed], gelesen:[...read], tage:[...days],
+  const s = {gewusst:[...known], bestanden:[...passed], gelesen:[...read], tage:[...days],
           frost:[...frost], besitz:[...besitz], leben:lives, schutz:schutz, tagwerk:tagwerk,
           muenzen_ges:muenzenGes, muenzen_aus:muenzenAus,
           getragen:getragen,
@@ -5181,6 +5275,13 @@ function standAlsObjekt(){
              Sicherungsdatei bleibt version 1: eine alte App liest das Feld
              nicht, eine neue nimmt ein fehlendes als "nichts markiert". */
           stern: stern};
+  /* Dahinter, unveraendert, was eine neuere Fassung in den Stand gelegt
+     hat (28.10.2026, siehe standFremd). Eigene Felder gehen vor -
+     standFremdAus() laesst ohnehin keins davon durch. */
+  Object.keys(standFremd).forEach(k => {
+    if(!Object.prototype.hasOwnProperty.call(s, k)) s[k] = standFremd[k];
+  });
+  return s;
 }
 /* ---- Zwei Lernstaende zusammenfuehren (19.10.2026) ----
    Fuer die Cloud-Sicherung (siehe CLOUD-SICHERUNG weiter unten): a ist der
@@ -5190,9 +5291,10 @@ function standAlsObjekt(){
    das erste gelernt hatte.
    Rein: liest a und b, aendert weder sie noch die App und gibt einen neuen
    Stand im Format von standAlsObjekt() zurueck. Idempotent (m mit m ergibt
-   m) und kommutativ (a mit b gleich b mit a) - bis auf "getragen", siehe
-   dort. Listen kommen sortiert heraus, damit beide Richtungen dasselbe
-   ergeben; in der App sind es ohnehin Mengen.
+   m) und kommutativ (a mit b gleich b mit a) - bis auf "getragen" und die
+   Felder einer neueren Fassung, siehe dort. Listen kommen sortiert
+   heraus, damit beide Richtungen dasselbe ergeben; in der App sind es
+   ohnehin Mengen.
    Jedes Feld aus standAlsObjekt() ist hier bewusst behandelt (der Test
    tests_e2e/test_cloud.py vergleicht die Schluessel):
      gewusst, bestanden,   Vereinigung. Gelernt ist gelernt, egal auf
@@ -5232,7 +5334,12 @@ function standAlsObjekt(){
                            kleinere n - lieber einmal mehr ueben als einen
                            Fehler verlieren, der nur auf einem Geraet geuebt
                            wurde. Hoechstens TOPF_MAX, es bleiben die
-                           neuesten, wie in topfMerken().
+                           neuesten, wie in topfMerken(). Weitere Angaben
+                           eines Eintrags bleiben beim Gewinner stehen; bei
+                           sonst Gleichem gewinnt b (28.10.2026). Verlassen
+                           darf sich darauf keine neuere Fassung -
+                           topfMerken() schreibt Eintraege neu und loescht
+                           sie, siehe STAND_FELDER.
      stern                 Vereinigung. Auf beiden Seiten markiert: das
                            neuere z (zuletzt markiert) und das groessere r
                            (zuletzt geuebt). Danach sternPruefen().
@@ -5249,17 +5356,38 @@ function standAlsObjekt(){
                            hat sie nicht; beide Merker gehen nur von false
                            nach true, das "oder" ist also der neuere Stand.
      getragen              eine Wahl, kein Fortschritt: das Geraet (a)
-                           gewinnt, traegt es nichts, die Cloud. Die einzige
-                           Stelle, die nicht kommutativ ist - mit Absicht,
-                           das Geraet bleibt massgeblich.
-   Was sonst im Stand steht (etwa premium aus einer alten Datei), faellt weg.
+                           gewinnt, traegt es nichts, die Cloud. Bis zum
+                           28.10.2026 die einzige Stelle, die nicht
+                           kommutativ ist - mit Absicht, das Geraet bleibt
+                           massgeblich. Seitdem auch die Felder einer
+                           neueren Fassung, siehe unten.
+   premium aus einer alten Datei faellt weg (STAND_ALT). Seit 28.10.2026
+   bleibt alles andere, was diese Fassung nicht kennt, unveraendert stehen
+   (standFremd). Diese Fassung aendert solche Felder nie, sie traegt nur
+   weiter, was sie gelesen hat; zusammengefuehrt wird nur, wenn seit dem
+   eigenen letzten Abgleich jemand anderes geschrieben hat, und dessen
+   Fassung ist dann die neuere. Darum (Pruefbefund 28.10.2026):
+     - Was b, die Cloud, hat, gilt - ganz und zuerst. So ueberschreibt ein
+       Handy mit v109 die Wiederholungsdaten eines Tablets mit v110 nicht
+       mit einer alten Kopie.
+     - Ein Feld nur in a kommt mit, wenn es auf diesem Geraet neu ist,
+       etwa aus einer Sicherungsdatei. Stand es beim letzten Abgleich
+       schon in der Cloud (cloudVorher: die Namen aus m.fremd, siehe
+       cloudAbgleich), hat die neuere Fassung es seitdem geloescht oder
+       umbenannt, und es bleibt weg - vorher kam es von hier aus wieder
+       in die Cloud. Ohne cloudVorher (erste Anmeldung, Tests) kommt
+       alles aus a mit.
+     - Die Felder aus a nur, soweit neben denen aus b Platz ist
+       (CLOUD_GROESSE_MAX). Fuer sie faellt nie eins aus b weg - vorher
+       konnte die Summe beider Seiten beim Uebernehmen alle verwerfen.
+   Nicht kommutativ, mit Absicht - wie "getragen".
    Nicht hier, sondern drumherum geprueft wird, ob etwas plausibel ist: b
    kommt von aussen wie eine Sicherungsdatei und geht vorher durch
    sicherungPlausibel(), das Ergebnis durch standUebernehmen() - siehe
    cloudUebernehmen(). sicherungPlausibel() auf das Ergebnis hiesse, die
    eigenen Muenzen und Lerntage dieses Geraets zu kappen; genau das schliesst
    der Kommentar in standUebernehmen() fuer den eigenen Stand aus. */
-function standZusammenfuehren(a, b){
+function standZusammenfuehren(a, b, cloudVorher){
   const objekt = x => (x && typeof x === 'object' && !Array.isArray(x)) ? x : null;
   a = objekt(a) || {}; b = objekt(b) || {};
   const texte = x => Array.isArray(x) ? x.filter(s => typeof s === 'string') : [];
@@ -5297,14 +5425,14 @@ function standZusammenfuehren(a, b){
     const x = objekt(ta[tag]) || {}, y = objekt(tb[tag]) || {};
     return [tag, Object.fromEntries(schluessel(x, y).map(id => [id, Math.max(zahl(x[id]), zahl(y[id]))]))];
   }));
-  const eintrag = e => { e = objekt(e); return (e && typeof e.typ === 'string') ? {typ: e.typ, n: ganzAbNull(e.n), z: Math.min(zahl(e.z), jetzt)} : null; };
+  const eintrag = e => { e = objekt(e); return (e && typeof e.typ === 'string') ? {...e, typ: e.typ, n: ganzAbNull(e.n), z: Math.min(zahl(e.z), jetzt)} : null; };
   const pa = objekt(a.topf) || {}, pb = objekt(b.topf) || {};
   const topfListe = schluessel(pa, pb).filter(k => k.length <= 200 && STERN_ART.test(k)).map(k => {
     const x = eintrag(pa[k]), y = eintrag(pb[k]);
     if(!x || !y) return [k, x || y];
     if(x.z !== y.z) return [k, x.z > y.z ? x : y];
     if(x.n !== y.n) return [k, x.n < y.n ? x : y];
-    return [k, x.typ <= y.typ ? x : y];
+    return [k, x.typ < y.typ ? x : y];
   }).filter(([, e]) => e);
   topfListe.sort((p, q) => (q[1].z - p[1].z) || textVergleich(p[0], q[0]));
   m.topf = Object.fromEntries(topfListe.slice(0, TOPF_MAX));
@@ -5337,6 +5465,12 @@ function standZusammenfuehren(a, b){
                  nein: !!(ba.nein || bb.nein), bewertet: !!(ba.bewertet || bb.bewertet)};
   const ga = typeof a.getragen === 'string' ? a.getragen : '';
   m.getragen = ga || (typeof b.getragen === 'string' ? b.getragen : '');
+  /* Felder einer neueren Fassung: zuerst alle von b, dann, was nur a hat
+     und dort neu ist, soweit Platz bleibt - siehe oben und standFremd. */
+  const fb = standFremdAus(b), weg = new Set(Array.isArray(cloudVorher) ? cloudVorher : []);
+  const nurA = Object.fromEntries(Object.entries(standFremdAus(a))
+    .filter(([k]) => !Object.prototype.hasOwnProperty.call(fb, k) && !weg.has(k)));
+  Object.assign(m, fb, standFremdAus(nurA, CLOUD_GROESSE_MAX - fremdPlatz(fb)));
   /* Eine tiefe Kopie: das Ergebnis teilt nichts mit a oder b. Sonst haengte
      standUebernehmen() etwa die einstufung des alten Stands wieder ein. */
   return JSON.parse(JSON.stringify(m));
@@ -8881,6 +9015,9 @@ const CLOUD_CLIENT = '__CLOUD_CLIENT__';
      rev       Kennung des Cloud-Stands, den dieses Geraet zuletzt
                geschrieben oder eingearbeitet hat
      fp        Fingerabdruck des zuletzt hochgeladenen Stands
+     fremd     die Namen der Felder einer neueren Fassung (standFremd),
+               die beim letzten Lesen oder Schreiben in der Cloud standen
+               - fuer standZusammenfuehren(), seit 28.10.2026
      tag       Tag des letzten Schreibens beim Verlassen, gelesen der des
                letzten Lesens, gesichert der des letzten Schreibens
                ueberhaupt (fuer "Zuletzt gesichert" in der Kontoseite) */
@@ -8890,8 +9027,17 @@ const CLOUD_MERKER = 'zmaj_cloud';
 const ABGEMELDET = 'zmaj_abgemeldet';
 /* Auch nach Jahren wird ein Stand nicht so gross (alle Woerter, Topf und
    Sterne voll: rund 150 000 Zeichen). Dieselbe Grenze steht in
-   firestore.rules. */
-const CLOUD_GROESSE_MAX = 400000;
+   firestore.rules.
+   28.10.2026: 900 000 statt 400 000. Luft fuer die zeitgesteuerte
+   Wiederholung ab v110, die je Wort Daten mitbringt, und fuer Felder
+   einer neueren Fassung, die diese hier nur weitertraegt (standFremd).
+   Gemessen wird der Text in UTF-8-Bytes (utf8Laenge), nicht in Zeichen:
+   Firestore erlaubt 1 MiB (1 048 576 Bytes) je Dokument, und ein 'č' ist
+   dort zwei Bytes lang. So bleibt das Dokument mit rev und Feldnamen
+   sicher darunter; die Regel zaehlt Zeichen und laesst es damit erst
+   recht durch. */
+const CLOUD_GROESSE_MAX = 900000;
+const utf8Laenge = s => { try{ return new TextEncoder().encode(s).length; }catch(e){ return s.length * 3; } };
 /* Firebase verlangt mindestens 6 Zeichen. Ajdin hatte die Frage offen
    gelassen; gebaut nach dem Vorschlag im Plan (Frage 3): nur die Laenge,
    mindestens 8 - einfacher als die 10 Zeichen mit vier Zeichenarten der
@@ -8953,12 +9099,20 @@ function cloudStandAus(text){
   try{ return typeof text === 'string' ? sicherungStandAus(JSON.parse(text)) : null; }
   catch(e){ return null; }
 }
+/* Die Namen der Felder einer neueren Fassung in einem Stand, fuer m.fremd.
+   Gekappt, damit ein gefaelschtes Dokument den Merker nicht aufblaeht;
+   ein Name, der fehlt, laesst hoechstens ein geloeschtes Feld wieder
+   zurueckkommen (siehe standZusammenfuehren). */
+const fremdNamen = s => (s && typeof s === 'object' && !Array.isArray(s))
+  ? Object.keys(s).filter(k => !STAND_FELDER.has(k) && !STAND_ALT.has(k) && k !== '__proto__' && k.length <= 200).slice(0, 100)
+  : [];
 /* Den Stand aus der Cloud einarbeiten. Er kommt von aussen wie eine
    Sicherungsdatei, also zuerst durch sicherungPlausibel(); das Ergebnis
    geht in standErsetzen() durch standUebernehmen(). Danach dasselbe wie
-   nach dem Einlesen einer Datei (sicherungEinlesen). */
-function cloudUebernehmen(fremd){
-  if(!standErsetzen(() => standZusammenfuehren(standAlsObjekt(), sicherungPlausibel(fremd)))) return false;
+   nach dem Einlesen einer Datei (sicherungEinlesen). cloudVorher: siehe
+   standZusammenfuehren(). */
+function cloudUebernehmen(fremd, cloudVorher){
+  if(!standErsetzen(() => standZusammenfuehren(standAlsObjekt(), sicherungPlausibel(fremd), cloudVorher))) return false;
   seitNachEinlesen();
   geschenkPruefen();
   syncLives(); pruefeSchutz();
@@ -8993,17 +9147,33 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
          ersetzt ihn unten der eigene Stand. Wirft das Einarbeiten, wird
          lieber nicht geschrieben: dort koennte ein anderes Geraet stehen. */
       const s = cloudStandAus(dok.text);
-      if(s && !cloudUebernehmen(s)) return 'fehler';
+      if(s && !cloudUebernehmen(s, m.fremd)) return 'fehler';
       m.rev = dok.rev;
+      m.fremd = fremdNamen(s);
     }
+    if(!dok) m.fremd = [];
     if(!schreiben){ cloudMerkerSetzen(m, true); return fremd ? 'zusammengefuehrt' : 'gelesen'; }
     const stand = standAlsObjekt(), fp = cloudFingerabdruck(stand);
     if(!erstes && dok && !fremd && fp === m.fp){ cloudMerkerSetzen(m, true); return 'unveraendert'; }
-    const text = JSON.stringify(sicherungObjekt(stand));
-    if(text.length > CLOUD_GROESSE_MAX){ cloudMerkerSetzen(m, true); return 'zu gross'; }
+    /* Passt der Stand nicht in die Cloud, bleiben dort Felder einer
+       neueren Fassung weg, Feld fuer Feld, bis er passt (Pruefbefund
+       28.10.2026). Auf dem Geraet bleiben sie, und die neuere Fassung hat
+       ihre eigene Kopie. Vorher scheiterte dann jedes Hochladen still mit
+       'zu gross': der Lernfortschritt dieses Geraets kam nie mehr in die
+       Cloud, und Abmelden ging nicht mehr. 'zu gross' heisst jetzt, schon
+       der eigene Stand ist groesser als CLOUD_GROESSE_MAX - mit echtem
+       Lernen unerreichbar, siehe dort. */
+    let oben = stand, text = JSON.stringify(sicherungObjekt(stand));
+    if(utf8Laenge(text) > CLOUD_GROESSE_MAX){
+      const eigen = Object.fromEntries(Object.entries(stand).filter(([k]) => STAND_FELDER.has(k)));
+      const platz = CLOUD_GROESSE_MAX - utf8Laenge(JSON.stringify(sicherungObjekt(eigen)));
+      oben = Object.assign(eigen, standFremdAus(stand, platz));
+      text = JSON.stringify(sicherungObjekt(oben));
+    }
+    if(utf8Laenge(text) > CLOUD_GROESSE_MAX){ cloudMerkerSetzen(m, true); return 'zu gross'; }
     const rev = cloudRev();
     await adapter.speichern(m, {text, rev});
-    m.rev = rev; m.fp = fp; m.gesichert = heute;
+    m.rev = rev; m.fp = fp; m.gesichert = heute; m.fremd = fremdNamen(oben);
     if(!erstes && !zuletzt) m.tag = heute;
     cloudMerkerSetzen(m, true);
     return 'gespeichert';
@@ -9484,6 +9654,8 @@ function anmeldungZeigen(anlass, modus = 'wahl', daten = {}){
     $('anmDs').innerHTML = t('set.datenschutz_text', {anbieter: t('set.anbieter')});
     $('anmAgbKopf').textContent = t('set.agb');
     $('anmAgb').innerHTML = t('set.agb_text', {anbieter: t('set.anbieter')});
+    $('anmImpKopf').textContent = t('set.impressum');
+    $('anmImp').innerHTML = t('set.impressum_text', {anbieter: t('set.anbieter')});
     $('kontoWechsel').hidden = true; $('kontoVergessen').hidden = true;
     return;
   }
