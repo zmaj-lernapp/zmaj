@@ -2332,7 +2332,7 @@
     </div>
     <div class="section">
       <h2 data-t="set.sicherung"></h2>
-      <div class="sd" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.sicherung_sub"></div>
+      <div class="sd" id="setSichSub" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.sicherung_sub"></div>
       <div class="row" style="margin-bottom:6px">
         <button class="btn know" id="sichSpeichern" data-t="set.sicherung_speichern"></button>
         <button class="btn ghost" id="sichLaden" data-t="set.sicherung_einlesen"></button>
@@ -8390,6 +8390,12 @@ function showSettings(){
   showView('settingsView'); $('kopfLeiste').style.display='none';
   setzeZurueck(t('btn.zurueck'), showHome);
   $('tag').textContent=t('btn.einstellungen');
+  /* 28.10.2026 (Pruefbericht): Angemeldet liegt eine Kopie im Konto -
+     "nur auf diesem Geraet" stimmt dann nicht mehr. Ohne Konto (und ohne
+     Firebase-Projekt) bleibt der Satz von v108. */
+  const sichSub = $('setSichSub'), mitKonto = cloudModus() && !!cloudMerker();
+  sichSub.dataset.t = mitKonto ? 'set.sicherung_sub_konto' : 'set.sicherung_sub';
+  sichSub.textContent = mitKonto ? t('set.sicherung_sub_konto') : t('set.sicherung_sub');
   // Werbung: Die Zeile erscheint erst, wenn wirklich geworben wird oder
   // schon einmal gefragt wurde. Vorher gäbe es nichts zu ändern.
   // Mit AdMob verwaltet Google die Antwort, und Google sagt auch, ob ein
@@ -9297,19 +9303,25 @@ function cloudFirestore(projekt, schluessel){
     /* 19.10.2026: Zuerst die Sicherung - scheitert das, wirft es, und es
        ist nichts passiert. Danach das Konto. Firebase loescht es nur nach
        einer frischen Anmeldung (CREDENTIAL_TOO_OLD_LOGIN_AGAIN); der Ausweis
-       aus dem Erneuerungsschluessel zaehlt nicht. Mit Google fragt die App
-       dann noch einmal nach dem Konto, nur dasselbe (uid) wird geloescht.
-       28.10.2026: Bei E-Mail-Konten meldet die App sich mit dem Passwort
-       ZUERST frisch an - bei falschem Passwort ist dann noch nichts
-       geloescht. Anonym gibt es keine neue Anmeldung - dort bleibt eine
-       leere Kennung. Gibt zurueck, ob auch das Konto weg ist; die
-       Sicherung ist es dann in jedem Fall. */
+       aus dem Erneuerungsschluessel zaehlt nicht.
+       28.10.2026: Deshalb meldet die App sich ZUERST frisch an - bei
+       E-Mail-Konten mit dem Passwort, bei Google ueber Googles
+       Kontoauswahl, und nur dasselbe Konto (uid) gilt. Falsches Passwort,
+       abgebrochene Auswahl, ein anderes Google-Konto oder kein Netz: dann
+       ist noch nichts geloescht. Bis zum Pruefbericht vom 28.10. fragte
+       Google erst NACH dem Loeschen der Sicherung - wer dort abbrach, hatte
+       keinen Lernstand mehr, aber noch ein Konto. Anonym gibt es keine neue
+       Anmeldung - dort bleibt eine leere Kennung. Gibt zurueck, ob auch das
+       Konto weg ist; die Sicherung ist es dann in jedem Fall. */
     async loeschen(m, optionen){
       let id;
-      if(m.art === 'passwort'){
-        const d = await mitPasswort(m.email, (optionen || {}).passwort);
+      if(m.art === 'passwort' || m.art === 'google'){
+        const d = m.art === 'google' ? await mitGoogle()
+          : await mitPasswort(m.email, (optionen || {}).passwort);
         if(!d || d.localId !== m.uid || !d.idToken){
-          const f = new Error('cloud anderes konto'); f.grund = 'INVALID_LOGIN_CREDENTIALS'; throw f;
+          const f = new Error('cloud anderes konto');
+          f.grund = m.art === 'google' ? 'GOOGLE_ANDERES_KONTO' : 'INVALID_LOGIN_CREDENTIALS';
+          throw f;
         }
         id = d.idToken;
       }else{
@@ -9317,13 +9329,7 @@ function cloudFirestore(projekt, schluessel){
       }
       await senden(dokument(m.uid), {method: 'DELETE', headers: {Authorization: 'Bearer ' + id}}, true);
       ausweis = null;
-      let weg = await kontoWeg(id);
-      if(weg === 'alt' && m.art === 'google'){
-        let d = null;
-        try{ d = await mitGoogle(); }catch(e){}
-        weg = (d && d.localId === m.uid && d.idToken) ? await kontoWeg(d.idToken) : false;
-      }
-      return weg === true;
+      return await kontoWeg(id) === true;
     },
   };
 }
@@ -9362,7 +9368,9 @@ function cloudSpeicherAdapter(ablage){
    weitergelernt, die Serie haengt nur am Geraet. netzWeg: die Anmeldung
    ist eben am Netz gescheitert, obwohl navigator.onLine Netz meldete, und
    der Lernende hat "Erst einmal weiterlernen" gewaehlt - bis zum naechsten
-   'online' oder Start. */
+   'online' oder Start. Seit dem Pruefbericht vom 28.10. auch, wenn es an
+   Firebase oder Google lag (anmFehlerZeigen) - dann bis zum naechsten
+   Start. */
 let netzWeg = false;
 let anmeldungLaeuft = false;
 let anmAnlass = 'sichern', anmModus = 'wahl';
@@ -9503,11 +9511,20 @@ function kontoFirebaseFehler(g){
   if(/^(GOOGLE_FEHLER|INVALID_IDP_RESPONSE)/.test(g)) return t('konto.fehler_google');
   return t('konto.fehler_allgemein');
 }
+/* 28.10.2026 (Pruefbericht): "Erst einmal weiterlernen" nicht nur ohne
+   Netz, sondern bei jedem Fehler, gegen den der Lernende nichts tun kann:
+   Firebase antwortet mit 5xx oder 429, ein Anmeldeweg ist in der Konsole
+   aus (OPERATION_NOT_ALLOWED), der Schluessel ist falsch beschraenkt, oder
+   Googles Auswahl scheitert (GOOGLE_FEHLER). Sonst saesse am Tag nach dem
+   Update jeder mit Lernstand fest. Keinen Ausweg gibt es nur bei diesen
+   Gruenden: Eingabefehler, abgebrochene Auswahl, kein Google-Konto auf dem
+   Handy (dann E-Mail) und ein gesperrtes Konto. */
+const ANM_OHNE_AUSWEG = /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD|EMAIL_EXISTS|INVALID_EMAIL|MISSING_EMAIL|WEAK_PASSWORD|USER_DISABLED|GOOGLE_ABGEBROCHEN|GOOGLE_KEIN_KONTO)/;
 function anmFehlerZeigen(grund, note){
   const text = kontoFirebaseFehler(grund);
   note.textContent = text;
   note.className = text ? 'note feedback no' : 'note';
-  if(grund === 'netz') $('anmOffline').hidden = false;
+  if(!ANM_OHNE_AUSWEG.test(String(grund || ''))) $('anmOffline').hidden = false;
 }
 /* Angemeldet: hinein. Nach dem Anlegen eines Kontos sagt eine Karte, dass
    die Bestaetigungsmail unterwegs ist - sonst nur eine kurze Zeile oben. */
@@ -9676,9 +9693,13 @@ async function cloudKontoLoeschen(passwort){
   try{ r = await cloudLoeschen(cloudAdapter(), {passwort}); }
   finally{ anmeldungLaeuft = false; }
   if(r === false){
-    note.textContent = /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD)/.test(cloudFehlerGrund)
-      ? t('konto.fehler_mail_pw') : t(cloudFehlerGrund === 'netz' ? 'konto.fehler_netz' : 'konto.fehler_allgemein');
-    note.className = 'note feedback no';
+    /* 28.10.2026: Googles Auswahl abgebrochen - nichts ist geloescht, und
+       zu sagen gibt es auch nichts (wie beim Anmelden). */
+    const g = cloudFehlerGrund;
+    note.textContent = g === 'GOOGLE_ABGEBROCHEN' ? ''
+      : /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD)/.test(g)
+      ? t('konto.fehler_mail_pw') : t(g === 'netz' ? 'konto.fehler_netz' : 'konto.fehler_allgemein');
+    note.className = note.textContent ? 'note feedback no' : 'note';
     return;
   }
   note.textContent = '';
@@ -13544,8 +13565,11 @@ async function werbungVorbereiten(){
    hat. Punkt 9 versprach den Hinweis seit September, gebaut am 12.10.2026,
    nachgebessert nach dem Review am selben Tag. */
 /* 28.10.2026 (v109): Das Konto ist Pflicht - Punkte 3, 5 und 8 sind neu
-   (Frage 6 im Plan, nach dem Vorschlag gebaut). */
-const AGB_WESENTLICH = '2026-10-28';
+   (Frage 6 im Plan, nach dem Vorschlag gebaut). Der Hinweis darauf kommt
+   nur mit Anmeldung (CLOUD_AN). Ohne Firebase-Projekt bleibt es beim Stand
+   von v108 - sonst hiesse es dort "Bedingungen geaendert" fuer ein Konto,
+   das es gar nicht gibt (Pruefbericht vom 28.10.). */
+const AGB_WESENTLICH = CLOUD_AN ? '2026-10-28' : '2026-09-19';
 let agbHinweisFertig = false, agbHinweisOffen = false;
 function agbRuhig(){
   return updWerbungDurch && sichtbar('pfad') && !updLerntGerade() && !frageSchliessen &&

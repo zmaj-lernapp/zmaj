@@ -45,7 +45,9 @@ class Attrappe:
     28.10.2026: konten (E-Mail -> Passwort, uid) fuer die Anmeldung mit
     E-Mail, mails fuer sendOobCode, token_fehler fuer securetoken
     ("TOKEN_EXPIRED" oder eine Zahl wie 503), abbruch fuer ein Netz, das
-    nicht antwortet."""
+    nicht antwortet. anmelde_fehler laesst das Anmelden und Anlegen
+    scheitern, wie token_fehler (Pruefbericht vom 28.10.: der Ausweg
+    "Erst einmal weiterlernen" auch bei Fehlern von Firebase)."""
 
     def __init__(self):
         self.doks = {}
@@ -62,6 +64,7 @@ class Attrappe:
         self.konten = {}
         self.mails = []
         self.token_fehler = None
+        self.anmelde_fehler = None
         self.abbruch = False
         self.n = 0
 
@@ -116,6 +119,10 @@ class Attrappe:
         daten = {}
         if teile.netloc == "identitytoolkit.googleapis.com":
             daten = json.loads(request.post_data or "{}")
+        if self.anmelde_fehler and teile.path in (
+                "/v1/accounts:signUp", "/v1/accounts:signInWithPassword", "/v1/accounts:signInWithIdp"):
+            f = self.anmelde_fehler
+            return fehler("UNAVAILABLE", f) if isinstance(f, int) else fehler(f)
         if teile.path == "/v1/accounts:signUp":
             if "email" not in daten:
                 return antwort(200, {"localId": UID, "idToken": "id-1", "refreshToken": "r-1", "expiresIn": "3600"})

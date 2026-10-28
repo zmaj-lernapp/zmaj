@@ -152,6 +152,12 @@ def test_ohne_projekt_alles_wie_heute(seite, heute_stand):
     assert z == {"lHome": True, "lMore": True, "weiter": False, "tage": 1, "faellig": False, "modus": False}, z
     seite.js("() => { showHome(); einstufungWahl(); }")
     assert seite.js("() => [sichtbar('pfad'), !!document.getElementById('eKonto')]") == [True, False]
+    # Pruefbericht 28.10.2026: kein "Bedingungen geaendert" fuer ein Konto,
+    # das es nicht gibt, und die Sicherung sagt weiter "nur auf diesem Geraet".
+    seite.js("() => { showSettings(); }")
+    assert seite.js("() => [AGB_WESENTLICH, document.getElementById('setSichSub').textContent]") \
+        == ["2026-09-19", _t(seite, "set.sicherung_sub")]
+    seite.js("() => { showHome(); }")
     seite.neu_laden()
     assert seite.js("() => sichtbar('pfad') && !sichtbar('profileView')")
     assert _aufrufe(seite) == []
@@ -332,6 +338,10 @@ def test_google(seite, heute_stand, cloud_html):
     assert z["sicht"] == ["pfad"] and z["merker"]["art"] == "google" and z["merker"]["uid"] == UID
     assert wege(attrappe) == [("POST", KONTO + "signInWithIdp"), ("GET", dok_pfad()), ("PATCH", dok_pfad())]
     assert attrappe.mails == []                     # keine Bestaetigungsmail bei Google
+    # Angemeldet liegt eine Kopie im Konto - das sagt jetzt auch die Sicherung.
+    seite.js("() => { showSettings(); }")
+    assert seite.js("() => [AGB_WESENTLICH, document.getElementById('setSichSub').textContent]") \
+        == ["2026-10-28", _t(seite, "set.sicherung_sub_konto")]
     assert seite.fehler == []
 
 
@@ -449,6 +459,43 @@ def test_netzfehler_beim_anmelden_erst_einmal_weiterlernen(seite, heute_stand, c
     assert seite.fehler == []
 
 
+def test_firebase_oder_google_scheitert_auch_erst_einmal_weiterlernen(seite, heute_stand, cloud_html):
+    """Pruefbericht 28.10.2026: Den Ausweg gibt es nicht nur ohne Netz,
+    sondern auch, wenn Firebase oder Google scheitern - sonst saesse am Tag
+    nach dem Update jeder mit Lernstand fest. Bei einem falschen Passwort
+    und einer abgebrochenen Google-Auswahl nicht."""
+    attrappe = Attrappe()
+    attrappe.konto_anlegen("ich@probe.example", "richtig-123")
+    _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
+    ausweg = "() => !document.getElementById('anmOffline').hidden"
+    _mail_anmelden(seite, "ich@probe.example", "falsch-123")
+    assert seite.js(ausweg) is False
+    for fehler in (503, 429, "OPERATION_NOT_ALLOWED"):
+        seite.js("() => anmeldungZeigen(anmAnlass, 'mail_an')")
+        assert seite.js(ausweg) is False
+        attrappe.anmelde_fehler = fehler
+        _mail_anmelden(seite, "ich@probe.example", "richtig-123")
+        assert seite.js("() => document.getElementById('kontoNote').textContent") \
+            == _t(seite, "konto.fehler_allgemein"), fehler
+        assert seite.js(ausweg) is True, fehler
+    attrappe.anmelde_fehler = None
+    for fehler, erwartet in (("abgebrochen", False), ("fehler", True)):
+        seite.js("() => anmeldungZeigen(anmAnlass)")
+        seite.js("(f) => sessionStorage.setItem('probe_google_fehler', f)", fehler)
+        seite.page.click("#anmGoogle")
+        _fertig(seite)
+        assert seite.js(ausweg) is erwartet, fehler
+    assert seite.js("() => document.getElementById('anmNote').textContent") == _t(seite, "konto.fehler_google")
+    seite.page.click("#anmOffline")
+    assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
+    # Beim naechsten Start ist die Anmeldung wieder da.
+    seite.js("() => sessionStorage.removeItem('probe_google_fehler')")
+    _neu_laden(seite)
+    assert seite.js(ZUSTAND)["sicht"] == ["profileView"]
+    assert seite.js(ZUSTAND)["merker"] is None
+    assert seite.fehler == []
+
+
 def test_anmeldung_von_aussen_ungueltig(seite, heute_stand, cloud_html):
     attrappe = Attrappe()
     uid = attrappe.konto_anlegen("ich@probe.example", "geheim-123")
@@ -554,6 +601,38 @@ def test_konto_loeschen_mit_passwort(seite, heute_stand, cloud_html):
     assert z["merker"] is None and z["woerter"] == 0
     assert seite.js("() => document.getElementById('anmNote').textContent") == _t(seite, "set.konto_weg_fertig")
     assert "abmelden" in _aufrufe(seite)
+    assert seite.fehler == []
+
+
+def test_konto_loeschen_mit_google_fragt_zuerst(seite, heute_stand, cloud_html):
+    """Pruefbericht 28.10.2026: Google fragt vor dem Loeschen. Wer die
+    Auswahl abbricht, behaelt Konto, Sicherung und Lernstand."""
+    attrappe = _starten(seite, cloud_html, stand=_gelernt(heute_stand))
+    seite.page.click("#anmGoogle")
+    _fertig(seite)
+    assert seite.js(ZUSTAND)["merker"]["art"] == "google"
+    seite.js("() => showKonto()")
+    seite.js("() => sessionStorage.setItem('probe_google_fehler', 'abgebrochen')")
+    attrappe.anfragen.clear()
+    seite.page.click("#setKontoWeg")
+    seite.page.click("#frJa")
+    _warte(seite, lambda: len(_aufrufe(seite, "googleAusweis")) == 2)
+    _fertig(seite)
+    z = seite.js(ZUSTAND)
+    assert z["merker"]["uid"] == UID and z["woerter"] == 1 and "profileView" not in z["sicht"]
+    assert seite.js("() => document.getElementById('wegNote').textContent") == ""
+    assert wege(attrappe) == [] and UID in attrappe.doks and not attrappe.konto_weg
+    # Mit Auswahl: frisch angemeldet, danach Sicherung und Konto weg.
+    seite.js("() => sessionStorage.removeItem('probe_google_fehler')")
+    seite.page.click("#setKontoWeg")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    assert wege(attrappe) == [("POST", KONTO + "signInWithIdp"), ("DELETE", dok_pfad()),
+                              ("POST", KONTO + "delete")]
+    assert UID not in attrappe.doks and attrappe.konto_weg
+    z = seite.js(ZUSTAND)
+    assert z["merker"] is None and z["woerter"] == 0
+    assert seite.js("() => document.getElementById('anmNote').textContent") == _t(seite, "set.konto_weg_fertig")
     assert seite.fehler == []
 
 
