@@ -119,6 +119,16 @@ precedence = "override"
 SPDX-FileCopyrightText = "2015 Bodymovin"
 SPDX-License-Identifier = "MIT"
 
+# The Google "G" on the "Sign in with Google" button (v109, 28 Oct 2026).
+# A trademark of Google LLC, used unchanged under Google's Sign in with
+# Google branding guidelines - not under this project's licenses. Listed
+# after web/symbole/** so that this entry wins.
+[[annotations]]
+path = "web/symbole/google-g.svg"
+precedence = "override"
+SPDX-FileCopyrightText = "Google LLC"
+SPDX-License-Identifier = "LicenseRef-Google-Brand"
+
 # axe-core 4.13.0, only for the browser accessibility test in tests_e2e/.
 # Never shipped in web/. The bundle contains MIT-licensed helpers listed in
 # axe-core-LICENSE-3RD-PARTY.txt.

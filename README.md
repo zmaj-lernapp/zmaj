@@ -21,8 +21,9 @@
 **An offline app for learning Bosnian, and the open Bosnian course behind it.**
 65 levels from the first *Merhaba* to an employment contract, 1,740 words with
 Bosnian audio, 16 grammar lessons, 12 graded reading stories, an interface in
-eight languages. No account and no server: learning progress never leaves the
-phone. All of the content is free to reuse as a dataset.
+eight languages. Progress lives on the phone; since v109 the Android app has an
+account (Google or email, after the first lesson) that backs it up. All of the
+content is free to reuse as a dataset.
 
 <p align="center">
   <img src="docs/assets/screenshots-en.png" width="100%" alt="Five screens of the app in English, dark theme: the home screen with a 47-day streak, daily goals and the dragon mascot wearing reading glasses and a Bosnia scarf; the learning path with passed and locked levels; a new word card 'zatvoreno – closed' with a Listen button; a multiple-choice question 'money' with four Bosnian answers; a reading story 'Na pijaci' with the tapped word 'povrća' translated as 'vegetables (gen.)'. The dragon is an illustration created with Google Gemini, edited.">
@@ -111,8 +112,10 @@ Sprachsynthese zu trainieren. Mehr in data/DATASHEET.md. -->
 - **Audio for everything**, shipped with the app, so it works on devices with
   no Bosnian voice and without internet.
 - **Eight interface languages**; switching keeps your progress.
-- **Private by design**: no account, no analytics, no remote fonts or scripts.
-  Progress is stored on the device and can be exported to a file.
+- **Private by design**: no analytics, no remote fonts or scripts. Progress is
+  stored on the device and can be exported to a file. Since v109 the Android
+  app has a mandatory account that backs progress up at most once a day to
+  Firebase (Cloud Firestore in Frankfurt); the web demo has no account.
 - **Funding, openly**: the Google Play build shows ads via Google AdMob behind
   Google's consent dialog, and an optional subscription removes them. Every
   exercise is free; nothing in the course is paywalled. What is sent to whom
@@ -236,7 +239,8 @@ Please cite as described in [CITATION.cff](CITATION.cff), DOI
 
 **Zmaj** ist eine Offline-App zum Bosnischlernen: 65 Level, 1740 Vokabeln mit
 bosnischer Tonspur, 16 Grammatikeinheiten, 12 Lesegeschichten, Oberfläche in
-acht Sprachen. Kein Konto, kein Server, der Lernstand bleibt auf dem Gerät.
+acht Sprachen. Der Lernstand liegt auf dem Gerät; die Android-App sichert ihn
+seit v109 in einem Konto, die Browser-Demo hat keins.
 Der gesamte Lerninhalt steht unter CC BY-SA 4.0 als Datensatz in
 [`data/`](data/), der Code unter AGPL-3.0.
 

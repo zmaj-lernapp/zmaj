@@ -151,7 +151,9 @@ def test_main_reicht_pflicht_durch(monkeypatch):
     """--pflicht kommt bei versionsnummer_hochzaehlen an, ein normaler Bau nicht."""
     import app_bauen
     aufrufe = []
-    for name in ("pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "cloud_einsetzen",
+    # anmeldung_pruefen: --aab braucht seit v109 cloud_zugang.json, die es
+    # hier nicht gibt - eigene Tests in test_cloud.py. 28.10.2026
+    for name in ("anmeldung_pruefen", "pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "cloud_einsetzen",
                  "ton_verkleinern", "capacitor",
                  "plugins_flicken", "freigabe_aab", "debug_apk"):
         monkeypatch.setattr(app_bauen, name, lambda *args, n=name, **kwargs: aufrufe.append(n))

@@ -11,6 +11,14 @@ Seiten im Ordner `github-seite`:
     datenschutz.html          Datenschutzerklärung, acht Sprachen
     nutzungsbedingungen.html  Nutzungsbedingungen, acht Sprachen
     app-ads.txt               eine Zeile für AdMob
+    konto-loeschen.html       Konto und Daten löschen (Pflicht von Google
+                              Play, seit v109 mit dem Weg in der App und
+                              per Mail)
+    .nojekyll                 damit GitHub Pages .well-known ausliefert
+    .well-known/assetlinks.json
+                              verbindet die Seite mit der App (Restore-
+                              Schlüssel der Anmeldung, seit v109). Nur, wenn
+                              zmaj-android/fingerabdruecke.json da ist
     README.md                 Startseite des Repositories, aus seite_readme.md
     favicon.ico, icon-256.png Symbol im Browser-Tab, Kopie von web/icon.ico
                               und web/icon-256.png (der Drache, seit 15.10.2026)
@@ -25,14 +33,17 @@ Wie die Seiten online kommen, steht in github-seite/LIESMICH.txt.
 """
 
 import io
+import json
 import os
+import re
 import shutil
 import sys
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
 ZIEL = os.path.join(ORDNER, "github-seite")
 sys.path.insert(0, ORDNER)
-import sprachen
+import huelle  # noqa: E402
+import sprachen  # noqa: E402
 
 # Nur diese beiden Seiten braucht der Store. Jede bekommt ihre eigene
 # Adresse, damit man im Play-Konto genau darauf zeigen kann.
@@ -239,30 +250,41 @@ START = {
            "Politique de confidentialité", "Conditions d'utilisation", "Contact"),
 }
 
-# Google Play fragt im Data-Safety-Formular, wie Nutzer ihre Daten wieder
-# loswerden. Seit dem 16.09.2026 gibt es keine Konten mehr – die Antwort ist
-# also einfach, muss aber öffentlich und ohne Anmeldung lesbar dastehen.
+# Google Play verlangt fuer jede App, in der man ein Konto anlegen kann,
+# einen Weg zum Loeschen in der App UND eine oeffentliche Seite, die ohne
+# Anmeldung lesbar ist. Bis v108 hiess die Antwort "Zmaj hat kein Konto".
+# Seit v109 (28.10.2026) ist das Konto Pflicht: in der App sofort, ohne App
+# per Mail an die Adresse aus ANBIETER, geloescht von Hand in der
+# Firebase-Konsole innerhalb von 30 Tagen (Frage 5 im Plan, nach dem
+# Vorschlag gebaut). Die Abschnitte zu Androids Sicherung, zur
+# Sicherungsdatei und zu Mails an uns sind dieselben wie vorher.
+# Online erst zusammen mit v109 - fuer v108 stimmt die alte Fassung.
 LOESCHEN = {
     "de": {
-        "titel": "Daten löschen",
+        "titel": "Konto und Daten löschen",
         "text": """
-<p><b>Zmaj hat kein Konto</b><br>
-Es gibt keine Anmeldung, kein Passwort und keine E-Mail-Adresse. Dein
-Lernfortschritt liegt auf deinem Gerät; die App lädt ihn nirgendwo hoch –
-auch nicht zu uns.</p>
+<p><b>In der App</b><br>
+Öffne Zmaj, tippe oben auf dein Profil und dann auf <i>Konto löschen</i>.
+Das löscht dein Konto und deinen Lernstand sofort – in der Cloud und auf
+diesem Handy.</p>
 
-<p><b>So löschst du alles</b><br>
-Du brauchst uns dafür nicht zu fragen und nicht zu erreichen:
-lösche die App, oder leere in den Einstellungen deines Geräts ihren
-Speicher (<i>Einstellungen → Apps → Zmaj → Speicher → Daten löschen</i>).
-Damit ist der Fortschritt weg – bei uns ebenfalls, weil er dort nie war.
-Das wirkt sofort.</p>
+<p><b>Ohne die App</b><br>
+Schreib von der E-Mail-Adresse deines Kontos an <a href="mailto:{mail}">{mail}</a>, Betreff
+„Konto löschen“. Hast du dich mit Google angemeldet, nimm die Adresse
+dieses Google-Kontos. Wir löschen dein Konto und deinen Lernstand
+innerhalb von 30 Tagen und bestätigen es dir per E-Mail.</p>
 
 <p><b>Was gelöscht wird</b><br>
-Gelernte Wörter, bestandene Levels, gelesene Geschichten, Lerntage,
-Lernzeit, Tagesaufgaben, Münzen, gekaufte Gegenstände, Leben,
-Serienschutz, deine Einstellungen und die zufällige Kennung, die beim
-ersten Start entsteht.</p>
+Dein Konto (E-Mail-Adresse und Anmeldedaten; bei der Anmeldung mit Google
+auch der Name und die Adresse des Profilbilds, die Google dabei übergibt)
+und die Kopie deines Lernstands in der Cloud: gelernte Wörter, bestandene
+Levels, gelesene Geschichten, Lerntage, Lernzeit, Tagesaufgaben, Münzen,
+gekaufte Gegenstände, Leben und Serienschutz. Wir behalten nichts davon.</p>
+
+<p><b>Auf deinem Handy</b><br>
+Löschst du in der App, ist der Lernstand dort ebenfalls weg. Sonst
+löschst du die App oder leerst ihren Speicher (<i>Einstellungen → Apps →
+Zmaj → Speicher → Daten löschen</i>).</p>
 
 <p><b>Androids eigene Sicherung</b><br>
 Hast du sie in deinem Google-Konto eingeschaltet, liegt dort eine Kopie
@@ -281,27 +303,36 @@ Absenderadresse. Schreib an <a href="mailto:{mail}">{mail}</a>, und wir
 löschen sie – innerhalb von 30 Tagen.</p>
 
 <p><b>Die Vollversion</b><br>
-Sie hängt an deinem Google-Konto, nicht an uns. Kündigen und löschen
-lassen kannst du sie nur dort.</p>
+Sie hängt an deinem Google-Konto bei Google Play, nicht an deinem
+Zmaj-Konto. Wer das Konto löscht, kündigt damit kein Abo – das kündigst du
+in Google Play.</p>
 """,
     },
     "en": {
-        "titel": "Delete your data",
+        "titel": "Delete your account and data",
         "text": """
-<p><b>Zmaj has no account</b><br>
-There is no sign-in, no password and no email address. Your progress is
-kept on your device; the app never uploads it anywhere – not to us either.</p>
+<p><b>In the app</b><br>
+Open Zmaj, tap your profile at the top and then <i>Delete account</i>.
+This deletes your account and your progress immediately – in the cloud and
+on this phone.</p>
 
-<p><b>How to delete everything</b><br>
-You do not need to ask us or get hold of us: delete the app, or clear its
-storage in your device settings (<i>Settings → Apps → Zmaj → Storage →
-Clear data</i>). Your progress is then gone – with us as well, because it
-was never there. This takes effect immediately.</p>
+<p><b>Without the app</b><br>
+Write from your account’s email address to <a href="mailto:{mail}">{mail}</a> with the subject
+“Delete account”. If you signed in with Google, use the address of that
+Google account. We delete your account and your progress within 30 days
+and confirm it by email.</p>
 
 <p><b>What is deleted</b><br>
-Words learned, levels passed, stories read, learning days, learning time,
-daily tasks, coins, items bought, hearts, streak freezes, your settings
-and the random identifier created the first time you start the app.</p>
+Your account (email address and sign-in data; with Google sign-in also the
+name and the profile picture address that Google passes on) and the copy of
+your progress in the cloud: words learned, levels passed, stories read,
+learning days, learning time, daily tasks, coins, items bought, hearts and
+streak freezes. We keep none of it.</p>
+
+<p><b>On your phone</b><br>
+If you delete in the app, your progress on the phone is gone as well.
+Otherwise delete the app or clear its storage (<i>Settings → Apps → Zmaj →
+Storage → Clear data</i>).</p>
 
 <p><b>Android's own backup</b><br>
 If you have turned it on in your Google account, a copy of the app's
@@ -319,29 +350,35 @@ address. Write to <a href="mailto:{mail}">{mail}</a> and we will delete
 it – within 30 days.</p>
 
 <p><b>The full version</b><br>
-It belongs to your Google account, not to us. You can only cancel it and
-have it removed there.</p>
+It belongs to your Google account in Google Play, not to your Zmaj account.
+Deleting the account does not cancel a subscription – you cancel it in
+Google Play.</p>
 """,
     },
     "tr": {
-        "titel": "Verilerini sil",
+        "titel": "Hesabını ve verilerini sil",
         "text": """
-<p><b>Zmaj'ın hesabı yoktur</b><br>
-Giriş yok, parola yok, e-posta adresi yok. Öğrenme ilerlemen senin
-cihazında durur; uygulama onu hiçbir yere yüklemez – bize de.</p>
+<p><b>Uygulamada</b><br>
+Zmaj'ı aç, yukarıda profiline, ardından <i>Hesabı sil</i>'e dokun. Bu,
+hesabını ve öğrenme ilerlemeni hemen siler – hem bulutta hem bu telefonda.</p>
 
-<p><b>Her şeyi nasıl silersin</b><br>
-Bunun için bize sormana ya da bize ulaşmana gerek yok:
-uygulamayı sil ya da cihazının ayarlarından uygulamanın belleğini
-temizle (<i>Ayarlar → Uygulamalar → Zmaj → Depolama → Verileri temizle</i>).
-Böylece öğrenme ilerlemen kaybolur – bizde de, çünkü zaten hiç bizde
-olmadı. Bu anında geçerli olur.</p>
+<p><b>Uygulama olmadan</b><br>
+Hesabının e-posta adresinden <a href="mailto:{mail}">{mail}</a> adresine “Hesabı sil” konulu
+bir e-posta yaz. Google ile giriş yaptıysan o Google hesabının adresini
+kullan. Hesabını ve ilerlemeni 30 gün içinde sileriz ve bunu sana
+e-postayla onaylarız.</p>
 
 <p><b>Neler silinir</b><br>
-Öğrenilen kelimeler, geçilen seviyeler, okunan hikâyeler, öğrenme
-günleri, öğrenme süresi, günlük görevler, jetonlar, satın alınan eşyalar,
-canlar, seri koruması, ayarların ve uygulamayı ilk açtığında oluşan
-rastgele kimlik.</p>
+Hesabın (e-posta adresi ve giriş bilgileri; Google ile girişte ayrıca
+Google'ın ilettiği ad ve profil resminin adresi) ve buluttaki
+ilerlemenin kopyası: öğrenilen kelimeler, geçilen seviyeler, okunan
+hikâyeler, öğrenme günleri, öğrenme süresi, günlük görevler, jetonlar,
+satın alınan eşyalar, canlar ve seri koruması. Hiçbirini saklamayız.</p>
+
+<p><b>Telefonunda</b><br>
+Uygulamada silersen telefondaki ilerlemen de gider. Aksi hâlde uygulamayı
+sil ya da depolamasını temizle (<i>Ayarlar → Uygulamalar → Zmaj → Depolama
+→ Verileri temizle</i>).</p>
 
 <p><b>Android'in kendi yedeklemesi</b><br>
 Bunu Google hesabında açtıysan, uygulama verilerinin bir kopyası orada
@@ -359,21 +396,35 @@ kutumuzda kalır. <a href="mailto:{mail}">{mail}</a> adresine yaz, sileriz –
 30 gün içinde.</p>
 
 <p><b>Tam sürüm</b><br>
-Tam sürüm bize değil, Google hesabına bağlıdır. İptal etmeyi de
-sildirmeyi de yalnızca oradan yapabilirsin.</p>
+Tam sürüm Zmaj hesabına değil, Google Play'deki Google hesabına bağlıdır.
+Hesabı silmek aboneliği iptal etmez – onu Google Play'de iptal edersin.</p>
 """,
     },
     "sv": {
-        "titel": "Radera dina data",
+        "titel": "Radera konto och data",
         "text": """
-<p><b>Zmaj har inget konto</b><br>
-Det finns ingen inloggning, inget lösenord och ingen e-postadress. Dina framsteg ligger på din enhet; appen laddar inte upp dem någonstans – inte heller till oss.</p>
+<p><b>I appen</b><br>
+Öppna Zmaj, tryck på din profil högst upp och sedan på <i>Radera konto</i>.
+Det raderar ditt konto och dina framsteg direkt – i molnet och på den här
+telefonen.</p>
 
-<p><b>Så raderar du allt</b><br>
-Du behöver varken fråga oss eller få tag på oss: avinstallera appen, eller töm appens lagringsutrymme i enhetens inställningar (<i>Inställningar → Appar → Zmaj → Lagring → Rensa data</i>). Då är dina framsteg borta – hos oss också, eftersom de aldrig fanns där. Det sker direkt.</p>
+<p><b>Utan appen</b><br>
+Skriv från kontots e-postadress till <a href="mailto:{mail}">{mail}</a> med ämnet ”Radera
+konto”. Om du loggade in med Google, använd adressen till det
+Google-kontot. Vi raderar ditt konto och dina framsteg inom 30 dagar och
+bekräftar det via mejl.</p>
 
 <p><b>Det här raderas</b><br>
-Inlärda ord, klarade nivåer, lästa berättelser, inlärningsdagar, inlärningstid, dagsuppgifter, mynt, föremål du köpt, hjärtan, serieskydd, dina inställningar och den slumpmässiga identifierare som skapas när du startar appen första gången.</p>
+Ditt konto (e-postadress och inloggningsuppgifter; vid inloggning med
+Google även namnet och adressen till profilbilden som Google lämnar över)
+och kopian av dina framsteg i molnet: inlärda ord, klarade nivåer, lästa
+berättelser, inlärningsdagar, inlärningstid, dagsuppgifter, mynt, föremål
+du köpt, hjärtan och serieskydd. Vi sparar inget av det.</p>
+
+<p><b>På din telefon</b><br>
+Raderar du i appen försvinner framstegen även där. Annars avinstallerar du
+appen eller tömmer dess lagringsutrymme (<i>Inställningar → Appar → Zmaj →
+Lagring → Rensa data</i>).</p>
 
 <p><b>Androids egen säkerhetskopiering</b><br>
 Har du slagit på den i ditt Google-konto finns en kopia av appens data där, och Android återställer den när du installerar om. Den raderar du i ditt Google-konto (Google Drive eller Google One → Säkerhetskopior) – vi kommer inte åt den.</p>
@@ -385,28 +436,36 @@ Har du sparat en fil under <i>Inställningar → Säkerhetskopia</i> ligger den 
 Ett mejl med feedback blir kvar i vår inkorg, tillsammans med din avsändaradress. Skriv till <a href="mailto:{mail}">{mail}</a>, så raderar vi det – inom 30 dagar.</p>
 
 <p><b>Fullversionen</b><br>
-Den är kopplad till ditt Google-konto, inte till oss. Det är bara där du kan säga upp och radera den.</p>
+Den är kopplad till ditt Google-konto i Google Play, inte till ditt
+Zmaj-konto. Att radera kontot säger inte upp något abonnemang – det säger
+du upp i Google Play.</p>
 """,
     },
     "nl": {
-        "titel": "Je gegevens wissen",
+        "titel": "Account en gegevens wissen",
         "text": """
-<p><b>Zmaj heeft geen account</b><br>
-Er is geen inlog, geen wachtwoord en geen e-mailadres. Je voortgang staat
-op je eigen apparaat; de app uploadt hem nergens naartoe – ook niet naar ons.</p>
+<p><b>In de app</b><br>
+Open Zmaj, tik bovenaan op je profiel en dan op <i>Account verwijderen</i>.
+Dat verwijdert je account en je voortgang meteen – in de cloud en op deze
+telefoon.</p>
 
-<p><b>Zo wis je alles</b><br>
-Je hoeft het ons daarvoor niet te vragen en ons niet te bereiken:
-verwijder de app, of wis in de instellingen van je apparaat de opslag ervan
-(<i>Instellingen → Apps → Zmaj → Opslag → Gegevens wissen</i>).
-Daarmee is je voortgang weg – bij ons ook, want daar is hij nooit geweest.
-Dat werkt meteen.</p>
+<p><b>Zonder de app</b><br>
+Schrijf vanaf het e-mailadres van je account naar <a href="mailto:{mail}">{mail}</a> met als
+onderwerp ‘Account verwijderen’. Heb je met Google ingelogd, gebruik dan
+het adres van dat Google-account. We verwijderen je account en je
+voortgang binnen 30 dagen en bevestigen dat per e-mail.</p>
 
 <p><b>Wat er gewist wordt</b><br>
-Geleerde woorden, gehaalde niveaus, gelezen verhalen, leerdagen,
-leertijd, dagopdrachten, munten, gekochte voorwerpen, levens,
-reeksbescherming, je instellingen en de willekeurige ID-code die bij de
-eerste start wordt aangemaakt.</p>
+Je account (e-mailadres en inloggegevens; bij inloggen met Google ook de
+naam en het adres van de profielfoto die Google doorgeeft) en de kopie van
+je voortgang in de cloud: geleerde woorden, gehaalde niveaus, gelezen
+verhalen, leerdagen, leertijd, dagopdrachten, munten, gekochte voorwerpen,
+levens en reeksbescherming. We bewaren daar niets van.</p>
+
+<p><b>Op je telefoon</b><br>
+Verwijder je in de app, dan is je voortgang daar ook weg. Anders verwijder
+je de app of wis je de opslag ervan (<i>Instellingen → Apps → Zmaj →
+Opslag → Gegevens wissen</i>).</p>
 
 <p><b>De eigen back-up van Android</b><br>
 Heb je die in je Google-account aangezet, dan staat daar een kopie van de
@@ -425,21 +484,36 @@ afzenderadres. Schrijf naar <a href="mailto:{mail}">{mail}</a>, dan wissen
 we hem – binnen 30 dagen.</p>
 
 <p><b>De volledige versie</b><br>
-Die is gekoppeld aan je Google-account, niet aan ons. Opzeggen en laten verwijderen
-kan alleen daar.</p>
+Die is gekoppeld aan je Google-account in Google Play, niet aan je
+Zmaj-account. Wie het account verwijdert, zegt daarmee geen abonnement op –
+dat doe je in Google Play.</p>
 """,
     },
     "nb": {
-        "titel": "Slett dataene dine",
+        "titel": "Slett konto og data",
         "text": """
-<p><b>Zmaj har ingen konto</b><br>
-Det finnes ingen innlogging, intet passord og ingen e-postadresse. Framgangen din ligger på enheten din; appen laster den aldri opp noe sted – heller ikke til oss.</p>
+<p><b>I appen</b><br>
+Åpne Zmaj, trykk på profilen din øverst og deretter på <i>Slett konto</i>.
+Det sletter kontoen og framgangen din med en gang – i skyen og på denne
+telefonen.</p>
 
-<p><b>Slik sletter du alt</b><br>
-Du trenger verken å spørre oss eller få tak i oss: Slett appen, eller tøm lagringen dens i innstillingene på enheten din (<i>Innstillinger → Apper → Zmaj → Lagring → Tøm data</i>). Dermed er framgangen borte – hos oss også, for der har den aldri vært. Det virker med en gang.</p>
+<p><b>Uten appen</b><br>
+Skriv fra kontoens e-postadresse til <a href="mailto:{mail}">{mail}</a> med emnet «Slett
+konto». Logget du inn med Google, bruk adressen til den Google-kontoen. Vi
+sletter kontoen og framgangen din innen 30 dager og bekrefter det på
+e-post.</p>
 
 <p><b>Hva som blir slettet</b><br>
-Lærte ord, beståtte nivåer, leste fortellinger, læringsdager, læringstid, dagsoppdrag, mynter, gjenstander du har kjøpt, liv, rekkebeskyttelse, innstillingene dine og den tilfeldige ID-en som blir laget første gang du starter appen.</p>
+Kontoen din (e-postadresse og innloggingsdata; ved innlogging med Google
+også navnet og adressen til profilbildet som Google gir videre) og kopien
+av framgangen din i skyen: lærte ord, beståtte nivåer, leste fortellinger,
+læringsdager, læringstid, dagsoppdrag, mynter, gjenstander du har kjøpt,
+liv og rekkebeskyttelse. Vi beholder ingenting av det.</p>
+
+<p><b>På telefonen din</b><br>
+Sletter du i appen, er framgangen borte der også. Ellers sletter du appen
+eller tømmer lagringen dens (<i>Innstillinger → Apper → Zmaj → Lagring →
+Tøm data</i>).</p>
 
 <p><b>Androids egen sikkerhetskopiering</b><br>
 Har du slått den på i Google-kontoen din, ligger det en kopi av appens data der, og Android gjenoppretter den når du installerer appen på nytt. Den sletter du i Google-kontoen din (Google Disk eller Google One → Sikkerhetskopier) – vi har ikke tilgang til den.</p>
@@ -451,27 +525,36 @@ Har du lagret en fil under <i>Innstillinger → Sikkerhetskopi</i>, ligger den d
 En tilbakemelding på e-post blir liggende i postkassen vår, sammen med avsenderadressen din. Skriv til <a href="mailto:{mail}">{mail}</a>, så sletter vi den – innen 30 dager.</p>
 
 <p><b>Fullversjonen</b><br>
-Den hører til Google-kontoen din, ikke til oss. Det er bare der du kan si den opp og få den slettet.</p>
+Den hører til Google-kontoen din i Google Play, ikke til Zmaj-kontoen din.
+Å slette kontoen sier ikke opp et abonnement – det sier du opp i Google
+Play.</p>
 """,
     },
     "da": {
-        "titel": "Slet dine data",
+        "titel": "Slet konto og data",
         "text": """
-<p><b>Zmaj har ingen konto</b><br>
-Der er intet login, ingen adgangskode og ingen mailadresse. Dine fremskridt ligger på din enhed; appen sender dem ikke nogen steder hen – heller ikke til os.</p>
+<p><b>I appen</b><br>
+Åbn Zmaj, tryk på din profil øverst og derefter på <i>Slet konto</i>. Det
+sletter din konto og din fremgang med det samme – i skyen og på denne
+telefon.</p>
 
-<p><b>Sådan sletter du det hele</b><br>
-Du behøver ikke at spørge os eller få fat i os:
-Slet appen, eller ryd dens lagrede data i din enheds indstillinger
-(<i>Indstillinger → Apps → Zmaj → Lagring → Ryd data</i>).
-Så er dine fremskridt væk – også hos os, for de har aldrig været der.
-Det virker med det samme.</p>
+<p><b>Uden appen</b><br>
+Skriv fra kontoens e-mailadresse til <a href="mailto:{mail}">{mail}</a> med emnet »Slet
+konto«. Loggede du ind med Google, så brug adressen til den Google-konto.
+Vi sletter din konto og din fremgang inden for 30 dage og bekræfter det
+på mail.</p>
 
 <p><b>Hvad der bliver slettet</b><br>
-Lærte ord, beståede niveauer, læste fortællinger, læringsdage,
-læringstid, dagsopgaver, mønter, købte genstande, liv,
-rækkebeskyttelse, dine indstillinger og det tilfældige id, der bliver
-oprettet, første gang du starter appen.</p>
+Din konto (e-mailadresse og logindata; ved login med Google også navnet og
+adressen til profilbilledet, som Google giver videre) og kopien af din
+fremgang i skyen: lærte ord, beståede niveauer, læste fortællinger,
+læringsdage, læringstid, dagsopgaver, mønter, købte genstande, liv og
+rækkebeskyttelse. Vi beholder intet af det.</p>
+
+<p><b>På din telefon</b><br>
+Sletter du i appen, er fremgangen også væk dér. Ellers sletter du appen
+eller rydder dens lagrede data (<i>Indstillinger → Apps → Zmaj → Lagring →
+Ryd data</i>).</p>
 
 <p><b>Androids egen sikkerhedskopiering</b><br>
 Har du slået den til i din Google-konto, ligger der en kopi af appens
@@ -490,30 +573,38 @@ din afsenderadresse. Skriv til <a href="mailto:{mail}">{mail}</a>, så
 sletter vi den – inden for 30 dage.</p>
 
 <p><b>Fuld version</b><br>
-Den er knyttet til din Google-konto, ikke til os. Du kan kun opsige
-og slette den dér.</p>
+Den er knyttet til din Google-konto i Google Play, ikke til din
+Zmaj-konto. At slette kontoen opsiger ikke et abonnement – det opsiger du
+i Google Play.</p>
 """,
     },
     "fr": {
-        "titel": "Supprimer tes données",
+        "titel": "Supprimer ton compte et tes données",
         "text": """
-<p><b>Zmaj n'a pas de compte</b><br>
-Il n'y a ni connexion, ni mot de passe, ni adresse e-mail. Ta progression
-reste sur ton appareil ; l'application ne l'envoie nulle part – pas
-même chez nous.</p>
+<p><b>Dans l'application</b><br>
+Ouvre Zmaj, touche ton profil en haut, puis <i>Supprimer le compte</i>.
+Cela supprime ton compte et ta progression immédiatement – dans le cloud et
+sur ce téléphone.</p>
 
-<p><b>Comment tout supprimer</b><br>
-Tu n'as besoin ni de nous le demander, ni de nous joindre : supprime
-l'application, ou vide sa mémoire dans les réglages de ton appareil
-(<i>Paramètres → Applications → Zmaj → Stockage → Effacer les données</i>).
-Ta progression est alors perdue – chez nous aussi, car elle ne s'y est
-jamais trouvée. C'est immédiat.</p>
+<p><b>Sans l'application</b><br>
+Écris depuis l'adresse e-mail de ton compte à <a href="mailto:{mail}">{mail}</a> avec
+l'objet « Supprimer le compte ». Si tu t'es connecté avec Google, utilise
+l'adresse de ce compte Google. Nous supprimons ton compte et ta
+progression sous 30 jours et te le confirmons par e-mail.</p>
 
 <p><b>Ce qui est supprimé</b><br>
-Les mots appris, les niveaux réussis, les histoires lues, les jours
-d'apprentissage, le temps d'apprentissage, les objectifs du jour, les
-pièces, les objets achetés, les vies, les protections de série, tes
-réglages et l'identifiant aléatoire créé au premier démarrage.</p>
+Ton compte (adresse e-mail et données de connexion ; avec la connexion
+Google, aussi le nom et l'adresse de la photo de profil que Google
+transmet) et la copie de ta progression dans le cloud : les mots appris,
+les niveaux réussis, les histoires lues, les jours d'apprentissage, le
+temps d'apprentissage, les objectifs du jour, les pièces, les objets
+achetés, les vies et les protections de série. Nous n'en gardons rien.</p>
+
+<p><b>Sur ton téléphone</b><br>
+Si tu supprimes dans l'application, ta progression disparaît aussi du
+téléphone. Sinon, supprime l'application ou vide sa mémoire
+(<i>Paramètres → Applications → Zmaj → Stockage → Effacer les
+données</i>).</p>
 
 <p><b>La sauvegarde d'Android</b><br>
 Si tu l'as activée dans ton compte Google, une copie des données de
@@ -532,8 +623,9 @@ adresse d'expéditeur. Écris-nous à <a href="mailto:{mail}">{mail}</a> et
 nous le supprimons – sous 30 jours.</p>
 
 <p><b>La version complète</b><br>
-Elle est liée à ton compte Google, pas à nous. Tu ne peux la résilier et la
-faire supprimer que là-bas.</p>
+Elle est liée à ton compte Google dans Google Play, pas à ton compte Zmaj.
+Supprimer le compte ne résilie pas un abonnement – tu le résilies dans
+Google Play.</p>
 """,
     },
 }
@@ -624,14 +716,56 @@ ADMOB_PUBLISHER = "pub-9105747905460295"
 APP_ADS = "google.com, %s, DIRECT, f08c47fec0942fa0\n" % ADMOB_PUBLISHER
 
 
+# Digital Asset Links (28.10.2026, v109). Die Restore-Schluessel der
+# Anmeldung (ZmajAnmeldung in der Huelle) gelten fuer die Domain
+# zmaj-lernapp.github.io. Ob Google dafuer wie bei Passkeys eine
+# assetlinks.json verlangt, sagt die Doku nicht - sie liegt vorsorglich da
+# und wird am Handy geprueft (Firebase_Plan_v109.md, 2.8).
+# Die SHA-256-Fingerabdruecke der Signaturschluessel sind nicht geheim,
+# gehoeren aber zu genau dieser App und stehen deshalb in der privaten
+# Huelle, in fingerabdruecke.json:
+#     {"de.smartdragon.zmaj": ["AA:BB:...", "..."],
+#      "de.smartdragon.zmaj.test": ["..."]}
+# (App-Signatur- und Upload-Schluessel fuer die Store-App, der
+# Debug-Schluessel fuer die Test-App). Fehlt die Datei, gibt es keine
+# assetlinks.json - lieber keine als eine falsche.
+FINGERABDRUCK_FORM = re.compile(r"[0-9A-F]{2}(:[0-9A-F]{2}){31}")
+RECHTE = ["delegate_permission/common.handle_all_urls", "delegate_permission/common.get_login_creds"]
+
+
+def assetlinks(datei=None):
+    """Der Inhalt von .well-known/assetlinks.json, oder None ohne Datei.
+    Bricht ab, wenn ein Fingerabdruck nicht die Form AA:BB:... hat."""
+    datei = datei or os.path.join(huelle.ordner(), "fingerabdruecke.json")
+    if not os.path.exists(datei):
+        return None
+    with io.open(datei, encoding="utf-8") as f:
+        werte = json.load(f)
+    if not isinstance(werte, dict) or not werte:
+        raise SystemExit("ABBRUCH: %s ist leer oder kein Objekt." % datei)
+    eintraege = []
+    for paket, abdruecke in sorted(werte.items()):
+        if not re.fullmatch(r"[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+", str(paket)) or not isinstance(abdruecke, list) \
+                or not abdruecke or not all(FINGERABDRUCK_FORM.fullmatch(str(a).upper()) for a in abdruecke):
+            raise SystemExit("ABBRUCH: In %s hat '%s' nicht die erwartete Form "
+                             "(Paketname, Liste von SHA-256 wie AA:BB:...)." % (datei, paket))
+        eintraege.append({"relation": RECHTE,
+                          "target": {"namespace": "android_app", "package_name": paket,
+                                     "sha256_cert_fingerprints": [str(a).upper() for a in abdruecke]}})
+    return json.dumps(eintraege, indent=2) + "\n"
+
+
 def schreibe(datei, text):
     pfad = os.path.join(ZIEL, datei)
+    os.makedirs(os.path.dirname(pfad), exist_ok=True)
     with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
         f.write(text)
     print("  %-26s %6d Bytes" % (datei, os.path.getsize(pfad)))
 
 
-if __name__ == "__main__":
+def main():
+    """Alle Seiten nach ZIEL. Eine eigene Funktion seit 28.10.2026, damit
+    tests/test_seite.py sie in einen Probeordner bauen kann."""
     os.makedirs(ZIEL, exist_ok=True)
     print("Seiten für GitHub Pages:")
     if sprachen.anbieter_fehlt():
@@ -644,6 +778,15 @@ if __name__ == "__main__":
     for datei, titel, text in SEITEN:
         baue_rechtsseite(datei, titel, text)
     schreibe("app-ads.txt", APP_ADS)
+    # Ohne .nojekyll laesst GitHub Pages Ordner mit Punkt vorn weg - und
+    # damit .well-known (28.10.2026).
+    schreibe(".nojekyll", "")
+    links = assetlinks()
+    if links is None:
+        print("  Hinweis: zmaj-android/fingerabdruecke.json fehlt - keine")
+        print("  .well-known/assetlinks.json (siehe FIREBASE_EINRICHTEN.md).")
+    else:
+        schreibe(".well-known/assetlinks.json", links)
     # Die Startseite des Repositories. Sie fuehrt mit klickbaren Links zu den
     # fertigen Seiten - noetig, weil GitHub in der Dateiliste nur den
     # HTML-Quelltext zeigt und nicht die lesbare Fassung. Der Text steht in
@@ -661,3 +804,7 @@ if __name__ == "__main__":
         print("  %-26s %6d Bytes" % (datei, os.path.getsize(pfad)))
     print("\nFertig in: %s" % ZIEL)
     print("Wie es online kommt, steht in github-seite/LIESMICH.txt")
+
+
+if __name__ == "__main__":
+    main()

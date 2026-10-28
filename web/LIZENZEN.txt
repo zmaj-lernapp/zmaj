@@ -145,6 +145,21 @@ Where rights exist, they are licensed under CC BY-SA 4.0 as stated in
 REUSE.toml.
 
 
+Das „G“ von Google / The Google “G”
+-----------------------------------
+Stand 28.10.2026. Das „G“ auf dem Knopf „Mit Google anmelden“
+(web/symbole/google-g.svg) ist eine Marke von Google LLC. Es steht dort
+unverändert, so wie Googles Richtlinien für „Sign in with Google“ es
+verlangen und erlauben:
+https://developers.google.com/identity/branding-guidelines
+Es steht nicht unter den Lizenzen dieses Projekts.
+
+The “G” on the “Sign in with Google” button (web/symbole/google-g.svg) is a
+trademark of Google LLC, used unchanged as Google’s Sign in with Google
+branding guidelines require and permit. It is not covered by this
+project’s licenses.
+
+
 Was die App sonst noch nutzt
 ----------------------------
 Nichts. Der Rest – Server, Oberfläche, Inhalte, die gezeichneten Kostüme

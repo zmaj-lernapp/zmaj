@@ -29,6 +29,12 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
                                  Ein normaler Bau überspringt Vielfache von
                                  100, siehe naechste_versionsnummer()
     app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen
+    app_bauen.py --aab --ohne-anmeldung
+                                 Paket für Google Play OHNE die Anmeldung.
+                                 Seit v109 (28.10.2026) ist sie Pflicht, und
+                                 --aab bricht ohne zmaj-android/
+                                 cloud_zugang.json ab - sonst ginge still
+                                 eine App ohne Anmeldung in den Store.
 
 Ein unbekannter oder vertippter Schalter bricht ab, bevor etwas passiert
 (seit 10.10.2026, siehe schalter_lesen()).
@@ -229,33 +235,43 @@ def dauer_einsetzen(pfad=None, datei=None):
                              DAUER_PLATZHALTER.replace("__DAUER_PRUEFWERT__", wert)))
 
 
-# Cloud-Sicherung (19.10.2026): vorbereitet, aber aus (CLOUD_AN = false in
-# web/index.html), eingeschaltet wird erst nach dem Produktionsstart.
-# Projekt-ID und Web-API-Schluessel von Firebase stehen nie im oeffentlichen
-# Repository, sondern in der privaten Huelle (cloud_zugang.json, Aufbau in
-# FIREBASE_EINRICHTEN.md), und kommen wie der Dauer-Pruefwert nur in die
-# KOPIE www/index.html.
+# Cloud-Sicherung (19.10.2026), seit v109 Pflicht-Anmeldung (28.10.2026,
+# Ajdin am 27.10.: "in v109 soll auch schon server rein kommen").
+# Projekt-ID, Web-API-Schluessel und Web-Client-ID von Firebase stehen nie
+# im oeffentlichen Repository, sondern in der privaten Huelle
+# (cloud_zugang.json, Aufbau in FIREBASE_EINRICHTEN.md), und kommen wie der
+# Dauer-Pruefwert nur in die KOPIE www/index.html. Dort schaltet
+# cloud_einsetzen() auch CLOUD_AN ein - in der Quelle bleibt es aus, und
+# ohne die Datei verhaelt sich die App genau wie vor v109.
 CLOUD_PLATZHALTER = {
     "projekt": "const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';",
     "schluessel": "const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';",
+    "client": "const CLOUD_CLIENT = '__CLOUD_CLIENT__';",
 }
-# Dieselben Muster prueft cloudEingerichtet() in der App.
+# Dieselben Muster prueft cloudEingerichtet() in der App. client ist die
+# Web-Client-ID fuer die Anmeldung mit Google (Authentication -> Google ->
+# Web SDK configuration), die ZmajAnmeldung als serverClientId braucht.
 CLOUD_MUSTER = {
     "projekt": r"[a-z][a-z0-9-]{4,28}[a-z0-9]",
     "schluessel": r"AIza[0-9A-Za-z_-]{35}",
+    "client": r"[0-9]{6,20}-[0-9a-z]{16,40}\.apps\.googleusercontent\.com",
 }
 CLOUD_SCHALTER_AN = "const CLOUD_AN = true;"
+CLOUD_SCHALTER_AUS = "const CLOUD_AN = false;"
 CLOUD_DATEI = os.path.join(HUELLE, "cloud_zugang.json")
 
 
-def cloud_einsetzen(pfad=None, datei=None):
-    """Setzt in der KOPIE www/index.html Projekt-ID und Schluessel ein.
+def cloud_einsetzen(pfad=None, datei=None, pflicht=False):
+    """Setzt in der KOPIE www/index.html Projekt-ID, Schluessel und
+    Client-ID ein und schaltet dort CLOUD_AN ein.
 
-    Fehlt cloud_zugang.json, bleiben die Platzhalter stehen; die App findet
-    dann keinen Adapter, und die Cloud bleibt aus. Das ist bis zum
-    Produktionsstart der Normalfall. Steht CLOUD_AN aber auf true, bricht
-    der Bau ohne Datei ab - sonst kaeme eine App heraus, die still nichts
-    sichert. Die Werte selbst erscheinen in keiner Meldung.
+    Fehlt cloud_zugang.json, bleiben die Platzhalter stehen und CLOUD_AN aus;
+    die App findet dann keinen Adapter und verhaelt sich wie vor v109 - kein
+    Netz, keine Anmeldung. Das ist der Fall, solange es kein
+    Firebase-Projekt gibt. Steht CLOUD_AN aber schon auf true, oder ist
+    pflicht gesetzt (Freigabe-Bau, siehe anmeldung_pruefen), bricht der Bau
+    ohne Datei ab - sonst kaeme eine App heraus, die still keine Anmeldung
+    hat. Die Werte selbst erscheinen in keiner Meldung.
     Gibt zurueck, ob eingesetzt wurde.
     """
     pfad = pfad or os.path.join(WWW, "index.html")
@@ -270,7 +286,11 @@ def cloud_einsetzen(pfad=None, datei=None):
         if CLOUD_SCHALTER_AN in text:
             raise SystemExit("ABBRUCH: CLOUD_AN steht auf true, aber %s fehlt "
                              "(siehe FIREBASE_EINRICHTEN.md)." % datei)
-        print("  Cloud-Sicherung: keine cloud_zugang.json - sie bleibt aus.")
+        if pflicht:
+            raise SystemExit("ABBRUCH: %s fehlt - ohne sie hat die App keine "
+                             "Anmeldung (siehe FIREBASE_EINRICHTEN.md). Absichtlich "
+                             "ohne: --ohne-anmeldung." % datei)
+        print("  Anmeldung: keine cloud_zugang.json - sie bleibt aus.")
         return False
     with io.open(datei, encoding="utf-8") as f:
         try:
@@ -284,10 +304,33 @@ def cloud_einsetzen(pfad=None, datei=None):
                              "erwartete Form." % (datei, name))
         platzhalter = CLOUD_PLATZHALTER[name]
         text = text.replace(platzhalter, platzhalter.replace("__CLOUD_%s__" % name.upper(), wert))
+    # Der Schalter. Genau einmal aus (die Quelle) oder schon an (eine Kopie,
+    # die jemand von Hand eingeschaltet hat) - alles andere ist kaputt.
+    if text.count(CLOUD_SCHALTER_AUS) == 1:
+        text = text.replace(CLOUD_SCHALTER_AUS, CLOUD_SCHALTER_AN)
+    elif text.count(CLOUD_SCHALTER_AN) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s."
+                         % (CLOUD_SCHALTER_AUS, pfad))
     with io.open(pfad, "w", encoding="utf-8", newline="") as f:
         f.write(text)
-    print("  Cloud-Sicherung: Projekt und Schluessel eingesetzt.")
+    print("  Anmeldung: Projekt, Schluessel und Client-ID eingesetzt, CLOUD_AN an.")
     return True
+
+
+def anmeldung_pruefen(schalter, datei=None):
+    """Ein Freigabe-Bau (--aab) braucht seit v109 die Anmeldung.
+
+    Ganz am Anfang von main(), damit ohne cloud_zugang.json nichts kopiert
+    oder hochgezaehlt wird. --ohne-anmeldung laesst es absichtlich zu.
+    28.10.2026.
+    """
+    if "--aab" not in schalter or "--ohne-anmeldung" in schalter:
+        return
+    datei = datei or CLOUD_DATEI
+    if not os.path.exists(datei):
+        raise SystemExit("ABBRUCH: --aab ohne %s - die App haette keine Anmeldung. "
+                         "Erst das Firebase-Projekt einrichten (FIREBASE_EINRICHTEN.md) "
+                         "oder absichtlich ohne: --ohne-anmeldung. Nichts gebaut." % datei)
 
 
 # Tonspur im Paket als Opus statt MP3 (12.10.2026). Die 2.332 MP3s mit
@@ -747,7 +790,7 @@ def freigabe_aab():
 PFLICHT_SCHRITT = 100
 # Der hoechste versionCode, den Google Play annimmt.
 HOECHSTE_VERSIONSNUMMER = 2100000000
-SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich")
+SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich", "--ohne-anmeldung")
 
 
 def schalter_lesen(argv):
@@ -862,6 +905,7 @@ def main(argv=None):
     # --pflicht mit --nur-abgleich bricht ab, bevor irgendetwas kopiert oder
     # hochgezaehlt ist. 10.10.2026.
     schalter = schalter_lesen(sys.argv[1:] if argv is None else argv)
+    anmeldung_pruefen(schalter)
     aab = "--aab" in schalter
     nur = "--nur-abgleich" in schalter
     pflicht = "--pflicht" in schalter
@@ -878,7 +922,7 @@ def main(argv=None):
     # Debug-Paket, fuer --aab und fuer --nur-abgleich gleich. 06.10.2026.
     emir_drueber()
     dauer_einsetzen()
-    cloud_einsetzen()
+    cloud_einsetzen(pflicht=aab and "--ohne-anmeldung" not in schalter)
     # Nach Emir: dessen Aufnahmen sind MP3 und werden mit umgewandelt.
     ton_verkleinern()
     if "--testwerbung" in schalter:

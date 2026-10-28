@@ -6,8 +6,16 @@ Only the latest release of the app and the `master` branch receive fixes.
 
 ## What matters here
 
-Zmaj has no server and no accounts; learning progress never leaves the
-device. The parts that can still go wrong, and that we want to hear about:
+Zmaj has no server of its own. Since v109 the Android app has a mandatory
+account (Firebase Authentication, Google or email and password) and backs
+learning progress up to Cloud Firestore, one document per account
+(`users/{uid}`, see `firestore.rules`). The web demo has no account and no
+network access. The parts that can still go wrong, and that we want to hear
+about:
+
+- anything that lets one account read or write another account's backup, or
+  that puts the sign-in token, the email address or a device identifier into
+  the backup or the backup file;
 
 - anything that makes the app contact a server it should not, or send more
   than the privacy policy (`sprachen.py`, `set.datenschutz_text`) says;

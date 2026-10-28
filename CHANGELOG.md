@@ -7,6 +7,21 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Account (Android app, v109): after the first lesson – or the placement
+  test – the app asks you to sign in, with Google or with email and
+  password ("Forgot password?" included). Existing learners sign in once at
+  the next start; the progress on the phone is merged into the account, never
+  overwritten. You stay signed in across restarts and updates until you sign
+  out or delete the account. Without internet you just keep learning; the
+  sign-in comes when the connection is back, never in the middle of a lesson.
+  Progress is backed up at most once a day to Cloud Firestore in Frankfurt.
+  Signing out and deleting the account are on the profile page; both reset
+  the progress on the phone. Accounts can also be deleted by email
+  (`konto-loeschen.html`). Switching phones keeps you signed in (Android's
+  backup plus a restore key through the Credential Manager). The source keeps
+  `CLOUD_AN = false`: without the private `cloud_zugang.json`, the app and the
+  web demo behave exactly as before, and a release build (`app_bauen.py
+  --aab`) stops unless `--ohne-anmeldung` is given.
 - Typing exercises and cloze sentences: an answer one keystroke away from a
   correct one (a letter wrong, missing, extra or two swapped; answers of four
   letters or more) shows "Almost right!" and leaves the field open for one
@@ -71,6 +86,14 @@ are in the Play Store listing. Format:
 - `app_bauen.py --pflicht` builds such a mandatory update (next multiple of
   100); normal builds skip multiples of 100, and an unknown switch aborts the
   build before anything is copied.
+
+### Changed
+- Privacy policy and terms of use in all eight languages describe the
+  account: what Firebase stores and where, how long, and how to delete it.
+  The terms changed materially (account required), so existing users see the
+  "terms changed" note once.
+- The cloud backup no longer stores a device identifier (`rev` is a random
+  value per write).
 
 ### Security
 - The hidden developer switch no longer compares against a word in the

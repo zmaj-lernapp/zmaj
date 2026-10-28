@@ -1,0 +1,8 @@
+The Google "G" logo (web/symbole/google-g.svg) is a trademark of Google LLC.
+
+It is not licensed under this project's licenses. It appears unchanged on
+the "Sign in with Google" button of the app, as required and permitted by
+Google's Sign in with Google branding guidelines:
+https://developers.google.com/identity/branding-guidelines
+
+Do not use it for anything else.
