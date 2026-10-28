@@ -279,7 +279,10 @@ Dein Konto (E-Mail-Adresse und Anmeldedaten; bei der Anmeldung mit Google
 auch der Name und die Adresse des Profilbilds, die Google dabei übergibt)
 und die Kopie deines Lernstands in der Cloud: gelernte Wörter, bestandene
 Levels, gelesene Geschichten, Lerntage, Lernzeit, Tagesaufgaben, Münzen,
-gekaufte Gegenstände, Leben und Serienschutz. Wir behalten nichts davon.</p>
+gekaufte Gegenstände, Leben und Serienschutz. Wir behalten nichts davon. Aus den Sicherungskopien von Firebase
+verschwinden die Anmeldedaten danach innerhalb von 180 Tagen. Die
+IP-Adressen der Anmeldungen hält Firebase zum Schutz vor Missbrauch
+einige Wochen fest.</p>
 
 <p><b>Auf deinem Handy</b><br>
 Löschst du in der App, ist der Lernstand dort ebenfalls weg. Sonst
@@ -327,7 +330,9 @@ Your account (email address and sign-in data; with Google sign-in also the
 name and the profile picture address that Google passes on) and the copy of
 your progress in the cloud: words learned, levels passed, stories read,
 learning days, learning time, daily tasks, coins, items bought, hearts and
-streak freezes. We keep none of it.</p>
+streak freezes. We keep none of it. Firebase then removes the sign-in data from its
+backups within 180 days. Firebase keeps the IP addresses of sign-ins for a
+few weeks to protect against abuse.</p>
 
 <p><b>On your phone</b><br>
 If you delete in the app, your progress on the phone is gone as well.
@@ -373,7 +378,9 @@ Hesabın (e-posta adresi ve giriş bilgileri; Google ile girişte ayrıca
 Google'ın ilettiği ad ve profil resminin adresi) ve buluttaki
 ilerlemenin kopyası: öğrenilen kelimeler, geçilen seviyeler, okunan
 hikâyeler, öğrenme günleri, öğrenme süresi, günlük görevler, jetonlar,
-satın alınan eşyalar, canlar ve seri koruması. Hiçbirini saklamayız.</p>
+satın alınan eşyalar, canlar ve seri koruması. Hiçbirini saklamayız. Firebase giriş bilgilerini bundan sonra 180 gün
+içinde yedeklerinden de siler. Girişlerin IP adreslerini Firebase, kötüye
+kullanıma karşı korumak için birkaç hafta saklar.</p>
 
 <p><b>Telefonunda</b><br>
 Uygulamada silersen telefondaki ilerlemen de gider. Aksi hâlde uygulamayı
@@ -419,7 +426,10 @@ Ditt konto (e-postadress och inloggningsuppgifter; vid inloggning med
 Google även namnet och adressen till profilbilden som Google lämnar över)
 och kopian av dina framsteg i molnet: inlärda ord, klarade nivåer, lästa
 berättelser, inlärningsdagar, inlärningstid, dagsuppgifter, mynt, föremål
-du köpt, hjärtan och serieskydd. Vi sparar inget av det.</p>
+du köpt, hjärtan och serieskydd. Vi sparar inget av det. Därefter tar Firebase bort
+inloggningsuppgifterna ur sina säkerhetskopior inom 180 dagar.
+IP-adresserna från inloggningarna sparar Firebase i några veckor för att
+skydda mot missbruk.</p>
 
 <p><b>På din telefon</b><br>
 Raderar du i appen försvinner framstegen även där. Annars avinstallerar du
@@ -460,7 +470,9 @@ Je account (e-mailadres en inloggegevens; bij inloggen met Google ook de
 naam en het adres van de profielfoto die Google doorgeeft) en de kopie van
 je voortgang in de cloud: geleerde woorden, gehaalde niveaus, gelezen
 verhalen, leerdagen, leertijd, dagopdrachten, munten, gekochte voorwerpen,
-levens en reeksbescherming. We bewaren daar niets van.</p>
+levens en reeksbescherming. We bewaren daar niets van. Daarna haalt Firebase de inloggegevens binnen
+180 dagen ook uit zijn back-ups. De IP-adressen waarmee is ingelogd
+bewaart Firebase enkele weken om misbruik tegen te gaan.</p>
 
 <p><b>Op je telefoon</b><br>
 Verwijder je in de app, dan is je voortgang daar ook weg. Anders verwijder
@@ -508,7 +520,10 @@ Kontoen din (e-postadresse og innloggingsdata; ved innlogging med Google
 også navnet og adressen til profilbildet som Google gir videre) og kopien
 av framgangen din i skyen: lærte ord, beståtte nivåer, leste fortellinger,
 læringsdager, læringstid, dagsoppdrag, mynter, gjenstander du har kjøpt,
-liv og rekkebeskyttelse. Vi beholder ingenting av det.</p>
+liv og rekkebeskyttelse. Vi beholder ingenting av det. Deretter fjerner Firebase
+innloggingsdataene fra sine sikkerhetskopier innen 180 dager.
+IP-adressene fra innloggingene lagrer Firebase i noen uker for å beskytte
+mot misbruk.</p>
 
 <p><b>På telefonen din</b><br>
 Sletter du i appen, er framgangen borte der også. Ellers sletter du appen
@@ -549,7 +564,9 @@ Din konto (e-mailadresse og logindata; ved login med Google også navnet og
 adressen til profilbilledet, som Google giver videre) og kopien af din
 fremgang i skyen: lærte ord, beståede niveauer, læste fortællinger,
 læringsdage, læringstid, dagsopgaver, mønter, købte genstande, liv og
-rækkebeskyttelse. Vi beholder intet af det.</p>
+rækkebeskyttelse. Vi beholder intet af det. Derefter fjerner Firebase logindataene fra
+sine sikkerhedskopier inden for 180 dage. IP-adresserne fra logins gemmer
+Firebase i nogle uger for at beskytte mod misbrug.</p>
 
 <p><b>På din telefon</b><br>
 Sletter du i appen, er fremgangen også væk dér. Ellers sletter du appen
@@ -598,7 +615,9 @@ Google, aussi le nom et l'adresse de la photo de profil que Google
 transmet) et la copie de ta progression dans le cloud : les mots appris,
 les niveaux réussis, les histoires lues, les jours d'apprentissage, le
 temps d'apprentissage, les objectifs du jour, les pièces, les objets
-achetés, les vies et les protections de série. Nous n'en gardons rien.</p>
+achetés, les vies et les protections de série. Nous n'en gardons rien. Firebase efface ensuite les données de connexion
+de ses sauvegardes sous 180 jours. Firebase conserve les adresses IP des
+connexions quelques semaines pour se protéger des abus.</p>
 
 <p><b>Sur ton téléphone</b><br>
 Si tu supprimes dans l'application, ta progression disparaît aussi du
