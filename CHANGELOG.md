@@ -14,9 +14,12 @@ are in the Play Store listing. Format:
   overwritten. You stay signed in across restarts and updates until you sign
   out or delete the account. Without internet you just keep learning; the
   sign-in comes when the connection is back, never in the middle of a lesson.
-  Progress is backed up at most once a day to Cloud Firestore in Frankfurt.
-  Signing out and deleting the account are on the profile page; both reset
-  the progress on the phone. Accounts can also be deleted by email
+  If Firebase or Google fails, "Keep learning for now" works the same way
+  until the next start. Progress is backed up at most once a day to Cloud
+  Firestore in Frankfurt. Signing out and deleting the account are on the
+  profile page; both reset the progress on the phone. Deleting first asks
+  for the password or the Google account, so cancelling deletes nothing.
+  Accounts can also be deleted by email
   (`konto-loeschen.html`). Switching phones keeps you signed in (Android's
   backup plus a restore key through the Credential Manager). The source keeps
   `CLOUD_AN = false`: without the private `cloud_zugang.json`, the app and the

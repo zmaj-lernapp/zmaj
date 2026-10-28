@@ -450,6 +450,7 @@ GOOGLE = "identitytoolkit.googleapis.com/v1/accounts:signInWithIdp"
 # einen Abgleich an - wie die Kontoauswahl, die die App verdeckt.
 GOOGLE_PLUGIN = """() => { window.Capacitor = {Plugins: {ZmajAnmeldung: {googleAusweis: async () => {
     window.googleFragen = (window.googleFragen || 0) + 1;
+    if(window.googleNein){ const e = new Error(window.googleNein); e.code = window.googleNein; throw e; }
     if(window.beimLoeschen) window.abgleichDabei = await cloudAbgleich('pause');
     return {idToken: 'google-probe'};
 }}}}; return true; }"""
@@ -516,35 +517,35 @@ def test_loeschen_anonym_zu_alt_sicherung_weg_und_abgemeldet(seite, heute_stand,
     assert seite.fehler == []
 
 
-def test_loeschen_google_zu_alt_meldet_neu_an(seite, heute_stand, cloud_html):
+def test_loeschen_google_fragt_zuerst(seite, heute_stand, cloud_html):
     attrappe = _cloud_seite(seite, heute_stand, cloud_html)
     seite.js(GOOGLE_PLUGIN)
     assert seite.js("async () => await cloudAnmelden('google')") is True
     assert _wege(attrappe) == [("POST", GOOGLE), ("GET", DOK), ("PATCH", DOK)]
     assert seite.js("() => cloudMerker().art") == "google"
-
-    # In der Kontoauswahl ein anderes Google-Konto: das wird nicht
-    # geloescht. Die Sicherung ist weg, abgemeldet wird.
-    attrappe.anfragen.clear()
+    # Die Anmeldung von eben ist fuer Firebase schon zu alt zum Loeschen.
     attrappe.alt = {"id-1", "id-2", "id-g1"}
-    attrappe.google_uid = "uidAnders"
-    assert seite.js("async () => await cloudLoeschen()") == "konto bleibt"
-    assert _wege(attrappe) == [("DELETE", DOK), ("POST", KONTO_WEG), ("POST", GOOGLE)]
-    assert attrappe.geloescht_mit == ["id-g1"] and not attrappe.konto_weg
-    assert attrappe.dok is None and seite.js("() => localStorage.getItem('zmaj_cloud')") is None
 
-    # Neu angemeldet und spaeter geloescht: Firebase verlangt eine frische
-    # Anmeldung, die App fragt Google noch einmal und loescht danach. Der
+    # 28.10.2026 (Pruefbericht): Google fragt ZUERST. Auswahl abgebrochen
+    # oder ein anderes Google-Konto gewaehlt: nichts ist geloescht, und
+    # angemeldet bleibt man auch. Bis dahin war die Sicherung dann schon weg.
+    for nein, grund in (("abgebrochen", "GOOGLE_ABGEBROCHEN"), ("", "GOOGLE_ANDERES_KONTO")):
+        attrappe.anfragen.clear()
+        attrappe.google_uid = UID if nein else "uidAnders"
+        seite.js("(nein) => { window.googleNein = nein; }", nein)
+        assert seite.js("async () => [await cloudLoeschen(), cloudFehlerGrund]") == [False, grund]
+        assert _wege(attrappe) == ([] if nein else [("POST", GOOGLE)])
+        assert attrappe.geloescht_mit == [] and not attrappe.konto_weg
+        assert attrappe.dok is not None and seite.js("() => cloudMerker() && cloudMerker().uid") == UID
+
+    # Dasselbe Konto: frisch angemeldet, danach Sicherung und Konto weg. Der
     # Abgleich, den die Kontoauswahl dabei anstoesst, wartet.
     attrappe.google_uid = UID
-    assert seite.js("async () => await cloudAnmelden('google')") is True
-    attrappe.alt.add("id-g3")
     attrappe.anfragen.clear()
-    attrappe.geloescht_mit.clear()
     seite.js("() => { known.add('neu:vor-dem-loeschen'); window.googleFragen = 0; window.beimLoeschen = true; }")
     assert seite.js("async () => await cloudLoeschen()") is True
-    assert _wege(attrappe) == [("DELETE", DOK), ("POST", KONTO_WEG), ("POST", GOOGLE), ("POST", KONTO_WEG)]
-    assert attrappe.geloescht_mit == ["id-g3", "id-g4"] and attrappe.konto_weg
+    assert _wege(attrappe) == [("POST", GOOGLE), ("DELETE", DOK), ("POST", KONTO_WEG)]
+    assert attrappe.geloescht_mit == ["id-g3"] and attrappe.konto_weg
     assert seite.js("() => [window.googleFragen, window.abgleichDabei]") == [1, "nichts"]
     assert attrappe.dok is None
     assert seite.js("() => [localStorage.getItem('zmaj_cloud'), known.has('neu:vor-dem-loeschen'), cloudLaeuft]") \
