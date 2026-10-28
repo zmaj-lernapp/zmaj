@@ -35,7 +35,7 @@
 //
 // Anonyme Anmeldungen gibt es nur fuer das Formular. users/{uid} ist fuer
 // sie gesperrt, sonst haette das Einschalten von "Anonym" jedem Besucher
-// ein Dokument mit 400 000 Zeichen geschenkt.
+// ein Dokument mit 900 000 Zeichen geschenkt.
 //
 // Die Grenzen (5000 Zeichen Nachricht, 254 Zeichen Adresse) stehen auch auf
 // der Seite (seite_bauen.py, NACHRICHT_MAX und ADRESSE_MAX), die Sprachen
@@ -43,8 +43,12 @@
 //
 // Die Groessengrenze steht auch in der App (CLOUD_GROESSE_MAX). Ein Stand
 // mit allen Woertern, vollem Topf und allen Sternen hat rund 150 000
-// Zeichen; 400 000 lassen Luft fuer Jahre und bleiben weit unter der
-// Grenze von Firestore (1 MiB je Dokument).
+// Zeichen. Seit dem 28.10.2026 900 000 statt 400 000: Luft fuer die
+// zeitgesteuerte Wiederholung ab v110, die je Wort Daten mitbringt. Die
+// Grenze von Firestore ist 1 MiB (1 048 576 Bytes) je Dokument. Die App
+// misst den Text in UTF-8-Bytes und schreibt hoechstens 900 000; ein
+// Zeichen ist mindestens ein Byte, also haelt sie auch diese Regel, und
+// mit rev und Feldnamen bleibt das Dokument unter 1 MiB.
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -57,7 +61,7 @@ service cloud.firestore {
         let d = request.resource.data;
         return d.keys().hasAll(['daten', 'rev'])
           && d.keys().hasOnly(['daten', 'rev'])
-          && d.daten is string && d.daten.size() <= 400000
+          && d.daten is string && d.daten.size() <= 900000
           && d.rev is string && d.rev.size() <= 100;
       }
       allow get: if istEigenes();

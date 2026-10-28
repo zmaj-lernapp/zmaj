@@ -7,15 +7,21 @@ Nachricht ueber eine kurze anonyme Anmeldung in Firestore ab,
 kontakt_weiterleitung.gs (Apps Script) schickt sie ans Postfach.
 
 Geprueft wird hier, ohne Browser:
-  - Mit KONTAKT_FORMULAR aus liefert texte() alles wie ohne Formular;
-    eingeschaltet aendern sich nur das Impressum (der Kontaktsatz) und die
-    Datenschutzerklaerung (ein Absatz am Ende von "Rueckmeldung" und ihr
-    "Stand", KONTAKT_STAND). Dass die Texte und Seiten mit Schalter aus Byte
-    fuer Byte denen vor dem Formular gleichen, wurde am 28.10.2026 einmal
-    gegen den Stand davor verglichen; dieser Test haelt fest, dass das
-    Formular nur hinzukommt. Schalter und Datum gehoeren zusammen: aus und
-    None, oder an mit Datum - so bleibt die Suite gruen, wenn der Schalter
-    nach der Einrichtung umgelegt wird (Pruefbericht 28.10.2026).
+  - Mit KONTAKT_FORMULAR aus steht in dem, was texte() liefert, nichts vom
+    Formular; eingeschaltet aendern sich nur das Impressum (der Kontaktsatz)
+    und die Datenschutzerklaerung (ein Absatz am Ende von "Rueckmeldung" und
+    ihr "Stand", KONTAKT_STAND). Der Schalter fuegt nur hinzu. Am 28.10.2026
+    wurde einmal verglichen, dass die Texte mit Schalter aus Byte fuer Byte
+    denen vor dem Formular glichen. Seit dem Absatz zur Webseite bei GitHub
+    Pages (am selben Tag, mit und ohne Schalter) aendert sich die Erklaerung
+    auch ohne Formular; geprueft wird weiter, dass der Schalter NUR die
+    Formular-Teile aendert, nicht, dass die Erklaerung bleibt, wie sie war.
+    Schalter und Datum gehoeren zusammen: aus und None, oder an mit Datum -
+    so bleibt die Suite gruen, wenn der Schalter nach der Einrichtung
+    umgelegt wird (Pruefbericht 28.10.2026).
+  - Der Absatz zur Webseite (GitHub Pages) steht in allen acht Sprachen in
+    beiden Fassungen der Erklaerung; beschrieben wird GitHub nur dort, der
+    Absatz zum Formular verweist darauf.
   - Die Texte stehen in allen acht Sprachen, mit denselben Platzhaltern und
     Verweisen wie im Deutschen.
   - kontakt.html entsteht nur mit Schalter UND cloud_zugang.json, dann in
@@ -173,6 +179,76 @@ def test_absatz_am_ende_von_rueckmeldung(schalter, sprachcodes):
         sprachen.formular_einfuegen("<b>1. Ohne Abschnitte</b>", "Absatz")
 
 
+# Wie jede Sprache Art. 6 Abs. 1 lit. f DSGVO schreibt.
+BERECHTIGT = {"de": "Art. 6 Abs. 1 lit. f DSGVO", "en": "Art. 6(1)(f) GDPR", "tr": "Madde 6(1)(f)",
+              "sv": "art. 6.1 f GDPR", "nl": "art. 6 lid 1 onder f AVG", "nb": "art. 6 nr. 1 bokstav f",
+              "da": "art. 6, stk. 1, litra f", "fr": "art. 6, paragraphe 1, point f"}
+
+
+def _webseite(text):
+    """Der Absatz zur Webseite: der eine, der auf GitHubs Erklaerung zeigt."""
+    teile = [t for t in text.split("<br>") if "github.com/site/privacy" in t]
+    assert len(teile) == 1, len(teile)
+    return teile[0]
+
+
+def test_absatz_zur_webseite_in_allen_acht_sprachen(sprachcodes):
+    """Ajdin am 28.10.2026: Die Datenschutzerklaerung nennt GitHub Pages als
+    Hoster von zmaj-lernapp.github.io - auch ohne Kontaktformular, denn dort
+    liegen Impressum, Erklaerung und Web-Demo. Belegt mit GitHubs Doku
+    ("About GitHub Pages", Data collection: die IP jedes Besuchers wird aus
+    Sicherheitsgruenden gespeichert, auch ohne Anmeldung) und dem GitHub
+    General Privacy Statement (gueltig ab 27.04.2026: Verarbeitung an
+    mehreren Orten, auch in den USA; fuer Uebermittlungen aus der EU in der
+    Regel Standardvertragsklauseln, dazu das EU-US Data Privacy Framework;
+    keine feste Speicherdauer). Mit Konto (Abschnitt 7) und ohne (Web-Demo,
+    6) steht er wortgleich am Ende von "Empfaenger und Drittanbieter", und
+    der Stand beider Fassungen ist mindestens dieser Tag.
+    Die Klauseln seit dem Pruefbefund vom 28.10.2026, mit denselben Worten
+    wie bei Google in Abschnitt 3 der jeweiligen Sprache."""
+    import sprachen
+    dpf = {"tr": "Veri Gizliliği Çerçevesi"}
+    klauseln = {"de": "Standardvertragsklauseln", "en": "standard contractual clauses",
+                "tr": "standart sözleşme maddelerine", "sv": "standardavtalsklausuler",
+                "nl": "modelcontractbepalingen", "nb": "standard personvernbestemmelser",
+                "da": "standardkontraktbestemmelser", "fr": "clauses contractuelles types"}
+    for code in sprachcodes:
+        t = sprachen.TEXTE[code]
+        mit, ohne = _webseite(t["set.datenschutz_text"]), _webseite(t["set.datenschutz_text_ohne_konto"])
+        assert mit == ohne, code
+        for muss in ("zmaj-lernapp.github.io", "GitHub Pages", "GitHub Inc.", "IP", BERECHTIGT[code],
+                     dpf.get(code, "Data Privacy Framework"), klauseln[code], "github.com/site/privacy"):
+            assert mit.count(muss) == 1, (code, muss)
+        assert klauseln[code] in t["set.datenschutz_text"].split("<b>4. ")[0], code
+        assert "kontakt.html" not in mit and "Firebase" not in mit, code
+        assert re.match(r"<b>[^<]+</b> ", mit) and _tags(mit) == ["</b>", "<b>"], code
+        if code != sprachen.GRUNDSPRACHE:
+            assert mit != _webseite(sprachen.TEXTE[sprachen.GRUNDSPRACHE]["set.datenschutz_text"]), code
+        for schluessel, nr in (("set.datenschutz_text", 7), ("set.datenschutz_text_ohne_konto", 6)):
+            text = t[schluessel]
+            abschnitt = text[text.index("<b>%d. " % nr):text.index("<br><br><b>%d. " % (nr + 1))]
+            assert abschnitt.endswith("{werbung_abschnitt}<br>" + mit), (code, schluessel)
+            assert sprachen.stand_setzen(text, "28.10.2026") == text, (code, schluessel)
+
+
+def test_github_nur_einmal_beschrieben(schalter, sprachcodes):
+    """Mit Formular nennt die Erklaerung GitHub Pages zweimal - beim Formular
+    und im Absatz zur Webseite -, beschrieben wird es nur einmal. Vorher
+    stand im Formular-Absatz derselbe Inhalt noch einmal."""
+    import sprachen
+    for pflicht in (True, False):
+        for an in (False, True):
+            schalter(an, pflicht)
+            for code in sprachcodes:
+                text = sprachen.texte(code)["set.datenschutz_text"]
+                assert text.count("GitHub Inc.") == 1, (code, pflicht, an)
+                assert text.count("github.com/site/privacy") == 1, (code, pflicht, an)
+                if an and pflicht:
+                    assert text.count("GitHub Pages") == 2, code
+                    sieben = text[text.index("<b>7. "):text.index("<br><br><b>8. ")]
+                    assert "GitHub Inc." in sieben, code
+
+
 def test_impressum_aendert_nur_den_kontaktsatz(sprachcodes):
     """Die Anschrift (ANBIETER) und alles andere bleiben, eine Telefonnummer
     kommt nicht dazu (Ajdin, 28.10.2026)."""
@@ -213,14 +289,19 @@ def test_texte_in_allen_acht_sprachen(sprachcodes):
         absatz = eigen["set.dsgvo_formular"]
         # Seit dem Pruefbericht vom 28.10.2026 auch: wie lange die IP bleibt
         # (180 Tage Sicherungen), die Weiterleitung ueber Apps Script und
-        # Gmail, und dass die Seite bei GitHub Pages liegt.
+        # Gmail, und dass die Seite bei GitHub Pages liegt. Was GitHub dabei
+        # speichert, steht seit dem Absatz zur Webseite (28.10.2026) nur noch
+        # dort, in Abschnitt 7 - der Absatz hier verweist darauf.
         for muss in ("zmaj-lernapp.github.io/kontakt.html", "europe-west3", "Google Ireland Limited",
-                     "Firebase", "IP", "180", "Google Apps Script", "Gmail", "GitHub Pages", "GitHub Inc."):
+                     "Firebase", "IP", "180", "Google Apps Script", "Gmail", "GitHub Pages"):
             assert muss in absatz, (code, muss)
-        # Dreimal die Grundlage fuer die USA: Anmeldung, Gmail, GitHub. Das
-        # Tuerkische uebersetzt den Namen wie schon in Abschnitt 3.
+        assert "GitHub Inc." not in absatz, code
+        assert re.findall(r"\d+", absatz.split("GitHub Pages")[-1]) == ["7"], code
+        # Zweimal die Grundlage fuer die USA: Anmeldung und Gmail (GitHub im
+        # Absatz zur Webseite). Das Tuerkische uebersetzt den Namen wie schon
+        # in Abschnitt 3.
         dpf = "Veri Gizliliği Çerçevesi" if code == "tr" else "Data Privacy Framework"
-        assert absatz.count(dpf) == 3, code
+        assert absatz.count(dpf) == 2, code
         assert set(sprachen.kontakt_texte(code)) == SEITENTEXTE, code
         assert "{mail}" in sprachen.kontakt_texte(code)["einleitung"], code
 

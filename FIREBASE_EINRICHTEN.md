@@ -157,8 +157,10 @@ daraus.
    - nicht angemeldet, `get` auf `users/abc` → verweigert.
 
 Erlaubt ist nur das eigene Dokument `users/{uid}` mit genau zwei Feldern,
-`daten` (höchstens 400.000 Zeichen) und `rev`. Die E-Mail-Adresse steht
-nicht in Firestore, nur bei Firebase Authentication.
+`daten` (höchstens 900.000 Zeichen, bis 28.10.2026 400.000) und `rev`.
+Die E-Mail-Adresse steht nicht in Firestore, nur bei Firebase
+Authentication. Nach dem Anheben die Regeln einmal neu veröffentlichen,
+sonst lehnt Firestore einen Stand über 400.000 Zeichen weiter ab.
 
 Seit dem 28.10.2026 stehen in `firestore.rules` auch die Regeln für das
 Kontaktformular (`nachrichten/{uid}`, Abschnitt 15) mit dem Platzhalter
@@ -341,7 +343,8 @@ Liefe dann schon das Skript, ginge die Sofortantwort an diese Adresse.
    Datenschutzerklärung in allen acht Sprachen mit, ohne Datum bricht
    `texte()` ab. Dann `seite_bauen.py` (baut `kontakt.html` und nennt das
    Formular im Impressum der Webseite und in den Fußzeilen) und die App neu
-   bauen (Datenschutzerklärung; ein Impressum zeigt die App nicht). Seiten
+   bauen (Datenschutzerklärung und Impressum, das die App seit dem
+   28.10.2026 unter Einstellungen → Über die App zeigt). Seiten
    hochladen.
 7. Probe: eine Nachricht über die Seite schicken. Nach höchstens 5 Minuten
    liegt die Mail im Postfach, `nachrichten` ist wieder leer, und unter

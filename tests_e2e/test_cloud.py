@@ -552,3 +552,193 @@ def test_loeschen_google_fragt_zuerst(seite, heute_stand, cloud_html):
         == [None, True, False]
     assert all(any(h in u for h in FIREBASE) for u in seite.fremd), seite.fremd
     assert seite.fehler == []
+
+
+# ------------------------------------------- Felder einer neueren Fassung ---
+# 28.10.2026, Vorarbeit fuer v110 (zeitgesteuerte Wiederholung): Was diese
+# Fassung nicht kennt, bleibt unveraendert und wird wieder mitgeschrieben -
+# sonst loeschte ein Handy mit v109 die Wiederholungsdaten eines Tablets mit
+# v110 beim naechsten Abgleich (standFremd in index.html).
+
+WDH_ALT = {"w:a": {"faellig": "2026-11-01", "stufe": 1}}
+WDH_NEU = {"w:a": {"faellig": "2026-11-05", "stufe": 2}, "w:b": {"faellig": "2026-11-02", "stufe": 1}}
+
+
+def test_zusammenfuehren_behaelt_unbekannte_felder(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    a, b, _ = _staende(seite)
+    bekannt = set(a)
+    assert set(seite.js("() => [...STAND_FELDER]")) == bekannt == set(seite.js("() => Object.keys(standAlsObjekt())"))
+    a = dict(a, wdh=WDH_ALT, nur_a={"x": [1, 2]}, premium=True)
+    b = dict(b, wdh=WDH_NEU, nur_b=7, premium=True)
+    # Ein Fehler im Topf mit einer Angabe, die diese Fassung nicht kennt.
+    a["topf"] = dict(a["topf"], **{"w:alt": {"typ": "mc", "n": 1, "z": 1000, "faellig": "alt"}})
+    b["topf"] = dict(b["topf"], **{"w:alt": {"typ": "mcrev", "n": 0, "z": 4000, "faellig": "neu"}})
+    m = seite.js(MISCHEN, [a, b])
+    assert set(m) == bekannt | {"wdh", "nur_a", "nur_b"}          # premium nicht
+    assert m["wdh"] == WDH_NEU                                    # auf beiden Seiten: die Cloud
+    assert m["nur_a"] == {"x": [1, 2]} and m["nur_b"] == 7       # auf einer Seite: von dort
+    assert m["topf"]["w:alt"] == {"typ": "mcrev", "n": 0, "z": 4000, "faellig": "neu"}   # beim Gewinner
+    # Die bekannten Felder wie ohne die neuen.
+    ohne = seite.js(MISCHEN, [_staende(seite)[0], _staende(seite)[1]])
+    assert {k: m[k] for k in bekannt if k != "topf"} == {k: ohne[k] for k in bekannt if k != "topf"}
+    assert seite.js(MISCHEN, [m, m]) == m                          # idempotent
+    assert seite.js(MISCHEN, [m, b])["wdh"] == WDH_NEU
+    for leer in ({}, None):
+        assert seite.js(MISCHEN, [a, leer])["wdh"] == WDH_ALT          # nur das Geraet hat es
+    assert seite.js(MISCHEN, [{}, b])["wdh"] == WDH_NEU
+    # Ein "__proto__" aus einer fremden Datei wird kein Feld und kein Prototyp.
+    z = seite.js("""() => { const m = standZusammenfuehren(JSON.parse('{"__proto__": {"x": 1}, "neu": 1}'), {});
+                           return [Object.keys(m).includes('__proto__'), m.x === undefined, m.neu]; }""")
+    assert z == [False, True, 1]
+    assert seite.fehler == []
+
+
+def test_unbekannte_felder_bleiben_im_geraet_und_in_der_datei(seite, heute_stand):
+    seite.starten(stand=heute_stand(wdh=WDH_ALT, zukunft={"version": 2}))
+    z = seite.js("() => ({stand: standAlsObjekt(), datei: JSON.parse(sicherungInhalt()).stand})")
+    for s in (z["stand"], z["datei"]):
+        assert s["wdh"] == WDH_ALT and s["zukunft"] == {"version": 2}, s
+    seite.js("async () => { known.add('probe:wort'); await saveProgress(); }")
+    seite.neu_laden()
+    gespeichert = seite.js("() => JSON.parse(localStorage.getItem('zmaj_stand'))")
+    assert gespeichert["wdh"] == WDH_ALT and gespeichert["zukunft"] == {"version": 2}
+    assert "probe:wort" in gespeichert["gewusst"]
+    # Wirft das Uebernehmen eines neuen Stands, kommen auch die fremden Felder
+    # des alten zurueck (standErsetzen).
+    z = seite.js("""() => [standErsetzen(() => ({neu: 1, get gewusst(){ throw new Error('probe'); }})),
+                           standAlsObjekt()]""")
+    assert z[0] is False and z[1]["wdh"] == WDH_ALT and "neu" not in z[1], z[0]
+    assert seite.fehler == []
+
+
+def test_cloud_behaelt_felder_eines_neueren_geraets(seite, heute_stand):
+    tag1 = datetime.date.today()
+    _uhr(seite, tag1, 10)
+    seite.starten(stand=heute_stand(wdh=WDH_ALT))
+    seite.js(ADAPTER)
+    assert seite.js("async () => await cloudAnmelden('anonym', adapter)") is True
+    assert json.loads(seite.js("() => ablage.dok.text"))["stand"]["wdh"] == WDH_ALT
+
+    # Ein Tablet mit v110 schreibt neuere Wiederholungsdaten und ein neues Feld.
+    _uhr(seite, tag1 + datetime.timedelta(days=1), 10)
+    seite.js("""(w) => { const s = JSON.parse(ablage.dok.text);
+                         s.stand.wdh = w; s.stand.v110 = {an: true}; s.stand.gewusst.push('tablet:wort');
+                         ablage.dok = {text: JSON.stringify(s), rev: 'tablet.1'}; }""", WDH_NEU)
+    assert seite.js(ABGLEICH, "start") == "zusammengefuehrt"
+    assert seite.js("() => [standAlsObjekt().wdh, standAlsObjekt().v110]") == [WDH_NEU, {"an": True}]
+    # Dieses Geraet lernt weiter und schreibt - die Daten des Tablets bleiben,
+    # die alte eigene Kopie kommt nicht zurueck.
+    seite.js("() => known.add('handy:wort')")
+    assert seite.js(ABGLEICH, "pause") == "gespeichert"
+    stand = json.loads(seite.js("() => ablage.dok.text"))["stand"]
+    assert stand["wdh"] == WDH_NEU and stand["v110"] == {"an": True}
+    assert {"tablet:wort", "handy:wort"} <= set(stand["gewusst"])
+    assert seite.fehler == []
+
+
+def test_cloud_grenze_in_bytes(seite, heute_stand):
+    """500 000 mal 'č' sind 500 000 Zeichen, aber 1 000 000 Bytes - mehr, als
+    Firestore in einem Dokument nimmt. Die App schreibt das nicht in die
+    Cloud. Seit dem Pruefbefund vom 28.10.2026 scheitert daran aber nicht
+    mehr das ganze Hochladen: nur das zu grosse fremde Feld bleibt in der
+    Cloud weg, auf dem Geraet bleibt es, und der Lernfortschritt kommt an.
+    'zu gross' gibt es nur noch, wenn schon der eigene Stand nicht passt."""
+    seite.starten(stand=heute_stand())
+    seite.js(ADAPTER)
+    assert seite.js("async () => await cloudAnmelden('anonym', adapter)") is True
+    seite.js("() => { standFremd = {probe: 'č'.repeat(500000), klein: {a: 1}}; known.add('probe:wort'); }")
+    assert seite.js("() => JSON.stringify(sicherungObjekt()).length < CLOUD_GROESSE_MAX")
+    # "abmelden" schreibt wie "pause", aber ohne die Grenze von einmal am Tag.
+    assert seite.js(ABGLEICH, "abmelden") == "gespeichert"
+    text = seite.js("() => ablage.dok.text")
+    assert len(text.encode("utf-8")) <= 900000
+    stand = json.loads(text)["stand"]
+    assert "probe" not in stand and stand["klein"] == {"a": 1} and "probe:wort" in stand["gewusst"]
+    assert seite.js("() => [Object.keys(standFremd), cloudMerker().fremd]") == [["probe", "klein"], ["klein"]]
+    seite.js("() => { standFremd = {probe: 'c'.repeat(500000)}; }")
+    assert seite.js(ABGLEICH, "abmelden") == "gespeichert"
+    assert len(json.loads(seite.js("() => ablage.dok.text"))["stand"]["probe"]) == 500000
+    # Erst wenn schon die eigenen Felder nicht passen.
+    seite.js("() => { standFremd = {}; wann = {probe: 'č'.repeat(460000)}; }")
+    assert seite.js(ABGLEICH, "abmelden") == "zu gross"
+    assert len(json.loads(seite.js("() => ablage.dok.text"))["stand"]["probe"]) == 500000
+    assert seite.fehler == []
+
+
+def test_grosse_fremde_felder_nie_alle_auf_einmal(seite, heute_stand):
+    """Pruefbefund 28.10.2026: Die Grenze fuer fremde Felder galt ganz oder
+    gar nicht. Lag die Summe beider Seiten darueber, fielen beim
+    Zusammenfuehren alle weg, auch die aktuellen aus der Cloud. Jetzt Feld
+    fuer Feld, und die Cloud (b) geht vor."""
+    seite.starten(stand=heute_stand())
+    n = 450000
+    assert seite.js("""(n) => Object.keys(standFremdAus({x: 'x'.repeat(n), y: 'y'.repeat(n), z: 1,
+                                                       gewusst: [], premium: true}))""", n) == ["x", "z"]
+    a, b, _ = _staende(seite)
+    a = dict(a, nur_a="a" * n, klein_a=1)
+    b = dict(b, nur_b="b" * n, klein_b=2)
+    fremd = """([a, b]) => Object.keys(standZusammenfuehren(a, b)).filter(k => !STAND_FELDER.has(k))"""
+    assert seite.js(fremd, [a, b]) == ["nur_b", "klein_b", "klein_a"]
+    assert seite.js(fremd, [a, {}]) == ["nur_a", "klein_a"]
+    # Uebernommen wird das Ergebnis ohne weiteren Verlust.
+    assert seite.js("""([a, b]) => { standUebernehmen(standZusammenfuehren(a, b));
+                                      return Object.keys(standFremd); }""", [a, b]) == ["nur_b", "klein_b", "klein_a"]
+    assert seite.fehler == []
+
+
+def test_cloud_ersetzt_grosses_feld_ohne_alles_zu_verlieren(seite, heute_stand):
+    """Die Probe aus dem Pruefbefund: Das Handy hat ein grosses fremdes Feld
+    in der Cloud, ein Tablet mit neuerer Fassung ersetzt es durch ein
+    anderes, ebenso grosses. Bis dahin fielen beim Abgleich beide weg, und
+    das naechste Hochladen loeschte die Daten des Tablets in der Cloud."""
+    tag1 = datetime.date.today()
+    _uhr(seite, tag1, 10)
+    seite.starten(stand=heute_stand(wdh_alt="a" * 450000))
+    seite.js(ADAPTER)
+    assert seite.js("async () => await cloudAnmelden('anonym', adapter)") is True
+    assert seite.js("() => cloudMerker().fremd") == ["wdh_alt"]
+    _uhr(seite, tag1 + datetime.timedelta(days=1), 10)
+    seite.js("""() => { const s = JSON.parse(ablage.dok.text);
+                        delete s.stand.wdh_alt; s.stand.wdh_neu = 'b'.repeat(450000);
+                        ablage.dok = {text: JSON.stringify(s), rev: 'tablet.2'}; }""")
+    assert seite.js(ABGLEICH, "start") == "zusammengefuehrt"
+    assert seite.js("() => Object.keys(standFremd)") == ["wdh_neu"]
+    seite.js("() => known.add('handy:wort')")
+    assert seite.js(ABGLEICH, "pause") == "gespeichert"
+    stand = json.loads(seite.js("() => ablage.dok.text"))["stand"]
+    assert stand["wdh_neu"] == "b" * 450000 and "wdh_alt" not in stand
+    assert "handy:wort" in stand["gewusst"]
+    assert seite.fehler == []
+
+
+def test_geloeschtes_fremdes_feld_kommt_nicht_zurueck(seite, heute_stand):
+    """Pruefbefund 28.10.2026: Loeschte oder benannte die neuere Fassung ein
+    eigenes Feld um, schrieb ein Geraet mit dieser Fassung die alte Kopie
+    zurueck in die Cloud. Jetzt merkt es sich, welche fremden Felder dort
+    standen (m.fremd): Was dort stand und jetzt fehlt, bleibt weg. Was hier
+    neu ist (etwa aus einer Sicherungsdatei), kommt mit."""
+    tag1 = datetime.date.today()
+    _uhr(seite, tag1, 10)
+    seite.starten(stand=heute_stand(wdh_v1={"a": 1}))
+    seite.js(ADAPTER)
+    bekannt = set(seite.js("() => [...STAND_FELDER]"))
+    assert seite.js("async () => await cloudAnmelden('anonym', adapter)") is True
+    # Ein Feld aus einer Sicherungsdatei, noch nicht hochgeladen.
+    seite.js("() => { standFremd = Object.assign({}, standFremd, {aus_datei: {d: 1}}); }")
+    _uhr(seite, tag1 + datetime.timedelta(days=1), 10)
+    seite.js("""() => { const s = JSON.parse(ablage.dok.text);
+                        delete s.stand.wdh_v1; s.stand.wdh_v2 = {a: 2};
+                        ablage.dok = {text: JSON.stringify(s), rev: 'tablet.3'}; }""")
+    assert seite.js(ABGLEICH, "start") == "zusammengefuehrt"
+    assert seite.js("() => cloudMerker().fremd") == ["wdh_v2"]
+    assert seite.js(ABGLEICH, "pause") == "gespeichert"
+    stand = json.loads(seite.js("() => ablage.dok.text"))["stand"]
+    assert {k: v for k, v in stand.items() if k not in bekannt} == {"wdh_v2": {"a": 2}, "aus_datei": {"d": 1}}
+    assert sorted(seite.js("() => cloudMerker().fremd")) == ["aus_datei", "wdh_v2"]
+    # Rein: ohne cloudVorher (erste Anmeldung) kommt alles von a mit, mit
+    # nur das, was die Cloud nie hatte.
+    mischen = "([a, b, v]) => Object.keys(standZusammenfuehren(a, b, v)).filter(k => !STAND_FELDER.has(k))"
+    assert seite.js(mischen, [{"alt": 1, "neu": 1}, {"b": 1}, None]) == ["b", "alt", "neu"]
+    assert seite.js(mischen, [{"alt": 1, "neu": 1}, {"b": 1}, ["alt", "b"]]) == ["b", "neu"]
+    assert seite.fehler == []

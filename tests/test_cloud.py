@@ -64,6 +64,18 @@ def test_groessengrenze_wie_in_den_regeln(index_html, wurzel):
     assert "d.daten.size() <= %s" % grenze in _lesen(wurzel, "firestore.rules")
 
 
+def test_grenze_900000_in_bytes_unter_einem_mib(index_html):
+    """28.10.2026: 900 000 statt 400 000 - Luft fuer die zeitgesteuerte
+    Wiederholung ab v110. Die App misst in UTF-8-Bytes (utf8Laenge), damit
+    das Dokument mit rev (bis 100 Zeichen) und den Feldnamen sicher unter
+    Firestores 1 MiB je Dokument bleibt; die Regel zaehlt Zeichen."""
+    grenze = int(re.search(r"const CLOUD_GROESSE_MAX = (\d+);", index_html).group(1))
+    assert grenze == 900000 and grenze + 100 + 4096 < 1024 * 1024
+    abgleich = re.search(r"async function cloudAbgleich\(.*?\n\}", index_html, re.S).group(0)
+    assert "utf8Laenge(text) > CLOUD_GROESSE_MAX" in abgleich
+    assert "text.length > CLOUD_GROESSE_MAX" not in abgleich
+
+
 def test_regeln_nur_das_eigene_dokument(wurzel):
     regeln = _lesen(wurzel, "firestore.rules")
     code = "\n".join(z.split("//")[0] for z in regeln.splitlines())

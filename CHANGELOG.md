@@ -91,6 +91,23 @@ are in the Play Store listing. Format:
   build before anything is copied.
 
 ### Changed
+- Settings → About shows the legal notice (Impressum) in all eight
+  languages, the same text as on the website, readable offline; the
+  sign-in screen has it too. Links in the legal texts open in the
+  device's browser.
+- Privacy policy (app and web demo, all eight languages, dated
+  28.10.2026): a paragraph on the website zmaj-lernapp.github.io, which
+  GitHub Pages hosts and where GitHub logs visitors' IP addresses. The
+  contact form paragraph refers to it instead of repeating it.
+- Cloud backup: up to 900,000 bytes per learner instead of 400,000
+  characters (`firestore.rules` and `CLOUD_GROESSE_MAX`), measured in
+  UTF-8 so the document stays below Firestore's 1 MiB. Merging, the
+  backup file and the device storage keep new top-level fields that a
+  newer app version adds to the progress, so this version does not drop
+  them: the cloud's copy wins, a field the newer version removed stays
+  removed, and when space runs short single fields stay out of the
+  cloud, never all of them. A newer version keeps its own data in such
+  fields only, not inside existing ones like the mistakes box or stars.
 - Privacy policy and terms of use in all eight languages describe the
   account: what Firebase stores and where, how long, and how to delete it.
   The terms changed materially (account required), so existing users see the
