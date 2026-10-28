@@ -22,9 +22,15 @@ Seiten im Ordner `github-seite`:
     README.md                 Startseite des Repositories, aus seite_readme.md
     favicon.ico, icon-256.png Symbol im Browser-Tab, Kopie von web/icon.ico
                               und web/icon-256.png (der Drache, seit 15.10.2026)
+    kontakt.html              Kontaktformular, acht Sprachen (seit 28.10.2026).
+                              Nur mit KONTAKT_FORMULAR = True in sprachen.py
+                              UND zmaj-android/cloud_zugang.json
 
 Die Seiten kommen ohne fremde Server aus: keine Schriften, keine Skripte
-von außen, alles steht in der Datei selbst.
+von außen, alles steht in der Datei selbst. Einzige Ausnahme ist das
+Kontaktformular: Es schickt die Nachricht per fetch an Firebase
+(identitytoolkit.googleapis.com und firestore.googleapis.com), sonst nirgends
+hin - das sichert eine Content-Security-Policy in der Seite selbst ab.
 
 In Thonny öffnen und auf Run (F5) drücken. Nach jeder Änderung an den
 Rechtstexten noch einmal laufen lassen und die Dateien neu hochladen.
@@ -32,16 +38,20 @@ Rechtstexten noch einmal laufen lassen und die Dateien neu hochladen.
 Wie die Seiten online kommen, steht in github-seite/LIESMICH.txt.
 """
 
+import base64
+import hashlib
 import io
 import json
 import os
 import re
 import shutil
 import sys
+from html import escape
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
 ZIEL = os.path.join(ORDNER, "github-seite")
 sys.path.insert(0, ORDNER)
+import app_bauen  # noqa: E402
 import huelle  # noqa: E402
 import sprachen  # noqa: E402
 
@@ -119,11 +129,14 @@ SKRIPT = """
 """
 
 
-def kopf(titel):
+def kopf(titel, csp=None, stil=""):
+    """csp und stil nur fuer kontakt.html (28.10.2026). Ohne sie bleibt der
+    Kopf der uebrigen Seiten Zeichen fuer Zeichen, wie er war."""
     return (
         '<!doctype html>\n<html lang="de">\n<head>\n'
         '<meta charset="utf-8">\n'
-        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        + ('<meta http-equiv="Content-Security-Policy" content="%s">\n' % csp if csp else '')
+        + '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         '<title>%s</title>\n'
         # Symbol im Browser-Tab: das App-Symbol (Drache), seit 15.10.2026.
         # Bis dahin hatte die Seite keins, und der Browser fragte vergeblich
@@ -135,7 +148,7 @@ def kopf(titel):
         '<style>%s</style>\n'
         '</head>\n<body>\n<div class="wrap">\n'
         '<header><div class="marke">Zmaj<span>.</span></div></header>\n'
-    ) % (titel, STIL)
+    ) % (titel, STIL + stil)
 
 
 # Die Kanaele von Zmaj, in jeder Sprache gleich: Plattformnamen werden
@@ -160,11 +173,15 @@ START_WORT = {
 }
 
 
-def fuss(mit_skript=True, hier=None):
+def fuss(mit_skript=True, hier=None, skript_dazu=None):
     """hier: Dateiname dieser Seite – der eigene Verweis wird weggelassen.
 
     Google verlinkt die Datenschutzerklärung direkt. Ohne diese Zeile käme man
-    von dort weder zum Impressum noch zu den anderen Texten."""
+    von dort weder zum Impressum noch zu den anderen Texten.
+
+    Mit KONTAKT_FORMULAR steht hinter dem Impressum der Verweis auf
+    kontakt.html. main() schaltet ihn nur ein, wenn die Seite auch gebaut
+    wird. skript_dazu: das Skript des Formulars, hinter dem Umschalter."""
     anbieter = sprachen.ANBIETER.replace("<br>", " · ")
 
     def zeile(code):
@@ -176,6 +193,8 @@ def fuss(mit_skript=True, hier=None):
                  ("nutzungsbedingungen.html", texte["set.agb"]),
                  ("konto-loeschen.html",
                   LOESCHEN.get(code, LOESCHEN["en"])["titel"]))
+        if sprachen.KONTAKT_FORMULAR:
+            namen = namen[:2] + (("kontakt.html", sprachen.kontakt_texte(code)["titel"]),) + namen[2:]
         return " · ".join('<a href="%s">%s</a>' % (d, n)
                           for d, n in namen if d != hier)
 
@@ -197,6 +216,8 @@ def fuss(mit_skript=True, hier=None):
             % (fuesse, sozial, anbieter, ki))
     if mit_skript:
         teil += "<script>%s</script>\n" % SKRIPT
+    if skript_dazu:
+        teil += "<script>%s</script>\n" % skript_dazu
     return teil + "</body>\n</html>\n"
 
 
@@ -706,6 +727,245 @@ def baue_startseite():
     schreibe("index.html", "".join(teile))
 
 
+# Das Kontaktformular (Weg A, Ajdin am 28.10.2026): der zweite Weg fuer eine
+# "schnelle elektronische Kontaktaufnahme" nach § 5 Abs. 1 Nr. 2 DDG, neben
+# der E-Mail. Keine Telefonnummer, und es kostet nichts - jetzt nicht und
+# spaeter nicht: Firebase im Tarif Spark ohne Zahlungsmittel, die
+# Weiterleitung als Apps Script im Gratis-Gmail-Konto
+# (kontakt_weiterleitung.gs). Vorschlag und Abwaegung:
+# Release/Kontaktformular_Vorschlag.md.
+#
+# Ablauf beim Absenden: anonym anmelden (accounts:signUp), die Nachricht als
+# nachrichten/{uid} ablegen (documents:commit, zeit vom Server), die
+# Anmeldung wieder loeschen (accounts:delete). Was erlaubt ist, steht in
+# firestore.rules - die Grenzen hier muessen dazu passen
+# (tests/test_kontakt.py).
+#
+# Projekt-ID und Web-API-Schluessel kommen aus derselben cloud_zugang.json
+# wie fuer die App. Der Schluessel ist kein Geheimnis im engeren Sinn (er
+# steht auch in jeder App), aber er gehoert zu genau diesem Projekt und
+# steht deshalb nie im Repository, nur in der gebauten Seite.
+KONTAKT_HOSTS = ("https://identitytoolkit.googleapis.com", "https://firestore.googleapis.com")
+NACHRICHT_MAX = 5000
+ADRESSE_MAX = 254
+# type="email" laesst nur druckbares ASCII durch, wie die Regel in
+# firestore.rules. Das Muster verlangt dazu einen Punkt in der Domain:
+# type="email" allein liesse auch "a@b" durch, und Firestore lehnte die
+# Nachricht dann ab.
+ADRESSE_MUSTER = r"[^@\s]+@[^@\s]+\.[^@\s]+"
+
+KONTAKT_STIL = """
+.kontakt label{display:block;font-weight:700;margin:16px 0 6px}
+.kontakt textarea,.kontakt input{width:100%;font:inherit;color:var(--text);background:var(--bg);
+  border:1px solid var(--linie);border-radius:12px;padding:11px 13px}
+.kontakt textarea{min-height:170px;resize:vertical}
+.kontakt textarea:focus,.kontakt input:focus{outline:2px solid var(--blau);outline-offset:1px}
+.kontakt button{font:inherit;font-weight:700;cursor:pointer;margin-top:8px;padding:12px 22px;
+  border-radius:12px;border:0;background:var(--blau);color:#fff}
+.kontakt button:disabled{opacity:.55;cursor:default}
+.falle{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.meldung{min-height:1.6em;margin:14px 0 0;font-weight:700}
+.meldung.gut{color:var(--gelb)}
+.meldung.schlecht{color:#FF8A80}
+"""
+
+# Das Skript des Formulars. Nutzereingaben gehen nur ueber value und
+# textContent in die Seite, nie ueber innerHTML (tests/test_kontakt.py).
+KONTAKT_SKRIPT = """
+(function(){
+  var PROJEKT = __PROJEKT__, SCHLUESSEL = __SCHLUESSEL__;
+  var KONTO = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+  var DOKUMENTE = 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(PROJEKT)
+    + '/databases/(default)/documents';
+  var formulare = document.querySelectorAll('form.kontakt');
+  var laeuft = false;
+
+  // Nach 20 Sekunden ohne Antwort gilt es als gescheitert, wie in der App
+  // (cloudFirestore in web/index.html). Kein Netz traegt netz - die Seite
+  // sagt dann "Keine Verbindung" statt "hat nicht geklappt".
+  async function senden(url, daten, ausweis){
+    var ab = new AbortController();
+    var uhr = setTimeout(function(){ ab.abort(); }, 20000);
+    var kopf = {'Content-Type': 'application/json'};
+    if(ausweis) kopf.Authorization = 'Bearer ' + ausweis;
+    try{
+      var r;
+      try{
+        r = await fetch(url, {method: 'POST', headers: kopf, body: JSON.stringify(daten),
+                              cache: 'no-store', credentials: 'omit', signal: ab.signal});
+      }catch(e){ var n = new Error('netz'); n.netz = true; throw n; }
+      if(!r.ok) throw new Error('status ' + r.status);
+      return await r.json();
+    }finally{ clearTimeout(uhr); }
+  }
+
+  // Anonym anmelden, die Nachricht unter der eigenen uid ablegen, die
+  // Anmeldung wieder loeschen. zeit setzt der Server (firestore.rules:
+  // zeit == request.time), exists: false macht daraus ein reines Anlegen.
+  async function ablegen(text, antwort, sprache){
+    var konto = await senden(KONTO + 'signUp?key=' + encodeURIComponent(SCHLUESSEL), {returnSecureToken: true});
+    if(!konto || typeof konto.localId !== 'string' || !konto.localId || !konto.idToken) throw new Error('anmeldung');
+    try{
+      await senden(DOKUMENTE + ':commit', {writes: [{
+        update: {name: 'projects/' + PROJEKT + '/databases/(default)/documents/nachrichten/' + konto.localId,
+                 fields: {text: {stringValue: text}, antwort: {stringValue: antwort},
+                          sprache: {stringValue: sprache}}},
+        updateTransforms: [{fieldPath: 'zeit', setToServerValue: 'REQUEST_TIME'}],
+        currentDocument: {exists: false}}]}, konto.idToken);
+    }finally{
+      // Auch wenn das Ablegen scheiterte: Die anonyme Anmeldung soll nicht
+      // liegen bleiben. Klappt das Loeschen nicht, kann sie trotzdem nichts
+      // mehr - die Regeln erlauben ihr genau ein Dokument.
+      try{ await senden(KONTO + 'delete?key=' + encodeURIComponent(SCHLUESSEL), {idToken: konto.idToken}); }catch(e){}
+    }
+  }
+
+  function melden(form, art){
+    var m = form.querySelector('.meldung');
+    m.textContent = art ? (form.dataset[art] || '') : '';
+    m.className = 'meldung' + (art === 'danke' ? ' gut' : (art === 'fehler' || art === 'keinNetz') ? ' schlecht' : '');
+  }
+
+  function fertig(form){
+    formulare.forEach(function(f){ f.reset(); melden(f, null); });
+    melden(form, 'danke');
+  }
+
+  formulare.forEach(function(form){
+    var knopf = form.querySelector('button[type="submit"]');
+    // Ohne Skript bleibt der Knopf aus: Ein Formular ohne fetch schickte
+    // die Nachricht sonst an GitHub Pages statt an uns.
+    knopf.disabled = false;
+    // Dasselbe Feld in den anderen Sprachen mitfuehren. Wer die Sprache
+    // wechselt, saehe sonst ein leeres Formular.
+    form.addEventListener('input', function(ev){
+      var name = ev.target.name;
+      if(name !== 'nachricht' && name !== 'antwort') return;
+      formulare.forEach(function(f){ if(f !== form) f.elements[name].value = ev.target.value; });
+    });
+    form.addEventListener('submit', async function(ev){
+      ev.preventDefault();
+      if(laeuft) return;
+      var feld = form.elements;
+      var text = feld.nachricht.value.trim();
+      var antwort = feld.antwort.value.trim();
+      if(!text){ feld.nachricht.value = ''; form.reportValidity(); return; }
+      // Das Fallenfeld "website" sieht und fuellt nur ein Programm. Dann
+      // tut die Seite so, als sei alles angekommen, und schickt nichts.
+      if(feld.website.value){ fertig(form); return; }
+      laeuft = true;
+      knopf.disabled = true;
+      melden(form, 'sendet');
+      try{
+        await ablegen(text, antwort, form.dataset.sprache);
+        fertig(form);
+      }catch(e){
+        melden(form, e && e.netz ? 'keinNetz' : 'fehler');
+      }finally{
+        laeuft = false;
+        knopf.disabled = false;
+      }
+    });
+  });
+})();
+"""
+
+# Eine Abteilung je Sprache, wie bei den Rechtstexten. Jede hat ihr eigenes
+# Formular, damit Beschriftungen und Meldungen ohne Skript im HTML stehen.
+# Der Knopf ist ausgeschaltet, bis das Skript laeuft.
+KONTAKT_ABTEILUNG = """<section data-sprache="%(code)s" lang="%(code)s" hidden>
+<h1>%(titel)s</h1>
+<div class="karte">
+<p>%(einleitung)s</p>
+<noscript><p class="recht">%(ohne_skript)s</p></noscript>
+<form class="kontakt" data-sprache="%(code)s" method="post" data-sendet="%(sendet)s" data-danke="%(danke)s" data-fehler="%(fehler)s" data-kein-netz="%(kein_netz)s">
+<label for="nachricht-%(code)s">%(nachricht)s</label>
+<textarea id="nachricht-%(code)s" name="nachricht" rows="7" maxlength="%(nmax)d" required></textarea>
+<label for="antwort-%(code)s">%(antwort)s</label>
+<input id="antwort-%(code)s" name="antwort" type="email" maxlength="%(amax)d" pattern="%(muster)s" autocomplete="email" required>
+<div class="falle" aria-hidden="true"><label for="website-%(code)s">Website</label><input id="website-%(code)s" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<p class="recht">%(hinweis)s</p>
+<button type="submit" disabled>%(senden)s</button>
+<p class="meldung" role="status" aria-live="polite"></p>
+</form>
+</div>
+</section>
+"""
+
+
+def kontakt_zugang(datei=None):
+    """Projekt-ID und Web-API-Schluessel fuer kontakt.html aus der privaten
+    Huelle (cloud_zugang.json, dieselbe Datei wie fuer die App), oder None
+    ohne Datei. Bricht ab, wenn ein Wert nicht die Form hat, die auch
+    app_bauen.py verlangt - ohne den Wert in der Meldung zu zeigen."""
+    datei = datei or os.path.join(huelle.ordner(), "cloud_zugang.json")
+    if not os.path.exists(datei):
+        return None
+    with io.open(datei, encoding="utf-8") as f:
+        try:
+            werte = json.load(f)
+        except ValueError:
+            raise SystemExit("ABBRUCH: %s ist kein gueltiges JSON." % datei)
+    zugang = {}
+    for name in ("projekt", "schluessel"):
+        wert = werte.get(name) if isinstance(werte, dict) else None
+        if not isinstance(wert, str) or not re.fullmatch(app_bauen.CLOUD_MUSTER[name], wert):
+            raise SystemExit("ABBRUCH: In %s fehlt '%s' oder hat nicht die erwartete Form."
+                             % (datei, name))
+        zugang[name] = wert
+    return zugang
+
+
+def csp_hash(inhalt):
+    """Der Fingerabdruck eines eingebetteten Skripts oder Stils fuer die
+    Content-Security-Policy."""
+    return "'sha256-%s'" % base64.b64encode(hashlib.sha256(inhalt.encode("utf-8")).digest()).decode("ascii")
+
+
+def baue_kontaktseite(zugang):
+    """kontakt.html, oder nichts ohne Zugang.
+
+    Ohne Zugang wird eine kontakt.html aus einem frueheren Lauf geloescht:
+    Online stuende sonst ein Formular, das weder Impressum noch
+    Datenschutzerklaerung nennen.
+
+    Die Content-Security-Policy erlaubt nur die beiden eingebetteten Skripte
+    und den Stil (per Fingerabdruck), Bilder von hier und Verbindungen zu
+    genau den zwei Adressen von Firebase. form-action 'none' verhindert,
+    dass ein Formular ohne Skript die Nachricht an GitHub Pages schickt."""
+    pfad = os.path.join(ZIEL, "kontakt.html")
+    if zugang is None:
+        if os.path.exists(pfad):
+            os.remove(pfad)
+            print("  %-26s entfernt (kein Formular)" % "kontakt.html")
+        return
+    mail = post_adresse()
+    link = '<a href="mailto:%s">%s</a>' % (mail, mail)
+    skript = (KONTAKT_SKRIPT.replace("__PROJEKT__", json.dumps(zugang["projekt"]))
+              .replace("__SCHLUESSEL__", json.dumps(zugang["schluessel"])))
+    csp = ("default-src 'none'; script-src %s %s; style-src %s; img-src 'self'; "
+           "connect-src %s; form-action 'none'; base-uri 'none'"
+           % (csp_hash(SKRIPT), csp_hash(skript), csp_hash(STIL + KONTAKT_STIL), " ".join(KONTAKT_HOSTS)))
+    erste = sprachen.kontakt_texte(sprachen.GRUNDSPRACHE)
+    teile = [kopf("Zmaj – " + escape(erste["titel"]), csp=csp, stil=KONTAKT_STIL), sprachwahl()]
+    for s in sprachen.SPRACHEN:
+        k = sprachen.kontakt_texte(s["code"])
+        werte = {"code": s["code"], "nmax": NACHRICHT_MAX, "amax": ADRESSE_MAX,
+                 "muster": escape(ADRESSE_MUSTER, quote=True)}
+        # Reiner Text wird maskiert, in Attributen samt Anfuehrungszeichen.
+        # einleitung, hinweis und ohne_skript tragen eigenes HTML (Links)
+        # wie die Rechtstexte.
+        for name in ("titel", "nachricht", "antwort", "senden"):
+            werte[name] = escape(k[name], quote=False)
+        for name in ("sendet", "danke", "fehler", "kein_netz"):
+            werte[name] = escape(k[name], quote=True)
+        for name in ("einleitung", "hinweis", "ohne_skript"):
+            werte[name] = k[name].replace("{mail}", link)
+        teile.append(KONTAKT_ABTEILUNG % werte)
+    teile.append(fuss(hier="kontakt.html", skript_dazu=skript))
+    schreibe("kontakt.html", "".join(teile))
+
+
 def post_adresse():
     """Die E-Mail-Adresse aus ANBIETER – die Zeile mit dem @.
 
@@ -792,10 +1052,23 @@ def main():
     if sprachen.ustidnr_fehlt():
         print("  Hinweis: Die USt-IdNr fehlt im Impressum – sie kommt per Post vom")
         print("  Bundeszentralamt. Sobald sie da ist, in ANBIETER eintragen.")
-    baue_startseite()
-    baue_loeschseite()
-    for datei, titel, text in SEITEN:
-        baue_rechtsseite(datei, titel, text)
+    # Das Kontaktformular nur mit Schalter UND Zugang (28.10.2026). Ohne
+    # cloud_zugang.json nennt es keine Seite, auch das Impressum nicht -
+    # sonst zeigte der Verweis auf eine Seite, die es nicht gibt. Ohne
+    # Schalter wird die Datei gar nicht erst gelesen.
+    zugang = kontakt_zugang() if sprachen.KONTAKT_FORMULAR else None
+    if sprachen.KONTAKT_FORMULAR and zugang is None:
+        print("  Hinweis: KONTAKT_FORMULAR ist an, aber zmaj-android/cloud_zugang.json")
+        print("  fehlt - die Seiten nennen das Kontaktformular nicht.")
+    vorher, sprachen.KONTAKT_FORMULAR = sprachen.KONTAKT_FORMULAR, zugang is not None
+    try:
+        baue_startseite()
+        baue_loeschseite()
+        for datei, titel, text in SEITEN:
+            baue_rechtsseite(datei, titel, text)
+        baue_kontaktseite(zugang)
+    finally:
+        sprachen.KONTAKT_FORMULAR = vorher
     schreibe("app-ads.txt", APP_ADS)
     # Ohne .nojekyll laesst GitHub Pages Ordner mit Punkt vorn weg - und
     # damit .well-known (28.10.2026).

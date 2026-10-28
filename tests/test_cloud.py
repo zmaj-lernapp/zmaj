@@ -68,8 +68,12 @@ def test_regeln_nur_das_eigene_dokument(wurzel):
     regeln = _lesen(wurzel, "firestore.rules")
     code = "\n".join(z.split("//")[0] for z in regeln.splitlines())
     assert "rules_version = '2';" in code
-    # Genau ein Pfad unterhalb der Datenbank, und das ist users/{uid}.
-    assert re.findall(r"match\s+(\S+)\s*\{", code) == ["/databases/{database}/documents", "/users/{uid}"]
+    # Zwei Pfade unterhalb der Datenbank: users/{uid} fuer die App und seit
+    # dem 28.10.2026 nachrichten/{uid} fuer das Kontaktformular (geprueft in
+    # tests/test_kontakt.py). Hier zaehlt nur der Teil fuer users/{uid}.
+    assert re.findall(r"match\s+(\S+)\s*\{", code) == ["/databases/{database}/documents", "/users/{uid}",
+                                                         "/nachrichten/{uid}"]
+    code = code.split("match /nachrichten/{uid}")[0]
     assert "request.auth != null && request.auth.uid == uid" in code
     erlaubt = re.findall(r"allow ([a-z, ]+):\s*if ([^;]+);", code)
     assert {a for a, _ in erlaubt} == {"get", "create, update", "delete"}
