@@ -3216,6 +3216,10 @@ function applyTexts(){
 let SECTIONS = [], CATEGORIES = [], SENTENCES = [], GRAMMAR = {}, STORIES = [], DICT = {};
 let SATZBAU = [];          // Sätze aus Kacheln (vokabeln.py SATZBAU), seit 13.10.2026
 let known = new Set(), passed = new Set(), read = new Set(), days = new Set();
+/* Ob known schon beim Laden Woerter hatte - oder nach dem Einlesen einer
+   Sicherung, nach dem Zusammenfuehren mit der Cloud. Nur dann zaehlen sie
+   fuer das Tor, siehe hatGelernt(). Gesetzt in standUebernehmen(). */
+let gewusstGeladen = false;
 let frost = new Set();    // Tage, die ein Serienschutz gerettet hat
 let tagwerk = {};         // Tag -> Zähler, z.B. {'2026-09-14': {auf:23, ric:18}}
 /* ---- Fundament für die Wegmarken (19.09.2026) ----
@@ -5022,6 +5026,7 @@ function standUebernehmen(d){
      Einstellungsknopf erschien - siehe import_richten.py, 04.10.2026. */
   const nurTexte = x => Array.isArray(x) ? x.filter(s => typeof s === 'string') : [];
   known = new Set(nurTexte(d.gewusst)); passed = new Set(nurTexte(d.bestanden)); read = new Set(nurTexte(d.gelesen));
+  gewusstGeladen = known.size > 0;
   // Nur echte Datumsangaben - siehe istDatum.
   // Kein Array (etwa "tage":"x") hiess bisher: .filter wirft. Jetzt: leer.
   /* Und keine vor APP_START (17.10.2026): die kann es nicht geben, ein
@@ -8721,9 +8726,12 @@ function standErsetzen(machen){
      in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
      sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
   const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
+  /* Ebenso gewusstGeladen: zurueck kommt hier der laufende Stand, kein
+     geladener - fuers Tor zaehlte sonst ein halb gelerntes Wort. */
+  const gewusstVorher = gewusstGeladen;
   try{ standUebernehmen(machen()); altenFortschrittUmschreiben(); return true; }
   catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
-           geschenk = geschenkVorher; getragen = getragenVorher;
+           geschenk = geschenkVorher; getragen = getragenVorher; gewusstGeladen = gewusstVorher;
            try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
                 localStorage.setItem('zmaj_getragen', getragen); }catch(e2){}
            return false; }
@@ -9002,6 +9010,7 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
   }catch(e){
     // Kein Netz oder abgelehnt: der Tag ist nicht verbraucht.
     cloudMerkerSetzen(m, true);
+    cloudFehlerGrund = cloudGrund(e);   // fuers Abmelden: Netz oder Firebase?
     /* Die Anmeldung ist bei Firebase ungueltig geworden (Konto geloescht,
        gesperrt, Passwort anderswo geaendert) - nicht bei Netzfehlern. */
     if(e && e.abgemeldet) cloudVonAussenAbgemeldet(m.uid);
@@ -9374,11 +9383,15 @@ function cloudSpeicherAdapter(ablage){
 let netzWeg = false;
 let anmeldungLaeuft = false;
 let anmAnlass = 'sichern', anmModus = 'wahl';
-/* Die Einstufung zaehlt, sobald der Test gelaufen ist (fragen steht dann
-   da, auch als 0 bei einem Abbruch gleich am Anfang) - nicht bei "Ich
-   fange neu an". */
-const hatGelernt = () => days.size > 0 || known.size > 0 || passed.size > 0
-  || !!(einstufung && typeof einstufung.fragen === 'number');
+/* Die Einstufung zaehlt, sobald darin eine Frage beantwortet ist - nicht
+   bei "Ich fange neu an" und nicht bei einem Abbruch gleich bei Frage 1
+   (fragen ist dann 0), wie im Plan 2.5. Gewusste Woerter zaehlen nur, wenn
+   sie schon beim Laden da waren (gewusstGeladen: Stand von v108, eine
+   Sicherung, die Cloud). known.add() laeuft mitten in der Lektion - wer
+   Lektion 1 halb machte und verliess, stand sonst vor der Anmeldung, ohne
+   eine Lektion beendet zu haben. Gegenpruefung 28.10.2026. */
+const hatGelernt = () => days.size > 0 || gewusstGeladen || passed.size > 0
+  || !!(einstufung && einstufung.fragen > 0);
 function warAbgemeldet(){ try{ return localStorage.getItem(ABGEMELDET) === '1'; }catch(e){ return false; } }
 function anmeldungFaellig(){
   return cloudModus() && standGeladen && !cloudMerker()
@@ -9648,13 +9661,22 @@ async function cloudAbmeldenGanz(){
   await saveProgress();
   // Laeuft gerade ein Abgleich (etwa vom Start), auf ihn warten.
   for(let i = 0; cloudLaeuft && i < 60; i++) await new Promise(f => setTimeout(f, 500));
+  cloudFehlerGrund = '';
   const r = await cloudAbgleich('abmelden');
   /* Hat Firebase die Anmeldung eben selbst fuer ungueltig erklaert
-     (cloudVonAussenAbgemeldet), ist der Merker schon weg - dann gibt es
-     nichts mehr hochzuladen, und abgemeldet wird trotzdem. */
-  if(!cloudMerker()){ note.textContent = ''; await abmeldenFertig(); anmeldungZeigen('abgemeldet'); return; }
+     (cloudVonAussenAbgemeldet), ist der Merker schon weg und abgemeldet
+     ist man schon. Hochladen ging dann nicht mehr, der Lernstand auf dem
+     Geraet ist die einzige aktuelle Kopie. Er bleibt stehen, und die
+     naechste Anmeldung fuehrt ihn mit dem Konto zusammen - wie beim Start.
+     Gegenpruefung 28.10.2026: bis dahin leerte abmeldenFertig() ihn hier,
+     und alles seit dem letzten Hochladen war weg. */
+  if(!cloudMerker()){ note.textContent = ''; anmeldungZeigen('abgemeldet'); return; }
+  /* "Brauchst du Internet" nur, wenn es am Netz lag - nicht, wenn Firebase
+     ablehnt, etwa mit 429, weil das Tageskontingent aufgebraucht ist
+     (Gegenpruefung 28.10.2026). */
   if(r !== 'gespeichert' && r !== 'unveraendert'){
-    note.textContent = t('set.abmelden_netz'); note.className = 'note feedback no';
+    note.textContent = t(cloudFehlerGrund === 'netz' ? 'set.abmelden_netz' : 'konto.fehler_allgemein');
+    note.className = 'note feedback no';
     return;
   }
   note.textContent = '';
@@ -9684,7 +9706,10 @@ async function kontoWegKlick(){
 async function cloudKontoLoeschen(passwort){
   const m = cloudMerker(), note = $('wegNote');
   if(!m || anmeldungLaeuft) return;
-  if(m.art === 'passwort' && !passwort){ note.textContent = t('konto.fehler_mail_pw'); note.className = 'note feedback no'; return; }
+  /* konto.fehler_alt, nicht konto.fehler_mail_pw: das verweist auf "Mit
+     Google anmelden", und den Knopf gibt es hier nicht (Gegenpruefung
+     28.10.2026). Ebenso unten bei einem falschen Passwort. */
+  if(m.art === 'passwort' && !passwort){ note.textContent = t('konto.fehler_alt'); note.className = 'note feedback no'; return; }
   const frageText = t('set.konto_weg_frage') + (m.art === 'google' ? ' ' + t('set.konto_weg_google') : '');
   if(!await frage(t('set.konto_loeschen'), frageText, t('set.konto_loeschen_knopf'), t('btn.dialog_abbrechen'))) return;
   anmeldungLaeuft = true;
@@ -9698,7 +9723,7 @@ async function cloudKontoLoeschen(passwort){
     const g = cloudFehlerGrund;
     note.textContent = g === 'GOOGLE_ABGEBROCHEN' ? ''
       : /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD)/.test(g)
-      ? t('konto.fehler_mail_pw') : t(g === 'netz' ? 'konto.fehler_netz' : 'konto.fehler_allgemein');
+      ? t('konto.fehler_alt') : t(g === 'netz' ? 'konto.fehler_netz' : 'konto.fehler_allgemein');
     note.className = note.textContent ? 'note feedback no' : 'note';
     return;
   }

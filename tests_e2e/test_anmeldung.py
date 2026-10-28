@@ -19,9 +19,16 @@ v109: test_ohne_projekt_alles_wie_heute.
 import datetime
 import json
 
+from conftest import DURCHSPIELEN
 from firebase_attrappe import CLIENT, FIREBASE, UID, Attrappe, dok_pfad, wege
 
 KONTO = "identitytoolkit.googleapis.com/v1/accounts:"
+
+# Wie DURCHSPIELEN, aber nur bis zum ersten gewussten Wort - eine halb
+# gemachte Lektion (Gegenpruefung 28.10.2026).
+_SCHLEIFE = "X().i < liste().length;"
+assert DURCHSPIELEN.count(_SCHLEIFE) == 1
+BIS_ZUM_ERSTEN_WORT = DURCHSPIELEN.replace(_SCHLEIFE, "X().i < liste().length && known.size === 0;")
 
 # Der Ersatz fuer das Plugin der Huelle. sessionStorage ueberlebt Neuladen
 # und localStorage.clear() - wie die SharedPreferences "zmaj_konto".
@@ -206,11 +213,63 @@ def test_neu_erst_lektion_dann_nur_noch_anmeldung(seite, heute_stand, cloud_html
 
 def test_einstufung_danach_weiter_zur_anmeldung(seite, heute_stand, cloud_html):
     _starten(seite, cloud_html, stand=heute_stand())
-    seite.js("() => { baueEinstufung('gut'); einstufungStarten(); einstufungEnde(); }")
-    assert seite.js("() => [einstufung.fragen >= 0, document.getElementById('eLos').textContent]") \
-        == [True, _t(seite, "anm.weiter")]
+    # Eine Frage beantwortet, dann beendet: das zaehlt wie Lektion 1 (Plan 2.5).
+    seite.js("() => { baueEinstufung('gut'); einstufungStarten(); Ex.results.push(true); Ex.i++; einstufungEnde(); }")
+    assert seite.js("() => [einstufung.fragen, document.getElementById('eLos').textContent]") \
+        == [1, _t(seite, "anm.weiter")]
     seite.page.click("#eLos")
     assert seite.js(ZUSTAND)["sicht"] == ["profileView"]
+    assert seite.fehler == []
+
+
+def test_einstufung_bei_frage_1_beendet_kein_tor(seite, heute_stand, cloud_html):
+    """Gegenpruefung 28.10.2026: Wer die Einstufung bei Frage 1 beendet, hat
+    nichts gelernt - bis dahin kam trotzdem gleich die Anmeldung."""
+    _starten(seite, cloud_html, stand=heute_stand())
+    seite.js("() => { baueEinstufung('etwas'); einstufungStarten(); }")
+    assert seite.js("() => sichtbar('einstufungView')")
+    seite.page.click("#eQuit")
+    seite.page.click("#frJa")
+    assert seite.js("() => [einstufung.fragen, document.getElementById('eLos').textContent, anmeldungFaellig()]") \
+        == [0, _t(seite, "einst.los"), False]
+    seite.page.click("#eLos")
+    assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
+    _neu_laden(seite)
+    assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
+    assert seite.fehler == []
+
+
+def test_lektion_halb_gemacht_kein_tor_erst_fertig(seite, heute_stand, cloud_html):
+    """Gegenpruefung 28.10.2026: known.add() laeuft mitten in der Lektion.
+    Wer Lektion 1 nach dem ersten gewussten Wort verliess, stand schon vor
+    der Anmeldung. Jetzt erst nach der fertigen Lektion."""
+    _starten(seite, cloud_html, stand=heute_stand())
+    seite.js("() => { openLevel(0); startLesson(); }")
+    seite.js(BIS_ZUM_ERSTEN_WORT, ["lBody", "Lx"])
+    assert seite.js("() => [known.size > 0, days.size, Lx.i < Lx.queue.length]") == [True, 0, True]
+    seite.page.click("#lQuit")
+    seite.page.click("#frJa")
+    assert seite.js("() => [sichtbar('lesson'), sichtbar('profileView'), anmeldungFaellig()]") == [False, False, False]
+    seite.js("() => showHome()")
+    assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
+    # Lektion 1 noch einmal, jetzt bis zum Ende: dann kommt das Tor.
+    seite.js("() => { openLevel(0); startLesson(); }")
+    assert seite.js("() => sichtbar('lesson')")
+    seite.durchspielen("lBody", "Lx")
+    assert seite.js("() => [days.size, (document.getElementById('anmWeiter') || {}).textContent]") \
+        == [1, _t(seite, "anm.weiter")]
+    seite.page.click("#anmWeiter")
+    assert seite.js(ZUSTAND)["sicht"] == ["profileView"]
+    assert seite.fehler == []
+
+
+def test_stand_von_v108_gleich_zur_anmeldung(seite, heute_stand, cloud_html):
+    """Wer vor v109 gelernt hat, meldet sich beim naechsten Start an - auch
+    wenn sein Stand nur gewusste Woerter hat und keinen Lerntag."""
+    _starten(seite, cloud_html, stand=heute_stand(gewusst=["probe:alt"]))
+    z = seite.js(ZUSTAND)
+    assert z["sicht"] == ["profileView"] and z["woerter"] == 1 and z["tage"] == 0
+    assert z["titel"] == _t(seite, "anm.titel_sichern")
     assert seite.fehler == []
 
 
@@ -548,6 +607,17 @@ def test_abmelden(seite, heute_stand, cloud_html):
     assert seite.js("() => document.getElementById('setLogoutNote').textContent") == _t(seite, "set.abmelden_netz")
     assert seite.js(ZUSTAND)["merker"] is not None
     seite.js("() => { delete navigator.onLine; }")
+    # Netz ja, aber Firestore lehnt ab (429, Tageskontingent weg): nicht
+    # "brauchst Internet", sondern "Hat nicht geklappt" - und angemeldet bleiben.
+    attrappe.kontingent_weg = True
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("(soll) => document.getElementById('setLogoutNote').textContent === soll",
+                                 arg=_t(seite, "konto.fehler_allgemein"))
+    _fertig(seite)
+    z = seite.js(ZUSTAND)
+    assert z["merker"] is not None and z["woerter"] == 1 and z["sicht"] == ["kontoView"]
+    attrappe.kontingent_weg = False
     # Mit Netz: Rueckfrage, ein letztes Schreiben, dann leer und abgemeldet.
     seite.js("() => known.add('probe:zuletzt')")
     attrappe.anfragen.clear()
@@ -570,6 +640,49 @@ def test_abmelden(seite, heute_stand, cloud_html):
     assert seite.fehler == []
 
 
+def test_abmelden_bei_ungueltiger_sitzung_bleibt_der_lernstand(seite, heute_stand, cloud_html):
+    """Gegenpruefung 28.10.2026: Hat Firebase die Anmeldung schon fuer
+    ungueltig erklaert (Passwort auf einem anderen Geraet geaendert), geht
+    das letzte Hochladen beim Abmelden nicht mehr. Bis dahin wurde der
+    Lernstand trotzdem geleert, und alles seit dem letzten Hochladen war weg.
+    Jetzt bleibt er und kommt bei der naechsten Anmeldung ins Konto."""
+    attrappe = Attrappe()
+    uid = attrappe.konto_anlegen("ich@probe.example", "geheim-123")
+    _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    # Heute schon gelesen und geschrieben: der Start fragt Firebase nicht
+    # mehr, und der Ausweis im Speicher ist nach dem Neuladen weg.
+    seite.js("""() => { const m = JSON.parse(localStorage.getItem('zmaj_cloud'));
+                        m.gelesen = m.tag = today(); localStorage.setItem('zmaj_cloud', JSON.stringify(m)); }""")
+    attrappe.token_fehler = "TOKEN_EXPIRED"
+    _neu_laden(seite)
+    _fertig(seite)
+    assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
+    seite.js("() => { known.add('probe:abends'); showKonto(); }")
+    attrappe.anfragen.clear()
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    _fertig(seite)
+    assert wege(attrappe) == [("POST", "securetoken.googleapis.com/v1/token")]
+    z = seite.js(ZUSTAND)
+    assert z["merker"] is None and z["woerter"] == 2 and z["tage"] == 1
+    assert z["titel"] == _t(seite, "konto.anmelden_titel") and z["frage"] == _t(seite, "anm.text_abgemeldet")
+    assert seite.js("() => JSON.parse(localStorage.getItem('zmaj_stand')).gewusst.includes('probe:abends')")
+    assert "abmelden" in _aufrufe(seite)
+    # Nach einem Neustart: Anmeldung, der Stand ist noch da.
+    _neu_laden(seite)
+    z = seite.js(ZUSTAND)
+    assert z["sicht"] == ["profileView"] and z["woerter"] == 2
+    # Wieder angemeldet: zusammengefuehrt und hochgeladen.
+    attrappe.token_fehler = None
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
+    gewusst = json.loads(attrappe.doks[uid]["daten"]["stringValue"])["stand"]["gewusst"]
+    assert "probe:abends" in gewusst and "probe:geraet" in gewusst
+    assert seite.fehler == []
+
+
 def test_konto_loeschen_mit_passwort(seite, heute_stand, cloud_html):
     attrappe = Attrappe()
     uid = attrappe.konto_anlegen("ich@probe.example", "geheim-123")
@@ -578,13 +691,14 @@ def test_konto_loeschen_mit_passwort(seite, heute_stand, cloud_html):
     seite.js("() => showKonto()")
     seite.page.click("#setKontoWeg")
     assert seite.js("() => document.getElementById('wegForm').style.display") == "block"
-    # Falsches Passwort: nichts ist geloescht.
+    # Falsches Passwort: nichts ist geloescht. Die Meldung nennt keinen
+    # Google-Knopf, den es hier nicht gibt (Gegenpruefung 28.10.2026).
     attrappe.anfragen.clear()
     seite.page.fill("#wegPw", "falsch-123")
     seite.page.click("#wegKnopf")
     seite.page.click("#frJa")
-    seite.page.wait_for_function("() => document.getElementById('wegNote').textContent === t('konto.fehler_mail_pw')")
-    assert seite.js("() => document.getElementById('wegNote').textContent") == _t(seite, "konto.fehler_mail_pw")
+    seite.page.wait_for_function("() => document.getElementById('wegNote').textContent === t('konto.fehler_alt')")
+    assert seite.js("() => document.getElementById('wegNote').textContent") == _t(seite, "konto.fehler_alt")
     assert wege(attrappe) == [("POST", KONTO + "signInWithPassword")]
     assert uid in attrappe.doks and "ich@probe.example" in attrappe.konten
     assert seite.js(ZUSTAND)["merker"]["uid"] == uid
@@ -649,8 +763,9 @@ def test_ich_habe_schon_ein_konto_und_keine_karten_ueber_der_anmeldung(seite, he
     seite.js("() => zurueckTaste()")
     assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
     assert seite.js("() => document.getElementById('btnSettings').style.display") == "inline-block"
-    # Mit dem Tor: keine Karte ueber der Anmeldeseite.
-    seite.js("() => { known.add('probe:x'); showHome(); }")
+    # Mit dem Tor: keine Karte ueber der Anmeldeseite. Ein Lerntag statt
+    # eines Wortes - ein Wort zaehlt seit dem 28.10. erst nach dem Laden.
+    seite.js("() => { days.add(today()); showHome(); }")
     assert seite.js(ZUSTAND)["sicht"] == ["profileView"]
     seite.js("""() => { geschenkOffen = true; geschenkNachreichen(); einstufungGefragt = false; einstufungBereit = true;
                        einstufungAnbieten(); bewertungDran = true; kartenNachreichen(); }""")
