@@ -55,6 +55,19 @@ Before that fix, a hand-written backup with `"gewusst":[1]` locked the app at
 every start. It was found in our own review on 04.10.2026 and is reproduced
 and verified in a browser; see the docstring of `import_richten.py`.
 
+## Known limitations
+
+- **Daily quotas without App Check.** The project ID and the web API key are
+  part of every copy of the app, accounts can be created without
+  confirmation, and Firebase App Check is not enforced yet. A single account
+  can therefore use up the daily free quotas of the Spark plan for the whole
+  project (20,000 writes and 50,000 reads per day). Until the quotas reset,
+  around midnight Pacific time, backup and signing out fail for everyone.
+  Learning goes on and nothing is lost: progress stays on the device and is
+  uploaded at the next successful sync. Deleting an account still works,
+  deletes have a quota of their own. App Check with Play Integrity is planned
+  for a later release. This one is known; there is no need to report it.
+
 ## Reporting a vulnerability
 
 Please **do not open a public issue.** Use GitHub's private reporting:

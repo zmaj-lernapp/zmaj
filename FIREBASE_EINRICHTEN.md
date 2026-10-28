@@ -5,6 +5,11 @@ Tarif Spark. Seit dem 27.10.2026: Die Anmeldung kommt mit v109 und ist
 **Pflicht** – mit Google oder mit E-Mail und Passwort, nach der ersten
 Lektion. Der ganze Bauplan steht in `Release\Firebase_Plan_v109.md`.
 
+**Für Ajdin gilt `Release\Firebase_Anleitung.md`.** Das ist die
+Schritt-für-Schritt-Anleitung für die Konsole, und sie ist maßgeblich. Diese
+Datei fasst dieselben Schritte für die Pflege zusammen. Weichen beide
+voneinander ab, gilt die Anleitung.
+
 In dieser Datei stehen **keine** Schlüssel, Projekt-IDs oder Client-IDs, und
 dort gehören auch nie welche hin – das Repository ist öffentlich. Alles, was
 zu genau diesem Projekt gehört, liegt in der privaten Hülle `zmaj-android`.
@@ -94,9 +99,12 @@ ab. **Projekteinstellungen** (Zahnrad) → **Allgemein** → **App hinzufügen**
   und des **Upload-Schlüssels** (beide in der Play Console → Testen und
   veröffentlichen → App-Integrität → App-Signatur).
 - `de.smartdragon.zmaj.test` (die Test-App) mit dem **SHA-1** des
-  **Debug-Schlüssels** (`keytool -list -v -keystore
-  %USERPROFILE%\.android\debug.keystore -alias androiddebugkey -storepass
-  android`).
+  **Debug-Schlüssels**. `keytool` liegt nicht im PATH, es kommt mit Android
+  Studio. In PowerShell (zeigt SHA-1 und SHA-256):
+
+  ```powershell
+  & "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" -alias androiddebugkey -storepass android | Select-String "SHA1:","SHA256:"
+  ```
 
 Die angebotene `google-services.json` brauchen wir nicht – den Schritt
 überspringen.
@@ -111,6 +119,8 @@ In `zmaj-android\cloud_zugang.json` (steht in der `.gitignore` der Hülle):
 
 - Projekt-ID und Web-API-Schlüssel: Projekteinstellungen → Allgemein.
 - Web-Client-ID: Schritt 3.
+- Als UTF-8 **ohne** BOM speichern, sonst ist die Datei für `app_bauen.py`
+  kein gültiges JSON.
 
 `app_bauen.py` prüft die Form aller drei Werte und bricht sonst ab, ohne
 einen Wert in der Meldung zu zeigen. Der Web-API-Schlüssel ist kein
@@ -128,8 +138,10 @@ für die Restore-Schlüssel beim Handywechsel):
  "de.smartdragon.zmaj.test": ["<SHA-256 Debug>"]}
 ```
 
-Die Werte stehen auf denselben Seiten wie die SHA-1, in der Form
-`AA:BB:…` (32 Paare).
+Die Werte stehen neben den SHA-1 (Play Console bzw. Ausgabe von `keytool`),
+in der Form `AA:BB:…` (32 Paare). Ajdin legt die Datei nicht selbst an: Er
+schickt laut Anleitung (Schritt 6) nur die SHA-256-Werte, die Datei entsteht
+daraus.
 
 ## 7. Sicherheitsregeln einspielen
 
@@ -155,11 +167,19 @@ nicht in Firestore, nur bei Firebase Authentication.
 2. **Google Auth Platform** → **Zielgruppe**: Status „In Produktion“, sonst
    können sich nur Testnutzer mit Google anmelden. **Branding**: App-Name
    „Zmaj“, Support-Mail, Startseite `https://zmaj-lernapp.github.io/`,
-   Datenschutz `https://zmaj-lernapp.github.io/datenschutz.html`. Vorerst
-   kein Logo hochladen (könnte eine Markenprüfung auslösen).
+   Datenschutz `https://zmaj-lernapp.github.io/datenschutz.html`,
+   Nutzungsbedingungen `https://zmaj-lernapp.github.io/nutzungsbedingungen.html`,
+   Kontakt des Entwicklers die Support-Mail, autorisierte Domain
+   `zmaj-lernapp.github.io`. Vorerst kein Logo hochladen (könnte eine
+   Markenprüfung auslösen).
 3. **Projekteinstellungen** → **Datenschutz**: die
-   Datenverarbeitungsbedingungen annehmen und den Kontakt eintragen. Das ist
-   der Vertrag mit Google über die Auftragsverarbeitung.
+   Datenverarbeitungsbedingungen annehmen, falls sie nicht schon gelten. Das
+   ist der Vertrag mit Google über die Auftragsverarbeitung. Die Felder für
+   EU-Vertreter und Datenschutzbeauftragten (DSB) leer lassen: Der Anbieter
+   sitzt in der EU, und einen DSB braucht es in der Regel erst ab 20
+   Personen, die ständig mit den Daten arbeiten.
+4. **Nutzer und Berechtigungen**: ein zweites Google-Konto als Inhaber
+   eintragen, damit das Projekt nicht an einem einzigen Konto hängt.
 
 ## 9. Testen
 
@@ -175,30 +195,34 @@ nicht in Firestore, nur bei Firebase Authentication.
    App Data**, App öffnen – man soll angemeldet sein, der Lernstand soll da
    sein. Dabei auch prüfen, ob der Restore-Schlüssel ohne
    `assetlinks.json` angelegt wird.
-4. In der Konsole unter **Nutzung** nachsehen, dass es höchstens einen
-   Schreibvorgang je Nutzer und Tag gibt.
+4. In der Konsole unter **Firestore Database** → **Nutzung** nachsehen, dass
+   es höchstens einen Schreibvorgang je Nutzer und Tag gibt.
 5. Danach den Freigabe-Bau (R8) aus dem internen Test einmal ganz
    durchspielen: Anmeldung, Kauf, Werbung, Erinnerung, Sprechaufgabe,
    Sicherung.
 
 ## 10. Play Console (mit dem Upload von v109)
 
-- **Datensicherheit** neu ausfüllen. Konten: ja, Anlegen per „Benutzername
+- **Datensicherheit** neu ausfüllen. Konten: ja, Anlegen per „Nutzername
   und Passwort“ und „OAuth“. Erhoben: **E-Mail-Adresse** (erforderlich,
   App-Funktionen und Kontoverwaltung), **Nutzer-IDs** (erforderlich, wie
   oben), **Name** (optional, nur bei Google), **App-Aktivitäten → Sonstige
   Aktionen** (der Lernstand, erforderlich, App-Funktionen). Nichts davon wird
   geteilt, alles ist bei der Übertragung verschlüsselt, die Löschung kann
-  beantragt werden. Die AdMob-Angaben bleiben. Geräte-IDs: nein – die
-  Zufallskennung bleibt auf dem Gerät.
+  beantragt werden. Die AdMob-Angaben bleiben, auch deren Geräte-IDs. Für
+  Firebase kommen keine Geräte-IDs dazu – die Zufallskennung bleibt auf dem
+  Gerät.
 - **Kontolöschung:** in der App ja; als URL
   `https://zmaj-lernapp.github.io/konto-loeschen.html`.
 - **App-Zugriff:** „Alle oder einige Funktionen sind eingeschränkt“, dazu
-  E-Mail und Passwort eines Testkontos (selbst anlegen, in der Test-App über
-  „Mit E-Mail anmelden“ → „Konto anlegen“, mit einer Adresse, die man lesen
-  kann) und der Hinweis: *“Complete the first lesson (any answers), then tap
-  ‘Sign in with email’ and use the account below. Sign-in is kept; no second
-  factor.”*
+  E-Mail und Passwort eines Testkontos (anlegen in der Firebase-Konsole unter
+  **Authentication** → **Nutzer** → „Nutzer hinzufügen“, mit einer Adresse,
+  die man lesen kann; welche, steht in der Anleitung, Schritt 10) und der
+  Hinweis: *“Sign-in is required after the first lesson. Complete the first
+  lesson (each new word is shown first; each wrong answer costs one of 5
+  hearts, so answer carefully), tap ‘Continue’, then ‘Sign in with email’ and
+  use the account above. You stay signed in. No second factor and no email
+  confirmation are needed.”*
 - Store-Eintrag auf Sätze wie „ohne Konto“ prüfen.
 - **Verzeichnis der Verarbeitungstätigkeiten:** Eintrag „Konto und
   Cloud-Sicherung“.
@@ -229,6 +253,13 @@ Kontos) wird von Hand bearbeitet, innerhalb von 30 Tagen:
 - Wird eine Grenze überschritten, meldet Firebase `RESOURCE_EXHAUSTED` bzw.
   `TOO_MANY_ATTEMPTS_TRY_LATER`. Es geht nichts verloren: Die App lernt mit
   dem Gerätespeicher weiter und versucht es beim nächsten Anlass noch einmal.
+- Eine Warnung bei hoher Nutzung gibt es auf Spark nicht: Budget-Warnungen
+  brauchen ein Rechnungskonto (Blaze), Warnregeln in Cloud Monitoring kosten
+  Geld. Die Nutzung steht unter Zahnrad → **Nutzung und Abrechnung** und
+  unter **Firestore Database** → **Nutzung** (Anleitung, Schritt 11).
+- Ohne App Check kann auch ein einzelnes Konto die Tagesgrenzen mit Absicht
+  ausschöpfen; dann scheitern Abgleich und Abmelden bis zum Zurücksetzen.
+  Bekanntes Restrisiko, siehe `SECURITY.md` (Known limitations).
 
 ## 14. Restore Credentials (Pflicht ab April 2027)
 

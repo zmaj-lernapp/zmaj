@@ -47,7 +47,10 @@ class Attrappe:
     ("TOKEN_EXPIRED" oder eine Zahl wie 503), abbruch fuer ein Netz, das
     nicht antwortet. anmelde_fehler laesst das Anmelden und Anlegen
     scheitern, wie token_fehler (Pruefbericht vom 28.10.: der Ausweg
-    "Erst einmal weiterlernen" auch bei Fehlern von Firebase)."""
+    "Erst einmal weiterlernen" auch bei Fehlern von Firebase).
+    kontingent_weg: Firestore beantwortet alles mit 429 RESOURCE_EXHAUSTED,
+    wie wenn das Tageskontingent des Projekts aufgebraucht ist
+    (Gegenpruefung 28.10.: Abmelden sagt dann nicht "brauchst Internet")."""
 
     def __init__(self):
         self.doks = {}
@@ -65,6 +68,7 @@ class Attrappe:
         self.mails = []
         self.token_fehler = None
         self.anmelde_fehler = None
+        self.kontingent_weg = False
         self.abbruch = False
         self.n = 0
 
@@ -191,6 +195,9 @@ class Attrappe:
             pfad = urllib.parse.unquote(teile.path)
             if not pfad.startswith(vorn):
                 return antwort(404, {"error": {"status": "NOT_FOUND"}})
+            if self.kontingent_weg:
+                return antwort(429, {"error": {"code": 429, "message": "Quota exceeded.",
+                                               "status": "RESOURCE_EXHAUSTED"}})
             uid = pfad[len(vorn):]
             token = ausweis[len("Bearer "):] if ausweis.startswith("Bearer ") else ""
             if token not in self.gueltig or self.id_uid.get(token) != uid:
