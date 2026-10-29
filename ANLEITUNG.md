@@ -519,6 +519,60 @@ Regeln der Lektion:
   nächste Level. Die Grammatik-Erklärung und die Wortliste des Levels sind
   jederzeit aufklappbar.
 
+## Zeitgesteuerte Wiederholung (Lernkartei, seit v110)
+
+Entschieden am 28.10.2026, Verfahren A aus `Release\Wiederholung_Vorschlag.md`
+(feste Abstände wie in Leitners Lernkartei). Jedes gewusste Wort hat eine
+Stufe mit festem Abstand bis zum nächsten Termin:
+
+| Stufe | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|-------|---|---|---|---|---|---|---|
+| Tage  | 1 | 3 | 7 | 14 | 30 | 90 | 180 |
+
+- War das Wort fällig und die Antwort richtig: eine Stufe weiter. Falsch:
+  zwei Stufen zurück, nie unter Stufe 0. Richtig vor dem Termin ändert die
+  Stufe nicht – sonst stiege ein Wort, das in drei Lektionen am selben Tag
+  vorkommt, an einem Tag auf eine Woche.
+- Es zählt jede Antwort auf ein Wort in Lektion, Level-Test und allen
+  Runden im Reiter Wiederholen. Nicht die Einstufung, und nicht die
+  Wiederholung einer falschen Antwort am Ende der Lektion.
+- Neu gelernt: Stufe 0, morgen fällig. Gewusste Wörter ohne Termin (beim
+  ersten Start mit v110 alle, später etwa aus einer alten Sicherungsdatei)
+  bekommen Stufe 3 und einen Termin ab morgen, verteilt auf etwa vier
+  Wochen mit 3 bis 10 Wörtern je Tag, die ältesten Level zuerst. Bei mehr
+  als 280 gewussten Wörtern dauert das entsprechend länger, bei allen
+  1.740 knapp sechs Monate. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
+  dann brauchte der Umzug mit seinen Rückkehrern allein bald mehr als 30
+  Plätze am Tag (Prüfung vom 29.10.2026).
+- Höchstens 30 fällige Wörter am Tag (`KARTEI_TAG_MAX`). Der Rest bleibt
+  fällig und kommt an den nächsten Tagen. Zuerst kommt, was gemessen am
+  Abstand seiner Stufe am weitesten über der Zeit ist: (Tage zu spät + 1)
+  geteilt durch den Abstand, wie „relative overdueness“ in Anki. Ein
+  gestern gelerntes Wort kommt so vor einem, das nach 90 Tagen ein paar
+  Tage zu spät ist.
+- Der Kartei-Tag beginnt um 4 Uhr (`KARTEI_TAG_BEGINN`), nicht um
+  Mitternacht: wer um 23:55 lernt, hat das Wort nicht schon um 00:05
+  wieder. Serie und Tagesaufgaben zählen weiter ab Mitternacht.
+- Fällige Wörter nehmen in jeder Lektion bis zu 3 der 10 Wortplätze ein
+  (`KARTEI_IN_LEKTION`), mit dem Hinweis „Wiederholung: <Level>“, nie als
+  Sprechaufgabe – die ließe sich überspringen. Im Reiter Wiederholen steht
+  unter „Wiederholen“ und „Markiert“ der Kasten „Heute fällig“ mit eigener
+  Runde. Ohne Leben zeigt er den Hinweis dazu nur, wenn ihn kein Kasten
+  darüber schon zeigt. Weitermachen bleibt beim Fehler-Topf.
+
+Im Lernstand steht das im Feld `kartei`:
+
+```json
+"kartei": {"tag": 89, "n": 12, "w": {"guten tag:Dobar dan": [2, 96, 89]}}
+```
+
+`w` je Wort: Stufe, fälliger Tag, zuletzt geübt – die Tage als Zahl seit
+dem 01.08.2026 (`APP_START`), 0 heißt „noch nie in der Kartei geübt“.
+`tag` und `n`: wie viele fällige Wörter an diesem Tag schon dran waren.
+Rund 40 Bytes je Wort. Beim Cloud-Abgleich gewinnt je Wort der zuletzt
+geübte Stand. Eine spätere Fassung, etwa mit FSRS, hängt an die drei
+Zahlen nichts an, sondern bekommt ein eigenes neues Feld.
+
 ## Leben
 
 Die App hat 5 Leben, sie gelten für die ganze App. Jede falsche Antwort in

@@ -7,6 +7,29 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Spaced review of learned words (Leitner box, decided on 28.10.2026):
+  every word you know has a level with a fixed interval of 1, 3, 7, 14, 30,
+  90 or 180 days. A right answer on a due word moves it up one level, a
+  wrong answer moves it back two (never below the first); a right answer
+  before the due date changes nothing. Every lesson fills up to 3 of its
+  10 word slots with due words, marked "Review: <level>" as in the level
+  test, never as a speaking task (those can be skipped); new words and the
+  "Continue" button stay as they are. The Review tab has a third box, "Due
+  today", below the two existing ones, with its own round: lives, streak,
+  coins and daily quests as in the other rounds, and a wrong answer also
+  goes to the mistakes box. At most 30 due words a day; the rest stays due
+  for the following days. The most overdue relative to its interval comes
+  first, so a word learned yesterday comes before one that is a few days
+  late after 90 days. The review day starts at 4 a.m., so a word learned
+  just before midnight is not due minutes later. Words learned before the
+  update get their first date spread over the coming weeks, at most 10 a
+  day, oldest levels first. Answers in lessons, rounds and level tests
+  count, the placement test does not. The progress keeps this in a new
+  field `kartei` (level, due day and last practised day per word, days
+  counted from 2026-08-01, about 40 bytes per word): in the device
+  storage, the backup file (older files without it still load) and the
+  cloud backup, where per word the more recently practised state wins.
+  New texts in all eight languages.
 - Account (Android app, v109): after the first lesson – or the placement
   test – the app asks you to sign in, with Google or with email and
   password ("Forgot password?" included). Existing learners sign in once at

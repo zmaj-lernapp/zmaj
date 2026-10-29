@@ -88,6 +88,11 @@ Plain JavaScript, no framework. Main parts, in file order:
   multiple choice in both directions, typing, listening, speaking (device
   speech recognition), cloze and grammar tasks. Wrong answers go to the
   review pot (`topf`).
+- **Spaced review** (`kartei`, since v110): every known word has a Leitner
+  level with an interval of 1, 3, 7, 14, 30, 90 or 180 days. Due words take up
+  to 3 word slots in each lesson and have their own round in the Review tab,
+  at most 30 a day, the most overdue relative to the interval first
+  (`karteiHeute`). The review day starts at 4 a.m.
 - **Level test** (`buildTest`): 10 questions, 3 of them review from `baut_auf`;
   8 right opens the next level.
 - **Stories** (`openStory`): tap a word for its gloss, play the whole story.
