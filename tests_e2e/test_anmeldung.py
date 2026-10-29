@@ -27,12 +27,12 @@ KONTO = "identitytoolkit.googleapis.com/v1/accounts:"
 # Die Liste unter dem Passwort beim Anlegen, seit 29.10.2026 (PW_REGELN_CLOUD).
 # Gross und klein mit "(A–Z)" und "(a–z)": nur die zaehlen bei Firebase.
 REGELN = ("konto.regel_laenge", "konto.regel_gross_az", "konto.regel_klein_az", "konto.regel_zahl", "konto.regel_zeichen")
-# Die Sonderzeichen der Passwort-Richtlinie aus Firebases Anleitung
-# (firebase.google.com/docs/auth/web/password-auth, nachgesehen am
-# 29.10.2026) - und was dort NICHT zaehlt. Den Gravis nennt nur die Seite
-# von Identity Platform; die App zaehlt ihn nicht (PW_ZEICHEN_CLOUD).
-FIREBASE_ZEICHEN = "^$*.[]{}()?\"!@#%&/\\,><':;|_~"
-KEINE_ZEICHEN = ("-", "+", "€", " ", "=", "§", "ß", "Ä", "é", "`")
+# Die Sonderzeichen, die Zmajs Firebase-Projekt selbst meldet (GET
+# identitytoolkit v2/passwordPolicy, allowedNonAlphanumericCharacters,
+# 30.10.2026) - und was NICHT zaehlt. - und ` nannte die Anleitung nicht,
+# der Server zaehlt sie aber, also auch die App (PW_ZEICHEN_CLOUD).
+FIREBASE_ZEICHEN = "^$*.[]{}()?\"!@#%&/\\,><':;|_~`-"
+KEINE_ZEICHEN = ("+", "€", " ", "=", "§", "ß", "Ä", "é")
 
 # Wie DURCHSPIELEN, aber nur bis zum ersten gewussten Wort - eine halb
 # gemachte Lektion (Gegenpruefung 28.10.2026).
@@ -421,7 +421,7 @@ def test_passwortregeln_beim_anlegen(seite, heute_stand, cloud_html):
                           ("Ölbaum2026!", ("konto.fehler_gross_az", None), ["konto.regel_gross_az"]),
                           ("ABCDEFG1!", ("konto.fehler_klein_az", None), ["konto.regel_klein_az"]),
                           ("abcdefgH", ("konto.fehler_zahl", None), ["konto.regel_zahl", "konto.regel_zeichen"]),
-                          ("Abcdefg1-", ("konto.fehler_zeichen", None), ["konto.regel_zeichen"]),
+                          ("Abcdefg1+", ("konto.fehler_zeichen", None), ["konto.regel_zeichen"]),
                           ("Ab1!", ("konto.fehler_kurz", {"n": 8}), ["konto.regel_laenge"])):
         seite.page.fill("#kontoPw", pw)
         seite.page.click("#kontoSenden")
