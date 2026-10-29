@@ -12991,10 +12991,13 @@ function sternKasten(){
        Einstufung, und nicht die Wiederholung einer falschen Antwort am Ende
        derselben Lektion - da stand die Loesung eben noch da (wie beim
        Fehler-Topf). Eine falsche Antwort setzt immer zwei Stufen zurueck.
-       Eine richtige hebt die Stufe, wenn das Wort faellig war; vorher
-       merkt sie sich nur den Uebungstag. Sonst stiege ein Wort, das in drei
-       Lektionen am selben Tag vorkommt, an einem einzigen Tag auf eine
-       Woche - genau das Pauken, gegen das die wachsenden Abstaende helfen.
+       Eine richtige hebt die Stufe um eins, auch vor dem Termin - aber
+       hoechstens einmal am Tag: Wurde das Wort heute schon geuebt, merkt
+       sie sich nur den Uebungstag. Ajdin am 29.10.2026: "wenn man das Wort
+       oefter richtig gemacht hat, dann kann man es" - an verschiedenen
+       Tagen ja; dreimal am selben Tag ist Pauken und schickte das Wort an
+       einem Tag auf zwei Wochen. Eine richtige Antwort holt einen Termin
+       nie naeher heran (wichtig fuer die verteilten Umzugswoerter).
      - Ein Wort bekommt seinen Eintrag, sobald es gewusst ist: Stufe 0,
        morgen faellig. Gewusste Woerter ohne Eintrag - beim ersten Start mit
        v110 alle, spaeter die aus einer alten Sicherungsdatei oder von einem
@@ -13111,9 +13114,10 @@ function karteiAntwort(task, ok){
     if(kartei.tag !== heute){ kartei.tag = heute; kartei.n = 0; }
     kartei.n++;
   }
-  if(ok && !faellig){ kartei.w[w.id] = [e[0], e[1], heute]; return; }
+  if(ok && !faellig && e[2] >= heute){ kartei.w[w.id] = [e[0], e[1], heute]; return; }
   const s = ok ? Math.min(e[0] + 1, KARTEI_LETZTE) : Math.max(e[0] - 2, 0);
-  kartei.w[w.id] = [s, heute + KARTEI_ABSTAENDE[s], heute];
+  const termin = heute + KARTEI_ABSTAENDE[s];
+  kartei.w[w.id] = [s, ok ? Math.max(termin, e[1]) : termin, heute];
 }
 /* Umbenannte Woerter auf ihre neue Kennung ziehen, nach derselben Regel
    wie topfUmschreiben(): UMBENANNT, sonst das bosnische Wort, wenn genau
