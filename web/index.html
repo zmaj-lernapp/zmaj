@@ -49,6 +49,13 @@
        der Flaeche lagen sie bei 3,2 / 4,1 / 2,3:1 statt 4,5:1 - axe am
        04.10.2026, barrierefreiheit_richten.py. */
     --good-text:#188049; --bad-text:#D0352C; --accent-text:#876A00;
+    /* Noch dunkler fuer Schrift direkt auf dem Seitengrund (29.10.2026):
+       Passwortliste und Zeile unter "Konto anlegen" stehen nicht auf
+       einer Karte, sondern auf --bg. Dort hatten --good-text und
+       --bad-text nur 3,4:1, auf den Gruenden der Sektionen 2 und 4 sogar
+       3,0:1 (axe color-contrast). Diese beiden liegen auf allen neun
+       Sektionsgruenden bei mindestens 4,76:1. */
+    --good-text-grund:#0E5E33; --bad-text-grund:#9A241D;
     /* Eine Farbe je Sektion, neun Stueck. Vorher war jede Ueberschrift
        blau und jeder Balken gelb, dadurch standen auf dem Lernpfad nach
        Farbton nur vier Toene.
@@ -80,6 +87,7 @@
     :root:not([data-theme="light"]){
       --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
       --good-text:#55CE8A; --bad-text:#FF9E98; --accent-text:#DFB31F;   /* siehe oben, 04.10.2026 */
+      --good-text-grund:#55CE8A; --bad-text-grund:#FF9E98;   /* dunkel reicht es schon (7,7:1), 29.10.2026 */
       --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
       --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
@@ -100,6 +108,7 @@
   :root[data-theme="dark"]{
     --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
     --good-text:#55CE8A; --bad-text:#FF9E98; --accent-text:#DFB31F;   /* siehe oben, 04.10.2026 */
+    --good-text-grund:#55CE8A; --bad-text-grund:#FF9E98;   /* dunkel reicht es schon (7,7:1), 29.10.2026 */
     --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
     --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
@@ -155,7 +164,24 @@
      sind. Mit dem alten Nebeneinander hing die Muenzpille an den Herzen und
      stand 40 Punkte zu weit links. Ajdin am 18.09.2026. */
   header{display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
-    gap:8px; margin-bottom:14px; min-height:40px}
+    gap:6px; margin-bottom:14px; min-height:40px}
+  /* Alles in EINER Zeile, auch angemeldet (29.10.2026). Ajdin auf dem
+     S21 Ultra mit der v109-Testfassung: Herz links, Laden, "Ich" und
+     Zahnrad rechts, die Muenzen ("0 KM") allein in einer zweiten Zeile -
+     "das muss alles auf einer Leiste sein".
+     Ursache: Seit v109 steht nach der Anmeldung der Profilknopf in der
+     Leiste, mit Figur UND Namen ("Ich", 72 px breit). Vor v109 blieb er
+     ohne Server versteckt. Damit brauchte die Zeile 341 px, bei 360 px
+     Bildschirmbreite sind nach dem Rand 328 frei - kopfEng() schob die
+     Muenzen deshalb nach unten (header.eng), bei 384 px ab drei Stellen,
+     bei 412 px ab fuenf (gemessen mit dem Stand vor dieser Aenderung).
+     Jetzt traegt der Profilknopf nur die Figur wie Laden und Zahnrad (der
+     Name steht im title), alle drei sind runde 38-px-Knoepfe, und Luecken
+     und Polster sind etwas knapper (hier, .hbtns, .livesbar, .muenzbar).
+     Gemessen mit unbegrenzten Leben und 99 999 Muenzen: 307 px, passt also
+     ab 360 px. Bei 320 px rutschen die Muenzen ab vier Stellen weiter in
+     die zweite Zeile, ebenso bei sehr grosser Schrift - das ist der
+     Ausweg von kopfEng() und bleibt. tests_e2e/test_kopfleiste.py */
   header .left{grid-column:1; justify-self:start; display:flex; align-items:center; gap:10px}
   /* Drinnen ist die Kopfzeile eine Werkzeugleiste, kein Briefkopf: Logo,
      Wortmarke und Untertitel treten ab, sobald man angemeldet ist. */
@@ -186,7 +212,7 @@
     .hero{gap:10px; padding:12px}
     .hero .zmaj{width:96px; height:96px; flex:0 0 96px}
   }
-  .hbtns{display:flex; gap:6px}
+  .hbtns{display:flex; gap:4px}     /* 4 statt 6: eine Zeile, siehe header oben (29.10.2026) */
   /* "← Geschichten" in einer Zeile. Im engen Kopf (header.eng) ist die
      Spalte der Knoepfe schmaler, und der Pfeil stand ueber dem Wort - in
      einer Pille von fester Hoehe ragte das Wort unten heraus. So ist die
@@ -230,13 +256,30 @@
        vertical-align:calc(.35em - var(--sg) / 2); object-fit:contain;
        -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
   /* Laden und Zahnrad tragen nur das Bild: etwas weniger Polster, damit
-     die Knoepfe trotz groesserem Symbol so breit bleiben wie vorher. */
+     die Knoepfe trotz groesserem Symbol so breit bleiben wie vorher.
+     Seit 29.10.2026 auch der Profilknopf, und alle drei sind runde Knoepfe
+     von 38 px, so hoch wie die Pillen daneben: das Symbol ist hoechstens
+     30 px, passt also bei jeder Schrift hinein (siehe header oben). */
   /* In der Kopfleiste nur bis 30 px: ihre Pillen sind fest 38 px hoch
      ("Alles in der Kopfzeile gleich hoch"). Bei 200 % Schrift ragten
      Einkaufstasche und Zahnrad sonst 3 px oben und unten heraus
      (tests_e2e/test_symbole.py). Bis 130 % Schrift wachsen sie frei. */
   .hbtns .back .sym{--sg:min(1.7em, 30px)}
-  .hbtns .back.nursymbol{padding-left:9px; padding-right:9px}
+  /* Kein justify-content: die Knoepfe bekommen per style.display
+     'inline-block' und werden als Kinder von .hbtns (flex) zu block - das
+     Bild mittig setzt text-align des Knopfs (Pruefung 29.10.2026). */
+  .hbtns .back.nursymbol{width:38px; padding-left:0; padding-right:0; position:relative}
+  /* Zum Tippen groesser als der Kreis (Pruefung 29.10.2026): 38 x 38
+     lag unter den 44 px der Pruefliste und den 48 dp, die Android
+     empfiehlt - vor der einen Zeile waren Laden und Zahnrad 44 x 38.
+     Echte 44-px-Knoepfe braeuchten bei 99 999 KM und unbegrenzten Leben
+     325 von 328 px und rutschten bei 115 % Schrift wieder in zwei
+     Zeilen. Deshalb bleibt der Kreis 38 px, und eine unsichtbare Flaeche
+     darueber ist 48 hoch und 42 breit. Die 4 px Luecke teilen sich zwei
+     Nachbarn genau, nichts ueberlappt. Gerechnet ab der Innenkante des
+     2-px-Rands (Bezug von position:absolute), daher 7 und 4.
+     tests_e2e/test_kopfleiste.py prueft es. */
+  .hbtns .back.nursymbol::after{content:""; position:absolute; top:-7px; bottom:-7px; left:-4px; right:-4px}
   .muenzbar .sym{--sg:min(1.35em, 30px)}
   .livesbar .herz .sym{--sg:min(1.15em, 30px)}
   .kastenherz .sym{--sg:1.1em}
@@ -1117,8 +1160,19 @@
   .pwregeln b{display:block; font-weight:700; margin-bottom:2px}
   .pwregeln span{display:inline-block; margin-right:12px; white-space:nowrap}
   .pwregeln span::before{content:"○ "; font-weight:700}
-  .pwregeln span.ok{color:var(--good-text)}
+  /* Gruen und Rot in den Toenen fuer den Seitengrund, siehe :root
+     (29.10.2026): mit --good-text waren es dort nur 3,4:1. */
+  .pwregeln span.ok{color:var(--good-text-grund)}
   .pwregeln span.ok::before{content:"✓ "}
+  /* Nach einem Tipp auf "Konto anlegen" rot, was noch fehlt; "nicht deine
+     E-Mail" rot mit Kreuz, sobald das Passwort sie enthaelt (29.10.2026,
+     zeigeRegeln). */
+  .pwregeln span.fehlt, .pwregeln span.nein{color:var(--bad-text-grund)}
+  .pwregeln span.nein::before{content:"✗ "}
+  /* Die Zeile unter dem Formular und unter der Wahl steht auch auf dem
+     Grund, nicht auf einer Karte (29.10.2026). */
+  .kontoform .note.feedback.ok, #anmNote.feedback.ok{color:var(--good-text-grund)}
+  .kontoform .note.feedback.no, #anmNote.feedback.no{color:var(--bad-text-grund)}
   /* Werbung: ganzseitig über allem, damit sie nicht mit der App verwechselt
      wird. Der Rahmen und das Wort "Anzeige" sind Pflicht. */
   /* Deckend, nicht durchscheinend. Vorher sah man die Lektion durch die
@@ -1473,7 +1527,10 @@
   .ankreuz{display:flex; align-items:center; gap:9px; font-size:14px; cursor:pointer; padding:2px 0}
   .ankreuz input{width:18px; height:18px; accent-color:var(--primary); cursor:pointer; flex:0 0 auto}
   /* Hinweis auf den Spam-Ordner: Bei einem neuen Absender landen die
-     ersten Mails oft dort. Das muss auffallen, sonst sucht man vergebens. */
+     ersten Mails oft dort. Das muss auffallen, sonst sucht man vergebens.
+     Seit 29.10.2026 ein kurzer Satz (konto.spam_kurz) statt drei: Ajdin
+     fand Bestaetigungs- und Passwort-Mail im Spam-Ordner seines Gmail, und
+     er will kurze Texte. Steht auch auf der Karte nach "Konto anlegen". */
   .spamhinweis{margin-top:4px; padding:10px 12px; border-radius:12px;
     background:var(--surface); border:1px solid var(--line);
     font-size:13px; line-height:1.5; color:var(--muted)}
@@ -1539,12 +1596,20 @@
      (4 links, 8 rechts) - das stammte aus der Zeit, als rechts im selben
      Feld noch die Wartezeit stand. Gemessen waren es 6 zu 10 Punkte.
      Ajdin am 18.09.2026. */
-  header .livesbar{padding-left:6px; padding-right:6px}
-  header .livesbar .herz{padding-top:0; padding-bottom:0}
+  /* 29.10.2026: 3 und 6 statt 6 und 8 - eine Zeile, siehe header. */
+  header .livesbar{padding-left:3px; padding-right:3px}
+  header .livesbar .herz{padding-top:0; padding-bottom:0; padding-left:6px; padding-right:6px; position:relative}
+  /* Das Herz ist der Knopf in der Pille, aber nur so hoch wie seine
+     Schrift: 49 x 23 px zum Tippen, obwohl die Pille 38 hoch ist
+     (Pruefung 29.10.2026). Wie bei .nursymbol eine unsichtbare Flaeche
+     darueber, 48 px hoch und bis an den Rand der Pille (3 Polster +
+     2 Rand). Verschoben wird dadurch nichts. */
+  header .livesbar .herz::after{content:""; position:absolute; left:-5px; right:-5px; top:calc(50% - 24px); height:48px}
+  /* 29.10.2026: Polster 9 statt 12, Luecke 4 statt 6 - eine Zeile, siehe header. */
   .muenzbar{
-    display:inline-flex; align-items:center; gap:6px;
+    display:inline-flex; align-items:center; gap:4px;
     background:var(--surface); border:2px solid var(--line); border-radius:99px;
-    padding:5px 12px; font:800 15px var(--font-ui); color:var(--accent-dark);
+    padding:5px 9px; font:800 15px var(--font-ui); color:var(--accent-dark);
   }
   .muenzbar b{color:var(--ink)}
   /* KM - konvertibilna marka, die Waehrung in Bosnien. Ajdins Einfall am
@@ -2041,7 +2106,8 @@
     </div>
     <div class="hbtns">
       <button class="back nursymbol" id="btnShop" style="display:none" data-t-title="laden.titel"><img class="sym" src="symbole/laden.webp" alt="" aria-hidden="true"></button>
-      <button class="back" id="btnProfil" style="display:none" data-t-title="btn.profil"><img class="sym" src="symbole/profil.webp" alt="" aria-hidden="true"></button>
+      <!-- Nur die Figur, der Name steht im title (29.10.2026, siehe header im CSS). -->
+      <button class="back nursymbol" id="btnProfil" style="display:none" data-t-title="set.profil"><img class="sym" src="symbole/profil.webp" alt="" aria-hidden="true"></button>
       <button class="back nursymbol" id="btnSettings" style="display:none" data-t-title="btn.einstellungen"><img class="sym" src="symbole/einstellungen.webp" alt="" aria-hidden="true"></button>
       <button class="back" id="btnBack" style="display:none" data-t="btn.zurueck"></button>
     </div>
@@ -2093,7 +2159,9 @@
         <input type="checkbox" id="kontoBleiben"><span data-t="konto.bleiben"></span>
       </label>
       <button class="btn know" type="submit" id="kontoSenden"></button>
-      <div class="note" id="kontoNote"></div>
+      <!-- role="status" wie #anmNote (29.10.2026): sonst las ein
+           Bildschirmleser nach "Konto anlegen" nicht vor, was fehlt. -->
+      <div class="note" id="kontoNote" role="status"></div>
       <div class="spamhinweis" id="kontoSpam" hidden></div>
     </form>
     <div class="kontowechsel">
@@ -8150,13 +8218,14 @@ function zeigeAnmeldung(modus, daten){
   $('kontoPw').hidden = !zeigt.pw;
   $('kontoPw2').hidden = !zeigt.pw2;
   $('kontoRegeln').hidden = !zeigt.regeln;
+  pwListeBeschreibt(zeigt.regeln);
   $('kontoBleibenZeile').hidden = !zeigt.bleiben;
   $('kontoWechsel').hidden = !zeigt.wechsel;
   $('kontoVergessen').hidden = !zeigt.vergessen;
   // Der Spam-Hinweis steht beim Warten immer da. Beim Passwort-vergessen
   // erst, wenn die Mail wirklich raus ist - vorher gibt es nichts zu suchen.
   $('kontoSpam').hidden = m !== 'warten';
-  $('kontoSpam').textContent = t('konto.spam_hinweis');
+  $('kontoSpam').textContent = t('konto.spam_kurz');
 
   // Das Namensfeld heißt je nach Zustand anders
   $('kontoName').placeholder = t(m==='neu' ? 'konto.benutzername'
@@ -8183,9 +8252,20 @@ function zeigeAnmeldung(modus, daten){
   if(zeigt.regeln) zeigeRegeln($('kontoRegeln'), '');
   if(zeigt.name) $('kontoName').focus(); else if(zeigt.pw) $('kontoPw').focus();
 }
-$('kontoPw').addEventListener('input', e=>{
-  if(!$('kontoRegeln').hidden) zeigeRegeln($('kontoRegeln'), e.target.value);
-});
+/* Beim Tippen die Liste neu. Die Adresse gehoert seit 29.10.2026 zu den
+   Regeln (nicht deine E-Mail): wer sie nach dem Passwort aendert, sieht die
+   Liste gleich richtig. Mit der Pflicht-Anmeldung geht dabei auch die rote
+   Zeile unter "Konto anlegen" weg - sonst stand dort noch "Es fehlt ein
+   Sonderzeichen", als die Liste es laengst abgehakt hatte (gefunden am
+   Bildschirmfoto, 29.10.2026). Was dann noch fehlt, zeigt die Liste; die
+   Zeile kommt beim naechsten Tipp auf den Knopf wieder. */
+function kontoGetippt(){
+  if($('kontoRegeln').hidden) return;
+  zeigeRegeln($('kontoRegeln'), $('kontoPw').value, $('kontoMail').value);
+  const note = $('kontoNote');
+  if(cloudModus() && note.classList.contains('no')){ note.textContent = ''; note.className = 'note'; }
+}
+['kontoMail', 'kontoPw', 'kontoPw2'].forEach(id => $(id).addEventListener('input', kontoGetippt));
 $('kontoVergessen').addEventListener('click', ()=>
   cloudModus() ? anmeldungZeigen(anmAnlass, 'mail_vergessen') : zeigeAnmeldung('vergessen'));
 
@@ -8201,15 +8281,38 @@ const PW_REGELN = [
   ['passwort_leerzeichen', 'konto.regel_leer', p => !/\s/.test(p)]
 ];
 
-/* Mit der Pflicht-Anmeldung (28.10.2026) gilt nur die Laenge, siehe
-   PW_MIN_CLOUD. */
-function zeigeRegeln(kasten, passwort){
+/* Mit der Pflicht-Anmeldung (28.10.2026) galt erst nur die Laenge. Seit
+   29.10.2026 gelten dort die Regeln aus PW_REGELN_CLOUD, gezaehlt wie bei
+   Firebase, und dazu "nicht deine E-Mail": ○ solange das Feld leer ist,
+   ✓ sobald etwas darin steht, das den Teil vor dem @ nicht enthaelt, rot
+   mit ✗, wenn doch. Sie steht nur da, wenn vor dem @ mindestens 3 Zeichen
+   stehen - kuerzer gilt sie nicht (pwOhneEmail). Bis zur Pruefung am
+   selben Tag erschien sie nur verletzt und bekam nie einen Haken; verlangt
+   war aber ein Haken fuer jede erfuellte Regel. markieren (nach "Konto
+   anlegen") faerbt rot, was noch fehlt. */
+function zeigeRegeln(kasten, passwort, email, markieren){
   const cloud = cloudModus();
-  const regeln = cloud ? [['passwort_kurz', 'konto.regel_laenge', p => p.length >= PW_MIN_CLOUD]] : PW_REGELN;
+  const regeln = cloud ? PW_REGELN_CLOUD : PW_REGELN;
+  const punkt = (klasse, text) => '<span class="'+klasse+'">'+esc(text)+'</span>';
+  const mail = cloud && emailVorAt(email).length >= 3
+    ? punkt(!pwOhneEmail(passwort, email) ? 'nein' : passwort ? 'ok' : '', t('konto.regel_email')) : '';
   kasten.innerHTML = '<b>'+esc(t('konto.regeln_titel'))+'</b>' +
     regeln.map(([, schluessel, erfuellt]) =>
-      '<span class="'+(erfuellt(passwort)?'ok':'')+'">'+
-      esc(t(schluessel, {n: cloud ? PW_MIN_CLOUD : PW_MIN}))+'</span>').join('');
+      punkt(erfuellt(passwort) ? 'ok' : (markieren ? 'fehlt' : ''),
+            t(schluessel, {n: cloud ? PW_MIN_CLOUD : PW_MIN}))).join('') + mail;
+}
+/* Die Liste beschreibt das Passwortfeld (aria-describedby), solange sie
+   zu sehen ist: ein Bildschirmleser nennt die Regeln mit dem Feld. Live
+   ist sie nicht, sonst kaeme sie bei jedem Tastendruck (29.10.2026).
+   Dazu ein Name, derselbe Text wie der Platzhalter (die Liste steht nur
+   bei einem neuen Passwort da): ein Feld, das nur der Platzhalter benennt
+   und das eine Beschreibung hat, beanstandet axe als label-title-only
+   (ernst) - gefunden mit tests_e2e/test_barrierefreiheit.py. Eine neue
+   Sprache baut die Seite neu auf (setzeSprache), der Name folgt also. */
+function pwListeBeschreibt(an){
+  const feld = $('kontoPw');
+  if(an){ feld.setAttribute('aria-describedby', 'kontoRegeln'); feld.setAttribute('aria-label', t('konto.passwort_neu')); }
+  else { feld.removeAttribute('aria-describedby'); feld.removeAttribute('aria-label'); }
 }
 
 /* Serverfehler in einen Satz übersetzen, den man lesen kann. */
@@ -8375,7 +8478,7 @@ async function nachAnmeldung(info){
   /* Seit v109 auch mit der Pflicht-Anmeldung, sobald jemand angemeldet ist
      (28.10.2026). */
   $('btnProfil').style.display = (MIT_SERVER || (cloudModus() && !!cloudMerker())) ? 'inline-block' : 'none';
-  $('btnProfil').innerHTML = mitSymbol('profil', esc(profil));
+  // Kein Name mehr im Knopf, nur die Figur: eine Zeile oben (29.10.2026).
   $('btnSettings').style.display='inline-block';
   $('btnShop').style.display='inline-block';
   homeMode='words'; showHome();
@@ -8505,8 +8608,8 @@ function altenFortschrittUmschreiben(){
   return geaendert || sternNeu || topfNeu;
 }
 
-// Der Knopf mit dem Namen oben rechts führt in die Einstellungen -
-// dort steht auch das Abmelden.
+// Der Knopf mit der Figur oben rechts führt in die Kontoseite -
+// dort steht auch das Abmelden. (Bis 29.10.2026 stand der Name darin.)
 $('btnProfil').addEventListener('click', async ()=>{ await saveProgress(); showKonto(); });
 
 /* =================== EINSTELLUNGEN =================== */
@@ -9043,6 +9146,66 @@ const utf8Laenge = s => { try{ return new TextEncoder().encode(s).length; }catch
    mindestens 8 - einfacher als die 10 Zeichen mit vier Zeichenarten der
    alten Server-Anmeldung. 28.10.2026 */
 const PW_MIN_CLOUD = 8;
+/* Seit 29.10.2026 mehr als die Laenge. Ajdin nach dem Test der v109 mit
+   Anmeldung: "mindestens ein Sonderzeichen, mindestens eine Zahl, Gross-
+   und Kleinschreibung und was noch so wichtig ist". Entschieden: 8 Zeichen,
+   je ein Gross- und ein Kleinbuchstabe, eine Ziffer, ein Sonderzeichen, und
+   der Teil der Adresse vor dem @ (ab 3 Zeichen) darf nicht darin stehen.
+   Verbindlich ist Firebase: Ajdin stellt in der Konsole die
+   Passwort-Richtlinie auf "Require" (8 Zeichen, alle vier Zeichenarten).
+   Deshalb zaehlt die App genau wie Firebases eigene Pruefung
+   (validatePassword in firebase-js-sdk, password_policy_impl.ts,
+   nachgesehen am 29.10.2026): Gross- und Kleinbuchstaben nur A-Z und a-z,
+   Ziffern nur 0-9, die Laenge in UTF-16-Einheiten (p.length). Ein Umlaut,
+   -, +, EUR-Zeichen oder Leerzeichen ist erlaubt, zaehlt aber fuer keine
+   Regel - sonst zeigte die Liste einen Haken, und Firebase lehnte trotzdem
+   ab (PASSWORD_DOES_NOT_MEET_REQUIREMENTS). "Oelbaum1!" mit einem grossen
+   Oe braucht also noch einen Grossbuchstaben A-Z. Damit das niemanden
+   ratlos laesst (Ş, Ö, Å, Æ stehen in tr, de, sv, nb und da oft vorn),
+   nennen Liste und Fehlersatz den Bereich: "Großbuchstabe (A–Z)",
+   konto.regel_gross_az und konto.fehler_gross_az (Pruefung 29.10.2026).
+   PW_REGELN der alten Server-Anmeldung zaehlt jeden Buchstaben und
+   behaelt deshalb konto.regel_gross.
+   Sonderzeichen sind genau die aus Firebases Anleitung zur Richtlinie
+   (firebase.google.com/docs/auth/web/password-auth, am selben Tag). Die
+   Seite von Identity Platform nennt am Ende noch den Gravis ` - den zaehlt
+   die App nicht: strenger als Firebase kostet hoechstens ein Zeichen mehr,
+   lockerer hiesse ein Haken in der Liste und trotzdem eine Ablehnung.
+   Die Regel mit der E-Mail kennt Firebase nicht, sie gilt nur hier.
+   Nur fuer ein neues Passwort (Konto anlegen); die Anmeldung mit einem
+   bestehenden Passwort prueft nichts davon. */
+const PW_ZEICHEN_CLOUD = '^$*.[]{}()?"!@#%&/\\,><\':;|_~';
+const PW_REGELN_CLOUD = [
+  ['passwort_kurz',    'konto.regel_laenge',  p => p.length >= PW_MIN_CLOUD],
+  ['passwort_gross',   'konto.regel_gross_az', p => /[A-Z]/.test(p)],
+  ['passwort_klein',   'konto.regel_klein_az', p => /[a-z]/.test(p)],
+  ['passwort_zahl',    'konto.regel_zahl',    p => /[0-9]/.test(p)],
+  ['passwort_zeichen', 'konto.regel_zeichen', p => [...p].some(z => PW_ZEICHEN_CLOUD.includes(z))]
+];
+/* Steht der Teil der Adresse vor dem @ im Passwort? Gross und klein egal.
+   Kuerzer als 3 Zeichen zaehlt er nicht - sonst verboete "ab@..." jedes
+   Passwort mit "ab" -, ohne @ (noch beim Tippen) auch nicht. */
+function emailVorAt(email){
+  const adr = String(email || ''), at = adr.indexOf('@');
+  return at < 0 ? '' : adr.slice(0, at).trim().toLowerCase();
+}
+function pwOhneEmail(pw, email){
+  const name = emailVorAt(email);
+  return name.length < 3 || !String(pw || '').toLowerCase().includes(name);
+}
+/* Was einem neuen Passwort noch fehlt: die erste Regel, die nicht erfuellt
+   ist (wie PW_REGELN beim Server), zuletzt die E-Mail - sonst ''. */
+function pwFehltCloud(pw, email){
+  const r = PW_REGELN_CLOUD.find(([, , erfuellt]) => !erfuellt(pw));
+  return r ? r[0] : (pwOhneEmail(pw, email) ? '' : 'passwort_email');
+}
+function pwFehlerCloud(fehlt){
+  if(fehlt === 'passwort_kurz') return t('konto.fehler_kurz', {n: PW_MIN_CLOUD});
+  if(fehlt === 'passwort_email') return t('konto.fehler_pw_email');
+  if(fehlt === 'passwort_gross') return t('konto.fehler_gross_az');   // nur A-Z, siehe oben
+  if(fehlt === 'passwort_klein') return t('konto.fehler_klein_az');
+  return kontoFehlerText(fehlt);       // Zahl, Sonderzeichen: dieselben Saetze wie beim Server
+}
 let cloudLaeuft = false;   // immer nur ein Abgleich zur Zeit
 let cloudFirestoreAdapter = null;
 let cloudFehlerGrund = '';   // der letzte Grund, fuer die Meldung in der Oberflaeche
@@ -9665,8 +9828,9 @@ function anmeldungZeigen(anlass, modus = 'wahl', daten = {}){
   $('kontoPw').hidden = vergessen;
   $('kontoPw2').hidden = !neu;
   $('kontoRegeln').hidden = !neu;
+  pwListeBeschreibt(neu);
   $('kontoSpam').hidden = true;
-  $('kontoSpam').textContent = t('konto.spam_hinweis');
+  $('kontoSpam').textContent = t('konto.spam_kurz');
   $('kontoPw').placeholder = t(neu ? 'konto.passwort_neu' : 'konto.passwort');
   $('kontoPw').setAttribute('autocomplete', neu ? 'new-password' : 'current-password');
   $('kontoSenden').textContent = t(neu ? 'konto.neu' : vergessen ? 'konto.vergessen_senden' : 'konto.anmelden');
@@ -9676,7 +9840,7 @@ function anmeldungZeigen(anlass, modus = 'wahl', daten = {}){
   $('kontoNote').textContent = daten.hinweis || '';
   $('kontoNote').className = daten.hinweis ? 'note feedback no' : 'note';
   $('kontoPw').value = ''; $('kontoPw2').value = '';
-  if(neu) zeigeRegeln($('kontoRegeln'), '');
+  if(neu) zeigeRegeln($('kontoRegeln'), '', $('kontoMail').value);
   $('kontoMail').focus();
 }
 /* Eine Firebase-Antwort als Satz. Firebase haengt manchmal " : ..." an,
@@ -9689,6 +9853,14 @@ function kontoFirebaseFehler(g){
   if(/^EMAIL_EXISTS/.test(g)) return t('konto.fehler_email_da');
   if(/^(INVALID_EMAIL|MISSING_EMAIL)/.test(g)) return t('konto.fehler_email');
   if(/^WEAK_PASSWORD/.test(g)) return t('konto.fehler_kurz', {n: PW_MIN_CLOUD});
+  /* Die Passwort-Richtlinie in der Konsole (29.10.2026, siehe
+     PW_REGELN_CLOUD). Beim Anlegen kommt das nur, wenn die Konsole strenger
+     ist als die App, etwa mehr als 8 Zeichen. Beim Anmelden, wenn dort
+     "Upgrade bei der Anmeldung erzwingen" an ist und das alte Passwort die
+     Regeln nicht erfuellt - dann hilft nur ein neues, ueber "Passwort
+     vergessen?". */
+  if(/^PASSWORD_DOES_NOT_MEET_REQUIREMENTS/.test(g))
+    return t(anmModus === 'mail_an' ? 'konto.fehler_pw_erneuern' : 'konto.fehler_pw_regeln');
   if(/^TOO_MANY_ATTEMPTS_TRY_LATER/.test(g)) return t('konto.fehler_zu_oft');
   if(/^USER_DISABLED/.test(g)) return t('konto.fehler_konto_gesperrt');
   if(g === 'GOOGLE_ABGEBROCHEN') return '';
@@ -9704,7 +9876,7 @@ function kontoFirebaseFehler(g){
    Update jeder mit Lernstand fest. Keinen Ausweg gibt es nur bei diesen
    Gruenden: Eingabefehler, abgebrochene Auswahl, kein Google-Konto auf dem
    Handy (dann E-Mail) und ein gesperrtes Konto. */
-const ANM_OHNE_AUSWEG = /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD|EMAIL_EXISTS|INVALID_EMAIL|MISSING_EMAIL|WEAK_PASSWORD|USER_DISABLED|GOOGLE_ABGEBROCHEN|GOOGLE_KEIN_KONTO)/;
+const ANM_OHNE_AUSWEG = /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD|EMAIL_EXISTS|INVALID_EMAIL|MISSING_EMAIL|WEAK_PASSWORD|PASSWORD_DOES_NOT_MEET_REQUIREMENTS|USER_DISABLED|GOOGLE_ABGEBROCHEN|GOOGLE_KEIN_KONTO)/;
 function anmFehlerZeigen(grund, note){
   const text = kontoFirebaseFehler(grund);
   note.textContent = text;
@@ -9712,38 +9884,43 @@ function anmFehlerZeigen(grund, note){
   if(!ANM_OHNE_AUSWEG.test(String(grund || ''))) $('anmOffline').hidden = false;
 }
 /* Angemeldet: hinein. Nach dem Anlegen eines Kontos sagt eine Karte, dass
-   die Bestaetigungsmail unterwegs ist - sonst nur eine kurze Zeile oben. */
+   die Bestaetigungsmail unterwegs ist. Sonst nichts mehr: bis 29.10.2026
+   stand dann 3,5 Sekunden "Du bist angemeldet. ✓" an der Stelle der
+   Herzpille oben links. Ajdin am 29.10.2026: "mach das komplett raus, ist
+   unnoetig" - dass man drin ist, sieht man an der Startseite. Der Satz war
+   auch die Ueberschrift der Karte; die Karte sagt ihr Eigentliches jetzt
+   ohne. Darunter seit 29.10.2026 der kurze Hinweis auf den Spam-Ordner -
+   dort lag bei Ajdin die Bestaetigungsmail. */
 function cloudNachAnmeldung(neu){
   netzWeg = false;
   kopfZurueck();
   homeMode = 'words';
   showHome();
-  if(neu){
-    const {kasten, zu} = einstufungKarte(
-      '<div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
-      '<h3></h3><div class="txt"></div><button class="btn know" id="anmFertigOk"></button>');
-    kasten.querySelector('h3').textContent = t('anm.fertig');
-    kasten.querySelector('.txt').textContent = t('konto.bestaetigung_raus');
-    kasten.querySelector('#anmFertigOk').textContent = t('task.weiter');
-    kasten.querySelector('#anmFertigOk').addEventListener('click', zu);
-    return;
-  }
-  const balken = $('livesBar');
-  if(balken){
-    balken.innerHTML = '<span class="feedback ok">' + esc(t('anm.fertig')) + ' ✓</span>';
-    setTimeout(()=>{ renderLives(); }, 3500);
-  }
+  if(!neu) return;
+  const {kasten, zu} = einstufungKarte(
+    '<div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
+    '<div class="txt"></div><div class="spamhinweis"></div><button class="btn know" id="anmFertigOk"></button>');
+  kasten.querySelector('.txt').textContent = t('konto.bestaetigung_raus');
+  kasten.querySelector('.spamhinweis').textContent = t('konto.spam_kurz');
+  kasten.querySelector('#anmFertigOk').textContent = t('task.weiter');
+  kasten.querySelector('#anmFertigOk').addEventListener('click', zu);
 }
 async function cloudFormularSenden(){
   if(anmeldungLaeuft) return;
   const m = anmModus, note = $('kontoNote'), knopf = $('kontoSenden');
   const adr = $('kontoMail').value.trim(), pw = $('kontoPw').value, pw2 = $('kontoPw2').value;
   note.className = 'note';
-  if(!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(adr)){ note.textContent = t('konto.fehler_email'); return; }
-  if(m === 'mail_an' && !pw){ note.textContent = t('konto.fehler_mail_pw'); return; }
+  /* Rot wie die Antworten von Firebase - grau las sich ein Fehler wie ein
+     Hinweis (29.10.2026). */
+  const nein = text => { note.textContent = text; note.className = 'note feedback no'; };
+  if(!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(adr)) return nein(t('konto.fehler_email'));
+  if(m === 'mail_an' && !pw) return nein(t('konto.fehler_mail_pw'));
   if(m === 'mail_neu'){
-    if(pw.length < PW_MIN_CLOUD){ note.textContent = t('konto.fehler_kurz', {n: PW_MIN_CLOUD}); return; }
-    if(pw !== pw2){ note.textContent = t('konto.fehler_wdh'); return; }
+    /* Die Zeile sagt, was als Erstes fehlt, die Liste darueber faerbt alles
+       rot, was noch fehlt (29.10.2026, PW_REGELN_CLOUD). */
+    const fehlt = pwFehltCloud(pw, adr);
+    if(fehlt){ zeigeRegeln($('kontoRegeln'), pw, adr, true); return nein(pwFehlerCloud(fehlt)); }
+    if(pw !== pw2) return nein(t('konto.fehler_wdh'));
   }
   anmeldungLaeuft = true;
   knopf.disabled = true; note.textContent = t('konto.laeuft');
