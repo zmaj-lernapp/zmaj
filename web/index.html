@@ -183,24 +183,23 @@
      die zweite Zeile, ebenso bei sehr grosser Schrift - das ist der
      Ausweg von kopfEng() und bleibt. tests_e2e/test_kopfleiste.py */
   header .left{grid-column:1; justify-self:start; display:flex; align-items:center; gap:10px}
-  /* Drinnen ist die Kopfzeile eine Werkzeugleiste, kein Briefkopf: Logo,
-     Wortmarke und Untertitel treten ab, sobald man angemeldet ist. */
-  body:not(.vorAnmeldung) header .left{display:none}
+  /* Kein Briefkopf mehr, auch nicht vor der Anmeldung (30.10.2026). Ajdin
+     auf der v109-Testfassung: "oben das logo ist noch das alte und die
+     schrift auch beim anmelden" - "die kannst du auch ganz raus lassen".
+     Flagge und Wortmarke "Zmaj." sind weg. #tag bleibt im DOM, weil viele
+     Ansichten ihn beschreiben, gezeigt wird er nirgends. */
+  header .left{display:none}
   .hbtns{grid-column:3; justify-self:end}
-  .flag{width:34px; height:34px; border-radius:9px; flex:0 0 auto}
-  .mark{font-family:var(--font-ui); font-weight:800; font-size:26px; color:var(--primary); letter-spacing:-.3px; line-height:1}
-  .mark .dot{color:var(--accent)}
   .tag{font-size:12px; color:var(--muted); font-weight:700}
-  /* Auf der Anmeldeseite steht unter dem Logo kein Untertitel, dafür der
-     große Titel in der Mitte. Damit das Logo dort nicht verloren wirkt,
-     wird es eine Nummer größer. Im Lernpfad bleibt der Kopf kompakt. */
-  body.vorAnmeldung header{margin-bottom:4px}
-  body.vorAnmeldung .flag{width:46px; height:46px; border-radius:12px}
-  body.vorAnmeldung .mark{font-size:36px; letter-spacing:-.6px}
-  @media (max-width:420px){
-    body.vorAnmeldung .flag{width:40px; height:40px; border-radius:11px}
-    body.vorAnmeldung .mark{font-size:31px}
-  }
+  /* Auf der Anmeldeseite ist die Kopfzeile leer: Leiste und Knoepfe sind
+     aus, die Zurueck-Taste zeigt nur der Browser (am Handy dient die
+     Geraetetaste). Ohne Mindesthoehe faellt sie weg, und der grosse Titel
+     rueckt nach oben (30.10.2026). */
+  body.vorAnmeldung header{min-height:0; margin-bottom:0}
+  /* Die Fusszeile verweist auf das Zahnrad, das es vor der Anmeldung nicht
+     gibt (Ajdin, 30.10.2026: "obwohl man sie garnicht erreichen kann die
+     muss raus"). Die Version steht ausserdem in den Einstellungen. */
+  body.vorAnmeldung footer{display:none}
   /* Große Überschrift auf der Anmeldeseite. Dort ist Platz dafür; im
      Lernpfad bleibt der kleine Titel oben im Kopf, damit die Übungen
      nicht nach unten rutschen. */
@@ -209,8 +208,8 @@
   @media (max-width:420px){
     .seitentitel{font-size:25px; margin:16px 0 14px}
     /* Am Handy nimmt der Drache sonst ein Drittel der Breite weg */
-    .hero{gap:10px; padding:12px}
-    .hero .zmaj{width:96px; height:96px; flex:0 0 96px}
+    .hero{gap:8px}
+    .hero .zmaj{width:112px; height:112px; flex:0 0 112px}
   }
   .hbtns{display:flex; gap:4px}     /* 4 statt 6: eine Zeile, siehe header oben (29.10.2026) */
   /* "← Geschichten" in einer Zeile. Im engen Kopf (header.eng) ist die
@@ -408,20 +407,28 @@
   @keyframes zSad{0%,100%{transform:translateY(3px) rotate(-3deg) scale(.97)}50%{transform:translateY(5px) rotate(-5deg) scale(.96)}}
   @keyframes zPop{0%{transform:scale(1)}40%{transform:scale(1.22) rotate(-4deg)}70%{transform:scale(.96) rotate(3deg)}100%{transform:scale(1)}}
   @keyframes zShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px) rotate(-4deg)}40%{transform:translateX(6px) rotate(4deg)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+  /* Die Begruessung auf der Anmeldeseite (30.10.2026): der Drache steht frei
+     auf dem Grund wie oben im Lernpfad, daneben eine Sprechblase in den
+     Farben der Karten, hell wie dunkel. Vorher ein Kasten mit Verlauf und
+     schraeger gelber Flaeche aus der ersten Fassung - Ajdin: "das
+     hintergrund ist auch alt vom anmelden da wo der drache ist". */
   .hero{
-    display:flex; align-items:center; gap:14px; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff;
-    border-radius:var(--radius); padding:14px 16px; margin-bottom:12px; position:relative; overflow:hidden;
+    display:flex; align-items:center; gap:12px; color:var(--ink);
+    margin-bottom:14px; position:relative;
   }
-  .hero::after{content:''; position:absolute; right:-40px; top:-60px; width:200px; height:200px; background:var(--accent); opacity:.18; transform:rotate(25deg); border-radius:20px}
   /* display:block hebt das flex der allgemeinen .bubble-Regel auf. Sonst
      stünden Gruß und Erklärung nebeneinander statt untereinander - am
      Handy werden daraus zwei viel zu schmale Spalten. */
   .hero .bubble{
-    display:block; background:#fff; color:#0F1E4D; border-radius:14px; padding:10px 14px;
-    font-weight:800; font-size:14px; position:relative; flex:1; z-index:1; min-height:0;
+    display:block; background:var(--surface); color:var(--ink); border:2px solid var(--line);
+    border-radius:var(--radius); padding:12px 14px;
+    font-weight:800; font-size:15px; position:relative; flex:1; z-index:1; min-height:0;
   }
-  .hero .bubble::before{content:''; position:absolute; left:-8px; top:18px; border:8px solid transparent; border-right-color:#fff; border-left:0}
-  .hero .bubble small{display:block; font-weight:600; color:#5E6B94; margin-top:4px; font-size:12px}
+  /* Spitze zum Drachen: aussen in der Randfarbe, innen in der Flaeche */
+  .hero .bubble::before, .hero .bubble::after{content:''; position:absolute; top:22px; border:9px solid transparent; border-left:0}
+  .hero .bubble::before{left:-11px; border-right-color:var(--line)}
+  .hero .bubble::after{left:-8px; border-right-color:var(--surface)}
+  .hero .bubble small{display:block; font-weight:600; color:var(--muted); margin-top:4px; font-size:13px}
 
   /* ---------- Startseite ---------- */
   /* ---- Oben auf der Startseite: Serie und Drache nebeneinander ----
@@ -2090,12 +2097,12 @@
 </div>
 <div class="wrap">
   <!-- Eine Zeile fuer alles: Leben, Muenzen und die Knoepfe. Das Logo samt
-       Untertitel steht nur noch vor der Anmeldung; drinnen kostete es eine
-       ganze Zeile Hoehe, ohne etwas zu sagen. Ajdin am 18.09.2026. -->
+       Untertitel kostete drinnen eine ganze Zeile Hoehe, ohne etwas zu
+       sagen (Ajdin am 18.09.2026); seit 30.10.2026 fehlt es auch vor der
+       Anmeldung. -->
   <header>
     <div class="left">
-      <img class="flag" src="flagge.png?v=2" alt="">
-      <div><div class="mark">Zmaj<span class="dot">.</span></div><div class="tag" id="tag"></div></div>
+      <div class="tag" id="tag"></div>
     </div>
     <div class="kopfleiste" id="kopfLeiste">
       <div class="livesbar" id="livesBar" style="display:none"></div>
@@ -7641,7 +7648,7 @@ function showView(id){
   zmajeAnpassen();        // Drachen ausgeblendeter Ansichten anhalten, die sichtbaren wecken
   $('kopfLeiste').style.display = '';     // wer sie nicht will, blendet sie danach aus
   nurHerz(false);                         // Lektion, Test und Runde setzen es selbst wieder
-  // Vor der Anmeldung darf das Logo größer sein - siehe CSS oben
+  // Auf der Anmeldeseite faellt die leere Kopfzeile weg - siehe CSS oben
   document.body.classList.toggle('vorAnmeldung', id === 'profileView');
   /* Hier und nicht in showHome(): so stimmt die Farbe auch in den
      Einstellungen, im Laden und bei den Geschichten. */
@@ -9157,7 +9164,7 @@ const PW_MIN_CLOUD = 8;
    (validatePassword in firebase-js-sdk, password_policy_impl.ts,
    nachgesehen am 29.10.2026): Gross- und Kleinbuchstaben nur A-Z und a-z,
    Ziffern nur 0-9, die Laenge in UTF-16-Einheiten (p.length). Ein Umlaut,
-   -, +, EUR-Zeichen oder Leerzeichen ist erlaubt, zaehlt aber fuer keine
+   +, EUR-Zeichen oder Leerzeichen ist erlaubt, zaehlt aber fuer keine
    Regel - sonst zeigte die Liste einen Haken, und Firebase lehnte trotzdem
    ab (PASSWORD_DOES_NOT_MEET_REQUIREMENTS). "Oelbaum1!" mit einem grossen
    Oe braucht also noch einen Grossbuchstaben A-Z. Damit das niemanden
@@ -9166,15 +9173,16 @@ const PW_MIN_CLOUD = 8;
    konto.regel_gross_az und konto.fehler_gross_az (Pruefung 29.10.2026).
    PW_REGELN der alten Server-Anmeldung zaehlt jeden Buchstaben und
    behaelt deshalb konto.regel_gross.
-   Sonderzeichen sind genau die aus Firebases Anleitung zur Richtlinie
-   (firebase.google.com/docs/auth/web/password-auth, am selben Tag). Die
-   Seite von Identity Platform nennt am Ende noch den Gravis ` - den zaehlt
-   die App nicht: strenger als Firebase kostet hoechstens ein Zeichen mehr,
-   lockerer hiesse ein Haken in der Liste und trotzdem eine Ablehnung.
+   Sonderzeichen sind genau die, die Zmajs Firebase-Projekt selbst meldet
+   (GET identitytoolkit v2/passwordPolicy, allowedNonAlphanumericCharacters,
+   abgefragt am 30.10.2026). Die Anleitung von Firebase nannte - und ` nicht,
+   der Server zaehlt beide; "Sommer-2026" bekam deshalb in der App ein rotes
+   Sonderzeichen, obwohl Firebase es annimmt. Nie mehr Zeichen als der
+   Server: lockerer hiesse ein Haken in der Liste und trotzdem eine Ablehnung.
    Die Regel mit der E-Mail kennt Firebase nicht, sie gilt nur hier.
    Nur fuer ein neues Passwort (Konto anlegen); die Anmeldung mit einem
    bestehenden Passwort prueft nichts davon. */
-const PW_ZEICHEN_CLOUD = '^$*.[]{}()?"!@#%&/\\,><\':;|_~';
+const PW_ZEICHEN_CLOUD = '^$*.[]{}()?"!@#%&/\\,><\':;|_~`-';
 const PW_REGELN_CLOUD = [
   ['passwort_kurz',    'konto.regel_laenge',  p => p.length >= PW_MIN_CLOUD],
   ['passwort_gross',   'konto.regel_gross_az', p => /[A-Z]/.test(p)],

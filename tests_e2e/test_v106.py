@@ -798,8 +798,8 @@ def test_standbilder_des_drachen_laden(seite, heute_stand):
 def test_symbol_links_zeigen_auf_vorhandene_dateien(seite, heute_stand):
     """Browser-Tab und Startbildschirm-Symbol (link rel=icon und
     apple-touch-icon): die Datei antwortet mit 200, ist ein 256-Pixel-PNG, der
-    Browser kann sie zeichnen, und sie liegt in web/. Die Kopfzeile behaelt
-    die Flagge (flagge.png) und sie laedt."""
+    Browser kann sie zeichnen, und sie liegt in web/. Die Flagge in der
+    Kopfzeile ist seit 30.10.2026 weg (Ajdin: "ganz raus lassen")."""
     seite.starten(stand=heute_stand())
     links = seite.js("""() => [...document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]')]
         .map(l => ({rel: l.rel, href: l.href, roh: l.getAttribute('href'), type: l.type}))""")
@@ -817,10 +817,7 @@ def test_symbol_links_zeigen_auf_vorhandene_dateien(seite, heute_stand):
             b.onload = () => res(b.naturalWidth); b.onerror = () => res(0); b.src = url; })""", l["href"])
         assert breite == 256, "der Browser zeichnet %s nicht" % l["roh"]
         assert os.path.isfile(os.path.join(WURZEL, "web", l["roh"].split("?")[0])), "%s fehlt in web/" % l["roh"]
-    flagge = seite.js("""() => { const i = document.querySelector('img.flag');
-        return i ? {geladen: i.complete && i.naturalWidth > 0, src: i.getAttribute('src')} : null; }""")
-    assert flagge and flagge["geladen"], "die Flagge in der Kopfzeile laedt nicht: %s" % flagge
-    assert os.path.isfile(os.path.join(WURZEL, "web", flagge["src"].split("?")[0]))
+    assert seite.js("() => document.querySelector('header img.flag, header .mark')") is None
     assert seite.fehler == []
 
 
