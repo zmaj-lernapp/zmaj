@@ -24,6 +24,16 @@ from firebase_attrappe import CLIENT, FIREBASE, UID, Attrappe, dok_pfad, wege
 
 KONTO = "identitytoolkit.googleapis.com/v1/accounts:"
 
+# Die Liste unter dem Passwort beim Anlegen, seit 29.10.2026 (PW_REGELN_CLOUD).
+# Gross und klein mit "(A–Z)" und "(a–z)": nur die zaehlen bei Firebase.
+REGELN = ("konto.regel_laenge", "konto.regel_gross_az", "konto.regel_klein_az", "konto.regel_zahl", "konto.regel_zeichen")
+# Die Sonderzeichen der Passwort-Richtlinie aus Firebases Anleitung
+# (firebase.google.com/docs/auth/web/password-auth, nachgesehen am
+# 29.10.2026) - und was dort NICHT zaehlt. Den Gravis nennt nur die Seite
+# von Identity Platform; die App zaehlt ihn nicht (PW_ZEICHEN_CLOUD).
+FIREBASE_ZEICHEN = "^$*.[]{}()?\"!@#%&/\\,><':;|_~"
+KEINE_ZEICHEN = ("-", "+", "€", " ", "=", "§", "ß", "Ä", "é", "`")
+
 # Wie DURCHSPIELEN, aber nur bis zum ersten gewussten Wort - eine halb
 # gemachte Lektion (Gegenpruefung 28.10.2026).
 _SCHLEIFE = "X().i < liste().length;"
@@ -289,12 +299,13 @@ def test_konto_mit_email_anlegen(seite, heute_stand, cloud_html):
                               document.getElementById('kontoPw2').hidden, document.getElementById('kontoRegeln').hidden,
                               document.getElementById('kontoRegeln').textContent]""") \
         == [_t(seite, "konto.anlegen_titel"), False, False,
-            _t(seite, "konto.regeln_titel") + _t(seite, "konto.regel_laenge", {"n": 8})]
+            _t(seite, "konto.regeln_titel") + "".join(_t(seite, k, {"n": 8}) for k in REGELN)]
     note = "() => document.getElementById('kontoNote').textContent"
     # Zu kurz, ungleich, keine Adresse - die App sagt es, ohne zu fragen.
+    # Seit 29.10.2026 mit Gross- und Kleinbuchstabe, Ziffer und Sonderzeichen.
     for email, pw, pw2, soll in (("neu@probe.example", "kurz", "kurz", ("konto.fehler_kurz", {"n": 8})),
-                                 ("neu@probe.example", "geheim123", "geheim124", ("konto.fehler_wdh", None)),
-                                 ("keine-adresse", "geheim123", "geheim123", ("konto.fehler_email", None))):
+                                 ("neu@probe.example", "Geheim#123", "Geheim#124", ("konto.fehler_wdh", None)),
+                                 ("keine-adresse", "Geheim#123", "Geheim#123", ("konto.fehler_email", None))):
         seite.page.fill("#kontoMail", email)
         seite.page.fill("#kontoPw", pw)
         seite.page.fill("#kontoPw2", pw2)
@@ -303,8 +314,8 @@ def test_konto_mit_email_anlegen(seite, heute_stand, cloud_html):
     assert attrappe.anfragen == []
     # Die Adresse hat schon ein Konto.
     seite.page.fill("#kontoMail", "da@probe.example")
-    seite.page.fill("#kontoPw", "geheim123")
-    seite.page.fill("#kontoPw2", "geheim123")
+    seite.page.fill("#kontoPw", "Geheim#123")
+    seite.page.fill("#kontoPw2", "Geheim#123")
     seite.page.click("#kontoSenden")
     _fertig(seite)
     assert seite.js(note) == _t(seite, "konto.fehler_email_da")
@@ -312,11 +323,20 @@ def test_konto_mit_email_anlegen(seite, heute_stand, cloud_html):
     # Jetzt richtig.
     attrappe.anfragen.clear()
     seite.page.fill("#kontoMail", "neu@probe.example")
-    seite.page.fill("#kontoPw", "geheim123")
-    seite.page.fill("#kontoPw2", "geheim123")
+    seite.page.fill("#kontoPw", "Geheim#123")
+    seite.page.fill("#kontoPw2", "Geheim#123")
     seite.page.click("#kontoSenden")
     _fertig(seite)
     seite.page.wait_for_function("() => document.querySelector('.nachfrage #anmFertigOk')")
+    # "Du bist angemeldet." gibt es nicht mehr (Ajdin am 29.10.2026: "mach
+    # das komplett raus") - weder als Ueberschrift der Karte noch oben.
+    assert seite.js("() => [!!document.querySelector('.nachfrage h3'), !!document.querySelector('#livesBar .feedback')]") \
+        == [False, False]
+    # Die Karte sagt, dass die Mail unterwegs ist, und kurz, wo sie landen
+    # kann (Ajdin fand sie am 29.10.2026 im Spam-Ordner).
+    assert seite.js("""() => [...document.querySelectorAll('.nachfrage .txt, .nachfrage .spamhinweis')]
+                                .map(e => e.textContent)""") \
+        == [_t(seite, "konto.bestaetigung_raus"), _t(seite, "konto.spam_kurz")]
     uid = attrappe.konten["neu@probe.example"]["uid"]
     z = seite.js(ZUSTAND)
     assert z["sicht"] == ["pfad"]
@@ -341,6 +361,132 @@ def test_konto_mit_email_anlegen(seite, heute_stand, cloud_html):
     assert seite.fehler == []
 
 
+# Die Liste unter dem Passwort: was ist abgehakt, was rot, was steht extra da
+LISTE = """() => { const k = document.getElementById('kontoRegeln');
+  return {ok: [...k.querySelectorAll('span.ok')].map(s => s.textContent),
+          fehlt: [...k.querySelectorAll('span.fehlt')].map(s => s.textContent),
+          nein: [...k.querySelectorAll('span.nein')].map(s => s.textContent),
+          alle: k.querySelectorAll('span').length,
+          note: document.getElementById('kontoNote').textContent,
+          rot: document.getElementById('kontoNote').classList.contains('no')}; }"""
+
+
+def test_passwortregeln_beim_anlegen(seite, heute_stand, cloud_html):
+    """Ajdin am 29.10.2026: "mindestens ein Sonderzeichen, mindestens eine
+    Zahl, Gross- und Kleinschreibung und was noch so wichtig ist". Die Liste
+    hakt beim Tippen ab, gezaehlt wie bei Firebase (nur A-Z, a-z, 0-9 und
+    die Sonderzeichen der Richtlinie); der Teil der Adresse vor dem @ darf
+    nicht im Passwort stehen. "Konto anlegen" sagt, was fehlt, und fragt
+    Firebase erst, wenn alles stimmt. Lehnt Firebase trotzdem ab
+    (PASSWORD_DOES_NOT_MEET_REQUIREMENTS), steht ein Satz da, den man
+    versteht - beim Anlegen und beim Anmelden. Die Anmeldung mit einem
+    alten, einfachen Passwort prueft die Regeln nicht."""
+    attrappe = _starten(seite, cloud_html, stand=_gelernt(heute_stand))
+    attrappe.konto_anlegen("alt@probe.example", "einfach1")
+    seite.page.click("#anmMail")
+    seite.page.click("#kontoWechsel")
+    r = {k: _t(seite, k, {"n": 8}) for k in REGELN}
+    mail = _t(seite, "konto.regel_email")
+    # Die Liste nennt den Bereich und Beispiele fuer Sonderzeichen
+    # (Pruefung 29.10.2026): wer Ö oder - tippt, sieht, warum kein Haken kommt.
+    assert "(A–Z)" in r["konto.regel_gross_az"] and "(a–z)" in r["konto.regel_klein_az"]
+    assert "(! ? # @)" in r["konto.regel_zeichen"]
+    # Ohne Adresse gibt es den Punkt "nicht deine E-Mail" nicht.
+    assert seite.js(LISTE)["alle"] == 5
+    seite.page.fill("#kontoMail", "ajdin.probe@probe.example")
+    z = seite.js(LISTE)
+    # Mit Adresse ist er der sechste Punkt, beim leeren Feld ohne Haken.
+    assert z["ok"] == [] and z["alle"] == 6 and z["nein"] == [], z
+    # Beim Tippen: Haken fuer alles, was erfuellt ist - auch "nicht deine E-Mail".
+    for pw, soll in (("abcdefgh", ["konto.regel_laenge", "konto.regel_klein_az"]),
+                     ("Abcdefg1", ["konto.regel_laenge", "konto.regel_gross_az", "konto.regel_klein_az", "konto.regel_zahl"]),
+                     ("Abcdefg1!", list(REGELN)),
+                     # Umlaute, ß und arabische Ziffern zaehlen bei Firebase nicht als Gross,
+                     # klein oder Ziffer - erlaubt sind sie trotzdem.
+                     ("ÄÖÜäöüß٣!", ["konto.regel_laenge", "konto.regel_zeichen"]),
+                     ("Ölbaum2026!", ["konto.regel_laenge", "konto.regel_klein_az", "konto.regel_zahl",
+                                      "konto.regel_zeichen"])):
+        seite.page.fill("#kontoPw", pw)
+        assert seite.js(LISTE)["ok"] == [r[k] for k in soll] + [mail], pw
+    # Genau die Sonderzeichen der Richtlinie, sonst keins.
+    for zeichen in FIREBASE_ZEICHEN:
+        seite.page.fill("#kontoPw", "Abcdefg1" + zeichen)
+        assert r["konto.regel_zeichen"] in seite.js(LISTE)["ok"], zeichen
+    for zeichen in KEINE_ZEICHEN:
+        seite.page.fill("#kontoPw", "Abcdefg1" + zeichen)
+        assert r["konto.regel_zeichen"] not in seite.js(LISTE)["ok"], zeichen
+    # Konto anlegen sagt, was als Erstes fehlt, und faerbt rot, was noch fehlt.
+    seite.page.fill("#kontoPw2", "")
+    for pw, soll, rot in (("abcdefgh", ("konto.fehler_gross_az", None), ["konto.regel_gross_az", "konto.regel_zahl", "konto.regel_zeichen"]),
+                          ("Ölbaum2026!", ("konto.fehler_gross_az", None), ["konto.regel_gross_az"]),
+                          ("ABCDEFG1!", ("konto.fehler_klein_az", None), ["konto.regel_klein_az"]),
+                          ("abcdefgH", ("konto.fehler_zahl", None), ["konto.regel_zahl", "konto.regel_zeichen"]),
+                          ("Abcdefg1-", ("konto.fehler_zeichen", None), ["konto.regel_zeichen"]),
+                          ("Ab1!", ("konto.fehler_kurz", {"n": 8}), ["konto.regel_laenge"])):
+        seite.page.fill("#kontoPw", pw)
+        seite.page.click("#kontoSenden")
+        z = seite.js(LISTE)
+        assert z["note"] == _t(seite, *soll) and z["rot"] and z["fehlt"] == [r[k] for k in rot], (pw, z)
+    # Das Beispiel nennt nur Zeichen, die Firebase zaehlt (vorher "- oder €").
+    assert "#" in _t(seite, "konto.fehler_zeichen") and "€" not in _t(seite, "konto.fehler_zeichen")
+    # Weitertippen nimmt das Rot wieder weg, auch die Zeile darunter.
+    seite.page.fill("#kontoPw", "abcdefgH1")
+    z = seite.js(LISTE)
+    assert z["fehlt"] == [] and z["note"] == "" and not z["rot"], z
+    # Der Teil vor dem @, gross oder klein: rot mit Kreuz, nur dann.
+    seite.page.fill("#kontoPw", "Ajdin.Probe#1")
+    z = seite.js(LISTE)
+    assert z["ok"] == [r[k] for k in REGELN] and z["nein"] == [_t(seite, "konto.regel_email")], z
+    seite.page.fill("#kontoPw2", "Ajdin.Probe#1")
+    seite.page.click("#kontoSenden")
+    assert seite.js(LISTE)["note"] == _t(seite, "konto.fehler_pw_email")
+    # Andere Adresse eingetippt: die Liste folgt sofort, jetzt mit Haken.
+    seite.page.fill("#kontoMail", "zmaj@probe.example")
+    z = seite.js(LISTE)
+    assert z["nein"] == [] and z["ok"] == [r[k] for k in REGELN] + [mail], z
+    # Unter 3 Zeichen vor dem @ zaehlt es nicht, der Punkt faellt weg.
+    seite.page.fill("#kontoMail", "aj@probe.example")
+    seite.page.fill("#kontoPw", "Ajdin#123")
+    z = seite.js(LISTE)
+    assert z["nein"] == [] and z["alle"] == 5, z
+    # Bildschirmleser: die Liste beschreibt das Feld, die Zeile darunter
+    # ist live (Pruefung 29.10.2026).
+    assert seite.js("""() => [document.getElementById('kontoPw').getAttribute('aria-describedby'),
+                              document.getElementById('kontoNote').getAttribute('role')]""") \
+        == ["kontoRegeln", "status"]
+    assert attrappe.anfragen == []
+    # Firebase ist strenger als die App (Richtlinie in der Konsole).
+    attrappe.anmelde_fehler = ("PASSWORD_DOES_NOT_MEET_REQUIREMENTS : Missing password requirements: "
+                               "[Password must contain at least 10 characters]")
+    seite.page.fill("#kontoMail", "neu@probe.example")
+    seite.page.fill("#kontoPw", "Geheim#123")
+    seite.page.fill("#kontoPw2", "Geheim#123")
+    seite.page.click("#kontoSenden")
+    _fertig(seite)
+    z = seite.js(LISTE)
+    assert z["note"] == _t(seite, "konto.fehler_pw_regeln") and z["rot"], z
+    # Ein Eingabefehler: kein "Erst einmal weiterlernen".
+    assert seite.js("() => document.getElementById('anmOffline').hidden")
+    # Beim Anmelden ("Upgrade bei der Anmeldung erzwingen" in der Konsole):
+    # dann hilft "Passwort vergessen?".
+    seite.page.click("#kontoWechsel")
+    assert seite.js("""() => [document.getElementById('kontoRegeln').hidden,
+                              document.getElementById('kontoPw').hasAttribute('aria-describedby')]""") == [True, False]
+    _mail_anmelden(seite, "alt@probe.example", "einfach1")
+    assert seite.js(LISTE)["note"] == _t(seite, "konto.fehler_pw_erneuern")
+    assert seite.js("() => document.getElementById('anmOffline').hidden")
+    assert seite.js(ZUSTAND)["merker"] is None
+    # Ohne Richtlinie: das alte, einfache Passwort geht wie immer.
+    attrappe.anmelde_fehler = None
+    _mail_anmelden(seite, "alt@probe.example", "einfach1")
+    z = seite.js(ZUSTAND)
+    assert z["sicht"] == ["pfad"] and z["merker"]["art"] == "passwort", z
+    # Kein "Du bist angemeldet." an der Stelle des Herzens.
+    assert seite.js("() => [!!document.querySelector('#livesBar .feedback'), !!document.getElementById('livesKnopf')]") \
+        == [False, True]
+    assert seite.fehler == []
+
+
 def test_falsches_passwort_und_passwort_vergessen(seite, heute_stand, cloud_html):
     attrappe = _starten(seite, cloud_html, stand=_gelernt(heute_stand), sprache="nb")
     attrappe.konto_anlegen("ich@probe.example", "richtig-123")
@@ -357,8 +503,10 @@ def test_falsches_passwort_und_passwort_vergessen(seite, heute_stand, cloud_html
         seite.page.click("#kontoSenden")
         _fertig(seite)
         antworten.append(seite.js("""() => [document.getElementById('kontoNote').textContent,
-                                            document.getElementById('kontoSpam').hidden]"""))
-    assert antworten == [[_t(seite, "konto.vergessen_raus"), False]] * 2
+                                            document.getElementById('kontoSpam').hidden,
+                                            document.getElementById('kontoSpam').textContent]"""))
+    # Seit 29.10.2026 kurz: "Keine Mail? Schau auch im Spam-Ordner nach."
+    assert antworten == [[_t(seite, "konto.vergessen_raus"), False, _t(seite, "konto.spam_kurz")]] * 2
     # Die Mail in der Sprache der App - Norwegisch heisst bei Firebase "no".
     assert [(x["art"], x["email"], x["sprache"]) for x in attrappe.mails] == [
         ("PASSWORD_RESET", "ich@probe.example", "no"), ("PASSWORD_RESET", "gibt-es-nicht@probe.example", "no")]

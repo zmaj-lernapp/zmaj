@@ -85,10 +85,20 @@ auch ein späterer Wechsel des Anbieters einfach – ein neuer Adapter mit
    „Registrierung erlauben“ und „Löschen erlauben“.
 4. **Nicht** auf **Identity Platform** upgraden, auch wenn Firebase es
    anbietet. Mit dem Upgrade gilt im kostenlosen Tarif eine Grenze von 3.000
-   täglich aktiven Nutzern. Mehrfaktor-Anmeldung, Blocking Functions und
-   eine Passwort-Richtlinie in der Konsole gibt es deshalb nicht; die App
-   verlangt selbst mindestens 8 Zeichen.
-5. **Vorlagen:** Absendername „Zmaj“, „Antwort an“ die Support-Adresse. Die
+   täglich aktiven Nutzern. Mehrfaktor-Anmeldung und Blocking Functions
+   gibt es deshalb nicht.
+5. Reiter **Einstellungen**, Abschnitt **Password policy** (seit
+   29.10.2026): Modus **Require**, mindestens 8 Zeichen, Groß- und
+   Kleinbuchstabe, Ziffer und Sonderzeichen verlangen. **Force upgrade on
+   sign-in** aus lassen – sonst kommt, wer sein Konto mit einem einfacheren
+   Passwort angelegt hat, nur noch über „Passwort vergessen?“ hinein (die App
+   sagt es dann so). Die App prüft dieselben Regeln schon beim Tippen
+   (`PW_REGELN_CLOUD`) und dazu, dass der Teil der Adresse vor dem @ nicht im
+   Passwort steht. Strenger als die App darf die Konsole sein (die App
+   sagt dann „nicht sicher genug“), lockerer nicht – die Prüfung in der App
+   allein ließe sich umgehen. Als Sonderzeichen zählt die App genau die
+   Liste aus Firebases Anleitung, den Gravis ` nicht.
+6. **Vorlagen:** Absendername „Zmaj“, „Antwort an“ die Support-Adresse. Die
    Mails kommen in der Sprache der App (die App schickt `X-Firebase-Locale`
    mit).
 
