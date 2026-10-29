@@ -95,6 +95,9 @@ def _staende(seite):
         "einstufung": {"tag": "2026-10-01", "wahl": "neu", "bis": ""},
         "bewertung": {"gezeigt": ["2026-10-01"], "nein": False, "bewertet": False},
         "getragen": "hut",
+        # Lernkartei (v110): Tage als Zahl seit APP_START, alle vor heute
+        "kartei": {"tag": 80, "n": 5, "w": {"gleich:a": [1, 82, 79], "spaet:a": [3, 90, 80],
+                                            "frueh:a": [2, 85, 70], "nur:a": [0, 81, 80]}},
     }
     b = {
         "gewusst": ["gemeinsam", "w:b"], "bestanden": ["lv2"], "gelesen": [],
@@ -110,6 +113,8 @@ def _staende(seite):
         "einstufung": {"tag": "2026-10-03", "wahl": "gut", "bis": "x"},
         "bewertung": {"gezeigt": ["2026-10-05"], "nein": True, "bewertet": False},
         "getragen": "lesebrille",
+        "kartei": {"tag": 80, "n": 7, "w": {"gleich:a": [2, 81, 79], "spaet:a": [1, 81, 75],
+                                            "frueh:a": [4, 99, 78], "nur:b": [5, 120, 60]}},
     }
     return a, b, p
 
@@ -140,6 +145,12 @@ def test_zusammenfuehren_jedes_feld_nach_seiner_regel(seite, heute_stand):
     assert m["schutz"] == b["schutz"]
     assert m["einstufung"] == b["einstufung"]
     assert m["bewertung"] == {"gezeigt": ["2026-10-01", "2026-10-05"], "nein": True, "bewertet": False}
+    # Lernkartei: je Wort der zuletzt geuebte Stand, am selben Tag der fruehere
+    # Termin; der Tageszaehler am selben Tag als Maximum (29.10.2026)
+    assert m["kartei"] == {"tag": 80, "n": 7, "w": {
+        "gleich:a": [2, 81, 79], "spaet:a": [3, 90, 80], "frueh:a": [4, 99, 78],
+        "nur:a": [0, 81, 80], "nur:b": [5, 120, 60]}}
+    assert seite.js(MISCHEN, [dict(a, kartei=dict(a["kartei"], tag=81, n=1)), b])["kartei"]["n"] == 1
     assert m["getragen"] == "hut"            # das Geraet gewinnt ...
     assert seite.js(MISCHEN, [dict(a, getragen=""), b])["getragen"] == "lesebrille"   # ... traegt es nichts, die Cloud
     # Gleiche Zeit: die kleinere Anzahl, in beiden Richtungen.
@@ -168,6 +179,7 @@ def test_zusammenfuehren_idempotent_kommutativ_ohne_verluste(seite, heute_stand)
         assert set(a[k]) <= set(m[k]) and set(b[k]) <= set(m[k]), k
     for k in ("topf", "stern", "wann"):
         assert set(a[k]) | set(b[k]) <= set(m[k]), k
+    assert set(a["kartei"]["w"]) | set(b["kartei"]["w"]) == set(m["kartei"]["w"])
     # Der echte Stand der App mit sich selbst: derselbe Stand.
     assert seite.js("""() => {
         const s = standAlsObjekt(), m = standZusammenfuehren(s, s);

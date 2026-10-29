@@ -2151,6 +2151,7 @@
     <div id="topfHome" style="display:none">
       <div class="section" id="topfBox"></div>
       <div class="section" id="sternBox"></div>
+      <div class="section" id="karteiBox"></div>
     </div>
   </div>
 
@@ -3260,6 +3261,10 @@ let einstufung = null;    // null = noch nie gefragt, sonst {tag, wahl, bis}
 let topf = {};            // Schluessel -> {typ, n, z}
 let stern = {};           // Schluessel -> {z, r}, siehe STERN (19.10.2026)
 const STERN_MAX = 300;    // so viele Sterne hoechstens; hier oben, standUebernehmen() braucht ihn
+/* Die Lernkartei (zeitgesteuerte Wiederholung, v110) - erklaert weiter
+   unten bei LERNKARTEI. Hier oben aus demselben Grund wie STERN_MAX. */
+let kartei = {tag: 0, n: 0, w: {}};
+const KARTEI_ABSTAENDE = [1, 3, 7, 14, 30, 90, 180];   // Tage bis zum naechsten Termin, je Stufe 0 bis 6
 let bewertung = {gezeigt:[], nein:false, bewertet:false};   // siehe BEWERTUNG
 let rekord = 0;
 let wann = {};
@@ -5036,6 +5041,9 @@ function sicherungPlausibel(s){
   /* Sterne (19.10.2026): nur gueltige Kennungen und Zahlen, hoechstens
      STERN_MAX, und kein Zeitpunkt nach jetzt - siehe sternPruefen(). */
   p.stern = sternPruefen(s.stern);
+  /* Lernkartei (29.10.2026): kein Uebungstag nach heute, kein Termin
+     weiter weg als die laengste Stufe - siehe karteiPruefen(). */
+  p.kartei = karteiPruefen(s.kartei, true);
   return p;
 }
 /* ---- Felder einer neueren Fassung (28.10.2026, Vorarbeit fuer v110) ----
@@ -5072,10 +5080,15 @@ function sicherungPlausibel(s){
    dabei, was sie nicht kennt: topfMerken() schreibt einen Eintrag bei
    jedem Fehler neu und loescht ihn nach TOPF_RAUS richtigen Antworten,
    topfAufraeumen() wirft Schluessel weg, die zu keiner Aufgabe fuehren,
-   sternPruefen() behaelt nur z und r. */
+   sternPruefen() behaelt nur z und r.
+   v110 (29.10.2026) hat sich daran gehalten: die Lernkartei steht im
+   eigenen Feld kartei und gehoert damit ab hier zu STAND_FELDER. Fuer
+   kartei gilt dasselbe: karteiPruefen() behaelt je Wort genau drei
+   Zahlen - was eine spaetere Fassung (etwa FSRS) braucht, kommt in ein
+   weiteres neues Feld, nicht an die Eintraege dort. */
 const STAND_FELDER = new Set(['gewusst', 'bestanden', 'gelesen', 'tage', 'frost', 'besitz', 'leben',
   'schutz', 'tagwerk', 'muenzen_ges', 'muenzen_aus', 'getragen', 'gefeiert', 'rekord', 'wann',
-  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern']);
+  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern', 'kartei']);
 const STAND_ALT = new Set(['premium']);
 let standFremd = {};
 /* Die fremden Felder eines Stands als tiefe Kopie - sie teilen nichts mit
@@ -5193,6 +5206,10 @@ function standUebernehmen(d){
   /* Fehlt das Feld (Stand oder Sicherung von vor dem 19.10.2026), ist
      nichts markiert. Kaputte Eintraege fallen hier still heraus. */
   stern = sternPruefen(d.stern);
+  /* Die Lernkartei (29.10.2026). Fehlt das Feld - ein Stand von vor
+     v110 -, ist sie leer; die gewussten Woerter bekommen ihre Termine
+     gleich danach in karteiNachtragen() (altenFortschrittUmschreiben). */
+  kartei = karteiPruefen(d.kartei);
   const bw = (d.bewertung && typeof d.bewertung==='object' && !Array.isArray(d.bewertung)) ? d.bewertung : {};
   bewertung = {gezeigt: Array.isArray(bw.gezeigt) ? bw.gezeigt.filter(istDatum) : [],
                nein: !!bw.nein, bewertet: !!bw.bewertet};
@@ -5274,7 +5291,12 @@ function standAlsObjekt(){
           /* Die Sterne gehoeren wie der Topf zum Lernenden (19.10.2026). Die
              Sicherungsdatei bleibt version 1: eine alte App liest das Feld
              nicht, eine neue nimmt ein fehlendes als "nichts markiert". */
-          stern: stern};
+          stern: stern,
+          /* Die Lernkartei (v110, 29.10.2026), siehe LERNKARTEI. Auch sie
+             laesst die Sicherungsdatei bei version 1: eine alte App traegt
+             das Feld nur weiter (standFremd), eine neue nimmt ein fehlendes
+             als leer und traegt die Termine nach. */
+          kartei: kartei};
   /* Dahinter, unveraendert, was eine neuere Fassung in den Stand gelegt
      hat (28.10.2026, siehe standFremd). Eigene Felder gehen vor -
      standFremdAus() laesst ohnehin keins davon durch. */
@@ -5343,6 +5365,13 @@ function standAlsObjekt(){
      stern                 Vereinigung. Auf beiden Seiten markiert: das
                            neuere z (zuletzt markiert) und das groessere r
                            (zuletzt geuebt). Danach sternPruefen().
+     kartei                je Wort der Stand, der zuletzt geuebt wurde
+                           (Ajdin am 28.10.2026). Am selben Tag der fruehere
+                           Termin, dann die kleinere Stufe: lieber einmal zu
+                           frueh wiederholen als zu spaet. Der Zaehler fuer
+                           heute: der neuere Tag, am selben Tag die groessere
+                           Zahl, wie bei tagwerk. Nichts aus der Zukunft, wie
+                           bei topf - siehe karteiMischen() (29.10.2026).
      leben, schutz         die Seite mit dem neueren Zeitstempel zeit - dort
                            ist zuletzt etwas passiert (Herz verloren, Schutz
                            verbraucht). Bei gleicher Zeit die kleinere
@@ -5441,6 +5470,7 @@ function standZusammenfuehren(a, b, cloudVorher){
     const x = objekt(sa[k]), y = objekt(sb[k]);
     return [k, (x && y) ? {z: Math.max(zahl(x.z), zahl(y.z)), r: Math.max(zahl(x.r), zahl(y.r))} : (x || y)];
   })));
+  m.kartei = karteiMischen(a.kartei, b.kartei);
   const zeitWahl = (x, y, max, leer) => {
     const gut = e => {
       e = objekt(e);
@@ -8502,7 +8532,12 @@ function altenFortschrittUmschreiben(){
      Wiederholen still weg - ein offener Fehler waere ohne Wiederholung
      verschwunden. Gefunden beim Umbenennen von Salz auf "so / sol". */
   const topfNeu = topfUmschreiben(nachWort);
-  return geaendert || sternNeu || topfNeu;
+  /* Die Lernkartei ebenso (29.10.2026). Danach bekommt jedes gewusste
+     Wort ohne Termin einen: beim ersten Start mit v110 alle, spaeter die
+     aus einer alten Sicherungsdatei oder von einem Geraet mit v109. */
+  const karteiNeu = karteiUmschreiben(nachWort);
+  const karteiDazu = karteiNachtragen();
+  return geaendert || sternNeu || topfNeu || karteiNeu || karteiDazu;
 }
 
 // Der Knopf mit dem Namen oben rechts führt in die Einstellungen -
@@ -9035,7 +9070,12 @@ const ABGEMELDET = 'zmaj_abgemeldet';
    Firestore erlaubt 1 MiB (1 048 576 Bytes) je Dokument, und ein 'č' ist
    dort zwei Bytes lang. So bleibt das Dokument mit rev und Feldnamen
    sicher darunter; die Regel zaehlt Zeichen und laesst es damit erst
-   recht durch. */
+   recht durch.
+   29.10.2026: Die Lernkartei bringt je gewusstem Wort rund 40 Bytes mit
+   (Kennung und drei Zahlen, die Tage als Zahl statt als Datum). Ein Stand
+   mit allen 1 740 Woertern gewusst, vollem Topf und allen Sternen hat
+   damit rund 151 000 Bytes, mit 7 000 Woertern waeren es grob 500 000 -
+   gemessen in tests_e2e/test_kartei.py. */
 const CLOUD_GROESSE_MAX = 900000;
 const utf8Laenge = s => { try{ return new TextEncoder().encode(s).length; }catch(e){ return s.length * 3; } };
 /* Firebase verlangt mindestens 6 Zeichen. Ajdin hatte die Frage offen
@@ -11394,11 +11434,31 @@ function buildLesson(){
   let nNew = Math.min(LEKTION_NEU_MAX, unknown.length);
   let nRev = Math.min(LEKTION_WOERTER - nNew, knownW.length);
   if(nRev < LEKTION_WOERTER - nNew) nNew = Math.min(unknown.length, Math.max(nNew, Math.min(8, LEKTION_WOERTER - nRev)));
-  const newW = unknown.slice(0,nNew), revW = knownW.slice(0,nRev);
+  /* Faellige Woerter aus der Lernkartei (Ajdin am 28.10.2026): bis zu
+     KARTEI_IN_LEKTION der Wortplaetze, aus jedem Level, in der Reihenfolge
+     von karteiHeute(). Sie nehmen nur Plaetze bekannter
+     Woerter dieses Levels ein - nNew steht oben schon fest, neue Woerter
+     bleiben gleich viele. Aus einem anderen Level mit dem Hinweis
+     "Wiederholung: <Level>" und dessen Woertern als Auswahl, wie die
+     Rueckblick-Fragen im Level-Test; aus diesem Level wie jedes andere
+     bekannte Wort. Ein Wort kommt nie zweimal. */
+  const faellig = karteiHeute().map(wortNachId).filter(Boolean)
+    .slice(0, Math.min(KARTEI_IN_LEKTION, LEKTION_WOERTER - nNew));
+  const faelligIds = new Set(faellig.map(f => f.w.id));
+  const bekannt = knownW.filter(w => !faelligIds.has(w.id));
+  nRev = Math.min(LEKTION_WOERTER - nNew - faellig.length, bekannt.length);
+  const newW = unknown.slice(0,nNew), revW = bekannt.slice(0,nRev);
   const types = ['mc','mcrev','type']; if(canListen) types.push('listen'); if(canSpeak) types.push('speak');
   const pick = artenReihum(types);
   const tasks = [];
   [...newW, ...revW].forEach(w=> tasks.push({typ:pick(w), w, neu:!known.has(w.id)}));
+  /* Faellige Woerter ohne Sprechen, wie in karteiRunde() und sternRunde():
+     Sprechen laesst sich ueberspringen, dann zaehlt die Antwort nicht, und
+     das Wort belegte einen der KARTEI_IN_LEKTION Plaetze umsonst
+     (29.10.2026, Pruefung). */
+  const pickF = artenReihum(types.filter(x => x !== 'speak'));
+  faellig.forEach(f => tasks.push(Object.assign({typ:pickF(f.w), w:f.w, neu:false, faellig:true},
+    f.c.id === c.id ? {} : {pool:f.c.words, rep:f.c.label})));
   const gesehenIds = new Set([...known, ...newW.map(w=>w.id)]);
   const luecken = lueckenFuerLektion(gesehenIds);
   luecken.forEach(s=> tasks.push({typ:'gap', s}));
@@ -11458,8 +11518,10 @@ function showLessonTask(){
         // Neue Wörter hier zählen, nicht in lessonEnd: wer mitten in der
         // Lektion die Leben verliert, kommt dort nie an.
         if(task.w && !known.has(task.w.id)){ known.add(task.w.id); Lx.newWords.add(task.w.id); zaehle('neu'); }
+        karteiAntwort(task, true);    // nach known.add: ein neues Wort bekommt hier seine erste Stufe
       }
       else {
+        karteiAntwort(task, false);   // vor loseLife(), das speichert
         loseLife();
         if(!task.retry) Lx.queue.push({...task, retry:true});
         if(livesNow()===0){ Lx.i++; weiterBeiTipp('lBody', lessonOutOfLives); return; }
@@ -11635,7 +11697,7 @@ function werbungFuerLeben(e){
      disabled, sein Text bleibt. Pruefung vom 07.10.2026. */
   const ladenKnopf = (quelle && quelle.hasAttribute && quelle.hasAttribute('data-videoleben')) ? quelle : null;
   const knopf = ladenKnopf ? null
-              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd' || quelle.id === 'sternAd')) ? quelle : $('lAd');
+              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd' || quelle.id === 'sternAd' || quelle.id === 'karteiAd')) ? quelle : $('lAd');
   /* Gefunden bei der Pruefung am 06.10.2026: der Knopf bleibt stehen,
      waehrend die Leben nachwachsen - der Schirm ohne Leben wartet die zwei
      Stunden ja gerade ab. Bei vollen Leben brachte das Video kein Herz,
@@ -11675,7 +11737,7 @@ function werbungFuerLeben(e){
        dieser Knoten noch im Dokument haengt, steht auch der alte Schirm
        noch. Dieselbe Vorsicht wie beim Interstitial seit dem 29.09.2026. */
     const danach = ()=>{
-      if(knopf && (knopf.id === 'topfAd' || knopf.id === 'sternAd')) showTopf();   // sternAd: Kasten "Markiert", 19.10.2026
+      if(knopf && (knopf.id === 'topfAd' || knopf.id === 'sternAd' || knopf.id === 'karteiAd')) showTopf();   // sternAd: Kasten "Markiert", 19.10.2026; karteiAd: "Heute faellig", 29.10.2026
       else if(knopf && knopf.id === 'lAd') ohneLebenVerlassen();
       /* Aus dem Laden: den Laden neu zeichnen, damit Preis und Video zum
          neuen Herz passen. showLevelHome() traf hier nur die unsichtbare
@@ -12036,6 +12098,7 @@ function showTestQ(){
   $('tBody').dataset.i = Tx.i;
   renderTask(Tx.qs[Tx.i], $('tBody'), res=>{
     topfMerken(Tx.qs[Tx.i], !!res.ok);
+    karteiAntwort(Tx.qs[Tx.i], !!res.ok);   // Lernkartei (29.10.2026); die Einstufung zaehlt nicht
     Tx.results.push(!!res.ok); if(res.ok) Tx.right++; Tx.i++; uhrTakt(true); zaehle('auf'); if(res.ok) zaehle('ric');
     zmajReact(!!res.ok, 'zmajTest');   // wie in der Lektion (19.10.2026)
     /* Eine falsche Antwort kostet ein Leben, genau wie in der Lektion
@@ -12576,10 +12639,11 @@ function topfNachziehen(){
      ganze Startseite: showHome() springt an den Seitenanfang, und dieser
      Aufruf kommt nicht vom Nutzer. */
   /* Der Kasten "Markiert" (19.10.2026) hat denselben Knopf und dieselbe
-     Sperre ohne Leben. */
+     Sperre ohne Leben, ebenso "Heute faellig" (29.10.2026). */
   if(sichtbar('pfad') && homeMode === 'topf' &&
      ((topfAnzahl() && (livesNow() > 0) !== !!$('topfLos')) ||
-      (sternAnzahl() && (livesNow() > 0) !== !!$('sternLos')))){ renderHero(); showTopf(); }
+      (sternAnzahl() && (livesNow() > 0) !== !!$('sternLos')) ||
+      (karteiHeute().length && (livesNow() > 0) !== !!$('karteiLos')))){ renderHero(); showTopf(); }
 }
 /* Wie showLevelHome() die Lektion wegraeumen. Ohne das blieb #lesson
    sichtbar geschaltet und Lx halb durchgelaufen stehen: lektionDarfWeg()
@@ -12596,10 +12660,12 @@ function topfSeite(){
 /* Nach dem Ende einer Lektion oder Runde: wohin zurueck. */
 function lektionVerlassen(){ if(Lx && Lx.topf) topfSeite(); else showLevelHome(); }
 /* Der Reiter Wiederholen: oben der Kasten fuer Fehler, unveraendert,
-   darunter seit 19.10.2026 der Kasten "Markiert" (sternKasten). */
+   darunter seit 19.10.2026 der Kasten "Markiert" (sternKasten) und seit
+   29.10.2026 als dritter "Heute faellig" (karteiKasten). */
 function showTopf(){
   topfKasten();
   sternKasten();
+  karteiKasten();
 }
 function topfKasten(){
   const box = $('topfBox');
@@ -12642,17 +12708,18 @@ function topfKasten(){
    onclick des Weitermachen-Knopfs, und der Klick kaeme sonst als Quelle an. */
 function startTopf(){ rundeStarten('topf'); }
 function startStern(){ rundeStarten('stern'); }
-/* quelle: 'topf' (Fehler) oder 'stern' (Markiert, seit 19.10.2026). Beide
-   Runden laufen gleich - Leben, Serie, Tagesaufgaben, Muenzen -, Lx.topf
-   bleibt fuer beide gesetzt, Lx.quelle sagt, woher die Aufgaben kommen. */
+/* quelle: 'topf' (Fehler), 'stern' (Markiert, seit 19.10.2026) oder
+   'kartei' (Heute faellig, seit 29.10.2026). Alle Runden laufen gleich -
+   Leben, Serie, Tagesaufgaben, Muenzen -, Lx.topf bleibt fuer alle
+   gesetzt, Lx.quelle sagt, woher die Aufgaben kommen. */
 function rundeStarten(quelle){
   if(anmeldungSperre()) return;
-  const aufgaben = (livesNow() > 0) ? (quelle === 'stern' ? sternRunde() : topfRunde()) : [];
+  const aufgaben = (livesNow() > 0) ? (quelle === 'stern' ? sternRunde() : (quelle === 'kartei' ? karteiRunde() : topfRunde())) : [];
   if(!aufgaben.length){ topfSeite(); return; }
   interstitialVorladen();   // eine Runde zaehlt wie eine Lektion, also auch hier
   showView('levelView');
   setzeZurueck(t('btn.zurueck'), topfSeite);
-  $('tag').textContent = t(quelle === 'stern' ? 'stern.titel' : 'topf.titel');
+  $('tag').textContent = t(quelle === 'stern' ? 'stern.titel' : (quelle === 'kartei' ? 'kartei.titel' : 'topf.titel'));
   stilleBitte();
   $('levelHome').style.display = 'none'; $('test').style.display = 'none'; $('lesson').style.display = 'block';
   nurHerz(true);
@@ -12668,9 +12735,10 @@ function rundeStarten(quelle){
 /* Das Ende einer Runde. Wie lessonEnd(), nur ohne Level: kein Fortschritt
    im Level, kein Test, der frei wird. Dafuer steht da, was noch uebrig ist -
    nach der Markiert-Runde, wie viele markiert sind. "Alles wiederholt"
-   gibt es dort nicht: Sterne bleiben, bis man sie wegnimmt. */
+   gibt es dort nicht: Sterne bleiben, bis man sie wegnimmt. Nach der
+   Runde "Heute faellig" (29.10.2026), wie viele heute noch faellig sind. */
 function topfEnde(){
-  const mitStern = Lx.quelle === 'stern';
+  const mitStern = Lx.quelle === 'stern', mitKartei = Lx.quelle === 'kartei';
   stilleBitte(); uhrAus();
   const scored = Lx.results.filter(r => r !== 'intro' && r !== 'skip').length;
   zaehle('lek');
@@ -12678,22 +12746,22 @@ function topfEnde(){
   const newDay = markToday(); saveProgress(); sound('done');
   const questLob = questZeilen();
   if(questLob) setTimeout(()=>sound('quest'), 850);
-  const rest = mitStern ? sternAnzahl() : topfAnzahl();
+  const rest = mitStern ? sternAnzahl() : (mitKartei ? karteiHeute().length : topfAnzahl());
   $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('zmajLesson').innerHTML = ''; $('lHerz').style.display = 'none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
-    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp(mitStern ? 'stern.rest' : 'topf.rest', rest)) + '</div>' +
+    '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp(mitStern ? 'stern.rest' : (mitKartei ? 'kartei.rest' : 'topf.rest'), rest)) + '</div>' +
       '<div class="stat"><b>' + flammeHtml() + ' ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
       '<div class="stat"><b>' + symbol('herz') + ' ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
-    (rest === 0 && !mitStern ? '<div class="feedback ok">' + esc(t('topf.alles')) + '</div>' : '') +
+    (rest === 0 && !mitStern ? '<div class="feedback ok">' + esc(t(mitKartei ? 'kartei.alles' : 'topf.alles')) + '</div>' : '') +
     (newDay ? '<div class="feedback ok">' + t('lektion.heute_geuebt') + '</div>' : '') +
     questLob +
     '<div class="row"><button class="btn ghost" id="lHome"></button>' +
       (rest ? '<button class="btn know" id="lMore"></button>' : '') + '</div>';
   $('lHome').textContent = t('topf.zurueck');
   $('lHome').addEventListener('click', topfSeite);
-  if($('lMore')){ $('lMore').textContent = t('topf.noch'); $('lMore').addEventListener('click', mitStern ? startStern : startTopf); }
+  if($('lMore')){ $('lMore').textContent = t('topf.noch'); $('lMore').addEventListener('click', mitStern ? startStern : (mitKartei ? startKartei : startTopf)); }
   werbungZaehler++;
   werbungNachDemErgebnis('lesson', ()=> Lx);
 }
@@ -12899,6 +12967,283 @@ function sternKasten(){
     $('sternCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); showTopf(); });
   }
   vollZeileHorchen('sternVoll');
+}
+
+/* =================== LERNKARTEI ===================
+   Zeitgesteuerte Wiederholung alter Woerter - festgelegt von Ajdin am
+   28.10.2026: Verfahren A "feste Abstaende", die Lernkartei nach Leitner,
+   spaeter vielleicht FSRS (Hintergrund in Release\Wiederholung_Vorschlag.md).
+   Bis dahin kam ein gewusstes Wort nur ueber den Fehler-Topf, einen Stern
+   oder zufaellig im Level-Test wieder.
+     - Jedes gewusste Wort hat eine Stufe 0 bis 6 mit dem Abstand
+       KARTEI_ABSTAENDE[stufe]: 1, 3, 7, 14, 30, 90, 180 Tage. Richtig: eine
+       Stufe weiter, falsch: zwei zurueck, nie unter die erste. Der naechste
+       Termin ist der Uebungstag plus der Abstand der neuen Stufe.
+     - Gemerkt wird nur kartei = {tag, n, w}, ein eigenes Feld auf oberster
+       Ebene (siehe STAND_FELDER): w[Wort-Kennung] = [stufe, faellig,
+       zuletzt geuebt], die Tage als Zahl seit APP_START (karteiTag) statt
+       als Datum - so klein wie moeglich, rund 40 Bytes je Wort. zuletzt ist
+       0 fuer "noch nie in der Kartei geuebt" (der Umzug, siehe unten).
+       tag und n: wie viele faellige Woerter an diesem Tag schon geuebt
+       wurden, fuer die Tagesgrenze.
+     - Jede Antwort auf ein Wort zaehlt: in der Lektion, im Level-Test und
+       in allen drei Runden des Reiters Wiederholen. Nicht in der
+       Einstufung, und nicht die Wiederholung einer falschen Antwort am Ende
+       derselben Lektion - da stand die Loesung eben noch da (wie beim
+       Fehler-Topf). Eine falsche Antwort setzt immer zwei Stufen zurueck.
+       Eine richtige hebt die Stufe, wenn das Wort faellig war; vorher
+       merkt sie sich nur den Uebungstag. Sonst stiege ein Wort, das in drei
+       Lektionen am selben Tag vorkommt, an einem einzigen Tag auf eine
+       Woche - genau das Pauken, gegen das die wachsenden Abstaende helfen.
+     - Ein Wort bekommt seinen Eintrag, sobald es gewusst ist: Stufe 0,
+       morgen faellig. Gewusste Woerter ohne Eintrag - beim ersten Start mit
+       v110 alle, spaeter die aus einer alten Sicherungsdatei oder von einem
+       Geraet mit v109 - bekommen in karteiNachtragen() einen Termin,
+       verteilt auf die naechsten Wochen, die aeltesten Level zuerst, nie
+       alle am ersten Tag.
+     - Hoechstens KARTEI_TAG_MAX faellige Woerter am Tag. Gezaehlt wird jede
+       Antwort auf ein faelliges Wort, egal wo. Der Rest bleibt faellig und
+       kommt an den naechsten Tagen. Zuerst kommt, was gemessen an seinem
+       Abstand am weitesten ueber der Zeit ist (karteiHeute): ein gestern
+       gelerntes Wort vor einem, das nach 90 Tagen ein paar Tage zu spaet
+       dran ist.
+     - Der Kartei-Tag beginnt um KARTEI_TAG_BEGINN Uhr morgens, nicht um
+       Mitternacht (karteiTag).
+     - Wo sie drankommen: in jeder Lektion auf bis zu KARTEI_IN_LEKTION der
+       zehn Wortplaetze (buildLesson), und im Reiter Wiederholen im dritten
+       Kasten "Heute faellig" mit eigener Runde (karteiKasten, karteiRunde).
+       Leben, Serie, Muenzen und Tagesaufgaben wie in den anderen Runden:
+       falsch kostet ein Leben, und das Wort kommt in den Fehler-Topf.
+       Weitermachen bleibt, wie es ist. Erst einmal nur Woerter - Saetze und
+       Grammatik bleiben, wie sie sind. */
+const KARTEI_TAG_MAX = 30, KARTEI_IN_LEKTION = 3;
+const KARTEI_LETZTE = KARTEI_ABSTAENDE.length - 1;
+/* Der Umzug (karteiNachtragen): Stufe 3 - die Woerter sind schon eine Weile
+   gewusst, und bis zum ersten Termin vergehen ohnehin Tage bis Wochen; eine
+   richtige Antwort schickt sie damit einen Monat weg, eine falsche auf
+   Stufe 1. Verteilt auf etwa KARTEI_UMZUG_TAGE Tage, aber mindestens
+   KARTEI_UMZUG_MIN und hoechstens KARTEI_UMZUG_MAX je Tag. Mehr als die
+   laengste Stufe weit wird nichts verteilt.
+   29.10.2026, Pruefung: zuerst waren es Stufe 2 und bis zu 15 je Tag. Mit
+   den Rueckkehrern nach zwei Wochen und nach einem Monat brauchte der
+   Umzug allein bald mehr als KARTEI_TAG_MAX Plaetze am Tag. Mit Stufe 3
+   kommt ein Umzugswort einmal weniger wieder, mit hoechstens 10 je Tag
+   waechst der Rest langsamer. Tagessimulation dieses Codes, alle 1 740
+   Woerter gewusst, 85 % richtig, jeden Tag bis zur Grenze geuebt: nach
+   vier Monaten rund 90 faellige im Rueckstand statt rund 1 000. Der Umzug
+   dauert dabei knapp sechs Monate. */
+const KARTEI_UMZUG_STUFE = 3, KARTEI_UMZUG_TAGE = 28, KARTEI_UMZUG_MIN = 3, KARTEI_UMZUG_MAX = 10;
+/* Der heutige Kartei-Tag als Zahl: Tage seit APP_START. Ueber den Mittag
+   gerechnet wie laengsteSerie(), so stoert die Zeitumstellung nicht. Nie
+   unter 0 - auch nicht bei einer Uhr, die vor APP_START steht.
+   Er beginnt erst um KARTEI_TAG_BEGINN Uhr (29.10.2026, Pruefung): ab
+   Mitternacht gerechnet war ein Wort, das um 23:55 gelernt wurde, um 00:05
+   schon faellig, und eine richtige Antwort schickte es zehn Minuten nach
+   dem Lernen auf drei Tage. Die erste Wiederholung soll aber gerade nicht
+   gleich kommen. Wie "Naechster Tag beginnt um" in Anki, dort ebenfalls
+   4 Uhr. Nur fuer die Kartei - Serie, Tagwerk und today() zaehlen weiter
+   ab Mitternacht. */
+const KARTEI_TAG_BEGINN = 4;
+function karteiTag(){
+  const d = new Date();
+  if(d.getHours() < KARTEI_TAG_BEGINN) d.setDate(d.getDate() - 1);
+  const n = Math.round((new Date(dayKey(d) + 'T12:00:00') - new Date(APP_START + 'T12:00:00')) / 86400000);
+  return (isFinite(n) && n > 0) ? n : 0;
+}
+/* Ein Eintrag nur, wenn er wirklich da ist - w.constructor ist keiner. */
+const karteiEintrag = (w, id) => Object.prototype.hasOwnProperty.call(w, id) ? w[id] : null;
+/* Eine Kartei von aussen - Geraetespeicher, Sicherungsdatei, Cloud - wird
+   nur so uebernommen: Kennung ein Text mit hoechstens 200 Zeichen und nie
+   "__proto__", je Wort drei ganze Zahlen ab 0 (mehr wird nicht behalten,
+   siehe STAND_FELDER), die Stufe hoechstens KARTEI_LETZTE. streng fuer
+   alles, was von aussen kommt (sicherungPlausibel, karteiMischen): kein
+   Uebungstag und kein Zaehlertag nach heute, kein Termin weiter weg als
+   die laengste Stufe - sonst kaeme ein Wort nie wieder dran oder gewaenne
+   jeden Abgleich. Im eigenen Geraetespeicher nicht: springt die Uhr zurueck,
+   etwa nach leerem Akku, ginge sonst die Kartei verloren (wie die Lerntage
+   in standUebernehmen). Kaputtes faellt still heraus. */
+function karteiPruefen(roh, streng){
+  const objekt = x => (x && typeof x === 'object' && !Array.isArray(x)) ? x : null;
+  const ganz = x => (typeof x === 'number' && isFinite(x) && x >= 0) ? Math.floor(x) : null;
+  const k = objekt(roh) || {}, rw = objekt(k.w) || {}, heute = karteiTag();
+  const w = [];
+  Object.keys(rw).forEach(id => {
+    const e = rw[id];
+    if(id.length > 200 || id === '__proto__' || !Array.isArray(e) || e.length < 3) return;
+    let [s, f, l] = e.slice(0, 3).map(ganz);
+    if(s === null || f === null || l === null) return;
+    s = Math.min(s, KARTEI_LETZTE);
+    if(streng){ l = Math.min(l, heute); f = Math.min(f, heute + KARTEI_ABSTAENDE[KARTEI_LETZTE]); }
+    w.push([id, [s, f, l]]);
+  });
+  let tag = ganz(k.tag), n = ganz(k.n);
+  if(tag === null || n === null || (streng && tag > heute)){ tag = 0; n = 0; }
+  return {tag, n, w: Object.fromEntries(w)};
+}
+/* Zwei Karteien zusammenfuehren, fuer standZusammenfuehren(): je Wort, was
+   zuletzt geuebt wurde, am selben Tag der fruehere Termin, dann die
+   kleinere Stufe. Kommutativ und idempotent wie der Rest dort. */
+function karteiMischen(a, b){
+  const x = karteiPruefen(a, true), y = karteiPruefen(b, true);
+  const ids = [...new Set(Object.keys(x.w).concat(Object.keys(y.w)))].sort();
+  const w = Object.fromEntries(ids.map(id => {
+    const p = karteiEintrag(x.w, id), q = karteiEintrag(y.w, id);
+    if(!p || !q) return [id, p || q];
+    if(p[2] !== q[2]) return [id, p[2] > q[2] ? p : q];
+    if(p[1] !== q[1]) return [id, p[1] < q[1] ? p : q];
+    return [id, p[0] <= q[0] ? p : q];
+  }));
+  const z = x.tag !== y.tag ? (x.tag > y.tag ? x : y) : (x.n >= y.n ? x : y);
+  return {tag: z.tag, n: z.n, w};
+}
+/* Nach jeder beantworteten Wortaufgabe (Lektion, Runden, Level-Test), mit
+   dem Ergebnis. Saetze und Grammatik haben kein task.w und zaehlen nicht. */
+function karteiAntwort(task, ok){
+  const w = task && task.w;
+  if(!w || typeof w.id !== 'string' || !known.has(w.id) || !wortNachId(w.id)) return;
+  const heute = karteiTag(), e = karteiEintrag(kartei.w, w.id);
+  /* Gerade gewusst - auch ueber die Wiederholung am Ende der Lektion,
+     wenn die erste Antwort falsch war. */
+  if(!e){ kartei.w[w.id] = [0, heute + KARTEI_ABSTAENDE[0], heute]; return; }
+  if(task.retry) return;
+  const faellig = e[1] <= heute;
+  if(faellig){
+    if(kartei.tag !== heute){ kartei.tag = heute; kartei.n = 0; }
+    kartei.n++;
+  }
+  if(ok && !faellig){ kartei.w[w.id] = [e[0], e[1], heute]; return; }
+  const s = ok ? Math.min(e[0] + 1, KARTEI_LETZTE) : Math.max(e[0] - 2, 0);
+  kartei.w[w.id] = [s, heute + KARTEI_ABSTAENDE[s], heute];
+}
+/* Umbenannte Woerter auf ihre neue Kennung ziehen, nach derselben Regel
+   wie topfUmschreiben(): UMBENANNT, sonst das bosnische Wort, wenn genau
+   ein Wort es traegt. Treffen alter und neuer Eintrag zusammen, gilt der
+   zuletzt geuebte. Was keine neue Kennung findet, bleibt stehen und faellt
+   in karteiNachtragen() weg. Gibt zurueck, ob sich etwas geaendert hat. */
+function karteiUmschreiben(nachWort){
+  if(!CATEGORIES.length) return false;
+  const neu = new Map();
+  let geaendert = false;
+  Object.keys(kartei.w).forEach(id => {
+    let ziel = id;
+    if(!wortNachId(id)){
+      const kand = (UMBENANNT[id] && wortNachId(UMBENANNT[id])) ? [UMBENANNT[id]]
+                 : ((nachWort && nachWort.get(id.slice(id.lastIndexOf(':') + 1))) || []);
+      if(kand.length === 1){ ziel = kand[0]; geaendert = true; }
+    }
+    const e = kartei.w[id], da = neu.get(ziel);
+    neu.set(ziel, (da && da[2] >= e[2]) ? da : e);
+  });
+  if(geaendert) kartei.w = Object.fromEntries(neu);
+  return geaendert;
+}
+/* Die Kartei an known angleichen: Eintraege fuer Woerter, die es nicht mehr
+   gibt oder die nicht gewusst sind, fallen weg - so ist die Kartei nie
+   groesser als der Wortschatz. Gewusste Woerter ohne Eintrag bekommen
+   einen (der Umzug), in Lernpfad-Reihenfolge ab morgen verteilt, siehe
+   KARTEI_UMZUG_STUFE. Gibt zurueck, ob sich etwas geaendert hat. */
+function karteiNachtragen(){
+  if(!CATEGORIES.length) return false;
+  let geaendert = false;
+  Object.keys(kartei.w).forEach(id => {
+    if(!known.has(id) || !wortNachId(id)){ delete kartei.w[id]; geaendert = true; }
+  });
+  const fehlen = [], gesehen = new Set();
+  CATEGORIES.forEach(c => c.words.forEach(w => {
+    if(gesehen.has(w.id)) return;
+    gesehen.add(w.id);
+    if(known.has(w.id) && !karteiEintrag(kartei.w, w.id)) fehlen.push(w.id);
+  }));
+  if(!fehlen.length) return geaendert;
+  const n = fehlen.length, heute = karteiTag();
+  const jeTag = Math.max(Math.min(KARTEI_UMZUG_MAX, Math.max(KARTEI_UMZUG_MIN, Math.ceil(n / KARTEI_UMZUG_TAGE))),
+                         Math.ceil(n / KARTEI_ABSTAENDE[KARTEI_LETZTE]));
+  fehlen.forEach((id, i) => { kartei.w[id] = [KARTEI_UMZUG_STUFE, heute + 1 + Math.floor(i / jeTag), 0]; });
+  return true;
+}
+/* Die Kennungen der Woerter, die heute drankommen: faellig, gewusst und
+   noch im Inhalt. Hoechstens so viele, wie bis KARTEI_TAG_MAX heute noch
+   fehlen. Aendert nichts.
+   Reihenfolge (29.10.2026, Pruefung): nach der Verspaetung im Verhaeltnis
+   zum Abstand der Stufe, (heute - faellig + 1) / KARTEI_ABSTAENDE[stufe],
+   die groesste zuerst - die Sortierung "relative overdueness" in Anki. Bei
+   gleichem Wert die aus aelteren Leveln. Vorher kam einfach der aelteste
+   Termin zuerst. Sobald mehr als KARTEI_TAG_MAX faellig sind - mit dem
+   Umzug schon in den ersten Wochen, mit einer Lektion am Tag nach etwa
+   drei Monaten (Release\Wiederholung_Vorschlag.md) -, stand damit jeder
+   Rueckstand vor den frisch gelernten Woertern: ihre Wiederholung nach
+   einem Tag kam in der Simulation im Mittel fast eine Woche zu spaet, jedes
+   fuenfte bekam sie in zwei Monaten gar nicht. Einen Tag zu spaet wiegt
+   nach einem Tag Abstand schwer, nach 90 Tagen kaum. Bleibt ein Berg,
+   warten die Woerter mit langem Abstand entsprechend laenger. */
+function karteiHeute(){
+  const heute = karteiTag();
+  const platz = KARTEI_TAG_MAX - (kartei.tag === heute ? kartei.n : 0);
+  if(platz <= 0) return [];
+  const rang = new Map();
+  CATEGORIES.forEach((c, i) => c.words.forEach((w, j) => { if(!rang.has(w.id)) rang.set(w.id, i * 100000 + j); }));
+  const spaet = id => (heute - kartei.w[id][1] + 1) / KARTEI_ABSTAENDE[kartei.w[id][0]];
+  return Object.keys(kartei.w)
+    .filter(id => kartei.w[id][1] <= heute && rang.has(id) && known.has(id))
+    .map(id => [id, spaet(id)])
+    .sort((x, y) => (y[1] - x[1]) || (rang.get(x[0]) - rang.get(y[0])))
+    .slice(0, platz).map(x => x[0]);
+}
+/* Die Runde "Heute faellig": bis zu TOPF_RUNDE der Woerter von heute, mit
+   dem Hinweis auf ihr Level (topfAufgabe), gemischt. Die Aufgabenart reihum
+   wie in der Markiert-Runde (sternRunde), ohne Sprechen. */
+function karteiRunde(){
+  const runde = rundeAus(karteiHeute().map(id => topfAufgabe('w:' + id, {typ: 'mc'})).filter(Boolean));
+  const types = ['mc', 'mcrev', 'type']; if(canListen) types.push('listen');
+  const pick = artenReihum(types);
+  runde.forEach(a => { a.typ = pick(a.w); });
+  return runde;
+}
+function startKartei(){ rundeStarten('kartei'); }
+/* Der dritte Kasten im Reiter Wiederholen, "Heute faellig: n" (Ajdin am
+   28.10.2026), gebaut wie die zwei darueber: dieselben Klassen, dieselbe
+   Zahl, derselbe Knopf, ohne Leben derselbe Hinweis und dieselben Wege zu
+   einem Leben. Die zwei alten Kaesten bleiben, wie sie sind.
+   Den Hinweis ohne Leben zeigt er nur, wenn keiner der Kaesten darueber
+   ihn schon zeigt (29.10.2026, Pruefung): sonst stand derselbe lange Text
+   mit denselben Knoepfen bis zu dreimal untereinander. Dann bleiben hier
+   Zahl und Wort. */
+function karteiKasten(){
+  const box = $('karteiBox');
+  if(!box) return;
+  const n = karteiHeute().length;
+  let html = '<h2 id="karteiTitel">' + esc(t('kartei.titel')) + '</h2><div class="desc">' + esc(t('kartei.desc')) + '</div>';
+  if(!n){
+    box.innerHTML = html + '<div class="topfleer">' + esc(t('kartei.leer')) + '</div>';
+    return;
+  }
+  html += '<div class="topfzahl">' + n + '</div><div class="topfwort">' + esc(tp('kartei.anzahl', n)) + '</div>';
+  if(livesNow() > 0){
+    /* aria-describedby wie bei "Markiert": drei Knoepfe "Runde starten". */
+    html += '<div class="row"><button class="btn know" id="karteiLos" aria-describedby="karteiTitel"></button></div>';
+    box.innerHTML = html;
+    $('karteiLos').textContent = t('topf.start');
+    $('karteiLos').addEventListener('click', startKartei);
+    return;
+  }
+  if(topfAnzahl() || sternAnzahl()){ box.innerHTML = html; return; }
+  const herz = VERBRAUCH.find(w => w.id === 'herz');
+  const perVideo = werbungErlaubt(true);
+  const perMuenzen = muenzen() >= herz.preis && herz.geht();
+  html += '<div class="note">' + esc(t('level.keine_leben', {zeit: fmtMin(nextLifeIn())})) + '</div>' +
+    ((perVideo || perMuenzen) ?
+      '<div class="row schmal">' +
+        (perVideo ? '<button class="btn ghost" id="karteiAd"></button>' : '') +
+        (perMuenzen ? '<button class="btn ghost" id="karteiCoin"></button>' : '') +
+      '</div>' : '') +
+    vollZeileLeben('karteiVoll');
+  box.innerHTML = html;
+  if($('karteiAd')){ $('karteiAd').innerHTML = mitSymbol('herz', esc(t('werbung.leben_holen'))); $('karteiAd').addEventListener('click', werbungFuerLeben); }
+  if($('karteiCoin')){
+    $('karteiCoin').innerHTML = t('lektion.leben_muenzen', symbolTexte({n: herz.preis}));
+    $('karteiCoin').addEventListener('click', ()=>{ kaufe('herz'); renderLives(); showTopf(); });
+  }
+  vollZeileHorchen('karteiVoll');
 }
 
 /* =================== BEWERTUNG ===================
