@@ -9,9 +9,10 @@ are in the Play Store listing. Format:
 ### Added
 - Spaced review of learned words (Leitner box, decided on 28.10.2026):
   every word you know has a level with a fixed interval of 1, 3, 7, 14, 30,
-  90 or 180 days. A right answer on a due word moves it up one level, a
-  wrong answer moves it back two (never below the first); a right answer
-  before the due date changes nothing. Every lesson fills up to 3 of its
+  90 or 180 days. A right answer moves it up one level, also before the
+  due date, but at most once a day (a word you already practised today
+  stays where it is, and a right answer never brings the date closer); a
+  wrong answer moves it back two (never below the first). Every lesson fills up to 3 of its
   10 word slots with due words, marked "Review: <level>" as in the level
   test, never as a speaking task (those can be skipped); new words and the
   "Continue" button stay as they are. The Review tab has a third box, "Due

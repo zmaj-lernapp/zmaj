@@ -529,10 +529,12 @@ Stufe mit festem Abstand bis zum nächsten Termin:
 |-------|---|---|---|---|---|---|---|
 | Tage  | 1 | 3 | 7 | 14 | 30 | 90 | 180 |
 
-- War das Wort fällig und die Antwort richtig: eine Stufe weiter. Falsch:
-  zwei Stufen zurück, nie unter Stufe 0. Richtig vor dem Termin ändert die
-  Stufe nicht – sonst stiege ein Wort, das in drei Lektionen am selben Tag
-  vorkommt, an einem Tag auf eine Woche.
+- Richtig: eine Stufe weiter, auch vor dem Termin, aber höchstens einmal am
+  Tag. Wurde das Wort heute schon geübt, ändert eine weitere richtige
+  Antwort die Stufe nicht – sonst stiege ein Wort, das in drei Lektionen am
+  selben Tag vorkommt, an einem Tag auf zwei Wochen (Ajdin, 29.10.2026).
+  Eine richtige Antwort holt den Termin nie näher heran. Falsch: zwei
+  Stufen zurück, nie unter Stufe 0.
 - Es zählt jede Antwort auf ein Wort in Lektion, Level-Test und allen
   Runden im Reiter Wiederholen. Nicht die Einstufung, und nicht die
   Wiederholung einer falschen Antwort am Ende der Lektion.

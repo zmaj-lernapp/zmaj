@@ -3,8 +3,9 @@
 
 Ajdins Entscheidung vom 28.10.2026 (Release\\Wiederholung_Vorschlag.md,
 Verfahren A "feste Abstaende"). Geprueft wird im echten Browser:
-  - die Stufen 1, 3, 7, 14, 30, 90, 180 Tage: richtig eine weiter (wenn das
-    Wort faellig war), falsch zwei zurueck, nie unter die erste; das
+  - die Stufen 1, 3, 7, 14, 30, 90, 180 Tage: richtig eine weiter, auch vor
+    dem Termin, aber hoechstens einmal am Tag (Ajdin, 29.10.2026), falsch
+    zwei zurueck, nie unter die erste; das
     Beispiel aus dem Vorschlag Tag fuer Tag; die Wiederholung am Ende der
     Lektion und die Einstufung zaehlen nicht, der Level-Test schon;
   - ein neu gelerntes Wort ist morgen faellig;
@@ -100,7 +101,7 @@ def _gespeichert(seite):
 # Die Stufen
 # ---------------------------------------------------------------------------
 
-def test_stufen_richtig_falsch_und_nur_faellig_hoch(seite, heute_stand):
+def test_stufen_richtig_falsch_hoechstens_einmal_am_tag(seite, heute_stand):
     seite.starten(stand=heute_stand())
     z = seite.js("""() => {
       const w = CATEGORIES[0].words[0], h = karteiTag(), r = {};
@@ -114,6 +115,15 @@ def test_stufen_richtig_falsch_und_nur_faellig_hoch(seite, heute_stand):
       kartei.w[w.id] = [0, h, h - 1]; karteiAntwort({typ: 'mc', w}, false); merk('untenFalsch');
       kartei.w[w.id] = [6, h, h - 180]; karteiAntwort({typ: 'mc', w}, true); merk('obenRichtig');
       kartei.w[w.id] = [3, h, h - 14]; karteiAntwort({typ: 'mc', w, retry: true}, true); merk('nochmal');
+      // Vor dem Termin: der erste Richtig-Tag hebt, ein zweites Richtig am selben Tag nicht
+      kartei.w[w.id] = [1, h + 2, h - 1]; karteiAntwort({typ: 'mc', w}, true); merk('frueherRichtig');
+      karteiAntwort({typ: 'mc', w}, true); merk('frueherNochmal');
+      // Drei Tage hintereinander richtig, nie faellig: 0 -> 1 -> 2 -> 3
+      kartei.w[w.id] = [0, h + 1, h]; const kette = [];
+      for(let t = 1; t <= 3; t++){ kartei.w[w.id][2] = h - 1; karteiAntwort({typ: 'mc', w}, true); kette.push(kartei.w[w.id][0]); }
+      r.kette = kette;
+      // Ein verteiltes Umzugswort, weit weg terminiert: richtig holt es nicht naeher
+      kartei.w[w.id] = [3, h + 150, h - 20]; karteiAntwort({typ: 'mc', w}, true); merk('umzugRichtig');
       // Saetze und Grammatik haben kein w, ein nicht gewusstes Wort zaehlt nicht
       const satz = SENTENCES[0], fremd = CATEGORIES[1].words[0];
       karteiAntwort({typ: 'gap', s: satz}, false); karteiAntwort({typ: 'mc', w: fremd}, true);
@@ -122,13 +132,17 @@ def test_stufen_richtig_falsch_und_nur_faellig_hoch(seite, heute_stand):
     h, r = z["h"], z["r"]
     assert h == _heute()
     assert r["neu"] == [0, h + 1, h], "neu gewusst: morgen faellig"
-    assert r["gleicherTag"] == [0, h + 1, h], "noch nicht faellig: keine Stufe hoeher"
+    assert r["gleicherTag"] == [0, h + 1, h], "heute schon geuebt (gerade gelernt): keine Stufe hoeher"
     assert r["faelligRichtig"] == [1, h + 3, h]
     assert r["faelligFalsch"] == [2, h + 7, h], "zwei Stufen zurueck: nach 30 Tagen falsch, dann eine Woche"
     assert r["frueherFalsch"] == [0, h + 1, h], "falsch zaehlt immer"
     assert r["untenFalsch"] == [0, h + 1, h], "nie unter die erste Stufe"
     assert r["obenRichtig"] == [6, h + 180, h], "180 Tage bleibt die laengste Stufe"
     assert r["nochmal"] == [3, h, h - 14], "die Wiederholung am Ende der Lektion zaehlt nicht"
+    assert r["frueherRichtig"] == [2, h + 7, h], "vor dem Termin richtig: eine Stufe weiter"
+    assert r["frueherNochmal"] == [2, h + 7, h], "am selben Tag nur einmal hoeher"
+    assert r["kette"] == [1, 2, 3], "an drei Tagen richtig: drei Stufen"
+    assert r["umzugRichtig"] == [4, h + 150, h], "richtig holt den Termin nie naeher"
     # faellig beantwortet: faelligRichtig, faelligFalsch, untenFalsch, obenRichtig
     assert z["zaehler"] == [h, 4]
     assert z["fremd"] is False and z["alle"] == 1
