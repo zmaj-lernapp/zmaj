@@ -115,6 +115,17 @@ are in the Play Store listing. Format:
   build before anything is copied.
 
 ### Changed
+- Account (v109): a new password needs 8 characters with an uppercase and
+  a lowercase letter, a digit and a special character, and must not contain
+  the part of the email address before the @. A checklist under the field
+  ticks off each rule while typing (letters count only A–Z and a–z, as in
+  Firebase); the same rules can be enforced in Firebase's password policy.
+  The top bar (lives, coins, shop, profile, settings) stays in one row on
+  phones down to 360 px wide; the profile button shows only its symbol, and
+  the round buttons and the heart take taps on a 48 px tall area. The "You
+  are signed in." message is gone. Wherever the app
+  says a mail is on its way (confirming a new account, resetting the
+  password), one short line says to look in the spam folder too.
 - Settings → About shows the legal notice (Impressum) in all eight
   languages, the same text as on the website, readable offline; the
   sign-in screen has it too. Links in the legal texts open in the
