@@ -1182,9 +1182,14 @@ Darin:
 
 ### Bauen
 
-Ein Skript, ein Befehl:
+Ein Skript, ein Befehl. Ohne Schalter entsteht das Debug-Paket für die
+Test-App aufs Handy:
 
     "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" app_bauen.py
+
+Das Paket für Google Play baut nur dieser Aufruf (signiertes AAB):
+
+    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" app_bauen.py --aab
 
 `app_bauen.py` macht drei Dinge, in dieser Reihenfolge:
 
@@ -1200,8 +1205,43 @@ Ein Skript, ein Befehl:
 Am Ende steht der Pfad da, der in Android Studio zu öffnen ist. Dort dann
 *Build → Generate Signed App Bundle*.
 
+**Überholt (30.10.2026):** Die zwei Sätze darüber stimmen nicht mehr.
+Nach Schritt 3 baut `app_bauen.py` das Paket selbst mit Gradle zu Ende,
+ohne Schalter das Debug-Paket, mit `--aab` das signierte AAB für Play;
+Android Studio braucht man dafür nicht mehr. Ein Paket, das man nach
+`app_bauen.py` ohne Schalter in Android Studio signiert, zeigt in der App
+„-test“ hinter der Versionsnummer (etwa „Zmaj v1.1-test“), und
+`versionName` steigt danach nicht, siehe „Versionsnummer (versionName)“.
+Fürs Store-Paket deshalb nur `app_bauen.py --aab`.
+
 Vor dem Bauen daran denken: Hat sich am Inhalt etwas geändert, muss erst
 `inhalt_bauen.py` laufen. `app_bauen.py` kopiert nur, es baut nichts neu.
+
+### Versionsnummer (versionName)
+
+Seit 30.10.2026 zählt die Nummer, die man in der App und im Play Store
+sieht, bei jeder Store-Version mit: v109 ist 1.1, danach 1.2, 1.3 … und
+nach 1.9 kommt 1.10. Große neue Teile (etwa Kyrillisch) setzt man von Hand
+auf 2.0. Bis v108 stand fest „1.0“ im Text.
+
+- Sie steht nur an einer Stelle: `versionName` in
+  `zmaj-android\android\app\build.gradle`. Dort steht immer die
+  **nächste** Store-Version.
+- Jeder Bau setzt sie in der Kopie `www/index.html` ein (`APP_VERSION`,
+  `version_einsetzen()`). Das Debug-Paket und `--nur-abgleich` (daraus
+  wird die Test-App) zeigen sie mit `-test`, z. B. „1.1-test“. Die App
+  zeigt sie in der Fußzeile und unter Einstellungen → Über die App
+  (`{version}` in `app.fuss` und `app.ueber_kurz`).
+- Erst nach einem fertigen `--aab` stellt `app_bauen.py` sie auf die
+  nächste Nummer (1.1 → 1.2) und meldet `versionName 1.1 -> 1.2`.
+  Debug-Bau, `--nur-abgleich` und ein abgebrochener Bau lassen sie stehen.
+  Wer für denselben Upload zweimal baut, überspringt eine Nummer; das ist
+  erlaubt. Eine Test-App, die nach dem Store-Bau entsteht, zeigt deshalb
+  schon die nächste Nummer (1.2-test).
+- Hat `versionName` eine andere Form als `Hauptzahl.Nebenzahl` (etwa
+  `1.1.0` oder `v1.1`), bricht der Bau ab, bevor etwas geschrieben ist.
+- `const APP_VERSION = '1.1';` in `web/index.html` ist nur der Rückfallwert
+  für die Web-Demo, `start.py` und die Tests.
 
 ### Updates: sanft oder Pflicht
 
@@ -1301,6 +1341,8 @@ Datei am PC weiter.
   jedem Bau selbst hoch (Stand 10.10.2026: 98). Nie von Hand auf ein
   Vielfaches von 100 setzen – das wäre ein Pflicht-Update, siehe
   „Updates: sanft oder Pflicht“.
+- `versionName` daneben hebt `app_bauen.py --aab` nach dem fertigen Bau
+  selbst an (seit 30.10.2026, siehe „Versionsnummer (versionName)“).
 
 ## Die öffentliche Seite
 

@@ -149,6 +149,17 @@ are in the Play Store listing. Format:
   "terms changed" note once.
 - The cloud backup no longer stores a device identifier (`rev` is a random
   value per write).
+- Version number: the footer and Settings → About no longer show a fixed
+  "v1.0". `app.fuss` and `app.ueber_kurz` hold `{version}` in all eight
+  languages, and `t()` fills it from `APP_VERSION` in `web/index.html`. The
+  number lives only in `versionName` in the private shell's
+  `android/app/build.gradle` and is always the next store version (v109 is
+  1.1, then 1.2, 1.3 … 1.9, 1.10). `app_bauen.py` writes it into the copy
+  `www/index.html` (debug and `--nur-abgleich` with "-test") and, only after
+  a finished `--aab`, raises it for the next release; a debug build,
+  `--nur-abgleich` or a failed build leave it alone. A `versionName` that is
+  not `major.minor` stops the build before anything is written. In the
+  source, `APP_VERSION` is only a fallback for the web demo and the tests.
 
 ### Security
 - The hidden developer switch no longer compares against a word in the
