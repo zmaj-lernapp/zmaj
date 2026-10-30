@@ -447,3 +447,20 @@ def test_ios_bauen_mit_und_ohne_vorfuehrung(tmp_path, monkeypatch, wurzel):
     shutil.rmtree(www)
     app_bauen.main(["--ios", "--ci", "--huelle=%s" % h])
     assert not os.path.exists(os.path.join(www, "vorfuehrung.js"))
+
+
+# ------------------------------------------- Befunde aus Cloud-Lauf 8 ---
+def test_ton_auf_ios_ohne_http_status(index_html):
+    """Capacitor iOS liefert Tondateien mit status 0 aus (keine
+    HTTPURLResponse). pufferLaden() nimmt sie auf iOS trotzdem - sonst lief
+    kein Wort ueber WebAudio. Nur auf iOS, Android bleibt bei ok."""
+    assert index_html.count("if(!a.ok && !(IST_IOS && a.status === 0)) throw new Error('HTTP ' + a.status);") == 1
+
+
+def test_grund_unter_der_statusleiste_nur_auf_ios(index_html):
+    """Beim Scrollen lief Text unter Uhr und Dynamic Island durch. Der
+    Streifen gilt nur mit data-plattform="ios"."""
+    i = index_html.index('html[data-plattform="ios"] body::before{')
+    regel = index_html[i:index_html.index("}", i)]
+    assert "env(safe-area-inset-top" in regel and "position:fixed" in regel
+    assert "body::before" not in index_html.replace('html[data-plattform="ios"] body::before', "")
