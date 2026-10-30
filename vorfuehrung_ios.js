@@ -163,13 +163,19 @@
     if(!Ctx){ sag('ton: kein AudioContext'); return; }
     var ctx = new Ctx();
     var dateien = [];
-    try{ var erste = AUDIO.values().next().value; if(erste) dateien.push('audio/' + erste); }catch(e){}
+    try{
+      // Ein Wort (w....), keine Geschichte - so wie pufferLaden() sie holt.
+      var wort = [].concat(Array.from(AUDIO.values())).filter(function(d){ return /^w\d/.test(d); })[0];
+      if(wort) dateien.push('audio/' + wort);
+    }catch(e){}
     dateien.push('vorfuehrung_probe.m4a');
     for(var j = 0; j < dateien.length; j++){
       var pfad = dateien[j];
       try{
         var r = await fetch(pfad);
-        if(!r.ok){ sag('ton ' + pfad + ': fehlt (' + r.status + ')'); continue; }
+        // Status 0 ist auf iOS bei Tondateien normal (siehe pufferLaden()).
+        sag('ton ' + pfad + ': status ' + r.status);
+        if(!r.ok && r.status !== 0){ sag('ton ' + pfad + ': fehlt'); continue; }
         var puffer = await new Promise(function(ja, nein){
           r.arrayBuffer().then(function(b){ ctx.decodeAudioData(b, ja, nein); }, nein);
         });
@@ -196,6 +202,11 @@
     await bild('startseite', function(){ homeMode = 'words'; showHome(); nachOben(); });
     await bild('lektion', async function(){
       openLevel(0); startLesson(); await warte(1500);
+      // Hat die Lektion ihr Wort schon fuer WebAudio dekodiert (pufferLaden)?
+      try{
+        var fertigDekodiert = Array.from(puffer.values()).filter(function(p){ return p && p.buf; }).length;
+        sag('lektion: webaudio-puffer ' + fertigDekodiert + ' von ' + puffer.size + ' dekodiert');
+      }catch(e){ sag('lektion: puffer nicht lesbar'); }
     });
     try{ lektionVerlassen(); }catch(e){}
     await bild('einstellungen', async function(){

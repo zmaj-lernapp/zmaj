@@ -175,6 +175,16 @@
   html[data-plattform="ios"]{overscroll-behavior:none; -webkit-text-size-adjust:100%}
   html[data-plattform="ios"] body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none}
   html[data-plattform="ios"] input, html[data-plattform="ios"] textarea{-webkit-user-select:text; user-select:text}
+  /* Grund unter der Statusleiste (30.10.2026, Cloud-Lauf 8): Beim
+     Scrollen lief der Text unter Uhr und Dynamic Island durch - im Bild
+     der Einstellungen stand "Feedback" mitten in der Uhrzeit. Ein Streifen
+     in der Hoehe des oberen Rands, in der Farbe des Grunds (also auch in
+     der Farbe der Sektion), deckt das ab. Unter dem Vorspann (900) und
+     allen Ebenen (ab 950), die ihren Rand selbst halten. */
+  html[data-plattform="ios"] body::before{
+    content:''; position:fixed; top:0; left:0; right:0; z-index:890;
+    height:env(safe-area-inset-top, 0px); background:var(--bg); pointer-events:none;
+  }
   /* Grosse Systemschrift. Android vergroessert in der App jede Schrift
      mit (Einstellungen > Schriftgroesse), Kaesten und Abstaende in px
      aber nicht. Ab 115 % passten die drei Reiter nicht mehr in ihre
@@ -7534,8 +7544,17 @@ function pufferLaden(datei){
   const p = {buf: null, vorlauf: 0};
   puffer.set(datei, p);
   while(puffer.size > PUFFER_MAX) puffer.delete(puffer.keys().next().value);
+  /* iPhone und iPad (30.10.2026, Cloud-Lauf 8): Capacitor iOS liefert
+     Tondateien (.mp3, .m4a ...) ohne HTTP-Status aus - fetch() meldet dann
+     status 0 und ok false, obwohl die Datei ganz da ist
+     (WebViewAssetHandler.swift: fuer isMediaExtension eine blosse
+     URLResponse statt HTTPURLResponse 200). Ohne diese Ausnahme lief auf
+     iOS kein einziges Wort ueber WebAudio, alles fiel auf den spieler
+     zurueck. Fehlt die Datei wirklich, scheitert decodeAudioData an den
+     leeren Daten und es kommt derselbe Weg. Android und Browser bleiben
+     bei ok. */
   fetch('audio/' + datei)
-    .then(a => { if(!a.ok) throw new Error('HTTP ' + a.status); return a.arrayBuffer(); })
+    .then(a => { if(!a.ok && !(IST_IOS && a.status === 0)) throw new Error('HTTP ' + a.status); return a.arrayBuffer(); })
     .then(daten => ctx.decodeAudioData(daten))
     .then(buf => { p.vorlauf = vorlaufMessen(buf); p.buf = buf; })
     .catch(() => { if(puffer.get(datei) === p) puffer.delete(datei); });
