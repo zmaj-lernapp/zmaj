@@ -29,6 +29,12 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
                                  Ein normaler Bau überspringt Vielfache von
                                  100, siehe naechste_versionsnummer()
     app_bauen.py --nur-abgleich  nur abgleichen, nichts bauen
+    app_bauen.py --aab --ohne-anmeldung
+                                 Paket für Google Play OHNE die Anmeldung.
+                                 Seit v109 (28.10.2026) ist sie Pflicht, und
+                                 --aab bricht ohne zmaj-android/
+                                 cloud_zugang.json ab - sonst ginge still
+                                 eine App ohne Anmeldung in den Store.
 
 Ein unbekannter oder vertippter Schalter bricht ab, bevor etwas passiert
 (seit 10.10.2026, siehe schalter_lesen()).
@@ -41,6 +47,12 @@ und die LIESMICH-Dateien. Die gehören nicht in die App.
 Liegt in der Hülle ein Ordner audio_emir/, kommen dessen Aufnahmen danach
 über die Kopie in www/audio – die Stimme Emir für die Store-App. Sie liegen
 nur dort und nie hier, siehe emir_drueber(). Seit 06.10.2026.
+
+Die Versionsnummer, die man in der App und im Play Store sieht, steht nur
+in versionName in app/build.gradle der Hülle und ist immer die NÄCHSTE
+Store-Version. Jeder Bau setzt sie in die Kopie www/index.html ein (Debug
+und --nur-abgleich mit "-test"); erst nach einem fertigen --aab steigt sie
+um eins (1.1 -> 1.2). Seit 30.10.2026, siehe versionsname_anheben().
 """
 import io
 import json
@@ -61,6 +73,9 @@ ANDROID = os.path.join(HUELLE, "android")
 # Hier stehen Pfad und Passwoerter des Freigabeschluessels. Die Datei gehoert
 # NICHT in eine Sicherung, die den Rechner verlaesst.
 SIGNATUR = os.path.join(ANDROID, "keystore.properties")
+# versionCode und versionName (30.10.2026 als eigene Konstante, damit die
+# Tests sie auf eine Probedatei umlenken koennen).
+BUILD_GRADLE = os.path.join(ANDROID, "app", "build.gradle")
 
 # Was in der App nichts verloren hat
 RAUS_ORDNER = {"_probe"}
@@ -229,33 +244,43 @@ def dauer_einsetzen(pfad=None, datei=None):
                              DAUER_PLATZHALTER.replace("__DAUER_PRUEFWERT__", wert)))
 
 
-# Cloud-Sicherung (19.10.2026): vorbereitet, aber aus (CLOUD_AN = false in
-# web/index.html), eingeschaltet wird erst nach dem Produktionsstart.
-# Projekt-ID und Web-API-Schluessel von Firebase stehen nie im oeffentlichen
-# Repository, sondern in der privaten Huelle (cloud_zugang.json, Aufbau in
-# FIREBASE_EINRICHTEN.md), und kommen wie der Dauer-Pruefwert nur in die
-# KOPIE www/index.html.
+# Cloud-Sicherung (19.10.2026), seit v109 Pflicht-Anmeldung (28.10.2026,
+# Ajdin am 27.10.: "in v109 soll auch schon server rein kommen").
+# Projekt-ID, Web-API-Schluessel und Web-Client-ID von Firebase stehen nie
+# im oeffentlichen Repository, sondern in der privaten Huelle
+# (cloud_zugang.json, Aufbau in FIREBASE_EINRICHTEN.md), und kommen wie der
+# Dauer-Pruefwert nur in die KOPIE www/index.html. Dort schaltet
+# cloud_einsetzen() auch CLOUD_AN ein - in der Quelle bleibt es aus, und
+# ohne die Datei verhaelt sich die App genau wie vor v109.
 CLOUD_PLATZHALTER = {
     "projekt": "const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';",
     "schluessel": "const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';",
+    "client": "const CLOUD_CLIENT = '__CLOUD_CLIENT__';",
 }
-# Dieselben Muster prueft cloudEingerichtet() in der App.
+# Dieselben Muster prueft cloudEingerichtet() in der App. client ist die
+# Web-Client-ID fuer die Anmeldung mit Google (Authentication -> Google ->
+# Web SDK configuration), die ZmajAnmeldung als serverClientId braucht.
 CLOUD_MUSTER = {
     "projekt": r"[a-z][a-z0-9-]{4,28}[a-z0-9]",
     "schluessel": r"AIza[0-9A-Za-z_-]{35}",
+    "client": r"[0-9]{6,20}-[0-9a-z]{16,40}\.apps\.googleusercontent\.com",
 }
 CLOUD_SCHALTER_AN = "const CLOUD_AN = true;"
+CLOUD_SCHALTER_AUS = "const CLOUD_AN = false;"
 CLOUD_DATEI = os.path.join(HUELLE, "cloud_zugang.json")
 
 
-def cloud_einsetzen(pfad=None, datei=None):
-    """Setzt in der KOPIE www/index.html Projekt-ID und Schluessel ein.
+def cloud_einsetzen(pfad=None, datei=None, pflicht=False):
+    """Setzt in der KOPIE www/index.html Projekt-ID, Schluessel und
+    Client-ID ein und schaltet dort CLOUD_AN ein.
 
-    Fehlt cloud_zugang.json, bleiben die Platzhalter stehen; die App findet
-    dann keinen Adapter, und die Cloud bleibt aus. Das ist bis zum
-    Produktionsstart der Normalfall. Steht CLOUD_AN aber auf true, bricht
-    der Bau ohne Datei ab - sonst kaeme eine App heraus, die still nichts
-    sichert. Die Werte selbst erscheinen in keiner Meldung.
+    Fehlt cloud_zugang.json, bleiben die Platzhalter stehen und CLOUD_AN aus;
+    die App findet dann keinen Adapter und verhaelt sich wie vor v109 - kein
+    Netz, keine Anmeldung. Das ist der Fall, solange es kein
+    Firebase-Projekt gibt. Steht CLOUD_AN aber schon auf true, oder ist
+    pflicht gesetzt (Freigabe-Bau, siehe anmeldung_pruefen), bricht der Bau
+    ohne Datei ab - sonst kaeme eine App heraus, die still keine Anmeldung
+    hat. Die Werte selbst erscheinen in keiner Meldung.
     Gibt zurueck, ob eingesetzt wurde.
     """
     pfad = pfad or os.path.join(WWW, "index.html")
@@ -270,7 +295,11 @@ def cloud_einsetzen(pfad=None, datei=None):
         if CLOUD_SCHALTER_AN in text:
             raise SystemExit("ABBRUCH: CLOUD_AN steht auf true, aber %s fehlt "
                              "(siehe FIREBASE_EINRICHTEN.md)." % datei)
-        print("  Cloud-Sicherung: keine cloud_zugang.json - sie bleibt aus.")
+        if pflicht:
+            raise SystemExit("ABBRUCH: %s fehlt - ohne sie hat die App keine "
+                             "Anmeldung (siehe FIREBASE_EINRICHTEN.md). Absichtlich "
+                             "ohne: --ohne-anmeldung." % datei)
+        print("  Anmeldung: keine cloud_zugang.json - sie bleibt aus.")
         return False
     with io.open(datei, encoding="utf-8") as f:
         try:
@@ -284,10 +313,33 @@ def cloud_einsetzen(pfad=None, datei=None):
                              "erwartete Form." % (datei, name))
         platzhalter = CLOUD_PLATZHALTER[name]
         text = text.replace(platzhalter, platzhalter.replace("__CLOUD_%s__" % name.upper(), wert))
+    # Der Schalter. Genau einmal aus (die Quelle) oder schon an (eine Kopie,
+    # die jemand von Hand eingeschaltet hat) - alles andere ist kaputt.
+    if text.count(CLOUD_SCHALTER_AUS) == 1:
+        text = text.replace(CLOUD_SCHALTER_AUS, CLOUD_SCHALTER_AN)
+    elif text.count(CLOUD_SCHALTER_AN) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s."
+                         % (CLOUD_SCHALTER_AUS, pfad))
     with io.open(pfad, "w", encoding="utf-8", newline="") as f:
         f.write(text)
-    print("  Cloud-Sicherung: Projekt und Schluessel eingesetzt.")
+    print("  Anmeldung: Projekt, Schluessel und Client-ID eingesetzt, CLOUD_AN an.")
     return True
+
+
+def anmeldung_pruefen(schalter, datei=None):
+    """Ein Freigabe-Bau (--aab) braucht seit v109 die Anmeldung.
+
+    Ganz am Anfang von main(), damit ohne cloud_zugang.json nichts kopiert
+    oder hochgezaehlt wird. --ohne-anmeldung laesst es absichtlich zu.
+    28.10.2026.
+    """
+    if "--aab" not in schalter or "--ohne-anmeldung" in schalter:
+        return
+    datei = datei or CLOUD_DATEI
+    if not os.path.exists(datei):
+        raise SystemExit("ABBRUCH: --aab ohne %s - die App haette keine Anmeldung. "
+                         "Erst das Firebase-Projekt einrichten (FIREBASE_EINRICHTEN.md) "
+                         "oder absichtlich ohne: --ohne-anmeldung. Nichts gebaut." % datei)
 
 
 # Tonspur im Paket als Opus statt MP3 (12.10.2026). Die 2.332 MP3s mit
@@ -715,7 +767,11 @@ def debug_apk():
 
 
 def freigabe_aab():
-    """Baut das signierte Paket für Google Play."""
+    """Baut das signierte Paket für Google Play.
+
+    Gibt zurück, ob das Paket entstanden ist. Seit 30.10.2026 hängt daran,
+    ob main() danach versionName anhebt: ohne Java (gradle() gibt None) oder
+    ohne AAB am Ende bleibt die Nummer stehen."""
     if not os.path.isfile(SIGNATUR):
         print("\nEs fehlt die Datei mit den Zugangsdaten zum Schlüssel:")
         print("   " + SIGNATUR)
@@ -723,11 +779,14 @@ def freigabe_aab():
         print("Vorlage: keystore.properties.beispiel im selben Ordner.")
         raise SystemExit(1)
     if gradle("bundleRelease", "Signiertes Paket für Play bauen"):
-        zeigen(os.path.join(ANDROID, "app", "build", "outputs", "bundle",
-                            "release", "app-release.aab"), "AAB für Play")
+        aab = os.path.join(ANDROID, "app", "build", "outputs", "bundle",
+                           "release", "app-release.aab")
+        zeigen(aab, "AAB für Play")
         print("\nHochladen in der Play Console unter Release > Testen oder Produktion.")
         print("Google signiert beim Hochladen noch einmal selbst (Play App Signing);")
         print("dein Schlüssel ist der Upload-Schlüssel.")
+        return os.path.isfile(aab)
+    return False
 
 
 # ------------------------------------------------------- Pflicht-Updates ---
@@ -747,7 +806,7 @@ def freigabe_aab():
 PFLICHT_SCHRITT = 100
 # Der hoechste versionCode, den Google Play annimmt.
 HOECHSTE_VERSIONSNUMMER = 2100000000
-SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich")
+SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich", "--ohne-anmeldung")
 
 
 def schalter_lesen(argv):
@@ -813,7 +872,8 @@ def versionsnummer_hochzaehlen(pflicht=False, pfad=None):
     Hochgezählt wird bei jedem Bau, nicht nur vor dem Hochladen. Das lässt
     die Zahl schnell wachsen, aber das ist egal: Play verlangt nur, dass sie
     steigt, und bis 2.100.000.000 ist Platz. versionName bleibt von Hand –
-    das ist die Nummer, die der Nutzer sieht.
+    das ist die Nummer, die der Nutzer sieht. (So bis 30.10.2026; seitdem
+    hebt versionsname_anheben() sie nach jedem fertigen Store-Bau an.)
 
     Mit pflicht=True (--pflicht) springt die Nummer auf das nächste
     Vielfache von 100 – daran erkennt die App das Pflicht-Update. Fehlt dann
@@ -824,7 +884,7 @@ def versionsnummer_hochzaehlen(pflicht=False, pfad=None):
     Gibt die neue Nummer zurück, None wenn nichts geändert wurde. `pfad` ist
     für die Tests, sonst die build.gradle der Hülle.
     """
-    pfad = pfad or os.path.join(HUELLE, "android", "app", "build.gradle")
+    pfad = pfad or BUILD_GRADLE
     if not os.path.isfile(pfad):
         if pflicht:
             raise SystemExit("ABBRUCH: build.gradle nicht gefunden (%s) - ohne "
@@ -847,7 +907,9 @@ def versionsnummer_hochzaehlen(pflicht=False, pfad=None):
     text = text[:treffer.start()] + treffer.group(1) + str(neu) + text[treffer.end():]
     io.open(pfad, "w", encoding="utf-8", newline="").write(text)
     name = re.search(r'versionName\s+"([^"]+)"', text)
-    print("  versionCode %d -> %d   (versionName %s, die bleibt von Hand)"
+    # Bis 30.10.2026 stand hinter versionName "die bleibt von Hand". Jetzt
+    # steigt sie nach dem Store-Bau, das meldet versionsname_anheben().
+    print("  versionCode %d -> %d   (versionName %s)"
           % (alt, neu, name.group(1) if name else "?"))
     if pflicht:
         pflicht_melden(neu)
@@ -857,14 +919,147 @@ def versionsnummer_hochzaehlen(pflicht=False, pfad=None):
     return neu
 
 
+# ---------------------------------------------------------- Versionsname ---
+# Ajdin am 30.10.2026: "ja mach so". Bis v108 stand "1.0" fest in sprachen.py
+# (app.fuss und app.ueber_kurz, alle acht Sprachen), und im Play Store stand
+# ebenfalls 1.0 - hochgezaehlt wurde nur der versionCode, den niemand sieht.
+# Seitdem gilt:
+#   - Jede Store-Version zaehlt die Nebenzahl hoch: v109 = 1.1, dann 1.2,
+#     1.3 ... Nach 1.9 kommt 1.10, gerechnet wird mit ganzen Zahlen, nicht
+#     mit Dezimalen. Grosse neue Teile (etwa Kyrillisch) springen von Hand
+#     auf 2.0.
+#   - Die Nummer steht nur an EINER Stelle: versionName in app/build.gradle
+#     der Huelle. Sie ist immer die NAECHSTE Store-Version.
+#   - version_einsetzen() schreibt sie bei jedem Bau in die KOPIE
+#     www/index.html (APP_VERSION). Debug-Paket und --nur-abgleich (daraus
+#     baut gradlew assembleDebug die Test-App) bekommen "-test" dazu, wie
+#     versionNameSuffix im debug-Block von build.gradle. Die App zeigt den
+#     Wert ueber {version} in app.fuss und app.ueber_kurz, siehe t().
+#   - Erst NACH einem fertigen --aab hebt versionsname_anheben() die
+#     Nebenzahl fuer den naechsten Zyklus an. Debug-Bau, --nur-abgleich und
+#     ein abgebrochener Bau lassen sie stehen. Wird fuer denselben Upload
+#     zweimal gebaut, ist danach eine Nummer uebersprungen - das ist erlaubt.
+#   - Hat versionName eine andere Form, bricht main() ab, bevor irgendetwas
+#     geschrieben ist: versionsname_lesen() steht dort ganz vorn.
+VERSIONSNAME_FORM = re.compile(r"([1-9][0-9]*)\.(0|[1-9][0-9]*)")
+VERSIONSNAME_ZEILE = re.compile(r'(\bversionName\s+")([^"\r\n]*)(")')
+TEST_ENDUNG = "-test"
+# Die Zeile in web/index.html, die version_einsetzen() in der Kopie
+# ueberschreibt. Ganz am Zeilenanfang, damit ein Kommentar sie nicht trifft.
+APP_VERSION_ZEILE = re.compile(r"^const APP_VERSION = '[^'\r\n]*';", re.M)
+
+
+def naechster_versionsname(name):
+    """Der versionName nach `name`: die Nebenzahl eins weiter, als ganze
+    Zahl (1.1 -> 1.2, 1.9 -> 1.10, 2.0 -> 2.1).
+
+    Ohne Datei, damit die Regel für sich getestet ist (tests/test_version.py).
+    """
+    treffer = VERSIONSNAME_FORM.fullmatch(name) if isinstance(name, str) else None
+    if not treffer:
+        raise ValueError("versionName %r hat nicht die Form Hauptzahl.Nebenzahl (z. B. 1.1)"
+                         % (name,))
+    return "%s.%d" % (treffer.group(1), int(treffer.group(2)) + 1)
+
+
+def _versionsname_finden(text, pfad):
+    """Die eine versionName-Zeile in build.gradle. Bricht ab, ohne etwas zu
+    schreiben, wenn sie fehlt, doppelt dasteht oder eine andere Form hat
+    ("1.1.0", "v1.1", "1.1-test", "1.01" ...)."""
+    treffer = list(VERSIONSNAME_ZEILE.finditer(text))
+    if len(treffer) != 1:
+        raise SystemExit('ABBRUCH: versionName "..." steht %d-mal in %s statt einmal. '
+                         "Nichts geschrieben." % (len(treffer), pfad))
+    if not VERSIONSNAME_FORM.fullmatch(treffer[0].group(2)):
+        raise SystemExit('ABBRUCH: versionName "%s" in %s hat nicht die Form '
+                         "Hauptzahl.Nebenzahl (z. B. 1.1). Nichts geschrieben."
+                         % (treffer[0].group(2), pfad))
+    return treffer[0]
+
+
+def versionsname_lesen(pfad=None):
+    """Liest versionName aus build.gradle der Hülle, z. B. "1.1".
+
+    Ganz vorn in main(), gleich nach den Schaltern: Fehlt die Datei oder hat
+    die Nummer eine andere Form, bricht der Bau ab, bevor www/ kopiert oder
+    der versionCode hochgezählt ist. 30.10.2026.
+    """
+    pfad = pfad or BUILD_GRADLE
+    if not os.path.isfile(pfad):
+        raise SystemExit("ABBRUCH: build.gradle nicht gefunden (%s) - ohne versionName "
+                         "weiss die App nicht, welche Version sie ist. Nichts geschrieben."
+                         % pfad)
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        return _versionsname_finden(f.read(), pfad).group(2)
+
+
+def version_einsetzen(name, test=False, pfad=None):
+    """Setzt in der KOPIE www/index.html APP_VERSION auf `name`, mit
+    test=True (Debug-Paket, --nur-abgleich) auf `name` + "-test".
+
+    Gleiches Muster wie cloud_einsetzen(): die Zeile muss genau einmal
+    dastehen, sonst bricht der Bau ab - eine App, die still den
+    Rückfallwert aus der Quelle zeigt, fiele niemandem auf. Nach web/
+    schreibt sie nie. Gibt den eingesetzten Wert zurück. 30.10.2026.
+    """
+    pfad = pfad or os.path.join(WWW, "index.html")
+    if not isinstance(name, str) or not VERSIONSNAME_FORM.fullmatch(name):
+        raise SystemExit("ABBRUCH: versionName %r hat nicht die Form Hauptzahl.Nebenzahl."
+                         % (name,))
+    if _liegt_in(pfad, WEB):
+        raise SystemExit("ABBRUCH: %s liegt in web/. Die Version kommt nur in die Kopie." % pfad)
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    anzahl = len(APP_VERSION_ZEILE.findall(text))
+    if anzahl != 1:
+        raise SystemExit("ABBRUCH: \"const APP_VERSION = '...';\" steht %d-mal in %s "
+                         "statt einmal." % (anzahl, pfad))
+    wert = name + (TEST_ENDUNG if test else "")
+    text = APP_VERSION_ZEILE.sub(lambda _: "const APP_VERSION = '%s';" % wert, text, count=1)
+    with io.open(pfad, "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+    print("  Version in der App: %s" % wert)
+    return wert
+
+
+def versionsname_anheben(pfad=None):
+    """Hebt versionName in build.gradle um eine Nebenzahl an (1.1 -> 1.2).
+
+    Nur nach einem fertigen Store-Bau (--aab), siehe main(): Das Paket trägt
+    die alte Nummer, build.gradle danach schon die nächste. Nur die Nummer
+    ändert sich, Zeilenenden (CRLF) und alles andere bleiben. Gibt
+    (alt, neu) zurück. 30.10.2026.
+    """
+    pfad = pfad or BUILD_GRADLE
+    if not os.path.isfile(pfad):
+        raise SystemExit("ABBRUCH: build.gradle nicht gefunden (%s) - versionName "
+                         "nicht angehoben." % pfad)
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    treffer = _versionsname_finden(text, pfad)
+    alt = treffer.group(2)
+    neu = naechster_versionsname(alt)
+    text = text[:treffer.start(2)] + neu + text[treffer.end(2):]
+    with io.open(pfad, "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+    print("\nversionName %s -> %s   (dieses Paket ist %s, %s ist die nächste Store-Version)"
+          % (alt, neu, alt, neu))
+    return alt, neu
+
+
 def main(argv=None):
     # Erst die Schalter, dann alles andere: Ein vertippter Schalter oder
     # --pflicht mit --nur-abgleich bricht ab, bevor irgendetwas kopiert oder
     # hochgezaehlt ist. 10.10.2026.
     schalter = schalter_lesen(sys.argv[1:] if argv is None else argv)
+    anmeldung_pruefen(schalter)
     aab = "--aab" in schalter
     nur = "--nur-abgleich" in schalter
     pflicht = "--pflicht" in schalter
+    # versionName lesen und pruefen, bevor irgendetwas kopiert oder
+    # hochgezaehlt ist: eine kaputte Zeile in build.gradle soll keinen
+    # halben Bau hinterlassen. 30.10.2026.
+    version = versionsname_lesen()
     if pflicht:
         print("PFLICHT-UPDATE (--pflicht): versionCode wird das nächste "
               "Vielfache von %d.\n" % PFLICHT_SCHRITT)
@@ -878,7 +1073,11 @@ def main(argv=None):
     # Debug-Paket, fuer --aab und fuer --nur-abgleich gleich. 06.10.2026.
     emir_drueber()
     dauer_einsetzen()
-    cloud_einsetzen()
+    cloud_einsetzen(pflicht=aab and "--ohne-anmeldung" not in schalter)
+    # Der Store-Bau zeigt die Nummer, wie sie in build.gradle steht. Das
+    # Debug-Paket und --nur-abgleich (daraus wird die Test-App) zeigen sie
+    # mit "-test", wie versionNameSuffix. 30.10.2026.
+    version_einsetzen(version, test=not aab)
     # Nach Emir: dessen Aufnahmen sind MP3 und werden mit umgewandelt.
     ton_verkleinern()
     if "--testwerbung" in schalter:
@@ -897,7 +1096,14 @@ def main(argv=None):
         print("   " + ANDROID)
         return
     if aab:
-        freigabe_aab()
+        # versionName steigt erst, wenn das Paket da ist. Bricht Gradle ab
+        # (SystemExit) oder fehlt Java, bleibt sie stehen, und der naechste
+        # Versuch baut dieselbe Nummer. Debug-Paket und --nur-abgleich
+        # kommen hier nie an. 30.10.2026.
+        if freigabe_aab():
+            versionsname_anheben()
+        else:
+            print("\nversionName %s bleibt - es ist kein Paket entstanden." % version)
     else:
         debug_apk()
     if pflicht:

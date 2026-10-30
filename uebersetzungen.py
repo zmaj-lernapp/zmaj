@@ -5092,7 +5092,7 @@ INHALT = {
     "Wir treffen uns um fünf.": "Beşte buluşuyoruz.",
     "Ich stehe um sieben Uhr auf.": "Saat yedide kalkıyorum.",
     "Nach der Arbeit koche ich Abendessen.": "İşten sonra akşam yemeği pişiriyorum.",
-    "Ich gehe um elf schlafen.": "Saat on birde uyumaya gidiyorum.",
+    "Ich gehe um elf schlafen.": "Saat on birde yatıyorum.",
     "Jeden Tag trinke ich Kaffee.": "Her gün kahve içiyorum.",
     "Ich bin dreißig Jahre alt.": "Otuz yaşındayım.",
     "Wir bleiben fünf Tage.": "Beş gün kalıyoruz.",
@@ -5505,7 +5505,7 @@ INHALT = {
     "Heute ist Samstag. Amina geht auf den Markt. Auf dem Markt gibt es viel Obst und Gemüse. Amina kauft Äpfel, Tomaten und Zwiebeln. „Wie viel kosten die Äpfel?“ fragt Amina. „Zwei Mark pro Kilo“, sagt der Verkäufer. Amina nimmt zwei Kilo. Dann kauft sie Brot und Käse. Alles zusammen kostet zehn Mark. Amina zahlt bar und geht nach Hause.":
         "Bugün cumartesi. Amina pazara gidiyor. Pazarda çok meyve ve sebze var. Amina elma, domates ve soğan alıyor. “Elmalar kaça?” diye soruyor Amina. “Kilosu iki mark”, diyor satıcı. Amina iki kilo alıyor. Sonra ekmek ve peynir alıyor. Hepsi birlikte on mark tutuyor. Amina nakit ödüyor ve eve gidiyor.",
     "Jeden Tag stehe ich um sieben Uhr auf. Zuerst dusche ich, dann frühstücke ich. Zum Frühstück esse ich Brot mit Käse und trinke Kaffee. Um acht gehe ich zur Arbeit. Ich arbeite im Büro bis vier. Nach der Arbeit gehe ich einkaufen. Abends koche ich Abendessen und sehe fern. Manchmal lese ich ein Buch. Ich gehe um elf schlafen. Am Wochenende schlafe ich länger.":
-        "Her gün saat yedide kalkıyorum. Önce duş alıyorum, sonra kahvaltı yapıyorum. Kahvaltıda peynirli ekmek yiyorum ve kahve içiyorum. Sekizde işe gidiyorum. Ofiste dörde kadar çalışıyorum. İşten sonra alışverişe gidiyorum. Akşamları akşam yemeği pişiriyorum ve televizyon izliyorum. Bazen bir kitap okuyorum. Saat on birde uyumaya gidiyorum. Hafta sonunda daha uzun uyuyorum.",
+        "Her gün saat yedide kalkıyorum. Önce duş alıyorum, sonra kahvaltı yapıyorum. Kahvaltıda peynirli ekmek yiyorum ve kahve içiyorum. Sekizde işe gidiyorum. Ofiste dörde kadar çalışıyorum. İşten sonra alışverişe gidiyorum. Akşamları akşam yemeği pişiriyorum ve televizyon izliyorum. Bazen bir kitap okuyorum. Saat on birde yatıyorum. Hafta sonunda daha uzun uyuyorum.",
     "Ajdin und Amina sind in Sarajevo. Das Hotel ist im Zentrum der Stadt, neben dem Fluss. Morgens gehen sie zur Baščaršija. Dort trinken sie Kaffee und essen Ćevapi. Nach dem Mittagessen spazieren sie über die alte Brücke. Amina kauft in einem kleinen Laden ein Geschenk für die Oma. Abends sitzen sie auf dem Balkon und schauen auf die Stadt. „Sarajevo ist eine schöne Stadt“, sagt Amina.":
         "Ajdin ve Amina Saraybosna'da. Otel şehrin merkezinde, nehrin yanında. Sabahları Baščaršija'ya gidiyorlar. Orada kahve içiyor ve ćevapi yiyorlar. Öğle yemeğinden sonra eski köprüde geziniyorlar. Amina küçük bir dükkânda ninesi için hediye alıyor. Akşamları balkonda oturup şehri seyrediyorlar. “Saraybosna güzel bir şehir”, diyor Amina.",
     "Gestern war ein schöner Tag. Ich bin früh aufgestanden und auf den Markt gegangen. Ich habe Obst und Blumen gekauft. Danach war ich bei der Oma. Wir haben Kaffee getrunken und über die Familie geredet. Die Oma hat mir alte Bilder gezeigt. Abends kam Ajdin und wir haben zusammen Abendessen gekocht. Das war ein guter Tag.":
@@ -6798,7 +6798,10 @@ INHALT = {
     "Ich habe {n} Schwestern.": "{n} kız kardeşim var.",
     "Wir treffen uns um {n}.": "Saat {lok} buluşuyoruz.",
     "Ich stehe um {n} Uhr auf.": "Saat {lok} kalkıyorum.",
-    "Ich gehe um {n} schlafen.": "Saat {lok} uyumaya gidiyorum.",
+    # 27.10.2026: Einem türkischen Korrekturleser klang „uyumaya
+    # gidiyorum“ mit fester Uhrzeit unnatürlich – „yatıyorum“. Ebenso der
+    # Satz mit „elf“ und die Geschichte, in der er steht.
+    "Ich gehe um {n} schlafen.": "Saat {lok} yatıyorum.",
     "Ich bin {n} Jahre alt.": "{n} yaşındayım.",
     "Wir bleiben {n} Tage.": "{n} gün kalıyoruz.",
     "Meine Schwester ist {n} Jahre alt": "Kız kardeşim {n} yaşında",

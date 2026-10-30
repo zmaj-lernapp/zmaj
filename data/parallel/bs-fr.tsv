@@ -1,7 +1,7 @@
 bs	fr	kind	id
 Merhaba	Salut	word	hallo:Merhaba
-Dobar dan	Bonjour	word	guten tag:Dobar dan
 Dobro jutro	Bonjour (le matin)	word	guten morgen:Dobro jutro
+Dobar dan	Bonjour	word	guten tag:Dobar dan
 Dobro veče	Bonsoir	word	guten abend:Dobro veče
 Laku noć / Lahku noć	Bonne nuit	word	gute nacht:Laku noć / Lahku noć
 Doviđenja	Au revoir	word	auf wiedersehen:Doviđenja
@@ -1056,16 +1056,16 @@ Ne mogu doći	Je ne peux pas venir	word	ich kann nicht kommen:Ne mogu doći
 Možeš li mi pomoći?	Tu peux m'aider ?	word	kannst du mir helfen?:Možeš li mi pomoći?
 Hoću spavati	Je veux dormir	word	ich will schlafen:Hoću spavati
 Želim učiti	Je veux apprendre	word	ich möchte lernen:Želim učiti
+pitati	demander	word	fragen:pitati
 Smijem li pitati?	Je peux demander ?	word	darf ich fragen?:Smijem li pitati?
 Ne moraš	Tu n'es pas obligé	word	du musst nicht:Ne moraš
-Moramo čekati	Nous devons attendre	word	wir müssen warten:Moramo čekati
 čekati	attendre	word	warten:čekati
-Želim nešto jesti	Je veux manger quelque chose	word	ich möchte etwas essen:Želim nešto jesti
+Moramo čekati	Nous devons attendre	word	wir müssen warten:Moramo čekati
 nešto	quelque chose	word	etwas:nešto
+Želim nešto jesti	Je veux manger quelque chose	word	ich möchte etwas essen:Želim nešto jesti
 Mogu govoriti bosanski	Je peux parler bosnien	word	ich kann bosnisch sprechen:Mogu govoriti bosanski
-Ne znam plivati	Je ne sais pas nager (savoir-faire)	word	ich kann nicht schwimmen (fähigkeit):Ne znam plivati
 plivati	nager	word	schwimmen:plivati
-pitati	demander	word	fragen:pitati
+Ne znam plivati	Je ne sais pas nager (savoir-faire)	word	ich kann nicht schwimmen (fähigkeit):Ne znam plivati
 pokušati	essayer	word	versuchen:pokušati
 se	se (pronom réfléchi)	word	sich (reflexivpronomen):se
 zvati se	s'appeler	word	sich nennen / heißen:zvati se

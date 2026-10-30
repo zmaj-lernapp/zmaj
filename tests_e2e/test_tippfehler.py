@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Tippfehler: erst ein Hinweis, nicht gleich falsch (24.10.2026).
+"""Fast richtig: erst ein Hinweis, nicht gleich falsch (24.10.2026).
 
 Ajdin: "wenn man beim schreiben ausversehen einen buchstaben falsch
 geschrieben hat dann soll ein hinweis kommen das wort ist falsch geschrieben
@@ -12,17 +12,25 @@ Gewaehlt hat er Vorschlag B:
 - die Eingabe bleibt offen, fokussiert und behaelt ihren Text;
 - der zweite Versuch zaehlt wie immer, ein zweiter Hinweis kommt nicht;
 - der Hinweis kostet kein Leben und spielt keinen Ton;
-- erst ab 4 Buchstaben der Antwort, und nicht, wenn das Getippte selbst ein
-  echtes bosnisches Wort ist;
+- erst ab 4 Buchstaben der Antwort;
 - fehlen nur Haekchen, ist es wie bisher sofort "fast richtig".
+
+Am 27.10.2026 kam im Lueckensatz die andere Endung dazu (Ajdin: "Auch bei
+Endung Hinweis"), zuerst mit eigenem Text. Noch am selben Tag: "mach doch
+einfach nur fast richtig dann bezieht es sich auf alle woerter und wenn es
+ein andere wort ist ist doch egal es ist doch trotzdem fast richtig". Seitdem
+gibt es einen Text, "Fast richtig!", fuer jede Eingabe einen Tippfehler
+neben der Antwort - auch fuer eine andere Endung und fuer ein anderes
+echtes Wort ("deset" fuer "devet", "zvono" fuer "zvoni"). Die Tests zur
+Endung stehen am Ende.
 
 Die Aufgaben legt der Test selbst fest, damit nichts vom Zufall der Lektion
 abhaengt. Ton und Sprechen werden nur mitgeschrieben, nicht abgespielt.
 """
 import pytest
 
-HINWEIS = "Fast! Da ist ein Tippfehler – versuch es noch einmal."
-HINWEIS_EN = "Almost! There's a typo – try again."
+HINWEIS = "Fast richtig!"
+HINWEIS_EN = "Almost right!"
 
 FELD = {"Lx": "lBody", "Tx": "tBody", "Ex": "eBody"}
 
@@ -239,17 +247,20 @@ def test_kein_hinweis_bei_zwei_fehlern(seite, heute_stand):
     assert seite.fehler == []
 
 
-def test_kein_hinweis_wenn_es_ein_echtes_wort_ist(seite, heute_stand):
-    """deset ist zehn: wer es fuer neun schreibt, hat sich nicht vertippt."""
+def test_hinweis_auch_bei_einem_echten_wort(seite, heute_stand):
+    """deset ist zehn. Bis zum 27.10.2026 bekam es fuer neun keinen Hinweis
+    (zehn und neun verwechselt, nicht vertippt). Ajdin: "wenn es ein andere
+    wort ist ist doch egal es ist doch trotzdem fast richtig" - jetzt der
+    Hinweis wie bei jedem Tippfehler, danach zaehlt devet richtig."""
     seite.starten(stand=heute_stand())
     seite.js(STARTEN["Lx"])
-    leben = _legen(seite, "Lx", "type", "neun:devet")
-    _ist_hinweis(_eingeben(seite, "devwt", "devet"), "devwt", leben)
-    leben = _legen(seite, "Lx", "type", "neun:devet")
-    lage = _eingeben(seite, "deset")
-    assert lage["ergebnis"] is False and lage["fb"] == "Richtig wäre: devet" and lage["leben"] == leben - 1, lage
-    assert seite.js("() => [nurVertippt('deset', 'devet', false), nurVertippt('Deset!', 'devet', true),"
-                    " nurVertippt('devwt', 'devet', false)]") == [False, False, True]
+    for eingabe in ("devwt", "deset"):
+        leben = _legen(seite, "Lx", "type", "neun:devet")
+        _ist_hinweis(_eingeben(seite, eingabe, "devet"), eingabe, leben)
+        lage = _eingeben(seite, "devet")
+        assert lage["ergebnis"] is True and lage["fb"] == "Tačno! ✓" and lage["leben"] == leben, (eingabe, lage)
+    assert seite.js("() => [fastRichtig('deset', 'devet'), fastRichtig('Deset!', 'devet'),"
+                    " fastRichtig('devwt', 'devet'), fastRichtig('dvoje', 'devet')]") == [True, True, True, False]
     assert seite.fehler == []
 
 
@@ -270,26 +281,23 @@ def test_nur_haekchen_bleibt_sofort_fast_richtig(seite, heute_stand):
 
 
 def test_lueckensatz_genauso(seite, heute_stand):
-    """Im Lueckensatz derselbe Ablauf. Dort ist die Form die Aufgabe: eine
-    andere Endung ist ein Grammatikfehler und bekommt keinen Hinweis - in
-    der Schreibaufgabe schon."""
+    """Im Lueckensatz derselbe Ablauf und derselbe Text - auch fuer ein
+    echtes Wort ("deset" fuer "devet"). Unter 4 Buchstaben ist es weiter
+    gleich falsch."""
     seite.starten(stand=heute_stand())
     seite.js(STARTEN["Lx"])
-    leben = _legen(seite, "Lx", "gap", "Ne ___.|razumijem")
-    _ist_hinweis(_eingeben(seite, "razumijen", "razumijem"), "razumijen", leben)
-    lage = _eingeben(seite, "razumijem")
-    assert lage["ergebnis"] is True and lage["fb"] == "Tačno! ✓" and lage["leben"] == leben, lage
-    for satz, eingabe, richtig in (("Sedam, osam, ___|devet", "deset", "devet"),     # echtes Wort
-                                   ("Subota i ___ su vikend.|nedjelja", "nedjelji", "nedjelja"),  # Endung
-                                   ("Kako ___?|ste", "stw", "ste")):                # unter 4
+    for satz, eingabe, richtig in (("Ne ___.|razumijem", "razumijen", "razumijem"),
+                                   ("Sedam, osam, ___|devet", "deset", "devet"),       # echtes Wort
+                                   ("Subota i ___ su vikend.|nedjelja", "nedjeljw", "nedjelja")):
         leben = _legen(seite, "Lx", "gap", satz)
-        lage = _eingeben(seite, eingabe)
-        assert lage["ergebnis"] is False and lage["fb"] == "Richtig wäre: " + richtig, (satz, lage)
-        assert lage["leben"] == leben - 1, (satz, lage)
-    # Gegenprobe: in der Luecke bekommt ein echter Tippfehler den Hinweis,
-    # in der Schreibaufgabe auch die andere Endung.
-    leben = _legen(seite, "Lx", "gap", "Subota i ___ su vikend.|nedjelja")
-    _ist_hinweis(_eingeben(seite, "nedjeljw", "nedjelja"), "nedjeljw", leben)
+        _ist_hinweis(_eingeben(seite, eingabe, richtig), eingabe, leben)
+        lage = _eingeben(seite, richtig)
+        assert lage["ergebnis"] is True and lage["fb"] == "Tačno! ✓" and lage["leben"] == leben, (satz, lage)
+    leben = _legen(seite, "Lx", "gap", "Kako ___?|ste")                               # unter 4
+    lage = _eingeben(seite, "stw")
+    assert lage["ergebnis"] is False and lage["fb"] == "Richtig wäre: ste", lage
+    assert lage["leben"] == leben - 1, lage
+    # Gegenprobe: in der Schreibaufgabe bekommt die andere Endung denselben Hinweis.
     leben = _legen(seite, "Lx", "type", "sonntag:nedjelja")
     _ist_hinweis(_eingeben(seite, "nedjelji", "nedjelja"), "nedjelji", leben)
     assert seite.fehler == []
@@ -338,9 +346,6 @@ def test_luecke_doppelter_letzter_buchstabe_ist_ein_tippfehler(seite, heute_stan
     assert lage["ergebnis"] is True and lage["leben"] == leben, lage
     leben = _legen(seite, "Lx", "gap", "Subota i ___ su vikend.|nedjelja")
     _ist_hinweis(_eingeben(seite, "nedjeljaa", "nedjelja"), "nedjeljaa", leben)
-    # Die echten anderen Endungen bleiben ohne Hinweis.
-    assert seite.js("() => [andereEndung('sutraa', 'sutra'), andereEndung('brata', 'brat'),"
-                    " andereEndung('nedjelji', 'nedjelja'), andereEndung('radio', 'radi')]") == [False, True, True, True]
     assert seite.fehler == []
 
 
@@ -361,21 +366,24 @@ def test_hinweis_auch_bei_weiteren_richtigen_antworten(seite, heute_stand):
     assert seite.fehler == []
 
 
-def test_echte_woerter_je_nach_aufgabe(seite, heute_stand):
-    """Was als echtes Wort gilt, haengt an der Aufgabe (echteWoerter()): in
-    der Schreibaufgabe der Wortschatz - "crveno" steht nur in Saetzen und
-    bekommt fuer "crvena" den Hinweis. Im Lueckensatz auch die Formen aus
-    Saetzen und Geschichten - "mosta" fuer "košta" ist ein Wort, kein
-    Tippfehler."""
+def test_echte_woerter_bekommen_den_hinweis_ueberall(seite, heute_stand):
+    """Bis zum 27.10.2026 hing es an der Aufgabe, was als echtes Wort galt
+    und keinen Hinweis bekam (echteWoerter()). Jetzt bekommt jedes Wort einen
+    Tippfehler neben der Antwort "Fast richtig!": "crveno" fuer "crvena" in
+    der Schreibaufgabe, "mosta" fuer "košta" und "zvono" (Klingel) fuer
+    "zvoni" (klingelt) im Lueckensatz - das Beispiel aus Ajdins Rueckfrage.
+    Die alten Pruefungen gibt es nicht mehr."""
     seite.starten(stand=heute_stand())
     seite.js(STARTEN["Lx"])
-    assert seite.js("() => { const e = echteWoerter(); return [e.wortschatz.has('crveno'), e.formen.has('crveno'),"
-                    " e.wortschatz.has('mosta'), e.formen.has('mosta')]; }") == [False, True, False, True]
-    leben = _legen(seite, "Lx", "type", "rot:crvena")
-    _ist_hinweis(_eingeben(seite, "crveno", "crvena"), "crveno", leben)
-    leben = _legen(seite, "Lx", "gap", "Koliko ___?|košta")
-    lage = _eingeben(seite, "mosta")
-    assert lage["ergebnis"] is False and lage["fb"] == "Richtig wäre: košta" and lage["leben"] == leben - 1, lage
+    assert seite.js("() => [typeof echteWoerter, typeof nurVertippt, typeof nurEndung, typeof andereEndung]") == \
+        ["undefined"] * 4
+    for typ, ziel, eingabe, richtig in (("type", "rot:crvena", "crveno", "crvena"),
+                                        ("gap", "Koliko ___?|košta", "mosta", "košta"),
+                                        ("gap", "Komšinica ___ na vrata.|zvoni", "zvono", "zvoni")):
+        leben = _legen(seite, "Lx", typ, ziel)
+        _ist_hinweis(_eingeben(seite, eingabe, richtig), eingabe, leben)
+        lage = _eingeben(seite, richtig)
+        assert lage["ergebnis"] is True and lage["leben"] == leben, (ziel, lage)
     assert seite.fehler == []
 
 
@@ -458,3 +466,92 @@ def test_hinweis_wird_ins_bild_geholt(browser, basis, heute_stand, typ):
         assert seite.fehler == []
     finally:
         ctx.close()
+
+
+# ---- Andere Endung im Lueckensatz (27.10.2026) ----
+# Ajdin auf die Rueckfrage, ob eine andere Endung im Lueckensatz weiter
+# sofort falsch sein soll: "Auch bei Endung Hinweis". Zuerst mit eigenem Text
+# ("Fast! Achte auf die Endung."), noch am selben Tag "einfach nur fast
+# richtig": derselbe Hinweis wie bei jedem Tippfehler. Eine andere Endung
+# ist ja immer einer - ein Buchstabe anders oder einer mehr.
+
+def test_endung_im_lueckensatz_bekommt_den_hinweis(seite, heute_stand):
+    """Ein anderer Selbstlaut am Ende ("nedjelji" fuer "nedjelja"), die
+    Grundform statt der gebeugten ("kahva" fuer "kahvu") oder einer
+    angehaengt ("razumijemo" fuer "razumijem"): jedes Mal "Fast richtig!" -
+    ohne Leben, Ton und Loesung. Der zweite Versuch zaehlt richtig."""
+    seite.starten(stand=heute_stand())
+    seite.js(STARTEN["Lx"])
+    for satz, eingabe, loesung in (("Subota i ___ su vikend.|nedjelja", "nedjelji", "nedjelja"),
+                                   ("Pijem ___.|kahvu", "kahva", "kahvu"),
+                                   ("Ne ___.|razumijem", "razumijemo", "razumijem")):
+        leben = _legen(seite, "Lx", "gap", satz)
+        _ist_hinweis(_eingeben(seite, eingabe, loesung), eingabe, leben)
+        lage = _eingeben(seite, loesung)
+        assert lage["ergebnis"] is True and lage["leben"] == leben, (satz, lage)
+        assert lage["fb"] == "Tačno! ✓" and lage["toene"] == ["ok"] and not lage["offen"], (satz, lage)
+    assert seite.js("() => [Lx.right, Lx.results.length, Lx.queue.filter(q => q.retry).length]") == [3, 3, 0]
+    assert seite.fehler == []
+
+
+def test_endung_nach_dem_hinweis_zaehlt_falsch_als_falsch(seite, heute_stand):
+    """Es gibt nur einen zweiten Versuch. Ist er wieder eine andere Endung
+    oder ein Tippfehler, ist er falsch - kein zweiter Hinweis."""
+    seite.starten(stand=heute_stand())
+    seite.js(STARTEN["Lx"])
+    for erst, dann in (("nedjelji", "nedjelju"), ("nedjelji", "nedjeljw"), ("nedjeljw", "nedjelji")):
+        leben = _legen(seite, "Lx", "gap", "Subota i ___ su vikend.|nedjelja")
+        _ist_hinweis(_eingeben(seite, erst, "nedjelja"), erst, leben)
+        lage = _eingeben(seite, dann)
+        assert lage["ergebnis"] is False and lage["leben"] == leben - 1, (erst, dann, lage)
+        assert lage["fb"] == "Richtig wäre: nedjelja" and "no" in lage["klasse"].split(), (erst, dann, lage)
+        assert lage["toene"] == ["no"] and lage["loesung"] and not lage["offen"], (erst, dann, lage)
+    assert seite.fehler == []
+
+
+def test_endung_zaehlt_wie_jeder_tippfehler(seite, heute_stand):
+    """Gezaehlt wird wie beim Tippfehler - ab 4 getippten Zeichen der
+    Antwort, nj ist zwei: "sti" fuer "ste" ist sofort falsch, "konji" fuer
+    "konj" bekommt den Hinweis. Zwei Buchstaben anders ("medjelji") ist
+    falsch. "strico" bei „Moj ___ je pčelar.“ ist stric mit angehaengtem
+    Selbstlaut und zugleich striko vertippt - beides "Fast richtig!"."""
+    seite.starten(stand=heute_stand())
+    seite.js(STARTEN["Lx"])
+    leben = _legen(seite, "Lx", "gap", "Kako ___?|ste")
+    lage = _eingeben(seite, "sti")
+    assert lage["ergebnis"] is False and lage["fb"] == "Richtig wäre: ste" and lage["leben"] == leben - 1, lage
+    leben = _legen(seite, "Lx", "gap", "Moj ___ je pčelar.|amidža")
+    _ist_hinweis(_eingeben(seite, "strico", "amidža"), "strico", leben)
+    lage = _eingeben(seite, "stric")
+    assert lage["ergebnis"] is True and lage["fb"] == "Tačno! ✓" and lage["leben"] == leben, lage
+    assert seite.js("() => [fastRichtig('nedjelji', 'nedjelja'), fastRichtig('Nedjelji!', 'nedjelja'),"
+                    " fastRichtig('kahva', 'kahvu'), fastRichtig('striku', 'amidža / stric / striko / adžo'),"
+                    " fastRichtig('konji', 'konj'), fastRichtig('sti', 'ste'), fastRichtig('sutraa', 'sutra'),"
+                    " fastRichtig('nedjeljw', 'nedjelja'), fastRichtig('medjelja', 'nedjelja'),"
+                    " fastRichtig('medjelji', 'nedjelja'), fastRichtig('', 'nedjelja')]") == \
+        [True, True, True, True, True, False, True, True, True, False, False]
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("art", ["Tx", "Ex"])
+def test_endung_in_level_test_und_einstufung(seite, heute_stand, art):
+    """Level-Test und Einstufung gehen durch dieselbe Aufgabe: auch hier
+    kostet der Hinweis kein Leben und zaehlt keinen Fehler."""
+    seite.starten(stand=heute_stand())
+    seite.js(STARTEN[art])
+    leben = _legen(seite, art, "gap", "Subota i ___ su vikend.|nedjelja")
+    lage = _eingeben(seite, "nedjelji", "nedjelja")
+    _ist_hinweis(lage, "nedjelji", leben)
+    if art == "Ex":
+        assert lage["fehler"] == 0
+    lage = _eingeben(seite, "nedjelja")
+    assert lage["ergebnis"] is True and lage["leben"] == leben, lage
+    assert seite.fehler == []
+
+
+def test_bildschirmleser_bekommt_den_hinweis_auch_im_lueckensatz(seite, heute_stand):
+    seite.starten(stand=heute_stand(), sprache="en")
+    seite.js(STARTEN["Lx"])
+    leben = _legen(seite, "Lx", "gap", "Subota i ___ su vikend.|nedjelja")
+    _ist_hinweis(_eingeben(seite, "nedjelji", "nedjelja"), "nedjelji", leben, HINWEIS_EN)
+    assert seite.fehler == []

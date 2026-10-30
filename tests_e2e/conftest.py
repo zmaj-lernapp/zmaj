@@ -225,3 +225,26 @@ def seite(browser, basis):
 def vollversion():
     with io.open(os.path.join(WURZEL, "testdaten", "zmaj-test-vollversion.json"), encoding="utf-8") as f:
         return json.load(f)
+
+
+@pytest.fixture(scope="session")
+def cloud_html(wurzelordner, tmp_path_factory):
+    """Die Demo mit eingeschalteter Anmeldung und erfundenen Zugangsdaten.
+
+    Eingesetzt mit app_bauen.cloud_einsetzen() wie beim Bauen - das schaltet
+    seit 28.10.2026 (v109) auch CLOUD_AN ein. Gebraucht von test_cloud.py
+    und test_anmeldung.py, Firebase beantwortet dort firebase_attrappe.py."""
+    import app_bauen
+    from firebase_attrappe import CLIENT, PROJEKT, SCHLUESSEL
+
+    ordner = tmp_path_factory.mktemp("cloudprobe")
+    kopie = ordner / "index.html"
+    shutil.copyfile(os.path.join(wurzelordner, "app", "index.html"), str(kopie))
+    assert kopie.read_bytes().decode("utf-8").count("const CLOUD_AN = false;") == 1
+    zugang = ordner / "cloud_zugang.json"
+    zugang.write_text(json.dumps({"projekt": PROJEKT, "schluessel": SCHLUESSEL, "client": CLIENT}),
+                      encoding="utf-8")
+    assert app_bauen.cloud_einsetzen(str(kopie), str(zugang)) is True
+    html = kopie.read_bytes()
+    assert b"const CLOUD_AN = true;" in html and b"__CLOUD_" not in html
+    return html

@@ -6,8 +6,16 @@ Only the latest release of the app and the `master` branch receive fixes.
 
 ## What matters here
 
-Zmaj has no server and no accounts; learning progress never leaves the
-device. The parts that can still go wrong, and that we want to hear about:
+Zmaj has no server of its own. Since v109 the Android app has a mandatory
+account (Firebase Authentication, Google or email and password) and backs
+learning progress up to Cloud Firestore, one document per account
+(`users/{uid}`, see `firestore.rules`). The web demo has no account and no
+network access. The parts that can still go wrong, and that we want to hear
+about:
+
+- anything that lets one account read or write another account's backup, or
+  that puts the sign-in token, the email address or a device identifier into
+  the backup or the backup file;
 
 - anything that makes the app contact a server it should not, or send more
   than the privacy policy (`sprachen.py`, `set.datenschutz_text`) says;
@@ -46,6 +54,19 @@ sequenceDiagram
 Before that fix, a hand-written backup with `"gewusst":[1]` locked the app at
 every start. It was found in our own review on 04.10.2026 and is reproduced
 and verified in a browser; see the docstring of `import_richten.py`.
+
+## Known limitations
+
+- **Daily quotas without App Check.** The project ID and the web API key are
+  part of every copy of the app, accounts can be created without
+  confirmation, and Firebase App Check is not enforced yet. A single account
+  can therefore use up the daily free quotas of the Spark plan for the whole
+  project (20,000 writes and 50,000 reads per day). Until the quotas reset,
+  around midnight Pacific time, backup and signing out fail for everyone.
+  Learning goes on and nothing is lost: progress stays on the device and is
+  uploaded at the next successful sync. Deleting an account still works,
+  deletes have a quota of their own. App Check with Play Integrity is planned
+  for a later release. This one is known; there is no need to report it.
 
 ## Reporting a vulnerability
 

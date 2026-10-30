@@ -4,8 +4,8 @@
 #columns:Bosnian	tr	Tags
 #tags column:3
 Merhaba	Merhaba	zmaj zmaj::01_basics
-Dobar dan	İyi günler	zmaj zmaj::01_basics
 Dobro jutro	Günaydın	zmaj zmaj::01_basics
+Dobar dan	İyi günler	zmaj zmaj::01_basics
 Dobro veče	İyi akşamlar	zmaj zmaj::01_basics
 Laku noć / Lahku noć	İyi geceler	zmaj zmaj::01_basics
 Doviđenja	Hoşça kal	zmaj zmaj::01_basics
@@ -1060,16 +1060,16 @@ Ne mogu doći	Gelemem	zmaj zmaj::41_modal
 Možeš li mi pomoći?	Bana yardım edebilir misin?	zmaj zmaj::41_modal
 Hoću spavati	Uyumak istiyorum	zmaj zmaj::41_modal
 Želim učiti	Öğrenmek istiyorum	zmaj zmaj::41_modal
+pitati	sormak	zmaj zmaj::41_modal
 Smijem li pitati?	Sorabilir miyim?	zmaj zmaj::41_modal
 Ne moraš	Zorunda değilsin	zmaj zmaj::41_modal
-Moramo čekati	Beklememiz gerek	zmaj zmaj::41_modal
 čekati	beklemek	zmaj zmaj::41_modal
-Želim nešto jesti	Bir şey yemek istiyorum	zmaj zmaj::41_modal
+Moramo čekati	Beklememiz gerek	zmaj zmaj::41_modal
 nešto	bir şey	zmaj zmaj::41_modal
+Želim nešto jesti	Bir şey yemek istiyorum	zmaj zmaj::41_modal
 Mogu govoriti bosanski	Boşnakça konuşabilirim	zmaj zmaj::41_modal
-Ne znam plivati	Yüzme bilmiyorum (beceri)	zmaj zmaj::41_modal
 plivati	yüzmek	zmaj zmaj::41_modal
-pitati	sormak	zmaj zmaj::41_modal
+Ne znam plivati	Yüzme bilmiyorum (beceri)	zmaj zmaj::41_modal
 pokušati	denemek	zmaj zmaj::41_modal
 se	kendini (dönüşlü)	zmaj zmaj::42_reflexiv
 zvati se	adı olmak	zmaj zmaj::42_reflexiv
