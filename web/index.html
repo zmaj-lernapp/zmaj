@@ -14421,9 +14421,10 @@ const Ex_laeuft = () => !!(Ex && !Ex.fertig && sichtbar('einstufungView'));
    dem Play Store installiert, kein Netz, Art des Updates nicht erlaubt),
    bleibt die App offen - eine Sperre, die sich nicht loesen laesst, waere
    schlimmer als der Fehler. Werbung, Abo und Leben fasst nichts davon an. */
-/* Auf iPhone und iPad nie: Apple hat keine Updates aus der App heraus, die
-   Huelle meldet ZmajUpdate dort gar nicht erst an. Die Weiche steht trotzdem
-   hier, damit auch ein versehentlich angemeldetes Plugin nie gefragt wird.
+/* Auf iPhone und iPad nie: Apple hat keine Updates aus der App heraus. Die
+   iOS-Huelle meldet ZmajUpdate zwar an (seit Stufe A5), es antwortet dort
+   aber immer nur "nicht_unterstuetzt" - damit ein Aufruf nie ins Leere
+   geht. Gefragt wird es trotzdem nie, dafuer steht die Weiche hier.
    30.10.2026 */
 const updPlugin = () => (!IST_IOS && window.Capacitor && window.Capacitor.Plugins
                          && window.Capacitor.Plugins.ZmajUpdate) || null;
