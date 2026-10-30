@@ -357,7 +357,10 @@ def test_schalter_an_ohne_zugang_keine_kontaktseite(tmp_path, monkeypatch):
 
 
 def _skripte(html):
-    return re.findall(r"<script>(.*?)</script>", html, re.S)
+    # Gross/klein, Attribute und "</script >" mit erfasst: so faellt auch ein
+    # anders geschriebenes Skript auf, und CodeQL meldet kein schwaches
+    # HTML-Muster mehr (py/bad-tag-filter, PR 58, 30.10.2026).
+    return re.findall(r"(?is)<script[^>]*>(.*?)</script[^>]*>", html)
 
 
 def _csp(html):

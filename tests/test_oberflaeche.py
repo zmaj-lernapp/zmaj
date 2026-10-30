@@ -79,7 +79,10 @@ def test_impressum_in_der_app(index_html, sprachcodes):
     assert html.count(imp) == 1 and html.index(agb) < html.index(ds) < html.index(imp)
     # Direkt darunter im selben Abschnitt, nur ein Kommentar dazwischen.
     zwischen = html[html.index(ds) + len(ds):html.index(imp)]
-    assert re.fullmatch(r"\s*<!--.*?-->\s*", zwischen, re.S), zwischen
+    # Ohne regulaeren Ausdruck: CodeQL hielt das Muster fuer einen
+    # HTML-Filter (py/bad-tag-filter, PR 58, 30.10.2026).
+    rest = zwischen.strip()
+    assert rest.startswith("<!--") and rest.endswith("-->") and rest.count("-->") == 1, zwischen
     assert html.count('<summary id="anmImpKopf"></summary><div class="inner legal" id="anmImp"></div>') == 1
     assert "$('anmImp').innerHTML = t('set.impressum_text', {anbieter: t('set.anbieter')});" in html
     for code in sprachcodes:
