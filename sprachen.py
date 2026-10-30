@@ -162,8 +162,11 @@ TEXTE = {
 # ---- Kopfzeile und Allgemeines -------------------------------------------
 "app.titel": "Zmaj · Bosnisch lernen",
 "app.tag": "Bosnisch lernen",
-"app.fuss": "Zmaj v1.0 · Einstellungen über {einstellungen} oben rechts",
-"app.ueber_kurz": "Zmaj Version 1.0 · Bosnisch lernen mit Wörtern, Grammatik und Geschichten.",
+# {version} statt einer festen "1.0" (30.10.2026): t() in index.html setzt
+# APP_VERSION ein, und app_bauen.py schreibt dort beim Bauen versionName aus
+# build.gradle der Huelle hinein. In allen acht Sprachen gleich.
+"app.fuss": "Zmaj v{version} · Einstellungen über {einstellungen} oben rechts",
+"app.ueber_kurz": "Zmaj Version {version} · Bosnisch lernen mit Wörtern, Grammatik und Geschichten.",
 "btn.einstellungen": "Einstellungen",
 "btn.zurueck": "← Zurück",
 "btn.zurueck_pfad": "← Lernpfad",
@@ -815,8 +818,8 @@ TEXTE = {
 "en": {
 "app.titel": "Zmaj · Learn Bosnian",
 "app.tag": "Learn Bosnian",
-"app.fuss": "Zmaj v1.0 · Settings: tap {einstellungen} at the top right",
-"app.ueber_kurz": "Zmaj Version 1.0 · Learn Bosnian with words, grammar and stories.",
+"app.fuss": "Zmaj v{version} · Settings: tap {einstellungen} at the top right",
+"app.ueber_kurz": "Zmaj Version {version} · Learn Bosnian with words, grammar and stories.",
 "btn.einstellungen": "Settings",
 "btn.zurueck": "← Back",
 "btn.zurueck_pfad": "← Learning path",
@@ -1435,8 +1438,8 @@ TEXTE = {
 "tr": {
 "app.titel": "Zmaj · Boşnakça öğren",
 "app.tag": "Boşnakça öğren",
-"app.fuss": "Zmaj v1.0 · Ayarlar sağ üstteki {einstellungen} düğmesinde",
-"app.ueber_kurz": "Zmaj Sürüm 1.0 · Kelimeler, dil bilgisi ve hikâyelerle Boşnakça öğren.",
+"app.fuss": "Zmaj v{version} · Ayarlar sağ üstteki {einstellungen} düğmesinde",
+"app.ueber_kurz": "Zmaj Sürüm {version} · Kelimeler, dil bilgisi ve hikâyelerle Boşnakça öğren.",
 "btn.einstellungen": "Ayarlar",
 "btn.zurueck": "← Geri",
 "btn.zurueck_pfad": "← Öğrenme yolu",
@@ -2053,8 +2056,8 @@ TEXTE = {
 "sv": {
 "app.titel": "Zmaj · Lär dig bosniska",
 "app.tag": "Lär dig bosniska",
-"app.fuss": "Zmaj v1.0 · Inställningar via {einstellungen} uppe till höger",
-"app.ueber_kurz": "Zmaj Version 1.0 · Lär dig bosniska med ord, grammatik och berättelser.",
+"app.fuss": "Zmaj v{version} · Inställningar via {einstellungen} uppe till höger",
+"app.ueber_kurz": "Zmaj Version {version} · Lär dig bosniska med ord, grammatik och berättelser.",
 "btn.einstellungen": "Inställningar",
 "btn.zurueck": "← Tillbaka",
 "btn.zurueck_pfad": "← Lärstigen",
@@ -2671,8 +2674,8 @@ TEXTE = {
 "nl": {
     "app.titel": "Zmaj · Bosnisch leren",
     "app.tag": "Bosnisch leren",
-    "app.fuss": "Zmaj v1.0 · Instellingen via {einstellungen} rechtsboven",
-    "app.ueber_kurz": "Zmaj versie 1.0 · Bosnisch leren met woorden, grammatica en verhalen.",
+    "app.fuss": "Zmaj v{version} · Instellingen via {einstellungen} rechtsboven",
+    "app.ueber_kurz": "Zmaj versie {version} · Bosnisch leren met woorden, grammatica en verhalen.",
     "btn.einstellungen": "Instellingen",
     "btn.zurueck": "← Terug",
     "btn.zurueck_pfad": "← Leerpad",
@@ -3287,8 +3290,8 @@ TEXTE = {
 "nb": {
     "app.titel": "Zmaj · Lær bosnisk",
     "app.tag": "Lær bosnisk",
-    "app.fuss": "Zmaj v1.0 · Innstillinger via {einstellungen} øverst til høyre",
-    "app.ueber_kurz": "Zmaj versjon 1.0 · Lær bosnisk med ord, grammatikk og fortellinger.",
+    "app.fuss": "Zmaj v{version} · Innstillinger via {einstellungen} øverst til høyre",
+    "app.ueber_kurz": "Zmaj versjon {version} · Lær bosnisk med ord, grammatikk og fortellinger.",
     "btn.einstellungen": "Innstillinger",
     "btn.zurueck": "← Tilbake",
     "btn.zurueck_pfad": "← Læringsløypa",
@@ -3903,9 +3906,9 @@ TEXTE = {
 "da": {
     "app.titel": "Zmaj · Lær bosnisk",
     "app.tag": "Lær bosnisk",
-    "app.fuss": "Zmaj v1.0 · Indstillinger via {einstellungen} øverst til højre",
+    "app.fuss": "Zmaj v{version} · Indstillinger via {einstellungen} øverst til højre",
     "app.ueber_kurz":
-        "Zmaj Version 1.0 · Lær bosnisk med ord, grammatik og historier.",
+        "Zmaj Version {version} · Lær bosnisk med ord, grammatik og historier.",
     "btn.einstellungen": "Indstillinger",
     "btn.zurueck": "← Tilbage",
     "btn.zurueck_pfad": "← Læringssporet",
@@ -4520,8 +4523,8 @@ TEXTE = {
 "fr": {
     "app.titel": "Zmaj · Apprendre le bosnien",
     "app.tag": "Apprendre le bosnien",
-    "app.fuss": "Zmaj v1.0 · Paramètres via {einstellungen} en haut à droite",
-    "app.ueber_kurz": "Zmaj version 1.0 · Apprendre le bosnien avec du vocabulaire, de la grammaire et des histoires.",
+    "app.fuss": "Zmaj v{version} · Paramètres via {einstellungen} en haut à droite",
+    "app.ueber_kurz": "Zmaj version {version} · Apprendre le bosnien avec du vocabulaire, de la grammaire et des histoires.",
     "btn.einstellungen": "Réglages",
     "btn.zurueck": "← Retour",
     "btn.zurueck_pfad": "← Parcours",

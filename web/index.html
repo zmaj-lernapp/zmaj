@@ -3242,6 +3242,17 @@ try{ SPRACHE = localStorage.getItem('zmaj_sprache') || (navigator.language||'de'
    und manche Browser sagen "no", Nynorsk-Einstellungen "nn". Ohne das
    startete die App dort auf Englisch. 12.10.2026 */
 if(SPRACHE === 'no' || SPRACHE === 'nn') SPRACHE = 'nb';
+/* Die Versionsnummer der App (30.10.2026, Ajdin: "ja mach so"). Bis v108
+   stand "1.0" fest in sprachen.py, in app.fuss und app.ueber_kurz aller
+   acht Sprachen - und blieb dort, waehrend nur der versionCode stieg.
+   Jetzt steht dort {version}, und t() setzt diesen Wert ein.
+   Die Nummer selbst steht nur an einer Stelle: versionName in
+   app/build.gradle der Android-Huelle. app_bauen.py (version_einsetzen)
+   ueberschreibt die Zeile darunter beim Bauen in der KOPIE www/index.html
+   damit, in der Test-App mit "-test". Hier steht nur der Rueckfallwert
+   fuer die Web-Demo, start.py und die Tests. Die Zeile muss genau so,
+   am Zeilenanfang und genau einmal dastehen, sonst bricht der Bau ab. */
+const APP_VERSION = '1.1';
 const FALLBACK = {   // nur nötig, wenn der Server gar nicht antwortet
   /* Updates aus Google Play, zweisprachig wie err.server: gerade eine
      Fassung, deren Inhalte nicht laden, braucht vielleicht das Pflicht-
@@ -3268,6 +3279,11 @@ function t(key, vars){
   let s = T[key] !== undefined ? T[key] : FALLBACK[key];
   if(s === undefined) return key;
   if(s.indexOf('|') >= 0) s = s.split('|')[0];
+  /* {version} kommt immer aus APP_VERSION (30.10.2026), ohne dass ein
+     Aufrufer es mitgeben muss - so gilt es fuer die data-t-Elemente aus
+     applyTexts() (Fuss, Versionszeile) wie fuer jeden t()-Aufruf. Nur wenn
+     der Platzhalter dasteht: alle anderen Texte laufen wie vorher. */
+  if(s.indexOf('{version}') >= 0) vars = Object.assign({version: APP_VERSION}, vars);
   return fuelle(s, vars);
 }
 /* Franzoesisch stellt das Substantiv nach null in die Einzahl ("0 nouveau
