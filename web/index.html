@@ -46,9 +46,15 @@
          90 %.
        - quer nur so weit, dass 740 Punkte Hoehe bleiben - so passt eine
          Lektion ohne Scrollen wie auf dem Handy (S21: 726). 10 Zoll quer:
-         1,08, die Spalte steht in der Mitte.
-       - hoechstens 1,4 (iPad Pro 12,9 Zoll); dort wird dafuer die Spalte
-         breiter, bis 640 Punkte.
+         1,08. Die Spalte ist quer immer 640 Punkte breit und steht in der
+         Mitte: 7 Zoll quer (960 x 600, Massstab 1) 640 von 960, 10 Zoll
+         quer 640 x 1,08 = 692 von 1280 Bildschirmpunkten.
+       - hoechstens 1,4 (iPad Pro 12,9 Zoll).
+       Die Spalte selbst (--spalte) ist 88 % der Breite in Punkten der
+       vergroesserten Seite, mindestens 540 wie am Handy, hoechstens 640.
+       Hochkant sind das meist 540; breiter wird sie nur, wo der Massstab
+       durch Hoehe oder Obergrenze kleiner bleibt (iPad 768 x 1024: 554,
+       iPad Pro 12,9 Zoll: 640).
      Klasse "gross" fuer alles ab 600 Punkten, dazu "hoch", wenn mindestens
      840 Punkte Hoehe da sind: erst dann fuellt die Lektion den Bildschirm
      mit Drache, Aufgabe und Antworten verteilt (siehe Stil unter
@@ -14731,8 +14737,15 @@ function weiterBeiTipp(feldId, weiter){
      zwischen Aufgabe und Antworten gehoert zum Kasten, nicht zum Feld. Ein
      Tipp genau dorthin zaehlt wie einer ins Feld. Nur auf den Kasten
      selbst - Stern und Herz in der Kopfzeile bleiben, was sie sind. Am
-     Handy gibt es das nicht. */
-  const karte = document.documentElement.classList.contains('hoch') ? feld.closest('.card') : null;
+     Handy gibt es das nicht.
+     Nur fuer die drei Felder, die dort wirklich aufgeloest sind. Bei einer
+     Geschichte ist #rQ ein normales Feld, und sein Kasten ist der ganze
+     Geschichtenkasten mit dem Text: ein Tipp auf dessen Rand blaetterte
+     schon zur naechsten Frage, obwohl der Horcher dort bewusst nur am
+     Fragenfeld sitzt (showStoryQ). Gefunden in der Pruefung am 30.10.2026. */
+  const aufgeloest = (feldId === 'lBody' || feldId === 'tBody' || feldId === 'eBody') &&
+    document.documentElement.classList.contains('hoch');
+  const karte = aufgeloest ? feld.closest('.card') : null;
   const frei = e => { if(e.target === karte) los(e); };
   const ab = ()=>{
     feld.removeEventListener('click', los, true);
