@@ -59,10 +59,15 @@ A change is done when `pytest`, `ruff check .` and `reuse lint` pass and
    `<br>` must appear in every language exactly as in German. Tests check this.
 6. **No network at runtime.** The app loads no fonts, scripts or analytics from
    other servers. Do not add CDNs. Third-party files go into `web/` with an
-   entry in `web/LIZENZEN.txt` and `REUSE.toml`. The optional cloud backup
-   (`CLOUD_AN` in `web/index.html`, switched off; see `FIREBASE_EINRICHTEN.md`)
-   is the one planned exception: it talks only to Firebase, only after the
-   learner signs in, and never with keys or project IDs from this repository.
+   entry in `web/LIZENZEN.txt` and `REUSE.toml`. The account and cloud backup
+   (`CLOUD_AN` in `web/index.html`; see `FIREBASE_EINRICHTEN.md`) is the one
+   exception. Since v109 it is mandatory in the Android app, but it is
+   switched on only in the build: `app_bauen.py` sets `CLOUD_AN` to `true` in
+   the copy `www/index.html` when the private shell has `cloud_zugang.json`.
+   In the source it stays `false`, and then the app behaves exactly as before.
+   It talks only to Firebase Auth and Cloud Firestore, for signing in and the
+   backup, and never with keys, client IDs or project IDs from this
+   repository.
 7. **Patch scripts are all-or-nothing.** The `*_richten.py` pattern: dry run by
    default, `--schreiben` to write, abort without changes if an anchor is not
    found exactly once. New ones build on `richten.py`, which implements this

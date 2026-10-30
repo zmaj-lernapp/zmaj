@@ -24,11 +24,42 @@ import pytest
 # schlafen gehen). Jahreszeiten (wetter) und Tageszeiten (zeit) sind nur
 # ein Teil ihres Levels: dort ordnet "reihe" nur sie, der Rest bleibt
 # gemischt (TEIL_REIHEN).
-GEORDNET = {"zahlen", "wochentage", "monate", "mengen", "konjugation", "zukunft", "routine"}
+# Am 27.10.2026 von Ajdin auf Rückfrage zu diesem Wunsch ausgewählt:
+# vergangenheit (bio sam, bio si, bio je, bila je, bili smo), modal (je
+# Verb der Infinitiv, dann die Personen) und adjektive (je Adjektiv groß,
+# größer, am größten) ganz; in basics als Teil-Reihe die Grüße nach
+# Tageszeit, denn der Rest von basics hat keine Reihe.
+GEORDNET = {"zahlen", "wochentage", "monate", "mengen", "konjugation", "zukunft", "routine",
+            "vergangenheit", "modal", "adjektive"}
 TEIL_REIHEN = {"zeit": ["jutro", "podne", "večer", "noć"],
-               "wetter": ["proljeće", "ljeto", "jesen", "zima"]}
+               "wetter": ["proljeće", "ljeto", "jesen", "zima"],
+               "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"]}
 # Personenfolge, am deutschen Pronomen abgelesen: ja, ti, on/ona, mi, vi, oni
 PERSON = {"ich": 0, "du": 1, "er": 2, "wir": 3, "ihr": 4, "sie": 5}
+# vergangenheit: biti in der Folge ja, ti, on, ona, mi - am deutschen
+# Pronomen abgelesen ist "sie war" hier ona, nicht oni
+VERGANGENHEIT_PERSON = {"ich": 0, "du": 1, "er": 2, "sie": 3, "wir": 4}
+VERGANGENHEIT_BITI = ["bio sam / bila sam", "bio si / bila si", "bio je", "bila je", "bili smo"]
+# modal: je Verb der Infinitiv (falls im Level), dann die Personen
+MODAL_VERBEN = [["morati", "moram", "moraš", "moramo"],
+                ["može", "možemo"],
+                ["hoćeš", "hoćemo"],
+                ["smjeti", "smijem"]]
+# Im Rest von modal steht das einzelne Wort vor seinem Satz (27.10.2026)
+MODAL_WORT_VOR_SATZ = [("pitati", "Smijem li pitati?"), ("čekati", "Moramo čekati"),
+                       ("nešto", "Želim nešto jesti"), ("plivati", "Ne znam plivati")]
+# adjektive: je Adjektiv Grundform (m/w), Komparativ, Superlativ - soweit
+# das Level die Formen hat
+ADJEKTIV_REIHEN = [["velik / velika", "veći", "najveći"],
+                   ["mali / mala", "manji"],
+                   ["dobar / dobra", "bolji", "najbolji"],
+                   ["loš / loša", "gori"],
+                   ["lijep / lijepa", "ljepši"],
+                   ["star / stara", "stariji"],
+                   ["mlad / mlada", "mlađi"],
+                   ["skup / skupa / skupo", "skuplji"]]
+ADJEKTIV_REST = ["nego / od", "jako", "previše", "To je bolje nego to"]
+GRUESSE_DE = ["Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht"]
 # Der Tag in Folge; die Ich-Sätze stehen jeweils hinter ihrem Verb
 TAGESABLAUF = ["ustajati", "tuširati se", "prati zube", "doručkovati", "ići na posao",
                "ručati", "doći kući", "kuhati", "gledati televiziju", "ići spavati"]
@@ -150,9 +181,78 @@ def test_tagesablauf_vom_aufstehen_bis_zum_schlafen(grunddaten):
     assert max(stellen) < bs.index("ići u kupovinu") < bs.index("rano")
 
 
+def test_vergangenheit_je_verb_in_personenfolge(grunddaten):
+    """bio sam, bio si, bio je, bila je, bili smo; dann die Verben, von
+    denen das Level nur die Ich-Form hat (imao sam, radio sam ...); danach
+    Zeitangaben und Sätze. Inhalt unverändert, nur geordnet (27.10.2026)."""
+    woerter = _level(grunddaten, "vergangenheit")["words"]
+    bs = [w["bs"] for w in woerter]
+    assert bs[:5] == VERGANGENHEIT_BITI
+    raenge = [VERGANGENHEIT_PERSON[w["de"].split()[0]] for w in woerter[:5]]
+    assert raenge == [0, 1, 2, 3, 4]
+    ich = [i for i, w in enumerate(woerter) if i >= 5 and w["de"].startswith("ich ")]
+    assert len(ich) >= 8 and ich == list(range(5, 5 + len(ich))), ich
+    assert all(" sam / " in bs[i] for i in ich), [bs[i] for i in ich]
+    rest = woerter[5 + len(ich):]
+    assert not [w for w in rest if w["de"].split()[0] in VERGANGENHEIT_PERSON], rest
+
+
+def test_modal_je_verb_in_personenfolge(grunddaten):
+    """morati, moram, moraš, moramo, može, možemo, hoćeš, hoćemo, smjeti,
+    smijem: je Verb der Infinitiv vorn, dann steigt die Person. Danach der
+    Rest; darin kommt das einzelne Wort vor dem Satz, der es braucht."""
+    woerter = _level(grunddaten, "modal")["words"]
+    bs = [w["bs"] for w in woerter]
+    vorn = [x for verb in MODAL_VERBEN for x in verb]
+    assert bs[:len(vorn)] == vorn
+    for verb in MODAL_VERBEN:
+        # -1: kein Pronomen, also der Infinitiv - nur vorn erlaubt
+        raenge = [PERSON.get(woerter[bs.index(x)]["de"].split()[0], -1) for x in verb]
+        assert raenge == sorted(set(raenge)) and -1 not in raenge[1:], (verb, raenge)
+    for wort, satz in MODAL_WORT_VOR_SATZ:
+        assert len(vorn) <= bs.index(wort) < bs.index(satz), (wort, satz)
+
+
+def test_adjektive_je_adjektiv_gesteigert(grunddaten):
+    """velik, veći, najveći, mali, manji, dobar, bolji, najbolji ...: je
+    Adjektiv die Grundform, dann der Komparativ, dann der Superlativ, in
+    einem Stück. Was nicht gesteigert wird, steht danach."""
+    woerter = _level(grunddaten, "adjektive")["words"]
+    bs = [w["bs"] for w in woerter]
+    assert bs[:3] == ["velik / velika", "veći", "najveći"]
+    stellen = []
+    for reihe in ADJEKTIV_REIHEN:
+        i = bs.index(reihe[0])
+        assert bs[i:i + len(reihe)] == reihe, reihe
+        de = [woerter[i + k]["de"] for k in range(len(reihe))]
+        assert "(m/w" in de[0] and de[1].endswith("er"), de          # groß (m/w), größer
+        assert all(x.startswith("am ") for x in de[2:]), de           # am größten
+        stellen.append(i)
+    assert stellen == sorted(stellen)
+    letzte = max(bs.index(r[-1]) for r in ADJEKTIV_REIHEN)
+    assert all(bs.index(x) > letzte for x in ADJEKTIV_REST)
+    # Jeder Superlativ steht direkt hinter seinem Komparativ
+    for i, w in enumerate(woerter):
+        if w["de"].startswith("am "):
+            assert bs[i - 1] in [r[1] for r in ADJEKTIV_REIHEN], (bs[i - 1], bs[i])
+
+
+def test_gruesse_nach_tageszeit(grunddaten):
+    """Die Grüße stehen nur in basics; ihre Teil-Reihe geht vom Morgen bis
+    zur Nacht. Kein anderes Level hat sie als Wort, sonst kämen sie dort
+    ungeordnet (27.10.2026)."""
+    reihe = TEIL_REIHEN["basics"]
+    woerter = _level(grunddaten, "basics")["words"]
+    assert [next(w["de"] for w in woerter if w["bs"] == x) for x in reihe] == GRUESSE_DE
+    sonst = [(k["id"], w["bs"]) for k in grunddaten["kategorien"] if k["id"] != "basics"
+             for w in k["words"] if w["bs"] in reihe or w["de"] in GRUESSE_DE]
+    assert not sonst, sonst
+
+
 def test_teil_reihen(grunddaten):
-    """Nur zeit und wetter haben "reihe"; jedes Wort darin steht genau
-    einmal im Level, und "reihenfolge" fehlt dort (der Rest ist gemischt)."""
+    """Nur zeit, wetter und basics haben "reihe"; jedes Wort darin steht
+    genau einmal im Level, und "reihenfolge" fehlt dort (der Rest ist
+    gemischt)."""
     mit = {k["id"]: k["reihe"] for k in grunddaten["kategorien"] if "reihe" in k}
     assert mit == TEIL_REIHEN
     for kid, reihe in TEIL_REIHEN.items():
@@ -160,6 +260,10 @@ def test_teil_reihen(grunddaten):
         assert "reihenfolge" not in k
         bs = [w["bs"] for w in k["words"]]
         assert all(bs.count(x) == 1 for x in reihe), (kid, reihe)
+        # Auch die Liste steht in der Folge der Reihe: Anki, die Exporte und
+        # die Wortliste des Levels gehen nach ihr (Prüfer 27.10.2026)
+        stellen = [bs.index(x) for x in reihe]
+        assert stellen == sorted(stellen), (kid, stellen)
     import inhalt
     assert not [p for p in inhalt.pruefe_vokabeln(grunddaten) if "reihe" in p]
 

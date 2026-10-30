@@ -135,8 +135,11 @@ def sprachen_gerichtet(name, text):
 @pytest.mark.parametrize("name", OFFEN_SPRACHEN)
 def test_sprachen_passt_noch_oder_ist_schon_angewendet(name, sprachen_py):
     _, neu = sprachen_gerichtet(name, sprachen_py)
+    # Die Fassung von v108 ohne Konto (KONTO_PFLICHT, 28.10.2026) wiederholt
+    # den Werbe-Abschnitt wortgleich. Gezählt wird nur die geltende Fassung.
+    geltend = "\n".join(z for z in neu.split("\n") if '_ohne_konto": ' not in z)
     for spur in OFFEN_SPRACHEN[name][1]:
-        assert neu.count(spur) == 1, spur
+        assert geltend.count(spur) == 1, spur
     compile(neu, "sprachen.py", "exec")
 
 

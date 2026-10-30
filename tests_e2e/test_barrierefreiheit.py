@@ -30,7 +30,7 @@ import threading
 import time
 
 import pytest
-from conftest import Dateiserver
+from conftest import Dateiserver, Seite
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, WURZEL)
@@ -133,6 +133,45 @@ def test_keine_ernsten_verstoesse(seite_basis, browser, sprache, schema):
                 .violations.filter(v => v.impact === 'serious' || v.impact === 'critical')
                 .map(v => v.id + ' (' + v.impact + '): ' + v.nodes.map(n => n.target.join(' ')).join(', '))""")
             funde += ["%s/%s %s" % (sprache, name, v) for v in verstoesse]
+    finally:
+        kontext.close()
+    assert not funde, "\n".join(funde)
+
+
+@pytest.mark.parametrize("schema", ["light", "dark"])
+def test_konto_anlegen(browser, basis, cloud_html, heute_stand, schema):
+    """Das Anlegen-Formular der Pflicht-Anmeldung nach einem Tipp auf
+    "Konto anlegen", bei dem noch etwas fehlt (29.10.2026): Haken in Gruen,
+    Fehlendes in Rot, "nicht deine E-Mail" mit Kreuz, die rote Zeile
+    darunter. Das alles steht auf dem Seitengrund, nicht auf einer Karte -
+    mit --good-text/--bad-text waren es dort 3,4:1, und keine Ansicht oben
+    rief das Formular auf. Geprueft auf allen neun Sektionsgruenden, denn
+    die Anmeldeseite traegt die Farbe der Sektion, in der man gerade ist."""
+    from test_anmeldung import _gelernt, _starten
+    kontext = browser.new_context(viewport={"width": 384, "height": 854}, locale="de-DE",
+                                  color_scheme=schema, service_workers="block", reduced_motion="reduce")
+    seite = Seite(kontext.new_page(), basis)
+    funde = []
+    try:
+        _starten(seite, cloud_html, stand=_gelernt(heute_stand))
+        seite.page.click("#anmMail")
+        seite.page.click("#kontoWechsel")
+        seite.page.fill("#kontoMail", "ajdin.probe@probe.example")
+        seite.page.fill("#kontoPw", "ajdin.probe1")
+        seite.page.click("#kontoSenden")
+        # Alle drei Farben sind da, sonst prueft axe hier nichts.
+        assert seite.js("""() => { const k = document.getElementById('kontoRegeln');
+            return ['ok', 'fehlt', 'nein'].map(c => k.querySelectorAll('span.' + c).length > 0)
+              .concat(document.getElementById('kontoNote').classList.contains('no')); }""") == [True] * 4
+        seite.page.add_script_tag(path=AXE)
+        for sek in "123456789":
+            seite.js("(s) => { document.documentElement.dataset.sek = s; }", sek)
+            seite.page.wait_for_timeout(50)
+            verstoesse = seite.js("""async () => (await axe.run('#profileView', {resultTypes:['violations']}))
+                .violations.filter(v => v.impact === 'serious' || v.impact === 'critical')
+                .map(v => v.id + ' (' + v.impact + '): ' + v.nodes.map(n => n.target.join(' ')).join(', '))""")
+            funde += ["%s/sek%s %s" % (schema, sek, v) for v in verstoesse]
+        assert seite.fehler == []
     finally:
         kontext.close()
     assert not funde, "\n".join(funde)

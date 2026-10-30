@@ -7,6 +7,30 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Account (Android app, v109): after the first lesson – or the placement
+  test – the app asks you to sign in, with Google or with email and
+  password ("Forgot password?" included). Existing learners sign in once at
+  the next start; the progress on the phone is merged into the account, never
+  overwritten. You stay signed in across restarts and updates until you sign
+  out or delete the account. Without internet you just keep learning; the
+  sign-in comes when the connection is back, never in the middle of a lesson.
+  If Firebase or Google fails, "Keep learning for now" works the same way
+  until the next start. Progress is backed up at most once a day to Cloud
+  Firestore in Frankfurt. Signing out and deleting the account are on the
+  profile page; both reset the progress on the phone. Deleting first asks
+  for the password or the Google account, so cancelling deletes nothing.
+  Accounts can also be deleted by email
+  (`konto-loeschen.html`). Switching phones keeps you signed in (Android's
+  backup plus a restore key through the Credential Manager). The source keeps
+  `CLOUD_AN = false`: without the private `cloud_zugang.json`, the app and the
+  web demo behave exactly as before, and a release build (`app_bauen.py
+  --aab`) stops unless `--ohne-anmeldung` is given.
+- Typing exercises and cloze sentences: an answer one keystroke away from a
+  correct one (a letter wrong, missing, extra or two swapped; answers of four
+  letters or more) shows "Almost right!" and leaves the field open for one
+  more try, without costing a life. This includes a wrong ending ("nedjelji"
+  for "nedjelja") and another real word ("deset" for "devet"). One hint
+  per task; missing diacritics still count as correct straight away.
 - Cloze and tile sentences: in 36 sentences the number now changes from
   task to task ("Sada je sedam sati." – "It is 7 o'clock now."), only with
   the numbers a native speaker approved (`"zahl"` in `vokabeln.py`). The
@@ -66,6 +90,53 @@ are in the Play Store listing. Format:
   100); normal builds skip multiples of 100, and an unknown switch aborts the
   build before anything is copied.
 
+### Changed
+- Account (v109): a new password needs 8 characters with an uppercase and
+  a lowercase letter, a digit and a special character, and must not contain
+  the part of the email address before the @. A checklist under the field
+  ticks off each rule while typing (letters count only A–Z and a–z, as in
+  Firebase); the same rules can be enforced in Firebase's password policy.
+  The top bar (lives, coins, shop, profile, settings) stays in one row on
+  phones down to 360 px wide; the profile button shows only its symbol, and
+  the round buttons and the heart take taps on a 48 px tall area. The "You
+  are signed in." message is gone. Wherever the app
+  says a mail is on its way (confirming a new account, resetting the
+  password), one short line says to look in the spam folder too.
+- Settings → About shows the legal notice (Impressum) in all eight
+  languages, the same text as on the website, readable offline; the
+  sign-in screen has it too. Links in the legal texts open in the
+  device's browser.
+- Privacy policy (app and web demo, all eight languages, dated
+  28.10.2026): a paragraph on the website zmaj-lernapp.github.io, which
+  GitHub Pages hosts and where GitHub logs visitors' IP addresses. The
+  contact form paragraph refers to it instead of repeating it.
+- Cloud backup: up to 900,000 bytes per learner instead of 400,000
+  characters (`firestore.rules` and `CLOUD_GROESSE_MAX`), measured in
+  UTF-8 so the document stays below Firestore's 1 MiB. Merging, the
+  backup file and the device storage keep new top-level fields that a
+  newer app version adds to the progress, so this version does not drop
+  them: the cloud's copy wins, a field the newer version removed stays
+  removed, and when space runs short single fields stay out of the
+  cloud, never all of them. A newer version keeps its own data in such
+  fields only, not inside existing ones like the mistakes box or stars.
+- Privacy policy and terms of use in all eight languages describe the
+  account: what Firebase stores and where, how long, and how to delete it.
+  The terms changed materially (account required), so existing users see the
+  "terms changed" note once.
+- The cloud backup no longer stores a device identifier (`rev` is a random
+  value per write).
+- Version number: the footer and Settings → About no longer show a fixed
+  "v1.0". `app.fuss` and `app.ueber_kurz` hold `{version}` in all eight
+  languages, and `t()` fills it from `APP_VERSION` in `web/index.html`. The
+  number lives only in `versionName` in the private shell's
+  `android/app/build.gradle` and is always the next store version (v109 is
+  1.1, then 1.2, 1.3 … 1.9, 1.10). `app_bauen.py` writes it into the copy
+  `www/index.html` (debug and `--nur-abgleich` with "-test") and, only after
+  a finished `--aab`, raises it for the next release; a debug build,
+  `--nur-abgleich` or a failed build leave it alone. A `versionName` that is
+  not `major.minor` stops the build before anything is written. In the
+  source, `APP_VERSION` is only a fallback for the web demo and the tests.
+
 ### Security
 - The hidden developer switch no longer compares against a word in the
   source. `web/index.html` holds a placeholder; `app_bauen.py` inserts a
@@ -81,13 +152,20 @@ are in the Play Store listing. Format:
   subscription payment failed, shown when the app comes to the foreground.
 
 ### Changed
-- Lessons in the levels Numbers, Days of the week, Months and Numbers in
-  a sentence introduce their new words in order (nula, jedan, dva …;
+- Lessons in the levels Numbers, Days of the week, Months, Numbers in a
+  sentence, the verb levels (Conjugating verbs, Past tense, Future &
+  plans, "Can, must, want", Daily routine) and Comparing & describing
+  introduce their new words in order (jedan to deset, then nula;
   ponedjeljak to nedjelja; januar to decembar; jedan brat, dva brata,
-  pet braće …) instead of at random (`"reihenfolge": True` in
-  `vokabeln.py`). Learners already part-way through such a level get the
-  words they have not learned yet in the same order; exercises within a
-  lesson, reviews, level tests and the placement test stay shuffled.
+  pet braće …; ja sam, ti si … oni su; bio sam, bio si, bio je …;
+  morati, moram, moraš …; velik, veći, najveći; from getting up to going
+  to bed) instead of at random (`"reihenfolge": True` in `vokabeln.py`).
+  In Basics, Time and Weather & nature only a short series keeps its
+  order (the greetings from Dobro jutro to Laku noć, the times of day,
+  the seasons; `"reihe"`), the rest stays random. Learners already
+  part-way through such a level get the words they have not learned yet
+  in the same order; exercises within a lesson, reviews, level tests and
+  the placement test stay shuffled.
 - `app_bauen.py` converts the audio in the app bundle to Ogg/Opus at
   24 kbit/s (`ton_verkleinern()`, needs ffmpeg; cached in the shell): the
   audio inside the package shrinks from 26.9 MB to 10.2 MB. `web/audio`

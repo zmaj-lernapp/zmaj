@@ -22,6 +22,12 @@ Schalter gemeinsam umgelegt, so wie sprachen.py es für die App vorsieht:
 Der zweite Schritt folgt dem Muster der *_richten.py-Skripte: Der gesuchte
 Text muss genau einmal vorkommen, sonst bricht das Skript ab. An web/ selbst
 wird nichts geändert, nur an der Kopie.
+
+KEIN KONTO (seit v109, 28.10.2026): In der Demo steht CLOUD_AN in
+index.html auf false, wie in der Quelle. Deshalb legt ohne_werbung() auch
+KONTO_PFLICHT in sprachen.py um: Nutzungsbedingungen und Datenschutz-
+erklärung kommen in der Fassung von v108, ohne Pflichtkonto und ohne
+Firebase. Sonst stünde in der Demo „Zum Lernen brauchst du ein Konto“.
 """
 import argparse
 import io
@@ -55,14 +61,16 @@ def werbung_aus_in_html(ziel):
 
 
 def ohne_werbung(code, daten):
-    """Für inhalt_bauen.schreiben(): Texte ohne Werbehinweise."""
+    """Für inhalt_bauen.schreiben(): Texte ohne Werbehinweise und ohne Konto."""
     sprachen_neu = sys.modules["sprachen"]   # lade_daten() hat sprachen.py neu geladen ...
-    vorher = sprachen_neu.WERBUNG_LAEUFT
+    vorher = sprachen_neu.WERBUNG_LAEUFT, sprachen_neu.KONTO_PFLICHT
     sprachen_neu.WERBUNG_LAEUFT = False      # ... deshalb erst danach umlegen
+    sprachen_neu.KONTO_PFLICHT = False       # Rechtstexte von v108, siehe oben
     try:
         daten["texte"] = sprachen_neu.texte(code)
     finally:
-        sprachen_neu.WERBUNG_LAEUFT = vorher  # wer sprachen danach liest, sieht die App
+        # wer sprachen danach liest, sieht die App
+        sprachen_neu.WERBUNG_LAEUFT, sprachen_neu.KONTO_PFLICHT = vorher
     daten["werbung_laeuft"] = False
 
 

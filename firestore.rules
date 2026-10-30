@@ -1,41 +1,104 @@
 // Sicherheitsregeln fuer die Cloud-Sicherung von Zmaj (Cloud Firestore).
 //
-// Vorbereitet am 19.10.2026, eingeschaltet wird die Cloud erst nach dem
-// Produktionsstart (CLOUD_AN in web/index.html). Einspielen: Firebase
+// Vorbereitet am 19.10.2026, seit v109 (28.10.2026) gehoert sie zur
+// Pflicht-Anmeldung (CLOUD_AN in web/index.html, eingeschaltet nur im Bau
+// durch app_bauen.py). Einspielen: Firebase
 // Console -> Firestore Database -> Regeln, Inhalt dieser Datei einfuegen,
 // "Veroeffentlichen". Schritt fuer Schritt in FIREBASE_EINRICHTEN.md.
 //
-// Es gibt genau eine Sorte Dokument: users/{uid}, eins je Konto. Darin zwei
+// Die App hat genau eine Sorte Dokument: users/{uid}, eins je Konto. Darin zwei
 // Textfelder, die die App schreibt (cloudFirestore in index.html):
 //   daten  der Lernstand, dasselbe JSON wie in der Sicherungsdatei
 //   rev    eine kurze Kennung des Stands, damit ein zweites Geraet merkt,
-//          dass jemand anderes geschrieben hat
+//          dass jemand anderes geschrieben hat. Seit 28.10.2026 ein
+//          Zufallswert je Schreiben plus Zeit, ohne Geraetekennung
+//          (cloudRev in index.html) - in der Cloud liegt keine Geraete-ID.
+// Die E-Mail-Adresse steht nicht hier, nur bei Firebase Authentication.
 // Jeder sieht und schreibt nur sein eigenes Dokument. Alles andere - jede
 // Sammlung, jedes Dokument, jede Abfrage ueber mehrere Nutzer - ist
 // verboten, weil keine Regel es erlaubt.
 //
+// Seit dem 28.10.2026 gibt es eine zweite Sorte: nachrichten/{uid}, das
+// Kontaktformular auf zmaj-lernapp.github.io/kontakt.html (seite_bauen.py,
+// Weg A). Die Seite meldet sich anonym an, legt genau ein Dokument unter
+// ihrer eigenen uid an (text, antwort, sprache, zeit) und loescht die
+// Anmeldung gleich wieder. Wer schreibt, darf nichts lesen, aendern oder
+// loeschen - auch nicht die eigene Nachricht. Lesen und loeschen darf nur
+// das Melder-Konto, mit dem kontakt_weiterleitung.gs (Apps Script) die
+// Nachrichten alle 5 Minuten an das Postfach schickt.
+// MELDER_UID ist ein Platzhalter: Vor dem Veroeffentlichen in der Konsole
+// steht dort die UID des Melders (Authentication -> Nutzer). Bleibt er
+// stehen, kann niemand die Nachrichten lesen - sie warten dann nur. Das gilt
+// bei JEDEM Veroeffentlichen, auch bei einer spaeteren Aenderung der Regeln:
+// Wer diese Datei unveraendert einfuegt, sperrt den Melder aus (Firestore
+// get: 403), und die Weiterleitung steht still (Pruefbericht 28.10.2026).
+//
+// Anonyme Anmeldungen gibt es nur fuer das Formular. users/{uid} ist fuer
+// sie gesperrt, sonst haette das Einschalten von "Anonym" jedem Besucher
+// ein Dokument mit 900 000 Zeichen geschenkt.
+//
+// Die Grenzen (5000 Zeichen Nachricht, 254 Zeichen Adresse) stehen auch auf
+// der Seite (seite_bauen.py, NACHRICHT_MAX und ADRESSE_MAX), die Sprachen
+// in sprachen.py.
+//
 // Die Groessengrenze steht auch in der App (CLOUD_GROESSE_MAX). Ein Stand
 // mit allen Woertern, vollem Topf und allen Sternen hat rund 150 000
-// Zeichen; 400 000 lassen Luft fuer Jahre und bleiben weit unter der
-// Grenze von Firestore (1 MiB je Dokument).
+// Zeichen. Seit dem 28.10.2026 900 000 statt 400 000: Luft fuer die
+// zeitgesteuerte Wiederholung ab v110, die je Wort Daten mitbringt. Die
+// Grenze von Firestore ist 1 MiB (1 048 576 Bytes) je Dokument. Die App
+// misst den Text in UTF-8-Bytes und schreibt hoechstens 900 000; ein
+// Zeichen ist mindestens ein Byte, also haelt sie auch diese Regel, und
+// mit rev und Feldnamen bleibt das Dokument unter 1 MiB.
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /users/{uid} {
       function istEigenes() {
-        return request.auth != null && request.auth.uid == uid;
+        return request.auth != null && request.auth.uid == uid
+          && request.auth.token.firebase.sign_in_provider != 'anonymous';
       }
       function gueltig() {
         let d = request.resource.data;
         return d.keys().hasAll(['daten', 'rev'])
           && d.keys().hasOnly(['daten', 'rev'])
-          && d.daten is string && d.daten.size() <= 400000
+          && d.daten is string && d.daten.size() <= 900000
           && d.rev is string && d.rev.size() <= 100;
       }
       allow get: if istEigenes();
       allow create, update: if istEigenes() && gueltig();
       // Loeschen gehoert zum Konto-Loeschen (Google Play und DSGVO Art. 17).
       allow delete: if istEigenes();
+    }
+    match /nachrichten/{uid} {
+      function istAbsender() {
+        return request.auth != null && request.auth.uid == uid
+          && request.auth.token.firebase.sign_in_provider == 'anonymous';
+      }
+      function istMelder() {
+        return request.auth != null && request.auth.uid == 'MELDER_UID'
+          && request.auth.token.firebase.sign_in_provider == 'password';
+      }
+      // antwort: druckbares ASCII wie bei type="email" im Browser, die Domain
+      // mit Punkt, keine Leer- oder Steuerzeichen. Die Adresse landet bei
+      // "Antworten an" einer Mail (kontakt_weiterleitung.gs). Bis zum
+      // Pruefbericht vom 28.10.2026 liess die Regel jedes Zeichen ausser @ und
+      // Leerzeichen durch, auch Steuerzeichen. Was die Seite durchlaesst,
+      // laesst auch diese Regel durch (tests/test_kontakt.py).
+      function gueltig() {
+        let d = request.resource.data;
+        return d.keys().hasAll(['text', 'antwort', 'sprache', 'zeit'])
+          && d.keys().hasOnly(['text', 'antwort', 'sprache', 'zeit'])
+          && d.text is string && d.text.size() > 0 && d.text.size() <= 5000
+          && d.antwort is string && d.antwort.size() <= 254
+          && d.antwort.matches("[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?([.][A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+")
+          && d.sprache in ['de', 'en', 'tr', 'sv', 'nl', 'nb', 'da', 'fr']
+          && d.zeit == request.time;
+      }
+      // Nur anlegen, einmal je anonymer Anmeldung. zeit setzt der Server
+      // (REQUEST_TIME), sonst koennte jemand das Datum faelschen.
+      allow create: if istAbsender() && gueltig();
+      // Lesen und loeschen nur fuer die Weiterleitung. update gibt es nicht.
+      allow get, list, delete: if istMelder();
     }
   }
 }

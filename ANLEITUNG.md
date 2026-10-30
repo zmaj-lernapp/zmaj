@@ -1,8 +1,9 @@
 # Zmaj – Bosnisch lernen
 
 Eine Lern-App (Deutsch → Bosnisch). Sie läuft als Android-App auf dem Handy
-und im Browser am PC. Ohne Server, ohne Konto: Der Lernstand bleibt auf dem
-Gerät. Die Oberfläche steckt ganz in `web/index.html`; der Inhalt wird aus
+und im Browser am PC. Der Lernstand bleibt auf dem
+Gerät; seit v109 sichert ihn die Android-App in einem Pflicht-Konto bei
+Firebase (siehe „Konto (seit v109)“). Die Oberfläche steckt ganz in `web/index.html`; der Inhalt wird aus
 den Python-Dateien daneben erzeugt.
 
 | | |
@@ -211,7 +212,37 @@ keine zusätzliche Datei, rund 3 KB. Sollte das Skript gar nicht erst
 anlaufen, blendet sich der Vorspann nach zehn Sekunden von selbst weg – dann
 steht niemand davor fest.
 
+## Konto (seit v109)
+
+Ajdin am 26./27.10.2026: Die Anmeldung kommt mit v109 und ist **Pflicht**.
+Alles Technische steht in `FIREBASE_EINRICHTEN.md` und im Abschnitt
+CLOUD-SICHERUNG UND ANMELDUNG in `web/index.html`, hier nur der Ablauf:
+
+- **Neue Nutzer** machen die erste Lektion (oder den Einstufungstest) ohne
+  Konto. Auf dem Ergebnis steht dann nur „Weiter“, und das führt zur
+  Anmeldung. Ohne sie geht es nicht weiter – auch nicht nach einem Neustart.
+- **Bestehende Nutzer** sehen die Anmeldung beim nächsten Start. Ihr
+  Lernstand bleibt und wird mit dem im Konto zusammengeführt.
+- **Anmelden:** mit Google (Androids Kontoauswahl über das Plugin
+  `ZmajAnmeldung` der Hülle) oder mit E-Mail und Passwort, dazu „Passwort
+  vergessen“. Nach dem Anlegen geht einmal eine Bestätigungsmail raus,
+  bestätigen muss niemand. Passwort: mindestens 8 Zeichen.
+- **Einmal angemeldet, immer angemeldet:** Der Erneuerungsschlüssel liegt im
+  Gerätespeicher (`zmaj_cloud`) und als Kopie in der Hülle. Nur „Abmelden“,
+  „Konto löschen“ oder ein Konto, das Firebase nicht mehr kennt, beenden das.
+- **Ohne Internet** wird einfach gelernt; die Anmeldung kommt, sobald wieder
+  Netz da ist – nie mitten in einer Lektion.
+- **Abmelden** und **Konto löschen** stehen auf der Profilseite (Knopf oben
+  rechts). Beides setzt den Lernstand auf dem Gerät auf den Anfang; beim
+  Abmelden liegt er vorher noch einmal im Konto.
+- **Ohne Firebase-Projekt** (keine `cloud_zugang.json` in der Hülle) bleibt
+  `CLOUD_AN` aus, und alles ist wie im Abschnitt darunter. Ein Freigabe-Bau
+  (`--aab`) bricht dann ab, außer mit `--ohne-anmeldung`.
+
 ## Kein Konto
+
+Das galt bis v108 und gilt weiter für die Browser-Demo und `start.py`, siehe
+„Konto (seit v109)“ darüber.
 
 Seit dem 16.09.2026 gibt es **keine Anmeldung mehr**: kein Passwort, keine
 E-Mail-Adresse, keine Bestätigungsmail, kein „Passwort vergessen“, keinen
@@ -1095,9 +1126,14 @@ Darin:
 
 ### Bauen
 
-Ein Skript, ein Befehl:
+Ein Skript, ein Befehl. Ohne Schalter entsteht das Debug-Paket für die
+Test-App aufs Handy:
 
     "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" app_bauen.py
+
+Das Paket für Google Play baut nur dieser Aufruf (signiertes AAB):
+
+    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" app_bauen.py --aab
 
 `app_bauen.py` macht drei Dinge, in dieser Reihenfolge:
 
@@ -1113,8 +1149,43 @@ Ein Skript, ein Befehl:
 Am Ende steht der Pfad da, der in Android Studio zu öffnen ist. Dort dann
 *Build → Generate Signed App Bundle*.
 
+**Überholt (30.10.2026):** Die zwei Sätze darüber stimmen nicht mehr.
+Nach Schritt 3 baut `app_bauen.py` das Paket selbst mit Gradle zu Ende,
+ohne Schalter das Debug-Paket, mit `--aab` das signierte AAB für Play;
+Android Studio braucht man dafür nicht mehr. Ein Paket, das man nach
+`app_bauen.py` ohne Schalter in Android Studio signiert, zeigt in der App
+„-test“ hinter der Versionsnummer (etwa „Zmaj v1.1-test“), und
+`versionName` steigt danach nicht, siehe „Versionsnummer (versionName)“.
+Fürs Store-Paket deshalb nur `app_bauen.py --aab`.
+
 Vor dem Bauen daran denken: Hat sich am Inhalt etwas geändert, muss erst
 `inhalt_bauen.py` laufen. `app_bauen.py` kopiert nur, es baut nichts neu.
+
+### Versionsnummer (versionName)
+
+Seit 30.10.2026 zählt die Nummer, die man in der App und im Play Store
+sieht, bei jeder Store-Version mit: v109 ist 1.1, danach 1.2, 1.3 … und
+nach 1.9 kommt 1.10. Große neue Teile (etwa Kyrillisch) setzt man von Hand
+auf 2.0. Bis v108 stand fest „1.0“ im Text.
+
+- Sie steht nur an einer Stelle: `versionName` in
+  `zmaj-android\android\app\build.gradle`. Dort steht immer die
+  **nächste** Store-Version.
+- Jeder Bau setzt sie in der Kopie `www/index.html` ein (`APP_VERSION`,
+  `version_einsetzen()`). Das Debug-Paket und `--nur-abgleich` (daraus
+  wird die Test-App) zeigen sie mit `-test`, z. B. „1.1-test“. Die App
+  zeigt sie in der Fußzeile und unter Einstellungen → Über die App
+  (`{version}` in `app.fuss` und `app.ueber_kurz`).
+- Erst nach einem fertigen `--aab` stellt `app_bauen.py` sie auf die
+  nächste Nummer (1.1 → 1.2) und meldet `versionName 1.1 -> 1.2`.
+  Debug-Bau, `--nur-abgleich` und ein abgebrochener Bau lassen sie stehen.
+  Wer für denselben Upload zweimal baut, überspringt eine Nummer; das ist
+  erlaubt. Eine Test-App, die nach dem Store-Bau entsteht, zeigt deshalb
+  schon die nächste Nummer (1.2-test).
+- Hat `versionName` eine andere Form als `Hauptzahl.Nebenzahl` (etwa
+  `1.1.0` oder `v1.1`), bricht der Bau ab, bevor etwas geschrieben ist.
+- `const APP_VERSION = '1.1';` in `web/index.html` ist nur der Rückfallwert
+  für die Web-Demo, `start.py` und die Tests.
 
 ### Updates: sanft oder Pflicht
 
@@ -1214,6 +1285,8 @@ Datei am PC weiter.
   jedem Bau selbst hoch (Stand 10.10.2026: 98). Nie von Hand auf ein
   Vielfaches von 100 setzen – das wäre ein Pflicht-Update, siehe
   „Updates: sanft oder Pflicht“.
+- `versionName` daneben hebt `app_bauen.py --aab` nach dem fertigen Bau
+  selbst an (seit 30.10.2026, siehe „Versionsnummer (versionName)“).
 
 ## Die öffentliche Seite
 
@@ -1230,7 +1303,9 @@ Seiten im Ordner `github-seite`:
 | `datenschutz.html` | Datenschutzerklärung, alle acht Sprachen |
 | `nutzungsbedingungen.html` | Nutzungsbedingungen, alle acht Sprachen |
 | `impressum.html` | Impressum nach § 5 DDG, alle acht Sprachen |
-| `konto-loeschen.html` | „Daten löschen“ – erklärt, dass es kein Konto gibt und wie man seinen Lernstand loswird. Google fragt im Data-Safety-Formular danach |
+| `konto-loeschen.html` | „Konto und Daten löschen“ – seit v109 der Weg in der App und per Mail, was gelöscht wird und was bleibt. Google verlangt die Seite für jede App mit Konto |
+| `.nojekyll` | leer; ohne sie liefert GitHub Pages den Ordner `.well-known` nicht aus |
+| `.well-known/assetlinks.json` | verbindet die Seite mit der App (Restore-Schlüssel der Anmeldung). Nur, wenn `zmaj-android/fingerabdruecke.json` da ist |
 | `favicon.ico`, `icon-256.png` | das Symbol im Browser-Tab, Kopien des App-Symbols (Drache, seit 15.10.2026); die Fußzeile jeder Seite sagt, dass es ein KI-Bild ist |
 
 Die Seiten laden nichts von fremden Servern: keine Schriften, keine

@@ -49,6 +49,13 @@
        der Flaeche lagen sie bei 3,2 / 4,1 / 2,3:1 statt 4,5:1 - axe am
        04.10.2026, barrierefreiheit_richten.py. */
     --good-text:#188049; --bad-text:#D0352C; --accent-text:#876A00;
+    /* Noch dunkler fuer Schrift direkt auf dem Seitengrund (29.10.2026):
+       Passwortliste und Zeile unter "Konto anlegen" stehen nicht auf
+       einer Karte, sondern auf --bg. Dort hatten --good-text und
+       --bad-text nur 3,4:1, auf den Gruenden der Sektionen 2 und 4 sogar
+       3,0:1 (axe color-contrast). Diese beiden liegen auf allen neun
+       Sektionsgruenden bei mindestens 4,76:1. */
+    --good-text-grund:#0E5E33; --bad-text-grund:#9A241D;
     /* Eine Farbe je Sektion, neun Stueck. Vorher war jede Ueberschrift
        blau und jeder Balken gelb, dadurch standen auf dem Lernpfad nach
        Farbton nur vier Toene.
@@ -80,6 +87,7 @@
     :root:not([data-theme="light"]){
       --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
       --good-text:#55CE8A; --bad-text:#FF9E98; --accent-text:#DFB31F;   /* siehe oben, 04.10.2026 */
+      --good-text-grund:#55CE8A; --bad-text-grund:#FF9E98;   /* dunkel reicht es schon (7,7:1), 29.10.2026 */
       --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
       --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
       --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
@@ -100,6 +108,7 @@
   :root[data-theme="dark"]{
     --bg:#151728; --surface:#2C2F4E; --ink:#F2F5FF; --muted:#ADAFCD;
     --good-text:#55CE8A; --bad-text:#FF9E98; --accent-text:#DFB31F;   /* siehe oben, 04.10.2026 */
+    --good-text-grund:#55CE8A; --bad-text-grund:#FF9E98;   /* dunkel reicht es schon (7,7:1), 29.10.2026 */
     --primary:#8F95DC; --primary-dark:#686FBB; --primary-soft:#292C56;
     --accent:#FFD23F; --accent-dark:#D9AE1E; --accent-soft:#3A3210;
     --primary-fill:#8F95DC; --primary-fill-dark:#686FBB; --on-fill:#0B1330;
@@ -155,26 +164,42 @@
      sind. Mit dem alten Nebeneinander hing die Muenzpille an den Herzen und
      stand 40 Punkte zu weit links. Ajdin am 18.09.2026. */
   header{display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
-    gap:8px; margin-bottom:14px; min-height:40px}
+    gap:6px; margin-bottom:14px; min-height:40px}
+  /* Alles in EINER Zeile, auch angemeldet (29.10.2026). Ajdin auf dem
+     S21 Ultra mit der v109-Testfassung: Herz links, Laden, "Ich" und
+     Zahnrad rechts, die Muenzen ("0 KM") allein in einer zweiten Zeile -
+     "das muss alles auf einer Leiste sein".
+     Ursache: Seit v109 steht nach der Anmeldung der Profilknopf in der
+     Leiste, mit Figur UND Namen ("Ich", 72 px breit). Vor v109 blieb er
+     ohne Server versteckt. Damit brauchte die Zeile 341 px, bei 360 px
+     Bildschirmbreite sind nach dem Rand 328 frei - kopfEng() schob die
+     Muenzen deshalb nach unten (header.eng), bei 384 px ab drei Stellen,
+     bei 412 px ab fuenf (gemessen mit dem Stand vor dieser Aenderung).
+     Jetzt traegt der Profilknopf nur die Figur wie Laden und Zahnrad (der
+     Name steht im title), alle drei sind runde 38-px-Knoepfe, und Luecken
+     und Polster sind etwas knapper (hier, .hbtns, .livesbar, .muenzbar).
+     Gemessen mit unbegrenzten Leben und 99 999 Muenzen: 307 px, passt also
+     ab 360 px. Bei 320 px rutschen die Muenzen ab vier Stellen weiter in
+     die zweite Zeile, ebenso bei sehr grosser Schrift - das ist der
+     Ausweg von kopfEng() und bleibt. tests_e2e/test_kopfleiste.py */
   header .left{grid-column:1; justify-self:start; display:flex; align-items:center; gap:10px}
-  /* Drinnen ist die Kopfzeile eine Werkzeugleiste, kein Briefkopf: Logo,
-     Wortmarke und Untertitel treten ab, sobald man angemeldet ist. */
-  body:not(.vorAnmeldung) header .left{display:none}
+  /* Kein Briefkopf mehr, auch nicht vor der Anmeldung (30.10.2026). Ajdin
+     auf der v109-Testfassung: "oben das logo ist noch das alte und die
+     schrift auch beim anmelden" - "die kannst du auch ganz raus lassen".
+     Flagge und Wortmarke "Zmaj." sind weg. #tag bleibt im DOM, weil viele
+     Ansichten ihn beschreiben, gezeigt wird er nirgends. */
+  header .left{display:none}
   .hbtns{grid-column:3; justify-self:end}
-  .flag{width:34px; height:34px; border-radius:9px; flex:0 0 auto}
-  .mark{font-family:var(--font-ui); font-weight:800; font-size:26px; color:var(--primary); letter-spacing:-.3px; line-height:1}
-  .mark .dot{color:var(--accent)}
   .tag{font-size:12px; color:var(--muted); font-weight:700}
-  /* Auf der Anmeldeseite steht unter dem Logo kein Untertitel, dafür der
-     große Titel in der Mitte. Damit das Logo dort nicht verloren wirkt,
-     wird es eine Nummer größer. Im Lernpfad bleibt der Kopf kompakt. */
-  body.vorAnmeldung header{margin-bottom:4px}
-  body.vorAnmeldung .flag{width:46px; height:46px; border-radius:12px}
-  body.vorAnmeldung .mark{font-size:36px; letter-spacing:-.6px}
-  @media (max-width:420px){
-    body.vorAnmeldung .flag{width:40px; height:40px; border-radius:11px}
-    body.vorAnmeldung .mark{font-size:31px}
-  }
+  /* Auf der Anmeldeseite ist die Kopfzeile leer: Leiste und Knoepfe sind
+     aus, die Zurueck-Taste zeigt nur der Browser (am Handy dient die
+     Geraetetaste). Ohne Mindesthoehe faellt sie weg, und der grosse Titel
+     rueckt nach oben (30.10.2026). */
+  body.vorAnmeldung header{min-height:0; margin-bottom:0}
+  /* Die Fusszeile verweist auf das Zahnrad, das es vor der Anmeldung nicht
+     gibt (Ajdin, 30.10.2026: "obwohl man sie garnicht erreichen kann die
+     muss raus"). Die Version steht ausserdem in den Einstellungen. */
+  body.vorAnmeldung footer{display:none}
   /* Große Überschrift auf der Anmeldeseite. Dort ist Platz dafür; im
      Lernpfad bleibt der kleine Titel oben im Kopf, damit die Übungen
      nicht nach unten rutschen. */
@@ -183,10 +208,10 @@
   @media (max-width:420px){
     .seitentitel{font-size:25px; margin:16px 0 14px}
     /* Am Handy nimmt der Drache sonst ein Drittel der Breite weg */
-    .hero{gap:10px; padding:12px}
-    .hero .zmaj{width:96px; height:96px; flex:0 0 96px}
+    .hero{gap:8px}
+    .hero .zmaj{width:112px; height:112px; flex:0 0 112px}
   }
-  .hbtns{display:flex; gap:6px}
+  .hbtns{display:flex; gap:4px}     /* 4 statt 6: eine Zeile, siehe header oben (29.10.2026) */
   /* "← Geschichten" in einer Zeile. Im engen Kopf (header.eng) ist die
      Spalte der Knoepfe schmaler, und der Pfeil stand ueber dem Wort - in
      einer Pille von fester Hoehe ragte das Wort unten heraus. So ist die
@@ -230,13 +255,30 @@
        vertical-align:calc(.35em - var(--sg) / 2); object-fit:contain;
        -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
   /* Laden und Zahnrad tragen nur das Bild: etwas weniger Polster, damit
-     die Knoepfe trotz groesserem Symbol so breit bleiben wie vorher. */
+     die Knoepfe trotz groesserem Symbol so breit bleiben wie vorher.
+     Seit 29.10.2026 auch der Profilknopf, und alle drei sind runde Knoepfe
+     von 38 px, so hoch wie die Pillen daneben: das Symbol ist hoechstens
+     30 px, passt also bei jeder Schrift hinein (siehe header oben). */
   /* In der Kopfleiste nur bis 30 px: ihre Pillen sind fest 38 px hoch
      ("Alles in der Kopfzeile gleich hoch"). Bei 200 % Schrift ragten
      Einkaufstasche und Zahnrad sonst 3 px oben und unten heraus
      (tests_e2e/test_symbole.py). Bis 130 % Schrift wachsen sie frei. */
   .hbtns .back .sym{--sg:min(1.7em, 30px)}
-  .hbtns .back.nursymbol{padding-left:9px; padding-right:9px}
+  /* Kein justify-content: die Knoepfe bekommen per style.display
+     'inline-block' und werden als Kinder von .hbtns (flex) zu block - das
+     Bild mittig setzt text-align des Knopfs (Pruefung 29.10.2026). */
+  .hbtns .back.nursymbol{width:38px; padding-left:0; padding-right:0; position:relative}
+  /* Zum Tippen groesser als der Kreis (Pruefung 29.10.2026): 38 x 38
+     lag unter den 44 px der Pruefliste und den 48 dp, die Android
+     empfiehlt - vor der einen Zeile waren Laden und Zahnrad 44 x 38.
+     Echte 44-px-Knoepfe braeuchten bei 99 999 KM und unbegrenzten Leben
+     325 von 328 px und rutschten bei 115 % Schrift wieder in zwei
+     Zeilen. Deshalb bleibt der Kreis 38 px, und eine unsichtbare Flaeche
+     darueber ist 48 hoch und 42 breit. Die 4 px Luecke teilen sich zwei
+     Nachbarn genau, nichts ueberlappt. Gerechnet ab der Innenkante des
+     2-px-Rands (Bezug von position:absolute), daher 7 und 4.
+     tests_e2e/test_kopfleiste.py prueft es. */
+  .hbtns .back.nursymbol::after{content:""; position:absolute; top:-7px; bottom:-7px; left:-4px; right:-4px}
   .muenzbar .sym{--sg:min(1.35em, 30px)}
   .livesbar .herz .sym{--sg:min(1.15em, 30px)}
   .kastenherz .sym{--sg:1.1em}
@@ -365,20 +407,28 @@
   @keyframes zSad{0%,100%{transform:translateY(3px) rotate(-3deg) scale(.97)}50%{transform:translateY(5px) rotate(-5deg) scale(.96)}}
   @keyframes zPop{0%{transform:scale(1)}40%{transform:scale(1.22) rotate(-4deg)}70%{transform:scale(.96) rotate(3deg)}100%{transform:scale(1)}}
   @keyframes zShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px) rotate(-4deg)}40%{transform:translateX(6px) rotate(4deg)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+  /* Die Begruessung auf der Anmeldeseite (30.10.2026): der Drache steht frei
+     auf dem Grund wie oben im Lernpfad, daneben eine Sprechblase in den
+     Farben der Karten, hell wie dunkel. Vorher ein Kasten mit Verlauf und
+     schraeger gelber Flaeche aus der ersten Fassung - Ajdin: "das
+     hintergrund ist auch alt vom anmelden da wo der drache ist". */
   .hero{
-    display:flex; align-items:center; gap:14px; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff;
-    border-radius:var(--radius); padding:14px 16px; margin-bottom:12px; position:relative; overflow:hidden;
+    display:flex; align-items:center; gap:12px; color:var(--ink);
+    margin-bottom:14px; position:relative;
   }
-  .hero::after{content:''; position:absolute; right:-40px; top:-60px; width:200px; height:200px; background:var(--accent); opacity:.18; transform:rotate(25deg); border-radius:20px}
   /* display:block hebt das flex der allgemeinen .bubble-Regel auf. Sonst
      stünden Gruß und Erklärung nebeneinander statt untereinander - am
      Handy werden daraus zwei viel zu schmale Spalten. */
   .hero .bubble{
-    display:block; background:#fff; color:#0F1E4D; border-radius:14px; padding:10px 14px;
-    font-weight:800; font-size:14px; position:relative; flex:1; z-index:1; min-height:0;
+    display:block; background:var(--surface); color:var(--ink); border:2px solid var(--line);
+    border-radius:var(--radius); padding:12px 14px;
+    font-weight:800; font-size:15px; position:relative; flex:1; z-index:1; min-height:0;
   }
-  .hero .bubble::before{content:''; position:absolute; left:-8px; top:18px; border:8px solid transparent; border-right-color:#fff; border-left:0}
-  .hero .bubble small{display:block; font-weight:600; color:#5E6B94; margin-top:4px; font-size:12px}
+  /* Spitze zum Drachen: aussen in der Randfarbe, innen in der Flaeche */
+  .hero .bubble::before, .hero .bubble::after{content:''; position:absolute; top:22px; border:9px solid transparent; border-left:0}
+  .hero .bubble::before{left:-11px; border-right-color:var(--line)}
+  .hero .bubble::after{left:-8px; border-right-color:var(--surface)}
+  .hero .bubble small{display:block; font-weight:600; color:var(--muted); margin-top:4px; font-size:13px}
 
   /* ---------- Startseite ---------- */
   /* ---- Oben auf der Startseite: Serie und Drache nebeneinander ----
@@ -1117,8 +1167,19 @@
   .pwregeln b{display:block; font-weight:700; margin-bottom:2px}
   .pwregeln span{display:inline-block; margin-right:12px; white-space:nowrap}
   .pwregeln span::before{content:"○ "; font-weight:700}
-  .pwregeln span.ok{color:var(--good-text)}
+  /* Gruen und Rot in den Toenen fuer den Seitengrund, siehe :root
+     (29.10.2026): mit --good-text waren es dort nur 3,4:1. */
+  .pwregeln span.ok{color:var(--good-text-grund)}
   .pwregeln span.ok::before{content:"✓ "}
+  /* Nach einem Tipp auf "Konto anlegen" rot, was noch fehlt; "nicht deine
+     E-Mail" rot mit Kreuz, sobald das Passwort sie enthaelt (29.10.2026,
+     zeigeRegeln). */
+  .pwregeln span.fehlt, .pwregeln span.nein{color:var(--bad-text-grund)}
+  .pwregeln span.nein::before{content:"✗ "}
+  /* Die Zeile unter dem Formular und unter der Wahl steht auch auf dem
+     Grund, nicht auf einer Karte (29.10.2026). */
+  .kontoform .note.feedback.ok, #anmNote.feedback.ok{color:var(--good-text-grund)}
+  .kontoform .note.feedback.no, #anmNote.feedback.no{color:var(--bad-text-grund)}
   /* Werbung: ganzseitig über allem, damit sie nicht mit der App verwechselt
      wird. Der Rahmen und das Wort "Anzeige" sind Pflicht. */
   /* Deckend, nicht durchscheinend. Vorher sah man die Lektion durch die
@@ -1473,12 +1534,30 @@
   .ankreuz{display:flex; align-items:center; gap:9px; font-size:14px; cursor:pointer; padding:2px 0}
   .ankreuz input{width:18px; height:18px; accent-color:var(--primary); cursor:pointer; flex:0 0 auto}
   /* Hinweis auf den Spam-Ordner: Bei einem neuen Absender landen die
-     ersten Mails oft dort. Das muss auffallen, sonst sucht man vergebens. */
+     ersten Mails oft dort. Das muss auffallen, sonst sucht man vergebens.
+     Seit 29.10.2026 ein kurzer Satz (konto.spam_kurz) statt drei: Ajdin
+     fand Bestaetigungs- und Passwort-Mail im Spam-Ordner seines Gmail, und
+     er will kurze Texte. Steht auch auf der Karte nach "Konto anlegen". */
   .spamhinweis{margin-top:4px; padding:10px 12px; border-radius:12px;
     background:var(--surface); border:1px solid var(--line);
     font-size:13px; line-height:1.5; color:var(--muted)}
   .kontowechsel{margin-top:14px; display:grid; gap:8px}
   .kontowechsel .btn{width:100%}
+  /* Pflicht-Anmeldung (28.10.2026). Der Google-Knopf nach Googles
+     Markenregeln fuer "Sign in with Google": weisser Grund, Rand #747775,
+     Schrift #1F1F1F, das "G" unveraendert in seinen Farben. Auch im
+     dunklen Modus hell - die Regeln erlauben dort die neutrale Fassung,
+     eigene Farben nicht. */
+  .anmwahl{display:grid; gap:10px; margin-top:16px}
+  .googleknopf{display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+    min-height:48px; padding:10px 16px; border:1px solid #747775; border-radius:14px;
+    background:#FFFFFF; color:#1F1F1F; font-family:Roboto, Arial, sans-serif; font-size:15px;
+    font-weight:500; letter-spacing:.25px; cursor:pointer}
+  .googleknopf img{width:20px; height:20px; flex:none}
+  .googleknopf:disabled{opacity:.6; cursor:default}
+  .googleknopf:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+  .anmrecht{margin-top:2px; font-size:13px}
+  .anmrecht summary{cursor:pointer; color:var(--muted); font-weight:700; padding:6px 0}
   input.field,textarea.field,select.field,button.field{
     font-family:inherit; font-size:15px; padding:11px 12px; border:2px solid var(--line); border-radius:12px; background:var(--surface); color:var(--ink); width:100%;
   }
@@ -1524,12 +1603,20 @@
      (4 links, 8 rechts) - das stammte aus der Zeit, als rechts im selben
      Feld noch die Wartezeit stand. Gemessen waren es 6 zu 10 Punkte.
      Ajdin am 18.09.2026. */
-  header .livesbar{padding-left:6px; padding-right:6px}
-  header .livesbar .herz{padding-top:0; padding-bottom:0}
+  /* 29.10.2026: 3 und 6 statt 6 und 8 - eine Zeile, siehe header. */
+  header .livesbar{padding-left:3px; padding-right:3px}
+  header .livesbar .herz{padding-top:0; padding-bottom:0; padding-left:6px; padding-right:6px; position:relative}
+  /* Das Herz ist der Knopf in der Pille, aber nur so hoch wie seine
+     Schrift: 49 x 23 px zum Tippen, obwohl die Pille 38 hoch ist
+     (Pruefung 29.10.2026). Wie bei .nursymbol eine unsichtbare Flaeche
+     darueber, 48 px hoch und bis an den Rand der Pille (3 Polster +
+     2 Rand). Verschoben wird dadurch nichts. */
+  header .livesbar .herz::after{content:""; position:absolute; left:-5px; right:-5px; top:calc(50% - 24px); height:48px}
+  /* 29.10.2026: Polster 9 statt 12, Luecke 4 statt 6 - eine Zeile, siehe header. */
   .muenzbar{
-    display:inline-flex; align-items:center; gap:6px;
+    display:inline-flex; align-items:center; gap:4px;
     background:var(--surface); border:2px solid var(--line); border-radius:99px;
-    padding:5px 12px; font:800 15px var(--font-ui); color:var(--accent-dark);
+    padding:5px 9px; font:800 15px var(--font-ui); color:var(--accent-dark);
   }
   .muenzbar b{color:var(--ink)}
   /* KM - konvertibilna marka, die Waehrung in Bosnien. Ajdins Einfall am
@@ -2010,12 +2097,12 @@
 </div>
 <div class="wrap">
   <!-- Eine Zeile fuer alles: Leben, Muenzen und die Knoepfe. Das Logo samt
-       Untertitel steht nur noch vor der Anmeldung; drinnen kostete es eine
-       ganze Zeile Hoehe, ohne etwas zu sagen. Ajdin am 18.09.2026. -->
+       Untertitel kostete drinnen eine ganze Zeile Hoehe, ohne etwas zu
+       sagen (Ajdin am 18.09.2026); seit 30.10.2026 fehlt es auch vor der
+       Anmeldung. -->
   <header>
     <div class="left">
-      <img class="flag" src="flagge.png?v=2" alt="">
-      <div><div class="mark">Zmaj<span class="dot">.</span></div><div class="tag" id="tag"></div></div>
+      <div class="tag" id="tag"></div>
     </div>
     <div class="kopfleiste" id="kopfLeiste">
       <div class="livesbar" id="livesBar" style="display:none"></div>
@@ -2026,7 +2113,8 @@
     </div>
     <div class="hbtns">
       <button class="back nursymbol" id="btnShop" style="display:none" data-t-title="laden.titel"><img class="sym" src="symbole/laden.webp" alt="" aria-hidden="true"></button>
-      <button class="back" id="btnProfil" style="display:none" data-t-title="btn.profil"><img class="sym" src="symbole/profil.webp" alt="" aria-hidden="true"></button>
+      <!-- Nur die Figur, der Name steht im title (29.10.2026, siehe header im CSS). -->
+      <button class="back nursymbol" id="btnProfil" style="display:none" data-t-title="set.profil"><img class="sym" src="symbole/profil.webp" alt="" aria-hidden="true"></button>
       <button class="back nursymbol" id="btnSettings" style="display:none" data-t-title="btn.einstellungen"><img class="sym" src="symbole/einstellungen.webp" alt="" aria-hidden="true"></button>
       <button class="back" id="btnBack" style="display:none" data-t="btn.zurueck"></button>
     </div>
@@ -2042,9 +2130,28 @@
     <h1 class="seitentitel" id="kontoTitel"></h1>
     <div class="hero"><div class="zmaj idle" id="zmajProfile"></div><div class="bubble"><span data-t="profil.gruss"></span><small id="kontoFrage"></small></div></div>
     <div class="langbar" id="langBar"></div>
+    <!-- Die Pflicht-Anmeldung mit Firebase (28.10.2026, v109): erst die Wahl,
+         Google oder E-Mail, darunter Datenschutz und Nutzungsbedingungen zum
+         Aufklappen. Nur im Cloud-Modus sichtbar, siehe anmeldungZeigen().
+         Der Google-Knopf nach Googles Markenregeln, das "G" in
+         Originalfarben aus Googles Knopf-Paket (symbole/google-g.svg). -->
+    <div class="anmwahl" id="anmWahl" hidden>
+      <button type="button" class="googleknopf" id="anmGoogle" hidden><img src="symbole/google-g.svg" alt="" aria-hidden="true" width="20" height="20"><span id="anmGoogleText"></span></button>
+      <button type="button" class="btn know" id="anmMail"></button>
+      <div class="note" id="anmNote" role="status"></div>
+      <details class="anmrecht"><summary id="anmDsKopf"></summary><div class="inner legal" id="anmDs"></div></details>
+      <details class="anmrecht"><summary id="anmAgbKopf"></summary><div class="inner legal" id="anmAgb"></div></details>
+      <!-- Seit 28.10.2026 auch das Impressum: Wer sich anmelden muss, kommt
+           nicht in die Einstellungen, und es soll unmittelbar erreichbar
+           sein. -->
+      <details class="anmrecht"><summary id="anmImpKopf"></summary><div class="inner legal" id="anmImp"></div></details>
+    </div>
     <!-- Eine Maske für drei Fälle: anmelden, Konto anlegen, Passwort festlegen.
          Welche Felder sichtbar sind, entscheidet zeigeAnmeldung(). -->
-    <form class="kontoform" id="kontoForm" autocomplete="on">
+    <!-- novalidate (28.10.2026): die App prueft die Adresse selbst und sagt
+         es in ihrer Sprache - die Sprechblase des Browsers sah nach Browser
+         aus und nicht nach App. -->
+    <form class="kontoform" id="kontoForm" autocomplete="on" novalidate>
       <input class="field" id="kontoName" maxlength="20" data-t-ph="konto.kennung"
              autocomplete="username" autocapitalize="none" spellcheck="false">
       <div class="feldhinweis" id="kontoNameSub" hidden data-t="konto.benutzername_sub"></div>
@@ -2059,12 +2166,17 @@
         <input type="checkbox" id="kontoBleiben"><span data-t="konto.bleiben"></span>
       </label>
       <button class="btn know" type="submit" id="kontoSenden"></button>
-      <div class="note" id="kontoNote"></div>
+      <!-- role="status" wie #anmNote (29.10.2026): sonst las ein
+           Bildschirmleser nach "Konto anlegen" nicht vor, was fehlt. -->
+      <div class="note" id="kontoNote" role="status"></div>
       <div class="spamhinweis" id="kontoSpam" hidden></div>
     </form>
     <div class="kontowechsel">
       <button class="btn ghost" id="kontoWechsel"></button>
       <button class="btn ghost" id="kontoVergessen" data-t="konto.vergessen_link"></button>
+      <!-- Ohne Netz: erst einmal weiterlernen, die Anmeldung kommt, sobald
+           wieder Internet da ist (28.10.2026). -->
+      <button class="btn ghost" id="anmOffline" hidden></button>
     </div>
   </div>
 
@@ -2200,9 +2312,10 @@
   <div id="kontoView" style="display:none">
     <div class="section">
       <h2 data-t="set.profil"></h2>
-      <div class="setting"><div><div class="st" id="setProfilName">–</div><div class="sd" id="setProfilMail"></div><div class="sd" data-t="set.profil_sub"></div></div></div>
+      <div class="setting"><div><div class="st" id="setProfilName">–</div><div class="sd" id="setProfilMail"></div><div class="sd" id="setProfilSub" data-t="set.profil_sub"></div><div class="sd" id="setGesichert" hidden></div></div></div>
       <div class="row" style="margin-top:6px; margin-bottom:10px"><button class="btn ghost" id="setLogout" data-t="set.abmelden"></button></div>
-      <div class="setting"><div><div class="st" data-t="set.passwort"></div><div class="sd" data-t="set.passwort_sub"></div></div>
+      <div class="note" id="setLogoutNote" role="status" style="margin:-4px 0 10px"></div>
+      <div class="setting" id="setPwZeile"><div><div class="st" data-t="set.passwort"></div><div class="sd" data-t="set.passwort_sub"></div></div>
         <button class="btn ghost" id="setPwAuf" data-t="set.passwort_knopf"></button></div>
       <form id="pwForm" style="display:none; margin:8px 0 12px">
         <input class="field" id="pwAlt" type="password" maxlength="128" data-t-ph="konto.passwort_alt" autocomplete="current-password" style="margin-bottom:8px">
@@ -2212,7 +2325,7 @@
         <button class="btn know" type="submit" data-t="konto.speichern"></button>
         <div class="note" id="pwNote"></div>
       </form>
-      <div class="setting"><div><div class="st" data-t="set.konto_loeschen"></div><div class="sd" data-t="set.konto_loeschen_sub"></div></div>
+      <div class="setting"><div><div class="st" data-t="set.konto_loeschen"></div><div class="sd" id="setWegSub" data-t="set.konto_loeschen_sub"></div></div>
         <button class="btn ghost" id="setKontoWeg" data-t="set.konto_loeschen_knopf"></button></div>
       <form id="wegForm" style="display:none; margin:8px 0 12px">
         <input class="field" id="wegPw" type="password" maxlength="128" data-t-ph="konto.passwort" autocomplete="current-password" style="margin-bottom:8px">
@@ -2298,7 +2411,7 @@
     </div>
     <div class="section">
       <h2 data-t="set.sicherung"></h2>
-      <div class="sd" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.sicherung_sub"></div>
+      <div class="sd" id="setSichSub" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.sicherung_sub"></div>
       <div class="row" style="margin-bottom:6px">
         <button class="btn know" id="sichSpeichern" data-t="set.sicherung_speichern"></button>
         <button class="btn ghost" id="sichLaden" data-t="set.sicherung_einlesen"></button>
@@ -2376,6 +2489,13 @@
         <button class="btn ghost" id="einwWiderruf" data-t="set.einwilligung_knopf"></button></div>
       <details><summary data-t="set.agb"></summary><div class="inner legal" data-t="set.agb_text"></div></details>
       <details><summary data-t="set.datenschutz"></summary><div class="inner legal" data-t="set.datenschutz_text"></div></details>
+      <!-- Das Impressum auch in der App (Ajdin am 28.10.2026): derselbe Text
+           wie auf zmaj-lernapp.github.io/impressum.html (set.impressum_text,
+           mit KONTAKT_FORMULAR die Fassung mit Formular, die texte() in
+           sprachen.py einsetzt), in der Sprache der App und offline lesbar
+           wie die beiden Texte darueber. Bis dahin stand es nur auf der
+           Webseite. -->
+      <details><summary data-t="set.impressum"></summary><div class="inner legal" data-t="set.impressum_text"></div></details>
     </div>
   </div>
 
@@ -3122,6 +3242,17 @@ try{ SPRACHE = localStorage.getItem('zmaj_sprache') || (navigator.language||'de'
    und manche Browser sagen "no", Nynorsk-Einstellungen "nn". Ohne das
    startete die App dort auf Englisch. 12.10.2026 */
 if(SPRACHE === 'no' || SPRACHE === 'nn') SPRACHE = 'nb';
+/* Die Versionsnummer der App (30.10.2026, Ajdin: "ja mach so"). Bis v108
+   stand "1.0" fest in sprachen.py, in app.fuss und app.ueber_kurz aller
+   acht Sprachen - und blieb dort, waehrend nur der versionCode stieg.
+   Jetzt steht dort {version}, und t() setzt diesen Wert ein.
+   Die Nummer selbst steht nur an einer Stelle: versionName in
+   app/build.gradle der Android-Huelle. app_bauen.py (version_einsetzen)
+   ueberschreibt die Zeile darunter beim Bauen in der KOPIE www/index.html
+   damit, in der Test-App mit "-test". Hier steht nur der Rueckfallwert
+   fuer die Web-Demo, start.py und die Tests. Die Zeile muss genau so,
+   am Zeilenanfang und genau einmal dastehen, sonst bricht der Bau ab. */
+const APP_VERSION = '1.1';
 const FALLBACK = {   // nur nötig, wenn der Server gar nicht antwortet
   /* Updates aus Google Play, zweisprachig wie err.server: gerade eine
      Fassung, deren Inhalte nicht laden, braucht vielleicht das Pflicht-
@@ -3148,6 +3279,11 @@ function t(key, vars){
   let s = T[key] !== undefined ? T[key] : FALLBACK[key];
   if(s === undefined) return key;
   if(s.indexOf('|') >= 0) s = s.split('|')[0];
+  /* {version} kommt immer aus APP_VERSION (30.10.2026), ohne dass ein
+     Aufrufer es mitgeben muss - so gilt es fuer die data-t-Elemente aus
+     applyTexts() (Fuss, Versionszeile) wie fuer jeden t()-Aufruf. Nur wenn
+     der Platzhalter dasteht: alle anderen Texte laufen wie vorher. */
+  if(s.indexOf('{version}') >= 0) vars = Object.assign({version: APP_VERSION}, vars);
   return fuelle(s, vars);
 }
 /* Franzoesisch stellt das Substantiv nach null in die Einzahl ("0 nouveau
@@ -3178,10 +3314,25 @@ function applyTexts(){
   document.querySelectorAll('[data-t-title]').forEach(el=>{ el.title = t(el.dataset.tTitle); });
   document.querySelectorAll('[data-t-ph]').forEach(el=>{ el.placeholder = t(el.dataset.tPh); });
 }
+/* Verweise in den Rechtstexten (28.10.2026). Mit Kontaktformular nennt das
+   Impressum zmaj-lernapp.github.io/kontakt.html als Verweis. Angetippt
+   oeffnet er im Browser des Geraets, wie der Play Store und die Kanaele -
+   ohne das verliesse die App ihre eigene Seite. Erst auf Tippen, nie von
+   allein: kein Netz zur Laufzeit (AGENTS.md, Regel 6). */
+document.addEventListener('click', e=>{
+  const a = (e.target && e.target.closest) ? e.target.closest('.legal a[href^="https://"]') : null;
+  if(!a) return;
+  e.preventDefault();
+  try{ window.open(a.href, '_blank', 'noopener'); }catch(x){}
+});
 
 let SECTIONS = [], CATEGORIES = [], SENTENCES = [], GRAMMAR = {}, STORIES = [], DICT = {};
 let SATZBAU = [];          // Sätze aus Kacheln (vokabeln.py SATZBAU), seit 13.10.2026
 let known = new Set(), passed = new Set(), read = new Set(), days = new Set();
+/* Ob known schon beim Laden Woerter hatte - oder nach dem Einlesen einer
+   Sicherung, nach dem Zusammenfuehren mit der Cloud. Nur dann zaehlen sie
+   fuer das Tor, siehe hatGelernt(). Gesetzt in standUebernehmen(). */
+let gewusstGeladen = false;
 let frost = new Set();    // Tage, die ein Serienschutz gerettet hat
 let tagwerk = {};         // Tag -> Zähler, z.B. {'2026-09-14': {auf:23, ric:18}}
 /* ---- Fundament für die Wegmarken (19.09.2026) ----
@@ -3848,22 +3999,37 @@ function matches(guess, answer){
   return 'no';
 }
 
-/* ---------- Tippfehler: erst ein Hinweis, nicht gleich falsch ----------
+/* ---------- Fast richtig: erst ein Hinweis, nicht gleich falsch ----------
    Ajdin am 24.10.2026: "wenn man beim schreiben ausversehen einen buchstaben
    falsch geschrieben hat dann soll ein hinweis kommen das wort ist falsch
    geschrieben und nicht das es direkt falsch ist weil sowas schnell
    passieren kann". Von den Vorschlaegen hat er B gewaehlt ("b"):
    - Liegt die Eingabe GENAU EINEN Tippfehler neben einer richtigen Antwort,
-     kommt ein gelber Hinweis (task.tippfehler). Die Loesung verraet er nicht.
+     kommt ein gelber Hinweis (task.fast_richtig). Die Loesung verraet er
+     nicht.
    - Die Eingabe bleibt offen, der zweite Versuch zaehlt wie immer: richtig
      oder "fast richtig" ist richtig, alles andere falsch. Ein Hinweis je
      Aufgabe, er kostet kein Leben und spielt keinen Ton (tippHinweis() in
      renderTask).
    - Erst ab 4 Buchstaben der Antwort. Bei "sir" ist ein anderer Buchstabe
      schon ein Drittel des Wortes.
-   - Kein Hinweis, wenn das Getippte selbst ein echtes bosnisches Wort ist
-     (echteWoerter()): wer "deset" statt "devet" schreibt, hat sich nicht
-     vertippt, sondern zehn und neun verwechselt.
+   Am 27.10.2026 kam im Lueckensatz die andere Endung dazu ("Auch bei Endung
+   Hinweis": "nedjelji" fuer "nedjelja"), zuerst mit eigenem Text. Auf die
+   Rueckfrage, ob der Hinweis auch kommen soll, wenn das Getippte ein anderes
+   echtes Wort ist ("zvono" - Klingel - fuer "zvoni" - klingelt), sagte Ajdin
+   am selben Tag: "mach doch einfach nur fast richtig dann bezieht es sich
+   auf alle wörter und wenn es ein andere wort ist ist doch egal es ist doch
+   trotzdem fast richtig". Seitdem gilt eine Regel fuer Schreibaufgabe und
+   Lueckensatz: ein Tippfehler Abstand, ein Text, "Fast richtig!".
+   Weggefallen sind dabei
+   - die Ausnahme fuer echte Woerter (echteWoerter()): bis dahin bekam
+     "deset" fuer "devet" keinen Hinweis, weil wer zehn fuer neun schreibt,
+     sich nicht vertippt, sondern die Zahlen verwechselt hat;
+   - der eigene Hinweis auf die Endung (nurEndung(), task.endung) und
+     andereEndung(), nach der eine andere Endung im Lueckensatz kein
+     Tippfehler war. Eine andere Endung ist immer auch ein Tippfehler
+     Abstand - ein Buchstabe anders oder einer mehr -, die eine Regel deckt
+     sie mit ab.
    Verglichen wird auf den Formen von clean(): ohne Haekchen, Gross/klein und
    Satzzeichen am Ende. Fehlen nur Haekchen, hat matches() schon 'almost'
    gesagt - hierher kommt nur, was 'no' war. So vermischt sich nichts: ein
@@ -3886,84 +4052,18 @@ function einTippfehler(a, b){
   return lang.slice(i + 1) === kurz.slice(i);                                           // fehlt, zu viel
 }
 
-/* ---- Was als "echtes Wort" zaehlt ----
-   Ein Rechtschreibwoerterbuch des Bosnischen hat die App nicht, und fragen
-   kann sie niemanden - sie laeuft ohne Netz. Sie kennt nur ihren Inhalt aus
-   web/inhalt/<sprache>.json, den inhalt_bauen.py aus vokabeln.py,
-   geschichten.py und grammatik.py schreibt. Daraus zwei Mengen, einmal
-   gebaut (beim ersten Tippfehler) und in ladeDaten() verworfen:
-   - wortschatz: jede Vokabel aller Level (CATEGORIES), w.bs und w.auch, jede
-     Schreibweise hinter " / ", als Ganzes und Wort fuer Wort ("Laku noć",
-     "laku", "noć"). Das sind die Woerter, die man hier lernt und also
-     verwechseln kann. Das Bosnische ist in allen Sprachen der App dasselbe.
-   - formen: der wortschatz und dazu jedes Wort aus den bosnischen Saetzen
-     der App - Lueckensaetze mit eingesetzter Antwort (SENTENCES), Satzbau
-     (SATZBAU), die Geschichten (STORIES) und ihr Woerterbuch (DICT). Dort
-     stehen die gebeugten Formen ("bila", "kupila", "Rexa").
-   Die Schreibaufgabe zeigt eine Bedeutung und fragt nach der Vokabel. Dort
-   gilt der wortschatz: ein anderes Wort daraus ist eine Verwechslung, kein
-   Tippfehler.
-   Im Lueckensatz ist die FORM die Aufgabe: "Subota i ___ su vikend." will
-   "nedjelja", und "nedjelji" ist ein falscher Fall, kein verrutschter
-   Finger. Dort gelten deshalb die formen und dazu andereEndung(): gebeugte
-   Formen gibt es weit mehr, als im Inhalt der App stehen. */
-let _echteWoerter = null;
-function echteWoerter(){
-  if(_echteWoerter) return _echteWoerter;
-  const wortschatz = new Set(), formen = new Set();
-  const nimm = (ziel, text, ganz) => String(text || '').split(' / ').forEach(f => {
-    const c = clean(f);
-    if(ganz && c) ziel.add(c);
-    c.split(/[^a-z]+/).forEach(x => { if(x) ziel.add(x); });
-  });
-  CATEGORIES.forEach(k => k.words.forEach(w => [w.bs, ...(w.auch || [])].forEach(x => nimm(wortschatz, x, true))));
-  wortschatz.forEach(x => formen.add(x));
-  (SENTENCES || []).forEach(s => [s.answer, ...(s.auch || [])].forEach(a => {
-    nimm(formen, a, true);
-    nimm(formen, String(s.text || '').replace('___', a), false);
-  }));
-  (SATZBAU || []).forEach(s => [s.bs, ...(s.auch || [])].forEach(x => nimm(formen, x, false)));
-  (STORIES || []).forEach(g => {
-    nimm(formen, g.text, false);
-    Object.keys(g.vokabeln || {}).forEach(k => nimm(formen, k, true));
-  });
-  Object.keys(DICT || {}).forEach(k => nimm(formen, k, true));
-  return (_echteWoerter = {wortschatz, formen});
-}
-
-/* Nur die Endung anders: der letzte Selbstlaut gegen einen anderen
-   getauscht ("kruške" - "kruški", "nedjelja" - "nedjelji") oder einer
-   angehaengt ("brat" - "brata"). Im Bosnischen ist das fast immer ein
-   anderer Fall, eine andere Zahl oder ein anderes Geschlecht. Einer
-   weggelassen ("jabuk" fuer "jabuke") zaehlt nicht dazu: das ist keine
-   Form, sondern ein verschluckter Buchstabe. Gilt nur im Lueckensatz.
-   Derselbe Buchstabe noch einmal ("sutraa" fuer "sutra", "nedjeljaa") ist
-   auch keine Form, sondern die Taste zweimal getroffen - der Hinweis kommt
-   wie in der Schreibaufgabe. Bis zum Pruefer am 24.10.2026 galt es als
-   angehaengte Endung und kostete ein Leben. */
-const SELBSTLAUT_AM_ENDE = /[aeiou]$/;
-function andereEndung(eingabe, antwort){
-  if(eingabe.length === antwort.length)
-    return eingabe.slice(0, -1) === antwort.slice(0, -1) &&
-           SELBSTLAUT_AM_ENDE.test(eingabe) && SELBSTLAUT_AM_ENDE.test(antwort);
-  return eingabe.length === antwort.length + 1 && eingabe.startsWith(antwort) && SELBSTLAUT_AM_ENDE.test(eingabe) &&
-         eingabe.slice(-1) !== antwort.slice(-1);
-}
-
 /* Bekommt diese Eingabe den Hinweis? antworten wie bei matches(), mit
-   " / " getrennt - jede richtige Antwort wird geprueft. luecke ist true im
-   Lueckensatz. Die 4 Buchstaben zaehlen an der Antwort, nicht an der
-   Eingabe: "voad" fuer "voda" bekommt den Hinweis, "sur" fuer "sir" nicht.
-   Gezaehlt werden getippte Zeichen nach clean(): lj, nj und dž sind zwei
-   Tasten, "konj" und "džem" haben also 4 - vertippen kann man sich auf
-   jeder Taste. Ob sie wie im Alphabet als ein Buchstabe zaehlen sollen,
-   war am 24.10.2026 noch offen. */
-function nurVertippt(eingabe, antworten, luecke){
+   " / " getrennt - jede richtige Antwort wird geprueft. Die 4 Buchstaben
+   zaehlen an der Antwort, nicht an der Eingabe: "voad" fuer "voda" bekommt
+   den Hinweis, "sur" fuer "sir" nicht. Gezaehlt werden getippte Zeichen
+   nach clean(): lj, nj und dž sind zwei Tasten, "konj" und "džem" haben
+   also 4 - vertippen kann man sich auf jeder Taste. Ob sie wie im Alphabet
+   als ein Buchstabe zaehlen sollen, war am 24.10.2026 noch offen; auf die
+   Rueckfrage am 27.10.2026 blieb es bei zwei. */
+function fastRichtig(eingabe, antworten){
   const g = clean(String(eingabe || ''));
-  const echt = echteWoerter();
-  if(!g || (luecke ? echt.formen : echt.wortschatz).has(g)) return false;
-  return String(antworten || '').split(' / ').map(clean).some(a =>
-    (a.match(/[a-z]/g) || []).length >= 4 && einTippfehler(g, a) && !(luecke && andereEndung(g, a)));
+  return !!g && String(antworten || '').split(' / ').map(clean).some(a =>
+    (a.match(/[a-z]/g) || []).length >= 4 && einTippfehler(g, a));
 }
 /* So lange nach dem Hinweis ist derselbe Text noch kein zweiter Versuch,
    siehe tippHinweis(). */
@@ -5029,16 +5129,89 @@ function sicherungPlausibel(s){
   p.stern = sternPruefen(s.stern);
   return p;
 }
+/* ---- Felder einer neueren Fassung (28.10.2026, Vorarbeit fuer v110) ----
+   Mit v110 kommt die zeitgesteuerte Wiederholung, und mit ihr kommen neue
+   Felder in den Lernstand. Eine Fassung, die sie nicht kennt - diese
+   hier -, darf sie nicht wegwerfen: Bis dahin fiel alles weg, was
+   standAlsObjekt() nicht nennt. Ein Handy mit v109 haette so beim
+   naechsten Abgleich die Wiederholungsdaten geloescht, die ein Tablet mit
+   v110 in die Cloud geschrieben hat, und eine Sicherungsdatei von v110
+   verloere sie beim Einlesen.
+   Jetzt legt standUebernehmen() solche Felder unveraendert in standFremd
+   ab, standAlsObjekt() schreibt sie wieder mit - in den Geraetespeicher,
+   die Sicherungsdatei und die Cloud -, und standZusammenfuehren()
+   behaelt sie (siehe dort).
+     STAND_FELDER  was diese Fassung selbst liest und schreibt, genau die
+                   Schluessel von standAlsObjekt() (tests_e2e/test_cloud.py
+                   vergleicht beides)
+     STAND_ALT     was frueher im Stand stand und mit Absicht wegfaellt:
+                   premium gehoert nicht mehr hinein (siehe
+                   vollversionLaden) und wandert auch nicht als fremdes
+                   Feld mit
+   Was die App nicht kennt, prueft sie nicht - sie traegt es nur. Damit
+   eine Datei damit nicht den Geraetespeicher sprengt, gilt fuer alle
+   fremden Felder zusammen die Grenze der Cloud (CLOUD_GROESSE_MAX, in
+   UTF-8-Bytes). Was darueber hinausgeht, faellt Feld fuer Feld weg, nie
+   alle auf einmal (Pruefbefund 28.10.2026: vorher fielen bei Ueberlauf
+   alle weg, auch die aktuellen aus der Cloud, und der naechste Abgleich
+   loeschte sie dort). "__proto__" wird nie ein Feld.
+   Fuer v110 und jede spaetere Fassung heisst das (Pruefbefund
+   28.10.2026): eigene Daten - etwa die der zeitgesteuerten Wiederholung -
+   gehoeren ausschliesslich in eigene, neue Felder auf oberster Ebene des
+   Stands, nie in topf, stern oder ein anderes Feld aus STAND_FELDER.
+   Die behandelt diese Fassung nach ihren eigenen Regeln und verliert
+   dabei, was sie nicht kennt: topfMerken() schreibt einen Eintrag bei
+   jedem Fehler neu und loescht ihn nach TOPF_RAUS richtigen Antworten,
+   topfAufraeumen() wirft Schluessel weg, die zu keiner Aufgabe fuehren,
+   sternPruefen() behaelt nur z und r. */
+const STAND_FELDER = new Set(['gewusst', 'bestanden', 'gelesen', 'tage', 'frost', 'besitz', 'leben',
+  'schutz', 'tagwerk', 'muenzen_ges', 'muenzen_aus', 'getragen', 'gefeiert', 'rekord', 'wann',
+  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern']);
+const STAND_ALT = new Set(['premium']);
+let standFremd = {};
+/* Die fremden Felder eines Stands als tiefe Kopie - sie teilen nichts mit
+   dem Stand, aus dem sie kommen. Hoechstens platz Bytes fuer alle
+   zusammen, gezaehlt mit fremdGroesse(): Feld fuer Feld in der
+   Reihenfolge des Stands, und passt eins nicht mehr, faellt nur dieses
+   weg. Ein Feld, das sich nicht als JSON schreiben laesst, ebenso. */
+const fremdGroesse = (k, text) => utf8Laenge(JSON.stringify(k)) + utf8Laenge(text) + 2;
+function standFremdAus(d, platz = CLOUD_GROESSE_MAX){
+  if(!d || typeof d !== 'object' || Array.isArray(d)) return {};
+  const aus = [];
+  let summe = 0;
+  Object.keys(d).forEach(k => {
+    if(STAND_FELDER.has(k) || STAND_ALT.has(k) || k === '__proto__' || d[k] === undefined) return;
+    let text;
+    try{ text = JSON.stringify(d[k]); }catch(e){ return; }
+    if(typeof text !== 'string') return;
+    const g = fremdGroesse(k, text);
+    if(summe + g > platz) return;
+    summe += g;
+    aus.push([k, JSON.parse(text)]);
+  });
+  return Object.fromEntries(aus);
+}
+/* So viele Bytes bringen fremde Felder zu einem Stand ohne sie hoechstens
+   mit (Schluessel, Doppelpunkt, Wert, Komma), gezaehlt wie in
+   standFremdAus(). */
+function fremdPlatz(f){
+  return Object.keys(f).reduce((s, k) => s + fremdGroesse(k, JSON.stringify(f[k])), 0);
+}
 /* Ein Stand sieht ueberall gleich aus - egal ob er aus der Profildatei des
    Servers kommt, aus dem Gerätespeicher oder aus einer Sicherungsdatei.
    Deshalb nur eine Stelle, die ihn uebernimmt. */
 function standUebernehmen(d){
   d = d || {};
+  /* Was diese Fassung nicht kennt, bleibt unveraendert (28.10.2026, siehe
+     standFremd). Vor allem anderen: wirft unten etwas, nimmt
+     standErsetzen() mit dem alten Stand auch dessen fremde Felder zurueck. */
+  standFremd = standFremdAus(d);
   /* Eine Sicherung kann jeder von Hand schreiben. Eine Zahl in gewusst
      liess altenFortschrittUmschreiben() bei jedem Start werfen, bevor der
      Einstellungsknopf erschien - siehe import_richten.py, 04.10.2026. */
   const nurTexte = x => Array.isArray(x) ? x.filter(s => typeof s === 'string') : [];
   known = new Set(nurTexte(d.gewusst)); passed = new Set(nurTexte(d.bestanden)); read = new Set(nurTexte(d.gelesen));
+  gewusstGeladen = known.size > 0;
   // Nur echte Datumsangaben - siehe istDatum.
   // Kein Array (etwa "tage":"x") hiess bisher: .filter wirft. Jetzt: leer.
   /* Und keine vor APP_START (17.10.2026): die kann es nicht geben, ein
@@ -5164,7 +5337,7 @@ function funkelnUmzug(){
   return true;
 }
 function standAlsObjekt(){
-  return {gewusst:[...known], bestanden:[...passed], gelesen:[...read], tage:[...days],
+  const s = {gewusst:[...known], bestanden:[...passed], gelesen:[...read], tage:[...days],
           frost:[...frost], besitz:[...besitz], leben:lives, schutz:schutz, tagwerk:tagwerk,
           muenzen_ges:muenzenGes, muenzen_aus:muenzenAus,
           getragen:getragen,
@@ -5193,6 +5366,13 @@ function standAlsObjekt(){
              Sicherungsdatei bleibt version 1: eine alte App liest das Feld
              nicht, eine neue nimmt ein fehlendes als "nichts markiert". */
           stern: stern};
+  /* Dahinter, unveraendert, was eine neuere Fassung in den Stand gelegt
+     hat (28.10.2026, siehe standFremd). Eigene Felder gehen vor -
+     standFremdAus() laesst ohnehin keins davon durch. */
+  Object.keys(standFremd).forEach(k => {
+    if(!Object.prototype.hasOwnProperty.call(s, k)) s[k] = standFremd[k];
+  });
+  return s;
 }
 /* ---- Zwei Lernstaende zusammenfuehren (19.10.2026) ----
    Fuer die Cloud-Sicherung (siehe CLOUD-SICHERUNG weiter unten): a ist der
@@ -5202,9 +5382,10 @@ function standAlsObjekt(){
    das erste gelernt hatte.
    Rein: liest a und b, aendert weder sie noch die App und gibt einen neuen
    Stand im Format von standAlsObjekt() zurueck. Idempotent (m mit m ergibt
-   m) und kommutativ (a mit b gleich b mit a) - bis auf "getragen", siehe
-   dort. Listen kommen sortiert heraus, damit beide Richtungen dasselbe
-   ergeben; in der App sind es ohnehin Mengen.
+   m) und kommutativ (a mit b gleich b mit a) - bis auf "getragen" und die
+   Felder einer neueren Fassung, siehe dort. Listen kommen sortiert
+   heraus, damit beide Richtungen dasselbe ergeben; in der App sind es
+   ohnehin Mengen.
    Jedes Feld aus standAlsObjekt() ist hier bewusst behandelt (der Test
    tests_e2e/test_cloud.py vergleicht die Schluessel):
      gewusst, bestanden,   Vereinigung. Gelernt ist gelernt, egal auf
@@ -5244,7 +5425,12 @@ function standAlsObjekt(){
                            kleinere n - lieber einmal mehr ueben als einen
                            Fehler verlieren, der nur auf einem Geraet geuebt
                            wurde. Hoechstens TOPF_MAX, es bleiben die
-                           neuesten, wie in topfMerken().
+                           neuesten, wie in topfMerken(). Weitere Angaben
+                           eines Eintrags bleiben beim Gewinner stehen; bei
+                           sonst Gleichem gewinnt b (28.10.2026). Verlassen
+                           darf sich darauf keine neuere Fassung -
+                           topfMerken() schreibt Eintraege neu und loescht
+                           sie, siehe STAND_FELDER.
      stern                 Vereinigung. Auf beiden Seiten markiert: das
                            neuere z (zuletzt markiert) und das groessere r
                            (zuletzt geuebt). Danach sternPruefen().
@@ -5261,17 +5447,38 @@ function standAlsObjekt(){
                            hat sie nicht; beide Merker gehen nur von false
                            nach true, das "oder" ist also der neuere Stand.
      getragen              eine Wahl, kein Fortschritt: das Geraet (a)
-                           gewinnt, traegt es nichts, die Cloud. Die einzige
-                           Stelle, die nicht kommutativ ist - mit Absicht,
-                           das Geraet bleibt massgeblich.
-   Was sonst im Stand steht (etwa premium aus einer alten Datei), faellt weg.
+                           gewinnt, traegt es nichts, die Cloud. Bis zum
+                           28.10.2026 die einzige Stelle, die nicht
+                           kommutativ ist - mit Absicht, das Geraet bleibt
+                           massgeblich. Seitdem auch die Felder einer
+                           neueren Fassung, siehe unten.
+   premium aus einer alten Datei faellt weg (STAND_ALT). Seit 28.10.2026
+   bleibt alles andere, was diese Fassung nicht kennt, unveraendert stehen
+   (standFremd). Diese Fassung aendert solche Felder nie, sie traegt nur
+   weiter, was sie gelesen hat; zusammengefuehrt wird nur, wenn seit dem
+   eigenen letzten Abgleich jemand anderes geschrieben hat, und dessen
+   Fassung ist dann die neuere. Darum (Pruefbefund 28.10.2026):
+     - Was b, die Cloud, hat, gilt - ganz und zuerst. So ueberschreibt ein
+       Handy mit v109 die Wiederholungsdaten eines Tablets mit v110 nicht
+       mit einer alten Kopie.
+     - Ein Feld nur in a kommt mit, wenn es auf diesem Geraet neu ist,
+       etwa aus einer Sicherungsdatei. Stand es beim letzten Abgleich
+       schon in der Cloud (cloudVorher: die Namen aus m.fremd, siehe
+       cloudAbgleich), hat die neuere Fassung es seitdem geloescht oder
+       umbenannt, und es bleibt weg - vorher kam es von hier aus wieder
+       in die Cloud. Ohne cloudVorher (erste Anmeldung, Tests) kommt
+       alles aus a mit.
+     - Die Felder aus a nur, soweit neben denen aus b Platz ist
+       (CLOUD_GROESSE_MAX). Fuer sie faellt nie eins aus b weg - vorher
+       konnte die Summe beider Seiten beim Uebernehmen alle verwerfen.
+   Nicht kommutativ, mit Absicht - wie "getragen".
    Nicht hier, sondern drumherum geprueft wird, ob etwas plausibel ist: b
    kommt von aussen wie eine Sicherungsdatei und geht vorher durch
    sicherungPlausibel(), das Ergebnis durch standUebernehmen() - siehe
    cloudUebernehmen(). sicherungPlausibel() auf das Ergebnis hiesse, die
    eigenen Muenzen und Lerntage dieses Geraets zu kappen; genau das schliesst
    der Kommentar in standUebernehmen() fuer den eigenen Stand aus. */
-function standZusammenfuehren(a, b){
+function standZusammenfuehren(a, b, cloudVorher){
   const objekt = x => (x && typeof x === 'object' && !Array.isArray(x)) ? x : null;
   a = objekt(a) || {}; b = objekt(b) || {};
   const texte = x => Array.isArray(x) ? x.filter(s => typeof s === 'string') : [];
@@ -5309,14 +5516,14 @@ function standZusammenfuehren(a, b){
     const x = objekt(ta[tag]) || {}, y = objekt(tb[tag]) || {};
     return [tag, Object.fromEntries(schluessel(x, y).map(id => [id, Math.max(zahl(x[id]), zahl(y[id]))]))];
   }));
-  const eintrag = e => { e = objekt(e); return (e && typeof e.typ === 'string') ? {typ: e.typ, n: ganzAbNull(e.n), z: Math.min(zahl(e.z), jetzt)} : null; };
+  const eintrag = e => { e = objekt(e); return (e && typeof e.typ === 'string') ? {...e, typ: e.typ, n: ganzAbNull(e.n), z: Math.min(zahl(e.z), jetzt)} : null; };
   const pa = objekt(a.topf) || {}, pb = objekt(b.topf) || {};
   const topfListe = schluessel(pa, pb).filter(k => k.length <= 200 && STERN_ART.test(k)).map(k => {
     const x = eintrag(pa[k]), y = eintrag(pb[k]);
     if(!x || !y) return [k, x || y];
     if(x.z !== y.z) return [k, x.z > y.z ? x : y];
     if(x.n !== y.n) return [k, x.n < y.n ? x : y];
-    return [k, x.typ <= y.typ ? x : y];
+    return [k, x.typ < y.typ ? x : y];
   }).filter(([, e]) => e);
   topfListe.sort((p, q) => (q[1].z - p[1].z) || textVergleich(p[0], q[0]));
   m.topf = Object.fromEntries(topfListe.slice(0, TOPF_MAX));
@@ -5349,6 +5556,12 @@ function standZusammenfuehren(a, b){
                  nein: !!(ba.nein || bb.nein), bewertet: !!(ba.bewertet || bb.bewertet)};
   const ga = typeof a.getragen === 'string' ? a.getragen : '';
   m.getragen = ga || (typeof b.getragen === 'string' ? b.getragen : '');
+  /* Felder einer neueren Fassung: zuerst alle von b, dann, was nur a hat
+     und dort neu ist, soweit Platz bleibt - siehe oben und standFremd. */
+  const fb = standFremdAus(b), weg = new Set(Array.isArray(cloudVorher) ? cloudVorher : []);
+  const nurA = Object.fromEntries(Object.entries(standFremdAus(a))
+    .filter(([k]) => !Object.prototype.hasOwnProperty.call(fb, k) && !weg.has(k)));
+  Object.assign(m, fb, standFremdAus(nurA, CLOUD_GROESSE_MAX - fremdPlatz(fb)));
   /* Eine tiefe Kopie: das Ergebnis teilt nichts mit a oder b. Sonst haengte
      standUebernehmen() etwa die einstufung des alten Stands wieder ein. */
   return JSON.parse(JSON.stringify(m));
@@ -7377,7 +7590,6 @@ async function ladeDaten(){
      "Ustajem" weiter "ich stehe auf" statt "je me leve", in 28 von 43 Leveln,
      bis die App geschlossen und neu geoeffnet wurde. Gefunden am 26.09.2026. */
   vokabelFormen = null; dictFormen = null;
-  _echteWoerter = null;   // ebenso die Woerter fuer den Tippfehler-Hinweis (24.10.2026)
   /* Jede Grammatikaufgabe weiss, zu welchem Level sie gehoert und die
      wievielte sie ist. Daran erkennt der Wiederholen-Topf sie wieder, auch
      nach einem Sprachwechsel. Und die Wortsuche des Topfs neu aufbauen. */
@@ -7401,7 +7613,9 @@ async function setzeSprache(code){
   try{ await ladeDaten(); }catch(e){ SPRACHE = vorher; return; }
   if(!STORIES.length) $('modeStories').hidden = true;
   if(warAuf === 'settingsView') showSettings();          // dort steht die Auswahlliste
-  else if(warAuf === 'profileView') zeigeAnmeldung(kontoModus);   // dort stehen die Flaggen
+  else if(warAuf === 'profileView'){      // dort stehen die Flaggen
+    if(cloudModus()) anmeldungZeigen(anmAnlass, anmModus); else zeigeAnmeldung(kontoModus);
+  }
   else if(profil) showHome(); else zeigeAnmeldung('anmelden');
 }
 function renderLangBar(){
@@ -7437,14 +7651,20 @@ function renderLangSel(){
 
 /* =================== ANSICHTEN =================== */
 const VIEWS = ['profileView','pfad','storyView','levelView','kontoView','settingsView','shopView','einstufungView'];
+/* Hinter dem Tor der Pflicht-Anmeldung (28.10.2026): diese Ansichten gibt
+   es erst nach dem Anmelden, siehe anmeldungSperre(). Das ist das Netz
+   darunter - die Einstiege (showHome, startLesson ...) fragen selbst
+   vorher, damit dort weder Ton noch Uhr anlaufen. */
+const TOR_ANSICHTEN = ['pfad','levelView','storyView','shopView','einstufungView'];
 function showView(id){
+  if(TOR_ANSICHTEN.indexOf(id) >= 0 && anmeldungSperre()) return;
   stilleBitte();          // kein Ton laeuft in die naechste Ansicht hinein
   uhrAus();               // und keine Lernzeit: Geschichte und Lektion rufen uhrAn() selbst
   VIEWS.forEach(v=>{ $(v).style.display = v===id ? 'block' : 'none'; });
   zmajeAnpassen();        // Drachen ausgeblendeter Ansichten anhalten, die sichtbaren wecken
   $('kopfLeiste').style.display = '';     // wer sie nicht will, blendet sie danach aus
   nurHerz(false);                         // Lektion, Test und Runde setzen es selbst wieder
-  // Vor der Anmeldung darf das Logo größer sein - siehe CSS oben
+  // Auf der Anmeldeseite faellt die leere Kopfzeile weg - siehe CSS oben
   document.body.classList.toggle('vorAnmeldung', id === 'profileView');
   /* Hier und nicht in showHome(): so stimmt die Farbe auch in den
      Einstellungen, im Laden und bei den Geschichten. */
@@ -8021,13 +8241,14 @@ function zeigeAnmeldung(modus, daten){
   $('kontoPw').hidden = !zeigt.pw;
   $('kontoPw2').hidden = !zeigt.pw2;
   $('kontoRegeln').hidden = !zeigt.regeln;
+  pwListeBeschreibt(zeigt.regeln);
   $('kontoBleibenZeile').hidden = !zeigt.bleiben;
   $('kontoWechsel').hidden = !zeigt.wechsel;
   $('kontoVergessen').hidden = !zeigt.vergessen;
   // Der Spam-Hinweis steht beim Warten immer da. Beim Passwort-vergessen
   // erst, wenn die Mail wirklich raus ist - vorher gibt es nichts zu suchen.
   $('kontoSpam').hidden = m !== 'warten';
-  $('kontoSpam').textContent = t('konto.spam_hinweis');
+  $('kontoSpam').textContent = t('konto.spam_kurz');
 
   // Das Namensfeld heißt je nach Zustand anders
   $('kontoName').placeholder = t(m==='neu' ? 'konto.benutzername'
@@ -8054,10 +8275,22 @@ function zeigeAnmeldung(modus, daten){
   if(zeigt.regeln) zeigeRegeln($('kontoRegeln'), '');
   if(zeigt.name) $('kontoName').focus(); else if(zeigt.pw) $('kontoPw').focus();
 }
-$('kontoPw').addEventListener('input', e=>{
-  if(!$('kontoRegeln').hidden) zeigeRegeln($('kontoRegeln'), e.target.value);
-});
-$('kontoVergessen').addEventListener('click', ()=> zeigeAnmeldung('vergessen'));
+/* Beim Tippen die Liste neu. Die Adresse gehoert seit 29.10.2026 zu den
+   Regeln (nicht deine E-Mail): wer sie nach dem Passwort aendert, sieht die
+   Liste gleich richtig. Mit der Pflicht-Anmeldung geht dabei auch die rote
+   Zeile unter "Konto anlegen" weg - sonst stand dort noch "Es fehlt ein
+   Sonderzeichen", als die Liste es laengst abgehakt hatte (gefunden am
+   Bildschirmfoto, 29.10.2026). Was dann noch fehlt, zeigt die Liste; die
+   Zeile kommt beim naechsten Tipp auf den Knopf wieder. */
+function kontoGetippt(){
+  if($('kontoRegeln').hidden) return;
+  zeigeRegeln($('kontoRegeln'), $('kontoPw').value, $('kontoMail').value);
+  const note = $('kontoNote');
+  if(cloudModus() && note.classList.contains('no')){ note.textContent = ''; note.className = 'note'; }
+}
+['kontoMail', 'kontoPw', 'kontoPw2'].forEach(id => $(id).addEventListener('input', kontoGetippt));
+$('kontoVergessen').addEventListener('click', ()=>
+  cloudModus() ? anmeldungZeigen(anmAnlass, 'mail_vergessen') : zeigeAnmeldung('vergessen'));
 
 /* Dieselben Regeln wie in konten.py. Verbindlich ist immer der Server;
    hier stehen sie nur, damit man beim Tippen sieht, was noch fehlt. */
@@ -8071,11 +8304,38 @@ const PW_REGELN = [
   ['passwort_leerzeichen', 'konto.regel_leer', p => !/\s/.test(p)]
 ];
 
-function zeigeRegeln(kasten, passwort){
+/* Mit der Pflicht-Anmeldung (28.10.2026) galt erst nur die Laenge. Seit
+   29.10.2026 gelten dort die Regeln aus PW_REGELN_CLOUD, gezaehlt wie bei
+   Firebase, und dazu "nicht deine E-Mail": ○ solange das Feld leer ist,
+   ✓ sobald etwas darin steht, das den Teil vor dem @ nicht enthaelt, rot
+   mit ✗, wenn doch. Sie steht nur da, wenn vor dem @ mindestens 3 Zeichen
+   stehen - kuerzer gilt sie nicht (pwOhneEmail). Bis zur Pruefung am
+   selben Tag erschien sie nur verletzt und bekam nie einen Haken; verlangt
+   war aber ein Haken fuer jede erfuellte Regel. markieren (nach "Konto
+   anlegen") faerbt rot, was noch fehlt. */
+function zeigeRegeln(kasten, passwort, email, markieren){
+  const cloud = cloudModus();
+  const regeln = cloud ? PW_REGELN_CLOUD : PW_REGELN;
+  const punkt = (klasse, text) => '<span class="'+klasse+'">'+esc(text)+'</span>';
+  const mail = cloud && emailVorAt(email).length >= 3
+    ? punkt(!pwOhneEmail(passwort, email) ? 'nein' : passwort ? 'ok' : '', t('konto.regel_email')) : '';
   kasten.innerHTML = '<b>'+esc(t('konto.regeln_titel'))+'</b>' +
-    PW_REGELN.map(([, schluessel, erfuellt]) =>
-      '<span class="'+(erfuellt(passwort)?'ok':'')+'">'+
-      esc(t(schluessel, {n: PW_MIN}))+'</span>').join('');
+    regeln.map(([, schluessel, erfuellt]) =>
+      punkt(erfuellt(passwort) ? 'ok' : (markieren ? 'fehlt' : ''),
+            t(schluessel, {n: cloud ? PW_MIN_CLOUD : PW_MIN}))).join('') + mail;
+}
+/* Die Liste beschreibt das Passwortfeld (aria-describedby), solange sie
+   zu sehen ist: ein Bildschirmleser nennt die Regeln mit dem Feld. Live
+   ist sie nicht, sonst kaeme sie bei jedem Tastendruck (29.10.2026).
+   Dazu ein Name, derselbe Text wie der Platzhalter (die Liste steht nur
+   bei einem neuen Passwort da): ein Feld, das nur der Platzhalter benennt
+   und das eine Beschreibung hat, beanstandet axe als label-title-only
+   (ernst) - gefunden mit tests_e2e/test_barrierefreiheit.py. Eine neue
+   Sprache baut die Seite neu auf (setzeSprache), der Name folgt also. */
+function pwListeBeschreibt(an){
+  const feld = $('kontoPw');
+  if(an){ feld.setAttribute('aria-describedby', 'kontoRegeln'); feld.setAttribute('aria-label', t('konto.passwort_neu')); }
+  else { feld.removeAttribute('aria-describedby'); feld.removeAttribute('aria-label'); }
 }
 
 /* Serverfehler in einen Satz übersetzen, den man lesen kann. */
@@ -8113,10 +8373,14 @@ function fmtDauer(sek){
   return m >= 1 ? tp('zeit.min_lang', m) : tp('zeit.sekunden', Math.max(1, sek));
 }
 
-$('kontoWechsel').addEventListener('click', ()=> zeigeAnmeldung(kontoModus==='anmelden' ? 'neu' : 'anmelden'));
+$('kontoWechsel').addEventListener('click', ()=> cloudModus()
+  ? anmeldungZeigen(anmAnlass, anmModus === 'mail_an' ? 'mail_neu' : 'mail_an')
+  : zeigeAnmeldung(kontoModus==='anmelden' ? 'neu' : 'anmelden'));
 
 $('kontoForm').addEventListener('submit', async e=>{
   e.preventDefault();
+  // Pflicht-Anmeldung mit Firebase (28.10.2026), der Server-Zweig darunter bleibt fuer start.py
+  if(cloudModus()) return cloudFormularSenden();
   const m    = kontoModus;
   const name = $('kontoName').value.trim();
   const adr  = $('kontoMail').value.trim();
@@ -8221,6 +8485,10 @@ async function nachAnmeldung(info){
   kontoMail = info.email || '';
   await loadProgress(); syncLives(); pruefeSchutz();
   if(altenFortschrittUmschreiben() | funkelnUmzug()) saveProgress();
+  /* Pflicht-Anmeldung (28.10.2026): Sitzung mit der Kopie in der Huelle
+     abgleichen und einmal nach einem Restore-Schluessel fragen. Ohne
+     Cloud passiert hier nichts. */
+  if(cloudModus()) await cloudSitzungAbgleichen();
   /* Das Jahresgeschenk hing bisher allein an tagPruefen() - und das
      schlaegt nur an, wenn die App offen ist, waehrend der Tag wechselt.
      Wer sie abends schliesst und morgens neu oeffnet, kam nie an sein
@@ -8230,14 +8498,17 @@ async function nachAnmeldung(info){
   // Ohne Server gibt es kein Konto zu verwalten: kein Passwort, keine
   // E-Mail, kein Abmelden. Dann bleibt der Knopf weg und mit ihm die
   // ganze Kontoansicht - erreichbar ist sie nur ueber ihn.
-  $('btnProfil').style.display = MIT_SERVER ? 'inline-block' : 'none';
-  $('btnProfil').innerHTML = mitSymbol('profil', esc(profil));
+  /* Seit v109 auch mit der Pflicht-Anmeldung, sobald jemand angemeldet ist
+     (28.10.2026). */
+  $('btnProfil').style.display = (MIT_SERVER || (cloudModus() && !!cloudMerker())) ? 'inline-block' : 'none';
+  // Kein Name mehr im Knopf, nur die Figur: eine Zeile oben (29.10.2026).
   $('btnSettings').style.display='inline-block';
   $('btnShop').style.display='inline-block';
   homeMode='words'; showHome();
 }
 
 async function abmelden(){
+  if(cloudModus()) return cloudAbmeldenGanz();     // 28.10.2026
   await saveProgress();
   await postJSON('/api/konto/abmelden', {});
   profil=''; kontoMail=''; known=new Set(); passed=new Set(); read=new Set(); days=new Set(); frost=new Set();
@@ -8360,8 +8631,8 @@ function altenFortschrittUmschreiben(){
   return geaendert || sternNeu || topfNeu;
 }
 
-// Der Knopf mit dem Namen oben rechts führt in die Einstellungen -
-// dort steht auch das Abmelden.
+// Der Knopf mit der Figur oben rechts führt in die Kontoseite -
+// dort steht auch das Abmelden. (Bis 29.10.2026 stand der Name darin.)
 $('btnProfil').addEventListener('click', async ()=>{ await saveProgress(); showKonto(); });
 
 /* =================== EINSTELLUNGEN =================== */
@@ -8378,11 +8649,18 @@ function showKonto(){
   $('setSchutz').textContent = tp('serie.schutz', s) +
     (s>=SCHUTZ_MAX ? ' · '+t('serie.schutz_voll') : (rest ? ' · '+t('serie.schutz_naechster',{zeit:fmtTage(rest)}) : ''));
   $('setSchutzInfo').textContent = t('set.serie_schutz_sub',{tage:SCHUTZ_TAGE, max:SCHUTZ_MAX});
+  if(cloudModus()) kontoSeiteCloud();     // Pflicht-Anmeldung, 28.10.2026
 }
 function showSettings(){
   showView('settingsView'); $('kopfLeiste').style.display='none';
   setzeZurueck(t('btn.zurueck'), showHome);
   $('tag').textContent=t('btn.einstellungen');
+  /* 28.10.2026 (Pruefbericht): Angemeldet liegt eine Kopie im Konto -
+     "nur auf diesem Geraet" stimmt dann nicht mehr. Ohne Konto (und ohne
+     Firebase-Projekt) bleibt der Satz von v108. */
+  const sichSub = $('setSichSub'), mitKonto = cloudModus() && !!cloudMerker();
+  sichSub.dataset.t = mitKonto ? 'set.sicherung_sub_konto' : 'set.sicherung_sub';
+  sichSub.textContent = mitKonto ? t('set.sicherung_sub_konto') : t('set.sicherung_sub');
   // Werbung: Die Zeile erscheint erst, wenn wirklich geworben wird oder
   // schon einmal gefragt wurde. Vorher gäbe es nichts zu ändern.
   // Mit AdMob verwaltet Google die Antwort, und Google sagt auch, ob ein
@@ -8650,6 +8928,7 @@ $('pwForm').addEventListener('submit', async e=>{
 
 /* ---- Konto löschen ---- */
 $('setKontoWeg').addEventListener('click', ()=>{
+  if(cloudModus()) return kontoWegKlick();     // 28.10.2026
   const f=$('wegForm'); const auf = f.style.display==='none';
   f.style.display = auf ? 'block' : 'none';
   $('wegNote').textContent=''; $('wegPw').value='';
@@ -8657,6 +8936,7 @@ $('setKontoWeg').addEventListener('click', ()=>{
 });
 $('wegForm').addEventListener('submit', async e=>{
   e.preventDefault();
+  if(cloudModus()) return cloudKontoLoeschen($('wegPw').value);     // 28.10.2026
   if(!confirm(t('set.konto_loeschen_frage',{name:profil}))) return;
   const d = await postJSON('/api/konto/loeschen', {passwort: $('wegPw').value});
   if(d.ok){
@@ -8706,9 +8986,12 @@ function standErsetzen(machen){
      in den Geraetespeicher. Beim Zuruecknehmen muessen die mit zurueck,
      sonst verbraucht eine abgelehnte Datei das Jahresgeschenk. */
   const geschenkVorher = Object.assign({}, geschenk), getragenVorher = getragen;
+  /* Ebenso gewusstGeladen: zurueck kommt hier der laufende Stand, kein
+     geladener - fuers Tor zaehlte sonst ein halb gelerntes Wort. */
+  const gewusstVorher = gewusstGeladen;
   try{ standUebernehmen(machen()); altenFortschrittUmschreiben(); return true; }
   catch(e){ standUebernehmen(vorher); altenFortschrittUmschreiben();
-           geschenk = geschenkVorher; getragen = getragenVorher;
+           geschenk = geschenkVorher; getragen = getragenVorher; gewusstGeladen = gewusstVorher;
            try{ localStorage.setItem(GESCHENK_SCHLUESSEL, JSON.stringify(geschenk));
                 localStorage.setItem('zmaj_getragen', getragen); }catch(e2){}
            return false; }
@@ -8799,26 +9082,36 @@ $('sichDatei').addEventListener('change', async e=>{
   if(datei) await sicherungEinlesen(datei);
 });
 
-/* =================== CLOUD-SICHERUNG (vorbereitet, aus) ===================
-   19.10.2026. Ajdin am 18.10.2026: "dann machen wir firebase" - eingeschaltet
-   wird aber erst nach dem Produktionsstart. Bis dahin steht CLOUD_AN auf
-   false, und dann passiert hier NICHTS: keine Anfrage ins Netz, keine
-   Oberflaeche, kein Eintrag im Geraetespeicher. Ohne Adapter tut keine
-   Funktion unten etwas, und einen Adapter gibt es nur mit CLOUD_AN und
-   eingesetzten Zugangsdaten (cloudAdapter). Einschalten: siehe
-   FIREBASE_EINRICHTEN.md.
+/* =================== CLOUD-SICHERUNG UND ANMELDUNG ===================
+   19.10.2026 vorbereitet, seit 28.10.2026 (v109) die Pflicht-Anmeldung.
+   Ajdin am 18.10.2026: "dann machen wir firebase". Am 26./27.10.2026: die
+   Anmeldung kommt schon in v109 und ist Pflicht, mit Google und mit E-Mail
+   und Passwort; neue Nutzer machen erst die 1. Lektion, bestehende melden
+   sich beim naechsten Start an; "anmelden soll nur einmal passieren wie
+   bei duolingo"; ohne Internet wird trotzdem gelernt. Der Bauplan steht in
+   Release\Firebase_Plan_v109.md.
+
+   Eingeschaltet wird nur im Bau: In der Quelle steht CLOUD_AN auf false,
+   app_bauen.py (cloud_einsetzen) setzt es in der KOPIE www/index.html auf
+   true - und nur, wenn die private Huelle cloud_zugang.json hat. Ohne die
+   Datei, in der Browser-Demo, mit start.py und in allen Tests mit der
+   Quelle passiert hier NICHTS: keine Anfrage ins Netz, keine Oberflaeche,
+   kein Eintrag im Geraetespeicher, kein Aufruf des Plugins. Ohne Adapter
+   tut keine Funktion unten etwas, und einen Adapter gibt es nur mit
+   CLOUD_AN und eingesetzten Zugangsdaten (cloudAdapter).
 
    Die Regeln aus der Recherche vom 18.10.2026:
      - Das Geraet bleibt massgeblich, die Cloud ist nur Sicherung. Gelernt
        und gerechnet wird weiter mit dem Geraetespeicher.
      - Hoechstens ein Schreibvorgang je Nutzer und Tag und nur, wenn sich
        etwas geaendert hat (Spark: 20 000 am Tag fuer alle zusammen), dazu
-       einer beim ersten Anmelden. Gelesen wird beim ersten Start des Tages
-       und vor jedem Schreiben.
+       einer beim Anmelden und einer beim Abmelden. Gelesen wird beim ersten
+       Start des Tages und vor jedem Schreiben.
      - In der Cloud steht dasselbe JSON wie in der Sicherungsdatei
        (sicherungObjekt), als ein Text in users/{uid}. Keine
        Firebase-Sonderfunktionen: fuer einen anderen Anbieter genuegt ein
-       neuer Adapter mit anmelden, laden, speichern und loeschen.
+       neuer Adapter mit anmelden, registrieren, laden, speichern und
+       loeschen.
      - Zusammenfuehren statt ueberschreiben, siehe standZusammenfuehren().
        Zusammengefuehrt wird aber nur, wenn seit dem eigenen letzten
        Abgleich jemand anderes geschrieben hat (rev passt nicht mehr). Sonst
@@ -8832,31 +9125,124 @@ $('sichDatei').addEventListener('change', async e=>{
 const CLOUD_AN = false;
 /* Platzhalter wie beim Dauer-Pruefwert: app_bauen.py (cloud_einsetzen)
    setzt beim Bauen die Werte aus der privaten Huelle ein
-   (cloud_zugang.json). Im Repository stehen sie nie. */
+   (cloud_zugang.json). Im Repository stehen sie nie. CLOUD_CLIENT ist die
+   Web-Client-ID fuer die Anmeldung mit Google (28.10.2026). */
 const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';
 const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';
+const CLOUD_CLIENT = '__CLOUD_CLIENT__';
 /* Was dieses Geraet sich merkt, erst nach dem Anmelden:
-     art, uid  das Konto ('google' oder 'anonym')
+     art, uid  das Konto ('google', 'passwort' oder 'anonym')
      token     der Erneuerungsschluessel der Anmeldung - liegt im
-               App-Speicher wie der Lernstand selbst
+               App-Speicher wie der Lernstand selbst, dazu als Kopie in
+               der Huelle (ZmajAnmeldung.sitzungMerken), siehe
+               cloudSitzungAbgleichen()
+     email     die Adresse des Kontos, nur zum Anzeigen und fuer die
+               frische Anmeldung vor dem Loeschen
      rev       Kennung des Cloud-Stands, den dieses Geraet zuletzt
                geschrieben oder eingearbeitet hat
      fp        Fingerabdruck des zuletzt hochgeladenen Stands
-     tag       Tag des letzten Schreibens, gelesen der des letzten Lesens */
+     fremd     die Namen der Felder einer neueren Fassung (standFremd),
+               die beim letzten Lesen oder Schreiben in der Cloud standen
+               - fuer standZusammenfuehren(), seit 28.10.2026
+     tag       Tag des letzten Schreibens beim Verlassen, gelesen der des
+               letzten Lesens, gesichert der des letzten Schreibens
+               ueberhaupt (fuer "Zuletzt gesichert" in der Kontoseite) */
 const CLOUD_MERKER = 'zmaj_cloud';
+/* Wer sich abgemeldet hat oder dessen Konto von aussen weg ist, sieht beim
+   naechsten Start gleich die Anmeldung - auch mit leerem Lernstand. */
+const ABGEMELDET = 'zmaj_abgemeldet';
 /* Auch nach Jahren wird ein Stand nicht so gross (alle Woerter, Topf und
    Sterne voll: rund 150 000 Zeichen). Dieselbe Grenze steht in
-   firestore.rules. */
-const CLOUD_GROESSE_MAX = 400000;
+   firestore.rules.
+   28.10.2026: 900 000 statt 400 000. Luft fuer die zeitgesteuerte
+   Wiederholung ab v110, die je Wort Daten mitbringt, und fuer Felder
+   einer neueren Fassung, die diese hier nur weitertraegt (standFremd).
+   Gemessen wird der Text in UTF-8-Bytes (utf8Laenge), nicht in Zeichen:
+   Firestore erlaubt 1 MiB (1 048 576 Bytes) je Dokument, und ein 'č' ist
+   dort zwei Bytes lang. So bleibt das Dokument mit rev und Feldnamen
+   sicher darunter; die Regel zaehlt Zeichen und laesst es damit erst
+   recht durch. */
+const CLOUD_GROESSE_MAX = 900000;
+const utf8Laenge = s => { try{ return new TextEncoder().encode(s).length; }catch(e){ return s.length * 3; } };
+/* Firebase verlangt mindestens 6 Zeichen. Ajdin hatte die Frage offen
+   gelassen; gebaut nach dem Vorschlag im Plan (Frage 3): nur die Laenge,
+   mindestens 8 - einfacher als die 10 Zeichen mit vier Zeichenarten der
+   alten Server-Anmeldung. 28.10.2026 */
+const PW_MIN_CLOUD = 8;
+/* Seit 29.10.2026 mehr als die Laenge. Ajdin nach dem Test der v109 mit
+   Anmeldung: "mindestens ein Sonderzeichen, mindestens eine Zahl, Gross-
+   und Kleinschreibung und was noch so wichtig ist". Entschieden: 8 Zeichen,
+   je ein Gross- und ein Kleinbuchstabe, eine Ziffer, ein Sonderzeichen, und
+   der Teil der Adresse vor dem @ (ab 3 Zeichen) darf nicht darin stehen.
+   Verbindlich ist Firebase: Ajdin stellt in der Konsole die
+   Passwort-Richtlinie auf "Require" (8 Zeichen, alle vier Zeichenarten).
+   Deshalb zaehlt die App genau wie Firebases eigene Pruefung
+   (validatePassword in firebase-js-sdk, password_policy_impl.ts,
+   nachgesehen am 29.10.2026): Gross- und Kleinbuchstaben nur A-Z und a-z,
+   Ziffern nur 0-9, die Laenge in UTF-16-Einheiten (p.length). Ein Umlaut,
+   +, EUR-Zeichen oder Leerzeichen ist erlaubt, zaehlt aber fuer keine
+   Regel - sonst zeigte die Liste einen Haken, und Firebase lehnte trotzdem
+   ab (PASSWORD_DOES_NOT_MEET_REQUIREMENTS). "Oelbaum1!" mit einem grossen
+   Oe braucht also noch einen Grossbuchstaben A-Z. Damit das niemanden
+   ratlos laesst (Ş, Ö, Å, Æ stehen in tr, de, sv, nb und da oft vorn),
+   nennen Liste und Fehlersatz den Bereich: "Großbuchstabe (A–Z)",
+   konto.regel_gross_az und konto.fehler_gross_az (Pruefung 29.10.2026).
+   PW_REGELN der alten Server-Anmeldung zaehlt jeden Buchstaben und
+   behaelt deshalb konto.regel_gross.
+   Sonderzeichen sind genau die, die Zmajs Firebase-Projekt selbst meldet
+   (GET identitytoolkit v2/passwordPolicy, allowedNonAlphanumericCharacters,
+   abgefragt am 30.10.2026). Die Anleitung von Firebase nannte - und ` nicht,
+   der Server zaehlt beide; "Sommer-2026" bekam deshalb in der App ein rotes
+   Sonderzeichen, obwohl Firebase es annimmt. Nie mehr Zeichen als der
+   Server: lockerer hiesse ein Haken in der Liste und trotzdem eine Ablehnung.
+   Die Regel mit der E-Mail kennt Firebase nicht, sie gilt nur hier.
+   Nur fuer ein neues Passwort (Konto anlegen); die Anmeldung mit einem
+   bestehenden Passwort prueft nichts davon. */
+const PW_ZEICHEN_CLOUD = '^$*.[]{}()?"!@#%&/\\,><\':;|_~`-';
+const PW_REGELN_CLOUD = [
+  ['passwort_kurz',    'konto.regel_laenge',  p => p.length >= PW_MIN_CLOUD],
+  ['passwort_gross',   'konto.regel_gross_az', p => /[A-Z]/.test(p)],
+  ['passwort_klein',   'konto.regel_klein_az', p => /[a-z]/.test(p)],
+  ['passwort_zahl',    'konto.regel_zahl',    p => /[0-9]/.test(p)],
+  ['passwort_zeichen', 'konto.regel_zeichen', p => [...p].some(z => PW_ZEICHEN_CLOUD.includes(z))]
+];
+/* Steht der Teil der Adresse vor dem @ im Passwort? Gross und klein egal.
+   Kuerzer als 3 Zeichen zaehlt er nicht - sonst verboete "ab@..." jedes
+   Passwort mit "ab" -, ohne @ (noch beim Tippen) auch nicht. */
+function emailVorAt(email){
+  const adr = String(email || ''), at = adr.indexOf('@');
+  return at < 0 ? '' : adr.slice(0, at).trim().toLowerCase();
+}
+function pwOhneEmail(pw, email){
+  const name = emailVorAt(email);
+  return name.length < 3 || !String(pw || '').toLowerCase().includes(name);
+}
+/* Was einem neuen Passwort noch fehlt: die erste Regel, die nicht erfuellt
+   ist (wie PW_REGELN beim Server), zuletzt die E-Mail - sonst ''. */
+function pwFehltCloud(pw, email){
+  const r = PW_REGELN_CLOUD.find(([, , erfuellt]) => !erfuellt(pw));
+  return r ? r[0] : (pwOhneEmail(pw, email) ? '' : 'passwort_email');
+}
+function pwFehlerCloud(fehlt){
+  if(fehlt === 'passwort_kurz') return t('konto.fehler_kurz', {n: PW_MIN_CLOUD});
+  if(fehlt === 'passwort_email') return t('konto.fehler_pw_email');
+  if(fehlt === 'passwort_gross') return t('konto.fehler_gross_az');   // nur A-Z, siehe oben
+  if(fehlt === 'passwort_klein') return t('konto.fehler_klein_az');
+  return kontoFehlerText(fehlt);       // Zahl, Sonderzeichen: dieselben Saetze wie beim Server
+}
 let cloudLaeuft = false;   // immer nur ein Abgleich zur Zeit
 let cloudFirestoreAdapter = null;
+let cloudFehlerGrund = '';   // der letzte Grund, fuer die Meldung in der Oberflaeche
 const cloudEingerichtet = () => /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/.test(CLOUD_PROJEKT)
-  && /^AIza[0-9A-Za-z_-]{35}$/.test(CLOUD_SCHLUESSEL);
+  && /^AIza[0-9A-Za-z_-]{35}$/.test(CLOUD_SCHLUESSEL) && /^[0-9]{6,20}-[0-9a-z]{16,40}\.apps\.googleusercontent\.com$/.test(CLOUD_CLIENT);
 function cloudAdapter(){
   if(!CLOUD_AN || !cloudEingerichtet()) return null;
   if(!cloudFirestoreAdapter) cloudFirestoreAdapter = cloudFirestore(CLOUD_PROJEKT, CLOUD_SCHLUESSEL);
   return cloudFirestoreAdapter;
 }
+/* Die Anmeldung gilt nur mit Adapter und nicht neben dem alten Server von
+   start.py (KONTEN_AN, MIT_SERVER) - dort gibt es dessen eigene. */
+const cloudModus = () => !!cloudAdapter() && !MIT_SERVER;
 function cloudMerker(){
   try{
     const m = JSON.parse(localStorage.getItem(CLOUD_MERKER) || 'null');
@@ -8864,10 +9250,13 @@ function cloudMerker(){
   }catch(e){ return null; }
 }
 /* nurWennGleich: nur, wenn noch dasselbe Konto angemeldet ist. Wer sich
-   waehrend eines Abgleichs abmeldet, waere sonst gleich wieder angemeldet. */
+   waehrend eines Abgleichs abmeldet, waere sonst gleich wieder angemeldet.
+   28.10.2026: Hat sich der Erneuerungsschluessel geaendert, bekommt die
+   Huelle eine neue Kopie der Sitzung. */
 function cloudMerkerSetzen(m, nurWennGleich){
   if(nurWennGleich){ const jetzt = cloudMerker(); if(!jetzt || jetzt.uid !== m.uid) return; }
   try{ localStorage.setItem(CLOUD_MERKER, JSON.stringify(m)); }catch(e){}
+  cloudNativMerken(m);
 }
 /* Ob sich seit dem letzten Hochladen etwas geaendert hat. Ein kurzer
    Fingerabdruck (cyrb53, 64 Bit) statt des ganzen Texts, der sonst ein
@@ -8883,16 +9272,34 @@ function cloudFingerabdruck(stand){
   h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
   return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
 }
+/* Die Kennung eines Cloud-Stands. Bis zum 28.10.2026 stand hier
+   geraetId() + Zeit - dann laege in der Cloud eine Geraete-ID, und das
+   Datensicherheits-Formular muesste sie nennen. Fuer "jemand anderes hat
+   geschrieben" genuegt ein Zufallswert je Schreiben. */
+function cloudRev(){
+  let z = '';
+  try{ z = Array.from(crypto.getRandomValues(new Uint32Array(2)), x => x.toString(36)).join(''); }
+  catch(e){ z = Math.random().toString(36).slice(2); }
+  return z + '.' + Date.now().toString(36);
+}
 function cloudStandAus(text){
   try{ return typeof text === 'string' ? sicherungStandAus(JSON.parse(text)) : null; }
   catch(e){ return null; }
 }
+/* Die Namen der Felder einer neueren Fassung in einem Stand, fuer m.fremd.
+   Gekappt, damit ein gefaelschtes Dokument den Merker nicht aufblaeht;
+   ein Name, der fehlt, laesst hoechstens ein geloeschtes Feld wieder
+   zurueckkommen (siehe standZusammenfuehren). */
+const fremdNamen = s => (s && typeof s === 'object' && !Array.isArray(s))
+  ? Object.keys(s).filter(k => !STAND_FELDER.has(k) && !STAND_ALT.has(k) && k !== '__proto__' && k.length <= 200).slice(0, 100)
+  : [];
 /* Den Stand aus der Cloud einarbeiten. Er kommt von aussen wie eine
    Sicherungsdatei, also zuerst durch sicherungPlausibel(); das Ergebnis
    geht in standErsetzen() durch standUebernehmen(). Danach dasselbe wie
-   nach dem Einlesen einer Datei (sicherungEinlesen). */
-function cloudUebernehmen(fremd){
-  if(!standErsetzen(() => standZusammenfuehren(standAlsObjekt(), sicherungPlausibel(fremd)))) return false;
+   nach dem Einlesen einer Datei (sicherungEinlesen). cloudVorher: siehe
+   standZusammenfuehren(). */
+function cloudUebernehmen(fremd, cloudVorher){
+  if(!standErsetzen(() => standZusammenfuehren(standAlsObjekt(), sicherungPlausibel(fremd), cloudVorher))) return false;
   seitNachEinlesen();
   geschenkPruefen();
   syncLives(); pruefeSchutz();
@@ -8904,18 +9311,19 @@ function cloudUebernehmen(fremd){
   return true;
 }
 /* Der Abgleich. anlass: 'start' (nur lesen, einmal am Tag), 'pause' (App
-   geht in den Hintergrund: schreiben, hoechstens einmal am Tag) oder
-   'anmelden' (lesen und schreiben, zaehlt nicht als der eine am Tag).
-   Gibt zurueck, was passiert ist - nur fuer die Tests. */
+   geht in den Hintergrund: schreiben, hoechstens einmal am Tag),
+   'anmelden' (lesen und schreiben, zaehlt nicht als der eine am Tag) oder
+   seit 28.10.2026 'abmelden' (dasselbe, ein letztes Mal vor dem Abmelden).
+   Gibt zurueck, was passiert ist - fuer die Tests und fuers Abmelden. */
 async function cloudAbgleich(anlass, adapter = cloudAdapter()){
   const m = cloudMerker();
   if(!adapter || !m || cloudLaeuft || !standGeladen || MIT_SERVER) return 'nichts';
-  const heute = today(), erstes = anlass === 'anmelden';
-  const schreiben = erstes || (anlass === 'pause' && m.tag !== heute);
+  const heute = today(), erstes = anlass === 'anmelden', zuletzt = anlass === 'abmelden';
+  const schreiben = erstes || zuletzt || (anlass === 'pause' && m.tag !== heute);
   if(!schreiben && m.gelesen === heute) return 'nichts';
   /* Heute schon gelesen und seit dem letzten Hochladen nichts Neues: dann
      auch keine Anfrage. */
-  if(schreiben && !erstes && m.gelesen === heute && m.fp === cloudFingerabdruck(standAlsObjekt())) return 'unveraendert';
+  if(schreiben && !erstes && !zuletzt && m.gelesen === heute && m.fp === cloudFingerabdruck(standAlsObjekt())) return 'unveraendert';
   cloudLaeuft = true;
   try{
     const dok = await adapter.laden(m);
@@ -8926,78 +9334,211 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
          ersetzt ihn unten der eigene Stand. Wirft das Einarbeiten, wird
          lieber nicht geschrieben: dort koennte ein anderes Geraet stehen. */
       const s = cloudStandAus(dok.text);
-      if(s && !cloudUebernehmen(s)) return 'fehler';
+      if(s && !cloudUebernehmen(s, m.fremd)) return 'fehler';
       m.rev = dok.rev;
+      m.fremd = fremdNamen(s);
     }
+    if(!dok) m.fremd = [];
     if(!schreiben){ cloudMerkerSetzen(m, true); return fremd ? 'zusammengefuehrt' : 'gelesen'; }
     const stand = standAlsObjekt(), fp = cloudFingerabdruck(stand);
     if(!erstes && dok && !fremd && fp === m.fp){ cloudMerkerSetzen(m, true); return 'unveraendert'; }
-    const text = JSON.stringify(sicherungObjekt(stand));
-    if(text.length > CLOUD_GROESSE_MAX){ cloudMerkerSetzen(m, true); return 'zu gross'; }
-    const rev = geraetId() + '.' + Date.now().toString(36);
+    /* Passt der Stand nicht in die Cloud, bleiben dort Felder einer
+       neueren Fassung weg, Feld fuer Feld, bis er passt (Pruefbefund
+       28.10.2026). Auf dem Geraet bleiben sie, und die neuere Fassung hat
+       ihre eigene Kopie. Vorher scheiterte dann jedes Hochladen still mit
+       'zu gross': der Lernfortschritt dieses Geraets kam nie mehr in die
+       Cloud, und Abmelden ging nicht mehr. 'zu gross' heisst jetzt, schon
+       der eigene Stand ist groesser als CLOUD_GROESSE_MAX - mit echtem
+       Lernen unerreichbar, siehe dort. */
+    let oben = stand, text = JSON.stringify(sicherungObjekt(stand));
+    if(utf8Laenge(text) > CLOUD_GROESSE_MAX){
+      const eigen = Object.fromEntries(Object.entries(stand).filter(([k]) => STAND_FELDER.has(k)));
+      const platz = CLOUD_GROESSE_MAX - utf8Laenge(JSON.stringify(sicherungObjekt(eigen)));
+      oben = Object.assign(eigen, standFremdAus(stand, platz));
+      text = JSON.stringify(sicherungObjekt(oben));
+    }
+    if(utf8Laenge(text) > CLOUD_GROESSE_MAX){ cloudMerkerSetzen(m, true); return 'zu gross'; }
+    const rev = cloudRev();
     await adapter.speichern(m, {text, rev});
-    m.rev = rev; m.fp = fp;
-    if(!erstes) m.tag = heute;
+    m.rev = rev; m.fp = fp; m.gesichert = heute; m.fremd = fremdNamen(oben);
+    if(!erstes && !zuletzt) m.tag = heute;
     cloudMerkerSetzen(m, true);
     return 'gespeichert';
   }catch(e){
     // Kein Netz oder abgelehnt: der Tag ist nicht verbraucht.
     cloudMerkerSetzen(m, true);
+    cloudFehlerGrund = cloudGrund(e);   // fuers Abmelden: Netz oder Firebase?
+    /* Die Anmeldung ist bei Firebase ungueltig geworden (Konto geloescht,
+       gesperrt, Passwort anderswo geaendert) - nicht bei Netzfehlern. */
+    if(e && e.abgemeldet) cloudVonAussenAbgemeldet(m.uid);
     return 'fehler';
   }finally{ cloudLaeuft = false; }
 }
-/* art: 'google' oder 'anonym'. Gibt zurueck, ob die Anmeldung geklappt hat;
-   ob der erste Abgleich gleich durchkam, ist egal - sonst eben beim
-   naechsten Anlass. */
-async function cloudAnmelden(art, adapter = cloudAdapter()){
+/* Der Grund eines Fehlers, wie ihn kontoFirebaseFehler() versteht: Firebases
+   error.message, 'netz' oder einer der Gruende aus cloudGoogleAusweis(). */
+function cloudGrund(e){
+  if(!e) return 'fehler';
+  if(e.grund) return String(e.grund);
+  if(e.netz || e.name === 'AbortError' || e instanceof TypeError) return 'netz';
+  return 'fehler';
+}
+/* art: 'google', 'passwort' (daten: email, pw), 'neu' (Konto mit E-Mail
+   anlegen, daten wie bei 'passwort') oder 'anonym'. Gibt zurueck, ob die
+   Anmeldung geklappt hat; den Grund fuer ein Nein legt sie in
+   cloudFehlerGrund. Ob der erste Abgleich gleich durchkam, ist egal -
+   sonst eben beim naechsten Anlass. */
+async function cloudAnmelden(art, adapter = cloudAdapter(), daten){
+  cloudFehlerGrund = '';
   if(!adapter || !standGeladen || MIT_SERVER || cloudLaeuft) return false;
   let konto = null;
-  try{ konto = await adapter.anmelden(art); }catch(e){}
-  if(!konto || typeof konto.uid !== 'string' || !konto.uid) return false;
+  try{
+    konto = art === 'neu' ? await adapter.registrieren((daten || {}).email, (daten || {}).pw)
+                          : await adapter.anmelden(art, daten);
+  }catch(e){ cloudFehlerGrund = cloudGrund(e); }
+  if(!konto || typeof konto.uid !== 'string' || !konto.uid){
+    cloudFehlerGrund = cloudFehlerGrund || 'fehler';
+    return false;
+  }
   /* Dasselbe Konto noch einmal: rev und fp bleiben. Ein anderes faengt von
      vorn an - sein Stand wird beim Abgleich zusammengefuehrt. */
   const alt = cloudMerker();
-  cloudMerkerSetzen(alt && alt.uid === konto.uid
-    ? Object.assign(alt, {art, token: konto.token || ''})
-    : {art, uid: konto.uid, token: konto.token || ''});
+  const neu = {art: art === 'neu' ? 'passwort' : art, token: konto.token || ''};
+  if(konto.email) neu.email = konto.email;
+  cloudMerkerSetzen(alt && alt.uid === konto.uid ? Object.assign(alt, neu) : Object.assign({uid: konto.uid}, neu));
+  try{ localStorage.removeItem(ABGEMELDET); }catch(e){}
+  restoreUid = '';
+  /* Die Bestaetigungsmail einmal nach dem Anlegen (Frage 4 im Plan, nach
+     dem Vorschlag gebaut). Bestaetigen muss niemand - Ajdin am 27.10.2026:
+     keine Bestaetigungspflicht. Nicht warten, Fehler sind egal. */
+  if(art === 'neu' && konto.idToken && adapter.bestaetigungSchicken){
+    adapter.bestaetigungSchicken(konto.idToken).catch(()=>{});
+  }
   await cloudAbgleich('anmelden', adapter);
+  anmAufruf('restoreSichern', {uid: konto.uid}, 20000);
   return true;
 }
-/* Abmelden ist nur Vergessen auf diesem Geraet - ohne Netz. */
+/* Abmelden ist nur Vergessen auf diesem Geraet - ohne Netz. Die Oberflaeche
+   (cloudAbmeldenGanz) schreibt vorher ein letztes Mal. */
 function cloudAbmelden(){ try{ localStorage.removeItem(CLOUD_MERKER); }catch(e){} }
 /* Konto und Sicherung in der Cloud loeschen. Google Play verlangt das fuer
-   jede App, in der man ein Konto anlegen kann. Der Stand auf dem Geraet
-   bleibt. Gibt zurueck: true (beides weg), 'konto bleibt' (die Sicherung
-   ist weg, das Konto nicht - siehe loeschen im Adapter) oder false (nichts
-   geloescht, angemeldet bleiben fuer einen neuen Versuch).
+   jede App, in der man ein Konto anlegen kann. Gibt zurueck: true (beides
+   weg), 'konto bleibt' (die Sicherung ist weg, das Konto nicht - siehe
+   loeschen im Adapter) oder false (nichts geloescht, angemeldet bleiben
+   fuer einen neuen Versuch). optionen.passwort: bei E-Mail-Konten, fuer
+   die frische Anmeldung davor (28.10.2026).
    19.10.2026: Ist die Sicherung weg, wird immer abgemeldet - sonst laedt
    das naechste 'pause' den Stand wieder hoch, und die Loeschung haette
    nicht gewirkt. cloudLaeuft haelt so lange jeden Abgleich auf, auch den,
    den Googles Kontoauswahl beim Verdecken der App anstossen koennte. */
-async function cloudLoeschen(adapter = cloudAdapter()){
+async function cloudLoeschen(adapter = cloudAdapter(), optionen){
+  cloudFehlerGrund = '';
   const m = cloudMerker();
   if(!adapter || !m || cloudLaeuft) return false;
   cloudLaeuft = true;
   try{
     let ganz;
-    try{ ganz = await adapter.loeschen(m); }catch(e){ return false; }
+    try{ ganz = await adapter.loeschen(m, optionen || {}); }
+    catch(e){ cloudFehlerGrund = cloudGrund(e); return false; }
     cloudAbmelden();
     return ganz === false ? 'konto bleibt' : true;
   }finally{ cloudLaeuft = false; }
 }
+
+/* ---- Die Huelle: Plugin ZmajAnmeldung ----
+   Google (Credential Manager), die Kopie der Sitzung und die
+   Restore-Schluessel fuer den Handywechsel, siehe ZmajAnmeldung.java in
+   der Huelle. Gerufen wird es nur im Cloud-Modus. Jede Frage hat eine
+   Frist: eine haengende Antwort darf den Start nicht aufhalten. */
+const anmPlugin = () => (window.Capacitor && window.Capacitor.Plugins
+                         && window.Capacitor.Plugins.ZmajAnmeldung) || null;
+async function anmAufruf(name, daten, ms){
+  const P = anmPlugin();
+  if(!P || typeof P[name] !== 'function') return null;
+  let uhr = 0;
+  try{
+    return await Promise.race([P[name](daten || {}),
+      new Promise(fertig => { uhr = setTimeout(() => fertig(null), ms || 5000); })]);
+  }catch(e){ return null; }
+  finally{ clearTimeout(uhr); }
+}
+let cloudNativToken = null;   // was zuletzt als Kopie in der Huelle steht
+function cloudNativMerken(m){
+  if(!m || !m.uid || !m.token || m.token === cloudNativToken || !anmPlugin()) return;
+  cloudNativToken = m.token;
+  anmAufruf('sitzungMerken', {art: m.art || '', uid: m.uid, token: m.token, email: m.email || ''});
+}
+/* Die uid aus einem Restore-Schluessel des alten Handys - nur auf einem
+   neuen Geraet, und nur solange niemand angemeldet ist. */
+let restoreUid = '';
+/* Beim Start, nach loadProgress(): Merker und Kopie in der Huelle
+   abgleichen und einmal nach einem Restore-Schluessel fragen.
+   Kein Merker, aber eine Kopie: das ist der Handywechsel, bei dem Android
+   die Daten der WebView nicht mitgebracht hat - angemeldet ist man
+   trotzdem, und der Lernstand kommt beim Abgleich aus der Cloud. Ein
+   Merker ohne Kopie stammt von vor der Kopie und zieht um. */
+async function cloudSitzungAbgleichen(){
+  if(!cloudModus() || !anmPlugin()) return;
+  const k = await anmAufruf('sitzungHolen', {}, 3000);
+  const kopie = k && typeof k.uid === 'string' && k.uid && typeof k.token === 'string' && k.token ? k : null;
+  const m = cloudMerker();
+  if(!m && kopie){
+    cloudNativToken = kopie.token;
+    cloudMerkerSetzen({art: kopie.art || 'google', uid: kopie.uid, token: kopie.token,
+                       email: typeof kopie.email === 'string' ? kopie.email : ''});
+    try{ localStorage.removeItem(ABGEMELDET); }catch(e){}
+  }else if(m){
+    if(kopie && kopie.uid === m.uid && kopie.token === m.token) cloudNativToken = m.token;
+    else cloudNativMerken(m);
+  }
+  /* Nur beim ersten Start nach einer Installation fragt das Plugin wirklich
+     (das zaehlt Google), danach gibt es die gemerkte Antwort. */
+  const r = await anmAufruf('restoreHolen', {}, 4000);
+  const jetzt = cloudMerker();
+  restoreUid = (!jetzt && r && typeof r.uid === 'string' && r.uid) ? r.uid : '';
+  if(jetzt) anmAufruf('restoreSichern', {uid: jetzt.uid}, 20000);   // ohne Warten
+}
+/* Firebase sagt, die Anmeldung gilt nicht mehr (Konto geloescht oder
+   gesperrt, Passwort anderswo geaendert). Merker, Kopie und
+   Restore-Schluessel weg; der Lernstand auf dem Geraet bleibt. Die
+   Anmeldung kommt gleich auf der Startseite, sonst beim naechsten Wechsel
+   der Ansicht - mitten in einer Lektion nie. */
+function cloudVonAussenAbgemeldet(uid){
+  const m = cloudMerker();
+  if(!m || m.uid !== uid) return;
+  cloudAbmelden();
+  cloudNativToken = null; restoreUid = '';
+  try{ localStorage.setItem(ABGEMELDET, '1'); }catch(e){}
+  anmAufruf('abmelden', {}, 8000);
+  $('btnProfil').style.display = 'none';
+  torPruefen();
+}
 /* Googles ID-Token aus der Huelle. Google sperrt die Anmeldung in einer
-   WebView; das Plugin ZmajAnmeldung (noch zu bauen, siehe
-   FIREBASE_EINRICHTEN.md) fragt nativ ueber den Credential Manager. */
+   WebView; das Plugin ZmajAnmeldung fragt nativ ueber den Credential
+   Manager. Wirft mit grund GOOGLE_ABGEBROCHEN, GOOGLE_KEIN_KONTO (kein
+   Google-Konto auf dem Handy) oder GOOGLE_FEHLER. */
+const googleMoeglich = () => !!anmPlugin() && typeof anmPlugin().googleAusweis === 'function'
+  && /^[0-9]{6,20}-[0-9a-z]{16,40}\.apps\.googleusercontent\.com$/.test(CLOUD_CLIENT);
 async function cloudGoogleAusweis(){
-  const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajAnmeldung;
-  if(!P || !P.googleAusweis) return null;
-  try{ const r = await P.googleAusweis(); return (r && typeof r.idToken === 'string' && r.idToken) || null; }
-  catch(e){ return null; }   // abgebrochen oder kein Google-Konto
+  const P = anmPlugin();
+  const fehler = grund => { const f = new Error('google'); f.grund = grund; return f; };
+  if(!P || !P.googleAusweis) throw fehler('GOOGLE_FEHLER');
+  let r;
+  try{ r = await P.googleAusweis({client: CLOUD_CLIENT}); }
+  catch(e){
+    const c = String((e && (e.code || e.message)) || '');
+    throw fehler(c === 'abgebrochen' ? 'GOOGLE_ABGEBROCHEN' : c === 'kein_konto' ? 'GOOGLE_KEIN_KONTO' : 'GOOGLE_FEHLER');
+  }
+  if(!r || typeof r.idToken !== 'string' || !r.idToken) throw fehler('GOOGLE_FEHLER');
+  return r.idToken;
 }
 /* ---- Adapter: Firebase Auth und Cloud Firestore ueber REST ----
-   Ohne Firebase-Bibliothek, nur fetch an vier Adressen. Anonym geht ohne
-   Plugin (accounts:signUp), mit Google wird das ID-Token aus
-   cloudGoogleAusweis() bei Firebase eingetauscht (accounts:signInWithIdp).
+   Ohne Firebase-Bibliothek, nur fetch an vier Adressen. Mit Google wird
+   das ID-Token aus cloudGoogleAusweis() bei Firebase eingetauscht
+   (accounts:signInWithIdp), mit E-Mail und Passwort meldet
+   accounts:signInWithPassword an und accounts:signUp legt das Konto an
+   (28.10.2026, statt des Firebase-JS-SDK: kein Fremdcode, dieselbe
+   Sitzung im selben Merker, siehe Plan 2.2). Anonym (signUp ohne Adresse)
+   bleibt fuer die Tests, angeboten wird es nicht.
    Der Ausweis fuer Firestore (ID-Token, eine Stunde gueltig) bleibt nur im
    Arbeitsspeicher; neu geholt wird er mit dem token aus dem Merker
    (securetoken). In users/{uid} stehen zwei Textfelder: daten und rev. */
@@ -9006,18 +9547,26 @@ function cloudFirestore(projekt, schluessel){
   const ERNEUERN = 'https://securetoken.googleapis.com/v1/token?key=';
   const dokument = uid => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(projekt)
     + '/databases/(default)/documents/users/' + encodeURIComponent(uid);
-  const post = daten => ({method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(daten)});
+  const post = (daten, kopf) => ({method: 'POST', headers: Object.assign({'Content-Type': 'application/json'}, kopf || {}),
+                                  body: JSON.stringify(daten)});
+  /* Die Mails von Firebase (Bestaetigen, Passwort zuruecksetzen) in der
+     Sprache der App. Norwegisch heisst bei Firebase "no". */
+  const sprachKopf = () => ({'X-Firebase-Locale': SPRACHE === 'nb' ? 'no' : SPRACHE});
   let ausweis = null;   // {uid, id, bis}
   const merken = (uid, id, sekunden) => { ausweis = {uid, id, bis: Date.now() + (Number(sekunden) || 3600) * 1000}; };
   /* Nach 20 Sekunden ohne Antwort gilt es als gescheitert - sonst hielte
      ein haengendes Netz cloudLaeuft fuer immer fest. fehltOk: 404 heisst
      beim Dokument "noch nichts gesichert" und ist kein Fehler.
      19.10.2026: Der Fehler traegt Firebases Grund (error.message, etwa
-     CREDENTIAL_TOO_OLD_LOGIN_AGAIN) - loeschen() braucht ihn. */
+     CREDENTIAL_TOO_OLD_LOGIN_AGAIN) - loeschen() braucht ihn.
+     28.10.2026: Kein Netz oder keine Antwort traegt netz - die Anmeldung
+     sagt dann "Keine Verbindung" statt "hat nicht geklappt". */
   async function senden(url, optionen, fehltOk){
     const ab = new AbortController(), uhr = setTimeout(() => ab.abort(), 20000);
     try{
-      const r = await fetch(url, Object.assign({cache: 'no-store', signal: ab.signal}, optionen));
+      let r;
+      try{ r = await fetch(url, Object.assign({cache: 'no-store', signal: ab.signal}, optionen)); }
+      catch(e){ const f = new Error('cloud netz'); f.netz = true; throw f; }
       if(r.status === 404 && fehltOk) return null;
       if(!r.ok){
         const f = new Error('cloud ' + r.status);
@@ -9029,9 +9578,17 @@ function cloudFirestore(projekt, schluessel){
   }
   async function idToken(m){
     if(ausweis && ausweis.uid === m.uid && ausweis.bis > Date.now() + 60000) return ausweis.id;
-    const r = await senden(ERNEUERN + schluessel, {method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(m.token || '')});
+    let r;
+    try{
+      r = await senden(ERNEUERN + schluessel, {method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(m.token || '')});
+    }catch(e){
+      /* 28.10.2026: Nur diese Gruende heissen "die Anmeldung ist weg". Bei
+         Netzfehlern, Zeitueberschreitung oder 5xx bleibt man angemeldet. */
+      if(/^(TOKEN_EXPIRED|INVALID_REFRESH_TOKEN|USER_NOT_FOUND|USER_DISABLED)/.test((e && e.grund) || '')) e.abgemeldet = true;
+      throw e;
+    }
     const d = await r.json();
     if(!d || !d.id_token || d.user_id !== m.uid) throw new Error('cloud anmeldung');
     if(d.refresh_token) m.token = d.refresh_token;
@@ -9040,13 +9597,20 @@ function cloudFirestore(projekt, schluessel){
   }
   const mitAusweis = async m => ({Authorization: 'Bearer ' + await idToken(m)});
   /* Googles Ausweis aus der Huelle bei Firebase eintauschen - beim Anmelden
-     und noch einmal vor dem Loeschen des Kontos. null: abgebrochen. */
+     und noch einmal vor dem Loeschen des Kontos. */
   async function mitGoogle(){
     const google = await cloudGoogleAusweis();
-    if(!google) return null;
     return (await senden(KONTO + 'signInWithIdp?key=' + schluessel, post({
       postBody: 'id_token=' + encodeURIComponent(google) + '&providerId=google.com',
       requestUri: 'http://localhost', returnIdpCredential: true, returnSecureToken: true}))).json();
+  }
+  /* E-Mail und Passwort - beim Anmelden und vor dem Loeschen des Kontos.
+     Mit dem Schutz vor E-Mail-Aufzaehlung (bei neuen Projekten an) meldet
+     Firebase fuer unbekannte Adresse und falsches Passwort dasselbe:
+     INVALID_LOGIN_CREDENTIALS. */
+  async function mitPasswort(email, pw){
+    return (await senden(KONTO + 'signInWithPassword?key=' + schluessel,
+      post({email: String(email || ''), password: String(pw || ''), returnSecureToken: true}))).json();
   }
   /* Das Konto selbst: true geloescht oder schon weg, 'alt' verlangt eine
      frische Anmeldung, false sonst gescheitert. */
@@ -9058,17 +9622,37 @@ function cloudFirestore(projekt, schluessel){
       return /^(CREDENTIAL_TOO_OLD_LOGIN_AGAIN|INVALID_ID_TOKEN)/.test(g) ? 'alt' : false;
     }
   }
+  const konto = (d, email) => {
+    if(!d || typeof d.localId !== 'string' || !d.idToken) return null;
+    merken(d.localId, d.idToken, d.expiresIn);
+    return {uid: d.localId, token: d.refreshToken || '', email: String(d.email || email || ''), idToken: d.idToken};
+  };
   return {
-    async anmelden(art){
+    async anmelden(art, daten){
       let d = null;
       if(art === 'anonym'){
         d = await (await senden(KONTO + 'signUp?key=' + schluessel, post({returnSecureToken: true}))).json();
       }else if(art === 'google'){
         d = await mitGoogle();
+      }else if(art === 'passwort'){
+        d = await mitPasswort((daten || {}).email, (daten || {}).pw);
       }
-      if(!d || typeof d.localId !== 'string' || !d.idToken) return null;
-      merken(d.localId, d.idToken, d.expiresIn);
-      return {uid: d.localId, token: d.refreshToken || ''};
+      return konto(d, art === 'passwort' ? (daten || {}).email : '');
+    },
+    async registrieren(email, pw){
+      return konto(await (await senden(KONTO + 'signUp?key=' + schluessel,
+        post({email: String(email || ''), password: String(pw || ''), returnSecureToken: true}))).json(), email);
+    },
+    /* Firebase sagt nie, ob es die Adresse gibt - die Meldung in der App
+       auch nicht (konto.vergessen_raus). */
+    async passwortVergessen(email){
+      await senden(KONTO + 'sendOobCode?key=' + schluessel,
+        post({requestType: 'PASSWORD_RESET', email: String(email || '')}, sprachKopf()));
+      return true;
+    },
+    async bestaetigungSchicken(id){
+      await senden(KONTO + 'sendOobCode?key=' + schluessel, post({requestType: 'VERIFY_EMAIL', idToken: id}, sprachKopf()));
+      return true;
     },
     async laden(m){
       const r = await senden(dokument(m.uid), {headers: await mitAusweis(m)}, true);
@@ -9085,22 +9669,33 @@ function cloudFirestore(projekt, schluessel){
     /* 19.10.2026: Zuerst die Sicherung - scheitert das, wirft es, und es
        ist nichts passiert. Danach das Konto. Firebase loescht es nur nach
        einer frischen Anmeldung (CREDENTIAL_TOO_OLD_LOGIN_AGAIN); der Ausweis
-       aus dem Erneuerungsschluessel zaehlt nicht. Mit Google fragt die App
-       dann noch einmal nach dem Konto, nur dasselbe (uid) wird geloescht.
-       Anonym gibt es keine neue Anmeldung - dort bleibt eine leere Kennung.
-       Gibt zurueck, ob auch das Konto weg ist; die Sicherung ist es dann
-       in jedem Fall. */
-    async loeschen(m){
-      const id = await idToken(m);
+       aus dem Erneuerungsschluessel zaehlt nicht.
+       28.10.2026: Deshalb meldet die App sich ZUERST frisch an - bei
+       E-Mail-Konten mit dem Passwort, bei Google ueber Googles
+       Kontoauswahl, und nur dasselbe Konto (uid) gilt. Falsches Passwort,
+       abgebrochene Auswahl, ein anderes Google-Konto oder kein Netz: dann
+       ist noch nichts geloescht. Bis zum Pruefbericht vom 28.10. fragte
+       Google erst NACH dem Loeschen der Sicherung - wer dort abbrach, hatte
+       keinen Lernstand mehr, aber noch ein Konto. Anonym gibt es keine neue
+       Anmeldung - dort bleibt eine leere Kennung. Gibt zurueck, ob auch das
+       Konto weg ist; die Sicherung ist es dann in jedem Fall. */
+    async loeschen(m, optionen){
+      let id;
+      if(m.art === 'passwort' || m.art === 'google'){
+        const d = m.art === 'google' ? await mitGoogle()
+          : await mitPasswort(m.email, (optionen || {}).passwort);
+        if(!d || d.localId !== m.uid || !d.idToken){
+          const f = new Error('cloud anderes konto');
+          f.grund = m.art === 'google' ? 'GOOGLE_ANDERES_KONTO' : 'INVALID_LOGIN_CREDENTIALS';
+          throw f;
+        }
+        id = d.idToken;
+      }else{
+        id = await idToken(m);
+      }
       await senden(dokument(m.uid), {method: 'DELETE', headers: {Authorization: 'Bearer ' + id}}, true);
       ausweis = null;
-      let weg = await kontoWeg(id);
-      if(weg === 'alt' && m.art === 'google'){
-        let d = null;
-        try{ d = await mitGoogle(); }catch(e){}
-        weg = (d && d.localId === m.uid && d.idToken) ? await kontoWeg(d.idToken) : false;
-      }
-      return weg === true;
+      return await kontoWeg(id) === true;
     },
   };
 }
@@ -9112,19 +9707,420 @@ function cloudFirestore(projekt, schluessel){
    waehlt ihn nie. */
 function cloudSpeicherAdapter(ablage){
   ablage.zaehler = ablage.zaehler || {anmelden: 0, laden: 0, speichern: 0, loeschen: 0};
-  const netz = was => { if(ablage.offline) throw new Error('offline'); ablage.zaehler[was]++; };
+  const netz = was => {
+    if(ablage.offline){ const f = new Error('offline'); f.netz = true; throw f; }
+    ablage.zaehler[was] = (ablage.zaehler[was] || 0) + 1;
+  };
   return {
-    async anmelden(art){ netz('anmelden'); return {uid: ablage.uid || 'probe-' + art, token: 'probe'}; },
+    async anmelden(art, daten){
+      netz('anmelden');
+      return {uid: ablage.uid || 'probe-' + art, token: 'probe', email: (daten && daten.email) || ''};
+    },
+    async registrieren(email){ netz('registrieren'); return {uid: ablage.uid || 'probe-neu', token: 'probe', email, idToken: 'probe-id'}; },
+    async passwortVergessen(){ netz('vergessen'); return true; },
+    async bestaetigungSchicken(){ netz('bestaetigen'); return true; },
     async laden(){ netz('laden'); return ablage.dok ? {text: ablage.dok.text, rev: ablage.dok.rev} : null; },
     async speichern(m, dok){ netz('speichern'); ablage.dok = {text: dok.text, rev: dok.rev}; return true; },
     async loeschen(){ netz('loeschen'); ablage.dok = null; return true; },
   };
 }
+
+/* ---- Das Tor: ohne Anmeldung geht es nach der 1. Lektion nicht weiter ----
+   28.10.2026, Ajdin am 27.10.: "nach der 1. Lektion, wie bei Duolingo".
+   Wer noch nichts gelernt hat, lernt ohne Konto. Wer etwas gelernt hat
+   (oder dessen altes Handy einen Restore-Schluessel hinterlassen hat, oder
+   der sich abgemeldet hat), sieht nur noch die Anmeldung - auch beim
+   naechsten Start. Ohne Internet gibt es kein Tor: dann wird einfach
+   weitergelernt, die Serie haengt nur am Geraet. netzWeg: die Anmeldung
+   ist eben am Netz gescheitert, obwohl navigator.onLine Netz meldete, und
+   der Lernende hat "Erst einmal weiterlernen" gewaehlt - bis zum naechsten
+   'online' oder Start. Seit dem Pruefbericht vom 28.10. auch, wenn es an
+   Firebase oder Google lag (anmFehlerZeigen) - dann bis zum naechsten
+   Start. */
+let netzWeg = false;
+let anmeldungLaeuft = false;
+let anmAnlass = 'sichern', anmModus = 'wahl';
+/* Die Einstufung zaehlt, sobald darin eine Frage beantwortet ist - nicht
+   bei "Ich fange neu an" und nicht bei einem Abbruch gleich bei Frage 1
+   (fragen ist dann 0), wie im Plan 2.5. Gewusste Woerter zaehlen nur, wenn
+   sie schon beim Laden da waren (gewusstGeladen: Stand von v108, eine
+   Sicherung, die Cloud). known.add() laeuft mitten in der Lektion - wer
+   Lektion 1 halb machte und verliess, stand sonst vor der Anmeldung, ohne
+   eine Lektion beendet zu haben. Gegenpruefung 28.10.2026. */
+const hatGelernt = () => days.size > 0 || gewusstGeladen || passed.size > 0
+  || !!(einstufung && einstufung.fragen > 0);
+function warAbgemeldet(){ try{ return localStorage.getItem(ABGEMELDET) === '1'; }catch(e){ return false; } }
+function anmeldungFaellig(){
+  return cloudModus() && standGeladen && !cloudMerker()
+    && (hatGelernt() || !!restoreUid || warAbgemeldet())
+    && navigator.onLine !== false && !netzWeg;
+}
+function anmeldungAnlass(){
+  if(restoreUid && !hatGelernt()) return 'zurueck';
+  if(warAbgemeldet()) return 'abgemeldet';
+  return days.size > 1 ? 'bestand' : 'sichern';
+}
+/* true: die Anmeldung steht (oder steht jetzt), der Aufrufer bricht ab. */
+function anmeldungSperre(){
+  if(!anmeldungFaellig()) return false;
+  if(!sichtbar('profileView')) anmeldungZeigen(anmeldungAnlass());
+  return true;
+}
+/* Nach 'online' und beim Zurueckkommen in die App: auf der Startseite gleich,
+   sonst beim naechsten Wechsel der Ansicht (showView) - mitten in einer
+   Lektion nie, und nicht ueber einer offenen Karte. */
+function torPruefen(){
+  if(!anmeldungFaellig() || !sichtbar('pfad') || frageSchliessen) return;
+  if(document.querySelector('.nachfrage, .einwilligung, .werbung, .updsperre')) return;
+  anmeldungSperre();
+}
+/* Statt der Knoepfe auf einem Ergebnisschirm nur "Weiter" zur Anmeldung. */
+function torStattKnoepfe(ids){
+  const erster = $(ids[0]);
+  if(!erster || !erster.parentElement) return;
+  const feld = erster.parentElement.parentElement;
+  ids.forEach(id => { const b = $(id); if(b && b.parentElement) b.parentElement.remove(); });
+  const reihe = document.createElement('div');
+  reihe.className = 'row';
+  reihe.innerHTML = '<button class="btn know" id="anmWeiter"></button>';
+  const k = reihe.querySelector('button');
+  k.textContent = t('anm.weiter');
+  k.addEventListener('click', ()=>{ if(!anmeldungSperre()){ homeMode = 'words'; showHome(); } });
+  feld.appendChild(reihe);
+}
+function kopfZurueck(){
+  $('btnSettings').style.display = 'inline-block';
+  $('btnShop').style.display = 'inline-block';
+  $('btnProfil').style.display = cloudMerker() ? 'inline-block' : 'none';
+}
+
+/* ---- Die Anmeldeseite ----
+   Dieselbe Seite wie die alte Server-Anmeldung (profileView, kontoForm),
+   die fuer start.py unveraendert bleibt (zeigeAnmeldung). anlass bestimmt
+   Titel und Text, modus die Felder:
+     wahl            Mit Google / Mit E-Mail, darunter Datenschutz und
+                     Nutzungsbedingungen zum Aufklappen
+     mail_an         E-Mail und Passwort
+     mail_neu        Konto anlegen: E-Mail, Passwort, Wiederholung
+     mail_vergessen  E-Mail, Link zum Zuruecksetzen schicken
+   Die Flaggen fuer die Sprache stehen oben wie bisher. */
+function anmeldungZeigen(anlass, modus = 'wahl', daten = {}){
+  anmAnlass = anlass || anmAnlass;
+  anmModus = modus;
+  showView('profileView'); $('kopfLeiste').style.display = 'none';
+  $('btnProfil').style.display = 'none'; $('btnSettings').style.display = 'none'; $('btnShop').style.display = 'none';
+  $('zmajProfile').innerHTML = zmaj('happy'); setMood($('zmajProfile'), 'happy');
+  renderLangBar();
+  $('tag').textContent = '';
+  const wahl = modus === 'wahl';
+  const titel = modus === 'mail_neu' ? 'konto.anlegen_titel' : modus === 'mail_vergessen' ? 'konto.vergessen_titel'
+    : modus === 'mail_an' ? 'konto.anmelden_titel'
+    : ({sichern: 'anm.titel_sichern', bestand: 'anm.titel_bestand', zurueck: 'anm.titel_zurueck'}[anmAnlass] || 'konto.anmelden_titel');
+  const text = modus === 'mail_vergessen' ? 'konto.vergessen_frage'
+    : ({sichern: 'anm.text_sichern', bestand: 'anm.text_bestand', zurueck: 'anm.text_zurueck',
+        konto: 'anm.text_zurueck'}[anmAnlass] || 'anm.text_abgemeldet');
+  $('kontoTitel').textContent = t(titel);
+  $('kontoFrage').textContent = t(text);
+  $('anmWahl').hidden = !wahl;
+  $('kontoForm').hidden = wahl;
+  $('anmOffline').hidden = !daten.netz;
+  $('anmOffline').textContent = t('anm.weiterlernen');
+  /* Wer ueber "Ich habe schon ein Konto" kam und noch gar nicht muss, kommt
+     hier auch wieder heraus. Wer muss, hat in der Wahl keinen Weg zurueck -
+     die Zurueck-Taste fragt dann wie auf der Startseite, ob Zmaj zugehen soll. */
+  const zurueck = !wahl ? ()=> anmeldungZeigen(anmAnlass, 'wahl')
+    : (anmeldungFaellig() ? null : ()=>{ kopfZurueck(); homeMode = 'words'; showHome(); });
+  setzeZurueck(zurueck ? t('btn.zurueck') : '', zurueck);
+  if(wahl){
+    $('anmGoogle').hidden = !googleMoeglich();
+    $('anmGoogleText').textContent = t('anm.google');
+    $('anmMail').textContent = t('anm.mail');
+    $('anmNote').textContent = daten.hinweis || '';
+    $('anmNote').className = daten.hinweis ? 'note feedback no' : 'note';
+    $('anmDsKopf').textContent = t('set.datenschutz');
+    $('anmDs').innerHTML = t('set.datenschutz_text', {anbieter: t('set.anbieter')});
+    $('anmAgbKopf').textContent = t('set.agb');
+    $('anmAgb').innerHTML = t('set.agb_text', {anbieter: t('set.anbieter')});
+    $('anmImpKopf').textContent = t('set.impressum');
+    $('anmImp').innerHTML = t('set.impressum_text', {anbieter: t('set.anbieter')});
+    $('kontoWechsel').hidden = true; $('kontoVergessen').hidden = true;
+    return;
+  }
+  const neu = modus === 'mail_neu', vergessen = modus === 'mail_vergessen';
+  $('kontoName').hidden = true; $('kontoNameSub').hidden = true; $('kontoBleibenZeile').hidden = true;
+  $('kontoMail').hidden = false;
+  $('kontoPw').hidden = vergessen;
+  $('kontoPw2').hidden = !neu;
+  $('kontoRegeln').hidden = !neu;
+  pwListeBeschreibt(neu);
+  $('kontoSpam').hidden = true;
+  $('kontoSpam').textContent = t('konto.spam_kurz');
+  $('kontoPw').placeholder = t(neu ? 'konto.passwort_neu' : 'konto.passwort');
+  $('kontoPw').setAttribute('autocomplete', neu ? 'new-password' : 'current-password');
+  $('kontoSenden').textContent = t(neu ? 'konto.neu' : vergessen ? 'konto.vergessen_senden' : 'konto.anmelden');
+  $('kontoWechsel').hidden = false;
+  $('kontoWechsel').textContent = t(modus === 'mail_an' ? 'konto.neu' : 'konto.zurueck_anmelden');
+  $('kontoVergessen').hidden = modus !== 'mail_an';
+  $('kontoNote').textContent = daten.hinweis || '';
+  $('kontoNote').className = daten.hinweis ? 'note feedback no' : 'note';
+  $('kontoPw').value = ''; $('kontoPw2').value = '';
+  if(neu) zeigeRegeln($('kontoRegeln'), '', $('kontoMail').value);
+  $('kontoMail').focus();
+}
+/* Eine Firebase-Antwort als Satz. Firebase haengt manchmal " : ..." an,
+   deshalb zaehlt nur der Anfang (wie in kontoWeg). Leer: nichts zu sagen
+   (Google-Auswahl abgebrochen). */
+function kontoFirebaseFehler(g){
+  g = String(g || '');
+  if(g === 'netz') return t('konto.fehler_netz');
+  if(/^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD)/.test(g)) return t('konto.fehler_mail_pw');
+  if(/^EMAIL_EXISTS/.test(g)) return t('konto.fehler_email_da');
+  if(/^(INVALID_EMAIL|MISSING_EMAIL)/.test(g)) return t('konto.fehler_email');
+  if(/^WEAK_PASSWORD/.test(g)) return t('konto.fehler_kurz', {n: PW_MIN_CLOUD});
+  /* Die Passwort-Richtlinie in der Konsole (29.10.2026, siehe
+     PW_REGELN_CLOUD). Beim Anlegen kommt das nur, wenn die Konsole strenger
+     ist als die App, etwa mehr als 8 Zeichen. Beim Anmelden, wenn dort
+     "Upgrade bei der Anmeldung erzwingen" an ist und das alte Passwort die
+     Regeln nicht erfuellt - dann hilft nur ein neues, ueber "Passwort
+     vergessen?". */
+  if(/^PASSWORD_DOES_NOT_MEET_REQUIREMENTS/.test(g))
+    return t(anmModus === 'mail_an' ? 'konto.fehler_pw_erneuern' : 'konto.fehler_pw_regeln');
+  if(/^TOO_MANY_ATTEMPTS_TRY_LATER/.test(g)) return t('konto.fehler_zu_oft');
+  if(/^USER_DISABLED/.test(g)) return t('konto.fehler_konto_gesperrt');
+  if(g === 'GOOGLE_ABGEBROCHEN') return '';
+  if(g === 'GOOGLE_KEIN_KONTO') return t('konto.fehler_google_keins');
+  if(/^(GOOGLE_FEHLER|INVALID_IDP_RESPONSE)/.test(g)) return t('konto.fehler_google');
+  return t('konto.fehler_allgemein');
+}
+/* 28.10.2026 (Pruefbericht): "Erst einmal weiterlernen" nicht nur ohne
+   Netz, sondern bei jedem Fehler, gegen den der Lernende nichts tun kann:
+   Firebase antwortet mit 5xx oder 429, ein Anmeldeweg ist in der Konsole
+   aus (OPERATION_NOT_ALLOWED), der Schluessel ist falsch beschraenkt, oder
+   Googles Auswahl scheitert (GOOGLE_FEHLER). Sonst saesse am Tag nach dem
+   Update jeder mit Lernstand fest. Keinen Ausweg gibt es nur bei diesen
+   Gruenden: Eingabefehler, abgebrochene Auswahl, kein Google-Konto auf dem
+   Handy (dann E-Mail) und ein gesperrtes Konto. */
+const ANM_OHNE_AUSWEG = /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD|EMAIL_EXISTS|INVALID_EMAIL|MISSING_EMAIL|WEAK_PASSWORD|PASSWORD_DOES_NOT_MEET_REQUIREMENTS|USER_DISABLED|GOOGLE_ABGEBROCHEN|GOOGLE_KEIN_KONTO)/;
+function anmFehlerZeigen(grund, note){
+  const text = kontoFirebaseFehler(grund);
+  note.textContent = text;
+  note.className = text ? 'note feedback no' : 'note';
+  if(!ANM_OHNE_AUSWEG.test(String(grund || ''))) $('anmOffline').hidden = false;
+}
+/* Angemeldet: hinein. Nach dem Anlegen eines Kontos sagt eine Karte, dass
+   die Bestaetigungsmail unterwegs ist. Sonst nichts mehr: bis 29.10.2026
+   stand dann 3,5 Sekunden "Du bist angemeldet. ✓" an der Stelle der
+   Herzpille oben links. Ajdin am 29.10.2026: "mach das komplett raus, ist
+   unnoetig" - dass man drin ist, sieht man an der Startseite. Der Satz war
+   auch die Ueberschrift der Karte; die Karte sagt ihr Eigentliches jetzt
+   ohne. Darunter seit 29.10.2026 der kurze Hinweis auf den Spam-Ordner -
+   dort lag bei Ajdin die Bestaetigungsmail. */
+function cloudNachAnmeldung(neu){
+  netzWeg = false;
+  kopfZurueck();
+  homeMode = 'words';
+  showHome();
+  if(!neu) return;
+  const {kasten, zu} = einstufungKarte(
+    '<div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
+    '<div class="txt"></div><div class="spamhinweis"></div><button class="btn know" id="anmFertigOk"></button>');
+  kasten.querySelector('.txt').textContent = t('konto.bestaetigung_raus');
+  kasten.querySelector('.spamhinweis').textContent = t('konto.spam_kurz');
+  kasten.querySelector('#anmFertigOk').textContent = t('task.weiter');
+  kasten.querySelector('#anmFertigOk').addEventListener('click', zu);
+}
+async function cloudFormularSenden(){
+  if(anmeldungLaeuft) return;
+  const m = anmModus, note = $('kontoNote'), knopf = $('kontoSenden');
+  const adr = $('kontoMail').value.trim(), pw = $('kontoPw').value, pw2 = $('kontoPw2').value;
+  note.className = 'note';
+  /* Rot wie die Antworten von Firebase - grau las sich ein Fehler wie ein
+     Hinweis (29.10.2026). */
+  const nein = text => { note.textContent = text; note.className = 'note feedback no'; };
+  if(!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(adr)) return nein(t('konto.fehler_email'));
+  if(m === 'mail_an' && !pw) return nein(t('konto.fehler_mail_pw'));
+  if(m === 'mail_neu'){
+    /* Die Zeile sagt, was als Erstes fehlt, die Liste darueber faerbt alles
+       rot, was noch fehlt (29.10.2026, PW_REGELN_CLOUD). */
+    const fehlt = pwFehltCloud(pw, adr);
+    if(fehlt){ zeigeRegeln($('kontoRegeln'), pw, adr, true); return nein(pwFehlerCloud(fehlt)); }
+    if(pw !== pw2) return nein(t('konto.fehler_wdh'));
+  }
+  anmeldungLaeuft = true;
+  knopf.disabled = true; note.textContent = t('konto.laeuft');
+  try{
+    if(m === 'mail_vergessen'){
+      try{ await cloudAdapter().passwortVergessen(adr); }
+      catch(e){
+        const g = cloudGrund(e);
+        if(g === 'netz' || /^(INVALID_EMAIL|MISSING_EMAIL|TOO_MANY_ATTEMPTS_TRY_LATER)/.test(g)){ anmFehlerZeigen(g, note); return; }
+        // sonst dieselbe Antwort wie bei Erfolg - verraten wird nichts
+      }
+      note.textContent = t('konto.vergessen_raus');
+      note.className = 'note feedback ok';
+      $('kontoSpam').hidden = false;      // jetzt gibt es etwas zu suchen
+      return;
+    }
+    const art = m === 'mail_neu' ? 'neu' : 'passwort';
+    if(await cloudAnmelden(art, cloudAdapter(), {email: adr, pw})){
+      $('kontoPw').value = ''; $('kontoPw2').value = '';
+      note.textContent = '';
+      cloudNachAnmeldung(art === 'neu');
+      return;
+    }
+    anmFehlerZeigen(cloudFehlerGrund, note);
+  }finally{
+    anmeldungLaeuft = false;
+    knopf.disabled = false;
+  }
+}
+$('anmGoogle').addEventListener('click', async ()=>{
+  if(anmeldungLaeuft || !cloudModus()) return;
+  const note = $('anmNote');
+  anmeldungLaeuft = true;
+  $('anmGoogle').disabled = true;
+  note.className = 'note'; note.textContent = t('konto.laeuft');
+  try{
+    if(await cloudAnmelden('google')){ note.textContent = ''; cloudNachAnmeldung(false); return; }
+    anmFehlerZeigen(cloudFehlerGrund, note);
+  }finally{
+    anmeldungLaeuft = false;
+    $('anmGoogle').disabled = false;
+  }
+});
+$('anmMail').addEventListener('click', ()=> anmeldungZeigen(anmAnlass, 'mail_an'));
+$('anmOffline').addEventListener('click', ()=>{
+  netzWeg = true;
+  kopfZurueck();
+  homeMode = 'words';
+  showHome();
+});
+
+/* ---- Kontoseite, Abmelden, Konto loeschen ---- */
+/* Den Lernstand auf diesem Geraet auf den Anfang setzen - nach dem
+   Abmelden und nach dem Loeschen des Kontos. Ajdins Antwort auf die Fragen
+   1 und 2 im Plan stand aus; gebaut nach dem Vorschlag "wie bei Duolingo":
+   nach dem Abmelden liegt der Stand im Konto, nach dem Loeschen landete
+   der alte sonst im naechsten Konto. Sprache, Toene, Erinnerungen,
+   Einwilligung, Vollversion, Nutzungsbedingungen und die Zufallskennung
+   bleiben. 28.10.2026 */
+function standLeeren(){
+  standErsetzen(() => ({}));
+  setzeGetragen([]);
+  try{ localStorage.removeItem(SEIT_SCHLUESSEL); }catch(e){}
+  syncLives();
+  saveProgress();
+  renderLives();
+}
+function kontoSeiteCloud(){
+  const m = cloudMerker() || {};
+  $('setProfilMail').textContent = m.email ? '✉ ' + m.email : '';
+  $('setProfilSub').hidden = true;
+  const g = $('setGesichert');
+  g.hidden = false;
+  g.textContent = m.gesichert ? t('set.gesichert', {datum: new Date(m.gesichert + 'T12:00:00').toLocaleDateString(SPRACHE)})
+                              : t('set.gesichert_nie');
+  $('setPwZeile').hidden = true; $('pwForm').style.display = 'none';
+  $('setWegSub').textContent = t('set.konto_weg_sub');
+  $('wegForm').style.display = 'none';
+  $('setLogoutNote').textContent = ''; $('setLogoutNote').className = 'note';
+}
+async function cloudAbmeldenGanz(){
+  const note = $('setLogoutNote');
+  note.className = 'note'; note.textContent = '';
+  if(navigator.onLine === false){ note.textContent = t('set.abmelden_netz'); note.className = 'note feedback no'; return; }
+  if(!await frage(t('set.abmelden'), t('set.abmelden_frage'), t('set.abmelden'), t('btn.dialog_abbrechen'))) return;
+  note.textContent = t('konto.laeuft');
+  await saveProgress();
+  // Laeuft gerade ein Abgleich (etwa vom Start), auf ihn warten.
+  for(let i = 0; cloudLaeuft && i < 60; i++) await new Promise(f => setTimeout(f, 500));
+  cloudFehlerGrund = '';
+  const r = await cloudAbgleich('abmelden');
+  /* Hat Firebase die Anmeldung eben selbst fuer ungueltig erklaert
+     (cloudVonAussenAbgemeldet), ist der Merker schon weg und abgemeldet
+     ist man schon. Hochladen ging dann nicht mehr, der Lernstand auf dem
+     Geraet ist die einzige aktuelle Kopie. Er bleibt stehen, und die
+     naechste Anmeldung fuehrt ihn mit dem Konto zusammen - wie beim Start.
+     Gegenpruefung 28.10.2026: bis dahin leerte abmeldenFertig() ihn hier,
+     und alles seit dem letzten Hochladen war weg. */
+  if(!cloudMerker()){ note.textContent = ''; anmeldungZeigen('abgemeldet'); return; }
+  /* "Brauchst du Internet" nur, wenn es am Netz lag - nicht, wenn Firebase
+     ablehnt, etwa mit 429, weil das Tageskontingent aufgebraucht ist
+     (Gegenpruefung 28.10.2026). */
+  if(r !== 'gespeichert' && r !== 'unveraendert'){
+    note.textContent = t(cloudFehlerGrund === 'netz' ? 'set.abmelden_netz' : 'konto.fehler_allgemein');
+    note.className = 'note feedback no';
+    return;
+  }
+  note.textContent = '';
+  cloudAbmelden();
+  await abmeldenFertig();
+  anmeldungZeigen('abgemeldet');
+}
+async function abmeldenFertig(){
+  cloudNativToken = null; restoreUid = '';
+  try{ localStorage.setItem(ABGEMELDET, '1'); }catch(e){}
+  await anmAufruf('abmelden', {}, 8000);
+  standLeeren();
+}
+async function kontoWegKlick(){
+  const m = cloudMerker();
+  if(!m) return;
+  $('wegNote').textContent = ''; $('wegNote').className = 'note';
+  if(m.art === 'passwort'){
+    const f = $('wegForm'), auf = f.style.display === 'none';
+    f.style.display = auf ? 'block' : 'none';
+    $('wegPw').value = '';
+    if(auf) $('wegPw').focus();
+    return;
+  }
+  await cloudKontoLoeschen('');
+}
+async function cloudKontoLoeschen(passwort){
+  const m = cloudMerker(), note = $('wegNote');
+  if(!m || anmeldungLaeuft) return;
+  /* konto.fehler_alt, nicht konto.fehler_mail_pw: das verweist auf "Mit
+     Google anmelden", und den Knopf gibt es hier nicht (Gegenpruefung
+     28.10.2026). Ebenso unten bei einem falschen Passwort. */
+  if(m.art === 'passwort' && !passwort){ note.textContent = t('konto.fehler_alt'); note.className = 'note feedback no'; return; }
+  const frageText = t('set.konto_weg_frage') + (m.art === 'google' ? ' ' + t('set.konto_weg_google') : '');
+  if(!await frage(t('set.konto_loeschen'), frageText, t('set.konto_loeschen_knopf'), t('btn.dialog_abbrechen'))) return;
+  anmeldungLaeuft = true;
+  note.className = 'note'; note.textContent = t('konto.laeuft');
+  let r;
+  try{ r = await cloudLoeschen(cloudAdapter(), {passwort}); }
+  finally{ anmeldungLaeuft = false; }
+  if(r === false){
+    /* 28.10.2026: Googles Auswahl abgebrochen - nichts ist geloescht, und
+       zu sagen gibt es auch nichts (wie beim Anmelden). */
+    const g = cloudFehlerGrund;
+    note.textContent = g === 'GOOGLE_ABGEBROCHEN' ? ''
+      : /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD)/.test(g)
+      ? t('konto.fehler_alt') : t(g === 'netz' ? 'konto.fehler_netz' : 'konto.fehler_allgemein');
+    note.className = note.textContent ? 'note feedback no' : 'note';
+    return;
+  }
+  note.textContent = '';
+  $('wegPw').value = ''; $('wegForm').style.display = 'none';
+  await abmeldenFertig();
+  anmeldungZeigen('abgemeldet', 'wahl', {hinweis: ''});
+  const n = $('anmNote');
+  n.textContent = t(r === true ? 'set.konto_weg_fertig' : 'set.konto_weg_teil');
+  n.className = r === true ? 'note feedback ok' : 'note feedback no';
+}
+
 /* Nur mit CLOUD_AN haengt sich die Cloud ueberhaupt irgendwo ein. Der
    Start steht in init(). saveProgress() hat beim Verstecken schon lokal
-   gespeichert (Horcher weiter oben), dieser Horcher kommt danach. */
+   gespeichert (Horcher weiter oben), dieser Horcher kommt danach.
+   28.10.2026: Beim Zurueckkommen und wenn das Netz wiederkommt, wird das
+   Tor neu geprueft; ohne Netz zeigt die Anmeldeseite "Erst einmal
+   weiterlernen". */
 if(CLOUD_AN){
-  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) cloudAbgleich('pause'); });
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) cloudAbgleich('pause'); else torPruefen(); });
+  window.addEventListener('online', ()=>{ netzWeg = false; torPruefen(); });
+  window.addEventListener('offline', ()=>{
+    if(cloudModus() && sichtbar('profileView') && !cloudMerker()) $('anmOffline').hidden = false;
+  });
 }
 
 /* ===== Zmaj bewerten und empfehlen (Einstellungen, Ueber die App) =====
@@ -9189,6 +10185,7 @@ $('fbSend').addEventListener('click', async ()=>{
 /* =================== STARTSEITE =================== */
 function showHome(){
   uhrAus();
+  if(anmeldungSperre()) return;     // Pflicht-Anmeldung, 28.10.2026
   showView('pfad'); setzeZurueck('', null);
   $('modeWords').setAttribute('aria-selected', homeMode==='words'); $('modeStories').setAttribute('aria-selected', homeMode==='stories');
   $('modeTopf').setAttribute('aria-selected', homeMode==='topf');
@@ -9205,6 +10202,7 @@ function showHome(){
    Einstellungen und nicht in der Reiterleiste. */
 function showLaden(){
   uhrAus();
+  if(anmeldungSperre()) return;
   // Im Laden bleibt die Leiste stehen: dort will man sehen, was man hat.
   showView('shopView'); $('kopfLeiste').style.display='';
   ladenOffen = false;
@@ -9343,6 +10341,7 @@ function showStoryPath(){
 }
 let rIdx = 0;
 function openStory(i){
+  if(anmeldungSperre()) return;
   rIdx=i; showView('storyView'); uhrNeu();
   setzeZurueck(t('btn.zurueck_geschichten'), ()=>{ homeMode='stories'; showHome(); });
   $('tag').textContent=t('gesch.zaehler',{i:i+1, n:STORIES.length});
@@ -9553,6 +10552,7 @@ function showStoryQ(s, qi, right){
 
 /* =================== LEVEL =================== */
 function openLevel(i){
+  if(anmeldungSperre()) return;
   catIdx=i; showView('levelView');
   setzeZurueck(t('btn.zurueck_pfad'), ()=>{ homeMode='words'; showHome(); });
   $('tag').textContent=t('level.zaehler',{i:i+1, n:CATEGORIES.length});
@@ -9906,7 +10906,7 @@ function renderTask(task, body, done, opts={}){
       '<div class="loesung"><span class="lbs" lang="bs">'+esc(bs)+'</span>'+
       (de ? '<span class="lde">'+esc(de)+'</span>' : '')+'</div>');
   };
-  /* Der Tippfehler-Hinweis (24.10.2026, siehe nurVertippt()) fuer die
+  /* Der Hinweis "Fast richtig!" (24.10.2026, siehe fastRichtig()) fuer die
      Schreibaufgabe und den Lueckensatz - in Lektion, Wiederholen, Level-Test
      und Einstufung, die alle hier durchgehen. Einmal je Aufgabe. Er steht
      gelb wie "fast richtig" im Rueckmeldefeld, die Eingabe bleibt offen und
@@ -9924,8 +10924,12 @@ function renderTask(task, body, done, opts={}){
      verlor beim naechsten Pruefen ein Leben (Pruefer 24.10.2026). Deshalb
      holt scrollIntoView ihn ins Bild wie weiterBeiTipp() den Weiter-Knopf -
      'nearest' bewegt nichts, solange er zu sehen ist. Der Fokus bleibt im
-     Feld, damit die Tastatur offen bleibt. */
-  const tippHinweis = (inp, luecke)=>{
+     Feld, damit die Tastatur offen bleibt.
+     Seit dem 27.10.2026 steht hier fuer alles derselbe Text, auch fuer eine
+     andere Endung im Lueckensatz und fuer ein anderes echtes Wort (siehe
+     fastRichtig()). Ein Hinweis je Aufgabe - nach dem einen zaehlt der
+     naechste Versuch. */
+  const tippHinweis = (inp)=>{
     let gezeigt = null;
     return (r, antworten)=>{
       if(gezeigt){
@@ -9933,14 +10937,15 @@ function renderTask(task, body, done, opts={}){
         if(doppelt) inp.focus();
         return doppelt;
       }
-      if(r !== 'no' || !nurVertippt(inp.value, antworten, luecke)) return false;
+      if(r !== 'no' || !fastRichtig(inp.value, antworten)) return false;
+      const hinweis = t('task.fast_richtig');
       gezeigt = {text: inp.value, zeit: Date.now()};
       const feld = $$('xFb');
-      feld.textContent = t('task.tippfehler');
+      feld.textContent = hinweis;
       feld.className = 'feedback almost';
       inp.focus();
       try{ feld.scrollIntoView({block:'nearest', behavior: kachelnRuhig() ? 'auto' : 'smooth'}); }catch(e){}
-      ansagen(esc(t('task.tippfehler')), 80);
+      ansagen(esc(hinweis), 80);
       return true;
     };
   };
@@ -9980,7 +10985,7 @@ function renderTask(task, body, done, opts={}){
       '<input class="type-input" id="xIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(t('task.schreib'))+'">'+
       '<div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
-    const vertippt = tippHinweis(inp, false);
+    const vertippt = tippHinweis(inp);
     const check=()=>{
       /* Traegt ein anderes Wort dieselbe Uebersetzung, ist es genauso
          richtig - der Bildschirm zeigt ja nur die Bedeutung. matches()
@@ -10136,7 +11141,7 @@ function renderTask(task, body, done, opts={}){
     body.innerHTML = kick(t('task.luecke'))+'<div class="sentence">'+bsTeil(vorLuecke)+(nachLuecke.length ? lueckeHtml+bsTeil(nachLuecke.join('___')) : '')+'</div>'+
       '<div class="translation">'+inZitat(esc(s.de))+'</div><div class="feedback" id="xFb"></div><div class="row"><button class="btn know" id="xCheck">'+t('task.pruefen')+'</button></div>';
     const inp=$$('xIn'); inp.focus(); let fin=false;
-    const vertippt = tippHinweis(inp, true);
+    const vertippt = tippHinweis(inp);
     const check=()=>{
       if(fin) return;
       /* "auch" am Lueckensatz (23.10.2026): weitere richtige Antworten, wie
@@ -10146,7 +11151,7 @@ function renderTask(task, body, done, opts={}){
       const antworten = [s.answer, ...(s.auch || [])].join(' / ');
       const r=matches(inp.value, antworten);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_luecke'))); return; }
-      if(vertippt(r, antworten)) return;   // wie in der Schreibaufgabe, hier mit den gebeugten Formen
+      if(vertippt(r, antworten)) return;   // wie in der Schreibaufgabe, dazu die andere Endung (27.10.2026)
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
@@ -10543,10 +11548,14 @@ function buildLesson(){
   /* Ajdin am 26.10.2026: "bei der zahlen sektion am besten die zahlen in
      reihenfolge lernen sowie wochentage und wo es noch passt". Ein Level
      mit "reihenfolge" (vokabeln.py: zahlen, wochentage, monate,
-     mengen, seit 26.10.2026 abends auch konjugation, zukunft und routine)
+     mengen, seit 26.10.2026 abends auch konjugation, zukunft und routine,
+     seit 27.10.2026 vergangenheit, modal und adjektive - von Ajdin auf
+     Rueckfrage zu diesem Wunsch ausgewaehlt)
      stellt seine neuen Woerter in der Reihenfolge der Liste vor -
      jedan bis deset und dann nula (Ajdin: Zahlen fangen mit jedan an),
-     ja sam, ti si ... oni su, ponedjeljak bis nedjelja, jedan brat vor dva
+     ja sam, ti si ... oni su, bio sam, bio si, bio je, bila je, bili smo,
+     morati, moram, moraš, moramo, velik, veći, najveći,
+     ponedjeljak bis nedjelja, jedan brat vor dva
      brata vor pet braće -, die Einfuehrungskarten (intros unten) also
      auch. Wer schon mitten im Level ist, bekommt die
      noch fehlenden ebenso der Reihe nach, und ein Wort, das in einer
@@ -10560,7 +11569,9 @@ function buildLesson(){
   /* Teil-Reihen (26.10.2026), Ajdin: "und auch reihenfolge
      beruecksichtigen wo es noch sinn ergibt geh durch die app durch".
      In einem sonst gemischten Level steht eine kurze Reihe ("reihe" in
-     vokabeln.py: die Tageszeiten in zeit, die Jahreszeiten in wetter).
+     vokabeln.py: die Tageszeiten in zeit, die Jahreszeiten in wetter,
+     seit 27.10.2026 die Gruesse nach Tageszeit in basics: Dobro jutro,
+     Dobar dan, Dobro veče, Laku noć).
      Regel: Die uebrigen Woerter werden gemischt gezogen wie bisher. Die
      noch offenen Reihen-Woerter bilden einen Block in ihrer Folge und
      nehmen den Platz des ersten Reihen-Worts ein, das beim Mischen
@@ -11029,6 +12040,9 @@ function lessonEnd(){
   $('lHome').addEventListener('click', lektionVerlassen);
   $('lMore').addEventListener('click', startLesson);
   $('lPfad').addEventListener('click', ()=>{ homeMode='words'; showHome(); });
+  /* Pflicht-Anmeldung (28.10.2026): nach der ersten Lektion steht statt
+     der drei Knoepfe nur "Weiter" da, und der fuehrt zur Anmeldung. */
+  if(anmeldungFaellig()) torStattKnoepfe(['lHome', 'lMore', 'lPfad']);
 
   // Werbung erst nach dem Ergebnis, nie mittendrin. Die ersten Lektionen
   // bleiben frei, danach jede WERBUNG_JEDE_X-te.
@@ -11172,6 +12186,7 @@ function lebenWege(){
 }
 
 function startLesson(){
+  if(anmeldungSperre()) return;
   if(livesNow()===0){ renderLives(); $('lvNote').textContent=t('level.keine_leben',{zeit:fmtMin(nextLifeIn())}); lebenWege(); return; }
   buildLesson();
   interstitialVorladen();   // liegt am Ende der Lektion bereit, siehe interstitialVorladen
@@ -11290,6 +12305,7 @@ function showTestResult(){
   if(ok && allesFertig && (neuBestanden || !hasNext)){ $('tBody').insertAdjacentHTML('beforeend','<div class="kicker" style="margin-top:12px">'+t('test.alles_geschafft')+'</div>'); }
 }
 function startTest(){
+  if(anmeldungSperre()) return;
   if(!testAllowed(cur())) return;
   /* Ohne Leben kein Test, wie bei startLesson() - der Knopf ist dann zwar
      gesperrt (testKnopf), aber "Nochmal" auf dem Ergebnis ruft hierher. */
@@ -11474,7 +12490,17 @@ function einstufungWahl(){
       [['neu', t('einst.neu')], ['etwas', t('einst.etwas')], ['gut', t('einst.gut')]].map(([w, text]) =>
         '<button type="button" class="abokarte einstwahl" data-wahl="' + w + '"><span class="n">' +
         esc(text) + '</span></button>').join('') +
-    '</div>');
+    '</div>' +
+    /* Wer neu installiert hat und schon ein Konto hat, holt hier seinen
+       Stand zurueck, ohne erst Lektion 1 zu machen. Nur mit der
+       Pflicht-Anmeldung, 28.10.2026. */
+    (cloudModus() ? '<div class="abohinweis" style="text-align:center; margin-top:10px">' +
+                    '<button type="button" class="abolink" id="eKonto"></button></div>' : ''));
+  if(cloudModus()){
+    const k = kasten.querySelector('#eKonto');
+    k.textContent = t('konto.zurueck_anmelden');
+    k.addEventListener('click', ()=>{ zu(); anmeldungZeigen('konto'); });
+  }
   kasten.querySelectorAll('[data-wahl]').forEach(b => b.addEventListener('click', ()=>{
     const wahl = b.dataset.wahl;
     zu();
@@ -11497,6 +12523,7 @@ function einstufungErklaeren(wahl){
   kasten.querySelector('#eNeu').addEventListener('click', ()=>{ zu(); Ex = null; einstufungMerken(wahl, ''); });
 }
 function einstufungStarten(){
+  if(anmeldungSperre()) return;
   if(!Ex || !Ex.qs.length){ einstufungMerken(Ex ? Ex.wahl : 'etwas', ''); Ex = null; return; }
   showView('einstufungView');
   /* Die Uhr fuer die Tagesaufgabe "Minuten" laeuft bewusst nicht: der Test
@@ -11562,6 +12589,8 @@ function einstufungEnde(){
     (ziel > 0 ? '<div class="feedback" style="color:var(--muted)">' + esc(t('einst.ergebnis_offen')) + '</div>' : '') +
     '<div class="row"><button class="btn know" id="eLos"></button></div>';
   $('eLos').textContent = t('einst.los');
+  // Danach kommt die Anmeldung (28.10.2026): showHome() fuehrt hin.
+  if(anmeldungFaellig()) $('eLos').textContent = t('anm.weiter');
   sound(ziel > 0 ? 'done' : 'ok');
   $('eLos').addEventListener('click', ()=>{
     homeMode = 'words';
@@ -11818,6 +12847,7 @@ function startStern(){ rundeStarten('stern'); }
    Runden laufen gleich - Leben, Serie, Tagesaufgaben, Muenzen -, Lx.topf
    bleibt fuer beide gesetzt, Lx.quelle sagt, woher die Aufgaben kommen. */
 function rundeStarten(quelle){
+  if(anmeldungSperre()) return;
   const aufgaben = (livesNow() > 0) ? (quelle === 'stern' ? sternRunde() : topfRunde()) : [];
   if(!aufgaben.length){ topfSeite(); return; }
   interstitialVorladen();   // eine Runde zaehlt wie eine Lektion, also auch hier
@@ -12502,6 +13532,7 @@ function kartenNachreichen(){
      Schirm ohne Leben, und dort steht der Knopf fuer das Video. Eine
      AdMob-Anzeige hat kein Element im Dokument, das unten auffiele. */
   const frei = ()=> !frageSchliessen && !wegmarkeLaeuft && !Ex_laeuft() && !anzeigeLaeuft &&
+                    !sichtbar('profileView') &&      // nie ueber der Anmeldung, 28.10.2026
                     !document.querySelector('.nachfrage, .einwilligung, .werbung');
   if(!frei()) return;
   setTimeout(()=>{
@@ -12597,6 +13628,7 @@ function updLerntGerade(){
    nicht, und es laegen zwei Fenster von Google uebereinander. */
 function updRuhig(){
   return updWerbungDurch && !document.hidden && !updLerntGerade() &&
+         !sichtbar('profileView') &&      // nie ueber der Anmeldung, 28.10.2026
          !frageSchliessen && !wegmarkeLaeuft && !anzeigeLaeuft && !werbungLaeuft &&
          Date.now() - anzeigeZuletzt >= 10000 &&
          !document.querySelector('.nachfrage, .einwilligung, .werbung');
@@ -12930,7 +13962,12 @@ async function werbungVorbereiten(){
    Lernpfad (showHome). Als gesehen gilt er erst, wenn jemand ihn bedient
    hat. Punkt 9 versprach den Hinweis seit September, gebaut am 12.10.2026,
    nachgebessert nach dem Review am selben Tag. */
-const AGB_WESENTLICH = '2026-09-19';
+/* 28.10.2026 (v109): Das Konto ist Pflicht - Punkte 3, 5 und 8 sind neu
+   (Frage 6 im Plan, nach dem Vorschlag gebaut). Der Hinweis darauf kommt
+   nur mit Anmeldung (CLOUD_AN). Ohne Firebase-Projekt bleibt es beim Stand
+   von v108 - sonst hiesse es dort "Bedingungen geaendert" fuer ein Konto,
+   das es gar nicht gibt (Pruefbericht vom 28.10.). */
+const AGB_WESENTLICH = CLOUD_AN ? '2026-10-28' : '2026-09-19';
 let agbHinweisFertig = false, agbHinweisOffen = false;
 function agbRuhig(){
   return updWerbungDurch && sichtbar('pfad') && !updLerntGerade() && !frageSchliessen &&

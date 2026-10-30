@@ -81,3 +81,30 @@ def test_echte_sicherung_bleibt_vollstaendig(seite, heute_stand, vollversion):
     assert nach["drache"] == "ok"
     assert seite.fehler == []
 
+
+def test_sicherung_einer_neueren_fassung_behaelt_ihre_felder(seite, heute_stand):
+    """28.10.2026, Vorarbeit fuer v110: Eine Sicherungsdatei mit Feldern, die
+    diese Fassung nicht kennt (etwa die Wiederholungsdaten von v110), verliert
+    sie beim Einlesen nicht - sie stehen danach im Geraetespeicher und in der
+    naechsten Sicherung. premium bleibt draussen, und fremde Felder ueber der
+    Grenze der Cloud fallen weg, der Rest der Datei kommt an."""
+    seite.starten(app="app", stand=heute_stand())
+    ids = seite.js("() => CATEGORIES[0].words.slice(0, 3).map(w => w.id)")
+    heute = seite.js("() => today()")
+    wdh = {"w:" + ids[0]: {"faellig": "2026-11-05", "stufe": 2}}
+    datei = {"app": "zmaj", "version": 1,
+             "stand": {"gewusst": ids, "tage": [heute], "wdh": wdh, "premium": True}}
+    z = seite.js(EINLESEN, json.dumps(datei))
+    assert z["woerter"] == 3
+    nach = seite.js("""() => ({stand: standAlsObjekt(), datei: JSON.parse(sicherungInhalt()).stand,
+                               gespeichert: JSON.parse(localStorage.getItem('zmaj_stand')), premium})""")
+    for s in (nach["stand"], nach["datei"], nach["gespeichert"]):
+        assert s["wdh"] == wdh and "premium" not in s, s
+    assert nach["premium"] is False
+
+    gross = {"app": "zmaj", "version": 1,
+             "stand": {"gewusst": ids[:1], "tage": [heute], "riesig": "x" * 1000000}}
+    z = seite.js(EINLESEN, json.dumps(gross))
+    assert z["woerter"] == 1
+    assert "riesig" not in seite.js("() => standAlsObjekt()") and "wdh" not in seite.js("() => standAlsObjekt()")
+    assert seite.fehler == []

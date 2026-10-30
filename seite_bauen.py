@@ -11,12 +11,26 @@ Seiten im Ordner `github-seite`:
     datenschutz.html          Datenschutzerklärung, acht Sprachen
     nutzungsbedingungen.html  Nutzungsbedingungen, acht Sprachen
     app-ads.txt               eine Zeile für AdMob
+    konto-loeschen.html       Konto und Daten löschen (Pflicht von Google
+                              Play, seit v109 mit dem Weg in der App und
+                              per Mail)
+    .nojekyll                 damit GitHub Pages .well-known ausliefert
+    .well-known/assetlinks.json
+                              verbindet die Seite mit der App (Restore-
+                              Schlüssel der Anmeldung, seit v109). Nur, wenn
+                              zmaj-android/fingerabdruecke.json da ist
     README.md                 Startseite des Repositories, aus seite_readme.md
     favicon.ico, icon-256.png Symbol im Browser-Tab, Kopie von web/icon.ico
                               und web/icon-256.png (der Drache, seit 15.10.2026)
+    kontakt.html              Kontaktformular, acht Sprachen (seit 28.10.2026).
+                              Nur mit KONTAKT_FORMULAR = True in sprachen.py
+                              UND zmaj-android/cloud_zugang.json
 
 Die Seiten kommen ohne fremde Server aus: keine Schriften, keine Skripte
-von außen, alles steht in der Datei selbst.
+von außen, alles steht in der Datei selbst. Einzige Ausnahme ist das
+Kontaktformular: Es schickt die Nachricht per fetch an Firebase
+(identitytoolkit.googleapis.com und firestore.googleapis.com), sonst nirgends
+hin - das sichert eine Content-Security-Policy in der Seite selbst ab.
 
 In Thonny öffnen und auf Run (F5) drücken. Nach jeder Änderung an den
 Rechtstexten noch einmal laufen lassen und die Dateien neu hochladen.
@@ -24,15 +38,22 @@ Rechtstexten noch einmal laufen lassen und die Dateien neu hochladen.
 Wie die Seiten online kommen, steht in github-seite/LIESMICH.txt.
 """
 
+import base64
+import hashlib
 import io
+import json
 import os
+import re
 import shutil
 import sys
+from html import escape
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
 ZIEL = os.path.join(ORDNER, "github-seite")
 sys.path.insert(0, ORDNER)
-import sprachen
+import app_bauen  # noqa: E402
+import huelle  # noqa: E402
+import sprachen  # noqa: E402
 
 # Nur diese beiden Seiten braucht der Store. Jede bekommt ihre eigene
 # Adresse, damit man im Play-Konto genau darauf zeigen kann.
@@ -108,11 +129,14 @@ SKRIPT = """
 """
 
 
-def kopf(titel):
+def kopf(titel, csp=None, stil=""):
+    """csp und stil nur fuer kontakt.html (28.10.2026). Ohne sie bleibt der
+    Kopf der uebrigen Seiten Zeichen fuer Zeichen, wie er war."""
     return (
         '<!doctype html>\n<html lang="de">\n<head>\n'
         '<meta charset="utf-8">\n'
-        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        + ('<meta http-equiv="Content-Security-Policy" content="%s">\n' % csp if csp else '')
+        + '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         '<title>%s</title>\n'
         # Symbol im Browser-Tab: das App-Symbol (Drache), seit 15.10.2026.
         # Bis dahin hatte die Seite keins, und der Browser fragte vergeblich
@@ -124,7 +148,7 @@ def kopf(titel):
         '<style>%s</style>\n'
         '</head>\n<body>\n<div class="wrap">\n'
         '<header><div class="marke">Zmaj<span>.</span></div></header>\n'
-    ) % (titel, STIL)
+    ) % (titel, STIL + stil)
 
 
 # Die Kanaele von Zmaj, in jeder Sprache gleich: Plattformnamen werden
@@ -149,11 +173,15 @@ START_WORT = {
 }
 
 
-def fuss(mit_skript=True, hier=None):
+def fuss(mit_skript=True, hier=None, skript_dazu=None):
     """hier: Dateiname dieser Seite – der eigene Verweis wird weggelassen.
 
     Google verlinkt die Datenschutzerklärung direkt. Ohne diese Zeile käme man
-    von dort weder zum Impressum noch zu den anderen Texten."""
+    von dort weder zum Impressum noch zu den anderen Texten.
+
+    Mit KONTAKT_FORMULAR steht hinter dem Impressum der Verweis auf
+    kontakt.html. main() schaltet ihn nur ein, wenn die Seite auch gebaut
+    wird. skript_dazu: das Skript des Formulars, hinter dem Umschalter."""
     anbieter = sprachen.ANBIETER.replace("<br>", " · ")
 
     def zeile(code):
@@ -165,6 +193,8 @@ def fuss(mit_skript=True, hier=None):
                  ("nutzungsbedingungen.html", texte["set.agb"]),
                  ("konto-loeschen.html",
                   LOESCHEN.get(code, LOESCHEN["en"])["titel"]))
+        if sprachen.KONTAKT_FORMULAR:
+            namen = namen[:2] + (("kontakt.html", sprachen.kontakt_texte(code)["titel"]),) + namen[2:]
         return " · ".join('<a href="%s">%s</a>' % (d, n)
                           for d, n in namen if d != hier)
 
@@ -186,6 +216,8 @@ def fuss(mit_skript=True, hier=None):
             % (fuesse, sozial, anbieter, ki))
     if mit_skript:
         teil += "<script>%s</script>\n" % SKRIPT
+    if skript_dazu:
+        teil += "<script>%s</script>\n" % skript_dazu
     return teil + "</body>\n</html>\n"
 
 
@@ -239,30 +271,44 @@ START = {
            "Politique de confidentialité", "Conditions d'utilisation", "Contact"),
 }
 
-# Google Play fragt im Data-Safety-Formular, wie Nutzer ihre Daten wieder
-# loswerden. Seit dem 16.09.2026 gibt es keine Konten mehr – die Antwort ist
-# also einfach, muss aber öffentlich und ohne Anmeldung lesbar dastehen.
+# Google Play verlangt fuer jede App, in der man ein Konto anlegen kann,
+# einen Weg zum Loeschen in der App UND eine oeffentliche Seite, die ohne
+# Anmeldung lesbar ist. Bis v108 hiess die Antwort "Zmaj hat kein Konto".
+# Seit v109 (28.10.2026) ist das Konto Pflicht: in der App sofort, ohne App
+# per Mail an die Adresse aus ANBIETER, geloescht von Hand in der
+# Firebase-Konsole innerhalb von 30 Tagen (Frage 5 im Plan, nach dem
+# Vorschlag gebaut). Die Abschnitte zu Androids Sicherung, zur
+# Sicherungsdatei und zu Mails an uns sind dieselben wie vorher.
+# Online erst zusammen mit v109 - fuer v108 stimmt die alte Fassung.
 LOESCHEN = {
     "de": {
-        "titel": "Daten löschen",
+        "titel": "Konto und Daten löschen",
         "text": """
-<p><b>Zmaj hat kein Konto</b><br>
-Es gibt keine Anmeldung, kein Passwort und keine E-Mail-Adresse. Dein
-Lernfortschritt liegt auf deinem Gerät; die App lädt ihn nirgendwo hoch –
-auch nicht zu uns.</p>
+<p><b>In der App</b><br>
+Öffne Zmaj, tippe oben auf dein Profil und dann auf <i>Konto löschen</i>.
+Das löscht dein Konto und deinen Lernstand sofort – in der Cloud und auf
+diesem Handy.</p>
 
-<p><b>So löschst du alles</b><br>
-Du brauchst uns dafür nicht zu fragen und nicht zu erreichen:
-lösche die App, oder leere in den Einstellungen deines Geräts ihren
-Speicher (<i>Einstellungen → Apps → Zmaj → Speicher → Daten löschen</i>).
-Damit ist der Fortschritt weg – bei uns ebenfalls, weil er dort nie war.
-Das wirkt sofort.</p>
+<p><b>Ohne die App</b><br>
+Schreib von der E-Mail-Adresse deines Kontos an <a href="mailto:{mail}">{mail}</a>, Betreff
+„Konto löschen“. Hast du dich mit Google angemeldet, nimm die Adresse
+dieses Google-Kontos. Wir löschen dein Konto und deinen Lernstand
+innerhalb von 30 Tagen und bestätigen es dir per E-Mail.</p>
 
 <p><b>Was gelöscht wird</b><br>
-Gelernte Wörter, bestandene Levels, gelesene Geschichten, Lerntage,
-Lernzeit, Tagesaufgaben, Münzen, gekaufte Gegenstände, Leben,
-Serienschutz, deine Einstellungen und die zufällige Kennung, die beim
-ersten Start entsteht.</p>
+Dein Konto (E-Mail-Adresse und Anmeldedaten; bei der Anmeldung mit Google
+auch der Name und die Adresse des Profilbilds, die Google dabei übergibt)
+und die Kopie deines Lernstands in der Cloud: gelernte Wörter, bestandene
+Levels, gelesene Geschichten, Lerntage, Lernzeit, Tagesaufgaben, Münzen,
+gekaufte Gegenstände, Leben und Serienschutz. Wir behalten nichts davon. Aus den Sicherungskopien von Firebase
+verschwinden die Anmeldedaten danach innerhalb von 180 Tagen. Die
+IP-Adressen der Anmeldungen hält Firebase zum Schutz vor Missbrauch
+einige Wochen fest.</p>
+
+<p><b>Auf deinem Handy</b><br>
+Löschst du in der App, ist der Lernstand dort ebenfalls weg. Sonst
+löschst du die App oder leerst ihren Speicher (<i>Einstellungen → Apps →
+Zmaj → Speicher → Daten löschen</i>).</p>
 
 <p><b>Androids eigene Sicherung</b><br>
 Hast du sie in deinem Google-Konto eingeschaltet, liegt dort eine Kopie
@@ -281,27 +327,38 @@ Absenderadresse. Schreib an <a href="mailto:{mail}">{mail}</a>, und wir
 löschen sie – innerhalb von 30 Tagen.</p>
 
 <p><b>Die Vollversion</b><br>
-Sie hängt an deinem Google-Konto, nicht an uns. Kündigen und löschen
-lassen kannst du sie nur dort.</p>
+Sie hängt an deinem Google-Konto bei Google Play, nicht an deinem
+Zmaj-Konto. Wer das Konto löscht, kündigt damit kein Abo – das kündigst du
+in Google Play.</p>
 """,
     },
     "en": {
-        "titel": "Delete your data",
+        "titel": "Delete your account and data",
         "text": """
-<p><b>Zmaj has no account</b><br>
-There is no sign-in, no password and no email address. Your progress is
-kept on your device; the app never uploads it anywhere – not to us either.</p>
+<p><b>In the app</b><br>
+Open Zmaj, tap your profile at the top and then <i>Delete account</i>.
+This deletes your account and your progress immediately – in the cloud and
+on this phone.</p>
 
-<p><b>How to delete everything</b><br>
-You do not need to ask us or get hold of us: delete the app, or clear its
-storage in your device settings (<i>Settings → Apps → Zmaj → Storage →
-Clear data</i>). Your progress is then gone – with us as well, because it
-was never there. This takes effect immediately.</p>
+<p><b>Without the app</b><br>
+Write from your account’s email address to <a href="mailto:{mail}">{mail}</a> with the subject
+“Delete account”. If you signed in with Google, use the address of that
+Google account. We delete your account and your progress within 30 days
+and confirm it by email.</p>
 
 <p><b>What is deleted</b><br>
-Words learned, levels passed, stories read, learning days, learning time,
-daily tasks, coins, items bought, hearts, streak freezes, your settings
-and the random identifier created the first time you start the app.</p>
+Your account (email address and sign-in data; with Google sign-in also the
+name and the profile picture address that Google passes on) and the copy of
+your progress in the cloud: words learned, levels passed, stories read,
+learning days, learning time, daily tasks, coins, items bought, hearts and
+streak freezes. We keep none of it. Firebase then removes the sign-in data from its
+backups within 180 days. Firebase keeps the IP addresses of sign-ins for a
+few weeks to protect against abuse.</p>
+
+<p><b>On your phone</b><br>
+If you delete in the app, your progress on the phone is gone as well.
+Otherwise delete the app or clear its storage (<i>Settings → Apps → Zmaj →
+Storage → Clear data</i>).</p>
 
 <p><b>Android's own backup</b><br>
 If you have turned it on in your Google account, a copy of the app's
@@ -319,29 +376,37 @@ address. Write to <a href="mailto:{mail}">{mail}</a> and we will delete
 it – within 30 days.</p>
 
 <p><b>The full version</b><br>
-It belongs to your Google account, not to us. You can only cancel it and
-have it removed there.</p>
+It belongs to your Google account in Google Play, not to your Zmaj account.
+Deleting the account does not cancel a subscription – you cancel it in
+Google Play.</p>
 """,
     },
     "tr": {
-        "titel": "Verilerini sil",
+        "titel": "Hesabını ve verilerini sil",
         "text": """
-<p><b>Zmaj'ın hesabı yoktur</b><br>
-Giriş yok, parola yok, e-posta adresi yok. Öğrenme ilerlemen senin
-cihazında durur; uygulama onu hiçbir yere yüklemez – bize de.</p>
+<p><b>Uygulamada</b><br>
+Zmaj'ı aç, yukarıda profiline, ardından <i>Hesabı sil</i>'e dokun. Bu,
+hesabını ve öğrenme ilerlemeni hemen siler – hem bulutta hem bu telefonda.</p>
 
-<p><b>Her şeyi nasıl silersin</b><br>
-Bunun için bize sormana ya da bize ulaşmana gerek yok:
-uygulamayı sil ya da cihazının ayarlarından uygulamanın belleğini
-temizle (<i>Ayarlar → Uygulamalar → Zmaj → Depolama → Verileri temizle</i>).
-Böylece öğrenme ilerlemen kaybolur – bizde de, çünkü zaten hiç bizde
-olmadı. Bu anında geçerli olur.</p>
+<p><b>Uygulama olmadan</b><br>
+Hesabının e-posta adresinden <a href="mailto:{mail}">{mail}</a> adresine “Hesabı sil” konulu
+bir e-posta yaz. Google ile giriş yaptıysan o Google hesabının adresini
+kullan. Hesabını ve ilerlemeni 30 gün içinde sileriz ve bunu sana
+e-postayla onaylarız.</p>
 
 <p><b>Neler silinir</b><br>
-Öğrenilen kelimeler, geçilen seviyeler, okunan hikâyeler, öğrenme
-günleri, öğrenme süresi, günlük görevler, jetonlar, satın alınan eşyalar,
-canlar, seri koruması, ayarların ve uygulamayı ilk açtığında oluşan
-rastgele kimlik.</p>
+Hesabın (e-posta adresi ve giriş bilgileri; Google ile girişte ayrıca
+Google'ın ilettiği ad ve profil resminin adresi) ve buluttaki
+ilerlemenin kopyası: öğrenilen kelimeler, geçilen seviyeler, okunan
+hikâyeler, öğrenme günleri, öğrenme süresi, günlük görevler, jetonlar,
+satın alınan eşyalar, canlar ve seri koruması. Hiçbirini saklamayız. Firebase giriş bilgilerini bundan sonra 180 gün
+içinde yedeklerinden de siler. Girişlerin IP adreslerini Firebase, kötüye
+kullanıma karşı korumak için birkaç hafta saklar.</p>
+
+<p><b>Telefonunda</b><br>
+Uygulamada silersen telefondaki ilerlemen de gider. Aksi hâlde uygulamayı
+sil ya da depolamasını temizle (<i>Ayarlar → Uygulamalar → Zmaj → Depolama
+→ Verileri temizle</i>).</p>
 
 <p><b>Android'in kendi yedeklemesi</b><br>
 Bunu Google hesabında açtıysan, uygulama verilerinin bir kopyası orada
@@ -359,21 +424,38 @@ kutumuzda kalır. <a href="mailto:{mail}">{mail}</a> adresine yaz, sileriz –
 30 gün içinde.</p>
 
 <p><b>Tam sürüm</b><br>
-Tam sürüm bize değil, Google hesabına bağlıdır. İptal etmeyi de
-sildirmeyi de yalnızca oradan yapabilirsin.</p>
+Tam sürüm Zmaj hesabına değil, Google Play'deki Google hesabına bağlıdır.
+Hesabı silmek aboneliği iptal etmez – onu Google Play'de iptal edersin.</p>
 """,
     },
     "sv": {
-        "titel": "Radera dina data",
+        "titel": "Radera konto och data",
         "text": """
-<p><b>Zmaj har inget konto</b><br>
-Det finns ingen inloggning, inget lösenord och ingen e-postadress. Dina framsteg ligger på din enhet; appen laddar inte upp dem någonstans – inte heller till oss.</p>
+<p><b>I appen</b><br>
+Öppna Zmaj, tryck på din profil högst upp och sedan på <i>Radera konto</i>.
+Det raderar ditt konto och dina framsteg direkt – i molnet och på den här
+telefonen.</p>
 
-<p><b>Så raderar du allt</b><br>
-Du behöver varken fråga oss eller få tag på oss: avinstallera appen, eller töm appens lagringsutrymme i enhetens inställningar (<i>Inställningar → Appar → Zmaj → Lagring → Rensa data</i>). Då är dina framsteg borta – hos oss också, eftersom de aldrig fanns där. Det sker direkt.</p>
+<p><b>Utan appen</b><br>
+Skriv från kontots e-postadress till <a href="mailto:{mail}">{mail}</a> med ämnet ”Radera
+konto”. Om du loggade in med Google, använd adressen till det
+Google-kontot. Vi raderar ditt konto och dina framsteg inom 30 dagar och
+bekräftar det via mejl.</p>
 
 <p><b>Det här raderas</b><br>
-Inlärda ord, klarade nivåer, lästa berättelser, inlärningsdagar, inlärningstid, dagsuppgifter, mynt, föremål du köpt, hjärtan, serieskydd, dina inställningar och den slumpmässiga identifierare som skapas när du startar appen första gången.</p>
+Ditt konto (e-postadress och inloggningsuppgifter; vid inloggning med
+Google även namnet och adressen till profilbilden som Google lämnar över)
+och kopian av dina framsteg i molnet: inlärda ord, klarade nivåer, lästa
+berättelser, inlärningsdagar, inlärningstid, dagsuppgifter, mynt, föremål
+du köpt, hjärtan och serieskydd. Vi sparar inget av det. Därefter tar Firebase bort
+inloggningsuppgifterna ur sina säkerhetskopior inom 180 dagar.
+IP-adresserna från inloggningarna sparar Firebase i några veckor för att
+skydda mot missbruk.</p>
+
+<p><b>På din telefon</b><br>
+Raderar du i appen försvinner framstegen även där. Annars avinstallerar du
+appen eller tömmer dess lagringsutrymme (<i>Inställningar → Appar → Zmaj →
+Lagring → Rensa data</i>).</p>
 
 <p><b>Androids egen säkerhetskopiering</b><br>
 Har du slagit på den i ditt Google-konto finns en kopia av appens data där, och Android återställer den när du installerar om. Den raderar du i ditt Google-konto (Google Drive eller Google One → Säkerhetskopior) – vi kommer inte åt den.</p>
@@ -385,28 +467,38 @@ Har du sparat en fil under <i>Inställningar → Säkerhetskopia</i> ligger den 
 Ett mejl med feedback blir kvar i vår inkorg, tillsammans med din avsändaradress. Skriv till <a href="mailto:{mail}">{mail}</a>, så raderar vi det – inom 30 dagar.</p>
 
 <p><b>Fullversionen</b><br>
-Den är kopplad till ditt Google-konto, inte till oss. Det är bara där du kan säga upp och radera den.</p>
+Den är kopplad till ditt Google-konto i Google Play, inte till ditt
+Zmaj-konto. Att radera kontot säger inte upp något abonnemang – det säger
+du upp i Google Play.</p>
 """,
     },
     "nl": {
-        "titel": "Je gegevens wissen",
+        "titel": "Account en gegevens wissen",
         "text": """
-<p><b>Zmaj heeft geen account</b><br>
-Er is geen inlog, geen wachtwoord en geen e-mailadres. Je voortgang staat
-op je eigen apparaat; de app uploadt hem nergens naartoe – ook niet naar ons.</p>
+<p><b>In de app</b><br>
+Open Zmaj, tik bovenaan op je profiel en dan op <i>Account verwijderen</i>.
+Dat verwijdert je account en je voortgang meteen – in de cloud en op deze
+telefoon.</p>
 
-<p><b>Zo wis je alles</b><br>
-Je hoeft het ons daarvoor niet te vragen en ons niet te bereiken:
-verwijder de app, of wis in de instellingen van je apparaat de opslag ervan
-(<i>Instellingen → Apps → Zmaj → Opslag → Gegevens wissen</i>).
-Daarmee is je voortgang weg – bij ons ook, want daar is hij nooit geweest.
-Dat werkt meteen.</p>
+<p><b>Zonder de app</b><br>
+Schrijf vanaf het e-mailadres van je account naar <a href="mailto:{mail}">{mail}</a> met als
+onderwerp ‘Account verwijderen’. Heb je met Google ingelogd, gebruik dan
+het adres van dat Google-account. We verwijderen je account en je
+voortgang binnen 30 dagen en bevestigen dat per e-mail.</p>
 
 <p><b>Wat er gewist wordt</b><br>
-Geleerde woorden, gehaalde niveaus, gelezen verhalen, leerdagen,
-leertijd, dagopdrachten, munten, gekochte voorwerpen, levens,
-reeksbescherming, je instellingen en de willekeurige ID-code die bij de
-eerste start wordt aangemaakt.</p>
+Je account (e-mailadres en inloggegevens; bij inloggen met Google ook de
+naam en het adres van de profielfoto die Google doorgeeft) en de kopie van
+je voortgang in de cloud: geleerde woorden, gehaalde niveaus, gelezen
+verhalen, leerdagen, leertijd, dagopdrachten, munten, gekochte voorwerpen,
+levens en reeksbescherming. We bewaren daar niets van. Daarna haalt Firebase de inloggegevens binnen
+180 dagen ook uit zijn back-ups. De IP-adressen waarmee is ingelogd
+bewaart Firebase enkele weken om misbruik tegen te gaan.</p>
+
+<p><b>Op je telefoon</b><br>
+Verwijder je in de app, dan is je voortgang daar ook weg. Anders verwijder
+je de app of wis je de opslag ervan (<i>Instellingen → Apps → Zmaj →
+Opslag → Gegevens wissen</i>).</p>
 
 <p><b>De eigen back-up van Android</b><br>
 Heb je die in je Google-account aangezet, dan staat daar een kopie van de
@@ -425,21 +517,39 @@ afzenderadres. Schrijf naar <a href="mailto:{mail}">{mail}</a>, dan wissen
 we hem – binnen 30 dagen.</p>
 
 <p><b>De volledige versie</b><br>
-Die is gekoppeld aan je Google-account, niet aan ons. Opzeggen en laten verwijderen
-kan alleen daar.</p>
+Die is gekoppeld aan je Google-account in Google Play, niet aan je
+Zmaj-account. Wie het account verwijdert, zegt daarmee geen abonnement op –
+dat doe je in Google Play.</p>
 """,
     },
     "nb": {
-        "titel": "Slett dataene dine",
+        "titel": "Slett konto og data",
         "text": """
-<p><b>Zmaj har ingen konto</b><br>
-Det finnes ingen innlogging, intet passord og ingen e-postadresse. Framgangen din ligger på enheten din; appen laster den aldri opp noe sted – heller ikke til oss.</p>
+<p><b>I appen</b><br>
+Åpne Zmaj, trykk på profilen din øverst og deretter på <i>Slett konto</i>.
+Det sletter kontoen og framgangen din med en gang – i skyen og på denne
+telefonen.</p>
 
-<p><b>Slik sletter du alt</b><br>
-Du trenger verken å spørre oss eller få tak i oss: Slett appen, eller tøm lagringen dens i innstillingene på enheten din (<i>Innstillinger → Apper → Zmaj → Lagring → Tøm data</i>). Dermed er framgangen borte – hos oss også, for der har den aldri vært. Det virker med en gang.</p>
+<p><b>Uten appen</b><br>
+Skriv fra kontoens e-postadresse til <a href="mailto:{mail}">{mail}</a> med emnet «Slett
+konto». Logget du inn med Google, bruk adressen til den Google-kontoen. Vi
+sletter kontoen og framgangen din innen 30 dager og bekrefter det på
+e-post.</p>
 
 <p><b>Hva som blir slettet</b><br>
-Lærte ord, beståtte nivåer, leste fortellinger, læringsdager, læringstid, dagsoppdrag, mynter, gjenstander du har kjøpt, liv, rekkebeskyttelse, innstillingene dine og den tilfeldige ID-en som blir laget første gang du starter appen.</p>
+Kontoen din (e-postadresse og innloggingsdata; ved innlogging med Google
+også navnet og adressen til profilbildet som Google gir videre) og kopien
+av framgangen din i skyen: lærte ord, beståtte nivåer, leste fortellinger,
+læringsdager, læringstid, dagsoppdrag, mynter, gjenstander du har kjøpt,
+liv og rekkebeskyttelse. Vi beholder ingenting av det. Deretter fjerner Firebase
+innloggingsdataene fra sine sikkerhetskopier innen 180 dager.
+IP-adressene fra innloggingene lagrer Firebase i noen uker for å beskytte
+mot misbruk.</p>
+
+<p><b>På telefonen din</b><br>
+Sletter du i appen, er framgangen borte der også. Ellers sletter du appen
+eller tømmer lagringen dens (<i>Innstillinger → Apper → Zmaj → Lagring →
+Tøm data</i>).</p>
 
 <p><b>Androids egen sikkerhetskopiering</b><br>
 Har du slått den på i Google-kontoen din, ligger det en kopi av appens data der, og Android gjenoppretter den når du installerer appen på nytt. Den sletter du i Google-kontoen din (Google Disk eller Google One → Sikkerhetskopier) – vi har ikke tilgang til den.</p>
@@ -451,27 +561,38 @@ Har du lagret en fil under <i>Innstillinger → Sikkerhetskopi</i>, ligger den d
 En tilbakemelding på e-post blir liggende i postkassen vår, sammen med avsenderadressen din. Skriv til <a href="mailto:{mail}">{mail}</a>, så sletter vi den – innen 30 dager.</p>
 
 <p><b>Fullversjonen</b><br>
-Den hører til Google-kontoen din, ikke til oss. Det er bare der du kan si den opp og få den slettet.</p>
+Den hører til Google-kontoen din i Google Play, ikke til Zmaj-kontoen din.
+Å slette kontoen sier ikke opp et abonnement – det sier du opp i Google
+Play.</p>
 """,
     },
     "da": {
-        "titel": "Slet dine data",
+        "titel": "Slet konto og data",
         "text": """
-<p><b>Zmaj har ingen konto</b><br>
-Der er intet login, ingen adgangskode og ingen mailadresse. Dine fremskridt ligger på din enhed; appen sender dem ikke nogen steder hen – heller ikke til os.</p>
+<p><b>I appen</b><br>
+Åbn Zmaj, tryk på din profil øverst og derefter på <i>Slet konto</i>. Det
+sletter din konto og din fremgang med det samme – i skyen og på denne
+telefon.</p>
 
-<p><b>Sådan sletter du det hele</b><br>
-Du behøver ikke at spørge os eller få fat i os:
-Slet appen, eller ryd dens lagrede data i din enheds indstillinger
-(<i>Indstillinger → Apps → Zmaj → Lagring → Ryd data</i>).
-Så er dine fremskridt væk – også hos os, for de har aldrig været der.
-Det virker med det samme.</p>
+<p><b>Uden appen</b><br>
+Skriv fra kontoens e-mailadresse til <a href="mailto:{mail}">{mail}</a> med emnet »Slet
+konto«. Loggede du ind med Google, så brug adressen til den Google-konto.
+Vi sletter din konto og din fremgang inden for 30 dage og bekræfter det
+på mail.</p>
 
 <p><b>Hvad der bliver slettet</b><br>
-Lærte ord, beståede niveauer, læste fortællinger, læringsdage,
-læringstid, dagsopgaver, mønter, købte genstande, liv,
-rækkebeskyttelse, dine indstillinger og det tilfældige id, der bliver
-oprettet, første gang du starter appen.</p>
+Din konto (e-mailadresse og logindata; ved login med Google også navnet og
+adressen til profilbilledet, som Google giver videre) og kopien af din
+fremgang i skyen: lærte ord, beståede niveauer, læste fortællinger,
+læringsdage, læringstid, dagsopgaver, mønter, købte genstande, liv og
+rækkebeskyttelse. Vi beholder intet af det. Derefter fjerner Firebase logindataene fra
+sine sikkerhedskopier inden for 180 dage. IP-adresserne fra logins gemmer
+Firebase i nogle uger for at beskytte mod misbrug.</p>
+
+<p><b>På din telefon</b><br>
+Sletter du i appen, er fremgangen også væk dér. Ellers sletter du appen
+eller rydder dens lagrede data (<i>Indstillinger → Apps → Zmaj → Lagring →
+Ryd data</i>).</p>
 
 <p><b>Androids egen sikkerhedskopiering</b><br>
 Har du slået den til i din Google-konto, ligger der en kopi af appens
@@ -490,30 +611,40 @@ din afsenderadresse. Skriv til <a href="mailto:{mail}">{mail}</a>, så
 sletter vi den – inden for 30 dage.</p>
 
 <p><b>Fuld version</b><br>
-Den er knyttet til din Google-konto, ikke til os. Du kan kun opsige
-og slette den dér.</p>
+Den er knyttet til din Google-konto i Google Play, ikke til din
+Zmaj-konto. At slette kontoen opsiger ikke et abonnement – det opsiger du
+i Google Play.</p>
 """,
     },
     "fr": {
-        "titel": "Supprimer tes données",
+        "titel": "Supprimer ton compte et tes données",
         "text": """
-<p><b>Zmaj n'a pas de compte</b><br>
-Il n'y a ni connexion, ni mot de passe, ni adresse e-mail. Ta progression
-reste sur ton appareil ; l'application ne l'envoie nulle part – pas
-même chez nous.</p>
+<p><b>Dans l'application</b><br>
+Ouvre Zmaj, touche ton profil en haut, puis <i>Supprimer le compte</i>.
+Cela supprime ton compte et ta progression immédiatement – dans le cloud et
+sur ce téléphone.</p>
 
-<p><b>Comment tout supprimer</b><br>
-Tu n'as besoin ni de nous le demander, ni de nous joindre : supprime
-l'application, ou vide sa mémoire dans les réglages de ton appareil
-(<i>Paramètres → Applications → Zmaj → Stockage → Effacer les données</i>).
-Ta progression est alors perdue – chez nous aussi, car elle ne s'y est
-jamais trouvée. C'est immédiat.</p>
+<p><b>Sans l'application</b><br>
+Écris depuis l'adresse e-mail de ton compte à <a href="mailto:{mail}">{mail}</a> avec
+l'objet « Supprimer le compte ». Si tu t'es connecté avec Google, utilise
+l'adresse de ce compte Google. Nous supprimons ton compte et ta
+progression sous 30 jours et te le confirmons par e-mail.</p>
 
 <p><b>Ce qui est supprimé</b><br>
-Les mots appris, les niveaux réussis, les histoires lues, les jours
-d'apprentissage, le temps d'apprentissage, les objectifs du jour, les
-pièces, les objets achetés, les vies, les protections de série, tes
-réglages et l'identifiant aléatoire créé au premier démarrage.</p>
+Ton compte (adresse e-mail et données de connexion ; avec la connexion
+Google, aussi le nom et l'adresse de la photo de profil que Google
+transmet) et la copie de ta progression dans le cloud : les mots appris,
+les niveaux réussis, les histoires lues, les jours d'apprentissage, le
+temps d'apprentissage, les objectifs du jour, les pièces, les objets
+achetés, les vies et les protections de série. Nous n'en gardons rien. Firebase efface ensuite les données de connexion
+de ses sauvegardes sous 180 jours. Firebase conserve les adresses IP des
+connexions quelques semaines pour se protéger des abus.</p>
+
+<p><b>Sur ton téléphone</b><br>
+Si tu supprimes dans l'application, ta progression disparaît aussi du
+téléphone. Sinon, supprime l'application ou vide sa mémoire
+(<i>Paramètres → Applications → Zmaj → Stockage → Effacer les
+données</i>).</p>
 
 <p><b>La sauvegarde d'Android</b><br>
 Si tu l'as activée dans ton compte Google, une copie des données de
@@ -532,8 +663,9 @@ adresse d'expéditeur. Écris-nous à <a href="mailto:{mail}">{mail}</a> et
 nous le supprimons – sous 30 jours.</p>
 
 <p><b>La version complète</b><br>
-Elle est liée à ton compte Google, pas à nous. Tu ne peux la résilier et la
-faire supprimer que là-bas.</p>
+Elle est liée à ton compte Google dans Google Play, pas à ton compte Zmaj.
+Supprimer le compte ne résilie pas un abonnement – tu le résilies dans
+Google Play.</p>
 """,
     },
 }
@@ -595,6 +727,245 @@ def baue_startseite():
     schreibe("index.html", "".join(teile))
 
 
+# Das Kontaktformular (Weg A, Ajdin am 28.10.2026): der zweite Weg fuer eine
+# "schnelle elektronische Kontaktaufnahme" nach § 5 Abs. 1 Nr. 2 DDG, neben
+# der E-Mail. Keine Telefonnummer, und es kostet nichts - jetzt nicht und
+# spaeter nicht: Firebase im Tarif Spark ohne Zahlungsmittel, die
+# Weiterleitung als Apps Script im Gratis-Gmail-Konto
+# (kontakt_weiterleitung.gs). Vorschlag und Abwaegung:
+# Release/Kontaktformular_Vorschlag.md.
+#
+# Ablauf beim Absenden: anonym anmelden (accounts:signUp), die Nachricht als
+# nachrichten/{uid} ablegen (documents:commit, zeit vom Server), die
+# Anmeldung wieder loeschen (accounts:delete). Was erlaubt ist, steht in
+# firestore.rules - die Grenzen hier muessen dazu passen
+# (tests/test_kontakt.py).
+#
+# Projekt-ID und Web-API-Schluessel kommen aus derselben cloud_zugang.json
+# wie fuer die App. Der Schluessel ist kein Geheimnis im engeren Sinn (er
+# steht auch in jeder App), aber er gehoert zu genau diesem Projekt und
+# steht deshalb nie im Repository, nur in der gebauten Seite.
+KONTAKT_HOSTS = ("https://identitytoolkit.googleapis.com", "https://firestore.googleapis.com")
+NACHRICHT_MAX = 5000
+ADRESSE_MAX = 254
+# type="email" laesst nur druckbares ASCII durch, wie die Regel in
+# firestore.rules. Das Muster verlangt dazu einen Punkt in der Domain:
+# type="email" allein liesse auch "a@b" durch, und Firestore lehnte die
+# Nachricht dann ab.
+ADRESSE_MUSTER = r"[^@\s]+@[^@\s]+\.[^@\s]+"
+
+KONTAKT_STIL = """
+.kontakt label{display:block;font-weight:700;margin:16px 0 6px}
+.kontakt textarea,.kontakt input{width:100%;font:inherit;color:var(--text);background:var(--bg);
+  border:1px solid var(--linie);border-radius:12px;padding:11px 13px}
+.kontakt textarea{min-height:170px;resize:vertical}
+.kontakt textarea:focus,.kontakt input:focus{outline:2px solid var(--blau);outline-offset:1px}
+.kontakt button{font:inherit;font-weight:700;cursor:pointer;margin-top:8px;padding:12px 22px;
+  border-radius:12px;border:0;background:var(--blau);color:#fff}
+.kontakt button:disabled{opacity:.55;cursor:default}
+.falle{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.meldung{min-height:1.6em;margin:14px 0 0;font-weight:700}
+.meldung.gut{color:var(--gelb)}
+.meldung.schlecht{color:#FF8A80}
+"""
+
+# Das Skript des Formulars. Nutzereingaben gehen nur ueber value und
+# textContent in die Seite, nie ueber innerHTML (tests/test_kontakt.py).
+KONTAKT_SKRIPT = """
+(function(){
+  var PROJEKT = __PROJEKT__, SCHLUESSEL = __SCHLUESSEL__;
+  var KONTO = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+  var DOKUMENTE = 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(PROJEKT)
+    + '/databases/(default)/documents';
+  var formulare = document.querySelectorAll('form.kontakt');
+  var laeuft = false;
+
+  // Nach 20 Sekunden ohne Antwort gilt es als gescheitert, wie in der App
+  // (cloudFirestore in web/index.html). Kein Netz traegt netz - die Seite
+  // sagt dann "Keine Verbindung" statt "hat nicht geklappt".
+  async function senden(url, daten, ausweis){
+    var ab = new AbortController();
+    var uhr = setTimeout(function(){ ab.abort(); }, 20000);
+    var kopf = {'Content-Type': 'application/json'};
+    if(ausweis) kopf.Authorization = 'Bearer ' + ausweis;
+    try{
+      var r;
+      try{
+        r = await fetch(url, {method: 'POST', headers: kopf, body: JSON.stringify(daten),
+                              cache: 'no-store', credentials: 'omit', signal: ab.signal});
+      }catch(e){ var n = new Error('netz'); n.netz = true; throw n; }
+      if(!r.ok) throw new Error('status ' + r.status);
+      return await r.json();
+    }finally{ clearTimeout(uhr); }
+  }
+
+  // Anonym anmelden, die Nachricht unter der eigenen uid ablegen, die
+  // Anmeldung wieder loeschen. zeit setzt der Server (firestore.rules:
+  // zeit == request.time), exists: false macht daraus ein reines Anlegen.
+  async function ablegen(text, antwort, sprache){
+    var konto = await senden(KONTO + 'signUp?key=' + encodeURIComponent(SCHLUESSEL), {returnSecureToken: true});
+    if(!konto || typeof konto.localId !== 'string' || !konto.localId || !konto.idToken) throw new Error('anmeldung');
+    try{
+      await senden(DOKUMENTE + ':commit', {writes: [{
+        update: {name: 'projects/' + PROJEKT + '/databases/(default)/documents/nachrichten/' + konto.localId,
+                 fields: {text: {stringValue: text}, antwort: {stringValue: antwort},
+                          sprache: {stringValue: sprache}}},
+        updateTransforms: [{fieldPath: 'zeit', setToServerValue: 'REQUEST_TIME'}],
+        currentDocument: {exists: false}}]}, konto.idToken);
+    }finally{
+      // Auch wenn das Ablegen scheiterte: Die anonyme Anmeldung soll nicht
+      // liegen bleiben. Klappt das Loeschen nicht, kann sie trotzdem nichts
+      // mehr - die Regeln erlauben ihr genau ein Dokument.
+      try{ await senden(KONTO + 'delete?key=' + encodeURIComponent(SCHLUESSEL), {idToken: konto.idToken}); }catch(e){}
+    }
+  }
+
+  function melden(form, art){
+    var m = form.querySelector('.meldung');
+    m.textContent = art ? (form.dataset[art] || '') : '';
+    m.className = 'meldung' + (art === 'danke' ? ' gut' : (art === 'fehler' || art === 'keinNetz') ? ' schlecht' : '');
+  }
+
+  function fertig(form){
+    formulare.forEach(function(f){ f.reset(); melden(f, null); });
+    melden(form, 'danke');
+  }
+
+  formulare.forEach(function(form){
+    var knopf = form.querySelector('button[type="submit"]');
+    // Ohne Skript bleibt der Knopf aus: Ein Formular ohne fetch schickte
+    // die Nachricht sonst an GitHub Pages statt an uns.
+    knopf.disabled = false;
+    // Dasselbe Feld in den anderen Sprachen mitfuehren. Wer die Sprache
+    // wechselt, saehe sonst ein leeres Formular.
+    form.addEventListener('input', function(ev){
+      var name = ev.target.name;
+      if(name !== 'nachricht' && name !== 'antwort') return;
+      formulare.forEach(function(f){ if(f !== form) f.elements[name].value = ev.target.value; });
+    });
+    form.addEventListener('submit', async function(ev){
+      ev.preventDefault();
+      if(laeuft) return;
+      var feld = form.elements;
+      var text = feld.nachricht.value.trim();
+      var antwort = feld.antwort.value.trim();
+      if(!text){ feld.nachricht.value = ''; form.reportValidity(); return; }
+      // Das Fallenfeld "website" sieht und fuellt nur ein Programm. Dann
+      // tut die Seite so, als sei alles angekommen, und schickt nichts.
+      if(feld.website.value){ fertig(form); return; }
+      laeuft = true;
+      knopf.disabled = true;
+      melden(form, 'sendet');
+      try{
+        await ablegen(text, antwort, form.dataset.sprache);
+        fertig(form);
+      }catch(e){
+        melden(form, e && e.netz ? 'keinNetz' : 'fehler');
+      }finally{
+        laeuft = false;
+        knopf.disabled = false;
+      }
+    });
+  });
+})();
+"""
+
+# Eine Abteilung je Sprache, wie bei den Rechtstexten. Jede hat ihr eigenes
+# Formular, damit Beschriftungen und Meldungen ohne Skript im HTML stehen.
+# Der Knopf ist ausgeschaltet, bis das Skript laeuft.
+KONTAKT_ABTEILUNG = """<section data-sprache="%(code)s" lang="%(code)s" hidden>
+<h1>%(titel)s</h1>
+<div class="karte">
+<p>%(einleitung)s</p>
+<noscript><p class="recht">%(ohne_skript)s</p></noscript>
+<form class="kontakt" data-sprache="%(code)s" method="post" data-sendet="%(sendet)s" data-danke="%(danke)s" data-fehler="%(fehler)s" data-kein-netz="%(kein_netz)s">
+<label for="nachricht-%(code)s">%(nachricht)s</label>
+<textarea id="nachricht-%(code)s" name="nachricht" rows="7" maxlength="%(nmax)d" required></textarea>
+<label for="antwort-%(code)s">%(antwort)s</label>
+<input id="antwort-%(code)s" name="antwort" type="email" maxlength="%(amax)d" pattern="%(muster)s" autocomplete="email" required>
+<div class="falle" aria-hidden="true"><label for="website-%(code)s">Website</label><input id="website-%(code)s" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<p class="recht">%(hinweis)s</p>
+<button type="submit" disabled>%(senden)s</button>
+<p class="meldung" role="status" aria-live="polite"></p>
+</form>
+</div>
+</section>
+"""
+
+
+def kontakt_zugang(datei=None):
+    """Projekt-ID und Web-API-Schluessel fuer kontakt.html aus der privaten
+    Huelle (cloud_zugang.json, dieselbe Datei wie fuer die App), oder None
+    ohne Datei. Bricht ab, wenn ein Wert nicht die Form hat, die auch
+    app_bauen.py verlangt - ohne den Wert in der Meldung zu zeigen."""
+    datei = datei or os.path.join(huelle.ordner(), "cloud_zugang.json")
+    if not os.path.exists(datei):
+        return None
+    with io.open(datei, encoding="utf-8") as f:
+        try:
+            werte = json.load(f)
+        except ValueError:
+            raise SystemExit("ABBRUCH: %s ist kein gueltiges JSON." % datei)
+    zugang = {}
+    for name in ("projekt", "schluessel"):
+        wert = werte.get(name) if isinstance(werte, dict) else None
+        if not isinstance(wert, str) or not re.fullmatch(app_bauen.CLOUD_MUSTER[name], wert):
+            raise SystemExit("ABBRUCH: In %s fehlt '%s' oder hat nicht die erwartete Form."
+                             % (datei, name))
+        zugang[name] = wert
+    return zugang
+
+
+def csp_hash(inhalt):
+    """Der Fingerabdruck eines eingebetteten Skripts oder Stils fuer die
+    Content-Security-Policy."""
+    return "'sha256-%s'" % base64.b64encode(hashlib.sha256(inhalt.encode("utf-8")).digest()).decode("ascii")
+
+
+def baue_kontaktseite(zugang):
+    """kontakt.html, oder nichts ohne Zugang.
+
+    Ohne Zugang wird eine kontakt.html aus einem frueheren Lauf geloescht:
+    Online stuende sonst ein Formular, das weder Impressum noch
+    Datenschutzerklaerung nennen.
+
+    Die Content-Security-Policy erlaubt nur die beiden eingebetteten Skripte
+    und den Stil (per Fingerabdruck), Bilder von hier und Verbindungen zu
+    genau den zwei Adressen von Firebase. form-action 'none' verhindert,
+    dass ein Formular ohne Skript die Nachricht an GitHub Pages schickt."""
+    pfad = os.path.join(ZIEL, "kontakt.html")
+    if zugang is None:
+        if os.path.exists(pfad):
+            os.remove(pfad)
+            print("  %-26s entfernt (kein Formular)" % "kontakt.html")
+        return
+    mail = post_adresse()
+    link = '<a href="mailto:%s">%s</a>' % (mail, mail)
+    skript = (KONTAKT_SKRIPT.replace("__PROJEKT__", json.dumps(zugang["projekt"]))
+              .replace("__SCHLUESSEL__", json.dumps(zugang["schluessel"])))
+    csp = ("default-src 'none'; script-src %s %s; style-src %s; img-src 'self'; "
+           "connect-src %s; form-action 'none'; base-uri 'none'"
+           % (csp_hash(SKRIPT), csp_hash(skript), csp_hash(STIL + KONTAKT_STIL), " ".join(KONTAKT_HOSTS)))
+    erste = sprachen.kontakt_texte(sprachen.GRUNDSPRACHE)
+    teile = [kopf("Zmaj – " + escape(erste["titel"]), csp=csp, stil=KONTAKT_STIL), sprachwahl()]
+    for s in sprachen.SPRACHEN:
+        k = sprachen.kontakt_texte(s["code"])
+        werte = {"code": s["code"], "nmax": NACHRICHT_MAX, "amax": ADRESSE_MAX,
+                 "muster": escape(ADRESSE_MUSTER, quote=True)}
+        # Reiner Text wird maskiert, in Attributen samt Anfuehrungszeichen.
+        # einleitung, hinweis und ohne_skript tragen eigenes HTML (Links)
+        # wie die Rechtstexte.
+        for name in ("titel", "nachricht", "antwort", "senden"):
+            werte[name] = escape(k[name], quote=False)
+        for name in ("sendet", "danke", "fehler", "kein_netz"):
+            werte[name] = escape(k[name], quote=True)
+        for name in ("einleitung", "hinweis", "ohne_skript"):
+            werte[name] = k[name].replace("{mail}", link)
+        teile.append(KONTAKT_ABTEILUNG % werte)
+    teile.append(fuss(hier="kontakt.html", skript_dazu=skript))
+    schreibe("kontakt.html", "".join(teile))
+
+
 def post_adresse():
     """Die E-Mail-Adresse aus ANBIETER – die Zeile mit dem @.
 
@@ -624,14 +995,56 @@ ADMOB_PUBLISHER = "pub-9105747905460295"
 APP_ADS = "google.com, %s, DIRECT, f08c47fec0942fa0\n" % ADMOB_PUBLISHER
 
 
+# Digital Asset Links (28.10.2026, v109). Die Restore-Schluessel der
+# Anmeldung (ZmajAnmeldung in der Huelle) gelten fuer die Domain
+# zmaj-lernapp.github.io. Ob Google dafuer wie bei Passkeys eine
+# assetlinks.json verlangt, sagt die Doku nicht - sie liegt vorsorglich da
+# und wird am Handy geprueft (Firebase_Plan_v109.md, 2.8).
+# Die SHA-256-Fingerabdruecke der Signaturschluessel sind nicht geheim,
+# gehoeren aber zu genau dieser App und stehen deshalb in der privaten
+# Huelle, in fingerabdruecke.json:
+#     {"de.smartdragon.zmaj": ["AA:BB:...", "..."],
+#      "de.smartdragon.zmaj.test": ["..."]}
+# (App-Signatur- und Upload-Schluessel fuer die Store-App, der
+# Debug-Schluessel fuer die Test-App). Fehlt die Datei, gibt es keine
+# assetlinks.json - lieber keine als eine falsche.
+FINGERABDRUCK_FORM = re.compile(r"[0-9A-F]{2}(:[0-9A-F]{2}){31}")
+RECHTE = ["delegate_permission/common.handle_all_urls", "delegate_permission/common.get_login_creds"]
+
+
+def assetlinks(datei=None):
+    """Der Inhalt von .well-known/assetlinks.json, oder None ohne Datei.
+    Bricht ab, wenn ein Fingerabdruck nicht die Form AA:BB:... hat."""
+    datei = datei or os.path.join(huelle.ordner(), "fingerabdruecke.json")
+    if not os.path.exists(datei):
+        return None
+    with io.open(datei, encoding="utf-8") as f:
+        werte = json.load(f)
+    if not isinstance(werte, dict) or not werte:
+        raise SystemExit("ABBRUCH: %s ist leer oder kein Objekt." % datei)
+    eintraege = []
+    for paket, abdruecke in sorted(werte.items()):
+        if not re.fullmatch(r"[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+", str(paket)) or not isinstance(abdruecke, list) \
+                or not abdruecke or not all(FINGERABDRUCK_FORM.fullmatch(str(a).upper()) for a in abdruecke):
+            raise SystemExit("ABBRUCH: In %s hat '%s' nicht die erwartete Form "
+                             "(Paketname, Liste von SHA-256 wie AA:BB:...)." % (datei, paket))
+        eintraege.append({"relation": RECHTE,
+                          "target": {"namespace": "android_app", "package_name": paket,
+                                     "sha256_cert_fingerprints": [str(a).upper() for a in abdruecke]}})
+    return json.dumps(eintraege, indent=2) + "\n"
+
+
 def schreibe(datei, text):
     pfad = os.path.join(ZIEL, datei)
+    os.makedirs(os.path.dirname(pfad), exist_ok=True)
     with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
         f.write(text)
     print("  %-26s %6d Bytes" % (datei, os.path.getsize(pfad)))
 
 
-if __name__ == "__main__":
+def main():
+    """Alle Seiten nach ZIEL. Eine eigene Funktion seit 28.10.2026, damit
+    tests/test_seite.py sie in einen Probeordner bauen kann."""
     os.makedirs(ZIEL, exist_ok=True)
     print("Seiten für GitHub Pages:")
     if sprachen.anbieter_fehlt():
@@ -639,11 +1052,33 @@ if __name__ == "__main__":
     if sprachen.ustidnr_fehlt():
         print("  Hinweis: Die USt-IdNr fehlt im Impressum – sie kommt per Post vom")
         print("  Bundeszentralamt. Sobald sie da ist, in ANBIETER eintragen.")
-    baue_startseite()
-    baue_loeschseite()
-    for datei, titel, text in SEITEN:
-        baue_rechtsseite(datei, titel, text)
+    # Das Kontaktformular nur mit Schalter UND Zugang (28.10.2026). Ohne
+    # cloud_zugang.json nennt es keine Seite, auch das Impressum nicht -
+    # sonst zeigte der Verweis auf eine Seite, die es nicht gibt. Ohne
+    # Schalter wird die Datei gar nicht erst gelesen.
+    zugang = kontakt_zugang() if sprachen.KONTAKT_FORMULAR else None
+    if sprachen.KONTAKT_FORMULAR and zugang is None:
+        print("  Hinweis: KONTAKT_FORMULAR ist an, aber zmaj-android/cloud_zugang.json")
+        print("  fehlt - die Seiten nennen das Kontaktformular nicht.")
+    vorher, sprachen.KONTAKT_FORMULAR = sprachen.KONTAKT_FORMULAR, zugang is not None
+    try:
+        baue_startseite()
+        baue_loeschseite()
+        for datei, titel, text in SEITEN:
+            baue_rechtsseite(datei, titel, text)
+        baue_kontaktseite(zugang)
+    finally:
+        sprachen.KONTAKT_FORMULAR = vorher
     schreibe("app-ads.txt", APP_ADS)
+    # Ohne .nojekyll laesst GitHub Pages Ordner mit Punkt vorn weg - und
+    # damit .well-known (28.10.2026).
+    schreibe(".nojekyll", "")
+    links = assetlinks()
+    if links is None:
+        print("  Hinweis: zmaj-android/fingerabdruecke.json fehlt - keine")
+        print("  .well-known/assetlinks.json (siehe FIREBASE_EINRICHTEN.md).")
+    else:
+        schreibe(".well-known/assetlinks.json", links)
     # Die Startseite des Repositories. Sie fuehrt mit klickbaren Links zu den
     # fertigen Seiten - noetig, weil GitHub in der Dateiliste nur den
     # HTML-Quelltext zeigt und nicht die lesbare Fassung. Der Text steht in
@@ -661,3 +1096,7 @@ if __name__ == "__main__":
         print("  %-26s %6d Bytes" % (datei, os.path.getsize(pfad)))
     print("\nFertig in: %s" % ZIEL)
     print("Wie es online kommt, steht in github-seite/LIESMICH.txt")
+
+
+if __name__ == "__main__":
+    main()

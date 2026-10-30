@@ -70,3 +70,8 @@ def test_neue_farben_erreichen_4_5(index_html):
     flaechen = [token("sek%d-flaeche" % s) for s in range(1, 10)] + [token("surface")]
     for name in ("good-text", "bad-text", "accent-text"):
         assert min(_kontrast(token(name), f) for f in flaechen) >= 4.5, name
+    # Seit 29.10.2026 fuer Schrift direkt auf dem Seitengrund (Passwortliste
+    # und Zeile unter "Konto anlegen"): auf jedem der neun Sektionsgruende.
+    gruende = [token("sek%d-grund" % s) for s in range(1, 10)] + [token("bg")]
+    for name in ("good-text-grund", "bad-text-grund"):
+        assert min(_kontrast(token(name), g) for g in gruende) >= 4.5, name
