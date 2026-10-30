@@ -118,8 +118,9 @@ are in the Play Store listing. Format:
 - Tablets: from 600 points on the shorter side (Android's "sw600dp") the
   whole app scales up with the screen. Upright, the column fills about
   88 % of the width (10-inch tablet: everything 1.3 times larger); in
-  landscape the column stays centred and scales only as far as a lesson
-  still fits without scrolling; at most 1.4 times. Lessons, level tests
+  landscape the column is 640 points wide and centred, and the app scales
+  only as far as a lesson still fits without scrolling (7-inch: not at
+  all); at most 1.4 times. Lessons, level tests
   and the placement test fill the screen: upright, the dragon and the task
   sit in the middle, the answers below, and Check/Continue at the bottom,
   with room reserved so nothing jumps after an answer. Phones (under 600

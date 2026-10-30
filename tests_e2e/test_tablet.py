@@ -369,6 +369,35 @@ def test_tipp_in_den_freien_platz(geraet, heute_stand):
     assert s.fehler == []
 
 
+def test_geschichte_rand_blaettert_nicht(geraet, heute_stand):
+    """Bei einer Geschichte horcht nur das Fragenfeld #rQ - wer im Text
+    darueber liest oder nachschlaegt, soll nicht weiterblaettern. Der
+    Horcher fuer den freien Platz (oben) gilt nur fuer die aufgeloesten
+    Felder der Lektion; bis zur Pruefung am 30.10.2026 hing er auch am
+    ganzen Geschichtenkasten, und ein Tipp auf dessen Rand holte die
+    naechste Frage."""
+    s = geraet(800, 1280, heute_stand())
+    assert s.js("() => { openStory(0); stilleBitte(); return document.documentElement.classList.contains('hoch'); }")
+    s.page.locator("#rQ #rOpts .opt").first.click()
+    s.page.wait_for_function("document.querySelector('#rQ .weiterbox')")
+    s.page.wait_for_timeout(1300)          # WEITER_NACH und sanftes Scrollen
+    frage = "() => document.querySelector('#rQ .kicker').textContent"
+    vorher = s.js(frage)
+    x, y = s.js("""() => { const k = document.getElementById('rBody').getBoundingClientRect(),
+                                  q = document.getElementById('rQ').getBoundingClientRect();
+                           return [k.left + 6, Math.min(Math.max(q.top + 10, 10), innerHeight - 10)]; }""")
+    assert s.js("([x, y]) => document.elementFromPoint(x, y).id", [x, y]) == "rBody"
+    s.page.mouse.click(x, y)
+    s.page.wait_for_timeout(400)
+    assert s.js(frage) == vorher, "ein Tipp auf den Rand des Geschichtenkastens hat weitergeblaettert"
+    assert s.js("() => !!document.querySelector('#rQ .weiterbox')")
+    # Im Fragenfeld selbst geht es weiter wie bisher
+    s.page.locator("#rQ .weiterbox .btn").click()
+    s.page.wait_for_function("!document.querySelector('#rQ .weiterbox')", timeout=3000)
+    assert s.js(frage) != vorher
+    assert s.fehler == []
+
+
 def test_rect_faktor_alte_webview(geraet, heute_stand):
     """Aeltere WebViews teilen getBoundingClientRect durch den zoom. Das
     wird hier nachgestellt: rectFaktor() muss es erkennen."""
