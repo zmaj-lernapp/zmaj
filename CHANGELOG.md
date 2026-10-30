@@ -7,6 +7,24 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Groundwork for the iPhone and iPad app (30.10.2026, branch `ios-web`):
+  one platform switch (`PLATTFORM`: `android`, `ios` or `web`, decided once
+  in the small script in the page head). On iOS only: the back button in
+  the header (there is no system back key), the page respects the notch
+  and home indicator (`viewport-fit=cover` plus `env(safe-area-inset-*)`),
+  interface texts without Google Play or Android (`<key>_ios` in all eight
+  languages, and iOS versions of the terms and the privacy policy with
+  Apple as the seller), "Sign in with Apple" next to Google (Firebase
+  `signInWithIdp` with nonce; deleting the account revokes Apple's token
+  first), "Later" on the sign-in page (once a day), the subscription box
+  with Apple's required details, "Restore purchases" and "Manage
+  subscription" via Apple, Apple's own rating prompt instead of the rating
+  card, "Report ad" after full-screen ads and in the settings, App
+  Tracking Transparency after Google's consent form, iOS test ad units,
+  no vibration switch, no hidden switches, no in-app updates.
+  `app_bauen.py --ios` builds the content for the iOS shell (AAC audio,
+  `npx cap sync ios`), `--ios --ci` without anything private for the cloud
+  build. Android behaves exactly as before.
 - Spaced review of learned words (Leitner box, decided on 28.10.2026):
   every word you know has a level with a fixed interval of 1, 3, 7, 14, 30,
   90 or 180 days. A right answer moves it up one level, also before the
