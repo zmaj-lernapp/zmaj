@@ -30,6 +30,86 @@
     if(w === 'dunkel') document.documentElement.dataset.theme = 'dark';
   }catch(e){}
 </script>
+<!-- Tablets (30.10.2026). Ajdin zu den Store-Bildern fuer 7- und 10-Zoll-
+     Tablets: "die tablet bilder die zeigen zu viel platz kann man nicht je
+     nach dem wie gross der bildschirm ist das layout anpassen". Die App war
+     ueberall eine Spalte bis 540 Punkte in Handygroesse; auf dem 10-Zoll-
+     Tablet hochkant blieb links und rechts je ein Siebtel leer, alles war
+     klein, und unter einer Lektion stand der halbe Bildschirm leer.
+     Ab dem kleinsten Seitenmass 600 (so trennt auch Android Tablet und
+     Handy, "sw600dp") vergroessert CSS-zoom die ganze App, also Schrift,
+     Knoepfe, Abstaende und Drachen im selben Verhaeltnis (GROSS):
+       - hochkant so weit, dass die Spalte 88 % der Breite fuellt
+         (800 x 1280: 1,30), solange 840 Punkte Hoehe bleiben (iPad
+         768 x 1024: 1,22 statt 1,25, die Spalte fuellt 86 %). Ein 7-Zoll-
+         Tablet mit 600 Punkten bleibt bei 1, die Spalte fuellt dort schon
+         90 %.
+       - quer nur so weit, dass 740 Punkte Hoehe bleiben - so passt eine
+         Lektion ohne Scrollen wie auf dem Handy (S21: 726). 10 Zoll quer:
+         1,08, die Spalte steht in der Mitte.
+       - hoechstens 1,4 (iPad Pro 12,9 Zoll); dort wird dafuer die Spalte
+         breiter, bis 640 Punkte.
+     Klasse "gross" fuer alles ab 600 Punkten, dazu "hoch", wenn mindestens
+     840 Punkte Hoehe da sind: erst dann fuellt die Lektion den Bildschirm
+     mit Drache, Aufgabe und Antworten verteilt (siehe Stil unter
+     "Tablets"). Quer bleibt die Lektion so aufgebaut wie am Handy.
+     Warum zoom und nicht ueberall rem/calc: das Stilblatt hat Hunderte
+     fester px-Werte, die Handy-Fassung ist Punkt fuer Punkt abgestimmt und
+     soll genau so bleiben. zoom kennen Chrome/Android-WebView und
+     Safari/WKWebView seit Jahren; Lottie zeichnet als SVG und bleibt scharf.
+     Was zoom NICHT gleich macht, steht im Stil unter "Tablets" (vh-Werte)
+     und bei rectFaktor() (getBoundingClientRect in aelteren WebViews).
+     Unter 600 Punkten passiert hier nichts: keine Klasse, kein zoom, keine
+     Variable - das Handy sieht exakt aus wie vorher
+     (tests_e2e/test_tablet.py prueft das).
+     Hier oben und nicht im grossen Skript, damit schon das erste Bild in
+     der richtigen Groesse steht. -->
+<script>
+  var GROSS = 1;
+  (function(){
+    var d = document.documentElement, breite = 0, an = false, hoch = false;
+    /* Offene Tastatur: Android macht die Ansicht dabei niedriger. Dann
+       bleiben Massstab und Aufbau, wie sie sind - sonst sprang beim Tippen
+       in eine Luecke die ganze Seite auf eine andere Groesse. Nur die Hoehe
+       zieht nach, damit die Aufgabe ueber die Tastatur ruecken kann. */
+    function tippt(){
+      var a = document.activeElement;
+      return !!a && (a.tagName === 'TEXTAREA' || (a.tagName === 'INPUT' && !/^(checkbox|radio|button|submit|file)$/.test(a.type)));
+    }
+    function setzen(){
+      var w = window.innerWidth, h = window.innerHeight;
+      if(!w || !h) return;
+      if(!(an && w === breite && tippt())){
+        an = Math.min(w, h) >= 600 && !!(window.CSS && CSS.supports && CSS.supports('zoom', '1.5'));
+        var z = h >= w ? Math.min(0.88 * w / 540, h / 840) : h / 740;
+        GROSS = an ? Math.round(Math.max(1, Math.min(z, 1.4)) * 1000) / 1000 : 1;
+        hoch = an && h / GROSS >= 839.5;
+        breite = w;
+      }
+      if(!an){
+        /* Am Handy nichts anfassen, nur zuruecknehmen, was ein Tablet-Mass
+           vorher gesetzt hat (geteilter Bildschirm, Drehen). So schreibt
+           das Skript am Handy nie etwas in die Seite. */
+        if(d.classList.contains('gross')){
+          d.classList.remove('gross', 'hoch');
+          ['--gross', '--hoehe', '--breite', '--spalte'].forEach(function(n){ d.style.removeProperty(n); });
+        }
+        return;
+      }
+      d.classList.add('gross');
+      if(hoch) d.classList.add('hoch'); else d.classList.remove('hoch');
+      d.style.setProperty('--gross', String(GROSS));
+      /* Bildschirmhoehe und -breite in den Punkten der vergroesserten Seite.
+         100vh/100vw rechnet Chrome im zoom mit (1,3 x so hoch wie der
+         Bildschirm), deshalb im Stil fuer Tablets diese beiden statt vh/vw. */
+      d.style.setProperty('--hoehe', (h / GROSS).toFixed(2) + 'px');
+      d.style.setProperty('--breite', (w / GROSS).toFixed(2) + 'px');
+      d.style.setProperty('--spalte', Math.round(Math.min(640, Math.max(540, 0.88 * w / GROSS))) + 'px');
+    }
+    setzen();
+    window.addEventListener('resize', setzen);
+  })();
+</script>
 <style>
   /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
   :root{
@@ -1976,6 +2056,105 @@
   footer{margin-top:24px; text-align:center; font-size:12px; color:var(--muted); line-height:1.6; font-weight:700}
   .err{background:var(--accent-soft); color:var(--ink); padding:12px 16px; border-radius:12px; font-size:14px; margin-bottom:14px; display:none; text-align:left; line-height:1.6}
   @media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important}}
+
+  /* ---------- Tablets (30.10.2026) ----------
+     Alles hier gilt nur mit html.gross, also ab 600 Punkten kleinstem
+     Seitenmass - das Skript oben im Kopf setzt die Klasse, den Massstab
+     --gross und die Masse --hoehe, --breite, --spalte. Am Handy greift
+     keine dieser Regeln.
+     zoom vergroessert jede px-Angabe. Auch vh und vw rechnet Chrome mit:
+     100vh waeren 1,3 Bildschirme, die Seite liesse sich immer ein Stueck
+     scrollen. Wo das stoert, steht deshalb --hoehe bzw. --breite (die
+     Bildschirmmasse in Punkten der vergroesserten Seite). Die fallenden
+     Blaetter und das Konfetti (110vh, 104vh) fallen nur weiter aus dem
+     Bild - die bleiben. */
+  html.gross{zoom:var(--gross)}
+  html.gross body{min-height:var(--hoehe)}
+  html.gross .wrap{max-width:var(--spalte)}
+  html.gross .einwilligungbox, html.gross .nachfragebox{max-height:calc(var(--hoehe) * .92)}
+  html.gross .livesbar .info{max-width:calc(var(--breite) - 40px)}
+  /* In Lektion, Test und Einstufung ist die Update-Leiste aus (nurHerz),
+     ihr Platz unter der Seite braucht es dann auch nicht - sonst liesse
+     sich die Lektion, die genau den Bildschirm fuellt, ein Stueck schieben. */
+  html.gross body.updDa.nurHerz{padding-bottom:48px}
+
+  /* Lektion, Wiederholen-Runde, Level-Test und Einstufung: Der Kasten
+     fuellt den Bildschirm. Vorher stand er oben, und darunter war die
+     halbe Flaeche leer (10 Zoll hochkant: rund 700 von 1280 Punkten).
+     Hoehe: Bildschirm minus 16 + 48 Rand der Seite und 56 fuer
+     "Lektion abbrechen" darunter. Passt mehr hinein, waechst er mit, wie
+     am Handy.
+     Quer (ohne .hoch, unter 840 Punkten Hoehe) bleibt der Inhalt so
+     aufgebaut wie am Handy, mit dem Drachen von 100 Punkten wie auf dem
+     S21 (siehe max-height:820px oben). Das Antwortfeld kommt nach der
+     Antwort in den Platz darunter.
+     Hochkant (.hoch) verteilt sich der Inhalt:
+       - Der Drache waechst mit der Hoehe (--drache, 136 bis 190 Punkte).
+       - Drache und Aufgabe stehen zusammen mittig im freien Platz
+         (margin-top:auto am Drachen), die Antworten unten (margin-top:auto
+         an .options, .mic bzw. an der Zeile mit Pruefen/Weiter).
+         Damit der Drache dabei mitgehen kann, ist das Aufgabenfeld
+         (#lBody ...) dort display:contents: seine Kinder stehen fuer das
+         Layout direkt im Kasten. Fuer das Skript aendert das nichts, es
+         sucht und horcht weiter im Aufgabenfeld (nur der Tipp in den
+         freien Platz, siehe weiterBeiTipp).
+       - Unter den Antworten bleibt Platz fuer Rueckmeldung, Loesung und
+         Weiter (--antwort, 170 Punkte, eine falsche Antwort mit zwei
+         Zeilen passt hinein). Kommt das .antwortfeld nach der Antwort,
+         nimmt es genau diesen Platz ein - die Knoepfe, die man gerade
+         getippt hat, bleiben stehen, statt nach oben zu springen. Pruefen
+         sitzt unten in dieser Hoehe, also da, wo danach Weiter erscheint.
+       - Der Ergebnisschirm steht als Ganzes in der Mitte.
+     Quer fehlt fuer diese Verteilung die Hoehe: der Platz fuer das
+     Antwortfeld haette Pruefen beim Satzbau unter den Bildrand geschoben.
+     Ausgeschrieben fuer alle drei Orte, ohne :is() - siehe .zmaj.mini oben.
+     :has() kennen Chrome ab 105 und Safari ab 15.4; ohne es fehlt nur die
+     Reserve fuer die Rueckmeldung, die Antworten ruecken dann beim
+     Antworten ein Stueck hoch. */
+  html.gross #lesson .card, html.gross #test .card, html.gross #einstufungView .card{min-height:calc(var(--hoehe) - 120px)}
+  html.gross #lesson .zmaj.mini, html.gross #test .zmaj.mini, html.gross #einstufungView .zmaj.mini{width:100px; height:100px}
+  html.hoch{--drache:clamp(100px, calc(var(--hoehe) * .4 - 200px), 190px); --antwort:170px}
+  html.hoch #lesson .card, html.hoch #test .card, html.hoch #einstufungView .card{
+    display:flex; flex-direction:column; align-items:center}
+  html.hoch #lBody, html.hoch #tBody, html.hoch #eBody{display:contents}
+  /* Bloecke ueber die ganze Breite wie vorher, einzelne Knoepfe und das
+     Eingabefeld mittig (vorher per text-align, als Flex-Kind per align-self) */
+  html.hoch #lesson .card > *, html.hoch #test .card > *, html.hoch #einstufungView .card > *,
+  html.hoch #lBody > *, html.hoch #tBody > *, html.hoch #eBody > *{align-self:stretch}
+  html.hoch #lBody > button, html.hoch #tBody > button, html.hoch #eBody > button,
+  html.hoch #lBody > input, html.hoch #tBody > input, html.hoch #eBody > input{align-self:center}
+  html.hoch #lesson .zmaj.mini, html.hoch #test .zmaj.mini, html.hoch #einstufungView .zmaj.mini{
+    width:var(--drache); height:var(--drache); flex:none; align-self:center; margin-top:auto}
+  html.hoch #lBody > .ergebnis-titel, html.hoch #tBody > .ergebnis-titel, html.hoch #eBody > .ergebnis-titel{margin-top:auto}
+  html.hoch #lBody > .options:not(.kachelbank), html.hoch #tBody > .options:not(.kachelbank), html.hoch #eBody > .options:not(.kachelbank),
+  html.hoch #lBody > .mic, html.hoch #tBody > .mic, html.hoch #eBody > .mic{margin-top:auto}
+  html.hoch #lBody > .row, html.hoch #tBody > .row, html.hoch #eBody > .row{
+    margin-top:auto; min-height:var(--antwort); align-items:flex-end; align-content:flex-end}
+  html.hoch #lBody > .antwortfeld, html.hoch #tBody > .antwortfeld, html.hoch #eBody > .antwortfeld{
+    min-height:var(--antwort); display:flex; flex-direction:column; justify-content:flex-end}
+  /* Schreiben, Luecke, Satzbau: das Antwortfeld tritt an die Stelle der
+     Zeile mit Pruefen und uebernimmt deren automatischen Abstand */
+  html.hoch #lBody > .row[hidden] ~ .antwortfeld, html.hoch #tBody > .row[hidden] ~ .antwortfeld,
+  html.hoch #eBody > .row[hidden] ~ .antwortfeld{margin-top:auto}
+  /* Auswahl, Hoeren, Grammatik, Sprechen: der Platz fuer das Antwortfeld,
+     solange es noch nicht da ist - samt dessen 12 Punkten Abstand oben */
+  html.hoch #lBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after,
+  html.hoch #tBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after,
+  html.hoch #eBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after{
+    content:""; flex:none; height:calc(var(--antwort) + 12px)}
+  /* "Ueberspringen" verschwindet nach der Antwort, behaelt aber seinen
+     Platz - sonst ruckten die Antworten um seine Hoehe nach unten. Der
+     leere Platz rueckt ans Ende (order): beim Satzbau steht er unter
+     Pruefen, und Weiter soll genau dort erscheinen, wo Pruefen war. */
+  html.hoch #lBody:has(.weiterbox) > .skip, html.hoch #tBody:has(.weiterbox) > .skip{display:inline-block; visibility:hidden; order:1}
+  /* Ergebnis, "Keine Leben mehr": alles zusammen in der Mitte, die
+     Knopfreihen wie am Handy direkt darunter */
+  html.hoch #lBody > .ergebnis-titel ~ :last-child, html.hoch #tBody > .ergebnis-titel ~ :last-child,
+  html.hoch #eBody > .ergebnis-titel ~ :last-child{margin-bottom:auto}
+  html.hoch #lBody > .ergebnis-titel ~ .row, html.hoch #tBody > .ergebnis-titel ~ .row,
+  html.hoch #eBody > .ergebnis-titel ~ .row{margin-top:20px; min-height:0; align-items:stretch; align-content:normal}
+  html.hoch #lBody > .ergebnis-titel ~ .row.schmal, html.hoch #tBody > .ergebnis-titel ~ .row.schmal,
+  html.hoch #eBody > .ergebnis-titel ~ .row.schmal{margin-top:14px}
 </style>
 <style id="festStil"></style>
 </head>
@@ -3490,6 +3669,29 @@ function setzeZurueck(text, ziel){
 let catIdx = 0;
 
 const $ = id => document.getElementById(id);
+/* getBoundingClientRect und der zoom der Tablets (30.10.2026, siehe GROSS
+   oben im Kopf). Chrome ab 128 (genormtes zoom) liefert die Masse in
+   Bildschirmpunkten, mit dem zoom darin. Aeltere WebViews (die App laeuft
+   ab Android 7, dort endet Chrome bei 119) und Safari bis zur Korrektur
+   von WebKit-Fehler 77998 (im WebKit-Quelltext am 07.11.2025) teilen sie
+   durch den zoom.
+   Welche Art das Geraet hat, misst ein unsichtbarer Kasten von 100 Punkten
+   einmal aus. rectFaktor() ist dann der Faktor von getBoundingClientRect
+   zu Bildschirmpunkten (fuer innerHeight und scrollBy), rectFaktor()/GROSS
+   der zu Punkten der Seite (fuer translate und scrollWidth).
+   Ohne zoom (Handy) ist beides genau 1, dort rechnet alles wie vorher. */
+let rectMitZoom = null;
+function rectFaktor(){
+  if(GROSS === 1) return 1;
+  if(rectMitZoom === null){
+    const p = document.createElement('div');
+    p.style.cssText = 'position:absolute; left:0; top:0; width:100px; height:1px; visibility:hidden; pointer-events:none';
+    document.body.appendChild(p);
+    rectMitZoom = p.getBoundingClientRect().width > 50 * (1 + GROSS);   // mit zoom 100*GROSS, ohne 100
+    p.remove();
+  }
+  return rectMitZoom ? 1 : GROSS;
+}
 const cur = () => CATEGORIES[catIdx];
 const curWords = () => cur().words;
 const curSentences = () => SENTENCES.filter(s => s.kat === cur().id);
@@ -3566,7 +3768,9 @@ function sektionAufklappen(id){
      Unterschied nachscrollen. Der Kopf steht danach wieder da, wo der Finger
      ihn getroffen hat. */
   const kasten = [].slice.call(box.children).find(el => el.dataset.sid === id);
-  const vorher = kasten ? kasten.getBoundingClientRect().top : null;
+  /* In Bildschirmpunkten, wie scrollBy und innerHeight - siehe rectFaktor() */
+  const oben = () => kasten.getBoundingClientRect().top * rectFaktor();
+  const vorher = kasten ? oben() : null;
 
   offeneSektion = (offeneSektion === id) ? '' : id;
   [].slice.call(box.children).forEach(el => {
@@ -3582,7 +3786,7 @@ function sektionAufklappen(id){
        Ohne behavior:'instant' wuerde ein spaeter eingefuehrtes
        scroll-behavior:smooth daraus eine sichtbare Fahrt machen; das Ziel ist
        aber, dass sich gar nichts bewegt. */
-    const versatz = kasten.getBoundingClientRect().top - vorher;
+    const versatz = oben() - vorher;
     if(Math.abs(versatz) > 1) scrollBy({top: versatz, behavior: 'instant'});
     /* Klappt oberhalb eine lange Sektion zu, wird die Seite kuerzer als die
        Stelle, an der man gerade stand. Der Browser kann dann nicht so weit
@@ -3592,10 +3796,10 @@ function sektionAufklappen(id){
        Dann wird der Kopf bewusst an die Bezugslinie gesetzt, an der auch die
        Farbe haengt. Das ist eine Bewegung, aber eine erklaerbare: die
        angetippte Sektion steht oben und traegt ihre Farbe. */
-    const rest = kasten.getBoundingClientRect().top - vorher;
+    const rest = oben() - vorher;
     if(Math.abs(rest) > 2){
       const linie = innerHeight > 0 ? Math.min(220, innerHeight * 0.32) : 160;
-      scrollBy({top: kasten.getBoundingClientRect().top - linie, behavior: 'instant'});
+      scrollBy({top: oben() - linie, behavior: 'instant'});
     }
   }
   /* Der Umweg ueber sektionsFarbe ist Absicht: ist keine Sektion offen,
@@ -7188,7 +7392,8 @@ function mitlesenZeigen(m, t){
    Kacheln). */
 function mitlesenImBlick(el, davor){
   try{
-    const h = window.innerHeight || document.documentElement.clientHeight;
+    /* h in den Einheiten von getBoundingClientRect, siehe rectFaktor() */
+    const h = (window.innerHeight || document.documentElement.clientHeight) / rectFaktor();
     const r = el.getBoundingClientRect();
     if(r.top >= 0 && r.bottom <= h) return;
     if(davor){
@@ -10790,8 +10995,11 @@ function renderChoice(box, opts, correctKey, keyOf, onDone, sprache){
      "Waeschetrockner"). Ein paar Punkte in den Innenabstand der Karte
      hinein bleiben erlaubt, so sah es schon immer aus.
      Gefunden bei der Pruefung am 06.10.2026. */
+  /* scrollWidth zaehlt in Punkten der Seite, getBoundingClientRect auf dem
+     Tablet in Bildschirmpunkten - f rechnet um (rectFaktor(), am Handy 1) */
   const karte = (box.closest('.card') || box.parentElement).getBoundingClientRect();
-  if(box.getBoundingClientRect().left + box.scrollWidth > karte.right) box.classList.add('one');
+  const f = rectFaktor() / GROSS;
+  if(box.getBoundingClientRect().left * f + box.scrollWidth > karte.right * f) box.classList.add('one');
 }
 
 /* Die Frage einer Grammatikaufgabe: der bosnische Satz oben, die
@@ -11297,11 +11505,13 @@ function renderTask(task, body, done, opts={}){
       // Ohne Bewegung wird auch ein Gleiten von vorhin abgebrochen: die
       // Kachel steht dann gleich an ihrem Platz.
       const ruhig = kachelnRuhig();
+      // translate rechnet in Punkten der Seite, siehe rectFaktor() (am Handy f = 1)
+      const f = rectFaktor() / GROSS;
       vorher.forEach((r, k) => {
         if(!k.isConnected || !k.animate) return;
         if(k.getAnimations) k.getAnimations().forEach(a => a.cancel());
         if(ruhig) return;
-        const n = k.getBoundingClientRect(), dx = r.left - n.left, dy = r.top - n.top;
+        const n = k.getBoundingClientRect(), dx = (r.left - n.left) * f, dy = (r.top - n.top) * f;
         if(Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
         k.animate([{transform:'translate('+dx+'px,'+dy+'px)'}, {transform:'none'}],
           {duration: k === b ? 260 : 200, easing:'cubic-bezier(.2,.8,.2,1)'});
@@ -14516,10 +14726,22 @@ function weiterBeiTipp(feldId, weiter){
      an - daran erkennt der Horcher, dass er aus einem alten Durchgang stammt.
      Gefunden am 26.09.2026. */
   const meinLx = Lx, meinTx = Tx;
+  /* Tablet hochkant (30.10.2026): dort ist das Aufgabenfeld
+     display:contents (siehe html.hoch im Stil), und der freie Platz
+     zwischen Aufgabe und Antworten gehoert zum Kasten, nicht zum Feld. Ein
+     Tipp genau dorthin zaehlt wie einer ins Feld. Nur auf den Kasten
+     selbst - Stern und Herz in der Kopfzeile bleiben, was sie sind. Am
+     Handy gibt es das nicht. */
+  const karte = document.documentElement.classList.contains('hoch') ? feld.closest('.card') : null;
+  const frei = e => { if(e.target === karte) los(e); };
+  const ab = ()=>{
+    feld.removeEventListener('click', los, true);
+    if(karte) karte.removeEventListener('click', frei);
+  };
   const einmal = ()=>{
     if(schon) return;
     schon = true;
-    feld.removeEventListener('click', los, true);
+    ab();
     weiter();
   };
   /* Ein Tipp auf einen Hörknopf oder auf die Tempoleiste soll NUR das tun -
@@ -14530,7 +14752,7 @@ function weiterBeiTipp(feldId, weiter){
        Horcher aus einem alten Durchgang haengt sich jetzt beim ersten Tipp
        selbst ab und laesst den Klick durch. Gefunden in der Gegenpruefung
        am 01.10.2026. */
-    if(Lx !== meinLx || Tx !== meinTx){ feld.removeEventListener('click', los, true); return; }
+    if(Lx !== meinLx || Tx !== meinTx){ ab(); return; }
     if(e && e.target && e.target.closest && e.target.closest('.listen, .wortton, .tempo')) return;
     einmal();
   };
@@ -14570,6 +14792,7 @@ function weiterBeiTipp(feldId, weiter){
   setTimeout(()=>{
     if(schon) return;
     feld.addEventListener('click', los, true);
+    if(karte) karte.addEventListener('click', frei);
     const k = feld.querySelector('.weiterbox .btn');
     if(k) try{ k.focus({preventScroll:true}); }catch(e){ k.focus(); }
     ansageNachFokus();

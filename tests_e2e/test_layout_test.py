@@ -42,6 +42,9 @@ from conftest import Seite
 FORMATE = [
     pytest.param({"width": 412, "height": 915}, 2.625, 120, id="412x915"),
     pytest.param({"width": 360, "height": 726}, 3.0, 100, id="360x726"),
+    # Seit 30.10.2026 auch das 10-Zoll-Tablet hochkant (test_tablet.py):
+    # alles mal 1,304, der Drache 190 Punkte, also 248 auf dem Bildschirm.
+    pytest.param({"width": 800, "height": 1280}, 2.0, 248, id="tablet_800x1280"),
 ]
 # Im echten Test kommen mc, mcrev, type und gram vor, in der Einstufung
 # mc, mcrev, gap und gram - alle fuenf laufen an allen drei Orten.
