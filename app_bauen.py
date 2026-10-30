@@ -42,6 +42,10 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
                                  Cloud (kein Mac hier). Andere Hülle:
                                  --huelle=PFAD. Für den Cloud-Bau --ios --ci:
                                  ohne Emir, ohne Firebase, ohne AdMob-IDs.
+    app_bauen.py --ios --ci --vorfuehrung
+                                 dazu die Vorführung für die Bildschirmfotos
+                                 in der Cloud (30.10.2026, siehe
+                                 vorfuehrung_einsetzen()). Nur mit --ci.
 
 Ein unbekannter oder vertippter Schalter bricht ab, bevor etwas passiert
 (seit 10.10.2026, siehe schalter_lesen()).
@@ -861,7 +865,7 @@ PFLICHT_SCHRITT = 100
 # Der hoechste versionCode, den Google Play annimmt.
 HOECHSTE_VERSIONSNUMMER = 2100000000
 SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich", "--ohne-anmeldung",
-            "--ios", "--ci")
+            "--ios", "--ci", "--vorfuehrung")
 # Nur mit --ios: die iOS-Huelle an einem anderen Ort, --huelle=PFAD. 30.10.2026
 HUELLE_SCHALTER = "--huelle="
 # Was mit --ios nicht zusammengeht: das sind Schalter fuer Google Play.
@@ -890,6 +894,12 @@ def schalter_lesen(argv):
     elif "--ci" in schalter or any(a.startswith(HUELLE_SCHALTER) for a in schalter):
         raise SystemExit("ABBRUCH: --ci und %sPFAD gibt es nur mit --ios. Nichts gebaut."
                          % HUELLE_SCHALTER)
+    # Die Vorfuehrung oeffnet Schirme von selbst und setzt Platzhalter fuer
+    # Firebase ein - nur im Pruefbau der Cloud, nie in einem Bau fuer den
+    # Store (30.10.2026, siehe vorfuehrung_einsetzen()).
+    if "--vorfuehrung" in schalter and not {"--ios", "--ci"} <= schalter:
+        raise SystemExit("ABBRUCH: --vorfuehrung gibt es nur mit --ios --ci (Cloud-Pruefbau). "
+                         "Nichts gebaut.")
     if "--pflicht" in schalter and "--nur-abgleich" in schalter:
         raise SystemExit("ABBRUCH: --pflicht setzt den versionCode, --nur-abgleich "
                          "zählt ihn nicht hoch. Zusammen gäbe das kein Pflicht-Update.")
@@ -1267,6 +1277,68 @@ def zwischen_ausblenden(ordner):
             f.write("# Zwischenspeicher von app_bauen.py --ios, wird neu erzeugt\n*\n")
 
 
+# Die Vorfuehrung (30.10.2026, Stufe A8): Im Cloud-Bau kann niemand tippen,
+# also oeffnet die Seite Startseite, Lektion, Einstellungen, Kaufkasten und
+# Anmeldung selbst nacheinander, und ios-pruefung.yml der Huelle macht die
+# Bildschirmfotos. Was sie tut und was daran nicht echt ist, steht oben in
+# vorfuehrung_ios.js. Hier nur: die Datei neben die KOPIE legen, sie als
+# erstes Skript einhaengen und fuer Firebase Platzhalter einsetzen - in der
+# Form der echten Werte, damit die Anmeldeseite (CLOUD_AN) aussieht wie im
+# Store-Bau, aber erfunden. Der Schluessel wird zusammengesetzt, damit kein
+# Text im Repository aussieht wie ein Google-Schluessel (wie in den Tests).
+VORFUEHRUNG_QUELLE = os.path.join(HIER, "vorfuehrung_ios.js")
+VORFUEHRUNG_DATEI = "vorfuehrung.js"
+VORFUEHRUNG_ANKER = '<script src="lottie.min.js"></script>'
+VORFUEHRUNG_CLOUD = {
+    "projekt": "zmaj-vorfuehrung",
+    "schluessel": "AIza" + "Probe" * 7,
+    # Auch die Client-ID in Stuecken (tests/test_cloud.py sucht nach der Form).
+    "client": "000000000000" + "-vorfuehrungnurimcilauf" + ".apps." + "googleusercontent.com",
+}
+
+
+def vorfuehrung_einsetzen(www):
+    """Nur fuer --ios --ci --vorfuehrung: vorfuehrung_ios.js als
+    www/vorfuehrung.js, davor eingehaengt in www/index.html, und die
+    Firebase-Platzhalter mit CLOUD_AN an. Bricht ab, ohne zu schreiben, wenn
+    ein Anker nicht genau einmal da ist."""
+    index = os.path.join(www, "index.html")
+    if _liegt_in(index, WEB):
+        raise SystemExit("ABBRUCH: %s liegt in web/. Die Vorfuehrung kommt nur in die Kopie." % index)
+    with io.open(index, encoding="utf-8", newline="") as f:
+        text = f.read()
+    if text.count(VORFUEHRUNG_ANKER) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (VORFUEHRUNG_ANKER, index))
+    for name, platzhalter in CLOUD_PLATZHALTER.items():
+        if text.count(platzhalter) != 1:
+            raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (platzhalter, index))
+        wert = VORFUEHRUNG_CLOUD[name]
+        assert re.fullmatch(CLOUD_MUSTER[name], wert), name
+        text = text.replace(platzhalter, platzhalter.replace("__CLOUD_%s__" % name.upper(), wert))
+    if text.count(CLOUD_SCHALTER_AUS) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (CLOUD_SCHALTER_AUS, index))
+    text = text.replace(CLOUD_SCHALTER_AUS, CLOUD_SCHALTER_AN)
+    text = text.replace(VORFUEHRUNG_ANKER,
+                        '<script src="%s"></script>\n%s' % (VORFUEHRUNG_DATEI, VORFUEHRUNG_ANKER))
+    shutil.copyfile(VORFUEHRUNG_QUELLE, os.path.join(www, VORFUEHRUNG_DATEI))
+    with io.open(index, "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+    print("  Vorfuehrung: %s eingehaengt, Firebase-Platzhalter (erfunden), CLOUD_AN an."
+          % VORFUEHRUNG_DATEI)
+
+
+def keine_vorfuehrung(www):
+    """Der Gegencheck fuer jeden Bau ausser --vorfuehrung: weder die Datei
+    noch ein Verweis darauf. Sonst oeffnete die App im Store Schirme von
+    selbst und haette erfundene Firebase-Werte."""
+    with io.open(os.path.join(www, "index.html"), encoding="utf-8", newline="") as f:
+        text = f.read()
+    if VORFUEHRUNG_DATEI in text or os.path.exists(os.path.join(www, VORFUEHRUNG_DATEI)) \
+            or VORFUEHRUNG_CLOUD["projekt"] in text:
+        raise SystemExit("ABBRUCH: Die Vorfuehrung (%s) steckt in %s - die gehoert nur in den "
+                         "Cloud-Pruefbau." % (VORFUEHRUNG_DATEI, www))
+
+
 def ios_bauen(schalter):
     """Der ganze iOS-Bau, siehe oben. Gibt den Pfad zu www/ zurueck."""
     ci = "--ci" in schalter
@@ -1286,7 +1358,12 @@ def ios_bauen(schalter):
     dauer_platzhalter_pruefen(index)
     if ci:
         print("  Cloud-Bau: ohne Emir, ohne Firebase, ohne AdMob-IDs.")
+        if "--vorfuehrung" in schalter:
+            vorfuehrung_einsetzen(www)
+        else:
+            keine_vorfuehrung(www)
     else:
+        keine_vorfuehrung(www)
         emir_drueber(www, os.path.join(huelle, "audio_emir"))
         # cloud_zugang.json liegt meist nur in der Android-Huelle (ungetrackt).
         datei = os.path.join(huelle, "cloud_zugang.json")

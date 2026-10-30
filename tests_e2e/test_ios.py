@@ -349,3 +349,63 @@ def test_konto_loeschen_mit_apple_widerruft(seite, heute_stand, cloud_html):
     assert (w["providerId"], w["tokenType"], w["token"]) == ("apple.com", "CODE", "code-probe")
     assert attrappe.konto_weg and seite.js(ZUSTAND)["merker"] is None
     assert seite.fehler == []
+
+
+# ----------------------------------------------------------- Vorfuehrung ---
+def test_vorfuehrung_des_cloud_baus(seite, heute_stand, wurzelordner, tmp_path):
+    """vorfuehrung_ios.js, wie app_bauen.py --ios --ci --vorfuehrung sie in
+    den Cloud-Pruefbau haengt (Stufe A8, 30.10.2026). Runde 1 laesst den
+    ersten Start, wie er ist; Runde 2 entzieht der Seite AdMob, setzt die
+    Preise aus Zmaj.storekit ein, wenn StoreKit leer antwortet, und meldet
+    die Schirme in fester Reihenfolge - ohne Skriptfehler und ohne Netz.
+    Hier mit iPhone-Breite: zuletzt die Tracking-Frage ueber AdMob."""
+    import io
+    import os
+    import shutil
+    import app_bauen
+    www = tmp_path / "www"
+    www.mkdir()
+    shutil.copyfile(os.path.join(wurzelordner, "app", "index.html"), str(www / "index.html"))
+    app_bauen.vorfuehrung_einsetzen(str(www))
+    html = io.open(str(www / "index.html"), encoding="utf-8", newline="").read()
+    skript = io.open(str(www / "vorfuehrung.js"), encoding="utf-8").read()
+    seite.page.route("**/app/index.html", lambda r: r.fulfill(
+        status=200, content_type="text/html; charset=utf-8", body=html))
+    seite.page.route("**/app/vorfuehrung.js", lambda r: r.fulfill(
+        status=200, content_type="text/javascript; charset=utf-8", body=skript))
+    seite.page.set_viewport_size({"width": 440, "height": 956})
+    meldungen = []
+    seite.page.on("console", lambda m: meldungen.append(m.text) if m.text.startswith("ZMAJ-VORFUEHRUNG") else None)
+    seite.page.add_init_script(HUELLE % "ios")
+    # StoreKit im Simulator: leere Liste. Dazu AdMob mit Einwilligung und ATT.
+    seite.page.add_init_script(r"""
+      window.ZMAJ_VORFUEHRUNG_TAKT = 150;
+      const ss = window.sessionStorage;
+      const merk = (n) => { const a = JSON.parse(ss.getItem('probe_aufrufe') || '[]'); a.push([n, null]); ss.setItem('probe_aufrufe', JSON.stringify(a)); };
+      window.Capacitor.Plugins.ZmajAbo.preise = async () => ({ok: true, plaene: []});
+      window.Capacitor.Plugins.AdMob = {
+        requestConsentInfo: async () => { merk('requestConsentInfo'); return {status: 'REQUIRED', isConsentFormAvailable: true}; },
+        showConsentForm: async () => { merk('showConsentForm'); return {}; },
+        requestTrackingAuthorization: async () => { merk('requestTrackingAuthorization'); },
+      };
+    """)
+    seite.starten(stand=heute_stand())
+    assert meldungen[:1] == ["ZMAJ-VORFUEHRUNG runde=1"]
+    seite.page.reload()
+    for _ in range(600):
+        if any(m.startswith("ZMAJ-VORFUEHRUNG fertig") or m.startswith("ZMAJ-VORFUEHRUNG abbruch") for m in meldungen):
+            break
+        seite.page.wait_for_timeout(100)
+    bilder = [m.split("bild=")[1].split()[0] for m in meldungen if "bild=" in m]
+    assert bilder == ["startseite", "lektion", "einstellungen", "einstellungen_unten", "kaufkasten",
+                      "anmeldung", "frage_tracking"], meldungen
+    assert "ZMAJ-VORFUEHRUNG runde=2" in meldungen
+    assert "ZMAJ-VORFUEHRUNG werbung aus (AdMob der Seite entzogen)" in meldungen
+    assert "ZMAJ-VORFUEHRUNG preise aus Zmaj.storekit (StoreKit im Simulator leer)" in meldungen
+    assert any(m.startswith("ZMAJ-VORFUEHRUNG anmeldung: apple=true google=true spaeter=true") for m in meldungen), meldungen
+    assert not any("kaufkasten kam nicht" in m or "gescheitert" in m or "js-fehler" in m for m in meldungen), meldungen
+    assert meldungen[-1] == "ZMAJ-VORFUEHRUNG fertig bilder=7 fehler=0", meldungen
+    # Googles Fenster nie gefragt, Apples Tracking-Frage zuletzt schon.
+    aufrufe = _aufrufe(seite)
+    assert "requestConsentInfo" not in aufrufe and aufrufe[-1:] == ["requestTrackingAuthorization"]
+    assert seite.fehler == [] and seite.fremd == []

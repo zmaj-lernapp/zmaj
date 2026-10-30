@@ -25,6 +25,13 @@ are in the Play Store listing. Format:
   `app_bauen.py --ios` builds the content for the iOS shell (AAC audio,
   `npx cap sync ios`), `--ios --ci` without anything private for the cloud
   build. Android behaves exactly as before.
+- Demo run for the iOS cloud check (30.10.2026, stage A8):
+  `app_bauen.py --ios --ci --vorfuehrung` adds `vorfuehrung_ios.js` to the
+  cloud build only. On the second start in the simulator the page opens
+  the learning path, a lesson, the settings, the subscription box and the
+  sign-in page by itself and names each screen in the log, so the shell's
+  workflow can take screenshots. Never part of a store build; the switch
+  only works together with `--ci`.
 - Spaced review of learned words (Leitner box, decided on 28.10.2026):
   every word you know has a level with a fixed interval of 1, 3, 7, 14, 30,
   90 or 180 days. A right answer moves it up one level, also before the

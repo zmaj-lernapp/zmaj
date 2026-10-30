@@ -384,3 +384,66 @@ def test_ios_bauen_ohne_huelle(tmp_path, monkeypatch, wurzel):
     _ablauf(monkeypatch, wurzel)
     with pytest.raises(SystemExit):
         app_bauen.main(["--ios", "--huelle=%s" % (tmp_path / "gibt-es-nicht")])
+
+
+# ----------------------------------------------------------- Vorfuehrung ---
+# Stufe A8 (30.10.2026): Im Cloud-Pruefbau oeffnet die Seite ihre Schirme von
+# selbst, damit ios-pruefung.yml sie fotografieren kann. Das darf nie in
+# einen Store-Bau geraten.
+def test_schalter_vorfuehrung_nur_im_cloud_bau():
+    import app_bauen
+    assert app_bauen.schalter_lesen(["--ios", "--ci", "--vorfuehrung"]) == {"--ios", "--ci", "--vorfuehrung"}
+    for falsch in (["--vorfuehrung"], ["--ios", "--vorfuehrung"], ["--aab", "--vorfuehrung"]):
+        with pytest.raises(SystemExit):
+            app_bauen.schalter_lesen(falsch)
+
+
+def test_vorfuehrung_einsetzen(tmp_path, wurzel):
+    import app_bauen
+    kopie = _kopie(tmp_path, wurzel)
+    www = str(kopie.parent)
+    app_bauen.keine_vorfuehrung(www)                       # die Quelle: frei davon
+    app_bauen.vorfuehrung_einsetzen(www)
+    text = kopie.read_bytes().decode("utf-8")
+    assert os.path.isfile(os.path.join(www, "vorfuehrung.js"))
+    # Als erstes Skript, vor der Plattform-Weiche im Kopf.
+    assert text.index('<script src="vorfuehrung.js"></script>') < text.index("window.ZMAJ_PLATTFORM = ")
+    assert "const CLOUD_AN = true;" in text and "const CLOUD_AN = false;" not in text
+    assert "const CLOUD_PROJEKT = 'zmaj-vorfuehrung';" in text
+    assert "__CLOUD_" not in text and "__DAUER_PRUEFWERT__" in text
+    with pytest.raises(SystemExit):
+        app_bauen.keine_vorfuehrung(www)
+    with pytest.raises(SystemExit):                        # zweimal geht nicht
+        app_bauen.vorfuehrung_einsetzen(www)
+
+
+def test_vorfuehrung_nie_in_web(wurzel):
+    import app_bauen
+    with pytest.raises(SystemExit):
+        app_bauen.vorfuehrung_einsetzen(os.path.join(wurzel, "web"))
+    assert not os.path.exists(os.path.join(wurzel, "web", "vorfuehrung.js"))
+
+
+def test_vorfuehrung_ohne_netz_und_ohne_schluessel(wurzel):
+    """AGENTS.md Regel 6: kein Netz. Und kein Text, der wie ein Schluessel
+    aussieht (GitHubs Geheimnis-Suche)."""
+    text = io.open(os.path.join(wurzel, "vorfuehrung_ios.js"), encoding="utf-8").read()
+    assert "://" not in text
+    assert not re.search(r"AIza[0-9A-Za-z_-]{35}", text)
+    quelle = io.open(os.path.join(wurzel, "app_bauen.py"), encoding="utf-8").read()
+    assert not re.search(r"AIza[0-9A-Za-z_-]{35}", quelle)
+
+
+def test_ios_bauen_mit_und_ohne_vorfuehrung(tmp_path, monkeypatch, wurzel):
+    import app_bauen
+    h = _ios_huelle(tmp_path)
+    _ablauf(monkeypatch, wurzel)
+    app_bauen.main(["--ios", "--ci", "--vorfuehrung", "--huelle=%s" % h])
+    www = os.path.join(str(h), "www")
+    assert os.path.isfile(os.path.join(www, "vorfuehrung.js"))
+    text = io.open(os.path.join(www, "index.html"), encoding="utf-8").read()
+    assert 'src="vorfuehrung.js"' in text
+    # Der naechste Bau ohne Schalter kopiert neu: nichts davon bleibt.
+    shutil.rmtree(www)
+    app_bauen.main(["--ios", "--ci", "--huelle=%s" % h])
+    assert not os.path.exists(os.path.join(www, "vorfuehrung.js"))
