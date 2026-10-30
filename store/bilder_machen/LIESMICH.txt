@@ -73,6 +73,11 @@ einem schlichten Tablet-Rahmen. Rohbilder je Sprache:
   tablet7   Bildschirm 600 x 960 Punkte (wie ein Nexus 7), mal 2
   tablet10  Bildschirm 800 x 1280 Punkte (uebliches 10-Zoll-Tablet), mal 2
 
+--version 1.2 schreibt in die Fusszeile dieselbe Nummer wie die gebaute App
+(versionName der Huelle). Ohne steht dort der Rueckfallwert aus
+web/index.html, und der hinkt vor einem Release eine Nummer hinterher.
+Gilt fuer Handy und Tablet gleich.
+
 Die App passt sich seit v110 dem Tablet an (siehe GROSS in web/index.html):
 auf 10 Zoll ist alles 1,3-mal so gross und die Spalte fuellt 88 % der
 Breite, auf 7 Zoll bleibt die Groesse, und Lektionen fuellen auf beiden den

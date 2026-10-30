@@ -31,6 +31,7 @@ import functools
 import http.server
 import json
 import os
+import re
 import socketserver
 import sys
 import threading
@@ -39,6 +40,9 @@ import time
 HIER = os.path.dirname(os.path.abspath(__file__))
 WURZEL = os.path.dirname(os.path.dirname(HIER))
 WEB = os.path.join(WURZEL, "web")
+# Wie in app_bauen.py (version_einsetzen), siehe --version
+VERSIONSNAME_FORM = re.compile(r"([1-9][0-9]*)\.(0|[1-9][0-9]*)")
+APP_VERSION_ZEILE = re.compile(r"^const APP_VERSION = '[^'\r\n]*';", re.M)
 
 # Bildschirm in CSS-Punkten und Pixeldichte. "handy" ist das Store-Format
 # selbst (so breit wie Ajdins S21). Die Tablets haben die üblichen Android-
@@ -112,12 +116,17 @@ SCHRITTE = [
         const w = [...document.querySelectorAll('#rBody .w')].find(x => x.textContent === 'povrća');
         if(w) w.click(); await new Promise(r=>setTimeout(r,500)); stilleBitte(); scrollTo(0,0);
         return document.getElementById('rBubble').innerText"""),
+    # Tablets (30.10.2026) bleiben oben stehen: seit v110 hat der Reiter
+    # Wiederholen eine dritte Karte ("Heute faellig"), die Seite wurde dort
+    # scrollbar, und der Bildrand schnitt Flamme und Drachen mittendurch.
+    # Oben passt bei 7 und 10 Zoll alles bis "Markiert" ins Bild. Das Handy
+    # scrollt wie bisher.
     ("08-wiederholen", """
         homeMode = 'topf'; showHome(); await new Promise(r=>setTimeout(r,600));
         scrollTo(0,0); await new Promise(r=>setTimeout(r,200));
         const text = t('btn.weitermachen');
         const w = [...document.querySelectorAll('button')].find(b => b.offsetParent && b.textContent.includes(text));
-        if(w) scrollBy(0, w.getBoundingClientRect().top - 16);
+        if(w && !document.documentElement.classList.contains('gross')) scrollBy(0, w.getBoundingClientRect().top - 16);
         await new Promise(r=>setTimeout(r,400)); return scrollY"""),
 ]
 
@@ -148,16 +157,29 @@ def server_starten():
     return srv, "http://127.0.0.1:%d" % srv.server_address[1]
 
 
-def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None):
+def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, version=None):
     """aussehen: None = wie bisher (Playwright stellt hell ein), "hell" oder
     "dunkel". Die Store-Bilder sind seit v5 (15.10.2026) dunkel; die App folgt
-    dem Gerät, darum wird hier das Gerät dunkel gestellt, nicht die App."""
+    dem Gerät, darum wird hier das Gerät dunkel gestellt, nicht die App.
+
+    version: Nummer für die Fußzeile ("Zmaj v1.2"), wie sie app_bauen.py
+    (version_einsetzen) aus versionName der Hülle in die gebaute App setzt.
+    In web/index.html steht nur der Rückfallwert, und der hinkt vor einem
+    Release eine Nummer hinterher (30.10.2026: Bilder für 1.2 zeigten 1.1).
+    Ersetzt wird nur in der ausgelieferten Seite, web/ bleibt unberührt."""
     from playwright.sync_api import sync_playwright
 
     g = GERAETE[geraet]
     farbe = {"hell": {"color_scheme": "light"}, "dunkel": {"color_scheme": "dark"}}.get(aussehen, {})
     if not os.path.exists(os.path.join(WEB, "inhalt", sprache + ".json")):
         raise SystemExit("web/inhalt/%s.json fehlt - erst  python3 inhalt_bauen.py" % sprache)
+    if version is not None:
+        if not VERSIONSNAME_FORM.fullmatch(version):
+            raise SystemExit("--version %r hat nicht die Form Hauptzahl.Nebenzahl (z. B. 1.2)" % version)
+        with open(os.path.join(WEB, "index.html"), encoding="utf-8") as f:
+            anzahl = len(APP_VERSION_ZEILE.findall(f.read()))
+        if anzahl != 1:
+            raise SystemExit("\"const APP_VERSION = '...';\" steht %d-mal in web/index.html statt einmal" % anzahl)
     os.makedirs(ziel, exist_ok=True)
     antworte = open(os.path.join(HIER, "antworte.js"), encoding="utf-8").read()
     srv, basis = server_starten()
@@ -168,6 +190,13 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None):
             seite = browser.new_context(viewport={"width": g["breite"], "height": g["hoehe"]},
                                         device_scale_factor=g["dsf"], locale=sprache, **farbe).new_page()
             js = lambda code: seite.evaluate("async () => {" + code + "}")  # noqa: E731
+            if version is not None:
+                def mit_version(route):
+                    antwort = route.fetch()
+                    text = APP_VERSION_ZEILE.sub(lambda _: "const APP_VERSION = '%s';" % version,
+                                                 antwort.text(), count=1)
+                    route.fulfill(response=antwort, body=text)
+                seite.route(re.compile(r"/index\.html(\?|$)"), mit_version)
             # Den Stand auf einer leeren Seite desselben Ursprungs setzen, nicht in
             # der laufenden App: deren visibilitychange speichert beim Wegnavigieren
             # sonst den eigenen, leeren Stand darueber (wie tests_e2e/conftest.py).
@@ -238,12 +267,15 @@ def main(argv=None):
                    help="handy (Standard, 1080 x 1920) oder Tablet-Rohbilder tablet7 / tablet10")
     p.add_argument("--aussehen", choices=("hell", "dunkel"),
                    help="Gerät hell oder dunkel stellen (ohne: hell, wie bisher; Store-Bilder seit v5: dunkel)")
+    p.add_argument("--version",
+                   help="Nummer in der Fußzeile wie in der gebauten App, z. B. 1.2 (versionName der Hülle); "
+                        "ohne: der Rückfallwert aus web/index.html")
     a = p.parse_args(argv)
     if a.geraet != "handy" and not a.ziel:
         p.error("--geraet %s braucht --ziel (Rohbilder, nicht für store/screenshots)" % a.geraet)
     ziel = a.ziel or (os.path.join(WURZEL, "store", "screenshots") if a.sprache == "de"
                       else os.path.join(WURZEL, "docs", "assets", "screenshots-" + a.sprache))
-    pfade = bilder_machen(a.sprache, ziel, a.chrome, a.geraet, a.aussehen)
+    pfade = bilder_machen(a.sprache, ziel, a.chrome, a.geraet, a.aussehen, a.version)
     if a.montage:
         montage(pfade, a.montage)
     return 0
