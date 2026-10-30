@@ -141,7 +141,8 @@ def test_main_bricht_vor_dem_bau_ab(monkeypatch):
     def verboten(*args, **kwargs):
         raise AssertionError("darf vor dem Abbruch nicht laufen")
 
-    for name in ("pruefen", "kopieren", "versionsnummer_hochzaehlen"):
+    for name in ("pruefen", "kopieren", "versionsnummer_hochzaehlen",
+                 "versionsname_lesen", "versionsname_anheben"):   # 30.10.2026
         monkeypatch.setattr(app_bauen, name, verboten)
     with pytest.raises(SystemExit):
         app_bauen.main(["--plicht"])
@@ -155,7 +156,10 @@ def test_main_reicht_pflicht_durch(monkeypatch):
     # hier nicht gibt - eigene Tests in test_cloud.py. 28.10.2026
     for name in ("anmeldung_pruefen", "pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "cloud_einsetzen",
                  "ton_verkleinern", "capacitor",
-                 "plugins_flicken", "freigabe_aab", "debug_apk"):
+                 "plugins_flicken", "freigabe_aab", "debug_apk",
+                 # versionName (30.10.2026) liest sonst die echte build.gradle
+                 # der Huelle; eigene Tests in test_version.py
+                 "versionsname_lesen", "version_einsetzen", "versionsname_anheben"):
         monkeypatch.setattr(app_bauen, name, lambda *args, n=name, **kwargs: aufrufe.append(n))
 
     def hochzaehlen(pflicht=False):
