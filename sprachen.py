@@ -5404,7 +5404,19 @@ TEXTE = {
 # Android, nur diese Saetze ausgetauscht, und der Abschnitt zum Abo
 # (set.dsgvo_abo) ganz durch den iOS-Abschnitt ersetzt. "werbung" kommt
 # nur, wenn Werbung laeuft (WERBUNG_LAEUFT): der Satz zu Apples Frage nach
-# dem Tracking (App-Tracking-Transparenz).
+# dem Tracking (App-Tracking-Transparenz). "werbung_aus" kommt nur ohne
+# Werbung: dann steht set.dsgvo_werbung_aus im Text, und auch der fragt fuer
+# Android "beim Play Store" nach dem "Google-Konto" (30.10.2026).
+#
+# Der Anmeldeschluessel liegt auf iOS im Schluesselbund (ZmajAnmeldung.swift,
+# synchronisierbar ueber den iCloud-Schluesselbund). Der bleibt beim Loeschen
+# der App erhalten, und "Speicher leeren" gibt es auf iOS nicht - darum
+# tauschen die Abschnitte 8 und 10 hier ihre Saetze dazu aus (30.10.2026).
+#
+# Zum Schluss sucht ios_rechtstexte() nach IOS_FREMDE_WOERTER: Bleibt eines
+# stehen (etwa weil fuer Android ein Abschnitt dazukam, fuer den es noch
+# keinen iOS-Satz gibt), bricht texte() ab, statt still Google Play zu
+# zeigen.
 #
 # Jeder alte Satz muss genau einmal im Text stehen, sonst bricht texte()
 # ab (Muster wie formular_einfuegen). Wer also einen Rechtstext fuer
@@ -5467,10 +5479,18 @@ IOS_RECHT = {
              'Eine Kopie in deinem iCloud-Backup löschst du in den iCloud-Einstellungen deines Geräts.'),
             ('Ein laufendes Abonnement endet dadurch nicht; das kündigst du in deinem Google-Konto.',
              'Ein laufendes Abonnement endet dadurch nicht; das kündigst du in den Einstellungen deines Geräts unter deinem Namen → Abonnements.'),
+            ('Auf deinem Gerät: solange die App installiert ist.',
+             'Auf deinem Gerät: solange die App installiert ist; der Anmeldeschlüssel im Schlüsselbund auch darüber hinaus, bis du dich in der App abmeldest oder dort das Konto löschst.'),
+            ('Die Daten auf dem Gerät löschst du auch, indem du die App löschst oder ihren Speicher leerst.',
+             'Die Daten auf dem Gerät löschst du auch, indem du die App löschst – bis auf den Anmeldeschlüssel im Schlüsselbund: Der bleibt erhalten, bei eingeschaltetem iCloud-Schlüsselbund auch auf deinen anderen Geräten, bis du dich in der App abmeldest oder dort das Konto löschst. Installierst du die App neu, bist du mit ihm gleich wieder angemeldet.'),
         ],
         'werbung': [
             ('<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen.',
              '<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen. Auf iPhone und iPad fragt danach Apple, ob die App dich über Apps und Websites anderer Firmen hinweg verfolgen darf (App-Tracking-Transparenz); nur mit deinem Ja bekommt Google die Werbe-ID. Ändern kannst du das jederzeit in den Einstellungen deines Geräts unter Datenschutz & Sicherheit → Tracking.'),
+        ],
+        'werbung_aus': [
+            ('Von sich aus spricht die App nur mit Firebase für dein Konto (Abschnitt 3) und fragt beim Play Store nach, ob für dein Google-Konto eine Vollversion läuft – siehe unten.',
+             'Von sich aus spricht die App nur mit Firebase für dein Konto (Abschnitt 3) und fragt beim App Store nach, ob für deinen Apple Account eine Vollversion läuft – siehe unten.'),
         ],
         'abo': '<b>Vollversion (Abo):</b> Für den Kauf brauchst du einen Apple Account. Verkäufer ist Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland. Apple verarbeitet deine Konto- und Zahlungsdaten in eigener Verantwortung; was Apple damit macht, steht in Apples Datenschutzrichtlinie: apple.com/legal/privacy<br>Die App fragt über den App Store auf deinem Gerät nach, ob dein Abo läuft: bei jedem Start, bei jeder Rückkehr in die App, wenn du das Fenster für die Vollversion öffnest und wenn du auf „Käufe wiederherstellen“ tippst. Auf deinem Gerät merkt sie sich nur, ob es aktiv ist. Wir erfahren davon nur die Antwort: ja oder nein.<br>Deine Zahlungsdaten bekommen wir nie zu sehen; Apple gibt sie nicht an Entwickler weiter. In Apples Abrechnung sehen wir Beträge und Länder, nicht wer gekauft hat.<br>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO: Die Abfrage ist nötig, damit wir dir die Vollversion geben können, die du nach unseren Nutzungsbedingungen bekommst. Der Kaufvertrag selbst kommt zwischen dir und Apple zustande.',
     },
@@ -5528,10 +5548,18 @@ IOS_RECHT = {
              "A copy in your iCloud Backup is deleted in your device's iCloud settings."),
             ('A running subscription does not end with this; you cancel it in your Google account.',
              "A running subscription does not end with this; you cancel it in your device's Settings under your name → Subscriptions."),
+            ('On your device: as long as the app is installed.',
+             'On your device: as long as the app is installed; the sign-in key in the keychain also beyond that, until you sign out in the app or delete the account there.'),
+            ('You can also delete the data on the device by deleting the app or clearing its storage.',
+             'You can also delete the data on the device by deleting the app – except for the sign-in key in the keychain: it stays, with iCloud Keychain turned on also on your other devices, until you sign out in the app or delete the account there. If you reinstall the app, the key signs you straight back in.'),
         ],
         'werbung': [
             ('<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests.',
              "<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests. On iPhone and iPad, Apple then asks whether the app may track you across apps and websites owned by other companies (App Tracking Transparency); only if you say yes does Google receive the advertising ID. You can change this at any time in your device's Settings under Privacy & Security → Tracking."),
+        ],
+        'werbung_aus': [
+            ('On its own, the app only talks to Firebase for your account (section 3) and asks the Play Store whether a full version is running for your Google account – see below.',
+             'On its own, the app only talks to Firebase for your account (section 3) and asks the App Store whether a full version is running for your Apple Account – see below.'),
         ],
         'abo': "<b>Full version (subscription):</b> To buy it you need an Apple Account. The seller is Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Ireland. Apple processes your account and payment data under its own responsibility; what Apple does with it is set out in Apple's privacy policy: apple.com/legal/privacy<br>The app asks the App Store on your device whether your subscription is running: each time it starts, each time you return to the app, when you open the window for the full version and when you tap “Restore purchases”. On your device it only remembers whether it is active. All we learn is the answer: yes or no.<br>We never see your payment data; Apple does not pass it on to developers. In Apple's statements we see amounts and countries, not who bought.<br>The legal basis is Art. 6(1)(b) GDPR: the check is necessary so that we can give you the full version you get under our terms of use. The purchase contract itself is between you and Apple.",
     },
@@ -5589,10 +5617,18 @@ IOS_RECHT = {
              "iCloud Yedekleme'deki bir kopyayı cihazının iCloud ayarlarından silersin."),
             ('Devam eden bir abonelik bununla sona ermez; onu Google hesabından iptal edersin.',
              "Devam eden bir abonelik bununla sona ermez; onu cihazının Ayarlar'ında adına dokunup Abonelikler'den iptal edersin."),
+            ('Cihazında: uygulama yüklü olduğu sürece.',
+             'Cihazında: uygulama yüklü olduğu sürece; anahtar zincirindeki giriş anahtarı ise bundan sonra da, uygulamada çıkış yapana ya da hesabını orada silene kadar.'),
+            ('Cihazdaki verileri uygulamayı silerek ya da depolamasını temizleyerek de silebilirsin.',
+             'Cihazdaki verileri uygulamayı silerek de silebilirsin – anahtar zincirindeki giriş anahtarı hariç: O, uygulamada çıkış yapana ya da hesabını orada silene kadar kalır; iCloud Anahtar Zinciri açıksa diğer cihazlarında da. Uygulamayı yeniden yüklersen bu anahtarla hemen yeniden girişli olursun.'),
         ],
         'werbung': [
             ('<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar.',
              "<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar. iPhone ve iPad'de ardından Apple, uygulamanın seni başka şirketlerin uygulama ve web sitelerinde izleyip izleyemeyeceğini sorar (Uygulama İzleme Şeffaflığı); Google reklam kimliğini yalnızca sen evet dersen alır. Bunu istediğin zaman cihazının Ayarlar'ında Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin."),
+        ],
+        'werbung_aus': [
+            ("Uygulama kendiliğinden yalnızca hesabın için Firebase'e (3. bölüm) bağlanır ve Play Store'a, Google hesabın için bir tam sürüm olup olmadığını sorar – aşağıya bak.",
+             "Uygulama kendiliğinden yalnızca hesabın için Firebase'e (3. bölüm) bağlanır ve App Store'a, Apple Hesabın için bir tam sürüm olup olmadığını sorar – aşağıya bak."),
         ],
         'abo': "<b>Tam sürüm (abonelik):</b> Satın almak için bir Apple Hesabı gerekir. Satıcı, Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, İrlanda'dır. Apple hesap ve ödeme verilerini kendi sorumluluğunda işler; Apple'ın bunlarla ne yaptığı Apple'ın gizlilik politikasında yazar: apple.com/legal/privacy<br>Uygulama, aboneliğinin etkin olup olmadığını cihazındaki App Store'a sorar: her açılışta, uygulamaya her dönüşünde, tam sürüm penceresini açtığında ve “Satın alımları geri yükle”ye dokunduğunda. Cihazında yalnızca etkin olup olmadığını hatırlar. Biz bundan yalnızca cevabı öğreniriz: evet ya da hayır.<br>Ödeme verilerini hiçbir zaman görmeyiz; Apple bunları geliştiricilere vermez. Apple'ın hesap dökümlerinde tutarları ve ülkeleri görürüz, kimin satın aldığını değil.<br>Hukuki dayanak GDPR md. 6/1-b'dir: Bu sorgu, kullanım koşullarımıza göre sana vermemiz gereken tam sürümü verebilmemiz için gereklidir. Satın alma sözleşmesi ise seninle Apple arasında kurulur.",
     },
@@ -5650,10 +5686,18 @@ IOS_RECHT = {
              'En kopia i din iCloud-säkerhetskopia raderar du i enhetens iCloud-inställningar.'),
             ('En pågående prenumeration upphör inte av det; den säger du upp i ditt Google-konto.',
              'En pågående prenumeration upphör inte av det; den säger du upp i enhetens Inställningar under ditt namn → Prenumerationer.'),
+            ('På din enhet: så länge appen är installerad.',
+             'På din enhet: så länge appen är installerad; inloggningsnyckeln i nyckelringen även därefter, tills du loggar ut i appen eller raderar kontot där.'),
+            ('Uppgifterna på enheten raderar du också genom att avinstallera appen eller tömma dess lagring.',
+             'Uppgifterna på enheten raderar du också genom att avinstallera appen – utom inloggningsnyckeln i nyckelringen: den finns kvar, med iCloud-nyckelring påslagen även på dina andra enheter, tills du loggar ut i appen eller raderar kontot där. Installerar du om appen är du tack vare den direkt inloggad igen.'),
         ],
         'werbung': [
             ('<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen.',
              '<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen. På iPhone och iPad frågar Apple sedan om appen får spåra dig i appar och på webbplatser som tillhör andra företag (App Tracking Transparency); bara om du svarar ja får Google annons-id:t. Du kan ändra det när som helst i enhetens Inställningar under Integritet och säkerhet → Spårning.'),
+        ],
+        'werbung_aus': [
+            ('På eget initiativ kontaktar appen bara Firebase för ditt konto (avsnitt 3) och frågar Google Play om det finns en aktiv fullversion för ditt Google-konto – se nedan.',
+             'På eget initiativ kontaktar appen bara Firebase för ditt konto (avsnitt 3) och frågar App Store om det finns en aktiv fullversion för ditt Apple-konto – se nedan.'),
         ],
         'abo': '<b>Fullversion (prenumeration):</b> För köpet behöver du ett Apple-konto. Säljare är Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland. Apple behandlar dina konto- och betalningsuppgifter på eget ansvar; vad Apple gör med dem står i Apples integritetspolicy: apple.com/legal/privacy<br>Appen frågar App Store på din enhet om din prenumeration är aktiv: vid varje start, varje gång du kommer tillbaka till appen, när du öppnar fönstret för fullversionen och när du trycker på ”Återställ köp”. På din enhet kommer den bara ihåg om den är aktiv. Vi får bara veta svaret: ja eller nej.<br>Dina betalningsuppgifter ser vi aldrig; Apple lämnar inte ut dem till utvecklare. I Apples avräkningar ser vi belopp och länder, inte vem som har köpt.<br>Rättslig grund är art. 6.1 b GDPR: förfrågan behövs för att vi ska kunna ge dig den fullversion du får enligt våra användarvillkor. Själva köpeavtalet ingås mellan dig och Apple.',
     },
@@ -5711,10 +5755,18 @@ IOS_RECHT = {
              'Een kopie in je iCloud-reservekopie wis je in de iCloud-instellingen van je apparaat.'),
             ('Een lopend abonnement eindigt daardoor niet; dat zeg je op in je Google-account.',
              'Een lopend abonnement eindigt daardoor niet; dat zeg je op in de Instellingen van je apparaat onder je naam → Abonnementen.'),
+            ('Op je apparaat: zolang de app geïnstalleerd is.',
+             'Op je apparaat: zolang de app geïnstalleerd is; de inlogsleutel in de sleutelhanger ook daarna, tot je in de app uitlogt of daar het account verwijdert.'),
+            ('De gegevens op het apparaat wis je ook door de app te verwijderen of de opslag ervan te wissen.',
+             'De gegevens op het apparaat wis je ook door de app te verwijderen – behalve de inlogsleutel in de sleutelhanger: die blijft bewaard, met de iCloud-sleutelhanger aan ook op je andere apparaten, tot je in de app uitlogt of daar het account verwijdert. Installeer je de app opnieuw, dan ben je daarmee meteen weer ingelogd.'),
         ],
         'werbung': [
             ('<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden.',
              '<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden. Op iPhone en iPad vraagt Apple daarna of de app je mag volgen in apps en op websites van andere bedrijven (App Tracking Transparency); alleen als je ja zegt, krijgt Google de advertentie-ID. Je kunt dat altijd wijzigen in de Instellingen van je apparaat onder Privacy en beveiliging → Tracking.'),
+        ],
+        'werbung_aus': [
+            ('Uit zichzelf maakt de app alleen verbinding met Firebase voor je account (punt 3) en vraagt ze bij de Play Store na of er voor je Google-account een volledige versie actief is – zie hieronder.',
+             'Uit zichzelf maakt de app alleen verbinding met Firebase voor je account (punt 3) en vraagt ze bij de App Store na of er voor je Apple Account een volledige versie actief is – zie hieronder.'),
         ],
         'abo': '<b>Volledige versie (abonnement):</b> Voor de aankoop heb je een Apple Account nodig. Verkoper is Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Ierland. Apple verwerkt je account- en betaalgegevens onder eigen verantwoordelijkheid; wat Apple ermee doet, staat in het privacybeleid van Apple: apple.com/legal/privacy<br>De app vraagt via de App Store op je apparaat na of je abonnement loopt: bij elke start, bij elke terugkeer in de app, als je het venster voor de volledige versie opent en als je op ‘Aankopen herstellen’ tikt. Op je apparaat onthoudt ze alleen of het actief is. Wij krijgen alleen het antwoord: ja of nee.<br>Je betaalgegevens krijgen we nooit te zien; Apple geeft ze niet door aan ontwikkelaars. In de afrekeningen van Apple zien we bedragen en landen, niet wie heeft gekocht.<br>De rechtsgrond is artikel 6, lid 1, onder b AVG: de navraag is nodig om je de volledige versie te kunnen geven die je volgens onze gebruiksvoorwaarden krijgt. De koopovereenkomst zelf komt tot stand tussen jou en Apple.',
     },
@@ -5772,10 +5824,18 @@ IOS_RECHT = {
              'En kopi i iCloud-sikkerhetskopien din sletter du i iCloud-innstillingene på enheten.'),
             ('Et løpende abonnement tar ikke slutt av det; det sier du opp i Google-kontoen din.',
              'Et løpende abonnement tar ikke slutt av det; det sier du opp i Innstillinger på enheten under navnet ditt → Abonnementer.'),
+            ('På enheten din: så lenge appen er installert.',
+             'På enheten din: så lenge appen er installert; innloggingsnøkkelen i nøkkelringen også etter det, til du logger ut i appen eller sletter kontoen der.'),
+            ('Dataene på enheten sletter du også ved å slette appen eller tømme lagringen dens.',
+             'Dataene på enheten sletter du også ved å slette appen – bortsett fra innloggingsnøkkelen i nøkkelringen: den blir liggende, med iCloud-nøkkelring slått på også på de andre enhetene dine, til du logger ut i appen eller sletter kontoen der. Installerer du appen på nytt, er du dermed straks innlogget igjen.'),
         ],
         'werbung': [
             ('<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine.',
              '<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine. På iPhone og iPad spør Apple deretter om appen får spore deg på tvers av apper og nettsteder som tilhører andre selskaper (Gjennomsiktighet for appsporing); bare hvis du sier ja, får Google annonse-ID-en. Du kan endre det når som helst i Innstillinger på enheten under Personvern og sikkerhet → Sporing.'),
+        ],
+        'werbung_aus': [
+            ('Av seg selv kontakter appen bare Firebase for kontoen din (avsnitt 3) og spør Play-butikken om det finnes en aktiv fullversjon for Google-kontoen din – se nedenfor.',
+             'Av seg selv kontakter appen bare Firebase for kontoen din (avsnitt 3) og spør App Store om det finnes en aktiv fullversjon for Apple-kontoen din – se nedenfor.'),
         ],
         'abo': '<b>Fullversjon (abonnement):</b> For å kjøpe trenger du en Apple-konto. Selger er Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland. Apple behandler konto- og betalingsdataene dine på eget ansvar; hva Apple gjør med dem, står i Apples personvernerklæring: apple.com/legal/privacy<br>Appen spør App Store på enheten din om abonnementet ditt er aktivt: ved hver oppstart, hver gang du kommer tilbake til appen, når du åpner vinduet for fullversjonen og når du trykker på «Gjenopprett kjøp». På enheten husker den bare om det er aktivt. Vi får bare vite svaret: ja eller nei.<br>Betalingsdataene dine får vi aldri se; Apple gir dem ikke videre til utviklere. I Apples oppgjør ser vi beløp og land, ikke hvem som har kjøpt.<br>Rettslig grunnlag er artikkel 6 nr. 1 bokstav b i personvernforordningen: Forespørselen er nødvendig for at vi skal kunne gi deg fullversjonen som du får etter bruksvilkårene våre. Selve kjøpsavtalen inngås mellom deg og Apple.',
     },
@@ -5833,10 +5893,18 @@ IOS_RECHT = {
              'En kopi i din iCloud-sikkerhedskopi sletter du i enhedens iCloud-indstillinger.'),
             ('Et løbende abonnement ophører ikke af den grund; det opsiger du på din Google-konto.',
              'Et løbende abonnement ophører ikke af den grund; det opsiger du i enhedens Indstillinger under dit navn → Abonnementer.'),
+            ('På din enhed: så længe appen er installeret.',
+             'På din enhed: så længe appen er installeret; loginnøglen i nøgleringen også derefter, indtil du logger ud i appen eller sletter kontoen dér.'),
+            ('Dataene på enheden sletter du også ved at slette appen eller rydde dens lagrede data.',
+             'Dataene på enheden sletter du også ved at slette appen – bortset fra loginnøglen i nøgleringen: den bliver liggende, med iCloud-nøglering slået til også på dine andre enheder, indtil du logger ud i appen eller sletter kontoen dér. Installerer du appen igen, er du dermed straks logget ind igen.'),
         ],
         'werbung': [
             ('<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser.',
              "<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser. På iPhone og iPad spørger Apple derefter, om appen må spore dig på tværs af apps og websteder, der tilhører andre virksomheder (Gennemsigtighed i appsporing); kun hvis du siger ja, får Google annonce-id'et. Du kan til enhver tid ændre det i enhedens Indstillinger under Anonymitet & sikkerhed → Sporing."),
+        ],
+        'werbung_aus': [
+            ('Af sig selv kontakter appen kun Firebase til din konto (afsnit 3) og spørger Play Butik, om der er en aktiv fuld version på din Google-konto – se nedenfor.',
+             'Af sig selv kontakter appen kun Firebase til din konto (afsnit 3) og spørger App Store, om der er en aktiv fuld version på din Apple-konto – se nedenfor.'),
         ],
         'abo': '<b>Fuld version (abonnement):</b> Til købet skal du bruge en Apple-konto. Sælger er Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland. Apple behandler dine konto- og betalingsdata på eget ansvar; hvad Apple gør med dem, står i Apples privatlivspolitik: apple.com/legal/privacy<br>Appen spørger App Store på din enhed, om dit abonnement løber: ved hver start, hver gang du vender tilbage til appen, når du åbner vinduet for den fulde version, og når du trykker på »Gendan køb«. På din enhed husker den kun, om det er aktivt. Vi får kun svaret at vide: ja eller nej.<br>Dine betalingsdata ser vi aldrig; Apple giver dem ikke videre til udviklere. I Apples afregninger ser vi beløb og lande, ikke hvem der har købt.<br>Retsgrundlaget er artikel 6, stk. 1, litra b i databeskyttelsesforordningen: Forespørgslen er nødvendig, for at vi kan give dig den fulde version, du får efter vores brugsvilkår. Selve købsaftalen indgås mellem dig og Apple.',
     },
@@ -5896,10 +5964,18 @@ IOS_RECHT = {
              'Une copie dans ta sauvegarde iCloud se supprime dans les réglages iCloud de ton appareil.'),
             ('Un abonnement en cours ne prend pas fin pour autant ; tu le résilies dans ton compte Google.',
              'Un abonnement en cours ne prend pas fin pour autant ; tu le résilies dans les Réglages de ton appareil, sous ton nom → Abonnements.'),
+            ("Sur ton appareil : tant que l'application est installée.",
+             "Sur ton appareil : tant que l'application est installée ; la clé de connexion dans le trousseau, même au-delà, jusqu'à ce que tu te déconnectes dans l'application ou que tu y supprimes le compte."),
+            ("Tu peux aussi effacer les données de l'appareil en supprimant l'application ou en vidant sa mémoire.",
+             "Tu peux aussi effacer les données de l'appareil en supprimant l'application – sauf la clé de connexion dans le trousseau : elle reste, sur tes autres appareils aussi si le trousseau iCloud est activé, jusqu'à ce que tu te déconnectes dans l'application ou que tu y supprimes le compte. Si tu réinstalles l'application, cette clé te reconnecte aussitôt."),
         ],
         'werbung': [
             ("<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt.",
              "<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt. Sur iPhone et iPad, Apple te demande ensuite si l'application peut te suivre dans les apps et sur les sites web d'autres entreprises (transparence du suivi des apps) ; Google ne reçoit l'identifiant publicitaire que si tu dis oui. Tu peux le modifier à tout moment dans les Réglages de ton appareil, sous Confidentialité et sécurité → Suivi."),
+        ],
+        'werbung_aus': [
+            ("D'elle-même, l'application contacte seulement Firebase pour ton compte (section 3) et interroge le Play Store pour savoir si une version complète est active pour ton compte Google – voir ci-dessous.",
+             "D'elle-même, l'application contacte seulement Firebase pour ton compte (section 3) et interroge l'App Store pour savoir si une version complète est active pour ton compte Apple – voir ci-dessous."),
         ],
         'abo': "<b>Version complète (abonnement) :</b> Pour l'achat, il te faut un compte Apple. Le vendeur est Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irlande. Apple traite tes données de compte et de paiement sous sa propre responsabilité ; ce qu'Apple en fait figure dans la politique de confidentialité d'Apple : apple.com/legal/privacy<br>L'application demande à l'App Store de ton appareil si ton abonnement est actif : à chaque démarrage, à chaque retour dans l'application, quand tu ouvres la fenêtre de la version complète et quand tu touches « Restaurer les achats ». Sur ton appareil, elle retient seulement s'il est actif. Nous n'apprenons que la réponse : oui ou non.<br>Nous ne voyons jamais tes données de paiement ; Apple ne les transmet pas aux développeurs. Dans les relevés d'Apple, nous voyons des montants et des pays, pas l'identité de l'acheteur.<br>La base juridique est l'art. 6, paragraphe 1, point b du RGPD : cette vérification est nécessaire pour pouvoir te fournir la version complète à laquelle tu as droit selon nos conditions d'utilisation. Le contrat d'achat lui-même est conclu entre toi et Apple.",
     },
@@ -5915,19 +5991,50 @@ def _genau_einmal(text, alt, neu, wo):
     return text.replace(alt, neu)
 
 
-def ios_rechtstexte(code, zusammen):
+# Woerter, die in den iOS-Rechtstexten nie stehen duerfen (Richtlinie
+# 2.3.10): andere Plattformen und Google als Kaufweg, in allen 8 Sprachen.
+# "Google" allein bleibt erlaubt - Anmeldung mit Google und AdMob gibt es
+# auch auf iOS. tests/test_ios.py prueft mit eigener, gleicher Liste alle
+# iOS-Texte. 30.10.2026
+IOS_FREMDE_WOERTER = (
+    "Google Play", "Play Store", "Play-butikk", "Play Butik", "Android",
+    "Google-Konto", "Google account", "Google hesab", "Google-konto",
+    "compte Google", "Google-account", "Google Commerce",
+    "Familienmediathek", "Family Library",
+)
+
+
+def _ohne_fremde_plattform(text, wo, erlaubt=()):
+    """Bricht ab, wenn in einem iOS-Text noch ein Wort aus
+    IOS_FREMDE_WOERTER steht. Die Absaetze in erlaubt zaehlen nicht mit:
+    Der zum Kontaktformular nennt "unser Google-Konto" (Google Apps Script,
+    ein Dienstleister fuer uns) - das ist keine Plattform und auf iOS
+    richtig."""
+    for absatz in erlaubt:
+        text = text.replace(absatz, "")
+    for wort in IOS_FREMDE_WOERTER:
+        i = text.find(wort)
+        if i >= 0:
+            raise ValueError("iOS-Rechtstext %s nennt noch '%s': ...%s..."
+                             % (wo, wort, text[max(0, i - 60):i + len(wort) + 20]))
+
+
+def ios_rechtstexte(code, zusammen, erlaubt=()):
     """Setzt set.agb_text_ios und set.datenschutz_text_ios in zusammen,
     aus den fertigen Texten fuer Android (siehe IOS_RECHT). Nur mit
     Pflichtkonto - die Web-Demo hat keine iOS-Fassung, und die iOS-App hat
-    immer ein Konto."""
+    immer ein Konto. erlaubt: siehe _ohne_fremde_plattform()."""
     r = IOS_RECHT.get(code) or IOS_RECHT[GRUNDSPRACHE]
     agb = zusammen["set.agb_text"]
     for alt, neu in r["agb"]:
         agb = _genau_einmal(agb, alt, neu, code + " agb")
     ds = _genau_einmal(zusammen["set.datenschutz_text"], zusammen["set.dsgvo_abo"],
                        r["abo"], code + " abo")
-    for alt, neu in r["datenschutz"] + (r["werbung"] if WERBUNG_LAEUFT else []):
+    werbung = r["werbung"] if WERBUNG_LAEUFT else r["werbung_aus"]
+    for alt, neu in r["datenschutz"] + werbung:
         ds = _genau_einmal(ds, alt, neu, code + " datenschutz")
+    _ohne_fremde_plattform(agb, code + " agb", erlaubt)
+    _ohne_fremde_plattform(ds, code + " datenschutz", erlaubt)
     zusammen["set.agb_text_ios"] = agb
     zusammen["set.datenschutz_text_ios"] = ds
 
@@ -5985,7 +6092,8 @@ def texte(code):
         zusammen.get(schluessel, "") + "<br>" + zusammen.get("set.dsgvo_abo", ""))
     # Die Fassung fuer iPhone und iPad (30.10.2026), siehe IOS_RECHT.
     if KONTO_PFLICHT:
-        ios_rechtstexte(code, zusammen)
+        ios_rechtstexte(code, zusammen,
+                        erlaubt=(absatz_formular,) if KONTAKT_FORMULAR else ())
     return zusammen
 
 

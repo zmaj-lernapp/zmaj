@@ -149,6 +149,68 @@ def test_ios_rechtstexte_brechen_ab_wenn_android_sich_aendert(monkeypatch):
         sprachen.texte("de")
 
 
+def test_ios_rechtstexte_ohne_werbung(monkeypatch, sprachcodes):
+    """Ohne Werbung (WERBUNG_LAEUFT = False) steht set.dsgvo_werbung_aus in
+    der Erklaerung. Auch der nennt fuer iOS den App Store, nicht den Play
+    Store und das Google-Konto. 30.10.2026"""
+    import sprachen
+    monkeypatch.setattr(sprachen, "WERBUNG_LAEUFT", False)
+    for code in sprachcodes:
+        ds = sprachen.texte(code)["set.datenschutz_text_ios"]
+        m = VERBOTEN.search(ds)
+        assert not m, (code, ds[max(0, m.start() - 60):m.end() + 20])
+        for _, neu in sprachen.IOS_RECHT[code]["werbung_aus"]:
+            assert neu in ds, code
+
+
+def test_ios_rechtstexte_brechen_ab_bei_fremder_plattform(monkeypatch):
+    """Fehlt fuer einen Android-Satz der iOS-Ersatz, bricht texte() ab,
+    statt still den Play Store zu nennen (IOS_FREMDE_WOERTER)."""
+    import sprachen
+    roh = dict(sprachen.IOS_RECHT["de"])
+    roh["werbung_aus"] = []
+    monkeypatch.setitem(sprachen.IOS_RECHT, "de", roh)
+    monkeypatch.setattr(sprachen, "WERBUNG_LAEUFT", False)
+    with pytest.raises(ValueError, match="Play Store"):
+        sprachen.texte("de")
+
+
+def test_ios_fremde_woerter_wie_im_test():
+    """Die Liste in sprachen.py und die Suche hier finden dieselben Woerter."""
+    import sprachen
+    for wort in sprachen.IOS_FREMDE_WOERTER:
+        assert VERBOTEN.search(wort), wort
+
+
+# Der Anmeldeschluessel liegt auf iOS im Schluesselbund und bleibt beim
+# Loeschen der App erhalten (ZmajAnmeldung.swift, kSecAttrSynchronizable);
+# "Speicher leeren" gibt es auf iOS nicht. 30.10.2026
+SCHLUESSELBUND = {"de": "Schlüsselbund", "en": "keychain", "tr": "anahtar zincir",
+                  "sv": "nyckelring", "nl": "sleutelhanger", "nb": "nøkkelring",
+                  "da": "nøglering", "fr": "trousseau"}
+SPEICHER_LEEREN = {"de": "Speicher leerst", "en": "clearing its storage",
+                   "tr": "depolamasını temizle", "sv": "tömma dess lagring",
+                   "nl": "opslag ervan te wissen", "nb": "tømme lagringen",
+                   "da": "rydde dens lagrede data", "fr": "vidant sa mémoire"}
+
+
+def test_ios_datenschutz_schluesselbund_beim_loeschen(sprachcodes):
+    """Abschnitt 8 (Speicherdauer) und 10 (Loeschen) nennen den
+    Schluesselbund; die Android-Saetze zum Speicherleeren stehen fuer iOS
+    nicht mehr da, fuer Android schon."""
+    import sprachen
+    assert sorted(SCHLUESSELBUND) == sorted(sprachcodes) == sorted(SPEICHER_LEEREN)
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        abschnitte = t["set.datenschutz_text_ios"].split("<br><br>")
+        for nr in ("8", "10"):
+            gefunden = [a for a in abschnitte if a.startswith("<b>%s." % nr)]
+            assert len(gefunden) == 1, (code, nr)
+            assert SCHLUESSELBUND[code] in gefunden[0], (code, nr)
+        assert SPEICHER_LEEREN[code] not in t["set.datenschutz_text_ios"], code
+        assert SPEICHER_LEEREN[code] in t["set.datenschutz_text"], code
+
+
 def test_ios_keine_rechtstexte_ohne_konto(monkeypatch):
     """Die Web-Demo (ohne Pflichtkonto) hat keine iOS-Fassung."""
     import sprachen
