@@ -1,0 +1,7 @@
+# Was CodeQL untersucht (30.10.2026). Die Testordner fallen weg: Ihr Code
+# wird nie ausgeliefert, und CodeQL hielt Suchmuster in Tests fuer
+# HTML-Filter der App (py/bad-tag-filter in PR 58). App, Skripte, Webseite
+# und Workflows prueft es weiter mit security-extended.
+paths-ignore:
+  - tests/**
+  - tests_e2e/**
