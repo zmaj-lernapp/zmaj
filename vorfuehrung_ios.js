@@ -11,9 +11,18 @@
    dem Apple-Konto (99 USD) sieht, wie Startseite, Lektion, Einstellungen,
    Kaufkasten und Anmeldung auf iPhone und iPad aussehen, oeffnet die Seite
    diese Schirme hier selbst nacheinander und sagt auf der Konsole, wann
-   einer steht. Der Ablauf (ios-pruefung.yml) liest das aus dem Protokoll
-   (Capacitor reicht console.log als "[log] - ..." an stdout weiter) und
-   macht dann das Foto. Zeitgesteuert, weil nichts zurueckmelden kann.
+   einer steht. Der Ablauf (ios-pruefung.yml) macht dann das Foto.
+
+   HANDSCHLAG UEBER DATEIEN (seit Cloud-Lauf 9): Erst stand hier nur die
+   Konsole (Capacitor reicht console.log als "[log] - ..." an stdout
+   weiter). Die kommt aber in Schueben an, weil iOS stdout in eine Datei
+   puffert - in Lauf 9 fehlten deshalb Lektion und Kaufkasten, das Foto kam
+   erst, als schon der naechste Schirm stand. Jetzt schreibt die Seite
+   ueber das Plugin Filesystem Documents/vorfuehrung/bild_<nr>.txt (Inhalt:
+   der Name des Schirms). Der Ablauf sieht die Datei direkt im Container
+   des Simulators, macht das Foto und legt foto_<nr>.txt daneben; erst
+   dann geht es weiter. Ohne Filesystem (Browsertests) bleibt es beim
+   festen Takt. Die Konsole meldet trotzdem alles, fuers Protokoll.
 
    ZWEI RUNDEN, damit auch der echte erste Start zu sehen ist:
      Runde 1 (erster Start nach der Installation): nichts anfassen. Googles
@@ -146,13 +155,42 @@
     try{ if(typeof frageSchliessen === 'function' && frageSchliessen) frageSchliessen(); }catch(e){}
     document.querySelectorAll('.nachfrage').forEach(function(k){ k.remove(); });
   }
+  /* Der Handschlag mit dem Ablauf, siehe oben. Documents/vorfuehrung/ im
+     Container der App; der Ablauf raeumt den Ordner vor Runde 2. */
+  var FS = (C.Plugins || {}).Filesystem || null;
+  async function dateiSchreiben(name, inhalt){
+    if(!FS || typeof FS.writeFile !== 'function') return false;
+    try{
+      await FS.writeFile({path: 'vorfuehrung/' + name, data: inhalt, directory: 'DOCUMENTS',
+                          encoding: 'utf8', recursive: true});
+      return true;
+    }catch(e){ sag('datei ' + name + ' nicht geschrieben: ' + (e && e.message)); return false; }
+  }
+  async function dateiDa(name){
+    try{ await FS.stat({path: 'vorfuehrung/' + name, directory: 'DOCUMENTS'}); return true; }
+    catch(e){ return false; }
+  }
+  async function fotoAbwarten(n, ms){
+    var ende = Date.now() + ms;
+    while(Date.now() < ende){
+      if(await dateiDa('foto_' + n + '.txt')) return true;
+      await warte(200);
+    }
+    return false;
+  }
   var nr = 0;
   async function bild(name, vorher){
     try{ if(vorher) await vorher(); }catch(e){ sag('schritt ' + name + ' gescheitert: ' + e.message); }
     await warte(700);
     nr++;
     sag('bild=' + name + ' nr=' + nr);
-    await warte(TAKT);
+    if(await dateiSchreiben('bild_' + nr + '.txt', name)){
+      var t0 = Date.now();
+      if(await fotoAbwarten(nr, 30000)){ sag('foto ' + nr + ' nach ' + (Date.now() - t0) + ' ms'); await warte(300); }
+      else sag('foto ' + nr + ' kam nicht in 30 s');
+    }else{
+      await warte(TAKT);
+    }
   }
   /* Ein Ton, wie die App ihn spielt: aus der Datei holen und mit WebAudio
      dekodieren (die meisten Woerter laufen so). Dazu, wenn der Ablauf eine
@@ -254,6 +292,12 @@
       await warte(2000);
     });
     sag('fertig bilder=' + nr + ' fehler=' + fehler);
+    await dateiSchreiben('fertig.txt', 'fertig bilder=' + nr + ' fehler=' + fehler);
   }
-  w.addEventListener('load', function(){ ablauf().catch(function(e){ sag('abbruch ' + e.message + ' fehler=' + fehler); }); });
+  w.addEventListener('load', function(){
+    ablauf().catch(function(e){
+      sag('abbruch ' + e.message + ' fehler=' + fehler);
+      dateiSchreiben('fertig.txt', 'abbruch ' + e.message);
+    });
+  });
 })();
