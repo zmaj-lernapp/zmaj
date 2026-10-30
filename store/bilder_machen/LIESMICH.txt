@@ -73,9 +73,10 @@ einem schlichten Tablet-Rahmen. Rohbilder je Sprache:
   tablet7   Bildschirm 600 x 960 Punkte (wie ein Nexus 7), mal 2
   tablet10  Bildschirm 800 x 1280 Punkte (uebliches 10-Zoll-Tablet), mal 2
 
-Die App ist eine Spalte bis 540 Punkte; auf dem 10-Zoll-Tablet bleibt links
-und rechts Rand, und unter einer Lektion bleibt der Bildschirm leer. So sieht
-sie dort wirklich aus. Dann Ueberschrift und Rahmen:
+Die App passt sich seit v110 dem Tablet an (siehe GROSS in web/index.html):
+auf 10 Zoll ist alles 1,3-mal so gross und die Spalte fuellt 88 % der
+Breite, auf 7 Zoll bleibt die Groesse, und Lektionen fuellen auf beiden den
+Bildschirm. So sieht sie dort wirklich aus. Dann Ueberschrift und Rahmen:
 
      python store/bilder_machen/beschriften.py --geraet tablet7  ROH7  ZIEL7  de en tr sv nl nb da fr
      python store/bilder_machen/beschriften.py --geraet tablet10 ROH10 ZIEL10 de en tr sv nl nb da fr

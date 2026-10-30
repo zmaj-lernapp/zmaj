@@ -43,8 +43,9 @@ WEB = os.path.join(WURZEL, "web")
 # Bildschirm in CSS-Punkten und Pixeldichte. "handy" ist das Store-Format
 # selbst (so breit wie Ajdins S21). Die Tablets haben die üblichen Android-
 # Maße: 600 x 960 dp (7 Zoll, wie das Nexus 7) und 800 x 1280 dp (10 Zoll).
-# Die App ist eine Spalte bis 540 Punkte; auf dem 10-Zoll-Tablet bleibt
-# links und rechts Rand - so sieht sie dort wirklich aus.
+# Ab v110 waechst die App auf Tablets mit (GROSS in web/index.html): auf
+# 10 Zoll alles 1,3-mal so gross, Lektionen fuellen den Bildschirm - so
+# sieht sie dort wirklich aus.
 GERAETE = {
     "handy":    {"breite": 360, "hoehe": 640,  "dsf": 3},   # 1080 x 1920
     "tablet7":  {"breite": 600, "hoehe": 960,  "dsf": 2},   # 1200 x 1920
