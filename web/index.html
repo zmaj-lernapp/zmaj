@@ -29,6 +29,28 @@
     if(w === 'hell')   document.documentElement.dataset.theme = 'light';
     if(w === 'dunkel') document.documentElement.dataset.theme = 'dark';
   }catch(e){}
+  /* Die Plattform-Weiche (30.10.2026, iOS_Plan.md 3.5). Hier oben und nur
+     hier wird entschieden, wo die App laeuft: 'android', 'ios' oder 'web'
+     (Browser, Web-Demo). Das grosse Skript liest es als PLATTFORM. Hier oben,
+     weil der Stil es schon vor dem ersten Zeichnen braucht: auf dem iPhone
+     liegt die Seite unter Notch und Home-Leiste (capacitor.config.json,
+     contentInset "never"), und nur mit viewport-fit=cover nennt WebKit die
+     Raender in env(safe-area-inset-*).
+     Capacitor ohne getPlatform() heisst 'android': vor iOS gab es nur die
+     eine Huelle, und die Browsertests stellen Capacitor seit jeher ohne
+     getPlatform() nach - fuer sie bleibt alles wie vorher.
+     Android bekommt viewport-fit bewusst NICHT: die WebView beachtet es dort
+     seit Chromium 140 auch, und dann laege die Kopfleiste unter der
+     Statusleiste. Android bleibt, wie es war. */
+  var C = window.Capacitor;
+  window.ZMAJ_PLATTFORM = !C ? 'web'
+    : (typeof C.getPlatform === 'function' ? String(C.getPlatform() || 'web')
+       : (C.Plugins ? 'android' : 'web'));
+  document.documentElement.dataset.plattform = window.ZMAJ_PLATTFORM;
+  if(window.ZMAJ_PLATTFORM === 'ios'){
+    var vp = document.querySelector('meta[name="viewport"]');
+    if(vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover');
+  }
 </script>
 <style>
   /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
@@ -134,6 +156,25 @@
     padding:16px 16px 48px;
   }
   .wrap{width:100%; max-width:540px}
+  /* iPhone und iPad (30.10.2026, iOS_Plan.md 3.5): die Seite liegt dort
+     unter Statusleiste, Notch und Home-Leiste. Im ersten Simulatorbild
+     lagen Herz und Zahnrad unter der Uhr. Die Raender kommen aus
+     env(safe-area-inset-*) - die gibt es nur mit viewport-fit=cover, und
+     das setzt das Skript im Kopf nur auf iOS. Android und Browser sehen
+     diese Regeln nie (data-plattform). Querformat auf dem iPad und dem
+     iPhone: links und rechts mindestens so viel wie die Notch braucht. */
+  html[data-plattform="ios"] body{
+    padding-top:calc(16px + env(safe-area-inset-top, 0px));
+    padding-bottom:calc(48px + env(safe-area-inset-bottom, 0px));
+    padding-left:max(16px, env(safe-area-inset-left, 0px));
+    padding-right:max(16px, env(safe-area-inset-right, 0px));
+  }
+  /* Kein Gummiband-Ziehen ueber den Rand hinaus und kein Markieren beim
+     langen Druecken: beides verraet auf dem iPhone sofort die Webseite
+     (Richtlinie 4.2). Eingabefelder bleiben markierbar. */
+  html[data-plattform="ios"]{overscroll-behavior:none; -webkit-text-size-adjust:100%}
+  html[data-plattform="ios"] body{-webkit-user-select:none; user-select:none; -webkit-touch-callout:none}
+  html[data-plattform="ios"] input, html[data-plattform="ios"] textarea{-webkit-user-select:text; user-select:text}
   /* Grosse Systemschrift. Android vergroessert in der App jede Schrift
      mit (Einstellungen > Schriftgroesse), Kaesten und Abstaende in px
      aber nicht. Ab 115 % passten die drei Reiter nicht mehr in ihre
@@ -1201,13 +1242,18 @@
   /* Eine kurze Meldung, die von selbst wieder geht. Gebraucht wird sie,
      seit die Anzeige auf dem Geraet ausfallen darf: wer auf „Video
      ansehen“ tippt und ohne Netz ist, sah sonst gar nichts. P8, 28.09.2026. */
-  .kurznote{position:fixed; left:50%; bottom:86px; transform:translateX(-50%);
+  .kurznote, .meldenote{position:fixed; left:50%; bottom:86px; transform:translateX(-50%);
     z-index:1001; max-width:min(92vw,420px); padding:12px 16px; text-align:center;
     background:var(--surface); border:1px solid var(--line); border-radius:12px;
     box-shadow:0 8px 24px rgba(0,0,0,.35); color:var(--ink);
     font-size:14px; font-weight:700; line-height:1.4;
     opacity:0; transition:opacity .25s}
-  .kurznote.an{opacity:1}
+  .kurznote.an, .meldenote.an{opacity:1}
+  /* "Anzeige melden" nach einer Vollbildanzeige (nur iOS, 30.10.2026):
+     dieselbe Leiste, eine eigene Klasse, damit kurzMeldung() sie nicht
+     ueberschreibt, und etwas hoeher, falls beide zugleich stehen. */
+  .meldenote{bottom:140px; padding:8px 16px}
+  .meldenote .abolink{font-size:14px}
   /* Nur fuer Screenreader (17.10.2026): auf dem Bildschirm nicht zu sehen,
      im Vorlesebaum aber da. Nicht display:none und nicht hidden - das nimmt
      den Inhalt auch dem Screenreader weg. Gebraucht fuer #ansage. */
@@ -1248,6 +1294,15 @@
      durchschimmern, sonst wirkt die Frage wie ein Versehen. */
   .nachfrage{position:fixed; inset:0; z-index:1000; background:rgba(6,12,32,.72);
     display:flex; align-items:center; justify-content:center; padding:18px; overflow:auto}
+  /* iOS: die Vollbild-Ebenen halten Abstand zu Notch und Home-Leiste,
+     sonst laege ein langer Kaufkasten mit seinem Knopf unter der Leiste.
+     30.10.2026, siehe html[data-plattform="ios"] body. */
+  html[data-plattform="ios"] .werbung, html[data-plattform="ios"] .einwilligung,
+  html[data-plattform="ios"] .nachfrage{
+    padding:calc(18px + env(safe-area-inset-top, 0px)) max(18px, env(safe-area-inset-right, 0px))
+            calc(18px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px))}
+  html[data-plattform="ios"] .kurznote{bottom:calc(86px + env(safe-area-inset-bottom, 0px))}
+  html[data-plattform="ios"] .meldenote{bottom:calc(140px + env(safe-area-inset-bottom, 0px))}
   .einwilligungbox, .nachfragebox{background:var(--surface); border:1px solid var(--line);
     border-radius:var(--radius);
     padding:18px; width:100%; max-width:440px; max-height:92vh; overflow:auto}
@@ -1293,6 +1348,11 @@
   .abovorschau .zmaj-anim, .abovorschau .zmaj{width:150px; height:150px}
   .abovorschau .wort{font-size:12px; font-weight:800; color:var(--muted); margin-top:2px}
   .abohinweis{font-size:12px; line-height:1.5; color:var(--muted); margin-top:8px}
+  /* iOS: Nutzungsbedingungen, Datenschutz, Kaeufe wiederherstellen - eine
+     kleine Zeile unter dem Hinweis (Richtlinie 3.1.2, 30.10.2026). */
+  .abolinks{font-size:12px; line-height:1.6; color:var(--muted); margin-top:8px}
+  .abolinks .abolink{font-size:12px}
+  .rechtsebene .legal{max-height:60vh; overflow:auto; font-size:13px; line-height:1.55}
   /* Die Testwoche: Dauer und Preis danach stehen fett ueber dem Kaufknopf,
      nicht im Kleingedruckten - wer bestellt, muss wissen, wann zum ersten
      Mal abgebucht wird. Ohne Testwoche bleibt die Zeile leer und nimmt
@@ -1556,6 +1616,28 @@
   .googleknopf img{width:20px; height:20px; flex:none}
   .googleknopf:disabled{opacity:.6; cursor:default}
   .googleknopf:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+  /* "Mit Apple anmelden" (30.10.2026, nur iOS, Entscheidung 6b). Nach
+     Apples Gestaltungsregeln fuer eigene Knoepfe (Human Interface
+     Guidelines, Sign in with Apple): Apple-Logo und Titel in Schwarz auf
+     Weiss oder Weiss auf Schwarz, Systemschrift, mindestens so gross und so
+     weit oben wie der Google-Knopf (Richtlinie 4.8 verlangt eine
+     gleichwertige Wahl). Im hellen Modus schwarz, im dunklen weiss - beides
+     ist erlaubt, und so hebt er sich jeweils vom Grund ab.
+     Das Logo ist das Zeichen U+F8FF der Systemschrift: Apple liefert es auf
+     iPhone und iPad selbst aus, die App bringt kein eigenes Bild mit. Auf
+     anderen Geraeten erscheint der Knopf nicht (appleMoeglich). */
+  .appleknopf{display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+    min-height:48px; padding:10px 16px; border:1px solid #000000; border-radius:14px;
+    background:#000000; color:#FFFFFF;
+    font-family:-apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size:17px;
+    font-weight:600; letter-spacing:-.2px; cursor:pointer}
+  .appleknopf .applelogo{font-size:19px; line-height:1; margin-top:-2px}
+  .appleknopf:disabled{opacity:.6; cursor:default}
+  .appleknopf:focus-visible{outline:3px solid var(--primary); outline-offset:2px}
+  :root[data-theme="dark"] .appleknopf{background:#FFFFFF; color:#000000; border-color:#FFFFFF}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .appleknopf{background:#FFFFFF; color:#000000; border-color:#FFFFFF}
+  }
   .anmrecht{margin-top:2px; font-size:13px}
   .anmrecht summary{cursor:pointer; color:var(--muted); font-weight:700; padding:6px 0}
   input.field,textarea.field,select.field,button.field{
@@ -2135,7 +2217,12 @@
          Aufklappen. Nur im Cloud-Modus sichtbar, siehe anmeldungZeigen().
          Der Google-Knopf nach Googles Markenregeln, das "G" in
          Originalfarben aus Googles Knopf-Paket (symbole/google-g.svg). -->
+    <!-- Seit 30.10.2026 auf iPhone und iPad auch "Mit Apple anmelden",
+         ueber dem Google-Knopf (Richtlinie 4.8, Entscheidung 6b). Auf
+         Android und im Browser bleibt er versteckt. "Spaeter" nur auf iOS:
+         Richtlinie 5.1.1(v), wer ohne Konto lernen will, darf das. -->
     <div class="anmwahl" id="anmWahl" hidden>
+      <button type="button" class="appleknopf" id="anmApple" hidden><span class="applelogo" aria-hidden="true">&#xF8FF;</span><span id="anmAppleText"></span></button>
       <button type="button" class="googleknopf" id="anmGoogle" hidden><img src="symbole/google-g.svg" alt="" aria-hidden="true" width="20" height="20"><span id="anmGoogleText"></span></button>
       <button type="button" class="btn know" id="anmMail"></button>
       <div class="note" id="anmNote" role="status"></div>
@@ -2177,6 +2264,9 @@
       <!-- Ohne Netz: erst einmal weiterlernen, die Anmeldung kommt, sobald
            wieder Internet da ist (28.10.2026). -->
       <button class="btn ghost" id="anmOffline" hidden></button>
+      <!-- Nur iOS (30.10.2026, Entscheidung 7): "Spaeter" - weiterlernen
+           ohne Konto, gefragt wird hoechstens einmal am Tag wieder. -->
+      <button class="btn ghost" id="anmSpaeter" hidden></button>
     </div>
   </div>
 
@@ -2355,6 +2445,13 @@
       <div class="sd" id="setVollVerwalten" style="display:none; padding-bottom:12px">
         <button type="button" class="abolink" id="aboVerwalten"></button>
       </div>
+      <!-- Nur iOS (30.10.2026): "Kaeufe wiederherstellen" ist bei Apple
+           Pflicht (Richtlinie 3.1.1), ein Abo haengt dort am Apple-Account
+           und kommt auf einem neuen Geraet erst nach dieser Frage sicher
+           zurueck. Auf Android macht Google das von selbst. -->
+      <div class="sd" id="setVollWiederherstellen" style="display:none; padding-bottom:12px">
+        <button type="button" class="abolink" id="aboWiederherstellen"></button>
+      </div>
       <!-- Wechsel vom Monats- aufs Jahresabo. Nur bei einem laufenden
            MONATS-Abo, siehe vollZeileZeigen(). 10.10.2026 -->
       <div class="sd" id="setVollWechsel" style="display:none; padding-bottom:12px">
@@ -2395,7 +2492,7 @@
     <div class="section">
       <h2 data-t="set.lernen"></h2>
       <div class="setting"><div><div class="st" id="lblToene" data-t="set.toene"></div><div class="sd" data-t="set.toene_sub"></div></div><button class="switch" id="swSound" role="switch" aria-checked="true" aria-labelledby="lblToene"></button></div>
-      <div class="setting"><div><div class="st" id="lblVibration" data-t="set.vibration"></div><div class="sd" data-t="set.vibration_sub"></div></div><button class="switch" id="swHaptik" role="switch" aria-checked="true" aria-labelledby="lblVibration"></button></div>
+      <div class="setting" id="setVibrationZeile"><div><div class="st" id="lblVibration" data-t="set.vibration"></div><div class="sd" data-t="set.vibration_sub"></div></div><button class="switch" id="swHaptik" role="switch" aria-checked="true" aria-labelledby="lblVibration"></button></div>
       <div class="setting"><div><div class="st" id="lblAnim" data-t="set.animationen"></div><div class="sd" data-t="set.animationen_sub"></div></div><button class="switch" id="swAnim" role="switch" aria-checked="true" aria-labelledby="lblAnim"></button></div>
       <!-- Tempo steht dort, wo es gebraucht wird: unter dem Vorlese-Knopf in
            der Geschichte. Und die Stimmenauswahl sagte auf dem Handy nichts
@@ -2488,6 +2585,13 @@
            fuehrt zu Googles eigenem Fenster. Punkt 8, 30.09.2026. -->
       <div class="setting" id="setWiderrufBox" style="display:none"><div><div class="st" data-t="set.einwilligung"></div><div class="sd" id="setWiderrufStand" data-t="set.einwilligung_google"></div></div>
         <button class="btn ghost" id="einwWiderruf" data-t="set.einwilligung_knopf"></button></div>
+      <!-- "Anzeige melden", nur iOS (30.10.2026, Richtlinie 2.5.18: wer
+           Werbung zeigt, muss unpassende Anzeigen melden lassen). Schreibt
+           eine Mail an uns mit Zeit und Art der letzten Anzeige. Dieselbe
+           Moeglichkeit kommt kurz nach jeder Vollbildanzeige. -->
+      <div class="sd" id="setAnzeigeMelden" style="display:none; font-size:14px; margin:0 0 12px">
+        <button type="button" class="abolink" id="anzeigeMelden" data-t="werbung.melden" style="padding:4px 0"></button>
+      </div>
       <details><summary data-t="set.agb"></summary><div class="inner legal" data-t="set.agb_text"></div></details>
       <details><summary data-t="set.datenschutz"></summary><div class="inner legal" data-t="set.datenschutz_text"></div></details>
       <!-- Das Impressum auch in der App (Ajdin am 28.10.2026): derselbe Text
@@ -2514,7 +2618,14 @@
 
 <script>
 /* Der Inhalt kommt aus vokabeln.py, grammatik.py und geschichten.py – hier muss nichts geändert werden. */
-const LEKTION_WOERTER = 10;      // Wortaufgaben pro Lektion
+/* Wo die App laeuft: 'android', 'ios' oder 'web'. Entschieden wird es EIN
+   Mal, im kleinen Skript im Kopf (ZMAJ_PLATTFORM), damit Stil und Skript
+   nie verschieden antworten. Alles, was iPhone und iPad anders machen,
+   haengt an dieser einen Konstante (30.10.2026, iOS_Plan.md 3.5). */
+const PLATTFORM = (window.ZMAJ_PLATTFORM === 'android' || window.ZMAJ_PLATTFORM === 'ios')
+  ? window.ZMAJ_PLATTFORM : 'web';
+const IST_IOS = PLATTFORM === 'ios';
+const LEKTION_WOERTER = 10;     // Wortaufgaben pro Lektion
 const LEKTION_NEU_MAX = 5;       // davon höchstens so viele neue Wörter (wenn es schon bekannte gibt)
 const LEKTION_LUECKEN = 2;       // Lückentexte pro Lektion
 const LEKTION_KACHELN = 2;       // Sätze aus Kacheln pro Lektion (wenn ihre Wörter schon dran waren), seit 13.10.2026
@@ -2893,6 +3004,11 @@ const ADMOB_TEST = false;
    unten ADMOB_TEST ODER 'Liste nicht leer' - nicht nur ADMOB_TEST. Fuer
    alle anderen Geraete aendert das nichts: setTestDeviceIds
    (AdMob.java:302) betrifft genau die hier aufgezaehlten. */
+/* Die Kennungen unten sind Android-Kennungen. Auf iOS bleibt die Liste leer
+   (ADMOB_TESTGERAETE_JETZT): dort gibt es noch kein eigenes Testgeraet, und
+   initializeForTesting soll dort nicht nur wegen fremder Kennungen anspringen.
+   Ein iPhone traegt man am einfachsten mit seiner Werbe-ID in der
+   AdMob-Konsole ein. 30.10.2026 */
 const ADMOB_TESTGERAETE = [
   '41C694B849758EB6384F9FED5DD5FFAC',   // Ajdin, S21 Ultra - DEBUG-Fassung
   'E305C080FC5C6BC30B53AE7A29DD4E0A',   // Galaxy S9 - DEBUG-Fassung, 30.09.2026
@@ -2904,10 +3020,43 @@ const ADMOB_TESTGERAETE = [
      Geraete stehen mit ihrer Werbe-ID in der AdMob-Konsole, das deckt
      jede Fassung ab. */
 ];
-const ADMOB_ID = {
+const ADMOB_TESTGERAETE_JETZT = IST_IOS ? [] : ADMOB_TESTGERAETE;
+/* App-Tracking-Transparenz (30.10.2026, Entscheidung 10). Auf dem iPhone
+   fragt Apple, ob die App dich ueber Apps anderer Firmen hinweg verfolgen
+   darf - ohne Ja gibt es keine Werbe-ID. Gefragt wird ueber Googles
+   "IDFA-Hinweis" in der AdMob-Konsole: Googles Einwilligungsfenster zeigt
+   ihn nach der DSGVO-Frage und ruft dann selbst Apples Fenster
+   (developers.google.com/admob/ios/privacy/idfa). Steht der Hinweis dort
+   nicht (noch nicht eingeschaltet, oder ausserhalb des Gebiets, fuer das er
+   gilt), ist Apples Status danach noch 'notDetermined' - dann fragt die App
+   einmal selbst, sonst stuende die Werbung ohne jede Frage auf "nicht
+   personalisiert". Wer schon geantwortet hat, wird nie zweimal gefragt:
+   Apple zeigt das Fenster ohnehin nur einmal. */
+async function attNachfragen(A){
+  if(!IST_IOS || !A || typeof A.trackingAuthorizationStatus !== 'function') return;
+  try{
+    const s = await A.trackingAuthorizationStatus();
+    if(s && s.status === 'notDetermined' && typeof A.requestTrackingAuthorization === 'function'){
+      await A.requestTrackingAuthorization();
+    }
+  }catch(e){}
+}
+const ADMOB_ID_ANDROID = {
   interstitial: 'ca-app-pub-9105747905460295/9764395638',   // Zmaj, angelegt 20.09.2026
   belohnt:      'ca-app-pub-9105747905460295/8572576770',   // Zmaj, angelegt 20.09.2026
 };
+/* iPhone und iPad (30.10.2026): eigene Anzeigenbloecke, sie gehoeren zur
+   iOS-App in AdMob. Hier stehen Googles oeffentliche Test-Bloecke fuer iOS
+   (developers.google.com/admob/ios/test-ads) - so zeigt auch der Bau in der
+   Cloud und im Simulator Testanzeigen. Die echten setzt app_bauen.py --ios
+   nur in die KOPIE www/index.html ein, aus ios_zugang.xcconfig der Huelle
+   (ios_admob_einsetzen), wie die Firebase-Werte. Die Zeilen muessen genau
+   so bleiben, das Bauskript sucht sie. */
+const ADMOB_ID_IOS = {
+  interstitial: 'ca-app-pub-3940256099942544/4411468910',   // Googles iOS-Testblock (Interstitial)
+  belohnt:      'ca-app-pub-3940256099942544/1712485313',   // Googles iOS-Testblock (Belohnt)
+};
+const ADMOB_ID = IST_IOS ? ADMOB_ID_IOS : ADMOB_ID_ANDROID;
 let AdMobP = null;          // das Plugin, sobald es sich gemeldet hat
 let admobDarf = false;      // canRequestAds – vorher darf nichts geladen werden
 let admobFehler = null;     // warum der Start scheiterte, fuer den zweiten Versuch
@@ -2972,6 +3121,8 @@ async function admobStart(){
     AdMobP = A;
     admobDarf = !!info.canRequestAds;
     admobOptionen = info.privacyOptionsRequirementStatus === 'REQUIRED';
+    // Nur iOS, und nur wenn Googles Fenster Apples Frage nicht schon gestellt hat.
+    if(admobDarf) await attNachfragen(A);
     /* maxAdContentRating: ohne diese Angabe entscheidet allein die
        Voreinstellung im AdMob-Konto, welche Anzeigen kommen duerfen -
        und die steht nirgends im Projekt. Punkt 3 aus WERBUNG_PRUEFUNG.md,
@@ -2987,8 +3138,8 @@ async function admobStart(){
       await A.initialize({
         /* Siehe ADMOB_TESTGERAETE: ohne initializeForTesting bleibt die
            Liste unbeachtet. */
-        initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
-        testingDevices: ADMOB_TESTGERAETE,
+        initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE_JETZT.length > 0,
+        testingDevices: ADMOB_TESTGERAETE_JETZT,
         maxAdContentRating: 'General'});
       admobGestartet = true;
     }
@@ -3027,8 +3178,8 @@ async function einwilligungNachziehen(){
     admobOptionen = info.privacyOptionsRequirementStatus === 'REQUIRED';
     if(admobDarf && !admobGestartet){
       await AdMobP.initialize({
-        initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
-        testingDevices: ADMOB_TESTGERAETE,
+        initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE_JETZT.length > 0,
+        testingDevices: ADMOB_TESTGERAETE_JETZT,
         maxAdContentRating: 'General'});
       admobGestartet = true;
     }
@@ -3276,7 +3427,17 @@ const FALLBACK = {   // nur nötig, wenn der Server gar nicht antwortet
 function fuelle(s, vars){
   return vars ? s.replace(/\{(\w+)\}/g, (m,k)=> vars[k]!==undefined ? vars[k] : m) : s;
 }
+/* Texte fuer iPhone und iPad (30.10.2026, iOS_Plan.md 3.6). Wo ein Text
+   Google Play, den Play Store oder Android nennt, gibt es in sprachen.py
+   eine Fassung "<schluessel>_ios" - Apple lehnt Apps ab, die andere
+   Plattformen nennen (Richtlinie 2.3.10), und auf dem iPhone ist Apple der
+   Verkaeufer. Auf iOS gilt zuerst diese Fassung, sonst die gewoehnliche.
+   Android und Browser fragen nie nach _ios. */
+function textSchluessel(key){
+  return (IST_IOS && T[key + '_ios'] !== undefined) ? key + '_ios' : key;
+}
 function t(key, vars){
+  key = textSchluessel(key);
   let s = T[key] !== undefined ? T[key] : FALLBACK[key];
   if(s === undefined) return key;
   if(s.indexOf('|') >= 0) s = s.split('|')[0];
@@ -3296,6 +3457,7 @@ function t(key, vars){
    derselben Regel nur hier eingetragen werden muss. Gefunden am 26.09.2026. */
 const EINZAHL_BEI_NULL = ['fr'];
 function tp(key, n, vars){
+  key = textSchluessel(key);
   const s = T[key] !== undefined ? T[key] : key;
   const teile = s.split('|');
   const einzahl = n === 1 || (n === 0 && EINZAHL_BEI_NULL.includes(SPRACHE));
@@ -3366,7 +3528,8 @@ let besitz = new Set();   // gekaufter Zierrat, z. B. "hut"
    der Sicherungsdatei: besitz bleibt, was wirklich gekauft ist. 19.10.2026 */
 const HAUT_ALLE_SCHLUESSEL = 'zmaj_hautalle';
 let hautAlle = false;
-try{ hautAlle = localStorage.getItem(HAUT_ALLE_SCHLUESSEL) === '1'; }catch(e){}
+// Auf iOS gibt es den Schalter nicht (siehe init(), 30.10.2026).
+try{ hautAlle = !IST_IOS && localStorage.getItem(HAUT_ALLE_SCHLUESSEL) === '1'; }catch(e){}
 /* Zaehlt fuer Laden, Tragen und Drachen als besessen: gekauft, oder bei
    eingeschaltetem Schalter jedes Stueck mit Muenzpreis - erst nur die
    Farben, seit 20.10.2026 auch Kopf, Brille und Hals (Ajdin: "gib alle
@@ -3468,8 +3631,11 @@ let homeMode = 'words';
    Browser. Auf dem Handy ist er doppelt gemoppelt und nimmt oben Platz
    weg – Ajdin am 16.09.2026: "man kann doch selbst mit dem handy zurück
    gehen". Die Weiche ist dieselbe wie überall: ist das Capacitor-Plugin
-   da, läuft die App nativ. */
-const geraeteZurueck = () => !!(window.Capacitor && window.Capacitor.Plugins
+   da, läuft die App nativ.
+   Seit 30.10.2026 nur auf Android: das iPhone hat keine Zurueck-Taste,
+   und ohne den Knopf kaeme man dort aus keiner Unterseite mehr heraus
+   (iOS_Plan.md 3.5). Auf iOS steht er also wie im Browser oben rechts. */
+const geraeteZurueck = () => PLATTFORM === 'android' && !!(window.Capacitor && window.Capacitor.Plugins
                                 && window.Capacitor.Plugins.App);
 let backTarget = null;
 function setzeZurueck(text, ziel){
@@ -4815,7 +4981,10 @@ function zmajSvg(mood='happy'){
 const pref = (k, def) => { try{ const v=localStorage.getItem(k); return v===null ? def : v==='an'; }catch(e){ return def; } };
 let soundOn = pref('zmaj_sound', true), haptikOn = pref('zmaj_haptik', true), animOn = pref('zmaj_anim', true);
 try{ getragen = localStorage.getItem('zmaj_getragen') || ''; }catch(e){}
-const canBuzz = 'vibrate' in navigator;
+/* Auf iOS gibt es navigator.vibrate nicht (WebKit kennt es nicht), der
+   Schalter taete dort nichts - er ist dort ausgeblendet (Entscheidung 13,
+   30.10.2026, siehe einstellungenFuerPlattform()). */
+const canBuzz = !IST_IOS && 'vibrate' in navigator;
 function buzz(p){ if(haptikOn && canBuzz){ try{ navigator.vibrate(p); }catch(e){} } }
 function applyAnim(){
   document.body.classList.toggle('no-anim', !animOn);
@@ -5829,6 +5998,7 @@ const PRUEF_WORT = 'pruef';
 let dauerVoll = false;
 
 function dauerVollLaden(){
+  if(IST_IOS){ dauerVoll = false; return; }   // auf iOS gibt es den Schalter nicht, 30.10.2026
   try{ dauerVoll = localStorage.getItem(DAUER_SCHLUESSEL) === '1'; }catch(e){}
 }
 function dauerVollSetzen(an){
@@ -6909,7 +7079,17 @@ function questZeilen(){
                mitgelieferte Aufnahmen. Daran haengen die Hoer-Knoepfe, der
                Aufgabentyp 'listen' und die Tagesaufgabe 'hoer'.
                Wird in ladeAudio() endgueltig gesetzt. */
-const hasTTS = 'speechSynthesis' in window;
+/* Auf iOS immer false (30.10.2026, iOS_Plan.md 3.5): WebKit hat dort eine
+   Computerstimme, und mit ihr laese still die iOS-Stimme statt Emir, und an
+   Woertern ohne Aufnahme stuenden Lautsprecher. Gesprochen wird auf dem
+   iPhone nur, was als Aufnahme mitkommt - wie in der Android-App. */
+const hasTTS = !IST_IOS && 'speechSynthesis' in window;
+/* Der Stummschalter am iPhone schaltet WebAudio sonst ab, und die Woerter
+   blieben stumm. Mit dem Typ 'playback' (Safari ab 16.4) spielt die App wie
+   ein Musikspieler auch bei stumm geschaltetem Telefon - man tippt ja
+   ausdruecklich auf den Lautsprecher. Ob WKWebView das so umsetzt, zeigt
+   erst das Geraet (iOS_Plan.md, Stufe B). */
+if(IST_IOS){ try{ if(navigator.audioSession) navigator.audioSession.type = 'playback'; }catch(e){} }
 let canListen = hasTTS;
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 /* Spracherkennung gibt es auf zwei Wegen, und der Unterschied ist nicht
@@ -7833,6 +8013,14 @@ function vollZeileZeigen(){
      man die Zahlung (07.10.2026). */
   v.style.display = (an || aboStoerung || aboGesperrt) ? '' : 'none';
   $('aboVerwalten').textContent = t('voll.verwalten');
+  /* "Kaeufe wiederherstellen" nur auf iOS, und nur ohne laufende
+     Vollversion - wer sie hat, braucht nichts wiederherzustellen.
+     30.10.2026 */
+  const wh = $('setVollWiederherstellen');
+  if(wh){
+    wh.style.display = (IST_IOS && !an) ? '' : 'none';
+    $('aboWiederherstellen').textContent = t('voll.wiederherstellen');
+  }
   /* Wechsel aufs Jahr: nur mit einem laufenden Monatsabo laut Google, nicht
      gesperrt, ohne Stoerung und nur mit Preis. premium allein reicht nicht,
      das setzt auch der Dauerschalter. 10.10.2026 */
@@ -8027,11 +8215,26 @@ async function vollWahlZeigen(){
       '</div>' +
       '<div class="abogratis" id="aboGratis"></div>' +
       '<div class="abohinweis">'+esc(t('voll.hinweis'))+'</div>' +
+      /* iOS (30.10.2026, Richtlinie 3.1.2): Links zu Nutzungsbedingungen
+         und Datenschutz und "Kaeufe wiederherstellen" stehen im Kaufkasten
+         selbst. Name, Laufzeit und Preis stehen schon auf den Karten, die
+         Gratiszeit mit dem Preis danach darueber. */
+      (IST_IOS ? '<div class="abolinks">' +
+         '<button type="button" class="abolink" id="aboAgb"></button> · ' +
+         '<button type="button" class="abolink" id="aboDs"></button> · ' +
+         '<button type="button" class="abolink" id="aboWh"></button></div>' : '') +
       '<button class="btn know" id="aboKauf"></button>' +
       '<button class="btn ghost" id="aboZu"></button>' +
     '</div>';
   kasten.querySelector('#aboKauf').textContent = t('voll.kaufen');
   kasten.querySelector('#aboZu').textContent = t('btn.dialog_abbrechen');
+  if(IST_IOS){
+    kasten.querySelector('#aboAgb').textContent = t('set.agb');
+    kasten.querySelector('#aboDs').textContent = t('set.datenschutz');
+    kasten.querySelector('#aboWh').textContent = t('voll.wiederherstellen');
+    kasten.querySelector('#aboAgb').addEventListener('click', ()=> rechtstextZeigen('agb'));
+    kasten.querySelector('#aboDs').addEventListener('click', ()=> rechtstextZeigen('datenschutz'));
+  }
   document.body.appendChild(kasten);
   /* Der Drache in voller Montur - unabhaengig davon, was der Nutzer
      gerade traegt. Genau das ist ja das Angebot. */
@@ -8042,6 +8245,7 @@ async function vollWahlZeigen(){
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;                       // damit die Zurück-Taste sie schließt
   kasten.querySelector('#aboZu').addEventListener('click', zu);
+  if(IST_IOS) kasten.querySelector('#aboWh').addEventListener('click', ()=>{ zu(); aboWiederherstellen(); });
   kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
   /* Vorausgewählt ist das Jahr - das günstigere. Gibt es dafür keinen Preis,
      nimmt die Auswahl, was da ist. */
@@ -8209,9 +8413,64 @@ function jahrWechselZeigen(){
 }
 $('aboWechsel').addEventListener('click', jahrWechselZeigen);
 function aboSeiteOeffnen(){
+  /* iPhone und iPad (30.10.2026): Apples eigene Abo-Verwaltung, als Blatt
+     in der App (ZmajAbo.verwalten, AppStore.showManageSubscriptions). Geht
+     das nicht, die Abo-Seite des App Stores. */
+  if(IST_IOS){
+    const P = aboPlugin();
+    const notweg = ()=>{ try{ window.open('https://apps.apple.com/account/subscriptions', '_blank'); }catch(e){} };
+    if(P && typeof P.verwalten === 'function'){
+      P.verwalten().then(r => { if(!r || r.ok === false) notweg(); }, notweg);
+    }else notweg();
+    return;
+  }
   const u = 'https://play.google.com/store/account/subscriptions'
           + '?sku=vollversion&package=de.smartdragon.zmaj';
   try{ window.open(u, '_blank'); }catch(e){ location.href = u; }
+}
+/* "Kaeufe wiederherstellen" (nur iOS, Richtlinie 3.1.1, 30.10.2026).
+   ZmajAbo.wiederherstellen() gleicht mit Apple ab (AppStore.sync - Apple
+   fragt dabei eventuell nach dem Passwort des Apple-Accounts) und antwortet
+   {ok, aktiv, plan}. Hat sich etwas geaendert, kommt ausserdem wie nach
+   einem Kauf aboGeaendert. */
+async function aboWiederherstellen(){
+  const P = aboPlugin();
+  if(!P || typeof P.wiederherstellen !== 'function' || aboLaeuft) return;
+  aboLaeuft = true; vollMeldung(''); vollZeileZeigen();
+  let r = null;
+  try{ r = await P.wiederherstellen(); }catch(e){}
+  aboLaeuft = false;
+  if(r && r.ok){
+    if(!!r.aktiv !== premium){ vollversionMerken(!!r.aktiv); renderLives(); drachenNeu(); renderLaden(); }
+    aboPlanSetzen(r);
+    vollMeldung(t(r.aktiv ? 'voll.wiederhergestellt' : 'voll.nichts_gefunden'));
+  }else{
+    vollMeldung(t('voll.fehler'));
+  }
+  vollZeileZeigen();
+}
+$('aboWiederherstellen').addEventListener('click', aboWiederherstellen);
+/* Nutzungsbedingungen und Datenschutzerklaerung als eigene Ebene ueber dem
+   Kaufkasten. Apple verlangt im Kaufkasten funktionierende Links zu beiden
+   (Richtlinie 3.1.2); in der App heisst das: lesen, ohne den Kasten zu
+   verlieren, und ohne Netz. Gezeigt wird die Fassung der Plattform (t(),
+   auf iOS die _ios-Texte). 30.10.2026 */
+function rechtstextZeigen(art){
+  const kasten = document.createElement('div');
+  kasten.className = 'nachfrage rechtsebene';
+  kasten.innerHTML = '<div class="nachfragebox einwilligungbox" style="text-align:left">' +
+      '<h3></h3><div class="inner legal"></div>' +
+      '<button class="btn know" id="rechtZu"></button></div>';
+  kasten.querySelector('h3').textContent = t(art === 'agb' ? 'set.agb' : 'set.datenschutz');
+  kasten.querySelector('.legal').innerHTML = t(art === 'agb' ? 'set.agb_text' : 'set.datenschutz_text',
+                                               {anbieter: t('set.anbieter')});
+  kasten.querySelector('#rechtZu').textContent = t('btn.zurueck');
+  document.body.appendChild(kasten);
+  const vorher = frageSchliessen;
+  const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = vorher; };
+  frageSchliessen = zu;
+  kasten.querySelector('#rechtZu').addEventListener('click', zu);
+  kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
 }
 
 /* =================== ANMELDUNG =================== */
@@ -9536,6 +9795,19 @@ async function cloudSitzungAbgleichen(){
   const jetzt = cloudMerker();
   restoreUid = (!jetzt && r && typeof r.uid === 'string' && r.uid) ? r.uid : '';
   if(jetzt) anmAufruf('restoreSichern', {uid: jetzt.uid}, 20000);   // ohne Warten
+  if(IST_IOS) anbieterFragen();
+}
+/* Welche Anmeldewege die iOS-Huelle kann (30.10.2026). ZmajAnmeldung.anbieter()
+   antwortet {google, apple}: google nur, wenn in der Huelle eine
+   iOS-Client-ID steht (GIDClientID aus ios_zugang.xcconfig), apple, wenn
+   "Mit Apple anmelden" auf dem Geraet geht. Ohne Antwort (aeltere Huelle,
+   Frist verstrichen) entscheidet, ob es die Methoden gibt. Danach werden
+   die Knoepfe neu gestellt, falls die Anmeldeseite schon steht. */
+let anmAnbieter = null;
+async function anbieterFragen(){
+  const r = await anmAufruf('anbieter', {}, 3000);
+  if(r && typeof r === 'object') anmAnbieter = {google: r.google !== false, apple: r.apple !== false};
+  if(sichtbar('profileView') && !$('anmWahl').hidden) anmKnoepfeStellen();
 }
 /* Firebase sagt, die Anmeldung gilt nicht mehr (Konto geloescht oder
    gesperrt, Passwort anderswo geaendert). Merker, Kopie und
@@ -9557,7 +9829,33 @@ function cloudVonAussenAbgemeldet(uid){
    Manager. Wirft mit grund GOOGLE_ABGEBROCHEN, GOOGLE_KEIN_KONTO (kein
    Google-Konto auf dem Handy) oder GOOGLE_FEHLER. */
 const googleMoeglich = () => !!anmPlugin() && typeof anmPlugin().googleAusweis === 'function'
-  && /^[0-9]{6,20}-[0-9a-z]{16,40}\.apps\.googleusercontent\.com$/.test(CLOUD_CLIENT);
+  && /^[0-9]{6,20}-[0-9a-z]{16,40}\.apps\.googleusercontent\.com$/.test(CLOUD_CLIENT)
+  && !(IST_IOS && anmAnbieter && !anmAnbieter.google);
+/* "Mit Apple anmelden" nur auf iPhone und iPad (Entscheidung 6b, 30.10.2026). */
+const appleMoeglich = () => IST_IOS && !!anmPlugin() && typeof anmPlugin().appleAusweis === 'function'
+  && !(anmAnbieter && !anmAnbieter.apple);
+/* Apples Ausweis aus der Huelle: ZmajAnmeldung.appleAusweis() zeigt Apples
+   Fenster (ASAuthorizationAppleIDProvider) und antwortet {idToken, nonce,
+   code}. nonce ist der ROHE Zufallswert, dessen SHA-256 die Huelle Apple
+   mitgegeben hat - Firebase prueft damit das Token (signInWithIdp, nonce).
+   code ist Apples authorizationCode, fuenf Minuten gueltig; mit ihm
+   widerruft die App beim Loeschen des Kontos Apples Token (accounts:
+   revokeToken), wie Apple es verlangt. Wirft mit grund APPLE_ABGEBROCHEN
+   oder APPLE_FEHLER. */
+async function cloudAppleAusweis(){
+  const P = anmPlugin();
+  const fehler = grund => { const f = new Error('apple'); f.grund = grund; return f; };
+  if(!P || !P.appleAusweis) throw fehler('APPLE_FEHLER');
+  let r;
+  try{ r = await P.appleAusweis({}); }
+  catch(e){
+    const c = String((e && (e.code || e.message)) || '');
+    throw fehler(c === 'abgebrochen' ? 'APPLE_ABGEBROCHEN' : 'APPLE_FEHLER');
+  }
+  if(!r || typeof r.idToken !== 'string' || !r.idToken) throw fehler('APPLE_FEHLER');
+  return {idToken: r.idToken, nonce: typeof r.nonce === 'string' ? r.nonce : '',
+          code: typeof r.code === 'string' ? r.code : ''};
+}
 async function cloudGoogleAusweis(){
   const P = anmPlugin();
   const fehler = grund => { const f = new Error('google'); f.grund = grund; return f; };
@@ -9644,6 +9942,32 @@ function cloudFirestore(projekt, schluessel){
       postBody: 'id_token=' + encodeURIComponent(google) + '&providerId=google.com',
       requestUri: 'http://localhost', returnIdpCredential: true, returnSecureToken: true}))).json();
   }
+  /* Apples Ausweis eintauschen (iOS, 30.10.2026) - wie mitGoogle, dazu der
+     rohe nonce. Gibt {d, code} zurueck: code braucht loeschen() fuer den
+     Widerruf. */
+  async function mitApple(){
+    const a = await cloudAppleAusweis();
+    const d = await (await senden(KONTO + 'signInWithIdp?key=' + schluessel, post({
+      postBody: 'id_token=' + encodeURIComponent(a.idToken) + '&providerId=apple.com'
+        + (a.nonce ? '&nonce=' + encodeURIComponent(a.nonce) : ''),
+      requestUri: 'http://localhost', returnIdpCredential: true, returnSecureToken: true}))).json();
+    return {d, code: a.code};
+  }
+  /* Apples Token widerrufen, bevor das Konto geht (30.10.2026). Apple
+     verlangt das fuer Konten mit "Mit Apple anmelden"; Firebase reicht den
+     authorizationCode an Apple weiter (Identity Platform REST v2,
+     accounts:revokeToken, tokenType CODE - derselbe Weg wie
+     Auth.revokeToken(withAuthorizationCode:) im iOS-SDK). Ohne Netz wirft
+     es, und es ist noch nichts geloescht. Lehnt Firebase ab (etwa weil der
+     Apple-Schluessel in der Konsole fehlt), geht das Loeschen trotzdem
+     weiter: sonst koennte so jemand sein Konto nie loeschen. */
+  async function appleWiderrufen(id, code){
+    if(!code) return;
+    try{
+      await senden('https://identitytoolkit.googleapis.com/v2/accounts:revokeToken?key=' + schluessel,
+        post({idToken: id, providerId: 'apple.com', tokenType: 'CODE', token: code}));
+    }catch(e){ if(e && e.netz) throw e; }
+  }
   /* E-Mail und Passwort - beim Anmelden und vor dem Loeschen des Kontos.
      Mit dem Schutz vor E-Mail-Aufzaehlung (bei neuen Projekten an) meldet
      Firebase fuer unbekannte Adresse und falsches Passwort dasselbe:
@@ -9674,6 +9998,8 @@ function cloudFirestore(projekt, schluessel){
         d = await (await senden(KONTO + 'signUp?key=' + schluessel, post({returnSecureToken: true}))).json();
       }else if(art === 'google'){
         d = await mitGoogle();
+      }else if(art === 'apple'){
+        d = (await mitApple()).d;
       }else if(art === 'passwort'){
         d = await mitPasswort((daten || {}).email, (daten || {}).pw);
       }
@@ -9721,7 +10047,16 @@ function cloudFirestore(projekt, schluessel){
        Konto weg ist; die Sicherung ist es dann in jedem Fall. */
     async loeschen(m, optionen){
       let id;
-      if(m.art === 'passwort' || m.art === 'google'){
+      /* "Mit Apple anmelden" (30.10.2026): frisch bei Apple anmelden, dasselbe
+         Konto pruefen, Apples Token widerrufen - erst dann wird geloescht. */
+      if(m.art === 'apple'){
+        const {d, code} = await mitApple();
+        if(!d || d.localId !== m.uid || !d.idToken){
+          const f = new Error('cloud anderes konto'); f.grund = 'APPLE_ANDERES_KONTO'; throw f;
+        }
+        id = d.idToken;
+        await appleWiderrufen(id, code);
+      }else if(m.art === 'passwort' || m.art === 'google'){
         const d = m.art === 'google' ? await mitGoogle()
           : await mitPasswort(m.email, (optionen || {}).passwort);
         if(!d || d.localId !== m.uid || !d.idToken){
@@ -9793,8 +10128,22 @@ function warAbgemeldet(){ try{ return localStorage.getItem(ABGEMELDET) === '1'; 
 function anmeldungFaellig(){
   return cloudModus() && standGeladen && !cloudMerker()
     && (hatGelernt() || !!restoreUid || warAbgemeldet())
-    && navigator.onLine !== false && !netzWeg;
+    && navigator.onLine !== false && !netzWeg && !anmSpaeterHeute();
 }
+/* "Spaeter" auf iPhone und iPad (30.10.2026, Entscheidung 7). Apple: wer
+   keine kontogebundenen Funktionen braucht, darf ohne Anmeldung lernen
+   (Richtlinie 5.1.1(v)). Das Konto sichert bei Zmaj nur den Lernstand.
+   Also gibt es dort neben der Anmeldung "Spaeter", und das Tor bleibt fuer
+   den Rest des Tages offen; am naechsten Tag fragt es wieder, mit demselben
+   Ausweg. Auf Android bleibt die Pflicht wie seit v109. */
+const ANM_SPAETER = 'zmaj_anm_spaeter';
+function anmSpaeterHeute(){
+  if(!IST_IOS) return false;
+  try{ return localStorage.getItem(ANM_SPAETER) === today(); }catch(e){ return false; }
+}
+/* Welcher Anmeldeweg zuletzt lief: 'google', 'apple' oder ''. Nur fuer die
+   Fehlermeldung - INVALID_IDP_RESPONSE kommt bei beiden. 30.10.2026 */
+let anmWeg = '';
 function anmeldungAnlass(){
   if(restoreUid && !hatGelernt()) return 'zurueck';
   if(warAbgemeldet()) return 'abgemeldet';
@@ -9871,9 +10220,12 @@ function anmeldungZeigen(anlass, modus = 'wahl', daten = {}){
   const zurueck = !wahl ? ()=> anmeldungZeigen(anmAnlass, 'wahl')
     : (anmeldungFaellig() ? null : ()=>{ kopfZurueck(); homeMode = 'words'; showHome(); });
   setzeZurueck(zurueck ? t('btn.zurueck') : '', zurueck);
+  /* "Spaeter" nur auf iOS, nur in der Wahl und nur, wenn das Tor wirklich
+     zu ist - wer freiwillig hier ist, hat schon die Zurueck-Taste. */
+  $('anmSpaeter').hidden = !(IST_IOS && wahl && anmeldungFaellig());
+  $('anmSpaeter').textContent = t('anm.spaeter');
   if(wahl){
-    $('anmGoogle').hidden = !googleMoeglich();
-    $('anmGoogleText').textContent = t('anm.google');
+    anmKnoepfeStellen();
     $('anmMail').textContent = t('anm.mail');
     $('anmNote').textContent = daten.hinweis || '';
     $('anmNote').className = daten.hinweis ? 'note feedback no' : 'note';
@@ -9910,6 +10262,15 @@ function anmeldungZeigen(anlass, modus = 'wahl', daten = {}){
 /* Eine Firebase-Antwort als Satz. Firebase haengt manchmal " : ..." an,
    deshalb zaehlt nur der Anfang (wie in kontoWeg). Leer: nichts zu sagen
    (Google-Auswahl abgebrochen). */
+/* Die Anmeldeknoepfe der Wahl: Apple (nur iOS) ueber Google, beide nur,
+   wenn die Huelle sie kann - ohne Client-ID in der Huelle gibt es keinen
+   Google-Knopf (anbieterFragen). 30.10.2026 */
+function anmKnoepfeStellen(){
+  $('anmApple').hidden = !appleMoeglich();
+  $('anmAppleText').textContent = t('anm.apple');
+  $('anmGoogle').hidden = !googleMoeglich();
+  $('anmGoogleText').textContent = t('anm.google');
+}
 function kontoFirebaseFehler(g){
   g = String(g || '');
   if(g === 'netz') return t('konto.fehler_netz');
@@ -9927,8 +10288,12 @@ function kontoFirebaseFehler(g){
     return t(anmModus === 'mail_an' ? 'konto.fehler_pw_erneuern' : 'konto.fehler_pw_regeln');
   if(/^TOO_MANY_ATTEMPTS_TRY_LATER/.test(g)) return t('konto.fehler_zu_oft');
   if(/^USER_DISABLED/.test(g)) return t('konto.fehler_konto_gesperrt');
-  if(g === 'GOOGLE_ABGEBROCHEN') return '';
+  if(g === 'GOOGLE_ABGEBROCHEN' || g === 'APPLE_ABGEBROCHEN') return '';
   if(g === 'GOOGLE_KEIN_KONTO') return t('konto.fehler_google_keins');
+  /* Apple vor INVALID_IDP_RESPONSE: das kommt bei beiden Wegen, gemeint ist
+     der, der zuletzt lief (anmWeg). 30.10.2026 */
+  if(/^APPLE_(FEHLER|ANDERES_KONTO)/.test(g) || (anmWeg === 'apple' && /^INVALID_IDP_RESPONSE/.test(g)))
+    return t('konto.fehler_apple');
   if(/^(GOOGLE_FEHLER|INVALID_IDP_RESPONSE)/.test(g)) return t('konto.fehler_google');
   return t('konto.fehler_allgemein');
 }
@@ -9940,7 +10305,7 @@ function kontoFirebaseFehler(g){
    Update jeder mit Lernstand fest. Keinen Ausweg gibt es nur bei diesen
    Gruenden: Eingabefehler, abgebrochene Auswahl, kein Google-Konto auf dem
    Handy (dann E-Mail) und ein gesperrtes Konto. */
-const ANM_OHNE_AUSWEG = /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD|EMAIL_EXISTS|INVALID_EMAIL|MISSING_EMAIL|WEAK_PASSWORD|PASSWORD_DOES_NOT_MEET_REQUIREMENTS|USER_DISABLED|GOOGLE_ABGEBROCHEN|GOOGLE_KEIN_KONTO)/;
+const ANM_OHNE_AUSWEG = /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD|EMAIL_EXISTS|INVALID_EMAIL|MISSING_EMAIL|WEAK_PASSWORD|PASSWORD_DOES_NOT_MEET_REQUIREMENTS|USER_DISABLED|GOOGLE_ABGEBROCHEN|GOOGLE_KEIN_KONTO|APPLE_ABGEBROCHEN)/;
 function anmFehlerZeigen(grund, note){
   const text = kontoFirebaseFehler(grund);
   note.textContent = text;
@@ -10018,6 +10383,7 @@ $('anmGoogle').addEventListener('click', async ()=>{
   if(anmeldungLaeuft || !cloudModus()) return;
   const note = $('anmNote');
   anmeldungLaeuft = true;
+  anmWeg = 'google';
   $('anmGoogle').disabled = true;
   note.className = 'note'; note.textContent = t('konto.laeuft');
   try{
@@ -10027,6 +10393,28 @@ $('anmGoogle').addEventListener('click', async ()=>{
     anmeldungLaeuft = false;
     $('anmGoogle').disabled = false;
   }
+});
+/* "Mit Apple anmelden" (iOS, 30.10.2026) - derselbe Ablauf wie Google. */
+$('anmApple').addEventListener('click', async ()=>{
+  if(anmeldungLaeuft || !cloudModus()) return;
+  const note = $('anmNote');
+  anmeldungLaeuft = true;
+  anmWeg = 'apple';
+  $('anmApple').disabled = true;
+  note.className = 'note'; note.textContent = t('konto.laeuft');
+  try{
+    if(await cloudAnmelden('apple')){ note.textContent = ''; cloudNachAnmeldung(false); return; }
+    anmFehlerZeigen(cloudFehlerGrund, note);
+  }finally{
+    anmeldungLaeuft = false;
+    $('anmApple').disabled = false;
+  }
+});
+$('anmSpaeter').addEventListener('click', ()=>{
+  try{ localStorage.setItem(ANM_SPAETER, today()); }catch(e){}
+  kopfZurueck();
+  homeMode = 'words';
+  showHome();
 });
 $('anmMail').addEventListener('click', ()=> anmeldungZeigen(anmAnlass, 'mail_an'));
 $('anmOffline').addEventListener('click', ()=>{
@@ -10123,7 +10511,8 @@ async function cloudKontoLoeschen(passwort){
      Google anmelden", und den Knopf gibt es hier nicht (Gegenpruefung
      28.10.2026). Ebenso unten bei einem falschen Passwort. */
   if(m.art === 'passwort' && !passwort){ note.textContent = t('konto.fehler_alt'); note.className = 'note feedback no'; return; }
-  const frageText = t('set.konto_weg_frage') + (m.art === 'google' ? ' ' + t('set.konto_weg_google') : '');
+  const frageText = t('set.konto_weg_frage') + (m.art === 'google' ? ' ' + t('set.konto_weg_google')
+                                               : m.art === 'apple' ? ' ' + t('set.konto_weg_apple') : '');
   if(!await frage(t('set.konto_loeschen'), frageText, t('set.konto_loeschen_knopf'), t('btn.dialog_abbrechen'))) return;
   anmeldungLaeuft = true;
   note.className = 'note'; note.textContent = t('konto.laeuft');
@@ -10134,7 +10523,8 @@ async function cloudKontoLoeschen(passwort){
     /* 28.10.2026: Googles Auswahl abgebrochen - nichts ist geloescht, und
        zu sagen gibt es auch nichts (wie beim Anmelden). */
     const g = cloudFehlerGrund;
-    note.textContent = g === 'GOOGLE_ABGEBROCHEN' ? ''
+    note.textContent = (g === 'GOOGLE_ABGEBROCHEN' || g === 'APPLE_ABGEBROCHEN') ? ''
+      : /^APPLE_(FEHLER|ANDERES_KONTO)/.test(g) ? t('konto.fehler_apple')
       : /^(INVALID_LOGIN_CREDENTIALS|EMAIL_NOT_FOUND|INVALID_PASSWORD|MISSING_PASSWORD)/.test(g)
       ? t('konto.fehler_alt') : t(g === 'netz' ? 'konto.fehler_netz' : 'konto.fehler_allgemein');
     note.className = note.textContent ? 'note feedback no' : 'note';
@@ -10171,15 +10561,36 @@ if(CLOUD_AN){
    keine neue Bibliothek. referrer=utm_source app_teilen laesst die Play
    Console die Installationen ueber diesen Weg zaehlen (WERBEPLAN.md,
    Abschnitt 2). Am PC ohne Teilen-Menue geht das Mailprogramm auf. */
+/* iPhone und iPad (30.10.2026): die Seite der App im App Store. Die Nummer
+   (Apple-ID der App) gibt es erst mit dem Eintrag in App Store Connect
+   (Stufe B). Bis dahin steht hier ein Platzhalter, und app_bauen.py --ios
+   setzt sie aus ios_zugang.xcconfig der Huelle in die KOPIE ein, wie die
+   Werbe-IDs. Ohne Nummer gibt es auf iOS keinen Link in einen Store - die
+   beiden Zeilen "Bewerten" und "Empfehlen" sind dann ausgeblendet
+   (einstellungenFuerPlattform), statt ins Leere zu fuehren. */
+const APPLE_APP_ID = '__APPLE_ID__';
+const appStoreDa = () => /^[0-9]{6,12}$/.test(APPLE_APP_ID);
+const appStoreLink = () => appStoreDa() ? 'https://apps.apple.com/app/id' + APPLE_APP_ID : '';
+/* Der Weg in den Store fuer Bewerten und Empfehlen: auf iOS der App Store,
+   sonst wie bisher Google Play. */
+function storeLink(teilen){
+  if(IST_IOS) return appStoreLink();
+  return 'https://play.google.com/store/apps/details?id=' + ZMAJ_PAKET
+    + (teilen ? '&referrer=utm_source%3Dapp_teilen' : '');
+}
 $('setBewerten').addEventListener('click', async ()=>{
   const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajBewertung;
   if(P){ try{ await P.storeOeffnen(); }catch(e){} return; }
-  try{ window.open('https://play.google.com/store/apps/details?id=' + ZMAJ_PAKET, '_blank', 'noopener'); }catch(e){}
+  /* iOS ohne Plugin gibt es eigentlich nicht; dann wenigstens die Seite zum
+     Schreiben einer Bewertung (?action=write-review, Apples Weg). */
+  const u = IST_IOS ? (appStoreDa() ? appStoreLink() + '?action=write-review' : '') : storeLink(false);
+  if(u) try{ window.open(u, '_blank', 'noopener'); }catch(e){}
 });
 $('setEmpfehlen').addEventListener('click', async ()=>{
   const P = window.Capacitor && window.Capacitor.Plugins;
   const text = t('set.empfehlen_text');
-  const link = 'https://play.google.com/store/apps/details?id=' + ZMAJ_PAKET + '&referrer=utm_source%3Dapp_teilen';
+  const link = storeLink(true);
+  if(!link) return;
   try{
     if(P && P.Share) await P.Share.share({title: 'Zmaj', text: text, url: link, dialogTitle: t('set.empfehlen')});
     else if(navigator.share) await navigator.share({title: 'Zmaj', text: text, url: link});
@@ -11823,7 +12234,12 @@ function zeigeWerbungJetzt(belohnt, fertig, darfNoch){
   // eine Anzeige, die nicht kam, darf kein Tageskontingent verbrauchen.
   // Und jede Art auf ihr eigenes Kontingent (Ajdin am 26.09.2026).
   if(admobDa()){
-    admobZeigen(belohnt, darfNoch).then(lief => { if(lief) werbungGezaehlt(belohnt); fertig(lief); });
+    admobZeigen(belohnt, darfNoch).then(lief => {
+      if(lief) werbungGezaehlt(belohnt);
+      // Auch ein vor der Belohnung weggedruecktes Video war eine Anzeige.
+      if(lief || lohnAbgebrochen){ anzeigeMerken(belohnt); anzeigeMeldenAnbieten(); }
+      fertig(lief);
+    });
     return;
   }
   /* Auf dem Geraet gibt es keinen Platzhalter. Der ist fuer den PC
@@ -11875,6 +12291,63 @@ function zeigeWerbungJetzt(belohnt, fertig, darfNoch){
   const pk = kasten.querySelector('#werbePremium');
   // Direkt zum Kaufkasten, siehe vollKaufOeffnen(). 07.10.2026
   if(pk) pk.addEventListener('click', () => { schliessen(false); vollKaufOeffnen(); });
+}
+
+/* ---- Anzeige melden (nur iOS, 30.10.2026) ----
+   Apple verlangt in Apps mit Werbung eine Moeglichkeit, unpassende Anzeigen
+   zu melden (Richtlinie 2.5.18). Die App hat keinen Server, also derselbe
+   Weg wie beim Feedback: das Mailprogramm geht mit fertiger Nachricht an
+   uns auf - mit Zeitpunkt und Art der letzten Anzeige, damit Ajdin sie in
+   der AdMob-Konsole (Anzeigenpruefung) findet und sperren kann. Angeboten
+   wird es sechs Sekunden lang nach jeder Vollbildanzeige und immer in den
+   Einstellungen unter Werbung. Auf Android verlangt Google das nicht, dort
+   bleibt alles, wie es war. */
+let letzteAnzeige = null;      // {zeit: Date, belohnt}, nur im Arbeitsspeicher
+function anzeigeMerken(belohnt){ letzteAnzeige = {zeit: new Date(), belohnt: !!belohnt}; }
+/* Die fertige Mail als mailto-Link - eigene Funktion, damit die Tests sie
+   lesen koennen, ohne ein Mailprogramm zu oeffnen. */
+function anzeigeMeldenLink(){
+  const a = letzteAnzeige;
+  const wann = a ? a.zeit.toISOString().replace('T', ' ').slice(0, 19) + ' UTC'
+                   + ' · ' + (a.belohnt ? 'rewarded' : 'interstitial') : '-';
+  const betreff = 'Zmaj – ' + t('werbung.melden');
+  const rumpf = t('werbung.melden_text') + '\n\n' + t('werbung.melden_wann') + ' ' + wann
+              + '\n\n--\n' + (SPRACHE || '') + ' · ' + PLATTFORM + ' · ' + APP_VERSION;
+  return 'mailto:' + ZMAJ_MAIL + '?subject=' + encodeURIComponent(betreff)
+         + '&body=' + encodeURIComponent(rumpf);
+}
+function anzeigeMeldenMail(){
+  try{ location.href = anzeigeMeldenLink(); }catch(e){}
+}
+let meldeUhr = 0;
+function anzeigeMeldenAnbieten(){
+  if(!IST_IOS) return;
+  const alt = document.querySelector('.meldenote');
+  if(alt) alt.remove();
+  const el = document.createElement('div');
+  el.className = 'meldenote';
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'abolink'; b.id = 'anzeigeMeldenKurz';
+  b.textContent = t('werbung.melden');
+  b.addEventListener('click', ()=>{ el.remove(); anzeigeMeldenMail(); });
+  el.appendChild(b);
+  document.body.appendChild(el);
+  setTimeout(()=> el.classList.add('an'), 20);
+  clearTimeout(meldeUhr);
+  meldeUhr = setTimeout(()=>{ el.classList.remove('an'); setTimeout(()=> el.remove(), 400); }, 6000);
+}
+$('anzeigeMelden').addEventListener('click', anzeigeMeldenMail);
+/* Was auf iPhone und iPad in den Einstellungen anders ist, an einer Stelle.
+   Einmal beim Start (init). 30.10.2026 */
+function einstellungenFuerPlattform(){
+  if(!IST_IOS) return;
+  const vib = $('setVibrationZeile'); if(vib) vib.style.display = 'none';   // Entscheidung 13
+  // Anzeige melden nur, wo ueberhaupt Werbung laufen kann.
+  const melden = $('setAnzeigeMelden');
+  if(melden) melden.style.display = (WERBUNG_ECHT && !!(window.Capacitor && window.Capacitor.Plugins
+                                       && window.Capacitor.Plugins.AdMob)) ? '' : 'none';
+  // Ohne Apple-ID der App fuehren Bewerten und Empfehlen nirgendwohin.
+  if(!appStoreDa()){ $('setBewerten').style.display = 'none'; $('setEmpfehlen').style.display = 'none'; }
 }
 
 /* Ein belohntes Video: freiwillig, gibt ein Leben zurück. */
@@ -13487,7 +13960,8 @@ function bewertungFaellig(){
 async function bewertungOeffnen(){
   const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajBewertung;
   if(!P){
-    try{ window.open('https://play.google.com/store/apps/details?id=' + ZMAJ_PAKET, '_blank', 'noopener'); }catch(e){}
+    const u = storeLink(false);
+    if(u) try{ window.open(u, '_blank', 'noopener'); }catch(e){}
     return;
   }
   if(BEWERTUNG_IM_APP){
@@ -13497,6 +13971,22 @@ async function bewertungOeffnen(){
     try{ const r = await P.imApp(); if(r && r.ok && r.ms >= 1500) return; }catch(e){}
   }
   try{ await P.storeOeffnen(); }catch(e){}
+}
+/* iPhone und iPad (30.10.2026, Entscheidung 11): keine eigene Karte.
+   Apple verbietet eigene Bewertungsfragen (Richtlinie 5.6.1) und hat ein
+   eigenes Fenster, das es hoechstens dreimal in 365 Tagen zeigt und das
+   nicht auf ein Antippen folgen soll. Es kommt also von selbst an derselben
+   ruhigen Stelle wie auf Android die Karte: zurueck auf dem Lernpfad nach
+   einem bestandenen Level-Test, nie ueber einer Anzeige, nach denselben
+   Grenzen (bewertungFaellig). Ob Apple es wirklich zeigt, erfaehrt die App
+   nicht - deshalb kein Weg in den Store danach; ZmajBewertung.imApp()
+   antwortet auf iOS ohnehin mit ms 99999. Der Knopf "Zmaj bewerten" in den
+   Einstellungen fuehrt weiter in den App Store. */
+async function appleBewertung(){
+  bewertung.gezeigt = (bewertung.gezeigt || []).concat([today()]).slice(-6);
+  saveProgress();
+  const P = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.ZmajBewertung;
+  if(P && typeof P.imApp === 'function'){ try{ await P.imApp(); }catch(e){} }
 }
 function zeigeBewertung(){
   bewertung.gezeigt = (bewertung.gezeigt || []).concat([today()]).slice(-6);
@@ -13888,7 +14378,8 @@ function kartenNachreichen(){
     if(!frei()) return;
     if(benDran){ benDran = false; zeigeBenFrage(); return; }
     if(bewertungDran && Date.now() - anzeigeZuletzt >= BEWERTUNG_NACH_ANZEIGE_MS){
-      bewertungDran = false; zeigeBewertung();
+      bewertungDran = false;
+      if(IST_IOS) appleBewertung(); else zeigeBewertung();
     }
   }, 600);
 }
@@ -13930,7 +14421,11 @@ const Ex_laeuft = () => !!(Ex && !Ex.fertig && sichtbar('einstufungView'));
    dem Play Store installiert, kein Netz, Art des Updates nicht erlaubt),
    bleibt die App offen - eine Sperre, die sich nicht loesen laesst, waere
    schlimmer als der Fehler. Werbung, Abo und Leben fasst nichts davon an. */
-const updPlugin = () => (window.Capacitor && window.Capacitor.Plugins
+/* Auf iPhone und iPad nie: Apple hat keine Updates aus der App heraus, die
+   Huelle meldet ZmajUpdate dort gar nicht erst an. Die Weiche steht trotzdem
+   hier, damit auch ein versehentlich angemeldetes Plugin nie gefragt wird.
+   30.10.2026 */
+const updPlugin = () => (!IST_IOS && window.Capacitor && window.Capacitor.Plugins
                          && window.Capacitor.Plugins.ZmajUpdate) || null;
 const UPD_PFLICHT_PRIO = 4;                // Google vergibt 0 bis 5
 const UPD_MERKER = 'zmaj_update_gefragt';  // Tag, an dem Google zuletzt sanft gefragt hat
@@ -14347,8 +14842,17 @@ async function agbHinweis(versuch = 0){
 }
 
 async function init(){
-  dauerVollVerdrahten();
-  hautAlleVerdrahten();
+  /* Die beiden versteckten Schalter (7x Tippen plus Wort) gibt es auf
+     iPhone und iPad nicht: Apple verbietet versteckte Funktionen
+     (Richtlinie 2.3.1 und 2.5.19), und die Vollversion ohne Kauf waere dort
+     ein Verstoss gegen 3.1.1. Der iOS-Bau setzt ausserdem keinen Pruefwert
+     ein (app_bauen.py --ios), dauerWortStimmt() sagt dort also immer nein.
+     30.10.2026 */
+  if(!IST_IOS){
+    dauerVollVerdrahten();
+    hautAlleVerdrahten();
+  }
+  einstellungenFuerPlattform();
   try{ await starten(); }
   finally{ vorspannWeg(); }
   tonVorwaermenPlanen();   // den Kaltstart der Tonausgabe vorwegnehmen (22.10.2026)
