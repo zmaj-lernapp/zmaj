@@ -39,8 +39,8 @@ nur Objekte (geprueft). Herzen und Serienschutz koennen im Spiel nie ueber
 LEBEN_MAX bzw. SCHUTZ_MAX steigen - jede Stelle, die sie erhoeht, nimmt
 schon Math.min. Das Kappen beim Einlesen nimmt also niemandem etwas.
 
-ACHTUNG - NICHT VOR DEM 07.10.2026 EINREICHEN. Jede Einreichung setzt
-Googles Pruefuhr fuer den geschlossenen Test zurueck.
+ANGEWENDET am 05.10.2026 (Build 91). Das Skript bleibt, weil
+tests/test_richten.py den angewendeten Stand prueft.
 
 Probelauf:  python import_richten.py
 Schreiben:  python import_richten.py --schreiben

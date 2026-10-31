@@ -33,7 +33,6 @@ import json
 import os
 import re
 import socketserver
-import sys
 import threading
 import time
 
@@ -133,7 +132,6 @@ SCHRITTE = [
 
 def lernstand():
     """Wie stand.py: Vorführstand aus testdaten, auf heute verschoben."""
-    sys.path.insert(0, HIER)
     import datetime
     quelle = os.path.join(WURZEL, "testdaten", "zmaj-screenshots.json")
     s = json.load(open(quelle, encoding="utf-8"))["stand"]
