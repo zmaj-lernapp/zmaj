@@ -30,7 +30,7 @@ import json
 
 # Die Attrappe steht seit 28.10.2026 in firebase_attrappe.py, die Demo mit
 # eingeschalteter Anmeldung (cloud_html) in conftest.py.
-from firebase_attrappe import FIREBASE, PROJEKT, UID, Attrappe
+from firebase_attrappe import FIREBASE, PROJEKT, UID, Attrappe, wege
 
 # Speicher-Adapter einrichten: window.ablage haelt den "Cloud"-Stand.
 ADAPTER = """() => { window.ablage = {}; window.adapter = cloudSpeicherAdapter(window.ablage); return true; }"""
@@ -478,10 +478,6 @@ def _cloud_seite(seite, heute_stand, cloud_html):
     return attrappe
 
 
-def _wege(attrappe):
-    return [(a, p) for a, p, _ in attrappe.anfragen]
-
-
 def test_loeschen_anonym_zu_alt_sicherung_weg_und_abgemeldet(seite, heute_stand, cloud_html):
     attrappe = _cloud_seite(seite, heute_stand, cloud_html)
     assert seite.js("async () => await cloudAnmelden('anonym')") is True
@@ -492,7 +488,7 @@ def test_loeschen_anonym_zu_alt_sicherung_weg_und_abgemeldet(seite, heute_stand,
     attrappe.anfragen.clear()
     attrappe.dok_fehler = True
     assert seite.js("async () => await cloudLoeschen()") is False
-    assert _wege(attrappe) == [("DELETE", DOK)]
+    assert wege(attrappe) == [("DELETE", DOK)]
     assert attrappe.dok is not None and not attrappe.konto_weg
     assert seite.js("() => cloudMerker() && cloudMerker().uid") == UID
 
@@ -502,7 +498,7 @@ def test_loeschen_anonym_zu_alt_sicherung_weg_und_abgemeldet(seite, heute_stand,
     attrappe.dok_fehler = False
     attrappe.alt = {"id-1", "id-2"}
     assert seite.js("async () => await cloudLoeschen()") == "konto bleibt"
-    assert _wege(attrappe) == [("DELETE", DOK), ("POST", KONTO_WEG)]
+    assert wege(attrappe) == [("DELETE", DOK), ("POST", KONTO_WEG)]
     assert attrappe.dok is None and not attrappe.konto_weg
     assert seite.js("() => localStorage.getItem('zmaj_cloud')") is None
 
@@ -533,7 +529,7 @@ def test_loeschen_google_fragt_zuerst(seite, heute_stand, cloud_html):
     attrappe = _cloud_seite(seite, heute_stand, cloud_html)
     seite.js(GOOGLE_PLUGIN)
     assert seite.js("async () => await cloudAnmelden('google')") is True
-    assert _wege(attrappe) == [("POST", GOOGLE), ("GET", DOK), ("PATCH", DOK)]
+    assert wege(attrappe) == [("POST", GOOGLE), ("GET", DOK), ("PATCH", DOK)]
     assert seite.js("() => cloudMerker().art") == "google"
     # Die Anmeldung von eben ist fuer Firebase schon zu alt zum Loeschen.
     attrappe.alt = {"id-1", "id-2", "id-g1"}
@@ -546,7 +542,7 @@ def test_loeschen_google_fragt_zuerst(seite, heute_stand, cloud_html):
         attrappe.google_uid = UID if nein else "uidAnders"
         seite.js("(nein) => { window.googleNein = nein; }", nein)
         assert seite.js("async () => [await cloudLoeschen(), cloudFehlerGrund]") == [False, grund]
-        assert _wege(attrappe) == ([] if nein else [("POST", GOOGLE)])
+        assert wege(attrappe) == ([] if nein else [("POST", GOOGLE)])
         assert attrappe.geloescht_mit == [] and not attrappe.konto_weg
         assert attrappe.dok is not None and seite.js("() => cloudMerker() && cloudMerker().uid") == UID
 
@@ -556,7 +552,7 @@ def test_loeschen_google_fragt_zuerst(seite, heute_stand, cloud_html):
     attrappe.anfragen.clear()
     seite.js("() => { known.add('neu:vor-dem-loeschen'); window.googleFragen = 0; window.beimLoeschen = true; }")
     assert seite.js("async () => await cloudLoeschen()") is True
-    assert _wege(attrappe) == [("POST", GOOGLE), ("DELETE", DOK), ("POST", KONTO_WEG)]
+    assert wege(attrappe) == [("POST", GOOGLE), ("DELETE", DOK), ("POST", KONTO_WEG)]
     assert attrappe.geloescht_mit == ["id-g3"] and attrappe.konto_weg
     assert seite.js("() => [window.googleFragen, window.abgleichDabei]") == [1, "nichts"]
     assert attrappe.dok is None
