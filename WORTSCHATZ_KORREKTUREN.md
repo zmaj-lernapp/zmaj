@@ -394,3 +394,11 @@ das Gegenstück. Die App zeigt den Aspekt nicht an; die beiden stehen nie
 zusammen in einer Auswahl, und wer beim Tippen das andere Verb schreibt,
 bekommt einmal „Fast richtig!“ mit dem Hinweis auf das andere Verb des
 Paares. Kein Wort, das schon in der App stand, hat seine Kennung geändert.
+
+**Ton.** Die 146 neuen Wörter hat Emir gesprochen (ElevenLabs, 31.10.2026).
+Die Aufnahmen liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen
+in `ton_nur_emir.json`: w2521–w2671. Die fünf
+Doppelformen haben zwei Aufnahmen, alle Formen („boljeti, boliti“) und die
+erste Form allein, wie *strina / amidžinica*. *ostati*, *voziti*, *naučiti*
+und *početi* hatten ihre Emir-Aufnahme schon. Die 150 Beispielsätze haben
+noch keine Aufnahme.
