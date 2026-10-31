@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """Schaltet die Werbung scharf: Testkennungen raus, echte Kennungen rein.
 
+ERLEDIGT am 05.10.2026 (Build 91): web/index.html hat keine Testkennungen
+mehr. Fuer Testpakete gibt es seit dem 10.10.2026 app_bauen.py --testwerbung.
+Der Rest ist Geschichte und erklaert, warum die Reihenfolge so war.
+
 ERST NACH DEM GESCHLOSSENEN TEST LAUFEN LASSEN.
 Solange Tester auf der App sind, muessen die Testkennungen drin bleiben.
 Ein Tester, der aus Hilfsbereitschaft eine echte Anzeige anklickt, erzeugt
