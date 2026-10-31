@@ -89,8 +89,18 @@ are in the Play Store listing. Format:
 - `app_bauen.py --pflicht` builds such a mandatory update (next multiple of
   100); normal builds skip multiples of 100, and an unknown switch aborts the
   build before anything is copied.
+- Website: `links.html`, a link page for the TikTok, Instagram and YouTube
+  profiles (`links.html?von=tiktok` and so on), in all eight languages. A
+  large button leads to Google Play with the channel as campaign source in
+  `referrer=` (`utm_source=tiktok|instagram|youtube`, otherwise `web`, also
+  without JavaScript); below it contact, legal notice, privacy policy, the
+  three profiles and the note "Characters & voices made with AI". No
+  counter, no cookies, nothing stored on the device; a Content Security
+  Policy allows only the page's own script, style and icon.
 
 ### Changed
+- Legal notice (app and website, all eight languages): it now says that it
+  also applies to our profiles on TikTok, Instagram and YouTube.
 - Account (v109): a new password needs 8 characters with an uppercase and
   a lowercase letter, a digit and a special character, and must not contain
   the part of the email address before the @. A checklist under the field

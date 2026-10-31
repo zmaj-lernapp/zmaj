@@ -25,6 +25,10 @@ Seiten im Ordner `github-seite`:
     kontakt.html              Kontaktformular, acht Sprachen (seit 28.10.2026).
                               Nur mit KONTAKT_FORMULAR = True in sprachen.py
                               UND zmaj-android/cloud_zugang.json
+    links.html                Linkseite fuer die Profile auf TikTok,
+                              Instagram und YouTube: grosser Knopf zu Google
+                              Play, darunter Kontakt, Impressum und
+                              Datenschutz (seit 31.10.2026)
 
 Die Seiten kommen ohne fremde Server aus: keine Schriften, keine Skripte
 von außen, alles steht in der Datei selbst. Einzige Ausnahme ist das
@@ -47,6 +51,7 @@ import re
 import shutil
 import sys
 from html import escape
+from urllib.parse import quote
 
 ORDNER = os.path.dirname(os.path.abspath(__file__))
 ZIEL = os.path.join(ORDNER, "github-seite")
@@ -129,11 +134,12 @@ SKRIPT = """
 """
 
 
-def kopf(titel, csp=None, stil=""):
-    """csp und stil nur fuer kontakt.html (28.10.2026). Ohne sie bleibt der
-    Kopf der uebrigen Seiten Zeichen fuer Zeichen, wie er war."""
+def kopf(titel, csp=None, stil="", sprache="de"):
+    """csp und stil nur fuer kontakt.html (28.10.2026) und links.html, sprache
+    nur fuer links.html (31.10.2026, dort steht ohne Skript Englisch da). Ohne
+    sie bleibt der Kopf der uebrigen Seiten Zeichen fuer Zeichen, wie er war."""
     return (
-        '<!doctype html>\n<html lang="de">\n<head>\n'
+        '<!doctype html>\n<html lang="%s">\n<head>\n'
         '<meta charset="utf-8">\n'
         + ('<meta http-equiv="Content-Security-Policy" content="%s">\n' % csp if csp else '')
         + '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
@@ -148,7 +154,7 @@ def kopf(titel, csp=None, stil=""):
         '<style>%s</style>\n'
         '</head>\n<body>\n<div class="wrap">\n'
         '<header><div class="marke">Zmaj<span>.</span></div></header>\n'
-    ) % (titel, STIL + stil)
+    ) % (sprache, titel, STIL + stil)
 
 
 # Die Kanaele von Zmaj, in jeder Sprache gleich: Plattformnamen werden
@@ -173,8 +179,10 @@ START_WORT = {
 }
 
 
-def fuss(mit_skript=True, hier=None, skript_dazu=None):
+def fuss(mit_skript=True, hier=None, skript_dazu=None, grund=None):
     """hier: Dateiname dieser Seite – der eigene Verweis wird weggelassen.
+    grund: die Sprache, deren Fusszeile ohne Skript dasteht (Standard
+    GRUNDSPRACHE; links.html nimmt Englisch, 31.10.2026).
 
     Google verlinkt die Datenschutzerklärung direkt. Ohne diese Zeile käme man
     von dort weder zum Impressum noch zu den anderen Texten.
@@ -201,9 +209,10 @@ def fuss(mit_skript=True, hier=None, skript_dazu=None):
     # Eine Abteilung je Sprache, wie oben im Inhalt. Das Umschalt-Skript
     # blendet sie zusammen mit dem Text um; ohne Skript bleibt die
     # Grundsprache stehen, weil nur die uebrigen sieben hidden sind.
+    grund = grund or sprachen.GRUNDSPRACHE
     fuesse = "".join(
         '<span data-fuss="%s"%s>%s</span>'
-        % (s["code"], "" if s["code"] == sprachen.GRUNDSPRACHE else " hidden",
+        % (s["code"], "" if s["code"] == grund else " hidden",
            zeile(s["code"]))
         for s in sprachen.SPRACHEN)
     sozial = " · ".join('<a href="%s" rel="noopener">%s</a>' % (u, n)
@@ -966,6 +975,166 @@ def baue_kontaktseite(zugang):
     schreibe("kontakt.html", "".join(teile))
 
 
+# Die Linkseite fuer die Profile (Ajdin am 31.10.2026: "ja ist besser so ein
+# linktree", Weg B in Release/Social_Media_Recherche_2026-10-31.md, 5.1).
+# TikTok hat nur ein Linkfeld; dort steht links.html?von=tiktok, und von hier
+# geht es mit einem Tipp zu Google Play oder zum Impressum. Instagram und
+# YouTube bekommen dieselbe Seite mit ?von=instagram und ?von=youtube.
+#
+# Der Play-Link traegt den Kanal wie in Abschnitt 4.2 URL-codiert im
+# Parameter referrer= - nur so wertet die Play Console "UTM-Quelle" aus.
+# Den Kanal setzt ein kleines Skript aus ?von=; ohne Skript gilt der Link im
+# HTML mit utm_source=web, der Knopf funktioniert also immer.
+#
+# Kein Zaehler, keine Cookies, kein localStorage: Die Seite liest und
+# speichert nichts auf dem Geraet, sonst braeuchte es nach § 25 TDDDG eine
+# Einwilligung. Deshalb merkt sie sich die Sprache auch nicht, anders als
+# die uebrigen Seiten (SKRIPT), sondern nimmt jedes Mal die des Browsers.
+PAKET = "de.smartdragon.zmaj"
+PLAY = "https://play.google.com/store/apps/details?id=" + PAKET
+KANAELE = ("tiktok", "instagram", "youtube")
+REFERRER = "utm_source=%s&utm_medium=social&utm_campaign=bio"
+
+
+def play_link(quelle="web"):
+    """Der Play-Link mit der Kampagnen-Kennung, wie in Abschnitt 4.2:
+    ...&referrer=utm_source%3Dtiktok%26utm_medium%3Dsocial%26utm_campaign%3Dbio"""
+    return PLAY + "&referrer=" + quote(REFERRER % quelle, safe="")
+
+
+# Knopf und KI-Hinweis je Sprache. "KI" oder "AI" wie in set.ki_stimme der
+# jeweiligen Sprache. Die uebrigen Beschriftungen kommen aus START,
+# sprachen.py und kontakt_texte(), wie auf der Startseite.
+LINKS = {
+    "de": {"play": "Hol dir Zmaj bei Google Play (Android)",
+           "ki": "Figuren und Stimmen mit KI erstellt"},
+    "en": {"play": "Get Zmaj on Google Play (Android)",
+           "ki": "Characters & voices made with AI"},
+    "tr": {"play": "Zmaj'ı Google Play'den indir (Android)",
+           "ki": "Karakterler ve sesler yapay zekâ ile oluşturuldu"},
+    "sv": {"play": "Hämta Zmaj på Google Play (Android)",
+           "ki": "Figurer och röster skapade med AI"},
+    "nl": {"play": "Download Zmaj op Google Play (Android)",
+           "ki": "Personages en stemmen gemaakt met AI"},
+    "nb": {"play": "Last ned Zmaj på Google Play (Android)",
+           "ki": "Figurer og stemmer laget med KI"},
+    "da": {"play": "Hent Zmaj på Google Play (Android)",
+           "ki": "Figurer og stemmer lavet med AI"},
+    "fr": {"play": "Télécharge Zmaj sur Google Play (Android)",
+           "ki": "Personnages et voix créés avec l'IA"},
+}
+
+# Gelb wie der Punkt hinter "Zmaj." - der Knopf zu Google Play soll das
+# Erste sein, was man sieht. Die Seite ist dunkel wie alle anderen;
+# color-scheme sagt das auch dem Browser, damit ein erzwungener Dunkelmodus
+# (manche In-App-Browser) die Farben nicht umdreht.
+LINKS_STIL = """
+:root{color-scheme:dark}
+[hidden]{display:none!important}
+.links{max-width:460px;margin:0 auto;text-align:center}
+.bild{display:block;width:104px;height:104px;margin:0 auto 14px;border-radius:24px}
+.links h1{font-size:24px;margin:0 0 4px}
+.bio{color:var(--leise);margin:0 0 22px}
+.play{display:block;padding:20px 18px;border-radius:18px;background:var(--gelb);color:var(--bg);
+  font-size:19px;font-weight:800;line-height:1.3;text-decoration:none}
+.play:hover{background:#FFD84D;color:var(--bg)}
+.play:focus-visible{outline:3px solid var(--text);outline-offset:3px}
+.liste,.profile{list-style:none;margin:14px 0 0;padding:0}
+.liste{display:grid;gap:10px}
+.profile{display:flex;gap:10px}
+.profile li{flex:1}
+.liste a,.profile a{display:block;padding:13px 10px;border-radius:14px;background:var(--karte);
+  border:1px solid var(--linie);color:var(--text);font-weight:700;text-decoration:none}
+.profile a{font-size:14px}
+.liste a:hover,.profile a:hover{border-color:var(--blau);color:var(--text)}
+.ki{color:var(--leise);font-size:13px;margin:18px 0 0}
+.links .sprachen{justify-content:center;margin:26px 0 0}
+footer{text-align:center}
+"""
+
+# Kanal und Sprache. Die Sprache wie im SKRIPT der anderen Seiten, aber ohne
+# localStorage (siehe oben); gibt es die des Browsers nicht, bleibt
+# Englisch - die Profile sind englisch. Die Sprachknoepfe erscheinen erst
+# mit Skript, ohne taeten sie nichts.
+LINKS_SKRIPT = """
+(function(){
+  var KANAELE = __KANAELE__, LINK = __LINK__;
+  var von = '';
+  try{ von = (new URLSearchParams(location.search).get('von') || '').toLowerCase(); }catch(e){}
+  var quelle = KANAELE.indexOf(von) >= 0 ? von : 'web';
+  document.querySelectorAll('a.play').forEach(function(a){ a.href = LINK.replace('__QUELLE__', quelle); });
+
+  var knoepfe = document.querySelectorAll('.sprachen button');
+  var teile = document.querySelectorAll('section[data-sprache]');
+  var fuesse = document.querySelectorAll('[data-fuss]');
+  function zeige(code){
+    if(code === 'no' || code === 'nn') code = 'nb';
+    var da = false;
+    teile.forEach(function(s){ if(s.dataset.sprache === code) da = true; });
+    if(!da) code = 'en';
+    teile.forEach(function(s){ s.hidden = s.dataset.sprache !== code; });
+    fuesse.forEach(function(f){ f.hidden = f.dataset.fuss !== code; });
+    knoepfe.forEach(function(b){ b.setAttribute('aria-current', b.dataset.sprache === code); });
+    document.documentElement.lang = code;
+  }
+  knoepfe.forEach(function(b){ b.addEventListener('click', function(){ zeige(b.dataset.sprache); }); });
+  document.querySelector('.sprachen').hidden = false;
+  zeige((navigator.language || 'en').slice(0, 2).toLowerCase());
+})();
+"""
+
+# Eine Abteilung je Sprache; ohne Skript steht die englische da.
+LINKS_ABTEILUNG = """<section data-sprache="%(code)s" lang="%(echt)s"%(versteckt)s>
+<h1>%(titel)s</h1>
+<p class="bio">%(bio)s</p>
+<a class="play" href="%(play_link)s">%(play)s</a>
+<ul class="liste">%(liste)s</ul>
+<ul class="profile">%(profile)s</ul>
+<p class="ki">%(ki)s</p>
+</section>
+"""
+
+
+def baue_linkseite():
+    """links.html. Kontakt fuehrt zum Formular, wenn es gebaut wird (main()
+    schaltet KONTAKT_FORMULAR dafuer um), sonst zur E-Mail-Adresse.
+
+    Die Content-Security-Policy wie bei kontakt.html, nur ohne connect-src:
+    Die Seite ruft nichts ab, sie verweist nur."""
+    mail = post_adresse()
+    skript = (LINKS_SKRIPT.replace("__KANAELE__", json.dumps(list(KANAELE)))
+              .replace("__LINK__", json.dumps(play_link("__QUELLE__"))))
+    csp = ("default-src 'none'; script-src %s; style-src %s; img-src 'self'; "
+           "form-action 'none'; base-uri 'none'" % (csp_hash(skript), csp_hash(STIL + LINKS_STIL)))
+    teile = [kopf(escape(START["en"][0], quote=False), csp=csp, stil=LINKS_STIL, sprache="en"),
+             '<main class="links">\n'
+             '<img class="bild" src="icon-256.png" width="104" height="104" alt="">\n']
+    profile = "".join('<li><a href="%s" rel="noopener">%s</a></li>' % (u, n) for n, u in SOZIAL)
+    for s in sprachen.SPRACHEN:
+        code = s["code"]
+        echt = code if code in LINKS and code in START else "en"
+        k, l = START[echt], LINKS[echt]
+        if sprachen.KONTAKT_FORMULAR:
+            kontakt = ("kontakt.html", sprachen.kontakt_texte(code)["titel"])
+        else:
+            kontakt = ("mailto:" + mail, k[4])
+        verweise = (kontakt,
+                    ("impressum.html", sprachen.texte(code)["set.impressum"]),
+                    ("datenschutz.html", k[2]))
+        teile.append(LINKS_ABTEILUNG % {
+            "code": code, "echt": echt,
+            "versteckt": "" if code == "en" else " hidden",
+            "titel": escape(k[0], quote=False), "bio": escape(k[1], quote=False),
+            "play_link": escape(play_link(), quote=True), "play": escape(l["play"], quote=False),
+            "liste": "".join('<li><a href="%s">%s</a></li>' % (escape(d, quote=True), escape(n, quote=False))
+                             for d, n in verweise),
+            "profile": profile, "ki": escape(l["ki"], quote=False)})
+    teile.append(sprachwahl().replace('<ul class="sprachen">', '<ul class="sprachen" hidden>', 1))
+    teile.append("</main>\n")
+    teile.append(fuss(mit_skript=False, hier="links.html", skript_dazu=skript, grund="en"))
+    schreibe("links.html", "".join(teile))
+
+
 def post_adresse():
     """Die E-Mail-Adresse aus ANBIETER – die Zeile mit dem @.
 
@@ -1067,6 +1236,9 @@ def main():
         for datei, titel, text in SEITEN:
             baue_rechtsseite(datei, titel, text)
         baue_kontaktseite(zugang)
+        # Hier drin, damit Kontakt auf links.html nur dann zum Formular
+        # fuehrt, wenn kontakt.html auch gebaut wurde.
+        baue_linkseite()
     finally:
         sprachen.KONTAKT_FORMULAR = vorher
     schreibe("app-ads.txt", APP_ADS)
