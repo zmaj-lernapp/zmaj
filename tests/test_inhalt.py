@@ -31,8 +31,8 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     """README und Store-Text nennen diese Zahlen. Ändern sie sich,
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
-    assert len(grunddaten["kategorien"]) == 65
-    assert woerter == 1740
+    assert len(grunddaten["kategorien"]) == 75
+    assert woerter == 2040
     assert len(grunddaten["saetze"]) == 300
     assert len(grunddaten["geschichten"]) == 12
     assert len(grunddaten["grammatik"]) == 16

@@ -13,7 +13,7 @@ SPRACHEN = ("de", "en", "tr", "sv", "nl", "nb", "da", "fr")
 
 @pytest.mark.parametrize("sprache", SPRACHEN)
 def test_startet_in_jeder_sprache(seite, sprache):
-    """Startet ohne Skriptfehler, zeigt alle 65 Level und keine Werbung.
+    """Startet ohne Skriptfehler, zeigt alle 75 Level und keine Werbung.
     Die Demo legt beide Werbeschalter um (demo_bauen.py); stuende einer
     noch, saehe man auf der Webseite Platzhalter-Anzeigen."""
     seite.starten(sprache=sprache)
@@ -22,7 +22,7 @@ def test_startet_in_jeder_sprache(seite, sprache):
         pfad: document.getElementById('pfad').style.display,
         texte: Object.keys(T).length })""")
     assert zustand["sprache"] == sprache
-    assert zustand["level"] == 65
+    assert zustand["level"] == 75
     assert zustand["echt"] is False
     assert zustand["erlaubt"] is False
     assert zustand["pfad"] == "block"

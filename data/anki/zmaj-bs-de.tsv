@@ -1743,3 +1743,303 @@ Trebam termin	Ich brauche einen Termin	zmaj zmaj::65_gesundheit
 Na bolovanju sam	Ich bin krankgeschrieben	zmaj zmaj::65_gesundheit
 Gdje Vas boli?	Wo tut es Ihnen weh?	zmaj zmaj::65_gesundheit
 Alergičan sam na ... / Alergična sam na ...	Ich bin allergisch auf ... (m/w)	zmaj zmaj::65_gesundheit
+ostati	bleiben	zmaj zmaj::66_kommen_gehen
+Ostani još malo!	Bleib noch ein bisschen!	zmaj zmaj::66_kommen_gehen
+ostajati	bleiben	zmaj zmaj::66_kommen_gehen
+Ljeti mi ostajemo kod nane.	Im Sommer bleiben wir bei Oma.	zmaj zmaj::66_kommen_gehen
+dolaziti	kommen	zmaj zmaj::66_kommen_gehen
+Autobus dolazi svakih deset minuta.	Der Bus kommt alle zehn Minuten.	zmaj zmaj::66_kommen_gehen
+vratiti se	zurückkommen	zmaj zmaj::66_kommen_gehen
+Ja ću se vratiti za pola sata.	Ich komme in einer halben Stunde zurück.	zmaj zmaj::66_kommen_gehen
+vraćati se	zurückkommen	zmaj zmaj::66_kommen_gehen
+Svakog ljeta se vraćamo u Bosnu.	Jeden Sommer kehren wir nach Bosnien zurück.	zmaj zmaj::66_kommen_gehen
+otići	weggehen / hingehen	zmaj zmaj::66_kommen_gehen
+Sutra ću otići kod doktora.	Morgen gehe ich zum Arzt.	zmaj zmaj::66_kommen_gehen
+odlaziti	weggehen / hingehen	zmaj zmaj::66_kommen_gehen
+Zašto već odlaziš?	Warum gehst du schon?	zmaj zmaj::66_kommen_gehen
+donijeti	bringen	zmaj zmaj::66_kommen_gehen
+Možeš li mi donijeti čašu vode?	Kannst du mir ein Glas Wasser bringen?	zmaj zmaj::66_kommen_gehen
+donositi	bringen	zmaj zmaj::66_kommen_gehen
+Poštar donosi pakete ujutro.	Der Postbote bringt die Pakete morgens.	zmaj zmaj::66_kommen_gehen
+proći	vorbeigehen / vergehen	zmaj zmaj::66_kommen_gehen
+Ljeto je brzo prošlo.	Der Sommer ist schnell vergangen.	zmaj zmaj::66_kommen_gehen
+prolaziti	vorbeigehen / vergehen	zmaj zmaj::66_kommen_gehen
+Svaki dan prolazim pored tvoje kuće.	Jeden Tag gehe ich an deinem Haus vorbei.	zmaj zmaj::66_kommen_gehen
+krenuti	losgehen / losfahren	zmaj zmaj::66_kommen_gehen
+Moramo krenuti, kasno je.	Wir müssen los, es ist spät.	zmaj zmaj::66_kommen_gehen
+kretati	losgehen / losfahren	zmaj zmaj::66_kommen_gehen
+Autobus kreće u sedam.	Der Bus fährt um sieben ab.	zmaj zmaj::66_kommen_gehen
+stići	ankommen	zmaj zmaj::66_kommen_gehen
+Mi smo stigli u Sarajevo.	Wir sind in Sarajevo angekommen.	zmaj zmaj::66_kommen_gehen
+stizati	ankommen	zmaj zmaj::66_kommen_gehen
+Voz stiže u osam sati.	Der Zug kommt um acht Uhr an.	zmaj zmaj::66_kommen_gehen
+ući	hineingehen / hereinkommen	zmaj zmaj::66_kommen_gehen
+Uđi, vrata su otvorena.	Komm rein, die Tür ist offen.	zmaj zmaj::66_kommen_gehen
+ulaziti	hineingehen / hereinkommen	zmaj zmaj::66_kommen_gehen
+Ne ulazi u sobu u cipelama!	Geh nicht mit Schuhen ins Zimmer!	zmaj zmaj::66_kommen_gehen
+izaći	hinausgehen / ausgehen	zmaj zmaj::66_kommen_gehen
+Hoćemo li večeras izaći?	Gehen wir heute Abend aus?	zmaj zmaj::66_kommen_gehen
+izlaziti	hinausgehen / ausgehen	zmaj zmaj::66_kommen_gehen
+Vikendom rado izlazim s prijateljima.	Am Wochenende gehe ich gern mit Freunden aus.	zmaj zmaj::66_kommen_gehen
+voziti	fahren (ein Fahrzeug)	zmaj zmaj::66_kommen_gehen
+Ne vozi tako brzo!	Fahr nicht so schnell!	zmaj zmaj::66_kommen_gehen
+putovati	reisen	zmaj zmaj::66_kommen_gehen
+Volim putovati vozom.	Ich reise gern mit dem Zug.	zmaj zmaj::66_kommen_gehen
+dobiti	bekommen	zmaj zmaj::67_geben_nehmen
+Jesi li dobio moju poruku?	Hast du meine Nachricht bekommen?	zmaj zmaj::67_geben_nehmen
+dobivati	bekommen	zmaj zmaj::67_geben_nehmen
+Platu dobivamo krajem mjeseca.	Den Lohn bekommen wir am Monatsende.	zmaj zmaj::67_geben_nehmen
+nalaziti se	sich befinden	zmaj zmaj::67_geben_nehmen
+Gdje se nalazi apoteka?	Wo befindet sich die Apotheke?	zmaj zmaj::67_geben_nehmen
+izgubiti	verlieren	zmaj zmaj::67_geben_nehmen
+Izgubio sam ključeve.	Ich habe die Schlüssel verloren.	zmaj zmaj::67_geben_nehmen
+naći	finden	zmaj zmaj::67_geben_nehmen
+Jesi li našla posao?	Hast du eine Arbeit gefunden?	zmaj zmaj::67_geben_nehmen
+davati	geben	zmaj zmaj::67_geben_nehmen
+Nana djeci uvijek daje bombone.	Oma gibt den Kindern immer Bonbons.	zmaj zmaj::67_geben_nehmen
+nositi	tragen	zmaj zmaj::67_geben_nehmen
+Danas nosim novu jaknu.	Heute trage ich eine neue Jacke.	zmaj zmaj::67_geben_nehmen
+uzeti	nehmen	zmaj zmaj::67_geben_nehmen
+Uzmi još jedan komad!	Nimm noch ein Stück!	zmaj zmaj::67_geben_nehmen
+uzimati	nehmen	zmaj zmaj::67_geben_nehmen
+Ovaj lijek uzimam dva puta dnevno.	Dieses Medikament nehme ich zweimal täglich.	zmaj zmaj::67_geben_nehmen
+poslati	schicken	zmaj zmaj::67_geben_nehmen
+Pošalji mi adresu, molim te.	Schick mir bitte die Adresse.	zmaj zmaj::67_geben_nehmen
+slati	schicken	zmaj zmaj::67_geben_nehmen
+Svakog mjeseca šaljem novac roditeljima.	Jeden Monat schicke ich meinen Eltern Geld.	zmaj zmaj::67_geben_nehmen
+pomagati	helfen	zmaj zmaj::67_geben_nehmen
+Kćerka mi pomaže u kuhinji.	Meine Tochter hilft mir in der Küche.	zmaj zmaj::67_geben_nehmen
+čuvati	hüten / aufbewahren	zmaj zmaj::67_geben_nehmen
+Nana čuva djecu dok smo na poslu.	Oma passt auf die Kinder auf, während wir bei der Arbeit sind.	zmaj zmaj::67_geben_nehmen
+ponuditi	anbieten	zmaj zmaj::67_geben_nehmen
+Ponudili su mi posao.	Sie haben mir eine Stelle angeboten.	zmaj zmaj::67_geben_nehmen
+prodati	verkaufen	zmaj zmaj::67_geben_nehmen
+Prodali smo stari auto.	Wir haben das alte Auto verkauft.	zmaj zmaj::67_geben_nehmen
+prodavati	verkaufen	zmaj zmaj::67_geben_nehmen
+Ovdje prodaju svjež hljeb.	Hier verkauft man frisches Brot.	zmaj zmaj::67_geben_nehmen
+plaćati	bezahlen	zmaj zmaj::67_geben_nehmen
+Plaćate li karticom ili gotovinom?	Zahlen Sie mit Karte oder bar?	zmaj zmaj::67_geben_nehmen
+kupovati	kaufen	zmaj zmaj::67_geben_nehmen
+Hljeb kupujem svako jutro.	Brot kaufe ich jeden Morgen.	zmaj zmaj::67_geben_nehmen
+primati	annehmen / empfangen	zmaj zmaj::67_geben_nehmen
+Primate li kartice?	Nehmen Sie Karten?	zmaj zmaj::67_geben_nehmen
+ukrasti	stehlen	zmaj zmaj::67_geben_nehmen
+Neko mi je ukrao novčanik!	Jemand hat mir den Geldbeutel gestohlen!	zmaj zmaj::67_geben_nehmen
+željeti	wünschen / sich wünschen	zmaj zmaj::68_sagen_denken
+Želim ti sve najbolje!	Ich wünsche dir alles Gute!	zmaj zmaj::68_sagen_denken
+misliti	denken / meinen	zmaj zmaj::68_sagen_denken
+Mama uvijek misli na druge.	Mama denkt immer an andere.	zmaj zmaj::68_sagen_denken
+smatrati	halten für / der Meinung sein	zmaj zmaj::68_sagen_denken
+Smatram da je to dobra ideja.	Ich halte das für eine gute Idee.	zmaj zmaj::68_sagen_denken
+značiti	bedeuten	zmaj zmaj::68_sagen_denken
+Šta znači ova riječ?	Was bedeutet dieses Wort?	zmaj zmaj::68_sagen_denken
+očekivati	erwarten	zmaj zmaj::68_sagen_denken
+Večeras očekujemo goste.	Heute Abend erwarten wir Gäste.	zmaj zmaj::68_sagen_denken
+gledati	ansehen / schauen	zmaj zmaj::68_sagen_denken
+Šta to gledaš?	Was schaust du dir da an?	zmaj zmaj::68_sagen_denken
+pogledati	ansehen / schauen	zmaj zmaj::68_sagen_denken
+Pogledaj ovo!	Schau dir das an!	zmaj zmaj::68_sagen_denken
+vjerovati	glauben	zmaj zmaj::68_sagen_denken
+Vjeruj mi, to je istina.	Glaub mir, das ist wahr.	zmaj zmaj::68_sagen_denken
+čuti	hören	zmaj zmaj::68_sagen_denken
+Čuješ li me?	Hörst du mich?	zmaj zmaj::68_sagen_denken
+odlučiti	entscheiden / beschließen	zmaj zmaj::68_sagen_denken
+Odlučili smo kupiti kuću.	Wir haben beschlossen, ein Haus zu kaufen.	zmaj zmaj::68_sagen_denken
+nadati se	hoffen	zmaj zmaj::68_sagen_denken
+Nadam se lijepom vremenu.	Ich hoffe auf schönes Wetter.	zmaj zmaj::68_sagen_denken
+odgovoriti	antworten	zmaj zmaj::68_sagen_denken
+Još mi nije odgovorio.	Er hat mir noch nicht geantwortet.	zmaj zmaj::68_sagen_denken
+odgovarati	antworten / sich verantworten	zmaj zmaj::68_sagen_denken
+Zašto ne odgovaraš na poruke?	Warum antwortest du nicht auf Nachrichten?	zmaj zmaj::68_sagen_denken
+pričati	reden / erzählen	zmaj zmaj::68_sagen_denken
+O čemu pričate?	Worüber redet ihr?	zmaj zmaj::68_sagen_denken
+ispričati	erzählen	zmaj zmaj::68_sagen_denken
+Ispričaj mi šta se desilo.	Erzähl mir, was passiert ist.	zmaj zmaj::68_sagen_denken
+razgovarati	sich unterhalten	zmaj zmaj::69_verstehen
+Moramo razgovarati.	Wir müssen reden.	zmaj zmaj::69_verstehen
+shvatiti	begreifen / kapieren	zmaj zmaj::69_verstehen
+Nisam shvatio pitanje.	Ich habe die Frage nicht verstanden.	zmaj zmaj::69_verstehen
+zaboraviti	vergessen	zmaj zmaj::69_verstehen
+Zaboravio sam tvoj broj.	Ich habe deine Nummer vergessen.	zmaj zmaj::69_verstehen
+objasniti	erklären	zmaj zmaj::69_verstehen
+Možete li mi objasniti put?	Können Sie mir den Weg erklären?	zmaj zmaj::69_verstehen
+naučiti	lernen	zmaj zmaj::69_verstehen
+Naučila sam voziti auto.	Ich habe Autofahren gelernt.	zmaj zmaj::69_verstehen
+javiti se	sich melden	zmaj zmaj::69_verstehen
+Javi se kad stigneš!	Melde dich, wenn du ankommst!	zmaj zmaj::69_verstehen
+razmišljati	nachdenken	zmaj zmaj::69_verstehen
+Razmišljam o tome.	Ich denke darüber nach.	zmaj zmaj::69_verstehen
+saznati	erfahren	zmaj zmaj::69_verstehen
+Kako si to saznao?	Wie hast du das erfahren?	zmaj zmaj::69_verstehen
+slušati	zuhören / anhören	zmaj zmaj::69_verstehen
+U autu slušam sevdalinke.	Im Auto höre ich Sevdalinkas.	zmaj zmaj::69_verstehen
+dogovoriti se	sich verabreden / vereinbaren	zmaj zmaj::69_verstehen
+Dogovorili smo se za subotu.	Wir haben uns für Samstag verabredet.	zmaj zmaj::69_verstehen
+bojati se	Angst haben / sich fürchten	zmaj zmaj::69_verstehen
+Dijete se boji mraka.	Das Kind hat Angst vor der Dunkelheit.	zmaj zmaj::69_verstehen
+sjetiti se	sich erinnern / einfallen	zmaj zmaj::69_verstehen
+Sad sam se sjetio!	Jetzt ist es mir eingefallen!	zmaj zmaj::69_verstehen
+sviđati se	gefallen	zmaj zmaj::69_verstehen
+Sviđa li ti se Sarajevo?	Gefällt dir Sarajevo?	zmaj zmaj::69_verstehen
+svidjeti se	gefallen	zmaj zmaj::69_verstehen
+Film mi se nije svidio.	Der Film hat mir nicht gefallen.	zmaj zmaj::69_verstehen
+početi	anfangen	zmaj zmaj::70_anfangen
+Utakmica je već počela.	Das Spiel hat schon angefangen.	zmaj zmaj::70_anfangen
+počinjati	anfangen	zmaj zmaj::70_anfangen
+Škola počinje u septembru.	Die Schule fängt im September an.	zmaj zmaj::70_anfangen
+završiti	beenden / fertig werden	zmaj zmaj::70_anfangen
+Jesi li završio zadaću?	Bist du mit den Hausaufgaben fertig?	zmaj zmaj::70_anfangen
+završavati	beenden / fertig werden	zmaj zmaj::70_anfangen
+Završavam s poslom u četiri.	Um vier bin ich mit der Arbeit fertig.	zmaj zmaj::70_anfangen
+otvoriti	öffnen / aufmachen	zmaj zmaj::70_anfangen
+Otvori prozor, vruće je.	Mach das Fenster auf, es ist heiß.	zmaj zmaj::70_anfangen
+otvarati	öffnen / aufmachen	zmaj zmaj::70_anfangen
+Ne otvaraj vrata nepoznatim ljudima.	Mach fremden Leuten nicht die Tür auf.	zmaj zmaj::70_anfangen
+nastaviti	weitermachen / fortsetzen	zmaj zmaj::70_anfangen
+Nastavit ćemo sutra.	Wir machen morgen weiter.	zmaj zmaj::70_anfangen
+uspjeti	schaffen / gelingen	zmaj zmaj::70_anfangen
+Uspjela sam!	Ich habe es geschafft!	zmaj zmaj::70_anfangen
+trajati	dauern	zmaj zmaj::70_anfangen
+Koliko traje let do Sarajeva?	Wie lange dauert der Flug nach Sarajevo?	zmaj zmaj::70_anfangen
+promijeniti	ändern / wechseln	zmaj zmaj::70_anfangen
+Promijenio sam broj telefona.	Ich habe meine Telefonnummer geändert.	zmaj zmaj::70_anfangen
+mijenjati	ändern / wechseln	zmaj zmaj::70_anfangen
+U mjenjačnici mijenjam eure u marke.	In der Wechselstube tausche ich Euro in Mark.	zmaj zmaj::70_anfangen
+prestati	aufhören	zmaj zmaj::70_anfangen
+Kiša je prestala.	Der Regen hat aufgehört.	zmaj zmaj::70_anfangen
+zatvoriti	schließen / zumachen	zmaj zmaj::70_anfangen
+Zatvori vrata, molim te.	Mach bitte die Tür zu.	zmaj zmaj::70_anfangen
+zatvarati	schließen / zumachen	zmaj zmaj::70_anfangen
+Zatvaramo za pet minuta.	Wir schließen in fünf Minuten.	zmaj zmaj::70_anfangen
+desiti se / dogoditi se	passieren / geschehen	zmaj zmaj::70_anfangen
+Šta se desilo?	Was ist passiert?	zmaj zmaj::70_anfangen
+postojati	existieren / bestehen	zmaj zmaj::71_tun_machen
+Postoji li autobus do aerodroma?	Gibt es einen Bus zum Flughafen?	zmaj zmaj::71_tun_machen
+koristiti	benutzen	zmaj zmaj::71_tun_machen
+Mogu li koristiti tvoj punjač?	Kann ich dein Ladegerät benutzen?	zmaj zmaj::71_tun_machen
+postati	werden	zmaj zmaj::71_tun_machen
+Postao je otac.	Er ist Vater geworden.	zmaj zmaj::71_tun_machen
+živjeti	leben	zmaj zmaj::71_tun_machen
+Moja sestra živi u Beču.	Meine Schwester lebt in Wien.	zmaj zmaj::71_tun_machen
+igrati	spielen (Sport, Spiel)	zmaj zmaj::71_tun_machen
+Igraš li fudbal?	Spielst du Fußball?	zmaj zmaj::71_tun_machen
+napraviti	machen / zubereiten	zmaj zmaj::71_tun_machen
+Napravit ću kahvu.	Ich mache Kaffee.	zmaj zmaj::71_tun_machen
+praviti	machen / zubereiten	zmaj zmaj::71_tun_machen
+Nana pravi najbolju pitu.	Oma macht die beste Pita.	zmaj zmaj::71_tun_machen
+uraditi	machen / erledigen	zmaj zmaj::71_tun_machen
+Uradio sam sve što si tražila.	Ich habe alles gemacht, worum du gebeten hast.	zmaj zmaj::71_tun_machen
+pročitati	lesen	zmaj zmaj::71_tun_machen
+Jesi li pročitao knjigu?	Hast du das Buch gelesen?	zmaj zmaj::71_tun_machen
+napisati	schreiben	zmaj zmaj::71_tun_machen
+Napisao sam pismo nani.	Ich habe Oma einen Brief geschrieben.	zmaj zmaj::71_tun_machen
+baviti se	sich beschäftigen mit / betreiben	zmaj zmaj::71_tun_machen
+Čime se baviš?	Was machst du beruflich?	zmaj zmaj::71_tun_machen
+pokušavati	versuchen	zmaj zmaj::71_tun_machen
+Pokušavam te nazvati cijeli dan.	Ich versuche den ganzen Tag, dich anzurufen.	zmaj zmaj::71_tun_machen
+riješiti	lösen / klären	zmaj zmaj::71_tun_machen
+Riješit ćemo to zajedno.	Wir klären das zusammen.	zmaj zmaj::71_tun_machen
+pripremiti	vorbereiten	zmaj zmaj::71_tun_machen
+Moram sve pripremiti za put.	Ich muss alles für die Reise vorbereiten.	zmaj zmaj::71_tun_machen
+popiti	trinken / austrinken	zmaj zmaj::71_tun_machen
+Hajmo popiti kahvu!	Lass uns einen Kaffee trinken!	zmaj zmaj::71_tun_machen
+pojesti	essen / aufessen	zmaj zmaj::71_tun_machen
+Pojedi sve, sine!	Iss alles auf, mein Sohn!	zmaj zmaj::71_tun_machen
+stajati	stehen	zmaj zmaj::72_stellen_legen
+Zašto stojiš? Sjedni!	Warum stehst du? Setz dich!	zmaj zmaj::72_stellen_legen
+staviti	stellen / legen / tun	zmaj zmaj::72_stellen_legen
+Stavi mlijeko u frižider.	Stell die Milch in den Kühlschrank.	zmaj zmaj::72_stellen_legen
+stavljati	stellen / legen / tun	zmaj zmaj::72_stellen_legen
+Gdje stavljaš čaše?	Wohin stellst du die Gläser?	zmaj zmaj::72_stellen_legen
+držati	halten	zmaj zmaj::72_stellen_legen
+Drži me za ruku.	Halt mich an der Hand.	zmaj zmaj::72_stellen_legen
+ostaviti	lassen / liegen lassen	zmaj zmaj::72_stellen_legen
+Ostavila sam kišobran u autobusu.	Ich habe den Regenschirm im Bus liegen lassen.	zmaj zmaj::72_stellen_legen
+pasti	fallen / hinfallen	zmaj zmaj::72_stellen_legen
+Dijete je palo s bicikla.	Das Kind ist vom Fahrrad gefallen.	zmaj zmaj::72_stellen_legen
+sjediti	sitzen	zmaj zmaj::72_stellen_legen
+Sjedili smo u bašti do ponoći.	Wir saßen bis Mitternacht im Garten.	zmaj zmaj::72_stellen_legen
+baciti	werfen / wegwerfen	zmaj zmaj::72_stellen_legen
+Baci smeće, molim te.	Wirf bitte den Müll weg.	zmaj zmaj::72_stellen_legen
+ležati	liegen	zmaj zmaj::72_stellen_legen
+Telefon leži na stolu.	Das Handy liegt auf dem Tisch.	zmaj zmaj::72_stellen_legen
+skinuti	ausziehen / abnehmen	zmaj zmaj::72_stellen_legen
+Skini cipele, molim te.	Zieh bitte die Schuhe aus.	zmaj zmaj::72_stellen_legen
+ustati	aufstehen	zmaj zmaj::72_stellen_legen
+Jutros sam ustao u šest.	Heute Morgen bin ich um sechs aufgestanden.	zmaj zmaj::72_stellen_legen
+obući	anziehen	zmaj zmaj::72_stellen_legen
+Obuci jaknu, hladno je.	Zieh eine Jacke an, es ist kalt.	zmaj zmaj::72_stellen_legen
+leći	sich hinlegen	zmaj zmaj::72_stellen_legen
+Lezi malo, umorna si.	Leg dich ein bisschen hin, du bist müde.	zmaj zmaj::72_stellen_legen
+izgledati	aussehen	zmaj zmaj::73_alltag_leben
+Danas lijepo izgledaš!	Heute siehst du schön aus!	zmaj zmaj::73_alltag_leben
+roditi se	geboren werden	zmaj zmaj::73_alltag_leben
+Rodila sam se u Mostaru.	Ich bin in Mostar geboren.	zmaj zmaj::73_alltag_leben
+potpisati	unterschreiben	zmaj zmaj::73_alltag_leben
+Potpišite ovdje, molim Vas.	Unterschreiben Sie bitte hier.	zmaj zmaj::73_alltag_leben
+uživati	genießen	zmaj zmaj::73_alltag_leben
+Uživaj u odmoru!	Genieß den Urlaub!	zmaj zmaj::73_alltag_leben
+prijaviti se	sich anmelden	zmaj zmaj::73_alltag_leben
+Prijavila sam se na kurs.	Ich habe mich für den Kurs angemeldet.	zmaj zmaj::73_alltag_leben
+umrijeti	sterben	zmaj zmaj::73_alltag_leben
+Dedo mu je umro prije dvije godine.	Sein Opa ist vor zwei Jahren gestorben.	zmaj zmaj::73_alltag_leben
+dozvoliti	erlauben	zmaj zmaj::73_alltag_leben
+Mama mi nije dozvolila da idem.	Mama hat mir nicht erlaubt zu gehen.	zmaj zmaj::73_alltag_leben
+zanimati	interessieren	zmaj zmaj::73_alltag_leben
+Zanima me historija.	Mich interessiert Geschichte.	zmaj zmaj::73_alltag_leben
+zavisiti	abhängen	zmaj zmaj::73_alltag_leben
+Zavisi od vremena.	Das hängt vom Wetter ab.	zmaj zmaj::73_alltag_leben
+nedostajati	fehlen	zmaj zmaj::73_alltag_leben
+Mnogo mi nedostaje Bosna.	Bosnien fehlt mir sehr.	zmaj zmaj::73_alltag_leben
+probuditi se	aufwachen	zmaj zmaj::73_alltag_leben
+Probudio sam se u pet.	Ich bin um fünf aufgewacht.	zmaj zmaj::73_alltag_leben
+smetati	stören	zmaj zmaj::73_alltag_leben
+Smeta li Vam muzika?	Stört Sie die Musik?	zmaj zmaj::73_alltag_leben
+udati se	heiraten (Frau)	zmaj zmaj::73_alltag_leben
+Sestra mi se udala u maju.	Meine Schwester hat im Mai geheiratet.	zmaj zmaj::73_alltag_leben
+oženiti se	heiraten (Mann)	zmaj zmaj::73_alltag_leben
+Moj brat se oženio prošle godine.	Mein Bruder hat letztes Jahr geheiratet.	zmaj zmaj::73_alltag_leben
+zakasniti	sich verspäten / zu spät kommen	zmaj zmaj::73_alltag_leben
+Izvini, zakasnio sam.	Entschuldige, ich bin zu spät.	zmaj zmaj::73_alltag_leben
+izgubiti se	sich verlaufen	zmaj zmaj::74_passieren
+Izgubili smo se u gradu.	Wir haben uns in der Stadt verlaufen.	zmaj zmaj::74_passieren
+spasiti	retten	zmaj zmaj::74_passieren
+Vatrogasci su spasili dijete.	Die Feuerwehr hat das Kind gerettet.	zmaj zmaj::74_passieren
+povrijediti se	sich verletzen	zmaj zmaj::74_passieren
+Povrijedio sam se na poslu.	Ich habe mich bei der Arbeit verletzt.	zmaj zmaj::74_passieren
+paziti	aufpassen	zmaj zmaj::74_passieren
+Pazi na sestru!	Pass auf deine Schwester auf!	zmaj zmaj::74_passieren
+krvariti	bluten	zmaj zmaj::74_passieren
+Rana jako krvari.	Die Wunde blutet stark.	zmaj zmaj::74_passieren
+prehladiti se	sich erkälten	zmaj zmaj::74_passieren
+Obuci se toplo, prehladit ćeš se!	Zieh dich warm an, sonst erkältest du dich!	zmaj zmaj::74_passieren
+onesvijestiti se	ohnmächtig werden	zmaj zmaj::74_passieren
+Žena se onesvijestila!	Die Frau ist ohnmächtig geworden!	zmaj zmaj::74_passieren
+boljeti / boliti	wehtun	zmaj zmaj::74_passieren
+Boli me grlo.	Mir tut der Hals weh.	zmaj zmaj::74_passieren
+disati / dihati	atmen	zmaj zmaj::74_passieren
+Ne mogu disati!	Ich kann nicht atmen!	zmaj zmaj::74_passieren
+razboljeti se / razboliti se	krank werden	zmaj zmaj::74_passieren
+Dijete se razboljelo.	Das Kind ist krank geworden.	zmaj zmaj::74_passieren
+gorjeti / goriti	brennen	zmaj zmaj::74_passieren
+Kuća gori!	Das Haus brennt!	zmaj zmaj::74_passieren
+Upomoć!	Hilfe!	zmaj zmaj::75_notfall
+Upomoć! Pomozite mi!	Hilfe! Helfen Sie mir!	zmaj zmaj::75_notfall
+hitan slučaj	Notfall	zmaj zmaj::75_notfall
+Ovo je hitan slučaj, zovite hitnu pomoć!	Das ist ein Notfall, rufen Sie den Rettungsdienst!	zmaj zmaj::75_notfall
+hitna	Krankenwagen / Rettung	zmaj zmaj::75_notfall
+Hitna je već na putu.	Der Krankenwagen ist schon unterwegs.	zmaj zmaj::75_notfall
+vatrogasci	Feuerwehr	zmaj zmaj::75_notfall
+Zovite vatrogasce!	Rufen Sie die Feuerwehr!	zmaj zmaj::75_notfall
+požar	Brand	zmaj zmaj::75_notfall
+U zgradi je izbio požar.	Im Gebäude ist ein Brand ausgebrochen.	zmaj zmaj::75_notfall
+nesreća	Unfall / Unglück	zmaj zmaj::75_notfall
+Desila se nesreća na autoputu.	Auf der Autobahn ist ein Unfall passiert.	zmaj zmaj::75_notfall
+povreda	Verletzung	zmaj zmaj::75_notfall
+Povreda nije teška.	Die Verletzung ist nicht schwer.	zmaj zmaj::75_notfall
+rana	Wunde	zmaj zmaj::75_notfall
+Treba očistiti ranu.	Man muss die Wunde reinigen.	zmaj zmaj::75_notfall
+krv	Blut	zmaj zmaj::75_notfall
+Imaš krv na ruci.	Du hast Blut an der Hand.	zmaj zmaj::75_notfall
+lopov	Dieb	zmaj zmaj::75_notfall
+Lopov je pobjegao, zovite policiju!	Der Dieb ist weggerannt, rufen Sie die Polizei!	zmaj zmaj::75_notfall

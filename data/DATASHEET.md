@@ -22,7 +22,7 @@ source files disagree, so this folder is never stale.
 ## Contents
 
 ```mermaid
-pie showData title Words per section (1,740)
+pie showData title Words per section (2,040)
   "1 Basics & everyday life" : 353
   "2 Things you can touch" : 114
   "3 Animals & nature" : 109
@@ -32,26 +32,28 @@ pie showData title Words per section (1,740)
   "7 Bosnia & origins" : 81
   "8 People & culture" : 58
   "9 Offices & contracts" : 162
+  "10 Doings and dealings" : 300
 ```
 
 | File | What | Count |
 |---|---|---|
-| `vocabulary.json` / `.csv` | words and phrases, 9 sections, 65 levels | 1,740 |
+| `vocabulary.json` / `.csv` | words and phrases, 10 sections, 75 levels | 2,040 |
 | `sentences.json` / `.csv` | fill-in-the-gap sentences with the full sentence | 300 |
 | `stories.json` | graded stories with translation, glossary and comprehension questions | 12 |
 | `glossary.json` | word-by-word reading glossary used by the stories | 406 |
 | `grammar.json` | grammar lessons (explanations, tables, exercises) per language | 16 |
 | `anki/zmaj-bs-<lang>.tsv` | ready-to-import Anki decks, tagged by level | 8 decks |
-| `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 2,040 pairs × 8 |
-| `parallel.jsonl` | one line per word, sentence and story with all translations | 2,052 lines |
-| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 2,052 `<tu>` |
+| `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 2,340 pairs × 8 |
+| `parallel.jsonl` | one line per word, sentence and story with all translations | 2,352 lines |
+| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 2,352 `<tu>` |
 | `manifest.json` | counts and SHA-256 of every file above | – |
 | `schema/*.schema.json` | JSON Schema (2020-12) for the JSON files and one `parallel.jsonl` line | – |
 
 Audio paths (`web/audio/w0001.mp3` …) are relative to the repository root.
-There are 2,411 MP3 files (≈ 37 MB). Twelve family words added in October
-2026 have none (`"audio": null`); the app speaks them with recordings that
-are not part of this dataset.
+There are 2,411 MP3 files (≈ 37 MB). Twelve family words and the 296 new
+verbs, emergency words and example sentences of section 10, all added in
+October 2026, have none (`"audio": null`); the app speaks them with
+recordings that are not part of this dataset.
 
 ## Quick start
 

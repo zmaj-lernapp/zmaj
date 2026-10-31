@@ -232,6 +232,30 @@
     "da": "Myndigheder, bank, huskøb, ansættelseskontrakt, læge. Sproget til officielle sager.",
     "fr": "Administration, banque, achat d'une maison, contrat de travail, médecin. La langue des démarches officielles."
    }
+  },
+  {
+   "id": "tunlassen",
+   "position": 10,
+   "label": {
+    "de": "Sektion 10 · Tun und Lassen",
+    "en": "Section 10 · Doings and dealings",
+    "tr": "10. bölüm · Yapıp etmek",
+    "sv": "Avsnitt 10 · Görande och låtande",
+    "nl": "Deel 10 · Doen en laten",
+    "nb": "Del 10 · Gjøren og laden",
+    "da": "Del 10 · Gøren og laden",
+    "fr": "Partie 10 · Faits et gestes"
+   },
+   "description": {
+    "de": "Die wichtigsten Verben, oft als Paar, jedes mit einem Beispielsatz. Dazu Hilfe im Notfall.",
+    "en": "The most important verbs, often in pairs, each with an example sentence. Plus help in an emergency.",
+    "tr": "En önemli fiiller, çoğu zaman çift hâlinde, her biri bir örnek cümleyle. Ayrıca acil durumda yardım.",
+    "sv": "De viktigaste verben, ofta i par, vart och ett med en exempelmening. Dessutom hjälp i nödsituationer.",
+    "nl": "De belangrijkste werkwoorden, vaak als paar, elk met een voorbeeldzin. Plus hulp bij noodgevallen.",
+    "nb": "De viktigste verbene, ofte i par, hvert med en eksempelsetning. I tillegg hjelp i nødsituasjoner.",
+    "da": "De vigtigste verber, ofte i par, hvert med en eksempelsætning. Derudover hjælp i nødsituationer.",
+    "fr": "Les verbes les plus importants, souvent par paires, chacun avec une phrase d'exemple. Et de l'aide en cas d'urgence."
+   }
   }
  ],
  "levels": [
@@ -2210,6 +2234,310 @@
     "formell"
    ],
    "word_count": 22
+  },
+  {
+   "id": "kommen_gehen",
+   "position": 66,
+   "section": "tunlassen",
+   "label": {
+    "de": "Kommen und gehen",
+    "en": "Coming and going",
+    "tr": "Gelmek ve gitmek",
+    "sv": "Komma och gå",
+    "nl": "Komen en gaan",
+    "nb": "Komme og gå",
+    "da": "Komme og gå",
+    "fr": "Aller et venir"
+   },
+   "tip": {
+    "de": "Bleiben, zurückkommen, losgehen, ankommen: wer wohin geht.",
+    "en": "Staying, coming back, setting off, arriving: who goes where.",
+    "tr": "Kalmak, geri dönmek, yola çıkmak, varmak: kim nereye gidiyor.",
+    "sv": "Stanna, komma tillbaka, ge sig av, komma fram: vem som går vart.",
+    "nl": "Blijven, terugkomen, vertrekken, aankomen: wie waar naartoe gaat.",
+    "nb": "Bli, komme tilbake, dra av gårde, komme fram: hvem som går hvor.",
+    "da": "Blive, komme tilbage, tage af sted, ankomme: hvem der går hvorhen.",
+    "fr": "Rester, revenir, partir, arriver : qui va où."
+   },
+   "builds_on": [
+    "verben",
+    "reisen"
+   ],
+   "word_count": 42
+  },
+  {
+   "id": "geben_nehmen",
+   "position": 67,
+   "section": "tunlassen",
+   "label": {
+    "de": "Geben, nehmen, kaufen",
+    "en": "Giving, taking, buying",
+    "tr": "Vermek, almak, satın almak",
+    "sv": "Ge, ta, köpa",
+    "nl": "Geven, nemen, kopen",
+    "nb": "Gi, ta, kjøpe",
+    "da": "Give, tage, købe",
+    "fr": "Donner, prendre, acheter"
+   },
+   "tip": {
+    "de": "Bekommen, schicken, verkaufen, bezahlen: was den Besitzer wechselt.",
+    "en": "Getting, sending, selling, paying: what changes hands.",
+    "tr": "Almak, göndermek, satmak, ödemek: el değiştiren şeyler.",
+    "sv": "Få, skicka, sälja, betala: det som byter ägare.",
+    "nl": "Krijgen, sturen, verkopen, betalen: wat van eigenaar wisselt.",
+    "nb": "Få, sende, selge, betale: det som skifter eier.",
+    "da": "Få, sende, sælge, betale: det, der skifter ejer.",
+    "fr": "Recevoir, envoyer, vendre, payer : ce qui change de mains."
+   },
+   "builds_on": [
+    "verben",
+    "faelle3",
+    "einkauf_orte"
+   ],
+   "word_count": 40
+  },
+  {
+   "id": "sagen_denken",
+   "position": 68,
+   "section": "tunlassen",
+   "label": {
+    "de": "Sagen und denken",
+    "en": "Saying and thinking",
+    "tr": "Söylemek ve düşünmek",
+    "sv": "Säga och tänka",
+    "nl": "Zeggen en denken",
+    "nb": "Si og tenke",
+    "da": "Sige og tænke",
+    "fr": "Dire et penser"
+   },
+   "tip": {
+    "de": "Meinen, glauben, hoffen, antworten, erzählen.",
+    "en": "Thinking, believing, hoping, answering, telling.",
+    "tr": "Düşünmek, inanmak, ummak, cevap vermek, anlatmak.",
+    "sv": "Tycka, tro, hoppas, svara, berätta.",
+    "nl": "Vinden, geloven, hopen, antwoorden, vertellen.",
+    "nb": "Mene, tro, håpe, svare, fortelle.",
+    "da": "Mene, tro, håbe, svare, fortælle.",
+    "fr": "Penser, croire, espérer, répondre, raconter."
+   },
+   "builds_on": [
+    "kommen_gehen",
+    "gefuehle"
+   ],
+   "word_count": 30
+  },
+  {
+   "id": "verstehen",
+   "position": 69,
+   "section": "tunlassen",
+   "label": {
+    "de": "Verstehen und erinnern",
+    "en": "Understanding and remembering",
+    "tr": "Anlamak ve hatırlamak",
+    "sv": "Förstå och minnas",
+    "nl": "Begrijpen en herinneren",
+    "nb": "Forstå og huske",
+    "da": "Forstå og huske",
+    "fr": "Comprendre et se souvenir"
+   },
+   "tip": {
+    "de": "Begreifen, vergessen, erklären, sich erinnern, gefallen.",
+    "en": "Grasping, forgetting, explaining, remembering, liking.",
+    "tr": "Kavramak, unutmak, açıklamak, hatırlamak, hoşa gitmek.",
+    "sv": "Fatta, glömma, förklara, minnas, gilla.",
+    "nl": "Snappen, vergeten, uitleggen, zich herinneren, bevallen.",
+    "nb": "Skjønne, glemme, forklare, huske, like.",
+    "da": "Fatte, glemme, forklare, huske, kunne lide.",
+    "fr": "Saisir, oublier, expliquer, se souvenir, plaire."
+   },
+   "builds_on": [
+    "sagen_denken",
+    "verben",
+    "reflexiv"
+   ],
+   "word_count": 28
+  },
+  {
+   "id": "anfangen",
+   "position": 70,
+   "section": "tunlassen",
+   "label": {
+    "de": "Anfangen und aufhören",
+    "en": "Starting and stopping",
+    "tr": "Başlamak ve bitirmek",
+    "sv": "Börja och sluta",
+    "nl": "Beginnen en stoppen",
+    "nb": "Begynne og slutte",
+    "da": "Begynde og holde op",
+    "fr": "Commencer et arrêter"
+   },
+   "tip": {
+    "de": "Anfangen, fertig werden, öffnen, schließen, ändern.",
+    "en": "Starting, finishing, opening, closing, changing.",
+    "tr": "Başlamak, bitirmek, açmak, kapatmak, değiştirmek.",
+    "sv": "Börja, bli klar, öppna, stänga, ändra.",
+    "nl": "Beginnen, klaar zijn, openen, sluiten, veranderen.",
+    "nb": "Begynne, bli ferdig, åpne, lukke, endre.",
+    "da": "Begynde, blive færdig, åbne, lukke, ændre.",
+    "fr": "Commencer, finir, ouvrir, fermer, changer."
+   },
+   "builds_on": [
+    "kommen_gehen",
+    "sagen_denken"
+   ],
+   "word_count": 30
+  },
+  {
+   "id": "tun_machen",
+   "position": 71,
+   "section": "tunlassen",
+   "label": {
+    "de": "Tun und machen",
+    "en": "Doing and making",
+    "tr": "Yapmak ve etmek",
+    "sv": "Göra och fixa",
+    "nl": "Doen en maken",
+    "nb": "Gjøre og lage",
+    "da": "Gøre og lave",
+    "fr": "Faire et agir"
+   },
+   "tip": {
+    "de": "Machen, erledigen, werden, leben, benutzen.",
+    "en": "Making, getting done, becoming, living, using.",
+    "tr": "Yapmak, halletmek, olmak, yaşamak, kullanmak.",
+    "sv": "Göra, fixa, bli, leva, använda.",
+    "nl": "Maken, regelen, worden, leven, gebruiken.",
+    "nb": "Lage, ordne, bli, leve, bruke.",
+    "da": "Lave, ordne, blive, leve, bruge.",
+    "fr": "Faire, régler, devenir, vivre, utiliser."
+   },
+   "builds_on": [
+    "verben",
+    "faelle1",
+    "faelle3",
+    "modal"
+   ],
+   "word_count": 32
+  },
+  {
+   "id": "stellen_legen",
+   "position": 72,
+   "section": "tunlassen",
+   "label": {
+    "de": "Stellen, legen, sitzen",
+    "en": "Putting, laying, sitting",
+    "tr": "Koymak, yerleştirmek, oturmak",
+    "sv": "Ställa, lägga, sitta",
+    "nl": "Zetten, leggen, zitten",
+    "nb": "Sette, legge, sitte",
+    "da": "Stille, lægge, sidde",
+    "fr": "Poser, mettre, s'asseoir"
+   },
+   "tip": {
+    "de": "Stehen, sitzen, liegen, stellen, anziehen.",
+    "en": "Standing, sitting, lying, putting, putting on.",
+    "tr": "Ayakta durmak, oturmak, yatmak, koymak, giymek.",
+    "sv": "Stå, sitta, ligga, ställa, ta på sig.",
+    "nl": "Staan, zitten, liggen, zetten, aantrekken.",
+    "nb": "Stå, sitte, ligge, sette, ta på seg.",
+    "da": "Stå, sidde, ligge, stille, tage på.",
+    "fr": "Être debout, être assis, être couché, poser, mettre."
+   },
+   "builds_on": [
+    "routine",
+    "reflexiv"
+   ],
+   "word_count": 26
+  },
+  {
+   "id": "alltag_leben",
+   "position": 73,
+   "section": "tunlassen",
+   "label": {
+    "de": "Alltag und Leben",
+    "en": "Daily life and living",
+    "tr": "Gündelik hayat",
+    "sv": "Vardag och liv",
+    "nl": "Dagelijks leven",
+    "nb": "Hverdag og liv",
+    "da": "Hverdag og liv",
+    "fr": "Le quotidien et la vie"
+   },
+   "tip": {
+    "de": "Geboren werden, heiraten, unterschreiben, genießen.",
+    "en": "Being born, getting married, signing, enjoying.",
+    "tr": "Doğmak, evlenmek, imzalamak, keyfini çıkarmak.",
+    "sv": "Födas, gifta sig, skriva under, njuta.",
+    "nl": "Geboren worden, trouwen, tekenen, genieten.",
+    "nb": "Bli født, gifte seg, skrive under, nyte.",
+    "da": "Blive født, gifte sig, skrive under, nyde.",
+    "fr": "Naître, se marier, signer, profiter."
+   },
+   "builds_on": [
+    "reflexiv",
+    "tun_machen"
+   ],
+   "word_count": 30
+  },
+  {
+   "id": "passieren",
+   "position": 74,
+   "section": "tunlassen",
+   "label": {
+    "de": "Wenn etwas passiert",
+    "en": "When something happens",
+    "tr": "Bir şey olunca",
+    "sv": "När något händer",
+    "nl": "Als er iets gebeurt",
+    "nb": "Når noe skjer",
+    "da": "Når noget sker",
+    "fr": "Quand il arrive quelque chose"
+   },
+   "tip": {
+    "de": "Sich verletzen, bluten, krank werden, nicht atmen können.",
+    "en": "Getting hurt, bleeding, getting sick, not being able to breathe.",
+    "tr": "Yaralanmak, kanamak, hastalanmak, nefes alamamak.",
+    "sv": "Skada sig, blöda, bli sjuk, inte kunna andas.",
+    "nl": "Je bezeren, bloeden, ziek worden, niet kunnen ademen.",
+    "nb": "Skade seg, blø, bli syk, ikke kunne puste.",
+    "da": "Komme til skade, bløde, blive syg, ikke kunne få vejret.",
+    "fr": "Se blesser, saigner, tomber malade, ne plus pouvoir respirer."
+   },
+   "builds_on": [
+    "koerper",
+    "gesundheit"
+   ],
+   "word_count": 22
+  },
+  {
+   "id": "notfall",
+   "position": 75,
+   "section": "tunlassen",
+   "label": {
+    "de": "Im Notfall",
+    "en": "In an emergency",
+    "tr": "Acil durumda",
+    "sv": "I en nödsituation",
+    "nl": "In geval van nood",
+    "nb": "I en nødsituasjon",
+    "da": "I en nødsituation",
+    "fr": "En cas d'urgence"
+   },
+   "tip": {
+    "de": "Upomoć! Hilfe rufen: Krankenwagen, Feuerwehr, Polizei.",
+    "en": "Upomoć! Calling for help: ambulance, fire department, police.",
+    "tr": "Upomoć! Yardım çağırmak: ambulans, itfaiye, polis.",
+    "sv": "Upomoć! Ropa på hjälp: ambulans, brandkår, polis.",
+    "nl": "Upomoć! Hulp roepen: ambulance, brandweer, politie.",
+    "nb": "Upomoć! Rope på hjelp: ambulanse, brannvesen, politi.",
+    "da": "Upomoć! Råbe om hjælp: ambulance, brandvæsen, politi.",
+    "fr": "Upomoć ! Appeler à l'aide : ambulance, pompiers, police."
+   },
+   "builds_on": [
+    "passieren",
+    "koerper"
+   ],
+   "word_count": 20
   }
  ],
  "entries": [
@@ -33532,6 +33860,5406 @@
     "fr": "Je suis allergique à ... (m/f)"
    },
    "audio": "web/audio/w2248.mp3"
+  },
+  {
+   "id": "bleiben:ostati",
+   "bs": "ostati",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bleiben",
+    "en": "to stay",
+    "tr": "kalmak",
+    "sv": "stanna",
+    "nl": "blijven",
+    "nb": "bli",
+    "da": "at blive",
+    "fr": "rester"
+   },
+   "audio": "web/audio/w1387.mp3"
+  },
+  {
+   "id": "bleib noch ein bisschen!:Ostani još malo!",
+   "bs": "Ostani još malo!",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Bleib noch ein bisschen!",
+    "en": "Stay a little longer!",
+    "tr": "Biraz daha kal!",
+    "sv": "Stanna lite till!",
+    "nl": "Blijf nog even!",
+    "nb": "Bli litt til!",
+    "da": "Bliv lidt endnu!",
+    "fr": "Reste encore un peu !"
+   },
+   "audio": null
+  },
+  {
+   "id": "bleiben:ostajati",
+   "bs": "ostajati",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bleiben",
+    "en": "to stay",
+    "tr": "kalmak",
+    "sv": "stanna",
+    "nl": "blijven",
+    "nb": "bli",
+    "da": "at blive",
+    "fr": "rester"
+   },
+   "audio": null
+  },
+  {
+   "id": "im sommer bleiben wir bei oma.:Ljeti mi ostajemo kod nane.",
+   "bs": "Ljeti mi ostajemo kod nane.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Im Sommer bleiben wir bei Oma.",
+    "en": "In summer we stay at grandma's.",
+    "tr": "Yazın ninemde kalıyoruz.",
+    "sv": "På sommaren stannar vi hos mormor.",
+    "nl": "In de zomer blijven we bij oma.",
+    "nb": "Om sommeren blir vi hos bestemor.",
+    "da": "Om sommeren bliver vi hos bedstemor.",
+    "fr": "L'été, nous restons chez grand-mère."
+   },
+   "audio": null
+  },
+  {
+   "id": "kommen:dolaziti",
+   "bs": "dolaziti",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "kommen",
+    "en": "to come",
+    "tr": "gelmek",
+    "sv": "komma",
+    "nl": "komen",
+    "nb": "komme",
+    "da": "at komme",
+    "fr": "venir"
+   },
+   "audio": null
+  },
+  {
+   "id": "der bus kommt alle zehn minuten.:Autobus dolazi svakih deset minuta.",
+   "bs": "Autobus dolazi svakih deset minuta.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Bus kommt alle zehn Minuten.",
+    "en": "The bus comes every ten minutes.",
+    "tr": "Otobüs on dakikada bir geliyor.",
+    "sv": "Bussen kommer var tionde minut.",
+    "nl": "De bus komt elke tien minuten.",
+    "nb": "Bussen kommer hvert tiende minutt.",
+    "da": "Bussen kommer hvert tiende minut.",
+    "fr": "Le bus passe toutes les dix minutes."
+   },
+   "audio": null
+  },
+  {
+   "id": "zurückkommen:vratiti se",
+   "bs": "vratiti se",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "zurückkommen",
+    "en": "to come back",
+    "tr": "geri dönmek",
+    "sv": "komma tillbaka",
+    "nl": "terugkomen",
+    "nb": "komme tilbake",
+    "da": "at komme tilbage",
+    "fr": "revenir"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich komme in einer halben stunde zurück.:Ja ću se vratiti za pola sata.",
+   "bs": "Ja ću se vratiti za pola sata.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich komme in einer halben Stunde zurück.",
+    "en": "I'll be back in half an hour.",
+    "tr": "Yarım saat içinde döneceğim.",
+    "sv": "Jag kommer tillbaka om en halvtimme.",
+    "nl": "Ik ben over een halfuur terug.",
+    "nb": "Jeg kommer tilbake om en halvtime.",
+    "da": "Jeg kommer tilbage om en halv time.",
+    "fr": "Je reviens dans une demi-heure."
+   },
+   "audio": null
+  },
+  {
+   "id": "zurückkommen:vraćati se",
+   "bs": "vraćati se",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "zurückkommen",
+    "en": "to come back",
+    "tr": "geri dönmek",
+    "sv": "komma tillbaka",
+    "nl": "terugkomen",
+    "nb": "komme tilbake",
+    "da": "at komme tilbage",
+    "fr": "revenir"
+   },
+   "audio": null
+  },
+  {
+   "id": "jeden sommer kehren wir nach bosnien zurück.:Svakog ljeta se vraćamo u Bosnu.",
+   "bs": "Svakog ljeta se vraćamo u Bosnu.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Jeden Sommer kehren wir nach Bosnien zurück.",
+    "en": "Every summer we go back to Bosnia.",
+    "tr": "Her yaz Bosna'ya dönüyoruz.",
+    "sv": "Varje sommar återvänder vi till Bosnien.",
+    "nl": "Elke zomer gaan we terug naar Bosnië.",
+    "nb": "Hver sommer reiser vi tilbake til Bosnia.",
+    "da": "Hver sommer vender vi tilbage til Bosnien.",
+    "fr": "Chaque été, nous retournons en Bosnie."
+   },
+   "audio": null
+  },
+  {
+   "id": "weggehen / hingehen:otići",
+   "bs": "otići",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "weggehen / hingehen",
+    "en": "to go away / to go (there)",
+    "tr": "ayrılmak / gitmek",
+    "sv": "gå därifrån / gå dit",
+    "nl": "weggaan / ernaartoe gaan",
+    "nb": "gå sin vei / dra dit",
+    "da": "at gå sin vej / at tage derhen",
+    "fr": "partir / aller (quelque part)"
+   },
+   "audio": null
+  },
+  {
+   "id": "morgen gehe ich zum arzt.:Sutra ću otići kod doktora.",
+   "bs": "Sutra ću otići kod doktora.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Morgen gehe ich zum Arzt.",
+    "en": "Tomorrow I'm going to the doctor.",
+    "tr": "Yarın doktora gideceğim.",
+    "sv": "I morgon går jag till läkaren.",
+    "nl": "Morgen ga ik naar de dokter.",
+    "nb": "I morgen går jeg til legen.",
+    "da": "I morgen går jeg til lægen.",
+    "fr": "Demain, je vais chez le médecin."
+   },
+   "audio": null
+  },
+  {
+   "id": "weggehen / hingehen:odlaziti",
+   "bs": "odlaziti",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "weggehen / hingehen",
+    "en": "to go away / to go (there)",
+    "tr": "ayrılmak / gitmek",
+    "sv": "gå därifrån / gå dit",
+    "nl": "weggaan / ernaartoe gaan",
+    "nb": "gå sin vei / dra dit",
+    "da": "at gå sin vej / at tage derhen",
+    "fr": "partir / aller (quelque part)"
+   },
+   "audio": null
+  },
+  {
+   "id": "warum gehst du schon?:Zašto već odlaziš?",
+   "bs": "Zašto već odlaziš?",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Warum gehst du schon?",
+    "en": "Why are you leaving already?",
+    "tr": "Neden şimdiden gidiyorsun?",
+    "sv": "Varför går du redan?",
+    "nl": "Waarom ga je nu al?",
+    "nb": "Hvorfor går du allerede?",
+    "da": "Hvorfor går du allerede?",
+    "fr": "Pourquoi tu pars déjà ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "bringen:donijeti",
+   "bs": "donijeti",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bringen",
+    "en": "to bring",
+    "tr": "getirmek",
+    "sv": "hämta / ta med",
+    "nl": "brengen",
+    "nb": "bringe",
+    "da": "at bringe",
+    "fr": "apporter"
+   },
+   "audio": null
+  },
+  {
+   "id": "kannst du mir ein glas wasser bringen?:Možeš li mi donijeti čašu vode?",
+   "bs": "Možeš li mi donijeti čašu vode?",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Kannst du mir ein Glas Wasser bringen?",
+    "en": "Can you bring me a glass of water?",
+    "tr": "Bana bir bardak su getirebilir misin?",
+    "sv": "Kan du hämta ett glas vatten åt mig?",
+    "nl": "Kun je me een glas water brengen?",
+    "nb": "Kan du hente et glass vann til meg?",
+    "da": "Kan du hente et glas vand til mig?",
+    "fr": "Tu peux m'apporter un verre d'eau ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "bringen:donositi",
+   "bs": "donositi",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bringen",
+    "en": "to bring",
+    "tr": "getirmek",
+    "sv": "hämta / ta med",
+    "nl": "brengen",
+    "nb": "bringe",
+    "da": "at bringe",
+    "fr": "apporter"
+   },
+   "audio": null
+  },
+  {
+   "id": "der postbote bringt die pakete morgens.:Poštar donosi pakete ujutro.",
+   "bs": "Poštar donosi pakete ujutro.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Postbote bringt die Pakete morgens.",
+    "en": "The mail carrier brings the packages in the morning.",
+    "tr": "Postacı paketleri sabahları getiriyor.",
+    "sv": "Brevbäraren kommer med paketen på morgonen.",
+    "nl": "De postbode brengt de pakketten 's ochtends.",
+    "nb": "Postbudet kommer med pakkene om morgenen.",
+    "da": "Postbuddet bringer pakkerne om morgenen.",
+    "fr": "Le facteur apporte les colis le matin."
+   },
+   "audio": null
+  },
+  {
+   "id": "vorbeigehen / vergehen:proći",
+   "bs": "proći",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "vorbeigehen / vergehen",
+    "en": "to go past / to pass (time)",
+    "tr": "yanından geçmek / geçmek (zaman)",
+    "sv": "gå förbi / gå (om tid)",
+    "nl": "voorbijgaan / verstrijken",
+    "nb": "gå forbi / gå (om tid)",
+    "da": "at gå forbi / at gå (om tid)",
+    "fr": "passer devant / passer (le temps)"
+   },
+   "audio": null
+  },
+  {
+   "id": "der sommer ist schnell vergangen.:Ljeto je brzo prošlo.",
+   "bs": "Ljeto je brzo prošlo.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Sommer ist schnell vergangen.",
+    "en": "The summer went by quickly.",
+    "tr": "Yaz çabuk geçti.",
+    "sv": "Sommaren gick fort.",
+    "nl": "De zomer is snel voorbijgegaan.",
+    "nb": "Sommeren gikk fort.",
+    "da": "Sommeren gik hurtigt.",
+    "fr": "L'été est passé vite."
+   },
+   "audio": null
+  },
+  {
+   "id": "vorbeigehen / vergehen:prolaziti",
+   "bs": "prolaziti",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "vorbeigehen / vergehen",
+    "en": "to go past / to pass (time)",
+    "tr": "yanından geçmek / geçmek (zaman)",
+    "sv": "gå förbi / gå (om tid)",
+    "nl": "voorbijgaan / verstrijken",
+    "nb": "gå forbi / gå (om tid)",
+    "da": "at gå forbi / at gå (om tid)",
+    "fr": "passer devant / passer (le temps)"
+   },
+   "audio": null
+  },
+  {
+   "id": "jeden tag gehe ich an deinem haus vorbei.:Svaki dan prolazim pored tvoje kuće.",
+   "bs": "Svaki dan prolazim pored tvoje kuće.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Jeden Tag gehe ich an deinem Haus vorbei.",
+    "en": "Every day I walk past your house.",
+    "tr": "Her gün evinin önünden geçiyorum.",
+    "sv": "Varje dag går jag förbi ditt hus.",
+    "nl": "Elke dag loop ik langs je huis.",
+    "nb": "Hver dag går jeg forbi huset ditt.",
+    "da": "Hver dag går jeg forbi dit hus.",
+    "fr": "Tous les jours, je passe devant ta maison."
+   },
+   "audio": null
+  },
+  {
+   "id": "losgehen / losfahren:krenuti",
+   "bs": "krenuti",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "losgehen / losfahren",
+    "en": "to set off / to drive off",
+    "tr": "yola çıkmak / hareket etmek",
+    "sv": "ge sig av / åka iväg",
+    "nl": "vertrekken / wegrijden",
+    "nb": "gå av gårde / kjøre av gårde",
+    "da": "at tage af sted / at køre af sted",
+    "fr": "se mettre en route / partir"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir müssen los, es ist spät.:Moramo krenuti, kasno je.",
+   "bs": "Moramo krenuti, kasno je.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir müssen los, es ist spät.",
+    "en": "We have to go, it's late.",
+    "tr": "Gitmemiz lazım, geç oldu.",
+    "sv": "Vi måste gå, det är sent.",
+    "nl": "We moeten gaan, het is laat.",
+    "nb": "Vi må gå, det er sent.",
+    "da": "Vi skal af sted, det er sent.",
+    "fr": "On doit y aller, il est tard."
+   },
+   "audio": null
+  },
+  {
+   "id": "losgehen / losfahren:kretati",
+   "bs": "kretati",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "losgehen / losfahren",
+    "en": "to set off / to drive off",
+    "tr": "yola çıkmak / hareket etmek",
+    "sv": "ge sig av / åka iväg",
+    "nl": "vertrekken / wegrijden",
+    "nb": "gå av gårde / kjøre av gårde",
+    "da": "at tage af sted / at køre af sted",
+    "fr": "se mettre en route / partir"
+   },
+   "audio": null
+  },
+  {
+   "id": "der bus fährt um sieben ab.:Autobus kreće u sedam.",
+   "bs": "Autobus kreće u sedam.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Bus fährt um sieben ab.",
+    "en": "The bus leaves at seven.",
+    "tr": "Otobüs yedide kalkıyor.",
+    "sv": "Bussen går klockan sju.",
+    "nl": "De bus vertrekt om zeven uur.",
+    "nb": "Bussen går klokka sju.",
+    "da": "Bussen kører klokken syv.",
+    "fr": "Le bus part à sept heures."
+   },
+   "audio": null
+  },
+  {
+   "id": "ankommen:stići",
+   "bs": "stići",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ankommen",
+    "en": "to arrive",
+    "tr": "varmak",
+    "sv": "komma fram",
+    "nl": "aankomen",
+    "nb": "komme fram",
+    "da": "at ankomme",
+    "fr": "arriver"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir sind in sarajevo angekommen.:Mi smo stigli u Sarajevo.",
+   "bs": "Mi smo stigli u Sarajevo.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir sind in Sarajevo angekommen.",
+    "en": "We have arrived in Sarajevo.",
+    "tr": "Saraybosna'ya vardık.",
+    "sv": "Vi har kommit fram till Sarajevo.",
+    "nl": "We zijn in Sarajevo aangekomen.",
+    "nb": "Vi har kommet fram til Sarajevo.",
+    "da": "Vi er ankommet til Sarajevo.",
+    "fr": "Nous sommes arrivés à Sarajevo."
+   },
+   "audio": null
+  },
+  {
+   "id": "ankommen:stizati",
+   "bs": "stizati",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ankommen",
+    "en": "to arrive",
+    "tr": "varmak",
+    "sv": "komma fram",
+    "nl": "aankomen",
+    "nb": "komme fram",
+    "da": "at ankomme",
+    "fr": "arriver"
+   },
+   "audio": null
+  },
+  {
+   "id": "der zug kommt um acht uhr an.:Voz stiže u osam sati.",
+   "bs": "Voz stiže u osam sati.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Zug kommt um acht Uhr an.",
+    "en": "The train arrives at eight o'clock.",
+    "tr": "Tren saat sekizde varıyor.",
+    "sv": "Tåget kommer fram klockan åtta.",
+    "nl": "De trein komt om acht uur aan.",
+    "nb": "Toget kommer fram klokka åtte.",
+    "da": "Toget ankommer klokken otte.",
+    "fr": "Le train arrive à huit heures."
+   },
+   "audio": null
+  },
+  {
+   "id": "hineingehen / hereinkommen:ući",
+   "bs": "ući",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "hineingehen / hereinkommen",
+    "en": "to go in / to come in",
+    "tr": "içeri girmek / içeri gelmek",
+    "sv": "gå in / komma in",
+    "nl": "naar binnen gaan / binnenkomen",
+    "nb": "gå inn / komme inn",
+    "da": "at gå ind / at komme ind",
+    "fr": "entrer"
+   },
+   "audio": null
+  },
+  {
+   "id": "komm rein, die tür ist offen.:Uđi, vrata su otvorena.",
+   "bs": "Uđi, vrata su otvorena.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Komm rein, die Tür ist offen.",
+    "en": "Come in, the door is open.",
+    "tr": "Gir içeri, kapı açık.",
+    "sv": "Kom in, dörren är öppen.",
+    "nl": "Kom binnen, de deur is open.",
+    "nb": "Kom inn, døra er åpen.",
+    "da": "Kom ind, døren er åben.",
+    "fr": "Entre, la porte est ouverte."
+   },
+   "audio": null
+  },
+  {
+   "id": "hineingehen / hereinkommen:ulaziti",
+   "bs": "ulaziti",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "hineingehen / hereinkommen",
+    "en": "to go in / to come in",
+    "tr": "içeri girmek / içeri gelmek",
+    "sv": "gå in / komma in",
+    "nl": "naar binnen gaan / binnenkomen",
+    "nb": "gå inn / komme inn",
+    "da": "at gå ind / at komme ind",
+    "fr": "entrer"
+   },
+   "audio": null
+  },
+  {
+   "id": "geh nicht mit schuhen ins zimmer!:Ne ulazi u sobu u cipelama!",
+   "bs": "Ne ulazi u sobu u cipelama!",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Geh nicht mit Schuhen ins Zimmer!",
+    "en": "Don't go into the room with your shoes on!",
+    "tr": "Odaya ayakkabıyla girme!",
+    "sv": "Gå inte in i rummet med skorna på!",
+    "nl": "Ga niet met je schoenen aan de kamer in!",
+    "nb": "Ikke gå inn i rommet med skoa på!",
+    "da": "Gå ikke ind i værelset med sko på!",
+    "fr": "N'entre pas dans la chambre avec tes chaussures !"
+   },
+   "audio": null
+  },
+  {
+   "id": "hinausgehen / ausgehen:izaći",
+   "bs": "izaći",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "hinausgehen / ausgehen",
+    "en": "to go outside / to go out",
+    "tr": "dışarı çıkmak / gezmeye çıkmak",
+    "sv": "gå ut / gå ut och roa sig",
+    "nl": "naar buiten gaan / uitgaan",
+    "nb": "gå ut / gå ut på byen",
+    "da": "at gå udenfor / at gå i byen",
+    "fr": "sortir"
+   },
+   "audio": null
+  },
+  {
+   "id": "gehen wir heute abend aus?:Hoćemo li večeras izaći?",
+   "bs": "Hoćemo li večeras izaći?",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Gehen wir heute Abend aus?",
+    "en": "Shall we go out tonight?",
+    "tr": "Bu akşam dışarı çıkalım mı?",
+    "sv": "Ska vi gå ut i kväll?",
+    "nl": "Gaan we vanavond uit?",
+    "nb": "Skal vi gå ut i kveld?",
+    "da": "Skal vi gå ud i aften?",
+    "fr": "On sort ce soir ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "hinausgehen / ausgehen:izlaziti",
+   "bs": "izlaziti",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "hinausgehen / ausgehen",
+    "en": "to go outside / to go out",
+    "tr": "dışarı çıkmak / gezmeye çıkmak",
+    "sv": "gå ut / gå ut och roa sig",
+    "nl": "naar buiten gaan / uitgaan",
+    "nb": "gå ut / gå ut på byen",
+    "da": "at gå udenfor / at gå i byen",
+    "fr": "sortir"
+   },
+   "audio": null
+  },
+  {
+   "id": "am wochenende gehe ich gern mit freunden aus.:Vikendom rado izlazim s prijateljima.",
+   "bs": "Vikendom rado izlazim s prijateljima.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Am Wochenende gehe ich gern mit Freunden aus.",
+    "en": "On weekends I like going out with friends.",
+    "tr": "Hafta sonları arkadaşlarımla dışarı çıkmayı severim.",
+    "sv": "På helgerna går jag gärna ut med vänner.",
+    "nl": "In het weekend ga ik graag uit met vrienden.",
+    "nb": "I helgene går jeg gjerne ut med venner.",
+    "da": "I weekenden går jeg gerne ud med venner.",
+    "fr": "Le week-end, j'aime sortir avec des amis."
+   },
+   "audio": null
+  },
+  {
+   "id": "fahren (ein fahrzeug):voziti",
+   "bs": "voziti",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "fahren (ein Fahrzeug)",
+    "en": "to drive (a vehicle)",
+    "tr": "sürmek (araç)",
+    "sv": "köra (ett fordon)",
+    "nl": "rijden (een voertuig)",
+    "nb": "kjøre (et kjøretøy)",
+    "da": "at køre (et køretøj)",
+    "fr": "conduire (un véhicule)"
+   },
+   "audio": "web/audio/w1385.mp3"
+  },
+  {
+   "id": "fahr nicht so schnell!:Ne vozi tako brzo!",
+   "bs": "Ne vozi tako brzo!",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Fahr nicht so schnell!",
+    "en": "Don't drive so fast!",
+    "tr": "Bu kadar hızlı sürme!",
+    "sv": "Kör inte så fort!",
+    "nl": "Rijd niet zo hard!",
+    "nb": "Ikke kjør så fort!",
+    "da": "Kør ikke så stærkt!",
+    "fr": "Ne conduis pas si vite !"
+   },
+   "audio": null
+  },
+  {
+   "id": "reisen:putovati",
+   "bs": "putovati",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "reisen",
+    "en": "to travel",
+    "tr": "seyahat etmek",
+    "sv": "resa / färdas",
+    "nl": "reizen",
+    "nb": "reise / ferdes",
+    "da": "at rejse",
+    "fr": "voyager"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich reise gern mit dem zug.:Volim putovati vozom.",
+   "bs": "Volim putovati vozom.",
+   "level": "kommen_gehen",
+   "level_position": 66,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich reise gern mit dem Zug.",
+    "en": "I like traveling by train.",
+    "tr": "Trenle seyahat etmeyi severim.",
+    "sv": "Jag reser gärna med tåg.",
+    "nl": "Ik reis graag met de trein.",
+    "nb": "Jeg reiser gjerne med tog.",
+    "da": "Jeg rejser gerne med tog.",
+    "fr": "J'aime voyager en train."
+   },
+   "audio": null
+  },
+  {
+   "id": "bekommen:dobiti",
+   "bs": "dobiti",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bekommen",
+    "en": "to get",
+    "tr": "elde etmek / almak",
+    "sv": "få",
+    "nl": "krijgen",
+    "nb": "få",
+    "da": "at få",
+    "fr": "recevoir"
+   },
+   "audio": null
+  },
+  {
+   "id": "hast du meine nachricht bekommen?:Jesi li dobio moju poruku?",
+   "bs": "Jesi li dobio moju poruku?",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Hast du meine Nachricht bekommen?",
+    "en": "Did you get my message?",
+    "tr": "Mesajımı aldın mı?",
+    "sv": "Har du fått mitt meddelande?",
+    "nl": "Heb je mijn bericht gekregen?",
+    "nb": "Har du fått meldingen min?",
+    "da": "Har du fået min besked?",
+    "fr": "Tu as reçu mon message ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "bekommen:dobivati",
+   "bs": "dobivati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bekommen",
+    "en": "to get",
+    "tr": "elde etmek / almak",
+    "sv": "få",
+    "nl": "krijgen",
+    "nb": "få",
+    "da": "at få",
+    "fr": "recevoir"
+   },
+   "audio": null
+  },
+  {
+   "id": "den lohn bekommen wir am monatsende.:Platu dobivamo krajem mjeseca.",
+   "bs": "Platu dobivamo krajem mjeseca.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Den Lohn bekommen wir am Monatsende.",
+    "en": "We get our pay at the end of the month.",
+    "tr": "Maaşımızı ay sonunda alıyoruz.",
+    "sv": "Lönen får vi i slutet av månaden.",
+    "nl": "Ons loon krijgen we aan het eind van de maand.",
+    "nb": "Lønna får vi i slutten av måneden.",
+    "da": "Lønnen får vi sidst på måneden.",
+    "fr": "Nous touchons notre salaire à la fin du mois."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich befinden:nalaziti se",
+   "bs": "nalaziti se",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich befinden",
+    "en": "to be located",
+    "tr": "bulunmak",
+    "sv": "befinna sig",
+    "nl": "zich bevinden",
+    "nb": "befinne seg",
+    "da": "at befinde sig",
+    "fr": "se trouver"
+   },
+   "audio": null
+  },
+  {
+   "id": "wo befindet sich die apotheke?:Gdje se nalazi apoteka?",
+   "bs": "Gdje se nalazi apoteka?",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wo befindet sich die Apotheke?",
+    "en": "Where is the pharmacy located?",
+    "tr": "Eczane nerede bulunuyor?",
+    "sv": "Var finns apoteket?",
+    "nl": "Waar bevindt de apotheek zich?",
+    "nb": "Hvor ligger apoteket?",
+    "da": "Hvor ligger apoteket?",
+    "fr": "Où se trouve la pharmacie ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "verlieren:izgubiti",
+   "bs": "izgubiti",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "verlieren",
+    "en": "to lose",
+    "tr": "kaybetmek",
+    "sv": "förlora / tappa bort",
+    "nl": "verliezen",
+    "nb": "miste",
+    "da": "at miste",
+    "fr": "perdre"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe die schlüssel verloren.:Izgubio sam ključeve.",
+   "bs": "Izgubio sam ključeve.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe die Schlüssel verloren.",
+    "en": "I've lost the keys.",
+    "tr": "Anahtarları kaybettim.",
+    "sv": "Jag har tappat bort nycklarna.",
+    "nl": "Ik ben de sleutels kwijt.",
+    "nb": "Jeg har mistet nøklene.",
+    "da": "Jeg har mistet nøglerne.",
+    "fr": "J'ai perdu les clés."
+   },
+   "audio": null
+  },
+  {
+   "id": "finden:naći",
+   "bs": "naći",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "finden",
+    "en": "to find",
+    "tr": "bulmak",
+    "sv": "hitta",
+    "nl": "vinden",
+    "nb": "finne",
+    "da": "at finde",
+    "fr": "trouver"
+   },
+   "audio": null
+  },
+  {
+   "id": "hast du eine arbeit gefunden?:Jesi li našla posao?",
+   "bs": "Jesi li našla posao?",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Hast du eine Arbeit gefunden?",
+    "en": "Have you found a job?",
+    "tr": "İş buldun mu?",
+    "sv": "Har du hittat ett jobb?",
+    "nl": "Heb je werk gevonden?",
+    "nb": "Har du funnet en jobb?",
+    "da": "Har du fundet et arbejde?",
+    "fr": "Tu as trouvé du travail ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "geben:davati",
+   "bs": "davati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "geben",
+    "en": "to give",
+    "tr": "vermek",
+    "sv": "ge",
+    "nl": "geven",
+    "nb": "gi",
+    "da": "at give",
+    "fr": "donner"
+   },
+   "audio": null
+  },
+  {
+   "id": "oma gibt den kindern immer bonbons.:Nana djeci uvijek daje bombone.",
+   "bs": "Nana djeci uvijek daje bombone.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Oma gibt den Kindern immer Bonbons.",
+    "en": "Grandma always gives the children candy.",
+    "tr": "Ninem çocuklara hep şeker verir.",
+    "sv": "Mormor ger alltid barnen godis.",
+    "nl": "Oma geeft de kinderen altijd snoepjes.",
+    "nb": "Bestemor gir alltid barna godteri.",
+    "da": "Bedstemor giver altid børnene slik.",
+    "fr": "Grand-mère donne toujours des bonbons aux enfants."
+   },
+   "audio": null
+  },
+  {
+   "id": "tragen:nositi",
+   "bs": "nositi",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "tragen",
+    "en": "to wear / to carry",
+    "tr": "giymek / taşımak",
+    "sv": "ha på sig / bära",
+    "nl": "dragen",
+    "nb": "ha på seg / bære",
+    "da": "at have på / at bære",
+    "fr": "porter"
+   },
+   "audio": null
+  },
+  {
+   "id": "heute trage ich eine neue jacke.:Danas nosim novu jaknu.",
+   "bs": "Danas nosim novu jaknu.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Heute trage ich eine neue Jacke.",
+    "en": "Today I'm wearing a new jacket.",
+    "tr": "Bugün yeni bir ceket giyiyorum.",
+    "sv": "I dag har jag en ny jacka på mig.",
+    "nl": "Vandaag draag ik een nieuwe jas.",
+    "nb": "I dag har jeg på meg en ny jakke.",
+    "da": "I dag har jeg en ny jakke på.",
+    "fr": "Aujourd'hui, je porte une nouvelle veste."
+   },
+   "audio": null
+  },
+  {
+   "id": "nehmen:uzeti",
+   "bs": "uzeti",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "nehmen",
+    "en": "to take",
+    "tr": "almak",
+    "sv": "ta",
+    "nl": "nemen",
+    "nb": "ta",
+    "da": "at tage",
+    "fr": "prendre"
+   },
+   "audio": null
+  },
+  {
+   "id": "nimm noch ein stück!:Uzmi još jedan komad!",
+   "bs": "Uzmi još jedan komad!",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Nimm noch ein Stück!",
+    "en": "Have another piece!",
+    "tr": "Bir parça daha al!",
+    "sv": "Ta en bit till!",
+    "nl": "Neem nog een stuk!",
+    "nb": "Ta et stykke til!",
+    "da": "Tag et stykke til!",
+    "fr": "Prends encore un morceau !"
+   },
+   "audio": null
+  },
+  {
+   "id": "nehmen:uzimati",
+   "bs": "uzimati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "nehmen",
+    "en": "to take",
+    "tr": "almak",
+    "sv": "ta",
+    "nl": "nemen",
+    "nb": "ta",
+    "da": "at tage",
+    "fr": "prendre"
+   },
+   "audio": null
+  },
+  {
+   "id": "dieses medikament nehme ich zweimal täglich.:Ovaj lijek uzimam dva puta dnevno.",
+   "bs": "Ovaj lijek uzimam dva puta dnevno.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Dieses Medikament nehme ich zweimal täglich.",
+    "en": "I take this medicine twice a day.",
+    "tr": "Bu ilacı günde iki kez alıyorum.",
+    "sv": "Den här medicinen tar jag två gånger om dagen.",
+    "nl": "Dit medicijn neem ik twee keer per dag.",
+    "nb": "Denne medisinen tar jeg to ganger om dagen.",
+    "da": "Denne medicin tager jeg to gange om dagen.",
+    "fr": "Je prends ce médicament deux fois par jour."
+   },
+   "audio": null
+  },
+  {
+   "id": "schicken:poslati",
+   "bs": "poslati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "schicken",
+    "en": "to send",
+    "tr": "göndermek",
+    "sv": "skicka",
+    "nl": "sturen",
+    "nb": "sende",
+    "da": "at sende",
+    "fr": "envoyer"
+   },
+   "audio": null
+  },
+  {
+   "id": "schick mir bitte die adresse.:Pošalji mi adresu, molim te.",
+   "bs": "Pošalji mi adresu, molim te.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Schick mir bitte die Adresse.",
+    "en": "Please send me the address.",
+    "tr": "Lütfen bana adresi gönder.",
+    "sv": "Skicka adressen till mig, är du snäll.",
+    "nl": "Stuur me alsjeblieft het adres.",
+    "nb": "Send meg adressen, er du snill.",
+    "da": "Send mig adressen, tak.",
+    "fr": "Envoie-moi l'adresse, s'il te plaît."
+   },
+   "audio": null
+  },
+  {
+   "id": "schicken:slati",
+   "bs": "slati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "schicken",
+    "en": "to send",
+    "tr": "göndermek",
+    "sv": "skicka",
+    "nl": "sturen",
+    "nb": "sende",
+    "da": "at sende",
+    "fr": "envoyer"
+   },
+   "audio": null
+  },
+  {
+   "id": "jeden monat schicke ich meinen eltern geld.:Svakog mjeseca šaljem novac roditeljima.",
+   "bs": "Svakog mjeseca šaljem novac roditeljima.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Jeden Monat schicke ich meinen Eltern Geld.",
+    "en": "Every month I send my parents money.",
+    "tr": "Her ay anne babama para gönderiyorum.",
+    "sv": "Varje månad skickar jag pengar till mina föräldrar.",
+    "nl": "Elke maand stuur ik mijn ouders geld.",
+    "nb": "Hver måned sender jeg penger til foreldrene mine.",
+    "da": "Hver måned sender jeg penge til mine forældre.",
+    "fr": "Chaque mois, j'envoie de l'argent à mes parents."
+   },
+   "audio": null
+  },
+  {
+   "id": "helfen:pomagati",
+   "bs": "pomagati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "helfen",
+    "en": "to help",
+    "tr": "yardım etmek",
+    "sv": "hjälpa",
+    "nl": "helpen",
+    "nb": "hjelpe",
+    "da": "at hjælpe",
+    "fr": "aider"
+   },
+   "audio": null
+  },
+  {
+   "id": "meine tochter hilft mir in der küche.:Kćerka mi pomaže u kuhinji.",
+   "bs": "Kćerka mi pomaže u kuhinji.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Meine Tochter hilft mir in der Küche.",
+    "en": "My daughter helps me in the kitchen.",
+    "tr": "Kızım bana mutfakta yardım ediyor.",
+    "sv": "Min dotter hjälper mig i köket.",
+    "nl": "Mijn dochter helpt me in de keuken.",
+    "nb": "Datteren min hjelper meg på kjøkkenet.",
+    "da": "Min datter hjælper mig i køkkenet.",
+    "fr": "Ma fille m'aide dans la cuisine."
+   },
+   "audio": null
+  },
+  {
+   "id": "hüten / aufbewahren:čuvati",
+   "bs": "čuvati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "hüten / aufbewahren",
+    "en": "to look after / to keep",
+    "tr": "bakmak / saklamak",
+    "sv": "passa / förvara",
+    "nl": "oppassen op / bewaren",
+    "nb": "passe på / oppbevare",
+    "da": "at passe / at opbevare",
+    "fr": "garder / conserver"
+   },
+   "audio": null
+  },
+  {
+   "id": "oma passt auf die kinder auf, während wir bei der arbeit sind.:Nana čuva djecu dok smo na poslu.",
+   "bs": "Nana čuva djecu dok smo na poslu.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Oma passt auf die Kinder auf, während wir bei der Arbeit sind.",
+    "en": "Grandma looks after the children while we're at work.",
+    "tr": "Biz işteyken çocuklara ninem bakıyor.",
+    "sv": "Mormor passar barnen medan vi är på jobbet.",
+    "nl": "Oma past op de kinderen terwijl wij aan het werk zijn.",
+    "nb": "Bestemor passer barna mens vi er på jobb.",
+    "da": "Bedstemor passer børnene, mens vi er på arbejde.",
+    "fr": "Grand-mère garde les enfants pendant que nous sommes au travail."
+   },
+   "audio": null
+  },
+  {
+   "id": "anbieten:ponuditi",
+   "bs": "ponuditi",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "anbieten",
+    "en": "to offer",
+    "tr": "teklif etmek",
+    "sv": "erbjuda",
+    "nl": "aanbieden",
+    "nb": "tilby",
+    "da": "at tilbyde",
+    "fr": "proposer / offrir"
+   },
+   "audio": null
+  },
+  {
+   "id": "sie haben mir eine stelle angeboten.:Ponudili su mi posao.",
+   "bs": "Ponudili su mi posao.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Sie haben mir eine Stelle angeboten.",
+    "en": "They offered me a job.",
+    "tr": "Bana bir iş teklif ettiler.",
+    "sv": "De har erbjudit mig ett jobb.",
+    "nl": "Ze hebben me een baan aangeboden.",
+    "nb": "De har tilbudt meg en jobb.",
+    "da": "De har tilbudt mig et job.",
+    "fr": "On m'a proposé un poste."
+   },
+   "audio": null
+  },
+  {
+   "id": "verkaufen:prodati",
+   "bs": "prodati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "verkaufen",
+    "en": "to sell",
+    "tr": "satmak",
+    "sv": "sälja",
+    "nl": "verkopen",
+    "nb": "selge",
+    "da": "at sælge",
+    "fr": "vendre"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir haben das alte auto verkauft.:Prodali smo stari auto.",
+   "bs": "Prodali smo stari auto.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir haben das alte Auto verkauft.",
+    "en": "We sold the old car.",
+    "tr": "Eski arabayı sattık.",
+    "sv": "Vi har sålt den gamla bilen.",
+    "nl": "We hebben de oude auto verkocht.",
+    "nb": "Vi har solgt den gamle bilen.",
+    "da": "Vi har solgt den gamle bil.",
+    "fr": "Nous avons vendu la vieille voiture."
+   },
+   "audio": null
+  },
+  {
+   "id": "verkaufen:prodavati",
+   "bs": "prodavati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "verkaufen",
+    "en": "to sell",
+    "tr": "satmak",
+    "sv": "sälja",
+    "nl": "verkopen",
+    "nb": "selge",
+    "da": "at sælge",
+    "fr": "vendre"
+   },
+   "audio": null
+  },
+  {
+   "id": "hier verkauft man frisches brot.:Ovdje prodaju svjež hljeb.",
+   "bs": "Ovdje prodaju svjež hljeb.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Hier verkauft man frisches Brot.",
+    "en": "They sell fresh bread here.",
+    "tr": "Burada taze ekmek satılıyor.",
+    "sv": "Här säljer de färskt bröd.",
+    "nl": "Hier verkopen ze vers brood.",
+    "nb": "Her selger de ferskt brød.",
+    "da": "Her sælger de friskt brød.",
+    "fr": "Ici, on vend du pain frais."
+   },
+   "audio": null
+  },
+  {
+   "id": "bezahlen:plaćati",
+   "bs": "plaćati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bezahlen",
+    "en": "to pay",
+    "tr": "ödemek",
+    "sv": "betala",
+    "nl": "betalen",
+    "nb": "betale",
+    "da": "betale",
+    "fr": "payer"
+   },
+   "audio": null
+  },
+  {
+   "id": "zahlen sie mit karte oder bar?:Plaćate li karticom ili gotovinom?",
+   "bs": "Plaćate li karticom ili gotovinom?",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Zahlen Sie mit Karte oder bar?",
+    "en": "Are you paying by card or in cash?",
+    "tr": "Kartla mı ödüyorsunuz, nakit mi?",
+    "sv": "Betalar ni med kort eller kontant?",
+    "nl": "Betaalt u met de kaart of contant?",
+    "nb": "Betaler De med kort eller kontant?",
+    "da": "Betaler De med kort eller kontant?",
+    "fr": "Vous payez par carte ou en espèces ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "kaufen:kupovati",
+   "bs": "kupovati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "kaufen",
+    "en": "to buy",
+    "tr": "satın almak",
+    "sv": "köpa",
+    "nl": "kopen",
+    "nb": "kjøpe",
+    "da": "at købe",
+    "fr": "acheter"
+   },
+   "audio": null
+  },
+  {
+   "id": "brot kaufe ich jeden morgen.:Hljeb kupujem svako jutro.",
+   "bs": "Hljeb kupujem svako jutro.",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Brot kaufe ich jeden Morgen.",
+    "en": "I buy bread every morning.",
+    "tr": "Ekmeği her sabah alıyorum.",
+    "sv": "Bröd köper jag varje morgon.",
+    "nl": "Brood koop ik elke ochtend.",
+    "nb": "Brød kjøper jeg hver morgen.",
+    "da": "Brød køber jeg hver morgen.",
+    "fr": "J'achète du pain tous les matins."
+   },
+   "audio": null
+  },
+  {
+   "id": "annehmen / empfangen:primati",
+   "bs": "primati",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "annehmen / empfangen",
+    "en": "to accept / to receive",
+    "tr": "kabul etmek / almak",
+    "sv": "ta emot / acceptera",
+    "nl": "aannemen / ontvangen",
+    "nb": "ta imot / motta",
+    "da": "at tage imod / at modtage",
+    "fr": "accepter / recevoir"
+   },
+   "audio": null
+  },
+  {
+   "id": "nehmen sie karten?:Primate li kartice?",
+   "bs": "Primate li kartice?",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Nehmen Sie Karten?",
+    "en": "Do you take cards?",
+    "tr": "Kart kabul ediyor musunuz?",
+    "sv": "Tar ni kort?",
+    "nl": "Accepteert u kaarten?",
+    "nb": "Tar De kort?",
+    "da": "Tager De kort?",
+    "fr": "Vous acceptez les cartes ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "stehlen:ukrasti",
+   "bs": "ukrasti",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "stehlen",
+    "en": "to steal",
+    "tr": "çalmak (hırsızlık)",
+    "sv": "stjäla",
+    "nl": "stelen",
+    "nb": "stjele",
+    "da": "at stjæle",
+    "fr": "voler (dérober)"
+   },
+   "audio": null
+  },
+  {
+   "id": "jemand hat mir den geldbeutel gestohlen!:Neko mi je ukrao novčanik!",
+   "bs": "Neko mi je ukrao novčanik!",
+   "level": "geben_nehmen",
+   "level_position": 67,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Jemand hat mir den Geldbeutel gestohlen!",
+    "en": "Someone has stolen my wallet!",
+    "tr": "Biri cüzdanımı çaldı!",
+    "sv": "Någon har stulit min plånbok!",
+    "nl": "Iemand heeft mijn portemonnee gestolen!",
+    "nb": "Noen har stjålet lommeboka mi!",
+    "da": "Nogen har stjålet min pung!",
+    "fr": "Quelqu'un m'a volé mon portefeuille !"
+   },
+   "audio": null
+  },
+  {
+   "id": "wünschen / sich wünschen:željeti",
+   "bs": "željeti",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "wünschen / sich wünschen",
+    "en": "to wish / to wish for",
+    "tr": "dilemek / istemek",
+    "sv": "önska / önska sig",
+    "nl": "wensen / graag willen",
+    "nb": "ønske / ønske seg",
+    "da": "at ønske / at ønske sig",
+    "fr": "souhaiter / désirer"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich wünsche dir alles gute!:Želim ti sve najbolje!",
+   "bs": "Želim ti sve najbolje!",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich wünsche dir alles Gute!",
+    "en": "I wish you all the best!",
+    "tr": "Sana her şeyin en iyisini dilerim!",
+    "sv": "Jag önskar dig allt gott!",
+    "nl": "Ik wens je het allerbeste!",
+    "nb": "Jeg ønsker deg alt godt!",
+    "da": "Jeg ønsker dig alt godt!",
+    "fr": "Je te souhaite le meilleur !"
+   },
+   "audio": null
+  },
+  {
+   "id": "denken / meinen:misliti",
+   "bs": "misliti",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "denken / meinen",
+    "en": "to think / to reckon",
+    "tr": "düşünmek / sanmak",
+    "sv": "tänka / tycka",
+    "nl": "denken / vinden",
+    "nb": "tenke / mene",
+    "da": "at tænke / at mene",
+    "fr": "penser"
+   },
+   "audio": null
+  },
+  {
+   "id": "mama denkt immer an andere.:Mama uvijek misli na druge.",
+   "bs": "Mama uvijek misli na druge.",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mama denkt immer an andere.",
+    "en": "Mom always thinks of others.",
+    "tr": "Annem hep başkalarını düşünür.",
+    "sv": "Mamma tänker alltid på andra.",
+    "nl": "Mama denkt altijd aan anderen.",
+    "nb": "Mamma tenker alltid på andre.",
+    "da": "Mor tænker altid på andre.",
+    "fr": "Maman pense toujours aux autres."
+   },
+   "audio": null
+  },
+  {
+   "id": "halten für / der meinung sein:smatrati",
+   "bs": "smatrati",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "halten für / der Meinung sein",
+    "en": "to consider / to be of the opinion",
+    "tr": "saymak / ... fikrinde olmak",
+    "sv": "anse / vara av den åsikten",
+    "nl": "beschouwen als / van mening zijn",
+    "nb": "anse / være av den oppfatning",
+    "da": "at anse for / at være af den opfattelse",
+    "fr": "considérer / être d'avis"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich halte das für eine gute idee.:Smatram da je to dobra ideja.",
+   "bs": "Smatram da je to dobra ideja.",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich halte das für eine gute Idee.",
+    "en": "I consider it a good idea.",
+    "tr": "Bunu iyi bir fikir olarak görüyorum.",
+    "sv": "Jag anser att det är en bra idé.",
+    "nl": "Ik vind het een goed idee.",
+    "nb": "Jeg mener det er en god idé.",
+    "da": "Jeg mener, det er en god idé.",
+    "fr": "Je trouve que c'est une bonne idée."
+   },
+   "audio": null
+  },
+  {
+   "id": "bedeuten:značiti",
+   "bs": "značiti",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bedeuten",
+    "en": "to mean",
+    "tr": "anlamına gelmek",
+    "sv": "betyda",
+    "nl": "betekenen",
+    "nb": "bety",
+    "da": "at betyde",
+    "fr": "signifier"
+   },
+   "audio": null
+  },
+  {
+   "id": "was bedeutet dieses wort?:Šta znači ova riječ?",
+   "bs": "Šta znači ova riječ?",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Was bedeutet dieses Wort?",
+    "en": "What does this word mean?",
+    "tr": "Bu kelime ne anlama geliyor?",
+    "sv": "Vad betyder det här ordet?",
+    "nl": "Wat betekent dit woord?",
+    "nb": "Hva betyr dette ordet?",
+    "da": "Hvad betyder dette ord?",
+    "fr": "Que signifie ce mot ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "erwarten:očekivati",
+   "bs": "očekivati",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "erwarten",
+    "en": "to expect",
+    "tr": "beklemek / ummak",
+    "sv": "förvänta sig / vänta",
+    "nl": "verwachten",
+    "nb": "forvente / vente",
+    "da": "at forvente / at vente",
+    "fr": "attendre / s'attendre à"
+   },
+   "audio": null
+  },
+  {
+   "id": "heute abend erwarten wir gäste.:Večeras očekujemo goste.",
+   "bs": "Večeras očekujemo goste.",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Heute Abend erwarten wir Gäste.",
+    "en": "We're expecting guests tonight.",
+    "tr": "Bu akşam misafir bekliyoruz.",
+    "sv": "I kväll väntar vi gäster.",
+    "nl": "Vanavond verwachten we gasten.",
+    "nb": "I kveld venter vi gjester.",
+    "da": "I aften venter vi gæster.",
+    "fr": "Ce soir, nous attendons des invités."
+   },
+   "audio": null
+  },
+  {
+   "id": "ansehen / schauen:gledati",
+   "bs": "gledati",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ansehen / schauen",
+    "en": "to look at / to watch",
+    "tr": "bakmak / izlemek",
+    "sv": "titta på / kolla",
+    "nl": "bekijken / kijken",
+    "nb": "se på / kikke",
+    "da": "at se på / at kigge",
+    "fr": "regarder"
+   },
+   "audio": null
+  },
+  {
+   "id": "was schaust du dir da an?:Šta to gledaš?",
+   "bs": "Šta to gledaš?",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Was schaust du dir da an?",
+    "en": "What are you looking at?",
+    "tr": "Neye bakıyorsun?",
+    "sv": "Vad tittar du på?",
+    "nl": "Waar kijk je naar?",
+    "nb": "Hva ser du på?",
+    "da": "Hvad kigger du på?",
+    "fr": "Qu'est-ce que tu regardes ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "ansehen / schauen:pogledati",
+   "bs": "pogledati",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ansehen / schauen",
+    "en": "to look at / to watch",
+    "tr": "bakmak / izlemek",
+    "sv": "titta på / kolla",
+    "nl": "bekijken / kijken",
+    "nb": "se på / kikke",
+    "da": "at se på / at kigge",
+    "fr": "regarder"
+   },
+   "audio": null
+  },
+  {
+   "id": "schau dir das an!:Pogledaj ovo!",
+   "bs": "Pogledaj ovo!",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Schau dir das an!",
+    "en": "Look at this!",
+    "tr": "Şuna bak!",
+    "sv": "Titta på det här!",
+    "nl": "Kijk hier eens naar!",
+    "nb": "Se på dette!",
+    "da": "Se lige det her!",
+    "fr": "Regarde ça !"
+   },
+   "audio": null
+  },
+  {
+   "id": "glauben:vjerovati",
+   "bs": "vjerovati",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "glauben",
+    "en": "to believe",
+    "tr": "inanmak",
+    "sv": "tro",
+    "nl": "geloven",
+    "nb": "tro",
+    "da": "at tro",
+    "fr": "croire"
+   },
+   "audio": null
+  },
+  {
+   "id": "glaub mir, das ist wahr.:Vjeruj mi, to je istina.",
+   "bs": "Vjeruj mi, to je istina.",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Glaub mir, das ist wahr.",
+    "en": "Believe me, it's true.",
+    "tr": "İnan bana, bu doğru.",
+    "sv": "Tro mig, det är sant.",
+    "nl": "Geloof me, het is waar.",
+    "nb": "Tro meg, det er sant.",
+    "da": "Tro mig, det er sandt.",
+    "fr": "Crois-moi, c'est vrai."
+   },
+   "audio": null
+  },
+  {
+   "id": "hören:čuti",
+   "bs": "čuti",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "hören",
+    "en": "to hear",
+    "tr": "duymak",
+    "sv": "höra",
+    "nl": "horen",
+    "nb": "høre",
+    "da": "at høre",
+    "fr": "entendre"
+   },
+   "audio": null
+  },
+  {
+   "id": "hörst du mich?:Čuješ li me?",
+   "bs": "Čuješ li me?",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Hörst du mich?",
+    "en": "Can you hear me?",
+    "tr": "Beni duyuyor musun?",
+    "sv": "Hör du mig?",
+    "nl": "Hoor je me?",
+    "nb": "Hører du meg?",
+    "da": "Kan du høre mig?",
+    "fr": "Tu m'entends ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "entscheiden / beschließen:odlučiti",
+   "bs": "odlučiti",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "entscheiden / beschließen",
+    "en": "to decide",
+    "tr": "karar vermek",
+    "sv": "bestämma / besluta",
+    "nl": "beslissen / besluiten",
+    "nb": "bestemme / beslutte",
+    "da": "at bestemme / at beslutte",
+    "fr": "décider"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir haben beschlossen, ein haus zu kaufen.:Odlučili smo kupiti kuću.",
+   "bs": "Odlučili smo kupiti kuću.",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir haben beschlossen, ein Haus zu kaufen.",
+    "en": "We've decided to buy a house.",
+    "tr": "Bir ev almaya karar verdik.",
+    "sv": "Vi har bestämt oss för att köpa ett hus.",
+    "nl": "We hebben besloten een huis te kopen.",
+    "nb": "Vi har bestemt oss for å kjøpe et hus.",
+    "da": "Vi har besluttet at købe et hus.",
+    "fr": "Nous avons décidé d'acheter une maison."
+   },
+   "audio": null
+  },
+  {
+   "id": "hoffen:nadati se",
+   "bs": "nadati se",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "hoffen",
+    "en": "to hope",
+    "tr": "ummak / umut etmek",
+    "sv": "hoppas",
+    "nl": "hopen",
+    "nb": "håpe",
+    "da": "at håbe",
+    "fr": "espérer"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich hoffe auf schönes wetter.:Nadam se lijepom vremenu.",
+   "bs": "Nadam se lijepom vremenu.",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich hoffe auf schönes Wetter.",
+    "en": "I'm hoping for nice weather.",
+    "tr": "Güzel bir hava umuyorum.",
+    "sv": "Jag hoppas på fint väder.",
+    "nl": "Ik hoop op mooi weer.",
+    "nb": "Jeg håper på fint vær.",
+    "da": "Jeg håber på godt vejr.",
+    "fr": "J'espère qu'il fera beau."
+   },
+   "audio": null
+  },
+  {
+   "id": "antworten:odgovoriti",
+   "bs": "odgovoriti",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "antworten",
+    "en": "to answer",
+    "tr": "cevap vermek",
+    "sv": "svara",
+    "nl": "antwoorden",
+    "nb": "svare",
+    "da": "at svare",
+    "fr": "répondre"
+   },
+   "audio": null
+  },
+  {
+   "id": "er hat mir noch nicht geantwortet.:Još mi nije odgovorio.",
+   "bs": "Još mi nije odgovorio.",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Er hat mir noch nicht geantwortet.",
+    "en": "He hasn't answered me yet.",
+    "tr": "Bana hâlâ cevap vermedi.",
+    "sv": "Han har inte svarat mig än.",
+    "nl": "Hij heeft me nog niet geantwoord.",
+    "nb": "Han har ikke svart meg ennå.",
+    "da": "Han har ikke svaret mig endnu.",
+    "fr": "Il ne m'a pas encore répondu."
+   },
+   "audio": null
+  },
+  {
+   "id": "antworten / sich verantworten:odgovarati",
+   "bs": "odgovarati",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "antworten / sich verantworten",
+    "en": "to answer / to be held accountable",
+    "tr": "cevap vermek / hesap vermek",
+    "sv": "svara / stå till svars",
+    "nl": "antwoorden / zich verantwoorden",
+    "nb": "svare / stå til ansvar",
+    "da": "at svare / at stå til ansvar",
+    "fr": "répondre / rendre des comptes"
+   },
+   "audio": null
+  },
+  {
+   "id": "warum antwortest du nicht auf nachrichten?:Zašto ne odgovaraš na poruke?",
+   "bs": "Zašto ne odgovaraš na poruke?",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Warum antwortest du nicht auf Nachrichten?",
+    "en": "Why don't you answer messages?",
+    "tr": "Neden mesajlara cevap vermiyorsun?",
+    "sv": "Varför svarar du inte på meddelanden?",
+    "nl": "Waarom antwoord je niet op berichten?",
+    "nb": "Hvorfor svarer du ikke på meldinger?",
+    "da": "Hvorfor svarer du ikke på beskeder?",
+    "fr": "Pourquoi tu ne réponds pas aux messages ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "reden / erzählen:pričati",
+   "bs": "pričati",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "reden / erzählen",
+    "en": "to talk / to tell",
+    "tr": "konuşmak / anlatmak",
+    "sv": "prata / berätta",
+    "nl": "praten / vertellen",
+    "nb": "snakke / fortelle",
+    "da": "at snakke / at fortælle",
+    "fr": "parler / raconter"
+   },
+   "audio": null
+  },
+  {
+   "id": "worüber redet ihr?:O čemu pričate?",
+   "bs": "O čemu pričate?",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Worüber redet ihr?",
+    "en": "What are you talking about?",
+    "tr": "Ne hakkında konuşuyorsunuz?",
+    "sv": "Vad pratar ni om?",
+    "nl": "Waar hebben jullie het over?",
+    "nb": "Hva snakker dere om?",
+    "da": "Hvad snakker I om?",
+    "fr": "De quoi vous parlez ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "erzählen:ispričati",
+   "bs": "ispričati",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "erzählen",
+    "en": "to tell",
+    "tr": "anlatmak",
+    "sv": "berätta",
+    "nl": "vertellen",
+    "nb": "fortelle",
+    "da": "at fortælle",
+    "fr": "raconter"
+   },
+   "audio": null
+  },
+  {
+   "id": "erzähl mir, was passiert ist.:Ispričaj mi šta se desilo.",
+   "bs": "Ispričaj mi šta se desilo.",
+   "level": "sagen_denken",
+   "level_position": 68,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Erzähl mir, was passiert ist.",
+    "en": "Tell me what happened.",
+    "tr": "Bana ne olduğunu anlat.",
+    "sv": "Berätta vad som hände.",
+    "nl": "Vertel me wat er gebeurd is.",
+    "nb": "Fortell meg hva som skjedde.",
+    "da": "Fortæl mig, hvad der skete.",
+    "fr": "Raconte-moi ce qui s'est passé."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich unterhalten:razgovarati",
+   "bs": "razgovarati",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich unterhalten",
+    "en": "to have a talk",
+    "tr": "sohbet etmek",
+    "sv": "samtala",
+    "nl": "een gesprek voeren",
+    "nb": "snakke sammen",
+    "da": "at tale sammen",
+    "fr": "discuter"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir müssen reden.:Moramo razgovarati.",
+   "bs": "Moramo razgovarati.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir müssen reden.",
+    "en": "We need to talk.",
+    "tr": "Konuşmamız lazım.",
+    "sv": "Vi måste prata.",
+    "nl": "We moeten praten.",
+    "nb": "Vi må snakke sammen.",
+    "da": "Vi er nødt til at tale sammen.",
+    "fr": "Il faut qu'on parle."
+   },
+   "audio": null
+  },
+  {
+   "id": "begreifen / kapieren:shvatiti",
+   "bs": "shvatiti",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "begreifen / kapieren",
+    "en": "to grasp / to get it",
+    "tr": "kavramak",
+    "sv": "fatta / begripa",
+    "nl": "begrijpen / snappen",
+    "nb": "skjønne / fatte",
+    "da": "at fatte / at begribe",
+    "fr": "saisir / piger"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe die frage nicht verstanden.:Nisam shvatio pitanje.",
+   "bs": "Nisam shvatio pitanje.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe die Frage nicht verstanden.",
+    "en": "I didn't understand the question.",
+    "tr": "Soruyu anlamadım.",
+    "sv": "Jag förstod inte frågan.",
+    "nl": "Ik heb de vraag niet begrepen.",
+    "nb": "Jeg skjønte ikke spørsmålet.",
+    "da": "Jeg forstod ikke spørgsmålet.",
+    "fr": "Je n'ai pas compris la question."
+   },
+   "audio": null
+  },
+  {
+   "id": "vergessen:zaboraviti",
+   "bs": "zaboraviti",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "vergessen",
+    "en": "to forget",
+    "tr": "unutmak",
+    "sv": "glömma",
+    "nl": "vergeten",
+    "nb": "glemme",
+    "da": "at glemme",
+    "fr": "oublier"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe deine nummer vergessen.:Zaboravio sam tvoj broj.",
+   "bs": "Zaboravio sam tvoj broj.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe deine Nummer vergessen.",
+    "en": "I've forgotten your number.",
+    "tr": "Numaranı unuttum.",
+    "sv": "Jag har glömt ditt nummer.",
+    "nl": "Ik ben je nummer vergeten.",
+    "nb": "Jeg har glemt nummeret ditt.",
+    "da": "Jeg har glemt dit nummer.",
+    "fr": "J'ai oublié ton numéro."
+   },
+   "audio": null
+  },
+  {
+   "id": "erklären:objasniti",
+   "bs": "objasniti",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "erklären",
+    "en": "to explain",
+    "tr": "açıklamak",
+    "sv": "förklara",
+    "nl": "uitleggen",
+    "nb": "forklare",
+    "da": "at forklare",
+    "fr": "expliquer"
+   },
+   "audio": null
+  },
+  {
+   "id": "können sie mir den weg erklären?:Možete li mi objasniti put?",
+   "bs": "Možete li mi objasniti put?",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Können Sie mir den Weg erklären?",
+    "en": "Could you explain the way to me?",
+    "tr": "Bana yolu tarif edebilir misiniz?",
+    "sv": "Kan ni förklara vägen för mig?",
+    "nl": "Kunt u me de weg uitleggen?",
+    "nb": "Kan De forklare meg veien?",
+    "da": "Kan De forklare mig vejen?",
+    "fr": "Pouvez-vous m'expliquer le chemin ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "lernen:naučiti",
+   "bs": "naučiti",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "lernen",
+    "en": "to learn",
+    "tr": "öğrenmek",
+    "sv": "lära sig",
+    "nl": "leren",
+    "nb": "lære",
+    "da": "at lære",
+    "fr": "apprendre"
+   },
+   "audio": "web/audio/w1408.mp3"
+  },
+  {
+   "id": "ich habe autofahren gelernt.:Naučila sam voziti auto.",
+   "bs": "Naučila sam voziti auto.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe Autofahren gelernt.",
+    "en": "I've learned to drive.",
+    "tr": "Araba kullanmayı öğrendim.",
+    "sv": "Jag har lärt mig köra bil.",
+    "nl": "Ik heb leren autorijden.",
+    "nb": "Jeg har lært å kjøre bil.",
+    "da": "Jeg har lært at køre bil.",
+    "fr": "J'ai appris à conduire."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich melden:javiti se",
+   "bs": "javiti se",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich melden",
+    "en": "to get in touch",
+    "tr": "haber vermek",
+    "sv": "höra av sig",
+    "nl": "van je laten horen",
+    "nb": "gi lyd fra seg",
+    "da": "at give lyd fra sig",
+    "fr": "donner des nouvelles"
+   },
+   "audio": null
+  },
+  {
+   "id": "melde dich, wenn du ankommst!:Javi se kad stigneš!",
+   "bs": "Javi se kad stigneš!",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Melde dich, wenn du ankommst!",
+    "en": "Let me know when you get there!",
+    "tr": "Varınca haber ver!",
+    "sv": "Hör av dig när du kommer fram!",
+    "nl": "Laat iets van je horen als je er bent!",
+    "nb": "Gi lyd når du er framme!",
+    "da": "Giv lyd, når du er fremme!",
+    "fr": "Donne-moi des nouvelles quand tu arrives !"
+   },
+   "audio": null
+  },
+  {
+   "id": "nachdenken:razmišljati",
+   "bs": "razmišljati",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "nachdenken",
+    "en": "to think something over",
+    "tr": "düşünüp taşınmak",
+    "sv": "fundera",
+    "nl": "nadenken",
+    "nb": "tenke over",
+    "da": "at tænke over",
+    "fr": "réfléchir"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich denke darüber nach.:Razmišljam o tome.",
+   "bs": "Razmišljam o tome.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich denke darüber nach.",
+    "en": "I'm thinking about it.",
+    "tr": "Bunu düşünüyorum.",
+    "sv": "Jag funderar på det.",
+    "nl": "Ik denk erover na.",
+    "nb": "Jeg tenker på det.",
+    "da": "Jeg tænker over det.",
+    "fr": "J'y réfléchis."
+   },
+   "audio": null
+  },
+  {
+   "id": "erfahren:saznati",
+   "bs": "saznati",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "erfahren",
+    "en": "to find out",
+    "tr": "haber almak",
+    "sv": "få veta",
+    "nl": "te weten komen",
+    "nb": "få vite",
+    "da": "at få at vide",
+    "fr": "apprendre (une nouvelle)"
+   },
+   "audio": null
+  },
+  {
+   "id": "wie hast du das erfahren?:Kako si to saznao?",
+   "bs": "Kako si to saznao?",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wie hast du das erfahren?",
+    "en": "How did you find out?",
+    "tr": "Bunu nasıl öğrendin?",
+    "sv": "Hur fick du veta det?",
+    "nl": "Hoe ben je dat te weten gekomen?",
+    "nb": "Hvordan fikk du vite det?",
+    "da": "Hvordan fandt du ud af det?",
+    "fr": "Comment tu l'as appris ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "zuhören / anhören:slušati",
+   "bs": "slušati",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "zuhören / anhören",
+    "en": "to listen (to)",
+    "tr": "dinlemek",
+    "sv": "lyssna (på)",
+    "nl": "luisteren (naar)",
+    "nb": "høre på / lytte",
+    "da": "at lytte / at høre på",
+    "fr": "écouter"
+   },
+   "audio": null
+  },
+  {
+   "id": "im auto höre ich sevdalinkas.:U autu slušam sevdalinke.",
+   "bs": "U autu slušam sevdalinke.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Im Auto höre ich Sevdalinkas.",
+    "en": "In the car I listen to sevdalinkas.",
+    "tr": "Arabada sevdalinka dinlerim.",
+    "sv": "I bilen lyssnar jag på sevdalinkor.",
+    "nl": "In de auto luister ik naar sevdalinka's.",
+    "nb": "I bilen hører jeg på sevdalinkaer.",
+    "da": "I bilen lytter jeg til sevdalinkaer.",
+    "fr": "En voiture, j'écoute des sevdalinkas."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich verabreden / vereinbaren:dogovoriti se",
+   "bs": "dogovoriti se",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich verabreden / vereinbaren",
+    "en": "to arrange to meet / to agree on",
+    "tr": "sözleşmek / anlaşmak",
+    "sv": "bestämma träff / komma överens",
+    "nl": "afspreken / overeenkomen",
+    "nb": "avtale / gjøre avtale",
+    "da": "at aftale / at lave en aftale",
+    "fr": "se donner rendez-vous / convenir"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir haben uns für samstag verabredet.:Dogovorili smo se za subotu.",
+   "bs": "Dogovorili smo se za subotu.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir haben uns für Samstag verabredet.",
+    "en": "We've arranged to meet on Saturday.",
+    "tr": "Cumartesi için sözleştik.",
+    "sv": "Vi har bestämt att ses på lördag.",
+    "nl": "We hebben voor zaterdag afgesproken.",
+    "nb": "Vi har avtalt å møtes på lørdag.",
+    "da": "Vi har aftalt at ses på lørdag.",
+    "fr": "On s'est donné rendez-vous samedi."
+   },
+   "audio": null
+  },
+  {
+   "id": "angst haben / sich fürchten:bojati se",
+   "bs": "bojati se",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Angst haben / sich fürchten",
+    "en": "to be afraid / to fear",
+    "tr": "korkmak",
+    "sv": "vara rädd / frukta",
+    "nl": "bang zijn / vrezen",
+    "nb": "være redd / frykte",
+    "da": "at være bange / at frygte",
+    "fr": "avoir peur / craindre"
+   },
+   "audio": null
+  },
+  {
+   "id": "das kind hat angst vor der dunkelheit.:Dijete se boji mraka.",
+   "bs": "Dijete se boji mraka.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Das Kind hat Angst vor der Dunkelheit.",
+    "en": "The child is afraid of the dark.",
+    "tr": "Çocuk karanlıktan korkuyor.",
+    "sv": "Barnet är rädd för mörkret.",
+    "nl": "Het kind is bang in het donker.",
+    "nb": "Barnet er redd for mørket.",
+    "da": "Barnet er bange for mørket.",
+    "fr": "L'enfant a peur du noir."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich erinnern / einfallen:sjetiti se",
+   "bs": "sjetiti se",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich erinnern / einfallen",
+    "en": "to remember / to come to mind",
+    "tr": "hatırlamak / aklına gelmek",
+    "sv": "minnas / komma på",
+    "nl": "zich herinneren / te binnen schieten",
+    "nb": "huske / komme på",
+    "da": "at huske / at komme i tanke om",
+    "fr": "se souvenir / venir à l'esprit"
+   },
+   "audio": null
+  },
+  {
+   "id": "jetzt ist es mir eingefallen!:Sad sam se sjetio!",
+   "bs": "Sad sam se sjetio!",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Jetzt ist es mir eingefallen!",
+    "en": "Now I remember!",
+    "tr": "Şimdi aklıma geldi!",
+    "sv": "Nu kom jag på det!",
+    "nl": "Nu weet ik het weer!",
+    "nb": "Nå kom jeg på det!",
+    "da": "Nu kom jeg i tanke om det!",
+    "fr": "Ça me revient !"
+   },
+   "audio": null
+  },
+  {
+   "id": "gefallen:sviđati se",
+   "bs": "sviđati se",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "gefallen",
+    "en": "to like (to please)",
+    "tr": "hoşuna gitmek",
+    "sv": "gilla / tycka om",
+    "nl": "bevallen / leuk vinden",
+    "nb": "like",
+    "da": "at kunne lide",
+    "fr": "plaire"
+   },
+   "audio": null
+  },
+  {
+   "id": "gefällt dir sarajevo?:Sviđa li ti se Sarajevo?",
+   "bs": "Sviđa li ti se Sarajevo?",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Gefällt dir Sarajevo?",
+    "en": "Do you like Sarajevo?",
+    "tr": "Saraybosna hoşuna gidiyor mu?",
+    "sv": "Gillar du Sarajevo?",
+    "nl": "Vind je Sarajevo leuk?",
+    "nb": "Liker du Sarajevo?",
+    "da": "Kan du lide Sarajevo?",
+    "fr": "Sarajevo te plaît ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "gefallen:svidjeti se",
+   "bs": "svidjeti se",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "gefallen",
+    "en": "to like (to please)",
+    "tr": "hoşuna gitmek",
+    "sv": "gilla / tycka om",
+    "nl": "bevallen / leuk vinden",
+    "nb": "like",
+    "da": "at kunne lide",
+    "fr": "plaire"
+   },
+   "audio": null
+  },
+  {
+   "id": "der film hat mir nicht gefallen.:Film mi se nije svidio.",
+   "bs": "Film mi se nije svidio.",
+   "level": "verstehen",
+   "level_position": 69,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Film hat mir nicht gefallen.",
+    "en": "I didn't like the movie.",
+    "tr": "Film hoşuma gitmedi.",
+    "sv": "Jag gillade inte filmen.",
+    "nl": "Ik vond de film niet leuk.",
+    "nb": "Jeg likte ikke filmen.",
+    "da": "Jeg kunne ikke lide filmen.",
+    "fr": "Le film ne m'a pas plu."
+   },
+   "audio": null
+  },
+  {
+   "id": "anfangen:početi",
+   "bs": "početi",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "anfangen",
+    "en": "to start",
+    "tr": "başlamak",
+    "sv": "börja",
+    "nl": "beginnen",
+    "nb": "begynne",
+    "da": "at begynde",
+    "fr": "commencer"
+   },
+   "audio": "web/audio/w1478.mp3"
+  },
+  {
+   "id": "das spiel hat schon angefangen.:Utakmica je već počela.",
+   "bs": "Utakmica je već počela.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Das Spiel hat schon angefangen.",
+    "en": "The game has already started.",
+    "tr": "Maç çoktan başladı.",
+    "sv": "Matchen har redan börjat.",
+    "nl": "De wedstrijd is al begonnen.",
+    "nb": "Kampen har allerede begynt.",
+    "da": "Kampen er allerede begyndt.",
+    "fr": "Le match a déjà commencé."
+   },
+   "audio": null
+  },
+  {
+   "id": "anfangen:počinjati",
+   "bs": "počinjati",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "anfangen",
+    "en": "to start",
+    "tr": "başlamak",
+    "sv": "börja",
+    "nl": "beginnen",
+    "nb": "begynne",
+    "da": "at begynde",
+    "fr": "commencer"
+   },
+   "audio": null
+  },
+  {
+   "id": "die schule fängt im september an.:Škola počinje u septembru.",
+   "bs": "Škola počinje u septembru.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Schule fängt im September an.",
+    "en": "School starts in September.",
+    "tr": "Okul eylülde başlıyor.",
+    "sv": "Skolan börjar i september.",
+    "nl": "De school begint in september.",
+    "nb": "Skolen begynner i september.",
+    "da": "Skolen begynder i september.",
+    "fr": "L'école commence en septembre."
+   },
+   "audio": null
+  },
+  {
+   "id": "beenden / fertig werden:završiti",
+   "bs": "završiti",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "beenden / fertig werden",
+    "en": "to finish",
+    "tr": "bitirmek",
+    "sv": "avsluta / bli klar",
+    "nl": "afmaken / klaar zijn",
+    "nb": "avslutte / bli ferdig",
+    "da": "at afslutte / at blive færdig",
+    "fr": "finir / terminer"
+   },
+   "audio": null
+  },
+  {
+   "id": "bist du mit den hausaufgaben fertig?:Jesi li završio zadaću?",
+   "bs": "Jesi li završio zadaću?",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Bist du mit den Hausaufgaben fertig?",
+    "en": "Have you finished your homework?",
+    "tr": "Ödevini bitirdin mi?",
+    "sv": "Är du klar med läxorna?",
+    "nl": "Ben je klaar met je huiswerk?",
+    "nb": "Er du ferdig med leksene?",
+    "da": "Er du færdig med lektierne?",
+    "fr": "Tu as fini tes devoirs ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "beenden / fertig werden:završavati",
+   "bs": "završavati",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "beenden / fertig werden",
+    "en": "to finish",
+    "tr": "bitirmek",
+    "sv": "avsluta / bli klar",
+    "nl": "afmaken / klaar zijn",
+    "nb": "avslutte / bli ferdig",
+    "da": "at afslutte / at blive færdig",
+    "fr": "finir / terminer"
+   },
+   "audio": null
+  },
+  {
+   "id": "um vier bin ich mit der arbeit fertig.:Završavam s poslom u četiri.",
+   "bs": "Završavam s poslom u četiri.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Um vier bin ich mit der Arbeit fertig.",
+    "en": "I finish work at four.",
+    "tr": "Dörtte işim bitiyor.",
+    "sv": "Klockan fyra är jag klar med jobbet.",
+    "nl": "Om vier uur ben ik klaar met mijn werk.",
+    "nb": "Klokka fire er jeg ferdig med jobben.",
+    "da": "Klokken fire er jeg færdig med arbejdet.",
+    "fr": "Je finis le travail à quatre heures."
+   },
+   "audio": null
+  },
+  {
+   "id": "öffnen / aufmachen:otvoriti",
+   "bs": "otvoriti",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "öffnen / aufmachen",
+    "en": "to open",
+    "tr": "açmak",
+    "sv": "öppna",
+    "nl": "openen / opendoen",
+    "nb": "åpne",
+    "da": "at åbne",
+    "fr": "ouvrir"
+   },
+   "audio": null
+  },
+  {
+   "id": "mach das fenster auf, es ist heiß.:Otvori prozor, vruće je.",
+   "bs": "Otvori prozor, vruće je.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mach das Fenster auf, es ist heiß.",
+    "en": "Open the window, it's hot.",
+    "tr": "Pencereyi aç, sıcak.",
+    "sv": "Öppna fönstret, det är varmt.",
+    "nl": "Doe het raam open, het is warm.",
+    "nb": "Åpne vinduet, det er varmt.",
+    "da": "Åbn vinduet, det er varmt.",
+    "fr": "Ouvre la fenêtre, il fait chaud."
+   },
+   "audio": null
+  },
+  {
+   "id": "öffnen / aufmachen:otvarati",
+   "bs": "otvarati",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "öffnen / aufmachen",
+    "en": "to open",
+    "tr": "açmak",
+    "sv": "öppna",
+    "nl": "openen / opendoen",
+    "nb": "åpne",
+    "da": "at åbne",
+    "fr": "ouvrir"
+   },
+   "audio": null
+  },
+  {
+   "id": "mach fremden leuten nicht die tür auf.:Ne otvaraj vrata nepoznatim ljudima.",
+   "bs": "Ne otvaraj vrata nepoznatim ljudima.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mach fremden Leuten nicht die Tür auf.",
+    "en": "Don't open the door to strangers.",
+    "tr": "Tanımadığın insanlara kapıyı açma.",
+    "sv": "Öppna inte dörren för främlingar.",
+    "nl": "Doe niet open voor vreemden.",
+    "nb": "Ikke åpne døra for fremmede.",
+    "da": "Åbn ikke døren for fremmede.",
+    "fr": "N'ouvre pas la porte à des inconnus."
+   },
+   "audio": null
+  },
+  {
+   "id": "weitermachen / fortsetzen:nastaviti",
+   "bs": "nastaviti",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "weitermachen / fortsetzen",
+    "en": "to carry on / to continue",
+    "tr": "devam etmek",
+    "sv": "fortsätta",
+    "nl": "doorgaan / voortzetten",
+    "nb": "fortsette",
+    "da": "at fortsætte",
+    "fr": "continuer"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir machen morgen weiter.:Nastavit ćemo sutra.",
+   "bs": "Nastavit ćemo sutra.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir machen morgen weiter.",
+    "en": "We'll carry on tomorrow.",
+    "tr": "Yarın devam ederiz.",
+    "sv": "Vi fortsätter i morgon.",
+    "nl": "We gaan morgen verder.",
+    "nb": "Vi fortsetter i morgen.",
+    "da": "Vi fortsætter i morgen.",
+    "fr": "On continue demain."
+   },
+   "audio": null
+  },
+  {
+   "id": "schaffen / gelingen:uspjeti",
+   "bs": "uspjeti",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "schaffen / gelingen",
+    "en": "to manage / to succeed",
+    "tr": "başarmak",
+    "sv": "klara / lyckas",
+    "nl": "lukken / slagen",
+    "nb": "klare / lykkes",
+    "da": "at klare / at lykkes",
+    "fr": "réussir / arriver à"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe es geschafft!:Uspjela sam!",
+   "bs": "Uspjela sam!",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe es geschafft!",
+    "en": "I did it!",
+    "tr": "Başardım!",
+    "sv": "Jag klarade det!",
+    "nl": "Het is me gelukt!",
+    "nb": "Jeg klarte det!",
+    "da": "Jeg klarede det!",
+    "fr": "J'ai réussi !"
+   },
+   "audio": null
+  },
+  {
+   "id": "dauern:trajati",
+   "bs": "trajati",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "dauern",
+    "en": "to last / to take (time)",
+    "tr": "sürmek (zaman)",
+    "sv": "ta (tid) / pågå",
+    "nl": "duren",
+    "nb": "vare",
+    "da": "at vare",
+    "fr": "durer"
+   },
+   "audio": null
+  },
+  {
+   "id": "wie lange dauert der flug nach sarajevo?:Koliko traje let do Sarajeva?",
+   "bs": "Koliko traje let do Sarajeva?",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wie lange dauert der Flug nach Sarajevo?",
+    "en": "How long is the flight to Sarajevo?",
+    "tr": "Saraybosna uçuşu ne kadar sürüyor?",
+    "sv": "Hur lång tid tar flyget till Sarajevo?",
+    "nl": "Hoe lang duurt de vlucht naar Sarajevo?",
+    "nb": "Hvor lenge varer flyturen til Sarajevo?",
+    "da": "Hvor lang tid tager flyveturen til Sarajevo?",
+    "fr": "Combien de temps dure le vol pour Sarajevo ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "ändern / wechseln:promijeniti",
+   "bs": "promijeniti",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ändern / wechseln",
+    "en": "to change / to exchange",
+    "tr": "değiştirmek / bozdurmak",
+    "sv": "ändra / växla",
+    "nl": "veranderen / wisselen",
+    "nb": "endre / veksle",
+    "da": "at ændre / at veksle",
+    "fr": "changer / échanger"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe meine telefonnummer geändert.:Promijenio sam broj telefona.",
+   "bs": "Promijenio sam broj telefona.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe meine Telefonnummer geändert.",
+    "en": "I've changed my phone number.",
+    "tr": "Telefon numaramı değiştirdim.",
+    "sv": "Jag har bytt telefonnummer.",
+    "nl": "Ik heb mijn telefoonnummer veranderd.",
+    "nb": "Jeg har byttet telefonnummer.",
+    "da": "Jeg har skiftet telefonnummer.",
+    "fr": "J'ai changé de numéro de téléphone."
+   },
+   "audio": null
+  },
+  {
+   "id": "ändern / wechseln:mijenjati",
+   "bs": "mijenjati",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ändern / wechseln",
+    "en": "to change / to exchange",
+    "tr": "değiştirmek / bozdurmak",
+    "sv": "ändra / växla",
+    "nl": "veranderen / wisselen",
+    "nb": "endre / veksle",
+    "da": "at ændre / at veksle",
+    "fr": "changer / échanger"
+   },
+   "audio": null
+  },
+  {
+   "id": "in der wechselstube tausche ich euro in mark.:U mjenjačnici mijenjam eure u marke.",
+   "bs": "U mjenjačnici mijenjam eure u marke.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "In der Wechselstube tausche ich Euro in Mark.",
+    "en": "At the exchange office I change euros into marks.",
+    "tr": "Döviz bürosunda euroyu marka çeviriyorum.",
+    "sv": "På växlingskontoret växlar jag euro till mark.",
+    "nl": "Bij het wisselkantoor wissel ik euro's in voor mark.",
+    "nb": "På vekslingskontoret veksler jeg euro til mark.",
+    "da": "På vekselkontoret veksler jeg euro til mark.",
+    "fr": "Au bureau de change, je change des euros en marks."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufhören:prestati",
+   "bs": "prestati",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aufhören",
+    "en": "to stop",
+    "tr": "durmak / kesilmek",
+    "sv": "sluta",
+    "nl": "ophouden / stoppen",
+    "nb": "slutte / stoppe",
+    "da": "at holde op",
+    "fr": "arrêter / cesser"
+   },
+   "audio": null
+  },
+  {
+   "id": "der regen hat aufgehört.:Kiša je prestala.",
+   "bs": "Kiša je prestala.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Regen hat aufgehört.",
+    "en": "The rain has stopped.",
+    "tr": "Yağmur dindi.",
+    "sv": "Regnet har slutat.",
+    "nl": "Het is opgehouden met regenen.",
+    "nb": "Regnet har stoppet.",
+    "da": "Regnen er holdt op.",
+    "fr": "La pluie s'est arrêtée."
+   },
+   "audio": null
+  },
+  {
+   "id": "schließen / zumachen:zatvoriti",
+   "bs": "zatvoriti",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "schließen / zumachen",
+    "en": "to close / to shut",
+    "tr": "kapatmak",
+    "sv": "stänga",
+    "nl": "sluiten / dichtdoen",
+    "nb": "lukke",
+    "da": "at lukke",
+    "fr": "fermer"
+   },
+   "audio": null
+  },
+  {
+   "id": "mach bitte die tür zu.:Zatvori vrata, molim te.",
+   "bs": "Zatvori vrata, molim te.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mach bitte die Tür zu.",
+    "en": "Please close the door.",
+    "tr": "Kapıyı kapat lütfen.",
+    "sv": "Stäng dörren, är du snäll.",
+    "nl": "Doe de deur dicht, alsjeblieft.",
+    "nb": "Lukk døra, er du snill.",
+    "da": "Luk lige døren.",
+    "fr": "Ferme la porte, s'il te plaît."
+   },
+   "audio": null
+  },
+  {
+   "id": "schließen / zumachen:zatvarati",
+   "bs": "zatvarati",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "schließen / zumachen",
+    "en": "to close / to shut",
+    "tr": "kapatmak",
+    "sv": "stänga",
+    "nl": "sluiten / dichtdoen",
+    "nb": "lukke",
+    "da": "at lukke",
+    "fr": "fermer"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir schließen in fünf minuten.:Zatvaramo za pet minuta.",
+   "bs": "Zatvaramo za pet minuta.",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir schließen in fünf Minuten.",
+    "en": "We close in five minutes.",
+    "tr": "Beş dakika sonra kapatıyoruz.",
+    "sv": "Vi stänger om fem minuter.",
+    "nl": "We gaan over vijf minuten dicht.",
+    "nb": "Vi stenger om fem minutter.",
+    "da": "Vi lukker om fem minutter.",
+    "fr": "Nous fermons dans cinq minutes."
+   },
+   "audio": null
+  },
+  {
+   "id": "passieren / geschehen:desiti se / dogoditi se",
+   "bs": "desiti se / dogoditi se",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "passieren / geschehen",
+    "en": "to happen",
+    "tr": "olmak / meydana gelmek",
+    "sv": "hända / ske",
+    "nl": "gebeuren",
+    "nb": "skje / hende",
+    "da": "at ske",
+    "fr": "se passer / arriver"
+   },
+   "audio": null
+  },
+  {
+   "id": "was ist passiert?:Šta se desilo?",
+   "bs": "Šta se desilo?",
+   "level": "anfangen",
+   "level_position": 70,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Was ist passiert?",
+    "en": "What happened?",
+    "tr": "Ne oldu?",
+    "sv": "Vad har hänt?",
+    "nl": "Wat is er gebeurd?",
+    "nb": "Hva har skjedd?",
+    "da": "Hvad er der sket?",
+    "fr": "Qu'est-ce qui s'est passé ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "existieren / bestehen:postojati",
+   "bs": "postojati",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "existieren / bestehen",
+    "en": "to exist",
+    "tr": "var olmak / mevcut olmak",
+    "sv": "finnas / existera",
+    "nl": "bestaan",
+    "nb": "eksistere / finnes",
+    "da": "at eksistere / at findes",
+    "fr": "exister"
+   },
+   "audio": null
+  },
+  {
+   "id": "gibt es einen bus zum flughafen?:Postoji li autobus do aerodroma?",
+   "bs": "Postoji li autobus do aerodroma?",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Gibt es einen Bus zum Flughafen?",
+    "en": "Is there a bus to the airport?",
+    "tr": "Havalimanına otobüs var mı?",
+    "sv": "Finns det en buss till flygplatsen?",
+    "nl": "Is er een bus naar het vliegveld?",
+    "nb": "Finnes det en buss til flyplassen?",
+    "da": "Er der en bus til lufthavnen?",
+    "fr": "Il y a un bus pour l'aéroport ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "benutzen:koristiti",
+   "bs": "koristiti",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "benutzen",
+    "en": "to use",
+    "tr": "kullanmak",
+    "sv": "använda",
+    "nl": "gebruiken",
+    "nb": "bruke",
+    "da": "at bruge",
+    "fr": "utiliser"
+   },
+   "audio": null
+  },
+  {
+   "id": "kann ich dein ladegerät benutzen?:Mogu li koristiti tvoj punjač?",
+   "bs": "Mogu li koristiti tvoj punjač?",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Kann ich dein Ladegerät benutzen?",
+    "en": "Can I use your charger?",
+    "tr": "Şarj aletini kullanabilir miyim?",
+    "sv": "Får jag använda din laddare?",
+    "nl": "Mag ik je oplader gebruiken?",
+    "nb": "Kan jeg bruke laderen din?",
+    "da": "Må jeg bruge din oplader?",
+    "fr": "Je peux utiliser ton chargeur ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "werden:postati",
+   "bs": "postati",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "werden",
+    "en": "to become",
+    "tr": "olmak (bir şey)",
+    "sv": "bli",
+    "nl": "worden",
+    "nb": "bli (noe)",
+    "da": "at blive (noget)",
+    "fr": "devenir"
+   },
+   "audio": null
+  },
+  {
+   "id": "er ist vater geworden.:Postao je otac.",
+   "bs": "Postao je otac.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Er ist Vater geworden.",
+    "en": "He has become a father.",
+    "tr": "Baba oldu.",
+    "sv": "Han har blivit pappa.",
+    "nl": "Hij is vader geworden.",
+    "nb": "Han har blitt far.",
+    "da": "Han er blevet far.",
+    "fr": "Il est devenu papa."
+   },
+   "audio": null
+  },
+  {
+   "id": "leben:živjeti",
+   "bs": "živjeti",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "leben",
+    "en": "to live",
+    "tr": "yaşamak",
+    "sv": "leva",
+    "nl": "leven",
+    "nb": "leve",
+    "da": "at leve",
+    "fr": "vivre"
+   },
+   "audio": null
+  },
+  {
+   "id": "meine schwester lebt in wien.:Moja sestra živi u Beču.",
+   "bs": "Moja sestra živi u Beču.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Meine Schwester lebt in Wien.",
+    "en": "My sister lives in Vienna.",
+    "tr": "Kız kardeşim Viyana'da yaşıyor.",
+    "sv": "Min syster bor i Wien.",
+    "nl": "Mijn zus woont in Wenen.",
+    "nb": "Søsteren min bor i Wien.",
+    "da": "Min søster bor i Wien.",
+    "fr": "Ma sœur vit à Vienne."
+   },
+   "audio": null
+  },
+  {
+   "id": "spielen (sport, spiel):igrati",
+   "bs": "igrati",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "spielen (Sport, Spiel)",
+    "en": "to play (sports, games)",
+    "tr": "oynamak (spor, oyun)",
+    "sv": "spela (sport, spel)",
+    "nl": "spelen (sport, spel)",
+    "nb": "spille (sport, spill)",
+    "da": "at spille (sport, spil)",
+    "fr": "jouer (sport, jeu)"
+   },
+   "audio": null
+  },
+  {
+   "id": "spielst du fußball?:Igraš li fudbal?",
+   "bs": "Igraš li fudbal?",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Spielst du Fußball?",
+    "en": "Do you play soccer?",
+    "tr": "Futbol oynuyor musun?",
+    "sv": "Spelar du fotboll?",
+    "nl": "Speel jij voetbal?",
+    "nb": "Spiller du fotball?",
+    "da": "Spiller du fodbold?",
+    "fr": "Tu joues au foot ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "machen / zubereiten:napraviti",
+   "bs": "napraviti",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "machen / zubereiten",
+    "en": "to make / to prepare",
+    "tr": "yapmak / hazırlamak",
+    "sv": "göra / laga",
+    "nl": "maken / klaarmaken",
+    "nb": "lage / tilberede",
+    "da": "at lave / at tilberede",
+    "fr": "faire / préparer"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich mache kaffee.:Napravit ću kahvu.",
+   "bs": "Napravit ću kahvu.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich mache Kaffee.",
+    "en": "I'll make some coffee.",
+    "tr": "Kahve yapayım.",
+    "sv": "Jag sätter på kaffe.",
+    "nl": "Ik zet koffie.",
+    "nb": "Jeg lager kaffe.",
+    "da": "Jeg laver kaffe.",
+    "fr": "Je vais faire du café."
+   },
+   "audio": null
+  },
+  {
+   "id": "machen / zubereiten:praviti",
+   "bs": "praviti",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "machen / zubereiten",
+    "en": "to make / to prepare",
+    "tr": "yapmak / hazırlamak",
+    "sv": "göra / laga",
+    "nl": "maken / klaarmaken",
+    "nb": "lage / tilberede",
+    "da": "at lave / at tilberede",
+    "fr": "faire / préparer"
+   },
+   "audio": null
+  },
+  {
+   "id": "oma macht die beste pita.:Nana pravi najbolju pitu.",
+   "bs": "Nana pravi najbolju pitu.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Oma macht die beste Pita.",
+    "en": "Grandma makes the best pita.",
+    "tr": "En güzel pitayı ninem yapar.",
+    "sv": "Mormor gör den bästa pitan.",
+    "nl": "Oma maakt de lekkerste pita.",
+    "nb": "Bestemor lager den beste pitaen.",
+    "da": "Bedstemor laver den bedste pita.",
+    "fr": "Grand-mère fait la meilleure pita."
+   },
+   "audio": null
+  },
+  {
+   "id": "machen / erledigen:uraditi",
+   "bs": "uraditi",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "machen / erledigen",
+    "en": "to do / to get done",
+    "tr": "yapmak / halletmek",
+    "sv": "göra / fixa",
+    "nl": "doen / afhandelen",
+    "nb": "gjøre / ordne",
+    "da": "at gøre / at ordne",
+    "fr": "faire / régler"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe alles gemacht, worum du gebeten hast.:Uradio sam sve što si tražila.",
+   "bs": "Uradio sam sve što si tražila.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe alles gemacht, worum du gebeten hast.",
+    "en": "I've done everything you asked for.",
+    "tr": "Benden istediğin her şeyi yaptım.",
+    "sv": "Jag har gjort allt du bad om.",
+    "nl": "Ik heb alles gedaan wat je vroeg.",
+    "nb": "Jeg har gjort alt du ba om.",
+    "da": "Jeg har gjort alt det, du bad om.",
+    "fr": "J'ai fait tout ce que tu m'as demandé."
+   },
+   "audio": null
+  },
+  {
+   "id": "lesen:pročitati",
+   "bs": "pročitati",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "lesen",
+    "en": "to read",
+    "tr": "okumak",
+    "sv": "läsa",
+    "nl": "lezen",
+    "nb": "lese",
+    "da": "at læse",
+    "fr": "lire"
+   },
+   "audio": null
+  },
+  {
+   "id": "hast du das buch gelesen?:Jesi li pročitao knjigu?",
+   "bs": "Jesi li pročitao knjigu?",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Hast du das Buch gelesen?",
+    "en": "Have you read the book?",
+    "tr": "Kitabı okudun mu?",
+    "sv": "Har du läst boken?",
+    "nl": "Heb je het boek gelezen?",
+    "nb": "Har du lest boka?",
+    "da": "Har du læst bogen?",
+    "fr": "Tu as lu le livre ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "schreiben:napisati",
+   "bs": "napisati",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "schreiben",
+    "en": "to write",
+    "tr": "yazmak",
+    "sv": "skriva",
+    "nl": "schrijven",
+    "nb": "skrive",
+    "da": "at skrive",
+    "fr": "écrire"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe oma einen brief geschrieben.:Napisao sam pismo nani.",
+   "bs": "Napisao sam pismo nani.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe Oma einen Brief geschrieben.",
+    "en": "I wrote grandma a letter.",
+    "tr": "Nineme bir mektup yazdım.",
+    "sv": "Jag har skrivit ett brev till mormor.",
+    "nl": "Ik heb oma een brief geschreven.",
+    "nb": "Jeg har skrevet et brev til bestemor.",
+    "da": "Jeg har skrevet et brev til bedstemor.",
+    "fr": "J'ai écrit une lettre à grand-mère."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich beschäftigen mit / betreiben:baviti se",
+   "bs": "baviti se",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich beschäftigen mit / betreiben",
+    "en": "to be engaged in / to do (for a living)",
+    "tr": "uğraşmak / ilgilenmek",
+    "sv": "syssla med / ägna sig åt",
+    "nl": "zich bezighouden met / beoefenen",
+    "nb": "drive med / beskjeftige seg med",
+    "da": "at beskæftige sig med / at dyrke",
+    "fr": "s'occuper de / pratiquer"
+   },
+   "audio": null
+  },
+  {
+   "id": "was machst du beruflich?:Čime se baviš?",
+   "bs": "Čime se baviš?",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Was machst du beruflich?",
+    "en": "What line of work are you in?",
+    "tr": "Ne iş yapıyorsun?",
+    "sv": "Vad sysslar du med?",
+    "nl": "Wat doe je voor werk?",
+    "nb": "Hva driver du med?",
+    "da": "Hvad laver du til daglig?",
+    "fr": "Qu'est-ce que tu fais dans la vie ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "versuchen:pokušavati",
+   "bs": "pokušavati",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "versuchen",
+    "en": "to try",
+    "tr": "denemek",
+    "sv": "försöka",
+    "nl": "proberen",
+    "nb": "prøve",
+    "da": "at prøve",
+    "fr": "essayer"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich versuche den ganzen tag, dich anzurufen.:Pokušavam te nazvati cijeli dan.",
+   "bs": "Pokušavam te nazvati cijeli dan.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich versuche den ganzen Tag, dich anzurufen.",
+    "en": "I've been trying to call you all day.",
+    "tr": "Bütün gün seni aramaya çalışıyorum.",
+    "sv": "Jag har försökt ringa dig hela dagen.",
+    "nl": "Ik probeer je al de hele dag te bellen.",
+    "nb": "Jeg har prøvd å ringe deg hele dagen.",
+    "da": "Jeg har prøvet at ringe til dig hele dagen.",
+    "fr": "Ça fait toute la journée que j'essaie de t'appeler."
+   },
+   "audio": null
+  },
+  {
+   "id": "lösen / klären:riješiti",
+   "bs": "riješiti",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "lösen / klären",
+    "en": "to solve / to sort out",
+    "tr": "çözmek",
+    "sv": "lösa / reda ut",
+    "nl": "oplossen / uitzoeken",
+    "nb": "løse / ordne opp i",
+    "da": "at løse / at få styr på",
+    "fr": "résoudre / tirer au clair"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir klären das zusammen.:Riješit ćemo to zajedno.",
+   "bs": "Riješit ćemo to zajedno.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir klären das zusammen.",
+    "en": "We'll sort it out together.",
+    "tr": "Bunu birlikte çözeriz.",
+    "sv": "Vi löser det tillsammans.",
+    "nl": "We lossen het samen op.",
+    "nb": "Vi løser det sammen.",
+    "da": "Vi løser det sammen.",
+    "fr": "On va régler ça ensemble."
+   },
+   "audio": null
+  },
+  {
+   "id": "vorbereiten:pripremiti",
+   "bs": "pripremiti",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "vorbereiten",
+    "en": "to prepare",
+    "tr": "hazırlamak",
+    "sv": "förbereda",
+    "nl": "voorbereiden",
+    "nb": "forberede",
+    "da": "at forberede",
+    "fr": "préparer"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich muss alles für die reise vorbereiten.:Moram sve pripremiti za put.",
+   "bs": "Moram sve pripremiti za put.",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich muss alles für die Reise vorbereiten.",
+    "en": "I have to get everything ready for the trip.",
+    "tr": "Yolculuk için her şeyi hazırlamam lazım.",
+    "sv": "Jag måste förbereda allt inför resan.",
+    "nl": "Ik moet alles voorbereiden voor de reis.",
+    "nb": "Jeg må forberede alt til reisen.",
+    "da": "Jeg skal forberede alt til rejsen.",
+    "fr": "Je dois tout préparer pour le voyage."
+   },
+   "audio": null
+  },
+  {
+   "id": "trinken / austrinken:popiti",
+   "bs": "popiti",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "trinken / austrinken",
+    "en": "to drink / to drink up",
+    "tr": "içmek / içip bitirmek",
+    "sv": "dricka / dricka upp",
+    "nl": "drinken / opdrinken",
+    "nb": "drikke / drikke opp",
+    "da": "at drikke / at drikke ud",
+    "fr": "boire / finir (son verre)"
+   },
+   "audio": null
+  },
+  {
+   "id": "lass uns einen kaffee trinken!:Hajmo popiti kahvu!",
+   "bs": "Hajmo popiti kahvu!",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Lass uns einen Kaffee trinken!",
+    "en": "Let's have a coffee!",
+    "tr": "Hadi bir kahve içelim!",
+    "sv": "Kom, vi tar en kaffe!",
+    "nl": "Laten we een kopje koffie drinken!",
+    "nb": "La oss ta en kaffe!",
+    "da": "Lad os drikke en kop kaffe!",
+    "fr": "Buvons un café !"
+   },
+   "audio": null
+  },
+  {
+   "id": "essen / aufessen:pojesti",
+   "bs": "pojesti",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "essen / aufessen",
+    "en": "to eat / to eat up",
+    "tr": "yemek / yiyip bitirmek",
+    "sv": "äta / äta upp",
+    "nl": "eten / opeten",
+    "nb": "spise / spise opp",
+    "da": "at spise / at spise op",
+    "fr": "manger / finir (son assiette)"
+   },
+   "audio": null
+  },
+  {
+   "id": "iss alles auf, mein sohn!:Pojedi sve, sine!",
+   "bs": "Pojedi sve, sine!",
+   "level": "tun_machen",
+   "level_position": 71,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Iss alles auf, mein Sohn!",
+    "en": "Eat it all up, son!",
+    "tr": "Hepsini bitir, oğlum!",
+    "sv": "Ät upp allt, min son!",
+    "nl": "Eet alles op, jongen!",
+    "nb": "Spis opp alt, gutten min!",
+    "da": "Spis det hele op, min dreng!",
+    "fr": "Mange tout, mon fils !"
+   },
+   "audio": null
+  },
+  {
+   "id": "stehen:stajati",
+   "bs": "stajati",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "stehen",
+    "en": "to stand",
+    "tr": "ayakta durmak",
+    "sv": "stå",
+    "nl": "staan",
+    "nb": "stå",
+    "da": "at stå",
+    "fr": "être debout"
+   },
+   "audio": null
+  },
+  {
+   "id": "warum stehst du? setz dich!:Zašto stojiš? Sjedni!",
+   "bs": "Zašto stojiš? Sjedni!",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Warum stehst du? Setz dich!",
+    "en": "Why are you standing? Sit down!",
+    "tr": "Neden ayakta duruyorsun? Otur!",
+    "sv": "Varför står du? Sätt dig!",
+    "nl": "Waarom sta je? Ga zitten!",
+    "nb": "Hvorfor står du? Sett deg!",
+    "da": "Hvorfor står du? Sæt dig!",
+    "fr": "Pourquoi tu restes debout ? Assieds-toi !"
+   },
+   "audio": null
+  },
+  {
+   "id": "stellen / legen / tun:staviti",
+   "bs": "staviti",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "stellen / legen / tun",
+    "en": "to put / to place",
+    "tr": "koymak",
+    "sv": "ställa / lägga / sätta",
+    "nl": "zetten / leggen / doen",
+    "nb": "sette / legge / putte",
+    "da": "at stille / at lægge / at putte",
+    "fr": "mettre / poser"
+   },
+   "audio": null
+  },
+  {
+   "id": "stell die milch in den kühlschrank.:Stavi mlijeko u frižider.",
+   "bs": "Stavi mlijeko u frižider.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Stell die Milch in den Kühlschrank.",
+    "en": "Put the milk in the fridge.",
+    "tr": "Sütü buzdolabına koy.",
+    "sv": "Ställ in mjölken i kylskåpet.",
+    "nl": "Zet de melk in de koelkast.",
+    "nb": "Sett melka i kjøleskapet.",
+    "da": "Stil mælken i køleskabet.",
+    "fr": "Mets le lait au frigo."
+   },
+   "audio": null
+  },
+  {
+   "id": "stellen / legen / tun:stavljati",
+   "bs": "stavljati",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "stellen / legen / tun",
+    "en": "to put / to place",
+    "tr": "koymak",
+    "sv": "ställa / lägga / sätta",
+    "nl": "zetten / leggen / doen",
+    "nb": "sette / legge / putte",
+    "da": "at stille / at lægge / at putte",
+    "fr": "mettre / poser"
+   },
+   "audio": null
+  },
+  {
+   "id": "wohin stellst du die gläser?:Gdje stavljaš čaše?",
+   "bs": "Gdje stavljaš čaše?",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wohin stellst du die Gläser?",
+    "en": "Where do you put the glasses?",
+    "tr": "Bardakları nereye koyuyorsun?",
+    "sv": "Var ställer du glasen?",
+    "nl": "Waar zet jij de glazen neer?",
+    "nb": "Hvor setter du glassene?",
+    "da": "Hvor stiller du glassene?",
+    "fr": "Où est-ce que tu mets les verres ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "halten:držati",
+   "bs": "držati",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "halten",
+    "en": "to hold",
+    "tr": "tutmak",
+    "sv": "hålla",
+    "nl": "vasthouden",
+    "nb": "holde",
+    "da": "at holde",
+    "fr": "tenir"
+   },
+   "audio": null
+  },
+  {
+   "id": "halt mich an der hand.:Drži me za ruku.",
+   "bs": "Drži me za ruku.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Halt mich an der Hand.",
+    "en": "Hold my hand.",
+    "tr": "Elimi tut.",
+    "sv": "Håll mig i handen.",
+    "nl": "Hou mijn hand vast.",
+    "nb": "Hold meg i hånda.",
+    "da": "Hold mig i hånden.",
+    "fr": "Tiens-moi la main."
+   },
+   "audio": null
+  },
+  {
+   "id": "lassen / liegen lassen:ostaviti",
+   "bs": "ostaviti",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "lassen / liegen lassen",
+    "en": "to leave / to leave behind",
+    "tr": "bırakmak / unutmak (bir yerde)",
+    "sv": "lämna / glömma kvar",
+    "nl": "laten / laten liggen",
+    "nb": "la / la ligge igjen",
+    "da": "at lade / at lade ligge",
+    "fr": "laisser / oublier (quelque part)"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe den regenschirm im bus liegen lassen.:Ostavila sam kišobran u autobusu.",
+   "bs": "Ostavila sam kišobran u autobusu.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe den Regenschirm im Bus liegen lassen.",
+    "en": "I left my umbrella on the bus.",
+    "tr": "Şemsiyemi otobüste unuttum.",
+    "sv": "Jag glömde paraplyet på bussen.",
+    "nl": "Ik heb mijn paraplu in de bus laten liggen.",
+    "nb": "Jeg glemte paraplyen på bussen.",
+    "da": "Jeg har glemt min paraply i bussen.",
+    "fr": "J'ai oublié mon parapluie dans le bus."
+   },
+   "audio": null
+  },
+  {
+   "id": "fallen / hinfallen:pasti",
+   "bs": "pasti",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "fallen / hinfallen",
+    "en": "to fall / to fall over",
+    "tr": "düşmek",
+    "sv": "falla / ramla",
+    "nl": "vallen",
+    "nb": "falle / ramle",
+    "da": "at falde",
+    "fr": "tomber"
+   },
+   "audio": null
+  },
+  {
+   "id": "das kind ist vom fahrrad gefallen.:Dijete je palo s bicikla.",
+   "bs": "Dijete je palo s bicikla.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Das Kind ist vom Fahrrad gefallen.",
+    "en": "The child fell off the bike.",
+    "tr": "Çocuk bisikletten düştü.",
+    "sv": "Barnet ramlade av cykeln.",
+    "nl": "Het kind is van de fiets gevallen.",
+    "nb": "Barnet falt av sykkelen.",
+    "da": "Barnet faldt af cyklen.",
+    "fr": "L'enfant est tombé de vélo."
+   },
+   "audio": null
+  },
+  {
+   "id": "sitzen:sjediti",
+   "bs": "sjediti",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sitzen",
+    "en": "to sit",
+    "tr": "oturmak",
+    "sv": "sitta",
+    "nl": "zitten",
+    "nb": "sitte",
+    "da": "at sidde",
+    "fr": "être assis"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir saßen bis mitternacht im garten.:Sjedili smo u bašti do ponoći.",
+   "bs": "Sjedili smo u bašti do ponoći.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir saßen bis Mitternacht im Garten.",
+    "en": "We sat in the garden until midnight.",
+    "tr": "Gece yarısına kadar bahçede oturduk.",
+    "sv": "Vi satt i trädgården till midnatt.",
+    "nl": "We zaten tot middernacht in de tuin.",
+    "nb": "Vi satt i hagen til midnatt.",
+    "da": "Vi sad i haven til midnat.",
+    "fr": "Nous sommes restés dans le jardin jusqu'à minuit."
+   },
+   "audio": null
+  },
+  {
+   "id": "werfen / wegwerfen:baciti",
+   "bs": "baciti",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "werfen / wegwerfen",
+    "en": "to throw / to throw away",
+    "tr": "atmak / çöpe atmak",
+    "sv": "kasta / slänga",
+    "nl": "gooien / weggooien",
+    "nb": "kaste / kaste bort",
+    "da": "at kaste / at smide ud",
+    "fr": "lancer / jeter"
+   },
+   "audio": null
+  },
+  {
+   "id": "wirf bitte den müll weg.:Baci smeće, molim te.",
+   "bs": "Baci smeće, molim te.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wirf bitte den Müll weg.",
+    "en": "Please throw out the trash.",
+    "tr": "Çöpü at lütfen.",
+    "sv": "Släng soporna, är du snäll.",
+    "nl": "Gooi het afval even weg, alsjeblieft.",
+    "nb": "Kast søppelet, er du snill.",
+    "da": "Smid lige skraldet ud.",
+    "fr": "Jette les ordures, s'il te plaît."
+   },
+   "audio": null
+  },
+  {
+   "id": "liegen:ležati",
+   "bs": "ležati",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "liegen",
+    "en": "to lie (be lying)",
+    "tr": "yatmak / durmak (bir yerde)",
+    "sv": "ligga",
+    "nl": "liggen",
+    "nb": "ligge",
+    "da": "at ligge",
+    "fr": "être couché / se trouver"
+   },
+   "audio": null
+  },
+  {
+   "id": "das handy liegt auf dem tisch.:Telefon leži na stolu.",
+   "bs": "Telefon leži na stolu.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Das Handy liegt auf dem Tisch.",
+    "en": "The phone is on the table.",
+    "tr": "Telefon masanın üstünde duruyor.",
+    "sv": "Mobilen ligger på bordet.",
+    "nl": "De telefoon ligt op tafel.",
+    "nb": "Mobilen ligger på bordet.",
+    "da": "Mobilen ligger på bordet.",
+    "fr": "Le portable est sur la table."
+   },
+   "audio": null
+  },
+  {
+   "id": "ausziehen / abnehmen:skinuti",
+   "bs": "skinuti",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ausziehen / abnehmen",
+    "en": "to take off",
+    "tr": "çıkarmak",
+    "sv": "ta av (sig)",
+    "nl": "uittrekken / afnemen",
+    "nb": "ta av (seg)",
+    "da": "at tage af",
+    "fr": "enlever / ôter"
+   },
+   "audio": null
+  },
+  {
+   "id": "zieh bitte die schuhe aus.:Skini cipele, molim te.",
+   "bs": "Skini cipele, molim te.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Zieh bitte die Schuhe aus.",
+    "en": "Please take your shoes off.",
+    "tr": "Ayakkabılarını çıkar lütfen.",
+    "sv": "Ta av dig skorna, är du snäll.",
+    "nl": "Doe je schoenen uit, alsjeblieft.",
+    "nb": "Ta av deg skoa, er du snill.",
+    "da": "Tag lige skoene af.",
+    "fr": "Enlève tes chaussures, s'il te plaît."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufstehen:ustati",
+   "bs": "ustati",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aufstehen",
+    "en": "to get up",
+    "tr": "kalkmak",
+    "sv": "gå upp",
+    "nl": "opstaan",
+    "nb": "stå opp",
+    "da": "at stå op",
+    "fr": "se lever"
+   },
+   "audio": null
+  },
+  {
+   "id": "heute morgen bin ich um sechs aufgestanden.:Jutros sam ustao u šest.",
+   "bs": "Jutros sam ustao u šest.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Heute Morgen bin ich um sechs aufgestanden.",
+    "en": "This morning I got up at six.",
+    "tr": "Bu sabah altıda kalktım.",
+    "sv": "I morse gick jag upp klockan sex.",
+    "nl": "Vanochtend ben ik om zes uur opgestaan.",
+    "nb": "I dag tidlig sto jeg opp klokka seks.",
+    "da": "I morges stod jeg op klokken seks.",
+    "fr": "Ce matin, je me suis levé à six heures."
+   },
+   "audio": null
+  },
+  {
+   "id": "anziehen:obući",
+   "bs": "obući",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "anziehen",
+    "en": "to put on (clothes)",
+    "tr": "giymek",
+    "sv": "ta på (sig)",
+    "nl": "aantrekken",
+    "nb": "ta på (seg)",
+    "da": "at tage på",
+    "fr": "mettre (un vêtement)"
+   },
+   "audio": null
+  },
+  {
+   "id": "zieh eine jacke an, es ist kalt.:Obuci jaknu, hladno je.",
+   "bs": "Obuci jaknu, hladno je.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Zieh eine Jacke an, es ist kalt.",
+    "en": "Put a jacket on, it's cold.",
+    "tr": "Bir ceket giy, hava soğuk.",
+    "sv": "Ta på dig en jacka, det är kallt.",
+    "nl": "Trek een jas aan, het is koud.",
+    "nb": "Ta på deg en jakke, det er kaldt.",
+    "da": "Tag en jakke på, det er koldt.",
+    "fr": "Mets une veste, il fait froid."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich hinlegen:leći",
+   "bs": "leći",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich hinlegen",
+    "en": "to lie down",
+    "tr": "uzanmak",
+    "sv": "lägga sig",
+    "nl": "gaan liggen",
+    "nb": "legge seg ned",
+    "da": "at lægge sig",
+    "fr": "s'allonger"
+   },
+   "audio": null
+  },
+  {
+   "id": "leg dich ein bisschen hin, du bist müde.:Lezi malo, umorna si.",
+   "bs": "Lezi malo, umorna si.",
+   "level": "stellen_legen",
+   "level_position": 72,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Leg dich ein bisschen hin, du bist müde.",
+    "en": "Lie down for a bit, you're tired.",
+    "tr": "Biraz uzan, yorgunsun.",
+    "sv": "Lägg dig en stund, du är trött.",
+    "nl": "Ga even liggen, je bent moe.",
+    "nb": "Legg deg litt, du er trøtt.",
+    "da": "Læg dig lidt, du er træt.",
+    "fr": "Allonge-toi un peu, tu es fatiguée."
+   },
+   "audio": null
+  },
+  {
+   "id": "aussehen:izgledati",
+   "bs": "izgledati",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aussehen",
+    "en": "to look (appear)",
+    "tr": "görünmek",
+    "sv": "se ut",
+    "nl": "eruitzien",
+    "nb": "se ut",
+    "da": "at se ud",
+    "fr": "avoir l'air"
+   },
+   "audio": null
+  },
+  {
+   "id": "heute siehst du schön aus!:Danas lijepo izgledaš!",
+   "bs": "Danas lijepo izgledaš!",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Heute siehst du schön aus!",
+    "en": "You look lovely today!",
+    "tr": "Bugün çok güzel görünüyorsun!",
+    "sv": "Du ser fin ut i dag!",
+    "nl": "Je ziet er vandaag mooi uit!",
+    "nb": "Du ser fin ut i dag!",
+    "da": "Du ser smuk ud i dag!",
+    "fr": "Tu es superbe aujourd'hui !"
+   },
+   "audio": null
+  },
+  {
+   "id": "geboren werden:roditi se",
+   "bs": "roditi se",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "geboren werden",
+    "en": "to be born",
+    "tr": "doğmak",
+    "sv": "födas",
+    "nl": "geboren worden",
+    "nb": "bli født",
+    "da": "at blive født",
+    "fr": "naître"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin in mostar geboren.:Rodila sam se u Mostaru.",
+   "bs": "Rodila sam se u Mostaru.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich bin in Mostar geboren.",
+    "en": "I was born in Mostar.",
+    "tr": "Mostar'da doğdum.",
+    "sv": "Jag är född i Mostar.",
+    "nl": "Ik ben in Mostar geboren.",
+    "nb": "Jeg er født i Mostar.",
+    "da": "Jeg er født i Mostar.",
+    "fr": "Je suis née à Mostar."
+   },
+   "audio": null
+  },
+  {
+   "id": "unterschreiben:potpisati",
+   "bs": "potpisati",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "unterschreiben",
+    "en": "to sign",
+    "tr": "imzalamak",
+    "sv": "skriva under",
+    "nl": "ondertekenen",
+    "nb": "skrive under",
+    "da": "at skrive under",
+    "fr": "signer"
+   },
+   "audio": null
+  },
+  {
+   "id": "unterschreiben sie bitte hier.:Potpišite ovdje, molim Vas.",
+   "bs": "Potpišite ovdje, molim Vas.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Unterschreiben Sie bitte hier.",
+    "en": "Please sign here.",
+    "tr": "Lütfen buraya imza atın.",
+    "sv": "Skriv under här, tack.",
+    "nl": "Tekent u hier, alstublieft.",
+    "nb": "Vennligst skriv under her.",
+    "da": "Skriv venligst under her.",
+    "fr": "Signez ici, s'il vous plaît."
+   },
+   "audio": null
+  },
+  {
+   "id": "genießen:uživati",
+   "bs": "uživati",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "genießen",
+    "en": "to enjoy",
+    "tr": "keyfini çıkarmak",
+    "sv": "njuta",
+    "nl": "genieten",
+    "nb": "nyte",
+    "da": "at nyde",
+    "fr": "profiter / savourer"
+   },
+   "audio": null
+  },
+  {
+   "id": "genieß den urlaub!:Uživaj u odmoru!",
+   "bs": "Uživaj u odmoru!",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Genieß den Urlaub!",
+    "en": "Enjoy your vacation!",
+    "tr": "Tatilin tadını çıkar!",
+    "sv": "Njut av semestern!",
+    "nl": "Geniet van je vakantie!",
+    "nb": "Nyt ferien!",
+    "da": "Nyd ferien!",
+    "fr": "Profite bien de tes vacances !"
+   },
+   "audio": null
+  },
+  {
+   "id": "sich anmelden:prijaviti se",
+   "bs": "prijaviti se",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich anmelden",
+    "en": "to sign up",
+    "tr": "kaydolmak",
+    "sv": "anmäla sig",
+    "nl": "zich aanmelden",
+    "nb": "melde seg på",
+    "da": "at tilmelde sig",
+    "fr": "s'inscrire"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe mich für den kurs angemeldet.:Prijavila sam se na kurs.",
+   "bs": "Prijavila sam se na kurs.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe mich für den Kurs angemeldet.",
+    "en": "I've signed up for the course.",
+    "tr": "Kursa kaydoldum.",
+    "sv": "Jag har anmält mig till kursen.",
+    "nl": "Ik heb me voor de cursus aangemeld.",
+    "nb": "Jeg har meldt meg på kurset.",
+    "da": "Jeg har tilmeldt mig kurset.",
+    "fr": "Je me suis inscrite au cours."
+   },
+   "audio": null
+  },
+  {
+   "id": "sterben:umrijeti",
+   "bs": "umrijeti",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sterben",
+    "en": "to die",
+    "tr": "ölmek",
+    "sv": "dö",
+    "nl": "sterven",
+    "nb": "dø",
+    "da": "at dø",
+    "fr": "mourir"
+   },
+   "audio": null
+  },
+  {
+   "id": "sein opa ist vor zwei jahren gestorben.:Dedo mu je umro prije dvije godine.",
+   "bs": "Dedo mu je umro prije dvije godine.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Sein Opa ist vor zwei Jahren gestorben.",
+    "en": "His grandpa died two years ago.",
+    "tr": "Dedesi iki yıl önce öldü.",
+    "sv": "Hans farfar dog för två år sedan.",
+    "nl": "Zijn opa is twee jaar geleden overleden.",
+    "nb": "Bestefaren hans døde for to år siden.",
+    "da": "Hans bedstefar døde for to år siden.",
+    "fr": "Son grand-père est mort il y a deux ans."
+   },
+   "audio": null
+  },
+  {
+   "id": "erlauben:dozvoliti",
+   "bs": "dozvoliti",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "erlauben",
+    "en": "to allow",
+    "tr": "izin vermek",
+    "sv": "tillåta",
+    "nl": "toestaan",
+    "nb": "tillate",
+    "da": "at tillade",
+    "fr": "permettre"
+   },
+   "audio": null
+  },
+  {
+   "id": "mama hat mir nicht erlaubt zu gehen.:Mama mi nije dozvolila da idem.",
+   "bs": "Mama mi nije dozvolila da idem.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mama hat mir nicht erlaubt zu gehen.",
+    "en": "Mom didn't let me go.",
+    "tr": "Annem gitmeme izin vermedi.",
+    "sv": "Mamma lät mig inte gå.",
+    "nl": "Mama liet me niet gaan.",
+    "nb": "Mamma lot meg ikke gå.",
+    "da": "Mor ville ikke lade mig gå.",
+    "fr": "Maman ne m'a pas permis d'y aller."
+   },
+   "audio": null
+  },
+  {
+   "id": "interessieren:zanimati",
+   "bs": "zanimati",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "interessieren",
+    "en": "to interest",
+    "tr": "ilgilendirmek",
+    "sv": "intressera",
+    "nl": "interesseren",
+    "nb": "interessere",
+    "da": "at interessere",
+    "fr": "intéresser"
+   },
+   "audio": null
+  },
+  {
+   "id": "mich interessiert geschichte.:Zanima me historija.",
+   "bs": "Zanima me historija.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mich interessiert Geschichte.",
+    "en": "I'm interested in history.",
+    "tr": "Tarih ilgimi çekiyor.",
+    "sv": "Jag är intresserad av historia.",
+    "nl": "Ik ben geïnteresseerd in geschiedenis.",
+    "nb": "Jeg er interessert i historie.",
+    "da": "Jeg interesserer mig for historie.",
+    "fr": "L'histoire m'intéresse."
+   },
+   "audio": null
+  },
+  {
+   "id": "abhängen:zavisiti",
+   "bs": "zavisiti",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "abhängen",
+    "en": "to depend",
+    "tr": "bağlı olmak",
+    "sv": "bero på",
+    "nl": "afhangen",
+    "nb": "avhenge",
+    "da": "at afhænge",
+    "fr": "dépendre"
+   },
+   "audio": null
+  },
+  {
+   "id": "das hängt vom wetter ab.:Zavisi od vremena.",
+   "bs": "Zavisi od vremena.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Das hängt vom Wetter ab.",
+    "en": "It depends on the weather.",
+    "tr": "Havaya bağlı.",
+    "sv": "Det beror på vädret.",
+    "nl": "Dat hangt van het weer af.",
+    "nb": "Det kommer an på været.",
+    "da": "Det afhænger af vejret.",
+    "fr": "Ça dépend du temps."
+   },
+   "audio": null
+  },
+  {
+   "id": "fehlen:nedostajati",
+   "bs": "nedostajati",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "fehlen",
+    "en": "to miss / to be missing",
+    "tr": "özlemek / eksik olmak",
+    "sv": "sakna / fattas",
+    "nl": "missen / ontbreken",
+    "nb": "savne / mangle",
+    "da": "at savne / at mangle",
+    "fr": "manquer"
+   },
+   "audio": null
+  },
+  {
+   "id": "bosnien fehlt mir sehr.:Mnogo mi nedostaje Bosna.",
+   "bs": "Mnogo mi nedostaje Bosna.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Bosnien fehlt mir sehr.",
+    "en": "I miss Bosnia a lot.",
+    "tr": "Bosna'yı çok özlüyorum.",
+    "sv": "Jag saknar Bosnien väldigt mycket.",
+    "nl": "Ik mis Bosnië heel erg.",
+    "nb": "Jeg savner Bosnia veldig.",
+    "da": "Jeg savner Bosnien meget.",
+    "fr": "La Bosnie me manque beaucoup."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufwachen:probuditi se",
+   "bs": "probuditi se",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aufwachen",
+    "en": "to wake up",
+    "tr": "uyanmak",
+    "sv": "vakna",
+    "nl": "wakker worden",
+    "nb": "våkne",
+    "da": "at vågne",
+    "fr": "se réveiller"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin um fünf aufgewacht.:Probudio sam se u pet.",
+   "bs": "Probudio sam se u pet.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich bin um fünf aufgewacht.",
+    "en": "I woke up at five.",
+    "tr": "Beşte uyandım.",
+    "sv": "Jag vaknade klockan fem.",
+    "nl": "Ik werd om vijf uur wakker.",
+    "nb": "Jeg våknet klokka fem.",
+    "da": "Jeg vågnede klokken fem.",
+    "fr": "Je me suis réveillé à cinq heures."
+   },
+   "audio": null
+  },
+  {
+   "id": "stören:smetati",
+   "bs": "smetati",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "stören",
+    "en": "to bother / to disturb",
+    "tr": "rahatsız etmek",
+    "sv": "störa",
+    "nl": "storen",
+    "nb": "forstyrre",
+    "da": "at forstyrre",
+    "fr": "déranger"
+   },
+   "audio": null
+  },
+  {
+   "id": "stört sie die musik?:Smeta li Vam muzika?",
+   "bs": "Smeta li Vam muzika?",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Stört Sie die Musik?",
+    "en": "Does the music bother you?",
+    "tr": "Müzik sizi rahatsız ediyor mu?",
+    "sv": "Stör musiken er?",
+    "nl": "Stoort de muziek u?",
+    "nb": "Forstyrrer musikken Dem?",
+    "da": "Forstyrrer musikken Dem?",
+    "fr": "La musique vous dérange ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "heiraten (frau):udati se",
+   "bs": "udati se",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "heiraten (Frau)",
+    "en": "to get married (woman)",
+    "tr": "evlenmek (kadın)",
+    "sv": "gifta sig (kvinna)",
+    "nl": "trouwen (vrouw)",
+    "nb": "gifte seg (kvinne)",
+    "da": "at gifte sig (kvinde)",
+    "fr": "se marier (femme)"
+   },
+   "audio": null
+  },
+  {
+   "id": "meine schwester hat im mai geheiratet.:Sestra mi se udala u maju.",
+   "bs": "Sestra mi se udala u maju.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Meine Schwester hat im Mai geheiratet.",
+    "en": "My sister got married in May.",
+    "tr": "Kız kardeşim mayısta evlendi.",
+    "sv": "Min syster gifte sig i maj.",
+    "nl": "Mijn zus is in mei getrouwd.",
+    "nb": "Søsteren min giftet seg i mai.",
+    "da": "Min søster blev gift i maj.",
+    "fr": "Ma sœur s'est mariée en mai."
+   },
+   "audio": null
+  },
+  {
+   "id": "heiraten (mann):oženiti se",
+   "bs": "oženiti se",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "heiraten (Mann)",
+    "en": "to get married (man)",
+    "tr": "evlenmek (erkek)",
+    "sv": "gifta sig (man)",
+    "nl": "trouwen (man)",
+    "nb": "gifte seg (mann)",
+    "da": "at gifte sig (mand)",
+    "fr": "se marier (homme)"
+   },
+   "audio": null
+  },
+  {
+   "id": "mein bruder hat letztes jahr geheiratet.:Moj brat se oženio prošle godine.",
+   "bs": "Moj brat se oženio prošle godine.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mein Bruder hat letztes Jahr geheiratet.",
+    "en": "My brother got married last year.",
+    "tr": "Erkek kardeşim geçen yıl evlendi.",
+    "sv": "Min bror gifte sig förra året.",
+    "nl": "Mijn broer is vorig jaar getrouwd.",
+    "nb": "Broren min giftet seg i fjor.",
+    "da": "Min bror blev gift sidste år.",
+    "fr": "Mon frère s'est marié l'année dernière."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich verspäten / zu spät kommen:zakasniti",
+   "bs": "zakasniti",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich verspäten / zu spät kommen",
+    "en": "to be late / to arrive late",
+    "tr": "gecikmek / geç kalmak",
+    "sv": "bli försenad / komma för sent",
+    "nl": "vertraging hebben / te laat komen",
+    "nb": "bli forsinket / komme for sent",
+    "da": "at blive forsinket / at komme for sent",
+    "fr": "être en retard / arriver en retard"
+   },
+   "audio": null
+  },
+  {
+   "id": "entschuldige, ich bin zu spät.:Izvini, zakasnio sam.",
+   "bs": "Izvini, zakasnio sam.",
+   "level": "alltag_leben",
+   "level_position": 73,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Entschuldige, ich bin zu spät.",
+    "en": "Sorry, I'm late.",
+    "tr": "Kusura bakma, geç kaldım.",
+    "sv": "Förlåt, jag är sen.",
+    "nl": "Sorry, ik ben te laat.",
+    "nb": "Unnskyld, jeg er sen.",
+    "da": "Undskyld, jeg er forsinket.",
+    "fr": "Désolé, je suis en retard."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich verlaufen:izgubiti se",
+   "bs": "izgubiti se",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich verlaufen",
+    "en": "to get lost",
+    "tr": "kaybolmak",
+    "sv": "gå vilse",
+    "nl": "verdwalen",
+    "nb": "gå seg vill",
+    "da": "at fare vild",
+    "fr": "se perdre"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir haben uns in der stadt verlaufen.:Izgubili smo se u gradu.",
+   "bs": "Izgubili smo se u gradu.",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir haben uns in der Stadt verlaufen.",
+    "en": "We got lost in town.",
+    "tr": "Şehirde kaybolduk.",
+    "sv": "Vi gick vilse i stan.",
+    "nl": "We zijn in de stad verdwaald.",
+    "nb": "Vi gikk oss vill i byen.",
+    "da": "Vi for vild i byen.",
+    "fr": "Nous nous sommes perdus en ville."
+   },
+   "audio": null
+  },
+  {
+   "id": "retten:spasiti",
+   "bs": "spasiti",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "retten",
+    "en": "to save / to rescue",
+    "tr": "kurtarmak",
+    "sv": "rädda",
+    "nl": "redden",
+    "nb": "redde",
+    "da": "at redde",
+    "fr": "sauver"
+   },
+   "audio": null
+  },
+  {
+   "id": "die feuerwehr hat das kind gerettet.:Vatrogasci su spasili dijete.",
+   "bs": "Vatrogasci su spasili dijete.",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Feuerwehr hat das Kind gerettet.",
+    "en": "The firefighters rescued the child.",
+    "tr": "İtfaiye çocuğu kurtardı.",
+    "sv": "Brandkåren räddade barnet.",
+    "nl": "De brandweer heeft het kind gered.",
+    "nb": "Brannvesenet reddet barnet.",
+    "da": "Brandvæsenet reddede barnet.",
+    "fr": "Les pompiers ont sauvé l'enfant."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich verletzen:povrijediti se",
+   "bs": "povrijediti se",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich verletzen",
+    "en": "to get hurt / to injure oneself",
+    "tr": "yaralanmak",
+    "sv": "skada sig",
+    "nl": "zich bezeren / gewond raken",
+    "nb": "skade seg",
+    "da": "at komme til skade",
+    "fr": "se blesser"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe mich bei der arbeit verletzt.:Povrijedio sam se na poslu.",
+   "bs": "Povrijedio sam se na poslu.",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich habe mich bei der Arbeit verletzt.",
+    "en": "I hurt myself at work.",
+    "tr": "İşte yaralandım.",
+    "sv": "Jag skadade mig på jobbet.",
+    "nl": "Ik heb me bezeerd op mijn werk.",
+    "nb": "Jeg skadet meg på jobben.",
+    "da": "Jeg kom til skade på arbejdet.",
+    "fr": "Je me suis blessé au travail."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufpassen:paziti",
+   "bs": "paziti",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aufpassen",
+    "en": "to watch out / to take care",
+    "tr": "dikkat etmek / göz kulak olmak",
+    "sv": "se upp / passa",
+    "nl": "opletten / oppassen",
+    "nb": "passe på",
+    "da": "at passe på",
+    "fr": "faire attention / surveiller"
+   },
+   "audio": null
+  },
+  {
+   "id": "pass auf deine schwester auf!:Pazi na sestru!",
+   "bs": "Pazi na sestru!",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Pass auf deine Schwester auf!",
+    "en": "Look after your sister!",
+    "tr": "Kız kardeşine göz kulak ol!",
+    "sv": "Passa din syster!",
+    "nl": "Let op je zus!",
+    "nb": "Pass på søsteren din!",
+    "da": "Pas på din søster!",
+    "fr": "Surveille ta sœur !"
+   },
+   "audio": null
+  },
+  {
+   "id": "bluten:krvariti",
+   "bs": "krvariti",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bluten",
+    "en": "to bleed",
+    "tr": "kanamak",
+    "sv": "blöda",
+    "nl": "bloeden",
+    "nb": "blø",
+    "da": "at bløde",
+    "fr": "saigner"
+   },
+   "audio": null
+  },
+  {
+   "id": "die wunde blutet stark.:Rana jako krvari.",
+   "bs": "Rana jako krvari.",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Wunde blutet stark.",
+    "en": "The wound is bleeding heavily.",
+    "tr": "Yara çok kanıyor.",
+    "sv": "Såret blöder kraftigt.",
+    "nl": "De wond bloedt hevig.",
+    "nb": "Såret blør kraftig.",
+    "da": "Såret bløder kraftigt.",
+    "fr": "La plaie saigne beaucoup."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich erkälten:prehladiti se",
+   "bs": "prehladiti se",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich erkälten",
+    "en": "to catch a cold",
+    "tr": "üşütmek",
+    "sv": "bli förkyld",
+    "nl": "verkouden worden",
+    "nb": "bli forkjølet",
+    "da": "at blive forkølet",
+    "fr": "s'enrhumer"
+   },
+   "audio": null
+  },
+  {
+   "id": "zieh dich warm an, sonst erkältest du dich!:Obuci se toplo, prehladit ćeš se!",
+   "bs": "Obuci se toplo, prehladit ćeš se!",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Zieh dich warm an, sonst erkältest du dich!",
+    "en": "Bundle up or you'll catch a cold!",
+    "tr": "Sıkı giyin, yoksa üşüteceksin!",
+    "sv": "Klä dig varmt, annars blir du förkyld!",
+    "nl": "Kleed je warm aan, anders word je verkouden!",
+    "nb": "Kle deg godt, ellers blir du forkjølet!",
+    "da": "Tag noget varmt tøj på, ellers bliver du forkølet!",
+    "fr": "Couvre-toi bien, sinon tu vas attraper froid !"
+   },
+   "audio": null
+  },
+  {
+   "id": "ohnmächtig werden:onesvijestiti se",
+   "bs": "onesvijestiti se",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ohnmächtig werden",
+    "en": "to faint",
+    "tr": "bayılmak",
+    "sv": "svimma",
+    "nl": "flauwvallen",
+    "nb": "besvime",
+    "da": "at besvime",
+    "fr": "s'évanouir"
+   },
+   "audio": null
+  },
+  {
+   "id": "die frau ist ohnmächtig geworden!:Žena se onesvijestila!",
+   "bs": "Žena se onesvijestila!",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Frau ist ohnmächtig geworden!",
+    "en": "The woman has fainted!",
+    "tr": "Kadın bayıldı!",
+    "sv": "Kvinnan har svimmat!",
+    "nl": "De vrouw is flauwgevallen!",
+    "nb": "Kvinnen har besvimt!",
+    "da": "Kvinden er besvimet!",
+    "fr": "La femme s'est évanouie !"
+   },
+   "audio": null
+  },
+  {
+   "id": "wehtun:boljeti / boliti",
+   "bs": "boljeti / boliti",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "wehtun",
+    "en": "to hurt",
+    "tr": "acımak / ağrımak",
+    "sv": "göra ont",
+    "nl": "pijn doen",
+    "nb": "gjøre vondt",
+    "da": "at gøre ondt",
+    "fr": "faire mal"
+   },
+   "audio": null
+  },
+  {
+   "id": "mir tut der hals weh.:Boli me grlo.",
+   "bs": "Boli me grlo.",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mir tut der Hals weh.",
+    "en": "My throat hurts.",
+    "tr": "Boğazım ağrıyor.",
+    "sv": "Jag har ont i halsen.",
+    "nl": "Ik heb keelpijn.",
+    "nb": "Jeg har vondt i halsen.",
+    "da": "Jeg har ondt i halsen.",
+    "fr": "J'ai mal à la gorge."
+   },
+   "audio": null
+  },
+  {
+   "id": "atmen:disati / dihati",
+   "bs": "disati / dihati",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "atmen",
+    "en": "to breathe",
+    "tr": "nefes almak",
+    "sv": "andas",
+    "nl": "ademen",
+    "nb": "puste",
+    "da": "at trække vejret",
+    "fr": "respirer"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich kann nicht atmen!:Ne mogu disati!",
+   "bs": "Ne mogu disati!",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich kann nicht atmen!",
+    "en": "I can't breathe!",
+    "tr": "Nefes alamıyorum!",
+    "sv": "Jag kan inte andas!",
+    "nl": "Ik kan niet ademen!",
+    "nb": "Jeg får ikke puste!",
+    "da": "Jeg kan ikke få vejret!",
+    "fr": "Je n'arrive pas à respirer !"
+   },
+   "audio": null
+  },
+  {
+   "id": "krank werden:razboljeti se / razboliti se",
+   "bs": "razboljeti se / razboliti se",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "krank werden",
+    "en": "to get sick",
+    "tr": "hastalanmak",
+    "sv": "bli sjuk",
+    "nl": "ziek worden",
+    "nb": "bli syk",
+    "da": "at blive syg",
+    "fr": "tomber malade"
+   },
+   "audio": null
+  },
+  {
+   "id": "das kind ist krank geworden.:Dijete se razboljelo.",
+   "bs": "Dijete se razboljelo.",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Das Kind ist krank geworden.",
+    "en": "The child has gotten sick.",
+    "tr": "Çocuk hastalandı.",
+    "sv": "Barnet har blivit sjukt.",
+    "nl": "Het kind is ziek geworden.",
+    "nb": "Barnet har blitt sykt.",
+    "da": "Barnet er blevet sygt.",
+    "fr": "L'enfant est tombé malade."
+   },
+   "audio": null
+  },
+  {
+   "id": "brennen:gorjeti / goriti",
+   "bs": "gorjeti / goriti",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "brennen",
+    "en": "to burn / to be on fire",
+    "tr": "yanmak",
+    "sv": "brinna",
+    "nl": "branden",
+    "nb": "brenne",
+    "da": "at brænde",
+    "fr": "brûler"
+   },
+   "audio": null
+  },
+  {
+   "id": "das haus brennt!:Kuća gori!",
+   "bs": "Kuća gori!",
+   "level": "passieren",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Das Haus brennt!",
+    "en": "The house is on fire!",
+    "tr": "Ev yanıyor!",
+    "sv": "Huset brinner!",
+    "nl": "Het huis staat in brand!",
+    "nb": "Huset brenner!",
+    "da": "Huset brænder!",
+    "fr": "La maison brûle !"
+   },
+   "audio": null
+  },
+  {
+   "id": "hilfe!:Upomoć!",
+   "bs": "Upomoć!",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Hilfe!",
+    "en": "Help!",
+    "tr": "İmdat!",
+    "sv": "Hjälp!",
+    "nl": "Help!",
+    "nb": "Hjelp!",
+    "da": "Hjælp!",
+    "fr": "Au secours !"
+   },
+   "audio": null
+  },
+  {
+   "id": "hilfe! helfen sie mir!:Upomoć! Pomozite mi!",
+   "bs": "Upomoć! Pomozite mi!",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Hilfe! Helfen Sie mir!",
+    "en": "Help! Help me!",
+    "tr": "İmdat! Bana yardım edin!",
+    "sv": "Hjälp! Hjälp mig!",
+    "nl": "Help! Help me!",
+    "nb": "Hjelp! Hjelp meg!",
+    "da": "Hjælp! Hjælp mig!",
+    "fr": "Au secours ! Aidez-moi !"
+   },
+   "audio": null
+  },
+  {
+   "id": "notfall:hitan slučaj",
+   "bs": "hitan slučaj",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Notfall",
+    "en": "emergency",
+    "tr": "acil durum",
+    "sv": "nödsituation",
+    "nl": "noodgeval",
+    "nb": "nødstilfelle",
+    "da": "nødsituation",
+    "fr": "urgence"
+   },
+   "audio": null
+  },
+  {
+   "id": "das ist ein notfall, rufen sie den rettungsdienst!:Ovo je hitan slučaj, zovite hitnu pomoć!",
+   "bs": "Ovo je hitan slučaj, zovite hitnu pomoć!",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Das ist ein Notfall, rufen Sie den Rettungsdienst!",
+    "en": "This is an emergency, call an ambulance!",
+    "tr": "Bu acil bir durum, ambulans çağırın!",
+    "sv": "Det här är en nödsituation, ring ambulans!",
+    "nl": "Dit is een noodgeval, bel de ambulance!",
+    "nb": "Dette er et nødstilfelle, ring ambulansen!",
+    "da": "Det er en nødsituation, ring efter en ambulance!",
+    "fr": "C'est une urgence, appelez les secours !"
+   },
+   "audio": null
+  },
+  {
+   "id": "krankenwagen / rettung:hitna",
+   "bs": "hitna",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Krankenwagen / Rettung",
+    "en": "ambulance / emergency services",
+    "tr": "ambulans / acil yardım",
+    "sv": "ambulans / räddningstjänst",
+    "nl": "ambulance / hulpdiensten",
+    "nb": "ambulanse / redning",
+    "da": "ambulance / redning",
+    "fr": "ambulance / secours"
+   },
+   "audio": null
+  },
+  {
+   "id": "der krankenwagen ist schon unterwegs.:Hitna je već na putu.",
+   "bs": "Hitna je već na putu.",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Krankenwagen ist schon unterwegs.",
+    "en": "The ambulance is already on its way.",
+    "tr": "Ambulans yolda.",
+    "sv": "Ambulansen är redan på väg.",
+    "nl": "De ambulance is al onderweg.",
+    "nb": "Ambulansen er allerede på vei.",
+    "da": "Ambulancen er allerede på vej.",
+    "fr": "L'ambulance est déjà en route."
+   },
+   "audio": null
+  },
+  {
+   "id": "feuerwehr:vatrogasci",
+   "bs": "vatrogasci",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Feuerwehr",
+    "en": "fire department",
+    "tr": "itfaiye",
+    "sv": "brandkår",
+    "nl": "brandweer",
+    "nb": "brannvesen",
+    "da": "brandvæsen",
+    "fr": "pompiers"
+   },
+   "audio": null
+  },
+  {
+   "id": "rufen sie die feuerwehr!:Zovite vatrogasce!",
+   "bs": "Zovite vatrogasce!",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Rufen Sie die Feuerwehr!",
+    "en": "Call the fire department!",
+    "tr": "İtfaiyeyi arayın!",
+    "sv": "Ring brandkåren!",
+    "nl": "Bel de brandweer!",
+    "nb": "Ring brannvesenet!",
+    "da": "Ring til brandvæsenet!",
+    "fr": "Appelez les pompiers !"
+   },
+   "audio": null
+  },
+  {
+   "id": "brand:požar",
+   "bs": "požar",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Brand",
+    "en": "fire (blaze)",
+    "tr": "yangın",
+    "sv": "brand",
+    "nl": "brand",
+    "nb": "brann",
+    "da": "brand",
+    "fr": "incendie"
+   },
+   "audio": null
+  },
+  {
+   "id": "im gebäude ist ein brand ausgebrochen.:U zgradi je izbio požar.",
+   "bs": "U zgradi je izbio požar.",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Im Gebäude ist ein Brand ausgebrochen.",
+    "en": "A fire has broken out in the building.",
+    "tr": "Binada yangın çıktı.",
+    "sv": "Det har börjat brinna i byggnaden.",
+    "nl": "Er is brand uitgebroken in het gebouw.",
+    "nb": "Det har brutt ut brann i bygningen.",
+    "da": "Der er udbrudt brand i bygningen.",
+    "fr": "Un incendie s'est déclaré dans l'immeuble."
+   },
+   "audio": null
+  },
+  {
+   "id": "unfall / unglück:nesreća",
+   "bs": "nesreća",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Unfall / Unglück",
+    "en": "accident / misfortune",
+    "tr": "kaza / felaket",
+    "sv": "olycka",
+    "nl": "ongeluk / ongeval",
+    "nb": "ulykke",
+    "da": "ulykke",
+    "fr": "accident / malheur"
+   },
+   "audio": null
+  },
+  {
+   "id": "auf der autobahn ist ein unfall passiert.:Desila se nesreća na autoputu.",
+   "bs": "Desila se nesreća na autoputu.",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Auf der Autobahn ist ein Unfall passiert.",
+    "en": "There's been an accident on the highway.",
+    "tr": "Otoyolda bir kaza oldu.",
+    "sv": "Det har hänt en olycka på motorvägen.",
+    "nl": "Er is een ongeluk gebeurd op de snelweg.",
+    "nb": "Det har skjedd en ulykke på motorveien.",
+    "da": "Der er sket en ulykke på motorvejen.",
+    "fr": "Il y a eu un accident sur l'autoroute."
+   },
+   "audio": null
+  },
+  {
+   "id": "verletzung:povreda",
+   "bs": "povreda",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Verletzung",
+    "en": "injury",
+    "tr": "yaralanma",
+    "sv": "skada",
+    "nl": "verwonding",
+    "nb": "skade",
+    "da": "skade",
+    "fr": "blessure"
+   },
+   "audio": null
+  },
+  {
+   "id": "die verletzung ist nicht schwer.:Povreda nije teška.",
+   "bs": "Povreda nije teška.",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Verletzung ist nicht schwer.",
+    "en": "The injury isn't serious.",
+    "tr": "Yaralanma ağır değil.",
+    "sv": "Skadan är inte allvarlig.",
+    "nl": "De verwonding is niet ernstig.",
+    "nb": "Skaden er ikke alvorlig.",
+    "da": "Skaden er ikke alvorlig.",
+    "fr": "La blessure n'est pas grave."
+   },
+   "audio": null
+  },
+  {
+   "id": "wunde:rana",
+   "bs": "rana",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wunde",
+    "en": "wound",
+    "tr": "yara",
+    "sv": "sår",
+    "nl": "wond",
+    "nb": "sår",
+    "da": "sår",
+    "fr": "plaie"
+   },
+   "audio": null
+  },
+  {
+   "id": "man muss die wunde reinigen.:Treba očistiti ranu.",
+   "bs": "Treba očistiti ranu.",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Man muss die Wunde reinigen.",
+    "en": "The wound needs to be cleaned.",
+    "tr": "Yaranın temizlenmesi lazım.",
+    "sv": "Såret måste rengöras.",
+    "nl": "De wond moet schoongemaakt worden.",
+    "nb": "Såret må renses.",
+    "da": "Såret skal renses.",
+    "fr": "Il faut nettoyer la plaie."
+   },
+   "audio": null
+  },
+  {
+   "id": "blut:krv",
+   "bs": "krv",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Blut",
+    "en": "blood",
+    "tr": "kan",
+    "sv": "blod",
+    "nl": "bloed",
+    "nb": "blod",
+    "da": "blod",
+    "fr": "sang"
+   },
+   "audio": null
+  },
+  {
+   "id": "du hast blut an der hand.:Imaš krv na ruci.",
+   "bs": "Imaš krv na ruci.",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Du hast Blut an der Hand.",
+    "en": "You've got blood on your hand.",
+    "tr": "Elinde kan var.",
+    "sv": "Du har blod på handen.",
+    "nl": "Je hebt bloed aan je hand.",
+    "nb": "Du har blod på hånda.",
+    "da": "Du har blod på hånden.",
+    "fr": "Tu as du sang sur la main."
+   },
+   "audio": null
+  },
+  {
+   "id": "dieb:lopov",
+   "bs": "lopov",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Dieb",
+    "en": "thief",
+    "tr": "hırsız",
+    "sv": "tjuv",
+    "nl": "dief",
+    "nb": "tyv",
+    "da": "tyv",
+    "fr": "voleur"
+   },
+   "audio": null
+  },
+  {
+   "id": "der dieb ist weggerannt, rufen sie die polizei!:Lopov je pobjegao, zovite policiju!",
+   "bs": "Lopov je pobjegao, zovite policiju!",
+   "level": "notfall",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Dieb ist weggerannt, rufen Sie die Polizei!",
+    "en": "The thief ran away, call the police!",
+    "tr": "Hırsız kaçtı, polisi arayın!",
+    "sv": "Tjuven sprang iväg, ring polisen!",
+    "nl": "De dief is weggerend, bel de politie!",
+    "nb": "Tyven løp av gårde, ring politiet!",
+    "da": "Tyven er løbet væk, ring til politiet!",
+    "fr": "Le voleur s'est enfui, appelez la police !"
+   },
+   "audio": null
   }
  ]
 }

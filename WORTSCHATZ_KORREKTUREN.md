@@ -365,3 +365,32 @@ und 20 KM für den Pass sind bewusst nicht dabei.
 | Kennung | Änderung |
 |---|---|
 | `k:zahlen\|Dva plus dva je četiri.` | Jetzt **Dva plus dva su četiri.** Ajdin: „Auf „su“ ändern“ – bei *dva, tri, četiri* im Subjekt steht das Verb im Plural (Gramatika bosanskoga jezika, § 241). Fehler-Topf und Sterne ziehen über `SAETZE_UMBENANNT` in `web/index.html` mit. Neue Aufnahme von Emir (w2520); die alte (w2374) bleibt im Index liegen, ihre Nummer wird nie neu vergeben. „su“ steht in `vokabeln.py` als Form von „je“ (`formen`), nur damit die Prüfung es im Level Zahlen gelten lässt – sprachlich ist es eine Form von *biti*. |
+
+## 31.10.2026 – Wortschatz-Paket 1: Sektion 10 · Tun und Lassen
+
+140 Verben und 10 Notfall-Wörter mit Beispielsatz, von Ajdin am 31.10.2026
+Eintrag für Eintrag durchgesehen (`Release\Wortschatz\paket_01_entscheidungen.md`).
+Seine Korrekturen gelten wie alle anderen hier:
+
+| Wort | Ajdin | so steht es jetzt |
+|---|---|---|
+| *ostajati* | Satz: „u ljeti mi ostajemo kod nane“ | **Ljeti mi ostajemo kod nane.** – „u ljeti“ gilt in Sprachratgebern als nicht standardsprachlich; auf Rückfrage: „das passt“. |
+| *vratiti se* | „ja cu se vratiti za pola sata“ | **Ja ću se vratiti za pola sata.** |
+| *stići* | „mi smo stigli u sarajevo passt eher“ | **Mi smo stigli u Sarajevo.** |
+| *dobijati* | „nimm dobivati“ | **dobivati**, *dobijati* zählt beim Tippen (`auch`). |
+| *odgovarati* | „kann auch sich dafür verantworten bedeuten“ | Bedeutung **antworten / sich verantworten** |
+| *desiti se* | „lass beides gelten … schreib es auch hin“ | **desiti se / dogoditi se**, jede Form zählt allein |
+| *boljeti* | „jeder sagt boliti“ | **boljeti / boliti** |
+| *disati* | „man kann auch dihati sagen“ | **disati / dihati** |
+| *gorjeti* | „die Gesellschaft sagt goriti“ | **gorjeti / goriti** |
+| *razboljeti se* | „die meisten sagen razboliti se“ | **razboljeti se / razboliti se**, der Satz bleibt *Dijete se razboljelo.* |
+| *kola hitne pomoći* | „es reicht hitna, oder vozilo hitne pomoći, sanitet geht auch“ | **hitna** (Krankenwagen / Rettung), `auch`: *vozilo hitne pomoći*, *sanitet*, *kola hitne pomoći*. Neuer Satz **Hitna je već na putu.** – auf Rückfrage: „ja der ist gut“. |
+
+**Vollendet und unvollendet.** Ajdin: „beide wörter rein die sollen separat
+sein wenn einer gelernt wurde dann ist der andere noch nicht gelernt“. Beide
+Verben eines Paares (*ostati / ostajati*, *doći / dolaziti*) stehen mit
+derselben deutschen Bedeutung und eigener Kennung in der App, `partner` nennt
+das Gegenstück. Die App zeigt den Aspekt nicht an; die beiden stehen nie
+zusammen in einer Auswahl, und wer beim Tippen das andere Verb schreibt,
+bekommt einmal „Fast richtig!“ mit dem Hinweis auf das andere Verb des
+Paares. Kein Wort, das schon in der App stand, hat seine Kennung geändert.

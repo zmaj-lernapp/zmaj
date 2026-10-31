@@ -383,9 +383,9 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: 9 Sektionen, 65 Levels
+## Der Lernpfad: 10 Sektionen, 75 Levels
 
-Der Lernpfad zeigt neun Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
+Der Lernpfad zeigt zehn Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
 Ein Level antippen öffnet die Übungen. Bestandene Levels und Sektionen bleiben
 offen und können jederzeit wieder gespielt werden.
 
@@ -423,6 +423,16 @@ Musik, Glaube & Gastfreundschaft.
 **Sektion 9 · Amt & Verträge** (6 Levels): Höflich & Formell, Amt & Behörde,
 Bank & Geld, Wohnung & Hauskauf, Arbeitsvertrag & Bewerbung, Arzt &
 Versicherung.
+
+**Sektion 10 · Tun und Lassen** (10 Levels, seit 31.10.2026, Wortschatz-Paket
+1): Kommen und gehen, Geben, nehmen, kaufen, Sagen und denken, Verstehen und
+erinnern, Anfangen und aufhören, Tun und machen, Stellen, legen, sitzen,
+Alltag und Leben, Wenn etwas passiert, Im Notfall. Jedes Wort kommt mit
+seinem Beispielsatz direkt danach. Aspektpaare wie *ostati* und *ostajati*
+heißen beide „bleiben“: Sie werden getrennt gelernt, stehen nie zusammen in
+einer Auswahl, und wer beim Tippen das andere Verb des Paares schreibt,
+bekommt einmal „Fast richtig!“ mit einem Hinweis statt eines Fehlers. Eine
+zehnte Farbe gibt es noch nicht, die Sektion trägt wieder die erste.
 
 Jedes Level nennt unter „Baut auf“, welche früheren Levels es voraussetzt.
 Daraus kommen die Wiederholungsfragen im Test.
@@ -543,7 +553,8 @@ Stufe mit festem Abstand bis zum nächsten Termin:
   bekommen Stufe 3 und einen Termin ab morgen, verteilt auf etwa vier
   Wochen mit 3 bis 10 Wörtern je Tag, die ältesten Level zuerst. Bei mehr
   als 280 gewussten Wörtern dauert das entsprechend länger, bei allen
-  1.740 knapp sechs Monate. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
+  2.040 knapp sechs Monate. Ab 1.800 Wörtern sind es mehr als 10 je Tag
+  (bei allen 12), damit der Umzug nie länger als 180 Tage dauert. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
   dann brauchte der Umzug mit seinen Rückkehrern allein bald mehr als 30
   Plätze am Tag (Prüfung vom 29.10.2026).
 - Höchstens 30 fällige Wörter am Tag (`KARTEI_TAG_MAX`). Der Rest bleibt
@@ -1078,9 +1089,10 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 1740 Wörter hat eine eigene Fortschritts-Kennung.
-- In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, und
-  keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
+- Jedes der 2040 Wörter hat eine eigene Fortschritts-Kennung.
+- In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, außer
+  den Aspektpaaren (*ostati* / *ostajati*), die mit Absicht gleich heißen.
+  Keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
 
 Was im Wörterbuch zusammenfällt (`posao` und `rad` heißen beide „Arbeit“,
 `se` und `sebi` beide „sich“), fällt schon im Deutschen zusammen und ist kein
@@ -1099,7 +1111,7 @@ Der Grund: dasselbe bosnische Wort kann zwei Bedeutungen haben. `sto` ist die
 Zahl hundert und der Tisch, `oko` das Auge und „um herum“. Vorher merkte sich
 die App nur `sto` – wer die Zahl konnte, bei dem galt auch das Möbelstück als
 gelernt, und Level 9 startete bei 4 % statt bei 0 %. Dasselbe galt für `malo`,
-`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 65 Levels bei
+`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 75 Levels bei
 0 %, und man sieht in einer Sicherung auf einen Blick, welche Bedeutung
 gemeint ist.
 

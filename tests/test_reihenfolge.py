@@ -29,8 +29,13 @@ import pytest
 # Verb der Infinitiv, dann die Personen) und adjektive (je Adjektiv groß,
 # größer, am größten) ganz; in basics als Teil-Reihe die Grüße nach
 # Tageszeit, denn der Rest von basics hat keine Reihe.
+# Seit 31.10.2026 die zehn Level der Sektion Tun und Lassen (Wortschatz-Paket
+# 1): dort steht jedes Wort direkt vor seinem Beispielsatz, wie in routine das
+# Verb vor dem Ich-Satz. Geprueft in tests/test_paket1.py.
+PAKET1 = {"kommen_gehen", "geben_nehmen", "sagen_denken", "verstehen", "anfangen", "tun_machen",
+          "stellen_legen", "alltag_leben", "passieren", "notfall"}
 GEORDNET = {"zahlen", "wochentage", "monate", "mengen", "konjugation", "zukunft", "routine",
-            "vergangenheit", "modal", "adjektive"}
+            "vergangenheit", "modal", "adjektive"} | PAKET1
 TEIL_REIHEN = {"zeit": ["jutro", "podne", "večer", "noć"],
                "wetter": ["proljeće", "ljeto", "jesen", "zima"],
                "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"]}
