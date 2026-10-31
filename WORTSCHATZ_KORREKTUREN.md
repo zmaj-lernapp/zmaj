@@ -404,3 +404,47 @@ und *početi* hatten ihre Emir-Aufnahme schon. Die 150 Beispielsätze hat
 Emir am selben Tag gesprochen (Ajdin: „Jedes neue Wort bekommt einen
 Beispielsatz mit Emir-Ton.“), Text genau wie in der App: w2672–w2821,
 ebenfalls nur in der Hülle.
+
+## 31.10.2026 – Wortschatz-Paket 2: Tun und Lassen, Sektion 11 · Wie etwas ist
+
+150 Einträge aus `Release\Wortschatz\paket_02.json`, von Ajdin am 31.10.2026
+durchgesehen: 12 fragliche hat er beantwortet, die übrigen 138 sind
+übernommen, wie sie im Paket stehen (`paket_02_entscheidungen.md`). Aus
+Nr. 139 sind zwei Wörter geworden, deshalb 151 Wörter mit Beispielsatz.
+Seine Entscheidungen gelten wie alle anderen hier:
+
+| Wort | Ajdin | so steht es jetzt |
+|---|---|---|
+| *shvatati* | „so hab ich das gelernt, das ist grammatisch eher richtig“ | **shvatati**, *shvaćati* zählt beim Tippen (`auch`). Paket 1 bleibt bei *shvatiti*. |
+| *sačekati* | „sačekaj, das kenn ich nur“ | **sačekati**, *pričekati* zählt beim Tippen. |
+| *rezati* | *rezati* ist feines, ziehendes Schneiden (Messer, Schere), *sjeći* grob, schlagend (Holz, Fleisch mit Knochen), Ausnahme *sjeći nokte* | **rezati** = schneiden. *sjeći* kommt später als eigenes Wort („Sječem drva za zimu.“). |
+| *objesiti* | *objesiti* ist das, was hängt (Wäsche); *okačiti / zakačiti* ist anhängen, z. B. den Hund an die Leine – „objesiti psa“ hieße, ihn aufzuhängen | Gezeigt wird **objesiti**, *okačiti* zählt beim Tippen. Satz „Objesi veš, mašina je gotova.“ |
+| *težak* | so lassen | **težak** = „schwer (Gewicht)“, *teško* = „schwierig“ bleibt, wie es war. |
+| *lagan* | *lako / lahko* geht um die Schwierigkeit, *lagan* um das Gewicht | **lagan** = „leicht (Gewicht)“ |
+| *mekan* | *mehko* ist Dialekt („to je jako mekahno“), *mek* und *meko* sind beide richtig | **mekan**, *mek* und *meko* zählen beim Tippen. |
+| *jednostavan* | wenig Mühe und Kraft = *jednostavno*, alles andere *lako* | **jednostavan** = „einfach (unkompliziert)“ |
+| *komplikovan* | „nimm komplikovan, aber lass beides zählen“ | **komplikovan**, *kompliciran* zählt beim Tippen. |
+| *stidljiv* | *stidljiv* = schüchtern, *sramežljiv* eher schamhaft (nackt vor anderen) | **stidljiv**, *sramežljiv* zählt beim Tippen. |
+| *ukus / okus* | *okus* ist der Geschmack von Essen, *ukus* z. B. der Modegeschmack | **Zwei Wörter**: *okus* = „Geschmack (Essen)“ mit **Ovo ima čudan okus.**, *ukus* = „Geschmack (Stil)“ mit **Imaš dobar ukus.** |
+| *smrdjeti / smrditi* | mit j gibt ein Gegenstand Gestank ab, ohne j hat man den Geruch angenommen; im Präsens („smrdi“) gleich | **smrdjeti / smrditi**, jede Form zählt allein. |
+
+Beim Einbau festgelegt, ohne Ajdins Bosnisch zu ändern:
+
+- **Adjektive.** Gezeigt wird die männliche Form (*dug*), die weibliche und
+  die sächliche zählen beim Tippen (`auch`: *duga, dugo*). Mit „(m/w)“ wie
+  im Level Vergleichen & Beschreiben hätte sich die deutsche Bedeutung und
+  damit die Kennung geändert.
+- **Gleiche Schreibung.** *dug* (lang) steht neben *dug* (Schulden), *duga*
+  ist auch der Regenbogen, *jako*, *pravo* und *teško* sind schon eigene
+  Wörter (sehr, geradeaus, schwierig). Weil die Formen in `auch` stehen,
+  kommen die beiden nie zusammen in eine Auswahl.
+- **počistiti**: *očistiti* zählt beim Tippen mit. Es ist ebenso vollendet,
+  im bosnischen Web häufiger, und die App hat es schon im Satz *Treba
+  očistiti ranu.* (Hinweis aus der Prüfung des Pakets.)
+- **Paare.** `partner` steht bei allen 43 neuen Paaren an beiden Wörtern,
+  auch am Verb aus Paket 1 oder der App (*gubiti – izgubiti*,
+  *pokazivati – pokazati*). *nalaziti* (finden) und *nalaziti se* (sich
+  befinden), *buditi* (wecken) und *buditi se* (aufwachen) sind keine Paare
+  und gelten in der Auswahl nicht als gleich.
+- Der deutsche Satz zu *Imaš dobar ukus.* („Du hast einen guten Geschmack.“)
+  stand nicht im Paket und ist beim Einbau dazugekommen.

@@ -120,12 +120,16 @@ def test_getrennter_lernstand(seite, heute_stand):
 
 
 def test_sektion_zehn_im_lernpfad(seite, heute_stand):
-    """Die neue Sektion steht am Ende und traegt wieder die erste Farbe."""
+    """Sektion 10 traegt wieder die erste Farbe. Seit Paket 2 (31.10.2026)
+    hat sie 14 Level, dahinter steht Sektion 11 mit der zweiten Farbe, und
+    "partner" steht bei den neuen Paaren an beiden Woertern (63 + 2 x 43)."""
     seite.starten(stand=heute_stand())
     e = seite.js("""() => ({n: SECTIONS.length, letzte: SECTIONS[SECTIONS.length - 1].id,
         farbe: sektionsNummer('tunlassen'), level: CATEGORIES.filter(c => c.sektion === 'tunlassen').length,
+        farbe11: sektionsNummer('wieetwasist'),
         partnerFeld: CATEGORIES.flatMap(c => c.words).filter(w => w.partner).length})""")
-    assert e == {"n": 10, "letzte": "tunlassen", "farbe": "1", "level": 10, "partnerFeld": 63}
+    assert e == {"n": 11, "letzte": "wieetwasist", "farbe": "1", "level": 14, "farbe11": "2",
+                 "partnerFeld": 149}
     assert seite.fehler == []
 
 

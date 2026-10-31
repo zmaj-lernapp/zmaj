@@ -24,6 +24,10 @@ LETZTE = 2671
 SATZ_ERSTE = 2672
 SATZ_LETZTE = 2821
 SCHON_DA = {"ostati": "w1387.mp3", "voziti": "w1385.mp3", "naučiti": "w1408.mp3", "početi": "w1478.mp3"}
+# Die zehn Level aus Paket 1. Seit Paket 2 (31.10.2026) hat die Sektion
+# tunlassen vier Level mehr - deren Ton prueft nicht dieser Test.
+PAKET1 = ("kommen_gehen", "geben_nehmen", "sagen_denken", "verstehen", "anfangen", "tun_machen",
+          "stellen_legen", "alltag_leben", "passieren", "notfall")
 
 
 @pytest.fixture(scope="module")
@@ -35,7 +39,7 @@ def index(wurzel):
 def _neue_woerter(daten):
     """Die Woerter der Sektion 10 ohne ihre Beispielsaetze. Jedes Wort steht
     direkt vor seinem Satz (tests/test_paket1.py)."""
-    return [w for k in daten["kategorien"] if k.get("sektion") == "tunlassen" for w in k["words"][0::2]]
+    return [w for k in daten["kategorien"] if k["id"] in PAKET1 for w in k["words"][0::2]]
 
 
 def _nummer(datei):
@@ -94,7 +98,7 @@ def test_nummern_w2521_bis_w2671_gehoeren_dem_paket(grunddaten):
 
 def _neue_saetze(daten):
     """Die Beispielsaetze der Sektion 10: jeder steht direkt hinter seinem Wort."""
-    return [w for k in daten["kategorien"] if k.get("sektion") == "tunlassen" for w in k["words"][1::2]]
+    return [w for k in daten["kategorien"] if k["id"] in PAKET1 for w in k["words"][1::2]]
 
 
 def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, wurzel):

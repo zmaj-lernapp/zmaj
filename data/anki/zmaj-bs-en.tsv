@@ -2001,45 +2001,347 @@ oženiti se	to get married (man)	zmaj zmaj::73_alltag_leben
 Moj brat se oženio prošle godine.	My brother got married last year.	zmaj zmaj::73_alltag_leben
 zakasniti	to be late / to arrive late	zmaj zmaj::73_alltag_leben
 Izvini, zakasnio sam.	Sorry, I'm late.	zmaj zmaj::73_alltag_leben
-izgubiti se	to get lost	zmaj zmaj::74_passieren
-Izgubili smo se u gradu.	We got lost in town.	zmaj zmaj::74_passieren
-spasiti	to save / to rescue	zmaj zmaj::74_passieren
-Vatrogasci su spasili dijete.	The firefighters rescued the child.	zmaj zmaj::74_passieren
-povrijediti se	to get hurt / to injure oneself	zmaj zmaj::74_passieren
-Povrijedio sam se na poslu.	I hurt myself at work.	zmaj zmaj::74_passieren
-paziti	to watch out / to take care	zmaj zmaj::74_passieren
-Pazi na sestru!	Look after your sister!	zmaj zmaj::74_passieren
-krvariti	to bleed	zmaj zmaj::74_passieren
-Rana jako krvari.	The wound is bleeding heavily.	zmaj zmaj::74_passieren
-prehladiti se	to catch a cold	zmaj zmaj::74_passieren
-Obuci se toplo, prehladit ćeš se!	Bundle up or you'll catch a cold!	zmaj zmaj::74_passieren
-onesvijestiti se	to faint	zmaj zmaj::74_passieren
-Žena se onesvijestila!	The woman has fainted!	zmaj zmaj::74_passieren
-boljeti / boliti	to hurt	zmaj zmaj::74_passieren
-Boli me grlo.	My throat hurts.	zmaj zmaj::74_passieren
-disati / dihati	to breathe	zmaj zmaj::74_passieren
-Ne mogu disati!	I can't breathe!	zmaj zmaj::74_passieren
-razboljeti se / razboliti se	to get sick	zmaj zmaj::74_passieren
-Dijete se razboljelo.	The child has gotten sick.	zmaj zmaj::74_passieren
-gorjeti / goriti	to burn / to be on fire	zmaj zmaj::74_passieren
-Kuća gori!	The house is on fire!	zmaj zmaj::74_passieren
-Upomoć!	Help!	zmaj zmaj::75_notfall
-Upomoć! Pomozite mi!	Help! Help me!	zmaj zmaj::75_notfall
-hitan slučaj	emergency	zmaj zmaj::75_notfall
-Ovo je hitan slučaj, zovite hitnu pomoć!	This is an emergency, call an ambulance!	zmaj zmaj::75_notfall
-hitna	ambulance / emergency services	zmaj zmaj::75_notfall
-Hitna je već na putu.	The ambulance is already on its way.	zmaj zmaj::75_notfall
-vatrogasci	fire department	zmaj zmaj::75_notfall
-Zovite vatrogasce!	Call the fire department!	zmaj zmaj::75_notfall
-požar	fire (blaze)	zmaj zmaj::75_notfall
-U zgradi je izbio požar.	A fire has broken out in the building.	zmaj zmaj::75_notfall
-nesreća	accident / misfortune	zmaj zmaj::75_notfall
-Desila se nesreća na autoputu.	There's been an accident on the highway.	zmaj zmaj::75_notfall
-povreda	injury	zmaj zmaj::75_notfall
-Povreda nije teška.	The injury isn't serious.	zmaj zmaj::75_notfall
-rana	wound	zmaj zmaj::75_notfall
-Treba očistiti ranu.	The wound needs to be cleaned.	zmaj zmaj::75_notfall
-krv	blood	zmaj zmaj::75_notfall
-Imaš krv na ruci.	You've got blood on your hand.	zmaj zmaj::75_notfall
-lopov	thief	zmaj zmaj::75_notfall
-Lopov je pobjegao, zovite policiju!	The thief ran away, call the police!	zmaj zmaj::75_notfall
+nalaziti	to find	zmaj zmaj::74_paare_geben
+Gdje nalaziš takve stvari?	Where do you find things like that?	zmaj zmaj::74_paare_geben
+primiti	to accept / to receive	zmaj zmaj::74_paare_geben
+Primili su me na posao!	They hired me!	zmaj zmaj::74_paare_geben
+nuditi	to offer	zmaj zmaj::74_paare_geben
+Nana gostima uvijek nudi kahvu.	Grandma always offers the guests coffee.	zmaj zmaj::74_paare_geben
+iskoristiti	to make use of / to take advantage of	zmaj zmaj::74_paare_geben
+Iskoristi lijepo vrijeme!	Make the most of the nice weather!	zmaj zmaj::74_paare_geben
+sačuvati	to keep / to save	zmaj zmaj::74_paare_geben
+Sačuvaj račun, možda ti zatreba.	Keep the receipt, you might still need it.	zmaj zmaj::74_paare_geben
+gubiti	to lose	zmaj zmaj::74_paare_geben
+Naša ekipa opet gubi.	Our team is losing again.	zmaj zmaj::74_paare_geben
+ostavljati	to leave / to leave behind	zmaj zmaj::74_paare_geben
+Ne ostavljaj stvari po podu!	Don't leave your things lying on the floor!	zmaj zmaj::74_paare_geben
+bacati	to throw / to throw away	zmaj zmaj::74_paare_geben
+Hljeb se ne baca.	You don't throw bread away.	zmaj zmaj::74_paare_geben
+skidati	to take off	zmaj zmaj::74_paare_geben
+Kod nas se u kući skidaju cipele.	At our place you take your shoes off in the house.	zmaj zmaj::74_paare_geben
+krasti	to steal	zmaj zmaj::74_paare_geben
+Kao djeca smo krali trešnje iz komšijine bašte.	As kids we used to steal cherries from the neighbor's garden.	zmaj zmaj::74_paare_geben
+pokazivati	to show	zmaj zmaj::74_paare_geben
+Nana svima pokazuje slike unuka.	Grandma shows everyone the photos of her grandchildren.	zmaj zmaj::74_paare_geben
+pozivati	to invite	zmaj zmaj::74_paare_geben
+Komšije nas stalno pozivaju na kahvu.	The neighbors keep inviting us over for coffee.	zmaj zmaj::74_paare_geben
+potražiti	to look for	zmaj zmaj::74_paare_geben
+Potraži na internetu.	Look it up online.	zmaj zmaj::74_paare_geben
+naručivati	to order	zmaj zmaj::74_paare_geben
+Ja uvijek naručujem isto.	I always order the same thing.	zmaj zmaj::74_paare_geben
+javljati se	to get in touch	zmaj zmaj::75_paare_denken
+Zašto se ne javljaš na telefon?	Why aren't you answering the phone?	zmaj zmaj::75_paare_denken
+objašnjavati	to explain	zmaj zmaj::75_paare_denken
+Nastavnica sve lijepo objašnjava.	The teacher explains everything well.	zmaj zmaj::75_paare_denken
+odlučivati	to decide	zmaj zmaj::75_paare_denken
+Ko o tome odlučuje?	Who decides on that?	zmaj zmaj::75_paare_denken
+rješavati	to solve / to sort out	zmaj zmaj::75_paare_denken
+Probleme rješavamo zajedno.	We solve problems together.	zmaj zmaj::75_paare_denken
+razmisliti	to think something over	zmaj zmaj::75_paare_denken
+Razmisli pa mi javi.	Think it over and let me know.	zmaj zmaj::75_paare_denken
+shvatati	to grasp / to get it	zmaj zmaj::75_paare_denken
+Ne shvatam šta hoćeš od mene.	I don't get what you want from me.	zmaj zmaj::75_paare_denken
+zaboravljati	to forget	zmaj zmaj::75_paare_denken
+Stalno zaboravljam imena.	I keep forgetting names.	zmaj zmaj::75_paare_denken
+poslušati	to hear out / to listen to someone	zmaj zmaj::75_paare_denken
+Poslušaj me bar jednom!	Listen to me just this once!	zmaj zmaj::75_paare_denken
+dogovarati se	to arrange to meet / to agree on	zmaj zmaj::75_paare_denken
+Stalno se dogovaramo, a nikako da se nađemo.	We keep making plans, and then we never actually meet.	zmaj zmaj::75_paare_denken
+sačekati	to wait	zmaj zmaj::75_paare_denken
+Sačekaj me ispred zgrade.	Wait for me in front of the building.	zmaj zmaj::75_paare_denken
+postajati	to become	zmaj zmaj::76_paare_alltag
+Navečer već postaje hladno.	It's already getting cold in the evenings.	zmaj zmaj::76_paare_alltag
+nastavljati	to carry on / to continue	zmaj zmaj::76_paare_alltag
+Nastavljamo poslije pauze.	We'll carry on after the break.	zmaj zmaj::76_paare_alltag
+dešavati se / događati se	to happen	zmaj zmaj::76_paare_alltag
+Šta se ovdje dešava?	What's going on here?	zmaj zmaj::76_paare_alltag
+padati	to fall	zmaj zmaj::76_paare_alltag
+Noću temperatura pada ispod nule.	At night the temperature drops below zero.	zmaj zmaj::76_paare_alltag
+pripremati	to prepare	zmaj zmaj::76_paare_alltag
+Mama priprema ručak.	Mom is making lunch.	zmaj zmaj::76_paare_alltag
+buditi se	to wake up	zmaj zmaj::76_paare_alltag
+Budim se svaki dan u šest.	I wake up at six every day.	zmaj zmaj::76_paare_alltag
+buditi	to wake (someone) up	zmaj zmaj::76_paare_alltag
+Svako jutro budim djecu za školu.	Every morning I wake the kids up for school.	zmaj zmaj::76_paare_alltag
+probuditi	to wake (someone) up	zmaj zmaj::76_paare_alltag
+Probudi me u sedam, molim te.	Please wake me up at seven.	zmaj zmaj::76_paare_alltag
+prestajati	to stop	zmaj zmaj::76_paare_alltag
+Kiša nikako ne prestaje.	The rain just won't stop.	zmaj zmaj::76_paare_alltag
+uspijevati	to manage / to succeed	zmaj zmaj::76_paare_alltag
+Nikako ne uspijevam zaspati.	I just can't manage to fall asleep.	zmaj zmaj::76_paare_alltag
+ženiti se	to get married (man)	zmaj zmaj::76_paare_alltag
+Kad se ženiš?	When are you getting married?	zmaj zmaj::76_paare_alltag
+udavati se	to get married (woman)	zmaj zmaj::76_paare_alltag
+Sestra mi se udaje u junu.	My sister is getting married in June.	zmaj zmaj::76_paare_alltag
+paliti	to switch on / to turn on	zmaj zmaj::76_paare_alltag
+U oktobru već palimo grijanje.	In October we already turn the heating on.	zmaj zmaj::76_paare_alltag
+posjećivati	to visit someone	zmaj zmaj::76_paare_alltag
+Svake sedmice posjećujemo nanu.	Every week we visit grandma.	zmaj zmaj::76_paare_alltag
+gasiti	to switch off / to turn off	zmaj zmaj::76_paare_alltag
+Uvijek gasim svjetlo kad izlazim iz sobe.	I always turn off the light when I leave the room.	zmaj zmaj::76_paare_alltag
+popravljati	to repair	zmaj zmaj::76_paare_alltag
+Babo uvijek sam popravlja auto.	Dad always fixes the car himself.	zmaj zmaj::76_paare_alltag
+iznijeti	to carry out / to take out	zmaj zmaj::77_im_haushalt
+Ko će iznijeti smeće?	Who's taking the trash out?	zmaj zmaj::77_im_haushalt
+složiti	to fold / to sort	zmaj zmaj::77_im_haushalt
+Složi veš i stavi ga u ormar.	Fold the laundry and put it in the closet.	zmaj zmaj::77_im_haushalt
+oprati	to wash	zmaj zmaj::77_im_haushalt
+Operi ruke prije jela!	Wash your hands before eating!	zmaj zmaj::77_im_haushalt
+miješati	to stir / to mix	zmaj zmaj::77_im_haushalt
+Miješaj da ne zagori!	Stir it so it doesn't burn!	zmaj zmaj::77_im_haushalt
+pokvariti se	to break down	zmaj zmaj::77_im_haushalt
+Opet se pokvarila veš mašina.	The washing machine has broken down again.	zmaj zmaj::77_im_haushalt
+obrisati	to wipe / to delete	zmaj zmaj::77_im_haushalt
+Obriši sto, molim te.	Please wipe the table.	zmaj zmaj::77_im_haushalt
+brisati	to wipe / to delete	zmaj zmaj::77_im_haushalt
+Ko danas briše prašinu?	Who's dusting today?	zmaj zmaj::77_im_haushalt
+sušiti	to dry	zmaj zmaj::77_im_haushalt
+Veš sušimo na balkonu.	We dry the laundry on the balcony.	zmaj zmaj::77_im_haushalt
+rezati	to cut	zmaj zmaj::77_im_haushalt
+Ovaj nož ništa ne reže.	This knife doesn't cut at all.	zmaj zmaj::77_im_haushalt
+skuhati	to cook	zmaj zmaj::77_im_haushalt
+Skuhat ću ti kahvu.	I'll make you a coffee.	zmaj zmaj::77_im_haushalt
+pržiti	to fry (in a pan)	zmaj zmaj::77_im_haushalt
+Mama prži ribu.	Mom is frying fish.	zmaj zmaj::77_im_haushalt
+zaliti	to water (plants)	zmaj zmaj::77_im_haushalt
+Zalij cvijeće dok me nema.	Water the flowers while I'm away.	zmaj zmaj::77_im_haushalt
+objesiti	to hang (up)	zmaj zmaj::77_im_haushalt
+Objesi veš, mašina je gotova.	Hang up the laundry, the machine is done.	zmaj zmaj::77_im_haushalt
+počistiti	to clean	zmaj zmaj::77_im_haushalt
+Moram počistiti kupatilo.	I have to clean the bathroom.	zmaj zmaj::77_im_haushalt
+usisavati	to vacuum	zmaj zmaj::77_im_haushalt
+Subotom usisavam cijeli stan.	On Saturdays I vacuum the whole apartment.	zmaj zmaj::77_im_haushalt
+usisati	to vacuum	zmaj zmaj::77_im_haushalt
+Usisaj sobu prije nego što dođu gosti.	Vacuum the room before the guests arrive.	zmaj zmaj::77_im_haushalt
+izgubiti se	to get lost	zmaj zmaj::78_passieren
+Izgubili smo se u gradu.	We got lost in town.	zmaj zmaj::78_passieren
+spasiti	to save / to rescue	zmaj zmaj::78_passieren
+Vatrogasci su spasili dijete.	The firefighters rescued the child.	zmaj zmaj::78_passieren
+povrijediti se	to get hurt / to injure oneself	zmaj zmaj::78_passieren
+Povrijedio sam se na poslu.	I hurt myself at work.	zmaj zmaj::78_passieren
+paziti	to watch out / to take care	zmaj zmaj::78_passieren
+Pazi na sestru!	Look after your sister!	zmaj zmaj::78_passieren
+krvariti	to bleed	zmaj zmaj::78_passieren
+Rana jako krvari.	The wound is bleeding heavily.	zmaj zmaj::78_passieren
+prehladiti se	to catch a cold	zmaj zmaj::78_passieren
+Obuci se toplo, prehladit ćeš se!	Bundle up or you'll catch a cold!	zmaj zmaj::78_passieren
+onesvijestiti se	to faint	zmaj zmaj::78_passieren
+Žena se onesvijestila!	The woman has fainted!	zmaj zmaj::78_passieren
+boljeti / boliti	to hurt	zmaj zmaj::78_passieren
+Boli me grlo.	My throat hurts.	zmaj zmaj::78_passieren
+disati / dihati	to breathe	zmaj zmaj::78_passieren
+Ne mogu disati!	I can't breathe!	zmaj zmaj::78_passieren
+razboljeti se / razboliti se	to get sick	zmaj zmaj::78_passieren
+Dijete se razboljelo.	The child has gotten sick.	zmaj zmaj::78_passieren
+gorjeti / goriti	to burn / to be on fire	zmaj zmaj::78_passieren
+Kuća gori!	The house is on fire!	zmaj zmaj::78_passieren
+Upomoć!	Help!	zmaj zmaj::79_notfall
+Upomoć! Pomozite mi!	Help! Help me!	zmaj zmaj::79_notfall
+hitan slučaj	emergency	zmaj zmaj::79_notfall
+Ovo je hitan slučaj, zovite hitnu pomoć!	This is an emergency, call an ambulance!	zmaj zmaj::79_notfall
+hitna	ambulance / emergency services	zmaj zmaj::79_notfall
+Hitna je već na putu.	The ambulance is already on its way.	zmaj zmaj::79_notfall
+vatrogasci	fire department	zmaj zmaj::79_notfall
+Zovite vatrogasce!	Call the fire department!	zmaj zmaj::79_notfall
+požar	fire (blaze)	zmaj zmaj::79_notfall
+U zgradi je izbio požar.	A fire has broken out in the building.	zmaj zmaj::79_notfall
+nesreća	accident / misfortune	zmaj zmaj::79_notfall
+Desila se nesreća na autoputu.	There's been an accident on the highway.	zmaj zmaj::79_notfall
+povreda	injury	zmaj zmaj::79_notfall
+Povreda nije teška.	The injury isn't serious.	zmaj zmaj::79_notfall
+rana	wound	zmaj zmaj::79_notfall
+Treba očistiti ranu.	The wound needs to be cleaned.	zmaj zmaj::79_notfall
+krv	blood	zmaj zmaj::79_notfall
+Imaš krv na ruci.	You've got blood on your hand.	zmaj zmaj::79_notfall
+lopov	thief	zmaj zmaj::79_notfall
+Lopov je pobjegao, zovite policiju!	The thief ran away, call the police!	zmaj zmaj::79_notfall
+daleko	far (away)	zmaj zmaj::80_lang_kurz
+Je li daleko do centra?	Is it far to the center?	zmaj zmaj::80_lang_kurz
+visok	high / tall	zmaj zmaj::80_lang_kurz
+Moj brat je jako visok.	My brother is very tall.	zmaj zmaj::80_lang_kurz
+težak	heavy	zmaj zmaj::80_lang_kurz
+Ovaj kofer je jako težak.	This suitcase is very heavy.	zmaj zmaj::80_lang_kurz
+širok	wide	zmaj zmaj::80_lang_kurz
+Rijeka je ovdje jako široka.	The river is very wide here.	zmaj zmaj::80_lang_kurz
+dug	long	zmaj zmaj::80_lang_kurz
+Ovo je bio dug dan.	That was a long day.	zmaj zmaj::80_lang_kurz
+nizak	low / short (person)	zmaj zmaj::80_lang_kurz
+Ovdje su cijene niske.	Prices are low here.	zmaj zmaj::80_lang_kurz
+kratak	short	zmaj zmaj::80_lang_kurz
+Život je kratak.	Life is short.	zmaj zmaj::80_lang_kurz
+uzak	tight / narrow	zmaj zmaj::80_lang_kurz
+Ove cipele su mi uske.	These shoes are too tight for me.	zmaj zmaj::80_lang_kurz
+lagan	light (in weight)	zmaj zmaj::80_lang_kurz
+Torba je lagana, nosit ću je sama.	The bag is light, I'll carry it myself.	zmaj zmaj::80_lang_kurz
+tanak	thin (object)	zmaj zmaj::80_lang_kurz
+Zidovi su tanki, sve se čuje.	The walls are thin, you can hear everything.	zmaj zmaj::80_lang_kurz
+debeo	thick / fat	zmaj zmaj::80_lang_kurz
+Ova knjiga je baš debela.	This book is really thick.	zmaj zmaj::80_lang_kurz
+mršav	thin (person)	zmaj zmaj::80_lang_kurz
+Mršav si, jedi malo više!	You're thin, eat a little more!	zmaj zmaj::80_lang_kurz
+isti	same	zmaj zmaj::81_voll_leer
+Imamo iste cipele!	We've got the same shoes!	zmaj zmaj::81_voll_leer
+jak	strong	zmaj zmaj::81_voll_leer
+Jak je kao medvjed.	He's as strong as a bear.	zmaj zmaj::81_voll_leer
+pun	full	zmaj zmaj::81_voll_leer
+Autobus je bio pun.	The bus was full.	zmaj zmaj::81_voll_leer
+bogat	rich	zmaj zmaj::81_voll_leer
+Njegova porodica je jako bogata.	His family is very rich.	zmaj zmaj::81_voll_leer
+drugačiji	different	zmaj zmaj::81_voll_leer
+Danas si nekako drugačiji.	You're somehow different today.	zmaj zmaj::81_voll_leer
+slab	weak	zmaj zmaj::81_voll_leer
+Signal je ovdje slab.	The signal is weak here.	zmaj zmaj::81_voll_leer
+prazan	empty	zmaj zmaj::81_voll_leer
+Frižider je opet prazan.	The fridge is empty again.	zmaj zmaj::81_voll_leer
+tačan	correct / exact	zmaj zmaj::81_voll_leer
+Je li ovo tačna adresa?	Is this the right address?	zmaj zmaj::81_voll_leer
+suh	dry	zmaj zmaj::81_voll_leer
+Veš je već suh.	The laundry is already dry.	zmaj zmaj::81_voll_leer
+pogrešan	wrong	zmaj zmaj::81_voll_leer
+Ušli smo u pogrešan autobus.	We got on the wrong bus.	zmaj zmaj::81_voll_leer
+siromašan	poor	zmaj zmaj::81_voll_leer
+Odrastao sam u siromašnoj porodici.	I grew up in a poor family.	zmaj zmaj::81_voll_leer
+tvrd	hard	zmaj zmaj::81_voll_leer
+Hljeb je tvrd, od jučer je.	The bread is hard, it's from yesterday.	zmaj zmaj::81_voll_leer
+mokar	wet	zmaj zmaj::81_voll_leer
+Sav sam mokar od kiše.	I'm soaking wet from the rain.	zmaj zmaj::81_voll_leer
+mekan	soft	zmaj zmaj::81_voll_leer
+Jastuk je jako mekan.	The pillow is very soft.	zmaj zmaj::81_voll_leer
+potreban	necessary	zmaj zmaj::82_moeglich
+Potrebna mi je tvoja pomoć.	I need your help.	zmaj zmaj::82_moeglich
+moguć	possible	zmaj zmaj::82_moeglich
+Je li moguće platiti karticom?	Is it possible to pay by card?	zmaj zmaj::82_moeglich
+poseban	special	zmaj zmaj::82_moeglich
+Danas je poseban dan.	Today is a special day.	zmaj zmaj::82_moeglich
+siguran	safe / sure	zmaj zmaj::82_moeglich
+Je li ovdje sigurno noću?	Is it safe here at night?	zmaj zmaj::82_moeglich
+sličan	similar	zmaj zmaj::82_moeglich
+Ti i brat ste jako slični.	You and your brother are very alike.	zmaj zmaj::82_moeglich
+spreman	ready	zmaj zmaj::82_moeglich
+Jesi li spremna? Krećemo.	Are you ready? We're leaving.	zmaj zmaj::82_moeglich
+slobodan	free	zmaj zmaj::82_moeglich
+Jesi li slobodan u subotu?	Are you free on Saturday?	zmaj zmaj::82_moeglich
+jednostavan	simple	zmaj zmaj::82_moeglich
+Recept je jako jednostavan.	The recipe is really simple.	zmaj zmaj::82_moeglich
+običan	ordinary / normal	zmaj zmaj::82_moeglich
+Ja sam običan čovjek.	I'm just an ordinary person.	zmaj zmaj::82_moeglich
+čudan	strange / weird	zmaj zmaj::82_moeglich
+To je baš čudno.	That's really strange.	zmaj zmaj::82_moeglich
+nemoguć	impossible	zmaj zmaj::82_moeglich
+To je nemoguće!	That's impossible!	zmaj zmaj::82_moeglich
+gotov	finished / done	zmaj zmaj::82_moeglich
+Ručak je gotov!	Lunch is ready!	zmaj zmaj::82_moeglich
+komplikovan	complicated	zmaj zmaj::82_moeglich
+Sve je to previše komplikovano.	It's all far too complicated.	zmaj zmaj::82_moeglich
+zauzet	busy / taken	zmaj zmaj::82_moeglich
+Izvini, sad sam zauzet.	Sorry, I'm busy right now.	zmaj zmaj::82_moeglich
+pravi	real / genuine	zmaj zmaj::82_moeglich
+Ovo je prava bosanska kahva.	This is real Bosnian coffee.	zmaj zmaj::82_moeglich
+drag	sweet / dear	zmaj zmaj::83_wie_jemand_ist
+Tvoja mama je jako draga.	Your mom is really sweet.	zmaj zmaj::83_wie_jemand_ist
+ozbiljan	serious	zmaj zmaj::83_wie_jemand_ist
+Ovo je ozbiljan problem.	This is a serious problem.	zmaj zmaj::83_wie_jemand_ist
+vrijedan	hard-working	zmaj zmaj::83_wie_jemand_ist
+Moja kćerka je jako vrijedna.	My daughter is very hard-working.	zmaj zmaj::83_wie_jemand_ist
+pametan	clever / smart	zmaj zmaj::83_wie_jemand_ist
+Ona je jako pametna.	She's very smart.	zmaj zmaj::83_wie_jemand_ist
+iskren	sincere / open	zmaj zmaj::83_wie_jemand_ist
+Budi iskren, sviđa li ti se?	Be honest, do you like it?	zmaj zmaj::83_wie_jemand_ist
+zao	mean / evil	zmaj zmaj::83_wie_jemand_ist
+Pas nije zao, samo laje.	The dog isn't mean, it just barks.	zmaj zmaj::83_wie_jemand_ist
+hrabar	brave	zmaj zmaj::83_wie_jemand_ist
+Bio si jako hrabar.	You were very brave.	zmaj zmaj::83_wie_jemand_ist
+glup	stupid	zmaj zmaj::83_wie_jemand_ist
+To je bilo glupo od mene.	That was stupid of me.	zmaj zmaj::83_wie_jemand_ist
+pošten	honest	zmaj zmaj::83_wie_jemand_ist
+On je pošten čovjek.	He's an honest person.	zmaj zmaj::83_wie_jemand_ist
+veseo	cheerful	zmaj zmaj::83_wie_jemand_ist
+Uvijek je vesela i nasmijana.	She's always cheerful and smiling.	zmaj zmaj::83_wie_jemand_ist
+oprezan	careful	zmaj zmaj::83_wie_jemand_ist
+Budi oprezan, vani je klizavo.	Be careful, it's slippery outside.	zmaj zmaj::83_wie_jemand_ist
+ljubazan	friendly	zmaj zmaj::84_benehmen
+Prodavačica je bila jako ljubazna.	The salesclerk was very friendly.	zmaj zmaj::84_benehmen
+pristojan	polite / decent	zmaj zmaj::84_benehmen
+Budi pristojan pred gostima!	Be polite in front of the guests!	zmaj zmaj::84_benehmen
+pažljiv	thoughtful / considerate	zmaj zmaj::84_benehmen
+Hvala, baš si pažljiv.	Thanks, that's very thoughtful of you.	zmaj zmaj::84_benehmen
+lijen	lazy	zmaj zmaj::84_benehmen
+Ne budi lijen, ustaj!	Don't be lazy, get up!	zmaj zmaj::84_benehmen
+strpljiv	patient	zmaj zmaj::84_benehmen
+Budi strpljiv, doći će.	Be patient, he'll come.	zmaj zmaj::84_benehmen
+sebičan	selfish	zmaj zmaj::84_benehmen
+Nemoj biti tako sebičan.	Don't be so selfish.	zmaj zmaj::84_benehmen
+smiren	calm / composed	zmaj zmaj::84_benehmen
+On je uvijek smiren.	He's always calm.	zmaj zmaj::84_benehmen
+bezobrazan	cheeky / rude	zmaj zmaj::84_benehmen
+Ne budi bezobrazan!	Don't be cheeky!	zmaj zmaj::84_benehmen
+tvrdoglav	stubborn	zmaj zmaj::84_benehmen
+Tvrdoglav si kao babo.	You're as stubborn as Dad.	zmaj zmaj::84_benehmen
+stidljiv	shy	zmaj zmaj::84_benehmen
+Naš sin je malo stidljiv.	Our son is a little shy.	zmaj zmaj::84_benehmen
+škrt	stingy	zmaj zmaj::84_benehmen
+Ne budi škrt, danas ti častiš!	Don't be stingy, it's your treat today!	zmaj zmaj::84_benehmen
+sreća	luck / happiness	zmaj zmaj::85_glueck_sorgen
+Imali smo sreće!	We were lucky!	zmaj zmaj::85_glueck_sorgen
+osjećaj	feeling	zmaj zmaj::85_glueck_sorgen
+Imam dobar osjećaj.	I have a good feeling.	zmaj zmaj::85_glueck_sorgen
+briga	worry	zmaj zmaj::85_glueck_sorgen
+Bez brige, sve će biti u redu.	Don't worry, everything will be fine.	zmaj zmaj::85_glueck_sorgen
+zahvalan	grateful	zmaj zmaj::85_glueck_sorgen
+Zahvalan sam ti na svemu.	I'm grateful to you for everything.	zmaj zmaj::85_glueck_sorgen
+Sretno!	Good luck!	zmaj zmaj::85_glueck_sorgen
+Sretno na ispitu!	Good luck on the exam!	zmaj zmaj::85_glueck_sorgen
+zabrinut	worried	zmaj zmaj::85_glueck_sorgen
+Mama je zabrinuta jer se ne javljaš.	Mom is worried because you don't call.	zmaj zmaj::85_glueck_sorgen
+zbunjen	confused	zmaj zmaj::85_glueck_sorgen
+Malo sam zbunjen, možeš li ponoviti?	I'm a bit confused, can you repeat that?	zmaj zmaj::85_glueck_sorgen
+razočaran	disappointed	zmaj zmaj::85_glueck_sorgen
+Malo sam razočaran.	I'm a little disappointed.	zmaj zmaj::85_glueck_sorgen
+ljubomoran	jealous	zmaj zmaj::85_glueck_sorgen
+Ne budi ljubomoran!	Don't be jealous!	zmaj zmaj::85_glueck_sorgen
+zaljubljen	in love	zmaj zmaj::85_glueck_sorgen
+Zaljubljen je do ušiju.	He's head over heels in love.	zmaj zmaj::85_glueck_sorgen
+opušten	relaxed	zmaj zmaj::85_glueck_sorgen
+Na odmoru sam potpuno opušten.	On vacation I'm completely relaxed.	zmaj zmaj::85_glueck_sorgen
+uzbuđen	excited	zmaj zmaj::85_glueck_sorgen
+Djeca su uzbuđena zbog puta.	The kids are excited about the trip.	zmaj zmaj::85_glueck_sorgen
+uplašen	scared / frightened	zmaj zmaj::85_glueck_sorgen
+Dijete je bilo jako uplašeno.	The child was very scared.	zmaj zmaj::85_glueck_sorgen
+pospan	sleepy	zmaj zmaj::85_glueck_sorgen
+Pospan sam, idem leći.	I'm sleepy, I'm going to lie down.	zmaj zmaj::85_glueck_sorgen
+osjetiti	to feel / to sense	zmaj zmaj::86_sinne
+Osjetio sam da nešto nije u redu.	I sensed that something was wrong.	zmaj zmaj::86_sinne
+primijetiti	to notice	zmaj zmaj::86_sinne
+Nisam primijetio da si se ošišala.	I didn't notice you'd had your hair cut.	zmaj zmaj::86_sinne
+probati	to try / to taste	zmaj zmaj::86_sinne
+Probaj ovo, fino je!	Try this, it's delicious!	zmaj zmaj::86_sinne
+miris	smell / scent	zmaj zmaj::86_sinne
+Kakav lijep miris!	What a lovely smell!	zmaj zmaj::86_sinne
+taman	dark	zmaj zmaj::86_sinne
+U sobi je tamno, upali svjetlo.	It's dark in the room, turn on the light.	zmaj zmaj::86_sinne
+okus	taste (food)	zmaj zmaj::86_sinne
+Ovo ima čudan okus.	This tastes weird.	zmaj zmaj::86_sinne
+ukus	taste (style)	zmaj zmaj::86_sinne
+Imaš dobar ukus.	You have good taste.	zmaj zmaj::86_sinne
+svijetao	bright	zmaj zmaj::86_sinne
+Stan je lijep i svijetao.	The apartment is nice and bright.	zmaj zmaj::86_sinne
+mrak	darkness	zmaj zmaj::86_sinne
+Vani je već mrak.	It's already dark outside.	zmaj zmaj::86_sinne
+buka	noise	zmaj zmaj::86_sinne
+Kakva je ovo buka?	What's that noise?	zmaj zmaj::86_sinne
+tišina	silence	zmaj zmaj::86_sinne
+Tišina, molim vas!	Quiet, please!	zmaj zmaj::86_sinne
+tih	quiet	zmaj zmaj::86_sinne
+Ovdje je noću jako tiho.	It's very quiet here at night.	zmaj zmaj::86_sinne
+dirati	to touch	zmaj zmaj::86_sinne
+Ne diraj, vruće je!	Don't touch that, it's hot!	zmaj zmaj::86_sinne
+glasan	loud	zmaj zmaj::86_sinne
+Komšije su jako glasne.	The neighbors are very loud.	zmaj zmaj::86_sinne
+gorak	bitter	zmaj zmaj::86_sinne
+Kahva je gorka bez šećera.	Without sugar the coffee is bitter.	zmaj zmaj::86_sinne
+mirisati	to smell	zmaj zmaj::86_sinne
+Kuhinja miriše na pitu.	The kitchen smells of pita.	zmaj zmaj::86_sinne
+smrdjeti / smrditi	to stink	zmaj zmaj::86_sinne
+Nešto smrdi u frižideru.	Something stinks in the fridge.	zmaj zmaj::86_sinne
+bljutav	bland (tasteless)	zmaj zmaj::86_sinne
+Supa je bljutava, fali joj soli.	The soup is bland, it needs salt.	zmaj zmaj::86_sinne

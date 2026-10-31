@@ -22,17 +22,17 @@ def _lade(name):
 
 
 def vocabulary():
-    """All 2,040 words: id, bs, level, level_position, section, translations, audio."""
+    """All 2,342 words: id, bs, level, level_position, section, translations, audio."""
     return _lade("vocabulary")["entries"]
 
 
 def levels():
-    """The 75 levels in course order, with labels and tips in 8 languages."""
+    """The 86 levels in course order, with labels and tips in 8 languages."""
     return _lade("vocabulary")["levels"]
 
 
 def sections():
-    """The 10 sections of the learning path."""
+    """The 11 sections of the learning path."""
     return _lade("vocabulary")["sections"]
 
 

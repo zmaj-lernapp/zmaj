@@ -2001,45 +2001,347 @@ oženiti se	trouwen (man)	zmaj zmaj::73_alltag_leben
 Moj brat se oženio prošle godine.	Mijn broer is vorig jaar getrouwd.	zmaj zmaj::73_alltag_leben
 zakasniti	zich verlaten / te laat komen	zmaj zmaj::73_alltag_leben
 Izvini, zakasnio sam.	Sorry, ik ben te laat.	zmaj zmaj::73_alltag_leben
-izgubiti se	verdwalen	zmaj zmaj::74_passieren
-Izgubili smo se u gradu.	We zijn in de stad verdwaald.	zmaj zmaj::74_passieren
-spasiti	redden	zmaj zmaj::74_passieren
-Vatrogasci su spasili dijete.	De brandweer heeft het kind gered.	zmaj zmaj::74_passieren
-povrijediti se	zich bezeren / gewond raken	zmaj zmaj::74_passieren
-Povrijedio sam se na poslu.	Ik heb me bezeerd op mijn werk.	zmaj zmaj::74_passieren
-paziti	opletten / oppassen	zmaj zmaj::74_passieren
-Pazi na sestru!	Let op je zus!	zmaj zmaj::74_passieren
-krvariti	bloeden	zmaj zmaj::74_passieren
-Rana jako krvari.	De wond bloedt hevig.	zmaj zmaj::74_passieren
-prehladiti se	verkouden worden	zmaj zmaj::74_passieren
-Obuci se toplo, prehladit ćeš se!	Kleed je warm aan, anders word je verkouden!	zmaj zmaj::74_passieren
-onesvijestiti se	flauwvallen	zmaj zmaj::74_passieren
-Žena se onesvijestila!	De vrouw is flauwgevallen!	zmaj zmaj::74_passieren
-boljeti / boliti	pijn doen	zmaj zmaj::74_passieren
-Boli me grlo.	Ik heb keelpijn.	zmaj zmaj::74_passieren
-disati / dihati	ademen	zmaj zmaj::74_passieren
-Ne mogu disati!	Ik kan niet ademen!	zmaj zmaj::74_passieren
-razboljeti se / razboliti se	ziek worden	zmaj zmaj::74_passieren
-Dijete se razboljelo.	Het kind is ziek geworden.	zmaj zmaj::74_passieren
-gorjeti / goriti	branden	zmaj zmaj::74_passieren
-Kuća gori!	Het huis staat in brand!	zmaj zmaj::74_passieren
-Upomoć!	Help!	zmaj zmaj::75_notfall
-Upomoć! Pomozite mi!	Help! Help me!	zmaj zmaj::75_notfall
-hitan slučaj	noodgeval	zmaj zmaj::75_notfall
-Ovo je hitan slučaj, zovite hitnu pomoć!	Dit is een noodgeval, bel de ambulance!	zmaj zmaj::75_notfall
-hitna	ambulance / hulpdiensten	zmaj zmaj::75_notfall
-Hitna je već na putu.	De ambulance is al onderweg.	zmaj zmaj::75_notfall
-vatrogasci	brandweer	zmaj zmaj::75_notfall
-Zovite vatrogasce!	Bel de brandweer!	zmaj zmaj::75_notfall
-požar	brand	zmaj zmaj::75_notfall
-U zgradi je izbio požar.	Er is brand uitgebroken in het gebouw.	zmaj zmaj::75_notfall
-nesreća	ongeluk / ongeval	zmaj zmaj::75_notfall
-Desila se nesreća na autoputu.	Er is een ongeluk gebeurd op de snelweg.	zmaj zmaj::75_notfall
-povreda	verwonding	zmaj zmaj::75_notfall
-Povreda nije teška.	De verwonding is niet ernstig.	zmaj zmaj::75_notfall
-rana	wond	zmaj zmaj::75_notfall
-Treba očistiti ranu.	De wond moet schoongemaakt worden.	zmaj zmaj::75_notfall
-krv	bloed	zmaj zmaj::75_notfall
-Imaš krv na ruci.	Je hebt bloed aan je hand.	zmaj zmaj::75_notfall
-lopov	dief	zmaj zmaj::75_notfall
-Lopov je pobjegao, zovite policiju!	De dief is weggerend, bel de politie!	zmaj zmaj::75_notfall
+nalaziti	vinden	zmaj zmaj::74_paare_geben
+Gdje nalaziš takve stvari?	Waar vind je zulke dingen?	zmaj zmaj::74_paare_geben
+primiti	aannemen / ontvangen	zmaj zmaj::74_paare_geben
+Primili su me na posao!	Ze hebben me aangenomen!	zmaj zmaj::74_paare_geben
+nuditi	aanbieden	zmaj zmaj::74_paare_geben
+Nana gostima uvijek nudi kahvu.	Oma biedt de gasten altijd koffie aan.	zmaj zmaj::74_paare_geben
+iskoristiti	benutten / uitbuiten	zmaj zmaj::74_paare_geben
+Iskoristi lijepo vrijeme!	Profiteer van het mooie weer!	zmaj zmaj::74_paare_geben
+sačuvati	bewaren / behouden	zmaj zmaj::74_paare_geben
+Sačuvaj račun, možda ti zatreba.	Bewaar de kassabon, misschien heb je hem nog nodig.	zmaj zmaj::74_paare_geben
+gubiti	verliezen	zmaj zmaj::74_paare_geben
+Naša ekipa opet gubi.	Ons team verliest alweer.	zmaj zmaj::74_paare_geben
+ostavljati	laten / laten liggen	zmaj zmaj::74_paare_geben
+Ne ostavljaj stvari po podu!	Laat je spullen niet op de grond liggen!	zmaj zmaj::74_paare_geben
+bacati	gooien / weggooien	zmaj zmaj::74_paare_geben
+Hljeb se ne baca.	Brood gooi je niet weg.	zmaj zmaj::74_paare_geben
+skidati	uittrekken / afnemen	zmaj zmaj::74_paare_geben
+Kod nas se u kući skidaju cipele.	Bij ons doe je in huis je schoenen uit.	zmaj zmaj::74_paare_geben
+krasti	stelen	zmaj zmaj::74_paare_geben
+Kao djeca smo krali trešnje iz komšijine bašte.	Als kinderen jatten we kersen uit de tuin van de buren.	zmaj zmaj::74_paare_geben
+pokazivati	laten zien	zmaj zmaj::74_paare_geben
+Nana svima pokazuje slike unuka.	Oma laat iedereen de foto's van haar kleinkinderen zien.	zmaj zmaj::74_paare_geben
+pozivati	uitnodigen	zmaj zmaj::74_paare_geben
+Komšije nas stalno pozivaju na kahvu.	De buren nodigen ons steeds uit voor koffie.	zmaj zmaj::74_paare_geben
+potražiti	zoeken	zmaj zmaj::74_paare_geben
+Potraži na internetu.	Zoek het eens op internet op.	zmaj zmaj::74_paare_geben
+naručivati	bestellen	zmaj zmaj::74_paare_geben
+Ja uvijek naručujem isto.	Ik bestel altijd hetzelfde.	zmaj zmaj::74_paare_geben
+javljati se	van je laten horen	zmaj zmaj::75_paare_denken
+Zašto se ne javljaš na telefon?	Waarom neem je de telefoon niet op?	zmaj zmaj::75_paare_denken
+objašnjavati	uitleggen	zmaj zmaj::75_paare_denken
+Nastavnica sve lijepo objašnjava.	De lerares legt alles goed uit.	zmaj zmaj::75_paare_denken
+odlučivati	beslissen / besluiten	zmaj zmaj::75_paare_denken
+Ko o tome odlučuje?	Wie beslist daarover?	zmaj zmaj::75_paare_denken
+rješavati	oplossen / uitzoeken	zmaj zmaj::75_paare_denken
+Probleme rješavamo zajedno.	Problemen lossen we samen op.	zmaj zmaj::75_paare_denken
+razmisliti	nadenken	zmaj zmaj::75_paare_denken
+Razmisli pa mi javi.	Denk er even over na en laat het me weten.	zmaj zmaj::75_paare_denken
+shvatati	begrijpen / snappen	zmaj zmaj::75_paare_denken
+Ne shvatam šta hoćeš od mene.	Ik snap niet wat je van me wilt.	zmaj zmaj::75_paare_denken
+zaboravljati	vergeten	zmaj zmaj::75_paare_denken
+Stalno zaboravljam imena.	Ik vergeet steeds namen.	zmaj zmaj::75_paare_denken
+poslušati	aanhoren / naar iemand luisteren	zmaj zmaj::75_paare_denken
+Poslušaj me bar jednom!	Luister nou één keer naar me!	zmaj zmaj::75_paare_denken
+dogovarati se	afspreken / overeenkomen	zmaj zmaj::75_paare_denken
+Stalno se dogovaramo, a nikako da se nađemo.	We spreken steeds af, maar we zien elkaar nooit.	zmaj zmaj::75_paare_denken
+sačekati	wachten	zmaj zmaj::75_paare_denken
+Sačekaj me ispred zgrade.	Wacht op me voor het gebouw.	zmaj zmaj::75_paare_denken
+postajati	worden	zmaj zmaj::76_paare_alltag
+Navečer već postaje hladno.	's Avonds wordt het al koud.	zmaj zmaj::76_paare_alltag
+nastavljati	doorgaan / voortzetten	zmaj zmaj::76_paare_alltag
+Nastavljamo poslije pauze.	Na de pauze gaan we verder.	zmaj zmaj::76_paare_alltag
+dešavati se / događati se	gebeuren	zmaj zmaj::76_paare_alltag
+Šta se ovdje dešava?	Wat is hier aan de hand?	zmaj zmaj::76_paare_alltag
+padati	vallen	zmaj zmaj::76_paare_alltag
+Noću temperatura pada ispod nule.	's Nachts daalt de temperatuur tot onder nul.	zmaj zmaj::76_paare_alltag
+pripremati	voorbereiden	zmaj zmaj::76_paare_alltag
+Mama priprema ručak.	Mama maakt het middageten klaar.	zmaj zmaj::76_paare_alltag
+buditi se	wakker worden	zmaj zmaj::76_paare_alltag
+Budim se svaki dan u šest.	Ik word elke dag om zes uur wakker.	zmaj zmaj::76_paare_alltag
+buditi	wekken	zmaj zmaj::76_paare_alltag
+Svako jutro budim djecu za školu.	Elke ochtend maak ik de kinderen wakker voor school.	zmaj zmaj::76_paare_alltag
+probuditi	wekken	zmaj zmaj::76_paare_alltag
+Probudi me u sedam, molim te.	Maak me alsjeblieft om zeven uur wakker.	zmaj zmaj::76_paare_alltag
+prestajati	ophouden / stoppen	zmaj zmaj::76_paare_alltag
+Kiša nikako ne prestaje.	De regen houdt maar niet op.	zmaj zmaj::76_paare_alltag
+uspijevati	lukken / slagen	zmaj zmaj::76_paare_alltag
+Nikako ne uspijevam zaspati.	Het lukt me maar niet om in slaap te vallen.	zmaj zmaj::76_paare_alltag
+ženiti se	trouwen (man)	zmaj zmaj::76_paare_alltag
+Kad se ženiš?	Wanneer ga je trouwen?	zmaj zmaj::76_paare_alltag
+udavati se	trouwen (vrouw)	zmaj zmaj::76_paare_alltag
+Sestra mi se udaje u junu.	Mijn zus trouwt in juni.	zmaj zmaj::76_paare_alltag
+paliti	aanzetten / aandoen	zmaj zmaj::76_paare_alltag
+U oktobru već palimo grijanje.	In oktober zetten we de verwarming al aan.	zmaj zmaj::76_paare_alltag
+posjećivati	iemand bezoeken	zmaj zmaj::76_paare_alltag
+Svake sedmice posjećujemo nanu.	Elke week gaan we bij oma op bezoek.	zmaj zmaj::76_paare_alltag
+gasiti	uitzetten / uitdoen	zmaj zmaj::76_paare_alltag
+Uvijek gasim svjetlo kad izlazim iz sobe.	Ik doe altijd het licht uit als ik de kamer uit ga.	zmaj zmaj::76_paare_alltag
+popravljati	repareren	zmaj zmaj::76_paare_alltag
+Babo uvijek sam popravlja auto.	Papa repareert de auto altijd zelf.	zmaj zmaj::76_paare_alltag
+iznijeti	naar buiten brengen / buitenzetten	zmaj zmaj::77_im_haushalt
+Ko će iznijeti smeće?	Wie brengt het afval naar buiten?	zmaj zmaj::77_im_haushalt
+složiti	opvouwen / ordenen	zmaj zmaj::77_im_haushalt
+Složi veš i stavi ga u ormar.	Vouw de was op en leg hem in de kast.	zmaj zmaj::77_im_haushalt
+oprati	wassen	zmaj zmaj::77_im_haushalt
+Operi ruke prije jela!	Was je handen voor het eten!	zmaj zmaj::77_im_haushalt
+miješati	roeren / mengen	zmaj zmaj::77_im_haushalt
+Miješaj da ne zagori!	Roer erin, anders brandt het aan!	zmaj zmaj::77_im_haushalt
+pokvariti se	kapotgaan	zmaj zmaj::77_im_haushalt
+Opet se pokvarila veš mašina.	De wasmachine is alweer kapot.	zmaj zmaj::77_im_haushalt
+obrisati	afvegen / wissen	zmaj zmaj::77_im_haushalt
+Obriši sto, molim te.	Veeg de tafel even af, alsjeblieft.	zmaj zmaj::77_im_haushalt
+brisati	afvegen / wissen	zmaj zmaj::77_im_haushalt
+Ko danas briše prašinu?	Wie stoft er vandaag af?	zmaj zmaj::77_im_haushalt
+sušiti	drogen	zmaj zmaj::77_im_haushalt
+Veš sušimo na balkonu.	De was drogen we op het balkon.	zmaj zmaj::77_im_haushalt
+rezati	snijden	zmaj zmaj::77_im_haushalt
+Ovaj nož ništa ne reže.	Dit mes snijdt helemaal niet.	zmaj zmaj::77_im_haushalt
+skuhati	koken	zmaj zmaj::77_im_haushalt
+Skuhat ću ti kahvu.	Ik zet een kopje koffie voor je.	zmaj zmaj::77_im_haushalt
+pržiti	bakken (in de pan)	zmaj zmaj::77_im_haushalt
+Mama prži ribu.	Mama bakt vis.	zmaj zmaj::77_im_haushalt
+zaliti	water geven (planten)	zmaj zmaj::77_im_haushalt
+Zalij cvijeće dok me nema.	Geef de bloemen water zolang ik weg ben.	zmaj zmaj::77_im_haushalt
+objesiti	ophangen	zmaj zmaj::77_im_haushalt
+Objesi veš, mašina je gotova.	Hang de was op, de machine is klaar.	zmaj zmaj::77_im_haushalt
+počistiti	schoonmaken	zmaj zmaj::77_im_haushalt
+Moram počistiti kupatilo.	Ik moet de badkamer schoonmaken.	zmaj zmaj::77_im_haushalt
+usisavati	stofzuigen	zmaj zmaj::77_im_haushalt
+Subotom usisavam cijeli stan.	Op zaterdag stofzuig ik het hele huis.	zmaj zmaj::77_im_haushalt
+usisati	stofzuigen	zmaj zmaj::77_im_haushalt
+Usisaj sobu prije nego što dođu gosti.	Stofzuig de kamer voordat de gasten komen.	zmaj zmaj::77_im_haushalt
+izgubiti se	verdwalen	zmaj zmaj::78_passieren
+Izgubili smo se u gradu.	We zijn in de stad verdwaald.	zmaj zmaj::78_passieren
+spasiti	redden	zmaj zmaj::78_passieren
+Vatrogasci su spasili dijete.	De brandweer heeft het kind gered.	zmaj zmaj::78_passieren
+povrijediti se	zich bezeren / gewond raken	zmaj zmaj::78_passieren
+Povrijedio sam se na poslu.	Ik heb me bezeerd op mijn werk.	zmaj zmaj::78_passieren
+paziti	opletten / oppassen	zmaj zmaj::78_passieren
+Pazi na sestru!	Let op je zus!	zmaj zmaj::78_passieren
+krvariti	bloeden	zmaj zmaj::78_passieren
+Rana jako krvari.	De wond bloedt hevig.	zmaj zmaj::78_passieren
+prehladiti se	verkouden worden	zmaj zmaj::78_passieren
+Obuci se toplo, prehladit ćeš se!	Kleed je warm aan, anders word je verkouden!	zmaj zmaj::78_passieren
+onesvijestiti se	flauwvallen	zmaj zmaj::78_passieren
+Žena se onesvijestila!	De vrouw is flauwgevallen!	zmaj zmaj::78_passieren
+boljeti / boliti	pijn doen	zmaj zmaj::78_passieren
+Boli me grlo.	Ik heb keelpijn.	zmaj zmaj::78_passieren
+disati / dihati	ademen	zmaj zmaj::78_passieren
+Ne mogu disati!	Ik kan niet ademen!	zmaj zmaj::78_passieren
+razboljeti se / razboliti se	ziek worden	zmaj zmaj::78_passieren
+Dijete se razboljelo.	Het kind is ziek geworden.	zmaj zmaj::78_passieren
+gorjeti / goriti	branden	zmaj zmaj::78_passieren
+Kuća gori!	Het huis staat in brand!	zmaj zmaj::78_passieren
+Upomoć!	Help!	zmaj zmaj::79_notfall
+Upomoć! Pomozite mi!	Help! Help me!	zmaj zmaj::79_notfall
+hitan slučaj	noodgeval	zmaj zmaj::79_notfall
+Ovo je hitan slučaj, zovite hitnu pomoć!	Dit is een noodgeval, bel de ambulance!	zmaj zmaj::79_notfall
+hitna	ambulance / hulpdiensten	zmaj zmaj::79_notfall
+Hitna je već na putu.	De ambulance is al onderweg.	zmaj zmaj::79_notfall
+vatrogasci	brandweer	zmaj zmaj::79_notfall
+Zovite vatrogasce!	Bel de brandweer!	zmaj zmaj::79_notfall
+požar	brand	zmaj zmaj::79_notfall
+U zgradi je izbio požar.	Er is brand uitgebroken in het gebouw.	zmaj zmaj::79_notfall
+nesreća	ongeluk / ongeval	zmaj zmaj::79_notfall
+Desila se nesreća na autoputu.	Er is een ongeluk gebeurd op de snelweg.	zmaj zmaj::79_notfall
+povreda	verwonding	zmaj zmaj::79_notfall
+Povreda nije teška.	De verwonding is niet ernstig.	zmaj zmaj::79_notfall
+rana	wond	zmaj zmaj::79_notfall
+Treba očistiti ranu.	De wond moet schoongemaakt worden.	zmaj zmaj::79_notfall
+krv	bloed	zmaj zmaj::79_notfall
+Imaš krv na ruci.	Je hebt bloed aan je hand.	zmaj zmaj::79_notfall
+lopov	dief	zmaj zmaj::79_notfall
+Lopov je pobjegao, zovite policiju!	De dief is weggerend, bel de politie!	zmaj zmaj::79_notfall
+daleko	ver (weg)	zmaj zmaj::80_lang_kurz
+Je li daleko do centra?	Is het ver naar het centrum?	zmaj zmaj::80_lang_kurz
+visok	hoog / lang (van postuur)	zmaj zmaj::80_lang_kurz
+Moj brat je jako visok.	Mijn broer is heel lang.	zmaj zmaj::80_lang_kurz
+težak	zwaar	zmaj zmaj::80_lang_kurz
+Ovaj kofer je jako težak.	Deze koffer is erg zwaar.	zmaj zmaj::80_lang_kurz
+širok	breed	zmaj zmaj::80_lang_kurz
+Rijeka je ovdje jako široka.	De rivier is hier erg breed.	zmaj zmaj::80_lang_kurz
+dug	lang	zmaj zmaj::80_lang_kurz
+Ovo je bio dug dan.	Dat was een lange dag.	zmaj zmaj::80_lang_kurz
+nizak	laag / klein (van postuur)	zmaj zmaj::80_lang_kurz
+Ovdje su cijene niske.	Hier zijn de prijzen laag.	zmaj zmaj::80_lang_kurz
+kratak	kort	zmaj zmaj::80_lang_kurz
+Život je kratak.	Het leven is kort.	zmaj zmaj::80_lang_kurz
+uzak	nauw / smal	zmaj zmaj::80_lang_kurz
+Ove cipele su mi uske.	Deze schoenen zitten me te krap.	zmaj zmaj::80_lang_kurz
+lagan	licht (van gewicht)	zmaj zmaj::80_lang_kurz
+Torba je lagana, nosit ću je sama.	De tas is licht, ik draag hem zelf.	zmaj zmaj::80_lang_kurz
+tanak	dun	zmaj zmaj::80_lang_kurz
+Zidovi su tanki, sve se čuje.	De muren zijn dun, je hoort alles.	zmaj zmaj::80_lang_kurz
+debeo	dik	zmaj zmaj::80_lang_kurz
+Ova knjiga je baš debela.	Dit boek is echt dik.	zmaj zmaj::80_lang_kurz
+mršav	mager	zmaj zmaj::80_lang_kurz
+Mršav si, jedi malo više!	Je bent mager, eet wat meer!	zmaj zmaj::80_lang_kurz
+isti	hetzelfde / dezelfde	zmaj zmaj::81_voll_leer
+Imamo iste cipele!	We hebben dezelfde schoenen!	zmaj zmaj::81_voll_leer
+jak	sterk	zmaj zmaj::81_voll_leer
+Jak je kao medvjed.	Hij is zo sterk als een beer.	zmaj zmaj::81_voll_leer
+pun	vol	zmaj zmaj::81_voll_leer
+Autobus je bio pun.	De bus was vol.	zmaj zmaj::81_voll_leer
+bogat	rijk	zmaj zmaj::81_voll_leer
+Njegova porodica je jako bogata.	Zijn familie is heel rijk.	zmaj zmaj::81_voll_leer
+drugačiji	anders	zmaj zmaj::81_voll_leer
+Danas si nekako drugačiji.	Je bent vandaag op de een of andere manier anders.	zmaj zmaj::81_voll_leer
+slab	zwak	zmaj zmaj::81_voll_leer
+Signal je ovdje slab.	Het bereik is hier zwak.	zmaj zmaj::81_voll_leer
+prazan	leeg	zmaj zmaj::81_voll_leer
+Frižider je opet prazan.	De koelkast is alweer leeg.	zmaj zmaj::81_voll_leer
+tačan	juist / precies	zmaj zmaj::81_voll_leer
+Je li ovo tačna adresa?	Is dit het juiste adres?	zmaj zmaj::81_voll_leer
+suh	droog	zmaj zmaj::81_voll_leer
+Veš je već suh.	De was is al droog.	zmaj zmaj::81_voll_leer
+pogrešan	verkeerd	zmaj zmaj::81_voll_leer
+Ušli smo u pogrešan autobus.	We zijn in de verkeerde bus gestapt.	zmaj zmaj::81_voll_leer
+siromašan	arm	zmaj zmaj::81_voll_leer
+Odrastao sam u siromašnoj porodici.	Ik ben in een arm gezin opgegroeid.	zmaj zmaj::81_voll_leer
+tvrd	hard	zmaj zmaj::81_voll_leer
+Hljeb je tvrd, od jučer je.	Het brood is hard, het is van gisteren.	zmaj zmaj::81_voll_leer
+mokar	nat	zmaj zmaj::81_voll_leer
+Sav sam mokar od kiše.	Ik ben helemaal nat van de regen.	zmaj zmaj::81_voll_leer
+mekan	zacht	zmaj zmaj::81_voll_leer
+Jastuk je jako mekan.	Het kussen is heel zacht.	zmaj zmaj::81_voll_leer
+potreban	nodig	zmaj zmaj::82_moeglich
+Potrebna mi je tvoja pomoć.	Ik heb je hulp nodig.	zmaj zmaj::82_moeglich
+moguć	mogelijk	zmaj zmaj::82_moeglich
+Je li moguće platiti karticom?	Is het mogelijk om met de kaart te betalen?	zmaj zmaj::82_moeglich
+poseban	bijzonder	zmaj zmaj::82_moeglich
+Danas je poseban dan.	Vandaag is een bijzondere dag.	zmaj zmaj::82_moeglich
+siguran	veilig / zeker	zmaj zmaj::82_moeglich
+Je li ovdje sigurno noću?	Is het hier 's nachts veilig?	zmaj zmaj::82_moeglich
+sličan	soortgelijk	zmaj zmaj::82_moeglich
+Ti i brat ste jako slični.	Jij en je broer lijken erg op elkaar.	zmaj zmaj::82_moeglich
+spreman	gereed	zmaj zmaj::82_moeglich
+Jesi li spremna? Krećemo.	Ben je klaar? We vertrekken.	zmaj zmaj::82_moeglich
+slobodan	vrij	zmaj zmaj::82_moeglich
+Jesi li slobodan u subotu?	Ben je zaterdag vrij?	zmaj zmaj::82_moeglich
+jednostavan	eenvoudig	zmaj zmaj::82_moeglich
+Recept je jako jednostavan.	Het recept is heel eenvoudig.	zmaj zmaj::82_moeglich
+običan	gewoon / normaal	zmaj zmaj::82_moeglich
+Ja sam običan čovjek.	Ik ben een heel gewoon mens.	zmaj zmaj::82_moeglich
+čudan	vreemd / raar	zmaj zmaj::82_moeglich
+To je baš čudno.	Dat is echt vreemd.	zmaj zmaj::82_moeglich
+nemoguć	onmogelijk	zmaj zmaj::82_moeglich
+To je nemoguće!	Dat is onmogelijk!	zmaj zmaj::82_moeglich
+gotov	klaar / af	zmaj zmaj::82_moeglich
+Ručak je gotov!	Het middageten is klaar!	zmaj zmaj::82_moeglich
+komplikovan	ingewikkeld	zmaj zmaj::82_moeglich
+Sve je to previše komplikovano.	Het is allemaal veel te ingewikkeld.	zmaj zmaj::82_moeglich
+zauzet	bezet / druk	zmaj zmaj::82_moeglich
+Izvini, sad sam zauzet.	Sorry, ik heb het nu druk.	zmaj zmaj::82_moeglich
+pravi	echt	zmaj zmaj::82_moeglich
+Ovo je prava bosanska kahva.	Dit is echte Bosnische koffie.	zmaj zmaj::82_moeglich
+drag	lief	zmaj zmaj::83_wie_jemand_ist
+Tvoja mama je jako draga.	Je mama is heel lief.	zmaj zmaj::83_wie_jemand_ist
+ozbiljan	ernstig / serieus	zmaj zmaj::83_wie_jemand_ist
+Ovo je ozbiljan problem.	Dit is een ernstig probleem.	zmaj zmaj::83_wie_jemand_ist
+vrijedan	ijverig	zmaj zmaj::83_wie_jemand_ist
+Moja kćerka je jako vrijedna.	Mijn dochter is erg ijverig.	zmaj zmaj::83_wie_jemand_ist
+pametan	slim	zmaj zmaj::83_wie_jemand_ist
+Ona je jako pametna.	Ze is heel slim.	zmaj zmaj::83_wie_jemand_ist
+iskren	oprecht / open	zmaj zmaj::83_wie_jemand_ist
+Budi iskren, sviđa li ti se?	Wees eerlijk, vind je het mooi?	zmaj zmaj::83_wie_jemand_ist
+zao	gemeen / boosaardig	zmaj zmaj::83_wie_jemand_ist
+Pas nije zao, samo laje.	De hond is niet gemeen, hij blaft alleen.	zmaj zmaj::83_wie_jemand_ist
+hrabar	dapper	zmaj zmaj::83_wie_jemand_ist
+Bio si jako hrabar.	Je was heel dapper.	zmaj zmaj::83_wie_jemand_ist
+glup	dom	zmaj zmaj::83_wie_jemand_ist
+To je bilo glupo od mene.	Dat was dom van me.	zmaj zmaj::83_wie_jemand_ist
+pošten	eerlijk	zmaj zmaj::83_wie_jemand_ist
+On je pošten čovjek.	Hij is een eerlijk mens.	zmaj zmaj::83_wie_jemand_ist
+veseo	vrolijk	zmaj zmaj::83_wie_jemand_ist
+Uvijek je vesela i nasmijana.	Ze is altijd vrolijk en lacht veel.	zmaj zmaj::83_wie_jemand_ist
+oprezan	voorzichtig	zmaj zmaj::83_wie_jemand_ist
+Budi oprezan, vani je klizavo.	Wees voorzichtig, het is glad buiten.	zmaj zmaj::83_wie_jemand_ist
+ljubazan	vriendelijk	zmaj zmaj::84_benehmen
+Prodavačica je bila jako ljubazna.	De verkoopster was heel vriendelijk.	zmaj zmaj::84_benehmen
+pristojan	beleefd / fatsoenlijk	zmaj zmaj::84_benehmen
+Budi pristojan pred gostima!	Wees beleefd tegen de gasten!	zmaj zmaj::84_benehmen
+pažljiv	attent / zorgzaam	zmaj zmaj::84_benehmen
+Hvala, baš si pažljiv.	Dank je, dat is heel attent van je.	zmaj zmaj::84_benehmen
+lijen	lui	zmaj zmaj::84_benehmen
+Ne budi lijen, ustaj!	Wees niet lui, sta op!	zmaj zmaj::84_benehmen
+strpljiv	geduldig	zmaj zmaj::84_benehmen
+Budi strpljiv, doći će.	Wees geduldig, hij komt wel.	zmaj zmaj::84_benehmen
+sebičan	egoïstisch	zmaj zmaj::84_benehmen
+Nemoj biti tako sebičan.	Wees niet zo egoïstisch.	zmaj zmaj::84_benehmen
+smiren	rustig / kalm	zmaj zmaj::84_benehmen
+On je uvijek smiren.	Hij is altijd rustig.	zmaj zmaj::84_benehmen
+bezobrazan	brutaal / onbeschoft	zmaj zmaj::84_benehmen
+Ne budi bezobrazan!	Doe niet zo brutaal!	zmaj zmaj::84_benehmen
+tvrdoglav	koppig	zmaj zmaj::84_benehmen
+Tvrdoglav si kao babo.	Je bent net zo koppig als papa.	zmaj zmaj::84_benehmen
+stidljiv	verlegen	zmaj zmaj::84_benehmen
+Naš sin je malo stidljiv.	Onze zoon is een beetje verlegen.	zmaj zmaj::84_benehmen
+škrt	gierig	zmaj zmaj::84_benehmen
+Ne budi škrt, danas ti častiš!	Doe niet zo gierig, vandaag trakteer jij!	zmaj zmaj::84_benehmen
+sreća	geluk	zmaj zmaj::85_glueck_sorgen
+Imali smo sreće!	We hadden geluk!	zmaj zmaj::85_glueck_sorgen
+osjećaj	gevoel	zmaj zmaj::85_glueck_sorgen
+Imam dobar osjećaj.	Ik heb een goed gevoel.	zmaj zmaj::85_glueck_sorgen
+briga	zorg	zmaj zmaj::85_glueck_sorgen
+Bez brige, sve će biti u redu.	Geen zorgen, alles komt goed.	zmaj zmaj::85_glueck_sorgen
+zahvalan	dankbaar	zmaj zmaj::85_glueck_sorgen
+Zahvalan sam ti na svemu.	Ik ben je dankbaar voor alles.	zmaj zmaj::85_glueck_sorgen
+Sretno!	Veel succes!	zmaj zmaj::85_glueck_sorgen
+Sretno na ispitu!	Veel succes met je examen!	zmaj zmaj::85_glueck_sorgen
+zabrinut	bezorgd	zmaj zmaj::85_glueck_sorgen
+Mama je zabrinuta jer se ne javljaš.	Mama maakt zich zorgen omdat je niets laat horen.	zmaj zmaj::85_glueck_sorgen
+zbunjen	in de war	zmaj zmaj::85_glueck_sorgen
+Malo sam zbunjen, možeš li ponoviti?	Ik ben een beetje in de war, kun je dat herhalen?	zmaj zmaj::85_glueck_sorgen
+razočaran	teleurgesteld	zmaj zmaj::85_glueck_sorgen
+Malo sam razočaran.	Ik ben een beetje teleurgesteld.	zmaj zmaj::85_glueck_sorgen
+ljubomoran	jaloers	zmaj zmaj::85_glueck_sorgen
+Ne budi ljubomoran!	Wees niet jaloers!	zmaj zmaj::85_glueck_sorgen
+zaljubljen	verliefd	zmaj zmaj::85_glueck_sorgen
+Zaljubljen je do ušiju.	Hij is tot over zijn oren verliefd.	zmaj zmaj::85_glueck_sorgen
+opušten	ontspannen	zmaj zmaj::85_glueck_sorgen
+Na odmoru sam potpuno opušten.	Op vakantie ben ik helemaal ontspannen.	zmaj zmaj::85_glueck_sorgen
+uzbuđen	opgewonden	zmaj zmaj::85_glueck_sorgen
+Djeca su uzbuđena zbog puta.	De kinderen zijn opgewonden over de reis.	zmaj zmaj::85_glueck_sorgen
+uplašen	bang / geschrokken	zmaj zmaj::85_glueck_sorgen
+Dijete je bilo jako uplašeno.	Het kind was erg bang.	zmaj zmaj::85_glueck_sorgen
+pospan	slaperig	zmaj zmaj::85_glueck_sorgen
+Pospan sam, idem leći.	Ik ben slaperig, ik ga liggen.	zmaj zmaj::85_glueck_sorgen
+osjetiti	voelen / aanvoelen	zmaj zmaj::86_sinne
+Osjetio sam da nešto nije u redu.	Ik voelde dat er iets niet klopte.	zmaj zmaj::86_sinne
+primijetiti	opmerken / merken	zmaj zmaj::86_sinne
+Nisam primijetio da si se ošišala.	Ik had niet gemerkt dat je naar de kapper was geweest.	zmaj zmaj::86_sinne
+probati	proberen / proeven	zmaj zmaj::86_sinne
+Probaj ovo, fino je!	Proef dit eens, het is lekker!	zmaj zmaj::86_sinne
+miris	geur	zmaj zmaj::86_sinne
+Kakav lijep miris!	Wat een heerlijke geur!	zmaj zmaj::86_sinne
+taman	donker	zmaj zmaj::86_sinne
+U sobi je tamno, upali svjetlo.	Het is donker in de kamer, doe het licht aan.	zmaj zmaj::86_sinne
+okus	smaak (eten)	zmaj zmaj::86_sinne
+Ovo ima čudan okus.	Dit smaakt raar.	zmaj zmaj::86_sinne
+ukus	smaak (stijl)	zmaj zmaj::86_sinne
+Imaš dobar ukus.	Je hebt een goede smaak.	zmaj zmaj::86_sinne
+svijetao	licht / helder	zmaj zmaj::86_sinne
+Stan je lijep i svijetao.	Het appartement is mooi en licht.	zmaj zmaj::86_sinne
+mrak	duisternis	zmaj zmaj::86_sinne
+Vani je već mrak.	Het is buiten al donker.	zmaj zmaj::86_sinne
+buka	lawaai	zmaj zmaj::86_sinne
+Kakva je ovo buka?	Wat is dat voor lawaai?	zmaj zmaj::86_sinne
+tišina	stilte	zmaj zmaj::86_sinne
+Tišina, molim vas!	Stilte, alstublieft!	zmaj zmaj::86_sinne
+tih	stil	zmaj zmaj::86_sinne
+Ovdje je noću jako tiho.	Het is hier 's nachts heel stil.	zmaj zmaj::86_sinne
+dirati	aanraken	zmaj zmaj::86_sinne
+Ne diraj, vruće je!	Niet aankomen, het is heet!	zmaj zmaj::86_sinne
+glasan	luid / lawaaierig	zmaj zmaj::86_sinne
+Komšije su jako glasne.	De buren zijn erg luidruchtig.	zmaj zmaj::86_sinne
+gorak	bitter	zmaj zmaj::86_sinne
+Kahva je gorka bez šećera.	Zonder suiker is de koffie bitter.	zmaj zmaj::86_sinne
+mirisati	ruiken / geuren	zmaj zmaj::86_sinne
+Kuhinja miriše na pitu.	De keuken ruikt naar pita.	zmaj zmaj::86_sinne
+smrdjeti / smrditi	stinken	zmaj zmaj::86_sinne
+Nešto smrdi u frižideru.	Er stinkt iets in de koelkast.	zmaj zmaj::86_sinne
+bljutav	flauw / smakeloos	zmaj zmaj::86_sinne
+Supa je bljutava, fali joj soli.	De soep is flauw, er moet zout bij.	zmaj zmaj::86_sinne

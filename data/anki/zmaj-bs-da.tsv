@@ -2001,45 +2001,347 @@ oženiti se	at gifte sig (mand)	zmaj zmaj::73_alltag_leben
 Moj brat se oženio prošle godine.	Min bror blev gift sidste år.	zmaj zmaj::73_alltag_leben
 zakasniti	at blive forsinket / at komme for sent	zmaj zmaj::73_alltag_leben
 Izvini, zakasnio sam.	Undskyld, jeg er forsinket.	zmaj zmaj::73_alltag_leben
-izgubiti se	at fare vild	zmaj zmaj::74_passieren
-Izgubili smo se u gradu.	Vi for vild i byen.	zmaj zmaj::74_passieren
-spasiti	at redde	zmaj zmaj::74_passieren
-Vatrogasci su spasili dijete.	Brandvæsenet reddede barnet.	zmaj zmaj::74_passieren
-povrijediti se	at komme til skade	zmaj zmaj::74_passieren
-Povrijedio sam se na poslu.	Jeg kom til skade på arbejdet.	zmaj zmaj::74_passieren
-paziti	at passe på	zmaj zmaj::74_passieren
-Pazi na sestru!	Pas på din søster!	zmaj zmaj::74_passieren
-krvariti	at bløde	zmaj zmaj::74_passieren
-Rana jako krvari.	Såret bløder kraftigt.	zmaj zmaj::74_passieren
-prehladiti se	at blive forkølet	zmaj zmaj::74_passieren
-Obuci se toplo, prehladit ćeš se!	Tag noget varmt tøj på, ellers bliver du forkølet!	zmaj zmaj::74_passieren
-onesvijestiti se	at besvime	zmaj zmaj::74_passieren
-Žena se onesvijestila!	Kvinden er besvimet!	zmaj zmaj::74_passieren
-boljeti / boliti	at gøre ondt	zmaj zmaj::74_passieren
-Boli me grlo.	Jeg har ondt i halsen.	zmaj zmaj::74_passieren
-disati / dihati	at trække vejret	zmaj zmaj::74_passieren
-Ne mogu disati!	Jeg kan ikke få vejret!	zmaj zmaj::74_passieren
-razboljeti se / razboliti se	at blive syg	zmaj zmaj::74_passieren
-Dijete se razboljelo.	Barnet er blevet sygt.	zmaj zmaj::74_passieren
-gorjeti / goriti	at brænde	zmaj zmaj::74_passieren
-Kuća gori!	Huset brænder!	zmaj zmaj::74_passieren
-Upomoć!	Hjælp!	zmaj zmaj::75_notfall
-Upomoć! Pomozite mi!	Hjælp! Hjælp mig!	zmaj zmaj::75_notfall
-hitan slučaj	nødsituation	zmaj zmaj::75_notfall
-Ovo je hitan slučaj, zovite hitnu pomoć!	Det er en nødsituation, ring efter en ambulance!	zmaj zmaj::75_notfall
-hitna	ambulance / redning	zmaj zmaj::75_notfall
-Hitna je već na putu.	Ambulancen er allerede på vej.	zmaj zmaj::75_notfall
-vatrogasci	brandvæsen	zmaj zmaj::75_notfall
-Zovite vatrogasce!	Ring til brandvæsenet!	zmaj zmaj::75_notfall
-požar	brand	zmaj zmaj::75_notfall
-U zgradi je izbio požar.	Der er udbrudt brand i bygningen.	zmaj zmaj::75_notfall
-nesreća	ulykke	zmaj zmaj::75_notfall
-Desila se nesreća na autoputu.	Der er sket en ulykke på motorvejen.	zmaj zmaj::75_notfall
-povreda	skade	zmaj zmaj::75_notfall
-Povreda nije teška.	Skaden er ikke alvorlig.	zmaj zmaj::75_notfall
-rana	sår	zmaj zmaj::75_notfall
-Treba očistiti ranu.	Såret skal renses.	zmaj zmaj::75_notfall
-krv	blod	zmaj zmaj::75_notfall
-Imaš krv na ruci.	Du har blod på hånden.	zmaj zmaj::75_notfall
-lopov	tyv	zmaj zmaj::75_notfall
-Lopov je pobjegao, zovite policiju!	Tyven er løbet væk, ring til politiet!	zmaj zmaj::75_notfall
+nalaziti	at finde	zmaj zmaj::74_paare_geben
+Gdje nalaziš takve stvari?	Hvor finder du den slags ting?	zmaj zmaj::74_paare_geben
+primiti	at tage imod / at modtage	zmaj zmaj::74_paare_geben
+Primili su me na posao!	De har ansat mig!	zmaj zmaj::74_paare_geben
+nuditi	at tilbyde	zmaj zmaj::74_paare_geben
+Nana gostima uvijek nudi kahvu.	Bedstemor byder altid gæsterne på kaffe.	zmaj zmaj::74_paare_geben
+iskoristiti	at udnytte / at benytte sig af	zmaj zmaj::74_paare_geben
+Iskoristi lijepo vrijeme!	Udnyt det gode vejr!	zmaj zmaj::74_paare_geben
+sačuvati	at gemme / at bevare	zmaj zmaj::74_paare_geben
+Sačuvaj račun, možda ti zatreba.	Gem kvitteringen, måske får du brug for den.	zmaj zmaj::74_paare_geben
+gubiti	at miste	zmaj zmaj::74_paare_geben
+Naša ekipa opet gubi.	Vores hold taber igen.	zmaj zmaj::74_paare_geben
+ostavljati	at lade / at lade ligge	zmaj zmaj::74_paare_geben
+Ne ostavljaj stvari po podu!	Lad ikke dine ting ligge på gulvet!	zmaj zmaj::74_paare_geben
+bacati	at kaste / at smide ud	zmaj zmaj::74_paare_geben
+Hljeb se ne baca.	Brød smider man ikke ud.	zmaj zmaj::74_paare_geben
+skidati	at tage af	zmaj zmaj::74_paare_geben
+Kod nas se u kući skidaju cipele.	Hos os tager man skoene af indenfor.	zmaj zmaj::74_paare_geben
+krasti	at stjæle	zmaj zmaj::74_paare_geben
+Kao djeca smo krali trešnje iz komšijine bašte.	Som børn stjal vi kirsebær fra naboens have.	zmaj zmaj::74_paare_geben
+pokazivati	at vise	zmaj zmaj::74_paare_geben
+Nana svima pokazuje slike unuka.	Bedstemor viser alle billederne af sine børnebørn.	zmaj zmaj::74_paare_geben
+pozivati	at invitere	zmaj zmaj::74_paare_geben
+Komšije nas stalno pozivaju na kahvu.	Naboerne inviterer os hele tiden på kaffe.	zmaj zmaj::74_paare_geben
+potražiti	at lede efter	zmaj zmaj::74_paare_geben
+Potraži na internetu.	Søg på nettet.	zmaj zmaj::74_paare_geben
+naručivati	bestille	zmaj zmaj::74_paare_geben
+Ja uvijek naručujem isto.	Jeg bestiller altid det samme.	zmaj zmaj::74_paare_geben
+javljati se	at give lyd fra sig	zmaj zmaj::75_paare_denken
+Zašto se ne javljaš na telefon?	Hvorfor tager du ikke telefonen?	zmaj zmaj::75_paare_denken
+objašnjavati	at forklare	zmaj zmaj::75_paare_denken
+Nastavnica sve lijepo objašnjava.	Læreren forklarer alt godt.	zmaj zmaj::75_paare_denken
+odlučivati	at bestemme / at beslutte	zmaj zmaj::75_paare_denken
+Ko o tome odlučuje?	Hvem bestemmer det?	zmaj zmaj::75_paare_denken
+rješavati	at løse / at få styr på	zmaj zmaj::75_paare_denken
+Probleme rješavamo zajedno.	Problemer løser vi sammen.	zmaj zmaj::75_paare_denken
+razmisliti	at tænke over	zmaj zmaj::75_paare_denken
+Razmisli pa mi javi.	Tænk over det, og giv mig besked.	zmaj zmaj::75_paare_denken
+shvatati	at fatte / at begribe	zmaj zmaj::75_paare_denken
+Ne shvatam šta hoćeš od mene.	Jeg fatter ikke, hvad du vil mig.	zmaj zmaj::75_paare_denken
+zaboravljati	at glemme	zmaj zmaj::75_paare_denken
+Stalno zaboravljam imena.	Jeg glemmer hele tiden navne.	zmaj zmaj::75_paare_denken
+poslušati	at lytte til / at adlyde	zmaj zmaj::75_paare_denken
+Poslušaj me bar jednom!	Hør nu efter mig for en gangs skyld!	zmaj zmaj::75_paare_denken
+dogovarati se	at aftale / at lave en aftale	zmaj zmaj::75_paare_denken
+Stalno se dogovaramo, a nikako da se nađemo.	Vi aftaler hele tiden at mødes, men så ses vi alligevel aldrig.	zmaj zmaj::75_paare_denken
+sačekati	at vente	zmaj zmaj::75_paare_denken
+Sačekaj me ispred zgrade.	Vent på mig foran bygningen.	zmaj zmaj::75_paare_denken
+postajati	at blive (noget)	zmaj zmaj::76_paare_alltag
+Navečer već postaje hladno.	Om aftenen bliver det allerede koldt.	zmaj zmaj::76_paare_alltag
+nastavljati	at fortsætte	zmaj zmaj::76_paare_alltag
+Nastavljamo poslije pauze.	Vi fortsætter efter pausen.	zmaj zmaj::76_paare_alltag
+dešavati se / događati se	at ske	zmaj zmaj::76_paare_alltag
+Šta se ovdje dešava?	Hvad sker der her?	zmaj zmaj::76_paare_alltag
+padati	at falde	zmaj zmaj::76_paare_alltag
+Noću temperatura pada ispod nule.	Om natten falder temperaturen til under nul.	zmaj zmaj::76_paare_alltag
+pripremati	at forberede	zmaj zmaj::76_paare_alltag
+Mama priprema ručak.	Mor laver frokost.	zmaj zmaj::76_paare_alltag
+buditi se	at vågne	zmaj zmaj::76_paare_alltag
+Budim se svaki dan u šest.	Jeg vågner klokken seks hver dag.	zmaj zmaj::76_paare_alltag
+buditi	at vække	zmaj zmaj::76_paare_alltag
+Svako jutro budim djecu za školu.	Hver morgen vækker jeg børnene til skole.	zmaj zmaj::76_paare_alltag
+probuditi	at vække	zmaj zmaj::76_paare_alltag
+Probudi me u sedam, molim te.	Væk mig klokken syv, tak.	zmaj zmaj::76_paare_alltag
+prestajati	at holde op	zmaj zmaj::76_paare_alltag
+Kiša nikako ne prestaje.	Regnen vil bare ikke holde op.	zmaj zmaj::76_paare_alltag
+uspijevati	at klare / at lykkes	zmaj zmaj::76_paare_alltag
+Nikako ne uspijevam zaspati.	Jeg kan bare ikke falde i søvn.	zmaj zmaj::76_paare_alltag
+ženiti se	at gifte sig (mand)	zmaj zmaj::76_paare_alltag
+Kad se ženiš?	Hvornår skal du giftes?	zmaj zmaj::76_paare_alltag
+udavati se	at gifte sig (kvinde)	zmaj zmaj::76_paare_alltag
+Sestra mi se udaje u junu.	Min søster bliver gift i juni.	zmaj zmaj::76_paare_alltag
+paliti	tænde	zmaj zmaj::76_paare_alltag
+U oktobru već palimo grijanje.	I oktober tænder vi allerede for varmen.	zmaj zmaj::76_paare_alltag
+posjećivati	besøge nogen	zmaj zmaj::76_paare_alltag
+Svake sedmice posjećujemo nanu.	Hver uge besøger vi bedstemor.	zmaj zmaj::76_paare_alltag
+gasiti	slukke	zmaj zmaj::76_paare_alltag
+Uvijek gasim svjetlo kad izlazim iz sobe.	Jeg slukker altid lyset, når jeg går ud af værelset.	zmaj zmaj::76_paare_alltag
+popravljati	reparere	zmaj zmaj::76_paare_alltag
+Babo uvijek sam popravlja auto.	Far reparerer altid selv bilen.	zmaj zmaj::76_paare_alltag
+iznijeti	at bære ud / at tage ud	zmaj zmaj::77_im_haushalt
+Ko će iznijeti smeće?	Hvem tager skraldet ud?	zmaj zmaj::77_im_haushalt
+složiti	at lægge sammen / at ordne	zmaj zmaj::77_im_haushalt
+Složi veš i stavi ga u ormar.	Læg vasketøjet sammen, og læg det i skabet.	zmaj zmaj::77_im_haushalt
+oprati	at vaske	zmaj zmaj::77_im_haushalt
+Operi ruke prije jela!	Vask hænder før maden!	zmaj zmaj::77_im_haushalt
+miješati	at røre rundt / at blande	zmaj zmaj::77_im_haushalt
+Miješaj da ne zagori!	Rør rundt, så det ikke brænder på!	zmaj zmaj::77_im_haushalt
+pokvariti se	at gå i stykker	zmaj zmaj::77_im_haushalt
+Opet se pokvarila veš mašina.	Vaskemaskinen er gået i stykker igen.	zmaj zmaj::77_im_haushalt
+obrisati	at tørre af / at slette	zmaj zmaj::77_im_haushalt
+Obriši sto, molim te.	Tør lige bordet af, tak.	zmaj zmaj::77_im_haushalt
+brisati	at tørre af / at slette	zmaj zmaj::77_im_haushalt
+Ko danas briše prašinu?	Hvem tørrer støv af i dag?	zmaj zmaj::77_im_haushalt
+sušiti	at tørre	zmaj zmaj::77_im_haushalt
+Veš sušimo na balkonu.	Vasketøjet tørrer vi på altanen.	zmaj zmaj::77_im_haushalt
+rezati	at skære	zmaj zmaj::77_im_haushalt
+Ovaj nož ništa ne reže.	Den her kniv skærer slet ikke.	zmaj zmaj::77_im_haushalt
+skuhati	at lave mad	zmaj zmaj::77_im_haushalt
+Skuhat ću ti kahvu.	Jeg laver en kop kaffe til dig.	zmaj zmaj::77_im_haushalt
+pržiti	at stege (på panden)	zmaj zmaj::77_im_haushalt
+Mama prži ribu.	Mor steger fisk.	zmaj zmaj::77_im_haushalt
+zaliti	at vande (planter)	zmaj zmaj::77_im_haushalt
+Zalij cvijeće dok me nema.	Vand blomsterne, mens jeg er væk.	zmaj zmaj::77_im_haushalt
+objesiti	at hænge op	zmaj zmaj::77_im_haushalt
+Objesi veš, mašina je gotova.	Hæng vasketøjet op, maskinen er færdig.	zmaj zmaj::77_im_haushalt
+počistiti	at gøre rent	zmaj zmaj::77_im_haushalt
+Moram počistiti kupatilo.	Jeg skal gøre badeværelset rent.	zmaj zmaj::77_im_haushalt
+usisavati	at støvsuge	zmaj zmaj::77_im_haushalt
+Subotom usisavam cijeli stan.	Om lørdagen støvsuger jeg hele lejligheden.	zmaj zmaj::77_im_haushalt
+usisati	at støvsuge	zmaj zmaj::77_im_haushalt
+Usisaj sobu prije nego što dođu gosti.	Støvsug værelset, før gæsterne kommer.	zmaj zmaj::77_im_haushalt
+izgubiti se	at fare vild	zmaj zmaj::78_passieren
+Izgubili smo se u gradu.	Vi for vild i byen.	zmaj zmaj::78_passieren
+spasiti	at redde	zmaj zmaj::78_passieren
+Vatrogasci su spasili dijete.	Brandvæsenet reddede barnet.	zmaj zmaj::78_passieren
+povrijediti se	at komme til skade	zmaj zmaj::78_passieren
+Povrijedio sam se na poslu.	Jeg kom til skade på arbejdet.	zmaj zmaj::78_passieren
+paziti	at passe på	zmaj zmaj::78_passieren
+Pazi na sestru!	Pas på din søster!	zmaj zmaj::78_passieren
+krvariti	at bløde	zmaj zmaj::78_passieren
+Rana jako krvari.	Såret bløder kraftigt.	zmaj zmaj::78_passieren
+prehladiti se	at blive forkølet	zmaj zmaj::78_passieren
+Obuci se toplo, prehladit ćeš se!	Tag noget varmt tøj på, ellers bliver du forkølet!	zmaj zmaj::78_passieren
+onesvijestiti se	at besvime	zmaj zmaj::78_passieren
+Žena se onesvijestila!	Kvinden er besvimet!	zmaj zmaj::78_passieren
+boljeti / boliti	at gøre ondt	zmaj zmaj::78_passieren
+Boli me grlo.	Jeg har ondt i halsen.	zmaj zmaj::78_passieren
+disati / dihati	at trække vejret	zmaj zmaj::78_passieren
+Ne mogu disati!	Jeg kan ikke få vejret!	zmaj zmaj::78_passieren
+razboljeti se / razboliti se	at blive syg	zmaj zmaj::78_passieren
+Dijete se razboljelo.	Barnet er blevet sygt.	zmaj zmaj::78_passieren
+gorjeti / goriti	at brænde	zmaj zmaj::78_passieren
+Kuća gori!	Huset brænder!	zmaj zmaj::78_passieren
+Upomoć!	Hjælp!	zmaj zmaj::79_notfall
+Upomoć! Pomozite mi!	Hjælp! Hjælp mig!	zmaj zmaj::79_notfall
+hitan slučaj	nødsituation	zmaj zmaj::79_notfall
+Ovo je hitan slučaj, zovite hitnu pomoć!	Det er en nødsituation, ring efter en ambulance!	zmaj zmaj::79_notfall
+hitna	ambulance / redning	zmaj zmaj::79_notfall
+Hitna je već na putu.	Ambulancen er allerede på vej.	zmaj zmaj::79_notfall
+vatrogasci	brandvæsen	zmaj zmaj::79_notfall
+Zovite vatrogasce!	Ring til brandvæsenet!	zmaj zmaj::79_notfall
+požar	brand	zmaj zmaj::79_notfall
+U zgradi je izbio požar.	Der er udbrudt brand i bygningen.	zmaj zmaj::79_notfall
+nesreća	ulykke	zmaj zmaj::79_notfall
+Desila se nesreća na autoputu.	Der er sket en ulykke på motorvejen.	zmaj zmaj::79_notfall
+povreda	skade	zmaj zmaj::79_notfall
+Povreda nije teška.	Skaden er ikke alvorlig.	zmaj zmaj::79_notfall
+rana	sår	zmaj zmaj::79_notfall
+Treba očistiti ranu.	Såret skal renses.	zmaj zmaj::79_notfall
+krv	blod	zmaj zmaj::79_notfall
+Imaš krv na ruci.	Du har blod på hånden.	zmaj zmaj::79_notfall
+lopov	tyv	zmaj zmaj::79_notfall
+Lopov je pobjegao, zovite policiju!	Tyven er løbet væk, ring til politiet!	zmaj zmaj::79_notfall
+daleko	langt (væk)	zmaj zmaj::80_lang_kurz
+Je li daleko do centra?	Er der langt til centrum?	zmaj zmaj::80_lang_kurz
+visok	høj	zmaj zmaj::80_lang_kurz
+Moj brat je jako visok.	Min bror er meget høj.	zmaj zmaj::80_lang_kurz
+težak	tung	zmaj zmaj::80_lang_kurz
+Ovaj kofer je jako težak.	Den her kuffert er meget tung.	zmaj zmaj::80_lang_kurz
+širok	bred	zmaj zmaj::80_lang_kurz
+Rijeka je ovdje jako široka.	Floden er meget bred her.	zmaj zmaj::80_lang_kurz
+dug	lang	zmaj zmaj::80_lang_kurz
+Ovo je bio dug dan.	Det var en lang dag.	zmaj zmaj::80_lang_kurz
+nizak	lav	zmaj zmaj::80_lang_kurz
+Ovdje su cijene niske.	Her er priserne lave.	zmaj zmaj::80_lang_kurz
+kratak	kort (ikke lang)	zmaj zmaj::80_lang_kurz
+Život je kratak.	Livet er kort.	zmaj zmaj::80_lang_kurz
+uzak	snæver / smal	zmaj zmaj::80_lang_kurz
+Ove cipele su mi uske.	De her sko er for stramme til mig.	zmaj zmaj::80_lang_kurz
+lagan	let (i vægt)	zmaj zmaj::80_lang_kurz
+Torba je lagana, nosit ću je sama.	Tasken er let, jeg bærer den selv.	zmaj zmaj::80_lang_kurz
+tanak	tynd	zmaj zmaj::80_lang_kurz
+Zidovi su tanki, sve se čuje.	Væggene er tynde, man kan høre alt.	zmaj zmaj::80_lang_kurz
+debeo	tyk	zmaj zmaj::80_lang_kurz
+Ova knjiga je baš debela.	Den her bog er virkelig tyk.	zmaj zmaj::80_lang_kurz
+mršav	mager	zmaj zmaj::80_lang_kurz
+Mršav si, jedi malo više!	Du er tynd, spis lidt mere!	zmaj zmaj::80_lang_kurz
+isti	samme	zmaj zmaj::81_voll_leer
+Imamo iste cipele!	Vi har de samme sko!	zmaj zmaj::81_voll_leer
+jak	stærk	zmaj zmaj::81_voll_leer
+Jak je kao medvjed.	Han er stærk som en bjørn.	zmaj zmaj::81_voll_leer
+pun	fuld	zmaj zmaj::81_voll_leer
+Autobus je bio pun.	Bussen var fuld.	zmaj zmaj::81_voll_leer
+bogat	rig	zmaj zmaj::81_voll_leer
+Njegova porodica je jako bogata.	Hans familie er meget rig.	zmaj zmaj::81_voll_leer
+drugačiji	anderledes	zmaj zmaj::81_voll_leer
+Danas si nekako drugačiji.	Du er på en eller anden måde anderledes i dag.	zmaj zmaj::81_voll_leer
+slab	svag	zmaj zmaj::81_voll_leer
+Signal je ovdje slab.	Signalet er svagt her.	zmaj zmaj::81_voll_leer
+prazan	tom	zmaj zmaj::81_voll_leer
+Frižider je opet prazan.	Køleskabet er tomt igen.	zmaj zmaj::81_voll_leer
+tačan	rigtig / nøjagtig	zmaj zmaj::81_voll_leer
+Je li ovo tačna adresa?	Er det her den rigtige adresse?	zmaj zmaj::81_voll_leer
+suh	tør	zmaj zmaj::81_voll_leer
+Veš je već suh.	Vasketøjet er allerede tørt.	zmaj zmaj::81_voll_leer
+pogrešan	forkert	zmaj zmaj::81_voll_leer
+Ušli smo u pogrešan autobus.	Vi steg på den forkerte bus.	zmaj zmaj::81_voll_leer
+siromašan	fattig	zmaj zmaj::81_voll_leer
+Odrastao sam u siromašnoj porodici.	Jeg voksede op i en fattig familie.	zmaj zmaj::81_voll_leer
+tvrd	hård	zmaj zmaj::81_voll_leer
+Hljeb je tvrd, od jučer je.	Brødet er hårdt, det er fra i går.	zmaj zmaj::81_voll_leer
+mokar	våd	zmaj zmaj::81_voll_leer
+Sav sam mokar od kiše.	Jeg er helt våd af regnen.	zmaj zmaj::81_voll_leer
+mekan	blød	zmaj zmaj::81_voll_leer
+Jastuk je jako mekan.	Puden er meget blød.	zmaj zmaj::81_voll_leer
+potreban	nødvendig	zmaj zmaj::82_moeglich
+Potrebna mi je tvoja pomoć.	Jeg har brug for din hjælp.	zmaj zmaj::82_moeglich
+moguć	mulig	zmaj zmaj::82_moeglich
+Je li moguće platiti karticom?	Er det muligt at betale med kort?	zmaj zmaj::82_moeglich
+poseban	særlig / speciel	zmaj zmaj::82_moeglich
+Danas je poseban dan.	I dag er en særlig dag.	zmaj zmaj::82_moeglich
+siguran	sikker / tryg	zmaj zmaj::82_moeglich
+Je li ovdje sigurno noću?	Er det sikkert her om natten?	zmaj zmaj::82_moeglich
+sličan	lignende	zmaj zmaj::82_moeglich
+Ti i brat ste jako slični.	Du og din bror ligner hinanden meget.	zmaj zmaj::82_moeglich
+spreman	klar / parat	zmaj zmaj::82_moeglich
+Jesi li spremna? Krećemo.	Er du klar? Vi kører nu.	zmaj zmaj::82_moeglich
+slobodan	ledig / fri	zmaj zmaj::82_moeglich
+Jesi li slobodan u subotu?	Har du fri på lørdag?	zmaj zmaj::82_moeglich
+jednostavan	enkel	zmaj zmaj::82_moeglich
+Recept je jako jednostavan.	Opskriften er helt enkel.	zmaj zmaj::82_moeglich
+običan	almindelig / normal	zmaj zmaj::82_moeglich
+Ja sam običan čovjek.	Jeg er et helt almindeligt menneske.	zmaj zmaj::82_moeglich
+čudan	mærkelig / sær	zmaj zmaj::82_moeglich
+To je baš čudno.	Det er virkelig mærkeligt.	zmaj zmaj::82_moeglich
+nemoguć	umulig	zmaj zmaj::82_moeglich
+To je nemoguće!	Det er umuligt!	zmaj zmaj::82_moeglich
+gotov	færdig	zmaj zmaj::82_moeglich
+Ručak je gotov!	Frokosten er klar!	zmaj zmaj::82_moeglich
+komplikovan	kompliceret	zmaj zmaj::82_moeglich
+Sve je to previše komplikovano.	Det er alt sammen alt for kompliceret.	zmaj zmaj::82_moeglich
+zauzet	optaget	zmaj zmaj::82_moeglich
+Izvini, sad sam zauzet.	Undskyld, jeg har travlt lige nu.	zmaj zmaj::82_moeglich
+pravi	ægte	zmaj zmaj::82_moeglich
+Ovo je prava bosanska kahva.	Det her er ægte bosnisk kaffe.	zmaj zmaj::82_moeglich
+drag	sød / rar	zmaj zmaj::83_wie_jemand_ist
+Tvoja mama je jako draga.	Din mor er meget sød.	zmaj zmaj::83_wie_jemand_ist
+ozbiljan	alvorlig	zmaj zmaj::83_wie_jemand_ist
+Ovo je ozbiljan problem.	Det er et alvorligt problem.	zmaj zmaj::83_wie_jemand_ist
+vrijedan	flittig	zmaj zmaj::83_wie_jemand_ist
+Moja kćerka je jako vrijedna.	Min datter er meget flittig.	zmaj zmaj::83_wie_jemand_ist
+pametan	klog	zmaj zmaj::83_wie_jemand_ist
+Ona je jako pametna.	Hun er meget klog.	zmaj zmaj::83_wie_jemand_ist
+iskren	oprigtig / åben	zmaj zmaj::83_wie_jemand_ist
+Budi iskren, sviđa li ti se?	Vær ærlig, kan du lide det?	zmaj zmaj::83_wie_jemand_ist
+zao	ond / slem	zmaj zmaj::83_wie_jemand_ist
+Pas nije zao, samo laje.	Hunden er ikke ond, den gør bare.	zmaj zmaj::83_wie_jemand_ist
+hrabar	modig	zmaj zmaj::83_wie_jemand_ist
+Bio si jako hrabar.	Du var meget modig.	zmaj zmaj::83_wie_jemand_ist
+glup	dum	zmaj zmaj::83_wie_jemand_ist
+To je bilo glupo od mene.	Det var dumt af mig.	zmaj zmaj::83_wie_jemand_ist
+pošten	ærlig	zmaj zmaj::83_wie_jemand_ist
+On je pošten čovjek.	Han er et ærligt menneske.	zmaj zmaj::83_wie_jemand_ist
+veseo	munter	zmaj zmaj::83_wie_jemand_ist
+Uvijek je vesela i nasmijana.	Hun er altid glad og smilende.	zmaj zmaj::83_wie_jemand_ist
+oprezan	forsigtig	zmaj zmaj::83_wie_jemand_ist
+Budi oprezan, vani je klizavo.	Vær forsigtig, det er glat udenfor.	zmaj zmaj::83_wie_jemand_ist
+ljubazan	venlig	zmaj zmaj::84_benehmen
+Prodavačica je bila jako ljubazna.	Ekspedienten var meget venlig.	zmaj zmaj::84_benehmen
+pristojan	høflig / anstændig	zmaj zmaj::84_benehmen
+Budi pristojan pred gostima!	Vær høflig over for gæsterne!	zmaj zmaj::84_benehmen
+pažljiv	betænksom / hensynsfuld	zmaj zmaj::84_benehmen
+Hvala, baš si pažljiv.	Tak, det er meget betænksomt af dig.	zmaj zmaj::84_benehmen
+lijen	doven	zmaj zmaj::84_benehmen
+Ne budi lijen, ustaj!	Vær ikke doven, stå op!	zmaj zmaj::84_benehmen
+strpljiv	tålmodig	zmaj zmaj::84_benehmen
+Budi strpljiv, doći će.	Vær tålmodig, han kommer nok.	zmaj zmaj::84_benehmen
+sebičan	egoistisk	zmaj zmaj::84_benehmen
+Nemoj biti tako sebičan.	Vær ikke så egoistisk.	zmaj zmaj::84_benehmen
+smiren	rolig	zmaj zmaj::84_benehmen
+On je uvijek smiren.	Han er altid rolig.	zmaj zmaj::84_benehmen
+bezobrazan	fræk / uforskammet	zmaj zmaj::84_benehmen
+Ne budi bezobrazan!	Vær ikke fræk!	zmaj zmaj::84_benehmen
+tvrdoglav	stædig	zmaj zmaj::84_benehmen
+Tvrdoglav si kao babo.	Du er stædig som far.	zmaj zmaj::84_benehmen
+stidljiv	genert	zmaj zmaj::84_benehmen
+Naš sin je malo stidljiv.	Vores søn er lidt genert.	zmaj zmaj::84_benehmen
+škrt	nærig	zmaj zmaj::84_benehmen
+Ne budi škrt, danas ti častiš!	Vær ikke nærig, i dag giver du!	zmaj zmaj::84_benehmen
+sreća	held / lykke	zmaj zmaj::85_glueck_sorgen
+Imali smo sreće!	Vi var heldige!	zmaj zmaj::85_glueck_sorgen
+osjećaj	følelse	zmaj zmaj::85_glueck_sorgen
+Imam dobar osjećaj.	Jeg har en god fornemmelse.	zmaj zmaj::85_glueck_sorgen
+briga	bekymring	zmaj zmaj::85_glueck_sorgen
+Bez brige, sve će biti u redu.	Bare rolig, det skal nok gå.	zmaj zmaj::85_glueck_sorgen
+zahvalan	taknemmelig	zmaj zmaj::85_glueck_sorgen
+Zahvalan sam ti na svemu.	Jeg er dig taknemmelig for alt.	zmaj zmaj::85_glueck_sorgen
+Sretno!	Held og lykke!	zmaj zmaj::85_glueck_sorgen
+Sretno na ispitu!	Held og lykke til eksamen!	zmaj zmaj::85_glueck_sorgen
+zabrinut	bekymret	zmaj zmaj::85_glueck_sorgen
+Mama je zabrinuta jer se ne javljaš.	Mor er bekymret, fordi du ikke ringer.	zmaj zmaj::85_glueck_sorgen
+zbunjen	forvirret	zmaj zmaj::85_glueck_sorgen
+Malo sam zbunjen, možeš li ponoviti?	Jeg er lidt forvirret, kan du gentage det?	zmaj zmaj::85_glueck_sorgen
+razočaran	skuffet	zmaj zmaj::85_glueck_sorgen
+Malo sam razočaran.	Jeg er lidt skuffet.	zmaj zmaj::85_glueck_sorgen
+ljubomoran	jaloux	zmaj zmaj::85_glueck_sorgen
+Ne budi ljubomoran!	Vær ikke jaloux!	zmaj zmaj::85_glueck_sorgen
+zaljubljen	forelsket	zmaj zmaj::85_glueck_sorgen
+Zaljubljen je do ušiju.	Han er forelsket op over begge ører.	zmaj zmaj::85_glueck_sorgen
+opušten	afslappet	zmaj zmaj::85_glueck_sorgen
+Na odmoru sam potpuno opušten.	På ferie er jeg helt afslappet.	zmaj zmaj::85_glueck_sorgen
+uzbuđen	spændt	zmaj zmaj::85_glueck_sorgen
+Djeca su uzbuđena zbog puta.	Børnene er spændte på turen.	zmaj zmaj::85_glueck_sorgen
+uplašen	bange / forskrækket	zmaj zmaj::85_glueck_sorgen
+Dijete je bilo jako uplašeno.	Barnet var meget bange.	zmaj zmaj::85_glueck_sorgen
+pospan	søvnig	zmaj zmaj::85_glueck_sorgen
+Pospan sam, idem leći.	Jeg er søvnig, jeg lægger mig.	zmaj zmaj::85_glueck_sorgen
+osjetiti	at mærke / at føle	zmaj zmaj::86_sinne
+Osjetio sam da nešto nije u redu.	Jeg kunne mærke, at noget var galt.	zmaj zmaj::86_sinne
+primijetiti	at bemærke / at lægge mærke til	zmaj zmaj::86_sinne
+Nisam primijetio da si se ošišala.	Jeg lagde ikke mærke til, at du havde været hos frisøren.	zmaj zmaj::86_sinne
+probati	at prøve / at smage	zmaj zmaj::86_sinne
+Probaj ovo, fino je!	Smag det her, det er lækkert!	zmaj zmaj::86_sinne
+miris	lugt / duft	zmaj zmaj::86_sinne
+Kakav lijep miris!	Sikke en dejlig duft!	zmaj zmaj::86_sinne
+taman	mørk	zmaj zmaj::86_sinne
+U sobi je tamno, upali svjetlo.	Det er mørkt i værelset, tænd lyset.	zmaj zmaj::86_sinne
+okus	smag (mad)	zmaj zmaj::86_sinne
+Ovo ima čudan okus.	Det her smager mærkeligt.	zmaj zmaj::86_sinne
+ukus	smag (stil)	zmaj zmaj::86_sinne
+Imaš dobar ukus.	Du har god smag.	zmaj zmaj::86_sinne
+svijetao	lys / oplyst	zmaj zmaj::86_sinne
+Stan je lijep i svijetao.	Lejligheden er pæn og lys.	zmaj zmaj::86_sinne
+mrak	mørke	zmaj zmaj::86_sinne
+Vani je već mrak.	Det er allerede mørkt udenfor.	zmaj zmaj::86_sinne
+buka	larm / støj	zmaj zmaj::86_sinne
+Kakva je ovo buka?	Hvad er det for en larm?	zmaj zmaj::86_sinne
+tišina	stilhed / ro	zmaj zmaj::86_sinne
+Tišina, molim vas!	Ro, tak!	zmaj zmaj::86_sinne
+tih	stille	zmaj zmaj::86_sinne
+Ovdje je noću jako tiho.	Her er der meget stille om natten.	zmaj zmaj::86_sinne
+dirati	at røre ved	zmaj zmaj::86_sinne
+Ne diraj, vruće je!	Rør det ikke, det er varmt!	zmaj zmaj::86_sinne
+glasan	højlydt	zmaj zmaj::86_sinne
+Komšije su jako glasne.	Naboerne larmer meget.	zmaj zmaj::86_sinne
+gorak	bitter	zmaj zmaj::86_sinne
+Kahva je gorka bez šećera.	Uden sukker er kaffen bitter.	zmaj zmaj::86_sinne
+mirisati	at lugte / at dufte	zmaj zmaj::86_sinne
+Kuhinja miriše na pitu.	Køkkenet dufter af pita.	zmaj zmaj::86_sinne
+smrdjeti / smrditi	at stinke	zmaj zmaj::86_sinne
+Nešto smrdi u frižideru.	Der er noget, der stinker i køleskabet.	zmaj zmaj::86_sinne
+bljutav	fad / smagløs	zmaj zmaj::86_sinne
+Supa je bljutava, fali joj soli.	Suppen er fad, den mangler salt.	zmaj zmaj::86_sinne
