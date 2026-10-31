@@ -21160,7 +21160,7 @@
    <tuv xml:lang="nl"><seg>vertrekken / wegrijden</seg></tuv>
    <tuv xml:lang="nb"><seg>gå av gårde / kjøre av gårde</seg></tuv>
    <tuv xml:lang="da"><seg>at tage af sted / at køre af sted</seg></tuv>
-   <tuv xml:lang="fr"><seg>se mettre en route / partir</seg></tuv>
+   <tuv xml:lang="fr"><seg>se mettre en route / démarrer</seg></tuv>
   </tu>
   <tu tuid="wir müssen los, es ist spät.:Moramo krenuti, kasno je." segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -21184,7 +21184,7 @@
    <tuv xml:lang="nl"><seg>vertrekken / wegrijden</seg></tuv>
    <tuv xml:lang="nb"><seg>gå av gårde / kjøre av gårde</seg></tuv>
    <tuv xml:lang="da"><seg>at tage af sted / at køre af sted</seg></tuv>
-   <tuv xml:lang="fr"><seg>se mettre en route / partir</seg></tuv>
+   <tuv xml:lang="fr"><seg>se mettre en route / démarrer</seg></tuv>
   </tu>
   <tu tuid="der bus fährt um sieben ab.:Autobus kreće u sedam." segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -21395,7 +21395,7 @@
    <tuv xml:lang="bs"><seg>dobiti</seg></tuv>
    <tuv xml:lang="de"><seg>bekommen</seg></tuv>
    <tuv xml:lang="en"><seg>to get</seg></tuv>
-   <tuv xml:lang="tr"><seg>elde etmek / almak</seg></tuv>
+   <tuv xml:lang="tr"><seg>elde etmek</seg></tuv>
    <tuv xml:lang="sv"><seg>få</seg></tuv>
    <tuv xml:lang="nl"><seg>krijgen</seg></tuv>
    <tuv xml:lang="nb"><seg>få</seg></tuv>
@@ -21419,7 +21419,7 @@
    <tuv xml:lang="bs"><seg>dobivati</seg></tuv>
    <tuv xml:lang="de"><seg>bekommen</seg></tuv>
    <tuv xml:lang="en"><seg>to get</seg></tuv>
-   <tuv xml:lang="tr"><seg>elde etmek / almak</seg></tuv>
+   <tuv xml:lang="tr"><seg>elde etmek</seg></tuv>
    <tuv xml:lang="sv"><seg>få</seg></tuv>
    <tuv xml:lang="nl"><seg>krijgen</seg></tuv>
    <tuv xml:lang="nb"><seg>få</seg></tuv>
@@ -21827,12 +21827,12 @@
    <tuv xml:lang="bs"><seg>primati</seg></tuv>
    <tuv xml:lang="de"><seg>annehmen / empfangen</seg></tuv>
    <tuv xml:lang="en"><seg>to accept / to receive</seg></tuv>
-   <tuv xml:lang="tr"><seg>kabul etmek / almak</seg></tuv>
+   <tuv xml:lang="tr"><seg>kabul etmek / teslim almak</seg></tuv>
    <tuv xml:lang="sv"><seg>ta emot / acceptera</seg></tuv>
    <tuv xml:lang="nl"><seg>aannemen / ontvangen</seg></tuv>
    <tuv xml:lang="nb"><seg>ta imot / motta</seg></tuv>
    <tuv xml:lang="da"><seg>at tage imod / at modtage</seg></tuv>
-   <tuv xml:lang="fr"><seg>accepter / recevoir</seg></tuv>
+   <tuv xml:lang="fr"><seg>accepter / accueillir</seg></tuv>
   </tu>
   <tu tuid="nehmen sie karten?:Primate li kartice?" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -22115,7 +22115,7 @@
    <tuv xml:lang="bs"><seg>nadati se</seg></tuv>
    <tuv xml:lang="de"><seg>hoffen</seg></tuv>
    <tuv xml:lang="en"><seg>to hope</seg></tuv>
-   <tuv xml:lang="tr"><seg>ummak / umut etmek</seg></tuv>
+   <tuv xml:lang="tr"><seg>umut etmek</seg></tuv>
    <tuv xml:lang="sv"><seg>hoppas</seg></tuv>
    <tuv xml:lang="nl"><seg>hopen</seg></tuv>
    <tuv xml:lang="nb"><seg>håpe</seg></tuv>
@@ -22408,7 +22408,7 @@
    <tuv xml:lang="nl"><seg>te weten komen</seg></tuv>
    <tuv xml:lang="nb"><seg>få vite</seg></tuv>
    <tuv xml:lang="da"><seg>at få at vide</seg></tuv>
-   <tuv xml:lang="fr"><seg>apprendre (une nouvelle)</seg></tuv>
+   <tuv xml:lang="fr"><seg>découvrir / être mis au courant</seg></tuv>
   </tu>
   <tu tuid="wie hast du das erfahren?:Kako si to saznao?" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -23050,13 +23050,13 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>napraviti</seg></tuv>
    <tuv xml:lang="de"><seg>machen / zubereiten</seg></tuv>
-   <tuv xml:lang="en"><seg>to make / to prepare</seg></tuv>
-   <tuv xml:lang="tr"><seg>yapmak / hazırlamak</seg></tuv>
+   <tuv xml:lang="en"><seg>to make / to cook</seg></tuv>
+   <tuv xml:lang="tr"><seg>yapmak / pişirmek</seg></tuv>
    <tuv xml:lang="sv"><seg>göra / laga</seg></tuv>
    <tuv xml:lang="nl"><seg>maken / klaarmaken</seg></tuv>
    <tuv xml:lang="nb"><seg>lage / tilberede</seg></tuv>
    <tuv xml:lang="da"><seg>at lave / at tilberede</seg></tuv>
-   <tuv xml:lang="fr"><seg>faire / préparer</seg></tuv>
+   <tuv xml:lang="fr"><seg>faire / cuisiner</seg></tuv>
   </tu>
   <tu tuid="ich mache kaffee.:Napravit ću kahvu." segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -23074,13 +23074,13 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>praviti</seg></tuv>
    <tuv xml:lang="de"><seg>machen / zubereiten</seg></tuv>
-   <tuv xml:lang="en"><seg>to make / to prepare</seg></tuv>
-   <tuv xml:lang="tr"><seg>yapmak / hazırlamak</seg></tuv>
+   <tuv xml:lang="en"><seg>to make / to cook</seg></tuv>
+   <tuv xml:lang="tr"><seg>yapmak / pişirmek</seg></tuv>
    <tuv xml:lang="sv"><seg>göra / laga</seg></tuv>
    <tuv xml:lang="nl"><seg>maken / klaarmaken</seg></tuv>
    <tuv xml:lang="nb"><seg>lage / tilberede</seg></tuv>
    <tuv xml:lang="da"><seg>at lave / at tilberede</seg></tuv>
-   <tuv xml:lang="fr"><seg>faire / préparer</seg></tuv>
+   <tuv xml:lang="fr"><seg>faire / cuisiner</seg></tuv>
   </tu>
   <tu tuid="oma macht die beste pita.:Nana pravi najbolju pitu." segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -23965,7 +23965,7 @@
    <tuv xml:lang="en"><seg>to be late / to arrive late</seg></tuv>
    <tuv xml:lang="tr"><seg>gecikmek / geç kalmak</seg></tuv>
    <tuv xml:lang="sv"><seg>bli försenad / komma för sent</seg></tuv>
-   <tuv xml:lang="nl"><seg>vertraging hebben / te laat komen</seg></tuv>
+   <tuv xml:lang="nl"><seg>zich verlaten / te laat komen</seg></tuv>
    <tuv xml:lang="nb"><seg>bli forsinket / komme for sent</seg></tuv>
    <tuv xml:lang="da"><seg>at blive forsinket / at komme for sent</seg></tuv>
    <tuv xml:lang="fr"><seg>être en retard / arriver en retard</seg></tuv>
@@ -24311,7 +24311,7 @@
    <tuv xml:lang="bs"><seg>Hitna je već na putu.</seg></tuv>
    <tuv xml:lang="de"><seg>Der Krankenwagen ist schon unterwegs.</seg></tuv>
    <tuv xml:lang="en"><seg>The ambulance is already on its way.</seg></tuv>
-   <tuv xml:lang="tr"><seg>Ambulans yolda.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Ambulans zaten yolda.</seg></tuv>
    <tuv xml:lang="sv"><seg>Ambulansen är redan på väg.</seg></tuv>
    <tuv xml:lang="nl"><seg>De ambulance is al onderweg.</seg></tuv>
    <tuv xml:lang="nb"><seg>Ambulansen er allerede på vei.</seg></tuv>

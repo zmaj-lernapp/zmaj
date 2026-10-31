@@ -1785,9 +1785,9 @@ voziti	sürmek (araç)	zmaj zmaj::66_kommen_gehen
 Ne vozi tako brzo!	Bu kadar hızlı sürme!	zmaj zmaj::66_kommen_gehen
 putovati	seyahat etmek	zmaj zmaj::66_kommen_gehen
 Volim putovati vozom.	Trenle seyahat etmeyi severim.	zmaj zmaj::66_kommen_gehen
-dobiti	elde etmek / almak	zmaj zmaj::67_geben_nehmen
+dobiti	elde etmek	zmaj zmaj::67_geben_nehmen
 Jesi li dobio moju poruku?	Mesajımı aldın mı?	zmaj zmaj::67_geben_nehmen
-dobivati	elde etmek / almak	zmaj zmaj::67_geben_nehmen
+dobivati	elde etmek	zmaj zmaj::67_geben_nehmen
 Platu dobivamo krajem mjeseca.	Maaşımızı ay sonunda alıyoruz.	zmaj zmaj::67_geben_nehmen
 nalaziti se	bulunmak	zmaj zmaj::67_geben_nehmen
 Gdje se nalazi apoteka?	Eczane nerede bulunuyor?	zmaj zmaj::67_geben_nehmen
@@ -1821,7 +1821,7 @@ plaćati	ödemek	zmaj zmaj::67_geben_nehmen
 Plaćate li karticom ili gotovinom?	Kartla mı ödüyorsunuz, nakit mi?	zmaj zmaj::67_geben_nehmen
 kupovati	satın almak	zmaj zmaj::67_geben_nehmen
 Hljeb kupujem svako jutro.	Ekmeği her sabah alıyorum.	zmaj zmaj::67_geben_nehmen
-primati	kabul etmek / almak	zmaj zmaj::67_geben_nehmen
+primati	kabul etmek / teslim almak	zmaj zmaj::67_geben_nehmen
 Primate li kartice?	Kart kabul ediyor musunuz?	zmaj zmaj::67_geben_nehmen
 ukrasti	çalmak (hırsızlık)	zmaj zmaj::67_geben_nehmen
 Neko mi je ukrao novčanik!	Biri cüzdanımı çaldı!	zmaj zmaj::67_geben_nehmen
@@ -1845,7 +1845,7 @@ Vjeruj mi, to je istina.	İnan bana, bu doğru.	zmaj zmaj::68_sagen_denken
 Čuješ li me?	Beni duyuyor musun?	zmaj zmaj::68_sagen_denken
 odlučiti	karar vermek	zmaj zmaj::68_sagen_denken
 Odlučili smo kupiti kuću.	Bir ev almaya karar verdik.	zmaj zmaj::68_sagen_denken
-nadati se	ummak / umut etmek	zmaj zmaj::68_sagen_denken
+nadati se	umut etmek	zmaj zmaj::68_sagen_denken
 Nadam se lijepom vremenu.	Güzel bir hava umuyorum.	zmaj zmaj::68_sagen_denken
 odgovoriti	cevap vermek	zmaj zmaj::68_sagen_denken
 Još mi nije odgovorio.	Bana hâlâ cevap vermedi.	zmaj zmaj::68_sagen_denken
@@ -1923,9 +1923,9 @@ Postao je otac.	Baba oldu.	zmaj zmaj::71_tun_machen
 Moja sestra živi u Beču.	Kız kardeşim Viyana'da yaşıyor.	zmaj zmaj::71_tun_machen
 igrati	oynamak (spor, oyun)	zmaj zmaj::71_tun_machen
 Igraš li fudbal?	Futbol oynuyor musun?	zmaj zmaj::71_tun_machen
-napraviti	yapmak / hazırlamak	zmaj zmaj::71_tun_machen
+napraviti	yapmak / pişirmek	zmaj zmaj::71_tun_machen
 Napravit ću kahvu.	Kahve yapayım.	zmaj zmaj::71_tun_machen
-praviti	yapmak / hazırlamak	zmaj zmaj::71_tun_machen
+praviti	yapmak / pişirmek	zmaj zmaj::71_tun_machen
 Nana pravi najbolju pitu.	En güzel pitayı ninem yapar.	zmaj zmaj::71_tun_machen
 uraditi	yapmak / halletmek	zmaj zmaj::71_tun_machen
 Uradio sam sve što si tražila.	Benden istediğin her şeyi yaptım.	zmaj zmaj::71_tun_machen
@@ -2028,7 +2028,7 @@ Upomoć! Pomozite mi!	İmdat! Bana yardım edin!	zmaj zmaj::75_notfall
 hitan slučaj	acil durum	zmaj zmaj::75_notfall
 Ovo je hitan slučaj, zovite hitnu pomoć!	Bu acil bir durum, ambulans çağırın!	zmaj zmaj::75_notfall
 hitna	ambulans / acil yardım	zmaj zmaj::75_notfall
-Hitna je već na putu.	Ambulans yolda.	zmaj zmaj::75_notfall
+Hitna je već na putu.	Ambulans zaten yolda.	zmaj zmaj::75_notfall
 vatrogasci	itfaiye	zmaj zmaj::75_notfall
 Zovite vatrogasce!	İtfaiyeyi arayın!	zmaj zmaj::75_notfall
 požar	yangın	zmaj zmaj::75_notfall

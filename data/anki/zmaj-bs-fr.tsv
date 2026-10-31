@@ -1765,9 +1765,9 @@ proći	passer devant / passer (le temps)	zmaj zmaj::66_kommen_gehen
 Ljeto je brzo prošlo.	L'été est passé vite.	zmaj zmaj::66_kommen_gehen
 prolaziti	passer devant / passer (le temps)	zmaj zmaj::66_kommen_gehen
 Svaki dan prolazim pored tvoje kuće.	Tous les jours, je passe devant ta maison.	zmaj zmaj::66_kommen_gehen
-krenuti	se mettre en route / partir	zmaj zmaj::66_kommen_gehen
+krenuti	se mettre en route / démarrer	zmaj zmaj::66_kommen_gehen
 Moramo krenuti, kasno je.	On doit y aller, il est tard.	zmaj zmaj::66_kommen_gehen
-kretati	se mettre en route / partir	zmaj zmaj::66_kommen_gehen
+kretati	se mettre en route / démarrer	zmaj zmaj::66_kommen_gehen
 Autobus kreće u sedam.	Le bus part à sept heures.	zmaj zmaj::66_kommen_gehen
 stići	arriver	zmaj zmaj::66_kommen_gehen
 Mi smo stigli u Sarajevo.	Nous sommes arrivés à Sarajevo.	zmaj zmaj::66_kommen_gehen
@@ -1821,7 +1821,7 @@ plaćati	payer	zmaj zmaj::67_geben_nehmen
 Plaćate li karticom ili gotovinom?	Vous payez par carte ou en espèces ?	zmaj zmaj::67_geben_nehmen
 kupovati	acheter	zmaj zmaj::67_geben_nehmen
 Hljeb kupujem svako jutro.	J'achète du pain tous les matins.	zmaj zmaj::67_geben_nehmen
-primati	accepter / recevoir	zmaj zmaj::67_geben_nehmen
+primati	accepter / accueillir	zmaj zmaj::67_geben_nehmen
 Primate li kartice?	Vous acceptez les cartes ?	zmaj zmaj::67_geben_nehmen
 ukrasti	voler (dérober)	zmaj zmaj::67_geben_nehmen
 Neko mi je ukrao novčanik!	Quelqu'un m'a volé mon portefeuille !	zmaj zmaj::67_geben_nehmen
@@ -1869,7 +1869,7 @@ javiti se	donner des nouvelles	zmaj zmaj::69_verstehen
 Javi se kad stigneš!	Donne-moi des nouvelles quand tu arrives !	zmaj zmaj::69_verstehen
 razmišljati	réfléchir	zmaj zmaj::69_verstehen
 Razmišljam o tome.	J'y réfléchis.	zmaj zmaj::69_verstehen
-saznati	apprendre (une nouvelle)	zmaj zmaj::69_verstehen
+saznati	découvrir / être mis au courant	zmaj zmaj::69_verstehen
 Kako si to saznao?	Comment tu l'as appris ?	zmaj zmaj::69_verstehen
 slušati	écouter	zmaj zmaj::69_verstehen
 U autu slušam sevdalinke.	En voiture, j'écoute des sevdalinkas.	zmaj zmaj::69_verstehen
@@ -1923,9 +1923,9 @@ Postao je otac.	Il est devenu papa.	zmaj zmaj::71_tun_machen
 Moja sestra živi u Beču.	Ma sœur vit à Vienne.	zmaj zmaj::71_tun_machen
 igrati	jouer (sport, jeu)	zmaj zmaj::71_tun_machen
 Igraš li fudbal?	Tu joues au foot ?	zmaj zmaj::71_tun_machen
-napraviti	faire / préparer	zmaj zmaj::71_tun_machen
+napraviti	faire / cuisiner	zmaj zmaj::71_tun_machen
 Napravit ću kahvu.	Je vais faire du café.	zmaj zmaj::71_tun_machen
-praviti	faire / préparer	zmaj zmaj::71_tun_machen
+praviti	faire / cuisiner	zmaj zmaj::71_tun_machen
 Nana pravi najbolju pitu.	Grand-mère fait la meilleure pita.	zmaj zmaj::71_tun_machen
 uraditi	faire / régler	zmaj zmaj::71_tun_machen
 Uradio sam sve što si tražila.	J'ai fait tout ce que tu m'as demandé.	zmaj zmaj::71_tun_machen

@@ -3636,6 +3636,8 @@ INHALT = {
     # ---- Wortschatz-Paket 1, Sektion 10 · Tun und Lassen (31.10.2026) ----
     # Aspektpaare (ostati / ostajati) stehen mit derselben deutschen Bedeutung
     # und bekommen damit auch hier dieselbe Übersetzung.
+    # Prüfung 31.10.2026: kein "to prepare" bei napraviti/praviti, sonst
+    # passt es auch auf pripremiti (vorbereiten) im selben Level.
     "Sektion 10 · Tun und Lassen": "Section 10 · Doings and dealings",
     "Die wichtigsten Verben, oft als Paar, jedes mit einem Beispielsatz. Dazu Hilfe im Notfall.": "The most important verbs, often in pairs, each with an example sentence. Plus help in an emergency.",
     "Kommen und gehen": "Coming and going",
@@ -3810,7 +3812,7 @@ INHALT = {
     "Meine Schwester lebt in Wien.": "My sister lives in Vienna.",
     "spielen (Sport, Spiel)": "to play (sports, games)",
     "Spielst du Fußball?": "Do you play soccer?",
-    "machen / zubereiten": "to make / to prepare",
+    "machen / zubereiten": "to make / to cook",
     "Ich mache Kaffee.": "I'll make some coffee.",
     "Oma macht die beste Pita.": "Grandma makes the best pita.",
     "machen / erledigen": "to do / to get done",
@@ -7100,6 +7102,11 @@ INHALT = {
     "Der Bus kommt um {n}": "Otobüs saat {lok} geliyor",
     "Ich weiß nicht, vielleicht {n} Mark.": "Bilmiyorum, belki {n} mark.",
     # ---- Wortschatz-Paket 1, Sektion 10 · Tun und Lassen (31.10.2026) ----
+    # Prüfung 31.10.2026: Wörter eines Levels teilen keine Form, wenn sie
+    # im Deutschen getrennt sind (almak: bekommen/nehmen/annehmen,
+    # ummak: erwarten/hoffen, hazırlamak: zubereiten/vorbereiten). Bei
+    # erwarten bleibt "ummak", denn "beklemek" allein ist schon warten
+    # (čekati) und wäre dieselbe Bedeutung.
     "Sektion 10 · Tun und Lassen": "10. bölüm · Yapıp etmek",
     "Die wichtigsten Verben, oft als Paar, jedes mit einem Beispielsatz. Dazu Hilfe im Notfall.": "En önemli fiiller, çoğu zaman çift hâlinde, her biri bir örnek cümleyle. Ayrıca acil durumda yardım.",
     "Kommen und gehen": "Gelmek ve gitmek",
@@ -7153,7 +7160,7 @@ INHALT = {
     "Fahr nicht so schnell!": "Bu kadar hızlı sürme!",
     "reisen": "seyahat etmek",
     "Ich reise gern mit dem Zug.": "Trenle seyahat etmeyi severim.",
-    "bekommen": "elde etmek / almak",
+    "bekommen": "elde etmek",
     "Hast du meine Nachricht bekommen?": "Mesajımı aldın mı?",
     "Den Lohn bekommen wir am Monatsende.": "Maaşımızı ay sonunda alıyoruz.",
     "sich befinden": "bulunmak",
@@ -7181,7 +7188,7 @@ INHALT = {
     "Hier verkauft man frisches Brot.": "Burada taze ekmek satılıyor.",
     "Zahlen Sie mit Karte oder bar?": "Kartla mı ödüyorsunuz, nakit mi?",
     "Brot kaufe ich jeden Morgen.": "Ekmeği her sabah alıyorum.",
-    "annehmen / empfangen": "kabul etmek / almak",
+    "annehmen / empfangen": "kabul etmek / teslim almak",
     "Nehmen Sie Karten?": "Kart kabul ediyor musunuz?",
     "stehlen": "çalmak (hırsızlık)",
     "Jemand hat mir den Geldbeutel gestohlen!": "Biri cüzdanımı çaldı!",
@@ -7204,7 +7211,7 @@ INHALT = {
     "Hörst du mich?": "Beni duyuyor musun?",
     "entscheiden / beschließen": "karar vermek",
     "Wir haben beschlossen, ein Haus zu kaufen.": "Bir ev almaya karar verdik.",
-    "hoffen": "ummak / umut etmek",
+    "hoffen": "umut etmek",
     "Ich hoffe auf schönes Wetter.": "Güzel bir hava umuyorum.",
     "antworten": "cevap vermek",
     "Er hat mir noch nicht geantwortet.": "Bana hâlâ cevap vermedi.",
@@ -7274,7 +7281,7 @@ INHALT = {
     "Meine Schwester lebt in Wien.": "Kız kardeşim Viyana'da yaşıyor.",
     "spielen (Sport, Spiel)": "oynamak (spor, oyun)",
     "Spielst du Fußball?": "Futbol oynuyor musun?",
-    "machen / zubereiten": "yapmak / hazırlamak",
+    "machen / zubereiten": "yapmak / pişirmek",
     "Ich mache Kaffee.": "Kahve yapayım.",
     "Oma macht die beste Pita.": "En güzel pitayı ninem yapar.",
     "machen / erledigen": "yapmak / halletmek",
@@ -7373,7 +7380,7 @@ INHALT = {
     "Notfall": "acil durum",
     "Das ist ein Notfall, rufen Sie den Rettungsdienst!": "Bu acil bir durum, ambulans çağırın!",
     "Krankenwagen / Rettung": "ambulans / acil yardım",
-    "Der Krankenwagen ist schon unterwegs.": "Ambulans yolda.",
+    "Der Krankenwagen ist schon unterwegs.": "Ambulans zaten yolda.",
     "Feuerwehr": "itfaiye",
     "Rufen Sie die Feuerwehr!": "İtfaiyeyi arayın!",
     "Brand": "yangın",
@@ -14005,6 +14012,7 @@ INHALT = {
     "Der Bus kommt um {n}": "De bus komt om {n} uur",
     "Ich weiß nicht, vielleicht {n} Mark.": "Ik weet het niet, misschien {n} mark.",
     # ---- Wortschatz-Paket 1, Sektion 10 · Tun und Lassen (31.10.2026) ----
+    # Prüfung 31.10.2026: "vertraging hebben" sagt man eher vom Zug.
     "Sektion 10 · Tun und Lassen": "Deel 10 · Doen en laten",
     "Die wichtigsten Verben, oft als Paar, jedes mit einem Beispielsatz. Dazu Hilfe im Notfall.": "De belangrijkste werkwoorden, vaak als paar, elk met een voorbeeldzin. Plus hulp bij noodgevallen.",
     "Kommen und gehen": "Komen en gaan",
@@ -14249,7 +14257,7 @@ INHALT = {
     "Meine Schwester hat im Mai geheiratet.": "Mijn zus is in mei getrouwd.",
     "heiraten (Mann)": "trouwen (man)",
     "Mein Bruder hat letztes Jahr geheiratet.": "Mijn broer is vorig jaar getrouwd.",
-    "sich verspäten / zu spät kommen": "vertraging hebben / te laat komen",
+    "sich verspäten / zu spät kommen": "zich verlaten / te laat komen",
     "Entschuldige, ich bin zu spät.": "Sorry, ik ben te laat.",
     "sich verlaufen": "verdwalen",
     "Wir haben uns in der Stadt verlaufen.": "We zijn in de stad verdwaald.",
@@ -24370,6 +24378,10 @@ INHALT = {
     "Der Bus kommt um {n}": "Le bus arrive à {n} heures",
     "Ich weiß nicht, vielleicht {n} Mark.": "Je ne sais pas, peut-être {n} marks.",
     # ---- Wortschatz-Paket 1, Sektion 10 · Tun und Lassen (31.10.2026) ----
+    # Prüfung 31.10.2026: Wörter eines Levels teilen keine Form, wenn sie
+    # im Deutschen getrennt sind (partir: weggehen/losgehen, apprendre:
+    # lernen/erfahren, préparer: zubereiten/vorbereiten,
+    # recevoir: bekommen/empfangen).
     "Sektion 10 · Tun und Lassen": "Partie 10 · Faits et gestes",
     "Die wichtigsten Verben, oft als Paar, jedes mit einem Beispielsatz. Dazu Hilfe im Notfall.": "Les verbes les plus importants, souvent par paires, chacun avec une phrase d'exemple. Et de l'aide en cas d'urgence.",
     "Kommen und gehen": "Aller et venir",
@@ -24407,7 +24419,7 @@ INHALT = {
     "vorbeigehen / vergehen": "passer devant / passer (le temps)",
     "Der Sommer ist schnell vergangen.": "L'été est passé vite.",
     "Jeden Tag gehe ich an deinem Haus vorbei.": "Tous les jours, je passe devant ta maison.",
-    "losgehen / losfahren": "se mettre en route / partir",
+    "losgehen / losfahren": "se mettre en route / démarrer",
     "Wir müssen los, es ist spät.": "On doit y aller, il est tard.",
     "Der Bus fährt um sieben ab.": "Le bus part à sept heures.",
     "ankommen": "arriver",
@@ -24451,7 +24463,7 @@ INHALT = {
     "Hier verkauft man frisches Brot.": "Ici, on vend du pain frais.",
     "Zahlen Sie mit Karte oder bar?": "Vous payez par carte ou en espèces ?",
     "Brot kaufe ich jeden Morgen.": "J'achète du pain tous les matins.",
-    "annehmen / empfangen": "accepter / recevoir",
+    "annehmen / empfangen": "accepter / accueillir",
     "Nehmen Sie Karten?": "Vous acceptez les cartes ?",
     "stehlen": "voler (dérober)",
     "Jemand hat mir den Geldbeutel gestohlen!": "Quelqu'un m'a volé mon portefeuille !",
@@ -24497,7 +24509,7 @@ INHALT = {
     "Melde dich, wenn du ankommst!": "Donne-moi des nouvelles quand tu arrives !",
     "nachdenken": "réfléchir",
     "Ich denke darüber nach.": "J'y réfléchis.",
-    "erfahren": "apprendre (une nouvelle)",
+    "erfahren": "découvrir / être mis au courant",
     "Wie hast du das erfahren?": "Comment tu l'as appris ?",
     "zuhören / anhören": "écouter",
     "Im Auto höre ich Sevdalinkas.": "En voiture, j'écoute des sevdalinkas.",
@@ -24544,7 +24556,7 @@ INHALT = {
     "Meine Schwester lebt in Wien.": "Ma sœur vit à Vienne.",
     "spielen (Sport, Spiel)": "jouer (sport, jeu)",
     "Spielst du Fußball?": "Tu joues au foot ?",
-    "machen / zubereiten": "faire / préparer",
+    "machen / zubereiten": "faire / cuisiner",
     "Ich mache Kaffee.": "Je vais faire du café.",
     "Oma macht die beste Pita.": "Grand-mère fait la meilleure pita.",
     "machen / erledigen": "faire / régler",
