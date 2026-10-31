@@ -144,7 +144,7 @@ KONTO_PFLICHT = True
 # Die Seitentexte des Formulars stehen in jedem Sprachblock unter
 # kontakt.*. Sie kommen nie in die App (texte() lässt sie weg), nur auf die
 # Seite (kontakt_texte()).
-KONTAKT_FORMULAR = False
+KONTAKT_FORMULAR = True
 
 # Der Tag, an dem KONTAKT_FORMULAR auf True geht, als "TT.MM.JJJJ"
 # (Prüfbericht vom 28.10.2026). Mit dem Absatz zum Formular ändert sich die
@@ -152,7 +152,7 @@ KONTAKT_FORMULAR = False
 # ihn in allen acht Sprachen in deren Schreibweise (stand_setzen()), nie auf
 # einen früheren Tag als den, der schon dasteht. Schalter an ohne Datum: texte()
 # bricht ab. Mit Schalter aus bleibt hier None.
-KONTAKT_STAND = None
+KONTAKT_STAND = "31.10.2026"
 
 
 TEXTE = {
