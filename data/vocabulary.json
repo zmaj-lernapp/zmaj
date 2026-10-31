@@ -34271,7 +34271,7 @@
     "nl": "vertrekken / wegrijden",
     "nb": "gå av gårde / kjøre av gårde",
     "da": "at tage af sted / at køre af sted",
-    "fr": "se mettre en route / partir"
+    "fr": "se mettre en route / démarrer"
    },
    "audio": null
   },
@@ -34307,7 +34307,7 @@
     "nl": "vertrekken / wegrijden",
     "nb": "gå av gårde / kjøre av gårde",
     "da": "at tage af sted / at køre af sted",
-    "fr": "se mettre en route / partir"
+    "fr": "se mettre en route / démarrer"
    },
    "audio": null
   },
@@ -34626,7 +34626,7 @@
    "translations": {
     "de": "bekommen",
     "en": "to get",
-    "tr": "elde etmek / almak",
+    "tr": "elde etmek",
     "sv": "få",
     "nl": "krijgen",
     "nb": "få",
@@ -34662,7 +34662,7 @@
    "translations": {
     "de": "bekommen",
     "en": "to get",
-    "tr": "elde etmek / almak",
+    "tr": "elde etmek",
     "sv": "få",
     "nl": "krijgen",
     "nb": "få",
@@ -35274,12 +35274,12 @@
    "translations": {
     "de": "annehmen / empfangen",
     "en": "to accept / to receive",
-    "tr": "kabul etmek / almak",
+    "tr": "kabul etmek / teslim almak",
     "sv": "ta emot / acceptera",
     "nl": "aannemen / ontvangen",
     "nb": "ta imot / motta",
     "da": "at tage imod / at modtage",
-    "fr": "accepter / recevoir"
+    "fr": "accepter / accueillir"
    },
    "audio": null
   },
@@ -35706,7 +35706,7 @@
    "translations": {
     "de": "hoffen",
     "en": "to hope",
-    "tr": "ummak / umut etmek",
+    "tr": "umut etmek",
     "sv": "hoppas",
     "nl": "hopen",
     "nb": "håpe",
@@ -36143,7 +36143,7 @@
     "nl": "te weten komen",
     "nb": "få vite",
     "da": "at få at vide",
-    "fr": "apprendre (une nouvelle)"
+    "fr": "découvrir / être mis au courant"
    },
    "audio": null
   },
@@ -37109,13 +37109,13 @@
    "section": "tunlassen",
    "translations": {
     "de": "machen / zubereiten",
-    "en": "to make / to prepare",
-    "tr": "yapmak / hazırlamak",
+    "en": "to make / to cook",
+    "tr": "yapmak / pişirmek",
     "sv": "göra / laga",
     "nl": "maken / klaarmaken",
     "nb": "lage / tilberede",
     "da": "at lave / at tilberede",
-    "fr": "faire / préparer"
+    "fr": "faire / cuisiner"
    },
    "audio": null
   },
@@ -37145,13 +37145,13 @@
    "section": "tunlassen",
    "translations": {
     "de": "machen / zubereiten",
-    "en": "to make / to prepare",
-    "tr": "yapmak / hazırlamak",
+    "en": "to make / to cook",
+    "tr": "yapmak / pişirmek",
     "sv": "göra / laga",
     "nl": "maken / klaarmaken",
     "nb": "lage / tilberede",
     "da": "at lave / at tilberede",
-    "fr": "faire / préparer"
+    "fr": "faire / cuisiner"
    },
    "audio": null
   },
@@ -38480,7 +38480,7 @@
     "en": "to be late / to arrive late",
     "tr": "gecikmek / geç kalmak",
     "sv": "bli försenad / komma för sent",
-    "nl": "vertraging hebben / te laat komen",
+    "nl": "zich verlaten / te laat komen",
     "nb": "bli forsinket / komme for sent",
     "da": "at blive forsinket / at komme for sent",
     "fr": "être en retard / arriver en retard"
@@ -39000,7 +39000,7 @@
    "translations": {
     "de": "Der Krankenwagen ist schon unterwegs.",
     "en": "The ambulance is already on its way.",
-    "tr": "Ambulans yolda.",
+    "tr": "Ambulans zaten yolda.",
     "sv": "Ambulansen är redan på väg.",
     "nl": "De ambulance is al onderweg.",
     "nb": "Ambulansen er allerede på vei.",

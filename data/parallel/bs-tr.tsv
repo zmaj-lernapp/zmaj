@@ -1781,9 +1781,9 @@ voziti	sürmek (araç)	word	fahren (ein fahrzeug):voziti
 Ne vozi tako brzo!	Bu kadar hızlı sürme!	word	fahr nicht so schnell!:Ne vozi tako brzo!
 putovati	seyahat etmek	word	reisen:putovati
 Volim putovati vozom.	Trenle seyahat etmeyi severim.	word	ich reise gern mit dem zug.:Volim putovati vozom.
-dobiti	elde etmek / almak	word	bekommen:dobiti
+dobiti	elde etmek	word	bekommen:dobiti
 Jesi li dobio moju poruku?	Mesajımı aldın mı?	word	hast du meine nachricht bekommen?:Jesi li dobio moju poruku?
-dobivati	elde etmek / almak	word	bekommen:dobivati
+dobivati	elde etmek	word	bekommen:dobivati
 Platu dobivamo krajem mjeseca.	Maaşımızı ay sonunda alıyoruz.	word	den lohn bekommen wir am monatsende.:Platu dobivamo krajem mjeseca.
 nalaziti se	bulunmak	word	sich befinden:nalaziti se
 Gdje se nalazi apoteka?	Eczane nerede bulunuyor?	word	wo befindet sich die apotheke?:Gdje se nalazi apoteka?
@@ -1817,7 +1817,7 @@ plaćati	ödemek	word	bezahlen:plaćati
 Plaćate li karticom ili gotovinom?	Kartla mı ödüyorsunuz, nakit mi?	word	zahlen sie mit karte oder bar?:Plaćate li karticom ili gotovinom?
 kupovati	satın almak	word	kaufen:kupovati
 Hljeb kupujem svako jutro.	Ekmeği her sabah alıyorum.	word	brot kaufe ich jeden morgen.:Hljeb kupujem svako jutro.
-primati	kabul etmek / almak	word	annehmen / empfangen:primati
+primati	kabul etmek / teslim almak	word	annehmen / empfangen:primati
 Primate li kartice?	Kart kabul ediyor musunuz?	word	nehmen sie karten?:Primate li kartice?
 ukrasti	çalmak (hırsızlık)	word	stehlen:ukrasti
 Neko mi je ukrao novčanik!	Biri cüzdanımı çaldı!	word	jemand hat mir den geldbeutel gestohlen!:Neko mi je ukrao novčanik!
@@ -1841,7 +1841,7 @@ Vjeruj mi, to je istina.	İnan bana, bu doğru.	word	glaub mir, das ist wahr.:Vj
 Čuješ li me?	Beni duyuyor musun?	word	hörst du mich?:Čuješ li me?
 odlučiti	karar vermek	word	entscheiden / beschließen:odlučiti
 Odlučili smo kupiti kuću.	Bir ev almaya karar verdik.	word	wir haben beschlossen, ein haus zu kaufen.:Odlučili smo kupiti kuću.
-nadati se	ummak / umut etmek	word	hoffen:nadati se
+nadati se	umut etmek	word	hoffen:nadati se
 Nadam se lijepom vremenu.	Güzel bir hava umuyorum.	word	ich hoffe auf schönes wetter.:Nadam se lijepom vremenu.
 odgovoriti	cevap vermek	word	antworten:odgovoriti
 Još mi nije odgovorio.	Bana hâlâ cevap vermedi.	word	er hat mir noch nicht geantwortet.:Još mi nije odgovorio.
@@ -1919,9 +1919,9 @@ Postao je otac.	Baba oldu.	word	er ist vater geworden.:Postao je otac.
 Moja sestra živi u Beču.	Kız kardeşim Viyana'da yaşıyor.	word	meine schwester lebt in wien.:Moja sestra živi u Beču.
 igrati	oynamak (spor, oyun)	word	spielen (sport, spiel):igrati
 Igraš li fudbal?	Futbol oynuyor musun?	word	spielst du fußball?:Igraš li fudbal?
-napraviti	yapmak / hazırlamak	word	machen / zubereiten:napraviti
+napraviti	yapmak / pişirmek	word	machen / zubereiten:napraviti
 Napravit ću kahvu.	Kahve yapayım.	word	ich mache kaffee.:Napravit ću kahvu.
-praviti	yapmak / hazırlamak	word	machen / zubereiten:praviti
+praviti	yapmak / pişirmek	word	machen / zubereiten:praviti
 Nana pravi najbolju pitu.	En güzel pitayı ninem yapar.	word	oma macht die beste pita.:Nana pravi najbolju pitu.
 uraditi	yapmak / halletmek	word	machen / erledigen:uraditi
 Uradio sam sve što si tražila.	Benden istediğin her şeyi yaptım.	word	ich habe alles gemacht, worum du gebeten hast.:Uradio sam sve što si tražila.
@@ -2024,7 +2024,7 @@ Upomoć! Pomozite mi!	İmdat! Bana yardım edin!	word	hilfe! helfen sie mir!:Upo
 hitan slučaj	acil durum	word	notfall:hitan slučaj
 Ovo je hitan slučaj, zovite hitnu pomoć!	Bu acil bir durum, ambulans çağırın!	word	das ist ein notfall, rufen sie den rettungsdienst!:Ovo je hitan slučaj, zovite hitnu pomoć!
 hitna	ambulans / acil yardım	word	krankenwagen / rettung:hitna
-Hitna je već na putu.	Ambulans yolda.	word	der krankenwagen ist schon unterwegs.:Hitna je već na putu.
+Hitna je već na putu.	Ambulans zaten yolda.	word	der krankenwagen ist schon unterwegs.:Hitna je već na putu.
 vatrogasci	itfaiye	word	feuerwehr:vatrogasci
 Zovite vatrogasce!	İtfaiyeyi arayın!	word	rufen sie die feuerwehr!:Zovite vatrogasce!
 požar	yangın	word	brand:požar
