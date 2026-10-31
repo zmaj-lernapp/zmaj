@@ -2101,6 +2101,1516 @@
    "key": "lopov je pobjegao, zovite policiju!",
    "datei": "w2821.mp3",
    "text": "Lopov je pobjegao, zovite policiju!"
+  },
+  {
+   "key": "nalaziti",
+   "datei": "w2822.mp3",
+   "text": "nalaziti"
+  },
+  {
+   "key": "gdje nalaziš takve stvari?",
+   "datei": "w2823.mp3",
+   "text": "Gdje nalaziš takve stvari?"
+  },
+  {
+   "key": "primiti",
+   "datei": "w2824.mp3",
+   "text": "primiti"
+  },
+  {
+   "key": "primili su me na posao!",
+   "datei": "w2825.mp3",
+   "text": "Primili su me na posao!"
+  },
+  {
+   "key": "nuditi",
+   "datei": "w2826.mp3",
+   "text": "nuditi"
+  },
+  {
+   "key": "nana gostima uvijek nudi kahvu.",
+   "datei": "w2827.mp3",
+   "text": "Nana gostima uvijek nudi kahvu."
+  },
+  {
+   "key": "iskoristiti",
+   "datei": "w2828.mp3",
+   "text": "iskoristiti"
+  },
+  {
+   "key": "iskoristi lijepo vrijeme!",
+   "datei": "w2829.mp3",
+   "text": "Iskoristi lijepo vrijeme!"
+  },
+  {
+   "key": "sačuvati",
+   "datei": "w2830.mp3",
+   "text": "sačuvati"
+  },
+  {
+   "key": "sačuvaj račun, možda ti zatreba.",
+   "datei": "w2831.mp3",
+   "text": "Sačuvaj račun, možda ti zatreba."
+  },
+  {
+   "key": "gubiti",
+   "datei": "w2832.mp3",
+   "text": "gubiti"
+  },
+  {
+   "key": "naša ekipa opet gubi.",
+   "datei": "w2833.mp3",
+   "text": "Naša ekipa opet gubi."
+  },
+  {
+   "key": "ostavljati",
+   "datei": "w2834.mp3",
+   "text": "ostavljati"
+  },
+  {
+   "key": "ne ostavljaj stvari po podu!",
+   "datei": "w2835.mp3",
+   "text": "Ne ostavljaj stvari po podu!"
+  },
+  {
+   "key": "bacati",
+   "datei": "w2836.mp3",
+   "text": "bacati"
+  },
+  {
+   "key": "hljeb se ne baca.",
+   "datei": "w2837.mp3",
+   "text": "Hljeb se ne baca."
+  },
+  {
+   "key": "skidati",
+   "datei": "w2838.mp3",
+   "text": "skidati"
+  },
+  {
+   "key": "kod nas se u kući skidaju cipele.",
+   "datei": "w2839.mp3",
+   "text": "Kod nas se u kući skidaju cipele."
+  },
+  {
+   "key": "krasti",
+   "datei": "w2840.mp3",
+   "text": "krasti"
+  },
+  {
+   "key": "kao djeca smo krali trešnje iz komšijine bašte.",
+   "datei": "w2841.mp3",
+   "text": "Kao djeca smo krali trešnje iz komšijine bašte."
+  },
+  {
+   "key": "pokazivati",
+   "datei": "w2842.mp3",
+   "text": "pokazivati"
+  },
+  {
+   "key": "nana svima pokazuje slike unuka.",
+   "datei": "w2843.mp3",
+   "text": "Nana svima pokazuje slike unuka."
+  },
+  {
+   "key": "pozivati",
+   "datei": "w2844.mp3",
+   "text": "pozivati"
+  },
+  {
+   "key": "komšije nas stalno pozivaju na kahvu.",
+   "datei": "w2845.mp3",
+   "text": "Komšije nas stalno pozivaju na kahvu."
+  },
+  {
+   "key": "potražiti",
+   "datei": "w2846.mp3",
+   "text": "potražiti"
+  },
+  {
+   "key": "potraži na internetu.",
+   "datei": "w2847.mp3",
+   "text": "Potraži na internetu."
+  },
+  {
+   "key": "naručivati",
+   "datei": "w2848.mp3",
+   "text": "naručivati"
+  },
+  {
+   "key": "ja uvijek naručujem isto.",
+   "datei": "w2849.mp3",
+   "text": "Ja uvijek naručujem isto."
+  },
+  {
+   "key": "javljati se",
+   "datei": "w2850.mp3",
+   "text": "javljati se"
+  },
+  {
+   "key": "zašto se ne javljaš na telefon?",
+   "datei": "w2851.mp3",
+   "text": "Zašto se ne javljaš na telefon?"
+  },
+  {
+   "key": "objašnjavati",
+   "datei": "w2852.mp3",
+   "text": "objašnjavati"
+  },
+  {
+   "key": "nastavnica sve lijepo objašnjava.",
+   "datei": "w2853.mp3",
+   "text": "Nastavnica sve lijepo objašnjava."
+  },
+  {
+   "key": "odlučivati",
+   "datei": "w2854.mp3",
+   "text": "odlučivati"
+  },
+  {
+   "key": "ko o tome odlučuje?",
+   "datei": "w2855.mp3",
+   "text": "Ko o tome odlučuje?"
+  },
+  {
+   "key": "rješavati",
+   "datei": "w2856.mp3",
+   "text": "rješavati"
+  },
+  {
+   "key": "probleme rješavamo zajedno.",
+   "datei": "w2857.mp3",
+   "text": "Probleme rješavamo zajedno."
+  },
+  {
+   "key": "razmisliti",
+   "datei": "w2858.mp3",
+   "text": "razmisliti"
+  },
+  {
+   "key": "razmisli pa mi javi.",
+   "datei": "w2859.mp3",
+   "text": "Razmisli pa mi javi."
+  },
+  {
+   "key": "shvatati",
+   "datei": "w2860.mp3",
+   "text": "shvatati"
+  },
+  {
+   "key": "ne shvatam šta hoćeš od mene.",
+   "datei": "w2861.mp3",
+   "text": "Ne shvatam šta hoćeš od mene."
+  },
+  {
+   "key": "zaboravljati",
+   "datei": "w2862.mp3",
+   "text": "zaboravljati"
+  },
+  {
+   "key": "stalno zaboravljam imena.",
+   "datei": "w2863.mp3",
+   "text": "Stalno zaboravljam imena."
+  },
+  {
+   "key": "poslušati",
+   "datei": "w2864.mp3",
+   "text": "poslušati"
+  },
+  {
+   "key": "poslušaj me bar jednom!",
+   "datei": "w2865.mp3",
+   "text": "Poslušaj me bar jednom!"
+  },
+  {
+   "key": "dogovarati se",
+   "datei": "w2866.mp3",
+   "text": "dogovarati se"
+  },
+  {
+   "key": "stalno se dogovaramo, a nikako da se nađemo.",
+   "datei": "w2867.mp3",
+   "text": "Stalno se dogovaramo, a nikako da se nađemo."
+  },
+  {
+   "key": "sačekati",
+   "datei": "w2868.mp3",
+   "text": "sačekati"
+  },
+  {
+   "key": "sačekaj me ispred zgrade.",
+   "datei": "w2869.mp3",
+   "text": "Sačekaj me ispred zgrade."
+  },
+  {
+   "key": "postajati",
+   "datei": "w2870.mp3",
+   "text": "postajati"
+  },
+  {
+   "key": "navečer već postaje hladno.",
+   "datei": "w2871.mp3",
+   "text": "Navečer već postaje hladno."
+  },
+  {
+   "key": "nastavljati",
+   "datei": "w2872.mp3",
+   "text": "nastavljati"
+  },
+  {
+   "key": "nastavljamo poslije pauze.",
+   "datei": "w2873.mp3",
+   "text": "Nastavljamo poslije pauze."
+  },
+  {
+   "key": "dešavati se",
+   "datei": "w2874.mp3",
+   "text": "dešavati se / događati se"
+  },
+  {
+   "key": "šta se ovdje dešava?",
+   "datei": "w2875.mp3",
+   "text": "Šta se ovdje dešava?"
+  },
+  {
+   "key": "padati",
+   "datei": "w2876.mp3",
+   "text": "padati"
+  },
+  {
+   "key": "noću temperatura pada ispod nule.",
+   "datei": "w2877.mp3",
+   "text": "Noću temperatura pada ispod nule."
+  },
+  {
+   "key": "pripremati",
+   "datei": "w2878.mp3",
+   "text": "pripremati"
+  },
+  {
+   "key": "mama priprema ručak.",
+   "datei": "w2879.mp3",
+   "text": "Mama priprema ručak."
+  },
+  {
+   "key": "buditi se",
+   "datei": "w2880.mp3",
+   "text": "buditi se"
+  },
+  {
+   "key": "budim se svaki dan u šest.",
+   "datei": "w2881.mp3",
+   "text": "Budim se svaki dan u šest."
+  },
+  {
+   "key": "buditi",
+   "datei": "w2882.mp3",
+   "text": "buditi"
+  },
+  {
+   "key": "svako jutro budim djecu za školu.",
+   "datei": "w2883.mp3",
+   "text": "Svako jutro budim djecu za školu."
+  },
+  {
+   "key": "probuditi",
+   "datei": "w2884.mp3",
+   "text": "probuditi"
+  },
+  {
+   "key": "probudi me u sedam, molim te.",
+   "datei": "w2885.mp3",
+   "text": "Probudi me u sedam, molim te."
+  },
+  {
+   "key": "prestajati",
+   "datei": "w2886.mp3",
+   "text": "prestajati"
+  },
+  {
+   "key": "kiša nikako ne prestaje.",
+   "datei": "w2887.mp3",
+   "text": "Kiša nikako ne prestaje."
+  },
+  {
+   "key": "uspijevati",
+   "datei": "w2888.mp3",
+   "text": "uspijevati"
+  },
+  {
+   "key": "nikako ne uspijevam zaspati.",
+   "datei": "w2889.mp3",
+   "text": "Nikako ne uspijevam zaspati."
+  },
+  {
+   "key": "ženiti se",
+   "datei": "w2890.mp3",
+   "text": "ženiti se"
+  },
+  {
+   "key": "kad se ženiš?",
+   "datei": "w2891.mp3",
+   "text": "Kad se ženiš?"
+  },
+  {
+   "key": "udavati se",
+   "datei": "w2892.mp3",
+   "text": "udavati se"
+  },
+  {
+   "key": "sestra mi se udaje u junu.",
+   "datei": "w2893.mp3",
+   "text": "Sestra mi se udaje u junu."
+  },
+  {
+   "key": "paliti",
+   "datei": "w2894.mp3",
+   "text": "paliti"
+  },
+  {
+   "key": "u oktobru već palimo grijanje.",
+   "datei": "w2895.mp3",
+   "text": "U oktobru već palimo grijanje."
+  },
+  {
+   "key": "posjećivati",
+   "datei": "w2896.mp3",
+   "text": "posjećivati"
+  },
+  {
+   "key": "svake sedmice posjećujemo nanu.",
+   "datei": "w2897.mp3",
+   "text": "Svake sedmice posjećujemo nanu."
+  },
+  {
+   "key": "gasiti",
+   "datei": "w2898.mp3",
+   "text": "gasiti"
+  },
+  {
+   "key": "uvijek gasim svjetlo kad izlazim iz sobe.",
+   "datei": "w2899.mp3",
+   "text": "Uvijek gasim svjetlo kad izlazim iz sobe."
+  },
+  {
+   "key": "popravljati",
+   "datei": "w2900.mp3",
+   "text": "popravljati"
+  },
+  {
+   "key": "babo uvijek sam popravlja auto.",
+   "datei": "w2901.mp3",
+   "text": "Babo uvijek sam popravlja auto."
+  },
+  {
+   "key": "iznijeti",
+   "datei": "w2902.mp3",
+   "text": "iznijeti"
+  },
+  {
+   "key": "ko će iznijeti smeće?",
+   "datei": "w2903.mp3",
+   "text": "Ko će iznijeti smeće?"
+  },
+  {
+   "key": "složiti",
+   "datei": "w2904.mp3",
+   "text": "složiti"
+  },
+  {
+   "key": "složi veš i stavi ga u ormar.",
+   "datei": "w2905.mp3",
+   "text": "Složi veš i stavi ga u ormar."
+  },
+  {
+   "key": "oprati",
+   "datei": "w2906.mp3",
+   "text": "oprati"
+  },
+  {
+   "key": "operi ruke prije jela!",
+   "datei": "w2907.mp3",
+   "text": "Operi ruke prije jela!"
+  },
+  {
+   "key": "miješati",
+   "datei": "w2908.mp3",
+   "text": "miješati"
+  },
+  {
+   "key": "miješaj da ne zagori!",
+   "datei": "w2909.mp3",
+   "text": "Miješaj da ne zagori!"
+  },
+  {
+   "key": "pokvariti se",
+   "datei": "w2910.mp3",
+   "text": "pokvariti se"
+  },
+  {
+   "key": "opet se pokvarila veš mašina.",
+   "datei": "w2911.mp3",
+   "text": "Opet se pokvarila veš mašina."
+  },
+  {
+   "key": "obrisati",
+   "datei": "w2912.mp3",
+   "text": "obrisati"
+  },
+  {
+   "key": "obriši sto, molim te.",
+   "datei": "w2913.mp3",
+   "text": "Obriši sto, molim te."
+  },
+  {
+   "key": "brisati",
+   "datei": "w2914.mp3",
+   "text": "brisati"
+  },
+  {
+   "key": "ko danas briše prašinu?",
+   "datei": "w2915.mp3",
+   "text": "Ko danas briše prašinu?"
+  },
+  {
+   "key": "sušiti",
+   "datei": "w2916.mp3",
+   "text": "sušiti"
+  },
+  {
+   "key": "veš sušimo na balkonu.",
+   "datei": "w2917.mp3",
+   "text": "Veš sušimo na balkonu."
+  },
+  {
+   "key": "rezati",
+   "datei": "w2918.mp3",
+   "text": "rezati"
+  },
+  {
+   "key": "ovaj nož ništa ne reže.",
+   "datei": "w2919.mp3",
+   "text": "Ovaj nož ništa ne reže."
+  },
+  {
+   "key": "skuhat ću ti kahvu.",
+   "datei": "w2920.mp3",
+   "text": "Skuhat ću ti kahvu."
+  },
+  {
+   "key": "pržiti",
+   "datei": "w2921.mp3",
+   "text": "pržiti"
+  },
+  {
+   "key": "mama prži ribu.",
+   "datei": "w2922.mp3",
+   "text": "Mama prži ribu."
+  },
+  {
+   "key": "zaliti",
+   "datei": "w2923.mp3",
+   "text": "zaliti"
+  },
+  {
+   "key": "zalij cvijeće dok me nema.",
+   "datei": "w2924.mp3",
+   "text": "Zalij cvijeće dok me nema."
+  },
+  {
+   "key": "objesiti",
+   "datei": "w2925.mp3",
+   "text": "objesiti"
+  },
+  {
+   "key": "objesi veš, mašina je gotova.",
+   "datei": "w2926.mp3",
+   "text": "Objesi veš, mašina je gotova."
+  },
+  {
+   "key": "počistiti",
+   "datei": "w2927.mp3",
+   "text": "počistiti"
+  },
+  {
+   "key": "moram počistiti kupatilo.",
+   "datei": "w2928.mp3",
+   "text": "Moram počistiti kupatilo."
+  },
+  {
+   "key": "usisavati",
+   "datei": "w2929.mp3",
+   "text": "usisavati"
+  },
+  {
+   "key": "subotom usisavam cijeli stan.",
+   "datei": "w2930.mp3",
+   "text": "Subotom usisavam cijeli stan."
+  },
+  {
+   "key": "usisati",
+   "datei": "w2931.mp3",
+   "text": "usisati"
+  },
+  {
+   "key": "usisaj sobu prije nego što dođu gosti.",
+   "datei": "w2932.mp3",
+   "text": "Usisaj sobu prije nego što dođu gosti."
+  },
+  {
+   "key": "daleko",
+   "datei": "w2933.mp3",
+   "text": "daleko"
+  },
+  {
+   "key": "je li daleko do centra?",
+   "datei": "w2934.mp3",
+   "text": "Je li daleko do centra?"
+  },
+  {
+   "key": "visok",
+   "datei": "w2935.mp3",
+   "text": "visok"
+  },
+  {
+   "key": "moj brat je jako visok.",
+   "datei": "w2936.mp3",
+   "text": "Moj brat je jako visok."
+  },
+  {
+   "key": "težak",
+   "datei": "w2937.mp3",
+   "text": "težak"
+  },
+  {
+   "key": "ovaj kofer je jako težak.",
+   "datei": "w2938.mp3",
+   "text": "Ovaj kofer je jako težak."
+  },
+  {
+   "key": "širok",
+   "datei": "w2939.mp3",
+   "text": "širok"
+  },
+  {
+   "key": "rijeka je ovdje jako široka.",
+   "datei": "w2940.mp3",
+   "text": "Rijeka je ovdje jako široka."
+  },
+  {
+   "key": "ovo je bio dug dan.",
+   "datei": "w2941.mp3",
+   "text": "Ovo je bio dug dan."
+  },
+  {
+   "key": "nizak",
+   "datei": "w2942.mp3",
+   "text": "nizak"
+  },
+  {
+   "key": "ovdje su cijene niske.",
+   "datei": "w2943.mp3",
+   "text": "Ovdje su cijene niske."
+  },
+  {
+   "key": "kratak",
+   "datei": "w2944.mp3",
+   "text": "kratak"
+  },
+  {
+   "key": "život je kratak.",
+   "datei": "w2945.mp3",
+   "text": "Život je kratak."
+  },
+  {
+   "key": "uzak",
+   "datei": "w2946.mp3",
+   "text": "uzak"
+  },
+  {
+   "key": "ove cipele su mi uske.",
+   "datei": "w2947.mp3",
+   "text": "Ove cipele su mi uske."
+  },
+  {
+   "key": "lagan",
+   "datei": "w2948.mp3",
+   "text": "lagan"
+  },
+  {
+   "key": "torba je lagana, nosit ću je sama.",
+   "datei": "w2949.mp3",
+   "text": "Torba je lagana, nosit ću je sama."
+  },
+  {
+   "key": "tanak",
+   "datei": "w2950.mp3",
+   "text": "tanak"
+  },
+  {
+   "key": "zidovi su tanki, sve se čuje.",
+   "datei": "w2951.mp3",
+   "text": "Zidovi su tanki, sve se čuje."
+  },
+  {
+   "key": "debeo",
+   "datei": "w2952.mp3",
+   "text": "debeo"
+  },
+  {
+   "key": "ova knjiga je baš debela.",
+   "datei": "w2953.mp3",
+   "text": "Ova knjiga je baš debela."
+  },
+  {
+   "key": "mršav",
+   "datei": "w2954.mp3",
+   "text": "mršav"
+  },
+  {
+   "key": "mršav si, jedi malo više!",
+   "datei": "w2955.mp3",
+   "text": "Mršav si, jedi malo više!"
+  },
+  {
+   "key": "isti",
+   "datei": "w2956.mp3",
+   "text": "isti"
+  },
+  {
+   "key": "imamo iste cipele!",
+   "datei": "w2957.mp3",
+   "text": "Imamo iste cipele!"
+  },
+  {
+   "key": "jak",
+   "datei": "w2958.mp3",
+   "text": "jak"
+  },
+  {
+   "key": "jak je kao medvjed.",
+   "datei": "w2959.mp3",
+   "text": "Jak je kao medvjed."
+  },
+  {
+   "key": "pun",
+   "datei": "w2960.mp3",
+   "text": "pun"
+  },
+  {
+   "key": "autobus je bio pun.",
+   "datei": "w2961.mp3",
+   "text": "Autobus je bio pun."
+  },
+  {
+   "key": "bogat",
+   "datei": "w2962.mp3",
+   "text": "bogat"
+  },
+  {
+   "key": "njegova porodica je jako bogata.",
+   "datei": "w2963.mp3",
+   "text": "Njegova porodica je jako bogata."
+  },
+  {
+   "key": "drugačiji",
+   "datei": "w2964.mp3",
+   "text": "drugačiji"
+  },
+  {
+   "key": "danas si nekako drugačiji.",
+   "datei": "w2965.mp3",
+   "text": "Danas si nekako drugačiji."
+  },
+  {
+   "key": "slab",
+   "datei": "w2966.mp3",
+   "text": "slab"
+  },
+  {
+   "key": "signal je ovdje slab.",
+   "datei": "w2967.mp3",
+   "text": "Signal je ovdje slab."
+  },
+  {
+   "key": "prazan",
+   "datei": "w2968.mp3",
+   "text": "prazan"
+  },
+  {
+   "key": "frižider je opet prazan.",
+   "datei": "w2969.mp3",
+   "text": "Frižider je opet prazan."
+  },
+  {
+   "key": "tačan",
+   "datei": "w2970.mp3",
+   "text": "tačan"
+  },
+  {
+   "key": "je li ovo tačna adresa?",
+   "datei": "w2971.mp3",
+   "text": "Je li ovo tačna adresa?"
+  },
+  {
+   "key": "suh",
+   "datei": "w2972.mp3",
+   "text": "suh"
+  },
+  {
+   "key": "veš je već suh.",
+   "datei": "w2973.mp3",
+   "text": "Veš je već suh."
+  },
+  {
+   "key": "pogrešan",
+   "datei": "w2974.mp3",
+   "text": "pogrešan"
+  },
+  {
+   "key": "ušli smo u pogrešan autobus.",
+   "datei": "w2975.mp3",
+   "text": "Ušli smo u pogrešan autobus."
+  },
+  {
+   "key": "siromašan",
+   "datei": "w2976.mp3",
+   "text": "siromašan"
+  },
+  {
+   "key": "odrastao sam u siromašnoj porodici.",
+   "datei": "w2977.mp3",
+   "text": "Odrastao sam u siromašnoj porodici."
+  },
+  {
+   "key": "tvrd",
+   "datei": "w2978.mp3",
+   "text": "tvrd"
+  },
+  {
+   "key": "hljeb je tvrd, od jučer je.",
+   "datei": "w2979.mp3",
+   "text": "Hljeb je tvrd, od jučer je."
+  },
+  {
+   "key": "mokar",
+   "datei": "w2980.mp3",
+   "text": "mokar"
+  },
+  {
+   "key": "sav sam mokar od kiše.",
+   "datei": "w2981.mp3",
+   "text": "Sav sam mokar od kiše."
+  },
+  {
+   "key": "mekan",
+   "datei": "w2982.mp3",
+   "text": "mekan"
+  },
+  {
+   "key": "jastuk je jako mekan.",
+   "datei": "w2983.mp3",
+   "text": "Jastuk je jako mekan."
+  },
+  {
+   "key": "potreban",
+   "datei": "w2984.mp3",
+   "text": "potreban"
+  },
+  {
+   "key": "potrebna mi je tvoja pomoć.",
+   "datei": "w2985.mp3",
+   "text": "Potrebna mi je tvoja pomoć."
+  },
+  {
+   "key": "moguć",
+   "datei": "w2986.mp3",
+   "text": "moguć"
+  },
+  {
+   "key": "je li moguće platiti karticom?",
+   "datei": "w2987.mp3",
+   "text": "Je li moguće platiti karticom?"
+  },
+  {
+   "key": "poseban",
+   "datei": "w2988.mp3",
+   "text": "poseban"
+  },
+  {
+   "key": "danas je poseban dan.",
+   "datei": "w2989.mp3",
+   "text": "Danas je poseban dan."
+  },
+  {
+   "key": "siguran",
+   "datei": "w2990.mp3",
+   "text": "siguran"
+  },
+  {
+   "key": "je li ovdje sigurno noću?",
+   "datei": "w2991.mp3",
+   "text": "Je li ovdje sigurno noću?"
+  },
+  {
+   "key": "sličan",
+   "datei": "w2992.mp3",
+   "text": "sličan"
+  },
+  {
+   "key": "ti i brat ste jako slični.",
+   "datei": "w2993.mp3",
+   "text": "Ti i brat ste jako slični."
+  },
+  {
+   "key": "spreman",
+   "datei": "w2994.mp3",
+   "text": "spreman"
+  },
+  {
+   "key": "jesi li spremna? krećemo.",
+   "datei": "w2995.mp3",
+   "text": "Jesi li spremna? Krećemo."
+  },
+  {
+   "key": "slobodan",
+   "datei": "w2996.mp3",
+   "text": "slobodan"
+  },
+  {
+   "key": "jesi li slobodan u subotu?",
+   "datei": "w2997.mp3",
+   "text": "Jesi li slobodan u subotu?"
+  },
+  {
+   "key": "jednostavan",
+   "datei": "w2998.mp3",
+   "text": "jednostavan"
+  },
+  {
+   "key": "recept je jako jednostavan.",
+   "datei": "w2999.mp3",
+   "text": "Recept je jako jednostavan."
+  },
+  {
+   "key": "običan",
+   "datei": "w3000.mp3",
+   "text": "običan"
+  },
+  {
+   "key": "ja sam običan čovjek.",
+   "datei": "w3001.mp3",
+   "text": "Ja sam običan čovjek."
+  },
+  {
+   "key": "čudan",
+   "datei": "w3002.mp3",
+   "text": "čudan"
+  },
+  {
+   "key": "to je baš čudno.",
+   "datei": "w3003.mp3",
+   "text": "To je baš čudno."
+  },
+  {
+   "key": "nemoguć",
+   "datei": "w3004.mp3",
+   "text": "nemoguć"
+  },
+  {
+   "key": "to je nemoguće!",
+   "datei": "w3005.mp3",
+   "text": "To je nemoguće!"
+  },
+  {
+   "key": "gotov",
+   "datei": "w3006.mp3",
+   "text": "gotov"
+  },
+  {
+   "key": "ručak je gotov!",
+   "datei": "w3007.mp3",
+   "text": "Ručak je gotov!"
+  },
+  {
+   "key": "komplikovan",
+   "datei": "w3008.mp3",
+   "text": "komplikovan"
+  },
+  {
+   "key": "sve je to previše komplikovano.",
+   "datei": "w3009.mp3",
+   "text": "Sve je to previše komplikovano."
+  },
+  {
+   "key": "zauzet",
+   "datei": "w3010.mp3",
+   "text": "zauzet"
+  },
+  {
+   "key": "izvini, sad sam zauzet.",
+   "datei": "w3011.mp3",
+   "text": "Izvini, sad sam zauzet."
+  },
+  {
+   "key": "pravi",
+   "datei": "w3012.mp3",
+   "text": "pravi"
+  },
+  {
+   "key": "ovo je prava bosanska kahva.",
+   "datei": "w3013.mp3",
+   "text": "Ovo je prava bosanska kahva."
+  },
+  {
+   "key": "drag",
+   "datei": "w3014.mp3",
+   "text": "drag"
+  },
+  {
+   "key": "tvoja mama je jako draga.",
+   "datei": "w3015.mp3",
+   "text": "Tvoja mama je jako draga."
+  },
+  {
+   "key": "ozbiljan",
+   "datei": "w3016.mp3",
+   "text": "ozbiljan"
+  },
+  {
+   "key": "ovo je ozbiljan problem.",
+   "datei": "w3017.mp3",
+   "text": "Ovo je ozbiljan problem."
+  },
+  {
+   "key": "vrijedan",
+   "datei": "w3018.mp3",
+   "text": "vrijedan"
+  },
+  {
+   "key": "moja kćerka je jako vrijedna.",
+   "datei": "w3019.mp3",
+   "text": "Moja kćerka je jako vrijedna."
+  },
+  {
+   "key": "pametan",
+   "datei": "w3020.mp3",
+   "text": "pametan"
+  },
+  {
+   "key": "ona je jako pametna.",
+   "datei": "w3021.mp3",
+   "text": "Ona je jako pametna."
+  },
+  {
+   "key": "iskren",
+   "datei": "w3022.mp3",
+   "text": "iskren"
+  },
+  {
+   "key": "budi iskren, sviđa li ti se?",
+   "datei": "w3023.mp3",
+   "text": "Budi iskren, sviđa li ti se?"
+  },
+  {
+   "key": "zao",
+   "datei": "w3024.mp3",
+   "text": "zao"
+  },
+  {
+   "key": "pas nije zao, samo laje.",
+   "datei": "w3025.mp3",
+   "text": "Pas nije zao, samo laje."
+  },
+  {
+   "key": "hrabar",
+   "datei": "w3026.mp3",
+   "text": "hrabar"
+  },
+  {
+   "key": "bio si jako hrabar.",
+   "datei": "w3027.mp3",
+   "text": "Bio si jako hrabar."
+  },
+  {
+   "key": "glup",
+   "datei": "w3028.mp3",
+   "text": "glup"
+  },
+  {
+   "key": "to je bilo glupo od mene.",
+   "datei": "w3029.mp3",
+   "text": "To je bilo glupo od mene."
+  },
+  {
+   "key": "pošten",
+   "datei": "w3030.mp3",
+   "text": "pošten"
+  },
+  {
+   "key": "on je pošten čovjek.",
+   "datei": "w3031.mp3",
+   "text": "On je pošten čovjek."
+  },
+  {
+   "key": "veseo",
+   "datei": "w3032.mp3",
+   "text": "veseo"
+  },
+  {
+   "key": "uvijek je vesela i nasmijana.",
+   "datei": "w3033.mp3",
+   "text": "Uvijek je vesela i nasmijana."
+  },
+  {
+   "key": "oprezan",
+   "datei": "w3034.mp3",
+   "text": "oprezan"
+  },
+  {
+   "key": "budi oprezan, vani je klizavo.",
+   "datei": "w3035.mp3",
+   "text": "Budi oprezan, vani je klizavo."
+  },
+  {
+   "key": "ljubazan",
+   "datei": "w3036.mp3",
+   "text": "ljubazan"
+  },
+  {
+   "key": "prodavačica je bila jako ljubazna.",
+   "datei": "w3037.mp3",
+   "text": "Prodavačica je bila jako ljubazna."
+  },
+  {
+   "key": "pristojan",
+   "datei": "w3038.mp3",
+   "text": "pristojan"
+  },
+  {
+   "key": "budi pristojan pred gostima!",
+   "datei": "w3039.mp3",
+   "text": "Budi pristojan pred gostima!"
+  },
+  {
+   "key": "pažljiv",
+   "datei": "w3040.mp3",
+   "text": "pažljiv"
+  },
+  {
+   "key": "hvala, baš si pažljiv.",
+   "datei": "w3041.mp3",
+   "text": "Hvala, baš si pažljiv."
+  },
+  {
+   "key": "lijen",
+   "datei": "w3042.mp3",
+   "text": "lijen"
+  },
+  {
+   "key": "ne budi lijen, ustaj!",
+   "datei": "w3043.mp3",
+   "text": "Ne budi lijen, ustaj!"
+  },
+  {
+   "key": "strpljiv",
+   "datei": "w3044.mp3",
+   "text": "strpljiv"
+  },
+  {
+   "key": "budi strpljiv, doći će.",
+   "datei": "w3045.mp3",
+   "text": "Budi strpljiv, doći će."
+  },
+  {
+   "key": "sebičan",
+   "datei": "w3046.mp3",
+   "text": "sebičan"
+  },
+  {
+   "key": "nemoj biti tako sebičan.",
+   "datei": "w3047.mp3",
+   "text": "Nemoj biti tako sebičan."
+  },
+  {
+   "key": "smiren",
+   "datei": "w3048.mp3",
+   "text": "smiren"
+  },
+  {
+   "key": "on je uvijek smiren.",
+   "datei": "w3049.mp3",
+   "text": "On je uvijek smiren."
+  },
+  {
+   "key": "bezobrazan",
+   "datei": "w3050.mp3",
+   "text": "bezobrazan"
+  },
+  {
+   "key": "ne budi bezobrazan!",
+   "datei": "w3051.mp3",
+   "text": "Ne budi bezobrazan!"
+  },
+  {
+   "key": "tvrdoglav",
+   "datei": "w3052.mp3",
+   "text": "tvrdoglav"
+  },
+  {
+   "key": "tvrdoglav si kao babo.",
+   "datei": "w3053.mp3",
+   "text": "Tvrdoglav si kao babo."
+  },
+  {
+   "key": "stidljiv",
+   "datei": "w3054.mp3",
+   "text": "stidljiv"
+  },
+  {
+   "key": "naš sin je malo stidljiv.",
+   "datei": "w3055.mp3",
+   "text": "Naš sin je malo stidljiv."
+  },
+  {
+   "key": "škrt",
+   "datei": "w3056.mp3",
+   "text": "škrt"
+  },
+  {
+   "key": "ne budi škrt, danas ti častiš!",
+   "datei": "w3057.mp3",
+   "text": "Ne budi škrt, danas ti častiš!"
+  },
+  {
+   "key": "sreća",
+   "datei": "w3058.mp3",
+   "text": "sreća"
+  },
+  {
+   "key": "imali smo sreće!",
+   "datei": "w3059.mp3",
+   "text": "Imali smo sreće!"
+  },
+  {
+   "key": "osjećaj",
+   "datei": "w3060.mp3",
+   "text": "osjećaj"
+  },
+  {
+   "key": "imam dobar osjećaj.",
+   "datei": "w3061.mp3",
+   "text": "Imam dobar osjećaj."
+  },
+  {
+   "key": "briga",
+   "datei": "w3062.mp3",
+   "text": "briga"
+  },
+  {
+   "key": "bez brige, sve će biti u redu.",
+   "datei": "w3063.mp3",
+   "text": "Bez brige, sve će biti u redu."
+  },
+  {
+   "key": "zahvalan",
+   "datei": "w3064.mp3",
+   "text": "zahvalan"
+  },
+  {
+   "key": "zahvalan sam ti na svemu.",
+   "datei": "w3065.mp3",
+   "text": "Zahvalan sam ti na svemu."
+  },
+  {
+   "key": "sretno!",
+   "datei": "w3066.mp3",
+   "text": "Sretno!"
+  },
+  {
+   "key": "sretno na ispitu!",
+   "datei": "w3067.mp3",
+   "text": "Sretno na ispitu!"
+  },
+  {
+   "key": "zabrinut",
+   "datei": "w3068.mp3",
+   "text": "zabrinut"
+  },
+  {
+   "key": "mama je zabrinuta jer se ne javljaš.",
+   "datei": "w3069.mp3",
+   "text": "Mama je zabrinuta jer se ne javljaš."
+  },
+  {
+   "key": "zbunjen",
+   "datei": "w3070.mp3",
+   "text": "zbunjen"
+  },
+  {
+   "key": "malo sam zbunjen, možeš li ponoviti?",
+   "datei": "w3071.mp3",
+   "text": "Malo sam zbunjen, možeš li ponoviti?"
+  },
+  {
+   "key": "razočaran",
+   "datei": "w3072.mp3",
+   "text": "razočaran"
+  },
+  {
+   "key": "malo sam razočaran.",
+   "datei": "w3073.mp3",
+   "text": "Malo sam razočaran."
+  },
+  {
+   "key": "ljubomoran",
+   "datei": "w3074.mp3",
+   "text": "ljubomoran"
+  },
+  {
+   "key": "ne budi ljubomoran!",
+   "datei": "w3075.mp3",
+   "text": "Ne budi ljubomoran!"
+  },
+  {
+   "key": "zaljubljen",
+   "datei": "w3076.mp3",
+   "text": "zaljubljen"
+  },
+  {
+   "key": "zaljubljen je do ušiju.",
+   "datei": "w3077.mp3",
+   "text": "Zaljubljen je do ušiju."
+  },
+  {
+   "key": "opušten",
+   "datei": "w3078.mp3",
+   "text": "opušten"
+  },
+  {
+   "key": "na odmoru sam potpuno opušten.",
+   "datei": "w3079.mp3",
+   "text": "Na odmoru sam potpuno opušten."
+  },
+  {
+   "key": "uzbuđen",
+   "datei": "w3080.mp3",
+   "text": "uzbuđen"
+  },
+  {
+   "key": "djeca su uzbuđena zbog puta.",
+   "datei": "w3081.mp3",
+   "text": "Djeca su uzbuđena zbog puta."
+  },
+  {
+   "key": "uplašen",
+   "datei": "w3082.mp3",
+   "text": "uplašen"
+  },
+  {
+   "key": "dijete je bilo jako uplašeno.",
+   "datei": "w3083.mp3",
+   "text": "Dijete je bilo jako uplašeno."
+  },
+  {
+   "key": "pospan",
+   "datei": "w3084.mp3",
+   "text": "pospan"
+  },
+  {
+   "key": "pospan sam, idem leći.",
+   "datei": "w3085.mp3",
+   "text": "Pospan sam, idem leći."
+  },
+  {
+   "key": "osjetiti",
+   "datei": "w3086.mp3",
+   "text": "osjetiti"
+  },
+  {
+   "key": "osjetio sam da nešto nije u redu.",
+   "datei": "w3087.mp3",
+   "text": "Osjetio sam da nešto nije u redu."
+  },
+  {
+   "key": "primijetiti",
+   "datei": "w3088.mp3",
+   "text": "primijetiti"
+  },
+  {
+   "key": "nisam primijetio da si se ošišala.",
+   "datei": "w3089.mp3",
+   "text": "Nisam primijetio da si se ošišala."
+  },
+  {
+   "key": "probati",
+   "datei": "w3090.mp3",
+   "text": "probati"
+  },
+  {
+   "key": "probaj ovo, fino je!",
+   "datei": "w3091.mp3",
+   "text": "Probaj ovo, fino je!"
+  },
+  {
+   "key": "miris",
+   "datei": "w3092.mp3",
+   "text": "miris"
+  },
+  {
+   "key": "kakav lijep miris!",
+   "datei": "w3093.mp3",
+   "text": "Kakav lijep miris!"
+  },
+  {
+   "key": "taman",
+   "datei": "w3094.mp3",
+   "text": "taman"
+  },
+  {
+   "key": "u sobi je tamno, upali svjetlo.",
+   "datei": "w3095.mp3",
+   "text": "U sobi je tamno, upali svjetlo."
+  },
+  {
+   "key": "okus",
+   "datei": "w3096.mp3",
+   "text": "okus"
+  },
+  {
+   "key": "ovo ima čudan okus.",
+   "datei": "w3097.mp3",
+   "text": "Ovo ima čudan okus."
+  },
+  {
+   "key": "ukus",
+   "datei": "w3098.mp3",
+   "text": "ukus"
+  },
+  {
+   "key": "imaš dobar ukus.",
+   "datei": "w3099.mp3",
+   "text": "Imaš dobar ukus."
+  },
+  {
+   "key": "svijetao",
+   "datei": "w3100.mp3",
+   "text": "svijetao"
+  },
+  {
+   "key": "stan je lijep i svijetao.",
+   "datei": "w3101.mp3",
+   "text": "Stan je lijep i svijetao."
+  },
+  {
+   "key": "mrak",
+   "datei": "w3102.mp3",
+   "text": "mrak"
+  },
+  {
+   "key": "vani je već mrak.",
+   "datei": "w3103.mp3",
+   "text": "Vani je već mrak."
+  },
+  {
+   "key": "buka",
+   "datei": "w3104.mp3",
+   "text": "buka"
+  },
+  {
+   "key": "kakva je ovo buka?",
+   "datei": "w3105.mp3",
+   "text": "Kakva je ovo buka?"
+  },
+  {
+   "key": "tišina",
+   "datei": "w3106.mp3",
+   "text": "tišina"
+  },
+  {
+   "key": "tišina, molim vas!",
+   "datei": "w3107.mp3",
+   "text": "Tišina, molim vas!"
+  },
+  {
+   "key": "tih",
+   "datei": "w3108.mp3",
+   "text": "tih"
+  },
+  {
+   "key": "ovdje je noću jako tiho.",
+   "datei": "w3109.mp3",
+   "text": "Ovdje je noću jako tiho."
+  },
+  {
+   "key": "dirati",
+   "datei": "w3110.mp3",
+   "text": "dirati"
+  },
+  {
+   "key": "ne diraj, vruće je!",
+   "datei": "w3111.mp3",
+   "text": "Ne diraj, vruće je!"
+  },
+  {
+   "key": "glasan",
+   "datei": "w3112.mp3",
+   "text": "glasan"
+  },
+  {
+   "key": "komšije su jako glasne.",
+   "datei": "w3113.mp3",
+   "text": "Komšije su jako glasne."
+  },
+  {
+   "key": "gorak",
+   "datei": "w3114.mp3",
+   "text": "gorak"
+  },
+  {
+   "key": "kahva je gorka bez šećera.",
+   "datei": "w3115.mp3",
+   "text": "Kahva je gorka bez šećera."
+  },
+  {
+   "key": "mirisati",
+   "datei": "w3116.mp3",
+   "text": "mirisati"
+  },
+  {
+   "key": "kuhinja miriše na pitu.",
+   "datei": "w3117.mp3",
+   "text": "Kuhinja miriše na pitu."
+  },
+  {
+   "key": "smrdjeti",
+   "datei": "w3118.mp3",
+   "text": "smrdjeti / smrditi"
+  },
+  {
+   "key": "nešto smrdi u frižideru.",
+   "datei": "w3119.mp3",
+   "text": "Nešto smrdi u frižideru."
+  },
+  {
+   "key": "bljutav",
+   "datei": "w3120.mp3",
+   "text": "bljutav"
+  },
+  {
+   "key": "supa je bljutava, fali joj soli.",
+   "datei": "w3121.mp3",
+   "text": "Supa je bljutava, fali joj soli."
+  },
+  {
+   "key": "dešavati se / događati se",
+   "datei": "w3122.mp3",
+   "text": "dešavati se / događati se"
+  },
+  {
+   "key": "smrdjeti / smrditi",
+   "datei": "w3123.mp3",
+   "text": "smrdjeti / smrditi"
   }
  ]
 }

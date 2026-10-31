@@ -20,8 +20,11 @@ are in the Play Store listing. Format:
   never appear together as answer options. `partner` is now set on both
   words of each new pair. *okus* (taste of food) and *ukus* (taste in
   style) are two words. In Norwegian, "putzen" is now "gjøre rent", because
-  "vaske" is the new word for "waschen" in the same level. Audio for the new
-  entries follows in a separate step.
+  "vaske" is the new word for "waschen" in the same level. The app speaks
+  all new words and example sentences with recordings that only the store
+  version contains (`ton_nur_emir.json`, w2822–w3123; *dug* and *skuhati*
+  already had theirs); the web demo, the dataset and the Anki decks have
+  no audio for them.
 - Section 10 · Doings and dealings (vocabulary package 1, reviewed by a
   native speaker on 31.10.2026): 140 verbs and 10 emergency words in 10 new
   levels, each word followed by its example sentence (300 new entries,
