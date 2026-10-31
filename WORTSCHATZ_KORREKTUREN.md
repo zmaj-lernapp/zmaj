@@ -448,3 +448,12 @@ Beim Einbau festgelegt, ohne Ajdins Bosnisch zu ändern:
   und gelten in der Auswahl nicht als gleich.
 - Der deutsche Satz zu *Imaš dobar ukus.* („Du hast einen guten Geschmack.“)
   stand nicht im Paket und ist beim Einbau dazugekommen.
+
+**Ton.** Wörter und Beispielsätze hat Emir am selben Tag gesprochen
+(ElevenLabs, 31.10.2026), Text genau wie in der App. Die Aufnahmen liegen
+nur in der Hülle (`audio_emir/`), ihre Nummern stehen in
+`ton_nur_emir.json`: w2822–w3123, in der Reihenfolge der App, jedes Wort
+vor seinem Satz. *dešavati se / događati se* und *smrdjeti / smrditi*
+haben zwei Aufnahmen, alle Formen und die erste Form allein, wie
+*strina / amidžinica*. *dug* und *skuhati* hatten ihre Emir-Aufnahme
+schon.
