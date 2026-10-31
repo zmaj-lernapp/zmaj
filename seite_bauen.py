@@ -26,9 +26,13 @@ Seiten im Ordner `github-seite`:
                               Nur mit KONTAKT_FORMULAR = True in sprachen.py
                               UND zmaj-android/cloud_zugang.json
     links.html                Linkseite fuer die Profile auf TikTok,
-                              Instagram und YouTube: grosser Knopf zu Google
-                              Play, darunter Kontakt, Impressum und
-                              Datenschutz (seit 31.10.2026)
+                              Instagram und YouTube: vier grosse Knoepfe
+                              (Google Play, Instagram, TikTok, YouTube),
+                              darunter klein Kontakt, Impressum, Datenschutz
+                              und Nutzungsbedingungen (seit 31.10.2026)
+    google-play-*.png         das Abzeichen von Google Play in den acht
+                              Sprachen, fuer links.html, Kopie aus
+                              grafik/marken/google-play
 
 Die Seiten kommen ohne fremde Server aus: keine Schriften, keine Skripte
 von außen, alles steht in der Datei selbst. Einzige Ausnahme ist das
@@ -179,10 +183,8 @@ START_WORT = {
 }
 
 
-def fuss(mit_skript=True, hier=None, skript_dazu=None, grund=None):
+def fuss(mit_skript=True, hier=None, skript_dazu=None):
     """hier: Dateiname dieser Seite – der eigene Verweis wird weggelassen.
-    grund: die Sprache, deren Fusszeile ohne Skript dasteht (Standard
-    GRUNDSPRACHE; links.html nimmt Englisch, 31.10.2026).
 
     Google verlinkt die Datenschutzerklärung direkt. Ohne diese Zeile käme man
     von dort weder zum Impressum noch zu den anderen Texten.
@@ -209,10 +211,9 @@ def fuss(mit_skript=True, hier=None, skript_dazu=None, grund=None):
     # Eine Abteilung je Sprache, wie oben im Inhalt. Das Umschalt-Skript
     # blendet sie zusammen mit dem Text um; ohne Skript bleibt die
     # Grundsprache stehen, weil nur die uebrigen sieben hidden sind.
-    grund = grund or sprachen.GRUNDSPRACHE
     fuesse = "".join(
         '<span data-fuss="%s"%s>%s</span>'
-        % (s["code"], "" if s["code"] == grund else " hidden",
+        % (s["code"], "" if s["code"] == sprachen.GRUNDSPRACHE else " hidden",
            zeile(s["code"]))
         for s in sprachen.SPRACHEN)
     sozial = " · ".join('<a href="%s" rel="noopener">%s</a>' % (u, n)
@@ -1002,58 +1003,137 @@ def play_link(quelle="web"):
     return PLAY + "&referrer=" + quote(REFERRER % quelle, safe="")
 
 
-# Knopf und KI-Hinweis je Sprache. "KI" oder "AI" wie in set.ki_stimme der
-# jeweiligen Sprache. Die uebrigen Beschriftungen kommen aus START,
-# sprachen.py und kontakt_texte(), wie auf der Startseite.
+# KI-Hinweis und Markenhinweis je Sprache. "KI" oder "AI" wie in
+# set.ki_stimme der jeweiligen Sprache. Die uebrigen Beschriftungen kommen
+# aus START, sprachen.py und kontakt_texte(), wie auf der Startseite.
+#
+# Den Markenhinweis verlangen Googles Regeln fuer das Abzeichen (31.10.2026,
+# grafik/marken/QUELLEN.md). Die Fassungen anderer Sprachen wie in den
+# Markenhinweisen von Brother, Denon und Marantz in der jeweiligen Sprache;
+# Deutsch mit Durchkopplung (Google-Play-Logo).
 LINKS = {
-    "de": {"play": "Hol dir Zmaj bei Google Play (Android)",
-           "ki": "Figuren und Stimmen mit KI erstellt"},
-    "en": {"play": "Get Zmaj on Google Play (Android)",
-           "ki": "Characters & voices made with AI"},
-    "tr": {"play": "Zmaj'ı Google Play'den indir (Android)",
-           "ki": "Karakterler ve sesler yapay zekâ ile oluşturuldu"},
-    "sv": {"play": "Hämta Zmaj på Google Play (Android)",
-           "ki": "Figurer och röster skapade med AI"},
-    "nl": {"play": "Download Zmaj op Google Play (Android)",
-           "ki": "Personages en stemmen gemaakt met AI"},
-    "nb": {"play": "Last ned Zmaj på Google Play (Android)",
-           "ki": "Figurer og stemmer laget med KI"},
-    "da": {"play": "Hent Zmaj på Google Play (Android)",
-           "ki": "Figurer og stemmer lavet med AI"},
-    "fr": {"play": "Télécharge Zmaj sur Google Play (Android)",
-           "ki": "Personnages et voix créés avec l'IA"},
+    "de": {"ki": "Figuren und Stimmen mit KI erstellt",
+           "marke": "Google Play und das Google-Play-Logo sind Marken von Google LLC."},
+    "en": {"ki": "Characters & voices made with AI",
+           "marke": "Google Play and the Google Play logo are trademarks of Google LLC."},
+    "tr": {"ki": "Karakterler ve sesler yapay zekâ ile oluşturuldu",
+           "marke": "Google Play ve Google Play logosu, Google LLC'nin ticari markalarıdır."},
+    "sv": {"ki": "Figurer och röster skapade med AI",
+           "marke": "Google Play och Google Play-logotypen är varumärken som tillhör Google LLC."},
+    "nl": {"ki": "Personages en stemmen gemaakt met AI",
+           "marke": "Google Play en het Google Play-logo zijn handelsmerken van Google LLC."},
+    "nb": {"ki": "Figurer og stemmer laget med KI",
+           "marke": "Google Play og Google Play-logoen er varemerker for Google LLC."},
+    "da": {"ki": "Figurer og stemmer lavet med AI",
+           "marke": "Google Play og Google Play-logoet er varemærker, der tilhører Google LLC."},
+    "fr": {"ki": "Personnages et voix créés avec l'IA",
+           "marke": "Google Play et le logo Google Play sont des marques de Google LLC."},
 }
 
-# Gelb wie der Punkt hinter "Zmaj." - der Knopf zu Google Play soll das
-# Erste sein, was man sieht. Die Seite ist dunkel wie alle anderen;
-# color-scheme sagt das auch dem Browser, damit ein erzwungener Dunkelmodus
-# (manche In-App-Browser) die Farben nicht umdreht.
+# Der Knopf zu Google Play ist Googles Abzeichen, unveraendert und in der
+# Sprache der Seite (Ajdin am 31.10.2026: "den google play knopf"; Regeln
+# und Quelle in grafik/marken/QUELLEN.md). Je Sprache die Datei aus
+# grafik/marken/google-play und der Text auf dem Abzeichen als alt - so
+# steckt der sichtbare Text im Namen des Links (WCAG 2.5.3). Norwegisch
+# heisst bei Google "no". Auf der Seite liegen sie als google-play-<code>.png.
+ABZEICHEN_ORDNER = os.path.join(ORDNER, "grafik", "marken", "google-play")
+ABZEICHEN = {
+    "de": ("de_badge_web_generic.png", "Jetzt bei Google Play"),
+    "en": ("en_badge_web_generic.png", "Get it on Google Play"),
+    "tr": ("tr_badge_web_generic.png", "Google Play'den indirin"),
+    "sv": ("sv_badge_web_generic.png", "Ladda ned på Google Play"),
+    "nl": ("nl_badge_web_generic.png", "Ontdek het op Google Play"),
+    "nb": ("no_badge_web_generic.png", "Last ned på Google Play"),
+    "da": ("da_badge_web_generic.png", "Hent i Google Play"),
+    "fr": ("fr_badge_web_generic.png", "Disponible sur Google Play"),
+}
+# Alle Dateien sind 646 x 250. Das englische Abzeichen steht darin mit 41 px
+# durchsichtigem Rand ringsum (564 x 168), die uebrigen sieben fuellen die
+# Breite und haben nur oben und unten 29 px (646 x 192). LINKS_STIL gleicht
+# das aus: Sichtbar ist jedes Abzeichen so breit wie die Knoepfe darunter.
+ABZEICHEN_MIT_RAND = ("en",)
+
+# Die drei Profile als grosse Knoepfe, in Ajdins Reihenfolge ("insta tiktok
+# und yt"). Je Profil der Name aus SOZIAL und das Zeichen aus
+# grafik/marken/simple-icons (Simple Icons, CC0, unveraendert). Die Farbe
+# setzt LINKS_STIL ueber die Klasse: weiss auf der Markenfarbe, YouTube rot
+# auf weiss wie sein eigenes Zeichen.
+PROFIL_REIHE = ("Instagram", "TikTok", "YouTube")
+PROFIL_NAME = "@zmaj.learnbosnian"
+MARKEN_ORDNER = os.path.join(ORDNER, "grafik", "marken", "simple-icons")
+SVG_FORM = re.compile(r'<svg role="img" viewBox="(0 0 24 24)" xmlns="http://www\.w3\.org/2000/svg">'
+                      r'<title>([^<]+)</title><path d="([-0-9.,a-zA-Z ]+)"/></svg>\s*')
+
+
+def marken_zeichen(name):
+    """viewBox und Pfad eines Zeichens aus grafik/marken/simple-icons,
+    unveraendert. Bricht ab, wenn die Datei nicht genau die Form von Simple
+    Icons hat (ein svg mit Titel und einem Pfad) - dann ist es nicht mehr
+    die heruntergeladene Datei."""
+    pfad = os.path.join(MARKEN_ORDNER, name.lower() + ".svg")
+    with io.open(pfad, encoding="utf-8") as f:
+        treffer = SVG_FORM.fullmatch(f.read())
+    if not treffer or treffer.group(2) != name:
+        raise SystemExit("ABBRUCH: %s hat nicht die Form von Simple Icons." % pfad)
+    return treffer.group(1), treffer.group(3)
+
+
+# Die Seite ist dunkel wie alle anderen; color-scheme sagt das auch dem
+# Browser, damit ein erzwungener Dunkelmodus (manche In-App-Browser) die
+# Farben nicht umdreht.
+#
+# Das Abzeichen: Google verlangt ringsum Freiraum von einem Viertel seiner
+# Hoehe. Beim englischen steckt er schon in der Datei; damit es trotzdem so
+# breit ist wie die Knoepfe, ist das Bild um 646/564 breiter und ragt links
+# und rechts um 41/564 hinaus - nur der durchsichtige Rand, a.play schneidet
+# ihn ab. Die uebrigen haben oben und unten 29 statt 48 px (ein Viertel von
+# 192) und bekommen die fehlenden 19/646 der Breite als Abstand dazu.
+#
+# Kontakt, Impressum, Datenschutz und Nutzungsbedingungen stehen klein unten
+# (Ajdin: "das interessiert vielleicht 1% der leute"), aber lesbar: 13 px in
+# --leise (Kontrast 8:1 auf --bg), unterstrichen, und mit Polster, damit
+# jeder Verweis mindestens 24 px hoch ist (WCAG 2.5.8). "Impressum" heisst
+# in jeder Sprache so, wie es die Seite impressum.html nennt (§ 5 DDG:
+# leicht erkennbar und unmittelbar erreichbar). Eine Zeile reicht auf dem
+# Handy fuer Englisch, Tuerkisch, Niederlaendisch und Daenisch; die anderen
+# brechen um - deshalb Abstand statt " · ", sonst haengt am Zeilenende ein
+# Punkt.
 LINKS_STIL = """
 :root{color-scheme:dark}
 [hidden]{display:none!important}
-.links{max-width:460px;margin:0 auto;text-align:center}
-.bild{display:block;width:104px;height:104px;margin:0 auto 14px;border-radius:24px}
-.links h1{font-size:24px;margin:0 0 4px}
-.bio{color:var(--leise);margin:0 0 22px}
-.play{display:block;padding:20px 18px;border-radius:18px;background:var(--gelb);color:var(--bg);
-  font-size:19px;font-weight:800;line-height:1.3;text-decoration:none}
-.play:hover{background:#FFD84D;color:var(--bg)}
-.play:focus-visible{outline:3px solid var(--text);outline-offset:3px}
-.liste,.profile{list-style:none;margin:14px 0 0;padding:0}
-.liste{display:grid;gap:10px}
-.profile{display:flex;gap:10px}
-.profile li{flex:1}
-.liste a,.profile a{display:block;padding:13px 10px;border-radius:14px;background:var(--karte);
-  border:1px solid var(--linie);color:var(--text);font-weight:700;text-decoration:none}
-.profile a{font-size:14px}
-.liste a:hover,.profile a:hover{border-color:var(--blau);color:var(--text)}
-.ki{color:var(--leise);font-size:13px;margin:18px 0 0}
-.links .sprachen{justify-content:center;margin:26px 0 0}
-footer{text-align:center}
+.links,.wrap>footer{max-width:420px;margin-left:auto;margin-right:auto;text-align:center}
+.bild{display:block;width:88px;height:88px;margin:0 auto 12px;border-radius:22px}
+.links h1{font-size:23px;line-height:1.25;margin:0 0 6px}
+.bio{color:var(--leise);font-size:15px;line-height:1.5;margin:0}
+.play{display:block;overflow:hidden}
+.play img{display:block;width:100%;height:auto;margin:2.95% 0}
+.play img.rand{width:114.54%;margin:0 -7.27%}
+.profile{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.profile a{display:flex;align-items:center;gap:14px;min-height:68px;padding:11px 16px;border-radius:16px;
+  background:var(--karte);border:1px solid var(--linie);color:var(--text);text-decoration:none;text-align:left}
+.profile a:hover{border-color:var(--blau);color:var(--text)}
+.symbol{flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px}
+.symbol svg{display:block;width:26px;height:26px;fill:#fff}
+.instagram .symbol{background:#FF0069}
+.tiktok .symbol{background:#000;box-shadow:inset 0 0 0 1px #2E3F75}
+.youtube .symbol{background:#fff}
+.youtube .symbol svg{fill:#FF0000}
+.name{font-size:18px;font-weight:800;line-height:1.25}
+.name small{display:block;font-size:13px;font-weight:600;color:var(--leise)}
+.play:focus-visible,.profile a:focus-visible,.wrap>footer a:focus-visible{outline:3px solid var(--gelb);outline-offset:2px}
+.wrap>footer{margin-top:22px;line-height:1.5}
+.wrap>footer nav{display:flex;flex-wrap:wrap;justify-content:center;column-gap:16px}
+.wrap>footer a{display:inline-block;padding:4px 2px;color:var(--leise);text-underline-offset:2px}
+.wrap>footer a:hover{color:var(--text)}
+.wrap>footer p{margin:6px 0 0}
+.wrap>footer .zeichen{font-size:12px}
+.wrap>footer .sprachen{justify-content:center;gap:6px;margin:18px 0 0}
+.wrap>footer .sprachen button{padding:4px 10px}
 """
 
 # Kanal und Sprache. Die Sprache wie im SKRIPT der anderen Seiten, aber ohne
-# localStorage (siehe oben); gibt es die des Browsers nicht, bleibt
+# localStorage (siehe oben): die erste aus der Liste des Handys, die es hier
+# gibt (Ajdin am 31.10.2026: "je nachdem was die person hat"), sonst
 # Englisch - die Profile sind englisch. Die Sprachknoepfe erscheinen erst
 # mit Skript, ohne taeten sie nichts.
 LINKS_SKRIPT = """
@@ -1067,11 +1147,14 @@ LINKS_SKRIPT = """
   var knoepfe = document.querySelectorAll('.sprachen button');
   var teile = document.querySelectorAll('section[data-sprache]');
   var fuesse = document.querySelectorAll('[data-fuss]');
+  var da = {};
+  teile.forEach(function(s){ da[s.dataset.sprache] = true; });
+  function kurz(tag){
+    var code = String(tag || '').slice(0, 2).toLowerCase();
+    return (code === 'no' || code === 'nn') ? 'nb' : code;
+  }
   function zeige(code){
-    if(code === 'no' || code === 'nn') code = 'nb';
-    var da = false;
-    teile.forEach(function(s){ if(s.dataset.sprache === code) da = true; });
-    if(!da) code = 'en';
+    if(!da[code]) code = 'en';
     teile.forEach(function(s){ s.hidden = s.dataset.sprache !== code; });
     fuesse.forEach(function(f){ f.hidden = f.dataset.fuss !== code; });
     knoepfe.forEach(function(b){ b.setAttribute('aria-current', b.dataset.sprache === code); });
@@ -1079,28 +1162,50 @@ LINKS_SKRIPT = """
   }
   knoepfe.forEach(function(b){ b.addEventListener('click', function(){ zeige(b.dataset.sprache); }); });
   document.querySelector('.sprachen').hidden = false;
-  zeige((navigator.language || 'en').slice(0, 2).toLowerCase());
+  var wunsch = [].concat(navigator.languages || [], navigator.language || []);
+  var start = 'en';
+  for(var i = 0; i < wunsch.length; i++){
+    if(da[kurz(wunsch[i])]){ start = kurz(wunsch[i]); break; }
+  }
+  zeige(start);
 })();
 """
 
-# Eine Abteilung je Sprache; ohne Skript steht die englische da.
+# Eine Abteilung je Sprache; ohne Skript steht die englische da. Die
+# Abzeichen der versteckten Sprachen laedt der Browser erst, wenn sie
+# gezeigt werden (loading="lazy").
 LINKS_ABTEILUNG = """<section data-sprache="%(code)s" lang="%(echt)s"%(versteckt)s>
 <h1>%(titel)s</h1>
 <p class="bio">%(bio)s</p>
-<a class="play" href="%(play_link)s">%(play)s</a>
-<ul class="liste">%(liste)s</ul>
-<ul class="profile">%(profile)s</ul>
-<p class="ki">%(ki)s</p>
+<a class="play" href="%(play_link)s"><img%(rand)s src="%(bild)s" width="646" height="250" alt="%(alt)s"%(laden)s></a>
 </section>
+"""
+
+LINKS_PROFIL = ('<li><a class="%(klasse)s" href="%(adresse)s" rel="noopener">'
+                '<span class="symbol"><svg viewBox="%(box)s" aria-hidden="true" focusable="false">'
+                '<path d="%(pfad)s"/></svg></span>'
+                '<span class="name">%(name)s <small>%(profil)s</small></span></a></li>\n')
+
+# Unten, je Sprache: die vier Verweise in einer Zeile, der KI-Hinweis und
+# der Markenhinweis zum Abzeichen. Ohne Skript die englische Fassung.
+LINKS_FUSS = """<div data-fuss="%(code)s" lang="%(echt)s"%(versteckt)s>
+<nav>%(verweise)s</nav>
+<p class="ki">%(ki)s</p>
+<p class="zeichen">%(marke)s</p>
+</div>
 """
 
 
 def baue_linkseite():
-    """links.html. Kontakt fuehrt zum Formular, wenn es gebaut wird (main()
-    schaltet KONTAKT_FORMULAR dafuer um), sonst zur E-Mail-Adresse.
+    """links.html und die acht Abzeichen daneben. Kontakt fuehrt zum
+    Formular, wenn es gebaut wird (main() schaltet KONTAKT_FORMULAR dafuer
+    um), sonst zur E-Mail-Adresse.
 
     Die Content-Security-Policy wie bei kontakt.html, nur ohne connect-src:
-    Die Seite ruft nichts ab, sie verweist nur."""
+    Die Seite ruft nichts ab, sie verweist nur. Die Zeichen von Instagram,
+    TikTok und YouTube stehen als SVG in der Seite, die Abzeichen liegen
+    daneben (img-src 'self') - zur Laufzeit kommt nichts von fremden
+    Servern."""
     mail = post_adresse()
     skript = (LINKS_SKRIPT.replace("__KANAELE__", json.dumps(list(KANAELE)))
               .replace("__LINK__", json.dumps(play_link("__QUELLE__"))))
@@ -1108,31 +1213,53 @@ def baue_linkseite():
            "form-action 'none'; base-uri 'none'" % (csp_hash(skript), csp_hash(STIL + LINKS_STIL)))
     teile = [kopf(escape(START["en"][0], quote=False), csp=csp, stil=LINKS_STIL, sprache="en"),
              '<main class="links">\n'
-             '<img class="bild" src="icon-256.png" width="104" height="104" alt="">\n']
-    profile = "".join('<li><a href="%s" rel="noopener">%s</a></li>' % (u, n) for n, u in SOZIAL)
+             '<img class="bild" src="icon-256.png" width="88" height="88" alt="">\n']
+    fuesse = []
     for s in sprachen.SPRACHEN:
         code = s["code"]
-        echt = code if code in LINKS and code in START else "en"
+        echt = code if code in LINKS and code in START and code in ABZEICHEN else "en"
         k, l = START[echt], LINKS[echt]
+        versteckt = "" if code == "en" else " hidden"
+        teile.append(LINKS_ABTEILUNG % {
+            "code": code, "echt": echt, "versteckt": versteckt,
+            "titel": escape(k[0], quote=False), "bio": escape(k[1], quote=False),
+            "play_link": escape(play_link(), quote=True),
+            "rand": ' class="rand"' if echt in ABZEICHEN_MIT_RAND else "",
+            "bild": "google-play-%s.png" % echt, "alt": escape(ABZEICHEN[echt][1], quote=True),
+            "laden": "" if code == "en" else ' loading="lazy"'})
         if sprachen.KONTAKT_FORMULAR:
             kontakt = ("kontakt.html", sprachen.kontakt_texte(code)["titel"])
         else:
             kontakt = ("mailto:" + mail, k[4])
         verweise = (kontakt,
                     ("impressum.html", sprachen.texte(code)["set.impressum"]),
-                    ("datenschutz.html", k[2]))
-        teile.append(LINKS_ABTEILUNG % {
-            "code": code, "echt": echt,
-            "versteckt": "" if code == "en" else " hidden",
-            "titel": escape(k[0], quote=False), "bio": escape(k[1], quote=False),
-            "play_link": escape(play_link(), quote=True), "play": escape(l["play"], quote=False),
-            "liste": "".join('<li><a href="%s">%s</a></li>' % (escape(d, quote=True), escape(n, quote=False))
-                             for d, n in verweise),
-            "profile": profile, "ki": escape(l["ki"], quote=False)})
+                    ("datenschutz.html", k[2]),
+                    ("nutzungsbedingungen.html", k[3]))
+        fuesse.append(LINKS_FUSS % {
+            "code": code, "echt": echt, "versteckt": versteckt,
+            "verweise": "\n".join('<a href="%s">%s</a>' % (escape(d, quote=True), escape(n, quote=False))
+                                  for d, n in verweise),
+            # "LLC" nicht allein in die zweite Zeile.
+            "ki": escape(l["ki"], quote=False),
+            "marke": escape(l["marke"], quote=False).replace("Google LLC", "Google LLC")})
+    adressen = dict(SOZIAL)
+    teile.append('<ul class="profile">\n')
+    for name in PROFIL_REIHE:
+        box, pfad = marken_zeichen(name)
+        teile.append(LINKS_PROFIL % {
+            "klasse": name.lower(), "adresse": escape(adressen[name], quote=True),
+            "box": box, "pfad": pfad, "name": name, "profil": PROFIL_NAME})
+    teile.append("</ul>\n</main>\n<footer>\n")
+    teile.extend(fuesse)
     teile.append(sprachwahl().replace('<ul class="sprachen">', '<ul class="sprachen" hidden>', 1))
-    teile.append("</main>\n")
-    teile.append(fuss(mit_skript=False, hier="links.html", skript_dazu=skript, grund="en"))
+    teile.append("</footer>\n</div>\n<script>%s</script>\n</body>\n</html>\n" % skript)
     schreibe("links.html", "".join(teile))
+    # Die Abzeichen Byte fuer Byte, wie Google sie liefert.
+    for code, (quelle, _) in sorted(ABZEICHEN.items()):
+        datei = "google-play-%s.png" % code
+        pfad = os.path.join(ZIEL, datei)
+        shutil.copyfile(os.path.join(ABZEICHEN_ORDNER, quelle), pfad)
+        print("  %-26s %6d Bytes" % (datei, os.path.getsize(pfad)))
 
 
 def post_adresse():

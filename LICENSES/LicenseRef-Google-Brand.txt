@@ -5,4 +5,11 @@ the "Sign in with Google" button of the app, as required and permitted by
 Google's Sign in with Google branding guidelines:
 https://developers.google.com/identity/branding-guidelines
 
-Do not use it for anything else.
+The "Get it on Google Play" badges (grafik/marken/google-play/*.png) are
+trademarks of Google LLC as well. They appear unchanged on the link page
+links.html, in the language of the page, to link to the app on Google Play,
+as permitted by the Google Play badge guidelines:
+https://partnermarketinghub.withgoogle.com/brands/google-play/google-play/lockups-icons-badges/#badges
+Google Play and the Google Play logo are trademarks of Google LLC.
+
+Do not use them for anything else.
