@@ -34,8 +34,12 @@ import pytest
 # Verb vor dem Ich-Satz. Geprueft in tests/test_paket1.py.
 PAKET1 = {"kommen_gehen", "geben_nehmen", "sagen_denken", "verstehen", "anfangen", "tun_machen",
           "stellen_legen", "alltag_leben", "passieren", "notfall"}
+# Ebenso die elf Level aus Wortschatz-Paket 2 (31.10.2026): vier in Tun und
+# Lassen, sieben in Sektion 11 · Wie etwas ist. Geprueft in tests/test_paket2.py.
+PAKET2 = {"paare_geben", "paare_denken", "paare_alltag", "im_haushalt", "lang_kurz", "voll_leer", "moeglich",
+          "wie_jemand_ist", "benehmen", "glueck_sorgen", "sinne"}
 GEORDNET = {"zahlen", "wochentage", "monate", "mengen", "konjugation", "zukunft", "routine",
-            "vergangenheit", "modal", "adjektive"} | PAKET1
+            "vergangenheit", "modal", "adjektive"} | PAKET1 | PAKET2
 TEIL_REIHEN = {"zeit": ["jutro", "podne", "večer", "noć"],
                "wetter": ["proljeće", "ljeto", "jesen", "zima"],
                "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"]}

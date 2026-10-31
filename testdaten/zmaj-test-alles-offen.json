@@ -78,8 +78,19 @@
    "tun_machen",
    "stellen_legen",
    "alltag_leben",
+   "paare_geben",
+   "paare_denken",
+   "paare_alltag",
+   "im_haushalt",
    "passieren",
-   "notfall"
+   "notfall",
+   "lang_kurz",
+   "voll_leer",
+   "moeglich",
+   "wie_jemand_ist",
+   "benehmen",
+   "glueck_sorgen",
+   "sinne"
   ],
   "gelesen": [
    "mira",

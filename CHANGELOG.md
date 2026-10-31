@@ -7,6 +7,21 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Vocabulary package 2 (reviewed by a native speaker on 31.10.2026): 151
+  words, each followed by its example sentence (302 new entries, 2,342 in
+  total, 86 levels). Section 10 gets four levels before "When something
+  happens": three that bring the second verb of a pair (*gubiti* to
+  *izgubiti*, *pokazivati* to *pokazati*) and "Around the house". The new
+  section 11 · How things are has seven levels of adjectives (opposites,
+  character, feelings, the five senses) and carries the second colour. The
+  app shows the masculine form (*dug*); the feminine and neuter forms
+  (*duga*, *dugo*) count when typing. Words spelled like another word
+  (*dug* "long" and *dug* "debt", *jako* "very" as the neuter of *jak*)
+  never appear together as answer options. `partner` is now set on both
+  words of each new pair. *okus* (taste of food) and *ukus* (taste in
+  style) are two words. In Norwegian, "putzen" is now "gjøre rent", because
+  "vaske" is the new word for "waschen" in the same level. Audio for the new
+  entries follows in a separate step.
 - Section 10 · Doings and dealings (vocabulary package 1, reviewed by a
   native speaker on 31.10.2026): 140 verbs and 10 emergency words in 10 new
   levels, each word followed by its example sentence (300 new entries,

@@ -74,7 +74,7 @@ def paket_bauen(code, vokabeln, genanki):
     m = modell(genanki)
     stapel = genanki.Deck(feste_id("zmaj-stapel-" + code),
                           "Zmaj – Bosnian (%s)" % SPRACHNAME.get(code, code))
-    stapel.description = ("2,040 Bosnian words in 75 levels with audio, from the open course "
+    stapel.description = ("2,342 Bosnian words in 86 levels with audio, from the open course "
                           "Zmaj. CC BY-SA 4.0. https://github.com/zmaj-lernapp/zmaj")
     medien = []
     for e in vokabeln["entries"]:

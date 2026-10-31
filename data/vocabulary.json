@@ -256,6 +256,30 @@
     "da": "De vigtigste verber, ofte i par, hvert med en eksempelsætning. Derudover hjælp i nødsituationer.",
     "fr": "Les verbes les plus importants, souvent par paires, chacun avec une phrase d'exemple. Et de l'aide en cas d'urgence."
    }
+  },
+  {
+   "id": "wieetwasist",
+   "position": 11,
+   "label": {
+    "de": "Sektion 11 · Wie etwas ist",
+    "en": "Section 11 · How things are",
+    "tr": "11. bölüm · Özellikler",
+    "sv": "Avsnitt 11 · Hur något är",
+    "nl": "Deel 11 · Hoe iets is",
+    "nb": "Del 11 · Hvordan noe er",
+    "da": "Del 11 · Hvordan noget er",
+    "fr": "Partie 11 · Comment sont les choses"
+   },
+   "description": {
+    "de": "Adjektive für Gegensätze, Charakter, Gefühle und Sinne, jedes mit einem Beispielsatz.",
+    "en": "Adjectives for opposites, character, feelings and the senses, each with an example sentence.",
+    "tr": "Zıtlıklar, karakter, duygular ve duyular için sıfatlar, her biri bir örnek cümleyle.",
+    "sv": "Adjektiv för motsatser, karaktär, känslor och sinnen, vart och ett med en exempelmening.",
+    "nl": "Bijvoeglijke naamwoorden voor tegenstellingen, karakter, gevoelens en zintuigen, elk met een voorbeeldzin.",
+    "nb": "Adjektiver for motsetninger, karakter, følelser og sanser, hvert med en eksempelsetning.",
+    "da": "Adjektiver for modsætninger, karakter, følelser og sanser, hvert med en eksempelsætning.",
+    "fr": "Des adjectifs pour les contraires, le caractère, les sentiments et les sens, chacun avec une phrase d'exemple."
+   }
   }
  ],
  "levels": [
@@ -2480,8 +2504,129 @@
    "word_count": 30
   },
   {
-   "id": "passieren",
+   "id": "paare_geben",
    "position": 74,
+   "section": "tunlassen",
+   "label": {
+    "de": "Paare: geben und nehmen",
+    "en": "Pairs: giving and taking",
+    "tr": "Çiftler: vermek ve almak",
+    "sv": "Par: ge och ta",
+    "nl": "Paren: geven en nemen",
+    "nb": "Par: gi og ta",
+    "da": "Par: give og tage",
+    "fr": "Paires : donner et prendre"
+   },
+   "tip": {
+    "de": "Finden, verlieren, anbieten, zeigen: das zweite Verb zum Paar.",
+    "en": "Finding, losing, offering, showing: the second verb of the pair.",
+    "tr": "Bulmak, kaybetmek, ikram etmek, göstermek: çiftin ikinci fiili.",
+    "sv": "Hitta, förlora, bjuda, visa: parets andra verb.",
+    "nl": "Vinden, verliezen, aanbieden, laten zien: het tweede werkwoord van het paar.",
+    "nb": "Finne, miste, by, vise: det andre verbet i paret.",
+    "da": "Finde, miste, byde, vise: det andet verbum i parret.",
+    "fr": "Trouver, perdre, offrir, montrer : le deuxième verbe de la paire."
+   },
+   "builds_on": [
+    "geben_nehmen",
+    "stellen_legen"
+   ],
+   "word_count": 28
+  },
+  {
+   "id": "paare_denken",
+   "position": 75,
+   "section": "tunlassen",
+   "label": {
+    "de": "Paare: sagen und denken",
+    "en": "Pairs: saying and thinking",
+    "tr": "Çiftler: söylemek ve düşünmek",
+    "sv": "Par: säga och tänka",
+    "nl": "Paren: zeggen en denken",
+    "nb": "Par: si og tenke",
+    "da": "Par: sige og tænke",
+    "fr": "Paires : dire et penser"
+   },
+   "tip": {
+    "de": "Erklären, vergessen, entscheiden, warten: das zweite Verb zum Paar.",
+    "en": "Explaining, forgetting, deciding, waiting: the second verb of the pair.",
+    "tr": "Açıklamak, unutmak, karar vermek, beklemek: çiftin ikinci fiili.",
+    "sv": "Förklara, glömma, bestämma, vänta: parets andra verb.",
+    "nl": "Uitleggen, vergeten, beslissen, wachten: het tweede werkwoord van het paar.",
+    "nb": "Forklare, glemme, bestemme, vente: det andre verbet i paret.",
+    "da": "Forklare, glemme, beslutte, vente: det andet verbum i parret.",
+    "fr": "Expliquer, oublier, décider, attendre : le deuxième verbe de la paire."
+   },
+   "builds_on": [
+    "sagen_denken",
+    "verstehen"
+   ],
+   "word_count": 20
+  },
+  {
+   "id": "paare_alltag",
+   "position": 76,
+   "section": "tunlassen",
+   "label": {
+    "de": "Paare: Alltag und Leben",
+    "en": "Pairs: daily life and living",
+    "tr": "Çiftler: gündelik hayat",
+    "sv": "Par: vardag och liv",
+    "nl": "Paren: dagelijks leven",
+    "nb": "Par: hverdag og liv",
+    "da": "Par: hverdag og liv",
+    "fr": "Paires : le quotidien et la vie"
+   },
+   "tip": {
+    "de": "Aufwachen, weitermachen, aufhören, heiraten: das zweite Verb zum Paar.",
+    "en": "Waking up, carrying on, stopping, getting married: the second verb of the pair.",
+    "tr": "Uyanmak, devam etmek, bırakmak, evlenmek: çiftin ikinci fiili.",
+    "sv": "Vakna, fortsätta, sluta, gifta sig: parets andra verb.",
+    "nl": "Wakker worden, doorgaan, stoppen, trouwen: het tweede werkwoord van het paar.",
+    "nb": "Våkne, fortsette, slutte, gifte seg: det andre verbet i paret.",
+    "da": "Vågne, fortsætte, holde op, gifte sig: det andet verbum i parret.",
+    "fr": "Se réveiller, continuer, arrêter, se marier : le deuxième verbe de la paire."
+   },
+   "builds_on": [
+    "anfangen",
+    "tun_machen",
+    "alltag_leben"
+   ],
+   "word_count": 32
+  },
+  {
+   "id": "im_haushalt",
+   "position": 77,
+   "section": "tunlassen",
+   "label": {
+    "de": "Im Haushalt",
+    "en": "Around the house",
+    "tr": "Ev işleri",
+    "sv": "I hushållet",
+    "nl": "In het huishouden",
+    "nb": "I husholdningen",
+    "da": "I husholdningen",
+    "fr": "Les tâches ménagères"
+   },
+   "tip": {
+    "de": "Waschen, kochen, putzen, Wäsche aufhängen: was zu Hause anfällt.",
+    "en": "Washing, cooking, cleaning, hanging up laundry: the jobs around the house.",
+    "tr": "Yıkamak, yemek pişirmek, temizlik, çamaşır asmak: evde yapılacak işler.",
+    "sv": "Tvätta, laga mat, städa, hänga tvätt: det som ska göras hemma.",
+    "nl": "Wassen, koken, schoonmaken, de was ophangen: wat er thuis te doen is.",
+    "nb": "Vaske, lage mat, gjøre rent, henge opp klesvask: det som må gjøres hjemme.",
+    "da": "Vaske, lave mad, gøre rent, hænge vasketøj op: det, der skal gøres derhjemme.",
+    "fr": "Laver, cuisiner, faire le ménage, étendre le linge : les tâches de la maison."
+   },
+   "builds_on": [
+    "putzen",
+    "routine"
+   ],
+   "word_count": 32
+  },
+  {
+   "id": "passieren",
+   "position": 78,
    "section": "tunlassen",
    "label": {
     "de": "Wenn etwas passiert",
@@ -2511,7 +2656,7 @@
   },
   {
    "id": "notfall",
-   "position": 75,
+   "position": 79,
    "section": "tunlassen",
    "label": {
     "de": "Im Notfall",
@@ -2538,6 +2683,216 @@
     "koerper"
    ],
    "word_count": 20
+  },
+  {
+   "id": "lang_kurz",
+   "position": 80,
+   "section": "wieetwasist",
+   "label": {
+    "de": "Lang und kurz",
+    "en": "Long and short",
+    "tr": "Uzun ve kısa",
+    "sv": "Lång och kort",
+    "nl": "Lang en kort",
+    "nb": "Lang og kort",
+    "da": "Lang og kort",
+    "fr": "Long et court"
+   },
+   "tip": {
+    "de": "Hoch und niedrig, breit und eng, schwer und leicht, dick und dünn.",
+    "en": "High and low, wide and narrow, heavy and light, thick and thin.",
+    "tr": "Yüksek ve alçak, geniş ve dar, ağır ve hafif, kalın ve ince.",
+    "sv": "Hög och låg, bred och smal, tung och lätt, tjock och tunn.",
+    "nl": "Hoog en laag, breed en smal, zwaar en licht, dik en dun.",
+    "nb": "Høy og lav, bred og smal, tung og lett, tykk og tynn.",
+    "da": "Høj og lav, bred og smal, tung og let, tyk og tynd.",
+    "fr": "Haut et bas, large et étroit, lourd et léger, épais et mince."
+   },
+   "builds_on": [
+    "adjektive",
+    "einkaufen"
+   ],
+   "word_count": 24
+  },
+  {
+   "id": "voll_leer",
+   "position": 81,
+   "section": "wieetwasist",
+   "label": {
+    "de": "Voll und leer",
+    "en": "Full and empty",
+    "tr": "Dolu ve boş",
+    "sv": "Full och tom",
+    "nl": "Vol en leeg",
+    "nb": "Full og tom",
+    "da": "Fuld og tom",
+    "fr": "Plein et vide"
+   },
+   "tip": {
+    "de": "Stark und schwach, hart und weich, nass und trocken, richtig und falsch.",
+    "en": "Strong and weak, hard and soft, wet and dry, right and wrong.",
+    "tr": "Güçlü ve zayıf, sert ve yumuşak, ıslak ve kuru, doğru ve yanlış.",
+    "sv": "Stark och svag, hård och mjuk, blöt och torr, rätt och fel.",
+    "nl": "Sterk en zwak, hard en zacht, nat en droog, goed en fout.",
+    "nb": "Sterk og svak, hard og myk, våt og tørr, riktig og feil.",
+    "da": "Stærk og svag, hård og blød, våd og tør, rigtig og forkert.",
+    "fr": "Fort et faible, dur et mou, mouillé et sec, juste et faux."
+   },
+   "builds_on": [
+    "lang_kurz",
+    "adjektive"
+   ],
+   "word_count": 28
+  },
+  {
+   "id": "moeglich",
+   "position": 82,
+   "section": "wieetwasist",
+   "label": {
+    "de": "Möglich und unmöglich",
+    "en": "Possible and impossible",
+    "tr": "Mümkün ve imkânsız",
+    "sv": "Möjligt och omöjligt",
+    "nl": "Mogelijk en onmogelijk",
+    "nb": "Mulig og umulig",
+    "da": "Muligt og umuligt",
+    "fr": "Possible et impossible"
+   },
+   "tip": {
+    "de": "Nötig, frei, besetzt, fertig, bereit: wie eine Sache steht.",
+    "en": "Necessary, free, busy, finished, ready: how things stand.",
+    "tr": "Gerekli, müsait, meşgul, bitmiş, hazır: bir şeyin durumu.",
+    "sv": "Nödvändig, ledig, upptagen, färdig, redo: hur det står till.",
+    "nl": "Nodig, vrij, bezet, klaar, gereed: hoe iets ervoor staat.",
+    "nb": "Nødvendig, ledig, opptatt, ferdig, klar: hvordan ting står.",
+    "da": "Nødvendig, ledig, optaget, færdig, klar: hvordan tingene står.",
+    "fr": "Nécessaire, libre, occupé, fini, prêt : où en sont les choses."
+   },
+   "builds_on": [
+    "voll_leer",
+    "gefuehle"
+   ],
+   "word_count": 30
+  },
+  {
+   "id": "wie_jemand_ist",
+   "position": 83,
+   "section": "wieetwasist",
+   "label": {
+    "de": "Wie jemand ist",
+    "en": "What someone is like",
+    "tr": "Kişilik",
+    "sv": "Hur någon är",
+    "nl": "Hoe iemand is",
+    "nb": "Hvordan noen er",
+    "da": "Hvordan nogen er",
+    "fr": "Comment est quelqu'un"
+   },
+   "tip": {
+    "de": "Lieb, klug, mutig, ehrlich: was einen Menschen ausmacht.",
+    "en": "Sweet, clever, brave, honest: what makes a person.",
+    "tr": "Tatlı, akıllı, cesur, dürüst: bir insanı anlatan sözler.",
+    "sv": "Snäll, klok, modig, ärlig: det som utmärker en människa.",
+    "nl": "Lief, slim, dapper, eerlijk: wat een mens typeert.",
+    "nb": "Snill, klok, modig, ærlig: det som kjennetegner et menneske.",
+    "da": "Sød, klog, modig, ærlig: det, der kendetegner et menneske.",
+    "fr": "Gentil, intelligent, courageux, honnête : ce qui fait une personne."
+   },
+   "builds_on": [
+    "moeglich",
+    "smalltalk"
+   ],
+   "word_count": 22
+  },
+  {
+   "id": "benehmen",
+   "position": 84,
+   "section": "wieetwasist",
+   "label": {
+    "de": "Wie man sich benimmt",
+    "en": "How people behave",
+    "tr": "Davranışlar",
+    "sv": "Hur man beter sig",
+    "nl": "Hoe je je gedraagt",
+    "nb": "Hvordan man oppfører seg",
+    "da": "Hvordan man opfører sig",
+    "fr": "Comment on se comporte"
+   },
+   "tip": {
+    "de": "Freundlich, höflich, geduldig, frech, stur: im Umgang mit anderen.",
+    "en": "Friendly, polite, patient, cheeky, stubborn: dealing with others.",
+    "tr": "Nazik, terbiyeli, sabırlı, terbiyesiz, inatçı: başkalarıyla ilişkide.",
+    "sv": "Vänlig, artig, tålmodig, fräck, envis: i umgänget med andra.",
+    "nl": "Vriendelijk, beleefd, geduldig, brutaal, koppig: in de omgang met anderen.",
+    "nb": "Vennlig, høflig, tålmodig, frekk, sta: i møte med andre.",
+    "da": "Venlig, høflig, tålmodig, fræk, stædig: i omgangen med andre.",
+    "fr": "Aimable, poli, patient, insolent, têtu : dans les rapports avec les autres."
+   },
+   "builds_on": [
+    "wie_jemand_ist",
+    "kennenlernen"
+   ],
+   "word_count": 22
+  },
+  {
+   "id": "glueck_sorgen",
+   "position": 85,
+   "section": "wieetwasist",
+   "label": {
+    "de": "Glück und Sorgen",
+    "en": "Luck and worries",
+    "tr": "Şans ve dertler",
+    "sv": "Tur och bekymmer",
+    "nl": "Geluk en zorgen",
+    "nb": "Lykke og bekymringer",
+    "da": "Lykke og bekymringer",
+    "fr": "Bonheur et soucis"
+   },
+   "tip": {
+    "de": "Besorgt, verwirrt, verliebt, entspannt: wie es einem geht.",
+    "en": "Worried, confused, in love, relaxed: how you're feeling.",
+    "tr": "Endişeli, kafası karışık, âşık, rahat: insanın hâli.",
+    "sv": "Orolig, förvirrad, kär, avslappnad: hur man mår.",
+    "nl": "Bezorgd, in de war, verliefd, ontspannen: hoe het met je gaat.",
+    "nb": "Bekymret, forvirret, forelsket, avslappet: hvordan man har det.",
+    "da": "Bekymret, forvirret, forelsket, afslappet: hvordan man har det.",
+    "fr": "Inquiet, perdu, amoureux, détendu : comment on se sent."
+   },
+   "builds_on": [
+    "gefuehle",
+    "smalltalk"
+   ],
+   "word_count": 28
+  },
+  {
+   "id": "sinne",
+   "position": 86,
+   "section": "wieetwasist",
+   "label": {
+    "de": "Die fünf Sinne",
+    "en": "The five senses",
+    "tr": "Beş duyu",
+    "sv": "De fem sinnena",
+    "nl": "De vijf zintuigen",
+    "nb": "De fem sansene",
+    "da": "De fem sanser",
+    "fr": "Les cinq sens"
+   },
+   "tip": {
+    "de": "Riechen, schmecken, anfassen, laut und leise, hell und dunkel.",
+    "en": "Smelling, tasting, touching, loud and quiet, bright and dark.",
+    "tr": "Koklamak, tatmak, dokunmak, gürültülü ve sessiz, aydınlık ve karanlık.",
+    "sv": "Lukta, smaka, ta på, högt och tyst, ljust och mörkt.",
+    "nl": "Ruiken, proeven, aanraken, luid en stil, licht en donker.",
+    "nb": "Lukte, smake, ta på, høyt og stille, lyst og mørkt.",
+    "da": "Lugte, smage, røre ved, højt og stille, lyst og mørkt.",
+    "fr": "Sentir, goûter, toucher, bruyant et silencieux, clair et sombre."
+   },
+   "builds_on": [
+    "glueck_sorgen",
+    "essen"
+   ],
+   "word_count": 36
   }
  ],
  "entries": [
@@ -22641,7 +22996,7 @@
     "tr": "temizlemek",
     "sv": "städa",
     "nl": "schoonmaken",
-    "nb": "vaske",
+    "nb": "gjøre rent",
     "da": "at gøre rent",
     "fr": "faire le ménage"
    },
@@ -38506,10 +38861,2026 @@
    "audio": null
   },
   {
+   "id": "finden:nalaziti",
+   "bs": "nalaziti",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "finden",
+    "en": "to find",
+    "tr": "bulmak",
+    "sv": "hitta",
+    "nl": "vinden",
+    "nb": "finne",
+    "da": "at finde",
+    "fr": "trouver"
+   },
+   "audio": null
+  },
+  {
+   "id": "wo findest du solche sachen?:Gdje nalaziš takve stvari?",
+   "bs": "Gdje nalaziš takve stvari?",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wo findest du solche Sachen?",
+    "en": "Where do you find things like that?",
+    "tr": "Böyle şeyleri nerede buluyorsun?",
+    "sv": "Var hittar du sådana saker?",
+    "nl": "Waar vind je zulke dingen?",
+    "nb": "Hvor finner du sånne ting?",
+    "da": "Hvor finder du den slags ting?",
+    "fr": "Où est-ce que tu trouves des choses pareilles ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "annehmen / empfangen:primiti",
+   "bs": "primiti",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "annehmen / empfangen",
+    "en": "to accept / to receive",
+    "tr": "kabul etmek / teslim almak",
+    "sv": "ta emot / acceptera",
+    "nl": "aannemen / ontvangen",
+    "nb": "ta imot / motta",
+    "da": "at tage imod / at modtage",
+    "fr": "accepter / accueillir"
+   },
+   "audio": null
+  },
+  {
+   "id": "sie haben mich eingestellt!:Primili su me na posao!",
+   "bs": "Primili su me na posao!",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Sie haben mich eingestellt!",
+    "en": "They hired me!",
+    "tr": "Beni işe aldılar!",
+    "sv": "De har anställt mig!",
+    "nl": "Ze hebben me aangenomen!",
+    "nb": "De har ansatt meg!",
+    "da": "De har ansat mig!",
+    "fr": "Ils m'ont embauché !"
+   },
+   "audio": null
+  },
+  {
+   "id": "anbieten:nuditi",
+   "bs": "nuditi",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "anbieten",
+    "en": "to offer",
+    "tr": "teklif etmek",
+    "sv": "erbjuda",
+    "nl": "aanbieden",
+    "nb": "tilby",
+    "da": "at tilbyde",
+    "fr": "proposer / offrir"
+   },
+   "audio": null
+  },
+  {
+   "id": "oma bietet den gästen immer kaffee an.:Nana gostima uvijek nudi kahvu.",
+   "bs": "Nana gostima uvijek nudi kahvu.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Oma bietet den Gästen immer Kaffee an.",
+    "en": "Grandma always offers the guests coffee.",
+    "tr": "Ninem misafirlere hep kahve ikram eder.",
+    "sv": "Mormor bjuder alltid gästerna på kaffe.",
+    "nl": "Oma biedt de gasten altijd koffie aan.",
+    "nb": "Bestemor byr alltid gjestene på kaffe.",
+    "da": "Bedstemor byder altid gæsterne på kaffe.",
+    "fr": "Grand-mère offre toujours du café aux invités."
+   },
+   "audio": null
+  },
+  {
+   "id": "nutzen / ausnutzen:iskoristiti",
+   "bs": "iskoristiti",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "nutzen / ausnutzen",
+    "en": "to make use of / to take advantage of",
+    "tr": "değerlendirmek / faydalanmak",
+    "sv": "utnyttja / ta vara på",
+    "nl": "benutten / uitbuiten",
+    "nb": "utnytte / benytte seg av",
+    "da": "at udnytte / at benytte sig af",
+    "fr": "profiter de / exploiter"
+   },
+   "audio": null
+  },
+  {
+   "id": "nutz das schöne wetter!:Iskoristi lijepo vrijeme!",
+   "bs": "Iskoristi lijepo vrijeme!",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Nutz das schöne Wetter!",
+    "en": "Make the most of the nice weather!",
+    "tr": "Güzel havayı değerlendir!",
+    "sv": "Ta vara på det fina vädret!",
+    "nl": "Profiteer van het mooie weer!",
+    "nb": "Benytt deg av det fine været!",
+    "da": "Udnyt det gode vejr!",
+    "fr": "Profite du beau temps !"
+   },
+   "audio": null
+  },
+  {
+   "id": "aufheben / bewahren:sačuvati",
+   "bs": "sačuvati",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aufheben / bewahren",
+    "en": "to keep / to save",
+    "tr": "saklamak / korumak",
+    "sv": "spara / bevara",
+    "nl": "bewaren / behouden",
+    "nb": "ta vare på / spare",
+    "da": "at gemme / at bevare",
+    "fr": "garder / préserver"
+   },
+   "audio": null
+  },
+  {
+   "id": "heb den kassenbon auf, vielleicht brauchst du ihn noch.:Sačuvaj račun, možda ti zatreba.",
+   "bs": "Sačuvaj račun, možda ti zatreba.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Heb den Kassenbon auf, vielleicht brauchst du ihn noch.",
+    "en": "Keep the receipt, you might still need it.",
+    "tr": "Fişi sakla, belki lazım olur.",
+    "sv": "Spara kvittot, du kanske behöver det.",
+    "nl": "Bewaar de kassabon, misschien heb je hem nog nodig.",
+    "nb": "Ta vare på kvitteringen, kanskje du trenger den.",
+    "da": "Gem kvitteringen, måske får du brug for den.",
+    "fr": "Garde le ticket de caisse, tu en auras peut-être besoin."
+   },
+   "audio": null
+  },
+  {
+   "id": "verlieren:gubiti",
+   "bs": "gubiti",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "verlieren",
+    "en": "to lose",
+    "tr": "kaybetmek",
+    "sv": "förlora / tappa bort",
+    "nl": "verliezen",
+    "nb": "miste",
+    "da": "at miste",
+    "fr": "perdre"
+   },
+   "audio": null
+  },
+  {
+   "id": "unsere mannschaft verliert schon wieder.:Naša ekipa opet gubi.",
+   "bs": "Naša ekipa opet gubi.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Unsere Mannschaft verliert schon wieder.",
+    "en": "Our team is losing again.",
+    "tr": "Takımımız yine kaybediyor.",
+    "sv": "Vårt lag förlorar igen.",
+    "nl": "Ons team verliest alweer.",
+    "nb": "Laget vårt taper igjen.",
+    "da": "Vores hold taber igen.",
+    "fr": "Notre équipe perd encore."
+   },
+   "audio": null
+  },
+  {
+   "id": "lassen / liegen lassen:ostavljati",
+   "bs": "ostavljati",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "lassen / liegen lassen",
+    "en": "to leave / to leave behind",
+    "tr": "bırakmak / unutmak (bir yerde)",
+    "sv": "lämna / glömma kvar",
+    "nl": "laten / laten liggen",
+    "nb": "la / la ligge igjen",
+    "da": "at lade / at lade ligge",
+    "fr": "laisser / oublier (quelque part)"
+   },
+   "audio": null
+  },
+  {
+   "id": "lass deine sachen nicht auf dem boden liegen!:Ne ostavljaj stvari po podu!",
+   "bs": "Ne ostavljaj stvari po podu!",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Lass deine Sachen nicht auf dem Boden liegen!",
+    "en": "Don't leave your things lying on the floor!",
+    "tr": "Eşyalarını yerde bırakma!",
+    "sv": "Lämna inte dina saker på golvet!",
+    "nl": "Laat je spullen niet op de grond liggen!",
+    "nb": "Ikke la tingene dine ligge på gulvet!",
+    "da": "Lad ikke dine ting ligge på gulvet!",
+    "fr": "Ne laisse pas traîner tes affaires par terre !"
+   },
+   "audio": null
+  },
+  {
+   "id": "werfen / wegwerfen:bacati",
+   "bs": "bacati",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "werfen / wegwerfen",
+    "en": "to throw / to throw away",
+    "tr": "atmak / çöpe atmak",
+    "sv": "kasta / slänga",
+    "nl": "gooien / weggooien",
+    "nb": "kaste / kaste bort",
+    "da": "at kaste / at smide ud",
+    "fr": "lancer / jeter"
+   },
+   "audio": null
+  },
+  {
+   "id": "brot wirft man nicht weg.:Hljeb se ne baca.",
+   "bs": "Hljeb se ne baca.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Brot wirft man nicht weg.",
+    "en": "You don't throw bread away.",
+    "tr": "Ekmek atılmaz.",
+    "sv": "Bröd slänger man inte.",
+    "nl": "Brood gooi je niet weg.",
+    "nb": "Brød kaster man ikke.",
+    "da": "Brød smider man ikke ud.",
+    "fr": "On ne jette pas le pain."
+   },
+   "audio": null
+  },
+  {
+   "id": "ausziehen / abnehmen:skidati",
+   "bs": "skidati",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ausziehen / abnehmen",
+    "en": "to take off",
+    "tr": "çıkarmak",
+    "sv": "ta av (sig)",
+    "nl": "uittrekken / afnemen",
+    "nb": "ta av (seg)",
+    "da": "at tage af",
+    "fr": "enlever / ôter"
+   },
+   "audio": null
+  },
+  {
+   "id": "bei uns zieht man im haus die schuhe aus.:Kod nas se u kući skidaju cipele.",
+   "bs": "Kod nas se u kući skidaju cipele.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Bei uns zieht man im Haus die Schuhe aus.",
+    "en": "At our place you take your shoes off in the house.",
+    "tr": "Bizde evde ayakkabılar çıkarılır.",
+    "sv": "Hos oss tar man av sig skorna inomhus.",
+    "nl": "Bij ons doe je in huis je schoenen uit.",
+    "nb": "Hos oss tar man av seg skoene inne.",
+    "da": "Hos os tager man skoene af indenfor.",
+    "fr": "Chez nous, on enlève ses chaussures dans la maison."
+   },
+   "audio": null
+  },
+  {
+   "id": "stehlen:krasti",
+   "bs": "krasti",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "stehlen",
+    "en": "to steal",
+    "tr": "çalmak (hırsızlık)",
+    "sv": "stjäla",
+    "nl": "stelen",
+    "nb": "stjele",
+    "da": "at stjæle",
+    "fr": "voler (dérober)"
+   },
+   "audio": null
+  },
+  {
+   "id": "als kinder haben wir kirschen aus nachbars garten geklaut.:Kao djeca smo krali trešnje iz komšijine bašte.",
+   "bs": "Kao djeca smo krali trešnje iz komšijine bašte.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Als Kinder haben wir Kirschen aus Nachbars Garten geklaut.",
+    "en": "As kids we used to steal cherries from the neighbor's garden.",
+    "tr": "Çocukken komşunun bahçesinden kiraz çalardık.",
+    "sv": "När vi var barn snodde vi körsbär från grannens trädgård.",
+    "nl": "Als kinderen jatten we kersen uit de tuin van de buren.",
+    "nb": "Som barn stjal vi kirsebær fra naboens hage.",
+    "da": "Som børn stjal vi kirsebær fra naboens have.",
+    "fr": "Enfants, on piquait des cerises dans le jardin du voisin."
+   },
+   "audio": null
+  },
+  {
+   "id": "zeigen:pokazivati",
+   "bs": "pokazivati",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "zeigen",
+    "en": "to show",
+    "tr": "göstermek",
+    "sv": "visa",
+    "nl": "laten zien",
+    "nb": "vise",
+    "da": "at vise",
+    "fr": "montrer"
+   },
+   "audio": null
+  },
+  {
+   "id": "oma zeigt allen die fotos ihrer enkel.:Nana svima pokazuje slike unuka.",
+   "bs": "Nana svima pokazuje slike unuka.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Oma zeigt allen die Fotos ihrer Enkel.",
+    "en": "Grandma shows everyone the photos of her grandchildren.",
+    "tr": "Ninem herkese torunlarının fotoğraflarını gösteriyor.",
+    "sv": "Mormor visar alla bilderna på sina barnbarn.",
+    "nl": "Oma laat iedereen de foto's van haar kleinkinderen zien.",
+    "nb": "Bestemor viser alle bildene av barnebarna sine.",
+    "da": "Bedstemor viser alle billederne af sine børnebørn.",
+    "fr": "Grand-mère montre à tout le monde les photos de ses petits-enfants."
+   },
+   "audio": null
+  },
+  {
+   "id": "einladen:pozivati",
+   "bs": "pozivati",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "einladen",
+    "en": "to invite",
+    "tr": "davet etmek",
+    "sv": "bjuda in",
+    "nl": "uitnodigen",
+    "nb": "invitere",
+    "da": "at invitere",
+    "fr": "inviter"
+   },
+   "audio": null
+  },
+  {
+   "id": "die nachbarn laden uns ständig zum kaffee ein.:Komšije nas stalno pozivaju na kahvu.",
+   "bs": "Komšije nas stalno pozivaju na kahvu.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Nachbarn laden uns ständig zum Kaffee ein.",
+    "en": "The neighbors keep inviting us over for coffee.",
+    "tr": "Komşular bizi sürekli kahveye çağırıyor.",
+    "sv": "Grannarna bjuder hela tiden in oss på kaffe.",
+    "nl": "De buren nodigen ons steeds uit voor koffie.",
+    "nb": "Naboene inviterer oss stadig på kaffe.",
+    "da": "Naboerne inviterer os hele tiden på kaffe.",
+    "fr": "Les voisins nous invitent tout le temps à prendre le café."
+   },
+   "audio": null
+  },
+  {
+   "id": "suchen:potražiti",
+   "bs": "potražiti",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "suchen",
+    "en": "to look for",
+    "tr": "aramak",
+    "sv": "leta efter",
+    "nl": "zoeken",
+    "nb": "lete etter",
+    "da": "at lede efter",
+    "fr": "chercher"
+   },
+   "audio": null
+  },
+  {
+   "id": "such mal im internet.:Potraži na internetu.",
+   "bs": "Potraži na internetu.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Such mal im Internet.",
+    "en": "Look it up online.",
+    "tr": "İnternette bir ara.",
+    "sv": "Sök på nätet.",
+    "nl": "Zoek het eens op internet op.",
+    "nb": "Søk på nettet.",
+    "da": "Søg på nettet.",
+    "fr": "Cherche sur Internet."
+   },
+   "audio": null
+  },
+  {
+   "id": "bestellen:naručivati",
+   "bs": "naručivati",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "bestellen",
+    "en": "to order",
+    "tr": "sipariş vermek",
+    "sv": "beställa",
+    "nl": "bestellen",
+    "nb": "bestille",
+    "da": "bestille",
+    "fr": "commander"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bestelle immer dasselbe.:Ja uvijek naručujem isto.",
+   "bs": "Ja uvijek naručujem isto.",
+   "level": "paare_geben",
+   "level_position": 74,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich bestelle immer dasselbe.",
+    "en": "I always order the same thing.",
+    "tr": "Hep aynı şeyi sipariş ederim.",
+    "sv": "Jag beställer alltid samma sak.",
+    "nl": "Ik bestel altijd hetzelfde.",
+    "nb": "Jeg bestiller alltid det samme.",
+    "da": "Jeg bestiller altid det samme.",
+    "fr": "Je commande toujours la même chose."
+   },
+   "audio": null
+  },
+  {
+   "id": "sich melden:javljati se",
+   "bs": "javljati se",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich melden",
+    "en": "to get in touch",
+    "tr": "haber vermek",
+    "sv": "höra av sig",
+    "nl": "van je laten horen",
+    "nb": "gi lyd fra seg",
+    "da": "at give lyd fra sig",
+    "fr": "donner des nouvelles"
+   },
+   "audio": null
+  },
+  {
+   "id": "warum gehst du nicht ans telefon?:Zašto se ne javljaš na telefon?",
+   "bs": "Zašto se ne javljaš na telefon?",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Warum gehst du nicht ans Telefon?",
+    "en": "Why aren't you answering the phone?",
+    "tr": "Neden telefonu açmıyorsun?",
+    "sv": "Varför svarar du inte i telefon?",
+    "nl": "Waarom neem je de telefoon niet op?",
+    "nb": "Hvorfor tar du ikke telefonen?",
+    "da": "Hvorfor tager du ikke telefonen?",
+    "fr": "Pourquoi tu ne réponds pas au téléphone ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "erklären:objašnjavati",
+   "bs": "objašnjavati",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "erklären",
+    "en": "to explain",
+    "tr": "açıklamak",
+    "sv": "förklara",
+    "nl": "uitleggen",
+    "nb": "forklare",
+    "da": "at forklare",
+    "fr": "expliquer"
+   },
+   "audio": null
+  },
+  {
+   "id": "die lehrerin erklärt alles gut.:Nastavnica sve lijepo objašnjava.",
+   "bs": "Nastavnica sve lijepo objašnjava.",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Lehrerin erklärt alles gut.",
+    "en": "The teacher explains everything well.",
+    "tr": "Öğretmen her şeyi güzel açıklıyor.",
+    "sv": "Läraren förklarar allt bra.",
+    "nl": "De lerares legt alles goed uit.",
+    "nb": "Læreren forklarer alt godt.",
+    "da": "Læreren forklarer alt godt.",
+    "fr": "L'enseignante explique tout très bien."
+   },
+   "audio": null
+  },
+  {
+   "id": "entscheiden / beschließen:odlučivati",
+   "bs": "odlučivati",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "entscheiden / beschließen",
+    "en": "to decide",
+    "tr": "karar vermek",
+    "sv": "bestämma / besluta",
+    "nl": "beslissen / besluiten",
+    "nb": "bestemme / beslutte",
+    "da": "at bestemme / at beslutte",
+    "fr": "décider"
+   },
+   "audio": null
+  },
+  {
+   "id": "wer entscheidet darüber?:Ko o tome odlučuje?",
+   "bs": "Ko o tome odlučuje?",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wer entscheidet darüber?",
+    "en": "Who decides on that?",
+    "tr": "Buna kim karar veriyor?",
+    "sv": "Vem bestämmer om det?",
+    "nl": "Wie beslist daarover?",
+    "nb": "Hvem bestemmer det?",
+    "da": "Hvem bestemmer det?",
+    "fr": "Qui en décide ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "lösen / klären:rješavati",
+   "bs": "rješavati",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "lösen / klären",
+    "en": "to solve / to sort out",
+    "tr": "çözmek",
+    "sv": "lösa / reda ut",
+    "nl": "oplossen / uitzoeken",
+    "nb": "løse / ordne opp i",
+    "da": "at løse / at få styr på",
+    "fr": "résoudre / tirer au clair"
+   },
+   "audio": null
+  },
+  {
+   "id": "probleme lösen wir zusammen.:Probleme rješavamo zajedno.",
+   "bs": "Probleme rješavamo zajedno.",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Probleme lösen wir zusammen.",
+    "en": "We solve problems together.",
+    "tr": "Sorunları birlikte çözeriz.",
+    "sv": "Problem löser vi tillsammans.",
+    "nl": "Problemen lossen we samen op.",
+    "nb": "Problemer løser vi sammen.",
+    "da": "Problemer løser vi sammen.",
+    "fr": "Les problèmes, on les règle ensemble."
+   },
+   "audio": null
+  },
+  {
+   "id": "nachdenken:razmisliti",
+   "bs": "razmisliti",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "nachdenken",
+    "en": "to think something over",
+    "tr": "düşünüp taşınmak",
+    "sv": "fundera",
+    "nl": "nadenken",
+    "nb": "tenke over",
+    "da": "at tænke over",
+    "fr": "réfléchir"
+   },
+   "audio": null
+  },
+  {
+   "id": "überleg es dir und sag mir bescheid.:Razmisli pa mi javi.",
+   "bs": "Razmisli pa mi javi.",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Überleg es dir und sag mir Bescheid.",
+    "en": "Think it over and let me know.",
+    "tr": "Bir düşün, sonra bana haber ver.",
+    "sv": "Fundera på saken och hör av dig.",
+    "nl": "Denk er even over na en laat het me weten.",
+    "nb": "Tenk over det og gi meg beskjed.",
+    "da": "Tænk over det, og giv mig besked.",
+    "fr": "Réfléchis et tiens-moi au courant."
+   },
+   "audio": null
+  },
+  {
+   "id": "begreifen / kapieren:shvatati",
+   "bs": "shvatati",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "begreifen / kapieren",
+    "en": "to grasp / to get it",
+    "tr": "kavramak",
+    "sv": "fatta / begripa",
+    "nl": "begrijpen / snappen",
+    "nb": "skjønne / fatte",
+    "da": "at fatte / at begribe",
+    "fr": "saisir / piger"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich kapiere nicht, was du von mir willst.:Ne shvatam šta hoćeš od mene.",
+   "bs": "Ne shvatam šta hoćeš od mene.",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich kapiere nicht, was du von mir willst.",
+    "en": "I don't get what you want from me.",
+    "tr": "Benden ne istediğini anlamıyorum.",
+    "sv": "Jag fattar inte vad du vill mig.",
+    "nl": "Ik snap niet wat je van me wilt.",
+    "nb": "Jeg skjønner ikke hva du vil meg.",
+    "da": "Jeg fatter ikke, hvad du vil mig.",
+    "fr": "Je ne pige pas ce que tu me veux."
+   },
+   "audio": null
+  },
+  {
+   "id": "vergessen:zaboravljati",
+   "bs": "zaboravljati",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "vergessen",
+    "en": "to forget",
+    "tr": "unutmak",
+    "sv": "glömma",
+    "nl": "vergeten",
+    "nb": "glemme",
+    "da": "at glemme",
+    "fr": "oublier"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich vergesse ständig namen.:Stalno zaboravljam imena.",
+   "bs": "Stalno zaboravljam imena.",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich vergesse ständig Namen.",
+    "en": "I keep forgetting names.",
+    "tr": "Sürekli isimleri unutuyorum.",
+    "sv": "Jag glömmer hela tiden namn.",
+    "nl": "Ik vergeet steeds namen.",
+    "nb": "Jeg glemmer stadig navn.",
+    "da": "Jeg glemmer hele tiden navne.",
+    "fr": "J'oublie tout le temps les noms."
+   },
+   "audio": null
+  },
+  {
+   "id": "anhören / auf jemanden hören:poslušati",
+   "bs": "poslušati",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "anhören / auf jemanden hören",
+    "en": "to hear out / to listen to someone",
+    "tr": "dinlemek / sözünü dinlemek",
+    "sv": "lyssna på / lyda",
+    "nl": "aanhoren / naar iemand luisteren",
+    "nb": "høre på / lystre",
+    "da": "at lytte til / at adlyde",
+    "fr": "écouter / obéir à quelqu'un"
+   },
+   "audio": null
+  },
+  {
+   "id": "hör wenigstens einmal auf mich!:Poslušaj me bar jednom!",
+   "bs": "Poslušaj me bar jednom!",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Hör wenigstens einmal auf mich!",
+    "en": "Listen to me just this once!",
+    "tr": "Bir kere olsun beni dinle!",
+    "sv": "Lyssna på mig åtminstone en gång!",
+    "nl": "Luister nou één keer naar me!",
+    "nb": "Hør på meg for en gangs skyld!",
+    "da": "Hør nu efter mig for en gangs skyld!",
+    "fr": "Écoute-moi au moins une fois !"
+   },
+   "audio": null
+  },
+  {
+   "id": "sich verabreden / vereinbaren:dogovarati se",
+   "bs": "dogovarati se",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "sich verabreden / vereinbaren",
+    "en": "to arrange to meet / to agree on",
+    "tr": "sözleşmek / anlaşmak",
+    "sv": "bestämma träff / komma överens",
+    "nl": "afspreken / overeenkomen",
+    "nb": "avtale / gjøre avtale",
+    "da": "at aftale / at lave en aftale",
+    "fr": "se donner rendez-vous / convenir"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir verabreden uns ständig, und dann treffen wir uns doch nie.:Stalno se dogovaramo, a nikako da se nađemo.",
+   "bs": "Stalno se dogovaramo, a nikako da se nađemo.",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wir verabreden uns ständig, und dann treffen wir uns doch nie.",
+    "en": "We keep making plans, and then we never actually meet.",
+    "tr": "Sürekli sözleşiyoruz ama bir türlü buluşamıyoruz.",
+    "sv": "Vi bestämmer träff hela tiden, men vi ses ändå aldrig.",
+    "nl": "We spreken steeds af, maar we zien elkaar nooit.",
+    "nb": "Vi avtaler stadig å møtes, men så blir det aldri noe av.",
+    "da": "Vi aftaler hele tiden at mødes, men så ses vi alligevel aldrig.",
+    "fr": "On se donne tout le temps rendez-vous, et on ne se voit jamais."
+   },
+   "audio": null
+  },
+  {
+   "id": "warten:sačekati",
+   "bs": "sačekati",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "warten",
+    "en": "to wait",
+    "tr": "beklemek",
+    "sv": "vänta",
+    "nl": "wachten",
+    "nb": "vente",
+    "da": "at vente",
+    "fr": "attendre"
+   },
+   "audio": null
+  },
+  {
+   "id": "warte vor dem gebäude auf mich.:Sačekaj me ispred zgrade.",
+   "bs": "Sačekaj me ispred zgrade.",
+   "level": "paare_denken",
+   "level_position": 75,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Warte vor dem Gebäude auf mich.",
+    "en": "Wait for me in front of the building.",
+    "tr": "Beni binanın önünde bekle.",
+    "sv": "Vänta på mig utanför byggnaden.",
+    "nl": "Wacht op me voor het gebouw.",
+    "nb": "Vent på meg utenfor bygningen.",
+    "da": "Vent på mig foran bygningen.",
+    "fr": "Attends-moi devant l'immeuble."
+   },
+   "audio": null
+  },
+  {
+   "id": "werden:postajati",
+   "bs": "postajati",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "werden",
+    "en": "to become",
+    "tr": "olmak (bir şey)",
+    "sv": "bli",
+    "nl": "worden",
+    "nb": "bli (noe)",
+    "da": "at blive (noget)",
+    "fr": "devenir"
+   },
+   "audio": null
+  },
+  {
+   "id": "abends wird es schon kalt.:Navečer već postaje hladno.",
+   "bs": "Navečer već postaje hladno.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Abends wird es schon kalt.",
+    "en": "It's already getting cold in the evenings.",
+    "tr": "Akşamları hava artık soğuyor.",
+    "sv": "På kvällarna blir det redan kallt.",
+    "nl": "'s Avonds wordt het al koud.",
+    "nb": "Om kvelden blir det allerede kaldt.",
+    "da": "Om aftenen bliver det allerede koldt.",
+    "fr": "Le soir, il commence déjà à faire froid."
+   },
+   "audio": null
+  },
+  {
+   "id": "weitermachen / fortsetzen:nastavljati",
+   "bs": "nastavljati",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "weitermachen / fortsetzen",
+    "en": "to carry on / to continue",
+    "tr": "devam etmek",
+    "sv": "fortsätta",
+    "nl": "doorgaan / voortzetten",
+    "nb": "fortsette",
+    "da": "at fortsætte",
+    "fr": "continuer"
+   },
+   "audio": null
+  },
+  {
+   "id": "nach der pause machen wir weiter.:Nastavljamo poslije pauze.",
+   "bs": "Nastavljamo poslije pauze.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Nach der Pause machen wir weiter.",
+    "en": "We'll carry on after the break.",
+    "tr": "Aradan sonra devam ediyoruz.",
+    "sv": "Vi fortsätter efter pausen.",
+    "nl": "Na de pauze gaan we verder.",
+    "nb": "Vi fortsetter etter pausen.",
+    "da": "Vi fortsætter efter pausen.",
+    "fr": "On continue après la pause."
+   },
+   "audio": null
+  },
+  {
+   "id": "passieren / geschehen:dešavati se / događati se",
+   "bs": "dešavati se / događati se",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "passieren / geschehen",
+    "en": "to happen",
+    "tr": "olmak / meydana gelmek",
+    "sv": "hända / ske",
+    "nl": "gebeuren",
+    "nb": "skje / hende",
+    "da": "at ske",
+    "fr": "se passer / arriver"
+   },
+   "audio": null
+  },
+  {
+   "id": "was ist hier los?:Šta se ovdje dešava?",
+   "bs": "Šta se ovdje dešava?",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Was ist hier los?",
+    "en": "What's going on here?",
+    "tr": "Burada neler oluyor?",
+    "sv": "Vad är det som händer här?",
+    "nl": "Wat is hier aan de hand?",
+    "nb": "Hva er det som skjer her?",
+    "da": "Hvad sker der her?",
+    "fr": "Qu'est-ce qui se passe ici ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "fallen:padati",
+   "bs": "padati",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "fallen",
+    "en": "to fall",
+    "tr": "düşmek",
+    "sv": "falla",
+    "nl": "vallen",
+    "nb": "falle",
+    "da": "at falde",
+    "fr": "tomber"
+   },
+   "audio": null
+  },
+  {
+   "id": "nachts fällt die temperatur unter null.:Noću temperatura pada ispod nule.",
+   "bs": "Noću temperatura pada ispod nule.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Nachts fällt die Temperatur unter null.",
+    "en": "At night the temperature drops below zero.",
+    "tr": "Geceleri sıcaklık sıfırın altına düşüyor.",
+    "sv": "På natten sjunker temperaturen under noll.",
+    "nl": "'s Nachts daalt de temperatuur tot onder nul.",
+    "nb": "Om natten synker temperaturen under null.",
+    "da": "Om natten falder temperaturen til under nul.",
+    "fr": "La nuit, la température descend en dessous de zéro."
+   },
+   "audio": null
+  },
+  {
+   "id": "vorbereiten:pripremati",
+   "bs": "pripremati",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "vorbereiten",
+    "en": "to prepare",
+    "tr": "hazırlamak",
+    "sv": "förbereda",
+    "nl": "voorbereiden",
+    "nb": "forberede",
+    "da": "at forberede",
+    "fr": "préparer"
+   },
+   "audio": null
+  },
+  {
+   "id": "mama bereitet das mittagessen vor.:Mama priprema ručak.",
+   "bs": "Mama priprema ručak.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mama bereitet das Mittagessen vor.",
+    "en": "Mom is making lunch.",
+    "tr": "Annem öğle yemeğini hazırlıyor.",
+    "sv": "Mamma förbereder lunchen.",
+    "nl": "Mama maakt het middageten klaar.",
+    "nb": "Mamma lager lunsj.",
+    "da": "Mor laver frokost.",
+    "fr": "Maman prépare le déjeuner."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufwachen:buditi se",
+   "bs": "buditi se",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aufwachen",
+    "en": "to wake up",
+    "tr": "uyanmak",
+    "sv": "vakna",
+    "nl": "wakker worden",
+    "nb": "våkne",
+    "da": "at vågne",
+    "fr": "se réveiller"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich wache jeden tag um sechs auf.:Budim se svaki dan u šest.",
+   "bs": "Budim se svaki dan u šest.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich wache jeden Tag um sechs auf.",
+    "en": "I wake up at six every day.",
+    "tr": "Her gün altıda uyanırım.",
+    "sv": "Jag vaknar klockan sex varje dag.",
+    "nl": "Ik word elke dag om zes uur wakker.",
+    "nb": "Jeg våkner klokka seks hver dag.",
+    "da": "Jeg vågner klokken seks hver dag.",
+    "fr": "Je me réveille tous les jours à six heures."
+   },
+   "audio": null
+  },
+  {
+   "id": "wecken:buditi",
+   "bs": "buditi",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "wecken",
+    "en": "to wake (someone) up",
+    "tr": "uyandırmak",
+    "sv": "väcka",
+    "nl": "wekken",
+    "nb": "vekke",
+    "da": "at vække",
+    "fr": "réveiller"
+   },
+   "audio": null
+  },
+  {
+   "id": "jeden morgen wecke ich die kinder für die schule.:Svako jutro budim djecu za školu.",
+   "bs": "Svako jutro budim djecu za školu.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Jeden Morgen wecke ich die Kinder für die Schule.",
+    "en": "Every morning I wake the kids up for school.",
+    "tr": "Her sabah çocukları okul için uyandırıyorum.",
+    "sv": "Varje morgon väcker jag barnen till skolan.",
+    "nl": "Elke ochtend maak ik de kinderen wakker voor school.",
+    "nb": "Hver morgen vekker jeg barna til skolen.",
+    "da": "Hver morgen vækker jeg børnene til skole.",
+    "fr": "Tous les matins, je réveille les enfants pour l'école."
+   },
+   "audio": null
+  },
+  {
+   "id": "wecken:probuditi",
+   "bs": "probuditi",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "wecken",
+    "en": "to wake (someone) up",
+    "tr": "uyandırmak",
+    "sv": "väcka",
+    "nl": "wekken",
+    "nb": "vekke",
+    "da": "at vække",
+    "fr": "réveiller"
+   },
+   "audio": null
+  },
+  {
+   "id": "weck mich bitte um sieben.:Probudi me u sedam, molim te.",
+   "bs": "Probudi me u sedam, molim te.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Weck mich bitte um sieben.",
+    "en": "Please wake me up at seven.",
+    "tr": "Lütfen beni yedide uyandır.",
+    "sv": "Väck mig klockan sju, är du snäll.",
+    "nl": "Maak me alsjeblieft om zeven uur wakker.",
+    "nb": "Vekk meg klokka sju, er du snill.",
+    "da": "Væk mig klokken syv, tak.",
+    "fr": "Réveille-moi à sept heures, s'il te plaît."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufhören:prestajati",
+   "bs": "prestajati",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aufhören",
+    "en": "to stop",
+    "tr": "durmak / kesilmek",
+    "sv": "sluta",
+    "nl": "ophouden / stoppen",
+    "nb": "slutte / stoppe",
+    "da": "at holde op",
+    "fr": "arrêter / cesser"
+   },
+   "audio": null
+  },
+  {
+   "id": "der regen hört einfach nicht auf.:Kiša nikako ne prestaje.",
+   "bs": "Kiša nikako ne prestaje.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Der Regen hört einfach nicht auf.",
+    "en": "The rain just won't stop.",
+    "tr": "Yağmur bir türlü dinmiyor.",
+    "sv": "Regnet vill bara inte sluta.",
+    "nl": "De regen houdt maar niet op.",
+    "nb": "Regnet vil bare ikke gi seg.",
+    "da": "Regnen vil bare ikke holde op.",
+    "fr": "La pluie ne veut pas s'arrêter."
+   },
+   "audio": null
+  },
+  {
+   "id": "schaffen / gelingen:uspijevati",
+   "bs": "uspijevati",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "schaffen / gelingen",
+    "en": "to manage / to succeed",
+    "tr": "başarmak",
+    "sv": "klara / lyckas",
+    "nl": "lukken / slagen",
+    "nb": "klare / lykkes",
+    "da": "at klare / at lykkes",
+    "fr": "réussir / arriver à"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich schaffe es einfach nicht einzuschlafen.:Nikako ne uspijevam zaspati.",
+   "bs": "Nikako ne uspijevam zaspati.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich schaffe es einfach nicht einzuschlafen.",
+    "en": "I just can't manage to fall asleep.",
+    "tr": "Bir türlü uyuyamıyorum.",
+    "sv": "Jag lyckas bara inte somna.",
+    "nl": "Het lukt me maar niet om in slaap te vallen.",
+    "nb": "Jeg klarer bare ikke å sovne.",
+    "da": "Jeg kan bare ikke falde i søvn.",
+    "fr": "Je n'arrive pas à m'endormir."
+   },
+   "audio": null
+  },
+  {
+   "id": "heiraten (mann):ženiti se",
+   "bs": "ženiti se",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "heiraten (Mann)",
+    "en": "to get married (man)",
+    "tr": "evlenmek (erkek)",
+    "sv": "gifta sig (man)",
+    "nl": "trouwen (man)",
+    "nb": "gifte seg (mann)",
+    "da": "at gifte sig (mand)",
+    "fr": "se marier (homme)"
+   },
+   "audio": null
+  },
+  {
+   "id": "wann heiratest du?:Kad se ženiš?",
+   "bs": "Kad se ženiš?",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wann heiratest du?",
+    "en": "When are you getting married?",
+    "tr": "Ne zaman evleniyorsun?",
+    "sv": "När gifter du dig?",
+    "nl": "Wanneer ga je trouwen?",
+    "nb": "Når skal du gifte deg?",
+    "da": "Hvornår skal du giftes?",
+    "fr": "Quand est-ce que tu te maries ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "heiraten (frau):udavati se",
+   "bs": "udavati se",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "heiraten (Frau)",
+    "en": "to get married (woman)",
+    "tr": "evlenmek (kadın)",
+    "sv": "gifta sig (kvinna)",
+    "nl": "trouwen (vrouw)",
+    "nb": "gifte seg (kvinne)",
+    "da": "at gifte sig (kvinde)",
+    "fr": "se marier (femme)"
+   },
+   "audio": null
+  },
+  {
+   "id": "meine schwester heiratet im juni.:Sestra mi se udaje u junu.",
+   "bs": "Sestra mi se udaje u junu.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Meine Schwester heiratet im Juni.",
+    "en": "My sister is getting married in June.",
+    "tr": "Kız kardeşim haziranda evleniyor.",
+    "sv": "Min syster gifter sig i juni.",
+    "nl": "Mijn zus trouwt in juni.",
+    "nb": "Søsteren min gifter seg i juni.",
+    "da": "Min søster bliver gift i juni.",
+    "fr": "Ma sœur se marie en juin."
+   },
+   "audio": null
+  },
+  {
+   "id": "einschalten / anmachen:paliti",
+   "bs": "paliti",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "einschalten / anmachen",
+    "en": "to switch on / to turn on",
+    "tr": "açmak / yakmak",
+    "sv": "sätta på / tända",
+    "nl": "aanzetten / aandoen",
+    "nb": "slå på / skru på",
+    "da": "tænde",
+    "fr": "allumer"
+   },
+   "audio": null
+  },
+  {
+   "id": "im oktober machen wir schon die heizung an.:U oktobru već palimo grijanje.",
+   "bs": "U oktobru već palimo grijanje.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Im Oktober machen wir schon die Heizung an.",
+    "en": "In October we already turn the heating on.",
+    "tr": "Ekimde kaloriferi açıyoruz bile.",
+    "sv": "I oktober sätter vi redan på värmen.",
+    "nl": "In oktober zetten we de verwarming al aan.",
+    "nb": "I oktober skrur vi allerede på varmen.",
+    "da": "I oktober tænder vi allerede for varmen.",
+    "fr": "En octobre, on allume déjà le chauffage."
+   },
+   "audio": null
+  },
+  {
+   "id": "jemanden besuchen:posjećivati",
+   "bs": "posjećivati",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "jemanden besuchen",
+    "en": "to visit someone",
+    "tr": "ziyaret etmek",
+    "sv": "besöka någon",
+    "nl": "iemand bezoeken",
+    "nb": "besøke noen",
+    "da": "besøge nogen",
+    "fr": "rendre visite à quelqu'un"
+   },
+   "audio": null
+  },
+  {
+   "id": "jede woche besuchen wir oma.:Svake sedmice posjećujemo nanu.",
+   "bs": "Svake sedmice posjećujemo nanu.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Jede Woche besuchen wir Oma.",
+    "en": "Every week we visit grandma.",
+    "tr": "Her hafta ninemi ziyaret ediyoruz.",
+    "sv": "Varje vecka hälsar vi på mormor.",
+    "nl": "Elke week gaan we bij oma op bezoek.",
+    "nb": "Hver uke besøker vi bestemor.",
+    "da": "Hver uge besøger vi bedstemor.",
+    "fr": "Chaque semaine, nous rendons visite à grand-mère."
+   },
+   "audio": null
+  },
+  {
+   "id": "ausschalten / ausmachen:gasiti",
+   "bs": "gasiti",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "ausschalten / ausmachen",
+    "en": "to switch off / to turn off",
+    "tr": "kapatmak / söndürmek",
+    "sv": "stänga av / släcka",
+    "nl": "uitzetten / uitdoen",
+    "nb": "slå av / skru av",
+    "da": "slukke",
+    "fr": "éteindre"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich mache immer das licht aus, wenn ich aus dem zimmer gehe.:Uvijek gasim svjetlo kad izlazim iz sobe.",
+   "bs": "Uvijek gasim svjetlo kad izlazim iz sobe.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich mache immer das Licht aus, wenn ich aus dem Zimmer gehe.",
+    "en": "I always turn off the light when I leave the room.",
+    "tr": "Odadan çıkarken her zaman ışığı kapatırım.",
+    "sv": "Jag släcker alltid ljuset när jag går ut ur rummet.",
+    "nl": "Ik doe altijd het licht uit als ik de kamer uit ga.",
+    "nb": "Jeg slår alltid av lyset når jeg går ut av rommet.",
+    "da": "Jeg slukker altid lyset, når jeg går ud af værelset.",
+    "fr": "J'éteins toujours la lumière quand je sors de la pièce."
+   },
+   "audio": null
+  },
+  {
+   "id": "reparieren:popravljati",
+   "bs": "popravljati",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "reparieren",
+    "en": "to repair",
+    "tr": "tamir etmek",
+    "sv": "reparera",
+    "nl": "repareren",
+    "nb": "reparere",
+    "da": "reparere",
+    "fr": "réparer"
+   },
+   "audio": null
+  },
+  {
+   "id": "papa repariert das auto immer selbst.:Babo uvijek sam popravlja auto.",
+   "bs": "Babo uvijek sam popravlja auto.",
+   "level": "paare_alltag",
+   "level_position": 76,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Papa repariert das Auto immer selbst.",
+    "en": "Dad always fixes the car himself.",
+    "tr": "Babam arabayı hep kendisi tamir eder.",
+    "sv": "Pappa lagar alltid bilen själv.",
+    "nl": "Papa repareert de auto altijd zelf.",
+    "nb": "Pappa reparerer alltid bilen selv.",
+    "da": "Far reparerer altid selv bilen.",
+    "fr": "Papa répare toujours la voiture lui-même."
+   },
+   "audio": null
+  },
+  {
+   "id": "hinaustragen / rausbringen:iznijeti",
+   "bs": "iznijeti",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "hinaustragen / rausbringen",
+    "en": "to carry out / to take out",
+    "tr": "dışarı çıkarmak / götürmek",
+    "sv": "bära ut / ta ut",
+    "nl": "naar buiten brengen / buitenzetten",
+    "nb": "bære ut / ta ut",
+    "da": "at bære ud / at tage ud",
+    "fr": "porter dehors / descendre (les poubelles)"
+   },
+   "audio": null
+  },
+  {
+   "id": "wer bringt den müll raus?:Ko će iznijeti smeće?",
+   "bs": "Ko će iznijeti smeće?",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wer bringt den Müll raus?",
+    "en": "Who's taking the trash out?",
+    "tr": "Çöpü kim çıkaracak?",
+    "sv": "Vem går ut med soporna?",
+    "nl": "Wie brengt het afval naar buiten?",
+    "nb": "Hvem tar ut søpla?",
+    "da": "Hvem tager skraldet ud?",
+    "fr": "Qui sort les poubelles ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "zusammenlegen / ordnen:složiti",
+   "bs": "složiti",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "zusammenlegen / ordnen",
+    "en": "to fold / to sort",
+    "tr": "katlamak / düzenlemek",
+    "sv": "vika ihop / ordna",
+    "nl": "opvouwen / ordenen",
+    "nb": "brette sammen / ordne",
+    "da": "at lægge sammen / at ordne",
+    "fr": "plier / ranger"
+   },
+   "audio": null
+  },
+  {
+   "id": "leg die wäsche zusammen und tu sie in den schrank.:Složi veš i stavi ga u ormar.",
+   "bs": "Složi veš i stavi ga u ormar.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Leg die Wäsche zusammen und tu sie in den Schrank.",
+    "en": "Fold the laundry and put it in the closet.",
+    "tr": "Çamaşırları katla ve dolaba koy.",
+    "sv": "Vik tvätten och lägg in den i garderoben.",
+    "nl": "Vouw de was op en leg hem in de kast.",
+    "nb": "Brett sammen klesvasken og legg den i skapet.",
+    "da": "Læg vasketøjet sammen, og læg det i skabet.",
+    "fr": "Plie le linge et range-le dans l'armoire."
+   },
+   "audio": null
+  },
+  {
+   "id": "waschen:oprati",
+   "bs": "oprati",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "waschen",
+    "en": "to wash",
+    "tr": "yıkamak",
+    "sv": "tvätta",
+    "nl": "wassen",
+    "nb": "vaske",
+    "da": "at vaske",
+    "fr": "laver"
+   },
+   "audio": null
+  },
+  {
+   "id": "wasch dir vor dem essen die hände!:Operi ruke prije jela!",
+   "bs": "Operi ruke prije jela!",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wasch dir vor dem Essen die Hände!",
+    "en": "Wash your hands before eating!",
+    "tr": "Yemekten önce ellerini yıka!",
+    "sv": "Tvätta händerna före maten!",
+    "nl": "Was je handen voor het eten!",
+    "nb": "Vask hendene før maten!",
+    "da": "Vask hænder før maden!",
+    "fr": "Lave-toi les mains avant de manger !"
+   },
+   "audio": null
+  },
+  {
+   "id": "umrühren / mischen:miješati",
+   "bs": "miješati",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "umrühren / mischen",
+    "en": "to stir / to mix",
+    "tr": "karıştırmak",
+    "sv": "röra om / blanda",
+    "nl": "roeren / mengen",
+    "nb": "røre / blande",
+    "da": "at røre rundt / at blande",
+    "fr": "remuer / mélanger"
+   },
+   "audio": null
+  },
+  {
+   "id": "rühr um, damit es nicht anbrennt!:Miješaj da ne zagori!",
+   "bs": "Miješaj da ne zagori!",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Rühr um, damit es nicht anbrennt!",
+    "en": "Stir it so it doesn't burn!",
+    "tr": "Karıştır da dibi tutmasın!",
+    "sv": "Rör om så att det inte bränns vid!",
+    "nl": "Roer erin, anders brandt het aan!",
+    "nb": "Rør, så det ikke brenner seg fast!",
+    "da": "Rør rundt, så det ikke brænder på!",
+    "fr": "Remue pour que ça n'attache pas !"
+   },
+   "audio": null
+  },
+  {
+   "id": "kaputtgehen:pokvariti se",
+   "bs": "pokvariti se",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "kaputtgehen",
+    "en": "to break down",
+    "tr": "bozulmak",
+    "sv": "gå sönder",
+    "nl": "kapotgaan",
+    "nb": "gå i stykker",
+    "da": "at gå i stykker",
+    "fr": "tomber en panne"
+   },
+   "audio": null
+  },
+  {
+   "id": "die waschmaschine ist schon wieder kaputt.:Opet se pokvarila veš mašina.",
+   "bs": "Opet se pokvarila veš mašina.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Waschmaschine ist schon wieder kaputt.",
+    "en": "The washing machine has broken down again.",
+    "tr": "Çamaşır makinesi yine bozuldu.",
+    "sv": "Tvättmaskinen har gått sönder igen.",
+    "nl": "De wasmachine is alweer kapot.",
+    "nb": "Vaskemaskinen er i stykker igjen.",
+    "da": "Vaskemaskinen er gået i stykker igen.",
+    "fr": "La machine à laver est encore en panne."
+   },
+   "audio": null
+  },
+  {
+   "id": "abwischen / löschen:obrisati",
+   "bs": "obrisati",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "abwischen / löschen",
+    "en": "to wipe / to delete",
+    "tr": "silmek",
+    "sv": "torka av / radera",
+    "nl": "afvegen / wissen",
+    "nb": "tørke av / slette",
+    "da": "at tørre af / at slette",
+    "fr": "essuyer / effacer"
+   },
+   "audio": null
+  },
+  {
+   "id": "wisch bitte den tisch ab.:Obriši sto, molim te.",
+   "bs": "Obriši sto, molim te.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wisch bitte den Tisch ab.",
+    "en": "Please wipe the table.",
+    "tr": "Masayı siler misin lütfen.",
+    "sv": "Torka av bordet, är du snäll.",
+    "nl": "Veeg de tafel even af, alsjeblieft.",
+    "nb": "Tørk av bordet, er du snill.",
+    "da": "Tør lige bordet af, tak.",
+    "fr": "Essuie la table, s'il te plaît."
+   },
+   "audio": null
+  },
+  {
+   "id": "abwischen / löschen:brisati",
+   "bs": "brisati",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "abwischen / löschen",
+    "en": "to wipe / to delete",
+    "tr": "silmek",
+    "sv": "torka av / radera",
+    "nl": "afvegen / wissen",
+    "nb": "tørke av / slette",
+    "da": "at tørre af / at slette",
+    "fr": "essuyer / effacer"
+   },
+   "audio": null
+  },
+  {
+   "id": "wer wischt heute staub?:Ko danas briše prašinu?",
+   "bs": "Ko danas briše prašinu?",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Wer wischt heute Staub?",
+    "en": "Who's dusting today?",
+    "tr": "Bugün tozları kim alıyor?",
+    "sv": "Vem dammar i dag?",
+    "nl": "Wie stoft er vandaag af?",
+    "nb": "Hvem tørker støv i dag?",
+    "da": "Hvem tørrer støv af i dag?",
+    "fr": "Qui fait la poussière aujourd'hui ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "trocknen:sušiti",
+   "bs": "sušiti",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "trocknen",
+    "en": "to dry",
+    "tr": "kurutmak",
+    "sv": "torka",
+    "nl": "drogen",
+    "nb": "tørke",
+    "da": "at tørre",
+    "fr": "sécher"
+   },
+   "audio": null
+  },
+  {
+   "id": "die wäsche trocknen wir auf dem balkon.:Veš sušimo na balkonu.",
+   "bs": "Veš sušimo na balkonu.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Die Wäsche trocknen wir auf dem Balkon.",
+    "en": "We dry the laundry on the balcony.",
+    "tr": "Çamaşırları balkonda kurutuyoruz.",
+    "sv": "Tvätten torkar vi på balkongen.",
+    "nl": "De was drogen we op het balkon.",
+    "nb": "Klesvasken tørker vi på balkongen.",
+    "da": "Vasketøjet tørrer vi på altanen.",
+    "fr": "On fait sécher le linge sur le balcon."
+   },
+   "audio": null
+  },
+  {
+   "id": "schneiden:rezati",
+   "bs": "rezati",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "schneiden",
+    "en": "to cut",
+    "tr": "kesmek",
+    "sv": "skära",
+    "nl": "snijden",
+    "nb": "skjære",
+    "da": "at skære",
+    "fr": "couper"
+   },
+   "audio": null
+  },
+  {
+   "id": "dieses messer schneidet gar nichts.:Ovaj nož ništa ne reže.",
+   "bs": "Ovaj nož ništa ne reže.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Dieses Messer schneidet gar nichts.",
+    "en": "This knife doesn't cut at all.",
+    "tr": "Bu bıçak hiç kesmiyor.",
+    "sv": "Den här kniven skär inte alls.",
+    "nl": "Dit mes snijdt helemaal niet.",
+    "nb": "Denne kniven skjærer ikke i det hele tatt.",
+    "da": "Den her kniv skærer slet ikke.",
+    "fr": "Ce couteau ne coupe rien du tout."
+   },
+   "audio": null
+  },
+  {
+   "id": "kochen:skuhati",
+   "bs": "skuhati",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "kochen",
+    "en": "to cook",
+    "tr": "yemek pişirmek",
+    "sv": "laga mat",
+    "nl": "koken",
+    "nb": "lage mat",
+    "da": "at lave mad",
+    "fr": "cuisiner"
+   },
+   "audio": "web/audio/w1415.mp3"
+  },
+  {
+   "id": "ich koche dir einen kaffee.:Skuhat ću ti kahvu.",
+   "bs": "Skuhat ću ti kahvu.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich koche dir einen Kaffee.",
+    "en": "I'll make you a coffee.",
+    "tr": "Sana bir kahve yapayım.",
+    "sv": "Jag kokar en kaffe åt dig.",
+    "nl": "Ik zet een kopje koffie voor je.",
+    "nb": "Jeg lager en kaffe til deg.",
+    "da": "Jeg laver en kop kaffe til dig.",
+    "fr": "Je te fais un café."
+   },
+   "audio": null
+  },
+  {
+   "id": "braten (in der pfanne):pržiti",
+   "bs": "pržiti",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "braten (in der Pfanne)",
+    "en": "to fry (in a pan)",
+    "tr": "kızartmak (tavada)",
+    "sv": "steka (i pannan)",
+    "nl": "bakken (in de pan)",
+    "nb": "steke (i panna)",
+    "da": "at stege (på panden)",
+    "fr": "faire frire (à la poêle)"
+   },
+   "audio": null
+  },
+  {
+   "id": "mama brät fisch.:Mama prži ribu.",
+   "bs": "Mama prži ribu.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Mama brät Fisch.",
+    "en": "Mom is frying fish.",
+    "tr": "Annem balık kızartıyor.",
+    "sv": "Mamma steker fisk.",
+    "nl": "Mama bakt vis.",
+    "nb": "Mamma steker fisk.",
+    "da": "Mor steger fisk.",
+    "fr": "Maman fait frire du poisson."
+   },
+   "audio": null
+  },
+  {
+   "id": "gießen (pflanzen):zaliti",
+   "bs": "zaliti",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "gießen (Pflanzen)",
+    "en": "to water (plants)",
+    "tr": "sulamak (bitkileri)",
+    "sv": "vattna (växter)",
+    "nl": "water geven (planten)",
+    "nb": "vanne (planter)",
+    "da": "at vande (planter)",
+    "fr": "arroser (les plantes)"
+   },
+   "audio": null
+  },
+  {
+   "id": "gieß die blumen, solange ich weg bin.:Zalij cvijeće dok me nema.",
+   "bs": "Zalij cvijeće dok me nema.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Gieß die Blumen, solange ich weg bin.",
+    "en": "Water the flowers while I'm away.",
+    "tr": "Ben yokken çiçekleri sula.",
+    "sv": "Vattna blommorna medan jag är borta.",
+    "nl": "Geef de bloemen water zolang ik weg ben.",
+    "nb": "Vann blomstene mens jeg er borte.",
+    "da": "Vand blomsterne, mens jeg er væk.",
+    "fr": "Arrose les fleurs pendant mon absence."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufhängen:objesiti",
+   "bs": "objesiti",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "aufhängen",
+    "en": "to hang (up)",
+    "tr": "asmak",
+    "sv": "hänga upp",
+    "nl": "ophangen",
+    "nb": "henge opp",
+    "da": "at hænge op",
+    "fr": "suspendre / étendre (le linge)"
+   },
+   "audio": null
+  },
+  {
+   "id": "häng die wäsche auf, die maschine ist fertig.:Objesi veš, mašina je gotova.",
+   "bs": "Objesi veš, mašina je gotova.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Häng die Wäsche auf, die Maschine ist fertig.",
+    "en": "Hang up the laundry, the machine is done.",
+    "tr": "Çamaşırları as, makine bitti.",
+    "sv": "Häng upp tvätten, maskinen är klar.",
+    "nl": "Hang de was op, de machine is klaar.",
+    "nb": "Heng opp klesvasken, maskinen er ferdig.",
+    "da": "Hæng vasketøjet op, maskinen er færdig.",
+    "fr": "Étends le linge, la machine a fini."
+   },
+   "audio": null
+  },
+  {
+   "id": "putzen:počistiti",
+   "bs": "počistiti",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "putzen",
+    "en": "to clean",
+    "tr": "temizlemek",
+    "sv": "städa",
+    "nl": "schoonmaken",
+    "nb": "gjøre rent",
+    "da": "at gøre rent",
+    "fr": "faire le ménage"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich muss das bad putzen.:Moram počistiti kupatilo.",
+   "bs": "Moram počistiti kupatilo.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Ich muss das Bad putzen.",
+    "en": "I have to clean the bathroom.",
+    "tr": "Banyoyu temizlemem lazım.",
+    "sv": "Jag måste städa badrummet.",
+    "nl": "Ik moet de badkamer schoonmaken.",
+    "nb": "Jeg må vaske badet.",
+    "da": "Jeg skal gøre badeværelset rent.",
+    "fr": "Je dois nettoyer la salle de bains."
+   },
+   "audio": null
+  },
+  {
+   "id": "staubsaugen:usisavati",
+   "bs": "usisavati",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "staubsaugen",
+    "en": "to vacuum",
+    "tr": "süpürmek (elektrikli süpürgeyle)",
+    "sv": "dammsuga",
+    "nl": "stofzuigen",
+    "nb": "støvsuge",
+    "da": "at støvsuge",
+    "fr": "passer l'aspirateur"
+   },
+   "audio": null
+  },
+  {
+   "id": "samstags sauge ich die ganze wohnung.:Subotom usisavam cijeli stan.",
+   "bs": "Subotom usisavam cijeli stan.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Samstags sauge ich die ganze Wohnung.",
+    "en": "On Saturdays I vacuum the whole apartment.",
+    "tr": "Cumartesileri bütün evi süpürüyorum.",
+    "sv": "På lördagar dammsuger jag hela lägenheten.",
+    "nl": "Op zaterdag stofzuig ik het hele huis.",
+    "nb": "På lørdager støvsuger jeg hele leiligheten.",
+    "da": "Om lørdagen støvsuger jeg hele lejligheden.",
+    "fr": "Le samedi, je passe l'aspirateur dans tout l'appartement."
+   },
+   "audio": null
+  },
+  {
+   "id": "staubsaugen:usisati",
+   "bs": "usisati",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "staubsaugen",
+    "en": "to vacuum",
+    "tr": "süpürmek (elektrikli süpürgeyle)",
+    "sv": "dammsuga",
+    "nl": "stofzuigen",
+    "nb": "støvsuge",
+    "da": "at støvsuge",
+    "fr": "passer l'aspirateur"
+   },
+   "audio": null
+  },
+  {
+   "id": "saug das zimmer, bevor die gäste kommen.:Usisaj sobu prije nego što dođu gosti.",
+   "bs": "Usisaj sobu prije nego što dođu gosti.",
+   "level": "im_haushalt",
+   "level_position": 77,
+   "section": "tunlassen",
+   "translations": {
+    "de": "Saug das Zimmer, bevor die Gäste kommen.",
+    "en": "Vacuum the room before the guests arrive.",
+    "tr": "Misafirler gelmeden odayı süpür.",
+    "sv": "Dammsug rummet innan gästerna kommer.",
+    "nl": "Stofzuig de kamer voordat de gasten komen.",
+    "nb": "Støvsug rommet før gjestene kommer.",
+    "da": "Støvsug værelset, før gæsterne kommer.",
+    "fr": "Passe l'aspirateur dans la chambre avant que les invités arrivent."
+   },
+   "audio": null
+  },
+  {
    "id": "sich verlaufen:izgubiti se",
    "bs": "izgubiti se",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "sich verlaufen",
@@ -38527,7 +40898,7 @@
    "id": "wir haben uns in der stadt verlaufen.:Izgubili smo se u gradu.",
    "bs": "Izgubili smo se u gradu.",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Wir haben uns in der Stadt verlaufen.",
@@ -38545,7 +40916,7 @@
    "id": "retten:spasiti",
    "bs": "spasiti",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "retten",
@@ -38563,7 +40934,7 @@
    "id": "die feuerwehr hat das kind gerettet.:Vatrogasci su spasili dijete.",
    "bs": "Vatrogasci su spasili dijete.",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Die Feuerwehr hat das Kind gerettet.",
@@ -38581,7 +40952,7 @@
    "id": "sich verletzen:povrijediti se",
    "bs": "povrijediti se",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "sich verletzen",
@@ -38599,7 +40970,7 @@
    "id": "ich habe mich bei der arbeit verletzt.:Povrijedio sam se na poslu.",
    "bs": "Povrijedio sam se na poslu.",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Ich habe mich bei der Arbeit verletzt.",
@@ -38617,7 +40988,7 @@
    "id": "aufpassen:paziti",
    "bs": "paziti",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "aufpassen",
@@ -38635,7 +41006,7 @@
    "id": "pass auf deine schwester auf!:Pazi na sestru!",
    "bs": "Pazi na sestru!",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Pass auf deine Schwester auf!",
@@ -38653,7 +41024,7 @@
    "id": "bluten:krvariti",
    "bs": "krvariti",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "bluten",
@@ -38671,7 +41042,7 @@
    "id": "die wunde blutet stark.:Rana jako krvari.",
    "bs": "Rana jako krvari.",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Die Wunde blutet stark.",
@@ -38689,7 +41060,7 @@
    "id": "sich erkälten:prehladiti se",
    "bs": "prehladiti se",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "sich erkälten",
@@ -38707,7 +41078,7 @@
    "id": "zieh dich warm an, sonst erkältest du dich!:Obuci se toplo, prehladit ćeš se!",
    "bs": "Obuci se toplo, prehladit ćeš se!",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Zieh dich warm an, sonst erkältest du dich!",
@@ -38725,7 +41096,7 @@
    "id": "ohnmächtig werden:onesvijestiti se",
    "bs": "onesvijestiti se",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "ohnmächtig werden",
@@ -38743,7 +41114,7 @@
    "id": "die frau ist ohnmächtig geworden!:Žena se onesvijestila!",
    "bs": "Žena se onesvijestila!",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Die Frau ist ohnmächtig geworden!",
@@ -38761,7 +41132,7 @@
    "id": "wehtun:boljeti / boliti",
    "bs": "boljeti / boliti",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "wehtun",
@@ -38779,7 +41150,7 @@
    "id": "mir tut der hals weh.:Boli me grlo.",
    "bs": "Boli me grlo.",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Mir tut der Hals weh.",
@@ -38797,7 +41168,7 @@
    "id": "atmen:disati / dihati",
    "bs": "disati / dihati",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "atmen",
@@ -38815,7 +41186,7 @@
    "id": "ich kann nicht atmen!:Ne mogu disati!",
    "bs": "Ne mogu disati!",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Ich kann nicht atmen!",
@@ -38833,7 +41204,7 @@
    "id": "krank werden:razboljeti se / razboliti se",
    "bs": "razboljeti se / razboliti se",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "krank werden",
@@ -38851,7 +41222,7 @@
    "id": "das kind ist krank geworden.:Dijete se razboljelo.",
    "bs": "Dijete se razboljelo.",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Das Kind ist krank geworden.",
@@ -38869,7 +41240,7 @@
    "id": "brennen:gorjeti / goriti",
    "bs": "gorjeti / goriti",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "brennen",
@@ -38887,7 +41258,7 @@
    "id": "das haus brennt!:Kuća gori!",
    "bs": "Kuća gori!",
    "level": "passieren",
-   "level_position": 74,
+   "level_position": 78,
    "section": "tunlassen",
    "translations": {
     "de": "Das Haus brennt!",
@@ -38905,7 +41276,7 @@
    "id": "hilfe!:Upomoć!",
    "bs": "Upomoć!",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Hilfe!",
@@ -38923,7 +41294,7 @@
    "id": "hilfe! helfen sie mir!:Upomoć! Pomozite mi!",
    "bs": "Upomoć! Pomozite mi!",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Hilfe! Helfen Sie mir!",
@@ -38941,7 +41312,7 @@
    "id": "notfall:hitan slučaj",
    "bs": "hitan slučaj",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Notfall",
@@ -38959,7 +41330,7 @@
    "id": "das ist ein notfall, rufen sie den rettungsdienst!:Ovo je hitan slučaj, zovite hitnu pomoć!",
    "bs": "Ovo je hitan slučaj, zovite hitnu pomoć!",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Das ist ein Notfall, rufen Sie den Rettungsdienst!",
@@ -38977,7 +41348,7 @@
    "id": "krankenwagen / rettung:hitna",
    "bs": "hitna",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Krankenwagen / Rettung",
@@ -38995,7 +41366,7 @@
    "id": "der krankenwagen ist schon unterwegs.:Hitna je već na putu.",
    "bs": "Hitna je već na putu.",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Der Krankenwagen ist schon unterwegs.",
@@ -39013,7 +41384,7 @@
    "id": "feuerwehr:vatrogasci",
    "bs": "vatrogasci",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Feuerwehr",
@@ -39031,7 +41402,7 @@
    "id": "rufen sie die feuerwehr!:Zovite vatrogasce!",
    "bs": "Zovite vatrogasce!",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Rufen Sie die Feuerwehr!",
@@ -39049,7 +41420,7 @@
    "id": "brand:požar",
    "bs": "požar",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Brand",
@@ -39067,7 +41438,7 @@
    "id": "im gebäude ist ein brand ausgebrochen.:U zgradi je izbio požar.",
    "bs": "U zgradi je izbio požar.",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Im Gebäude ist ein Brand ausgebrochen.",
@@ -39085,7 +41456,7 @@
    "id": "unfall / unglück:nesreća",
    "bs": "nesreća",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Unfall / Unglück",
@@ -39103,7 +41474,7 @@
    "id": "auf der autobahn ist ein unfall passiert.:Desila se nesreća na autoputu.",
    "bs": "Desila se nesreća na autoputu.",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Auf der Autobahn ist ein Unfall passiert.",
@@ -39121,7 +41492,7 @@
    "id": "verletzung:povreda",
    "bs": "povreda",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Verletzung",
@@ -39139,7 +41510,7 @@
    "id": "die verletzung ist nicht schwer.:Povreda nije teška.",
    "bs": "Povreda nije teška.",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Die Verletzung ist nicht schwer.",
@@ -39157,7 +41528,7 @@
    "id": "wunde:rana",
    "bs": "rana",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Wunde",
@@ -39175,7 +41546,7 @@
    "id": "man muss die wunde reinigen.:Treba očistiti ranu.",
    "bs": "Treba očistiti ranu.",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Man muss die Wunde reinigen.",
@@ -39193,7 +41564,7 @@
    "id": "blut:krv",
    "bs": "krv",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Blut",
@@ -39211,7 +41582,7 @@
    "id": "du hast blut an der hand.:Imaš krv na ruci.",
    "bs": "Imaš krv na ruci.",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Du hast Blut an der Hand.",
@@ -39229,7 +41600,7 @@
    "id": "dieb:lopov",
    "bs": "lopov",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Dieb",
@@ -39247,7 +41618,7 @@
    "id": "der dieb ist weggerannt, rufen sie die polizei!:Lopov je pobjegao, zovite policiju!",
    "bs": "Lopov je pobjegao, zovite policiju!",
    "level": "notfall",
-   "level_position": 75,
+   "level_position": 79,
    "section": "tunlassen",
    "translations": {
     "de": "Der Dieb ist weggerannt, rufen Sie die Polizei!",
@@ -39258,6 +41629,3426 @@
     "nb": "Tyven løp av gårde, ring politiet!",
     "da": "Tyven er løbet væk, ring til politiet!",
     "fr": "Le voleur s'est enfui, appelez la police !"
+   },
+   "audio": null
+  },
+  {
+   "id": "weit (weg):daleko",
+   "bs": "daleko",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "weit (weg)",
+    "en": "far (away)",
+    "tr": "uzak",
+    "sv": "långt (bort)",
+    "nl": "ver (weg)",
+    "nb": "langt (borte)",
+    "da": "langt (væk)",
+    "fr": "loin"
+   },
+   "audio": null
+  },
+  {
+   "id": "ist es weit bis zum zentrum?:Je li daleko do centra?",
+   "bs": "Je li daleko do centra?",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ist es weit bis zum Zentrum?",
+    "en": "Is it far to the center?",
+    "tr": "Merkeze uzak mı?",
+    "sv": "Är det långt till centrum?",
+    "nl": "Is het ver naar het centrum?",
+    "nb": "Er det langt til sentrum?",
+    "da": "Er der langt til centrum?",
+    "fr": "C'est loin jusqu'au centre ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "hoch / groß (körpergröße):visok",
+   "bs": "visok",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "hoch / groß (Körpergröße)",
+    "en": "high / tall",
+    "tr": "yüksek / uzun boylu",
+    "sv": "hög / lång (om person)",
+    "nl": "hoog / lang (van postuur)",
+    "nb": "høy",
+    "da": "høj",
+    "fr": "haut / grand (taille)"
+   },
+   "audio": null
+  },
+  {
+   "id": "mein bruder ist sehr groß.:Moj brat je jako visok.",
+   "bs": "Moj brat je jako visok.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Mein Bruder ist sehr groß.",
+    "en": "My brother is very tall.",
+    "tr": "Kardeşim çok uzun boylu.",
+    "sv": "Min bror är väldigt lång.",
+    "nl": "Mijn broer is heel lang.",
+    "nb": "Broren min er veldig høy.",
+    "da": "Min bror er meget høj.",
+    "fr": "Mon frère est très grand."
+   },
+   "audio": null
+  },
+  {
+   "id": "schwer (gewicht):težak",
+   "bs": "težak",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "schwer (Gewicht)",
+    "en": "heavy",
+    "tr": "ağır",
+    "sv": "tung",
+    "nl": "zwaar",
+    "nb": "tung",
+    "da": "tung",
+    "fr": "lourd"
+   },
+   "audio": null
+  },
+  {
+   "id": "dieser koffer ist sehr schwer.:Ovaj kofer je jako težak.",
+   "bs": "Ovaj kofer je jako težak.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Dieser Koffer ist sehr schwer.",
+    "en": "This suitcase is very heavy.",
+    "tr": "Bu bavul çok ağır.",
+    "sv": "Den här resväskan är väldigt tung.",
+    "nl": "Deze koffer is erg zwaar.",
+    "nb": "Denne kofferten er veldig tung.",
+    "da": "Den her kuffert er meget tung.",
+    "fr": "Cette valise est très lourde."
+   },
+   "audio": null
+  },
+  {
+   "id": "breit:širok",
+   "bs": "širok",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "breit",
+    "en": "wide",
+    "tr": "geniş",
+    "sv": "bred",
+    "nl": "breed",
+    "nb": "bred",
+    "da": "bred",
+    "fr": "large"
+   },
+   "audio": null
+  },
+  {
+   "id": "der fluss ist hier sehr breit.:Rijeka je ovdje jako široka.",
+   "bs": "Rijeka je ovdje jako široka.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Der Fluss ist hier sehr breit.",
+    "en": "The river is very wide here.",
+    "tr": "Nehir burada çok geniş.",
+    "sv": "Floden är väldigt bred här.",
+    "nl": "De rivier is hier erg breed.",
+    "nb": "Elva er veldig bred her.",
+    "da": "Floden er meget bred her.",
+    "fr": "La rivière est très large ici."
+   },
+   "audio": null
+  },
+  {
+   "id": "lang:dug",
+   "bs": "dug",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "lang",
+    "en": "long",
+    "tr": "uzun",
+    "sv": "lång",
+    "nl": "lang",
+    "nb": "lang",
+    "da": "lang",
+    "fr": "long"
+   },
+   "audio": "web/audio/w1009.mp3"
+  },
+  {
+   "id": "das war ein langer tag.:Ovo je bio dug dan.",
+   "bs": "Ovo je bio dug dan.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das war ein langer Tag.",
+    "en": "That was a long day.",
+    "tr": "Uzun bir gündü.",
+    "sv": "Det var en lång dag.",
+    "nl": "Dat was een lange dag.",
+    "nb": "Det var en lang dag.",
+    "da": "Det var en lang dag.",
+    "fr": "C'était une longue journée."
+   },
+   "audio": null
+  },
+  {
+   "id": "niedrig / klein (körpergröße):nizak",
+   "bs": "nizak",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "niedrig / klein (Körpergröße)",
+    "en": "low / short (person)",
+    "tr": "alçak / kısa boylu",
+    "sv": "låg / kort (om person)",
+    "nl": "laag / klein (van postuur)",
+    "nb": "lav",
+    "da": "lav",
+    "fr": "bas / petit (taille)"
+   },
+   "audio": null
+  },
+  {
+   "id": "hier sind die preise niedrig.:Ovdje su cijene niske.",
+   "bs": "Ovdje su cijene niske.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Hier sind die Preise niedrig.",
+    "en": "Prices are low here.",
+    "tr": "Burada fiyatlar düşük.",
+    "sv": "Här är priserna låga.",
+    "nl": "Hier zijn de prijzen laag.",
+    "nb": "Her er prisene lave.",
+    "da": "Her er priserne lave.",
+    "fr": "Ici, les prix sont bas."
+   },
+   "audio": null
+  },
+  {
+   "id": "kurz:kratak",
+   "bs": "kratak",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "kurz",
+    "en": "short",
+    "tr": "kısa",
+    "sv": "kort",
+    "nl": "kort",
+    "nb": "kort",
+    "da": "kort (ikke lang)",
+    "fr": "court"
+   },
+   "audio": null
+  },
+  {
+   "id": "das leben ist kurz.:Život je kratak.",
+   "bs": "Život je kratak.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das Leben ist kurz.",
+    "en": "Life is short.",
+    "tr": "Hayat kısa.",
+    "sv": "Livet är kort.",
+    "nl": "Het leven is kort.",
+    "nb": "Livet er kort.",
+    "da": "Livet er kort.",
+    "fr": "La vie est courte."
+   },
+   "audio": null
+  },
+  {
+   "id": "eng / schmal:uzak",
+   "bs": "uzak",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "eng / schmal",
+    "en": "tight / narrow",
+    "tr": "dar",
+    "sv": "trång / smal",
+    "nl": "nauw / smal",
+    "nb": "trang / smal",
+    "da": "snæver / smal",
+    "fr": "étroit / serré"
+   },
+   "audio": null
+  },
+  {
+   "id": "diese schuhe sind mir zu eng.:Ove cipele su mi uske.",
+   "bs": "Ove cipele su mi uske.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Diese Schuhe sind mir zu eng.",
+    "en": "These shoes are too tight for me.",
+    "tr": "Bu ayakkabılar bana dar.",
+    "sv": "De här skorna är för trånga för mig.",
+    "nl": "Deze schoenen zitten me te krap.",
+    "nb": "Disse skoene er for trange for meg.",
+    "da": "De her sko er for stramme til mig.",
+    "fr": "Ces chaussures me serrent trop."
+   },
+   "audio": null
+  },
+  {
+   "id": "leicht (gewicht):lagan",
+   "bs": "lagan",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "leicht (Gewicht)",
+    "en": "light (in weight)",
+    "tr": "hafif",
+    "sv": "lätt (i vikt)",
+    "nl": "licht (van gewicht)",
+    "nb": "lett (i vekt)",
+    "da": "let (i vægt)",
+    "fr": "léger"
+   },
+   "audio": null
+  },
+  {
+   "id": "die tasche ist leicht, ich trage sie selbst.:Torba je lagana, nosit ću je sama.",
+   "bs": "Torba je lagana, nosit ću je sama.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Tasche ist leicht, ich trage sie selbst.",
+    "en": "The bag is light, I'll carry it myself.",
+    "tr": "Çanta hafif, kendim taşırım.",
+    "sv": "Väskan är lätt, jag bär den själv.",
+    "nl": "De tas is licht, ik draag hem zelf.",
+    "nb": "Veska er lett, jeg bærer den selv.",
+    "da": "Tasken er let, jeg bærer den selv.",
+    "fr": "Le sac est léger, je le porte moi-même."
+   },
+   "audio": null
+  },
+  {
+   "id": "dünn (gegenstand):tanak",
+   "bs": "tanak",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "dünn (Gegenstand)",
+    "en": "thin (object)",
+    "tr": "ince",
+    "sv": "tunn",
+    "nl": "dun",
+    "nb": "tynn",
+    "da": "tynd",
+    "fr": "mince (objet)"
+   },
+   "audio": null
+  },
+  {
+   "id": "die wände sind dünn, man hört alles.:Zidovi su tanki, sve se čuje.",
+   "bs": "Zidovi su tanki, sve se čuje.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Wände sind dünn, man hört alles.",
+    "en": "The walls are thin, you can hear everything.",
+    "tr": "Duvarlar ince, her şey duyuluyor.",
+    "sv": "Väggarna är tunna, man hör allt.",
+    "nl": "De muren zijn dun, je hoort alles.",
+    "nb": "Veggene er tynne, man hører alt.",
+    "da": "Væggene er tynde, man kan høre alt.",
+    "fr": "Les murs sont minces, on entend tout."
+   },
+   "audio": null
+  },
+  {
+   "id": "dick:debeo",
+   "bs": "debeo",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "dick",
+    "en": "thick / fat",
+    "tr": "kalın / şişman",
+    "sv": "tjock",
+    "nl": "dik",
+    "nb": "tykk",
+    "da": "tyk",
+    "fr": "épais / gros"
+   },
+   "audio": null
+  },
+  {
+   "id": "dieses buch ist richtig dick.:Ova knjiga je baš debela.",
+   "bs": "Ova knjiga je baš debela.",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Dieses Buch ist richtig dick.",
+    "en": "This book is really thick.",
+    "tr": "Bu kitap gerçekten çok kalın.",
+    "sv": "Den här boken är riktigt tjock.",
+    "nl": "Dit boek is echt dik.",
+    "nb": "Denne boka er skikkelig tykk.",
+    "da": "Den her bog er virkelig tyk.",
+    "fr": "Ce livre est vraiment épais."
+   },
+   "audio": null
+  },
+  {
+   "id": "dünn (person):mršav",
+   "bs": "mršav",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "dünn (Person)",
+    "en": "thin (person)",
+    "tr": "zayıf (kişi)",
+    "sv": "mager",
+    "nl": "mager",
+    "nb": "mager",
+    "da": "mager",
+    "fr": "maigre"
+   },
+   "audio": null
+  },
+  {
+   "id": "du bist dünn, iss ein bisschen mehr!:Mršav si, jedi malo više!",
+   "bs": "Mršav si, jedi malo više!",
+   "level": "lang_kurz",
+   "level_position": 80,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Du bist dünn, iss ein bisschen mehr!",
+    "en": "You're thin, eat a little more!",
+    "tr": "Zayıfsın, biraz daha ye!",
+    "sv": "Du är smal, ät lite mer!",
+    "nl": "Je bent mager, eet wat meer!",
+    "nb": "Du er tynn, spis litt mer!",
+    "da": "Du er tynd, spis lidt mere!",
+    "fr": "Tu es maigre, mange un peu plus !"
+   },
+   "audio": null
+  },
+  {
+   "id": "gleich / derselbe:isti",
+   "bs": "isti",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "gleich / derselbe",
+    "en": "same",
+    "tr": "aynı",
+    "sv": "samma / likadan",
+    "nl": "hetzelfde / dezelfde",
+    "nb": "samme",
+    "da": "samme",
+    "fr": "même / pareil"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir haben die gleichen schuhe!:Imamo iste cipele!",
+   "bs": "Imamo iste cipele!",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Wir haben die gleichen Schuhe!",
+    "en": "We've got the same shoes!",
+    "tr": "Ayakkabılarımız aynı!",
+    "sv": "Vi har likadana skor!",
+    "nl": "We hebben dezelfde schoenen!",
+    "nb": "Vi har like sko!",
+    "da": "Vi har de samme sko!",
+    "fr": "On a les mêmes chaussures !"
+   },
+   "audio": null
+  },
+  {
+   "id": "stark:jak",
+   "bs": "jak",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "stark",
+    "en": "strong",
+    "tr": "güçlü",
+    "sv": "stark",
+    "nl": "sterk",
+    "nb": "sterk",
+    "da": "stærk",
+    "fr": "fort"
+   },
+   "audio": null
+  },
+  {
+   "id": "er ist stark wie ein bär.:Jak je kao medvjed.",
+   "bs": "Jak je kao medvjed.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Er ist stark wie ein Bär.",
+    "en": "He's as strong as a bear.",
+    "tr": "Ayı gibi güçlü.",
+    "sv": "Han är stark som en björn.",
+    "nl": "Hij is zo sterk als een beer.",
+    "nb": "Han er sterk som en bjørn.",
+    "da": "Han er stærk som en bjørn.",
+    "fr": "Il est fort comme un ours."
+   },
+   "audio": null
+  },
+  {
+   "id": "voll:pun",
+   "bs": "pun",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "voll",
+    "en": "full",
+    "tr": "dolu",
+    "sv": "full",
+    "nl": "vol",
+    "nb": "full",
+    "da": "fuld",
+    "fr": "plein"
+   },
+   "audio": null
+  },
+  {
+   "id": "der bus war voll.:Autobus je bio pun.",
+   "bs": "Autobus je bio pun.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Der Bus war voll.",
+    "en": "The bus was full.",
+    "tr": "Otobüs doluydu.",
+    "sv": "Bussen var full.",
+    "nl": "De bus was vol.",
+    "nb": "Bussen var full.",
+    "da": "Bussen var fuld.",
+    "fr": "Le bus était plein."
+   },
+   "audio": null
+  },
+  {
+   "id": "reich:bogat",
+   "bs": "bogat",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "reich",
+    "en": "rich",
+    "tr": "zengin",
+    "sv": "rik",
+    "nl": "rijk",
+    "nb": "rik",
+    "da": "rig",
+    "fr": "riche"
+   },
+   "audio": null
+  },
+  {
+   "id": "seine familie ist sehr reich.:Njegova porodica je jako bogata.",
+   "bs": "Njegova porodica je jako bogata.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Seine Familie ist sehr reich.",
+    "en": "His family is very rich.",
+    "tr": "Ailesi çok zengin.",
+    "sv": "Hans familj är väldigt rik.",
+    "nl": "Zijn familie is heel rijk.",
+    "nb": "Familien hans er veldig rik.",
+    "da": "Hans familie er meget rig.",
+    "fr": "Sa famille est très riche."
+   },
+   "audio": null
+  },
+  {
+   "id": "anders:drugačiji",
+   "bs": "drugačiji",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "anders",
+    "en": "different",
+    "tr": "farklı",
+    "sv": "annorlunda",
+    "nl": "anders",
+    "nb": "annerledes",
+    "da": "anderledes",
+    "fr": "différent"
+   },
+   "audio": null
+  },
+  {
+   "id": "du bist heute irgendwie anders.:Danas si nekako drugačiji.",
+   "bs": "Danas si nekako drugačiji.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Du bist heute irgendwie anders.",
+    "en": "You're somehow different today.",
+    "tr": "Bugün bir şekilde farklısın.",
+    "sv": "Du är på något sätt annorlunda i dag.",
+    "nl": "Je bent vandaag op de een of andere manier anders.",
+    "nb": "Du er liksom annerledes i dag.",
+    "da": "Du er på en eller anden måde anderledes i dag.",
+    "fr": "Tu es un peu différent aujourd'hui."
+   },
+   "audio": null
+  },
+  {
+   "id": "schwach:slab",
+   "bs": "slab",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "schwach",
+    "en": "weak",
+    "tr": "zayıf / güçsüz",
+    "sv": "svag",
+    "nl": "zwak",
+    "nb": "svak",
+    "da": "svag",
+    "fr": "faible"
+   },
+   "audio": null
+  },
+  {
+   "id": "der empfang ist hier schwach.:Signal je ovdje slab.",
+   "bs": "Signal je ovdje slab.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Der Empfang ist hier schwach.",
+    "en": "The signal is weak here.",
+    "tr": "Burada çekim zayıf.",
+    "sv": "Mottagningen är svag här.",
+    "nl": "Het bereik is hier zwak.",
+    "nb": "Dekningen er svak her.",
+    "da": "Signalet er svagt her.",
+    "fr": "Le réseau est faible ici."
+   },
+   "audio": null
+  },
+  {
+   "id": "leer:prazan",
+   "bs": "prazan",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "leer",
+    "en": "empty",
+    "tr": "boş",
+    "sv": "tom",
+    "nl": "leeg",
+    "nb": "tom",
+    "da": "tom",
+    "fr": "vide"
+   },
+   "audio": null
+  },
+  {
+   "id": "der kühlschrank ist schon wieder leer.:Frižider je opet prazan.",
+   "bs": "Frižider je opet prazan.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Der Kühlschrank ist schon wieder leer.",
+    "en": "The fridge is empty again.",
+    "tr": "Buzdolabı yine boş.",
+    "sv": "Kylskåpet är tomt igen.",
+    "nl": "De koelkast is alweer leeg.",
+    "nb": "Kjøleskapet er tomt igjen.",
+    "da": "Køleskabet er tomt igen.",
+    "fr": "Le frigo est encore vide."
+   },
+   "audio": null
+  },
+  {
+   "id": "richtig / genau:tačan",
+   "bs": "tačan",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "richtig / genau",
+    "en": "correct / exact",
+    "tr": "doğru / tam",
+    "sv": "rätt / exakt",
+    "nl": "juist / precies",
+    "nb": "riktig / nøyaktig",
+    "da": "rigtig / nøjagtig",
+    "fr": "exact / juste"
+   },
+   "audio": null
+  },
+  {
+   "id": "ist das die richtige adresse?:Je li ovo tačna adresa?",
+   "bs": "Je li ovo tačna adresa?",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ist das die richtige Adresse?",
+    "en": "Is this the right address?",
+    "tr": "Bu doğru adres mi?",
+    "sv": "Är det här rätt adress?",
+    "nl": "Is dit het juiste adres?",
+    "nb": "Er dette riktig adresse?",
+    "da": "Er det her den rigtige adresse?",
+    "fr": "C'est la bonne adresse ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "trocken:suh",
+   "bs": "suh",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "trocken",
+    "en": "dry",
+    "tr": "kuru",
+    "sv": "torr",
+    "nl": "droog",
+    "nb": "tørr",
+    "da": "tør",
+    "fr": "sec"
+   },
+   "audio": null
+  },
+  {
+   "id": "die wäsche ist schon trocken.:Veš je već suh.",
+   "bs": "Veš je već suh.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Wäsche ist schon trocken.",
+    "en": "The laundry is already dry.",
+    "tr": "Çamaşırlar kurumuş bile.",
+    "sv": "Tvätten är redan torr.",
+    "nl": "De was is al droog.",
+    "nb": "Klesvasken er allerede tørr.",
+    "da": "Vasketøjet er allerede tørt.",
+    "fr": "Le linge est déjà sec."
+   },
+   "audio": null
+  },
+  {
+   "id": "falsch:pogrešan",
+   "bs": "pogrešan",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "falsch",
+    "en": "wrong",
+    "tr": "yanlış",
+    "sv": "fel",
+    "nl": "verkeerd",
+    "nb": "feil",
+    "da": "forkert",
+    "fr": "faux / mauvais"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir sind in den falschen bus gestiegen.:Ušli smo u pogrešan autobus.",
+   "bs": "Ušli smo u pogrešan autobus.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Wir sind in den falschen Bus gestiegen.",
+    "en": "We got on the wrong bus.",
+    "tr": "Yanlış otobüse bindik.",
+    "sv": "Vi klev på fel buss.",
+    "nl": "We zijn in de verkeerde bus gestapt.",
+    "nb": "Vi gikk på feil buss.",
+    "da": "Vi steg på den forkerte bus.",
+    "fr": "On est montés dans le mauvais bus."
+   },
+   "audio": null
+  },
+  {
+   "id": "arm:siromašan",
+   "bs": "siromašan",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "arm",
+    "en": "poor",
+    "tr": "fakir",
+    "sv": "fattig",
+    "nl": "arm",
+    "nb": "fattig",
+    "da": "fattig",
+    "fr": "pauvre"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin in einer armen familie aufgewachsen.:Odrastao sam u siromašnoj porodici.",
+   "bs": "Odrastao sam u siromašnoj porodici.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich bin in einer armen Familie aufgewachsen.",
+    "en": "I grew up in a poor family.",
+    "tr": "Fakir bir ailede büyüdüm.",
+    "sv": "Jag växte upp i en fattig familj.",
+    "nl": "Ik ben in een arm gezin opgegroeid.",
+    "nb": "Jeg vokste opp i en fattig familie.",
+    "da": "Jeg voksede op i en fattig familie.",
+    "fr": "J'ai grandi dans une famille pauvre."
+   },
+   "audio": null
+  },
+  {
+   "id": "hart:tvrd",
+   "bs": "tvrd",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "hart",
+    "en": "hard",
+    "tr": "sert",
+    "sv": "hård",
+    "nl": "hard",
+    "nb": "hard",
+    "da": "hård",
+    "fr": "dur"
+   },
+   "audio": null
+  },
+  {
+   "id": "das brot ist hart, es ist von gestern.:Hljeb je tvrd, od jučer je.",
+   "bs": "Hljeb je tvrd, od jučer je.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das Brot ist hart, es ist von gestern.",
+    "en": "The bread is hard, it's from yesterday.",
+    "tr": "Ekmek sert, dünden kalma.",
+    "sv": "Brödet är hårt, det är från i går.",
+    "nl": "Het brood is hard, het is van gisteren.",
+    "nb": "Brødet er hardt, det er fra i går.",
+    "da": "Brødet er hårdt, det er fra i går.",
+    "fr": "Le pain est dur, il est d'hier."
+   },
+   "audio": null
+  },
+  {
+   "id": "nass:mokar",
+   "bs": "mokar",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "nass",
+    "en": "wet",
+    "tr": "ıslak",
+    "sv": "blöt",
+    "nl": "nat",
+    "nb": "våt",
+    "da": "våd",
+    "fr": "mouillé"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin ganz nass vom regen.:Sav sam mokar od kiše.",
+   "bs": "Sav sam mokar od kiše.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich bin ganz nass vom Regen.",
+    "en": "I'm soaking wet from the rain.",
+    "tr": "Yağmurdan sırılsıklam oldum.",
+    "sv": "Jag är alldeles blöt av regnet.",
+    "nl": "Ik ben helemaal nat van de regen.",
+    "nb": "Jeg er helt våt av regnet.",
+    "da": "Jeg er helt våd af regnen.",
+    "fr": "Je suis tout mouillé à cause de la pluie."
+   },
+   "audio": null
+  },
+  {
+   "id": "weich:mekan",
+   "bs": "mekan",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "weich",
+    "en": "soft",
+    "tr": "yumuşak",
+    "sv": "mjuk",
+    "nl": "zacht",
+    "nb": "myk",
+    "da": "blød",
+    "fr": "mou / doux"
+   },
+   "audio": null
+  },
+  {
+   "id": "das kissen ist sehr weich.:Jastuk je jako mekan.",
+   "bs": "Jastuk je jako mekan.",
+   "level": "voll_leer",
+   "level_position": 81,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das Kissen ist sehr weich.",
+    "en": "The pillow is very soft.",
+    "tr": "Yastık çok yumuşak.",
+    "sv": "Kudden är väldigt mjuk.",
+    "nl": "Het kussen is heel zacht.",
+    "nb": "Puten er veldig myk.",
+    "da": "Puden er meget blød.",
+    "fr": "L'oreiller est très moelleux."
+   },
+   "audio": null
+  },
+  {
+   "id": "nötig:potreban",
+   "bs": "potreban",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "nötig",
+    "en": "necessary",
+    "tr": "gerekli",
+    "sv": "nödvändig",
+    "nl": "nodig",
+    "nb": "nødvendig",
+    "da": "nødvendig",
+    "fr": "nécessaire"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich brauche deine hilfe.:Potrebna mi je tvoja pomoć.",
+   "bs": "Potrebna mi je tvoja pomoć.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich brauche deine Hilfe.",
+    "en": "I need your help.",
+    "tr": "Yardımına ihtiyacım var.",
+    "sv": "Jag behöver din hjälp.",
+    "nl": "Ik heb je hulp nodig.",
+    "nb": "Jeg trenger hjelpen din.",
+    "da": "Jeg har brug for din hjælp.",
+    "fr": "J'ai besoin de ton aide."
+   },
+   "audio": null
+  },
+  {
+   "id": "möglich:moguć",
+   "bs": "moguć",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "möglich",
+    "en": "possible",
+    "tr": "mümkün",
+    "sv": "möjlig",
+    "nl": "mogelijk",
+    "nb": "mulig",
+    "da": "mulig",
+    "fr": "possible"
+   },
+   "audio": null
+  },
+  {
+   "id": "ist es möglich, mit karte zu zahlen?:Je li moguće platiti karticom?",
+   "bs": "Je li moguće platiti karticom?",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ist es möglich, mit Karte zu zahlen?",
+    "en": "Is it possible to pay by card?",
+    "tr": "Kartla ödemek mümkün mü?",
+    "sv": "Går det att betala med kort?",
+    "nl": "Is het mogelijk om met de kaart te betalen?",
+    "nb": "Er det mulig å betale med kort?",
+    "da": "Er det muligt at betale med kort?",
+    "fr": "Est-ce qu'on peut payer par carte ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "besonders:poseban",
+   "bs": "poseban",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "besonders",
+    "en": "special",
+    "tr": "özel",
+    "sv": "speciell / särskild",
+    "nl": "bijzonder",
+    "nb": "spesiell / særlig",
+    "da": "særlig / speciel",
+    "fr": "spécial / particulier"
+   },
+   "audio": null
+  },
+  {
+   "id": "heute ist ein besonderer tag.:Danas je poseban dan.",
+   "bs": "Danas je poseban dan.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Heute ist ein besonderer Tag.",
+    "en": "Today is a special day.",
+    "tr": "Bugün özel bir gün.",
+    "sv": "I dag är en speciell dag.",
+    "nl": "Vandaag is een bijzondere dag.",
+    "nb": "I dag er en spesiell dag.",
+    "da": "I dag er en særlig dag.",
+    "fr": "Aujourd'hui, c'est un jour spécial."
+   },
+   "audio": null
+  },
+  {
+   "id": "sicher:siguran",
+   "bs": "siguran",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "sicher",
+    "en": "safe / sure",
+    "tr": "güvenli / emin",
+    "sv": "säker",
+    "nl": "veilig / zeker",
+    "nb": "sikker / trygg",
+    "da": "sikker / tryg",
+    "fr": "sûr"
+   },
+   "audio": null
+  },
+  {
+   "id": "ist es hier nachts sicher?:Je li ovdje sigurno noću?",
+   "bs": "Je li ovdje sigurno noću?",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ist es hier nachts sicher?",
+    "en": "Is it safe here at night?",
+    "tr": "Burası geceleri güvenli mi?",
+    "sv": "Är det säkert här på natten?",
+    "nl": "Is het hier 's nachts veilig?",
+    "nb": "Er det trygt her om natten?",
+    "da": "Er det sikkert her om natten?",
+    "fr": "C'est sûr ici, la nuit ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "ähnlich:sličan",
+   "bs": "sličan",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "ähnlich",
+    "en": "similar",
+    "tr": "benzer",
+    "sv": "liknande",
+    "nl": "soortgelijk",
+    "nb": "lignende",
+    "da": "lignende",
+    "fr": "semblable"
+   },
+   "audio": null
+  },
+  {
+   "id": "du und dein bruder seid euch sehr ähnlich.:Ti i brat ste jako slični.",
+   "bs": "Ti i brat ste jako slični.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Du und dein Bruder seid euch sehr ähnlich.",
+    "en": "You and your brother are very alike.",
+    "tr": "Sen ve kardeşin birbirinize çok benziyorsunuz.",
+    "sv": "Du och din bror är väldigt lika.",
+    "nl": "Jij en je broer lijken erg op elkaar.",
+    "nb": "Du og broren din er veldig like.",
+    "da": "Du og din bror ligner hinanden meget.",
+    "fr": "Toi et ton frère, vous vous ressemblez beaucoup."
+   },
+   "audio": null
+  },
+  {
+   "id": "bereit:spreman",
+   "bs": "spreman",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "bereit",
+    "en": "ready",
+    "tr": "hazır",
+    "sv": "redo",
+    "nl": "gereed",
+    "nb": "klar",
+    "da": "klar / parat",
+    "fr": "prêt"
+   },
+   "audio": null
+  },
+  {
+   "id": "bist du bereit? wir fahren los.:Jesi li spremna? Krećemo.",
+   "bs": "Jesi li spremna? Krećemo.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Bist du bereit? Wir fahren los.",
+    "en": "Are you ready? We're leaving.",
+    "tr": "Hazır mısın? Yola çıkıyoruz.",
+    "sv": "Är du redo? Vi åker nu.",
+    "nl": "Ben je klaar? We vertrekken.",
+    "nb": "Er du klar? Vi drar nå.",
+    "da": "Er du klar? Vi kører nu.",
+    "fr": "Tu es prête ? On y va."
+   },
+   "audio": null
+  },
+  {
+   "id": "frei:slobodan",
+   "bs": "slobodan",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "frei",
+    "en": "free",
+    "tr": "müsait / serbest",
+    "sv": "ledig / fri",
+    "nl": "vrij",
+    "nb": "ledig / fri",
+    "da": "ledig / fri",
+    "fr": "libre"
+   },
+   "audio": null
+  },
+  {
+   "id": "hast du am samstag frei?:Jesi li slobodan u subotu?",
+   "bs": "Jesi li slobodan u subotu?",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Hast du am Samstag frei?",
+    "en": "Are you free on Saturday?",
+    "tr": "Cumartesi müsait misin?",
+    "sv": "Är du ledig på lördag?",
+    "nl": "Ben je zaterdag vrij?",
+    "nb": "Har du fri på lørdag?",
+    "da": "Har du fri på lørdag?",
+    "fr": "Tu es libre samedi ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "einfach (unkompliziert):jednostavan",
+   "bs": "jednostavan",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "einfach (unkompliziert)",
+    "en": "simple",
+    "tr": "basit",
+    "sv": "enkel",
+    "nl": "eenvoudig",
+    "nb": "enkel",
+    "da": "enkel",
+    "fr": "simple"
+   },
+   "audio": null
+  },
+  {
+   "id": "das rezept ist ganz einfach.:Recept je jako jednostavan.",
+   "bs": "Recept je jako jednostavan.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das Rezept ist ganz einfach.",
+    "en": "The recipe is really simple.",
+    "tr": "Tarif çok basit.",
+    "sv": "Receptet är jätteenkelt.",
+    "nl": "Het recept is heel eenvoudig.",
+    "nb": "Oppskriften er veldig enkel.",
+    "da": "Opskriften er helt enkel.",
+    "fr": "La recette est très simple."
+   },
+   "audio": null
+  },
+  {
+   "id": "gewöhnlich / normal:običan",
+   "bs": "običan",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "gewöhnlich / normal",
+    "en": "ordinary / normal",
+    "tr": "sıradan / normal",
+    "sv": "vanlig / normal",
+    "nl": "gewoon / normaal",
+    "nb": "vanlig / normal",
+    "da": "almindelig / normal",
+    "fr": "ordinaire / normal"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin ein ganz normaler mensch.:Ja sam običan čovjek.",
+   "bs": "Ja sam običan čovjek.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich bin ein ganz normaler Mensch.",
+    "en": "I'm just an ordinary person.",
+    "tr": "Ben sıradan bir insanım.",
+    "sv": "Jag är en helt vanlig människa.",
+    "nl": "Ik ben een heel gewoon mens.",
+    "nb": "Jeg er et helt vanlig menneske.",
+    "da": "Jeg er et helt almindeligt menneske.",
+    "fr": "Je suis quelqu'un de tout à fait normal."
+   },
+   "audio": null
+  },
+  {
+   "id": "seltsam / komisch:čudan",
+   "bs": "čudan",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "seltsam / komisch",
+    "en": "strange / weird",
+    "tr": "tuhaf / garip",
+    "sv": "konstig / märklig",
+    "nl": "vreemd / raar",
+    "nb": "rar / merkelig",
+    "da": "mærkelig / sær",
+    "fr": "étrange / bizarre"
+   },
+   "audio": null
+  },
+  {
+   "id": "das ist echt seltsam.:To je baš čudno.",
+   "bs": "To je baš čudno.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das ist echt seltsam.",
+    "en": "That's really strange.",
+    "tr": "Bu gerçekten tuhaf.",
+    "sv": "Det är verkligen konstigt.",
+    "nl": "Dat is echt vreemd.",
+    "nb": "Det er skikkelig rart.",
+    "da": "Det er virkelig mærkeligt.",
+    "fr": "C'est vraiment bizarre."
+   },
+   "audio": null
+  },
+  {
+   "id": "unmöglich:nemoguć",
+   "bs": "nemoguć",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "unmöglich",
+    "en": "impossible",
+    "tr": "imkânsız",
+    "sv": "omöjlig",
+    "nl": "onmogelijk",
+    "nb": "umulig",
+    "da": "umulig",
+    "fr": "impossible"
+   },
+   "audio": null
+  },
+  {
+   "id": "das ist unmöglich!:To je nemoguće!",
+   "bs": "To je nemoguće!",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das ist unmöglich!",
+    "en": "That's impossible!",
+    "tr": "Bu imkânsız!",
+    "sv": "Det är omöjligt!",
+    "nl": "Dat is onmogelijk!",
+    "nb": "Det er umulig!",
+    "da": "Det er umuligt!",
+    "fr": "C'est impossible !"
+   },
+   "audio": null
+  },
+  {
+   "id": "fertig:gotov",
+   "bs": "gotov",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "fertig",
+    "en": "finished / done",
+    "tr": "bitmiş",
+    "sv": "färdig",
+    "nl": "klaar / af",
+    "nb": "ferdig",
+    "da": "færdig",
+    "fr": "fini"
+   },
+   "audio": null
+  },
+  {
+   "id": "das mittagessen ist fertig!:Ručak je gotov!",
+   "bs": "Ručak je gotov!",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das Mittagessen ist fertig!",
+    "en": "Lunch is ready!",
+    "tr": "Öğle yemeği hazır!",
+    "sv": "Lunchen är klar!",
+    "nl": "Het middageten is klaar!",
+    "nb": "Lunsjen er klar!",
+    "da": "Frokosten er klar!",
+    "fr": "Le déjeuner est prêt !"
+   },
+   "audio": null
+  },
+  {
+   "id": "kompliziert:komplikovan",
+   "bs": "komplikovan",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "kompliziert",
+    "en": "complicated",
+    "tr": "karmaşık",
+    "sv": "komplicerad",
+    "nl": "ingewikkeld",
+    "nb": "komplisert",
+    "da": "kompliceret",
+    "fr": "compliqué"
+   },
+   "audio": null
+  },
+  {
+   "id": "das ist alles viel zu kompliziert.:Sve je to previše komplikovano.",
+   "bs": "Sve je to previše komplikovano.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das ist alles viel zu kompliziert.",
+    "en": "It's all far too complicated.",
+    "tr": "Bunların hepsi fazlasıyla karmaşık.",
+    "sv": "Det är alldeles för komplicerat.",
+    "nl": "Het is allemaal veel te ingewikkeld.",
+    "nb": "Det er altfor komplisert alt sammen.",
+    "da": "Det er alt sammen alt for kompliceret.",
+    "fr": "Tout ça, c'est beaucoup trop compliqué."
+   },
+   "audio": null
+  },
+  {
+   "id": "besetzt / beschäftigt:zauzet",
+   "bs": "zauzet",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "besetzt / beschäftigt",
+    "en": "busy / taken",
+    "tr": "meşgul / dolu",
+    "sv": "upptagen",
+    "nl": "bezet / druk",
+    "nb": "opptatt",
+    "da": "optaget",
+    "fr": "occupé"
+   },
+   "audio": null
+  },
+  {
+   "id": "entschuldige, ich bin gerade beschäftigt.:Izvini, sad sam zauzet.",
+   "bs": "Izvini, sad sam zauzet.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Entschuldige, ich bin gerade beschäftigt.",
+    "en": "Sorry, I'm busy right now.",
+    "tr": "Kusura bakma, şu an meşgulüm.",
+    "sv": "Förlåt, jag är upptagen just nu.",
+    "nl": "Sorry, ik heb het nu druk.",
+    "nb": "Unnskyld, jeg er opptatt akkurat nå.",
+    "da": "Undskyld, jeg har travlt lige nu.",
+    "fr": "Désolé, je suis occupé en ce moment."
+   },
+   "audio": null
+  },
+  {
+   "id": "echt:pravi",
+   "bs": "pravi",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "echt",
+    "en": "real / genuine",
+    "tr": "gerçek / hakiki",
+    "sv": "äkta / riktig",
+    "nl": "echt",
+    "nb": "ekte",
+    "da": "ægte",
+    "fr": "vrai / authentique"
+   },
+   "audio": null
+  },
+  {
+   "id": "das ist ein echter bosnischer kaffee.:Ovo je prava bosanska kahva.",
+   "bs": "Ovo je prava bosanska kahva.",
+   "level": "moeglich",
+   "level_position": 82,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das ist ein echter bosnischer Kaffee.",
+    "en": "This is real Bosnian coffee.",
+    "tr": "Bu hakiki Boşnak kahvesi.",
+    "sv": "Det här är äkta bosniskt kaffe.",
+    "nl": "Dit is echte Bosnische koffie.",
+    "nb": "Dette er ekte bosnisk kaffe.",
+    "da": "Det her er ægte bosnisk kaffe.",
+    "fr": "C'est un vrai café bosnien."
+   },
+   "audio": null
+  },
+  {
+   "id": "lieb:drag",
+   "bs": "drag",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "lieb",
+    "en": "sweet / dear",
+    "tr": "tatlı / sevimli",
+    "sv": "snäll / gullig",
+    "nl": "lief",
+    "nb": "snill / søt",
+    "da": "sød / rar",
+    "fr": "gentil / adorable"
+   },
+   "audio": null
+  },
+  {
+   "id": "deine mama ist sehr lieb.:Tvoja mama je jako draga.",
+   "bs": "Tvoja mama je jako draga.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Deine Mama ist sehr lieb.",
+    "en": "Your mom is really sweet.",
+    "tr": "Annen çok tatlı.",
+    "sv": "Din mamma är jättesnäll.",
+    "nl": "Je mama is heel lief.",
+    "nb": "Mamma di er veldig snill.",
+    "da": "Din mor er meget sød.",
+    "fr": "Ta maman est très gentille."
+   },
+   "audio": null
+  },
+  {
+   "id": "ernst:ozbiljan",
+   "bs": "ozbiljan",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "ernst",
+    "en": "serious",
+    "tr": "ciddi",
+    "sv": "allvarlig",
+    "nl": "ernstig / serieus",
+    "nb": "alvorlig",
+    "da": "alvorlig",
+    "fr": "sérieux"
+   },
+   "audio": null
+  },
+  {
+   "id": "das ist ein ernstes problem.:Ovo je ozbiljan problem.",
+   "bs": "Ovo je ozbiljan problem.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das ist ein ernstes Problem.",
+    "en": "This is a serious problem.",
+    "tr": "Bu ciddi bir sorun.",
+    "sv": "Det här är ett allvarligt problem.",
+    "nl": "Dit is een ernstig probleem.",
+    "nb": "Dette er et alvorlig problem.",
+    "da": "Det er et alvorligt problem.",
+    "fr": "C'est un problème sérieux."
+   },
+   "audio": null
+  },
+  {
+   "id": "fleißig:vrijedan",
+   "bs": "vrijedan",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "fleißig",
+    "en": "hard-working",
+    "tr": "çalışkan",
+    "sv": "flitig",
+    "nl": "ijverig",
+    "nb": "flittig",
+    "da": "flittig",
+    "fr": "travailleur"
+   },
+   "audio": null
+  },
+  {
+   "id": "meine tochter ist sehr fleißig.:Moja kćerka je jako vrijedna.",
+   "bs": "Moja kćerka je jako vrijedna.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Meine Tochter ist sehr fleißig.",
+    "en": "My daughter is very hard-working.",
+    "tr": "Kızım çok çalışkan.",
+    "sv": "Min dotter är väldigt flitig.",
+    "nl": "Mijn dochter is erg ijverig.",
+    "nb": "Datteren min er veldig flittig.",
+    "da": "Min datter er meget flittig.",
+    "fr": "Ma fille est très travailleuse."
+   },
+   "audio": null
+  },
+  {
+   "id": "klug:pametan",
+   "bs": "pametan",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "klug",
+    "en": "clever / smart",
+    "tr": "akıllı",
+    "sv": "klok / smart",
+    "nl": "slim",
+    "nb": "klok / smart",
+    "da": "klog",
+    "fr": "intelligent"
+   },
+   "audio": null
+  },
+  {
+   "id": "sie ist sehr klug.:Ona je jako pametna.",
+   "bs": "Ona je jako pametna.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sie ist sehr klug.",
+    "en": "She's very smart.",
+    "tr": "O çok akıllı.",
+    "sv": "Hon är väldigt klok.",
+    "nl": "Ze is heel slim.",
+    "nb": "Hun er veldig klok.",
+    "da": "Hun er meget klog.",
+    "fr": "Elle est très intelligente."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufrichtig / offen:iskren",
+   "bs": "iskren",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "aufrichtig / offen",
+    "en": "sincere / open",
+    "tr": "içten / samimi",
+    "sv": "uppriktig / öppen",
+    "nl": "oprecht / open",
+    "nb": "oppriktig / åpen",
+    "da": "oprigtig / åben",
+    "fr": "sincère / franc"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei ehrlich, gefällt es dir?:Budi iskren, sviđa li ti se?",
+   "bs": "Budi iskren, sviđa li ti se?",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei ehrlich, gefällt es dir?",
+    "en": "Be honest, do you like it?",
+    "tr": "Dürüst ol, beğendin mi?",
+    "sv": "Var ärlig, gillar du det?",
+    "nl": "Wees eerlijk, vind je het mooi?",
+    "nb": "Vær ærlig, liker du det?",
+    "da": "Vær ærlig, kan du lide det?",
+    "fr": "Sois franc, ça te plaît ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "böse:zao",
+   "bs": "zao",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "böse",
+    "en": "mean / evil",
+    "tr": "kötü kalpli",
+    "sv": "elak / ond",
+    "nl": "gemeen / boosaardig",
+    "nb": "slem / ond",
+    "da": "ond / slem",
+    "fr": "méchant"
+   },
+   "audio": null
+  },
+  {
+   "id": "der hund ist nicht böse, er bellt nur.:Pas nije zao, samo laje.",
+   "bs": "Pas nije zao, samo laje.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Der Hund ist nicht böse, er bellt nur.",
+    "en": "The dog isn't mean, it just barks.",
+    "tr": "Köpek kötü değil, sadece havlıyor.",
+    "sv": "Hunden är inte elak, den skäller bara.",
+    "nl": "De hond is niet gemeen, hij blaft alleen.",
+    "nb": "Hunden er ikke slem, den bare bjeffer.",
+    "da": "Hunden er ikke ond, den gør bare.",
+    "fr": "Le chien n'est pas méchant, il aboie juste."
+   },
+   "audio": null
+  },
+  {
+   "id": "mutig:hrabar",
+   "bs": "hrabar",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "mutig",
+    "en": "brave",
+    "tr": "cesur",
+    "sv": "modig",
+    "nl": "dapper",
+    "nb": "modig",
+    "da": "modig",
+    "fr": "courageux"
+   },
+   "audio": null
+  },
+  {
+   "id": "du warst sehr mutig.:Bio si jako hrabar.",
+   "bs": "Bio si jako hrabar.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Du warst sehr mutig.",
+    "en": "You were very brave.",
+    "tr": "Çok cesurdun.",
+    "sv": "Du var väldigt modig.",
+    "nl": "Je was heel dapper.",
+    "nb": "Du var veldig modig.",
+    "da": "Du var meget modig.",
+    "fr": "Tu as été très courageux."
+   },
+   "audio": null
+  },
+  {
+   "id": "dumm:glup",
+   "bs": "glup",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "dumm",
+    "en": "stupid",
+    "tr": "aptal",
+    "sv": "dum",
+    "nl": "dom",
+    "nb": "dum",
+    "da": "dum",
+    "fr": "bête / idiot"
+   },
+   "audio": null
+  },
+  {
+   "id": "das war dumm von mir.:To je bilo glupo od mene.",
+   "bs": "To je bilo glupo od mene.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das war dumm von mir.",
+    "en": "That was stupid of me.",
+    "tr": "Aptallık ettim.",
+    "sv": "Det var dumt av mig.",
+    "nl": "Dat was dom van me.",
+    "nb": "Det var dumt av meg.",
+    "da": "Det var dumt af mig.",
+    "fr": "C'était bête de ma part."
+   },
+   "audio": null
+  },
+  {
+   "id": "ehrlich:pošten",
+   "bs": "pošten",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "ehrlich",
+    "en": "honest",
+    "tr": "dürüst",
+    "sv": "ärlig",
+    "nl": "eerlijk",
+    "nb": "ærlig",
+    "da": "ærlig",
+    "fr": "honnête"
+   },
+   "audio": null
+  },
+  {
+   "id": "er ist ein ehrlicher mensch.:On je pošten čovjek.",
+   "bs": "On je pošten čovjek.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Er ist ein ehrlicher Mensch.",
+    "en": "He's an honest person.",
+    "tr": "O dürüst bir insan.",
+    "sv": "Han är en ärlig människa.",
+    "nl": "Hij is een eerlijk mens.",
+    "nb": "Han er et ærlig menneske.",
+    "da": "Han er et ærligt menneske.",
+    "fr": "C'est quelqu'un d'honnête."
+   },
+   "audio": null
+  },
+  {
+   "id": "fröhlich:veseo",
+   "bs": "veseo",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "fröhlich",
+    "en": "cheerful",
+    "tr": "neşeli",
+    "sv": "munter",
+    "nl": "vrolijk",
+    "nb": "blid / munter",
+    "da": "munter",
+    "fr": "joyeux / gai"
+   },
+   "audio": null
+  },
+  {
+   "id": "sie ist immer fröhlich und lacht.:Uvijek je vesela i nasmijana.",
+   "bs": "Uvijek je vesela i nasmijana.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sie ist immer fröhlich und lacht.",
+    "en": "She's always cheerful and smiling.",
+    "tr": "Hep neşeli ve güler yüzlü.",
+    "sv": "Hon är alltid glad och skrattar.",
+    "nl": "Ze is altijd vrolijk en lacht veel.",
+    "nb": "Hun er alltid blid og smiler.",
+    "da": "Hun er altid glad og smilende.",
+    "fr": "Elle est toujours joyeuse et souriante."
+   },
+   "audio": null
+  },
+  {
+   "id": "vorsichtig:oprezan",
+   "bs": "oprezan",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "vorsichtig",
+    "en": "careful",
+    "tr": "dikkatli",
+    "sv": "försiktig",
+    "nl": "voorzichtig",
+    "nb": "forsiktig",
+    "da": "forsigtig",
+    "fr": "prudent"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei vorsichtig, draußen ist es glatt.:Budi oprezan, vani je klizavo.",
+   "bs": "Budi oprezan, vani je klizavo.",
+   "level": "wie_jemand_ist",
+   "level_position": 83,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei vorsichtig, draußen ist es glatt.",
+    "en": "Be careful, it's slippery outside.",
+    "tr": "Dikkatli ol, dışarısı kaygan.",
+    "sv": "Var försiktig, det är halt ute.",
+    "nl": "Wees voorzichtig, het is glad buiten.",
+    "nb": "Vær forsiktig, det er glatt ute.",
+    "da": "Vær forsigtig, det er glat udenfor.",
+    "fr": "Fais attention, ça glisse dehors."
+   },
+   "audio": null
+  },
+  {
+   "id": "freundlich:ljubazan",
+   "bs": "ljubazan",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "freundlich",
+    "en": "friendly",
+    "tr": "nazik",
+    "sv": "vänlig",
+    "nl": "vriendelijk",
+    "nb": "vennlig",
+    "da": "venlig",
+    "fr": "aimable"
+   },
+   "audio": null
+  },
+  {
+   "id": "die verkäuferin war sehr freundlich.:Prodavačica je bila jako ljubazna.",
+   "bs": "Prodavačica je bila jako ljubazna.",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Verkäuferin war sehr freundlich.",
+    "en": "The salesclerk was very friendly.",
+    "tr": "Satıcı kadın çok nazikti.",
+    "sv": "Expediten var väldigt vänlig.",
+    "nl": "De verkoopster was heel vriendelijk.",
+    "nb": "Ekspeditøren var veldig vennlig.",
+    "da": "Ekspedienten var meget venlig.",
+    "fr": "La vendeuse était très aimable."
+   },
+   "audio": null
+  },
+  {
+   "id": "höflich / anständig:pristojan",
+   "bs": "pristojan",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "höflich / anständig",
+    "en": "polite / decent",
+    "tr": "terbiyeli / kibar",
+    "sv": "artig / anständig",
+    "nl": "beleefd / fatsoenlijk",
+    "nb": "høflig / anstendig",
+    "da": "høflig / anstændig",
+    "fr": "poli / correct"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei höflich vor den gästen!:Budi pristojan pred gostima!",
+   "bs": "Budi pristojan pred gostima!",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei höflich vor den Gästen!",
+    "en": "Be polite in front of the guests!",
+    "tr": "Misafirlerin yanında terbiyeli ol!",
+    "sv": "Var artig inför gästerna!",
+    "nl": "Wees beleefd tegen de gasten!",
+    "nb": "Vær høflig foran gjestene!",
+    "da": "Vær høflig over for gæsterne!",
+    "fr": "Sois poli devant les invités !"
+   },
+   "audio": null
+  },
+  {
+   "id": "aufmerksam / rücksichtsvoll:pažljiv",
+   "bs": "pažljiv",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "aufmerksam / rücksichtsvoll",
+    "en": "thoughtful / considerate",
+    "tr": "düşünceli / özenli",
+    "sv": "omtänksam / hänsynsfull",
+    "nl": "attent / zorgzaam",
+    "nb": "omtenksom / hensynsfull",
+    "da": "betænksom / hensynsfuld",
+    "fr": "attentionné / prévenant"
+   },
+   "audio": null
+  },
+  {
+   "id": "danke, das ist sehr aufmerksam von dir.:Hvala, baš si pažljiv.",
+   "bs": "Hvala, baš si pažljiv.",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Danke, das ist sehr aufmerksam von dir.",
+    "en": "Thanks, that's very thoughtful of you.",
+    "tr": "Teşekkürler, çok düşüncelisin.",
+    "sv": "Tack, det är väldigt omtänksamt av dig.",
+    "nl": "Dank je, dat is heel attent van je.",
+    "nb": "Takk, det er veldig omtenksomt av deg.",
+    "da": "Tak, det er meget betænksomt af dig.",
+    "fr": "Merci, c'est très attentionné de ta part."
+   },
+   "audio": null
+  },
+  {
+   "id": "faul:lijen",
+   "bs": "lijen",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "faul",
+    "en": "lazy",
+    "tr": "tembel",
+    "sv": "lat",
+    "nl": "lui",
+    "nb": "lat",
+    "da": "doven",
+    "fr": "paresseux"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei nicht faul, steh auf!:Ne budi lijen, ustaj!",
+   "bs": "Ne budi lijen, ustaj!",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei nicht faul, steh auf!",
+    "en": "Don't be lazy, get up!",
+    "tr": "Tembellik etme, kalk!",
+    "sv": "Var inte lat, stig upp!",
+    "nl": "Wees niet lui, sta op!",
+    "nb": "Ikke vær lat, stå opp!",
+    "da": "Vær ikke doven, stå op!",
+    "fr": "Ne sois pas paresseux, lève-toi !"
+   },
+   "audio": null
+  },
+  {
+   "id": "geduldig:strpljiv",
+   "bs": "strpljiv",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "geduldig",
+    "en": "patient",
+    "tr": "sabırlı",
+    "sv": "tålmodig",
+    "nl": "geduldig",
+    "nb": "tålmodig",
+    "da": "tålmodig",
+    "fr": "patient"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei geduldig, er kommt schon.:Budi strpljiv, doći će.",
+   "bs": "Budi strpljiv, doći će.",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei geduldig, er kommt schon.",
+    "en": "Be patient, he'll come.",
+    "tr": "Sabırlı ol, gelecek.",
+    "sv": "Ha tålamod, han kommer.",
+    "nl": "Wees geduldig, hij komt wel.",
+    "nb": "Vær tålmodig, han kommer.",
+    "da": "Vær tålmodig, han kommer nok.",
+    "fr": "Sois patient, il va venir."
+   },
+   "audio": null
+  },
+  {
+   "id": "egoistisch:sebičan",
+   "bs": "sebičan",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "egoistisch",
+    "en": "selfish",
+    "tr": "bencil",
+    "sv": "självisk",
+    "nl": "egoïstisch",
+    "nb": "egoistisk",
+    "da": "egoistisk",
+    "fr": "égoïste"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei nicht so egoistisch.:Nemoj biti tako sebičan.",
+   "bs": "Nemoj biti tako sebičan.",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei nicht so egoistisch.",
+    "en": "Don't be so selfish.",
+    "tr": "Bu kadar bencil olma.",
+    "sv": "Var inte så självisk.",
+    "nl": "Wees niet zo egoïstisch.",
+    "nb": "Ikke vær så egoistisk.",
+    "da": "Vær ikke så egoistisk.",
+    "fr": "Ne sois pas si égoïste."
+   },
+   "audio": null
+  },
+  {
+   "id": "ruhig / gelassen:smiren",
+   "bs": "smiren",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "ruhig / gelassen",
+    "en": "calm / composed",
+    "tr": "sakin",
+    "sv": "lugn",
+    "nl": "rustig / kalm",
+    "nb": "rolig",
+    "da": "rolig",
+    "fr": "calme / serein"
+   },
+   "audio": null
+  },
+  {
+   "id": "er ist immer ruhig.:On je uvijek smiren.",
+   "bs": "On je uvijek smiren.",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Er ist immer ruhig.",
+    "en": "He's always calm.",
+    "tr": "O hep sakindir.",
+    "sv": "Han är alltid lugn.",
+    "nl": "Hij is altijd rustig.",
+    "nb": "Han er alltid rolig.",
+    "da": "Han er altid rolig.",
+    "fr": "Il est toujours calme."
+   },
+   "audio": null
+  },
+  {
+   "id": "frech / unverschämt:bezobrazan",
+   "bs": "bezobrazan",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "frech / unverschämt",
+    "en": "cheeky / rude",
+    "tr": "terbiyesiz / küstah",
+    "sv": "fräck / oförskämd",
+    "nl": "brutaal / onbeschoft",
+    "nb": "frekk / uforskammet",
+    "da": "fræk / uforskammet",
+    "fr": "insolent / effronté"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei nicht frech!:Ne budi bezobrazan!",
+   "bs": "Ne budi bezobrazan!",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei nicht frech!",
+    "en": "Don't be cheeky!",
+    "tr": "Terbiyesizlik etme!",
+    "sv": "Var inte fräck!",
+    "nl": "Doe niet zo brutaal!",
+    "nb": "Ikke vær frekk!",
+    "da": "Vær ikke fræk!",
+    "fr": "Ne sois pas insolent !"
+   },
+   "audio": null
+  },
+  {
+   "id": "stur:tvrdoglav",
+   "bs": "tvrdoglav",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "stur",
+    "en": "stubborn",
+    "tr": "inatçı",
+    "sv": "envis",
+    "nl": "koppig",
+    "nb": "sta",
+    "da": "stædig",
+    "fr": "têtu"
+   },
+   "audio": null
+  },
+  {
+   "id": "du bist stur wie papa.:Tvrdoglav si kao babo.",
+   "bs": "Tvrdoglav si kao babo.",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Du bist stur wie Papa.",
+    "en": "You're as stubborn as Dad.",
+    "tr": "Baban gibi inatçısın.",
+    "sv": "Du är envis som pappa.",
+    "nl": "Je bent net zo koppig als papa.",
+    "nb": "Du er sta som pappa.",
+    "da": "Du er stædig som far.",
+    "fr": "Tu es têtu comme papa."
+   },
+   "audio": null
+  },
+  {
+   "id": "schüchtern:stidljiv",
+   "bs": "stidljiv",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "schüchtern",
+    "en": "shy",
+    "tr": "utangaç",
+    "sv": "blyg",
+    "nl": "verlegen",
+    "nb": "sjenert",
+    "da": "genert",
+    "fr": "timide"
+   },
+   "audio": null
+  },
+  {
+   "id": "unser sohn ist ein bisschen schüchtern.:Naš sin je malo stidljiv.",
+   "bs": "Naš sin je malo stidljiv.",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Unser Sohn ist ein bisschen schüchtern.",
+    "en": "Our son is a little shy.",
+    "tr": "Oğlumuz biraz utangaç.",
+    "sv": "Vår son är lite blyg.",
+    "nl": "Onze zoon is een beetje verlegen.",
+    "nb": "Sønnen vår er litt sjenert.",
+    "da": "Vores søn er lidt genert.",
+    "fr": "Notre fils est un peu timide."
+   },
+   "audio": null
+  },
+  {
+   "id": "geizig:škrt",
+   "bs": "škrt",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "geizig",
+    "en": "stingy",
+    "tr": "cimri",
+    "sv": "snål",
+    "nl": "gierig",
+    "nb": "gjerrig",
+    "da": "nærig",
+    "fr": "radin"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei nicht geizig, heute zahlst du!:Ne budi škrt, danas ti častiš!",
+   "bs": "Ne budi škrt, danas ti častiš!",
+   "level": "benehmen",
+   "level_position": 84,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei nicht geizig, heute zahlst du!",
+    "en": "Don't be stingy, it's your treat today!",
+    "tr": "Cimrilik etme, bugün ısmarlama sırası sende!",
+    "sv": "Var inte snål, i dag bjuder du!",
+    "nl": "Doe niet zo gierig, vandaag trakteer jij!",
+    "nb": "Ikke vær gjerrig, i dag spanderer du!",
+    "da": "Vær ikke nærig, i dag giver du!",
+    "fr": "Ne sois pas radin, aujourd'hui c'est toi qui paies !"
+   },
+   "audio": null
+  },
+  {
+   "id": "glück:sreća",
+   "bs": "sreća",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Glück",
+    "en": "luck / happiness",
+    "tr": "şans / mutluluk",
+    "sv": "tur / lycka",
+    "nl": "geluk",
+    "nb": "flaks / lykke",
+    "da": "held / lykke",
+    "fr": "chance / bonheur"
+   },
+   "audio": null
+  },
+  {
+   "id": "wir hatten glück!:Imali smo sreće!",
+   "bs": "Imali smo sreće!",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Wir hatten Glück!",
+    "en": "We were lucky!",
+    "tr": "Şansımız varmış!",
+    "sv": "Vi hade tur!",
+    "nl": "We hadden geluk!",
+    "nb": "Vi hadde flaks!",
+    "da": "Vi var heldige!",
+    "fr": "On a eu de la chance !"
+   },
+   "audio": null
+  },
+  {
+   "id": "gefühl:osjećaj",
+   "bs": "osjećaj",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Gefühl",
+    "en": "feeling",
+    "tr": "his / duygu",
+    "sv": "känsla",
+    "nl": "gevoel",
+    "nb": "følelse",
+    "da": "følelse",
+    "fr": "sentiment / impression"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe ein gutes gefühl.:Imam dobar osjećaj.",
+   "bs": "Imam dobar osjećaj.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich habe ein gutes Gefühl.",
+    "en": "I have a good feeling.",
+    "tr": "İçimde iyi bir his var.",
+    "sv": "Jag har en bra känsla.",
+    "nl": "Ik heb een goed gevoel.",
+    "nb": "Jeg har en god følelse.",
+    "da": "Jeg har en god fornemmelse.",
+    "fr": "J'ai un bon pressentiment."
+   },
+   "audio": null
+  },
+  {
+   "id": "sorge:briga",
+   "bs": "briga",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sorge",
+    "en": "worry",
+    "tr": "endişe / kaygı",
+    "sv": "oro / bekymmer",
+    "nl": "zorg",
+    "nb": "bekymring",
+    "da": "bekymring",
+    "fr": "souci"
+   },
+   "audio": null
+  },
+  {
+   "id": "keine sorge, alles wird gut.:Bez brige, sve će biti u redu.",
+   "bs": "Bez brige, sve će biti u redu.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Keine Sorge, alles wird gut.",
+    "en": "Don't worry, everything will be fine.",
+    "tr": "Merak etme, her şey yoluna girecek.",
+    "sv": "Ingen fara, allt kommer att ordna sig.",
+    "nl": "Geen zorgen, alles komt goed.",
+    "nb": "Ikke vær bekymret, alt kommer til å gå bra.",
+    "da": "Bare rolig, det skal nok gå.",
+    "fr": "Ne t'inquiète pas, tout va bien se passer."
+   },
+   "audio": null
+  },
+  {
+   "id": "dankbar:zahvalan",
+   "bs": "zahvalan",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "dankbar",
+    "en": "grateful",
+    "tr": "minnettar",
+    "sv": "tacksam",
+    "nl": "dankbaar",
+    "nb": "takknemlig",
+    "da": "taknemmelig",
+    "fr": "reconnaissant"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin dir für alles dankbar.:Zahvalan sam ti na svemu.",
+   "bs": "Zahvalan sam ti na svemu.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich bin dir für alles dankbar.",
+    "en": "I'm grateful to you for everything.",
+    "tr": "Her şey için sana minnettarım.",
+    "sv": "Jag är tacksam för allt du har gjort.",
+    "nl": "Ik ben je dankbaar voor alles.",
+    "nb": "Jeg er takknemlig for alt du har gjort.",
+    "da": "Jeg er dig taknemmelig for alt.",
+    "fr": "Je te suis reconnaissant pour tout."
+   },
+   "audio": null
+  },
+  {
+   "id": "viel glück!:Sretno!",
+   "bs": "Sretno!",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Viel Glück!",
+    "en": "Good luck!",
+    "tr": "Bol şans!",
+    "sv": "Lycka till!",
+    "nl": "Veel succes!",
+    "nb": "Lykke til!",
+    "da": "Held og lykke!",
+    "fr": "Bonne chance !"
+   },
+   "audio": null
+  },
+  {
+   "id": "viel glück bei der prüfung!:Sretno na ispitu!",
+   "bs": "Sretno na ispitu!",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Viel Glück bei der Prüfung!",
+    "en": "Good luck on the exam!",
+    "tr": "Sınavda bol şans!",
+    "sv": "Lycka till på provet!",
+    "nl": "Veel succes met je examen!",
+    "nb": "Lykke til på eksamen!",
+    "da": "Held og lykke til eksamen!",
+    "fr": "Bonne chance pour l'examen !"
+   },
+   "audio": null
+  },
+  {
+   "id": "besorgt:zabrinut",
+   "bs": "zabrinut",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "besorgt",
+    "en": "worried",
+    "tr": "endişeli",
+    "sv": "orolig",
+    "nl": "bezorgd",
+    "nb": "bekymret",
+    "da": "bekymret",
+    "fr": "inquiet"
+   },
+   "audio": null
+  },
+  {
+   "id": "mama macht sich sorgen, weil du dich nicht meldest.:Mama je zabrinuta jer se ne javljaš.",
+   "bs": "Mama je zabrinuta jer se ne javljaš.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Mama macht sich Sorgen, weil du dich nicht meldest.",
+    "en": "Mom is worried because you don't call.",
+    "tr": "Annen merak ediyor, çünkü aramıyorsun.",
+    "sv": "Mamma är orolig för att du inte hör av dig.",
+    "nl": "Mama maakt zich zorgen omdat je niets laat horen.",
+    "nb": "Mamma er bekymret fordi du ikke tar kontakt.",
+    "da": "Mor er bekymret, fordi du ikke ringer.",
+    "fr": "Maman s'inquiète parce que tu ne donnes pas de nouvelles."
+   },
+   "audio": null
+  },
+  {
+   "id": "verwirrt:zbunjen",
+   "bs": "zbunjen",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "verwirrt",
+    "en": "confused",
+    "tr": "kafası karışık",
+    "sv": "förvirrad",
+    "nl": "in de war",
+    "nb": "forvirret",
+    "da": "forvirret",
+    "fr": "perdu / confus"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin etwas verwirrt, kannst du das wiederholen?:Malo sam zbunjen, možeš li ponoviti?",
+   "bs": "Malo sam zbunjen, možeš li ponoviti?",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich bin etwas verwirrt, kannst du das wiederholen?",
+    "en": "I'm a bit confused, can you repeat that?",
+    "tr": "Kafam biraz karıştı, tekrar eder misin?",
+    "sv": "Jag är lite förvirrad, kan du upprepa det?",
+    "nl": "Ik ben een beetje in de war, kun je dat herhalen?",
+    "nb": "Jeg er litt forvirret, kan du gjenta det?",
+    "da": "Jeg er lidt forvirret, kan du gentage det?",
+    "fr": "Je suis un peu perdu, tu peux répéter ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "enttäuscht:razočaran",
+   "bs": "razočaran",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "enttäuscht",
+    "en": "disappointed",
+    "tr": "hayal kırıklığına uğramış",
+    "sv": "besviken",
+    "nl": "teleurgesteld",
+    "nb": "skuffet",
+    "da": "skuffet",
+    "fr": "déçu"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin ein bisschen enttäuscht.:Malo sam razočaran.",
+   "bs": "Malo sam razočaran.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich bin ein bisschen enttäuscht.",
+    "en": "I'm a little disappointed.",
+    "tr": "Biraz hayal kırıklığına uğradım.",
+    "sv": "Jag är lite besviken.",
+    "nl": "Ik ben een beetje teleurgesteld.",
+    "nb": "Jeg er litt skuffet.",
+    "da": "Jeg er lidt skuffet.",
+    "fr": "Je suis un peu déçu."
+   },
+   "audio": null
+  },
+  {
+   "id": "eifersüchtig:ljubomoran",
+   "bs": "ljubomoran",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "eifersüchtig",
+    "en": "jealous",
+    "tr": "kıskanç",
+    "sv": "svartsjuk",
+    "nl": "jaloers",
+    "nb": "sjalu",
+    "da": "jaloux",
+    "fr": "jaloux"
+   },
+   "audio": null
+  },
+  {
+   "id": "sei nicht eifersüchtig!:Ne budi ljubomoran!",
+   "bs": "Ne budi ljubomoran!",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Sei nicht eifersüchtig!",
+    "en": "Don't be jealous!",
+    "tr": "Kıskançlık yapma!",
+    "sv": "Var inte svartsjuk!",
+    "nl": "Wees niet jaloers!",
+    "nb": "Ikke vær sjalu!",
+    "da": "Vær ikke jaloux!",
+    "fr": "Ne sois pas jaloux !"
+   },
+   "audio": null
+  },
+  {
+   "id": "verliebt:zaljubljen",
+   "bs": "zaljubljen",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "verliebt",
+    "en": "in love",
+    "tr": "âşık",
+    "sv": "kär",
+    "nl": "verliefd",
+    "nb": "forelsket",
+    "da": "forelsket",
+    "fr": "amoureux"
+   },
+   "audio": null
+  },
+  {
+   "id": "er ist bis über beide ohren verliebt.:Zaljubljen je do ušiju.",
+   "bs": "Zaljubljen je do ušiju.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Er ist bis über beide Ohren verliebt.",
+    "en": "He's head over heels in love.",
+    "tr": "Sırılsıklam âşık.",
+    "sv": "Han är kär upp över öronen.",
+    "nl": "Hij is tot over zijn oren verliefd.",
+    "nb": "Han er forelsket til opp over ørene.",
+    "da": "Han er forelsket op over begge ører.",
+    "fr": "Il est fou amoureux."
+   },
+   "audio": null
+  },
+  {
+   "id": "entspannt:opušten",
+   "bs": "opušten",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "entspannt",
+    "en": "relaxed",
+    "tr": "rahat",
+    "sv": "avslappnad",
+    "nl": "ontspannen",
+    "nb": "avslappet",
+    "da": "afslappet",
+    "fr": "détendu"
+   },
+   "audio": null
+  },
+  {
+   "id": "im urlaub bin ich völlig entspannt.:Na odmoru sam potpuno opušten.",
+   "bs": "Na odmoru sam potpuno opušten.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Im Urlaub bin ich völlig entspannt.",
+    "en": "On vacation I'm completely relaxed.",
+    "tr": "Tatilde tamamen rahatım.",
+    "sv": "På semestern är jag helt avslappnad.",
+    "nl": "Op vakantie ben ik helemaal ontspannen.",
+    "nb": "På ferie er jeg helt avslappet.",
+    "da": "På ferie er jeg helt afslappet.",
+    "fr": "En vacances, je suis complètement détendu."
+   },
+   "audio": null
+  },
+  {
+   "id": "aufgeregt:uzbuđen",
+   "bs": "uzbuđen",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "aufgeregt",
+    "en": "excited",
+    "tr": "heyecanlı",
+    "sv": "uppspelt",
+    "nl": "opgewonden",
+    "nb": "oppspilt",
+    "da": "spændt",
+    "fr": "excité / impatient"
+   },
+   "audio": null
+  },
+  {
+   "id": "die kinder sind wegen der reise aufgeregt.:Djeca su uzbuđena zbog puta.",
+   "bs": "Djeca su uzbuđena zbog puta.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Kinder sind wegen der Reise aufgeregt.",
+    "en": "The kids are excited about the trip.",
+    "tr": "Çocuklar yolculuk için heyecanlı.",
+    "sv": "Barnen är uppspelta inför resan.",
+    "nl": "De kinderen zijn opgewonden over de reis.",
+    "nb": "Barna er oppspilte før turen.",
+    "da": "Børnene er spændte på turen.",
+    "fr": "Les enfants sont tout excités à cause du voyage."
+   },
+   "audio": null
+  },
+  {
+   "id": "verängstigt / erschrocken:uplašen",
+   "bs": "uplašen",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "verängstigt / erschrocken",
+    "en": "scared / frightened",
+    "tr": "korkmuş",
+    "sv": "rädd / skrämd",
+    "nl": "bang / geschrokken",
+    "nb": "redd / skremt",
+    "da": "bange / forskrækket",
+    "fr": "effrayé / apeuré"
+   },
+   "audio": null
+  },
+  {
+   "id": "das kind hatte große angst.:Dijete je bilo jako uplašeno.",
+   "bs": "Dijete je bilo jako uplašeno.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das Kind hatte große Angst.",
+    "en": "The child was very scared.",
+    "tr": "Çocuk çok korkmuştu.",
+    "sv": "Barnet var väldigt rädd.",
+    "nl": "Het kind was erg bang.",
+    "nb": "Barnet var veldig redd.",
+    "da": "Barnet var meget bange.",
+    "fr": "L'enfant avait très peur."
+   },
+   "audio": null
+  },
+  {
+   "id": "schläfrig:pospan",
+   "bs": "pospan",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "schläfrig",
+    "en": "sleepy",
+    "tr": "uykulu",
+    "sv": "sömnig",
+    "nl": "slaperig",
+    "nb": "søvnig",
+    "da": "søvnig",
+    "fr": "somnolent"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich bin schläfrig, ich lege mich hin.:Pospan sam, idem leći.",
+   "bs": "Pospan sam, idem leći.",
+   "level": "glueck_sorgen",
+   "level_position": 85,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich bin schläfrig, ich lege mich hin.",
+    "en": "I'm sleepy, I'm going to lie down.",
+    "tr": "Uykum geldi, gidip uzanacağım.",
+    "sv": "Jag är sömnig, jag går och lägger mig.",
+    "nl": "Ik ben slaperig, ik ga liggen.",
+    "nb": "Jeg er søvnig, jeg legger meg.",
+    "da": "Jeg er søvnig, jeg lægger mig.",
+    "fr": "J'ai sommeil, je vais m'allonger."
+   },
+   "audio": null
+  },
+  {
+   "id": "spüren / fühlen:osjetiti",
+   "bs": "osjetiti",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "spüren / fühlen",
+    "en": "to feel / to sense",
+    "tr": "sezmek / hissetmek",
+    "sv": "känna",
+    "nl": "voelen / aanvoelen",
+    "nb": "kjenne / føle",
+    "da": "at mærke / at føle",
+    "fr": "ressentir / percevoir"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe gespürt, dass etwas nicht stimmt.:Osjetio sam da nešto nije u redu.",
+   "bs": "Osjetio sam da nešto nije u redu.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich habe gespürt, dass etwas nicht stimmt.",
+    "en": "I sensed that something was wrong.",
+    "tr": "Bir şeylerin yolunda olmadığını hissettim.",
+    "sv": "Jag kände att något inte stämde.",
+    "nl": "Ik voelde dat er iets niet klopte.",
+    "nb": "Jeg kjente at noe ikke stemte.",
+    "da": "Jeg kunne mærke, at noget var galt.",
+    "fr": "J'ai senti que quelque chose n'allait pas."
+   },
+   "audio": null
+  },
+  {
+   "id": "bemerken:primijetiti",
+   "bs": "primijetiti",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "bemerken",
+    "en": "to notice",
+    "tr": "fark etmek",
+    "sv": "lägga märke till",
+    "nl": "opmerken / merken",
+    "nb": "legge merke til",
+    "da": "at bemærke / at lægge mærke til",
+    "fr": "remarquer"
+   },
+   "audio": null
+  },
+  {
+   "id": "ich habe nicht bemerkt, dass du beim friseur warst.:Nisam primijetio da si se ošišala.",
+   "bs": "Nisam primijetio da si se ošišala.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ich habe nicht bemerkt, dass du beim Friseur warst.",
+    "en": "I didn't notice you'd had your hair cut.",
+    "tr": "Saçını kestirdiğini fark etmedim.",
+    "sv": "Jag märkte inte att du hade klippt dig.",
+    "nl": "Ik had niet gemerkt dat je naar de kapper was geweest.",
+    "nb": "Jeg la ikke merke til at du hadde klippet deg.",
+    "da": "Jeg lagde ikke mærke til, at du havde været hos frisøren.",
+    "fr": "Je n'ai pas remarqué que tu étais allée chez le coiffeur."
+   },
+   "audio": null
+  },
+  {
+   "id": "probieren / kosten:probati",
+   "bs": "probati",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "probieren / kosten",
+    "en": "to try / to taste",
+    "tr": "denemek / tadına bakmak",
+    "sv": "prova / smaka",
+    "nl": "proberen / proeven",
+    "nb": "prøve / smake",
+    "da": "at prøve / at smage",
+    "fr": "essayer / goûter"
+   },
+   "audio": null
+  },
+  {
+   "id": "probier das, das ist lecker!:Probaj ovo, fino je!",
+   "bs": "Probaj ovo, fino je!",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Probier das, das ist lecker!",
+    "en": "Try this, it's delicious!",
+    "tr": "Bunu bir dene, çok lezzetli!",
+    "sv": "Smaka på det här, det är gott!",
+    "nl": "Proef dit eens, het is lekker!",
+    "nb": "Smak på dette, det er godt!",
+    "da": "Smag det her, det er lækkert!",
+    "fr": "Goûte ça, c'est bon !"
+   },
+   "audio": null
+  },
+  {
+   "id": "geruch / duft:miris",
+   "bs": "miris",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Geruch / Duft",
+    "en": "smell / scent",
+    "tr": "koku",
+    "sv": "lukt / doft",
+    "nl": "geur",
+    "nb": "lukt / duft",
+    "da": "lugt / duft",
+    "fr": "odeur / parfum"
+   },
+   "audio": null
+  },
+  {
+   "id": "was für ein schöner duft!:Kakav lijep miris!",
+   "bs": "Kakav lijep miris!",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Was für ein schöner Duft!",
+    "en": "What a lovely smell!",
+    "tr": "Ne güzel bir koku!",
+    "sv": "Vilken härlig doft!",
+    "nl": "Wat een heerlijke geur!",
+    "nb": "For en deilig duft!",
+    "da": "Sikke en dejlig duft!",
+    "fr": "Quelle bonne odeur !"
+   },
+   "audio": null
+  },
+  {
+   "id": "dunkel:taman",
+   "bs": "taman",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "dunkel",
+    "en": "dark",
+    "tr": "karanlık / koyu",
+    "sv": "mörk",
+    "nl": "donker",
+    "nb": "mørk",
+    "da": "mørk",
+    "fr": "sombre / foncé"
+   },
+   "audio": null
+  },
+  {
+   "id": "im zimmer ist es dunkel, mach das licht an.:U sobi je tamno, upali svjetlo.",
+   "bs": "U sobi je tamno, upali svjetlo.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Im Zimmer ist es dunkel, mach das Licht an.",
+    "en": "It's dark in the room, turn on the light.",
+    "tr": "Oda karanlık, ışığı aç.",
+    "sv": "Det är mörkt i rummet, tänd lampan.",
+    "nl": "Het is donker in de kamer, doe het licht aan.",
+    "nb": "Det er mørkt i rommet, slå på lyset.",
+    "da": "Det er mørkt i værelset, tænd lyset.",
+    "fr": "Il fait sombre dans la pièce, allume la lumière."
+   },
+   "audio": null
+  },
+  {
+   "id": "geschmack (essen):okus",
+   "bs": "okus",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Geschmack (Essen)",
+    "en": "taste (food)",
+    "tr": "tat (yemek)",
+    "sv": "smak (mat)",
+    "nl": "smaak (eten)",
+    "nb": "smak (mat)",
+    "da": "smag (mad)",
+    "fr": "goût (nourriture)"
+   },
+   "audio": null
+  },
+  {
+   "id": "das schmeckt komisch.:Ovo ima čudan okus.",
+   "bs": "Ovo ima čudan okus.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Das schmeckt komisch.",
+    "en": "This tastes weird.",
+    "tr": "Bunun tadı tuhaf.",
+    "sv": "Det här smakar konstigt.",
+    "nl": "Dit smaakt raar.",
+    "nb": "Dette smaker rart.",
+    "da": "Det her smager mærkeligt.",
+    "fr": "Ça a un drôle de goût."
+   },
+   "audio": null
+  },
+  {
+   "id": "geschmack (stil):ukus",
+   "bs": "ukus",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Geschmack (Stil)",
+    "en": "taste (style)",
+    "tr": "zevk",
+    "sv": "smak (stil)",
+    "nl": "smaak (stijl)",
+    "nb": "smak (stil)",
+    "da": "smag (stil)",
+    "fr": "goût (style)"
+   },
+   "audio": null
+  },
+  {
+   "id": "du hast einen guten geschmack.:Imaš dobar ukus.",
+   "bs": "Imaš dobar ukus.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Du hast einen guten Geschmack.",
+    "en": "You have good taste.",
+    "tr": "Zevkin çok iyi.",
+    "sv": "Du har god smak.",
+    "nl": "Je hebt een goede smaak.",
+    "nb": "Du har god smak.",
+    "da": "Du har god smag.",
+    "fr": "Tu as bon goût."
+   },
+   "audio": null
+  },
+  {
+   "id": "hell:svijetao",
+   "bs": "svijetao",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "hell",
+    "en": "bright",
+    "tr": "aydınlık",
+    "sv": "ljus",
+    "nl": "licht / helder",
+    "nb": "lys / opplyst",
+    "da": "lys / oplyst",
+    "fr": "clair / lumineux"
+   },
+   "audio": null
+  },
+  {
+   "id": "die wohnung ist schön und hell.:Stan je lijep i svijetao.",
+   "bs": "Stan je lijep i svijetao.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Wohnung ist schön und hell.",
+    "en": "The apartment is nice and bright.",
+    "tr": "Daire güzel ve aydınlık.",
+    "sv": "Lägenheten är fin och ljus.",
+    "nl": "Het appartement is mooi en licht.",
+    "nb": "Leiligheten er fin og lys.",
+    "da": "Lejligheden er pæn og lys.",
+    "fr": "L'appartement est beau et lumineux."
+   },
+   "audio": null
+  },
+  {
+   "id": "dunkelheit:mrak",
+   "bs": "mrak",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Dunkelheit",
+    "en": "darkness",
+    "tr": "karanlık (isim)",
+    "sv": "mörker",
+    "nl": "duisternis",
+    "nb": "mørke",
+    "da": "mørke",
+    "fr": "obscurité"
+   },
+   "audio": null
+  },
+  {
+   "id": "draußen ist es schon dunkel.:Vani je već mrak.",
+   "bs": "Vani je već mrak.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Draußen ist es schon dunkel.",
+    "en": "It's already dark outside.",
+    "tr": "Dışarısı çoktan karardı.",
+    "sv": "Det är redan mörkt ute.",
+    "nl": "Het is buiten al donker.",
+    "nb": "Det er allerede mørkt ute.",
+    "da": "Det er allerede mørkt udenfor.",
+    "fr": "Il fait déjà nuit dehors."
+   },
+   "audio": null
+  },
+  {
+   "id": "lärm:buka",
+   "bs": "buka",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Lärm",
+    "en": "noise",
+    "tr": "gürültü",
+    "sv": "oväsen / buller",
+    "nl": "lawaai",
+    "nb": "bråk / støy",
+    "da": "larm / støj",
+    "fr": "bruit"
+   },
+   "audio": null
+  },
+  {
+   "id": "was ist das für ein lärm?:Kakva je ovo buka?",
+   "bs": "Kakva je ovo buka?",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Was ist das für ein Lärm?",
+    "en": "What's that noise?",
+    "tr": "Bu gürültü de ne?",
+    "sv": "Vad är det för oväsen?",
+    "nl": "Wat is dat voor lawaai?",
+    "nb": "Hva er det for bråk?",
+    "da": "Hvad er det for en larm?",
+    "fr": "C'est quoi, ce bruit ?"
+   },
+   "audio": null
+  },
+  {
+   "id": "stille / ruhe:tišina",
+   "bs": "tišina",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Stille / Ruhe",
+    "en": "silence",
+    "tr": "sessizlik",
+    "sv": "tystnad",
+    "nl": "stilte",
+    "nb": "stillhet / ro",
+    "da": "stilhed / ro",
+    "fr": "silence"
+   },
+   "audio": null
+  },
+  {
+   "id": "ruhe bitte!:Tišina, molim vas!",
+   "bs": "Tišina, molim vas!",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ruhe bitte!",
+    "en": "Quiet, please!",
+    "tr": "Sessiz olun lütfen!",
+    "sv": "Tyst, tack!",
+    "nl": "Stilte, alstublieft!",
+    "nb": "Ro, takk!",
+    "da": "Ro, tak!",
+    "fr": "Silence, s'il vous plaît !"
+   },
+   "audio": null
+  },
+  {
+   "id": "leise / still:tih",
+   "bs": "tih",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "leise / still",
+    "en": "quiet",
+    "tr": "sessiz",
+    "sv": "tyst",
+    "nl": "stil",
+    "nb": "stille",
+    "da": "stille",
+    "fr": "silencieux / tranquille"
+   },
+   "audio": null
+  },
+  {
+   "id": "hier ist es nachts sehr still.:Ovdje je noću jako tiho.",
+   "bs": "Ovdje je noću jako tiho.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Hier ist es nachts sehr still.",
+    "en": "It's very quiet here at night.",
+    "tr": "Burası geceleri çok sessiz.",
+    "sv": "Här är det väldigt tyst på natten.",
+    "nl": "Het is hier 's nachts heel stil.",
+    "nb": "Her er det veldig stille om natten.",
+    "da": "Her er der meget stille om natten.",
+    "fr": "Ici, c'est très calme la nuit."
+   },
+   "audio": null
+  },
+  {
+   "id": "anfassen:dirati",
+   "bs": "dirati",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "anfassen",
+    "en": "to touch",
+    "tr": "dokunmak",
+    "sv": "röra / ta på",
+    "nl": "aanraken",
+    "nb": "ta på / røre",
+    "da": "at røre ved",
+    "fr": "toucher"
+   },
+   "audio": null
+  },
+  {
+   "id": "fass das nicht an, es ist heiß!:Ne diraj, vruće je!",
+   "bs": "Ne diraj, vruće je!",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Fass das nicht an, es ist heiß!",
+    "en": "Don't touch that, it's hot!",
+    "tr": "Dokunma, sıcak!",
+    "sv": "Rör inte, det är varmt!",
+    "nl": "Niet aankomen, het is heet!",
+    "nb": "Ikke ta på, det er varmt!",
+    "da": "Rør det ikke, det er varmt!",
+    "fr": "Ne touche pas, c'est chaud !"
+   },
+   "audio": null
+  },
+  {
+   "id": "laut:glasan",
+   "bs": "glasan",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "laut",
+    "en": "loud",
+    "tr": "gürültülü",
+    "sv": "högljudd",
+    "nl": "luid / lawaaierig",
+    "nb": "høylytt",
+    "da": "højlydt",
+    "fr": "bruyant"
+   },
+   "audio": null
+  },
+  {
+   "id": "die nachbarn sind sehr laut.:Komšije su jako glasne.",
+   "bs": "Komšije su jako glasne.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Nachbarn sind sehr laut.",
+    "en": "The neighbors are very loud.",
+    "tr": "Komşular çok gürültücü.",
+    "sv": "Grannarna är väldigt högljudda.",
+    "nl": "De buren zijn erg luidruchtig.",
+    "nb": "Naboene er veldig bråkete.",
+    "da": "Naboerne larmer meget.",
+    "fr": "Les voisins sont très bruyants."
+   },
+   "audio": null
+  },
+  {
+   "id": "bitter:gorak",
+   "bs": "gorak",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "bitter",
+    "en": "bitter",
+    "tr": "acı",
+    "sv": "bitter / besk",
+    "nl": "bitter",
+    "nb": "bitter",
+    "da": "bitter",
+    "fr": "amer"
+   },
+   "audio": null
+  },
+  {
+   "id": "ohne zucker ist der kaffee bitter.:Kahva je gorka bez šećera.",
+   "bs": "Kahva je gorka bez šećera.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Ohne Zucker ist der Kaffee bitter.",
+    "en": "Without sugar the coffee is bitter.",
+    "tr": "Şekersiz kahve acı oluyor.",
+    "sv": "Utan socker är kaffet beskt.",
+    "nl": "Zonder suiker is de koffie bitter.",
+    "nb": "Uten sukker er kaffen bitter.",
+    "da": "Uden sukker er kaffen bitter.",
+    "fr": "Sans sucre, le café est amer."
+   },
+   "audio": null
+  },
+  {
+   "id": "riechen / duften:mirisati",
+   "bs": "mirisati",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "riechen / duften",
+    "en": "to smell",
+    "tr": "kokmak",
+    "sv": "lukta / dofta",
+    "nl": "ruiken / geuren",
+    "nb": "lukte / dufte",
+    "da": "at lugte / at dufte",
+    "fr": "sentir (une odeur) / sentir bon"
+   },
+   "audio": null
+  },
+  {
+   "id": "die küche riecht nach pita.:Kuhinja miriše na pitu.",
+   "bs": "Kuhinja miriše na pitu.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Küche riecht nach Pita.",
+    "en": "The kitchen smells of pita.",
+    "tr": "Mutfak pita kokuyor.",
+    "sv": "Köket luktar pita.",
+    "nl": "De keuken ruikt naar pita.",
+    "nb": "Kjøkkenet lukter pita.",
+    "da": "Køkkenet dufter af pita.",
+    "fr": "La cuisine sent la pita."
+   },
+   "audio": null
+  },
+  {
+   "id": "stinken:smrdjeti / smrditi",
+   "bs": "smrdjeti / smrditi",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "stinken",
+    "en": "to stink",
+    "tr": "kötü kokmak",
+    "sv": "stinka / lukta illa",
+    "nl": "stinken",
+    "nb": "stinke",
+    "da": "at stinke",
+    "fr": "puer"
+   },
+   "audio": null
+  },
+  {
+   "id": "im kühlschrank stinkt etwas.:Nešto smrdi u frižideru.",
+   "bs": "Nešto smrdi u frižideru.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Im Kühlschrank stinkt etwas.",
+    "en": "Something stinks in the fridge.",
+    "tr": "Buzdolabında bir şey kötü kokuyor.",
+    "sv": "Det luktar illa i kylskåpet.",
+    "nl": "Er stinkt iets in de koelkast.",
+    "nb": "Noe stinker i kjøleskapet.",
+    "da": "Der er noget, der stinker i køleskabet.",
+    "fr": "Il y a quelque chose qui pue dans le frigo."
+   },
+   "audio": null
+  },
+  {
+   "id": "fad (ohne geschmack):bljutav",
+   "bs": "bljutav",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "fad (ohne Geschmack)",
+    "en": "bland (tasteless)",
+    "tr": "tatsız / yavan",
+    "sv": "fadd / smaklös",
+    "nl": "flauw / smakeloos",
+    "nb": "smakløs / flau",
+    "da": "fad / smagløs",
+    "fr": "fade"
+   },
+   "audio": null
+  },
+  {
+   "id": "die suppe ist fad, es fehlt salz.:Supa je bljutava, fali joj soli.",
+   "bs": "Supa je bljutava, fali joj soli.",
+   "level": "sinne",
+   "level_position": 86,
+   "section": "wieetwasist",
+   "translations": {
+    "de": "Die Suppe ist fad, es fehlt Salz.",
+    "en": "The soup is bland, it needs salt.",
+    "tr": "Çorba yavan, tuzu eksik.",
+    "sv": "Soppan är fadd, det saknas salt.",
+    "nl": "De soep is flauw, er moet zout bij.",
+    "nb": "Suppa er smakløs, den mangler salt.",
+    "da": "Suppen er fad, den mangler salt.",
+    "fr": "La soupe est fade, il manque du sel."
    },
    "audio": null
   }

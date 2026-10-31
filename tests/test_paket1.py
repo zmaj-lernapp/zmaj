@@ -69,7 +69,9 @@ ALTE_PARTNER = {"dolaziti": "doći", "davati": "dati", "pomagati": "pomoći", "p
 
 
 def _level(daten):
-    return [k for k in daten["kategorien"] if k.get("sektion") == "tunlassen"]
+    """Die zehn Level aus Paket 1. Seit Paket 2 (31.10.2026) hat die Sektion
+    vier Level mehr, die prueft tests/test_paket2.py."""
+    return [k for k in daten["kategorien"] if k["id"] in WOERTER]
 
 
 def _alle(daten):
@@ -77,11 +79,16 @@ def _alle(daten):
 
 
 def test_sektion_zehn_mit_zehn_leveln(grunddaten):
-    assert grunddaten["sektionen"][-1]["id"] == "tunlassen"
-    assert grunddaten["sektionen"][-1]["label"] == "Sektion 10 · Tun und Lassen"
+    sektion = grunddaten["sektionen"][9]
+    assert sektion["id"] == "tunlassen"
+    assert sektion["label"] == "Sektion 10 · Tun und Lassen"
     level = _level(grunddaten)
     assert [k["id"] for k in level] == list(WOERTER)
-    assert [k["id"] for k in grunddaten["kategorien"][-10:]] == list(WOERTER), "die Sektion steht am Ende"
+    assert all(k["sektion"] == "tunlassen" for k in level)
+    # Die Level beginnen direkt hinter den 65 alten. Seit Paket 2 (31.10.2026)
+    # stehen vor passieren vier Level mehr, siehe tests/test_paket2.py.
+    ids = [k["id"] for k in grunddaten["kategorien"]]
+    assert ids[65:73] == list(WOERTER)[:8]
     assert sum(len(k["words"]) for k in level) == 300
     # Die 65 Level davor sind unberuehrt
     assert sum(len(k["words"]) for k in grunddaten["kategorien"][:65]) == 1740
@@ -131,7 +138,9 @@ def test_partner_stehen_in_der_app(grunddaten):
         for x in p:
             zaehler[x] = zaehler.get(x, 0) + 1
     assert max(zaehler.values()) == 1, [x for x, n in zaehler.items() if n > 1]
-    assert len(paare) == 39            # 24 im Paket, 15 mit einem Wort, das schon da war
+    # 39 aus Paket 1 (24 im Paket, 15 mit einem Wort, das schon da war), seit
+    # Paket 2 (31.10.2026) 43 dazu - siehe tests/test_paket2.py
+    assert len(paare) == 39 + 43
 
 
 def test_gleiche_bedeutung_im_neuen_teil_nur_bei_paaren(alle_daten):

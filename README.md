@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 75 levels, 2,040 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
+  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 86 levels, 2,342 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
 </p>
 
 <h1 align="center">Zmaj – learn Bosnian</h1>
@@ -19,7 +19,7 @@
 </p>
 
 **An offline app for learning Bosnian, and the open Bosnian course behind it.**
-75 levels from the first *Merhaba* to an employment contract, 2,040 words with
+86 levels from the first *Merhaba* to an employment contract, 2,342 words with
 Bosnian audio, 16 grammar lessons, 12 graded reading stories, an interface in
 eight languages. Progress lives on the phone; since v109 the Android app has an
 account (Google or email, after the first lesson) that backs it up. All of the
@@ -71,13 +71,13 @@ Everything the app teaches is exported to [`data/`](data/) under
 
 | | Count | Formats |
 |---|---:|---|
-| Words and phrases, 10 sections, 75 levels | 2,040 | JSON, CSV, Anki (8 decks) |
+| Words and phrases, 11 sections, 86 levels | 2,342 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
 | Graded stories with glossary and questions | 12 | JSON |
 | Reading glossary | 406 | JSON |
 | Grammar lessons with exercises | 16 | JSON |
 | Synthetic Bosnian audio (MP3) | 2,411 | `web/audio/` |
-| Parallel corpus for machine translation | 2,352 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
+| Parallel corpus for machine translation | 2,654 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
 
 Every item is translated into **German, English, Turkish, Swedish, Dutch,
 Norwegian, Danish and French**. JSON Schemas, a SHA-256 manifest and an honest
@@ -129,7 +129,7 @@ output needs, so the app, the dataset and the demo can never disagree:
 ```mermaid
 flowchart LR
   subgraph src["Content (edited by hand)"]
-    V["vokabeln.py<br/>75 levels · 2,040 words · 300 sentences"]
+    V["vokabeln.py<br/>86 levels · 2,342 words · 300 sentences"]
     G["grammatik.py<br/>16 lessons"]
     S["geschichten.py<br/>12 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]
@@ -237,7 +237,7 @@ Please cite as described in [CITATION.cff](CITATION.cff), DOI
 <details>
 <summary><b>Deutsch</b></summary>
 
-**Zmaj** ist eine Offline-App zum Bosnischlernen: 75 Level, 2040 Vokabeln mit
+**Zmaj** ist eine Offline-App zum Bosnischlernen: 86 Level, 2342 Vokabeln mit
 bosnischer Tonspur, 16 Grammatikeinheiten, 12 Lesegeschichten, Oberfläche in
 acht Sprachen. Der Lernstand liegt auf dem Gerät; die Android-App sichert ihn
 seit v109 in einem Konto, die Browser-Demo hat keins.
