@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Wortschatz-Paket 1 (31.10.2026): Emir spricht die neuen Woerter.
+"""Wortschatz-Paket 1 (31.10.2026): Emir spricht die neuen Woerter und Saetze.
 
 Die Aufnahmen hat ElevenLabs am 31.10.2026 erzeugt (Stimme Emir, wie
 emir_lauf.py). Sie liegen nur in der privaten Huelle unter audio_emir/, die
@@ -9,8 +9,9 @@ Form allein - wie strina / amidžinica am 23.10.2026. ostati, voziti,
 naučiti und početi standen schon in index.json (Woerter aus den
 Geschichten) und haben ihre Emir-Datei laengst in der Huelle.
 
-Die Beispielsaetze des Pakets haben noch keine Aufnahme; das melden
-ton_pruefen.py und tests/test_ton.py, nicht dieser Test.
+Seit dem 31.10.2026 spricht Emir auch die 150 Beispielsaetze (Ajdin:
+"Jedes neue Wort bekommt einen Beispielsatz mit Emir-Ton"): w2672 bis
+w2821, ebenfalls nur in der Huelle.
 """
 import io
 import json
@@ -20,6 +21,8 @@ import pytest
 
 ERSTE = 2521
 LETZTE = 2671
+SATZ_ERSTE = 2672
+SATZ_LETZTE = 2821
 SCHON_DA = {"ostati": "w1387.mp3", "voziti": "w1385.mp3", "naučiti": "w1408.mp3", "početi": "w1478.mp3"}
 
 
@@ -87,3 +90,39 @@ def test_nummern_w2521_bis_w2671_gehoeren_dem_paket(grunddaten):
     assert sorted(im_paket) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
     texte = {w["bs"] for w in _neue_woerter(grunddaten)}
     assert {emir[k]["text"] for k in im_paket.values()} <= texte
+
+
+def _neue_saetze(daten):
+    """Die Beispielsaetze der Sektion 10: jeder steht direkt hinter seinem Wort."""
+    return [w for k in daten["kategorien"] if k.get("sektion") == "tunlassen" for w in k["words"][1::2]]
+
+
+def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, wurzel):
+    """Jeder der 150 Saetze hat seine eigene Aufnahme, Text genau wie in der
+    App, Nummer zwischen w2672 und w2821 - lueckenlos und nur fuer diese
+    Saetze."""
+    import ton_bauen
+    import ton_pruefen
+    emir = ton_bauen.nur_emir()
+    huelle = ton_pruefen._huelle_audio()
+    saetze = _neue_saetze(grunddaten)
+    assert len(saetze) == 150
+    ohne = []
+    for s in saetze:
+        k = ton_bauen.schluessel(s["bs"])
+        e = emir.get(k)
+        if not e:
+            ohne.append((s["id"], k))
+            continue
+        assert e["text"] == s["bs"], (s["id"], e)
+        assert SATZ_ERSTE <= _nummer(e["datei"]) <= SATZ_LETZTE, (s["id"], e)
+        assert not os.path.exists(os.path.join(wurzel, "web", "audio", e["datei"])), e
+        if huelle:
+            pfad = os.path.join(huelle, e["datei"])
+            assert os.path.isfile(pfad) and os.path.getsize(pfad) >= ton_pruefen.MINDEST, \
+                "Emir-Aufnahme fehlt in der Huelle: %s (%s)" % (e["datei"], s["id"])
+    assert not ohne, ohne[:20]
+    im_bereich = {e["datei"]: e["text"] for e in emir.values()
+                  if SATZ_ERSTE <= _nummer(e["datei"]) <= SATZ_LETZTE}
+    assert sorted(im_bereich) == ["w%04d.mp3" % n for n in range(SATZ_ERSTE, SATZ_LETZTE + 1)]
+    assert set(im_bereich.values()) == {s["bs"] for s in saetze}
