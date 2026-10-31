@@ -37249,7 +37249,7 @@
    "translations": {
     "de": "passieren / geschehen",
     "en": "to happen",
-    "tr": "olmak / meydana gelmek",
+    "tr": "meydana gelmek / olmak (olay)",
     "sv": "hända / ske",
     "nl": "gebeuren",
     "nb": "skje / hende",
@@ -37644,7 +37644,7 @@
    "section": "tunlassen",
    "translations": {
     "de": "sich beschäftigen mit / betreiben",
-    "en": "to be engaged in / to do (for a living)",
+    "en": "to be engaged in / to pursue",
     "tr": "uğraşmak / ilgilenmek",
     "sv": "syssla med / ägna sig åt",
     "nl": "zich bezighouden met / beoefenen",
@@ -38262,7 +38262,7 @@
     "nl": "aantrekken",
     "nb": "ta på (seg)",
     "da": "at tage på",
-    "fr": "mettre (un vêtement)"
+    "fr": "enfiler (un vêtement)"
    },
    "audio": null
   },
@@ -39805,7 +39805,7 @@
    "translations": {
     "de": "passieren / geschehen",
     "en": "to happen",
-    "tr": "olmak / meydana gelmek",
+    "tr": "meydana gelmek / olmak (olay)",
     "sv": "hända / ske",
     "nl": "gebeuren",
     "nb": "skje / hende",
@@ -41679,7 +41679,7 @@
     "en": "high / tall",
     "tr": "yüksek / uzun boylu",
     "sv": "hög / lång (om person)",
-    "nl": "hoog / lang (van postuur)",
+    "nl": "hoog / groot (van postuur)",
     "nb": "høy",
     "da": "høj",
     "fr": "haut / grand (taille)"
@@ -41785,8 +41785,8 @@
    "translations": {
     "de": "lang",
     "en": "long",
-    "tr": "uzun",
-    "sv": "lång",
+    "tr": "uzun (süre, mesafe)",
+    "sv": "lång (om sak)",
     "nl": "lang",
     "nb": "lang",
     "da": "lang",
@@ -41856,9 +41856,9 @@
    "section": "wieetwasist",
    "translations": {
     "de": "kurz",
-    "en": "short",
-    "tr": "kısa",
-    "sv": "kort",
+    "en": "short (not long)",
+    "tr": "kısa (süre, mesafe)",
+    "sv": "kort (om sak)",
     "nl": "kort",
     "nb": "kort",
     "da": "kort (ikke lang)",
@@ -44557,7 +44557,7 @@
    "translations": {
     "de": "dunkel",
     "en": "dark",
-    "tr": "karanlık / koyu",
+    "tr": "koyu / karanlık (sıfat)",
     "sv": "mörk",
     "nl": "donker",
     "nb": "mørk",

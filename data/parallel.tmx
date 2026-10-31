@@ -22907,7 +22907,7 @@
    <tuv xml:lang="bs"><seg>desiti se / dogoditi se</seg></tuv>
    <tuv xml:lang="de"><seg>passieren / geschehen</seg></tuv>
    <tuv xml:lang="en"><seg>to happen</seg></tuv>
-   <tuv xml:lang="tr"><seg>olmak / meydana gelmek</seg></tuv>
+   <tuv xml:lang="tr"><seg>meydana gelmek / olmak (olay)</seg></tuv>
    <tuv xml:lang="sv"><seg>hända / ske</seg></tuv>
    <tuv xml:lang="nl"><seg>gebeuren</seg></tuv>
    <tuv xml:lang="nb"><seg>skje / hende</seg></tuv>
@@ -23170,7 +23170,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>baviti se</seg></tuv>
    <tuv xml:lang="de"><seg>sich beschäftigen mit / betreiben</seg></tuv>
-   <tuv xml:lang="en"><seg>to be engaged in / to do (for a living)</seg></tuv>
+   <tuv xml:lang="en"><seg>to be engaged in / to pursue</seg></tuv>
    <tuv xml:lang="tr"><seg>uğraşmak / ilgilenmek</seg></tuv>
    <tuv xml:lang="sv"><seg>syssla med / ägna sig åt</seg></tuv>
    <tuv xml:lang="nl"><seg>zich bezighouden met / beoefenen</seg></tuv>
@@ -23584,7 +23584,7 @@
    <tuv xml:lang="nl"><seg>aantrekken</seg></tuv>
    <tuv xml:lang="nb"><seg>ta på (seg)</seg></tuv>
    <tuv xml:lang="da"><seg>at tage på</seg></tuv>
-   <tuv xml:lang="fr"><seg>mettre (un vêtement)</seg></tuv>
+   <tuv xml:lang="fr"><seg>enfiler (un vêtement)</seg></tuv>
   </tu>
   <tu tuid="zieh eine jacke an, es ist kalt.:Obuci jaknu, hladno je." segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -24611,7 +24611,7 @@
    <tuv xml:lang="bs"><seg>dešavati se / događati se</seg></tuv>
    <tuv xml:lang="de"><seg>passieren / geschehen</seg></tuv>
    <tuv xml:lang="en"><seg>to happen</seg></tuv>
-   <tuv xml:lang="tr"><seg>olmak / meydana gelmek</seg></tuv>
+   <tuv xml:lang="tr"><seg>meydana gelmek / olmak (olay)</seg></tuv>
    <tuv xml:lang="sv"><seg>hända / ske</seg></tuv>
    <tuv xml:lang="nl"><seg>gebeuren</seg></tuv>
    <tuv xml:lang="nb"><seg>skje / hende</seg></tuv>
@@ -25861,7 +25861,7 @@
    <tuv xml:lang="en"><seg>high / tall</seg></tuv>
    <tuv xml:lang="tr"><seg>yüksek / uzun boylu</seg></tuv>
    <tuv xml:lang="sv"><seg>hög / lång (om person)</seg></tuv>
-   <tuv xml:lang="nl"><seg>hoog / lang (van postuur)</seg></tuv>
+   <tuv xml:lang="nl"><seg>hoog / groot (van postuur)</seg></tuv>
    <tuv xml:lang="nb"><seg>høy</seg></tuv>
    <tuv xml:lang="da"><seg>høj</seg></tuv>
    <tuv xml:lang="fr"><seg>haut / grand (taille)</seg></tuv>
@@ -25931,8 +25931,8 @@
    <tuv xml:lang="bs"><seg>dug</seg></tuv>
    <tuv xml:lang="de"><seg>lang</seg></tuv>
    <tuv xml:lang="en"><seg>long</seg></tuv>
-   <tuv xml:lang="tr"><seg>uzun</seg></tuv>
-   <tuv xml:lang="sv"><seg>lång</seg></tuv>
+   <tuv xml:lang="tr"><seg>uzun (süre, mesafe)</seg></tuv>
+   <tuv xml:lang="sv"><seg>lång (om sak)</seg></tuv>
    <tuv xml:lang="nl"><seg>lang</seg></tuv>
    <tuv xml:lang="nb"><seg>lang</seg></tuv>
    <tuv xml:lang="da"><seg>lang</seg></tuv>
@@ -25978,9 +25978,9 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>kratak</seg></tuv>
    <tuv xml:lang="de"><seg>kurz</seg></tuv>
-   <tuv xml:lang="en"><seg>short</seg></tuv>
-   <tuv xml:lang="tr"><seg>kısa</seg></tuv>
-   <tuv xml:lang="sv"><seg>kort</seg></tuv>
+   <tuv xml:lang="en"><seg>short (not long)</seg></tuv>
+   <tuv xml:lang="tr"><seg>kısa (süre, mesafe)</seg></tuv>
+   <tuv xml:lang="sv"><seg>kort (om sak)</seg></tuv>
    <tuv xml:lang="nl"><seg>kort</seg></tuv>
    <tuv xml:lang="nb"><seg>kort</seg></tuv>
    <tuv xml:lang="da"><seg>kort (ikke lang)</seg></tuv>
@@ -27779,7 +27779,7 @@
    <tuv xml:lang="bs"><seg>taman</seg></tuv>
    <tuv xml:lang="de"><seg>dunkel</seg></tuv>
    <tuv xml:lang="en"><seg>dark</seg></tuv>
-   <tuv xml:lang="tr"><seg>karanlık / koyu</seg></tuv>
+   <tuv xml:lang="tr"><seg>koyu / karanlık (sıfat)</seg></tuv>
    <tuv xml:lang="sv"><seg>mörk</seg></tuv>
    <tuv xml:lang="nl"><seg>donker</seg></tuv>
    <tuv xml:lang="nb"><seg>mørk</seg></tuv>

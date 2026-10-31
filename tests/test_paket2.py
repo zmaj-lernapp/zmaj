@@ -258,6 +258,64 @@ def test_gleiche_bedeutung_im_neuen_teil_nur_bei_paaren(alle_daten):
             assert len(liste) == 2 and frozenset(liste) in paare, (code, bedeutung, liste)
 
 
+def _teile_gleich(a, b):
+    """Teilbedeutungen, die zwei Bedeutungen gemeinsam haben. Ein Teil steht
+    zwischen " / ". Gleich ist ein gleicher Teil - und ein Teil ohne Klammer,
+    der ohne die Klammer am Ende so heisst wie ein Teil des anderen Wortes:
+    "short" passt auch auf "low / short (person)"."""
+    def norm(s):
+        return s.strip().lower().rstrip(".!?…  ")
+
+    def kern(teil):
+        return norm(re.sub(r"\s*\([^()]*\)$", "", teil.strip()))
+
+    ta = [norm(x) for x in a.split(" / ")]
+    tb = [norm(x) for x in b.split(" / ")]
+    gleich = set(ta) & set(tb)
+    gleich |= {x for x in ta if not x.endswith(")")} & {kern(x) for x in tb}
+    gleich |= {x for x in tb if not x.endswith(")")} & {kern(x) for x in ta}
+    return gleich
+
+
+def test_teilbedeutungen_im_level_nur_wie_im_deutschen(alle_daten, grunddaten):
+    """Pruefbericht 31.10.2026: im Level lang_kurz stand en kratak "short"
+    neben nizak "low / short (person)" - in der Auswahl richtig fuer beide,
+    obwohl das Deutsche kurz und niedrig / klein (Koerpergroesse) trennt.
+    Der Test oben vergleicht nur ganze Bedeutungen. Hier: in Sektion 10 und
+    11 darf eine Sprache zwei Woerter eines Levels nur dann teilweise gleich
+    nennen, wenn das Deutsche es auch tut (machen / zubereiten, machen /
+    erledigen). Aspektpaare zaehlen nicht."""
+    de = {(k["id"], w["bs"]): w["de"] for k in grunddaten["kategorien"] for w in k["words"]}
+    sektionen = {"tunlassen", "wieetwasist"}
+    gefunden = []
+    for code, daten in alle_daten.items():
+        alle = _alle(daten)
+        paare = {frozenset((w["bs"], w["partner"])) for w in alle if w.get("partner")}
+        for k in daten["kategorien"]:
+            if k["sektion"] not in sektionen:
+                continue
+            for i, a in enumerate(k["words"]):
+                for b in k["words"][i + 1:]:
+                    if frozenset((a["bs"], b["bs"])) in paare:
+                        continue
+                    gleich = _teile_gleich(a["de"], b["de"])
+                    if gleich and not _teile_gleich(de[(k["id"], a["bs"])], de[(k["id"], b["bs"])]):
+                        gefunden.append((code, k["id"], a["bs"], b["bs"], sorted(gleich)))
+    assert not gefunden, gefunden
+
+
+def test_lang_kurz_und_passieren_getrennt(alle_daten):
+    """Die Faelle aus dem Pruefbericht, ausdruecklich."""
+    def bed(code, bs):
+        return {w["bs"]: w["de"] for w in _alle(alle_daten[code])}[bs]
+    assert bed("en", "kratak") == "short (not long)"
+    assert bed("sv", "dug") == "lång (om sak)" and bed("sv", "kratak") == "kort (om sak)"
+    assert bed("nl", "visok") == "hoog / groot (van postuur)"
+    assert bed("tr", "dug") == "uzun (süre, mesafe)" and bed("tr", "kratak") == "kısa (süre, mesafe)"
+    assert bed("tr", "dešavati se / događati se") == "meydana gelmek / olmak (olay)"
+    assert bed("tr", "desiti se / dogoditi se") == bed("tr", "dešavati se / događati se")
+
+
 def test_gotov_und_spreman_in_jeder_sprache_verschieden(alle_daten):
     """"fertig" steht schon im Woerterbuch der Geschichten (gotova: ready,
     fr prête). Fuer gotov steht deshalb eine Ausnahme unter "woerter" in
