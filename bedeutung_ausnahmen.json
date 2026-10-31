@@ -106,6 +106,9 @@
    "warum": "Beide Woerter stehen im Level Feste, das trifft also auch die Auswahlaufgabe. Franzoesisch hat kein Wort, das nur Torte heisst: tarte ist ein Muerbeteigkuchen mit Belag und etwas anderes als eine Sahnetorte, tourte ist eine gedeckte Pastete. gateau deckt Kuchen und Torte ab."},
   {"sprache": "fr", "bedeutung": "sac", "woerter": ["torba", "vreća"],
    "grund": "kein_zweites_wort",
-   "warum": "Franzoesisch nennt Tasche und Sack sac. cabas ist eine grosse Einkaufstasche mit zwei Griffen und sac de jute ein Jutesack - beides engere Woerter, die die Vokabel verschieben wuerden."}
+   "warum": "Franzoesisch nennt Tasche und Sack sac. cabas ist eine grosse Einkaufstasche mit zwei Griffen und sac de jute ein Jutesack - beides engere Woerter, die die Vokabel verschieben wuerden."},
+  {"sprache": "tr", "bedeutung": "oturmak", "woerter": ["sjesti", "sjediti"],
+   "grund": "kein_zweites_wort",
+   "warum": "31.10.2026, Wortschatz-Paket 1: Tuerkisch sagt fuer sich setzen und sitzen beide Male oturmak. Eine Umschreibung waere keine Uebersetzung mehr. Die beiden stehen in verschiedenen Leveln, betroffen ist nur das Tippen, und dort ist jede der beiden Antworten richtig."}
  ]
 }

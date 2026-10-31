@@ -10947,18 +10947,42 @@ const _bedeutung = s => String(s||'').toLowerCase().replace(/[.!?\u2026]+$/,'').
    Merhaba. Verglichen wird je Form, weil "auch" auch einen Teil wie "drug"
    aus "drug / drugarica" nennen darf. Ajdin am 05.10.2026, 34 Paare. */
 const _formen = s => String(s||'').split(' / ').map(_bedeutung);
+/* Aspektpaare (31.10.2026, Wortschatz-Paket 1): ostati und ostajati heissen
+   beide "bleiben", doći und dolaziti beide "kommen". Ajdin: "beide wörter
+   rein die sollen separat sein wenn einer gelernt wurde dann ist der andere
+   noch nicht gelernt" - eigene Kennung, eigener Lernstand, und
+   vollendet/unvollendet zeigt die App nicht an. Deshalb:
+   - in der Auswahl stehen die beiden nie zusammen (geschwister()), auch
+     wenn ihre Bedeutungen verschieden dastehen (popiti "trinken /
+     austrinken" neben piti "trinken");
+   - beim Tippen ist das Gegenstueck NICHT richtig (annehmbar() laesst es
+     weg), sondern bekommt einmal "Fast richtig!" mit dem Hinweis auf das
+     andere Verb des Paares (task.partner, partnerAntworten()) - ohne Leben,
+     wie ein Tippfehler.
+   Das Feld "partner" in vokabeln.py nennt das bs des Gegenstuecks und
+   steht nur an einem der beiden; gelesen wird es in beide Richtungen. */
+const istPartner = (w, x) => !!(w && x && x.bs !== w.bs && (x.partner === w.bs || w.partner === x.bs));
+function partnerVon(w){
+  return CATEGORIES.flatMap(c=>c.words).filter(x => istPartner(w, x));
+}
+/* Was beim Tippen als Gegenstueck erkannt wird: seine Formen und sein
+   "auch", mit " / " wie bei matches(). Leer, wenn das Wort keins hat. */
+function partnerAntworten(w){
+  return partnerVon(w).flatMap(x => [x.bs, ...(x.auch || [])]).join(' / ');
+}
 function geschwister(w){
   const b = _bedeutung(w.de);
   const meineAuch = new Set((w.auch || []).flatMap(_formen));
   const meineFormen = _formen(w.bs);
   return CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs &&
     ((b && _bedeutung(x.de) === b) ||
+     istPartner(w, x) ||
      _formen(x.bs).some(f => meineAuch.has(f)) ||
      (x.auch || []).flatMap(_formen).some(f => meineFormen.includes(f))));
 }
 function annehmbar(w){
   const b = _bedeutung(w.de);
-  const gleich = b ? CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs && _bedeutung(x.de) === b).map(x=>x.bs) : [];
+  const gleich = b ? CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs && _bedeutung(x.de) === b && !istPartner(w, x)).map(x=>x.bs) : [];
   return [w.bs, ...gleich, ...(w.auch || [])];
 }
 function distractors(target, words, n){
@@ -11183,16 +11207,23 @@ function renderTask(task, body, done, opts={}){
      andere Endung im Lueckensatz und fuer ein anderes echtes Wort (siehe
      fastRichtig()). Ein Hinweis je Aufgabe - nach dem einen zaehlt der
      naechste Versuch. */
+  /* Seit dem 31.10.2026 auch fuer das Aspekt-Gegenstueck (partner): wer bei
+     "bleiben" ostajati tippt, wo ostati gemeint ist, bekommt einmal
+     task.partner ("Fast richtig! Gemeint ist das andere Verb des Paares.")
+     statt eines Fehlers - derselbe Ablauf, nur der Text ist ein anderer.
+     partner: die Antworten des Gegenstuecks wie bei matches(), sonst leer. */
   const tippHinweis = (inp)=>{
     let gezeigt = null;
-    return (r, antworten)=>{
+    return (r, antworten, partner)=>{
       if(gezeigt){
         const doppelt = inp.value === gezeigt.text && Date.now() - gezeigt.zeit < DOPPELT_MS;
         if(doppelt) inp.focus();
         return doppelt;
       }
-      if(r !== 'no' || !fastRichtig(inp.value, antworten)) return false;
-      const hinweis = t('task.fast_richtig');
+      if(r !== 'no') return false;
+      const paar = !!partner && matches(inp.value, partner) !== 'no';
+      if(!paar && !fastRichtig(inp.value, antworten)) return false;
+      const hinweis = paar ? t('task.partner') : t('task.fast_richtig');
       gezeigt = {text: inp.value, zeit: Date.now()};
       const feld = $$('xFb');
       feld.textContent = hinweis;
@@ -11249,7 +11280,7 @@ function renderTask(task, body, done, opts={}){
       const auchOk = annehmbar(w).join(' / ');
       const r=matches(inp.value, auchOk);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_wort'))); return; }
-      if(vertippt(r, auchOk)) return;   // ein Tippfehler: erst der Hinweis (24.10.2026)
+      if(vertippt(r, auchOk, partnerAntworten(w))) return;   // ein Tippfehler oder das andere Verb des Paares: erst der Hinweis (24.10. / 31.10.2026)
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;

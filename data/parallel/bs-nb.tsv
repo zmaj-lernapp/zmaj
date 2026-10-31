@@ -1739,6 +1739,306 @@ Trebam termin	Jeg trenger en time	word	ich brauche einen termin:Trebam termin
 Na bolovanju sam	Jeg er sykmeldt	word	ich bin krankgeschrieben:Na bolovanju sam
 Gdje Vas boli?	Hvor gjør det vondt?	word	wo tut es ihnen weh?:Gdje Vas boli?
 Alergičan sam na ... / Alergična sam na ...	Jeg er allergisk mot ... (m/k)	word	ich bin allergisch auf ... (m/w):Alergičan sam na ... / Alergična sam na ...
+ostati	bli	word	bleiben:ostati
+Ostani još malo!	Bli litt til!	word	bleib noch ein bisschen!:Ostani još malo!
+ostajati	bli	word	bleiben:ostajati
+Ljeti mi ostajemo kod nane.	Om sommeren blir vi hos bestemor.	word	im sommer bleiben wir bei oma.:Ljeti mi ostajemo kod nane.
+dolaziti	komme	word	kommen:dolaziti
+Autobus dolazi svakih deset minuta.	Bussen kommer hvert tiende minutt.	word	der bus kommt alle zehn minuten.:Autobus dolazi svakih deset minuta.
+vratiti se	komme tilbake	word	zurückkommen:vratiti se
+Ja ću se vratiti za pola sata.	Jeg kommer tilbake om en halvtime.	word	ich komme in einer halben stunde zurück.:Ja ću se vratiti za pola sata.
+vraćati se	komme tilbake	word	zurückkommen:vraćati se
+Svakog ljeta se vraćamo u Bosnu.	Hver sommer reiser vi tilbake til Bosnia.	word	jeden sommer kehren wir nach bosnien zurück.:Svakog ljeta se vraćamo u Bosnu.
+otići	gå sin vei / dra dit	word	weggehen / hingehen:otići
+Sutra ću otići kod doktora.	I morgen går jeg til legen.	word	morgen gehe ich zum arzt.:Sutra ću otići kod doktora.
+odlaziti	gå sin vei / dra dit	word	weggehen / hingehen:odlaziti
+Zašto već odlaziš?	Hvorfor går du allerede?	word	warum gehst du schon?:Zašto već odlaziš?
+donijeti	bringe	word	bringen:donijeti
+Možeš li mi donijeti čašu vode?	Kan du hente et glass vann til meg?	word	kannst du mir ein glas wasser bringen?:Možeš li mi donijeti čašu vode?
+donositi	bringe	word	bringen:donositi
+Poštar donosi pakete ujutro.	Postbudet kommer med pakkene om morgenen.	word	der postbote bringt die pakete morgens.:Poštar donosi pakete ujutro.
+proći	gå forbi / gå (om tid)	word	vorbeigehen / vergehen:proći
+Ljeto je brzo prošlo.	Sommeren gikk fort.	word	der sommer ist schnell vergangen.:Ljeto je brzo prošlo.
+prolaziti	gå forbi / gå (om tid)	word	vorbeigehen / vergehen:prolaziti
+Svaki dan prolazim pored tvoje kuće.	Hver dag går jeg forbi huset ditt.	word	jeden tag gehe ich an deinem haus vorbei.:Svaki dan prolazim pored tvoje kuće.
+krenuti	gå av gårde / kjøre av gårde	word	losgehen / losfahren:krenuti
+Moramo krenuti, kasno je.	Vi må gå, det er sent.	word	wir müssen los, es ist spät.:Moramo krenuti, kasno je.
+kretati	gå av gårde / kjøre av gårde	word	losgehen / losfahren:kretati
+Autobus kreće u sedam.	Bussen går klokka sju.	word	der bus fährt um sieben ab.:Autobus kreće u sedam.
+stići	komme fram	word	ankommen:stići
+Mi smo stigli u Sarajevo.	Vi har kommet fram til Sarajevo.	word	wir sind in sarajevo angekommen.:Mi smo stigli u Sarajevo.
+stizati	komme fram	word	ankommen:stizati
+Voz stiže u osam sati.	Toget kommer fram klokka åtte.	word	der zug kommt um acht uhr an.:Voz stiže u osam sati.
+ući	gå inn / komme inn	word	hineingehen / hereinkommen:ući
+Uđi, vrata su otvorena.	Kom inn, døra er åpen.	word	komm rein, die tür ist offen.:Uđi, vrata su otvorena.
+ulaziti	gå inn / komme inn	word	hineingehen / hereinkommen:ulaziti
+Ne ulazi u sobu u cipelama!	Ikke gå inn i rommet med skoa på!	word	geh nicht mit schuhen ins zimmer!:Ne ulazi u sobu u cipelama!
+izaći	gå ut / gå ut på byen	word	hinausgehen / ausgehen:izaći
+Hoćemo li večeras izaći?	Skal vi gå ut i kveld?	word	gehen wir heute abend aus?:Hoćemo li večeras izaći?
+izlaziti	gå ut / gå ut på byen	word	hinausgehen / ausgehen:izlaziti
+Vikendom rado izlazim s prijateljima.	I helgene går jeg gjerne ut med venner.	word	am wochenende gehe ich gern mit freunden aus.:Vikendom rado izlazim s prijateljima.
+voziti	kjøre (et kjøretøy)	word	fahren (ein fahrzeug):voziti
+Ne vozi tako brzo!	Ikke kjør så fort!	word	fahr nicht so schnell!:Ne vozi tako brzo!
+putovati	reise / ferdes	word	reisen:putovati
+Volim putovati vozom.	Jeg reiser gjerne med tog.	word	ich reise gern mit dem zug.:Volim putovati vozom.
+dobiti	få	word	bekommen:dobiti
+Jesi li dobio moju poruku?	Har du fått meldingen min?	word	hast du meine nachricht bekommen?:Jesi li dobio moju poruku?
+dobivati	få	word	bekommen:dobivati
+Platu dobivamo krajem mjeseca.	Lønna får vi i slutten av måneden.	word	den lohn bekommen wir am monatsende.:Platu dobivamo krajem mjeseca.
+nalaziti se	befinne seg	word	sich befinden:nalaziti se
+Gdje se nalazi apoteka?	Hvor ligger apoteket?	word	wo befindet sich die apotheke?:Gdje se nalazi apoteka?
+izgubiti	miste	word	verlieren:izgubiti
+Izgubio sam ključeve.	Jeg har mistet nøklene.	word	ich habe die schlüssel verloren.:Izgubio sam ključeve.
+naći	finne	word	finden:naći
+Jesi li našla posao?	Har du funnet en jobb?	word	hast du eine arbeit gefunden?:Jesi li našla posao?
+davati	gi	word	geben:davati
+Nana djeci uvijek daje bombone.	Bestemor gir alltid barna godteri.	word	oma gibt den kindern immer bonbons.:Nana djeci uvijek daje bombone.
+nositi	ha på seg / bære	word	tragen:nositi
+Danas nosim novu jaknu.	I dag har jeg på meg en ny jakke.	word	heute trage ich eine neue jacke.:Danas nosim novu jaknu.
+uzeti	ta	word	nehmen:uzeti
+Uzmi još jedan komad!	Ta et stykke til!	word	nimm noch ein stück!:Uzmi još jedan komad!
+uzimati	ta	word	nehmen:uzimati
+Ovaj lijek uzimam dva puta dnevno.	Denne medisinen tar jeg to ganger om dagen.	word	dieses medikament nehme ich zweimal täglich.:Ovaj lijek uzimam dva puta dnevno.
+poslati	sende	word	schicken:poslati
+Pošalji mi adresu, molim te.	Send meg adressen, er du snill.	word	schick mir bitte die adresse.:Pošalji mi adresu, molim te.
+slati	sende	word	schicken:slati
+Svakog mjeseca šaljem novac roditeljima.	Hver måned sender jeg penger til foreldrene mine.	word	jeden monat schicke ich meinen eltern geld.:Svakog mjeseca šaljem novac roditeljima.
+pomagati	hjelpe	word	helfen:pomagati
+Kćerka mi pomaže u kuhinji.	Datteren min hjelper meg på kjøkkenet.	word	meine tochter hilft mir in der küche.:Kćerka mi pomaže u kuhinji.
+čuvati	passe på / oppbevare	word	hüten / aufbewahren:čuvati
+Nana čuva djecu dok smo na poslu.	Bestemor passer barna mens vi er på jobb.	word	oma passt auf die kinder auf, während wir bei der arbeit sind.:Nana čuva djecu dok smo na poslu.
+ponuditi	tilby	word	anbieten:ponuditi
+Ponudili su mi posao.	De har tilbudt meg en jobb.	word	sie haben mir eine stelle angeboten.:Ponudili su mi posao.
+prodati	selge	word	verkaufen:prodati
+Prodali smo stari auto.	Vi har solgt den gamle bilen.	word	wir haben das alte auto verkauft.:Prodali smo stari auto.
+prodavati	selge	word	verkaufen:prodavati
+Ovdje prodaju svjež hljeb.	Her selger de ferskt brød.	word	hier verkauft man frisches brot.:Ovdje prodaju svjež hljeb.
+plaćati	betale	word	bezahlen:plaćati
+Plaćate li karticom ili gotovinom?	Betaler De med kort eller kontant?	word	zahlen sie mit karte oder bar?:Plaćate li karticom ili gotovinom?
+kupovati	kjøpe	word	kaufen:kupovati
+Hljeb kupujem svako jutro.	Brød kjøper jeg hver morgen.	word	brot kaufe ich jeden morgen.:Hljeb kupujem svako jutro.
+primati	ta imot / motta	word	annehmen / empfangen:primati
+Primate li kartice?	Tar De kort?	word	nehmen sie karten?:Primate li kartice?
+ukrasti	stjele	word	stehlen:ukrasti
+Neko mi je ukrao novčanik!	Noen har stjålet lommeboka mi!	word	jemand hat mir den geldbeutel gestohlen!:Neko mi je ukrao novčanik!
+željeti	ønske / ønske seg	word	wünschen / sich wünschen:željeti
+Želim ti sve najbolje!	Jeg ønsker deg alt godt!	word	ich wünsche dir alles gute!:Želim ti sve najbolje!
+misliti	tenke / mene	word	denken / meinen:misliti
+Mama uvijek misli na druge.	Mamma tenker alltid på andre.	word	mama denkt immer an andere.:Mama uvijek misli na druge.
+smatrati	anse / være av den oppfatning	word	halten für / der meinung sein:smatrati
+Smatram da je to dobra ideja.	Jeg mener det er en god idé.	word	ich halte das für eine gute idee.:Smatram da je to dobra ideja.
+značiti	bety	word	bedeuten:značiti
+Šta znači ova riječ?	Hva betyr dette ordet?	word	was bedeutet dieses wort?:Šta znači ova riječ?
+očekivati	forvente / vente	word	erwarten:očekivati
+Večeras očekujemo goste.	I kveld venter vi gjester.	word	heute abend erwarten wir gäste.:Večeras očekujemo goste.
+gledati	se på / kikke	word	ansehen / schauen:gledati
+Šta to gledaš?	Hva ser du på?	word	was schaust du dir da an?:Šta to gledaš?
+pogledati	se på / kikke	word	ansehen / schauen:pogledati
+Pogledaj ovo!	Se på dette!	word	schau dir das an!:Pogledaj ovo!
+vjerovati	tro	word	glauben:vjerovati
+Vjeruj mi, to je istina.	Tro meg, det er sant.	word	glaub mir, das ist wahr.:Vjeruj mi, to je istina.
+čuti	høre	word	hören:čuti
+Čuješ li me?	Hører du meg?	word	hörst du mich?:Čuješ li me?
+odlučiti	bestemme / beslutte	word	entscheiden / beschließen:odlučiti
+Odlučili smo kupiti kuću.	Vi har bestemt oss for å kjøpe et hus.	word	wir haben beschlossen, ein haus zu kaufen.:Odlučili smo kupiti kuću.
+nadati se	håpe	word	hoffen:nadati se
+Nadam se lijepom vremenu.	Jeg håper på fint vær.	word	ich hoffe auf schönes wetter.:Nadam se lijepom vremenu.
+odgovoriti	svare	word	antworten:odgovoriti
+Još mi nije odgovorio.	Han har ikke svart meg ennå.	word	er hat mir noch nicht geantwortet.:Još mi nije odgovorio.
+odgovarati	svare / stå til ansvar	word	antworten / sich verantworten:odgovarati
+Zašto ne odgovaraš na poruke?	Hvorfor svarer du ikke på meldinger?	word	warum antwortest du nicht auf nachrichten?:Zašto ne odgovaraš na poruke?
+pričati	snakke / fortelle	word	reden / erzählen:pričati
+O čemu pričate?	Hva snakker dere om?	word	worüber redet ihr?:O čemu pričate?
+ispričati	fortelle	word	erzählen:ispričati
+Ispričaj mi šta se desilo.	Fortell meg hva som skjedde.	word	erzähl mir, was passiert ist.:Ispričaj mi šta se desilo.
+razgovarati	snakke sammen	word	sich unterhalten:razgovarati
+Moramo razgovarati.	Vi må snakke sammen.	word	wir müssen reden.:Moramo razgovarati.
+shvatiti	skjønne / fatte	word	begreifen / kapieren:shvatiti
+Nisam shvatio pitanje.	Jeg skjønte ikke spørsmålet.	word	ich habe die frage nicht verstanden.:Nisam shvatio pitanje.
+zaboraviti	glemme	word	vergessen:zaboraviti
+Zaboravio sam tvoj broj.	Jeg har glemt nummeret ditt.	word	ich habe deine nummer vergessen.:Zaboravio sam tvoj broj.
+objasniti	forklare	word	erklären:objasniti
+Možete li mi objasniti put?	Kan De forklare meg veien?	word	können sie mir den weg erklären?:Možete li mi objasniti put?
+naučiti	lære	word	lernen:naučiti
+Naučila sam voziti auto.	Jeg har lært å kjøre bil.	word	ich habe autofahren gelernt.:Naučila sam voziti auto.
+javiti se	gi lyd fra seg	word	sich melden:javiti se
+Javi se kad stigneš!	Gi lyd når du er framme!	word	melde dich, wenn du ankommst!:Javi se kad stigneš!
+razmišljati	tenke over	word	nachdenken:razmišljati
+Razmišljam o tome.	Jeg tenker på det.	word	ich denke darüber nach.:Razmišljam o tome.
+saznati	få vite	word	erfahren:saznati
+Kako si to saznao?	Hvordan fikk du vite det?	word	wie hast du das erfahren?:Kako si to saznao?
+slušati	høre på / lytte	word	zuhören / anhören:slušati
+U autu slušam sevdalinke.	I bilen hører jeg på sevdalinkaer.	word	im auto höre ich sevdalinkas.:U autu slušam sevdalinke.
+dogovoriti se	avtale / gjøre avtale	word	sich verabreden / vereinbaren:dogovoriti se
+Dogovorili smo se za subotu.	Vi har avtalt å møtes på lørdag.	word	wir haben uns für samstag verabredet.:Dogovorili smo se za subotu.
+bojati se	være redd / frykte	word	angst haben / sich fürchten:bojati se
+Dijete se boji mraka.	Barnet er redd for mørket.	word	das kind hat angst vor der dunkelheit.:Dijete se boji mraka.
+sjetiti se	huske / komme på	word	sich erinnern / einfallen:sjetiti se
+Sad sam se sjetio!	Nå kom jeg på det!	word	jetzt ist es mir eingefallen!:Sad sam se sjetio!
+sviđati se	like	word	gefallen:sviđati se
+Sviđa li ti se Sarajevo?	Liker du Sarajevo?	word	gefällt dir sarajevo?:Sviđa li ti se Sarajevo?
+svidjeti se	like	word	gefallen:svidjeti se
+Film mi se nije svidio.	Jeg likte ikke filmen.	word	der film hat mir nicht gefallen.:Film mi se nije svidio.
+početi	begynne	word	anfangen:početi
+Utakmica je već počela.	Kampen har allerede begynt.	word	das spiel hat schon angefangen.:Utakmica je već počela.
+počinjati	begynne	word	anfangen:počinjati
+Škola počinje u septembru.	Skolen begynner i september.	word	die schule fängt im september an.:Škola počinje u septembru.
+završiti	avslutte / bli ferdig	word	beenden / fertig werden:završiti
+Jesi li završio zadaću?	Er du ferdig med leksene?	word	bist du mit den hausaufgaben fertig?:Jesi li završio zadaću?
+završavati	avslutte / bli ferdig	word	beenden / fertig werden:završavati
+Završavam s poslom u četiri.	Klokka fire er jeg ferdig med jobben.	word	um vier bin ich mit der arbeit fertig.:Završavam s poslom u četiri.
+otvoriti	åpne	word	öffnen / aufmachen:otvoriti
+Otvori prozor, vruće je.	Åpne vinduet, det er varmt.	word	mach das fenster auf, es ist heiß.:Otvori prozor, vruće je.
+otvarati	åpne	word	öffnen / aufmachen:otvarati
+Ne otvaraj vrata nepoznatim ljudima.	Ikke åpne døra for fremmede.	word	mach fremden leuten nicht die tür auf.:Ne otvaraj vrata nepoznatim ljudima.
+nastaviti	fortsette	word	weitermachen / fortsetzen:nastaviti
+Nastavit ćemo sutra.	Vi fortsetter i morgen.	word	wir machen morgen weiter.:Nastavit ćemo sutra.
+uspjeti	klare / lykkes	word	schaffen / gelingen:uspjeti
+Uspjela sam!	Jeg klarte det!	word	ich habe es geschafft!:Uspjela sam!
+trajati	vare	word	dauern:trajati
+Koliko traje let do Sarajeva?	Hvor lenge varer flyturen til Sarajevo?	word	wie lange dauert der flug nach sarajevo?:Koliko traje let do Sarajeva?
+promijeniti	endre / veksle	word	ändern / wechseln:promijeniti
+Promijenio sam broj telefona.	Jeg har byttet telefonnummer.	word	ich habe meine telefonnummer geändert.:Promijenio sam broj telefona.
+mijenjati	endre / veksle	word	ändern / wechseln:mijenjati
+U mjenjačnici mijenjam eure u marke.	På vekslingskontoret veksler jeg euro til mark.	word	in der wechselstube tausche ich euro in mark.:U mjenjačnici mijenjam eure u marke.
+prestati	slutte / stoppe	word	aufhören:prestati
+Kiša je prestala.	Regnet har stoppet.	word	der regen hat aufgehört.:Kiša je prestala.
+zatvoriti	lukke	word	schließen / zumachen:zatvoriti
+Zatvori vrata, molim te.	Lukk døra, er du snill.	word	mach bitte die tür zu.:Zatvori vrata, molim te.
+zatvarati	lukke	word	schließen / zumachen:zatvarati
+Zatvaramo za pet minuta.	Vi stenger om fem minutter.	word	wir schließen in fünf minuten.:Zatvaramo za pet minuta.
+desiti se / dogoditi se	skje / hende	word	passieren / geschehen:desiti se / dogoditi se
+Šta se desilo?	Hva har skjedd?	word	was ist passiert?:Šta se desilo?
+postojati	eksistere / finnes	word	existieren / bestehen:postojati
+Postoji li autobus do aerodroma?	Finnes det en buss til flyplassen?	word	gibt es einen bus zum flughafen?:Postoji li autobus do aerodroma?
+koristiti	bruke	word	benutzen:koristiti
+Mogu li koristiti tvoj punjač?	Kan jeg bruke laderen din?	word	kann ich dein ladegerät benutzen?:Mogu li koristiti tvoj punjač?
+postati	bli (noe)	word	werden:postati
+Postao je otac.	Han har blitt far.	word	er ist vater geworden.:Postao je otac.
+živjeti	leve	word	leben:živjeti
+Moja sestra živi u Beču.	Søsteren min bor i Wien.	word	meine schwester lebt in wien.:Moja sestra živi u Beču.
+igrati	spille (sport, spill)	word	spielen (sport, spiel):igrati
+Igraš li fudbal?	Spiller du fotball?	word	spielst du fußball?:Igraš li fudbal?
+napraviti	lage / tilberede	word	machen / zubereiten:napraviti
+Napravit ću kahvu.	Jeg lager kaffe.	word	ich mache kaffee.:Napravit ću kahvu.
+praviti	lage / tilberede	word	machen / zubereiten:praviti
+Nana pravi najbolju pitu.	Bestemor lager den beste pitaen.	word	oma macht die beste pita.:Nana pravi najbolju pitu.
+uraditi	gjøre / ordne	word	machen / erledigen:uraditi
+Uradio sam sve što si tražila.	Jeg har gjort alt du ba om.	word	ich habe alles gemacht, worum du gebeten hast.:Uradio sam sve što si tražila.
+pročitati	lese	word	lesen:pročitati
+Jesi li pročitao knjigu?	Har du lest boka?	word	hast du das buch gelesen?:Jesi li pročitao knjigu?
+napisati	skrive	word	schreiben:napisati
+Napisao sam pismo nani.	Jeg har skrevet et brev til bestemor.	word	ich habe oma einen brief geschrieben.:Napisao sam pismo nani.
+baviti se	drive med / beskjeftige seg med	word	sich beschäftigen mit / betreiben:baviti se
+Čime se baviš?	Hva driver du med?	word	was machst du beruflich?:Čime se baviš?
+pokušavati	prøve	word	versuchen:pokušavati
+Pokušavam te nazvati cijeli dan.	Jeg har prøvd å ringe deg hele dagen.	word	ich versuche den ganzen tag, dich anzurufen.:Pokušavam te nazvati cijeli dan.
+riješiti	løse / ordne opp i	word	lösen / klären:riješiti
+Riješit ćemo to zajedno.	Vi løser det sammen.	word	wir klären das zusammen.:Riješit ćemo to zajedno.
+pripremiti	forberede	word	vorbereiten:pripremiti
+Moram sve pripremiti za put.	Jeg må forberede alt til reisen.	word	ich muss alles für die reise vorbereiten.:Moram sve pripremiti za put.
+popiti	drikke / drikke opp	word	trinken / austrinken:popiti
+Hajmo popiti kahvu!	La oss ta en kaffe!	word	lass uns einen kaffee trinken!:Hajmo popiti kahvu!
+pojesti	spise / spise opp	word	essen / aufessen:pojesti
+Pojedi sve, sine!	Spis opp alt, gutten min!	word	iss alles auf, mein sohn!:Pojedi sve, sine!
+stajati	stå	word	stehen:stajati
+Zašto stojiš? Sjedni!	Hvorfor står du? Sett deg!	word	warum stehst du? setz dich!:Zašto stojiš? Sjedni!
+staviti	sette / legge / putte	word	stellen / legen / tun:staviti
+Stavi mlijeko u frižider.	Sett melka i kjøleskapet.	word	stell die milch in den kühlschrank.:Stavi mlijeko u frižider.
+stavljati	sette / legge / putte	word	stellen / legen / tun:stavljati
+Gdje stavljaš čaše?	Hvor setter du glassene?	word	wohin stellst du die gläser?:Gdje stavljaš čaše?
+držati	holde	word	halten:držati
+Drži me za ruku.	Hold meg i hånda.	word	halt mich an der hand.:Drži me za ruku.
+ostaviti	la / la ligge igjen	word	lassen / liegen lassen:ostaviti
+Ostavila sam kišobran u autobusu.	Jeg glemte paraplyen på bussen.	word	ich habe den regenschirm im bus liegen lassen.:Ostavila sam kišobran u autobusu.
+pasti	falle / ramle	word	fallen / hinfallen:pasti
+Dijete je palo s bicikla.	Barnet falt av sykkelen.	word	das kind ist vom fahrrad gefallen.:Dijete je palo s bicikla.
+sjediti	sitte	word	sitzen:sjediti
+Sjedili smo u bašti do ponoći.	Vi satt i hagen til midnatt.	word	wir saßen bis mitternacht im garten.:Sjedili smo u bašti do ponoći.
+baciti	kaste / kaste bort	word	werfen / wegwerfen:baciti
+Baci smeće, molim te.	Kast søppelet, er du snill.	word	wirf bitte den müll weg.:Baci smeće, molim te.
+ležati	ligge	word	liegen:ležati
+Telefon leži na stolu.	Mobilen ligger på bordet.	word	das handy liegt auf dem tisch.:Telefon leži na stolu.
+skinuti	ta av (seg)	word	ausziehen / abnehmen:skinuti
+Skini cipele, molim te.	Ta av deg skoa, er du snill.	word	zieh bitte die schuhe aus.:Skini cipele, molim te.
+ustati	stå opp	word	aufstehen:ustati
+Jutros sam ustao u šest.	I dag tidlig sto jeg opp klokka seks.	word	heute morgen bin ich um sechs aufgestanden.:Jutros sam ustao u šest.
+obući	ta på (seg)	word	anziehen:obući
+Obuci jaknu, hladno je.	Ta på deg en jakke, det er kaldt.	word	zieh eine jacke an, es ist kalt.:Obuci jaknu, hladno je.
+leći	legge seg ned	word	sich hinlegen:leći
+Lezi malo, umorna si.	Legg deg litt, du er trøtt.	word	leg dich ein bisschen hin, du bist müde.:Lezi malo, umorna si.
+izgledati	se ut	word	aussehen:izgledati
+Danas lijepo izgledaš!	Du ser fin ut i dag!	word	heute siehst du schön aus!:Danas lijepo izgledaš!
+roditi se	bli født	word	geboren werden:roditi se
+Rodila sam se u Mostaru.	Jeg er født i Mostar.	word	ich bin in mostar geboren.:Rodila sam se u Mostaru.
+potpisati	skrive under	word	unterschreiben:potpisati
+Potpišite ovdje, molim Vas.	Vennligst skriv under her.	word	unterschreiben sie bitte hier.:Potpišite ovdje, molim Vas.
+uživati	nyte	word	genießen:uživati
+Uživaj u odmoru!	Nyt ferien!	word	genieß den urlaub!:Uživaj u odmoru!
+prijaviti se	melde seg på	word	sich anmelden:prijaviti se
+Prijavila sam se na kurs.	Jeg har meldt meg på kurset.	word	ich habe mich für den kurs angemeldet.:Prijavila sam se na kurs.
+umrijeti	dø	word	sterben:umrijeti
+Dedo mu je umro prije dvije godine.	Bestefaren hans døde for to år siden.	word	sein opa ist vor zwei jahren gestorben.:Dedo mu je umro prije dvije godine.
+dozvoliti	tillate	word	erlauben:dozvoliti
+Mama mi nije dozvolila da idem.	Mamma lot meg ikke gå.	word	mama hat mir nicht erlaubt zu gehen.:Mama mi nije dozvolila da idem.
+zanimati	interessere	word	interessieren:zanimati
+Zanima me historija.	Jeg er interessert i historie.	word	mich interessiert geschichte.:Zanima me historija.
+zavisiti	avhenge	word	abhängen:zavisiti
+Zavisi od vremena.	Det kommer an på været.	word	das hängt vom wetter ab.:Zavisi od vremena.
+nedostajati	savne / mangle	word	fehlen:nedostajati
+Mnogo mi nedostaje Bosna.	Jeg savner Bosnia veldig.	word	bosnien fehlt mir sehr.:Mnogo mi nedostaje Bosna.
+probuditi se	våkne	word	aufwachen:probuditi se
+Probudio sam se u pet.	Jeg våknet klokka fem.	word	ich bin um fünf aufgewacht.:Probudio sam se u pet.
+smetati	forstyrre	word	stören:smetati
+Smeta li Vam muzika?	Forstyrrer musikken Dem?	word	stört sie die musik?:Smeta li Vam muzika?
+udati se	gifte seg (kvinne)	word	heiraten (frau):udati se
+Sestra mi se udala u maju.	Søsteren min giftet seg i mai.	word	meine schwester hat im mai geheiratet.:Sestra mi se udala u maju.
+oženiti se	gifte seg (mann)	word	heiraten (mann):oženiti se
+Moj brat se oženio prošle godine.	Broren min giftet seg i fjor.	word	mein bruder hat letztes jahr geheiratet.:Moj brat se oženio prošle godine.
+zakasniti	bli forsinket / komme for sent	word	sich verspäten / zu spät kommen:zakasniti
+Izvini, zakasnio sam.	Unnskyld, jeg er sen.	word	entschuldige, ich bin zu spät.:Izvini, zakasnio sam.
+izgubiti se	gå seg vill	word	sich verlaufen:izgubiti se
+Izgubili smo se u gradu.	Vi gikk oss vill i byen.	word	wir haben uns in der stadt verlaufen.:Izgubili smo se u gradu.
+spasiti	redde	word	retten:spasiti
+Vatrogasci su spasili dijete.	Brannvesenet reddet barnet.	word	die feuerwehr hat das kind gerettet.:Vatrogasci su spasili dijete.
+povrijediti se	skade seg	word	sich verletzen:povrijediti se
+Povrijedio sam se na poslu.	Jeg skadet meg på jobben.	word	ich habe mich bei der arbeit verletzt.:Povrijedio sam se na poslu.
+paziti	passe på	word	aufpassen:paziti
+Pazi na sestru!	Pass på søsteren din!	word	pass auf deine schwester auf!:Pazi na sestru!
+krvariti	blø	word	bluten:krvariti
+Rana jako krvari.	Såret blør kraftig.	word	die wunde blutet stark.:Rana jako krvari.
+prehladiti se	bli forkjølet	word	sich erkälten:prehladiti se
+Obuci se toplo, prehladit ćeš se!	Kle deg godt, ellers blir du forkjølet!	word	zieh dich warm an, sonst erkältest du dich!:Obuci se toplo, prehladit ćeš se!
+onesvijestiti se	besvime	word	ohnmächtig werden:onesvijestiti se
+Žena se onesvijestila!	Kvinnen har besvimt!	word	die frau ist ohnmächtig geworden!:Žena se onesvijestila!
+boljeti / boliti	gjøre vondt	word	wehtun:boljeti / boliti
+Boli me grlo.	Jeg har vondt i halsen.	word	mir tut der hals weh.:Boli me grlo.
+disati / dihati	puste	word	atmen:disati / dihati
+Ne mogu disati!	Jeg får ikke puste!	word	ich kann nicht atmen!:Ne mogu disati!
+razboljeti se / razboliti se	bli syk	word	krank werden:razboljeti se / razboliti se
+Dijete se razboljelo.	Barnet har blitt sykt.	word	das kind ist krank geworden.:Dijete se razboljelo.
+gorjeti / goriti	brenne	word	brennen:gorjeti / goriti
+Kuća gori!	Huset brenner!	word	das haus brennt!:Kuća gori!
+Upomoć!	Hjelp!	word	hilfe!:Upomoć!
+Upomoć! Pomozite mi!	Hjelp! Hjelp meg!	word	hilfe! helfen sie mir!:Upomoć! Pomozite mi!
+hitan slučaj	nødstilfelle	word	notfall:hitan slučaj
+Ovo je hitan slučaj, zovite hitnu pomoć!	Dette er et nødstilfelle, ring ambulansen!	word	das ist ein notfall, rufen sie den rettungsdienst!:Ovo je hitan slučaj, zovite hitnu pomoć!
+hitna	ambulanse / redning	word	krankenwagen / rettung:hitna
+Hitna je već na putu.	Ambulansen er allerede på vei.	word	der krankenwagen ist schon unterwegs.:Hitna je već na putu.
+vatrogasci	brannvesen	word	feuerwehr:vatrogasci
+Zovite vatrogasce!	Ring brannvesenet!	word	rufen sie die feuerwehr!:Zovite vatrogasce!
+požar	brann	word	brand:požar
+U zgradi je izbio požar.	Det har brutt ut brann i bygningen.	word	im gebäude ist ein brand ausgebrochen.:U zgradi je izbio požar.
+nesreća	ulykke	word	unfall / unglück:nesreća
+Desila se nesreća na autoputu.	Det har skjedd en ulykke på motorveien.	word	auf der autobahn ist ein unfall passiert.:Desila se nesreća na autoputu.
+povreda	skade	word	verletzung:povreda
+Povreda nije teška.	Skaden er ikke alvorlig.	word	die verletzung ist nicht schwer.:Povreda nije teška.
+rana	sår	word	wunde:rana
+Treba očistiti ranu.	Såret må renses.	word	man muss die wunde reinigen.:Treba očistiti ranu.
+krv	blod	word	blut:krv
+Imaš krv na ruci.	Du har blod på hånda.	word	du hast blut an der hand.:Imaš krv na ruci.
+lopov	tyv	word	dieb:lopov
+Lopov je pobjegao, zovite policiju!	Tyven løp av gårde, ring politiet!	word	der dieb ist weggerannt, rufen sie die polizei!:Lopov je pobjegao, zovite policiju!
 Dobar dan	God dag	sentence	s0001
 Merhaba, kako si?	Hei, hvordan går det med deg?	sentence	s0002
 Kako si?	Hvordan går det med deg?	sentence	s0003

@@ -258,14 +258,17 @@ def test_umzug_verteilt_auf_wochen_aelteste_level_zuerst(seite, heute_stand):
     # Neu laden: nichts wandert ein zweites Mal
     seite.neu_laden()
     assert seite.js("() => kartei.w") == z["w"]
-    # Alle Woerter: hoechstens 10 je Tag, nie weiter als 180 Tage
+    # Alle Woerter: hoechstens 10 je Tag, nie weiter als 180 Tage. Seit dem
+    # Wortschatz-Paket 1 (31.10.2026, 2.040 Woerter) geht beides nicht mehr
+    # zugleich - karteiNachtragen() haelt die 180 Tage und nimmt dafuer
+    # mehr je Tag (ceil(n / 180), heute 12).
     alle = seite.js("""() => { known = new Set(CATEGORIES.flatMap(c => c.words).map(w => w.id));
         kartei = {tag: 0, n: 0, w: {}}; karteiNachtragen();
         const f = Object.values(kartei.w).map(e => e[1]), je = {};
         f.forEach(x => { je[x] = (je[x] || 0) + 1; });
         return {n: f.length, max: Math.max(...f), proTag: Math.max(...Object.values(je)), woerter: known.size}; }""")
     assert alle["n"] == alle["woerter"] > 1500
-    assert alle["proTag"] == 10 and alle["max"] <= h + 180, alle
+    assert alle["proTag"] == max(10, -(-alle["n"] // 180)) and alle["max"] <= h + 180, alle
     assert seite.fehler == []
 
 

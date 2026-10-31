@@ -63,7 +63,7 @@ def test_datenkarte_passt_zum_manifest(wurzel):
     for datei in re.findall(r"data_files: (\S+)", kopf):
         assert datei in manifest["files"], datei
 
-    for zahl, schluessel in [("1,740 words", "words"), ("300 cloze", "sentences"),
+    for zahl, schluessel in [("2,040 words", "words"), ("300 cloze", "sentences"),
                              ("12 graded", "stories"), ("406", "glossary_entries"),
                              ("16 grammar", "grammar_lessons")]:
         assert zahl in karte, zahl

@@ -7,6 +7,18 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Section 10 · Doings and dealings (vocabulary package 1, reviewed by a
+  native speaker on 31.10.2026): 140 verbs and 10 emergency words in 10 new
+  levels, each word followed by its example sentence (300 new entries,
+  2,040 in total). Aspect pairs such as *ostati* / *ostajati* (both "to
+  stay") are learned separately, with their own IDs; the app does not show
+  the aspect. The two never appear together as answer options, and typing
+  the other verb of the pair gives a one-time "Almost right! It's the other
+  verb of the pair." instead of costing a life (new field `partner` in
+  `vokabeln.py`, new text `task.partner` in all eight languages). Forms with
+  " / " (*boljeti / boliti*) count one by one when typing, `auch` adds
+  *izići*, *dobijati* and three words for the ambulance. The new section has
+  no tenth colour yet and repeats the first.
 - Spaced review of learned words (Leitner box, decided on 28.10.2026):
   every word you know has a level with a fixed interval of 1, 3, 7, 14, 30,
   90 or 180 days. A right answer moves it up one level, also before the
