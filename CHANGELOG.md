@@ -19,10 +19,10 @@ are in the Play Store listing. Format:
   " / " (*boljeti / boliti*) count one by one when typing, `auch` adds
   *izići*, *dobijati* and three words for the ambulance. The new section has
   no tenth colour yet and repeats the first. The app speaks the 146 words
-  that were not in the app before with recordings that only the store
-  version contains (`ton_nur_emir.json`, w2521–w2671); the web demo, the
-  dataset and the Anki decks have no audio for them. The example sentences
-  have no audio yet.
+  that were not in the app before and all 150 example sentences with
+  recordings that only the store version contains (`ton_nur_emir.json`,
+  words w2521–w2671, sentences w2672–w2821); the web demo, the dataset and
+  the Anki decks have no audio for them.
 - Spaced review of learned words (Leitner box, decided on 28.10.2026):
   every word you know has a level with a fixed interval of 1, 3, 7, 14, 30,
   90 or 180 days. A right answer moves it up one level, also before the

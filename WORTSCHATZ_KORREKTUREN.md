@@ -400,5 +400,7 @@ Die Aufnahmen liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen
 in `ton_nur_emir.json`: w2521–w2671. Die fünf
 Doppelformen haben zwei Aufnahmen, alle Formen („boljeti, boliti“) und die
 erste Form allein, wie *strina / amidžinica*. *ostati*, *voziti*, *naučiti*
-und *početi* hatten ihre Emir-Aufnahme schon. Die 150 Beispielsätze haben
-noch keine Aufnahme.
+und *početi* hatten ihre Emir-Aufnahme schon. Die 150 Beispielsätze hat
+Emir am selben Tag gesprochen (Ajdin: „Jedes neue Wort bekommt einen
+Beispielsatz mit Emir-Ton.“), Text genau wie in der App: w2672–w2821,
+ebenfalls nur in der Hülle.
