@@ -50,7 +50,8 @@ Quelltext angezeigt. Das ist keine Einstellung, die man umlegen kann.
 | `impressum.html` | Impressum nach § 5 DDG, acht Sprachen |
 | `konto-loeschen.html` | wie man seine Daten löscht — fragt Google im Data-Safety-Formular ab |
 | `kontakt.html` | Kontaktformular, acht Sprachen — der zweite Kontaktweg neben der E-Mail |
-| `links.html` | Linkseite für TikTok, Instagram und YouTube: Knopf zu Google Play, Kontakt, Impressum, Datenschutz. Im Profil steht `links.html?von=tiktok` (bzw. `instagram`, `youtube`), damit die Play Console den Kanal sieht |
+| `links.html` | Linkseite für TikTok, Instagram und YouTube: vier große Knöpfe (Google Play, Instagram, TikTok, YouTube), darunter klein Kontakt, Impressum, Datenschutz, Nutzungsbedingungen. Die Sprache richtet sich nach dem Handy. Im Profil steht `links.html?von=tiktok` (bzw. `instagram`, `youtube`), damit die Play Console den Kanal sieht |
+| `google-play-*.png` | das Abzeichen „Get it on Google Play“ in den acht Sprachen, unverändert von Google. Google Play und das Google-Play-Logo sind Marken von Google LLC. Die Zeichen von Instagram, TikTok und YouTube in `links.html` stammen von Simple Icons (CC0) und sind Marken von Meta, ByteDance und Google |
 | `app-ads.txt` | eine Zeile, die AdMob bestätigt, dass die Werbeplätze in der App wirklich zu diesem Konto gehören |
 | `favicon.ico`, `icon-256.png` | das Symbol im Browser-Tab: der Drache aus dem App-Symbol (mit Google Gemini erzeugt, bearbeitet) |
 

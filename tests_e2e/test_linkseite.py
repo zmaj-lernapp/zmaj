@@ -19,6 +19,13 @@ Geprueft wird:
     Content-Security-Policy).
   - Im Handyformat steht der Knopf ohne Scrollen da, und die Seite ist nicht
     breiter als der Bildschirm - hell wie dunkel eingestellt.
+  - Seit dem Umbau am selben Abend (Ajdin: "playstore insta tiktok und yt
+    grosse buttons und datenschutz usw sehr kleine buttons"): Bei 390 x 844
+    stehen vier gleich breite Knoepfe ohne Scrollen da - Googles Abzeichen in
+    der Sprache der Seite, Instagram, TikTok, YouTube. Kontakt, Impressum,
+    Datenschutz und Nutzungsbedingungen sind klein, aber mindestens 13 px
+    und 24 px hoch. Die Sprache ist die erste aus der Liste des Handys, die
+    es auf der Seite gibt.
 """
 import functools
 import http.server
@@ -67,11 +74,16 @@ def links_basis(tmp_path_factory):
 
 
 class Linkseite:
-    def __init__(self, browser, basis, locale="en-US", skript=True, farben="dark"):
-        self.ctx = browser.new_context(viewport={"width": 360, "height": 640}, locale=locale,
+    def __init__(self, browser, basis, locale="en-US", skript=True, farben="dark",
+                 groesse=(360, 640), sprachen=None):
+        self.ctx = browser.new_context(viewport={"width": groesse[0], "height": groesse[1]}, locale=locale,
                                        java_script_enabled=skript, color_scheme=farben,
                                        service_workers="block")
         self.page = self.ctx.new_page()
+        if sprachen is not None:
+            # Die Sprachliste des Handys, wie navigator.languages sie meldet.
+            self.page.add_init_script("Object.defineProperty(navigator, 'languages', {get: () => %s});"
+                                      % json.dumps(sprachen))
         self.basis = basis
         self.fehler, self.konsole, self.fremd, self.play = [], [], [], []
         self.page.on("pageerror", lambda e: self.fehler.append(str(e)))
@@ -148,6 +160,8 @@ def test_ohne_javascript(linkseite):
     assert not s.page.is_visible('section[data-sprache="de"]')
     assert not s.page.is_visible(".sprachen")
     assert s.page.is_visible('[data-fuss="en"] a[href="impressum.html"]')
+    assert s.page.eval_on_selector('section[data-sprache="en"] a.play img',
+                                   "i => i.complete && i.naturalWidth") == 646
     s.page.click('section[data-sprache="en"] a.play')
     s.page.wait_for_url(PLAY)
     assert s.play == [seite_bauen.play_link("web")]
@@ -181,4 +195,52 @@ def test_handyformat_ohne_speicher(linkseite, farben):
     assert s.page.evaluate("localStorage.length") == 0
     assert s.page.evaluate("document.cookie") == ""
     assert s.ctx.cookies() == []
+    s.sauber()
+
+
+@pytest.mark.parametrize("liste,soll", [(["bs-BA", "tr-TR", "en-US"], "tr"), (["hr-HR", "de-AT"], "de"),
+                                        (["nn-NO"], "nb"), (["hr-HR", "sr-RS"], "en"), ([], "en")])
+def test_erste_passende_sprache_des_handys(linkseite, liste, soll):
+    """Nicht nur die erste Sprache zaehlt: Wer Bosnisch und Tuerkisch
+    eingestellt hat, bekommt Tuerkisch statt Englisch."""
+    s = linkseite(locale=(liste or ["en-US"])[0], sprachen=liste)
+    s.oeffnen("tiktok")
+    assert s.sichtbar() == [soll]
+    assert s.page.is_visible('[data-fuss="%s"]' % soll)
+    s.sauber()
+
+
+@pytest.mark.parametrize("locale,code", [("de-DE", "de"), ("en-US", "en"), ("tr-TR", "tr")])
+def test_vier_grosse_knoepfe(linkseite, locale, code):
+    import seite_bauen
+    import sprachen
+    s = linkseite(locale=locale, groesse=(390, 844))
+    s.oeffnen("instagram")
+    assert s.sichtbar() == [code]
+    m = s.page.evaluate("""() => {
+      const box = e => { const r = e.getBoundingClientRect(); return {x: r.x, y: r.y, b: r.width, h: r.height}; };
+      const play = document.querySelector('section:not([hidden]) a.play');
+      const bild = play.querySelector('img');
+      return {play: box(play), src: bild.getAttribute('src'), breit: bild.naturalWidth, fertig: bild.complete,
+              profile: [...document.querySelectorAll('.profile a')].map(a => Object.assign(box(a), {href: a.href})),
+              klein: [...document.querySelectorAll('footer [data-fuss]:not([hidden]) a')].map(a => Object.assign(box(a),
+                     {schrift: parseFloat(getComputedStyle(a).fontSize), text: a.textContent}))};
+    }""")
+    # Googles Abzeichen in der Sprache der Seite, geladen.
+    assert m["src"] == "google-play-%s.png" % code and m["fertig"] and m["breit"] == 646, m
+    # Darunter Instagram, TikTok, YouTube, gleich breit wie das Abzeichen,
+    # alle vier ohne Scrollen sichtbar.
+    adressen = dict(seite_bauen.SOZIAL)
+    assert [p["href"] for p in m["profile"]] == [adressen[n] for n in ("Instagram", "TikTok", "YouTube")]
+    for p in m["profile"]:
+        assert abs(p["b"] - m["play"]["b"]) < 1 and abs(p["x"] - m["play"]["x"]) < 1, (p, m["play"])
+        assert p["h"] >= 60 and p["y"] + p["h"] <= 844, p
+    assert m["play"]["y"] + m["play"]["h"] <= m["profile"][0]["y"]
+    # Klein, aber lesbar und treffbar.
+    assert [a["text"] for a in m["klein"]][1] == sprachen.texte(code)["set.impressum"]
+    assert len(m["klein"]) == 4
+    for a in m["klein"]:
+        assert a["schrift"] >= 13 and a["h"] >= 24, a
+        assert a["y"] > m["profile"][-1]["y"], a
+    assert s.page.evaluate("document.documentElement.scrollWidth") <= 390
     s.sauber()

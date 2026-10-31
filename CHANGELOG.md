@@ -90,13 +90,18 @@ are in the Play Store listing. Format:
   100); normal builds skip multiples of 100, and an unknown switch aborts the
   build before anything is copied.
 - Website: `links.html`, a link page for the TikTok, Instagram and YouTube
-  profiles (`links.html?von=tiktok` and so on), in all eight languages. A
-  large button leads to Google Play with the channel as campaign source in
-  `referrer=` (`utm_source=tiktok|instagram|youtube`, otherwise `web`, also
-  without JavaScript); below it contact, legal notice, privacy policy, the
-  three profiles and the note "Characters & voices made with AI". No
-  counter, no cookies, nothing stored on the device; a Content Security
-  Policy allows only the page's own script, style and icon.
+  profiles (`links.html?von=tiktok` and so on), in all eight languages,
+  chosen from the phone's language list (English otherwise). Four large
+  buttons of equal width: the official "Get it on Google Play" badge in the
+  page's language, with the channel as campaign source in `referrer=`
+  (`utm_source=tiktok|instagram|youtube`, otherwise `web`, also without
+  JavaScript), then Instagram, TikTok and YouTube with their logos. Below,
+  in small print, contact, legal notice, privacy policy, terms of use, the
+  note "Characters & voices made with AI" and the Google Play trademark
+  notice. The badges and logos are stored unchanged in `grafik/marken`
+  (sources and checksums in `QUELLEN.md`); nothing is loaded from other
+  servers. No counter, no cookies, nothing stored on the device; a Content
+  Security Policy allows only the page's own script, style and images.
 
 ### Changed
 - Legal notice (app and website, all eight languages): it now says that it
