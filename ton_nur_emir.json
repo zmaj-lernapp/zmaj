@@ -596,6 +596,761 @@
    "key": "dva plus dva su četiri.",
    "datei": "w2520.mp3",
    "text": "Dva plus dva su četiri."
+  },
+  {
+   "key": "ostajati",
+   "datei": "w2521.mp3",
+   "text": "ostajati"
+  },
+  {
+   "key": "dolaziti",
+   "datei": "w2522.mp3",
+   "text": "dolaziti"
+  },
+  {
+   "key": "vratiti se",
+   "datei": "w2523.mp3",
+   "text": "vratiti se"
+  },
+  {
+   "key": "vraćati se",
+   "datei": "w2524.mp3",
+   "text": "vraćati se"
+  },
+  {
+   "key": "otići",
+   "datei": "w2525.mp3",
+   "text": "otići"
+  },
+  {
+   "key": "odlaziti",
+   "datei": "w2526.mp3",
+   "text": "odlaziti"
+  },
+  {
+   "key": "donijeti",
+   "datei": "w2527.mp3",
+   "text": "donijeti"
+  },
+  {
+   "key": "donositi",
+   "datei": "w2528.mp3",
+   "text": "donositi"
+  },
+  {
+   "key": "proći",
+   "datei": "w2529.mp3",
+   "text": "proći"
+  },
+  {
+   "key": "prolaziti",
+   "datei": "w2530.mp3",
+   "text": "prolaziti"
+  },
+  {
+   "key": "krenuti",
+   "datei": "w2531.mp3",
+   "text": "krenuti"
+  },
+  {
+   "key": "kretati",
+   "datei": "w2532.mp3",
+   "text": "kretati"
+  },
+  {
+   "key": "stići",
+   "datei": "w2533.mp3",
+   "text": "stići"
+  },
+  {
+   "key": "stizati",
+   "datei": "w2534.mp3",
+   "text": "stizati"
+  },
+  {
+   "key": "ući",
+   "datei": "w2535.mp3",
+   "text": "ući"
+  },
+  {
+   "key": "ulaziti",
+   "datei": "w2536.mp3",
+   "text": "ulaziti"
+  },
+  {
+   "key": "izaći",
+   "datei": "w2537.mp3",
+   "text": "izaći"
+  },
+  {
+   "key": "izlaziti",
+   "datei": "w2538.mp3",
+   "text": "izlaziti"
+  },
+  {
+   "key": "putovati",
+   "datei": "w2539.mp3",
+   "text": "putovati"
+  },
+  {
+   "key": "dobiti",
+   "datei": "w2540.mp3",
+   "text": "dobiti"
+  },
+  {
+   "key": "dobivati",
+   "datei": "w2541.mp3",
+   "text": "dobivati"
+  },
+  {
+   "key": "nalaziti se",
+   "datei": "w2542.mp3",
+   "text": "nalaziti se"
+  },
+  {
+   "key": "izgubiti",
+   "datei": "w2543.mp3",
+   "text": "izgubiti"
+  },
+  {
+   "key": "naći",
+   "datei": "w2544.mp3",
+   "text": "naći"
+  },
+  {
+   "key": "davati",
+   "datei": "w2545.mp3",
+   "text": "davati"
+  },
+  {
+   "key": "nositi",
+   "datei": "w2546.mp3",
+   "text": "nositi"
+  },
+  {
+   "key": "uzeti",
+   "datei": "w2547.mp3",
+   "text": "uzeti"
+  },
+  {
+   "key": "uzimati",
+   "datei": "w2548.mp3",
+   "text": "uzimati"
+  },
+  {
+   "key": "poslati",
+   "datei": "w2549.mp3",
+   "text": "poslati"
+  },
+  {
+   "key": "slati",
+   "datei": "w2550.mp3",
+   "text": "slati"
+  },
+  {
+   "key": "pomagati",
+   "datei": "w2551.mp3",
+   "text": "pomagati"
+  },
+  {
+   "key": "čuvati",
+   "datei": "w2552.mp3",
+   "text": "čuvati"
+  },
+  {
+   "key": "ponuditi",
+   "datei": "w2553.mp3",
+   "text": "ponuditi"
+  },
+  {
+   "key": "prodati",
+   "datei": "w2554.mp3",
+   "text": "prodati"
+  },
+  {
+   "key": "prodavati",
+   "datei": "w2555.mp3",
+   "text": "prodavati"
+  },
+  {
+   "key": "plaćati",
+   "datei": "w2556.mp3",
+   "text": "plaćati"
+  },
+  {
+   "key": "kupovati",
+   "datei": "w2557.mp3",
+   "text": "kupovati"
+  },
+  {
+   "key": "primati",
+   "datei": "w2558.mp3",
+   "text": "primati"
+  },
+  {
+   "key": "ukrasti",
+   "datei": "w2559.mp3",
+   "text": "ukrasti"
+  },
+  {
+   "key": "željeti",
+   "datei": "w2560.mp3",
+   "text": "željeti"
+  },
+  {
+   "key": "misliti",
+   "datei": "w2561.mp3",
+   "text": "misliti"
+  },
+  {
+   "key": "smatrati",
+   "datei": "w2562.mp3",
+   "text": "smatrati"
+  },
+  {
+   "key": "značiti",
+   "datei": "w2563.mp3",
+   "text": "značiti"
+  },
+  {
+   "key": "očekivati",
+   "datei": "w2564.mp3",
+   "text": "očekivati"
+  },
+  {
+   "key": "gledati",
+   "datei": "w2565.mp3",
+   "text": "gledati"
+  },
+  {
+   "key": "pogledati",
+   "datei": "w2566.mp3",
+   "text": "pogledati"
+  },
+  {
+   "key": "vjerovati",
+   "datei": "w2567.mp3",
+   "text": "vjerovati"
+  },
+  {
+   "key": "čuti",
+   "datei": "w2568.mp3",
+   "text": "čuti"
+  },
+  {
+   "key": "odlučiti",
+   "datei": "w2569.mp3",
+   "text": "odlučiti"
+  },
+  {
+   "key": "nadati se",
+   "datei": "w2570.mp3",
+   "text": "nadati se"
+  },
+  {
+   "key": "odgovoriti",
+   "datei": "w2571.mp3",
+   "text": "odgovoriti"
+  },
+  {
+   "key": "odgovarati",
+   "datei": "w2572.mp3",
+   "text": "odgovarati"
+  },
+  {
+   "key": "pričati",
+   "datei": "w2573.mp3",
+   "text": "pričati"
+  },
+  {
+   "key": "ispričati",
+   "datei": "w2574.mp3",
+   "text": "ispričati"
+  },
+  {
+   "key": "razgovarati",
+   "datei": "w2575.mp3",
+   "text": "razgovarati"
+  },
+  {
+   "key": "shvatiti",
+   "datei": "w2576.mp3",
+   "text": "shvatiti"
+  },
+  {
+   "key": "zaboraviti",
+   "datei": "w2577.mp3",
+   "text": "zaboraviti"
+  },
+  {
+   "key": "objasniti",
+   "datei": "w2578.mp3",
+   "text": "objasniti"
+  },
+  {
+   "key": "javiti se",
+   "datei": "w2579.mp3",
+   "text": "javiti se"
+  },
+  {
+   "key": "razmišljati",
+   "datei": "w2580.mp3",
+   "text": "razmišljati"
+  },
+  {
+   "key": "saznati",
+   "datei": "w2581.mp3",
+   "text": "saznati"
+  },
+  {
+   "key": "slušati",
+   "datei": "w2582.mp3",
+   "text": "slušati"
+  },
+  {
+   "key": "dogovoriti se",
+   "datei": "w2583.mp3",
+   "text": "dogovoriti se"
+  },
+  {
+   "key": "bojati se",
+   "datei": "w2584.mp3",
+   "text": "bojati se"
+  },
+  {
+   "key": "sjetiti se",
+   "datei": "w2585.mp3",
+   "text": "sjetiti se"
+  },
+  {
+   "key": "sviđati se",
+   "datei": "w2586.mp3",
+   "text": "sviđati se"
+  },
+  {
+   "key": "svidjeti se",
+   "datei": "w2587.mp3",
+   "text": "svidjeti se"
+  },
+  {
+   "key": "počinjati",
+   "datei": "w2588.mp3",
+   "text": "počinjati"
+  },
+  {
+   "key": "završiti",
+   "datei": "w2589.mp3",
+   "text": "završiti"
+  },
+  {
+   "key": "završavati",
+   "datei": "w2590.mp3",
+   "text": "završavati"
+  },
+  {
+   "key": "otvoriti",
+   "datei": "w2591.mp3",
+   "text": "otvoriti"
+  },
+  {
+   "key": "otvarati",
+   "datei": "w2592.mp3",
+   "text": "otvarati"
+  },
+  {
+   "key": "nastaviti",
+   "datei": "w2593.mp3",
+   "text": "nastaviti"
+  },
+  {
+   "key": "uspjeti",
+   "datei": "w2594.mp3",
+   "text": "uspjeti"
+  },
+  {
+   "key": "trajati",
+   "datei": "w2595.mp3",
+   "text": "trajati"
+  },
+  {
+   "key": "promijeniti",
+   "datei": "w2596.mp3",
+   "text": "promijeniti"
+  },
+  {
+   "key": "mijenjati",
+   "datei": "w2597.mp3",
+   "text": "mijenjati"
+  },
+  {
+   "key": "prestati",
+   "datei": "w2598.mp3",
+   "text": "prestati"
+  },
+  {
+   "key": "zatvoriti",
+   "datei": "w2599.mp3",
+   "text": "zatvoriti"
+  },
+  {
+   "key": "zatvarati",
+   "datei": "w2600.mp3",
+   "text": "zatvarati"
+  },
+  {
+   "key": "desiti se",
+   "datei": "w2601.mp3",
+   "text": "desiti se / dogoditi se"
+  },
+  {
+   "key": "postojati",
+   "datei": "w2602.mp3",
+   "text": "postojati"
+  },
+  {
+   "key": "koristiti",
+   "datei": "w2603.mp3",
+   "text": "koristiti"
+  },
+  {
+   "key": "postati",
+   "datei": "w2604.mp3",
+   "text": "postati"
+  },
+  {
+   "key": "živjeti",
+   "datei": "w2605.mp3",
+   "text": "živjeti"
+  },
+  {
+   "key": "igrati",
+   "datei": "w2606.mp3",
+   "text": "igrati"
+  },
+  {
+   "key": "napraviti",
+   "datei": "w2607.mp3",
+   "text": "napraviti"
+  },
+  {
+   "key": "praviti",
+   "datei": "w2608.mp3",
+   "text": "praviti"
+  },
+  {
+   "key": "uraditi",
+   "datei": "w2609.mp3",
+   "text": "uraditi"
+  },
+  {
+   "key": "pročitati",
+   "datei": "w2610.mp3",
+   "text": "pročitati"
+  },
+  {
+   "key": "napisati",
+   "datei": "w2611.mp3",
+   "text": "napisati"
+  },
+  {
+   "key": "baviti se",
+   "datei": "w2612.mp3",
+   "text": "baviti se"
+  },
+  {
+   "key": "pokušavati",
+   "datei": "w2613.mp3",
+   "text": "pokušavati"
+  },
+  {
+   "key": "riješiti",
+   "datei": "w2614.mp3",
+   "text": "riješiti"
+  },
+  {
+   "key": "pripremiti",
+   "datei": "w2615.mp3",
+   "text": "pripremiti"
+  },
+  {
+   "key": "popiti",
+   "datei": "w2616.mp3",
+   "text": "popiti"
+  },
+  {
+   "key": "pojesti",
+   "datei": "w2617.mp3",
+   "text": "pojesti"
+  },
+  {
+   "key": "stajati",
+   "datei": "w2618.mp3",
+   "text": "stajati"
+  },
+  {
+   "key": "staviti",
+   "datei": "w2619.mp3",
+   "text": "staviti"
+  },
+  {
+   "key": "stavljati",
+   "datei": "w2620.mp3",
+   "text": "stavljati"
+  },
+  {
+   "key": "držati",
+   "datei": "w2621.mp3",
+   "text": "držati"
+  },
+  {
+   "key": "ostaviti",
+   "datei": "w2622.mp3",
+   "text": "ostaviti"
+  },
+  {
+   "key": "pasti",
+   "datei": "w2623.mp3",
+   "text": "pasti"
+  },
+  {
+   "key": "sjediti",
+   "datei": "w2624.mp3",
+   "text": "sjediti"
+  },
+  {
+   "key": "baciti",
+   "datei": "w2625.mp3",
+   "text": "baciti"
+  },
+  {
+   "key": "ležati",
+   "datei": "w2626.mp3",
+   "text": "ležati"
+  },
+  {
+   "key": "skinuti",
+   "datei": "w2627.mp3",
+   "text": "skinuti"
+  },
+  {
+   "key": "ustati",
+   "datei": "w2628.mp3",
+   "text": "ustati"
+  },
+  {
+   "key": "obući",
+   "datei": "w2629.mp3",
+   "text": "obući"
+  },
+  {
+   "key": "leći",
+   "datei": "w2630.mp3",
+   "text": "leći"
+  },
+  {
+   "key": "izgledati",
+   "datei": "w2631.mp3",
+   "text": "izgledati"
+  },
+  {
+   "key": "roditi se",
+   "datei": "w2632.mp3",
+   "text": "roditi se"
+  },
+  {
+   "key": "potpisati",
+   "datei": "w2633.mp3",
+   "text": "potpisati"
+  },
+  {
+   "key": "uživati",
+   "datei": "w2634.mp3",
+   "text": "uživati"
+  },
+  {
+   "key": "prijaviti se",
+   "datei": "w2635.mp3",
+   "text": "prijaviti se"
+  },
+  {
+   "key": "umrijeti",
+   "datei": "w2636.mp3",
+   "text": "umrijeti"
+  },
+  {
+   "key": "dozvoliti",
+   "datei": "w2637.mp3",
+   "text": "dozvoliti"
+  },
+  {
+   "key": "zanimati",
+   "datei": "w2638.mp3",
+   "text": "zanimati"
+  },
+  {
+   "key": "zavisiti",
+   "datei": "w2639.mp3",
+   "text": "zavisiti"
+  },
+  {
+   "key": "nedostajati",
+   "datei": "w2640.mp3",
+   "text": "nedostajati"
+  },
+  {
+   "key": "probuditi se",
+   "datei": "w2641.mp3",
+   "text": "probuditi se"
+  },
+  {
+   "key": "smetati",
+   "datei": "w2642.mp3",
+   "text": "smetati"
+  },
+  {
+   "key": "udati se",
+   "datei": "w2643.mp3",
+   "text": "udati se"
+  },
+  {
+   "key": "oženiti se",
+   "datei": "w2644.mp3",
+   "text": "oženiti se"
+  },
+  {
+   "key": "zakasniti",
+   "datei": "w2645.mp3",
+   "text": "zakasniti"
+  },
+  {
+   "key": "izgubiti se",
+   "datei": "w2646.mp3",
+   "text": "izgubiti se"
+  },
+  {
+   "key": "spasiti",
+   "datei": "w2647.mp3",
+   "text": "spasiti"
+  },
+  {
+   "key": "povrijediti se",
+   "datei": "w2648.mp3",
+   "text": "povrijediti se"
+  },
+  {
+   "key": "paziti",
+   "datei": "w2649.mp3",
+   "text": "paziti"
+  },
+  {
+   "key": "krvariti",
+   "datei": "w2650.mp3",
+   "text": "krvariti"
+  },
+  {
+   "key": "prehladiti se",
+   "datei": "w2651.mp3",
+   "text": "prehladiti se"
+  },
+  {
+   "key": "onesvijestiti se",
+   "datei": "w2652.mp3",
+   "text": "onesvijestiti se"
+  },
+  {
+   "key": "boljeti",
+   "datei": "w2653.mp3",
+   "text": "boljeti / boliti"
+  },
+  {
+   "key": "disati",
+   "datei": "w2654.mp3",
+   "text": "disati / dihati"
+  },
+  {
+   "key": "razboljeti se",
+   "datei": "w2655.mp3",
+   "text": "razboljeti se / razboliti se"
+  },
+  {
+   "key": "gorjeti",
+   "datei": "w2656.mp3",
+   "text": "gorjeti / goriti"
+  },
+  {
+   "key": "upomoć!",
+   "datei": "w2657.mp3",
+   "text": "Upomoć!"
+  },
+  {
+   "key": "hitan slučaj",
+   "datei": "w2658.mp3",
+   "text": "hitan slučaj"
+  },
+  {
+   "key": "hitna",
+   "datei": "w2659.mp3",
+   "text": "hitna"
+  },
+  {
+   "key": "vatrogasci",
+   "datei": "w2660.mp3",
+   "text": "vatrogasci"
+  },
+  {
+   "key": "požar",
+   "datei": "w2661.mp3",
+   "text": "požar"
+  },
+  {
+   "key": "nesreća",
+   "datei": "w2662.mp3",
+   "text": "nesreća"
+  },
+  {
+   "key": "povreda",
+   "datei": "w2663.mp3",
+   "text": "povreda"
+  },
+  {
+   "key": "rana",
+   "datei": "w2664.mp3",
+   "text": "rana"
+  },
+  {
+   "key": "krv",
+   "datei": "w2665.mp3",
+   "text": "krv"
+  },
+  {
+   "key": "lopov",
+   "datei": "w2666.mp3",
+   "text": "lopov"
+  },
+  {
+   "key": "desiti se / dogoditi se",
+   "datei": "w2667.mp3",
+   "text": "desiti se / dogoditi se"
+  },
+  {
+   "key": "boljeti / boliti",
+   "datei": "w2668.mp3",
+   "text": "boljeti / boliti"
+  },
+  {
+   "key": "disati / dihati",
+   "datei": "w2669.mp3",
+   "text": "disati / dihati"
+  },
+  {
+   "key": "razboljeti se / razboliti se",
+   "datei": "w2670.mp3",
+   "text": "razboljeti se / razboliti se"
+  },
+  {
+   "key": "gorjeti / goriti",
+   "datei": "w2671.mp3",
+   "text": "gorjeti / goriti"
   }
  ]
 }
