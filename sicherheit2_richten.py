@@ -15,8 +15,8 @@ sind trotzdem unnoetig zerbrechlich:
      die eingebaute Funktion, festSchmuck() wirft bei jedem Start. Setzen
      kann das nur, wer am Geraet selbst ist (Fernwartung, Entwicklerwerkzeuge).
 
-ACHTUNG - NICHT VOR DEM 07.10.2026 EINREICHEN. Jede Einreichung setzt
-Googles Pruefuhr fuer den geschlossenen Test zurueck.
+ANGEWENDET am 05.10.2026 (Build 91). Das Skript bleibt, weil
+tests/test_richten.py den angewendeten Stand prueft.
 
 Probelauf:  python sicherheit2_richten.py
 Schreiben:  python sicherheit2_richten.py --schreiben
