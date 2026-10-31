@@ -17,8 +17,11 @@ Internetadresse:
 - **[Impressum](https://zmaj-lernapp.github.io/impressum.html)**
 - **[Nutzungsbedingungen](https://zmaj-lernapp.github.io/nutzungsbedingungen.html)**
 - **[Daten löschen](https://zmaj-lernapp.github.io/konto-loeschen.html)**
+- **[Kontakt](https://zmaj-lernapp.github.io/kontakt.html)**
+- **[Links für die Profile](https://zmaj-lernapp.github.io/links.html)**
 
-Jede Seite gibt es in acht Sprachen — die Knöpfe stehen oben auf der Seite.
+Jede Seite gibt es in acht Sprachen — die Knöpfe stehen oben auf der Seite,
+auf der Linkseite unten.
 
 ---
 
@@ -46,6 +49,8 @@ Quelltext angezeigt. Das ist keine Einstellung, die man umlegen kann.
 | `nutzungsbedingungen.html` | Nutzungsbedingungen, acht Sprachen |
 | `impressum.html` | Impressum nach § 5 DDG, acht Sprachen |
 | `konto-loeschen.html` | wie man seine Daten löscht — fragt Google im Data-Safety-Formular ab |
+| `kontakt.html` | Kontaktformular, acht Sprachen — der zweite Kontaktweg neben der E-Mail |
+| `links.html` | Linkseite für TikTok, Instagram und YouTube: Knopf zu Google Play, Kontakt, Impressum, Datenschutz. Im Profil steht `links.html?von=tiktok` (bzw. `instagram`, `youtube`), damit die Play Console den Kanal sieht |
 | `app-ads.txt` | eine Zeile, die AdMob bestätigt, dass die Werbeplätze in der App wirklich zu diesem Konto gehören |
 | `favicon.ico`, `icon-256.png` | das Symbol im Browser-Tab: der Drache aus dem App-Symbol (mit Google Gemini erzeugt, bearbeitet) |
 
