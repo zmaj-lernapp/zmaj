@@ -32,8 +32,6 @@ import pytest
 HINWEIS = "Fast richtig!"
 HINWEIS_EN = "Almost right!"
 
-FELD = {"Lx": "lBody", "Tx": "tBody", "Ex": "eBody"}
-
 # Wie Android "Schriftgroesse": jede berechnete Schriftgroesse mal f (aus
 # test_flamme.py). Erst alle lesen, dann schreiben.
 SCHRIFT = """(f) => { const els = [...document.querySelectorAll('body *')];
