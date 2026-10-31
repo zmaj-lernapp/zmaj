@@ -1907,7 +1907,7 @@ zatvoriti	kapatmak	word	schließen / zumachen:zatvoriti
 Zatvori vrata, molim te.	Kapıyı kapat lütfen.	word	mach bitte die tür zu.:Zatvori vrata, molim te.
 zatvarati	kapatmak	word	schließen / zumachen:zatvarati
 Zatvaramo za pet minuta.	Beş dakika sonra kapatıyoruz.	word	wir schließen in fünf minuten.:Zatvaramo za pet minuta.
-desiti se / dogoditi se	olmak / meydana gelmek	word	passieren / geschehen:desiti se / dogoditi se
+desiti se / dogoditi se	meydana gelmek / olmak (olay)	word	passieren / geschehen:desiti se / dogoditi se
 Šta se desilo?	Ne oldu?	word	was ist passiert?:Šta se desilo?
 postojati	var olmak / mevcut olmak	word	existieren / bestehen:postojati
 Postoji li autobus do aerodroma?	Havalimanına otobüs var mı?	word	gibt es einen bus zum flughafen?:Postoji li autobus do aerodroma?
@@ -2049,7 +2049,7 @@ postajati	olmak (bir şey)	word	werden:postajati
 Navečer već postaje hladno.	Akşamları hava artık soğuyor.	word	abends wird es schon kalt.:Navečer već postaje hladno.
 nastavljati	devam etmek	word	weitermachen / fortsetzen:nastavljati
 Nastavljamo poslije pauze.	Aradan sonra devam ediyoruz.	word	nach der pause machen wir weiter.:Nastavljamo poslije pauze.
-dešavati se / događati se	olmak / meydana gelmek	word	passieren / geschehen:dešavati se / događati se
+dešavati se / događati se	meydana gelmek / olmak (olay)	word	passieren / geschehen:dešavati se / događati se
 Šta se ovdje dešava?	Burada neler oluyor?	word	was ist hier los?:Šta se ovdje dešava?
 padati	düşmek	word	fallen:padati
 Noću temperatura pada ispod nule.	Geceleri sıcaklık sıfırın altına düşüyor.	word	nachts fällt die temperatur unter null.:Noću temperatura pada ispod nule.
@@ -2159,11 +2159,11 @@ težak	ağır	word	schwer (gewicht):težak
 Ovaj kofer je jako težak.	Bu bavul çok ağır.	word	dieser koffer ist sehr schwer.:Ovaj kofer je jako težak.
 širok	geniş	word	breit:širok
 Rijeka je ovdje jako široka.	Nehir burada çok geniş.	word	der fluss ist hier sehr breit.:Rijeka je ovdje jako široka.
-dug	uzun	word	lang:dug
+dug	uzun (süre, mesafe)	word	lang:dug
 Ovo je bio dug dan.	Uzun bir gündü.	word	das war ein langer tag.:Ovo je bio dug dan.
 nizak	alçak / kısa boylu	word	niedrig / klein (körpergröße):nizak
 Ovdje su cijene niske.	Burada fiyatlar düşük.	word	hier sind die preise niedrig.:Ovdje su cijene niske.
-kratak	kısa	word	kurz:kratak
+kratak	kısa (süre, mesafe)	word	kurz:kratak
 Život je kratak.	Hayat kısa.	word	das leben ist kurz.:Život je kratak.
 uzak	dar	word	eng / schmal:uzak
 Ove cipele su mi uske.	Bu ayakkabılar bana dar.	word	diese schuhe sind mir zu eng.:Ove cipele su mi uske.
@@ -2313,7 +2313,7 @@ probati	denemek / tadına bakmak	word	probieren / kosten:probati
 Probaj ovo, fino je!	Bunu bir dene, çok lezzetli!	word	probier das, das ist lecker!:Probaj ovo, fino je!
 miris	koku	word	geruch / duft:miris
 Kakav lijep miris!	Ne güzel bir koku!	word	was für ein schöner duft!:Kakav lijep miris!
-taman	karanlık / koyu	word	dunkel:taman
+taman	koyu / karanlık (sıfat)	word	dunkel:taman
 U sobi je tamno, upali svjetlo.	Oda karanlık, ışığı aç.	word	im zimmer ist es dunkel, mach das licht an.:U sobi je tamno, upali svjetlo.
 okus	tat (yemek)	word	geschmack (essen):okus
 Ovo ima čudan okus.	Bunun tadı tuhaf.	word	das schmeckt komisch.:Ovo ima čudan okus.

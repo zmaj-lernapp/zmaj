@@ -3823,7 +3823,8 @@ INHALT = {
     "Ich habe alles gemacht, worum du gebeten hast.": "I've done everything you asked for.",
     "Hast du das Buch gelesen?": "Have you read the book?",
     "Ich habe Oma einen Brief geschrieben.": "I wrote grandma a letter.",
-    "sich beschäftigen mit / betreiben": "to be engaged in / to do (for a living)",
+    # Prüfung 31.10.2026: "to do" allein heißt schon uraditi im selben Level.
+    "sich beschäftigen mit / betreiben": "to be engaged in / to pursue",
     "Was machst du beruflich?": "What line of work are you in?",
     "Ich versuche den ganzen Tag, dich anzurufen.": "I've been trying to call you all day.",
     "lösen / klären": "to solve / to sort out",
@@ -4043,7 +4044,8 @@ INHALT = {
     "Das war ein langer Tag.": "That was a long day.",
     "niedrig / klein (Körpergröße)": "low / short (person)",
     "Hier sind die Preise niedrig.": "Prices are low here.",
-    "kurz": "short",
+    # Prüfung 31.10.2026: "short" allein passt auch auf nizak (short (person)).
+    "kurz": "short (not long)",
     "Das Leben ist kurz.": "Life is short.",
     "eng / schmal": "tight / narrow",
     "Diese Schuhe sind mir zu eng.": "These shoes are too tight for me.",
@@ -7564,7 +7566,8 @@ INHALT = {
     "schließen / zumachen": "kapatmak",
     "Mach bitte die Tür zu.": "Kapıyı kapat lütfen.",
     "Wir schließen in fünf Minuten.": "Beş dakika sonra kapatıyoruz.",
-    "passieren / geschehen": "olmak / meydana gelmek",
+    # Prüfung 31.10.2026: "olmak" allein passt auch auf postajati (olmak (bir şey)).
+    "passieren / geschehen": "meydana gelmek / olmak (olay)",
     "Was ist passiert?": "Ne oldu?",
     "existieren / bestehen": "var olmak / mevcut olmak",
     "Gibt es einen Bus zum Flughafen?": "Havalimanına otobüs var mı?",
@@ -7796,11 +7799,14 @@ INHALT = {
     "Dieser Koffer ist sehr schwer.": "Bu bavul çok ağır.",
     "breit": "geniş",
     "Der Fluss ist hier sehr breit.": "Nehir burada çok geniş.",
-    "lang": "uzun",
+    # Prüfung 31.10.2026: das schlichte Wort trägt eine Klammer, wenn das
+    # Wort für die Körpergröße dieselbe Form hat - sonst passt es in der
+    # Auswahl auf beide Wörter des Levels.
+    "lang": "uzun (süre, mesafe)",
     "Das war ein langer Tag.": "Uzun bir gündü.",
     "niedrig / klein (Körpergröße)": "alçak / kısa boylu",
     "Hier sind die Preise niedrig.": "Burada fiyatlar düşük.",
-    "kurz": "kısa",
+    "kurz": "kısa (süre, mesafe)",
     "Das Leben ist kurz.": "Hayat kısa.",
     "eng / schmal": "dar",
     "Diese Schuhe sind mir zu eng.": "Bu ayakkabılar bana dar.",
@@ -7949,7 +7955,8 @@ INHALT = {
     "Probier das, das ist lecker!": "Bunu bir dene, çok lezzetli!",
     "Geruch / Duft": "koku",
     "Was für ein schöner Duft!": "Ne güzel bir koku!",
-    "dunkel": "karanlık / koyu",
+    # Prüfung 31.10.2026: "karanlık" allein passt auch auf mrak (karanlık (isim)).
+    "dunkel": "koyu / karanlık (sıfat)",
     "Im Zimmer ist es dunkel, mach das Licht an.": "Oda karanlık, ışığı aç.",
     "Geschmack (Essen)": "tat (yemek)",
     "Das schmeckt komisch.": "Bunun tadı tuhaf.",
@@ -11537,11 +11544,14 @@ INHALT = {
     "Dieser Koffer ist sehr schwer.": "Den här resväskan är väldigt tung.",
     "breit": "bred",
     "Der Fluss ist hier sehr breit.": "Floden är väldigt bred här.",
-    "lang": "lång",
+    # Prüfung 31.10.2026: das schlichte Wort trägt eine Klammer, wenn das
+    # Wort für die Körpergröße dieselbe Form hat - sonst passt es in der
+    # Auswahl auf beide Wörter des Levels.
+    "lang": "lång (om sak)",
     "Das war ein langer Tag.": "Det var en lång dag.",
     "niedrig / klein (Körpergröße)": "låg / kort (om person)",
     "Hier sind die Preise niedrig.": "Här är priserna låga.",
-    "kurz": "kort",
+    "kurz": "kort (om sak)",
     "Das Leben ist kurz.": "Livet är kort.",
     "eng / schmal": "trång / smal",
     "Diese Schuhe sind mir zu eng.": "De här skorna är för trånga för mig.",
@@ -15272,7 +15282,8 @@ INHALT = {
     "Saug das Zimmer, bevor die Gäste kommen.": "Stofzuig de kamer voordat de gasten komen.",
     "weit (weg)": "ver (weg)",
     "Ist es weit bis zum Zentrum?": "Is het ver naar het centrum?",
-    "hoch / groß (Körpergröße)": "hoog / lang (van postuur)",
+    # Prüfung 31.10.2026: "lang" heißt schon dug im selben Level.
+    "hoch / groß (Körpergröße)": "hoog / groot (van postuur)",
     "Mein Bruder ist sehr groß.": "Mijn broer is heel lang.",
     "schwer (Gewicht)": "zwaar",
     "Dieser Koffer ist sehr schwer.": "Deze koffer is erg zwaar.",
@@ -26331,7 +26342,8 @@ INHALT = {
     "ausziehen / abnehmen": "enlever / ôter",
     "Zieh bitte die Schuhe aus.": "Enlève tes chaussures, s'il te plaît.",
     "Heute Morgen bin ich um sechs aufgestanden.": "Ce matin, je me suis levé à six heures.",
-    "anziehen": "mettre (un vêtement)",
+    # Prüfung 31.10.2026: "mettre" heißt schon staviti / stavljati im selben Level.
+    "anziehen": "enfiler (un vêtement)",
     "Zieh eine Jacke an, es ist kalt.": "Mets une veste, il fait froid.",
     "sich hinlegen": "s'allonger",
     "Leg dich ein bisschen hin, du bist müde.": "Allonge-toi un peu, tu es fatiguée.",

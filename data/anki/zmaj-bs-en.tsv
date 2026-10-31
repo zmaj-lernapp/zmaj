@@ -1933,7 +1933,7 @@ pročitati	to read	zmaj zmaj::71_tun_machen
 Jesi li pročitao knjigu?	Have you read the book?	zmaj zmaj::71_tun_machen
 napisati	to write	zmaj zmaj::71_tun_machen
 Napisao sam pismo nani.	I wrote grandma a letter.	zmaj zmaj::71_tun_machen
-baviti se	to be engaged in / to do (for a living)	zmaj zmaj::71_tun_machen
+baviti se	to be engaged in / to pursue	zmaj zmaj::71_tun_machen
 Čime se baviš?	What line of work are you in?	zmaj zmaj::71_tun_machen
 pokušavati	to try	zmaj zmaj::71_tun_machen
 Pokušavam te nazvati cijeli dan.	I've been trying to call you all day.	zmaj zmaj::71_tun_machen
@@ -2167,7 +2167,7 @@ dug	long	zmaj zmaj::80_lang_kurz
 Ovo je bio dug dan.	That was a long day.	zmaj zmaj::80_lang_kurz
 nizak	low / short (person)	zmaj zmaj::80_lang_kurz
 Ovdje su cijene niske.	Prices are low here.	zmaj zmaj::80_lang_kurz
-kratak	short	zmaj zmaj::80_lang_kurz
+kratak	short (not long)	zmaj zmaj::80_lang_kurz
 Život je kratak.	Life is short.	zmaj zmaj::80_lang_kurz
 uzak	tight / narrow	zmaj zmaj::80_lang_kurz
 Ove cipele su mi uske.	These shoes are too tight for me.	zmaj zmaj::80_lang_kurz

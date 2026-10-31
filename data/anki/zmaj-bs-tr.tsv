@@ -1911,7 +1911,7 @@ zatvoriti	kapatmak	zmaj zmaj::70_anfangen
 Zatvori vrata, molim te.	Kapıyı kapat lütfen.	zmaj zmaj::70_anfangen
 zatvarati	kapatmak	zmaj zmaj::70_anfangen
 Zatvaramo za pet minuta.	Beş dakika sonra kapatıyoruz.	zmaj zmaj::70_anfangen
-desiti se / dogoditi se	olmak / meydana gelmek	zmaj zmaj::70_anfangen
+desiti se / dogoditi se	meydana gelmek / olmak (olay)	zmaj zmaj::70_anfangen
 Šta se desilo?	Ne oldu?	zmaj zmaj::70_anfangen
 postojati	var olmak / mevcut olmak	zmaj zmaj::71_tun_machen
 Postoji li autobus do aerodroma?	Havalimanına otobüs var mı?	zmaj zmaj::71_tun_machen
@@ -2053,7 +2053,7 @@ postajati	olmak (bir şey)	zmaj zmaj::76_paare_alltag
 Navečer već postaje hladno.	Akşamları hava artık soğuyor.	zmaj zmaj::76_paare_alltag
 nastavljati	devam etmek	zmaj zmaj::76_paare_alltag
 Nastavljamo poslije pauze.	Aradan sonra devam ediyoruz.	zmaj zmaj::76_paare_alltag
-dešavati se / događati se	olmak / meydana gelmek	zmaj zmaj::76_paare_alltag
+dešavati se / događati se	meydana gelmek / olmak (olay)	zmaj zmaj::76_paare_alltag
 Šta se ovdje dešava?	Burada neler oluyor?	zmaj zmaj::76_paare_alltag
 padati	düşmek	zmaj zmaj::76_paare_alltag
 Noću temperatura pada ispod nule.	Geceleri sıcaklık sıfırın altına düşüyor.	zmaj zmaj::76_paare_alltag
@@ -2163,11 +2163,11 @@ težak	ağır	zmaj zmaj::80_lang_kurz
 Ovaj kofer je jako težak.	Bu bavul çok ağır.	zmaj zmaj::80_lang_kurz
 širok	geniş	zmaj zmaj::80_lang_kurz
 Rijeka je ovdje jako široka.	Nehir burada çok geniş.	zmaj zmaj::80_lang_kurz
-dug	uzun	zmaj zmaj::80_lang_kurz
+dug	uzun (süre, mesafe)	zmaj zmaj::80_lang_kurz
 Ovo je bio dug dan.	Uzun bir gündü.	zmaj zmaj::80_lang_kurz
 nizak	alçak / kısa boylu	zmaj zmaj::80_lang_kurz
 Ovdje su cijene niske.	Burada fiyatlar düşük.	zmaj zmaj::80_lang_kurz
-kratak	kısa	zmaj zmaj::80_lang_kurz
+kratak	kısa (süre, mesafe)	zmaj zmaj::80_lang_kurz
 Život je kratak.	Hayat kısa.	zmaj zmaj::80_lang_kurz
 uzak	dar	zmaj zmaj::80_lang_kurz
 Ove cipele su mi uske.	Bu ayakkabılar bana dar.	zmaj zmaj::80_lang_kurz
@@ -2317,7 +2317,7 @@ probati	denemek / tadına bakmak	zmaj zmaj::86_sinne
 Probaj ovo, fino je!	Bunu bir dene, çok lezzetli!	zmaj zmaj::86_sinne
 miris	koku	zmaj zmaj::86_sinne
 Kakav lijep miris!	Ne güzel bir koku!	zmaj zmaj::86_sinne
-taman	karanlık / koyu	zmaj zmaj::86_sinne
+taman	koyu / karanlık (sıfat)	zmaj zmaj::86_sinne
 U sobi je tamno, upali svjetlo.	Oda karanlık, ışığı aç.	zmaj zmaj::86_sinne
 okus	tat (yemek)	zmaj zmaj::86_sinne
 Ovo ima čudan okus.	Bunun tadı tuhaf.	zmaj zmaj::86_sinne
