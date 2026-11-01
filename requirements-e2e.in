@@ -5,4 +5,4 @@
 # Den Browser selbst holt  python -m playwright install --with-deps chromium
 # (oder ZMAJ_CHROMIUM=/pfad/zu/chromium für einen vorhandenen).
 pytest>=8
-playwright>=1.49
+playwright>=1.64.1
