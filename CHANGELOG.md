@@ -25,7 +25,11 @@ are in the Play Store listing. Format:
   *rentgen*, *prepisati*, *odabrati*). Words spelled like another word
   (*jezik* "tongue" and "language", *vrijeme* "time" and "weather") never
   appear together as answer options. *budućnost* has its own translations,
-  because "Zukunft" is also the title of the future-tense lesson.
+  because "Zukunft" is also the title of the future-tense lesson. The app
+  speaks all new words and example sentences with recordings that only the
+  store version contains (`ton_nur_emir.json`, w3124–w3723; *zarađivati*,
+  *jezik*, *vrijeme* and *još* already had theirs); the web demo, the
+  dataset and the Anki decks have no audio for them.
 - Vocabulary package 2 (reviewed by a native speaker on 31.10.2026): 151
   words, each followed by its example sentence (302 new entries, 2,342 in
   total, 86 levels). Section 10 gets four levels before "When something
