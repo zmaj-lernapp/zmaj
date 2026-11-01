@@ -2676,12 +2676,16 @@
            Ajdin am 18.09.2026. -->
       <div class="setting" id="setWerbungBox" style="display:none"><div><div class="st" id="lblWerbung" data-t="set.einwilligung"></div><div class="sd" id="setWerbungStand"></div></div>
         <button class="switch" id="swWerbung" role="switch" aria-checked="false" aria-labelledby="lblWerbung"></button></div>
-      <!-- Nur fuer Abonnenten: sie sehen keine Werbung, koennen aber eine
-           frueher erteilte Einwilligung immer noch bei Google zuruecknehmen.
-           Kein Schalter, denn hier gibt es nichts umzulegen - der Knopf
-           fuehrt zu Googles eigenem Fenster. Punkt 8, 30.09.2026. -->
-      <div class="setting" id="setWiderrufBox" style="display:none"><div><div class="st" data-t="set.einwilligung"></div><div class="sd" id="setWiderrufStand" data-t="set.einwilligung_google"></div></div>
-        <button class="btn ghost" id="einwWiderruf" data-t="set.einwilligung_knopf"></button></div>
+      <!-- Bis 01.11.2026 stand hier fuer Abonnenten eine eigene Zeile mit
+           dem Knopf "Wahl aendern" (setWiderrufBox, Punkt 8, 30.09.2026):
+           sie sehen keine Werbung, koennen eine frueher erteilte
+           Einwilligung aber bei Google zuruecknehmen. "Kein Schalter, denn
+           hier gibt es nichts umzulegen" hiess es damals. Ajdin beim Test
+           der 1.2: "bei werbung statt wahl aendern soll so ein schalter
+           sein", auf die Rueckfrage auch fuer Abonnenten: "Ja, auch
+           Schalter". Seitdem sehen Abonnenten auf dem Handy dieselbe Zeile
+           wie alle (setWerbungBox); was ein Tipp dort tut, steht bei
+           einwilligungWiderrufen(). -->
       <details><summary data-t="set.agb"></summary><div class="inner legal" data-t="set.agb_text"></div></details>
       <details><summary data-t="set.datenschutz"></summary><div class="inner legal" data-t="set.datenschutz_text"></div></details>
       <!-- Das Impressum auch in der App (Ajdin am 28.10.2026): derselbe Text
@@ -5262,6 +5266,10 @@ function werbungZeileZeigen(){
   $('setWerbungStand').textContent = t(an ? 'set.einwilligung_ja' : 'set.einwilligung_nein');
 }
 let werbungLaeuft = false;      // zwei Fenster uebereinander waeren haesslich
+/* Ob die Werbezeile fuer einen Abonnenten dasteht: nur auf dem Geraet, wo es
+   Googles Fenster gibt (Punkt 8), seit 01.11.2026 mit Schalter. */
+const aboWerbeZeile = () => unlimited() && !!(window.Capacitor && window.Capacitor.Plugins
+                                              && window.Capacitor.Plugins.AdMob);
 /* Punkt 8: der Widerruf fuer Abonnenten. Googles Auskunft wird ERST HIER
    geholt, auf Tipp, und ohne initialize() - das Werbe-SDK bleibt aus, beim
    Start spricht weiterhin niemand mit Google. AdMobP wird bewusst NICHT
@@ -5270,12 +5278,22 @@ let werbungLaeuft = false;      // zwei Fenster uebereinander waeren haesslich
    aus, kaeme danach keine Anzeige mehr durch.
    Dass hier ueberhaupt mit Google gesprochen wird, hat der Nutzer selbst
    angetippt - anders ist Googles Fenster nicht zu erreichen. */
+/* 01.11.2026: Angetippt wird jetzt der Schalter swWerbung, nicht mehr der
+   Knopf "Wahl aendern" (Ajdin: "bei werbung statt wahl aendern soll so ein
+   schalter sein" - "Ja, auch Schalter"). Er verhaelt sich wie bei Nutzern
+   mit Werbung: Verlangt Google einen Weg zum Aendern (EWR), oeffnet der
+   Tipp Googles Fenster, und danach zeigt der Schalter, was dort gewaehlt
+   wurde (googlesAntwort). Verlangt Google keinen (ausserhalb des EWR), ist
+   es der eigene Schalter und legt sofort um - wie ohne AdMob. Bis dahin
+   stand dort nur "Bei Google liegt gerade keine Antwort" und es passierte
+   nichts. Klappt die Frage an Google nicht (kein Netz), bleibt der
+   Schalter, wie er war, und darunter steht voll.fehler, bis die Zeile neu
+   gezeigt wird. Die Regeln oben zu initialize() und AdMobP gelten weiter. */
 async function einwilligungWiderrufen(){
   const P = window.Capacitor && window.Capacitor.Plugins;
   if(!P || !P.AdMob || werbungLaeuft) return;
-  const knopf = $('einwWiderruf'), stand = $('setWiderrufStand');
   werbungLaeuft = true;
-  if(knopf) knopf.disabled = true;
+  let fehler = false;
   try{
     const A = P.AdMob;
     const info = await A.requestConsentInfo();
@@ -5285,19 +5303,22 @@ async function einwilligungWiderrufen(){
          stimmt, falls das Abo spaeter auslaeuft. */
       const g = await googlesAntwort();
       if(g !== null) setzePersonalisiert(g);
-      if(stand) stand.textContent = t('set.einwilligung_google');
-    }else if(stand){
-      /* Ausserhalb des EWR verlangt Google keinen Einstiegspunkt, und
-         ohne frueher erteilte Antwort gibt es nichts zurueckzunehmen. */
-      stand.textContent = t('set.einwilligung_nichts');
+    }else{
+      /* Ausserhalb des EWR verlangt Google keinen Einstiegspunkt - dann
+         gehoert die Wahl uns, wie beim eigenen Schalter. */
+      setzePersonalisiert(!werbungPersonalisiert());
     }
-  }catch(e){ if(stand) stand.textContent = t('voll.fehler'); }
+  }catch(e){ fehler = true; }
   werbungLaeuft = false;
-  if(knopf) knopf.disabled = false;
+  werbungZeileZeigen();
+  if(fehler) $('setWerbungStand').textContent = t('voll.fehler');
 }
-if($('einwWiderruf')) $('einwWiderruf').addEventListener('click', einwilligungWiderrufen);
 $('swWerbung').addEventListener('click', async ()=>{
   if(werbungLaeuft) return;
+  /* Abonnenten (01.11.2026): ihr eigener Weg, ohne AdMobP - siehe
+     einwilligungWiderrufen(). Lief AdMob in dieser Sitzung schon (das Abo
+     kam erst danach), gilt der Zweig darunter, mit demselben Ergebnis. */
+  if(aboWerbeZeile() && !admobDa()){ await einwilligungWiderrufen(); return; }
   if(admobDa() && admobOptionen){
     werbungLaeuft = true;
     try{ await AdMobP.showPrivacyOptionsForm(); }catch(e){}
@@ -8965,22 +8986,24 @@ function showSettings(){
   if(kaufbar){ vollMeldung(''); vollZeileZeigen(); vollAbgleichen(); produkteNachsehen(); }
   /* Wer die Vollversion hat, sieht gar keine Werbung mehr - dann ist auch
      der Schalter zur Werbe-Einwilligung gegenstandslos. */
-  const zeigen = !unlimited()
-    && (WERBUNG_ECHT || EINWILLIGUNG_TEST || einwilligungGueltig() || admobDa());
-  $('setWerbungBox').style.display = zeigen ? '' : 'none';
-  if(zeigen){ werbungZeileZeigen(); werbungAbgleichen(); }
   /* Punkt 8 aus WERBUNG_PRUEFUNG.md: gegenstandslos ist der SCHALTER, nicht
      der Widerruf. Eine frueher als Gratisnutzer erteilte Einwilligung liegt
      weiter in Googles Speicher, und sie muss sich so leicht zuruecknehmen
      lassen, wie sie gegeben wurde - die Datenschutzerklaerung verspricht das
      in acht Sprachen. Deshalb eine eigene Zeile, nur auf dem Geraet: am PC
      gibt es Googles Fenster gar nicht. */
-  const widerrufBox = $('setWiderrufBox');
-  if(widerrufBox){
-    const P = window.Capacitor && window.Capacitor.Plugins;
-    widerrufBox.style.display = (unlimited() && P && P.AdMob) ? '' : 'none';
-    $('setWiderrufStand').textContent = t('set.einwilligung_google');
-  }
+  /* 01.11.2026: Die eigene Zeile ist jetzt dieselbe wie fuer alle - mit
+     Schalter statt "Wahl aendern" (Ajdin: "bei werbung statt wahl aendern
+     soll so ein schalter sein", fuer Abonnenten "Ja, auch Schalter").
+     Abonnenten sehen sie weiter nur auf dem Geraet (aboWerbeZeile). Beim
+     Oeffnen zeigt sie den Stand auf dem Geraet und fragt NICHT bei Google
+     nach (kein werbungAbgleichen) - das kommt erst mit einem Tipp, siehe
+     einwilligungWiderrufen(). */
+  const abo = aboWerbeZeile();
+  const zeigen = abo || (!unlimited()
+    && (WERBUNG_ECHT || EINWILLIGUNG_TEST || einwilligungGueltig() || admobDa()));
+  $('setWerbungBox').style.display = zeigen ? '' : 'none';
+  if(zeigen){ werbungZeileZeigen(); if(!abo) werbungAbgleichen(); }
   benSchalterZeigen();
   renderLangSel();
 }
