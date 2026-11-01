@@ -4,5 +4,5 @@
 #   uv pip compile --universal --python-version 3.10 --generate-hashes requirements-e2e.in -o requirements-e2e.txt
 # Den Browser selbst holt  python -m playwright install --with-deps chromium
 # (oder ZMAJ_CHROMIUM=/pfad/zu/chromium für einen vorhandenen).
-pytest>=8
+pytest>=9.2.0
 playwright>=1.49
