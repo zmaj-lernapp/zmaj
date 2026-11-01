@@ -10,7 +10,8 @@ Hier steht, was beim Einbau festgelegt wurde:
 - wie in Paket 1 steht jedes Wort direkt vor seinem Beispielsatz, die Level
   tragen "reihenfolge": True (tests/test_paket1.py);
 - die vier neuen Level von Tun und Lassen stehen vor passieren und notfall,
-  die sieben von Sektion 11 am Ende;
+  die sieben von Sektion 11 dahinter (seit 01.11.2026 folgen die
+  Sektionen 12 bis 14, tests/test_paket3.py und test_paket4.py);
 - Adjektive zeigen die maennliche Form, weibliche und saechliche stehen in
   "auch" und zaehlen beim Tippen. "(m/w)" haette die deutsche Bedeutung und
   damit die Kennung veraendert;
@@ -111,6 +112,11 @@ PARTNER = {
     "počistiti": "čistiti", "usisavati": "usisati", "usisati": "usisavati",
 }
 
+# Seit Wortschatz-Paket 3 (01.11.2026) haben diese Woerter aus Paket 2 ihr
+# Gegenstueck aus Paket 3 (Level paare_mehr), "partner" steht an beiden.
+PARTNER_PAKET3 = {"iznijeti": "iznositi", "miješati": "promiješati", "pokvariti se": "kvariti se",
+                  "sušiti": "osušiti", "zaliti": "zalijevati", "primijetiti": "primjećivati"}
+
 
 def _level(daten, ids):
     k = {x["id"]: x for x in daten["kategorien"]}
@@ -127,19 +133,23 @@ def _alle(daten):
 
 def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten):
     sektion = grunddaten["sektionen"][10]
-    assert len(grunddaten["sektionen"]) == 11
+    assert len(grunddaten["sektionen"]) == 14       # seit 01.11.2026 (Pakete 3 und 4)
     assert sektion["id"] == "wieetwasist"
     assert sektion["label"] == "Sektion 11 · Wie etwas ist"
     ids = [k["id"] for k in grunddaten["kategorien"]]
     tun = [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "tunlassen"]
-    assert tun[8:] == TUN + ["passieren", "notfall"], "vor passieren und notfall"
-    assert ids[-7:] == WIE, "Sektion 11 steht am Ende"
+    assert tun[8:12] == TUN, "nach den acht Leveln aus Paket 1"
+    # Dazwischen seit 01.11.2026 die drei Level aus Paket 3
+    assert tun[-2:] == ["passieren", "notfall"], "vor passieren und notfall"
+    i = ids.index("lang_kurz")
+    assert ids[i - 1] == "notfall" and ids[i:i + 7] == WIE, "Sektion 11 direkt hinter Sektion 10"
     assert all(k["sektion"] == "wieetwasist" for k in _level(grunddaten, WIE))
     assert list(WOERTER) == TUN + WIE
     assert sum(len(k["words"]) for k in _level(grunddaten, TUN + WIE)) == 302
     assert sum(len(k["words"]) for k in _level(grunddaten, TUN)) == 112
     # Die Level davor sind unberuehrt: 65 alte und 10 aus Paket 1
-    alt = [k for k in grunddaten["kategorien"] if k["id"] not in WOERTER]
+    paket3 = {"kaufen_zurueckgeben", "geld_sparen", "paare_mehr"}
+    alt = [k for k in grunddaten["kategorien"][:i] if k["id"] not in WOERTER and k["id"] not in paket3]
     assert len(alt) == 75 and sum(len(k["words"]) for k in alt) == 2040
 
 
@@ -224,7 +234,7 @@ def test_partner_in_beide_richtungen(grunddaten):
     bs = [w["bs"] for w in alle]
     nach_bs = {w["bs"]: w for w in alle}
     neu = {w["bs"]: w for w in _neu(grunddaten)}
-    assert {b: w["partner"] for b, w in neu.items() if w.get("partner")} == PARTNER
+    assert {b: w["partner"] for b, w in neu.items() if w.get("partner")} == {**PARTNER, **PARTNER_PAKET3}
     paare = set()
     for wort, gegen in PARTNER.items():
         assert bs.count(gegen) == 1, gegen

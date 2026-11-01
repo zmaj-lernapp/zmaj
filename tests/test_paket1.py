@@ -139,8 +139,9 @@ def test_partner_stehen_in_der_app(grunddaten):
             zaehler[x] = zaehler.get(x, 0) + 1
     assert max(zaehler.values()) == 1, [x for x, n in zaehler.items() if n > 1]
     # 39 aus Paket 1 (24 im Paket, 15 mit einem Wort, das schon da war), seit
-    # Paket 2 (31.10.2026) 43 dazu - siehe tests/test_paket2.py
-    assert len(paare) == 39 + 43
+    # Paket 2 (31.10.2026) 43 dazu - siehe tests/test_paket2.py -, seit den
+    # Paketen 3 und 4 (01.11.2026) 27 (tests/test_paket3.py, test_paket4.py)
+    assert len(paare) == 39 + 43 + 27
 
 
 def test_gleiche_bedeutung_im_neuen_teil_nur_bei_paaren(alle_daten):

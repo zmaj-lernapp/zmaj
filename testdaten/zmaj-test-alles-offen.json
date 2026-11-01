@@ -82,6 +82,9 @@
    "paare_denken",
    "paare_alltag",
    "im_haushalt",
+   "kaufen_zurueckgeben",
+   "geld_sparen",
+   "paare_mehr",
    "passieren",
    "notfall",
    "lang_kurz",
@@ -90,7 +93,25 @@
    "wie_jemand_ist",
    "benehmen",
    "glueck_sorgen",
-   "sinne"
+   "sinne",
+   "koerper_aussen",
+   "koerper_innen",
+   "krank_sein",
+   "beschwerden",
+   "in_der_praxis",
+   "untersuchen_heilen",
+   "apotheke",
+   "gesund_leben",
+   "zeitangaben",
+   "sofort_endlich",
+   "sport",
+   "hobbys",
+   "medien",
+   "urlaub",
+   "schule",
+   "lernen_studieren",
+   "berufe",
+   "arbeitsplatz"
   ],
   "gelesen": [
    "mira",
@@ -107,7 +128,6 @@
    "intervju"
   ],
   "tage": [
-   "2026-10-01",
    "2026-10-02",
    "2026-10-03",
    "2026-10-04",
@@ -136,7 +156,8 @@
    "2026-10-27",
    "2026-10-28",
    "2026-10-29",
-   "2026-10-30"
+   "2026-10-30",
+   "2026-10-31"
   ],
   "frost": [],
   "besitz": [],

@@ -261,7 +261,8 @@ def test_umzug_verteilt_auf_wochen_aelteste_level_zuerst(seite, heute_stand):
     # Alle Woerter: hoechstens 10 je Tag, nie weiter als 180 Tage. Seit dem
     # Wortschatz-Paket 1 (31.10.2026, 2.040 Woerter) geht beides nicht mehr
     # zugleich - karteiNachtragen() haelt die 180 Tage und nimmt dafuer
-    # mehr je Tag (ceil(n / 180), seit Paket 2 mit 2.342 Woertern 14).
+    # mehr je Tag (ceil(n / 180), seit den Paketen 3 und 4 mit 2.942
+    # Eintraegen 17).
     alle = seite.js("""() => { known = new Set(CATEGORIES.flatMap(c => c.words).map(w => w.id));
         kartei = {tag: 0, n: 0, w: {}}; karteiNachtragen();
         const f = Object.values(kartei.w).map(e => e[1]), je = {};
@@ -722,7 +723,10 @@ def test_groesse_bleibt_weit_unter_der_cloud_grenze(seite, heute_stand):
         const nurKartei = utf8Laenge(JSON.stringify(kartei));
         return {ganz, nurKartei, n: ids.length, max: CLOUD_GROESSE_MAX}; }""")
     je_wort = z["nurKartei"] / z["n"]
-    assert je_wort < 45, je_wort
+    # Bis Paket 2 unter 45 Bytes; seit den Paketen 3 und 4 (01.11.2026) gut
+    # 47, weil jedes neue Wort einen Beispielsatz mit langer Kennung hat
+    # (tests/test_kartei.py, test_groesse_unter_der_cloud_grenze).
+    assert je_wort < 50, je_wort
     assert z["ganz"] < z["max"] / 3, z
     # 7 000 Woerter, Kartei und gewusst skaliert: weiter unter der Grenze
     assert z["ganz"] * 7000 / z["n"] < z["max"], z

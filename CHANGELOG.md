@@ -7,6 +7,25 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Vocabulary packages 3 and 4 (reviewed by a native speaker on 31.10. and
+  1.11.2026): 300 words, each followed by its example sentence (600 new
+  entries, 2,942 in total, 107 levels). Section 10 gets three levels before
+  "When something happens": "Buying and returning", "Spending and saving
+  money" and "Pairs: more verbs". Three new sections complete the B1 stage
+  of the course plan, each in the next colour: section 12 · Body and health
+  (8 levels: body parts, illness, ailments, at the doctor's office, at the
+  pharmacy, healthy living), section 13 · Time and leisure (6 levels: time
+  expressions, sports, hobbies, media, travel) and section 14 · Learning
+  and working (4 levels: school, studying, jobs, at work). `partner` is set
+  on both words of 27 new pairs, also on the older verb from packages 1 and
+  2; *izabrati* ("to decide / to choose") and *birati* ("to pick / to
+  choose") are a pair with different meanings, like *popiti* and *piti*.
+  Second forms approved by the native speaker count when typing (*nogomet*,
+  *naočare*, *momenat* …), forms he ruled out do not (*ranac*, *grudi*,
+  *rentgen*, *prepisati*, *odabrati*). Words spelled like another word
+  (*jezik* "tongue" and "language", *vrijeme* "time" and "weather") never
+  appear together as answer options. *budućnost* has its own translations,
+  because "Zukunft" is also the title of the future-tense lesson.
 - Vocabulary package 2 (reviewed by a native speaker on 31.10.2026): 151
   words, each followed by its example sentence (302 new entries, 2,342 in
   total, 86 levels). Section 10 gets four levels before "When something

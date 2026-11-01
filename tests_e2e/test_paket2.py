@@ -91,8 +91,10 @@ def test_altes_verb_des_paares_beim_tippen_ist_fast_richtig(seite, heute_stand):
 def test_sektion_elf_im_lernpfad(seite, heute_stand):
     seite.starten(stand=heute_stand())
     e = seite.js("""() => ({level: CATEGORIES.filter(c => c.sektion === 'wieetwasist').map(c => c.id),
-        vor: CATEGORIES.slice(73, 79).map(c => c.id)})""")
+        vor: CATEGORIES.slice(73, 82).map(c => c.id)})""")
     assert e == {"level": ["lang_kurz", "voll_leer", "moeglich", "wie_jemand_ist", "benehmen", "glueck_sorgen",
                            "sinne"],
-                 "vor": ["paare_geben", "paare_denken", "paare_alltag", "im_haushalt", "passieren", "notfall"]}
+                 # seit 01.11.2026 dazwischen die drei Level aus Paket 3
+                 "vor": ["paare_geben", "paare_denken", "paare_alltag", "im_haushalt", "kaufen_zurueckgeben",
+                         "geld_sparen", "paare_mehr", "passieren", "notfall"]}
     assert seite.fehler == []
