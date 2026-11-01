@@ -3724,13 +3724,32 @@ const hoechsterBestanden = () => {
   return -1;
 };
 /* Die Einstufung macht zusaetzlich alles bis zu ihrem Einstieg frei.
-   "Dran" ist dann das erste offene Level AB dem Einstieg - sonst zeigte
+   "Dran" ist dann mindestens der Einstieg (siehe firstOpen) - sonst zeigte
    Weitermachen nach der Einstufung wieder auf Level 1. */
 const isUnlocked = i => ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
+/* "Dran" ist das Level ganz vorn: das hinter dem hoechsten bestandenen,
+   nach einer Einstufung mindestens deren Einstieg. Danach richten sich der
+   Weitermachen-Knopf, die markierte Stelle im Lernpfad, die beim Start
+   aufgeklappte Sektion und die Farbe der App.
+
+   Ajdin am 01.11.2026: "ich bin level 10 das heisst level 1 bis 9 hab ich
+   fertig und wenn ich zb auf level 8 kurz eine lektion mache soll der
+   knopf trotzdem bei level 10 bleiben". Bis dahin war "dran" das erste
+   nicht bestandene Level ab dem Einstieg. Das ist dasselbe, solange hinter
+   einem keine Luecke liegt. Eine Luecke entsteht aber, wenn ein Update ein
+   neues Level mitten in den schon gespielten Lernpfad schiebt (siehe
+   hoechsterBestanden) oder im Testmodus weiter vorn bestanden wird. Dann
+   schickte der Knopf zurueck in die Luecke. Jetzt bleibt er vorn; die
+   Luecke bleibt offen und laesst sich im Lernpfad antippen.
+   Erst wenn hinter dem hoechsten bestandenen kein Level mehr kommt, geht
+   es in die erste Luecke, und ohne Luecke wie bisher aufs letzte Level.
+   Eine Zwischenfassung merkte sich stattdessen das Level der letzten
+   Lektion (Feld letzte_lektion) - zurueckgenommen, noch bevor sie
+   erschien, eben wegen des Nachuebens in alten Leveln. */
 const firstOpen = () => {
-  const ab = Math.max(0, einstufungIndex());
-  let i = CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id));
-  if(i < 0) i = CATEGORIES.findIndex(c => !passed.has(c.id));
+  const vorn = Math.max(hoechsterBestanden() + 1, einstufungIndex());
+  if(vorn < CATEGORIES.length) return vorn;
+  const i = CATEGORIES.findIndex(c => !passed.has(c.id));
   return i < 0 ? CATEGORIES.length-1 : i;
 };
 /* Welche Sektion gerade dran ist. Die Antwort faerbt die ganze App, siehe
