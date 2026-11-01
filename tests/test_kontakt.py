@@ -179,6 +179,42 @@ def test_absatz_am_ende_von_rueckmeldung(schalter, sprachcodes):
         sprachen.formular_einfuegen("<b>1. Ohne Abschnitte</b>", "Absatz")
 
 
+def test_rueckmeldung_ohne_doppelten_absatz(schalter, sprachcodes):
+    """Pruefbericht 01.11.2026: Seit die Handy-App ihr Feedback ueber
+    denselben Weg schickt wie das Formular, stand in Abschnitt 5 der lange
+    Absatz zu Firebase, IP-Adresse, USA und Apps Script zweimal fast
+    wortgleich hintereinander. Jetzt beschreibt der Abschnitt das Feedback
+    der App knapp und fuer sich vollstaendig - auch ohne den Absatz zum
+    Formular, den es nur mit KONTAKT_FORMULAR gibt -, und kein laengerer
+    Satz des Formular-Absatzes steht ein zweites Mal im Abschnitt."""
+    import sprachen
+    n = sprachen.FORMULAR_ABSCHNITT
+    for an in (True, False):
+        schalter(an)
+        for code in sprachcodes:
+            text = sprachen.texte(code)["set.datenschutz_text"]
+            abschnitt = text[text.index("<b>%d. " % n):text.index("<br><br><b>%d. " % (n + 1))]
+            absatz = sprachen.TEXTE[code]["set.dsgvo_formular"]
+            assert abschnitt.count(absatz) == (1 if an else 0), (code, an)
+            app = abschnitt.replace(absatz, "")
+            # Was der Auftrag vom 01.11.2026 verlangt: Firebase (Frankfurt),
+            # die kurze anonyme Anmeldung, 180 Tage, Apps Script nach Gmail,
+            # die USA mit dem Data Privacy Framework und der Verweis auf das
+            # Konto (Abschnitt 3).
+            dpf = "Veri Gizliliği Çerçevesi" if code == "tr" else "Data Privacy Framework"
+            stadt = "Francfort" if code == "fr" else "Frankfurt"
+            for muss in ("Firebase", stadt, "180", "Google Apps Script", "Gmail", dpf):
+                assert muss in app, (code, muss)
+            assert app.count(dpf) == 1, code
+            # Kurze Saetze wie "Danach behandeln wir sie wie eine E-Mail an
+            # uns." duerfen in beiden stehen; die doppelten von frueher waren
+            # alle deutlich laenger.
+            saetze = [s for s in re.split(r"(?<=[.;])\s+", absatz) if len(s) > 90]
+            assert saetze, code
+            for satz in saetze:
+                assert satz not in app, (code, satz)
+
+
 # Wie jede Sprache Art. 6 Abs. 1 lit. f DSGVO schreibt.
 BERECHTIGT = {"de": "Art. 6 Abs. 1 lit. f DSGVO", "en": "Art. 6(1)(f) GDPR", "tr": "Madde 6(1)(f)",
               "sv": "art. 6.1 f GDPR", "nl": "art. 6 lid 1 onder f AVG", "nb": "art. 6 nr. 1 bokstav f",

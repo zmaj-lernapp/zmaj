@@ -290,6 +290,11 @@ START = {
 # Firebase-Konsole innerhalb von 30 Tagen (Frage 5 im Plan, nach dem
 # Vorschlag gebaut). Die Abschnitte zu Androids Sicherung, zur
 # Sicherungsdatei und zu Mails an uns sind dieselben wie vorher.
+# Seit 01.11.2026 (Version 1.2) gibt es in der Handy-App keine
+# Sicherungsdatei mehr, das Konto sichert alles (Ajdin: "Ganz raus").
+# Der Abschnitt zur Sicherungsdatei nennt den Menuepunkt deshalb nur
+# noch fuer Version 1.1 und frueher - wer damals eine Datei gespeichert
+# hat, muss sie weiter selbst loeschen (Pruefbericht 01.11.2026).
 # Online erst zusammen mit v109 - fuer v108 stimmt die alte Fassung.
 LOESCHEN = {
     "de": {
@@ -328,8 +333,8 @@ Die löschst du in deinem Google-Konto (Google Drive bzw. Google One →
 Sicherungen) – wir kommen nicht an sie heran.</p>
 
 <p><b>Deine Sicherungsdatei</b><br>
-Hast du unter <i>Einstellungen → Sicherung</i> eine Datei gespeichert,
-liegt sie dort, wohin du sie gelegt hast. Die müsstest du selbst löschen –
+Hast du eine Sicherungsdatei gespeichert (bis Version 1.1 der App unter
+<i>Einstellungen → Sicherung</i>), liegt sie dort, wohin du sie gelegt hast. Die müsstest du selbst löschen –
 wir kommen nicht an sie heran.</p>
 
 <p><b>Wenn du uns geschrieben hast</b><br>
@@ -378,8 +383,8 @@ delete it in your Google account (Google Drive or Google One → Backups) –
 we cannot reach it.</p>
 
 <p><b>Your backup file</b><br>
-If you saved one under <i>Settings → Backup</i>, it is wherever you put
-it. You would have to delete that yourself – we cannot reach it.</p>
+If you saved a backup file (up to version 1.1 of the app, under
+<i>Settings → Backup</i>), it is wherever you put it. You would have to delete that yourself – we cannot reach it.</p>
 
 <p><b>If you have written to us</b><br>
 Feedback sent by email stays in our mailbox, together with your sender
@@ -426,7 +431,8 @@ silersin (Google Drive ya da Google One → Yedeklemeler) – biz ona
 erişemeyiz.</p>
 
 <p><b>Yedek dosyan</b><br>
-<i>Ayarlar → Yedek</i> bölümünden bir dosya kaydettiysen, o dosya nereye
+Bir yedek dosyası kaydettiysen (uygulamanın 1.1 sürümüne kadar
+<i>Ayarlar → Yedek</i> bölümünden), o dosya nereye
 koyduysan orada duruyor. Onu senin silmen gerekir – biz ona erişemeyiz.</p>
 
 <p><b>Bize yazdıysan</b><br>
@@ -472,7 +478,7 @@ Lagring → Rensa data</i>).</p>
 Har du slagit på den i ditt Google-konto finns en kopia av appens data där, och Android återställer den när du installerar om. Den raderar du i ditt Google-konto (Google Drive eller Google One → Säkerhetskopior) – vi kommer inte åt den.</p>
 
 <p><b>Din säkerhetskopia</b><br>
-Har du sparat en fil under <i>Inställningar → Säkerhetskopia</i> ligger den kvar där du lade den. Den måste du radera själv – vi kommer inte åt den.</p>
+Har du sparat en säkerhetskopia som fil (till och med version 1.1 av appen under <i>Inställningar → Säkerhetskopia</i>) ligger den kvar där du lade den. Den måste du radera själv – vi kommer inte åt den.</p>
 
 <p><b>Om du har skrivit till oss</b><br>
 Ett mejl med feedback blir kvar i vår inkorg, tillsammans med din avsändaradress. Skriv till <a href="mailto:{mail}">{mail}</a>, så raderar vi det – inom 30 dagar.</p>
@@ -518,7 +524,8 @@ Die wis je in je Google-account (Google Drive of Google One → Back-ups) –
 wij kunnen er niet bij.</p>
 
 <p><b>Je reservekopie</b><br>
-Heb je via <i>Instellingen → Reservekopie</i> een bestand opgeslagen,
+Heb je een reservekopie als bestand opgeslagen (tot en met versie 1.1 van
+de app via <i>Instellingen → Reservekopie</i>),
 dan staat dat waar jij het hebt neergezet. Dat moet je zelf verwijderen –
 wij kunnen er niet bij.</p>
 
@@ -566,7 +573,7 @@ Tøm data</i>).</p>
 Har du slått den på i Google-kontoen din, ligger det en kopi av appens data der, og Android gjenoppretter den når du installerer appen på nytt. Den sletter du i Google-kontoen din (Google Disk eller Google One → Sikkerhetskopier) – vi har ikke tilgang til den.</p>
 
 <p><b>Sikkerhetskopien din</b><br>
-Har du lagret en fil under <i>Innstillinger → Sikkerhetskopi</i>, ligger den der du la den. Den må du slette selv – vi har ikke tilgang til den.</p>
+Har du lagret en sikkerhetskopi som fil (til og med versjon 1.1 av appen under <i>Innstillinger → Sikkerhetskopi</i>), ligger den der du la den. Den må du slette selv – vi har ikke tilgang til den.</p>
 
 <p><b>Hvis du har skrevet til oss</b><br>
 En tilbakemelding på e-post blir liggende i postkassen vår, sammen med avsenderadressen din. Skriv til <a href="mailto:{mail}">{mail}</a>, så sletter vi den – innen 30 dager.</p>
@@ -612,7 +619,8 @@ i din Google-konto (Google Drev eller Google One → Sikkerhedskopier) –
 vi kan ikke komme til den.</p>
 
 <p><b>Din sikkerhedskopi</b><br>
-Har du gemt en fil under <i>Indstillinger → Sikkerhedskopi</i>,
+Har du gemt en sikkerhedskopi som fil (til og med version 1.1 af appen
+under <i>Indstillinger → Sikkerhedskopi</i>),
 ligger den der, hvor du har lagt den. Den skal du selv slette –
 vi kan ikke komme til den.</p>
 
@@ -664,7 +672,8 @@ la supprimes dans ton compte Google (Google Drive ou Google One →
 Sauvegardes) – nous n'y avons pas accès.</p>
 
 <p><b>Ton fichier de sauvegarde</b><br>
-Si tu en as enregistré un dans <i>Réglages → Sauvegarde</i>, il se trouve
+Si tu as enregistré un fichier de sauvegarde (jusqu'à la version 1.1 de
+l'application, dans <i>Réglages → Sauvegarde</i>), il se trouve
 là où tu l'as mis. Celui-là, il faudra que tu le supprimes toi-même – nous
 n'y avons pas accès.</p>
 

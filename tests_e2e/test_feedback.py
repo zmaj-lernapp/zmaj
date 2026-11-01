@@ -76,6 +76,10 @@ def test_feedback_geht_ueber_das_formular(seite, heute_stand, cloud_html):
     assert seite.js("() => [document.getElementById('fbNote').textContent,"
                     " document.getElementById('fbText').value, document.getElementById('fbSend').disabled]") \
         == [_t(seite, "set.feedback_danke"), "", False]
+    # Pruefbericht 01.11.2026: Die Meldung sagt ein Screenreader an, und der
+    # Fokus steht nach dem Senden wieder auf dem Knopf.
+    assert seite.js("() => [document.getElementById('fbNote').getAttribute('role'),"
+                    " document.activeElement && document.activeElement.id]") == ["status", "fbSend"]
     seite.page.wait_for_timeout(300)
     assert _mails(seite) == [] and not seite.js("() => !!document.querySelector('#fbNote button')")
     # Genau eine Nachricht, mit der Adresse des Kontos und der Sprache der App.
@@ -106,8 +110,9 @@ def test_vorschlag_nach_der_bewertungsfrage_ebenso(seite, heute_stand, cloud_htm
     seite.page.click("#bwSenden")
     seite.page.wait_for_function("t => document.getElementById('bwNote').textContent === t",
                                  arg=_t(seite, "set.feedback_danke"))
-    assert seite.js("() => [document.getElementById('bwText').value, document.getElementById('bwZu').textContent]") \
-        == ["", _t(seite, "task.weiter")]
+    assert seite.js("() => [document.getElementById('bwText').value, document.getElementById('bwZu').textContent,"
+                    " document.getElementById('bwNote').getAttribute('role')]") \
+        == ["", _t(seite, "task.weiter"), "status"]
     assert [n["text"] for n in attrappe.nachrichten.values()] == ["Mehr Saetze zum Hoeren, bitte."]
     assert attrappe.anonyme == set()
     assert seite.fehler == []

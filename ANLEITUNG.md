@@ -186,11 +186,15 @@ Oben rechts öffnet ⚙ die **Einstellungen**:
 - **Lernen:** Töne, Vibration (nur am Handy), Animationen, Stimme zum
   Vorlesen.
 - **Sicherung:** Lernstand als Datei speichern und wieder einlesen (siehe
-  „Kein Konto“).
+  „Kein Konto“). Seit 1.2 (01.11.2026) nur noch ohne Konto, also in der
+  Web-Fassung; in der Android-App sichert das Konto alles.
 - **Rückmeldung:** Ein Textfeld. „Senden“ öffnet das Mailprogramm des
-  Nutzers mit fertiger Nachricht an `zmaj.lernapp@gmail.com`.
+  Nutzers mit fertiger Nachricht an `zmaj.lernapp@gmail.com`. Seit 1.2 geht
+  es in der Android-App, angemeldet, über das Kontaktformular (siehe
+  „Rückmeldung per Mail“); das Mailprogramm ist dort nur der Rückfall.
 - **Über die App:** Version, Quellen, Nutzungsbedingungen, Datenschutz und –
-  sobald Werbung läuft – der Knopf, mit dem sich die Einwilligung ändern
+  sobald Werbung läuft – der Knopf (seit 1.2 ein Schalter, auf dem Handy
+  auch für Abonnenten), mit dem sich die Einwilligung ändern
   lässt.
 
 ### Der Vorspann
@@ -261,6 +265,11 @@ Seite geleert wird, und er geht nicht von selbst auf ein zweites Gerät über.
 
 Deshalb **Einstellungen → Sicherung**. Zwei Knöpfe:
 
+(Seit 1.2, 01.11.2026, gibt es diesen Bereich nur noch ohne Konto. Ajdin:
+„Sicherung speichern kann raus weil wir ja jetzt einen server haben“ – „Ganz
+raus“. In der Android-App mit Konto blendet `showSettings()` ihn aus, das
+Konto sichert alles; die Web-Fassung behält beide Knöpfe.)
+
 - **Sicherung speichern** schreibt den ganzen Stand in eine Datei
   `zmaj-sicherung-JJJJ-MM-TT.json`. Am Handy geht sie ins Teilen-Menü – von
   dort aus an sich selbst schicken oder in die Cloud legen. Am PC ist es ein
@@ -299,6 +308,15 @@ Sprachcode und Datum, sonst nichts.
 Ist auf dem Gerät gar kein Mailprogramm eingerichtet, passiert sichtbar
 nichts. Deshalb steht danach die Adresse `zmaj.lernapp@gmail.com` da, mit
 einem Knopf zum Kopieren.
+
+**Seit 1.2 (01.11.2026) in der Android-App:** Angemeldet geht das Feedback
+über das Kontaktformular (Ajdin: „Übers Formular“). Text eintippen, „Senden“,
+fertig: Die App meldet sich kurz anonym bei Firebase an, legt
+`nachrichten/{uid}` an wie `kontakt.html` und löscht die Anmeldung wieder;
+`kontakt_weiterleitung.gs` bringt die Nachricht nach Gmail, „Antworten an“ ist
+die Adresse des Kontos (FIREBASE_EINRICHTEN.md, Abschnitt 15). Vor der
+Anmeldung, ohne Netz oder wenn Firebase ablehnt, öffnet sich wie oben das
+Mailprogramm. Ohne Konto (Web-Fassung) bleibt alles wie oben beschrieben.
 
 ### Was aus mail.py und konten.py geworden ist
 
