@@ -453,6 +453,32 @@ def test_skript_schickt_genau_die_erlaubten_felder():
     assert s.index("'signUp?key='") < s.index("':commit'") < s.index("'delete?key='")
 
 
+def test_app_feedback_schickt_dasselbe_wie_die_seite(index_html, wurzel):
+    """01.11.2026 (Ajdin: Feedback "Übers Formular"): Die Handy-App legt
+    ihr Feedback genauso ab wie kontakt.html - kurz anonym anmelden, nur
+    die drei Textfelder und die Zeit vom Server, nur Anlegen, unter der
+    eigenen uid, danach die Anmeldung loeschen. Als das angemeldete Konto
+    liesse firestore.rules das Anlegen nicht zu (istAbsender: nur anonym).
+    Die Antwortadresse prueft die App mit demselben Muster wie die Regel."""
+    a = index_html.index("async nachricht(text, antwort, sprache){")
+    s = index_html[a:index_html.index("return true;", a)]
+    assert re.findall(r"(\w+): \{stringValue:", s) == ["text", "antwort", "sprache"]
+    assert "{fieldPath: 'zeit', setToServerValue: 'REQUEST_TIME'}" in s
+    assert "currentDocument: {exists: false}" in s
+    assert "/documents/nachrichten/' + d.localId" in s
+    assert "'signUp?key='" in s and "post({returnSecureToken: true})" in s
+    assert "await kontoWeg(d.idToken);" in s
+    assert s.index("'signUp?key='") < s.index("':commit'") < s.index("finally{") < s.index("kontoWeg(d.idToken)")
+    # Nicht ueber konto(): das ueberschriebe den Ausweis des Kontos.
+    assert "konto(d" not in s and "merken(" not in s
+    muster = re.search(r"^const FEEDBACK_ADRESSE = /\^(.+)\$/;\r?$", index_html, re.M).group(1)
+    assert muster == _regel_adresse(wurzel)
+    for gut in ADRESSEN_GUT:
+        assert re.fullmatch(muster, gut), gut
+    for schlecht in ADRESSEN_SCHLECHT:
+        assert not re.fullmatch(muster, schlecht), schlecht
+
+
 @pytest.mark.parametrize("werte", [
     {},
     {"projekt": PROJEKT},
