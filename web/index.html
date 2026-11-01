@@ -3725,7 +3725,8 @@ const hoechsterBestanden = () => {
 };
 /* Die Einstufung macht zusaetzlich alles bis zu ihrem Einstieg frei.
    "Dran" ist dann das erste offene Level AB dem Einstieg - sonst zeigte
-   Weitermachen nach der Einstufung wieder auf Level 1. */
+   Weitermachen nach der Einstufung wieder auf Level 1. Ausnahme: wer
+   trotzdem von vorn lernt, siehe firstOpen. */
 const isUnlocked = i => ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
 /* "Dran" ist das erste nicht bestandene Level ab dem Einstieg. Danach
    richten sich der Weitermachen-Knopf, die markierte Stelle im Lernpfad,
@@ -3740,11 +3741,20 @@ const isUnlocked = i => ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden
        10 und es kommt ein neues level 5 hinzu dann springt der button auf
        level 5 und erst wenn es fertig ist springt er wieder auf level 10" -
        ein eingeschobenes Level ist das erste nicht bestandene, also dran.
+     - Der Einstieg zaehlt nur, solange man auch dort lernt. Ajdins
+       Test-App war am 26.10. auf Level 65 eingestuft, er hat aber Level 1
+       bis 9 bestanden - und der Knopf stand auf "Arzt & Versicherung".
+       "bin aber noch bei level 10 die hab ich noch nicht fertig gemacht".
+       Wer vor dem Einstieg etwas bestanden hat und ab dem Einstieg noch
+       nichts, lernt von vorn: dann gilt das erste nicht bestandene Level
+       ueberhaupt. Ohne etwas bestanden oder mit einem bestandenen Level ab
+       dem Einstieg bleibt es beim Einstieg.
    Verworfen: der Knopf im Level der letzten Lektion (Feld letzte_lektion)
    und der Knopf immer hinter dem hoechsten bestandenen, der eingeschobene
    Level uebersprungen haette. Beide erschienen nie. */
 const firstOpen = () => {
-  const ab = Math.max(0, einstufungIndex());
+  const ein = einstufungIndex(), h = hoechsterBestanden();
+  const ab = (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;
   let i = CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id));
   if(i < 0) i = CATEGORIES.findIndex(c => !passed.has(c.id));
   return i < 0 ? CATEGORIES.length-1 : i;
