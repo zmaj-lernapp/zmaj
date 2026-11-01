@@ -174,6 +174,9 @@ def test_ohne_projekt_alles_wie_heute(seite, heute_stand):
     seite.js("() => { showSettings(); }")
     assert seite.js("() => [AGB_WESENTLICH, document.getElementById('setSichSub').textContent]") \
         == ["2026-09-19", _t(seite, "set.sicherung_sub")]
+    # 01.11.2026: Ohne Cloud bleibt die Sicherung als Datei, mit beiden Knoepfen.
+    assert seite.js("() => ['setSichBox', 'sichSpeichern', 'sichLaden']"
+                    ".map(id => document.getElementById(id).offsetParent !== null)") == [True, True, True]
     seite.js("() => { showHome(); }")
     seite.neu_laden()
     assert seite.js("() => sichtbar('pfad') && !sichtbar('profileView')")
@@ -547,10 +550,42 @@ def test_google(seite, heute_stand, cloud_html):
     assert z["sicht"] == ["pfad"] and z["merker"]["art"] == "google" and z["merker"]["uid"] == UID
     assert wege(attrappe) == [("POST", KONTO + "signInWithIdp"), ("GET", dok_pfad()), ("PATCH", dok_pfad())]
     assert attrappe.mails == []                     # keine Bestaetigungsmail bei Google
-    # Angemeldet liegt eine Kopie im Konto - das sagt jetzt auch die Sicherung.
+    # Angemeldet liegt eine Kopie im Konto. Bis 01.11.2026 sagte das ein
+    # eigener Satz ueber der Sicherung; seitdem gibt es die Sicherung als
+    # Datei mit Konto gar nicht mehr (Ajdin: "Ganz raus"), siehe
+    # test_mit_cloud_keine_sicherungsdatei_*.
     seite.js("() => { showSettings(); }")
-    assert seite.js("() => [AGB_WESENTLICH, document.getElementById('setSichSub').textContent]") \
-        == ["2026-10-28", _t(seite, "set.sicherung_sub_konto")]
+    assert seite.js("() => [AGB_WESENTLICH, document.getElementById('setSichBox').offsetParent === null]") \
+        == ["2026-10-28", True]
+    assert seite.fehler == []
+
+
+# 01.11.2026, Ajdin: "Sicherung speichern kann raus weil wir ja jetzt einen
+# server haben" - "Ganz raus". In der Handy-App (CLOUD_AN) ist der Block in
+# den Einstellungen weg, Speichern und Einlesen, angemeldet oder nicht. Das
+# Feedback darunter bleibt. Ohne Cloud: test_ohne_projekt_alles_wie_heute.
+SICHERUNG_SICHTBAR = ("() => ['setSichBox', 'sichSpeichern', 'sichLaden', 'sichSuchen', 'fbText', 'fbSend']"
+                      ".map(id => document.getElementById(id).offsetParent !== null)")
+
+
+def test_mit_cloud_keine_sicherungsdatei_vor_der_anmeldung(seite, heute_stand, cloud_html):
+    _starten(seite, cloud_html, stand=heute_stand())
+    seite.js("() => { showSettings(); }")
+    assert seite.js("() => cloudModus() && !cloudMerker()")
+    assert seite.js(SICHERUNG_SICHTBAR) == [False, False, False, False, True, True]
+    assert seite.fehler == []
+
+
+def test_mit_cloud_keine_sicherungsdatei_angemeldet(seite, heute_stand, cloud_html):
+    attrappe = Attrappe()
+    attrappe.konto_anlegen("ich@probe.example", "geheim-123")
+    _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    seite.js("() => { showSettings(); }")
+    assert seite.js("() => !!cloudMerker()")
+    assert seite.js(SICHERUNG_SICHTBAR) == [False, False, False, False, True, True]
+    # Den Satz fuer Angemeldete ueber der Sicherung gibt es nicht mehr.
+    assert seite.js("() => t('set.sicherung_sub_konto')") == "set.sicherung_sub_konto"
     assert seite.fehler == []
 
 
