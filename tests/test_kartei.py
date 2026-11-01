@@ -89,8 +89,7 @@ def test_eigenes_feld_ueberall_dabei(index_html):
     felder = re.search(r"const STAND_FELDER = new Set\(\[(.*?)\]\);", index_html, re.S).group(1)
     assert "'kartei'" in felder
     html = index_html.replace("\r\n", "\n")
-    # Seit 01.11.2026 folgt noch zuletzt (Weitermachen), daher "," statt "}"
-    assert re.search(r"\n          kartei: kartei[,}]\n", html)
+    assert "          kartei: kartei};\n" in html
     assert "  kartei = karteiPruefen(d.kartei);\n" in html
     assert "  p.kartei = karteiPruefen(s.kartei, true);\n" in html
     assert "  m.kartei = karteiMischen(a.kartei, b.kartei);\n" in html

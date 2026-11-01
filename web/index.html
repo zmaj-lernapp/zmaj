@@ -3540,10 +3540,6 @@ const STERN_MAX = 300;    // so viele Sterne hoechstens; hier oben, standUeberne
 /* Die Lernkartei (zeitgesteuerte Wiederholung, v110) - erklaert weiter
    unten bei LERNKARTEI. Hier oben aus demselben Grund wie STERN_MAX. */
 let kartei = {tag: 0, n: 0, w: {}};
-/* Das Level der zuletzt begonnenen oder beendeten Lektion, fuer den
-   Weitermachen-Knopf - erklaert bei weiterZiel(). Hier oben, weil
-   standUebernehmen() es setzt. (01.11.2026) */
-let letzteLektion = null; // null = noch keine Lektion, sonst {level: Kennung, z: Zeitpunkt in ms}
 const KARTEI_ABSTAENDE = [1, 3, 7, 14, 30, 90, 180];   // Tage bis zum naechsten Termin, je Stufe 0 bis 6
 let bewertung = {gezeigt:[], nein:false, bewertet:false};   // siehe BEWERTUNG
 let rekord = 0;
@@ -3737,59 +3733,6 @@ const firstOpen = () => {
   if(i < 0) i = CATEGORIES.findIndex(c => !passed.has(c.id));
   return i < 0 ? CATEGORIES.length-1 : i;
 };
-/* ---- Weitermachen: dort, wo man zuletzt war (01.11.2026) ----
-   Ajdin am 01.11.2026: "kann dieser weiter machen button in der app nicht
-   da weiter machen wo man am weitesten ist sondern da wo man als letztes
-   aufgehoert hat". Bis dahin zeigte der Knopf auf der Startseite immer auf
-   firstOpen(), das erste nicht bestandene Level. Wer ein altes Level
-   nachuebte, wurde beim naechsten Antippen wieder nach vorn geschickt.
-   Die Regel (Ajdin kann sie in der Test-App noch aendern):
-     - Der Knopf oeffnet das Level, in dem zuletzt eine Lektion begonnen
-       oder beendet wurde - auch wenn es weiter vorn im Lernpfad liegt.
-     - Ist dieses Level bestanden, das naechste nicht bestandene danach im
-       Lernpfad. Gibt es keins, wie bisher.
-     - Ohne gemerktes Level (neuer Nutzer, Stand von vor diesem Tag), wenn
-       es das Level nicht mehr gibt oder wenn es gesperrt ist (im Testmodus
-       geuebt, Testmodus wieder aus): wie bisher, firstOpen().
-   "Bestanden" heisst wie ueberall im Lernpfad: Level-Test geschafft. Alle
-   Woerter gewusst reicht nicht - dann fehlt dort noch der Test, und genau
-   dahin fuehrt der Knopf.
-   Gemerkt wird nur bei echten Lektionen eines Levels, in startLesson() und
-   lessonEnd(). Level-Test, Wiederholen-Runden (Fehler, Markiert, Heute
-   faellig) und Geschichten aendern es nicht: der Test schliesst ein Level
-   ab, statt darin zu ueben - bestanden ist es fertig, durchgefallen geht
-   es dort mit Lektionen weiter; die Runden mischen Aufgaben aus vielen
-   Leveln und gehoeren zu keinem; die Geschichten haben im eigenen Reiter
-   ihren eigenen Knopf. Die Einstufung merkt sich auch nichts, sie loescht
-   aber ein vorher gemerktes Level - siehe einstufungMerken().
-   Gespeichert im eigenen Feld letzte_lektion auf oberster Ebene (Regel bei
-   STAND_FELDER), mit Zeitpunkt: zwei Geraete fuehrt standZusammenfuehren()
-   ueber den neueren zusammen. Eine Fassung ohne das Feld (v109) traegt es
-   unveraendert weiter (standFremd). */
-function weiterZiel(){
-  const i = letzteLektion ? CATEGORIES.findIndex(c => c.id === letzteLektion.level) : -1;
-  if(i < 0 || !isUnlocked(i)) return firstOpen();
-  if(!passed.has(CATEGORIES[i].id)) return i;
-  const k = CATEGORIES.findIndex((c, n) => n > i && !passed.has(c.id) && isUnlocked(n));
-  return k < 0 ? firstOpen() : k;
-}
-function letzteLektionMerken(){
-  const c = cur();
-  if(c) letzteLektion = {level: c.id, z: Date.now()};
-}
-/* Ein Stand von aussen - Geraetespeicher, Sicherungsdatei, Cloud - wird nur
-   so uebernommen: level ein nicht leerer Text mit hoechstens 200 Zeichen,
-   z eine endliche Zahl ab 0, nie nach jetzt (wie bei stern, sonst gewaenne
-   ein Eintrag mit vorgestellter Uhr jeden Abgleich). Fehlt z oder taugt es
-   nicht, gilt 0 - das Level bleibt, verliert aber gegen jedes andere. Ob es
-   das Level gibt, prueft erst weiterZiel(): faellt es bei einem Update weg,
-   schadet der Eintrag nicht. */
-function letzteLektionPruefen(roh){
-  if(!roh || typeof roh !== 'object' || Array.isArray(roh)) return null;
-  if(typeof roh.level !== 'string' || !roh.level || roh.level.length > 200) return null;
-  const z = (typeof roh.z === 'number' && isFinite(roh.z) && roh.z >= 0) ? Math.min(roh.z, Date.now()) : 0;
-  return {level: roh.level, z: z};
-}
 /* Welche Sektion gerade dran ist. Die Antwort faerbt die ganze App, siehe
    :root[data-sek=...] im Stil. Gerechnet wird ueber das naechste offene
    Level, nicht ueber die gerade gezeigte Seite: sonst wechselte die Farbe
@@ -5402,9 +5345,6 @@ function sicherungPlausibel(s){
   /* Lernkartei (29.10.2026): kein Uebungstag nach heute, kein Termin
      weiter weg als die laengste Stufe - siehe karteiPruefen(). */
   p.kartei = karteiPruefen(s.kartei, true);
-  /* Weitermachen (01.11.2026): ein Level-Text, kein Zeitpunkt nach jetzt -
-     siehe letzteLektionPruefen(). */
-  p.letzte_lektion = letzteLektionPruefen(s.letzte_lektion);
   return p;
 }
 /* ---- Felder einer neueren Fassung (28.10.2026, Vorarbeit fuer v110) ----
@@ -5446,12 +5386,10 @@ function sicherungPlausibel(s){
    eigenen Feld kartei und gehoert damit ab hier zu STAND_FELDER. Fuer
    kartei gilt dasselbe: karteiPruefen() behaelt je Wort genau drei
    Zahlen - was eine spaetere Fassung (etwa FSRS) braucht, kommt in ein
-   weiteres neues Feld, nicht an die Eintraege dort.
-   Ebenso letzte_lektion (01.11.2026), das Level fuer den Weitermachen-Knopf -
-   siehe weiterZiel(). v109 kennt es nicht und traegt es nur weiter. */
+   weiteres neues Feld, nicht an die Eintraege dort. */
 const STAND_FELDER = new Set(['gewusst', 'bestanden', 'gelesen', 'tage', 'frost', 'besitz', 'leben',
   'schutz', 'tagwerk', 'muenzen_ges', 'muenzen_aus', 'getragen', 'gefeiert', 'rekord', 'wann',
-  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern', 'kartei', 'letzte_lektion']);
+  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern', 'kartei']);
 const STAND_ALT = new Set(['premium']);
 let standFremd = {};
 /* Die fremden Felder eines Stands als tiefe Kopie - sie teilen nichts mit
@@ -5573,9 +5511,6 @@ function standUebernehmen(d){
      v110 -, ist sie leer; die gewussten Woerter bekommen ihre Termine
      gleich danach in karteiNachtragen() (altenFortschrittUmschreiben). */
   kartei = karteiPruefen(d.kartei);
-  /* Weitermachen (01.11.2026). Fehlt das Feld - ein Stand von vorher -,
-     zeigt der Knopf wie bisher auf das erste offene Level. */
-  letzteLektion = letzteLektionPruefen(d.letzte_lektion);
   const bw = (d.bewertung && typeof d.bewertung==='object' && !Array.isArray(d.bewertung)) ? d.bewertung : {};
   bewertung = {gezeigt: Array.isArray(bw.gezeigt) ? bw.gezeigt.filter(istDatum) : [],
                nein: !!bw.nein, bewertet: !!bw.bewertet};
@@ -5662,11 +5597,7 @@ function standAlsObjekt(){
              laesst die Sicherungsdatei bei version 1: eine alte App traegt
              das Feld nur weiter (standFremd), eine neue nimmt ein fehlendes
              als leer und traegt die Termine nach. */
-          kartei: kartei,
-          /* Das Level fuer den Weitermachen-Knopf (01.11.2026), siehe
-             weiterZiel(). Auch das laesst version 1 stehen: v109 traegt es
-             nur weiter, eine neue App nimmt ein fehlendes als "wie bisher". */
-          letzte_lektion: letzteLektion};
+          kartei: kartei};
   /* Dahinter, unveraendert, was eine neuere Fassung in den Stand gelegt
      hat (28.10.2026, siehe standFremd). Eigene Felder gehen vor -
      standFremdAus() laesst ohnehin keins davon durch. */
@@ -5742,11 +5673,6 @@ function standAlsObjekt(){
                            heute: der neuere Tag, am selben Tag die groessere
                            Zahl, wie bei tagwerk. Nichts aus der Zukunft, wie
                            bei topf - siehe karteiMischen() (29.10.2026).
-     letzte_lektion        das neuere z - auf welchem Geraet zuletzt eine
-                           Lektion lief, dort macht der Knopf weiter. Bei
-                           gleichem z das Level mit dem kleineren Text, nur
-                           damit beide Richtungen dasselbe ergeben. Fehlt es
-                           auf einer Seite, die andere (01.11.2026).
      leben, schutz         die Seite mit dem neueren Zeitstempel zeit - dort
                            ist zuletzt etwas passiert (Herz verloren, Schutz
                            verbraucht). Bei gleicher Zeit die kleinere
@@ -5846,10 +5772,6 @@ function standZusammenfuehren(a, b, cloudVorher){
     return [k, (x && y) ? {z: Math.max(zahl(x.z), zahl(y.z)), r: Math.max(zahl(x.r), zahl(y.r))} : (x || y)];
   })));
   m.kartei = karteiMischen(a.kartei, b.kartei);
-  const la = letzteLektionPruefen(a.letzte_lektion), lb = letzteLektionPruefen(b.letzte_lektion);
-  m.letzte_lektion = (!la || !lb) ? (la || lb)
-    : (la.z !== lb.z) ? (la.z > lb.z ? la : lb)
-    : (la.level <= lb.level ? la : lb);
   const zeitWahl = (x, y, max, leer) => {
     const gut = e => {
       e = objekt(e);
@@ -7134,9 +7056,7 @@ function renderHero(){
       const s = STORIES[si];
       if(s && storyUnlocked(si)){ name = s.titel; hin = () => openStory(si); }
     } else {
-      /* Seit dem 01.11.2026 das Level der letzten Lektion, nicht mehr das
-         am weitesten vorn - siehe weiterZiel(). */
-      const i = weiterZiel(), c = CATEGORIES[i];
+      const i = firstOpen(), c = CATEGORIES[i];
       if(c){ name = c.label; hin = () => openLevel(i); }
     }
     if(hin){
@@ -12401,11 +12321,6 @@ function lessonEnd(){
   // "Ohne Fehler" nur, wenn auch nichts übersprungen wurde – sonst holt man
   // sie sich, indem man jede Hör- und Sprechaufgabe wegdrückt.
   if(Lx.right === scored && scored > 0 && Lx.skipped === 0) zaehle('per');
-  /* Beendet zaehlt wie begonnen (01.11.2026, siehe weiterZiel): dasselbe
-     Level, aber der neuere Zeitpunkt - der entscheidet zwischen zwei
-     Geraeten. Hier und nicht in topfEnde(): eine Runde gehoert zu keinem
-     Level. */
-  letzteLektionMerken();
   const newDay = markToday(); saveProgress(); sound('done');
   /* Die gruenen Zeilen fuer erledigte Tagesaufgaben. Sie waren seit dem
      Umbau des Ladens verschwunden: questZeilen() stand fertig da und wurde
@@ -12583,12 +12498,6 @@ function startLesson(){
   if(anmeldungSperre()) return;
   if(livesNow()===0){ renderLives(); $('lvNote').textContent=t('level.keine_leben',{zeit:fmtMin(nextLifeIn())}); lebenWege(); return; }
   buildLesson();
-  /* Ab hier laeuft die Lektion: der Weitermachen-Knopf fuehrt in dieses
-     Level zurueck, auch wenn sie abgebrochen wird (01.11.2026, siehe
-     weiterZiel). Gleich gespeichert - sonst ginge es verloren, wenn die
-     App mitten in der Lektion beendet wird, ohne in den Hintergrund zu
-     gehen. */
-  letzteLektionMerken(); saveProgress();
   interstitialVorladen();   // liegt am Ende der Lektion bereit, siehe interstitialVorladen
   if(Lx.queue.some(a=>a.typ==='speak')) mikroVorbereiten();
   stilleBitte();   // Unteransicht, laeuft nicht ueber showView() - siehe showLevelHome
@@ -12879,13 +12788,6 @@ function einstufungKarte(inhalt){
 function einstufungMerken(wahl, bis, richtig, fragen){
   einstufung = {tag: today(), wahl: wahl, bis: bis || ''};
   if(fragen !== undefined){ einstufung.richtig = richtig; einstufung.fragen = fragen; }
-  /* Die Einstufung legt den Einstieg fest, also gilt ein vorher gemerktes
-     Level nicht mehr (01.11.2026, siehe weiterZiel). Sie kommt nur, solange
-     nichts gelernt ist (einstufungFaellig) - gemerkt sein kann dann nur
-     eine angefangene und ohne ein gewusstes Wort abgebrochene Lektion,
-     meist in Level 1. Bliebe sie stehen, schickte der Knopf nach einer
-     Einstufung auf Level 30 zurueck an den Anfang. */
-  letzteLektion = null;
   saveProgress();
 }
 function einstufungWahl(){
