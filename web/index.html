@@ -9424,7 +9424,8 @@ const CLOUD_CLIENT = '__CLOUD_CLIENT__';
                der Huelle (ZmajAnmeldung.sitzungMerken), siehe
                cloudSitzungAbgleichen()
      email     die Adresse des Kontos, nur zum Anzeigen und fuer die
-               frische Anmeldung vor dem Loeschen
+               frische Anmeldung vor dem Loeschen - seit 01.11.2026 auch
+               als Antwortadresse beim Feedback (feedbackUeberFormular)
      rev       Kennung des Cloud-Stands, den dieses Geraet zuletzt
                geschrieben oder eingearbeitet hat
      fp        Fingerabdruck des zuletzt hochgeladenen Stands
@@ -9837,8 +9838,9 @@ async function cloudGoogleAusweis(){
 function cloudFirestore(projekt, schluessel){
   const KONTO = 'https://identitytoolkit.googleapis.com/v1/accounts:';
   const ERNEUERN = 'https://securetoken.googleapis.com/v1/token?key=';
-  const dokument = uid => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(projekt)
-    + '/databases/(default)/documents/users/' + encodeURIComponent(uid);
+  const DOKUMENTE = 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(projekt)
+    + '/databases/(default)/documents';
+  const dokument = uid => DOKUMENTE + '/users/' + encodeURIComponent(uid);
   const post = (daten, kopf) => ({method: 'POST', headers: Object.assign({'Content-Type': 'application/json'}, kopf || {}),
                                   body: JSON.stringify(daten)});
   /* Die Mails von Firebase (Bestaetigen, Passwort zuruecksetzen) in der
@@ -9988,6 +9990,31 @@ function cloudFirestore(projekt, schluessel){
       await senden(dokument(m.uid), {method: 'DELETE', headers: {Authorization: 'Bearer ' + id}}, true);
       ausweis = null;
       return await kontoWeg(id) === true;
+    },
+    /* Feedback aus den Einstellungen (01.11.2026), genau wie das
+       Kontaktformular der Webseite (KONTAKT_SKRIPT in seite_bauen.py):
+       kurz anonym anmelden, die Nachricht als nachrichten/{uid} anlegen
+       (dieselben Felder, zeit vom Server, exists: false - nur Anlegen),
+       die anonyme Anmeldung wieder loeschen, auch wenn das Anlegen
+       scheiterte. Als das angemeldete Konto ginge es mit den Regeln vom
+       31.10.2026 nicht: firestore.rules laesst in nachrichten/{uid} nur
+       anonyme Anmeldungen anlegen (istAbsender), und je uid nur einmal.
+       Der Ausweis des Kontos (ausweis) bleibt dabei unberuehrt - deshalb
+       nicht ueber konto(), das ihn ueberschriebe. Wirft bei Fehlern. */
+    async nachricht(text, antwort, sprache){
+      const d = await (await senden(KONTO + 'signUp?key=' + schluessel, post({returnSecureToken: true}))).json();
+      if(!d || typeof d.localId !== 'string' || !d.localId || !d.idToken) throw new Error('cloud anmeldung');
+      try{
+        await senden(DOKUMENTE + ':commit', post({writes: [{
+          update: {name: 'projects/' + projekt + '/databases/(default)/documents/nachrichten/' + d.localId,
+                   fields: {text: {stringValue: text}, antwort: {stringValue: antwort},
+                            sprache: {stringValue: sprache}}},
+          updateTransforms: [{fieldPath: 'zeit', setToServerValue: 'REQUEST_TIME'}],
+          currentDocument: {exists: false}}]}, {Authorization: 'Bearer ' + d.idToken}));
+      }finally{
+        await kontoWeg(d.idToken);   // wirft nie; bleibt sie liegen, darf sie nichts mehr
+      }
+      return true;
     },
   };
 }
@@ -10445,7 +10472,10 @@ const ZMAJ_MAIL = 'zmaj.lernapp@gmail.com';
    Also oeffnen wir die Mail-App des Nutzers mit fertig ausgefuellter
    Nachricht. Kein fremder Dienst, keine zusaetzlichen Daten.
    Falls kein Mail-Programm eingerichtet ist, passiert sichtbar nichts -
-   deshalb steht die Adresse danach zum Kopieren da. */
+   deshalb steht die Adresse danach zum Kopieren da.
+   Seit 01.11.2026 ist das in der Handy-App mit Konto nur noch der
+   Rueckfall: dort geht Feedback ueber das Kontaktformular
+   (feedbackUeberFormular, weiter unten). Ohne Cloud bleibt es der Weg. */
 function feedbackPerMail(text, notiz){
   const betreff = 'Zmaj – ' + t('set.feedback');
   const fuss = '\n\n--\n' + (SPRACHE||'') + ' · ' + new Date().toISOString().slice(0,10);
@@ -10463,9 +10493,62 @@ function feedbackPerMail(text, notiz){
   });
   kasten.appendChild(knopf);
 }
+/* Feedback ueber das Kontaktformular statt ueber das Mailprogramm
+   (01.11.2026). Ajdin beim Test der 1.2: "wo ist das kontaktformular ist
+   das das mit dem feedback" - auf die Rueckfrage, ob Feedback darueber
+   gehen soll: "Uebers Formular". Text eintippen, Senden, fertig, kein
+   Mailprogramm; die Nachricht landet wie die vom Webformular in seinem
+   Gmail (nachrichten/{uid}, kontakt_weiterleitung.gs).
+   Nur in der Handy-App (cloudModus) und nur angemeldet: geantwortet wird
+   an die Adresse des Kontos (cloudMerker().email). Sie muss zur Regel in
+   firestore.rules passen (antwort.matches, hoechstens 254 Zeichen) -
+   FEEDBACK_ADRESSE ist dasselbe Muster, tests/test_kontakt.py vergleicht
+   beide. Ohne Konto, ohne Netz, wenn Firebase ablehnt oder die Adresse
+   nicht passt: wie bisher das Mailprogramm (feedbackPerMail), verloren
+   geht also nichts. Ohne Cloud (Web-Fassung, start.py) bleibt alles wie
+   vorher. */
+const FEEDBACK_ADRESSE = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?([.][A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
+function feedbackAdresse(){
+  const m = cloudMerker(), a = String((m && m.email) || '').trim();
+  return (a.length <= 254 && FEEDBACK_ADRESSE.test(a)) ? a : '';
+}
+/* true, wenn die Nachricht in Firebase liegt - sonst false, nie ein Wurf. */
+async function feedbackUeberFormular(text, adresse){
+  const a = cloudAdapter();
+  if(!a || !a.nachricht || !adresse) return false;
+  try{ return await a.nachricht(text, adresse, SPRACHE) === true; }
+  catch(e){ return false; }
+}
+let feedbackLaeuft = false;     // zweimal Senden hiesse zwei Mails
+/* Schickt ein Feedback ab - aus den Einstellungen und aus dem Vorschlag
+   nach der Bewertungsfrage (zeigeVorschlag), die schon immer denselben
+   Weg nahmen. notiz bekommt die Meldung, knopf ist waehrenddessen aus.
+   true: ueber das Formular angekommen; false: das Mailprogramm ist
+   aufgegangen; null: es laeuft schon eins, nichts getan. */
+async function feedbackSenden(text, notiz, knopf){
+  const adresse = cloudModus() ? feedbackAdresse() : '';
+  if(adresse){
+    if(feedbackLaeuft) return null;
+    feedbackLaeuft = true;
+    knopf.disabled = true;
+    notiz.textContent = t('set.feedback_sendet');
+    const geklappt = await feedbackUeberFormular(text, adresse);
+    feedbackLaeuft = false;
+    knopf.disabled = false;
+    if(geklappt){ notiz.textContent = t('set.feedback_danke'); return true; }
+  }
+  feedbackPerMail(text, notiz);
+  return false;
+}
 $('fbSend').addEventListener('click', async ()=>{
   const text=$('fbText').value.trim(); if(!text){ $('fbNote').textContent=t('set.feedback_leer'); return; }
-  if(!MIT_SERVER){ feedbackPerMail(text); sound('ok'); return; }
+  if(!MIT_SERVER){
+    const r = await feedbackSenden(text, $('fbNote'), $('fbSend'));
+    if(r === null) return;
+    if(r) $('fbText').value = '';
+    sound('ok');
+    return;
+  }
   try{
     const r=await fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({profil, text})});
     const d=await r.json();
@@ -13815,7 +13898,10 @@ function zeigeBewertung(){
   kasten.querySelector('#bwNein').addEventListener('click', ()=>{ zu(); bewertung.nein = true; saveProgress(); });
 }
 /* Das Feld fuer den Vorschlag. Verschickt wird wie in den Einstellungen:
-   das Mailprogramm des Geraets geht mit fertiger Nachricht auf. */
+   das Mailprogramm des Geraets geht mit fertiger Nachricht auf.
+   Seit 01.11.2026 heisst "wie in den Einstellungen": in der Handy-App mit
+   Konto ueber das Kontaktformular, sonst und als Rueckfall das
+   Mailprogramm (feedbackSenden). Ajdin: "Uebers Formular". */
 function zeigeVorschlag(){
   const kasten = document.createElement('div');
   kasten.className = 'nachfrage';
@@ -13835,12 +13921,15 @@ function zeigeVorschlag(){
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;
   kasten.querySelector('#bwZu').addEventListener('click', zu);
-  kasten.querySelector('#bwSenden').addEventListener('click', ()=>{
-    const text = kasten.querySelector('#bwText').value.trim();
+  kasten.querySelector('#bwSenden').addEventListener('click', async ()=>{
+    const feld = kasten.querySelector('#bwText'), text = feld.value.trim();
     const note = kasten.querySelector('#bwNote');
     if(!text){ note.textContent = t('set.feedback_leer'); return; }
-    feedbackPerMail(text, note);
-    note.insertAdjacentText('afterbegin', t('bew.danke') + ' ');
+    const r = await feedbackSenden(text, note, kasten.querySelector('#bwSenden'));
+    if(r === null) return;
+    // Ueber das Formular dankt set.feedback_danke schon selbst.
+    if(r) feld.value = '';
+    else note.insertAdjacentText('afterbegin', t('bew.danke') + ' ');
     sound('ok');
     kasten.querySelector('#bwZu').textContent = t('task.weiter');
   });
