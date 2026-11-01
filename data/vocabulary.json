@@ -3588,7 +3588,7 @@
     "nl": "Dienst, bouwplaats, vergadering, loonsverhoging: het dagelijkse werk.",
     "nb": "Skift, byggeplass, møte, lønnsøkning: hverdagen på jobben.",
     "da": "Vagt, byggeplads, møde, lønforhøjelse: hverdagen på arbejdet.",
-    "fr": "L'équipe, le chantier, la réunion, l'augmentation : le quotidien au travail."
+    "fr": "Le poste, le chantier, la réunion, l'augmentation : le quotidien au travail."
    },
    "builds_on": [
     "berufe",
@@ -51739,7 +51739,7 @@
    "translations": {
     "de": "gerade (eben)",
     "en": "just (now)",
-    "tr": "az önce",
+    "tr": "yeni (az önce)",
     "sv": "precis (nu)",
     "nl": "net",
     "nb": "nettopp",
@@ -51757,7 +51757,7 @@
    "translations": {
     "de": "Ich bin gerade nach Hause gekommen.",
     "en": "I just got home.",
-    "tr": "Eve az önce geldim.",
+    "tr": "Eve yeni geldim.",
     "sv": "Jag har precis kommit hem.",
     "nl": "Ik ben net thuisgekomen.",
     "nb": "Jeg har nettopp kommet hjem.",

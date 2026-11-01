@@ -2677,8 +2677,8 @@ praznik	resmî tatil	zmaj zmaj::98_zeitangaben
 Sutra je praznik, banke ne rade.	Yarın resmî tatil, bankalar kapalı.	zmaj zmaj::98_zeitangaben
 odmah	hemen	zmaj zmaj::99_sofort_endlich
 Odmah dolazim!	Hemen geliyorum!	zmaj zmaj::99_sofort_endlich
-upravo	az önce	zmaj zmaj::99_sofort_endlich
-Upravo sam stigla kući.	Eve az önce geldim.	zmaj zmaj::99_sofort_endlich
+upravo	yeni (az önce)	zmaj zmaj::99_sofort_endlich
+Upravo sam stigla kući.	Eve yeni geldim.	zmaj zmaj::99_sofort_endlich
 maloprije	biraz önce	zmaj zmaj::99_sofort_endlich
 Maloprije te je neko tražio.	Biraz önce biri seni arıyordu.	zmaj zmaj::99_sofort_endlich
 nedavno	geçenlerde / yakın zamanda	zmaj zmaj::99_sofort_endlich

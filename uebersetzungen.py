@@ -8966,8 +8966,10 @@ INHALT = {
     "Morgen ist Feiertag, die Banken haben zu.": "Yarın resmî tatil, bankalar kapalı.",
     "sofort": "hemen",
     "Ich komme sofort!": "Hemen geliyorum!",
-    "gerade (eben)": "az önce",
-    "Ich bin gerade nach Hause gekommen.": "Eve az önce geldim.",
+    # 01.11.2026: "yeni" statt nur "az önce" - maloprije (vorhin) heisst
+    # "biraz önce", beide unterschieden sich in einer Auswahl nur um "bir".
+    "gerade (eben)": "yeni (az önce)",
+    "Ich bin gerade nach Hause gekommen.": "Eve yeni geldim.",
     "vorhin": "biraz önce",
     "Vorhin hat dich jemand gesucht.": "Biraz önce biri seni arıyordu.",
     "neulich / kürzlich": "geçenlerde / yakın zamanda",
@@ -30482,7 +30484,8 @@ INHALT = {
     "Berufe": "Les métiers",
     "Koch, Friseur, Maurer, Pflegerin: wer was arbeitet.": "Cuisinier, coiffeur, maçon, aide-soignante : qui fait quel métier.",
     "Am Arbeitsplatz": "Au travail",
-    "Schicht, Baustelle, Besprechung, Gehaltserhöhung: der Alltag bei der Arbeit.": "L'équipe, le chantier, la réunion, l'augmentation : le quotidien au travail.",
+    # 01.11.2026: "Le poste" wie smjena "poste (de travail)"; "équipe" ist ekipa (Mannschaft).
+    "Schicht, Baustelle, Besprechung, Gehaltserhöhung: der Alltag bei der Arbeit.": "Le poste, le chantier, la réunion, l'augmentation : le quotidien au travail.",
     "zurückgeben": "rendre",
     "Kann ich diese Schuhe zurückgeben?": "Est-ce que je peux rendre ces chaussures ?",
     "Er gibt nie zurück, was er sich leiht.": "Il ne rend jamais ce qu'il emprunte.",
