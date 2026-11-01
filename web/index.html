@@ -2629,7 +2629,10 @@
       <div class="sd" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.feedback_sub"></div>
       <textarea class="field" id="fbText" rows="4" maxlength="2000" data-t-ph="set.feedback_platzhalter"></textarea>
       <div class="row" style="margin-top:10px; margin-bottom:12px"><button class="btn know" id="fbSend" data-t="set.feedback_senden"></button></div>
-      <div class="note" id="fbNote"></div>
+      <!-- role="status" wie #anmNote (Pruefbericht 01.11.2026): "Wird
+           gesendet ...", "Danke!" und der Hinweis aufs Mailprogramm wurden
+           sonst von keinem Screenreader angesagt. -->
+      <div class="note" id="fbNote" role="status"></div>
     </div>
     <div class="section">
       <h2 data-t="set.ueber"></h2>
@@ -3217,13 +3220,19 @@ async function admobStart(){
        Neustart folgenlos.
    Deshalb die Auskunft frisch holen und das SDK nachstarten, falls es
    noch nicht lief. */
-async function einwilligungNachziehen(){
+/* ohneStart (01.11.2026, Pruefbericht): nur die Auskunft nachziehen, das
+   SDK aber NICHT starten. Fuer Abonnenten, die erst in dieser Sitzung
+   gekauft haben, als AdMob schon gefragt hatte (AdMobP gesetzt, aber nach
+   einem Nein nie initialize()). Seit sie den Werbeschalter haben, liefe ihr
+   Tipp sonst hierher, und ein Ja in Googles Fenster haette das Werbe-SDK
+   fuer jemanden gestartet, der genau dafuer bezahlt - siehe admobStart(). */
+async function einwilligungNachziehen(ohneStart){
   if(!AdMobP) return;
   try{
     const info = await AdMobP.requestConsentInfo();
     admobDarf = !!info.canRequestAds;
     admobOptionen = info.privacyOptionsRequirementStatus === 'REQUIRED';
-    if(admobDarf && !admobGestartet){
+    if(admobDarf && !admobGestartet && !ohneStart){
       await AdMobP.initialize({
         initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE.length > 0,
         testingDevices: ADMOB_TESTGERAETE,
@@ -5289,9 +5298,21 @@ const aboWerbeZeile = () => unlimited() && !!(window.Capacitor && window.Capacit
    nichts. Klappt die Frage an Google nicht (kein Netz), bleibt der
    Schalter, wie er war, und darunter steht voll.fehler, bis die Zeile neu
    gezeigt wird. Die Regeln oben zu initialize() und AdMobP gelten weiter. */
+/* Pruefbericht 01.11.2026: Hat Google in dieser Sitzung einmal gesagt, dass
+   es keinen Weg zum Aendern verlangt (ausserhalb des EWR), gilt das bis zum
+   Neustart - jeder weitere Tipp legt sofort um, auch ohne Netz. So geht es
+   auch bei Nutzern mit Werbung, dort steht admobOptionen seit dem Start
+   fest. Vorher fragte jeder Tipp erneut bei Google, und ohne Netz stand nur
+   voll.fehler da, obwohl die Wahl ohnehin nur auf dem Geraet liegt. */
+let googleOhneFenster = false;
 async function einwilligungWiderrufen(){
   const P = window.Capacitor && window.Capacitor.Plugins;
   if(!P || !P.AdMob || werbungLaeuft) return;
+  if(googleOhneFenster){
+    setzePersonalisiert(!werbungPersonalisiert());
+    werbungZeileZeigen();
+    return;
+  }
   werbungLaeuft = true;
   let fehler = false;
   try{
@@ -5306,18 +5327,25 @@ async function einwilligungWiderrufen(){
     }else{
       /* Ausserhalb des EWR verlangt Google keinen Einstiegspunkt - dann
          gehoert die Wahl uns, wie beim eigenen Schalter. */
+      googleOhneFenster = true;
       setzePersonalisiert(!werbungPersonalisiert());
     }
   }catch(e){ fehler = true; }
   werbungLaeuft = false;
   werbungZeileZeigen();
-  if(fehler) $('setWerbungStand').textContent = t('voll.fehler');
+  if(fehler){
+    $('setWerbungStand').textContent = t('voll.fehler');
+    // Die Zeile darunter liest kein Screenreader von selbst vor (Pruefbericht 01.11.2026).
+    ansagen(esc(t('voll.fehler')));
+  }
 }
 $('swWerbung').addEventListener('click', async ()=>{
   if(werbungLaeuft) return;
   /* Abonnenten (01.11.2026): ihr eigener Weg, ohne AdMobP - siehe
      einwilligungWiderrufen(). Lief AdMob in dieser Sitzung schon (das Abo
-     kam erst danach), gilt der Zweig darunter, mit demselben Ergebnis. */
+     kam erst danach), gilt der Zweig darunter, mit demselben Ergebnis -
+     nur startet das Werbe-SDK dabei fuer sie nicht (Pruefbericht
+     01.11.2026, einwilligungNachziehen mit ohneStart). */
   if(aboWerbeZeile() && !admobDa()){ await einwilligungWiderrufen(); return; }
   if(admobDa() && admobOptionen){
     werbungLaeuft = true;
@@ -5325,7 +5353,7 @@ $('swWerbung').addEventListener('click', async ()=>{
     const g = await googlesAntwort();
     if(g !== null) setzePersonalisiert(g);   // genau das, was bei Google herauskam
     // Punkt 6: auch admobDarf und admobOptionen gehoeren nachgezogen.
-    await einwilligungNachziehen();
+    await einwilligungNachziehen(unlimited());
     werbungLaeuft = false;
     werbungZeileZeigen();
     return;
@@ -8985,7 +9013,9 @@ function showSettings(){
   $('setVollBox').style.display = kaufbar ? '' : 'none';
   if(kaufbar){ vollMeldung(''); vollZeileZeigen(); vollAbgleichen(); produkteNachsehen(); }
   /* Wer die Vollversion hat, sieht gar keine Werbung mehr - dann ist auch
-     der Schalter zur Werbe-Einwilligung gegenstandslos. */
+     der Schalter zur Werbe-Einwilligung gegenstandslos. (So bis
+     01.11.2026: seitdem haben Abonnenten auf dem Geraet wieder den
+     Schalter, siehe die beiden Kommentare darunter.) */
   /* Punkt 8 aus WERBUNG_PRUEFUNG.md: gegenstandslos ist der SCHALTER, nicht
      der Widerruf. Eine frueher als Gratisnutzer erteilte Einwilligung liegt
      weiter in Googles Speicher, und sie muss sich so leicht zuruecknehmen
@@ -10553,11 +10583,17 @@ async function feedbackSenden(text, notiz, knopf){
   if(adresse){
     if(feedbackLaeuft) return null;
     feedbackLaeuft = true;
+    const fokus = document.activeElement === knopf;
     knopf.disabled = true;
     notiz.textContent = t('set.feedback_sendet');
     const geklappt = await feedbackUeberFormular(text, adresse);
     feedbackLaeuft = false;
     knopf.disabled = false;
+    /* Pruefbericht 01.11.2026: Ein abgeschalteter Knopf verliert den Fokus,
+       ein Screenreader stand danach irgendwo am Seitenanfang. Zurueck auf
+       den Knopf, wenn der Fokus nicht schon woanders hin gewandert ist. Die
+       Meldungen selbst sagt role="status" an (fbNote, bwNote). */
+    if(fokus && knopf.isConnected && (!document.activeElement || document.activeElement === document.body)) knopf.focus();
     if(geklappt){ notiz.textContent = t('set.feedback_danke'); return true; }
   }
   feedbackPerMail(text, notiz);
@@ -13934,7 +13970,7 @@ function zeigeVorschlag(){
       '<textarea class="field" id="bwText" rows="4" maxlength="2000"></textarea>' +
       '<button class="btn know" id="bwSenden"></button>' +
       '<button class="btn ghost" id="bwZu"></button>' +
-      '<div class="note" id="bwNote" style="margin-top:8px"></div>' +
+      '<div class="note" id="bwNote" role="status" style="margin-top:8px"></div>' +   // wie #fbNote (01.11.2026)
     '</div>';
   kasten.querySelector('h3').textContent = t('bew.fb_titel');
   kasten.querySelector('#bwText').placeholder = t('set.feedback_platzhalter');

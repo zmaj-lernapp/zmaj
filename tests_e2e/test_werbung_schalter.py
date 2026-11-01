@@ -14,8 +14,12 @@ Das Handy stellt hier ein nachgebautes AdMob-Plugin und ZmajEinwilligung
   - Im EWR oeffnet ein Tipp Googles Fenster, danach zeigt der Schalter,
     was dort gewaehlt wurde - in beide Richtungen.
   - Ausserhalb des EWR (kein Aenderungsweg verlangt) legt der Schalter
-    sofort um, wie der eigene Schalter ohne AdMob.
+    sofort um, wie der eigene Schalter ohne AdMob. Seit dem Pruefbericht
+    vom 01.11.2026 fragt nur der erste Tipp der Sitzung bei Google nach,
+    die weiteren legen sofort um, auch ohne Netz.
   - Ohne Netz bleibt der Schalter, darunter steht voll.fehler.
+  - Kam das Abo erst, nachdem AdMob in dieser Sitzung gefragt hatte, startet
+    ein Ja in Googles Fenster das Werbe-SDK nicht (Pruefbericht 01.11.2026).
   - Den alten Knopf gibt es nicht mehr; am PC (ohne AdMob) sehen
     Abonnenten keine Werbezeile, alle anderen den Schalter wie bisher.
 """
@@ -114,10 +118,36 @@ def test_abonnent_ausserhalb_des_ewr_legt_sofort_um(seite, heute_stand):
     _tippen(seite)
     assert _neu(seite, n) == ["requestConsentInfo"]
     assert seite.js(ZEILE) == {"box": True, "an": "true", "unten": _t(seite, "set.einwilligung_ja"), "alt": False}
+    # Pruefbericht 01.11.2026: Googles "nicht verlangt" gilt fuer die Sitzung -
+    # der zweite Tipp fragt nicht noch einmal und geht auch ohne Netz.
+    seite.js("() => { window.probe.fehler = 'offline'; }")
+    n = len(seite.js("() => window.probe.aufrufe"))
     _tippen(seite)
-    assert seite.js(ZEILE)["an"] == "false"
+    assert _neu(seite, n) == []
+    assert seite.js(ZEILE) == {"box": True, "an": "false", "unten": _t(seite, "set.einwilligung_nein"), "alt": False}
     assert seite.js("() => localStorage.getItem('zmaj_pers')") == "aus"
     assert "showPrivacyOptionsForm" not in seite.js("() => window.probe.aufrufe")
+    assert seite.fehler == []
+
+
+def test_abonnent_nach_kauf_in_der_sitzung_kein_werbe_sdk(seite, heute_stand):
+    """Pruefbericht 01.11.2026: Hatte AdMob in dieser Sitzung schon gefragt
+    (AdMobP gesetzt, nach einem Nein nie initialize()) und kam das Abo erst
+    danach, geht der Tipp ueber den Weg der Nutzer mit Werbung und zieht mit
+    einwilligungNachziehen() die Auskunft nach. Ein Ja in Googles Fenster
+    darf dabei das Werbe-SDK fuer den Abonnenten nicht starten."""
+    _abonnent(seite, heute_stand)
+    seite.js("""() => { AdMobP = window.Capacitor.Plugins.AdMob; admobDarf = false;
+                        admobOptionen = true; admobGestartet = false; showSettings(); }""")
+    assert seite.js(ZEILE)["box"] is True
+    seite.js("() => { window.probe.wahl = true; }")
+    n = len(seite.js("() => window.probe.aufrufe"))
+    _tippen(seite)
+    assert _neu(seite, n) == ["showPrivacyOptionsForm", "stand", "requestConsentInfo"]
+    assert seite.js(ZEILE)["an"] == "true"
+    # Die Auskunft ist nachgezogen, gestartet ist nichts.
+    assert seite.js("() => [admobDarf, admobGestartet]") == [True, False]
+    assert "initialize" not in seite.js("() => window.probe.aufrufe")
     assert seite.fehler == []
 
 
@@ -126,6 +156,9 @@ def test_abonnent_ohne_netz_schalter_bleibt(seite, heute_stand):
     seite.js("() => { window.probe.fehler = 'offline'; showSettings(); }")
     _tippen(seite)
     assert seite.js(ZEILE) == {"box": True, "an": "false", "unten": _t(seite, "voll.fehler"), "alt": False}
+    # Auch fuer Screenreader (Pruefbericht 01.11.2026).
+    seite.page.wait_for_function("t => document.getElementById('ansage').textContent === t",
+                                 arg=_t(seite, "voll.fehler"))
     assert seite.js("() => localStorage.getItem('zmaj_pers')") is None
     # Neu gezeigt steht wieder der Stand da.
     seite.js("() => { showSettings(); }")
