@@ -38,8 +38,15 @@ PAKET1 = {"kommen_gehen", "geben_nehmen", "sagen_denken", "verstehen", "anfangen
 # Lassen, sieben in Sektion 11 · Wie etwas ist. Geprueft in tests/test_paket2.py.
 PAKET2 = {"paare_geben", "paare_denken", "paare_alltag", "im_haushalt", "lang_kurz", "voll_leer", "moeglich",
           "wie_jemand_ist", "benehmen", "glueck_sorgen", "sinne"}
+# Und die 21 Level aus den Wortschatz-Paketen 3 und 4 (01.11.2026): drei in
+# Tun und Lassen, dazu die Sektionen 12 bis 14. Geprueft in tests/test_paket3.py
+# und tests/test_paket4.py.
+PAKET34 = {"kaufen_zurueckgeben", "geld_sparen", "paare_mehr", "koerper_aussen", "koerper_innen", "krank_sein",
+           "beschwerden", "in_der_praxis", "untersuchen_heilen", "apotheke", "gesund_leben", "zeitangaben",
+           "sofort_endlich", "sport", "hobbys", "medien", "urlaub", "schule", "lernen_studieren", "berufe",
+           "arbeitsplatz"}
 GEORDNET = {"zahlen", "wochentage", "monate", "mengen", "konjugation", "zukunft", "routine",
-            "vergangenheit", "modal", "adjektive"} | PAKET1 | PAKET2
+            "vergangenheit", "modal", "adjektive"} | PAKET1 | PAKET2 | PAKET34
 TEIL_REIHEN = {"zeit": ["jutro", "podne", "večer", "noć"],
                "wetter": ["proljeće", "ljeto", "jesen", "zima"],
                "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"]}

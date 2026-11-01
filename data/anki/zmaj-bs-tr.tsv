@@ -2113,235 +2113,835 @@ usisavati	süpürmek (elektrikli süpürgeyle)	zmaj zmaj::77_im_haushalt
 Subotom usisavam cijeli stan.	Cumartesileri bütün evi süpürüyorum.	zmaj zmaj::77_im_haushalt
 usisati	süpürmek (elektrikli süpürgeyle)	zmaj zmaj::77_im_haushalt
 Usisaj sobu prije nego što dođu gosti.	Misafirler gelmeden odayı süpür.	zmaj zmaj::77_im_haushalt
-izgubiti se	kaybolmak	zmaj zmaj::78_passieren
-Izgubili smo se u gradu.	Şehirde kaybolduk.	zmaj zmaj::78_passieren
-spasiti	kurtarmak	zmaj zmaj::78_passieren
-Vatrogasci su spasili dijete.	İtfaiye çocuğu kurtardı.	zmaj zmaj::78_passieren
-povrijediti se	yaralanmak	zmaj zmaj::78_passieren
-Povrijedio sam se na poslu.	İşte yaralandım.	zmaj zmaj::78_passieren
-paziti	dikkat etmek / göz kulak olmak	zmaj zmaj::78_passieren
-Pazi na sestru!	Kız kardeşine göz kulak ol!	zmaj zmaj::78_passieren
-krvariti	kanamak	zmaj zmaj::78_passieren
-Rana jako krvari.	Yara çok kanıyor.	zmaj zmaj::78_passieren
-prehladiti se	üşütmek	zmaj zmaj::78_passieren
-Obuci se toplo, prehladit ćeš se!	Sıkı giyin, yoksa üşüteceksin!	zmaj zmaj::78_passieren
-onesvijestiti se	bayılmak	zmaj zmaj::78_passieren
-Žena se onesvijestila!	Kadın bayıldı!	zmaj zmaj::78_passieren
-boljeti / boliti	acımak / ağrımak	zmaj zmaj::78_passieren
-Boli me grlo.	Boğazım ağrıyor.	zmaj zmaj::78_passieren
-disati / dihati	nefes almak	zmaj zmaj::78_passieren
-Ne mogu disati!	Nefes alamıyorum!	zmaj zmaj::78_passieren
-razboljeti se / razboliti se	hastalanmak	zmaj zmaj::78_passieren
-Dijete se razboljelo.	Çocuk hastalandı.	zmaj zmaj::78_passieren
-gorjeti / goriti	yanmak	zmaj zmaj::78_passieren
-Kuća gori!	Ev yanıyor!	zmaj zmaj::78_passieren
-Upomoć!	İmdat!	zmaj zmaj::79_notfall
-Upomoć! Pomozite mi!	İmdat! Bana yardım edin!	zmaj zmaj::79_notfall
-hitan slučaj	acil durum	zmaj zmaj::79_notfall
-Ovo je hitan slučaj, zovite hitnu pomoć!	Bu acil bir durum, ambulans çağırın!	zmaj zmaj::79_notfall
-hitna	ambulans / acil yardım	zmaj zmaj::79_notfall
-Hitna je već na putu.	Ambulans zaten yolda.	zmaj zmaj::79_notfall
-vatrogasci	itfaiye	zmaj zmaj::79_notfall
-Zovite vatrogasce!	İtfaiyeyi arayın!	zmaj zmaj::79_notfall
-požar	yangın	zmaj zmaj::79_notfall
-U zgradi je izbio požar.	Binada yangın çıktı.	zmaj zmaj::79_notfall
-nesreća	kaza / felaket	zmaj zmaj::79_notfall
-Desila se nesreća na autoputu.	Otoyolda bir kaza oldu.	zmaj zmaj::79_notfall
-povreda	yaralanma	zmaj zmaj::79_notfall
-Povreda nije teška.	Yaralanma ağır değil.	zmaj zmaj::79_notfall
-rana	yara	zmaj zmaj::79_notfall
-Treba očistiti ranu.	Yaranın temizlenmesi lazım.	zmaj zmaj::79_notfall
-krv	kan	zmaj zmaj::79_notfall
-Imaš krv na ruci.	Elinde kan var.	zmaj zmaj::79_notfall
-lopov	hırsız	zmaj zmaj::79_notfall
-Lopov je pobjegao, zovite policiju!	Hırsız kaçtı, polisi arayın!	zmaj zmaj::79_notfall
-daleko	uzak	zmaj zmaj::80_lang_kurz
-Je li daleko do centra?	Merkeze uzak mı?	zmaj zmaj::80_lang_kurz
-visok	yüksek / uzun boylu	zmaj zmaj::80_lang_kurz
-Moj brat je jako visok.	Kardeşim çok uzun boylu.	zmaj zmaj::80_lang_kurz
-težak	ağır	zmaj zmaj::80_lang_kurz
-Ovaj kofer je jako težak.	Bu bavul çok ağır.	zmaj zmaj::80_lang_kurz
-širok	geniş	zmaj zmaj::80_lang_kurz
-Rijeka je ovdje jako široka.	Nehir burada çok geniş.	zmaj zmaj::80_lang_kurz
-dug	uzun (süre, mesafe)	zmaj zmaj::80_lang_kurz
-Ovo je bio dug dan.	Uzun bir gündü.	zmaj zmaj::80_lang_kurz
-nizak	alçak / kısa boylu	zmaj zmaj::80_lang_kurz
-Ovdje su cijene niske.	Burada fiyatlar düşük.	zmaj zmaj::80_lang_kurz
-kratak	kısa (süre, mesafe)	zmaj zmaj::80_lang_kurz
-Život je kratak.	Hayat kısa.	zmaj zmaj::80_lang_kurz
-uzak	dar	zmaj zmaj::80_lang_kurz
-Ove cipele su mi uske.	Bu ayakkabılar bana dar.	zmaj zmaj::80_lang_kurz
-lagan	hafif	zmaj zmaj::80_lang_kurz
-Torba je lagana, nosit ću je sama.	Çanta hafif, kendim taşırım.	zmaj zmaj::80_lang_kurz
-tanak	ince	zmaj zmaj::80_lang_kurz
-Zidovi su tanki, sve se čuje.	Duvarlar ince, her şey duyuluyor.	zmaj zmaj::80_lang_kurz
-debeo	kalın / şişman	zmaj zmaj::80_lang_kurz
-Ova knjiga je baš debela.	Bu kitap gerçekten çok kalın.	zmaj zmaj::80_lang_kurz
-mršav	zayıf (kişi)	zmaj zmaj::80_lang_kurz
-Mršav si, jedi malo više!	Zayıfsın, biraz daha ye!	zmaj zmaj::80_lang_kurz
-isti	aynı	zmaj zmaj::81_voll_leer
-Imamo iste cipele!	Ayakkabılarımız aynı!	zmaj zmaj::81_voll_leer
-jak	güçlü	zmaj zmaj::81_voll_leer
-Jak je kao medvjed.	Ayı gibi güçlü.	zmaj zmaj::81_voll_leer
-pun	dolu	zmaj zmaj::81_voll_leer
-Autobus je bio pun.	Otobüs doluydu.	zmaj zmaj::81_voll_leer
-bogat	zengin	zmaj zmaj::81_voll_leer
-Njegova porodica je jako bogata.	Ailesi çok zengin.	zmaj zmaj::81_voll_leer
-drugačiji	farklı	zmaj zmaj::81_voll_leer
-Danas si nekako drugačiji.	Bugün bir şekilde farklısın.	zmaj zmaj::81_voll_leer
-slab	zayıf / güçsüz	zmaj zmaj::81_voll_leer
-Signal je ovdje slab.	Burada çekim zayıf.	zmaj zmaj::81_voll_leer
-prazan	boş	zmaj zmaj::81_voll_leer
-Frižider je opet prazan.	Buzdolabı yine boş.	zmaj zmaj::81_voll_leer
-tačan	doğru / tam	zmaj zmaj::81_voll_leer
-Je li ovo tačna adresa?	Bu doğru adres mi?	zmaj zmaj::81_voll_leer
-suh	kuru	zmaj zmaj::81_voll_leer
-Veš je već suh.	Çamaşırlar kurumuş bile.	zmaj zmaj::81_voll_leer
-pogrešan	yanlış	zmaj zmaj::81_voll_leer
-Ušli smo u pogrešan autobus.	Yanlış otobüse bindik.	zmaj zmaj::81_voll_leer
-siromašan	fakir	zmaj zmaj::81_voll_leer
-Odrastao sam u siromašnoj porodici.	Fakir bir ailede büyüdüm.	zmaj zmaj::81_voll_leer
-tvrd	sert	zmaj zmaj::81_voll_leer
-Hljeb je tvrd, od jučer je.	Ekmek sert, dünden kalma.	zmaj zmaj::81_voll_leer
-mokar	ıslak	zmaj zmaj::81_voll_leer
-Sav sam mokar od kiše.	Yağmurdan sırılsıklam oldum.	zmaj zmaj::81_voll_leer
-mekan	yumuşak	zmaj zmaj::81_voll_leer
-Jastuk je jako mekan.	Yastık çok yumuşak.	zmaj zmaj::81_voll_leer
-potreban	gerekli	zmaj zmaj::82_moeglich
-Potrebna mi je tvoja pomoć.	Yardımına ihtiyacım var.	zmaj zmaj::82_moeglich
-moguć	mümkün	zmaj zmaj::82_moeglich
-Je li moguće platiti karticom?	Kartla ödemek mümkün mü?	zmaj zmaj::82_moeglich
-poseban	özel	zmaj zmaj::82_moeglich
-Danas je poseban dan.	Bugün özel bir gün.	zmaj zmaj::82_moeglich
-siguran	güvenli / emin	zmaj zmaj::82_moeglich
-Je li ovdje sigurno noću?	Burası geceleri güvenli mi?	zmaj zmaj::82_moeglich
-sličan	benzer	zmaj zmaj::82_moeglich
-Ti i brat ste jako slični.	Sen ve kardeşin birbirinize çok benziyorsunuz.	zmaj zmaj::82_moeglich
-spreman	hazır	zmaj zmaj::82_moeglich
-Jesi li spremna? Krećemo.	Hazır mısın? Yola çıkıyoruz.	zmaj zmaj::82_moeglich
-slobodan	müsait / serbest	zmaj zmaj::82_moeglich
-Jesi li slobodan u subotu?	Cumartesi müsait misin?	zmaj zmaj::82_moeglich
-jednostavan	basit	zmaj zmaj::82_moeglich
-Recept je jako jednostavan.	Tarif çok basit.	zmaj zmaj::82_moeglich
-običan	sıradan / normal	zmaj zmaj::82_moeglich
-Ja sam običan čovjek.	Ben sıradan bir insanım.	zmaj zmaj::82_moeglich
-čudan	tuhaf / garip	zmaj zmaj::82_moeglich
-To je baš čudno.	Bu gerçekten tuhaf.	zmaj zmaj::82_moeglich
-nemoguć	imkânsız	zmaj zmaj::82_moeglich
-To je nemoguće!	Bu imkânsız!	zmaj zmaj::82_moeglich
-gotov	bitmiş	zmaj zmaj::82_moeglich
-Ručak je gotov!	Öğle yemeği hazır!	zmaj zmaj::82_moeglich
-komplikovan	karmaşık	zmaj zmaj::82_moeglich
-Sve je to previše komplikovano.	Bunların hepsi fazlasıyla karmaşık.	zmaj zmaj::82_moeglich
-zauzet	meşgul / dolu	zmaj zmaj::82_moeglich
-Izvini, sad sam zauzet.	Kusura bakma, şu an meşgulüm.	zmaj zmaj::82_moeglich
-pravi	gerçek / hakiki	zmaj zmaj::82_moeglich
-Ovo je prava bosanska kahva.	Bu hakiki Boşnak kahvesi.	zmaj zmaj::82_moeglich
-drag	tatlı / sevimli	zmaj zmaj::83_wie_jemand_ist
-Tvoja mama je jako draga.	Annen çok tatlı.	zmaj zmaj::83_wie_jemand_ist
-ozbiljan	ciddi	zmaj zmaj::83_wie_jemand_ist
-Ovo je ozbiljan problem.	Bu ciddi bir sorun.	zmaj zmaj::83_wie_jemand_ist
-vrijedan	çalışkan	zmaj zmaj::83_wie_jemand_ist
-Moja kćerka je jako vrijedna.	Kızım çok çalışkan.	zmaj zmaj::83_wie_jemand_ist
-pametan	akıllı	zmaj zmaj::83_wie_jemand_ist
-Ona je jako pametna.	O çok akıllı.	zmaj zmaj::83_wie_jemand_ist
-iskren	içten / samimi	zmaj zmaj::83_wie_jemand_ist
-Budi iskren, sviđa li ti se?	Dürüst ol, beğendin mi?	zmaj zmaj::83_wie_jemand_ist
-zao	kötü kalpli	zmaj zmaj::83_wie_jemand_ist
-Pas nije zao, samo laje.	Köpek kötü değil, sadece havlıyor.	zmaj zmaj::83_wie_jemand_ist
-hrabar	cesur	zmaj zmaj::83_wie_jemand_ist
-Bio si jako hrabar.	Çok cesurdun.	zmaj zmaj::83_wie_jemand_ist
-glup	aptal	zmaj zmaj::83_wie_jemand_ist
-To je bilo glupo od mene.	Aptallık ettim.	zmaj zmaj::83_wie_jemand_ist
-pošten	dürüst	zmaj zmaj::83_wie_jemand_ist
-On je pošten čovjek.	O dürüst bir insan.	zmaj zmaj::83_wie_jemand_ist
-veseo	neşeli	zmaj zmaj::83_wie_jemand_ist
-Uvijek je vesela i nasmijana.	Hep neşeli ve güler yüzlü.	zmaj zmaj::83_wie_jemand_ist
-oprezan	dikkatli	zmaj zmaj::83_wie_jemand_ist
-Budi oprezan, vani je klizavo.	Dikkatli ol, dışarısı kaygan.	zmaj zmaj::83_wie_jemand_ist
-ljubazan	nazik	zmaj zmaj::84_benehmen
-Prodavačica je bila jako ljubazna.	Satıcı kadın çok nazikti.	zmaj zmaj::84_benehmen
-pristojan	terbiyeli / kibar	zmaj zmaj::84_benehmen
-Budi pristojan pred gostima!	Misafirlerin yanında terbiyeli ol!	zmaj zmaj::84_benehmen
-pažljiv	düşünceli / özenli	zmaj zmaj::84_benehmen
-Hvala, baš si pažljiv.	Teşekkürler, çok düşüncelisin.	zmaj zmaj::84_benehmen
-lijen	tembel	zmaj zmaj::84_benehmen
-Ne budi lijen, ustaj!	Tembellik etme, kalk!	zmaj zmaj::84_benehmen
-strpljiv	sabırlı	zmaj zmaj::84_benehmen
-Budi strpljiv, doći će.	Sabırlı ol, gelecek.	zmaj zmaj::84_benehmen
-sebičan	bencil	zmaj zmaj::84_benehmen
-Nemoj biti tako sebičan.	Bu kadar bencil olma.	zmaj zmaj::84_benehmen
-smiren	sakin	zmaj zmaj::84_benehmen
-On je uvijek smiren.	O hep sakindir.	zmaj zmaj::84_benehmen
-bezobrazan	terbiyesiz / küstah	zmaj zmaj::84_benehmen
-Ne budi bezobrazan!	Terbiyesizlik etme!	zmaj zmaj::84_benehmen
-tvrdoglav	inatçı	zmaj zmaj::84_benehmen
-Tvrdoglav si kao babo.	Baban gibi inatçısın.	zmaj zmaj::84_benehmen
-stidljiv	utangaç	zmaj zmaj::84_benehmen
-Naš sin je malo stidljiv.	Oğlumuz biraz utangaç.	zmaj zmaj::84_benehmen
-škrt	cimri	zmaj zmaj::84_benehmen
-Ne budi škrt, danas ti častiš!	Cimrilik etme, bugün ısmarlama sırası sende!	zmaj zmaj::84_benehmen
-sreća	şans / mutluluk	zmaj zmaj::85_glueck_sorgen
-Imali smo sreće!	Şansımız varmış!	zmaj zmaj::85_glueck_sorgen
-osjećaj	his / duygu	zmaj zmaj::85_glueck_sorgen
-Imam dobar osjećaj.	İçimde iyi bir his var.	zmaj zmaj::85_glueck_sorgen
-briga	endişe / kaygı	zmaj zmaj::85_glueck_sorgen
-Bez brige, sve će biti u redu.	Merak etme, her şey yoluna girecek.	zmaj zmaj::85_glueck_sorgen
-zahvalan	minnettar	zmaj zmaj::85_glueck_sorgen
-Zahvalan sam ti na svemu.	Her şey için sana minnettarım.	zmaj zmaj::85_glueck_sorgen
-Sretno!	Bol şans!	zmaj zmaj::85_glueck_sorgen
-Sretno na ispitu!	Sınavda bol şans!	zmaj zmaj::85_glueck_sorgen
-zabrinut	endişeli	zmaj zmaj::85_glueck_sorgen
-Mama je zabrinuta jer se ne javljaš.	Annen merak ediyor, çünkü aramıyorsun.	zmaj zmaj::85_glueck_sorgen
-zbunjen	kafası karışık	zmaj zmaj::85_glueck_sorgen
-Malo sam zbunjen, možeš li ponoviti?	Kafam biraz karıştı, tekrar eder misin?	zmaj zmaj::85_glueck_sorgen
-razočaran	hayal kırıklığına uğramış	zmaj zmaj::85_glueck_sorgen
-Malo sam razočaran.	Biraz hayal kırıklığına uğradım.	zmaj zmaj::85_glueck_sorgen
-ljubomoran	kıskanç	zmaj zmaj::85_glueck_sorgen
-Ne budi ljubomoran!	Kıskançlık yapma!	zmaj zmaj::85_glueck_sorgen
-zaljubljen	âşık	zmaj zmaj::85_glueck_sorgen
-Zaljubljen je do ušiju.	Sırılsıklam âşık.	zmaj zmaj::85_glueck_sorgen
-opušten	rahat	zmaj zmaj::85_glueck_sorgen
-Na odmoru sam potpuno opušten.	Tatilde tamamen rahatım.	zmaj zmaj::85_glueck_sorgen
-uzbuđen	heyecanlı	zmaj zmaj::85_glueck_sorgen
-Djeca su uzbuđena zbog puta.	Çocuklar yolculuk için heyecanlı.	zmaj zmaj::85_glueck_sorgen
-uplašen	korkmuş	zmaj zmaj::85_glueck_sorgen
-Dijete je bilo jako uplašeno.	Çocuk çok korkmuştu.	zmaj zmaj::85_glueck_sorgen
-pospan	uykulu	zmaj zmaj::85_glueck_sorgen
-Pospan sam, idem leći.	Uykum geldi, gidip uzanacağım.	zmaj zmaj::85_glueck_sorgen
-osjetiti	sezmek / hissetmek	zmaj zmaj::86_sinne
-Osjetio sam da nešto nije u redu.	Bir şeylerin yolunda olmadığını hissettim.	zmaj zmaj::86_sinne
-primijetiti	fark etmek	zmaj zmaj::86_sinne
-Nisam primijetio da si se ošišala.	Saçını kestirdiğini fark etmedim.	zmaj zmaj::86_sinne
-probati	denemek / tadına bakmak	zmaj zmaj::86_sinne
-Probaj ovo, fino je!	Bunu bir dene, çok lezzetli!	zmaj zmaj::86_sinne
-miris	koku	zmaj zmaj::86_sinne
-Kakav lijep miris!	Ne güzel bir koku!	zmaj zmaj::86_sinne
-taman	koyu / karanlık (sıfat)	zmaj zmaj::86_sinne
-U sobi je tamno, upali svjetlo.	Oda karanlık, ışığı aç.	zmaj zmaj::86_sinne
-okus	tat (yemek)	zmaj zmaj::86_sinne
-Ovo ima čudan okus.	Bunun tadı tuhaf.	zmaj zmaj::86_sinne
-ukus	zevk	zmaj zmaj::86_sinne
-Imaš dobar ukus.	Zevkin çok iyi.	zmaj zmaj::86_sinne
-svijetao	aydınlık	zmaj zmaj::86_sinne
-Stan je lijep i svijetao.	Daire güzel ve aydınlık.	zmaj zmaj::86_sinne
-mrak	karanlık (isim)	zmaj zmaj::86_sinne
-Vani je već mrak.	Dışarısı çoktan karardı.	zmaj zmaj::86_sinne
-buka	gürültü	zmaj zmaj::86_sinne
-Kakva je ovo buka?	Bu gürültü de ne?	zmaj zmaj::86_sinne
-tišina	sessizlik	zmaj zmaj::86_sinne
-Tišina, molim vas!	Sessiz olun lütfen!	zmaj zmaj::86_sinne
-tih	sessiz	zmaj zmaj::86_sinne
-Ovdje je noću jako tiho.	Burası geceleri çok sessiz.	zmaj zmaj::86_sinne
-dirati	dokunmak	zmaj zmaj::86_sinne
-Ne diraj, vruće je!	Dokunma, sıcak!	zmaj zmaj::86_sinne
-glasan	gürültülü	zmaj zmaj::86_sinne
-Komšije su jako glasne.	Komşular çok gürültücü.	zmaj zmaj::86_sinne
-gorak	acı	zmaj zmaj::86_sinne
-Kahva je gorka bez šećera.	Şekersiz kahve acı oluyor.	zmaj zmaj::86_sinne
-mirisati	kokmak	zmaj zmaj::86_sinne
-Kuhinja miriše na pitu.	Mutfak pita kokuyor.	zmaj zmaj::86_sinne
-smrdjeti / smrditi	kötü kokmak	zmaj zmaj::86_sinne
-Nešto smrdi u frižideru.	Buzdolabında bir şey kötü kokuyor.	zmaj zmaj::86_sinne
-bljutav	tatsız / yavan	zmaj zmaj::86_sinne
-Supa je bljutava, fali joj soli.	Çorba yavan, tuzu eksik.	zmaj zmaj::86_sinne
+vratiti	geri vermek	zmaj zmaj::78_kaufen_zurueckgeben
+Mogu li vratiti ove cipele?	Bu ayakkabıları iade edebilir miyim?	zmaj zmaj::78_kaufen_zurueckgeben
+vraćati	geri vermek	zmaj zmaj::78_kaufen_zurueckgeben
+On nikad ne vraća ono što posudi.	Ödünç aldığını asla geri vermez.	zmaj zmaj::78_kaufen_zurueckgeben
+red	kuyruk / sıra	zmaj zmaj::78_kaufen_zurueckgeben
+Čekali smo u redu pola sata.	Yarım saat kuyrukta bekledik.	zmaj zmaj::78_kaufen_zurueckgeben
+izabrati	karar vermek / seçmek	zmaj zmaj::78_kaufen_zurueckgeben
+Ne mogu izabrati, sve mi se sviđa.	Karar veremiyorum, hepsini beğeniyorum.	zmaj zmaj::78_kaufen_zurueckgeben
+birati	seçim yapmak / seçmek	zmaj zmaj::78_kaufen_zurueckgeben
+Ti biraš film večeras.	Bu akşam filmi sen seçiyorsun.	zmaj zmaj::78_kaufen_zurueckgeben
+dostaviti	teslim etmek	zmaj zmaj::78_kaufen_zurueckgeben
+Namještaj će nam dostaviti u petak.	Mobilyaları cuma günü getirecekler.	zmaj zmaj::78_kaufen_zurueckgeben
+kupovina	alışveriş	zmaj zmaj::78_kaufen_zurueckgeben
+Kupovinu obavljamo subotom.	Alışverişi cumartesileri yapıyoruz.	zmaj zmaj::78_kaufen_zurueckgeben
+koštati	mal olmak	zmaj zmaj::78_kaufen_zurueckgeben
+Koliko te je koštala ta jakna?	Ceket sana kaça mal oldu?	zmaj zmaj::78_kaufen_zurueckgeben
+paket	koli	zmaj zmaj::78_kaufen_zurueckgeben
+Stigao ti je paket.	Sana bir koli geldi.	zmaj zmaj::78_kaufen_zurueckgeben
+zamijeniti	değiştirmek / yerine koymak	zmaj zmaj::78_kaufen_zurueckgeben
+Mogu li zamijeniti ovu majicu za veći broj?	Bu tişörtü bir beden büyüğüyle değiştirebilir miyim?	zmaj zmaj::78_kaufen_zurueckgeben
+besplatan	ücretsiz	zmaj zmaj::78_kaufen_zurueckgeben
+Ulaz je besplatan.	Giriş ücretsiz.	zmaj zmaj::78_kaufen_zurueckgeben
+cjenkati se	pazarlık etmek	zmaj zmaj::78_kaufen_zurueckgeben
+Babo se uvijek cjenka na pijaci.	Babam pazarda hep pazarlık eder.	zmaj zmaj::78_kaufen_zurueckgeben
+dostava	teslimat	zmaj zmaj::78_kaufen_zurueckgeben
+Koliko traje dostava?	Teslimat ne kadar sürüyor?	zmaj zmaj::78_kaufen_zurueckgeben
+isprobati	denemek / test etmek	zmaj zmaj::78_kaufen_zurueckgeben
+Moram isprobati ovaj recept.	Bu tarifi denemem lazım.	zmaj zmaj::78_kaufen_zurueckgeben
+narudžba	sipariş	zmaj zmaj::78_kaufen_zurueckgeben
+Moja narudžba još nije stigla.	Siparişim henüz gelmedi.	zmaj zmaj::78_kaufen_zurueckgeben
+vrijediti	değerinde olmak / geçerli olmak	zmaj zmaj::79_geld_sparen
+Ovaj auto ne vrijedi ni hiljadu maraka.	Bu araba bin mark bile etmez.	zmaj zmaj::79_geld_sparen
+plaćanje	ödeme	zmaj zmaj::79_geld_sparen
+Moguće je i plaćanje na rate.	Taksitle ödeme de mümkün.	zmaj zmaj::79_geld_sparen
+isplatiti se	değmek	zmaj zmaj::79_geld_sparen
+Ne isplati se popravljati, kupi novi.	Tamir ettirmeye değmez, yenisini al.	zmaj zmaj::79_geld_sparen
+potrošiti	harcamak (para) / tüketmek	zmaj zmaj::79_geld_sparen
+Potrošio sam sav novac.	Bütün parayı harcadım.	zmaj zmaj::79_geld_sparen
+trošiti	harcamak (para) / tüketmek	zmaj zmaj::79_geld_sparen
+Previše trošiš na gluposti.	Saçma şeylere çok fazla para harcıyorsun.	zmaj zmaj::79_geld_sparen
+zaraditi	kazanmak	zmaj zmaj::79_geld_sparen
+Koliko si zaradio ovaj mjesec?	Bu ay ne kadar kazandın?	zmaj zmaj::79_geld_sparen
+zarađivati	kazanmak	zmaj zmaj::79_geld_sparen
+U Njemačkoj se više zarađuje.	Almanya'da daha çok kazanılıyor.	zmaj zmaj::79_geld_sparen
+dugovati	borçlu olmak (birine bir şey)	zmaj zmaj::79_geld_sparen
+Još mi duguje sto maraka.	Bana hâlâ yüz mark borcu var.	zmaj zmaj::79_geld_sparen
+naplatiti	ücret almak	zmaj zmaj::79_geld_sparen
+Koliko su ti naplatili?	Senden ne kadar aldılar?	zmaj zmaj::79_geld_sparen
+štedjeti	para biriktirmek	zmaj zmaj::79_geld_sparen
+Štedimo za novi auto.	Yeni bir araba için para biriktiriyoruz.	zmaj zmaj::79_geld_sparen
+uštedjeti	para biriktirmek	zmaj zmaj::79_geld_sparen
+Tako uštedimo sto maraka mjesečno.	Böylece ayda yüz mark biriktiriyoruz.	zmaj zmaj::79_geld_sparen
+novčanik	cüzdan	zmaj zmaj::79_geld_sparen
+Zaboravio sam novčanik kod kuće.	Cüzdanımı evde unuttum.	zmaj zmaj::79_geld_sparen
+novčanica	banknot	zmaj zmaj::79_geld_sparen
+Imam samo novčanicu od sto maraka.	Sadece yüz marklık banknotum var.	zmaj zmaj::79_geld_sparen
+posuditi	ödünç vermek / ödünç almak	zmaj zmaj::79_geld_sparen
+Možeš li mi posuditi dvadeset maraka?	Bana yirmi mark borç verebilir misin?	zmaj zmaj::79_geld_sparen
+kovanica	madeni para	zmaj zmaj::79_geld_sparen
+Imaš li kovanicu za kolica?	Alışveriş arabası için bozuk paran var mı?	zmaj zmaj::79_geld_sparen
+Koliko sam dužan?	Borcum ne kadar?	zmaj zmaj::79_geld_sparen
+Hvala, koliko sam dužan?	Teşekkürler, borcum ne kadar?	zmaj zmaj::79_geld_sparen
+iznositi	dışarı çıkarmak / götürmek	zmaj zmaj::80_paare_mehr
+Ja svaki dan iznosim smeće.	Her gün çöpü ben çıkarıyorum.	zmaj zmaj::80_paare_mehr
+pomisliti	düşünmek / sanmak	zmaj zmaj::80_paare_mehr
+Pomislio sam da se nešto desilo.	Bir şey oldu sandım.	zmaj zmaj::80_paare_mehr
+saznavati	haber almak	zmaj zmaj::80_paare_mehr
+Svaki dan saznajem nešto novo.	Her gün yeni bir şey öğreniyorum.	zmaj zmaj::80_paare_mehr
+poželjeti	dilemek / istemek	zmaj zmaj::80_paare_mehr
+Šta bi poželio za rođendan?	Doğum gününde ne isterdin?	zmaj zmaj::80_paare_mehr
+dozvoljavati	izin vermek	zmaj zmaj::80_paare_mehr
+Mama nam ne dozvoljava slatkiše prije ručka.	Annem öğle yemeğinden önce tatlı yememize izin vermiyor.	zmaj zmaj::80_paare_mehr
+umirati	ölmek	zmaj zmaj::80_paare_mehr
+Umirem od gladi!	Açlıktan ölüyorum!	zmaj zmaj::80_paare_mehr
+potpisivati	imzalamak	zmaj zmaj::80_paare_mehr
+Ne potpisuj ništa dok ne pročitaš.	Okumadan hiçbir şey imzalama.	zmaj zmaj::80_paare_mehr
+primjećivati	fark etmek	zmaj zmaj::80_paare_mehr
+Djeca sve primjećuju.	Çocuklar her şeyi fark eder.	zmaj zmaj::80_paare_mehr
+spašavati	kurtarmak	zmaj zmaj::80_paare_mehr
+Ti mi uvijek spašavaš život!	Sen hep hayatımı kurtarıyorsun!	zmaj zmaj::80_paare_mehr
+prijavljivati se	kaydolmak	zmaj zmaj::80_paare_mehr
+Za ispite se prijavljujemo preko interneta.	Sınavlara internetten kaydoluyoruz.	zmaj zmaj::80_paare_mehr
+osušiti	kurutmak	zmaj zmaj::80_paare_mehr
+Osuši kosu prije nego što izađeš.	Dışarı çıkmadan önce saçını kurula.	zmaj zmaj::80_paare_mehr
+povjerovati	inanmak	zmaj zmaj::80_paare_mehr
+Ne mogu povjerovati da je već prošla godina.	Bir yılın geçtiğine inanamıyorum.	zmaj zmaj::80_paare_mehr
+kvariti se	bozulmak	zmaj zmaj::80_paare_mehr
+Ovaj auto se stalno kvari.	Bu araba sürekli bozuluyor.	zmaj zmaj::80_paare_mehr
+porazgovarati	sohbet etmek	zmaj zmaj::80_paare_mehr
+Hajde da porazgovaramo uz kahvu.	Gel, bir kahve içip konuşalım.	zmaj zmaj::80_paare_mehr
+promiješati	karıştırmak	zmaj zmaj::80_paare_mehr
+Dodaj so i dobro promiješaj.	Tuz ekle ve iyice karıştır.	zmaj zmaj::80_paare_mehr
+zalijevati	sulamak (bitkileri)	zmaj zmaj::80_paare_mehr
+Ljeti svaku večer zalijevam baštu.	Yazın her akşam bahçeyi suluyorum.	zmaj zmaj::80_paare_mehr
+izgubiti se	kaybolmak	zmaj zmaj::81_passieren
+Izgubili smo se u gradu.	Şehirde kaybolduk.	zmaj zmaj::81_passieren
+spasiti	kurtarmak	zmaj zmaj::81_passieren
+Vatrogasci su spasili dijete.	İtfaiye çocuğu kurtardı.	zmaj zmaj::81_passieren
+povrijediti se	yaralanmak	zmaj zmaj::81_passieren
+Povrijedio sam se na poslu.	İşte yaralandım.	zmaj zmaj::81_passieren
+paziti	dikkat etmek / göz kulak olmak	zmaj zmaj::81_passieren
+Pazi na sestru!	Kız kardeşine göz kulak ol!	zmaj zmaj::81_passieren
+krvariti	kanamak	zmaj zmaj::81_passieren
+Rana jako krvari.	Yara çok kanıyor.	zmaj zmaj::81_passieren
+prehladiti se	üşütmek	zmaj zmaj::81_passieren
+Obuci se toplo, prehladit ćeš se!	Sıkı giyin, yoksa üşüteceksin!	zmaj zmaj::81_passieren
+onesvijestiti se	bayılmak	zmaj zmaj::81_passieren
+Žena se onesvijestila!	Kadın bayıldı!	zmaj zmaj::81_passieren
+boljeti / boliti	acımak / ağrımak	zmaj zmaj::81_passieren
+Boli me grlo.	Boğazım ağrıyor.	zmaj zmaj::81_passieren
+disati / dihati	nefes almak	zmaj zmaj::81_passieren
+Ne mogu disati!	Nefes alamıyorum!	zmaj zmaj::81_passieren
+razboljeti se / razboliti se	hastalanmak	zmaj zmaj::81_passieren
+Dijete se razboljelo.	Çocuk hastalandı.	zmaj zmaj::81_passieren
+gorjeti / goriti	yanmak	zmaj zmaj::81_passieren
+Kuća gori!	Ev yanıyor!	zmaj zmaj::81_passieren
+Upomoć!	İmdat!	zmaj zmaj::82_notfall
+Upomoć! Pomozite mi!	İmdat! Bana yardım edin!	zmaj zmaj::82_notfall
+hitan slučaj	acil durum	zmaj zmaj::82_notfall
+Ovo je hitan slučaj, zovite hitnu pomoć!	Bu acil bir durum, ambulans çağırın!	zmaj zmaj::82_notfall
+hitna	ambulans / acil yardım	zmaj zmaj::82_notfall
+Hitna je već na putu.	Ambulans zaten yolda.	zmaj zmaj::82_notfall
+vatrogasci	itfaiye	zmaj zmaj::82_notfall
+Zovite vatrogasce!	İtfaiyeyi arayın!	zmaj zmaj::82_notfall
+požar	yangın	zmaj zmaj::82_notfall
+U zgradi je izbio požar.	Binada yangın çıktı.	zmaj zmaj::82_notfall
+nesreća	kaza / felaket	zmaj zmaj::82_notfall
+Desila se nesreća na autoputu.	Otoyolda bir kaza oldu.	zmaj zmaj::82_notfall
+povreda	yaralanma	zmaj zmaj::82_notfall
+Povreda nije teška.	Yaralanma ağır değil.	zmaj zmaj::82_notfall
+rana	yara	zmaj zmaj::82_notfall
+Treba očistiti ranu.	Yaranın temizlenmesi lazım.	zmaj zmaj::82_notfall
+krv	kan	zmaj zmaj::82_notfall
+Imaš krv na ruci.	Elinde kan var.	zmaj zmaj::82_notfall
+lopov	hırsız	zmaj zmaj::82_notfall
+Lopov je pobjegao, zovite policiju!	Hırsız kaçtı, polisi arayın!	zmaj zmaj::82_notfall
+daleko	uzak	zmaj zmaj::83_lang_kurz
+Je li daleko do centra?	Merkeze uzak mı?	zmaj zmaj::83_lang_kurz
+visok	yüksek / uzun boylu	zmaj zmaj::83_lang_kurz
+Moj brat je jako visok.	Kardeşim çok uzun boylu.	zmaj zmaj::83_lang_kurz
+težak	ağır	zmaj zmaj::83_lang_kurz
+Ovaj kofer je jako težak.	Bu bavul çok ağır.	zmaj zmaj::83_lang_kurz
+širok	geniş	zmaj zmaj::83_lang_kurz
+Rijeka je ovdje jako široka.	Nehir burada çok geniş.	zmaj zmaj::83_lang_kurz
+dug	uzun (süre, mesafe)	zmaj zmaj::83_lang_kurz
+Ovo je bio dug dan.	Uzun bir gündü.	zmaj zmaj::83_lang_kurz
+nizak	alçak / kısa boylu	zmaj zmaj::83_lang_kurz
+Ovdje su cijene niske.	Burada fiyatlar düşük.	zmaj zmaj::83_lang_kurz
+kratak	kısa (süre, mesafe)	zmaj zmaj::83_lang_kurz
+Život je kratak.	Hayat kısa.	zmaj zmaj::83_lang_kurz
+uzak	dar	zmaj zmaj::83_lang_kurz
+Ove cipele su mi uske.	Bu ayakkabılar bana dar.	zmaj zmaj::83_lang_kurz
+lagan	hafif	zmaj zmaj::83_lang_kurz
+Torba je lagana, nosit ću je sama.	Çanta hafif, kendim taşırım.	zmaj zmaj::83_lang_kurz
+tanak	ince	zmaj zmaj::83_lang_kurz
+Zidovi su tanki, sve se čuje.	Duvarlar ince, her şey duyuluyor.	zmaj zmaj::83_lang_kurz
+debeo	kalın / şişman	zmaj zmaj::83_lang_kurz
+Ova knjiga je baš debela.	Bu kitap gerçekten çok kalın.	zmaj zmaj::83_lang_kurz
+mršav	zayıf (kişi)	zmaj zmaj::83_lang_kurz
+Mršav si, jedi malo više!	Zayıfsın, biraz daha ye!	zmaj zmaj::83_lang_kurz
+isti	aynı	zmaj zmaj::84_voll_leer
+Imamo iste cipele!	Ayakkabılarımız aynı!	zmaj zmaj::84_voll_leer
+jak	güçlü	zmaj zmaj::84_voll_leer
+Jak je kao medvjed.	Ayı gibi güçlü.	zmaj zmaj::84_voll_leer
+pun	dolu	zmaj zmaj::84_voll_leer
+Autobus je bio pun.	Otobüs doluydu.	zmaj zmaj::84_voll_leer
+bogat	zengin	zmaj zmaj::84_voll_leer
+Njegova porodica je jako bogata.	Ailesi çok zengin.	zmaj zmaj::84_voll_leer
+drugačiji	farklı	zmaj zmaj::84_voll_leer
+Danas si nekako drugačiji.	Bugün bir şekilde farklısın.	zmaj zmaj::84_voll_leer
+slab	zayıf / güçsüz	zmaj zmaj::84_voll_leer
+Signal je ovdje slab.	Burada çekim zayıf.	zmaj zmaj::84_voll_leer
+prazan	boş	zmaj zmaj::84_voll_leer
+Frižider je opet prazan.	Buzdolabı yine boş.	zmaj zmaj::84_voll_leer
+tačan	doğru / tam	zmaj zmaj::84_voll_leer
+Je li ovo tačna adresa?	Bu doğru adres mi?	zmaj zmaj::84_voll_leer
+suh	kuru	zmaj zmaj::84_voll_leer
+Veš je već suh.	Çamaşırlar kurumuş bile.	zmaj zmaj::84_voll_leer
+pogrešan	yanlış	zmaj zmaj::84_voll_leer
+Ušli smo u pogrešan autobus.	Yanlış otobüse bindik.	zmaj zmaj::84_voll_leer
+siromašan	fakir	zmaj zmaj::84_voll_leer
+Odrastao sam u siromašnoj porodici.	Fakir bir ailede büyüdüm.	zmaj zmaj::84_voll_leer
+tvrd	sert	zmaj zmaj::84_voll_leer
+Hljeb je tvrd, od jučer je.	Ekmek sert, dünden kalma.	zmaj zmaj::84_voll_leer
+mokar	ıslak	zmaj zmaj::84_voll_leer
+Sav sam mokar od kiše.	Yağmurdan sırılsıklam oldum.	zmaj zmaj::84_voll_leer
+mekan	yumuşak	zmaj zmaj::84_voll_leer
+Jastuk je jako mekan.	Yastık çok yumuşak.	zmaj zmaj::84_voll_leer
+potreban	gerekli	zmaj zmaj::85_moeglich
+Potrebna mi je tvoja pomoć.	Yardımına ihtiyacım var.	zmaj zmaj::85_moeglich
+moguć	mümkün	zmaj zmaj::85_moeglich
+Je li moguće platiti karticom?	Kartla ödemek mümkün mü?	zmaj zmaj::85_moeglich
+poseban	özel	zmaj zmaj::85_moeglich
+Danas je poseban dan.	Bugün özel bir gün.	zmaj zmaj::85_moeglich
+siguran	güvenli / emin	zmaj zmaj::85_moeglich
+Je li ovdje sigurno noću?	Burası geceleri güvenli mi?	zmaj zmaj::85_moeglich
+sličan	benzer	zmaj zmaj::85_moeglich
+Ti i brat ste jako slični.	Sen ve kardeşin birbirinize çok benziyorsunuz.	zmaj zmaj::85_moeglich
+spreman	hazır	zmaj zmaj::85_moeglich
+Jesi li spremna? Krećemo.	Hazır mısın? Yola çıkıyoruz.	zmaj zmaj::85_moeglich
+slobodan	müsait / serbest	zmaj zmaj::85_moeglich
+Jesi li slobodan u subotu?	Cumartesi müsait misin?	zmaj zmaj::85_moeglich
+jednostavan	basit	zmaj zmaj::85_moeglich
+Recept je jako jednostavan.	Tarif çok basit.	zmaj zmaj::85_moeglich
+običan	sıradan / normal	zmaj zmaj::85_moeglich
+Ja sam običan čovjek.	Ben sıradan bir insanım.	zmaj zmaj::85_moeglich
+čudan	tuhaf / garip	zmaj zmaj::85_moeglich
+To je baš čudno.	Bu gerçekten tuhaf.	zmaj zmaj::85_moeglich
+nemoguć	imkânsız	zmaj zmaj::85_moeglich
+To je nemoguće!	Bu imkânsız!	zmaj zmaj::85_moeglich
+gotov	bitmiş	zmaj zmaj::85_moeglich
+Ručak je gotov!	Öğle yemeği hazır!	zmaj zmaj::85_moeglich
+komplikovan	karmaşık	zmaj zmaj::85_moeglich
+Sve je to previše komplikovano.	Bunların hepsi fazlasıyla karmaşık.	zmaj zmaj::85_moeglich
+zauzet	meşgul / dolu	zmaj zmaj::85_moeglich
+Izvini, sad sam zauzet.	Kusura bakma, şu an meşgulüm.	zmaj zmaj::85_moeglich
+pravi	gerçek / hakiki	zmaj zmaj::85_moeglich
+Ovo je prava bosanska kahva.	Bu hakiki Boşnak kahvesi.	zmaj zmaj::85_moeglich
+drag	tatlı / sevimli	zmaj zmaj::86_wie_jemand_ist
+Tvoja mama je jako draga.	Annen çok tatlı.	zmaj zmaj::86_wie_jemand_ist
+ozbiljan	ciddi	zmaj zmaj::86_wie_jemand_ist
+Ovo je ozbiljan problem.	Bu ciddi bir sorun.	zmaj zmaj::86_wie_jemand_ist
+vrijedan	çalışkan	zmaj zmaj::86_wie_jemand_ist
+Moja kćerka je jako vrijedna.	Kızım çok çalışkan.	zmaj zmaj::86_wie_jemand_ist
+pametan	akıllı	zmaj zmaj::86_wie_jemand_ist
+Ona je jako pametna.	O çok akıllı.	zmaj zmaj::86_wie_jemand_ist
+iskren	içten / samimi	zmaj zmaj::86_wie_jemand_ist
+Budi iskren, sviđa li ti se?	Dürüst ol, beğendin mi?	zmaj zmaj::86_wie_jemand_ist
+zao	kötü kalpli	zmaj zmaj::86_wie_jemand_ist
+Pas nije zao, samo laje.	Köpek kötü değil, sadece havlıyor.	zmaj zmaj::86_wie_jemand_ist
+hrabar	cesur	zmaj zmaj::86_wie_jemand_ist
+Bio si jako hrabar.	Çok cesurdun.	zmaj zmaj::86_wie_jemand_ist
+glup	aptal	zmaj zmaj::86_wie_jemand_ist
+To je bilo glupo od mene.	Aptallık ettim.	zmaj zmaj::86_wie_jemand_ist
+pošten	dürüst	zmaj zmaj::86_wie_jemand_ist
+On je pošten čovjek.	O dürüst bir insan.	zmaj zmaj::86_wie_jemand_ist
+veseo	neşeli	zmaj zmaj::86_wie_jemand_ist
+Uvijek je vesela i nasmijana.	Hep neşeli ve güler yüzlü.	zmaj zmaj::86_wie_jemand_ist
+oprezan	dikkatli	zmaj zmaj::86_wie_jemand_ist
+Budi oprezan, vani je klizavo.	Dikkatli ol, dışarısı kaygan.	zmaj zmaj::86_wie_jemand_ist
+ljubazan	nazik	zmaj zmaj::87_benehmen
+Prodavačica je bila jako ljubazna.	Satıcı kadın çok nazikti.	zmaj zmaj::87_benehmen
+pristojan	terbiyeli / kibar	zmaj zmaj::87_benehmen
+Budi pristojan pred gostima!	Misafirlerin yanında terbiyeli ol!	zmaj zmaj::87_benehmen
+pažljiv	düşünceli / özenli	zmaj zmaj::87_benehmen
+Hvala, baš si pažljiv.	Teşekkürler, çok düşüncelisin.	zmaj zmaj::87_benehmen
+lijen	tembel	zmaj zmaj::87_benehmen
+Ne budi lijen, ustaj!	Tembellik etme, kalk!	zmaj zmaj::87_benehmen
+strpljiv	sabırlı	zmaj zmaj::87_benehmen
+Budi strpljiv, doći će.	Sabırlı ol, gelecek.	zmaj zmaj::87_benehmen
+sebičan	bencil	zmaj zmaj::87_benehmen
+Nemoj biti tako sebičan.	Bu kadar bencil olma.	zmaj zmaj::87_benehmen
+smiren	sakin	zmaj zmaj::87_benehmen
+On je uvijek smiren.	O hep sakindir.	zmaj zmaj::87_benehmen
+bezobrazan	terbiyesiz / küstah	zmaj zmaj::87_benehmen
+Ne budi bezobrazan!	Terbiyesizlik etme!	zmaj zmaj::87_benehmen
+tvrdoglav	inatçı	zmaj zmaj::87_benehmen
+Tvrdoglav si kao babo.	Baban gibi inatçısın.	zmaj zmaj::87_benehmen
+stidljiv	utangaç	zmaj zmaj::87_benehmen
+Naš sin je malo stidljiv.	Oğlumuz biraz utangaç.	zmaj zmaj::87_benehmen
+škrt	cimri	zmaj zmaj::87_benehmen
+Ne budi škrt, danas ti častiš!	Cimrilik etme, bugün ısmarlama sırası sende!	zmaj zmaj::87_benehmen
+sreća	şans / mutluluk	zmaj zmaj::88_glueck_sorgen
+Imali smo sreće!	Şansımız varmış!	zmaj zmaj::88_glueck_sorgen
+osjećaj	his / duygu	zmaj zmaj::88_glueck_sorgen
+Imam dobar osjećaj.	İçimde iyi bir his var.	zmaj zmaj::88_glueck_sorgen
+briga	endişe / kaygı	zmaj zmaj::88_glueck_sorgen
+Bez brige, sve će biti u redu.	Merak etme, her şey yoluna girecek.	zmaj zmaj::88_glueck_sorgen
+zahvalan	minnettar	zmaj zmaj::88_glueck_sorgen
+Zahvalan sam ti na svemu.	Her şey için sana minnettarım.	zmaj zmaj::88_glueck_sorgen
+Sretno!	Bol şans!	zmaj zmaj::88_glueck_sorgen
+Sretno na ispitu!	Sınavda bol şans!	zmaj zmaj::88_glueck_sorgen
+zabrinut	endişeli	zmaj zmaj::88_glueck_sorgen
+Mama je zabrinuta jer se ne javljaš.	Annen merak ediyor, çünkü aramıyorsun.	zmaj zmaj::88_glueck_sorgen
+zbunjen	kafası karışık	zmaj zmaj::88_glueck_sorgen
+Malo sam zbunjen, možeš li ponoviti?	Kafam biraz karıştı, tekrar eder misin?	zmaj zmaj::88_glueck_sorgen
+razočaran	hayal kırıklığına uğramış	zmaj zmaj::88_glueck_sorgen
+Malo sam razočaran.	Biraz hayal kırıklığına uğradım.	zmaj zmaj::88_glueck_sorgen
+ljubomoran	kıskanç	zmaj zmaj::88_glueck_sorgen
+Ne budi ljubomoran!	Kıskançlık yapma!	zmaj zmaj::88_glueck_sorgen
+zaljubljen	âşık	zmaj zmaj::88_glueck_sorgen
+Zaljubljen je do ušiju.	Sırılsıklam âşık.	zmaj zmaj::88_glueck_sorgen
+opušten	rahat	zmaj zmaj::88_glueck_sorgen
+Na odmoru sam potpuno opušten.	Tatilde tamamen rahatım.	zmaj zmaj::88_glueck_sorgen
+uzbuđen	heyecanlı	zmaj zmaj::88_glueck_sorgen
+Djeca su uzbuđena zbog puta.	Çocuklar yolculuk için heyecanlı.	zmaj zmaj::88_glueck_sorgen
+uplašen	korkmuş	zmaj zmaj::88_glueck_sorgen
+Dijete je bilo jako uplašeno.	Çocuk çok korkmuştu.	zmaj zmaj::88_glueck_sorgen
+pospan	uykulu	zmaj zmaj::88_glueck_sorgen
+Pospan sam, idem leći.	Uykum geldi, gidip uzanacağım.	zmaj zmaj::88_glueck_sorgen
+osjetiti	sezmek / hissetmek	zmaj zmaj::89_sinne
+Osjetio sam da nešto nije u redu.	Bir şeylerin yolunda olmadığını hissettim.	zmaj zmaj::89_sinne
+primijetiti	fark etmek	zmaj zmaj::89_sinne
+Nisam primijetio da si se ošišala.	Saçını kestirdiğini fark etmedim.	zmaj zmaj::89_sinne
+probati	denemek / tadına bakmak	zmaj zmaj::89_sinne
+Probaj ovo, fino je!	Bunu bir dene, çok lezzetli!	zmaj zmaj::89_sinne
+miris	koku	zmaj zmaj::89_sinne
+Kakav lijep miris!	Ne güzel bir koku!	zmaj zmaj::89_sinne
+taman	koyu / karanlık (sıfat)	zmaj zmaj::89_sinne
+U sobi je tamno, upali svjetlo.	Oda karanlık, ışığı aç.	zmaj zmaj::89_sinne
+okus	tat (yemek)	zmaj zmaj::89_sinne
+Ovo ima čudan okus.	Bunun tadı tuhaf.	zmaj zmaj::89_sinne
+ukus	zevk	zmaj zmaj::89_sinne
+Imaš dobar ukus.	Zevkin çok iyi.	zmaj zmaj::89_sinne
+svijetao	aydınlık	zmaj zmaj::89_sinne
+Stan je lijep i svijetao.	Daire güzel ve aydınlık.	zmaj zmaj::89_sinne
+mrak	karanlık (isim)	zmaj zmaj::89_sinne
+Vani je već mrak.	Dışarısı çoktan karardı.	zmaj zmaj::89_sinne
+buka	gürültü	zmaj zmaj::89_sinne
+Kakva je ovo buka?	Bu gürültü de ne?	zmaj zmaj::89_sinne
+tišina	sessizlik	zmaj zmaj::89_sinne
+Tišina, molim vas!	Sessiz olun lütfen!	zmaj zmaj::89_sinne
+tih	sessiz	zmaj zmaj::89_sinne
+Ovdje je noću jako tiho.	Burası geceleri çok sessiz.	zmaj zmaj::89_sinne
+dirati	dokunmak	zmaj zmaj::89_sinne
+Ne diraj, vruće je!	Dokunma, sıcak!	zmaj zmaj::89_sinne
+glasan	gürültülü	zmaj zmaj::89_sinne
+Komšije su jako glasne.	Komşular çok gürültücü.	zmaj zmaj::89_sinne
+gorak	acı	zmaj zmaj::89_sinne
+Kahva je gorka bez šećera.	Şekersiz kahve acı oluyor.	zmaj zmaj::89_sinne
+mirisati	kokmak	zmaj zmaj::89_sinne
+Kuhinja miriše na pitu.	Mutfak pita kokuyor.	zmaj zmaj::89_sinne
+smrdjeti / smrditi	kötü kokmak	zmaj zmaj::89_sinne
+Nešto smrdi u frižideru.	Buzdolabında bir şey kötü kokuyor.	zmaj zmaj::89_sinne
+bljutav	tatsız / yavan	zmaj zmaj::89_sinne
+Supa je bljutava, fali joj soli.	Çorba yavan, tuzu eksik.	zmaj zmaj::89_sinne
+lice	yüz (çehre)	zmaj zmaj::90_koerper_aussen
+Imaš nešto na licu.	Yüzünde bir şey var.	zmaj zmaj::90_koerper_aussen
+jezik	dil (ağızdaki)	zmaj zmaj::90_koerper_aussen
+Ugrizao sam se za jezik.	Dilimi ısırdım.	zmaj zmaj::90_koerper_aussen
+čelo	alın	zmaj zmaj::90_koerper_aussen
+Čelo ti je vruće, imaš li temperaturu?	Alnın sıcak, ateşin mi var?	zmaj zmaj::90_koerper_aussen
+rame	omuz	zmaj zmaj::90_koerper_aussen
+Dijete mi je zaspalo na ramenu.	Çocuk omzumda uyuyakaldı.	zmaj zmaj::90_koerper_aussen
+koljeno	diz	zmaj zmaj::90_koerper_aussen
+Pao sam i razbio koljeno.	Düştüm ve dizimi yaraladım.	zmaj zmaj::90_koerper_aussen
+prsa	göğüs	zmaj zmaj::90_koerper_aussen
+Boli me u prsima.	Göğsümde ağrı var.	zmaj zmaj::90_koerper_aussen
+usna	dudak	zmaj zmaj::90_koerper_aussen
+Ispucale su mi usne od hladnoće.	Soğuktan dudaklarım çatladı.	zmaj zmaj::90_koerper_aussen
+obraz	yanak	zmaj zmaj::90_koerper_aussen
+Nana me poljubila u obraz.	Ninem yanağımdan öptü.	zmaj zmaj::90_koerper_aussen
+stopalo	ayak	zmaj zmaj::90_koerper_aussen
+Od hodanja me bole stopala.	Yürümekten ayaklarım ağrıyor.	zmaj zmaj::90_koerper_aussen
+nokat	tırnak	zmaj zmaj::90_koerper_aussen
+Ne grizi nokte!	Tırnaklarını yeme!	zmaj zmaj::90_koerper_aussen
+brada	çene / sakal	zmaj zmaj::90_koerper_aussen
+Babo je pustio bradu.	Babam sakal bıraktı.	zmaj zmaj::90_koerper_aussen
+kuk	kalça	zmaj zmaj::90_koerper_aussen
+Nana je slomila kuk.	Ninem kalçasını kırdı.	zmaj zmaj::90_koerper_aussen
+lakat	dirsek	zmaj zmaj::90_koerper_aussen
+Ne stavljaj laktove na sto!	Dirsekler masaya konmaz!	zmaj zmaj::90_koerper_aussen
+tijelo	vücut	zmaj zmaj::91_koerper_innen
+Cijelo tijelo me boli.	Bütün vücudum ağrıyor.	zmaj zmaj::91_koerper_innen
+koža	cilt	zmaj zmaj::91_koerper_innen
+Zimi mi je koža jako suha.	Kışın cildim çok kuru oluyor.	zmaj zmaj::91_koerper_innen
+kost	kemik	zmaj zmaj::91_koerper_innen
+Daj psu kost.	Kemiği köpeğe ver.	zmaj zmaj::91_koerper_innen
+mišić	kas	zmaj zmaj::91_koerper_innen
+Poslije treninga me bole svi mišići.	Antrenmandan sonra bütün kaslarım ağrıyor.	zmaj zmaj::91_koerper_innen
+mozak	beyin	zmaj zmaj::91_koerper_innen
+Mozak mi više ne radi, idem spavati.	Beynim artık çalışmıyor, yatmaya gidiyorum.	zmaj zmaj::91_koerper_innen
+zglob	eklem	zmaj zmaj::91_koerper_innen
+Bole me zglobovi kad se vrijeme mijenja.	Hava değişince eklemlerim ağrıyor.	zmaj zmaj::91_koerper_innen
+pluća	akciğer	zmaj zmaj::91_koerper_innen
+Doktor mi je slušao pluća.	Doktor akciğerlerimi dinledi.	zmaj zmaj::91_koerper_innen
+grlo	boğaz / gırtlak	zmaj zmaj::91_koerper_innen
+Grlo mi je suho, daj mi malo vode.	Boğazım kurudu, bana biraz su ver.	zmaj zmaj::91_koerper_innen
+jetra	karaciğer	zmaj zmaj::91_koerper_innen
+Alkohol šteti jetri.	Alkol karaciğere zarar verir.	zmaj zmaj::91_koerper_innen
+bubreg	böbrek	zmaj zmaj::91_koerper_innen
+Ima kamen u bubregu.	Böbreğinde taş var.	zmaj zmaj::91_koerper_innen
+želudac	mide	zmaj zmaj::91_koerper_innen
+Imam osjetljiv želudac.	Midem hassas.	zmaj zmaj::91_koerper_innen
+bolest	hastalık	zmaj zmaj::92_krank_sein
+Ta bolest nije zarazna.	Bu hastalık bulaşıcı değil.	zmaj zmaj::92_krank_sein
+virus	virüs	zmaj zmaj::92_krank_sein
+To je neki virus, proći će za par dana.	Bir virüs bu, birkaç güne geçer.	zmaj zmaj::92_krank_sein
+rak	kanser	zmaj zmaj::92_krank_sein
+Komšinica se liječi od raka.	Komşumuz kanser tedavisi görüyor.	zmaj zmaj::92_krank_sein
+trudnoća	hamilelik	zmaj zmaj::92_krank_sein
+Kako ide trudnoća?	Hamilelik nasıl gidiyor?	zmaj zmaj::92_krank_sein
+stres	stres	zmaj zmaj::92_krank_sein
+Imam puno stresa na poslu.	İşte çok stresim var.	zmaj zmaj::92_krank_sein
+infekcija	enfeksiyon	zmaj zmaj::92_krank_sein
+Doktor kaže da je to virusna infekcija.	Doktor bunun viral bir enfeksiyon olduğunu söylüyor.	zmaj zmaj::92_krank_sein
+upala	iltihap	zmaj zmaj::92_krank_sein
+Imam upalu grla.	Boğazım iltihaplandı.	zmaj zmaj::92_krank_sein
+gripa	grip	zmaj zmaj::92_krank_sein
+Cijela porodica je imala gripu.	Bütün aile grip oldu.	zmaj zmaj::92_krank_sein
+dijabetes	şeker hastalığı	zmaj zmaj::92_krank_sein
+Nana ima dijabetes, ne smije jesti slatko.	Ninemde şeker var, tatlı yiyemez.	zmaj zmaj::92_krank_sein
+zarazan	bulaşıcı	zmaj zmaj::92_krank_sein
+Je li to zarazno?	Bulaşıcı mı?	zmaj zmaj::92_krank_sein
+trudna	hamile	zmaj zmaj::92_krank_sein
+Moja sestra je trudna!	Kız kardeşim hamile!	zmaj zmaj::92_krank_sein
+prehlada	soğuk algınlığı	zmaj zmaj::92_krank_sein
+Nije to ništa, samo obična prehlada.	Bir şey yok, sadece basit bir soğuk algınlığı.	zmaj zmaj::92_krank_sein
+moždani udar	inme	zmaj zmaj::92_krank_sein
+Komšija je imao moždani udar.	Komşumuz inme geçirdi.	zmaj zmaj::92_krank_sein
+srčani udar / infarkt	kalp krizi	zmaj zmaj::92_krank_sein
+Dedo je prošle godine imao srčani udar.	Dedem geçen yıl kalp krizi geçirdi.	zmaj zmaj::92_krank_sein
+slomiti	kırmak (kemik, cam)	zmaj zmaj::93_beschwerden
+Slomio je ruku na skijanju.	Kayak yaparken kolunu kırdı.	zmaj zmaj::93_beschwerden
+umor	yorgunluk	zmaj zmaj::93_beschwerden
+Nije to bolest, to je samo umor.	Bu hastalık değil, sadece yorgunluk.	zmaj zmaj::93_beschwerden
+kašalj	öksürük	zmaj zmaj::93_beschwerden
+Od kašlja ne mogu spavati.	Öksürükten uyuyamıyorum.	zmaj zmaj::93_beschwerden
+mučnina	mide bulantısı	zmaj zmaj::93_beschwerden
+Od jutros imam mučninu.	Sabahtan beri midem bulanıyor.	zmaj zmaj::93_beschwerden
+osip	döküntü	zmaj zmaj::93_beschwerden
+Dijete ima osip po cijelom tijelu.	Çocuğun bütün vücudunda döküntü var.	zmaj zmaj::93_beschwerden
+povraćati	kusmak	zmaj zmaj::93_beschwerden
+Dijete je povraćalo u autu.	Çocuk arabada kustu.	zmaj zmaj::93_beschwerden
+vrtoglavica	baş dönmesi	zmaj zmaj::93_beschwerden
+Imam vrtoglavicu kad naglo ustanem.	Hızlı kalkınca başım dönüyor.	zmaj zmaj::93_beschwerden
+modrica	morluk	zmaj zmaj::93_beschwerden
+Odakle ti ova modrica?	Bu morluk nereden?	zmaj zmaj::93_beschwerden
+proljev	ishal	zmaj zmaj::93_beschwerden
+Dijete ima proljev, daj mu puno vode.	Çocuğun ishali var, ona bol su ver.	zmaj zmaj::93_beschwerden
+znojiti se	terlemek	zmaj zmaj::93_beschwerden
+Noću se jako znojim.	Geceleri çok terliyorum.	zmaj zmaj::93_beschwerden
+oteći	şişmek	zmaj zmaj::93_beschwerden
+Otekla mi je noga.	Bacağım şişti.	zmaj zmaj::93_beschwerden
+kašljati	öksürmek	zmaj zmaj::93_beschwerden
+Dijete cijelu noć kašlje.	Çocuk bütün gece öksürüyor.	zmaj zmaj::93_beschwerden
+svrbjeti / svrbiti	kaşınmak	zmaj zmaj::93_beschwerden
+Ujeo me komarac, sad me sve svrbi.	Beni sivrisinek ısırdı, şimdi her yerim kaşınıyor.	zmaj zmaj::93_beschwerden
+zubobolja	diş ağrısı	zmaj zmaj::93_beschwerden
+Imam strašnu zubobolju, moram kod zubara.	Dişim çok kötü ağrıyor, dişçiye gitmem lazım.	zmaj zmaj::93_beschwerden
+Muka mi je.	Midem bulanıyor.	zmaj zmaj::93_beschwerden
+Stani malo, muka mi je.	Biraz kenara çek, midem bulanıyor.	zmaj zmaj::93_beschwerden
+kontrola	kontrol / takip muayenesi	zmaj zmaj::94_in_der_praxis
+Za dvije sedmice dođite na kontrolu.	İki hafta sonra kontrole gelin.	zmaj zmaj::94_in_der_praxis
+pacijent	hasta (muayenede)	zmaj zmaj::94_in_der_praxis
+Doktor danas ima puno pacijenata.	Doktorun bugün çok hastası var.	zmaj zmaj::94_in_der_praxis
+simptom	belirti	zmaj zmaj::94_in_der_praxis
+Koje simptome imate?	Hangi belirtileriniz var?	zmaj zmaj::94_in_der_praxis
+propisati	reçete yazmak	zmaj zmaj::94_in_der_praxis
+Doktor mi je propisao antibiotik.	Doktor bana antibiyotik yazdı.	zmaj zmaj::94_in_der_praxis
+terapija	terapi	zmaj zmaj::94_in_der_praxis
+On ide na fizikalnu terapiju.	Fizik tedaviye gidiyor.	zmaj zmaj::94_in_der_praxis
+nalaz	tahlil sonucu	zmaj zmaj::94_in_der_praxis
+Nalazi su dobri, ništa ti nije.	Sonuçlar iyi, bir şeyin yok.	zmaj zmaj::94_in_der_praxis
+naočale	gözlük	zmaj zmaj::94_in_der_praxis
+Gdje su mi naočale?	Gözlüğüm nerede?	zmaj zmaj::94_in_der_praxis
+injekcija	enjeksiyon	zmaj zmaj::94_in_der_praxis
+Ne plači, injekcija ne boli.	Ağlama, iğne acıtmıyor.	zmaj zmaj::94_in_der_praxis
+ginekolog	kadın doktoru	zmaj zmaj::94_in_der_praxis
+Imam termin kod ginekologa u petak.	Cuma günü kadın doktorunda randevum var.	zmaj zmaj::94_in_der_praxis
+ordinacija	muayenehane	zmaj zmaj::94_in_der_praxis
+Ordinacija radi od osam do dva.	Muayenehane sekizden ikiye kadar açık.	zmaj zmaj::94_in_der_praxis
+pedijatar	çocuk doktoru	zmaj zmaj::94_in_der_praxis
+Sutra vodim dijete kod pedijatra.	Yarın çocuğu çocuk doktoruna götürüyorum.	zmaj zmaj::94_in_der_praxis
+ultrazvuk	ultrason	zmaj zmaj::94_in_der_praxis
+Sutra idem na ultrazvuk.	Yarın ultrasona gidiyorum.	zmaj zmaj::94_in_der_praxis
+čekaonica	bekleme salonu	zmaj zmaj::94_in_der_praxis
+Čekaonica je bila puna.	Bekleme salonu doluydu.	zmaj zmaj::94_in_der_praxis
+rendgen	röntgen	zmaj zmaj::94_in_der_praxis
+Doktor me poslao na rendgen.	Doktor beni röntgene gönderdi.	zmaj zmaj::94_in_der_praxis
+dom zdravlja	sağlık ocağı	zmaj zmaj::94_in_der_praxis
+Idem u dom zdravlja po uputnicu.	Sevk almak için sağlık ocağına gidiyorum.	zmaj zmaj::94_in_der_praxis
+liječiti	tedavi etmek / iyileştirmek	zmaj zmaj::95_untersuchen_heilen
+Koji doktor te liječi?	Seni hangi doktor tedavi ediyor?	zmaj zmaj::95_untersuchen_heilen
+izliječiti	tedavi etmek / iyileştirmek	zmaj zmaj::95_untersuchen_heilen
+To se može izliječiti.	Bu tedavi edilebilir.	zmaj zmaj::95_untersuchen_heilen
+pregledati	muayene etmek	zmaj zmaj::95_untersuchen_heilen
+Doktor me pregledao i rekao da je sve u redu.	Doktor beni muayene etti ve her şeyin yolunda olduğunu söyledi.	zmaj zmaj::95_untersuchen_heilen
+mjeriti	ölçmek	zmaj zmaj::95_untersuchen_heilen
+Babo svako jutro mjeri pritisak.	Babam her sabah tansiyonunu ölçüyor.	zmaj zmaj::95_untersuchen_heilen
+izmjeriti	ölçmek	zmaj zmaj::95_untersuchen_heilen
+Izmjeri mu temperaturu.	Bir ateşini ölç.	zmaj zmaj::95_untersuchen_heilen
+oporaviti se	toparlanmak	zmaj zmaj::95_untersuchen_heilen
+Treba ti vremena da se oporaviš.	Toparlanmak için zamana ihtiyacın var.	zmaj zmaj::95_untersuchen_heilen
+oporavljati se	toparlanmak	zmaj zmaj::95_untersuchen_heilen
+Babo se još oporavlja od operacije.	Babam hâlâ ameliyattan sonra toparlanıyor.	zmaj zmaj::95_untersuchen_heilen
+gutati	yutmak	zmaj zmaj::95_untersuchen_heilen
+Boli me kad gutam.	Yutkununca acıyor.	zmaj zmaj::95_untersuchen_heilen
+progutati	yutmak	zmaj zmaj::95_untersuchen_heilen
+Progutaj tabletu s malo vode.	Hapı biraz suyla yut.	zmaj zmaj::95_untersuchen_heilen
+udahnuti	nefesi içine çekmek	zmaj zmaj::95_untersuchen_heilen
+Duboko udahnite.	Derin bir nefes alın.	zmaj zmaj::95_untersuchen_heilen
+ozdraviti	iyileşmek	zmaj zmaj::95_untersuchen_heilen
+Dijete je ozdravilo, sutra ide u školu.	Çocuk iyileşti, yarın okula gidiyor.	zmaj zmaj::95_untersuchen_heilen
+vitamin	vitamin	zmaj zmaj::96_apotheke
+Zimi djeci dajem vitamine.	Kışın çocuklara vitamin veriyorum.	zmaj zmaj::96_apotheke
+mast	merhem	zmaj zmaj::96_apotheke
+Namaži ovu mast dva puta dnevno.	Bu merhemi günde iki kez sür.	zmaj zmaj::96_apotheke
+tableta	hap	zmaj zmaj::96_apotheke
+Uzmi jednu tabletu poslije jela.	Yemekten sonra bir hap al.	zmaj zmaj::96_apotheke
+antibiotik	antibiyotik	zmaj zmaj::96_apotheke
+Antibiotik se pije do kraja.	Antibiyotik sonuna kadar içilir.	zmaj zmaj::96_apotheke
+kapi	damla	zmaj zmaj::96_apotheke
+Trebaju mi kapi za nos.	Burun damlasına ihtiyacım var.	zmaj zmaj::96_apotheke
+nuspojava	yan etki	zmaj zmaj::96_apotheke
+Ima li ovaj lijek nuspojava?	Bu ilacın yan etkisi var mı?	zmaj zmaj::96_apotheke
+sirup	şurup	zmaj zmaj::96_apotheke
+Dijete pije sirup za kašalj.	Çocuk öksürük şurubu içiyor.	zmaj zmaj::96_apotheke
+maramica	mendil	zmaj zmaj::96_apotheke
+Imaš li maramicu?	Mendilin var mı?	zmaj zmaj::96_apotheke
+zavoj	sargı	zmaj zmaj::96_apotheke
+Sestra mi je promijenila zavoj.	Hemşire sargımı değiştirdi.	zmaj zmaj::96_apotheke
+flaster	yara bandı	zmaj zmaj::96_apotheke
+Daj mi flaster, porezao sam se.	Bana bir yara bandı ver, elimi kestim.	zmaj zmaj::96_apotheke
+bez recepta	reçetesiz	zmaj zmaj::96_apotheke
+Mogu li ovo dobiti bez recepta?	Bunu reçetesiz alabilir miyim?	zmaj zmaj::96_apotheke
+apotekar / farmaceut	eczacı	zmaj zmaj::96_apotheke
+Pitaj apotekara šta je najbolje za kašalj.	Öksürüğe en iyi neyin geldiğini eczacıya sor.	zmaj zmaj::96_apotheke
+toplomjer / termometar	termometre	zmaj zmaj::96_apotheke
+Gdje je toplomjer? Mali ima temperaturu.	Termometre nerede? Ufaklığın ateşi var.	zmaj zmaj::96_apotheke
+na prazan stomak	aç karnına	zmaj zmaj::96_apotheke
+Ovu tabletu pij ujutro na prazan stomak.	Bu hapı sabahları aç karnına iç.	zmaj zmaj::96_apotheke
+zdravlje	sağlık	zmaj zmaj::97_gesund_leben
+Zdravlje je najvažnije.	Sağlık her şeyden önemli.	zmaj zmaj::97_gesund_leben
+san	uyku / rüya	zmaj zmaj::97_gesund_leben
+Djeci treba puno sna.	Çocukların çok uykuya ihtiyacı var.	zmaj zmaj::97_gesund_leben
+visina	boy / yükseklik	zmaj zmaj::97_gesund_leben
+Doktor mi je izmjerio visinu i težinu.	Doktor boyumu ve kilomu ölçtü.	zmaj zmaj::97_gesund_leben
+težina	ağırlık	zmaj zmaj::97_gesund_leben
+Moram paziti na težinu.	Kiloma dikkat etmem lazım.	zmaj zmaj::97_gesund_leben
+alkohol	alkol	zmaj zmaj::97_gesund_leben
+Uz ovaj lijek ne smiješ piti alkohol.	Bu ilaçla birlikte alkol içmemelisin.	zmaj zmaj::97_gesund_leben
+cigareta	sigara	zmaj zmaj::97_gesund_leben
+Koliko cigareta pušiš dnevno?	Günde kaç sigara içiyorsun?	zmaj zmaj::97_gesund_leben
+pušiti	sigara içmek	zmaj zmaj::97_gesund_leben
+Prestao sam pušiti prije dvije godine.	İki yıl önce sigarayı bıraktım.	zmaj zmaj::97_gesund_leben
+dijeta	diyet	zmaj zmaj::97_gesund_leben
+Od ponedjeljka sam na dijeti.	Pazartesiden itibaren diyetteyim.	zmaj zmaj::97_gesund_leben
+smršati	kilo vermek	zmaj zmaj::97_gesund_leben
+Smršala sam pet kila!	Beş kilo verdim!	zmaj zmaj::97_gesund_leben
+udebljati se	kilo almak	zmaj zmaj::97_gesund_leben
+Udebljao sam se preko zime.	Kış boyunca kilo aldım.	zmaj zmaj::97_gesund_leben
+vrijeme	Zaman	zmaj zmaj::98_zeitangaben
+Kako vrijeme brzo prolazi!	Zaman ne çabuk geçiyor!	zmaj zmaj::98_zeitangaben
+sekunda	saniye	zmaj zmaj::98_zeitangaben
+Daj mi samo sekundu.	Bana bir saniye ver.	zmaj zmaj::98_zeitangaben
+trenutak	an	zmaj zmaj::98_zeitangaben
+Čekao sam pravi trenutak da joj kažem.	Ona söylemek için doğru anı bekledim.	zmaj zmaj::98_zeitangaben
+ponoć	gece yarısı	zmaj zmaj::98_zeitangaben
+Vratili smo se kući poslije ponoći.	Gece yarısından sonra eve geldik.	zmaj zmaj::98_zeitangaben
+prijepodne	öğleden önce	zmaj zmaj::98_zeitangaben
+Prijepodne radim, a popodne sam s djecom.	Öğleden önce çalışıyorum, öğleden sonra çocuklarla oluyorum.	zmaj zmaj::98_zeitangaben
+jutros	bu sabah	zmaj zmaj::98_zeitangaben
+Jutros sam zakasnio na posao.	Bu sabah işe geç kaldım.	zmaj zmaj::98_zeitangaben
+večeras	bu akşam	zmaj zmaj::98_zeitangaben
+Šta radiš večeras?	Bu akşam ne yapıyorsun?	zmaj zmaj::98_zeitangaben
+sinoć	dün akşam	zmaj zmaj::98_zeitangaben
+Gdje si bio sinoć?	Dün akşam neredeydin?	zmaj zmaj::98_zeitangaben
+noćas	bu gece	zmaj zmaj::98_zeitangaben
+Noćas sam loše spavala.	Bu gece kötü uyudum.	zmaj zmaj::98_zeitangaben
+prekjučer	evvelsi gün	zmaj zmaj::98_zeitangaben
+Prekjučer sam bio kod nane.	Evvelsi gün ninemdeydim.	zmaj zmaj::98_zeitangaben
+datum	tarih (gün)	zmaj zmaj::98_zeitangaben
+Koji je danas datum?	Bugün ayın kaçı?	zmaj zmaj::98_zeitangaben
+dnevno	günlük	zmaj zmaj::98_zeitangaben
+Radim osam sati dnevno.	Günde sekiz saat çalışıyorum.	zmaj zmaj::98_zeitangaben
+mjesečno	aylık	zmaj zmaj::98_zeitangaben
+Kirija je petsto maraka mjesečno.	Kira ayda beş yüz mark.	zmaj zmaj::98_zeitangaben
+budućnost	gelecek	zmaj zmaj::98_zeitangaben
+U budućnosti želimo živjeti u Bosni.	Gelecekte Bosna'da yaşamak istiyoruz.	zmaj zmaj::98_zeitangaben
+praznik	resmî tatil	zmaj zmaj::98_zeitangaben
+Sutra je praznik, banke ne rade.	Yarın resmî tatil, bankalar kapalı.	zmaj zmaj::98_zeitangaben
+odmah	hemen	zmaj zmaj::99_sofort_endlich
+Odmah dolazim!	Hemen geliyorum!	zmaj zmaj::99_sofort_endlich
+upravo	az önce	zmaj zmaj::99_sofort_endlich
+Upravo sam stigla kući.	Eve az önce geldim.	zmaj zmaj::99_sofort_endlich
+maloprije	biraz önce	zmaj zmaj::99_sofort_endlich
+Maloprije te je neko tražio.	Biraz önce biri seni arıyordu.	zmaj zmaj::99_sofort_endlich
+nedavno	geçenlerde / yakın zamanda	zmaj zmaj::99_sofort_endlich
+Nedavno smo se preselili.	Yakın zamanda taşındık.	zmaj zmaj::99_sofort_endlich
+ranije	daha erken / önceden	zmaj zmaj::99_sofort_endlich
+Možeš li doći malo ranije?	Biraz daha erken gelebilir misin?	zmaj zmaj::99_sofort_endlich
+konačno	nihayet	zmaj zmaj::99_sofort_endlich
+Konačno si stigao!	Nihayet geldin!	zmaj zmaj::99_sofort_endlich
+dok	iken / sürece	zmaj zmaj::99_sofort_endlich
+Popij kahvu dok čekaš.	Beklerken bir kahve iç.	zmaj zmaj::99_sofort_endlich
+tek	ancak	zmaj zmaj::99_sofort_endlich
+Film počinje tek u devet.	Film ancak dokuzda başlıyor.	zmaj zmaj::99_sofort_endlich
+još	hâlâ	zmaj zmaj::99_sofort_endlich
+Još spava, nemoj ga buditi.	Hâlâ uyuyor, onu uyandırma.	zmaj zmaj::99_sofort_endlich
+opet	yine / tekrar	zmaj zmaj::99_sofort_endlich
+Dođite nam opet!	Yine bize gelin!	zmaj zmaj::99_sofort_endlich
+zauvijek	sonsuza dek	zmaj zmaj::99_sofort_endlich
+Ovo ne može trajati zauvijek.	Bu sonsuza dek böyle süremez.	zmaj zmaj::99_sofort_endlich
+na vrijeme	zamanında	zmaj zmaj::99_sofort_endlich
+Jedva smo stigli na vrijeme.	Son anda zamanında yetiştik.	zmaj zmaj::99_sofort_endlich
+sport	spor	zmaj zmaj::100_sport
+Kojim se sportom baviš?	Hangi sporu yapıyorsun?	zmaj zmaj::100_sport
+fudbal	futbol	zmaj zmaj::100_sport
+Babo svake subote gleda fudbal.	Babam her cumartesi futbol izler.	zmaj zmaj::100_sport
+košarka	basketbol	zmaj zmaj::100_sport
+Moj sin trenira košarku.	Oğlum basketbol antrenmanına gidiyor.	zmaj zmaj::100_sport
+rukomet	hentbol	zmaj zmaj::100_sport
+Moj brat igra rukomet.	Erkek kardeşim hentbol oynuyor.	zmaj zmaj::100_sport
+trčati	koşmak	zmaj zmaj::100_sport
+Svako jutro trčim pola sata.	Her sabah yarım saat koşuyorum.	zmaj zmaj::100_sport
+utakmica	maç	zmaj zmaj::100_sport
+Idemo li na utakmicu u subotu?	Cumartesi maça gidiyor muyuz?	zmaj zmaj::100_sport
+ekipa	takım	zmaj zmaj::100_sport
+Ove godine imamo dobru ekipu.	Bu yıl iyi bir takımımız var.	zmaj zmaj::100_sport
+reprezentacija	milli takım	zmaj zmaj::100_sport
+Večeras igra naša reprezentacija.	Bu akşam milli takımımız oynuyor.	zmaj zmaj::100_sport
+igrač	oyuncu	zmaj zmaj::100_sport
+On je najbolji igrač u ekipi.	Takımın en iyi oyuncusu o.	zmaj zmaj::100_sport
+trener	antrenör	zmaj zmaj::100_sport
+Novi trener je jako strog.	Yeni antrenör çok sert.	zmaj zmaj::100_sport
+gol	gol	zmaj zmaj::100_sport
+Ko je dao gol?	Golü kim attı?	zmaj zmaj::100_sport
+lopta	top	zmaj zmaj::100_sport
+Dodaj mi loptu!	Topu bana pasla!	zmaj zmaj::100_sport
+pobijediti	yenmek	zmaj zmaj::100_sport
+Pobijedili smo u zadnjoj minuti!	Son dakikada kazandık!	zmaj zmaj::100_sport
+pobjeda	galibiyet	zmaj zmaj::100_sport
+Čestitam na pobjedi!	Galibiyetiniz kutlu olsun!	zmaj zmaj::100_sport
+rezultat	sonuç	zmaj zmaj::100_sport
+Koji je rezultat?	Skor kaç?	zmaj zmaj::100_sport
+navijati	tezahürat yapmak / taraftar olmak	zmaj zmaj::100_sport
+Za koga navijaš?	Hangi takımı tutuyorsun?	zmaj zmaj::100_sport
+navijač	taraftar	zmaj zmaj::100_sport
+Navijači su pjevali cijelu utakmicu.	Taraftarlar maç boyunca şarkı söyledi.	zmaj zmaj::100_sport
+teretana	spor salonu	zmaj zmaj::100_sport
+Idem u teretanu tri puta sedmično.	Haftada üç kez spor salonuna gidiyorum.	zmaj zmaj::100_sport
+trening	antrenman	zmaj zmaj::100_sport
+Imam trening u šest.	Saat altıda antrenmanım var.	zmaj zmaj::100_sport
+vježbati	alıştırma yapmak / antrenman yapmak	zmaj zmaj::100_sport
+Moraš više vježbati.	Daha çok çalışman lazım.	zmaj zmaj::100_sport
+hobi	hobi	zmaj zmaj::101_hobbys
+Imaš li neki hobi?	Bir hobin var mı?	zmaj zmaj::101_hobbys
+slobodno vrijeme	boş zaman	zmaj zmaj::101_hobbys
+Šta radiš u slobodno vrijeme?	Boş zamanlarında ne yapıyorsun?	zmaj zmaj::101_hobbys
+crtati	resim çizmek	zmaj zmaj::101_hobbys
+Djeca vole crtati.	Çocuklar resim çizmeyi sever.	zmaj zmaj::101_hobbys
+pecati	balık tutmak	zmaj zmaj::101_hobbys
+Dedo voli pecati na rijeci.	Dedem nehirde balık tutmayı sever.	zmaj zmaj::101_hobbys
+gitara	gitar	zmaj zmaj::101_hobbys
+Kćerka uči svirati gitaru.	Kızım gitar çalmayı öğreniyor.	zmaj zmaj::101_hobbys
+plesti	örgü örmek	zmaj zmaj::101_hobbys
+Nana plete čarape za zimu.	Ninem kış için çorap örüyor.	zmaj zmaj::101_hobbys
+slika	resim / fotoğraf	zmaj zmaj::101_hobbys
+Pošalji mi sliku!	Bana bir fotoğraf gönder!	zmaj zmaj::101_hobbys
+izlet	gezi	zmaj zmaj::101_hobbys
+U nedjelju idemo na izlet na Vrelo Bosne.	Pazar günü Vrelo Bosne'ye geziye gidiyoruz.	zmaj zmaj::101_hobbys
+kino	sinema	zmaj zmaj::101_hobbys
+Idemo u kino?	Sinemaya gidelim mi?	zmaj zmaj::101_hobbys
+pozorište	tiyatro	zmaj zmaj::101_hobbys
+Dugo nisam bila u pozorištu.	Uzun zamandır tiyatroya gitmedim.	zmaj zmaj::101_hobbys
+koncert	konser	zmaj zmaj::101_hobbys
+Karte za koncert su rasprodane.	Konser biletleri tükendi.	zmaj zmaj::101_hobbys
+muzej	müze	zmaj zmaj::101_hobbys
+Djeca su s razredom bila u muzeju.	Çocuklar sınıfça müzeye gitti.	zmaj zmaj::101_hobbys
+žurka	parti	zmaj zmaj::101_hobbys
+Ko sve dolazi na žurku?	Partiye kimler geliyor?	zmaj zmaj::101_hobbys
+igra	oyun	zmaj zmaj::101_hobbys
+Hajmo igrati neku igru!	Hadi bir oyun oynayalım!	zmaj zmaj::101_hobbys
+novine	gazete	zmaj zmaj::102_medien
+Dedo svako jutro čita novine.	Dedem her sabah gazete okur.	zmaj zmaj::102_medien
+vijesti	haberler	zmaj zmaj::102_medien
+Jesi li gledao vijesti?	Haberleri izledin mi?	zmaj zmaj::102_medien
+emisija	program (TV)	zmaj zmaj::102_medien
+Ova emisija ide svake nedjelje.	Bu program her pazar yayınlanıyor.	zmaj zmaj::102_medien
+kanal	kanal	zmaj zmaj::102_medien
+Prebaci na drugi kanal.	Başka bir kanala geç.	zmaj zmaj::102_medien
+reklama	reklam	zmaj zmaj::102_medien
+Opet reklame, idem po sok.	Yine reklam, ben meyve suyu almaya gidiyorum.	zmaj zmaj::102_medien
+radio	radyo	zmaj zmaj::102_medien
+U autu uvijek slušam radio.	Arabada hep radyo dinlerim.	zmaj zmaj::102_medien
+film	film	zmaj zmaj::102_medien
+Hoćemo li pogledati neki film?	Bir film izleyelim mi?	zmaj zmaj::102_medien
+serija	dizi	zmaj zmaj::102_medien
+Nana gleda svaku tursku seriju.	Ninem her Türk dizisini izliyor.	zmaj zmaj::102_medien
+televizija	televizyon (yayın)	zmaj zmaj::102_medien
+Šta ima na televiziji?	Televizyonda ne var?	zmaj zmaj::102_medien
+društvene mreže	sosyal medya	zmaj zmaj::102_medien
+Djeca previše vremena provode na društvenim mrežama.	Çocuklar sosyal medyada çok fazla zaman geçiriyor.	zmaj zmaj::102_medien
+video	video	zmaj zmaj::102_medien
+Pogledaj ovaj video, umrijet ćeš od smijeha!	Şu videoya bak, gülmekten öleceksin!	zmaj zmaj::102_medien
+snimiti	kaydetmek / çekmek	zmaj zmaj::102_medien
+Snimio sam cijeli koncert mobitelom.	Bütün konseri telefonla çektim.	zmaj zmaj::102_medien
+pratiti	takip etmek / izlemek	zmaj zmaj::102_medien
+Pratim sve utakmice reprezentacije.	Milli takımın bütün maçlarını takip ediyorum.	zmaj zmaj::102_medien
+objaviti	yayınlamak / paylaşmak	zmaj zmaj::102_medien
+Objavila je slike s mora.	Denizden fotoğraflar paylaştı.	zmaj zmaj::102_medien
+glumac	aktör	zmaj zmaj::102_medien
+Taj glumac je iz Sarajeva.	Bu aktör Saraybosnalı.	zmaj zmaj::102_medien
+tramvaj	tramvay	zmaj zmaj::103_urlaub
+Tramvajem je najbrže do Baščaršije.	Baščaršija'ya en hızlı tramvayla gidilir.	zmaj zmaj::103_urlaub
+brod	gemi	zmaj zmaj::103_urlaub
+Prvi put sam se vozio brodom.	İlk kez gemiyle yolculuk yaptım.	zmaj zmaj::103_urlaub
+ljetovanje	yaz tatili	zmaj zmaj::103_urlaub
+Kuda idete na ljetovanje?	Yaz tatiline nereye gidiyorsunuz?	zmaj zmaj::103_urlaub
+plaža	plaj	zmaj zmaj::103_urlaub
+Cijeli dan smo bili na plaži.	Bütün gün plajdaydık.	zmaj zmaj::103_urlaub
+spakovati	bavul hazırlamak	zmaj zmaj::103_urlaub
+Jesi li spakovao kofer?	Bavulunu hazırladın mı?	zmaj zmaj::103_urlaub
+ruksak	sırt çantası	zmaj zmaj::103_urlaub
+Stavi u ruksak vodu i nešto za jelo.	Sırt çantasına su ve yiyecek bir şey koy.	zmaj zmaj::103_urlaub
+smještaj	konaklama	zmaj zmaj::103_urlaub
+Smještaj smo našli preko interneta.	Konaklama yerini internetten bulduk.	zmaj zmaj::103_urlaub
+turista	turist	zmaj zmaj::103_urlaub
+Ljeti je Baščaršija puna turista.	Yazın Baščaršija turist dolu.	zmaj zmaj::103_urlaub
+putnik	yolcu	zmaj zmaj::103_urlaub
+U autobusu je bilo samo pet putnika.	Otobüste sadece beş yolcu vardı.	zmaj zmaj::103_urlaub
+propustiti	kaçırmak	zmaj zmaj::103_urlaub
+Zbog gužve smo propustili let.	Trafik yüzünden uçağı kaçırdık.	zmaj zmaj::103_urlaub
+otkazati	iptal etmek	zmaj zmaj::103_urlaub
+Morali smo otkazati put.	Seyahati iptal etmek zorunda kaldık.	zmaj zmaj::103_urlaub
+rezervisati	rezervasyon yapmak	zmaj zmaj::103_urlaub
+Rezervisala sam sto za subotu navečer.	Cumartesi akşamı için masa ayırttım.	zmaj zmaj::103_urlaub
+red vožnje	sefer tarifesi	zmaj zmaj::103_urlaub
+Gdje mogu vidjeti red vožnje?	Sefer tarifesini nerede görebilirim?	zmaj zmaj::103_urlaub
+vrtić	anaokulu	zmaj zmaj::104_schule
+Vodim sina u vrtić pa idem na posao.	Oğlumu anaokuluna bırakıp işe gidiyorum.	zmaj zmaj::104_schule
+osnovna škola	ilkokul	zmaj zmaj::104_schule
+Išli smo zajedno u osnovnu školu.	Birlikte ilkokula gittik.	zmaj zmaj::104_schule
+srednja škola	lise	zmaj zmaj::104_schule
+Kćerka ove godine kreće u srednju školu.	Kızım bu yıl liseye başlıyor.	zmaj zmaj::104_schule
+razred	sınıf	zmaj zmaj::104_schule
+U koji razred ideš?	Kaçıncı sınıfa gidiyorsun?	zmaj zmaj::104_schule
+ocjena	not	zmaj zmaj::104_schule
+Kakve su ti ocjene?	Notların nasıl?	zmaj zmaj::104_schule
+predmet	ders	zmaj zmaj::104_schule
+Koji ti je najdraži predmet?	En sevdiğin ders hangisi?	zmaj zmaj::104_schule
+matematika	matematik	zmaj zmaj::104_schule
+Matematika mi nikad nije išla.	Matematiği hiç beceremedim.	zmaj zmaj::104_schule
+greška	hata	zmaj zmaj::104_schule
+Napravio sam veliku grešku.	Büyük bir hata yaptım.	zmaj zmaj::104_schule
+rječnik	sözlük	zmaj zmaj::104_schule
+Tu riječ nisam našao ni u rječniku.	Bu kelimeyi sözlükte bile bulamadım.	zmaj zmaj::104_schule
+sveska	defter	zmaj zmaj::104_schule
+Zapiši to u svesku.	Bunu deftere yaz.	zmaj zmaj::104_schule
+raspust	okul tatili	zmaj zmaj::104_schule
+Kad počinje zimski raspust?	Sömestr tatili ne zaman başlıyor?	zmaj zmaj::104_schule
+užina	beslenme / ara öğün	zmaj zmaj::104_schule
+Mama mi je spremila užinu za školu.	Annem bana okul için beslenme hazırladı.	zmaj zmaj::104_schule
+položiti	geçmek (sınavı)	zmaj zmaj::104_schule
+Položio sam vozački iz prve!	Ehliyeti ilk seferde aldım!	zmaj zmaj::104_schule
+ponoviti	tekrarlamak	zmaj zmaj::104_schule
+Ponovi za mnom!	Benden sonra tekrarla!	zmaj zmaj::104_schule
+ponavljati	tekrarlamak	zmaj zmaj::104_schule
+Koliko puta ti moram ponavljati?	Bunu sana kaç kere tekrarlamam lazım?	zmaj zmaj::104_schule
+zapamtiti	aklında tutmak	zmaj zmaj::105_lernen_studieren
+Ne mogu zapamtiti njegovo ime.	Onun adını aklımda tutamıyorum.	zmaj zmaj::105_lernen_studieren
+pamtiti	aklında tutmak	zmaj zmaj::105_lernen_studieren
+Dobro pamtim lica, ali imena ne.	Yüzleri iyi hatırlarım, isimleri hatırlamam.	zmaj zmaj::105_lernen_studieren
+računati	hesap yapmak	zmaj zmaj::105_lernen_studieren
+Nana još uvijek računa u glavi brže od mene.	Ninem hâlâ kafadan benden hızlı hesap yapıyor.	zmaj zmaj::105_lernen_studieren
+brojati	saymak	zmaj zmaj::105_lernen_studieren
+Mali već zna brojati do sto.	Ufaklık şimdiden yüze kadar sayabiliyor.	zmaj zmaj::105_lernen_studieren
+znanje	bilgi birikimi	zmaj zmaj::105_lernen_studieren
+Znanje ti niko ne može uzeti.	Bilgiyi kimse senden alamaz.	zmaj zmaj::105_lernen_studieren
+slovo	harf	zmaj zmaj::105_lernen_studieren
+Bosanska abeceda ima trideset slova.	Boşnak alfabesinde otuz harf var.	zmaj zmaj::105_lernen_studieren
+rečenica	cümle	zmaj zmaj::105_lernen_studieren
+Napiši jednu rečenicu na bosanskom.	Boşnakça bir cümle yaz.	zmaj zmaj::105_lernen_studieren
+prevesti	çevirmek	zmaj zmaj::105_lernen_studieren
+Možeš li mi prevesti ovo pismo?	Bu mektubu bana çevirebilir misin?	zmaj zmaj::105_lernen_studieren
+fakultet	fakülte	zmaj zmaj::105_lernen_studieren
+Na kojem si fakultetu?	Hangi fakültedesin?	zmaj zmaj::105_lernen_studieren
+studirati	üniversitede okumak	zmaj zmaj::105_lernen_studieren
+Šta studiraš?	Ne okuyorsun?	zmaj zmaj::105_lernen_studieren
+profesor	profesör / öğretmen (lise)	zmaj zmaj::105_lernen_studieren
+Profesor nam je dao puno zadaće.	Öğretmen bize çok ödev verdi.	zmaj zmaj::105_lernen_studieren
+diplomirati	mezun olmak	zmaj zmaj::105_lernen_studieren
+Sestra je diplomirala prošle godine.	Kız kardeşim geçen yıl mezun oldu.	zmaj zmaj::105_lernen_studieren
+upisati se	kayıt yaptırmak	zmaj zmaj::105_lernen_studieren
+Upisala se na medicinu.	Tıp fakültesine kayıt yaptırdı.	zmaj zmaj::105_lernen_studieren
+kuhar	aşçı	zmaj zmaj::106_berufe
+Brat radi kao kuhar u hotelu.	Erkek kardeşim bir otelde aşçı olarak çalışıyor.	zmaj zmaj::106_berufe
+frizer	kuaför	zmaj zmaj::106_berufe
+Sutra idem kod frizera.	Yarın kuaföre gidiyorum.	zmaj zmaj::106_berufe
+mehaničar	tamirci	zmaj zmaj::106_berufe
+Auto je još kod mehaničara.	Araba hâlâ tamircide.	zmaj zmaj::106_berufe
+zidar	duvarcı	zmaj zmaj::106_berufe
+Babo je radio kao zidar u Njemačkoj.	Babam Almanya'da duvarcı olarak çalıştı.	zmaj zmaj::106_berufe
+stolar	marangoz	zmaj zmaj::106_berufe
+Stolar nam je napravio novu kuhinju.	Marangoz bize yeni bir mutfak yaptı.	zmaj zmaj::106_berufe
+vodoinstalater	tesisatçı	zmaj zmaj::106_berufe
+Moramo zvati vodoinstalatera, curi slavina.	Tesisatçı çağırmamız lazım, musluk damlatıyor.	zmaj zmaj::106_berufe
+pekar	fırıncı	zmaj zmaj::106_berufe
+Pekar ustaje u tri ujutro.	Fırıncı sabah üçte kalkıyor.	zmaj zmaj::106_berufe
+čistačica	temizlikçi	zmaj zmaj::106_berufe
+Mama radi kao čistačica u bolnici.	Annem hastanede temizlikçi olarak çalışıyor.	zmaj zmaj::106_berufe
+njegovateljica	bakıcı	zmaj zmaj::106_berufe
+Tetka radi kao njegovateljica u staračkom domu.	Teyzem huzurevinde bakıcı olarak çalışıyor.	zmaj zmaj::106_berufe
+policajac	polis memuru	zmaj zmaj::106_berufe
+Zaustavio nas je policajac.	Bir polis bizi durdurdu.	zmaj zmaj::106_berufe
+vojnik	asker	zmaj zmaj::106_berufe
+Moj rođak je profesionalni vojnik.	Kuzenim profesyonel asker.	zmaj zmaj::106_berufe
+vatrogasac	itfaiyeci	zmaj zmaj::106_berufe
+Moj mali želi biti vatrogasac.	Benim ufaklık itfaiyeci olmak istiyor.	zmaj zmaj::106_berufe
+poljoprivrednik	çiftçi	zmaj zmaj::106_berufe
+Komšija je poljoprivrednik, ima dvadeset krava.	Komşumuz çiftçi, yirmi ineği var.	zmaj zmaj::106_berufe
+programer	programcı	zmaj zmaj::106_berufe
+Radi kao programer za njemačku firmu.	Bir Alman şirketi için programcı olarak çalışıyor.	zmaj zmaj::106_berufe
+novinar	gazeteci	zmaj zmaj::106_berufe
+Taj novinar piše o sportu.	Bu gazeteci spor hakkında yazıyor.	zmaj zmaj::106_berufe
+službenik	memur	zmaj zmaj::106_berufe
+Službenik u općini je bio jako ljubazan.	Belediyedeki memur çok kibardı.	zmaj zmaj::106_berufe
+radnik	işçi	zmaj zmaj::106_berufe
+U fabrici radi petsto radnika.	Fabrikada beş yüz işçi çalışıyor.	zmaj zmaj::106_berufe
+poštar	postacı	zmaj zmaj::106_berufe
+Je li poštar već došao?	Postacı geldi mi?	zmaj zmaj::106_berufe
+smjena	vardiya	zmaj zmaj::107_arbeitsplatz
+Sutra radim noćnu smjenu.	Yarın gece vardiyasındayım.	zmaj zmaj::107_arbeitsplatz
+gradilište	şantiye	zmaj zmaj::107_arbeitsplatz
+Brat cijeli dan radi na gradilištu.	Erkek kardeşim bütün gün şantiyede çalışıyor.	zmaj zmaj::107_arbeitsplatz
+sastanak	toplantı / buluşma	zmaj zmaj::107_arbeitsplatz
+Ne mogu sad, na sastanku sam.	Şu an olmaz, toplantıdayım.	zmaj zmaj::107_arbeitsplatz
+zadatak	görev	zmaj zmaj::107_arbeitsplatz
+Svako ima svoj zadatak.	Herkesin kendi görevi var.	zmaj zmaj::107_arbeitsplatz
+nezaposlen	işsiz	zmaj zmaj::107_arbeitsplatz
+Već pola godine sam nezaposlen.	Altı aydır işsizim.	zmaj zmaj::107_arbeitsplatz
+zaposliti se	işe girmek	zmaj zmaj::107_arbeitsplatz
+Konačno sam se zaposlio!	Nihayet işe girdim!	zmaj zmaj::107_arbeitsplatz
+zaposlen	çalışan / iş sahibi	zmaj zmaj::107_arbeitsplatz
+Je li ti žena zaposlena?	Eşin çalışıyor mu?	zmaj zmaj::107_arbeitsplatz
+otpustiti	işten çıkarmak	zmaj zmaj::107_arbeitsplatz
+Firma je otpustila sto radnika.	Şirket yüz işçiyi işten çıkardı.	zmaj zmaj::107_arbeitsplatz
+penzioner	emekli	zmaj zmaj::107_arbeitsplatz
+Dedo je penzioner, ima vremena za sve.	Dedem emekli, her şeye vakti var.	zmaj zmaj::107_arbeitsplatz
+pauza	mola	zmaj zmaj::107_arbeitsplatz
+Imam pauzu od dvanaest do pola jedan.	On ikiden on iki buçuğa kadar molam var.	zmaj zmaj::107_arbeitsplatz
+povišica	zam	zmaj zmaj::107_arbeitsplatz
+Tražit ću povišicu od šefa.	Patrondan zam isteyeceğim.	zmaj zmaj::107_arbeitsplatz
+oglas	ilan	zmaj zmaj::107_arbeitsplatz
+Posao sam našao preko oglasa.	İşi bir ilan sayesinde buldum.	zmaj zmaj::107_arbeitsplatz
+zanat	zanaat	zmaj zmaj::107_arbeitsplatz
+Izuči zanat, uvijek ćeš imati posla.	Bir zanaat öğren, hep işin olur.	zmaj zmaj::107_arbeitsplatz
+praksa	staj	zmaj zmaj::107_arbeitsplatz
+Studenti moraju odraditi praksu.	Öğrencilerin staj yapması gerekiyor.	zmaj zmaj::107_arbeitsplatz
+radni dan	iş günü	zmaj zmaj::107_arbeitsplatz
+Radnim danima ustajem u šest.	İş günlerinde altıda kalkarım.	zmaj zmaj::107_arbeitsplatz
