@@ -2596,6 +2596,14 @@
       <div class="note" id="benNote"></div>
     </div>
     <div class="section">
+      <!-- Sicherung als Datei nur noch ohne Konto (01.11.2026). Ajdin beim
+           Test der 1.2: "Sicherung speichern kann raus weil wir ja jetzt
+           einen server haben", auf die Rueckfrage "Ganz raus" - Speichern
+           UND Einlesen. In der Handy-App (CLOUD_AN, cloudModus()) sichert
+           das Konto alles, showSettings() blendet diesen Block dort aus.
+           Die Web-Fassung ohne Konto behaelt beides, sonst gaebe es dort
+           gar keine Sicherung. Feedback darunter bleibt in beiden. -->
+      <div id="setSichBox">
       <h2 data-t="set.sicherung"></h2>
       <div class="sd" id="setSichSub" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.sicherung_sub"></div>
       <div class="row" style="margin-bottom:6px">
@@ -2615,6 +2623,7 @@
            Zmaj-Sicherung ist, prueft sicherungEinlesen ohnehin selbst. -->
       <input type="file" id="sichDatei" hidden>
       <div class="note" id="sichNote" style="margin-bottom:16px"></div>
+      </div>
 
       <h2 data-t="set.feedback"></h2>
       <div class="sd" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.feedback_sub"></div>
@@ -8930,9 +8939,15 @@ function showSettings(){
   /* 28.10.2026 (Pruefbericht): Angemeldet liegt eine Kopie im Konto -
      "nur auf diesem Geraet" stimmt dann nicht mehr. Ohne Konto (und ohne
      Firebase-Projekt) bleibt der Satz von v108. */
-  const sichSub = $('setSichSub'), mitKonto = cloudModus() && !!cloudMerker();
-  sichSub.dataset.t = mitKonto ? 'set.sicherung_sub_konto' : 'set.sicherung_sub';
-  sichSub.textContent = mitKonto ? t('set.sicherung_sub_konto') : t('set.sicherung_sub');
+  /* 01.11.2026: Mit Konto gibt es die Sicherung als Datei gar nicht mehr.
+     Ajdin: "Sicherung speichern kann raus weil wir ja jetzt einen server
+     haben" - "Ganz raus", Speichern und Einlesen. In der Handy-App
+     (cloudModus(), also CLOUD_AN mit Zugangsdaten) ist der ganze Block
+     weg, angemeldet oder nicht: das Konto sichert alles. Damit gibt es
+     auch den Satz fuer Angemeldete (set.sicherung_sub_konto) nicht mehr.
+     Ohne Cloud - Quelle, Web-Demo, start.py - bleibt alles wie vorher,
+     mit dem Satz von v108 (data-t in setSichSub). */
+  $('setSichBox').style.display = cloudModus() ? 'none' : '';
   // Werbung: Die Zeile erscheint erst, wenn wirklich geworben wird oder
   // schon einmal gefragt wurde. Vorher gäbe es nichts zu ändern.
   // Mit AdMob verwaltet Google die Antwort, und Google sagt auch, ob ein
