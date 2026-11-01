@@ -21,11 +21,16 @@ Geprueft wird:
     breiter als der Bildschirm - hell wie dunkel eingestellt.
   - Seit dem Umbau am selben Abend (Ajdin: "playstore insta tiktok und yt
     grosse buttons und datenschutz usw sehr kleine buttons"): Bei 390 x 844
-    stehen vier gleich breite Knoepfe ohne Scrollen da - Googles Abzeichen in
-    der Sprache der Seite, Instagram, TikTok, YouTube. Kontakt, Impressum,
-    Datenschutz und Nutzungsbedingungen sind klein, aber mindestens 13 px
-    und 24 px hoch. Die Sprache ist die erste aus der Liste des Handys, die
-    es auf der Seite gibt.
+    stehen Googles Abzeichen in der Sprache der Seite und drei gleich breite
+    Knoepfe (Instagram, TikTok, YouTube) ohne Scrollen da. Kontakt,
+    Impressum, Datenschutz und Nutzungsbedingungen sind klein, aber
+    mindestens 13 px und 24 px hoch. Die Sprache ist die erste aus der Liste
+    des Handys, die es auf der Seite gibt.
+  - Seit 01.11.2026 (Ajdin: "nur das google play button ist zu gross"): Das
+    Abzeichen steht mittig ueber den Knoepfen, sichtbar 56 bis 64 px hoch
+    und damit etwa so hoch wie sie, mit dem Freiraum, den Google verlangt
+    (ein Viertel der Hoehe ringsum), und vom Abzeichen ist nichts
+    abgeschnitten.
 """
 import functools
 import http.server
@@ -187,7 +192,8 @@ def test_handyformat_ohne_speicher(linkseite, farben):
     s.oeffnen("tiktok")
     knopf = s.page.locator('section[data-sprache="en"] a.play').bounding_box()
     assert knopf["y"] >= 0 and knopf["y"] + knopf["height"] <= 640, knopf
-    assert knopf["width"] >= 300, knopf
+    # Nicht mehr so breit wie der Bildschirm (01.11.2026), aber gut treffbar.
+    assert 56 <= knopf["height"] <= 64 and knopf["width"] >= 180, knopf
     assert s.page.evaluate("document.documentElement.scrollWidth") <= 360
     # Dunkel wie alle Seiten, auch wenn das Handy hell eingestellt ist.
     hinten = s.page.evaluate("getComputedStyle(document.body).backgroundColor")
@@ -221,21 +227,40 @@ def test_vier_grosse_knoepfe(linkseite, locale, code):
       const box = e => { const r = e.getBoundingClientRect(); return {x: r.x, y: r.y, b: r.width, h: r.height}; };
       const play = document.querySelector('section:not([hidden]) a.play');
       const bild = play.querySelector('img');
-      return {play: box(play), src: bild.getAttribute('src'), breit: bild.naturalWidth, fertig: bild.complete,
+      return {play: box(play), img: box(bild), bio: box(document.querySelector('section:not([hidden]) .bio')),
+              src: bild.getAttribute('src'), breit: bild.naturalWidth, fertig: bild.complete,
               profile: [...document.querySelectorAll('.profile a')].map(a => Object.assign(box(a), {href: a.href})),
               klein: [...document.querySelectorAll('footer [data-fuss]:not([hidden]) a')].map(a => Object.assign(box(a),
                      {schrift: parseFloat(getComputedStyle(a).fontSize), text: a.textContent}))};
     }""")
     # Googles Abzeichen in der Sprache der Seite, geladen.
     assert m["src"] == "google-play-%s.png" % code and m["fertig"] and m["breit"] == 646, m
-    # Darunter Instagram, TikTok, YouTube, gleich breit wie das Abzeichen,
-    # alle vier ohne Scrollen sichtbar.
+    # Das sichtbare Abzeichen in der Datei (646 x 250): das englische mit
+    # 41 px durchsichtigem Rand ringsum, die uebrigen nur oben und unten
+    # 29 px. a.play ist genau so gross - nichts vom Abzeichen abgeschnitten.
+    play, img = m["play"], m["img"]
+    seite, oben = (41 / 646, 41 / 250) if code in seite_bauen.ABZEICHEN_MIT_RAND else (0, 29 / 250)
+    abz = {"x": img["x"] + img["b"] * seite, "y": img["y"] + img["h"] * oben,
+           "b": img["b"] * (1 - 2 * seite), "h": img["h"] * (1 - 2 * oben)}
+    for k in ("x", "y", "b", "h"):
+        assert abs(abz[k] - play[k]) < 0.5, (k, abz, play)
+    # Ajdin am 01.11.2026: "nur das google play button ist zu gross" -
+    # etwa so hoch wie die Knoepfe darunter, mittig, mit Googles Freiraum
+    # (ein Viertel der Hoehe ringsum).
+    assert 56 <= play["h"] <= 64, play
+    frei = play["h"] / 4
+    assert play["y"] - (m["bio"]["y"] + m["bio"]["h"]) >= frei, (m["bio"], play)
+    assert m["profile"][0]["y"] - (play["y"] + play["h"]) >= frei, (play, m["profile"][0])
+    assert play["x"] >= frei and play["x"] + play["b"] <= 390 - frei, play
+    # Darunter Instagram, TikTok, YouTube, gleich breit, das Abzeichen
+    # mittig darueber, alle vier ohne Scrollen sichtbar.
     adressen = dict(seite_bauen.SOZIAL)
     assert [p["href"] for p in m["profile"]] == [adressen[n] for n in ("Instagram", "TikTok", "YouTube")]
     for p in m["profile"]:
-        assert abs(p["b"] - m["play"]["b"]) < 1 and abs(p["x"] - m["play"]["x"]) < 1, (p, m["play"])
+        assert abs(p["b"] - m["profile"][0]["b"]) < 1 and p["b"] >= 300, p
+        assert abs((p["x"] + p["b"] / 2) - (play["x"] + play["b"] / 2)) < 1, (p, play)
         assert p["h"] >= 60 and p["y"] + p["h"] <= 844, p
-    assert m["play"]["y"] + m["play"]["h"] <= m["profile"][0]["y"]
+        assert abs(p["h"] - play["h"]) <= 12, (p, play)
     # Klein, aber lesbar und treffbar.
     assert [a["text"] for a in m["klein"]][1] == sprachen.texte(code)["set.impressum"]
     assert len(m["klein"]) == 4

@@ -26,10 +26,11 @@ Seiten im Ordner `github-seite`:
                               Nur mit KONTAKT_FORMULAR = True in sprachen.py
                               UND zmaj-android/cloud_zugang.json
     links.html                Linkseite fuer die Profile auf TikTok,
-                              Instagram und YouTube: vier grosse Knoepfe
-                              (Google Play, Instagram, TikTok, YouTube),
-                              darunter klein Kontakt, Impressum, Datenschutz
-                              und Nutzungsbedingungen (seit 31.10.2026)
+                              Instagram und YouTube: Googles Abzeichen und
+                              drei grosse Knoepfe (Instagram, TikTok,
+                              YouTube), darunter klein Kontakt, Impressum,
+                              Datenschutz und Nutzungsbedingungen (seit
+                              31.10.2026)
     google-play-*.png         das Abzeichen von Google Play in den acht
                               Sprachen, fuer links.html, Kopie aus
                               grafik/marken/google-play
@@ -1050,7 +1051,7 @@ ABZEICHEN = {
 # Alle Dateien sind 646 x 250. Das englische Abzeichen steht darin mit 41 px
 # durchsichtigem Rand ringsum (564 x 168), die uebrigen sieben fuellen die
 # Breite und haben nur oben und unten 29 px (646 x 192). LINKS_STIL gleicht
-# das aus: Sichtbar ist jedes Abzeichen so breit wie die Knoepfe darunter.
+# das aus: Sichtbar ist jedes Abzeichen gleich gross, rund 202 x 60 px.
 ABZEICHEN_MIT_RAND = ("en",)
 
 # Die drei Profile als grosse Knoepfe, in Ajdins Reihenfolge ("insta tiktok
@@ -1082,12 +1083,17 @@ def marken_zeichen(name):
 # Browser, damit ein erzwungener Dunkelmodus (manche In-App-Browser) die
 # Farben nicht umdreht.
 #
-# Das Abzeichen: Google verlangt ringsum Freiraum von einem Viertel seiner
-# Hoehe. Beim englischen steckt er schon in der Datei; damit es trotzdem so
-# breit ist wie die Knoepfe, ist das Bild um 646/564 breiter und ragt links
-# und rechts um 41/564 hinaus - nur der durchsichtige Rand, a.play schneidet
-# ihn ab. Die uebrigen haben oben und unten 29 statt 48 px (ein Viertel von
-# 192) und bekommen die fehlenden 19/646 der Breite als Abstand dazu.
+# Das Abzeichen: Ajdin am 01.11.2026: "beim linktree ist alles super nur das
+# google play button ist zu gross". Es war so breit wie die Knoepfe darunter
+# und damit 108 px hoch. Jetzt steht es mittig, sichtbar 202 px breit und
+# 60 px hoch - etwa so hoch wie die Knoepfe (68 px), das schwarze Feld wirkt
+# ohnehin groesser. a.play ist genau so gross wie das sichtbare Abzeichen:
+# Den durchsichtigen Rand der Datei ziehen negative Abstaende ab (oben und
+# unten 29/646 der Breite, beim englischen ringsum 41/564, das Bild dafuer
+# um 646/564 breiter), a.play schneidet ihn ab - vom Abzeichen selbst fehlt
+# kein Pixel. Den Freiraum, den Google ringsum verlangt (ein Viertel der
+# Hoehe, hier 15 px), geben die 24 px Abstand oben und unten; seitlich
+# bleiben auf dem Handy rund 80 px.
 #
 # Kontakt, Impressum, Datenschutz und Nutzungsbedingungen stehen klein unten
 # (Ajdin: "das interessiert vielleicht 1% der leute"), aber lesbar: 13 px in
@@ -1105,9 +1111,9 @@ LINKS_STIL = """
 .bild{display:block;width:88px;height:88px;margin:0 auto 12px;border-radius:22px}
 .links h1{font-size:23px;line-height:1.25;margin:0 0 6px}
 .bio{color:var(--leise);font-size:15px;line-height:1.5;margin:0}
-.play{display:block;overflow:hidden}
-.play img{display:block;width:100%;height:auto;margin:2.95% 0}
-.play img.rand{width:114.54%;margin:0 -7.27%}
+.play{display:block;width:202px;margin:24px auto;overflow:hidden}
+.play img{display:block;width:100%;height:auto;margin:-4.489% 0}
+.play img.rand{width:114.54%;margin:-7.27%}
 .profile{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .profile a{display:flex;align-items:center;gap:14px;min-height:68px;padding:11px 16px;border-radius:16px;
   background:var(--karte);border:1px solid var(--linie);color:var(--text);text-decoration:none;text-align:left}
