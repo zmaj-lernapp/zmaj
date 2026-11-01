@@ -389,6 +389,17 @@ Der Lernpfad zeigt vierzehn Sektionen mit ihren Levels, ähnlich wie bei Duoling
 Ein Level antippen öffnet die Übungen. Bestandene Levels und Sektionen bleiben
 offen und können jederzeit wieder gespielt werden.
 
+**▶ Weitermachen** oben auf der Startseite (seit 01.11.2026, Ajdins Wunsch):
+öffnet das Level, in dem zuletzt eine Lektion begonnen oder beendet wurde –
+auch ein früheres. Ist es bestanden, das nächste nicht bestandene danach;
+gibt es keins oder ist noch nichts gemerkt (neue Nutzer, alter Stand), wie
+vorher das erste nicht bestandene Level. Level-Test, Runden im Reiter
+Wiederholen, Geschichten und Einstufung merken sich nichts; die Einstufung
+löscht ein vorher gemerktes Level. Im Lernstand steht es im Feld
+`letzte_lektion`, etwa `{"level": "familie", "z": 1793520000000}` (`z` in
+Millisekunden). Beim Cloud-Abgleich gewinnt das neuere. Die Regel steht in
+`weiterZiel()` in `web/index.html`.
+
 **Sektion 1 · Grundlagen & Alltag** (15 Levels): Grundlagen, Zahlen, Farben,
 Familie, Essen & Trinken, Wochentage, Monate, Zeit, Zuhause, Wetter & Natur,
 Körper & Gesundheit, Einkaufen & Kleidung, Unterwegs, Verben, Smalltalk &
