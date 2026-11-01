@@ -182,6 +182,25 @@ def test_zukunft_als_wort_nicht_als_zeitform(alle_daten):
         assert w["budućnost"] == soll[code], code
 
 
+def test_upravo_und_maloprije_im_tuerkischen_klar_getrennt(alle_daten):
+    """Gegenpruefung 01.11.2026: tr hiess upravo „az önce“ und maloprije
+    „biraz önce“ - in einer Auswahl nur um „bir“ verschieden. upravo heisst
+    jetzt „yeni (az önce)“ wie in „Eve yeni geldim.“"""
+    w = {x["bs"]: x["de"] for x in _alle(alle_daten["tr"])}
+    assert w["upravo"] == "yeni (az önce)"
+    assert w["maloprije"] == "biraz önce"
+    assert "Eve yeni geldim." in w.values()
+
+
+def test_franzoesischer_tipp_arbeitsplatz_passt_zu_smjena(alle_daten):
+    """Gegenpruefung 01.11.2026: der Tipp begann mit „L'équipe“, smjena
+    heisst aber „poste (de travail)“; „équipe“ ist ekipa im Level Sport."""
+    k = next(k for k in alle_daten["fr"]["kategorien"] if k["id"] == "arbeitsplatz")
+    assert k["tipp"].startswith("Le poste, le chantier"), k["tipp"]
+    assert "équipe" not in k["tipp"].lower()
+    assert any(w["bs"] == "smjena" and w["de"] == "poste (de travail)" for w in k["words"])
+
+
 def test_gleiche_bedeutung_im_neuen_teil_nur_bei_paaren(alle_daten):
     for code, daten in alle_daten.items():
         alle = _alle(daten)

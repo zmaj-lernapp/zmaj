@@ -32099,7 +32099,7 @@
    <tuv xml:lang="bs"><seg>upravo</seg></tuv>
    <tuv xml:lang="de"><seg>gerade (eben)</seg></tuv>
    <tuv xml:lang="en"><seg>just (now)</seg></tuv>
-   <tuv xml:lang="tr"><seg>az önce</seg></tuv>
+   <tuv xml:lang="tr"><seg>yeni (az önce)</seg></tuv>
    <tuv xml:lang="sv"><seg>precis (nu)</seg></tuv>
    <tuv xml:lang="nl"><seg>net</seg></tuv>
    <tuv xml:lang="nb"><seg>nettopp</seg></tuv>
@@ -32111,7 +32111,7 @@
    <tuv xml:lang="bs"><seg>Upravo sam stigla kući.</seg></tuv>
    <tuv xml:lang="de"><seg>Ich bin gerade nach Hause gekommen.</seg></tuv>
    <tuv xml:lang="en"><seg>I just got home.</seg></tuv>
-   <tuv xml:lang="tr"><seg>Eve az önce geldim.</seg></tuv>
+   <tuv xml:lang="tr"><seg>Eve yeni geldim.</seg></tuv>
    <tuv xml:lang="sv"><seg>Jag har precis kommit hem.</seg></tuv>
    <tuv xml:lang="nl"><seg>Ik ben net thuisgekomen.</seg></tuv>
    <tuv xml:lang="nb"><seg>Jeg har nettopp kommet hjem.</seg></tuv>
