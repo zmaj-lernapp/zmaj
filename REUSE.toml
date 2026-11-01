@@ -129,6 +129,26 @@ precedence = "override"
 SPDX-FileCopyrightText = "Google LLC"
 SPDX-License-Identifier = "LicenseRef-Google-Brand"
 
+# The "Get it on Google Play" badges on the link page links.html (31 Oct
+# 2026), in the eight languages of the page, downloaded unchanged from
+# Google's badge page. Trademarks of Google LLC, used under the Google Play
+# badge guidelines. Sources and checksums: grafik/marken/QUELLEN.md.
+[[annotations]]
+path = "grafik/marken/google-play/*.png"
+precedence = "override"
+SPDX-FileCopyrightText = "Google LLC"
+SPDX-License-Identifier = "LicenseRef-Google-Brand"
+
+# The Instagram, TikTok and YouTube glyphs on the same page, unchanged from
+# the npm package simple-icons 16.35.0. The icon data is CC0-1.0; the logos
+# remain trademarks of Meta Platforms, ByteDance and Google LLC and are used
+# only to link to our own profiles. Sources: grafik/marken/QUELLEN.md.
+[[annotations]]
+path = "grafik/marken/simple-icons/*.svg"
+precedence = "override"
+SPDX-FileCopyrightText = "Simple Icons contributors"
+SPDX-License-Identifier = "CC0-1.0"
+
 # axe-core 4.13.0, only for the browser accessibility test in tests_e2e/.
 # Never shipped in web/. The bundle contains MIT-licensed helpers listed in
 # axe-core-LICENSE-3RD-PARTY.txt.
