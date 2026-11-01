@@ -513,6 +513,16 @@ Beim Einbau festgelegt, ohne Ajdins Bosnisch zu ändern:
 - Kaufen und bezahlen und die nachgeholten Paare stehen in Sektion 10
   (Tun und Lassen), der Rest in der neuen Sektion 12.
 
+**Ton.** Wörter und Beispielsätze hat Emir gesprochen (ElevenLabs,
+01.11.2026), Text genau wie in der App; Ajdin hat alles abgehört. Die
+Aufnahmen liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen in
+`ton_nur_emir.json`: w3124–w3421 in der Reihenfolge der App, jedes Wort
+vor seinem Satz, und w3720–w3723 für *srčani udar / infarkt*,
+*svrbjeti / svrbiti*, *apotekar / farmaceut* und *toplomjer / termometar*
+mit allen Formen; die erste Form allein steht an ihrer Stelle, wie bei
+*strina / amidžinica*. *zarađivati* und *jezik* hatten ihre
+Emir-Aufnahme schon.
+
 ## 01.11.2026 – Wortschatz-Paket 4: Sektion 13 · Zeit und Freizeit, Sektion 14 · Lernen und Arbeiten
 
 150 Einträge aus `Release\Wortschatz\paket_04.json`, von Ajdin am 01.11.2026
@@ -552,3 +562,10 @@ Beim Einbau festgelegt:
   nicht da.
 - **Zukunft.** Für *budućnost* gibt es eigene Übersetzungen: „Zukunft“ ist
   schon der Titel der Grammatik zur Zeitform (türkisch *Gelecek zaman*).
+
+**Ton.** Wörter und Beispielsätze hat Emir gesprochen (ElevenLabs,
+01.11.2026), Text genau wie in der App; Ajdin hat alles abgehört und bei
+*sport* und *pekar* unter mehreren Fassungen gewählt. Die Aufnahmen
+liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen in
+`ton_nur_emir.json`: w3422–w3719, in der Reihenfolge der App, jedes Wort
+vor seinem Satz. *vrijeme* und *još* hatten ihre Emir-Aufnahme schon.
