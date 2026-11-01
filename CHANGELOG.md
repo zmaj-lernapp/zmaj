@@ -185,18 +185,6 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
-- "Continue" on the home screen (learning path tab) now opens the level in
-  which you last started or finished a lesson, even an earlier one, instead
-  of always the first level not yet passed. If that level is passed, it
-  opens the next level after it that is not passed yet; if there is none,
-  or nothing is remembered yet (new learners, progress from before this
-  change), it works as before. Level tests, review rounds, stories and the
-  placement test do not count; the placement test clears what was
-  remembered. The level is stored in a new top-level field
-  `letzte_lektion` (`{level, z}`) of the progress – on the device, in the
-  backup file (still version 1) and in the cloud backup, where the newer
-  one wins; v109 carries it along unchanged.
-  `tests_e2e/test_weitermachen.py`.
 - Tablets: from 600 points on the shorter side (Android's "sw600dp") the
   whole app scales up with the screen. Upright, the column fills about
   88 % of the width (10-inch tablet: everything 1.3 times larger); in
