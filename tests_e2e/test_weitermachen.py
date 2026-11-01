@@ -113,6 +113,30 @@ def test_nach_der_einstufung_ab_dem_einstieg(seite, heute_stand):
     assert seite.fehler == []
 
 
+def test_eingestuft_aber_von_vorn_gelernt(seite, heute_stand):
+    """Ajdins Test-App am 01.11.2026: eingestuft auf Level 65, aber Level 1
+    bis 9 bestanden. Der Knopf zeigt Level 10, nicht Level 65 - der bleibt
+    trotzdem offen. Nachueben in Level 8 aendert nichts. Wer dann ab dem
+    Einstieg etwas besteht, lernt wieder dort weiter."""
+    ids = _ids(seite, heute_stand)
+    ein = min(64, len(ids) - 3)
+    stand = {"einstufung": {"tag": datetime.date.today().isoformat(), "wahl": "alles", "bis": ids[ein]},
+             "bestanden": ids[:9]}
+    seite.starten(stand=stand)
+    _knopf_zeigt(seite, 9)
+    assert seite.js(JETZT) == ["10"]
+    assert seite.js("(i) => isUnlocked(i)", ein) is True
+    _lektion_in(seite, 7)
+    _knopf_zeigt(seite, 9)
+    # Ein eingeschobenes Level 5 gilt auch hier
+    seite.starten(stand=dict(stand, bestanden=[x for n, x in enumerate(ids[:9]) if n != 4]))
+    _knopf_zeigt(seite, 4)
+    # Ab dem Einstieg etwas bestanden: dort geht es weiter
+    seite.starten(stand=dict(stand, bestanden=ids[:9] + [ids[ein]]))
+    _knopf_zeigt(seite, ein + 1)
+    assert seite.fehler == []
+
+
 def test_neuer_nutzer_und_ganz_am_ende(seite, heute_stand):
     ids = _ids(seite, heute_stand)
     _knopf_zeigt(seite, 0)

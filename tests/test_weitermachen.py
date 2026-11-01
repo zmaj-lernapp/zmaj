@@ -18,10 +18,13 @@ def _html(index_html):
 def test_dran_ist_das_erste_nicht_bestandene(index_html):
     html = _html(index_html)
     rumpf = html.split("const firstOpen = () => {\n")[1].split("\n};\n")[0]
-    assert "const ab = Math.max(0, einstufungIndex());" in rumpf
+    # Der Einstieg gilt nur, solange davor nichts oder ab ihm schon etwas bestanden ist
+    assert "const ein = einstufungIndex(), h = hoechsterBestanden();" in rumpf
+    assert "const ab = (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;" in rumpf
+    # Vom Startpunkt aus das erste nicht bestandene - nicht h + 1, sonst
+    # uebersprang der Knopf eingeschobene Level
     assert "CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id))" in rumpf
-    # Nicht vom hoechsten bestandenen aus - sonst uebersprang der Knopf eingeschobene Level
-    assert "hoechsterBestanden" not in rumpf
+    assert "h + 1" not in rumpf
 
 
 def test_knopf_und_lernpfad_fragen_firstopen(index_html):
