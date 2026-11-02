@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Die offenen Patch-Skripte passen auf den heutigen Stand von web/index.html.
+"""Die Patch-Skripte passen auf den heutigen Stand von web/index.html.
 
-Sie liegen bereit, bis der geschlossene Test vorbei ist. Ändert sich
-index.html vorher an einer ihrer Stellen, soll das hier auffallen und nicht
-erst am Tag des Builds. Am 04.10.2026 brachen sieben ältere Skripte genau so
+Sie sind am 05.10.2026 angewendet (Build 91) und bleiben liegen, weil dieser
+Test den angewendeten Stand prüft. Ändert sich index.html an einer ihrer
+Stellen, soll das hier auffallen und nicht erst, wenn jemand ein Skript
+wieder braucht. Am 04.10.2026 brachen sieben ältere Skripte genau so
 ab, ohne dass es ein Test bemerkt hätte - deshalb gilt das hier für jedes
-offene Skript, das richten.py benutzt."""
+Skript, das richten.py benutzt. Der Name OFFEN stammt aus der Zeit vor
+dem Anwenden."""
 import importlib
 
 import pytest

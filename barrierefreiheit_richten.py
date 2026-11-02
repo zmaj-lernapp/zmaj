@@ -76,8 +76,9 @@ WAS BEWUSST BLEIBT
   - page-has-heading-one: eine h1 pro Ansicht hiesse sichtbare neue
     Ueberschriften oder versteckte Texte in acht Sprachen.
 
-ACHTUNG - NICHT VOR DEM 07.10.2026 EINREICHEN. Jede Einreichung setzt
-Googles Pruefuhr fuer den geschlossenen Test zurueck.
+ANGEWENDET am 05.10.2026 (Build 91). Das Skript bleibt, weil
+tests/test_richten.py und tests/test_barrierefreiheit_richten.py den
+angewendeten Stand pruefen.
 
 Probelauf:  python barrierefreiheit_richten.py
 Schreiben:  python barrierefreiheit_richten.py --schreiben

@@ -98,6 +98,15 @@ def main():
 
         # Bedeutung -> Liste von (bosnisch, level)
         nach_bedeutung = defaultdict(list)
+        # Aspektpaare (31.10.2026): ostati und ostajati heissen beide
+        # "bleiben" - mit Absicht, siehe "partner" in vokabeln.py. Die App
+        # haelt sie in der Auswahl auseinander und gibt beim Tippen den
+        # Paar-Hinweis; hier zaehlen sie nur mit.
+        paare = set()
+        for k in d.get("kategorien", []):
+            for w in k.get("words", []):
+                if w.get("partner"):
+                    paare.add(frozenset((w.get("bs"), w["partner"])))
         for k in d.get("kategorien", []):
             for w in k.get("words", []):
                 bs, de = w.get("bs"), w.get("de")
@@ -108,6 +117,11 @@ def main():
                 nach_bedeutung[normal(de)].append((bs, k.get("label", "?"), k.get("id")))
 
         treffer = {b: v for b, v in nach_bedeutung.items() if len(v) > 1}
+        aspekt = [b for b, v in treffer.items() if len(v) == 2 and frozenset(x[0] for x in v) in paare]
+        for b in aspekt:
+            del treffer[b]
+        if aspekt:
+            print("%s  %d Aspektpaare mit gleicher Bedeutung (gewollt, siehe partner)" % (sprache, len(aspekt)))
         if not treffer:
             print("%s  nichts" % sprache)
             continue

@@ -7,6 +7,87 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Vocabulary packages 3 and 4 (reviewed by a native speaker on 31.10. and
+  1.11.2026): 300 words, each followed by its example sentence (600 new
+  entries, 2,942 in total, 107 levels). Section 10 gets three levels before
+  "When something happens": "Buying and returning", "Spending and saving
+  money" and "Pairs: more verbs". Three new sections complete the B1 stage
+  of the course plan, each in the next colour: section 12 · Body and health
+  (8 levels: body parts, illness, ailments, at the doctor's office, at the
+  pharmacy, healthy living), section 13 · Time and leisure (6 levels: time
+  expressions, sports, hobbies, media, travel) and section 14 · Learning
+  and working (4 levels: school, studying, jobs, at work). `partner` is set
+  on both words of 27 new pairs, also on the older verb from packages 1 and
+  2; *izabrati* ("to decide / to choose") and *birati* ("to pick / to
+  choose") are a pair with different meanings, like *popiti* and *piti*.
+  Second forms approved by the native speaker count when typing (*nogomet*,
+  *naočare*, *momenat* …), forms he ruled out do not (*ranac*, *grudi*,
+  *rentgen*, *prepisati*, *odabrati*). Words spelled like another word
+  (*jezik* "tongue" and "language", *vrijeme* "time" and "weather") never
+  appear together as answer options. *budućnost* has its own translations,
+  because "Zukunft" is also the title of the future-tense lesson. The app
+  speaks all new words and example sentences with recordings that only the
+  store version contains (`ton_nur_emir.json`, w3124–w3723; *zarađivati*,
+  *jezik*, *vrijeme* and *još* already had theirs); the web demo, the
+  dataset and the Anki decks have no audio for them.
+- Vocabulary package 2 (reviewed by a native speaker on 31.10.2026): 151
+  words, each followed by its example sentence (302 new entries, 2,342 in
+  total, 86 levels). Section 10 gets four levels before "When something
+  happens": three that bring the second verb of a pair (*gubiti* to
+  *izgubiti*, *pokazivati* to *pokazati*) and "Around the house". The new
+  section 11 · How things are has seven levels of adjectives (opposites,
+  character, feelings, the five senses) and carries the second colour. The
+  app shows the masculine form (*dug*); the feminine and neuter forms
+  (*duga*, *dugo*) count when typing. Words spelled like another word
+  (*dug* "long" and *dug* "debt", *jako* "very" as the neuter of *jak*)
+  never appear together as answer options. `partner` is now set on both
+  words of each new pair. *okus* (taste of food) and *ukus* (taste in
+  style) are two words. In Norwegian, "putzen" is now "gjøre rent", because
+  "vaske" is the new word for "waschen" in the same level. The app speaks
+  all new words and example sentences with recordings that only the store
+  version contains (`ton_nur_emir.json`, w2822–w3123; *dug* and *skuhati*
+  already had theirs); the web demo, the dataset and the Anki decks have
+  no audio for them.
+- Section 10 · Doings and dealings (vocabulary package 1, reviewed by a
+  native speaker on 31.10.2026): 140 verbs and 10 emergency words in 10 new
+  levels, each word followed by its example sentence (300 new entries,
+  2,040 in total). Aspect pairs such as *ostati* / *ostajati* (both "to
+  stay") are learned separately, with their own IDs; the app does not show
+  the aspect. The two never appear together as answer options, and typing
+  the other verb of the pair gives a one-time "Almost right! It's the other
+  verb of the pair." instead of costing a life (new field `partner` in
+  `vokabeln.py`, new text `task.partner` in all eight languages). Forms with
+  " / " (*boljeti / boliti*) count one by one when typing, `auch` adds
+  *izići*, *dobijati* and three words for the ambulance. The new section has
+  no tenth colour yet and repeats the first. The app speaks the 146 words
+  that were not in the app before and all 150 example sentences with
+  recordings that only the store version contains (`ton_nur_emir.json`,
+  words w2521–w2671, sentences w2672–w2821); the web demo, the dataset and
+  the Anki decks have no audio for them.
+- Spaced review of learned words (Leitner box, decided on 28.10.2026):
+  every word you know has a level with a fixed interval of 1, 3, 7, 14, 30,
+  90 or 180 days. A right answer moves it up one level, also before the
+  due date, but at most once a day (a word you already practised today
+  stays where it is, and a right answer never brings the date closer); a
+  wrong answer moves it back two (never below the first). Every lesson fills up to 3 of its
+  10 word slots with due words, marked "Review: <level>" as in the level
+  test, never as a speaking task (those can be skipped); new words and the
+  "Continue" button stay as they are. The Review tab has a third box, "Due
+  today", below the two existing ones, with its own round: lives, streak,
+  coins and daily quests as in the other rounds, and a wrong answer also
+  goes to the mistakes box. At most 30 due words a day; the rest stays due
+  for the following days. The most overdue relative to its interval comes
+  first, so a word learned yesterday comes before one that is a few days
+  late after 90 days. The review day starts at 4 a.m., so a word learned
+  just before midnight is not due minutes later. Words learned before the
+  update get their first date spread over the coming weeks, at most 10 a
+  day, oldest levels first. Answers in lessons, rounds and level tests
+  count, the placement test does not. The progress keeps this in a new
+  field `kartei` (level, due day and last practised day per word, days
+  counted from 2026-08-01, about 40 bytes per word): in the device
+  storage, the backup file (older files without it still load) and the
+  cloud backup, where per word the more recently practised state wins.
+  New texts in all eight languages.
 - Account (Android app, v109): after the first lesson – or the placement
   test – the app asks you to sign in, with Google or with email and
   password ("Forgot password?" included). Existing learners sign in once at
@@ -89,8 +170,33 @@ are in the Play Store listing. Format:
 - `app_bauen.py --pflicht` builds such a mandatory update (next multiple of
   100); normal builds skip multiples of 100, and an unknown switch aborts the
   build before anything is copied.
+- Website: `links.html`, a link page for the TikTok, Instagram and YouTube
+  profiles (`links.html?von=tiktok` and so on), in all eight languages,
+  chosen from the phone's language list (English otherwise). Four large
+  buttons of equal width: the official "Get it on Google Play" badge in the
+  page's language, with the channel as campaign source in `referrer=`
+  (`utm_source=tiktok|instagram|youtube`, otherwise `web`, also without
+  JavaScript), then Instagram, TikTok and YouTube with their logos. Below,
+  in small print, contact, legal notice, privacy policy, terms of use, the
+  note "Characters & voices made with AI" and the Google Play trademark
+  notice. The badges and logos are stored unchanged in `grafik/marken`
+  (sources and checksums in `QUELLEN.md`); nothing is loaded from other
+  servers. No counter, no cookies, nothing stored on the device; a Content
+  Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Tablets: from 600 points on the shorter side (Android's "sw600dp") the
+  whole app scales up with the screen. Upright, the column fills about
+  88 % of the width (10-inch tablet: everything 1.3 times larger); in
+  landscape the column is 640 points wide and centred, and the app scales
+  only as far as a lesson still fits without scrolling (7-inch: not at
+  all); at most 1.4 times. Lessons, level tests
+  and the placement test fill the screen: upright, the dragon and the task
+  sit in the middle, the answers below, and Check/Continue at the bottom,
+  with room reserved so nothing jumps after an answer. Phones (under 600
+  points) look exactly as before. `tests_e2e/test_tablet.py`.
+- Legal notice (app and website, all eight languages): it now says that it
+  also applies to our profiles on TikTok, Instagram and YouTube.
 - Account (v109): a new password needs 8 characters with an uppercase and
   a lowercase letter, a digit and a special character, and must not contain
   the part of the email address before the @. A checklist under the field

@@ -2,7 +2,10 @@
  * kontakt_weiterleitung.gs  -  bringt Nachrichten aus dem Kontaktformular ins Postfach
  *
  * Das Formular auf zmaj-lernapp.github.io/kontakt.html (seite_bauen.py) legt
- * jede Nachricht als Dokument nachrichten/{uid} in Firestore ab. Firebase
+ * jede Nachricht als Dokument nachrichten/{uid} in Firestore ab. Seit dem
+ * 01.11.2026 tut das auch das Feedback der Handy-App (web/index.html,
+ * feedbackSenden) - mit denselben Feldern, antwort ist dort die Adresse des
+ * Kontos. Fuer dieses Skript sehen beide gleich aus. Firebase
  * kann im Gratistarif Spark keine Mails schicken (dafuer braeuchte es Cloud
  * Functions und damit den Tarif Blaze). Dieses Skript laeuft deshalb als
  * Google Apps Script im Konto zmaj.lernapp@gmail.com: Alle 5 Minuten meldet

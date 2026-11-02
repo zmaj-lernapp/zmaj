@@ -1743,3 +1743,1205 @@ Trebam termin	Jag behöver en tid	zmaj zmaj::65_gesundheit
 Na bolovanju sam	Jag är sjukskriven	zmaj zmaj::65_gesundheit
 Gdje Vas boli?	Var gör det ont?	zmaj zmaj::65_gesundheit
 Alergičan sam na ... / Alergična sam na ...	Jag är allergisk mot ... (m/k)	zmaj zmaj::65_gesundheit
+ostati	stanna	zmaj zmaj::66_kommen_gehen
+Ostani još malo!	Stanna lite till!	zmaj zmaj::66_kommen_gehen
+ostajati	stanna	zmaj zmaj::66_kommen_gehen
+Ljeti mi ostajemo kod nane.	På sommaren stannar vi hos mormor.	zmaj zmaj::66_kommen_gehen
+dolaziti	komma	zmaj zmaj::66_kommen_gehen
+Autobus dolazi svakih deset minuta.	Bussen kommer var tionde minut.	zmaj zmaj::66_kommen_gehen
+vratiti se	komma tillbaka	zmaj zmaj::66_kommen_gehen
+Ja ću se vratiti za pola sata.	Jag kommer tillbaka om en halvtimme.	zmaj zmaj::66_kommen_gehen
+vraćati se	komma tillbaka	zmaj zmaj::66_kommen_gehen
+Svakog ljeta se vraćamo u Bosnu.	Varje sommar återvänder vi till Bosnien.	zmaj zmaj::66_kommen_gehen
+otići	gå därifrån / gå dit	zmaj zmaj::66_kommen_gehen
+Sutra ću otići kod doktora.	I morgon går jag till läkaren.	zmaj zmaj::66_kommen_gehen
+odlaziti	gå därifrån / gå dit	zmaj zmaj::66_kommen_gehen
+Zašto već odlaziš?	Varför går du redan?	zmaj zmaj::66_kommen_gehen
+donijeti	hämta / ta med	zmaj zmaj::66_kommen_gehen
+Možeš li mi donijeti čašu vode?	Kan du hämta ett glas vatten åt mig?	zmaj zmaj::66_kommen_gehen
+donositi	hämta / ta med	zmaj zmaj::66_kommen_gehen
+Poštar donosi pakete ujutro.	Brevbäraren kommer med paketen på morgonen.	zmaj zmaj::66_kommen_gehen
+proći	gå förbi / gå (om tid)	zmaj zmaj::66_kommen_gehen
+Ljeto je brzo prošlo.	Sommaren gick fort.	zmaj zmaj::66_kommen_gehen
+prolaziti	gå förbi / gå (om tid)	zmaj zmaj::66_kommen_gehen
+Svaki dan prolazim pored tvoje kuće.	Varje dag går jag förbi ditt hus.	zmaj zmaj::66_kommen_gehen
+krenuti	ge sig av / åka iväg	zmaj zmaj::66_kommen_gehen
+Moramo krenuti, kasno je.	Vi måste gå, det är sent.	zmaj zmaj::66_kommen_gehen
+kretati	ge sig av / åka iväg	zmaj zmaj::66_kommen_gehen
+Autobus kreće u sedam.	Bussen går klockan sju.	zmaj zmaj::66_kommen_gehen
+stići	komma fram	zmaj zmaj::66_kommen_gehen
+Mi smo stigli u Sarajevo.	Vi har kommit fram till Sarajevo.	zmaj zmaj::66_kommen_gehen
+stizati	komma fram	zmaj zmaj::66_kommen_gehen
+Voz stiže u osam sati.	Tåget kommer fram klockan åtta.	zmaj zmaj::66_kommen_gehen
+ući	gå in / komma in	zmaj zmaj::66_kommen_gehen
+Uđi, vrata su otvorena.	Kom in, dörren är öppen.	zmaj zmaj::66_kommen_gehen
+ulaziti	gå in / komma in	zmaj zmaj::66_kommen_gehen
+Ne ulazi u sobu u cipelama!	Gå inte in i rummet med skorna på!	zmaj zmaj::66_kommen_gehen
+izaći	gå ut / gå ut och roa sig	zmaj zmaj::66_kommen_gehen
+Hoćemo li večeras izaći?	Ska vi gå ut i kväll?	zmaj zmaj::66_kommen_gehen
+izlaziti	gå ut / gå ut och roa sig	zmaj zmaj::66_kommen_gehen
+Vikendom rado izlazim s prijateljima.	På helgerna går jag gärna ut med vänner.	zmaj zmaj::66_kommen_gehen
+voziti	köra (ett fordon)	zmaj zmaj::66_kommen_gehen
+Ne vozi tako brzo!	Kör inte så fort!	zmaj zmaj::66_kommen_gehen
+putovati	resa / färdas	zmaj zmaj::66_kommen_gehen
+Volim putovati vozom.	Jag reser gärna med tåg.	zmaj zmaj::66_kommen_gehen
+dobiti	få	zmaj zmaj::67_geben_nehmen
+Jesi li dobio moju poruku?	Har du fått mitt meddelande?	zmaj zmaj::67_geben_nehmen
+dobivati	få	zmaj zmaj::67_geben_nehmen
+Platu dobivamo krajem mjeseca.	Lönen får vi i slutet av månaden.	zmaj zmaj::67_geben_nehmen
+nalaziti se	befinna sig	zmaj zmaj::67_geben_nehmen
+Gdje se nalazi apoteka?	Var finns apoteket?	zmaj zmaj::67_geben_nehmen
+izgubiti	förlora / tappa bort	zmaj zmaj::67_geben_nehmen
+Izgubio sam ključeve.	Jag har tappat bort nycklarna.	zmaj zmaj::67_geben_nehmen
+naći	hitta	zmaj zmaj::67_geben_nehmen
+Jesi li našla posao?	Har du hittat ett jobb?	zmaj zmaj::67_geben_nehmen
+davati	ge	zmaj zmaj::67_geben_nehmen
+Nana djeci uvijek daje bombone.	Mormor ger alltid barnen godis.	zmaj zmaj::67_geben_nehmen
+nositi	ha på sig / bära	zmaj zmaj::67_geben_nehmen
+Danas nosim novu jaknu.	I dag har jag en ny jacka på mig.	zmaj zmaj::67_geben_nehmen
+uzeti	ta	zmaj zmaj::67_geben_nehmen
+Uzmi još jedan komad!	Ta en bit till!	zmaj zmaj::67_geben_nehmen
+uzimati	ta	zmaj zmaj::67_geben_nehmen
+Ovaj lijek uzimam dva puta dnevno.	Den här medicinen tar jag två gånger om dagen.	zmaj zmaj::67_geben_nehmen
+poslati	skicka	zmaj zmaj::67_geben_nehmen
+Pošalji mi adresu, molim te.	Skicka adressen till mig, är du snäll.	zmaj zmaj::67_geben_nehmen
+slati	skicka	zmaj zmaj::67_geben_nehmen
+Svakog mjeseca šaljem novac roditeljima.	Varje månad skickar jag pengar till mina föräldrar.	zmaj zmaj::67_geben_nehmen
+pomagati	hjälpa	zmaj zmaj::67_geben_nehmen
+Kćerka mi pomaže u kuhinji.	Min dotter hjälper mig i köket.	zmaj zmaj::67_geben_nehmen
+čuvati	passa / förvara	zmaj zmaj::67_geben_nehmen
+Nana čuva djecu dok smo na poslu.	Mormor passar barnen medan vi är på jobbet.	zmaj zmaj::67_geben_nehmen
+ponuditi	erbjuda	zmaj zmaj::67_geben_nehmen
+Ponudili su mi posao.	De har erbjudit mig ett jobb.	zmaj zmaj::67_geben_nehmen
+prodati	sälja	zmaj zmaj::67_geben_nehmen
+Prodali smo stari auto.	Vi har sålt den gamla bilen.	zmaj zmaj::67_geben_nehmen
+prodavati	sälja	zmaj zmaj::67_geben_nehmen
+Ovdje prodaju svjež hljeb.	Här säljer de färskt bröd.	zmaj zmaj::67_geben_nehmen
+plaćati	betala	zmaj zmaj::67_geben_nehmen
+Plaćate li karticom ili gotovinom?	Betalar ni med kort eller kontant?	zmaj zmaj::67_geben_nehmen
+kupovati	köpa	zmaj zmaj::67_geben_nehmen
+Hljeb kupujem svako jutro.	Bröd köper jag varje morgon.	zmaj zmaj::67_geben_nehmen
+primati	ta emot / acceptera	zmaj zmaj::67_geben_nehmen
+Primate li kartice?	Tar ni kort?	zmaj zmaj::67_geben_nehmen
+ukrasti	stjäla	zmaj zmaj::67_geben_nehmen
+Neko mi je ukrao novčanik!	Någon har stulit min plånbok!	zmaj zmaj::67_geben_nehmen
+željeti	önska / önska sig	zmaj zmaj::68_sagen_denken
+Želim ti sve najbolje!	Jag önskar dig allt gott!	zmaj zmaj::68_sagen_denken
+misliti	tänka / tycka	zmaj zmaj::68_sagen_denken
+Mama uvijek misli na druge.	Mamma tänker alltid på andra.	zmaj zmaj::68_sagen_denken
+smatrati	anse / vara av den åsikten	zmaj zmaj::68_sagen_denken
+Smatram da je to dobra ideja.	Jag anser att det är en bra idé.	zmaj zmaj::68_sagen_denken
+značiti	betyda	zmaj zmaj::68_sagen_denken
+Šta znači ova riječ?	Vad betyder det här ordet?	zmaj zmaj::68_sagen_denken
+očekivati	förvänta sig / vänta	zmaj zmaj::68_sagen_denken
+Večeras očekujemo goste.	I kväll väntar vi gäster.	zmaj zmaj::68_sagen_denken
+gledati	titta på / kolla	zmaj zmaj::68_sagen_denken
+Šta to gledaš?	Vad tittar du på?	zmaj zmaj::68_sagen_denken
+pogledati	titta på / kolla	zmaj zmaj::68_sagen_denken
+Pogledaj ovo!	Titta på det här!	zmaj zmaj::68_sagen_denken
+vjerovati	tro	zmaj zmaj::68_sagen_denken
+Vjeruj mi, to je istina.	Tro mig, det är sant.	zmaj zmaj::68_sagen_denken
+čuti	höra	zmaj zmaj::68_sagen_denken
+Čuješ li me?	Hör du mig?	zmaj zmaj::68_sagen_denken
+odlučiti	bestämma / besluta	zmaj zmaj::68_sagen_denken
+Odlučili smo kupiti kuću.	Vi har bestämt oss för att köpa ett hus.	zmaj zmaj::68_sagen_denken
+nadati se	hoppas	zmaj zmaj::68_sagen_denken
+Nadam se lijepom vremenu.	Jag hoppas på fint väder.	zmaj zmaj::68_sagen_denken
+odgovoriti	svara	zmaj zmaj::68_sagen_denken
+Još mi nije odgovorio.	Han har inte svarat mig än.	zmaj zmaj::68_sagen_denken
+odgovarati	svara / stå till svars	zmaj zmaj::68_sagen_denken
+Zašto ne odgovaraš na poruke?	Varför svarar du inte på meddelanden?	zmaj zmaj::68_sagen_denken
+pričati	prata / berätta	zmaj zmaj::68_sagen_denken
+O čemu pričate?	Vad pratar ni om?	zmaj zmaj::68_sagen_denken
+ispričati	berätta	zmaj zmaj::68_sagen_denken
+Ispričaj mi šta se desilo.	Berätta vad som hände.	zmaj zmaj::68_sagen_denken
+razgovarati	samtala	zmaj zmaj::69_verstehen
+Moramo razgovarati.	Vi måste prata.	zmaj zmaj::69_verstehen
+shvatiti	fatta / begripa	zmaj zmaj::69_verstehen
+Nisam shvatio pitanje.	Jag förstod inte frågan.	zmaj zmaj::69_verstehen
+zaboraviti	glömma	zmaj zmaj::69_verstehen
+Zaboravio sam tvoj broj.	Jag har glömt ditt nummer.	zmaj zmaj::69_verstehen
+objasniti	förklara	zmaj zmaj::69_verstehen
+Možete li mi objasniti put?	Kan ni förklara vägen för mig?	zmaj zmaj::69_verstehen
+naučiti	lära sig	zmaj zmaj::69_verstehen
+Naučila sam voziti auto.	Jag har lärt mig köra bil.	zmaj zmaj::69_verstehen
+javiti se	höra av sig	zmaj zmaj::69_verstehen
+Javi se kad stigneš!	Hör av dig när du kommer fram!	zmaj zmaj::69_verstehen
+razmišljati	fundera	zmaj zmaj::69_verstehen
+Razmišljam o tome.	Jag funderar på det.	zmaj zmaj::69_verstehen
+saznati	få veta	zmaj zmaj::69_verstehen
+Kako si to saznao?	Hur fick du veta det?	zmaj zmaj::69_verstehen
+slušati	lyssna (på)	zmaj zmaj::69_verstehen
+U autu slušam sevdalinke.	I bilen lyssnar jag på sevdalinkor.	zmaj zmaj::69_verstehen
+dogovoriti se	bestämma träff / komma överens	zmaj zmaj::69_verstehen
+Dogovorili smo se za subotu.	Vi har bestämt att ses på lördag.	zmaj zmaj::69_verstehen
+bojati se	vara rädd / frukta	zmaj zmaj::69_verstehen
+Dijete se boji mraka.	Barnet är rädd för mörkret.	zmaj zmaj::69_verstehen
+sjetiti se	minnas / komma på	zmaj zmaj::69_verstehen
+Sad sam se sjetio!	Nu kom jag på det!	zmaj zmaj::69_verstehen
+sviđati se	gilla / tycka om	zmaj zmaj::69_verstehen
+Sviđa li ti se Sarajevo?	Gillar du Sarajevo?	zmaj zmaj::69_verstehen
+svidjeti se	gilla / tycka om	zmaj zmaj::69_verstehen
+Film mi se nije svidio.	Jag gillade inte filmen.	zmaj zmaj::69_verstehen
+početi	börja	zmaj zmaj::70_anfangen
+Utakmica je već počela.	Matchen har redan börjat.	zmaj zmaj::70_anfangen
+počinjati	börja	zmaj zmaj::70_anfangen
+Škola počinje u septembru.	Skolan börjar i september.	zmaj zmaj::70_anfangen
+završiti	avsluta / bli klar	zmaj zmaj::70_anfangen
+Jesi li završio zadaću?	Är du klar med läxorna?	zmaj zmaj::70_anfangen
+završavati	avsluta / bli klar	zmaj zmaj::70_anfangen
+Završavam s poslom u četiri.	Klockan fyra är jag klar med jobbet.	zmaj zmaj::70_anfangen
+otvoriti	öppna	zmaj zmaj::70_anfangen
+Otvori prozor, vruće je.	Öppna fönstret, det är varmt.	zmaj zmaj::70_anfangen
+otvarati	öppna	zmaj zmaj::70_anfangen
+Ne otvaraj vrata nepoznatim ljudima.	Öppna inte dörren för främlingar.	zmaj zmaj::70_anfangen
+nastaviti	fortsätta	zmaj zmaj::70_anfangen
+Nastavit ćemo sutra.	Vi fortsätter i morgon.	zmaj zmaj::70_anfangen
+uspjeti	klara / lyckas	zmaj zmaj::70_anfangen
+Uspjela sam!	Jag klarade det!	zmaj zmaj::70_anfangen
+trajati	ta (tid) / pågå	zmaj zmaj::70_anfangen
+Koliko traje let do Sarajeva?	Hur lång tid tar flyget till Sarajevo?	zmaj zmaj::70_anfangen
+promijeniti	ändra / växla	zmaj zmaj::70_anfangen
+Promijenio sam broj telefona.	Jag har bytt telefonnummer.	zmaj zmaj::70_anfangen
+mijenjati	ändra / växla	zmaj zmaj::70_anfangen
+U mjenjačnici mijenjam eure u marke.	På växlingskontoret växlar jag euro till mark.	zmaj zmaj::70_anfangen
+prestati	sluta	zmaj zmaj::70_anfangen
+Kiša je prestala.	Regnet har slutat.	zmaj zmaj::70_anfangen
+zatvoriti	stänga	zmaj zmaj::70_anfangen
+Zatvori vrata, molim te.	Stäng dörren, är du snäll.	zmaj zmaj::70_anfangen
+zatvarati	stänga	zmaj zmaj::70_anfangen
+Zatvaramo za pet minuta.	Vi stänger om fem minuter.	zmaj zmaj::70_anfangen
+desiti se / dogoditi se	hända / ske	zmaj zmaj::70_anfangen
+Šta se desilo?	Vad har hänt?	zmaj zmaj::70_anfangen
+postojati	finnas / existera	zmaj zmaj::71_tun_machen
+Postoji li autobus do aerodroma?	Finns det en buss till flygplatsen?	zmaj zmaj::71_tun_machen
+koristiti	använda	zmaj zmaj::71_tun_machen
+Mogu li koristiti tvoj punjač?	Får jag använda din laddare?	zmaj zmaj::71_tun_machen
+postati	bli	zmaj zmaj::71_tun_machen
+Postao je otac.	Han har blivit pappa.	zmaj zmaj::71_tun_machen
+živjeti	leva	zmaj zmaj::71_tun_machen
+Moja sestra živi u Beču.	Min syster bor i Wien.	zmaj zmaj::71_tun_machen
+igrati	spela (sport, spel)	zmaj zmaj::71_tun_machen
+Igraš li fudbal?	Spelar du fotboll?	zmaj zmaj::71_tun_machen
+napraviti	göra / laga	zmaj zmaj::71_tun_machen
+Napravit ću kahvu.	Jag sätter på kaffe.	zmaj zmaj::71_tun_machen
+praviti	göra / laga	zmaj zmaj::71_tun_machen
+Nana pravi najbolju pitu.	Mormor gör den bästa pitan.	zmaj zmaj::71_tun_machen
+uraditi	göra / fixa	zmaj zmaj::71_tun_machen
+Uradio sam sve što si tražila.	Jag har gjort allt du bad om.	zmaj zmaj::71_tun_machen
+pročitati	läsa	zmaj zmaj::71_tun_machen
+Jesi li pročitao knjigu?	Har du läst boken?	zmaj zmaj::71_tun_machen
+napisati	skriva	zmaj zmaj::71_tun_machen
+Napisao sam pismo nani.	Jag har skrivit ett brev till mormor.	zmaj zmaj::71_tun_machen
+baviti se	syssla med / ägna sig åt	zmaj zmaj::71_tun_machen
+Čime se baviš?	Vad sysslar du med?	zmaj zmaj::71_tun_machen
+pokušavati	försöka	zmaj zmaj::71_tun_machen
+Pokušavam te nazvati cijeli dan.	Jag har försökt ringa dig hela dagen.	zmaj zmaj::71_tun_machen
+riješiti	lösa / reda ut	zmaj zmaj::71_tun_machen
+Riješit ćemo to zajedno.	Vi löser det tillsammans.	zmaj zmaj::71_tun_machen
+pripremiti	förbereda	zmaj zmaj::71_tun_machen
+Moram sve pripremiti za put.	Jag måste förbereda allt inför resan.	zmaj zmaj::71_tun_machen
+popiti	dricka / dricka upp	zmaj zmaj::71_tun_machen
+Hajmo popiti kahvu!	Kom, vi tar en kaffe!	zmaj zmaj::71_tun_machen
+pojesti	äta / äta upp	zmaj zmaj::71_tun_machen
+Pojedi sve, sine!	Ät upp allt, min son!	zmaj zmaj::71_tun_machen
+stajati	stå	zmaj zmaj::72_stellen_legen
+Zašto stojiš? Sjedni!	Varför står du? Sätt dig!	zmaj zmaj::72_stellen_legen
+staviti	ställa / lägga / sätta	zmaj zmaj::72_stellen_legen
+Stavi mlijeko u frižider.	Ställ in mjölken i kylskåpet.	zmaj zmaj::72_stellen_legen
+stavljati	ställa / lägga / sätta	zmaj zmaj::72_stellen_legen
+Gdje stavljaš čaše?	Var ställer du glasen?	zmaj zmaj::72_stellen_legen
+držati	hålla	zmaj zmaj::72_stellen_legen
+Drži me za ruku.	Håll mig i handen.	zmaj zmaj::72_stellen_legen
+ostaviti	lämna / glömma kvar	zmaj zmaj::72_stellen_legen
+Ostavila sam kišobran u autobusu.	Jag glömde paraplyet på bussen.	zmaj zmaj::72_stellen_legen
+pasti	falla / ramla	zmaj zmaj::72_stellen_legen
+Dijete je palo s bicikla.	Barnet ramlade av cykeln.	zmaj zmaj::72_stellen_legen
+sjediti	sitta	zmaj zmaj::72_stellen_legen
+Sjedili smo u bašti do ponoći.	Vi satt i trädgården till midnatt.	zmaj zmaj::72_stellen_legen
+baciti	kasta / slänga	zmaj zmaj::72_stellen_legen
+Baci smeće, molim te.	Släng soporna, är du snäll.	zmaj zmaj::72_stellen_legen
+ležati	ligga	zmaj zmaj::72_stellen_legen
+Telefon leži na stolu.	Mobilen ligger på bordet.	zmaj zmaj::72_stellen_legen
+skinuti	ta av (sig)	zmaj zmaj::72_stellen_legen
+Skini cipele, molim te.	Ta av dig skorna, är du snäll.	zmaj zmaj::72_stellen_legen
+ustati	gå upp	zmaj zmaj::72_stellen_legen
+Jutros sam ustao u šest.	I morse gick jag upp klockan sex.	zmaj zmaj::72_stellen_legen
+obući	ta på (sig)	zmaj zmaj::72_stellen_legen
+Obuci jaknu, hladno je.	Ta på dig en jacka, det är kallt.	zmaj zmaj::72_stellen_legen
+leći	lägga sig	zmaj zmaj::72_stellen_legen
+Lezi malo, umorna si.	Lägg dig en stund, du är trött.	zmaj zmaj::72_stellen_legen
+izgledati	se ut	zmaj zmaj::73_alltag_leben
+Danas lijepo izgledaš!	Du ser fin ut i dag!	zmaj zmaj::73_alltag_leben
+roditi se	födas	zmaj zmaj::73_alltag_leben
+Rodila sam se u Mostaru.	Jag är född i Mostar.	zmaj zmaj::73_alltag_leben
+potpisati	skriva under	zmaj zmaj::73_alltag_leben
+Potpišite ovdje, molim Vas.	Skriv under här, tack.	zmaj zmaj::73_alltag_leben
+uživati	njuta	zmaj zmaj::73_alltag_leben
+Uživaj u odmoru!	Njut av semestern!	zmaj zmaj::73_alltag_leben
+prijaviti se	anmäla sig	zmaj zmaj::73_alltag_leben
+Prijavila sam se na kurs.	Jag har anmält mig till kursen.	zmaj zmaj::73_alltag_leben
+umrijeti	dö	zmaj zmaj::73_alltag_leben
+Dedo mu je umro prije dvije godine.	Hans farfar dog för två år sedan.	zmaj zmaj::73_alltag_leben
+dozvoliti	tillåta	zmaj zmaj::73_alltag_leben
+Mama mi nije dozvolila da idem.	Mamma lät mig inte gå.	zmaj zmaj::73_alltag_leben
+zanimati	intressera	zmaj zmaj::73_alltag_leben
+Zanima me historija.	Jag är intresserad av historia.	zmaj zmaj::73_alltag_leben
+zavisiti	bero på	zmaj zmaj::73_alltag_leben
+Zavisi od vremena.	Det beror på vädret.	zmaj zmaj::73_alltag_leben
+nedostajati	sakna / fattas	zmaj zmaj::73_alltag_leben
+Mnogo mi nedostaje Bosna.	Jag saknar Bosnien väldigt mycket.	zmaj zmaj::73_alltag_leben
+probuditi se	vakna	zmaj zmaj::73_alltag_leben
+Probudio sam se u pet.	Jag vaknade klockan fem.	zmaj zmaj::73_alltag_leben
+smetati	störa	zmaj zmaj::73_alltag_leben
+Smeta li Vam muzika?	Stör musiken er?	zmaj zmaj::73_alltag_leben
+udati se	gifta sig (kvinna)	zmaj zmaj::73_alltag_leben
+Sestra mi se udala u maju.	Min syster gifte sig i maj.	zmaj zmaj::73_alltag_leben
+oženiti se	gifta sig (man)	zmaj zmaj::73_alltag_leben
+Moj brat se oženio prošle godine.	Min bror gifte sig förra året.	zmaj zmaj::73_alltag_leben
+zakasniti	bli försenad / komma för sent	zmaj zmaj::73_alltag_leben
+Izvini, zakasnio sam.	Förlåt, jag är sen.	zmaj zmaj::73_alltag_leben
+nalaziti	hitta	zmaj zmaj::74_paare_geben
+Gdje nalaziš takve stvari?	Var hittar du sådana saker?	zmaj zmaj::74_paare_geben
+primiti	ta emot / acceptera	zmaj zmaj::74_paare_geben
+Primili su me na posao!	De har anställt mig!	zmaj zmaj::74_paare_geben
+nuditi	erbjuda	zmaj zmaj::74_paare_geben
+Nana gostima uvijek nudi kahvu.	Mormor bjuder alltid gästerna på kaffe.	zmaj zmaj::74_paare_geben
+iskoristiti	utnyttja / ta vara på	zmaj zmaj::74_paare_geben
+Iskoristi lijepo vrijeme!	Ta vara på det fina vädret!	zmaj zmaj::74_paare_geben
+sačuvati	spara / bevara	zmaj zmaj::74_paare_geben
+Sačuvaj račun, možda ti zatreba.	Spara kvittot, du kanske behöver det.	zmaj zmaj::74_paare_geben
+gubiti	förlora / tappa bort	zmaj zmaj::74_paare_geben
+Naša ekipa opet gubi.	Vårt lag förlorar igen.	zmaj zmaj::74_paare_geben
+ostavljati	lämna / glömma kvar	zmaj zmaj::74_paare_geben
+Ne ostavljaj stvari po podu!	Lämna inte dina saker på golvet!	zmaj zmaj::74_paare_geben
+bacati	kasta / slänga	zmaj zmaj::74_paare_geben
+Hljeb se ne baca.	Bröd slänger man inte.	zmaj zmaj::74_paare_geben
+skidati	ta av (sig)	zmaj zmaj::74_paare_geben
+Kod nas se u kući skidaju cipele.	Hos oss tar man av sig skorna inomhus.	zmaj zmaj::74_paare_geben
+krasti	stjäla	zmaj zmaj::74_paare_geben
+Kao djeca smo krali trešnje iz komšijine bašte.	När vi var barn snodde vi körsbär från grannens trädgård.	zmaj zmaj::74_paare_geben
+pokazivati	visa	zmaj zmaj::74_paare_geben
+Nana svima pokazuje slike unuka.	Mormor visar alla bilderna på sina barnbarn.	zmaj zmaj::74_paare_geben
+pozivati	bjuda in	zmaj zmaj::74_paare_geben
+Komšije nas stalno pozivaju na kahvu.	Grannarna bjuder hela tiden in oss på kaffe.	zmaj zmaj::74_paare_geben
+potražiti	leta efter	zmaj zmaj::74_paare_geben
+Potraži na internetu.	Sök på nätet.	zmaj zmaj::74_paare_geben
+naručivati	beställa	zmaj zmaj::74_paare_geben
+Ja uvijek naručujem isto.	Jag beställer alltid samma sak.	zmaj zmaj::74_paare_geben
+javljati se	höra av sig	zmaj zmaj::75_paare_denken
+Zašto se ne javljaš na telefon?	Varför svarar du inte i telefon?	zmaj zmaj::75_paare_denken
+objašnjavati	förklara	zmaj zmaj::75_paare_denken
+Nastavnica sve lijepo objašnjava.	Läraren förklarar allt bra.	zmaj zmaj::75_paare_denken
+odlučivati	bestämma / besluta	zmaj zmaj::75_paare_denken
+Ko o tome odlučuje?	Vem bestämmer om det?	zmaj zmaj::75_paare_denken
+rješavati	lösa / reda ut	zmaj zmaj::75_paare_denken
+Probleme rješavamo zajedno.	Problem löser vi tillsammans.	zmaj zmaj::75_paare_denken
+razmisliti	fundera	zmaj zmaj::75_paare_denken
+Razmisli pa mi javi.	Fundera på saken och hör av dig.	zmaj zmaj::75_paare_denken
+shvatati	fatta / begripa	zmaj zmaj::75_paare_denken
+Ne shvatam šta hoćeš od mene.	Jag fattar inte vad du vill mig.	zmaj zmaj::75_paare_denken
+zaboravljati	glömma	zmaj zmaj::75_paare_denken
+Stalno zaboravljam imena.	Jag glömmer hela tiden namn.	zmaj zmaj::75_paare_denken
+poslušati	lyssna på / lyda	zmaj zmaj::75_paare_denken
+Poslušaj me bar jednom!	Lyssna på mig åtminstone en gång!	zmaj zmaj::75_paare_denken
+dogovarati se	bestämma träff / komma överens	zmaj zmaj::75_paare_denken
+Stalno se dogovaramo, a nikako da se nađemo.	Vi bestämmer träff hela tiden, men vi ses ändå aldrig.	zmaj zmaj::75_paare_denken
+sačekati	vänta	zmaj zmaj::75_paare_denken
+Sačekaj me ispred zgrade.	Vänta på mig utanför byggnaden.	zmaj zmaj::75_paare_denken
+postajati	bli	zmaj zmaj::76_paare_alltag
+Navečer već postaje hladno.	På kvällarna blir det redan kallt.	zmaj zmaj::76_paare_alltag
+nastavljati	fortsätta	zmaj zmaj::76_paare_alltag
+Nastavljamo poslije pauze.	Vi fortsätter efter pausen.	zmaj zmaj::76_paare_alltag
+dešavati se / događati se	hända / ske	zmaj zmaj::76_paare_alltag
+Šta se ovdje dešava?	Vad är det som händer här?	zmaj zmaj::76_paare_alltag
+padati	falla	zmaj zmaj::76_paare_alltag
+Noću temperatura pada ispod nule.	På natten sjunker temperaturen under noll.	zmaj zmaj::76_paare_alltag
+pripremati	förbereda	zmaj zmaj::76_paare_alltag
+Mama priprema ručak.	Mamma förbereder lunchen.	zmaj zmaj::76_paare_alltag
+buditi se	vakna	zmaj zmaj::76_paare_alltag
+Budim se svaki dan u šest.	Jag vaknar klockan sex varje dag.	zmaj zmaj::76_paare_alltag
+buditi	väcka	zmaj zmaj::76_paare_alltag
+Svako jutro budim djecu za školu.	Varje morgon väcker jag barnen till skolan.	zmaj zmaj::76_paare_alltag
+probuditi	väcka	zmaj zmaj::76_paare_alltag
+Probudi me u sedam, molim te.	Väck mig klockan sju, är du snäll.	zmaj zmaj::76_paare_alltag
+prestajati	sluta	zmaj zmaj::76_paare_alltag
+Kiša nikako ne prestaje.	Regnet vill bara inte sluta.	zmaj zmaj::76_paare_alltag
+uspijevati	klara / lyckas	zmaj zmaj::76_paare_alltag
+Nikako ne uspijevam zaspati.	Jag lyckas bara inte somna.	zmaj zmaj::76_paare_alltag
+ženiti se	gifta sig (man)	zmaj zmaj::76_paare_alltag
+Kad se ženiš?	När gifter du dig?	zmaj zmaj::76_paare_alltag
+udavati se	gifta sig (kvinna)	zmaj zmaj::76_paare_alltag
+Sestra mi se udaje u junu.	Min syster gifter sig i juni.	zmaj zmaj::76_paare_alltag
+paliti	sätta på / tända	zmaj zmaj::76_paare_alltag
+U oktobru već palimo grijanje.	I oktober sätter vi redan på värmen.	zmaj zmaj::76_paare_alltag
+posjećivati	besöka någon	zmaj zmaj::76_paare_alltag
+Svake sedmice posjećujemo nanu.	Varje vecka hälsar vi på mormor.	zmaj zmaj::76_paare_alltag
+gasiti	stänga av / släcka	zmaj zmaj::76_paare_alltag
+Uvijek gasim svjetlo kad izlazim iz sobe.	Jag släcker alltid ljuset när jag går ut ur rummet.	zmaj zmaj::76_paare_alltag
+popravljati	reparera	zmaj zmaj::76_paare_alltag
+Babo uvijek sam popravlja auto.	Pappa lagar alltid bilen själv.	zmaj zmaj::76_paare_alltag
+iznijeti	bära ut / ta ut	zmaj zmaj::77_im_haushalt
+Ko će iznijeti smeće?	Vem går ut med soporna?	zmaj zmaj::77_im_haushalt
+složiti	vika ihop / ordna	zmaj zmaj::77_im_haushalt
+Složi veš i stavi ga u ormar.	Vik tvätten och lägg in den i garderoben.	zmaj zmaj::77_im_haushalt
+oprati	tvätta	zmaj zmaj::77_im_haushalt
+Operi ruke prije jela!	Tvätta händerna före maten!	zmaj zmaj::77_im_haushalt
+miješati	röra om / blanda	zmaj zmaj::77_im_haushalt
+Miješaj da ne zagori!	Rör om så att det inte bränns vid!	zmaj zmaj::77_im_haushalt
+pokvariti se	gå sönder	zmaj zmaj::77_im_haushalt
+Opet se pokvarila veš mašina.	Tvättmaskinen har gått sönder igen.	zmaj zmaj::77_im_haushalt
+obrisati	torka av / radera	zmaj zmaj::77_im_haushalt
+Obriši sto, molim te.	Torka av bordet, är du snäll.	zmaj zmaj::77_im_haushalt
+brisati	torka av / radera	zmaj zmaj::77_im_haushalt
+Ko danas briše prašinu?	Vem dammar i dag?	zmaj zmaj::77_im_haushalt
+sušiti	torka	zmaj zmaj::77_im_haushalt
+Veš sušimo na balkonu.	Tvätten torkar vi på balkongen.	zmaj zmaj::77_im_haushalt
+rezati	skära	zmaj zmaj::77_im_haushalt
+Ovaj nož ništa ne reže.	Den här kniven skär inte alls.	zmaj zmaj::77_im_haushalt
+skuhati	laga mat	zmaj zmaj::77_im_haushalt
+Skuhat ću ti kahvu.	Jag kokar en kaffe åt dig.	zmaj zmaj::77_im_haushalt
+pržiti	steka (i pannan)	zmaj zmaj::77_im_haushalt
+Mama prži ribu.	Mamma steker fisk.	zmaj zmaj::77_im_haushalt
+zaliti	vattna (växter)	zmaj zmaj::77_im_haushalt
+Zalij cvijeće dok me nema.	Vattna blommorna medan jag är borta.	zmaj zmaj::77_im_haushalt
+objesiti	hänga upp	zmaj zmaj::77_im_haushalt
+Objesi veš, mašina je gotova.	Häng upp tvätten, maskinen är klar.	zmaj zmaj::77_im_haushalt
+počistiti	städa	zmaj zmaj::77_im_haushalt
+Moram počistiti kupatilo.	Jag måste städa badrummet.	zmaj zmaj::77_im_haushalt
+usisavati	dammsuga	zmaj zmaj::77_im_haushalt
+Subotom usisavam cijeli stan.	På lördagar dammsuger jag hela lägenheten.	zmaj zmaj::77_im_haushalt
+usisati	dammsuga	zmaj zmaj::77_im_haushalt
+Usisaj sobu prije nego što dođu gosti.	Dammsug rummet innan gästerna kommer.	zmaj zmaj::77_im_haushalt
+vratiti	lämna tillbaka	zmaj zmaj::78_kaufen_zurueckgeben
+Mogu li vratiti ove cipele?	Kan jag lämna tillbaka de här skorna?	zmaj zmaj::78_kaufen_zurueckgeben
+vraćati	lämna tillbaka	zmaj zmaj::78_kaufen_zurueckgeben
+On nikad ne vraća ono što posudi.	Han lämnar aldrig tillbaka det han lånar.	zmaj zmaj::78_kaufen_zurueckgeben
+red	kö / rad	zmaj zmaj::78_kaufen_zurueckgeben
+Čekali smo u redu pola sata.	Vi stod i kö i en halvtimme.	zmaj zmaj::78_kaufen_zurueckgeben
+izabrati	bestämma sig / välja	zmaj zmaj::78_kaufen_zurueckgeben
+Ne mogu izabrati, sve mi se sviđa.	Jag kan inte bestämma mig, jag gillar allt.	zmaj zmaj::78_kaufen_zurueckgeben
+birati	välja ut / välja	zmaj zmaj::78_kaufen_zurueckgeben
+Ti biraš film večeras.	Du väljer film i kväll.	zmaj zmaj::78_kaufen_zurueckgeben
+dostaviti	leverera	zmaj zmaj::78_kaufen_zurueckgeben
+Namještaj će nam dostaviti u petak.	Möblerna levererar de till oss på fredag.	zmaj zmaj::78_kaufen_zurueckgeben
+kupovina	inköp	zmaj zmaj::78_kaufen_zurueckgeben
+Kupovinu obavljamo subotom.	Vi handlar på lördagarna.	zmaj zmaj::78_kaufen_zurueckgeben
+koštati	kosta	zmaj zmaj::78_kaufen_zurueckgeben
+Koliko te je koštala ta jakna?	Hur mycket kostade jackan?	zmaj zmaj::78_kaufen_zurueckgeben
+paket	paket (post)	zmaj zmaj::78_kaufen_zurueckgeben
+Stigao ti je paket.	Det har kommit ett paket till dig.	zmaj zmaj::78_kaufen_zurueckgeben
+zamijeniti	byta / ersätta	zmaj zmaj::78_kaufen_zurueckgeben
+Mogu li zamijeniti ovu majicu za veći broj?	Kan jag byta den här t-shirten mot en större storlek?	zmaj zmaj::78_kaufen_zurueckgeben
+besplatan	gratis	zmaj zmaj::78_kaufen_zurueckgeben
+Ulaz je besplatan.	Inträdet är gratis.	zmaj zmaj::78_kaufen_zurueckgeben
+cjenkati se	pruta	zmaj zmaj::78_kaufen_zurueckgeben
+Babo se uvijek cjenka na pijaci.	Pappa prutar alltid på marknaden.	zmaj zmaj::78_kaufen_zurueckgeben
+dostava	leverans	zmaj zmaj::78_kaufen_zurueckgeben
+Koliko traje dostava?	Hur lång tid tar leveransen?	zmaj zmaj::78_kaufen_zurueckgeben
+isprobati	prova / testa	zmaj zmaj::78_kaufen_zurueckgeben
+Moram isprobati ovaj recept.	Jag måste prova det här receptet.	zmaj zmaj::78_kaufen_zurueckgeben
+narudžba	beställning	zmaj zmaj::78_kaufen_zurueckgeben
+Moja narudžba još nije stigla.	Min beställning har inte kommit än.	zmaj zmaj::78_kaufen_zurueckgeben
+vrijediti	vara värd / gälla	zmaj zmaj::79_geld_sparen
+Ovaj auto ne vrijedi ni hiljadu maraka.	Den här bilen är inte ens värd tusen mark.	zmaj zmaj::79_geld_sparen
+plaćanje	betalning	zmaj zmaj::79_geld_sparen
+Moguće je i plaćanje na rate.	Det går också att betala på avbetalning.	zmaj zmaj::79_geld_sparen
+isplatiti se	löna sig	zmaj zmaj::79_geld_sparen
+Ne isplati se popravljati, kupi novi.	Det lönar sig inte att laga den, köp en ny.	zmaj zmaj::79_geld_sparen
+potrošiti	spendera (pengar) / förbruka	zmaj zmaj::79_geld_sparen
+Potrošio sam sav novac.	Jag har gjort av med alla pengar.	zmaj zmaj::79_geld_sparen
+trošiti	spendera (pengar) / förbruka	zmaj zmaj::79_geld_sparen
+Previše trošiš na gluposti.	Du lägger för mycket pengar på dumheter.	zmaj zmaj::79_geld_sparen
+zaraditi	tjäna	zmaj zmaj::79_geld_sparen
+Koliko si zaradio ovaj mjesec?	Hur mycket har du tjänat den här månaden?	zmaj zmaj::79_geld_sparen
+zarađivati	tjäna	zmaj zmaj::79_geld_sparen
+U Njemačkoj se više zarađuje.	I Tyskland tjänar man mer.	zmaj zmaj::79_geld_sparen
+dugovati	vara skyldig (någon något)	zmaj zmaj::79_geld_sparen
+Još mi duguje sto maraka.	Han är fortfarande skyldig mig hundra mark.	zmaj zmaj::79_geld_sparen
+naplatiti	ta betalt	zmaj zmaj::79_geld_sparen
+Koliko su ti naplatili?	Hur mycket tog de betalt av dig?	zmaj zmaj::79_geld_sparen
+štedjeti	spara (pengar)	zmaj zmaj::79_geld_sparen
+Štedimo za novi auto.	Vi sparar till en ny bil.	zmaj zmaj::79_geld_sparen
+uštedjeti	spara (pengar)	zmaj zmaj::79_geld_sparen
+Tako uštedimo sto maraka mjesečno.	Så sparar vi hundra mark i månaden.	zmaj zmaj::79_geld_sparen
+novčanik	plånbok	zmaj zmaj::79_geld_sparen
+Zaboravio sam novčanik kod kuće.	Jag har glömt plånboken hemma.	zmaj zmaj::79_geld_sparen
+novčanica	sedel	zmaj zmaj::79_geld_sparen
+Imam samo novčanicu od sto maraka.	Jag har bara en hundramarkssedel.	zmaj zmaj::79_geld_sparen
+posuditi	låna	zmaj zmaj::79_geld_sparen
+Možeš li mi posuditi dvadeset maraka?	Kan du låna mig tjugo mark?	zmaj zmaj::79_geld_sparen
+kovanica	mynt	zmaj zmaj::79_geld_sparen
+Imaš li kovanicu za kolica?	Har du ett mynt till kundvagnen?	zmaj zmaj::79_geld_sparen
+Koliko sam dužan?	Vad är jag skyldig?	zmaj zmaj::79_geld_sparen
+Hvala, koliko sam dužan?	Tack, vad är jag skyldig?	zmaj zmaj::79_geld_sparen
+iznositi	bära ut / ta ut	zmaj zmaj::80_paare_mehr
+Ja svaki dan iznosim smeće.	Jag tar ut soporna varje dag.	zmaj zmaj::80_paare_mehr
+pomisliti	tänka / tycka	zmaj zmaj::80_paare_mehr
+Pomislio sam da se nešto desilo.	Jag trodde att något hade hänt.	zmaj zmaj::80_paare_mehr
+saznavati	få veta	zmaj zmaj::80_paare_mehr
+Svaki dan saznajem nešto novo.	Varje dag får jag veta något nytt.	zmaj zmaj::80_paare_mehr
+poželjeti	önska / önska sig	zmaj zmaj::80_paare_mehr
+Šta bi poželio za rođendan?	Vad skulle du önska dig i födelsedagspresent?	zmaj zmaj::80_paare_mehr
+dozvoljavati	tillåta	zmaj zmaj::80_paare_mehr
+Mama nam ne dozvoljava slatkiše prije ručka.	Mamma låter oss inte äta godis före lunch.	zmaj zmaj::80_paare_mehr
+umirati	dö	zmaj zmaj::80_paare_mehr
+Umirem od gladi!	Jag dör av hunger!	zmaj zmaj::80_paare_mehr
+potpisivati	skriva under	zmaj zmaj::80_paare_mehr
+Ne potpisuj ništa dok ne pročitaš.	Skriv inte under något innan du har läst det.	zmaj zmaj::80_paare_mehr
+primjećivati	lägga märke till	zmaj zmaj::80_paare_mehr
+Djeca sve primjećuju.	Barn märker allt.	zmaj zmaj::80_paare_mehr
+spašavati	rädda	zmaj zmaj::80_paare_mehr
+Ti mi uvijek spašavaš život!	Du räddar alltid mitt liv!	zmaj zmaj::80_paare_mehr
+prijavljivati se	anmäla sig	zmaj zmaj::80_paare_mehr
+Za ispite se prijavljujemo preko interneta.	Vi anmäler oss till tentorna på nätet.	zmaj zmaj::80_paare_mehr
+osušiti	torka	zmaj zmaj::80_paare_mehr
+Osuši kosu prije nego što izađeš.	Torka håret innan du går ut.	zmaj zmaj::80_paare_mehr
+povjerovati	tro	zmaj zmaj::80_paare_mehr
+Ne mogu povjerovati da je već prošla godina.	Jag kan inte tro att det redan har gått ett år.	zmaj zmaj::80_paare_mehr
+kvariti se	gå sönder	zmaj zmaj::80_paare_mehr
+Ovaj auto se stalno kvari.	Den här bilen går sönder hela tiden.	zmaj zmaj::80_paare_mehr
+porazgovarati	samtala	zmaj zmaj::80_paare_mehr
+Hajde da porazgovaramo uz kahvu.	Kom, vi pratar över en kopp kaffe.	zmaj zmaj::80_paare_mehr
+promiješati	röra om / blanda	zmaj zmaj::80_paare_mehr
+Dodaj so i dobro promiješaj.	Tillsätt salt och rör om ordentligt.	zmaj zmaj::80_paare_mehr
+zalijevati	vattna (växter)	zmaj zmaj::80_paare_mehr
+Ljeti svaku večer zalijevam baštu.	På sommaren vattnar jag trädgården varje kväll.	zmaj zmaj::80_paare_mehr
+izgubiti se	gå vilse	zmaj zmaj::81_passieren
+Izgubili smo se u gradu.	Vi gick vilse i stan.	zmaj zmaj::81_passieren
+spasiti	rädda	zmaj zmaj::81_passieren
+Vatrogasci su spasili dijete.	Brandkåren räddade barnet.	zmaj zmaj::81_passieren
+povrijediti se	skada sig	zmaj zmaj::81_passieren
+Povrijedio sam se na poslu.	Jag skadade mig på jobbet.	zmaj zmaj::81_passieren
+paziti	se upp / passa	zmaj zmaj::81_passieren
+Pazi na sestru!	Passa din syster!	zmaj zmaj::81_passieren
+krvariti	blöda	zmaj zmaj::81_passieren
+Rana jako krvari.	Såret blöder kraftigt.	zmaj zmaj::81_passieren
+prehladiti se	bli förkyld	zmaj zmaj::81_passieren
+Obuci se toplo, prehladit ćeš se!	Klä dig varmt, annars blir du förkyld!	zmaj zmaj::81_passieren
+onesvijestiti se	svimma	zmaj zmaj::81_passieren
+Žena se onesvijestila!	Kvinnan har svimmat!	zmaj zmaj::81_passieren
+boljeti / boliti	göra ont	zmaj zmaj::81_passieren
+Boli me grlo.	Jag har ont i halsen.	zmaj zmaj::81_passieren
+disati / dihati	andas	zmaj zmaj::81_passieren
+Ne mogu disati!	Jag kan inte andas!	zmaj zmaj::81_passieren
+razboljeti se / razboliti se	bli sjuk	zmaj zmaj::81_passieren
+Dijete se razboljelo.	Barnet har blivit sjukt.	zmaj zmaj::81_passieren
+gorjeti / goriti	brinna	zmaj zmaj::81_passieren
+Kuća gori!	Huset brinner!	zmaj zmaj::81_passieren
+Upomoć!	Hjälp!	zmaj zmaj::82_notfall
+Upomoć! Pomozite mi!	Hjälp! Hjälp mig!	zmaj zmaj::82_notfall
+hitan slučaj	nödsituation	zmaj zmaj::82_notfall
+Ovo je hitan slučaj, zovite hitnu pomoć!	Det här är en nödsituation, ring ambulans!	zmaj zmaj::82_notfall
+hitna	ambulans / räddningstjänst	zmaj zmaj::82_notfall
+Hitna je već na putu.	Ambulansen är redan på väg.	zmaj zmaj::82_notfall
+vatrogasci	brandkår	zmaj zmaj::82_notfall
+Zovite vatrogasce!	Ring brandkåren!	zmaj zmaj::82_notfall
+požar	brand	zmaj zmaj::82_notfall
+U zgradi je izbio požar.	Det har börjat brinna i byggnaden.	zmaj zmaj::82_notfall
+nesreća	olycka	zmaj zmaj::82_notfall
+Desila se nesreća na autoputu.	Det har hänt en olycka på motorvägen.	zmaj zmaj::82_notfall
+povreda	skada	zmaj zmaj::82_notfall
+Povreda nije teška.	Skadan är inte allvarlig.	zmaj zmaj::82_notfall
+rana	sår	zmaj zmaj::82_notfall
+Treba očistiti ranu.	Såret måste rengöras.	zmaj zmaj::82_notfall
+krv	blod	zmaj zmaj::82_notfall
+Imaš krv na ruci.	Du har blod på handen.	zmaj zmaj::82_notfall
+lopov	tjuv	zmaj zmaj::82_notfall
+Lopov je pobjegao, zovite policiju!	Tjuven sprang iväg, ring polisen!	zmaj zmaj::82_notfall
+daleko	långt (bort)	zmaj zmaj::83_lang_kurz
+Je li daleko do centra?	Är det långt till centrum?	zmaj zmaj::83_lang_kurz
+visok	hög / lång (om person)	zmaj zmaj::83_lang_kurz
+Moj brat je jako visok.	Min bror är väldigt lång.	zmaj zmaj::83_lang_kurz
+težak	tung	zmaj zmaj::83_lang_kurz
+Ovaj kofer je jako težak.	Den här resväskan är väldigt tung.	zmaj zmaj::83_lang_kurz
+širok	bred	zmaj zmaj::83_lang_kurz
+Rijeka je ovdje jako široka.	Floden är väldigt bred här.	zmaj zmaj::83_lang_kurz
+dug	lång (om sak)	zmaj zmaj::83_lang_kurz
+Ovo je bio dug dan.	Det var en lång dag.	zmaj zmaj::83_lang_kurz
+nizak	låg / kort (om person)	zmaj zmaj::83_lang_kurz
+Ovdje su cijene niske.	Här är priserna låga.	zmaj zmaj::83_lang_kurz
+kratak	kort (om sak)	zmaj zmaj::83_lang_kurz
+Život je kratak.	Livet är kort.	zmaj zmaj::83_lang_kurz
+uzak	trång / smal	zmaj zmaj::83_lang_kurz
+Ove cipele su mi uske.	De här skorna är för trånga för mig.	zmaj zmaj::83_lang_kurz
+lagan	lätt (i vikt)	zmaj zmaj::83_lang_kurz
+Torba je lagana, nosit ću je sama.	Väskan är lätt, jag bär den själv.	zmaj zmaj::83_lang_kurz
+tanak	tunn	zmaj zmaj::83_lang_kurz
+Zidovi su tanki, sve se čuje.	Väggarna är tunna, man hör allt.	zmaj zmaj::83_lang_kurz
+debeo	tjock	zmaj zmaj::83_lang_kurz
+Ova knjiga je baš debela.	Den här boken är riktigt tjock.	zmaj zmaj::83_lang_kurz
+mršav	mager	zmaj zmaj::83_lang_kurz
+Mršav si, jedi malo više!	Du är smal, ät lite mer!	zmaj zmaj::83_lang_kurz
+isti	samma / likadan	zmaj zmaj::84_voll_leer
+Imamo iste cipele!	Vi har likadana skor!	zmaj zmaj::84_voll_leer
+jak	stark	zmaj zmaj::84_voll_leer
+Jak je kao medvjed.	Han är stark som en björn.	zmaj zmaj::84_voll_leer
+pun	full	zmaj zmaj::84_voll_leer
+Autobus je bio pun.	Bussen var full.	zmaj zmaj::84_voll_leer
+bogat	rik	zmaj zmaj::84_voll_leer
+Njegova porodica je jako bogata.	Hans familj är väldigt rik.	zmaj zmaj::84_voll_leer
+drugačiji	annorlunda	zmaj zmaj::84_voll_leer
+Danas si nekako drugačiji.	Du är på något sätt annorlunda i dag.	zmaj zmaj::84_voll_leer
+slab	svag	zmaj zmaj::84_voll_leer
+Signal je ovdje slab.	Mottagningen är svag här.	zmaj zmaj::84_voll_leer
+prazan	tom	zmaj zmaj::84_voll_leer
+Frižider je opet prazan.	Kylskåpet är tomt igen.	zmaj zmaj::84_voll_leer
+tačan	rätt / exakt	zmaj zmaj::84_voll_leer
+Je li ovo tačna adresa?	Är det här rätt adress?	zmaj zmaj::84_voll_leer
+suh	torr	zmaj zmaj::84_voll_leer
+Veš je već suh.	Tvätten är redan torr.	zmaj zmaj::84_voll_leer
+pogrešan	fel	zmaj zmaj::84_voll_leer
+Ušli smo u pogrešan autobus.	Vi klev på fel buss.	zmaj zmaj::84_voll_leer
+siromašan	fattig	zmaj zmaj::84_voll_leer
+Odrastao sam u siromašnoj porodici.	Jag växte upp i en fattig familj.	zmaj zmaj::84_voll_leer
+tvrd	hård	zmaj zmaj::84_voll_leer
+Hljeb je tvrd, od jučer je.	Brödet är hårt, det är från i går.	zmaj zmaj::84_voll_leer
+mokar	blöt	zmaj zmaj::84_voll_leer
+Sav sam mokar od kiše.	Jag är alldeles blöt av regnet.	zmaj zmaj::84_voll_leer
+mekan	mjuk	zmaj zmaj::84_voll_leer
+Jastuk je jako mekan.	Kudden är väldigt mjuk.	zmaj zmaj::84_voll_leer
+potreban	nödvändig	zmaj zmaj::85_moeglich
+Potrebna mi je tvoja pomoć.	Jag behöver din hjälp.	zmaj zmaj::85_moeglich
+moguć	möjlig	zmaj zmaj::85_moeglich
+Je li moguće platiti karticom?	Går det att betala med kort?	zmaj zmaj::85_moeglich
+poseban	speciell / särskild	zmaj zmaj::85_moeglich
+Danas je poseban dan.	I dag är en speciell dag.	zmaj zmaj::85_moeglich
+siguran	säker	zmaj zmaj::85_moeglich
+Je li ovdje sigurno noću?	Är det säkert här på natten?	zmaj zmaj::85_moeglich
+sličan	liknande	zmaj zmaj::85_moeglich
+Ti i brat ste jako slični.	Du och din bror är väldigt lika.	zmaj zmaj::85_moeglich
+spreman	redo	zmaj zmaj::85_moeglich
+Jesi li spremna? Krećemo.	Är du redo? Vi åker nu.	zmaj zmaj::85_moeglich
+slobodan	ledig / fri	zmaj zmaj::85_moeglich
+Jesi li slobodan u subotu?	Är du ledig på lördag?	zmaj zmaj::85_moeglich
+jednostavan	enkel	zmaj zmaj::85_moeglich
+Recept je jako jednostavan.	Receptet är jätteenkelt.	zmaj zmaj::85_moeglich
+običan	vanlig / normal	zmaj zmaj::85_moeglich
+Ja sam običan čovjek.	Jag är en helt vanlig människa.	zmaj zmaj::85_moeglich
+čudan	konstig / märklig	zmaj zmaj::85_moeglich
+To je baš čudno.	Det är verkligen konstigt.	zmaj zmaj::85_moeglich
+nemoguć	omöjlig	zmaj zmaj::85_moeglich
+To je nemoguće!	Det är omöjligt!	zmaj zmaj::85_moeglich
+gotov	färdig	zmaj zmaj::85_moeglich
+Ručak je gotov!	Lunchen är klar!	zmaj zmaj::85_moeglich
+komplikovan	komplicerad	zmaj zmaj::85_moeglich
+Sve je to previše komplikovano.	Det är alldeles för komplicerat.	zmaj zmaj::85_moeglich
+zauzet	upptagen	zmaj zmaj::85_moeglich
+Izvini, sad sam zauzet.	Förlåt, jag är upptagen just nu.	zmaj zmaj::85_moeglich
+pravi	äkta / riktig	zmaj zmaj::85_moeglich
+Ovo je prava bosanska kahva.	Det här är äkta bosniskt kaffe.	zmaj zmaj::85_moeglich
+drag	snäll / gullig	zmaj zmaj::86_wie_jemand_ist
+Tvoja mama je jako draga.	Din mamma är jättesnäll.	zmaj zmaj::86_wie_jemand_ist
+ozbiljan	allvarlig	zmaj zmaj::86_wie_jemand_ist
+Ovo je ozbiljan problem.	Det här är ett allvarligt problem.	zmaj zmaj::86_wie_jemand_ist
+vrijedan	flitig	zmaj zmaj::86_wie_jemand_ist
+Moja kćerka je jako vrijedna.	Min dotter är väldigt flitig.	zmaj zmaj::86_wie_jemand_ist
+pametan	klok / smart	zmaj zmaj::86_wie_jemand_ist
+Ona je jako pametna.	Hon är väldigt klok.	zmaj zmaj::86_wie_jemand_ist
+iskren	uppriktig / öppen	zmaj zmaj::86_wie_jemand_ist
+Budi iskren, sviđa li ti se?	Var ärlig, gillar du det?	zmaj zmaj::86_wie_jemand_ist
+zao	elak / ond	zmaj zmaj::86_wie_jemand_ist
+Pas nije zao, samo laje.	Hunden är inte elak, den skäller bara.	zmaj zmaj::86_wie_jemand_ist
+hrabar	modig	zmaj zmaj::86_wie_jemand_ist
+Bio si jako hrabar.	Du var väldigt modig.	zmaj zmaj::86_wie_jemand_ist
+glup	dum	zmaj zmaj::86_wie_jemand_ist
+To je bilo glupo od mene.	Det var dumt av mig.	zmaj zmaj::86_wie_jemand_ist
+pošten	ärlig	zmaj zmaj::86_wie_jemand_ist
+On je pošten čovjek.	Han är en ärlig människa.	zmaj zmaj::86_wie_jemand_ist
+veseo	munter	zmaj zmaj::86_wie_jemand_ist
+Uvijek je vesela i nasmijana.	Hon är alltid glad och skrattar.	zmaj zmaj::86_wie_jemand_ist
+oprezan	försiktig	zmaj zmaj::86_wie_jemand_ist
+Budi oprezan, vani je klizavo.	Var försiktig, det är halt ute.	zmaj zmaj::86_wie_jemand_ist
+ljubazan	vänlig	zmaj zmaj::87_benehmen
+Prodavačica je bila jako ljubazna.	Expediten var väldigt vänlig.	zmaj zmaj::87_benehmen
+pristojan	artig / anständig	zmaj zmaj::87_benehmen
+Budi pristojan pred gostima!	Var artig inför gästerna!	zmaj zmaj::87_benehmen
+pažljiv	omtänksam / hänsynsfull	zmaj zmaj::87_benehmen
+Hvala, baš si pažljiv.	Tack, det är väldigt omtänksamt av dig.	zmaj zmaj::87_benehmen
+lijen	lat	zmaj zmaj::87_benehmen
+Ne budi lijen, ustaj!	Var inte lat, stig upp!	zmaj zmaj::87_benehmen
+strpljiv	tålmodig	zmaj zmaj::87_benehmen
+Budi strpljiv, doći će.	Ha tålamod, han kommer.	zmaj zmaj::87_benehmen
+sebičan	självisk	zmaj zmaj::87_benehmen
+Nemoj biti tako sebičan.	Var inte så självisk.	zmaj zmaj::87_benehmen
+smiren	lugn	zmaj zmaj::87_benehmen
+On je uvijek smiren.	Han är alltid lugn.	zmaj zmaj::87_benehmen
+bezobrazan	fräck / oförskämd	zmaj zmaj::87_benehmen
+Ne budi bezobrazan!	Var inte fräck!	zmaj zmaj::87_benehmen
+tvrdoglav	envis	zmaj zmaj::87_benehmen
+Tvrdoglav si kao babo.	Du är envis som pappa.	zmaj zmaj::87_benehmen
+stidljiv	blyg	zmaj zmaj::87_benehmen
+Naš sin je malo stidljiv.	Vår son är lite blyg.	zmaj zmaj::87_benehmen
+škrt	snål	zmaj zmaj::87_benehmen
+Ne budi škrt, danas ti častiš!	Var inte snål, i dag bjuder du!	zmaj zmaj::87_benehmen
+sreća	tur / lycka	zmaj zmaj::88_glueck_sorgen
+Imali smo sreće!	Vi hade tur!	zmaj zmaj::88_glueck_sorgen
+osjećaj	känsla	zmaj zmaj::88_glueck_sorgen
+Imam dobar osjećaj.	Jag har en bra känsla.	zmaj zmaj::88_glueck_sorgen
+briga	oro / bekymmer	zmaj zmaj::88_glueck_sorgen
+Bez brige, sve će biti u redu.	Ingen fara, allt kommer att ordna sig.	zmaj zmaj::88_glueck_sorgen
+zahvalan	tacksam	zmaj zmaj::88_glueck_sorgen
+Zahvalan sam ti na svemu.	Jag är tacksam för allt du har gjort.	zmaj zmaj::88_glueck_sorgen
+Sretno!	Lycka till!	zmaj zmaj::88_glueck_sorgen
+Sretno na ispitu!	Lycka till på provet!	zmaj zmaj::88_glueck_sorgen
+zabrinut	orolig	zmaj zmaj::88_glueck_sorgen
+Mama je zabrinuta jer se ne javljaš.	Mamma är orolig för att du inte hör av dig.	zmaj zmaj::88_glueck_sorgen
+zbunjen	förvirrad	zmaj zmaj::88_glueck_sorgen
+Malo sam zbunjen, možeš li ponoviti?	Jag är lite förvirrad, kan du upprepa det?	zmaj zmaj::88_glueck_sorgen
+razočaran	besviken	zmaj zmaj::88_glueck_sorgen
+Malo sam razočaran.	Jag är lite besviken.	zmaj zmaj::88_glueck_sorgen
+ljubomoran	svartsjuk	zmaj zmaj::88_glueck_sorgen
+Ne budi ljubomoran!	Var inte svartsjuk!	zmaj zmaj::88_glueck_sorgen
+zaljubljen	kär	zmaj zmaj::88_glueck_sorgen
+Zaljubljen je do ušiju.	Han är kär upp över öronen.	zmaj zmaj::88_glueck_sorgen
+opušten	avslappnad	zmaj zmaj::88_glueck_sorgen
+Na odmoru sam potpuno opušten.	På semestern är jag helt avslappnad.	zmaj zmaj::88_glueck_sorgen
+uzbuđen	uppspelt	zmaj zmaj::88_glueck_sorgen
+Djeca su uzbuđena zbog puta.	Barnen är uppspelta inför resan.	zmaj zmaj::88_glueck_sorgen
+uplašen	rädd / skrämd	zmaj zmaj::88_glueck_sorgen
+Dijete je bilo jako uplašeno.	Barnet var väldigt rädd.	zmaj zmaj::88_glueck_sorgen
+pospan	sömnig	zmaj zmaj::88_glueck_sorgen
+Pospan sam, idem leći.	Jag är sömnig, jag går och lägger mig.	zmaj zmaj::88_glueck_sorgen
+osjetiti	känna	zmaj zmaj::89_sinne
+Osjetio sam da nešto nije u redu.	Jag kände att något inte stämde.	zmaj zmaj::89_sinne
+primijetiti	lägga märke till	zmaj zmaj::89_sinne
+Nisam primijetio da si se ošišala.	Jag märkte inte att du hade klippt dig.	zmaj zmaj::89_sinne
+probati	prova / smaka	zmaj zmaj::89_sinne
+Probaj ovo, fino je!	Smaka på det här, det är gott!	zmaj zmaj::89_sinne
+miris	lukt / doft	zmaj zmaj::89_sinne
+Kakav lijep miris!	Vilken härlig doft!	zmaj zmaj::89_sinne
+taman	mörk	zmaj zmaj::89_sinne
+U sobi je tamno, upali svjetlo.	Det är mörkt i rummet, tänd lampan.	zmaj zmaj::89_sinne
+okus	smak (mat)	zmaj zmaj::89_sinne
+Ovo ima čudan okus.	Det här smakar konstigt.	zmaj zmaj::89_sinne
+ukus	smak (stil)	zmaj zmaj::89_sinne
+Imaš dobar ukus.	Du har god smak.	zmaj zmaj::89_sinne
+svijetao	ljus	zmaj zmaj::89_sinne
+Stan je lijep i svijetao.	Lägenheten är fin och ljus.	zmaj zmaj::89_sinne
+mrak	mörker	zmaj zmaj::89_sinne
+Vani je već mrak.	Det är redan mörkt ute.	zmaj zmaj::89_sinne
+buka	oväsen / buller	zmaj zmaj::89_sinne
+Kakva je ovo buka?	Vad är det för oväsen?	zmaj zmaj::89_sinne
+tišina	tystnad	zmaj zmaj::89_sinne
+Tišina, molim vas!	Tyst, tack!	zmaj zmaj::89_sinne
+tih	tyst	zmaj zmaj::89_sinne
+Ovdje je noću jako tiho.	Här är det väldigt tyst på natten.	zmaj zmaj::89_sinne
+dirati	röra / ta på	zmaj zmaj::89_sinne
+Ne diraj, vruće je!	Rör inte, det är varmt!	zmaj zmaj::89_sinne
+glasan	högljudd	zmaj zmaj::89_sinne
+Komšije su jako glasne.	Grannarna är väldigt högljudda.	zmaj zmaj::89_sinne
+gorak	bitter / besk	zmaj zmaj::89_sinne
+Kahva je gorka bez šećera.	Utan socker är kaffet beskt.	zmaj zmaj::89_sinne
+mirisati	lukta / dofta	zmaj zmaj::89_sinne
+Kuhinja miriše na pitu.	Köket luktar pita.	zmaj zmaj::89_sinne
+smrdjeti / smrditi	stinka / lukta illa	zmaj zmaj::89_sinne
+Nešto smrdi u frižideru.	Det luktar illa i kylskåpet.	zmaj zmaj::89_sinne
+bljutav	fadd / smaklös	zmaj zmaj::89_sinne
+Supa je bljutava, fali joj soli.	Soppan är fadd, det saknas salt.	zmaj zmaj::89_sinne
+lice	ansikte	zmaj zmaj::90_koerper_aussen
+Imaš nešto na licu.	Du har något i ansiktet.	zmaj zmaj::90_koerper_aussen
+jezik	tunga	zmaj zmaj::90_koerper_aussen
+Ugrizao sam se za jezik.	Jag bet mig i tungan.	zmaj zmaj::90_koerper_aussen
+čelo	panna	zmaj zmaj::90_koerper_aussen
+Čelo ti je vruće, imaš li temperaturu?	Din panna är varm, har du feber?	zmaj zmaj::90_koerper_aussen
+rame	axel	zmaj zmaj::90_koerper_aussen
+Dijete mi je zaspalo na ramenu.	Barnet somnade på min axel.	zmaj zmaj::90_koerper_aussen
+koljeno	knä	zmaj zmaj::90_koerper_aussen
+Pao sam i razbio koljeno.	Jag ramlade och slog upp knät.	zmaj zmaj::90_koerper_aussen
+prsa	bröst	zmaj zmaj::90_koerper_aussen
+Boli me u prsima.	Jag har ont i bröstet.	zmaj zmaj::90_koerper_aussen
+usna	läpp	zmaj zmaj::90_koerper_aussen
+Ispucale su mi usne od hladnoće.	Mina läppar har spruckit av kylan.	zmaj zmaj::90_koerper_aussen
+obraz	kind	zmaj zmaj::90_koerper_aussen
+Nana me poljubila u obraz.	Mormor pussade mig på kinden.	zmaj zmaj::90_koerper_aussen
+stopalo	fot	zmaj zmaj::90_koerper_aussen
+Od hodanja me bole stopala.	Jag har ont i fötterna av all promenad.	zmaj zmaj::90_koerper_aussen
+nokat	nagel	zmaj zmaj::90_koerper_aussen
+Ne grizi nokte!	Bit inte på naglarna!	zmaj zmaj::90_koerper_aussen
+brada	haka / skägg	zmaj zmaj::90_koerper_aussen
+Babo je pustio bradu.	Pappa har låtit skägget växa.	zmaj zmaj::90_koerper_aussen
+kuk	höft	zmaj zmaj::90_koerper_aussen
+Nana je slomila kuk.	Mormor har brutit höften.	zmaj zmaj::90_koerper_aussen
+lakat	armbåge	zmaj zmaj::90_koerper_aussen
+Ne stavljaj laktove na sto!	Inga armbågar på bordet!	zmaj zmaj::90_koerper_aussen
+tijelo	kropp	zmaj zmaj::91_koerper_innen
+Cijelo tijelo me boli.	Jag har ont i hela kroppen.	zmaj zmaj::91_koerper_innen
+koža	hud	zmaj zmaj::91_koerper_innen
+Zimi mi je koža jako suha.	På vintern är min hud väldigt torr.	zmaj zmaj::91_koerper_innen
+kost	ben (skelett)	zmaj zmaj::91_koerper_innen
+Daj psu kost.	Ge hunden benet.	zmaj zmaj::91_koerper_innen
+mišić	muskel	zmaj zmaj::91_koerper_innen
+Poslije treninga me bole svi mišići.	Efter träningen har jag ont i alla muskler.	zmaj zmaj::91_koerper_innen
+mozak	hjärna	zmaj zmaj::91_koerper_innen
+Mozak mi više ne radi, idem spavati.	Min hjärna orkar inte mer, jag går och lägger mig.	zmaj zmaj::91_koerper_innen
+zglob	led	zmaj zmaj::91_koerper_innen
+Bole me zglobovi kad se vrijeme mijenja.	Jag får ont i lederna när vädret slår om.	zmaj zmaj::91_koerper_innen
+pluća	lungor	zmaj zmaj::91_koerper_innen
+Doktor mi je slušao pluća.	Läkaren lyssnade på mina lungor.	zmaj zmaj::91_koerper_innen
+grlo	hals (inuti) / strupe	zmaj zmaj::91_koerper_innen
+Grlo mi je suho, daj mi malo vode.	Jag är torr i halsen, ge mig lite vatten.	zmaj zmaj::91_koerper_innen
+jetra	lever	zmaj zmaj::91_koerper_innen
+Alkohol šteti jetri.	Alkohol skadar levern.	zmaj zmaj::91_koerper_innen
+bubreg	njure	zmaj zmaj::91_koerper_innen
+Ima kamen u bubregu.	Han har en njursten.	zmaj zmaj::91_koerper_innen
+želudac	magsäck	zmaj zmaj::91_koerper_innen
+Imam osjetljiv želudac.	Jag har känslig mage.	zmaj zmaj::91_koerper_innen
+bolest	sjukdom	zmaj zmaj::92_krank_sein
+Ta bolest nije zarazna.	Den här sjukdomen smittar inte.	zmaj zmaj::92_krank_sein
+virus	virus	zmaj zmaj::92_krank_sein
+To je neki virus, proći će za par dana.	Det är något virus, det går över om några dagar.	zmaj zmaj::92_krank_sein
+rak	cancer	zmaj zmaj::92_krank_sein
+Komšinica se liječi od raka.	Grannen behandlas för cancer.	zmaj zmaj::92_krank_sein
+trudnoća	graviditet	zmaj zmaj::92_krank_sein
+Kako ide trudnoća?	Hur går graviditeten?	zmaj zmaj::92_krank_sein
+stres	stress	zmaj zmaj::92_krank_sein
+Imam puno stresa na poslu.	Jag har mycket stress på jobbet.	zmaj zmaj::92_krank_sein
+infekcija	infektion	zmaj zmaj::92_krank_sein
+Doktor kaže da je to virusna infekcija.	Läkaren säger att det är en virusinfektion.	zmaj zmaj::92_krank_sein
+upala	inflammation	zmaj zmaj::92_krank_sein
+Imam upalu grla.	Jag har halsfluss.	zmaj zmaj::92_krank_sein
+gripa	influensa	zmaj zmaj::92_krank_sein
+Cijela porodica je imala gripu.	Hela familjen hade influensa.	zmaj zmaj::92_krank_sein
+dijabetes	diabetes	zmaj zmaj::92_krank_sein
+Nana ima dijabetes, ne smije jesti slatko.	Mormor har diabetes, hon får inte äta något sött.	zmaj zmaj::92_krank_sein
+zarazan	smittsam	zmaj zmaj::92_krank_sein
+Je li to zarazno?	Smittar det?	zmaj zmaj::92_krank_sein
+trudna	gravid	zmaj zmaj::92_krank_sein
+Moja sestra je trudna!	Min syster är gravid!	zmaj zmaj::92_krank_sein
+prehlada	förkylning	zmaj zmaj::92_krank_sein
+Nije to ništa, samo obična prehlada.	Det är inget, bara en vanlig förkylning.	zmaj zmaj::92_krank_sein
+moždani udar	stroke	zmaj zmaj::92_krank_sein
+Komšija je imao moždani udar.	Grannen har fått en stroke.	zmaj zmaj::92_krank_sein
+srčani udar / infarkt	hjärtinfarkt	zmaj zmaj::92_krank_sein
+Dedo je prošle godine imao srčani udar.	Morfar fick en hjärtinfarkt förra året.	zmaj zmaj::92_krank_sein
+slomiti	bryta (ben, glas)	zmaj zmaj::93_beschwerden
+Slomio je ruku na skijanju.	Han bröt armen när han åkte skidor.	zmaj zmaj::93_beschwerden
+umor	trötthet	zmaj zmaj::93_beschwerden
+Nije to bolest, to je samo umor.	Det är ingen sjukdom, det är bara trötthet.	zmaj zmaj::93_beschwerden
+kašalj	hostan	zmaj zmaj::93_beschwerden
+Od kašlja ne mogu spavati.	Jag kan inte sova för hostan.	zmaj zmaj::93_beschwerden
+mučnina	illamående	zmaj zmaj::93_beschwerden
+Od jutros imam mučninu.	Jag har mått illa sedan i morse.	zmaj zmaj::93_beschwerden
+osip	utslag	zmaj zmaj::93_beschwerden
+Dijete ima osip po cijelom tijelu.	Barnet har utslag över hela kroppen.	zmaj zmaj::93_beschwerden
+povraćati	kräkas	zmaj zmaj::93_beschwerden
+Dijete je povraćalo u autu.	Barnet kräktes i bilen.	zmaj zmaj::93_beschwerden
+vrtoglavica	yrsel	zmaj zmaj::93_beschwerden
+Imam vrtoglavicu kad naglo ustanem.	Jag blir yr när jag reser mig snabbt.	zmaj zmaj::93_beschwerden
+modrica	blåmärke	zmaj zmaj::93_beschwerden
+Odakle ti ova modrica?	Var har du fått det där blåmärket ifrån?	zmaj zmaj::93_beschwerden
+proljev	diarré	zmaj zmaj::93_beschwerden
+Dijete ima proljev, daj mu puno vode.	Barnet har diarré, ge det mycket vatten.	zmaj zmaj::93_beschwerden
+znojiti se	svettas	zmaj zmaj::93_beschwerden
+Noću se jako znojim.	Jag svettas mycket på nätterna.	zmaj zmaj::93_beschwerden
+oteći	svullna	zmaj zmaj::93_beschwerden
+Otekla mi je noga.	Mitt ben har svullnat.	zmaj zmaj::93_beschwerden
+kašljati	hosta	zmaj zmaj::93_beschwerden
+Dijete cijelu noć kašlje.	Barnet hostar hela natten.	zmaj zmaj::93_beschwerden
+svrbjeti / svrbiti	klia	zmaj zmaj::93_beschwerden
+Ujeo me komarac, sad me sve svrbi.	En mygga har stuckit mig, nu kliar det överallt.	zmaj zmaj::93_beschwerden
+zubobolja	tandvärk	zmaj zmaj::93_beschwerden
+Imam strašnu zubobolju, moram kod zubara.	Jag har fruktansvärd tandvärk, jag måste till tandläkaren.	zmaj zmaj::93_beschwerden
+Muka mi je.	Jag mår illa.	zmaj zmaj::93_beschwerden
+Stani malo, muka mi je.	Stanna lite, jag mår illa.	zmaj zmaj::93_beschwerden
+kontrola	kontroll / återbesök	zmaj zmaj::94_in_der_praxis
+Za dvije sedmice dođite na kontrolu.	Kom tillbaka på återbesök om två veckor.	zmaj zmaj::94_in_der_praxis
+pacijent	patient	zmaj zmaj::94_in_der_praxis
+Doktor danas ima puno pacijenata.	Läkaren har många patienter i dag.	zmaj zmaj::94_in_der_praxis
+simptom	symtom	zmaj zmaj::94_in_der_praxis
+Koje simptome imate?	Vilka symtom har du?	zmaj zmaj::94_in_der_praxis
+propisati	skriva ut (medicin)	zmaj zmaj::94_in_der_praxis
+Doktor mi je propisao antibiotik.	Läkaren skrev ut antibiotika till mig.	zmaj zmaj::94_in_der_praxis
+terapija	terapi	zmaj zmaj::94_in_der_praxis
+On ide na fizikalnu terapiju.	Han går på sjukgymnastik.	zmaj zmaj::94_in_der_praxis
+nalaz	provsvar	zmaj zmaj::94_in_der_praxis
+Nalazi su dobri, ništa ti nije.	Proverna ser bra ut, det är inget fel på dig.	zmaj zmaj::94_in_der_praxis
+naočale	glasögon	zmaj zmaj::94_in_der_praxis
+Gdje su mi naočale?	Var är mina glasögon?	zmaj zmaj::94_in_der_praxis
+injekcija	spruta	zmaj zmaj::94_in_der_praxis
+Ne plači, injekcija ne boli.	Gråt inte, sprutan gör inte ont.	zmaj zmaj::94_in_der_praxis
+ginekolog	gynekolog	zmaj zmaj::94_in_der_praxis
+Imam termin kod ginekologa u petak.	Jag har en tid hos gynekologen på fredag.	zmaj zmaj::94_in_der_praxis
+ordinacija	läkarmottagning	zmaj zmaj::94_in_der_praxis
+Ordinacija radi od osam do dva.	Mottagningen har öppet från åtta till två.	zmaj zmaj::94_in_der_praxis
+pedijatar	barnläkare	zmaj zmaj::94_in_der_praxis
+Sutra vodim dijete kod pedijatra.	I morgon tar jag barnet till barnläkaren.	zmaj zmaj::94_in_der_praxis
+ultrazvuk	ultraljud	zmaj zmaj::94_in_der_praxis
+Sutra idem na ultrazvuk.	I morgon ska jag på ultraljud.	zmaj zmaj::94_in_der_praxis
+čekaonica	väntrum	zmaj zmaj::94_in_der_praxis
+Čekaonica je bila puna.	Väntrummet var fullt.	zmaj zmaj::94_in_der_praxis
+rendgen	röntgen	zmaj zmaj::94_in_der_praxis
+Doktor me poslao na rendgen.	Läkaren skickade mig på röntgen.	zmaj zmaj::94_in_der_praxis
+dom zdravlja	vårdcentral	zmaj zmaj::94_in_der_praxis
+Idem u dom zdravlja po uputnicu.	Jag går till vårdcentralen för att hämta en remiss.	zmaj zmaj::94_in_der_praxis
+liječiti	behandla / bota	zmaj zmaj::95_untersuchen_heilen
+Koji doktor te liječi?	Vilken läkare behandlar dig?	zmaj zmaj::95_untersuchen_heilen
+izliječiti	behandla / bota	zmaj zmaj::95_untersuchen_heilen
+To se može izliječiti.	Det går att bota.	zmaj zmaj::95_untersuchen_heilen
+pregledati	undersöka	zmaj zmaj::95_untersuchen_heilen
+Doktor me pregledao i rekao da je sve u redu.	Läkaren undersökte mig och sa att allt är bra.	zmaj zmaj::95_untersuchen_heilen
+mjeriti	mäta	zmaj zmaj::95_untersuchen_heilen
+Babo svako jutro mjeri pritisak.	Pappa mäter blodtrycket varje morgon.	zmaj zmaj::95_untersuchen_heilen
+izmjeriti	mäta	zmaj zmaj::95_untersuchen_heilen
+Izmjeri mu temperaturu.	Ta tempen på honom.	zmaj zmaj::95_untersuchen_heilen
+oporaviti se	återhämta sig	zmaj zmaj::95_untersuchen_heilen
+Treba ti vremena da se oporaviš.	Du behöver tid att återhämta dig.	zmaj zmaj::95_untersuchen_heilen
+oporavljati se	återhämta sig	zmaj zmaj::95_untersuchen_heilen
+Babo se još oporavlja od operacije.	Pappa återhämtar sig fortfarande efter operationen.	zmaj zmaj::95_untersuchen_heilen
+gutati	svälja	zmaj zmaj::95_untersuchen_heilen
+Boli me kad gutam.	Det gör ont när jag sväljer.	zmaj zmaj::95_untersuchen_heilen
+progutati	svälja	zmaj zmaj::95_untersuchen_heilen
+Progutaj tabletu s malo vode.	Svälj tabletten med lite vatten.	zmaj zmaj::95_untersuchen_heilen
+udahnuti	andas in	zmaj zmaj::95_untersuchen_heilen
+Duboko udahnite.	Andas in djupt.	zmaj zmaj::95_untersuchen_heilen
+ozdraviti	bli frisk	zmaj zmaj::95_untersuchen_heilen
+Dijete je ozdravilo, sutra ide u školu.	Barnet är friskt igen, i morgon går det till skolan.	zmaj zmaj::95_untersuchen_heilen
+vitamin	vitamin	zmaj zmaj::96_apotheke
+Zimi djeci dajem vitamine.	På vintern ger jag barnen vitaminer.	zmaj zmaj::96_apotheke
+mast	salva	zmaj zmaj::96_apotheke
+Namaži ovu mast dva puta dnevno.	Smörj in dig med den här salvan två gånger om dagen.	zmaj zmaj::96_apotheke
+tableta	tablett	zmaj zmaj::96_apotheke
+Uzmi jednu tabletu poslije jela.	Ta en tablett efter maten.	zmaj zmaj::96_apotheke
+antibiotik	antibiotika	zmaj zmaj::96_apotheke
+Antibiotik se pije do kraja.	Antibiotika tar man tills kuren är slut.	zmaj zmaj::96_apotheke
+kapi	droppar	zmaj zmaj::96_apotheke
+Trebaju mi kapi za nos.	Jag behöver näsdroppar.	zmaj zmaj::96_apotheke
+nuspojava	biverkning	zmaj zmaj::96_apotheke
+Ima li ovaj lijek nuspojava?	Har den här medicinen några biverkningar?	zmaj zmaj::96_apotheke
+sirup	mixtur	zmaj zmaj::96_apotheke
+Dijete pije sirup za kašalj.	Barnet tar hostmedicin.	zmaj zmaj::96_apotheke
+maramica	näsduk	zmaj zmaj::96_apotheke
+Imaš li maramicu?	Har du en näsduk?	zmaj zmaj::96_apotheke
+zavoj	förband	zmaj zmaj::96_apotheke
+Sestra mi je promijenila zavoj.	Sjuksköterskan bytte mitt förband.	zmaj zmaj::96_apotheke
+flaster	plåster	zmaj zmaj::96_apotheke
+Daj mi flaster, porezao sam se.	Ge mig ett plåster, jag har skurit mig.	zmaj zmaj::96_apotheke
+bez recepta	receptfri	zmaj zmaj::96_apotheke
+Mogu li ovo dobiti bez recepta?	Kan jag få det här utan recept?	zmaj zmaj::96_apotheke
+apotekar / farmaceut	apotekare	zmaj zmaj::96_apotheke
+Pitaj apotekara šta je najbolje za kašalj.	Fråga apotekaren vad som är bäst mot hosta.	zmaj zmaj::96_apotheke
+toplomjer / termometar	febertermometer	zmaj zmaj::96_apotheke
+Gdje je toplomjer? Mali ima temperaturu.	Var är febertermometern? Den lille har feber.	zmaj zmaj::96_apotheke
+na prazan stomak	på fastande mage	zmaj zmaj::96_apotheke
+Ovu tabletu pij ujutro na prazan stomak.	Ta den här tabletten på morgonen på fastande mage.	zmaj zmaj::96_apotheke
+zdravlje	hälsa	zmaj zmaj::97_gesund_leben
+Zdravlje je najvažnije.	Hälsan är det viktigaste.	zmaj zmaj::97_gesund_leben
+san	sömn / dröm	zmaj zmaj::97_gesund_leben
+Djeci treba puno sna.	Barn behöver mycket sömn.	zmaj zmaj::97_gesund_leben
+visina	längd / höjd	zmaj zmaj::97_gesund_leben
+Doktor mi je izmjerio visinu i težinu.	Läkaren mätte min längd och vikt.	zmaj zmaj::97_gesund_leben
+težina	vikt	zmaj zmaj::97_gesund_leben
+Moram paziti na težinu.	Jag måste tänka på vikten.	zmaj zmaj::97_gesund_leben
+alkohol	alkohol	zmaj zmaj::97_gesund_leben
+Uz ovaj lijek ne smiješ piti alkohol.	Du får inte dricka alkohol med den här medicinen.	zmaj zmaj::97_gesund_leben
+cigareta	cigarett	zmaj zmaj::97_gesund_leben
+Koliko cigareta pušiš dnevno?	Hur många cigaretter röker du om dagen?	zmaj zmaj::97_gesund_leben
+pušiti	röka	zmaj zmaj::97_gesund_leben
+Prestao sam pušiti prije dvije godine.	Jag slutade röka för två år sedan.	zmaj zmaj::97_gesund_leben
+dijeta	diet	zmaj zmaj::97_gesund_leben
+Od ponedjeljka sam na dijeti.	Från och med måndag bantar jag.	zmaj zmaj::97_gesund_leben
+smršati	gå ner i vikt	zmaj zmaj::97_gesund_leben
+Smršala sam pet kila!	Jag har gått ner fem kilo!	zmaj zmaj::97_gesund_leben
+udebljati se	gå upp i vikt	zmaj zmaj::97_gesund_leben
+Udebljao sam se preko zime.	Jag har gått upp i vikt under vintern.	zmaj zmaj::97_gesund_leben
+vrijeme	Tid	zmaj zmaj::98_zeitangaben
+Kako vrijeme brzo prolazi!	Vad tiden går fort!	zmaj zmaj::98_zeitangaben
+sekunda	sekund	zmaj zmaj::98_zeitangaben
+Daj mi samo sekundu.	Ge mig bara en sekund.	zmaj zmaj::98_zeitangaben
+trenutak	ögonblick	zmaj zmaj::98_zeitangaben
+Čekao sam pravi trenutak da joj kažem.	Jag väntade på rätt ögonblick att säga det till henne.	zmaj zmaj::98_zeitangaben
+ponoć	midnatt	zmaj zmaj::98_zeitangaben
+Vratili smo se kući poslije ponoći.	Vi kom hem efter midnatt.	zmaj zmaj::98_zeitangaben
+prijepodne	förmiddag	zmaj zmaj::98_zeitangaben
+Prijepodne radim, a popodne sam s djecom.	På förmiddagen jobbar jag, på eftermiddagen är jag med barnen.	zmaj zmaj::98_zeitangaben
+jutros	i morse	zmaj zmaj::98_zeitangaben
+Jutros sam zakasnio na posao.	I morse kom jag för sent till jobbet.	zmaj zmaj::98_zeitangaben
+večeras	i kväll	zmaj zmaj::98_zeitangaben
+Šta radiš večeras?	Vad gör du i kväll?	zmaj zmaj::98_zeitangaben
+sinoć	i går kväll	zmaj zmaj::98_zeitangaben
+Gdje si bio sinoć?	Var var du i går kväll?	zmaj zmaj::98_zeitangaben
+noćas	i natt	zmaj zmaj::98_zeitangaben
+Noćas sam loše spavala.	Jag sov dåligt i natt.	zmaj zmaj::98_zeitangaben
+prekjučer	i förrgår	zmaj zmaj::98_zeitangaben
+Prekjučer sam bio kod nane.	I förrgår var jag hos mormor.	zmaj zmaj::98_zeitangaben
+datum	datum	zmaj zmaj::98_zeitangaben
+Koji je danas datum?	Vilket datum är det i dag?	zmaj zmaj::98_zeitangaben
+dnevno	dagligen	zmaj zmaj::98_zeitangaben
+Radim osam sati dnevno.	Jag jobbar åtta timmar om dagen.	zmaj zmaj::98_zeitangaben
+mjesečno	månatligen	zmaj zmaj::98_zeitangaben
+Kirija je petsto maraka mjesečno.	Hyran är femhundra mark i månaden.	zmaj zmaj::98_zeitangaben
+budućnost	framtid	zmaj zmaj::98_zeitangaben
+U budućnosti želimo živjeti u Bosni.	I framtiden vill vi bo i Bosnien.	zmaj zmaj::98_zeitangaben
+praznik	helgdag	zmaj zmaj::98_zeitangaben
+Sutra je praznik, banke ne rade.	I morgon är det helgdag, bankerna har stängt.	zmaj zmaj::98_zeitangaben
+odmah	genast	zmaj zmaj::99_sofort_endlich
+Odmah dolazim!	Jag kommer genast!	zmaj zmaj::99_sofort_endlich
+upravo	precis (nu)	zmaj zmaj::99_sofort_endlich
+Upravo sam stigla kući.	Jag har precis kommit hem.	zmaj zmaj::99_sofort_endlich
+maloprije	nyss	zmaj zmaj::99_sofort_endlich
+Maloprije te je neko tražio.	Någon letade efter dig nyss.	zmaj zmaj::99_sofort_endlich
+nedavno	häromdagen / nyligen	zmaj zmaj::99_sofort_endlich
+Nedavno smo se preselili.	Vi flyttade nyligen.	zmaj zmaj::99_sofort_endlich
+ranije	förr / i förväg	zmaj zmaj::99_sofort_endlich
+Možeš li doći malo ranije?	Kan du komma lite tidigare?	zmaj zmaj::99_sofort_endlich
+konačno	äntligen	zmaj zmaj::99_sofort_endlich
+Konačno si stigao!	Äntligen är du här!	zmaj zmaj::99_sofort_endlich
+dok	medan / så länge	zmaj zmaj::99_sofort_endlich
+Popij kahvu dok čekaš.	Ta en kaffe medan du väntar.	zmaj zmaj::99_sofort_endlich
+tek	först	zmaj zmaj::99_sofort_endlich
+Film počinje tek u devet.	Filmen börjar inte förrän nio.	zmaj zmaj::99_sofort_endlich
+još	fortfarande	zmaj zmaj::99_sofort_endlich
+Još spava, nemoj ga buditi.	Han sover fortfarande, väck honom inte.	zmaj zmaj::99_sofort_endlich
+opet	igen	zmaj zmaj::99_sofort_endlich
+Dođite nam opet!	Kom och hälsa på oss igen!	zmaj zmaj::99_sofort_endlich
+zauvijek	för alltid	zmaj zmaj::99_sofort_endlich
+Ovo ne može trajati zauvijek.	Det här kan inte fortsätta för evigt.	zmaj zmaj::99_sofort_endlich
+na vrijeme	i tid	zmaj zmaj::99_sofort_endlich
+Jedva smo stigli na vrijeme.	Vi kom fram precis i tid.	zmaj zmaj::99_sofort_endlich
+sport	sport	zmaj zmaj::100_sport
+Kojim se sportom baviš?	Vilken sport håller du på med?	zmaj zmaj::100_sport
+fudbal	fotboll	zmaj zmaj::100_sport
+Babo svake subote gleda fudbal.	Pappa tittar på fotboll varje lördag.	zmaj zmaj::100_sport
+košarka	basket	zmaj zmaj::100_sport
+Moj sin trenira košarku.	Min son tränar basket.	zmaj zmaj::100_sport
+rukomet	handboll	zmaj zmaj::100_sport
+Moj brat igra rukomet.	Min bror spelar handboll.	zmaj zmaj::100_sport
+trčati	springa	zmaj zmaj::100_sport
+Svako jutro trčim pola sata.	Varje morgon springer jag en halvtimme.	zmaj zmaj::100_sport
+utakmica	match	zmaj zmaj::100_sport
+Idemo li na utakmicu u subotu?	Ska vi gå på matchen på lördag?	zmaj zmaj::100_sport
+ekipa	lag	zmaj zmaj::100_sport
+Ove godine imamo dobru ekipu.	I år har vi ett bra lag.	zmaj zmaj::100_sport
+reprezentacija	landslag	zmaj zmaj::100_sport
+Večeras igra naša reprezentacija.	I kväll spelar vårt landslag.	zmaj zmaj::100_sport
+igrač	spelare	zmaj zmaj::100_sport
+On je najbolji igrač u ekipi.	Han är lagets bästa spelare.	zmaj zmaj::100_sport
+trener	tränare	zmaj zmaj::100_sport
+Novi trener je jako strog.	Den nya tränaren är väldigt sträng.	zmaj zmaj::100_sport
+gol	mål (i sport)	zmaj zmaj::100_sport
+Ko je dao gol?	Vem gjorde målet?	zmaj zmaj::100_sport
+lopta	boll	zmaj zmaj::100_sport
+Dodaj mi loptu!	Passa bollen till mig!	zmaj zmaj::100_sport
+pobijediti	vinna	zmaj zmaj::100_sport
+Pobijedili smo u zadnjoj minuti!	Vi vann i sista minuten!	zmaj zmaj::100_sport
+pobjeda	seger	zmaj zmaj::100_sport
+Čestitam na pobjedi!	Grattis till segern!	zmaj zmaj::100_sport
+rezultat	resultat	zmaj zmaj::100_sport
+Koji je rezultat?	Hur står det?	zmaj zmaj::100_sport
+navijati	heja på / hålla på	zmaj zmaj::100_sport
+Za koga navijaš?	Vilket lag håller du på?	zmaj zmaj::100_sport
+navijač	supporter	zmaj zmaj::100_sport
+Navijači su pjevali cijelu utakmicu.	Supportrarna sjöng hela matchen.	zmaj zmaj::100_sport
+teretana	gym	zmaj zmaj::100_sport
+Idem u teretanu tri puta sedmično.	Jag går på gym tre gånger i veckan.	zmaj zmaj::100_sport
+trening	träning	zmaj zmaj::100_sport
+Imam trening u šest.	Jag har träning klockan sex.	zmaj zmaj::100_sport
+vježbati	öva / träna	zmaj zmaj::100_sport
+Moraš više vježbati.	Du måste öva mer.	zmaj zmaj::100_sport
+hobi	hobby	zmaj zmaj::101_hobbys
+Imaš li neki hobi?	Har du någon hobby?	zmaj zmaj::101_hobbys
+slobodno vrijeme	fritid	zmaj zmaj::101_hobbys
+Šta radiš u slobodno vrijeme?	Vad gör du på fritiden?	zmaj zmaj::101_hobbys
+crtati	teckna	zmaj zmaj::101_hobbys
+Djeca vole crtati.	Barn tycker om att teckna.	zmaj zmaj::101_hobbys
+pecati	fiska	zmaj zmaj::101_hobbys
+Dedo voli pecati na rijeci.	Morfar tycker om att fiska vid ån.	zmaj zmaj::101_hobbys
+gitara	gitarr	zmaj zmaj::101_hobbys
+Kćerka uči svirati gitaru.	Min dotter lär sig spela gitarr.	zmaj zmaj::101_hobbys
+plesti	sticka	zmaj zmaj::101_hobbys
+Nana plete čarape za zimu.	Mormor stickar sockor till vintern.	zmaj zmaj::101_hobbys
+slika	bild / foto	zmaj zmaj::101_hobbys
+Pošalji mi sliku!	Skicka en bild till mig!	zmaj zmaj::101_hobbys
+izlet	utflykt	zmaj zmaj::101_hobbys
+U nedjelju idemo na izlet na Vrelo Bosne.	På söndag gör vi en utflykt till Vrelo Bosne.	zmaj zmaj::101_hobbys
+kino	bio	zmaj zmaj::101_hobbys
+Idemo u kino?	Ska vi gå på bio?	zmaj zmaj::101_hobbys
+pozorište	teater	zmaj zmaj::101_hobbys
+Dugo nisam bila u pozorištu.	Jag har inte varit på teater på länge.	zmaj zmaj::101_hobbys
+koncert	konsert	zmaj zmaj::101_hobbys
+Karte za koncert su rasprodane.	Biljetterna till konserten är slutsålda.	zmaj zmaj::101_hobbys
+muzej	museum	zmaj zmaj::101_hobbys
+Djeca su s razredom bila u muzeju.	Barnen var på museum med klassen.	zmaj zmaj::101_hobbys
+žurka	party	zmaj zmaj::101_hobbys
+Ko sve dolazi na žurku?	Vilka kommer på festen?	zmaj zmaj::101_hobbys
+igra	spel	zmaj zmaj::101_hobbys
+Hajmo igrati neku igru!	Kom så spelar vi ett spel!	zmaj zmaj::101_hobbys
+novine	tidning	zmaj zmaj::102_medien
+Dedo svako jutro čita novine.	Morfar läser tidningen varje morgon.	zmaj zmaj::102_medien
+vijesti	nyheter	zmaj zmaj::102_medien
+Jesi li gledao vijesti?	Har du sett nyheterna?	zmaj zmaj::102_medien
+emisija	program (tv, radio)	zmaj zmaj::102_medien
+Ova emisija ide svake nedjelje.	Det här programmet går varje söndag.	zmaj zmaj::102_medien
+kanal	kanal	zmaj zmaj::102_medien
+Prebaci na drugi kanal.	Byt till en annan kanal.	zmaj zmaj::102_medien
+reklama	reklam	zmaj zmaj::102_medien
+Opet reklame, idem po sok.	Reklam igen, jag hämtar en juice.	zmaj zmaj::102_medien
+radio	radio	zmaj zmaj::102_medien
+U autu uvijek slušam radio.	I bilen lyssnar jag alltid på radio.	zmaj zmaj::102_medien
+film	film	zmaj zmaj::102_medien
+Hoćemo li pogledati neki film?	Ska vi titta på en film?	zmaj zmaj::102_medien
+serija	serie	zmaj zmaj::102_medien
+Nana gleda svaku tursku seriju.	Mormor tittar på varenda turkisk serie.	zmaj zmaj::102_medien
+televizija	television	zmaj zmaj::102_medien
+Šta ima na televiziji?	Vad går det på tv?	zmaj zmaj::102_medien
+društvene mreže	sociala medier	zmaj zmaj::102_medien
+Djeca previše vremena provode na društvenim mrežama.	Barnen tillbringar för mycket tid på sociala medier.	zmaj zmaj::102_medien
+video	video	zmaj zmaj::102_medien
+Pogledaj ovaj video, umrijet ćeš od smijeha!	Titta på den här videon, du kommer att skratta ihjäl dig!	zmaj zmaj::102_medien
+snimiti	spela in / filma	zmaj zmaj::102_medien
+Snimio sam cijeli koncert mobitelom.	Jag filmade hela konserten med mobilen.	zmaj zmaj::102_medien
+pratiti	följa	zmaj zmaj::102_medien
+Pratim sve utakmice reprezentacije.	Jag följer alla landslagets matcher.	zmaj zmaj::102_medien
+objaviti	publicera / lägga upp	zmaj zmaj::102_medien
+Objavila je slike s mora.	Hon har lagt upp bilder från havet.	zmaj zmaj::102_medien
+glumac	skådespelare	zmaj zmaj::102_medien
+Taj glumac je iz Sarajeva.	Den här skådespelaren kommer från Sarajevo.	zmaj zmaj::102_medien
+tramvaj	spårvagn	zmaj zmaj::103_urlaub
+Tramvajem je najbrže do Baščaršije.	Med spårvagnen kommer man snabbast till Baščaršija.	zmaj zmaj::103_urlaub
+brod	fartyg	zmaj zmaj::103_urlaub
+Prvi put sam se vozio brodom.	Jag åkte båt för första gången.	zmaj zmaj::103_urlaub
+ljetovanje	sommarsemester	zmaj zmaj::103_urlaub
+Kuda idete na ljetovanje?	Vart åker ni på sommarsemester?	zmaj zmaj::103_urlaub
+plaža	badstrand	zmaj zmaj::103_urlaub
+Cijeli dan smo bili na plaži.	Vi var på stranden hela dagen.	zmaj zmaj::103_urlaub
+spakovati	packa	zmaj zmaj::103_urlaub
+Jesi li spakovao kofer?	Har du packat resväskan?	zmaj zmaj::103_urlaub
+ruksak	ryggsäck	zmaj zmaj::103_urlaub
+Stavi u ruksak vodu i nešto za jelo.	Lägg vatten och något att äta i ryggsäcken.	zmaj zmaj::103_urlaub
+smještaj	boende	zmaj zmaj::103_urlaub
+Smještaj smo našli preko interneta.	Boendet hittade vi på nätet.	zmaj zmaj::103_urlaub
+turista	turist	zmaj zmaj::103_urlaub
+Ljeti je Baščaršija puna turista.	På sommaren är Baščaršija full av turister.	zmaj zmaj::103_urlaub
+putnik	resenär / passagerare	zmaj zmaj::103_urlaub
+U autobusu je bilo samo pet putnika.	Det var bara fem passagerare på bussen.	zmaj zmaj::103_urlaub
+propustiti	missa	zmaj zmaj::103_urlaub
+Zbog gužve smo propustili let.	På grund av köerna missade vi flyget.	zmaj zmaj::103_urlaub
+otkazati	ställa in / avboka	zmaj zmaj::103_urlaub
+Morali smo otkazati put.	Vi var tvungna att ställa in resan.	zmaj zmaj::103_urlaub
+rezervisati	boka	zmaj zmaj::103_urlaub
+Rezervisala sam sto za subotu navečer.	Jag har bokat ett bord till lördag kväll.	zmaj zmaj::103_urlaub
+red vožnje	tidtabell	zmaj zmaj::103_urlaub
+Gdje mogu vidjeti red vožnje?	Var kan jag se tidtabellen?	zmaj zmaj::103_urlaub
+vrtić	förskola	zmaj zmaj::104_schule
+Vodim sina u vrtić pa idem na posao.	Jag lämnar min son på förskolan och går sedan till jobbet.	zmaj zmaj::104_schule
+osnovna škola	grundskola	zmaj zmaj::104_schule
+Išli smo zajedno u osnovnu školu.	Vi gick i grundskolan tillsammans.	zmaj zmaj::104_schule
+srednja škola	gymnasium	zmaj zmaj::104_schule
+Kćerka ove godine kreće u srednju školu.	Min dotter börjar gymnasiet i år.	zmaj zmaj::104_schule
+razred	klass (årskurs)	zmaj zmaj::104_schule
+U koji razred ideš?	Vilken klass går du i?	zmaj zmaj::104_schule
+ocjena	betyg (i ett ämne)	zmaj zmaj::104_schule
+Kakve su ti ocjene?	Hur är dina betyg?	zmaj zmaj::104_schule
+predmet	skolämne	zmaj zmaj::104_schule
+Koji ti je najdraži predmet?	Vilket är ditt favoritämne?	zmaj zmaj::104_schule
+matematika	matematik	zmaj zmaj::104_schule
+Matematika mi nikad nije išla.	Matte har aldrig varit min grej.	zmaj zmaj::104_schule
+greška	misstag	zmaj zmaj::104_schule
+Napravio sam veliku grešku.	Jag har gjort ett stort misstag.	zmaj zmaj::104_schule
+rječnik	ordbok	zmaj zmaj::104_schule
+Tu riječ nisam našao ni u rječniku.	Det här ordet hittade jag inte ens i ordboken.	zmaj zmaj::104_schule
+sveska	skrivhäfte	zmaj zmaj::104_schule
+Zapiši to u svesku.	Skriv det i skrivhäftet.	zmaj zmaj::104_schule
+raspust	skollov	zmaj zmaj::104_schule
+Kad počinje zimski raspust?	När börjar vinterlovet?	zmaj zmaj::104_schule
+užina	matsäck / mellanmål	zmaj zmaj::104_schule
+Mama mi je spremila užinu za školu.	Mamma har gjort matsäck till mig till skolan.	zmaj zmaj::104_schule
+položiti	klara (prov)	zmaj zmaj::104_schule
+Položio sam vozački iz prve!	Jag klarade körkortet på första försöket!	zmaj zmaj::104_schule
+ponoviti	upprepa	zmaj zmaj::104_schule
+Ponovi za mnom!	Upprepa efter mig!	zmaj zmaj::104_schule
+ponavljati	upprepa	zmaj zmaj::104_schule
+Koliko puta ti moram ponavljati?	Hur många gånger måste jag upprepa det?	zmaj zmaj::104_schule
+zapamtiti	lägga på minnet	zmaj zmaj::105_lernen_studieren
+Ne mogu zapamtiti njegovo ime.	Jag kan inte komma ihåg hans namn.	zmaj zmaj::105_lernen_studieren
+pamtiti	lägga på minnet	zmaj zmaj::105_lernen_studieren
+Dobro pamtim lica, ali imena ne.	Ansikten kommer jag ihåg bra, men inte namn.	zmaj zmaj::105_lernen_studieren
+računati	räkna (matte)	zmaj zmaj::105_lernen_studieren
+Nana još uvijek računa u glavi brže od mene.	Mormor räknar fortfarande snabbare i huvudet än jag.	zmaj zmaj::105_lernen_studieren
+brojati	räkna (antal)	zmaj zmaj::105_lernen_studieren
+Mali već zna brojati do sto.	Den lille kan redan räkna till hundra.	zmaj zmaj::105_lernen_studieren
+znanje	kunskap	zmaj zmaj::105_lernen_studieren
+Znanje ti niko ne može uzeti.	Kunskap kan ingen ta ifrån dig.	zmaj zmaj::105_lernen_studieren
+slovo	bokstav	zmaj zmaj::105_lernen_studieren
+Bosanska abeceda ima trideset slova.	Det bosniska alfabetet har trettio bokstäver.	zmaj zmaj::105_lernen_studieren
+rečenica	mening	zmaj zmaj::105_lernen_studieren
+Napiši jednu rečenicu na bosanskom.	Skriv en mening på bosniska.	zmaj zmaj::105_lernen_studieren
+prevesti	översätta	zmaj zmaj::105_lernen_studieren
+Možeš li mi prevesti ovo pismo?	Kan du översätta det här brevet åt mig?	zmaj zmaj::105_lernen_studieren
+fakultet	fakultet	zmaj zmaj::105_lernen_studieren
+Na kojem si fakultetu?	Vilken fakultet läser du vid?	zmaj zmaj::105_lernen_studieren
+studirati	studera	zmaj zmaj::105_lernen_studieren
+Šta studiraš?	Vad pluggar du?	zmaj zmaj::105_lernen_studieren
+profesor	professor / lärare (gymnasiet)	zmaj zmaj::105_lernen_studieren
+Profesor nam je dao puno zadaće.	Läraren gav oss mycket läxor.	zmaj zmaj::105_lernen_studieren
+diplomirati	ta examen	zmaj zmaj::105_lernen_studieren
+Sestra je diplomirala prošle godine.	Min syster tog examen förra året.	zmaj zmaj::105_lernen_studieren
+upisati se	skriva in sig	zmaj zmaj::105_lernen_studieren
+Upisala se na medicinu.	Hon har skrivit in sig på läkarprogrammet.	zmaj zmaj::105_lernen_studieren
+kuhar	kock	zmaj zmaj::106_berufe
+Brat radi kao kuhar u hotelu.	Min bror jobbar som kock på ett hotell.	zmaj zmaj::106_berufe
+frizer	frisör	zmaj zmaj::106_berufe
+Sutra idem kod frizera.	I morgon ska jag till frisören.	zmaj zmaj::106_berufe
+mehaničar	mekaniker	zmaj zmaj::106_berufe
+Auto je još kod mehaničara.	Bilen står fortfarande hos mekanikern.	zmaj zmaj::106_berufe
+zidar	murare	zmaj zmaj::106_berufe
+Babo je radio kao zidar u Njemačkoj.	Pappa jobbade som murare i Tyskland.	zmaj zmaj::106_berufe
+stolar	snickare	zmaj zmaj::106_berufe
+Stolar nam je napravio novu kuhinju.	Snickaren har byggt ett nytt kök åt oss.	zmaj zmaj::106_berufe
+vodoinstalater	rörmokare	zmaj zmaj::106_berufe
+Moramo zvati vodoinstalatera, curi slavina.	Vi måste ringa rörmokaren, kranen droppar.	zmaj zmaj::106_berufe
+pekar	bagare	zmaj zmaj::106_berufe
+Pekar ustaje u tri ujutro.	Bagaren går upp klockan tre på morgonen.	zmaj zmaj::106_berufe
+čistačica	städerska	zmaj zmaj::106_berufe
+Mama radi kao čistačica u bolnici.	Mamma jobbar som städerska på sjukhuset.	zmaj zmaj::106_berufe
+njegovateljica	vårdbiträde	zmaj zmaj::106_berufe
+Tetka radi kao njegovateljica u staračkom domu.	Min moster jobbar som vårdbiträde på ett äldreboende.	zmaj zmaj::106_berufe
+policajac	polisman	zmaj zmaj::106_berufe
+Zaustavio nas je policajac.	En polis stoppade oss.	zmaj zmaj::106_berufe
+vojnik	soldat	zmaj zmaj::106_berufe
+Moj rođak je profesionalni vojnik.	Min kusin är yrkessoldat.	zmaj zmaj::106_berufe
+vatrogasac	brandman	zmaj zmaj::106_berufe
+Moj mali želi biti vatrogasac.	Min lille vill bli brandman.	zmaj zmaj::106_berufe
+poljoprivrednik	lantbrukare	zmaj zmaj::106_berufe
+Komšija je poljoprivrednik, ima dvadeset krava.	Grannen är lantbrukare, han har tjugo kor.	zmaj zmaj::106_berufe
+programer	programmerare	zmaj zmaj::106_berufe
+Radi kao programer za njemačku firmu.	Han jobbar som programmerare åt ett tyskt företag.	zmaj zmaj::106_berufe
+novinar	journalist	zmaj zmaj::106_berufe
+Taj novinar piše o sportu.	Den här journalisten skriver om sport.	zmaj zmaj::106_berufe
+službenik	tjänsteman	zmaj zmaj::106_berufe
+Službenik u općini je bio jako ljubazan.	Tjänstemannen på kommunen var väldigt vänlig.	zmaj zmaj::106_berufe
+radnik	arbetare	zmaj zmaj::106_berufe
+U fabrici radi petsto radnika.	Det jobbar femhundra arbetare på fabriken.	zmaj zmaj::106_berufe
+poštar	brevbärare	zmaj zmaj::106_berufe
+Je li poštar već došao?	Har brevbäraren redan varit här?	zmaj zmaj::106_berufe
+smjena	skift	zmaj zmaj::107_arbeitsplatz
+Sutra radim noćnu smjenu.	I morgon jobbar jag nattskift.	zmaj zmaj::107_arbeitsplatz
+gradilište	byggarbetsplats	zmaj zmaj::107_arbeitsplatz
+Brat cijeli dan radi na gradilištu.	Min bror jobbar på bygget hela dagen.	zmaj zmaj::107_arbeitsplatz
+sastanak	möte / träff	zmaj zmaj::107_arbeitsplatz
+Ne mogu sad, na sastanku sam.	Jag kan inte just nu, jag sitter i möte.	zmaj zmaj::107_arbeitsplatz
+zadatak	uppgift	zmaj zmaj::107_arbeitsplatz
+Svako ima svoj zadatak.	Alla har sin uppgift.	zmaj zmaj::107_arbeitsplatz
+nezaposlen	arbetslös	zmaj zmaj::107_arbeitsplatz
+Već pola godine sam nezaposlen.	Jag har varit arbetslös i ett halvår.	zmaj zmaj::107_arbeitsplatz
+zaposliti se	få jobb	zmaj zmaj::107_arbeitsplatz
+Konačno sam se zaposlio!	Äntligen har jag fått jobb!	zmaj zmaj::107_arbeitsplatz
+zaposlen	yrkesverksam / anställd	zmaj zmaj::107_arbeitsplatz
+Je li ti žena zaposlena?	Jobbar din fru?	zmaj zmaj::107_arbeitsplatz
+otpustiti	avskeda	zmaj zmaj::107_arbeitsplatz
+Firma je otpustila sto radnika.	Företaget har sagt upp hundra arbetare.	zmaj zmaj::107_arbeitsplatz
+penzioner	pensionär	zmaj zmaj::107_arbeitsplatz
+Dedo je penzioner, ima vremena za sve.	Morfar är pensionär, han har tid för allt.	zmaj zmaj::107_arbeitsplatz
+pauza	rast	zmaj zmaj::107_arbeitsplatz
+Imam pauzu od dvanaest do pola jedan.	Jag har rast från tolv till halv ett.	zmaj zmaj::107_arbeitsplatz
+povišica	löneförhöjning	zmaj zmaj::107_arbeitsplatz
+Tražit ću povišicu od šefa.	Jag ska be chefen om löneförhöjning.	zmaj zmaj::107_arbeitsplatz
+oglas	annons	zmaj zmaj::107_arbeitsplatz
+Posao sam našao preko oglasa.	Jobbet hittade jag via en annons.	zmaj zmaj::107_arbeitsplatz
+zanat	hantverk	zmaj zmaj::107_arbeitsplatz
+Izuči zanat, uvijek ćeš imati posla.	Lär dig ett hantverk, så har du alltid jobb.	zmaj zmaj::107_arbeitsplatz
+praksa	praktik	zmaj zmaj::107_arbeitsplatz
+Studenti moraju odraditi praksu.	Studenter måste göra praktik.	zmaj zmaj::107_arbeitsplatz
+radni dan	vardag	zmaj zmaj::107_arbeitsplatz
+Radnim danima ustajem u šest.	På vardagar går jag upp klockan sex.	zmaj zmaj::107_arbeitsplatz

@@ -42,7 +42,7 @@ still works as a re-export for older scripts.)
 
 | Concept | Where | Notes |
 |---|---|---|
-| Section | `vokabeln.SEKTIONEN` | 9 sections group the levels on the learning path |
+| Section | `vokabeln.SEKTIONEN` | 14 sections group the levels on the learning path |
 | Level | `vokabeln.KATEGORIEN` | order in the list = level number; `baut_auf` names earlier levels whose words the level test reviews |
 | Word | `{"de": …, "bs": …}` inside a level | ID = `"<german meaning lowercased>:<bosnian>"`, computed in `inhalt.mit_kennung()` |
 | Cloze sentence | `vokabeln.SAETZE` | `___` is the gap, `answer` fills it, `kat` is the level |
@@ -53,8 +53,8 @@ still works as a re-export for older scripts.)
 
 ```mermaid
 erDiagram
-  SECTION ||--|{ LEVEL : "groups (9)"
-  LEVEL ||--|{ WORD : "teaches (1,740)"
+  SECTION ||--|{ LEVEL : "groups (14)"
+  LEVEL ||--|{ WORD : "teaches (2,942)"
   LEVEL ||--o{ SENTENCE : "cloze (300)"
   LEVEL ||--o| GRAMMAR_LESSON : "explains (16)"
   LEVEL }o--o{ LEVEL : "baut_auf (review)"
@@ -88,6 +88,11 @@ Plain JavaScript, no framework. Main parts, in file order:
   multiple choice in both directions, typing, listening, speaking (device
   speech recognition), cloze and grammar tasks. Wrong answers go to the
   review pot (`topf`).
+- **Spaced review** (`kartei`, since v110): every known word has a Leitner
+  level with an interval of 1, 3, 7, 14, 30, 90 or 180 days. Due words take up
+  to 3 word slots in each lesson and have their own round in the Review tab,
+  at most 30 a day, the most overdue relative to the interval first
+  (`karteiHeute`). The review day starts at 4 a.m.
 - **Level test** (`buildTest`): 10 questions, 3 of them review from `baut_auf`;
   8 right opens the next level.
 - **Stories** (`openStory`): tap a word for its gloss, play the whole story.

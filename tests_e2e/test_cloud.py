@@ -30,7 +30,7 @@ import json
 
 # Die Attrappe steht seit 28.10.2026 in firebase_attrappe.py, die Demo mit
 # eingeschalteter Anmeldung (cloud_html) in conftest.py.
-from firebase_attrappe import FIREBASE, PROJEKT, UID, Attrappe
+from firebase_attrappe import FIREBASE, PROJEKT, UID, Attrappe, wege
 
 # Speicher-Adapter einrichten: window.ablage haelt den "Cloud"-Stand.
 ADAPTER = """() => { window.ablage = {}; window.adapter = cloudSpeicherAdapter(window.ablage); return true; }"""
@@ -95,6 +95,9 @@ def _staende(seite):
         "einstufung": {"tag": "2026-10-01", "wahl": "neu", "bis": ""},
         "bewertung": {"gezeigt": ["2026-10-01"], "nein": False, "bewertet": False},
         "getragen": "hut",
+        # Lernkartei (v110): Tage als Zahl seit APP_START, alle vor heute
+        "kartei": {"tag": 80, "n": 5, "w": {"gleich:a": [1, 82, 79], "spaet:a": [3, 90, 80],
+                                            "frueh:a": [2, 85, 70], "nur:a": [0, 81, 80]}},
     }
     b = {
         "gewusst": ["gemeinsam", "w:b"], "bestanden": ["lv2"], "gelesen": [],
@@ -110,6 +113,8 @@ def _staende(seite):
         "einstufung": {"tag": "2026-10-03", "wahl": "gut", "bis": "x"},
         "bewertung": {"gezeigt": ["2026-10-05"], "nein": True, "bewertet": False},
         "getragen": "lesebrille",
+        "kartei": {"tag": 80, "n": 7, "w": {"gleich:a": [2, 81, 79], "spaet:a": [1, 81, 75],
+                                            "frueh:a": [4, 99, 78], "nur:b": [5, 120, 60]}},
     }
     return a, b, p
 
@@ -140,6 +145,12 @@ def test_zusammenfuehren_jedes_feld_nach_seiner_regel(seite, heute_stand):
     assert m["schutz"] == b["schutz"]
     assert m["einstufung"] == b["einstufung"]
     assert m["bewertung"] == {"gezeigt": ["2026-10-01", "2026-10-05"], "nein": True, "bewertet": False}
+    # Lernkartei: je Wort der zuletzt geuebte Stand, am selben Tag der fruehere
+    # Termin; der Tageszaehler am selben Tag als Maximum (29.10.2026)
+    assert m["kartei"] == {"tag": 80, "n": 7, "w": {
+        "gleich:a": [2, 81, 79], "spaet:a": [3, 90, 80], "frueh:a": [4, 99, 78],
+        "nur:a": [0, 81, 80], "nur:b": [5, 120, 60]}}
+    assert seite.js(MISCHEN, [dict(a, kartei=dict(a["kartei"], tag=81, n=1)), b])["kartei"]["n"] == 1
     assert m["getragen"] == "hut"            # das Geraet gewinnt ...
     assert seite.js(MISCHEN, [dict(a, getragen=""), b])["getragen"] == "lesebrille"   # ... traegt es nichts, die Cloud
     # Gleiche Zeit: die kleinere Anzahl, in beiden Richtungen.
@@ -168,6 +179,7 @@ def test_zusammenfuehren_idempotent_kommutativ_ohne_verluste(seite, heute_stand)
         assert set(a[k]) <= set(m[k]) and set(b[k]) <= set(m[k]), k
     for k in ("topf", "stern", "wann"):
         assert set(a[k]) | set(b[k]) <= set(m[k]), k
+    assert set(a["kartei"]["w"]) | set(b["kartei"]["w"]) == set(m["kartei"]["w"])
     # Der echte Stand der App mit sich selbst: derselbe Stand.
     assert seite.js("""() => {
         const s = standAlsObjekt(), m = standZusammenfuehren(s, s);
@@ -466,10 +478,6 @@ def _cloud_seite(seite, heute_stand, cloud_html):
     return attrappe
 
 
-def _wege(attrappe):
-    return [(a, p) for a, p, _ in attrappe.anfragen]
-
-
 def test_loeschen_anonym_zu_alt_sicherung_weg_und_abgemeldet(seite, heute_stand, cloud_html):
     attrappe = _cloud_seite(seite, heute_stand, cloud_html)
     assert seite.js("async () => await cloudAnmelden('anonym')") is True
@@ -480,7 +488,7 @@ def test_loeschen_anonym_zu_alt_sicherung_weg_und_abgemeldet(seite, heute_stand,
     attrappe.anfragen.clear()
     attrappe.dok_fehler = True
     assert seite.js("async () => await cloudLoeschen()") is False
-    assert _wege(attrappe) == [("DELETE", DOK)]
+    assert wege(attrappe) == [("DELETE", DOK)]
     assert attrappe.dok is not None and not attrappe.konto_weg
     assert seite.js("() => cloudMerker() && cloudMerker().uid") == UID
 
@@ -490,7 +498,7 @@ def test_loeschen_anonym_zu_alt_sicherung_weg_und_abgemeldet(seite, heute_stand,
     attrappe.dok_fehler = False
     attrappe.alt = {"id-1", "id-2"}
     assert seite.js("async () => await cloudLoeschen()") == "konto bleibt"
-    assert _wege(attrappe) == [("DELETE", DOK), ("POST", KONTO_WEG)]
+    assert wege(attrappe) == [("DELETE", DOK), ("POST", KONTO_WEG)]
     assert attrappe.dok is None and not attrappe.konto_weg
     assert seite.js("() => localStorage.getItem('zmaj_cloud')") is None
 
@@ -521,7 +529,7 @@ def test_loeschen_google_fragt_zuerst(seite, heute_stand, cloud_html):
     attrappe = _cloud_seite(seite, heute_stand, cloud_html)
     seite.js(GOOGLE_PLUGIN)
     assert seite.js("async () => await cloudAnmelden('google')") is True
-    assert _wege(attrappe) == [("POST", GOOGLE), ("GET", DOK), ("PATCH", DOK)]
+    assert wege(attrappe) == [("POST", GOOGLE), ("GET", DOK), ("PATCH", DOK)]
     assert seite.js("() => cloudMerker().art") == "google"
     # Die Anmeldung von eben ist fuer Firebase schon zu alt zum Loeschen.
     attrappe.alt = {"id-1", "id-2", "id-g1"}
@@ -534,7 +542,7 @@ def test_loeschen_google_fragt_zuerst(seite, heute_stand, cloud_html):
         attrappe.google_uid = UID if nein else "uidAnders"
         seite.js("(nein) => { window.googleNein = nein; }", nein)
         assert seite.js("async () => [await cloudLoeschen(), cloudFehlerGrund]") == [False, grund]
-        assert _wege(attrappe) == ([] if nein else [("POST", GOOGLE)])
+        assert wege(attrappe) == ([] if nein else [("POST", GOOGLE)])
         assert attrappe.geloescht_mit == [] and not attrappe.konto_weg
         assert attrappe.dok is not None and seite.js("() => cloudMerker() && cloudMerker().uid") == UID
 
@@ -544,7 +552,7 @@ def test_loeschen_google_fragt_zuerst(seite, heute_stand, cloud_html):
     attrappe.anfragen.clear()
     seite.js("() => { known.add('neu:vor-dem-loeschen'); window.googleFragen = 0; window.beimLoeschen = true; }")
     assert seite.js("async () => await cloudLoeschen()") is True
-    assert _wege(attrappe) == [("POST", GOOGLE), ("DELETE", DOK), ("POST", KONTO_WEG)]
+    assert wege(attrappe) == [("POST", GOOGLE), ("DELETE", DOK), ("POST", KONTO_WEG)]
     assert attrappe.geloescht_mit == ["id-g3"] and attrappe.konto_weg
     assert seite.js("() => [window.googleFragen, window.abgleichDabei]") == [1, "nichts"]
     assert attrappe.dok is None
