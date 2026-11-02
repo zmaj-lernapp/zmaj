@@ -49,7 +49,6 @@ import unicodedata
 
 import ton_bauen
 
-ORDNER = os.path.dirname(os.path.abspath(__file__))
 
 # Was die App zu einem Wort zählt, Zeichen für Zeichen wie in index.html:
 #     s.text.split(/([^\p{L}\p{M}'’-]+)/u)   und ein Stück ist ein Wort,

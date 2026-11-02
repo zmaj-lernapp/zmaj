@@ -365,3 +365,207 @@ und 20 KM für den Pass sind bewusst nicht dabei.
 | Kennung | Änderung |
 |---|---|
 | `k:zahlen\|Dva plus dva je četiri.` | Jetzt **Dva plus dva su četiri.** Ajdin: „Auf „su“ ändern“ – bei *dva, tri, četiri* im Subjekt steht das Verb im Plural (Gramatika bosanskoga jezika, § 241). Fehler-Topf und Sterne ziehen über `SAETZE_UMBENANNT` in `web/index.html` mit. Neue Aufnahme von Emir (w2520); die alte (w2374) bleibt im Index liegen, ihre Nummer wird nie neu vergeben. „su“ steht in `vokabeln.py` als Form von „je“ (`formen`), nur damit die Prüfung es im Level Zahlen gelten lässt – sprachlich ist es eine Form von *biti*. |
+
+## 31.10.2026 – Wortschatz-Paket 1: Sektion 10 · Tun und Lassen
+
+140 Verben und 10 Notfall-Wörter mit Beispielsatz, von Ajdin am 31.10.2026
+Eintrag für Eintrag durchgesehen (`Release\Wortschatz\paket_01_entscheidungen.md`).
+Seine Korrekturen gelten wie alle anderen hier:
+
+| Wort | Ajdin | so steht es jetzt |
+|---|---|---|
+| *ostajati* | Satz: „u ljeti mi ostajemo kod nane“ | **Ljeti mi ostajemo kod nane.** – „u ljeti“ gilt in Sprachratgebern als nicht standardsprachlich; auf Rückfrage: „das passt“. |
+| *vratiti se* | „ja cu se vratiti za pola sata“ | **Ja ću se vratiti za pola sata.** |
+| *stići* | „mi smo stigli u sarajevo passt eher“ | **Mi smo stigli u Sarajevo.** |
+| *dobijati* | „nimm dobivati“ | **dobivati**, *dobijati* zählt beim Tippen (`auch`). |
+| *odgovarati* | „kann auch sich dafür verantworten bedeuten“ | Bedeutung **antworten / sich verantworten** |
+| *desiti se* | „lass beides gelten … schreib es auch hin“ | **desiti se / dogoditi se**, jede Form zählt allein |
+| *boljeti* | „jeder sagt boliti“ | **boljeti / boliti** |
+| *disati* | „man kann auch dihati sagen“ | **disati / dihati** |
+| *gorjeti* | „die Gesellschaft sagt goriti“ | **gorjeti / goriti** |
+| *razboljeti se* | „die meisten sagen razboliti se“ | **razboljeti se / razboliti se**, der Satz bleibt *Dijete se razboljelo.* |
+| *kola hitne pomoći* | „es reicht hitna, oder vozilo hitne pomoći, sanitet geht auch“ | **hitna** (Krankenwagen / Rettung), `auch`: *vozilo hitne pomoći*, *sanitet*, *kola hitne pomoći*. Neuer Satz **Hitna je već na putu.** – auf Rückfrage: „ja der ist gut“. |
+
+**Vollendet und unvollendet.** Ajdin: „beide wörter rein die sollen separat
+sein wenn einer gelernt wurde dann ist der andere noch nicht gelernt“. Beide
+Verben eines Paares (*ostati / ostajati*, *doći / dolaziti*) stehen mit
+derselben deutschen Bedeutung und eigener Kennung in der App, `partner` nennt
+das Gegenstück. Die App zeigt den Aspekt nicht an; die beiden stehen nie
+zusammen in einer Auswahl, und wer beim Tippen das andere Verb schreibt,
+bekommt einmal „Fast richtig!“ mit dem Hinweis auf das andere Verb des
+Paares. Kein Wort, das schon in der App stand, hat seine Kennung geändert.
+
+**Ton.** Die 146 neuen Wörter hat Emir gesprochen (ElevenLabs, 31.10.2026).
+Die Aufnahmen liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen
+in `ton_nur_emir.json`: w2521–w2671. Die fünf
+Doppelformen haben zwei Aufnahmen, alle Formen („boljeti, boliti“) und die
+erste Form allein, wie *strina / amidžinica*. *ostati*, *voziti*, *naučiti*
+und *početi* hatten ihre Emir-Aufnahme schon. Die 150 Beispielsätze hat
+Emir am selben Tag gesprochen (Ajdin: „Jedes neue Wort bekommt einen
+Beispielsatz mit Emir-Ton.“), Text genau wie in der App: w2672–w2821,
+ebenfalls nur in der Hülle.
+
+## 31.10.2026 – Wortschatz-Paket 2: Tun und Lassen, Sektion 11 · Wie etwas ist
+
+150 Einträge aus `Release\Wortschatz\paket_02.json`, von Ajdin am 31.10.2026
+durchgesehen: 12 fragliche hat er beantwortet, die übrigen 138 sind
+übernommen, wie sie im Paket stehen (`paket_02_entscheidungen.md`). Aus
+Nr. 139 sind zwei Wörter geworden, deshalb 151 Wörter mit Beispielsatz.
+Seine Entscheidungen gelten wie alle anderen hier:
+
+| Wort | Ajdin | so steht es jetzt |
+|---|---|---|
+| *shvatati* | „so hab ich das gelernt, das ist grammatisch eher richtig“ | **shvatati**, *shvaćati* zählt beim Tippen (`auch`). Paket 1 bleibt bei *shvatiti*. |
+| *sačekati* | „sačekaj, das kenn ich nur“ | **sačekati**, *pričekati* zählt beim Tippen. |
+| *rezati* | *rezati* ist feines, ziehendes Schneiden (Messer, Schere), *sjeći* grob, schlagend (Holz, Fleisch mit Knochen), Ausnahme *sjeći nokte* | **rezati** = schneiden. *sjeći* kommt später als eigenes Wort („Sječem drva za zimu.“). |
+| *objesiti* | *objesiti* ist das, was hängt (Wäsche); *okačiti / zakačiti* ist anhängen, z. B. den Hund an die Leine – „objesiti psa“ hieße, ihn aufzuhängen | Gezeigt wird **objesiti**, *okačiti* zählt beim Tippen. Satz „Objesi veš, mašina je gotova.“ |
+| *težak* | so lassen | **težak** = „schwer (Gewicht)“, *teško* = „schwierig“ bleibt, wie es war. |
+| *lagan* | *lako / lahko* geht um die Schwierigkeit, *lagan* um das Gewicht | **lagan** = „leicht (Gewicht)“ |
+| *mekan* | *mehko* ist Dialekt („to je jako mekahno“), *mek* und *meko* sind beide richtig | **mekan**, *mek* und *meko* zählen beim Tippen. |
+| *jednostavan* | wenig Mühe und Kraft = *jednostavno*, alles andere *lako* | **jednostavan** = „einfach (unkompliziert)“ |
+| *komplikovan* | „nimm komplikovan, aber lass beides zählen“ | **komplikovan**, *kompliciran* zählt beim Tippen. |
+| *stidljiv* | *stidljiv* = schüchtern, *sramežljiv* eher schamhaft (nackt vor anderen) | **stidljiv**, *sramežljiv* zählt beim Tippen. |
+| *ukus / okus* | *okus* ist der Geschmack von Essen, *ukus* z. B. der Modegeschmack | **Zwei Wörter**: *okus* = „Geschmack (Essen)“ mit **Ovo ima čudan okus.**, *ukus* = „Geschmack (Stil)“ mit **Imaš dobar ukus.** |
+| *smrdjeti / smrditi* | mit j gibt ein Gegenstand Gestank ab, ohne j hat man den Geruch angenommen; im Präsens („smrdi“) gleich | **smrdjeti / smrditi**, jede Form zählt allein. |
+
+Beim Einbau festgelegt, ohne Ajdins Bosnisch zu ändern:
+
+- **Adjektive.** Gezeigt wird die männliche Form (*dug*), die weibliche und
+  die sächliche zählen beim Tippen (`auch`: *duga, dugo*). Mit „(m/w)“ wie
+  im Level Vergleichen & Beschreiben hätte sich die deutsche Bedeutung und
+  damit die Kennung geändert.
+- **Gleiche Schreibung.** *dug* (lang) steht neben *dug* (Schulden), *duga*
+  ist auch der Regenbogen, *jako*, *pravo* und *teško* sind schon eigene
+  Wörter (sehr, geradeaus, schwierig). Weil die Formen in `auch` stehen,
+  kommen die beiden nie zusammen in eine Auswahl.
+- **počistiti**: *očistiti* zählt beim Tippen mit. Es ist ebenso vollendet,
+  im bosnischen Web häufiger, und die App hat es schon im Satz *Treba
+  očistiti ranu.* (Hinweis aus der Prüfung des Pakets.)
+- **Paare.** `partner` steht bei allen 43 neuen Paaren an beiden Wörtern,
+  auch am Verb aus Paket 1 oder der App (*gubiti – izgubiti*,
+  *pokazivati – pokazati*). *nalaziti* (finden) und *nalaziti se* (sich
+  befinden), *buditi* (wecken) und *buditi se* (aufwachen) sind keine Paare
+  und gelten in der Auswahl nicht als gleich.
+- Der deutsche Satz zu *Imaš dobar ukus.* („Du hast einen guten Geschmack.“)
+  stand nicht im Paket und ist beim Einbau dazugekommen.
+
+**Ton.** Wörter und Beispielsätze hat Emir am selben Tag gesprochen
+(ElevenLabs, 31.10.2026), Text genau wie in der App. Die Aufnahmen liegen
+nur in der Hülle (`audio_emir/`), ihre Nummern stehen in
+`ton_nur_emir.json`: w2822–w3123, in der Reihenfolge der App, jedes Wort
+vor seinem Satz. *dešavati se / događati se* und *smrdjeti / smrditi*
+haben zwei Aufnahmen, alle Formen und die erste Form allein, wie
+*strina / amidžinica*. *dug* und *skuhati* hatten ihre Emir-Aufnahme
+schon.
+
+## 01.11.2026 – Wortschatz-Paket 3: Kaufen und bezahlen, Paare, Sektion 12 · Körper und Gesundheit
+
+150 Einträge aus `Release\Wortschatz\paket_03.json`, von Ajdin am
+31.10./01.11.2026 durchgesehen: 23 fragliche hat er beantwortet, fünf davon
+waren falsch und sind ersetzt; die übrigen 127 sind übernommen, wie sie im
+Paket stehen (`paket_03_entscheidungen.md`). Seine Entscheidungen gelten wie
+alle anderen hier:
+
+| Wort | Ajdin | so steht es jetzt |
+|---|---|---|
+| *grudi* → *prsa* | „grudi sagt man eher zu weiblichen Brüsten, prsa ist die Brust“ | **prsa** = „Brust“, Satz **Boli me u prsima.** *grudi* zählt nicht. |
+| *želudac* | wie vorgeschlagen | **želudac** = „Magen“, *stomak* bleibt „Bauch“. |
+| *proljev* | wie vorgeschlagen | **proljev**, *proliv* und *dijareja* zählen beim Tippen. |
+| *srčani udar* | „nimm srčani udar/infarkt“ | **srčani udar / infarkt**, jede Form zählt allein. |
+| *oteći* | „man kann beides sagen“ | **oteći**, *nateći* zählt beim Tippen. |
+| *svrbjeti* | wie vorgeschlagen | **svrbjeti / svrbiti**, jede Form zählt allein. |
+| *propisati* | „prepisati ist abschreiben“ | **propisati**; *prepisati* zählt nicht. |
+| *terapija* | „terapija bedeutet Therapie“ | **terapija** = „Therapie“, Satz **On ide na fizikalnu terapiju.** |
+| *naočale* | wie vorgeschlagen | **naočale**, *naočare* zählt beim Tippen. |
+| *rendgen* | „nur rendgen soll richtig sein“ | **rendgen**; *rentgen* zählt nicht. |
+| *smršati* | „oslabio si ist was ganz anderes“ | **smršati**, *smršaviti* zählt beim Tippen. |
+| *udebljati se* | „man sagt sehr selten ugojio, aber lass beides zählen“ | **udebljati se**, *ugojiti se* zählt beim Tippen. |
+| *apotekar* | „mach mit einem / und schreib beides hin“ | **apotekar / farmaceut** |
+| *toplomjer* | „beides geht, mach wieder ein /“ | **toplomjer / termometar** |
+| *na prazan stomak* | wie vorgeschlagen | *na prazan želudac* und *natašte* zählen beim Tippen. |
+| *izabrati* | „izabrati = sich für etwas entscheiden, odabrati = herauspicken, aussuchen“ | **izabrati** = „sich entscheiden / wählen“, Satz **Ne mogu izabrati, sve mi se sviđa.** *odabrati* zählt nicht, kommt später als eigenes Wort. |
+| *pogađati se* → *cjenkati se* | „pogađati se = großes Handeln wie bei einer Immobilie, cjenkati = Feilschen beim Flohmarkt“ | **cjenkati se** = „feilschen“, Satz **Babo se uvijek cjenka na pijaci.** *pogađati se* zählt nicht, kommt später als „verhandeln“. |
+| *isprobati* | „isprobati ist eher testen oder ausprobieren“ | **isprobati** = „ausprobieren / testen“, Satz **Moram isprobati ovaj recept.** *probati* bleibt, wie es ist. |
+| *štedjeti* | wie vorgeschlagen | *štediti* zählt beim Tippen, ebenso *uštediti* bei *uštedjeti*. |
+| *posuditi* | „posuditi = leihen oder ausleihen, pozajmiti = verleihen“ | **posuditi**, *pozajmiti* zählt beim Tippen. |
+| *kovanica* | „kovanica kommt von Banken und Handel, novčić vom Volk“ | **kovanica**, *novčić* zählt beim Tippen. |
+| *Koliko sam dužan?* | „die höfliche Form“ | so gelassen |
+| *zalijevati* | wie vorgeschlagen | *zalivati* und *zaljevati* zählen beim Tippen. |
+
+Beim Einbau festgelegt, ohne Ajdins Bosnisch zu ändern:
+
+- **izabrati und birati** behalten ihre verschiedenen Bedeutungen („sich
+  entscheiden / wählen“, „auswählen / wählen“) und sind trotzdem ein Paar
+  (`partner`), wie *popiti* und *piti*. So stehen sie nie zusammen in einer
+  Auswahl, in der beide „wählen“ zeigen, und wer beim Tippen das andere Verb
+  schreibt, bekommt „Fast richtig!“ statt eines Fehlers.
+- **Paare.** `partner` steht bei allen 25 neuen Paaren an beiden Wörtern,
+  auch am Verb aus Paket 1 oder 2 (*misliti – pomisliti*, *sušiti –
+  osušiti*). Gegenstücke, die erst später kommen (*lomiti*, *propisivati*
+  …), stehen nicht da.
+- **Mit und ohne se.** *vratiti / vraćati* (zurückgeben) stehen neben
+  *vratiti se / vraćati se* (zurückkommen): kein Paar, kein `auch`, in
+  keiner Sprache dieselbe Bedeutung.
+- **Gleiche Schreibung.** *jezik* heißt Zunge und Sprache, zwei Kennungen.
+- **Weitere Formen** nur, wo das Paket sie nennt. Was der Prüfbericht zum
+  Erwägen nannte (*inekcija, šlog, cigara, masnica*), zählt nicht – das hat
+  Ajdin nicht entschieden.
+- Kaufen und bezahlen und die nachgeholten Paare stehen in Sektion 10
+  (Tun und Lassen), der Rest in der neuen Sektion 12.
+
+**Ton.** Wörter und Beispielsätze hat Emir gesprochen (ElevenLabs,
+01.11.2026), Text genau wie in der App; Ajdin hat alles abgehört. Die
+Aufnahmen liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen in
+`ton_nur_emir.json`: w3124–w3421 in der Reihenfolge der App, jedes Wort
+vor seinem Satz, und w3720–w3723 für *srčani udar / infarkt*,
+*svrbjeti / svrbiti*, *apotekar / farmaceut* und *toplomjer / termometar*
+mit allen Formen; die erste Form allein steht an ihrer Stelle, wie bei
+*strina / amidžinica*. *zarađivati* und *jezik* hatten ihre
+Emir-Aufnahme schon.
+
+## 01.11.2026 – Wortschatz-Paket 4: Sektion 13 · Zeit und Freizeit, Sektion 14 · Lernen und Arbeiten
+
+150 Einträge aus `Release\Wortschatz\paket_04.json`, von Ajdin am 01.11.2026
+durchgesehen: alle 16 fraglichen hat er beantwortet, nichts war falsch; die
+übrigen 134 sind übernommen (`paket_04_entscheidungen.md`). Überall zählt die
+zweite Form beim Tippen mit (`auch`), außer bei *ruksak*:
+
+| Wort | Ajdin | zählt beim Tippen |
+|---|---|---|
+| *sekunda* | – | *sekund* |
+| *trenutak* | „trenutak ist formeller, momenat lockerer“ | *momenat* |
+| *konačno* | „konačno hat noch eine zweite Bedeutung: endgültig, abschließend“ | *napokon* |
+| *opet* | „opet für ‚schon wieder?‘, ponovo für neu anfangen“ | *ponovo* |
+| *fudbal* | „nogomet sagt man eher, wo überwiegend Kroaten sind“ | *nogomet* |
+| *ekipa* | „ekipa für Mannschaft oder Clique, tim eher im Beruf“ | *tim* |
+| *plesti* | „plesti formell, štrikati lockerer“ | *štrikati* |
+| *pozorište* | „pozorište eher das Gebäude, teatar künstlerischer“ | *teatar* |
+| *žurka* | „žurka locker, zabava formell und offiziell“ | *zabava* |
+| *spakovati* | „spakovati sagt man am meisten“ | *spakirati* |
+| *ruksak* | „ranac ist kein bosnisches Wort, sondern serbisch“ | **nichts** – *ranac* zählt nicht |
+| *turista* | „eher turista, beide richtig“ | *turist* |
+| *čistačica* | „spremačica ist formell und höflicher“ | *spremačica* |
+| *poljoprivrednik* | „poljoprivrednik offiziell, farmer modernes Lehnwort“ | *farmer*; *seljak* zählt nicht |
+| *smjena* | „šihta ein Germanismus, locker“ | *šihta* |
+| *gradilište* | „bauštela Germanismus“ | *bauštela* |
+
+Dazu ohne Frage: *prije podne* bei *prijepodne* und *malo prije* bei
+*maloprije* (getrennt geschrieben, gesprochen gleich).
+
+Beim Einbau festgelegt:
+
+- **Gleiche Schreibung.** *vrijeme* heißt Zeit und Wetter, zwei Kennungen;
+  *radio* (das Radio) steht neben *radio sam* (gearbeitet). In keiner
+  Sprache stehen sie gleich da.
+- **Paare** im Paket: *ponoviti – ponavljati*, *zapamtiti – pamtiti*. Die
+  15 Gegenstücke, die später kommen (*pobjeđivati*, *snimati* …), stehen
+  nicht da.
+- **Zukunft.** Für *budućnost* gibt es eigene Übersetzungen: „Zukunft“ ist
+  schon der Titel der Grammatik zur Zeitform (türkisch *Gelecek zaman*).
+
+**Ton.** Wörter und Beispielsätze hat Emir gesprochen (ElevenLabs,
+01.11.2026), Text genau wie in der App; Ajdin hat alles abgehört und bei
+*sport* und *pekar* unter mehreren Fassungen gewählt. Die Aufnahmen
+liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen in
+`ton_nur_emir.json`: w3422–w3719, in der Reihenfolge der App, jedes Wort
+vor seinem Satz. *vrijeme* und *još* hatten ihre Emir-Aufnahme schon.

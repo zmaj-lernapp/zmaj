@@ -6,7 +6,9 @@
 // Console -> Firestore Database -> Regeln, Inhalt dieser Datei einfuegen,
 // "Veroeffentlichen". Schritt fuer Schritt in FIREBASE_EINRICHTEN.md.
 //
-// Die App hat genau eine Sorte Dokument: users/{uid}, eins je Konto. Darin zwei
+// Die App hat genau eine Sorte Dokument: users/{uid}, eins je Konto. (Seit
+// 01.11.2026 legt sie fuers Feedback ausserdem nachrichten/{uid} an, wie das
+// Kontaktformular - siehe unten.) Darin zwei
 // Textfelder, die die App schreibt (cloudFirestore in index.html):
 //   daten  der Lernstand, dasselbe JSON wie in der Sicherungsdatei
 //   rev    eine kurze Kennung des Stands, damit ein zweites Geraet merkt,
@@ -26,6 +28,12 @@
 // loeschen - auch nicht die eigene Nachricht. Lesen und loeschen darf nur
 // das Melder-Konto, mit dem kontakt_weiterleitung.gs (Apps Script) die
 // Nachrichten alle 5 Minuten an das Postfach schickt.
+// Seit dem 01.11.2026 nimmt auch das Feedback der Handy-App diesen Weg
+// (Ajdin: Feedback "Uebers Formular"; feedbackSenden und
+// cloudFirestore.nachricht in web/index.html). Die App meldet sich dafuer
+// zusaetzlich kurz anonym an - als das angemeldete Konto liesse istAbsender()
+// das Anlegen nicht zu - und schreibt dieselben vier Felder, antwort ist die
+// Adresse des Kontos. Die Regeln selbst sind dafuer unveraendert geblieben.
 // MELDER_UID ist ein Platzhalter: Vor dem Veroeffentlichen in der Konsole
 // steht dort die UID des Melders (Authentication -> Nutzer). Bleibt er
 // stehen, kann niemand die Nachrichten lesen - sie warten dann nur. Das gilt
@@ -33,7 +41,8 @@
 // Wer diese Datei unveraendert einfuegt, sperrt den Melder aus (Firestore
 // get: 403), und die Weiterleitung steht still (Pruefbericht 28.10.2026).
 //
-// Anonyme Anmeldungen gibt es nur fuer das Formular. users/{uid} ist fuer
+// Anonyme Anmeldungen gibt es nur fuer das Formular (seit 01.11.2026: und
+// fuer das Feedback der App, das denselben Weg nimmt). users/{uid} ist fuer
 // sie gesperrt, sonst haette das Einschalten von "Anonym" jedem Besucher
 // ein Dokument mit 900 000 Zeichen geschenkt.
 //

@@ -57,6 +57,41 @@ die Feature-Grafik (web/_feature.html?sprache=xx) als JPEG ohne Alpha:
 ROH/<sprache>/ enthaelt die acht Rohbilder. Die Texte stehen in
 UEBERSCHRIFTEN in beschriften.py. Braucht Chrome und websockets.
 
+Die Store-Bilder sind seit v5 (15.10.2026) dunkel. Dafuer die Rohbilder mit
+--aussehen dunkel machen; ohne die Angabe stellt Playwright hell ein (wie
+bisher).
+
+
+TABLETS: 7 UND 10 ZOLL (seit 30.10.2026)
+---------------------------------------
+Dieselben acht Bilder, dieselben Ueberschriften, die App in Tablet-Breite in
+einem schlichten Tablet-Rahmen. Rohbilder je Sprache:
+
+     python store/bilder_machen/bilder_playwright.py --geraet tablet7  --aussehen dunkel --sprache de --ziel ROH7/de
+     python store/bilder_machen/bilder_playwright.py --geraet tablet10 --aussehen dunkel --sprache de --ziel ROH10/de
+
+  tablet7   Bildschirm 600 x 960 Punkte (wie ein Nexus 7), mal 2
+  tablet10  Bildschirm 800 x 1280 Punkte (uebliches 10-Zoll-Tablet), mal 2
+
+--version 1.2 schreibt in die Fusszeile dieselbe Nummer wie die gebaute App
+(versionName der Huelle). Ohne steht dort der Rueckfallwert aus
+web/index.html, und der hinkt vor einem Release eine Nummer hinterher.
+Gilt fuer Handy und Tablet gleich.
+
+Die App passt sich seit v110 dem Tablet an (siehe GROSS in web/index.html):
+auf 10 Zoll ist alles 1,3-mal so gross und die Spalte fuellt 88 % der
+Breite, auf 7 Zoll bleibt die Groesse, und Lektionen fuellen auf beiden den
+Bildschirm. So sieht sie dort wirklich aus. Dann Ueberschrift und Rahmen:
+
+     python store/bilder_machen/beschriften.py --geraet tablet7  ROH7  ZIEL7  de en tr sv nl nb da fr
+     python store/bilder_machen/beschriften.py --geraet tablet10 ROH10 ZIEL10 de en tr sv nl nb da fr
+
+Ergebnis 1080 x 1920 (7 Zoll) bzw. 1440 x 2560 (10 Zoll), 9:16, PNG ohne
+Alpha, Name <sprache>_tab7_01-start.png bzw. <sprache>_tab10_... Ohne
+Feature-Grafik, die gibt es je Sprache nur einmal. Hochladen: Play Console,
+Store-Eintrag, Grafiken, "Screenshots fuer 7-Zoll-Tablets" bzw.
+"10-Zoll-Tablets", je Sprache im jeweiligen Sprach-Eintrag.
+
 
 WAS AUF DEN BILDERN IST
 -----------------------

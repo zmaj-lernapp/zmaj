@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 r"""Behebt den letzten offenen Rest der Befunde aus WERBUNG_PRUEFUNG.md.
 
-ACHTUNG - NICHT VOR DEM 07.10.2026 EINREICHEN. Jede Einreichung setzt
-Googles Pruefuhr fuer den geschlossenen Test zurueck. Gehoert in denselben
-Build wie admob_scharf.py und laeuft VOR ihm.
+ANGEWENDET am 05.10.2026 (Build 91). Das Skript bleibt, weil
+tests/test_richten.py den angewendeten Stand prueft. Es gehoerte in
+denselben Build wie admob_scharf.py und lief VOR ihm.
 
 STAND 04.10.2026 - fast alles ist schon von Hand drin.
 Das Skript hatte 16 Ersetzungen in web/index.html und zwei neue Texte in
