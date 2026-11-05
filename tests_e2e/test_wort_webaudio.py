@@ -573,3 +573,132 @@ def test_alter_rueckton_verschiebt_das_wort_nicht(ws, heute_stand):
     assert r["frisch"] is not None and r["frisch"]["ab_ton"] == 167, r
     assert r["uebrig"] is None, r                                     # nur einmal
     assert ws.fehler == []
+
+
+# ---------------------------------------------------------------------------
+# Der Tonweg (05.11.2026): latencyHint 'playback', siehe tonKontext()
+# ---------------------------------------------------------------------------
+
+# Schreibt mit, womit der AudioContext gebaut wird. __wirft: bei einer Option
+# werfen, wie es ein Geraet tun koennte, das sie nicht kennt.
+BAUPLAN = """(() => {
+  const Echt = window.AudioContext;
+  window.__kontexte = []; window.__wirft = %s;
+  window.AudioContext = class extends Echt {
+    constructor(...a){
+      window.__kontexte.push(a.length ? a[0] : null);
+      if(a.length && window.__wirft) throw new TypeError('kennt die Option nicht');
+      super(...a);
+    }
+  };
+})()"""
+
+
+def test_tonweg_nimmt_playback(ws, heute_stand):
+    """Es entsteht genau ein Kontext, mit 'playback' - beim Vorwaermen wie
+    ueber sound(), wenn der zuerst dran ist (die zweite Stelle bis 05.11.2026).
+    Der Rueckmeldeton laeuft darauf."""
+    ws.page.add_init_script(BAUPLAN % "false")
+    bereit(ws, heute_stand())
+    assert ws.js("() => window.__kontexte") == [{"latencyHint": "playback"}]
+    r = ws.js("""() => {
+      const erster = actx;
+      window.__osz = [];
+      sound('ok');
+      const ton = window.__osz.length, bleibt = actx === erster, zahl = window.__kontexte.length;
+      actx = null; window.__kontexte = []; window.__osz = [];
+      sound('no');
+      return {ton, bleibt, zahl, ueber_sound: window.__kontexte, ton_danach: window.__osz.length, neu: actx !== erster};
+    }""")
+    assert r == {"ton": 2, "bleibt": True, "zahl": 1, "ueber_sound": [{"latencyHint": "playback"}],
+                 "ton_danach": 2, "neu": True}
+    assert ws.fehler == []
+
+
+def test_tonweg_ohne_option_wenn_das_geraet_wirft(ws, heute_stand):
+    """Wirft der Aufruf mit Option, baut die App ihn ohne - und Ton und Wort
+    laufen wie immer, auf derselben Uhr."""
+    ws.page.add_init_script(BAUPLAN % "true")
+    bereit(ws, heute_stand())
+    assert ws.js("() => window.__kontexte") == [{"latencyHint": "playback"}, None]
+    lektion(ws, ["mc", "mc"])
+    r = ws.js(ANTWORTEN, True)
+    assert len(r["starts"]) == 1 and r["starts"][0]["richtig"], r
+    assert abs(r["starts"][0]["when"] - min(r["osz"]) - 0.167) < 1e-6, r
+    assert ws.fehler == []
+
+
+# Hoert in Echtzeit mit, was aus Ton und Wort wird: ein AudioWorklet mit einem
+# Eingang je Weg, in Rechenbloecken (128 Abtastwerte). Die Spione oben sehen nur
+# die Bestellung; das hier ist, was die Ausgabe wirklich bekommt.
+LAUSCHER = """(() => {
+  const verb = AudioNode.prototype.connect;
+  window.__tap = null;
+  AudioNode.prototype.connect = function(ziel, ...rest){
+    if(window.__tap && ziel === this.context.destination){
+      if(this instanceof GainNode) verb.call(this, window.__tap, 0, 0);
+      if(this instanceof AudioBufferSourceNode) verb.call(this, window.__tap, 0, 1);
+    }
+    return verb.call(this, ziel, ...rest);
+  };
+})()"""
+
+ABSTAND_HOEREN = """async ([art, n]) => {
+  const code = `class Tap extends AudioWorkletProcessor {
+    constructor(){ super(); this.log = [];
+      this.port.onmessage = () => { this.port.postMessage(this.log); this.log = []; }; }
+    process(inputs){
+      const spitze = i => { const k = inputs[i][0]; let m = 0;
+        if(k) for(let j = 0; j < k.length; j++){ const a = Math.abs(k[j]); if(a > m) m = a; }
+        return m; };
+      const ton = spitze(0), wort = spitze(1);
+      if(ton > 0 || wort > 0) this.log.push([currentFrame, ton, wort]);
+      return true;
+    }
+  }
+  registerProcessor('tap', Tap);`;
+  await actx.audioWorklet.addModule(URL.createObjectURL(new Blob([code], {type: 'text/javascript'})));
+  const tap = new AudioWorkletNode(actx, 'tap', {numberOfInputs: 2, numberOfOutputs: 0});
+  window.__tap = tap;
+  const holen = () => new Promise(r => { tap.port.onmessage = e => r(e.data); tap.port.postMessage(0); });
+  const warte = ms => new Promise(r => setTimeout(r, ms));
+  const w = CATEGORIES[0].words.find(x => audioDatei(x.bs)), datei = audioDatei(w.bs);
+  pufferLaden(datei);
+  while(!(puffer.get(datei) && puffer.get(datei).buf)) await warte(20);
+  const aus = [];
+  for(let i = 0; i < n; i++){
+    await warte(40);
+    await holen();
+    sound(art);
+    const zeit = rueckTon.zeit;
+    spaeterSprechen(w.bs, nachAntwort(art === 'ok'), art === 'ok');
+    const log = [], ende = performance.now() + 5000;
+    let wort = null;
+    while(!wort && performance.now() < ende){
+      await warte(60);
+      log.push(...await holen());
+      wort = log.find(z => z[2] > VORLAUF_SCHWELLE);
+    }
+    stilleBitte();
+    aus.push(wort ? {ms: (wort[0] / actx.sampleRate - zeit) * 1000, ton_db: 20 * Math.log10(Math.max(wort[1], 1e-6))} : null);
+  }
+  window.__tap = null;
+  return aus;
+}"""
+
+
+@pytest.mark.parametrize("art,abstand", [("ok", 167), ("no", 186)])
+def test_ton_und_wort_bleiben_im_takt(ws, heute_stand, art, abstand):
+    """Mit dem groesseren Puffer von 'playback' setzt der erste Laut des Worts
+    weiter ABSTAND_OK bzw. ABSTAND_NO (+ VORLAUF_RAND, 5 ms) nach dem Tonbeginn
+    ein, und der Ton ist dann leise - bestellt und gehoert laufen auf einer Uhr.
+    Am 05.11.2026 am PC: 170,7 und 189,3 ms, -29,9 und -30,8 dBFS. Geprueft
+    auf drei Rechenbloecke genau; der Ton darf keinesfalls mehr tragend sein
+    (solange er klingt, liegt er um -10 dBFS)."""
+    ws.page.add_init_script(LAUSCHER)
+    bereit(ws, heute_stand())
+    for messung in ws.js(ABSTAND_HOEREN, [art, 3]):
+        assert messung is not None, "das Wort kam nicht an"
+        assert abs(messung["ms"] - (abstand + 5)) < 8.1, messung
+        assert messung["ton_db"] < -25, messung
+    assert ws.fehler == []

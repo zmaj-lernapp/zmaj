@@ -278,6 +278,12 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Sound: the app builds its one audio context in one place now, with
+  `latencyHint: 'playback'` and without the option only if a device rejects
+  it. On a Galaxy S21 (Android 15, WebView 156) the default short buffer stayed
+  silent on 5.11.2026, with the context "running" and no error, while this
+  setting played. Feedback tone and word move together; the spacing between
+  them stays the same.
 - First start on a device set to Norwegian reporting "no" or "nn" (instead of
   "nb") now opens in Norwegian instead of English.
 - Settings: "Switch to yearly" is hidden during the free trial week, when

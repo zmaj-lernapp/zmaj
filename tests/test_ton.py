@@ -3,6 +3,9 @@
 import io
 import json
 import os
+import re
+import shutil
+import subprocess
 
 import pytest
 
@@ -62,3 +65,61 @@ def test_stimmen_sind_dokumentiert(index):
     stehen - wer die Tonspur weitergibt, muss sagen können, woher sie ist."""
     stimmen = {e.get("stimme") for e in index["toene"]}
     assert stimmen <= {"bs-BA-GoranNeural", "bs-BA-VesnaNeural", "hr-HR-SreckoNeural"}, stimmen
+
+
+# Der Tonweg (05.11.2026): auf Ajdins S21 blieb der AudioContext mit
+# Standard-Latenz stumm, ohne Fehler; mit latencyHint 'playback' klang er.
+# Die App baut ihren Kontext deshalb nur noch in tonKontext().
+def test_audiocontext_entsteht_nur_in_tonkontext(index_html):
+    """Bis zum 05.11.2026 gab es zwei Stellen (sound() und tonKontext()). Eine
+    zweite, die den Kontext selbst baut, kaeme wieder ohne die Option."""
+    assert not re.findall(r"new\s*\(?\s*(?:window\.)?(?:webkit)?AudioContext\b", index_html)
+    m = re.search(r"^function tonKontext\(\)\{.*?^\}", index_html, re.S | re.M)
+    assert m, "tonKontext() nicht gefunden"
+    assert index_html.count("new Kontext(") == m.group(0).count("new Kontext(") == 2
+    ton = index_html[index_html.index("function sound(kind){"):index_html.index("function wireSwitch(")]
+    assert "tonKontext()" in ton
+
+
+# Laeuft die echte Funktion aus index.html mit erfundenen Geraeten.
+TONKONTEXT_PROBE = r"""
+const quelle = process.argv[1];
+const aufrufe = [];
+const geraet = (name, wirft) => class {
+  constructor(...a){ aufrufe.push([name, ...a]); if(wirft(a)) throw new TypeError('nein'); this.name = name; }
+};
+const fall = fenster => {
+  aufrufe.length = 0;
+  const t = new Function('window', 'let actx = null;\n' + quelle + '\nreturn {tonKontext, lies: () => actx};')(fenster);
+  const eins = t.tonKontext(), bis_hier = aufrufe.slice(), zwei = t.tonKontext();
+  return {aufrufe: bis_hier, name: eins ? eins.name : null, derselbe: eins === zwei, gemerkt: t.lies() === eins};
+};
+console.log(JSON.stringify({
+  neu: fall({AudioContext: geraet('neu', () => false), webkitAudioContext: geraet('alt', () => false)}),
+  alt: fall({webkitAudioContext: geraet('alt', () => false)}),
+  wirft_bei_option: fall({AudioContext: geraet('neu', a => a.length > 0)}),
+  wirft_immer: fall({AudioContext: geraet('neu', () => true)}),
+  keiner: fall({}),
+}));
+"""
+
+
+def test_tonkontext_nimmt_playback_und_faellt_zurueck(index_html):
+    """Immer zuerst mit 'playback'. Wirft das Geraet dabei, ohne Option; geht
+    auch das nicht oder gibt es gar keinen AudioContext, kommt null (dann
+    spricht der spieler) und kein Fehler. Einmal gebaut, bleibt es derselbe:
+    Ton und Wort muessen auf einer Uhr laufen."""
+    if not shutil.which("node"):
+        pytest.skip("node fehlt")
+    quelle = re.search(r"^function tonKontext\(\)\{.*?^\}", index_html, re.S | re.M).group(0)
+    aus = subprocess.run(["node", "-e", TONKONTEXT_PROBE, quelle],
+                         capture_output=True, text=True, check=True).stdout
+    r = json.loads(aus)
+    option = {"latencyHint": "playback"}
+    assert r["neu"] == {"aufrufe": [["neu", option]], "name": "neu", "derselbe": True, "gemerkt": True}
+    assert r["alt"] == {"aufrufe": [["alt", option]], "name": "alt", "derselbe": True, "gemerkt": True}
+    assert r["wirft_bei_option"] == {"aufrufe": [["neu", option], ["neu"]], "name": "neu",
+                                     "derselbe": True, "gemerkt": True}
+    assert r["wirft_immer"]["aufrufe"] == [["neu", option], ["neu"]]
+    assert r["wirft_immer"]["name"] is None
+    assert r["keiner"] == {"aufrufe": [], "name": None, "derselbe": True, "gemerkt": True}
