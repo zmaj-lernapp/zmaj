@@ -7275,10 +7275,18 @@ function fuerStimme(text){
     .replace(/y/g, 'j').replace(/Y/g, 'J');
 }
 /* ---- Tempo ----
-   Ajdin am 18.09.2026: man soll langsamer vorlesen lassen koennen. Der Wert
-   gilt fuer alle Aufnahmen und fuer die Computerstimme am PC, nicht nur fuer
-   die Geschichten - ein Wort, das in der Lektion zu schnell kommt, ist
-   dasselbe Problem. */
+   Ajdin am 18.09.2026: man soll langsamer vorlesen lassen koennen. Bis zum
+   05.11.2026 galt der Wert fuer alle Aufnahmen - ein Wort, das in der Lektion
+   zu schnell kommt, sei dasselbe Problem. Das war ein Fehler: einstellen
+   laesst er sich nur in den Geschichten, und wer dort einmal 0,75x waehlte,
+   hoerte den Sprecher danach in allen Lektionen langsam, ohne zu wissen warum
+   und ohne Knopf dafuer. Dazu fiel der schnelle Weg ueber WebAudio weg (siehe
+   "Wann das Wort kommt, Teil 2"). Gefunden bei Ajdins Frau, Ajdin: "das muessen
+   wir fixen das es nur auf das lesen sich beziehen muss".
+   Seitdem gilt tempo nur noch beim Vorlesen einer Geschichte: showStory() gibt
+   es an sprichMitSpieler() weiter, auch fuer die Computerstimme am PC. Alles
+   andere laeuft immer mit 1 - Woerter, Saetze, Hoerfragen und auch ein in der
+   Geschichte angetipptes Wort. Ein gemerktes zmaj_tempo bleibt gueltig. */
 const TEMPI = [0.5, 0.75, 1, 1.25];
 let tempo = 1;
 try{ const gemerkt = parseFloat(localStorage.getItem('zmaj_tempo'));
@@ -7293,7 +7301,7 @@ let pausiert = false;
 const spieler = new Audio(); spieler.preload = 'none';
 /* Der laufende stumme Anlauf aus tonVorwaermen(), sonst null (22.10.2026). */
 let vorwaermen = null;
-function spieleDatei(datei, fertig){
+function spieleDatei(datei, fertig, rate){
   waStopp();               // nie zwei Woerter uebereinander (26.10.2026)
   pausiert = false;        // ein neuer Ton hebt eine alte Pause auf
   /* Ein echtes Wort ist nie stumm: laeuft noch das Vorwaermen, ist es
@@ -7303,11 +7311,13 @@ function spieleDatei(datei, fertig){
   spieler.onended = fertig || null;
   spieler.src = 'audio/' + datei;
   /* Das Tempo bei jedem Start neu setzen: die Eigenschaft ueberlebt zwar den
-     Wechsel der Quelle, aber nicht jede WebView haelt sich daran.
+     Wechsel der Quelle, aber nicht jede WebView haelt sich daran. Und ohne
+     rate immer auf 1, sonst bliebe das naechste Wort auf dem Tempo der
+     Geschichte davor haengen (05.11.2026, siehe "---- Tempo ----").
      preservesPitch haelt die Tonhoehe - ohne das klaenge Goran bei 0,5x wie
      aus dem Keller. */
   try{ spieler.preservesPitch = true; }catch(e){}
-  try{ spieler.playbackRate = tempo; }catch(e){}
+  try{ spieler.playbackRate = rate || 1; }catch(e){}
   return spieler.play();   // Promise! Ablehnung muss gefangen werden.
 }
 /* ---- Ruhe ----
@@ -7521,8 +7531,10 @@ function tonWeiter(){
 function setzeTempo(v){
   tempo = v;
   try{ localStorage.setItem('zmaj_tempo', String(v)); }catch(e){}
-  // Ein laufender Ton aendert sich sofort mit, ohne Neustart.
-  try{ spieler.playbackRate = v; }catch(e){}
+  /* Ein laufendes Vorlesen aendert sich sofort mit, ohne Neustart, ein
+     angehaltenes geht im neuen Tempo weiter. laeuftVor steht nur beim
+     Vorlesen: ein angetipptes Wort bleibt normal (05.11.2026). */
+  if(laeuftVor) try{ spieler.playbackRate = v; }catch(e){}
   // Beide Leisten - die in der Geschichte und die in den Einstellungen.
   document.querySelectorAll('.tempo button').forEach(b =>
     b.setAttribute('aria-pressed', String(parseFloat(b.dataset.tempo) === v)));
@@ -7611,10 +7623,12 @@ const BEIM_ERSCHEINEN = 100;
    neues Wort 273 -> 68 ms. Auf dem Handy misst es handy_messen.py mit den
    Gruppen eingebaut_*.
    Rueckfall auf den spieler wie bisher (Wartezeiten oben), wenn der Puffer
-   noch nicht da ist, das Tempo nicht 1 ist (WebAudio kennt kein
-   preservesPitch, 0,75x klaenge tiefer), es keinen AudioContext gibt oder
-   die Datei nicht laedt. Die Geschichten bleiben ganz beim spieler
-   (sprichMitSpieler): Mitlesen, Pause und Weiterlesen haengen an ihm. */
+   noch nicht da ist, es keinen AudioContext gibt oder die Datei nicht laedt.
+   Die Geschichten bleiben ganz beim spieler (sprichMitSpieler): Mitlesen,
+   Pause und Weiterlesen haengen an ihm, und das Tempo auch - WebAudio kennt
+   kein preservesPitch, 0,75x klaenge tiefer. Bis zum 05.11.2026 war deshalb
+   auch ein Tempo ungleich 1 ein Grund fuer den Rueckfall, in jeder Lektion
+   (siehe "---- Tempo ----"). */
 const ABSTAND_OK = 0.167, ABSTAND_NO = 0.186;   // s ab Tonbeginn bis zum Start der Datei
 const VORLAUF_SCHWELLE = Math.pow(10, -65 / 20), VORLAUF_RAND = 0.005;
 const PUFFER_MAX = 6;
@@ -7661,7 +7675,7 @@ function vorlaufMessen(buf){
 /* Holt und dekodiert eine Datei in den Zwischenspeicher. Schlaegt es
    fehl, bleibt nichts liegen - dann spielt der spieler. */
 function pufferLaden(datei){
-  if(!datei || tempo !== 1) return;
+  if(!datei) return;
   const da = puffer.get(datei);
   if(da){ puffer.delete(datei); puffer.set(datei, da); return; }
   const ctx = tonKontext();
@@ -7696,7 +7710,7 @@ function waStopp(){
    ein laufendes oder bestelltes wird abgestellt, der spieler angehalten
    (nicht waehrend des stummen Vorwaermens, das endet von selbst). */
 function pufferSpielen(text, fertig, wann){
-  if(tempo !== 1 || !actx || actx.state === 'closed') return false;
+  if(!actx || actx.state === 'closed') return false;
   const datei = audioDatei(text);
   const p = datei ? pufferNehmen(datei) : null;
   if(!p) return false;
@@ -7807,7 +7821,7 @@ function audioDatei(text){
   const voll = text.split(' / ')[0].trim().toLowerCase();
   return AUDIO.get(voll) || AUDIO.get(audioKey(text)) || null;
 }
-function sprichMitStimme(text, fertig){
+function sprichMitStimme(text, fertig, rate){
   if(!hasTTS){ if(fertig) fertig(); return; }
   pausiert = false;
   // Sonst laegen am PC eine noch laufende Aufnahme und die Stimme uebereinander
@@ -7816,9 +7830,9 @@ function sprichMitStimme(text, fertig){
   const u = new SpeechSynthesisUtterance(fuerStimme(text));
   const v = pickVoice();
   if(v){ u.lang=v.lang; u.voice=v; } else { u.lang='hr-HR'; }
-  // 0,85 ist die Grundgeschwindigkeit der Computerstimme, das eingestellte
-  // Tempo verrechnet sich damit. Unter 0,1 nimmt kein Browser den Wert an.
-  u.rate = Math.max(0.1, Math.min(10, 0.85 * tempo));
+  // 0,85 ist die Grundgeschwindigkeit der Computerstimme, das Tempo der
+  // Geschichte verrechnet sich damit. Unter 0,1 nimmt kein Browser den Wert an.
+  u.rate = Math.max(0.1, Math.min(10, 0.85 * (rate || 1)));
   if(fertig){ u.onend = fertig; u.onerror = fertig; }
   speechSynthesis.cancel(); speechSynthesis.speak(u);
 }
@@ -7836,10 +7850,11 @@ function speak(text, fertig){
 }
 /* Der Weg ueber den spieler - bis zum 26.10.2026 war das speak() selbst.
    Die Geschichten nehmen immer ihn: Mitlesen, Pause, Weiterlesen und der
-   Sprung zur gemerkten Stelle lesen spieler.currentTime. */
-function sprichMitSpieler(text, fertig){
+   Sprung zur gemerkten Stelle lesen spieler.currentTime. rate gibt nur das
+   Vorlesen einer Geschichte mit, ohne sie laeuft der Ton mit 1 (05.11.2026). */
+function sprichMitSpieler(text, fertig, rate){
   const datei = audioDatei(text);
-  if(!datei){ sprichMitStimme(text, fertig); return; }
+  if(!datei){ sprichMitStimme(text, fertig, rate); return; }
   /* Faellt die Datei aus (fehlt, Autoplay gesperrt), springt die Stimme ein.
      Aber NICHT, wenn der Start absichtlich abgebrochen wurde: stilleBitte()
      ruft pause(), und ein pause() vor dem Anlaufen laesst play() mit
@@ -7847,9 +7862,9 @@ function sprichMitSpieler(text, fertig){
      genau das weiter, was man gerade abgestellt hat - in der naechsten
      Ansicht, ohne Stopp-Knopf. */
   const marke = tonMarke;
-  spieleDatei(datei, fertig).catch(e=>{
+  spieleDatei(datei, fertig, rate).catch(e=>{
     if(marke !== tonMarke || (e && e.name === 'AbortError')) return;
-    sprichMitStimme(text, fertig);
+    sprichMitStimme(text, fertig, rate);
   });
 }
 /* Gibt es fuer dieses Wort ueberhaupt etwas zu hoeren? Auf dem Handy kennt
@@ -10883,7 +10898,8 @@ function showStory(){
          Wort. Sobald eine Sprache aus dem Vorlese-Knopf "Hör die Geschichte"
          macht, stünde hier sonst etwas Falsches. */
       b.insertAdjacentHTML('beforeend', '<button type="button" class="wortton" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>');
-      // Ueber den spieler wie die ganze Geschichte, nie ueber WebAudio (26.10.2026)
+      // Ueber den spieler wie die ganze Geschichte, nie ueber WebAudio (26.10.2026),
+      // aber mit normalem Tempo: das gemerkte gilt nur beim Vorlesen (05.11.2026)
       b.querySelector('.wortton').addEventListener('click', ()=>{ stilleBitte(); sprichMitSpieler(wort); });
       sprichMitSpieler(wort);
     }
@@ -10940,8 +10956,9 @@ function showStory(){
     /* Vor speak(): endet der Ton sofort (keine Aufnahme, keine Stimme),
        gibt wiederVorlesen() die Sperre gleich wieder frei. */
     wachHalten(true);
-    // nie ueber WebAudio: das Mitlesen liest spieler.currentTime (26.10.2026)
-    sprichMitSpieler(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); });
+    // nie ueber WebAudio: das Mitlesen liest spieler.currentTime (26.10.2026).
+    // Die einzige Stelle, die das gemerkte Tempo mitgibt (05.11.2026).
+    sprichMitSpieler(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); }, tempo);
     /* Mitlesen (20.10.2026). Ohne passende Wortzeiten oder ohne Aufnahme
        (Computerstimme) bleibt der Text einfach ohne Markierung. */
     mitlesenStart(audioDatei(s.text), $('rBody').querySelectorAll('.txt .w'));
@@ -11347,7 +11364,7 @@ function folgeAufgabe(task){
   return null;
 }
 function woerterVorladen(task){
-  if(!canListen || tempo !== 1) return;
+  if(!canListen) return;
   [task, folgeAufgabe(task)].forEach(a => {
     const text = aufgabeText(a);
     if(text) pufferLaden(audioDatei(text));

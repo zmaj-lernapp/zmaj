@@ -278,6 +278,11 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Speed: the speed set under a story now applies only while a story is read
+  aloud. It used to slow down every recording in the app, including all lessons,
+  and took words off the fast sound path, although it can only be changed in the
+  stories. Words, sentences and listening tasks always play at normal speed, and
+  so does a word tapped in a story. A saved speed stays valid.
 - Sound: the app builds its one audio context in one place now, with
   `latencyHint: 'playback'` and without the option only if a device rejects
   it. On a Galaxy S21 (Android 15, WebView 156) the default short buffer stayed
