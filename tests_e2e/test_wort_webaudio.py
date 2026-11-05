@@ -214,11 +214,12 @@ def test_hoeren_in_der_wartezeit_kein_zweites_mal(ws, heute_stand):
     assert ws.fehler == []
 
 
-@pytest.mark.parametrize("fall", ["tempo", "ohne_puffer", "ohne_kontext", "datei_laedt_nicht"])
+@pytest.mark.parametrize("fall", ["ohne_puffer_mit_tempo", "ohne_puffer", "ohne_kontext", "datei_laedt_nicht"])
 def test_rueckfall_auf_den_spieler(ws, heute_stand, fall):
-    """Ohne bereiten Puffer, bei Tempo != 1 (WebAudio kennt kein
-    preservesPitch), ohne AudioContext und wenn die Datei nicht laedt: wie
-    vor dem 26.10.2026 ueber den spieler, nach der Wartezeit nachAntwort()."""
+    """Ohne bereiten Puffer, ohne AudioContext und wenn die Datei nicht laedt:
+    wie vor dem 26.10.2026 ueber den spieler, nach der Wartezeit nachAntwort().
+    Immer mit Tempo 1, auch wenn in der Geschichte ein anderes gemerkt ist. Bis
+    zum 05.11.2026 war Tempo != 1 selbst ein Grund fuer diesen Rueckfall."""
     bereit(ws, heute_stand())
     if fall == "datei_laedt_nicht":
         ws.page.route("**/audio/*", lambda route: route.fulfill(status=404, body="")
@@ -227,8 +228,8 @@ def test_rueckfall_auf_den_spieler(ws, heute_stand, fall):
         ws.page.wait_for_function("(d) => !puffer.has(d)", arg=dateien[0], timeout=10000)
     else:
         dateien = lektion(ws, ["mc", "mc"])
-    if fall == "tempo":
-        ws.js("() => setzeTempo(0.75)")
+    if fall == "ohne_puffer_mit_tempo":
+        ws.js("() => { setzeTempo(0.75); puffer.clear(); }")
     elif fall == "ohne_puffer":
         ws.js("() => puffer.clear()")
     elif fall == "ohne_kontext":
@@ -237,8 +238,8 @@ def test_rueckfall_auf_den_spieler(ws, heute_stand, fall):
     assert r["starts"] == [] and not r["laeuft"], r
     ws.page.wait_for_function("(z) => window.__spiele.some(s => s.src === z)", arg="audio/" + dateien[0], timeout=5000)
     z = ws.js("() => ({muted: spieler.muted, rate: spieler.playbackRate, starts: window.__starts.length})")
-    assert z == {"muted": False, "rate": 0.75 if fall == "tempo" else 1, "starts": 0}, z
-    ws.js("() => { stilleBitte(); setzeTempo(1); }")
+    assert z == {"muted": False, "rate": 1, "starts": 0}, z
+    ws.js("() => stilleBitte()")
     assert ws.fehler == []
 
 
@@ -701,4 +702,107 @@ def test_ton_und_wort_bleiben_im_takt(ws, heute_stand, art, abstand):
         assert messung is not None, "das Wort kam nicht an"
         assert abs(messung["ms"] - (abstand + 5)) < 8.1, messung
         assert messung["ton_db"] < -25, messung
+    assert ws.fehler == []
+
+
+# ---------------------------------------------------------------------------
+# Das Tempo gilt nur beim Vorlesen (05.11.2026), siehe "---- Tempo ----" in
+# index.html
+# ---------------------------------------------------------------------------
+
+
+def test_gemerktes_tempo_bremst_die_lektion_nicht(ws, heute_stand):
+    """Der Fall vom 05.11.2026: in einer Geschichte wurde einmal 0,75x gewaehlt,
+    der Wert liegt im Speicher. Die Lektion laedt und spielt trotzdem ueber
+    WebAudio, ohne Rueckfall auf den spieler - und der Wert bleibt gemerkt."""
+    ws.starten(stand=heute_stand())
+    ws.js("() => localStorage.setItem('zmaj_tempo', '0.75')")
+    ws.neu_laden()
+    ws.page.wait_for_function("() => window.__spiele.length > 0 && vorwaermen === null"
+                              " && actx && actx.state === 'running'", timeout=10000)
+    assert ws.js("() => tempo") == 0.75
+    lektion(ws, ["mc", "mc"])
+    r = ws.js(ANTWORTEN, True)
+    assert len(r["starts"]) == 1 and r["starts"][0]["richtig"] and r["laeuft"], r
+    ws.page.wait_for_timeout(500)
+    assert ws.js(SPIELER_WORTE) == []
+    assert ws.js("() => [tempo, localStorage.getItem('zmaj_tempo')]") == [0.75, "0.75"]
+    assert ws.fehler == []
+
+
+# Alles ueber die echten Knoepfe. Die Werte werden gleich nach dem Tippen
+# gelesen, spieleDatei() setzt die Rate vor dem Start im selben Klick.
+TEMPO_IN_DER_GESCHICHTE = """async () => {
+  const bis = async bed => { const e = Date.now() + 8000; while(!bed()){ if(Date.now() > e) throw new Error('kommt nicht'); await new Promise(r => setTimeout(r, 20)); } };
+  const tempoTippen = v => document.querySelector("#rTempo button[data-tempo='" + v + "']").click();
+  const vorlesen = () => document.getElementById('rListen').click();
+  const rate = () => spieler.playbackRate, quelle = () => spieler.getAttribute('src');
+  const aus = {};
+  openStory(0);
+  const geschichte = 'audio/' + audioDatei(STORIES[0].text);
+  const w = [...document.querySelectorAll('#rBody .txt .w')].find(x => audioDatei(x.textContent));
+  tempoTippen(0.75);
+  aus.gemerkt = localStorage.getItem('zmaj_tempo');
+  vorlesen();
+  aus.vorlesen = {rate: rate(), am_start: window.__spiele.at(-1).rate, richtig: quelle() === geschichte};
+  await bis(() => !spieler.paused && spieler.currentTime > 0.02);
+  aus.laeuft = rate();
+  w.click();                       // ein Wort nachschlagen: normal
+  aus.wort = {rate: rate(), am_start: window.__spiele.at(-1).rate, richtig: quelle() === 'audio/' + audioDatei(w.textContent)};
+  tempoTippen(0.5);                // waehrend es laeuft: das Wort bleibt normal
+  aus.wort_bleibt = rate();
+  vorlesen();                      // weiterlesen, im neuen Tempo
+  aus.weiterlesen = {rate: rate(), richtig: quelle() === geschichte};
+  tempoTippen(0.75);               // mitten im Lesen: sofort
+  aus.mitten = rate();
+  await bis(() => !spieler.paused);
+  vorlesen();                      // anhalten
+  aus.angehalten = pausiert;
+  tempoTippen(1.25);
+  vorlesen();                      // weiter, ohne Neustart im neuen Tempo
+  aus.nach_pause = {rate: rate(), pausiert};
+  tempoTippen(0.75);
+  stilleBitte();
+  return aus;
+}"""
+
+
+def test_tempo_bleibt_in_der_geschichte(ws, heute_stand):
+    """0,75x in der Geschichte: das Vorlesen laeuft so, auch nach einer
+    Unterbrechung und nach einer Pause. Ein angetipptes Wort ist normal, und
+    der spieler bleibt danach nicht auf dem Tempo der Geschichte haengen -
+    in der Lektion spricht er mit 1. Zurueck in der Geschichte gilt wieder
+    das gemerkte Tempo."""
+    bereit(ws, heute_stand())
+    r = ws.js(TEMPO_IN_DER_GESCHICHTE)
+    assert r["gemerkt"] == "0.75"
+    assert r["vorlesen"] == {"rate": 0.75, "am_start": 0.75, "richtig": True}, r
+    assert r["laeuft"] == 0.75, r
+    assert r["wort"] == {"rate": 1, "am_start": 1, "richtig": True}, r
+    assert r["wort_bleibt"] == 1, r
+    assert r["weiterlesen"] == {"rate": 0.5, "richtig": True}, r
+    assert r["mitten"] == 0.75, r
+    assert r["angehalten"] is True, r
+    assert r["nach_pause"] == {"rate": 1.25, "pausiert": False}, r
+
+    lektion(ws, ["mc", "mc"])
+    a = ws.js(ANTWORTEN, True)
+    assert len(a["starts"]) == 1 and a["starts"][0]["richtig"], a      # WebAudio aktiv
+    z = ws.js("""() => {
+      stilleBitte(); puffer.clear(); window.__spiele = [];
+      speak(Lx.queue[0].w.bs);                 // ohne Puffer ueber den spieler
+      const aus = {rate: spieler.playbackRate, am_start: window.__spiele.at(-1).rate};
+      stilleBitte();
+      return aus;
+    }""")
+    assert z == {"rate": 1, "am_start": 1}, z
+
+    g = ws.js("""() => {
+      openStory(0);
+      document.getElementById('rListen').click();
+      const aus = {rate: spieler.playbackRate, tempo, knopf: document.querySelector("#rTempo button[aria-pressed='true']").dataset.tempo};
+      stilleBitte();
+      return aus;
+    }""")
+    assert g == {"rate": 0.75, "tempo": 0.75, "knopf": "0.75"}, g
     assert ws.fehler == []
