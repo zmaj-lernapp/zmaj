@@ -5108,7 +5108,7 @@ function sound(kind){
   else if(kind==='wegmarke') buzz([40,60,40,60,40,60,180]);
   if(!soundOn) return;
   try{
-    if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
+    if(!tonKontext()) return;
     if(actx.state==='suspended') actx.resume();
     tonNull = actx.currentTime;
     if(kind==='ok'){ tone(660,0,0.12); tone(880,0.11,0.18); }
@@ -7622,9 +7622,29 @@ const PUFFER_MAX = 6;
    Reihenfolge der Map ist die der letzten Benutzung, vorn faellt heraus. */
 const puffer = new Map();
 /* Der AudioContext fuer Toene und Woerter. Seit dem 26.10.2026 auch bei
-   Toenen aus - die Woerter laufen darueber. */
+   Toenen aus - die Woerter laufen darueber.
+   Seit dem 05.11.2026 entsteht er nur noch hier und mit latencyHint
+   'playback'. Auf Ajdins S21 (Android 15, WebView 156) blieb an dem Tag der
+   Ton stumm. Hoertest: ein AudioContext mit Standard-Latenz (baseLatency
+   0,004 s) war stumm, obwohl state 'running' war und kein Fehler kam. Mit
+   'playback' (baseLatency 0,021 s) und ueber den spieler war er zu hoeren.
+   Danach kam der Ton von selbst zurueck, die Ursache im Geraet kennen wir
+   also nicht. Aber nur der kurze Puffer war stumm, und die App merkt davon
+   nichts - also nehmen wir ihn nicht mehr. Der Preis: auf dem S21 kommen
+   Ton und Wort rund 17 ms spaeter aus dem Lautsprecher, beide gleich viel.
+   Ihr Abstand (ABSTAND_OK, ABSTAND_NO, siehe "Wann das Wort kommt, Teil 2")
+   bleibt: beide sind auf der Uhr von actx bestellt und laufen durch dieselbe
+   Ausgabe. Am PC in Echtzeit nachgemessen, mit beiden Einstellungen gleich:
+   das Wort setzt 171 bzw. 189 ms nach Tonbeginn ein, der Ton ist dann bei
+   rund -30 dBFS (test_wort_webaudio.py). Wirft ein Geraet bei der Option,
+   geht es ohne sie; geht auch das nicht, bleibt actx null, und der spieler
+   spricht. */
 function tonKontext(){
-  if(!actx) try{ actx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  if(actx) return actx;
+  const Kontext = window.AudioContext || window.webkitAudioContext;
+  if(!Kontext) return null;
+  try{ actx = new Kontext({latencyHint: 'playback'}); }
+  catch(e){ try{ actx = new Kontext(); }catch(e2){} }
   return actx;
 }
 /* Sekunden bis kurz vor dem ersten Laut im Puffer. */
