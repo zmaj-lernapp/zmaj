@@ -52,6 +52,92 @@
     if(vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover');
   }
 </script>
+<!-- Tablets (30.10.2026). Ajdin zu den Store-Bildern fuer 7- und 10-Zoll-
+     Tablets: "die tablet bilder die zeigen zu viel platz kann man nicht je
+     nach dem wie gross der bildschirm ist das layout anpassen". Die App war
+     ueberall eine Spalte bis 540 Punkte in Handygroesse; auf dem 10-Zoll-
+     Tablet hochkant blieb links und rechts je ein Siebtel leer, alles war
+     klein, und unter einer Lektion stand der halbe Bildschirm leer.
+     Ab dem kleinsten Seitenmass 600 (so trennt auch Android Tablet und
+     Handy, "sw600dp") vergroessert CSS-zoom die ganze App, also Schrift,
+     Knoepfe, Abstaende und Drachen im selben Verhaeltnis (GROSS):
+       - hochkant so weit, dass die Spalte 88 % der Breite fuellt
+         (800 x 1280: 1,30), solange 840 Punkte Hoehe bleiben (iPad
+         768 x 1024: 1,22 statt 1,25, die Spalte fuellt 86 %). Ein 7-Zoll-
+         Tablet mit 600 Punkten bleibt bei 1, die Spalte fuellt dort schon
+         90 %.
+       - quer nur so weit, dass 740 Punkte Hoehe bleiben - so passt eine
+         Lektion ohne Scrollen wie auf dem Handy (S21: 726). 10 Zoll quer:
+         1,08. Die Spalte ist quer immer 640 Punkte breit und steht in der
+         Mitte: 7 Zoll quer (960 x 600, Massstab 1) 640 von 960, 10 Zoll
+         quer 640 x 1,08 = 692 von 1280 Bildschirmpunkten.
+       - hoechstens 1,4 (iPad Pro 12,9 Zoll).
+       Die Spalte selbst (--spalte) ist 88 % der Breite in Punkten der
+       vergroesserten Seite, mindestens 540 wie am Handy, hoechstens 640.
+       Hochkant sind das meist 540; breiter wird sie nur, wo der Massstab
+       durch Hoehe oder Obergrenze kleiner bleibt (iPad 768 x 1024: 554,
+       iPad Pro 12,9 Zoll: 640).
+     Klasse "gross" fuer alles ab 600 Punkten, dazu "hoch", wenn mindestens
+     840 Punkte Hoehe da sind: erst dann fuellt die Lektion den Bildschirm
+     mit Drache, Aufgabe und Antworten verteilt (siehe Stil unter
+     "Tablets"). Quer bleibt die Lektion so aufgebaut wie am Handy.
+     Warum zoom und nicht ueberall rem/calc: das Stilblatt hat Hunderte
+     fester px-Werte, die Handy-Fassung ist Punkt fuer Punkt abgestimmt und
+     soll genau so bleiben. zoom kennen Chrome/Android-WebView und
+     Safari/WKWebView seit Jahren; Lottie zeichnet als SVG und bleibt scharf.
+     Was zoom NICHT gleich macht, steht im Stil unter "Tablets" (vh-Werte)
+     und bei rectFaktor() (getBoundingClientRect in aelteren WebViews).
+     Unter 600 Punkten passiert hier nichts: keine Klasse, kein zoom, keine
+     Variable - das Handy sieht exakt aus wie vorher
+     (tests_e2e/test_tablet.py prueft das).
+     Hier oben und nicht im grossen Skript, damit schon das erste Bild in
+     der richtigen Groesse steht. -->
+<script>
+  var GROSS = 1;
+  (function(){
+    var d = document.documentElement, breite = 0, an = false, hoch = false;
+    /* Offene Tastatur: Android macht die Ansicht dabei niedriger. Dann
+       bleiben Massstab und Aufbau, wie sie sind - sonst sprang beim Tippen
+       in eine Luecke die ganze Seite auf eine andere Groesse. Nur die Hoehe
+       zieht nach, damit die Aufgabe ueber die Tastatur ruecken kann. */
+    function tippt(){
+      var a = document.activeElement;
+      return !!a && (a.tagName === 'TEXTAREA' || (a.tagName === 'INPUT' && !/^(checkbox|radio|button|submit|file)$/.test(a.type)));
+    }
+    function setzen(){
+      var w = window.innerWidth, h = window.innerHeight;
+      if(!w || !h) return;
+      if(!(an && w === breite && tippt())){
+        an = Math.min(w, h) >= 600 && !!(window.CSS && CSS.supports && CSS.supports('zoom', '1.5'));
+        var z = h >= w ? Math.min(0.88 * w / 540, h / 840) : h / 740;
+        GROSS = an ? Math.round(Math.max(1, Math.min(z, 1.4)) * 1000) / 1000 : 1;
+        hoch = an && h / GROSS >= 839.5;
+        breite = w;
+      }
+      if(!an){
+        /* Am Handy nichts anfassen, nur zuruecknehmen, was ein Tablet-Mass
+           vorher gesetzt hat (geteilter Bildschirm, Drehen). So schreibt
+           das Skript am Handy nie etwas in die Seite. */
+        if(d.classList.contains('gross')){
+          d.classList.remove('gross', 'hoch');
+          ['--gross', '--hoehe', '--breite', '--spalte'].forEach(function(n){ d.style.removeProperty(n); });
+        }
+        return;
+      }
+      d.classList.add('gross');
+      if(hoch) d.classList.add('hoch'); else d.classList.remove('hoch');
+      d.style.setProperty('--gross', String(GROSS));
+      /* Bildschirmhoehe und -breite in den Punkten der vergroesserten Seite.
+         100vh/100vw rechnet Chrome im zoom mit (1,3 x so hoch wie der
+         Bildschirm), deshalb im Stil fuer Tablets diese beiden statt vh/vw. */
+      d.style.setProperty('--hoehe', (h / GROSS).toFixed(2) + 'px');
+      d.style.setProperty('--breite', (w / GROSS).toFixed(2) + 'px');
+      d.style.setProperty('--spalte', Math.round(Math.min(640, Math.max(540, 0.88 * w / GROSS))) + 'px');
+    }
+    setzen();
+    window.addEventListener('resize', setzen);
+  })();
+</script>
 <style>
   /* ---------- Farben: bosnische Flagge (Blau, Gelb, Weiß) ---------- */
   :root{
@@ -2068,6 +2154,105 @@
   footer{margin-top:24px; text-align:center; font-size:12px; color:var(--muted); line-height:1.6; font-weight:700}
   .err{background:var(--accent-soft); color:var(--ink); padding:12px 16px; border-radius:12px; font-size:14px; margin-bottom:14px; display:none; text-align:left; line-height:1.6}
   @media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important}}
+
+  /* ---------- Tablets (30.10.2026) ----------
+     Alles hier gilt nur mit html.gross, also ab 600 Punkten kleinstem
+     Seitenmass - das Skript oben im Kopf setzt die Klasse, den Massstab
+     --gross und die Masse --hoehe, --breite, --spalte. Am Handy greift
+     keine dieser Regeln.
+     zoom vergroessert jede px-Angabe. Auch vh und vw rechnet Chrome mit:
+     100vh waeren 1,3 Bildschirme, die Seite liesse sich immer ein Stueck
+     scrollen. Wo das stoert, steht deshalb --hoehe bzw. --breite (die
+     Bildschirmmasse in Punkten der vergroesserten Seite). Die fallenden
+     Blaetter und das Konfetti (110vh, 104vh) fallen nur weiter aus dem
+     Bild - die bleiben. */
+  html.gross{zoom:var(--gross)}
+  html.gross body{min-height:var(--hoehe)}
+  html.gross .wrap{max-width:var(--spalte)}
+  html.gross .einwilligungbox, html.gross .nachfragebox{max-height:calc(var(--hoehe) * .92)}
+  html.gross .livesbar .info{max-width:calc(var(--breite) - 40px)}
+  /* In Lektion, Test und Einstufung ist die Update-Leiste aus (nurHerz),
+     ihr Platz unter der Seite braucht es dann auch nicht - sonst liesse
+     sich die Lektion, die genau den Bildschirm fuellt, ein Stueck schieben. */
+  html.gross body.updDa.nurHerz{padding-bottom:48px}
+
+  /* Lektion, Wiederholen-Runde, Level-Test und Einstufung: Der Kasten
+     fuellt den Bildschirm. Vorher stand er oben, und darunter war die
+     halbe Flaeche leer (10 Zoll hochkant: rund 700 von 1280 Punkten).
+     Hoehe: Bildschirm minus 16 + 48 Rand der Seite und 56 fuer
+     "Lektion abbrechen" darunter. Passt mehr hinein, waechst er mit, wie
+     am Handy.
+     Quer (ohne .hoch, unter 840 Punkten Hoehe) bleibt der Inhalt so
+     aufgebaut wie am Handy, mit dem Drachen von 100 Punkten wie auf dem
+     S21 (siehe max-height:820px oben). Das Antwortfeld kommt nach der
+     Antwort in den Platz darunter.
+     Hochkant (.hoch) verteilt sich der Inhalt:
+       - Der Drache waechst mit der Hoehe (--drache, 136 bis 190 Punkte).
+       - Drache und Aufgabe stehen zusammen mittig im freien Platz
+         (margin-top:auto am Drachen), die Antworten unten (margin-top:auto
+         an .options, .mic bzw. an der Zeile mit Pruefen/Weiter).
+         Damit der Drache dabei mitgehen kann, ist das Aufgabenfeld
+         (#lBody ...) dort display:contents: seine Kinder stehen fuer das
+         Layout direkt im Kasten. Fuer das Skript aendert das nichts, es
+         sucht und horcht weiter im Aufgabenfeld (nur der Tipp in den
+         freien Platz, siehe weiterBeiTipp).
+       - Unter den Antworten bleibt Platz fuer Rueckmeldung, Loesung und
+         Weiter (--antwort, 170 Punkte, eine falsche Antwort mit zwei
+         Zeilen passt hinein). Kommt das .antwortfeld nach der Antwort,
+         nimmt es genau diesen Platz ein - die Knoepfe, die man gerade
+         getippt hat, bleiben stehen, statt nach oben zu springen. Pruefen
+         sitzt unten in dieser Hoehe, also da, wo danach Weiter erscheint.
+       - Der Ergebnisschirm steht als Ganzes in der Mitte.
+     Quer fehlt fuer diese Verteilung die Hoehe: der Platz fuer das
+     Antwortfeld haette Pruefen beim Satzbau unter den Bildrand geschoben.
+     Ausgeschrieben fuer alle drei Orte, ohne :is() - siehe .zmaj.mini oben.
+     :has() kennen Chrome ab 105 und Safari ab 15.4; ohne es fehlt nur die
+     Reserve fuer die Rueckmeldung, die Antworten ruecken dann beim
+     Antworten ein Stueck hoch. */
+  html.gross #lesson .card, html.gross #test .card, html.gross #einstufungView .card{min-height:calc(var(--hoehe) - 120px)}
+  html.gross #lesson .zmaj.mini, html.gross #test .zmaj.mini, html.gross #einstufungView .zmaj.mini{width:100px; height:100px}
+  html.hoch{--drache:clamp(100px, calc(var(--hoehe) * .4 - 200px), 190px); --antwort:170px}
+  html.hoch #lesson .card, html.hoch #test .card, html.hoch #einstufungView .card{
+    display:flex; flex-direction:column; align-items:center}
+  html.hoch #lBody, html.hoch #tBody, html.hoch #eBody{display:contents}
+  /* Bloecke ueber die ganze Breite wie vorher, einzelne Knoepfe und das
+     Eingabefeld mittig (vorher per text-align, als Flex-Kind per align-self) */
+  html.hoch #lesson .card > *, html.hoch #test .card > *, html.hoch #einstufungView .card > *,
+  html.hoch #lBody > *, html.hoch #tBody > *, html.hoch #eBody > *{align-self:stretch}
+  html.hoch #lBody > button, html.hoch #tBody > button, html.hoch #eBody > button,
+  html.hoch #lBody > input, html.hoch #tBody > input, html.hoch #eBody > input{align-self:center}
+  html.hoch #lesson .zmaj.mini, html.hoch #test .zmaj.mini, html.hoch #einstufungView .zmaj.mini{
+    width:var(--drache); height:var(--drache); flex:none; align-self:center; margin-top:auto}
+  html.hoch #lBody > .ergebnis-titel, html.hoch #tBody > .ergebnis-titel, html.hoch #eBody > .ergebnis-titel{margin-top:auto}
+  html.hoch #lBody > .options:not(.kachelbank), html.hoch #tBody > .options:not(.kachelbank), html.hoch #eBody > .options:not(.kachelbank),
+  html.hoch #lBody > .mic, html.hoch #tBody > .mic, html.hoch #eBody > .mic{margin-top:auto}
+  html.hoch #lBody > .row, html.hoch #tBody > .row, html.hoch #eBody > .row{
+    margin-top:auto; min-height:var(--antwort); align-items:flex-end; align-content:flex-end}
+  html.hoch #lBody > .antwortfeld, html.hoch #tBody > .antwortfeld, html.hoch #eBody > .antwortfeld{
+    min-height:var(--antwort); display:flex; flex-direction:column; justify-content:flex-end}
+  /* Schreiben, Luecke, Satzbau: das Antwortfeld tritt an die Stelle der
+     Zeile mit Pruefen und uebernimmt deren automatischen Abstand */
+  html.hoch #lBody > .row[hidden] ~ .antwortfeld, html.hoch #tBody > .row[hidden] ~ .antwortfeld,
+  html.hoch #eBody > .row[hidden] ~ .antwortfeld{margin-top:auto}
+  /* Auswahl, Hoeren, Grammatik, Sprechen: der Platz fuer das Antwortfeld,
+     solange es noch nicht da ist - samt dessen 12 Punkten Abstand oben */
+  html.hoch #lBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after,
+  html.hoch #tBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after,
+  html.hoch #eBody:has(> .options, > .mic):not(:has(> .row)):not(:has(> .antwortfeld))::after{
+    content:""; flex:none; height:calc(var(--antwort) + 12px)}
+  /* "Ueberspringen" verschwindet nach der Antwort, behaelt aber seinen
+     Platz - sonst ruckten die Antworten um seine Hoehe nach unten. Der
+     leere Platz rueckt ans Ende (order): beim Satzbau steht er unter
+     Pruefen, und Weiter soll genau dort erscheinen, wo Pruefen war. */
+  html.hoch #lBody:has(.weiterbox) > .skip, html.hoch #tBody:has(.weiterbox) > .skip{display:inline-block; visibility:hidden; order:1}
+  /* Ergebnis, "Keine Leben mehr": alles zusammen in der Mitte, die
+     Knopfreihen wie am Handy direkt darunter */
+  html.hoch #lBody > .ergebnis-titel ~ :last-child, html.hoch #tBody > .ergebnis-titel ~ :last-child,
+  html.hoch #eBody > .ergebnis-titel ~ :last-child{margin-bottom:auto}
+  html.hoch #lBody > .ergebnis-titel ~ .row, html.hoch #tBody > .ergebnis-titel ~ .row,
+  html.hoch #eBody > .ergebnis-titel ~ .row{margin-top:20px; min-height:0; align-items:stretch; align-content:normal}
+  html.hoch #lBody > .ergebnis-titel ~ .row.schmal, html.hoch #tBody > .ergebnis-titel ~ .row.schmal,
+  html.hoch #eBody > .ergebnis-titel ~ .row.schmal{margin-top:14px}
 </style>
 <style id="festStil"></style>
 </head>
@@ -2518,6 +2703,14 @@
       <div class="note" id="benNote"></div>
     </div>
     <div class="section">
+      <!-- Sicherung als Datei nur noch ohne Konto (01.11.2026). Ajdin beim
+           Test der 1.2: "Sicherung speichern kann raus weil wir ja jetzt
+           einen server haben", auf die Rueckfrage "Ganz raus" - Speichern
+           UND Einlesen. In der Handy-App (CLOUD_AN, cloudModus()) sichert
+           das Konto alles, showSettings() blendet diesen Block dort aus.
+           Die Web-Fassung ohne Konto behaelt beides, sonst gaebe es dort
+           gar keine Sicherung. Feedback darunter bleibt in beiden. -->
+      <div id="setSichBox">
       <h2 data-t="set.sicherung"></h2>
       <div class="sd" id="setSichSub" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.sicherung_sub"></div>
       <div class="row" style="margin-bottom:6px">
@@ -2537,12 +2730,16 @@
            Zmaj-Sicherung ist, prueft sicherungEinlesen ohnehin selbst. -->
       <input type="file" id="sichDatei" hidden>
       <div class="note" id="sichNote" style="margin-bottom:16px"></div>
+      </div>
 
       <h2 data-t="set.feedback"></h2>
       <div class="sd" style="font-size:13px; color:var(--muted); margin-bottom:8px" data-t="set.feedback_sub"></div>
       <textarea class="field" id="fbText" rows="4" maxlength="2000" data-t-ph="set.feedback_platzhalter"></textarea>
       <div class="row" style="margin-top:10px; margin-bottom:12px"><button class="btn know" id="fbSend" data-t="set.feedback_senden"></button></div>
-      <div class="note" id="fbNote"></div>
+      <!-- role="status" wie #anmNote (Pruefbericht 01.11.2026): "Wird
+           gesendet ...", "Danke!" und der Hinweis aufs Mailprogramm wurden
+           sonst von keinem Screenreader angesagt. -->
+      <div class="note" id="fbNote" role="status"></div>
     </div>
     <div class="section">
       <h2 data-t="set.ueber"></h2>
@@ -2589,12 +2786,16 @@
            Ajdin am 18.09.2026. -->
       <div class="setting" id="setWerbungBox" style="display:none"><div><div class="st" id="lblWerbung" data-t="set.einwilligung"></div><div class="sd" id="setWerbungStand"></div></div>
         <button class="switch" id="swWerbung" role="switch" aria-checked="false" aria-labelledby="lblWerbung"></button></div>
-      <!-- Nur fuer Abonnenten: sie sehen keine Werbung, koennen aber eine
-           frueher erteilte Einwilligung immer noch bei Google zuruecknehmen.
-           Kein Schalter, denn hier gibt es nichts umzulegen - der Knopf
-           fuehrt zu Googles eigenem Fenster. Punkt 8, 30.09.2026. -->
-      <div class="setting" id="setWiderrufBox" style="display:none"><div><div class="st" data-t="set.einwilligung"></div><div class="sd" id="setWiderrufStand" data-t="set.einwilligung_google"></div></div>
-        <button class="btn ghost" id="einwWiderruf" data-t="set.einwilligung_knopf"></button></div>
+      <!-- Bis 01.11.2026 stand hier fuer Abonnenten eine eigene Zeile mit
+           dem Knopf "Wahl aendern" (setWiderrufBox, Punkt 8, 30.09.2026):
+           sie sehen keine Werbung, koennen eine frueher erteilte
+           Einwilligung aber bei Google zuruecknehmen. "Kein Schalter, denn
+           hier gibt es nichts umzulegen" hiess es damals. Ajdin beim Test
+           der 1.2: "bei werbung statt wahl aendern soll so ein schalter
+           sein", auf die Rueckfrage auch fuer Abonnenten: "Ja, auch
+           Schalter". Seitdem sehen Abonnenten auf dem Handy dieselbe Zeile
+           wie alle (setWerbungBox); was ein Tipp dort tut, steht bei
+           einwilligungWiderrufen(). -->
       <!-- "Anzeige melden", nur iOS (30.10.2026, Richtlinie 2.5.18: wer
            Werbung zeigt, muss unpassende Anzeigen melden lassen). Schreibt
            eine Mail an uns mit Zeit und Art der letzten Anzeige. Dieselbe
@@ -3180,13 +3381,19 @@ async function admobStart(){
        Neustart folgenlos.
    Deshalb die Auskunft frisch holen und das SDK nachstarten, falls es
    noch nicht lief. */
-async function einwilligungNachziehen(){
+/* ohneStart (01.11.2026, Pruefbericht): nur die Auskunft nachziehen, das
+   SDK aber NICHT starten. Fuer Abonnenten, die erst in dieser Sitzung
+   gekauft haben, als AdMob schon gefragt hatte (AdMobP gesetzt, aber nach
+   einem Nein nie initialize()). Seit sie den Werbeschalter haben, liefe ihr
+   Tipp sonst hierher, und ein Ja in Googles Fenster haette das Werbe-SDK
+   fuer jemanden gestartet, der genau dafuer bezahlt - siehe admobStart(). */
+async function einwilligungNachziehen(ohneStart){
   if(!AdMobP) return;
   try{
     const info = await AdMobP.requestConsentInfo();
     admobDarf = !!info.canRequestAds;
     admobOptionen = info.privacyOptionsRequirementStatus === 'REQUIRED';
-    if(admobDarf && !admobGestartet){
+    if(admobDarf && !admobGestartet && !ohneStart){
       await AdMobP.initialize({
         initializeForTesting: ADMOB_TEST || ADMOB_TESTGERAETE_JETZT.length > 0,
         testingDevices: ADMOB_TESTGERAETE_JETZT,
@@ -3501,6 +3708,7 @@ document.addEventListener('click', e=>{
 
 let SECTIONS = [], CATEGORIES = [], SENTENCES = [], GRAMMAR = {}, STORIES = [], DICT = {};
 let SATZBAU = [];          // Sätze aus Kacheln (vokabeln.py SATZBAU), seit 13.10.2026
+let ZA = null;             // Beim Zahnarzt: {sektion, kategorien}, siehe zaLevel() (06.11.2026)
 let known = new Set(), passed = new Set(), read = new Set(), days = new Set();
 /* Ob known schon beim Laden Woerter hatte - oder nach dem Einlesen einer
    Sicherung, nach dem Zusammenfuehren mit der Cloud. Nur dann zaehlen sie
@@ -3666,10 +3874,87 @@ function setzeZurueck(text, ziel){
 let catIdx = 0;
 
 const $ = id => document.getElementById(id);
-const cur = () => CATEGORIES[catIdx];
+/* getBoundingClientRect und der zoom der Tablets (30.10.2026, siehe GROSS
+   oben im Kopf). Chrome ab 128 (genormtes zoom) liefert die Masse in
+   Bildschirmpunkten, mit dem zoom darin. Aeltere WebViews (die App laeuft
+   ab Android 7, dort endet Chrome bei 119) und Safari bis zur Korrektur
+   von WebKit-Fehler 77998 (im WebKit-Quelltext am 07.11.2025) teilen sie
+   durch den zoom.
+   Welche Art das Geraet hat, misst ein unsichtbarer Kasten von 100 Punkten
+   einmal aus. rectFaktor() ist dann der Faktor von getBoundingClientRect
+   zu Bildschirmpunkten (fuer innerHeight und scrollBy), rectFaktor()/GROSS
+   der zu Punkten der Seite (fuer translate und scrollWidth).
+   Ohne zoom (Handy) ist beides genau 1, dort rechnet alles wie vorher. */
+let rectMitZoom = null;
+function rectFaktor(){
+  if(GROSS === 1) return 1;
+  if(rectMitZoom === null){
+    const p = document.createElement('div');
+    p.style.cssText = 'position:absolute; left:0; top:0; width:100px; height:1px; visibility:hidden; pointer-events:none';
+    document.body.appendChild(p);
+    rectMitZoom = p.getBoundingClientRect().width > 50 * (1 + GROSS);   // mit zoom 100*GROSS, ohne 100
+    p.remove();
+  }
+  return rectMitZoom ? 1 : GROSS;
+}
+/* ---- Beim Zahnarzt (06.11.2026) ----
+   Eine Zahnaerztin will mit Patienten reden koennen, die nur
+   Bosnisch sprechen. Ajdin: "das interssiert 1% der menschen", also versteckt:
+   siebenmal auf die Versionszeile, dann das Wort ZA_WORT (dauerVollVerdrahten).
+   Es schaltet nichts Bezahltes frei und darf deshalb hier stehen.
+   Der Teil steht mit Absicht NICHT in CATEGORIES und SECTIONS. Alles, was
+   zaehlt - Level, Woerter, Fortschritt, Weitermachen, Einstufung, Kartei,
+   Wiederholen -, rechnet ueber diese beiden Listen und sieht ihn damit nie,
+   auch nicht bei dem, der ihn freigeschaltet hat. Nur der Lernpfad (showPath)
+   und die Wege durch ein Level kennen ihn: seine Level haben die Nummern ab
+   CATEGORIES.length (levelNach), und imZa() sagt, ob gerade eins offen ist.
+   Der Lernstand steht in known und passed wie jeder andere. So geht er ohne
+   eigene Regel mit dem Konto, durch die Sicherung und durchs Zusammenfuehren.
+   Seine Kennungen fangen mit ZA_VORN an (zahnarzt.py); gezaehlt wird mit
+   ohneZa(). Der Schalter steht im Stand (Feld zahnarzt), damit der Teil nach
+   einer Neuinstallation von selbst wieder da ist. Eine Lektion hier ist kein
+   Lerntag (also auch keine Wegmarke und kein anderes Bild auf der Startseite),
+   zaehlt nicht fuer Tagesaufgaben und Muenzen und landet nicht in Kartei,
+   Fehler-Topf und Sternen. */
+const ZA_WORT = 'zahnarzt', ZA_VORN = 'za|';
+let zaSchalter = {an: false, z: 0};
+const zaLevel = () => ZA ? ZA.kategorien : [];
+const zaAn = () => !!(ZA && zaSchalter.an);
+const istZa = x => typeof x === 'string' && x.startsWith(ZA_VORN);
+const ohneZa = menge => { let n = 0; menge.forEach(x => { if(!istZa(x)) n++; }); return n; };
+const imZa = () => CATEGORIES.length > 0 && catIdx >= CATEGORIES.length;
+const levelNach = i => i < CATEGORIES.length ? CATEGORIES[i] : zaLevel()[i - CATEGORIES.length];
+/* Die Nummer, die der Lernende sieht: im Zahnarzt-Teil zaehlt er von 1. */
+const levelNummer = i => i < CATEGORIES.length ? i + 1 : i - CATEGORIES.length + 1;
+/* Bis wohin man von hier aus blaettern darf: ueber das letzte Level des
+   Lernpfads geht es nicht in den versteckten Teil, und umgekehrt. */
+const levelEnde = () => CATEGORIES.length + (imZa() ? zaLevel().length : 0);
+const levelAnfang = () => imZa() ? CATEGORIES.length : 0;
+const zaHoechster = () => {
+  const L = zaLevel();
+  for(let k = L.length - 1; k >= 0; k--) if(passed.has(L[k].id)) return k;
+  return -1;
+};
+/* Der Schalter aus dem Stand: was von aussen kommt, wird hier gerade gezogen.
+   Kein Zeitpunkt nach jetzt, wie bei den Sternen - sonst gewoenne eine
+   vorgestellte Uhr jeden spaeteren Abgleich. */
+function zaSchalterPruefen(roh){
+  const e = (roh && typeof roh === 'object' && !Array.isArray(roh)) ? roh : {};
+  const z = (typeof e.z === 'number' && isFinite(e.z) && e.z > 0) ? Math.min(e.z, Date.now()) : 0;
+  return {an: e.an === true, z};
+}
+/* Zwei Geraete: die zuletzt getroffene Wahl gilt, sonst liesse sich der Teil
+   nie wieder ausblenden. Bei gleicher Zeit "an", nur damit beide Richtungen
+   dasselbe ergeben. */
+function zaMischen(a, b){
+  const x = zaSchalterPruefen(a), y = zaSchalterPruefen(b);
+  if(x.z !== y.z) return x.z > y.z ? x : y;
+  return {an: x.an || y.an, z: x.z};
+}
+const cur = () => levelNach(catIdx);
 const curWords = () => cur().words;
 const curSentences = () => SENTENCES.filter(s => s.kat === cur().id);
-const byId = id => CATEGORIES.find(c => c.id === id);
+const byId = id => CATEGORIES.find(c => c.id === id) || zaLevel().find(c => c.id === id);
 /* Offen ist alles bis zum hoechsten bestandenen Level plus eins - nicht nur
    der direkte Nachfolger.
 
@@ -3693,10 +3978,41 @@ const hoechsterBestanden = () => {
 };
 /* Die Einstufung macht zusaetzlich alles bis zu ihrem Einstieg frei.
    "Dran" ist dann das erste offene Level AB dem Einstieg - sonst zeigte
-   Weitermachen nach der Einstufung wieder auf Level 1. */
-const isUnlocked = i => ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
+   Weitermachen nach der Einstufung wieder auf Level 1. Ausnahme: wer
+   trotzdem von vorn lernt, siehe firstOpen. */
+const isUnlocked = i => {
+  /* Beim Zahnarzt: dieselbe Regel, nur innerhalb des Teils. Der Stand im
+     Lernpfad und die Einstufung spielen dort keine Rolle. */
+  if(i >= CATEGORIES.length && CATEGORIES.length) return ALLE_FREI || i - CATEGORIES.length <= zaHoechster() + 1;
+  return ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
+};
+/* "Dran" ist das erste nicht bestandene Level ab dem Einstieg. Danach
+   richten sich der Weitermachen-Knopf, die markierte Stelle im Lernpfad,
+   die beim Start aufgeklappte Sektion und die Farbe der App.
+
+   So will es Ajdin, festgelegt am 01.11.2026 nach zwei Umwegen:
+     - "ich bin level 10 das heisst level 1 bis 9 hab ich fertig und wenn
+       ich zb auf level 8 kurz eine lektion mache soll der knopf trotzdem
+       bei level 10 bleiben" - Nachueben in bestandenen Leveln aendert
+       nichts, denn bestanden bleibt bestanden.
+     - "wenn ein neues level dazu kommt wegen einen update ... bin level
+       10 und es kommt ein neues level 5 hinzu dann springt der button auf
+       level 5 und erst wenn es fertig ist springt er wieder auf level 10" -
+       ein eingeschobenes Level ist das erste nicht bestandene, also dran.
+     - Der Einstieg zaehlt nur, solange man auch dort lernt. Ajdins
+       Test-App war am 26.10. auf Level 65 eingestuft, er hat aber Level 1
+       bis 9 bestanden - und der Knopf stand auf "Arzt & Versicherung".
+       "bin aber noch bei level 10 die hab ich noch nicht fertig gemacht".
+       Wer vor dem Einstieg etwas bestanden hat und ab dem Einstieg noch
+       nichts, lernt von vorn: dann gilt das erste nicht bestandene Level
+       ueberhaupt. Ohne etwas bestanden oder mit einem bestandenen Level ab
+       dem Einstieg bleibt es beim Einstieg.
+   Verworfen: der Knopf im Level der letzten Lektion (Feld letzte_lektion)
+   und der Knopf immer hinter dem hoechsten bestandenen, der eingeschobene
+   Level uebersprungen haette. Beide erschienen nie. */
 const firstOpen = () => {
-  const ab = Math.max(0, einstufungIndex());
+  const ein = einstufungIndex(), h = hoechsterBestanden();
+  const ab = (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;
   let i = CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id));
   if(i < 0) i = CATEGORIES.findIndex(c => !passed.has(c.id));
   return i < 0 ? CATEGORIES.length-1 : i;
@@ -3718,7 +4034,7 @@ let offeneSektion = null;        // welche Sektion offen ist
 /* Die Nummer der Farbe zu einer Sektion. Neun Sektionen, neun Farben.
    Der Rest greift erst ab einer zehnten. */
 function sektionsNummer(id){
-  const i = SECTIONS.findIndex(s => s.id === id);
+  const i = (ZA && id === ZA.sektion.id) ? SECTIONS.length : SECTIONS.findIndex(s => s.id === id);
   return String((i < 0 ? 0 : i) % 9 + 1);
 }
 
@@ -3742,7 +4058,9 @@ function sektionAufklappen(id){
      Unterschied nachscrollen. Der Kopf steht danach wieder da, wo der Finger
      ihn getroffen hat. */
   const kasten = [].slice.call(box.children).find(el => el.dataset.sid === id);
-  const vorher = kasten ? kasten.getBoundingClientRect().top : null;
+  /* In Bildschirmpunkten, wie scrollBy und innerHeight - siehe rectFaktor() */
+  const oben = () => kasten.getBoundingClientRect().top * rectFaktor();
+  const vorher = kasten ? oben() : null;
 
   offeneSektion = (offeneSektion === id) ? '' : id;
   [].slice.call(box.children).forEach(el => {
@@ -3758,7 +4076,7 @@ function sektionAufklappen(id){
        Ohne behavior:'instant' wuerde ein spaeter eingefuehrtes
        scroll-behavior:smooth daraus eine sichtbare Fahrt machen; das Ziel ist
        aber, dass sich gar nichts bewegt. */
-    const versatz = kasten.getBoundingClientRect().top - vorher;
+    const versatz = oben() - vorher;
     if(Math.abs(versatz) > 1) scrollBy({top: versatz, behavior: 'instant'});
     /* Klappt oberhalb eine lange Sektion zu, wird die Seite kuerzer als die
        Stelle, an der man gerade stand. Der Browser kann dann nicht so weit
@@ -3768,10 +4086,10 @@ function sektionAufklappen(id){
        Dann wird der Kopf bewusst an die Bezugslinie gesetzt, an der auch die
        Farbe haengt. Das ist eine Bewegung, aber eine erklaerbare: die
        angetippte Sektion steht oben und traegt ihre Farbe. */
-    const rest = kasten.getBoundingClientRect().top - vorher;
+    const rest = oben() - vorher;
     if(Math.abs(rest) > 2){
       const linie = innerHeight > 0 ? Math.min(220, innerHeight * 0.32) : 160;
-      scrollBy({top: kasten.getBoundingClientRect().top - linie, behavior: 'instant'});
+      scrollBy({top: oben() - linie, behavior: 'instant'});
     }
   }
   /* Der Umweg ueber sektionsFarbe ist Absicht: ist keine Sektion offen,
@@ -5029,7 +5347,7 @@ function sound(kind){
   else if(kind==='wegmarke') buzz([40,60,40,60,40,60,180]);
   if(!soundOn) return;
   try{
-    if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
+    if(!tonKontext()) return;
     if(actx.state==='suspended') actx.resume();
     tonNull = actx.currentTime;
     if(kind==='ok'){ tone(660,0,0.12); tone(880,0.11,0.18); }
@@ -5196,6 +5514,10 @@ function werbungZeileZeigen(){
   $('setWerbungStand').textContent = t(an ? 'set.einwilligung_ja' : 'set.einwilligung_nein');
 }
 let werbungLaeuft = false;      // zwei Fenster uebereinander waeren haesslich
+/* Ob die Werbezeile fuer einen Abonnenten dasteht: nur auf dem Geraet, wo es
+   Googles Fenster gibt (Punkt 8), seit 01.11.2026 mit Schalter. */
+const aboWerbeZeile = () => unlimited() && !!(window.Capacitor && window.Capacitor.Plugins
+                                              && window.Capacitor.Plugins.AdMob);
 /* Punkt 8: der Widerruf fuer Abonnenten. Googles Auskunft wird ERST HIER
    geholt, auf Tipp, und ohne initialize() - das Werbe-SDK bleibt aus, beim
    Start spricht weiterhin niemand mit Google. AdMobP wird bewusst NICHT
@@ -5204,12 +5526,34 @@ let werbungLaeuft = false;      // zwei Fenster uebereinander waeren haesslich
    aus, kaeme danach keine Anzeige mehr durch.
    Dass hier ueberhaupt mit Google gesprochen wird, hat der Nutzer selbst
    angetippt - anders ist Googles Fenster nicht zu erreichen. */
+/* 01.11.2026: Angetippt wird jetzt der Schalter swWerbung, nicht mehr der
+   Knopf "Wahl aendern" (Ajdin: "bei werbung statt wahl aendern soll so ein
+   schalter sein" - "Ja, auch Schalter"). Er verhaelt sich wie bei Nutzern
+   mit Werbung: Verlangt Google einen Weg zum Aendern (EWR), oeffnet der
+   Tipp Googles Fenster, und danach zeigt der Schalter, was dort gewaehlt
+   wurde (googlesAntwort). Verlangt Google keinen (ausserhalb des EWR), ist
+   es der eigene Schalter und legt sofort um - wie ohne AdMob. Bis dahin
+   stand dort nur "Bei Google liegt gerade keine Antwort" und es passierte
+   nichts. Klappt die Frage an Google nicht (kein Netz), bleibt der
+   Schalter, wie er war, und darunter steht voll.fehler, bis die Zeile neu
+   gezeigt wird. Die Regeln oben zu initialize() und AdMobP gelten weiter. */
+/* Pruefbericht 01.11.2026: Hat Google in dieser Sitzung einmal gesagt, dass
+   es keinen Weg zum Aendern verlangt (ausserhalb des EWR), gilt das bis zum
+   Neustart - jeder weitere Tipp legt sofort um, auch ohne Netz. So geht es
+   auch bei Nutzern mit Werbung, dort steht admobOptionen seit dem Start
+   fest. Vorher fragte jeder Tipp erneut bei Google, und ohne Netz stand nur
+   voll.fehler da, obwohl die Wahl ohnehin nur auf dem Geraet liegt. */
+let googleOhneFenster = false;
 async function einwilligungWiderrufen(){
   const P = window.Capacitor && window.Capacitor.Plugins;
   if(!P || !P.AdMob || werbungLaeuft) return;
-  const knopf = $('einwWiderruf'), stand = $('setWiderrufStand');
+  if(googleOhneFenster){
+    setzePersonalisiert(!werbungPersonalisiert());
+    werbungZeileZeigen();
+    return;
+  }
   werbungLaeuft = true;
-  if(knopf) knopf.disabled = true;
+  let fehler = false;
   try{
     const A = P.AdMob;
     const info = await A.requestConsentInfo();
@@ -5219,26 +5563,36 @@ async function einwilligungWiderrufen(){
          stimmt, falls das Abo spaeter auslaeuft. */
       const g = await googlesAntwort();
       if(g !== null) setzePersonalisiert(g);
-      if(stand) stand.textContent = t('set.einwilligung_google');
-    }else if(stand){
-      /* Ausserhalb des EWR verlangt Google keinen Einstiegspunkt, und
-         ohne frueher erteilte Antwort gibt es nichts zurueckzunehmen. */
-      stand.textContent = t('set.einwilligung_nichts');
+    }else{
+      /* Ausserhalb des EWR verlangt Google keinen Einstiegspunkt - dann
+         gehoert die Wahl uns, wie beim eigenen Schalter. */
+      googleOhneFenster = true;
+      setzePersonalisiert(!werbungPersonalisiert());
     }
-  }catch(e){ if(stand) stand.textContent = t('voll.fehler'); }
+  }catch(e){ fehler = true; }
   werbungLaeuft = false;
-  if(knopf) knopf.disabled = false;
+  werbungZeileZeigen();
+  if(fehler){
+    $('setWerbungStand').textContent = t('voll.fehler');
+    // Die Zeile darunter liest kein Screenreader von selbst vor (Pruefbericht 01.11.2026).
+    ansagen(esc(t('voll.fehler')));
+  }
 }
-if($('einwWiderruf')) $('einwWiderruf').addEventListener('click', einwilligungWiderrufen);
 $('swWerbung').addEventListener('click', async ()=>{
   if(werbungLaeuft) return;
+  /* Abonnenten (01.11.2026): ihr eigener Weg, ohne AdMobP - siehe
+     einwilligungWiderrufen(). Lief AdMob in dieser Sitzung schon (das Abo
+     kam erst danach), gilt der Zweig darunter, mit demselben Ergebnis -
+     nur startet das Werbe-SDK dabei fuer sie nicht (Pruefbericht
+     01.11.2026, einwilligungNachziehen mit ohneStart). */
+  if(aboWerbeZeile() && !admobDa()){ await einwilligungWiderrufen(); return; }
   if(admobDa() && admobOptionen){
     werbungLaeuft = true;
     try{ await AdMobP.showPrivacyOptionsForm(); }catch(e){}
     const g = await googlesAntwort();
     if(g !== null) setzePersonalisiert(g);   // genau das, was bei Google herauskam
     // Punkt 6: auch admobDarf und admobOptionen gehoeren nachgezogen.
-    await einwilligungNachziehen();
+    await einwilligungNachziehen(unlimited());
     werbungLaeuft = false;
     werbungZeileZeigen();
     return;
@@ -5358,7 +5712,7 @@ function sicherungPlausibel(s){
    weiteres neues Feld, nicht an die Eintraege dort. */
 const STAND_FELDER = new Set(['gewusst', 'bestanden', 'gelesen', 'tage', 'frost', 'besitz', 'leben',
   'schutz', 'tagwerk', 'muenzen_ges', 'muenzen_aus', 'getragen', 'gefeiert', 'rekord', 'wann',
-  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern', 'kartei']);
+  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern', 'kartei', 'zahnarzt']);
 const STAND_ALT = new Set(['premium']);
 let standFremd = {};
 /* Die fremden Felder eines Stands als tiefe Kopie - sie teilen nichts mit
@@ -5480,6 +5834,8 @@ function standUebernehmen(d){
      v110 -, ist sie leer; die gewussten Woerter bekommen ihre Termine
      gleich danach in karteiNachtragen() (altenFortschrittUmschreiben). */
   kartei = karteiPruefen(d.kartei);
+  /* Beim Zahnarzt: fehlt das Feld (Stand von vor dem 06.11.2026), ist er aus. */
+  zaSchalter = zaSchalterPruefen(d.zahnarzt);
   const bw = (d.bewertung && typeof d.bewertung==='object' && !Array.isArray(d.bewertung)) ? d.bewertung : {};
   bewertung = {gezeigt: Array.isArray(bw.gezeigt) ? bw.gezeigt.filter(istDatum) : [],
                nein: !!bw.nein, bewertet: !!bw.bewertet};
@@ -5566,6 +5922,9 @@ function standAlsObjekt(){
              laesst die Sicherungsdatei bei version 1: eine alte App traegt
              das Feld nur weiter (standFremd), eine neue nimmt ein fehlendes
              als leer und traegt die Termine nach. */
+          /* Beim Zahnarzt (06.11.2026): nur der Schalter, der Lernstand steht
+             in gewusst und bestanden. */
+          zahnarzt: zaSchalter,
           kartei: kartei};
   /* Dahinter, unveraendert, was eine neuere Fassung in den Stand gelegt
      hat (28.10.2026, siehe standFremd). Eigene Felder gehen vor -
@@ -5635,6 +5994,9 @@ function standAlsObjekt(){
      stern                 Vereinigung. Auf beiden Seiten markiert: das
                            neuere z (zuletzt markiert) und das groessere r
                            (zuletzt geuebt). Danach sternPruefen().
+     zahnarzt              der Schalter mit dem neueren Zeitstempel z, siehe
+                           zaMischen() (06.11.2026). Der Lernstand des Teils
+                           steckt in gewusst und bestanden.
      kartei                je Wort der Stand, der zuletzt geuebt wurde
                            (Ajdin am 28.10.2026). Am selben Tag der fruehere
                            Termin, dann die kleinere Stufe: lieber einmal zu
@@ -5741,6 +6103,7 @@ function standZusammenfuehren(a, b, cloudVorher){
     return [k, (x && y) ? {z: Math.max(zahl(x.z), zahl(y.z)), r: Math.max(zahl(x.r), zahl(y.r))} : (x || y)];
   })));
   m.kartei = karteiMischen(a.kartei, b.kartei);
+  m.zahnarzt = zaMischen(a.zahnarzt, b.zahnarzt);
   const zeitWahl = (x, y, max, leer) => {
     const gut = e => {
       e = objekt(e);
@@ -6082,6 +6445,23 @@ async function pruefwerkzeugOeffnen(){
                 'Das Tool laeuft nur auf Testgeraeten.', 'Gut', 'Zu');
   }
 }
+/* Das Wort schaltet den Teil ein, beim zweiten Mal fragt es, ob er wieder weg
+   soll. Der Lernstand bleibt dabei stehen. Ohne Inhalt (etwa ein alter Stand
+   von inhalt/) geschieht nichts, wie bei einem falschen Wort. */
+async function zaUmschalten(){
+  if(!ZA) return;
+  if(zaAn()){
+    if(!await frage(ZA.sektion.label, t('za.ausblenden_frage'), t('za.ausblenden'), t('btn.dialog_abbrechen'))) return;
+    zaSchalter = {an: false, z: Date.now()};
+    /* Auf null: showPath() klappt dann wieder die laufende Sektion auf. */
+    if(offeneSektion === ZA.sektion.id) offeneSektion = null;
+  } else {
+    zaSchalter = {an: true, z: Date.now()};
+    offeneSektion = ZA.sektion.id;      // zurueck im Lernpfad steht er offen da
+    kurzMeldung('✓ ' + ZA.sektion.label);
+  }
+  await saveProgress();
+}
 function dauerVollVerdrahten(){
   const z = $('ueberZeile'); if(!z) return;
   let n = 0, uhr = 0;
@@ -6098,6 +6478,10 @@ function dauerVollVerdrahten(){
     const w = wort.trim().toLowerCase();
     if(w === KENNUNG_WORT){ await kennungZeigen(); return; }
     if(w === PRUEF_WORT){ await pruefwerkzeugOeffnen(); return; }
+    /* Beim Zahnarzt (06.11.2026): wie die zwei davor ein eigener Weg, der bei
+       der Vollversion nicht vorbeikommt. Jedes andere Wort geht unveraendert
+       durch die Pruefung darunter, und ein falsches meldet weiter nichts. */
+    if(w === ZA_WORT){ await zaUmschalten(); return; }
     if(!(await dauerWortStimmt(w))) return;
     if(dauerVoll){
       if(await frage('Dauerhafte Vollversion',
@@ -6327,7 +6711,7 @@ const alleWoerter = () => CATEGORIES.reduce((n,c)=>n+c.words.length, 0);
    Sitzungsvariable waere hier zu wenig. Gefunden am 26.09.2026. */
 function neuNochMoeglich(){
   const alle = alleWoerter();
-  if(!alle || known.size < alle) return true;   // !alle: Inhalt noch nicht geladen
+  if(!alle || ohneZa(known) < alle) return true;   // !alle: Inhalt noch nicht geladen
   /* Eingehaengt in QUESTS erst am 07.10.2026 - bis dahin stand dort
      weiter known.size < alleWoerter(). Wer schon VOR diesem Update alle
      Woerter konnte, hat noch keinen Tag in wann; der heutige waere
@@ -6514,6 +6898,7 @@ let questFrisch = [];
 /* Zählt hoch. Münzen gibt es genau in dem Augenblick, in dem der Zähler das
    Ziel überschreitet – nie beim Zeichnen, sonst gäbe es sie doppelt. */
 function zaehle(id, wieviel){
+  if(imZa()) return;      // Beim Zahnarzt: zaehlt nicht fuer Tagesaufgaben und Muenzen (06.11.2026)
   const t=today();
   if(!tagwerk[t]) tagwerk[t] = {};
   const vorher = tagwerk[t][id] || 0;
@@ -7171,10 +7556,18 @@ function fuerStimme(text){
     .replace(/y/g, 'j').replace(/Y/g, 'J');
 }
 /* ---- Tempo ----
-   Ajdin am 18.09.2026: man soll langsamer vorlesen lassen koennen. Der Wert
-   gilt fuer alle Aufnahmen und fuer die Computerstimme am PC, nicht nur fuer
-   die Geschichten - ein Wort, das in der Lektion zu schnell kommt, ist
-   dasselbe Problem. */
+   Ajdin am 18.09.2026: man soll langsamer vorlesen lassen koennen. Bis zum
+   05.11.2026 galt der Wert fuer alle Aufnahmen - ein Wort, das in der Lektion
+   zu schnell kommt, sei dasselbe Problem. Das war ein Fehler: einstellen
+   laesst er sich nur in den Geschichten, und wer dort einmal 0,75x waehlte,
+   hoerte den Sprecher danach in allen Lektionen langsam, ohne zu wissen warum
+   und ohne Knopf dafuer. Dazu fiel der schnelle Weg ueber WebAudio weg (siehe
+   "Wann das Wort kommt, Teil 2"). Gefunden bei Ajdins Frau, Ajdin: "das muessen
+   wir fixen das es nur auf das lesen sich beziehen muss".
+   Seitdem gilt tempo nur noch beim Vorlesen einer Geschichte: showStory() gibt
+   es an sprichMitSpieler() weiter, auch fuer die Computerstimme am PC. Alles
+   andere laeuft immer mit 1 - Woerter, Saetze, Hoerfragen und auch ein in der
+   Geschichte angetipptes Wort. Ein gemerktes zmaj_tempo bleibt gueltig. */
 const TEMPI = [0.5, 0.75, 1, 1.25];
 let tempo = 1;
 try{ const gemerkt = parseFloat(localStorage.getItem('zmaj_tempo'));
@@ -7189,7 +7582,7 @@ let pausiert = false;
 const spieler = new Audio(); spieler.preload = 'none';
 /* Der laufende stumme Anlauf aus tonVorwaermen(), sonst null (22.10.2026). */
 let vorwaermen = null;
-function spieleDatei(datei, fertig){
+function spieleDatei(datei, fertig, rate){
   waStopp();               // nie zwei Woerter uebereinander (26.10.2026)
   pausiert = false;        // ein neuer Ton hebt eine alte Pause auf
   /* Ein echtes Wort ist nie stumm: laeuft noch das Vorwaermen, ist es
@@ -7199,11 +7592,13 @@ function spieleDatei(datei, fertig){
   spieler.onended = fertig || null;
   spieler.src = 'audio/' + datei;
   /* Das Tempo bei jedem Start neu setzen: die Eigenschaft ueberlebt zwar den
-     Wechsel der Quelle, aber nicht jede WebView haelt sich daran.
+     Wechsel der Quelle, aber nicht jede WebView haelt sich daran. Und ohne
+     rate immer auf 1, sonst bliebe das naechste Wort auf dem Tempo der
+     Geschichte davor haengen (05.11.2026, siehe "---- Tempo ----").
      preservesPitch haelt die Tonhoehe - ohne das klaenge Goran bei 0,5x wie
      aus dem Keller. */
   try{ spieler.preservesPitch = true; }catch(e){}
-  try{ spieler.playbackRate = tempo; }catch(e){}
+  try{ spieler.playbackRate = rate || 1; }catch(e){}
   return spieler.play();   // Promise! Ablehnung muss gefangen werden.
 }
 /* ---- Ruhe ----
@@ -7378,7 +7773,8 @@ function mitlesenZeigen(m, t){
    Kacheln). */
 function mitlesenImBlick(el, davor){
   try{
-    const h = window.innerHeight || document.documentElement.clientHeight;
+    /* h in den Einheiten von getBoundingClientRect, siehe rectFaktor() */
+    const h = (window.innerHeight || document.documentElement.clientHeight) / rectFaktor();
     const r = el.getBoundingClientRect();
     if(r.top >= 0 && r.bottom <= h) return;
     if(davor){
@@ -7416,8 +7812,10 @@ function tonWeiter(){
 function setzeTempo(v){
   tempo = v;
   try{ localStorage.setItem('zmaj_tempo', String(v)); }catch(e){}
-  // Ein laufender Ton aendert sich sofort mit, ohne Neustart.
-  try{ spieler.playbackRate = v; }catch(e){}
+  /* Ein laufendes Vorlesen aendert sich sofort mit, ohne Neustart, ein
+     angehaltenes geht im neuen Tempo weiter. laeuftVor steht nur beim
+     Vorlesen: ein angetipptes Wort bleibt normal (05.11.2026). */
+  if(laeuftVor) try{ spieler.playbackRate = v; }catch(e){}
   // Beide Leisten - die in der Geschichte und die in den Einstellungen.
   document.querySelectorAll('.tempo button').forEach(b =>
     b.setAttribute('aria-pressed', String(parseFloat(b.dataset.tempo) === v)));
@@ -7506,10 +7904,12 @@ const BEIM_ERSCHEINEN = 100;
    neues Wort 273 -> 68 ms. Auf dem Handy misst es handy_messen.py mit den
    Gruppen eingebaut_*.
    Rueckfall auf den spieler wie bisher (Wartezeiten oben), wenn der Puffer
-   noch nicht da ist, das Tempo nicht 1 ist (WebAudio kennt kein
-   preservesPitch, 0,75x klaenge tiefer), es keinen AudioContext gibt oder
-   die Datei nicht laedt. Die Geschichten bleiben ganz beim spieler
-   (sprichMitSpieler): Mitlesen, Pause und Weiterlesen haengen an ihm. */
+   noch nicht da ist, es keinen AudioContext gibt oder die Datei nicht laedt.
+   Die Geschichten bleiben ganz beim spieler (sprichMitSpieler): Mitlesen,
+   Pause und Weiterlesen haengen an ihm, und das Tempo auch - WebAudio kennt
+   kein preservesPitch, 0,75x klaenge tiefer. Bis zum 05.11.2026 war deshalb
+   auch ein Tempo ungleich 1 ein Grund fuer den Rueckfall, in jeder Lektion
+   (siehe "---- Tempo ----"). */
 const ABSTAND_OK = 0.167, ABSTAND_NO = 0.186;   // s ab Tonbeginn bis zum Start der Datei
 const VORLAUF_SCHWELLE = Math.pow(10, -65 / 20), VORLAUF_RAND = 0.005;
 const PUFFER_MAX = 6;
@@ -7517,9 +7917,29 @@ const PUFFER_MAX = 6;
    Reihenfolge der Map ist die der letzten Benutzung, vorn faellt heraus. */
 const puffer = new Map();
 /* Der AudioContext fuer Toene und Woerter. Seit dem 26.10.2026 auch bei
-   Toenen aus - die Woerter laufen darueber. */
+   Toenen aus - die Woerter laufen darueber.
+   Seit dem 05.11.2026 entsteht er nur noch hier und mit latencyHint
+   'playback'. Auf Ajdins S21 (Android 15, WebView 156) blieb an dem Tag der
+   Ton stumm. Hoertest: ein AudioContext mit Standard-Latenz (baseLatency
+   0,004 s) war stumm, obwohl state 'running' war und kein Fehler kam. Mit
+   'playback' (baseLatency 0,021 s) und ueber den spieler war er zu hoeren.
+   Danach kam der Ton von selbst zurueck, die Ursache im Geraet kennen wir
+   also nicht. Aber nur der kurze Puffer war stumm, und die App merkt davon
+   nichts - also nehmen wir ihn nicht mehr. Der Preis: auf dem S21 kommen
+   Ton und Wort rund 17 ms spaeter aus dem Lautsprecher, beide gleich viel.
+   Ihr Abstand (ABSTAND_OK, ABSTAND_NO, siehe "Wann das Wort kommt, Teil 2")
+   bleibt: beide sind auf der Uhr von actx bestellt und laufen durch dieselbe
+   Ausgabe. Am PC in Echtzeit nachgemessen, mit beiden Einstellungen gleich:
+   das Wort setzt 171 bzw. 189 ms nach Tonbeginn ein, der Ton ist dann bei
+   rund -30 dBFS (test_wort_webaudio.py). Wirft ein Geraet bei der Option,
+   geht es ohne sie; geht auch das nicht, bleibt actx null, und der spieler
+   spricht. */
 function tonKontext(){
-  if(!actx) try{ actx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  if(actx) return actx;
+  const Kontext = window.AudioContext || window.webkitAudioContext;
+  if(!Kontext) return null;
+  try{ actx = new Kontext({latencyHint: 'playback'}); }
+  catch(e){ try{ actx = new Kontext(); }catch(e2){} }
   return actx;
 }
 /* Sekunden bis kurz vor dem ersten Laut im Puffer. */
@@ -7536,7 +7956,7 @@ function vorlaufMessen(buf){
 /* Holt und dekodiert eine Datei in den Zwischenspeicher. Schlaegt es
    fehl, bleibt nichts liegen - dann spielt der spieler. */
 function pufferLaden(datei){
-  if(!datei || tempo !== 1) return;
+  if(!datei) return;
   const da = puffer.get(datei);
   if(da){ puffer.delete(datei); puffer.set(datei, da); return; }
   const ctx = tonKontext();
@@ -7580,7 +8000,7 @@ function waStopp(){
    ein laufendes oder bestelltes wird abgestellt, der spieler angehalten
    (nicht waehrend des stummen Vorwaermens, das endet von selbst). */
 function pufferSpielen(text, fertig, wann){
-  if(tempo !== 1 || !actx || actx.state === 'closed') return false;
+  if(!actx || actx.state === 'closed') return false;
   const datei = audioDatei(text);
   const p = datei ? pufferNehmen(datei) : null;
   if(!p) return false;
@@ -7691,7 +8111,7 @@ function audioDatei(text){
   const voll = text.split(' / ')[0].trim().toLowerCase();
   return AUDIO.get(voll) || AUDIO.get(audioKey(text)) || null;
 }
-function sprichMitStimme(text, fertig){
+function sprichMitStimme(text, fertig, rate){
   if(!hasTTS){ if(fertig) fertig(); return; }
   pausiert = false;
   // Sonst laegen am PC eine noch laufende Aufnahme und die Stimme uebereinander
@@ -7700,9 +8120,9 @@ function sprichMitStimme(text, fertig){
   const u = new SpeechSynthesisUtterance(fuerStimme(text));
   const v = pickVoice();
   if(v){ u.lang=v.lang; u.voice=v; } else { u.lang='hr-HR'; }
-  // 0,85 ist die Grundgeschwindigkeit der Computerstimme, das eingestellte
-  // Tempo verrechnet sich damit. Unter 0,1 nimmt kein Browser den Wert an.
-  u.rate = Math.max(0.1, Math.min(10, 0.85 * tempo));
+  // 0,85 ist die Grundgeschwindigkeit der Computerstimme, das Tempo der
+  // Geschichte verrechnet sich damit. Unter 0,1 nimmt kein Browser den Wert an.
+  u.rate = Math.max(0.1, Math.min(10, 0.85 * (rate || 1)));
   if(fertig){ u.onend = fertig; u.onerror = fertig; }
   speechSynthesis.cancel(); speechSynthesis.speak(u);
 }
@@ -7720,10 +8140,11 @@ function speak(text, fertig){
 }
 /* Der Weg ueber den spieler - bis zum 26.10.2026 war das speak() selbst.
    Die Geschichten nehmen immer ihn: Mitlesen, Pause, Weiterlesen und der
-   Sprung zur gemerkten Stelle lesen spieler.currentTime. */
-function sprichMitSpieler(text, fertig){
+   Sprung zur gemerkten Stelle lesen spieler.currentTime. rate gibt nur das
+   Vorlesen einer Geschichte mit, ohne sie laeuft der Ton mit 1 (05.11.2026). */
+function sprichMitSpieler(text, fertig, rate){
   const datei = audioDatei(text);
-  if(!datei){ sprichMitStimme(text, fertig); return; }
+  if(!datei){ sprichMitStimme(text, fertig, rate); return; }
   /* Faellt die Datei aus (fehlt, Autoplay gesperrt), springt die Stimme ein.
      Aber NICHT, wenn der Start absichtlich abgebrochen wurde: stilleBitte()
      ruft pause(), und ein pause() vor dem Anlaufen laesst play() mit
@@ -7731,9 +8152,9 @@ function sprichMitSpieler(text, fertig){
      genau das weiter, was man gerade abgestellt hat - in der naechsten
      Ansicht, ohne Stopp-Knopf. */
   const marke = tonMarke;
-  spieleDatei(datei, fertig).catch(e=>{
+  spieleDatei(datei, fertig, rate).catch(e=>{
     if(marke !== tonMarke || (e && e.name === 'AbortError')) return;
-    sprichMitStimme(text, fertig);
+    sprichMitStimme(text, fertig, rate);
   });
 }
 /* Gibt es fuer dieses Wort ueberhaupt etwas zu hoeren? Auf dem Handy kennt
@@ -7812,6 +8233,7 @@ async function ladeDaten(){
      Satzbau-Aufgaben. Die Namensliste der Kacheln haengt am Inhalt und wird
      beim naechsten Gebrauch neu gesammelt. */
   SATZBAU = Array.isArray(d.satzbau) ? d.satzbau : [];
+  ZA = (d.zahnarzt && d.zahnarzt.sektion && Array.isArray(d.zahnarzt.kategorien)) ? d.zahnarzt : null;
   _kachelNamen = null;
   /* Die zwei Zwischenspeicher der Wortliste haengen an DICT und CATEGORIES und
      werden nur beim ersten Gebrauch gefuellt. Ohne dieses Leeren behielten sie
@@ -7889,6 +8311,11 @@ function showView(id){
   if(TOR_ANSICHTEN.indexOf(id) >= 0 && anmeldungSperre()) return;
   stilleBitte();          // kein Ton laeuft in die naechste Ansicht hinein
   uhrAus();               // und keine Lernzeit: Geschichte und Lektion rufen uhrAn() selbst
+  /* Beim Zahnarzt: Wer die Level-Ansicht verlaesst, ist nicht mehr im Teil. Eine
+     Runde aus dem Reiter Wiederholen laeuft zwar auch dort, aber danach - mit
+     diesem Merker gaelten fuer sie die Regeln des Teils. Nach uhrAus(): die
+     letzten Sekunden gehoeren noch zum Teil. */
+  if(id !== 'levelView' && imZa()) catIdx = 0;
   VIEWS.forEach(v=>{ $(v).style.display = v===id ? 'block' : 'none'; });
   zmajeAnpassen();        // Drachen ausgeblendeter Ansichten anhalten, die sichtbaren wecken
   $('kopfLeiste').style.display = '';     // wer sie nicht will, blendet sie danach aus
@@ -8883,7 +9310,13 @@ const UMBENANNT = {
   'tante:tetka': 'tante (schwester von vater oder mutter):tetka',
   'onkel (vaterseite):amidža': 'onkel (bruder des vaters):amidža / stric',
   'onkel (mutterseite):daidža': 'onkel (bruder der mutter):daidža / ujak',
-  'cousin:rođak': 'cousin, verwandter (allgemein):rođak'};
+  'cousin:rođak': 'cousin, verwandter (allgemein):rođak',
+  /* Ajdin am 06.11.2026: "mach doktor/ ljekar", "dozvoliti/dopustiti". Kein
+     zweites Wort mit derselben Bedeutung, sondern eine zweite Form wie bei
+     kahva / kafa; die Suche unten faende das alte bosnische Wort nicht mehr. */
+  'arzt:doktor': 'arzt:doktor / ljekar',
+  'erlauben:dozvoliti': 'erlauben / zulassen:dozvoliti / dopustiti',
+  'erlauben:dozvoljavati': 'erlauben / zulassen:dozvoljavati / dopuštati'};
 /* Dasselbe fuer Saetze (25.10.2026): Fehler-Topf und Sterne merken sich
    einen Satz als "s:<Level>|<Lueckentext>" bzw. "k:<Level>|<Satz>"
    (topfSchluessel). Aendert sich der bosnische Text, fuehrt der alte
@@ -8909,6 +9342,7 @@ function altenFortschrittUmschreiben(){
   }));
   const neu = new Set(); let geaendert = false;
   known.forEach(x => {
+    if(istZa(x)){ neu.add(x); return; }     // Beim Zahnarzt: nie auf ein Wort des Lernpfads umschreiben
     if(UMBENANNT[x] && gueltig.has(UMBENANNT[x])){ neu.add(UMBENANNT[x]); geaendert = true; }
     else if(gueltig.has(x)) neu.add(x);
     else if(nachLevel.has(x)){ neu.add(nachLevel.get(x)); geaendert = true; }
@@ -8971,9 +9405,15 @@ function showSettings(){
   /* 28.10.2026 (Pruefbericht): Angemeldet liegt eine Kopie im Konto -
      "nur auf diesem Geraet" stimmt dann nicht mehr. Ohne Konto (und ohne
      Firebase-Projekt) bleibt der Satz von v108. */
-  const sichSub = $('setSichSub'), mitKonto = cloudModus() && !!cloudMerker();
-  sichSub.dataset.t = mitKonto ? 'set.sicherung_sub_konto' : 'set.sicherung_sub';
-  sichSub.textContent = mitKonto ? t('set.sicherung_sub_konto') : t('set.sicherung_sub');
+  /* 01.11.2026: Mit Konto gibt es die Sicherung als Datei gar nicht mehr.
+     Ajdin: "Sicherung speichern kann raus weil wir ja jetzt einen server
+     haben" - "Ganz raus", Speichern und Einlesen. In der Handy-App
+     (cloudModus(), also CLOUD_AN mit Zugangsdaten) ist der ganze Block
+     weg, angemeldet oder nicht: das Konto sichert alles. Damit gibt es
+     auch den Satz fuer Angemeldete (set.sicherung_sub_konto) nicht mehr.
+     Ohne Cloud - Quelle, Web-Demo, start.py - bleibt alles wie vorher,
+     mit dem Satz von v108 (data-t in setSichSub). */
+  $('setSichBox').style.display = cloudModus() ? 'none' : '';
   // Werbung: Die Zeile erscheint erst, wenn wirklich geworben wird oder
   // schon einmal gefragt wurde. Vorher gäbe es nichts zu ändern.
   // Mit AdMob verwaltet Google die Antwort, und Google sagt auch, ob ein
@@ -8990,23 +9430,27 @@ function showSettings(){
   $('setVollBox').style.display = kaufbar ? '' : 'none';
   if(kaufbar){ vollMeldung(''); vollZeileZeigen(); vollAbgleichen(); produkteNachsehen(); }
   /* Wer die Vollversion hat, sieht gar keine Werbung mehr - dann ist auch
-     der Schalter zur Werbe-Einwilligung gegenstandslos. */
-  const zeigen = !unlimited()
-    && (WERBUNG_ECHT || EINWILLIGUNG_TEST || einwilligungGueltig() || admobDa());
-  $('setWerbungBox').style.display = zeigen ? '' : 'none';
-  if(zeigen){ werbungZeileZeigen(); werbungAbgleichen(); }
+     der Schalter zur Werbe-Einwilligung gegenstandslos. (So bis
+     01.11.2026: seitdem haben Abonnenten auf dem Geraet wieder den
+     Schalter, siehe die beiden Kommentare darunter.) */
   /* Punkt 8 aus WERBUNG_PRUEFUNG.md: gegenstandslos ist der SCHALTER, nicht
      der Widerruf. Eine frueher als Gratisnutzer erteilte Einwilligung liegt
      weiter in Googles Speicher, und sie muss sich so leicht zuruecknehmen
      lassen, wie sie gegeben wurde - die Datenschutzerklaerung verspricht das
      in acht Sprachen. Deshalb eine eigene Zeile, nur auf dem Geraet: am PC
      gibt es Googles Fenster gar nicht. */
-  const widerrufBox = $('setWiderrufBox');
-  if(widerrufBox){
-    const P = window.Capacitor && window.Capacitor.Plugins;
-    widerrufBox.style.display = (unlimited() && P && P.AdMob) ? '' : 'none';
-    $('setWiderrufStand').textContent = t('set.einwilligung_google');
-  }
+  /* 01.11.2026: Die eigene Zeile ist jetzt dieselbe wie fuer alle - mit
+     Schalter statt "Wahl aendern" (Ajdin: "bei werbung statt wahl aendern
+     soll so ein schalter sein", fuer Abonnenten "Ja, auch Schalter").
+     Abonnenten sehen sie weiter nur auf dem Geraet (aboWerbeZeile). Beim
+     Oeffnen zeigt sie den Stand auf dem Geraet und fragt NICHT bei Google
+     nach (kein werbungAbgleichen) - das kommt erst mit einem Tipp, siehe
+     einwilligungWiderrufen(). */
+  const abo = aboWerbeZeile();
+  const zeigen = abo || (!unlimited()
+    && (WERBUNG_ECHT || EINWILLIGUNG_TEST || einwilligungGueltig() || admobDa()));
+  $('setWerbungBox').style.display = zeigen ? '' : 'none';
+  if(zeigen){ werbungZeileZeigen(); if(!abo) werbungAbgleichen(); }
   benSchalterZeigen();
   renderLangSel();
 }
@@ -9383,7 +9827,7 @@ async function sicherungEinlesen(datei){
   const gesichert = await saveProgress();
   renderLives();
   note.textContent = gesichert
-    ? t('set.sicherung_geladen', {woerter: known.size, tage: days.size})
+    ? t('set.sicherung_geladen', {woerter: ohneZa(known), tage: days.size})
     : t('set.sicherung_fehler');
   sound(gesichert ? 'ok' : 'no');
 }
@@ -9450,7 +9894,8 @@ const CLOUD_CLIENT = '__CLOUD_CLIENT__';
                der Huelle (ZmajAnmeldung.sitzungMerken), siehe
                cloudSitzungAbgleichen()
      email     die Adresse des Kontos, nur zum Anzeigen und fuer die
-               frische Anmeldung vor dem Loeschen
+               frische Anmeldung vor dem Loeschen - seit 01.11.2026 auch
+               als Antwortadresse beim Feedback (feedbackUeberFormular)
      rev       Kennung des Cloud-Stands, den dieses Geraet zuletzt
                geschrieben oder eingearbeitet hat
      fp        Fingerabdruck des zuletzt hochgeladenen Stands
@@ -9902,8 +10347,9 @@ async function cloudGoogleAusweis(){
 function cloudFirestore(projekt, schluessel){
   const KONTO = 'https://identitytoolkit.googleapis.com/v1/accounts:';
   const ERNEUERN = 'https://securetoken.googleapis.com/v1/token?key=';
-  const dokument = uid => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(projekt)
-    + '/databases/(default)/documents/users/' + encodeURIComponent(uid);
+  const DOKUMENTE = 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(projekt)
+    + '/databases/(default)/documents';
+  const dokument = uid => DOKUMENTE + '/users/' + encodeURIComponent(uid);
   const post = (daten, kopf) => ({method: 'POST', headers: Object.assign({'Content-Type': 'application/json'}, kopf || {}),
                                   body: JSON.stringify(daten)});
   /* Die Mails von Firebase (Bestaetigen, Passwort zuruecksetzen) in der
@@ -10090,6 +10536,31 @@ function cloudFirestore(projekt, schluessel){
       await senden(dokument(m.uid), {method: 'DELETE', headers: {Authorization: 'Bearer ' + id}}, true);
       ausweis = null;
       return await kontoWeg(id) === true;
+    },
+    /* Feedback aus den Einstellungen (01.11.2026), genau wie das
+       Kontaktformular der Webseite (KONTAKT_SKRIPT in seite_bauen.py):
+       kurz anonym anmelden, die Nachricht als nachrichten/{uid} anlegen
+       (dieselben Felder, zeit vom Server, exists: false - nur Anlegen),
+       die anonyme Anmeldung wieder loeschen, auch wenn das Anlegen
+       scheiterte. Als das angemeldete Konto ginge es mit den Regeln vom
+       31.10.2026 nicht: firestore.rules laesst in nachrichten/{uid} nur
+       anonyme Anmeldungen anlegen (istAbsender), und je uid nur einmal.
+       Der Ausweis des Kontos (ausweis) bleibt dabei unberuehrt - deshalb
+       nicht ueber konto(), das ihn ueberschriebe. Wirft bei Fehlern. */
+    async nachricht(text, antwort, sprache){
+      const d = await (await senden(KONTO + 'signUp?key=' + schluessel, post({returnSecureToken: true}))).json();
+      if(!d || typeof d.localId !== 'string' || !d.localId || !d.idToken) throw new Error('cloud anmeldung');
+      try{
+        await senden(DOKUMENTE + ':commit', post({writes: [{
+          update: {name: 'projects/' + projekt + '/databases/(default)/documents/nachrichten/' + d.localId,
+                   fields: {text: {stringValue: text}, antwort: {stringValue: antwort},
+                            sprache: {stringValue: sprache}}},
+          updateTransforms: [{fieldPath: 'zeit', setToServerValue: 'REQUEST_TIME'}],
+          currentDocument: {exists: false}}]}, {Authorization: 'Bearer ' + d.idToken}));
+      }finally{
+        await kontoWeg(d.idToken);   // wirft nie; bleibt sie liegen, darf sie nichts mehr
+      }
+      return true;
     },
   };
 }
@@ -10623,7 +11094,10 @@ const ZMAJ_MAIL = 'zmaj.lernapp@gmail.com';
    Also oeffnen wir die Mail-App des Nutzers mit fertig ausgefuellter
    Nachricht. Kein fremder Dienst, keine zusaetzlichen Daten.
    Falls kein Mail-Programm eingerichtet ist, passiert sichtbar nichts -
-   deshalb steht die Adresse danach zum Kopieren da. */
+   deshalb steht die Adresse danach zum Kopieren da.
+   Seit 01.11.2026 ist das in der Handy-App mit Konto nur noch der
+   Rueckfall: dort geht Feedback ueber das Kontaktformular
+   (feedbackUeberFormular, weiter unten). Ohne Cloud bleibt es der Weg. */
 function feedbackPerMail(text, notiz){
   const betreff = 'Zmaj – ' + t('set.feedback');
   const fuss = '\n\n--\n' + (SPRACHE||'') + ' · ' + new Date().toISOString().slice(0,10);
@@ -10641,9 +11115,68 @@ function feedbackPerMail(text, notiz){
   });
   kasten.appendChild(knopf);
 }
+/* Feedback ueber das Kontaktformular statt ueber das Mailprogramm
+   (01.11.2026). Ajdin beim Test der 1.2: "wo ist das kontaktformular ist
+   das das mit dem feedback" - auf die Rueckfrage, ob Feedback darueber
+   gehen soll: "Uebers Formular". Text eintippen, Senden, fertig, kein
+   Mailprogramm; die Nachricht landet wie die vom Webformular in seinem
+   Gmail (nachrichten/{uid}, kontakt_weiterleitung.gs).
+   Nur in der Handy-App (cloudModus) und nur angemeldet: geantwortet wird
+   an die Adresse des Kontos (cloudMerker().email). Sie muss zur Regel in
+   firestore.rules passen (antwort.matches, hoechstens 254 Zeichen) -
+   FEEDBACK_ADRESSE ist dasselbe Muster, tests/test_kontakt.py vergleicht
+   beide. Ohne Konto, ohne Netz, wenn Firebase ablehnt oder die Adresse
+   nicht passt: wie bisher das Mailprogramm (feedbackPerMail), verloren
+   geht also nichts. Ohne Cloud (Web-Fassung, start.py) bleibt alles wie
+   vorher. */
+const FEEDBACK_ADRESSE = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?([.][A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
+function feedbackAdresse(){
+  const m = cloudMerker(), a = String((m && m.email) || '').trim();
+  return (a.length <= 254 && FEEDBACK_ADRESSE.test(a)) ? a : '';
+}
+/* true, wenn die Nachricht in Firebase liegt - sonst false, nie ein Wurf. */
+async function feedbackUeberFormular(text, adresse){
+  const a = cloudAdapter();
+  if(!a || !a.nachricht || !adresse) return false;
+  try{ return await a.nachricht(text, adresse, SPRACHE) === true; }
+  catch(e){ return false; }
+}
+let feedbackLaeuft = false;     // zweimal Senden hiesse zwei Mails
+/* Schickt ein Feedback ab - aus den Einstellungen und aus dem Vorschlag
+   nach der Bewertungsfrage (zeigeVorschlag), die schon immer denselben
+   Weg nahmen. notiz bekommt die Meldung, knopf ist waehrenddessen aus.
+   true: ueber das Formular angekommen; false: das Mailprogramm ist
+   aufgegangen; null: es laeuft schon eins, nichts getan. */
+async function feedbackSenden(text, notiz, knopf){
+  const adresse = cloudModus() ? feedbackAdresse() : '';
+  if(adresse){
+    if(feedbackLaeuft) return null;
+    feedbackLaeuft = true;
+    const fokus = document.activeElement === knopf;
+    knopf.disabled = true;
+    notiz.textContent = t('set.feedback_sendet');
+    const geklappt = await feedbackUeberFormular(text, adresse);
+    feedbackLaeuft = false;
+    knopf.disabled = false;
+    /* Pruefbericht 01.11.2026: Ein abgeschalteter Knopf verliert den Fokus,
+       ein Screenreader stand danach irgendwo am Seitenanfang. Zurueck auf
+       den Knopf, wenn der Fokus nicht schon woanders hin gewandert ist. Die
+       Meldungen selbst sagt role="status" an (fbNote, bwNote). */
+    if(fokus && knopf.isConnected && (!document.activeElement || document.activeElement === document.body)) knopf.focus();
+    if(geklappt){ notiz.textContent = t('set.feedback_danke'); return true; }
+  }
+  feedbackPerMail(text, notiz);
+  return false;
+}
 $('fbSend').addEventListener('click', async ()=>{
   const text=$('fbText').value.trim(); if(!text){ $('fbNote').textContent=t('set.feedback_leer'); return; }
-  if(!MIT_SERVER){ feedbackPerMail(text); sound('ok'); return; }
+  if(!MIT_SERVER){
+    const r = await feedbackSenden(text, $('fbNote'), $('fbSend'));
+    if(r === null) return;
+    if(r) $('fbText').value = '';
+    sound('ok');
+    return;
+  }
   try{
     const r=await fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({profil, text})});
     const d=await r.json();
@@ -10701,7 +11234,7 @@ function showPath(){
   $('tag').textContent=t('app.tag');
   const done = CATEGORIES.filter(c=>passed.has(c.id)).length;
   const nWords = CATEGORIES.reduce((n,c)=>n+c.words.length,0);
-  $('summary').textContent = t('pfad.summary',{done:done, total:CATEGORIES.length, k:known.size, n:nWords})+(ALLE_FREI?t('pfad.testmodus'):'');
+  $('summary').textContent = t('pfad.summary',{done:done, total:CATEGORIES.length, k:ohneZa(known), n:nWords})+(ALLE_FREI?t('pfad.testmodus'):'');
   /* Ajdin am 26.09.2026: "das braucht keiner ist platzverschwendung".
      Stimmt fuer den Alltag - wie weit die laufende Sektion ist, steht
      eine Handbreit tiefer in ihrer Karte. Im Testmodus bleibt die Zeile
@@ -10709,6 +11242,11 @@ function showPath(){
   $('summary').style.display = ALLE_FREI ? '' : 'none';
   const box=$('sections'); box.innerHTML='';
   const next = firstOpen();
+  /* Beim Zahnarzt: eine eigene Sektion am Ende, nur wenn freigeschaltet. Ihre
+     Level zaehlen ab CATEGORIES.length (levelNach); firstOpen() kennt sie nicht. */
+  const zaDa = zaAn();
+  const sektionenHier = zaDa ? SECTIONS.concat([ZA.sektion]) : SECTIONS;
+  const zaNext = CATEGORIES.length + zaLevel().findIndex(c => !passed.has(c.id));
   /* Beim ersten Zeichnen ist die Sektion offen, in der gerade gelernt wird.
      Danach bleibt die stehen, die der Nutzer gewaehlt hat - auch nach einer
      Lektion. Erst wenn es sie nicht mehr gibt, faellt es zurueck. */
@@ -10716,10 +11254,12 @@ function showPath(){
   /* Nur beim allerersten Zeichnen vorbelegen und dann, wenn die gewaehlte
      Sektion verschwunden ist. Ein leerer Merker heisst "alle zugeklappt" -
      das ist eine Wahl des Nutzers und wird nicht ueberschrieben. */
-  if(offeneSektion === null || (offeneSektion && !SECTIONS.some(s => s.id === offeneSektion)))
+  if(offeneSektion === null || (offeneSektion && !sektionenHier.some(s => s.id === offeneSektion)))
     offeneSektion = laufende;
-  SECTIONS.forEach((s, si)=>{
-    const levels = CATEGORIES.map((c,i)=>({c,i})).filter(x=>x.c.sektion===s.id);
+  sektionenHier.forEach((s, si)=>{
+    const levels = (zaDa && s === ZA.sektion)
+      ? zaLevel().map((c, k) => ({c, i: CATEGORIES.length + k}))
+      : CATEGORIES.map((c,i)=>({c,i})).filter(x=>x.c.sektion===s.id);
     if(!levels.length) return;
     const sdone = levels.filter(x=>passed.has(x.c.id)).length;
     const sopen = levels.some(x=>isUnlocked(x.i));
@@ -10747,15 +11287,15 @@ function showPath(){
     const levelKasten = sec.querySelector('.levels');
     levels.forEach(({c,i})=>{
       const b=document.createElement('button');
-      const d=passed.has(c.id), o=isUnlocked(i), isCur=(i===next && !d), pct=levelPct(c);
+      const d=passed.has(c.id), o=isUnlocked(i), isCur=(i===(i < CATEGORIES.length ? next : zaNext) && !d), pct=levelPct(c);
       b.className='node'+(d?' done':'')+(isCur?' current':'')+(o?'':' locked');
       const extras = GRAMMAR[c.id]?t('pfad.grammatik'):'';
-      b.innerHTML = '<div class="circle">'+(d?'✓':(o?(i+1):symbol('schloss')))+'</div>'+
+      b.innerHTML = '<div class="circle">'+(d?'✓':(o?levelNummer(i):symbol('schloss')))+'</div>'+
         '<div class="txt"><div class="label">'+esc(c.label)+'<span style="font-weight:600;font-size:12px;color:var(--muted)">'+esc(extras)+'</span></div><div class="tipp">'+esc(c.tipp||'')+'</div>'+
         (o && !d ? '<div class="mini"><i style="width:'+pct+'%"></i></div>' : '')+'</div>'+
         '<div class="state">'+(d?t('zustand.bestanden'):(isCur?t('zustand.jetzt'):(o?(pct>0?pct+' %':t('zustand.offen')):t('zustand.gesperrt'))))+'</div>';
       b.addEventListener('click',()=>{
-        if(!isUnlocked(i)){ b.querySelector('.state').textContent=t('pfad.erst_level',{n:i}); return; }
+        if(!isUnlocked(i)){ b.querySelector('.state').textContent=t('pfad.erst_level',{n:levelNummer(i) - 1}); return; }
         openLevel(i);
       });
       levelKasten.appendChild(b);
@@ -10899,7 +11439,8 @@ function showStory(){
          Wort. Sobald eine Sprache aus dem Vorlese-Knopf "Hör die Geschichte"
          macht, stünde hier sonst etwas Falsches. */
       b.insertAdjacentHTML('beforeend', '<button type="button" class="wortton" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>');
-      // Ueber den spieler wie die ganze Geschichte, nie ueber WebAudio (26.10.2026)
+      // Ueber den spieler wie die ganze Geschichte, nie ueber WebAudio (26.10.2026),
+      // aber mit normalem Tempo: das gemerkte gilt nur beim Vorlesen (05.11.2026)
       b.querySelector('.wortton').addEventListener('click', ()=>{ stilleBitte(); sprichMitSpieler(wort); });
       sprichMitSpieler(wort);
     }
@@ -10956,8 +11497,9 @@ function showStory(){
     /* Vor speak(): endet der Ton sofort (keine Aufnahme, keine Stimme),
        gibt wiederVorlesen() die Sperre gleich wieder frei. */
     wachHalten(true);
-    // nie ueber WebAudio: das Mitlesen liest spieler.currentTime (26.10.2026)
-    sprichMitSpieler(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); });
+    // nie ueber WebAudio: das Mitlesen liest spieler.currentTime (26.10.2026).
+    // Die einzige Stelle, die das gemerkte Tempo mitgibt (05.11.2026).
+    sprichMitSpieler(s.text, ()=>{ if(meinLauf === tonMarke && laeuftVor === wiederVorlesen) stilleBitte(); }, tempo);
     /* Mitlesen (20.10.2026). Ohne passende Wortzeiten oder ohne Aufnahme
        (Computerstimme) bleibt der Text einfach ohne Markierung. */
     mitlesenStart(audioDatei(s.text), $('rBody').querySelectorAll('.txt .w'));
@@ -11025,7 +11567,7 @@ function openLevel(i){
   if(anmeldungSperre()) return;
   catIdx=i; showView('levelView');
   setzeZurueck(t('btn.zurueck_pfad'), ()=>{ homeMode='words'; showHome(); });
-  $('tag').textContent=t('level.zaehler',{i:i+1, n:CATEGORIES.length});
+  $('tag').textContent=t('level.zaehler',{i:levelNummer(i), n:levelEnde() - levelAnfang()});
   showLevelHome();
   kartenNachreichen();
 }
@@ -11059,8 +11601,8 @@ function showLevelHome(){
      und startTest() setzen sie neu ein. */
   $('zmajLesson').innerHTML=''; $('zmajTest').innerHTML='';
   uhrAus();
-  const c = cur(); const s = SECTIONS.find(x=>x.id===c.sektion);
-  $('lvTitle').innerHTML = t('level.titel',{i:catIdx+1, label:esc(c.label)})+'<small>'+esc(s ? s.label.replace(/ ·.*$/,'') : '')+'</small>';
+  const c = cur(); const s = imZa() ? ZA.sektion : SECTIONS.find(x=>x.id===c.sektion);
+  $('lvTitle').innerHTML = t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'<small>'+esc(s ? (imZa() ? s.label.replace(/ /g, ' ') : s.label.replace(/ ·.*$/,'')) : '')+'</small>';
   $('lvTipp').textContent = c.tipp || '';
   const basis = $('lvBasis'); basis.innerHTML='';
   if(c.baut_auf && c.baut_auf.length){
@@ -11087,8 +11629,8 @@ function showLevelHome(){
   $('wordList').querySelectorAll('.wortton').forEach(b=>b.addEventListener('click', e=>{
     e.stopPropagation(); stilleBitte(); speak(b.dataset.bs);
   }));
-  $('navPrev').disabled = catIdx===0;
-  $('navNext').disabled = !(catIdx+1<CATEGORIES.length && isUnlocked(catIdx+1));
+  $('navPrev').disabled = catIdx===levelAnfang();
+  $('navNext').disabled = !(catIdx+1<levelEnde() && isUnlocked(catIdx+1));
 }
 function updateProgress(){
   const c=cur(); const words=c.words;
@@ -11110,8 +11652,8 @@ function updateProgress(){
   $('lvNote').textContent = passed.has(c.id) ? t('level.note_bestanden') :
     (allowed ? t('level.note_frei',{a:TEST_BESTANDEN_AB, b:TEST_FRAGEN}) : t('level.note_zu',{p:TEST_FREI_AB}));
 }
-$('navPrev').addEventListener('click',()=>{ if(catIdx>0) openLevel(catIdx-1); });
-$('navNext').addEventListener('click',()=>{ if(catIdx+1<CATEGORIES.length && isUnlocked(catIdx+1)) openLevel(catIdx+1); });
+$('navPrev').addEventListener('click',()=>{ if(catIdx>levelAnfang()) openLevel(catIdx-1); });
+$('navNext').addEventListener('click',()=>{ if(catIdx+1<levelEnde() && isUnlocked(catIdx+1)) openLevel(catIdx+1); });
 
 // Jede Sprache setzt ihre eigenen Anführungszeichen: auf, zu.
 const ZITAT = {
@@ -11166,18 +11708,53 @@ const _bedeutung = s => String(s||'').toLowerCase().replace(/[.!?\u2026]+$/,'').
    Merhaba. Verglichen wird je Form, weil "auch" auch einen Teil wie "drug"
    aus "drug / drugarica" nennen darf. Ajdin am 05.10.2026, 34 Paare. */
 const _formen = s => String(s||'').split(' / ').map(_bedeutung);
+/* Alle Woerter, unter denen eine Aufgabe Antworten sucht. Im Lernpfad dieselben
+   wie immer; im Zahnarzt-Teil dazu seine eigenen, sonst stuenden dort zwei
+   gleich uebersetzte Saetze als richtig und falsch nebeneinander. */
+const wortVorrat = () => CATEGORIES.concat(imZa() ? zaLevel() : []).flatMap(c=>c.words);
+/* Aspektpaare (31.10.2026, Wortschatz-Paket 1): ostati und ostajati heissen
+   beide "bleiben", doći und dolaziti beide "kommen". Ajdin: "beide wörter
+   rein die sollen separat sein wenn einer gelernt wurde dann ist der andere
+   noch nicht gelernt" - eigene Kennung, eigener Lernstand, und
+   vollendet/unvollendet zeigt die App nicht an. Deshalb:
+   - in der Auswahl stehen die beiden nie zusammen (geschwister()), auch
+     wenn ihre Bedeutungen verschieden dastehen (popiti "trinken /
+     austrinken" neben piti "trinken");
+   - beim Tippen ist das Gegenstueck NICHT richtig (annehmbar() laesst es
+     weg), sondern bekommt einmal "Fast richtig!" mit dem Hinweis auf das
+     andere Verb des Paares (task.partner, partnerAntworten()) - ohne Leben,
+     wie ein Tippfehler.
+   Das Feld "partner" in vokabeln.py nennt das bs des Gegenstuecks und
+   steht nur an einem der beiden; gelesen wird es in beide Richtungen. */
+const istPartner = (w, x) => !!(w && x && x.bs !== w.bs && (x.partner === w.bs || w.partner === x.bs));
+function partnerVon(w){
+  return CATEGORIES.flatMap(c=>c.words).filter(x => istPartner(w, x));
+}
+/* Was beim Tippen als Gegenstueck erkannt wird: seine Formen und sein
+   "auch", mit " / " wie bei matches(). Leer, wenn das Wort keins hat. */
+function partnerAntworten(w){
+  return partnerVon(w).flatMap(x => [x.bs, ...(x.auch || [])]).join(' / ');
+}
+/* Wortschatz-Pakete 5 bis 9 (06.11.2026): diese Woerter heissen teilweise gleich
+   („so“, „ganz“, „hier“, „sehr“) und sollen nie zusammen in einer Auswahl stehen.
+   Beim Tippen zaehlt das andere Wort trotzdem nicht: "auch" hat Ajdin dafuer
+   nicht freigegeben. */
+const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako'], ['vrlo / veoma', 'jako']];
+const nieNebeneinander = (a, b) => NIE_NEBENEINANDER.some(([x, y]) => (a === x && b === y) || (a === y && b === x));
 function geschwister(w){
   const b = _bedeutung(w.de);
   const meineAuch = new Set((w.auch || []).flatMap(_formen));
   const meineFormen = _formen(w.bs);
-  return CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs &&
+  return wortVorrat().filter(x => x.bs !== w.bs &&
     ((b && _bedeutung(x.de) === b) ||
+     istPartner(w, x) ||
+     nieNebeneinander(w.bs, x.bs) ||
      _formen(x.bs).some(f => meineAuch.has(f)) ||
      (x.auch || []).flatMap(_formen).some(f => meineFormen.includes(f))));
 }
 function annehmbar(w){
   const b = _bedeutung(w.de);
-  const gleich = b ? CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs && _bedeutung(x.de) === b).map(x=>x.bs) : [];
+  const gleich = b ? wortVorrat().filter(x => x.bs !== w.bs && _bedeutung(x.de) === b && !istPartner(w, x)).map(x=>x.bs) : [];
   return [w.bs, ...gleich, ...(w.auch || [])];
 }
 function distractors(target, words, n){
@@ -11186,7 +11763,7 @@ function distractors(target, words, n){
   const gleich = new Set(geschwister(target).map(x=>x.bs));
   const raus = w => w.bs===target.bs || gleich.has(w.bs);
   let pool = words.filter(w=>!raus(w));
-  if(pool.length<n) pool = CATEGORIES.flatMap(c=>c.words).filter(w=>!raus(w));
+  if(pool.length<n) pool = wortVorrat().filter(w=>!raus(w));
   const seen = new Set([target.bs]); const out=[];
   for(const w of shuffle(pool.slice())){ if(!seen.has(w.bs)){ seen.add(w.bs); out.push(w); if(out.length===n) break; } }
   return out;
@@ -11220,8 +11797,11 @@ function renderChoice(box, opts, correctKey, keyOf, onDone, sprache){
      "Waeschetrockner"). Ein paar Punkte in den Innenabstand der Karte
      hinein bleiben erlaubt, so sah es schon immer aus.
      Gefunden bei der Pruefung am 06.10.2026. */
+  /* scrollWidth zaehlt in Punkten der Seite, getBoundingClientRect auf dem
+     Tablet in Bildschirmpunkten - f rechnet um (rectFaktor(), am Handy 1) */
   const karte = (box.closest('.card') || box.parentElement).getBoundingClientRect();
-  if(box.getBoundingClientRect().left + box.scrollWidth > karte.right) box.classList.add('one');
+  const f = rectFaktor() / GROSS;
+  if(box.getBoundingClientRect().left * f + box.scrollWidth > karte.right * f) box.classList.add('one');
 }
 
 /* Die Frage einer Grammatikaufgabe: der bosnische Satz oben, die
@@ -11336,7 +11916,7 @@ function folgeAufgabe(task){
   return null;
 }
 function woerterVorladen(task){
-  if(!canListen || tempo !== 1) return;
+  if(!canListen) return;
   [task, folgeAufgabe(task)].forEach(a => {
     const text = aufgabeText(a);
     if(text) pufferLaden(audioDatei(text));
@@ -11399,16 +11979,23 @@ function renderTask(task, body, done, opts={}){
      andere Endung im Lueckensatz und fuer ein anderes echtes Wort (siehe
      fastRichtig()). Ein Hinweis je Aufgabe - nach dem einen zaehlt der
      naechste Versuch. */
+  /* Seit dem 31.10.2026 auch fuer das Aspekt-Gegenstueck (partner): wer bei
+     "bleiben" ostajati tippt, wo ostati gemeint ist, bekommt einmal
+     task.partner ("Fast richtig! Gemeint ist das andere Verb des Paares.")
+     statt eines Fehlers - derselbe Ablauf, nur der Text ist ein anderer.
+     partner: die Antworten des Gegenstuecks wie bei matches(), sonst leer. */
   const tippHinweis = (inp)=>{
     let gezeigt = null;
-    return (r, antworten)=>{
+    return (r, antworten, partner)=>{
       if(gezeigt){
         const doppelt = inp.value === gezeigt.text && Date.now() - gezeigt.zeit < DOPPELT_MS;
         if(doppelt) inp.focus();
         return doppelt;
       }
-      if(r !== 'no' || !fastRichtig(inp.value, antworten)) return false;
-      const hinweis = t('task.fast_richtig');
+      if(r !== 'no') return false;
+      const paar = !!partner && matches(inp.value, partner) !== 'no';
+      if(!paar && !fastRichtig(inp.value, antworten)) return false;
+      const hinweis = paar ? t('task.partner') : t('task.fast_richtig');
       gezeigt = {text: inp.value, zeit: Date.now()};
       const feld = $$('xFb');
       feld.textContent = hinweis;
@@ -11465,7 +12052,7 @@ function renderTask(task, body, done, opts={}){
       const auchOk = annehmbar(w).join(' / ');
       const r=matches(inp.value, auchOk);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_wort'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_wort'))); return; }
-      if(vertippt(r, auchOk)) return;   // ein Tippfehler: erst der Hinweis (24.10.2026)
+      if(vertippt(r, auchOk, partnerAntworten(w))) return;   // ein Tippfehler oder das andere Verb des Paares: erst der Hinweis (24.10. / 31.10.2026)
       // Beantwortet: der Pruefen-Knopf hat nichts mehr zu tun und wuerde
       // nur neben dem Weiter-Knopf stehen. Ajdin am 18.09.2026.
       fin=true; inp.disabled=true;
@@ -11727,11 +12314,13 @@ function renderTask(task, body, done, opts={}){
       // Ohne Bewegung wird auch ein Gleiten von vorhin abgebrochen: die
       // Kachel steht dann gleich an ihrem Platz.
       const ruhig = kachelnRuhig();
+      // translate rechnet in Punkten der Seite, siehe rectFaktor() (am Handy f = 1)
+      const f = rectFaktor() / GROSS;
       vorher.forEach((r, k) => {
         if(!k.isConnected || !k.animate) return;
         if(k.getAnimations) k.getAnimations().forEach(a => a.cancel());
         if(ruhig) return;
-        const n = k.getBoundingClientRect(), dx = r.left - n.left, dy = r.top - n.top;
+        const n = k.getBoundingClientRect(), dx = (r.left - n.left) * f, dy = (r.top - n.top) * f;
         if(Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
         k.animate([{transform:'translate('+dx+'px,'+dy+'px)'}, {transform:'none'}],
           {duration: k === b ? 260 : 200, easing:'cubic-bezier(.2,.8,.2,1)'});
@@ -11832,6 +12421,7 @@ function lueckeGesehen(s, g){
   });
 }
 function lueckenFuerLektion(ids){
+  if(imZa()) return [];     // Beim Zahnarzt: keine Luecken, und keine aus dem Lernpfad
   const g = gesehenFormen(ids), schon = new Set(), out = [];
   const nimm = liste => shuffle(liste.filter(s => lueckeGesehen(s, g))).forEach(s => {
     const k = s.text + '|' + s.answer;   // derselbe Satz steht in manchen Leveln doppelt
@@ -11983,6 +12573,7 @@ function kachelAblenker(s, anzahl){
    ("Drago ___ je." und "Drago mi je."). Gefunden im Review am 14.10.2026. */
 const lueckeFertig = s => String(s.answer).split(' / ').map(a => kachelNorm(String(s.text).replace('___', a.trim())));
 function kachelnFuerLektion(ids, belegt){
+  if(imZa()) return [];     // Beim Zahnarzt: keine Kacheln, und keine aus dem Lernpfad
   const c = cur();
   const teileVon = w => kachelFormen(w).flatMap(f => lueckeTeile(f).trim().split(' ')).filter(Boolean);
   const hier = new Set(c.words.flatMap(teileVon));
@@ -12073,7 +12664,7 @@ function buildLesson(){
      "Wiederholung: <Level>" und dessen Woertern als Auswahl, wie die
      Rueckblick-Fragen im Level-Test; aus diesem Level wie jedes andere
      bekannte Wort. Ein Wort kommt nie zweimal. */
-  const faellig = karteiHeute().map(wortNachId).filter(Boolean)
+  const faellig = (imZa() ? [] : karteiHeute()).map(wortNachId).filter(Boolean)
     .slice(0, Math.min(KARTEI_IN_LEKTION, LEKTION_WOERTER - nNew));
   const faelligIds = new Set(faellig.map(f => f.w.id));
   const bekannt = knownW.filter(w => !faelligIds.has(w.id));
@@ -12494,7 +13085,7 @@ function lessonOutOfLives(imTest){
   const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
   $(k.bar).innerHTML=''; $(k.drache).style.display='none'; $(k.drache).innerHTML=''; $(k.herz).style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
-  const titel = imTest ? t('level.titel', {i:catIdx+1, label:esc(cur().label)}) : t('lektion.aus');
+  const titel = imTest ? t('level.titel', {i:levelNummer(catIdx), label:esc(cur().label)}) : t('lektion.aus');
   /* .ohneleben: daran erkennt ohneLebenVorbei() diesen Schirm. Im Test
      reicht .result-big.fail nicht, das traegt auch ein nicht bestandenes
      Ergebnis. */
@@ -12566,7 +13157,8 @@ function lessonEnd(){
   // "Ohne Fehler" nur, wenn auch nichts übersprungen wurde – sonst holt man
   // sie sich, indem man jede Hör- und Sprechaufgabe wegdrückt.
   if(Lx.right === scored && scored > 0 && Lx.skipped === 0) zaehle('per');
-  const newDay = markToday(); saveProgress(); sound('done');
+  /* Beim Zahnarzt: kein Lerntag, die Wegmarken bleiben beim Lernpfad. */
+  const newDay = imZa() ? false : markToday(); saveProgress(); sound('done');
   /* Die gruenen Zeilen fuer erledigte Tagesaufgaben. Sie waren seit dem
      Umbau des Ladens verschwunden: questZeilen() stand fertig da und wurde
      von niemandem mehr aufgerufen, die Muenzen erschienen wortlos in der
@@ -12773,7 +13365,7 @@ function buildTest(){
   const c = cur();
   const eigene = shuffle(c.words.slice());
   const gram = shuffle(((GRAMMAR[c.id]||{}).uebungen||[]).slice()).slice(0,3);
-  let basisIds = (c.baut_auf && c.baut_auf.length) ? c.baut_auf : CATEGORIES.slice(0, catIdx).map(x=>x.id);
+  let basisIds = (c.baut_auf && c.baut_auf.length) ? c.baut_auf : (imZa() ? [] : CATEGORIES.slice(0, catIdx).map(x=>x.id));
   const basisWords = shuffle(basisIds.flatMap(id => (byId(id)||{words:[]}).words.map(w=>({w, rep:byId(id).label, pool:byId(id).words}))));
   const nRep = Math.min(TEST_WIEDERHOLUNG, basisWords.length);
   const nOwn = Math.min(TEST_FRAGEN - nRep - gram.length, eigene.length);
@@ -12819,10 +13411,10 @@ function showTestResult(){
   werbungZaehler++;
   werbungNachDemErgebnis('test', ()=> Tx);
   const c=cur(); const ok = Tx.right >= TEST_BESTANDEN_AB;
-  const hasNext = catIdx+1 < CATEGORIES.length;
+  const hasNext = catIdx+1 < levelEnde();
   // Wann ein Level bestanden wurde, lässt sich später nicht mehr herausfinden.
   const neuBestanden = ok && !passed.has(c.id);
-  if(ok){ if(!passed.has(c.id)){ passed.add(c.id); wann['lv:'+c.id] = today(); } markToday(); sound('done'); }
+  if(ok){ if(!passed.has(c.id)){ passed.add(c.id); wann['lv:'+c.id] = today(); } if(!imZa()) markToday(); sound('done'); }
   if(ok && bewertungFaellig()) bewertungDran = true;
   saveProgress();   // auch bei nicht bestanden: die Aufgaben sind trotzdem beantwortet
   /* Auch hier koennen Tagesaufgaben fertig geworden sein - siehe lessonEnd.
@@ -12834,25 +13426,25 @@ function showTestResult(){
      Die Position allein sagt deshalb nicht mehr, ob eine Sektion oder
      alles geschafft ist - es muss wirklich jedes Level bestanden sein.
      Gefunden in der Gegenpruefung am 01.10.2026. */
-  const sektionFertig = CATEGORIES.every(x => x.sektion !== c.sektion || passed.has(x.id));
-  const allesFertig = CATEGORIES.every(x => passed.has(x.id));
+  const sektionFertig = (imZa() ? zaLevel() : CATEGORIES).every(x => x.sektion !== c.sektion || passed.has(x.id));
+  const allesFertig = !imZa() && CATEGORIES.every(x => passed.has(x.id));      // Beim Zahnarzt zaehlt nicht mit
   /* Nach einer Einstufung wird eine Sektion oft nicht an ihrem letzten
      Level fertig, sondern mittendrin, wenn das letzte uebersprungene Level
      nachgeholt ist. Zaehlt also, was DIESER Test neu abgeschlossen hat.
      Wer ein schon bestandenes Level wiederholt, bekommt die alte Regel. */
-  const nextSec = sektionFertig && (neuBestanden || (hasNext && CATEGORIES[catIdx+1].sektion !== c.sektion));
+  const nextSec = sektionFertig && (neuBestanden || (hasNext && levelNach(catIdx+1).sektion !== c.sektion));
   /* Das Ergebnis hat seinen grossen Drachen, wie lessonEnd(). Der kleine
      wird dabei auch abgebaut, nicht nur versteckt: versteckt liefe er
      unsichtbar weiter (siehe showLevelHome). */
   $('zmajTest').style.display='none'; $('zmajTest').innerHTML='';
   $('tBody').innerHTML =
-    '<div class="ergebnis-titel">'+t('level.titel',{i:catIdx+1, label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
+    '<div class="ergebnis-titel">'+t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
     '<div class="feedback '+(ok?'ok':'no')+'">'+(ok ? t(nextSec ? 'test.sektion_fertig' : 'test.bestanden') : t('test.durchgefallen',{n:TEST_BESTANDEN_AB}))+'</div>'+
     questLob+
     '<div class="row">'+
       '<button class="btn ghost" id="tBack">'+(ok?t('test.zum_pfad'):t('lektion.zurueck'))+'</button>'+
-      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:catIdx+2})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
+      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:levelNummer(catIdx)+1})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
     '</div>';
   $('tBack').addEventListener('click', ()=>{ if(ok){ homeMode='words'; showHome(); } else showLevelHome(); });
   const n=$('tNext'); if(n) n.addEventListener('click', ()=> openLevel(catIdx+1));
@@ -12931,7 +13523,7 @@ function einstufungIndex(){
    wird nicht mehr gefragt. */
 function einstufungFaellig(){
   return !einstufung && !ALLE_FREI && CATEGORIES.length > 0
-    && passed.size === 0 && known.size === 0 && days.size === 0;
+    && ohneZa(passed) === 0 && ohneZa(known) === 0 && days.size === 0;
 }
 function stufenLevel(st){
   const nr = [];
@@ -13193,7 +13785,8 @@ function topfSchluessel(task){
   if(task.typ === 'gap' && task.s) return 's:' + task.s.kat + '|' + task.s.text;
   if(task.typ === 'kacheln' && task.s) return 'k:' + task.s.kat + '|' + task.s.bs;
   if(task.typ === 'gram' && task.g && task.g._lv) return 'g:' + task.g._lv + '|' + task.g._nr;
-  if(task.w && task.w.id) return 'w:' + task.w.id;
+  /* Beim Zahnarzt: kein Schluessel heisst kein Fehler-Topf und kein Stern. */
+  if(task.w && task.w.id) return istZa(task.w.id) ? '' : 'w:' + task.w.id;
   return '';
 }
 function topfMerken(task, ok){
@@ -14036,7 +14629,10 @@ function zeigeBewertung(){
   kasten.querySelector('#bwNein').addEventListener('click', ()=>{ zu(); bewertung.nein = true; saveProgress(); });
 }
 /* Das Feld fuer den Vorschlag. Verschickt wird wie in den Einstellungen:
-   das Mailprogramm des Geraets geht mit fertiger Nachricht auf. */
+   das Mailprogramm des Geraets geht mit fertiger Nachricht auf.
+   Seit 01.11.2026 heisst "wie in den Einstellungen": in der Handy-App mit
+   Konto ueber das Kontaktformular, sonst und als Rueckfall das
+   Mailprogramm (feedbackSenden). Ajdin: "Uebers Formular". */
 function zeigeVorschlag(){
   const kasten = document.createElement('div');
   kasten.className = 'nachfrage';
@@ -14046,7 +14642,7 @@ function zeigeVorschlag(){
       '<textarea class="field" id="bwText" rows="4" maxlength="2000"></textarea>' +
       '<button class="btn know" id="bwSenden"></button>' +
       '<button class="btn ghost" id="bwZu"></button>' +
-      '<div class="note" id="bwNote" style="margin-top:8px"></div>' +
+      '<div class="note" id="bwNote" role="status" style="margin-top:8px"></div>' +   // wie #fbNote (01.11.2026)
     '</div>';
   kasten.querySelector('h3').textContent = t('bew.fb_titel');
   kasten.querySelector('#bwText').placeholder = t('set.feedback_platzhalter');
@@ -14056,12 +14652,15 @@ function zeigeVorschlag(){
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;
   kasten.querySelector('#bwZu').addEventListener('click', zu);
-  kasten.querySelector('#bwSenden').addEventListener('click', ()=>{
-    const text = kasten.querySelector('#bwText').value.trim();
+  kasten.querySelector('#bwSenden').addEventListener('click', async ()=>{
+    const feld = kasten.querySelector('#bwText'), text = feld.value.trim();
     const note = kasten.querySelector('#bwNote');
     if(!text){ note.textContent = t('set.feedback_leer'); return; }
-    feedbackPerMail(text, note);
-    note.insertAdjacentText('afterbegin', t('bew.danke') + ' ');
+    const r = await feedbackSenden(text, note, kasten.querySelector('#bwSenden'));
+    if(r === null) return;
+    // Ueber das Formular dankt set.feedback_danke schon selbst.
+    if(r) feld.value = '';
+    else note.insertAdjacentText('afterbegin', t('bew.danke') + ' ');
     sound('ok');
     kasten.querySelector('#bwZu').textContent = t('task.weiter');
   });
@@ -15040,10 +15639,29 @@ function weiterBeiTipp(feldId, weiter){
      an - daran erkennt der Horcher, dass er aus einem alten Durchgang stammt.
      Gefunden am 26.09.2026. */
   const meinLx = Lx, meinTx = Tx;
+  /* Tablet hochkant (30.10.2026): dort ist das Aufgabenfeld
+     display:contents (siehe html.hoch im Stil), und der freie Platz
+     zwischen Aufgabe und Antworten gehoert zum Kasten, nicht zum Feld. Ein
+     Tipp genau dorthin zaehlt wie einer ins Feld. Nur auf den Kasten
+     selbst - Stern und Herz in der Kopfzeile bleiben, was sie sind. Am
+     Handy gibt es das nicht.
+     Nur fuer die drei Felder, die dort wirklich aufgeloest sind. Bei einer
+     Geschichte ist #rQ ein normales Feld, und sein Kasten ist der ganze
+     Geschichtenkasten mit dem Text: ein Tipp auf dessen Rand blaetterte
+     schon zur naechsten Frage, obwohl der Horcher dort bewusst nur am
+     Fragenfeld sitzt (showStoryQ). Gefunden in der Pruefung am 30.10.2026. */
+  const aufgeloest = (feldId === 'lBody' || feldId === 'tBody' || feldId === 'eBody') &&
+    document.documentElement.classList.contains('hoch');
+  const karte = aufgeloest ? feld.closest('.card') : null;
+  const frei = e => { if(e.target === karte) los(e); };
+  const ab = ()=>{
+    feld.removeEventListener('click', los, true);
+    if(karte) karte.removeEventListener('click', frei);
+  };
   const einmal = ()=>{
     if(schon) return;
     schon = true;
-    feld.removeEventListener('click', los, true);
+    ab();
     weiter();
   };
   /* Ein Tipp auf einen Hörknopf oder auf die Tempoleiste soll NUR das tun -
@@ -15054,7 +15672,7 @@ function weiterBeiTipp(feldId, weiter){
        Horcher aus einem alten Durchgang haengt sich jetzt beim ersten Tipp
        selbst ab und laesst den Klick durch. Gefunden in der Gegenpruefung
        am 01.10.2026. */
-    if(Lx !== meinLx || Tx !== meinTx){ feld.removeEventListener('click', los, true); return; }
+    if(Lx !== meinLx || Tx !== meinTx){ ab(); return; }
     if(e && e.target && e.target.closest && e.target.closest('.listen, .wortton, .tempo')) return;
     einmal();
   };
@@ -15094,6 +15712,7 @@ function weiterBeiTipp(feldId, weiter){
   setTimeout(()=>{
     if(schon) return;
     feld.addEventListener('click', los, true);
+    if(karte) karte.addEventListener('click', frei);
     const k = feld.querySelector('.weiterbox .btn');
     if(k) try{ k.focus({preventScroll:true}); }catch(e){ k.focus(); }
     ansageNachFokus();

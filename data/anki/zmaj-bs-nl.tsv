@@ -257,7 +257,7 @@ leđa	rug	zmaj zmaj::11_koerper
 srce	hart	zmaj zmaj::11_koerper
 bolestan / bolesna	ziek (m/v)	zmaj zmaj::11_koerper
 zdrav / zdrava	gezond (m/v)	zmaj zmaj::11_koerper
-doktor	dokter	zmaj zmaj::11_koerper
+doktor / ljekar	dokter	zmaj zmaj::11_koerper
 bolnica	ziekenhuis	zmaj zmaj::11_koerper
 apoteka	apotheek	zmaj zmaj::11_koerper
 bol	pijn	zmaj zmaj::11_koerper
@@ -470,6 +470,8 @@ travarica	kruidenbrandewijn	zmaj zmaj::19_vorrat
 domaća rakija	zelfgestookt	zmaj zmaj::19_vorrat
 loza	druivenbrandewijn	zmaj zmaj::19_vorrat
 šljivovica	pruimenbrandewijn	zmaj zmaj::19_vorrat
+mačak	kater (mannetjeskat)	zmaj zmaj::20_tiere
+Naš mačak spava cijeli dan.	Onze kater slaapt de hele dag.	zmaj zmaj::20_tiere
 kućni ljubimac	huisdier	zmaj zmaj::20_tiere
 životinja	dier	zmaj zmaj::20_tiere
 stoka	vee / boerderijdieren	zmaj zmaj::20_tiere
@@ -1743,3 +1745,2686 @@ Trebam termin	Ik heb een afspraak nodig	zmaj zmaj::65_gesundheit
 Na bolovanju sam	Ik ben ziekgemeld	zmaj zmaj::65_gesundheit
 Gdje Vas boli?	Waar doet het pijn?	zmaj zmaj::65_gesundheit
 Alergičan sam na ... / Alergična sam na ...	Ik ben allergisch voor ... (m/v)	zmaj zmaj::65_gesundheit
+ostati	blijven	zmaj zmaj::66_kommen_gehen
+Ostani još malo!	Blijf nog even!	zmaj zmaj::66_kommen_gehen
+ostajati	blijven	zmaj zmaj::66_kommen_gehen
+Ljeti mi ostajemo kod nane.	In de zomer blijven we bij oma.	zmaj zmaj::66_kommen_gehen
+dolaziti	komen	zmaj zmaj::66_kommen_gehen
+Autobus dolazi svakih deset minuta.	De bus komt elke tien minuten.	zmaj zmaj::66_kommen_gehen
+vratiti se	terugkomen	zmaj zmaj::66_kommen_gehen
+Ja ću se vratiti za pola sata.	Ik ben over een halfuur terug.	zmaj zmaj::66_kommen_gehen
+vraćati se	terugkomen	zmaj zmaj::66_kommen_gehen
+Svakog ljeta se vraćamo u Bosnu.	Elke zomer gaan we terug naar Bosnië.	zmaj zmaj::66_kommen_gehen
+otići	weggaan / ernaartoe gaan	zmaj zmaj::66_kommen_gehen
+Sutra ću otići kod doktora.	Morgen ga ik naar de dokter.	zmaj zmaj::66_kommen_gehen
+odlaziti	weggaan / ernaartoe gaan	zmaj zmaj::66_kommen_gehen
+Zašto već odlaziš?	Waarom ga je nu al?	zmaj zmaj::66_kommen_gehen
+donijeti	brengen	zmaj zmaj::66_kommen_gehen
+Možeš li mi donijeti čašu vode?	Kun je me een glas water brengen?	zmaj zmaj::66_kommen_gehen
+donositi	brengen	zmaj zmaj::66_kommen_gehen
+Poštar donosi pakete ujutro.	De postbode brengt de pakketten 's ochtends.	zmaj zmaj::66_kommen_gehen
+proći	voorbijgaan / verstrijken	zmaj zmaj::66_kommen_gehen
+Ljeto je brzo prošlo.	De zomer is snel voorbijgegaan.	zmaj zmaj::66_kommen_gehen
+prolaziti	voorbijgaan / verstrijken	zmaj zmaj::66_kommen_gehen
+Svaki dan prolazim pored tvoje kuće.	Elke dag loop ik langs je huis.	zmaj zmaj::66_kommen_gehen
+krenuti	vertrekken / wegrijden	zmaj zmaj::66_kommen_gehen
+Moramo krenuti, kasno je.	We moeten gaan, het is laat.	zmaj zmaj::66_kommen_gehen
+kretati	vertrekken / wegrijden	zmaj zmaj::66_kommen_gehen
+Autobus kreće u sedam.	De bus vertrekt om zeven uur.	zmaj zmaj::66_kommen_gehen
+stići	aankomen	zmaj zmaj::66_kommen_gehen
+Mi smo stigli u Sarajevo.	We zijn in Sarajevo aangekomen.	zmaj zmaj::66_kommen_gehen
+stizati	aankomen	zmaj zmaj::66_kommen_gehen
+Voz stiže u osam sati.	De trein komt om acht uur aan.	zmaj zmaj::66_kommen_gehen
+ući	naar binnen gaan / binnenkomen	zmaj zmaj::66_kommen_gehen
+Uđi, vrata su otvorena.	Kom binnen, de deur is open.	zmaj zmaj::66_kommen_gehen
+ulaziti	naar binnen gaan / binnenkomen	zmaj zmaj::66_kommen_gehen
+Ne ulazi u sobu u cipelama!	Ga niet met je schoenen aan de kamer in!	zmaj zmaj::66_kommen_gehen
+izaći	naar buiten gaan / uitgaan	zmaj zmaj::66_kommen_gehen
+Hoćemo li večeras izaći?	Gaan we vanavond uit?	zmaj zmaj::66_kommen_gehen
+izlaziti	naar buiten gaan / uitgaan	zmaj zmaj::66_kommen_gehen
+Vikendom rado izlazim s prijateljima.	In het weekend ga ik graag uit met vrienden.	zmaj zmaj::66_kommen_gehen
+voziti	rijden (een voertuig)	zmaj zmaj::66_kommen_gehen
+Ne vozi tako brzo!	Rijd niet zo hard!	zmaj zmaj::66_kommen_gehen
+putovati	reizen	zmaj zmaj::66_kommen_gehen
+Volim putovati vozom.	Ik reis graag met de trein.	zmaj zmaj::66_kommen_gehen
+dobiti	krijgen	zmaj zmaj::67_geben_nehmen
+Jesi li dobio moju poruku?	Heb je mijn bericht gekregen?	zmaj zmaj::67_geben_nehmen
+dobivati	krijgen	zmaj zmaj::67_geben_nehmen
+Platu dobivamo krajem mjeseca.	Ons loon krijgen we aan het eind van de maand.	zmaj zmaj::67_geben_nehmen
+nalaziti se	zich bevinden	zmaj zmaj::67_geben_nehmen
+Gdje se nalazi apoteka?	Waar bevindt de apotheek zich?	zmaj zmaj::67_geben_nehmen
+izgubiti	verliezen	zmaj zmaj::67_geben_nehmen
+Izgubio sam ključeve.	Ik ben de sleutels kwijt.	zmaj zmaj::67_geben_nehmen
+naći	vinden	zmaj zmaj::67_geben_nehmen
+Jesi li našla posao?	Heb je werk gevonden?	zmaj zmaj::67_geben_nehmen
+davati	geven	zmaj zmaj::67_geben_nehmen
+Nana djeci uvijek daje bombone.	Oma geeft de kinderen altijd snoepjes.	zmaj zmaj::67_geben_nehmen
+nositi	dragen	zmaj zmaj::67_geben_nehmen
+Danas nosim novu jaknu.	Vandaag draag ik een nieuwe jas.	zmaj zmaj::67_geben_nehmen
+uzeti	nemen	zmaj zmaj::67_geben_nehmen
+Uzmi još jedan komad!	Neem nog een stuk!	zmaj zmaj::67_geben_nehmen
+uzimati	nemen	zmaj zmaj::67_geben_nehmen
+Ovaj lijek uzimam dva puta dnevno.	Dit medicijn neem ik twee keer per dag.	zmaj zmaj::67_geben_nehmen
+poslati	sturen	zmaj zmaj::67_geben_nehmen
+Pošalji mi adresu, molim te.	Stuur me alsjeblieft het adres.	zmaj zmaj::67_geben_nehmen
+slati	sturen	zmaj zmaj::67_geben_nehmen
+Svakog mjeseca šaljem novac roditeljima.	Elke maand stuur ik mijn ouders geld.	zmaj zmaj::67_geben_nehmen
+pomagati	helpen	zmaj zmaj::67_geben_nehmen
+Kćerka mi pomaže u kuhinji.	Mijn dochter helpt me in de keuken.	zmaj zmaj::67_geben_nehmen
+čuvati	oppassen op / bewaren	zmaj zmaj::67_geben_nehmen
+Nana čuva djecu dok smo na poslu.	Oma past op de kinderen terwijl wij aan het werk zijn.	zmaj zmaj::67_geben_nehmen
+ponuditi	aanbieden	zmaj zmaj::67_geben_nehmen
+Ponudili su mi posao.	Ze hebben me een baan aangeboden.	zmaj zmaj::67_geben_nehmen
+prodati	verkopen	zmaj zmaj::67_geben_nehmen
+Prodali smo stari auto.	We hebben de oude auto verkocht.	zmaj zmaj::67_geben_nehmen
+prodavati	verkopen	zmaj zmaj::67_geben_nehmen
+Ovdje prodaju svjež hljeb.	Hier verkopen ze vers brood.	zmaj zmaj::67_geben_nehmen
+plaćati	betalen	zmaj zmaj::67_geben_nehmen
+Plaćate li karticom ili gotovinom?	Betaalt u met de kaart of contant?	zmaj zmaj::67_geben_nehmen
+kupovati	kopen	zmaj zmaj::67_geben_nehmen
+Hljeb kupujem svako jutro.	Brood koop ik elke ochtend.	zmaj zmaj::67_geben_nehmen
+primati	aannemen / ontvangen	zmaj zmaj::67_geben_nehmen
+Primate li kartice?	Accepteert u kaarten?	zmaj zmaj::67_geben_nehmen
+ukrasti	stelen	zmaj zmaj::67_geben_nehmen
+Neko mi je ukrao novčanik!	Iemand heeft mijn portemonnee gestolen!	zmaj zmaj::67_geben_nehmen
+željeti	wensen / graag willen	zmaj zmaj::68_sagen_denken
+Želim ti sve najbolje!	Ik wens je het allerbeste!	zmaj zmaj::68_sagen_denken
+misliti	denken / vinden	zmaj zmaj::68_sagen_denken
+Mama uvijek misli na druge.	Mama denkt altijd aan anderen.	zmaj zmaj::68_sagen_denken
+smatrati	beschouwen als / van mening zijn	zmaj zmaj::68_sagen_denken
+Smatram da je to dobra ideja.	Ik vind het een goed idee.	zmaj zmaj::68_sagen_denken
+značiti	betekenen	zmaj zmaj::68_sagen_denken
+Šta znači ova riječ?	Wat betekent dit woord?	zmaj zmaj::68_sagen_denken
+očekivati	verwachten	zmaj zmaj::68_sagen_denken
+Večeras očekujemo goste.	Vanavond verwachten we gasten.	zmaj zmaj::68_sagen_denken
+gledati	bekijken / kijken	zmaj zmaj::68_sagen_denken
+Šta to gledaš?	Waar kijk je naar?	zmaj zmaj::68_sagen_denken
+pogledati	bekijken / kijken	zmaj zmaj::68_sagen_denken
+Pogledaj ovo!	Kijk hier eens naar!	zmaj zmaj::68_sagen_denken
+vjerovati	geloven	zmaj zmaj::68_sagen_denken
+Vjeruj mi, to je istina.	Geloof me, het is waar.	zmaj zmaj::68_sagen_denken
+čuti	horen	zmaj zmaj::68_sagen_denken
+Čuješ li me?	Hoor je me?	zmaj zmaj::68_sagen_denken
+odlučiti	beslissen / besluiten	zmaj zmaj::68_sagen_denken
+Odlučili smo kupiti kuću.	We hebben besloten een huis te kopen.	zmaj zmaj::68_sagen_denken
+nadati se	hopen	zmaj zmaj::68_sagen_denken
+Nadam se lijepom vremenu.	Ik hoop op mooi weer.	zmaj zmaj::68_sagen_denken
+odgovoriti	antwoorden	zmaj zmaj::68_sagen_denken
+Još mi nije odgovorio.	Hij heeft me nog niet geantwoord.	zmaj zmaj::68_sagen_denken
+odgovarati	antwoorden / zich verantwoorden	zmaj zmaj::68_sagen_denken
+Zašto ne odgovaraš na poruke?	Waarom antwoord je niet op berichten?	zmaj zmaj::68_sagen_denken
+pričati	praten / vertellen	zmaj zmaj::68_sagen_denken
+O čemu pričate?	Waar hebben jullie het over?	zmaj zmaj::68_sagen_denken
+ispričati	vertellen	zmaj zmaj::68_sagen_denken
+Ispričaj mi šta se desilo.	Vertel me wat er gebeurd is.	zmaj zmaj::68_sagen_denken
+razgovarati	een gesprek voeren	zmaj zmaj::69_verstehen
+Moramo razgovarati.	We moeten praten.	zmaj zmaj::69_verstehen
+shvatiti	begrijpen / snappen	zmaj zmaj::69_verstehen
+Nisam shvatio pitanje.	Ik heb de vraag niet begrepen.	zmaj zmaj::69_verstehen
+zaboraviti	vergeten	zmaj zmaj::69_verstehen
+Zaboravio sam tvoj broj.	Ik ben je nummer vergeten.	zmaj zmaj::69_verstehen
+objasniti	uitleggen	zmaj zmaj::69_verstehen
+Možete li mi objasniti put?	Kunt u me de weg uitleggen?	zmaj zmaj::69_verstehen
+naučiti	leren	zmaj zmaj::69_verstehen
+Naučila sam voziti auto.	Ik heb leren autorijden.	zmaj zmaj::69_verstehen
+javiti se	van je laten horen	zmaj zmaj::69_verstehen
+Javi se kad stigneš!	Laat iets van je horen als je er bent!	zmaj zmaj::69_verstehen
+razmišljati	nadenken	zmaj zmaj::69_verstehen
+Razmišljam o tome.	Ik denk erover na.	zmaj zmaj::69_verstehen
+saznati	te weten komen	zmaj zmaj::69_verstehen
+Kako si to saznao?	Hoe ben je dat te weten gekomen?	zmaj zmaj::69_verstehen
+slušati	luisteren (naar)	zmaj zmaj::69_verstehen
+U autu slušam sevdalinke.	In de auto luister ik naar sevdalinka's.	zmaj zmaj::69_verstehen
+dogovoriti se	afspreken / overeenkomen	zmaj zmaj::69_verstehen
+Dogovorili smo se za subotu.	We hebben voor zaterdag afgesproken.	zmaj zmaj::69_verstehen
+bojati se	bang zijn / vrezen	zmaj zmaj::69_verstehen
+Dijete se boji mraka.	Het kind is bang in het donker.	zmaj zmaj::69_verstehen
+sjetiti se	zich herinneren / te binnen schieten	zmaj zmaj::69_verstehen
+Sad sam se sjetio!	Nu weet ik het weer!	zmaj zmaj::69_verstehen
+sviđati se	bevallen / leuk vinden	zmaj zmaj::69_verstehen
+Sviđa li ti se Sarajevo?	Vind je Sarajevo leuk?	zmaj zmaj::69_verstehen
+svidjeti se	bevallen / leuk vinden	zmaj zmaj::69_verstehen
+Film mi se nije svidio.	Ik vond de film niet leuk.	zmaj zmaj::69_verstehen
+početi	beginnen	zmaj zmaj::70_anfangen
+Utakmica je već počela.	De wedstrijd is al begonnen.	zmaj zmaj::70_anfangen
+počinjati	beginnen	zmaj zmaj::70_anfangen
+Škola počinje u septembru.	De school begint in september.	zmaj zmaj::70_anfangen
+završiti	afmaken / klaar zijn	zmaj zmaj::70_anfangen
+Jesi li završio zadaću?	Ben je klaar met je huiswerk?	zmaj zmaj::70_anfangen
+završavati	afmaken / klaar zijn	zmaj zmaj::70_anfangen
+Završavam s poslom u četiri.	Om vier uur ben ik klaar met mijn werk.	zmaj zmaj::70_anfangen
+otvoriti	openen / opendoen	zmaj zmaj::70_anfangen
+Otvori prozor, vruće je.	Doe het raam open, het is warm.	zmaj zmaj::70_anfangen
+otvarati	openen / opendoen	zmaj zmaj::70_anfangen
+Ne otvaraj vrata nepoznatim ljudima.	Doe niet open voor vreemden.	zmaj zmaj::70_anfangen
+nastaviti	doorgaan / voortzetten	zmaj zmaj::70_anfangen
+Nastavit ćemo sutra.	We gaan morgen verder.	zmaj zmaj::70_anfangen
+uspjeti	lukken / slagen	zmaj zmaj::70_anfangen
+Uspjela sam!	Het is me gelukt!	zmaj zmaj::70_anfangen
+trajati	duren	zmaj zmaj::70_anfangen
+Koliko traje let do Sarajeva?	Hoe lang duurt de vlucht naar Sarajevo?	zmaj zmaj::70_anfangen
+promijeniti	veranderen / wisselen	zmaj zmaj::70_anfangen
+Promijenio sam broj telefona.	Ik heb mijn telefoonnummer veranderd.	zmaj zmaj::70_anfangen
+mijenjati	veranderen / wisselen	zmaj zmaj::70_anfangen
+U mjenjačnici mijenjam eure u marke.	Bij het wisselkantoor wissel ik euro's in voor mark.	zmaj zmaj::70_anfangen
+prestati	ophouden / stoppen	zmaj zmaj::70_anfangen
+Kiša je prestala.	Het is opgehouden met regenen.	zmaj zmaj::70_anfangen
+zatvoriti	sluiten / dichtdoen	zmaj zmaj::70_anfangen
+Zatvori vrata, molim te.	Doe de deur dicht, alsjeblieft.	zmaj zmaj::70_anfangen
+zatvarati	sluiten / dichtdoen	zmaj zmaj::70_anfangen
+Zatvaramo za pet minuta.	We gaan over vijf minuten dicht.	zmaj zmaj::70_anfangen
+desiti se / dogoditi se	gebeuren	zmaj zmaj::70_anfangen
+Šta se desilo?	Wat is er gebeurd?	zmaj zmaj::70_anfangen
+postojati	bestaan	zmaj zmaj::71_tun_machen
+Postoji li autobus do aerodroma?	Is er een bus naar het vliegveld?	zmaj zmaj::71_tun_machen
+koristiti	gebruiken	zmaj zmaj::71_tun_machen
+Mogu li koristiti tvoj punjač?	Mag ik je oplader gebruiken?	zmaj zmaj::71_tun_machen
+postati	worden	zmaj zmaj::71_tun_machen
+Postao je otac.	Hij is vader geworden.	zmaj zmaj::71_tun_machen
+živjeti	leven	zmaj zmaj::71_tun_machen
+Moja sestra živi u Beču.	Mijn zus woont in Wenen.	zmaj zmaj::71_tun_machen
+igrati	spelen (sport, spel)	zmaj zmaj::71_tun_machen
+Igraš li fudbal?	Speel jij voetbal?	zmaj zmaj::71_tun_machen
+napraviti	maken / klaarmaken	zmaj zmaj::71_tun_machen
+Napravit ću kahvu.	Ik zet koffie.	zmaj zmaj::71_tun_machen
+praviti	maken / klaarmaken	zmaj zmaj::71_tun_machen
+Nana pravi najbolju pitu.	Oma maakt de lekkerste pita.	zmaj zmaj::71_tun_machen
+uraditi	doen / afhandelen	zmaj zmaj::71_tun_machen
+Uradio sam sve što si tražila.	Ik heb alles gedaan wat je vroeg.	zmaj zmaj::71_tun_machen
+pročitati	lezen	zmaj zmaj::71_tun_machen
+Jesi li pročitao knjigu?	Heb je het boek gelezen?	zmaj zmaj::71_tun_machen
+napisati	schrijven	zmaj zmaj::71_tun_machen
+Napisao sam pismo nani.	Ik heb oma een brief geschreven.	zmaj zmaj::71_tun_machen
+baviti se	zich bezighouden met / beoefenen	zmaj zmaj::71_tun_machen
+Čime se baviš?	Wat doe je voor werk?	zmaj zmaj::71_tun_machen
+pokušavati	proberen	zmaj zmaj::71_tun_machen
+Pokušavam te nazvati cijeli dan.	Ik probeer je al de hele dag te bellen.	zmaj zmaj::71_tun_machen
+riješiti	oplossen / uitzoeken	zmaj zmaj::71_tun_machen
+Riješit ćemo to zajedno.	We lossen het samen op.	zmaj zmaj::71_tun_machen
+pripremiti	voorbereiden	zmaj zmaj::71_tun_machen
+Moram sve pripremiti za put.	Ik moet alles voorbereiden voor de reis.	zmaj zmaj::71_tun_machen
+popiti	drinken / opdrinken	zmaj zmaj::71_tun_machen
+Hajmo popiti kahvu!	Laten we een kopje koffie drinken!	zmaj zmaj::71_tun_machen
+pojesti	eten / opeten	zmaj zmaj::71_tun_machen
+Pojedi sve, sine!	Eet alles op, jongen!	zmaj zmaj::71_tun_machen
+stajati	staan	zmaj zmaj::72_stellen_legen
+Zašto stojiš? Sjedni!	Waarom sta je? Ga zitten!	zmaj zmaj::72_stellen_legen
+staviti	zetten / leggen / doen	zmaj zmaj::72_stellen_legen
+Stavi mlijeko u frižider.	Zet de melk in de koelkast.	zmaj zmaj::72_stellen_legen
+stavljati	zetten / leggen / doen	zmaj zmaj::72_stellen_legen
+Gdje stavljaš čaše?	Waar zet jij de glazen neer?	zmaj zmaj::72_stellen_legen
+držati	vasthouden	zmaj zmaj::72_stellen_legen
+Drži me za ruku.	Hou mijn hand vast.	zmaj zmaj::72_stellen_legen
+ostaviti	laten / laten liggen	zmaj zmaj::72_stellen_legen
+Ostavila sam kišobran u autobusu.	Ik heb mijn paraplu in de bus laten liggen.	zmaj zmaj::72_stellen_legen
+pasti	vallen	zmaj zmaj::72_stellen_legen
+Dijete je palo s bicikla.	Het kind is van de fiets gevallen.	zmaj zmaj::72_stellen_legen
+sjediti	zitten	zmaj zmaj::72_stellen_legen
+Sjedili smo u bašti do ponoći.	We zaten tot middernacht in de tuin.	zmaj zmaj::72_stellen_legen
+baciti	gooien / weggooien	zmaj zmaj::72_stellen_legen
+Baci smeće, molim te.	Gooi het afval even weg, alsjeblieft.	zmaj zmaj::72_stellen_legen
+ležati	liggen	zmaj zmaj::72_stellen_legen
+Telefon leži na stolu.	De telefoon ligt op tafel.	zmaj zmaj::72_stellen_legen
+skinuti	uittrekken / afnemen	zmaj zmaj::72_stellen_legen
+Skini cipele, molim te.	Doe je schoenen uit, alsjeblieft.	zmaj zmaj::72_stellen_legen
+ustati	opstaan	zmaj zmaj::72_stellen_legen
+Jutros sam ustao u šest.	Vanochtend ben ik om zes uur opgestaan.	zmaj zmaj::72_stellen_legen
+obući	aantrekken	zmaj zmaj::72_stellen_legen
+Obuci jaknu, hladno je.	Trek een jas aan, het is koud.	zmaj zmaj::72_stellen_legen
+leći	gaan liggen	zmaj zmaj::72_stellen_legen
+Lezi malo, umorna si.	Ga even liggen, je bent moe.	zmaj zmaj::72_stellen_legen
+izgledati	eruitzien	zmaj zmaj::73_alltag_leben
+Danas lijepo izgledaš!	Je ziet er vandaag mooi uit!	zmaj zmaj::73_alltag_leben
+roditi se	geboren worden	zmaj zmaj::73_alltag_leben
+Rodila sam se u Mostaru.	Ik ben in Mostar geboren.	zmaj zmaj::73_alltag_leben
+potpisati	ondertekenen	zmaj zmaj::73_alltag_leben
+Potpišite ovdje, molim Vas.	Tekent u hier, alstublieft.	zmaj zmaj::73_alltag_leben
+uživati	genieten	zmaj zmaj::73_alltag_leben
+Uživaj u odmoru!	Geniet van je vakantie!	zmaj zmaj::73_alltag_leben
+prijaviti se	zich aanmelden	zmaj zmaj::73_alltag_leben
+Prijavila sam se na kurs.	Ik heb me voor de cursus aangemeld.	zmaj zmaj::73_alltag_leben
+umrijeti	sterven	zmaj zmaj::73_alltag_leben
+Dedo mu je umro prije dvije godine.	Zijn opa is twee jaar geleden overleden.	zmaj zmaj::73_alltag_leben
+dozvoliti / dopustiti	toestaan / toelaten	zmaj zmaj::73_alltag_leben
+Mama mi nije dozvolila da idem.	Mama liet me niet gaan.	zmaj zmaj::73_alltag_leben
+zanimati	interesseren	zmaj zmaj::73_alltag_leben
+Zanima me historija.	Ik ben geïnteresseerd in geschiedenis.	zmaj zmaj::73_alltag_leben
+zavisiti	afhangen	zmaj zmaj::73_alltag_leben
+Zavisi od vremena.	Dat hangt van het weer af.	zmaj zmaj::73_alltag_leben
+nedostajati	missen / ontbreken	zmaj zmaj::73_alltag_leben
+Mnogo mi nedostaje Bosna.	Ik mis Bosnië heel erg.	zmaj zmaj::73_alltag_leben
+probuditi se	wakker worden	zmaj zmaj::73_alltag_leben
+Probudio sam se u pet.	Ik werd om vijf uur wakker.	zmaj zmaj::73_alltag_leben
+smetati	storen	zmaj zmaj::73_alltag_leben
+Smeta li Vam muzika?	Stoort de muziek u?	zmaj zmaj::73_alltag_leben
+udati se	trouwen (vrouw)	zmaj zmaj::73_alltag_leben
+Sestra mi se udala u maju.	Mijn zus is in mei getrouwd.	zmaj zmaj::73_alltag_leben
+oženiti se	trouwen (man)	zmaj zmaj::73_alltag_leben
+Moj brat se oženio prošle godine.	Mijn broer is vorig jaar getrouwd.	zmaj zmaj::73_alltag_leben
+zakasniti	zich verlaten / te laat komen	zmaj zmaj::73_alltag_leben
+Izvini, zakasnio sam.	Sorry, ik ben te laat.	zmaj zmaj::73_alltag_leben
+nalaziti	vinden	zmaj zmaj::74_paare_geben
+Gdje nalaziš takve stvari?	Waar vind je zulke dingen?	zmaj zmaj::74_paare_geben
+primiti	aannemen / ontvangen	zmaj zmaj::74_paare_geben
+Primili su me na posao!	Ze hebben me aangenomen!	zmaj zmaj::74_paare_geben
+nuditi	aanbieden	zmaj zmaj::74_paare_geben
+Nana gostima uvijek nudi kahvu.	Oma biedt de gasten altijd koffie aan.	zmaj zmaj::74_paare_geben
+iskoristiti	benutten / uitbuiten	zmaj zmaj::74_paare_geben
+Iskoristi lijepo vrijeme!	Profiteer van het mooie weer!	zmaj zmaj::74_paare_geben
+sačuvati	bewaren / behouden	zmaj zmaj::74_paare_geben
+Sačuvaj račun, možda ti zatreba.	Bewaar de kassabon, misschien heb je hem nog nodig.	zmaj zmaj::74_paare_geben
+gubiti	verliezen	zmaj zmaj::74_paare_geben
+Naša ekipa opet gubi.	Ons team verliest alweer.	zmaj zmaj::74_paare_geben
+ostavljati	laten / laten liggen	zmaj zmaj::74_paare_geben
+Ne ostavljaj stvari po podu!	Laat je spullen niet op de grond liggen!	zmaj zmaj::74_paare_geben
+bacati	gooien / weggooien	zmaj zmaj::74_paare_geben
+Hljeb se ne baca.	Brood gooi je niet weg.	zmaj zmaj::74_paare_geben
+skidati	uittrekken / afnemen	zmaj zmaj::74_paare_geben
+Kod nas se u kući skidaju cipele.	Bij ons doe je in huis je schoenen uit.	zmaj zmaj::74_paare_geben
+krasti	stelen	zmaj zmaj::74_paare_geben
+Kao djeca smo krali trešnje iz komšijine bašte.	Als kinderen jatten we kersen uit de tuin van de buren.	zmaj zmaj::74_paare_geben
+pokazivati	laten zien	zmaj zmaj::74_paare_geben
+Nana svima pokazuje slike unuka.	Oma laat iedereen de foto's van haar kleinkinderen zien.	zmaj zmaj::74_paare_geben
+pozivati	uitnodigen	zmaj zmaj::74_paare_geben
+Komšije nas stalno pozivaju na kahvu.	De buren nodigen ons steeds uit voor koffie.	zmaj zmaj::74_paare_geben
+potražiti	zoeken	zmaj zmaj::74_paare_geben
+Potraži na internetu.	Zoek het eens op internet op.	zmaj zmaj::74_paare_geben
+naručivati	bestellen	zmaj zmaj::74_paare_geben
+Ja uvijek naručujem isto.	Ik bestel altijd hetzelfde.	zmaj zmaj::74_paare_geben
+javljati se	van je laten horen	zmaj zmaj::75_paare_denken
+Zašto se ne javljaš na telefon?	Waarom neem je de telefoon niet op?	zmaj zmaj::75_paare_denken
+objašnjavati	uitleggen	zmaj zmaj::75_paare_denken
+Nastavnica sve lijepo objašnjava.	De lerares legt alles goed uit.	zmaj zmaj::75_paare_denken
+odlučivati	beslissen / besluiten	zmaj zmaj::75_paare_denken
+Ko o tome odlučuje?	Wie beslist daarover?	zmaj zmaj::75_paare_denken
+rješavati	oplossen / uitzoeken	zmaj zmaj::75_paare_denken
+Probleme rješavamo zajedno.	Problemen lossen we samen op.	zmaj zmaj::75_paare_denken
+razmisliti	nadenken	zmaj zmaj::75_paare_denken
+Razmisli pa mi javi.	Denk er even over na en laat het me weten.	zmaj zmaj::75_paare_denken
+shvatati	begrijpen / snappen	zmaj zmaj::75_paare_denken
+Ne shvatam šta hoćeš od mene.	Ik snap niet wat je van me wilt.	zmaj zmaj::75_paare_denken
+zaboravljati	vergeten	zmaj zmaj::75_paare_denken
+Stalno zaboravljam imena.	Ik vergeet steeds namen.	zmaj zmaj::75_paare_denken
+poslušati	aanhoren / naar iemand luisteren	zmaj zmaj::75_paare_denken
+Poslušaj me bar jednom!	Luister nou één keer naar me!	zmaj zmaj::75_paare_denken
+dogovarati se	afspreken / overeenkomen	zmaj zmaj::75_paare_denken
+Stalno se dogovaramo, a nikako da se nađemo.	We spreken steeds af, maar we zien elkaar nooit.	zmaj zmaj::75_paare_denken
+sačekati	wachten	zmaj zmaj::75_paare_denken
+Sačekaj me ispred zgrade.	Wacht op me voor het gebouw.	zmaj zmaj::75_paare_denken
+postajati	worden	zmaj zmaj::76_paare_alltag
+Navečer već postaje hladno.	's Avonds wordt het al koud.	zmaj zmaj::76_paare_alltag
+nastavljati	doorgaan / voortzetten	zmaj zmaj::76_paare_alltag
+Nastavljamo poslije pauze.	Na de pauze gaan we verder.	zmaj zmaj::76_paare_alltag
+dešavati se / događati se	gebeuren	zmaj zmaj::76_paare_alltag
+Šta se ovdje dešava?	Wat is hier aan de hand?	zmaj zmaj::76_paare_alltag
+padati	vallen	zmaj zmaj::76_paare_alltag
+Noću temperatura pada ispod nule.	's Nachts daalt de temperatuur tot onder nul.	zmaj zmaj::76_paare_alltag
+pripremati	voorbereiden	zmaj zmaj::76_paare_alltag
+Mama priprema ručak.	Mama maakt het middageten klaar.	zmaj zmaj::76_paare_alltag
+buditi se	wakker worden	zmaj zmaj::76_paare_alltag
+Budim se svaki dan u šest.	Ik word elke dag om zes uur wakker.	zmaj zmaj::76_paare_alltag
+buditi	wekken	zmaj zmaj::76_paare_alltag
+Svako jutro budim djecu za školu.	Elke ochtend maak ik de kinderen wakker voor school.	zmaj zmaj::76_paare_alltag
+probuditi	wekken	zmaj zmaj::76_paare_alltag
+Probudi me u sedam, molim te.	Maak me alsjeblieft om zeven uur wakker.	zmaj zmaj::76_paare_alltag
+prestajati	ophouden / stoppen	zmaj zmaj::76_paare_alltag
+Kiša nikako ne prestaje.	De regen houdt maar niet op.	zmaj zmaj::76_paare_alltag
+uspijevati	lukken / slagen	zmaj zmaj::76_paare_alltag
+Nikako ne uspijevam zaspati.	Het lukt me maar niet om in slaap te vallen.	zmaj zmaj::76_paare_alltag
+ženiti se	trouwen (man)	zmaj zmaj::76_paare_alltag
+Kad se ženiš?	Wanneer ga je trouwen?	zmaj zmaj::76_paare_alltag
+udavati se	trouwen (vrouw)	zmaj zmaj::76_paare_alltag
+Sestra mi se udaje u junu.	Mijn zus trouwt in juni.	zmaj zmaj::76_paare_alltag
+paliti	aanzetten / aandoen	zmaj zmaj::76_paare_alltag
+U oktobru već palimo grijanje.	In oktober zetten we de verwarming al aan.	zmaj zmaj::76_paare_alltag
+posjećivati	iemand bezoeken	zmaj zmaj::76_paare_alltag
+Svake sedmice posjećujemo nanu.	Elke week gaan we bij oma op bezoek.	zmaj zmaj::76_paare_alltag
+gasiti	uitzetten / uitdoen	zmaj zmaj::76_paare_alltag
+Uvijek gasim svjetlo kad izlazim iz sobe.	Ik doe altijd het licht uit als ik de kamer uit ga.	zmaj zmaj::76_paare_alltag
+popravljati	repareren	zmaj zmaj::76_paare_alltag
+Babo uvijek sam popravlja auto.	Papa repareert de auto altijd zelf.	zmaj zmaj::76_paare_alltag
+iznijeti	naar buiten brengen / buitenzetten	zmaj zmaj::77_im_haushalt
+Ko će iznijeti smeće?	Wie brengt het afval naar buiten?	zmaj zmaj::77_im_haushalt
+složiti	opvouwen / ordenen	zmaj zmaj::77_im_haushalt
+Složi veš i stavi ga u ormar.	Vouw de was op en leg hem in de kast.	zmaj zmaj::77_im_haushalt
+oprati	wassen	zmaj zmaj::77_im_haushalt
+Operi ruke prije jela!	Was je handen voor het eten!	zmaj zmaj::77_im_haushalt
+miješati	roeren / mengen	zmaj zmaj::77_im_haushalt
+Miješaj da ne zagori!	Roer erin, anders brandt het aan!	zmaj zmaj::77_im_haushalt
+pokvariti se	kapotgaan	zmaj zmaj::77_im_haushalt
+Opet se pokvarila veš mašina.	De wasmachine is alweer kapot.	zmaj zmaj::77_im_haushalt
+obrisati	afvegen / wissen	zmaj zmaj::77_im_haushalt
+Obriši sto, molim te.	Veeg de tafel even af, alsjeblieft.	zmaj zmaj::77_im_haushalt
+brisati	afvegen / wissen	zmaj zmaj::77_im_haushalt
+Ko danas briše prašinu?	Wie stoft er vandaag af?	zmaj zmaj::77_im_haushalt
+sušiti	drogen	zmaj zmaj::77_im_haushalt
+Veš sušimo na balkonu.	De was drogen we op het balkon.	zmaj zmaj::77_im_haushalt
+rezati	snijden	zmaj zmaj::77_im_haushalt
+Ovaj nož ništa ne reže.	Dit mes snijdt helemaal niet.	zmaj zmaj::77_im_haushalt
+skuhati	koken	zmaj zmaj::77_im_haushalt
+Skuhat ću ti kahvu.	Ik zet een kopje koffie voor je.	zmaj zmaj::77_im_haushalt
+pržiti	bakken (in de pan)	zmaj zmaj::77_im_haushalt
+Mama prži ribu.	Mama bakt vis.	zmaj zmaj::77_im_haushalt
+zaliti	water geven (planten)	zmaj zmaj::77_im_haushalt
+Zalij cvijeće dok me nema.	Geef de bloemen water zolang ik weg ben.	zmaj zmaj::77_im_haushalt
+objesiti	ophangen	zmaj zmaj::77_im_haushalt
+Objesi veš, mašina je gotova.	Hang de was op, de machine is klaar.	zmaj zmaj::77_im_haushalt
+počistiti	schoonmaken	zmaj zmaj::77_im_haushalt
+Moram počistiti kupatilo.	Ik moet de badkamer schoonmaken.	zmaj zmaj::77_im_haushalt
+usisavati	stofzuigen	zmaj zmaj::77_im_haushalt
+Subotom usisavam cijeli stan.	Op zaterdag stofzuig ik het hele huis.	zmaj zmaj::77_im_haushalt
+usisati	stofzuigen	zmaj zmaj::77_im_haushalt
+Usisaj sobu prije nego što dođu gosti.	Stofzuig de kamer voordat de gasten komen.	zmaj zmaj::77_im_haushalt
+vratiti	teruggeven	zmaj zmaj::78_kaufen_zurueckgeben
+Mogu li vratiti ove cipele?	Kan ik deze schoenen terugbrengen?	zmaj zmaj::78_kaufen_zurueckgeben
+vraćati	teruggeven	zmaj zmaj::78_kaufen_zurueckgeben
+On nikad ne vraća ono što posudi.	Hij geeft nooit terug wat hij leent.	zmaj zmaj::78_kaufen_zurueckgeben
+red	wachtrij / rij	zmaj zmaj::78_kaufen_zurueckgeben
+Čekali smo u redu pola sata.	We hebben een halfuur in de rij gestaan.	zmaj zmaj::78_kaufen_zurueckgeben
+izabrati	beslissen / kiezen	zmaj zmaj::78_kaufen_zurueckgeben
+Ne mogu izabrati, sve mi se sviđa.	Ik kan niet kiezen, ik vind alles mooi.	zmaj zmaj::78_kaufen_zurueckgeben
+birati	uitkiezen / kiezen	zmaj zmaj::78_kaufen_zurueckgeben
+Ti biraš film večeras.	Jij kiest vanavond de film uit.	zmaj zmaj::78_kaufen_zurueckgeben
+dostaviti	bezorgen	zmaj zmaj::78_kaufen_zurueckgeben
+Namještaj će nam dostaviti u petak.	De meubels bezorgen ze vrijdag bij ons.	zmaj zmaj::78_kaufen_zurueckgeben
+kupovina	boodschappen	zmaj zmaj::78_kaufen_zurueckgeben
+Kupovinu obavljamo subotom.	De boodschappen doen we op zaterdag.	zmaj zmaj::78_kaufen_zurueckgeben
+koštati	kosten	zmaj zmaj::78_kaufen_zurueckgeben
+Koliko te je koštala ta jakna?	Hoeveel heeft de jas je gekost?	zmaj zmaj::78_kaufen_zurueckgeben
+paket	pakket	zmaj zmaj::78_kaufen_zurueckgeben
+Stigao ti je paket.	Er is een pakket voor je gekomen.	zmaj zmaj::78_kaufen_zurueckgeben
+zamijeniti	ruilen / vervangen	zmaj zmaj::78_kaufen_zurueckgeben
+Mogu li zamijeniti ovu majicu za veći broj?	Kan ik dit T-shirt ruilen voor een grotere maat?	zmaj zmaj::78_kaufen_zurueckgeben
+besplatan	gratis	zmaj zmaj::78_kaufen_zurueckgeben
+Ulaz je besplatan.	De toegang is gratis.	zmaj zmaj::78_kaufen_zurueckgeben
+cjenkati se	afdingen	zmaj zmaj::78_kaufen_zurueckgeben
+Babo se uvijek cjenka na pijaci.	Papa dingt op de markt altijd af.	zmaj zmaj::78_kaufen_zurueckgeben
+dostava	bezorging	zmaj zmaj::78_kaufen_zurueckgeben
+Koliko traje dostava?	Hoe lang duurt de bezorging?	zmaj zmaj::78_kaufen_zurueckgeben
+isprobati	uitproberen / testen	zmaj zmaj::78_kaufen_zurueckgeben
+Moram isprobati ovaj recept.	Ik moet dit recept uitproberen.	zmaj zmaj::78_kaufen_zurueckgeben
+narudžba	bestelling	zmaj zmaj::78_kaufen_zurueckgeben
+Moja narudžba još nije stigla.	Mijn bestelling is nog niet aangekomen.	zmaj zmaj::78_kaufen_zurueckgeben
+vrijediti	waard zijn / gelden	zmaj zmaj::79_geld_sparen
+Ovaj auto ne vrijedi ni hiljadu maraka.	Deze auto is nog geen duizend mark waard.	zmaj zmaj::79_geld_sparen
+plaćanje	betaling	zmaj zmaj::79_geld_sparen
+Moguće je i plaćanje na rate.	Betalen in termijnen kan ook.	zmaj zmaj::79_geld_sparen
+isplatiti se	lonen	zmaj zmaj::79_geld_sparen
+Ne isplati se popravljati, kupi novi.	Repareren loont niet, koop een nieuwe.	zmaj zmaj::79_geld_sparen
+potrošiti	uitgeven (geld) / verbruiken	zmaj zmaj::79_geld_sparen
+Potrošio sam sav novac.	Ik heb al het geld uitgegeven.	zmaj zmaj::79_geld_sparen
+trošiti	uitgeven (geld) / verbruiken	zmaj zmaj::79_geld_sparen
+Previše trošiš na gluposti.	Je geeft te veel uit aan onzin.	zmaj zmaj::79_geld_sparen
+zaraditi	verdienen	zmaj zmaj::79_geld_sparen
+Koliko si zaradio ovaj mjesec?	Hoeveel heb je deze maand verdiend?	zmaj zmaj::79_geld_sparen
+zarađivati	verdienen	zmaj zmaj::79_geld_sparen
+U Njemačkoj se više zarađuje.	In Duitsland verdien je meer.	zmaj zmaj::79_geld_sparen
+dugovati	schuldig zijn (iemand iets)	zmaj zmaj::79_geld_sparen
+Još mi duguje sto maraka.	Hij is me nog honderd mark schuldig.	zmaj zmaj::79_geld_sparen
+naplatiti	in rekening brengen	zmaj zmaj::79_geld_sparen
+Koliko su ti naplatili?	Hoeveel hebben ze je in rekening gebracht?	zmaj zmaj::79_geld_sparen
+štedjeti	sparen	zmaj zmaj::79_geld_sparen
+Štedimo za novi auto.	We sparen voor een nieuwe auto.	zmaj zmaj::79_geld_sparen
+uštedjeti	sparen	zmaj zmaj::79_geld_sparen
+Tako uštedimo sto maraka mjesečno.	Zo besparen we honderd mark per maand.	zmaj zmaj::79_geld_sparen
+novčanik	portemonnee	zmaj zmaj::79_geld_sparen
+Zaboravio sam novčanik kod kuće.	Ik heb mijn portemonnee thuis vergeten.	zmaj zmaj::79_geld_sparen
+novčanica	bankbiljet	zmaj zmaj::79_geld_sparen
+Imam samo novčanicu od sto maraka.	Ik heb alleen een briefje van honderd mark.	zmaj zmaj::79_geld_sparen
+posuditi	lenen	zmaj zmaj::79_geld_sparen
+Možeš li mi posuditi dvadeset maraka?	Kun je me twintig mark lenen?	zmaj zmaj::79_geld_sparen
+kovanica	munt	zmaj zmaj::79_geld_sparen
+Imaš li kovanicu za kolica?	Heb je een muntje voor het winkelwagentje?	zmaj zmaj::79_geld_sparen
+Koliko sam dužan?	Hoeveel ben ik u schuldig?	zmaj zmaj::79_geld_sparen
+Hvala, koliko sam dužan?	Dank u, hoeveel ben ik u schuldig?	zmaj zmaj::79_geld_sparen
+iznositi	naar buiten brengen / buitenzetten	zmaj zmaj::80_paare_mehr
+Ja svaki dan iznosim smeće.	Ik zet elke dag het afval buiten.	zmaj zmaj::80_paare_mehr
+pomisliti	denken / vinden	zmaj zmaj::80_paare_mehr
+Pomislio sam da se nešto desilo.	Ik dacht dat er iets gebeurd was.	zmaj zmaj::80_paare_mehr
+saznavati	te weten komen	zmaj zmaj::80_paare_mehr
+Svaki dan saznajem nešto novo.	Elke dag kom ik iets nieuws te weten.	zmaj zmaj::80_paare_mehr
+poželjeti	wensen / graag willen	zmaj zmaj::80_paare_mehr
+Šta bi poželio za rođendan?	Wat zou je willen voor je verjaardag?	zmaj zmaj::80_paare_mehr
+dozvoljavati / dopuštati	toestaan / toelaten	zmaj zmaj::80_paare_mehr
+Mama nam ne dozvoljava slatkiše prije ručka.	Mama staat ons geen snoep toe voor het middageten.	zmaj zmaj::80_paare_mehr
+umirati	sterven	zmaj zmaj::80_paare_mehr
+Umirem od gladi!	Ik sterf van de honger!	zmaj zmaj::80_paare_mehr
+potpisivati	ondertekenen	zmaj zmaj::80_paare_mehr
+Ne potpisuj ništa dok ne pročitaš.	Onderteken niets voordat je het gelezen hebt.	zmaj zmaj::80_paare_mehr
+primjećivati	opmerken / merken	zmaj zmaj::80_paare_mehr
+Djeca sve primjećuju.	Kinderen merken alles op.	zmaj zmaj::80_paare_mehr
+spašavati	redden	zmaj zmaj::80_paare_mehr
+Ti mi uvijek spašavaš život!	Jij redt altijd mijn leven!	zmaj zmaj::80_paare_mehr
+prijavljivati se	zich aanmelden	zmaj zmaj::80_paare_mehr
+Za ispite se prijavljujemo preko interneta.	Voor de examens schrijven we ons online in.	zmaj zmaj::80_paare_mehr
+osušiti	drogen	zmaj zmaj::80_paare_mehr
+Osuši kosu prije nego što izađeš.	Droog je haar voordat je naar buiten gaat.	zmaj zmaj::80_paare_mehr
+povjerovati	geloven	zmaj zmaj::80_paare_mehr
+Ne mogu povjerovati da je već prošla godina.	Ik kan niet geloven dat er al een jaar voorbij is.	zmaj zmaj::80_paare_mehr
+kvariti se	kapotgaan	zmaj zmaj::80_paare_mehr
+Ovaj auto se stalno kvari.	Deze auto gaat steeds kapot.	zmaj zmaj::80_paare_mehr
+porazgovarati	een gesprek voeren	zmaj zmaj::80_paare_mehr
+Hajde da porazgovaramo uz kahvu.	Laten we praten bij een kop koffie.	zmaj zmaj::80_paare_mehr
+promiješati	roeren / mengen	zmaj zmaj::80_paare_mehr
+Dodaj so i dobro promiješaj.	Doe er zout bij en roer goed.	zmaj zmaj::80_paare_mehr
+zalijevati	water geven (planten)	zmaj zmaj::80_paare_mehr
+Ljeti svaku večer zalijevam baštu.	In de zomer geef ik elke avond de tuin water.	zmaj zmaj::80_paare_mehr
+kazati	zeggen / meedelen	zmaj zmaj::81_sagen_betonen
+Kaži mi šta se desilo.	Zeg me wat er gebeurd is.	zmaj zmaj::81_sagen_betonen
+tvrditi	beweren	zmaj zmaj::81_sagen_betonen
+On tvrdi da nije ništa vidio.	Hij beweert niets gezien te hebben.	zmaj zmaj::81_sagen_betonen
+naglasiti	benadrukken	zmaj zmaj::81_sagen_betonen
+Direktor je naglasio da je to važno.	De directeur heeft benadrukt dat dit belangrijk is.	zmaj zmaj::81_sagen_betonen
+naglašavati	benadrukken	zmaj zmaj::81_sagen_betonen
+Učiteljica uvijek naglašava koliko je čitanje važno.	De lerares benadrukt altijd hoe belangrijk lezen is.	zmaj zmaj::81_sagen_betonen
+najaviti	aankondigen	zmaj zmaj::81_sagen_betonen
+Najavio je da će doći u petak.	Hij heeft aangekondigd dat hij vrijdag komt.	zmaj zmaj::81_sagen_betonen
+najavljivati	aankondigen	zmaj zmaj::81_sagen_betonen
+Za vikend najavljuju kišu.	Voor het weekend voorspellen ze regen.	zmaj zmaj::81_sagen_betonen
+spomenuti	vermelden	zmaj zmaj::81_sagen_betonen
+Nije to ni spomenuo.	Hij heeft het niet eens vermeld.	zmaj zmaj::81_sagen_betonen
+spominjati	vermelden	zmaj zmaj::81_sagen_betonen
+Često spominje svoju nanu.	Hij noemt vaak zijn oma.	zmaj zmaj::81_sagen_betonen
+potvrditi	bevestigen	zmaj zmaj::81_sagen_betonen
+Hotel je potvrdio našu rezervaciju.	Het hotel heeft onze reservering bevestigd.	zmaj zmaj::81_sagen_betonen
+potvrđivati	bevestigen	zmaj zmaj::81_sagen_betonen
+Komšije potvrđuju njegovu priču.	De buren bevestigen zijn verhaal.	zmaj zmaj::81_sagen_betonen
+priznati	toegeven / erkennen	zmaj zmaj::81_sagen_betonen
+Priznao je da je pogriješio.	Hij heeft toegegeven dat hij een fout heeft gemaakt.	zmaj zmaj::81_sagen_betonen
+priznavati	toegeven / erkennen	zmaj zmaj::81_sagen_betonen
+On nikad ne priznaje svoje greške.	Hij geeft zijn fouten nooit toe.	zmaj zmaj::81_sagen_betonen
+izraziti	uitdrukken	zmaj zmaj::81_sagen_betonen
+Ne znam kako da to izrazim.	Ik weet niet hoe ik dat moet uitdrukken.	zmaj zmaj::81_sagen_betonen
+izražavati	uitdrukken	zmaj zmaj::81_sagen_betonen
+On teško izražava svoja osjećanja.	Het valt hem moeilijk zijn gevoelens uit te drukken.	zmaj zmaj::81_sagen_betonen
+opisati	beschrijven	zmaj zmaj::81_sagen_betonen
+Možete li opisati tog čovjeka?	Kunt u deze man beschrijven?	zmaj zmaj::81_sagen_betonen
+opisivati	beschrijven	zmaj zmaj::81_sagen_betonen
+U pismu opisuje svoj život u Njemačkoj.	In de brief beschrijft ze haar leven in Duitsland.	zmaj zmaj::81_sagen_betonen
+podsjetiti	herinneren (iemand)	zmaj zmaj::82_mitteilen_bitten
+Podsjeti me da kupim hljeb.	Herinner me eraan brood te kopen.	zmaj zmaj::82_mitteilen_bitten
+podsjećati	herinneren (iemand)	zmaj zmaj::82_mitteilen_bitten
+Ova pjesma me podsjeća na djetinjstvo.	Dit lied doet me denken aan mijn kindertijd.	zmaj zmaj::82_mitteilen_bitten
+upozoriti	waarschuwen	zmaj zmaj::82_mitteilen_bitten
+Upozorio sam te da ne ideš tamo.	Ik heb je gewaarschuwd er niet heen te gaan.	zmaj zmaj::82_mitteilen_bitten
+upozoravati	waarschuwen	zmaj zmaj::82_mitteilen_bitten
+Ljekari upozoravaju na opasnost od pušenja.	Artsen waarschuwen voor de gevaren van roken.	zmaj zmaj::82_mitteilen_bitten
+obavijestiti	op de hoogte stellen	zmaj zmaj::82_mitteilen_bitten
+Obavijestite nas ako kasnite.	Stel ons op de hoogte als u te laat bent.	zmaj zmaj::82_mitteilen_bitten
+obavještavati	op de hoogte stellen	zmaj zmaj::82_mitteilen_bitten
+Banka me porukom obavještava o svakoj uplati.	De bank stelt me per bericht op de hoogte van elke storting.	zmaj zmaj::82_mitteilen_bitten
+predložiti	voorstellen	zmaj zmaj::82_mitteilen_bitten
+Predložio sam da idemo na more.	Ik heb voorgesteld naar zee te gaan.	zmaj zmaj::82_mitteilen_bitten
+predlagati	voorstellen	zmaj zmaj::82_mitteilen_bitten
+Šta predlažeš da radimo večeras?	Wat stel je voor, wat zullen we vanavond doen?	zmaj zmaj::82_mitteilen_bitten
+preporučiti	aanbevelen	zmaj zmaj::82_mitteilen_bitten
+Možeš li mi preporučiti dobar restoran?	Kun je me een goed restaurant aanbevelen?	zmaj zmaj::82_mitteilen_bitten
+preporučivati	aanbevelen	zmaj zmaj::82_mitteilen_bitten
+Ovaj film preporučujem svima.	Deze film beveel ik iedereen aan.	zmaj zmaj::82_mitteilen_bitten
+obećati	beloven	zmaj zmaj::82_mitteilen_bitten
+Obećao sam joj da ću doći.	Ik heb haar beloofd dat ik kom.	zmaj zmaj::82_mitteilen_bitten
+obećavati	beloven	zmaj zmaj::82_mitteilen_bitten
+Uvijek obećava, a nikad ništa ne uradi.	Hij belooft altijd iets, maar doet het nooit.	zmaj zmaj::82_mitteilen_bitten
+pozdraviti	groeten	zmaj zmaj::82_mitteilen_bitten
+Nije me ni pozdravio.	Hij heeft me niet eens gegroet.	zmaj zmaj::82_mitteilen_bitten
+pozdravljati	groeten	zmaj zmaj::82_mitteilen_bitten
+Svako jutro pozdravlja sve komšije.	Elke ochtend groet hij alle buren.	zmaj zmaj::82_mitteilen_bitten
+moliti	verzoeken	zmaj zmaj::82_mitteilen_bitten
+Stalno me moli da mu pomognem.	Hij vraagt me voortdurend hem te helpen.	zmaj zmaj::82_mitteilen_bitten
+zamoliti	verzoeken	zmaj zmaj::82_mitteilen_bitten
+Zamolio sam ga da dođe ranije.	Ik heb hem gevraagd eerder te komen.	zmaj zmaj::82_mitteilen_bitten
+zatražiti	aanvragen / verzoeken om	zmaj zmaj::82_mitteilen_bitten
+Zatražila sam potvrdu od banke.	Ik heb bij de bank een bevestiging aangevraagd.	zmaj zmaj::82_mitteilen_bitten
+zahtijevati	eisen / vergen	zmaj zmaj::82_mitteilen_bitten
+Ovaj posao zahtijeva puno strpljenja.	Dit werk vergt veel geduld.	zmaj zmaj::82_mitteilen_bitten
+voditi	leiden / meenemen (persoon)	zmaj zmaj::83_fuehren_bringen
+Moj brat vodi mali restoran.	Mijn broer leidt een klein restaurant.	zmaj zmaj::83_fuehren_bringen
+povesti	leiden / meenemen (persoon)	zmaj zmaj::83_fuehren_bringen
+Povedi i mene sa sobom!	Neem mij ook mee!	zmaj zmaj::83_fuehren_bringen
+dovesti	hierheen brengen / meebrengen (persoon)	zmaj zmaj::83_fuehren_bringen
+Možeš dovesti i djecu.	Je kunt de kinderen ook meebrengen.	zmaj zmaj::83_fuehren_bringen
+dovoditi	hierheen brengen / meebrengen (persoon)	zmaj zmaj::83_fuehren_bringen
+Roditelji dovode djecu u vrtić u osam.	De ouders brengen de kinderen om acht uur naar de crèche.	zmaj zmaj::83_fuehren_bringen
+odvesti	wegbrengen / erheen brengen (persoon)	zmaj zmaj::83_fuehren_bringen
+Odveli su ga u bolnicu.	Ze hebben hem naar het ziekenhuis gebracht.	zmaj zmaj::83_fuehren_bringen
+odvoditi	wegbrengen / erheen brengen (persoon)	zmaj zmaj::83_fuehren_bringen
+Babo svaki dan odvodi sestru u školu.	Papa brengt mijn zus elke dag naar school.	zmaj zmaj::83_fuehren_bringen
+odnijeti	wegdragen / wegbrengen (zaak)	zmaj zmaj::83_fuehren_bringen
+Odnesi ovo u kuhinju.	Breng dit naar de keuken.	zmaj zmaj::83_fuehren_bringen
+odnositi	wegdragen / wegbrengen (zaak)	zmaj zmaj::83_fuehren_bringen
+Konobar odnosi prazne čaše.	De ober draagt de lege glazen weg.	zmaj zmaj::83_fuehren_bringen
+prenijeti	overdragen / doorgeven	zmaj zmaj::83_fuehren_bringen
+Prenesi mu moje pozdrave.	Doe hem de groeten van mij.	zmaj zmaj::83_fuehren_bringen
+prenositi	overdragen / doorgeven	zmaj zmaj::83_fuehren_bringen
+Televizija prenosi utakmicu uživo.	De televisie zendt de wedstrijd live uit.	zmaj zmaj::83_fuehren_bringen
+ponijeti	meenemen (zaak)	zmaj zmaj::83_fuehren_bringen
+Ponesi kišobran, vani pada kiša.	Neem een paraplu mee, buiten regent het.	zmaj zmaj::83_fuehren_bringen
+predati	inleveren / overhandigen	zmaj zmaj::83_fuehren_bringen
+Moram predati dokumente do petka.	Ik moet de documenten uiterlijk vrijdag inleveren.	zmaj zmaj::83_fuehren_bringen
+predavati	inleveren / lesgeven	zmaj zmaj::83_fuehren_bringen
+Moja sestra predaje engleski u školi.	Mijn zus geeft Engels op school.	zmaj zmaj::83_fuehren_bringen
+preuzeti	overnemen / downloaden	zmaj zmaj::83_fuehren_bringen
+Preuzeo je firmu od oca.	Hij heeft het bedrijf van zijn vader overgenomen.	zmaj zmaj::83_fuehren_bringen
+preuzimati	overnemen / downloaden	zmaj zmaj::83_fuehren_bringen
+Preuzimam aplikaciju na telefon.	Ik download de app op mijn telefoon.	zmaj zmaj::83_fuehren_bringen
+vući	trekken	zmaj zmaj::84_heben_ziehen
+Dijete me vuče za rukav.	Het kind trekt me aan mijn mouw.	zmaj zmaj::84_heben_ziehen
+povući	trekken / terugtrekken	zmaj zmaj::84_heben_ziehen
+Povuci vrata prema sebi.	Trek de deur naar je toe.	zmaj zmaj::84_heben_ziehen
+povlačiti	trekken / terugtrekken	zmaj zmaj::84_heben_ziehen
+Firma povlači taj proizvod iz prodaje.	Het bedrijf haalt dit product uit de verkoop.	zmaj zmaj::84_heben_ziehen
+podići / podignuti	optillen / oprapen / opnemen (geld)	zmaj zmaj::84_heben_ziehen
+Ne mogu podići ovaj kofer.	Ik kan deze koffer niet optillen.	zmaj zmaj::84_heben_ziehen
+podizati	optillen / oprapen / opnemen (geld)	zmaj zmaj::84_heben_ziehen
+Ne smiješ podizati teške stvari.	Je mag geen zware dingen tillen.	zmaj zmaj::84_heben_ziehen
+spustiti	laten zakken / neerlaten	zmaj zmaj::84_heben_ziehen
+Spusti roletne, sunce mi smeta.	Laat de rolluiken zakken, de zon stoort me.	zmaj zmaj::84_heben_ziehen
+spuštati	laten zakken / neerlaten	zmaj zmaj::84_heben_ziehen
+Temperatura se noćas spušta ispod nule.	De temperatuur daalt vannacht tot onder nul.	zmaj zmaj::84_heben_ziehen
+gurnuti	duwen / stoten	zmaj zmaj::84_heben_ziehen
+Neko me gurnuo u autobusu.	Iemand heeft me in de bus geduwd.	zmaj zmaj::84_heben_ziehen
+gurati	duwen / stoten	zmaj zmaj::84_heben_ziehen
+Nemoj gurati, ima mjesta za sve.	Niet dringen, er is plaats voor iedereen.	zmaj zmaj::84_heben_ziehen
+dodati	toevoegen	zmaj zmaj::84_heben_ziehen
+Dodaj još malo šećera.	Voeg nog wat suiker toe.	zmaj zmaj::84_heben_ziehen
+dodavati	toevoegen	zmaj zmaj::84_heben_ziehen
+Uvijek dodaje previše soli.	Hij doet er altijd te veel zout bij.	zmaj zmaj::84_heben_ziehen
+izbaciti	eruit gooien	zmaj zmaj::84_heben_ziehen
+Izbacili su ga iz škole.	Ze hebben hem van school gestuurd.	zmaj zmaj::84_heben_ziehen
+izbacivati	eruit gooien	zmaj zmaj::84_heben_ziehen
+Aplikacija me stalno izbacuje.	De app gooit me steeds eruit.	zmaj zmaj::84_heben_ziehen
+izvaditi	eruit halen	zmaj zmaj::84_heben_ziehen
+Izvadi meso iz frižidera.	Haal het vlees uit de koelkast.	zmaj zmaj::84_heben_ziehen
+vaditi	eruit halen	zmaj zmaj::84_heben_ziehen
+Ne vadi telefon dok jedemo.	Haal je telefoon niet tevoorschijn terwijl we eten.	zmaj zmaj::84_heben_ziehen
+oduzeti	afnemen	zmaj zmaj::84_heben_ziehen
+Oduzeli su mu vozačku dozvolu.	Ze hebben hem zijn rijbewijs afgenomen.	zmaj zmaj::84_heben_ziehen
+oduzimati	afnemen	zmaj zmaj::84_heben_ziehen
+Telefon mi oduzima puno vremena.	De telefoon kost me veel tijd.	zmaj zmaj::84_heben_ziehen
+pružiti	bieden / aanreiken	zmaj zmaj::84_heben_ziehen
+Pružio mi je ruku.	Hij heeft me de hand gereikt.	zmaj zmaj::84_heben_ziehen
+pružati	bieden / aanreiken	zmaj zmaj::84_heben_ziehen
+Ovaj hotel pruža lijep pogled na grad.	Dit hotel biedt een mooi uitzicht op de stad.	zmaj zmaj::84_heben_ziehen
+činiti	doen (met effect: goed doen)	zmaj zmaj::85_schaffen_erreichen
+Uvijek čini dobro drugima.	Hij doet altijd goed voor anderen.	zmaj zmaj::85_schaffen_erreichen
+učiniti	doen (uitvoeren)	zmaj zmaj::85_schaffen_erreichen
+Možeš li mi učiniti uslugu?	Kun je me een plezier doen?	zmaj zmaj::85_schaffen_erreichen
+stvoriti	scheppen / voortbrengen	zmaj zmaj::85_schaffen_erreichen
+Stvorili su lijep dom za djecu.	Ze hebben een mooi thuis voor de kinderen geschapen.	zmaj zmaj::85_schaffen_erreichen
+stvarati	scheppen / voortbrengen	zmaj zmaj::85_schaffen_erreichen
+On stalno stvara probleme.	Hij veroorzaakt voortdurend problemen.	zmaj zmaj::85_schaffen_erreichen
+postići	bereiken (doel)	zmaj zmaj::85_schaffen_erreichen
+Postigla je sve što je željela.	Ze heeft alles bereikt wat ze wilde.	zmaj zmaj::85_schaffen_erreichen
+postizati	bereiken (doel)	zmaj zmaj::85_schaffen_erreichen
+Naši učenici postižu odlične rezultate.	Onze leerlingen behalen uitstekende resultaten.	zmaj zmaj::85_schaffen_erreichen
+ostvariti	verwezenlijken	zmaj zmaj::85_schaffen_erreichen
+Ostvario je svoj san.	Hij heeft zijn droom verwezenlijkt.	zmaj zmaj::85_schaffen_erreichen
+ostvarivati	verwezenlijken	zmaj zmaj::85_schaffen_erreichen
+Malo po malo ostvarujem svoje planove.	Beetje bij beetje verwezenlijk ik mijn plannen.	zmaj zmaj::85_schaffen_erreichen
+izvršiti	uitvoeren	zmaj zmaj::85_schaffen_erreichen
+Izvršite uplatu do kraja mjeseca.	Voer de betaling uit voor het einde van de maand.	zmaj zmaj::85_schaffen_erreichen
+vršiti	uitvoeren	zmaj zmaj::85_schaffen_erreichen
+Inspekcija vrši kontrolu svih restorana.	De inspectie controleert alle restaurants.	zmaj zmaj::85_schaffen_erreichen
+obaviti	afhandelen	zmaj zmaj::85_schaffen_erreichen
+Moram obaviti još nekoliko poslova.	Ik moet nog een paar dingen afhandelen.	zmaj zmaj::85_schaffen_erreichen
+obavljati	afhandelen	zmaj zmaj::85_schaffen_erreichen
+Ona obavlja sve poslove u kući.	Ze doet al het werk in huis.	zmaj zmaj::85_schaffen_erreichen
+pokrenuti	op gang brengen / starten	zmaj zmaj::86_starten_planen
+Pokrenuo je vlastiti posao u Sarajevu.	Hij is in Sarajevo een eigen zaak begonnen.	zmaj zmaj::86_starten_planen
+pokretati	op gang brengen / starten	zmaj zmaj::86_starten_planen
+Ovaj motor pokreće cijelu mašinu.	Deze motor drijft de hele machine aan.	zmaj zmaj::86_starten_planen
+započeti	beginnen (met iets)	zmaj zmaj::86_starten_planen
+Ko je započeo svađu?	Wie is met de ruzie begonnen?	zmaj zmaj::86_starten_planen
+započinjati	beginnen (met iets)	zmaj zmaj::86_starten_planen
+Dan uvijek započinjem kahvom.	De dag begin ik altijd met een koffie.	zmaj zmaj::86_starten_planen
+postaviti	opstellen / plaatsen	zmaj zmaj::86_starten_planen
+Mogu li Vam postaviti pitanje?	Mag ik u een vraag stellen?	zmaj zmaj::86_starten_planen
+postavljati	opstellen / plaatsen	zmaj zmaj::86_starten_planen
+Radnici postavljaju novu ogradu.	De arbeiders plaatsen een nieuw hek.	zmaj zmaj::86_starten_planen
+održati	houden (evenement, toespraak)	zmaj zmaj::86_starten_planen
+Održao je kratak govor.	Hij heeft een korte toespraak gehouden.	zmaj zmaj::86_starten_planen
+održavati	houden (evenement) / onderhouden	zmaj zmaj::86_starten_planen
+Ko održava ovu zgradu?	Wie onderhoudt dit gebouw?	zmaj zmaj::86_starten_planen
+organizovati	organiseren	zmaj zmaj::86_starten_planen
+Organizovali smo veliku svadbu.	We hebben een grote bruiloft georganiseerd.	zmaj zmaj::86_starten_planen
+planirati	plannen	zmaj zmaj::86_starten_planen
+Šta planiraš za vikend?	Wat ben je van plan voor het weekend?	zmaj zmaj::86_starten_planen
+razviti	ontwikkelen	zmaj zmaj::87_veraendern_herstellen
+Razvili su novu aplikaciju.	Ze hebben een nieuwe app ontwikkeld.	zmaj zmaj::87_veraendern_herstellen
+razvijati	ontwikkelen	zmaj zmaj::87_veraendern_herstellen
+Čitanje razvija maštu kod djece.	Lezen ontwikkelt de fantasie van kinderen.	zmaj zmaj::87_veraendern_herstellen
+povećati	verhogen	zmaj zmaj::87_veraendern_herstellen
+Povećali su mi platu.	Ze hebben mijn loon verhoogd.	zmaj zmaj::87_veraendern_herstellen
+povećavati	verhogen	zmaj zmaj::87_veraendern_herstellen
+Pušenje povećava rizik od raka.	Roken verhoogt het risico op kanker.	zmaj zmaj::87_veraendern_herstellen
+smanjiti	verminderen	zmaj zmaj::87_veraendern_herstellen
+Smanji malo muziku, beba spava.	Zet de muziek wat zachter, de baby slaapt.	zmaj zmaj::87_veraendern_herstellen
+smanjivati	verminderen	zmaj zmaj::87_veraendern_herstellen
+Polako smanjujem šećer u kahvi.	Beetje bij beetje verminder ik de suiker in mijn koffie.	zmaj zmaj::87_veraendern_herstellen
+poboljšati	verbeteren	zmaj zmaj::87_veraendern_herstellen
+Želim poboljšati svoj bosanski.	Ik wil mijn Bosnisch verbeteren.	zmaj zmaj::87_veraendern_herstellen
+poboljšavati	verbeteren	zmaj zmaj::87_veraendern_herstellen
+Redovno vježbanje poboljšava zdravlje.	Regelmatig bewegen verbetert de gezondheid.	zmaj zmaj::87_veraendern_herstellen
+izgraditi	bouwen	zmaj zmaj::87_veraendern_herstellen
+Izgradili su novi most preko rijeke.	Ze hebben een nieuwe brug over de rivier gebouwd.	zmaj zmaj::87_veraendern_herstellen
+graditi	bouwen	zmaj zmaj::87_veraendern_herstellen
+Babo gradi kuću u Bosni.	Papa bouwt een huis in Bosnië.	zmaj zmaj::87_veraendern_herstellen
+proizvesti	produceren	zmaj zmaj::87_veraendern_herstellen
+Ove godine smo proizveli puno meda.	Dit jaar hebben we veel honing geproduceerd.	zmaj zmaj::87_veraendern_herstellen
+proizvoditi	produceren	zmaj zmaj::87_veraendern_herstellen
+Ova fabrika proizvodi namještaj.	Deze fabriek maakt meubels.	zmaj zmaj::87_veraendern_herstellen
+omogućiti	mogelijk maken	zmaj zmaj::88_ermoeglichen_entdecken
+Stipendija mi je omogućila da studiram.	De beurs heeft het me mogelijk gemaakt te studeren.	zmaj zmaj::88_ermoeglichen_entdecken
+omogućavati	mogelijk maken	zmaj zmaj::88_ermoeglichen_entdecken
+Ova aplikacija omogućava učenje bez interneta.	Deze app maakt leren zonder internet mogelijk.	zmaj zmaj::88_ermoeglichen_entdecken
+osigurati	veiligstellen / verzekeren	zmaj zmaj::88_ermoeglichen_entdecken
+Jesi li osigurao auto?	Heb je de auto verzekerd?	zmaj zmaj::88_ermoeglichen_entdecken
+osiguravati	veiligstellen / verzekeren	zmaj zmaj::88_ermoeglichen_entdecken
+Država svima osigurava besplatno školovanje.	De staat garandeert iedereen gratis onderwijs.	zmaj zmaj::88_ermoeglichen_entdecken
+uništiti	vernietigen	zmaj zmaj::88_ermoeglichen_entdecken
+Poplava je uništila cijelo selo.	De overstroming heeft het hele dorp verwoest.	zmaj zmaj::88_ermoeglichen_entdecken
+uništavati	vernietigen	zmaj zmaj::88_ermoeglichen_entdecken
+Alkohol uništava mnoge porodice.	Alcohol vernietigt veel gezinnen.	zmaj zmaj::88_ermoeglichen_entdecken
+otkriti	ontdekken / onthullen	zmaj zmaj::88_ermoeglichen_entdecken
+Ljekari su otkrili bolest na vrijeme.	De artsen hebben de ziekte op tijd ontdekt.	zmaj zmaj::88_ermoeglichen_entdecken
+otkrivati	ontdekken / onthullen	zmaj zmaj::88_ermoeglichen_entdecken
+U Sarajevu stalno otkrivam nova mjesta.	In Sarajevo ontdek ik steeds nieuwe plekken.	zmaj zmaj::88_ermoeglichen_entdecken
+pronaći	opsporen	zmaj zmaj::88_ermoeglichen_entdecken
+Policija je pronašla ukradeni auto.	De politie heeft de gestolen auto gevonden.	zmaj zmaj::88_ermoeglichen_entdecken
+pronalaziti	opsporen	zmaj zmaj::88_ermoeglichen_entdecken
+Uvijek pronalazi neki izgovor.	Hij vindt altijd een smoes.	zmaj zmaj::88_ermoeglichen_entdecken
+prihvatiti	aannemen / accepteren	zmaj zmaj::89_entscheiden_annehmen
+Prihvatio sam njihovu ponudu.	Ik heb hun aanbod aangenomen.	zmaj zmaj::89_entscheiden_annehmen
+prihvatati	aannemen / accepteren	zmaj zmaj::89_entscheiden_annehmen
+Nažalost, ne prihvatamo kartice.	Helaas accepteren we geen kaarten.	zmaj zmaj::89_entscheiden_annehmen
+odbiti	afwijzen	zmaj zmaj::89_entscheiden_annehmen
+Odbili su moj zahtjev.	Ze hebben mijn aanvraag afgewezen.	zmaj zmaj::89_entscheiden_annehmen
+odbijati	afwijzen	zmaj zmaj::89_entscheiden_annehmen
+Dijete odbija da jede povrće.	Het kind weigert groente te eten.	zmaj zmaj::89_entscheiden_annehmen
+odabrati	uitzoeken	zmaj zmaj::89_entscheiden_annehmen
+Odabrala je najljepšu haljinu.	Ze heeft de mooiste jurk uitgezocht.	zmaj zmaj::89_entscheiden_annehmen
+odabirati	uitzoeken	zmaj zmaj::89_entscheiden_annehmen
+Pažljivo odabire svoje riječi.	Hij kiest zijn woorden zorgvuldig.	zmaj zmaj::89_entscheiden_annehmen
+odrediti	bepalen	zmaj zmaj::89_entscheiden_annehmen
+Odredili smo datum vjenčanja.	We hebben de datum van de bruiloft bepaald.	zmaj zmaj::89_entscheiden_annehmen
+određivati	bepalen	zmaj zmaj::89_entscheiden_annehmen
+Ko ovdje određuje cijene?	Wie bepaalt hier de prijzen?	zmaj zmaj::89_entscheiden_annehmen
+zaključiti	concluderen / afsluiten	zmaj zmaj::89_entscheiden_annehmen
+Iz toga sam zaključio da je ljut.	Daaruit heb ik geconcludeerd dat hij boos is.	zmaj zmaj::89_entscheiden_annehmen
+zaključivati	concluderen / afsluiten	zmaj zmaj::89_entscheiden_annehmen
+Na osnovu čega to zaključuješ?	Waaruit concludeer je dat?	zmaj zmaj::89_entscheiden_annehmen
+utvrditi	vaststellen	zmaj zmaj::89_entscheiden_annehmen
+Vatrogasci su utvrdili uzrok požara.	De brandweerlieden hebben de oorzaak van de brand vastgesteld.	zmaj zmaj::89_entscheiden_annehmen
+utvrđivati	vaststellen	zmaj zmaj::89_entscheiden_annehmen
+Policija još utvrđuje kako se nesreća desila.	De politie stelt nog vast hoe het ongeluk is gebeurd.	zmaj zmaj::89_entscheiden_annehmen
+podržati	steunen	zmaj zmaj::89_entscheiden_annehmen
+Cijela porodica me je podržala.	De hele familie heeft me gesteund.	zmaj zmaj::89_entscheiden_annehmen
+podržavati	steunen	zmaj zmaj::89_entscheiden_annehmen
+Žena me uvijek podržava.	Mijn vrouw steunt me altijd.	zmaj zmaj::89_entscheiden_annehmen
+pristati	instemmen	zmaj zmaj::89_entscheiden_annehmen
+Pristala je da se uda za njega.	Ze heeft ermee ingestemd met hem te trouwen.	zmaj zmaj::89_entscheiden_annehmen
+pristajati	instemmen	zmaj zmaj::89_entscheiden_annehmen
+Ne pristajem na te uslove.	Met deze voorwaarden stem ik niet in.	zmaj zmaj::89_entscheiden_annehmen
+Neću ti dopustiti da to uradiš.	Ik laat niet toe dat je dat doet.	zmaj zmaj::89_entscheiden_annehmen
+Roditelji mu ne dopuštaju da izlazi.	Zijn ouders laten hem niet uitgaan.	zmaj zmaj::89_entscheiden_annehmen
+zabraniti	verbieden	zmaj zmaj::89_entscheiden_annehmen
+Doktor mi je zabranio kahvu.	De dokter heeft me koffie verboden.	zmaj zmaj::89_entscheiden_annehmen
+zabranjivati	verbieden	zmaj zmaj::89_entscheiden_annehmen
+Moj babo mi sve zabranjuje.	Mijn papa verbiedt me alles.	zmaj zmaj::89_entscheiden_annehmen
+prekinuti	onderbreken	zmaj zmaj::90_aufhoeren_vermeiden
+Izvini što sam te prekinuo.	Sorry dat ik je onderbrak.	zmaj zmaj::90_aufhoeren_vermeiden
+prekidati	onderbreken	zmaj zmaj::90_aufhoeren_vermeiden
+Nemoj me stalno prekidati!	Onderbreek me niet steeds!	zmaj zmaj::90_aufhoeren_vermeiden
+odustati	opgeven (afzien van)	zmaj zmaj::90_aufhoeren_vermeiden
+Na kraju je odustao od studija.	Uiteindelijk heeft hij zijn studie opgegeven.	zmaj zmaj::90_aufhoeren_vermeiden
+odustajati	opgeven (afzien van)	zmaj zmaj::90_aufhoeren_vermeiden
+Ne odustajem tako lako.	Ik geef niet zo snel op.	zmaj zmaj::90_aufhoeren_vermeiden
+napustiti	verlaten	zmaj zmaj::90_aufhoeren_vermeiden
+Napustio je Bosnu kao dijete.	Hij heeft Bosnië als kind verlaten.	zmaj zmaj::90_aufhoeren_vermeiden
+napuštati	verlaten	zmaj zmaj::90_aufhoeren_vermeiden
+Mnogi mladi napuštaju svoja sela.	Veel jongeren verlaten hun dorpen.	zmaj zmaj::90_aufhoeren_vermeiden
+ispuniti	vervullen	zmaj zmaj::90_aufhoeren_vermeiden
+Nana mi je ispunila želju.	Oma heeft mijn wens vervuld.	zmaj zmaj::90_aufhoeren_vermeiden
+ispunjavati	vervullen	zmaj zmaj::90_aufhoeren_vermeiden
+Ne ispunjavam sve uslove za posao.	Ik voldoe niet aan alle voorwaarden voor de baan.	zmaj zmaj::90_aufhoeren_vermeiden
+izbjeći	vermijden	zmaj zmaj::90_aufhoeren_vermeiden
+Jedva smo izbjegli nesreću.	We hebben op het nippertje een ongeluk vermeden.	zmaj zmaj::90_aufhoeren_vermeiden
+izbjegavati	vermijden	zmaj zmaj::90_aufhoeren_vermeiden
+Zašto me u zadnje vrijeme izbjegavaš?	Waarom ga je me de laatste tijd uit de weg?	zmaj zmaj::90_aufhoeren_vermeiden
+spriječiti	verhinderen	zmaj zmaj::90_aufhoeren_vermeiden
+Na vrijeme smo spriječili požar.	We hebben de brand op tijd verhinderd.	zmaj zmaj::90_aufhoeren_vermeiden
+sprječavati	verhinderen	zmaj zmaj::90_aufhoeren_vermeiden
+Redovno pranje ruku sprječava bolesti.	Regelmatig handen wassen voorkomt ziektes.	zmaj zmaj::90_aufhoeren_vermeiden
+zaustaviti	tot stilstand brengen / stoppen	zmaj zmaj::90_aufhoeren_vermeiden
+Zaustavi auto, moram izaći.	Stop de auto, ik moet eruit.	zmaj zmaj::90_aufhoeren_vermeiden
+zaustavljati	tot stilstand brengen / stoppen	zmaj zmaj::90_aufhoeren_vermeiden
+Policija danas zaustavlja sve kamione.	De politie houdt vandaag alle vrachtwagens aan.	zmaj zmaj::90_aufhoeren_vermeiden
+provjeriti	controleren	zmaj zmaj::90_aufhoeren_vermeiden
+Provjeri da li su vrata zaključana.	Controleer of de deur op slot is.	zmaj zmaj::90_aufhoeren_vermeiden
+provjeravati	controleren	zmaj zmaj::90_aufhoeren_vermeiden
+Svakih pet minuta provjerava telefon.	Om de vijf minuten controleert hij zijn telefoon.	zmaj zmaj::90_aufhoeren_vermeiden
+dokazati	bewijzen	zmaj zmaj::90_aufhoeren_vermeiden
+Možeš li to dokazati?	Kun je dat bewijzen?	zmaj zmaj::90_aufhoeren_vermeiden
+dokazivati	bewijzen	zmaj zmaj::90_aufhoeren_vermeiden
+Ne moraš mi ništa dokazivati.	Je hoeft mij niets te bewijzen.	zmaj zmaj::90_aufhoeren_vermeiden
+nemati	niet hebben	zmaj zmaj::91_sein_wirken
+Nemam brata, ali imam dvije sestre.	Ik heb geen broer, maar wel twee zussen.	zmaj zmaj::91_sein_wirken
+ticati se	betreffen	zmaj zmaj::91_sein_wirken
+To se tebe ne tiče.	Dat gaat je niets aan.	zmaj zmaj::91_sein_wirken
+pripadati	toebehoren (aan)	zmaj zmaj::91_sein_wirken
+Ova kuća pripada mojoj porodici.	Dit huis is van mijn familie.	zmaj zmaj::91_sein_wirken
+sadržati	bevatten	zmaj zmaj::91_sein_wirken
+Ovaj sok ne sadrži šećer.	Dit sap bevat geen suiker.	zmaj zmaj::91_sein_wirken
+sastojati se	bestaan (uit)	zmaj zmaj::91_sein_wirken
+Stan se sastoji od tri sobe.	De woning bestaat uit drie kamers.	zmaj zmaj::91_sein_wirken
+služiti	dienen / serveren	zmaj zmaj::91_sein_wirken
+Čemu služi ovo dugme?	Waar is deze knop voor?	zmaj zmaj::91_sein_wirken
+poslužiti	dienen / serveren	zmaj zmaj::91_sein_wirken
+Domaćica nam je poslužila kahvu.	De gastvrouw heeft ons koffie geserveerd.	zmaj zmaj::91_sein_wirken
+djelovati	werken (effect hebben)	zmaj zmaj::91_sein_wirken
+Ovaj lijek brzo djeluje.	Dit medicijn werkt snel.	zmaj zmaj::91_sein_wirken
+uticati	beïnvloeden	zmaj zmaj::91_sein_wirken
+Vrijeme utiče na moje raspoloženje.	Het weer beïnvloedt mijn stemming.	zmaj zmaj::91_sein_wirken
+nastati	ontstaan	zmaj zmaj::91_sein_wirken
+Nastala je velika gužva.	Er ontstond een grote drukte.	zmaj zmaj::91_sein_wirken
+nastajati	ontstaan	zmaj zmaj::91_sein_wirken
+Problemi nastaju kad ljudi ne razgovaraju.	Problemen ontstaan als mensen niet met elkaar praten.	zmaj zmaj::91_sein_wirken
+pojaviti se	verschijnen	zmaj zmaj::92_erscheinen_verschwinden
+Odjednom se pojavio na vratima.	Plotseling verscheen hij in de deuropening.	zmaj zmaj::92_erscheinen_verschwinden
+pojavljivati se	verschijnen	zmaj zmaj::92_erscheinen_verschwinden
+Ova greška se stalno pojavljuje.	Deze fout verschijnt steeds.	zmaj zmaj::92_erscheinen_verschwinden
+nestati	verdwijnen	zmaj zmaj::92_erscheinen_verschwinden
+Novčanik mi je nestao iz torbe.	Mijn portemonnee is uit mijn tas verdwenen.	zmaj zmaj::92_erscheinen_verschwinden
+nestajati	verdwijnen	zmaj zmaj::92_erscheinen_verschwinden
+Snijeg polako nestaje s planine.	De sneeuw verdwijnt langzaam van de berg.	zmaj zmaj::92_erscheinen_verschwinden
+rasti	groeien	zmaj zmaj::92_erscheinen_verschwinden
+Djeca tako brzo rastu!	Kinderen groeien zo snel!	zmaj zmaj::92_erscheinen_verschwinden
+porasti	groeien	zmaj zmaj::92_erscheinen_verschwinden
+Kako si porastao za godinu dana!	Wat ben je in een jaar gegroeid!	zmaj zmaj::92_erscheinen_verschwinden
+doživjeti	beleven	zmaj zmaj::92_erscheinen_verschwinden
+Nikad nisam doživio nešto tako lijepo.	Zoiets moois heb ik nog nooit beleefd.	zmaj zmaj::92_erscheinen_verschwinden
+doživljavati	beleven	zmaj zmaj::92_erscheinen_verschwinden
+Na ovom poslu doživljavam svašta.	Bij dit werk beleef ik van alles.	zmaj zmaj::92_erscheinen_verschwinden
+učestvovati	deelnemen	zmaj zmaj::92_erscheinen_verschwinden
+Naša škola učestvuje na takmičenju.	Onze school neemt deel aan de wedstrijd.	zmaj zmaj::92_erscheinen_verschwinden
+poznavati	kennen (persoon)	zmaj zmaj::92_erscheinen_verschwinden
+Poznaješ li mog brata?	Ken je mijn broer?	zmaj zmaj::92_erscheinen_verschwinden
+razlikovati	onderscheiden	zmaj zmaj::92_erscheinen_verschwinden
+Blizanci su, ne mogu ih razlikovati.	Het zijn tweelingen, ik kan ze niet uit elkaar houden.	zmaj zmaj::92_erscheinen_verschwinden
+podijeliti	delen	zmaj zmaj::93_miteinander_umgehen
+Podijelili smo pitu na četiri dijela.	We hebben de pita in vier stukken verdeeld.	zmaj zmaj::93_miteinander_umgehen
+dijeliti	delen	zmaj zmaj::93_miteinander_umgehen
+Sa sestrom dijelim sobu.	Ik deel een kamer met mijn zus.	zmaj zmaj::93_miteinander_umgehen
+pustiti	laten	zmaj zmaj::93_miteinander_umgehen
+Pusti me da spavam!	Laat me slapen!	zmaj zmaj::93_miteinander_umgehen
+puštati	laten	zmaj zmaj::93_miteinander_umgehen
+Mama me ne pušta vani.	Mama laat me niet naar buiten.	zmaj zmaj::93_miteinander_umgehen
+zadržati	houden / ophouden	zmaj zmaj::93_miteinander_umgehen
+U redu je, zadržite kusur.	Het is goed, houdt u het wisselgeld maar.	zmaj zmaj::93_miteinander_umgehen
+zadržavati	houden / ophouden	zmaj zmaj::93_miteinander_umgehen
+Neću Vas dugo zadržavati.	Ik zal u niet lang ophouden.	zmaj zmaj::93_miteinander_umgehen
+obratiti se	zich wenden tot	zmaj zmaj::93_miteinander_umgehen
+Obratite se na šalter broj tri.	Wendt u zich tot loket drie.	zmaj zmaj::93_miteinander_umgehen
+obraćati se	zich wenden tot	zmaj zmaj::93_miteinander_umgehen
+Uvijek se obraćam nani za savjet.	Voor advies wend ik me altijd tot oma.	zmaj zmaj::93_miteinander_umgehen
+družiti se	tijd samen doorbrengen	zmaj zmaj::93_miteinander_umgehen
+Volim se družiti s komšijama.	Ik breng graag tijd door met de buren.	zmaj zmaj::93_miteinander_umgehen
+ponašati se	zich gedragen	zmaj zmaj::93_miteinander_umgehen
+Ponašaj se lijepo kod nane!	Gedraag je netjes bij oma!	zmaj zmaj::93_miteinander_umgehen
+poštovati	respecteren	zmaj zmaj::93_miteinander_umgehen
+Djeca trebaju poštovati starije.	Kinderen moeten ouderen respecteren.	zmaj zmaj::93_miteinander_umgehen
+cijeniti	waarderen	zmaj zmaj::93_miteinander_umgehen
+Mnogo cijenim tvoj trud.	Ik waardeer je moeite enorm.	zmaj zmaj::93_miteinander_umgehen
+pohvaliti	prijzen (loven)	zmaj zmaj::93_miteinander_umgehen
+Učiteljica me je pohvalila pred cijelim razredom.	De lerares heeft me voor de hele klas geprezen.	zmaj zmaj::93_miteinander_umgehen
+hvaliti	prijzen (loven)	zmaj zmaj::93_miteinander_umgehen
+Svi hvale ovaj restoran.	Iedereen prijst dit restaurant.	zmaj zmaj::93_miteinander_umgehen
+lagati	liegen	zmaj zmaj::93_miteinander_umgehen
+Nemoj mi lagati, znam sve.	Lieg niet tegen me, ik weet alles.	zmaj zmaj::93_miteinander_umgehen
+slagati	liegen	zmaj zmaj::93_miteinander_umgehen
+Slagao sam mami da sam bolestan.	Ik heb tegen mama gelogen dat ik ziek was.	zmaj zmaj::93_miteinander_umgehen
+truditi se	zich inspannen	zmaj zmaj::93_miteinander_umgehen
+Trudim se, ali nije lako.	Ik span me in, maar het is niet makkelijk.	zmaj zmaj::93_miteinander_umgehen
+potruditi se	zich inspannen	zmaj zmaj::93_miteinander_umgehen
+Potrudi se malo više!	Span je wat meer in!	zmaj zmaj::93_miteinander_umgehen
+pogađati se	onderhandelen (prijs)	zmaj zmaj::93_miteinander_umgehen
+Još se pogađamo oko cijene stana.	We onderhandelen nog over de prijs van de woning.	zmaj zmaj::93_miteinander_umgehen
+ljubiti	kussen (zoenen)	zmaj zmaj::94_lieben_fuerchten
+Na Bajram ljubimo ruku nani.	Met Bajram kussen we oma's hand.	zmaj zmaj::94_lieben_fuerchten
+poljubiti	kussen (zoenen)	zmaj zmaj::94_lieben_fuerchten
+Poljubio ju je pred svima.	Hij heeft haar voor iedereen gekust.	zmaj zmaj::94_lieben_fuerchten
+zagrliti	omhelzen	zmaj zmaj::94_lieben_fuerchten
+Zagrli me prije nego što odeš.	Omhels me voordat je gaat.	zmaj zmaj::94_lieben_fuerchten
+grliti	omhelzen	zmaj zmaj::94_lieben_fuerchten
+Nana nas uvijek grli kad dođemo.	Oma omhelst ons altijd als we komen.	zmaj zmaj::94_lieben_fuerchten
+plakati	huilen	zmaj zmaj::94_lieben_fuerchten
+Zašto beba stalno plače?	Waarom huilt de baby steeds?	zmaj zmaj::94_lieben_fuerchten
+sanjati	dromen	zmaj zmaj::94_lieben_fuerchten
+Sinoć sam sanjao nanu.	Vannacht heb ik over oma gedroomd.	zmaj zmaj::94_lieben_fuerchten
+mrziti	haten	zmaj zmaj::94_lieben_fuerchten
+Mrzim ustajati rano ujutro.	Ik haat het om 's morgens vroeg op te staan.	zmaj zmaj::94_lieben_fuerchten
+ljutiti se	boos worden	zmaj zmaj::94_lieben_fuerchten
+Nemoj se ljutiti na mene.	Word niet boos op me.	zmaj zmaj::94_lieben_fuerchten
+naljutiti se	boos worden	zmaj zmaj::94_lieben_fuerchten
+Babo se naljutio zbog auta.	Papa is boos geworden om de auto.	zmaj zmaj::94_lieben_fuerchten
+plašiti se	bang zijn	zmaj zmaj::94_lieben_fuerchten
+Dijete se plaši mraka.	Het kind is bang voor het donker.	zmaj zmaj::94_lieben_fuerchten
+uplašiti se	bang zijn	zmaj zmaj::94_lieben_fuerchten
+Uplašio sam se kad je zagrmilo.	Ik schrok toen het donderde.	zmaj zmaj::94_lieben_fuerchten
+čuditi se	zich verbazen	zmaj zmaj::95_wundern_beruhigen
+Čudim se da još nije došao.	Ik verbaas me erover dat hij nog niet gekomen is.	zmaj zmaj::95_wundern_beruhigen
+vikati	schreeuwen	zmaj zmaj::95_wundern_beruhigen
+Nemoj vikati, dijete spava.	Schreeuw niet, het kind slaapt.	zmaj zmaj::95_wundern_beruhigen
+šutjeti / šutiti	zwijgen	zmaj zmaj::95_wundern_beruhigen
+Ona samo šuti i gleda kroz prozor.	Ze zwijgt alleen maar en kijkt uit het raam.	zmaj zmaj::95_wundern_beruhigen
+sumnjati	twijfelen	zmaj zmaj::95_wundern_beruhigen
+Sumnjam da će doći na vrijeme.	Ik betwijfel of hij op tijd komt.	zmaj zmaj::95_wundern_beruhigen
+patiti	lijden	zmaj zmaj::95_wundern_beruhigen
+Dedo pati od visokog pritiska.	Opa lijdt aan hoge bloeddruk.	zmaj zmaj::95_wundern_beruhigen
+žaliti	betreuren	zmaj zmaj::95_wundern_beruhigen
+Žalim što te nisam ranije upoznao.	Ik betreur het dat ik je niet eerder heb leren kennen.	zmaj zmaj::95_wundern_beruhigen
+faliti	ontbreken (informeel)	zmaj zmaj::95_wundern_beruhigen
+Mnogo mi fališ, kad dolaziš?	Ik mis je heel erg, wanneer kom je?	zmaj zmaj::95_wundern_beruhigen
+ličiti	lijken op	zmaj zmaj::95_wundern_beruhigen
+Mnogo ličiš na svoju mamu.	Je lijkt erg op je mama.	zmaj zmaj::95_wundern_beruhigen
+smiriti	kalmeren	zmaj zmaj::95_wundern_beruhigen
+Ovaj čaj će te smiriti.	Deze thee zal je kalmeren.	zmaj zmaj::95_wundern_beruhigen
+smirivati	kalmeren	zmaj zmaj::95_wundern_beruhigen
+Muzika me uvijek smiruje.	Muziek kalmeert me altijd.	zmaj zmaj::95_wundern_beruhigen
+iznenaditi	verrassen	zmaj zmaj::95_wundern_beruhigen
+Baš si me iznenadila ovim poklonom.	Met dit cadeau heb je me echt verrast.	zmaj zmaj::95_wundern_beruhigen
+iznenađivati	verrassen	zmaj zmaj::95_wundern_beruhigen
+Ti me stalno iznenađuješ.	Je verrast me steeds weer.	zmaj zmaj::95_wundern_beruhigen
+hodati	lopen (te voet)	zmaj zmaj::96_sich_bewegen
+Svaki dan hodam sat vremena.	Elke dag loop ik een uur.	zmaj zmaj::96_sich_bewegen
+stati	stoppen / blijven staan	zmaj zmaj::96_sich_bewegen
+Možete li stati ovdje, molim Vas?	Kunt u hier stoppen, alstublieft?	zmaj zmaj::96_sich_bewegen
+okrenuti	draaien	zmaj zmaj::96_sich_bewegen
+Okreni ključ dva puta.	Draai de sleutel twee keer om.	zmaj zmaj::96_sich_bewegen
+okretati	draaien	zmaj zmaj::96_sich_bewegen
+Okrećem meso na roštilju.	Ik draai het vlees om op de grill.	zmaj zmaj::96_sich_bewegen
+skočiti	springen	zmaj zmaj::96_sich_bewegen
+Skočio je sa Starog mosta.	Hij is van de Oude Brug gesprongen.	zmaj zmaj::96_sich_bewegen
+skakati	springen	zmaj zmaj::96_sich_bewegen
+Djeca skaču po krevetu.	De kinderen springen op het bed.	zmaj zmaj::96_sich_bewegen
+popeti se	klimmen / naar boven gaan	zmaj zmaj::96_sich_bewegen
+Mačka se popela na drvo.	De kat is in de boom geklommen.	zmaj zmaj::96_sich_bewegen
+penjati se	klimmen / naar boven gaan	zmaj zmaj::96_sich_bewegen
+Penjem se pješke na peti sprat.	Ik ga te voet naar de vijfde verdieping.	zmaj zmaj::96_sich_bewegen
+sići	naar beneden gaan	zmaj zmaj::96_sich_bewegen
+Siđi dolje, večera je gotova!	Kom naar beneden, het avondeten is klaar!	zmaj zmaj::96_sich_bewegen
+silaziti	naar beneden gaan	zmaj zmaj::96_sich_bewegen
+Silazim za dvije minute.	Ik kom over twee minuten naar beneden.	zmaj zmaj::96_sich_bewegen
+prijeći	oversteken	zmaj zmaj::96_sich_bewegen
+Moramo prijeći ulicu na semaforu.	We moeten bij het stoplicht de straat oversteken.	zmaj zmaj::96_sich_bewegen
+prelaziti	oversteken	zmaj zmaj::96_sich_bewegen
+Nikad ne prelazi ulicu na crveno!	Steek nooit bij rood de straat over!	zmaj zmaj::96_sich_bewegen
+poći	vertrekken	zmaj zmaj::97_losgehen_abbiegen
+Moramo poći prije mraka.	We moeten voor het donker vertrekken.	zmaj zmaj::97_losgehen_abbiegen
+polaziti	vertrekken	zmaj zmaj::97_losgehen_abbiegen
+Sutra polazimo u osam ujutro.	Morgen vertrekken we om acht uur 's ochtends.	zmaj zmaj::97_losgehen_abbiegen
+obići	bezichtigen / bezoeken	zmaj zmaj::97_losgehen_abbiegen
+Obišli smo cijelu Baščaršiju.	We hebben heel Baščaršija bezichtigd.	zmaj zmaj::97_losgehen_abbiegen
+obilaziti	bezichtigen / bezoeken	zmaj zmaj::97_losgehen_abbiegen
+Svake sedmice obilazim nanu.	Elke week bezoek ik oma.	zmaj zmaj::97_losgehen_abbiegen
+pobjeći	vluchten / weglopen	zmaj zmaj::97_losgehen_abbiegen
+Pas je pobjegao iz dvorišta.	De hond is van het erf weggelopen.	zmaj zmaj::97_losgehen_abbiegen
+bježati	vluchten / weglopen	zmaj zmaj::97_losgehen_abbiegen
+Zašto bježiš od mene?	Waarom loop je voor me weg?	zmaj zmaj::97_losgehen_abbiegen
+letjeti	vliegen	zmaj zmaj::97_losgehen_abbiegen
+Prvi put letim avionom.	Ik vlieg voor het eerst met het vliegtuig.	zmaj zmaj::97_losgehen_abbiegen
+skrenuti	afslaan	zmaj zmaj::97_losgehen_abbiegen
+Skrenite lijevo kod pošte.	Sla bij het postkantoor links af.	zmaj zmaj::97_losgehen_abbiegen
+skretati	afslaan	zmaj zmaj::97_losgehen_abbiegen
+Ovdje se ne smije skretati desno.	Hier mag je niet rechts afslaan.	zmaj zmaj::97_losgehen_abbiegen
+sastati se	afspreken (samenkomen)	zmaj zmaj::97_losgehen_abbiegen
+Moramo se sastati sutra ujutro.	We moeten morgenochtend afspreken.	zmaj zmaj::97_losgehen_abbiegen
+sastajati se	afspreken (samenkomen)	zmaj zmaj::97_losgehen_abbiegen
+Sastajemo se svakog petka poslije posla.	We zien elkaar elke vrijdag na het werk.	zmaj zmaj::97_losgehen_abbiegen
+boriti se	vechten	zmaj zmaj::98_kaempfen_angreifen
+Uvijek se borila za svoju djecu.	Ze heeft altijd voor haar kinderen gevochten.	zmaj zmaj::98_kaempfen_angreifen
+braniti	verdedigen	zmaj zmaj::98_kaempfen_angreifen
+Brat me uvijek brani u školi.	Mijn broer verdedigt me altijd op school.	zmaj zmaj::98_kaempfen_angreifen
+odbraniti	verdedigen	zmaj zmaj::98_kaempfen_angreifen
+Golman je odbranio penal.	De keeper heeft de strafschop gestopt.	zmaj zmaj::98_kaempfen_angreifen
+ubiti	doden	zmaj zmaj::98_kaempfen_angreifen
+Lovac je ubio medvjeda.	De jager heeft een beer gedood.	zmaj zmaj::98_kaempfen_angreifen
+ubijati	doden	zmaj zmaj::98_kaempfen_angreifen
+Ova vrućina me ubija!	Deze hitte maakt me kapot!	zmaj zmaj::98_kaempfen_angreifen
+poginuti	om het leven komen	zmaj zmaj::98_kaempfen_angreifen
+U nesreći su poginule dvije osobe.	Bij het ongeluk zijn twee mensen om het leven gekomen.	zmaj zmaj::98_kaempfen_angreifen
+udariti	slaan	zmaj zmaj::98_kaempfen_angreifen
+Brat me je udario bez razloga.	Mijn broer heeft me zonder reden geslagen.	zmaj zmaj::98_kaempfen_angreifen
+udarati	slaan	zmaj zmaj::98_kaempfen_angreifen
+Nemoj udarati loptom o zid!	Sla de bal niet tegen de muur!	zmaj zmaj::98_kaempfen_angreifen
+pucati	schieten	zmaj zmaj::98_kaempfen_angreifen
+Na svadbi su pucali u zrak.	Op de bruiloft hebben ze in de lucht geschoten.	zmaj zmaj::98_kaempfen_angreifen
+napasti	aanvallen	zmaj zmaj::98_kaempfen_angreifen
+Pas je napao poštara.	De hond heeft de postbode aangevallen.	zmaj zmaj::98_kaempfen_angreifen
+napadati	aanvallen	zmaj zmaj::98_kaempfen_angreifen
+Zašto me stalno napadaš?	Waarom val je me steeds aan?	zmaj zmaj::98_kaempfen_angreifen
+osvojiti	veroveren / winnen	zmaj zmaj::99_schuetzen_strafen
+Osvojili smo prvo mjesto!	We hebben de eerste plaats gewonnen!	zmaj zmaj::99_schuetzen_strafen
+osvajati	veroveren / winnen	zmaj zmaj::99_schuetzen_strafen
+Naši sportisti svake godine osvajaju medalje.	Onze sporters winnen elk jaar medailles.	zmaj zmaj::99_schuetzen_strafen
+zaštititi	beschermen	zmaj zmaj::99_schuetzen_strafen
+Krema će zaštititi kožu od sunca.	De crème zal de huid tegen de zon beschermen.	zmaj zmaj::99_schuetzen_strafen
+štititi	beschermen	zmaj zmaj::99_schuetzen_strafen
+Kaciga štiti glavu od udarca.	De helm beschermt het hoofd tegen klappen.	zmaj zmaj::99_schuetzen_strafen
+izazvati	veroorzaken	zmaj zmaj::99_schuetzen_strafen
+Kiša je izazvala velike poplave.	De regen heeft grote overstromingen veroorzaakt.	zmaj zmaj::99_schuetzen_strafen
+izazivati	veroorzaken	zmaj zmaj::99_schuetzen_strafen
+Pušenje izaziva rak pluća.	Roken veroorzaakt longkanker.	zmaj zmaj::99_schuetzen_strafen
+kazniti	straffen	zmaj zmaj::99_schuetzen_strafen
+Policija me je kaznila zbog brze vožnje.	De politie heeft me een boete gegeven voor te hard rijden.	zmaj zmaj::99_schuetzen_strafen
+kažnjavati	straffen	zmaj zmaj::99_schuetzen_strafen
+Roditelji ga nikad ne kažnjavaju.	Zijn ouders straffen hem nooit.	zmaj zmaj::99_schuetzen_strafen
+razbiti	stukslaan	zmaj zmaj::99_schuetzen_strafen
+Ko je razbio prozor?	Wie heeft het raam stukgeslagen?	zmaj zmaj::99_schuetzen_strafen
+razbijati	stukslaan	zmaj zmaj::99_schuetzen_strafen
+Djeca stalno razbijaju prozore loptom.	De kinderen slaan steeds ramen stuk met de bal.	zmaj zmaj::99_schuetzen_strafen
+peći	bakken	zmaj zmaj::100_im_alltag_tun
+Nana svaki dan peče hljeb.	Oma bakt elke dag brood.	zmaj zmaj::100_im_alltag_tun
+ispeći	bakken	zmaj zmaj::100_im_alltag_tun
+Ispekla sam pitu za goste.	Ik heb een pita gebakken voor de gasten.	zmaj zmaj::100_im_alltag_tun
+sipati	inschenken	zmaj zmaj::100_im_alltag_tun
+Sipaj mi još malo kahve.	Schenk me nog wat koffie in.	zmaj zmaj::100_im_alltag_tun
+srediti	in orde brengen	zmaj zmaj::100_im_alltag_tun
+Moram srediti papire za vizu.	Ik moet de papieren voor het visum in orde brengen.	zmaj zmaj::100_im_alltag_tun
+sređivati	in orde brengen	zmaj zmaj::100_im_alltag_tun
+Sređujemo kuću prije Bajrama.	Voor Bajram brengen we het huis in orde.	zmaj zmaj::100_im_alltag_tun
+spremiti	voorbereiden / klaarmaken	zmaj zmaj::100_im_alltag_tun
+Spremila sam ručak za sve.	Ik heb voor iedereen lunch klaargemaakt.	zmaj zmaj::100_im_alltag_tun
+spremati	voorbereiden / klaarmaken	zmaj zmaj::100_im_alltag_tun
+Sin mi sprema ispit iz matematike.	Mijn zoon bereidt zich voor op het wiskunde-examen.	zmaj zmaj::100_im_alltag_tun
+sakriti	verstoppen	zmaj zmaj::100_im_alltag_tun
+Gdje si sakrio moje ključeve?	Waar heb je mijn sleutels verstopt?	zmaj zmaj::100_im_alltag_tun
+skrivati	verbergen	zmaj zmaj::100_im_alltag_tun
+Znam da nešto skrivaš od mene.	Ik weet dat je iets voor me verbergt.	zmaj zmaj::100_im_alltag_tun
+uključiti	inschakelen / betrekken	zmaj zmaj::100_im_alltag_tun
+Uključi televizor, počinje utakmica.	Zet de televisie aan, de wedstrijd begint.	zmaj zmaj::100_im_alltag_tun
+uključivati	inschakelen / betrekken	zmaj zmaj::100_im_alltag_tun
+Da li cijena uključuje doručak?	Is het ontbijt bij de prijs inbegrepen?	zmaj zmaj::100_im_alltag_tun
+isključiti	uitschakelen / uitsluiten	zmaj zmaj::100_im_alltag_tun
+Isključi mobitel prije spavanja.	Zet je telefoon uit voor het slapengaan.	zmaj zmaj::100_im_alltag_tun
+isključivati	uitschakelen / uitsluiten	zmaj zmaj::100_im_alltag_tun
+Uvijek isključujem svjetlo kad izlazim.	Ik doe altijd het licht uit als ik wegga.	zmaj zmaj::100_im_alltag_tun
+popuniti	invullen	zmaj zmaj::101_erledigen_umziehen
+Popunite ovaj obrazac, molim Vas.	Vul dit formulier in, alstublieft.	zmaj zmaj::101_erledigen_umziehen
+popunjavati	invullen	zmaj zmaj::101_erledigen_umziehen
+Još uvijek popunjavam prijavu za posao.	Ik vul nog steeds de sollicitatie in.	zmaj zmaj::101_erledigen_umziehen
+zapisati	opschrijven	zmaj zmaj::101_erledigen_umziehen
+Zapiši moj broj telefona.	Schrijf mijn telefoonnummer op.	zmaj zmaj::101_erledigen_umziehen
+zapisivati	opschrijven	zmaj zmaj::101_erledigen_umziehen
+Na časovima zapisujem svaku novu riječ.	In de les schrijf ik elk nieuw woord op.	zmaj zmaj::101_erledigen_umziehen
+zakazati	maken (een afspraak)	zmaj zmaj::101_erledigen_umziehen
+Zakazao sam termin kod doktora.	Ik heb een afspraak bij de dokter gemaakt.	zmaj zmaj::101_erledigen_umziehen
+zakazivati	maken (een afspraak)	zmaj zmaj::101_erledigen_umziehen
+Termine zakazujemo samo telefonom.	Afspraken maken we alleen telefonisch.	zmaj zmaj::101_erledigen_umziehen
+uplatiti	storten	zmaj zmaj::101_erledigen_umziehen
+Uplatio sam novac na tvoj račun.	Ik heb het geld op je rekening gestort.	zmaj zmaj::101_erledigen_umziehen
+uplaćivati	storten	zmaj zmaj::101_erledigen_umziehen
+Svaki mjesec uplaćujem kiriju na račun.	Elke maand stort ik de huur op de rekening.	zmaj zmaj::101_erledigen_umziehen
+preseliti se	verhuizen	zmaj zmaj::101_erledigen_umziehen
+Preselili smo se u Tuzlu prošle godine.	Vorig jaar zijn we naar Tuzla verhuisd.	zmaj zmaj::101_erledigen_umziehen
+seliti se	verhuizen	zmaj zmaj::101_erledigen_umziehen
+Sljedeći mjesec se selimo.	Volgende maand verhuizen we.	zmaj zmaj::101_erledigen_umziehen
+pogriješiti	zich vergissen / een fout maken	zmaj zmaj::101_erledigen_umziehen
+Izvinite, pogriješio sam broj.	Sorry, ik heb een verkeerd nummer gebeld.	zmaj zmaj::101_erledigen_umziehen
+griješiti	zich vergissen / een fout maken	zmaj zmaj::101_erledigen_umziehen
+Svi griješimo, to je normalno.	We maken allemaal fouten, dat is normaal.	zmaj zmaj::101_erledigen_umziehen
+naviknuti se	wennen	zmaj zmaj::101_erledigen_umziehen
+Navikla sam se na novi posao.	Ik ben aan het nieuwe werk gewend.	zmaj zmaj::101_erledigen_umziehen
+navikavati se	wennen	zmaj zmaj::101_erledigen_umziehen
+Polako se navikavam na život ovdje.	Langzaam wen ik aan het leven hier.	zmaj zmaj::101_erledigen_umziehen
+sjeći	hakken (hout)	zmaj zmaj::101_erledigen_umziehen
+Sječem drva za zimu.	Ik hak hout voor de winter.	zmaj zmaj::101_erledigen_umziehen
+snimati	opnemen / filmen	zmaj zmaj::102_paare_nachholen
+Nemojte me snimati, molim Vas.	Film me alstublieft niet.	zmaj zmaj::102_paare_nachholen
+objavljivati	publiceren / posten	zmaj zmaj::102_paare_nachholen
+Ona svaki dan objavljuje slike na Instagramu.	Ze post elke dag foto's op Instagram.	zmaj zmaj::102_paare_nachholen
+polagati	afleggen (examen)	zmaj zmaj::102_paare_nachholen
+Sutra polažem vozački ispit.	Morgen doe ik mijn rijexamen.	zmaj zmaj::102_paare_nachholen
+otkazivati	afzeggen / annuleren	zmaj zmaj::102_paare_nachholen
+Zašto stalno otkazuješ naše sastanke?	Waarom zeg je steeds onze afspraken af?	zmaj zmaj::102_paare_nachholen
+pobjeđivati	winnen	zmaj zmaj::102_paare_nachholen
+Nana uvijek pobjeđuje u kartama.	Oma wint altijd met kaarten.	zmaj zmaj::102_paare_nachholen
+pakovati	inpakken	zmaj zmaj::102_paare_nachholen
+Još uvijek pakujem stvari za put.	Ik ben nog steeds de spullen voor de reis aan het inpakken.	zmaj zmaj::102_paare_nachholen
+prevoditi	vertalen	zmaj zmaj::102_paare_nachholen
+Moja sestra prevodi s njemačkog na bosanski.	Mijn zus vertaalt van het Duits naar het Bosnisch.	zmaj zmaj::102_paare_nachholen
+upisivati se	zich inschrijven	zmaj zmaj::102_paare_nachholen
+Studenti se upisuju u oktobru.	De studenten schrijven zich in oktober in.	zmaj zmaj::102_paare_nachholen
+zapošljavati se	een baan krijgen	zmaj zmaj::102_paare_nachholen
+Mladi se sve teže zapošljavaju.	Jongeren vinden steeds moeilijker een baan.	zmaj zmaj::102_paare_nachholen
+lomiti	breken (bot, glas)	zmaj zmaj::102_paare_nachholen
+Snijeg lomi grane na drveću.	De sneeuw breekt de takken aan de bomen.	zmaj zmaj::102_paare_nachholen
+propisivati	voorschrijven	zmaj zmaj::102_paare_nachholen
+Doktor rijetko propisuje antibiotike.	De dokter schrijft zelden antibiotica voor.	zmaj zmaj::102_paare_nachholen
+nacrtati	tekenen	zmaj zmaj::102_paare_nachholen
+Nacrtaj mi kuću i sunce.	Teken een huis en een zon voor me.	zmaj zmaj::102_paare_nachholen
+izračunati	rekenen	zmaj zmaj::102_paare_nachholen
+Izračunaj koliko nam treba novca.	Reken uit hoeveel geld we nodig hebben.	zmaj zmaj::102_paare_nachholen
+izgubiti se	verdwalen	zmaj zmaj::103_passieren
+Izgubili smo se u gradu.	We zijn in de stad verdwaald.	zmaj zmaj::103_passieren
+spasiti	redden	zmaj zmaj::103_passieren
+Vatrogasci su spasili dijete.	De brandweer heeft het kind gered.	zmaj zmaj::103_passieren
+povrijediti se	zich bezeren / gewond raken	zmaj zmaj::103_passieren
+Povrijedio sam se na poslu.	Ik heb me bezeerd op mijn werk.	zmaj zmaj::103_passieren
+paziti	opletten / oppassen	zmaj zmaj::103_passieren
+Pazi na sestru!	Let op je zus!	zmaj zmaj::103_passieren
+krvariti	bloeden	zmaj zmaj::103_passieren
+Rana jako krvari.	De wond bloedt hevig.	zmaj zmaj::103_passieren
+prehladiti se	verkouden worden	zmaj zmaj::103_passieren
+Obuci se toplo, prehladit ćeš se!	Kleed je warm aan, anders word je verkouden!	zmaj zmaj::103_passieren
+onesvijestiti se	flauwvallen	zmaj zmaj::103_passieren
+Žena se onesvijestila!	De vrouw is flauwgevallen!	zmaj zmaj::103_passieren
+boljeti / boliti	pijn doen	zmaj zmaj::103_passieren
+Boli me grlo.	Ik heb keelpijn.	zmaj zmaj::103_passieren
+disati / dihati	ademen	zmaj zmaj::103_passieren
+Ne mogu disati!	Ik kan niet ademen!	zmaj zmaj::103_passieren
+razboljeti se / razboliti se	ziek worden	zmaj zmaj::103_passieren
+Dijete se razboljelo.	Het kind is ziek geworden.	zmaj zmaj::103_passieren
+gorjeti / goriti	branden	zmaj zmaj::103_passieren
+Kuća gori!	Het huis staat in brand!	zmaj zmaj::103_passieren
+Upomoć!	Help!	zmaj zmaj::104_notfall
+Upomoć! Pomozite mi!	Help! Help me!	zmaj zmaj::104_notfall
+hitan slučaj	noodgeval	zmaj zmaj::104_notfall
+Ovo je hitan slučaj, zovite hitnu pomoć!	Dit is een noodgeval, bel de ambulance!	zmaj zmaj::104_notfall
+hitna	ambulance / hulpdiensten	zmaj zmaj::104_notfall
+Hitna je već na putu.	De ambulance is al onderweg.	zmaj zmaj::104_notfall
+vatrogasci	brandweer	zmaj zmaj::104_notfall
+Zovite vatrogasce!	Bel de brandweer!	zmaj zmaj::104_notfall
+požar	brand	zmaj zmaj::104_notfall
+U zgradi je izbio požar.	Er is brand uitgebroken in het gebouw.	zmaj zmaj::104_notfall
+nesreća	ongeluk / ongeval	zmaj zmaj::104_notfall
+Desila se nesreća na autoputu.	Er is een ongeluk gebeurd op de snelweg.	zmaj zmaj::104_notfall
+povreda	verwonding	zmaj zmaj::104_notfall
+Povreda nije teška.	De verwonding is niet ernstig.	zmaj zmaj::104_notfall
+rana	wond	zmaj zmaj::104_notfall
+Treba očistiti ranu.	De wond moet schoongemaakt worden.	zmaj zmaj::104_notfall
+krv	bloed	zmaj zmaj::104_notfall
+Imaš krv na ruci.	Je hebt bloed aan je hand.	zmaj zmaj::104_notfall
+lopov	dief	zmaj zmaj::104_notfall
+Lopov je pobjegao, zovite policiju!	De dief is weggerend, bel de politie!	zmaj zmaj::104_notfall
+daleko	ver (weg)	zmaj zmaj::105_lang_kurz
+Je li daleko do centra?	Is het ver naar het centrum?	zmaj zmaj::105_lang_kurz
+visok	hoog / groot (van postuur)	zmaj zmaj::105_lang_kurz
+Moj brat je jako visok.	Mijn broer is heel lang.	zmaj zmaj::105_lang_kurz
+težak	zwaar	zmaj zmaj::105_lang_kurz
+Ovaj kofer je jako težak.	Deze koffer is erg zwaar.	zmaj zmaj::105_lang_kurz
+širok	breed	zmaj zmaj::105_lang_kurz
+Rijeka je ovdje jako široka.	De rivier is hier erg breed.	zmaj zmaj::105_lang_kurz
+dug	lang	zmaj zmaj::105_lang_kurz
+Ovo je bio dug dan.	Dat was een lange dag.	zmaj zmaj::105_lang_kurz
+nizak	laag / klein (van postuur)	zmaj zmaj::105_lang_kurz
+Ovdje su cijene niske.	Hier zijn de prijzen laag.	zmaj zmaj::105_lang_kurz
+kratak	kort	zmaj zmaj::105_lang_kurz
+Život je kratak.	Het leven is kort.	zmaj zmaj::105_lang_kurz
+uzak	nauw / smal	zmaj zmaj::105_lang_kurz
+Ove cipele su mi uske.	Deze schoenen zitten me te krap.	zmaj zmaj::105_lang_kurz
+lagan	licht (van gewicht)	zmaj zmaj::105_lang_kurz
+Torba je lagana, nosit ću je sama.	De tas is licht, ik draag hem zelf.	zmaj zmaj::105_lang_kurz
+tanak	dun	zmaj zmaj::105_lang_kurz
+Zidovi su tanki, sve se čuje.	De muren zijn dun, je hoort alles.	zmaj zmaj::105_lang_kurz
+debeo	dik	zmaj zmaj::105_lang_kurz
+Ova knjiga je baš debela.	Dit boek is echt dik.	zmaj zmaj::105_lang_kurz
+mršav	mager	zmaj zmaj::105_lang_kurz
+Mršav si, jedi malo više!	Je bent mager, eet wat meer!	zmaj zmaj::105_lang_kurz
+isti	hetzelfde / dezelfde	zmaj zmaj::106_voll_leer
+Imamo iste cipele!	We hebben dezelfde schoenen!	zmaj zmaj::106_voll_leer
+jak	sterk	zmaj zmaj::106_voll_leer
+Jak je kao medvjed.	Hij is zo sterk als een beer.	zmaj zmaj::106_voll_leer
+pun	vol	zmaj zmaj::106_voll_leer
+Autobus je bio pun.	De bus was vol.	zmaj zmaj::106_voll_leer
+bogat	rijk	zmaj zmaj::106_voll_leer
+Njegova porodica je jako bogata.	Zijn familie is heel rijk.	zmaj zmaj::106_voll_leer
+drugačiji	anders	zmaj zmaj::106_voll_leer
+Danas si nekako drugačiji.	Je bent vandaag op de een of andere manier anders.	zmaj zmaj::106_voll_leer
+slab	zwak	zmaj zmaj::106_voll_leer
+Signal je ovdje slab.	Het bereik is hier zwak.	zmaj zmaj::106_voll_leer
+prazan	leeg	zmaj zmaj::106_voll_leer
+Frižider je opet prazan.	De koelkast is alweer leeg.	zmaj zmaj::106_voll_leer
+tačan	juist / precies	zmaj zmaj::106_voll_leer
+Je li ovo tačna adresa?	Is dit het juiste adres?	zmaj zmaj::106_voll_leer
+suh	droog	zmaj zmaj::106_voll_leer
+Veš je već suh.	De was is al droog.	zmaj zmaj::106_voll_leer
+pogrešan	verkeerd	zmaj zmaj::106_voll_leer
+Ušli smo u pogrešan autobus.	We zijn in de verkeerde bus gestapt.	zmaj zmaj::106_voll_leer
+siromašan	arm	zmaj zmaj::106_voll_leer
+Odrastao sam u siromašnoj porodici.	Ik ben in een arm gezin opgegroeid.	zmaj zmaj::106_voll_leer
+tvrd	hard	zmaj zmaj::106_voll_leer
+Hljeb je tvrd, od jučer je.	Het brood is hard, het is van gisteren.	zmaj zmaj::106_voll_leer
+mokar	nat	zmaj zmaj::106_voll_leer
+Sav sam mokar od kiše.	Ik ben helemaal nat van de regen.	zmaj zmaj::106_voll_leer
+mekan	zacht	zmaj zmaj::106_voll_leer
+Jastuk je jako mekan.	Het kussen is heel zacht.	zmaj zmaj::106_voll_leer
+potreban	nodig	zmaj zmaj::107_moeglich
+Potrebna mi je tvoja pomoć.	Ik heb je hulp nodig.	zmaj zmaj::107_moeglich
+moguć	mogelijk	zmaj zmaj::107_moeglich
+Je li moguće platiti karticom?	Is het mogelijk om met de kaart te betalen?	zmaj zmaj::107_moeglich
+poseban	bijzonder	zmaj zmaj::107_moeglich
+Danas je poseban dan.	Vandaag is een bijzondere dag.	zmaj zmaj::107_moeglich
+siguran	veilig / zeker	zmaj zmaj::107_moeglich
+Je li ovdje sigurno noću?	Is het hier 's nachts veilig?	zmaj zmaj::107_moeglich
+sličan	soortgelijk	zmaj zmaj::107_moeglich
+Ti i brat ste jako slični.	Jij en je broer lijken erg op elkaar.	zmaj zmaj::107_moeglich
+spreman	gereed	zmaj zmaj::107_moeglich
+Jesi li spremna? Krećemo.	Ben je klaar? We vertrekken.	zmaj zmaj::107_moeglich
+slobodan	vrij	zmaj zmaj::107_moeglich
+Jesi li slobodan u subotu?	Ben je zaterdag vrij?	zmaj zmaj::107_moeglich
+jednostavan	eenvoudig	zmaj zmaj::107_moeglich
+Recept je jako jednostavan.	Het recept is heel eenvoudig.	zmaj zmaj::107_moeglich
+običan	gewoon / normaal	zmaj zmaj::107_moeglich
+Ja sam običan čovjek.	Ik ben een heel gewoon mens.	zmaj zmaj::107_moeglich
+čudan	vreemd / raar	zmaj zmaj::107_moeglich
+To je baš čudno.	Dat is echt vreemd.	zmaj zmaj::107_moeglich
+nemoguć	onmogelijk	zmaj zmaj::107_moeglich
+To je nemoguće!	Dat is onmogelijk!	zmaj zmaj::107_moeglich
+gotov	klaar / af	zmaj zmaj::107_moeglich
+Ručak je gotov!	Het middageten is klaar!	zmaj zmaj::107_moeglich
+komplikovan	ingewikkeld	zmaj zmaj::107_moeglich
+Sve je to previše komplikovano.	Het is allemaal veel te ingewikkeld.	zmaj zmaj::107_moeglich
+zauzet	bezet / druk	zmaj zmaj::107_moeglich
+Izvini, sad sam zauzet.	Sorry, ik heb het nu druk.	zmaj zmaj::107_moeglich
+pravi	echt	zmaj zmaj::107_moeglich
+Ovo je prava bosanska kahva.	Dit is echte Bosnische koffie.	zmaj zmaj::107_moeglich
+drag	lief	zmaj zmaj::108_wie_jemand_ist
+Tvoja mama je jako draga.	Je mama is heel lief.	zmaj zmaj::108_wie_jemand_ist
+ozbiljan	ernstig / serieus	zmaj zmaj::108_wie_jemand_ist
+Ovo je ozbiljan problem.	Dit is een ernstig probleem.	zmaj zmaj::108_wie_jemand_ist
+vrijedan	ijverig	zmaj zmaj::108_wie_jemand_ist
+Moja kćerka je jako vrijedna.	Mijn dochter is erg ijverig.	zmaj zmaj::108_wie_jemand_ist
+pametan	slim	zmaj zmaj::108_wie_jemand_ist
+Ona je jako pametna.	Ze is heel slim.	zmaj zmaj::108_wie_jemand_ist
+iskren	oprecht / open	zmaj zmaj::108_wie_jemand_ist
+Budi iskren, sviđa li ti se?	Wees eerlijk, vind je het mooi?	zmaj zmaj::108_wie_jemand_ist
+zao	gemeen / boosaardig	zmaj zmaj::108_wie_jemand_ist
+Pas nije zao, samo laje.	De hond is niet gemeen, hij blaft alleen.	zmaj zmaj::108_wie_jemand_ist
+hrabar	dapper	zmaj zmaj::108_wie_jemand_ist
+Bio si jako hrabar.	Je was heel dapper.	zmaj zmaj::108_wie_jemand_ist
+glup	dom	zmaj zmaj::108_wie_jemand_ist
+To je bilo glupo od mene.	Dat was dom van me.	zmaj zmaj::108_wie_jemand_ist
+pošten	eerlijk	zmaj zmaj::108_wie_jemand_ist
+On je pošten čovjek.	Hij is een eerlijk mens.	zmaj zmaj::108_wie_jemand_ist
+veseo	vrolijk	zmaj zmaj::108_wie_jemand_ist
+Uvijek je vesela i nasmijana.	Ze is altijd vrolijk en lacht veel.	zmaj zmaj::108_wie_jemand_ist
+oprezan	voorzichtig	zmaj zmaj::108_wie_jemand_ist
+Budi oprezan, vani je klizavo.	Wees voorzichtig, het is glad buiten.	zmaj zmaj::108_wie_jemand_ist
+ljubazan	vriendelijk	zmaj zmaj::109_benehmen
+Prodavačica je bila jako ljubazna.	De verkoopster was heel vriendelijk.	zmaj zmaj::109_benehmen
+pristojan	beleefd / fatsoenlijk	zmaj zmaj::109_benehmen
+Budi pristojan pred gostima!	Wees beleefd tegen de gasten!	zmaj zmaj::109_benehmen
+pažljiv	attent / zorgzaam	zmaj zmaj::109_benehmen
+Hvala, baš si pažljiv.	Dank je, dat is heel attent van je.	zmaj zmaj::109_benehmen
+lijen	lui	zmaj zmaj::109_benehmen
+Ne budi lijen, ustaj!	Wees niet lui, sta op!	zmaj zmaj::109_benehmen
+strpljiv	geduldig	zmaj zmaj::109_benehmen
+Budi strpljiv, doći će.	Wees geduldig, hij komt wel.	zmaj zmaj::109_benehmen
+sebičan	egoïstisch	zmaj zmaj::109_benehmen
+Nemoj biti tako sebičan.	Wees niet zo egoïstisch.	zmaj zmaj::109_benehmen
+smiren	rustig / kalm	zmaj zmaj::109_benehmen
+On je uvijek smiren.	Hij is altijd rustig.	zmaj zmaj::109_benehmen
+bezobrazan	brutaal / onbeschoft	zmaj zmaj::109_benehmen
+Ne budi bezobrazan!	Doe niet zo brutaal!	zmaj zmaj::109_benehmen
+tvrdoglav	koppig	zmaj zmaj::109_benehmen
+Tvrdoglav si kao babo.	Je bent net zo koppig als papa.	zmaj zmaj::109_benehmen
+stidljiv	verlegen	zmaj zmaj::109_benehmen
+Naš sin je malo stidljiv.	Onze zoon is een beetje verlegen.	zmaj zmaj::109_benehmen
+škrt	gierig	zmaj zmaj::109_benehmen
+Ne budi škrt, danas ti častiš!	Doe niet zo gierig, vandaag trakteer jij!	zmaj zmaj::109_benehmen
+sreća	geluk	zmaj zmaj::110_glueck_sorgen
+Imali smo sreće!	We hadden geluk!	zmaj zmaj::110_glueck_sorgen
+osjećaj	gevoel	zmaj zmaj::110_glueck_sorgen
+Imam dobar osjećaj.	Ik heb een goed gevoel.	zmaj zmaj::110_glueck_sorgen
+briga	zorg	zmaj zmaj::110_glueck_sorgen
+Bez brige, sve će biti u redu.	Geen zorgen, alles komt goed.	zmaj zmaj::110_glueck_sorgen
+zahvalan	dankbaar	zmaj zmaj::110_glueck_sorgen
+Zahvalan sam ti na svemu.	Ik ben je dankbaar voor alles.	zmaj zmaj::110_glueck_sorgen
+Sretno!	Veel succes!	zmaj zmaj::110_glueck_sorgen
+Sretno na ispitu!	Veel succes met je examen!	zmaj zmaj::110_glueck_sorgen
+zabrinut	bezorgd	zmaj zmaj::110_glueck_sorgen
+Mama je zabrinuta jer se ne javljaš.	Mama maakt zich zorgen omdat je niets laat horen.	zmaj zmaj::110_glueck_sorgen
+zbunjen	in de war	zmaj zmaj::110_glueck_sorgen
+Malo sam zbunjen, možeš li ponoviti?	Ik ben een beetje in de war, kun je dat herhalen?	zmaj zmaj::110_glueck_sorgen
+razočaran	teleurgesteld	zmaj zmaj::110_glueck_sorgen
+Malo sam razočaran.	Ik ben een beetje teleurgesteld.	zmaj zmaj::110_glueck_sorgen
+ljubomoran	jaloers	zmaj zmaj::110_glueck_sorgen
+Ne budi ljubomoran!	Wees niet jaloers!	zmaj zmaj::110_glueck_sorgen
+zaljubljen	verliefd	zmaj zmaj::110_glueck_sorgen
+Zaljubljen je do ušiju.	Hij is tot over zijn oren verliefd.	zmaj zmaj::110_glueck_sorgen
+opušten	ontspannen	zmaj zmaj::110_glueck_sorgen
+Na odmoru sam potpuno opušten.	Op vakantie ben ik helemaal ontspannen.	zmaj zmaj::110_glueck_sorgen
+uzbuđen	opgewonden	zmaj zmaj::110_glueck_sorgen
+Djeca su uzbuđena zbog puta.	De kinderen zijn opgewonden over de reis.	zmaj zmaj::110_glueck_sorgen
+uplašen	bang / geschrokken	zmaj zmaj::110_glueck_sorgen
+Dijete je bilo jako uplašeno.	Het kind was erg bang.	zmaj zmaj::110_glueck_sorgen
+pospan	slaperig	zmaj zmaj::110_glueck_sorgen
+Pospan sam, idem leći.	Ik ben slaperig, ik ga liggen.	zmaj zmaj::110_glueck_sorgen
+osjetiti	voelen / aanvoelen	zmaj zmaj::111_sinne
+Osjetio sam da nešto nije u redu.	Ik voelde dat er iets niet klopte.	zmaj zmaj::111_sinne
+primijetiti	opmerken / merken	zmaj zmaj::111_sinne
+Nisam primijetio da si se ošišala.	Ik had niet gemerkt dat je naar de kapper was geweest.	zmaj zmaj::111_sinne
+probati	proberen / proeven	zmaj zmaj::111_sinne
+Probaj ovo, fino je!	Proef dit eens, het is lekker!	zmaj zmaj::111_sinne
+miris	geur	zmaj zmaj::111_sinne
+Kakav lijep miris!	Wat een heerlijke geur!	zmaj zmaj::111_sinne
+taman	donker	zmaj zmaj::111_sinne
+U sobi je tamno, upali svjetlo.	Het is donker in de kamer, doe het licht aan.	zmaj zmaj::111_sinne
+okus	smaak (eten)	zmaj zmaj::111_sinne
+Ovo ima čudan okus.	Dit smaakt raar.	zmaj zmaj::111_sinne
+ukus	smaak (stijl)	zmaj zmaj::111_sinne
+Imaš dobar ukus.	Je hebt een goede smaak.	zmaj zmaj::111_sinne
+svijetao	licht / helder	zmaj zmaj::111_sinne
+Stan je lijep i svijetao.	Het appartement is mooi en licht.	zmaj zmaj::111_sinne
+mrak	duisternis	zmaj zmaj::111_sinne
+Vani je već mrak.	Het is buiten al donker.	zmaj zmaj::111_sinne
+buka	lawaai	zmaj zmaj::111_sinne
+Kakva je ovo buka?	Wat is dat voor lawaai?	zmaj zmaj::111_sinne
+tišina	stilte	zmaj zmaj::111_sinne
+Tišina, molim vas!	Stilte, alstublieft!	zmaj zmaj::111_sinne
+tih	stil	zmaj zmaj::111_sinne
+Ovdje je noću jako tiho.	Het is hier 's nachts heel stil.	zmaj zmaj::111_sinne
+dirati	aanraken	zmaj zmaj::111_sinne
+Ne diraj, vruće je!	Niet aankomen, het is heet!	zmaj zmaj::111_sinne
+glasan	luid / lawaaierig	zmaj zmaj::111_sinne
+Komšije su jako glasne.	De buren zijn erg luidruchtig.	zmaj zmaj::111_sinne
+gorak	bitter	zmaj zmaj::111_sinne
+Kahva je gorka bez šećera.	Zonder suiker is de koffie bitter.	zmaj zmaj::111_sinne
+mirisati	ruiken / geuren	zmaj zmaj::111_sinne
+Kuhinja miriše na pitu.	De keuken ruikt naar pita.	zmaj zmaj::111_sinne
+smrdjeti / smrditi	stinken	zmaj zmaj::111_sinne
+Nešto smrdi u frižideru.	Er stinkt iets in de koelkast.	zmaj zmaj::111_sinne
+bljutav	flauw / smakeloos	zmaj zmaj::111_sinne
+Supa je bljutava, fali joj soli.	De soep is flauw, er moet zout bij.	zmaj zmaj::111_sinne
+lice	gezicht	zmaj zmaj::112_koerper_aussen
+Imaš nešto na licu.	Je hebt iets op je gezicht.	zmaj zmaj::112_koerper_aussen
+jezik	tong	zmaj zmaj::112_koerper_aussen
+Ugrizao sam se za jezik.	Ik heb op mijn tong gebeten.	zmaj zmaj::112_koerper_aussen
+čelo	voorhoofd	zmaj zmaj::112_koerper_aussen
+Čelo ti je vruće, imaš li temperaturu?	Je voorhoofd is warm, heb je koorts?	zmaj zmaj::112_koerper_aussen
+rame	schouder	zmaj zmaj::112_koerper_aussen
+Dijete mi je zaspalo na ramenu.	Het kind is op mijn schouder in slaap gevallen.	zmaj zmaj::112_koerper_aussen
+koljeno	knie	zmaj zmaj::112_koerper_aussen
+Pao sam i razbio koljeno.	Ik ben gevallen en heb mijn knie opengehaald.	zmaj zmaj::112_koerper_aussen
+prsa	borst	zmaj zmaj::112_koerper_aussen
+Boli me u prsima.	Ik heb pijn op de borst.	zmaj zmaj::112_koerper_aussen
+usna	lip	zmaj zmaj::112_koerper_aussen
+Ispucale su mi usne od hladnoće.	Mijn lippen zijn gesprongen van de kou.	zmaj zmaj::112_koerper_aussen
+obraz	wang	zmaj zmaj::112_koerper_aussen
+Nana me poljubila u obraz.	Oma gaf me een kus op mijn wang.	zmaj zmaj::112_koerper_aussen
+stopalo	voet	zmaj zmaj::112_koerper_aussen
+Od hodanja me bole stopala.	Mijn voeten doen pijn van het lopen.	zmaj zmaj::112_koerper_aussen
+nokat	nagel	zmaj zmaj::112_koerper_aussen
+Ne grizi nokte!	Bijt niet op je nagels!	zmaj zmaj::112_koerper_aussen
+brada	kin / baard	zmaj zmaj::112_koerper_aussen
+Babo je pustio bradu.	Papa heeft een baard laten staan.	zmaj zmaj::112_koerper_aussen
+kuk	heup	zmaj zmaj::112_koerper_aussen
+Nana je slomila kuk.	Oma heeft haar heup gebroken.	zmaj zmaj::112_koerper_aussen
+lakat	elleboog	zmaj zmaj::112_koerper_aussen
+Ne stavljaj laktove na sto!	Geen ellebogen op tafel!	zmaj zmaj::112_koerper_aussen
+tijelo	lichaam	zmaj zmaj::113_koerper_innen
+Cijelo tijelo me boli.	Mijn hele lichaam doet pijn.	zmaj zmaj::113_koerper_innen
+koža	huid	zmaj zmaj::113_koerper_innen
+Zimi mi je koža jako suha.	In de winter is mijn huid erg droog.	zmaj zmaj::113_koerper_innen
+kost	bot	zmaj zmaj::113_koerper_innen
+Daj psu kost.	Geef de hond het bot.	zmaj zmaj::113_koerper_innen
+mišić	spier	zmaj zmaj::113_koerper_innen
+Poslije treninga me bole svi mišići.	Na de training doen al mijn spieren pijn.	zmaj zmaj::113_koerper_innen
+mozak	hersenen	zmaj zmaj::113_koerper_innen
+Mozak mi više ne radi, idem spavati.	Mijn hersenen werken niet meer, ik ga slapen.	zmaj zmaj::113_koerper_innen
+zglob	gewricht	zmaj zmaj::113_koerper_innen
+Bole me zglobovi kad se vrijeme mijenja.	Mijn gewrichten doen pijn als het weer omslaat.	zmaj zmaj::113_koerper_innen
+pluća	longen	zmaj zmaj::113_koerper_innen
+Doktor mi je slušao pluća.	De dokter heeft naar mijn longen geluisterd.	zmaj zmaj::113_koerper_innen
+grlo	keel	zmaj zmaj::113_koerper_innen
+Grlo mi je suho, daj mi malo vode.	Mijn keel is droog, geef me wat water.	zmaj zmaj::113_koerper_innen
+jetra	lever	zmaj zmaj::113_koerper_innen
+Alkohol šteti jetri.	Alcohol schaadt de lever.	zmaj zmaj::113_koerper_innen
+bubreg	nier	zmaj zmaj::113_koerper_innen
+Ima kamen u bubregu.	Hij heeft een niersteen.	zmaj zmaj::113_koerper_innen
+želudac	maag	zmaj zmaj::113_koerper_innen
+Imam osjetljiv želudac.	Ik heb een gevoelige maag.	zmaj zmaj::113_koerper_innen
+bolest	ziekte	zmaj zmaj::114_krank_sein
+Ta bolest nije zarazna.	Deze ziekte is niet besmettelijk.	zmaj zmaj::114_krank_sein
+virus	virus	zmaj zmaj::114_krank_sein
+To je neki virus, proći će za par dana.	Het is een of ander virus, dat gaat over een paar dagen over.	zmaj zmaj::114_krank_sein
+rak	kanker	zmaj zmaj::114_krank_sein
+Komšinica se liječi od raka.	De buurvrouw wordt behandeld voor kanker.	zmaj zmaj::114_krank_sein
+trudnoća	zwangerschap	zmaj zmaj::114_krank_sein
+Kako ide trudnoća?	Hoe gaat het met de zwangerschap?	zmaj zmaj::114_krank_sein
+stres	stress	zmaj zmaj::114_krank_sein
+Imam puno stresa na poslu.	Ik heb veel stress op mijn werk.	zmaj zmaj::114_krank_sein
+infekcija	infectie	zmaj zmaj::114_krank_sein
+Doktor kaže da je to virusna infekcija.	De dokter zegt dat het een virusinfectie is.	zmaj zmaj::114_krank_sein
+upala	ontsteking	zmaj zmaj::114_krank_sein
+Imam upalu grla.	Ik heb keelontsteking.	zmaj zmaj::114_krank_sein
+gripa	griep	zmaj zmaj::114_krank_sein
+Cijela porodica je imala gripu.	Het hele gezin had griep.	zmaj zmaj::114_krank_sein
+dijabetes	diabetes	zmaj zmaj::114_krank_sein
+Nana ima dijabetes, ne smije jesti slatko.	Oma heeft diabetes, ze mag niets zoets eten.	zmaj zmaj::114_krank_sein
+zarazan	besmettelijk	zmaj zmaj::114_krank_sein
+Je li to zarazno?	Is het besmettelijk?	zmaj zmaj::114_krank_sein
+trudna	zwanger	zmaj zmaj::114_krank_sein
+Moja sestra je trudna!	Mijn zus is zwanger!	zmaj zmaj::114_krank_sein
+prehlada	verkoudheid	zmaj zmaj::114_krank_sein
+Nije to ništa, samo obična prehlada.	Het is niets, gewoon een verkoudheid.	zmaj zmaj::114_krank_sein
+moždani udar	beroerte	zmaj zmaj::114_krank_sein
+Komšija je imao moždani udar.	De buurman heeft een beroerte gehad.	zmaj zmaj::114_krank_sein
+srčani udar / infarkt	hartaanval	zmaj zmaj::114_krank_sein
+Dedo je prošle godine imao srčani udar.	Opa heeft vorig jaar een hartaanval gehad.	zmaj zmaj::114_krank_sein
+slomiti	breken (bot, glas)	zmaj zmaj::115_beschwerden
+Slomio je ruku na skijanju.	Hij heeft zijn arm gebroken bij het skiën.	zmaj zmaj::115_beschwerden
+umor	vermoeidheid	zmaj zmaj::115_beschwerden
+Nije to bolest, to je samo umor.	Het is geen ziekte, het is gewoon vermoeidheid.	zmaj zmaj::115_beschwerden
+kašalj	de hoest	zmaj zmaj::115_beschwerden
+Od kašlja ne mogu spavati.	Ik kan niet slapen van het hoesten.	zmaj zmaj::115_beschwerden
+mučnina	misselijkheid	zmaj zmaj::115_beschwerden
+Od jutros imam mučninu.	Ik ben al sinds vanochtend misselijk.	zmaj zmaj::115_beschwerden
+osip	uitslag	zmaj zmaj::115_beschwerden
+Dijete ima osip po cijelom tijelu.	Het kind heeft over het hele lichaam uitslag.	zmaj zmaj::115_beschwerden
+povraćati	overgeven	zmaj zmaj::115_beschwerden
+Dijete je povraćalo u autu.	Het kind heeft overgegeven in de auto.	zmaj zmaj::115_beschwerden
+vrtoglavica	duizeligheid	zmaj zmaj::115_beschwerden
+Imam vrtoglavicu kad naglo ustanem.	Ik word duizelig als ik snel opsta.	zmaj zmaj::115_beschwerden
+modrica	blauwe plek	zmaj zmaj::115_beschwerden
+Odakle ti ova modrica?	Waar heb je die blauwe plek van?	zmaj zmaj::115_beschwerden
+proljev	diarree	zmaj zmaj::115_beschwerden
+Dijete ima proljev, daj mu puno vode.	Het kind heeft diarree, geef het veel water.	zmaj zmaj::115_beschwerden
+znojiti se	zweten	zmaj zmaj::115_beschwerden
+Noću se jako znojim.	's Nachts zweet ik erg.	zmaj zmaj::115_beschwerden
+oteći	opzwellen	zmaj zmaj::115_beschwerden
+Otekla mi je noga.	Mijn been is opgezwollen.	zmaj zmaj::115_beschwerden
+kašljati	hoesten	zmaj zmaj::115_beschwerden
+Dijete cijelu noć kašlje.	Het kind hoest de hele nacht.	zmaj zmaj::115_beschwerden
+svrbjeti / svrbiti	jeuken	zmaj zmaj::115_beschwerden
+Ujeo me komarac, sad me sve svrbi.	Ik ben door een mug gestoken, nu jeukt alles.	zmaj zmaj::115_beschwerden
+zubobolja	kiespijn	zmaj zmaj::115_beschwerden
+Imam strašnu zubobolju, moram kod zubara.	Ik heb vreselijke kiespijn, ik moet naar de tandarts.	zmaj zmaj::115_beschwerden
+Muka mi je.	Ik ben misselijk.	zmaj zmaj::115_beschwerden
+Stani malo, muka mi je.	Stop even, ik ben misselijk.	zmaj zmaj::115_beschwerden
+kontrola	controle / nacontrole	zmaj zmaj::116_in_der_praxis
+Za dvije sedmice dođite na kontrolu.	Komt u over twee weken terug voor controle.	zmaj zmaj::116_in_der_praxis
+pacijent	patiënt	zmaj zmaj::116_in_der_praxis
+Doktor danas ima puno pacijenata.	De dokter heeft vandaag veel patiënten.	zmaj zmaj::116_in_der_praxis
+simptom	symptoom	zmaj zmaj::116_in_der_praxis
+Koje simptome imate?	Welke symptomen heeft u?	zmaj zmaj::116_in_der_praxis
+propisati	voorschrijven	zmaj zmaj::116_in_der_praxis
+Doktor mi je propisao antibiotik.	De dokter heeft me een antibioticum voorgeschreven.	zmaj zmaj::116_in_der_praxis
+terapija	therapie	zmaj zmaj::116_in_der_praxis
+On ide na fizikalnu terapiju.	Hij gaat naar de fysiotherapeut.	zmaj zmaj::116_in_der_praxis
+nalaz	testuitslag	zmaj zmaj::116_in_der_praxis
+Nalazi su dobri, ništa ti nije.	De uitslagen zijn goed, je mankeert niets.	zmaj zmaj::116_in_der_praxis
+naočale	bril	zmaj zmaj::116_in_der_praxis
+Gdje su mi naočale?	Waar is mijn bril?	zmaj zmaj::116_in_der_praxis
+injekcija	injectie	zmaj zmaj::116_in_der_praxis
+Ne plači, injekcija ne boli.	Niet huilen, de prik doet geen pijn.	zmaj zmaj::116_in_der_praxis
+ginekolog	gynaecoloog	zmaj zmaj::116_in_der_praxis
+Imam termin kod ginekologa u petak.	Ik heb vrijdag een afspraak bij de gynaecoloog.	zmaj zmaj::116_in_der_praxis
+ordinacija	dokterspraktijk	zmaj zmaj::116_in_der_praxis
+Ordinacija radi od osam do dva.	De praktijk is open van acht tot twee.	zmaj zmaj::116_in_der_praxis
+pedijatar	kinderarts	zmaj zmaj::116_in_der_praxis
+Sutra vodim dijete kod pedijatra.	Morgen breng ik het kind naar de kinderarts.	zmaj zmaj::116_in_der_praxis
+ultrazvuk	echo	zmaj zmaj::116_in_der_praxis
+Sutra idem na ultrazvuk.	Morgen ga ik voor een echo.	zmaj zmaj::116_in_der_praxis
+čekaonica	wachtkamer	zmaj zmaj::116_in_der_praxis
+Čekaonica je bila puna.	De wachtkamer zat vol.	zmaj zmaj::116_in_der_praxis
+rendgen	röntgenfoto	zmaj zmaj::116_in_der_praxis
+Doktor me poslao na rendgen.	De dokter heeft me voor een röntgenfoto gestuurd.	zmaj zmaj::116_in_der_praxis
+dom zdravlja	gezondheidscentrum	zmaj zmaj::116_in_der_praxis
+Idem u dom zdravlja po uputnicu.	Ik ga naar het gezondheidscentrum om een verwijsbrief te halen.	zmaj zmaj::116_in_der_praxis
+liječiti	behandelen / genezen	zmaj zmaj::117_untersuchen_heilen
+Koji doktor te liječi?	Welke dokter behandelt je?	zmaj zmaj::117_untersuchen_heilen
+izliječiti	behandelen / genezen	zmaj zmaj::117_untersuchen_heilen
+To se može izliječiti.	Dat is te genezen.	zmaj zmaj::117_untersuchen_heilen
+pregledati	onderzoeken	zmaj zmaj::117_untersuchen_heilen
+Doktor me pregledao i rekao da je sve u redu.	De dokter heeft me onderzocht en gezegd dat alles in orde is.	zmaj zmaj::117_untersuchen_heilen
+mjeriti	meten	zmaj zmaj::117_untersuchen_heilen
+Babo svako jutro mjeri pritisak.	Papa meet elke ochtend zijn bloeddruk.	zmaj zmaj::117_untersuchen_heilen
+izmjeriti	meten	zmaj zmaj::117_untersuchen_heilen
+Izmjeri mu temperaturu.	Meet zijn temperatuur eens.	zmaj zmaj::117_untersuchen_heilen
+oporaviti se	herstellen	zmaj zmaj::117_untersuchen_heilen
+Treba ti vremena da se oporaviš.	Je hebt tijd nodig om te herstellen.	zmaj zmaj::117_untersuchen_heilen
+oporavljati se	herstellen	zmaj zmaj::117_untersuchen_heilen
+Babo se još oporavlja od operacije.	Papa herstelt nog van de operatie.	zmaj zmaj::117_untersuchen_heilen
+gutati	slikken	zmaj zmaj::117_untersuchen_heilen
+Boli me kad gutam.	Het doet pijn als ik slik.	zmaj zmaj::117_untersuchen_heilen
+progutati	slikken	zmaj zmaj::117_untersuchen_heilen
+Progutaj tabletu s malo vode.	Slik de tablet door met wat water.	zmaj zmaj::117_untersuchen_heilen
+udahnuti	inademen	zmaj zmaj::117_untersuchen_heilen
+Duboko udahnite.	Adem diep in.	zmaj zmaj::117_untersuchen_heilen
+ozdraviti	beter worden	zmaj zmaj::117_untersuchen_heilen
+Dijete je ozdravilo, sutra ide u školu.	Het kind is weer beter, morgen gaat het naar school.	zmaj zmaj::117_untersuchen_heilen
+vitamin	vitamine	zmaj zmaj::118_apotheke
+Zimi djeci dajem vitamine.	In de winter geef ik de kinderen vitamines.	zmaj zmaj::118_apotheke
+mast	zalf	zmaj zmaj::118_apotheke
+Namaži ovu mast dva puta dnevno.	Smeer deze zalf twee keer per dag.	zmaj zmaj::118_apotheke
+tableta	tablet	zmaj zmaj::118_apotheke
+Uzmi jednu tabletu poslije jela.	Neem een tablet na het eten.	zmaj zmaj::118_apotheke
+antibiotik	antibioticum	zmaj zmaj::118_apotheke
+Antibiotik se pije do kraja.	Een antibioticum maak je altijd af.	zmaj zmaj::118_apotheke
+kapi	druppels	zmaj zmaj::118_apotheke
+Trebaju mi kapi za nos.	Ik heb neusdruppels nodig.	zmaj zmaj::118_apotheke
+nuspojava	bijwerking	zmaj zmaj::118_apotheke
+Ima li ovaj lijek nuspojava?	Heeft dit medicijn bijwerkingen?	zmaj zmaj::118_apotheke
+sirup	siroop	zmaj zmaj::118_apotheke
+Dijete pije sirup za kašalj.	Het kind neemt hoestsiroop.	zmaj zmaj::118_apotheke
+maramica	zakdoek	zmaj zmaj::118_apotheke
+Imaš li maramicu?	Heb je een zakdoek?	zmaj zmaj::118_apotheke
+zavoj	verband	zmaj zmaj::118_apotheke
+Sestra mi je promijenila zavoj.	De verpleegster heeft mijn verband verschoond.	zmaj zmaj::118_apotheke
+flaster	pleister	zmaj zmaj::118_apotheke
+Daj mi flaster, porezao sam se.	Geef me een pleister, ik heb me gesneden.	zmaj zmaj::118_apotheke
+bez recepta	zonder recept	zmaj zmaj::118_apotheke
+Mogu li ovo dobiti bez recepta?	Kan ik dit zonder recept krijgen?	zmaj zmaj::118_apotheke
+apotekar / farmaceut	apotheker	zmaj zmaj::118_apotheke
+Pitaj apotekara šta je najbolje za kašalj.	Vraag de apotheker wat het beste helpt tegen hoest.	zmaj zmaj::118_apotheke
+toplomjer / termometar	koortsthermometer	zmaj zmaj::118_apotheke
+Gdje je toplomjer? Mali ima temperaturu.	Waar is de thermometer? De kleine heeft koorts.	zmaj zmaj::118_apotheke
+na prazan stomak	op een nuchtere maag	zmaj zmaj::118_apotheke
+Ovu tabletu pij ujutro na prazan stomak.	Neem deze tablet 's ochtends op een nuchtere maag.	zmaj zmaj::118_apotheke
+zdravlje	gezondheid	zmaj zmaj::119_gesund_leben
+Zdravlje je najvažnije.	Gezondheid is het belangrijkste.	zmaj zmaj::119_gesund_leben
+san	slaap / droom	zmaj zmaj::119_gesund_leben
+Djeci treba puno sna.	Kinderen hebben veel slaap nodig.	zmaj zmaj::119_gesund_leben
+visina	lengte / hoogte	zmaj zmaj::119_gesund_leben
+Doktor mi je izmjerio visinu i težinu.	De dokter heeft mijn lengte en gewicht gemeten.	zmaj zmaj::119_gesund_leben
+težina	gewicht	zmaj zmaj::119_gesund_leben
+Moram paziti na težinu.	Ik moet op mijn gewicht letten.	zmaj zmaj::119_gesund_leben
+alkohol	alcohol	zmaj zmaj::119_gesund_leben
+Uz ovaj lijek ne smiješ piti alkohol.	Bij dit medicijn mag je geen alcohol drinken.	zmaj zmaj::119_gesund_leben
+cigareta	sigaret	zmaj zmaj::119_gesund_leben
+Koliko cigareta pušiš dnevno?	Hoeveel sigaretten rook je per dag?	zmaj zmaj::119_gesund_leben
+pušiti	roken	zmaj zmaj::119_gesund_leben
+Prestao sam pušiti prije dvije godine.	Ik ben twee jaar geleden gestopt met roken.	zmaj zmaj::119_gesund_leben
+dijeta	dieet	zmaj zmaj::119_gesund_leben
+Od ponedjeljka sam na dijeti.	Vanaf maandag ga ik op dieet.	zmaj zmaj::119_gesund_leben
+smršati	afvallen	zmaj zmaj::119_gesund_leben
+Smršala sam pet kila!	Ik ben vijf kilo afgevallen!	zmaj zmaj::119_gesund_leben
+udebljati se	aankomen (in gewicht)	zmaj zmaj::119_gesund_leben
+Udebljao sam se preko zime.	Ik ben in de winter aangekomen.	zmaj zmaj::119_gesund_leben
+vrijeme	Tijd	zmaj zmaj::120_zeitangaben
+Kako vrijeme brzo prolazi!	Wat gaat de tijd snel!	zmaj zmaj::120_zeitangaben
+sekunda	seconde	zmaj zmaj::120_zeitangaben
+Daj mi samo sekundu.	Geef me even een seconde.	zmaj zmaj::120_zeitangaben
+trenutak	moment / ogenblik	zmaj zmaj::120_zeitangaben
+Čekao sam pravi trenutak da joj kažem.	Ik heb op het juiste moment gewacht om het haar te zeggen.	zmaj zmaj::120_zeitangaben
+ponoć	middernacht	zmaj zmaj::120_zeitangaben
+Vratili smo se kući poslije ponoći.	We zijn na middernacht thuisgekomen.	zmaj zmaj::120_zeitangaben
+prijepodne	voormiddag	zmaj zmaj::120_zeitangaben
+Prijepodne radim, a popodne sam s djecom.	's Ochtends werk ik, 's middags ben ik bij de kinderen.	zmaj zmaj::120_zeitangaben
+jutros	vanochtend	zmaj zmaj::120_zeitangaben
+Jutros sam zakasnio na posao.	Vanochtend kwam ik te laat op mijn werk.	zmaj zmaj::120_zeitangaben
+večeras	vanavond	zmaj zmaj::120_zeitangaben
+Šta radiš večeras?	Wat doe je vanavond?	zmaj zmaj::120_zeitangaben
+sinoć	gisteravond	zmaj zmaj::120_zeitangaben
+Gdje si bio sinoć?	Waar was je gisteravond?	zmaj zmaj::120_zeitangaben
+noćas	vannacht	zmaj zmaj::120_zeitangaben
+Noćas sam loše spavala.	Ik heb vannacht slecht geslapen.	zmaj zmaj::120_zeitangaben
+prekjučer	eergisteren	zmaj zmaj::120_zeitangaben
+Prekjučer sam bio kod nane.	Eergisteren was ik bij oma.	zmaj zmaj::120_zeitangaben
+datum	datum	zmaj zmaj::120_zeitangaben
+Koji je danas datum?	Welke datum is het vandaag?	zmaj zmaj::120_zeitangaben
+dnevno	dagelijks	zmaj zmaj::120_zeitangaben
+Radim osam sati dnevno.	Ik werk acht uur per dag.	zmaj zmaj::120_zeitangaben
+mjesečno	maandelijks	zmaj zmaj::120_zeitangaben
+Kirija je petsto maraka mjesečno.	De huur is vijfhonderd mark per maand.	zmaj zmaj::120_zeitangaben
+budućnost	toekomst	zmaj zmaj::120_zeitangaben
+U budućnosti želimo živjeti u Bosni.	In de toekomst willen we in Bosnië wonen.	zmaj zmaj::120_zeitangaben
+praznik	feestdag	zmaj zmaj::120_zeitangaben
+Sutra je praznik, banke ne rade.	Morgen is het een feestdag, de banken zijn dicht.	zmaj zmaj::120_zeitangaben
+odmah	meteen	zmaj zmaj::121_sofort_endlich
+Odmah dolazim!	Ik kom meteen!	zmaj zmaj::121_sofort_endlich
+upravo	net	zmaj zmaj::121_sofort_endlich
+Upravo sam stigla kući.	Ik ben net thuisgekomen.	zmaj zmaj::121_sofort_endlich
+maloprije	zonet	zmaj zmaj::121_sofort_endlich
+Maloprije te je neko tražio.	Zonet zocht iemand je.	zmaj zmaj::121_sofort_endlich
+nedavno	laatst / onlangs	zmaj zmaj::121_sofort_endlich
+Nedavno smo se preselili.	We zijn onlangs verhuisd.	zmaj zmaj::121_sofort_endlich
+ranije	eerder / van tevoren	zmaj zmaj::121_sofort_endlich
+Možeš li doći malo ranije?	Kun je wat eerder komen?	zmaj zmaj::121_sofort_endlich
+konačno	eindelijk	zmaj zmaj::121_sofort_endlich
+Konačno si stigao!	Eindelijk ben je er!	zmaj zmaj::121_sofort_endlich
+dok	terwijl / zolang	zmaj zmaj::121_sofort_endlich
+Popij kahvu dok čekaš.	Drink een koffie terwijl je wacht.	zmaj zmaj::121_sofort_endlich
+tek	pas	zmaj zmaj::121_sofort_endlich
+Film počinje tek u devet.	De film begint pas om negen uur.	zmaj zmaj::121_sofort_endlich
+još	nog	zmaj zmaj::121_sofort_endlich
+Još spava, nemoj ga buditi.	Hij slaapt nog, maak hem niet wakker.	zmaj zmaj::121_sofort_endlich
+opet	weer / opnieuw	zmaj zmaj::121_sofort_endlich
+Dođite nam opet!	Kom ons nog eens opzoeken!	zmaj zmaj::121_sofort_endlich
+zauvijek	voor altijd	zmaj zmaj::121_sofort_endlich
+Ovo ne može trajati zauvijek.	Dit kan niet eeuwig zo doorgaan.	zmaj zmaj::121_sofort_endlich
+na vrijeme	op tijd	zmaj zmaj::121_sofort_endlich
+Jedva smo stigli na vrijeme.	We waren nog net op tijd.	zmaj zmaj::121_sofort_endlich
+sport	sport	zmaj zmaj::122_sport
+Kojim se sportom baviš?	Welke sport doe jij?	zmaj zmaj::122_sport
+fudbal	voetbal	zmaj zmaj::122_sport
+Babo svake subote gleda fudbal.	Papa kijkt elke zaterdag voetbal.	zmaj zmaj::122_sport
+košarka	basketbal	zmaj zmaj::122_sport
+Moj sin trenira košarku.	Mijn zoon zit op basketbal.	zmaj zmaj::122_sport
+rukomet	handbal	zmaj zmaj::122_sport
+Moj brat igra rukomet.	Mijn broer speelt handbal.	zmaj zmaj::122_sport
+trčati	rennen / hardlopen	zmaj zmaj::122_sport
+Svako jutro trčim pola sata.	Elke ochtend ren ik een halfuur.	zmaj zmaj::122_sport
+utakmica	wedstrijd	zmaj zmaj::122_sport
+Idemo li na utakmicu u subotu?	Gaan we zaterdag naar de wedstrijd?	zmaj zmaj::122_sport
+ekipa	ploeg	zmaj zmaj::122_sport
+Ove godine imamo dobru ekipu.	Dit jaar hebben we een goede ploeg.	zmaj zmaj::122_sport
+reprezentacija	nationale ploeg	zmaj zmaj::122_sport
+Večeras igra naša reprezentacija.	Vanavond speelt onze nationale ploeg.	zmaj zmaj::122_sport
+igrač	speler	zmaj zmaj::122_sport
+On je najbolji igrač u ekipi.	Hij is de beste speler van de ploeg.	zmaj zmaj::122_sport
+trener	trainer	zmaj zmaj::122_sport
+Novi trener je jako strog.	De nieuwe trainer is heel streng.	zmaj zmaj::122_sport
+gol	doelpunt	zmaj zmaj::122_sport
+Ko je dao gol?	Wie heeft het doelpunt gemaakt?	zmaj zmaj::122_sport
+lopta	bal	zmaj zmaj::122_sport
+Dodaj mi loptu!	Speel de bal naar mij!	zmaj zmaj::122_sport
+pobijediti	winnen	zmaj zmaj::122_sport
+Pobijedili smo u zadnjoj minuti!	We hebben in de laatste minuut gewonnen!	zmaj zmaj::122_sport
+pobjeda	overwinning	zmaj zmaj::122_sport
+Čestitam na pobjedi!	Gefeliciteerd met de overwinning!	zmaj zmaj::122_sport
+rezultat	resultaat	zmaj zmaj::122_sport
+Koji je rezultat?	Wat is de stand?	zmaj zmaj::122_sport
+navijati	aanmoedigen / fan zijn	zmaj zmaj::122_sport
+Za koga navijaš?	Voor wie ben jij?	zmaj zmaj::122_sport
+navijač	supporter	zmaj zmaj::122_sport
+Navijači su pjevali cijelu utakmicu.	De supporters hebben de hele wedstrijd gezongen.	zmaj zmaj::122_sport
+teretana	sportschool	zmaj zmaj::122_sport
+Idem u teretanu tri puta sedmično.	Ik ga drie keer per week naar de sportschool.	zmaj zmaj::122_sport
+trening	training	zmaj zmaj::122_sport
+Imam trening u šest.	Ik heb om zes uur training.	zmaj zmaj::122_sport
+vježbati	oefenen / trainen	zmaj zmaj::122_sport
+Moraš više vježbati.	Je moet meer oefenen.	zmaj zmaj::122_sport
+hobi	hobby	zmaj zmaj::123_hobbys
+Imaš li neki hobi?	Heb je een hobby?	zmaj zmaj::123_hobbys
+slobodno vrijeme	vrije tijd	zmaj zmaj::123_hobbys
+Šta radiš u slobodno vrijeme?	Wat doe je in je vrije tijd?	zmaj zmaj::123_hobbys
+crtati	tekenen	zmaj zmaj::123_hobbys
+Djeca vole crtati.	Kinderen tekenen graag.	zmaj zmaj::123_hobbys
+pecati	vissen	zmaj zmaj::123_hobbys
+Dedo voli pecati na rijeci.	Opa vist graag aan de rivier.	zmaj zmaj::123_hobbys
+gitara	gitaar	zmaj zmaj::123_hobbys
+Kćerka uči svirati gitaru.	Mijn dochter leert gitaar spelen.	zmaj zmaj::123_hobbys
+plesti	breien	zmaj zmaj::123_hobbys
+Nana plete čarape za zimu.	Oma breit sokken voor de winter.	zmaj zmaj::123_hobbys
+slika	afbeelding / foto	zmaj zmaj::123_hobbys
+Pošalji mi sliku!	Stuur me een foto!	zmaj zmaj::123_hobbys
+izlet	uitstapje	zmaj zmaj::123_hobbys
+U nedjelju idemo na izlet na Vrelo Bosne.	Zondag maken we een uitstapje naar Vrelo Bosne.	zmaj zmaj::123_hobbys
+kino	bioscoop	zmaj zmaj::123_hobbys
+Idemo u kino?	Gaan we naar de bioscoop?	zmaj zmaj::123_hobbys
+pozorište	theater	zmaj zmaj::123_hobbys
+Dugo nisam bila u pozorištu.	Ik ben al lang niet naar het theater geweest.	zmaj zmaj::123_hobbys
+koncert	concert	zmaj zmaj::123_hobbys
+Karte za koncert su rasprodane.	De kaartjes voor het concert zijn uitverkocht.	zmaj zmaj::123_hobbys
+muzej	museum	zmaj zmaj::123_hobbys
+Djeca su s razredom bila u muzeju.	De kinderen zijn met de klas naar het museum geweest.	zmaj zmaj::123_hobbys
+žurka	feestje	zmaj zmaj::123_hobbys
+Ko sve dolazi na žurku?	Wie komen er allemaal naar het feestje?	zmaj zmaj::123_hobbys
+igra	spelletje	zmaj zmaj::123_hobbys
+Hajmo igrati neku igru!	Laten we een spelletje doen!	zmaj zmaj::123_hobbys
+novine	krant	zmaj zmaj::124_medien
+Dedo svako jutro čita novine.	Opa leest elke ochtend de krant.	zmaj zmaj::124_medien
+vijesti	nieuws	zmaj zmaj::124_medien
+Jesi li gledao vijesti?	Heb je het nieuws gezien?	zmaj zmaj::124_medien
+emisija	programma	zmaj zmaj::124_medien
+Ova emisija ide svake nedjelje.	Dit programma is elke zondag.	zmaj zmaj::124_medien
+kanal	zender / kanaal	zmaj zmaj::124_medien
+Prebaci na drugi kanal.	Zet hem op een andere zender.	zmaj zmaj::124_medien
+reklama	reclame	zmaj zmaj::124_medien
+Opet reklame, idem po sok.	Alweer reclame, ik ga sap halen.	zmaj zmaj::124_medien
+radio	radio	zmaj zmaj::124_medien
+U autu uvijek slušam radio.	In de auto luister ik altijd naar de radio.	zmaj zmaj::124_medien
+film	film	zmaj zmaj::124_medien
+Hoćemo li pogledati neki film?	Zullen we een film kijken?	zmaj zmaj::124_medien
+serija	serie	zmaj zmaj::124_medien
+Nana gleda svaku tursku seriju.	Oma kijkt elke Turkse serie.	zmaj zmaj::124_medien
+televizija	tv	zmaj zmaj::124_medien
+Šta ima na televiziji?	Wat is er op televisie?	zmaj zmaj::124_medien
+društvene mreže	sociale media	zmaj zmaj::124_medien
+Djeca previše vremena provode na društvenim mrežama.	De kinderen zitten te veel op sociale media.	zmaj zmaj::124_medien
+video	video	zmaj zmaj::124_medien
+Pogledaj ovaj video, umrijet ćeš od smijeha!	Kijk deze video, je lacht je dood!	zmaj zmaj::124_medien
+snimiti	opnemen / filmen	zmaj zmaj::124_medien
+Snimio sam cijeli koncert mobitelom.	Ik heb het hele concert met mijn telefoon opgenomen.	zmaj zmaj::124_medien
+pratiti	volgen	zmaj zmaj::124_medien
+Pratim sve utakmice reprezentacije.	Ik volg alle wedstrijden van de nationale ploeg.	zmaj zmaj::124_medien
+objaviti	publiceren / posten	zmaj zmaj::124_medien
+Objavila je slike s mora.	Ze heeft foto's van de zee gepost.	zmaj zmaj::124_medien
+glumac	acteur	zmaj zmaj::124_medien
+Taj glumac je iz Sarajeva.	Deze acteur komt uit Sarajevo.	zmaj zmaj::124_medien
+tramvaj	tram	zmaj zmaj::125_urlaub
+Tramvajem je najbrže do Baščaršije.	Met de tram ben je het snelst bij de Baščaršija.	zmaj zmaj::125_urlaub
+brod	schip	zmaj zmaj::125_urlaub
+Prvi put sam se vozio brodom.	Ik heb voor het eerst met een schip gevaren.	zmaj zmaj::125_urlaub
+ljetovanje	zomervakantie	zmaj zmaj::125_urlaub
+Kuda idete na ljetovanje?	Waar gaan jullie heen op zomervakantie?	zmaj zmaj::125_urlaub
+plaža	strand	zmaj zmaj::125_urlaub
+Cijeli dan smo bili na plaži.	We zijn de hele dag op het strand geweest.	zmaj zmaj::125_urlaub
+spakovati	inpakken	zmaj zmaj::125_urlaub
+Jesi li spakovao kofer?	Heb je je koffer ingepakt?	zmaj zmaj::125_urlaub
+ruksak	rugzak	zmaj zmaj::125_urlaub
+Stavi u ruksak vodu i nešto za jelo.	Doe water en iets te eten in de rugzak.	zmaj zmaj::125_urlaub
+smještaj	accommodatie	zmaj zmaj::125_urlaub
+Smještaj smo našli preko interneta.	De accommodatie hebben we via internet gevonden.	zmaj zmaj::125_urlaub
+turista	toerist	zmaj zmaj::125_urlaub
+Ljeti je Baščaršija puna turista.	In de zomer zit de Baščaršija vol toeristen.	zmaj zmaj::125_urlaub
+putnik	reiziger / passagier	zmaj zmaj::125_urlaub
+U autobusu je bilo samo pet putnika.	Er zaten maar vijf passagiers in de bus.	zmaj zmaj::125_urlaub
+propustiti	missen	zmaj zmaj::125_urlaub
+Zbog gužve smo propustili let.	Door de file hebben we de vlucht gemist.	zmaj zmaj::125_urlaub
+otkazati	afzeggen / annuleren	zmaj zmaj::125_urlaub
+Morali smo otkazati put.	We moesten de reis afzeggen.	zmaj zmaj::125_urlaub
+rezervisati	reserveren	zmaj zmaj::125_urlaub
+Rezervisala sam sto za subotu navečer.	Ik heb een tafel gereserveerd voor zaterdagavond.	zmaj zmaj::125_urlaub
+red vožnje	dienstregeling	zmaj zmaj::125_urlaub
+Gdje mogu vidjeti red vožnje?	Waar kan ik de dienstregeling zien?	zmaj zmaj::125_urlaub
+vrtić	kleuterschool	zmaj zmaj::126_schule
+Vodim sina u vrtić pa idem na posao.	Ik breng mijn zoon naar de kleuterschool en ga dan naar mijn werk.	zmaj zmaj::126_schule
+osnovna škola	basisschool	zmaj zmaj::126_schule
+Išli smo zajedno u osnovnu školu.	We zaten samen op de basisschool.	zmaj zmaj::126_schule
+srednja škola	middelbare school	zmaj zmaj::126_schule
+Kćerka ove godine kreće u srednju školu.	Mijn dochter gaat dit jaar naar de middelbare school.	zmaj zmaj::126_schule
+razred	klas (leerjaar)	zmaj zmaj::126_schule
+U koji razred ideš?	In welke klas zit je?	zmaj zmaj::126_schule
+ocjena	cijfer	zmaj zmaj::126_schule
+Kakve su ti ocjene?	Hoe zijn je cijfers?	zmaj zmaj::126_schule
+predmet	schoolvak	zmaj zmaj::126_schule
+Koji ti je najdraži predmet?	Wat is je lievelingsvak?	zmaj zmaj::126_schule
+matematika	wiskunde	zmaj zmaj::126_schule
+Matematika mi nikad nije išla.	Wiskunde lag me nooit.	zmaj zmaj::126_schule
+greška	fout	zmaj zmaj::126_schule
+Napravio sam veliku grešku.	Ik heb een grote fout gemaakt.	zmaj zmaj::126_schule
+rječnik	woordenboek	zmaj zmaj::126_schule
+Tu riječ nisam našao ni u rječniku.	Dit woord heb ik niet eens in het woordenboek gevonden.	zmaj zmaj::126_schule
+sveska	schrift	zmaj zmaj::126_schule
+Zapiši to u svesku.	Schrijf dat in je schrift.	zmaj zmaj::126_schule
+raspust	schoolvakantie	zmaj zmaj::126_schule
+Kad počinje zimski raspust?	Wanneer begint de wintervakantie?	zmaj zmaj::126_schule
+užina	boterham voor school / tussendoortje	zmaj zmaj::126_schule
+Mama mi je spremila užinu za školu.	Mama heeft een boterham voor school voor me gemaakt.	zmaj zmaj::126_schule
+položiti	slagen (voor een examen)	zmaj zmaj::126_schule
+Položio sam vozački iz prve!	Ik ben in één keer voor mijn rijbewijs geslaagd!	zmaj zmaj::126_schule
+ponoviti	herhalen	zmaj zmaj::126_schule
+Ponovi za mnom!	Zeg me na!	zmaj zmaj::126_schule
+ponavljati	herhalen	zmaj zmaj::126_schule
+Koliko puta ti moram ponavljati?	Hoe vaak moet ik het je nog herhalen?	zmaj zmaj::126_schule
+zapamtiti	onthouden	zmaj zmaj::127_lernen_studieren
+Ne mogu zapamtiti njegovo ime.	Ik kan zijn naam niet onthouden.	zmaj zmaj::127_lernen_studieren
+pamtiti	onthouden	zmaj zmaj::127_lernen_studieren
+Dobro pamtim lica, ali imena ne.	Gezichten onthoud ik goed, namen niet.	zmaj zmaj::127_lernen_studieren
+računati	rekenen	zmaj zmaj::127_lernen_studieren
+Nana još uvijek računa u glavi brže od mene.	Oma rekent nog steeds sneller uit haar hoofd dan ik.	zmaj zmaj::127_lernen_studieren
+brojati	tellen	zmaj zmaj::127_lernen_studieren
+Mali već zna brojati do sto.	De kleine kan al tot honderd tellen.	zmaj zmaj::127_lernen_studieren
+znanje	kennis	zmaj zmaj::127_lernen_studieren
+Znanje ti niko ne može uzeti.	Kennis kan niemand je afnemen.	zmaj zmaj::127_lernen_studieren
+slovo	letter	zmaj zmaj::127_lernen_studieren
+Bosanska abeceda ima trideset slova.	Het Bosnische alfabet heeft dertig letters.	zmaj zmaj::127_lernen_studieren
+rečenica	zin	zmaj zmaj::127_lernen_studieren
+Napiši jednu rečenicu na bosanskom.	Schrijf een zin in het Bosnisch.	zmaj zmaj::127_lernen_studieren
+prevesti	vertalen	zmaj zmaj::127_lernen_studieren
+Možeš li mi prevesti ovo pismo?	Kun je deze brief voor me vertalen?	zmaj zmaj::127_lernen_studieren
+fakultet	faculteit	zmaj zmaj::127_lernen_studieren
+Na kojem si fakultetu?	Aan welke faculteit studeer je?	zmaj zmaj::127_lernen_studieren
+studirati	studeren	zmaj zmaj::127_lernen_studieren
+Šta studiraš?	Wat studeer je?	zmaj zmaj::127_lernen_studieren
+profesor	professor / leraar (middelbare school)	zmaj zmaj::127_lernen_studieren
+Profesor nam je dao puno zadaće.	De leraar heeft ons veel huiswerk gegeven.	zmaj zmaj::127_lernen_studieren
+diplomirati	afstuderen	zmaj zmaj::127_lernen_studieren
+Sestra je diplomirala prošle godine.	Mijn zus is vorig jaar afgestudeerd.	zmaj zmaj::127_lernen_studieren
+upisati se	zich inschrijven	zmaj zmaj::127_lernen_studieren
+Upisala se na medicinu.	Ze heeft zich ingeschreven voor geneeskunde.	zmaj zmaj::127_lernen_studieren
+kuhar	kok	zmaj zmaj::128_berufe
+Brat radi kao kuhar u hotelu.	Mijn broer werkt als kok in een hotel.	zmaj zmaj::128_berufe
+frizer	kapper	zmaj zmaj::128_berufe
+Sutra idem kod frizera.	Morgen ga ik naar de kapper.	zmaj zmaj::128_berufe
+mehaničar	monteur	zmaj zmaj::128_berufe
+Auto je još kod mehaničara.	De auto staat nog bij de monteur.	zmaj zmaj::128_berufe
+zidar	metselaar	zmaj zmaj::128_berufe
+Babo je radio kao zidar u Njemačkoj.	Papa heeft in Duitsland als metselaar gewerkt.	zmaj zmaj::128_berufe
+stolar	timmerman / schrijnwerker	zmaj zmaj::128_berufe
+Stolar nam je napravio novu kuhinju.	De timmerman heeft een nieuwe keuken voor ons gemaakt.	zmaj zmaj::128_berufe
+vodoinstalater	loodgieter	zmaj zmaj::128_berufe
+Moramo zvati vodoinstalatera, curi slavina.	We moeten de loodgieter bellen, de kraan lekt.	zmaj zmaj::128_berufe
+pekar	bakker	zmaj zmaj::128_berufe
+Pekar ustaje u tri ujutro.	De bakker staat om drie uur 's nachts op.	zmaj zmaj::128_berufe
+čistačica	schoonmaakster	zmaj zmaj::128_berufe
+Mama radi kao čistačica u bolnici.	Mama werkt als schoonmaakster in het ziekenhuis.	zmaj zmaj::128_berufe
+njegovateljica	verzorgster	zmaj zmaj::128_berufe
+Tetka radi kao njegovateljica u staračkom domu.	Mijn tante werkt als verzorgster in een bejaardentehuis.	zmaj zmaj::128_berufe
+policajac	politieagent	zmaj zmaj::128_berufe
+Zaustavio nas je policajac.	Een agent heeft ons aangehouden.	zmaj zmaj::128_berufe
+vojnik	soldaat	zmaj zmaj::128_berufe
+Moj rođak je profesionalni vojnik.	Mijn neef is beroepsmilitair.	zmaj zmaj::128_berufe
+vatrogasac	brandweerman	zmaj zmaj::128_berufe
+Moj mali želi biti vatrogasac.	Mijn kleine wil brandweerman worden.	zmaj zmaj::128_berufe
+poljoprivrednik	landbouwer	zmaj zmaj::128_berufe
+Komšija je poljoprivrednik, ima dvadeset krava.	De buurman is boer, hij heeft twintig koeien.	zmaj zmaj::128_berufe
+programer	programmeur	zmaj zmaj::128_berufe
+Radi kao programer za njemačku firmu.	Hij werkt als programmeur voor een Duits bedrijf.	zmaj zmaj::128_berufe
+novinar	journalist	zmaj zmaj::128_berufe
+Taj novinar piše o sportu.	Deze journalist schrijft over sport.	zmaj zmaj::128_berufe
+službenik	beambte / ambtenaar	zmaj zmaj::128_berufe
+Službenik u općini je bio jako ljubazan.	De ambtenaar op het gemeentehuis was heel vriendelijk.	zmaj zmaj::128_berufe
+radnik	arbeider	zmaj zmaj::128_berufe
+U fabrici radi petsto radnika.	In de fabriek werken vijfhonderd arbeiders.	zmaj zmaj::128_berufe
+poštar	postbode	zmaj zmaj::128_berufe
+Je li poštar već došao?	Is de postbode al geweest?	zmaj zmaj::128_berufe
+smjena	dienst (werk)	zmaj zmaj::129_arbeitsplatz
+Sutra radim noćnu smjenu.	Morgen heb ik nachtdienst.	zmaj zmaj::129_arbeitsplatz
+gradilište	bouwplaats	zmaj zmaj::129_arbeitsplatz
+Brat cijeli dan radi na gradilištu.	Mijn broer werkt de hele dag op de bouwplaats.	zmaj zmaj::129_arbeitsplatz
+sastanak	vergadering / bijeenkomst	zmaj zmaj::129_arbeitsplatz
+Ne mogu sad, na sastanku sam.	Ik kan nu niet, ik zit in een vergadering.	zmaj zmaj::129_arbeitsplatz
+zadatak	taak	zmaj zmaj::129_arbeitsplatz
+Svako ima svoj zadatak.	Iedereen heeft zijn eigen taak.	zmaj zmaj::129_arbeitsplatz
+nezaposlen	werkloos	zmaj zmaj::129_arbeitsplatz
+Već pola godine sam nezaposlen.	Ik ben al een halfjaar werkloos.	zmaj zmaj::129_arbeitsplatz
+zaposliti se	een baan krijgen	zmaj zmaj::129_arbeitsplatz
+Konačno sam se zaposlio!	Eindelijk heb ik een baan!	zmaj zmaj::129_arbeitsplatz
+zaposlen	werkend / in dienst	zmaj zmaj::129_arbeitsplatz
+Je li ti žena zaposlena?	Werkt je vrouw?	zmaj zmaj::129_arbeitsplatz
+otpustiti	ontslaan	zmaj zmaj::129_arbeitsplatz
+Firma je otpustila sto radnika.	Het bedrijf heeft honderd arbeiders ontslagen.	zmaj zmaj::129_arbeitsplatz
+penzioner	gepensioneerde	zmaj zmaj::129_arbeitsplatz
+Dedo je penzioner, ima vremena za sve.	Opa is met pensioen, hij heeft overal tijd voor.	zmaj zmaj::129_arbeitsplatz
+pauza	pauze	zmaj zmaj::129_arbeitsplatz
+Imam pauzu od dvanaest do pola jedan.	Ik heb pauze van twaalf tot half een.	zmaj zmaj::129_arbeitsplatz
+povišica	loonsverhoging	zmaj zmaj::129_arbeitsplatz
+Tražit ću povišicu od šefa.	Ik ga de baas om opslag vragen.	zmaj zmaj::129_arbeitsplatz
+oglas	advertentie	zmaj zmaj::129_arbeitsplatz
+Posao sam našao preko oglasa.	De baan heb ik via een advertentie gevonden.	zmaj zmaj::129_arbeitsplatz
+zanat	ambacht	zmaj zmaj::129_arbeitsplatz
+Izuči zanat, uvijek ćeš imati posla.	Leer een ambacht, dan heb je altijd werk.	zmaj zmaj::129_arbeitsplatz
+praksa	stage	zmaj zmaj::129_arbeitsplatz
+Studenti moraju odraditi praksu.	Studenten moeten stage lopen.	zmaj zmaj::129_arbeitsplatz
+radni dan	werkdag	zmaj zmaj::129_arbeitsplatz
+Radnim danima ustajem u šest.	Op werkdagen sta ik om zes uur op.	zmaj zmaj::129_arbeitsplatz
+mjesto	plaats / plek	zmaj zmaj::130_ort_raum
+Je li ovo mjesto slobodno?	Is deze plaats vrij?	zmaj zmaj::130_ort_raum
+strana	kant (richting)	zmaj zmaj::130_ort_raum
+Apoteka je na drugoj strani ulice.	De apotheek is aan de overkant van de straat.	zmaj zmaj::130_ort_raum
+prostor	ruimte (plek)	zmaj zmaj::130_ort_raum
+U stanu nemamo dovoljno prostora.	In de woning hebben we niet genoeg ruimte.	zmaj zmaj::130_ort_raum
+područje	gebied	zmaj zmaj::130_ort_raum
+Cijelo područje je ostalo bez struje.	Het hele gebied zit zonder stroom.	zmaj zmaj::130_ort_raum
+oblast	vakgebied	zmaj zmaj::130_ort_raum
+Ona radi u oblasti zdravstva.	Ze werkt in de gezondheidszorg.	zmaj zmaj::130_ort_raum
+centar	centrum	zmaj zmaj::130_ort_raum
+Stanujemo u samom centru grada.	We wonen midden in het stadscentrum.	zmaj zmaj::130_ort_raum
+sredina	midden	zmaj zmaj::130_ort_raum
+Sto stoji na sredini sobe.	De tafel staat midden in de kamer.	zmaj zmaj::130_ort_raum
+položaj	ligging	zmaj zmaj::130_ort_raum
+Stan ima odličan položaj.	De woning heeft een uitstekende ligging.	zmaj zmaj::130_ort_raum
+smjer	richting (rijrichting)	zmaj zmaj::130_ort_raum
+Idemo u pogrešnom smjeru.	We rijden de verkeerde kant op.	zmaj zmaj::130_ort_raum
+krug	cirkel	zmaj zmaj::130_ort_raum
+Djeca sjede u krugu.	De kinderen zitten in een kring.	zmaj zmaj::130_ort_raum
+površina	oppervlakte	zmaj zmaj::130_ort_raum
+Površina stana je šezdeset kvadrata.	De oppervlakte van de woning is zestig vierkante meter.	zmaj zmaj::130_ort_raum
+blizina	nabijheid	zmaj zmaj::130_ort_raum
+Živimo u blizini škole.	We wonen in de buurt van de school.	zmaj zmaj::130_ort_raum
+okolina	omgeving	zmaj zmaj::130_ort_raum
+Moja nana živi u okolini Sarajeva.	Mijn oma woont in de omgeving van Sarajevo.	zmaj zmaj::130_ort_raum
+zapad	het westen	zmaj zmaj::131_richtung_mass
+Sunce zalazi na zapadu.	De zon gaat in het westen onder.	zmaj zmaj::131_richtung_mass
+istok	het oosten	zmaj zmaj::131_richtung_mass
+Sunce izlazi na istoku.	De zon komt in het oosten op.	zmaj zmaj::131_richtung_mass
+sjever	het noorden	zmaj zmaj::131_richtung_mass
+Hladan vjetar puše sa sjevera.	Er waait een koude wind uit het noorden.	zmaj zmaj::131_richtung_mass
+jug	het zuiden	zmaj zmaj::131_richtung_mass
+Ptice zimi odlaze na jug.	In de winter trekken de vogels naar het zuiden.	zmaj zmaj::131_richtung_mass
+dno	bodem	zmaj zmaj::131_richtung_mass
+Ključevi su na dnu torbe.	De sleutels liggen helemaal onder in de tas.	zmaj zmaj::131_richtung_mass
+tačka	punt	zmaj zmaj::131_richtung_mass
+Na kraju rečenice ide tačka.	Aan het eind van de zin staat een punt.	zmaj zmaj::131_richtung_mass
+udaljenost	afstand	zmaj zmaj::131_richtung_mass
+Kolika je udaljenost do Mostara?	Hoe ver is het naar Mostar?	zmaj zmaj::131_richtung_mass
+dubina	diepte	zmaj zmaj::131_richtung_mass
+Kolika je dubina ovog jezera?	Hoe diep is dit meer?	zmaj zmaj::131_richtung_mass
+dužina	lengte	zmaj zmaj::131_richtung_mass
+Dužina staze je pet kilometara.	De lengte van het traject is vijf kilometer.	zmaj zmaj::131_richtung_mass
+širina	breedte	zmaj zmaj::131_richtung_mass
+Moramo izmjeriti širinu prozora.	We moeten de breedte van het raam meten.	zmaj zmaj::131_richtung_mass
+dio	deel	zmaj zmaj::132_menge_teil
+Drugi dio filma je bio bolji.	Het tweede deel van de film was beter.	zmaj zmaj::132_menge_teil
+broj	getal / nummer	zmaj zmaj::132_menge_teil
+Napiši mi svoj broj na papir.	Schrijf je nummer voor me op een briefje.	zmaj zmaj::132_menge_teil
+većina	meerderheid	zmaj zmaj::132_menge_teil
+Većina mojih prijatelja živi u Njemačkoj.	De meeste van mijn vrienden wonen in Duitsland.	zmaj zmaj::132_menge_teil
+količina	hoeveelheid	zmaj zmaj::132_menge_teil
+Dodaj malu količinu šećera.	Voeg een kleine hoeveelheid suiker toe.	zmaj zmaj::132_menge_teil
+iznos	bedrag	zmaj zmaj::132_menge_teil
+Uplatite cijeli iznos do petka.	Betaal het hele bedrag uiterlijk vrijdag.	zmaj zmaj::132_menge_teil
+ostatak	rest	zmaj zmaj::132_menge_teil
+Ostatak ćemo pojesti sutra.	De rest eten we morgen op.	zmaj zmaj::132_menge_teil
+polovina	helft	zmaj zmaj::132_menge_teil
+Polovina kuće pripada mom bratu.	De helft van het huis is van mijn broer.	zmaj zmaj::132_menge_teil
+trećina	derde deel	zmaj zmaj::132_menge_teil
+Trećina plate mi ide na kiriju.	Een derde van mijn loon gaat op aan huur.	zmaj zmaj::132_menge_teil
+četvrtina	vierde deel (een kwart van iets)	zmaj zmaj::132_menge_teil
+Pojeo je četvrtinu torte.	Hij heeft een kwart van de taart opgegeten.	zmaj zmaj::132_menge_teil
+milion	miljoen	zmaj zmaj::132_menge_teil
+Taj grad ima milion stanovnika.	Deze stad heeft een miljoen inwoners.	zmaj zmaj::132_menge_teil
+milijarda	miljard	zmaj zmaj::132_menge_teil
+Na svijetu živi osam milijardi ljudi.	Op de wereld leven acht miljard mensen.	zmaj zmaj::132_menge_teil
+stotina	honderdtal	zmaj zmaj::132_menge_teil
+Na koncertu je bilo nekoliko stotina ljudi.	Op het concert waren enkele honderden mensen.	zmaj zmaj::132_menge_teil
+niz	reeks	zmaj zmaj::133_reihe_wert
+Imali smo čitav niz problema.	We hadden een hele reeks problemen.	zmaj zmaj::133_reihe_wert
+vrsta	soort / type	zmaj zmaj::133_reihe_wert
+Koja je ovo vrsta sira?	Wat voor soort kaas is dit?	zmaj zmaj::133_reihe_wert
+par	paar / een paar	zmaj zmaj::133_reihe_wert
+Kupila sam novi par cipela.	Ik heb een nieuw paar schoenen gekocht.	zmaj zmaj::133_reihe_wert
+višak	overschot	zmaj zmaj::133_reihe_wert
+Imamo višak hrane, uzmi malo.	We hebben eten over, neem wat.	zmaj zmaj::133_reihe_wert
+nedostatak	gebrek	zmaj zmaj::133_reihe_wert
+Glavni problem je nedostatak novca.	Het grootste probleem is het gebrek aan geld.	zmaj zmaj::133_reihe_wert
+prosjek	gemiddelde	zmaj zmaj::133_reihe_wert
+Njegova plata je iznad prosjeka.	Zijn loon ligt boven het gemiddelde.	zmaj zmaj::133_reihe_wert
+gomila	hoop (stapel)	zmaj zmaj::133_reihe_wert
+Na stolu je gomila papira.	Op de tafel ligt een hoop papier.	zmaj zmaj::133_reihe_wert
+nivo	niveau	zmaj zmaj::133_reihe_wert
+Moj bosanski je na dobrom nivou.	Mijn Bosnisch is op een goed niveau.	zmaj zmaj::133_reihe_wert
+vrijednost	waarde	zmaj zmaj::133_reihe_wert
+Vrijednost ove kuće stalno raste.	De waarde van dit huis stijgt voortdurend.	zmaj zmaj::133_reihe_wert
+razlika	verschil	zmaj zmaj::133_reihe_wert
+Koja je razlika između ove dvije riječi?	Wat is het verschil tussen deze twee woorden?	zmaj zmaj::133_reihe_wert
+kilometar	kilometer	zmaj zmaj::133_reihe_wert
+Do škole ima samo jedan kilometar.	Het is maar één kilometer naar de school.	zmaj zmaj::133_reihe_wert
+početak	begin	zmaj zmaj::134_anfang_ende
+Na početku mi je bilo teško.	In het begin was het moeilijk voor me.	zmaj zmaj::134_anfang_ende
+kraj	einde	zmaj zmaj::134_anfang_ende
+Pekara je na kraju ulice.	De bakkerij is aan het einde van de straat.	zmaj zmaj::134_anfang_ende
+period	periode	zmaj zmaj::134_anfang_ende
+To je bio težak period u mom životu.	Dat was een moeilijke tijd in mijn leven.	zmaj zmaj::134_anfang_ende
+doba	tijd / tijdperk	zmaj zmaj::134_anfang_ende
+Proljeće je moje omiljeno doba godine.	De lente is mijn favoriete jaargetijde.	zmaj zmaj::134_anfang_ende
+čas	lesuur / ogenblik	zmaj zmaj::134_anfang_ende
+Prvi čas počinje u osam.	Het eerste lesuur begint om acht uur.	zmaj zmaj::134_anfang_ende
+vijek / stoljeće	eeuw / era	zmaj zmaj::134_anfang_ende
+Ova džamija je iz šesnaestog vijeka.	Deze moskee komt uit de zestiende eeuw.	zmaj zmaj::134_anfang_ende
+decenija	decennium	zmaj zmaj::134_anfang_ende
+Živim ovdje već dvije decenije.	Ik woon hier al twee decennia.	zmaj zmaj::134_anfang_ende
+prošlost	het verleden	zmaj zmaj::134_anfang_ende
+Ne možeš promijeniti prošlost.	Je kunt het verleden niet veranderen.	zmaj zmaj::134_anfang_ende
+nastavak	vervolg	zmaj zmaj::134_anfang_ende
+Nastavak filma izlazi sljedeće godine.	Het vervolg van de film komt volgend jaar uit.	zmaj zmaj::134_anfang_ende
+završetak	afsluiting	zmaj zmaj::134_anfang_ende
+Poslije završetka škole želim studirati.	Na het afronden van school wil ik gaan studeren.	zmaj zmaj::134_anfang_ende
+povratak	terugkeer	zmaj zmaj::134_anfang_ende
+Radujem se povratku kući.	Ik verheug me op de terugkeer naar huis.	zmaj zmaj::134_anfang_ende
+odlazak	vertrek / afscheid	zmaj zmaj::134_anfang_ende
+Njegov odlazak nas je iznenadio.	Zijn vertrek heeft ons verrast.	zmaj zmaj::134_anfang_ende
+godišnjica	jaardag	zmaj zmaj::134_anfang_ende
+Sutra nam je godišnjica braka.	Morgen is onze trouwdag.	zmaj zmaj::134_anfang_ende
+raspored	planning	zmaj zmaj::134_anfang_ende
+Imaš li raspored za sljedeću sedmicu?	Heb jij de planning voor volgende week?	zmaj zmaj::134_anfang_ende
+sezona	seizoen (sport, toerisme)	zmaj zmaj::134_anfang_ende
+Sezona skijanja počinje u decembru.	Het skiseizoen begint in december.	zmaj zmaj::134_anfang_ende
+faza	fase	zmaj zmaj::134_anfang_ende
+To je samo faza, proći će.	Het is maar een fase, het gaat wel over.	zmaj zmaj::134_anfang_ende
+korak	stap	zmaj zmaj::134_anfang_ende
+Prvi korak je uvijek najteži.	De eerste stap is altijd de moeilijkste.	zmaj zmaj::134_anfang_ende
+život	het leven	zmaj zmaj::135_das_leben
+Život na selu je miran.	Het leven op het dorp is rustig.	zmaj zmaj::135_das_leben
+smrt	dood	zmaj zmaj::135_das_leben
+Njegova smrt nas je sve potresla.	Zijn dood heeft ons allemaal geschokt.	zmaj zmaj::135_das_leben
+rođenje	geboorte	zmaj zmaj::135_das_leben
+Ovdje upišite datum rođenja.	Vul hier de geboortedatum in.	zmaj zmaj::135_das_leben
+djetinjstvo	kindertijd	zmaj zmaj::135_das_leben
+Djetinjstvo sam proveo u Bihaću.	Mijn kindertijd heb ik in Bihać doorgebracht.	zmaj zmaj::135_das_leben
+mladost	jeugd	zmaj zmaj::135_das_leben
+U mladosti je mnogo putovao.	In zijn jeugd heeft hij veel gereisd.	zmaj zmaj::135_das_leben
+starost	ouderdom	zmaj zmaj::135_das_leben
+U starosti želim živjeti na selu.	Op mijn oude dag wil ik op het platteland wonen.	zmaj zmaj::135_das_leben
+snaga	kracht	zmaj zmaj::135_das_leben
+Nemam više snage za ovo.	Ik heb hier geen kracht meer voor.	zmaj zmaj::135_das_leben
+glas	stem	zmaj zmaj::135_das_leben
+Imaš jako lijep glas.	Je hebt een heel mooie stem.	zmaj zmaj::135_das_leben
+pogled	blik / uitzicht	zmaj zmaj::135_das_leben
+Soba ima lijep pogled na more.	De kamer heeft een mooi uitzicht op zee.	zmaj zmaj::135_das_leben
+izgled	uiterlijk	zmaj zmaj::135_das_leben
+Izgled nije najvažniji u životu.	Het uiterlijk is niet het belangrijkste in het leven.	zmaj zmaj::135_das_leben
+pokret	beweging	zmaj zmaj::135_das_leben
+Ne pravi nagle pokrete.	Maak geen plotselinge bewegingen.	zmaj zmaj::135_das_leben
+brzina	snelheid	zmaj zmaj::135_das_leben
+Smanji brzinu, ovdje je škola.	Verminder je snelheid, hier is een school.	zmaj zmaj::135_das_leben
+razlog	reden	zmaj zmaj::136_grund_folge
+Nema razloga za brigu.	Er is geen reden tot zorg.	zmaj zmaj::136_grund_folge
+uzrok	oorzaak	zmaj zmaj::136_grund_folge
+Uzrok požara još nije poznat.	De oorzaak van de brand is nog niet bekend.	zmaj zmaj::136_grund_folge
+posljedica	gevolg	zmaj zmaj::136_grund_folge
+Svaka odluka ima posljedice.	Elke beslissing heeft gevolgen.	zmaj zmaj::136_grund_folge
+cilj	doel	zmaj zmaj::136_grund_folge
+Moj cilj je da naučim bosanski.	Mijn doel is Bosnisch leren.	zmaj zmaj::136_grund_folge
+svrha	bedoeling (doel)	zmaj zmaj::136_grund_folge
+Koja je svrha ovog sastanka?	Wat is het doel van deze vergadering?	zmaj zmaj::136_grund_folge
+namjera	opzet	zmaj zmaj::136_grund_folge
+To nije bila moja namjera.	Dat was niet mijn bedoeling.	zmaj zmaj::136_grund_folge
+smisao	zin (betekenis)	zmaj zmaj::136_grund_folge
+Ovo nema nikakvog smisla.	Dit heeft helemaal geen zin.	zmaj zmaj::136_grund_folge
+značaj	betekenis (belang)	zmaj zmaj::136_grund_folge
+Ovaj most ima veliki značaj za grad.	Deze brug is van groot belang voor de stad.	zmaj zmaj::136_grund_folge
+značenje	betekenis (van een woord)	zmaj zmaj::136_grund_folge
+Koje je značenje ove riječi?	Wat is de betekenis van dit woord?	zmaj zmaj::136_grund_folge
+povod	aanleiding	zmaj zmaj::136_grund_folge
+Koji je povod za slavlje?	Wat is de aanleiding voor het feest?	zmaj zmaj::136_grund_folge
+dokaz	bewijs	zmaj zmaj::136_grund_folge
+Imaš li dokaz za to?	Heb je daar bewijs voor?	zmaj zmaj::136_grund_folge
+činjenica	feit	zmaj zmaj::136_grund_folge
+To je činjenica, a ne mišljenje.	Dat is een feit, geen mening.	zmaj zmaj::136_grund_folge
+primjer	voorbeeld	zmaj zmaj::137_nutzen_schaden
+Možeš li mi dati primjer?	Kun je me een voorbeeld geven?	zmaj zmaj::137_nutzen_schaden
+slučaj	geval	zmaj zmaj::137_nutzen_schaden
+U tom slučaju ostajemo kod kuće.	In dat geval blijven we thuis.	zmaj zmaj::137_nutzen_schaden
+uslov	voorwaarde	zmaj zmaj::137_nutzen_schaden
+Imam samo jedan uslov.	Ik heb maar één voorwaarde.	zmaj zmaj::137_nutzen_schaden
+korist	nut	zmaj zmaj::137_nutzen_schaden
+Od toga nema nikakve koristi.	Dat heeft totaal geen nut.	zmaj zmaj::137_nutzen_schaden
+šteta	schade	zmaj zmaj::137_nutzen_schaden
+Oluja je napravila veliku štetu.	De storm heeft grote schade aangericht.	zmaj zmaj::137_nutzen_schaden
+prednost	voordeel	zmaj zmaj::137_nutzen_schaden
+Znanje jezika je velika prednost.	Talenkennis is een groot voordeel.	zmaj zmaj::137_nutzen_schaden
+rizik	risico	zmaj zmaj::137_nutzen_schaden
+To je prevelik rizik za nas.	Dat is een te groot risico voor ons.	zmaj zmaj::137_nutzen_schaden
+uticaj	invloed	zmaj zmaj::137_nutzen_schaden
+Prijatelji imaju veliki uticaj na njega.	Zijn vrienden hebben grote invloed op hem.	zmaj zmaj::137_nutzen_schaden
+uspjeh	succes	zmaj zmaj::137_nutzen_schaden
+Želim ti mnogo uspjeha na ispitu.	Ik wens je veel succes met het examen.	zmaj zmaj::137_nutzen_schaden
+gubitak	verlies	zmaj zmaj::137_nutzen_schaden
+To je veliki gubitak za sve nas.	Dat is een groot verlies voor ons allemaal.	zmaj zmaj::137_nutzen_schaden
+odluka	beslissing	zmaj zmaj::138_denken_entscheiden
+Donio sam tešku odluku.	Ik heb een moeilijke beslissing genomen.	zmaj zmaj::138_denken_entscheiden
+izbor	keuze / selectie	zmaj zmaj::138_denken_entscheiden
+Nažalost, nemam drugog izbora.	Helaas heb ik geen andere keuze.	zmaj zmaj::138_denken_entscheiden
+ideja	idee	zmaj zmaj::138_denken_entscheiden
+Imam jednu odličnu ideju.	Ik heb een uitstekend idee.	zmaj zmaj::138_denken_entscheiden
+misao	gedachte	zmaj zmaj::138_denken_entscheiden
+Ta misao mi ne da mira.	Die gedachte laat me niet met rust.	zmaj zmaj::138_denken_entscheiden
+stav	instelling / houding	zmaj zmaj::138_denken_entscheiden
+On ima dobar stav prema poslu.	Hij heeft een goede instelling tegenover het werk.	zmaj zmaj::138_denken_entscheiden
+prijedlog	voorstel	zmaj zmaj::138_denken_entscheiden
+Imam prijedlog, idemo na kahvu.	Ik heb een voorstel: laten we koffie gaan drinken.	zmaj zmaj::138_denken_entscheiden
+savjet	raad (advies)	zmaj zmaj::138_denken_entscheiden
+Treba mi tvoj savjet.	Ik heb je raad nodig.	zmaj zmaj::138_denken_entscheiden
+mogućnost	mogelijkheid	zmaj zmaj::138_denken_entscheiden
+Postoji li mogućnost plaćanja karticom?	Is er een mogelijkheid om met de kaart te betalen?	zmaj zmaj::138_denken_entscheiden
+prilika	gelegenheid	zmaj zmaj::138_denken_entscheiden
+Ovo je tvoja prilika, nemoj je propustiti.	Dit is je kans, laat hem niet schieten.	zmaj zmaj::138_denken_entscheiden
+čast	eer	zmaj zmaj::138_denken_entscheiden
+Za mene je ovo velika čast.	Dit is een grote eer voor mij.	zmaj zmaj::138_denken_entscheiden
+potreba	behoefte	zmaj zmaj::138_denken_entscheiden
+Nema potrebe da dolaziš.	Het is niet nodig dat je komt.	zmaj zmaj::138_denken_entscheiden
+želja	wens	zmaj zmaj::138_denken_entscheiden
+Koja je tvoja najveća želja?	Wat is je grootste wens?	zmaj zmaj::138_denken_entscheiden
+volja	wil / zin	zmaj zmaj::139_wahrheit_zweifel
+Danas nemam volje ni za šta.	Vandaag heb ik nergens zin in.	zmaj zmaj::139_wahrheit_zweifel
+pažnja	aandacht	zmaj zmaj::139_wahrheit_zweifel
+Djeca traže mnogo pažnje.	Kinderen vragen veel aandacht.	zmaj zmaj::139_wahrheit_zweifel
+sumnja	twijfel / verdenking	zmaj zmaj::139_wahrheit_zweifel
+Nema sumnje, on je najbolji.	Geen twijfel, hij is de beste.	zmaj zmaj::139_wahrheit_zweifel
+istina	waarheid	zmaj zmaj::139_wahrheit_zweifel
+Reci mi istinu, molim te.	Zeg me de waarheid, alsjeblieft.	zmaj zmaj::139_wahrheit_zweifel
+laž	leugen	zmaj zmaj::139_wahrheit_zweifel
+To je velika laž.	Dat is een grote leugen.	zmaj zmaj::139_wahrheit_zweifel
+stvarnost	werkelijkheid	zmaj zmaj::139_wahrheit_zweifel
+U stvarnosti je sve drugačije.	In werkelijkheid is alles anders.	zmaj zmaj::139_wahrheit_zweifel
+tajna	geheim	zmaj zmaj::139_wahrheit_zweifel
+Možeš li čuvati tajnu?	Kun je een geheim bewaren?	zmaj zmaj::139_wahrheit_zweifel
+zaključak	gevolgtrekking	zmaj zmaj::139_wahrheit_zweifel
+Došli smo do istog zaključka.	We zijn tot dezelfde conclusie gekomen.	zmaj zmaj::139_wahrheit_zweifel
+pojam	begrip / benul	zmaj zmaj::139_wahrheit_zweifel
+Nemam pojma gdje su ključevi.	Ik heb geen idee waar de sleutels zijn.	zmaj zmaj::139_wahrheit_zweifel
+pamet	verstand	zmaj zmaj::139_wahrheit_zweifel
+Ima novca, ali nema pameti.	Hij heeft geld, maar geen verstand.	zmaj zmaj::139_wahrheit_zweifel
+problem	probleem	zmaj zmaj::140_dinge_regeln
+To nije moj problem.	Dat is niet mijn probleem.	zmaj zmaj::140_dinge_regeln
+rješenje	oplossing	zmaj zmaj::140_dinge_regeln
+Za svaki problem postoji rješenje.	Voor elk probleem is er een oplossing.	zmaj zmaj::140_dinge_regeln
+situacija	situatie	zmaj zmaj::140_dinge_regeln
+Situacija je sada mnogo bolja.	De situatie is nu veel beter.	zmaj zmaj::140_dinge_regeln
+stanje	toestand	zmaj zmaj::140_dinge_regeln
+Auto je u dobrom stanju.	De auto is in goede staat.	zmaj zmaj::140_dinge_regeln
+promjena	wijziging	zmaj zmaj::140_dinge_regeln
+Došlo je do promjene plana.	Er was een wijziging in het plan.	zmaj zmaj::140_dinge_regeln
+razvoj	ontwikkeling	zmaj zmaj::140_dinge_regeln
+Razvoj ovog grada ide sporo.	De ontwikkeling van deze stad gaat langzaam.	zmaj zmaj::140_dinge_regeln
+napredak	vooruitgang	zmaj zmaj::140_dinge_regeln
+Vidim veliki napredak kod tebe.	Ik zie grote vooruitgang bij jou.	zmaj zmaj::140_dinge_regeln
+pokušaj	poging	zmaj zmaj::140_dinge_regeln
+Položio sam ispit iz prvog pokušaja.	Ik heb het examen in één keer gehaald.	zmaj zmaj::140_dinge_regeln
+postupak	werkwijze / procedure	zmaj zmaj::140_dinge_regeln
+Cijeli postupak traje dva mjeseca.	De hele procedure duurt twee maanden.	zmaj zmaj::140_dinge_regeln
+proces	proces	zmaj zmaj::140_dinge_regeln
+Učenje jezika je dug proces.	Een taal leren is een lang proces.	zmaj zmaj::140_dinge_regeln
+način	manier	zmaj zmaj::140_dinge_regeln
+Uradi to na svoj način.	Doe het op jouw manier.	zmaj zmaj::140_dinge_regeln
+oblik	vorm	zmaj zmaj::140_dinge_regeln
+Kolač ima oblik srca.	De taart heeft de vorm van een hart.	zmaj zmaj::140_dinge_regeln
+pravilo	regel	zmaj zmaj::140_dinge_regeln
+Ovo pravilo važi za sve.	Deze regel geldt voor iedereen.	zmaj zmaj::140_dinge_regeln
+znak	teken	zmaj zmaj::140_dinge_regeln
+To je dobar znak.	Dat is een goed teken.	zmaj zmaj::140_dinge_regeln
+trag	spoor	zmaj zmaj::140_dinge_regeln
+Lopov nije ostavio nikakav trag.	De dief heeft geen spoor achtergelaten.	zmaj zmaj::140_dinge_regeln
+mjera	maatregel / maat	zmaj zmaj::141_hilfe_hindernis
+Vlada je uvela nove mjere.	De regering heeft nieuwe maatregelen ingevoerd.	zmaj zmaj::141_hilfe_hindernis
+sredstvo	middel	zmaj zmaj::141_hilfe_hindernis
+Kupi sredstvo za pranje suđa.	Koop afwasmiddel.	zmaj zmaj::141_hilfe_hindernis
+uloga	rol	zmaj zmaj::141_hilfe_hindernis
+Ona igra glavnu ulogu u filmu.	Ze speelt de hoofdrol in de film.	zmaj zmaj::141_hilfe_hindernis
+obaveza	plicht / verplichting	zmaj zmaj::141_hilfe_hindernis
+Danas imam mnogo obaveza.	Vandaag heb ik veel verplichtingen.	zmaj zmaj::141_hilfe_hindernis
+pomoć	hulp	zmaj zmaj::141_hilfe_hindernis
+Hvala ti na pomoći.	Bedankt voor je hulp.	zmaj zmaj::141_hilfe_hindernis
+podrška	steun	zmaj zmaj::141_hilfe_hindernis
+Porodica mi je najveća podrška.	Mijn familie is mijn grootste steun.	zmaj zmaj::141_hilfe_hindernis
+zaštita	bescherming	zmaj zmaj::141_hilfe_hindernis
+Treba ti krema za zaštitu od sunca.	Je hebt een zonnebrandcrème nodig.	zmaj zmaj::141_hilfe_hindernis
+sigurnost	veiligheid	zmaj zmaj::141_hilfe_hindernis
+Sigurnost djece je na prvom mjestu.	De veiligheid van de kinderen staat voorop.	zmaj zmaj::141_hilfe_hindernis
+napor	inspanning	zmaj zmaj::141_hilfe_hindernis
+Uložili smo mnogo napora u ovo.	We hebben er veel inspanning in gestoken.	zmaj zmaj::141_hilfe_hindernis
+trud	moeite	zmaj zmaj::141_hilfe_hindernis
+Trud se uvijek isplati.	Moeite loont altijd.	zmaj zmaj::141_hilfe_hindernis
+teškoća	moeilijkheid (ernstig)	zmaj zmaj::141_hilfe_hindernis
+Uprkos svim teškoćama, uspjeli smo.	Ondanks alle moeilijkheden is het ons gelukt.	zmaj zmaj::141_hilfe_hindernis
+prepreka	hindernis	zmaj zmaj::141_hilfe_hindernis
+Novac nije nikakva prepreka.	Geld is geen hindernis.	zmaj zmaj::141_hilfe_hindernis
+izazov	uitdaging	zmaj zmaj::141_hilfe_hindernis
+Novi posao je za mene veliki izazov.	Het nieuwe werk is voor mij een grote uitdaging.	zmaj zmaj::141_hilfe_hindernis
+aktivnost	activiteit	zmaj zmaj::141_hilfe_hindernis
+Djeca imaju mnogo aktivnosti poslije škole.	De kinderen hebben na school veel activiteiten.	zmaj zmaj::141_hilfe_hindernis
+osoba	persoon	zmaj zmaj::142_menschen
+Rezervisao sam sto za četiri osobe.	Ik heb een tafel voor vier personen gereserveerd.	zmaj zmaj::142_menschen
+roditelji	ouders	zmaj zmaj::142_menschen
+Moji roditelji žive u Sarajevu.	Mijn ouders wonen in Sarajevo.	zmaj zmaj::142_menschen
+supruga	echtgenote (formeel)	zmaj zmaj::142_menschen
+Ovo je moja supruga, Amra.	Dit is mijn vrouw, Amra.	zmaj zmaj::142_menschen
+suprug	echtgenoot (formeel)	zmaj zmaj::142_menschen
+Njen suprug radi u Njemačkoj.	Haar man werkt in Duitsland.	zmaj zmaj::142_menschen
+momak	jongeman / vaste vriend	zmaj zmaj::142_menschen
+Moja sestra ima novog momka.	Mijn zus heeft een nieuwe vriend.	zmaj zmaj::142_menschen
+djevojčica	klein meisje	zmaj zmaj::142_menschen
+Djevojčica se igra u parku.	Het kleine meisje speelt in het park.	zmaj zmaj::142_menschen
+stranac	buitenlander / vreemdeling	zmaj zmaj::142_menschen
+Stranac me na ulici pitao za put.	Op straat vroeg een vreemdeling me de weg.	zmaj zmaj::142_menschen
+stanovnik	inwoner	zmaj zmaj::142_menschen
+Naš grad ima oko deset hiljada stanovnika.	Onze stad heeft ongeveer tienduizend inwoners.	zmaj zmaj::142_menschen
+građanin	burger	zmaj zmaj::142_menschen
+Građani plaćaju previše poreza.	De burgers betalen te veel belasting.	zmaj zmaj::142_menschen
+državljanin	staatsburger	zmaj zmaj::142_menschen
+On je državljanin Bosne i Hercegovine.	Hij is staatsburger van Bosnië en Herzegovina.	zmaj zmaj::142_menschen
+član	lid	zmaj zmaj::142_menschen
+Naš pas je član porodice.	Onze hond is een lid van de familie.	zmaj zmaj::142_menschen
+partner	partner	zmaj zmaj::143_wer_ist_wer
+Moj poslovni partner dolazi sutra.	Mijn zakenpartner komt morgen.	zmaj zmaj::143_wer_ist_wer
+ličnost	persoonlijkheid	zmaj zmaj::143_wer_ist_wer
+Ona je jaka ličnost.	Ze is een sterke persoonlijkheid.	zmaj zmaj::143_wer_ist_wer
+karakter	karakter	zmaj zmaj::143_wer_ist_wer
+Moj brat ima težak karakter.	Mijn broer heeft een moeilijk karakter.	zmaj zmaj::143_wer_ist_wer
+neprijatelj	vijand	zmaj zmaj::143_wer_ist_wer
+On mi nije neprijatelj.	Hij is niet mijn vijand.	zmaj zmaj::143_wer_ist_wer
+protivnik	tegenstander	zmaj zmaj::143_wer_ist_wer
+Protivnik je bio bolji od nas.	De tegenstander was beter dan wij.	zmaj zmaj::143_wer_ist_wer
+svjedok	getuige	zmaj zmaj::143_wer_ist_wer
+Bio sam svjedok nesreće.	Ik was getuige van het ongeluk.	zmaj zmaj::143_wer_ist_wer
+žrtva	slachtoffer	zmaj zmaj::143_wer_ist_wer
+U nesreći nije bilo žrtava.	Bij het ongeluk waren er geen slachtoffers.	zmaj zmaj::143_wer_ist_wer
+korisnik	gebruiker	zmaj zmaj::143_wer_ist_wer
+Aplikacija ima sve više korisnika.	De app heeft steeds meer gebruikers.	zmaj zmaj::143_wer_ist_wer
+stručnjak	deskundige	zmaj zmaj::143_wer_ist_wer
+Za to bolje pitaj stručnjaka.	Vraag dat maar liever aan een deskundige.	zmaj zmaj::143_wer_ist_wer
+bolesnik	zieke	zmaj zmaj::143_wer_ist_wer
+Bolesnik se danas osjeća bolje.	De zieke voelt zich vandaag beter.	zmaj zmaj::143_wer_ist_wer
+Moraš otići kod ljekara.	Je moet naar de dokter gaan.	zmaj zmaj::143_wer_ist_wer
+odnos	verstandhouding	zmaj zmaj::144_beziehungen
+Imam dobar odnos sa sestrom.	Ik heb een goede verstandhouding met mijn zus.	zmaj zmaj::144_beziehungen
+veza	verbinding / relatie	zmaj zmaj::144_beziehungen
+U vezi smo već dvije godine.	We hebben al twee jaar een relatie.	zmaj zmaj::144_beziehungen
+brak	huwelijk	zmaj zmaj::144_beziehungen
+Moji roditelji su u braku već trideset godina.	Mijn ouders zijn al dertig jaar getrouwd.	zmaj zmaj::144_beziehungen
+razvod	scheiding	zmaj zmaj::144_beziehungen
+Poslije razvoda živi sama.	Na de scheiding woont ze alleen.	zmaj zmaj::144_beziehungen
+prijateljstvo	vriendschap	zmaj zmaj::144_beziehungen
+Naše prijateljstvo mi mnogo znači.	Onze vriendschap betekent veel voor me.	zmaj zmaj::144_beziehungen
+povjerenje	vertrouwen	zmaj zmaj::144_beziehungen
+Nemam povjerenja u njega.	Ik heb geen vertrouwen in hem.	zmaj zmaj::144_beziehungen
+poštovanje	respect	zmaj zmaj::144_beziehungen
+Imam veliko poštovanje prema tom čovjeku.	Ik heb groot respect voor deze man.	zmaj zmaj::144_beziehungen
+radost	vreugde	zmaj zmaj::144_beziehungen
+Plakala je od radosti.	Ze huilde van vreugde.	zmaj zmaj::144_beziehungen
+tuga	rouw / verdriet	zmaj zmaj::144_beziehungen
+U njenim očima vidim tugu.	In haar ogen zie ik verdriet.	zmaj zmaj::144_beziehungen
+mržnja	haat	zmaj zmaj::144_beziehungen
+Mržnja ništa ne rješava.	Haat lost niets op.	zmaj zmaj::144_beziehungen
+hrabrost	moed	zmaj zmaj::144_beziehungen
+Za to treba mnogo hrabrosti.	Daarvoor heb je veel moed nodig.	zmaj zmaj::144_beziehungen
+raspoloženje	stemming	zmaj zmaj::145_stimmung_streit
+Muzika mi uvijek popravi raspoloženje.	Muziek verbetert altijd mijn stemming.	zmaj zmaj::145_stimmung_streit
+iznenađenje	verrassing	zmaj zmaj::145_stimmung_streit
+Imam iznenađenje za tebe.	Ik heb een verrassing voor je.	zmaj zmaj::145_stimmung_streit
+svađa	ruzie	zmaj zmaj::145_stimmung_streit
+Svađa je počela zbog novca.	De ruzie begon om geld.	zmaj zmaj::145_stimmung_streit
+šala	grap	zmaj zmaj::145_stimmung_streit
+To je bila samo šala.	Het was maar een grap.	zmaj zmaj::145_stimmung_streit
+smijeh	het lachen	zmaj zmaj::145_stimmung_streit
+Smijeh je najbolji lijek.	Lachen is het beste medicijn.	zmaj zmaj::145_stimmung_streit
+suza	traan	zmaj zmaj::145_stimmung_streit
+Imala je suze u očima.	Ze had tranen in haar ogen.	zmaj zmaj::145_stimmung_streit
+sjećanje	herinnering	zmaj zmaj::145_stimmung_streit
+Imam lijepa sjećanja na djetinjstvo.	Ik heb mooie herinneringen aan mijn kindertijd.	zmaj zmaj::145_stimmung_streit
+navika	gewoonte	zmaj zmaj::145_stimmung_streit
+Pušenje je loša navika.	Roken is een slechte gewoonte.	zmaj zmaj::145_stimmung_streit
+druženje	samenzijn	zmaj zmaj::145_stimmung_streit
+Hvala na druženju, bilo je lijepo.	Bedankt voor het samenzijn, het was gezellig.	zmaj zmaj::145_stimmung_streit
+razgovor	gesprek	zmaj zmaj::145_stimmung_streit
+Imali smo dug razgovor.	We hebben een lang gesprek gehad.	zmaj zmaj::145_stimmung_streit
+predsjednik	president	zmaj zmaj::146_staat_politik
+Ko je predsjednik ovog kluba?	Wie is de voorzitter van deze club?	zmaj zmaj::146_staat_politik
+vlada	regering	zmaj zmaj::146_staat_politik
+Vlada je donijela novu odluku.	De regering heeft een nieuwe beslissing genomen.	zmaj zmaj::146_staat_politik
+ministar	minister	zmaj zmaj::146_staat_politik
+Ministar je odgovorio na pitanja novinara.	De minister heeft de vragen van de journalisten beantwoord.	zmaj zmaj::146_staat_politik
+izbori	verkiezingen	zmaj zmaj::146_staat_politik
+Izbori su u oktobru.	De verkiezingen zijn in oktober.	zmaj zmaj::146_staat_politik
+stranka	partij	zmaj zmaj::146_staat_politik
+Za koju stranku glasaš?	Op welke partij stem je?	zmaj zmaj::146_staat_politik
+politika	politiek	zmaj zmaj::146_staat_politik
+Ne zanima me politika.	Politiek interesseert me niet.	zmaj zmaj::146_staat_politik
+političar	politicus	zmaj zmaj::146_staat_politik
+Više ne vjerujem političarima.	Ik vertrouw politici niet meer.	zmaj zmaj::146_staat_politik
+vlast	staatsgezag / autoriteiten	zmaj zmaj::146_staat_politik
+Vlasti još nisu reagovale.	De autoriteiten hebben nog niet gereageerd.	zmaj zmaj::146_staat_politik
+zakon	wet	zmaj zmaj::146_staat_politik
+To je zabranjeno zakonom.	Dat is bij wet verboden.	zmaj zmaj::146_staat_politik
+ustav	grondwet	zmaj zmaj::146_staat_politik
+Ustav štiti prava svih građana.	De grondwet beschermt de rechten van alle burgers.	zmaj zmaj::146_staat_politik
+kanton	kanton	zmaj zmaj::146_staat_politik
+Moja tetka živi u Tuzlanskom kantonu.	Mijn tante woont in het kanton Tuzla.	zmaj zmaj::146_staat_politik
+načelnik	gemeentehoofd	zmaj zmaj::147_gemeinde_gesellschaft
+Načelnik općine je otvorio novu školu.	Het gemeentehoofd heeft een nieuwe school geopend.	zmaj zmaj::147_gemeinde_gesellschaft
+gradonačelnik	burgemeester	zmaj zmaj::147_gemeinde_gesellschaft
+Gradonačelnik je obećao novi park.	De burgemeester heeft een nieuw park beloofd.	zmaj zmaj::147_gemeinde_gesellschaft
+društvo	samenleving	zmaj zmaj::147_gemeinde_gesellschaft
+Živimo u modernom društvu.	We leven in een moderne samenleving.	zmaj zmaj::147_gemeinde_gesellschaft
+zajednica	gemeenschap	zmaj zmaj::147_gemeinde_gesellschaft
+Naša zajednica u Njemačkoj je velika.	Onze gemeenschap in Duitsland is groot.	zmaj zmaj::147_gemeinde_gesellschaft
+organizacija	organisatie	zmaj zmaj::147_gemeinde_gesellschaft
+Radim u humanitarnoj organizaciji.	Ik werk bij een humanitaire organisatie.	zmaj zmaj::147_gemeinde_gesellschaft
+sloboda	vrijheid	zmaj zmaj::147_gemeinde_gesellschaft
+Sloboda govora je veoma važna.	De vrijheid van meningsuiting is heel belangrijk.	zmaj zmaj::147_gemeinde_gesellschaft
+pravda	gerechtigheid	zmaj zmaj::147_gemeinde_gesellschaft
+Porodica žrtve traži pravdu.	De familie van het slachtoffer eist gerechtigheid.	zmaj zmaj::147_gemeinde_gesellschaft
+moć	macht	zmaj zmaj::147_gemeinde_gesellschaft
+Novac i moć ga ne zanimaju.	Geld en macht interesseren hem niet.	zmaj zmaj::147_gemeinde_gesellschaft
+javnost	de publieke opinie	zmaj zmaj::147_gemeinde_gesellschaft
+Javnost ima pravo znati istinu.	Het publiek heeft het recht de waarheid te kennen.	zmaj zmaj::147_gemeinde_gesellschaft
+protest	protest	zmaj zmaj::147_gemeinde_gesellschaft
+Danas je protest ispred zgrade vlade.	Vandaag is er een protest voor het regeringsgebouw.	zmaj zmaj::147_gemeinde_gesellschaft
+štrajk	staking	zmaj zmaj::147_gemeinde_gesellschaft
+Radnici su stupili u štrajk.	De arbeiders zijn in staking gegaan.	zmaj zmaj::147_gemeinde_gesellschaft
+mir	vrede	zmaj zmaj::148_krieg_recht
+Želimo živjeti u miru.	We willen in vrede leven.	zmaj zmaj::148_krieg_recht
+vojska	leger	zmaj zmaj::148_krieg_recht
+Moj dedo je služio vojsku.	Mijn opa heeft in het leger gediend.	zmaj zmaj::148_krieg_recht
+oružje	wapen	zmaj zmaj::148_krieg_recht
+U avionu je zabranjeno nositi oružje.	In het vliegtuig is het verboden wapens te dragen.	zmaj zmaj::148_krieg_recht
+napad	aanval	zmaj zmaj::148_krieg_recht
+Policija je spriječila napad.	De politie heeft de aanval verhinderd.	zmaj zmaj::148_krieg_recht
+borba	strijd	zmaj zmaj::148_krieg_recht
+Život je jedna velika borba.	Het leven is één grote strijd.	zmaj zmaj::148_krieg_recht
+sukob	conflict	zmaj zmaj::148_krieg_recht
+Imao je sukob sa šefom.	Hij had een conflict met de baas.	zmaj zmaj::148_krieg_recht
+nasilje	geweld	zmaj zmaj::148_krieg_recht
+Nasilje nikad nije rješenje.	Geweld is nooit een oplossing.	zmaj zmaj::148_krieg_recht
+zločin	misdaad	zmaj zmaj::148_krieg_recht
+Policija još istražuje taj zločin.	De politie onderzoekt deze misdaad nog.	zmaj zmaj::148_krieg_recht
+ubistvo	moord	zmaj zmaj::148_krieg_recht
+Ovaj film je o ubistvu u malom gradu.	Deze film gaat over een moord in een kleine stad.	zmaj zmaj::148_krieg_recht
+zatvor	gevangenis	zmaj zmaj::148_krieg_recht
+Dobio je dvije godine zatvora.	Hij heeft twee jaar gevangenisstraf gekregen.	zmaj zmaj::148_krieg_recht
+sudija	rechter	zmaj zmaj::148_krieg_recht
+Sudija je pročitao presudu.	De rechter heeft het vonnis voorgelezen.	zmaj zmaj::148_krieg_recht
+tužba	aanklacht	zmaj zmaj::148_krieg_recht
+Podnio je tužbu protiv firme.	Hij heeft een aanklacht tegen het bedrijf ingediend.	zmaj zmaj::148_krieg_recht
+presuda	vonnis	zmaj zmaj::148_krieg_recht
+Presuda će biti poznata sutra.	Het vonnis wordt morgen bekend.	zmaj zmaj::148_krieg_recht
+dozvola	toestemming	zmaj zmaj::148_krieg_recht
+Imam dozvolu od šefa da ranije odem.	Ik heb toestemming van de baas om eerder te gaan.	zmaj zmaj::148_krieg_recht
+zabrana	verbod	zmaj zmaj::148_krieg_recht
+Ovdje važi zabrana pušenja.	Hier geldt een rookverbod.	zmaj zmaj::148_krieg_recht
+propis	voorschrift	zmaj zmaj::148_krieg_recht
+Svi moramo poštovati propise.	We moeten ons allemaal aan de voorschriften houden.	zmaj zmaj::148_krieg_recht
+žalba	klacht	zmaj zmaj::148_krieg_recht
+Poslao sam žalbu na račun za struju.	Ik heb een klacht gestuurd over de elektriciteitsrekening.	zmaj zmaj::148_krieg_recht
+izbjeglica	vluchteling	zmaj zmaj::148_krieg_recht
+Mnogi su došli u Njemačku kao izbjeglice.	Velen zijn als vluchteling naar Duitsland gekomen.	zmaj zmaj::148_krieg_recht
+dijaspora	diaspora	zmaj zmaj::148_krieg_recht
+Naša dijaspora svakog ljeta dolazi kući.	Onze diaspora komt elke zomer naar huis.	zmaj zmaj::148_krieg_recht
+rad	werk (het werken)	zmaj zmaj::149_wirtschaft
+Rad od kuće mi odgovara.	Thuiswerken bevalt me.	zmaj zmaj::149_wirtschaft
+kompanija	onderneming	zmaj zmaj::149_wirtschaft
+On radi u velikoj kompaniji.	Hij werkt bij een grote onderneming.	zmaj zmaj::149_wirtschaft
+preduzeće	bedrijf (fabriek, zaak)	zmaj zmaj::149_wirtschaft
+Preduzeće ima pedeset radnika.	Het bedrijf heeft vijftig arbeiders.	zmaj zmaj::149_wirtschaft
+privreda	Economie	zmaj zmaj::149_wirtschaft
+Privreda u zemlji sporo raste.	De economie van het land groeit langzaam.	zmaj zmaj::149_wirtschaft
+tržište	markt (economie)	zmaj zmaj::149_wirtschaft
+Ta firma izlazi na njemačko tržište.	Dit bedrijf gaat de Duitse markt op.	zmaj zmaj::149_wirtschaft
+proizvod	product	zmaj zmaj::149_wirtschaft
+Ovo je domaći proizvod.	Dit is een binnenlands product.	zmaj zmaj::149_wirtschaft
+usluga	dienst / service	zmaj zmaj::149_wirtschaft
+Usluga u ovom restoranu je odlična.	De service in dit restaurant is uitstekend.	zmaj zmaj::149_wirtschaft
+ponuda	aanbod (algemeen)	zmaj zmaj::149_wirtschaft
+Imam dobru ponudu za tebe.	Ik heb een goed aanbod voor je.	zmaj zmaj::149_wirtschaft
+prodaja	verkoop	zmaj zmaj::149_wirtschaft
+Kuća je na prodaju.	Het huis staat te koop.	zmaj zmaj::149_wirtschaft
+roba	waren	zmaj zmaj::149_wirtschaft
+Roba stiže u ponedjeljak.	De waren komen maandag aan.	zmaj zmaj::149_wirtschaft
+trgovina	handel	zmaj zmaj::149_wirtschaft
+Moj babo se bavi trgovinom.	Mijn papa zit in de handel.	zmaj zmaj::149_wirtschaft
+zarada	verdienste	zmaj zmaj::150_technik_energie
+Zarada je dobra, ali posao je težak.	De verdienste is goed, maar het werk is zwaar.	zmaj zmaj::150_technik_energie
+kriza	crisis	zmaj zmaj::150_technik_energie
+Zemlja je u velikoj krizi.	Het land zit in een grote crisis.	zmaj zmaj::150_technik_energie
+direktor	directeur	zmaj zmaj::150_technik_energie
+Direktor je pozvao roditelje u školu.	De directeur heeft de ouders naar school geroepen.	zmaj zmaj::150_technik_energie
+oprema	uitrusting	zmaj zmaj::150_technik_energie
+Za planinarenje treba dobra oprema.	Voor bergwandelen heb je een goede uitrusting nodig.	zmaj zmaj::150_technik_energie
+materijal	materiaal	zmaj zmaj::150_technik_energie
+Od kojeg je materijala ova jakna?	Van welk materiaal is deze jas?	zmaj zmaj::150_technik_energie
+uređaj	apparaat	zmaj zmaj::150_technik_energie
+Ovaj uređaj ne radi.	Dit apparaat werkt niet.	zmaj zmaj::150_technik_energie
+vozilo	voertuig	zmaj zmaj::150_technik_energie
+Vozilo je parkirano ispred kuće.	Het voertuig staat voor het huis geparkeerd.	zmaj zmaj::150_technik_energie
+energija	energie	zmaj zmaj::150_technik_energie
+Danas nemam nimalo energije.	Vandaag heb ik helemaal geen energie.	zmaj zmaj::150_technik_energie
+tehnologija	technologie	zmaj zmaj::150_technik_energie
+Tehnologija se brzo mijenja.	De technologie verandert snel.	zmaj zmaj::150_technik_energie
+poljoprivreda	landbouw	zmaj zmaj::150_technik_energie
+Moja porodica živi od poljoprivrede.	Mijn familie leeft van de landbouw.	zmaj zmaj::150_technik_energie
+kultura	cultuur	zmaj zmaj::151_kultur_bildung
+Zanima me bosanska kultura.	De Bosnische cultuur interesseert me.	zmaj zmaj::151_kultur_bildung
+umjetnost	kunst	zmaj zmaj::151_kultur_bildung
+Ona studira umjetnost u Sarajevu.	Ze studeert kunst in Sarajevo.	zmaj zmaj::151_kultur_bildung
+pisac	schrijver	zmaj zmaj::151_kultur_bildung
+Ko ti je najdraži pisac?	Wie is je favoriete schrijver?	zmaj zmaj::151_kultur_bildung
+izložba	tentoonstelling	zmaj zmaj::151_kultur_bildung
+Idemo na izložbu u subotu.	We gaan zaterdag naar een tentoonstelling.	zmaj zmaj::151_kultur_bildung
+predstava	voorstelling	zmaj zmaj::151_kultur_bildung
+Predstava je bila odlična.	De voorstelling was uitstekend.	zmaj zmaj::151_kultur_bildung
+historija	geschiedenis (vak)	zmaj zmaj::151_kultur_bildung
+U školi sam volio historiju.	Op school vond ik geschiedenis leuk.	zmaj zmaj::151_kultur_bildung
+nauka	wetenschap	zmaj zmaj::151_kultur_bildung
+Nauka je to već dokazala.	De wetenschap heeft dat al bewezen.	zmaj zmaj::151_kultur_bildung
+obrazovanje	onderwijs	zmaj zmaj::151_kultur_bildung
+Obrazovanje je najvažnije za djecu.	Onderwijs is het belangrijkste voor kinderen.	zmaj zmaj::151_kultur_bildung
+nastava	lessen	zmaj zmaj::151_kultur_bildung
+Danas nema nastave zbog snijega.	Vandaag zijn er geen lessen vanwege de sneeuw.	zmaj zmaj::151_kultur_bildung
+vježba	oefening	zmaj zmaj::151_kultur_bildung
+Ova vježba je preteška.	Deze oefening is te moeilijk.	zmaj zmaj::151_kultur_bildung
+islam	islam	zmaj zmaj::152_glaube_gedenken
+Čitam knjigu o islamu.	Ik lees een boek over de islam.	zmaj zmaj::152_glaube_gedenken
+musliman	moslim	zmaj zmaj::152_glaube_gedenken
+Muslimani poste u Ramazanu.	Moslims vasten tijdens de ramadan.	zmaj zmaj::152_glaube_gedenken
+vjernik	gelovig mens	zmaj zmaj::152_glaube_gedenken
+Moj babo je veliki vjernik.	Mijn papa is een heel gelovig mens.	zmaj zmaj::152_glaube_gedenken
+namaz	gebed (islamitisch)	zmaj zmaj::152_glaube_gedenken
+Nana svaki dan klanja namaz.	Oma verricht elke dag het gebed.	zmaj zmaj::152_glaube_gedenken
+molitva	gebed (algemeen)	zmaj zmaj::152_glaube_gedenken
+Molitva mi daje mir.	Het gebed geeft me vrede.	zmaj zmaj::152_glaube_gedenken
+duša	ziel	zmaj zmaj::152_glaube_gedenken
+Ona je dobra duša.	Ze is een goede ziel.	zmaj zmaj::152_glaube_gedenken
+čudo	wonder	zmaj zmaj::152_glaube_gedenken
+Preživio je, to je pravo čudo.	Hij heeft het overleefd, dat is een echt wonder.	zmaj zmaj::152_glaube_gedenken
+sudbina	lot	zmaj zmaj::152_glaube_gedenken
+Vjeruješ li u sudbinu?	Geloof je in het lot?	zmaj zmaj::152_glaube_gedenken
+groblje	begraafplaats	zmaj zmaj::152_glaube_gedenken
+Svakog Bajrama idemo na groblje.	Elke Bajram gaan we naar de begraafplaats.	zmaj zmaj::152_glaube_gedenken
+spomenik	monument	zmaj zmaj::152_glaube_gedenken
+Turisti se slikaju ispred spomenika.	De toeristen laten zich voor het monument fotograferen.	zmaj zmaj::152_glaube_gedenken
+zastava	vlag	zmaj zmaj::152_glaube_gedenken
+Na zgradi općine visi zastava.	Aan het gemeentehuis hangt een vlag.	zmaj zmaj::152_glaube_gedenken
+hrana	eten / voedsel	zmaj zmaj::153_alltag_information
+Domaća hrana je najbolja.	Zelfgemaakt eten is het lekkerst.	zmaj zmaj::153_alltag_information
+piće	drankje	zmaj zmaj::153_alltag_information
+Šta ćete za piće?	Wat wilt u drinken?	zmaj zmaj::153_alltag_information
+ime	naam	zmaj zmaj::153_alltag_information
+Kako se piše tvoje ime?	Hoe schrijf je jouw naam?	zmaj zmaj::153_alltag_information
+prezime	achternaam	zmaj zmaj::153_alltag_information
+Napišite ovdje svoje prezime.	Schrijf hier uw achternaam.	zmaj zmaj::153_alltag_information
+adresa	adres	zmaj zmaj::153_alltag_information
+Koja je tvoja nova adresa?	Wat is je nieuwe adres?	zmaj zmaj::153_alltag_information
+telefon	telefoon	zmaj zmaj::153_alltag_information
+Ostavio sam telefon kod kuće.	Ik heb mijn telefoon thuis laten liggen.	zmaj zmaj::153_alltag_information
+priča	verhaal	zmaj zmaj::153_alltag_information
+To je duga priča.	Dat is een lang verhaal.	zmaj zmaj::153_alltag_information
+informacija	informatie	zmaj zmaj::153_alltag_information
+Treba mi više informacija.	Ik heb meer informatie nodig.	zmaj zmaj::153_alltag_information
+podatak	gegeven / gegevens	zmaj zmaj::153_alltag_information
+Unesite svoje lične podatke.	Voer uw persoonlijke gegevens in.	zmaj zmaj::153_alltag_information
+tema	onderwerp	zmaj zmaj::153_alltag_information
+Hajde da promijenimo temu.	Laten we van onderwerp veranderen.	zmaj zmaj::153_alltag_information
+tekst	tekst	zmaj zmaj::153_alltag_information
+Pročitaj ovaj tekst do sutra.	Lees deze tekst voor morgen.	zmaj zmaj::153_alltag_information
+sadržaj	inhoud	zmaj zmaj::153_alltag_information
+Otvorio je paket i provjerio sadržaj.	Hij heeft het pakket geopend en de inhoud gecontroleerd.	zmaj zmaj::153_alltag_information
+stranica	pagina (boek, web)	zmaj zmaj::154_gruppe_netz
+Otvori knjigu na desetoj stranici.	Sla het boek open op pagina tien.	zmaj zmaj::154_gruppe_netz
+grupa	groep	zmaj zmaj::154_gruppe_netz
+Putujemo u velikoj grupi.	We reizen in een grote groep.	zmaj zmaj::154_gruppe_netz
+klub	vereniging / club	zmaj zmaj::154_gruppe_netz
+Za koji klub navijaš?	Voor welke club ben jij?	zmaj zmaj::154_gruppe_netz
+projekat	project	zmaj zmaj::154_gruppe_netz
+Radim na novom projektu.	Ik werk aan een nieuw project.	zmaj zmaj::154_gruppe_netz
+program	computerprogramma	zmaj zmaj::154_gruppe_netz
+Ovaj program je besplatan.	Dit programma is gratis.	zmaj zmaj::154_gruppe_netz
+sistem	systeem	zmaj zmaj::154_gruppe_netz
+Sistem trenutno ne radi.	Het systeem werkt op dit moment niet.	zmaj zmaj::154_gruppe_netz
+mreža	netwerk	zmaj zmaj::154_gruppe_netz
+Ovdje u selu nema mreže.	Hier in het dorp is geen netwerk.	zmaj zmaj::154_gruppe_netz
+fotografija	foto	zmaj zmaj::154_gruppe_netz
+Ova fotografija je snimljena u Mostaru.	Deze foto is in Mostar genomen.	zmaj zmaj::154_gruppe_netz
+zgrada	gebouw	zmaj zmaj::154_gruppe_netz
+Stanujemo u staroj zgradi bez lifta.	We wonen in een oud gebouw zonder lift.	zmaj zmaj::154_gruppe_netz
+namještaj	meubels	zmaj zmaj::154_gruppe_netz
+Kupili smo novi namještaj za dnevnu sobu.	We hebben nieuwe meubels voor de woonkamer gekocht.	zmaj zmaj::154_gruppe_netz
+gužva	drukte / file	zmaj zmaj::154_gruppe_netz
+Ujutro je u gradu uvijek gužva.	's Morgens staat er in de stad altijd file.	zmaj zmaj::154_gruppe_netz
+važan	belangrijk (m.)	zmaj zmaj::155_wichtig_bekannt
+Ovo je važan dan za našu porodicu.	Dit is een belangrijke dag voor ons gezin.	zmaj zmaj::155_wichtig_bekannt
+bitan	wezenlijk / belangrijk	zmaj zmaj::155_wichtig_bekannt
+Bitno je da si zdrav.	Het belangrijkste is dat je gezond bent.	zmaj zmaj::155_wichtig_bekannt
+značajan	aanzienlijk	zmaj zmaj::155_wichtig_bekannt
+To je značajan uspjeh za naš grad.	Dit is een aanzienlijk succes voor onze stad.	zmaj zmaj::155_wichtig_bekannt
+glavni	hoofd-	zmaj zmaj::155_wichtig_bekannt
+Glavni ulaz je s druge strane.	De hoofdingang is aan de andere kant.	zmaj zmaj::155_wichtig_bekannt
+poznat	bekend	zmaj zmaj::155_wichtig_bekannt
+Ovaj grad je poznat po ćevapima.	Deze stad staat bekend om haar ćevapi.	zmaj zmaj::155_wichtig_bekannt
+nepoznat	onbekend	zmaj zmaj::155_wichtig_bekannt
+Zvao me je nepoznat broj.	Een onbekend nummer heeft me gebeld.	zmaj zmaj::155_wichtig_bekannt
+neophodan	onmisbaar	zmaj zmaj::155_wichtig_bekannt
+Za ovaj posao je neophodna vozačka dozvola.	Voor dit werk is een rijbewijs onmisbaar.	zmaj zmaj::155_wichtig_bekannt
+odgovoran	verantwoordelijk	zmaj zmaj::155_wichtig_bekannt
+Ko je odgovoran za ovu grešku?	Wie is verantwoordelijk voor deze fout?	zmaj zmaj::155_wichtig_bekannt
+odličan	uitstekend	zmaj zmaj::155_wichtig_bekannt
+Ručak je bio odličan, hvala ti.	De lunch was uitstekend, bedankt.	zmaj zmaj::155_wichtig_bekannt
+sjajan	geweldig	zmaj zmaj::155_wichtig_bekannt
+Imam sjajnu ideju za vikend!	Ik heb een geweldig idee voor het weekend!	zmaj zmaj::155_wichtig_bekannt
+uspješan	succesvol	zmaj zmaj::155_wichtig_bekannt
+Moj amidža je uspješan čovjek.	Mijn oom is een succesvolle man.	zmaj zmaj::155_wichtig_bekannt
+koristan	nuttig	zmaj zmaj::155_wichtig_bekannt
+Ova aplikacija je jako korisna.	Deze app is heel nuttig.	zmaj zmaj::155_wichtig_bekannt
+normalan	normaal	zmaj zmaj::155_wichtig_bekannt
+To je normalno, ne brini.	Dat is normaal, maak je geen zorgen.	zmaj zmaj::155_wichtig_bekannt
+pozitivan	positief	zmaj zmaj::155_wichtig_bekannt
+Ona je uvijek pozitivna i nasmijana.	Ze is altijd positief en vrolijk.	zmaj zmaj::155_wichtig_bekannt
+negativan	negatief	zmaj zmaj::155_wichtig_bekannt
+Nalaz je negativan, hvala Bogu.	De uitslag is negatief, godzijdank.	zmaj zmaj::155_wichtig_bekannt
+jasan	duidelijk	zmaj zmaj::155_wichtig_bekannt
+Je li ti sada jasno?	Is het je nu duidelijk?	zmaj zmaj::155_wichtig_bekannt
+sav	heel / al	zmaj zmaj::156_ganz_viele
+Djeca su popila sav sok.	De kinderen hebben al het sap opgedronken.	zmaj zmaj::156_ganz_viele
+cijeli	heel (m.)	zmaj zmaj::156_ganz_viele
+Cijeli grad je bez struje.	De hele stad zit zonder stroom.	zmaj zmaj::156_ganz_viele
+mnogi	vele	zmaj zmaj::156_ganz_viele
+Mnogi su otišli u Njemačku.	Velen zijn naar Duitsland gegaan.	zmaj zmaj::156_ganz_viele
+razni	verschillende / allerlei	zmaj zmaj::156_ganz_viele
+Na pijaci prodaju razne stvari.	Op de markt verkopen ze allerlei spullen.	zmaj zmaj::156_ganz_viele
+različit	verschillend	zmaj zmaj::156_ganz_viele
+Moj brat i ja smo jako različiti.	Mijn broer en ik zijn heel verschillend.	zmaj zmaj::156_ganz_viele
+određen	bepaald (vastgelegd)	zmaj zmaj::156_ganz_viele
+Tražim jednu određenu knjigu.	Ik zoek een bepaald boek.	zmaj zmaj::156_ganz_viele
+jedini	enig (de enige)	zmaj zmaj::156_ganz_viele
+On je moj jedini brat.	Hij is mijn enige broer.	zmaj zmaj::156_ganz_viele
+brojan	talrijk	zmaj zmaj::156_ganz_viele
+Brojni turisti dolaze u Sarajevo.	Talrijke toeristen komen naar Sarajevo.	zmaj zmaj::156_ganz_viele
+ukupan	totaal	zmaj zmaj::156_ganz_viele
+Ukupna cijena je sto maraka.	De totaalprijs is honderd mark.	zmaj zmaj::156_ganz_viele
+potpun	volledig / volkomen	zmaj zmaj::156_ganz_viele
+To je potpuna glupost.	Dat is volkomen onzin.	zmaj zmaj::156_ganz_viele
+dovoljan	voldoende / genoeg	zmaj zmaj::156_ganz_viele
+Imamo li dovoljno hljeba?	Hebben we genoeg brood?	zmaj zmaj::156_ganz_viele
+vlastit	eigen	zmaj zmaj::156_ganz_viele
+Želim imati vlastitu kuću.	Ik wil een eigen huis hebben.	zmaj zmaj::156_ganz_viele
+zajednički	gezamenlijk	zmaj zmaj::156_ganz_viele
+Imamo zajedničkog prijatelja.	We hebben een gemeenschappelijke vriend.	zmaj zmaj::156_ganz_viele
+posljednji	laatste (in een rij)	zmaj zmaj::157_frueher_spaeter
+Ovo je posljednji voz za Mostar.	Dit is de laatste trein naar Mostar.	zmaj zmaj::157_frueher_spaeter
+prošli	verleden / vorig (in de tijd)	zmaj zmaj::157_frueher_spaeter
+Prošli vikend smo bili na Jahorini.	Vorig weekend waren we op de Jahorina.	zmaj zmaj::157_frueher_spaeter
+sljedeći	volgend	zmaj zmaj::157_frueher_spaeter
+Sljedeći put ja plaćam.	Volgende keer betaal ik.	zmaj zmaj::157_frueher_spaeter
+bivši	voormalig	zmaj zmaj::157_frueher_spaeter
+Ovo je moj bivši šef.	Dit is mijn voormalige baas.	zmaj zmaj::157_frueher_spaeter
+današnji	huidig (van vandaag)	zmaj zmaj::157_frueher_spaeter
+Današnja djeca stalno gledaju u telefon.	De kinderen van tegenwoordig kijken steeds op hun telefoon.	zmaj zmaj::157_frueher_spaeter
+prethodni	vorig (voorafgaand)	zmaj zmaj::157_frueher_spaeter
+Prethodni stan je bio manji.	De vorige woning was kleiner.	zmaj zmaj::157_frueher_spaeter
+budući	toekomstig	zmaj zmaj::157_frueher_spaeter
+Ovo je moja buduća žena.	Dit is mijn toekomstige vrouw.	zmaj zmaj::157_frueher_spaeter
+sadašnji	tegenwoordig	zmaj zmaj::157_frueher_spaeter
+Moj sadašnji posao mi se sviđa.	Mijn huidige baan bevalt me.	zmaj zmaj::157_frueher_spaeter
+rani	vroeg (bijvoeglijk)	zmaj zmaj::157_frueher_spaeter
+U rano jutro krećemo na put.	In de vroege ochtend vertrekken we.	zmaj zmaj::157_frueher_spaeter
+dnevni	dagelijks / dag-	zmaj zmaj::157_frueher_spaeter
+Kupio sam dnevnu kartu za autobus.	Ik heb een dagkaart voor de bus gekocht.	zmaj zmaj::157_frueher_spaeter
+redovan	regelmatig	zmaj zmaj::157_frueher_spaeter
+Redovno idem kod doktora.	Ik ga regelmatig naar de dokter.	zmaj zmaj::157_frueher_spaeter
+konačan	definitief	zmaj zmaj::157_frueher_spaeter
+To je moja konačna odluka.	Dat is mijn definitieve beslissing.	zmaj zmaj::157_frueher_spaeter
+javni	openbaar	zmaj zmaj::158_innen_aussen
+Ima li ovdje javni toalet?	Is hier een openbaar toilet?	zmaj zmaj::158_innen_aussen
+privatan	privé	zmaj zmaj::158_innen_aussen
+To je moja privatna stvar.	Dat is mijn privézaak.	zmaj zmaj::158_innen_aussen
+lokalni	lokaal / plaatselijk	zmaj zmaj::158_innen_aussen
+Babo svako jutro čita lokalne novine.	Papa leest elke ochtend de plaatselijke krant.	zmaj zmaj::158_innen_aussen
+vanjski	buitenste	zmaj zmaj::158_innen_aussen
+Vanjska vrata su uvijek zaključana.	De buitendeur is altijd op slot.	zmaj zmaj::158_innen_aussen
+unutrašnji	binnenste	zmaj zmaj::158_innen_aussen
+Novčanik je u unutrašnjem džepu.	De portemonnee zit in de binnenzak.	zmaj zmaj::158_innen_aussen
+gornji	bovenste	zmaj zmaj::158_innen_aussen
+Čaše su na gornjoj polici.	De glazen staan op de bovenste plank.	zmaj zmaj::158_innen_aussen
+donji	onderste	zmaj zmaj::158_innen_aussen
+Moj komšija živi na donjem spratu.	Mijn buurman woont op de onderste verdieping.	zmaj zmaj::158_innen_aussen
+srednji	middelste	zmaj zmaj::158_innen_aussen
+Ovo je moj srednji sin.	Dit is mijn middelste zoon.	zmaj zmaj::158_innen_aussen
+blizak	nabij / hecht	zmaj zmaj::158_innen_aussen
+On mi je blizak prijatelj.	Hij is een goede vriend van me.	zmaj zmaj::158_innen_aussen
+dalek	ver / verwijderd	zmaj zmaj::158_innen_aussen
+Imamo dalekog rođaka u Americi.	We hebben een verre verwant in Amerika.	zmaj zmaj::158_innen_aussen
+stran	vreemd / buitenlands	zmaj zmaj::158_innen_aussen
+Znaš li neki strani jezik?	Spreek je een vreemde taal?	zmaj zmaj::158_innen_aussen
+čist	schoon (m.)	zmaj zmaj::159_eigenschaften
+Uzmi čist peškir iz ormara.	Pak een schone handdoek uit de kast.	zmaj zmaj::159_eigenschaften
+živ	levend / in leven	zmaj zmaj::159_eigenschaften
+Hvala Bogu, svi su živi i zdravi.	Godzijdank zijn allen gezond en wel.	zmaj zmaj::159_eigenschaften
+snažan	sterk / krachtig	zmaj zmaj::159_eigenschaften
+Moj brat je snažan kao bik.	Mijn broer is sterk als een stier.	zmaj zmaj::159_eigenschaften
+moderan	modern	zmaj zmaj::159_eigenschaften
+Imaju jako modernu kuhinju.	Ze hebben een heel moderne keuken.	zmaj zmaj::159_eigenschaften
+topao	warm (m.)	zmaj zmaj::159_eigenschaften
+Treba mi topao džemper.	Ik heb een warme trui nodig.	zmaj zmaj::159_eigenschaften
+hladan	koud (m.)	zmaj zmaj::159_eigenschaften
+Voda u rijeci je jako hladna.	Het water in de rivier is erg koud.	zmaj zmaj::159_eigenschaften
+dubok	diep	zmaj zmaj::159_eigenschaften
+Je li voda ovdje duboka?	Is het water hier diep?	zmaj zmaj::159_eigenschaften
+ogroman	enorm	zmaj zmaj::159_eigenschaften
+Imaju ogromnu kuću na selu.	Ze hebben een enorm huis op het platteland.	zmaj zmaj::159_eigenschaften
+opasan	gevaarlijk (m.)	zmaj zmaj::159_eigenschaften
+Pazi, ovaj pas je opasan!	Pas op, deze hond is gevaarlijk!	zmaj zmaj::159_eigenschaften
+kriv	schuldig / scheef	zmaj zmaj::159_eigenschaften
+Nisam ja kriv, on je počeo!	Het is niet mijn schuld, hij is begonnen!	zmaj zmaj::159_eigenschaften
+ljudski	menselijk	zmaj zmaj::159_eigenschaften
+Griješiti je ljudski.	Vergissen is menselijk.	zmaj zmaj::159_eigenschaften
+prirodan	natuurlijk (uit de natuur)	zmaj zmaj::159_eigenschaften
+Ovaj sok je potpuno prirodan.	Dit sap is helemaal natuurlijk.	zmaj zmaj::159_eigenschaften
+ženski	vrouwelijk / dames-	zmaj zmaj::159_eigenschaften
+Ženska odjeća je na drugom spratu.	De dameskleding is op de tweede verdieping.	zmaj zmaj::159_eigenschaften
+muški	mannelijk / heren-	zmaj zmaj::159_eigenschaften
+Je li beba muško ili žensko?	Is de baby een jongen of een meisje?	zmaj zmaj::159_eigenschaften
+hitan	dringend	zmaj zmaj::159_eigenschaften
+Moram ti nešto hitno reći.	Ik moet je dringend iets zeggen.	zmaj zmaj::159_eigenschaften
+čest	veelvoorkomend	zmaj zmaj::159_eigenschaften
+To je česta greška.	Dat is een veelgemaakte fout.	zmaj zmaj::159_eigenschaften
+tu	hier vlakbij / hierzo	zmaj zmaj::160_hier_dort
+Ostavi torbu tu, pored vrata.	Laat de tas daar, naast de deur.	zmaj zmaj::160_hier_dort
+ovdje	hier	zmaj zmaj::160_hier_dort
+Živim ovdje već deset godina.	Ik woon hier al tien jaar.	zmaj zmaj::160_hier_dort
+tamo	daar	zmaj zmaj::160_hier_dort
+Bio sam tamo prošle godine.	Ik was er vorig jaar.	zmaj zmaj::160_hier_dort
+gore	daarboven	zmaj zmaj::160_hier_dort
+Djeca se igraju gore u sobi.	De kinderen spelen boven op de kamer.	zmaj zmaj::160_hier_dort
+dolje	beneden	zmaj zmaj::160_hier_dort
+Čekam te dolje, ispred zgrade.	Ik wacht beneden op je, voor het gebouw.	zmaj zmaj::160_hier_dort
+negdje	ergens	zmaj zmaj::160_hier_dort
+Negdje sam ostavio ključeve.	Ik heb de sleutels ergens laten liggen.	zmaj zmaj::160_hier_dort
+nigdje	nergens	zmaj zmaj::160_hier_dort
+Nigdje ne mogu naći telefon.	Ik kan mijn telefoon nergens vinden.	zmaj zmaj::160_hier_dort
+naprijed	vooruit / naar voren	zmaj zmaj::160_hier_dort
+Samo naprijed, ne boj se!	Vooruit maar, wees niet bang!	zmaj zmaj::160_hier_dort
+nazad	terug	zmaj zmaj::160_hier_dort
+Kad ideš nazad u Njemačku?	Wanneer ga je terug naar Duitsland?	zmaj zmaj::160_hier_dort
+onda	dan	zmaj zmaj::161_wann_wie_oft
+Prvo ručak, onda kahva.	Eerst de lunch, dan de koffie.	zmaj zmaj::161_wann_wie_oft
+zatim	daarna	zmaj zmaj::161_wann_wie_oft
+Večerali smo, a zatim smo gledali film.	We hebben gegeten en daarna een film gekeken.	zmaj zmaj::161_wann_wie_oft
+nekad	soms / vroeger	zmaj zmaj::161_wann_wie_oft
+Nekad smo živjeli u Tuzli.	Vroeger woonden we in Tuzla.	zmaj zmaj::161_wann_wie_oft
+odjednom	plotseling	zmaj zmaj::161_wann_wie_oft
+Odjednom je nestala struja.	Plotseling viel de stroom uit.	zmaj zmaj::161_wann_wie_oft
+davno	lang geleden	zmaj zmaj::161_wann_wie_oft
+To je bilo davno, ne sjećam se.	Dat is lang geleden, ik herinner het me niet.	zmaj zmaj::161_wann_wie_oft
+stalno	voortdurend	zmaj zmaj::161_wann_wie_oft
+Stalno mislim na tebe.	Ik denk voortdurend aan je.	zmaj zmaj::161_wann_wie_oft
+trenutno	momenteel / op dit moment	zmaj zmaj::161_wann_wie_oft
+Trenutno nisam kod kuće.	Ik ben op dit moment niet thuis.	zmaj zmaj::161_wann_wie_oft
+prvo	eerst	zmaj zmaj::161_wann_wie_oft
+Prvo operi ruke, pa onda jedi.	Was eerst je handen en eet dan.	zmaj zmaj::161_wann_wie_oft
+skoro	bijna / binnenkort	zmaj zmaj::161_wann_wie_oft
+Skoro sam zaboravio tvoj rođendan.	Ik was bijna je verjaardag vergeten.	zmaj zmaj::161_wann_wie_oft
+tako	zo	zmaj zmaj::162_wie_sehr
+Zašto tako kasno dolaziš kući?	Waarom kom je zo laat thuis?	zmaj zmaj::162_wie_sehr
+ovako	zo (zoals hier)	zmaj zmaj::162_wie_sehr
+Gledaj, to se radi ovako.	Kijk, zo doe je dat.	zmaj zmaj::162_wie_sehr
+vrlo / veoma	zeer (voor eigenschappen)	zmaj zmaj::162_wie_sehr
+Ovo je vrlo važno za mene.	Dit is zeer belangrijk voor mij.	zmaj zmaj::162_wie_sehr
+toliko	zoveel	zmaj zmaj::162_wie_sehr
+Nano, ne mogu toliko pojesti!	Oma, zoveel kan ik niet eten!	zmaj zmaj::162_wie_sehr
+sasvim	helemaal (volkomen)	zmaj zmaj::162_wie_sehr
+Sasvim si u pravu.	Je hebt helemaal gelijk.	zmaj zmaj::162_wie_sehr
+nikako	in geen geval / helemaal niet	zmaj zmaj::162_wie_sehr
+Nikako ne mogu doći sutra.	Morgen kan ik in geen geval komen.	zmaj zmaj::162_wie_sehr
+nekako	op de een of andere manier	zmaj zmaj::162_wie_sehr
+Nekako ćemo se snaći.	We redden het wel op de een of andere manier.	zmaj zmaj::162_wie_sehr
+pomalo	een beetje (enigszins)	zmaj zmaj::162_wie_sehr
+Već pomalo govorim bosanski.	Ik spreek al een beetje Bosnisch.	zmaj zmaj::162_wie_sehr
+rado	graag	zmaj zmaj::162_wie_sehr
+Rado ću ti pomoći.	Ik help je graag.	zmaj zmaj::162_wie_sehr
+otprilike	ongeveer	zmaj zmaj::162_wie_sehr
+Stižemo za otprilike sat vremena.	We komen over ongeveer een uur aan.	zmaj zmaj::162_wie_sehr
+jedva	nauwelijks	zmaj zmaj::162_wie_sehr
+Jedva čekam ljeto!	Ik kan bijna niet wachten op de zomer!	zmaj zmaj::162_wie_sehr
+baš	net / precies	zmaj zmaj::162_wie_sehr
+Baš sam te htio nazvati.	Ik wilde je net bellen.	zmaj zmaj::162_wie_sehr
+čak	zelfs	zmaj zmaj::162_wie_sehr
+Čak i djeca to znaju.	Zelfs kinderen weten dat.	zmaj zmaj::162_wie_sehr
+bar	tenminste	zmaj zmaj::162_wie_sehr
+Pojedi bar malo supe.	Eet tenminste een beetje soep.	zmaj zmaj::162_wie_sehr
+ni	ook niet / zelfs niet	zmaj zmaj::162_wie_sehr
+Nisam ni ja znao.	Ik wist het ook niet.	zmaj zmaj::162_wie_sehr
+zaista	werkelijk / inderdaad	zmaj zmaj::163_wie_man_es_meint
+Zaista mi je žao.	Het spijt me echt.	zmaj zmaj::163_wie_man_es_meint
+ipak	toch / desondanks	zmaj zmaj::163_wie_man_es_meint
+Bio je bolestan, ali je ipak došao.	Hij was ziek, maar hij is toch gekomen.	zmaj zmaj::163_wie_man_es_meint
+inače	anders / normaal gesproken	zmaj zmaj::163_wie_man_es_meint
+Požuri, inače ćemo zakasniti.	Schiet op, anders komen we te laat.	zmaj zmaj::163_wie_man_es_meint
+uglavnom	meestal / hoofdzakelijk	zmaj zmaj::163_wie_man_es_meint
+Uglavnom radim od kuće.	Ik werk meestal thuis.	zmaj zmaj::163_wie_man_es_meint
+vjerovatno	waarschijnlijk	zmaj zmaj::163_wie_man_es_meint
+Sutra će vjerovatno padati kiša.	Morgen gaat het waarschijnlijk regenen.	zmaj zmaj::163_wie_man_es_meint
+zapravo / ustvari	eigenlijk	zmaj zmaj::163_wie_man_es_meint
+Šta si zapravo htio reći?	Wat wilde je eigenlijk zeggen?	zmaj zmaj::163_wie_man_es_meint
+svakako	in ieder geval	zmaj zmaj::163_wie_man_es_meint
+Svakako ću ti se javiti.	Ik laat in ieder geval iets van me horen.	zmaj zmaj::163_wie_man_es_meint
+valjda	wel / vermoedelijk	zmaj zmaj::163_wie_man_es_meint
+Valjda će sve biti dobro.	Het komt wel allemaal goed.	zmaj zmaj::163_wie_man_es_meint
+kao	als / zoals	zmaj zmaj::164_saetze_verbinden
+Spavao sam kao beba.	Ik heb geslapen als een baby.	zmaj zmaj::164_saetze_verbinden
+pa	en dan / dus	zmaj zmaj::164_saetze_verbinden
+Završi zadaću pa idi vani.	Maak je huiswerk af en ga dan naar buiten.	zmaj zmaj::164_saetze_verbinden
+što	wat / dat (in een bijzin)	zmaj zmaj::164_saetze_verbinden
+Žao mi je što kasnim.	Het spijt me dat ik te laat ben.	zmaj zmaj::164_saetze_verbinden
+iako	hoewel	zmaj zmaj::164_saetze_verbinden
+Iako sam umoran, idem na trening.	Hoewel ik moe ben, ga ik naar de training.	zmaj zmaj::164_saetze_verbinden
+ukoliko	indien	zmaj zmaj::164_saetze_verbinden
+Ukoliko ne možeš doći, javi mi.	Indien je niet kunt komen, laat het me weten.	zmaj zmaj::164_saetze_verbinden
+dakle	dus	zmaj zmaj::164_saetze_verbinden
+Dakle, vidimo se sutra u osam.	Dus, we zien elkaar morgen om acht uur.	zmaj zmaj::164_saetze_verbinden
+međutim	echter	zmaj zmaj::164_saetze_verbinden
+Htio sam doći, međutim nisam mogao.	Ik wilde komen, maar kon echter niet.	zmaj zmaj::164_saetze_verbinden
+odnosno	respectievelijk	zmaj zmaj::164_saetze_verbinden
+Dolazim u petak, odnosno u subotu.	Ik kom op vrijdag, oftewel op zaterdag.	zmaj zmaj::164_saetze_verbinden
+čim	zodra	zmaj zmaj::164_saetze_verbinden
+Javi mi čim stigneš.	Laat het me weten zodra je aankomt.	zmaj zmaj::164_saetze_verbinden
+pošto	aangezien / nadat	zmaj zmaj::164_saetze_verbinden
+Pošto pada kiša, ostajemo kod kuće.	Aangezien het regent, blijven we thuis.	zmaj zmaj::164_saetze_verbinden
+neka	moet / moge	zmaj zmaj::164_saetze_verbinden
+Neka sačeka pet minuta.	Hij moet maar vijf minuten wachten.	zmaj zmaj::164_saetze_verbinden
+evo	hier is / daar is	zmaj zmaj::164_saetze_verbinden
+Evo ti ključevi od stana.	Hier heb je de sleutels van de woning.	zmaj zmaj::164_saetze_verbinden
+po	na / per	zmaj zmaj::165_praepositionen_mehr
+Ulaz košta pet maraka po osobi.	De toegang kost vijf mark per persoon.	zmaj zmaj::165_praepositionen_mehr
+nakon	na (een gebeurtenis)	zmaj zmaj::165_praepositionen_mehr
+Nakon ručka pijemo kahvu.	Na de lunch drinken we koffie.	zmaj zmaj::165_praepositionen_mehr
+uz	naast / bij / met	zmaj zmaj::165_praepositionen_mehr
+Uz ćevape obavezno ide luk.	Bij ćevapi hoort beslist ui.	zmaj zmaj::165_praepositionen_mehr
+protiv	tegen	zmaj zmaj::165_praepositionen_mehr
+Nemam ništa protiv njega.	Ik heb niets tegen hem.	zmaj zmaj::165_praepositionen_mehr
+preko	over / via	zmaj zmaj::165_praepositionen_mehr
+Prešli smo preko Starog mosta.	We zijn over de Oude Brug gelopen.	zmaj zmaj::165_praepositionen_mehr
+tokom	tijdens	zmaj zmaj::165_praepositionen_mehr
+Tokom ljeta radim u kafiću.	Tijdens de zomer werk ik in een café.	zmaj zmaj::165_praepositionen_mehr
+pred	voor (vlak voor)	zmaj zmaj::165_praepositionen_mehr
+Čekam te pred kućom.	Ik wacht voor het huis op je.	zmaj zmaj::165_praepositionen_mehr
+među	tussen / onder (meerdere)	zmaj zmaj::165_praepositionen_mehr
+Ovo ostaje među nama.	Dit blijft onder ons.	zmaj zmaj::165_praepositionen_mehr
+osim	behalve	zmaj zmaj::165_praepositionen_mehr
+Svi su došli osim Amine.	Iedereen is gekomen behalve Amina.	zmaj zmaj::165_praepositionen_mehr
+umjesto	in plaats van	zmaj zmaj::165_praepositionen_mehr
+Umjesto kahve pijem čaj.	In plaats van koffie drink ik thee.	zmaj zmaj::165_praepositionen_mehr
+unutar	binnen (in)	zmaj zmaj::165_praepositionen_mehr
+Unutar zgrade je zabranjeno pušenje.	Binnen het gebouw is roken verboden.	zmaj zmaj::165_praepositionen_mehr
+izvan	buiten (niet in)	zmaj zmaj::165_praepositionen_mehr
+Živimo malo izvan grada.	We wonen een beetje buiten de stad.	zmaj zmaj::165_praepositionen_mehr
+radi	vanwege / omwille van	zmaj zmaj::165_praepositionen_mehr
+Radi djece ostajemo ovdje.	Omwille van de kinderen blijven we hier.	zmaj zmaj::165_praepositionen_mehr
+sebe	zich	zmaj zmaj::166_fuerwoerter
+On misli samo na sebe.	Hij denkt alleen aan zichzelf.	zmaj zmaj::166_fuerwoerter
+taj	die (daar)	zmaj zmaj::166_fuerwoerter
+Ko je taj čovjek?	Wie is die man?	zmaj zmaj::166_fuerwoerter
+svoj	eigen (mijn, jouw, zijn)	zmaj zmaj::166_fuerwoerter
+Uzmi svoju torbu, idemo!	Pak je tas, we gaan!	zmaj zmaj::166_fuerwoerter
+neki	een of ander	zmaj zmaj::166_fuerwoerter
+Neki čovjek te je tražio.	Een of andere man zocht je.	zmaj zmaj::166_fuerwoerter
+neko	iemand	zmaj zmaj::166_fuerwoerter
+Neko kuca na vrata.	Er klopt iemand op de deur.	zmaj zmaj::166_fuerwoerter
+njihov	hun	zmaj zmaj::166_fuerwoerter
+Njihova kuća je pored škole.	Hun huis staat naast de school.	zmaj zmaj::166_fuerwoerter
+takav	zo'n	zmaj zmaj::166_fuerwoerter
+Takav je život, šta ćeš.	Zo is het leven, wat doe je eraan.	zmaj zmaj::166_fuerwoerter
+kakav	wat voor een	zmaj zmaj::166_fuerwoerter
+Kakav auto voziš?	Wat voor auto rijd je?	zmaj zmaj::166_fuerwoerter
+ovakav	zulk (als deze)	zmaj zmaj::166_fuerwoerter
+Tražim ovakve cipele, ali crne.	Ik zoek zulke schoenen als deze, maar in het zwart.	zmaj zmaj::166_fuerwoerter
+nikakav	geen enkel	zmaj zmaj::166_fuerwoerter
+Nemamo nikakav plan za vikend.	We hebben geen enkel plan voor het weekend.	zmaj zmaj::166_fuerwoerter
+svako	ieder (persoon)	zmaj zmaj::166_fuerwoerter
+Svako to može naučiti.	Dat kan iedereen leren.	zmaj zmaj::166_fuerwoerter
+oba	beide (mannelijk)	zmaj zmaj::166_fuerwoerter
+Oba sina žive u Njemačkoj.	Beide zoons wonen in Duitsland.	zmaj zmaj::166_fuerwoerter

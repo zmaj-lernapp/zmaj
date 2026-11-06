@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """barrierefreiheit_richten.py passt auf den heutigen Stand von web/index.html.
 
-Das Skript liegt bereit, bis der geschlossene Test vorbei ist (07.10.2026).
-Ändert sich index.html vorher an einer seiner Stellen, soll das hier
-auffallen und nicht erst am Tag des Builds. Ohne Browser, unter einer
-Sekunde - die Messung mit axe steht in tests_e2e/."""
+Das Skript ist am 05.10.2026 angewendet (Build 91) und bleibt liegen, weil
+dieser Test den angewendeten Stand prüft. Ändert sich index.html an
+einer seiner Stellen, soll das hier auffallen und nicht erst, wenn jemand
+das Skript wieder braucht. Ohne Browser, unter einer Sekunde - die Messung
+mit axe steht in tests_e2e/."""
 import re
 
 

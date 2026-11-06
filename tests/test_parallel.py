@@ -132,12 +132,9 @@ def test_reihenfolge_woerter_nach_level_dann_saetze(wurzel):
 def test_zahlen_im_datenblatt_stimmen():
     """Das Datenblatt nennt die Anzahl der Paare und Zeilen von Hand. Ändert
     sich der Inhalt, muss es mitgehen."""
-    import io as _io
-    import json as _json
-    import os as _os
-    wurzel = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
-    blatt = _io.open(_os.path.join(wurzel, "data", "DATASHEET.md"), encoding="utf-8").read()
-    n = _json.load(_io.open(_os.path.join(wurzel, "data", "manifest.json"), encoding="utf-8"))["counts"]
+    wurzel = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    blatt = io.open(os.path.join(wurzel, "data", "DATASHEET.md"), encoding="utf-8").read()
+    n = json.load(io.open(os.path.join(wurzel, "data", "manifest.json"), encoding="utf-8"))["counts"]
     paare = n["words"] + n["sentences"]
     zeilen = paare + n["stories"]
     assert format(paare, ",") in blatt, paare

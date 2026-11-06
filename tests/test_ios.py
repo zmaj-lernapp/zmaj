@@ -22,6 +22,16 @@ VERBOTEN = re.compile(r"Google Play|Play Store|Play-butikk|Play Butik|Android|Go
                       r"|Familienmediathek|Family Library")
 
 
+def _ohne_formular(text, code):
+    """Der Absatz zum Kontaktformular (KONTAKT_FORMULAR, seit 31.10.2026 an)
+    nennt "unser Google-Konto" - das ist Google Apps Script, ein Dienstleister
+    fuer uns, und keine Plattform. Dieselbe Ausnahme macht der Bau
+    (_ohne_fremde_plattform)."""
+    import sprachen
+    absatz = sprachen.TEXTE[code].get("set.dsgvo_formular") or sprachen.TEXTE["de"]["set.dsgvo_formular"]
+    return text.replace(absatz, "")
+
+
 # ------------------------------------------------------------------ Weiche ---
 def test_plattform_an_einer_stelle(index_html):
     """Entschieden wird einmal, im Skript im Kopf; das grosse Skript liest es
@@ -106,6 +116,7 @@ def test_ios_texte_nennen_keine_andere_plattform(sprachcodes):
         t = sprachen.texte(code)
         for k, v in t.items():
             if k.endswith("_ios"):
+                v = _ohne_formular(v, code)
                 m = VERBOTEN.search(v)
                 assert not m, (code, k, v[max(0, m.start() - 60):m.end() + 20])
 
@@ -156,7 +167,7 @@ def test_ios_rechtstexte_ohne_werbung(monkeypatch, sprachcodes):
     import sprachen
     monkeypatch.setattr(sprachen, "WERBUNG_LAEUFT", False)
     for code in sprachcodes:
-        ds = sprachen.texte(code)["set.datenschutz_text_ios"]
+        ds = _ohne_formular(sprachen.texte(code)["set.datenschutz_text_ios"], code)
         m = VERBOTEN.search(ds)
         assert not m, (code, ds[max(0, m.start() - 60):m.end() + 20])
         for _, neu in sprachen.IOS_RECHT[code]["werbung_aus"]:

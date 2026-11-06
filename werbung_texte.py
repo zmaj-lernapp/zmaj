@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 r"""Befund 18 aus WERBUNG_PRUEFUNG.md - reine Textarbeit in sprachen.py.
 
-ACHTUNG - NICHT VOR DEM 07.10.2026 EINREICHEN. Jede Einreichung setzt
-Googles Pruefuhr fuer den geschlossenen Test zurueck.
+ANGEWENDET am 05.10.2026 (Build 91). Das Skript bleibt, weil
+tests/test_richten.py den angewendeten Stand prueft.
 
 BEFUND 18: Die Datenschutzerklaerung zaehlt auf, was Google beim Ausspielen
 einer Anzeige bekommt. Im Data-Safety-Formular bei Google ist zusaetzlich

@@ -40,7 +40,7 @@
 # die gemalten abgewandten Koepfe links und rechts im Wechsel, dazwischen
 # der finstere Frontkopf, ohne den Kopf um den Hals zu kippen (SCHUETTELN).
 # Welcher Kopf in welchem Bild zu sehen ist, steht an EINER Stelle, im
-# Kopfplan (KOPFPLAN, kopf_deckkraft, kopf_spur); Kopfbilder, Hornspitzen,
+# Kopfplan (KOPFPLAN, bild_werte, sichtbar_werte, kopf_spur); Kopfbilder, Hornspitzen,
 # Kopf-Kostueme und das Vektor-Skelett richten sich alle danach.
 # --vektor behaelt die alten Zeitleisten.
 #   python zmaj_lottie.py           Bild-Drache, schreibt nach web/maskottchen
@@ -266,8 +266,6 @@ def taper(center, widths, tension=0.6):
         nx, ny = -dy/l, dx/l; w = widths[k]/2
         left.append((center[k][0]+nx*w, center[k][1]+ny*w)); right.append((center[k][0]-nx*w, center[k][1]-ny*w))
     return smooth(left + right[::-1], tension=tension)
-def bump(cx, cy, w, h, c=YEL):   # runder Stachel
-    return group(smooth([(cx-w/2, cy), (cx, cy-h), (cx+w/2, cy)], tension=0.7), fill(c))
 def mirror(pts): return [(-x, y) for x, y in pts]
 
 
@@ -328,8 +326,6 @@ def paarweise(links, rechts):
         else:
             aus += [a, b]
     return aus
-def kreis(c, d, f, s=None, w=LW):
-    return group(ellipse(c[0], c[1], d, d), *( [stroke(s, w)] if s else []), fill(f))
 def ellipse_pfad(cx, cy, w, h):
     """Ellipse als Pfad (fuer Masken)."""
     k = 0.5523; rx, ry = w / 2, h / 2
@@ -605,7 +601,7 @@ ZIERRAT_ALLE = ZIERRAT + [n for v in NUR_MIT.values() for n in v]
 #
 # Kopfstuecke: je eine Fassung fuer den Kopf von vorn (alle Frontkoepfe)
 # und fuer den abgewandten Kopf; welche zu sehen ist, sagt der Kopfplan
-# (kopf_deckkraft(seite=...)) - beim Kopfschuetteln springt der Hut im
+# (sichtbar_werte mit der Seite) - beim Kopfschuetteln springt der Hut im
 # selben Bild wie der Kopf. "rechts" ist "links" gespiegelt, wie kopf_rechts
 # der gespiegelte kopf_links ist (mittlere Abweichung 3/255); die Datei
 # rechts.webp ist schon gespiegelt, ihr Drehpunkt also Breite - x.
@@ -1346,12 +1342,14 @@ def schuettel_folge(name):
 #     kopf   Name des Kopfbilds ohne "kopf_"/"hoerner_": neutral, blinzeln,
 #            jubel, froh, traurig, weinen, finster, links, rechts
 #     seite  wohin die Schnauze zeigt: "vorn", "links" oder "rechts"
-#   kopf_deckkraft(kopf=None, seite=None)
-#            Halte-Keyframes 100/0 fuer eine Ebene, die nur bei diesem Kopf
-#            und/oder auf dieser Seite zu sehen ist. So schalten die Kopf- und
-#            Hornbilder (bild_deckkraft), und genauso die gemalten Huete
-#            (je ein Bild vorn/links/rechts, sichtbar_werte). Das gemalte
-#            Skelett braucht nichts Eigenes: es ist ein Hautsatz mit
+#   bild_werte(teil), sichtbar_werte(sichtbar)
+#            Deckkraft 100/0 fuer jedes Bild, aus dem Plan gelesen; _halten
+#            macht Halte-Keyframes daraus. So schalten die Kopf- und
+#            Hornbilder (bild_deckkraft: nur bei diesem Kopf), und genauso die
+#            gemalten Huete (je ein Bild vorn/links/rechts: nur auf dieser
+#            Seite). Eine fruehere Funktion kopf_deckkraft(kopf, seite) tat
+#            dasselbe, wurde aber nirgends mehr gerufen und ist weg. Das
+#            gemalte Skelett braucht nichts Eigenes: es ist ein Hautsatz mit
 #            denselben Kopfbildern.
 #   kopf_spur(je_seite, ruhe)
 #            Halte-Keyframes fuer einen beliebigen Wert je Seite, z. B. Ort
@@ -1388,11 +1386,6 @@ def _halten(werte):
     Ende (OP) mit dem Wert von Bild 0, wie bei allen Zeitleisten hier."""
     ks = [hold(t, werte[t]) for t in range(OP) if t == 0 or werte[t] != werte[t - 1]]
     return anim(ks + [hold(OP, werte[0])])
-
-
-def kopf_deckkraft(kopf=None, seite=None):
-    """100, wo der Kopfplan diesen Kopf und/oder diese Seite zeigt, sonst 0."""
-    return _halten([100.0 if kopf in (None, k) and seite in (None, s) else 0.0 for k, s in KOPFPLAN])
 
 
 def kopf_spur(je_seite, ruhe):

@@ -19,6 +19,15 @@ Hochladen gleich benannte Dateien verwechselt (10.10.2026).
 Braucht Chrome und das Python-Paket websockets, kein Playwright und kein
 Pillow. Seit 11.10.2026: vorher hatten die Bilder keine Überschrift und die
 Grafik stand in allen Sprachen auf Deutsch.
+
+Tablets (seit 30.10.2026): Mit --geraet tablet7 oder tablet10 kommen die
+Rohbilder aus  bilder_playwright.py --geraet ...  und stehen unter derselben
+Überschrift in einem schlichten Tablet-Rahmen. Ausgabe 1080 x 1920 (7 Zoll)
+bzw. 1440 x 2560 (10 Zoll), 9:16, PNG ohne Alpha; Name <sprache>_tab7_01-start.png
+bzw. <sprache>_tab10_... Die Feature-Grafik gibt es je Sprache nur einmal,
+darum entsteht sie nur ohne --geraet.
+
+    python store/bilder_machen/beschriften.py --geraet tablet10 ROH10 ZIEL10 de en ...
 """
 
 import asyncio
@@ -100,9 +109,45 @@ SEITE = """<!doctype html><html lang="%(lang)s"><head><meta charset="utf-8">
 <div class="bild"><img id="i"></div>
 </body></html>"""
 
+# Tablets: dieselbe Überschrift, darunter der Bildschirm (16:10 hochkant, aus
+# bilder_playwright.py --geraet ...) in einem schlichten dunklen Rahmen mit
+# Kamerapunkt. Gesetzt wird immer auf 1080 x 1920 CSS-Punkten; das 10-Zoll-
+# Bild entsteht daraus mit Pixeldichte 4/3 (1440 x 2560), damit beide gleich
+# aussehen. Schirm 900 x 1440, Rahmen 30, unten bleiben 80 Punkte Luft.
+SEITE_TABLET = """<!doctype html><html lang="%(lang)s"><head><meta charset="utf-8">
+<link rel="stylesheet" href="/schriften.css">
+<style>
+  html,body{margin:0;width:%(b)dpx;height:%(h)dpx;overflow:hidden}
+  body{background:linear-gradient(160deg,#0B1330 0%%,#14265E 55%%,#1E3FA8 100%%);
+       font-family:Nunito,system-ui,sans-serif}
+  .band{position:absolute;left:0;top:0;width:100%%;height:%(band)dpx;display:flex;
+        align-items:center;justify-content:center;box-sizing:border-box;padding:24px 70px 0}
+  .band h1{margin:0;color:#fff;font-weight:800;font-size:74px;line-height:1.1;
+           text-align:center;letter-spacing:-0.5px;text-wrap:balance}
+  .platz{position:absolute;left:0;right:0;top:%(band)dpx;display:flex;justify-content:center}
+  .tablet{position:relative;padding:%(rand)dpx;border-radius:56px;background:#070A17;
+          box-shadow:0 24px 70px rgba(0,0,0,.55),0 0 0 3px rgba(255,255,255,.16),
+                     inset 0 0 0 2px rgba(255,255,255,.05)}
+  .tablet::before{content:"";position:absolute;left:50%%;top:%(kamera)dpx;width:10px;height:10px;
+          margin-left:-5px;border-radius:50%%;background:#283258}
+  .schirm{height:%(sh)dpx;border-radius:16px;overflow:hidden}
+  .schirm img{display:block;height:100%%}
+</style></head><body>
+<div class="band"><h1 id="t"></h1></div>
+<div class="platz"><div class="tablet"><div class="schirm"><img id="i"></div></div></div>
+</body></html>"""
 
-async def sitzung(ws_url, basis, roh, ziel, sprache):
+# Je Gerät: Vorsatz im Dateinamen, Pixeldichte beim Abfotografieren, Vorlage.
+GERAETE = {
+    "handy":    {"vorsatz": "",       "dichte": 1,     "seite": "handy"},
+    "tablet7":  {"vorsatz": "tab7_",  "dichte": 1,     "seite": "tablet"},   # 1080 x 1920
+    "tablet10": {"vorsatz": "tab10_", "dichte": 4 / 3, "seite": "tablet"},   # 1440 x 2560
+}
+
+
+async def sitzung(ws_url, basis, roh, ziel, sprache, geraet="handy"):
     import websockets
+    g = GERAETE[geraet]
     async with websockets.connect(ws_url, max_size=256 * 1024 * 1024) as ws:
         n = [0]
 
@@ -126,7 +171,7 @@ async def sitzung(ws_url, basis, roh, ziel, sprache):
 
         await ruf("Page.enable")
         await ruf("Emulation.setDeviceMetricsOverride",
-                  {"width": BREITE, "height": HOEHE, "deviceScaleFactor": 1, "mobile": False})
+                  {"width": BREITE, "height": HOEHE, "deviceScaleFactor": g["dichte"], "mobile": False})
         os.makedirs(ziel, exist_ok=True)
         namen = [name for name, _ in BP.SCHRITTE]
         texte = UEBERSCHRIFTEN[sprache]
@@ -134,8 +179,12 @@ async def sitzung(ws_url, basis, roh, ziel, sprache):
         # Gleicher Ursprung wie web/, damit schriften.css und die Schriften laden.
         await ruf("Page.navigate", {"url": basis + "/leer"})
         await asyncio.sleep(1.0)
-        seite = SEITE % {"lang": sprache, "b": BREITE, "h": HOEHE, "band": BAND,
-                         "bh": HOEHE - BAND - 46}
+        if g["seite"] == "tablet":
+            seite = SEITE_TABLET % {"lang": sprache, "b": BREITE, "h": HOEHE, "band": BAND,
+                                    "rand": 30, "kamera": 10, "sh": 1440}
+        else:
+            seite = SEITE % {"lang": sprache, "b": BREITE, "h": HOEHE, "band": BAND,
+                             "bh": HOEHE - BAND - 46}
         for name, text in zip(namen, texte):
             pfad = os.path.join(roh, name + ".png")
             daten = base64.b64encode(open(pfad, "rb").read()).decode("ascii")
@@ -154,10 +203,12 @@ async def sitzung(ws_url, basis, roh, ziel, sprache):
                 return px;""" % (json.dumps(seite), json.dumps(text), daten))
             a = await asyncio.wait_for(ruf("Page.captureScreenshot", {
                 "format": "png", "clip": {"x": 0, "y": 0, "width": BREITE, "height": HOEHE, "scale": 1}}), 60)
-            aus = os.path.join(ziel, "%s_%s.png" % (sprache, name))
+            aus = os.path.join(ziel, "%s_%s%s.png" % (sprache, g["vorsatz"], name))
             open(aus, "wb").write(base64.b64decode(a["result"]["data"]))
             print("  %s %-16s %spx  %s" % (sprache, name, breite_text, text), flush=True)
 
+        if geraet != "handy":
+            return
         # Feature-Grafik in derselben Sprache
         await ruf("Page.navigate", {"url": basis + "/_feature.html?sprache=" + sprache})
         for _ in range(60):
@@ -174,7 +225,14 @@ async def sitzung(ws_url, basis, roh, ziel, sprache):
 
 
 def main(argv=None):
-    argv = sys.argv[1:] if argv is None else argv
+    argv = list(sys.argv[1:] if argv is None else argv)
+    geraet = "handy"
+    if "--geraet" in argv:
+        i = argv.index("--geraet")
+        geraet = argv[i + 1] if i + 1 < len(argv) else ""
+        del argv[i:i + 2]
+        if geraet not in GERAETE:
+            raise SystemExit("--geraet: eines von %s" % ", ".join(GERAETE))
     if len(argv) < 3:
         raise SystemExit(__doc__)
     roh, ziel, sprachen = argv[0], argv[1], argv[2:]
@@ -198,7 +256,7 @@ def main(argv=None):
             neu = json.load(urllib.request.urlopen(urllib.request.Request(
                 "http://127.0.0.1:%d/json/new?about:blank" % TOR, method="PUT"), timeout=5))
             asyncio.run(sitzung(neu["webSocketDebuggerUrl"], basis,
-                                os.path.join(roh, s), os.path.join(ziel, s), s))
+                                os.path.join(roh, s), os.path.join(ziel, s), s, geraet))
             urllib.request.urlopen("http://127.0.0.1:%d/json/close/%s" % (TOR, neu["id"]), timeout=5)
     finally:
         chrome.terminate()

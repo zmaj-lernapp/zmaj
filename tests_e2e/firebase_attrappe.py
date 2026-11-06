@@ -21,8 +21,15 @@ Rechner. Sie kann, was die App braucht:
   - je Konto ein Dokument users/{uid} lesen, schreiben, loeschen,
   - Konten loeschen, auch mit CREDENTIAL_TOO_OLD_LOGIN_AGAIN,
   - und auf Wunsch jede Anfrage abbrechen wie ohne Netz (abbruch).
+Seit 01.11.2026 dazu das Feedback der App ueber das Kontaktformular
+(anonym_neu): eine eigene anonyme Anmeldung je Nachricht, nachrichten/{uid}
+per documents:commit anlegen - nach denselben Bedingungen wie in
+firestore.rules (nur anonym, nur unter der eigenen uid, nur diese Felder,
+nur Anlegen) - und die anonyme Anmeldung wieder loeschen.
 """
 import json
+import os
+import re
 import urllib.parse
 
 FIREBASE = ("identitytoolkit.googleapis.com", "securetoken.googleapis.com", "firestore.googleapis.com")
@@ -36,6 +43,40 @@ UID = "uidProbe1"
 
 def dok_pfad(uid=UID):
     return "firestore.googleapis.com/v1/projects/%s/databases/(default)/documents/users/%s" % (PROJEKT, uid)
+
+
+COMMIT = "firestore.googleapis.com/v1/projects/%s/databases/(default)/documents:commit" % PROJEKT
+SPRACHEN = ("de", "en", "tr", "sv", "nl", "nb", "da", "fr")
+
+
+def _regel_adresse():
+    """Das Muster fuer antwort, gelesen aus firestore.rules - so prueft die
+    Attrappe genau wie die Regel (RE2, mit Pythons re gleich)."""
+    pfad = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "firestore.rules")
+    with open(pfad, encoding="utf-8") as f:
+        return re.search(r'd\.antwort\.matches\("([^"]+)"\)', f.read()).group(1)
+
+
+ADRESSE = _regel_adresse()
+
+
+def nachricht_erlaubt(schreiben, uid):
+    """Was firestore.rules fuer nachrichten/{uid} verlangt (gueltig() und
+    das Anlegen unter der eigenen uid). istAbsender prueft der Aufrufer."""
+    try:
+        felder = schreiben["update"]["fields"]
+        werte = {k: v["stringValue"] for k, v in felder.items() if set(v) == {"stringValue"}}
+        return (set(schreiben) == {"update", "updateTransforms", "currentDocument"}
+                and schreiben["update"]["name"]
+                == "projects/%s/databases/(default)/documents/nachrichten/%s" % (PROJEKT, uid)
+                and set(werte) == set(felder) == {"text", "antwort", "sprache"}
+                and schreiben["updateTransforms"] == [{"fieldPath": "zeit", "setToServerValue": "REQUEST_TIME"}]
+                and schreiben["currentDocument"] == {"exists": False}
+                and 0 < len(werte["text"]) <= 5000
+                and len(werte["antwort"]) <= 254 and re.fullmatch(ADRESSE, werte["antwort"]) is not None
+                and werte["sprache"] in SPRACHEN)
+    except (KeyError, TypeError, AttributeError):
+        return False
 
 
 class Attrappe:
@@ -78,6 +119,17 @@ class Attrappe:
         # rohen nonce "nonce-probe"; widerrufen sammelt accounts:revokeToken.
         self.widerrufen = []
         self.widerruf_fehler = None
+        # Feedback ueber das Formular (01.11.2026). Ohne anonym_neu bleibt
+        # die anonyme Anmeldung, wie die Tests vom 19.10. sie kennen: das
+        # Probekonto UID. Mit anonym_neu bekommt jede eine eigene uid
+        # (anonym_ausweis: uid -> Ausweis), anonyme sind die noch nicht
+        # geloeschten. nachricht_fehler: Firestore antwortet aufs Anlegen
+        # mit diesem Status, wie wenn die Regel ablehnt.
+        self.anonym_neu = False
+        self.anonym_ausweis = {}
+        self.anonyme = set()
+        self.nachrichten = {}
+        self.nachricht_fehler = None
 
     # Das Dokument des Probekontos UID - so lesen es die Tests vom 19.10.
     @property
@@ -135,6 +187,12 @@ class Attrappe:
             f = self.anmelde_fehler
             return fehler("UNAVAILABLE", f) if isinstance(f, int) else fehler(f)
         if teile.path == "/v1/accounts:signUp":
+            if "email" not in daten and self.anonym_neu:
+                uid = "uidAnonym%d" % (len(self.anonym_ausweis) + 1)
+                self.anonym_ausweis[uid] = self._ausweis(uid)
+                self.anonyme.add(uid)
+                return antwort(200, {"localId": uid, "idToken": self.anonym_ausweis[uid],
+                                     "refreshToken": "r-" + uid, "expiresIn": "3600"})
             if "email" not in daten:
                 return antwort(200, {"localId": UID, "idToken": "id-1", "refreshToken": "r-1", "expiresIn": "3600"})
             email, pw = str(daten.get("email", "")), str(daten.get("password", ""))
@@ -194,6 +252,12 @@ class Attrappe:
         if teile.path == "/v1/accounts:delete":
             token = daten.get("idToken")
             self.geloescht_mit.append(token)
+            anonym = self.id_uid.get(token)
+            if token in self.gueltig and anonym in self.anonym_ausweis:
+                # Die anonyme Anmeldung des Feedbacks: nur sie ist weg.
+                self.anonyme.discard(anonym)
+                self.gueltig.discard(token)
+                return antwort(200, {})
             if token not in self.gueltig:
                 return fehler("INVALID_ID_TOKEN")
             if token in self.alt:
@@ -205,6 +269,24 @@ class Attrappe:
             for email in [e for e, k in self.konten.items() if k["uid"] == uid]:
                 del self.konten[email]
             return antwort(200, {})
+        if teile.netloc == "firestore.googleapis.com" and art == "POST" \
+                and teile.netloc + urllib.parse.unquote(teile.path) == COMMIT:
+            # Nur was firestore.rules erlaubt: anlegen unter der eigenen uid,
+            # und nur mit einer anonymen Anmeldung (istAbsender) - mit dem
+            # Ausweis des Kontos lehnt die Regel ab.
+            if self.nachricht_fehler:
+                return antwort(self.nachricht_fehler, {"error": {"code": self.nachricht_fehler,
+                                                                 "status": "PERMISSION_DENIED"}})
+            token = ausweis[len("Bearer "):] if ausweis.startswith("Bearer ") else ""
+            uid = self.id_uid.get(token) if token in self.gueltig else None
+            schreiben = json.loads(request.post_data or "{}").get("writes") or []
+            if uid not in self.anonyme or len(schreiben) != 1 or not nachricht_erlaubt(schreiben[0], uid):
+                return antwort(403, {"error": {"code": 403, "status": "PERMISSION_DENIED"}})
+            if uid in self.nachrichten:
+                return antwort(400, {"error": {"code": 400, "status": "FAILED_PRECONDITION"}})
+            self.nachrichten[uid] = {k: v["stringValue"] for k, v in schreiben[0]["update"]["fields"].items()}
+            return antwort(200, {"writeResults": [{"updateTime": "2026-11-01T12:00:00Z"}],
+                                 "commitTime": "2026-11-01T12:00:00Z"})
         if teile.netloc == "firestore.googleapis.com":
             vorn = "/v1/projects/%s/databases/(default)/documents/users/" % PROJEKT
             pfad = urllib.parse.unquote(teile.path)

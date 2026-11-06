@@ -650,7 +650,7 @@ def emir_drueber(www=None, emir=None):
 # Aus diesen Dateien baut inhalt_bauen.py die JSON-Dateien für das Handy.
 # Ändert sich eine davon, sind die JSON-Dateien veraltet.
 INHALT_QUELLEN = ["sprachen.py", "vokabeln.py", "geschichten.py",
-                  "grammatik.py", "uebersetzungen.py"]
+                  "grammatik.py", "uebersetzungen.py", "zahnarzt.py"]
 
 
 def inhalt_aktuell():
