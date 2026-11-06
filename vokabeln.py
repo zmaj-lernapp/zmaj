@@ -4201,7 +4201,7 @@ KATEGORIEN = [
     # Hobbys und Ausgehen, Medien, Reisen), von Ajdin am 01.11.2026
     # durchgesehen (paket_04_entscheidungen.md). Bei allen Fragen zaehlt die
     # zweite Form beim Tippen mit ("auch": sekund, momenat, napokon, ponovo,
-    # nogomet, tim, štrikati, teatar, zabava, spakirati, turist), nur ranac
+    # nogomet, tim, štrikati, teatar, zabava, turist), nur ranac
     # NICHT (Ajdin: serbisch).
     # - Gleiche Schreibung: vrijeme (Zeit) neben vrijeme (Wetter, Level
     #   wetter); radio (Radio) neben radio sam (gearbeitet). Verschiedene
@@ -4400,7 +4400,7 @@ KATEGORIEN = [
         {"de": "Wohin fahrt ihr in den Sommerurlaub?", "bs": "Kuda idete na ljetovanje?"},
         {"de": "Strand",                     "bs": "plaža"},
         {"de": "Wir waren den ganzen Tag am Strand.", "bs": "Cijeli dan smo bili na plaži."},
-        {"de": "packen",                     "bs": "spakovati", "auch": ["spakirati"], "partner": "pakovati"},
+        {"de": "packen",                     "bs": "spakovati", "partner": "pakovati"},
         {"de": "Hast du den Koffer gepackt?", "bs": "Jesi li spakovao kofer?"},
         {"de": "Rucksack",                   "bs": "ruksak"},
         {"de": "Pack Wasser und etwas zu essen in den Rucksack.", "bs": "Stavi u ruksak vodu i nešto za jelo."},

@@ -541,7 +541,7 @@ zweite Form beim Tippen mit (`auch`), außer bei *ruksak*:
 | *plesti* | „plesti formell, štrikati lockerer“ | *štrikati* |
 | *pozorište* | „pozorište eher das Gebäude, teatar künstlerischer“ | *teatar* |
 | *žurka* | „žurka locker, zabava formell und offiziell“ | *zabava* |
-| *spakovati* | „spakovati sagt man am meisten“ | *spakirati* |
+| *spakovati* | „spakovati sagt man am meisten“; 06.11.2026: „spakirati passt nicht“ | **nichts** – *spakirati* zählt nicht |
 | *ruksak* | „ranac ist kein bosnisches Wort, sondern serbisch“ | **nichts** – *ranac* zählt nicht |
 | *turista* | „eher turista, beide richtig“ | *turist* |
 | *čistačica* | „spremačica ist formell und höflicher“ | *spremačica* |
