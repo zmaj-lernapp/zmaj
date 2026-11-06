@@ -334,6 +334,8 @@ are in the Play Store listing. Format:
   coins too. A purchase now moves `zeit` forward, by the time of purchase on a full
   stock, by one millisecond otherwise, so the 10-day timer keeps running. Devices on
   1.2 read it as a normal time; a purchase made on 1.2 itself can still get lost.
+- A heart bought in the shop had the same gap and now survives a sync the same way,
+  the 100 coins count once. Hearts keep refilling on time. Cosmetics never had it.
 - Speaking: one word no longer passes for a whole sentence ("mogu" for *Mogu li platiti
   karticom?*). After "no match" or silence the microphone stops instead of silently
   listening again in the next language; the next tap takes the next language, so
