@@ -3,8 +3,8 @@
 
 Pruefbericht 1.3, G11: showView() scrollt nach oben, wer weit unten in einer
 langen Sektion lernte, musste nach jedem Zurueck neu hinunterscrollen. Oben
-oeffnet der Lernpfad weiterhin, wenn man von anderswo kommt (Ajdin am
-29.09.2026: "braucht die app nicht zur aktuellsten stelle springen").
+oeffnet der Lernpfad weiterhin, wenn man von anderswo kommt, siehe den
+Kommentar bei LERNPFAD in index.html.
 """
 import pytest
 

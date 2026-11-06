@@ -325,6 +325,23 @@ are in the Play Store listing. Format:
   devices without Bosnian still reach Croatian. Not yet checked on a phone.
 - Typing without a comma or hyphen (*Racun molim*, *sogan dolma*, *sogandolma*) now
   counts like a missing diacritic instead of costing a life on the second try.
+- "Next" after a passed level test leads to the next level not yet passed, not into one
+  already passed (after level 102 to level 130, not 103). If everything behind it is
+  passed, it goes one level on as before. The same inside the dentist section.
+- Back from a level, also after a lesson or a test, lands where you were on the learning
+  path instead of at the top. Coming from anywhere else it still opens at the top.
+- Shop: a double tap buys once (a heart cost 200 instead of 100 coins) and no longer takes
+  off what it just bought.
+- Word list on a level page: the speaker and the check mark have a fixed place and are no
+  longer cut off, and long entries get two lines. In the dentist section 53 of 111 rows
+  are still too long for two lines at 360 points.
+- Buying the full version on small phones: the buy button, Cancel and the price of the
+  chosen plan are visible without scrolling. The dragon shrinks or goes only as far as
+  needed for the language and system font size. Where everything fits, nothing changes.
+- Dark mode: the contact link in the legal notice used the browser's blue (1.03:1 to
+  1.38:1) and is now readable in all nine section colours.
+- Start: the full intro plays only on the first start of the day. Later starts skip the
+  pause after the motion and are 1.5 s shorter (4.6 s to 3.1 s, measured on a PC).
 - Speed: the speed set under a story now applies only while a story is read
   aloud. It used to slow down every recording in the app, including all lessons,
   and took words off the fast sound path, although it can only be changed in the
