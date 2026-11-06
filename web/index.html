@@ -7950,7 +7950,8 @@ function tonVorwaermen(){
   else setTimeout(ende, 120);
 }
 /* Der ruhige Moment: die App steht, und der Vorspann bewegt sich nicht mehr
-   (danach steht er noch VORSPANN_HALT still da). Das Anlegen des
+   (beim ersten Start des Tages steht er danach noch VORSPANN_HALT still da,
+   sonst blendet er aus; das laeuft auch bei belegter Seite). Das Anlegen des
    AudioContext haelt die Seite kurz fest - mitten in der Bewegung saehe
    man das als Ruckeln. Ohne Bewegung (Schalter, Geraeteeinstellung) gleich. */
 function tonVorwaermenPlanen(){
@@ -14974,7 +14975,8 @@ function updBeimStart(){
    auf die Zeit, auf einem langsamen auf die App.
    Nach der Bewegung bleibt das fertige Bild noch VORSPANN_HALT stehen –
    ohne diese Pause wechselt die App in dem Moment, in dem der Name
-   erscheint, und man hat ihn nicht gelesen.
+   erscheint, und man hat ihn nicht gelesen. Das gilt beim ersten Start des
+   Tages, siehe vorspannHeuteSchon().
    Antippen setzt die Wartezeit auf null – auch dann, wenn schon gewartet
    wird, und auch dann, wenn die App noch lädt. */
 const VORSPANN_ABLAUF = 2400;   // so lange dauert die Bewegung oben im Stil
@@ -14987,8 +14989,21 @@ function vorspannOhneBewegung(){
   try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }
   catch(e){ return false; }
 }
+/* Die Haltezeit nur beim ersten Start des Tages (Ajdin am 06.11.2026): sie hielt
+   jeden Kaltstart auf ueber 4,5 s, obwohl die App nach 0,14 s bereit war, und
+   wer den Namen heute schon gelesen hat, muss nicht noch einmal warten
+   (Pruefbericht 1.3, G18). Der Tag steht nur im Geraet und ist kein Lernstand.
+   Klappt der Speicher nicht, gibt es den vollen Vorspann. */
+function vorspannHeuteSchon(){
+  try{
+    const heute = today();
+    if(localStorage.getItem('zmaj_vorspann_tag') === heute) return true;
+    localStorage.setItem('zmaj_vorspann_tag', heute);
+  }catch(e){}
+  return false;
+}
 let vorspannMin = vorspannOhneBewegung() ? 1400
-                                         : VORSPANN_ABLAUF + VORSPANN_HALT;
+                : VORSPANN_ABLAUF + (vorspannHeuteSchon() ? 0 : VORSPANN_HALT);
 const vorspannAb = performance.now();
 let vorspannUhr = null, appBereit = false, vorspannFort = false;
 
