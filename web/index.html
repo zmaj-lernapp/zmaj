@@ -8266,6 +8266,9 @@ async function ladeDaten(){
   MASCOT = new Set(d.maskottchen||[]);
   SPRACHEN = d.sprachen || []; T = d.texte || {}; UEBERSETZT = d.uebersetzt || {fertig:0, gesamt:0};
   WERBUNG_ECHT = !!d.werbung_laeuft;      // Schalter aus sprachen.py
+  /* Noch einmal, nur iOS (06.11.2026): "Anzeige melden" haengt an WERBUNG_ECHT, und
+     das steht erst hier. Der Aufruf in init() kommt davor, die Zeile blieb sonst aus. */
+  einstellungenFuerPlattform();
   if(d.sprache) SPRACHE = d.sprache;
   if(!CATEGORIES || !CATEGORIES.length) throw new Error('keine Levels');
   if(!SECTIONS.length){ SECTIONS = [{id:'_', label:'Alle Levels', beschreibung:''}]; CATEGORIES.forEach(c=>c.sektion='_'); }
@@ -12964,7 +12967,7 @@ function anzeigeMeldenAnbieten(){
 }
 $('anzeigeMelden').addEventListener('click', anzeigeMeldenMail);
 /* Was auf iPhone und iPad in den Einstellungen anders ist, an einer Stelle.
-   Einmal beim Start (init). 30.10.2026 */
+   Beim Start (init) und nach dem Laden des Inhalts (ladeDaten). 30.10.2026 */
 function einstellungenFuerPlattform(){
   if(!IST_IOS) return;
   const vib = $('setVibrationZeile'); if(vib) vib.style.display = 'none';   // Entscheidung 13
