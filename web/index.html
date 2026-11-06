@@ -12982,6 +12982,17 @@ function showTestQ(){
     weiterBeiTipp('tBody', showTestQ);
   }, {noSkip:true});
 }
+/* Wohin "Weiter" nach einem bestandenen Test fuehrt: zum naechsten noch nicht
+   bestandenen Level hinter diesem. Sind Level eingeschoben worden, ist der
+   direkte Nachfolger oft laengst bestanden, und dort steht nur "Level
+   bestanden" (Pruefbericht 1.3, G3: nach Level 102 ging es nach 103 statt
+   nach 130). Ist alles dahinter bestanden, geht es wie bisher eins weiter.
+   Im Zahnarzt-Teil bleibt es innerhalb des Teils, siehe levelEnde().
+   Das Ziel ist immer offen: alles davor bis hierher ist bestanden. */
+function naechstesOffenes(){
+  for(let k = catIdx + 1; k < levelEnde(); k++) if(!passed.has(levelNach(k).id)) return k;
+  return catIdx + 1;
+}
 function showTestResult(){
   stilleBitte(); uhrAus(); testBar();   // das letzte Wort nicht ins Ergebnis reden lassen
   sternKnopf('tStern', null);
@@ -13023,10 +13034,10 @@ function showTestResult(){
     questLob+
     '<div class="row">'+
       '<button class="btn ghost" id="tBack">'+(ok?t('test.zum_pfad'):t('lektion.zurueck'))+'</button>'+
-      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:levelNummer(catIdx)+1})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
+      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:levelNummer(naechstesOffenes())})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
     '</div>';
   $('tBack').addEventListener('click', ()=>{ if(ok){ homeMode='words'; showHome(); } else showLevelHome(); });
-  const n=$('tNext'); if(n) n.addEventListener('click', ()=> openLevel(catIdx+1));
+  const n=$('tNext'); if(n){ const ziel = naechstesOffenes(); n.addEventListener('click', ()=> openLevel(ziel)); }
   const r=$('tRetry'); if(r) r.addEventListener('click', startTest);
   if(ok && allesFertig && (neuBestanden || !hasNext)){ $('tBody').insertAdjacentHTML('beforeend','<div class="kicker" style="margin-top:12px">'+t('test.alles_geschafft')+'</div>'); }
 }
