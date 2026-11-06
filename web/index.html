@@ -9312,9 +9312,9 @@ function renderLaden(){
     ? vollZeileLaden() + VERBRAUCH.map(w => zeile(w, knoepfe(w), w.id === 'herz' ? 'zweiwege' : '')).join('')
     : ZIERRAT.filter(w => w.gruppe === ladenReiter).map(zierratZeile).join('');
   box.querySelectorAll('button[data-ware]').forEach(b =>
-    b.addEventListener('click', ()=> kaufe(b.dataset.ware)));
+    b.addEventListener('click', ()=> ladenTipp(()=> kaufe(b.dataset.ware))));
   box.querySelectorAll('button[data-tragen]').forEach(b =>
-    b.addEventListener('click', ()=> trage(b.dataset.tragen)));
+    b.addEventListener('click', ()=> ladenTipp(()=> trage(b.dataset.tragen))));
   const vk = box.querySelector('button[data-videoleben]');
   if(vk && !vk.disabled) vk.addEventListener('click', werbungFuerLeben);
   // Beide direkt zum Kaufkasten, siehe vollKaufOeffnen(). 07.10.2026
@@ -9322,6 +9322,22 @@ function renderLaden(){
   if(lv) lv.addEventListener('click', ()=>{ vollKaufOeffnen(); });
   box.querySelectorAll('button[data-vollstueck]').forEach(b =>
     b.addEventListener('click', ()=>{ vollKaufOeffnen(); }));
+}
+/* Ein Doppeltipp ist ein Tipp. Ohne Sperre kostete er beim Herz 200 statt 100
+   Muenzen, und Zierrat wurde gekauft und sofort wieder abgenommen. renderLaden()
+   zeichnet die Knoepfe nach jedem Tipp neu, der zweite traf also einen frischen
+   Knopf; deshalb zaehlt die Zeit und nicht der Knopf. Hier und nicht in kaufe()
+   und trage(): die werden auch direkt nacheinander aufgerufen.
+   Gezaehlt wird ab dem Ende des ersten Tipps: der erste Kauf nach dem Start
+   haelt die Seite mitunter laenger fest, als die Sperre dauert (680 ms in einem
+   frischen Browser), und der zweite Tipp wartet solange in der Schlange.
+   Pruefbericht 1.3, G9. */
+const LADEN_SPERRE_MS = 400;
+let ladenLetzterTipp = -LADEN_SPERRE_MS;
+function ladenTipp(tun){
+  if(performance.now() - ladenLetzterTipp < LADEN_SPERRE_MS) return;
+  tun();
+  ladenLetzterTipp = performance.now();
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf

@@ -373,6 +373,7 @@ def test_laden_fokus_und_ansage_nach_anziehen_und_ablegen(seite, heute_stand):
     assert f["label"].startswith("Abnehmen") and "Mütze" in f["label"], f["label"]
     _ansage_abwarten(seite, "Angezogen.")
 
+    seite.page.wait_for_timeout(450)                       # sonst zaehlt es als Doppeltipp, siehe ladenTipp()
     seite.page.locator('#ladenWaren button[data-tragen="hut"]').click()
     f = seite.js(FOKUS)
     assert (f["tragen"], f["text"]) == ("hut", "Tragen"), f
@@ -389,6 +390,7 @@ def test_laden_fokus_und_ansage_nach_kaufen(seite, heute_stand):
     # Serienschutz: nach dem Kauf ist das Hoechste erreicht, der Knopf aus -
     # dann bleibt der Fokus in der Nahe, auf der Reiterwahl
     seite.js("() => { ladenReiter = 'vorrat'; renderLaden(); }")
+    seite.page.wait_for_timeout(450)                       # sonst zaehlt es als Doppeltipp, siehe ladenTipp()
     seite.page.locator('#ladenWaren button[data-ware="schutz"]').click()
     assert seite.page.locator('#ladenWaren button[data-ware="schutz"]').is_disabled()
     assert seite.js(FOKUS)["id"] == "ladenKopf"
