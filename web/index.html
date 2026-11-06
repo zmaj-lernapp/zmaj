@@ -2567,6 +2567,10 @@
          Ohne das Abo-Plugin (am PC, im Browser) verschwindet der Block. -->
     <div class="section" id="setVollBox" style="display:none">
       <h2 data-t="voll.titel"></h2>
+      <!-- Was es nur gibt, wenn es etwas zu kaufen oder zu verwalten gibt.
+           Meldung und Widerrufsknopf stehen bewusst dahinter, siehe
+           vollZeileZeigen(). -->
+      <div id="setVollKauf">
       <div class="setting">
         <div><div class="st" id="lblVoll" data-t="voll.sub"></div><div class="sd" id="setVollStand"></div></div>
         <button class="switch" id="swVoll" role="switch" aria-checked="false" aria-labelledby="lblVoll"></button>
@@ -2578,6 +2582,7 @@
            MONATS-Abo, siehe vollZeileZeigen(). 10.10.2026 -->
       <div class="sd" id="setVollWechsel" style="display:none; padding-bottom:12px">
         <button type="button" class="abolink" id="aboWechsel"></button>
+      </div>
       </div>
       <div class="sd" id="setVollNote" style="font-size:12px; color:var(--muted); padding-bottom:12px"></div>
       <!-- Widerrufsknopf nach § 356a BGB. Muss ständig verfügbar und
@@ -8302,7 +8307,12 @@ function vollZeileZeigen(){
   /* Bei einem gesperrten Abo auch dann, wenn Google gerade nichts zu
      kaufen anbietet: hier stehen der Hinweis und der Weg zu Google.
      07.10.2026 */
-  box.style.display = ((!!aboPlugin()) && (an || aboGesperrt || !aboProdukteFehlen)) ? '' : 'none';
+  /* Der Block selbst bleibt mit dem Plugin immer stehen, nur die Kaufzeile
+     geht: Darin steht der Widerrufsknopf, und § 356a Abs. 1 BGB verlangt ihn
+     waehrend der Frist staendig verfuegbar, also auch dann, wenn Google gerade
+     keine Produkte liefert (Pruefbericht 1.3, G15). */
+  box.style.display = aboPlugin() ? '' : 'none';
+  $('setVollKauf').style.display = (an || aboGesperrt || !aboProdukteFehlen) ? '' : 'none';
   const s = $('swVoll');
   s.setAttribute('aria-checked', an);
   /* aria-disabled statt disabled: ein disabled-Knopf nimmt keinen Tipp mehr
@@ -8459,7 +8469,7 @@ async function vollWahlZeigen(){
   aboLaeuft = false; vollZeileZeigen();
   if(d && d.ok && (!d.plaene || !d.plaene.length)){
     /* Eindeutige Antwort: es gibt nichts zu kaufen. Keine Fehlermeldung -
-       der Block geht einfach weg. */
+       die Kaufzeile geht einfach weg, der Widerrufsknopf bleibt. */
     aboProdukteFehlen = true; aboStoerung = false; vollZeileZeigen(); return;
   }
   if(!d || !d.ok){
@@ -8627,7 +8637,11 @@ function widerrufZeigen(){
   kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
   kasten.querySelector('#widOk').addEventListener('click', ()=>{
     const betreff = 'Zmaj – ' + t('set.widerruf_knopf');
-    const rumpf = t('set.widerruf_text') + '\n\n--\n'
+    /* Bis 06.11.2026 stand hier set.widerruf_text, also die Anleitung aus dem
+       Kasten. § 356a Abs. 2 BGB verlangt Name, Angaben zum Vertrag und den Weg
+       fuer die Bestaetigung; ohne sie folgte eine Rueckfrage (Pruefbericht 1.3,
+       G15). Der Text nennt weder Google noch GPA: iOS nimmt denselben. */
+    const rumpf = t('set.widerruf_mail') + '\n\n--\n'
                 + (SPRACHE||'') + ' · ' + new Date().toISOString().slice(0,10);
     try{ location.href = 'mailto:' + ZMAJ_MAIL
           + '?subject=' + encodeURIComponent(betreff)
