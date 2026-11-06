@@ -306,6 +306,16 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Privacy policy, all 8 languages, web demo included: it said "nothing more than a yes or a no"
+  is held about the subscription, but after a purchase the app also keeps Google's purchase
+  identifier, the plan and the end of the free week. The subscription paragraph now says so
+  and why; section 2 only points to it, so the iOS text stays right. The list of what is in
+  the backup now names everything `standAlsObjekt()` writes, and a test compares the two.
+- Withdrawal: the email contained the instructions from the dialog. It is now the declaration
+  itself with lines for name and order number or account address, as § 356a(2) BGB lists them.
+  The button no longer disappears when Google returns no products.
+- README and `AGENTS.md`: about 2,900 words and phrases and about 1,500 example sentences
+  instead of "4,421 words". The store text and website changes are listed outside the repo.
 - Answer options: a meaning that is also part of the wrong button no longer stands
   next to the question ("ziehen" with *povlačiti* "ziehen / zurückziehen", "also" with
   *pa* "und dann / also"), in any language. Tapping it was right and cost a life.
