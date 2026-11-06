@@ -2210,6 +2210,12 @@
      Reserve fuer die Rueckmeldung, die Antworten ruecken dann beim
      Antworten ein Stueck hoch. */
   html.gross #lesson .card, html.gross #test .card, html.gross #einstufungView .card{min-height:calc(var(--hoehe) - 120px)}
+  /* iPad (06.11.2026): Die 120 Punkte oben kennen die Raender von iOS nicht
+     (html[data-plattform="ios"] body), die Lektion liesse sich dort sonst um
+     Statusleiste und Home-Leiste schieben. */
+  html[data-plattform="ios"].gross #lesson .card, html[data-plattform="ios"].gross #test .card,
+  html[data-plattform="ios"].gross #einstufungView .card{
+    min-height:calc(var(--hoehe) - 120px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))}
   html.gross #lesson .zmaj.mini, html.gross #test .zmaj.mini, html.gross #einstufungView .zmaj.mini{width:100px; height:100px}
   html.hoch{--drache:clamp(100px, calc(var(--hoehe) * .4 - 200px), 190px); --antwort:170px}
   html.hoch #lesson .card, html.hoch #test .card, html.hoch #einstufungView .card{
@@ -8233,7 +8239,17 @@ async function ladeDaten(){
      Satzbau-Aufgaben. Die Namensliste der Kacheln haengt am Inhalt und wird
      beim naechsten Gebrauch neu gesammelt. */
   SATZBAU = Array.isArray(d.satzbau) ? d.satzbau : [];
-  ZA = (d.zahnarzt && d.zahnarzt.sektion && Array.isArray(d.zahnarzt.kategorien)) ? d.zahnarzt : null;
+  /* Auf iPhone und iPad gibt es den Teil nicht (06.11.2026). Apple: "Don't
+     include any hidden, dormant, or undocumented features in your app"
+     (Richtlinie 2.5.19), und der Weg dorthin, das Wort hinter der Versionszeile,
+     ist dort gar nicht eingehaengt (init()). Der iOS-Bau laesst auch den Inhalt
+     weg (app_bauen.ios_zahnarzt_entfernen); ZA bleibt hier trotzdem leer, damit
+     ein Schalter aus dem Konto den Teil auf dem iPhone nicht aufklappt: Wer ihn
+     auf Android eingeschaltet hat und sich auf dem iPhone anmeldet, hat im Stand
+     zahnarzt.an. Schalter und Lernstand bleiben dabei im Stand und gehen
+     unveraendert ins Konto zurueck (standAlsObjekt), auf Android ist also nichts
+     verloren. Ajdin entscheidet, ob das so bleibt. */
+  ZA = (!IST_IOS && d.zahnarzt && d.zahnarzt.sektion && Array.isArray(d.zahnarzt.kategorien)) ? d.zahnarzt : null;
   _kachelNamen = null;
   /* Die zwei Zwischenspeicher der Wortliste haengen an DICT und CATEGORIES und
      werden nur beim ersten Gebrauch gefuellt. Ohne dieses Leeren behielten sie
@@ -15463,10 +15479,12 @@ async function agbHinweis(versuch = 0){
 async function init(){
   /* Die beiden versteckten Schalter (7x Tippen plus Wort) gibt es auf
      iPhone und iPad nicht: Apple verbietet versteckte Funktionen
-     (Richtlinie 2.3.1 und 2.5.19), und die Vollversion ohne Kauf waere dort
+     (Richtlinie 2.5.19; neue Funktionen muessen laut 2.3.1 in den Notizen
+     fuer die Pruefung stehen), und die Vollversion ohne Kauf waere dort
      ein Verstoss gegen 3.1.1. Der iOS-Bau setzt ausserdem keinen Pruefwert
      ein (app_bauen.py --ios), dauerWortStimmt() sagt dort also immer nein.
-     30.10.2026 */
+     30.10.2026. Am selben Wort haengt seit dem 06.11.2026 auch Beim Zahnarzt
+     (ZA_WORT), siehe ladeDaten(). */
   if(!IST_IOS){
     dauerVollVerdrahten();
     hautAlleVerdrahten();

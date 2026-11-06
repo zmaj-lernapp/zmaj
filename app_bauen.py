@@ -1144,6 +1144,8 @@ def versionsname_anheben(pfad=None):
 #     iOS-Huelle liegen oder in der Android-Huelle.
 #   - Kein Gradle, kein versionCode, keine Plugins zu flicken; am Ende
 #     npx cap sync ios.
+#   - Der versteckte Teil Beim Zahnarzt kommt nicht mit (Richtlinie 2.5.19),
+#     siehe ios_zahnarzt_entfernen(), 06.11.2026.
 #   - --ci (Cloud-Bau): nichts Geheimes und nichts Privates - kein Emir, kein
 #     Firebase (CLOUD_AN bleibt aus), keine AdMob-IDs; ohne ffmpeg bleibt der
 #     Ton MP3. cap sync macht dort der Ablauf selbst, nach npm ci.
@@ -1339,6 +1341,52 @@ def keine_vorfuehrung(www):
                          "Cloud-Pruefbau." % (VORFUEHRUNG_DATEI, www))
 
 
+def ios_zahnarzt_entfernen(www):
+    """Nimmt den versteckten Teil Beim Zahnarzt aus der KOPIE www/ (06.11.2026).
+
+    Auf iPhone und iPad ist er aus (ladeDaten() in web/index.html). Apple
+    verbietet auch schlafende Funktionen im Paket ("hidden, dormant, or
+    undocumented", Richtlinie 2.5.19), also kommt sein Inhalt gar nicht erst
+    mit: kein Feld "zahnarzt" in www/inhalt/*.json und keine Aufnahme, die nur
+    er braucht. Spricht der Lernpfad denselben Text, bleibt die Aufnahme
+    (ton_bauen.sammle ohne den Teil). Vor ton_verkleinern(), sonst wuerde
+    umsonst umgewandelt. Gibt (Inhaltsdateien, Aufnahmen) zurueck."""
+    import glob
+    import ton_bauen
+    if _liegt_in(www, WEB):
+        raise SystemExit("ABBRUCH: %s liegt in web/. Entfernt wird nur in der Kopie." % www)
+    inhalte = 0
+    for pfad in sorted(glob.glob(os.path.join(www, "inhalt", "*.json"))):
+        with io.open(pfad, encoding="utf-8") as f:
+            daten = json.load(f)
+        if isinstance(daten, dict) and daten.pop("zahnarzt", None) is not None:
+            with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
+                json.dump(daten, f, ensure_ascii=False, separators=(",", ":"))
+            inhalte += 1
+    aufnahmen = 0
+    index_pfad = os.path.join(www, "audio", "index.json")
+    if os.path.isfile(index_pfad):
+        with io.open(index_pfad, encoding="utf-8") as f:
+            index = json.load(f)
+        nur_er = ({p["key"] for p in ton_bauen.sammle()}
+                  - {p["key"] for p in ton_bauen.sammle(mit_zahnarzt=False)})
+        bleiben = []
+        for e in index.get("toene", []):
+            if e.get("key") not in nur_er:
+                bleiben.append(e)
+                continue
+            datei = os.path.join(www, "audio", e["datei"])
+            if os.path.isfile(datei):
+                os.remove(datei)
+            aufnahmen += 1
+        if aufnahmen:
+            index["toene"] = bleiben
+            with io.open(index_pfad, "w", encoding="utf-8", newline="\n") as f:
+                f.write(json.dumps(index, ensure_ascii=False, indent=1))
+    print("  Beim Zahnarzt nicht im iOS-Bau: %d Inhaltsdateien, %d Aufnahmen." % (inhalte, aufnahmen))
+    return inhalte, aufnahmen
+
+
 def ios_bauen(schalter):
     """Der ganze iOS-Bau, siehe oben. Gibt den Pfad zu www/ zurueck."""
     ci = "--ci" in schalter
@@ -1371,6 +1419,7 @@ def ios_bauen(schalter):
             datei = CLOUD_DATEI
         cloud_einsetzen(index, datei)
         ios_zugang_einsetzen(index, os.path.join(huelle, IOS_ZUGANG))
+    ios_zahnarzt_entfernen(www)
     version = ios_version_lesen(huelle)
     if version:
         version_einsetzen(version, test=ci, pfad=index)

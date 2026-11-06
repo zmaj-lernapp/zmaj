@@ -92,6 +92,12 @@ are in the Play Store listing. Format:
   recordings that only the store version contains (`ton_nur_emir.json`,
   words w2521–w2671, sentences w2672–w2821); the web demo, the dataset and
   the Anki decks have no audio for them.
+- The iPhone and iPad page is up to date with 1.3 (6.11.2026, branch `ios-web`): all new
+  vocabulary, feedback through the contact form, the ad switch for subscribers, tablets and
+  the audio path, and the iOS terms and privacy policy follow the wording of 1.3. The hidden
+  section "At the dentist" does not exist there: the build leaves out its content and audio,
+  and the switch from an account stays in the saved progress without showing anything
+  (App Review Guideline 2.5.19). Android is unchanged.
 - Groundwork for the iPhone and iPad app (30.10.2026, branch `ios-web`):
   one platform switch (`PLATTFORM`: `android`, `ios` or `web`, decided once
   in the small script in the page head). On iOS only: the back button in

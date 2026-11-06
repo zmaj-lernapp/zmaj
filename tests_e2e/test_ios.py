@@ -12,12 +12,14 @@ Gegenprobe mit 'android': dort bleibt alles wie vorher.
 Was sich so nicht pruefen laesst (StoreKit, Apples Fenster, ATT, der
 Stummschalter, die Raender am echten Geraet), steht in iOS_Plan.md 3.9.
 """
+import json
+import os
 import re
 
 import pytest
 
-from firebase_attrappe import UID, dok_pfad, wege
-from test_anmeldung import KONTO, ZUSTAND, _aufrufe, _fertig, _gelernt, _starten, _t, _warte
+from firebase_attrappe import UID, Attrappe, dok_pfad, wege
+from test_anmeldung import KONTO, ZUSTAND, _aufrufe, _fertig, _gelernt, _mail_anmelden, _starten, _t, _warte
 
 SPRACHEN = ("de", "en", "tr", "sv", "nl", "nb", "da", "fr")
 VERBOTEN = re.compile(r"Google Play|Play Store|Play-butikk|Play Butik|Android|Google-Konto|Google account"
@@ -348,6 +350,182 @@ def test_konto_loeschen_mit_apple_widerruft(seite, heute_stand, cloud_html):
     w = attrappe.widerrufen[0]
     assert (w["providerId"], w["tokenType"], w["token"]) == ("apple.com", "CODE", "code-probe")
     assert attrappe.konto_weg and seite.js(ZUSTAND)["merker"] is None
+    assert seite.fehler == []
+
+
+# ------------------------------------------------------- Stand 1.3 auf iOS ---
+ZA_SEKTION = '#sections .section[data-sid="zahnarzt"]'
+
+
+@pytest.mark.parametrize("plattform", ["ios", "android"])
+def test_zahnarzt_aus_dem_konto_klappt_auf_ios_nichts_auf(seite, heute_stand, plattform):
+    """Richtlinie 2.5.19 (06.11.2026): Auf iOS gibt es Beim Zahnarzt nicht. Wer ihn
+    auf Android eingeschaltet hat, bringt mit dem Konto zahnarzt.an mit - auf dem
+    iPhone steht er trotzdem nicht im Lernpfad. Schalter und Lernstand bleiben aber
+    im Stand, sonst waeren sie nach dem naechsten Abgleich auf Android weg."""
+    z = 1700000000000
+    stand = heute_stand(zahnarzt={"an": True, "z": z}, gewusst=["za|vilica"])
+    _app(seite, plattform, lambda: stand)
+    seite.js("() => { homeMode = 'words'; showHome(); }")
+    ios = plattform == "ios"
+    assert seite.page.locator(ZA_SEKTION).count() == (0 if ios else 1)
+    assert seite.js("() => [!!ZA, zaAn(), zaLevel().length > 0]") == [not ios] * 3
+    assert seite.js("() => document.querySelector('#sections').textContent.includes('Beim Zahnarzt')") is not ios
+    seite.js("async () => { await saveProgress(); }")
+    gespeichert = seite.js("() => JSON.parse(localStorage.getItem('zmaj_stand'))")
+    assert gespeichert["zahnarzt"] == {"an": True, "z": z}
+    assert "za|vilica" in gespeichert["gewusst"]
+    assert seite.js("() => ohneZa(known)") == 0
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("plattform", ["ios", "android"])
+def test_zahnarzt_wort_nur_auf_android(seite, heute_stand, plattform):
+    """Siebenmal auf die Versionszeile fragt auf iOS nach gar nichts, und auch ein
+    direkter Aufruf schaltet dort nichts ein. Android: wie in 1.3."""
+    _app(seite, plattform, heute_stand)
+    seite.js("() => showSettings()")
+    for _ in range(7):
+        seite.page.click("#ueberZeile")
+    seite.page.wait_for_timeout(300)
+    if plattform == "ios":
+        assert seite.page.locator("#frWort").count() == 0
+        seite.js("async () => { await zaUmschalten(); }")
+        assert seite.js("() => [zaAn(), zaSchalter.an, standAlsObjekt().zahnarzt.an]") == [False] * 3
+    else:
+        seite.page.fill("#frWort", "zahnarzt")
+        seite.page.click("#frOk")
+        seite.page.wait_for_function("() => zaAn()")
+    assert seite.fehler == []
+
+
+def test_ios_ohne_zahnarzt_im_inhalt(seite, heute_stand, wurzelordner):
+    """So kommt der Inhalt aus dem iOS-Bau (ios_zahnarzt_entfernen): ohne das Feld.
+    Lernpfad, Level und Zahlen stimmen, und nichts wirft."""
+    with open(os.path.join(wurzelordner, "app", "inhalt", "de.json"), encoding="utf-8") as f:
+        daten = json.load(f)
+    assert daten.pop("zahnarzt")
+    seite.page.route("**/app/inhalt/de.json", lambda r: r.fulfill(
+        status=200, content_type="application/json; charset=utf-8", body=json.dumps(daten)))
+    _app(seite, "ios", heute_stand)
+    seite.js("() => { homeMode = 'words'; showHome(); openLevel(0); }")
+    assert seite.js("() => [ZA, CATEGORIES.length > 100, sichtbar('levelView')]") == [None, True, True]
+    assert seite.fehler == []
+
+
+def test_feedback_und_sicherung_auf_ios(seite, heute_stand, cloud_html):
+    """v110 auf iOS: Mit Konto keine Sicherungsdatei mehr, Feedback uebers
+    Kontaktformular (anonym bei Firebase, wieder abgemeldet, kein Mailprogramm)."""
+    seite.page.add_init_script(HUELLE % "ios")
+    attrappe = Attrappe()
+    attrappe.anonym_neu = True
+    attrappe.konto_anlegen("ich@probe.example", "geheim-123")
+    _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe, plugin=False)
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    seite.js("() => showSettings()")
+    assert not _sichtbar(seite, "#setSichBox")
+    attrappe.anfragen.clear()
+    seite.page.fill("#fbText", "Probe vom iPhone")
+    seite.page.click("#fbSend")
+    seite.page.wait_for_function("() => !feedbackLaeuft && document.getElementById('fbNote').textContent === t('set.feedback_danke')")
+    nachricht = list(attrappe.nachrichten.values())
+    assert len(nachricht) == 1 and nachricht[0]["antwort"] == "ich@probe.example" and nachricht[0]["text"] == "Probe vom iPhone"
+    assert attrappe.anonyme == set()
+    assert seite.fehler == []
+
+
+def test_werbeschalter_fuer_abonnenten_auf_ios(seite, heute_stand):
+    """v110 auf iOS: Abonnenten haben den Schalter statt "Wahl aendern", ein Tipp
+    oeffnet Googles Fenster ohne initialize() - das Werbe-SDK bleibt aus, und
+    "Anzeige melden" (2.5.18) steht weiter da."""
+    seite.page.add_init_script(HUELLE % "ios")
+    seite.page.add_init_script(r"""
+      (() => {
+        const ss = window.sessionStorage;
+        ss.setItem('probe_aktiv', '1');
+        const merk = n => { const a = JSON.parse(ss.getItem('probe_aufrufe') || '[]'); a.push([n, null]); ss.setItem('probe_aufrufe', JSON.stringify(a)); };
+        window.Capacitor.Plugins.AdMob = {
+          initialize: async () => { merk('initialize'); },
+          requestConsentInfo: async () => { merk('requestConsentInfo');
+            return {status: 'OBTAINED', canRequestAds: true, isConsentFormAvailable: true,
+                    privacyOptionsRequirementStatus: 'REQUIRED'}; },
+          showPrivacyOptionsForm: async () => { merk('showPrivacyOptionsForm'); return {}; },
+        };
+        window.Capacitor.Plugins.ZmajEinwilligung = {stand: async () => ({gdprApplies: 1, purposeConsents: '1', vendorConsents: ''})};
+      })();
+    """)
+    seite.starten(stand=heute_stand())
+    seite.page.wait_for_function("() => premium")
+    seite.js("() => { sessionStorage.removeItem('probe_aufrufe'); showSettings(); }")
+    assert _sichtbar(seite, "#setWerbungBox") and _sichtbar(seite, "#swWerbung")
+    assert seite.page.locator("#setWiderrufBox, #einwWiderruf").count() == 0
+    if seite.js("() => WERBUNG_ECHT"):
+        assert _sichtbar(seite, "#anzeigeMelden")
+    seite.page.click("#swWerbung")
+    _warte(seite, lambda: "showPrivacyOptionsForm" in _aufrufe(seite))
+    assert "initialize" not in _aufrufe(seite)
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("plattform", ["ios", "android"])
+def test_tonweg_status_null_und_latenz(seite, heute_stand, plattform):
+    """Der Tonweg seit 1.3: AudioContext mit latencyHint 'playback', und ein Tempo
+    aus der Geschichte haelt die Lektion nicht mehr vom schnellen Weg ab. Status 0
+    (Capacitor iOS liefert Tondateien ohne HTTP-Status) gilt weiter nur auf iOS als
+    geladen, auf Android bleibt es ein Fehler."""
+    seite.page.add_init_script(r"""
+      (() => {
+        const Echt = window.AudioContext;
+        window.probe_latenz = [];
+        window.AudioContext = class extends Echt {
+          constructor(o){ super(o); window.probe_latenz.push(o || null); }
+        };
+        const holen = window.fetch.bind(window);
+        window.fetch = async (u, o) => {
+          const a = await holen(u, o);
+          if(!String(u).startsWith('audio/') || String(u).endsWith('.json')) return a;
+          const daten = await a.arrayBuffer();
+          return {ok: false, status: 0, arrayBuffer: async () => daten};
+        };
+        window.localStorage.setItem('zmaj_tempo', '0.75');
+      })();
+    """)
+    _app(seite, plattform, heute_stand)
+    assert seite.js("() => tempo") == 0.75
+    ergebnis = seite.js("""async () => {
+        const datei = [...AUDIO.values()][0];
+        pufferLaden(datei);
+        for(let i = 0; i < 100; i++){
+          const p = puffer.get(datei);
+          if(!p || p.buf) break;
+          await new Promise(r => setTimeout(r, 50));
+        }
+        const p = puffer.get(datei);
+        return {geladen: !!(p && p.buf), latenz: window.probe_latenz};
+    }""")
+    assert ergebnis["geladen"] is (plattform == "ios")
+    assert ergebnis["latenz"] and all(o == {"latencyHint": "playback"} for o in ergebnis["latenz"])
+    assert seite.fehler == []
+
+
+def test_ipad_bekommt_das_tablet_layout(seite, heute_stand):
+    """Das Tablet-Layout (30.10.2026) greift auch auf dem iPad: groesser statt einer
+    Spalte in der Mitte. Der Zurueck-Knopf bleibt, und die Lektion rechnet die Raender
+    von iOS mit (die Regel, die Raender selbst sind im Browser 0)."""
+    seite.page.set_viewport_size({"width": 1024, "height": 1366})
+    _app(seite, "ios", heute_stand)
+    assert seite.js("() => document.documentElement.classList.contains('gross')")
+    assert seite.js("() => document.documentElement.classList.contains('hoch')")
+    assert seite.js("() => GROSS") > 1
+    regel = seite.js("""() => [...document.styleSheets].flatMap(s => { try{ return [...s.cssRules]; }catch(e){ return []; } })
+                         .some(r => (r.selectorText || '').includes('html[data-plattform="ios"].gross #lesson .card'))""")
+    assert regel is True
+    seite.js("() => showSettings()")
+    assert _sichtbar(seite, "#btnBack")
+    seite.page.click("#btnBack")
+    seite.page.wait_for_function("() => sichtbar('pfad')")
+    seite.js("() => { openLevel(0); startLesson(); }")
+    seite.page.wait_for_function("() => sichtbar('lesson')")
     assert seite.fehler == []
 
 
