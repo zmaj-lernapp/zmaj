@@ -261,7 +261,11 @@ def test_alle_sektionen(grunddaten):
     assert len(grunddaten["kategorien"]) == 166
 
 
-@pytest.mark.parametrize("a, b", [("sav", "cijeli"), ("tu", "ovdje"), ("tako", "ovako"), ("vrlo / veoma", "jako")])
+@pytest.mark.parametrize("a, b", [("sav", "cijeli"), ("tu", "ovdje"), ("tako", "ovako"), ("vrlo / veoma", "jako"),
+                                  # Pruefbericht 1.3: die Frage ist ein Teil des falschen Knopfs
+                                  ("vući", "povlačiti"), ("dakle", "pa"), ("iz", "od"), ("Hajde!", "Hajmo!"),
+                                  ("tražiti", "zvati"), ("dokument", "potvrda"), ("Sve je dobro", "Šta ima?"),
+                                  ("bitan", "važan"), ("nakon", "po")])
 def test_nie_nebeneinander_in_der_auswahl(index_html, grunddaten, a, b):
     bs = {w["bs"] for w in _alle(grunddaten)}
     assert a in bs and b in bs
