@@ -463,7 +463,7 @@
      Abstand unter den Punkten, die Einstufung dazu noch die
      Anweisungszeile und keinen .kastenkopf. Im Test standen die
      Antwortknoepfe dadurch 140 px hoeher als in der Lektion, in der
-     Einstufung bis zu 65 px - Kuebra: "im Test sind die Knoepfe viel
+     Einstufung bis zu 65 px - eine Testerin: "im Test sind die Knoepfe viel
      hoeher als in der normalen Level-Umgebung". Seitdem bauen alle drei
      ihren Kasten gleich (Kopfzeile, Drache .zmaj.mini, Aufgabenfeld), und
      jede Regel hier nennt alle drei Orte ausgeschrieben: #lesson X,
@@ -578,7 +578,7 @@
   .seriezahl{font-family:var(--font-display); font-size:46px; font-weight:700;
              line-height:1; display:flex; align-items:baseline; gap:8px}
   /* ---- Die Flamme zeigt, ob heute schon gelernt wurde ----
-     Wunsch von Kuebra und Ajdin, entschieden am 20.10.2026 nach einer
+     Wunsch einer Testerin und von Ajdin, entschieden am 20.10.2026 nach einer
      Vorschau mit drei Varianten (A aus, B glimmt, C Glut). Ajdin: "nimm a
      fuer 0 tage und den rest fuer c".
        .aus   Serie 0 und heute nichts: kalte graue Kohle, steht still (A)
@@ -2017,7 +2017,7 @@
   .opt.right{border-color:var(--good); background:var(--primary-soft); color:var(--good-text); box-shadow:0 3px 0 var(--good-dark)}
   .opt.wrong{border-color:var(--bad); color:var(--bad-text); box-shadow:0 3px 0 var(--bad)}
   .opt:disabled{cursor:default}
-  /* Satz aus Kacheln legen (13.10.2026, Kuebras Wunsch). Oben die Zeile, in
+  /* Satz aus Kacheln legen (13.10.2026, Wunsch einer Testerin). Oben die Zeile, in
      die man legt: zwei Kachelreihen hoch, damit nichts springt, wenn die
      zweite Reihe anfaengt. Leer steht dort, was zu tun ist - im Lektionskopf
      ist der Aufgabentitel ausgeblendet. Darunter der Vorrat; eine gelegte
@@ -2097,7 +2097,7 @@
   .story .w{cursor:pointer; border-bottom:2px dotted var(--line); border-radius:3px; transition:.12s}
   .story .w:hover,.story .w.on{background:var(--accent-soft); color:var(--primary); border-bottom-color:var(--accent)}
   /* ---- Mitlesen (20.10.2026) ----
-     Kuebras Wunsch: beim Vorlesen einer Geschichte zeigt die App das Wort,
+     Wunsch einer Testerin: beim Vorlesen einer Geschichte zeigt die App das Wort,
      das die Stimme gerade spricht, damit man im Text folgen kann. Ajdin
      nach der Vorschau: "mach die buchstaben gelb nicht aussenrum" - also
      nur die Schrift gelb, kein Kasten, kein Hintergrund. Und "das es
@@ -2581,7 +2581,7 @@
 
     <!-- Der Kasten ist gebaut wie der der Lektion, mit eigenem Herz und
          eigenem Drachen. So stehen Knoepfe und Weiter an derselben Stelle
-         wie in der Lektion. Kuebra am 19.10.2026, siehe .zmaj.mini im CSS.
+         wie in der Lektion. Testerin am 19.10.2026, siehe .zmaj.mini im CSS.
          Das Herz war zuerst ein unsichtbarer Platzhalter; seit Ajdin am
          selben Tag entschied, dass der Test Leben kostet wie die Lektion,
          ist es echt (#tHerz). -->
@@ -3232,7 +3232,7 @@ const ADMOB_TESTGERAETE = [
   /* Was hier noch fehlt, siehe oben:
        - Ajdins S21 aus der PLAY-Fassung (anderer Signaturschluessel,
          andere Kennung - der Wert oben schuetzt nur die Debug-Fassung)
-       - Kuebras Handy, ebenfalls aus der Play-Fassung
+       - ein weiteres Testhandy, ebenfalls aus der Play-Fassung
      Beide gehoeren hier hinein, BEVOR admob_scharf.py laeuft - oder beide
      Geraete stehen mit ihrer Werbe-ID in der AdMob-Konsole, das deckt
      jede Fassung ab. */
@@ -3318,7 +3318,7 @@ async function admobStart(){
 
      Der versteckte Dauerschalter gehoert hier dazu. Er schreibt zmaj_voll
      bewusst NICHT mit (siehe vollversionMerken), deshalb las diese Stelle
-     ihn gar nicht: bei Ajdin und Kuebra fuhr AdMob trotz eingeschalteter
+     ihn gar nicht: auf beiden Testhandys fuhr AdMob trotz eingeschalteter
      Dauer-Vollversion hoch, sprach mit Google und zeigte dessen
      Einwilligungsfenster - genau das, was dieser Kommentar ausschliessen
      wollte. Gefunden am 26.09.2026. */
@@ -4841,7 +4841,7 @@ function festHalloween(){
     : '<g transform="translate(' + x + ',' + (y + 12) + ')"><ellipse rx="14" ry="12" fill="#F28C28"/><ellipse rx="5.5" ry="12" fill="#E07A12"/><rect x="-2" y="-16" width="4" height="6" rx="2" fill="#4E7A2E"/><path d="M-7,-3 l3.5,-4 l3.5,4Z M0.5,-3 l3.5,-4 l3.5,4Z M-7,4 l2,2 l2,-2 l2,2 l2,-2 l2,2 l2,-2" fill="#3B1F0A" stroke="#3B1F0A" stroke-width="1"/></g>'));
   const farben = ['#E8742A', '#C8452B', '#E9A23B', '#B5651D', '#D9532B'];
   let fall = '';
-  /* Sechs Blaetter. Zehn waren Kuebra zu viele ("bisschen zu viele
+  /* Sechs Blaetter. Zehn waren einer Testerin zu viele ("bisschen zu viele
      Blaetter, aber sonst top"), 01.10.2026. */
   for(let i = 0; i < 6; i++){
     const x = (i * 53 + 11) % 100, d = 9 + (i % 4) * 2.5, verz = -(i * 2.6), g = 16 + (i % 3) * 6;
@@ -5794,7 +5794,7 @@ function standUebernehmen(d){
      haengt nicht am heutigen Datum. Ein echter Stand verliert nichts. */
   rekord = Math.min(ganzAbNull(d.rekord), days.size);
   /* Steht noch kein Rekord da, wird er aus den vorhandenen Lerntagen
-     nachgerechnet. Sonst finge Kübra bei null an, obwohl sie die Tage
+     nachgerechnet. Sonst finge eine Testerin bei null an, obwohl sie die Tage
      längst hinter sich hat. Passiert genau einmal je Lernstand. */
   const gerechnet = laengsteSerie();
   if(gerechnet > rekord) rekord = gerechnet;
@@ -6175,7 +6175,7 @@ function vollversionLaden(alterStand){
 
 /* ---- Die dauerhafte Vollversion ----
 
-   Ajdin und Kuebra sollen sie haben, ohne zu kaufen. Ueber Play geht das
+   Das Team soll sie haben, ohne zu kaufen. Ueber Play geht das
    nicht: Gutscheincodes schenken nur einen Zeitraum, und ein
    Dauer-Lizenztester ist das falsche Werkzeug. Also ein eigener Schalter,
    getrennt von zmaj_voll, der diesen nur in premium sticht.
@@ -6393,7 +6393,7 @@ function dauerVollSetzen(an){
    Googles Doku kennt fuer die Kennung nur zwei Wege - logcat, oder "eine
    App, die sie anzeigt". Der erste braucht Kabel und USB-Debugging, und
    das laesst sich nicht auf jedem Geraet einschalten. Also der zweite.
-   Ajdin am 30.09.2026, nachdem es bei Kuebras Handy ausgegraut war. */
+   Ajdin am 30.09.2026, nachdem es auf einem Testhandy ausgegraut war. */
 async function kennungZeigen(){
   const P = window.Capacitor && window.Capacitor.Plugins;
   if(!P || !P.ZmajEinwilligung){
@@ -7675,7 +7675,7 @@ function stilleBitte(behalteAufgabe){
 spieler.addEventListener('pause', ()=>{ if(spieler.paused && !pausiert) knopfZurueck(); });
 spieler.addEventListener('error', knopfZurueck);
 /* ---- Mitlesen ----
-   Kuebras Wunsch, umgesetzt am 20.10.2026: beim Vorlesen einer Geschichte
+   Wunsch einer Testerin, umgesetzt am 20.10.2026: beim Vorlesen einer Geschichte
    ist das Wort markiert, das die Stimme gerade spricht - so kann man im
    Text folgen. Schon Gesprochenes wird blasser. Aussehen: .w.mitlesen und
    .w.gelesen im Stil.
@@ -12250,7 +12250,7 @@ function renderTask(task, body, done, opts={}){
     return;
   }
   if(task.typ==='kacheln'){
-    /* Einen Satz aus Kacheln legen - Kuebras Wunsch vom 13.10.2026, siehe
+    /* Einen Satz aus Kacheln legen - Wunsch einer Testerin vom 13.10.2026, siehe
        kachelnFuerLektion(). Oben die Bedeutung, darunter die Zeile, in die
        man legt, darunter der Vorrat. Antippen im Vorrat legt die Kachel ans
        Ende der Zeile, Antippen in der Zeile legt sie zurueck an ihren Platz.
@@ -12454,7 +12454,7 @@ function lueckenFuerLektion(ids){
   return out;
 }
 /* ---- Saetze aus Kacheln bauen (13.10.2026) ----
-   Kuebra (Testerin, Muttersprachlerin) am 13.10.2026: neue Woerter kommen
+   Eine Testerin (Muttersprachlerin) am 13.10.2026: neue Woerter kommen
    und gehen und bleiben nicht haengen. Sie wollte wie bei Duolingo ganze
    Saetze aus Wort-Kacheln legen statt nur eine Luecke zu fuellen, ab Level 1
    und mit den Woertern, die gerade dran waren. Ajdin dazu: mehrere
@@ -13484,7 +13484,7 @@ function startTest(){
   $('zmajLesson').innerHTML='';   // siehe startLesson: kein Drache laeuft unsichtbar weiter
   uhrNeu();
   /* Derselbe kleine Drache wie in der Lektion - ohne ihn standen die
-     Knoepfe im Test 126 px hoeher (Kuebra, 19.10.2026). */
+     Knoepfe im Test 126 px hoeher (Testerin, 19.10.2026). */
   /* Das Herz wie in startLesson() wieder einblenden: der Schirm ohne Leben
      blendet es aus (19.10.2026). */
   const zt=$('zmajTest'); zt.style.display='block'; $('tHerz').style.display=''; zt.innerHTML=zmaj('happy'); setMood(zt,'happy');

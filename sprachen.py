@@ -455,7 +455,7 @@ TEXTE = {
 "task.gehoert_no": "Ich habe „{text}“ verstanden. Das klingt noch nicht ganz richtig. Versuch es noch einmal oder überspringe die Aufgabe.",
 "task.sprechen_skip": "Sprechen ist gerade nicht möglich, überspringen",
 "task.luecke": "Ergänze die Lücke",
-# Satzbau aus Kacheln, Kübras Wunsch vom 13.10.2026
+# Satzbau aus Kacheln, Wunsch einer Testerin vom 13.10.2026
 "task.kacheln": "Bilde den Satz",
 "task.kacheln_hinweis": "Tippe die Wörter in der richtigen Reihenfolge an.",
 "task.kacheln_skip": "Überspringen",

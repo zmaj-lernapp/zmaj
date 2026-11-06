@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Mitlesen beim Vorlesen einer Geschichte (20.10.2026, Wunsch von Kuebra).
+"""Mitlesen beim Vorlesen einer Geschichte (20.10.2026, Wunsch einer Testerin).
 
 Das Wort, das die Stimme gerade spricht, ist markiert - nur die Schrift
 gelb, kein Kasten (Ajdin: "mach die buchstaben gelb nicht aussenrum"). Schon
