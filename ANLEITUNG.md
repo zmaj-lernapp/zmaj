@@ -619,7 +619,7 @@ Stufe mit festem Abstand bis zum nächsten Termin:
   bekommen Stufe 3 und einen Termin ab morgen, verteilt auf etwa vier
   Wochen mit 3 bis 10 Wörtern je Tag, die ältesten Level zuerst. Bei mehr
   als 280 gewussten Wörtern dauert das entsprechend länger, bei allen
-  4.425 knapp sechs Monate. Ab 1.800 Wörtern sind es mehr als 10 je Tag
+  4.421 knapp sechs Monate. Ab 1.800 Wörtern sind es mehr als 10 je Tag
   (bei allen 25), damit der Umzug nie länger als 180 Tage dauert. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
   dann brauchte der Umzug mit seinen Rückkehrern allein bald mehr als 30
   Plätze am Tag (Prüfung vom 29.10.2026).
@@ -1155,7 +1155,7 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 4425 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 4421 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, außer
   den Aspektpaaren (*ostati* / *ostajati*), die mit Absicht gleich heißen.
   Keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.

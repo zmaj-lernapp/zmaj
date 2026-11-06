@@ -117,7 +117,7 @@ def test_ohne_wort_ist_nichts_zu_sehen(seite, heute_stand):
     _heim(seite)
     assert seite.page.locator(SEKTION).count() == 0
     z = seite.js(ZAHLEN)
-    assert z["sektionen"] == 17 and z["level"] == 166 and z["woerter"] == 4425 and z["wortkarte"] is False
+    assert z["sektionen"] == 17 and z["level"] == 166 and z["woerter"] == 4421 and z["wortkarte"] is False
     assert seite.js("() => [zaAn(), zaSchalter.an, !!ZA, standAlsObjekt().zahnarzt.an]") == [False, False, True, False]
     assert seite.js("() => document.querySelector('#sections').textContent.includes('Beim Zahnarzt')") is False
     # Kein eigener Eintrag im Geraetespeicher, und nichts laedt nach
@@ -406,7 +406,7 @@ def test_lernstand_im_teil_zaehlt_nicht_als_gelernt(seite, heute_stand):
     assert z == {"gewusst": 0, "bestanden": 0, "einstufung": True, "roh": 2}
     _heim(seite)
     assert seite.js("() => document.getElementById('summary').textContent") == (
-        "0 von 166 Levels geschafft · 0 von 4425 Wörtern sitzen")
+        "0 von 166 Levels geschafft · 0 von 4421 Wörtern sitzen")
     assert seite.fehler == []
 
 

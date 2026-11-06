@@ -5,6 +5,9 @@ Die Aufnahmen hat ElevenLabs am 05.11.2026 erzeugt (Stimme Emir, dieselben
 Einstellungen wie Paket 1 bis 4), sechs kurze Woerter am 06.11.2026 nachgeholt.
 Sie liegen nur in der privaten Huelle unter audio_emir/, die Nummern stehen hier
 in ton_nur_emir.json: w3724 bis w5205, in der Reihenfolge von ton_bauen.sammle().
+w4690 (smijeh, ein Lachen statt des Wortes) und sein Satz w4691 sind seit dem
+06.11.2026 zurueckgezogen; ihre Nummern bleiben frei. Ebenso w4114 (plakati, zweites a
+zu lang) und sein Satz w4115 (e bei beba zu kurz).
 
 doktor / ljekar, dozvoliti / dopustiti, dozvoljavati / dopuštati, vijek / stoljeće,
 podići / podignuti und zapravo / ustvari sind aus fertigen Einzelaufnahmen
@@ -14,11 +17,13 @@ mit beiden Formen gesprochen.
 Was auf Emir wartet (Release\\Wortschatz\\v111_wartet_auf_emir.md), hat noch keine Nummer.
 """
 ERSTE, LETZTE = 3724, 5205
+ZURUECKGEZOGEN = {4114, 4115, 4690, 4691}
 ZUSAMMENGESETZT = ["doktor / ljekar", "dozvoliti / dopustiti", "dozvoljavati / dopuštati", "podići / podignuti",
                    "vijek / stoljeće", "zapravo / ustvari"]
-WARTET = ["ivica", "poteškoća", "dova", "mezarje", "dići", "dizati", "uopšte", "ukupno",
+WARTET = ["ivica", "poteškoća", "dova", "mezarje", "dići", "dizati", "uopšte", "ukupno", "smijeh", "plakati",
           "živimo na rubu grada.", "moj dedo je bio u ratu.", "našli smo mrtvu pticu u bašti.",
-          "kasnim na posao. naime, autobus se pokvario.", "želim biti poput svog babe."]
+          "kasnim na posao. naime, autobus se pokvario.", "želim biti poput svog babe.",
+          "smijeh je najbolji lijek.", "zašto beba stalno plače?"]
 
 
 def _nummer(datei):
@@ -33,7 +38,7 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     import ton_bauen
     emir = ton_bauen.nur_emir()
     neu = _im_bereich(emir)
-    assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
+    assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1) if n not in ZURUECKGEZOGEN]
     # Dahinter steht nur noch der Teil Beim Zahnarzt (w5206 bis w5316, tests/test_zahnarzt.py).
     assert max(_nummer(e["datei"]) for e in emir.values()) == 5316
     reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values())]
