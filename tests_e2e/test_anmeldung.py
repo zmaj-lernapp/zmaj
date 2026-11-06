@@ -560,6 +560,37 @@ def test_google(seite, heute_stand, cloud_html):
     assert seite.fehler == []
 
 
+def test_neues_geraet_anmelden_behaelt_schutz_und_einstieg(seite, cloud_html):
+    """Pruefbericht 1.3 (06.11.2026), auf dem echten Weg: frische App, Karte
+    "Nein, ich fange neu an", Startseite, dann Google. Vorher kam dabei ein Schutz
+    weg und der Einstieg, und beides ging auch in die Cloud."""
+    attrappe = _starten(seite, cloud_html)
+    kennung = seite.js("() => CATEGORIES[50].id")
+    level = seite.js("() => CATEGORIES.slice(50, 56).map(c => c.id)")
+    tage = [(datetime.date.today() - datetime.timedelta(days=i)).isoformat() for i in range(3, 0, -1)]
+    konto = {"schutz": {"anzahl": 2, "zeit": 0}, "bestanden": level, "gewusst": ["probe:konto"], "tage": tage,
+             "einstufung": {"tag": tage[0], "wahl": "gut", "bis": kennung, "richtig": 13, "fragen": 15}}
+    attrappe.doks[UID] = {"daten": {"stringValue": json.dumps({"app": "zmaj", "version": 1, "stand": konto})},
+                          "rev": {"stringValue": "altes-handy.1"}}
+    seite.js("() => einstufungWahl()")
+    seite.page.click('[data-wahl="neu"]')
+    assert seite.js("() => einstufung.bis") == ""
+    seite.js("() => showHome()")
+    frisch = seite.js("() => schutz")
+    assert frisch["anzahl"] == 1 and frisch["zeit"] > 0, "Voraussetzung: der Stempel der Startseite"
+    seite.js("() => anmeldungZeigen('konto')")
+    seite.page.click("#anmGoogle")
+    _fertig(seite)
+    z = seite.js("""() => ({merker: !!cloudMerker(), schutz, bis: einstufung.bis, dran: CATEGORIES[firstOpen()].id,
+                            offen: CATEGORIES.filter((c, i) => isUnlocked(i)).length, woerter: [...known]})""")
+    assert z["merker"] and z["schutz"] == konto["schutz"] and z["bis"] == kennung, z
+    assert z["dran"] == seite.js("() => CATEGORIES[56].id") and z["offen"] == 57 and "probe:konto" in z["woerter"], z
+    oben = json.loads(attrappe.doks[UID]["daten"]["stringValue"])["stand"]
+    assert oben["schutz"] == konto["schutz"] and oben["einstufung"]["bis"] == kennung
+    assert set(level) <= set(oben["bestanden"]) and "probe:konto" in oben["gewusst"]
+    assert seite.fehler == []
+
+
 # 01.11.2026, Ajdin: "Sicherung speichern kann raus weil wir ja jetzt einen
 # server haben" - "Ganz raus". In der Handy-App (CLOUD_AN) ist der Block in
 # den Einstellungen weg, Speichern und Einlesen, angemeldet oder nicht. Das

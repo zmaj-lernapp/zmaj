@@ -24,9 +24,16 @@ Produktionsstart. Geprueft wird hier:
   - Loeschen, wenn Firebase fuer das Konto eine frische Anmeldung verlangt:
     die Sicherung ist weg und die App abgemeldet, mit Google wird neu
     angemeldet und nur dasselbe Konto geloescht.
+  - Zwei Geraete, beide Richtungen (Pruefbericht 1.3, 06.11.2026): Die erste
+    Anmeldung auf einem neuen Geraet nimmt dem Konto weder einen Serienschutz noch
+    den Einstieg aus der Einstufung, und nichts Gelerntes geht verloren.
 """
 import datetime
 import json
+import time
+
+import pytest
+from conftest import Seite
 
 # Die Attrappe steht seit 28.10.2026 in firebase_attrappe.py, die Demo mit
 # eingeschalteter Anmeldung (cloud_html) in conftest.py.
@@ -753,3 +760,158 @@ def test_geloeschtes_fremdes_feld_kommt_nicht_zurueck(seite, heute_stand):
     assert seite.js(mischen, [{"alt": 1, "neu": 1}, {"b": 1}, None]) == ["b", "alt", "neu"]
     assert seite.js(mischen, [{"alt": 1, "neu": 1}, {"b": 1}, ["alt", "b"]]) == ["b", "neu"]
     assert seite.fehler == []
+
+
+# ----------------------------------------------------------- zwei Geraete ---
+
+TAG_MS = 86400000
+SCHUTZ = "() => schutz"
+# Ein Geraet meldet sich an. Die Ablage steht fuer die Cloud: Der Test traegt das
+# Dokument von Hand von einem Geraet zum anderen.
+ANMELDEN = """async (dok) => {
+    window.ablage = {uid: 'konto-probe'};
+    if(dok) window.ablage.dok = dok;
+    window.adapter = cloudSpeicherAdapter(window.ablage);
+    return await cloudAnmelden('google', adapter);
+}"""
+DOK_LEGEN = "(dok) => { ablage.dok = dok; }"
+DOK_HOLEN = "() => ablage.dok"
+GELERNT = """() => ({woerter: [...known].sort(), level: [...passed].sort(), tage: [...days].sort(),
+                    ges: muenzenGes, aus: muenzenAus})"""
+
+
+@pytest.fixture
+def zweites_geraet(browser, basis):
+    ctx = browser.new_context(viewport={"width": 360, "height": 640}, locale="de-DE", service_workers="block")
+    yield Seite(ctx.new_page(), basis)
+    ctx.close()
+
+
+def _letzte_tage():
+    heute = datetime.date.today()
+    return [(heute - datetime.timedelta(days=i)).isoformat() for i in range(3, 0, -1)]
+
+
+def _stand_im_dok(dok):
+    return json.loads(dok["text"])["stand"]
+
+
+def _gelernt_passt(s, soll):
+    """Wie soll, mindestens: alle Woerter, Level und Lerntage, die Muenzen bleiben."""
+    z = s.js(GELERNT)
+    assert set(soll["woerter"]) <= set(z["woerter"]) and set(soll["level"]) <= set(z["level"]), (soll, z)
+    assert set(soll["tage"]) <= set(z["tage"]) and z["ges"] >= soll["ges"] and z["aus"] >= soll["aus"], (soll, z)
+
+
+@pytest.mark.parametrize("anzahl, vor_tagen", [(2, None), (1, 9), (0, 9)])
+def test_neues_geraet_nimmt_dem_konto_keinen_serienschutz(seite, zweites_geraet, heute_stand, anzahl, vor_tagen):
+    """Eine frische App stempelt auf der Startseite {1, jetzt}. Das ist kein
+    Ereignis und darf beim ersten Abgleich die neuere Zeit nicht gewinnen: Zwei
+    Schutz wurden sonst einer, auf allen Geraeten, ein laufender Schutz begann von
+    vorn, und wer keinen hatte, bekam einen geschenkt."""
+    zeit = 0 if vor_tagen is None else int(time.time() * 1000) - vor_tagen * TAG_MS
+    konto = {"anzahl": anzahl, "zeit": zeit}
+    alt, neu = seite, zweites_geraet
+    alt.starten(stand=heute_stand(tage=_letzte_tage(), muenzen_ges=200, muenzen_aus=100, schutz=konto))
+    assert alt.js(SCHUTZ) == konto
+    alt.js("() => { CATEGORIES[0].words.slice(0, 5).forEach(w => known.add(w.id)); passed.add(CATEGORIES[0].id); }")
+    assert alt.js(ANMELDEN, None) is True
+    alt_gelernt = alt.js(GELERNT)
+    assert _stand_im_dok(alt.js(DOK_HOLEN))["schutz"] == konto
+
+    # Das neue Geraet: Startseite gezeichnet, ein Wort schon gelernt.
+    neu.starten(stand=heute_stand())
+    frisch = neu.js(SCHUTZ)
+    assert frisch["anzahl"] == 1 and frisch["zeit"] > 0, "Voraussetzung: der Stempel der Startseite"
+    neu.js("() => known.add(CATEGORIES[1].words[0].id)")
+    assert neu.js(ANMELDEN, alt.js(DOK_HOLEN)) is True
+    assert neu.js(SCHUTZ) == konto
+    assert _stand_im_dok(neu.js(DOK_HOLEN))["schutz"] == konto
+    _gelernt_passt(neu, alt_gelernt)
+    neu_gelernt = neu.js(GELERNT)
+
+    # Zurueck aufs alte Geraet: derselbe Schutz, und das neue Wort kommt dazu.
+    alt.js(DOK_LEGEN, neu.js(DOK_HOLEN))
+    assert alt.js(ABGLEICH, "anmelden") == "gespeichert"
+    assert alt.js(SCHUTZ) == konto
+    _gelernt_passt(alt, neu_gelernt)
+
+    # Ab jetzt ist es ein normaler Abgleich: Ein echtes Ereignis auf dem einen
+    # Geraet gewinnt auf dem anderen wieder ueber die neuere Zeit.
+    verbraucht = {"anzahl": max(anzahl - 1, 0), "zeit": int(time.time() * 1000)}
+    alt.js("(s) => { schutz = s; known.add(CATEGORIES[2].words[0].id); saveProgress(); }", verbraucht)
+    assert alt.js(ABGLEICH, "anmelden") == "gespeichert"
+    neu.js(DOK_LEGEN, alt.js(DOK_HOLEN))
+    assert neu.js(ABGLEICH, "anmelden") == "gespeichert"
+    assert neu.js(SCHUTZ) == verbraucht
+    _gelernt_passt(neu, alt.js(GELERNT))
+    assert alt.fehler == [] and neu.fehler == []
+
+
+@pytest.mark.parametrize("im_dokument", [None, [1, 2], {"anzahl": "viele", "zeit": 5}])
+def test_erster_abgleich_ohne_brauchbaren_schutz_im_konto(seite, heute_stand, im_dokument):
+    """Steht im Konto kein brauchbarer Schutz, bleibt der eigene."""
+    stand = {"gewusst": ["probe:wolke"], "tage": _letzte_tage()}
+    if im_dokument is not None:
+        stand["schutz"] = im_dokument
+    seite.starten(stand=heute_stand())
+    assert seite.js(ANMELDEN, {"text": json.dumps({"app": "zmaj", "version": 1, "stand": stand}), "rev": "anderes.1"}) is True
+    z = seite.js(SCHUTZ)
+    assert z["anzahl"] == 1 and z["zeit"] > 0, z
+    assert "probe:wolke" in seite.js(GELERNT)["woerter"]
+    assert seite.fehler == []
+
+
+LAGE_IM_PFAD = """() => ({dran: CATEGORIES[firstOpen()].id, offen: CATEGORIES.filter((c, i) => isUnlocked(i)).length,
+                         bis: einstufung && einstufung.bis})"""
+
+
+def test_einstufung_mit_einstieg_schlaegt_die_ohne(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    mit = {"tag": "2026-10-01", "wahl": "gut", "bis": "x", "richtig": 13, "fragen": 15}
+    ohne = {"tag": "2026-11-01", "wahl": "neu", "bis": ""}
+    spaeter = {"tag": "2026-11-02", "wahl": "etwas", "bis": "y"}
+    # Der Einstieg gewinnt, egal wie alt, in beiden Richtungen.
+    for a, b in ((mit, ohne), (ohne, mit)):
+        assert seite.js(MISCHEN, [{"einstufung": a}, {"einstufung": b}])["einstufung"] == mit
+    # Unter zweien mit oder zweien ohne Einstieg entscheidet weiter das Datum.
+    for a, b in ((mit, spaeter), (spaeter, mit)):
+        assert seite.js(MISCHEN, [{"einstufung": a}, {"einstufung": b}])["einstufung"] == spaeter
+    frueher = dict(ohne, tag="2026-10-20")
+    for a, b in ((ohne, frueher), (frueher, ohne)):
+        assert seite.js(MISCHEN, [{"einstufung": a}, {"einstufung": b}])["einstufung"] == ohne
+    # Mit einer Seite ohne Einstufung bleibt, was da ist.
+    assert seite.js(MISCHEN, [{"einstufung": ohne}, {}])["einstufung"] == ohne
+    assert seite.js(MISCHEN, [{}, {"einstufung": None}])["einstufung"] is None
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("bestanden", [6, 0])
+def test_neu_auf_zweitem_geraet_nimmt_dem_konto_den_einstieg_nicht(seite, zweites_geraet, heute_stand, bestanden):
+    """Eingestuft bis Level 51. Auf einem neuen Geraet "Nein, ich fange neu an",
+    danach anmelden: Vorher gewann die neuere Einstufung ohne Einstieg, dauerhaft und
+    auf allen Geraeten, die Einstufung laesst sich nicht neu machen."""
+    alt, neu = seite, zweites_geraet
+    alt.starten(stand=heute_stand(tage=_letzte_tage()))
+    alt.js("""(bestanden) => {
+        einstufung = {tag: tagMinus(today(), 20), wahl: 'gut', bis: CATEGORIES[50].id, richtig: 13, fragen: 15};
+        CATEGORIES.slice(50, 50 + bestanden).forEach(c => { passed.add(c.id); c.words.forEach(w => known.add(w.id)); });
+        saveProgress();
+    }""", bestanden)
+    vorher = alt.js(LAGE_IM_PFAD)
+    assert vorher["offen"] == 51 + bestanden and vorher["bis"]
+    assert alt.js(ANMELDEN, None) is True
+    alt_gelernt = alt.js(GELERNT)
+
+    neu.starten(stand=heute_stand())          # einstufung: heute, "neu", ohne Einstieg
+    assert neu.js("() => einstufung.bis") == ""
+    assert neu.js(ANMELDEN, alt.js(DOK_HOLEN)) is True
+    assert neu.js(LAGE_IM_PFAD) == vorher
+    assert _stand_im_dok(neu.js(DOK_HOLEN))["einstufung"]["bis"] == vorher["bis"]
+    _gelernt_passt(neu, alt_gelernt)
+
+    alt.js(DOK_LEGEN, neu.js(DOK_HOLEN))
+    assert alt.js(ABGLEICH, "anmelden") == "gespeichert"
+    assert alt.js(LAGE_IM_PFAD) == vorher
+    _gelernt_passt(alt, alt_gelernt)
+    assert alt.fehler == [] and neu.fehler == []
