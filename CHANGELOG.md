@@ -306,6 +306,25 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Answer options: a meaning that is also part of the wrong button no longer stands
+  next to the question ("ziehen" with *povlačiti* "ziehen / zurückziehen", "also" with
+  *pa* "und dann / also"), in any language. Tapping it was right and cost a life.
+  `NIE_NEBENEINANDER` gets nine pairs; typing does not change. Each meaning shows up
+  only once now, and wrong answers come from the same kind first (word with words,
+  sentence with sentences), so sentences no longer give away a word question. Lessons
+  and level tests get a little harder.
+- Signing in on a new device no longer costs a streak protection: on a device's first
+  sync the account's value counts, not the fresh default of the new app, which also
+  reached the old device. A placement with a starting level now beats one without,
+  whatever the date, so "No, I'm starting over" on a new device no longer removes the
+  starting level everywhere. `tests_e2e/test_cloud.py` plays both directions with two
+  devices.
+- Speaking: one word no longer passes for a whole sentence ("mogu" for *Mogu li platiti
+  karticom?*). After "no match" or silence the microphone stops instead of silently
+  listening again in the next language; the next tap takes the next language, so
+  devices without Bosnian still reach Croatian. Not yet checked on a phone.
+- Typing without a comma or hyphen (*Racun molim*, *sogan dolma*, *sogandolma*) now
+  counts like a missing diacritic instead of costing a life on the second try.
 - Speed: the speed set under a story now applies only while a story is read
   aloud. It used to slow down every recording in the app, including all lessons,
   and took words off the fast sound path, although it can only be changed in the
