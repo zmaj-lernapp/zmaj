@@ -197,9 +197,11 @@ def nur_emir():
     return {e["key"]: e for e in daten.get("toene", [])}
 
 
-def sammle():
+def sammle(mit_zahnarzt=True):
     """Alles, was speak() in der App je zu hören bekommt, in fester
-    Reihenfolge – damit die vergebenen Nummern bei jedem Lauf gleich bleiben."""
+    Reihenfolge – damit die vergebenen Nummern bei jedem Lauf gleich bleiben.
+    mit_zahnarzt=False: ohne den versteckten Teil, für den iOS-Bau, der ihn
+    nicht mitnimmt (app_bauen.ios_zahnarzt_entfernen, 06.11.2026)."""
     v = _modul("vokabeln")
     g = _modul("geschichten")
 
@@ -292,6 +294,8 @@ def sammle():
     # Der versteckte Teil Beim Zahnarzt (06.11.2026, zahnarzt.py). Spricht nur
     # Emir, der große Lauf erzeugt nichts. Ganz am Ende, damit die vergebenen
     # Nummern bleiben.
+    if not mit_zahnarzt:
+        return posten
     for kat in _modul("zahnarzt").KATEGORIEN:
         for w in kat["words"]:
             k = schluessel(w["bs"])

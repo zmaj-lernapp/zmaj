@@ -147,6 +147,34 @@ def test_ios_rechtstexte(sprachcodes):
         assert "Apple" in t["set.datenschutz_text_ios"].split("AdMob", 1)[1], code
 
 
+def test_ios_feedback_wie_es_auf_ios_ist(sprachcodes):
+    """Stand 1.3: Der Feedback-Absatz der Erklaerung gilt auch auf iOS (Formular
+    ueber Firebase, Rueckfall Mailprogramm). Die Bewertungskarte mit ihrem Knopf
+    "Verbesserung vorschlagen" gibt es dort aber nicht (Entscheidung 11), also
+    nennt ihn nur die Android-Fassung. Das Skript bei Google steht in beiden."""
+    import sprachen
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        knopf = t["bew.vorschlag"]
+        android, ios = t["set.datenschutz_text"], t["set.datenschutz_text_ios"]
+        assert knopf in android, (code, knopf)
+        assert knopf not in ios, (code, knopf)
+        assert ios.count("Google Apps Script") == android.count("Google Apps Script") == 2, code
+        assert ios.count("Firebase") == android.count("Firebase"), code
+
+
+def test_android_rechtstexte_bleiben_wie_in_1_3(sprachcodes):
+    """Die iOS-Saetze aendern nur die _ios-Fassungen: In den gewoehnlichen Texten
+    steht weiter der Wortlaut fuer Android."""
+    import sprachen
+    t = sprachen.texte("de")
+    assert "Tippst du beim Feedback in den Einstellungen oder bei „Verbesserung vorschlagen“" in t["set.datenschutz_text"]
+    assert "Ein Skript in unserem Google-Konto (Google Apps Script) leitet" in t["set.datenschutz_text"]
+    assert "Google Commerce Limited" in t["set.datenschutz_text"]
+    for code in sprachcodes:
+        assert "Apple" not in sprachen.texte(code)["set.datenschutz_text"], code
+
+
 def test_ios_rechtstexte_brechen_ab_wenn_android_sich_aendert(monkeypatch):
     """Aendert jemand einen Satz fuer Android, steht der alte Satz fuer iOS
     nicht mehr da - texte() bricht dann ab, statt still Google Play zu
@@ -390,6 +418,71 @@ def test_kein_dauer_pruefwert_auf_ios(tmp_path, wurzel):
         app_bauen.dauer_platzhalter_pruefen(str(kopie))
 
 
+def _zahnarzt_kopie(tmp_path):
+    """Eine kleine Kopie www/ mit einer Aufnahme nur fuer Beim Zahnarzt und einer
+    aus dem Lernpfad, Eintraege wie von emir_drueber()."""
+    import ton_bauen
+    nur_er = sorted({p["key"] for p in ton_bauen.sammle()} - {p["key"] for p in ton_bauen.sammle(mit_zahnarzt=False)})
+    lernpfad = ton_bauen.sammle(mit_zahnarzt=False)[0]["key"]
+    www = tmp_path / "www"
+    (www / "inhalt").mkdir(parents=True)
+    (www / "audio").mkdir()
+    for code in ("de", "fr"):
+        (www / "inhalt" / (code + ".json")).write_text(json.dumps(
+            {"kategorien": [{"id": "k"}], "zahnarzt": {"sektion": {"id": "zahnarzt"}, "kategorien": [{"id": "z"}]}}),
+            encoding="utf-8")
+    (www / "inhalt" / "liste.json").write_text(json.dumps([{"code": "de"}]), encoding="utf-8")
+    toene = [{"key": lernpfad, "datei": "w00001.mp3", "text": "bleibt"}] + [
+        {"key": k, "datei": "w%05d.mp3" % (5206 + i), "text": k, "stimme": "emir"} for i, k in enumerate(nur_er)]
+    for e in toene:
+        (www / "audio" / e["datei"]).write_bytes(b"x" * 10)
+    (www / "audio" / "index.json").write_text(json.dumps({"version": 1, "toene": toene}), encoding="utf-8")
+    return www, nur_er
+
+
+def test_zahnarzt_kommt_nicht_in_den_ios_bau(tmp_path):
+    """Richtlinie 2.5.19: nichts Schlafendes im Paket. Weder der Inhalt noch die
+    Aufnahmen des Teils, und alles andere bleibt."""
+    import app_bauen
+    www, nur_er = _zahnarzt_kopie(tmp_path)
+    assert len(nur_er) >= 100
+    assert app_bauen.ios_zahnarzt_entfernen(str(www)) == (2, len(nur_er))
+    for code in ("de", "fr"):
+        assert json.loads((www / "inhalt" / (code + ".json")).read_text(encoding="utf-8")) == {"kategorien": [{"id": "k"}]}
+    assert json.loads((www / "inhalt" / "liste.json").read_text(encoding="utf-8")) == [{"code": "de"}]
+    assert sorted(os.listdir(str(www / "audio"))) == ["index.json", "w00001.mp3"]
+    index = json.loads((www / "audio" / "index.json").read_text(encoding="utf-8"))
+    assert [e["datei"] for e in index["toene"]] == ["w00001.mp3"]
+    # Ein zweiter Lauf findet nichts mehr und aendert nichts.
+    assert app_bauen.ios_zahnarzt_entfernen(str(www)) == (0, 0)
+
+
+def test_zahnarzt_nimmt_nur_der_ios_bau_heraus(wurzel):
+    """Nur ios_bauen() nimmt ihn heraus, und ton_bauen.sammle() zaehlt ihn weiter
+    mit: Die vergebenen Nummern und die Android-Fassung bleiben."""
+    import ton_bauen
+    quelle = io.open(os.path.join(wurzel, "app_bauen.py"), encoding="utf-8").read()
+    assert quelle.count("ios_zahnarzt_entfernen(www)") == 2     # die Funktion und ihr einziger Aufruf
+    aufruf = quelle.index("    ios_zahnarzt_entfernen(www)\n")
+    assert quelle.index("def ios_bauen(") < aufruf < quelle.index("def main(argv=None)")
+    assert len(ton_bauen.sammle()) > len(ton_bauen.sammle(mit_zahnarzt=False))
+
+
+def test_zahnarzt_entfernen_nie_in_web(wurzel):
+    import app_bauen
+    with pytest.raises(SystemExit):
+        app_bauen.ios_zahnarzt_entfernen(os.path.join(wurzel, "web"))
+
+
+def test_zahnarzt_auf_ios_aus(index_html):
+    """Die Weiche in ladeDaten(): Auf iOS bleibt ZA leer, auch mit Inhalt. Und das
+    Wort haengt an dauerVollVerdrahten(), das init() dort nicht einhaengt."""
+    assert "ZA = (!IST_IOS && d.zahnarzt && d.zahnarzt.sektion" in index_html
+    init = index_html[index_html.index("async function init(){"):]
+    assert re.search(r"if\(!IST_IOS\)\{\s+dauerVollVerdrahten\(\);", init)
+    assert index_html.count("dauerVollVerdrahten();") == 1
+
+
 def _ios_huelle(tmp_path):
     h = tmp_path / "zmaj-huelle-ios"
     (h / "ios" / "App" / "App.xcodeproj").mkdir(parents=True)
@@ -409,7 +502,7 @@ def _ablauf(monkeypatch, wurzel):
         return f
 
     for name in ("pruefen", "emir_drueber", "cloud_einsetzen", "ios_zugang_einsetzen", "ton_verkleinern",
-                 "capacitor", "testwerbung_einschalten",
+                 "capacitor", "testwerbung_einschalten", "ios_zahnarzt_entfernen",
                  # Android-Schritte, die auf iOS nie laufen duerfen
                  "dauer_einsetzen", "versionsnummer_hochzaehlen", "plugins_flicken", "debug_apk",
                  "freigabe_aab", "versionsname_lesen", "versionsname_anheben", "anmeldung_pruefen"):
@@ -432,7 +525,7 @@ def test_ios_bauen_ablauf(tmp_path, monkeypatch, wurzel):
     namen = [a[0] for a in aufrufe]
     assert www == os.path.join(str(h), "www")
     assert namen == ["pruefen", "kopieren", "emir_drueber", "cloud_einsetzen", "ios_zugang_einsetzen",
-                     "ton_verkleinern", "capacitor"]
+                     "ios_zahnarzt_entfernen", "ton_verkleinern", "capacitor"]
     ton = aufrufe[namen.index("ton_verkleinern")]
     assert ton[2] == {"zwischen": os.path.join(str(h), ".ton_aac"), "codec": "aac"}
     assert aufrufe[namen.index("capacitor")][1] == ("ios", str(h))
@@ -447,7 +540,7 @@ def test_ios_bauen_ci_ohne_geheimes(tmp_path, monkeypatch, wurzel):
     aufrufe = _ablauf(monkeypatch, wurzel)
     app_bauen.main(["--ios", "--ci", "--huelle=%s" % h])
     namen = [a[0] for a in aufrufe]
-    assert namen == ["pruefen", "kopieren", "ton_verkleinern"]
+    assert namen == ["pruefen", "kopieren", "ios_zahnarzt_entfernen", "ton_verkleinern"]
     text = io.open(os.path.join(str(h), "www", "index.html"), encoding="utf-8").read()
     assert "const CLOUD_AN = false;" in text and "const APP_VERSION = '1.1-test';" in text
 
