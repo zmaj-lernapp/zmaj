@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Level-Test und Einstufung sehen aus wie die Lektion (19.10.2026).
 
-Kuebra beim Testen: "Das Test-Layout ist anders als die normale Session -
+Eine Testerin beim Testen: "Das Test-Layout ist anders als die normale Session -
 im Test sind die Knoepfe viel hoeher als in der normalen Level-Umgebung."
 Nachgemessen stimmte das: dem Level-Test fehlten Drache und Herz-Pille,
 Frage und Antwortknoepfe hatten eine kleinere Schrift, und unter den

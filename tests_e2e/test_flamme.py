@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Die Serien-Flamme oben auf der Startseite (20.10.2026, Wunsch von Kuebra
+"""Die Serien-Flamme oben auf der Startseite (20.10.2026, Wunsch einer Testerin
 und Ajdin, entschieden nach einer Vorschau mit drei Varianten).
 
 Ajdin: "nimm a fuer 0 tage und den rest fuer c". Die Flamme zeigt also,

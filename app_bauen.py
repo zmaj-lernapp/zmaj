@@ -218,7 +218,7 @@ DAUER_DATEI = os.path.join(HUELLE, "dauer_pruefwert.txt")
 def dauer_einsetzen(pfad=None, datei=None):
     """Setzt in der KOPIE www/index.html den Pruefwert des Dauer-Worts ein.
 
-    Das Wort fuer die versteckte Dauer-Vollversion (Ajdin und Kuebra) stand
+    Das Wort fuer die versteckte Dauer-Vollversion (fuer das Team) stand
     bis 11.10.2026 im Klartext in web/index.html und damit im oeffentlichen
     Repository. Jetzt steht dort nur ein Platzhalter; der Pruefwert liegt in
     der privaten Huelle (dauer_wort_setzen.py legt ihn an). Fehlt er, bricht
