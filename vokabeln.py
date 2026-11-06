@@ -3364,8 +3364,7 @@ KATEGORIEN = [
         {"de": "Umarm mich, bevor du gehst.", "bs": "Zagrli me prije nego što odeš."},
         {"de": "umarmen",                     "bs": "grliti", "partner": "zagrliti"},
         {"de": "Oma umarmt uns immer, wenn wir kommen.", "bs": "Nana nas uvijek grli kad dođemo."},
-        {"de": "weinen",                      "bs": "plakati"},
-        {"de": "Warum weint das Baby ständig?", "bs": "Zašto beba stalno plače?"},
+        # plakati wartet auf Emir (wort: plakati, in w4114 ist das zweite a zu lang; satz: Zašto beba stalno plače?, in w4115 ist das e bei beba zu kurz), siehe Release\Wortschatz\v111_wartet_auf_emir.md
         {"de": "träumen",                     "bs": "sanjati"},
         {"de": "Letzte Nacht habe ich von Oma geträumt.", "bs": "Sinoć sam sanjao nanu."},
         {"de": "hassen",                      "bs": "mrziti"},

@@ -3272,7 +3272,7 @@
     "miteinander_umgehen",
     "gefuehle"
    ],
-   "word_count": 22
+   "word_count": 20
   },
   {
    "id": "wundern_beruhigen",
@@ -52102,42 +52102,6 @@
     "nb": "Bestemor klemmer oss alltid når vi kommer.",
     "da": "Bedstemor krammer os altid, når vi kommer.",
     "fr": "Grand-mère nous serre toujours dans ses bras quand nous arrivons."
-   },
-   "audio": null
-  },
-  {
-   "id": "weinen:plakati",
-   "bs": "plakati",
-   "level": "lieben_fuerchten",
-   "level_position": 94,
-   "section": "tunlassen",
-   "translations": {
-    "de": "weinen",
-    "en": "to cry",
-    "tr": "ağlamak",
-    "sv": "gråta",
-    "nl": "huilen",
-    "nb": "gråte",
-    "da": "græde",
-    "fr": "pleurer"
-   },
-   "audio": null
-  },
-  {
-   "id": "warum weint das baby ständig?:Zašto beba stalno plače?",
-   "bs": "Zašto beba stalno plače?",
-   "level": "lieben_fuerchten",
-   "level_position": 94,
-   "section": "tunlassen",
-   "translations": {
-    "de": "Warum weint das Baby ständig?",
-    "en": "Why does the baby keep crying?",
-    "tr": "Bebek neden sürekli ağlıyor?",
-    "sv": "Varför gråter bebisen hela tiden?",
-    "nl": "Waarom huilt de baby steeds?",
-    "nb": "Hvorfor gråter babyen hele tiden?",
-    "da": "Hvorfor græder babyen hele tiden?",
-    "fr": "Pourquoi le bébé pleure-t-il sans arrêt ?"
    },
    "audio": null
   },

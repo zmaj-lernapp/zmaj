@@ -15,8 +15,8 @@ are in the Play Store listing. Format:
   Anki decks. Progress goes with the account. Recordings only in the store version
   (`ton_nur_emir.json`, w5206–w5316).
 - Vocabulary packages 5 to 9 (reviewed by a native speaker on 6.11.2026):
-  739 words and 742 example sentences, each word right before its sentence (1,481
-  new entries, 4,423 in total, 166 levels, 17 sections). Section 10 gets 22 levels of verbs before
+  738 words and 741 example sentences, each word right before its sentence (1,479
+  new entries, 4,421 in total, 166 levels, 17 sections). Section 10 gets 22 levels of verbs before
   "When something happens", 136 new pairs with `partner` on both words, also on
   the older verb (*nositi* - *ponijeti*, *snimiti* - *snimati*); *povući* has two
   partners. Three new sections, each in the next colour: section 15 · Basic
@@ -33,7 +33,7 @@ are in the Play Store listing. Format:
   (`NIE_NEBENEINANDER`: *sav* / *cijeli*, *tu* / *ovdje*, *tako* / *ovako*,
   *vrlo / veoma* / *jako*). The app speaks all new entries with recordings that
   only the store version contains (`ton_nur_emir.json`, w3724–w5205); the web demo,
-  the dataset and the Anki decks have no audio for them. 14 entries whose recording
+  the dataset and the Anki decks have no audio for them. 15 entries whose recording
   is still missing or unusable wait outside the app.
 - Vocabulary packages 3 and 4 (reviewed by a native speaker on 31.10. and
   1.11.2026): 300 words, each followed by its example sentence (600 new
