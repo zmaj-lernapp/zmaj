@@ -68,6 +68,10 @@ def _abonnent(seite, heute_stand, handy=True):
     seite.js("() => localStorage.setItem('zmaj_voll', '1')")
     seite.neu_laden()
     assert seite.js("() => [unlimited(), admobDa()]") == [True, False]
+    # Erst wenn der Start durch ist: Nach dem Vorspann fragt werbungVorbereiten()
+    # einmal ZmajEinwilligung. Das landete sonst zwischen den gezaehlten Aufrufen.
+    # Hielt bisher nur, weil der Vorspann immer 4,5 s dauerte (Pruefbericht 1.3, G18).
+    seite.page.wait_for_function("() => updWerbungDurch", timeout=20000)
 
 
 def _tippen(seite):
