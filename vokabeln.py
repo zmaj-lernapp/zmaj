@@ -6181,7 +6181,7 @@ SAETZE = [
 ]
 
 
-# Sätze aus Wort-Kacheln bauen. Kübra (Testerin, Muttersprachlerin) am
+# Sätze aus Wort-Kacheln bauen. Eine Testerin (Muttersprachlerin) am
 # 13.10.2026: neue Wörter kommen und gehen und bleiben nicht hängen; sie will
 # wie bei Duolingo ganze Sätze aus Kacheln legen, nicht nur eine Lücke
 # füllen, und zwar ab Level 1 mit den Wörtern, die gerade dran waren. Ajdin

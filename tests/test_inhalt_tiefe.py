@@ -132,7 +132,7 @@ def test_jede_satzluecke_gehoert_zu_einem_level_mit_woertern(grunddaten):
 
 
 # ---------------------------------------------------------------------------
-# Satzbau aus Kacheln (13.10.2026). Kübra wollte ganze Sätze aus den Wörtern
+# Satzbau aus Kacheln (13.10.2026). Eine Testerin wollte ganze Sätze aus den Wörtern
 # legen, die gerade dran waren - ein Satz mit einem Wort, das erst drei Level
 # später kommt, wäre genau das Gegenteil. Geprüft wird an vokabeln.SATZBAU,
 # weil nur dort "formen" steht; die App bekommt es nicht.
@@ -207,7 +207,7 @@ def test_satzbau_varianten_lassen_sich_aus_den_kacheln_bauen():
 
 
 def test_satzbau_gibt_es_schon_im_ersten_level(grunddaten):
-    """Kübra wollte es ab Level 1."""
+    """Die Testerin wollte es ab Level 1."""
     erstes = grunddaten["kategorien"][0]["id"]
     assert erstes == "basics"
     assert any(s["kat"] == erstes for s in grunddaten["satzbau"])
