@@ -8935,7 +8935,13 @@ const UMBENANNT = {
   'tante:tetka': 'tante (schwester von vater oder mutter):tetka',
   'onkel (vaterseite):amidža': 'onkel (bruder des vaters):amidža / stric',
   'onkel (mutterseite):daidža': 'onkel (bruder der mutter):daidža / ujak',
-  'cousin:rođak': 'cousin, verwandter (allgemein):rođak'};
+  'cousin:rođak': 'cousin, verwandter (allgemein):rođak',
+  /* Ajdin am 06.11.2026: "mach doktor/ ljekar", "dozvoliti/dopustiti". Kein
+     zweites Wort mit derselben Bedeutung, sondern eine zweite Form wie bei
+     kahva / kafa; die Suche unten faende das alte bosnische Wort nicht mehr. */
+  'arzt:doktor': 'arzt:doktor / ljekar',
+  'erlauben:dozvoliti': 'erlauben / zulassen:dozvoliti / dopustiti',
+  'erlauben:dozvoljavati': 'erlauben / zulassen:dozvoljavati / dopuštati'};
 /* Dasselbe fuer Saetze (25.10.2026): Fehler-Topf und Sterne merken sich
    einen Satz als "s:<Level>|<Lueckentext>" bzw. "k:<Level>|<Satz>"
    (topfSchluessel). Aendert sich der bosnische Text, fuehrt der alte
@@ -11190,6 +11196,12 @@ function partnerVon(w){
 function partnerAntworten(w){
   return partnerVon(w).flatMap(x => [x.bs, ...(x.auch || [])]).join(' / ');
 }
+/* Wortschatz-Pakete 5 bis 9 (06.11.2026): diese Woerter heissen teilweise gleich
+   („so“, „ganz“, „hier“, „sehr“) und sollen nie zusammen in einer Auswahl stehen.
+   Beim Tippen zaehlt das andere Wort trotzdem nicht: "auch" hat Ajdin dafuer
+   nicht freigegeben. */
+const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako'], ['vrlo / veoma', 'jako']];
+const nieNebeneinander = (a, b) => NIE_NEBENEINANDER.some(([x, y]) => (a === x && b === y) || (a === y && b === x));
 function geschwister(w){
   const b = _bedeutung(w.de);
   const meineAuch = new Set((w.auch || []).flatMap(_formen));
@@ -11197,6 +11209,7 @@ function geschwister(w){
   return CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs &&
     ((b && _bedeutung(x.de) === b) ||
      istPartner(w, x) ||
+     nieNebeneinander(w.bs, x.bs) ||
      _formen(x.bs).some(f => meineAuch.has(f)) ||
      (x.auch || []).flatMap(_formen).some(f => meineFormen.includes(f))));
 }

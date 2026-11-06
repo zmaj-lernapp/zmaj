@@ -66,9 +66,12 @@ AUCH = {
 ZAEHLT_NICHT = {"ruksak": "ranac", "poljoprivrednik": "seljak"}
 
 PAARE = {"ponoviti": "ponavljati", "zapamtiti": "pamtiti"}
+# Das Gegenstueck ist seit Paket 8 (06.11.2026) da, "partner" steht an beiden Woertern
+SEIT_PAKET8 = {"pobijediti": "pobjeđivati", "crtati": "nacrtati", "snimiti": "snimati", "objaviti": "objavljivati",
+               "spakovati": "pakovati", "otkazati": "otkazivati", "položiti": "polagati", "računati": "izračunati",
+               "prevesti": "prevoditi", "upisati se": "upisivati se", "zaposliti se": "zapošljavati se"}
 # Das Gegenstueck kommt erst in einem spaeteren Paket - bis dahin ohne "partner"
-SPAETER = ["pobijediti", "crtati", "plesti", "snimiti", "objaviti", "spakovati", "propustiti", "otkazati",
-           "položiti", "računati", "brojati", "prevesti", "upisati se", "zaposliti se", "otpustiti"]
+SPAETER = ["plesti", "propustiti", "brojati", "otpustiti"]
 
 
 def _level(daten, ids):
@@ -86,12 +89,13 @@ def _alle(daten):
 
 def test_sektionen_dreizehn_und_vierzehn_am_ende(grunddaten):
     sektionen = grunddaten["sektionen"]
-    assert [s["id"] for s in sektionen][12:] == ["zeitfreizeit", "lernenarbeiten"]
+    assert [s["id"] for s in sektionen][12:14] == ["zeitfreizeit", "lernenarbeiten"]
     assert sektionen[12]["label"] == "Sektion 13 · Zeit und Freizeit"
     assert sektionen[13]["label"] == "Sektion 14 · Lernen und Arbeiten"
     ids = [k["id"] for k in grunddaten["kategorien"]]
-    assert ids[-10:] == ZEIT + LERNEN, "am Ende, hinter Sektion 12"
-    assert ids[-11] == "gesund_leben"
+    i = ids.index("zeitangaben")
+    assert ids[i:i + 10] == ZEIT + LERNEN, "hinter Sektion 12, seit 06.11.2026 folgen die Sektionen 15 bis 17"
+    assert ids[i - 1] == "gesund_leben"
     assert [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "zeitfreizeit"] == ZEIT
     assert [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "lernenarbeiten"] == LERNEN
     assert list(WOERTER) == ZEIT + LERNEN
@@ -132,7 +136,7 @@ def test_was_ajdin_ausgeschlossen_hat_zaehlt_nicht(grunddaten, wort, form):
 def test_paare_und_spaetere_gegenstuecke(grunddaten):
     alle = _alle(grunddaten)
     neu = {w["bs"]: w for w in _neu(grunddaten)}
-    soll = {}
+    soll = dict(SEIT_PAKET8)
     for a, b in PAARE.items():
         soll[a], soll[b] = b, a
     assert {b: w["partner"] for b, w in neu.items() if w.get("partner")} == soll

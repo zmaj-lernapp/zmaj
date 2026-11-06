@@ -401,9 +401,9 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: 14 Sektionen, 107 Levels
+## Der Lernpfad: 17 Sektionen, 166 Levels
 
-Der Lernpfad zeigt vierzehn Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
+Der Lernpfad zeigt siebzehn Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
 Ein Level antippen öffnet die Übungen. Bestandene Levels und Sektionen bleiben
 offen und können jederzeit wieder gespielt werden.
 
@@ -442,13 +442,14 @@ Musik, Glaube & Gastfreundschaft.
 Bank & Geld, Wohnung & Hauskauf, Arbeitsvertrag & Bewerbung, Arzt &
 Versicherung.
 
-**Sektion 10 · Tun und Lassen** (17 Levels, seit 31.10.2026, Wortschatz-Pakete
-1 bis 3): Kommen und gehen, Geben, nehmen, kaufen, Sagen und denken, Verstehen
+**Sektion 10 · Tun und Lassen** (39 Levels, seit 31.10.2026, Wortschatz-Pakete
+1 bis 3, 7 und 8): Kommen und gehen, Geben, nehmen, kaufen, Sagen und denken, Verstehen
 und erinnern, Anfangen und aufhören, Tun und machen, Stellen, legen, sitzen,
 Alltag und Leben, Paare: geben und nehmen, Paare: sagen und denken, Paare:
 Alltag und Leben, Im Haushalt, Kaufen und zurückgeben, Geld ausgeben und
-sparen, Paare: noch mehr Verben, Wenn etwas passiert, Im Notfall. Die vier
-Paar-Level bringen das zweite Verb zu einem Verb, das schon dran war
+sparen, Paare: noch mehr Verben, die 22 Level aus den Paketen 7 und 8 (Sagen
+und betonen bis Paare: das zweite Verb), Wenn etwas passiert, Im Notfall. Die
+fünf Paar-Level bringen das zweite Verb zu einem Verb, das schon dran war
 (*gubiti* zu *izgubiti*, *pokazivati* zu *pokazati*). Jedes Wort kommt mit
 seinem Beispielsatz direkt danach. Aspektpaare wie *ostati* und *ostajati*
 heißen beide „bleiben“: Sie werden getrennt gelernt, stehen nie zusammen in
@@ -477,7 +478,24 @@ Farbe.
 Wortschatz-Paket 4): In der Schule, Lernen und studieren, Berufe, Am
 Arbeitsplatz. Fünfte Farbe.
 
-Auch in den Sektionen 12 bis 14 steht jedes Wort direkt vor seinem
+**Sektion 15 · Grundbegriffe** (12 Levels, seit 06.11.2026, Wortschatz-Paket
+5): Ort und Raum, Richtung und Maß, Menge und Teil, Art, Wert und Unterschied,
+Anfang und Ende, Das Leben, Grund und Folge, Nutzen und Schaden, Denken und
+entscheiden, Wahrheit und Zweifel, Dinge regeln, Hilfe und Hindernisse. Sechste
+Farbe.
+
+**Sektion 16 · Menschen und Gesellschaft** (13 Levels, seit 06.11.2026,
+Wortschatz-Paket 6): Menschen, Wer ist wer, Beziehungen, Stimmung und Streit,
+Staat und Politik, Gemeinde und Gesellschaft, Krieg und Recht, Wirtschaft,
+Technik und Energie, Kultur und Bildung, Glaube und Gedenken, Alltag und
+Information, Gruppe, Netz und Gebäude. Siebte Farbe.
+
+**Sektion 17 · Wie, wo und wann** (12 Levels, seit 06.11.2026, Wortschatz-Paket
+9): Wichtig und bekannt, Ganz und viele, Früher und später, Innen und außen,
+Sauber, warm, gefährlich, Hier und dort, Wann und wie oft, Wie sehr, Wie man es
+meint, Sätze verbinden, Noch mehr Präpositionen, Fürwörter. Achte Farbe.
+
+Auch in den Sektionen 12 bis 17 steht jedes Wort direkt vor seinem
 Beispielsatz. Was Ajdin als zweite Form freigegeben hat (*nogomet* bei
 *fudbal*, *naočare* bei *naočale*), zählt beim Tippen; was er ausgeschlossen
 hat (*ranac*, *grudi*, *rentgen*, *prepisati*), zählt nicht.
@@ -601,8 +619,8 @@ Stufe mit festem Abstand bis zum nächsten Termin:
   bekommen Stufe 3 und einen Termin ab morgen, verteilt auf etwa vier
   Wochen mit 3 bis 10 Wörtern je Tag, die ältesten Level zuerst. Bei mehr
   als 280 gewussten Wörtern dauert das entsprechend länger, bei allen
-  2.942 knapp sechs Monate. Ab 1.800 Wörtern sind es mehr als 10 je Tag
-  (bei allen 17), damit der Umzug nie länger als 180 Tage dauert. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
+  4.425 knapp sechs Monate. Ab 1.800 Wörtern sind es mehr als 10 je Tag
+  (bei allen 25), damit der Umzug nie länger als 180 Tage dauert. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
   dann brauchte der Umzug mit seinen Rückkehrern allein bald mehr als 30
   Plätze am Tag (Prüfung vom 29.10.2026).
 - Höchstens 30 fällige Wörter am Tag (`KARTEI_TAG_MAX`). Der Rest bleibt
@@ -1137,7 +1155,7 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 2942 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 4425 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, außer
   den Aspektpaaren (*ostati* / *ostajati*), die mit Absicht gleich heißen.
   Keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
@@ -1159,7 +1177,7 @@ Der Grund: dasselbe bosnische Wort kann zwei Bedeutungen haben. `sto` ist die
 Zahl hundert und der Tisch, `oko` das Auge und „um herum“. Vorher merkte sich
 die App nur `sto` – wer die Zahl konnte, bei dem galt auch das Möbelstück als
 gelernt, und Level 9 startete bei 4 % statt bei 0 %. Dasselbe galt für `malo`,
-`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 107 Levels bei
+`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 166 Levels bei
 0 %, und man sieht in einer Sicherung auf einen Blick, welche Bedeutung
 gemeint ist.
 

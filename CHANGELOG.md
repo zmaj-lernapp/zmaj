@@ -7,6 +7,27 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Vocabulary packages 5 to 9 (reviewed by a native speaker on 6.11.2026):
+  740 words and 743 example sentences, each word right before its sentence (1,483
+  new entries, 4,425 in total, 166 levels, 17 sections). Section 10 gets 22 levels of verbs before
+  "When something happens", 136 new pairs with `partner` on both words, also on
+  the older verb (*nositi* - *ponijeti*, *snimiti* - *snimati*); *povući* has two
+  partners. Three new sections, each in the next colour: section 15 · Basic
+  concepts (12 levels), section 16 · People and society (13 levels) and section
+  17 · How, where and when (12 levels). *mačak* (tomcat) joins *mačka* in Animals
+  & nature. Existing words get a second form instead of a second entry:
+  *doktor / ljekar*, *dozvoliti / dopustiti* ("to allow / to permit"),
+  *dozvoljavati / dopuštati*; progress moves along through `UMBENANNT`, and the
+  finished sentences of *ljekar*, *dopustiti* and *dopuštati* are entries of their
+  own. Second forms approved by the native speaker count when typing (*uvjet*,
+  *utjecaj*, *dečko*, *organizirati*), forms he ruled out do not (*poduzeće*,
+  *projekt*, *strana* for "page", *sudjelovati*, *preći*, *sopstven*, *natrag*).
+  Four pairs that share a meaning never appear in the same multiple choice
+  (`NIE_NEBENEINANDER`: *sav* / *cijeli*, *tu* / *ovdje*, *tako* / *ovako*,
+  *vrlo / veoma* / *jako*). The app speaks all new entries with recordings that
+  only the store version contains (`ton_nur_emir.json`, w3724–w5205); the web demo,
+  the dataset and the Anki decks have no audio for them. 13 entries whose recording
+  is still missing wait outside the app.
 - Vocabulary packages 3 and 4 (reviewed by a native speaker on 31.10. and
   1.11.2026): 300 words, each followed by its example sentence (600 new
   entries, 2,942 in total, 107 levels). Section 10 gets three levels before

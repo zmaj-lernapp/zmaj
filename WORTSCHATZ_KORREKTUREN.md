@@ -569,3 +569,50 @@ Beim Einbau festgelegt:
 liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen in
 `ton_nur_emir.json`: w3422–w3719, in der Reihenfolge der App, jedes Wort
 vor seinem Satz. *vrijeme* und *još* hatten ihre Emir-Aufnahme schon.
+
+## 06.11.2026 – Wortschatz-Pakete 5 bis 9: Grundbegriffe, Menschen und Gesellschaft, Verben, Wie, wo und wann
+
+740 Wörter und 743 Beispielsätze aus `Release\Wortschatz\paket_05.json` bis
+`paket_09.json`, von Ajdin am 06.11.2026 durchgesehen, alle Fragen beantwortet
+(`v111_entscheidungen.md`). Diese Antworten gelten künftig auch für alles andere:
+
+| Thema | Ajdin | gilt |
+|---|---|---|
+| *doktor* / *ljekar* | „mach doktor/ ljekar“ | ein Wort *doktor / ljekar*, wie *kahva / kafa* |
+| *dozvoliti* / *dopustiti* | „dozvoliti/dopustiti“ | ein Wort, ebenso *dozvoljavati / dopuštati* |
+| *vijek* / *stoljeće* | Alternative | ein Wort *vijek / stoljeće* |
+| *rub* / *ivica* | „rub ist rand oder grenze also stadtrand oder waldrand und ivica ist kante“ | zwei Wörter |
+| *teškoća* / *poteškoća* | „teskoca nutzt man für schwere schwirigkeiten“ | zwei Wörter |
+| *molitva* / *dova* | „das soll allgemein bedeuten für bittgebet weil das sagen eher christen“ | zwei Wörter |
+| *groblje* / *mezarje* | „mach mezarje getrennt also als extra wort“ | zwei Wörter |
+| *činiti* / *raditi* | „ciniti ist für das wort tun aber für eine wirkung“ | *činiti* = Wirkung (Gutes tun) |
+| *podići* / *dići* | „dici ist die kurzform von beiden und ist umgangssprachlicher“ | *podići / podignuti* (Partner *podizati*), *dići* – *dizati* eigenes Paar |
+| *strana* / *stranica* | „strana ist eher die himmelsrichtung oder körperseite oder partei“ | *strana* zählt nicht bei *stranica* |
+| *projekat* | „nur projekat“ | *projekt* zählt nicht |
+| *prijeći* | „nur prijeci“ | *preći* zählt nicht |
+| *živac* | „nur zivac“ | *nerv* zählt nicht |
+| *zapravo* / *ustvari* | „zapravo/ustvari“ | ein Wort, *u stvari* zählt mit |
+| *naime* / *jer* | „mach naime/jer“ | ein Wort (wartet auf Emir) |
+| *poput* / *kao* | „das gleiche mach poput/kao“ | ein Wort (wartet auf Emir) |
+
+Beim Einbau festgelegt:
+
+- **Kein zweites Wort.** *ljekar*, *dopustiti* und *dopuštati* stecken im alten
+  Wort; der Lernstand zieht über `UMBENANNT` mit, ihre fertigen Sätze stehen als
+  eigene Einträge in den neuen Leveln.
+- **Zählt nicht** steht wie im Paket: *okolica*, *poduzeće*, *strana*, *projekt*,
+  *pomenuti*, *pominjati*, *dići*, *dizati*, *sadržavati*, *sudjelovati*, *preći*,
+  *sakrivati*, *navići se*, *pakirati*, *određeni*, *ukupni*, *potpuni*, *sopstven*,
+  *konačni*, *privatni*, *strani*, *natrag*.
+- **Nie nebeneinander** in einer Auswahl: *sav* / *cijeli*, *tu* / *ovdje*,
+  *tako* / *ovako*, *vrlo / veoma* / *jako* (`NIE_NEBENEINANDER`). Beim Tippen zählt
+  das andere Wort nicht, das hat Ajdin nicht freigegeben.
+- **Warten auf Emir:** was noch keine Aufnahme hat, steht nicht in der App
+  (`Release\Wortschatz\v111_wartet_auf_emir.md`).
+
+**Ton.** Wörter und Beispielsätze hat Emir gesprochen (ElevenLabs, 05./06.11.2026),
+Text genau wie in der App. Die Aufnahmen liegen nur in der Hülle (`audio_emir/`),
+ihre Nummern stehen in `ton_nur_emir.json`: w3724–w5205 in der Reihenfolge der App.
+*doktor / ljekar*, *dozvoliti / dopustiti*, *dozvoljavati / dopuštati*,
+*vijek / stoljeće*, *podići / podignuti* und *zapravo / ustvari* sind aus den
+fertigen Einzelaufnahmen zusammengesetzt, keine neue Aufnahme.
