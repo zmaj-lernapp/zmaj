@@ -43,6 +43,58 @@ def _lektion_in(seite, i):
     seite.page.click("#lPfad")
 
 
+WEITER_KNOPF = "() => document.getElementById('tNext').textContent"
+
+
+def _test_bestehen(seite, i):
+    seite.js("(i) => { catIdx = i; cur().words.forEach(w => known.add(w.id)); openLevel(i); startTest(); }", i)
+    seite.durchspielen("tBody", "Tx")
+    assert seite.js("(i) => passed.has(levelNach(i).id)", i)
+
+
+def test_weiter_nach_dem_test_ueberspringt_bestandene_level(seite, heute_stand):
+    """Pruefbericht 1.3, G3: nach dem letzten eingeschobenen Level (102) stand
+    "Weiter zu Level 103", und das war laengst bestanden. Dran ist Level 130."""
+    ids = _ids(seite, heute_stand)
+    seite.starten(stand=heute_stand(bestanden=ids[:101] + ids[102:129]))
+    _test_bestehen(seite, 101)
+    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: 130})")
+    seite.page.click("#tNext")
+    assert seite.js("() => [catIdx, passed.has(cur().id), document.getElementById('levelHome').style.display]") == [
+        129, False, "block"]
+    assert seite.fehler == []
+
+
+def test_weiter_nach_dem_test_sonst_wie_bisher(seite, heute_stand):
+    ids = _ids(seite, heute_stand)
+    # Der Nachfolger ist offen: eins weiter
+    seite.starten(stand=heute_stand(bestanden=ids[:3]))
+    _test_bestehen(seite, 3)
+    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: 5})")
+    seite.page.click("#tNext")
+    assert seite.js("() => catIdx") == 4
+    # Dahinter ist alles bestanden: ebenfalls eins weiter, auch wenn das bestanden ist
+    seite.starten(stand=heute_stand(bestanden=ids[:50] + ids[51:]))
+    _test_bestehen(seite, 50)
+    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: 52})")
+    seite.page.click("#tNext")
+    assert seite.js("() => catIdx") == 51
+    assert seite.fehler == []
+
+
+def test_weiter_im_zahnarzt_teil_bleibt_im_teil(seite, heute_stand):
+    seite.starten(stand=heute_stand(zahnarzt={"an": True, "z": 1000}))
+    za = seite.js("() => zaLevel().map(c => c.id)")
+    n = seite.js("() => CATEGORIES.length")
+    # Level 1 bis 3 des Teils bestanden bis auf das zweite, das letzte offen
+    seite.starten(stand=heute_stand(bestanden=[za[0], za[2]], zahnarzt={"an": True, "z": 1000}))
+    _test_bestehen(seite, n + 1)
+    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: 4})")
+    seite.page.click("#tNext")
+    assert seite.js("() => [imZa(), cur().id]") == [True, za[3]]
+    assert seite.fehler == []
+
+
 def test_ajdins_beispiel_level_8_ueben_knopf_bleibt_bei_10(seite, heute_stand):
     ids = _ids(seite, heute_stand)
     seite.starten(stand=heute_stand(bestanden=ids[:9]))
