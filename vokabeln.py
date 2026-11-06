@@ -3364,8 +3364,7 @@ KATEGORIEN = [
         {"de": "Umarm mich, bevor du gehst.", "bs": "Zagrli me prije nego što odeš."},
         {"de": "umarmen",                     "bs": "grliti", "partner": "zagrliti"},
         {"de": "Oma umarmt uns immer, wenn wir kommen.", "bs": "Nana nas uvijek grli kad dođemo."},
-        {"de": "weinen",                      "bs": "plakati"},
-        {"de": "Warum weint das Baby ständig?", "bs": "Zašto beba stalno plače?"},
+        # plakati wartet auf Emir (wort: plakati, in w4114 ist das zweite a zu lang; satz: Zašto beba stalno plače?, in w4115 ist das e bei beba zu kurz), siehe Release\Wortschatz\v111_wartet_auf_emir.md
         {"de": "träumen",                     "bs": "sanjati"},
         {"de": "Letzte Nacht habe ich von Oma geträumt.", "bs": "Sinoć sam sanjao nanu."},
         {"de": "hassen",                      "bs": "mrziti"},
@@ -4201,7 +4200,7 @@ KATEGORIEN = [
     # Hobbys und Ausgehen, Medien, Reisen), von Ajdin am 01.11.2026
     # durchgesehen (paket_04_entscheidungen.md). Bei allen Fragen zaehlt die
     # zweite Form beim Tippen mit ("auch": sekund, momenat, napokon, ponovo,
-    # nogomet, tim, štrikati, teatar, zabava, spakirati, turist), nur ranac
+    # nogomet, tim, štrikati, teatar, zabava, turist), nur ranac
     # NICHT (Ajdin: serbisch).
     # - Gleiche Schreibung: vrijeme (Zeit) neben vrijeme (Wetter, Level
     #   wetter); radio (Radio) neben radio sam (gearbeitet). Verschiedene
@@ -4400,7 +4399,7 @@ KATEGORIEN = [
         {"de": "Wohin fahrt ihr in den Sommerurlaub?", "bs": "Kuda idete na ljetovanje?"},
         {"de": "Strand",                     "bs": "plaža"},
         {"de": "Wir waren den ganzen Tag am Strand.", "bs": "Cijeli dan smo bili na plaži."},
-        {"de": "packen",                     "bs": "spakovati", "auch": ["spakirati"], "partner": "pakovati"},
+        {"de": "packen",                     "bs": "spakovati", "partner": "pakovati"},
         {"de": "Hast du den Koffer gepackt?", "bs": "Jesi li spakovao kofer?"},
         {"de": "Rucksack",                   "bs": "ruksak"},
         {"de": "Pack Wasser und etwas zu essen in den Rucksack.", "bs": "Stavi u ruksak vodu i nešto za jelo."},
@@ -5044,8 +5043,7 @@ KATEGORIEN = [
         {"de": "Der Streit hat wegen Geld angefangen.", "bs": "Svađa je počela zbog novca."},
         {"de": "Scherz",                      "bs": "šala"},
         {"de": "Das war nur ein Scherz.",     "bs": "To je bila samo šala."},
-        {"de": "das Lachen",                  "bs": "smijeh"},
-        {"de": "Lachen ist die beste Medizin.", "bs": "Smijeh je najbolji lijek."},
+        # smijeh wartet auf Emir (wort: smijeh; w4690 ist ein Lachen statt des Wortes), siehe Release\Wortschatz\v111_wartet_auf_emir.md
         {"de": "Träne",                       "bs": "suza"},
         {"de": "Sie hatte Tränen in den Augen.", "bs": "Imala je suze u očima."},
         {"de": "Erinnerung",                  "bs": "sjećanje"},

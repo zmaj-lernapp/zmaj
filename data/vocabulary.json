@@ -3272,7 +3272,7 @@
     "miteinander_umgehen",
     "gefuehle"
    ],
-   "word_count": 22
+   "word_count": 20
   },
   {
    "id": "wundern_beruhigen",
@@ -4788,7 +4788,7 @@
    "builds_on": [
     "beziehungen"
    ],
-   "word_count": 20
+   "word_count": 18
   },
   {
    "id": "staat_politik",
@@ -52106,42 +52106,6 @@
    "audio": null
   },
   {
-   "id": "weinen:plakati",
-   "bs": "plakati",
-   "level": "lieben_fuerchten",
-   "level_position": 94,
-   "section": "tunlassen",
-   "translations": {
-    "de": "weinen",
-    "en": "to cry",
-    "tr": "ağlamak",
-    "sv": "gråta",
-    "nl": "huilen",
-    "nb": "gråte",
-    "da": "græde",
-    "fr": "pleurer"
-   },
-   "audio": null
-  },
-  {
-   "id": "warum weint das baby ständig?:Zašto beba stalno plače?",
-   "bs": "Zašto beba stalno plače?",
-   "level": "lieben_fuerchten",
-   "level_position": 94,
-   "section": "tunlassen",
-   "translations": {
-    "de": "Warum weint das Baby ständig?",
-    "en": "Why does the baby keep crying?",
-    "tr": "Bebek neden sürekli ağlıyor?",
-    "sv": "Varför gråter bebisen hela tiden?",
-    "nl": "Waarom huilt de baby steeds?",
-    "nb": "Hvorfor gråter babyen hele tiden?",
-    "da": "Hvorfor græder babyen hele tiden?",
-    "fr": "Pourquoi le bébé pleure-t-il sans arrêt ?"
-   },
-   "audio": null
-  },
-  {
    "id": "träumen:sanjati",
    "bs": "sanjati",
    "level": "lieben_fuerchten",
@@ -75772,42 +75736,6 @@
     "nb": "Det var bare en spøk.",
     "da": "Det var bare en spøg.",
     "fr": "Ce n'était qu'une plaisanterie."
-   },
-   "audio": null
-  },
-  {
-   "id": "das lachen:smijeh",
-   "bs": "smijeh",
-   "level": "stimmung_streit",
-   "level_position": 145,
-   "section": "menschengesellschaft",
-   "translations": {
-    "de": "das Lachen",
-    "en": "laughter",
-    "tr": "gülme",
-    "sv": "skratt",
-    "nl": "het lachen",
-    "nb": "latter",
-    "da": "latter",
-    "fr": "le rire"
-   },
-   "audio": null
-  },
-  {
-   "id": "lachen ist die beste medizin.:Smijeh je najbolji lijek.",
-   "bs": "Smijeh je najbolji lijek.",
-   "level": "stimmung_streit",
-   "level_position": 145,
-   "section": "menschengesellschaft",
-   "translations": {
-    "de": "Lachen ist die beste Medizin.",
-    "en": "Laughter is the best medicine.",
-    "tr": "Gülmek en iyi ilaçtır.",
-    "sv": "Skratt är den bästa medicinen.",
-    "nl": "Lachen is het beste medicijn.",
-    "nb": "Latter er den beste medisin.",
-    "da": "Latter er den bedste medicin.",
-    "fr": "Le rire est le meilleur des remèdes."
    },
    "audio": null
   },
