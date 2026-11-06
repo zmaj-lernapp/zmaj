@@ -5876,9 +5876,9 @@ function standAlsObjekt(){
                            bei topf - siehe karteiMischen() (29.10.2026).
      leben, schutz         die Seite mit dem neueren Zeitstempel zeit - dort
                            ist zuletzt etwas passiert (Herz verloren, Schutz
-                           verbraucht oder gekauft, siehe kaufe()). Bei gleicher
-                           Zeit die kleinere Anzahl: ein Abgleich verschenkt
-                           keine Herzen.
+                           verbraucht, beides gekauft, siehe zeitNachKauf()).
+                           Bei gleicher Zeit die kleinere Anzahl: ein Abgleich
+                           verschenkt keine Herzen.
      einstufung            die neuere (tag); fehlt sie auf einer Seite, die
                            andere. Bei gleichem Tag entscheidet der Text -
                            nur damit beide Richtungen dasselbe ergeben.
@@ -9454,24 +9454,26 @@ function drachenNeu(){
     mountZmaj(el);
   });
 }
+/* Ein Kauf ist ein Ereignis und muss den Abgleich ueberstehen (Serienschutz 06.11.2026,
+   Herz 07.11.2026). Bisher blieb zeit stehen und ging bei vollem Vorrat auf 0. Gegen den
+   Stand von vor dem Kauf gewann dann die neuere Zeit oder bei gleicher Zeit die kleinere
+   Anzahl (siehe zeitWahl): Die Ware war auf allen Geraeten weg, die Muenzen auch. Darum
+   geht zeit nach oben. Bei vollem Vorrat laeuft keine Uhr, zeit ist dort der Kauf. Sonst
+   laeuft die Uhr weiter, ein Kauf soll keine Wartezeit kosten, eine Millisekunde reicht.
+   Ein Geraet mit 1.2 liest beides als ganz normale Zeit. Zierrat braucht das nicht:
+   besitz ist eine Vereinigung, siehe standZusammenfuehren(). */
+function zeitNachKauf(zeit, voll){ return voll ? Math.max(Date.now(), zeit + 1) : zeit + 1; }
 function kaufe(id){
   const w = [...VERBRAUCH, ...ZIERRAT].find(x => x.id === id);
   if(!w || muenzen() < w.preis || !w.geht()) return;
   if(id==='herz'){
     syncLives();
     lives.anzahl = Math.min(LEBEN_MAX, lives.anzahl + 1);
-    if(lives.anzahl >= LEBEN_MAX) lives.zeit = 0;
+    lives.zeit = zeitNachKauf(lives.zeit, lives.anzahl >= LEBEN_MAX);
   } else if(id==='schutz'){
-    /* Ein Kauf ist ein Ereignis und muss den Abgleich ueberstehen (06.11.2026). Bisher
-       blieb zeit stehen und ging bei vollem Vorrat auf 0. Gegen den Stand von vor dem
-       Kauf gewann dann die neuere Zeit oder bei gleicher Zeit die kleinere Anzahl (siehe
-       zeitWahl): Der Schutz war auf allen Geraeten weg, die Muenzen auch. Darum geht
-       zeit nach oben. Bei vollem Vorrat laeuft keine Uhr, zeit ist dort der Kauf. Sonst
-       laeuft die Uhr weiter, ein Kauf soll keine Tage kosten, eine Millisekunde reicht.
-       Ein Geraet mit 1.2 liest beides als ganz normale Zeit. */
     const vorrat = schutzNow();
     schutz.anzahl = Math.min(SCHUTZ_MAX, vorrat + 1);
-    schutz.zeit = schutz.anzahl >= SCHUTZ_MAX ? Math.max(Date.now(), schutz.zeit + 1) : schutz.zeit + 1;
+    schutz.zeit = zeitNachKauf(schutz.zeit, schutz.anzahl >= SCHUTZ_MAX);
   } else {
     // Gekauftes wird gleich getragen - und schiebt das alte Stueck derselben
     // Gruppe herunter, nicht den ganzen uebrigen Zierrat.

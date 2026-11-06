@@ -28,7 +28,8 @@ Produktionsstart. Geprueft wird hier:
     Anmeldung auf einem neuen Geraet nimmt dem Konto weder einen Serienschutz noch
     den Einstieg aus der Einstufung, und nichts Gelerntes geht verloren.
   - Ein im Laden gekaufter Serienschutz (06.11.2026) uebersteht den normalen
-    Abgleich in beiden Richtungen, und die Muenzen zaehlen nur einmal.
+    Abgleich in beiden Richtungen, und die Muenzen zaehlen nur einmal. Dasselbe
+    fuer ein gekauftes Herz und gekauften Zierrat (07.11.2026).
 """
 import datetime
 import json
@@ -927,26 +928,35 @@ MUENZEN = "() => ({ges: muenzenGes, aus: muenzenAus, frei: muenzen()})"
 BEZAHLT = {"ges": 600, "aus": 300, "frei": 300}
 
 
-def _zwei_geraete_mit_schutz(kaeufer, anderes, heute_stand, anzahl):
-    """Zwei Geraete am selben Konto, beide mit demselben Schutz und schon abgeglichen."""
-    konto = {"anzahl": anzahl, "zeit": int(time.time() * 1000) - 3 * TAG_MS}
-    kaeufer.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0, schutz=konto))
+def _zwei_geraete_mit_muenzen(kaeufer, anderes, heute_stand, **mehr):
+    """Zwei Geraete am selben Konto, schon abgeglichen, mit 600 Muenzen."""
+    kaeufer.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0, **mehr))
     assert kaeufer.js(ANMELDEN, None) is True
     anderes.starten(stand=heute_stand())
     assert anderes.js(ANMELDEN, kaeufer.js(DOK_HOLEN)) is True
     kaeufer.js(DOK_LEGEN, anderes.js(DOK_HOLEN))
     assert kaeufer.js(ABGLEICH, "anmelden") == "gespeichert"
+
+
+def _zwei_geraete_mit_schutz(kaeufer, anderes, heute_stand, anzahl):
+    """Zwei Geraete am selben Konto, beide mit demselben Schutz und schon abgeglichen."""
+    konto = {"anzahl": anzahl, "zeit": int(time.time() * 1000) - 3 * TAG_MS}
+    _zwei_geraete_mit_muenzen(kaeufer, anderes, heute_stand, schutz=konto)
     assert kaeufer.js(SCHUTZ) == konto and anderes.js(SCHUTZ) == konto
     return konto
 
 
-def _schutz_kaufen(s):
-    """Der echte Kauf: Laden auf, Reiter Vorrat, Knopf antippen."""
+def _im_laden_kaufen(s, reiter, ware):
+    """Der echte Kauf: Laden auf, Reiter waehlen, Knopf antippen."""
     s.js("() => { const v = document.getElementById('vorspann'); if(v) v.click(); }")
     s.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
-    s.js("() => { festHeute = () => ''; showLaden(); ladenReiter = 'vorrat'; renderLaden(); }")
-    s.page.locator('#ladenWaren button[data-ware="schutz"]').click()
+    s.js("(r) => { festHeute = () => ''; showLaden(); ladenReiter = r; renderLaden(); }", reiter)
+    s.page.locator('#ladenWaren button[data-ware="%s"]' % ware).click()
     s.page.wait_for_timeout(100)
+
+
+def _schutz_kaufen(s):
+    _im_laden_kaufen(s, "vorrat", "schutz")
     return s.js(SCHUTZ)
 
 
@@ -1032,3 +1042,164 @@ def test_gekaufter_schutz_passt_zu_einem_geraet_mit_1_2(seite, heute_stand):
     for a, b in ((kauf, verbraucht_auf_1_2), (verbraucht_auf_1_2, kauf)):
         assert seite.js(MISCHEN, [{"schutz": a}, {"schutz": b}])["schutz"] == verbraucht_auf_1_2
     assert seite.fehler == []
+
+
+# ------------------------------------------------------- gekauftes Herz ---
+
+LEBEN = "() => lives"
+MINUTE_MS = 60000
+
+
+def _herz_kaufen(s):
+    _im_laden_kaufen(s, "vorrat", "herz")
+    return s.js(LEBEN)
+
+
+def _kauf_abgleichen(kaeufer, anderes, kaufen, kaeufer_schreibt_zuerst):
+    """Kaufen und einmal ganz herum abgleichen. Schreibt das andere Geraet zuerst, kauft
+    der Kaeufer ohne Netz. Gibt zurueck, was kaufen() direkt nach dem Kauf geliefert hat."""
+    if kaeufer_schreibt_zuerst:
+        kauf = kaufen()
+        assert kaeufer.js(ABGLEICH, "anmelden") == "gespeichert"
+    else:
+        anderes.js("() => { known.add(CATEGORIES[3].words[0].id); saveProgress(); }")
+        assert anderes.js(ABGLEICH, "anmelden") == "gespeichert"
+        kauf = kaufen()
+        kaeufer.js(DOK_LEGEN, anderes.js(DOK_HOLEN))
+        assert kaeufer.js(ABGLEICH, "anmelden") == "gespeichert"
+    anderes.js(DOK_LEGEN, kaeufer.js(DOK_HOLEN))
+    assert anderes.js(ABGLEICH, "anmelden") == "gespeichert"
+    kaeufer.js(DOK_LEGEN, anderes.js(DOK_HOLEN))
+    assert kaeufer.js(ABGLEICH, "anmelden") == "gespeichert"
+    return kauf
+
+
+@pytest.mark.parametrize("anzahl", [2, 4])
+@pytest.mark.parametrize("kaeufer_schreibt_zuerst", [True, False])
+def test_gekauftes_herz_uebersteht_den_abgleich(seite, zweites_geraet, heute_stand, anzahl, kaeufer_schreibt_zuerst):
+    """Dieselbe Luecke wie beim Serienschutz: Der Kauf liess zeit stehen oder setzte sie
+    beim fuenften Herz auf 0. Gegen den Stand von vor dem Kauf gewann die neuere Zeit oder
+    bei gleicher Zeit die kleinere Anzahl: Das Herz war weg, die 100 Muenzen auch."""
+    kaeufer, anderes = seite, zweites_geraet
+    konto = {"anzahl": anzahl, "zeit": int(time.time() * 1000) - 30 * MINUTE_MS}
+    _zwei_geraete_mit_muenzen(kaeufer, anderes, heute_stand, leben=konto)
+    assert kaeufer.js(LEBEN) == konto and anderes.js(LEBEN) == konto
+    kauf = _kauf_abgleichen(kaeufer, anderes, lambda: _herz_kaufen(kaeufer), kaeufer_schreibt_zuerst)
+    assert kauf["anzahl"] == anzahl + 1
+    for s in (kaeufer, anderes):
+        assert s.js(LEBEN) == kauf, "das gekaufte Herz ist weg"
+        assert s.js(MUENZEN) == {"ges": 600, "aus": 100, "frei": 500}, "die Muenzen zaehlen genau einmal"
+        assert s.fehler == []
+
+    # Beide Richtungen ergeben dasselbe, und nochmal Mischen aendert nichts.
+    vorher = {"leben": konto}
+    jetzt = {"leben": kauf}
+    assert seite.js(MISCHEN, [jetzt, vorher])["leben"] == kauf
+    assert seite.js(MISCHEN, [vorher, jetzt])["leben"] == kauf
+    assert seite.js(MISCHEN, [jetzt, jetzt])["leben"] == kauf
+    # Unter dem Hoechstwert laeuft die Uhr weiter: Ein Kauf kostet keine Wartezeit.
+    if kauf["anzahl"] < 5:
+        assert kauf["zeit"] - konto["zeit"] == 1, (konto, kauf)
+
+
+def test_ein_herz_auf_beiden_geraeten_gekauft_ist_einmal_bezahlt(seite, zweites_geraet, heute_stand):
+    """Beide kaufen ohne Netz dasselbe: ein Herz, einmal bezahlt. Der Zaehler nimmt das
+    Maximum, das Herz die gleiche Zeit. Es entsteht weder Geld noch ein zweites Herz."""
+    konto = {"anzahl": 2, "zeit": int(time.time() * 1000) - 30 * MINUTE_MS}
+    _zwei_geraete_mit_muenzen(seite, zweites_geraet, heute_stand, leben=konto)
+    kauf = _herz_kaufen(seite)
+    assert _herz_kaufen(zweites_geraet) == kauf
+    zweites_geraet.js(DOK_LEGEN, seite.js(DOK_HOLEN))
+    assert zweites_geraet.js(ABGLEICH, "anmelden") == "gespeichert"
+    seite.js(DOK_LEGEN, zweites_geraet.js(DOK_HOLEN))
+    assert seite.js(ABGLEICH, "anmelden") == "gespeichert"
+    for s in (seite, zweites_geraet):
+        assert s.js(LEBEN) == kauf
+        assert s.js(MUENZEN) == {"ges": 600, "aus": 100, "frei": 500}
+
+
+def test_herz_kauf_bleibt_ueber_den_neustart_und_ein_verlust_danach_gewinnt(seite, heute_stand):
+    """Voll laeuft keine Uhr, auch mit dem Stempel des Kaufs nicht. Wer danach ein Herz
+    verliert, ist das neuere Ereignis, und die zwei Stunden beginnen erst dann."""
+    jetzt = int(time.time() * 1000)
+    seite.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0,
+                                    leben={"anzahl": 4, "zeit": jetzt - 30 * MINUTE_MS}))
+    kauf = _herz_kaufen(seite)
+    assert kauf["anzahl"] == 5 and kauf["zeit"] >= jetzt, kauf
+    seite.neu_laden()
+    assert seite.js("() => [livesNow(), nextLifeIn()]") == [5, 0]
+    assert seite.js(LEBEN) == kauf
+    seite.js("() => loseLife()")
+    z = seite.js("() => ({leben: lives, uhr: nextLifeIn()})")
+    assert z["leben"]["anzahl"] == 4 and z["uhr"] > 119 * MINUTE_MS, z
+    for a, b in ((kauf, z["leben"]), (z["leben"], kauf)):
+        assert seite.js(MISCHEN, [{"leben": a}, {"leben": b}])["leben"] == z["leben"]
+    assert seite.fehler == []
+
+
+def test_herz_kauf_kostet_keine_wartezeit(seite, heute_stand):
+    """Unter dem Hoechstwert zaehlt die Uhr weiter wie vorher, und was schon nachgewachsen
+    ist, wird zuerst gebucht."""
+    t = int(time.time() * 1000) - 30 * MINUTE_MS
+    seite.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0,
+                                    leben={"anzahl": 1, "zeit": t}))
+    assert _herz_kaufen(seite) == {"anzahl": 2, "zeit": t + 1}
+    assert 89 * MINUTE_MS < seite.js("() => nextLifeIn()") <= 90 * MINUTE_MS
+    t -= 120 * MINUTE_MS
+    seite.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0,
+                                    leben={"anzahl": 1, "zeit": t}))
+    assert _herz_kaufen(seite) == {"anzahl": 3, "zeit": t + 120 * MINUTE_MS + 1}
+    assert seite.fehler == []
+
+
+def test_gekauftes_herz_passt_zu_einem_geraet_mit_1_2(seite, heute_stand):
+    """Version 1.2 kennt nur anzahl und zeit, laesst beides bei vollen Leben stehen und
+    stempelt selbst beim naechsten Verlust. Ihr aufgefuelltes {5, 0} nimmt dem Kauf nichts,
+    ein Verlust dort gewinnt weiter."""
+    seite.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0,
+                                    leben={"anzahl": 4, "zeit": int(time.time() * 1000) - 30 * MINUTE_MS}))
+    kauf = _herz_kaufen(seite)
+    assert sorted(kauf) == ["anzahl", "zeit"], "1.2 wirft jedes weitere Feld beim Einlesen weg"
+    von_1_2 = {"anzahl": 5, "zeit": 0}
+    for a, b in ((kauf, von_1_2), (von_1_2, kauf)):
+        assert seite.js(MISCHEN, [{"leben": a}, {"leben": b}])["leben"] == kauf
+    verloren_auf_1_2 = {"anzahl": 4, "zeit": kauf["zeit"] + MINUTE_MS}
+    for a, b in ((kauf, verloren_auf_1_2), (verloren_auf_1_2, kauf)):
+        assert seite.js(MISCHEN, [{"leben": a}, {"leben": b}])["leben"] == verloren_auf_1_2
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("kaeufer_schreibt_zuerst", [True, False])
+def test_gekauftes_herz_uebersteht_auch_das_nachwachsen(seite, zweites_geraet, heute_stand, kaeufer_schreibt_zuerst):
+    """Abgeglichen wird meist nur einmal am Tag, bis dahin waechst auf beiden Geraeten etwas
+    nach. Die Uhr des Kaeufers bleibt eine Millisekunde vorn, und damit sein Herz."""
+    kaeufer, anderes = seite, zweites_geraet
+    konto = {"anzahl": 2, "zeit": int(time.time() * 1000) - 30 * MINUTE_MS}
+    _zwei_geraete_mit_muenzen(kaeufer, anderes, heute_stand, leben=konto)
+    _herz_kaufen(kaeufer)
+    for s in (kaeufer, anderes):
+        s.js("(ms) => { const echt = Date.now.bind(Date); Date.now = () => echt() + ms; syncLives(); }", 95 * MINUTE_MS)
+    assert kaeufer.js(LEBEN)["anzahl"] == 4 and anderes.js(LEBEN)["anzahl"] == 3
+    erster, zweiter = (kaeufer, anderes) if kaeufer_schreibt_zuerst else (anderes, kaeufer)
+    assert erster.js(ABGLEICH, "anmelden") == "gespeichert"
+    zweiter.js(DOK_LEGEN, erster.js(DOK_HOLEN))
+    assert zweiter.js(ABGLEICH, "anmelden") == "gespeichert"
+    erster.js(DOK_LEGEN, zweiter.js(DOK_HOLEN))
+    assert erster.js(ABGLEICH, "anmelden") == "gespeichert"
+    assert kaeufer.js(LEBEN) == anderes.js(LEBEN) and anderes.js(LEBEN)["anzahl"] == 4
+    assert kaeufer.js(MUENZEN) == anderes.js(MUENZEN) == {"ges": 600, "aus": 100, "frei": 500}
+
+
+# ---------------------------------------------------- gekaufter Zierrat ---
+
+@pytest.mark.parametrize("kaeufer_schreibt_zuerst", [True, False])
+def test_gekaufter_zierrat_uebersteht_den_abgleich(seite, zweites_geraet, heute_stand, kaeufer_schreibt_zuerst):
+    """Der dritte Kauf im Laden. Die Luecke von Herz und Serienschutz gibt es hier nicht:
+    besitz ist eine Vereinigung, und muenzen_aus zaehlt mindestens die Preise darin."""
+    kaeufer, anderes = seite, zweites_geraet
+    _zwei_geraete_mit_muenzen(kaeufer, anderes, heute_stand)
+    _kauf_abgleichen(kaeufer, anderes, lambda: _im_laden_kaufen(kaeufer, "brille", "lesebrille"), kaeufer_schreibt_zuerst)
+    for s in (kaeufer, anderes):
+        assert s.js("() => [...besitz]") == ["lesebrille"]
+        assert s.js(MUENZEN) == {"ges": 600, "aus": 400, "frei": 200}
+        assert s.fehler == []
