@@ -46914,30 +46914,6 @@
    <tuv xml:lang="da"><seg>Det var bare en spøg.</seg></tuv>
    <tuv xml:lang="fr"><seg>Ce n'était qu'une plaisanterie.</seg></tuv>
   </tu>
-  <tu tuid="das lachen:smijeh" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>smijeh</seg></tuv>
-   <tuv xml:lang="de"><seg>das Lachen</seg></tuv>
-   <tuv xml:lang="en"><seg>laughter</seg></tuv>
-   <tuv xml:lang="tr"><seg>gülme</seg></tuv>
-   <tuv xml:lang="sv"><seg>skratt</seg></tuv>
-   <tuv xml:lang="nl"><seg>het lachen</seg></tuv>
-   <tuv xml:lang="nb"><seg>latter</seg></tuv>
-   <tuv xml:lang="da"><seg>latter</seg></tuv>
-   <tuv xml:lang="fr"><seg>le rire</seg></tuv>
-  </tu>
-  <tu tuid="lachen ist die beste medizin.:Smijeh je najbolji lijek." segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>Smijeh je najbolji lijek.</seg></tuv>
-   <tuv xml:lang="de"><seg>Lachen ist die beste Medizin.</seg></tuv>
-   <tuv xml:lang="en"><seg>Laughter is the best medicine.</seg></tuv>
-   <tuv xml:lang="tr"><seg>Gülmek en iyi ilaçtır.</seg></tuv>
-   <tuv xml:lang="sv"><seg>Skratt är den bästa medicinen.</seg></tuv>
-   <tuv xml:lang="nl"><seg>Lachen is het beste medicijn.</seg></tuv>
-   <tuv xml:lang="nb"><seg>Latter er den beste medisin.</seg></tuv>
-   <tuv xml:lang="da"><seg>Latter er den bedste medicin.</seg></tuv>
-   <tuv xml:lang="fr"><seg>Le rire est le meilleur des remèdes.</seg></tuv>
-  </tu>
   <tu tuid="träne:suza" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>suza</seg></tuv>

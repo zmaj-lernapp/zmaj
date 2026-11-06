@@ -5044,8 +5044,7 @@ KATEGORIEN = [
         {"de": "Der Streit hat wegen Geld angefangen.", "bs": "Svađa je počela zbog novca."},
         {"de": "Scherz",                      "bs": "šala"},
         {"de": "Das war nur ein Scherz.",     "bs": "To je bila samo šala."},
-        {"de": "das Lachen",                  "bs": "smijeh"},
-        {"de": "Lachen ist die beste Medizin.", "bs": "Smijeh je najbolji lijek."},
+        # smijeh wartet auf Emir (wort: smijeh; w4690 ist ein Lachen statt des Wortes), siehe Release\Wortschatz\v111_wartet_auf_emir.md
         {"de": "Träne",                       "bs": "suza"},
         {"de": "Sie hatte Tränen in den Augen.", "bs": "Imala je suze u očima."},
         {"de": "Erinnerung",                  "bs": "sjećanje"},
