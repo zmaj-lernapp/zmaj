@@ -6531,7 +6531,7 @@ const alleWoerter = () => CATEGORIES.reduce((n,c)=>n+c.words.length, 0);
    Sitzungsvariable waere hier zu wenig. Gefunden am 26.09.2026. */
 function neuNochMoeglich(){
   const alle = alleWoerter();
-  if(!alle || known.size < alle || ohneZa(known) < alle) return true;   // !alle: Inhalt noch nicht geladen
+  if(!alle || ohneZa(known) < alle) return true;   // !alle: Inhalt noch nicht geladen
   /* Eingehaengt in QUESTS erst am 07.10.2026 - bis dahin stand dort
      weiter known.size < alleWoerter(). Wer schon VOR diesem Update alle
      Woerter konnte, hat noch keinen Tag in wann; der heutige waere
