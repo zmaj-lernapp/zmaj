@@ -288,6 +288,20 @@ def sammle():
             if k and k not in gesehen:
                 gesehen.add(k)
                 posten.append({"art": "wort", "key": k, "text": ganz})
+
+    # Der versteckte Teil Beim Zahnarzt (06.11.2026, zahnarzt.py). Spricht nur
+    # Emir, der große Lauf erzeugt nichts. Ganz am Ende, damit die vergebenen
+    # Nummern bleiben.
+    for kat in _modul("zahnarzt").KATEGORIEN:
+        for w in kat["words"]:
+            k = schluessel(w["bs"])
+            if k and k not in gesehen:
+                gesehen.add(k)
+                posten.append({"art": "wort", "key": k, "text": w["bs"]})
+            k = schluessel_alle(w["bs"])
+            if " / " in w["bs"] and k not in gesehen:
+                gesehen.add(k)
+                posten.append({"art": "wort", "key": k, "text": w["bs"], "alle": True})
     return posten
 
 

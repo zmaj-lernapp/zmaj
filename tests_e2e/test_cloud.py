@@ -95,6 +95,7 @@ def _staende(seite):
         "einstufung": {"tag": "2026-10-01", "wahl": "neu", "bis": ""},
         "bewertung": {"gezeigt": ["2026-10-01"], "nein": False, "bewertet": False},
         "getragen": "hut",
+        "zahnarzt": {"an": True, "z": 3000},
         # Lernkartei (v110): Tage als Zahl seit APP_START, alle vor heute
         "kartei": {"tag": 80, "n": 5, "w": {"gleich:a": [1, 82, 79], "spaet:a": [3, 90, 80],
                                             "frueh:a": [2, 85, 70], "nur:a": [0, 81, 80]}},
@@ -113,6 +114,7 @@ def _staende(seite):
         "einstufung": {"tag": "2026-10-03", "wahl": "gut", "bis": "x"},
         "bewertung": {"gezeigt": ["2026-10-05"], "nein": True, "bewertet": False},
         "getragen": "lesebrille",
+        "zahnarzt": {"an": False, "z": 1000},
         "kartei": {"tag": 80, "n": 7, "w": {"gleich:a": [2, 81, 79], "spaet:a": [1, 81, 75],
                                             "frueh:a": [4, 99, 78], "nur:b": [5, 120, 60]}},
     }
@@ -151,6 +153,7 @@ def test_zusammenfuehren_jedes_feld_nach_seiner_regel(seite, heute_stand):
         "gleich:a": [2, 81, 79], "spaet:a": [3, 90, 80], "frueh:a": [4, 99, 78],
         "nur:a": [0, 81, 80], "nur:b": [5, 120, 60]}}
     assert seite.js(MISCHEN, [dict(a, kartei=dict(a["kartei"], tag=81, n=1)), b])["kartei"]["n"] == 1
+    assert m["zahnarzt"] == a["zahnarzt"]    # die zuletzt getroffene Wahl (06.11.2026)
     assert m["getragen"] == "hut"            # das Geraet gewinnt ...
     assert seite.js(MISCHEN, [dict(a, getragen=""), b])["getragen"] == "lesebrille"   # ... traegt es nichts, die Cloud
     # Gleiche Zeit: die kleinere Anzahl, in beiden Richtungen.
