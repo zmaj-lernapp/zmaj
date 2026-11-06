@@ -34,7 +34,8 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     emir = ton_bauen.nur_emir()
     neu = _im_bereich(emir)
     assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
-    assert max(_nummer(e["datei"]) for e in emir.values()) == LETZTE
+    # Dahinter steht nur noch der Teil Beim Zahnarzt (w5206 bis w5316, tests/test_zahnarzt.py).
+    assert max(_nummer(e["datei"]) for e in emir.values()) == 5316
     reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values())]
     assert [neu[d] for d in sorted(neu)] == reihe
 

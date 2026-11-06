@@ -3536,6 +3536,7 @@ document.addEventListener('click', e=>{
 
 let SECTIONS = [], CATEGORIES = [], SENTENCES = [], GRAMMAR = {}, STORIES = [], DICT = {};
 let SATZBAU = [];          // Sätze aus Kacheln (vokabeln.py SATZBAU), seit 13.10.2026
+let ZA = null;             // Beim Zahnarzt: {sektion, kategorien}, siehe zaLevel() (06.11.2026)
 let known = new Set(), passed = new Set(), read = new Set(), days = new Set();
 /* Ob known schon beim Laden Woerter hatte - oder nach dem Einlesen einer
    Sicherung, nach dem Zusammenfuehren mit der Cloud. Nur dann zaehlen sie
@@ -3720,10 +3721,64 @@ function rectFaktor(){
   }
   return rectMitZoom ? 1 : GROSS;
 }
-const cur = () => CATEGORIES[catIdx];
+/* ---- Beim Zahnarzt (06.11.2026) ----
+   Eine Zahnaerztin will mit Patienten reden koennen, die nur
+   Bosnisch sprechen. Ajdin: "das interssiert 1% der menschen", also versteckt:
+   siebenmal auf die Versionszeile, dann das Wort ZA_WORT (dauerVollVerdrahten).
+   Es schaltet nichts Bezahltes frei und darf deshalb hier stehen.
+   Der Teil steht mit Absicht NICHT in CATEGORIES und SECTIONS. Alles, was
+   zaehlt - Level, Woerter, Fortschritt, Weitermachen, Einstufung, Kartei,
+   Wiederholen -, rechnet ueber diese beiden Listen und sieht ihn damit nie,
+   auch nicht bei dem, der ihn freigeschaltet hat. Nur der Lernpfad (showPath)
+   und die Wege durch ein Level kennen ihn: seine Level haben die Nummern ab
+   CATEGORIES.length (levelNach), und imZa() sagt, ob gerade eins offen ist.
+   Der Lernstand steht in known und passed wie jeder andere. So geht er ohne
+   eigene Regel mit dem Konto, durch die Sicherung und durchs Zusammenfuehren.
+   Seine Kennungen fangen mit ZA_VORN an (zahnarzt.py); gezaehlt wird mit
+   ohneZa(). Der Schalter steht im Stand (Feld zahnarzt), damit der Teil nach
+   einer Neuinstallation von selbst wieder da ist. Eine Lektion hier ist kein
+   Lerntag (also auch keine Wegmarke und kein anderes Bild auf der Startseite),
+   zaehlt nicht fuer Tagesaufgaben und Muenzen und landet nicht in Kartei,
+   Fehler-Topf und Sternen. */
+const ZA_WORT = 'zahnarzt', ZA_VORN = 'za|';
+let zaSchalter = {an: false, z: 0};
+const zaLevel = () => ZA ? ZA.kategorien : [];
+const zaAn = () => !!(ZA && zaSchalter.an);
+const istZa = x => typeof x === 'string' && x.startsWith(ZA_VORN);
+const ohneZa = menge => { let n = 0; menge.forEach(x => { if(!istZa(x)) n++; }); return n; };
+const imZa = () => CATEGORIES.length > 0 && catIdx >= CATEGORIES.length;
+const levelNach = i => i < CATEGORIES.length ? CATEGORIES[i] : zaLevel()[i - CATEGORIES.length];
+/* Die Nummer, die der Lernende sieht: im Zahnarzt-Teil zaehlt er von 1. */
+const levelNummer = i => i < CATEGORIES.length ? i + 1 : i - CATEGORIES.length + 1;
+/* Bis wohin man von hier aus blaettern darf: ueber das letzte Level des
+   Lernpfads geht es nicht in den versteckten Teil, und umgekehrt. */
+const levelEnde = () => CATEGORIES.length + (imZa() ? zaLevel().length : 0);
+const levelAnfang = () => imZa() ? CATEGORIES.length : 0;
+const zaHoechster = () => {
+  const L = zaLevel();
+  for(let k = L.length - 1; k >= 0; k--) if(passed.has(L[k].id)) return k;
+  return -1;
+};
+/* Der Schalter aus dem Stand: was von aussen kommt, wird hier gerade gezogen.
+   Kein Zeitpunkt nach jetzt, wie bei den Sternen - sonst gewoenne eine
+   vorgestellte Uhr jeden spaeteren Abgleich. */
+function zaSchalterPruefen(roh){
+  const e = (roh && typeof roh === 'object' && !Array.isArray(roh)) ? roh : {};
+  const z = (typeof e.z === 'number' && isFinite(e.z) && e.z > 0) ? Math.min(e.z, Date.now()) : 0;
+  return {an: e.an === true, z};
+}
+/* Zwei Geraete: die zuletzt getroffene Wahl gilt, sonst liesse sich der Teil
+   nie wieder ausblenden. Bei gleicher Zeit "an", nur damit beide Richtungen
+   dasselbe ergeben. */
+function zaMischen(a, b){
+  const x = zaSchalterPruefen(a), y = zaSchalterPruefen(b);
+  if(x.z !== y.z) return x.z > y.z ? x : y;
+  return {an: x.an || y.an, z: x.z};
+}
+const cur = () => levelNach(catIdx);
 const curWords = () => cur().words;
 const curSentences = () => SENTENCES.filter(s => s.kat === cur().id);
-const byId = id => CATEGORIES.find(c => c.id === id);
+const byId = id => CATEGORIES.find(c => c.id === id) || zaLevel().find(c => c.id === id);
 /* Offen ist alles bis zum hoechsten bestandenen Level plus eins - nicht nur
    der direkte Nachfolger.
 
@@ -3749,7 +3804,12 @@ const hoechsterBestanden = () => {
    "Dran" ist dann das erste offene Level AB dem Einstieg - sonst zeigte
    Weitermachen nach der Einstufung wieder auf Level 1. Ausnahme: wer
    trotzdem von vorn lernt, siehe firstOpen. */
-const isUnlocked = i => ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
+const isUnlocked = i => {
+  /* Beim Zahnarzt: dieselbe Regel, nur innerhalb des Teils. Der Stand im
+     Lernpfad und die Einstufung spielen dort keine Rolle. */
+  if(i >= CATEGORIES.length && CATEGORIES.length) return ALLE_FREI || i - CATEGORIES.length <= zaHoechster() + 1;
+  return ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
+};
 /* "Dran" ist das erste nicht bestandene Level ab dem Einstieg. Danach
    richten sich der Weitermachen-Knopf, die markierte Stelle im Lernpfad,
    die beim Start aufgeklappte Sektion und die Farbe der App.
@@ -3798,7 +3858,7 @@ let offeneSektion = null;        // welche Sektion offen ist
 /* Die Nummer der Farbe zu einer Sektion. Neun Sektionen, neun Farben.
    Der Rest greift erst ab einer zehnten. */
 function sektionsNummer(id){
-  const i = SECTIONS.findIndex(s => s.id === id);
+  const i = (ZA && id === ZA.sektion.id) ? SECTIONS.length : SECTIONS.findIndex(s => s.id === id);
   return String((i < 0 ? 0 : i) % 9 + 1);
 }
 
@@ -5473,7 +5533,7 @@ function sicherungPlausibel(s){
    weiteres neues Feld, nicht an die Eintraege dort. */
 const STAND_FELDER = new Set(['gewusst', 'bestanden', 'gelesen', 'tage', 'frost', 'besitz', 'leben',
   'schutz', 'tagwerk', 'muenzen_ges', 'muenzen_aus', 'getragen', 'gefeiert', 'rekord', 'wann',
-  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern', 'kartei']);
+  'geschenk_jahr', 'einstufung', 'topf', 'bewertung', 'stern', 'kartei', 'zahnarzt']);
 const STAND_ALT = new Set(['premium']);
 let standFremd = {};
 /* Die fremden Felder eines Stands als tiefe Kopie - sie teilen nichts mit
@@ -5595,6 +5655,8 @@ function standUebernehmen(d){
      v110 -, ist sie leer; die gewussten Woerter bekommen ihre Termine
      gleich danach in karteiNachtragen() (altenFortschrittUmschreiben). */
   kartei = karteiPruefen(d.kartei);
+  /* Beim Zahnarzt: fehlt das Feld (Stand von vor dem 06.11.2026), ist er aus. */
+  zaSchalter = zaSchalterPruefen(d.zahnarzt);
   const bw = (d.bewertung && typeof d.bewertung==='object' && !Array.isArray(d.bewertung)) ? d.bewertung : {};
   bewertung = {gezeigt: Array.isArray(bw.gezeigt) ? bw.gezeigt.filter(istDatum) : [],
                nein: !!bw.nein, bewertet: !!bw.bewertet};
@@ -5681,6 +5743,9 @@ function standAlsObjekt(){
              laesst die Sicherungsdatei bei version 1: eine alte App traegt
              das Feld nur weiter (standFremd), eine neue nimmt ein fehlendes
              als leer und traegt die Termine nach. */
+          /* Beim Zahnarzt (06.11.2026): nur der Schalter, der Lernstand steht
+             in gewusst und bestanden. */
+          zahnarzt: zaSchalter,
           kartei: kartei};
   /* Dahinter, unveraendert, was eine neuere Fassung in den Stand gelegt
      hat (28.10.2026, siehe standFremd). Eigene Felder gehen vor -
@@ -5750,6 +5815,9 @@ function standAlsObjekt(){
      stern                 Vereinigung. Auf beiden Seiten markiert: das
                            neuere z (zuletzt markiert) und das groessere r
                            (zuletzt geuebt). Danach sternPruefen().
+     zahnarzt              der Schalter mit dem neueren Zeitstempel z, siehe
+                           zaMischen() (06.11.2026). Der Lernstand des Teils
+                           steckt in gewusst und bestanden.
      kartei                je Wort der Stand, der zuletzt geuebt wurde
                            (Ajdin am 28.10.2026). Am selben Tag der fruehere
                            Termin, dann die kleinere Stufe: lieber einmal zu
@@ -5856,6 +5924,7 @@ function standZusammenfuehren(a, b, cloudVorher){
     return [k, (x && y) ? {z: Math.max(zahl(x.z), zahl(y.z)), r: Math.max(zahl(x.r), zahl(y.r))} : (x || y)];
   })));
   m.kartei = karteiMischen(a.kartei, b.kartei);
+  m.zahnarzt = zaMischen(a.zahnarzt, b.zahnarzt);
   const zeitWahl = (x, y, max, leer) => {
     const gut = e => {
       e = objekt(e);
@@ -6196,6 +6265,23 @@ async function pruefwerkzeugOeffnen(){
                 'Das Tool laeuft nur auf Testgeraeten.', 'Gut', 'Zu');
   }
 }
+/* Das Wort schaltet den Teil ein, beim zweiten Mal fragt es, ob er wieder weg
+   soll. Der Lernstand bleibt dabei stehen. Ohne Inhalt (etwa ein alter Stand
+   von inhalt/) geschieht nichts, wie bei einem falschen Wort. */
+async function zaUmschalten(){
+  if(!ZA) return;
+  if(zaAn()){
+    if(!await frage(ZA.sektion.label, t('za.ausblenden_frage'), t('za.ausblenden'), t('btn.dialog_abbrechen'))) return;
+    zaSchalter = {an: false, z: Date.now()};
+    /* Auf null: showPath() klappt dann wieder die laufende Sektion auf. */
+    if(offeneSektion === ZA.sektion.id) offeneSektion = null;
+  } else {
+    zaSchalter = {an: true, z: Date.now()};
+    offeneSektion = ZA.sektion.id;      // zurueck im Lernpfad steht er offen da
+    kurzMeldung('✓ ' + ZA.sektion.label);
+  }
+  await saveProgress();
+}
 function dauerVollVerdrahten(){
   const z = $('ueberZeile'); if(!z) return;
   let n = 0, uhr = 0;
@@ -6212,6 +6298,10 @@ function dauerVollVerdrahten(){
     const w = wort.trim().toLowerCase();
     if(w === KENNUNG_WORT){ await kennungZeigen(); return; }
     if(w === PRUEF_WORT){ await pruefwerkzeugOeffnen(); return; }
+    /* Beim Zahnarzt (06.11.2026): wie die zwei davor ein eigener Weg, der bei
+       der Vollversion nicht vorbeikommt. Jedes andere Wort geht unveraendert
+       durch die Pruefung darunter, und ein falsches meldet weiter nichts. */
+    if(w === ZA_WORT){ await zaUmschalten(); return; }
     if(!(await dauerWortStimmt(w))) return;
     if(dauerVoll){
       if(await frage('Dauerhafte Vollversion',
@@ -6441,7 +6531,7 @@ const alleWoerter = () => CATEGORIES.reduce((n,c)=>n+c.words.length, 0);
    Sitzungsvariable waere hier zu wenig. Gefunden am 26.09.2026. */
 function neuNochMoeglich(){
   const alle = alleWoerter();
-  if(!alle || known.size < alle) return true;   // !alle: Inhalt noch nicht geladen
+  if(!alle || known.size < alle || ohneZa(known) < alle) return true;   // !alle: Inhalt noch nicht geladen
   /* Eingehaengt in QUESTS erst am 07.10.2026 - bis dahin stand dort
      weiter known.size < alleWoerter(). Wer schon VOR diesem Update alle
      Woerter konnte, hat noch keinen Tag in wann; der heutige waere
@@ -6628,6 +6718,7 @@ let questFrisch = [];
 /* Zählt hoch. Münzen gibt es genau in dem Augenblick, in dem der Zähler das
    Ziel überschreitet – nie beim Zeichnen, sonst gäbe es sie doppelt. */
 function zaehle(id, wieviel){
+  if(imZa()) return;      // Beim Zahnarzt: zaehlt nicht fuer Tagesaufgaben und Muenzen (06.11.2026)
   const t=today();
   if(!tagwerk[t]) tagwerk[t] = {};
   const vorher = tagwerk[t][id] || 0;
@@ -7943,6 +8034,7 @@ async function ladeDaten(){
      Satzbau-Aufgaben. Die Namensliste der Kacheln haengt am Inhalt und wird
      beim naechsten Gebrauch neu gesammelt. */
   SATZBAU = Array.isArray(d.satzbau) ? d.satzbau : [];
+  ZA = (d.zahnarzt && d.zahnarzt.sektion && Array.isArray(d.zahnarzt.kategorien)) ? d.zahnarzt : null;
   _kachelNamen = null;
   /* Die zwei Zwischenspeicher der Wortliste haengen an DICT und CATEGORIES und
      werden nur beim ersten Gebrauch gefuellt. Ohne dieses Leeren behielten sie
@@ -8020,6 +8112,11 @@ function showView(id){
   if(TOR_ANSICHTEN.indexOf(id) >= 0 && anmeldungSperre()) return;
   stilleBitte();          // kein Ton laeuft in die naechste Ansicht hinein
   uhrAus();               // und keine Lernzeit: Geschichte und Lektion rufen uhrAn() selbst
+  /* Beim Zahnarzt: Wer die Level-Ansicht verlaesst, ist nicht mehr im Teil. Eine
+     Runde aus dem Reiter Wiederholen laeuft zwar auch dort, aber danach - mit
+     diesem Merker gaelten fuer sie die Regeln des Teils. Nach uhrAus(): die
+     letzten Sekunden gehoeren noch zum Teil. */
+  if(id !== 'levelView' && imZa()) catIdx = 0;
   VIEWS.forEach(v=>{ $(v).style.display = v===id ? 'block' : 'none'; });
   zmajeAnpassen();        // Drachen ausgeblendeter Ansichten anhalten, die sichtbaren wecken
   $('kopfLeiste').style.display = '';     // wer sie nicht will, blendet sie danach aus
@@ -8967,6 +9064,7 @@ function altenFortschrittUmschreiben(){
   }));
   const neu = new Set(); let geaendert = false;
   known.forEach(x => {
+    if(istZa(x)){ neu.add(x); return; }     // Beim Zahnarzt: nie auf ein Wort des Lernpfads umschreiben
     if(UMBENANNT[x] && gueltig.has(UMBENANNT[x])){ neu.add(UMBENANNT[x]); geaendert = true; }
     else if(gueltig.has(x)) neu.add(x);
     else if(nachLevel.has(x)){ neu.add(nachLevel.get(x)); geaendert = true; }
@@ -9451,7 +9549,7 @@ async function sicherungEinlesen(datei){
   const gesichert = await saveProgress();
   renderLives();
   note.textContent = gesichert
-    ? t('set.sicherung_geladen', {woerter: known.size, tage: days.size})
+    ? t('set.sicherung_geladen', {woerter: ohneZa(known), tage: days.size})
     : t('set.sicherung_fehler');
   sound(gesichert ? 'ok' : 'no');
 }
@@ -10706,7 +10804,7 @@ function showPath(){
   $('tag').textContent=t('app.tag');
   const done = CATEGORIES.filter(c=>passed.has(c.id)).length;
   const nWords = CATEGORIES.reduce((n,c)=>n+c.words.length,0);
-  $('summary').textContent = t('pfad.summary',{done:done, total:CATEGORIES.length, k:known.size, n:nWords})+(ALLE_FREI?t('pfad.testmodus'):'');
+  $('summary').textContent = t('pfad.summary',{done:done, total:CATEGORIES.length, k:ohneZa(known), n:nWords})+(ALLE_FREI?t('pfad.testmodus'):'');
   /* Ajdin am 26.09.2026: "das braucht keiner ist platzverschwendung".
      Stimmt fuer den Alltag - wie weit die laufende Sektion ist, steht
      eine Handbreit tiefer in ihrer Karte. Im Testmodus bleibt die Zeile
@@ -10714,6 +10812,11 @@ function showPath(){
   $('summary').style.display = ALLE_FREI ? '' : 'none';
   const box=$('sections'); box.innerHTML='';
   const next = firstOpen();
+  /* Beim Zahnarzt: eine eigene Sektion am Ende, nur wenn freigeschaltet. Ihre
+     Level zaehlen ab CATEGORIES.length (levelNach); firstOpen() kennt sie nicht. */
+  const zaDa = zaAn();
+  const sektionenHier = zaDa ? SECTIONS.concat([ZA.sektion]) : SECTIONS;
+  const zaNext = CATEGORIES.length + zaLevel().findIndex(c => !passed.has(c.id));
   /* Beim ersten Zeichnen ist die Sektion offen, in der gerade gelernt wird.
      Danach bleibt die stehen, die der Nutzer gewaehlt hat - auch nach einer
      Lektion. Erst wenn es sie nicht mehr gibt, faellt es zurueck. */
@@ -10721,10 +10824,12 @@ function showPath(){
   /* Nur beim allerersten Zeichnen vorbelegen und dann, wenn die gewaehlte
      Sektion verschwunden ist. Ein leerer Merker heisst "alle zugeklappt" -
      das ist eine Wahl des Nutzers und wird nicht ueberschrieben. */
-  if(offeneSektion === null || (offeneSektion && !SECTIONS.some(s => s.id === offeneSektion)))
+  if(offeneSektion === null || (offeneSektion && !sektionenHier.some(s => s.id === offeneSektion)))
     offeneSektion = laufende;
-  SECTIONS.forEach((s, si)=>{
-    const levels = CATEGORIES.map((c,i)=>({c,i})).filter(x=>x.c.sektion===s.id);
+  sektionenHier.forEach((s, si)=>{
+    const levels = (zaDa && s === ZA.sektion)
+      ? zaLevel().map((c, k) => ({c, i: CATEGORIES.length + k}))
+      : CATEGORIES.map((c,i)=>({c,i})).filter(x=>x.c.sektion===s.id);
     if(!levels.length) return;
     const sdone = levels.filter(x=>passed.has(x.c.id)).length;
     const sopen = levels.some(x=>isUnlocked(x.i));
@@ -10752,15 +10857,15 @@ function showPath(){
     const levelKasten = sec.querySelector('.levels');
     levels.forEach(({c,i})=>{
       const b=document.createElement('button');
-      const d=passed.has(c.id), o=isUnlocked(i), isCur=(i===next && !d), pct=levelPct(c);
+      const d=passed.has(c.id), o=isUnlocked(i), isCur=(i===(i < CATEGORIES.length ? next : zaNext) && !d), pct=levelPct(c);
       b.className='node'+(d?' done':'')+(isCur?' current':'')+(o?'':' locked');
       const extras = GRAMMAR[c.id]?t('pfad.grammatik'):'';
-      b.innerHTML = '<div class="circle">'+(d?'✓':(o?(i+1):symbol('schloss')))+'</div>'+
+      b.innerHTML = '<div class="circle">'+(d?'✓':(o?levelNummer(i):symbol('schloss')))+'</div>'+
         '<div class="txt"><div class="label">'+esc(c.label)+'<span style="font-weight:600;font-size:12px;color:var(--muted)">'+esc(extras)+'</span></div><div class="tipp">'+esc(c.tipp||'')+'</div>'+
         (o && !d ? '<div class="mini"><i style="width:'+pct+'%"></i></div>' : '')+'</div>'+
         '<div class="state">'+(d?t('zustand.bestanden'):(isCur?t('zustand.jetzt'):(o?(pct>0?pct+' %':t('zustand.offen')):t('zustand.gesperrt'))))+'</div>';
       b.addEventListener('click',()=>{
-        if(!isUnlocked(i)){ b.querySelector('.state').textContent=t('pfad.erst_level',{n:i}); return; }
+        if(!isUnlocked(i)){ b.querySelector('.state').textContent=t('pfad.erst_level',{n:levelNummer(i) - 1}); return; }
         openLevel(i);
       });
       levelKasten.appendChild(b);
@@ -11032,7 +11137,7 @@ function openLevel(i){
   if(anmeldungSperre()) return;
   catIdx=i; showView('levelView');
   setzeZurueck(t('btn.zurueck_pfad'), ()=>{ homeMode='words'; showHome(); });
-  $('tag').textContent=t('level.zaehler',{i:i+1, n:CATEGORIES.length});
+  $('tag').textContent=t('level.zaehler',{i:levelNummer(i), n:levelEnde() - levelAnfang()});
   showLevelHome();
   kartenNachreichen();
 }
@@ -11066,8 +11171,8 @@ function showLevelHome(){
      und startTest() setzen sie neu ein. */
   $('zmajLesson').innerHTML=''; $('zmajTest').innerHTML='';
   uhrAus();
-  const c = cur(); const s = SECTIONS.find(x=>x.id===c.sektion);
-  $('lvTitle').innerHTML = t('level.titel',{i:catIdx+1, label:esc(c.label)})+'<small>'+esc(s ? s.label.replace(/ ·.*$/,'') : '')+'</small>';
+  const c = cur(); const s = imZa() ? ZA.sektion : SECTIONS.find(x=>x.id===c.sektion);
+  $('lvTitle').innerHTML = t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'<small>'+esc(s ? (imZa() ? s.label.replace(/ /g, ' ') : s.label.replace(/ ·.*$/,'')) : '')+'</small>';
   $('lvTipp').textContent = c.tipp || '';
   const basis = $('lvBasis'); basis.innerHTML='';
   if(c.baut_auf && c.baut_auf.length){
@@ -11094,8 +11199,8 @@ function showLevelHome(){
   $('wordList').querySelectorAll('.wortton').forEach(b=>b.addEventListener('click', e=>{
     e.stopPropagation(); stilleBitte(); speak(b.dataset.bs);
   }));
-  $('navPrev').disabled = catIdx===0;
-  $('navNext').disabled = !(catIdx+1<CATEGORIES.length && isUnlocked(catIdx+1));
+  $('navPrev').disabled = catIdx===levelAnfang();
+  $('navNext').disabled = !(catIdx+1<levelEnde() && isUnlocked(catIdx+1));
 }
 function updateProgress(){
   const c=cur(); const words=c.words;
@@ -11117,8 +11222,8 @@ function updateProgress(){
   $('lvNote').textContent = passed.has(c.id) ? t('level.note_bestanden') :
     (allowed ? t('level.note_frei',{a:TEST_BESTANDEN_AB, b:TEST_FRAGEN}) : t('level.note_zu',{p:TEST_FREI_AB}));
 }
-$('navPrev').addEventListener('click',()=>{ if(catIdx>0) openLevel(catIdx-1); });
-$('navNext').addEventListener('click',()=>{ if(catIdx+1<CATEGORIES.length && isUnlocked(catIdx+1)) openLevel(catIdx+1); });
+$('navPrev').addEventListener('click',()=>{ if(catIdx>levelAnfang()) openLevel(catIdx-1); });
+$('navNext').addEventListener('click',()=>{ if(catIdx+1<levelEnde() && isUnlocked(catIdx+1)) openLevel(catIdx+1); });
 
 // Jede Sprache setzt ihre eigenen Anführungszeichen: auf, zu.
 const ZITAT = {
@@ -11173,6 +11278,10 @@ const _bedeutung = s => String(s||'').toLowerCase().replace(/[.!?\u2026]+$/,'').
    Merhaba. Verglichen wird je Form, weil "auch" auch einen Teil wie "drug"
    aus "drug / drugarica" nennen darf. Ajdin am 05.10.2026, 34 Paare. */
 const _formen = s => String(s||'').split(' / ').map(_bedeutung);
+/* Alle Woerter, unter denen eine Aufgabe Antworten sucht. Im Lernpfad dieselben
+   wie immer; im Zahnarzt-Teil dazu seine eigenen, sonst stuenden dort zwei
+   gleich uebersetzte Saetze als richtig und falsch nebeneinander. */
+const wortVorrat = () => CATEGORIES.concat(imZa() ? zaLevel() : []).flatMap(c=>c.words);
 /* Aspektpaare (31.10.2026, Wortschatz-Paket 1): ostati und ostajati heissen
    beide "bleiben", doći und dolaziti beide "kommen". Ajdin: "beide wörter
    rein die sollen separat sein wenn einer gelernt wurde dann ist der andere
@@ -11206,7 +11315,7 @@ function geschwister(w){
   const b = _bedeutung(w.de);
   const meineAuch = new Set((w.auch || []).flatMap(_formen));
   const meineFormen = _formen(w.bs);
-  return CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs &&
+  return wortVorrat().filter(x => x.bs !== w.bs &&
     ((b && _bedeutung(x.de) === b) ||
      istPartner(w, x) ||
      nieNebeneinander(w.bs, x.bs) ||
@@ -11215,7 +11324,7 @@ function geschwister(w){
 }
 function annehmbar(w){
   const b = _bedeutung(w.de);
-  const gleich = b ? CATEGORIES.flatMap(c=>c.words).filter(x => x.bs !== w.bs && _bedeutung(x.de) === b && !istPartner(w, x)).map(x=>x.bs) : [];
+  const gleich = b ? wortVorrat().filter(x => x.bs !== w.bs && _bedeutung(x.de) === b && !istPartner(w, x)).map(x=>x.bs) : [];
   return [w.bs, ...gleich, ...(w.auch || [])];
 }
 function distractors(target, words, n){
@@ -11224,7 +11333,7 @@ function distractors(target, words, n){
   const gleich = new Set(geschwister(target).map(x=>x.bs));
   const raus = w => w.bs===target.bs || gleich.has(w.bs);
   let pool = words.filter(w=>!raus(w));
-  if(pool.length<n) pool = CATEGORIES.flatMap(c=>c.words).filter(w=>!raus(w));
+  if(pool.length<n) pool = wortVorrat().filter(w=>!raus(w));
   const seen = new Set([target.bs]); const out=[];
   for(const w of shuffle(pool.slice())){ if(!seen.has(w.bs)){ seen.add(w.bs); out.push(w); if(out.length===n) break; } }
   return out;
@@ -11882,6 +11991,7 @@ function lueckeGesehen(s, g){
   });
 }
 function lueckenFuerLektion(ids){
+  if(imZa()) return [];     // Beim Zahnarzt: keine Luecken, und keine aus dem Lernpfad
   const g = gesehenFormen(ids), schon = new Set(), out = [];
   const nimm = liste => shuffle(liste.filter(s => lueckeGesehen(s, g))).forEach(s => {
     const k = s.text + '|' + s.answer;   // derselbe Satz steht in manchen Leveln doppelt
@@ -12033,6 +12143,7 @@ function kachelAblenker(s, anzahl){
    ("Drago ___ je." und "Drago mi je."). Gefunden im Review am 14.10.2026. */
 const lueckeFertig = s => String(s.answer).split(' / ').map(a => kachelNorm(String(s.text).replace('___', a.trim())));
 function kachelnFuerLektion(ids, belegt){
+  if(imZa()) return [];     // Beim Zahnarzt: keine Kacheln, und keine aus dem Lernpfad
   const c = cur();
   const teileVon = w => kachelFormen(w).flatMap(f => lueckeTeile(f).trim().split(' ')).filter(Boolean);
   const hier = new Set(c.words.flatMap(teileVon));
@@ -12123,7 +12234,7 @@ function buildLesson(){
      "Wiederholung: <Level>" und dessen Woertern als Auswahl, wie die
      Rueckblick-Fragen im Level-Test; aus diesem Level wie jedes andere
      bekannte Wort. Ein Wort kommt nie zweimal. */
-  const faellig = karteiHeute().map(wortNachId).filter(Boolean)
+  const faellig = (imZa() ? [] : karteiHeute()).map(wortNachId).filter(Boolean)
     .slice(0, Math.min(KARTEI_IN_LEKTION, LEKTION_WOERTER - nNew));
   const faelligIds = new Set(faellig.map(f => f.w.id));
   const bekannt = knownW.filter(w => !faelligIds.has(w.id));
@@ -12482,7 +12593,7 @@ function lessonOutOfLives(imTest){
   const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
   $(k.bar).innerHTML=''; $(k.drache).style.display='none'; $(k.drache).innerHTML=''; $(k.herz).style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
-  const titel = imTest ? t('level.titel', {i:catIdx+1, label:esc(cur().label)}) : t('lektion.aus');
+  const titel = imTest ? t('level.titel', {i:levelNummer(catIdx), label:esc(cur().label)}) : t('lektion.aus');
   /* .ohneleben: daran erkennt ohneLebenVorbei() diesen Schirm. Im Test
      reicht .result-big.fail nicht, das traegt auch ein nicht bestandenes
      Ergebnis. */
@@ -12554,7 +12665,8 @@ function lessonEnd(){
   // "Ohne Fehler" nur, wenn auch nichts übersprungen wurde – sonst holt man
   // sie sich, indem man jede Hör- und Sprechaufgabe wegdrückt.
   if(Lx.right === scored && scored > 0 && Lx.skipped === 0) zaehle('per');
-  const newDay = markToday(); saveProgress(); sound('done');
+  /* Beim Zahnarzt: kein Lerntag, die Wegmarken bleiben beim Lernpfad. */
+  const newDay = imZa() ? false : markToday(); saveProgress(); sound('done');
   /* Die gruenen Zeilen fuer erledigte Tagesaufgaben. Sie waren seit dem
      Umbau des Ladens verschwunden: questZeilen() stand fertig da und wurde
      von niemandem mehr aufgerufen, die Muenzen erschienen wortlos in der
@@ -12761,7 +12873,7 @@ function buildTest(){
   const c = cur();
   const eigene = shuffle(c.words.slice());
   const gram = shuffle(((GRAMMAR[c.id]||{}).uebungen||[]).slice()).slice(0,3);
-  let basisIds = (c.baut_auf && c.baut_auf.length) ? c.baut_auf : CATEGORIES.slice(0, catIdx).map(x=>x.id);
+  let basisIds = (c.baut_auf && c.baut_auf.length) ? c.baut_auf : (imZa() ? [] : CATEGORIES.slice(0, catIdx).map(x=>x.id));
   const basisWords = shuffle(basisIds.flatMap(id => (byId(id)||{words:[]}).words.map(w=>({w, rep:byId(id).label, pool:byId(id).words}))));
   const nRep = Math.min(TEST_WIEDERHOLUNG, basisWords.length);
   const nOwn = Math.min(TEST_FRAGEN - nRep - gram.length, eigene.length);
@@ -12807,10 +12919,10 @@ function showTestResult(){
   werbungZaehler++;
   werbungNachDemErgebnis('test', ()=> Tx);
   const c=cur(); const ok = Tx.right >= TEST_BESTANDEN_AB;
-  const hasNext = catIdx+1 < CATEGORIES.length;
+  const hasNext = catIdx+1 < levelEnde();
   // Wann ein Level bestanden wurde, lässt sich später nicht mehr herausfinden.
   const neuBestanden = ok && !passed.has(c.id);
-  if(ok){ if(!passed.has(c.id)){ passed.add(c.id); wann['lv:'+c.id] = today(); } markToday(); sound('done'); }
+  if(ok){ if(!passed.has(c.id)){ passed.add(c.id); wann['lv:'+c.id] = today(); } if(!imZa()) markToday(); sound('done'); }
   if(ok && bewertungFaellig()) bewertungDran = true;
   saveProgress();   // auch bei nicht bestanden: die Aufgaben sind trotzdem beantwortet
   /* Auch hier koennen Tagesaufgaben fertig geworden sein - siehe lessonEnd.
@@ -12822,25 +12934,25 @@ function showTestResult(){
      Die Position allein sagt deshalb nicht mehr, ob eine Sektion oder
      alles geschafft ist - es muss wirklich jedes Level bestanden sein.
      Gefunden in der Gegenpruefung am 01.10.2026. */
-  const sektionFertig = CATEGORIES.every(x => x.sektion !== c.sektion || passed.has(x.id));
-  const allesFertig = CATEGORIES.every(x => passed.has(x.id));
+  const sektionFertig = (imZa() ? zaLevel() : CATEGORIES).every(x => x.sektion !== c.sektion || passed.has(x.id));
+  const allesFertig = !imZa() && CATEGORIES.every(x => passed.has(x.id));      // Beim Zahnarzt zaehlt nicht mit
   /* Nach einer Einstufung wird eine Sektion oft nicht an ihrem letzten
      Level fertig, sondern mittendrin, wenn das letzte uebersprungene Level
      nachgeholt ist. Zaehlt also, was DIESER Test neu abgeschlossen hat.
      Wer ein schon bestandenes Level wiederholt, bekommt die alte Regel. */
-  const nextSec = sektionFertig && (neuBestanden || (hasNext && CATEGORIES[catIdx+1].sektion !== c.sektion));
+  const nextSec = sektionFertig && (neuBestanden || (hasNext && levelNach(catIdx+1).sektion !== c.sektion));
   /* Das Ergebnis hat seinen grossen Drachen, wie lessonEnd(). Der kleine
      wird dabei auch abgebaut, nicht nur versteckt: versteckt liefe er
      unsichtbar weiter (siehe showLevelHome). */
   $('zmajTest').style.display='none'; $('zmajTest').innerHTML='';
   $('tBody').innerHTML =
-    '<div class="ergebnis-titel">'+t('level.titel',{i:catIdx+1, label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
+    '<div class="ergebnis-titel">'+t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
     '<div class="feedback '+(ok?'ok':'no')+'">'+(ok ? t(nextSec ? 'test.sektion_fertig' : 'test.bestanden') : t('test.durchgefallen',{n:TEST_BESTANDEN_AB}))+'</div>'+
     questLob+
     '<div class="row">'+
       '<button class="btn ghost" id="tBack">'+(ok?t('test.zum_pfad'):t('lektion.zurueck'))+'</button>'+
-      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:catIdx+2})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
+      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:levelNummer(catIdx)+1})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
     '</div>';
   $('tBack').addEventListener('click', ()=>{ if(ok){ homeMode='words'; showHome(); } else showLevelHome(); });
   const n=$('tNext'); if(n) n.addEventListener('click', ()=> openLevel(catIdx+1));
@@ -12919,7 +13031,7 @@ function einstufungIndex(){
    wird nicht mehr gefragt. */
 function einstufungFaellig(){
   return !einstufung && !ALLE_FREI && CATEGORIES.length > 0
-    && passed.size === 0 && known.size === 0 && days.size === 0;
+    && ohneZa(passed) === 0 && ohneZa(known) === 0 && days.size === 0;
 }
 function stufenLevel(st){
   const nr = [];
@@ -13181,7 +13293,8 @@ function topfSchluessel(task){
   if(task.typ === 'gap' && task.s) return 's:' + task.s.kat + '|' + task.s.text;
   if(task.typ === 'kacheln' && task.s) return 'k:' + task.s.kat + '|' + task.s.bs;
   if(task.typ === 'gram' && task.g && task.g._lv) return 'g:' + task.g._lv + '|' + task.g._nr;
-  if(task.w && task.w.id) return 'w:' + task.w.id;
+  /* Beim Zahnarzt: kein Schluessel heisst kein Fehler-Topf und kein Stern. */
+  if(task.w && task.w.id) return istZa(task.w.id) ? '' : 'w:' + task.w.id;
   return '';
 }
 function topfMerken(task, ok){

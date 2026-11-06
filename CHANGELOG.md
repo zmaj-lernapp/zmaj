@@ -7,6 +7,13 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Hidden section "At the dentist" (`zahnarzt.py`, 7 levels, 111 entries, reviewed by a
+  native speaker on 6.11.2026), written from the dentist's point of view: tap the
+  version line in the settings seven times and enter the word `zahnarzt`. It unlocks
+  nothing paid. Without the word nothing changes; even with it the section stays out of
+  every count (levels, words, learning days, daily goals, "continue", review), the dataset and the
+  Anki decks. Progress goes with the account. Recordings only in the store version
+  (`ton_nur_emir.json`, w5206–w5316).
 - Vocabulary packages 5 to 9 (reviewed by a native speaker on 6.11.2026):
   740 words and 743 example sentences, each word right before its sentence (1,483
   new entries, 4,425 in total, 166 levels, 17 sections). Section 10 gets 22 levels of verbs before

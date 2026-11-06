@@ -36,6 +36,7 @@ import grammatik       # noqa: E402
 import geschichten     # noqa: E402
 import sprachen        # noqa: E402  (Texte der Oberfläche in allen Sprachen)
 import uebersetzungen  # noqa: E402  (Lerninhalte in allen Sprachen)
+import zahnarzt        # noqa: E402  (der versteckte Teil, zählt nirgends mit)
 
 
 def lade_daten(sprache=None):
@@ -45,7 +46,7 @@ def lade_daten(sprache=None):
     sprache: Kürzel aus sprachen.py ("de", "en", "tr", …). Die Lerninhalte
     werden damit übersetzt, soweit uebersetzungen.py etwas dazu weiß.
     Der bosnische Teil bleibt natürlich immer bosnisch."""
-    for modul in (vokabeln, grammatik, geschichten, sprachen, uebersetzungen):
+    for modul in (vokabeln, grammatik, geschichten, sprachen, uebersetzungen, zahnarzt):
         importlib.reload(modul)
     code = sprache if sprachen.ist_sprache(sprache) else sprachen.GRUNDSPRACHE
     daten = {
@@ -71,8 +72,20 @@ def lade_daten(sprache=None):
         # Verhalten nicht auseinanderlaufen können.
         "werbung_laeuft": bool(getattr(sprachen, "WERBUNG_LAEUFT", False)),
         "uebersetzt": {"fertig": fertig, "gesamt": gesamt},
+        "zahnarzt": zahnarzt_fuer_app(code),
     })
     return daten
+
+
+def zahnarzt_fuer_app(code):
+    """Der versteckte Teil Beim Zahnarzt (06.11.2026): ein eigenes Feld neben
+    "kategorien", damit er in keiner Zählung, im Datensatz und in Anki nicht
+    auftaucht. Übersetzt wie alles andere; der bosnische Teil bleibt."""
+    teil = {"sektionen": [zahnarzt.SEKTION],
+            "kategorien": [dict(k, words=[dict(w, id=zahnarzt.ZA_VORN + w["bs"]) for w in k["words"]])
+                           for k in zahnarzt.KATEGORIEN]}
+    teil = uebersetzungen.anwenden(teil, code)
+    return {"sektion": teil["sektionen"][0], "kategorien": teil["kategorien"]}
 
 
 def mit_kennung(daten):

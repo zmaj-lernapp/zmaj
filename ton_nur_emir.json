@@ -14021,6 +14021,561 @@
    "key": "zapravo / ustvari",
    "datei": "w5205.mp3",
    "text": "zapravo / ustvari"
+  },
+  {
+   "key": "zubar / stomatolog",
+   "datei": "w5206.mp3",
+   "text": "zubar / stomatolog"
+  },
+  {
+   "key": "moj brat je stomatolog u tuzli.",
+   "datei": "w5207.mp3",
+   "text": "Moj brat je stomatolog u Tuzli."
+  },
+  {
+   "key": "vilica",
+   "datei": "w5208.mp3",
+   "text": "vilica"
+  },
+  {
+   "key": "boli me donja vilica kad žvačem.",
+   "datei": "w5209.mp3",
+   "text": "Boli me donja vilica kad žvačem."
+  },
+  {
+   "key": "živac",
+   "datei": "w5210.mp3",
+   "text": "živac"
+  },
+  {
+   "key": "imate upalu živca u ovom zubu.",
+   "datei": "w5211.mp3",
+   "text": "Imate upalu živca u ovom zubu."
+  },
+  {
+   "key": "kutnjak",
+   "datei": "w5212.mp3",
+   "text": "kutnjak"
+  },
+  {
+   "key": "gornji kutnjak je dosta pokvaren.",
+   "datei": "w5213.mp3",
+   "text": "Gornji kutnjak je dosta pokvaren."
+  },
+  {
+   "key": "sjekutić",
+   "datei": "w5214.mp3",
+   "text": "sjekutić"
+  },
+  {
+   "key": "dijete je slomilo gornji sjekutić.",
+   "datei": "w5215.mp3",
+   "text": "Dijete je slomilo gornji sjekutić."
+  },
+  {
+   "key": "očnjak",
+   "datei": "w5216.mp3",
+   "text": "očnjak"
+  },
+  {
+   "key": "aparatić će ispraviti ovaj očnjak.",
+   "datei": "w5217.mp3",
+   "text": "Aparatić će ispraviti ovaj očnjak."
+  },
+  {
+   "key": "umnjak",
+   "datei": "w5218.mp3",
+   "text": "umnjak"
+  },
+  {
+   "key": "umnjak vam još nije izrastao.",
+   "datei": "w5219.mp3",
+   "text": "Umnjak Vam još nije izrastao."
+  },
+  {
+   "key": "mliječni zub",
+   "datei": "w5220.mp3",
+   "text": "mliječni zub"
+  },
+  {
+   "key": "djetetu se klima mliječni zub.",
+   "datei": "w5221.mp3",
+   "text": "Djetetu se klima mliječni zub."
+  },
+  {
+   "key": "korijen zuba",
+   "datei": "w5222.mp3",
+   "text": "korijen zuba"
+  },
+  {
+   "key": "korijen zuba je još zdrav.",
+   "datei": "w5223.mp3",
+   "text": "Korijen zuba je još zdrav."
+  },
+  {
+   "key": "karijes",
+   "datei": "w5224.mp3",
+   "text": "karijes"
+  },
+  {
+   "key": "na ovom zubu vidim karijes.",
+   "datei": "w5225.mp3",
+   "text": "Na ovom zubu vidim karijes."
+  },
+  {
+   "key": "rupa u zubu",
+   "datei": "w5226.mp3",
+   "text": "rupa u zubu"
+  },
+  {
+   "key": "imam veliku rupu u zubu.",
+   "datei": "w5227.mp3",
+   "text": "Imam veliku rupu u zubu."
+  },
+  {
+   "key": "plomba",
+   "datei": "w5228.mp3",
+   "text": "plomba"
+  },
+  {
+   "key": "ova plomba je stara, treba je zamijeniti.",
+   "datei": "w5229.mp3",
+   "text": "Ova plomba je stara, treba je zamijeniti."
+  },
+  {
+   "key": "privremena plomba",
+   "datei": "w5230.mp3",
+   "text": "privremena plomba"
+  },
+  {
+   "key": "danas ću staviti privremenu plombu.",
+   "datei": "w5231.mp3",
+   "text": "Danas ću staviti privremenu plombu."
+  },
+  {
+   "key": "zubni most",
+   "datei": "w5232.mp3",
+   "text": "zubni most"
+  },
+  {
+   "key": "zubni most će biti gotov za sedam dana.",
+   "datei": "w5233.mp3",
+   "text": "Zubni most će biti gotov za sedam dana."
+  },
+  {
+   "key": "zubna proteza",
+   "datei": "w5234.mp3",
+   "text": "zubna proteza"
+  },
+  {
+   "key": "nana nosi protezu već deset godina.",
+   "datei": "w5235.mp3",
+   "text": "Nana nosi protezu već deset godina."
+  },
+  {
+   "key": "zubni implantat",
+   "datei": "w5236.mp3",
+   "text": "zubni implantat"
+  },
+  {
+   "key": "implantat je skuplji od mosta.",
+   "datei": "w5237.mp3",
+   "text": "Implantat je skuplji od mosta."
+  },
+  {
+   "key": "vađenje zuba",
+   "datei": "w5238.mp3",
+   "text": "vađenje zuba"
+  },
+  {
+   "key": "vađenje zuba traje samo nekoliko minuta.",
+   "datei": "w5239.mp3",
+   "text": "Vađenje zuba traje samo nekoliko minuta."
+  },
+  {
+   "key": "zubni kamenac",
+   "datei": "w5240.mp3",
+   "text": "zubni kamenac"
+  },
+  {
+   "key": "moramo skinuti zubni kamenac.",
+   "datei": "w5241.mp3",
+   "text": "Moramo skinuti zubni kamenac."
+  },
+  {
+   "key": "upala desni",
+   "datei": "w5242.mp3",
+   "text": "upala desni"
+  },
+  {
+   "key": "imate blagu upalu desni.",
+   "datei": "w5243.mp3",
+   "text": "Imate blagu upalu desni."
+  },
+  {
+   "key": "anestezija",
+   "datei": "w5244.mp3",
+   "text": "anestezija"
+  },
+  {
+   "key": "anestezija će proći za dva sata.",
+   "datei": "w5245.mp3",
+   "text": "Anestezija će proći za dva sata."
+  },
+  {
+   "key": "rendgenski snimak",
+   "datei": "w5246.mp3",
+   "text": "rendgenski snimak"
+  },
+  {
+   "key": "rendgenski snimak pokazuje upalu korijena.",
+   "datei": "w5247.mp3",
+   "text": "Rendgenski snimak pokazuje upalu korijena."
+  },
+  {
+   "key": "otisak zuba",
+   "datei": "w5248.mp3",
+   "text": "otisak zuba"
+  },
+  {
+   "key": "danas ćemo uzeti otisak zuba.",
+   "datei": "w5249.mp3",
+   "text": "Danas ćemo uzeti otisak zuba."
+  },
+  {
+   "key": "izbjeljivanje zuba",
+   "datei": "w5250.mp3",
+   "text": "izbjeljivanje zuba"
+  },
+  {
+   "key": "izbjeljivanje zuba se plaća posebno.",
+   "datei": "w5251.mp3",
+   "text": "Izbjeljivanje zuba se plaća posebno."
+  },
+  {
+   "key": "zubni konac",
+   "datei": "w5252.mp3",
+   "text": "zubni konac"
+  },
+  {
+   "key": "da li koristite zubni konac?",
+   "datei": "w5253.mp3",
+   "text": "Da li koristite zubni konac?"
+  },
+  {
+   "key": "otvorite usta.",
+   "datei": "w5254.mp3",
+   "text": "Otvorite usta."
+  },
+  {
+   "key": "otvorite usta, molim vas.",
+   "datei": "w5255.mp3",
+   "text": "Otvorite usta, molim Vas."
+  },
+  {
+   "key": "zatvorite usta.",
+   "datei": "w5256.mp3",
+   "text": "Zatvorite usta."
+  },
+  {
+   "key": "zatvorite usta, gotovi smo.",
+   "datei": "w5257.mp3",
+   "text": "Zatvorite usta, gotovi smo."
+  },
+  {
+   "key": "zagrizite.",
+   "datei": "w5258.mp3",
+   "text": "Zagrizite."
+  },
+  {
+   "key": "zagrizite i recite da li smeta.",
+   "datei": "w5259.mp3",
+   "text": "Zagrizite i recite da li smeta."
+  },
+  {
+   "key": "isperite usta.",
+   "datei": "w5260.mp3",
+   "text": "Isperite usta."
+  },
+  {
+   "key": "isperite usta i pljunite ovdje.",
+   "datei": "w5261.mp3",
+   "text": "Isperite usta i pljunite ovdje."
+  },
+  {
+   "key": "naslonite glavu.",
+   "datei": "w5262.mp3",
+   "text": "Naslonite glavu."
+  },
+  {
+   "key": "naslonite glavu, spustit ću stolicu.",
+   "datei": "w5263.mp3",
+   "text": "Naslonite glavu, spustit ću stolicu."
+  },
+  {
+   "key": "dišite kroz nos.",
+   "datei": "w5264.mp3",
+   "text": "Dišite kroz nos."
+  },
+  {
+   "key": "dišite kroz nos, samo polako.",
+   "datei": "w5265.mp3",
+   "text": "Dišite kroz nos, samo polako."
+  },
+  {
+   "key": "opustite se.",
+   "datei": "w5266.mp3",
+   "text": "Opustite se."
+  },
+  {
+   "key": "opustite se, ovo neće dugo trajati.",
+   "datei": "w5267.mp3",
+   "text": "Opustite se, ovo neće dugo trajati."
+  },
+  {
+   "key": "ne bojte se.",
+   "datei": "w5268.mp3",
+   "text": "Ne bojte se."
+  },
+  {
+   "key": "ne bojte se, bit ću pažljiva.",
+   "datei": "w5269.mp3",
+   "text": "Ne bojte se, bit ću pažljiva."
+  },
+  {
+   "key": "podignite ruku ako vas zaboli.",
+   "datei": "w5270.mp3",
+   "text": "Podignite ruku ako Vas zaboli."
+  },
+  {
+   "key": "ako vas zaboli, odmah podignite ruku.",
+   "datei": "w5271.mp3",
+   "text": "Ako Vas zaboli, odmah podignite ruku."
+  },
+  {
+   "key": "da li vas boli ovdje?",
+   "datei": "w5272.mp3",
+   "text": "Da li Vas boli ovdje?"
+  },
+  {
+   "key": "da li vas boli ovdje kad pritisnem?",
+   "datei": "w5273.mp3",
+   "text": "Da li Vas boli ovdje kad pritisnem?"
+  },
+  {
+   "key": "koji zub vas boli?",
+   "datei": "w5274.mp3",
+   "text": "Koji zub Vas boli?"
+  },
+  {
+   "key": "koji zub vas boli, gornji ili donji?",
+   "datei": "w5275.mp3",
+   "text": "Koji zub Vas boli, gornji ili donji?"
+  },
+  {
+   "key": "od kada vas boli?",
+   "datei": "w5276.mp3",
+   "text": "Od kada Vas boli?"
+  },
+  {
+   "key": "od kada vas boli ovaj zub?",
+   "datei": "w5277.mp3",
+   "text": "Od kada Vas boli ovaj zub?"
+  },
+  {
+   "key": "da li vas boli kad zagrizete?",
+   "datei": "w5278.mp3",
+   "text": "Da li Vas boli kad zagrizete?"
+  },
+  {
+   "key": "da li vas boli kad zagrizete nešto tvrdo?",
+   "datei": "w5279.mp3",
+   "text": "Da li Vas boli kad zagrizete nešto tvrdo?"
+  },
+  {
+   "key": "da li je osjetljiv na hladno?",
+   "datei": "w5280.mp3",
+   "text": "Da li je osjetljiv na hladno?"
+  },
+  {
+   "key": "da li je zub osjetljiv na hladno?",
+   "datei": "w5281.mp3",
+   "text": "Da li je zub osjetljiv na hladno?"
+  },
+  {
+   "key": "da li ste alergični na neki lijek?",
+   "datei": "w5282.mp3",
+   "text": "Da li ste alergični na neki lijek?"
+  },
+  {
+   "key": "recite mi da li ste alergični na neki lijek.",
+   "datei": "w5283.mp3",
+   "text": "Recite mi da li ste alergični na neki lijek."
+  },
+  {
+   "key": "da li ste trudni?",
+   "datei": "w5284.mp3",
+   "text": "Da li ste trudni?"
+  },
+  {
+   "key": "da li ste trudni ili dojite?",
+   "datei": "w5285.mp3",
+   "text": "Da li ste trudni ili dojite?"
+  },
+  {
+   "key": "kada ste zadnji put bili kod zubara?",
+   "datei": "w5286.mp3",
+   "text": "Kada ste zadnji put bili kod zubara?"
+  },
+  {
+   "key": "a kada ste zadnji put bili kod zubara?",
+   "datei": "w5287.mp3",
+   "text": "A kada ste zadnji put bili kod zubara?"
+  },
+  {
+   "key": "imate karijes.",
+   "datei": "w5288.mp3",
+   "text": "Imate karijes."
+  },
+  {
+   "key": "imate karijes na dva zuba.",
+   "datei": "w5289.mp3",
+   "text": "Imate karijes na dva zuba."
+  },
+  {
+   "key": "treba vam plomba.",
+   "datei": "w5290.mp3",
+   "text": "Treba Vam plomba."
+  },
+  {
+   "key": "treba vam plomba na ovom zubu.",
+   "datei": "w5291.mp3",
+   "text": "Treba Vam plomba na ovom zubu."
+  },
+  {
+   "key": "moramo napraviti snimak.",
+   "datei": "w5292.mp3",
+   "text": "Moramo napraviti snimak."
+  },
+  {
+   "key": "moramo napraviti snimak ovog zuba.",
+   "datei": "w5293.mp3",
+   "text": "Moramo napraviti snimak ovog zuba."
+  },
+  {
+   "key": "dat ću vam injekciju.",
+   "datei": "w5294.mp3",
+   "text": "Dat ću Vam injekciju."
+  },
+  {
+   "key": "dat ću vam injekciju da ne boli.",
+   "datei": "w5295.mp3",
+   "text": "Dat ću Vam injekciju da ne boli."
+  },
+  {
+   "key": "dva sata nemojte jesti.",
+   "datei": "w5296.mp3",
+   "text": "Dva sata nemojte jesti."
+  },
+  {
+   "key": "poslije plombe dva sata nemojte jesti.",
+   "datei": "w5297.mp3",
+   "text": "Poslije plombe dva sata nemojte jesti."
+  },
+  {
+   "key": "dođite na kontrolu za sedmicu dana.",
+   "datei": "w5298.mp3",
+   "text": "Dođite na kontrolu za sedmicu dana."
+  },
+  {
+   "key": "dođite na kontrolu za sedmicu dana, u isto vrijeme.",
+   "datei": "w5299.mp3",
+   "text": "Dođite na kontrolu za sedmicu dana, u isto vrijeme."
+  },
+  {
+   "key": "ja sam stomatologinja, kako vam mogu pomoći?",
+   "datei": "w5300.mp3",
+   "text": "Ja sam stomatologinja, kako Vam mogu pomoći?"
+  },
+  {
+   "key": "boli me zub.",
+   "datei": "w5301.mp3",
+   "text": "Boli me zub."
+  },
+  {
+   "key": "boli me zub već tri dana.",
+   "datei": "w5302.mp3",
+   "text": "Boli me zub već tri dana."
+  },
+  {
+   "key": "boli me kad jedem.",
+   "datei": "w5303.mp3",
+   "text": "Boli me kad jedem."
+  },
+  {
+   "key": "boli me kad jedem nešto slatko.",
+   "datei": "w5304.mp3",
+   "text": "Boli me kad jedem nešto slatko."
+  },
+  {
+   "key": "ispala mi je plomba.",
+   "datei": "w5305.mp3",
+   "text": "Ispala mi je plomba."
+  },
+  {
+   "key": "ispala mi je plomba prije dva dana.",
+   "datei": "w5306.mp3",
+   "text": "Ispala mi je plomba prije dva dana."
+  },
+  {
+   "key": "slomio mi se zub.",
+   "datei": "w5307.mp3",
+   "text": "Slomio mi se zub."
+  },
+  {
+   "key": "slomio mi se zub dok sam jeo orahe.",
+   "datei": "w5308.mp3",
+   "text": "Slomio mi se zub dok sam jeo orahe."
+  },
+  {
+   "key": "krvare mi desni.",
+   "datei": "w5309.mp3",
+   "text": "Krvare mi desni."
+  },
+  {
+   "key": "krvare mi desni kad perem zube.",
+   "datei": "w5310.mp3",
+   "text": "Krvare mi desni kad perem zube."
+  },
+  {
+   "key": "otekao mi je obraz.",
+   "datei": "w5311.mp3",
+   "text": "Otekao mi je obraz."
+  },
+  {
+   "key": "otekao mi je obraz preko noći.",
+   "datei": "w5312.mp3",
+   "text": "Otekao mi je obraz preko noći."
+  },
+  {
+   "key": "noću ne mogu spavati od bolova.",
+   "datei": "w5313.mp3",
+   "text": "Noću ne mogu spavati od bolova."
+  },
+  {
+   "key": "noću ne mogu spavati od bolova u zubu.",
+   "datei": "w5314.mp3",
+   "text": "Noću ne mogu spavati od bolova u zubu."
+  },
+  {
+   "key": "bojim se zubara.",
+   "datei": "w5315.mp3",
+   "text": "Bojim se zubara."
+  },
+  {
+   "key": "bojim se zubara još od djetinjstva.",
+   "datei": "w5316.mp3",
+   "text": "Bojim se zubara još od djetinjstva."
   }
  ]
 }
