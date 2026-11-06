@@ -5876,8 +5876,9 @@ function standAlsObjekt(){
                            bei topf - siehe karteiMischen() (29.10.2026).
      leben, schutz         die Seite mit dem neueren Zeitstempel zeit - dort
                            ist zuletzt etwas passiert (Herz verloren, Schutz
-                           verbraucht). Bei gleicher Zeit die kleinere
-                           Anzahl: ein Abgleich verschenkt keine Herzen.
+                           verbraucht oder gekauft, siehe kaufe()). Bei gleicher
+                           Zeit die kleinere Anzahl: ein Abgleich verschenkt
+                           keine Herzen.
      einstufung            die neuere (tag); fehlt sie auf einer Seite, die
                            andere. Bei gleichem Tag entscheidet der Text -
                            nur damit beide Richtungen dasselbe ergeben.
@@ -6981,7 +6982,9 @@ function streak(){
 const SCHUTZ_MS = SCHUTZ_TAGE*24*60*60*1000;
 function syncSchutz(){
   if(schutz.zeit > Date.now()) schutz.zeit = Date.now();   // siehe syncLives
-  if(schutz.anzahl >= SCHUTZ_MAX){ if(!schutz.zeit) return false; schutz.zeit = 0; return true; }
+  /* Voll laeuft keine Uhr. zeit bleibt trotzdem stehen, nach einem Kauf entscheidet sie
+     den Abgleich, siehe kaufe(). Bis zum 06.11.2026 ging sie hier auf 0. */
+  if(schutz.anzahl >= SCHUTZ_MAX) return false;
   if(!schutz.zeit){ schutz.zeit = Date.now(); return true; }
   const dazu = Math.floor((Date.now() - schutz.zeit) / SCHUTZ_MS);
   if(dazu <= 0) return false;
@@ -7002,10 +7005,13 @@ function pruefeSchutz(){
   while(luecken.length <= SCHUTZ_MAX && !alle.has(dayKey(d))){ luecken.push(dayKey(d)); d.setDate(d.getDate()-1); }
   if(!luecken.length) return;                  // gestern gelernt, alles gut
   if(!alle.has(dayKey(d))){ schutzMeldung = -1; return; }   // Serie schon lange weg
-  if(schutzNow() < luecken.length){ schutzMeldung = -1; return; }
+  const vorrat = schutzNow();
+  if(vorrat < luecken.length){ schutzMeldung = -1; return; }
   luecken.forEach(k=>frost.add(k));
   schutz.anzahl -= luecken.length;
-  if(!schutz.zeit) schutz.zeit = Date.now();
+  /* War der Vorrat voll, steht in zeit hoechstens der Kauf (siehe kaufe()). Die Uhr
+     beginnt erst jetzt. */
+  if(!schutz.zeit || vorrat >= SCHUTZ_MAX) schutz.zeit = Date.now();
   schutzMeldung = luecken.length;
   saveProgress();
 }
@@ -9456,7 +9462,16 @@ function kaufe(id){
     lives.anzahl = Math.min(LEBEN_MAX, lives.anzahl + 1);
     if(lives.anzahl >= LEBEN_MAX) lives.zeit = 0;
   } else if(id==='schutz'){
-    schutz.anzahl = Math.min(SCHUTZ_MAX, schutzNow() + 1);
+    /* Ein Kauf ist ein Ereignis und muss den Abgleich ueberstehen (06.11.2026). Bisher
+       blieb zeit stehen und ging bei vollem Vorrat auf 0. Gegen den Stand von vor dem
+       Kauf gewann dann die neuere Zeit oder bei gleicher Zeit die kleinere Anzahl (siehe
+       zeitWahl): Der Schutz war auf allen Geraeten weg, die Muenzen auch. Darum geht
+       zeit nach oben. Bei vollem Vorrat laeuft keine Uhr, zeit ist dort der Kauf. Sonst
+       laeuft die Uhr weiter, ein Kauf soll keine Tage kosten, eine Millisekunde reicht.
+       Ein Geraet mit 1.2 liest beides als ganz normale Zeit. */
+    const vorrat = schutzNow();
+    schutz.anzahl = Math.min(SCHUTZ_MAX, vorrat + 1);
+    schutz.zeit = schutz.anzahl >= SCHUTZ_MAX ? Math.max(Date.now(), schutz.zeit + 1) : schutz.zeit + 1;
   } else {
     // Gekauftes wird gleich getragen - und schiebt das alte Stueck derselben
     // Gruppe herunter, nicht den ganzen uebrigen Zierrat.
