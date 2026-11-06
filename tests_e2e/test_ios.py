@@ -468,6 +468,37 @@ def test_werbeschalter_fuer_abonnenten_auf_ios(seite, heute_stand):
 
 
 @pytest.mark.parametrize("plattform", ["ios", "android"])
+def test_anzeige_melden_steht_in_den_einstellungen(seite, heute_stand, wurzelordner, plattform):
+    """Richtlinie 2.5.18: Wo Werbung laufen kann, steht "Anzeige melden" auf iOS
+    immer in den Einstellungen. Die Zeile haengt an WERBUNG_ECHT, und das kommt erst
+    mit dem Inhalt (ladeDaten). init() fragte bis zum 06.11.2026 davor, die Zeile
+    blieb also in jedem echten Bau aus. Die Demo merkt das nicht, dort laeuft keine
+    Werbung; darum hier der Inhalt wie im App-Bau."""
+    with open(os.path.join(wurzelordner, "app", "inhalt", "de.json"), encoding="utf-8") as f:
+        daten = json.load(f)
+    daten["werbung_laeuft"] = True
+    seite.page.route("**/app/inhalt/de.json", lambda r: r.fulfill(
+        status=200, content_type="application/json; charset=utf-8", body=json.dumps(daten)))
+    seite.page.add_init_script(HUELLE % plattform)
+    seite.page.add_init_script(r"""
+      window.Capacitor.Plugins.AdMob = {
+        addListener: async () => ({remove(){}}),
+        initialize: async () => {},
+        requestConsentInfo: async () => ({status: 'OBTAINED', canRequestAds: true, isConsentFormAvailable: true,
+                                          privacyOptionsRequirementStatus: 'REQUIRED'}),
+        trackingAuthorizationStatus: async () => ({status: 'authorized'}),
+        prepareInterstitial: async () => ({}),
+        prepareRewardVideoAd: async () => ({}),
+      };
+    """)
+    seite.starten(stand=heute_stand())
+    seite.js("() => showSettings()")
+    assert seite.js("() => WERBUNG_ECHT") is True
+    assert _sichtbar(seite, "#anzeigeMelden") is (plattform == "ios")
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("plattform", ["ios", "android"])
 def test_tonweg_status_null_und_latenz(seite, heute_stand, plattform):
     """Der Tonweg seit 1.3: AudioContext mit latencyHint 'playback', und ein Tempo
     aus der Geschichte haelt die Lektion nicht mehr vom schnellen Weg ab. Status 0
