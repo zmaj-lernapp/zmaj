@@ -11308,8 +11308,17 @@ function partnerAntworten(w){
 /* Wortschatz-Pakete 5 bis 9 (06.11.2026): diese Woerter heissen teilweise gleich
    („so“, „ganz“, „hier“, „sehr“) und sollen nie zusammen in einer Auswahl stehen.
    Beim Tippen zaehlt das andere Wort trotzdem nicht: "auch" hat Ajdin dafuer
-   nicht freigegeben. */
-const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako'], ['vrlo / veoma', 'jako']];
+   nicht freigegeben.
+   Pruefbericht 1.3 (06.11.2026): Bei der Frage "ziehen" (vući) stand povlačiti
+   mit "ziehen / zurückziehen" als falscher Knopf, bei "also" (dakle) pa mit "und
+   dann / also". Wer das antippt, hat recht und verliert ein Leben. Die Paare ab
+   der zweiten Zeile sind genau solche Faelle, jeder in mindestens einer der acht
+   Sprachen; bei važan / bitan und nakon / po trennt nur auf Deutsch die Klammer.
+   Die Liste gilt in allen Sprachen, tests_e2e/test_antworten.py sucht je Sprache
+   nach weiteren. */
+const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako'], ['vrlo / veoma', 'jako'],
+  ['vući', 'povlačiti'], ['dakle', 'pa'], ['iz', 'od'], ['Hajde!', 'Hajmo!'], ['tražiti', 'zvati'],
+  ['dokument', 'potvrda'], ['Sve je dobro', 'Šta ima?'], ['bitan', 'važan'], ['nakon', 'po']];
 const nieNebeneinander = (a, b) => NIE_NEBENEINANDER.some(([x, y]) => (a === x && b === y) || (a === y && b === x));
 function geschwister(w){
   const b = _bedeutung(w.de);
