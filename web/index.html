@@ -1809,14 +1809,23 @@
   @keyframes weiterPuls{0%,100%{filter:brightness(1)} 50%{filter:brightness(1.14)}}
   @media (prefers-reduced-motion:reduce){ .weiterbox .btn{animation:none} }
   .wordlist{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 14px; font-size:14px}
-  /* Feste Zeilenhöhe und kein Umbruch: vorher war jede Zeile so hoch, wie
-     ihr längstes Wort es erzwang, und die Liste wirkte zerfasert. */
+  /* Höchstens zwei Zeilen: unbegrenzt war jede Zeile so hoch, wie ihr
+     längstes Wort es erzwang, und die Liste wirkte zerfasert. Mit nur einer
+     Zeile blieb bei langen Einträgen von beiden Texten fast nichts übrig, und
+     Haken und Lautsprecher, die mit im bosnischen Feld standen, wurden
+     mit abgeschnitten (Pruefbericht 1.3, G10). Sie haben jetzt ein festes
+     Feld am Ende der Zeile. */
   .wordlist div{display:flex; justify-content:space-between; align-items:center; gap:8px;
     min-width:0; min-height:30px; padding:3px 0; border-bottom:1px dashed var(--line)}
-  .wordlist .de{flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .wordlist .bs{flex:0 1 auto; min-width:0; font-family:var(--font-display); color:var(--primary);
-    font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .wordlist .de, .wordlist .bs{overflow:hidden; overflow-wrap:break-word;
+    display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2}
+  .wordlist .de{flex:1 1 auto; min-width:0}
+  /* min-content: neben einer langen Bedeutung schrumpfte das bosnische Feld
+     sonst unter sein Wort, und aus "tetka" wurde "tetk" und "a". */
+  .wordlist .bs{flex:0 1 auto; min-width:min-content; font-family:var(--font-display);
+    color:var(--primary); font-weight:600}
   .wordlist .bs.zu{color:var(--muted); opacity:.55; font-family:var(--font-ui)}
+  .wordlist .wortende{flex:none; display:flex; align-items:center; justify-content:flex-start; gap:2px; min-width:46px}
   .wordlist .ok{color:var(--good-text); font-size:12px}
   @media (max-width:480px){.wordlist{grid-template-columns:1fr}}
 
@@ -11235,11 +11244,12 @@ function showLevelHome(){
      gibt. */
   $('wordList').innerHTML = zeilen.map(z=>
       '<div><span class="de">'+esc(z.de)+'</span>'
-    + '<span class="bs'+(z.kann?'':' zu')+'">'
-    + (z.kann ? esc(z.bs)+' <span class="ok">✓</span>'
+    + '<span class="bs'+(z.kann?'':' zu')+'">'+(z.kann ? esc(z.bs) : '?')+'</span>'
+    + (z.kann ? '<span class="wortende"><span class="ok">✓</span>'
                 + (hoerbar(z.bs) ? '<button type="button" class="wortton" data-bs="'+esc(z.bs)+'" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>' : '')
-              : '?')
-    + '</span></div>').join('');
+                + '</span>'
+              : '')
+    + '</div>').join('');
   $('wordList').querySelectorAll('.wortton').forEach(b=>b.addEventListener('click', e=>{
     e.stopPropagation(); stilleBitte(); speak(b.dataset.bs);
   }));
