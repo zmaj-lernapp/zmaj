@@ -10809,9 +10809,17 @@ $('fbSend').addEventListener('click', async ()=>{
 });
 
 /* =================== STARTSEITE =================== */
+/* Zurueck aus einem Level soll dort landen, wo man im Lernpfad war, sonst
+   scrollt man in einer langen Sektion nach jedem Zurueck neu hinunter
+   (Pruefbericht 1.3, G11). openLevel() merkt sich die Stelle, und sie gilt
+   einmal, nur auf dem Weg aus dem Level. Von anderswo oeffnet der Pfad
+   weiterhin oben, siehe LERNPFAD. */
+let pfadStelle = 0;
 function showHome(){
   uhrAus();
   if(anmeldungSperre()) return;     // Pflicht-Anmeldung, 28.10.2026
+  const stelle = homeMode === 'words' && sichtbar('levelView') ? pfadStelle : 0;
+  pfadStelle = 0;
   showView('pfad'); setzeZurueck('', null);
   $('modeWords').setAttribute('aria-selected', homeMode==='words'); $('modeStories').setAttribute('aria-selected', homeMode==='stories');
   $('modeTopf').setAttribute('aria-selected', homeMode==='topf');
@@ -10823,6 +10831,7 @@ function showHome(){
   einstufungAnbieten();
   kartenNachreichen();
   if(einstufungBereit) agbHinweis();
+  if(stelle) window.scrollTo({top: stelle, behavior: 'instant'});
 }
 /* Der Laden ist keine Lernsache, deshalb steht er oben bei Profil und
    Einstellungen und nicht in der Reiterleiste. */
@@ -11188,6 +11197,8 @@ function showStoryQ(s, qi, right){
 /* =================== LEVEL =================== */
 function openLevel(i){
   if(anmeldungSperre()) return;
+  // Beim Blaettern von Level zu Level bleibt die Stelle von vorher, siehe showHome()
+  if(!sichtbar('levelView')) pfadStelle = sichtbar('pfad') && homeMode === 'words' ? window.scrollY : 0;
   catIdx=i; showView('levelView');
   setzeZurueck(t('btn.zurueck_pfad'), ()=>{ homeMode='words'; showHome(); });
   $('tag').textContent=t('level.zaehler',{i:levelNummer(i), n:levelEnde() - levelAnfang()});
