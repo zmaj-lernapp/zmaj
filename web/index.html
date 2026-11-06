@@ -3960,7 +3960,11 @@ function sektionsFarbe(){
 }
 const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const strip = s => s.toLowerCase().replace(/đ/g,'d').normalize('NFD').replace(/[̀-ͯ]/g,'');
-const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
+/* Komma und Bindestrich im Inneren zaehlen wie ein fehlendes Haekchen: "Racun molim"
+   fuer "Račun, molim", "sogan dolma" fuer "sogan-dolma". Vorher kosteten sie bei zwei
+   gleichen Versuchen ein Leben (Pruefbericht 1.3, 06.11.2026). Nur matches() und
+   fastRichtig() benutzen clean(). */
+const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/[,-]/g,' ').replace(/\s+/g,' ').trim();
 
 /* ---------- Gesprochenes vergleichen ----------
    Die Erkennung schreibt, was sie hoert, nach den Regeln der Sprache, die
@@ -4323,6 +4327,8 @@ function matches(guess, answer){
   if(zg !== null && alts.some(a => zahlWert(a) === zg)) return 'ok';
   if(alts.some(a => norm(zahlenAusschreiben(a)) === norm(zahlenAusschreiben(g)))) return 'ok';
   if(alts.some(a => clean(a) === clean(g))) return 'almost';
+  // Ohne den Bindestrich auch ohne die Luecke: "sogandolma" fuer "sogan-dolma".
+  if(alts.some(a => a.includes('-') && clean(a.replace(/-/g,'')) === clean(g))) return 'almost';
   return 'no';
 }
 
@@ -4357,8 +4363,8 @@ function matches(guess, answer){
      Tippfehler war. Eine andere Endung ist immer auch ein Tippfehler
      Abstand - ein Buchstabe anders oder einer mehr -, die eine Regel deckt
      sie mit ab.
-   Verglichen wird auf den Formen von clean(): ohne Haekchen, Gross/klein und
-   Satzzeichen am Ende. Fehlen nur Haekchen, hat matches() schon 'almost'
+   Verglichen wird auf den Formen von clean(): ohne Haekchen, Gross/klein,
+   Satzzeichen am Ende, Komma und Bindestrich. Fehlen nur Haekchen, hat matches() schon 'almost'
    gesagt - hierher kommt nur, was 'no' war. So vermischt sich nichts: ein
    fehlendes Haekchen ist nie "der eine Tippfehler", und bei "kruskq" fuer
    "kruška" ist es genau einer (q statt s), das Haekchen zaehlt nicht mit. */
