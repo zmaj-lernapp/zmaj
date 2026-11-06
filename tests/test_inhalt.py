@@ -38,6 +38,33 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     assert len(grunddaten["grammatik"]) == 16
 
 
+def test_woerter_und_saetze_getrennt_wie_in_readme_und_store(grunddaten, wurzel):
+    """Entscheidung vom 06.11.2026 (Prüfbericht 1.3, G16): Wörter und Sätze werden
+    getrennt genannt, „4.421 Wörter“ stimmte nicht. Ein Satz endet auf ein
+    Satzzeichen; breiter gezählt auch alles ab vier Wörtern, darunter Formen wie
+    „moj / moja / moje“. Beide Zählungen müssen zu den gerundeten Zahlen passen.
+    Geht das hier nicht mehr auf, müssen README und Store-Text mit."""
+    import os
+    ende = re.compile(r"[.!?…]$")
+    eintraege = [w["bs"].strip() for k in grunddaten["kategorien"] for w in k["words"]]
+    eng = sum(bool(ende.search(b)) for b in eintraege)
+    breit = sum(bool(ende.search(b)) or len(b.split()) >= 4 for b in eintraege)
+    for saetze in (eng, breit):
+        assert abs(saetze - 1500) <= 100, saetze
+        assert abs(len(eintraege) - saetze - 2900) <= 100, saetze
+
+    def flach(name):
+        with open(os.path.join(wurzel, name), encoding="utf-8") as f:
+            return " ".join(f.read().split())
+    readme = flach("README.md")
+    assert "about 2,900 words and phrases and about 1,500 example sentences" in readme
+    assert "rund 2.900 Wörter und Wendungen und rund 1.500 Beispielsätze" in readme
+    assert "oko 2.900 riječi i izraza i oko 1.500 rečenica" in flach("README.bs.md")
+    # Der Alt-Text des Kopfbilds beschreibt das Bild, und dort steht die Zahl noch.
+    ohne_bild = re.sub(r'alt="[^"]*"', "", readme)
+    assert "4,421 words" not in ohne_bild and "4421 Vokabeln" not in ohne_bild
+
+
 def test_wort_kennungen_eindeutig_und_stabil(grunddaten):
     """Unter der Kennung speichert die App den Lernstand. Doppelt heißt: zwei
     Wörter teilen sich einen Fortschritt."""
