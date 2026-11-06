@@ -11,8 +11,15 @@ import pytest
 # die Nummer (und das Datum unter dem letzten Punkt). In der Datenschutz-
 # erklärung steht seit v109 Abschnitt 3 (Konto) neu davor, alles Spätere
 # ist eins weitergerückt.
+# Seit 01.11.2026 nicht mehr 3 -> 4: Mit Konto gibt es keine
+# Sicherungsdatei mehr (Abschnitt 4 „Sicherung“), ohne Konto - die Web-Demo -
+# bleibt sie. Am selben Tag fiel 4 -> 5 weg: Mit Konto geht das Feedback
+# übers Kontaktformular (Abschnitt 5 „Rückmeldung“), ohne Konto weiter
+# übers Mailprogramm. Die Nummern dahinter stimmen weiter überein; auf
+# Abschnitt 3 oder 4 verweist die Fassung ohne Konto in den geprüften
+# Stellen nicht.
 AGB_GLEICH = {1: 1, 2: 2, 4: 4, 6: 6, 7: 7, 9: 9, 10: 10}
-DATENSCHUTZ_GLEICH = {1: 1, 3: 4, 4: 5, 5: 6, 6: 7}
+DATENSCHUTZ_GLEICH = {1: 1, 5: 6, 6: 7}
 
 
 def _abschnitte(text):

@@ -685,19 +685,35 @@ def test_kaufkasten_drache_in_voller_montur(seite, heute_stand, netz):
 
 # Wie playMood() bei ruhender Animation (Schalter "Animationen" aus oder
 # Geraete-Einstellung "weniger Bewegung"): kein Lauf, sondern ein Standbild aus
-# der Mitte der Stimmung. Gemessen wird gleich nach dem Laden, vor dem
-# Zeitgeber, der kurze Stimmungen in die Ruhepose zurueckholt.
+# der Mitte der Stimmung. Gemessen wird im selben Zug wie der Aufruf von
+# playMood() aus mountZmaj(), also vor jedem Zeitgeber - auch dem, der kurze
+# Stimmungen in die Ruhepose zurueckholt.
+#
+# Bis zum 05.11.2026 wartete der Test hier in einer Schleife auf isLoaded, und
+# das war zu frueh: isLoaded setzt lottie selbst (checkLoaded in lottie.min.js),
+# zeichnet dann Bild 0, die Ruhepose, und liefert DOMLoaded erst per setTimeout(0)
+# aus. Erst DOMLoaded ruft playMood(). Fiel der 10-ms-Takt der Schleife in diese
+# Luecke, las der Test kopf_neutral - auf GitHub und ab und zu am PC. Mitschnitt
+# eines solchen Laufs: "gelesen@260 DOMLoaded@261 playMood:cheer@262", kein
+# complete, kein Zeitgeber, eine Millisekunde spaeter stand das richtige Bild.
+# Mit sechsfach gedrosselter CPU 19 von 60 Mal, in allen drei Stimmungen. Fuer
+# die App ist das kein Fehler, nur der Test las zu frueh. Deshalb wird nicht mehr
+# gepollt, sondern auf genau den Aufruf gewartet, um den es geht.
 STANDBILD = """async ([vorgabe, stimmung]) => {
     document.body.classList.add('no-anim');
     const el = document.createElement('div'); el.className = 'zmaj-anim';
     el.style.cssText = 'position:fixed;left:0;top:0;width:260px;height:250px;z-index:99999';
     document.body.appendChild(el);
+    const echt = playMood;
+    const gesetzt = new Promise((ja, nein) => {
+        const frist = setTimeout(() => nein(new Error('der Drache laedt nicht')), 20000);
+        playMood = (e, m) => {
+            echt(e, m);
+            if(e === el && e._anim && e._anim.isLoaded){ clearTimeout(frist); ja(); }
+        };
+    });
     mountZmaj(el, stimmung, vorgabe);
-    const ende = Date.now() + 20000;
-    while(!(el._anim && el._anim.isLoaded)){
-        if(Date.now() > ende) throw new Error('der Drache laedt nicht');
-        await new Promise(r => setTimeout(r, 10));
-    }
+    try { await gesetzt; } finally { playMood = echt; }
     const href = i => i.getAttribute('href') || i.getAttributeNS('http://www.w3.org/1999/xlink', 'href') || '';
     const sicht = [...el.querySelectorAll('svg image')].filter(i => {
         const r = i.getBoundingClientRect(); return r.width > 0 && r.height > 0; }).map(href);
@@ -712,6 +728,7 @@ def test_drache_ohne_animation_zeigt_standbild_der_stimmung(seite, heute_stand, 
     seite.starten(stand=heute_stand())
     r = seite.js(STANDBILD, [{"ids": ["umhang"], "farbe": "gold"}, stimmung])
     assert r["pausiert"] is True, "der Drache laeuft trotz 'Animationen aus'"
+    assert r["stimmung"] == stimmung
     koepfe = sorted({os.path.basename(h) for h in r["sicht"] if "/kopf_" in h})
     assert koepfe == [kopf + ".webp"], koepfe
     assert "maskottchen/haut/gold/body.webp" in r["sicht"]

@@ -7,6 +7,91 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Hidden section "At the dentist" (`zahnarzt.py`, 7 levels, 111 entries, reviewed by a
+  native speaker on 6.11.2026), written from the dentist's point of view: tap the
+  version line in the settings seven times and enter the word `zahnarzt`. It unlocks
+  nothing paid. Without the word nothing changes; even with it the section stays out of
+  every count (levels, words, learning days, daily goals, "continue", review), the dataset and the
+  Anki decks. Progress goes with the account. Recordings only in the store version
+  (`ton_nur_emir.json`, w5206–w5316).
+- Vocabulary packages 5 to 9 (reviewed by a native speaker on 6.11.2026):
+  740 words and 743 example sentences, each word right before its sentence (1,483
+  new entries, 4,425 in total, 166 levels, 17 sections). Section 10 gets 22 levels of verbs before
+  "When something happens", 136 new pairs with `partner` on both words, also on
+  the older verb (*nositi* - *ponijeti*, *snimiti* - *snimati*); *povući* has two
+  partners. Three new sections, each in the next colour: section 15 · Basic
+  concepts (12 levels), section 16 · People and society (13 levels) and section
+  17 · How, where and when (12 levels). *mačak* (tomcat) joins *mačka* in Animals
+  & nature. Existing words get a second form instead of a second entry:
+  *doktor / ljekar*, *dozvoliti / dopustiti* ("to allow / to permit"),
+  *dozvoljavati / dopuštati*; progress moves along through `UMBENANNT`, and the
+  finished sentences of *ljekar*, *dopustiti* and *dopuštati* are entries of their
+  own. Second forms approved by the native speaker count when typing (*uvjet*,
+  *utjecaj*, *dečko*, *organizirati*), forms he ruled out do not (*poduzeće*,
+  *projekt*, *strana* for "page", *sudjelovati*, *preći*, *sopstven*, *natrag*).
+  Four pairs that share a meaning never appear in the same multiple choice
+  (`NIE_NEBENEINANDER`: *sav* / *cijeli*, *tu* / *ovdje*, *tako* / *ovako*,
+  *vrlo / veoma* / *jako*). The app speaks all new entries with recordings that
+  only the store version contains (`ton_nur_emir.json`, w3724–w5205); the web demo,
+  the dataset and the Anki decks have no audio for them. 13 entries whose recording
+  is still missing wait outside the app.
+- Vocabulary packages 3 and 4 (reviewed by a native speaker on 31.10. and
+  1.11.2026): 300 words, each followed by its example sentence (600 new
+  entries, 2,942 in total, 107 levels). Section 10 gets three levels before
+  "When something happens": "Buying and returning", "Spending and saving
+  money" and "Pairs: more verbs". Three new sections complete the B1 stage
+  of the course plan, each in the next colour: section 12 · Body and health
+  (8 levels: body parts, illness, ailments, at the doctor's office, at the
+  pharmacy, healthy living), section 13 · Time and leisure (6 levels: time
+  expressions, sports, hobbies, media, travel) and section 14 · Learning
+  and working (4 levels: school, studying, jobs, at work). `partner` is set
+  on both words of 27 new pairs, also on the older verb from packages 1 and
+  2; *izabrati* ("to decide / to choose") and *birati* ("to pick / to
+  choose") are a pair with different meanings, like *popiti* and *piti*.
+  Second forms approved by the native speaker count when typing (*nogomet*,
+  *naočare*, *momenat* …), forms he ruled out do not (*ranac*, *grudi*,
+  *rentgen*, *prepisati*, *odabrati*). Words spelled like another word
+  (*jezik* "tongue" and "language", *vrijeme* "time" and "weather") never
+  appear together as answer options. *budućnost* has its own translations,
+  because "Zukunft" is also the title of the future-tense lesson. The app
+  speaks all new words and example sentences with recordings that only the
+  store version contains (`ton_nur_emir.json`, w3124–w3723; *zarađivati*,
+  *jezik*, *vrijeme* and *još* already had theirs); the web demo, the
+  dataset and the Anki decks have no audio for them.
+- Vocabulary package 2 (reviewed by a native speaker on 31.10.2026): 151
+  words, each followed by its example sentence (302 new entries, 2,342 in
+  total, 86 levels). Section 10 gets four levels before "When something
+  happens": three that bring the second verb of a pair (*gubiti* to
+  *izgubiti*, *pokazivati* to *pokazati*) and "Around the house". The new
+  section 11 · How things are has seven levels of adjectives (opposites,
+  character, feelings, the five senses) and carries the second colour. The
+  app shows the masculine form (*dug*); the feminine and neuter forms
+  (*duga*, *dugo*) count when typing. Words spelled like another word
+  (*dug* "long" and *dug* "debt", *jako* "very" as the neuter of *jak*)
+  never appear together as answer options. `partner` is now set on both
+  words of each new pair. *okus* (taste of food) and *ukus* (taste in
+  style) are two words. In Norwegian, "putzen" is now "gjøre rent", because
+  "vaske" is the new word for "waschen" in the same level. The app speaks
+  all new words and example sentences with recordings that only the store
+  version contains (`ton_nur_emir.json`, w2822–w3123; *dug* and *skuhati*
+  already had theirs); the web demo, the dataset and the Anki decks have
+  no audio for them.
+- Section 10 · Doings and dealings (vocabulary package 1, reviewed by a
+  native speaker on 31.10.2026): 140 verbs and 10 emergency words in 10 new
+  levels, each word followed by its example sentence (300 new entries,
+  2,040 in total). Aspect pairs such as *ostati* / *ostajati* (both "to
+  stay") are learned separately, with their own IDs; the app does not show
+  the aspect. The two never appear together as answer options, and typing
+  the other verb of the pair gives a one-time "Almost right! It's the other
+  verb of the pair." instead of costing a life (new field `partner` in
+  `vokabeln.py`, new text `task.partner` in all eight languages). Forms with
+  " / " (*boljeti / boliti*) count one by one when typing, `auch` adds
+  *izići*, *dobijati* and three words for the ambulance. The new section has
+  no tenth colour yet and repeats the first. The app speaks the 146 words
+  that were not in the app before and all 150 example sentences with
+  recordings that only the store version contains (`ton_nur_emir.json`,
+  words w2521–w2671, sentences w2672–w2821); the web demo, the dataset and
+  the Anki decks have no audio for them.
 - Groundwork for the iPhone and iPad app (30.10.2026, branch `ios-web`):
   one platform switch (`PLATTFORM`: `android`, `ios` or `web`, decided once
   in the small script in the page head). On iOS only: the back button in
@@ -138,8 +223,33 @@ are in the Play Store listing. Format:
 - `app_bauen.py --pflicht` builds such a mandatory update (next multiple of
   100); normal builds skip multiples of 100, and an unknown switch aborts the
   build before anything is copied.
+- Website: `links.html`, a link page for the TikTok, Instagram and YouTube
+  profiles (`links.html?von=tiktok` and so on), in all eight languages,
+  chosen from the phone's language list (English otherwise). Four large
+  buttons of equal width: the official "Get it on Google Play" badge in the
+  page's language, with the channel as campaign source in `referrer=`
+  (`utm_source=tiktok|instagram|youtube`, otherwise `web`, also without
+  JavaScript), then Instagram, TikTok and YouTube with their logos. Below,
+  in small print, contact, legal notice, privacy policy, terms of use, the
+  note "Characters & voices made with AI" and the Google Play trademark
+  notice. The badges and logos are stored unchanged in `grafik/marken`
+  (sources and checksums in `QUELLEN.md`); nothing is loaded from other
+  servers. No counter, no cookies, nothing stored on the device; a Content
+  Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Tablets: from 600 points on the shorter side (Android's "sw600dp") the
+  whole app scales up with the screen. Upright, the column fills about
+  88 % of the width (10-inch tablet: everything 1.3 times larger); in
+  landscape the column is 640 points wide and centred, and the app scales
+  only as far as a lesson still fits without scrolling (7-inch: not at
+  all); at most 1.4 times. Lessons, level tests
+  and the placement test fill the screen: upright, the dragon and the task
+  sit in the middle, the answers below, and Check/Continue at the bottom,
+  with room reserved so nothing jumps after an answer. Phones (under 600
+  points) look exactly as before. `tests_e2e/test_tablet.py`.
+- Legal notice (app and website, all eight languages): it now says that it
+  also applies to our profiles on TikTok, Instagram and YouTube.
 - Account (v109): a new password needs 8 characters with an uppercase and
   a lowercase letter, a digit and a special character, and must not contain
   the part of the email address before the @. A checklist under the field
@@ -221,6 +331,17 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Speed: the speed set under a story now applies only while a story is read
+  aloud. It used to slow down every recording in the app, including all lessons,
+  and took words off the fast sound path, although it can only be changed in the
+  stories. Words, sentences and listening tasks always play at normal speed, and
+  so does a word tapped in a story. A saved speed stays valid.
+- Sound: the app builds its one audio context in one place now, with
+  `latencyHint: 'playback'` and without the option only if a device rejects
+  it. On a Galaxy S21 (Android 15, WebView 156) the default short buffer stayed
+  silent on 5.11.2026, with the context "running" and no error, while this
+  setting played. Feedback tone and word move together; the spacing between
+  them stays the same.
 - First start on a device set to Norwegian reporting "no" or "nn" (instead of
   "nb") now opens in Norwegian instead of English.
 - Settings: "Switch to yearly" is hidden during the free trial week, when

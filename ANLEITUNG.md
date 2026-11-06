@@ -186,11 +186,15 @@ Oben rechts öffnet ⚙ die **Einstellungen**:
 - **Lernen:** Töne, Vibration (nur am Handy), Animationen, Stimme zum
   Vorlesen.
 - **Sicherung:** Lernstand als Datei speichern und wieder einlesen (siehe
-  „Kein Konto“).
+  „Kein Konto“). Seit 1.2 (01.11.2026) nur noch ohne Konto, also in der
+  Web-Fassung; in der Android-App sichert das Konto alles.
 - **Rückmeldung:** Ein Textfeld. „Senden“ öffnet das Mailprogramm des
-  Nutzers mit fertiger Nachricht an `zmaj.lernapp@gmail.com`.
+  Nutzers mit fertiger Nachricht an `zmaj.lernapp@gmail.com`. Seit 1.2 geht
+  es in der Android-App, angemeldet, über das Kontaktformular (siehe
+  „Rückmeldung per Mail“); das Mailprogramm ist dort nur der Rückfall.
 - **Über die App:** Version, Quellen, Nutzungsbedingungen, Datenschutz und –
-  sobald Werbung läuft – der Knopf, mit dem sich die Einwilligung ändern
+  sobald Werbung läuft – der Knopf (seit 1.2 ein Schalter, auf dem Handy
+  auch für Abonnenten), mit dem sich die Einwilligung ändern
   lässt.
 
 ### Der Vorspann
@@ -261,6 +265,11 @@ Seite geleert wird, und er geht nicht von selbst auf ein zweites Gerät über.
 
 Deshalb **Einstellungen → Sicherung**. Zwei Knöpfe:
 
+(Seit 1.2, 01.11.2026, gibt es diesen Bereich nur noch ohne Konto. Ajdin:
+„Sicherung speichern kann raus weil wir ja jetzt einen server haben“ – „Ganz
+raus“. In der Android-App mit Konto blendet `showSettings()` ihn aus, das
+Konto sichert alles; die Web-Fassung behält beide Knöpfe.)
+
 - **Sicherung speichern** schreibt den ganzen Stand in eine Datei
   `zmaj-sicherung-JJJJ-MM-TT.json`. Am Handy geht sie ins Teilen-Menü – von
   dort aus an sich selbst schicken oder in die Cloud legen. Am PC ist es ein
@@ -299,6 +308,15 @@ Sprachcode und Datum, sonst nichts.
 Ist auf dem Gerät gar kein Mailprogramm eingerichtet, passiert sichtbar
 nichts. Deshalb steht danach die Adresse `zmaj.lernapp@gmail.com` da, mit
 einem Knopf zum Kopieren.
+
+**Seit 1.2 (01.11.2026) in der Android-App:** Angemeldet geht das Feedback
+über das Kontaktformular (Ajdin: „Übers Formular“). Text eintippen, „Senden“,
+fertig: Die App meldet sich kurz anonym bei Firebase an, legt
+`nachrichten/{uid}` an wie `kontakt.html` und löscht die Anmeldung wieder;
+`kontakt_weiterleitung.gs` bringt die Nachricht nach Gmail, „Antworten an“ ist
+die Adresse des Kontos (FIREBASE_EINRICHTEN.md, Abschnitt 15). Vor der
+Anmeldung, ohne Netz oder wenn Firebase ablehnt, öffnet sich wie oben das
+Mailprogramm. Ohne Konto (Web-Fassung) bleibt alles wie oben beschrieben.
 
 ### Was aus mail.py und konten.py geworden ist
 
@@ -383,9 +401,9 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: 9 Sektionen, 65 Levels
+## Der Lernpfad: 17 Sektionen, 166 Levels
 
-Der Lernpfad zeigt neun Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
+Der Lernpfad zeigt siebzehn Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
 Ein Level antippen öffnet die Übungen. Bestandene Levels und Sektionen bleiben
 offen und können jederzeit wieder gespielt werden.
 
@@ -423,6 +441,64 @@ Musik, Glaube & Gastfreundschaft.
 **Sektion 9 · Amt & Verträge** (6 Levels): Höflich & Formell, Amt & Behörde,
 Bank & Geld, Wohnung & Hauskauf, Arbeitsvertrag & Bewerbung, Arzt &
 Versicherung.
+
+**Sektion 10 · Tun und Lassen** (39 Levels, seit 31.10.2026, Wortschatz-Pakete
+1 bis 3, 7 und 8): Kommen und gehen, Geben, nehmen, kaufen, Sagen und denken, Verstehen
+und erinnern, Anfangen und aufhören, Tun und machen, Stellen, legen, sitzen,
+Alltag und Leben, Paare: geben und nehmen, Paare: sagen und denken, Paare:
+Alltag und Leben, Im Haushalt, Kaufen und zurückgeben, Geld ausgeben und
+sparen, Paare: noch mehr Verben, die 22 Level aus den Paketen 7 und 8 (Sagen
+und betonen bis Paare: das zweite Verb), Wenn etwas passiert, Im Notfall. Die
+fünf Paar-Level bringen das zweite Verb zu einem Verb, das schon dran war
+(*gubiti* zu *izgubiti*, *pokazivati* zu *pokazati*). Jedes Wort kommt mit
+seinem Beispielsatz direkt danach. Aspektpaare wie *ostati* und *ostajati*
+heißen beide „bleiben“: Sie werden getrennt gelernt, stehen nie zusammen in
+einer Auswahl, und wer beim Tippen das andere Verb des Paares schreibt,
+bekommt einmal „Fast richtig!“ mit einem Hinweis statt eines Fehlers. Eine
+zehnte Farbe gibt es noch nicht, die Sektion trägt wieder die erste.
+
+**Sektion 11 · Wie etwas ist** (7 Levels, seit 31.10.2026, Wortschatz-Paket
+2): Lang und kurz, Voll und leer, Möglich und unmöglich, Wie jemand ist, Wie
+man sich benimmt, Glück und Sorgen, Die fünf Sinne. Vor allem Adjektive,
+jedes mit seinem Beispielsatz. Gezeigt wird die männliche Form (*dug*), die
+weibliche und die sächliche (*duga*, *dugo*) zählen beim Tippen genauso.
+Die Sektion trägt die zweite Farbe.
+
+**Sektion 12 · Körper und Gesundheit** (8 Levels, seit 01.11.2026,
+Wortschatz-Paket 3): Von Kopf bis Fuß, Haut, Knochen und Organe, Krank sein,
+Beschwerden, In der Arztpraxis, Untersuchen und heilen, In der Apotheke,
+Gesund leben. Dritte Farbe.
+
+**Sektion 13 · Zeit und Freizeit** (6 Levels, seit 01.11.2026,
+Wortschatz-Paket 4): Zeitangaben, Sofort, gerade, endlich, Sport und Spiel,
+Hobbys und Ausgehen, Zeitung, Fernsehen, Internet, Reisen und Urlaub. Vierte
+Farbe.
+
+**Sektion 14 · Lernen und Arbeiten** (4 Levels, seit 01.11.2026,
+Wortschatz-Paket 4): In der Schule, Lernen und studieren, Berufe, Am
+Arbeitsplatz. Fünfte Farbe.
+
+**Sektion 15 · Grundbegriffe** (12 Levels, seit 06.11.2026, Wortschatz-Paket
+5): Ort und Raum, Richtung und Maß, Menge und Teil, Art, Wert und Unterschied,
+Anfang und Ende, Das Leben, Grund und Folge, Nutzen und Schaden, Denken und
+entscheiden, Wahrheit und Zweifel, Dinge regeln, Hilfe und Hindernisse. Sechste
+Farbe.
+
+**Sektion 16 · Menschen und Gesellschaft** (13 Levels, seit 06.11.2026,
+Wortschatz-Paket 6): Menschen, Wer ist wer, Beziehungen, Stimmung und Streit,
+Staat und Politik, Gemeinde und Gesellschaft, Krieg und Recht, Wirtschaft,
+Technik und Energie, Kultur und Bildung, Glaube und Gedenken, Alltag und
+Information, Gruppe, Netz und Gebäude. Siebte Farbe.
+
+**Sektion 17 · Wie, wo und wann** (12 Levels, seit 06.11.2026, Wortschatz-Paket
+9): Wichtig und bekannt, Ganz und viele, Früher und später, Innen und außen,
+Sauber, warm, gefährlich, Hier und dort, Wann und wie oft, Wie sehr, Wie man es
+meint, Sätze verbinden, Noch mehr Präpositionen, Fürwörter. Achte Farbe.
+
+Auch in den Sektionen 12 bis 17 steht jedes Wort direkt vor seinem
+Beispielsatz. Was Ajdin als zweite Form freigegeben hat (*nogomet* bei
+*fudbal*, *naočare* bei *naočale*), zählt beim Tippen; was er ausgeschlossen
+hat (*ranac*, *grudi*, *rentgen*, *prepisati*), zählt nicht.
 
 Jedes Level nennt unter „Baut auf“, welche früheren Levels es voraussetzt.
 Daraus kommen die Wiederholungsfragen im Test.
@@ -543,7 +619,8 @@ Stufe mit festem Abstand bis zum nächsten Termin:
   bekommen Stufe 3 und einen Termin ab morgen, verteilt auf etwa vier
   Wochen mit 3 bis 10 Wörtern je Tag, die ältesten Level zuerst. Bei mehr
   als 280 gewussten Wörtern dauert das entsprechend länger, bei allen
-  1.740 knapp sechs Monate. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
+  4.425 knapp sechs Monate. Ab 1.800 Wörtern sind es mehr als 10 je Tag
+  (bei allen 25), damit der Umzug nie länger als 180 Tage dauert. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
   dann brauchte der Umzug mit seinen Rückkehrern allein bald mehr als 30
   Plätze am Tag (Prüfung vom 29.10.2026).
 - Höchstens 30 fällige Wörter am Tag (`KARTEI_TAG_MAX`). Der Rest bleibt
@@ -1078,9 +1155,10 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 1740 Wörter hat eine eigene Fortschritts-Kennung.
-- In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, und
-  keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
+- Jedes der 4425 Wörter hat eine eigene Fortschritts-Kennung.
+- In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, außer
+  den Aspektpaaren (*ostati* / *ostajati*), die mit Absicht gleich heißen.
+  Keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
 
 Was im Wörterbuch zusammenfällt (`posao` und `rad` heißen beide „Arbeit“,
 `se` und `sebi` beide „sich“), fällt schon im Deutschen zusammen und ist kein
@@ -1099,7 +1177,7 @@ Der Grund: dasselbe bosnische Wort kann zwei Bedeutungen haben. `sto` ist die
 Zahl hundert und der Tisch, `oko` das Auge und „um herum“. Vorher merkte sich
 die App nur `sto` – wer die Zahl konnte, bei dem galt auch das Möbelstück als
 gelernt, und Level 9 startete bei 4 % statt bei 0 %. Dasselbe galt für `malo`,
-`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 65 Levels bei
+`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 166 Levels bei
 0 %, und man sieht in einer Sicherung auf einen Blick, welche Bedeutung
 gemeint ist.
 

@@ -258,14 +258,18 @@ def test_umzug_verteilt_auf_wochen_aelteste_level_zuerst(seite, heute_stand):
     # Neu laden: nichts wandert ein zweites Mal
     seite.neu_laden()
     assert seite.js("() => kartei.w") == z["w"]
-    # Alle Woerter: hoechstens 10 je Tag, nie weiter als 180 Tage
+    # Alle Woerter: hoechstens 10 je Tag, nie weiter als 180 Tage. Seit dem
+    # Wortschatz-Paket 1 (31.10.2026, 2.040 Woerter) geht beides nicht mehr
+    # zugleich - karteiNachtragen() haelt die 180 Tage und nimmt dafuer
+    # mehr je Tag (ceil(n / 180), seit den Paketen 5 bis 9 mit 4.425
+    # Eintraegen 25).
     alle = seite.js("""() => { known = new Set(CATEGORIES.flatMap(c => c.words).map(w => w.id));
         kartei = {tag: 0, n: 0, w: {}}; karteiNachtragen();
         const f = Object.values(kartei.w).map(e => e[1]), je = {};
         f.forEach(x => { je[x] = (je[x] || 0) + 1; });
         return {n: f.length, max: Math.max(...f), proTag: Math.max(...Object.values(je)), woerter: known.size}; }""")
     assert alle["n"] == alle["woerter"] > 1500
-    assert alle["proTag"] == 10 and alle["max"] <= h + 180, alle
+    assert alle["proTag"] == max(10, -(-alle["n"] // 180)) and alle["max"] <= h + 180, alle
     assert seite.fehler == []
 
 
@@ -719,8 +723,13 @@ def test_groesse_bleibt_weit_unter_der_cloud_grenze(seite, heute_stand):
         const nurKartei = utf8Laenge(JSON.stringify(kartei));
         return {ganz, nurKartei, n: ids.length, max: CLOUD_GROESSE_MAX}; }""")
     je_wort = z["nurKartei"] / z["n"]
-    assert je_wort < 45, je_wort
-    assert z["ganz"] < z["max"] / 3, z
+    # Bis Paket 2 unter 45 Bytes; seit den Paketen 3 und 4 (01.11.2026) gut
+    # 47, weil jedes neue Wort einen Beispielsatz mit langer Kennung hat
+    # (tests/test_kartei.py, test_groesse_unter_der_cloud_grenze). Seit den
+    # Paketen 5 bis 9 (06.11.2026, 4 425 Eintraege) gut 52, der volle Stand
+    # liegt damit ueber einem Drittel der Grenze.
+    assert je_wort < 55, je_wort
+    assert z["ganz"] < z["max"] * 0.6, z
     # 7 000 Woerter, Kartei und gewusst skaliert: weiter unter der Grenze
     assert z["ganz"] * 7000 / z["n"] < z["max"], z
     print("Stand mit allen %d Woertern: %d Bytes, Kartei %.1f Bytes je Wort" % (z["n"], z["ganz"], je_wort))

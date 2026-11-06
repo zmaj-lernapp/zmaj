@@ -182,6 +182,42 @@ def test_absatz_am_ende_von_rueckmeldung(schalter, sprachcodes):
         sprachen.formular_einfuegen("<b>1. Ohne Abschnitte</b>", "Absatz")
 
 
+def test_rueckmeldung_ohne_doppelten_absatz(schalter, sprachcodes):
+    """Pruefbericht 01.11.2026: Seit die Handy-App ihr Feedback ueber
+    denselben Weg schickt wie das Formular, stand in Abschnitt 5 der lange
+    Absatz zu Firebase, IP-Adresse, USA und Apps Script zweimal fast
+    wortgleich hintereinander. Jetzt beschreibt der Abschnitt das Feedback
+    der App knapp und fuer sich vollstaendig - auch ohne den Absatz zum
+    Formular, den es nur mit KONTAKT_FORMULAR gibt -, und kein laengerer
+    Satz des Formular-Absatzes steht ein zweites Mal im Abschnitt."""
+    import sprachen
+    n = sprachen.FORMULAR_ABSCHNITT
+    for an in (True, False):
+        schalter(an)
+        for code in sprachcodes:
+            text = sprachen.texte(code)["set.datenschutz_text"]
+            abschnitt = text[text.index("<b>%d. " % n):text.index("<br><br><b>%d. " % (n + 1))]
+            absatz = sprachen.TEXTE[code]["set.dsgvo_formular"]
+            assert abschnitt.count(absatz) == (1 if an else 0), (code, an)
+            app = abschnitt.replace(absatz, "")
+            # Was der Auftrag vom 01.11.2026 verlangt: Firebase (Frankfurt),
+            # die kurze anonyme Anmeldung, 180 Tage, Apps Script nach Gmail,
+            # die USA mit dem Data Privacy Framework und der Verweis auf das
+            # Konto (Abschnitt 3).
+            dpf = "Veri Gizliliği Çerçevesi" if code == "tr" else "Data Privacy Framework"
+            stadt = "Francfort" if code == "fr" else "Frankfurt"
+            for muss in ("Firebase", stadt, "180", "Google Apps Script", "Gmail", dpf):
+                assert muss in app, (code, muss)
+            assert app.count(dpf) == 1, code
+            # Kurze Saetze wie "Danach behandeln wir sie wie eine E-Mail an
+            # uns." duerfen in beiden stehen; die doppelten von frueher waren
+            # alle deutlich laenger.
+            saetze = [s for s in re.split(r"(?<=[.;])\s+", absatz) if len(s) > 90]
+            assert saetze, code
+            for satz in saetze:
+                assert satz not in app, (code, satz)
+
+
 # Wie jede Sprache Art. 6 Abs. 1 lit. f DSGVO schreibt.
 BERECHTIGT = {"de": "Art. 6 Abs. 1 lit. f DSGVO", "en": "Art. 6(1)(f) GDPR", "tr": "Madde 6(1)(f)",
               "sv": "art. 6.1 f GDPR", "nl": "art. 6 lid 1 onder f AVG", "nb": "art. 6 nr. 1 bokstav f",
@@ -454,6 +490,32 @@ def test_skript_schickt_genau_die_erlaubten_felder():
     assert "'signUp?key='" in s and "{returnSecureToken: true}" in s
     assert "'delete?key='" in s and "{idToken: konto.idToken}" in s
     assert s.index("'signUp?key='") < s.index("':commit'") < s.index("'delete?key='")
+
+
+def test_app_feedback_schickt_dasselbe_wie_die_seite(index_html, wurzel):
+    """01.11.2026 (Ajdin: Feedback "Übers Formular"): Die Handy-App legt
+    ihr Feedback genauso ab wie kontakt.html - kurz anonym anmelden, nur
+    die drei Textfelder und die Zeit vom Server, nur Anlegen, unter der
+    eigenen uid, danach die Anmeldung loeschen. Als das angemeldete Konto
+    liesse firestore.rules das Anlegen nicht zu (istAbsender: nur anonym).
+    Die Antwortadresse prueft die App mit demselben Muster wie die Regel."""
+    a = index_html.index("async nachricht(text, antwort, sprache){")
+    s = index_html[a:index_html.index("return true;", a)]
+    assert re.findall(r"(\w+): \{stringValue:", s) == ["text", "antwort", "sprache"]
+    assert "{fieldPath: 'zeit', setToServerValue: 'REQUEST_TIME'}" in s
+    assert "currentDocument: {exists: false}" in s
+    assert "/documents/nachrichten/' + d.localId" in s
+    assert "'signUp?key='" in s and "post({returnSecureToken: true})" in s
+    assert "await kontoWeg(d.idToken);" in s
+    assert s.index("'signUp?key='") < s.index("':commit'") < s.index("finally{") < s.index("kontoWeg(d.idToken)")
+    # Nicht ueber konto(): das ueberschriebe den Ausweis des Kontos.
+    assert "konto(d" not in s and "merken(" not in s
+    muster = re.search(r"^const FEEDBACK_ADRESSE = /\^(.+)\$/;\r?$", index_html, re.M).group(1)
+    assert muster == _regel_adresse(wurzel)
+    for gut in ADRESSEN_GUT:
+        assert re.fullmatch(muster, gut), gut
+    for schlecht in ADRESSEN_SCHLECHT:
+        assert not re.fullmatch(muster, schlecht), schlecht
 
 
 @pytest.mark.parametrize("werte", [

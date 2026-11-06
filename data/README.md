@@ -41,12 +41,13 @@ configs:
 
 # Zmaj: open Bosnian course
 
-**1,740 words and phrases, 300 cloze sentences, 12 graded stories, 406
+**4,425 words and phrases, 300 cloze sentences, 12 graded stories, 406
 glossary entries and 16 grammar lessons in Bosnian (Ijekavian, Latin
 script), each translated into German, English, Turkish, Swedish, Dutch,
 Norwegian Bokmål, Danish and French**, with a synthetic Bosnian audio file for
-every sentence and story and for all words but twelve family words added in
-October 2026 (their `audio` is `null`).
+every sentence and story and for all words but 2,678 added in October and
+November 2026: twelve family words and the new sections 10 to 17 (their
+`audio` is `null`).
 
 This is the complete content of [Zmaj](https://github.com/zmaj-lernapp/zmaj),
 an offline app for learning Bosnian. It is exported from the app's sources by

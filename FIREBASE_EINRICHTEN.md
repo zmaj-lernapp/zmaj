@@ -81,6 +81,9 @@ auch ein späterer Wechsel des Anbieters einfach – ein neuer Adapter mit
      angeboten wird es nicht. Eingeschaltet wird es erst für das
      Kontaktformular (Abschnitt 15); `firestore.rules` sperrt `users/{uid}`
      für anonyme Anmeldungen, die App bekommt dadurch nichts Neues.
+     Seit 01.11.2026 (Version 1.2) braucht auch die App „Anonym“: Ihr
+     Feedback nimmt denselben Weg wie das Kontaktformular (Abschnitt 15).
+     Ist „Anonym“ aus, öffnet sich dafür wie früher das Mailprogramm.
 3. Reiter **Einstellungen**: „Schutz vor E-Mail-Aufzählung“ an lassen, ebenso
    „Registrierung erlauben“ und „Löschen erlauben“.
 4. **Nicht** auf **Identity Platform** upgraden, auch wenn Firebase es
@@ -318,6 +321,18 @@ So kommt eine Nachricht an:
    `zmaj.lernapp@gmail.com` (Betreff beginnt mit `[Zmaj-Formular]`, „Antworten
    an“ ist die Adresse aus dem Formular) und löscht das Dokument erst nach dem
    Versand. Die Mail geht nie an die Adresse aus dem Formular.
+
+Seit 01.11.2026 (Version 1.2) schickt auch die Handy-App ihr Feedback so
+(Ajdin: „Übers Formular“; `feedbackSenden()` und `cloudFirestore.nachricht()`
+in `web/index.html`). Angemeldete Nutzer melden sich dafür zusätzlich kurz
+anonym an – als ihr eigenes Konto ließe `firestore.rules` das Anlegen nicht zu
+(`istAbsender()`) –, `antwort` ist die Adresse ihres Kontos. Die Regeln sind
+dafür dieselben geblieben. Läuft die Weiterleitung nicht, warten auch diese
+Nachrichten in Firestore; die App meldet trotzdem „Danke“. Vor jedem Build
+deshalb einmal aus der Test-App ein Feedback schicken und nachsehen, dass es
+in Gmail ankommt. In Gmail sehen beide gleich aus (Betreff `[Zmaj-Formular]`).
+Ohne Netz, vor der Anmeldung oder wenn Firebase ablehnt, öffnet die App wie
+früher das Mailprogramm.
 
 | Teil | Wo |
 |---|---|
