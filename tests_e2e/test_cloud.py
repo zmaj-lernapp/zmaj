@@ -27,6 +27,8 @@ Produktionsstart. Geprueft wird hier:
   - Zwei Geraete, beide Richtungen (Pruefbericht 1.3, 06.11.2026): Die erste
     Anmeldung auf einem neuen Geraet nimmt dem Konto weder einen Serienschutz noch
     den Einstieg aus der Einstufung, und nichts Gelerntes geht verloren.
+  - Ein im Laden gekaufter Serienschutz (06.11.2026) uebersteht den normalen
+    Abgleich in beiden Richtungen, und die Muenzen zaehlen nur einmal.
 """
 import datetime
 import json
@@ -787,9 +789,9 @@ def zweites_geraet(browser, basis):
     ctx.close()
 
 
-def _letzte_tage():
+def _letzte_tage(n=3):
     heute = datetime.date.today()
-    return [(heute - datetime.timedelta(days=i)).isoformat() for i in range(3, 0, -1)]
+    return [(heute - datetime.timedelta(days=i)).isoformat() for i in range(n, 0, -1)]
 
 
 def _stand_im_dok(dok):
@@ -915,3 +917,118 @@ def test_neu_auf_zweitem_geraet_nimmt_dem_konto_den_einstieg_nicht(seite, zweite
     assert alt.js(LAGE_IM_PFAD) == vorher
     _gelernt_passt(alt, alt_gelernt)
     assert alt.fehler == [] and neu.fehler == []
+
+
+# ------------------------------------------------- gekaufter Serienschutz ---
+
+MUENZEN = "() => ({ges: muenzenGes, aus: muenzenAus, frei: muenzen()})"
+# 600 Muenzen in zehn Lerntagen: So viel laesst sicherungPlausibel() durch, und die
+# Ablage kann sie wirklich von Geraet zu Geraet tragen.
+BEZAHLT = {"ges": 600, "aus": 300, "frei": 300}
+
+
+def _zwei_geraete_mit_schutz(kaeufer, anderes, heute_stand, anzahl):
+    """Zwei Geraete am selben Konto, beide mit demselben Schutz und schon abgeglichen."""
+    konto = {"anzahl": anzahl, "zeit": int(time.time() * 1000) - 3 * TAG_MS}
+    kaeufer.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0, schutz=konto))
+    assert kaeufer.js(ANMELDEN, None) is True
+    anderes.starten(stand=heute_stand())
+    assert anderes.js(ANMELDEN, kaeufer.js(DOK_HOLEN)) is True
+    kaeufer.js(DOK_LEGEN, anderes.js(DOK_HOLEN))
+    assert kaeufer.js(ABGLEICH, "anmelden") == "gespeichert"
+    assert kaeufer.js(SCHUTZ) == konto and anderes.js(SCHUTZ) == konto
+    return konto
+
+
+def _schutz_kaufen(s):
+    """Der echte Kauf: Laden auf, Reiter Vorrat, Knopf antippen."""
+    s.js("() => { const v = document.getElementById('vorspann'); if(v) v.click(); }")
+    s.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
+    s.js("() => { festHeute = () => ''; showLaden(); ladenReiter = 'vorrat'; renderLaden(); }")
+    s.page.locator('#ladenWaren button[data-ware="schutz"]').click()
+    s.page.wait_for_timeout(100)
+    return s.js(SCHUTZ)
+
+
+@pytest.mark.parametrize("anzahl", [1, 0])
+@pytest.mark.parametrize("kaeufer_schreibt_zuerst", [True, False])
+def test_gekaufter_schutz_uebersteht_den_abgleich(seite, zweites_geraet, heute_stand, anzahl, kaeufer_schreibt_zuerst):
+    """Der Kauf liess zeit stehen oder setzte sie bei vollem Vorrat auf 0. Gegen den
+    Stand von vor dem Kauf gewann dann die neuere Zeit oder bei gleicher Zeit die
+    kleinere Anzahl: Der Schutz war auf allen Geraeten weg, die 300 Muenzen auch."""
+    kaeufer, anderes = seite, zweites_geraet
+    konto = _zwei_geraete_mit_schutz(kaeufer, anderes, heute_stand, anzahl)
+    if kaeufer_schreibt_zuerst:
+        kauf = _schutz_kaufen(kaeufer)
+        assert kaeufer.js(ABGLEICH, "anmelden") == "gespeichert"
+    else:
+        # Das andere Geraet schreibt noch den alten Schutz, der Kaeufer kauft ohne Netz.
+        anderes.js("() => { known.add(CATEGORIES[3].words[0].id); saveProgress(); }")
+        assert anderes.js(ABGLEICH, "anmelden") == "gespeichert"
+        assert _stand_im_dok(anderes.js(DOK_HOLEN))["schutz"] == konto
+        kauf = _schutz_kaufen(kaeufer)
+        kaeufer.js(DOK_LEGEN, anderes.js(DOK_HOLEN))
+        assert kaeufer.js(ABGLEICH, "anmelden") == "gespeichert"
+    assert kauf["anzahl"] == anzahl + 1
+    assert kaeufer.js(MUENZEN) == BEZAHLT
+
+    # Einmal ganz herum: zum anderen Geraet, das schreibt, zurueck zum Kaeufer.
+    anderes.js(DOK_LEGEN, kaeufer.js(DOK_HOLEN))
+    assert anderes.js(ABGLEICH, "anmelden") == "gespeichert"
+    kaeufer.js(DOK_LEGEN, anderes.js(DOK_HOLEN))
+    assert kaeufer.js(ABGLEICH, "anmelden") == "gespeichert"
+    for s in (kaeufer, anderes):
+        assert s.js(SCHUTZ) == kauf, "der gekaufte Schutz ist weg"
+        assert s.js(MUENZEN) == BEZAHLT, "die Muenzen zaehlen genau einmal"
+        assert s.fehler == []
+
+    # Beide Richtungen ergeben dasselbe, und nochmal Mischen aendert nichts.
+    vorher = {"schutz": konto}
+    jetzt = {"schutz": kauf}
+    assert seite.js(MISCHEN, [jetzt, vorher])["schutz"] == kauf
+    assert seite.js(MISCHEN, [vorher, jetzt])["schutz"] == kauf
+    assert seite.js(MISCHEN, [jetzt, jetzt])["schutz"] == kauf
+    # Unter dem Hoechstwert laeuft die Uhr weiter: Ein Kauf nimmt keine Tage weg.
+    if kauf["anzahl"] < 2:
+        assert 0 < kauf["zeit"] - konto["zeit"] <= 1, (konto, kauf)
+
+
+def test_gekaufter_schutz_bleibt_ueber_den_neustart_und_zeigt_keine_uhr(seite, heute_stand):
+    seite.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0,
+                                    schutz={"anzahl": 1, "zeit": int(time.time() * 1000) - 3 * TAG_MS}))
+    kauf = _schutz_kaufen(seite)
+    assert kauf["anzahl"] == 2 and kauf["zeit"] > 0
+    seite.neu_laden()
+    assert seite.js("() => [schutzNow(), naechsterSchutzIn()]") == [2, 0]
+    assert seite.js(SCHUTZ) == kauf
+    assert seite.fehler == []
+
+
+def test_verbrauch_nach_dem_kauf_gewinnt_und_die_uhr_beginnt_dann(seite, heute_stand):
+    """Der Stempel des Kaufs darf die zehn Tage nicht verkuerzen, und wer danach einen
+    Schutz verbraucht, ist das neuere Ereignis, auch auf dem anderen Geraet."""
+    gekauft = {"anzahl": 2, "zeit": int(time.time() * 1000) - 5 * TAG_MS}
+    seite.starten(stand=heute_stand(tage=_letzte_tage(10)[:-1], schutz=gekauft))
+    z = seite.js("() => ({schutz, frost: [...frost], uhr: naechsterSchutzIn()})")
+    assert z["schutz"]["anzahl"] == 1 and z["frost"] == _letzte_tage(1), z
+    assert z["uhr"] > 9.9 * TAG_MS, "die zehn Tage beginnen beim Verbrauch, nicht beim Kauf: %s" % z
+    for a, b in (({"schutz": gekauft}, {"schutz": z["schutz"]}), ({"schutz": z["schutz"]}, {"schutz": gekauft})):
+        assert seite.js(MISCHEN, [a, b])["schutz"] == z["schutz"]
+    assert seite.fehler == []
+
+
+def test_gekaufter_schutz_passt_zu_einem_geraet_mit_1_2(seite, heute_stand):
+    """Version 1.2 kennt nur anzahl und zeit, liest den Stempel als normale Zeit und
+    setzt sie bei vollem Vorrat wieder auf 0. Das nimmt dem Kauf nichts, und ein
+    Verbrauch dort gewinnt weiter."""
+    seite.starten(stand=heute_stand(tage=_letzte_tage(10), muenzen_ges=600, muenzen_aus=0,
+                                    schutz={"anzahl": 1, "zeit": int(time.time() * 1000) - 3 * TAG_MS}))
+    kauf = _schutz_kaufen(seite)
+    assert sorted(kauf) == ["anzahl", "zeit"], "1.2 wirft jedes weitere Feld beim Einlesen weg"
+    von_1_2 = {"anzahl": 2, "zeit": 0}
+    for a, b in ((kauf, von_1_2), (von_1_2, kauf)):
+        assert seite.js(MISCHEN, [{"schutz": a}, {"schutz": b}])["schutz"] == kauf
+    verbraucht_auf_1_2 = {"anzahl": 1, "zeit": kauf["zeit"] + TAG_MS}
+    for a, b in ((kauf, verbraucht_auf_1_2), (verbraucht_auf_1_2, kauf)):
+        assert seite.js(MISCHEN, [{"schutz": a}, {"schutz": b}])["schutz"] == verbraucht_auf_1_2
+    assert seite.fehler == []
