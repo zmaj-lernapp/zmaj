@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Der Vorspann: voll nur beim ersten Start des Tages, sonst kuerzer.
 
-Pruefbericht 1.3, G18 und Ajdin am 06.11.2026. Vorher hielt der Vorspann jeden
+Pruefbericht 1.3, G18, entschieden am 06.11.2026. Vorher hielt der Vorspann jeden
 Kaltstart auf ueber 4,5 s, obwohl die App nach 0,14 s bereit war. Beim ersten
 Start des Tages bleibt alles wie bisher, damit man den Namen lesen kann. Danach
 laeuft nur die Bewegung, ohne die Haltezeit.
