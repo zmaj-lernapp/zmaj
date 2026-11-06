@@ -4173,12 +4173,16 @@ function klingtWie(gehoert, ziel){
      und "2" auch fuer die weibliche Form "dvije". */
   const zg = zahlWert(gehoert), zz = zahlWert(ziel);
   if(zg !== null && zz !== null) return zg === zz;
-  const g = lautlich(gehoert), z = lautlich(ziel);
+  // Ein Klammerzusatz spricht niemand mit: "nana (auch: metvica)" ist "nana".
+  const g = lautlich(gehoert), z = lautlich(String(ziel).replace(/\([^)]*\)/g, ' '));
   if(!g || !z) return false;
   if(g === z) return true;
   // Enthalten zaehlt nur bei genug Buchstaben, sonst passt "da" ueberallhin
   const kurz = Math.min(g.length, z.length);
-  if(kurz >= 4 && (g.includes(z) || z.includes(g))) return true;
+  /* Mehr gesagt als das Ziel ist in Ordnung. Weniger nur, wenn fast alles da ist:
+     Sonst reichte "mogu" fuer "Mogu li platiti karticom?", und der Satz galt als
+     gewusst (Pruefbericht 1.3, 06.11.2026). */
+  if(kurz >= 4 && (g.includes(z) || (z.includes(g) && g.length >= z.length * 0.7))) return true;
   return abstand(g, z) <= Math.max(1, Math.round(z.length / 5));
 }
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -11732,6 +11736,8 @@ function renderTask(task, body, done, opts={}){
        Vorher lief das Mikrofon bis zu viermal weiter, auch auf der
        Levueluebersicht. Gefunden am 26.09.2026. */
     let stoppGewollt = false;
+    /* Mit welcher Sprache der naechste Tipp beginnt, siehe unten. */
+    let sprachNr = 0;
     mic.addEventListener('click', async ()=>{
       if(fin) return;
       const H = hoererPlugin();
@@ -11758,7 +11764,9 @@ function renderTask(task, body, done, opts={}){
           mic.classList.add('rec'); heard.textContent = t('task.hoert_zu');
           hoererAbbrechen = ()=>{ stoppGewollt = true; abhoeren(); };
           let erg = null;
-          for(const sprache of ['bs-BA','hr-HR','sr-RS', null]){
+          const sprachen = ['bs-BA','hr-HR','sr-RS', null];
+          for(let nr = sprachNr; nr < sprachen.length; nr++){
+            const sprache = sprachen[nr];
             try{
               erg = await H.start(Object.assign({maxResults:5, partialResults:false, popup:false},
                                                 sprache ? {language:sprache} : {}));
@@ -11770,6 +11778,17 @@ function renderTask(task, body, done, opts={}){
                  Abbruch durch den Nutzer. Dann darf nicht die naechste
                  Sprache starten. */
               if(stoppGewollt || fin) break;
+              /* Pruefbericht 1.3 (06.11.2026): Bei "kein Treffer" und Stille lief die
+                 Schleife trotzdem weiter, bis zu dreimal, und auf dem Bildschirm
+                 stand "Hoert zu ...". Jetzt ist hier Schluss und die Meldung kommt.
+                 Ob ein Geraet ohne bs-BA genauso antwortet, ist am Handy noch nicht
+                 geprueft. Deshalb bleibt der Rueckfall: Der naechste Tipp in dieser
+                 Aufgabe nimmt die naechste Sprache. Andere Ablehnungen, darunter
+                 Androids "Sprache fehlt", wandern wie bisher in einem Zug weiter. */
+              if(/No match|No speech input/.test(String((e && e.message) || e))){
+                sprachNr = (nr + 1) % sprachen.length;
+                break;
+              }
             }
           }
           listening = false; mic.classList.remove('rec');
