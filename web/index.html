@@ -11343,8 +11343,27 @@ function distractors(target, words, n){
   const raus = w => w.bs===target.bs || gleich.has(w.bs);
   let pool = words.filter(w=>!raus(w));
   if(pool.length<n) pool = wortVorrat().filter(w=>!raus(w));
-  const seen = new Set([target.bs]); const out=[];
-  for(const w of shuffle(pool.slice())){ if(!seen.has(w.bs)){ seen.add(w.bs); out.push(w); if(out.length===n) break; } }
+  /* Pruefbericht 1.3 (06.11.2026), beides auf einem Weg:
+     - Keine Bedeutung zweimal. Bei "Was bedeutet ...?" stand sonst zweimal
+       "herstellen" da, und der doppelte Knopf schied sofort aus.
+     - Zuerst dieselbe Art: Wort zu Wort, Satz zu Satz (istWort() auf der deutschen
+       Bedeutung, damit jede Sprache dieselben Saetze hat). Wer ein Wort sucht,
+       strich vorher die Saetze und musste weniger wissen, und ein Satz fiel als
+       einziger auf. Die andere Art fuellt nur auf, in 21 Leveln reicht die eigene
+       nicht. Reichen die verschiedenen Bedeutungen im Level nicht, dann der ganze
+       Vorrat. */
+  const seen = new Set([target.bs]), bedeutungen = new Set([_bedeutung(target.de)]); const out=[];
+  const nimm = liste => {
+    for(const w of liste){
+      if(out.length===n) return;
+      const b = _bedeutung(w.de);
+      if(!seen.has(w.bs) && !bedeutungen.has(b)){ seen.add(w.bs); bedeutungen.add(b); out.push(w); }
+    }
+  };
+  const satz = w => !istWort(grundBedeutung(w)), gemischt = shuffle(pool.slice());
+  nimm(gemischt.filter(w => satz(w) === satz(target)));
+  nimm(gemischt);
+  if(out.length<n) nimm(shuffle(wortVorrat().filter(w=>!raus(w))));
   return out;
 }
 /* sprache: 'bs', wenn die Antworten bosnisch sind (17.10.2026) - dann traegt
