@@ -57,7 +57,7 @@ WOERTER = {
 AUCH = {
     "sekunda": ["sekund"], "trenutak": ["momenat"], "prijepodne": ["prije podne"], "maloprije": ["malo prije"],
     "konačno": ["napokon"], "opet": ["ponovo"], "fudbal": ["nogomet"], "ekipa": ["tim"], "plesti": ["štrikati"],
-    "pozorište": ["teatar"], "žurka": ["zabava"], "spakovati": ["spakirati"], "turista": ["turist"],
+    "pozorište": ["teatar"], "žurka": ["zabava"], "turista": ["turist"],
     "čistačica": ["spremačica"], "poljoprivrednik": ["farmer"], "smjena": ["šihta"], "gradilište": ["bauštela"],
     "nezaposlen": ["nezaposlena", "nezaposleno"], "zaposlen": ["zaposlena", "zaposleno"],
 }
