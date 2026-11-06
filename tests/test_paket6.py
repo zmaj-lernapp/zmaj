@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Wortschatz-Paket 6 (06.11.2026): Sektion 16 · Menschen und Gesellschaft.
 
-148 Woerter je mit Beispielsatz, von Ajdin am 06.11.2026 durchgesehen
+147 Woerter je mit Beispielsatz, von Ajdin am 06.11.2026 durchgesehen
 (Release\\Wortschatz\\paket_06.json, v111_entscheidungen.md). Hier steht, was beim
 Einbau festgelegt wurde:
 
@@ -10,7 +10,7 @@ Einbau festgelegt wurde:
   den Lernstand (UMBENANNT in web/index.html, wie kahva / kafa). Der fertige Satz
   „Moraš otići kod ljekara.“ steht als Eintrag im Level wer_ist_wer;
 - izbori (Wahlen) neben izbor (Auswahl), moć (Macht) neben moći (können);
-- rat, dova und mezarje warten auf Emir.
+- rat, dova, mezarje und smijeh warten auf Emir (smijeh: w4690 ist ein Lachen statt des Wortes).
 """
 import re
 
@@ -31,7 +31,7 @@ WOERTER = {
                     "korisnik", "stručnjak", "bolesnik"],
     "beziehungen": ["odnos", "veza", "brak", "razvod", "prijateljstvo", "povjerenje", "poštovanje", "radost",
                     "tuga", "mržnja", "hrabrost"],
-    "stimmung_streit": ["raspoloženje", "iznenađenje", "svađa", "šala", "smijeh", "suza", "sjećanje", "navika",
+    "stimmung_streit": ["raspoloženje", "iznenađenje", "svađa", "šala", "suza", "sjećanje", "navika",
                         "druženje", "razgovor"],
     "staat_politik": ["predsjednik", "vlada", "ministar", "izbori", "stranka", "politika", "političar",
                       "vlast", "zakon", "ustav", "kanton"],
@@ -73,7 +73,7 @@ ZAEHLT_NICHT = {
 PARTNER = {}
 
 # Warten auf Emir (Release\\Wortschatz\\v111_wartet_auf_emir.md), noch nicht in der App
-WARTET = ["rat", "dova", "mezarje"]
+WARTET = ["rat", "dova", "mezarje", "smijeh"]
 
 
 def _level(daten):

@@ -572,7 +572,7 @@ vor seinem Satz. *vrijeme* und *još* hatten ihre Emir-Aufnahme schon.
 
 ## 06.11.2026 – Wortschatz-Pakete 5 bis 9: Grundbegriffe, Menschen und Gesellschaft, Verben, Wie, wo und wann
 
-740 Wörter und 743 Beispielsätze aus `Release\Wortschatz\paket_05.json` bis
+739 Wörter und 742 Beispielsätze aus `Release\Wortschatz\paket_05.json` bis
 `paket_09.json`, von Ajdin am 06.11.2026 durchgesehen, alle Fragen beantwortet
 (`v111_entscheidungen.md`). Diese Antworten gelten künftig auch für alles andere:
 
@@ -608,11 +608,14 @@ Beim Einbau festgelegt:
   *tako* / *ovako*, *vrlo / veoma* / *jako* (`NIE_NEBENEINANDER`). Beim Tippen zählt
   das andere Wort nicht, das hat Ajdin nicht freigegeben.
 - **Warten auf Emir:** was noch keine Aufnahme hat, steht nicht in der App
-  (`Release\Wortschatz\v111_wartet_auf_emir.md`).
+  (`Release\Wortschatz\v111_wartet_auf_emir.md`). Dazu seit dem 06.11.2026 *smijeh*
+  mit seinem Satz: Die Aufnahme w4690 ist ein Lachen statt des Wortes („bei der
+  aufnahme tut zmaj lachen nicht das wort sprechen“). w4690 und w4691 sind frei.
 
 **Ton.** Wörter und Beispielsätze hat Emir gesprochen (ElevenLabs, 05./06.11.2026),
 Text genau wie in der App. Die Aufnahmen liegen nur in der Hülle (`audio_emir/`),
-ihre Nummern stehen in `ton_nur_emir.json`: w3724–w5205 in der Reihenfolge der App.
+ihre Nummern stehen in `ton_nur_emir.json`: w3724–w5205 in der Reihenfolge der App,
+ohne w4690 und w4691.
 *doktor / ljekar*, *dozvoliti / dopustiti*, *dozvoljavati / dopuštati*,
 *vijek / stoljeće*, *podići / podignuti* und *zapravo / ustvari* sind aus den
 fertigen Einzelaufnahmen zusammengesetzt, keine neue Aufnahme.
