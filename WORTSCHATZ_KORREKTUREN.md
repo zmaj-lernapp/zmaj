@@ -572,7 +572,7 @@ vor seinem Satz. *vrijeme* und *još* hatten ihre Emir-Aufnahme schon.
 
 ## 06.11.2026 – Wortschatz-Pakete 5 bis 9: Grundbegriffe, Menschen und Gesellschaft, Verben, Wie, wo und wann
 
-739 Wörter und 742 Beispielsätze aus `Release\Wortschatz\paket_05.json` bis
+738 Wörter und 741 Beispielsätze aus `Release\Wortschatz\paket_05.json` bis
 `paket_09.json`, von Ajdin am 06.11.2026 durchgesehen, alle Fragen beantwortet
 (`v111_entscheidungen.md`). Diese Antworten gelten künftig auch für alles andere:
 
@@ -611,11 +611,14 @@ Beim Einbau festgelegt:
   (`Release\Wortschatz\v111_wartet_auf_emir.md`). Dazu seit dem 06.11.2026 *smijeh*
   mit seinem Satz: Die Aufnahme w4690 ist ein Lachen statt des Wortes („bei der
   aufnahme tut zmaj lachen nicht das wort sprechen“). w4690 und w4691 sind frei.
+  Ebenso *plakati* mit seinem Satz, beide beim Nachhören beanstandet: w4114 „bei
+  plakati ist das zweite a zu lang“, w4115 „das e bei beba ist zu kurz“. w4114 und
+  w4115 sind frei.
 
 **Ton.** Wörter und Beispielsätze hat Emir gesprochen (ElevenLabs, 05./06.11.2026),
 Text genau wie in der App. Die Aufnahmen liegen nur in der Hülle (`audio_emir/`),
 ihre Nummern stehen in `ton_nur_emir.json`: w3724–w5205 in der Reihenfolge der App,
-ohne w4690 und w4691.
+ohne w4114, w4115, w4690 und w4691.
 *doktor / ljekar*, *dozvoliti / dopustiti*, *dozvoljavati / dopuštati*,
 *vijek / stoljeće*, *podići / podignuti* und *zapravo / ustvari* sind aus den
 fertigen Einzelaufnahmen zusammengesetzt, keine neue Aufnahme.

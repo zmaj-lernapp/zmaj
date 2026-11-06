@@ -6,7 +6,8 @@ Einstellungen wie Paket 1 bis 4), sechs kurze Woerter am 06.11.2026 nachgeholt.
 Sie liegen nur in der privaten Huelle unter audio_emir/, die Nummern stehen hier
 in ton_nur_emir.json: w3724 bis w5205, in der Reihenfolge von ton_bauen.sammle().
 w4690 (smijeh, ein Lachen statt des Wortes) und sein Satz w4691 sind seit dem
-06.11.2026 zurueckgezogen; ihre Nummern bleiben frei.
+06.11.2026 zurueckgezogen; ihre Nummern bleiben frei. Ebenso w4114 (plakati, zweites a
+zu lang) und sein Satz w4115 (e bei beba zu kurz).
 
 doktor / ljekar, dozvoliti / dopustiti, dozvoljavati / dopuštati, vijek / stoljeće,
 podići / podignuti und zapravo / ustvari sind aus fertigen Einzelaufnahmen
@@ -16,13 +17,13 @@ mit beiden Formen gesprochen.
 Was auf Emir wartet (Release\\Wortschatz\\v111_wartet_auf_emir.md), hat noch keine Nummer.
 """
 ERSTE, LETZTE = 3724, 5205
-ZURUECKGEZOGEN = {4690, 4691}
+ZURUECKGEZOGEN = {4114, 4115, 4690, 4691}
 ZUSAMMENGESETZT = ["doktor / ljekar", "dozvoliti / dopustiti", "dozvoljavati / dopuštati", "podići / podignuti",
                    "vijek / stoljeće", "zapravo / ustvari"]
-WARTET = ["ivica", "poteškoća", "dova", "mezarje", "dići", "dizati", "uopšte", "ukupno", "smijeh",
+WARTET = ["ivica", "poteškoća", "dova", "mezarje", "dići", "dizati", "uopšte", "ukupno", "smijeh", "plakati",
           "živimo na rubu grada.", "moj dedo je bio u ratu.", "našli smo mrtvu pticu u bašti.",
           "kasnim na posao. naime, autobus se pokvario.", "želim biti poput svog babe.",
-          "smijeh je najbolji lijek."]
+          "smijeh je najbolji lijek.", "zašto beba stalno plače?"]
 
 
 def _nummer(datei):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Wortschatz-Paket 8 (06.11.2026): 149 Verben fuer Sektion 10 · Tun und Lassen.
+"""Wortschatz-Paket 8 (06.11.2026): 148 Verben fuer Sektion 10 · Tun und Lassen.
 
 Von Ajdin am 06.11.2026 durchgesehen (Release\\Wortschatz\\paket_08.json,
 v111_entscheidungen.md). Hier steht, was beim Einbau festgelegt wurde:
@@ -8,7 +8,8 @@ v111_entscheidungen.md). Hier steht, was beim Einbau festgelegt wurde:
 - die Gegenstuecke zu Verben aus Paket 3 und 4 stehen im Level paare_nachholen,
   "partner" dann an beiden Woertern (snimiti - snimati, crtati - nacrtati);
 - stati gehoert zu stajati (stehen), mit verschiedener Bedeutung wie izabrati / birati;
-- naviknuti se hat den Nachtrag vom 06.11.2026, navići se zaehlt nicht.
+- naviknuti se hat den Nachtrag vom 06.11.2026, navići se zaehlt nicht;
+- plakati wartet auf Emir (w4114: zweites a zu lang, w4115: e bei beba zu kurz).
 """
 import re
 
@@ -31,7 +32,7 @@ WOERTER = {
                             "obratiti se", "obraćati se", "družiti se", "ponašati se", "poštovati", "cijeniti",
                             "pohvaliti", "hvaliti", "lagati", "slagati", "truditi se", "potruditi se",
                             "pogađati se"],
-    "lieben_fuerchten": ["ljubiti", "poljubiti", "zagrliti", "grliti", "plakati", "sanjati", "mrziti",
+    "lieben_fuerchten": ["ljubiti", "poljubiti", "zagrliti", "grliti", "sanjati", "mrziti",
                          "ljutiti se", "naljutiti se", "plašiti se", "uplašiti se"],
     "wundern_beruhigen": ["čuditi se", "vikati", "šutjeti / šutiti", "sumnjati", "patiti", "žaliti", "faliti",
                           "ličiti", "smiriti", "smirivati", "iznenaditi", "iznenađivati"],
@@ -102,7 +103,7 @@ PARTNER = {
 }
 
 # Warten auf Emir (Release\\Wortschatz\\v111_wartet_auf_emir.md), noch nicht in der App
-WARTET = []
+WARTET = ["plakati"]
 
 
 def _level(daten):

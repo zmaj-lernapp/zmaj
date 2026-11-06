@@ -54,7 +54,7 @@ still works as a re-export for older scripts.)
 ```mermaid
 erDiagram
   SECTION ||--|{ LEVEL : "groups (17)"
-  LEVEL ||--|{ WORD : "teaches (4,423)"
+  LEVEL ||--|{ WORD : "teaches (4,421)"
   LEVEL ||--o{ SENTENCE : "cloze (300)"
   LEVEL ||--o| GRAMMAR_LESSON : "explains (16)"
   LEVEL }o--o{ LEVEL : "baut_auf (review)"

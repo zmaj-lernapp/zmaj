@@ -32,7 +32,7 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
     assert len(grunddaten["kategorien"]) == 166
-    assert woerter == 4423
+    assert woerter == 4421
     assert len(grunddaten["saetze"]) == 300
     assert len(grunddaten["geschichten"]) == 12
     assert len(grunddaten["grammatik"]) == 16

@@ -31134,30 +31134,6 @@
    <tuv xml:lang="da"><seg>Bedstemor krammer os altid, når vi kommer.</seg></tuv>
    <tuv xml:lang="fr"><seg>Grand-mère nous serre toujours dans ses bras quand nous arrivons.</seg></tuv>
   </tu>
-  <tu tuid="weinen:plakati" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>plakati</seg></tuv>
-   <tuv xml:lang="de"><seg>weinen</seg></tuv>
-   <tuv xml:lang="en"><seg>to cry</seg></tuv>
-   <tuv xml:lang="tr"><seg>ağlamak</seg></tuv>
-   <tuv xml:lang="sv"><seg>gråta</seg></tuv>
-   <tuv xml:lang="nl"><seg>huilen</seg></tuv>
-   <tuv xml:lang="nb"><seg>gråte</seg></tuv>
-   <tuv xml:lang="da"><seg>græde</seg></tuv>
-   <tuv xml:lang="fr"><seg>pleurer</seg></tuv>
-  </tu>
-  <tu tuid="warum weint das baby ständig?:Zašto beba stalno plače?" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>Zašto beba stalno plače?</seg></tuv>
-   <tuv xml:lang="de"><seg>Warum weint das Baby ständig?</seg></tuv>
-   <tuv xml:lang="en"><seg>Why does the baby keep crying?</seg></tuv>
-   <tuv xml:lang="tr"><seg>Bebek neden sürekli ağlıyor?</seg></tuv>
-   <tuv xml:lang="sv"><seg>Varför gråter bebisen hela tiden?</seg></tuv>
-   <tuv xml:lang="nl"><seg>Waarom huilt de baby steeds?</seg></tuv>
-   <tuv xml:lang="nb"><seg>Hvorfor gråter babyen hele tiden?</seg></tuv>
-   <tuv xml:lang="da"><seg>Hvorfor græder babyen hele tiden?</seg></tuv>
-   <tuv xml:lang="fr"><seg>Pourquoi le bébé pleure-t-il sans arrêt ?</seg></tuv>
-  </tu>
   <tu tuid="träumen:sanjati" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>sanjati</seg></tuv>
