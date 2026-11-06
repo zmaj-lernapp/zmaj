@@ -85,7 +85,8 @@ def test_jede_neue_wort_id_hat_emirs_ton(grunddaten, index, wurzel):
     huelle = ton_pruefen._huelle_audio()
     woerter = _neue_woerter(grunddaten)
     assert len(woerter) == 150
-    assert sorted(w["bs"] for w in woerter if " / " in w["bs"]) == sorted(DOPPELFORMEN)
+    # dozvoljavati / dopuštati seit Paket 7 (06.11.2026), Nummer dort, tests/test_paket7.py
+    assert sorted(w["bs"] for w in woerter if " / " in w["bs"]) == sorted(DOPPELFORMEN + ("dozvoljavati / dopuštati",))
     ohne, gesehen = [], set()
     for w in woerter:
         schluessel = [ton_bauen.schluessel(w["bs"])]
@@ -99,6 +100,8 @@ def test_jede_neue_wort_id_hat_emirs_ton(grunddaten, index, wurzel):
                 if huelle:
                     assert os.path.isfile(os.path.join(huelle, SCHON_DA[k])), (w["id"], k)
                 continue
+            if k == "dozvoljavati / dopuštati":
+                continue
             e = emir.get(k)
             if not e:
                 ohne.append((w["id"], k))
@@ -106,7 +109,7 @@ def test_jede_neue_wort_id_hat_emirs_ton(grunddaten, index, wurzel):
             assert k not in index, (w["id"], k)
             _pruefe_emir(e, w["bs"], w["id"], wurzel, huelle)
     assert not ohne, ohne[:20]
-    assert len(gesehen) == 154      # 150 Woerter, 4 davon auch mit allen Formen
+    assert len(gesehen) == 155      # 150 Woerter, 4 davon auch mit allen Formen, dazu seit Paket 7 dozvoljavati / dopuštati
 
 
 def test_doppelformen_alle_formen_am_ende(grunddaten):

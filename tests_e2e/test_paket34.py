@@ -13,7 +13,7 @@
 - Was Ajdin freigegeben hat, zaehlt beim Tippen (nogomet, naočare, prije
   podne, zarazna); was er ausgeschlossen hat, nicht (ranac, grudi,
   rentgen, odabrati).
-- Die Sektionen 12 bis 14 stehen am Ende des Lernpfads.
+- Die Sektionen 12 bis 14 stehen hinter Sektion 11 (seit 06.11.2026 folgen 15 bis 17).
 """
 from test_aspektpaare import AUSWAHL, HINWEIS
 from test_tippfehler import EINGEBEN, LAGE, LEGEN, STARTEN, _ist_hinweis
@@ -122,10 +122,9 @@ def test_ausgeschlossen_und_einen_buchstaben_daneben(seite, heute_stand):
 
 def test_sektionen_zwoelf_bis_vierzehn_im_lernpfad(seite, heute_stand):
     seite.starten(stand=heute_stand())
-    e = seite.js("""() => ({sektionen: SECTIONS.slice(11).map(s => s.id),
-        farben: SECTIONS.slice(11).map(s => sektionsNummer(s.id)),
-        level: SECTIONS.slice(11).map(s => CATEGORIES.filter(c => c.sektion === s.id).length),
-        letzte: CATEGORIES[CATEGORIES.length - 1].id})""")
+    e = seite.js("""() => ({sektionen: SECTIONS.slice(11, 14).map(s => s.id),
+        farben: SECTIONS.slice(11, 14).map(s => sektionsNummer(s.id)),
+        level: SECTIONS.slice(11, 14).map(s => CATEGORIES.filter(c => c.sektion === s.id).length)})""")
     assert e == {"sektionen": ["koerpergesundheit", "zeitfreizeit", "lernenarbeiten"], "farben": ["3", "4", "5"],
-                 "level": [8, 6, 4], "letzte": "arbeitsplatz"}
+                 "level": [8, 6, 4]}
     assert seite.fehler == []

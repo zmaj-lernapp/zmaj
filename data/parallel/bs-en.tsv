@@ -253,7 +253,7 @@ leđa	back	word	rücken:leđa
 srce	heart	word	herz:srce
 bolestan / bolesna	sick (m/f)	word	krank (m/w):bolestan / bolesna
 zdrav / zdrava	healthy (m/f)	word	gesund (m/w):zdrav / zdrava
-doktor	doctor	word	arzt:doktor
+doktor / ljekar	doctor	word	arzt:doktor / ljekar
 bolnica	hospital	word	krankenhaus:bolnica
 apoteka	pharmacy	word	apotheke:apoteka
 bol	pain	word	schmerz:bol
@@ -466,6 +466,8 @@ travarica	herbal brandy	word	kräuterbrand:travarica
 domaća rakija	home-distilled	word	selbstgebrannt:domaća rakija
 loza	grape brandy	word	traubenbrand:loza
 šljivovica	plum brandy	word	zwetschgenbrand:šljivovica
+mačak	tomcat	word	kater:mačak
+Naš mačak spava cijeli dan.	Our tomcat sleeps all day.	word	unser kater schläft den ganzen tag.:Naš mačak spava cijeli dan.
 kućni ljubimac	pet	word	haustier:kućni ljubimac
 životinja	animal	word	tier:životinja
 stoka	livestock / farm animals	word	vieh / nutztiere:stoka
@@ -1979,7 +1981,7 @@ prijaviti se	to sign up	word	sich anmelden:prijaviti se
 Prijavila sam se na kurs.	I've signed up for the course.	word	ich habe mich für den kurs angemeldet.:Prijavila sam se na kurs.
 umrijeti	to die	word	sterben:umrijeti
 Dedo mu je umro prije dvije godine.	His grandpa died two years ago.	word	sein opa ist vor zwei jahren gestorben.:Dedo mu je umro prije dvije godine.
-dozvoliti	to allow	word	erlauben:dozvoliti
+dozvoliti / dopustiti	to allow / to permit	word	erlauben / zulassen:dozvoliti / dopustiti
 Mama mi nije dozvolila da idem.	Mom didn't let me go.	word	mama hat mir nicht erlaubt zu gehen.:Mama mi nije dozvolila da idem.
 zanimati	to interest	word	interessieren:zanimati
 Zanima me historija.	I'm interested in history.	word	mich interessiert geschichte.:Zanima me historija.
@@ -2179,7 +2181,7 @@ saznavati	to find out	word	erfahren:saznavati
 Svaki dan saznajem nešto novo.	Every day I find out something new.	word	jeden tag erfahre ich etwas neues.:Svaki dan saznajem nešto novo.
 poželjeti	to wish / to wish for	word	wünschen / sich wünschen:poželjeti
 Šta bi poželio za rođendan?	What would you wish for your birthday?	word	was würdest du dir zum geburtstag wünschen?:Šta bi poželio za rođendan?
-dozvoljavati	to allow	word	erlauben:dozvoljavati
+dozvoljavati / dopuštati	to allow / to permit	word	erlauben / zulassen:dozvoljavati / dopuštati
 Mama nam ne dozvoljava slatkiše prije ručka.	Mom doesn't allow us candy before lunch.	word	mama erlaubt uns vor dem mittagessen keine süßigkeiten.:Mama nam ne dozvoljava slatkiše prije ručka.
 umirati	to die	word	sterben:umirati
 Umirem od gladi!	I'm dying of hunger!	word	ich sterbe vor hunger!:Umirem od gladi!
@@ -2203,6 +2205,602 @@ promiješati	to stir / to mix	word	umrühren / mischen:promiješati
 Dodaj so i dobro promiješaj.	Add salt and stir well.	word	gib salz dazu und rühr gut um.:Dodaj so i dobro promiješaj.
 zalijevati	to water (plants)	word	gießen (pflanzen):zalijevati
 Ljeti svaku večer zalijevam baštu.	In summer I water the garden every evening.	word	im sommer gieße ich jeden abend den garten.:Ljeti svaku večer zalijevam baštu.
+kazati	to say / to tell	word	sagen / mitteilen:kazati
+Kaži mi šta se desilo.	Just tell me what happened.	word	sag mir, was passiert ist.:Kaži mi šta se desilo.
+tvrditi	to claim	word	behaupten:tvrditi
+On tvrdi da nije ništa vidio.	He claims he didn't see anything.	word	er behauptet, nichts gesehen zu haben.:On tvrdi da nije ništa vidio.
+naglasiti	to stress	word	betonen:naglasiti
+Direktor je naglasio da je to važno.	The director stressed that this is important.	word	der direktor hat betont, dass das wichtig ist.:Direktor je naglasio da je to važno.
+naglašavati	to stress	word	betonen:naglašavati
+Učiteljica uvijek naglašava koliko je čitanje važno.	The teacher always stresses how important reading is.	word	die lehrerin betont immer, wie wichtig lesen ist.:Učiteljica uvijek naglašava koliko je čitanje važno.
+najaviti	to announce	word	ankündigen:najaviti
+Najavio je da će doći u petak.	He announced that he's coming on Friday.	word	er hat angekündigt, dass er am freitag kommt.:Najavio je da će doći u petak.
+najavljivati	to announce	word	ankündigen:najavljivati
+Za vikend najavljuju kišu.	They're forecasting rain for the weekend.	word	fürs wochenende sagen sie regen an.:Za vikend najavljuju kišu.
+spomenuti	to mention	word	erwähnen:spomenuti
+Nije to ni spomenuo.	He didn't even mention it.	word	er hat das nicht einmal erwähnt.:Nije to ni spomenuo.
+spominjati	to mention	word	erwähnen:spominjati
+Često spominje svoju nanu.	He often mentions his grandma.	word	er erwähnt oft seine oma.:Često spominje svoju nanu.
+potvrditi	to confirm	word	bestätigen:potvrditi
+Hotel je potvrdio našu rezervaciju.	The hotel confirmed our reservation.	word	das hotel hat unsere reservierung bestätigt.:Hotel je potvrdio našu rezervaciju.
+potvrđivati	to confirm	word	bestätigen:potvrđivati
+Komšije potvrđuju njegovu priču.	The neighbors confirm his story.	word	die nachbarn bestätigen seine geschichte.:Komšije potvrđuju njegovu priču.
+priznati	to admit / to acknowledge	word	zugeben / anerkennen:priznati
+Priznao je da je pogriješio.	He admitted that he made a mistake.	word	er hat zugegeben, dass er einen fehler gemacht hat.:Priznao je da je pogriješio.
+priznavati	to admit / to acknowledge	word	zugeben / anerkennen:priznavati
+On nikad ne priznaje svoje greške.	He never admits his mistakes.	word	er gibt seine fehler nie zu.:On nikad ne priznaje svoje greške.
+izraziti	to express	word	ausdrücken:izraziti
+Ne znam kako da to izrazim.	I don't know how to express this.	word	ich weiß nicht, wie ich das ausdrücken soll.:Ne znam kako da to izrazim.
+izražavati	to express	word	ausdrücken:izražavati
+On teško izražava svoja osjećanja.	He finds it hard to express his feelings.	word	es fällt ihm schwer, seine gefühle auszudrücken.:On teško izražava svoja osjećanja.
+opisati	to describe	word	beschreiben:opisati
+Možete li opisati tog čovjeka?	Can you describe this man?	word	können sie diesen mann beschreiben?:Možete li opisati tog čovjeka?
+opisivati	to describe	word	beschreiben:opisivati
+U pismu opisuje svoj život u Njemačkoj.	In the letter she describes her life in Germany.	word	im brief beschreibt sie ihr leben in deutschland.:U pismu opisuje svoj život u Njemačkoj.
+podsjetiti	to remind (someone)	word	erinnern (jemanden):podsjetiti
+Podsjeti me da kupim hljeb.	Remind me to buy bread.	word	erinnere mich daran, brot zu kaufen.:Podsjeti me da kupim hljeb.
+podsjećati	to remind (someone)	word	erinnern (jemanden):podsjećati
+Ova pjesma me podsjeća na djetinjstvo.	This song reminds me of my childhood.	word	dieses lied erinnert mich an die kindheit.:Ova pjesma me podsjeća na djetinjstvo.
+upozoriti	to warn	word	warnen:upozoriti
+Upozorio sam te da ne ideš tamo.	I warned you not to go there.	word	ich habe dich gewarnt, nicht dorthin zu gehen.:Upozorio sam te da ne ideš tamo.
+upozoravati	to warn	word	warnen:upozoravati
+Ljekari upozoravaju na opasnost od pušenja.	Doctors warn of the dangers of smoking.	word	ärzte warnen vor den gefahren des rauchens.:Ljekari upozoravaju na opasnost od pušenja.
+obavijestiti	to notify	word	benachrichtigen:obavijestiti
+Obavijestite nas ako kasnite.	Notify us if you are running late.	word	benachrichtigen sie uns, wenn sie sich verspäten.:Obavijestite nas ako kasnite.
+obavještavati	to notify	word	benachrichtigen:obavještavati
+Banka me porukom obavještava o svakoj uplati.	The bank notifies me by message of every payment.	word	die bank benachrichtigt mich per nachricht über jede einzahlung.:Banka me porukom obavještava o svakoj uplati.
+predložiti	to suggest	word	vorschlagen:predložiti
+Predložio sam da idemo na more.	I suggested going to the seaside.	word	ich habe vorgeschlagen, ans meer zu fahren.:Predložio sam da idemo na more.
+predlagati	to suggest	word	vorschlagen:predlagati
+Šta predlažeš da radimo večeras?	What do you suggest we do tonight?	word	was schlägst du vor, was sollen wir heute abend machen?:Šta predlažeš da radimo večeras?
+preporučiti	to recommend	word	empfehlen:preporučiti
+Možeš li mi preporučiti dobar restoran?	Can you recommend a good restaurant?	word	kannst du mir ein gutes restaurant empfehlen?:Možeš li mi preporučiti dobar restoran?
+preporučivati	to recommend	word	empfehlen:preporučivati
+Ovaj film preporučujem svima.	I recommend this movie to everyone.	word	diesen film empfehle ich allen.:Ovaj film preporučujem svima.
+obećati	to promise	word	versprechen:obećati
+Obećao sam joj da ću doći.	I promised her I would come.	word	ich habe ihr versprochen, dass ich komme.:Obećao sam joj da ću doći.
+obećavati	to promise	word	versprechen:obećavati
+Uvijek obećava, a nikad ništa ne uradi.	He always promises something but never does it.	word	er verspricht immer etwas, aber tut es nie.:Uvijek obećava, a nikad ništa ne uradi.
+pozdraviti	to greet	word	grüßen:pozdraviti
+Nije me ni pozdravio.	He didn't even say hello to me.	word	er hat mich nicht einmal gegrüßt.:Nije me ni pozdravio.
+pozdravljati	to greet	word	grüßen:pozdravljati
+Svako jutro pozdravlja sve komšije.	Every morning he greets all the neighbors.	word	jeden morgen grüßt er alle nachbarn.:Svako jutro pozdravlja sve komšije.
+moliti	to ask (for a favor)	word	bitten:moliti
+Stalno me moli da mu pomognem.	He keeps asking me to help him.	word	er bittet mich ständig, ihm zu helfen.:Stalno me moli da mu pomognem.
+zamoliti	to ask (for a favor)	word	bitten:zamoliti
+Zamolio sam ga da dođe ranije.	I asked him to come earlier.	word	ich habe ihn gebeten, früher zu kommen.:Zamolio sam ga da dođe ranije.
+zatražiti	to request / to ask for	word	anfordern / erbitten:zatražiti
+Zatražila sam potvrdu od banke.	I requested a confirmation from the bank.	word	ich habe bei der bank eine bestätigung angefordert.:Zatražila sam potvrdu od banke.
+zahtijevati	to demand / to require	word	verlangen / fordern:zahtijevati
+Ovaj posao zahtijeva puno strpljenja.	This job requires a lot of patience.	word	diese arbeit verlangt viel geduld.:Ovaj posao zahtijeva puno strpljenja.
+voditi	to lead / to take along (a person)	word	führen / mitnehmen (person):voditi
+Moj brat vodi mali restoran.	My brother runs a small restaurant.	word	mein bruder führt ein kleines restaurant.:Moj brat vodi mali restoran.
+povesti	to lead / to take along (a person)	word	führen / mitnehmen (person):povesti
+Povedi i mene sa sobom!	Take me with you too!	word	nimm mich auch mit!:Povedi i mene sa sobom!
+dovesti	to bring along (a person)	word	herbringen / mitbringen (person):dovesti
+Možeš dovesti i djecu.	You can bring the kids too.	word	du kannst auch die kinder mitbringen.:Možeš dovesti i djecu.
+dovoditi	to bring along (a person)	word	herbringen / mitbringen (person):dovoditi
+Roditelji dovode djecu u vrtić u osam.	The parents bring the children to preschool at eight.	word	die eltern bringen die kinder um acht in den kindergarten.:Roditelji dovode djecu u vrtić u osam.
+odvesti	to take away / to take there (a person)	word	wegbringen / hinbringen (person):odvesti
+Odveli su ga u bolnicu.	They took him to the hospital.	word	sie haben ihn ins krankenhaus gebracht.:Odveli su ga u bolnicu.
+odvoditi	to take away / to take there (a person)	word	wegbringen / hinbringen (person):odvoditi
+Babo svaki dan odvodi sestru u školu.	Dad takes my sister to school every day.	word	papa bringt meine schwester jeden tag zur schule.:Babo svaki dan odvodi sestru u školu.
+odnijeti	to carry away / to take away (a thing)	word	wegtragen / wegbringen (sache):odnijeti
+Odnesi ovo u kuhinju.	Take this to the kitchen.	word	bring das in die küche.:Odnesi ovo u kuhinju.
+odnositi	to carry away / to take away (a thing)	word	wegtragen / wegbringen (sache):odnositi
+Konobar odnosi prazne čaše.	The waiter carries away the empty glasses.	word	der kellner trägt die leeren gläser weg.:Konobar odnosi prazne čaše.
+prenijeti	to transfer / to pass on	word	übertragen / weitergeben:prenijeti
+Prenesi mu moje pozdrave.	Give him my regards.	word	richte ihm meine grüße aus.:Prenesi mu moje pozdrave.
+prenositi	to transfer / to pass on	word	übertragen / weitergeben:prenositi
+Televizija prenosi utakmicu uživo.	The TV is broadcasting the game live.	word	das fernsehen überträgt das spiel live.:Televizija prenosi utakmicu uživo.
+ponijeti	to take along (a thing)	word	mitnehmen (sache):ponijeti
+Ponesi kišobran, vani pada kiša.	Take an umbrella, it's raining outside.	word	nimm einen regenschirm mit, draußen regnet es.:Ponesi kišobran, vani pada kiša.
+predati	to hand in / to hand over	word	abgeben / übergeben:predati
+Moram predati dokumente do petka.	I have to hand in the documents by Friday.	word	ich muss die unterlagen bis freitag abgeben.:Moram predati dokumente do petka.
+predavati	to hand in / to teach	word	abgeben / unterrichten:predavati
+Moja sestra predaje engleski u školi.	My sister teaches English at school.	word	meine schwester unterrichtet englisch in der schule.:Moja sestra predaje engleski u školi.
+preuzeti	to take over / to download	word	übernehmen / herunterladen:preuzeti
+Preuzeo je firmu od oca.	He took over the company from his father.	word	er hat die firma vom vater übernommen.:Preuzeo je firmu od oca.
+preuzimati	to take over / to download	word	übernehmen / herunterladen:preuzimati
+Preuzimam aplikaciju na telefon.	I'm downloading the app to my phone.	word	ich lade die app aufs handy herunter.:Preuzimam aplikaciju na telefon.
+vući	to pull	word	ziehen:vući
+Dijete me vuče za rukav.	The child is pulling me by the sleeve.	word	das kind zieht mich am ärmel.:Dijete me vuče za rukav.
+povući	to pull / to withdraw	word	ziehen / zurückziehen:povući
+Povuci vrata prema sebi.	Pull the door toward you.	word	zieh die tür zu dir.:Povuci vrata prema sebi.
+povlačiti	to pull / to withdraw	word	ziehen / zurückziehen:povlačiti
+Firma povlači taj proizvod iz prodaje.	The company is withdrawing this product from sale.	word	die firma zieht dieses produkt aus dem verkauf zurück.:Firma povlači taj proizvod iz prodaje.
+podići / podignuti	to lift / to pick up / to withdraw cash	word	hochheben / aufheben / abheben:podići / podignuti
+Ne mogu podići ovaj kofer.	I can't lift this suitcase.	word	ich kann diesen koffer nicht heben.:Ne mogu podići ovaj kofer.
+podizati	to lift / to pick up / to withdraw cash	word	hochheben / aufheben / abheben:podizati
+Ne smiješ podizati teške stvari.	You're not allowed to lift heavy things.	word	du darfst keine schweren sachen heben.:Ne smiješ podizati teške stvari.
+spustiti	to lower / to let down	word	senken / herunterlassen:spustiti
+Spusti roletne, sunce mi smeta.	Let the blinds down, the sun is bothering me.	word	lass die rollläden herunter, die sonne stört mich.:Spusti roletne, sunce mi smeta.
+spuštati	to lower / to let down	word	senken / herunterlassen:spuštati
+Temperatura se noćas spušta ispod nule.	The temperature is dropping below zero tonight.	word	die temperatur sinkt heute nacht unter null.:Temperatura se noćas spušta ispod nule.
+gurnuti	to push / to shove	word	schieben / stoßen:gurnuti
+Neko me gurnuo u autobusu.	Someone shoved me on the bus.	word	jemand hat mich im bus geschubst.:Neko me gurnuo u autobusu.
+gurati	to push / to shove	word	schieben / stoßen:gurati
+Nemoj gurati, ima mjesta za sve.	Don't push, there's room for everyone.	word	nicht drängeln, es ist platz für alle.:Nemoj gurati, ima mjesta za sve.
+dodati	to add	word	hinzufügen:dodati
+Dodaj još malo šećera.	Add a little more sugar.	word	füg noch etwas zucker hinzu.:Dodaj još malo šećera.
+dodavati	to add	word	hinzufügen:dodavati
+Uvijek dodaje previše soli.	He always adds too much salt.	word	er gibt immer zu viel salz dazu.:Uvijek dodaje previše soli.
+izbaciti	to throw out	word	hinauswerfen:izbaciti
+Izbacili su ga iz škole.	They threw him out of school.	word	sie haben ihn aus der schule geworfen.:Izbacili su ga iz škole.
+izbacivati	to throw out	word	hinauswerfen:izbacivati
+Aplikacija me stalno izbacuje.	The app keeps throwing me out.	word	die app wirft mich ständig raus.:Aplikacija me stalno izbacuje.
+izvaditi	to take out	word	herausnehmen:izvaditi
+Izvadi meso iz frižidera.	Take the meat out of the fridge.	word	nimm das fleisch aus dem kühlschrank.:Izvadi meso iz frižidera.
+vaditi	to take out	word	herausnehmen:vaditi
+Ne vadi telefon dok jedemo.	Don't take your phone out while we're eating.	word	hol das handy nicht raus, während wir essen.:Ne vadi telefon dok jedemo.
+oduzeti	to take away	word	wegnehmen:oduzeti
+Oduzeli su mu vozačku dozvolu.	They took away his driver's license.	word	man hat ihm den führerschein weggenommen.:Oduzeli su mu vozačku dozvolu.
+oduzimati	to take away	word	wegnehmen:oduzimati
+Telefon mi oduzima puno vremena.	My phone takes up a lot of my time.	word	das handy nimmt mir viel zeit weg.:Telefon mi oduzima puno vremena.
+pružiti	to offer / to hold out	word	bieten / reichen:pružiti
+Pružio mi je ruku.	He held out his hand to me.	word	er hat mir die hand gereicht.:Pružio mi je ruku.
+pružati	to offer / to hold out	word	bieten / reichen:pružati
+Ovaj hotel pruža lijep pogled na grad.	This hotel offers a beautiful view of the city.	word	dieses hotel bietet einen schönen blick auf die stadt.:Ovaj hotel pruža lijep pogled na grad.
+činiti	to do (good, with an effect)	word	tun (wirkung: gutes tun, gut tun):činiti
+Uvijek čini dobro drugima.	He always does good to others.	word	er tut anderen immer gutes.:Uvijek čini dobro drugima.
+učiniti	to do	word	tun:učiniti
+Možeš li mi učiniti uslugu?	Can you do me a favor?	word	kannst du mir einen gefallen tun?:Možeš li mi učiniti uslugu?
+stvoriti	to create / to produce	word	erschaffen / erzeugen:stvoriti
+Stvorili su lijep dom za djecu.	They created a beautiful home for the children.	word	sie haben ein schönes zuhause für die kinder geschaffen.:Stvorili su lijep dom za djecu.
+stvarati	to create / to produce	word	erschaffen / erzeugen:stvarati
+On stalno stvara probleme.	He's always making trouble.	word	er macht ständig probleme.:On stalno stvara probleme.
+postići	to achieve (a goal)	word	erreichen (ziel):postići
+Postigla je sve što je željela.	She achieved everything she wanted.	word	sie hat alles erreicht, was sie wollte.:Postigla je sve što je željela.
+postizati	to achieve (a goal)	word	erreichen (ziel):postizati
+Naši učenici postižu odlične rezultate.	Our students achieve excellent results.	word	unsere schüler erzielen ausgezeichnete ergebnisse.:Naši učenici postižu odlične rezultate.
+ostvariti	to make real	word	verwirklichen:ostvariti
+Ostvario je svoj san.	He made his dream come true.	word	er hat seinen traum verwirklicht.:Ostvario je svoj san.
+ostvarivati	to make real	word	verwirklichen:ostvarivati
+Malo po malo ostvarujem svoje planove.	Little by little I'm making my plans come true.	word	nach und nach verwirkliche ich meine pläne.:Malo po malo ostvarujem svoje planove.
+izvršiti	to carry out	word	durchführen / ausführen:izvršiti
+Izvršite uplatu do kraja mjeseca.	Make the payment by the end of the month.	word	führen sie die zahlung bis zum monatsende durch.:Izvršite uplatu do kraja mjeseca.
+vršiti	to carry out	word	durchführen / ausführen:vršiti
+Inspekcija vrši kontrolu svih restorana.	The inspectors are checking all the restaurants.	word	die aufsicht kontrolliert alle restaurants.:Inspekcija vrši kontrolu svih restorana.
+obaviti	to get done	word	erledigen:obaviti
+Moram obaviti još nekoliko poslova.	I still have a few things to get done.	word	ich muss noch ein paar dinge erledigen.:Moram obaviti još nekoliko poslova.
+obavljati	to get done	word	erledigen:obavljati
+Ona obavlja sve poslove u kući.	She does all the work around the house.	word	sie erledigt alle arbeiten im haus.:Ona obavlja sve poslove u kući.
+pokrenuti	to get going / to start up	word	in gang setzen / starten:pokrenuti
+Pokrenuo je vlastiti posao u Sarajevu.	He started his own business in Sarajevo.	word	er hat in sarajevo ein eigenes geschäft gestartet.:Pokrenuo je vlastiti posao u Sarajevu.
+pokretati	to get going / to start up	word	in gang setzen / starten:pokretati
+Ovaj motor pokreće cijelu mašinu.	This motor drives the whole machine.	word	dieser motor treibt die ganze maschine an.:Ovaj motor pokreće cijelu mašinu.
+započeti	to begin (something)	word	beginnen (mit etwas):započeti
+Ko je započeo svađu?	Who started the quarrel?	word	wer hat den streit angefangen?:Ko je započeo svađu?
+započinjati	to begin (something)	word	beginnen (mit etwas):započinjati
+Dan uvijek započinjem kahvom.	I always begin the day with a coffee.	word	den tag beginne ich immer mit einem kaffee.:Dan uvijek započinjem kahvom.
+postaviti	to set up / to put	word	aufstellen / stellen:postaviti
+Mogu li Vam postaviti pitanje?	May I ask you a question?	word	darf ich ihnen eine frage stellen?:Mogu li Vam postaviti pitanje?
+postavljati	to set up / to put	word	aufstellen / stellen:postavljati
+Radnici postavljaju novu ogradu.	The workers are putting up a new fence.	word	die arbeiter stellen einen neuen zaun auf.:Radnici postavljaju novu ogradu.
+održati	to hold (an event) / to give (a speech)	word	abhalten / halten:održati
+Održao je kratak govor.	He gave a short speech.	word	er hat eine kurze rede gehalten.:Održao je kratak govor.
+održavati	to hold (an event) / to maintain	word	abhalten / instand halten:održavati
+Ko održava ovu zgradu?	Who maintains this building?	word	wer hält dieses gebäude instand?:Ko održava ovu zgradu?
+organizovati	to organize	word	organisieren:organizovati
+Organizovali smo veliku svadbu.	We organized a big wedding.	word	wir haben eine große hochzeit organisiert.:Organizovali smo veliku svadbu.
+planirati	to plan	word	planen:planirati
+Šta planiraš za vikend?	What are you planning for the weekend?	word	was planst du fürs wochenende?:Šta planiraš za vikend?
+razviti	to develop	word	entwickeln:razviti
+Razvili su novu aplikaciju.	They developed a new app.	word	sie haben eine neue app entwickelt.:Razvili su novu aplikaciju.
+razvijati	to develop	word	entwickeln:razvijati
+Čitanje razvija maštu kod djece.	Reading develops children's imagination.	word	lesen entwickelt die fantasie bei kindern.:Čitanje razvija maštu kod djece.
+povećati	to raise (increase)	word	erhöhen:povećati
+Povećali su mi platu.	They raised my salary.	word	sie haben mir das gehalt erhöht.:Povećali su mi platu.
+povećavati	to raise (increase)	word	erhöhen:povećavati
+Pušenje povećava rizik od raka.	Smoking increases the risk of cancer.	word	rauchen erhöht das krebsrisiko.:Pušenje povećava rizik od raka.
+smanjiti	to reduce	word	verringern:smanjiti
+Smanji malo muziku, beba spava.	Turn the music down a little, the baby is sleeping.	word	mach die musik etwas leiser, das baby schläft.:Smanji malo muziku, beba spava.
+smanjivati	to reduce	word	verringern:smanjivati
+Polako smanjujem šećer u kahvi.	Little by little I'm reducing the sugar in my coffee.	word	nach und nach reduziere ich den zucker im kaffee.:Polako smanjujem šećer u kahvi.
+poboljšati	to improve	word	verbessern:poboljšati
+Želim poboljšati svoj bosanski.	I want to improve my Bosnian.	word	ich möchte mein bosnisch verbessern.:Želim poboljšati svoj bosanski.
+poboljšavati	to improve	word	verbessern:poboljšavati
+Redovno vježbanje poboljšava zdravlje.	Regular exercise improves your health.	word	regelmäßige bewegung verbessert die gesundheit.:Redovno vježbanje poboljšava zdravlje.
+izgraditi	to build	word	bauen:izgraditi
+Izgradili su novi most preko rijeke.	They built a new bridge over the river.	word	sie haben eine neue brücke über den fluss gebaut.:Izgradili su novi most preko rijeke.
+graditi	to build	word	bauen:graditi
+Babo gradi kuću u Bosni.	Dad is building a house in Bosnia.	word	papa baut ein haus in bosnien.:Babo gradi kuću u Bosni.
+proizvesti	to produce	word	herstellen:proizvesti
+Ove godine smo proizveli puno meda.	This year we produced a lot of honey.	word	dieses jahr haben wir viel honig hergestellt.:Ove godine smo proizveli puno meda.
+proizvoditi	to produce	word	herstellen:proizvoditi
+Ova fabrika proizvodi namještaj.	This factory makes furniture.	word	diese fabrik stellt möbel her.:Ova fabrika proizvodi namještaj.
+omogućiti	to enable	word	ermöglichen:omogućiti
+Stipendija mi je omogućila da studiram.	The scholarship enabled me to go to college.	word	das stipendium hat mir ermöglicht zu studieren.:Stipendija mi je omogućila da studiram.
+omogućavati	to enable	word	ermöglichen:omogućavati
+Ova aplikacija omogućava učenje bez interneta.	This app lets you learn without internet.	word	diese app ermöglicht das lernen ohne internet.:Ova aplikacija omogućava učenje bez interneta.
+osigurati	to secure / to insure	word	sichern / versichern:osigurati
+Jesi li osigurao auto?	Did you insure the car?	word	hast du das auto versichert?:Jesi li osigurao auto?
+osiguravati	to secure / to insure	word	sichern / versichern:osiguravati
+Država svima osigurava besplatno školovanje.	The state ensures free schooling for everyone.	word	der staat sichert allen eine kostenlose schulbildung.:Država svima osigurava besplatno školovanje.
+uništiti	to destroy	word	zerstören:uništiti
+Poplava je uništila cijelo selo.	The flood destroyed the whole village.	word	die überschwemmung hat das ganze dorf zerstört.:Poplava je uništila cijelo selo.
+uništavati	to destroy	word	zerstören:uništavati
+Alkohol uništava mnoge porodice.	Alcohol destroys many families.	word	alkohol zerstört viele familien.:Alkohol uništava mnoge porodice.
+otkriti	to discover / to uncover	word	entdecken / aufdecken:otkriti
+Ljekari su otkrili bolest na vrijeme.	The doctors discovered the illness in time.	word	die ärzte haben die krankheit rechtzeitig entdeckt.:Ljekari su otkrili bolest na vrijeme.
+otkrivati	to discover / to uncover	word	entdecken / aufdecken:otkrivati
+U Sarajevu stalno otkrivam nova mjesta.	In Sarajevo I keep discovering new places.	word	in sarajevo entdecke ich ständig neue orte.:U Sarajevu stalno otkrivam nova mjesta.
+pronaći	to track down	word	ausfindig machen:pronaći
+Policija je pronašla ukradeni auto.	The police found the stolen car.	word	die polizei hat das gestohlene auto gefunden.:Policija je pronašla ukradeni auto.
+pronalaziti	to track down	word	ausfindig machen:pronalaziti
+Uvijek pronalazi neki izgovor.	He always finds an excuse.	word	er findet immer eine ausrede.:Uvijek pronalazi neki izgovor.
+prihvatiti	to accept	word	annehmen / akzeptieren:prihvatiti
+Prihvatio sam njihovu ponudu.	I accepted their offer.	word	ich habe ihr angebot angenommen.:Prihvatio sam njihovu ponudu.
+prihvatati	to accept	word	annehmen / akzeptieren:prihvatati
+Nažalost, ne prihvatamo kartice.	Unfortunately we don't accept cards.	word	leider nehmen wir keine karten an.:Nažalost, ne prihvatamo kartice.
+odbiti	to reject	word	ablehnen:odbiti
+Odbili su moj zahtjev.	They rejected my application.	word	sie haben meinen antrag abgelehnt.:Odbili su moj zahtjev.
+odbijati	to reject	word	ablehnen:odbijati
+Dijete odbija da jede povrće.	The child refuses to eat vegetables.	word	das kind weigert sich, gemüse zu essen.:Dijete odbija da jede povrće.
+odabrati	to pick out	word	aussuchen:odabrati
+Odabrala je najljepšu haljinu.	She picked out the most beautiful dress.	word	sie hat das schönste kleid ausgesucht.:Odabrala je najljepšu haljinu.
+odabirati	to pick out	word	aussuchen:odabirati
+Pažljivo odabire svoje riječi.	He chooses his words carefully.	word	er sucht seine worte sorgfältig aus.:Pažljivo odabire svoje riječi.
+odrediti	to determine / to set	word	bestimmen:odrediti
+Odredili smo datum vjenčanja.	We set the date of the wedding.	word	wir haben den hochzeitstermin bestimmt.:Odredili smo datum vjenčanja.
+određivati	to determine / to set	word	bestimmen:određivati
+Ko ovdje određuje cijene?	Who sets the prices here?	word	wer bestimmt hier die preise?:Ko ovdje određuje cijene?
+zaključiti	to conclude	word	schlussfolgern / abschließen:zaključiti
+Iz toga sam zaključio da je ljut.	From that I concluded that he was angry.	word	daraus habe ich geschlossen, dass er wütend ist.:Iz toga sam zaključio da je ljut.
+zaključivati	to conclude	word	schlussfolgern / abschließen:zaključivati
+Na osnovu čega to zaključuješ?	What makes you conclude that?	word	woraus schließt du das?:Na osnovu čega to zaključuješ?
+utvrditi	to establish	word	feststellen:utvrditi
+Vatrogasci su utvrdili uzrok požara.	The firefighters established the cause of the fire.	word	die feuerwehrleute haben die brandursache festgestellt.:Vatrogasci su utvrdili uzrok požara.
+utvrđivati	to establish	word	feststellen:utvrđivati
+Policija još utvrđuje kako se nesreća desila.	The police are still establishing how the accident happened.	word	die polizei stellt noch fest, wie der unfall passiert ist.:Policija još utvrđuje kako se nesreća desila.
+podržati	to support	word	unterstützen:podržati
+Cijela porodica me je podržala.	The whole family supported me.	word	die ganze familie hat mich unterstützt.:Cijela porodica me je podržala.
+podržavati	to support	word	unterstützen:podržavati
+Žena me uvijek podržava.	My wife always supports me.	word	meine frau unterstützt mich immer.:Žena me uvijek podržava.
+pristati	to consent	word	einwilligen:pristati
+Pristala je da se uda za njega.	She agreed to marry him.	word	sie hat eingewilligt, ihn zu heiraten.:Pristala je da se uda za njega.
+pristajati	to consent	word	einwilligen:pristajati
+Ne pristajem na te uslove.	I don't accept these terms.	word	auf diese bedingungen lasse ich mich nicht ein.:Ne pristajem na te uslove.
+Neću ti dopustiti da to uradiš.	I won't let you do that.	word	ich werde nicht zulassen, dass du das tust.:Neću ti dopustiti da to uradiš.
+Roditelji mu ne dopuštaju da izlazi.	His parents don't let him go out.	word	seine eltern lassen ihn nicht ausgehen.:Roditelji mu ne dopuštaju da izlazi.
+zabraniti	to forbid	word	verbieten:zabraniti
+Doktor mi je zabranio kahvu.	The doctor has forbidden me coffee.	word	der arzt hat mir kaffee verboten.:Doktor mi je zabranio kahvu.
+zabranjivati	to forbid	word	verbieten:zabranjivati
+Moj babo mi sve zabranjuje.	My dad forbids me everything.	word	mein papa verbietet mir alles.:Moj babo mi sve zabranjuje.
+prekinuti	to interrupt	word	unterbrechen:prekinuti
+Izvini što sam te prekinuo.	Sorry for interrupting you.	word	entschuldige, dass ich dich unterbrochen habe.:Izvini što sam te prekinuo.
+prekidati	to interrupt	word	unterbrechen:prekidati
+Nemoj me stalno prekidati!	Stop interrupting me!	word	unterbrich mich nicht ständig!:Nemoj me stalno prekidati!
+odustati	to give up (renounce)	word	aufgeben (verzichten):odustati
+Na kraju je odustao od studija.	In the end he gave up his studies.	word	am ende hat er das studium aufgegeben.:Na kraju je odustao od studija.
+odustajati	to give up (renounce)	word	aufgeben (verzichten):odustajati
+Ne odustajem tako lako.	I don't give up that easily.	word	ich gebe nicht so leicht auf.:Ne odustajem tako lako.
+napustiti	to leave (a place, a person)	word	verlassen:napustiti
+Napustio je Bosnu kao dijete.	He left Bosnia as a child.	word	er hat bosnien als kind verlassen.:Napustio je Bosnu kao dijete.
+napuštati	to leave (a place, a person)	word	verlassen:napuštati
+Mnogi mladi napuštaju svoja sela.	Many young people are leaving their villages.	word	viele junge leute verlassen ihre dörfer.:Mnogi mladi napuštaju svoja sela.
+ispuniti	to fulfill	word	erfüllen:ispuniti
+Nana mi je ispunila želju.	Grandma granted my wish.	word	oma hat mir den wunsch erfüllt.:Nana mi je ispunila želju.
+ispunjavati	to fulfill	word	erfüllen:ispunjavati
+Ne ispunjavam sve uslove za posao.	I don't meet all the requirements for the job.	word	ich erfülle nicht alle bedingungen für die stelle.:Ne ispunjavam sve uslove za posao.
+izbjeći	to avoid	word	vermeiden:izbjeći
+Jedva smo izbjegli nesreću.	We narrowly avoided an accident.	word	wir haben knapp einen unfall vermieden.:Jedva smo izbjegli nesreću.
+izbjegavati	to avoid	word	vermeiden:izbjegavati
+Zašto me u zadnje vrijeme izbjegavaš?	Why have you been avoiding me lately?	word	warum gehst du mir in letzter zeit aus dem weg?:Zašto me u zadnje vrijeme izbjegavaš?
+spriječiti	to prevent	word	verhindern:spriječiti
+Na vrijeme smo spriječili požar.	We prevented the fire in time.	word	wir haben den brand rechtzeitig verhindert.:Na vrijeme smo spriječili požar.
+sprječavati	to prevent	word	verhindern:sprječavati
+Redovno pranje ruku sprječava bolesti.	Regular hand washing prevents illness.	word	regelmäßiges händewaschen verhindert krankheiten.:Redovno pranje ruku sprječava bolesti.
+zaustaviti	to stop (something)	word	anhalten / stoppen:zaustaviti
+Zaustavi auto, moram izaći.	Stop the car, I have to get out.	word	halte das auto an, ich muss aussteigen.:Zaustavi auto, moram izaći.
+zaustavljati	to stop (something)	word	anhalten / stoppen:zaustavljati
+Policija danas zaustavlja sve kamione.	The police are stopping all trucks today.	word	die polizei hält heute alle lkw an.:Policija danas zaustavlja sve kamione.
+provjeriti	to check	word	überprüfen:provjeriti
+Provjeri da li su vrata zaključana.	Check that the door is locked.	word	prüfe, ob die tür abgeschlossen ist.:Provjeri da li su vrata zaključana.
+provjeravati	to check	word	überprüfen:provjeravati
+Svakih pet minuta provjerava telefon.	He checks his phone every five minutes.	word	alle fünf minuten überprüft er das handy.:Svakih pet minuta provjerava telefon.
+dokazati	to prove	word	beweisen:dokazati
+Možeš li to dokazati?	Can you prove that?	word	kannst du das beweisen?:Možeš li to dokazati?
+dokazivati	to prove	word	beweisen:dokazivati
+Ne moraš mi ništa dokazivati.	You don't have to prove anything to me.	word	du musst mir nichts beweisen.:Ne moraš mi ništa dokazivati.
+nemati	not to have	word	nicht haben:nemati
+Nemam brata, ali imam dvije sestre.	I don't have a brother, but I have two sisters.	word	ich habe keinen bruder, aber zwei schwestern.:Nemam brata, ali imam dvije sestre.
+ticati se	to concern	word	betreffen:ticati se
+To se tebe ne tiče.	That's none of your business.	word	das geht dich nichts an.:To se tebe ne tiče.
+pripadati	to belong (to)	word	gehören (zu):pripadati
+Ova kuća pripada mojoj porodici.	This house belongs to my family.	word	dieses haus gehört meiner familie.:Ova kuća pripada mojoj porodici.
+sadržati	to contain	word	enthalten:sadržati
+Ovaj sok ne sadrži šećer.	This juice contains no sugar.	word	dieser saft enthält keinen zucker.:Ovaj sok ne sadrži šećer.
+sastojati se	to consist (of)	word	bestehen (aus):sastojati se
+Stan se sastoji od tri sobe.	The apartment consists of three rooms.	word	die wohnung besteht aus drei zimmern.:Stan se sastoji od tri sobe.
+služiti	to serve	word	dienen / servieren:služiti
+Čemu služi ovo dugme?	What is this button for?	word	wofür ist dieser knopf da?:Čemu služi ovo dugme?
+poslužiti	to serve	word	dienen / servieren:poslužiti
+Domaćica nam je poslužila kahvu.	The hostess served us coffee.	word	die gastgeberin hat uns kaffee serviert.:Domaćica nam je poslužila kahvu.
+djelovati	to have an effect	word	wirken:djelovati
+Ovaj lijek brzo djeluje.	This medicine works fast.	word	dieses medikament wirkt schnell.:Ovaj lijek brzo djeluje.
+uticati	to influence	word	beeinflussen:uticati
+Vrijeme utiče na moje raspoloženje.	The weather affects my mood.	word	das wetter beeinflusst meine stimmung.:Vrijeme utiče na moje raspoloženje.
+nastati	to arise	word	entstehen:nastati
+Nastala je velika gužva.	A big crowd formed.	word	es ist ein großes gedränge entstanden.:Nastala je velika gužva.
+nastajati	to arise	word	entstehen:nastajati
+Problemi nastaju kad ljudi ne razgovaraju.	Problems arise when people don't talk to each other.	word	probleme entstehen, wenn menschen nicht miteinander reden.:Problemi nastaju kad ljudi ne razgovaraju.
+pojaviti se	to appear	word	erscheinen:pojaviti se
+Odjednom se pojavio na vratima.	Suddenly he appeared in the doorway.	word	plötzlich ist er in der tür erschienen.:Odjednom se pojavio na vratima.
+pojavljivati se	to appear	word	erscheinen:pojavljivati se
+Ova greška se stalno pojavljuje.	This error keeps appearing.	word	dieser fehler erscheint ständig.:Ova greška se stalno pojavljuje.
+nestati	to disappear	word	verschwinden:nestati
+Novčanik mi je nestao iz torbe.	My wallet has disappeared from my bag.	word	mein geldbeutel ist aus der tasche verschwunden.:Novčanik mi je nestao iz torbe.
+nestajati	to disappear	word	verschwinden:nestajati
+Snijeg polako nestaje s planine.	The snow is slowly disappearing from the mountain.	word	der schnee verschwindet langsam vom berg.:Snijeg polako nestaje s planine.
+rasti	to grow	word	wachsen:rasti
+Djeca tako brzo rastu!	Children grow so fast!	word	kinder wachsen so schnell!:Djeca tako brzo rastu!
+porasti	to grow	word	wachsen:porasti
+Kako si porastao za godinu dana!	How you've grown in a year!	word	wie du in einem jahr gewachsen bist!:Kako si porastao za godinu dana!
+doživjeti	to experience	word	erleben:doživjeti
+Nikad nisam doživio nešto tako lijepo.	I've never experienced anything so beautiful.	word	so etwas schönes habe ich noch nie erlebt.:Nikad nisam doživio nešto tako lijepo.
+doživljavati	to experience	word	erleben:doživljavati
+Na ovom poslu doživljavam svašta.	I experience all sorts of things in this job.	word	bei dieser arbeit erlebe ich so einiges.:Na ovom poslu doživljavam svašta.
+učestvovati	to take part	word	teilnehmen:učestvovati
+Naša škola učestvuje na takmičenju.	Our school is taking part in the competition.	word	unsere schule nimmt am wettbewerb teil.:Naša škola učestvuje na takmičenju.
+poznavati	to know (a person)	word	kennen:poznavati
+Poznaješ li mog brata?	Do you know my brother?	word	kennst du meinen bruder?:Poznaješ li mog brata?
+razlikovati	to tell apart	word	unterscheiden:razlikovati
+Blizanci su, ne mogu ih razlikovati.	They're twins, I can't tell them apart.	word	sie sind zwillinge, ich kann sie nicht unterscheiden.:Blizanci su, ne mogu ih razlikovati.
+podijeliti	to share / to divide	word	teilen:podijeliti
+Podijelili smo pitu na četiri dijela.	We divided the pita into four pieces.	word	wir haben die pita in vier teile geteilt.:Podijelili smo pitu na četiri dijela.
+dijeliti	to share / to divide	word	teilen:dijeliti
+Sa sestrom dijelim sobu.	I share a room with my sister.	word	mit meiner schwester teile ich mir ein zimmer.:Sa sestrom dijelim sobu.
+pustiti	to let	word	lassen:pustiti
+Pusti me da spavam!	Let me sleep!	word	lass mich schlafen!:Pusti me da spavam!
+puštati	to let	word	lassen:puštati
+Mama me ne pušta vani.	Mom won't let me go out.	word	mama lässt mich nicht raus.:Mama me ne pušta vani.
+zadržati	to keep / to hold up	word	behalten / aufhalten:zadržati
+U redu je, zadržite kusur.	That's fine, keep the change.	word	schon gut, behalten sie das rückgeld.:U redu je, zadržite kusur.
+zadržavati	to keep / to hold up	word	behalten / aufhalten:zadržavati
+Neću Vas dugo zadržavati.	I won't keep you long.	word	ich werde sie nicht lange aufhalten.:Neću Vas dugo zadržavati.
+obratiti se	to turn to	word	sich wenden an:obratiti se
+Obratite se na šalter broj tri.	Please go to counter three.	word	wenden sie sich an schalter drei.:Obratite se na šalter broj tri.
+obraćati se	to turn to	word	sich wenden an:obraćati se
+Uvijek se obraćam nani za savjet.	For advice I always turn to Grandma.	word	für einen rat wende ich mich immer an oma.:Uvijek se obraćam nani za savjet.
+družiti se	to spend time together	word	zeit miteinander verbringen:družiti se
+Volim se družiti s komšijama.	I like spending time with the neighbors.	word	ich verbringe gern zeit mit den nachbarn.:Volim se družiti s komšijama.
+ponašati se	to behave	word	sich benehmen:ponašati se
+Ponašaj se lijepo kod nane!	Behave yourself at Grandma's!	word	benimm dich gut bei oma!:Ponašaj se lijepo kod nane!
+poštovati	to respect	word	respektieren:poštovati
+Djeca trebaju poštovati starije.	Children should respect their elders.	word	kinder sollen ältere respektieren.:Djeca trebaju poštovati starije.
+cijeniti	to appreciate	word	schätzen:cijeniti
+Mnogo cijenim tvoj trud.	I really appreciate your hard work.	word	ich schätze deine mühe sehr.:Mnogo cijenim tvoj trud.
+pohvaliti	to praise	word	loben:pohvaliti
+Učiteljica me je pohvalila pred cijelim razredom.	The teacher praised me in front of the whole class.	word	die lehrerin hat mich vor der ganzen klasse gelobt.:Učiteljica me je pohvalila pred cijelim razredom.
+hvaliti	to praise	word	loben:hvaliti
+Svi hvale ovaj restoran.	Everyone praises this restaurant.	word	alle loben dieses restaurant.:Svi hvale ovaj restoran.
+lagati	to tell a lie	word	lügen:lagati
+Nemoj mi lagati, znam sve.	Don't lie to me, I know everything.	word	lüg mich nicht an, ich weiß alles.:Nemoj mi lagati, znam sve.
+slagati	to tell a lie	word	lügen:slagati
+Slagao sam mami da sam bolestan.	I lied to Mom that I was sick.	word	ich habe mama angelogen, dass ich krank bin.:Slagao sam mami da sam bolestan.
+truditi se	to make an effort	word	sich bemühen:truditi se
+Trudim se, ali nije lako.	I'm trying, but it's not easy.	word	ich bemühe mich, aber es ist nicht leicht.:Trudim se, ali nije lako.
+potruditi se	to make an effort	word	sich bemühen:potruditi se
+Potrudi se malo više!	Try a little harder!	word	bemüh dich ein bisschen mehr!:Potrudi se malo više!
+pogađati se	to negotiate (a price)	word	verhandeln (preis):pogađati se
+Još se pogađamo oko cijene stana.	We are still negotiating the price of the apartment.	word	wir verhandeln noch über den preis der wohnung.:Još se pogađamo oko cijene stana.
+ljubiti	to kiss	word	küssen:ljubiti
+Na Bajram ljubimo ruku nani.	At Bajram we kiss Grandma's hand.	word	an bajram küssen wir oma die hand.:Na Bajram ljubimo ruku nani.
+poljubiti	to kiss	word	küssen:poljubiti
+Poljubio ju je pred svima.	He kissed her in front of everyone.	word	er hat sie vor allen geküsst.:Poljubio ju je pred svima.
+zagrliti	to hug	word	umarmen:zagrliti
+Zagrli me prije nego što odeš.	Hug me before you go.	word	umarm mich, bevor du gehst.:Zagrli me prije nego što odeš.
+grliti	to hug	word	umarmen:grliti
+Nana nas uvijek grli kad dođemo.	Grandma always hugs us when we come.	word	oma umarmt uns immer, wenn wir kommen.:Nana nas uvijek grli kad dođemo.
+plakati	to cry	word	weinen:plakati
+Zašto beba stalno plače?	Why does the baby keep crying?	word	warum weint das baby ständig?:Zašto beba stalno plače?
+sanjati	to dream	word	träumen:sanjati
+Sinoć sam sanjao nanu.	I dreamed about Grandma last night.	word	letzte nacht habe ich von oma geträumt.:Sinoć sam sanjao nanu.
+mrziti	to hate	word	hassen:mrziti
+Mrzim ustajati rano ujutro.	I hate getting up early in the morning.	word	ich hasse es, früh morgens aufzustehen.:Mrzim ustajati rano ujutro.
+ljutiti se	to get angry	word	sich ärgern:ljutiti se
+Nemoj se ljutiti na mene.	Don't be angry with me.	word	ärgere dich nicht über mich.:Nemoj se ljutiti na mene.
+naljutiti se	to get angry	word	sich ärgern:naljutiti se
+Babo se naljutio zbog auta.	Dad got angry about the car.	word	papa hat sich wegen des autos geärgert.:Babo se naljutio zbog auta.
+plašiti se	to be afraid	word	sich fürchten:plašiti se
+Dijete se plaši mraka.	The child fears the dark.	word	das kind fürchtet sich vor der dunkelheit.:Dijete se plaši mraka.
+uplašiti se	to be afraid	word	sich fürchten:uplašiti se
+Uplašio sam se kad je zagrmilo.	I got scared when it thundered.	word	ich habe angst bekommen, als es gedonnert hat.:Uplašio sam se kad je zagrmilo.
+čuditi se	to be surprised (at something)	word	sich wundern:čuditi se
+Čudim se da još nije došao.	I'm surprised he hasn't come yet.	word	ich wundere mich, dass er noch nicht gekommen ist.:Čudim se da još nije došao.
+vikati	to shout	word	schreien:vikati
+Nemoj vikati, dijete spava.	Don't shout, the child is sleeping.	word	schrei nicht, das kind schläft.:Nemoj vikati, dijete spava.
+šutjeti / šutiti	to keep quiet	word	schweigen:šutjeti / šutiti
+Ona samo šuti i gleda kroz prozor.	She just keeps quiet and looks out the window.	word	sie schweigt nur und schaut aus dem fenster.:Ona samo šuti i gleda kroz prozor.
+sumnjati	to doubt	word	zweifeln:sumnjati
+Sumnjam da će doći na vrijeme.	I doubt he'll come on time.	word	ich bezweifle, dass er rechtzeitig kommt.:Sumnjam da će doći na vrijeme.
+patiti	to suffer	word	leiden:patiti
+Dedo pati od visokog pritiska.	Grandpa suffers from high blood pressure.	word	opa leidet an hohem blutdruck.:Dedo pati od visokog pritiska.
+žaliti	to regret	word	bedauern:žaliti
+Žalim što te nisam ranije upoznao.	I regret not meeting you sooner.	word	ich bedaure, dass ich dich nicht früher kennengelernt habe.:Žalim što te nisam ranije upoznao.
+faliti	to be missing (casual)	word	fehlen (locker):faliti
+Mnogo mi fališ, kad dolaziš?	I miss you so much, when are you coming?	word	du fehlst mir sehr, wann kommst du?:Mnogo mi fališ, kad dolaziš?
+ličiti	to resemble	word	ähneln:ličiti
+Mnogo ličiš na svoju mamu.	You look a lot like your mom.	word	du ähnelst deiner mama sehr.:Mnogo ličiš na svoju mamu.
+smiriti	to calm	word	beruhigen:smiriti
+Ovaj čaj će te smiriti.	This tea will calm you down.	word	dieser tee wird dich beruhigen.:Ovaj čaj će te smiriti.
+smirivati	to calm	word	beruhigen:smirivati
+Muzika me uvijek smiruje.	Music always calms me.	word	musik beruhigt mich immer.:Muzika me uvijek smiruje.
+iznenaditi	to surprise	word	überraschen:iznenaditi
+Baš si me iznenadila ovim poklonom.	You really surprised me with this present.	word	mit diesem geschenk hast du mich wirklich überrascht.:Baš si me iznenadila ovim poklonom.
+iznenađivati	to surprise	word	überraschen:iznenađivati
+Ti me stalno iznenađuješ.	You keep surprising me.	word	du überraschst mich ständig.:Ti me stalno iznenađuješ.
+hodati	to walk	word	gehen (zu fuß):hodati
+Svaki dan hodam sat vremena.	I walk for an hour every day.	word	jeden tag gehe ich eine stunde zu fuß.:Svaki dan hodam sat vremena.
+stati	to pull over / to stop moving	word	anhalten / stehen bleiben:stati
+Možete li stati ovdje, molim Vas?	Can you stop here, please?	word	können sie bitte hier anhalten?:Možete li stati ovdje, molim Vas?
+okrenuti	to turn	word	drehen:okrenuti
+Okreni ključ dva puta.	Turn the key twice.	word	dreh den schlüssel zweimal.:Okreni ključ dva puta.
+okretati	to turn	word	drehen:okretati
+Okrećem meso na roštilju.	I'm turning the meat on the grill.	word	ich drehe das fleisch auf dem grill.:Okrećem meso na roštilju.
+skočiti	to jump	word	springen:skočiti
+Skočio je sa Starog mosta.	He jumped off the Old Bridge.	word	er ist von der alten brücke gesprungen.:Skočio je sa Starog mosta.
+skakati	to jump	word	springen:skakati
+Djeca skaču po krevetu.	The children are jumping around on the bed.	word	die kinder springen auf dem bett herum.:Djeca skaču po krevetu.
+popeti se	to climb / to go up	word	klettern / hinaufgehen:popeti se
+Mačka se popela na drvo.	The cat climbed up the tree.	word	die katze ist auf den baum geklettert.:Mačka se popela na drvo.
+penjati se	to climb / to go up	word	klettern / hinaufgehen:penjati se
+Penjem se pješke na peti sprat.	I walk up to the fifth floor.	word	ich gehe zu fuß in den fünften stock hinauf.:Penjem se pješke na peti sprat.
+sići	to go down	word	hinuntergehen:sići
+Siđi dolje, večera je gotova!	Come down, dinner's ready!	word	komm runter, das abendessen ist fertig!:Siđi dolje, večera je gotova!
+silaziti	to go down	word	hinuntergehen:silaziti
+Silazim za dvije minute.	I'll be down in two minutes.	word	ich komme in zwei minuten runter.:Silazim za dvije minute.
+prijeći	to cross	word	überqueren:prijeći
+Moramo prijeći ulicu na semaforu.	We have to cross the street at the traffic light.	word	wir müssen an der ampel über die straße gehen.:Moramo prijeći ulicu na semaforu.
+prelaziti	to cross	word	überqueren:prelaziti
+Nikad ne prelazi ulicu na crveno!	Never cross the street on red!	word	geh nie bei rot über die straße!:Nikad ne prelazi ulicu na crveno!
+poći	to set off	word	losgehen:poći
+Moramo poći prije mraka.	We have to set off before dark.	word	wir müssen vor einbruch der dunkelheit losgehen.:Moramo poći prije mraka.
+polaziti	to set off	word	losgehen:polaziti
+Sutra polazimo u osam ujutro.	Tomorrow we set off at eight in the morning.	word	morgen gehen wir um acht uhr früh los.:Sutra polazimo u osam ujutro.
+obići	to tour / to visit	word	besichtigen / besuchen:obići
+Obišli smo cijelu Baščaršiju.	We toured all of Baščaršija.	word	wir haben die ganze baščaršija besichtigt.:Obišli smo cijelu Baščaršiju.
+obilaziti	to tour / to visit	word	besichtigen / besuchen:obilaziti
+Svake sedmice obilazim nanu.	I visit Grandma every week.	word	jede woche besuche ich oma.:Svake sedmice obilazim nanu.
+pobjeći	to flee / to run away	word	fliehen / weglaufen:pobjeći
+Pas je pobjegao iz dvorišta.	The dog ran away from the yard.	word	der hund ist aus dem hof entlaufen.:Pas je pobjegao iz dvorišta.
+bježati	to flee / to run away	word	fliehen / weglaufen:bježati
+Zašto bježiš od mene?	Why are you running away from me?	word	warum läufst du vor mir weg?:Zašto bježiš od mene?
+letjeti	to fly	word	fliegen:letjeti
+Prvi put letim avionom.	I'm flying by plane for the first time.	word	ich fliege zum ersten mal mit dem flugzeug.:Prvi put letim avionom.
+skrenuti	to make a turn (in traffic)	word	abbiegen:skrenuti
+Skrenite lijevo kod pošte.	Turn left at the post office.	word	biegen sie bei der post links ab.:Skrenite lijevo kod pošte.
+skretati	to make a turn (in traffic)	word	abbiegen:skretati
+Ovdje se ne smije skretati desno.	You can't turn right here.	word	hier darf man nicht rechts abbiegen.:Ovdje se ne smije skretati desno.
+sastati se	to meet (by arrangement)	word	sich treffen (verabredet):sastati se
+Moramo se sastati sutra ujutro.	We have to meet tomorrow morning.	word	wir müssen uns morgen früh treffen.:Moramo se sastati sutra ujutro.
+sastajati se	to meet (by arrangement)	word	sich treffen (verabredet):sastajati se
+Sastajemo se svakog petka poslije posla.	We meet every Friday after work.	word	wir treffen uns jeden freitag nach der arbeit.:Sastajemo se svakog petka poslije posla.
+boriti se	to fight	word	kämpfen:boriti se
+Uvijek se borila za svoju djecu.	She always fought for her children.	word	sie hat immer für ihre kinder gekämpft.:Uvijek se borila za svoju djecu.
+braniti	to defend	word	verteidigen:braniti
+Brat me uvijek brani u školi.	My brother always defends me at school.	word	mein bruder verteidigt mich in der schule immer.:Brat me uvijek brani u školi.
+odbraniti	to defend	word	verteidigen:odbraniti
+Golman je odbranio penal.	The goalkeeper saved the penalty.	word	der torwart hat den elfmeter abgewehrt.:Golman je odbranio penal.
+ubiti	to kill	word	töten:ubiti
+Lovac je ubio medvjeda.	The hunter killed a bear.	word	der jäger hat einen bären getötet.:Lovac je ubio medvjeda.
+ubijati	to kill	word	töten:ubijati
+Ova vrućina me ubija!	This heat is killing me!	word	diese hitze bringt mich um!:Ova vrućina me ubija!
+poginuti	to lose one's life	word	ums leben kommen:poginuti
+U nesreći su poginule dvije osobe.	Two people lost their lives in the accident.	word	beim unfall sind zwei menschen ums leben gekommen.:U nesreći su poginule dvije osobe.
+udariti	to hit	word	schlagen:udariti
+Brat me je udario bez razloga.	My brother hit me for no reason.	word	mein bruder hat mich ohne grund geschlagen.:Brat me je udario bez razloga.
+udarati	to hit	word	schlagen:udarati
+Nemoj udarati loptom o zid!	Don't hit the ball against the wall!	word	schlag nicht mit dem ball gegen die wand!:Nemoj udarati loptom o zid!
+pucati	to shoot	word	schießen:pucati
+Na svadbi su pucali u zrak.	At the wedding they fired shots in the air.	word	auf der hochzeit haben sie in die luft geschossen.:Na svadbi su pucali u zrak.
+napasti	to attack (verb)	word	angreifen:napasti
+Pas je napao poštara.	The dog attacked the mail carrier.	word	der hund hat den postboten angegriffen.:Pas je napao poštara.
+napadati	to attack (verb)	word	angreifen:napadati
+Zašto me stalno napadaš?	Why do you keep attacking me?	word	warum greifst du mich ständig an?:Zašto me stalno napadaš?
+osvojiti	to conquer / to win	word	erobern / gewinnen:osvojiti
+Osvojili smo prvo mjesto!	We won first place!	word	wir haben den ersten platz gewonnen!:Osvojili smo prvo mjesto!
+osvajati	to conquer / to win	word	erobern / gewinnen:osvajati
+Naši sportisti svake godine osvajaju medalje.	Our athletes win medals every year.	word	unsere sportler gewinnen jedes jahr medaillen.:Naši sportisti svake godine osvajaju medalje.
+zaštititi	to protect	word	schützen:zaštititi
+Krema će zaštititi kožu od sunca.	The cream will protect your skin from the sun.	word	die creme wird die haut vor der sonne schützen.:Krema će zaštititi kožu od sunca.
+štititi	to protect	word	schützen:štititi
+Kaciga štiti glavu od udarca.	The helmet protects your head from blows.	word	der helm schützt den kopf vor schlägen.:Kaciga štiti glavu od udarca.
+izazvati	to cause	word	verursachen:izazvati
+Kiša je izazvala velike poplave.	The rain caused major flooding.	word	der regen hat große überschwemmungen verursacht.:Kiša je izazvala velike poplave.
+izazivati	to cause	word	verursachen:izazivati
+Pušenje izaziva rak pluća.	Smoking causes lung cancer.	word	rauchen verursacht lungenkrebs.:Pušenje izaziva rak pluća.
+kazniti	to punish	word	bestrafen:kazniti
+Policija me je kaznila zbog brze vožnje.	The police fined me for speeding.	word	die polizei hat mich wegen zu schnellen fahrens bestraft.:Policija me je kaznila zbog brze vožnje.
+kažnjavati	to punish	word	bestrafen:kažnjavati
+Roditelji ga nikad ne kažnjavaju.	His parents never punish him.	word	seine eltern bestrafen ihn nie.:Roditelji ga nikad ne kažnjavaju.
+razbiti	to smash	word	zerschlagen:razbiti
+Ko je razbio prozor?	Who smashed the window?	word	wer hat das fenster zerschlagen?:Ko je razbio prozor?
+razbijati	to smash	word	zerschlagen:razbijati
+Djeca stalno razbijaju prozore loptom.	The kids keep smashing windows with the ball.	word	die kinder zerschlagen ständig mit dem ball fenster.:Djeca stalno razbijaju prozore loptom.
+peći	to bake	word	backen:peći
+Nana svaki dan peče hljeb.	Grandma bakes bread every day.	word	oma backt jeden tag brot.:Nana svaki dan peče hljeb.
+ispeći	to bake	word	backen:ispeći
+Ispekla sam pitu za goste.	I baked a pita for the guests.	word	ich habe für die gäste eine pita gebacken.:Ispekla sam pitu za goste.
+sipati	to pour	word	eingießen:sipati
+Sipaj mi još malo kahve.	Pour me a little more coffee.	word	gieß mir noch ein bisschen kaffee ein.:Sipaj mi još malo kahve.
+srediti	to put in order	word	in ordnung bringen:srediti
+Moram srediti papire za vizu.	I have to get the papers for the visa in order.	word	ich muss die papiere für das visum in ordnung bringen.:Moram srediti papire za vizu.
+sređivati	to put in order	word	in ordnung bringen:sređivati
+Sređujemo kuću prije Bajrama.	We get the house in order before Bajram.	word	vor bajram bringen wir das haus in ordnung.:Sređujemo kuću prije Bajrama.
+spremiti	to prepare / to make (food)	word	vorbereiten / zubereiten:spremiti
+Spremila sam ručak za sve.	I made lunch for everyone.	word	ich habe das mittagessen für alle zubereitet.:Spremila sam ručak za sve.
+spremati	to prepare / to make (food)	word	vorbereiten / zubereiten:spremati
+Sin mi sprema ispit iz matematike.	My son is studying for his math exam.	word	mein sohn bereitet sich auf die matheprüfung vor.:Sin mi sprema ispit iz matematike.
+sakriti	to hide	word	verstecken:sakriti
+Gdje si sakrio moje ključeve?	Where did you hide my keys?	word	wo hast du meine schlüssel versteckt?:Gdje si sakrio moje ključeve?
+skrivati	to conceal	word	verbergen:skrivati
+Znam da nešto skrivaš od mene.	I know you're hiding something from me.	word	ich weiß, dass du etwas vor mir verbirgst.:Znam da nešto skrivaš od mene.
+uključiti	to switch on / to include	word	einschalten / einbeziehen:uključiti
+Uključi televizor, počinje utakmica.	Turn on the TV, the game is starting.	word	schalte den fernseher ein, das spiel beginnt.:Uključi televizor, počinje utakmica.
+uključivati	to switch on / to include	word	einschalten / einbeziehen:uključivati
+Da li cijena uključuje doručak?	Is breakfast included in the price?	word	ist das frühstück im preis inbegriffen?:Da li cijena uključuje doručak?
+isključiti	to switch off / to exclude	word	abschalten / ausschließen:isključiti
+Isključi mobitel prije spavanja.	Turn your phone off before going to sleep.	word	schalte das handy vor dem schlafen aus.:Isključi mobitel prije spavanja.
+isključivati	to switch off / to exclude	word	abschalten / ausschließen:isključivati
+Uvijek isključujem svjetlo kad izlazim.	I always turn off the light when I go out.	word	ich schalte immer das licht aus, wenn ich rausgehe.:Uvijek isključujem svjetlo kad izlazim.
+popuniti	to fill in	word	ausfüllen:popuniti
+Popunite ovaj obrazac, molim Vas.	Please fill in this form.	word	füllen sie bitte dieses formular aus.:Popunite ovaj obrazac, molim Vas.
+popunjavati	to fill in	word	ausfüllen:popunjavati
+Još uvijek popunjavam prijavu za posao.	I'm still filling in the job application.	word	ich fülle immer noch die bewerbung aus.:Još uvijek popunjavam prijavu za posao.
+zapisati	to write down	word	aufschreiben:zapisati
+Zapiši moj broj telefona.	Write down my phone number.	word	schreib meine telefonnummer auf.:Zapiši moj broj telefona.
+zapisivati	to write down	word	aufschreiben:zapisivati
+Na časovima zapisujem svaku novu riječ.	In class I write down every new word.	word	im unterricht schreibe ich jedes neue wort auf.:Na časovima zapisujem svaku novu riječ.
+zakazati	to make (an appointment)	word	vereinbaren (termin):zakazati
+Zakazao sam termin kod doktora.	I made an appointment with the doctor.	word	ich habe einen termin beim arzt vereinbart.:Zakazao sam termin kod doktora.
+zakazivati	to make (an appointment)	word	vereinbaren (termin):zakazivati
+Termine zakazujemo samo telefonom.	We only make appointments by phone.	word	termine vereinbaren wir nur telefonisch.:Termine zakazujemo samo telefonom.
+uplatiti	to pay in	word	einzahlen:uplatiti
+Uplatio sam novac na tvoj račun.	I paid the money into your account.	word	ich habe das geld auf dein konto eingezahlt.:Uplatio sam novac na tvoj račun.
+uplaćivati	to pay in	word	einzahlen:uplaćivati
+Svaki mjesec uplaćujem kiriju na račun.	Every month I pay the rent into the account.	word	jeden monat zahle ich die miete aufs konto ein.:Svaki mjesec uplaćujem kiriju na račun.
+preseliti se	to move (house)	word	umziehen:preseliti se
+Preselili smo se u Tuzlu prošle godine.	We moved to Tuzla last year.	word	letztes jahr sind wir nach tuzla gezogen.:Preselili smo se u Tuzlu prošle godine.
+seliti se	to move (house)	word	umziehen:seliti se
+Sljedeći mjesec se selimo.	We're moving next month.	word	nächsten monat ziehen wir um.:Sljedeći mjesec se selimo.
+pogriješiti	to be wrong / to make a mistake	word	sich irren / einen fehler machen:pogriješiti
+Izvinite, pogriješio sam broj.	Sorry, I got the wrong number.	word	entschuldigung, ich habe mich in der nummer geirrt.:Izvinite, pogriješio sam broj.
+griješiti	to be wrong / to make a mistake	word	sich irren / einen fehler machen:griješiti
+Svi griješimo, to je normalno.	We all make mistakes, that's normal.	word	wir alle machen fehler, das ist normal.:Svi griješimo, to je normalno.
+naviknuti se	to get used to	word	sich gewöhnen:naviknuti se
+Navikla sam se na novi posao.	I've gotten used to the new job.	word	ich habe mich an die neue arbeit gewöhnt.:Navikla sam se na novi posao.
+navikavati se	to get used to	word	sich gewöhnen:navikavati se
+Polako se navikavam na život ovdje.	I'm slowly getting used to life here.	word	langsam gewöhne ich mich an das leben hier.:Polako se navikavam na život ovdje.
+sjeći	to chop (wood)	word	schneiden (grob, holz):sjeći
+Sječem drva za zimu.	I chop wood for the winter.	word	ich hacke holz für den winter.:Sječem drva za zimu.
+snimati	to record / to film	word	aufnehmen / filmen:snimati
+Nemojte me snimati, molim Vas.	Please don't film me.	word	bitte filmen sie mich nicht.:Nemojte me snimati, molim Vas.
+objavljivati	to publish / to post	word	veröffentlichen / posten:objavljivati
+Ona svaki dan objavljuje slike na Instagramu.	She posts pictures on Instagram every day.	word	sie postet jeden tag bilder auf instagram.:Ona svaki dan objavljuje slike na Instagramu.
+polagati	to take (an exam)	word	ablegen (prüfung):polagati
+Sutra polažem vozački ispit.	Tomorrow I'm taking my driving test.	word	morgen mache ich die führerscheinprüfung.:Sutra polažem vozački ispit.
+otkazivati	to call off / to cancel	word	absagen / stornieren:otkazivati
+Zašto stalno otkazuješ naše sastanke?	Why do you keep canceling our meetings?	word	warum sagst du ständig unsere treffen ab?:Zašto stalno otkazuješ naše sastanke?
+pobjeđivati	to win	word	gewinnen:pobjeđivati
+Nana uvijek pobjeđuje u kartama.	Grandma always wins at cards.	word	oma gewinnt beim kartenspielen immer.:Nana uvijek pobjeđuje u kartama.
+pakovati	to pack	word	packen:pakovati
+Još uvijek pakujem stvari za put.	I'm still packing my things for the trip.	word	ich packe immer noch die sachen für die reise.:Još uvijek pakujem stvari za put.
+prevoditi	to translate	word	übersetzen:prevoditi
+Moja sestra prevodi s njemačkog na bosanski.	My sister translates from German into Bosnian.	word	meine schwester übersetzt aus dem deutschen ins bosnische.:Moja sestra prevodi s njemačkog na bosanski.
+upisivati se	to enroll	word	sich einschreiben:upisivati se
+Studenti se upisuju u oktobru.	The students enroll in October.	word	die studenten schreiben sich im oktober ein.:Studenti se upisuju u oktobru.
+zapošljavati se	to get a job	word	eine stelle bekommen:zapošljavati se
+Mladi se sve teže zapošljavaju.	It's getting harder and harder for young people to find a job.	word	junge leute bekommen immer schwerer eine stelle.:Mladi se sve teže zapošljavaju.
+lomiti	to break (bone, glass)	word	brechen (knochen, glas):lomiti
+Snijeg lomi grane na drveću.	The snow breaks the branches on the trees.	word	der schnee bricht die äste an den bäumen.:Snijeg lomi grane na drveću.
+propisivati	to prescribe	word	verschreiben:propisivati
+Doktor rijetko propisuje antibiotike.	The doctor rarely prescribes antibiotics.	word	der arzt verschreibt selten antibiotika.:Doktor rijetko propisuje antibiotike.
+nacrtati	to draw	word	zeichnen:nacrtati
+Nacrtaj mi kuću i sunce.	Draw me a house and a sun.	word	zeichne mir ein haus und eine sonne.:Nacrtaj mi kuću i sunce.
+izračunati	to calculate	word	rechnen:izračunati
+Izračunaj koliko nam treba novca.	Work out how much money we need.	word	rechne aus, wie viel geld wir brauchen.:Izračunaj koliko nam treba novca.
 izgubiti se	to get lost	word	sich verlaufen:izgubiti se
 Izgubili smo se u gradu.	We got lost in town.	word	wir haben uns in der stadt verlaufen.:Izgubili smo se u gradu.
 spasiti	to save / to rescue	word	retten:spasiti
@@ -2941,6 +3539,891 @@ praksa	internship	word	praktikum:praksa
 Studenti moraju odraditi praksu.	Students have to do an internship.	word	studenten müssen ein praktikum machen.:Studenti moraju odraditi praksu.
 radni dan	workday	word	werktag:radni dan
 Radnim danima ustajem u šest.	On workdays I get up at six.	word	an werktagen stehe ich um sechs auf.:Radnim danima ustajem u šest.
+mjesto	place / spot	word	ort / platz:mjesto
+Je li ovo mjesto slobodno?	Is this seat free?	word	ist dieser platz frei?:Je li ovo mjesto slobodno?
+strana	side (direction)	word	seite (richtung):strana
+Apoteka je na drugoj strani ulice.	The pharmacy is on the other side of the street.	word	die apotheke ist auf der anderen straßenseite.:Apoteka je na drugoj strani ulice.
+prostor	space (room)	word	raum (platz):prostor
+U stanu nemamo dovoljno prostora.	We don't have enough space in the apartment.	word	in der wohnung haben wir nicht genug platz.:U stanu nemamo dovoljno prostora.
+područje	region	word	gebiet:područje
+Cijelo područje je ostalo bez struje.	The whole region has been left without power.	word	das ganze gebiet ist ohne strom geblieben.:Cijelo područje je ostalo bez struje.
+oblast	field / area	word	bereich:oblast
+Ona radi u oblasti zdravstva.	She works in the field of health care.	word	sie arbeitet im bereich gesundheit.:Ona radi u oblasti zdravstva.
+centar	center	word	zentrum:centar
+Stanujemo u samom centru grada.	We live right in the city center.	word	wir wohnen mitten im stadtzentrum.:Stanujemo u samom centru grada.
+sredina	middle	word	mitte:sredina
+Sto stoji na sredini sobe.	The table is in the middle of the room.	word	der tisch steht in der mitte des zimmers.:Sto stoji na sredini sobe.
+položaj	location	word	lage:položaj
+Stan ima odličan položaj.	The apartment has an excellent location.	word	die wohnung hat eine ausgezeichnete lage.:Stan ima odličan položaj.
+smjer	direction (of travel)	word	richtung (fahrtrichtung):smjer
+Idemo u pogrešnom smjeru.	We are going in the wrong direction.	word	wir fahren in die falsche richtung.:Idemo u pogrešnom smjeru.
+krug	circle	word	kreis:krug
+Djeca sjede u krugu.	The children are sitting in a circle.	word	die kinder sitzen im kreis.:Djeca sjede u krugu.
+površina	surface area	word	fläche:površina
+Površina stana je šezdeset kvadrata.	The apartment has a surface area of sixty square meters.	word	die fläche der wohnung beträgt sechzig quadratmeter.:Površina stana je šezdeset kvadrata.
+blizina	proximity	word	nähe:blizina
+Živimo u blizini škole.	We live near the school.	word	wir wohnen in der nähe der schule.:Živimo u blizini škole.
+okolina	surroundings	word	umgebung:okolina
+Moja nana živi u okolini Sarajeva.	My grandma lives in the surroundings of Sarajevo.	word	meine oma lebt in der umgebung von sarajevo.:Moja nana živi u okolini Sarajeva.
+zapad	west	word	westen:zapad
+Sunce zalazi na zapadu.	The sun sets in the west.	word	die sonne geht im westen unter.:Sunce zalazi na zapadu.
+istok	east	word	osten:istok
+Sunce izlazi na istoku.	The sun rises in the east.	word	die sonne geht im osten auf.:Sunce izlazi na istoku.
+sjever	north	word	norden:sjever
+Hladan vjetar puše sa sjevera.	A cold wind is blowing from the north.	word	ein kalter wind weht aus dem norden.:Hladan vjetar puše sa sjevera.
+jug	south	word	süden:jug
+Ptice zimi odlaze na jug.	In winter the birds fly south.	word	im winter ziehen die vögel nach süden.:Ptice zimi odlaze na jug.
+dno	bottom	word	boden (ganz unten):dno
+Ključevi su na dnu torbe.	The keys are at the bottom of the bag.	word	die schlüssel sind ganz unten in der tasche.:Ključevi su na dnu torbe.
+tačka	dot / period	word	punkt:tačka
+Na kraju rečenice ide tačka.	A sentence ends with a period.	word	am satzende steht ein punkt.:Na kraju rečenice ide tačka.
+udaljenost	distance	word	entfernung:udaljenost
+Kolika je udaljenost do Mostara?	How far is it to Mostar?	word	wie groß ist die entfernung nach mostar?:Kolika je udaljenost do Mostara?
+dubina	depth	word	tiefe:dubina
+Kolika je dubina ovog jezera?	How deep is this lake?	word	wie tief ist dieser see?:Kolika je dubina ovog jezera?
+dužina	length	word	länge:dužina
+Dužina staze je pet kilometara.	The length of the route is five kilometers.	word	die länge der strecke beträgt fünf kilometer.:Dužina staze je pet kilometara.
+širina	width	word	breite:širina
+Moramo izmjeriti širinu prozora.	We need to measure the width of the window.	word	wir müssen die breite des fensters messen.:Moramo izmjeriti širinu prozora.
+dio	part	word	teil:dio
+Drugi dio filma je bio bolji.	The second part of the movie was better.	word	der zweite teil des films war besser.:Drugi dio filma je bio bolji.
+broj	number	word	zahl / nummer:broj
+Napiši mi svoj broj na papir.	Write your number down on a piece of paper for me.	word	schreib mir deine nummer auf einen zettel.:Napiši mi svoj broj na papir.
+većina	majority	word	mehrheit:većina
+Većina mojih prijatelja živi u Njemačkoj.	Most of my friends live in Germany.	word	die meisten meiner freunde leben in deutschland.:Većina mojih prijatelja živi u Njemačkoj.
+količina	amount / quantity	word	menge:količina
+Dodaj malu količinu šećera.	Add a small amount of sugar.	word	gib eine kleine menge zucker dazu.:Dodaj malu količinu šećera.
+iznos	sum (of money)	word	betrag:iznos
+Uplatite cijeli iznos do petka.	Pay the full sum by Friday.	word	zahlen sie den ganzen betrag bis freitag ein.:Uplatite cijeli iznos do petka.
+ostatak	rest	word	rest:ostatak
+Ostatak ćemo pojesti sutra.	We'll eat the rest tomorrow.	word	den rest essen wir morgen.:Ostatak ćemo pojesti sutra.
+polovina	one half	word	hälfte:polovina
+Polovina kuće pripada mom bratu.	Half of the house belongs to my brother.	word	die hälfte des hauses gehört meinem bruder.:Polovina kuće pripada mom bratu.
+trećina	third	word	drittel:trećina
+Trećina plate mi ide na kiriju.	A third of my salary goes on rent.	word	ein drittel meines gehalts geht für die miete drauf.:Trećina plate mi ide na kiriju.
+četvrtina	quarter (a quarter of something)	word	viertel (ein viertel von etwas):četvrtina
+Pojeo je četvrtinu torte.	He ate a quarter of the cake.	word	er hat ein viertel der torte gegessen.:Pojeo je četvrtinu torte.
+milion	million	word	million:milion
+Taj grad ima milion stanovnika.	This city has a million inhabitants.	word	diese stadt hat eine million einwohner.:Taj grad ima milion stanovnika.
+milijarda	billion	word	milliarde:milijarda
+Na svijetu živi osam milijardi ljudi.	Eight billion people live in the world.	word	auf der welt leben acht milliarden menschen.:Na svijetu živi osam milijardi ljudi.
+stotina	a hundred (noun)	word	das hundert:stotina
+Na koncertu je bilo nekoliko stotina ljudi.	There were several hundred people at the concert.	word	beim konzert waren mehrere hundert leute.:Na koncertu je bilo nekoliko stotina ljudi.
+niz	series (of things)	word	reihe:niz
+Imali smo čitav niz problema.	We had a whole series of problems.	word	wir hatten eine ganze reihe von problemen.:Imali smo čitav niz problema.
+vrsta	kind / sort	word	art / sorte:vrsta
+Koja je ovo vrsta sira?	What kind of cheese is this?	word	was für eine käsesorte ist das?:Koja je ovo vrsta sira?
+par	pair / a couple	word	paar / ein paar:par
+Kupila sam novi par cipela.	I bought a new pair of shoes.	word	ich habe ein neues paar schuhe gekauft.:Kupila sam novi par cipela.
+višak	surplus	word	überschuss:višak
+Imamo višak hrane, uzmi malo.	We have food left over, take some.	word	wir haben essen übrig, nimm dir etwas.:Imamo višak hrane, uzmi malo.
+nedostatak	lack	word	mangel:nedostatak
+Glavni problem je nedostatak novca.	The main problem is the lack of money.	word	das hauptproblem ist der geldmangel.:Glavni problem je nedostatak novca.
+prosjek	average	word	durchschnitt:prosjek
+Njegova plata je iznad prosjeka.	His salary is above average.	word	sein gehalt liegt über dem durchschnitt.:Njegova plata je iznad prosjeka.
+gomila	pile	word	haufen:gomila
+Na stolu je gomila papira.	There is a pile of paper on the table.	word	auf dem tisch liegt ein haufen papier.:Na stolu je gomila papira.
+nivo	level	word	niveau / ebene:nivo
+Moj bosanski je na dobrom nivou.	My Bosnian is at a good level.	word	mein bosnisch ist auf einem guten niveau.:Moj bosanski je na dobrom nivou.
+vrijednost	value	word	wert:vrijednost
+Vrijednost ove kuće stalno raste.	The value of this house keeps rising.	word	der wert dieses hauses steigt ständig.:Vrijednost ove kuće stalno raste.
+razlika	difference	word	unterschied:razlika
+Koja je razlika između ove dvije riječi?	What is the difference between these two words?	word	was ist der unterschied zwischen diesen zwei wörtern?:Koja je razlika između ove dvije riječi?
+kilometar	kilometer	word	kilometer:kilometar
+Do škole ima samo jedan kilometar.	It's only one kilometer to the school.	word	bis zur schule ist es nur ein kilometer.:Do škole ima samo jedan kilometar.
+početak	beginning	word	anfang:početak
+Na početku mi je bilo teško.	At the beginning it was hard for me.	word	am anfang war es schwer für mich.:Na početku mi je bilo teško.
+kraj	end	word	ende:kraj
+Pekara je na kraju ulice.	The bakery is at the end of the street.	word	die bäckerei ist am ende der straße.:Pekara je na kraju ulice.
+period	period of time	word	zeitraum:period
+To je bio težak period u mom životu.	That was a hard time in my life.	word	das war eine schwere zeit in meinem leben.:To je bio težak period u mom životu.
+doba	time / era	word	zeit / epoche:doba
+Proljeće je moje omiljeno doba godine.	Spring is my favorite time of year.	word	der frühling ist meine liebste jahreszeit.:Proljeće je moje omiljeno doba godine.
+čas	school lesson / moment	word	schulstunde / augenblick:čas
+Prvi čas počinje u osam.	The first lesson starts at eight.	word	die erste schulstunde beginnt um acht.:Prvi čas počinje u osam.
+vijek / stoljeće	century / age	word	jahrhundert / zeitalter:vijek / stoljeće
+Ova džamija je iz šesnaestog vijeka.	This mosque is from the sixteenth century.	word	diese moschee ist aus dem sechzehnten jahrhundert.:Ova džamija je iz šesnaestog vijeka.
+decenija	decade	word	jahrzehnt:decenija
+Živim ovdje već dvije decenije.	I've been living here for two decades.	word	ich wohne schon seit zwei jahrzehnten hier.:Živim ovdje već dvije decenije.
+prošlost	the past	word	die vergangenheit (früher):prošlost
+Ne možeš promijeniti prošlost.	You can't change the past.	word	du kannst die vergangenheit nicht ändern.:Ne možeš promijeniti prošlost.
+nastavak	sequel / continuation	word	fortsetzung:nastavak
+Nastavak filma izlazi sljedeće godine.	The sequel to the movie comes out next year.	word	die fortsetzung des films kommt nächstes jahr heraus.:Nastavak filma izlazi sljedeće godine.
+završetak	completion	word	abschluss:završetak
+Poslije završetka škole želim studirati.	After finishing school I want to go to college.	word	nach dem schulabschluss möchte ich studieren.:Poslije završetka škole želim studirati.
+povratak	return	word	rückkehr:povratak
+Radujem se povratku kući.	I'm looking forward to returning home.	word	ich freue mich auf die rückkehr nach hause.:Radujem se povratku kući.
+odlazak	leaving / departure	word	weggang / abreise:odlazak
+Njegov odlazak nas je iznenadio.	His departure surprised us.	word	sein weggang hat uns überrascht.:Njegov odlazak nas je iznenadio.
+godišnjica	anniversary	word	jahrestag:godišnjica
+Sutra nam je godišnjica braka.	Tomorrow is our wedding anniversary.	word	morgen ist unser hochzeitstag.:Sutra nam je godišnjica braka.
+raspored	schedule	word	zeitplan:raspored
+Imaš li raspored za sljedeću sedmicu?	Do you have the schedule for next week?	word	hast du den zeitplan für nächste woche?:Imaš li raspored za sljedeću sedmicu?
+sezona	season (sports, tourism)	word	saison:sezona
+Sezona skijanja počinje u decembru.	The ski season starts in December.	word	die skisaison beginnt im dezember.:Sezona skijanja počinje u decembru.
+faza	phase	word	phase:faza
+To je samo faza, proći će.	It's just a phase, it will pass.	word	das ist nur eine phase, das geht vorbei.:To je samo faza, proći će.
+korak	step	word	schritt:korak
+Prvi korak je uvijek najteži.	The first step is always the hardest.	word	der erste schritt ist immer der schwerste.:Prvi korak je uvijek najteži.
+život	life	word	das leben:život
+Život na selu je miran.	Life in the village is quiet.	word	das leben auf dem dorf ist ruhig.:Život na selu je miran.
+smrt	death	word	tod:smrt
+Njegova smrt nas je sve potresla.	His death shook us all.	word	sein tod hat uns alle erschüttert.:Njegova smrt nas je sve potresla.
+rođenje	birth	word	geburt:rođenje
+Ovdje upišite datum rođenja.	Enter your date of birth here.	word	tragen sie hier das geburtsdatum ein.:Ovdje upišite datum rođenja.
+djetinjstvo	childhood	word	kindheit:djetinjstvo
+Djetinjstvo sam proveo u Bihaću.	I spent my childhood in Bihać.	word	meine kindheit habe ich in bihać verbracht.:Djetinjstvo sam proveo u Bihaću.
+mladost	youth	word	jugend:mladost
+U mladosti je mnogo putovao.	In his youth he traveled a lot.	word	in seiner jugend ist er viel gereist.:U mladosti je mnogo putovao.
+starost	old age	word	das alter:starost
+U starosti želim živjeti na selu.	In my old age I want to live in the country.	word	im alter möchte ich auf dem dorf leben.:U starosti želim živjeti na selu.
+snaga	strength	word	kraft:snaga
+Nemam više snage za ovo.	I have no strength left for this.	word	ich habe keine kraft mehr dafür.:Nemam više snage za ovo.
+glas	voice	word	stimme:glas
+Imaš jako lijep glas.	You have a very beautiful voice.	word	du hast eine sehr schöne stimme.:Imaš jako lijep glas.
+pogled	view / look	word	blick:pogled
+Soba ima lijep pogled na more.	The room has a beautiful view of the sea.	word	das zimmer hat einen schönen blick aufs meer.:Soba ima lijep pogled na more.
+izgled	appearance	word	das aussehen:izgled
+Izgled nije najvažniji u životu.	Looks aren't the most important thing in life.	word	das aussehen ist nicht das wichtigste im leben.:Izgled nije najvažniji u životu.
+pokret	movement	word	bewegung:pokret
+Ne pravi nagle pokrete.	Don't make any sudden movements.	word	mach keine plötzlichen bewegungen.:Ne pravi nagle pokrete.
+brzina	speed	word	geschwindigkeit:brzina
+Smanji brzinu, ovdje je škola.	Slow down, there's a school here.	word	verringere die geschwindigkeit, hier ist eine schule.:Smanji brzinu, ovdje je škola.
+razlog	reason	word	grund:razlog
+Nema razloga za brigu.	There is no reason to worry.	word	es gibt keinen grund zur sorge.:Nema razloga za brigu.
+uzrok	cause	word	ursache:uzrok
+Uzrok požara još nije poznat.	The cause of the fire is not yet known.	word	die ursache des brandes ist noch nicht bekannt.:Uzrok požara još nije poznat.
+posljedica	consequence	word	folge:posljedica
+Svaka odluka ima posljedice.	Every decision has consequences.	word	jede entscheidung hat folgen.:Svaka odluka ima posljedice.
+cilj	goal	word	ziel:cilj
+Moj cilj je da naučim bosanski.	My goal is to learn Bosnian.	word	mein ziel ist es, bosnisch zu lernen.:Moj cilj je da naučim bosanski.
+svrha	purpose	word	zweck:svrha
+Koja je svrha ovog sastanka?	What is the purpose of this meeting?	word	was ist der zweck dieses treffens?:Koja je svrha ovog sastanka?
+namjera	intention	word	absicht:namjera
+To nije bila moja namjera.	That wasn't my intention.	word	das war nicht meine absicht.:To nije bila moja namjera.
+smisao	sense	word	sinn:smisao
+Ovo nema nikakvog smisla.	This makes no sense at all.	word	das hat überhaupt keinen sinn.:Ovo nema nikakvog smisla.
+značaj	importance	word	bedeutung (wichtigkeit):značaj
+Ovaj most ima veliki značaj za grad.	This bridge is of great importance to the city.	word	diese brücke hat große bedeutung für die stadt.:Ovaj most ima veliki značaj za grad.
+značenje	meaning (of a word)	word	bedeutung (eines wortes):značenje
+Koje je značenje ove riječi?	What is the meaning of this word?	word	was ist die bedeutung dieses wortes?:Koje je značenje ove riječi?
+povod	occasion	word	anlass:povod
+Koji je povod za slavlje?	What is the occasion for the celebration?	word	was ist der anlass für die feier?:Koji je povod za slavlje?
+dokaz	proof	word	beweis:dokaz
+Imaš li dokaz za to?	Do you have any proof of that?	word	hast du einen beweis dafür?:Imaš li dokaz za to?
+činjenica	fact	word	tatsache:činjenica
+To je činjenica, a ne mišljenje.	That is a fact, not an opinion.	word	das ist eine tatsache, keine meinung.:To je činjenica, a ne mišljenje.
+primjer	example	word	beispiel:primjer
+Možeš li mi dati primjer?	Can you give me an example?	word	kannst du mir ein beispiel geben?:Možeš li mi dati primjer?
+slučaj	case	word	fall:slučaj
+U tom slučaju ostajemo kod kuće.	In that case we'll stay home.	word	in dem fall bleiben wir zu hause.:U tom slučaju ostajemo kod kuće.
+uslov	condition (requirement)	word	bedingung:uslov
+Imam samo jedan uslov.	I have just one condition.	word	ich habe nur eine bedingung.:Imam samo jedan uslov.
+korist	benefit	word	nutzen:korist
+Od toga nema nikakve koristi.	That brings no benefit at all.	word	das bringt keinerlei nutzen.:Od toga nema nikakve koristi.
+šteta	damage	word	schaden:šteta
+Oluja je napravila veliku štetu.	The storm caused a lot of damage.	word	der sturm hat großen schaden angerichtet.:Oluja je napravila veliku štetu.
+prednost	advantage	word	vorteil:prednost
+Znanje jezika je velika prednost.	Knowing languages is a big advantage.	word	sprachkenntnisse sind ein großer vorteil.:Znanje jezika je velika prednost.
+rizik	risk	word	risiko:rizik
+To je prevelik rizik za nas.	That is too big a risk for us.	word	das ist ein zu großes risiko für uns.:To je prevelik rizik za nas.
+uticaj	influence	word	einfluss:uticaj
+Prijatelji imaju veliki uticaj na njega.	His friends have a lot of influence on him.	word	die freunde haben großen einfluss auf ihn.:Prijatelji imaju veliki uticaj na njega.
+uspjeh	success	word	erfolg:uspjeh
+Želim ti mnogo uspjeha na ispitu.	I wish you every success in the exam.	word	ich wünsche dir viel erfolg bei der prüfung.:Želim ti mnogo uspjeha na ispitu.
+gubitak	loss	word	verlust:gubitak
+To je veliki gubitak za sve nas.	That is a great loss for all of us.	word	das ist ein großer verlust für uns alle.:To je veliki gubitak za sve nas.
+odluka	decision	word	entscheidung:odluka
+Donio sam tešku odluku.	I made a hard decision.	word	ich habe eine schwere entscheidung getroffen.:Donio sam tešku odluku.
+izbor	choice / selection	word	auswahl / wahl:izbor
+Nažalost, nemam drugog izbora.	Unfortunately I have no other choice.	word	leider habe ich keine andere wahl.:Nažalost, nemam drugog izbora.
+ideja	idea	word	idee:ideja
+Imam jednu odličnu ideju.	I have an excellent idea.	word	ich habe eine ausgezeichnete idee.:Imam jednu odličnu ideju.
+misao	thought	word	gedanke:misao
+Ta misao mi ne da mira.	That thought won't leave me in peace.	word	dieser gedanke lässt mir keine ruhe.:Ta misao mi ne da mira.
+stav	attitude	word	einstellung / haltung:stav
+On ima dobar stav prema poslu.	He has a good attitude toward work.	word	er hat eine gute einstellung zur arbeit.:On ima dobar stav prema poslu.
+prijedlog	suggestion	word	vorschlag:prijedlog
+Imam prijedlog, idemo na kahvu.	I have a suggestion: let's go for a coffee.	word	ich habe einen vorschlag: gehen wir einen kaffee trinken.:Imam prijedlog, idemo na kahvu.
+savjet	piece of advice	word	ratschlag:savjet
+Treba mi tvoj savjet.	I need your advice.	word	ich brauche deinen rat.:Treba mi tvoj savjet.
+mogućnost	possibility	word	möglichkeit:mogućnost
+Postoji li mogućnost plaćanja karticom?	Is there an option to pay by card?	word	gibt es die möglichkeit, mit karte zu zahlen?:Postoji li mogućnost plaćanja karticom?
+prilika	opportunity	word	gelegenheit:prilika
+Ovo je tvoja prilika, nemoj je propustiti.	This is your opportunity, don't let it slip away.	word	das ist deine gelegenheit, lass sie dir nicht entgehen.:Ovo je tvoja prilika, nemoj je propustiti.
+čast	honor	word	ehre:čast
+Za mene je ovo velika čast.	This is a great honor for me.	word	das ist für mich eine große ehre.:Za mene je ovo velika čast.
+potreba	need	word	bedürfnis / bedarf:potreba
+Nema potrebe da dolaziš.	There's no need for you to come.	word	es ist nicht nötig, dass du kommst.:Nema potrebe da dolaziš.
+želja	wish	word	wunsch:želja
+Koja je tvoja najveća želja?	What is your greatest wish?	word	was ist dein größter wunsch?:Koja je tvoja najveća želja?
+volja	will / desire	word	wille / lust:volja
+Danas nemam volje ni za šta.	Today I don't feel like doing anything.	word	heute habe ich zu nichts lust.:Danas nemam volje ni za šta.
+pažnja	attention	word	aufmerksamkeit:pažnja
+Djeca traže mnogo pažnje.	Children demand a lot of attention.	word	kinder verlangen viel aufmerksamkeit.:Djeca traže mnogo pažnje.
+sumnja	doubt / suspicion	word	zweifel / verdacht:sumnja
+Nema sumnje, on je najbolji.	No doubt about it, he's the best.	word	kein zweifel, er ist der beste.:Nema sumnje, on je najbolji.
+istina	truth	word	wahrheit:istina
+Reci mi istinu, molim te.	Tell me the truth, please.	word	sag mir die wahrheit, bitte.:Reci mi istinu, molim te.
+laž	lie (untruth)	word	lüge:laž
+To je velika laž.	That is a big lie.	word	das ist eine große lüge.:To je velika laž.
+stvarnost	reality	word	wirklichkeit:stvarnost
+U stvarnosti je sve drugačije.	In reality everything is different.	word	in wirklichkeit ist alles anders.:U stvarnosti je sve drugačije.
+tajna	secret	word	geheimnis:tajna
+Možeš li čuvati tajnu?	Can you keep a secret?	word	kannst du ein geheimnis bewahren?:Možeš li čuvati tajnu?
+zaključak	conclusion	word	schlussfolgerung:zaključak
+Došli smo do istog zaključka.	We came to the same conclusion.	word	wir sind zum selben schluss gekommen.:Došli smo do istog zaključka.
+pojam	concept / clue	word	begriff / ahnung:pojam
+Nemam pojma gdje su ključevi.	I have no clue where the keys are.	word	ich habe keine ahnung, wo die schlüssel sind.:Nemam pojma gdje su ključevi.
+pamet	common sense	word	verstand:pamet
+Ima novca, ali nema pameti.	He has money but no common sense.	word	er hat geld, aber keinen verstand.:Ima novca, ali nema pameti.
+problem	problem	word	problem:problem
+To nije moj problem.	That's not my problem.	word	das ist nicht mein problem.:To nije moj problem.
+rješenje	solution	word	lösung:rješenje
+Za svaki problem postoji rješenje.	There is a solution to every problem.	word	für jedes problem gibt es eine lösung.:Za svaki problem postoji rješenje.
+situacija	situation	word	situation:situacija
+Situacija je sada mnogo bolja.	The situation is much better now.	word	die situation ist jetzt viel besser.:Situacija je sada mnogo bolja.
+stanje	state (condition)	word	zustand:stanje
+Auto je u dobrom stanju.	The car is in good condition.	word	das auto ist in gutem zustand.:Auto je u dobrom stanju.
+promjena	change	word	änderung:promjena
+Došlo je do promjene plana.	There was a change of plan.	word	es gab eine änderung des plans.:Došlo je do promjene plana.
+razvoj	development	word	entwicklung:razvoj
+Razvoj ovog grada ide sporo.	This city's development is slow.	word	die entwicklung dieser stadt geht langsam voran.:Razvoj ovog grada ide sporo.
+napredak	progress	word	fortschritt:napredak
+Vidim veliki napredak kod tebe.	I see great progress in you.	word	ich sehe bei dir große fortschritte.:Vidim veliki napredak kod tebe.
+pokušaj	attempt	word	versuch:pokušaj
+Položio sam ispit iz prvog pokušaja.	I passed the exam on the first attempt.	word	ich habe die prüfung beim ersten versuch bestanden.:Položio sam ispit iz prvog pokušaja.
+postupak	procedure	word	vorgehen / verfahren:postupak
+Cijeli postupak traje dva mjeseca.	The whole procedure takes two months.	word	das ganze verfahren dauert zwei monate.:Cijeli postupak traje dva mjeseca.
+proces	process	word	prozess:proces
+Učenje jezika je dug proces.	Learning a language is a long process.	word	eine sprache zu lernen ist ein langer prozess.:Učenje jezika je dug proces.
+način	way / manner	word	art und weise:način
+Uradi to na svoj način.	Do it your way.	word	mach es auf deine art.:Uradi to na svoj način.
+oblik	shape / form	word	form:oblik
+Kolač ima oblik srca.	The cake is in the shape of a heart.	word	der kuchen hat die form eines herzens.:Kolač ima oblik srca.
+pravilo	rule	word	regel:pravilo
+Ovo pravilo važi za sve.	This rule applies to everyone.	word	diese regel gilt für alle.:Ovo pravilo važi za sve.
+znak	sign	word	zeichen:znak
+To je dobar znak.	That's a good sign.	word	das ist ein gutes zeichen.:To je dobar znak.
+trag	trace	word	spur:trag
+Lopov nije ostavio nikakav trag.	The thief left no trace.	word	der dieb hat keine spur hinterlassen.:Lopov nije ostavio nikakav trag.
+mjera	measure	word	maßnahme / maß:mjera
+Vlada je uvela nove mjere.	The government has introduced new measures.	word	die regierung hat neue maßnahmen eingeführt.:Vlada je uvela nove mjere.
+sredstvo	means / agent	word	mittel:sredstvo
+Kupi sredstvo za pranje suđa.	Buy dish soap.	word	kauf spülmittel.:Kupi sredstvo za pranje suđa.
+uloga	role	word	rolle:uloga
+Ona igra glavnu ulogu u filmu.	She plays the lead role in the movie.	word	sie spielt die hauptrolle im film.:Ona igra glavnu ulogu u filmu.
+obaveza	duty / obligation	word	pflicht / verpflichtung:obaveza
+Danas imam mnogo obaveza.	I have a lot of obligations today.	word	heute habe ich viele verpflichtungen.:Danas imam mnogo obaveza.
+pomoć	help	word	hilfe:pomoć
+Hvala ti na pomoći.	Thanks for your help.	word	danke für deine hilfe.:Hvala ti na pomoći.
+podrška	support	word	unterstützung:podrška
+Porodica mi je najveća podrška.	My family is my greatest support.	word	die familie ist meine größte unterstützung.:Porodica mi je najveća podrška.
+zaštita	protection	word	schutz:zaštita
+Treba ti krema za zaštitu od sunca.	You need sunscreen.	word	du brauchst eine sonnenschutzcreme.:Treba ti krema za zaštitu od sunca.
+sigurnost	safety	word	sicherheit:sigurnost
+Sigurnost djece je na prvom mjestu.	The children's safety comes first.	word	die sicherheit der kinder steht an erster stelle.:Sigurnost djece je na prvom mjestu.
+napor	effort	word	anstrengung:napor
+Uložili smo mnogo napora u ovo.	We put a lot of effort into this.	word	wir haben viel anstrengung hineingesteckt.:Uložili smo mnogo napora u ovo.
+trud	hard work	word	mühe:trud
+Trud se uvijek isplati.	Hard work always pays off.	word	mühe lohnt sich immer.:Trud se uvijek isplati.
+teškoća	difficulty (serious)	word	schwierigkeit (ernst):teškoća
+Uprkos svim teškoćama, uspjeli smo.	Despite all the difficulties we made it.	word	trotz aller schwierigkeiten haben wir es geschafft.:Uprkos svim teškoćama, uspjeli smo.
+prepreka	obstacle	word	hindernis:prepreka
+Novac nije nikakva prepreka.	Money is no obstacle.	word	geld ist kein hindernis.:Novac nije nikakva prepreka.
+izazov	challenge	word	herausforderung:izazov
+Novi posao je za mene veliki izazov.	The new job is a big challenge for me.	word	die neue arbeit ist für mich eine große herausforderung.:Novi posao je za mene veliki izazov.
+aktivnost	activity	word	aktivität:aktivnost
+Djeca imaju mnogo aktivnosti poslije škole.	The children have a lot of activities after school.	word	die kinder haben nach der schule viele aktivitäten.:Djeca imaju mnogo aktivnosti poslije škole.
+osoba	person (individual)	word	person:osoba
+Rezervisao sam sto za četiri osobe.	I reserved a table for four people.	word	ich habe einen tisch für vier personen reserviert.:Rezervisao sam sto za četiri osobe.
+roditelji	parents	word	eltern:roditelji
+Moji roditelji žive u Sarajevu.	My parents live in Sarajevo.	word	meine eltern leben in sarajevo.:Moji roditelji žive u Sarajevu.
+supruga	wife (formal)	word	ehefrau (förmlich):supruga
+Ovo je moja supruga, Amra.	This is my wife, Amra.	word	das ist meine frau, amra.:Ovo je moja supruga, Amra.
+suprug	husband (formal)	word	ehemann (förmlich):suprug
+Njen suprug radi u Njemačkoj.	Her husband works in Germany.	word	ihr mann arbeitet in deutschland.:Njen suprug radi u Njemačkoj.
+momak	young man / boyfriend	word	bursche / fester freund:momak
+Moja sestra ima novog momka.	My sister has a new boyfriend.	word	meine schwester hat einen neuen freund.:Moja sestra ima novog momka.
+djevojčica	little girl	word	kleines mädchen:djevojčica
+Djevojčica se igra u parku.	The little girl is playing in the park.	word	das kleine mädchen spielt im park.:Djevojčica se igra u parku.
+stranac	foreigner / stranger	word	ausländer / fremder:stranac
+Stranac me na ulici pitao za put.	A stranger on the street asked me the way.	word	auf der straße hat mich ein fremder nach dem weg gefragt.:Stranac me na ulici pitao za put.
+stanovnik	inhabitant	word	einwohner:stanovnik
+Naš grad ima oko deset hiljada stanovnika.	Our town has about ten thousand inhabitants.	word	unsere stadt hat etwa zehntausend einwohner.:Naš grad ima oko deset hiljada stanovnika.
+građanin	citizen	word	bürger:građanin
+Građani plaćaju previše poreza.	Citizens pay too much tax.	word	die bürger zahlen zu viele steuern.:Građani plaćaju previše poreza.
+državljanin	national (of a country)	word	staatsbürger:državljanin
+On je državljanin Bosne i Hercegovine.	He is a national of Bosnia and Herzegovina.	word	er ist staatsbürger von bosnien und herzegowina.:On je državljanin Bosne i Hercegovine.
+član	member	word	mitglied:član
+Naš pas je član porodice.	Our dog is a member of the family.	word	unser hund ist ein mitglied der familie.:Naš pas je član porodice.
+partner	partner	word	partner:partner
+Moj poslovni partner dolazi sutra.	My business partner is coming tomorrow.	word	mein geschäftspartner kommt morgen.:Moj poslovni partner dolazi sutra.
+ličnost	personality	word	persönlichkeit:ličnost
+Ona je jaka ličnost.	She has a strong personality.	word	sie ist eine starke persönlichkeit.:Ona je jaka ličnost.
+karakter	character	word	charakter:karakter
+Moj brat ima težak karakter.	My brother has a difficult character.	word	mein bruder hat einen schwierigen charakter.:Moj brat ima težak karakter.
+neprijatelj	enemy	word	feind:neprijatelj
+On mi nije neprijatelj.	He is not my enemy.	word	er ist nicht mein feind.:On mi nije neprijatelj.
+protivnik	opponent	word	gegner:protivnik
+Protivnik je bio bolji od nas.	Our opponent was better than us.	word	der gegner war besser als wir.:Protivnik je bio bolji od nas.
+svjedok	witness	word	zeuge:svjedok
+Bio sam svjedok nesreće.	I was a witness to the accident.	word	ich war zeuge des unfalls.:Bio sam svjedok nesreće.
+žrtva	victim	word	opfer:žrtva
+U nesreći nije bilo žrtava.	There were no victims in the accident.	word	bei dem unfall gab es keine opfer.:U nesreći nije bilo žrtava.
+korisnik	user	word	nutzer:korisnik
+Aplikacija ima sve više korisnika.	The app has more and more users.	word	die app hat immer mehr nutzer.:Aplikacija ima sve više korisnika.
+stručnjak	expert	word	fachmann:stručnjak
+Za to bolje pitaj stručnjaka.	You'd better ask an expert about that.	word	frag dafür lieber einen fachmann.:Za to bolje pitaj stručnjaka.
+bolesnik	sick person	word	kranker:bolesnik
+Bolesnik se danas osjeća bolje.	The sick man feels better today.	word	der kranke fühlt sich heute besser.:Bolesnik se danas osjeća bolje.
+Moraš otići kod ljekara.	You have to go to the doctor.	word	du musst zum arzt gehen.:Moraš otići kod ljekara.
+odnos	relations (with someone)	word	verhältnis:odnos
+Imam dobar odnos sa sestrom.	I have good relations with my sister.	word	ich habe ein gutes verhältnis zu meiner schwester.:Imam dobar odnos sa sestrom.
+veza	connection / relationship	word	verbindung / beziehung:veza
+U vezi smo već dvije godine.	We have been in a relationship for two years.	word	wir sind seit zwei jahren in einer beziehung.:U vezi smo već dvije godine.
+brak	marriage	word	ehe:brak
+Moji roditelji su u braku već trideset godina.	My parents have been married for thirty years.	word	meine eltern sind seit dreißig jahren verheiratet.:Moji roditelji su u braku već trideset godina.
+razvod	divorce	word	scheidung:razvod
+Poslije razvoda živi sama.	After the divorce she lives alone.	word	nach der scheidung lebt sie allein.:Poslije razvoda živi sama.
+prijateljstvo	friendship	word	freundschaft:prijateljstvo
+Naše prijateljstvo mi mnogo znači.	Our friendship means a lot to me.	word	unsere freundschaft bedeutet mir viel.:Naše prijateljstvo mi mnogo znači.
+povjerenje	trust	word	vertrauen:povjerenje
+Nemam povjerenja u njega.	I don't trust him.	word	ich habe kein vertrauen zu ihm.:Nemam povjerenja u njega.
+poštovanje	respect	word	respekt:poštovanje
+Imam veliko poštovanje prema tom čovjeku.	I have great respect for this man.	word	ich habe großen respekt vor diesem mann.:Imam veliko poštovanje prema tom čovjeku.
+radost	joy	word	freude:radost
+Plakala je od radosti.	She cried with joy.	word	sie hat vor freude geweint.:Plakala je od radosti.
+tuga	grief / sadness	word	trauer / traurigkeit:tuga
+U njenim očima vidim tugu.	I see sadness in her eyes.	word	in ihren augen sehe ich traurigkeit.:U njenim očima vidim tugu.
+mržnja	hatred	word	hass:mržnja
+Mržnja ništa ne rješava.	Hatred solves nothing.	word	hass löst nichts.:Mržnja ništa ne rješava.
+hrabrost	courage	word	mut:hrabrost
+Za to treba mnogo hrabrosti.	That takes a lot of courage.	word	dafür braucht man viel mut.:Za to treba mnogo hrabrosti.
+raspoloženje	mood	word	stimmung:raspoloženje
+Muzika mi uvijek popravi raspoloženje.	Music always lifts my mood.	word	musik hebt immer meine stimmung.:Muzika mi uvijek popravi raspoloženje.
+iznenađenje	surprise	word	überraschung:iznenađenje
+Imam iznenađenje za tebe.	I have a surprise for you.	word	ich habe eine überraschung für dich.:Imam iznenađenje za tebe.
+svađa	quarrel	word	streit:svađa
+Svađa je počela zbog novca.	The quarrel started over money.	word	der streit hat wegen geld angefangen.:Svađa je počela zbog novca.
+šala	joke	word	scherz:šala
+To je bila samo šala.	It was only a joke.	word	das war nur ein scherz.:To je bila samo šala.
+smijeh	laughter	word	das lachen:smijeh
+Smijeh je najbolji lijek.	Laughter is the best medicine.	word	lachen ist die beste medizin.:Smijeh je najbolji lijek.
+suza	tear	word	träne:suza
+Imala je suze u očima.	She had tears in her eyes.	word	sie hatte tränen in den augen.:Imala je suze u očima.
+sjećanje	memory (of the past)	word	erinnerung:sjećanje
+Imam lijepa sjećanja na djetinjstvo.	I have beautiful memories of my childhood.	word	ich habe schöne erinnerungen an die kindheit.:Imam lijepa sjećanja na djetinjstvo.
+navika	habit	word	gewohnheit:navika
+Pušenje je loša navika.	Smoking is a bad habit.	word	rauchen ist eine schlechte gewohnheit.:Pušenje je loša navika.
+druženje	get-together	word	beisammensein:druženje
+Hvala na druženju, bilo je lijepo.	Thanks for the get-together, it was nice.	word	danke fürs beisammensein, es war schön.:Hvala na druženju, bilo je lijepo.
+razgovor	conversation	word	gespräch:razgovor
+Imali smo dug razgovor.	We had a long conversation.	word	wir hatten ein langes gespräch.:Imali smo dug razgovor.
+predsjednik	president	word	präsident:predsjednik
+Ko je predsjednik ovog kluba?	Who is the president of this club?	word	wer ist der präsident dieses vereins?:Ko je predsjednik ovog kluba?
+vlada	government	word	regierung:vlada
+Vlada je donijela novu odluku.	The government has made a new decision.	word	die regierung hat eine neue entscheidung getroffen.:Vlada je donijela novu odluku.
+ministar	minister	word	minister:ministar
+Ministar je odgovorio na pitanja novinara.	The minister answered the journalists' questions.	word	der minister hat die fragen der journalisten beantwortet.:Ministar je odgovorio na pitanja novinara.
+izbori	elections	word	wahlen:izbori
+Izbori su u oktobru.	The elections are in October.	word	die wahlen sind im oktober.:Izbori su u oktobru.
+stranka	political party	word	partei:stranka
+Za koju stranku glasaš?	Which party do you vote for?	word	für welche partei stimmst du?:Za koju stranku glasaš?
+politika	politics	word	politik:politika
+Ne zanima me politika.	I'm not interested in politics.	word	politik interessiert mich nicht.:Ne zanima me politika.
+političar	politician	word	politiker:političar
+Više ne vjerujem političarima.	I don't trust politicians anymore.	word	ich traue den politikern nicht mehr.:Više ne vjerujem političarima.
+vlast	the authorities	word	staatsmacht / behörden:vlast
+Vlasti još nisu reagovale.	The authorities have not reacted yet.	word	die behörden haben noch nicht reagiert.:Vlasti još nisu reagovale.
+zakon	law	word	gesetz:zakon
+To je zabranjeno zakonom.	That is prohibited by law.	word	das ist gesetzlich verboten.:To je zabranjeno zakonom.
+ustav	constitution	word	verfassung:ustav
+Ustav štiti prava svih građana.	The constitution protects the rights of all citizens.	word	die verfassung schützt die rechte aller bürger.:Ustav štiti prava svih građana.
+kanton	canton	word	kanton:kanton
+Moja tetka živi u Tuzlanskom kantonu.	My aunt lives in Tuzla Canton.	word	meine tante lebt im kanton tuzla.:Moja tetka živi u Tuzlanskom kantonu.
+načelnik	municipal head	word	gemeindevorsteher:načelnik
+Načelnik općine je otvorio novu školu.	The municipal head opened a new school.	word	der gemeindevorsteher hat eine neue schule eröffnet.:Načelnik općine je otvorio novu školu.
+gradonačelnik	mayor	word	bürgermeister:gradonačelnik
+Gradonačelnik je obećao novi park.	The mayor promised a new park.	word	der bürgermeister hat einen neuen park versprochen.:Gradonačelnik je obećao novi park.
+društvo	society	word	gesellschaft:društvo
+Živimo u modernom društvu.	We live in a modern society.	word	wir leben in einer modernen gesellschaft.:Živimo u modernom društvu.
+zajednica	community	word	gemeinschaft:zajednica
+Naša zajednica u Njemačkoj je velika.	Our community in Germany is large.	word	unsere gemeinschaft in deutschland ist groß.:Naša zajednica u Njemačkoj je velika.
+organizacija	organization	word	organisation:organizacija
+Radim u humanitarnoj organizaciji.	I work for a humanitarian organization.	word	ich arbeite in einer humanitären organisation.:Radim u humanitarnoj organizaciji.
+sloboda	freedom	word	freiheit:sloboda
+Sloboda govora je veoma važna.	Freedom of speech is very important.	word	die redefreiheit ist sehr wichtig.:Sloboda govora je veoma važna.
+pravda	justice	word	gerechtigkeit:pravda
+Porodica žrtve traži pravdu.	The victim's family is demanding justice.	word	die familie des opfers fordert gerechtigkeit.:Porodica žrtve traži pravdu.
+moć	power	word	macht:moć
+Novac i moć ga ne zanimaju.	Money and power don't interest him.	word	geld und macht interessieren ihn nicht.:Novac i moć ga ne zanimaju.
+javnost	the public	word	öffentlichkeit:javnost
+Javnost ima pravo znati istinu.	The public has the right to know the truth.	word	die öffentlichkeit hat das recht, die wahrheit zu erfahren.:Javnost ima pravo znati istinu.
+protest	protest	word	protest:protest
+Danas je protest ispred zgrade vlade.	There is a protest in front of the government building today.	word	heute ist ein protest vor dem regierungsgebäude.:Danas je protest ispred zgrade vlade.
+štrajk	strike	word	streik:štrajk
+Radnici su stupili u štrajk.	The workers have gone on strike.	word	die arbeiter sind in den streik getreten.:Radnici su stupili u štrajk.
+mir	peace	word	frieden:mir
+Želimo živjeti u miru.	We want to live in peace.	word	wir wollen in frieden leben.:Želimo živjeti u miru.
+vojska	army	word	armee:vojska
+Moj dedo je služio vojsku.	My grandpa served in the army.	word	mein opa hat in der armee gedient.:Moj dedo je služio vojsku.
+oružje	weapon	word	waffe:oružje
+U avionu je zabranjeno nositi oružje.	Carrying weapons on a plane is forbidden.	word	im flugzeug ist es verboten, waffen zu tragen.:U avionu je zabranjeno nositi oružje.
+napad	attack	word	angriff:napad
+Policija je spriječila napad.	The police prevented the attack.	word	die polizei hat den angriff verhindert.:Policija je spriječila napad.
+borba	fight / struggle	word	kampf:borba
+Život je jedna velika borba.	Life is one big struggle.	word	das leben ist ein großer kampf.:Život je jedna velika borba.
+sukob	conflict	word	konflikt:sukob
+Imao je sukob sa šefom.	He had a conflict with his boss.	word	er hatte einen konflikt mit dem chef.:Imao je sukob sa šefom.
+nasilje	violence	word	gewalt:nasilje
+Nasilje nikad nije rješenje.	Violence is never the solution.	word	gewalt ist nie eine lösung.:Nasilje nikad nije rješenje.
+zločin	crime	word	verbrechen:zločin
+Policija još istražuje taj zločin.	The police are still investigating this crime.	word	die polizei untersucht dieses verbrechen noch.:Policija još istražuje taj zločin.
+ubistvo	murder	word	mord:ubistvo
+Ovaj film je o ubistvu u malom gradu.	This movie is about a murder in a small town.	word	dieser film handelt von einem mord in einer kleinen stadt.:Ovaj film je o ubistvu u malom gradu.
+zatvor	prison	word	gefängnis:zatvor
+Dobio je dvije godine zatvora.	He got two years in prison.	word	er hat zwei jahre gefängnis bekommen.:Dobio je dvije godine zatvora.
+sudija	judge	word	richter:sudija
+Sudija je pročitao presudu.	The judge read out the verdict.	word	der richter hat das urteil verlesen.:Sudija je pročitao presudu.
+tužba	lawsuit	word	klage:tužba
+Podnio je tužbu protiv firme.	He filed a lawsuit against the company.	word	er hat klage gegen die firma eingereicht.:Podnio je tužbu protiv firme.
+presuda	verdict	word	urteil:presuda
+Presuda će biti poznata sutra.	The verdict will be known tomorrow.	word	das urteil wird morgen bekannt sein.:Presuda će biti poznata sutra.
+dozvola	permission	word	erlaubnis:dozvola
+Imam dozvolu od šefa da ranije odem.	I have permission from my boss to leave early.	word	ich habe vom chef die erlaubnis, früher zu gehen.:Imam dozvolu od šefa da ranije odem.
+zabrana	ban	word	verbot:zabrana
+Ovdje važi zabrana pušenja.	There is a smoking ban here.	word	hier gilt ein rauchverbot.:Ovdje važi zabrana pušenja.
+propis	regulation	word	vorschrift:propis
+Svi moramo poštovati propise.	We all have to follow the regulations.	word	wir alle müssen die vorschriften einhalten.:Svi moramo poštovati propise.
+žalba	complaint	word	beschwerde:žalba
+Poslao sam žalbu na račun za struju.	I sent a complaint about the electricity bill.	word	ich habe eine beschwerde wegen der stromrechnung geschickt.:Poslao sam žalbu na račun za struju.
+izbjeglica	refugee	word	flüchtling:izbjeglica
+Mnogi su došli u Njemačku kao izbjeglice.	Many came to Germany as refugees.	word	viele sind als flüchtlinge nach deutschland gekommen.:Mnogi su došli u Njemačku kao izbjeglice.
+dijaspora	diaspora	word	diaspora:dijaspora
+Naša dijaspora svakog ljeta dolazi kući.	Our diaspora comes home every summer.	word	unsere diaspora kommt jeden sommer nach hause.:Naša dijaspora svakog ljeta dolazi kući.
+rad	work (the act of working)	word	arbeit (das arbeiten):rad
+Rad od kuće mi odgovara.	Working from home suits me.	word	die arbeit von zu hause passt mir.:Rad od kuće mi odgovara.
+kompanija	enterprise	word	unternehmen:kompanija
+On radi u velikoj kompaniji.	He works for a big enterprise.	word	er arbeitet in einem großen unternehmen.:On radi u velikoj kompaniji.
+preduzeće	plant / business	word	betrieb:preduzeće
+Preduzeće ima pedeset radnika.	The business has fifty workers.	word	der betrieb hat fünfzig arbeiter.:Preduzeće ima pedeset radnika.
+privreda	Economy	word	wirtschaft:privreda
+Privreda u zemlji sporo raste.	The country's economy is growing slowly.	word	die wirtschaft im land wächst langsam.:Privreda u zemlji sporo raste.
+tržište	market (economy)	word	markt (wirtschaft):tržište
+Ta firma izlazi na njemačko tržište.	This company is entering the German market.	word	diese firma geht auf den deutschen markt.:Ta firma izlazi na njemačko tržište.
+proizvod	product	word	produkt:proizvod
+Ovo je domaći proizvod.	This is a local product.	word	das ist ein einheimisches produkt.:Ovo je domaći proizvod.
+usluga	service	word	dienstleistung / service:usluga
+Usluga u ovom restoranu je odlična.	The service in this restaurant is excellent.	word	der service in diesem restaurant ist ausgezeichnet.:Usluga u ovom restoranu je odlična.
+ponuda	offer (general)	word	angebot (allgemein):ponuda
+Imam dobru ponudu za tebe.	I have a good offer for you.	word	ich habe ein gutes angebot für dich.:Imam dobru ponudu za tebe.
+prodaja	sale	word	verkauf:prodaja
+Kuća je na prodaju.	The house is for sale.	word	das haus steht zum verkauf.:Kuća je na prodaju.
+roba	goods	word	ware:roba
+Roba stiže u ponedjeljak.	The goods arrive on Monday.	word	die ware kommt am montag an.:Roba stiže u ponedjeljak.
+trgovina	trade	word	handel:trgovina
+Moj babo se bavi trgovinom.	My dad is in trade.	word	mein papa ist im handel tätig.:Moj babo se bavi trgovinom.
+zarada	earnings	word	verdienst:zarada
+Zarada je dobra, ali posao je težak.	The earnings are good, but the work is hard.	word	der verdienst ist gut, aber die arbeit ist schwer.:Zarada je dobra, ali posao je težak.
+kriza	crisis	word	krise:kriza
+Zemlja je u velikoj krizi.	The country is in a deep crisis.	word	das land steckt in einer großen krise.:Zemlja je u velikoj krizi.
+direktor	director	word	direktor:direktor
+Direktor je pozvao roditelje u školu.	The director called the parents to the school.	word	der direktor hat die eltern in die schule bestellt.:Direktor je pozvao roditelje u školu.
+oprema	equipment	word	ausrüstung:oprema
+Za planinarenje treba dobra oprema.	You need good equipment for hiking in the mountains.	word	zum bergwandern braucht man eine gute ausrüstung.:Za planinarenje treba dobra oprema.
+materijal	material	word	material:materijal
+Od kojeg je materijala ova jakna?	What material is this jacket made of?	word	aus welchem material ist diese jacke?:Od kojeg je materijala ova jakna?
+uređaj	device	word	gerät:uređaj
+Ovaj uređaj ne radi.	This device isn't working.	word	dieses gerät funktioniert nicht.:Ovaj uređaj ne radi.
+vozilo	vehicle	word	fahrzeug:vozilo
+Vozilo je parkirano ispred kuće.	The vehicle is parked in front of the house.	word	das fahrzeug steht vor dem haus.:Vozilo je parkirano ispred kuće.
+energija	energy	word	energie:energija
+Danas nemam nimalo energije.	I have no energy at all today.	word	heute habe ich gar keine energie.:Danas nemam nimalo energije.
+tehnologija	technology	word	technologie:tehnologija
+Tehnologija se brzo mijenja.	Technology changes quickly.	word	die technologie verändert sich schnell.:Tehnologija se brzo mijenja.
+poljoprivreda	agriculture	word	landwirtschaft:poljoprivreda
+Moja porodica živi od poljoprivrede.	My family lives off agriculture.	word	meine familie lebt von der landwirtschaft.:Moja porodica živi od poljoprivrede.
+kultura	culture	word	kultur:kultura
+Zanima me bosanska kultura.	I'm interested in Bosnian culture.	word	mich interessiert die bosnische kultur.:Zanima me bosanska kultura.
+umjetnost	art	word	kunst:umjetnost
+Ona studira umjetnost u Sarajevu.	She studies art in Sarajevo.	word	sie studiert kunst in sarajevo.:Ona studira umjetnost u Sarajevu.
+pisac	writer	word	schriftsteller:pisac
+Ko ti je najdraži pisac?	Who is your favorite writer?	word	wer ist dein lieblingsschriftsteller?:Ko ti je najdraži pisac?
+izložba	exhibition	word	ausstellung:izložba
+Idemo na izložbu u subotu.	We're going to an exhibition on Saturday.	word	wir gehen am samstag zu einer ausstellung.:Idemo na izložbu u subotu.
+predstava	performance	word	aufführung:predstava
+Predstava je bila odlična.	The performance was excellent.	word	die aufführung war ausgezeichnet.:Predstava je bila odlična.
+historija	history	word	geschichte (fach):historija
+U školi sam volio historiju.	I liked history at school.	word	in der schule mochte ich geschichte.:U školi sam volio historiju.
+nauka	science	word	wissenschaft:nauka
+Nauka je to već dokazala.	Science has already proven that.	word	die wissenschaft hat das schon bewiesen.:Nauka je to već dokazala.
+obrazovanje	education	word	bildung:obrazovanje
+Obrazovanje je najvažnije za djecu.	Education is the most important thing for children.	word	bildung ist für kinder das wichtigste.:Obrazovanje je najvažnije za djecu.
+nastava	classes	word	unterricht:nastava
+Danas nema nastave zbog snijega.	There are no classes today because of the snow.	word	heute fällt der unterricht wegen schnee aus.:Danas nema nastave zbog snijega.
+vježba	exercise	word	übung:vježba
+Ova vježba je preteška.	This exercise is too hard.	word	diese übung ist zu schwer.:Ova vježba je preteška.
+islam	Islam	word	islam:islam
+Čitam knjigu o islamu.	I'm reading a book about Islam.	word	ich lese ein buch über den islam.:Čitam knjigu o islamu.
+musliman	Muslim	word	muslim:musliman
+Muslimani poste u Ramazanu.	Muslims fast during Ramadan.	word	muslime fasten im ramadan.:Muslimani poste u Ramazanu.
+vjernik	believer	word	gläubiger mensch:vjernik
+Moj babo je veliki vjernik.	My dad is a very devout man.	word	mein papa ist ein sehr gläubiger mensch.:Moj babo je veliki vjernik.
+namaz	prayer (Islamic)	word	gebet (islamisch):namaz
+Nana svaki dan klanja namaz.	Grandma performs her prayers every day.	word	oma verrichtet jeden tag das gebet.:Nana svaki dan klanja namaz.
+molitva	prayer (general)	word	bittgebet (allgemein):molitva
+Molitva mi daje mir.	Prayer gives me peace.	word	das gebet gibt mir frieden.:Molitva mi daje mir.
+duša	soul	word	seele:duša
+Ona je dobra duša.	She is a good soul.	word	sie ist eine gute seele.:Ona je dobra duša.
+čudo	miracle	word	wunder:čudo
+Preživio je, to je pravo čudo.	He survived, it's a real miracle.	word	er hat überlebt, das ist ein echtes wunder.:Preživio je, to je pravo čudo.
+sudbina	fate	word	schicksal:sudbina
+Vjeruješ li u sudbinu?	Do you believe in fate?	word	glaubst du an das schicksal?:Vjeruješ li u sudbinu?
+groblje	cemetery	word	friedhof:groblje
+Svakog Bajrama idemo na groblje.	Every Bajram we go to the cemetery.	word	an jedem bajram gehen wir auf den friedhof.:Svakog Bajrama idemo na groblje.
+spomenik	monument	word	denkmal:spomenik
+Turisti se slikaju ispred spomenika.	The tourists are having their picture taken in front of the monument.	word	die touristen lassen sich vor dem denkmal fotografieren.:Turisti se slikaju ispred spomenika.
+zastava	flag	word	fahne:zastava
+Na zgradi općine visi zastava.	A flag is hanging on the municipal building.	word	am gemeindehaus hängt eine fahne.:Na zgradi općine visi zastava.
+hrana	food / nourishment	word	essen / nahrung:hrana
+Domaća hrana je najbolja.	Homemade food is the best.	word	selbstgemachtes essen ist am besten.:Domaća hrana je najbolja.
+piće	drink	word	getränk:piće
+Šta ćete za piće?	What would you like to drink?	word	was möchten sie trinken?:Šta ćete za piće?
+ime	name	word	name:ime
+Kako se piše tvoje ime?	How do you spell your name?	word	wie schreibt man deinen namen?:Kako se piše tvoje ime?
+prezime	last name	word	nachname:prezime
+Napišite ovdje svoje prezime.	Write your last name here.	word	schreiben sie hier ihren nachnamen hin.:Napišite ovdje svoje prezime.
+adresa	address	word	adresse:adresa
+Koja je tvoja nova adresa?	What is your new address?	word	wie lautet deine neue adresse?:Koja je tvoja nova adresa?
+telefon	phone	word	telefon:telefon
+Ostavio sam telefon kod kuće.	I left my phone at home.	word	ich habe das telefon zu hause gelassen.:Ostavio sam telefon kod kuće.
+priča	story	word	geschichte (erzählung):priča
+To je duga priča.	It's a long story.	word	das ist eine lange geschichte.:To je duga priča.
+informacija	information	word	information:informacija
+Treba mi više informacija.	I need more information.	word	ich brauche mehr informationen.:Treba mi više informacija.
+podatak	details / data	word	angabe / daten:podatak
+Unesite svoje lične podatke.	Enter your personal data.	word	geben sie ihre persönlichen daten ein.:Unesite svoje lične podatke.
+tema	topic	word	thema:tema
+Hajde da promijenimo temu.	Let's change the subject.	word	lass uns das thema wechseln.:Hajde da promijenimo temu.
+tekst	text	word	text:tekst
+Pročitaj ovaj tekst do sutra.	Read this text by tomorrow.	word	lies diesen text bis morgen.:Pročitaj ovaj tekst do sutra.
+sadržaj	contents	word	inhalt:sadržaj
+Otvorio je paket i provjerio sadržaj.	He opened the package and checked the contents.	word	er hat das paket geöffnet und den inhalt geprüft.:Otvorio je paket i provjerio sadržaj.
+stranica	page (book, web)	word	seite (buch, web):stranica
+Otvori knjigu na desetoj stranici.	Open the book to page ten.	word	schlag das buch auf seite zehn auf.:Otvori knjigu na desetoj stranici.
+grupa	group	word	gruppe:grupa
+Putujemo u velikoj grupi.	We are traveling in a big group.	word	wir reisen in einer großen gruppe.:Putujemo u velikoj grupi.
+klub	club	word	verein / klub:klub
+Za koji klub navijaš?	Which club do you support?	word	für welchen verein bist du?:Za koji klub navijaš?
+projekat	project	word	projekt:projekat
+Radim na novom projektu.	I'm working on a new project.	word	ich arbeite an einem neuen projekt.:Radim na novom projektu.
+program	program	word	programm:program
+Ovaj program je besplatan.	This program is free.	word	dieses programm ist kostenlos.:Ovaj program je besplatan.
+sistem	system	word	system:sistem
+Sistem trenutno ne radi.	The system isn't working at the moment.	word	das system funktioniert gerade nicht.:Sistem trenutno ne radi.
+mreža	network	word	netz:mreža
+Ovdje u selu nema mreže.	There's no network here in the village.	word	hier im dorf gibt es kein netz.:Ovdje u selu nema mreže.
+fotografija	photo	word	foto:fotografija
+Ova fotografija je snimljena u Mostaru.	This photo was taken in Mostar.	word	dieses foto wurde in mostar aufgenommen.:Ova fotografija je snimljena u Mostaru.
+zgrada	building	word	gebäude:zgrada
+Stanujemo u staroj zgradi bez lifta.	We live in an old building with no elevator.	word	wir wohnen in einem alten gebäude ohne aufzug.:Stanujemo u staroj zgradi bez lifta.
+namještaj	furniture	word	möbel:namještaj
+Kupili smo novi namještaj za dnevnu sobu.	We bought new furniture for the living room.	word	wir haben neue möbel fürs wohnzimmer gekauft.:Kupili smo novi namještaj za dnevnu sobu.
+gužva	crowd / traffic jam	word	gedränge / stau:gužva
+Ujutro je u gradu uvijek gužva.	In the morning there's always a traffic jam in town.	word	morgens ist in der stadt immer stau.:Ujutro je u gradu uvijek gužva.
+važan	important (m.)	word	wichtig (der wichtige):važan
+Ovo je važan dan za našu porodicu.	This is an important day for our family.	word	das ist ein wichtiger tag für unsere familie.:Ovo je važan dan za našu porodicu.
+bitan	essential / important	word	wesentlich / wichtig:bitan
+Bitno je da si zdrav.	What's important is that you're healthy.	word	wichtig ist, dass du gesund bist.:Bitno je da si zdrav.
+značajan	significant	word	bedeutend:značajan
+To je značajan uspjeh za naš grad.	This is a significant success for our city.	word	das ist ein bedeutender erfolg für unsere stadt.:To je značajan uspjeh za naš grad.
+glavni	main	word	haupt-:glavni
+Glavni ulaz je s druge strane.	The main entrance is on the other side.	word	der haupteingang ist auf der anderen seite.:Glavni ulaz je s druge strane.
+poznat	well known	word	bekannt:poznat
+Ovaj grad je poznat po ćevapima.	This city is known for its ćevapi.	word	diese stadt ist für ihre ćevapi bekannt.:Ovaj grad je poznat po ćevapima.
+nepoznat	unknown	word	unbekannt:nepoznat
+Zvao me je nepoznat broj.	An unknown number called me.	word	eine unbekannte nummer hat mich angerufen.:Zvao me je nepoznat broj.
+neophodan	indispensable	word	unerlässlich:neophodan
+Za ovaj posao je neophodna vozačka dozvola.	A driver's license is indispensable for this job.	word	für diese arbeit ist ein führerschein unerlässlich.:Za ovaj posao je neophodna vozačka dozvola.
+odgovoran	responsible	word	verantwortlich:odgovoran
+Ko je odgovoran za ovu grešku?	Who is responsible for this mistake?	word	wer ist für diesen fehler verantwortlich?:Ko je odgovoran za ovu grešku?
+odličan	excellent	word	ausgezeichnet:odličan
+Ručak je bio odličan, hvala ti.	Lunch was excellent, thank you.	word	das mittagessen war ausgezeichnet, danke dir.:Ručak je bio odličan, hvala ti.
+sjajan	great / wonderful	word	großartig:sjajan
+Imam sjajnu ideju za vikend!	I have a great idea for the weekend!	word	ich habe eine großartige idee fürs wochenende!:Imam sjajnu ideju za vikend!
+uspješan	successful	word	erfolgreich:uspješan
+Moj amidža je uspješan čovjek.	My uncle is a successful man.	word	mein onkel ist ein erfolgreicher mann.:Moj amidža je uspješan čovjek.
+koristan	useful	word	nützlich:koristan
+Ova aplikacija je jako korisna.	This app is very useful.	word	diese app ist sehr nützlich.:Ova aplikacija je jako korisna.
+normalan	normal	word	normal:normalan
+To je normalno, ne brini.	That's normal, don't worry.	word	das ist normal, mach dir keine sorgen.:To je normalno, ne brini.
+pozitivan	positive	word	positiv:pozitivan
+Ona je uvijek pozitivna i nasmijana.	She is always positive and cheerful.	word	sie ist immer positiv und gut gelaunt.:Ona je uvijek pozitivna i nasmijana.
+negativan	negative	word	negativ:negativan
+Nalaz je negativan, hvala Bogu.	The result is negative, thank God.	word	der befund ist negativ, gott sei dank.:Nalaz je negativan, hvala Bogu.
+jasan	clear	word	klar:jasan
+Je li ti sada jasno?	Is it clear to you now?	word	ist es dir jetzt klar?:Je li ti sada jasno?
+sav	whole / all	word	ganz / all:sav
+Djeca su popila sav sok.	The kids drank all the juice.	word	die kinder haben den ganzen saft getrunken.:Djeca su popila sav sok.
+cijeli	whole (m.)	word	ganz (der ganze):cijeli
+Cijeli grad je bez struje.	The whole town is without power.	word	die ganze stadt ist ohne strom.:Cijeli grad je bez struje.
+mnogi	many	word	viele:mnogi
+Mnogi su otišli u Njemačku.	Many have gone to Germany.	word	viele sind nach deutschland gegangen.:Mnogi su otišli u Njemačku.
+razni	various / all sorts of	word	verschiedene / allerlei:razni
+Na pijaci prodaju razne stvari.	They sell all sorts of things at the market.	word	auf dem markt verkaufen sie allerlei sachen.:Na pijaci prodaju razne stvari.
+različit	different (unlike)	word	unterschiedlich:različit
+Moj brat i ja smo jako različiti.	My brother and I are very different.	word	mein bruder und ich sind sehr unterschiedlich.:Moj brat i ja smo jako različiti.
+određen	certain (specific)	word	bestimmt (festgelegt):određen
+Tražim jednu određenu knjigu.	I'm looking for a certain book.	word	ich suche ein bestimmtes buch.:Tražim jednu određenu knjigu.
+jedini	only (the only one)	word	einziger:jedini
+On je moj jedini brat.	He is my only brother.	word	er ist mein einziger bruder.:On je moj jedini brat.
+brojan	numerous	word	zahlreich:brojan
+Brojni turisti dolaze u Sarajevo.	Numerous tourists come to Sarajevo.	word	zahlreiche touristen kommen nach sarajevo.:Brojni turisti dolaze u Sarajevo.
+ukupan	total	word	gesamt:ukupan
+Ukupna cijena je sto maraka.	The total price is a hundred marks.	word	der gesamtpreis beträgt hundert mark.:Ukupna cijena je sto maraka.
+potpun	complete / utter	word	vollständig / völlig:potpun
+To je potpuna glupost.	That is complete nonsense.	word	das ist völliger unsinn.:To je potpuna glupost.
+dovoljan	sufficient / enough	word	ausreichend / genug:dovoljan
+Imamo li dovoljno hljeba?	Do we have enough bread?	word	haben wir genug brot?:Imamo li dovoljno hljeba?
+vlastit	own	word	eigen:vlastit
+Želim imati vlastitu kuću.	I want to have my own house.	word	ich möchte ein eigenes haus haben.:Želim imati vlastitu kuću.
+zajednički	shared / common	word	gemeinsam:zajednički
+Imamo zajedničkog prijatelja.	We have a mutual friend.	word	wir haben einen gemeinsamen freund.:Imamo zajedničkog prijatelja.
+posljednji	last (in a row)	word	letzter (in einer reihe):posljednji
+Ovo je posljednji voz za Mostar.	This is the last train to Mostar.	word	das ist der letzte zug nach mostar.:Ovo je posljednji voz za Mostar.
+prošli	past / last (in time)	word	vergangen / letzter (zeitlich):prošli
+Prošli vikend smo bili na Jahorini.	Last weekend we were on Jahorina.	word	letztes wochenende waren wir auf der jahorina.:Prošli vikend smo bili na Jahorini.
+sljedeći	next	word	nächster:sljedeći
+Sljedeći put ja plaćam.	Next time I'll pay.	word	nächstes mal bezahle ich.:Sljedeći put ja plaćam.
+bivši	former	word	ehemalig:bivši
+Ovo je moj bivši šef.	This is my former boss.	word	das ist mein ehemaliger chef.:Ovo je moj bivši šef.
+današnji	today's	word	heutig:današnji
+Današnja djeca stalno gledaju u telefon.	Today's kids are always looking at their phones.	word	die kinder von heute schauen ständig aufs handy.:Današnja djeca stalno gledaju u telefon.
+prethodni	previous	word	vorheriger:prethodni
+Prethodni stan je bio manji.	The previous apartment was smaller.	word	die vorherige wohnung war kleiner.:Prethodni stan je bio manji.
+budući	future (adjective)	word	künftig:budući
+Ovo je moja buduća žena.	This is my future wife.	word	das ist meine zukünftige frau.:Ovo je moja buduća žena.
+sadašnji	current	word	jetzig:sadašnji
+Moj sadašnji posao mi se sviđa.	I like my current job.	word	meine jetzige arbeit gefällt mir.:Moj sadašnji posao mi se sviđa.
+rani	early (adjective)	word	früh (adjektiv):rani
+U rano jutro krećemo na put.	We set off in the early morning.	word	am frühen morgen brechen wir auf.:U rano jutro krećemo na put.
+dnevni	daily / day-	word	täglich / tages-:dnevni
+Kupio sam dnevnu kartu za autobus.	I bought a day ticket for the bus.	word	ich habe eine tageskarte für den bus gekauft.:Kupio sam dnevnu kartu za autobus.
+redovan	regular	word	regelmäßig:redovan
+Redovno idem kod doktora.	I go to the doctor regularly.	word	ich gehe regelmäßig zum arzt.:Redovno idem kod doktora.
+konačan	final	word	endgültig:konačan
+To je moja konačna odluka.	That is my final decision.	word	das ist meine endgültige entscheidung.:To je moja konačna odluka.
+javni	public	word	öffentlich:javni
+Ima li ovdje javni toalet?	Is there a public restroom here?	word	gibt es hier eine öffentliche toilette?:Ima li ovdje javni toalet?
+privatan	private	word	privat:privatan
+To je moja privatna stvar.	That's my private matter.	word	das ist meine privatsache.:To je moja privatna stvar.
+lokalni	local	word	örtlich / lokal:lokalni
+Babo svako jutro čita lokalne novine.	Dad reads the local paper every morning.	word	papa liest jeden morgen die lokalzeitung.:Babo svako jutro čita lokalne novine.
+vanjski	outer	word	äußerer:vanjski
+Vanjska vrata su uvijek zaključana.	The outer door is always locked.	word	die außentür ist immer abgeschlossen.:Vanjska vrata su uvijek zaključana.
+unutrašnji	inner	word	innerer:unutrašnji
+Novčanik je u unutrašnjem džepu.	The wallet is in the inside pocket.	word	die geldbörse ist in der innentasche.:Novčanik je u unutrašnjem džepu.
+gornji	upper	word	oberer:gornji
+Čaše su na gornjoj polici.	The glasses are on the upper shelf.	word	die gläser stehen im oberen regal.:Čaše su na gornjoj polici.
+donji	lower	word	unterer:donji
+Moj komšija živi na donjem spratu.	My neighbor lives on the lower floor.	word	mein nachbar wohnt im unteren stock.:Moj komšija živi na donjem spratu.
+srednji	middle (adjective)	word	mittlerer:srednji
+Ovo je moj srednji sin.	This is my middle son.	word	das ist mein mittlerer sohn.:Ovo je moj srednji sin.
+blizak	near / close	word	nah / eng:blizak
+On mi je blizak prijatelj.	He is a close friend of mine.	word	er ist ein enger freund von mir.:On mi je blizak prijatelj.
+dalek	distant	word	fern / entfernt:dalek
+Imamo dalekog rođaka u Americi.	We have a distant relative in America.	word	wir haben einen entfernten verwandten in amerika.:Imamo dalekog rođaka u Americi.
+stran	foreign / strange	word	fremd / ausländisch:stran
+Znaš li neki strani jezik?	Do you speak a foreign language?	word	kannst du eine fremdsprache?:Znaš li neki strani jezik?
+čist	clean (m.)	word	sauber (der saubere):čist
+Uzmi čist peškir iz ormara.	Take a clean towel from the closet.	word	nimm ein sauberes handtuch aus dem schrank.:Uzmi čist peškir iz ormara.
+živ	living / alive	word	lebendig / am leben:živ
+Hvala Bogu, svi su živi i zdravi.	Thank God everyone is alive and well.	word	gott sei dank sind alle gesund und munter.:Hvala Bogu, svi su živi i zdravi.
+snažan	strong / powerful	word	stark / kräftig:snažan
+Moj brat je snažan kao bik.	My brother is as strong as a bull.	word	mein bruder ist stark wie ein stier.:Moj brat je snažan kao bik.
+moderan	modern	word	modern:moderan
+Imaju jako modernu kuhinju.	They have a very modern kitchen.	word	sie haben eine sehr moderne küche.:Imaju jako modernu kuhinju.
+topao	warm (m.)	word	warm (der warme):topao
+Treba mi topao džemper.	I need a warm sweater.	word	ich brauche einen warmen pullover.:Treba mi topao džemper.
+hladan	cold (m.)	word	kalt (der kalte):hladan
+Voda u rijeci je jako hladna.	The water in the river is very cold.	word	das wasser im fluss ist sehr kalt.:Voda u rijeci je jako hladna.
+dubok	deep	word	tief:dubok
+Je li voda ovdje duboka?	Is the water deep here?	word	ist das wasser hier tief?:Je li voda ovdje duboka?
+ogroman	huge	word	riesig:ogroman
+Imaju ogromnu kuću na selu.	They have a huge house in the country.	word	sie haben ein riesiges haus auf dem land.:Imaju ogromnu kuću na selu.
+opasan	dangerous (m.)	word	gefährlich (der gefährliche):opasan
+Pazi, ovaj pas je opasan!	Watch out, this dog is dangerous!	word	pass auf, dieser hund ist gefährlich!:Pazi, ovaj pas je opasan!
+kriv	guilty / crooked	word	schuldig / schief:kriv
+Nisam ja kriv, on je počeo!	It's not my fault, he started it!	word	ich bin nicht schuld, er hat angefangen!:Nisam ja kriv, on je počeo!
+ljudski	human	word	menschlich:ljudski
+Griješiti je ljudski.	To err is human.	word	irren ist menschlich.:Griješiti je ljudski.
+prirodan	natural	word	natürlich (aus der natur):prirodan
+Ovaj sok je potpuno prirodan.	This juice is completely natural.	word	dieser saft ist völlig natürlich.:Ovaj sok je potpuno prirodan.
+ženski	female / women's	word	weiblich / damen-:ženski
+Ženska odjeća je na drugom spratu.	Women's clothing is on the second floor.	word	die damenkleidung ist im zweiten stock.:Ženska odjeća je na drugom spratu.
+muški	male / men's	word	männlich / herren-:muški
+Je li beba muško ili žensko?	Is the baby a boy or a girl?	word	ist das baby ein junge oder ein mädchen?:Je li beba muško ili žensko?
+hitan	urgent	word	dringend:hitan
+Moram ti nešto hitno reći.	I urgently need to tell you something.	word	ich muss dir dringend etwas sagen.:Moram ti nešto hitno reći.
+čest	frequent	word	häufig:čest
+To je česta greška.	That's a common mistake.	word	das ist ein häufiger fehler.:To je česta greška.
+tu	right here / over here	word	da / hier:tu
+Ostavi torbu tu, pored vrata.	Leave the bag there, by the door.	word	lass die tasche da, neben der tür.:Ostavi torbu tu, pored vrata.
+ovdje	here	word	hier:ovdje
+Živim ovdje već deset godina.	I've been living here for ten years.	word	ich wohne hier schon seit zehn jahren.:Živim ovdje već deset godina.
+tamo	there	word	dort:tamo
+Bio sam tamo prošle godine.	I was there last year.	word	ich war letztes jahr dort.:Bio sam tamo prošle godine.
+gore	up there	word	oben:gore
+Djeca se igraju gore u sobi.	The children are playing upstairs in the room.	word	die kinder spielen oben im zimmer.:Djeca se igraju gore u sobi.
+dolje	down there	word	unten:dolje
+Čekam te dolje, ispred zgrade.	I'm waiting for you downstairs, in front of the building.	word	ich warte unten auf dich, vor dem gebäude.:Čekam te dolje, ispred zgrade.
+negdje	somewhere	word	irgendwo:negdje
+Negdje sam ostavio ključeve.	I left the keys somewhere.	word	ich habe die schlüssel irgendwo liegen lassen.:Negdje sam ostavio ključeve.
+nigdje	nowhere	word	nirgendwo:nigdje
+Nigdje ne mogu naći telefon.	I can't find my phone anywhere.	word	ich kann mein handy nirgendwo finden.:Nigdje ne mogu naći telefon.
+naprijed	forward	word	vorwärts / nach vorne:naprijed
+Samo naprijed, ne boj se!	Go ahead, don't be afraid!	word	nur zu, hab keine angst!:Samo naprijed, ne boj se!
+nazad	back (direction)	word	zurück:nazad
+Kad ideš nazad u Njemačku?	When are you going back to Germany?	word	wann gehst du zurück nach deutschland?:Kad ideš nazad u Njemačku?
+onda	then	word	dann:onda
+Prvo ručak, onda kahva.	Lunch first, then coffee.	word	erst das mittagessen, dann der kaffee.:Prvo ručak, onda kahva.
+zatim	afterwards	word	danach:zatim
+Večerali smo, a zatim smo gledali film.	We had dinner and afterwards we watched a movie.	word	wir haben zu abend gegessen und danach einen film geschaut.:Večerali smo, a zatim smo gledali film.
+nekad	sometimes / once	word	manchmal / früher:nekad
+Nekad smo živjeli u Tuzli.	We used to live in Tuzla.	word	früher haben wir in tuzla gelebt.:Nekad smo živjeli u Tuzli.
+odjednom	suddenly	word	plötzlich:odjednom
+Odjednom je nestala struja.	Suddenly the power went out.	word	plötzlich ist der strom ausgefallen.:Odjednom je nestala struja.
+davno	a long time ago	word	vor langer zeit:davno
+To je bilo davno, ne sjećam se.	That was a long time ago, I don't remember.	word	das ist lange her, ich erinnere mich nicht.:To je bilo davno, ne sjećam se.
+stalno	constantly	word	ständig:stalno
+Stalno mislim na tebe.	I think about you constantly.	word	ich denke ständig an dich.:Stalno mislim na tebe.
+trenutno	at the moment / currently	word	momentan / gerade:trenutno
+Trenutno nisam kod kuće.	I'm not at home right now.	word	ich bin gerade nicht zu hause.:Trenutno nisam kod kuće.
+prvo	first	word	zuerst:prvo
+Prvo operi ruke, pa onda jedi.	Wash your hands first, then eat.	word	wasch dir zuerst die hände und iss dann.:Prvo operi ruke, pa onda jedi.
+skoro	almost / soon	word	fast / bald:skoro
+Skoro sam zaboravio tvoj rođendan.	I almost forgot your birthday.	word	ich hätte fast deinen geburtstag vergessen.:Skoro sam zaboravio tvoj rođendan.
+tako	so	word	so:tako
+Zašto tako kasno dolaziš kući?	Why are you coming home so late?	word	warum kommst du so spät nach hause?:Zašto tako kasno dolaziš kući?
+ovako	like this	word	so (wie hier):ovako
+Gledaj, to se radi ovako.	Look, this is how it's done.	word	schau, das macht man so.:Gledaj, to se radi ovako.
+vrlo / veoma	very (before qualities)	word	sehr (vor eigenschaften):vrlo / veoma
+Ovo je vrlo važno za mene.	This is very important to me.	word	das ist sehr wichtig für mich.:Ovo je vrlo važno za mene.
+toliko	so much	word	so viel:toliko
+Nano, ne mogu toliko pojesti!	Grandma, I can't eat that much!	word	oma, so viel kann ich nicht essen!:Nano, ne mogu toliko pojesti!
+sasvim	completely	word	ganz (völlig):sasvim
+Sasvim si u pravu.	You are completely right.	word	du hast völlig recht.:Sasvim si u pravu.
+nikako	no way / not at all	word	auf keinen fall / gar nicht:nikako
+Nikako ne mogu doći sutra.	I can't possibly come tomorrow.	word	morgen kann ich auf keinen fall kommen.:Nikako ne mogu doći sutra.
+nekako	somehow	word	irgendwie:nekako
+Nekako ćemo se snaći.	We'll manage somehow.	word	irgendwie kommen wir schon zurecht.:Nekako ćemo se snaći.
+pomalo	a bit	word	ein wenig:pomalo
+Već pomalo govorim bosanski.	I already speak a bit of Bosnian.	word	ich spreche schon ein wenig bosnisch.:Već pomalo govorim bosanski.
+rado	gladly	word	gern:rado
+Rado ću ti pomoći.	I'll gladly help you.	word	ich helfe dir gern.:Rado ću ti pomoći.
+otprilike	approximately	word	ungefähr:otprilike
+Stižemo za otprilike sat vremena.	We'll arrive in about an hour.	word	wir kommen in ungefähr einer stunde an.:Stižemo za otprilike sat vremena.
+jedva	hardly	word	kaum:jedva
+Jedva čekam ljeto!	I can hardly wait for summer!	word	ich kann den sommer kaum erwarten!:Jedva čekam ljeto!
+baš	just / exactly	word	gerade / genau:baš
+Baš sam te htio nazvati.	I was just about to call you.	word	ich wollte dich gerade anrufen.:Baš sam te htio nazvati.
+čak	even	word	sogar:čak
+Čak i djeca to znaju.	Even children know that.	word	sogar kinder wissen das.:Čak i djeca to znaju.
+bar	at least	word	wenigstens:bar
+Pojedi bar malo supe.	Eat at least a little soup.	word	iss wenigstens ein bisschen suppe.:Pojedi bar malo supe.
+ni	neither / not even	word	auch nicht / nicht einmal:ni
+Nisam ni ja znao.	I didn't know either.	word	ich wusste es auch nicht.:Nisam ni ja znao.
+zaista	really / indeed	word	wirklich / tatsächlich:zaista
+Zaista mi je žao.	I'm really sorry.	word	es tut mir wirklich leid.:Zaista mi je žao.
+ipak	anyway / still	word	trotzdem / doch:ipak
+Bio je bolestan, ali je ipak došao.	He was sick, but he came anyway.	word	er war krank, aber er ist trotzdem gekommen.:Bio je bolestan, ali je ipak došao.
+inače	otherwise / normally	word	sonst / normalerweise:inače
+Požuri, inače ćemo zakasniti.	Hurry up, otherwise we'll be late.	word	beeil dich, sonst kommen wir zu spät.:Požuri, inače ćemo zakasniti.
+uglavnom	mostly / mainly	word	meistens / hauptsächlich:uglavnom
+Uglavnom radim od kuće.	I mostly work from home.	word	ich arbeite meistens von zu hause.:Uglavnom radim od kuće.
+vjerovatno	probably	word	wahrscheinlich:vjerovatno
+Sutra će vjerovatno padati kiša.	It will probably rain tomorrow.	word	morgen wird es wahrscheinlich regnen.:Sutra će vjerovatno padati kiša.
+zapravo / ustvari	actually	word	eigentlich:zapravo / ustvari
+Šta si zapravo htio reći?	What did you actually want to say?	word	was wolltest du eigentlich sagen?:Šta si zapravo htio reći?
+svakako	definitely	word	auf jeden fall:svakako
+Svakako ću ti se javiti.	I'll definitely get in touch with you.	word	ich melde mich auf jeden fall bei dir.:Svakako ću ti se javiti.
+valjda	presumably / I suppose	word	wohl / vermutlich:valjda
+Valjda će sve biti dobro.	I suppose everything will be fine.	word	es wird wohl alles gut werden.:Valjda će sve biti dobro.
+kao	like / as	word	wie / als:kao
+Spavao sam kao beba.	I slept like a baby.	word	ich habe wie ein baby geschlafen.:Spavao sam kao beba.
+pa	and then / so	word	und dann / also:pa
+Završi zadaću pa idi vani.	Finish your homework and then go outside.	word	mach deine hausaufgaben fertig und geh dann raus.:Završi zadaću pa idi vani.
+što	what / that (in a clause)	word	was / dass (im nebensatz):što
+Žao mi je što kasnim.	I'm sorry that I'm late.	word	es tut mir leid, dass ich zu spät komme.:Žao mi je što kasnim.
+iako	although	word	obwohl:iako
+Iako sam umoran, idem na trening.	Although I'm tired, I'm going to practice.	word	obwohl ich müde bin, gehe ich zum training.:Iako sam umoran, idem na trening.
+ukoliko	in case	word	falls:ukoliko
+Ukoliko ne možeš doći, javi mi.	In case you can't come, let me know.	word	falls du nicht kommen kannst, sag mir bescheid.:Ukoliko ne možeš doći, javi mi.
+dakle	so (therefore)	word	also:dakle
+Dakle, vidimo se sutra u osam.	So, see you tomorrow at eight.	word	also, wir sehen uns morgen um acht.:Dakle, vidimo se sutra u osam.
+međutim	however	word	jedoch:međutim
+Htio sam doći, međutim nisam mogao.	I wanted to come, however I couldn't.	word	ich wollte kommen, konnte jedoch nicht.:Htio sam doći, međutim nisam mogao.
+odnosno	or rather	word	beziehungsweise:odnosno
+Dolazim u petak, odnosno u subotu.	I'm coming on Friday, or rather on Saturday.	word	ich komme am freitag, beziehungsweise am samstag.:Dolazim u petak, odnosno u subotu.
+čim	as soon as	word	sobald:čim
+Javi mi čim stigneš.	Let me know as soon as you arrive.	word	sag mir bescheid, sobald du ankommst.:Javi mi čim stigneš.
+pošto	since / after	word	da / nachdem:pošto
+Pošto pada kiša, ostajemo kod kuće.	Since it's raining, we're staying home.	word	da es regnet, bleiben wir zu hause.:Pošto pada kiša, ostajemo kod kuće.
+neka	let (him) / may	word	soll / möge:neka
+Neka sačeka pet minuta.	Let him wait five minutes.	word	er soll fünf minuten warten.:Neka sačeka pet minuta.
+evo	here is / there is	word	hier ist / da ist:evo
+Evo ti ključevi od stana.	Here are the keys to the apartment.	word	hier hast du die wohnungsschlüssel.:Evo ti ključevi od stana.
+po	after / per	word	nach / pro:po
+Ulaz košta pet maraka po osobi.	Admission is five marks per person.	word	der eintritt kostet fünf mark pro person.:Ulaz košta pet maraka po osobi.
+nakon	after (an event)	word	nach (einem ereignis):nakon
+Nakon ručka pijemo kahvu.	After lunch we drink coffee.	word	nach dem mittagessen trinken wir kaffee.:Nakon ručka pijemo kahvu.
+uz	beside / with / along with	word	neben / zu / mit:uz
+Uz ćevape obavezno ide luk.	Ćevapi must come with onions.	word	zu ćevapi gehört unbedingt zwiebel.:Uz ćevape obavezno ide luk.
+protiv	against	word	gegen:protiv
+Nemam ništa protiv njega.	I have nothing against him.	word	ich habe nichts gegen ihn.:Nemam ništa protiv njega.
+preko	over / across	word	über / durch:preko
+Prešli smo preko Starog mosta.	We walked across the Old Bridge.	word	wir sind über die alte brücke gegangen.:Prešli smo preko Starog mosta.
+tokom	during	word	während:tokom
+Tokom ljeta radim u kafiću.	During the summer I work in a café.	word	während des sommers arbeite ich in einem café.:Tokom ljeta radim u kafiću.
+pred	in front of (right before)	word	vor (direkt davor):pred
+Čekam te pred kućom.	I'll wait for you in front of the house.	word	ich warte vor dem haus auf dich.:Čekam te pred kućom.
+među	between / among	word	zwischen / unter (mehreren):među
+Ovo ostaje među nama.	This stays between us.	word	das bleibt unter uns.:Ovo ostaje među nama.
+osim	except	word	außer:osim
+Svi su došli osim Amine.	Everyone came except Amina.	word	alle sind gekommen außer amina.:Svi su došli osim Amine.
+umjesto	instead of	word	statt:umjesto
+Umjesto kahve pijem čaj.	Instead of coffee I drink tea.	word	statt kaffee trinke ich tee.:Umjesto kahve pijem čaj.
+unutar	inside (within)	word	innerhalb:unutar
+Unutar zgrade je zabranjeno pušenje.	Smoking is forbidden inside the building.	word	innerhalb des gebäudes ist rauchen verboten.:Unutar zgrade je zabranjeno pušenje.
+izvan	outside (beyond)	word	außerhalb:izvan
+Živimo malo izvan grada.	We live a little outside the town.	word	wir wohnen etwas außerhalb der stadt.:Živimo malo izvan grada.
+radi	because of / for the sake of	word	wegen / um … willen:radi
+Radi djece ostajemo ovdje.	We're staying here for the children's sake.	word	der kinder wegen bleiben wir hier.:Radi djece ostajemo ovdje.
+sebe	oneself	word	sich:sebe
+On misli samo na sebe.	He only thinks of himself.	word	er denkt nur an sich.:On misli samo na sebe.
+taj	this / that (one there)	word	dieser (da):taj
+Ko je taj čovjek?	Who is that man?	word	wer ist dieser mann?:Ko je taj čovjek?
+svoj	one's own (my, your, his)	word	eigener (mein, dein, sein):svoj
+Uzmi svoju torbu, idemo!	Take your bag, we're going!	word	nimm deine tasche, wir gehen!:Uzmi svoju torbu, idemo!
+neki	some (a certain)	word	irgendein:neki
+Neki čovjek te je tražio.	Some man was looking for you.	word	irgendein mann hat dich gesucht.:Neki čovjek te je tražio.
+neko	someone	word	jemand:neko
+Neko kuca na vrata.	Someone is knocking at the door.	word	jemand klopft an die tür.:Neko kuca na vrata.
+njihov	their	word	ihr (von mehreren):njihov
+Njihova kuća je pored škole.	Their house is next to the school.	word	ihr haus ist neben der schule.:Njihova kuća je pored škole.
+takav	such a	word	solch ein:takav
+Takav je život, šta ćeš.	That's life, what can you do.	word	so ist das leben, was soll man machen.:Takav je život, šta ćeš.
+kakav	what kind of	word	was für ein:kakav
+Kakav auto voziš?	What kind of car do you drive?	word	was für ein auto fährst du?:Kakav auto voziš?
+ovakav	such (like this one)	word	so ein (wie dieser):ovakav
+Tražim ovakve cipele, ali crne.	I'm looking for shoes like these, but in black.	word	ich suche solche schuhe wie diese, aber in schwarz.:Tražim ovakve cipele, ali crne.
+nikakav	no ... at all	word	keinerlei:nikakav
+Nemamo nikakav plan za vikend.	We have no plans at all for the weekend.	word	wir haben keinerlei plan fürs wochenende.:Nemamo nikakav plan za vikend.
+svako	everyone	word	jeder (person):svako
+Svako to može naučiti.	Anyone can learn that.	word	das kann jeder lernen.:Svako to može naučiti.
+oba	both (masculine)	word	beide (männlich):oba
+Oba sina žive u Njemačkoj.	Both sons live in Germany.	word	beide söhne leben in deutschland.:Oba sina žive u Njemačkoj.
 Dobar dan	Good day	sentence	s0001
 Merhaba, kako si?	Hello, how are you?	sentence	s0002
 Kako si?	How are you?	sentence	s0003

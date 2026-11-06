@@ -22,40 +22,43 @@ source files disagree, so this folder is never stale.
 ## Contents
 
 ```mermaid
-pie showData title Words per section (2,942)
+pie showData title Words per section (4,425)
   "1 Basics & everyday life" : 353
   "2 Things you can touch" : 114
-  "3 Animals & nature" : 109
+  "3 Animals & nature" : 111
   "4 At home" : 137
   "5 Building sentences" : 618
   "6 Shopping & eating out" : 108
   "7 Bosnia & origins" : 81
   "8 People & culture" : 58
   "9 Offices & contracts" : 162
-  "10 Doings and dealings" : 506
+  "10 Doings and dealings" : 1102
   "11 How things are" : 190
   "12 Body and health" : 206
   "13 Time and leisure" : 178
   "14 Learning and working" : 122
+  "15 Basic concepts" : 296
+  "16 People and society" : 297
+  "17 How, where and when" : 292
 ```
 
 | File | What | Count |
 |---|---|---|
-| `vocabulary.json` / `.csv` | words and phrases, 14 sections, 107 levels | 2,942 |
+| `vocabulary.json` / `.csv` | words and phrases, 17 sections, 166 levels | 4,425 |
 | `sentences.json` / `.csv` | fill-in-the-gap sentences with the full sentence | 300 |
 | `stories.json` | graded stories with translation, glossary and comprehension questions | 12 |
 | `glossary.json` | word-by-word reading glossary used by the stories | 406 |
 | `grammar.json` | grammar lessons (explanations, tables, exercises) per language | 16 |
 | `anki/zmaj-bs-<lang>.tsv` | ready-to-import Anki decks, tagged by level | 8 decks |
-| `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 3,242 pairs × 8 |
-| `parallel.jsonl` | one line per word, sentence and story with all translations | 3,254 lines |
-| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 3,254 `<tu>` |
+| `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 4,725 pairs × 8 |
+| `parallel.jsonl` | one line per word, sentence and story with all translations | 4,737 lines |
+| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 4,737 `<tu>` |
 | `manifest.json` | counts and SHA-256 of every file above | – |
 | `schema/*.schema.json` | JSON Schema (2020-12) for the JSON files and one `parallel.jsonl` line | – |
 
 Audio paths (`web/audio/w0001.mp3` …) are relative to the repository root.
-There are 2,411 MP3 files (≈ 37 MB). Twelve family words and 1,192 new
-words and example sentences of sections 10 to 14, added in October and
+There are 2,411 MP3 files (≈ 37 MB). Twelve family words and 2,666 new
+words and example sentences of sections 3 and 10 to 17, added in October and
 November 2026, have none (`"audio": null`); the app speaks them with
 recordings that are not part of this dataset.
 
@@ -90,7 +93,7 @@ Gdje je stanica?	Where is the stop?	sentence	s0041
 `parallel.jsonl` and `parallel.tmx` also contain the 12 stories as whole
 texts; they are not sentence-aligned. Words are short phrases, often with
 variants separated by ` / ` (*Laku noć / Lahku noć*); split or drop them as
-your task requires. With 3,242 pairs per language this is evaluation or
+your task requires. With 4,725 pairs per language this is evaluation or
 fine-tuning data, not a training corpus, and the translations other than
 German are not yet native-reviewed (see below).
 

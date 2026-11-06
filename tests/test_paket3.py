@@ -39,7 +39,7 @@ WOERTER = {
     "geld_sparen": ["vrijediti", "plaćanje", "isplatiti se", "potrošiti", "trošiti", "zaraditi", "zarađivati",
                     "dugovati", "naplatiti", "štedjeti", "uštedjeti", "novčanik", "novčanica", "posuditi", "kovanica",
                     "Koliko sam dužan?"],
-    "paare_mehr": ["iznositi", "pomisliti", "saznavati", "poželjeti", "dozvoljavati", "umirati", "potpisivati",
+    "paare_mehr": ["iznositi", "pomisliti", "saznavati", "poželjeti", "dozvoljavati / dopuštati", "umirati", "potpisivati",
                    "primjećivati", "spašavati", "prijavljivati se", "osušiti", "povjerovati", "kvariti se",
                    "porazgovarati", "promiješati", "zalijevati"],
     "koerper_aussen": ["lice", "jezik", "čelo", "rame", "koljeno", "prsa", "usna", "obraz", "stopalo", "nokat", "brada",
@@ -80,10 +80,17 @@ PAARE_IM_PAKET = {"vratiti": "vraćati", "izabrati": "birati", "potrošiti": "tr
                   "oporaviti se": "oporavljati se", "gutati": "progutati"}
 # Gegenstuecke aus Paket 1 und 2: seit Paket 3 hat auch das alte Verb "partner"
 ALTE_PARTNER = {"iznositi": "iznijeti", "pomisliti": "misliti", "saznavati": "saznati", "poželjeti": "željeti",
-                "dozvoljavati": "dozvoliti", "umirati": "umrijeti", "potpisivati": "potpisati",
+                "dozvoljavati / dopuštati": "dozvoliti / dopustiti", "umirati": "umrijeti", "potpisivati": "potpisati",
                 "primjećivati": "primijetiti", "spašavati": "spasiti", "prijavljivati se": "prijaviti se",
                 "osušiti": "sušiti", "povjerovati": "vjerovati", "kvariti se": "pokvariti se",
                 "porazgovarati": "razgovarati", "promiješati": "miješati", "zalijevati": "zaliti"}
+# Seit Paket 8 (06.11.2026) haben slomiti und propisati ihr Gegenstueck
+SEIT_PAKET8 = {"slomiti": "lomiti", "propisati": "propisivati"}
+# Seit den Paketen 7 und 8 eigene Woerter mit eigener Bedeutung: odabrati
+# „aussuchen“ neben izabrati, pogađati se „verhandeln (Preis)“ neben cjenkati se.
+# Beim Tippen zaehlen sie dort weiter nicht (keine auch-Form, kein Partner, andere
+# Bedeutung).
+EIGENES_WORT = {"odabrati": "aussuchen", "pogađati se": "verhandeln (Preis)"}
 
 
 def _level(daten, ids):
@@ -104,7 +111,8 @@ def test_sektion_zwoelf_und_drei_level_in_tun_und_lassen(grunddaten):
     assert sektionen[11] == "koerpergesundheit"
     assert grunddaten["sektionen"][11]["label"] == "Sektion 12 · Körper und Gesundheit"
     tun = [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "tunlassen"]
-    assert tun[12:] == TUN + ["passieren", "notfall"], "nach im_haushalt, vor passieren und notfall"
+    assert tun[12:15] == TUN, "nach im_haushalt"
+    assert tun[-2:] == ["passieren", "notfall"], "seit 06.11.2026 stehen dazwischen die Level aus Paket 7 und 8"
     ids = [k["id"] for k in grunddaten["kategorien"]]
     i = ids.index("koerper_aussen")
     assert ids[i - 1] == "sinne" and ids[i:i + 8] == KOERPER, "hinter Sektion 11"
@@ -164,7 +172,12 @@ def test_was_ajdin_ausgeschlossen_hat_zaehlt_nicht(grunddaten, wort, form):
     w = {x["bs"]: x for x in _neu(grunddaten)}[wort]
     assert form not in w.get("auch", []) and form not in w["bs"].split(" / ")
     alle = _alle(grunddaten)
-    assert not [x for x in alle if form in x["bs"].split(" / ") or form in x.get("auch", [])], form
+    treffer = [x for x in alle if form in x["bs"].split(" / ") or form in x.get("auch", [])]
+    if form in EIGENES_WORT:
+        assert [x["de"] for x in treffer] == [EIGENES_WORT[form]], form
+        assert w["de"] != EIGENES_WORT[form]
+    else:
+        assert not treffer, form
     assert w.get("partner") != form
 
 
@@ -174,19 +187,22 @@ def test_partner_in_beide_richtungen(grunddaten):
     nach_bs = {w["bs"]: w for w in alle}
     neu = {w["bs"]: w for w in _neu(grunddaten)}
     soll = dict(ALTE_PARTNER)
+    soll.update(SEIT_PAKET8)
     for a, b in PAARE_IM_PAKET.items():
         soll[a], soll[b] = b, a
     assert {b: w["partner"] for b, w in neu.items() if w.get("partner")} == soll
     for wort, gegen in soll.items():
         assert bs.count(gegen) == 1, gegen
         assert nach_bs[gegen].get("partner") == wort, (gegen, wort)
-    assert len({frozenset(p) for p in soll.items()}) == 25
+    assert len({frozenset(p) for p in soll.items()}) == 27
     # Jedes Wort hat hoechstens ein Gegenstueck
     zaehler = {}
     for w in alle:
         if w.get("partner"):
             for x in (w["bs"], w["partner"]):
                 zaehler.setdefault(x, set()).add(frozenset((w["bs"], w["partner"])))
+    # Ausnahme seit Paket 7: povući hat zwei Gegenstuecke (povlačiti, vući)
+    assert len(zaehler.pop("povući")) == 2
     assert max(len(v) for v in zaehler.values()) == 1
 
 

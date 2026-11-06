@@ -45,11 +45,27 @@ PAKET34 = {"kaufen_zurueckgeben", "geld_sparen", "paare_mehr", "koerper_aussen",
            "beschwerden", "in_der_praxis", "untersuchen_heilen", "apotheke", "gesund_leben", "zeitangaben",
            "sofort_endlich", "sport", "hobbys", "medien", "urlaub", "schule", "lernen_studieren", "berufe",
            "arbeitsplatz"}
+# Und die 59 Level aus den Wortschatz-Paketen 5 bis 9 (06.11.2026): 22 in Tun und
+# Lassen, dazu die Sektionen 15 bis 17. Geprueft in tests/test_paket5.py bis test_paket9.py.
+PAKET59 = {"alltag_information", "anfang_ende", "aufhoeren_vermeiden", "beziehungen", "das_leben",
+           "denken_entscheiden", "dinge_regeln", "eigenschaften", "entscheiden_annehmen",
+           "erledigen_umziehen", "ermoeglichen_entdecken", "erscheinen_verschwinden", "frueher_spaeter",
+           "fuehren_bringen", "fuerwoerter", "ganz_viele", "gemeinde_gesellschaft", "glaube_gedenken",
+           "grund_folge", "gruppe_netz", "heben_ziehen", "hier_dort", "hilfe_hindernis", "im_alltag_tun",
+           "innen_aussen", "kaempfen_angreifen", "krieg_recht", "kultur_bildung", "lieben_fuerchten",
+           "losgehen_abbiegen", "menge_teil", "menschen", "miteinander_umgehen", "mitteilen_bitten",
+           "nutzen_schaden", "ort_raum", "paare_nachholen", "praepositionen_mehr", "reihe_wert",
+           "richtung_mass", "saetze_verbinden", "sagen_betonen", "schaffen_erreichen", "schuetzen_strafen",
+           "sein_wirken", "sich_bewegen", "staat_politik", "starten_planen", "stimmung_streit",
+           "technik_energie", "veraendern_herstellen", "wahrheit_zweifel", "wann_wie_oft", "wer_ist_wer",
+           "wichtig_bekannt", "wie_man_es_meint", "wie_sehr", "wirtschaft", "wundern_beruhigen"}
 GEORDNET = {"zahlen", "wochentage", "monate", "mengen", "konjugation", "zukunft", "routine",
-            "vergangenheit", "modal", "adjektive"} | PAKET1 | PAKET2 | PAKET34
+            "vergangenheit", "modal", "adjektive"} | PAKET1 | PAKET2 | PAKET34 | PAKET59
 TEIL_REIHEN = {"zeit": ["jutro", "podne", "večer", "noć"],
                "wetter": ["proljeće", "ljeto", "jesen", "zima"],
-               "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"]}
+               "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"],
+               # Seit 06.11.2026 (Paket 5): mačak vor seinem Beispielsatz
+               "tiere": ["mačak", "Naš mačak spava cijeli dan."]}
 # Personenfolge, am deutschen Pronomen abgelesen: ja, ti, on/ona, mi, vi, oni
 PERSON = {"ich": 0, "du": 1, "er": 2, "wir": 3, "ihr": 4, "sie": 5}
 # vergangenheit: biti in der Folge ja, ti, on, ona, mi - am deutschen
@@ -266,7 +282,7 @@ def test_gruesse_nach_tageszeit(grunddaten):
 
 
 def test_teil_reihen(grunddaten):
-    """Nur zeit, wetter und basics haben "reihe"; jedes Wort darin steht
+    """Nur zeit, wetter, basics und tiere haben "reihe"; jedes Wort darin steht
     genau einmal im Level, und "reihenfolge" fehlt dort (der Rest ist
     gemischt)."""
     mit = {k["id"]: k["reihe"] for k in grunddaten["kategorien"] if "reihe" in k}
