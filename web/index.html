@@ -1385,6 +1385,27 @@
      keinen Platz. Gefunden bei der Pruefung am 06.10.2026. */
   .abogratis{margin-top:10px; font-size:14px; font-weight:800; line-height:1.4; color:var(--ink)}
   .abogratis:empty{display:none}
+  /* Auf kleinen Handys lag "Zahlungspflichtig abonnieren" unter dem Rand des
+     Kastens: man sah Drache und Preise, aber keinen Knopf (Pruefbericht 1.3,
+     G13). kaufkastenEinpassen() macht den Kasten jetzt Stufe um Stufe enger, nur
+     so weit wie noetig. Rollt er danach noch, bleiben die Knoepfe am unteren Rand
+     stehen. Fest stehen nur die Knoepfe: stuenden auch Testwoche und Hinweis
+     darin, verdeckten sie bei grosser Schrift die Karten mit den Preisen, und die
+     muss sehen, wer bestellt. Sticky statt eines eigenen Rollbereichs: wo alles
+     passt, sieht der Kasten genauso aus wie vorher. Die Raender gleichen die 18 px
+     von .nachfragebox aus, auch bei bottom: Chrome rechnet es vom Innenrand. */
+  .kaufknoepfe{position:sticky; bottom:-18px; margin:0 -18px -18px; padding:0 18px 18px; background:var(--surface)}
+  .kaufbox.rollt .kaufknoepfe{box-shadow:0 -10px 12px -12px rgba(6,12,32,.45)}
+  .kaufbox.eng1 .abovorschau .zmaj-anim, .kaufbox.eng1 .abovorschau .zmaj{width:90px; height:90px}
+  .kaufbox.eng2 .txt{line-height:1.45}
+  .kaufbox.eng2 .abowahl{gap:8px; margin:10px 0 2px}
+  .kaufbox.eng2 .abokarte{padding:10px 14px}
+  .kaufbox.eng2 .abogratis, .kaufbox.eng2 .abohinweis{margin-top:6px}
+  .kaufbox.eng2 .btn{margin-top:8px}
+  .kaufbox.eng3{max-height:calc(100vh - 36px); padding-top:12px}
+  .kaufbox.eng3 h3{margin-bottom:6px; font-size:17px}
+  .kaufbox.eng3 .txt{font-size:13px; line-height:1.4}
+  .kaufbox.eng3 .abogratis{font-size:13px}
 
   /* ---- Einstufung und Wiederholen ----
      Die Einstufung benutzt die Karten der Vollversionswahl, Wiederholen
@@ -8412,6 +8433,22 @@ function gratisMerken(plaene){
   const jahr = hol('jahr');
   aboGratisPlan = jahr.preis ? jahr : hol('monat');
 }
+/* Macht den Kaufkasten nur so eng wie noetig, siehe .kaufknoepfe im Stil.
+   Gemessen statt nach Bildschirmhoehe gestaffelt: wie viel Platz er braucht, haengt
+   auch von der Sprache und der Systemschrift ab. Der Drache faellt zuerst kleiner
+   aus und dann ganz weg - weg heisst aus dem Baum, sonst baut ihn der Beobachter
+   unter mountZmaj() trotzdem auf, und er rechnet unsichtbar mit. */
+function kaufkastenEinpassen(box){
+  const zuHoch = () => box.scrollHeight > box.clientHeight;
+  if(zuHoch()) box.classList.add('eng1');
+  if(zuHoch()){
+    box.classList.add('eng2');
+    const vorschau = box.querySelector('.abovorschau');
+    if(vorschau) vorschau.remove();
+  }
+  if(zuHoch()) box.classList.add('eng3');
+  box.classList.toggle('rollt', zuHoch());
+}
 /* Die Auswahl Monat oder Jahr. Preise und Zeiträume kommen von Google. */
 async function vollWahlZeigen(){
   const P = aboPlugin(); if(!P || aboLaeuft) return;
@@ -8478,7 +8515,7 @@ async function vollWahlZeigen(){
   const kasten = document.createElement('div');
   kasten.className = 'nachfrage';
   kasten.innerHTML =
-    '<div class="nachfragebox">' +
+    '<div class="nachfragebox kaufbox">' +
       '<h3>'+esc(t('voll.wahl_titel'))+'</h3>' +
       '<div class="abovorschau">' + zmaj('cheer') +
         '<div class="wort">' + esc(t('voll.so_koenntest_du')) + '</div></div>' +
@@ -8491,18 +8528,14 @@ async function vollWahlZeigen(){
       '</div>' +
       '<div class="abogratis" id="aboGratis"></div>' +
       '<div class="abohinweis">'+esc(t('voll.hinweis'))+'</div>' +
-      '<button class="btn know" id="aboKauf"></button>' +
-      '<button class="btn ghost" id="aboZu"></button>' +
+      '<div class="kaufknoepfe">' +
+        '<button class="btn know" id="aboKauf"></button>' +
+        '<button class="btn ghost" id="aboZu"></button>' +
+      '</div>' +
     '</div>';
   kasten.querySelector('#aboKauf').textContent = t('voll.kaufen');
   kasten.querySelector('#aboZu').textContent = t('btn.dialog_abbrechen');
   document.body.appendChild(kasten);
-  /* Der Drache in voller Montur - unabhaengig davon, was der Nutzer
-     gerade traegt. Genau das ist ja das Angebot. */
-  const schau = kasten.querySelector('.abovorschau .zmaj-anim');
-  if(schau) mountZmaj(schau, 'cheer',
-    {ids: ['krone_gross', 'monokel', 'umhang', 'galaxie', 'funkeln']
-           .filter(id => MASCOT.has(zierratDatei(id))), farbe: 'galaxie'});
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;                       // damit die Zurück-Taste sie schließt
   kasten.querySelector('#aboZu').addEventListener('click', zu);
@@ -8520,6 +8553,14 @@ async function vollWahlZeigen(){
   };
   waehle(karten.find(b => b.dataset.plan === 'jahr' && !b.disabled) || karten.find(b => !b.disabled));
   karten.forEach(b => b.addEventListener('click', ()=> waehle(b)));
+  // Erst hier: die Testwoche steht jetzt da und zaehlt mit
+  kaufkastenEinpassen(kasten.querySelector('.kaufbox'));
+  /* Der Drache in voller Montur - unabhaengig davon, was der Nutzer
+     gerade traegt. Genau das ist ja das Angebot. */
+  const schau = kasten.querySelector('.abovorschau .zmaj-anim');
+  if(schau) mountZmaj(schau, 'cheer',
+    {ids: ['krone_gross', 'monokel', 'umhang', 'galaxie', 'funkeln']
+           .filter(id => MASCOT.has(zierratDatei(id))), farbe: 'galaxie'});
   kasten.querySelector('#aboKauf').addEventListener('click', async ()=>{
     if(aboLaeuft || !gewaehlt) return;         // Sperre gegen Doppeltipp
     aboLaeuft = true;
