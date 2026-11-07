@@ -20,7 +20,7 @@
 
 **An offline app for learning Bosnian, and the open Bosnian course behind it.**
 166 levels from the first *Merhaba* to an employment contract, about 2,900 words
-and phrases and about 1,500 example sentences with Bosnian audio, 16 grammar
+and phrases and about 1,500 example sentences with Bosnian audio, 26 grammar
 lessons, 12 graded reading stories, an interface in eight languages. Progress
 lives on the phone; since v109 the Android app has an
 account (Google or email, after the first lesson) that backs it up. All of the
@@ -76,7 +76,7 @@ Everything the app teaches is exported to [`data/`](data/) under
 | Cloze sentences with full sentence | 300 | JSON, CSV |
 | Graded stories with glossary and questions | 12 | JSON |
 | Reading glossary | 406 | JSON |
-| Grammar lessons with exercises | 16 | JSON |
+| Grammar lessons with exercises | 26 | JSON |
 | Synthetic Bosnian audio (MP3) | 2,411 | `web/audio/` |
 | Parallel corpus for machine translation | 4,733 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
 
@@ -108,7 +108,7 @@ Sprachsynthese zu trainieren. Mehr in data/DATASHEET.md. -->
   gap, listen, speak (with the device's speech recognition).
 - **A level test** after each level, with review questions from the levels it
   builds on, and a **review pot** for what you got wrong.
-- **Grammar**: cases, verb endings, tenses, word order: 16 lessons, 104 exercises.
+- **Grammar**: cases, verb endings, tenses, word order: 26 lessons, 175 exercises.
 - **Reading**: 12 stories, every word tappable, read aloud from start to end.
 - **Audio for everything**, shipped with the app, so it works on devices with
   no Bosnian voice and without internet.
@@ -131,7 +131,7 @@ output needs, so the app, the dataset and the demo can never disagree:
 flowchart LR
   subgraph src["Content (edited by hand)"]
     V["vokabeln.py<br/>166 levels · 4,421 entries · 300 cloze sentences"]
-    G["grammatik.py<br/>16 lessons"]
+    G["grammatik.py<br/>26 lessons"]
     S["geschichten.py<br/>12 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]
   end
@@ -240,7 +240,7 @@ Please cite as described in [CITATION.cff](CITATION.cff), DOI
 
 **Zmaj** ist eine Offline-App zum Bosnischlernen: 166 Level, rund 2.900 Wörter
 und Wendungen und rund 1.500 Beispielsätze mit bosnischer Tonspur,
-16 Grammatikeinheiten, 12 Lesegeschichten, Oberfläche in
+26 Grammatikeinheiten, 12 Lesegeschichten, Oberfläche in
 acht Sprachen. Der Lernstand liegt auf dem Gerät; die Android-App sichert ihn
 seit v109 in einem Konto, die Browser-Demo hat keins.
 Der gesamte Lerninhalt steht unter CC BY-SA 4.0 als Datensatz in

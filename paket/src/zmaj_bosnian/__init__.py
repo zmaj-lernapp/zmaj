@@ -52,7 +52,7 @@ def glossary():
 
 
 def grammar(language="en"):
-    """The 16 grammar lessons as shown in the given interface language."""
+    """The 26 grammar lessons as shown in the given interface language."""
     return _lade("grammar")["lessons"][language]
 
 

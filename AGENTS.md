@@ -15,7 +15,7 @@ separate, private repository; nothing here needs Android tooling.
 |---|---|---|
 | `vokabeln.py` | 17 sections, 166 levels, 4,421 entries (about 2,900 words and phrases, about 1,500 example sentences), 300 cloze sentences | yes |
 | `zahnarzt.py` | hidden dental section (7 levels, 111 entries, unlocked with a code word); counted nowhere and not in `data/` | yes |
-| `grammatik.py` | 16 grammar lessons with exercises | yes |
+| `grammatik.py` | 26 grammar lessons with exercises | yes |
 | `geschichten.py` | 12 reading stories and their glossary | yes |
 | `uebersetzungen.py` | translations of all content into en, tr, sv, nl, nb, da, fr | yes |
 | `sprachen.py` | interface texts in 8 languages, legal texts | yes |

@@ -35,7 +35,7 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     assert woerter == 4421
     assert len(grunddaten["saetze"]) == 300
     assert len(grunddaten["geschichten"]) == 12
-    assert len(grunddaten["grammatik"]) == 16
+    assert len(grunddaten["grammatik"]) == 26
 
 
 def test_woerter_und_saetze_getrennt_wie_in_readme_und_store(grunddaten, wurzel):
