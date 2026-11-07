@@ -12,7 +12,8 @@ are in the Play Store listing. Format:
   and times, ne-/ni- words and collective numbers, the conditional, possessive
   adjectives, the future II, relative clauses and the order of the small words.
   26 lessons and 175 exercises in total. Their answers and Bosnian table cells
-  are in `GLEICH`; the translations into the seven other languages follow.
+  are in `GLEICH`. All 255 new texts are translated into en, tr, sv, nl, nb,
+  da and fr (not by native speakers).
   In the past tense lesson "to a man" moved into the brackets of „Šta si ___?“,
   so its solution line no longer shows a stray quotation mark.
 - Hidden section "At the dentist" (`zahnarzt.py`, 7 levels, 111 entries, reviewed by a
