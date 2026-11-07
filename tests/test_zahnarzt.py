@@ -5,8 +5,9 @@ Eine Zahnaerztin will mit Patienten reden koennen, die nur Bosnisch
 sprechen. Bosnisch und Deutsch stehen genau so in Release\\Wortschatz\\paket_zahnarzt.json,
 von Ajdin am 06.11.2026 durchgesehen. Hier steht, was beim Einbau festgelegt wurde:
 
-- 56 von 64 Eintraegen, je Wort und Satz (111 Eintraege, "Ja sam stomatologinja ..." ist
-  nur einer). Die 8 anderen warten auf Emir (v111_wartet_auf_emir.md);
+- 64 Eintraege, je Wort und Satz (127 Eintraege, "Ja sam stomatologinja ..." ist
+  nur einer). 8 davon warteten auf Emir (v111_wartet_auf_emir.md) und stehen seit dem
+  07.11.2026 an ihrer Stelle; ihr Ton kommt im eigenen Schritt (tests/offen_p1020.json);
 - aus Sicht der Aerztin, Vi, Vas und Vam gross;
 - er zaehlt nirgends mit: nicht in KATEGORIEN, nicht im Datensatz;
 - die Kennung ist ZA_VORN + bs, ohne Doppelpunkt, siehe zahnarzt.py;
@@ -20,6 +21,8 @@ import re
 
 import pytest
 
+import offen_p1020
+
 ERSTE, LETZTE = 5206, 5316
 SPRACHEN = ("en", "tr", "sv", "nl", "nb", "da", "fr")
 
@@ -27,29 +30,34 @@ SPRACHEN = ("en", "tr", "sv", "nl", "nb", "da", "fr")
 # freigegeben hat. Aendert sich hier etwas, beginnt das Wort von vorn.
 WOERTER = {
     "za|zaehne": ["zubar / stomatolog", "vilica", "živac", "kutnjak", "sjekutić", "očnjak", "umnjak",
-                  "mliječni zub", "korijen zuba"],
+                  "mliječni zub", "korijen zuba", "zubno meso"],
     "za|befund": ["karijes", "rupa u zubu", "plomba", "privremena plomba", "zubni most", "zubna proteza",
                   "zubni implantat", "vađenje zuba"],
     "za|behandlung": ["zubni kamenac", "upala desni", "anestezija", "rendgenski snimak", "otisak zuba",
-                      "izbjeljivanje zuba", "zubni konac"],
+                      "izbjeljivanje zuba", "zubni konac", "navlaka", "liječenje kanala", "aparat za zube", "otok"],
     "za|anweisungen": ["Otvorite usta.", "Zatvorite usta.", "Zagrizite.", "Isperite usta.", "Naslonite glavu.",
-                       "Dišite kroz nos.", "Opustite se.", "Ne bojte se.", "Podignite ruku ako Vas zaboli."],
+                       "Dišite kroz nos.", "Opustite se.", "Ne bojte se.", "Podignite ruku ako Vas zaboli.",
+                       "Otvorite usta malo šire.", "Neće boliti."],
     "za|fragen": ["Da li Vas boli ovdje?", "Koji zub Vas boli?", "Od kada Vas boli?", "Da li Vas boli kad zagrizete?",
                   "Da li je osjetljiv na hladno?", "Da li ste alergični na neki lijek?", "Da li ste trudni?",
                   "Kada ste zadnji put bili kod zubara?"],
     "za|erklaeren": ["Imate karijes.", "Treba Vam plomba.", "Moramo napraviti snimak.", "Dat ću Vam injekciju.",
                      "Dva sata nemojte jesti.", "Dođite na kontrolu za sedmicu dana.",
-                     "Ja sam stomatologinja, kako Vam mogu pomoći?"],
+                     "Zub se mora vaditi.", "Ja sam stomatologinja, kako Vam mogu pomoći?"],
     "za|patienten": ["Boli me zub.", "Boli me kad jedem.", "Ispala mi je plomba.", "Slomio mi se zub.",
                      "Krvare mi desni.", "Otekao mi je obraz.", "Noću ne mogu spavati od bolova.", "Bojim se zubara."],
 }
-# Warten auf Emir, Wort und Satz (Release\\Wortschatz\\v111_wartet_auf_emir.md).
-WARTET = ["zubno meso", "Zubno meso Vam je malo upaljeno.", "navlaka", "Na ovaj zub ide navlaka.",
+# Warteten auf Emir, Wort und Satz (Release\\Wortschatz\\v111_wartet_auf_emir.md), seit dem
+# 07.11.2026 an ihrer Stelle. Ihr Ton fehlt bis zum Ton-Schritt (tests/offen_p1020.json).
+WARTET = []
+NACHGEKOMMEN = ["zubno meso", "Zubno meso Vam je malo upaljeno.", "navlaka", "Na ovaj zub ide navlaka.",
           "liječenje kanala", "Ovom zubu treba liječenje kanala.", "aparat za zube",
           "Moja kćerka nosi aparat za zube.", "otok", "Otok će proći za nekoliko dana.",
           "Otvorite usta malo šire.", "Otvorite usta malo šire, ne vidim dobro.", "Neće boliti.",
           "Neće boliti, dobit ćete injekciju.", "Zub se mora vaditi.", "Žao mi je, zub se mora vaditi."]
-AUCH = {"zubar / stomatolog": ["stomatologinja", "zubarka"], "plomba": ["ispun"]}
+AUCH = {"zubar / stomatolog": ["stomatologinja", "zubarka"], "plomba": ["ispun"],
+        "zubno meso": ["desni"], "navlaka": ["krunica", "zubna krunica"],
+        "liječenje kanala": ["liječenje korijenskih kanala"], "otok": ["oteklina"], "Neće boliti.": ["Neće boljeti."]}
 NUR_EIN_EINTRAG = "Ja sam stomatologinja, kako Vam mogu pomoći?"
 
 
@@ -70,10 +78,11 @@ def test_level_und_woerter_genau_wie_freigegeben(teil):
         # Jedes Wort direkt vor seinem Beispielsatz, deshalb jedes zweite.
         assert woerter[::2] == WOERTER[k["id"]], k["id"]
         assert k["sektion"] == teil.SEKTION["id"] and k["reihenfolge"] is True, k["id"]
-        assert 2 <= len(k["words"]) <= 20, (k["id"], len(k["words"]))
+        # Mit den Nachzueglern vom 07.11.2026 an ihrer Stelle haben zwei Level 22 Eintraege
+        assert 2 <= len(k["words"]) <= 22, (k["id"], len(k["words"]))
     erklaeren = [w["bs"] for k in teil.KATEGORIEN if k["id"] == "za|erklaeren" for w in k["words"]]
     assert erklaeren[-1] == NUR_EIN_EINTRAG and erklaeren.count(NUR_EIN_EINTRAG) == 1
-    assert len(_alle(teil)) == 111
+    assert len(_alle(teil)) == 127
 
 
 def test_was_auf_emir_wartet_steht_nicht_drin(teil):
@@ -100,8 +109,8 @@ def test_auch_nur_wie_freigegeben(teil):
 
 
 def test_fuer_die_app_eigenes_feld_und_keine_zaehlung(grunddaten):
-    assert len(grunddaten["sektionen"]) == 17
-    assert len(grunddaten["kategorien"]) == 166
+    assert len(grunddaten["sektionen"]) == 31
+    assert len(grunddaten["kategorien"]) == 295
     z = grunddaten["zahnarzt"]
     assert z["sektion"]["id"] == "zahnarzt" and len(z["kategorien"]) == 7
     assert all(k["id"].startswith("za|") for k in z["kategorien"])
@@ -142,10 +151,16 @@ def test_ton_lueckenlos_in_der_reihenfolge_der_datei(teil):
     emir = ton_bauen.nur_emir()
     neu = sorted((e["datei"], k, e["text"]) for k, e in emir.items() if ERSTE <= int(e["datei"][1:5]) <= LETZTE)
     assert [n[0] for n in neu] == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
-    assert [n[2] for n in neu] == [w["bs"] for w in _alle(teil)]
+    nach = set(NACHGEKOMMEN)
+    assert [n[2] for n in neu] == [w["bs"] for w in _alle(teil) if w["bs"] not in nach]
     for _, k, text in neu:
         assert k == (ton_bauen.schluessel_alle(text) if " / " in text else ton_bauen.schluessel(text))
-    assert max(int(e["datei"][1:5]) for e in emir.values()) == LETZTE
+    # Dahinter seit dem 07.11.2026 die Pakete 10 bis 20 und die Nachzuegler; was davon noch
+    # keinen Ton hat, steht in tests/offen_p1020.json
+    for w in _alle(teil):
+        if w["bs"] in nach:
+            k = ton_bauen.schluessel(w["bs"])
+            assert k in offen_p1020.TON or int(emir[k]["datei"][1:5]) > LETZTE, w["bs"]
     # zubar / stomatolog: dazu die erste Form aus der App, sie hat ihre eigene Aufnahme
     posten = {p["key"] for p in ton_bauen.sammle()}
     assert "zubar / stomatolog" in posten and "zubar" in posten

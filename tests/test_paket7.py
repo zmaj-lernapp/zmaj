@@ -16,6 +16,8 @@ import re
 
 import pytest
 
+import offen_p1020
+
 LEVEL = ["sagen_betonen", "mitteilen_bitten", "fuehren_bringen", "heben_ziehen", "schaffen_erreichen",
          "starten_planen", "veraendern_herstellen", "ermoeglichen_entdecken", "entscheiden_annehmen", "aufhoeren_vermeiden"]
 ERSTE_NUMMER, LETZTE_NUMMER = 3724, 5205      # Pakete 5 bis 9 zusammen, tests/test_paket59_ton.py
@@ -36,7 +38,7 @@ WOERTER = {
                         "preuzimati"],
     "heben_ziehen": ["vući", "povući", "povlačiti", "podići / podignuti", "podizati", "spustiti", "spuštati",
                      "gurnuti", "gurati", "dodati", "dodavati", "izbaciti", "izbacivati", "izvaditi", "vaditi",
-                     "oduzeti", "oduzimati", "pružiti", "pružati"],
+                     "oduzeti", "oduzimati", "pružiti", "pružati", "dići", "dizati"],
     "schaffen_erreichen": ["činiti", "učiniti", "stvoriti", "stvarati", "postići", "postizati", "ostvariti",
                            "ostvarivati", "izvršiti", "vršiti", "obaviti", "obavljati"],
     "starten_planen": ["pokrenuti", "pokretati", "započeti", "započinjati", "postaviti", "postavljati",
@@ -115,8 +117,12 @@ PARTNER = {
     "dokazivati": "dokazati",
 }
 
-# Warten auf Emir (Release\\Wortschatz\\v111_wartet_auf_emir.md), noch nicht in der App
-WARTET = ["dići", "dizati"]
+# Wartete auf Emir (Release\\Wortschatz\\v111_wartet_auf_emir.md), seit dem 07.11.2026 an
+# seiner Stelle in WOERTER; der Ton kommt im eigenen Schritt (tests/offen_p1020.json).
+WARTET = []
+NACHGEKOMMEN = ["dići", "dizati"]
+# Seit dem 07.11.2026: dići und dizati sind ein Paar, tvrditi hat sein Gegenstueck ustvrditi (Paket 19)
+SEIT_P1020 = {"dići": "dizati", "dizati": "dići", "tvrditi": "ustvrditi"}
 
 
 def _level(daten):
@@ -141,7 +147,9 @@ def _paare(k):
 def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
     for k in _level(grunddaten):
         assert k["reihenfolge"] is True, k["id"]
-        assert 16 <= len(k["words"]) <= 40, k["id"]
+        # heben_ziehen hat seit dem 07.11.2026 mit dići und dizati 42 Eintraege (Warteliste,
+        # an ihrer Stelle wie im Paket)
+        assert 16 <= len(k["words"]) <= (42 if k["id"] == "heben_ziehen" else 40), k["id"]
         assert [w["bs"] for w, _ in _paare(k)] == WOERTER[k["id"]], k["id"]
         for wort, satz in _paare(k):
             assert re.search(r"[.!?]$", satz["bs"]) and re.search(r"[.!?]$", satz["de"]), satz
@@ -197,6 +205,8 @@ def test_gleiche_bedeutung_im_neuen_teil_nur_bei_paaren(alle_daten):
                 continue
             if set(liste) == {"Upomoć!", "pomoć"}:
                 continue     # „Hilfe!“ im Notfall und „Hilfe“ (Paket 5): Ajdins Bedeutungen
+            if set(liste) == {"izvršiti", "vršiti", "izvršavati"}:
+                continue     # seit Paket 19 (07.11.2026): izvršiti hat zwei Partner, vršiti und izvršavati
             assert len(liste) == 2 and frozenset(liste) in paare, (code, bedeutung, liste)
 
 
@@ -263,6 +273,8 @@ def test_jedes_wort_und_jeder_satz_hat_emirs_ton(grunddaten, wurzel):
                 assert os.path.isfile(pfad) and os.path.getsize(pfad) >= ton_pruefen.MINDEST, (w["id"], e)
             if k in emir:
                 assert not os.path.exists(os.path.join(wurzel, "web", "audio", e["datei"])), e
+    # Seit dem 07.11.2026: was von der Warteliste kam, hat Emirs Ton erst nach dem Ton-Schritt
+    ohne = [o for o in ohne if o[1] not in offen_p1020.TON]
     assert not ohne, ohne[:20]
 
 
@@ -271,7 +283,7 @@ def test_partner_an_beiden_woertern(grunddaten):
     povući, povući aber auf povlačiti (zwei Partner, die App liest in beide Richtungen)."""
     neu = {w["bs"]: w for w in _neu(grunddaten)}
     alle = {w["bs"]: w for w in _alle(grunddaten)}
-    assert {b: w["partner"] for b, w in neu.items() if w.get("partner")} == PARTNER
+    assert {b: w["partner"] for b, w in neu.items() if w.get("partner")} == dict(PARTNER, **SEIT_P1020)
     for wort, gegen in PARTNER.items():
         if wort == "vući":
             assert alle["povući"]["partner"] == "povlačiti"

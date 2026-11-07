@@ -401,9 +401,9 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: 17 Sektionen, 166 Levels
+## Der Lernpfad: 31 Sektionen, 295 Levels
 
-Der Lernpfad zeigt siebzehn Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
+Der Lernpfad zeigt einunddreißig Sektionen mit ihren Levels, ähnlich wie bei Duolingo.
 Ein Level antippen öffnet die Übungen. Bestandene Levels und Sektionen bleiben
 offen und können jederzeit wieder gespielt werden.
 
@@ -495,7 +495,89 @@ Information, Gruppe, Netz und Gebäude. Siebte Farbe.
 Sauber, warm, gefährlich, Hier und dort, Wann und wie oft, Wie sehr, Wie man es
 meint, Sätze verbinden, Noch mehr Präpositionen, Fürwörter. Achte Farbe.
 
-Auch in den Sektionen 12 bis 17 steht jedes Wort direkt vor seinem
+Ab Sektion 18 kommt Stufe B2 aus dem Ausbauplan, in eigenen Sektionen hinter
+B1, damit nichts davon in die ersten Sektionen rutscht (Wortschatz-Pakete 10
+bis 20, von Ajdin am 07.11.2026 durchgesehen). Die Farben gehen reihum weiter.
+
+**Sektion 18 · Denken und Meinen** (12 Levels, seit 07.11.2026,
+Wortschatz-Paket 10): Grundlage und Rahmen, Arten und Einzelheiten, Forschen
+und verstehen, Überlegen und einschätzen, Vorhersehen und erkennen, Meinung und
+Kritik, Sagen und hervorheben, Daher, damit und bevor, Einerseits und
+andererseits, Trotz und dank, Vor allem und angeblich, Wie man etwas beurteilt.
+Neunte Farbe.
+
+**Sektion 19 · Menschen und Beziehungen** (10 Levels, seit 07.11.2026,
+Wortschatz-Paket 11): Erziehung und Aufwachsen, Familie und Generationen, Liebe
+und Ehe, Streit und Versöhnung, Reue und Enttäuschung, Gefühle genauer,
+Charakter, Trauer und Beileid, Begegnen und versammeln, Nachbarn und
+Miteinander. Erste Farbe.
+
+**Sektion 20 · Arbeit und Wirtschaft** (12 Levels, seit 07.11.2026,
+Wortschatz-Paket 12): Firma und Leitung, Abteilung und Mitarbeiter, Produktion
+und Handel, Liefern und beschaffen, Geld und Preise, Wachstum und Rückgang,
+Schulden und Verluste, Anlegen und Vermögen, Investieren und beitragen, Beruf
+und Karriere, Aufstieg und Weiterbildung, Rechte bei der Arbeit. Zweite Farbe.
+
+**Sektion 21 · Medien und Kultur** (8 Levels, seit 07.11.2026, Wortschatz-Paket
+13): Zeitung und Fernsehen, Berichten und verbreiten, Werbung, Theater und
+Musik, Regie und Premiere, Bücher und Kunst, Literatur und Malerei, Geschichte.
+Dritte Farbe.
+
+**Sektion 22 · Umwelt und Technik** (3 Levels, seit 07.11.2026,
+Wortschatz-Paket 13): Klima und Energie, Naturkatastrophen, Computer und
+Dateien. Vierte Farbe.
+
+**Sektion 23 · Gesellschaft und Politik** (5 Levels, seit 07.11.2026,
+Wortschatz-Paket 14): Staat und Institutionen, Wahlen und Parlament, Krieg und
+Frieden, Bürger und Rechte, Religion und Gemeinschaft. Fünfte Farbe.
+
+**Sektion 24 · Recht und Behörden** (9 Levels, seit 07.11.2026,
+Wortschatz-Pakete 14 und 15): Gericht, Polizei und Anzeige, Ämter und
+Zuständigkeit, Bescheid und Einspruch, Verträge, Auf dem Amt, Post und
+Abmeldung, Bank und Darlehen, Versicherung und Zinsen. Sechste Farbe.
+
+**Sektion 25 · Haus und Wohnung** (8 Levels, seit 07.11.2026, Wortschatz-Paket
+15): Dinge im Haushalt, Bürste und Kamm, Räume und Möbel, Sauber und kaputt,
+Rohre, Strom und Schäden, Bauen und einbauen, Färben, kleben, nähen, Wohnen und
+Miete. Siebte Farbe.
+
+**Sektion 26 · Gesundheit und Sport** (14 Levels, seit 07.11.2026,
+Wortschatz-Paket 16): Der Körper genauer, Von der Augenbraue bis zum Knöchel,
+Krankheiten, Asthma, Migräne, Bruch, Ärzte und Krankenhaus, Chirurgie und
+Pflege, Leiden und lindern, Geburt und Behandlung, Psyche und Wohlbefinden,
+Stress und Erschöpfung, Sport und Wettkampf, Trainieren und siegen, Ernährung,
+Kalorien und Gewürze. Achte Farbe.
+
+**Sektion 27 · Schule und Wissen** (12 Levels, seit 07.11.2026,
+Wortschatz-Paket 17): Schule und Klasse, Abitur und Klassenfahrt, An der
+Universität, Abschluss und Titel, Fächer und Wissensgebiete, Forschen und
+messen, Entdecken und erfinden, Lesen und aussprechen, Sprache und Grammatik,
+Reden und sich verständigen, Beschreiben und erklären, Begründen und
+zusammenfassen. Neunte Farbe.
+
+**Sektion 28 · Stadt, Verkehr und Reisen** (7 Levels, seit 07.11.2026,
+Wortschatz-Paket 18): In der Stadt, Straßen und Bahn, Kreisverkehr und Fähre,
+Autofahren, Unfälle und Pannen, Reisen und Unterkunft, Ankommen und ansehen.
+Erste Farbe.
+
+**Sektion 29 · Land, Tiere und Pflanzen** (6 Levels, seit 07.11.2026,
+Wortschatz-Paket 18): Landschaft und Boden, Ozean und Schlucht, Jagen und
+fischen, Tiere genauer, Pflanzen und Anbau, Ernten und pflanzen. Zweite Farbe.
+
+**Sektion 30 · Handeln und verändern** (11 Levels, seit 07.11.2026,
+Wortschatz-Paket 19): Bewegen und verschieben, Folgen und bewältigen,
+Durchführen und schaffen, Anpassen und verstärken, Stärken und verbessern,
+Verbinden und trennen, Bestimmen und hindern, Mit Menschen umgehen, Erkennen
+und ausdrücken, Paare: zu bekannten Verben, Entwicklung und Vergleich. Dritte
+Farbe.
+
+**Sektion 31 · Genauer sagen** (12 Levels, seit 07.11.2026, Wortschatz-Paket
+20): Wie sicher, Ganz oder teilweise, Wie man etwas tut, Wann und wie lange,
+Schon immer und in Zukunft, Wo und wohin, Gut oder schlecht, Fest und sichtbar,
+Streng und zuverlässig, Feste Wendungen, Keine Ahnung und alle Achtung, Mengen
+und Maße. Vierte Farbe.
+
+Auch in den Sektionen 12 bis 31 steht jedes Wort direkt vor seinem
 Beispielsatz. Was Ajdin als zweite Form freigegeben hat (*nogomet* bei
 *fudbal*, *naočare* bei *naočale*), zählt beim Tippen; was er ausgeschlossen
 hat (*ranac*, *grudi*, *rentgen*, *prepisati*), zählt nicht.
@@ -619,8 +701,8 @@ Stufe mit festem Abstand bis zum nächsten Termin:
   bekommen Stufe 3 und einen Termin ab morgen, verteilt auf etwa vier
   Wochen mit 3 bis 10 Wörtern je Tag, die ältesten Level zuerst. Bei mehr
   als 280 gewussten Wörtern dauert das entsprechend länger, bei allen
-  4.421 knapp sechs Monate. Ab 1.800 Wörtern sind es mehr als 10 je Tag
-  (bei allen 25), damit der Umzug nie länger als 180 Tage dauert. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
+  7.998 knapp sechs Monate. Ab 1.800 Wörtern sind es mehr als 10 je Tag
+  (bei allen 45), damit der Umzug nie länger als 180 Tage dauert. Zuerst waren es Stufe 2 und bis zu 15 je Tag –
   dann brauchte der Umzug mit seinen Rückkehrern allein bald mehr als 30
   Plätze am Tag (Prüfung vom 29.10.2026).
 - Höchstens 30 fällige Wörter am Tag (`KARTEI_TAG_MAX`). Der Rest bleibt
@@ -1155,7 +1237,7 @@ Muttersprachler gesucht (Issues mit dem Label `translation`).
 Zwei Dinge werden bei jeder Änderung automatisch geprüft und waren zuletzt
 sauber:
 
-- Jedes der 4421 Wörter hat eine eigene Fortschritts-Kennung.
+- Jedes der 7998 Wörter hat eine eigene Fortschritts-Kennung.
 - In keiner Sprache hat ein Level zwei Wörter mit derselben Bedeutung, außer
   den Aspektpaaren (*ostati* / *ostajati*), die mit Absicht gleich heißen.
   Keine Übungsfrage hat zwei gleiche Antwortmöglichkeiten.
@@ -1177,7 +1259,7 @@ Der Grund: dasselbe bosnische Wort kann zwei Bedeutungen haben. `sto` ist die
 Zahl hundert und der Tisch, `oko` das Auge und „um herum“. Vorher merkte sich
 die App nur `sto` – wer die Zahl konnte, bei dem galt auch das Möbelstück als
 gelernt, und Level 9 startete bei 4 % statt bei 0 %. Dasselbe galt für `malo`,
-`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 166 Levels bei
+`oko`, `prije`, `more` und `Htio bih`. Jetzt startet jedes der 295 Levels bei
 0 %, und man sieht in einer Sicherung auf einen Blick, welche Bedeutung
 gemeint ist.
 

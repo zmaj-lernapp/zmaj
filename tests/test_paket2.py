@@ -133,7 +133,7 @@ def _alle(daten):
 
 def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten):
     sektion = grunddaten["sektionen"][10]
-    assert len(grunddaten["sektionen"]) == 17       # seit 06.11.2026 (Pakete 5, 6 und 9)
+    assert len(grunddaten["sektionen"]) == 31       # seit 07.11.2026 (Pakete 10 bis 20)
     assert sektion["id"] == "wieetwasist"
     assert sektion["label"] == "Sektion 11 · Wie etwas ist"
     ids = [k["id"] for k in grunddaten["kategorien"]]
@@ -250,8 +250,10 @@ def test_partner_in_beide_richtungen(grunddaten):
             assert bs.count(w["partner"]) == 1, (w["bs"], w["partner"])
             for x in (w["bs"], w["partner"]):
                 zaehler.setdefault(x, set()).add(frozenset((w["bs"], w["partner"])))
-    # Ausnahme seit Paket 7: povući hat zwei Gegenstuecke (povlačiti, vući)
+    # Ausnahme seit Paket 7: povući hat zwei Gegenstuecke (povlačiti, vući), seit
+    # Paket 19 auch izvršiti (vršiti, izvršavati)
     assert len(zaehler.pop("povući")) == 2
+    assert len(zaehler.pop("izvršiti")) == 2
     assert max(len(v) for v in zaehler.values()) == 1
 
 
