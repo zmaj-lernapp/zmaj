@@ -14,7 +14,8 @@ podići / podignuti und zapravo / ustvari sind aus fertigen Einzelaufnahmen
 zusammengesetzt (keine neue Aufnahme); šutjeti / šutiti und vrlo / veoma hat Emir
 mit beiden Formen gesprochen.
 
-Was auf Emir wartet (Release\\Wortschatz\\v111_wartet_auf_emir.md), hat noch keine Nummer.
+Was auf Emir wartete (Release\\Wortschatz\\v111_wartet_auf_emir.md), hat seit dem
+07.11.2026 eine Nummer ab w5317 (tests/test_paket1020_ton.py).
 """
 ERSTE, LETZTE = 3724, 5205
 ZURUECKGEZOGEN = {4114, 4115, 4690, 4691}
@@ -39,8 +40,10 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     emir = ton_bauen.nur_emir()
     neu = _im_bereich(emir)
     assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1) if n not in ZURUECKGEZOGEN]
-    # Dahinter steht nur noch der Teil Beim Zahnarzt (w5206 bis w5316, tests/test_zahnarzt.py).
-    assert max(_nummer(e["datei"]) for e in emir.values()) == 5316
+    # Dahinter stehen der Teil Beim Zahnarzt (w5206 bis w5316, tests/test_zahnarzt.py) und
+    # seit dem 07.11.2026 die Pakete 10 bis 20 mit der Warteliste (w5317 bis w8952,
+    # tests/test_paket1020_ton.py).
+    assert max(_nummer(e["datei"]) for e in emir.values()) == 8952
     reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values())]
     assert [neu[d] for d in sorted(neu)] == reihe
 
@@ -63,11 +66,18 @@ def test_erste_form_behaelt_ihre_aufnahme():
     assert _nummer(emir["dozvoljavati"]["datei"]) < ERSTE
 
 
-def test_was_wartet_hat_keine_nummer():
+def test_was_wartete_hat_jetzt_eine_nummer_hinter_dem_zahnarzt():
+    """Seit dem 07.11.2026 hat Emir gesprochen, was wartete (Ton-Schritt der Pakete 10
+    bis 20). Nur der Satz zu smijeh fehlt noch, tests/offen_p1020.json."""
+    import offen_p1020
     import ton_bauen
     emir = ton_bauen.nur_emir()
     for k in WARTET:
-        assert k not in emir, k
+        if k in offen_p1020.TON:
+            assert k not in emir, k
+        else:
+            assert _nummer(emir[k]["datei"]) >= 5317, (k, emir[k])
+    assert offen_p1020.TON == {"smijeh je najbolji lijek."}
 
 
 def test_keine_emir_datei_im_oeffentlichen_ordner(wurzel):

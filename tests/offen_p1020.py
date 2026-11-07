@@ -10,6 +10,10 @@ erst, wenn der Ton-Schritt die Dateien in die Huelle kopiert hat.
 Bis dahin lassen die Ton-Tests genau die Schluessel aus offen_p1020.json durch und
 nichts sonst. tests/test_offen_p1020.py meldet jeden Schluessel, der inzwischen Ton
 hat: dann hier streichen. Ist die Liste leer, koennen beide Dateien weg.
+
+Der Ton-Schritt kam am 07.11.2026 (tests/test_paket1020_ton.py). Offen ist nur noch
+der Satz zu smijeh: Seine alte Aufnahme w4691 ist aufbewahrt, aber nicht angehoert,
+deshalb bleibt w5331 frei.
 """
 import io
 import json

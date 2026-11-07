@@ -680,6 +680,23 @@ Beim Einbau festgelegt:
 
 **Ton.** Die Nummern w5317–w8952 sind vergeben, in der Reihenfolge der App
 (`Release\Wortschatz\_uebersetzung_p10_20\nummern.json`, mit der Herkunft jeder
-Datei unter `Stimme_Emir_neu`). In `ton_nur_emir.json` und in der Hülle stehen sie
-erst nach dem Ton-Schritt. w5317 ist *produžni kabel* und ersetzt w2278. Für den
-Satz von *smijeh* ist die alte Aufnahme w4691 aufbewahrt: vor der Übernahme anhören.
+Datei unter `Stimme_Emir_neu`). Emir hat am 07.11.2026 gesprochen (ElevenLabs,
+`Stimme_Emir_neu\monat_vorbereitung`); 3.635 Aufnahmen stehen in `ton_nur_emir.json`
+und in der Hülle (`audio_emir/`, Zweig `sammeln-v111`). Übernommen wurde nur, was
+eindeutig passt: gesprochener Text gleich dem Bosnischen, ohne Unterschied bei
+Satzzeichen; wo Ajdin nach der Probe gewählt hat (*smijeh*, *plakati*, *gušiti se*,
+*ivica* und drei Sätze), seine Fassung A, sonst die beste gemessene. *rub*, *rat*, *mrtav*,
+*naime* und *poput* kommen aus der Aufnahme vom 05.11.2026, *naime / jer* und
+*poput / kao* sind aus fertigen Einzelaufnahmen zusammengesetzt. w5317 ist
+*produžni kabel* und ersetzt w2278. Frei bleibt w5331, der Satz von *smijeh*: Die
+alte Aufnahme w4691 ist aufbewahrt, aber noch nicht angehört
+(`tests/offen_p1020.json`).
+
+**Übersetzungen.** Die 3.672 neuen Texte stehen in allen sieben Sprachen
+(`uebersetzungen.py`, Block „Wortschatz-Pakete 10 bis 20“). Über `woerter`:
+*namirnica* („Lebensmittel“ ist schon ein Level-Name), *množina* („Mehrzahl“ ist
+schon Grammatik-Überschrift; nicht en, sv) und auf Schwedisch *pitati* / *upitati*
+(fråga heißt auch „Frage“). Drei Bedeutungen fielen mit alten zusammen und heißen
+jetzt anders: sv „Jeden Monat schicke ich meinen Eltern eine Überweisung.“, nb
+„Vorfall“ (insident statt tilfelle, das ist *slučaj*), da „Ich kann mich nicht an
+seinen Namen erinnern.“ (komme i tanke om).
