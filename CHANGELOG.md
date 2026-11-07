@@ -7,6 +7,32 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Vocabulary packages 10 to 20, level B2 (reviewed by a native speaker on 7.11.2026):
+  1,774 words and 1,774 example sentences, each word right before its sentence
+  (3,547 new entries; *zaposlenik / uposlenik* was already there and only gets its
+  sentence). 14 new sections behind B1, each in the next colour: 18 · Thinking and
+  opinion, 19 · People and relationships, 20 · Work and economy, 21 · Media and
+  culture, 22 · Environment and technology, 23 · Society and politics, 24 · Law and
+  authorities, 25 · House and home, 26 · Health and sport, 27 · School and knowledge,
+  28 · Town, traffic and travel, 29 · Land, animals and plants, 30 · Acting and
+  changing, 31 · Saying it more precisely (129 levels; groups of more than 20 words
+  are split into two levels). 201 new pairs with `partner` on both words, also on
+  the older verb (*pitati* - *upitati*, *iznajmiti* - *iznajmljivati*); *izvršiti* has
+  two partners. Existing words change instead of getting a second entry, progress
+  moves along through `UMBENANNT`: *iznajmiti* now means "to let" (renting is the new
+  *unajmiti*), *produžni kabl* becomes *produžni kabel*, *zaposlenik* becomes
+  *zaposlenik / uposlenik*. 42 words show two forms (*prijevoz / prevoz*,
+  *gas / plin*, *dosad / dosada*); second forms count when typing exactly as the
+  native speaker decided, forms he ruled out do not (*kabl*, *kemija*, *znanstveni*,
+  *vaspitanje*, *ubijeđivati*). 80 more pairs that share part of a meaning never
+  appear in the same multiple choice (`NIE_NEBENEINANDER`).
+  The 15 entries that waited for a recording (*rub*, *ivica*, *poteškoća*, *smijeh*,
+  *rat*, *dova*, *mezarje*, *dići*, *dizati*, *plakati*, *mrtav*, *uopšte*,
+  *naime / jer*, *poput / kao*, *ukupno*) now stand in their levels, with their
+  sentences: 7,998 entries in total, 295 levels, 31 sections. "At the dentist" gets
+  its 8 waiting entries (127 entries). Recording numbers w5317–w8952 are
+  assigned; the recordings and the meanings in the seven other languages follow in
+  their own commits.
 - Hidden section "At the dentist" (`zahnarzt.py`, 7 levels, 111 entries, reviewed by a
   native speaker on 6.11.2026), written from the dentist's point of view: tap the
   version line in the settings seven times and enter the word `zahnarzt`. It unlocks

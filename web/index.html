@@ -9137,7 +9137,15 @@ const UMBENANNT = {
      kahva / kafa; die Suche unten faende das alte bosnische Wort nicht mehr. */
   'arzt:doktor': 'arzt:doktor / ljekar',
   'erlauben:dozvoliti': 'erlauben / zulassen:dozvoliti / dopustiti',
-  'erlauben:dozvoljavati': 'erlauben / zulassen:dozvoljavati / dopuštati'};
+  'erlauben:dozvoljavati': 'erlauben / zulassen:dozvoljavati / dopuštati',
+  /* Ajdin am 07.11.2026 (Wortschatz-Pakete 10 bis 20): iznajmiti heisst jetzt
+     "vermieten", mieten ist unajmiti (b2_2_entscheidungen.md, Paket 15 Nr. 113).
+     Aus produžni kabl wird produžni kabel ("kabel", Nachfrage 6 B), zaposlenik
+     bekommt die zweite Form uposlenik wie doktor / ljekar. Die Suche unten
+     faende das alte bosnische Wort bei den beiden letzten nicht mehr. */
+  'mieten:iznajmiti': 'vermieten:iznajmiti',
+  'verlängerungskabel:produžni kabl': 'verlängerungskabel:produžni kabel',
+  'arbeitnehmer:zaposlenik': 'arbeitnehmer:zaposlenik / uposlenik'};
 /* Dasselbe fuer Saetze (25.10.2026): Fehler-Topf und Sterne merken sich
    einen Satz als "s:<Level>|<Lueckentext>" bzw. "k:<Level>|<Satz>"
    (topfSchluessel). Aendert sich der bosnische Text, fuehrt der alte
@@ -11456,8 +11464,38 @@ function partnerAntworten(w){
    nach weiteren. */
 const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako'], ['vrlo / veoma', 'jako'],
   ['vući', 'povlačiti'], ['dakle', 'pa'], ['iz', 'od'], ['Hajde!', 'Hajmo!'], ['tražiti', 'zvati'],
-  ['dokument', 'potvrda'], ['Sve je dobro', 'Šta ima?'], ['bitan', 'važan'], ['nakon', 'po']];
-const nieNebeneinander = (a, b) => NIE_NEBENEINANDER.some(([x, y]) => (a === x && b === y) || (a === y && b === x));
+  ['dokument', 'potvrda'], ['Sve je dobro', 'Šta ima?'], ['bitan', 'važan'], ['nakon', 'po'],
+  /* Wortschatz-Pakete 10 bis 20 (07.11.2026): was die Paketdateien beim Einbau ausdruecklich
+     nicht zusammen in eine Auswahl stellen ("einbau_hinweis", b2_2_pruefung.md: gleiche
+     deutsche Teil-Bedeutung wie ein Wort der App, unuk / unuka sehen im Akkusativ gleich aus). */
+  ['unuk', 'unuka'], ['izbrisati', 'brisati'], ['izbrisati', 'obrisati'],
+  ['rješenje / upravni akt', 'rješenje'], ['začin', 'začini'], ['začiniti', 'začini'], ['tablica', 'natpis'],
+  ['tablica', 'tabla'], ['pronalazak', 'otkriće'], ['trg', 'mjesto'], ['objekat', 'zgrada'],
+  ['središte', 'centar'], ['prijevoz / prevoz', 'transport'], ['željeznička stanica', 'stanica'],
+  ['automobil', 'auto'], ['udes', 'nesreća'], ['sjena', 'hlad'], ['njiva', 'polje'], ['stablo', 'drvo'],
+  ['prijelaz / prelaz', 'raskrsnica'], ['većinom', 'uglavnom'], ['skroz', 'sasvim'],
+  ['približno', 'otprilike'], ['suviše', 'previše'], ['pravilno', 'tačan'], ['svakodnevno', 'dnevni'],
+  ['dosad / dosada', 'dosada'], ['iznenada', 'odjednom'], ['najzad', 'konačno'], ['zamalo', 'skoro'],
+  ['van', 'izvan'], ['van', 'vani'], ['jednak', 'isti'], ['kompletan', 'potpun'], ['ispravan', 'tačan'],
+  ['obojica', 'oba'], ['obojica', 'oboje'], ['manjak', 'nedostatak'], ['curiti', 'kapi'],
+  ['procuriti', 'kapi'], ['renovirati', 'obnoviti'], ['trpjeti', 'podnijeti'], ['pretrpjeti', 'podnijeti'],
+  ['pamćenje', 'memorija'], ['uznemiriti', 'smetati'], ['uznemiravati', 'smetati'], ['trenirati', 'vježbati'],
+  ['ispitivanje', 'istraživanje'], ['ispitivanje', 'pregled'], ['istraživati', 'pregledati'],
+  ['istražiti', 'pregledati'], ['ispitati', 'razmatrati'], ['ispitivati', 'razmatrati'],
+  ['proučiti', 'studirati'], ['proučavati', 'studirati'], ['debata', 'rasprava / diskusija'],
+  ['razjasniti', 'riješiti'], ['servis', 'radionica'], ['ravnica', 'nivo'], ['ribolov / pecanje', 'pecati'],
+  ['prebaciti', 'prenijeti'], ['prebacivati', 'prenijeti'], ['slijediti', 'pratiti'],
+  ['uslijediti', 'pratiti'], ['izraditi', 'kreirati'], ['izrađivati', 'kreirati'], ['okončati', 'završiti'],
+  ['urediti', 'uspostaviti'], ['urediti', 'složiti'], ['uređivati', 'uspostaviti'], ['uređivati', 'složiti'],
+  ['unaprijediti', 'poboljšati'], ['unapređivati', 'poboljšati'], ['makar', 'bar'], ['nedovoljno', 'premalo'],
+  ['najprije', 'prvo'], ['omiljen', 'popularan'], ['miran', 'smiren'], ['mnoštvo', 'količina'],
+  /* Im Level trauer_beileid heisst patnja "Leid" und stradanje "Verunglücken / Leid": der
+     falsche Knopf waere in Wahrheit richtig (tests_e2e/test_antworten.py, V1). */
+  ['patnja', 'stradanje']];
+/* Seit den Paketen 10 bis 20 sind es gut 90 Paare, und distractors() fragt fuer jedes Wort
+   des Vorrats: als Menge nachschlagen statt die Liste jedes Mal abzulaufen (07.11.2026). */
+const _NIE = new Set(NIE_NEBENEINANDER.flatMap(([x, y]) => [x + '\u0000' + y, y + '\u0000' + x]));
+const nieNebeneinander = (a, b) => _NIE.has(a + '\u0000' + b);
 function geschwister(w){
   const b = _bedeutung(w.de);
   const meineAuch = new Set((w.auch || []).flatMap(_formen));

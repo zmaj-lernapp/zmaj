@@ -31,8 +31,8 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     """README und Store-Text nennen diese Zahlen. Ändern sie sich,
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
-    assert len(grunddaten["kategorien"]) == 166
-    assert woerter == 4421
+    assert len(grunddaten["kategorien"]) == 295       # seit 07.11.2026 (Pakete 10 bis 20)
+    assert woerter == 7998
     assert len(grunddaten["saetze"]) == 300
     assert len(grunddaten["geschichten"]) == 12
     assert len(grunddaten["grammatik"]) == 16
@@ -49,20 +49,21 @@ def test_woerter_und_saetze_getrennt_wie_in_readme_und_store(grunddaten, wurzel)
     eintraege = [w["bs"].strip() for k in grunddaten["kategorien"] for w in k["words"]]
     eng = sum(bool(ende.search(b)) for b in eintraege)
     breit = sum(bool(ende.search(b)) or len(b.split()) >= 4 for b in eintraege)
+    # Seit den Paketen 10 bis 20 (07.11.2026): rund 4.700 Woerter, rund 3.300 Saetze
     for saetze in (eng, breit):
-        assert abs(saetze - 1500) <= 100, saetze
-        assert abs(len(eintraege) - saetze - 2900) <= 100, saetze
+        assert abs(saetze - 3300) <= 100, saetze
+        assert abs(len(eintraege) - saetze - 4700) <= 100, saetze
 
     def flach(name):
         with open(os.path.join(wurzel, name), encoding="utf-8") as f:
             return " ".join(f.read().split())
     readme = flach("README.md")
-    assert "about 2,900 words and phrases and about 1,500 example sentences" in readme
-    assert "rund 2.900 Wörter und Wendungen und rund 1.500 Beispielsätze" in readme
-    assert "oko 2.900 riječi i izraza i oko 1.500 rečenica" in flach("README.bs.md")
+    assert "about 4,700 words and phrases and about 3,300 example sentences" in readme
+    assert "rund 4.700 Wörter und Wendungen und rund 3.300 Beispielsätze" in readme
+    assert "oko 4.700 riječi i izraza i oko 3.300 rečenica" in flach("README.bs.md")
     # Der Alt-Text des Kopfbilds beschreibt das Bild, und dort steht die Zahl noch.
     ohne_bild = re.sub(r'alt="[^"]*"', "", readme)
-    assert "4,421 words" not in ohne_bild and "4421 Vokabeln" not in ohne_bild
+    assert "7,998 words" not in ohne_bild and "7998 Vokabeln" not in ohne_bild
 
 
 def test_wort_kennungen_eindeutig_und_stabil(grunddaten):
