@@ -68667,7 +68667,7 @@
    <tuv xml:lang="sv"><seg>På söndag går jag och röstar.</seg></tuv>
    <tuv xml:lang="nl"><seg>Zondag ga ik stemmen.</seg></tuv>
    <tuv xml:lang="nb"><seg>På søndag går jeg og stemmer.</seg></tuv>
-   <tuv xml:lang="da"><seg>Søndag går jeg hen at stemme.</seg></tuv>
+   <tuv xml:lang="da"><seg>På søndag går jeg hen og stemmer.</seg></tuv>
    <tuv xml:lang="fr"><seg>Dimanche, je vais voter.</seg></tuv>
   </tu>
   <tu tuid="wähler:birač" segtype="phrase">
@@ -68691,7 +68691,7 @@
    <tuv xml:lang="sv"><seg>Många väljare gick inte och röstade.</seg></tuv>
    <tuv xml:lang="nl"><seg>Veel kiezers zijn niet gaan stemmen.</seg></tuv>
    <tuv xml:lang="nb"><seg>Mange velgere gikk ikke til valg.</seg></tuv>
-   <tuv xml:lang="da"><seg>Mange vælgere er ikke gået hen at stemme.</seg></tuv>
+   <tuv xml:lang="da"><seg>Mange vælgere gik ikke hen og stemte.</seg></tuv>
    <tuv xml:lang="fr"><seg>Beaucoup d'électeurs ne sont pas allés voter.</seg></tuv>
   </tu>
   <tu tuid="bilden (regierung, gruppe):formirati" segtype="phrase">
@@ -82762,9 +82762,9 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>množina</seg></tuv>
    <tuv xml:lang="de"><seg>Mehrzahl</seg></tuv>
-   <tuv xml:lang="en"><seg>Plural</seg></tuv>
+   <tuv xml:lang="en"><seg>plural</seg></tuv>
    <tuv xml:lang="tr"><seg>çoğul sayı</seg></tuv>
-   <tuv xml:lang="sv"><seg>Plural</seg></tuv>
+   <tuv xml:lang="sv"><seg>plural</seg></tuv>
    <tuv xml:lang="nl"><seg>meervoud</seg></tuv>
    <tuv xml:lang="nb"><seg>pluralis</seg></tuv>
    <tuv xml:lang="da"><seg>pluralis</seg></tuv>

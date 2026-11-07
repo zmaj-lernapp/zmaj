@@ -489,6 +489,8 @@ INHALT = {
     "sredstvo": "means / agent",
     # 07.11.2026, Pakete 10 bis 20: "Lebensmittel" ist schon der Name des Levels lebensmittel (Ueberschrift). Fuer das Wort namirnica passt das nicht.
     "namirnica": "foodstuff",
+    # 07.11.2026, Pakete 10 bis 20: "Mehrzahl" ist die Grammatik-Ueberschrift ("Plural"). Als Wort klein wie jednina "singular".
+    "množina": "plural",
     # ENDE en woerter
 },
 
@@ -19811,6 +19813,8 @@ INHALT = {
     # 07.11.2026, Pakete 10 bis 20: "fragen" und "Frage" (pitanje) hiessen beide fråga; pitati und upitati gleich, aber anders als pitanje.
     "pitati": "ställa en fråga",
     "upitati": "ställa en fråga",
+    # 07.11.2026, Pakete 10 bis 20: "Mehrzahl" ist die Grammatik-Ueberschrift ("Plural"). Als Wort klein wie jednina "singular".
+    "množina": "plural",
     # ENDE sv woerter
 },
 
@@ -56042,9 +56046,9 @@ INHALT = {
     "Opposition": "opposition",
     "Die Opposition hat gegen das Gesetz gestimmt.": "Oppositionen stemte imod loven.",
     "abstimmen / wählen": "at stemme / at vælge",
-    "Am Sonntag gehe ich wählen.": "Søndag går jeg hen at stemme.",
+    "Am Sonntag gehe ich wählen.": "På søndag går jeg hen og stemmer.",
     "Wähler": "vælger",
-    "Viele Wähler sind nicht zur Wahl gegangen.": "Mange vælgere er ikke gået hen at stemme.",
+    "Viele Wähler sind nicht zur Wahl gegangen.": "Mange vælgere gik ikke hen og stemte.",
     "bilden (Regierung, Gruppe)": "at danne (regering, gruppe)",
     "Nach den Wahlen muss eine neue Regierung gebildet werden.": "Efter valget skal der dannes en ny regering.",
     "Abgeordneter (Föderation BiH)": "parlamentsmedlem (Føderationen BiH)",

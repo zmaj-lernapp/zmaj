@@ -112557,7 +112557,7 @@
     "sv": "På söndag går jag och röstar.",
     "nl": "Zondag ga ik stemmen.",
     "nb": "På søndag går jeg og stemmer.",
-    "da": "Søndag går jeg hen at stemme.",
+    "da": "På søndag går jeg hen og stemmer.",
     "fr": "Dimanche, je vais voter."
    },
    "audio": null
@@ -112593,7 +112593,7 @@
     "sv": "Många väljare gick inte och röstade.",
     "nl": "Veel kiezers zijn niet gaan stemmen.",
     "nb": "Mange velgere gikk ikke til valg.",
-    "da": "Mange vælgere er ikke gået hen at stemme.",
+    "da": "Mange vælgere gik ikke hen og stemte.",
     "fr": "Beaucoup d'électeurs ne sont pas allés voter."
    },
    "audio": null
@@ -133702,9 +133702,9 @@
    "section": "schulewissen",
    "translations": {
     "de": "Mehrzahl",
-    "en": "Plural",
+    "en": "plural",
     "tr": "çoğul sayı",
-    "sv": "Plural",
+    "sv": "plural",
     "nl": "meervoud",
     "nb": "pluralis",
     "da": "pluralis",
