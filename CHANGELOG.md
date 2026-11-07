@@ -17,9 +17,10 @@ are in the Play Store listing. Format:
   In the past tense lesson "to a man" moved into the brackets of „Šta si ___?“,
   so its solution line no longer shows a stray quotation mark.
 - Vocabulary packages 10 to 20, level B2 (reviewed by a native speaker on 7.11.2026):
-  1,774 words and 1,774 example sentences, each word right before its sentence
-  (3,547 new entries; *zaposlenik / uposlenik* was already there and only gets its
-  sentence). 14 new sections behind B1, each in the next colour: 18 · Thinking and
+  1,773 words and 1,774 example sentences, each word right before its sentence
+  (3,546 new entries; *zaposlenik / uposlenik* was already there and only gets its
+  sentence, and *nego i / već i* sounded odd on its own, so only its sentence stays,
+  decided by the native speaker on 8.11.2026). 14 new sections behind B1, each in the next colour: 18 · Thinking and
   opinion, 19 · People and relationships, 20 · Work and economy, 21 · Media and
   culture, 22 · Environment and technology, 23 · Society and politics, 24 · Law and
   authorities, 25 · House and home, 26 · Health and sport, 27 · School and knowledge,
@@ -30,7 +31,7 @@ are in the Play Store listing. Format:
   two partners. Existing words change instead of getting a second entry, progress
   moves along through `UMBENANNT`: *iznajmiti* now means "to let" (renting is the new
   *unajmiti*), *produžni kabl* becomes *produžni kabel*, *zaposlenik* becomes
-  *zaposlenik / uposlenik*. 42 words show two forms (*prijevoz / prevoz*,
+  *zaposlenik / uposlenik*. 41 words show two forms (*prijevoz / prevoz*,
   *gas / plin*, *dosad / dosada*); second forms count when typing exactly as the
   native speaker decided, forms he ruled out do not (*kabl*, *kemija*, *znanstveni*,
   *vaspitanje*, *ubijeđivati*). 80 more pairs that share part of a meaning never
@@ -38,11 +39,11 @@ are in the Play Store listing. Format:
   The 15 entries that waited for a recording (*rub*, *ivica*, *poteškoća*, *smijeh*,
   *rat*, *dova*, *mezarje*, *dići*, *dizati*, *plakati*, *mrtav*, *uopšte*,
   *naime / jer*, *poput / kao*, *ukupno*) now stand in their levels, with their
-  sentences: 7,998 entries in total, 295 levels, 31 sections. "At the dentist" gets
+  sentences: 7,997 entries in total, 295 levels, 31 sections. "At the dentist" gets
   its 8 waiting entries (127 entries). All new texts are translated into the seven
-  other languages. Emir speaks the new words and sentences (3,635 recordings,
-  w5317–w8952, in the Android app only); the sentence for *smijeh* still waits for
-  its recording to be checked. "Besitz" and "Einzahl" are also table headers of the
+  other languages. Emir speaks the new words and sentences (3,634 recordings,
+  w5317–w8952, in the Android app only); the sentence for *smijeh* keeps its older
+  recording (w5331, checked by the native speaker on 8.11.2026). "Besitz" and "Einzahl" are also table headers of the
   B1 grammar, so the words *posjed* and *jednina* get their meaning through
   `woerter` in every language and the tables keep theirs.
 - Hidden section "At the dentist" (`zahnarzt.py`, 7 levels, 111 entries, reviewed by a

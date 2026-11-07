@@ -68,7 +68,8 @@ def test_erste_form_behaelt_ihre_aufnahme():
 
 def test_was_wartete_hat_jetzt_eine_nummer_hinter_dem_zahnarzt():
     """Seit dem 07.11.2026 hat Emir gesprochen, was wartete (Ton-Schritt der Pakete 10
-    bis 20). Nur der Satz zu smijeh fehlt noch, tests/offen_p1020.json."""
+    bis 20). Der Satz zu smijeh kam als letzter am 08.11.2026: Ajdin nimmt die alte
+    Aufnahme w4691, jetzt w5331. tests/offen_p1020.json ist seitdem leer."""
     import offen_p1020
     import ton_bauen
     emir = ton_bauen.nur_emir()
@@ -77,7 +78,8 @@ def test_was_wartete_hat_jetzt_eine_nummer_hinter_dem_zahnarzt():
             assert k not in emir, k
         else:
             assert _nummer(emir[k]["datei"]) >= 5317, (k, emir[k])
-    assert offen_p1020.TON == {"smijeh je najbolji lijek."}
+    assert offen_p1020.TON == frozenset()
+    assert emir["smijeh je najbolji lijek."]["datei"] == "w5331.mp3"
 
 
 def test_keine_emir_datei_im_oeffentlichen_ordner(wurzel):

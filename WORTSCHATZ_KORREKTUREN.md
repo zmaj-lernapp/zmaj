@@ -625,7 +625,7 @@ fertigen Einzelaufnahmen zusammengesetzt, keine neue Aufnahme.
 
 ## 07.11.2026 – Wortschatz-Pakete 10 bis 20: Stufe B2, Sektionen 18 bis 31
 
-1.774 Wörter und 1.774 Beispielsätze aus `Release\Wortschatz\paket_10.json` bis
+1.773 Wörter und 1.774 Beispielsätze aus `Release\Wortschatz\paket_10.json` bis
 `paket_20.json`, von Ajdin am 07.11.2026 durchgesehen, alle Fragen und Nachfragen
 beantwortet (`b2_entscheidungen.md`, `b2_2_entscheidungen.md`). Ajdin zu Paket 10
 bis 20 für 1.3: „ne mach alle für 1.3“. Diese Antworten gelten künftig auch für
@@ -662,6 +662,11 @@ Beim Einbau festgelegt:
   *produžni kabel*, *zaposlenik* wird *zaposlenik / uposlenik*. Der Lernstand zieht
   über `UMBENANNT` mit; der Satz von *uposlenik* steht als eigener Eintrag im
   neuen Level.
+- **Nur im Satz (08.11.2026).** *nego i / već i* (Paket 10 Nr. 108) ist kein eigenes
+  Wort mehr. Ajdin: „nimm es nur rein in einem ganzen satz nur so hört es sich sehr
+  komisch an“. „Govori ne samo bosanski, nego i njemački.“ bleibt mit seiner
+  Aufnahme als eigener Eintrag im Level *Einerseits und andererseits*. Das Wort war
+  nie veröffentlicht, deshalb kein `UMBENANNT`.
 - **Partner an beiden Wörtern,** auch am alten Verb (201 Paare). *izvršiti* hat zwei
   Partner, *vršiti* und *izvršavati*. *sadržavati* ist jetzt das Gegenstück zu
   *sadržati* (Ajdin, 06.11.2026) und zählt dort mit; *sakrivati* das zu *sakriti*,
@@ -681,16 +686,18 @@ Beim Einbau festgelegt:
 **Ton.** Die Nummern w5317–w8952 sind vergeben, in der Reihenfolge der App
 (`Release\Wortschatz\_uebersetzung_p10_20\nummern.json`, mit der Herkunft jeder
 Datei unter `Stimme_Emir_neu`). Emir hat am 07.11.2026 gesprochen (ElevenLabs,
-`Stimme_Emir_neu\monat_vorbereitung`); 3.635 Aufnahmen stehen in `ton_nur_emir.json`
+`Stimme_Emir_neu\monat_vorbereitung`); 3.634 Aufnahmen stehen in `ton_nur_emir.json`
 und in der Hülle (`audio_emir/`, Zweig `sammeln-v111`). Übernommen wurde nur, was
 eindeutig passt: gesprochener Text gleich dem Bosnischen, ohne Unterschied bei
 Satzzeichen; wo Ajdin nach der Probe gewählt hat (*smijeh*, *plakati*, *gušiti se*,
 *ivica* und drei Sätze), seine Fassung A, sonst die beste gemessene. *rub*, *rat*, *mrtav*,
 *naime* und *poput* kommen aus der Aufnahme vom 05.11.2026, *naime / jer* und
 *poput / kao* sind aus fertigen Einzelaufnahmen zusammengesetzt. w5317 ist
-*produžni kabel* und ersetzt w2278. Frei bleibt w5331, der Satz von *smijeh*: Die
-alte Aufnahme w4691 ist aufbewahrt, aber noch nicht angehört
-(`tests/offen_p1020.json`).
+*produžni kabel* und ersetzt w2278. w5331, der Satz von *smijeh*, hat die alte
+Aufnahme w4691: Ajdin am 08.11.2026, sie „passt“. Am selben Tag nach dem Anhören
+neu: *izraz* (w6301) und *strast* (w5726) in Ajdins Fassung A. w5562 und w8899
+(*nego i*, *nego i / već i*) sind seit dem 08.11.2026 frei und werden nicht neu
+vergeben.
 
 **Übersetzungen.** Die 3.672 neuen Texte stehen in allen sieben Sprachen
 (`uebersetzungen.py`, Block „Wortschatz-Pakete 10 bis 20“). Über `woerter`:

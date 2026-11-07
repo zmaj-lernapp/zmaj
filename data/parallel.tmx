@@ -55986,18 +55986,6 @@
    <tuv xml:lang="da"><seg>Han kommer ikke kun for sent, han bliver også sur.</seg></tuv>
    <tuv xml:lang="fr"><seg>Non seulement il arrive en retard, mais en plus il se fâche.</seg></tuv>
   </tu>
-  <tu tuid="sondern auch:nego i / već i" segtype="phrase">
-   <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>nego i / već i</seg></tuv>
-   <tuv xml:lang="de"><seg>sondern auch</seg></tuv>
-   <tuv xml:lang="en"><seg>but also</seg></tuv>
-   <tuv xml:lang="tr"><seg>sadece ... değil, aynı zamanda</seg></tuv>
-   <tuv xml:lang="sv"><seg>utan även</seg></tuv>
-   <tuv xml:lang="nl"><seg>maar ook</seg></tuv>
-   <tuv xml:lang="nb"><seg>men også</seg></tuv>
-   <tuv xml:lang="da"><seg>men også</seg></tuv>
-   <tuv xml:lang="fr"><seg>mais aussi</seg></tuv>
-  </tu>
   <tu tuid="er spricht nicht nur bosnisch, sondern auch deutsch.:Govori ne samo bosanski, nego i njemački." segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Govori ne samo bosanski, nego i njemački.</seg></tuv>
