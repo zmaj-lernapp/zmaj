@@ -622,3 +622,81 @@ ohne w4114, w4115, w4690 und w4691.
 *doktor / ljekar*, *dozvoliti / dopustiti*, *dozvoljavati / dopuštati*,
 *vijek / stoljeće*, *podići / podignuti* und *zapravo / ustvari* sind aus den
 fertigen Einzelaufnahmen zusammengesetzt, keine neue Aufnahme.
+
+## 07.11.2026 – Wortschatz-Pakete 10 bis 20: Stufe B2, Sektionen 18 bis 31
+
+1.774 Wörter und 1.774 Beispielsätze aus `Release\Wortschatz\paket_10.json` bis
+`paket_20.json`, von Ajdin am 07.11.2026 durchgesehen, alle Fragen und Nachfragen
+beantwortet (`b2_entscheidungen.md`, `b2_2_entscheidungen.md`). Ajdin zu Paket 10
+bis 20 für 1.3: „ne mach alle für 1.3“. Diese Antworten gelten künftig auch für
+alles andere:
+
+| Thema | Ajdin | gilt |
+|---|---|---|
+| *iznajmiti* / *unajmiti* | Alternative | *iznajmiti*, *iznajmljivati* = vermieten; *unajmiti*, *unajmljivati* = mieten |
+| *kabel* / *kabl* | „kabel“ | *kabel*; *kabl* zählt nicht, in der App *produžni kabel* statt *produžni kabl* |
+| *zaposlenik* / *uposlenik* | Vorschlag | ein Wort *zaposlenik / uposlenik*, wie *doktor / ljekar* |
+| *arhiv* / *arhiva* | „arhiv bedeutet die institution/ das gebäude und arhiva ist die dokumentensammlung oder die akten“ | zwei Wörter |
+| *poslanik* / *zastupnik* | „poslanik ist eher in der staatlichen ebene und zastupnik sehr häufig in der föderation BIH“ | zwei Wörter |
+| *magistar* / *master* | „magister ist altes system und master ist das neue system“ | zwei Wörter, gezeigt wird *magistar* |
+| *tabela* / *tablica* | „tabela bedeutet tabelle und tablica ist eher schild zb verkehrsschild“ | zwei Wörter |
+| *izum* / *pronalazak* | „izum ist eher für erfindung während pronalazak eher das entdecken oder der fund bedeutet“ | zwei Wörter |
+| *dvorana* / *sala* | „dvorana sind große hallen und sala sind kleine hallen“ | zwei Wörter |
+| *raj*, *pakao* / *džennet*, *džehennem* | Vorschlag | *raj* und *pakao* allgemein, *džennet* und *džehennem* muslimisch |
+| *svećenik* / *sveštenik* | Alternative | ein Wort |
+| *prijevoz*, *prijelaz*, *prijevod* | „prijevoz oder prevoz bedeutet transport/ beförderung undprijelaz oder prelaz bedeutet übergang oder kreuzung“ | Anzeige mit beiden Formen (*prijevoz / prevoz*), jede zählt |
+| *začin* / *začiniti* | „zacin als gewürz und und das tuwort er/sie/es würzt= on/ona/ono zacini“ | *začin* = Gewürz (nur die Einzahl zählt), *začiniti* = würzen; *začini* (Gewürze) bleibt eigenes Wort |
+| *odgoj* / *vaspitanje* | „nimm odgoj“ | *vaspitanje* zählt nicht, ebenso *vaspitati*, *vaspitavati* |
+| *kako bi* / *kako bih* | „kako bi/kako bih“, Nachfrage 2: B | nur diese beiden zählen |
+| *dosad* / *dosada*, *zasad* / *zasada* | Nachfrage 2: B | nur die Formen der Anzeige zählen |
+| *ubijeđivati*, *ubijeđenje* | „ne die bleiben raus das ist kroatisch“ | zählen nicht; *ubjediti* und *ubijedati* zählen mit |
+| Einzahl und Mehrzahl | „nur einzahl ausser es gibt ein satz mit mehrzahl“ | *primalac*: *primaoci* zählt nicht, der Satz hat die Einzahl |
+| Eine Form allein genannt | Nachfrage 1: B (beide Male) | Paket 10 bis 14: die andere Form zählt mit (*tužitelj*, *sa jedne strane*). Paket 15 bis 20: nur die genannte zählt (*kotač*, *kemija*, *djelomično*) |
+
+Beim Einbau festgelegt:
+
+- **Eigene Sektionen.** Stufe B2 steht in 14 Sektionen hinter B1 (18 bis 31,
+  129 Level), Gruppen über 20 Wörter auf zwei Level verteilt, jedes Wort vor
+  seinem Satz.
+- **Kein zweites Wort.** *iznajmiti* heißt jetzt „vermieten“, *produžni kabl* wird
+  *produžni kabel*, *zaposlenik* wird *zaposlenik / uposlenik*. Der Lernstand zieht
+  über `UMBENANNT` mit; der Satz von *uposlenik* steht als eigener Eintrag im
+  neuen Level.
+- **Partner an beiden Wörtern,** auch am alten Verb (201 Paare). *izvršiti* hat zwei
+  Partner, *vršiti* und *izvršavati*. *sadržavati* ist jetzt das Gegenstück zu
+  *sadržati* (Ajdin, 06.11.2026) und zählt dort mit; *sakrivati* das zu *sakriti*,
+  bei *skrivati* zählt es weiter nicht. *prepisati* „abschreiben“ und *propisati*
+  „verschreiben“ zählen nicht füreinander.
+- **Zählt mit / zählt nicht** steht wie im Paket (`auch`, `zaehlt_nicht`), geprüft in
+  `tests/test_paket10.py` bis `test_paket20.py`.
+- **Nie nebeneinander** in einer Auswahl: 80 weitere Paare (`NIE_NEBENEINANDER`), 79
+  nach den Hinweisen der Pakete, etwa *začin* / *začini*, *unuk* / *unuka*,
+  *tablica* / *tabla*, dazu *patnja* „Leid“ / *stradanje* „Verunglücken / Leid“ im
+  selben Level.
+- **Warteliste.** Die 15 Einträge, die auf Emir warteten (*rub*, *ivica*, *poteškoća*,
+  *smijeh*, *rat*, *dova*, *mezarje*, *dići*, *dizati*, *plakati*, *mrtav*, *uopšte*,
+  *naime / jer*, *poput / kao*, *ukupno*), stehen mit ihrem Satz wieder an ihrer
+  Stelle, die acht aus dem Zahnarzt-Teil ebenso. *dići* und *dizati* sind ein Paar.
+
+**Ton.** Die Nummern w5317–w8952 sind vergeben, in der Reihenfolge der App
+(`Release\Wortschatz\_uebersetzung_p10_20\nummern.json`, mit der Herkunft jeder
+Datei unter `Stimme_Emir_neu`). Emir hat am 07.11.2026 gesprochen (ElevenLabs,
+`Stimme_Emir_neu\monat_vorbereitung`); 3.635 Aufnahmen stehen in `ton_nur_emir.json`
+und in der Hülle (`audio_emir/`, Zweig `sammeln-v111`). Übernommen wurde nur, was
+eindeutig passt: gesprochener Text gleich dem Bosnischen, ohne Unterschied bei
+Satzzeichen; wo Ajdin nach der Probe gewählt hat (*smijeh*, *plakati*, *gušiti se*,
+*ivica* und drei Sätze), seine Fassung A, sonst die beste gemessene. *rub*, *rat*, *mrtav*,
+*naime* und *poput* kommen aus der Aufnahme vom 05.11.2026, *naime / jer* und
+*poput / kao* sind aus fertigen Einzelaufnahmen zusammengesetzt. w5317 ist
+*produžni kabel* und ersetzt w2278. Frei bleibt w5331, der Satz von *smijeh*: Die
+alte Aufnahme w4691 ist aufbewahrt, aber noch nicht angehört
+(`tests/offen_p1020.json`).
+
+**Übersetzungen.** Die 3.672 neuen Texte stehen in allen sieben Sprachen
+(`uebersetzungen.py`, Block „Wortschatz-Pakete 10 bis 20“). Über `woerter`:
+*namirnica* („Lebensmittel“ ist schon ein Level-Name), *množina* („Mehrzahl“ ist
+schon Grammatik-Überschrift; nicht en, sv) und auf Schwedisch *pitati* / *upitati*
+(fråga heißt auch „Frage“). Drei Bedeutungen fielen mit alten zusammen und heißen
+jetzt anders: sv „Jeden Monat schicke ich meinen Eltern eine Überweisung.“, nb
+„Vorfall“ (insident statt tilfelle, das ist *slučaj*), da „Ich kann mich nicht an
+seinen Namen erinnern.“ (komme i tanke om).

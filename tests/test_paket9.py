@@ -18,6 +18,8 @@ import re
 
 import pytest
 
+import offen_p1020
+
 LEVEL = ["wichtig_bekannt", "ganz_viele", "frueher_spaeter", "innen_aussen", "eigenschaften",
          "hier_dort", "wann_wie_oft", "wie_sehr", "wie_man_es_meint", "saetze_verbinden",
          "praepositionen_mehr", "fuerwoerter"]
@@ -31,22 +33,25 @@ WOERTER = {
                         "odličan", "sjajan", "uspješan", "koristan", "normalan", "pozitivan", "negativan",
                         "jasan"],
     "ganz_viele": ["sav", "cijeli", "mnogi", "razni", "različit", "određen", "jedini", "brojan", "ukupan",
-                   "potpun", "dovoljan", "vlastit", "zajednički"],
+                   "potpun", "dovoljan", "vlastit", "zajednički", "ukupno"],
     "frueher_spaeter": ["posljednji", "prošli", "sljedeći", "bivši", "današnji", "prethodni", "budući",
                         "sadašnji", "rani", "dnevni", "redovan", "konačan"],
     "innen_aussen": ["javni", "privatan", "lokalni", "vanjski", "unutrašnji", "gornji", "donji", "srednji",
                      "blizak", "dalek", "stran"],
-    "eigenschaften": ["čist", "živ", "snažan", "moderan", "topao", "hladan", "dubok", "ogroman", "opasan",
+    "eigenschaften": ["čist", "živ", "snažan", "moderan", "topao", "hladan", "dubok", "mrtav", "ogroman", "opasan",
                       "kriv", "ljudski", "prirodan", "ženski", "muški", "hitan", "čest"],
     "hier_dort": ["tu", "ovdje", "tamo", "gore", "dolje", "negdje", "nigdje", "naprijed", "nazad"],
     "wann_wie_oft": ["onda", "zatim", "nekad", "odjednom", "davno", "stalno", "trenutno", "prvo", "skoro"],
     "wie_sehr": ["tako", "ovako", "vrlo / veoma", "toliko", "sasvim", "nikako", "nekako", "pomalo", "rado",
                  "otprilike", "jedva", "baš", "čak", "bar", "ni"],
-    "wie_man_es_meint": ["zaista", "ipak", "inače", "uglavnom", "vjerovatno", "zapravo / ustvari", "svakako",
+    "wie_man_es_meint": ["zaista", "ipak", "inače", "uglavnom", "vjerovatno", "zapravo / ustvari", "uopšte",
+                         "svakako",
                          "valjda"],
-    "saetze_verbinden": ["kao", "pa", "što", "iako", "ukoliko", "dakle", "međutim", "odnosno", "čim", "pošto",
+    "saetze_verbinden": ["kao", "pa", "što", "iako", "ukoliko", "dakle", "međutim", "odnosno", "naime / jer",
+                         "čim", "pošto",
                          "neka", "evo"],
-    "praepositionen_mehr": ["po", "nakon", "uz", "protiv", "preko", "tokom", "pred", "među", "osim", "umjesto",
+    "praepositionen_mehr": ["po", "nakon", "uz", "protiv", "preko", "tokom", "pred", "među", "osim",
+                            "poput / kao", "umjesto",
                             "unutar", "izvan", "radi"],
     "fuerwoerter": ["sebe", "taj", "svoj", "neki", "neko", "njihov", "takav", "kakav", "ovakav", "nikakav",
                     "svako", "oba"],
@@ -86,6 +91,8 @@ AUCH = {
     "neki": ["neka", "neko"], "njihov": ["njihova", "njihovo"], "takav": ["takva", "takvo"],
     "kakav": ["kakva", "kakvo"], "ovakav": ["ovakva", "ovakvo"], "nikakav": ["nikakva", "nikakvo"],
     "oba": ["obje"],
+    # seit dem 07.11.2026 (Warteliste)
+    "mrtav": ["mrtva", "mrtvo"], "uopšte": ["uopće"],
 }
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
@@ -97,8 +104,10 @@ ZAEHLT_NICHT = {
 # Partner je Wort, wie im Paket.
 PARTNER = {}
 
-# Warten auf Emir (Release\\Wortschatz\\v111_wartet_auf_emir.md), noch nicht in der App
-WARTET = ["mrtav", "uopšte", "naime / jer", "poput / kao", "ukupno"]
+# Wartete auf Emir (Release\\Wortschatz\\v111_wartet_auf_emir.md), seit dem 07.11.2026 an
+# seiner Stelle in WOERTER; der Ton kommt im eigenen Schritt (tests/offen_p1020.json).
+WARTET = []
+NACHGEKOMMEN = ["mrtav", "uopšte", "naime / jer", "poput / kao", "ukupno"]
 
 
 def _level(daten):
@@ -245,6 +254,8 @@ def test_jedes_wort_und_jeder_satz_hat_emirs_ton(grunddaten, wurzel):
                 assert os.path.isfile(pfad) and os.path.getsize(pfad) >= ton_pruefen.MINDEST, (w["id"], e)
             if k in emir:
                 assert not os.path.exists(os.path.join(wurzel, "web", "audio", e["datei"])), e
+    # Seit dem 07.11.2026: was von der Warteliste kam, hat Emirs Ton erst nach dem Ton-Schritt
+    ohne = [o for o in ohne if o[1] not in offen_p1020.TON]
     assert not ohne, ohne[:20]
 
 
@@ -252,13 +263,16 @@ def test_sektion_und_level(grunddaten):
     s = grunddaten["sektionen"]
     assert s[16]["id"] == "wiewowann" and s[16]["label"] == "Sektion 17 · Wie, wo und wann"
     assert [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "wiewowann"] == LEVEL
-    assert [k["id"] for k in grunddaten["kategorien"]][-len(LEVEL):] == LEVEL, "am Ende des Lernpfads"
+    ids = [k["id"] for k in grunddaten["kategorien"]]
+    # seit dem 07.11.2026 folgt Stufe B2 (Sektionen 18 bis 31, Pakete 10 bis 20)
+    assert ids[ids.index(LEVEL[0]):ids.index(LEVEL[-1]) + 1] == LEVEL
+    assert ids[ids.index(LEVEL[-1]) + 1] == "grundlage_rahmen", "danach Sektion 18"
     assert list(WOERTER) == LEVEL
 
 
 def test_alle_sektionen(grunddaten):
-    assert len(grunddaten["sektionen"]) == 17
-    assert len(grunddaten["kategorien"]) == 166
+    assert len(grunddaten["sektionen"]) == 31       # seit 07.11.2026 (Pakete 10 bis 20)
+    assert len(grunddaten["kategorien"]) == 295
 
 
 @pytest.mark.parametrize("a, b", [("sav", "cijeli"), ("tu", "ovdje"), ("tako", "ovako"), ("vrlo / veoma", "jako"),

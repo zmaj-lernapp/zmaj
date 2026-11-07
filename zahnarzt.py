@@ -10,8 +10,8 @@ Bezahltes frei. Danach steht der Teil als eigene Sektion am Ende des Lernpfads.
 
 Geschrieben aus Sicht der Ärztin, Anrede mit Vi, Vas und Vam groß. Bosnisch und
 Deutsch stehen genau so in Release\\Wortschatz\\paket_zahnarzt.json, von Ajdin am
-06.11.2026 durchgesehen. Was auf eine Aufnahme wartet, steht hier nur als Kommentar
-(Release\\Wortschatz\\v111_wartet_auf_emir.md).
+06.11.2026 durchgesehen. Was auf eine Aufnahme wartete (Release\\Wortschatz\\v111_wartet_auf_emir.md),
+steht seit dem 07.11.2026 mit Wort und Satz an seiner Stelle.
 
 Warum eine eigene Datei und nicht vokabeln.py: KATEGORIEN dort ist alles, was
 gezählt wird: Level, Wörter, Fortschritt, Datensatz, Anki, Store-Zahlen. Dieser Teil
@@ -57,7 +57,8 @@ KATEGORIEN = [
         {"de": "Beim Kind wackelt ein Milchzahn.", "bs": "Djetetu se klima mliječni zub."},
         {"de": "Zahnwurzel", "bs": "korijen zuba"},
         {"de": "Die Zahnwurzel ist noch gesund.", "bs": "Korijen zuba je još zdrav."},
-        # Wartet auf Emir: zubno meso = Zahnfleisch; Zubno meso Vam je malo upaljeno.
+        {"de": "Zahnfleisch", "bs": "zubno meso", "auch": ["desni"]},
+        {"de": "Ihr Zahnfleisch ist etwas entzündet.", "bs": "Zubno meso Vam je malo upaljeno."},
      ]},
     {"id": "za|befund", "label": "Befund und Zahnersatz", "sektion": "zahnarzt",
      "tipp": "Karies, Füllung, Brücke, Prothese und Implantat.",
@@ -100,10 +101,14 @@ KATEGORIEN = [
         {"de": "Die Zahnaufhellung wird extra bezahlt.", "bs": "Izbjeljivanje zuba se plaća posebno."},
         {"de": "Zahnseide", "bs": "zubni konac"},
         {"de": "Benutzen Sie Zahnseide?", "bs": "Da li koristite zubni konac?"},
-        # Wartet auf Emir: navlaka = Zahnkrone; Na ovaj zub ide navlaka.
-        # Wartet auf Emir: liječenje kanala = Wurzelkanalbehandlung; Ovom zubu treba liječenje kanala.
-        # Wartet auf Emir: aparat za zube = Zahnspange; Moja kćerka nosi aparat za zube.
-        # Wartet auf Emir: otok = Schwellung; Otok će proći za nekoliko dana.
+        {"de": "Zahnkrone", "bs": "navlaka", "auch": ["krunica", "zubna krunica"]},
+        {"de": "Auf diesen Zahn kommt eine Krone.", "bs": "Na ovaj zub ide navlaka."},
+        {"de": "Wurzelkanalbehandlung", "bs": "liječenje kanala", "auch": ["liječenje korijenskih kanala"]},
+        {"de": "Dieser Zahn braucht eine Wurzelbehandlung.", "bs": "Ovom zubu treba liječenje kanala."},
+        {"de": "Zahnspange", "bs": "aparat za zube"},
+        {"de": "Meine Tochter trägt eine Zahnspange.", "bs": "Moja kćerka nosi aparat za zube."},
+        {"de": "Schwellung", "bs": "otok", "auch": ["oteklina"]},
+        {"de": "Die Schwellung geht in ein paar Tagen zurück.", "bs": "Otok će proći za nekoliko dana."},
      ]},
     {"id": "za|anweisungen", "label": "Anweisungen", "sektion": "zahnarzt",
      "tipp": "Was man im Behandlungsstuhl sagt: Mund auf, zubeißen, ausspülen.",
@@ -128,8 +133,10 @@ KATEGORIEN = [
         {"de": "Haben Sie keine Angst, ich bin vorsichtig.", "bs": "Ne bojte se, bit ću pažljiva."},
         {"de": "Heben Sie die Hand, wenn es wehtut.", "bs": "Podignite ruku ako Vas zaboli."},
         {"de": "Wenn es wehtut, heben Sie sofort die Hand.", "bs": "Ako Vas zaboli, odmah podignite ruku."},
-        # Wartet auf Emir: Otvorite usta malo šire. = Machen Sie den Mund etwas weiter auf.; Otvorite usta malo šire, ne vidim dobro.
-        # Wartet auf Emir: Neće boliti. = Es wird nicht wehtun.; Neće boliti, dobit ćete injekciju.
+        {"de": "Machen Sie den Mund etwas weiter auf.", "bs": "Otvorite usta malo šire."},
+        {"de": "Machen Sie den Mund etwas weiter auf, ich sehe nicht gut.", "bs": "Otvorite usta malo šire, ne vidim dobro."},
+        {"de": "Es wird nicht wehtun.", "bs": "Neće boliti.", "auch": ["Neće boljeti."]},
+        {"de": "Es wird nicht wehtun, Sie bekommen eine Spritze.", "bs": "Neće boliti, dobit ćete injekciju."},
      ]},
     {"id": "za|fragen", "label": "Fragen", "sektion": "zahnarzt",
      "tipp": "Wo es wehtut, seit wann, Allergien und Schwangerschaft.",
@@ -170,8 +177,11 @@ KATEGORIEN = [
         {"de": "Essen Sie nach der Füllung zwei Stunden lang nichts.", "bs": "Poslije plombe dva sata nemojte jesti."},
         {"de": "Kommen Sie in einer Woche zur Kontrolle.", "bs": "Dođite na kontrolu za sedmicu dana."},
         {"de": "Kommen Sie in einer Woche zur gleichen Zeit zur Kontrolle.", "bs": "Dođite na kontrolu za sedmicu dana, u isto vrijeme."},
+        # Zub se mora vaditi. stand hier als Kommentar hinter dem Einzeleintrag; seit dem
+        # 07.11.2026 davor, damit jedes Wort vor seinem Satz bleibt (Paket: Nr. 53).
+        {"de": "Der Zahn muss gezogen werden.", "bs": "Zub se mora vaditi."},
+        {"de": "Es tut mir leid, der Zahn muss gezogen werden.", "bs": "Žao mi je, zub se mora vaditi."},
         {"de": "Ich bin Zahnärztin, wie kann ich Ihnen helfen?", "bs": "Ja sam stomatologinja, kako Vam mogu pomoći?"},
-        # Wartet auf Emir: Zub se mora vaditi. = Der Zahn muss gezogen werden.; Žao mi je, zub se mora vaditi.
      ]},
     {"id": "za|patienten", "label": "Was Patienten sagen", "sektion": "zahnarzt",
      "tipp": "Schmerzen, Füllung, Schwellung und Angst.",
