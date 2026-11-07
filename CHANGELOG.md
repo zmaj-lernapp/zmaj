@@ -30,9 +30,10 @@ are in the Play Store listing. Format:
   *rat*, *dova*, *mezarje*, *dići*, *dizati*, *plakati*, *mrtav*, *uopšte*,
   *naime / jer*, *poput / kao*, *ukupno*) now stand in their levels, with their
   sentences: 7,998 entries in total, 295 levels, 31 sections. "At the dentist" gets
-  its 8 waiting entries (127 entries). Recording numbers w5317–w8952 are
-  assigned; the recordings and the meanings in the seven other languages follow in
-  their own commits.
+  its 8 waiting entries (127 entries). All new texts are translated into the seven
+  other languages. Emir speaks the new words and sentences (3,635 recordings,
+  w5317–w8952, in the Android app only); the sentence for *smijeh* still waits for
+  its recording to be checked.
 - Hidden section "At the dentist" (`zahnarzt.py`, 7 levels, 111 entries, reviewed by a
   native speaker on 6.11.2026), written from the dentist's point of view: tap the
   version line in the settings seven times and enter the word `zahnarzt`. It unlocks
