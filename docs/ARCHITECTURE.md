@@ -56,7 +56,7 @@ erDiagram
   SECTION ||--|{ LEVEL : "groups (17)"
   LEVEL ||--|{ WORD : "teaches (4,421)"
   LEVEL ||--o{ SENTENCE : "cloze (300)"
-  LEVEL ||--o| GRAMMAR_LESSON : "explains (16)"
+  LEVEL ||--o| GRAMMAR_LESSON : "explains (26)"
   LEVEL }o--o{ LEVEL : "baut_auf (review)"
   STORY }o--o| LEVEL : "passt_zu"
   STORY }o--o{ GLOSSARY_ENTRY : "tappable words (406)"

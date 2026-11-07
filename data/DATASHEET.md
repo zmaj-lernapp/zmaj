@@ -48,7 +48,7 @@ pie showData title Words per section (4,421)
 | `sentences.json` / `.csv` | fill-in-the-gap sentences with the full sentence | 300 |
 | `stories.json` | graded stories with translation, glossary and comprehension questions | 12 |
 | `glossary.json` | word-by-word reading glossary used by the stories | 406 |
-| `grammar.json` | grammar lessons (explanations, tables, exercises) per language | 16 |
+| `grammar.json` | grammar lessons (explanations, tables, exercises) per language | 26 |
 | `anki/zmaj-bs-<lang>.tsv` | ready-to-import Anki decks, tagged by level | 8 decks |
 | `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 4,721 pairs × 8 |
 | `parallel.jsonl` | one line per word, sentence and story with all translations | 4,733 lines |

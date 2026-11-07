@@ -25,7 +25,7 @@
   "sentences_with_audio": 300,
   "stories": 12,
   "glossary_entries": 406,
-  "grammar_lessons": 16,
+  "grammar_lessons": 26,
   "audio_files": 2411
  },
  "files": {
@@ -66,8 +66,8 @@
    "bytes": 100734
   },
   "grammar.json": {
-   "sha256": "2ee229c135fbaf218ade523f82a4500e475f388623a2954994cf16cfcf4ebcea",
-   "bytes": 345222
+   "sha256": "630966c9d37b6f8b7b5e59f2bafbb9599db8dd53f9c31e1f728598ce517f4822",
+   "bytes": 635310
   },
   "parallel.jsonl": {
    "sha256": "2a7b6d4f51f827c298c9baef9b523481fd301a66af1a4fbb7dda7d874f704b76",

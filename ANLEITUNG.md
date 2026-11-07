@@ -529,7 +529,7 @@ hat seinen eigenen; auf ein zweites kommt er nur über eine Sicherungsdatei.
 
 ## Grammatik
 
-16 Levels haben eine **Grammatik-Erklärung**, die sich im Level aufklappen
+26 Levels haben eine **Grammatik-Erklärung**, die sich im Level aufklappen
 lässt: eine kurze Erklärung mit Tabelle, zum Beispiel alle Endungen eines
 Falls. Die dazugehörigen Übungsaufgaben kommen in der Lektion und im
 Level-Test dran, mit Tipp bei Fehlern. Die Lektionen stehen in `grammatik.py`.

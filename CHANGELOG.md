@@ -7,6 +7,14 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Ten grammar lessons for B1 (approved by the maintainer on 7.11.2026), each in
+  the level it explains: verb pairs, present-tense stems, the imperative, dates
+  and times, ne-/ni- words and collective numbers, the conditional, possessive
+  adjectives, the future II, relative clauses and the order of the small words.
+  26 lessons and 175 exercises in total. Their answers and Bosnian table cells
+  are in `GLEICH`; the translations into the seven other languages follow.
+  In the past tense lesson "to a man" moved into the brackets of „Šta si ___?“,
+  so its solution line no longer shows a stray quotation mark.
 - Hidden section "At the dentist" (`zahnarzt.py`, 7 levels, 111 entries, reviewed by a
   native speaker on 6.11.2026), written from the dentist's point of view: tap the
   version line in the settings seven times and enter the word `zahnarzt`. It unlocks
