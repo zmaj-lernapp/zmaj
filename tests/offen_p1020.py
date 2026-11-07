@@ -11,9 +11,9 @@ Bis dahin lassen die Ton-Tests genau die Schluessel aus offen_p1020.json durch u
 nichts sonst. tests/test_offen_p1020.py meldet jeden Schluessel, der inzwischen Ton
 hat: dann hier streichen. Ist die Liste leer, koennen beide Dateien weg.
 
-Der Ton-Schritt kam am 07.11.2026 (tests/test_paket1020_ton.py). Offen ist nur noch
-der Satz zu smijeh: Seine alte Aufnahme w4691 ist aufbewahrt, aber nicht angehoert,
-deshalb bleibt w5331 frei.
+Der Ton-Schritt kam am 07.11.2026 (tests/test_paket1020_ton.py). Offen war danach nur
+noch der Satz zu smijeh; am 08.11.2026 hat Ajdin seine alte Aufnahme w4691 genommen, sie
+steht als w5331 in ton_nur_emir.json. Die Liste ist seitdem leer.
 """
 import io
 import json

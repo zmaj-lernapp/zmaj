@@ -2,17 +2,21 @@
 """Wortschatz-Paket 10 (07.11.2026): Sektion 18 · Denken und Meinen.
 
 154 Woerter je mit Beispielsatz, von Ajdin am 07.11.2026 durchgesehen
-(Release\\Wortschatz\\paket_10.json, b2_entscheidungen.md). Hier steht, was beim
-Einbau festgelegt wurde:
+(Release\\Wortschatz\\paket_10.json, b2_entscheidungen.md), seit dem 08.11.2026 153
+Woerter und 154 Saetze. Hier steht, was beim Einbau festgelegt wurde:
 
 - Gruppen ueber 20 Woerter sind wie bei Paket 3 bis 9 auf zwei Level verteilt, Stufe B2
   steht in eigenen Sektionen hinter B1;
 - Anzeige mit zwei Formen wie kahva / kafa: uvjeriti / ubijediti, uvjeravati / ubjeđivati,
-  rasprava / diskusija, kako bi / kako bih, nego i / već i, pritom / pri tome,
+  rasprava / diskusija, kako bi / kako bih, pritom / pri tome,
   zanimljiv / interesantan. ubjediti und ubijedati zaehlen mit (Nachfrage 7 B), kako bismo
   und kako biste nicht (Nachfrage 2 B);
 - eine Form allein genannt: die andere zaehlt mit (Nachfrage 1 B: prije nego, sa jedne
-  strane, sa druge strane, usprkos, istaknuti).
+  strane, sa druge strane, usprkos, istaknuti);
+- nego i / već i (Nr. 108) ist seit dem 08.11.2026 kein eigenes Wort mehr. Ajdin: „nimm es
+  nur rein in einem ganzen satz nur so hört es sich sehr komisch an“. Der Satz bleibt mit
+  seiner Aufnahme w5563 im Level einerseits_andererseits (NUR_SATZ), w5562 und w8899 sind
+  frei. Es war nie veroeffentlicht (nicht in 617ead1), deshalb kein UMBENANNT.
 
 Die Pruefungen selbst stehen in tests/paket1020_pruefung.py.
 """
@@ -54,7 +58,7 @@ WOERTER = {
                           "raspravljati", "negirati", "insistirati", "zalagati se", "založiti se"],
     "daher_damit_bevor": ["mada", "no", "niti", "stoga", "osim toga", "budući da", "kako bi / kako bih",
                           "tako da", "prije nego što", "nakon što", "ne samo"],
-    "einerseits_andererseits": ["nego i / već i", "s jedne strane", "s druge strane", "drugim riječima",
+    "einerseits_andererseits": ["s jedne strane", "s druge strane", "drugim riječima",
                                 "naprotiv", "potom", "ujedno", "pritom / pri tome", "doduše", "uostalom",
                                 "ionako"],
     "trotz_dank": ["pri", "nad", "prilikom", "povodom", "uprkos", "pomoću", "zahvaljujući", "uoči", "izuzetno",
@@ -66,8 +70,9 @@ WOERTER = {
                          "nezavisan", "aktuelan"],
 }
 
-# Das Wort steckt im Bestand, nur sein Satz kommt dazu.
-NUR_SATZ = set()
+# Das Wort steckt im Bestand, nur sein Satz kommt dazu. Hier: das Wort ist ganz heraus,
+# allein klang es komisch (Ajdin, 08.11.2026), der Satz bleibt.
+NUR_SATZ = {"Govori ne samo bosanski, nego i njemački."}
 
 # "auch" genau nach dem Paket, dazu bei Adjektiven die weiteren Formen aus "formen".
 AUCH = {
@@ -102,3 +107,20 @@ PARTNER = {
     "napomenuti": "napominjati", "napominjati": "napomenuti", "pojasniti": "pojašnjavati",
     "pojašnjavati": "pojasniti", "zalagati se": "založiti se", "založiti se": "zalagati se",
 }
+
+
+def test_nego_i_steht_nur_noch_im_satz(grunddaten, index_html):
+    """Ajdin, 08.11.2026: „nimm es nur rein in einem ganzen satz nur so hört es sich sehr
+    komisch an“. Kein Eintrag, keine Aufnahme und kein UMBENANNT zeigt mehr auf das Wort,
+    der Satz steht als eigener Eintrag mit seiner Aufnahme vorn im Level."""
+    import ton_bauen
+    alle = [w for k in grunddaten["kategorien"] for w in k["words"]]
+    assert not [w["id"] for w in alle if "nego i" in w["bs"].split(" / ") or "već i" in w["bs"].split(" / ")]
+    assert not [w["id"] for w in alle if w["de"] == "sondern auch"]
+    k = next(x for x in grunddaten["kategorien"] if x["id"] == "einerseits_andererseits")
+    assert k["words"][0]["bs"] == "Govori ne samo bosanski, nego i njemački."
+    assert k["words"][0]["de"] == "Er spricht nicht nur Bosnisch, sondern auch Deutsch."
+    assert "sondern auch:nego i" not in index_html
+    emir = ton_bauen.nur_emir()
+    assert "nego i" not in emir and "nego i / već i" not in emir
+    assert emir["govori ne samo bosanski, nego i njemački."]["datei"] == "w5563.mp3"

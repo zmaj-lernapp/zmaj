@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 295 levels, 7,998 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
+  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 295 levels, 7,997 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
 </p>
 
 <h1 align="center">Zmaj – learn Bosnian</h1>
@@ -72,13 +72,13 @@ Everything the app teaches is exported to [`data/`](data/) under
 
 | | Count | Formats |
 |---|---:|---|
-| Words, phrases and example sentences, 31 sections, 295 levels | 7,998 | JSON, CSV, Anki (8 decks) |
+| Words, phrases and example sentences, 31 sections, 295 levels | 7,997 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
 | Graded stories with glossary and questions | 12 | JSON |
 | Reading glossary | 406 | JSON |
 | Grammar lessons with exercises | 26 | JSON |
 | Synthetic Bosnian audio (MP3) | 2,411 | `web/audio/` |
-| Parallel corpus for machine translation | 8,310 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
+| Parallel corpus for machine translation | 8,309 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
 
 Every item is translated into **German, English, Turkish, Swedish, Dutch,
 Norwegian, Danish and French**. JSON Schemas, a SHA-256 manifest and an honest
@@ -130,7 +130,7 @@ output needs, so the app, the dataset and the demo can never disagree:
 ```mermaid
 flowchart LR
   subgraph src["Content (edited by hand)"]
-    V["vokabeln.py<br/>295 levels · 7,998 entries · 300 cloze sentences"]
+    V["vokabeln.py<br/>295 levels · 7,997 entries · 300 cloze sentences"]
     G["grammatik.py<br/>26 lessons"]
     S["geschichten.py<br/>12 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]

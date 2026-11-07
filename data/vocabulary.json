@@ -6011,7 +6011,7 @@
    "builds_on": [
     "daher_damit_bevor"
    ],
-   "word_count": 22
+   "word_count": 21
   },
   {
    "id": "trotz_dank",
@@ -93533,24 +93533,6 @@
     "nb": "Han kommer ikke bare for sent, han blir også sint.",
     "da": "Han kommer ikke kun for sent, han bliver også sur.",
     "fr": "Non seulement il arrive en retard, mais en plus il se fâche."
-   },
-   "audio": null
-  },
-  {
-   "id": "sondern auch:nego i / već i",
-   "bs": "nego i / već i",
-   "level": "einerseits_andererseits",
-   "level_position": 175,
-   "section": "denkenmeinen",
-   "translations": {
-    "de": "sondern auch",
-    "en": "but also",
-    "tr": "sadece ... değil, aynı zamanda",
-    "sv": "utan även",
-    "nl": "maar ook",
-    "nb": "men også",
-    "da": "men også",
-    "fr": "mais aussi"
    },
    "audio": null
   },

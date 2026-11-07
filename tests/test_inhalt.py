@@ -32,7 +32,7 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
     assert len(grunddaten["kategorien"]) == 295       # seit 07.11.2026 (Pakete 10 bis 20)
-    assert woerter == 7998
+    assert woerter == 7997
     assert len(grunddaten["saetze"]) == 300
     assert len(grunddaten["geschichten"]) == 12
     assert len(grunddaten["grammatik"]) == 26
@@ -63,7 +63,7 @@ def test_woerter_und_saetze_getrennt_wie_in_readme_und_store(grunddaten, wurzel)
     assert "oko 4.700 riječi i izraza i oko 3.300 rečenica" in flach("README.bs.md")
     # Der Alt-Text des Kopfbilds beschreibt das Bild, und dort steht die Zahl noch.
     ohne_bild = re.sub(r'alt="[^"]*"', "", readme)
-    assert "7,998 words" not in ohne_bild and "7998 Vokabeln" not in ohne_bild
+    assert "7,997 words" not in ohne_bild and "7997 Vokabeln" not in ohne_bild
 
 
 def test_wort_kennungen_eindeutig_und_stabil(grunddaten):

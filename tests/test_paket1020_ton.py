@@ -12,15 +12,21 @@ der Kennung, ohne Unterschied bei Satzzeichen. rub, rat, mrtav, naime und poput
 stammen aus der Aufnahme vom 05.11.2026 (nur ihr Satz wartete), naime / jer und
 poput / kao sind aus fertigen Einzelaufnahmen zusammengesetzt, keine neue Aufnahme.
 
-Frei bleibt w5331, der Satz zu smijeh: Die alte Aufnahme w4691 ist aufbewahrt, aber
-nicht angehoert (tests/offen_p1020.json).
+w5331, der Satz zu smijeh, war bis zum 08.11.2026 frei. Ajdin hat die alte Aufnahme w4691
+angehoert und genommen (paket_06_staging\\_alt_vor_smijeh_2026-11-06), sie liegt jetzt als
+w5331 in der Huelle; tests/offen_p1020.json ist leer.
+
+Zurueckgezogen am 08.11.2026: w5562 (nego i) und w8899 (nego i / već i). Ajdin: „nimm es
+nur rein in einem ganzen satz nur so hört es sich sehr komisch an“. Das Wort ist aus der
+App heraus, sein Satz w5563 bleibt. Die Nummern werden nicht neu vergeben, die Dateien
+liegen nicht mehr in audio_emir/ (app_bauen.py warnte sonst bei jedem Bau).
 """
 import io
 import json
 import os
 
 ERSTE, LETZTE = 5317, 8952
-FREI = {5331}
+ZURUECKGEZOGEN = {5562, 8899}
 ZUSAMMENGESETZT = ["naime / jer", "poput / kao"]
 VOM_05_11 = ["rub", "rat", "mrtav", "naime", "poput"]
 
@@ -37,7 +43,7 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     import ton_bauen
     emir = ton_bauen.nur_emir()
     neu = _im_bereich(emir)
-    assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1) if n not in FREI]
+    assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1) if n not in ZURUECKGEZOGEN]
     assert max(_nummer(e["datei"]) for e in emir.values()) == LETZTE
     reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values())]
     assert [neu[d] for d in sorted(neu)] == reihe
@@ -55,18 +61,20 @@ def test_nummern_wie_beim_geruest_vergeben(wurzel):
     assert len(vergeben) == LETZTE - ERSTE + 1
     emir = ton_bauen.nur_emir()
     for v in vergeben:
-        if _nummer(v["datei"]) in FREI:
+        if _nummer(v["datei"]) in ZURUECKGEZOGEN:
             assert v["key"] not in emir, v
             continue
         assert emir[v["key"]] == {"key": v["key"], "datei": v["datei"], "text": v["text"]}, v
 
 
-def test_was_frei_bleibt_steht_in_offen():
+def test_smijeh_satz_hat_die_alte_aufnahme_und_offen_ist_leer():
+    """Ajdin, 08.11.2026: Der Satz zu smijeh nimmt die alte Aufnahme w4691, als w5331."""
     import offen_p1020
     import ton_bauen
     emir = ton_bauen.nur_emir()
-    assert offen_p1020.TON == {"smijeh je najbolji lijek."}
-    assert "smijeh je najbolji lijek." not in emir
+    assert offen_p1020.TON == frozenset()
+    assert emir["smijeh je najbolji lijek."] == {"key": "smijeh je najbolji lijek.", "datei": "w5331.mp3",
+                                                 "text": "Smijeh je najbolji lijek."}
     # Das Wort selbst hat Emir neu gesprochen (Fassung A, wahl.json vom 07.11.2026)
     assert ERSTE <= _nummer(emir["smijeh"]["datei"]) <= LETZTE
 
@@ -101,7 +109,7 @@ def test_huelle_hat_jede_datei():
     for datei in _im_bereich(ton_bauen.nur_emir()):
         pfad = os.path.join(huelle, datei)
         assert os.path.isfile(pfad) and os.path.getsize(pfad) >= ton_pruefen.MINDEST, datei
-    for n in FREI:
+    for n in ZURUECKGEZOGEN:
         assert not os.path.exists(os.path.join(huelle, "w%04d.mp3" % n)), n
 
 

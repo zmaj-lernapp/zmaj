@@ -14628,6 +14628,11 @@
    "text": "smijeh"
   },
   {
+   "key": "smijeh je najbolji lijek.",
+   "datei": "w5331.mp3",
+   "text": "Smijeh je najbolji lijek."
+  },
+  {
    "key": "rat",
    "datei": "w5332.mp3",
    "text": "rat"
@@ -15776,11 +15781,6 @@
    "key": "ne samo da kasni, nego se još i ljuti.",
    "datei": "w5561.mp3",
    "text": "Ne samo da kasni, nego se još i ljuti."
-  },
-  {
-   "key": "nego i",
-   "datei": "w5562.mp3",
-   "text": "nego i / već i"
   },
   {
    "key": "govori ne samo bosanski, nego i njemački.",
@@ -32461,11 +32461,6 @@
    "key": "kako bi / kako bih",
    "datei": "w8898.mp3",
    "text": "kako bi / kako bih"
-  },
-  {
-   "key": "nego i / već i",
-   "datei": "w8899.mp3",
-   "text": "nego i / već i"
   },
   {
    "key": "pritom / pri tome",

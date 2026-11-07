@@ -262,7 +262,7 @@ def test_umzug_verteilt_auf_wochen_aelteste_level_zuerst(seite, heute_stand):
     # Wortschatz-Paket 1 (31.10.2026, 2.040 Woerter) geht beides nicht mehr
     # zugleich - karteiNachtragen() haelt die 180 Tage und nimmt dafuer
     # mehr je Tag (ceil(n / 180), seit den Paketen 5 bis 9 mit 4.421
-    # Eintraegen 25, seit den Paketen 10 bis 20 mit 7.998 Eintraegen 45).
+    # Eintraegen 25, seit den Paketen 10 bis 20 mit 7.997 Eintraegen 45).
     alle = seite.js("""() => { known = new Set(CATEGORIES.flatMap(c => c.words).map(w => w.id));
         kartei = {tag: 0, n: 0, w: {}}; karteiNachtragen();
         const f = Object.values(kartei.w).map(e => e[1]), je = {};

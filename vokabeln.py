@@ -6015,7 +6015,8 @@ KATEGORIEN = [
      "baut_auf": ["daher_damit_bevor"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
-        {"de": "sondern auch",                "bs": "nego i / već i"},
+        # nego i / već i ist kein eigenes Wort mehr, allein klingt es komisch (Ajdin, 08.11.2026:
+        # "nimm es nur rein in einem ganzen satz"). Hier steht nur noch der fertige Satz.
         {"de": "Er spricht nicht nur Bosnisch, sondern auch Deutsch.", "bs": "Govori ne samo bosanski, nego i njemački."},
         {"de": "einerseits",                  "bs": "s jedne strane", "auch": ["sa jedne strane"]},
         {"de": "Einerseits gefällt mir die Arbeit.", "bs": "S jedne strane, posao mi se sviđa."},
