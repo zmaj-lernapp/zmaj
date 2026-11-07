@@ -84,13 +84,16 @@ ALTE_PARTNER = {"iznositi": "iznijeti", "pomisliti": "misliti", "saznavati": "sa
                 "primjećivati": "primijetiti", "spašavati": "spasiti", "prijavljivati se": "prijaviti se",
                 "osušiti": "sušiti", "povjerovati": "vjerovati", "kvariti se": "pokvariti se",
                 "porazgovarati": "razgovarati", "promiješati": "miješati", "zalijevati": "zaliti"}
-# Seit Paket 8 (06.11.2026) haben slomiti und propisati ihr Gegenstueck
-SEIT_PAKET8 = {"slomiti": "lomiti", "propisati": "propisivati"}
+# Seit Paket 8 (06.11.2026) haben slomiti und propisati ihr Gegenstueck, seit
+# Paket 15 (07.11.2026) zamijeniti (zamjenjivati)
+SEIT_PAKET8 = {"slomiti": "lomiti", "propisati": "propisivati", "zamijeniti": "zamjenjivati"}
 # Seit den Paketen 7 und 8 eigene Woerter mit eigener Bedeutung: odabrati
 # „aussuchen“ neben izabrati, pogađati se „verhandeln (Preis)“ neben cjenkati se.
 # Beim Tippen zaehlen sie dort weiter nicht (keine auch-Form, kein Partner, andere
 # Bedeutung).
-EIGENES_WORT = {"odabrati": "aussuchen", "pogađati se": "verhandeln (Preis)"}
+# Seit Paket 17 (07.11.2026) prepisati „abschreiben“ neben propisati „verschreiben“
+# (Ajdin: die beiden zaehlen nicht fuereinander).
+EIGENES_WORT = {"odabrati": "aussuchen", "pogađati se": "verhandeln (Preis)", "prepisati": "abschreiben"}
 
 
 def _level(daten, ids):
@@ -194,15 +197,17 @@ def test_partner_in_beide_richtungen(grunddaten):
     for wort, gegen in soll.items():
         assert bs.count(gegen) == 1, gegen
         assert nach_bs[gegen].get("partner") == wort, (gegen, wort)
-    assert len({frozenset(p) for p in soll.items()}) == 27
+    assert len({frozenset(p) for p in soll.items()}) == 28
     # Jedes Wort hat hoechstens ein Gegenstueck
     zaehler = {}
     for w in alle:
         if w.get("partner"):
             for x in (w["bs"], w["partner"]):
                 zaehler.setdefault(x, set()).add(frozenset((w["bs"], w["partner"])))
-    # Ausnahme seit Paket 7: povući hat zwei Gegenstuecke (povlačiti, vući)
+    # Ausnahme seit Paket 7: povući hat zwei Gegenstuecke (povlačiti, vući), seit
+    # Paket 19 auch izvršiti (vršiti, izvršavati)
     assert len(zaehler.pop("povući")) == 2
+    assert len(zaehler.pop("izvršiti")) == 2
     assert max(len(v) for v in zaehler.values()) == 1
 
 

@@ -15,6 +15,8 @@ import re
 
 import pytest
 
+import offen_p1020
+
 LEVEL = ["sein_wirken", "erscheinen_verschwinden", "miteinander_umgehen", "lieben_fuerchten", "wundern_beruhigen",
          "sich_bewegen", "losgehen_abbiegen", "kaempfen_angreifen", "schuetzen_strafen", "im_alltag_tun",
          "erledigen_umziehen", "paare_nachholen"]
@@ -32,7 +34,7 @@ WOERTER = {
                             "obratiti se", "obraćati se", "družiti se", "ponašati se", "poštovati", "cijeniti",
                             "pohvaliti", "hvaliti", "lagati", "slagati", "truditi se", "potruditi se",
                             "pogađati se"],
-    "lieben_fuerchten": ["ljubiti", "poljubiti", "zagrliti", "grliti", "sanjati", "mrziti",
+    "lieben_fuerchten": ["ljubiti", "poljubiti", "zagrliti", "grliti", "plakati", "sanjati", "mrziti",
                          "ljutiti se", "naljutiti se", "plašiti se", "uplašiti se"],
     "wundern_beruhigen": ["čuditi se", "vikati", "šutjeti / šutiti", "sumnjati", "patiti", "žaliti", "faliti",
                           "ličiti", "smiriti", "smirivati", "iznenaditi", "iznenađivati"],
@@ -64,7 +66,8 @@ AUCH = {
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
-    "sadržati": ["sadržavati"], "učestvovati": ["sudjelovati"], "prijeći": ["preći"],
+    # sadržavati ist seit Paket 19 (07.11.2026) das Gegenstueck zu sadržati (Ajdin, 06.11.2026)
+    "učestvovati": ["sudjelovati"], "prijeći": ["preći"],
     "skrivati": ["sakrivati"], "naviknuti se": ["navići se"], "pakovati": ["pakirati"],
 }
 
@@ -102,8 +105,12 @@ PARTNER = {
     "propisivati": "propisati", "nacrtati": "crtati", "izračunati": "računati",
 }
 
-# Warten auf Emir (Release\\Wortschatz\\v111_wartet_auf_emir.md), noch nicht in der App
-WARTET = ["plakati"]
+# Wartete auf Emir (Release\\Wortschatz\\v111_wartet_auf_emir.md), seit dem 07.11.2026 an
+# seiner Stelle in WOERTER; der Ton kommt im eigenen Schritt (tests/offen_p1020.json).
+WARTET = []
+NACHGEKOMMEN = ["plakati"]
+# Seit Paket 19 (07.11.2026) haben sadržati und sakriti ihr Gegenstueck
+SEIT_P1020 = {"sadržati": "sadržavati", "sakriti": "sakrivati"}
 
 
 def _level(daten):
@@ -250,6 +257,8 @@ def test_jedes_wort_und_jeder_satz_hat_emirs_ton(grunddaten, wurzel):
                 assert os.path.isfile(pfad) and os.path.getsize(pfad) >= ton_pruefen.MINDEST, (w["id"], e)
             if k in emir:
                 assert not os.path.exists(os.path.join(wurzel, "web", "audio", e["datei"])), e
+    # Seit dem 07.11.2026: was von der Warteliste kam, hat Emirs Ton erst nach dem Ton-Schritt
+    ohne = [o for o in ohne if o[1] not in offen_p1020.TON]
     assert not ohne, ohne[:20]
 
 
@@ -258,7 +267,7 @@ def test_partner_an_beiden_woertern(grunddaten):
     povući, povući aber auf povlačiti (zwei Partner, die App liest in beide Richtungen)."""
     neu = {w["bs"]: w for w in _neu(grunddaten)}
     alle = {w["bs"]: w for w in _alle(grunddaten)}
-    assert {b: w["partner"] for b, w in neu.items() if w.get("partner")} == PARTNER
+    assert {b: w["partner"] for b, w in neu.items() if w.get("partner")} == dict(PARTNER, **SEIT_P1020)
     for wort, gegen in PARTNER.items():
         if wort == "vući":
             assert alle["povući"]["partner"] == "povlačiti"

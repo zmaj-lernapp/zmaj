@@ -42,7 +42,7 @@ still works as a re-export for older scripts.)
 
 | Concept | Where | Notes |
 |---|---|---|
-| Section | `vokabeln.SEKTIONEN` | 17 sections group the levels on the learning path |
+| Section | `vokabeln.SEKTIONEN` | 31 sections group the levels on the learning path |
 | Level | `vokabeln.KATEGORIEN` | order in the list = level number; `baut_auf` names earlier levels whose words the level test reviews |
 | Word | `{"de": …, "bs": …}` inside a level | ID = `"<german meaning lowercased>:<bosnian>"`, computed in `inhalt.mit_kennung()` |
 | Cloze sentence | `vokabeln.SAETZE` | `___` is the gap, `answer` fills it, `kat` is the level |
@@ -54,7 +54,7 @@ still works as a re-export for older scripts.)
 ```mermaid
 erDiagram
   SECTION ||--|{ LEVEL : "groups (17)"
-  LEVEL ||--|{ WORD : "teaches (4,421)"
+  LEVEL ||--|{ WORD : "teaches (7,998)"
   LEVEL ||--o{ SENTENCE : "cloze (300)"
   LEVEL ||--o| GRAMMAR_LESSON : "explains (26)"
   LEVEL }o--o{ LEVEL : "baut_auf (review)"
