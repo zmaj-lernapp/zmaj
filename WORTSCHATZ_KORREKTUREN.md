@@ -541,7 +541,7 @@ zweite Form beim Tippen mit (`auch`), außer bei *ruksak*:
 | *plesti* | „plesti formell, štrikati lockerer“ | *štrikati* |
 | *pozorište* | „pozorište eher das Gebäude, teatar künstlerischer“ | *teatar* |
 | *žurka* | „žurka locker, zabava formell und offiziell“ | *zabava* |
-| *spakovati* | „spakovati sagt man am meisten“ | *spakirati* |
+| *spakovati* | „spakovati sagt man am meisten“; 06.11.2026: „spakirati passt nicht“ | **nichts** – *spakirati* zählt nicht |
 | *ruksak* | „ranac ist kein bosnisches Wort, sondern serbisch“ | **nichts** – *ranac* zählt nicht |
 | *turista* | „eher turista, beide richtig“ | *turist* |
 | *čistačica* | „spremačica ist formell und höflicher“ | *spremačica* |
@@ -569,3 +569,141 @@ Beim Einbau festgelegt:
 liegen nur in der Hülle (`audio_emir/`), ihre Nummern stehen in
 `ton_nur_emir.json`: w3422–w3719, in der Reihenfolge der App, jedes Wort
 vor seinem Satz. *vrijeme* und *još* hatten ihre Emir-Aufnahme schon.
+
+## 06.11.2026 – Wortschatz-Pakete 5 bis 9: Grundbegriffe, Menschen und Gesellschaft, Verben, Wie, wo und wann
+
+738 Wörter und 741 Beispielsätze aus `Release\Wortschatz\paket_05.json` bis
+`paket_09.json`, von Ajdin am 06.11.2026 durchgesehen, alle Fragen beantwortet
+(`v111_entscheidungen.md`). Diese Antworten gelten künftig auch für alles andere:
+
+| Thema | Ajdin | gilt |
+|---|---|---|
+| *doktor* / *ljekar* | „mach doktor/ ljekar“ | ein Wort *doktor / ljekar*, wie *kahva / kafa* |
+| *dozvoliti* / *dopustiti* | „dozvoliti/dopustiti“ | ein Wort, ebenso *dozvoljavati / dopuštati* |
+| *vijek* / *stoljeće* | Alternative | ein Wort *vijek / stoljeće* |
+| *rub* / *ivica* | „rub ist rand oder grenze also stadtrand oder waldrand und ivica ist kante“ | zwei Wörter |
+| *teškoća* / *poteškoća* | „teskoca nutzt man für schwere schwirigkeiten“ | zwei Wörter |
+| *molitva* / *dova* | „das soll allgemein bedeuten für bittgebet weil das sagen eher christen“ | zwei Wörter |
+| *groblje* / *mezarje* | „mach mezarje getrennt also als extra wort“ | zwei Wörter |
+| *činiti* / *raditi* | „ciniti ist für das wort tun aber für eine wirkung“ | *činiti* = Wirkung (Gutes tun) |
+| *podići* / *dići* | „dici ist die kurzform von beiden und ist umgangssprachlicher“ | *podići / podignuti* (Partner *podizati*), *dići* – *dizati* eigenes Paar |
+| *strana* / *stranica* | „strana ist eher die himmelsrichtung oder körperseite oder partei“ | *strana* zählt nicht bei *stranica* |
+| *projekat* | „nur projekat“ | *projekt* zählt nicht |
+| *prijeći* | „nur prijeci“ | *preći* zählt nicht |
+| *živac* | „nur zivac“ | *nerv* zählt nicht |
+| *zapravo* / *ustvari* | „zapravo/ustvari“ | ein Wort, *u stvari* zählt mit |
+| *naime* / *jer* | „mach naime/jer“ | ein Wort (wartet auf Emir) |
+| *poput* / *kao* | „das gleiche mach poput/kao“ | ein Wort (wartet auf Emir) |
+
+Beim Einbau festgelegt:
+
+- **Kein zweites Wort.** *ljekar*, *dopustiti* und *dopuštati* stecken im alten
+  Wort; der Lernstand zieht über `UMBENANNT` mit, ihre fertigen Sätze stehen als
+  eigene Einträge in den neuen Leveln.
+- **Zählt nicht** steht wie im Paket: *okolica*, *poduzeće*, *strana*, *projekt*,
+  *pomenuti*, *pominjati*, *dići*, *dizati*, *sadržavati*, *sudjelovati*, *preći*,
+  *sakrivati*, *navići se*, *pakirati*, *određeni*, *ukupni*, *potpuni*, *sopstven*,
+  *konačni*, *privatni*, *strani*, *natrag*.
+- **Nie nebeneinander** in einer Auswahl: *sav* / *cijeli*, *tu* / *ovdje*,
+  *tako* / *ovako*, *vrlo / veoma* / *jako* (`NIE_NEBENEINANDER`). Beim Tippen zählt
+  das andere Wort nicht, das hat Ajdin nicht freigegeben.
+- **Warten auf Emir:** was noch keine Aufnahme hat, steht nicht in der App
+  (`Release\Wortschatz\v111_wartet_auf_emir.md`). Dazu seit dem 06.11.2026 *smijeh*
+  mit seinem Satz: Die Aufnahme w4690 ist ein Lachen statt des Wortes („bei der
+  aufnahme tut zmaj lachen nicht das wort sprechen“). w4690 und w4691 sind frei.
+  Ebenso *plakati* mit seinem Satz, beide beim Nachhören beanstandet: w4114 „bei
+  plakati ist das zweite a zu lang“, w4115 „das e bei beba ist zu kurz“. w4114 und
+  w4115 sind frei.
+
+**Ton.** Wörter und Beispielsätze hat Emir gesprochen (ElevenLabs, 05./06.11.2026),
+Text genau wie in der App. Die Aufnahmen liegen nur in der Hülle (`audio_emir/`),
+ihre Nummern stehen in `ton_nur_emir.json`: w3724–w5205 in der Reihenfolge der App,
+ohne w4114, w4115, w4690 und w4691.
+*doktor / ljekar*, *dozvoliti / dopustiti*, *dozvoljavati / dopuštati*,
+*vijek / stoljeće*, *podići / podignuti* und *zapravo / ustvari* sind aus den
+fertigen Einzelaufnahmen zusammengesetzt, keine neue Aufnahme.
+
+## 07.11.2026 – Wortschatz-Pakete 10 bis 20: Stufe B2, Sektionen 18 bis 31
+
+1.773 Wörter und 1.774 Beispielsätze aus `Release\Wortschatz\paket_10.json` bis
+`paket_20.json`, von Ajdin am 07.11.2026 durchgesehen, alle Fragen und Nachfragen
+beantwortet (`b2_entscheidungen.md`, `b2_2_entscheidungen.md`). Ajdin zu Paket 10
+bis 20 für 1.3: „ne mach alle für 1.3“. Diese Antworten gelten künftig auch für
+alles andere:
+
+| Thema | Ajdin | gilt |
+|---|---|---|
+| *iznajmiti* / *unajmiti* | Alternative | *iznajmiti*, *iznajmljivati* = vermieten; *unajmiti*, *unajmljivati* = mieten |
+| *kabel* / *kabl* | „kabel“ | *kabel*; *kabl* zählt nicht, in der App *produžni kabel* statt *produžni kabl* |
+| *zaposlenik* / *uposlenik* | Vorschlag | ein Wort *zaposlenik / uposlenik*, wie *doktor / ljekar* |
+| *arhiv* / *arhiva* | „arhiv bedeutet die institution/ das gebäude und arhiva ist die dokumentensammlung oder die akten“ | zwei Wörter |
+| *poslanik* / *zastupnik* | „poslanik ist eher in der staatlichen ebene und zastupnik sehr häufig in der föderation BIH“ | zwei Wörter |
+| *magistar* / *master* | „magister ist altes system und master ist das neue system“ | zwei Wörter, gezeigt wird *magistar* |
+| *tabela* / *tablica* | „tabela bedeutet tabelle und tablica ist eher schild zb verkehrsschild“ | zwei Wörter |
+| *izum* / *pronalazak* | „izum ist eher für erfindung während pronalazak eher das entdecken oder der fund bedeutet“ | zwei Wörter |
+| *dvorana* / *sala* | „dvorana sind große hallen und sala sind kleine hallen“ | zwei Wörter |
+| *raj*, *pakao* / *džennet*, *džehennem* | Vorschlag | *raj* und *pakao* allgemein, *džennet* und *džehennem* muslimisch |
+| *svećenik* / *sveštenik* | Alternative | ein Wort |
+| *prijevoz*, *prijelaz*, *prijevod* | „prijevoz oder prevoz bedeutet transport/ beförderung undprijelaz oder prelaz bedeutet übergang oder kreuzung“ | Anzeige mit beiden Formen (*prijevoz / prevoz*), jede zählt |
+| *začin* / *začiniti* | „zacin als gewürz und und das tuwort er/sie/es würzt= on/ona/ono zacini“ | *začin* = Gewürz (nur die Einzahl zählt), *začiniti* = würzen; *začini* (Gewürze) bleibt eigenes Wort |
+| *odgoj* / *vaspitanje* | „nimm odgoj“ | *vaspitanje* zählt nicht, ebenso *vaspitati*, *vaspitavati* |
+| *kako bi* / *kako bih* | „kako bi/kako bih“, Nachfrage 2: B | nur diese beiden zählen |
+| *dosad* / *dosada*, *zasad* / *zasada* | Nachfrage 2: B | nur die Formen der Anzeige zählen |
+| *ubijeđivati*, *ubijeđenje* | „ne die bleiben raus das ist kroatisch“ | zählen nicht; *ubjediti* und *ubijedati* zählen mit |
+| Einzahl und Mehrzahl | „nur einzahl ausser es gibt ein satz mit mehrzahl“ | *primalac*: *primaoci* zählt nicht, der Satz hat die Einzahl |
+| Eine Form allein genannt | Nachfrage 1: B (beide Male) | Paket 10 bis 14: die andere Form zählt mit (*tužitelj*, *sa jedne strane*). Paket 15 bis 20: nur die genannte zählt (*kotač*, *kemija*, *djelomično*) |
+
+Beim Einbau festgelegt:
+
+- **Eigene Sektionen.** Stufe B2 steht in 14 Sektionen hinter B1 (18 bis 31,
+  129 Level), Gruppen über 20 Wörter auf zwei Level verteilt, jedes Wort vor
+  seinem Satz.
+- **Kein zweites Wort.** *iznajmiti* heißt jetzt „vermieten“, *produžni kabl* wird
+  *produžni kabel*, *zaposlenik* wird *zaposlenik / uposlenik*. Der Lernstand zieht
+  über `UMBENANNT` mit; der Satz von *uposlenik* steht als eigener Eintrag im
+  neuen Level.
+- **Nur im Satz (08.11.2026).** *nego i / već i* (Paket 10 Nr. 108) ist kein eigenes
+  Wort mehr. Ajdin: „nimm es nur rein in einem ganzen satz nur so hört es sich sehr
+  komisch an“. „Govori ne samo bosanski, nego i njemački.“ bleibt mit seiner
+  Aufnahme als eigener Eintrag im Level *Einerseits und andererseits*. Das Wort war
+  nie veröffentlicht, deshalb kein `UMBENANNT`.
+- **Partner an beiden Wörtern,** auch am alten Verb (201 Paare). *izvršiti* hat zwei
+  Partner, *vršiti* und *izvršavati*. *sadržavati* ist jetzt das Gegenstück zu
+  *sadržati* (Ajdin, 06.11.2026) und zählt dort mit; *sakrivati* das zu *sakriti*,
+  bei *skrivati* zählt es weiter nicht. *prepisati* „abschreiben“ und *propisati*
+  „verschreiben“ zählen nicht füreinander.
+- **Zählt mit / zählt nicht** steht wie im Paket (`auch`, `zaehlt_nicht`), geprüft in
+  `tests/test_paket10.py` bis `test_paket20.py`.
+- **Nie nebeneinander** in einer Auswahl: 80 weitere Paare (`NIE_NEBENEINANDER`), 79
+  nach den Hinweisen der Pakete, etwa *začin* / *začini*, *unuk* / *unuka*,
+  *tablica* / *tabla*, dazu *patnja* „Leid“ / *stradanje* „Verunglücken / Leid“ im
+  selben Level.
+- **Warteliste.** Die 15 Einträge, die auf Emir warteten (*rub*, *ivica*, *poteškoća*,
+  *smijeh*, *rat*, *dova*, *mezarje*, *dići*, *dizati*, *plakati*, *mrtav*, *uopšte*,
+  *naime / jer*, *poput / kao*, *ukupno*), stehen mit ihrem Satz wieder an ihrer
+  Stelle, die acht aus dem Zahnarzt-Teil ebenso. *dići* und *dizati* sind ein Paar.
+
+**Ton.** Die Nummern w5317–w8952 sind vergeben, in der Reihenfolge der App
+(`Release\Wortschatz\_uebersetzung_p10_20\nummern.json`, mit der Herkunft jeder
+Datei unter `Stimme_Emir_neu`). Emir hat am 07.11.2026 gesprochen (ElevenLabs,
+`Stimme_Emir_neu\monat_vorbereitung`); 3.634 Aufnahmen stehen in `ton_nur_emir.json`
+und in der Hülle (`audio_emir/`, Zweig `sammeln-v111`). Übernommen wurde nur, was
+eindeutig passt: gesprochener Text gleich dem Bosnischen, ohne Unterschied bei
+Satzzeichen; wo Ajdin nach der Probe gewählt hat (*smijeh*, *plakati*, *gušiti se*,
+*ivica* und drei Sätze), seine Fassung A, sonst die beste gemessene. *rub*, *rat*, *mrtav*,
+*naime* und *poput* kommen aus der Aufnahme vom 05.11.2026, *naime / jer* und
+*poput / kao* sind aus fertigen Einzelaufnahmen zusammengesetzt. w5317 ist
+*produžni kabel* und ersetzt w2278. w5331, der Satz von *smijeh*, hat die alte
+Aufnahme w4691: Ajdin am 08.11.2026, sie „passt“. Am selben Tag nach dem Anhören
+neu: *izraz* (w6301) und *strast* (w5726) in Ajdins Fassung A. w5562 und w8899
+(*nego i*, *nego i / već i*) sind seit dem 08.11.2026 frei und werden nicht neu
+vergeben.
+
+**Übersetzungen.** Die 3.672 neuen Texte stehen in allen sieben Sprachen
+(`uebersetzungen.py`, Block „Wortschatz-Pakete 10 bis 20“). Über `woerter`:
+*namirnica* („Lebensmittel“ ist schon ein Level-Name), *množina* („Mehrzahl“ ist
+schon Grammatik-Überschrift; nicht en, sv) und auf Schwedisch *pitati* / *upitati*
+(fråga heißt auch „Frage“). Drei Bedeutungen fielen mit alten zusammen und heißen
+jetzt anders: sv „Jeden Monat schicke ich meinen Eltern eine Überweisung.“, nb
+„Vorfall“ (insident statt tilfelle, das ist *slučaj*), da „Ich kann mich nicht an
+seinen Namen erinnern.“ (komme i tanke om).

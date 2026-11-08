@@ -57,8 +57,8 @@ def test_kuchen_woerter_je_sektion_stimmt(wurzel):
 
 def test_zahlen_in_den_diagrammen_passen_zum_manifest(wurzel):
     n = json.load(io.open(os.path.join(wurzel, "data", "manifest.json"), encoding="utf-8"))["counts"]
-    erwartet = {"2,942": n["words"], "300": n["sentences"], "406": n["glossary_entries"],
-                "2,411": n["audio_files"], "16": n["grammar_lessons"], "107": n["levels"]}
+    erwartet = {"7,997": n["words"], "300": n["sentences"], "406": n["glossary_entries"],
+                "2,411": n["audio_files"], "26": n["grammar_lessons"], "295": n["levels"]}
     alles = "\n".join(b for _, b in bloecke(wurzel))
     for text, wert in erwartet.items():
         if text in alles:

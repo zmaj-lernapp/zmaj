@@ -68,6 +68,8 @@ def test_jede_neue_wort_id_hat_emirs_ton(grunddaten, index, wurzel):
                 if huelle:
                     assert os.path.isfile(os.path.join(huelle, SCHON_DA[k])), (w["id"], k)
                 continue
+            if k == "dozvoliti / dopustiti":
+                continue     # seit Paket 7 (06.11.2026), Nummer dort, tests/test_paket7.py
             e = emir.get(k)
             if not e:
                 ohne.append((w["id"], k))
@@ -81,7 +83,9 @@ def test_jede_neue_wort_id_hat_emirs_ton(grunddaten, index, wurzel):
                 assert os.path.isfile(pfad) and os.path.getsize(pfad) >= ton_pruefen.MINDEST, \
                     "Emir-Aufnahme fehlt in der Huelle: %s (%s)" % (e["datei"], w["id"])
     assert not ohne, ohne[:20]
-    assert len(gesehen) == 155      # 145 Woerter, 5 mit allen Formen, 5 mit der ersten Form
+    # 145 Woerter, 5 mit allen Formen, 5 mit der ersten Form, dazu seit Paket 7
+    # dozvoliti / dopustiti mit beiden Formen
+    assert len(gesehen) == 156
 
 
 def test_nummern_w2521_bis_w2671_gehoeren_dem_paket(grunddaten):

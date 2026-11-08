@@ -136,11 +136,24 @@ def test_groesse_unter_der_cloud_grenze(grunddaten, index_html):
     rund 567 000 Byte, gut 60 % der Grenze (bis Paket 2: 519 000). Kartei
     und gewusst allein erreichen sie bei etwa 11 000 Eintraegen - fuer das
     Ziel C1/C2 mit einem Satz zu jedem Wort braucht die Sicherung vorher
-    kuerzere Kennungen fuer Saetze oder ein zweites Dokument."""
+    kuerzere Kennungen fuer Saetze oder ein zweites Dokument.
+
+    Mit den Paketen 5 bis 9 (06.11.2026, 4 425 Eintraege) sind es 52 Byte je
+    Eintrag, auf 7 000 Eintraege gerechnet rund 634 000 Byte, gut 70 % der
+    Grenze; Kartei und gewusst allein erreichen sie jetzt bei etwa 9 900
+    Eintraegen. Bei allen 4 425 Woertern heute: rund 401 000 Byte (45 %).
+
+    Mit den Paketen 10 bis 20 (07.11.2026, 7 998 Eintraege, Stufe B2) sind es 58 Byte
+    je Eintrag in der Kartei und 102 mit gewusst. Wer alle 7 998 kann, braucht dafuer
+    rund 819 000 Byte, 91 % der Grenze; dazu kommen Topf, Sterne und der Rest.
+    Bei etwa 8 800 Eintraegen ist die Grenze allein damit erreicht, dann meldet
+    cloudSpeichern() 'zu gross' und sichert nichts mehr. Vor dem naechsten Paket
+    brauchen Saetze kuerzere Kennungen in der Sicherung oder der Stand ein zweites
+    Dokument - darum die Grenze hier bei 92 %: das naechste Paket schlaegt an."""
     grenze = int(re.search(r"const CLOUD_GROESSE_MAX = (\d+);", index_html).group(1))
     ids = list(dict.fromkeys(w["id"] for k in grunddaten["kategorien"] for w in k["words"]))
     kompakt = dict(ensure_ascii=False, separators=(",", ":"))
     kartei = len(json.dumps({"tag": 9999, "n": 30, "w": {i: [6, 9999, 9999] for i in ids}}, **kompakt).encode("utf-8"))
     gewusst = len(json.dumps(ids, **kompakt).encode("utf-8"))
-    assert kartei / len(ids) < 50, kartei / len(ids)
-    assert (kartei + gewusst) * 7000 / len(ids) < grenze * 0.65
+    assert kartei / len(ids) < 60, kartei / len(ids)
+    assert kartei + gewusst < grenze * 0.92, (kartei + gewusst, grenze)
