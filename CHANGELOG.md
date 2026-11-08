@@ -7,6 +7,12 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- A sandbox in the test app only (8.11.2026): when Android reports the app ID
+  `de.smartdragon.zmaj.test` and the build carries a "-test" version, every
+  level, section, level test and story is open, without writing anything into
+  `passed`, `known` or `read`; the version line says "Sandbox: alles offen".
+  Hearts, ads, the placement test and saving work as before. The store app and
+  the browser version stay locked exactly as before.
 - Ten grammar lessons for B1 (approved by the maintainer on 7.11.2026), each in
   the level it explains: verb pairs, present-tense stems, the imperative, dates
   and times, ne-/ni- words and collective numbers, the conditional, possessive

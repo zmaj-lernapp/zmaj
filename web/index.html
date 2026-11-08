@@ -3475,6 +3475,50 @@ async function admobZeigen(belohnt, darfNoch){
 const SCHUTZ_MAX = 2;              // so viele Serienschutz gleichzeitig  (muss zu start.py passen)
 const SCHUTZ_TAGE = 10;            // alle so viele Tage wächst ein Schutz nach
 const ALLE_FREI = new URLSearchParams(location.search).get('alle') === '1';
+/* Sandbox in der Test-App (08.11.2026, Ajdin: "nein bei der test app lass
+   sie offen das ist wie eine sandbox app", und "ja" zu einem festen
+   Schalter "alles offen"). In "Zmaj Test" ist jedes Level und jede Sektion
+   offen, auch der Zahnarzt-Teil, jeder Level-Test und jede Geschichte - wie
+   mit ?alle=1, aber NUR die Sperren: Leben, Werbung, Einstufung und die
+   Frage nach der Bewertung laufen wie in der echten App. Freigeschaltet
+   wird nur im Kopf der App, in passed, known oder read wird dafuer nichts
+   geschrieben. Wer dort lernt, lernt wie immer: Lernstand, Speichern und
+   Cloud-Abgleich bleiben genau wie bisher.
+   An ist sie nur, wenn BEIDES stimmt:
+     - Android selbst meldet ueber App.getInfo() die App-ID
+       de.smartdragon.zmaj.test. Die hat nur der debug-Bau der Huelle
+       (applicationIdSuffix ".test" in app/build.gradle), Google Play kennt
+       sie nicht. Die echte App meldet de.smartdragon.zmaj.
+     - APP_VERSION endet auf "-test". Das setzt app_bauen.py
+       (version_einsetzen) nur fuer das Debug-Paket und --nur-abgleich,
+       nie fuer --aab.
+   Im Zweifel aus: im Browser gibt es kein window.Capacitor, und fehlt
+   etwas, wirft getInfo() oder antwortet es nicht binnen SANDBOX_WARTEN,
+   bleibt alles gesperrt wie bisher. Gefragt wird einmal in starten(), vor
+   dem ersten Zeichnen. Zu sehen ist sie nur in der Versionszeile, siehe
+   versionText(). */
+const SANDBOX_APP_ID = 'de.smartdragon.zmaj.test';
+const SANDBOX_WARTEN = 2000;
+let SANDBOX = false;
+function sandboxErkannt(appId, version){
+  return appId === SANDBOX_APP_ID && typeof version === 'string' && /-test$/.test(version);
+}
+async function sandboxPruefen(){
+  SANDBOX = false;
+  try{
+    const C = window.Capacitor;
+    const A = C && C.Plugins && C.Plugins.App;
+    if(!A || typeof A.getInfo !== 'function') return false;
+    if(typeof C.isNativePlatform !== 'function' || C.isNativePlatform() !== true) return false;
+    if(!sandboxErkannt(SANDBOX_APP_ID, APP_VERSION)) return false;   // Store-Bau: gar nicht erst fragen
+    const info = await Promise.race([A.getInfo(),
+                                     new Promise(r => setTimeout(() => r(null), SANDBOX_WARTEN))]);
+    SANDBOX = sandboxErkannt(info && info.id, APP_VERSION);
+  }catch(e){ SANDBOX = false; }
+  return SANDBOX;
+}
+/* Ob die Sperren gerade ausgesetzt sind: ?alle=1 oder die Sandbox. */
+const allesOffen = () => ALLE_FREI || SANDBOX;
 
 /* ---------------- Sprache ----------------
    Alle Texte der Oberfläche kommen vom Server aus sprachen.py.
@@ -3530,9 +3574,13 @@ function t(key, vars){
      Aufrufer es mitgeben muss - so gilt es fuer die data-t-Elemente aus
      applyTexts() (Fuss, Versionszeile) wie fuer jeden t()-Aufruf. Nur wenn
      der Platzhalter dasteht: alle anderen Texte laufen wie vorher. */
-  if(s.indexOf('{version}') >= 0) vars = Object.assign({version: APP_VERSION}, vars);
+  if(s.indexOf('{version}') >= 0) vars = Object.assign({version: versionText()}, vars);
   return fuelle(s, vars);
 }
+/* Die Nummer, wie Fuss und Versionszeile sie zeigen. In der Sandbox der
+   Test-App mit einem kurzen Hinweis dahinter (08.11.2026), sonst genau
+   APP_VERSION. Nur Ajdin sieht ihn, deshalb nur auf Deutsch. */
+function versionText(){ return APP_VERSION + (SANDBOX ? ' · Sandbox: alles offen' : ''); }
 /* Franzoesisch stellt das Substantiv nach null in die Einzahl ("0 nouveau
    mot"); Deutsch, Englisch, Schwedisch, Norwegisch, Daenisch und
    Niederlaendisch nehmen die Mehrzahl, Tuerkisch hat nur eine Form. Ohne diese
@@ -3846,8 +3894,8 @@ const hoechsterBestanden = () => {
 const isUnlocked = i => {
   /* Beim Zahnarzt: dieselbe Regel, nur innerhalb des Teils. Der Stand im
      Lernpfad und die Einstufung spielen dort keine Rolle. */
-  if(i >= CATEGORIES.length && CATEGORIES.length) return ALLE_FREI || i - CATEGORIES.length <= zaHoechster() + 1;
-  return ALLE_FREI || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
+  if(i >= CATEGORIES.length && CATEGORIES.length) return allesOffen() || i - CATEGORIES.length <= zaHoechster() + 1;
+  return allesOffen() || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
 };
 /* "Dran" ist das erste nicht bestandene Level ab dem Einstieg. Danach
    richten sich der Weitermachen-Knopf, die markierte Stelle im Lernpfad,
@@ -4310,7 +4358,7 @@ function ansageNachFokus(){ if(ansageText) ansagen(ansageText, 80); }
 const levelPct = c => { const n=c.words.length; return n ? Math.floor(c.words.filter(w=>known.has(w.id)).length/n*100) : 0; };
 /* Der Vergleich läuft ueber ganze Zahlen und nicht ueber die Prozentanzeige:
    so hängt die Freigabe nicht daran, wie gerundet wird. */
-const testAllowed = c => ALLE_FREI || passed.has(c.id) ||
+const testAllowed = c => allesOffen() || passed.has(c.id) ||
   c.words.filter(w=>known.has(w.id)).length * 100 >= c.words.length * TEST_FREI_AB;
 const typable = w => w.bs.length<=14 && !/[.…→]/.test(w.bs) && !w.bs.includes(' / ');
 const today = () => { const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
@@ -11032,7 +11080,7 @@ function showPath(){
 }
 
 /* =================== GESCHICHTEN-PFAD =================== */
-const storyUnlocked = i => ALLE_FREI || i===0 || read.has(STORIES[i-1].id);
+const storyUnlocked = i => allesOffen() || i===0 || read.has(STORIES[i-1].id);
 function showStoryPath(){
   $('tag').textContent=t('gesch.titel');
   const done = STORIES.filter(s=>read.has(s.id)).length;
@@ -15243,6 +15291,9 @@ async function init(){
 }
 
 async function starten(){
+  /* Vor allem anderen: ladeDaten() setzt die Texte (Versionszeile), und
+     nachAnmeldung() zeichnet den Lernpfad. Siehe SANDBOX. 08.11.2026 */
+  await sandboxPruefen();
   try{
     await ladeAudio();
     await ladeDaten();
