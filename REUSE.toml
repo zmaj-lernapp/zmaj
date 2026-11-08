@@ -27,6 +27,7 @@ path = [
   "grammatik.py",
   "geschichten.py",
   "uebersetzungen.py",
+  "zahnarzt.py",
   "bedeutung_ausnahmen.json",
   "sonderzeichen_korrekturen.json",
   "ton_ausnahmen.json",

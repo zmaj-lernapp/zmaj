@@ -22,17 +22,17 @@ def _lade(name):
 
 
 def vocabulary():
-    """All 2,942 words: id, bs, level, level_position, section, translations, audio."""
+    """All 7,997 words: id, bs, level, level_position, section, translations, audio."""
     return _lade("vocabulary")["entries"]
 
 
 def levels():
-    """The 107 levels in course order, with labels and tips in 8 languages."""
+    """The 295 levels in course order, with labels and tips in 8 languages."""
     return _lade("vocabulary")["levels"]
 
 
 def sections():
-    """The 14 sections of the learning path."""
+    """The 31 sections of the learning path."""
     return _lade("vocabulary")["sections"]
 
 
@@ -52,7 +52,7 @@ def glossary():
 
 
 def grammar(language="en"):
-    """The 16 grammar lessons as shown in the given interface language."""
+    """The 26 grammar lessons as shown in the given interface language."""
     return _lade("grammar")["lessons"][language]
 
 

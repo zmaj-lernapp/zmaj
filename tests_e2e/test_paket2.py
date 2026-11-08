@@ -95,6 +95,7 @@ def test_sektion_elf_im_lernpfad(seite, heute_stand):
     assert e == {"level": ["lang_kurz", "voll_leer", "moeglich", "wie_jemand_ist", "benehmen", "glueck_sorgen",
                            "sinne"],
                  # seit 01.11.2026 dazwischen die drei Level aus Paket 3
+                 # seit 06.11.2026 folgen die Level aus den Paketen 7 und 8
                  "vor": ["paare_geben", "paare_denken", "paare_alltag", "im_haushalt", "kaufen_zurueckgeben",
-                         "geld_sparen", "paare_mehr", "passieren", "notfall"]}
+                         "geld_sparen", "paare_mehr", "sagen_betonen", "mitteilen_bitten"]}
     assert seite.fehler == []

@@ -45,11 +45,57 @@ PAKET34 = {"kaufen_zurueckgeben", "geld_sparen", "paare_mehr", "koerper_aussen",
            "beschwerden", "in_der_praxis", "untersuchen_heilen", "apotheke", "gesund_leben", "zeitangaben",
            "sofort_endlich", "sport", "hobbys", "medien", "urlaub", "schule", "lernen_studieren", "berufe",
            "arbeitsplatz"}
+# Und die 59 Level aus den Wortschatz-Paketen 5 bis 9 (06.11.2026): 22 in Tun und
+# Lassen, dazu die Sektionen 15 bis 17. Geprueft in tests/test_paket5.py bis test_paket9.py.
+PAKET59 = {"alltag_information", "anfang_ende", "aufhoeren_vermeiden", "beziehungen", "das_leben",
+           "denken_entscheiden", "dinge_regeln", "eigenschaften", "entscheiden_annehmen",
+           "erledigen_umziehen", "ermoeglichen_entdecken", "erscheinen_verschwinden", "frueher_spaeter",
+           "fuehren_bringen", "fuerwoerter", "ganz_viele", "gemeinde_gesellschaft", "glaube_gedenken",
+           "grund_folge", "gruppe_netz", "heben_ziehen", "hier_dort", "hilfe_hindernis", "im_alltag_tun",
+           "innen_aussen", "kaempfen_angreifen", "krieg_recht", "kultur_bildung", "lieben_fuerchten",
+           "losgehen_abbiegen", "menge_teil", "menschen", "miteinander_umgehen", "mitteilen_bitten",
+           "nutzen_schaden", "ort_raum", "paare_nachholen", "praepositionen_mehr", "reihe_wert",
+           "richtung_mass", "saetze_verbinden", "sagen_betonen", "schaffen_erreichen", "schuetzen_strafen",
+           "sein_wirken", "sich_bewegen", "staat_politik", "starten_planen", "stimmung_streit",
+           "technik_energie", "veraendern_herstellen", "wahrheit_zweifel", "wann_wie_oft", "wer_ist_wer",
+           "wichtig_bekannt", "wie_man_es_meint", "wie_sehr", "wirtschaft", "wundern_beruhigen"}
+# Und die 129 Level aus den Wortschatz-Paketen 10 bis 20 (07.11.2026), Sektionen 18 bis 31.
+# Geprueft in tests/test_paket10.py bis test_paket20.py.
+PAKET1020 = {"abitur_klassenfahrt", "abschluss_titel", "abteilung_mitarbeiter", "aemter_zustaendigkeit",
+             "aerzte_krankenhaus", "an_der_uni", "ankommen_ansehen", "anlegen_vermoegen",
+             "anpassen_verstaerken", "arten_einzelheiten", "asthma_migraene", "auf_dem_amt",
+             "aufstieg_weiterbildung", "augenbraue_knoechel", "autofahren", "bank_darlehen", "bauen_einbauen",
+             "begegnen_versammeln", "begruenden_zusammenfassen", "berichten_verbreiten", "beruf_karriere",
+             "bescheid_einspruch", "beschreiben_erklaeren", "bestimmen_hindern", "bewegen_verschieben",
+             "buecher_kunst", "buerger_rechte", "buerste_kamm", "charakter", "chirurgie_pflege",
+             "computer_dateien", "daher_damit_bevor", "dinge_haushalt", "durchfuehren_schaffen",
+             "einerseits_andererseits", "entdecken_erfinden", "entwicklung_vergleich", "erkennen_ausdruecken",
+             "ernaehrung", "ernten_pflanzen", "erziehung_aufwachsen", "etwas_beurteilen", "faecher_wissen",
+             "familie_generationen", "fest_sichtbar", "feste_wendungen", "firma_leitung", "folgen_bewaeltigen",
+             "forschen_messen", "forschen_verstehen", "ganz_teilweise", "geburt_behandlung", "gefuehle_genauer",
+             "geld_preise", "gericht", "geschichte_frueher", "grundlage_rahmen", "gut_schlecht",
+             "immer_zukunft", "in_der_stadt", "investieren_beitragen", "jagen_fischen", "kalorien_gewuerze",
+             "keine_ahnung", "klima_energie", "koerper_genauer", "krankheiten", "kreisverkehr_faehre",
+             "krieg_frieden", "landschaft_boden", "leiden_lindern", "lesen_aussprechen", "liebe_ehe",
+             "liefern_beschaffen", "literatur_malerei", "meinung_kritik", "mengen_masse", "menschen_umgehen",
+             "nachbarn_miteinander", "naturkatastrophen", "ozean_schlucht", "paare_bekannt", "pflanzen_anbau",
+             "polizei_anzeige", "post_abmeldung", "produktion_handel", "psyche_wohlbefinden", "raeume_moebel",
+             "rechte_arbeit", "reden_verstaendigen", "regie_premiere", "reisen_unterkunft",
+             "religion_gemeinschaft", "reue_enttaeuschung", "rohre_strom", "sagen_hervorheben", "sauber_kaputt",
+             "schulden_verluste", "schule_klasse", "sport_wettkampf", "sprache_grammatik",
+             "staat_institutionen", "staerken_verbessern", "strassen_bahn", "streichen_kleben",
+             "streit_versoehnung", "streng_zuverlaessig", "stress_erschoepfung", "theater_musik",
+             "tiere_genauer", "trainieren_siegen", "trauer_beileid", "trotz_dank", "ueberlegen_einschaetzen",
+             "unfaelle_pannen", "verbinden_trennen", "versicherung_zinsen", "vertraege", "vor_allem_angeblich",
+             "vorhersehen_erkennen", "wachstum_rueckgang", "wahlen_parlament", "wann_wie_lange", "werbung",
+             "wie_man_tut", "wie_sicher", "wo_wohin", "wohnen_miete", "zeitung_fernsehen"}
 GEORDNET = {"zahlen", "wochentage", "monate", "mengen", "konjugation", "zukunft", "routine",
-            "vergangenheit", "modal", "adjektive"} | PAKET1 | PAKET2 | PAKET34
+            "vergangenheit", "modal", "adjektive"} | PAKET1 | PAKET2 | PAKET34 | PAKET59 | PAKET1020
 TEIL_REIHEN = {"zeit": ["jutro", "podne", "večer", "noć"],
                "wetter": ["proljeće", "ljeto", "jesen", "zima"],
-               "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"]}
+               "basics": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"],
+               # Seit 06.11.2026 (Paket 5): mačak vor seinem Beispielsatz
+               "tiere": ["mačak", "Naš mačak spava cijeli dan."]}
 # Personenfolge, am deutschen Pronomen abgelesen: ja, ti, on/ona, mi, vi, oni
 PERSON = {"ich": 0, "du": 1, "er": 2, "wir": 3, "ihr": 4, "sie": 5}
 # vergangenheit: biti in der Folge ja, ti, on, ona, mi - am deutschen
@@ -266,7 +312,7 @@ def test_gruesse_nach_tageszeit(grunddaten):
 
 
 def test_teil_reihen(grunddaten):
-    """Nur zeit, wetter und basics haben "reihe"; jedes Wort darin steht
+    """Nur zeit, wetter, basics und tiere haben "reihe"; jedes Wort darin steht
     genau einmal im Level, und "reihenfolge" fehlt dort (der Rest ist
     gemischt)."""
     mit = {k["id"]: k["reihe"] for k in grunddaten["kategorien"] if "reihe" in k}
