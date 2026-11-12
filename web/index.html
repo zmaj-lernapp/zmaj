@@ -4141,8 +4141,12 @@ function zahlWert(s){
   if(i >= 0) return i;
   for(const z in ZAHL_ZEHNER) if(strip(ZAHL_ZEHNER[z]) === t) return Number(z) * 10;
   for(const n in ZAHL_GROSS)  if(strip(ZAHL_GROSS[n])  === t) return Number(n);
-  /* Zusammengesetzt, z.B. "dvadeset jedan". Nur Zehner plus Einer. */
+  /* Zusammengesetzt, z.B. "dvadeset jedan". Nur Zehner plus Einer.
+     Seit dem 12.11.2026 auch mit "i" dazwischen, "dvadeset i jedan": bs-Web
+     hat beides etwa gleich oft (193 / 156). So gilt es fuer jede Zahl, beim
+     Tippen wie beim Sprechen. */
   const teile = t.split(' ');
+  if(teile.length === 3 && teile[1] === 'i') teile.splice(1, 1);
   if(teile.length === 2){
     const a = zahlWert(teile[0]), b = zahlWert(teile[1]);
     /* Nur Zehner plus Einer: 20 bis 90, glatt, und danach eine 1 bis 9.
@@ -11605,21 +11609,30 @@ const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako']
    des Vorrats: als Menge nachschlagen statt die Liste jedes Mal abzulaufen (07.11.2026). */
 const _NIE = new Set(NIE_NEBENEINANDER.flatMap(([x, y]) => [x + '\u0000' + y, y + '\u0000' + x]));
 const nieNebeneinander = (a, b) => _NIE.has(a + '\u0000' + b);
+/* auch_var zaehlt hier wie auch (12.11.2026): steht boca einmal als eigenes
+   Wort in der App, liegt es nie als falscher Knopf neben flaša. */
+const _auchAlle = w => [...(w.auch || []), ...(w.auch_var || [])];
 function geschwister(w){
   const b = _bedeutung(w.de);
-  const meineAuch = new Set((w.auch || []).flatMap(_formen));
+  const meineAuch = new Set(_auchAlle(w).flatMap(_formen));
   const meineFormen = _formen(w.bs);
   return wortVorrat().filter(x => x.bs !== w.bs &&
     ((b && _bedeutung(x.de) === b) ||
      istPartner(w, x) ||
      nieNebeneinander(w.bs, x.bs) ||
      _formen(x.bs).some(f => meineAuch.has(f)) ||
-     (x.auch || []).flatMap(_formen).some(f => meineFormen.includes(f))));
+     _auchAlle(x).flatMap(_formen).some(f => meineFormen.includes(f))));
 }
+/* auch_var (12.11.2026, varianten.py): andere bosnische Woerter, die beim
+   Tippen genauso gelten - bei "Flasche" auch boca, bei "Pijem kahvu" auch
+   "Pijem kafu". Gebaut in inhalt.py, nur an Woertern, die getippt werden
+   koennen (typable()). Sie zaehlen beim Tippen, hier und im Lueckensatz,
+   und halten in der Auswahl falsche Knoepfe fern (geschwister()). Beim
+   Sprechen zaehlt weiter nur bs. */
 function annehmbar(w){
   const b = _bedeutung(w.de);
   const gleich = b ? wortVorrat().filter(x => x.bs !== w.bs && _bedeutung(x.de) === b && !istPartner(w, x)).map(x=>x.bs) : [];
-  return [w.bs, ...gleich, ...(w.auch || [])];
+  return [w.bs, ...gleich, ...(w.auch || []), ...(w.auch_var || [])];
 }
 function distractors(target, words, n){
   /* Auch die Bedeutung vergleichen, nicht nur das bosnische Wort. Sonst
@@ -12102,8 +12115,12 @@ function renderTask(task, body, done, opts={}){
       /* "auch" am Lueckensatz (23.10.2026): weitere richtige Antworten, wie
          bei den Woertern. Bei "Moj ___ je pčelar." gelten auch stric und die
          Koseformen striko und adžo (WORTSCHATZ_KORREKTUREN.md). Gezeigt und
-         gesprochen wird weiter s.answer. matches() trennt bei " / ". */
-      const antworten = [s.answer, ...(s.auch || [])].join(' / ');
+         gesprochen wird weiter s.answer. matches() trennt bei " / ".
+         auch_var (12.11.2026, varianten.py): dieselbe Stelle mit dem anderen
+         Wort in derselben Form - bei "Voda je u ___." auch boci, bei
+         "Pijem ___." auch kafu. Bis dahin galt hier nicht einmal das "auch"
+         des Wortes, nur flaši. */
+      const antworten = [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ');
       const r=matches(inp.value, antworten);
       if(r==='leer'){ $$('xFb').textContent=t('task.tippe_luecke'); $$('xFb').className='feedback no'; ansagen(esc(t('task.tippe_luecke'))); return; }
       if(vertippt(r, antworten)) return;   // wie in der Schreibaufgabe, dazu die andere Endung (27.10.2026)

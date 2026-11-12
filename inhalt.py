@@ -37,6 +37,7 @@ import geschichten     # noqa: E402
 import sprachen        # noqa: E402  (Texte der Oberfläche in allen Sprachen)
 import uebersetzungen  # noqa: E402  (Lerninhalte in allen Sprachen)
 import zahnarzt        # noqa: E402  (der versteckte Teil, zählt nirgends mit)
+import varianten       # noqa: E402  (andere Wörter, die beim Tippen auch gelten)
 
 
 def lade_daten(sprache=None):
@@ -46,7 +47,7 @@ def lade_daten(sprache=None):
     sprache: Kürzel aus sprachen.py ("de", "en", "tr", …). Die Lerninhalte
     werden damit übersetzt, soweit uebersetzungen.py etwas dazu weiß.
     Der bosnische Teil bleibt natürlich immer bosnisch."""
-    for modul in (vokabeln, grammatik, geschichten, sprachen, uebersetzungen, zahnarzt):
+    for modul in (vokabeln, grammatik, geschichten, sprachen, uebersetzungen, zahnarzt, varianten):
         importlib.reload(modul)
     code = sprache if sprachen.ist_sprache(sprache) else sprachen.GRUNDSPRACHE
     daten = {
@@ -74,7 +75,9 @@ def lade_daten(sprache=None):
         "uebersetzt": {"fertig": fertig, "gesamt": gesamt},
         "zahnarzt": zahnarzt_fuer_app(code),
     })
-    return daten
+    # Varianten (12.11.2026): "auch_var" an Wörtern und Lückensätzen, beim
+    # Satzbau mehr "ohne" - siehe varianten.py. Bosnisch, in jeder Sprache gleich.
+    return varianten.varianten_anwenden(daten, satz_kacheln)
 
 
 def zahnarzt_fuer_app(code):
@@ -522,6 +525,9 @@ def pruefe_vokabeln(daten):
 
     # Sätze, deren Zahl wechselt (25.10.2026)
     probleme += pruefe_zahlen(daten)
+
+    # Andere Wörter, die beim Tippen auch gelten (12.11.2026, varianten.py)
+    probleme += varianten.pruefe_varianten(daten)
 
     # Grammatik-Lektionen
     for kid, lektion in daten.get("grammatik", {}).items():
