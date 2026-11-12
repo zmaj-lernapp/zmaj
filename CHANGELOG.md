@@ -353,6 +353,16 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- The yellow marks above an exercise ("Review: Weather & nature", "Try again",
+  "New word") no longer overlap (reported with a screenshot from a 360-point-wide
+  phone on 11.11.2026). When they did not fit side by side, the second one wrapped
+  directly onto the first without any gap. Wrapped marks now stand 6 px apart and
+  each line is centred; a mark whose level name needs two or three lines becomes a
+  rounded box instead of an oval. With one line of marks everything stays where it
+  was. The hidden instruction text in that line still took about 11 px of width
+  through letter spacing and pushed the marks off-centre; it no longer does.
+  `tests_e2e/test_marken.py` (longest level name in all 8 languages, 360 and 320
+  points wide, normal and large system font).
 - Typing without diacritics (checked 12.11.2026, writing task and gap sentence in
   every mode): a number word without its marks (*sest* for *šest*, *cetiri* for
   *četiri*) now counts like any other word, right with "Correct! With the special

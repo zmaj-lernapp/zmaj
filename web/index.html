@@ -432,9 +432,33 @@
   .antwortfeld .weiterbox{margin-top:10px}
   /* Nur die Aufgabenzeile aus kick(), nicht jede .kicker: der Level-Test
      haengt "Alle Levels geschafft" ebenfalls als .kicker an. */
-  #lesson .kicker.aufgabe, #test .kicker.aufgabe, #einstufungView .kicker.aufgabe{font-size:0; margin:0 0 8px; min-height:0}
-  #lesson .kicker.aufgabe .rep, #test .kicker.aufgabe .rep, #einstufungView .kicker.aufgabe .rep{font-size:13px}
-  #lesson .kicker.aufgabe .rep + .rep, #test .kicker.aufgabe .rep + .rep, #einstufungView .kicker.aufgabe .rep + .rep{margin-left:8px}
+  #lesson .kicker.aufgabe, #test .kicker.aufgabe, #einstufungView .kicker.aufgabe{font-size:0; letter-spacing:0; margin:0 0 8px; min-height:0}
+  /* Die Marken ("Neues Wort", "Wiederholung: <Level>", "Noch einmal")
+     stehen nebeneinander, solange sie in die Zeile passen. Passen sie nicht,
+     bricht die zweite um - und weil die Zeile selbst wegen font-size:0 keine
+     Hoehe hat, lag sie bis zum 12.11.2026 ohne jeden Abstand direkt unter der
+     ersten. Auf Ajdins S21 (360 Punkte breit) ueberlappten so "Wiederholung:
+     Wetter & Natur" und "Noch einmal" (Bildschirmfoto vom 11.11.2026). Bei
+     langen Levelnamen, 320 Punkten oder grosser Schrift bricht schon die
+     erste Marke in sich um.
+     Darum hat jede Marke 6 px Rand oben und je 4 px links und rechts: zwei
+     in einer Zeile stehen 8 px auseinander wie vorher, umgebrochene 6 px
+     untereinander, und jede Zeile bleibt mittig. Die -6 px an der Zeile
+     (.mitmarke, gesetzt in kick() und bei "Neues Wort") heben den Rand der
+     ersten Zeile wieder auf: mit einer Zeile Marken steht alles genau da,
+     wo es vorher stand. Ueber eine Klasse und nicht ueber :has(), das
+     aeltere WebViews nicht kennen (siehe oben).
+     border-radius in em statt 99px: eine Marke ueber zwei, drei Zeilen wird
+     ein Rechteck mit runden Ecken statt eines Ovals, in dessen Rundung die
+     Woerter am Rand hineinragten. Eine einzeilige bleibt ganz rund - 1.1em
+     ist mehr als ihre halbe Hoehe, auch bei grosser Schrift.
+     letter-spacing:0 oben an der Zeile: der ausgeblendete Text davor
+     ("Was heisst auf Bosnisch ... · ") hatte trotz font-size:0 die .4px
+     Sperrung von .kicker je Buchstabe, rund 11 px Breite. Er schob die Marke
+     um die Haelfte aus der Mitte und nahm ihr in der Zeile Platz weg.
+     tests_e2e/test_marken.py misst das in allen Sprachen nach. */
+  #lesson .kicker.aufgabe.mitmarke, #test .kicker.aufgabe.mitmarke, #einstufungView .kicker.aufgabe.mitmarke{margin-top:-6px}
+  #lesson .kicker.aufgabe .rep, #test .kicker.aufgabe .rep, #einstufungView .kicker.aufgabe .rep{font-size:13px; margin:6px 4px 0; border-radius:1.1em}
   /* Nach der Antwort ist "Gerade nicht hoeren, ueberspringen" ohne Sinn und
      kostet nur Hoehe. #eBody fehlt hier mit Absicht: Test und Einstufung
      rufen renderTask mit noSkip, dort gibt es kein .skip (19.10.2026). */
@@ -11799,7 +11823,7 @@ function renderTask(task, body, done, opts={}){
      und kommt mit derselben Zahl. */
   if(task.s && task.s.zahl && task.v === undefined) task.v = zahlZiehen(task.s);
   woerterVorladen(task);               // ihr Wort und das der naechsten Aufgabe dekodieren (26.10.2026)
-  const kick = (text)=> '<div class="kicker aufgabe">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
+  const kick = (text)=> '<div class="kicker aufgabe'+(task.rep||task.retry?' mitmarke':'')+'">'+text+(task.rep?' · <span class="rep">'+t('task.wiederholung',{label:esc(task.rep)})+'</span>':'')+(task.retry?' · <span class="rep">'+t('task.nochmal')+'</span>':'')+'</div>';
   const rueckmeldung = (klasse, schluessel, wort, bosnisch, anhang)=>
     rueckmeldungZeigen($$('xFb'), klasse, schluessel, wort, bosnisch, anhang);
   const fb = (ok, right, extra, bosnisch)=> ok ? rueckmeldung('ok', 'task.richtig')
@@ -11869,7 +11893,7 @@ function renderTask(task, body, done, opts={}){
   const wireSkip = ()=>{ const b=$$('xSkip'); if(b) b.addEventListener('click',()=>done({ok:false, skipped:true})); };
 
   if(task.typ==='intro'){
-    body.innerHTML = '<div class="kicker aufgabe"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div>'+
+    body.innerHTML = '<div class="kicker aufgabe mitmarke"><span class="rep new">'+t('task.neues_wort')+'</span></div><div class="de">'+esc(w.de)+'</div><div class="big'+(w.bs.length>16?' long':'')+'" lang="bs">'+esc(w.bs)+'</div>'+
       (canListen?'<button class="listen" id="xListen">'+mitSymbol('lautsprecher', t('task.hoeren'))+'</button>':'')+
       '<div class="row unten"><button class="btn know" id="xNext">'+t('task.weiter')+'</button></div>';
     if(canListen){ $$('xListen').addEventListener('click',()=>speak(w.bs)); spaeterSprechen(w.bs, BEIM_ERSCHEINEN); }
