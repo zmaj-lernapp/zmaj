@@ -936,7 +936,7 @@ KATEGORIEN = [
      "baut_auf": ["zuhause"],
      "words": [
         {"de": "Backofen",           "bs": "rerna"},
-        {"de": "Flasche",            "bs": "flaša"},
+        {"de": "Flasche",            "bs": "flaša", "auch": ["boca"]},
         {"de": "Gabel",              "bs": "viljuška"},
         {"de": "Gefrierschrank",     "bs": "zamrzivač"},
         {"de": "Geschirr",           "bs": "suđe"},
