@@ -3,7 +3,7 @@
 #   uv pip compile --universal --python-version 3.10 --generate-hashes requirements-dev.in -o requirements-dev.txt
 # Playwright steht in requirements-e2e.in: nur e2e.yml braucht es, und es
 # ist das mit Abstand größte Paket (je Plattform ein eigener Treiber).
-pytest>=8
+pytest>=9.2.0
 jsonschema>=4.18
 ruff>=0.6
 reuse>=4
