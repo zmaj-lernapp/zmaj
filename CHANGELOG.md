@@ -353,6 +353,16 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Typing without diacritics (checked 12.11.2026, writing task and gap sentence in
+  every mode): a number word without its marks (*sest* for *šest*, *cetiri* for
+  *četiri*) now counts like any other word, right with "Correct! With the special
+  letters: šest" instead of a plain "Correct!". Digits together with missing marks
+  (*5 brace* for *pet braće*) count as right instead of costing a heart. When the
+  typed answer is a further accepted one (*cao* for *Doviđenja*, which also takes
+  *Ćao*), the message shows that answer's spelling, not the first one's. A space
+  after a final "!" or "." no longer stops the "Almost right!" hint, and a mark
+  typed as a separate combining character counts as typed correctly.
+  `tests/test_haekchen.py`, `tests_e2e/test_haekchen.py`.
 - Privacy policy, all 8 languages, web demo included: it said "nothing more than a yes or a no"
   is held about the subscription, but after a purchase the app also keeps Google's purchase
   identifier, the plan and the end of the free week. The subscription paragraph now says so

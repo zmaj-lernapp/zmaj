@@ -4049,9 +4049,13 @@ const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.ra
 const strip = s => s.toLowerCase().replace(/đ/g,'d').normalize('NFD').replace(/[̀-ͯ]/g,'');
 /* Komma und Bindestrich im Inneren zaehlen wie ein fehlendes Haekchen: "Racun molim"
    fuer "Račun, molim", "sogan dolma" fuer "sogan-dolma". Vorher kosteten sie bei zwei
-   gleichen Versuchen ein Leben (Pruefbericht 1.3, 06.11.2026). Nur matches() und
-   fastRichtig() benutzen clean(). */
-const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/[,-]/g,' ').replace(/\s+/g,' ').trim();
+   gleichen Versuchen ein Leben (Pruefbericht 1.3, 06.11.2026). Nur matches(),
+   fastGleich() und fastRichtig() benutzen clean().
+   Erst trim(), dann das Satzzeichen am Ende (12.11.2026): fastRichtig() bekommt
+   die Eingabe ungekuerzt, und bei "pada kisq! " - ein Leerzeichen hinter dem
+   Ausrufezeichen, wie es manche Tastatur anhaengt - blieb das "!" stehen und
+   war ein zweiter Fehler. Der Hinweis kam dann nicht. */
+const clean = s => strip(s).trim().replace(/[.!?…]+$/,'').replace(/[,-]/g,' ').replace(/\s+/g,' ').trim();
 
 /* ---------- Gesprochenes vergleichen ----------
    Die Erkennung schreibt, was sie hoert, nach den Regeln der Sprache, die
@@ -4402,21 +4406,54 @@ const APP_START = '2026-08-01';
    normalen Laden gilt nur die untere Grenze, siehe standUebernehmen(). */
 const tagMoeglich = s => istDatum(s) && s >= APP_START && s <= today();
 
+/* NFC in norm() (12.11.2026, Pruefung "Fast richtig"): ein Haekchen kann als
+   eigenes Zeichen hinter dem Buchstaben kommen ("s" + U+030C statt "š", beim
+   Einfuegen aus manchen Programmen). Ohne NFC war das richtig Getippte nur
+   'almost', und die App sagte "Mit Sonderzeichen", obwohl sie dastanden. */
 function matches(guess, answer){
   const g = guess.trim(); if(!g) return 'leer';
-  const norm = s => s.toLowerCase().replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
+  const norm = s => s.normalize('NFC').toLowerCase().replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
   const alts = answer.split(' / ');
   if(alts.some(a => norm(a) === norm(g))) return 'ok';
   /* Getippte Zahlen zaehlen genauso: wer "5" schreibt, meint "pet".
      Erst der Zahlwert, dann der ausgeschriebene Satz - so gilt auch
-     "Nalazimo se u 5". */
+     "Nalazimo se u 5".
+     Fehlen dabei nur Haekchen ("sest" fuer "šest", "cetiri" fuer "četiri"),
+     ist es 'almost' wie bei jedem anderen Wort. Bis zum 12.11.2026 sagte
+     zahlWert(), das selbst ohne Haekchen vergleicht, hier 'ok', und die App
+     zeigte "Tačno!" statt der Schreibweise. Die Ziffer "6" und "dva" fuer
+     "Dvije" bleiben 'ok'. */
   const zg = zahlWert(g);
-  if(zg !== null && alts.some(a => zahlWert(a) === zg)) return 'ok';
+  if(zg !== null && alts.some(a => zahlWert(a) === zg)) return alts.some(a => clean(a) === clean(g)) ? 'almost' : 'ok';
   if(alts.some(a => norm(zahlenAusschreiben(a)) === norm(zahlenAusschreiben(g)))) return 'ok';
-  if(alts.some(a => clean(a) === clean(g))) return 'almost';
-  // Ohne den Bindestrich auch ohne die Luecke: "sogandolma" fuer "sogan-dolma".
-  if(alts.some(a => a.includes('-') && clean(a.replace(/-/g,'')) === clean(g))) return 'almost';
+  if(alts.some(a => fastGleich(a, g))) return 'almost';
   return 'no';
+}
+/* Gleich bis auf Haekchen, Gross/klein, Satzzeichen am Ende, Komma und
+   Bindestrich - das ist 'almost' in matches(), und gemeinteAntwort() sucht
+   damit die Antwort, die gemeint war. */
+function fastGleich(a, g){
+  const cg = clean(g);
+  return clean(a) === cg
+    /* Ziffer und fehlendes Haekchen zusammen: "5 brace" fuer "pet braće",
+       "7 cevapa" fuer "sedam ćevapa". Bis zum 12.11.2026 war das 'no' und
+       kostete ein Leben, "5 braće" galt dagegen. */
+    || clean(zahlenAusschreiben(a)) === clean(zahlenAusschreiben(g))
+    // Ohne den Bindestrich auch ohne die Luecke: "sogandolma" fuer "sogan-dolma".
+    || (a.includes('-') && clean(a.replace(/-/g,'')) === cg);
+}
+/* Welche Antwort gemeint war, wenn matches() 'almost' sagt - fuer "Richtig!
+   Mit Sonderzeichen: {wort}". Bis zum 12.11.2026 stand dort immer die erste
+   Antwort: wer bei "Auf Wiedersehen" "cao" tippte, las "Mit Sonderzeichen:
+   Doviđenja", bei "Auf die Gesundheit!" mit "zivjeli" "U zdravlje!" - ein
+   anderes Wort als das getippte.
+   Betroffen waren 136 schreibbare Woerter, deren "auch" Haekchen hat (dazu
+   gleich uebersetzte aus annehmbar()), und ein Lueckensatz (adžo fuer
+   amidža). Die erste Antwort, die fast gleich ist, gewinnt; passt keine,
+   bleibt es die erste. */
+function gemeinteAntwort(guess, answer){
+  const g = String(guess || '').trim(), alts = String(answer || '').split(' / ');
+  return alts.find(a => fastGleich(a, g)) || alts[0];
 }
 
 /* ---------- Fast richtig: erst ein Hinweis, nicht gleich falsch ----------
@@ -11882,7 +11919,7 @@ function renderTask(task, body, done, opts={}){
       if(pruefKnopf && pruefKnopf.parentElement) pruefKnopf.parentElement.hidden = true;
       const ok = r==='ok' || r==='almost';
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
-      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', w.bs);
+      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', r==='almost' ? gemeinteAntwort(inp.value, auchOk) : w.bs);
       loesung(w.bs, w.de);
       sound(ok?'ok':'no'); spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok});
     };
@@ -12053,7 +12090,7 @@ function renderTask(task, body, done, opts={}){
       if(pruefKnopf && pruefKnopf.parentElement) pruefKnopf.parentElement.hidden = true;
       const ok = r==='ok' || r==='almost';
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
-      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', s.answer);
+      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', r==='almost' ? gemeinteAntwort(inp.value, antworten) : s.answer);
       loesung(s.text.replace('___', s.answer), s.de);
       sound(ok?'ok':'no');
       /* Erst jetzt den FERTIGEN Satz sprechen - vorher waere die Loesung
