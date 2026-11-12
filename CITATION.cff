@@ -4,10 +4,10 @@ type: software
 title: "Zmaj: an open Bosnian course and learning app"
 abstract: >-
   Offline app for learning Bosnian (Ijekavian) and the open dataset behind it:
-  4,421 words and phrases in 166 levels, 300 cloze sentences, 12 graded reading
-  stories with glossary and questions, and 16 grammar lessons, each translated
+  7,997 words and phrases in 295 levels, 300 cloze sentences, 12 graded reading
+  stories with glossary and questions, and 26 grammar lessons, each translated
   into German, English, Turkish, Swedish, Dutch, Norwegian, Danish and French,
-  with synthetic Bosnian audio for every item except 2,674 words and sentences
+  with synthetic Bosnian audio for every item except 6,249 words and sentences
   added in October and November 2026. Code AGPL-3.0-or-later, content
   CC BY-SA 4.0.
 authors:

@@ -262,6 +262,63 @@ def test_hinweis_auch_bei_einem_echten_wort(seite, heute_stand):
     assert seite.fehler == []
 
 
+@pytest.mark.parametrize("ziel, soll, getippt", [
+    ("die rechnung, bitte:Račun, molim", "Račun, molim", "Racun molim"),
+    ("die rechnung, bitte:Račun, molim", "Račun, molim", "Račun molim"),
+    ("die rechnung, bitte:Račun, molim", "Račun, molim", "racun,molim"),
+    ("ja, danke:Može, hvala", "Može, hvala", "Moze hvala"),
+    ("gefüllte zwiebeln:sogan-dolma", "sogan-dolma", "sogan dolma"),
+    ("gefüllte zwiebeln:sogan-dolma", "sogan-dolma", "sogandolma"),
+    ("gefüllte zwiebeln:sogan-dolma", "sogan-dolma", "sogan dolma."),
+])
+def test_ohne_komma_oder_bindestrich_wie_ein_fehlendes_haekchen(seite, heute_stand, ziel, soll, getippt):
+    """Pruefbericht 1.3 (06.11.2026): Komma und Bindestrich im Inneren kosteten bei
+    zwei gleichen Versuchen ein Leben, und der Hinweis sagte nicht, was fehlt. Jetzt
+    gilt die Antwort sofort und die App zeigt die richtige Schreibweise."""
+    seite.starten(stand=heute_stand())
+    seite.js(STARTEN["Lx"])
+    leben = _legen(seite, "Lx", "type", ziel)
+    lage = _eingeben(seite, getippt)
+    assert lage["ergebnis"] is True and lage["leben"] == leben, lage
+    assert lage["fb"] == "Richtig! Mit Sonderzeichen: " + soll and "almost" in lage["klasse"].split(), lage
+    assert seite.fehler == []
+
+
+def test_komma_und_bindestrich_sonst_keine_lockerung(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    assert seite.js("""() => ({
+        genau: [matches('Račun, molim', 'Račun, molim'), matches('sogan-dolma', 'sogan-dolma'), matches('Može, hvala!', 'Može, hvala')],
+        anderes: [matches('Račun', 'Račun, molim'), matches('Molim racun', 'Račun, molim'), matches('sogan', 'sogan-dolma'),
+                  matches('sogan dolmaa', 'sogan-dolma'), matches('Dobardan', 'Dobar dan'), matches('kruska,', 'šljiva')],
+        ohneZeichen: matches('Dobar, dan', 'Dobar dan'),
+    })""") == {"genau": ["ok", "ok", "ok"], "anderes": ["no"] * 6, "ohneZeichen": "almost"}
+    # Der Tippfehler neben der Antwort bleibt ein Tippfehler.
+    assert seite.js("() => [fastRichtig('Racun molom', 'Račun, molim'), fastRichtig('sogan dolna', 'sogan-dolma')]") == [True, True]
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("ziel, soll, getippt", [("auf wiedersehen:Doviđenja", "Doviđenja", "Dovidenja"),
+                                                 ("zwischen:između", "između", "izmedu")])
+def test_d_fuer_das_durchgestrichene_d_wie_ein_fehlendes_haekchen(seite, heute_stand, ziel, soll, getippt):
+    """Entscheidung vom 06.11.2026: d fuer đ ist richtig, dj nicht ("da ist ja ein
+    Buchstabe zu viel"). dj bekommt wie jeder Tippfehler erst den Hinweis."""
+    seite.starten(stand=heute_stand())
+    seite.js(STARTEN["Lx"])
+    leben = _legen(seite, "Lx", "type", ziel)
+    lage = _eingeben(seite, getippt)
+    assert lage["ergebnis"] is True and lage["leben"] == leben, lage
+    assert lage["fb"] == "Richtig! Mit Sonderzeichen: " + soll, lage
+    assert seite.js("([g, a]) => matches(g.toUpperCase(), a)", [getippt, soll]) == "almost"
+    leben = _legen(seite, "Lx", "type", ziel)
+    mit_dj = soll.replace("đ", "dj")
+    assert seite.js("([g, a]) => matches(g, a)", [mit_dj, soll]) == "no"
+    _ist_hinweis(_eingeben(seite, mit_dj, soll.lower()), mit_dj, leben)
+    seite.page.wait_for_timeout(1050)       # sonst zaehlt derselbe Text noch nicht als zweiter Versuch
+    lage = _eingeben(seite, mit_dj)
+    assert lage["ergebnis"] is False and lage["leben"] == leben - 1, lage
+    assert seite.fehler == []
+
+
 def test_nur_haekchen_bleibt_sofort_fast_richtig(seite, heute_stand):
     """Wie bisher: fehlen nur Haekchen, ist es gleich richtig. Haekchen
     zaehlen auch beim Tippfehler nicht mit - kruskq ist genau einer."""

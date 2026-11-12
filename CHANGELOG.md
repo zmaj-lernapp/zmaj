@@ -7,6 +7,45 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Ten grammar lessons for B1 (approved by the maintainer on 7.11.2026), each in
+  the level it explains: verb pairs, present-tense stems, the imperative, dates
+  and times, ne-/ni- words and collective numbers, the conditional, possessive
+  adjectives, the future II, relative clauses and the order of the small words.
+  26 lessons and 175 exercises in total. Their answers and Bosnian table cells
+  are in `GLEICH`. All 255 new texts are translated into en, tr, sv, nl, nb,
+  da and fr (not by native speakers).
+  In the past tense lesson "to a man" moved into the brackets of „Šta si ___?“,
+  so its solution line no longer shows a stray quotation mark.
+- Vocabulary packages 10 to 20, level B2 (reviewed by a native speaker on 7.11.2026):
+  1,773 words and 1,774 example sentences, each word right before its sentence
+  (3,546 new entries; *zaposlenik / uposlenik* was already there and only gets its
+  sentence, and *nego i / već i* sounded odd on its own, so only its sentence stays,
+  decided by the native speaker on 8.11.2026). 14 new sections behind B1, each in the next colour: 18 · Thinking and
+  opinion, 19 · People and relationships, 20 · Work and economy, 21 · Media and
+  culture, 22 · Environment and technology, 23 · Society and politics, 24 · Law and
+  authorities, 25 · House and home, 26 · Health and sport, 27 · School and knowledge,
+  28 · Town, traffic and travel, 29 · Land, animals and plants, 30 · Acting and
+  changing, 31 · Saying it more precisely (129 levels; groups of more than 20 words
+  are split into two levels). 201 new pairs with `partner` on both words, also on
+  the older verb (*pitati* - *upitati*, *iznajmiti* - *iznajmljivati*); *izvršiti* has
+  two partners. Existing words change instead of getting a second entry, progress
+  moves along through `UMBENANNT`: *iznajmiti* now means "to let" (renting is the new
+  *unajmiti*), *produžni kabl* becomes *produžni kabel*, *zaposlenik* becomes
+  *zaposlenik / uposlenik*. 41 words show two forms (*prijevoz / prevoz*,
+  *gas / plin*, *dosad / dosada*); second forms count when typing exactly as the
+  native speaker decided, forms he ruled out do not (*kabl*, *kemija*, *znanstveni*,
+  *vaspitanje*, *ubijeđivati*). 80 more pairs that share part of a meaning never
+  appear in the same multiple choice (`NIE_NEBENEINANDER`).
+  The 15 entries that waited for a recording (*rub*, *ivica*, *poteškoća*, *smijeh*,
+  *rat*, *dova*, *mezarje*, *dići*, *dizati*, *plakati*, *mrtav*, *uopšte*,
+  *naime / jer*, *poput / kao*, *ukupno*) now stand in their levels, with their
+  sentences: 7,997 entries in total, 295 levels, 31 sections. "At the dentist" gets
+  its 8 waiting entries (127 entries). All new texts are translated into the seven
+  other languages. Emir speaks the new words and sentences (3,634 recordings,
+  w5317–w8952, in the Android app only); the sentence for *smijeh* keeps its older
+  recording (w5331, checked by the native speaker on 8.11.2026). "Besitz" and "Einzahl" are also table headers of the
+  B1 grammar, so the words *posjed* and *jednina* get their meaning through
+  `woerter` in every language and the tables keep theirs.
 - Hidden section "At the dentist" (`zahnarzt.py`, 7 levels, 111 entries, reviewed by a
   native speaker on 6.11.2026), written from the dentist's point of view: tap the
   version line in the settings seven times and enter the word `zahnarzt`. It unlocks
@@ -337,6 +376,59 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Privacy policy, all 8 languages, web demo included: it said "nothing more than a yes or a no"
+  is held about the subscription, but after a purchase the app also keeps Google's purchase
+  identifier, the plan and the end of the free week. The subscription paragraph now says so
+  and why; section 2 only points to it, so the iOS text stays right. The list of what is in
+  the backup now names everything `standAlsObjekt()` writes, and a test compares the two.
+- Withdrawal: the email contained the instructions from the dialog. It is now the declaration
+  itself with lines for name and order number or account address, as § 356a(2) BGB lists them.
+  The button no longer disappears when Google returns no products.
+- README and `AGENTS.md`: about 2,900 words and phrases and about 1,500 example sentences
+  instead of "4,421 words". The store text and website changes are listed outside the repo.
+- Answer options: a meaning that is also part of the wrong button no longer stands
+  next to the question ("ziehen" with *povlačiti* "ziehen / zurückziehen", "also" with
+  *pa* "und dann / also"), in any language. Tapping it was right and cost a life.
+  `NIE_NEBENEINANDER` gets nine pairs; typing does not change. Each meaning shows up
+  only once now, and wrong answers come from the same kind first (word with words,
+  sentence with sentences), so sentences no longer give away a word question. Lessons
+  and level tests get a little harder.
+- Signing in on a new device no longer costs a streak protection: on a device's first
+  sync the account's value counts, not the fresh default of the new app, which also
+  reached the old device. A placement with a starting level now beats one without,
+  whatever the date, so "No, I'm starting over" on a new device no longer removes the
+  starting level everywhere. `tests_e2e/test_cloud.py` plays both directions with two
+  devices.
+- A streak protection bought in the shop no longer disappears when a second device
+  syncs: the older state won and the protection was gone on every device, the 300
+  coins too. A purchase now moves `zeit` forward, by the time of purchase on a full
+  stock, by one millisecond otherwise, so the 10-day timer keeps running. Devices on
+  1.2 read it as a normal time; a purchase made on 1.2 itself can still get lost.
+- A heart bought in the shop had the same gap and now survives a sync the same way,
+  the 100 coins count once. Hearts keep refilling on time. Cosmetics never had it.
+- Speaking: one word no longer passes for a whole sentence ("mogu" for *Mogu li platiti
+  karticom?*). After "no match" or silence the microphone stops instead of silently
+  listening again in the next language; the next tap takes the next language, so
+  devices without Bosnian still reach Croatian. Not yet checked on a phone.
+- Typing without a comma or hyphen (*Racun molim*, *sogan dolma*, *sogandolma*) now
+  counts like a missing diacritic instead of costing a life on the second try.
+- "Next" after a passed level test leads to the next level not yet passed, not into one
+  already passed (after level 102 to level 130, not 103). If everything behind it is
+  passed, it goes one level on as before. The same inside the dentist section.
+- Back from a level, also after a lesson or a test, lands where you were on the learning
+  path instead of at the top. Coming from anywhere else it still opens at the top.
+- Shop: a double tap buys once (a heart cost 200 instead of 100 coins) and no longer takes
+  off what it just bought.
+- Word list on a level page: the speaker and the check mark have a fixed place and are no
+  longer cut off, and long entries get two lines. In the dentist section 53 of 111 rows
+  are still too long for two lines at 360 points.
+- Buying the full version on small phones: the buy button, Cancel and the price of the
+  chosen plan are visible without scrolling. The dragon shrinks or goes only as far as
+  needed for the language and system font size. Where everything fits, nothing changes.
+- Dark mode: the contact link in the legal notice used the browser's blue (1.03:1 to
+  1.38:1) and is now readable in all nine section colours.
+- Start: the full intro plays only on the first start of the day. Later starts skip the
+  pause after the motion and are 1.5 s shorter (4.6 s to 3.1 s, measured on a PC).
 - Speed: the speed set under a story now applies only while a story is read
   aloud. It used to slow down every recording in the app, including all lessons,
   and took words off the fast sound path, although it can only be changed in the

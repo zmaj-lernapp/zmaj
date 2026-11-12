@@ -104,11 +104,13 @@ def test_anderes_verb_des_paares_ist_fast_richtig(seite, heute_stand):
 
 def test_sektionen_fuenfzehn_bis_siebzehn_im_lernpfad(seite, heute_stand):
     seite.starten(stand=heute_stand())
-    e = seite.js("""() => ({sektionen: SECTIONS.slice(14).map(s => s.id),
-        farben: SECTIONS.slice(14).map(s => sektionsNummer(s.id)),
-        level: SECTIONS.slice(14).map(s => CATEGORIES.filter(c => c.sektion === s.id).length),
+    # Seit den Paketen 10 bis 20 (07.11.2026) folgen die Sektionen 18 bis 31 (Stufe B2),
+    # tests_e2e/test_paket1020.py; hier die letzten drei von B1.
+    e = seite.js("""() => ({sektionen: SECTIONS.slice(14, 17).map(s => s.id),
+        farben: SECTIONS.slice(14, 17).map(s => sektionsNummer(s.id)),
+        level: SECTIONS.slice(14, 17).map(s => CATEGORIES.filter(c => c.sektion === s.id).length),
         tun: CATEGORIES.filter(c => c.sektion === 'tunlassen').length,
-        letzte: CATEGORIES[CATEGORIES.length - 1].id,
+        letzte: CATEGORIES[CATEGORIES.findIndex(c => c.id === 'grundlage_rahmen') - 1].id,
         macak: CATEGORIES.find(c => c.id === 'tiere').reihe})""")
     assert e == {"sektionen": ["grundbegriffe", "menschengesellschaft", "wiewowann"], "farben": ["6", "7", "8"],
                  "level": [12, 13, 12], "tun": 39, "letzte": "fuerwoerter",

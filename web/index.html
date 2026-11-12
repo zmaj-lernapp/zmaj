@@ -1455,6 +1455,27 @@
      keinen Platz. Gefunden bei der Pruefung am 06.10.2026. */
   .abogratis{margin-top:10px; font-size:14px; font-weight:800; line-height:1.4; color:var(--ink)}
   .abogratis:empty{display:none}
+  /* Auf kleinen Handys lag "Zahlungspflichtig abonnieren" unter dem Rand des
+     Kastens: man sah Drache und Preise, aber keinen Knopf (Pruefbericht 1.3,
+     G13). kaufkastenEinpassen() macht den Kasten jetzt Stufe um Stufe enger, nur
+     so weit wie noetig. Rollt er danach noch, bleiben die Knoepfe am unteren Rand
+     stehen. Fest stehen nur die Knoepfe: stuenden auch Testwoche und Hinweis
+     darin, verdeckten sie bei grosser Schrift die Karten mit den Preisen, und die
+     muss sehen, wer bestellt. Sticky statt eines eigenen Rollbereichs: wo alles
+     passt, sieht der Kasten genauso aus wie vorher. Die Raender gleichen die 18 px
+     von .nachfragebox aus, auch bei bottom: Chrome rechnet es vom Innenrand. */
+  .kaufknoepfe{position:sticky; bottom:-18px; margin:0 -18px -18px; padding:0 18px 18px; background:var(--surface)}
+  .kaufbox.rollt .kaufknoepfe{box-shadow:0 -10px 12px -12px rgba(6,12,32,.45)}
+  .kaufbox.eng1 .abovorschau .zmaj-anim, .kaufbox.eng1 .abovorschau .zmaj{width:90px; height:90px}
+  .kaufbox.eng2 .txt{line-height:1.45}
+  .kaufbox.eng2 .abowahl{gap:8px; margin:10px 0 2px}
+  .kaufbox.eng2 .abokarte{padding:10px 14px}
+  .kaufbox.eng2 .abogratis, .kaufbox.eng2 .abohinweis{margin-top:6px}
+  .kaufbox.eng2 .btn{margin-top:8px}
+  .kaufbox.eng3{max-height:calc(100vh - 36px); padding-top:12px}
+  .kaufbox.eng3 h3{margin-bottom:6px; font-size:17px}
+  .kaufbox.eng3 .txt{font-size:13px; line-height:1.4}
+  .kaufbox.eng3 .abogratis{font-size:13px}
 
   /* ---- Einstufung und Wiederholen ----
      Die Einstufung benutzt die Karten der Vollversionswahl, Wiederholen
@@ -1901,14 +1922,23 @@
   @keyframes weiterPuls{0%,100%{filter:brightness(1)} 50%{filter:brightness(1.14)}}
   @media (prefers-reduced-motion:reduce){ .weiterbox .btn{animation:none} }
   .wordlist{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 14px; font-size:14px}
-  /* Feste Zeilenhöhe und kein Umbruch: vorher war jede Zeile so hoch, wie
-     ihr längstes Wort es erzwang, und die Liste wirkte zerfasert. */
+  /* Höchstens zwei Zeilen: unbegrenzt war jede Zeile so hoch, wie ihr
+     längstes Wort es erzwang, und die Liste wirkte zerfasert. Mit nur einer
+     Zeile blieb bei langen Einträgen von beiden Texten fast nichts übrig, und
+     Haken und Lautsprecher, die mit im bosnischen Feld standen, wurden
+     mit abgeschnitten (Pruefbericht 1.3, G10). Sie haben jetzt ein festes
+     Feld am Ende der Zeile. */
   .wordlist div{display:flex; justify-content:space-between; align-items:center; gap:8px;
     min-width:0; min-height:30px; padding:3px 0; border-bottom:1px dashed var(--line)}
-  .wordlist .de{flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .wordlist .bs{flex:0 1 auto; min-width:0; font-family:var(--font-display); color:var(--primary);
-    font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .wordlist .de, .wordlist .bs{overflow:hidden; overflow-wrap:break-word;
+    display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2}
+  .wordlist .de{flex:1 1 auto; min-width:0}
+  /* min-content: neben einer langen Bedeutung schrumpfte das bosnische Feld
+     sonst unter sein Wort, und aus "tetka" wurde "tetk" und "a". */
+  .wordlist .bs{flex:0 1 auto; min-width:min-content; font-family:var(--font-display);
+    color:var(--primary); font-weight:600}
   .wordlist .bs.zu{color:var(--muted); opacity:.55; font-family:var(--font-ui)}
+  .wordlist .wortende{flex:none; display:flex; align-items:center; justify-content:flex-start; gap:2px; min-width:46px}
   .wordlist .ok{color:var(--good-text); font-size:12px}
   @media (max-width:480px){.wordlist{grid-template-columns:1fr}}
 
@@ -2150,6 +2180,10 @@
   .srcs a{color:var(--primary); font-weight:700}
   .kanaele a{color:var(--primary); font-weight:700}
   .legal{font-size:13px; color:var(--muted); line-height:1.6}
+  /* Der Kontakt-Link im Impressum hatte als einziger Verweis keine eigene
+     Farbe: das Blau des Browsers, im dunklen Modus 1,03:1 bis 1,38:1 auf
+     seinem Grund, also praktisch unsichtbar. Pruefbericht 1.3, G12. */
+  .legal a{color:var(--primary); font-weight:700}
 
   footer{margin-top:24px; text-align:center; font-size:12px; color:var(--muted); line-height:1.6; font-weight:700}
   .err{background:var(--accent-soft); color:var(--ink); padding:12px 16px; border-radius:12px; font-size:14px; margin-bottom:14px; display:none; text-align:left; line-height:1.6}
@@ -2639,6 +2673,10 @@
          Ohne das Abo-Plugin (am PC, im Browser) verschwindet der Block. -->
     <div class="section" id="setVollBox" style="display:none">
       <h2 data-t="voll.titel"></h2>
+      <!-- Was es nur gibt, wenn es etwas zu kaufen oder zu verwalten gibt.
+           Meldung und Widerrufsknopf stehen bewusst dahinter, siehe
+           vollZeileZeigen(). -->
+      <div id="setVollKauf">
       <div class="setting">
         <div><div class="st" id="lblVoll" data-t="voll.sub"></div><div class="sd" id="setVollStand"></div></div>
         <button class="switch" id="swVoll" role="switch" aria-checked="false" aria-labelledby="lblVoll"></button>
@@ -2657,6 +2695,7 @@
            MONATS-Abo, siehe vollZeileZeigen(). 10.10.2026 -->
       <div class="sd" id="setVollWechsel" style="display:none; padding-bottom:12px">
         <button type="button" class="abolink" id="aboWechsel"></button>
+      </div>
       </div>
       <div class="sd" id="setVollNote" style="font-size:12px; color:var(--muted); padding-bottom:12px"></div>
       <!-- Widerrufsknopf nach § 356a BGB. Muss ständig verfügbar und
@@ -4142,7 +4181,11 @@ function sektionsFarbe(){
 }
 const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const strip = s => s.toLowerCase().replace(/đ/g,'d').normalize('NFD').replace(/[̀-ͯ]/g,'');
-const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/\s+/g,' ').trim();
+/* Komma und Bindestrich im Inneren zaehlen wie ein fehlendes Haekchen: "Racun molim"
+   fuer "Račun, molim", "sogan dolma" fuer "sogan-dolma". Vorher kosteten sie bei zwei
+   gleichen Versuchen ein Leben (Pruefbericht 1.3, 06.11.2026). Nur matches() und
+   fastRichtig() benutzen clean(). */
+const clean = s => strip(s).replace(/[.!?…]+$/,'').replace(/[,-]/g,' ').replace(/\s+/g,' ').trim();
 
 /* ---------- Gesprochenes vergleichen ----------
    Die Erkennung schreibt, was sie hoert, nach den Regeln der Sprache, die
@@ -4355,12 +4398,16 @@ function klingtWie(gehoert, ziel){
      und "2" auch fuer die weibliche Form "dvije". */
   const zg = zahlWert(gehoert), zz = zahlWert(ziel);
   if(zg !== null && zz !== null) return zg === zz;
-  const g = lautlich(gehoert), z = lautlich(ziel);
+  // Ein Klammerzusatz spricht niemand mit: "nana (auch: metvica)" ist "nana".
+  const g = lautlich(gehoert), z = lautlich(String(ziel).replace(/\([^)]*\)/g, ' '));
   if(!g || !z) return false;
   if(g === z) return true;
   // Enthalten zaehlt nur bei genug Buchstaben, sonst passt "da" ueberallhin
   const kurz = Math.min(g.length, z.length);
-  if(kurz >= 4 && (g.includes(z) || z.includes(g))) return true;
+  /* Mehr gesagt als das Ziel ist in Ordnung. Weniger nur, wenn fast alles da ist:
+     Sonst reichte "mogu" fuer "Mogu li platiti karticom?", und der Satz galt als
+     gewusst (Pruefbericht 1.3, 06.11.2026). */
+  if(kurz >= 4 && (g.includes(z) || (z.includes(g) && g.length >= z.length * 0.7))) return true;
   return abstand(g, z) <= Math.max(1, Math.round(z.length / 5));
 }
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -4501,6 +4548,8 @@ function matches(guess, answer){
   if(zg !== null && alts.some(a => zahlWert(a) === zg)) return 'ok';
   if(alts.some(a => norm(zahlenAusschreiben(a)) === norm(zahlenAusschreiben(g)))) return 'ok';
   if(alts.some(a => clean(a) === clean(g))) return 'almost';
+  // Ohne den Bindestrich auch ohne die Luecke: "sogandolma" fuer "sogan-dolma".
+  if(alts.some(a => a.includes('-') && clean(a.replace(/-/g,'')) === clean(g))) return 'almost';
   return 'no';
 }
 
@@ -4535,8 +4584,8 @@ function matches(guess, answer){
      Tippfehler war. Eine andere Endung ist immer auch ein Tippfehler
      Abstand - ein Buchstabe anders oder einer mehr -, die eine Regel deckt
      sie mit ab.
-   Verglichen wird auf den Formen von clean(): ohne Haekchen, Gross/klein und
-   Satzzeichen am Ende. Fehlen nur Haekchen, hat matches() schon 'almost'
+   Verglichen wird auf den Formen von clean(): ohne Haekchen, Gross/klein,
+   Satzzeichen am Ende, Komma und Bindestrich. Fehlen nur Haekchen, hat matches() schon 'almost'
    gesagt - hierher kommt nur, was 'no' war. So vermischt sich nichts: ein
    fehlendes Haekchen ist nie "der eine Tippfehler", und bei "kruskq" fuer
    "kruška" ist es genau einer (q statt s), das Haekchen zaehlt nicht mit. */
@@ -6012,8 +6061,9 @@ function standAlsObjekt(){
                            bei topf - siehe karteiMischen() (29.10.2026).
      leben, schutz         die Seite mit dem neueren Zeitstempel zeit - dort
                            ist zuletzt etwas passiert (Herz verloren, Schutz
-                           verbraucht). Bei gleicher Zeit die kleinere
-                           Anzahl: ein Abgleich verschenkt keine Herzen.
+                           verbraucht, beides gekauft, siehe zeitNachKauf()).
+                           Bei gleicher Zeit die kleinere Anzahl: ein Abgleich
+                           verschenkt keine Herzen.
      einstufung            die neuere (tag); fehlt sie auf einer Seite, die
                            andere. Bei gleichem Tag entscheidet der Text -
                            nur damit beide Richtungen dasselbe ergeben.
@@ -6053,8 +6103,10 @@ function standAlsObjekt(){
    sicherungPlausibel(), das Ergebnis durch standUebernehmen() - siehe
    cloudUebernehmen(). sicherungPlausibel() auf das Ergebnis hiesse, die
    eigenen Muenzen und Lerntage dieses Geraets zu kappen; genau das schliesst
-   der Kommentar in standUebernehmen() fuer den eigenen Stand aus. */
-function standZusammenfuehren(a, b, cloudVorher){
+   der Kommentar in standUebernehmen() fuer den eigenen Stand aus.
+   erstesMal: b ist der Stand eines Kontos, und dieses Geraet gleicht zum ersten
+   Mal mit ihm ab, siehe bei m.schutz. */
+function standZusammenfuehren(a, b, cloudVorher, erstesMal){
   const objekt = x => (x && typeof x === 'object' && !Array.isArray(x)) ? x : null;
   a = objekt(a) || {}; b = objekt(b) || {};
   const texte = x => Array.isArray(x) ? x.filter(s => typeof s === 'string') : [];
@@ -6123,10 +6175,22 @@ function standZusammenfuehren(a, b, cloudVorher){
     return x.anzahl <= y.anzahl ? x : y;
   };
   m.leben = zeitWahl(a.leben, b.leben, LEBEN_MAX, {anzahl: LEBEN_MAX, zeit: 0});
-  m.schutz = zeitWahl(a.schutz, b.schutz, SCHUTZ_MAX, {anzahl: 1, zeit: 0});
+  /* Pruefbericht 1.3 (06.11.2026): Eine frische App stempelt auf der Startseite
+     {1, jetzt} (syncSchutz). Das ist kein Ereignis, gewann beim ersten Abgleich
+     aber ueber die neuere Zeit: Aus zwei Schutz im Konto wurde einer, auch auf dem
+     alten Geraet, die 10 Tage begannen neu, und wer keinen hatte, bekam einen
+     geschenkt. Beim ersten Abgleich zaehlt darum der Schutz des Kontos, wenn dort
+     ein brauchbarer steht. Danach gilt wieder die neuere Zeit. */
+  const vomKonto = erstesMal ? zeitWahl(b.schutz, null, SCHUTZ_MAX, null) : null;
+  m.schutz = vomKonto || zeitWahl(a.schutz, b.schutz, SCHUTZ_MAX, {anzahl: 1, zeit: 0});
+  /* Ein Einstieg (bis) schlaegt eine Einstufung ohne, egal wie alt, sonst nahm
+     "Nein, ich fange neu an" auf einem neuen Geraet dem Konto den Einstieg, auf
+     allen Geraeten und ohne Rueckweg (Pruefbericht 1.3). Wer wirklich von vorn
+     lernt, stoert das nicht, siehe firstOpen(). */
   const ea = objekt(a.einstufung), eb = objekt(b.einstufung);
   const tagVon = e => istDatum(e.tag) ? e.tag : '';
   m.einstufung = (!ea || !eb) ? (ea || eb || null)
+    : (!!ea.bis !== !!eb.bis) ? (ea.bis ? ea : eb)
     : (tagVon(ea) !== tagVon(eb)) ? (tagVon(ea) > tagVon(eb) ? ea : eb)
     : (JSON.stringify(ea) >= JSON.stringify(eb) ? ea : eb);
   const ba = objekt(a.bewertung) || {}, bb = objekt(b.bewertung) || {};
@@ -7104,7 +7168,9 @@ function streak(){
 const SCHUTZ_MS = SCHUTZ_TAGE*24*60*60*1000;
 function syncSchutz(){
   if(schutz.zeit > Date.now()) schutz.zeit = Date.now();   // siehe syncLives
-  if(schutz.anzahl >= SCHUTZ_MAX){ if(!schutz.zeit) return false; schutz.zeit = 0; return true; }
+  /* Voll laeuft keine Uhr. zeit bleibt trotzdem stehen, nach einem Kauf entscheidet sie
+     den Abgleich, siehe kaufe(). Bis zum 06.11.2026 ging sie hier auf 0. */
+  if(schutz.anzahl >= SCHUTZ_MAX) return false;
   if(!schutz.zeit){ schutz.zeit = Date.now(); return true; }
   const dazu = Math.floor((Date.now() - schutz.zeit) / SCHUTZ_MS);
   if(dazu <= 0) return false;
@@ -7125,10 +7191,13 @@ function pruefeSchutz(){
   while(luecken.length <= SCHUTZ_MAX && !alle.has(dayKey(d))){ luecken.push(dayKey(d)); d.setDate(d.getDate()-1); }
   if(!luecken.length) return;                  // gestern gelernt, alles gut
   if(!alle.has(dayKey(d))){ schutzMeldung = -1; return; }   // Serie schon lange weg
-  if(schutzNow() < luecken.length){ schutzMeldung = -1; return; }
+  const vorrat = schutzNow();
+  if(vorrat < luecken.length){ schutzMeldung = -1; return; }
   luecken.forEach(k=>frost.add(k));
   schutz.anzahl -= luecken.length;
-  if(!schutz.zeit) schutz.zeit = Date.now();
+  /* War der Vorrat voll, steht in zeit hoechstens der Kauf (siehe kaufe()). Die Uhr
+     beginnt erst jetzt. */
+  if(!schutz.zeit || vorrat >= SCHUTZ_MAX) schutz.zeit = Date.now();
   schutzMeldung = luecken.length;
   saveProgress();
 }
@@ -8097,7 +8166,8 @@ function tonVorwaermen(){
   else setTimeout(ende, 120);
 }
 /* Der ruhige Moment: die App steht, und der Vorspann bewegt sich nicht mehr
-   (danach steht er noch VORSPANN_HALT still da). Das Anlegen des
+   (beim ersten Start des Tages steht er danach noch VORSPANN_HALT still da,
+   sonst blendet er aus; das laeuft auch bei belegter Seite). Das Anlegen des
    AudioContext haelt die Seite kurz fest - mitten in der Bewegung saehe
    man das als Ruckeln. Ohne Bewegung (Schalter, Geraeteeinstellung) gleich. */
 function tonVorwaermenPlanen(){
@@ -8461,7 +8531,12 @@ function vollZeileZeigen(){
   /* Bei einem gesperrten Abo auch dann, wenn Google gerade nichts zu
      kaufen anbietet: hier stehen der Hinweis und der Weg zu Google.
      07.10.2026 */
-  box.style.display = ((!!aboPlugin()) && (an || aboGesperrt || !aboProdukteFehlen)) ? '' : 'none';
+  /* Der Block selbst bleibt mit dem Plugin immer stehen, nur die Kaufzeile
+     geht: Darin steht der Widerrufsknopf, und § 356a Abs. 1 BGB verlangt ihn
+     waehrend der Frist staendig verfuegbar, also auch dann, wenn Google gerade
+     keine Produkte liefert (Pruefbericht 1.3, G15). */
+  box.style.display = aboPlugin() ? '' : 'none';
+  $('setVollKauf').style.display = (an || aboGesperrt || !aboProdukteFehlen) ? '' : 'none';
   const s = $('swVoll');
   s.setAttribute('aria-checked', an);
   /* aria-disabled statt disabled: ein disabled-Knopf nimmt keinen Tipp mehr
@@ -8601,6 +8676,22 @@ function gratisMerken(plaene){
   const jahr = hol('jahr');
   aboGratisPlan = jahr.preis ? jahr : hol('monat');
 }
+/* Macht den Kaufkasten nur so eng wie noetig, siehe .kaufknoepfe im Stil.
+   Gemessen statt nach Bildschirmhoehe gestaffelt: wie viel Platz er braucht, haengt
+   auch von der Sprache und der Systemschrift ab. Der Drache faellt zuerst kleiner
+   aus und dann ganz weg - weg heisst aus dem Baum, sonst baut ihn der Beobachter
+   unter mountZmaj() trotzdem auf, und er rechnet unsichtbar mit. */
+function kaufkastenEinpassen(box){
+  const zuHoch = () => box.scrollHeight > box.clientHeight;
+  if(zuHoch()) box.classList.add('eng1');
+  if(zuHoch()){
+    box.classList.add('eng2');
+    const vorschau = box.querySelector('.abovorschau');
+    if(vorschau) vorschau.remove();
+  }
+  if(zuHoch()) box.classList.add('eng3');
+  box.classList.toggle('rollt', zuHoch());
+}
 /* Die Auswahl Monat oder Jahr. Preise und Zeiträume kommen von Google. */
 async function vollWahlZeigen(){
   const P = aboPlugin(); if(!P || aboLaeuft) return;
@@ -8610,7 +8701,7 @@ async function vollWahlZeigen(){
   aboLaeuft = false; vollZeileZeigen();
   if(d && d.ok && (!d.plaene || !d.plaene.length)){
     /* Eindeutige Antwort: es gibt nichts zu kaufen. Keine Fehlermeldung -
-       der Block geht einfach weg. */
+       die Kaufzeile geht einfach weg, der Widerrufsknopf bleibt. */
     aboProdukteFehlen = true; aboStoerung = false; vollZeileZeigen(); return;
   }
   if(!d || !d.ok){
@@ -8667,7 +8758,7 @@ async function vollWahlZeigen(){
   const kasten = document.createElement('div');
   kasten.className = 'nachfrage';
   kasten.innerHTML =
-    '<div class="nachfragebox">' +
+    '<div class="nachfragebox kaufbox">' +
       '<h3>'+esc(t('voll.wahl_titel'))+'</h3>' +
       '<div class="abovorschau">' + zmaj('cheer') +
         '<div class="wort">' + esc(t('voll.so_koenntest_du')) + '</div></div>' +
@@ -8683,13 +8774,16 @@ async function vollWahlZeigen(){
       /* iOS (30.10.2026, Richtlinie 3.1.2): Links zu Nutzungsbedingungen
          und Datenschutz und "Kaeufe wiederherstellen" stehen im Kaufkasten
          selbst. Name, Laufzeit und Preis stehen schon auf den Karten, die
-         Gratiszeit mit dem Preis danach darueber. */
+         Gratiszeit mit dem Preis danach darueber. Die Links rollen mit dem
+         Inhalt, fest am Rand stehen nur die Knoepfe (.kaufknoepfe). */
       (IST_IOS ? '<div class="abolinks">' +
          '<button type="button" class="abolink" id="aboAgb"></button> · ' +
          '<button type="button" class="abolink" id="aboDs"></button> · ' +
          '<button type="button" class="abolink" id="aboWh"></button></div>' : '') +
-      '<button class="btn know" id="aboKauf"></button>' +
-      '<button class="btn ghost" id="aboZu"></button>' +
+      '<div class="kaufknoepfe">' +
+        '<button class="btn know" id="aboKauf"></button>' +
+        '<button class="btn ghost" id="aboZu"></button>' +
+      '</div>' +
     '</div>';
   kasten.querySelector('#aboKauf').textContent = t('voll.kaufen');
   kasten.querySelector('#aboZu').textContent = t('btn.dialog_abbrechen');
@@ -8701,12 +8795,6 @@ async function vollWahlZeigen(){
     kasten.querySelector('#aboDs').addEventListener('click', ()=> rechtstextZeigen('datenschutz'));
   }
   document.body.appendChild(kasten);
-  /* Der Drache in voller Montur - unabhaengig davon, was der Nutzer
-     gerade traegt. Genau das ist ja das Angebot. */
-  const schau = kasten.querySelector('.abovorschau .zmaj-anim');
-  if(schau) mountZmaj(schau, 'cheer',
-    {ids: ['krone_gross', 'monokel', 'umhang', 'galaxie', 'funkeln']
-           .filter(id => MASCOT.has(zierratDatei(id))), farbe: 'galaxie'});
   const zu = ()=>{ kasten.remove(); if(frageSchliessen === zu) frageSchliessen = null; };
   frageSchliessen = zu;                       // damit die Zurück-Taste sie schließt
   kasten.querySelector('#aboZu').addEventListener('click', zu);
@@ -8725,6 +8813,14 @@ async function vollWahlZeigen(){
   };
   waehle(karten.find(b => b.dataset.plan === 'jahr' && !b.disabled) || karten.find(b => !b.disabled));
   karten.forEach(b => b.addEventListener('click', ()=> waehle(b)));
+  // Erst hier: die Testwoche steht jetzt da und zaehlt mit
+  kaufkastenEinpassen(kasten.querySelector('.kaufbox'));
+  /* Der Drache in voller Montur - unabhaengig davon, was der Nutzer
+     gerade traegt. Genau das ist ja das Angebot. */
+  const schau = kasten.querySelector('.abovorschau .zmaj-anim');
+  if(schau) mountZmaj(schau, 'cheer',
+    {ids: ['krone_gross', 'monokel', 'umhang', 'galaxie', 'funkeln']
+           .filter(id => MASCOT.has(zierratDatei(id))), farbe: 'galaxie'});
   kasten.querySelector('#aboKauf').addEventListener('click', async ()=>{
     if(aboLaeuft || !gewaehlt) return;         // Sperre gegen Doppeltipp
     aboLaeuft = true;
@@ -8790,7 +8886,11 @@ function widerrufZeigen(){
   kasten.addEventListener('click', e=>{ if(e.target === kasten) zu(); });
   kasten.querySelector('#widOk').addEventListener('click', ()=>{
     const betreff = 'Zmaj – ' + t('set.widerruf_knopf');
-    const rumpf = t('set.widerruf_text') + '\n\n--\n'
+    /* Bis 06.11.2026 stand hier set.widerruf_text, also die Anleitung aus dem
+       Kasten. § 356a Abs. 2 BGB verlangt Name, Angaben zum Vertrag und den Weg
+       fuer die Bestaetigung; ohne sie folgte eine Rueckfrage (Pruefbericht 1.3,
+       G15). Der Text nennt weder Google noch GPA: iOS nimmt denselben. */
+    const rumpf = t('set.widerruf_mail') + '\n\n--\n'
                 + (SPRACHE||'') + ' · ' + new Date().toISOString().slice(0,10);
     try{ location.href = 'mailto:' + ZMAJ_MAIL
           + '?subject=' + encodeURIComponent(betreff)
@@ -9335,7 +9435,15 @@ const UMBENANNT = {
      kahva / kafa; die Suche unten faende das alte bosnische Wort nicht mehr. */
   'arzt:doktor': 'arzt:doktor / ljekar',
   'erlauben:dozvoliti': 'erlauben / zulassen:dozvoliti / dopustiti',
-  'erlauben:dozvoljavati': 'erlauben / zulassen:dozvoljavati / dopuštati'};
+  'erlauben:dozvoljavati': 'erlauben / zulassen:dozvoljavati / dopuštati',
+  /* Ajdin am 07.11.2026 (Wortschatz-Pakete 10 bis 20): iznajmiti heisst jetzt
+     "vermieten", mieten ist unajmiti (b2_2_entscheidungen.md, Paket 15 Nr. 113).
+     Aus produžni kabl wird produžni kabel ("kabel", Nachfrage 6 B), zaposlenik
+     bekommt die zweite Form uposlenik wie doktor / ljekar. Die Suche unten
+     faende das alte bosnische Wort bei den beiden letzten nicht mehr. */
+  'mieten:iznajmiti': 'vermieten:iznajmiti',
+  'verlängerungskabel:produžni kabl': 'verlängerungskabel:produžni kabel',
+  'arbeitnehmer:zaposlenik': 'arbeitnehmer:zaposlenik / uposlenik'};
 /* Dasselbe fuer Saetze (25.10.2026): Fehler-Topf und Sterne merken sich
    einen Satz als "s:<Level>|<Lueckentext>" bzw. "k:<Level>|<Satz>"
    (topfSchluessel). Aendert sich der bosnische Text, fuehrt der alte
@@ -9581,9 +9689,9 @@ function renderLaden(){
     ? vollZeileLaden() + VERBRAUCH.map(w => zeile(w, knoepfe(w), w.id === 'herz' ? 'zweiwege' : '')).join('')
     : ZIERRAT.filter(w => w.gruppe === ladenReiter).map(zierratZeile).join('');
   box.querySelectorAll('button[data-ware]').forEach(b =>
-    b.addEventListener('click', ()=> kaufe(b.dataset.ware)));
+    b.addEventListener('click', ()=> ladenTipp(()=> kaufe(b.dataset.ware))));
   box.querySelectorAll('button[data-tragen]').forEach(b =>
-    b.addEventListener('click', ()=> trage(b.dataset.tragen)));
+    b.addEventListener('click', ()=> ladenTipp(()=> trage(b.dataset.tragen))));
   const vk = box.querySelector('button[data-videoleben]');
   if(vk && !vk.disabled) vk.addEventListener('click', werbungFuerLeben);
   // Beide direkt zum Kaufkasten, siehe vollKaufOeffnen(). 07.10.2026
@@ -9591,6 +9699,22 @@ function renderLaden(){
   if(lv) lv.addEventListener('click', ()=>{ vollKaufOeffnen(); });
   box.querySelectorAll('button[data-vollstueck]').forEach(b =>
     b.addEventListener('click', ()=>{ vollKaufOeffnen(); }));
+}
+/* Ein Doppeltipp ist ein Tipp. Ohne Sperre kostete er beim Herz 200 statt 100
+   Muenzen, und Zierrat wurde gekauft und sofort wieder abgenommen. renderLaden()
+   zeichnet die Knoepfe nach jedem Tipp neu, der zweite traf also einen frischen
+   Knopf; deshalb zaehlt die Zeit und nicht der Knopf. Hier und nicht in kaufe()
+   und trage(): die werden auch direkt nacheinander aufgerufen.
+   Gezaehlt wird ab dem Ende des ersten Tipps: der erste Kauf nach dem Start
+   haelt die Seite mitunter laenger fest, als die Sperre dauert (680 ms in einem
+   frischen Browser), und der zweite Tipp wartet solange in der Schlange.
+   Pruefbericht 1.3, G9. */
+const LADEN_SPERRE_MS = 400;
+let ladenLetzterTipp = -LADEN_SPERRE_MS;
+function ladenTipp(tun){
+  if(performance.now() - ladenLetzterTipp < LADEN_SPERRE_MS) return;
+  tun();
+  ladenLetzterTipp = performance.now();
 }
 /* Anziehen oder ausziehen. Aus jeder Gruppe sitzt hoechstens ein Stueck:
    eine zweite Muetze schiebt die erste herunter. Ein zweites Mal auf
@@ -9636,15 +9760,26 @@ function drachenNeu(){
     mountZmaj(el);
   });
 }
+/* Ein Kauf ist ein Ereignis und muss den Abgleich ueberstehen (Serienschutz 06.11.2026,
+   Herz 07.11.2026). Bisher blieb zeit stehen und ging bei vollem Vorrat auf 0. Gegen den
+   Stand von vor dem Kauf gewann dann die neuere Zeit oder bei gleicher Zeit die kleinere
+   Anzahl (siehe zeitWahl): Die Ware war auf allen Geraeten weg, die Muenzen auch. Darum
+   geht zeit nach oben. Bei vollem Vorrat laeuft keine Uhr, zeit ist dort der Kauf. Sonst
+   laeuft die Uhr weiter, ein Kauf soll keine Wartezeit kosten, eine Millisekunde reicht.
+   Ein Geraet mit 1.2 liest beides als ganz normale Zeit. Zierrat braucht das nicht:
+   besitz ist eine Vereinigung, siehe standZusammenfuehren(). */
+function zeitNachKauf(zeit, voll){ return voll ? Math.max(Date.now(), zeit + 1) : zeit + 1; }
 function kaufe(id){
   const w = [...VERBRAUCH, ...ZIERRAT].find(x => x.id === id);
   if(!w || muenzen() < w.preis || !w.geht()) return;
   if(id==='herz'){
     syncLives();
     lives.anzahl = Math.min(LEBEN_MAX, lives.anzahl + 1);
-    if(lives.anzahl >= LEBEN_MAX) lives.zeit = 0;
+    lives.zeit = zeitNachKauf(lives.zeit, lives.anzahl >= LEBEN_MAX);
   } else if(id==='schutz'){
-    schutz.anzahl = Math.min(SCHUTZ_MAX, schutzNow() + 1);
+    const vorrat = schutzNow();
+    schutz.anzahl = Math.min(SCHUTZ_MAX, vorrat + 1);
+    schutz.zeit = zeitNachKauf(schutz.zeit, schutz.anzahl >= SCHUTZ_MAX);
   } else {
     // Gekauftes wird gleich getragen - und schiebt das alte Stueck derselben
     // Gruppe herunter, nicht den ganzen uebrigen Zierrat.
@@ -10079,9 +10214,9 @@ const fremdNamen = s => (s && typeof s === 'object' && !Array.isArray(s))
    Sicherungsdatei, also zuerst durch sicherungPlausibel(); das Ergebnis
    geht in standErsetzen() durch standUebernehmen(). Danach dasselbe wie
    nach dem Einlesen einer Datei (sicherungEinlesen). cloudVorher: siehe
-   standZusammenfuehren(). */
-function cloudUebernehmen(fremd, cloudVorher){
-  if(!standErsetzen(() => standZusammenfuehren(standAlsObjekt(), sicherungPlausibel(fremd), cloudVorher))) return false;
+   standZusammenfuehren(), ebenso erstesMal. */
+function cloudUebernehmen(fremd, cloudVorher, erstesMal){
+  if(!standErsetzen(() => standZusammenfuehren(standAlsObjekt(), sicherungPlausibel(fremd), cloudVorher, erstesMal))) return false;
   seitNachEinlesen();
   geschenkPruefen();
   syncLives(); pruefeSchutz();
@@ -10116,7 +10251,7 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
          ersetzt ihn unten der eigene Stand. Wirft das Einarbeiten, wird
          lieber nicht geschrieben: dort koennte ein anderes Geraet stehen. */
       const s = cloudStandAus(dok.text);
-      if(s && !cloudUebernehmen(s, m.fremd)) return 'fehler';
+      if(s && !cloudUebernehmen(s, m.fremd, !m.rev)) return 'fehler';
       m.rev = dok.rev;
       m.fremd = fremdNamen(s);
     }
@@ -11205,9 +11340,17 @@ $('fbSend').addEventListener('click', async ()=>{
 });
 
 /* =================== STARTSEITE =================== */
+/* Zurueck aus einem Level soll dort landen, wo man im Lernpfad war, sonst
+   scrollt man in einer langen Sektion nach jedem Zurueck neu hinunter
+   (Pruefbericht 1.3, G11). openLevel() merkt sich die Stelle, und sie gilt
+   einmal, nur auf dem Weg aus dem Level. Von anderswo oeffnet der Pfad
+   weiterhin oben, siehe LERNPFAD. */
+let pfadStelle = 0;
 function showHome(){
   uhrAus();
   if(anmeldungSperre()) return;     // Pflicht-Anmeldung, 28.10.2026
+  const stelle = homeMode === 'words' && sichtbar('levelView') ? pfadStelle : 0;
+  pfadStelle = 0;
   showView('pfad'); setzeZurueck('', null);
   $('modeWords').setAttribute('aria-selected', homeMode==='words'); $('modeStories').setAttribute('aria-selected', homeMode==='stories');
   $('modeTopf').setAttribute('aria-selected', homeMode==='topf');
@@ -11219,6 +11362,7 @@ function showHome(){
   einstufungAnbieten();
   kartenNachreichen();
   if(einstufungBereit) agbHinweis();
+  if(stelle) window.scrollTo({top: stelle, behavior: 'instant'});
 }
 /* Der Laden ist keine Lernsache, deshalb steht er oben bei Profil und
    Einstellungen und nicht in der Reiterleiste. */
@@ -11584,6 +11728,8 @@ function showStoryQ(s, qi, right){
 /* =================== LEVEL =================== */
 function openLevel(i){
   if(anmeldungSperre()) return;
+  // Beim Blaettern von Level zu Level bleibt die Stelle von vorher, siehe showHome()
+  if(!sichtbar('levelView')) pfadStelle = sichtbar('pfad') && homeMode === 'words' ? window.scrollY : 0;
   catIdx=i; showView('levelView');
   setzeZurueck(t('btn.zurueck_pfad'), ()=>{ homeMode='words'; showHome(); });
   $('tag').textContent=t('level.zaehler',{i:levelNummer(i), n:levelEnde() - levelAnfang()});
@@ -11640,11 +11786,12 @@ function showLevelHome(){
      gibt. */
   $('wordList').innerHTML = zeilen.map(z=>
       '<div><span class="de">'+esc(z.de)+'</span>'
-    + '<span class="bs'+(z.kann?'':' zu')+'">'
-    + (z.kann ? esc(z.bs)+' <span class="ok">✓</span>'
+    + '<span class="bs'+(z.kann?'':' zu')+'">'+(z.kann ? esc(z.bs) : '?')+'</span>'
+    + (z.kann ? '<span class="wortende"><span class="ok">✓</span>'
                 + (hoerbar(z.bs) ? '<button type="button" class="wortton" data-bs="'+esc(z.bs)+'" aria-label="'+esc(nurWort(t('task.hoeren')))+'">'+symbol('lautsprecher')+'</button>' : '')
-              : '?')
-    + '</span></div>').join('');
+                + '</span>'
+              : '')
+    + '</div>').join('');
   $('wordList').querySelectorAll('.wortton').forEach(b=>b.addEventListener('click', e=>{
     e.stopPropagation(); stilleBitte(); speak(b.dataset.bs);
   }));
@@ -11757,9 +11904,48 @@ function partnerAntworten(w){
 /* Wortschatz-Pakete 5 bis 9 (06.11.2026): diese Woerter heissen teilweise gleich
    („so“, „ganz“, „hier“, „sehr“) und sollen nie zusammen in einer Auswahl stehen.
    Beim Tippen zaehlt das andere Wort trotzdem nicht: "auch" hat Ajdin dafuer
-   nicht freigegeben. */
-const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako'], ['vrlo / veoma', 'jako']];
-const nieNebeneinander = (a, b) => NIE_NEBENEINANDER.some(([x, y]) => (a === x && b === y) || (a === y && b === x));
+   nicht freigegeben.
+   Pruefbericht 1.3 (06.11.2026): Bei der Frage "ziehen" (vući) stand povlačiti
+   mit "ziehen / zurückziehen" als falscher Knopf, bei "also" (dakle) pa mit "und
+   dann / also". Wer das antippt, hat recht und verliert ein Leben. Die Paare ab
+   der zweiten Zeile sind genau solche Faelle, jeder in mindestens einer der acht
+   Sprachen; bei važan / bitan und nakon / po trennt nur auf Deutsch die Klammer.
+   Die Liste gilt in allen Sprachen, tests_e2e/test_antworten.py sucht je Sprache
+   nach weiteren. */
+const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako'], ['vrlo / veoma', 'jako'],
+  ['vući', 'povlačiti'], ['dakle', 'pa'], ['iz', 'od'], ['Hajde!', 'Hajmo!'], ['tražiti', 'zvati'],
+  ['dokument', 'potvrda'], ['Sve je dobro', 'Šta ima?'], ['bitan', 'važan'], ['nakon', 'po'],
+  /* Wortschatz-Pakete 10 bis 20 (07.11.2026): was die Paketdateien beim Einbau ausdruecklich
+     nicht zusammen in eine Auswahl stellen ("einbau_hinweis", b2_2_pruefung.md: gleiche
+     deutsche Teil-Bedeutung wie ein Wort der App, unuk / unuka sehen im Akkusativ gleich aus). */
+  ['unuk', 'unuka'], ['izbrisati', 'brisati'], ['izbrisati', 'obrisati'],
+  ['rješenje / upravni akt', 'rješenje'], ['začin', 'začini'], ['začiniti', 'začini'], ['tablica', 'natpis'],
+  ['tablica', 'tabla'], ['pronalazak', 'otkriće'], ['trg', 'mjesto'], ['objekat', 'zgrada'],
+  ['središte', 'centar'], ['prijevoz / prevoz', 'transport'], ['željeznička stanica', 'stanica'],
+  ['automobil', 'auto'], ['udes', 'nesreća'], ['sjena', 'hlad'], ['njiva', 'polje'], ['stablo', 'drvo'],
+  ['prijelaz / prelaz', 'raskrsnica'], ['većinom', 'uglavnom'], ['skroz', 'sasvim'],
+  ['približno', 'otprilike'], ['suviše', 'previše'], ['pravilno', 'tačan'], ['svakodnevno', 'dnevni'],
+  ['dosad / dosada', 'dosada'], ['iznenada', 'odjednom'], ['najzad', 'konačno'], ['zamalo', 'skoro'],
+  ['van', 'izvan'], ['van', 'vani'], ['jednak', 'isti'], ['kompletan', 'potpun'], ['ispravan', 'tačan'],
+  ['obojica', 'oba'], ['obojica', 'oboje'], ['manjak', 'nedostatak'], ['curiti', 'kapi'],
+  ['procuriti', 'kapi'], ['renovirati', 'obnoviti'], ['trpjeti', 'podnijeti'], ['pretrpjeti', 'podnijeti'],
+  ['pamćenje', 'memorija'], ['uznemiriti', 'smetati'], ['uznemiravati', 'smetati'], ['trenirati', 'vježbati'],
+  ['ispitivanje', 'istraživanje'], ['ispitivanje', 'pregled'], ['istraživati', 'pregledati'],
+  ['istražiti', 'pregledati'], ['ispitati', 'razmatrati'], ['ispitivati', 'razmatrati'],
+  ['proučiti', 'studirati'], ['proučavati', 'studirati'], ['debata', 'rasprava / diskusija'],
+  ['razjasniti', 'riješiti'], ['servis', 'radionica'], ['ravnica', 'nivo'], ['ribolov / pecanje', 'pecati'],
+  ['prebaciti', 'prenijeti'], ['prebacivati', 'prenijeti'], ['slijediti', 'pratiti'],
+  ['uslijediti', 'pratiti'], ['izraditi', 'kreirati'], ['izrađivati', 'kreirati'], ['okončati', 'završiti'],
+  ['urediti', 'uspostaviti'], ['urediti', 'složiti'], ['uređivati', 'uspostaviti'], ['uređivati', 'složiti'],
+  ['unaprijediti', 'poboljšati'], ['unapređivati', 'poboljšati'], ['makar', 'bar'], ['nedovoljno', 'premalo'],
+  ['najprije', 'prvo'], ['omiljen', 'popularan'], ['miran', 'smiren'], ['mnoštvo', 'količina'],
+  /* Im Level trauer_beileid heisst patnja "Leid" und stradanje "Verunglücken / Leid": der
+     falsche Knopf waere in Wahrheit richtig (tests_e2e/test_antworten.py, V1). */
+  ['patnja', 'stradanje']];
+/* Seit den Paketen 10 bis 20 sind es gut 90 Paare, und distractors() fragt fuer jedes Wort
+   des Vorrats: als Menge nachschlagen statt die Liste jedes Mal abzulaufen (07.11.2026). */
+const _NIE = new Set(NIE_NEBENEINANDER.flatMap(([x, y]) => [x + '\u0000' + y, y + '\u0000' + x]));
+const nieNebeneinander = (a, b) => _NIE.has(a + '\u0000' + b);
 function geschwister(w){
   const b = _bedeutung(w.de);
   const meineAuch = new Set((w.auch || []).flatMap(_formen));
@@ -11783,8 +11969,27 @@ function distractors(target, words, n){
   const raus = w => w.bs===target.bs || gleich.has(w.bs);
   let pool = words.filter(w=>!raus(w));
   if(pool.length<n) pool = wortVorrat().filter(w=>!raus(w));
-  const seen = new Set([target.bs]); const out=[];
-  for(const w of shuffle(pool.slice())){ if(!seen.has(w.bs)){ seen.add(w.bs); out.push(w); if(out.length===n) break; } }
+  /* Pruefbericht 1.3 (06.11.2026), beides auf einem Weg:
+     - Keine Bedeutung zweimal. Bei "Was bedeutet ...?" stand sonst zweimal
+       "herstellen" da, und der doppelte Knopf schied sofort aus.
+     - Zuerst dieselbe Art: Wort zu Wort, Satz zu Satz (istWort() auf der deutschen
+       Bedeutung, damit jede Sprache dieselben Saetze hat). Wer ein Wort sucht,
+       strich vorher die Saetze und musste weniger wissen, und ein Satz fiel als
+       einziger auf. Die andere Art fuellt nur auf, in 21 Leveln reicht die eigene
+       nicht. Reichen die verschiedenen Bedeutungen im Level nicht, dann der ganze
+       Vorrat. */
+  const seen = new Set([target.bs]), bedeutungen = new Set([_bedeutung(target.de)]); const out=[];
+  const nimm = liste => {
+    for(const w of liste){
+      if(out.length===n) return;
+      const b = _bedeutung(w.de);
+      if(!seen.has(w.bs) && !bedeutungen.has(b)){ seen.add(w.bs); bedeutungen.add(b); out.push(w); }
+    }
+  };
+  const satz = w => !istWort(grundBedeutung(w)), gemischt = shuffle(pool.slice());
+  nimm(gemischt.filter(w => satz(w) === satz(target)));
+  nimm(gemischt);
+  if(out.length<n) nimm(shuffle(wortVorrat().filter(w=>!raus(w))));
   return out;
 }
 /* sprache: 'bs', wenn die Antworten bosnisch sind (17.10.2026) - dann traegt
@@ -12139,6 +12344,8 @@ function renderTask(task, body, done, opts={}){
        Vorher lief das Mikrofon bis zu viermal weiter, auch auf der
        Levueluebersicht. Gefunden am 26.09.2026. */
     let stoppGewollt = false;
+    /* Mit welcher Sprache der naechste Tipp beginnt, siehe unten. */
+    let sprachNr = 0;
     mic.addEventListener('click', async ()=>{
       if(fin) return;
       const H = hoererPlugin();
@@ -12165,7 +12372,9 @@ function renderTask(task, body, done, opts={}){
           mic.classList.add('rec'); heard.textContent = t('task.hoert_zu');
           hoererAbbrechen = ()=>{ stoppGewollt = true; abhoeren(); };
           let erg = null;
-          for(const sprache of ['bs-BA','hr-HR','sr-RS', null]){
+          const sprachen = ['bs-BA','hr-HR','sr-RS', null];
+          for(let nr = sprachNr; nr < sprachen.length; nr++){
+            const sprache = sprachen[nr];
             try{
               erg = await H.start(Object.assign({maxResults:5, partialResults:false, popup:false},
                                                 sprache ? {language:sprache} : {}));
@@ -12177,6 +12386,17 @@ function renderTask(task, body, done, opts={}){
                  Abbruch durch den Nutzer. Dann darf nicht die naechste
                  Sprache starten. */
               if(stoppGewollt || fin) break;
+              /* Pruefbericht 1.3 (06.11.2026): Bei "kein Treffer" und Stille lief die
+                 Schleife trotzdem weiter, bis zu dreimal, und auf dem Bildschirm
+                 stand "Hoert zu ...". Jetzt ist hier Schluss und die Meldung kommt.
+                 Ob ein Geraet ohne bs-BA genauso antwortet, ist am Handy noch nicht
+                 geprueft. Deshalb bleibt der Rueckfall: Der naechste Tipp in dieser
+                 Aufgabe nimmt die naechste Sprache. Andere Ablehnungen, darunter
+                 Androids "Sprache fehlt", wandern wie bisher in einem Zug weiter. */
+              if(/No match|No speech input/.test(String((e && e.message) || e))){
+                sprachNr = (nr + 1) % sprachen.length;
+                break;
+              }
             }
           }
           listening = false; mic.classList.remove('rec');
@@ -13422,6 +13642,17 @@ function showTestQ(){
     weiterBeiTipp('tBody', showTestQ);
   }, {noSkip:true});
 }
+/* Wohin "Weiter" nach einem bestandenen Test fuehrt: zum naechsten noch nicht
+   bestandenen Level hinter diesem. Sind Level eingeschoben worden, ist der
+   direkte Nachfolger oft laengst bestanden, und dort steht nur "Level
+   bestanden" (Pruefbericht 1.3, G3: nach Level 102 ging es nach 103 statt
+   nach 130). Ist alles dahinter bestanden, geht es wie bisher eins weiter.
+   Im Zahnarzt-Teil bleibt es innerhalb des Teils, siehe levelEnde().
+   Das Ziel ist immer offen: alles davor bis hierher ist bestanden. */
+function naechstesOffenes(){
+  for(let k = catIdx + 1; k < levelEnde(); k++) if(!passed.has(levelNach(k).id)) return k;
+  return catIdx + 1;
+}
 function showTestResult(){
   stilleBitte(); uhrAus(); testBar();   // das letzte Wort nicht ins Ergebnis reden lassen
   sternKnopf('tStern', null);
@@ -13463,10 +13694,10 @@ function showTestResult(){
     questLob+
     '<div class="row">'+
       '<button class="btn ghost" id="tBack">'+(ok?t('test.zum_pfad'):t('lektion.zurueck'))+'</button>'+
-      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:levelNummer(catIdx)+1})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
+      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:levelNummer(naechstesOffenes())})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
     '</div>';
   $('tBack').addEventListener('click', ()=>{ if(ok){ homeMode='words'; showHome(); } else showLevelHome(); });
-  const n=$('tNext'); if(n) n.addEventListener('click', ()=> openLevel(catIdx+1));
+  const n=$('tNext'); if(n){ const ziel = naechstesOffenes(); n.addEventListener('click', ()=> openLevel(ziel)); }
   const r=$('tRetry'); if(r) r.addEventListener('click', startTest);
   if(ok && allesFertig && (neuBestanden || !hasNext)){ $('tBody').insertAdjacentHTML('beforeend','<div class="kicker" style="margin-top:12px">'+t('test.alles_geschafft')+'</div>'); }
 }
@@ -15348,7 +15579,8 @@ function updBeimStart(){
    auf die Zeit, auf einem langsamen auf die App.
    Nach der Bewegung bleibt das fertige Bild noch VORSPANN_HALT stehen –
    ohne diese Pause wechselt die App in dem Moment, in dem der Name
-   erscheint, und man hat ihn nicht gelesen.
+   erscheint, und man hat ihn nicht gelesen. Das gilt beim ersten Start des
+   Tages, siehe vorspannHeuteSchon().
    Antippen setzt die Wartezeit auf null – auch dann, wenn schon gewartet
    wird, und auch dann, wenn die App noch lädt. */
 const VORSPANN_ABLAUF = 2400;   // so lange dauert die Bewegung oben im Stil
@@ -15361,8 +15593,21 @@ function vorspannOhneBewegung(){
   try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }
   catch(e){ return false; }
 }
+/* Die Haltezeit nur beim ersten Start des Tages (entschieden am 06.11.2026): sie
+   hielt jeden Kaltstart auf ueber 4,5 s, obwohl die App nach 0,14 s bereit war, und
+   wer den Namen heute schon gelesen hat, muss nicht noch einmal warten
+   (Pruefbericht 1.3, G18). Der Tag steht nur im Geraet und ist kein Lernstand.
+   Klappt der Speicher nicht, gibt es den vollen Vorspann. */
+function vorspannHeuteSchon(){
+  try{
+    const heute = today();
+    if(localStorage.getItem('zmaj_vorspann_tag') === heute) return true;
+    localStorage.setItem('zmaj_vorspann_tag', heute);
+  }catch(e){}
+  return false;
+}
 let vorspannMin = vorspannOhneBewegung() ? 1400
-                                         : VORSPANN_ABLAUF + VORSPANN_HALT;
+                : VORSPANN_ABLAUF + (vorspannHeuteSchon() ? 0 : VORSPANN_HALT);
 const vorspannAb = performance.now();
 let vorspannUhr = null, appBereit = false, vorspannFort = false;
 

@@ -139,14 +139,18 @@ def test_partner_stehen_in_der_app(grunddaten):
         for x in p:
             zaehler[x] = zaehler.get(x, 0) + 1
     # Ausnahme seit Paket 7 (06.11.2026): povući hat zwei Gegenstuecke,
-    # povlačiti und vući. Die App liest partner in beide Richtungen.
+    # povlačiti und vući. Die App liest partner in beide Richtungen. Seit Paket 19
+    # (07.11.2026) ebenso izvršiti: vršiti und izvršavati.
     assert zaehler.pop("povući") == 2
+    assert zaehler.pop("izvršiti") == 2
     assert max(zaehler.values()) == 1, [x for x, n in zaehler.items() if n > 1]
     # 39 aus Paket 1 (24 im Paket, 15 mit einem Wort, das schon da war), seit
     # Paket 2 (31.10.2026) 43 dazu - siehe tests/test_paket2.py -, seit den
     # Paketen 3 und 4 (01.11.2026) 27 (tests/test_paket3.py, test_paket4.py),
-    # seit den Paketen 7 und 8 (06.11.2026) 136 (tests/test_paket7.py, test_paket8.py)
-    assert len(paare) == 39 + 43 + 27 + 136
+    # seit den Paketen 7 und 8 (06.11.2026) 136 (tests/test_paket7.py, test_paket8.py),
+    # seit dem 07.11.2026 dići - dizati (Warteliste) und 201 aus den Paketen 10 bis 20
+    # (tests/test_paket10.py bis test_paket20.py)
+    assert len(paare) == 39 + 43 + 27 + 136 + 1 + 201
 
 
 def test_gleiche_bedeutung_im_neuen_teil_nur_bei_paaren(alle_daten):
