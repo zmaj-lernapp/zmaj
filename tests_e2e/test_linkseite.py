@@ -8,9 +8,9 @@ der Test selbst (page.route) - kein Byte verlaesst den Rechner.
 Geprueft wird:
   - ?von=tiktok, ?von=instagram, ?von=youtube: Alle acht Knoepfe zeigen auf
     den Play-Link mit genau diesem Kanal (Form wie tests/test_linkseite.py),
-    ohne ?von= und bei einem unbekannten Wert auf "web". Ein Tipp auf den
-    Knopf fuehrt wirklich dorthin.
-  - Ohne JavaScript: englischer Text, der Link fuer "web", keine
+    ohne ?von= und bei einem unbekannten Wert auf "linkseite" (bis
+    12.11.2026 "web"). Ein Tipp auf den Knopf fuehrt wirklich dorthin.
+  - Ohne JavaScript: englischer Text, der Link fuer "linkseite", keine
     Sprachknoepfe (ohne Skript taeten sie nichts).
   - Die Sprache des Browsers gilt, eine fehlende wird Englisch, Norwegisch
     ("no") wird bokmaal.
@@ -135,13 +135,17 @@ def linkseite(browser, links_basis):
 
 @pytest.mark.parametrize("von,quelle", [("tiktok", "tiktok"), ("instagram", "instagram"),
                                         ("youtube", "youtube"), ("TikTok", "tiktok"),
-                                        (None, "web"), ("", "web"), ("facebook", "web"),
-                                        ("tiktok2", "web")])
+                                        (None, "linkseite"), ("", "linkseite"), ("facebook", "linkseite"),
+                                        ("tiktok2", "linkseite"), ("web", "linkseite"),
+                                        ("linkseite", "linkseite"),
+                                        ("instagram%26utm_medium%3Dx", "linkseite")])
 def test_kanal_aus_von(linkseite, von, quelle):
     import seite_bauen
     s = linkseite()
     s.oeffnen(von)
     assert s.knoepfe() == [seite_bauen.play_link(quelle)] * 8
+    # Woertlich, wie Ajdin den Link bekommen hat (12.11.2026).
+    assert s.knoepfe()[0].endswith("&referrer=utm_source%%3D%s%%26utm_medium%%3Dbio" % quelle)
     assert s.sichtbar() == ["en"]
     s.sauber()
 
@@ -160,7 +164,7 @@ def test_ohne_javascript(linkseite):
     import seite_bauen
     s = linkseite(skript=False, locale="de-DE")
     s.oeffnen("instagram")
-    assert s.knoepfe() == [seite_bauen.play_link("web")] * 8
+    assert s.knoepfe() == [seite_bauen.play_link("linkseite")] * 8
     assert s.page.is_visible('section[data-sprache="en"] a.play')
     assert not s.page.is_visible('section[data-sprache="de"]')
     assert not s.page.is_visible(".sprachen")
@@ -169,7 +173,7 @@ def test_ohne_javascript(linkseite):
                                    "i => i.complete && i.naturalWidth") == 646
     s.page.click('section[data-sprache="en"] a.play')
     s.page.wait_for_url(PLAY)
-    assert s.play == [seite_bauen.play_link("web")]
+    assert s.play == [seite_bauen.play_link("linkseite")]
 
 
 @pytest.mark.parametrize("locale,soll", [("de-DE", "de"), ("tr-TR", "tr"), ("hr-HR", "en"),

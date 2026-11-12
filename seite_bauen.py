@@ -995,21 +995,34 @@ def baue_kontaktseite(zugang):
 # Der Play-Link traegt den Kanal wie in Abschnitt 4.2 URL-codiert im
 # Parameter referrer= - nur so wertet die Play Console "UTM-Quelle" aus.
 # Den Kanal setzt ein kleines Skript aus ?von=; ohne Skript gilt der Link im
-# HTML mit utm_source=web, der Knopf funktioniert also immer.
+# HTML mit utm_source=linkseite, der Knopf funktioniert also immer.
+#
+# Seit 12.11.2026 (Ajdin am 11.11.: "die link seite so machen das dieser
+# link den du mir geschickt hast drin ist wenn man drauf klickt"): Die
+# Kennung ist utm_source=<kanal>&utm_medium=bio, wie im geschickten Link.
+# Vorher hiess es utm_source=web&utm_medium=social&utm_campaign=bio. Kommt
+# jemand ohne ?von= oder mit einem anderen Wert, heisst die Quelle
+# "linkseite" statt "web" - so ist in der Play Console klar, dass er ueber
+# diese Seite kam und nicht ueber den In-App-Link (app_teilen) oder die
+# Suche. Die Console zeigt UTM-Quelle und UTM-Kampagne; utm_medium sieht
+# man dort nicht, der Kanal steckt aber ohnehin in utm_source.
 #
 # Kein Zaehler, keine Cookies, kein localStorage: Die Seite liest und
 # speichert nichts auf dem Geraet, sonst braeuchte es nach § 25 TDDDG eine
 # Einwilligung. Deshalb merkt sie sich die Sprache auch nicht, anders als
 # die uebrigen Seiten (SKRIPT), sondern nimmt jedes Mal die des Browsers.
+# ?von= liest das Skript nur aus der Adresse, die der Browser ohnehin hat;
+# gezaehlt wird erst bei Google Play, nicht hier.
 PAKET = "de.smartdragon.zmaj"
 PLAY = "https://play.google.com/store/apps/details?id=" + PAKET
 KANAELE = ("tiktok", "instagram", "youtube")
-REFERRER = "utm_source=%s&utm_medium=social&utm_campaign=bio"
+OHNE_KANAL = "linkseite"
+REFERRER = "utm_source=%s&utm_medium=bio"
 
 
-def play_link(quelle="web"):
-    """Der Play-Link mit der Kampagnen-Kennung, wie in Abschnitt 4.2:
-    ...&referrer=utm_source%3Dtiktok%26utm_medium%3Dsocial%26utm_campaign%3Dbio"""
+def play_link(quelle=OHNE_KANAL):
+    """Der Play-Link mit der Kampagnen-Kennung, seit 12.11.2026:
+    ...&referrer=utm_source%3Dinstagram%26utm_medium%3Dbio"""
     return PLAY + "&referrer=" + quote(REFERRER % quelle, safe="")
 
 
@@ -1153,10 +1166,10 @@ LINKS_STIL = """
 # mit Skript, ohne taeten sie nichts.
 LINKS_SKRIPT = """
 (function(){
-  var KANAELE = __KANAELE__, LINK = __LINK__;
+  var KANAELE = __KANAELE__, LINK = __LINK__, OHNE = __OHNE__;
   var von = '';
   try{ von = (new URLSearchParams(location.search).get('von') || '').toLowerCase(); }catch(e){}
-  var quelle = KANAELE.indexOf(von) >= 0 ? von : 'web';
+  var quelle = KANAELE.indexOf(von) >= 0 ? von : OHNE;
   document.querySelectorAll('a.play').forEach(function(a){ a.href = LINK.replace('__QUELLE__', quelle); });
 
   var knoepfe = document.querySelectorAll('.sprachen button');
@@ -1223,7 +1236,8 @@ def baue_linkseite():
     Servern."""
     mail = post_adresse()
     skript = (LINKS_SKRIPT.replace("__KANAELE__", json.dumps(list(KANAELE)))
-              .replace("__LINK__", json.dumps(play_link("__QUELLE__"))))
+              .replace("__LINK__", json.dumps(play_link("__QUELLE__")))
+              .replace("__OHNE__", json.dumps(OHNE_KANAL)))
     csp = ("default-src 'none'; script-src %s; style-src %s; img-src 'self'; "
            "form-action 'none'; base-uri 'none'" % (csp_hash(skript), csp_hash(STIL + LINKS_STIL)))
     teile = [kopf(escape(START["en"][0], quote=False), csp=csp, stil=LINKS_STIL, sprache="en"),

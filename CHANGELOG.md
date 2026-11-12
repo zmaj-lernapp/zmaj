@@ -248,8 +248,10 @@ are in the Play Store listing. Format:
   chosen from the phone's language list (English otherwise). Four large
   buttons of equal width: the official "Get it on Google Play" badge in the
   page's language, with the channel as campaign source in `referrer=`
-  (`utm_source=tiktok|instagram|youtube`, otherwise `web`, also without
-  JavaScript), then Instagram, TikTok and YouTube with their logos. Below,
+  (`utm_source=tiktok|instagram|youtube&utm_medium=bio`, otherwise
+  `utm_source=linkseite`, also without JavaScript; until 12.11.2026
+  `utm_medium=social&utm_campaign=bio` and `web`), then Instagram, TikTok
+  and YouTube with their logos. Below,
   in small print, contact, legal notice, privacy policy, terms of use, the
   note "Characters & voices made with AI" and the Google Play trademark
   notice. The badges and logos are stored unchanged in `grafik/marken`

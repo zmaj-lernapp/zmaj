@@ -5,10 +5,11 @@ umgebaut: "playstore insta tiktok und yt grosse buttons und datenschutz usw
 sehr kleine buttons").
 
 Geprueft wird hier, ohne Browser:
-  - Der Play-Link hat genau die Form aus Abschnitt 4.2 (Kanal URL-codiert
-    in referrer=), fuer TikTok, Instagram, YouTube und "web".
+  - Der Play-Link traegt den Kanal URL-codiert in referrer= (Abschnitt 4.2),
+    seit 12.11.2026 als utm_source=<kanal>&utm_medium=bio, fuer TikTok,
+    Instagram, YouTube und "linkseite" (ohne oder mit unbekanntem ?von=).
   - Die Seite steht in acht Sprachen, ohne Skript auf Englisch, mit dem
-    Link fuer "web" im HTML. Der Knopf zu Google Play ist Googles Abzeichen
+    Link fuer "linkseite" im HTML. Der Knopf zu Google Play ist Googles Abzeichen
     in der Sprache der Abteilung, darunter Instagram, TikTok und YouTube als
     grosse Knoepfe mit ihrem Zeichen. Klein unten: Kontakt (Formular nur,
     wenn es gebaut wird), Impressum, Datenschutz, Nutzungsbedingungen, der
@@ -32,16 +33,18 @@ import re
 import struct
 from html import escape
 
-# Abschnitt 4.2, woertlich. Die Seite muss genau diese Links erzeugen.
+# Woertlich, wie Ajdin den Link am 11.11.2026 bekommen hat (vorher
+# Abschnitt 4.2 mit utm_medium=social und utm_campaign=bio, Quelle "web").
+# Die Seite muss genau diese Links erzeugen.
 RECHERCHE = {
     "tiktok": "https://play.google.com/store/apps/details?id=de.smartdragon.zmaj"
-              "&referrer=utm_source%3Dtiktok%26utm_medium%3Dsocial%26utm_campaign%3Dbio",
+              "&referrer=utm_source%3Dtiktok%26utm_medium%3Dbio",
     "instagram": "https://play.google.com/store/apps/details?id=de.smartdragon.zmaj"
-                 "&referrer=utm_source%3Dinstagram%26utm_medium%3Dsocial%26utm_campaign%3Dbio",
+                 "&referrer=utm_source%3Dinstagram%26utm_medium%3Dbio",
     "youtube": "https://play.google.com/store/apps/details?id=de.smartdragon.zmaj"
-               "&referrer=utm_source%3Dyoutube%26utm_medium%3Dsocial%26utm_campaign%3Dbio",
-    "web": "https://play.google.com/store/apps/details?id=de.smartdragon.zmaj"
-           "&referrer=utm_source%3Dweb%26utm_medium%3Dsocial%26utm_campaign%3Dbio",
+               "&referrer=utm_source%3Dyoutube%26utm_medium%3Dbio",
+    "linkseite": "https://play.google.com/store/apps/details?id=de.smartdragon.zmaj"
+                 "&referrer=utm_source%3Dlinkseite%26utm_medium%3Dbio",
 }
 PROFILE = ("TikTok", "Instagram", "YouTube")
 ZUGANG = {"projekt": "zmaj-probe", "schluessel": "AIza" + "Probe" * 7}
@@ -97,10 +100,11 @@ def _pruefsummen(wurzel):
 
 def test_play_link_wie_in_der_recherche():
     import seite_bauen
-    assert seite_bauen.play_link() == RECHERCHE["web"]
+    assert seite_bauen.OHNE_KANAL == "linkseite"
+    assert seite_bauen.play_link() == RECHERCHE["linkseite"]
     for kanal in seite_bauen.KANAELE:
         assert seite_bauen.play_link(kanal) == RECHERCHE[kanal], kanal
-    assert set(seite_bauen.KANAELE) == set(RECHERCHE) - {"web"}
+    assert set(seite_bauen.KANAELE) == set(RECHERCHE) - {"linkseite"}
 
 
 def test_texte_in_allen_acht_sprachen(sprachcodes):
@@ -183,8 +187,8 @@ def test_linkseite_mit_formular(tmp_path, monkeypatch, sprachcodes, wurzel):
     assert '<ul class="sprachen" hidden>' in html
 
     # Der Knopf ist das Abzeichen der Sprache und zeigt ohne Skript auf den
-    # Link fuer "web". Nur die englische Abteilung laedt ihr Bild sofort.
-    knopf = '<a class="play" href="%s">' % escape(RECHERCHE["web"], quote=True)
+    # Link fuer "linkseite". Nur die englische Abteilung laedt ihr Bild sofort.
+    knopf = '<a class="play" href="%s">' % escape(RECHERCHE["linkseite"], quote=True)
     assert html.count(knopf) == 8
     for code, _, _, inhalt in teile:
         rand = ' class="rand"' if code in seite_bauen.ABZEICHEN_MIT_RAND else ""
@@ -266,6 +270,9 @@ def test_linkseite_mit_formular(tmp_path, monkeypatch, sprachcodes, wurzel):
     assert re.findall(r"https://[^/'\"]+", skript) == ["https://play.google.com"]
     assert json.dumps(seite_bauen.play_link("__QUELLE__")) in skript
     assert json.dumps(list(seite_bauen.KANAELE)) in skript
+    assert "OHNE = %s;" % json.dumps(seite_bauen.OHNE_KANAL) in skript
+    # Kein alter Rueckfall auf "web" mehr (bis 12.11.2026).
+    assert "'web'" not in skript and "utm_campaign" not in html
     # Die Sprache aus der ganzen Liste des Handys, nicht nur der ersten.
     assert "navigator.languages" in skript
 
