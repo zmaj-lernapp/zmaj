@@ -117,7 +117,7 @@ def test_ohne_wort_ist_nichts_zu_sehen(seite, heute_stand):
     _heim(seite)
     assert seite.page.locator(SEKTION).count() == 0
     z = seite.js(ZAHLEN)
-    assert z["sektionen"] == 17 and z["level"] == 166 and z["woerter"] == 4421 and z["wortkarte"] is False
+    assert z["sektionen"] == 31 and z["level"] == 295 and z["woerter"] == 7997 and z["wortkarte"] is False
     assert seite.js("() => [zaAn(), zaSchalter.an, !!ZA, standAlsObjekt().zahnarzt.an]") == [False, False, True, False]
     assert seite.js("() => document.querySelector('#sections').textContent.includes('Beim Zahnarzt')") is False
     # Kein eigener Eintrag im Geraetespeicher, und nichts laedt nach
@@ -162,8 +162,9 @@ def test_freischalten(seite, heute_stand, wort):
                 nummer: s.querySelector('.node .circle').textContent, farbe: sektionsNummer(s.dataset.sid),
                 offen: !s.classList.contains('locked')};
     }""")
-    assert e == {"id": "zahnarzt", "anzahl": 18, "zu": False, "titel": "Beim Zahnarzt", "level": 7,
-                 "gesperrt": 6, "jetzt": 1, "nummer": "1", "farbe": "9", "offen": True}
+    # Seit den Paketen 10 bis 20 (07.11.2026) die 32. Sektion: 31 im Lernpfad, die Farbe reihum
+    assert e == {"id": "zahnarzt", "anzahl": 32, "zu": False, "titel": "Beim Zahnarzt", "level": 7,
+                 "gesperrt": 6, "jetzt": 1, "nummer": "1", "farbe": "5", "offen": True}
     assert seite.fehler == [] and seite.fremd == []
 
 
@@ -178,8 +179,9 @@ def test_level_oeffnen_und_blaettern(seite, heute_stand):
         zurueck: document.getElementById('navPrev').disabled, weiter: document.getElementById('navNext').disabled,
         imZa: imZa(), woerter: cur().words.length})""")
     assert kopf["tag"] == "Level 1 von 7" and kopf["titel"].startswith("Level 1 · Zähne und Mund"), kopf
-    # Ohne Umbruch im Namen der Sektion: er stand sonst halb in der Zeile, halb darunter
-    assert "Beim Zahnarzt" in kopf["titel"] and kopf["imZa"] is True and kopf["woerter"] == 18, kopf
+    # Ohne Umbruch im Namen der Sektion: er stand sonst halb in der Zeile, halb darunter.
+    # 20 Eintraege seit dem 07.11.2026: zubno meso kam mit Wort und Satz von der Warteliste.
+    assert "Beim Zahnarzt" in kopf["titel"] and kopf["imZa"] is True and kopf["woerter"] == 20, kopf
     # Vor dem ersten Level kommt nichts aus dem Lernpfad, das zweite ist noch zu
     assert kopf["zurueck"] is True and kopf["weiter"] is True, kopf
     assert seite.js("() => [isUnlocked(CATEGORIES.length), isUnlocked(CATEGORIES.length + 1)]") == [True, False]
@@ -384,7 +386,7 @@ def test_ganz_fertig_feiert_nichts_aus_dem_lernpfad(seite, heute_stand):
     alle = seite.js("() => CATEGORIES.map(c => c.id)")
     seite.starten(stand=heute_stand(bestanden=alle, zahnarzt={"an": True, "z": 1000}))
     vorher = seite.js(ZAHLEN)
-    assert vorher["firstOpen"] == 165
+    assert vorher["firstOpen"] == 294      # das letzte der 295 Level (seit 07.11.2026)
     # Bis auf das letzte Level des Teils
     seite.js("() => { zaLevel().slice(0, -1).forEach(c => passed.add(c.id)); }")
     seite.js("() => { openLevel(CATEGORIES.length + 6); cur().words.forEach(w => known.add(w.id)); showLevelHome(); startTest(); }")
@@ -393,7 +395,7 @@ def test_ganz_fertig_feiert_nichts_aus_dem_lernpfad(seite, heute_stand):
         weiter: !!document.getElementById('tNext'), kicker: !!document.querySelector('#tBody .kicker')})""")
     assert e["weiter"] is False and e["kicker"] is False, e
     assert seite.js("() => t('test.sektion_fertig')") in e["text"]
-    assert seite.js(ZAHLEN)["firstOpen"] == 165
+    assert seite.js(ZAHLEN)["firstOpen"] == 294
     assert seite.fehler == []
 
 
@@ -406,7 +408,7 @@ def test_lernstand_im_teil_zaehlt_nicht_als_gelernt(seite, heute_stand):
     assert z == {"gewusst": 0, "bestanden": 0, "einstufung": True, "roh": 2}
     _heim(seite)
     assert seite.js("() => document.getElementById('summary').textContent") == (
-        "0 von 166 Levels geschafft · 0 von 4421 Wörtern sitzen")
+        "0 von 295 Levels geschafft · 0 von 7997 Wörtern sitzen")
     assert seite.fehler == []
 
 

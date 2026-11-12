@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 166 levels, 4,421 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
+  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 295 levels, 7,997 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
 </p>
 
 <h1 align="center">Zmaj – learn Bosnian</h1>
@@ -19,9 +19,10 @@
 </p>
 
 **An offline app for learning Bosnian, and the open Bosnian course behind it.**
-166 levels from the first *Merhaba* to an employment contract, 4,421 words with
-Bosnian audio, 16 grammar lessons, 12 graded reading stories, an interface in
-eight languages. Progress lives on the phone; since v109 the Android app has an
+295 levels from the first *Merhaba* to an employment contract, about 4,700 words
+and phrases and about 3,300 example sentences with Bosnian audio, 26 grammar
+lessons, 12 graded reading stories, an interface in eight languages. Progress
+lives on the phone; since v109 the Android app has an
 account (Google or email, after the first lesson) that backs it up. All of the
 content is free to reuse as a dataset.
 
@@ -71,13 +72,13 @@ Everything the app teaches is exported to [`data/`](data/) under
 
 | | Count | Formats |
 |---|---:|---|
-| Words and phrases, 17 sections, 166 levels | 4,421 | JSON, CSV, Anki (8 decks) |
+| Words, phrases and example sentences, 31 sections, 295 levels | 7,997 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
 | Graded stories with glossary and questions | 12 | JSON |
 | Reading glossary | 406 | JSON |
-| Grammar lessons with exercises | 16 | JSON |
+| Grammar lessons with exercises | 26 | JSON |
 | Synthetic Bosnian audio (MP3) | 2,411 | `web/audio/` |
-| Parallel corpus for machine translation | 4,733 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
+| Parallel corpus for machine translation | 8,309 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
 
 Every item is translated into **German, English, Turkish, Swedish, Dutch,
 Norwegian, Danish and French**. JSON Schemas, a SHA-256 manifest and an honest
@@ -107,7 +108,7 @@ Sprachsynthese zu trainieren. Mehr in data/DATASHEET.md. -->
   gap, listen, speak (with the device's speech recognition).
 - **A level test** after each level, with review questions from the levels it
   builds on, and a **review pot** for what you got wrong.
-- **Grammar**: cases, verb endings, tenses, word order: 16 lessons, 104 exercises.
+- **Grammar**: cases, verb endings, tenses, word order: 26 lessons, 175 exercises.
 - **Reading**: 12 stories, every word tappable, read aloud from start to end.
 - **Audio for everything**, shipped with the app, so it works on devices with
   no Bosnian voice and without internet.
@@ -129,8 +130,8 @@ output needs, so the app, the dataset and the demo can never disagree:
 ```mermaid
 flowchart LR
   subgraph src["Content (edited by hand)"]
-    V["vokabeln.py<br/>166 levels · 4,421 words · 300 sentences"]
-    G["grammatik.py<br/>16 lessons"]
+    V["vokabeln.py<br/>295 levels · 7,997 entries · 300 cloze sentences"]
+    G["grammatik.py<br/>26 lessons"]
     S["geschichten.py<br/>12 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]
   end
@@ -237,8 +238,9 @@ Please cite as described in [CITATION.cff](CITATION.cff), DOI
 <details>
 <summary><b>Deutsch</b></summary>
 
-**Zmaj** ist eine Offline-App zum Bosnischlernen: 166 Level, 4421 Vokabeln mit
-bosnischer Tonspur, 16 Grammatikeinheiten, 12 Lesegeschichten, Oberfläche in
+**Zmaj** ist eine Offline-App zum Bosnischlernen: 295 Level, rund 4.700 Wörter
+und Wendungen und rund 3.300 Beispielsätze mit bosnischer Tonspur,
+26 Grammatikeinheiten, 12 Lesegeschichten, Oberfläche in
 acht Sprachen. Der Lernstand liegt auf dem Gerät; die Android-App sichert ihn
 seit v109 in einem Konto, die Browser-Demo hat keins.
 Der gesamte Lerninhalt steht unter CC BY-SA 4.0 als Datensatz in
