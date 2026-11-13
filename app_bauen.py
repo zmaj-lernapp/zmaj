@@ -35,6 +35,12 @@ das Paket zu Ende. Android Studio brauchst du dafür nicht mehr.
                                  --aab bricht ohne zmaj-android/
                                  cloud_zugang.json ab - sonst ginge still
                                  eine App ohne Anmeldung in den Store.
+    app_bauen.py --immer-packen  Test-App, die die Cloud-Sicherung IMMER
+                                 gepackt schreibt (CLOUD_IMMER_PACKEN, seit
+                                 13.11.2026) - für den Handytest mit einem
+                                 Gerät mit 1.3, siehe Release\Entscheidungen_
+                                 2026-11-13\cloud_handytest.md. Nie mit --aab:
+                                 Schritt 2 kommt über die Quelle.
 
 Ein unbekannter oder vertippter Schalter bricht ab, bevor etwas passiert
 (seit 10.10.2026, siehe schalter_lesen()).
@@ -209,6 +215,31 @@ def testwerbung_einschalten(pfad=None):
         f.write(text.replace(TESTWERBUNG_AUS, TESTWERBUNG_AN))
     print("\nTESTWERBUNG: ADMOB_TEST = true im Paket. Nur fuer den "
           "geschlossenen Test hochladen, NICHT in die Produktion.")
+
+
+PACKEN_AUS = "const CLOUD_IMMER_PACKEN = false;"
+PACKEN_AN = "const CLOUD_IMMER_PACKEN = true;"
+
+
+def immer_packen_einschalten(pfad=None):
+    """Schaltet in der KOPIE www/index.html CLOUD_IMMER_PACKEN ein.
+
+    Seit 13.11.2026 (Cloud-Sicherung, Weg A) schreibt 1.4 die Sicherung
+    erst gepackt, wenn die alte Form nicht mehr unter die Grenze passt - mit
+    dem Wortschatz von 1.4 kommt das bei niemandem vor. Damit der Handytest
+    den gepackten Weg trotzdem sieht, gibt es diese Test-App. Die Quelle
+    bleibt unberuehrt; Schritt 2 ("immer packen" fuer alle) kommt spaeter
+    ueber die Konstante in web/index.html, nicht ueber diesen Schalter.
+    """
+    pfad = pfad or os.path.join(WWW, "index.html")
+    with io.open(pfad, encoding="utf-8", newline="") as f:
+        text = f.read()
+    if text.count(PACKEN_AUS) != 1:
+        raise SystemExit("ABBRUCH: '%s' steht nicht genau einmal in %s." % (PACKEN_AUS, pfad))
+    with io.open(pfad, "w", encoding="utf-8", newline="") as f:
+        f.write(text.replace(PACKEN_AUS, PACKEN_AN))
+    print("\nIMMER PACKEN: Die Cloud-Sicherung wird immer gepackt geschrieben. "
+          "Nur fuer den Handytest.")
 
 
 DAUER_PLATZHALTER = "const DAUER_PRUEFWERT = '__DAUER_PRUEFWERT__';"
@@ -806,7 +837,7 @@ def freigabe_aab():
 PFLICHT_SCHRITT = 100
 # Der hoechste versionCode, den Google Play annimmt.
 HOECHSTE_VERSIONSNUMMER = 2100000000
-SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich", "--ohne-anmeldung")
+SCHALTER = ("--aab", "--testwerbung", "--pflicht", "--nur-abgleich", "--ohne-anmeldung", "--immer-packen")
 
 
 def schalter_lesen(argv):
@@ -825,6 +856,9 @@ def schalter_lesen(argv):
     if "--pflicht" in schalter and "--nur-abgleich" in schalter:
         raise SystemExit("ABBRUCH: --pflicht setzt den versionCode, --nur-abgleich "
                          "zählt ihn nicht hoch. Zusammen gäbe das kein Pflicht-Update.")
+    if "--immer-packen" in schalter and "--aab" in schalter:
+        raise SystemExit("ABBRUCH: --immer-packen ist nur fuer die Test-App. Fuer den "
+                         "Store kommt \"immer packen\" ueber CLOUD_IMMER_PACKEN in web/index.html.")
     return schalter
 
 
@@ -1082,6 +1116,8 @@ def main(argv=None):
     ton_verkleinern()
     if "--testwerbung" in schalter:
         testwerbung_einschalten()
+    if "--immer-packen" in schalter:
+        immer_packen_einschalten()
     # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst
     # Nummern verbrannt, ohne dass ein Paket entstand.
     nummer = None

@@ -413,6 +413,7 @@ def test_firestore_adapter_gegen_attrappe(seite, heute_stand, cloud_html):
         ("GET", dok_pfad, "Bearer id-1"),
         ("PATCH", dok_pfad, "Bearer id-1")]
     assert set(attrappe.dok) == {"daten", "rev"}
+    assert attrappe.masken == [None]      # noch kein rev gemerkt: alles lesen (13.11.2026)
     datei = json.loads(attrappe.dok["daten"]["stringValue"])
     assert datei["app"] == "zmaj" and "stand" in datei
     merker = seite.js("() => JSON.parse(localStorage.getItem('zmaj_cloud'))")
@@ -427,6 +428,8 @@ def test_firestore_adapter_gegen_attrappe(seite, heute_stand, cloud_html):
     }""")
     seite.page.wait_for_function("() => !cloudLaeuft && JSON.parse(localStorage.getItem('zmaj_cloud')).tag === today()")
     assert [a for a, _, _ in attrappe.anfragen] == ["GET", "PATCH"]
+    # Erst nachsehen (13.11.2026): niemand sonst hat geschrieben, gelesen wird nur rev.
+    assert attrappe.masken[-1] == ["rev"]
     assert "neu:im-hintergrund" in json.loads(attrappe.dok["daten"]["stringValue"])["stand"]["gewusst"]
 
     # Neu geladen ist der Ausweis weg: der Start holt mit dem gemerkten
@@ -449,6 +452,7 @@ def test_firestore_adapter_gegen_attrappe(seite, heute_stand, cloud_html):
     assert attrappe.anfragen == [
         ("POST", "securetoken.googleapis.com/v1/token", ""),
         ("GET", dok_pfad, "Bearer id-2")]
+    assert attrappe.masken[-1] == ["rev"]
 
     # Konto loeschen: Dokument und Konto weg, der Lernstand bleibt.
     attrappe.anfragen.clear()
@@ -658,19 +662,41 @@ def test_cloud_behaelt_felder_eines_neueren_geraets(seite, heute_stand):
     assert seite.fehler == []
 
 
+# Zufaellige Buchstaben und Ziffern: gzip bekommt sie kaum kleiner, mit Base64
+# sind sie gepackt groesser als vorher (13.11.2026, fuer die Grenze ohne Packen).
+ZUFALL = """() => { window.zufall = n => {
+    const z = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', b = new Uint8Array(n);
+    for(let i = 0; i < n; i += 65536) crypto.getRandomValues(b.subarray(i, Math.min(n, i + 65536)));
+    return Array.from(b, x => z[x % 62]).join(''); }; }"""
+GELESEN = "async (text) => await cloudStandLesen(text)"
+
+
 def test_cloud_grenze_in_bytes(seite, heute_stand):
     """500 000 mal 'č' sind 500 000 Zeichen, aber 1 000 000 Bytes - mehr, als
     Firestore in einem Dokument nimmt. Die App schreibt das nicht in die
     Cloud. Seit dem Pruefbefund vom 28.10.2026 scheitert daran aber nicht
     mehr das ganze Hochladen: nur das zu grosse fremde Feld bleibt in der
     Cloud weg, auf dem Geraet bleibt es, und der Lernfortschritt kommt an.
-    'zu gross' gibt es nur noch, wenn schon der eigene Stand nicht passt."""
+    'zu gross' gibt es nur noch, wenn schon der eigene Stand nicht passt.
+    Seit 13.11.2026 (1.4) packt die App vorher (CLOUD_IMMER_PACKEN): Die
+    500 000 'č' kommen dann gepackt mit. Wegbleiben muss ein fremdes Feld
+    nur noch, wenn auch gepackt nichts passt - geprueft mit Zufallstext."""
     seite.starten(stand=heute_stand())
     seite.js(ADAPTER)
+    seite.js(ZUFALL)
     assert seite.js("async () => await cloudAnmelden('anonym', adapter)") is True
     seite.js("() => { standFremd = {probe: 'č'.repeat(500000), klein: {a: 1}}; known.add('probe:wort'); }")
     assert seite.js("() => JSON.stringify(sicherungObjekt()).length < CLOUD_GROESSE_MAX")
     # "abmelden" schreibt wie "pause", aber ohne die Grenze von einmal am Tag.
+    assert seite.js(ABGLEICH, "abmelden") == "gespeichert"
+    text = seite.js("() => ablage.dok.text")
+    assert len(text.encode("utf-8")) <= 900000
+    assert list(json.loads(text)["stand"]) == ["gepackt1"]          # in Bytes gemessen, also gepackt
+    stand = seite.js(GELESEN, text)
+    assert stand["probe"] == "č" * 500000 and stand["klein"] == {"a": 1} and "probe:wort" in stand["gewusst"]
+    assert seite.js("() => [Object.keys(standFremd), cloudMerker().fremd]") == [["probe", "klein"], ["probe", "klein"]]
+    # Auch gepackt zu gross: dann bleibt nur das fremde Feld in der Cloud weg.
+    seite.js("() => { standFremd = {probe: zufall(950000), klein: {a: 1}}; }")
     assert seite.js(ABGLEICH, "abmelden") == "gespeichert"
     text = seite.js("() => ablage.dok.text")
     assert len(text.encode("utf-8")) <= 900000
@@ -679,9 +705,9 @@ def test_cloud_grenze_in_bytes(seite, heute_stand):
     assert seite.js("() => [Object.keys(standFremd), cloudMerker().fremd]") == [["probe", "klein"], ["klein"]]
     seite.js("() => { standFremd = {probe: 'c'.repeat(500000)}; }")
     assert seite.js(ABGLEICH, "abmelden") == "gespeichert"
-    assert len(json.loads(seite.js("() => ablage.dok.text"))["stand"]["probe"]) == 500000
-    # Erst wenn schon die eigenen Felder nicht passen.
-    seite.js("() => { standFremd = {}; wann = {probe: 'č'.repeat(460000)}; }")
+    assert len(json.loads(seite.js("() => ablage.dok.text"))["stand"]["probe"]) == 500000   # passt: alte Form
+    # Erst wenn schon die eigenen Felder nicht passen, auch gepackt nicht.
+    seite.js("() => { standFremd = {}; wann = {probe: zufall(950000)}; }")
     assert seite.js(ABGLEICH, "abmelden") == "zu gross"
     assert len(json.loads(seite.js("() => ablage.dok.text"))["stand"]["probe"]) == 500000
     assert seite.fehler == []
