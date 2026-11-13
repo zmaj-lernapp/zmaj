@@ -65,18 +65,27 @@ SCHRITTE = [
         await new Promise(r=>setTimeout(r,2500)); return 'start'"""),
     # Bis 13.11.2026 "02-lernpfad": Sektion 1 unter "65 Levels - vom Hallo
     # bis zum Amt". Jetzt (Store-Bilder 1.3) zeigt das Bild das Amt selbst:
-    # Sektion 9 "Amt & Vertraege" aufgeklappt, ihr Kopf oben. Die Level dort
-    # sind im Vorfuehrstand gesperrt - so sieht es in der App wirklich aus.
-    # Das Aufklappen faerbt die ganze App in der Farbe von Sektion 9; 03
-    # klappt darum zuerst wieder Sektion 1 auf.
+    # "Amt & Vertraege" aufgeklappt, ihr Kopf oben. Die Level dort sind im
+    # Vorfuehrstand gesperrt - so sieht es in der App wirklich aus. Seit den
+    # Stufen-Reitern (1.4) ist es Sektion 1 im Reiter B1; 03 geht darum zuerst
+    # zurueck in den Reiter von Weitermachen und klappt dort Sektion 1 auf.
     ("02-amt", """
-        const amt = SECTIONS[8].id;
+        // Seit den Stufen-Reitern (v14-reiter, 13.11.2026) steht Amt & Vertraege
+        // als Sektion 1 im Reiter B1, nicht mehr an Stelle 9 der ganzen Liste:
+        // SECTIONS[8] ist jetzt "Menschen & Kultur" (A2). Darum die Sektion ueber
+        // ihre Kennung suchen und vorher ihren Reiter waehlen.
+        const amt = 'amt';
+        if(!SECTIONS.some(s => s.id === amt)) throw new Error('keine Sektion amt');
+        if(typeof stufeWaehlen === 'function') stufeWaehlen(stufeVon(CATEGORIES.findIndex(c => c.sektion === amt)));
+        await new Promise(r=>setTimeout(r,300));
         if(offeneSektion !== amt) sektionAufklappen(amt);
         await new Promise(r=>setTimeout(r,900));
         const k = [...document.getElementById('sections').children].find(e => e.dataset.sid === amt);
         scrollBy(0, (k.getBoundingClientRect().top - 10) * rectFaktor());
         await new Promise(r=>setTimeout(r,600)); return k.innerText.split('\\n')[0]"""),
     ("03-neues-wort", """
+        // Zurueck in den Reiter von Weitermachen (A1), dort Sektion 1 auf
+        if(typeof stufeWaehlen === 'function') stufeWaehlen(stufeVon(firstOpen()));
         const eins = SECTIONS[0].id;
         if(offeneSektion !== eins) sektionAufklappen(eins);
         await new Promise(r=>setTimeout(r,900));
