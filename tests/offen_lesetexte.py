@@ -4,8 +4,9 @@
 Die zwölf Texte stehen in geschichten.py, mit Übersetzung, Fragen und jeder
 Wortform im Wörterbuch. Vorgelesen werden sie erst, wenn Ajdin die fraglichen
 bosnischen Stellen entschieden hat; ein geänderter Text hieße sonst eine neue
-Aufnahme. Bis dahin lassen die Ton-Tests genau die Schlüssel aus
-offen_lesetexte.json durch und nichts sonst. tests/test_offen_lesetexte.py
+Aufnahme. Bis dahin lassen die Ton-Tests (test_ton.py, test_wortzeiten.py und
+tests_e2e/test_mitlesen.py) genau die Schlüssel aus offen_lesetexte.json durch
+und nichts sonst. tests/test_offen_lesetexte.py
 meldet jeden Schlüssel, der inzwischen Ton hat oder in keinem Text mehr
 vorkommt: dann hier streichen. Ist die Liste leer, können die drei Dateien weg.
 """

@@ -8323,7 +8323,15 @@
    "b1_svadba",
    "b1_posao",
    "b1_stan",
-   "b1_telefon"
+   "b1_telefon",
+   "b1_doktor",
+   "b1_selidba",
+   "b1_rodjendan",
+   "b1_utakmica",
+   "b1_zanat",
+   "b1_kahva",
+   "b1_mejl",
+   "b1_zmaj"
   ],
   "tage": [
    "2026-10-14",

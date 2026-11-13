@@ -12,6 +12,7 @@ import os
 
 import pytest
 
+import offen_b1_teil2
 import ton_bauen
 import wortzeiten_holen as wz
 
@@ -26,13 +27,29 @@ def _geschichten():
     return geschichten.GESCHICHTEN
 
 
+# Geschichten, deren Aufnahme noch fehlt (13.11.2026: B1-Lesetexte, Pakete 3
+# und 4), siehe tests/offen_b1_teil2.py.
+WARTET_AUF_TON = offen_b1_teil2.GESCHICHTEN
+
+
+def test_wartet_auf_ton_ist_aktuell(index):
+    ids = {s["id"] for s in _geschichten()}
+    assert WARTET_AUF_TON <= ids, sorted(WARTET_AUF_TON - ids)
+    keys = {e["key"] for e in index["toene"]}
+    fertig = sorted(s["id"] for s in _geschichten()
+                    if s["id"] in WARTET_AUF_TON and ton_bauen.schluessel(s["text"]) in keys)
+    assert not fertig, "Aufnahme ist da - bitte aus tests/offen_b1_teil2.py streichen: %s" % fertig
+
+
 def test_jede_geschichte_hat_passende_wortzeiten(index):
     import offen_lesetexte
     nach_key = {e["key"]: e for e in index["toene"]}
     fehler = []
     for s in _geschichten():
         k = ton_bauen.schluessel(s["text"])
-        if k in offen_lesetexte.GESCHICHTEN:    # B1-Lesetexte, Ton folgt (13.11.2026)
+        # B1-Lesetexte ohne Ton (13.11.2026): Pakete 1 und 2 in tests/offen_lesetexte.json,
+        # Pakete 3 und 4 in tests/offen_b1_teil2.py
+        if k in offen_lesetexte.GESCHICHTEN or s["id"] in WARTET_AUF_TON:
             continue
         e = nach_key[k]
         w = e.get("w")

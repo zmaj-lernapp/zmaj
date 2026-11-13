@@ -44,6 +44,19 @@
    }
   },
   {
+   "bs": "adnane",
+   "translations": {
+    "de": "Adnan! (Anrede)",
+    "en": "Adnan! (vocative)",
+    "tr": "Adnan! (hitap)",
+    "sv": "Adnan! (tilltal)",
+    "nl": "Adnan! (aanspreekvorm)",
+    "nb": "Adnan! (tiltale)",
+    "da": "Adnan! (tiltale)",
+    "fr": "Adnan ! (vocatif)"
+   }
+  },
+  {
    "bs": "adnanov",
    "translations": {
     "de": "Adnans",
@@ -63,7 +76,7 @@
     "en": "airport (loc.)",
     "tr": "havalimanı (lokatif)",
     "sv": "flygplats (lokativ)",
-    "nl": "luchthaven (locatief)",
+    "nl": "vliegveld (locatief)",
     "nb": "flyplass (lokativ)",
     "da": "lufthavn (lokativ)",
     "fr": "aéroport (locatif)"
@@ -161,6 +174,32 @@
    }
   },
   {
+   "bs": "amar",
+   "translations": {
+    "de": "Amar (Name)",
+    "en": "Amar (name)",
+    "tr": "Amar (isim)",
+    "sv": "Amar (namn)",
+    "nl": "Amar (naam)",
+    "nb": "Amar (navn)",
+    "da": "Amar (navn)",
+    "fr": "Amar (prénom)"
+   }
+  },
+  {
+   "bs": "amara",
+   "translations": {
+    "de": "Amar (Gen.)",
+    "en": "Amar (gen.)",
+    "tr": "Amar (genitif)",
+    "sv": "Amar (genitiv)",
+    "nl": "Amar (genitief)",
+    "nb": "Amar (genitiv)",
+    "da": "Amar (genitiv)",
+    "fr": "Amar (génitif)"
+   }
+  },
+  {
    "bs": "amidže",
    "translations": {
     "de": "Onkel (Gen.)",
@@ -200,6 +239,45 @@
    }
   },
   {
+   "bs": "apoteci",
+   "translations": {
+    "de": "Apotheke (Lok.)",
+    "en": "pharmacy (loc.)",
+    "tr": "eczane (lokatif)",
+    "sv": "apotek (lokativ)",
+    "nl": "apotheek (locatief)",
+    "nb": "apotek (lokativ)",
+    "da": "apotek (lokativ)",
+    "fr": "pharmacie (locatif)"
+   }
+  },
+  {
+   "bs": "apotekar",
+   "translations": {
+    "de": "Apotheker",
+    "en": "pharmacist",
+    "tr": "eczacı",
+    "sv": "apotekare",
+    "nl": "apotheker",
+    "nb": "farmasøyt",
+    "da": "apoteker",
+    "fr": "pharmacien"
+   }
+  },
+  {
+   "bs": "augusta",
+   "translations": {
+    "de": "August (Gen.)",
+    "en": "August (gen.)",
+    "tr": "ağustos (genitif)",
+    "sv": "augusti (genitiv)",
+    "nl": "augustus (genitief)",
+    "nb": "august (genitiv)",
+    "da": "august (genitiv)",
+    "fr": "août (génitif)"
+   }
+  },
+  {
    "bs": "augustu",
    "translations": {
     "de": "August (Lok.)",
@@ -210,6 +288,19 @@
     "nb": "august (lokativ)",
     "da": "august (lokativ)",
     "fr": "août (locatif)"
+   }
+  },
+  {
+   "bs": "auta",
+   "translations": {
+    "de": "Autos (Gen.)",
+    "en": "cars (gen.)",
+    "tr": "arabalar (genitif)",
+    "sv": "bilar (genitiv)",
+    "nl": "auto's (genitief)",
+    "nb": "biler (genitiv)",
+    "da": "biler (genitiv)",
+    "fr": "voitures (génitif)"
    }
   },
   {
@@ -236,6 +327,32 @@
     "nb": "med bil",
     "da": "med bil",
     "fr": "en voiture"
+   }
+  },
+  {
+   "bs": "autoputu",
+   "translations": {
+    "de": "Autobahn (Lok.)",
+    "en": "highway (loc.)",
+    "tr": "otoyol (lokatif)",
+    "sv": "motorväg (lokativ)",
+    "nl": "snelweg (locatief)",
+    "nb": "motorvei (lokativ)",
+    "da": "motorvej (lokativ)",
+    "fr": "autoroute (locatif)"
+   }
+  },
+  {
+   "bs": "avion",
+   "translations": {
+    "de": "Flugzeug",
+    "en": "airplane",
+    "tr": "uçak",
+    "sv": "flygplan",
+    "nl": "vliegtuig",
+    "nb": "fly",
+    "da": "fly",
+    "fr": "avion"
    }
   },
   {
@@ -278,6 +395,45 @@
    }
   },
   {
+   "bs": "babu",
+   "translations": {
+    "de": "Papa (Akk.)",
+    "en": "dad (acc.)",
+    "tr": "baba (akuzatif)",
+    "sv": "pappa (ackusativ)",
+    "nl": "papa (accusatief)",
+    "nb": "pappa (akkusativ)",
+    "da": "far (akkusativ)",
+    "fr": "papa (accusatif)"
+   }
+  },
+  {
+   "bs": "bakar",
+   "translations": {
+    "de": "Kupfer",
+    "en": "copper",
+    "tr": "bakır",
+    "sv": "koppar",
+    "nl": "koper",
+    "nb": "kobber",
+    "da": "kobber",
+    "fr": "cuivre"
+   }
+  },
+  {
+   "bs": "bakra",
+   "translations": {
+    "de": "Kupfer (Gen.)",
+    "en": "copper (gen.)",
+    "tr": "bakır (genitif)",
+    "sv": "koppar (genitiv)",
+    "nl": "koper (genitief)",
+    "nb": "kobber (genitiv)",
+    "da": "kobber (genitiv)",
+    "fr": "cuivre (génitif)"
+   }
+  },
+  {
    "bs": "balkon",
    "translations": {
     "de": "Balkon",
@@ -314,6 +470,19 @@
     "nb": "balkong (lokativ)",
     "da": "altan (lokativ)",
     "fr": "balcon (locatif)"
+   }
+  },
+  {
+   "bs": "banci",
+   "translations": {
+    "de": "Bank (Lok.)",
+    "en": "bank (loc.)",
+    "tr": "banka (lokatif)",
+    "sv": "bank (lokativ)",
+    "nl": "bank (locatief)",
+    "nb": "bank (lokativ)",
+    "da": "bank (lokativ)",
+    "fr": "banque (locatif)"
    }
   },
   {
@@ -408,6 +577,19 @@
    }
   },
   {
+   "bs": "bebu",
+   "translations": {
+    "de": "Baby (Akk.)",
+    "en": "baby (acc.)",
+    "tr": "bebek (akuzatif)",
+    "sv": "bebis (ackusativ)",
+    "nl": "baby (accusatief)",
+    "nb": "baby (akkusativ)",
+    "da": "baby (akkusativ)",
+    "fr": "bébé (accusatif)"
+   }
+  },
+  {
    "bs": "bend",
    "translations": {
     "de": "Band (Musik)",
@@ -490,7 +672,7 @@
    "translations": {
     "de": "würde (ich)",
     "en": "would (I)",
-    "tr": "-irdim",
+    "tr": "-erdim",
     "sv": "skulle (jag)",
     "nl": "zou (ik)",
     "nb": "ville (jeg)",
@@ -655,6 +837,19 @@
    }
   },
   {
+   "bs": "bolesni",
+   "translations": {
+    "de": "krank (Mehrz.)",
+    "en": "sick (pl.)",
+    "tr": "hasta (çoğul)",
+    "sv": "sjuka",
+    "nl": "ziek (meervoud)",
+    "nb": "syke",
+    "da": "syge",
+    "fr": "malades"
+   }
+  },
+  {
    "bs": "boli",
    "translations": {
     "de": "tut weh",
@@ -670,6 +865,19 @@
   {
    "bs": "bolje",
    "translations": {
+    "de": "besser (Adverb)",
+    "en": "better (adverb)",
+    "tr": "daha iyi (zarf)",
+    "sv": "bättre (adverb)",
+    "nl": "beter (bijwoord)",
+    "nb": "bedre (adverb)",
+    "da": "bedre (adverbium)",
+    "fr": "mieux (adverbe)"
+   }
+  },
+  {
+   "bs": "bolji",
+   "translations": {
     "de": "besser",
     "en": "better",
     "tr": "daha iyi",
@@ -678,6 +886,32 @@
     "nb": "bedre",
     "da": "bedre",
     "fr": "meilleur"
+   }
+  },
+  {
+   "bs": "bolovanju",
+   "translations": {
+    "de": "Krankschreibung (Lok.)",
+    "en": "sick leave (loc.)",
+    "tr": "istirahat raporu (lokatif)",
+    "sv": "sjukskrivning (lokativ)",
+    "nl": "ziekmelding (locatief)",
+    "nb": "sykmelding (lokativ)",
+    "da": "sygemelding (lokativ)",
+    "fr": "arrêt de travail (locatif)"
+   }
+  },
+  {
+   "bs": "bosanska",
+   "translations": {
+    "de": "bosnisch (w)",
+    "en": "Bosnian (f)",
+    "tr": "Boşnak (dişil)",
+    "sv": "bosnisk (fem.)",
+    "nl": "Bosnisch (v)",
+    "nb": "bosnisk (hunkj.)",
+    "da": "bosnisk (hunk.)",
+    "fr": "bosnienne (féminin)"
    }
   },
   {
@@ -691,6 +925,32 @@
     "nb": "Bosnisk",
     "da": "Bosnisk",
     "fr": "Bosnien"
+   }
+  },
+  {
+   "bs": "bosanskom",
+   "translations": {
+    "de": "Bosnisch (Lok.)",
+    "en": "Bosnian (loc.)",
+    "tr": "Boşnakça (lokatif)",
+    "sv": "bosniska (lokativ)",
+    "nl": "Bosnisch (locatief)",
+    "nb": "bosnisk (lokativ)",
+    "da": "bosnisk (lokativ)",
+    "fr": "bosnien (locatif)"
+   }
+  },
+  {
+   "bs": "bosna",
+   "translations": {
+    "de": "Bosnien",
+    "en": "Bosnia",
+    "tr": "Bosna",
+    "sv": "Bosnien",
+    "nl": "Bosnië",
+    "nb": "Bosnia",
+    "da": "Bosnien",
+    "fr": "Bosnie"
    }
   },
   {
@@ -756,6 +1016,19 @@
     "nb": "bror (akkusativ)",
     "da": "bror (akkusativ)",
     "fr": "frère (accusatif)"
+   }
+  },
+  {
+   "bs": "bravo",
+   "translations": {
+    "de": "bravo",
+    "en": "bravo",
+    "tr": "bravo",
+    "sv": "bravo",
+    "nl": "bravo",
+    "nb": "bravo",
+    "da": "bravo",
+    "fr": "bravo"
    }
   },
   {
@@ -839,14 +1112,14 @@
   {
    "bs": "brzinu",
    "translations": {
-    "de": "Eile (Akk.)",
-    "en": "hurry (acc.)",
-    "tr": "acele (akuzatif)",
-    "sv": "brådska (ackusativ)",
-    "nl": "haast (accusatief)",
-    "nb": "hast (akkusativ)",
-    "da": "hast (akkusativ)",
-    "fr": "hâte (accusatif)"
+    "de": "Schnelle (Akk.) (na brzinu: auf die Schnelle)",
+    "en": "speed (acc.) (na brzinu: in a hurry)",
+    "tr": "hız (akuzatif) (na brzinu: aceleyle)",
+    "sv": "hastighet (ackusativ) (na brzinu: i all hast)",
+    "nl": "snelheid (accusatief) (na brzinu: snel even)",
+    "nb": "fart (akkusativ) (na brzinu: i all hast)",
+    "da": "fart (akkusativ) (na brzinu: i en fart)",
+    "fr": "vitesse (accusatif) (na brzinu : en vitesse)"
    }
   },
   {
@@ -1006,6 +1279,19 @@
    }
   },
   {
+   "bs": "cijelo",
+   "translations": {
+    "de": "ganz (der ganze)",
+    "en": "whole (m.)",
+    "tr": "bütün (eril)",
+    "sv": "hel",
+    "nl": "heel (m.)",
+    "nb": "hel (hankjønn)",
+    "da": "hel (hankøn)",
+    "fr": "entier (m.)"
+   }
+  },
+  {
    "bs": "cijelom",
    "translations": {
     "de": "ganzen (Lok.)",
@@ -1097,6 +1383,32 @@
    }
   },
   {
+   "bs": "dala",
+   "translations": {
+    "de": "gegeben (w)",
+    "en": "gave (f)",
+    "tr": "verdi (kadın)",
+    "sv": "gav (kvinna)",
+    "nl": "gegeven (vrouw)",
+    "nb": "ga (kvinne)",
+    "da": "gav (kvinde)",
+    "fr": "donné (femme)"
+   }
+  },
+  {
+   "bs": "dalje",
+   "translations": {
+    "de": "weiter",
+    "en": "further / on",
+    "tr": "devam",
+    "sv": "vidare",
+    "nl": "verder",
+    "nb": "videre",
+    "da": "videre",
+    "fr": "davantage / encore"
+   }
+  },
+  {
    "bs": "dan",
    "translations": {
     "de": "Tag",
@@ -1142,10 +1454,23 @@
     "en": "gave (m)",
     "tr": "verdi (eril)",
     "sv": "gav (mask.)",
-    "nl": "gaf (m)",
+    "nl": "gegeven (m)",
     "nb": "ga (hankj.)",
     "da": "gav (hank.)",
     "fr": "donné (homme)"
+   }
+  },
+  {
+   "bs": "dat",
+   "translations": {
+    "de": "geben (Zukunft)",
+    "en": "to give (future)",
+    "tr": "vermek (gelecek)",
+    "sv": "ge (framtid)",
+    "nl": "geven (toekomst)",
+    "nb": "gi (framtid)",
+    "da": "at give (fremtid)",
+    "fr": "donner (futur)"
    }
   },
   {
@@ -1177,14 +1502,14 @@
   {
    "bs": "dedi",
    "translations": {
-    "de": "Opa (Lok.)",
-    "en": "grandpa (loc.)",
-    "tr": "dede (lokatif)",
-    "sv": "morfar (lokativ)",
-    "nl": "opa (locatief)",
-    "nb": "bestefar (lokativ)",
-    "da": "bedstefar (lokativ)",
-    "fr": "grand-père (locatif)"
+    "de": "Opa (Dat./Lok.)",
+    "en": "grandpa (dat./loc.)",
+    "tr": "dede (datif/lokatif)",
+    "sv": "morfar / farfar (dativ/lokativ)",
+    "nl": "opa (datief/locatief)",
+    "nb": "bestefar (dativ/lokativ)",
+    "da": "bedstefar (dativ/lokativ)",
+    "fr": "grand-père (datif/locatif)"
    }
   },
   {
@@ -1253,6 +1578,19 @@
    }
   },
   {
+   "bs": "desetog",
+   "translations": {
+    "de": "am zehnten",
+    "en": "on the tenth",
+    "tr": "onunda",
+    "sv": "den tionde",
+    "nl": "op de tiende",
+    "nb": "den tiende",
+    "da": "den tiende",
+    "fr": "le dix"
+   }
+  },
+  {
    "bs": "desilo",
    "translations": {
     "de": "passiert (s)",
@@ -1263,6 +1601,19 @@
     "nb": "skjedde (intetkj.)",
     "da": "skete (intetk.)",
     "fr": "arrivé (neutre)"
+   }
+  },
+  {
+   "bs": "devedeset",
+   "translations": {
+    "de": "neunzig",
+    "en": "ninety",
+    "tr": "doksan",
+    "sv": "nittio",
+    "nl": "negentig",
+    "nb": "nitti",
+    "da": "halvfems",
+    "fr": "quatre-vingt-dix"
    }
   },
   {
@@ -1422,6 +1773,19 @@
    }
   },
   {
+   "bs": "dnevno",
+   "translations": {
+    "de": "täglich",
+    "en": "daily",
+    "tr": "günlük",
+    "sv": "dagligen",
+    "nl": "dagelijks",
+    "nb": "daglig",
+    "da": "dagligt",
+    "fr": "par jour"
+   }
+  },
+  {
    "bs": "dnevnoj",
    "translations": {
     "de": "Wohn- (dnevna soba: Wohnzimmer)",
@@ -1467,7 +1831,7 @@
     "en": "got (f)",
     "tr": "aldı (kadın)",
     "sv": "fick (kvinna)",
-    "nl": "kreeg (vrouw)",
+    "nl": "gekregen (vrouw)",
     "nb": "fikk (kvinne)",
     "da": "fik (kvinde)",
     "fr": "reçu (femme)"
@@ -1480,10 +1844,10 @@
     "en": "got (m)",
     "tr": "aldı (eril)",
     "sv": "fick (mask.)",
-    "nl": "kreeg (m)",
+    "nl": "gekregen (m)",
     "nb": "fikk (hankj.)",
     "da": "fik (hank.)",
-    "fr": "reçu (homme)"
+    "fr": "reçu / eu (homme)"
    }
   },
   {
@@ -1510,6 +1874,19 @@
     "nb": "bra",
     "da": "godt",
     "fr": "bien"
+   }
+  },
+  {
+   "bs": "doda",
+   "translations": {
+    "de": "fügt hinzu",
+    "en": "adds",
+    "tr": "ekliyor",
+    "sv": "lägger till",
+    "nl": "voegt toe",
+    "nb": "tilsetter",
+    "da": "tilsætter",
+    "fr": "ajoute"
    }
   },
   {
@@ -1549,6 +1926,45 @@
     "nb": "mens / til",
     "da": "mens / indtil",
     "fr": "pendant que / jusqu'à ce que"
+   }
+  },
+  {
+   "bs": "doktora",
+   "translations": {
+    "de": "Arzt (Gen.)",
+    "en": "doctor (gen.)",
+    "tr": "doktor (genitif)",
+    "sv": "läkare (genitiv)",
+    "nl": "dokter (genitief)",
+    "nb": "lege (genitiv)",
+    "da": "læge (genitiv)",
+    "fr": "médecin (génitif)"
+   }
+  },
+  {
+   "bs": "doktorica",
+   "translations": {
+    "de": "Arzt / Ärztin",
+    "en": "doctor (m/f)",
+    "tr": "doktor (e/k)",
+    "sv": "läkare (m/k)",
+    "nl": "dokter (m/v)",
+    "nb": "lege (m/k)",
+    "da": "læge (m/k)",
+    "fr": "médecin (m/f)"
+   }
+  },
+  {
+   "bs": "doktorice",
+   "translations": {
+    "de": "Ärztin (Gen.)",
+    "en": "doctor, female (gen.)",
+    "tr": "kadın doktor (genitif)",
+    "sv": "läkare, kvinna (genitiv)",
+    "nl": "arts, vrouw (genitief)",
+    "nb": "lege, kvinne (genitiv)",
+    "da": "læge, kvinde (genitiv)",
+    "fr": "médecin, femme (génitif)"
    }
   },
   {
@@ -1607,7 +2023,7 @@
    "bs": "dolazim",
    "translations": {
     "de": "ich komme",
-    "en": "I come",
+    "en": "I come / I am coming",
     "tr": "geliyorum",
     "sv": "jag kommer",
     "nl": "ik kom",
@@ -1643,15 +2059,41 @@
    }
   },
   {
+   "bs": "dom",
+   "translations": {
+    "de": "Heim (dom zdravlja: Gesundheitszentrum)",
+    "en": "home (dom zdravlja: health center)",
+    "tr": "yuva (dom zdravlja: sağlık ocağı)",
+    "sv": "hem (dom zdravlja: vårdcentral)",
+    "nl": "huis (dom zdravlja: gezondheidscentrum)",
+    "nb": "hjem (dom zdravlja: legesenter)",
+    "da": "hjem (dom zdravlja: sundhedscenter)",
+    "fr": "maison (dom zdravlja : centre de santé)"
+   }
+  },
+  {
+   "bs": "donesem",
+   "translations": {
+    "de": "ich bringe (mit)",
+    "en": "I bring",
+    "tr": "getiriyorum",
+    "sv": "jag tar med",
+    "nl": "ik breng mee",
+    "nb": "jeg tar med",
+    "da": "jeg tager med",
+    "fr": "j'apporte"
+   }
+  },
+  {
    "bs": "donijela",
    "translations": {
     "de": "gebracht (w)",
     "en": "brought (f)",
     "tr": "getirdi (kadın)",
     "sv": "tog med (kvinna)",
-    "nl": "bracht mee (vrouw)",
-    "nb": "tok med (kvinne)",
-    "da": "tog med (kvinde)",
+    "nl": "gebracht (vrouw)",
+    "nb": "kom med (kvinne)",
+    "da": "kom med (kvinde)",
     "fr": "apporté (femme)"
    }
   },
@@ -1791,10 +2233,10 @@
     "de": "gekommen (Mehrz.)",
     "en": "came (pl.)",
     "tr": "geldiler (çoğul)",
-    "sv": "kom (plural)",
-    "nl": "kwamen (meervoud)",
-    "nb": "kom (flertall)",
-    "da": "kom (flertal)",
+    "sv": "kom (flera)",
+    "nl": "gekomen (meervoud)",
+    "nb": "kom (flere)",
+    "da": "kom (flere)",
     "fr": "venus (pluriel)"
    }
   },
@@ -1825,6 +2267,19 @@
    }
   },
   {
+   "bs": "dragi",
+   "translations": {
+    "de": "lieber",
+    "en": "dear",
+    "tr": "sevgili",
+    "sv": "käre",
+    "nl": "beste",
+    "nb": "kjære",
+    "da": "kære",
+    "fr": "cher"
+   }
+  },
+  {
    "bs": "drago",
    "translations": {
     "de": "lieb (bilo bi mi drago: es würde mich freuen)",
@@ -1848,6 +2303,32 @@
     "nb": "annerledes (hunkj.)",
     "da": "anderledes (hunk.)",
     "fr": "différente"
+   }
+  },
+  {
+   "bs": "drugom",
+   "translations": {
+    "de": "zweiten (Lok.)",
+    "en": "second (loc.)",
+    "tr": "ikinci (lokatif)",
+    "sv": "andra (lokativ)",
+    "nl": "tweede (locatief)",
+    "nb": "andre (lokativ)",
+    "da": "anden (lokativ)",
+    "fr": "deuxième (locatif)"
+   }
+  },
+  {
+   "bs": "drugu",
+   "translations": {
+    "de": "zweite (Akk.)",
+    "en": "second (acc.)",
+    "tr": "ikinci (akuzatif)",
+    "sv": "andra (ackusativ)",
+    "nl": "tweede (accusatief)",
+    "nb": "andre (akkusativ)",
+    "da": "anden (akkusativ)",
+    "fr": "deuxième (accusatif)"
    }
   },
   {
@@ -1942,6 +2423,19 @@
    }
   },
   {
+   "bs": "dušo",
+   "translations": {
+    "de": "Schatz (Anrede)",
+    "en": "sweetheart (form of address)",
+    "tr": "canım (hitap)",
+    "sv": "älskling (tilltal)",
+    "nl": "schat (aanspreekvorm)",
+    "nb": "kjære (tiltale)",
+    "da": "skat (tiltale)",
+    "fr": "mon cœur (pour s'adresser)"
+   }
+  },
+  {
    "bs": "duže",
    "translations": {
     "de": "länger",
@@ -2033,6 +2527,71 @@
    }
   },
   {
+   "bs": "dvojica",
+   "translations": {
+    "de": "zwei (Männer)",
+    "en": "two (men)",
+    "tr": "iki (erkek)",
+    "sv": "två (män)",
+    "nl": "twee (mannen)",
+    "nb": "to (menn)",
+    "da": "to (mænd)",
+    "fr": "deux (hommes)"
+   }
+  },
+  {
+   "bs": "džezva",
+   "translations": {
+    "de": "Kupferkännchen",
+    "en": "copper coffee pot",
+    "tr": "cezve",
+    "sv": "kopparkanna",
+    "nl": "koperen kannetje",
+    "nb": "kobberkanne (til kaffe)",
+    "da": "kobberkande (til kaffe)",
+    "fr": "petite cafetière en cuivre"
+   }
+  },
+  {
+   "bs": "džezvi",
+   "translations": {
+    "de": "Kupferkännchen (Lok.)",
+    "en": "copper coffee pot (loc.)",
+    "tr": "cezve (lokatif)",
+    "sv": "kopparkanna (lokativ)",
+    "nl": "koperen kannetje (locatief)",
+    "nb": "kobberkanne (lokativ)",
+    "da": "kobberkande (lokativ)",
+    "fr": "petite cafetière en cuivre (locatif)"
+   }
+  },
+  {
+   "bs": "džezvu",
+   "translations": {
+    "de": "Kupferkännchen (Akk.)",
+    "en": "copper coffee pot (acc.)",
+    "tr": "cezve (akuzatif)",
+    "sv": "kopparkanna (ackusativ)",
+    "nl": "koperen kannetje (accusatief)",
+    "nb": "kobberkanne (akkusativ)",
+    "da": "kobberkande (akkusativ)",
+    "fr": "petite cafetière en cuivre (accusatif)"
+   }
+  },
+  {
+   "bs": "e",
+   "translations": {
+    "de": "na / also (Ausruf)",
+    "en": "well / so (exclamation)",
+    "tr": "e / işte (ünlem)",
+    "sv": "ja / nå (utrop)",
+    "nl": "nou / dus (uitroep)",
+    "nb": "ja / nå (utrop)",
+    "da": "nå / ja (udråb)",
+    "fr": "eh bien (exclamation)"
+   }
+  },
+  {
    "bs": "ekonomiju",
    "translations": {
     "de": "Wirtschaft (Akk.)",
@@ -2098,6 +2657,19 @@
    }
   },
   {
+   "bs": "evropsko",
+   "translations": {
+    "de": "Europa- / europäisch (s)",
+    "en": "European (n)",
+    "tr": "Avrupa (nötr)",
+    "sv": "europeisk (neutr.)",
+    "nl": "Europees (o)",
+    "nb": "europeisk (intetkj.)",
+    "da": "europæisk (intetk.)",
+    "fr": "européen (neutre)"
+   }
+  },
+  {
    "bs": "fil",
    "translations": {
     "de": "Füllung",
@@ -2108,6 +2680,32 @@
     "nb": "fyll",
     "da": "fyld",
     "fr": "farce"
+   }
+  },
+  {
+   "bs": "fildžana",
+   "translations": {
+    "de": "Kaffeetassen (Gen.)",
+    "en": "coffee cups (gen.)",
+    "tr": "kahve fincanları (genitif)",
+    "sv": "kaffekoppar (genitiv)",
+    "nl": "koffiekopjes (genitief)",
+    "nb": "kaffekopper (genitiv)",
+    "da": "kaffekopper (genitiv)",
+    "fr": "tasses à café (génitif)"
+   }
+  },
+  {
+   "bs": "fildžani",
+   "translations": {
+    "de": "Kaffeetassen",
+    "en": "coffee cups",
+    "tr": "kahve fincanları",
+    "sv": "kaffekoppar",
+    "nl": "koffiekopjes",
+    "nb": "kaffekopper",
+    "da": "kaffekopper",
+    "fr": "tasses à café"
    }
   },
   {
@@ -2134,6 +2732,19 @@
     "nb": "firma (lokativ)",
     "da": "firma (lokativ)",
     "fr": "entreprise (locatif)"
+   }
+  },
+  {
+   "bs": "fudbal",
+   "translations": {
+    "de": "Fußball",
+    "en": "soccer",
+    "tr": "futbol",
+    "sv": "fotboll",
+    "nl": "voetbal",
+    "nb": "fotball",
+    "da": "fodbold",
+    "fr": "football"
    }
   },
   {
@@ -2186,6 +2797,19 @@
     "nb": "sultne",
     "da": "sultne",
     "fr": "affamés"
+   }
+  },
+  {
+   "bs": "glasa",
+   "translations": {
+    "de": "Stimme (Gen.)",
+    "en": "voice (gen.)",
+    "tr": "ses (genitif)",
+    "sv": "röst (genitiv)",
+    "nl": "stem (genitief)",
+    "nb": "stemme (genitiv)",
+    "da": "stemme (genitiv)",
+    "fr": "voix (génitif)"
    }
   },
   {
@@ -2293,6 +2917,32 @@
    }
   },
   {
+   "bs": "gol",
+   "translations": {
+    "de": "Tor (Treffer)",
+    "en": "goal (score)",
+    "tr": "gol",
+    "sv": "mål (i sport)",
+    "nl": "doelpunt",
+    "nb": "mål (i sport)",
+    "da": "mål (i sport)",
+    "fr": "but"
+   }
+  },
+  {
+   "bs": "goražde",
+   "translations": {
+    "de": "Goražde (Stadt)",
+    "en": "Goražde (town)",
+    "tr": "Goražde (şehir)",
+    "sv": "Goražde (stad)",
+    "nl": "Goražde (stad)",
+    "nb": "Goražde (by)",
+    "da": "Goražde (by)",
+    "fr": "Goražde (ville)"
+   }
+  },
+  {
    "bs": "gospođa",
    "translations": {
     "de": "Frau (Anrede)",
@@ -2303,6 +2953,19 @@
     "nb": "fru (tittel)",
     "da": "fru (titel)",
     "fr": "madame"
+   }
+  },
+  {
+   "bs": "gosti",
+   "translations": {
+    "de": "Gäste",
+    "en": "guests",
+    "tr": "misafirler",
+    "sv": "gäster",
+    "nl": "gasten",
+    "nb": "gjester",
+    "da": "gæster",
+    "fr": "invités"
    }
   },
   {
@@ -2375,9 +3038,9 @@
    "translations": {
     "de": "gesagt (w)",
     "en": "said (f)",
-    "tr": "dedi (kadın)",
+    "tr": "söyledi (kadın)",
     "sv": "sa (kvinna)",
-    "nl": "zei (vrouw)",
+    "nl": "gezegd (vrouw)",
     "nb": "sa (kvinne)",
     "da": "sagde (kvinde)",
     "fr": "dit (femme)"
@@ -2462,6 +3125,19 @@
    }
   },
   {
+   "bs": "grešku",
+   "translations": {
+    "de": "Fehler (Akk.)",
+    "en": "mistake (acc.)",
+    "tr": "hata (akuzatif)",
+    "sv": "fel (ackusativ)",
+    "nl": "fout (accusatief)",
+    "nb": "feil (akkusativ)",
+    "da": "fejl (akkusativ)",
+    "fr": "faute (accusatif)"
+   }
+  },
+  {
    "bs": "grijanje",
    "translations": {
     "de": "Heizung",
@@ -2472,6 +3148,58 @@
     "nb": "oppvarming",
     "da": "varme (opvarmning)",
     "fr": "chauffage"
+   }
+  },
+  {
+   "bs": "griješim",
+   "translations": {
+    "de": "ich mache Fehler",
+    "en": "I make mistakes",
+    "tr": "hata yapıyorum",
+    "sv": "jag gör fel",
+    "nl": "ik maak fouten",
+    "nb": "jeg gjør feil",
+    "da": "jeg laver fejl",
+    "fr": "je fais des fautes"
+   }
+  },
+  {
+   "bs": "grla",
+   "translations": {
+    "de": "Hals (Gen.)",
+    "en": "throat (gen.)",
+    "tr": "boğaz (genitif)",
+    "sv": "hals (genitiv)",
+    "nl": "keel (genitief)",
+    "nb": "hals (genitiv)",
+    "da": "hals (genitiv)",
+    "fr": "gorge (génitif)"
+   }
+  },
+  {
+   "bs": "grlio",
+   "translations": {
+    "de": "umarmt (m)",
+    "en": "hugged (m)",
+    "tr": "sarıldı (eril)",
+    "sv": "kramade (mask.)",
+    "nl": "omhelsd (m)",
+    "nb": "klemte (hankj.)",
+    "da": "krammede (hank.)",
+    "fr": "serré dans ses bras (homme)"
+   }
+  },
+  {
+   "bs": "grlo",
+   "translations": {
+    "de": "Hals (innen) / Kehle",
+    "en": "throat",
+    "tr": "boğaz / gırtlak",
+    "sv": "hals (inuti) / strupe",
+    "nl": "keel",
+    "nb": "hals (innvendig) / strupe",
+    "da": "hals (indvendig) / strube",
+    "fr": "gorge"
    }
   },
   {
@@ -2501,6 +3229,19 @@
    }
   },
   {
+   "bs": "gužva",
+   "translations": {
+    "de": "Gedränge / Stau",
+    "en": "crowd / traffic jam",
+    "tr": "kalabalık / trafik sıkışıklığı",
+    "sv": "trängsel / kö",
+    "nl": "drukte / file",
+    "nb": "trengsel / kø",
+    "da": "trængsel / kø",
+    "fr": "foule / embouteillage"
+   }
+  },
+  {
    "bs": "hajde",
    "translations": {
     "de": "los! / komm!",
@@ -2511,6 +3252,19 @@
     "nb": "kom igjen!",
     "da": "kom nu!",
     "fr": "allez !"
+   }
+  },
+  {
+   "bs": "hajra",
+   "translations": {
+    "de": "Hajra (Name)",
+    "en": "Hajra (name)",
+    "tr": "Hajra (isim)",
+    "sv": "Hajra (namn)",
+    "nl": "Hajra (naam)",
+    "nb": "Hajra (navn)",
+    "da": "Hajra (navn)",
+    "fr": "Hajra (prénom)"
    }
   },
   {
@@ -2540,6 +3294,19 @@
    }
   },
   {
+   "bs": "harisu",
+   "translations": {
+    "de": "Haris (Dat.)",
+    "en": "Haris (dat.)",
+    "tr": "Haris (datif)",
+    "sv": "Haris (dativ)",
+    "nl": "Haris (datief)",
+    "nb": "Haris (dativ)",
+    "da": "Haris (dativ)",
+    "fr": "Haris (datif)"
+   }
+  },
+  {
    "bs": "hasan",
    "translations": {
     "de": "Hasan (Name)",
@@ -2550,6 +3317,19 @@
     "nb": "Hasan (navn)",
     "da": "Hasan (navn)",
     "fr": "Hasan (prénom)"
+   }
+  },
+  {
+   "bs": "hercegovina",
+   "translations": {
+    "de": "Herzegowina",
+    "en": "Herzegovina",
+    "tr": "Hersek",
+    "sv": "Hercegovina",
+    "nl": "Herzegovina",
+    "nb": "Hercegovina",
+    "da": "Hercegovina",
+    "fr": "Herzégovine"
    }
   },
   {
@@ -2683,16 +3463,29 @@
    }
   },
   {
+   "bs": "hoćeš",
+   "translations": {
+    "de": "du willst",
+    "en": "you want",
+    "tr": "istiyorsun",
+    "sv": "du vill",
+    "nl": "jij wilt",
+    "nb": "du vil",
+    "da": "du vil",
+    "fr": "tu veux"
+   }
+  },
+  {
    "bs": "hrane",
    "translations": {
     "de": "Essen (Gen.)",
-    "en": "food (gen.)",
+    "en": "food / meal (gen.)",
     "tr": "yemek (genitif)",
     "sv": "mat (genitiv)",
     "nl": "eten (genitief)",
     "nb": "mat (genitiv)",
     "da": "mad (genitiv)",
-    "fr": "nourriture (génitif)"
+    "fr": "nourriture / repas (génitif)"
    }
   },
   {
@@ -2724,14 +3517,14 @@
   {
    "bs": "htio",
    "translations": {
-    "de": "gewollt (m)",
+    "de": "wollte (m)",
     "en": "wanted (m)",
     "tr": "istedi (eril)",
     "sv": "ville (mask.)",
     "nl": "wilde (m)",
     "nb": "ville (hankj.)",
     "da": "ville (hank.)",
-    "fr": "voulu (homme)"
+    "fr": "voulait (homme)"
    }
   },
   {
@@ -2839,6 +3632,19 @@
    }
   },
   {
+   "bs": "igra",
+   "translations": {
+    "de": "er/sie spielt",
+    "en": "he/she plays",
+    "tr": "oynuyor",
+    "sv": "han/hon spelar",
+    "nl": "hij/zij speelt",
+    "nb": "han/hun spiller",
+    "da": "han/hun spiller",
+    "fr": "il / elle joue"
+   }
+  },
+  {
    "bs": "igrala",
    "translations": {
     "de": "gespielt / getanzt (w)",
@@ -2875,6 +3681,32 @@
     "nb": "danse / spille",
     "da": "danse / spille",
     "fr": "danser / jouer"
+   }
+  },
+  {
+   "bs": "igrač",
+   "translations": {
+    "de": "Spieler",
+    "en": "player",
+    "tr": "oyuncu",
+    "sv": "spelare",
+    "nl": "speler",
+    "nb": "spiller",
+    "da": "spiller",
+    "fr": "joueur"
+   }
+  },
+  {
+   "bs": "ih",
+   "translations": {
+    "de": "sie (Akk. Mehrz.)",
+    "en": "them (acc.)",
+    "tr": "onları",
+    "sv": "dem",
+    "nl": "ze (meervoud)",
+    "nb": "dem",
+    "da": "dem",
+    "fr": "les"
    }
   },
   {
@@ -2995,6 +3827,32 @@
    }
   },
   {
+   "bs": "imate",
+   "translations": {
+    "de": "ihr habt / Sie haben",
+    "en": "you have (plural or formal)",
+    "tr": "sizin var",
+    "sv": "ni har",
+    "nl": "jullie hebben / u heeft",
+    "nb": "dere har / De har",
+    "da": "I har / De har",
+    "fr": "vous avez"
+   }
+  },
+  {
+   "bs": "imaš",
+   "translations": {
+    "de": "du hast",
+    "en": "you have (singular)",
+    "tr": "sende var",
+    "sv": "du har",
+    "nl": "jij hebt",
+    "nb": "du har",
+    "da": "du har",
+    "fr": "tu as"
+   }
+  },
+  {
    "bs": "instruktor",
    "translations": {
     "de": "Lehrer / Instruktor",
@@ -3086,6 +3944,32 @@
    }
   },
   {
+   "bs": "island",
+   "translations": {
+    "de": "Island",
+    "en": "Iceland",
+    "tr": "İzlanda",
+    "sv": "Island",
+    "nl": "IJsland",
+    "nb": "Island",
+    "da": "Island",
+    "fr": "l'Islande"
+   }
+  },
+  {
+   "bs": "islanda",
+   "translations": {
+    "de": "Island (Gen.)",
+    "en": "Iceland (gen.)",
+    "tr": "İzlanda (genitif)",
+    "sv": "Island (genitiv)",
+    "nl": "IJsland (genitief)",
+    "nb": "Island (genitiv)",
+    "da": "Island (genitiv)",
+    "fr": "Islande (génitif)"
+   }
+  },
+  {
    "bs": "isplaćuje",
    "translations": {
     "de": "wird ausgezahlt",
@@ -3131,10 +4015,23 @@
     "en": "told (m)",
     "tr": "anlattı (eril)",
     "sv": "berättade (mask.)",
-    "nl": "vertelde (m)",
+    "nl": "verteld (m)",
     "nb": "fortalte (hankj.)",
     "da": "fortalte (hank.)",
     "fr": "raconté (homme)"
+   }
+  },
+  {
+   "bs": "istom",
+   "translations": {
+    "de": "gleichen (Lok.)",
+    "en": "same (loc.)",
+    "tr": "aynı (lokatif)",
+    "sv": "samma (lokativ)",
+    "nl": "zelfde (locatief)",
+    "nb": "samme (lokativ)",
+    "da": "samme (lokativ)",
+    "fr": "même (locatif)"
    }
   },
   {
@@ -3229,6 +4126,19 @@
    }
   },
   {
+   "bs": "izmjerila",
+   "translations": {
+    "de": "gemessen (w)",
+    "en": "measured (f)",
+    "tr": "ölçtü (kadın)",
+    "sv": "mätte (kvinna)",
+    "nl": "gemeten (vrouw)",
+    "nb": "målte (kvinne)",
+    "da": "målte (kvinde)",
+    "fr": "mesuré (femme)"
+   }
+  },
+  {
    "bs": "iznajmili",
    "translations": {
     "de": "ausgeliehen (Mehrz.)",
@@ -3239,6 +4149,32 @@
     "nb": "leide (flertall)",
     "da": "lejede (flertal)",
     "fr": "loué (pluriel)"
+   }
+  },
+  {
+   "bs": "iznenađenje",
+   "translations": {
+    "de": "Überraschung",
+    "en": "surprise",
+    "tr": "sürpriz",
+    "sv": "överraskning",
+    "nl": "verrassing",
+    "nb": "overraskelse",
+    "da": "overraskelse",
+    "fr": "surprise"
+   }
+  },
+  {
+   "bs": "izvolite",
+   "translations": {
+    "de": "Bitte sehr (beim Überreichen)",
+    "en": "Here you are (handing something over)",
+    "tr": "Buyurun (bir şey uzatırken)",
+    "sv": "Varsågod (när man räcker över något)",
+    "nl": "Alstublieft (bij het aangeven)",
+    "nb": "Vær så god (når man rekker over noe)",
+    "da": "Værsgo (når man rækker noget)",
+    "fr": "Voilà (en tendant quelque chose)"
    }
   },
   {
@@ -3580,6 +4516,19 @@
    }
   },
   {
+   "bs": "jedva",
+   "translations": {
+    "de": "kaum",
+    "en": "hardly",
+    "tr": "zar zor",
+    "sv": "knappt",
+    "nl": "nauwelijks",
+    "nb": "knapt",
+    "da": "knap",
+    "fr": "à peine"
+   }
+  },
+  {
    "bs": "jeftinije",
    "translations": {
     "de": "billiger",
@@ -3611,10 +4560,10 @@
     "de": "gegessen (Mehrz.)",
     "en": "ate (pl.)",
     "tr": "yediler (çoğul)",
-    "sv": "åt (plural)",
-    "nl": "aten (meervoud)",
-    "nb": "spiste (flertall)",
-    "da": "spiste (flertal)",
+    "sv": "åt (flera)",
+    "nl": "gegeten (meervoud)",
+    "nb": "spiste (flere)",
+    "da": "spiste (flere)",
     "fr": "mangé (pluriel)"
    }
   },
@@ -3648,13 +4597,13 @@
    "bs": "jesam",
    "translations": {
     "de": "ja, bin ich",
-    "en": "yes, I am",
-    "tr": "evet, öyleyim",
-    "sv": "ja, det är jag",
-    "nl": "ja, dat ben ik",
-    "nb": "ja, det er jeg",
-    "da": "ja, det er jeg",
-    "fr": "oui, je le suis"
+    "en": "yes (I am / I was)",
+    "tr": "evet (öyleyim)",
+    "sv": "ja (det är/var jag)",
+    "nl": "ja (dat ben/was ik)",
+    "nb": "ja (det er/var jeg)",
+    "da": "ja (det er/var jeg)",
+    "fr": "oui (je le suis / l'étais)"
    }
   },
   {
@@ -3662,7 +4611,7 @@
    "translations": {
     "de": "bist du",
     "en": "are you",
-    "tr": "misin",
+    "tr": "sen … mısın (soru)",
     "sv": "är du",
     "nl": "ben je",
     "nb": "er du",
@@ -3699,14 +4648,14 @@
   {
    "bs": "joj",
    "translations": {
-    "de": "ihr",
-    "en": "her",
-    "tr": "onun (kadın)",
-    "sv": "hennes",
-    "nl": "haar",
-    "nb": "hennes",
-    "da": "hendes",
-    "fr": "son (à elle)"
+    "de": "ihr (Dativ)",
+    "en": "to her (dative)",
+    "tr": "ona (kadın)",
+    "sv": "till henne",
+    "nl": "aan haar",
+    "nb": "til henne",
+    "da": "til hende",
+    "fr": "à elle"
    }
   },
   {
@@ -3918,6 +4867,19 @@
    }
   },
   {
+   "bs": "kamenje",
+   "translations": {
+    "de": "Steine (Sammelwort)",
+    "en": "stones (collective)",
+    "tr": "taşlar (toplu)",
+    "sv": "stenar (samlingsord)",
+    "nl": "stenen (verzamelnaam)",
+    "nb": "steiner (samlebetegnelse)",
+    "da": "sten (samlebegreb)",
+    "fr": "pierres (ensemble)"
+   }
+  },
+  {
    "bs": "kamina",
    "translations": {
     "de": "Kamin (Gen.)",
@@ -4048,6 +5010,19 @@
    }
   },
   {
+   "bs": "kasnim",
+   "translations": {
+    "de": "Ich komme zu spät",
+    "en": "I am late",
+    "tr": "Geç kalıyorum",
+    "sv": "Jag kommer för sent",
+    "nl": "Ik kom te laat",
+    "nb": "Jeg kommer for sent",
+    "da": "Jeg kommer for sent",
+    "fr": "Je suis en retard"
+   }
+  },
+  {
    "bs": "kasno",
    "translations": {
     "de": "spät",
@@ -4058,6 +5033,32 @@
     "nb": "sent",
     "da": "sent",
     "fr": "tard"
+   }
+  },
+  {
+   "bs": "kazandžiluk",
+   "translations": {
+    "de": "Kazandžiluk (Gasse der Kupferschmiede)",
+    "en": "Kazandžiluk (coppersmiths' lane)",
+    "tr": "Kazandžiluk (bakırcılar sokağı)",
+    "sv": "Kazandžiluk (kopparslagarnas gränd)",
+    "nl": "Kazandžiluk (steeg van de koperslagers)",
+    "nb": "Kazandžiluk (kobberslagernes smug)",
+    "da": "Kazandžiluk (kobbersmedenes gyde)",
+    "fr": "Kazandžiluk (ruelle des chaudronniers)"
+   }
+  },
+  {
+   "bs": "kašljao",
+   "translations": {
+    "de": "gehustet (m)",
+    "en": "coughed (m)",
+    "tr": "öksürdü (eril)",
+    "sv": "hostade (mask.)",
+    "nl": "gehoest (m)",
+    "nb": "hostet (hankj.)",
+    "da": "hostede (hank.)",
+    "fr": "toussé (homme)"
    }
   },
   {
@@ -4165,6 +5166,19 @@
    }
   },
   {
+   "bs": "knjige",
+   "translations": {
+    "de": "Bücher",
+    "en": "books",
+    "tr": "kitaplar",
+    "sv": "böcker",
+    "nl": "boeken",
+    "nb": "bøker",
+    "da": "bøger",
+    "fr": "livres"
+   }
+  },
+  {
    "bs": "knjigu",
    "translations": {
     "de": "Buch (Akk.)",
@@ -4214,6 +5228,19 @@
     "nb": "hos",
     "da": "hos",
     "fr": "chez"
+   }
+  },
+  {
+   "bs": "koje",
+   "translations": {
+    "de": "die (Akk. Mehrz.)",
+    "en": "whom / that (acc. pl.)",
+    "tr": "ki onları (akuzatif çoğul)",
+    "sv": "som (ackusativ plural)",
+    "nl": "die (accusatief meervoud)",
+    "nb": "som (akkusativ flertall)",
+    "da": "som (akkusativ flertal)",
+    "fr": "que (accusatif pluriel)"
    }
   },
   {
@@ -4295,6 +5322,32 @@
    }
   },
   {
+   "bs": "komad",
+   "translations": {
+    "de": "Stück",
+    "en": "piece",
+    "tr": "parça (adet)",
+    "sv": "stycke",
+    "nl": "stuk",
+    "nb": "stykke",
+    "da": "stykke",
+    "fr": "morceau (pièce)"
+   }
+  },
+  {
+   "bs": "kombi",
+   "translations": {
+    "de": "Kleinbus / Lieferwagen",
+    "en": "minibus / van",
+    "tr": "minibüs / kamyonet",
+    "sv": "minibuss / skåpbil",
+    "nl": "busje / bestelwagen",
+    "nb": "minibuss / varebil",
+    "da": "minibus / varebil",
+    "fr": "minibus / camionnette"
+   }
+  },
+  {
    "bs": "komšija",
    "translations": {
     "de": "Nachbar",
@@ -4370,6 +5423,19 @@
     "nb": "endelig",
     "da": "endelig",
     "fr": "enfin"
+   }
+  },
+  {
+   "bs": "koncert",
+   "translations": {
+    "de": "Konzert",
+    "en": "concert",
+    "tr": "konser",
+    "sv": "konsert",
+    "nl": "concert",
+    "nb": "konsert",
+    "da": "koncert",
+    "fr": "concert"
    }
   },
   {
@@ -4464,6 +5530,19 @@
    }
   },
   {
+   "bs": "kraja",
+   "translations": {
+    "de": "Ende (Gen.)",
+    "en": "end (gen.)",
+    "tr": "son (genitif)",
+    "sv": "slut (genitiv)",
+    "nl": "einde (genitief)",
+    "nb": "slutt (genitiv)",
+    "da": "slutning (genitiv)",
+    "fr": "fin (génitif)"
+   }
+  },
+  {
    "bs": "krajevima",
    "translations": {
     "de": "Gegenden (Lok.)",
@@ -4503,6 +5582,19 @@
    }
   },
   {
+   "bs": "kratko",
+   "translations": {
+    "de": "kurz",
+    "en": "short (not long)",
+    "tr": "kısa (süre, mesafe)",
+    "sv": "kort (om sak)",
+    "nl": "kort",
+    "nb": "kort",
+    "da": "kort (ikke lang)",
+    "fr": "court"
+   }
+  },
+  {
    "bs": "krenula",
    "translations": {
     "de": "losgefahren (w)",
@@ -4513,6 +5605,19 @@
     "nb": "dro av sted (hunkj.)",
     "da": "tog af sted (hunk.)",
     "fr": "partie"
+   }
+  },
+  {
+   "bs": "krenuli",
+   "translations": {
+    "de": "losgefahren (Mehrz.)",
+    "en": "set off (pl.)",
+    "tr": "yola çıktılar",
+    "sv": "åkte iväg (flera)",
+    "nl": "vertrokken (meervoud)",
+    "nb": "dro av gårde (flere)",
+    "da": "tog af sted (flere)",
+    "fr": "partis"
    }
   },
   {
@@ -4552,6 +5657,71 @@
     "nb": "potet",
     "da": "kartoffel",
     "fr": "pomme de terre"
+   }
+  },
+  {
+   "bs": "kroz",
+   "translations": {
+    "de": "durch",
+    "en": "through",
+    "tr": "içinden",
+    "sv": "genom",
+    "nl": "door",
+    "nb": "gjennom",
+    "da": "gennem",
+    "fr": "à travers"
+   }
+  },
+  {
+   "bs": "kuca",
+   "translations": {
+    "de": "klopft / hämmert",
+    "en": "knocks / hammers",
+    "tr": "vuruyor / çekiçliyor",
+    "sv": "knackar / hamrar",
+    "nl": "klopt / hamert",
+    "nb": "banker / hamrer",
+    "da": "banker / hamrer",
+    "fr": "frappe / martèle"
+   }
+  },
+  {
+   "bs": "kucanje",
+   "translations": {
+    "de": "Klopfen / Hämmern",
+    "en": "knocking / hammering",
+    "tr": "vurma / çekiçleme",
+    "sv": "knackande / hamrande",
+    "nl": "kloppen / hameren",
+    "nb": "banking / hamring",
+    "da": "banken / hamren",
+    "fr": "coups / martèlement"
+   }
+  },
+  {
+   "bs": "kuha",
+   "translations": {
+    "de": "er/sie kocht",
+    "en": "he/she cooks / boils",
+    "tr": "pişiriyor",
+    "sv": "han/hon kokar",
+    "nl": "hij/zij kookt",
+    "nb": "han/hun koker",
+    "da": "han/hun koger",
+    "fr": "il / elle fait cuire"
+   }
+  },
+  {
+   "bs": "kuhaj",
+   "translations": {
+    "de": "koch (Befehl)",
+    "en": "cook / make (imperative)",
+    "tr": "pişir (emir kipi)",
+    "sv": "koka (imperativ)",
+    "nl": "kook (gebiedende wijs)",
+    "nb": "kok (imperativ)",
+    "da": "kog (bydeform)",
+    "fr": "fais (impératif)"
    }
   },
   {
@@ -4646,6 +5816,32 @@
    }
   },
   {
+   "bs": "kupili",
+   "translations": {
+    "de": "gekauft (Mehrz.)",
+    "en": "bought (pl.)",
+    "tr": "aldılar",
+    "sv": "köpte (flera)",
+    "nl": "gekocht (meervoud)",
+    "nb": "kjøpte (flere)",
+    "da": "købte (flere)",
+    "fr": "acheté (pluriel)"
+   }
+  },
+  {
+   "bs": "kupio",
+   "translations": {
+    "de": "gekauft (m)",
+    "en": "bought (m)",
+    "tr": "aldı (eril)",
+    "sv": "köpte (mask.)",
+    "nl": "gekocht (m)",
+    "nb": "kjøpte (hankj.)",
+    "da": "købte (hank.)",
+    "fr": "acheté (homme)"
+   }
+  },
+  {
    "bs": "kupiti",
    "translations": {
     "de": "kaufen",
@@ -4708,6 +5904,45 @@
     "nb": "jeg kjøper",
     "da": "jeg køber",
     "fr": "j'achète"
+   }
+  },
+  {
+   "bs": "kutija",
+   "translations": {
+    "de": "Schachtel / Kiste",
+    "en": "box / crate",
+    "tr": "kutu / sandık",
+    "sv": "ask / låda",
+    "nl": "doos / kist",
+    "nb": "eske / kasse",
+    "da": "æske / kasse",
+    "fr": "boîte / caisse"
+   }
+  },
+  {
+   "bs": "kutije",
+   "translations": {
+    "de": "Kisten (Akk.)",
+    "en": "boxes (acc.)",
+    "tr": "kutular (akuzatif)",
+    "sv": "lådor (ackusativ)",
+    "nl": "dozen (accusatief)",
+    "nb": "esker (akkusativ)",
+    "da": "kasser (akkusativ)",
+    "fr": "cartons (accusatif)"
+   }
+  },
+  {
+   "bs": "kutiji",
+   "translations": {
+    "de": "Kiste (Lok.)",
+    "en": "box (loc.)",
+    "tr": "kutu (lokatif)",
+    "sv": "låda (lokativ)",
+    "nl": "doos (locatief)",
+    "nb": "eske (lokativ)",
+    "da": "kasse (lokativ)",
+    "fr": "carton (locatif)"
    }
   },
   {
@@ -4841,6 +6076,19 @@
    }
   },
   {
+   "bs": "lamija",
+   "translations": {
+    "de": "Lamija (Name)",
+    "en": "Lamija (name)",
+    "tr": "Lamija (isim)",
+    "sv": "Lamija (namn)",
+    "nl": "Lamija (naam)",
+    "nb": "Lamija (navn)",
+    "da": "Lamija (navn)",
+    "fr": "Lamija (prénom)"
+   }
+  },
+  {
    "bs": "lampa",
    "translations": {
     "de": "Lampe",
@@ -4906,6 +6154,19 @@
    }
   },
   {
+   "bs": "lijek",
+   "translations": {
+    "de": "Medikament",
+    "en": "medicine",
+    "tr": "ilaç",
+    "sv": "medicin",
+    "nl": "medicijn",
+    "nb": "medisin",
+    "da": "medicin",
+    "fr": "médicament"
+   }
+  },
+  {
    "bs": "lijep",
    "translations": {
     "de": "schön (m)",
@@ -4929,6 +6190,19 @@
     "nb": "fint",
     "da": "flot",
     "fr": "joli"
+   }
+  },
+  {
+   "bs": "lijepu",
+   "translations": {
+    "de": "schöne (Akk.)",
+    "en": "nice (acc.)",
+    "tr": "güzel (akuzatif)",
+    "sv": "fin (ackusativ)",
+    "nl": "mooie (accusatief)",
+    "nb": "fin (akkusativ)",
+    "da": "god (akkusativ)",
+    "fr": "belle (accusatif)"
    }
   },
   {
@@ -4997,6 +6271,19 @@
    }
   },
   {
+   "bs": "lješnjacima",
+   "translations": {
+    "de": "Haselnüsse (Instr.)",
+    "en": "hazelnuts (instr.)",
+    "tr": "fındıklar (instrumental)",
+    "sv": "hasselnötter (instrumentalis)",
+    "nl": "hazelnoten (instrumentalis)",
+    "nb": "hasselnøtter (instrumentalis)",
+    "da": "hasselnødder (instrumentalis)",
+    "fr": "noisettes (instrumental)"
+   }
+  },
+  {
    "bs": "ljubavi",
    "translations": {
     "de": "Liebe (Gen.)",
@@ -5036,6 +6323,19 @@
    }
   },
   {
+   "bs": "ljude",
+   "translations": {
+    "de": "Leute (Akk.)",
+    "en": "people (acc.)",
+    "tr": "insanlar (akuzatif)",
+    "sv": "människor (ackusativ)",
+    "nl": "mensen (accusatief)",
+    "nb": "folk (akkusativ)",
+    "da": "folk (akkusativ)",
+    "fr": "gens (accusatif)"
+   }
+  },
+  {
    "bs": "ljudi",
    "translations": {
     "de": "Leute",
@@ -5046,6 +6346,32 @@
     "nb": "mennesker",
     "da": "mennesker",
     "fr": "gens"
+   }
+  },
+  {
+   "bs": "lokum",
+   "translations": {
+    "de": "Lokum (Süßigkeit)",
+    "en": "Turkish delight",
+    "tr": "lokum",
+    "sv": "turkisk konfekt",
+    "nl": "Turks fruit",
+    "nb": "tyrkisk konfekt",
+    "da": "tyrkisk konfekt",
+    "fr": "loukoum"
+   }
+  },
+  {
+   "bs": "lokuma",
+   "translations": {
+    "de": "Lokum (Gen.)",
+    "en": "Turkish delight (gen.)",
+    "tr": "lokum (genitif)",
+    "sv": "turkisk konfekt (genitiv)",
+    "nl": "Turks fruit (genitief)",
+    "nb": "tyrkisk konfekt (genitiv)",
+    "da": "tyrkisk konfekt (genitiv)",
+    "fr": "loukoum (génitif)"
    }
   },
   {
@@ -5088,6 +6414,19 @@
    }
   },
   {
+   "bs": "majice",
+   "translations": {
+    "de": "T-Shirts",
+    "en": "T-shirts",
+    "tr": "tişörtler",
+    "sv": "t-shirts",
+    "nl": "T-shirts",
+    "nb": "T-skjorter",
+    "da": "T-shirts",
+    "fr": "tee-shirts"
+   }
+  },
+  {
    "bs": "majka",
    "translations": {
     "de": "Mutter",
@@ -5098,6 +6437,32 @@
     "nb": "mor",
     "da": "mor",
     "fr": "mère"
+   }
+  },
+  {
+   "bs": "majstor",
+   "translations": {
+    "de": "Handwerker / Fachmann",
+    "en": "craftsman / expert",
+    "tr": "zanaatkâr / usta",
+    "sv": "hantverkare / fackman",
+    "nl": "vakman / klusjesman",
+    "nb": "håndverker / fagmann",
+    "da": "håndværker / fagmand",
+    "fr": "artisan / spécialiste"
+   }
+  },
+  {
+   "bs": "majstori",
+   "translations": {
+    "de": "Handwerker (Mehrz.)",
+    "en": "craftsmen",
+    "tr": "ustalar",
+    "sv": "hantverkare (flera)",
+    "nl": "ambachtslieden",
+    "nb": "håndverkere",
+    "da": "håndværkere",
+    "fr": "artisans"
    }
   },
   {
@@ -5153,6 +6518,19 @@
    }
   },
   {
+   "bs": "malim",
+   "translations": {
+    "de": "kleinen (Lok. Mehrz.)",
+    "en": "small (loc. pl.)",
+    "tr": "küçük (lokatif çoğul)",
+    "sv": "små (lokativ plural)",
+    "nl": "kleine (locatief meervoud)",
+    "nb": "små (lokativ flertall)",
+    "da": "små (lokativ flertal)",
+    "fr": "petites (locatif pluriel)"
+   }
+  },
+  {
    "bs": "malo",
    "translations": {
     "de": "wenig / ein bisschen",
@@ -5202,6 +6580,19 @@
     "nb": "mamma",
     "da": "mor",
     "fr": "maman"
+   }
+  },
+  {
+   "bs": "mami",
+   "translations": {
+    "de": "Mama (Dat.)",
+    "en": "mom (dat.)",
+    "tr": "anne (datif)",
+    "sv": "mamma (dativ)",
+    "nl": "mama (datief)",
+    "nb": "mamma (dativ)",
+    "da": "mor (dativ)",
+    "fr": "maman (datif)"
    }
   },
   {
@@ -5439,6 +6830,19 @@
    }
   },
   {
+   "bs": "minuti",
+   "translations": {
+    "de": "Minute (Lok.)",
+    "en": "minute (loc.)",
+    "tr": "dakika (lokatif)",
+    "sv": "minut (lokativ)",
+    "nl": "minuut (locatief)",
+    "nb": "minutt (lokativ)",
+    "da": "minut (lokativ)",
+    "fr": "minute (locatif)"
+   }
+  },
+  {
    "bs": "mira",
    "translations": {
     "de": "Mira (Name)",
@@ -5543,6 +6947,32 @@
    }
   },
   {
+   "bs": "mislio",
+   "translations": {
+    "de": "gedacht (m)",
+    "en": "thought (m)",
+    "tr": "düşündü (eril)",
+    "sv": "tänkte (mask.)",
+    "nl": "gedacht (m)",
+    "nb": "tenkte (hankj.)",
+    "da": "tænkte (hank.)",
+    "fr": "pensé (homme)"
+   }
+  },
+  {
+   "bs": "mjesec",
+   "translations": {
+    "de": "Monat",
+    "en": "month",
+    "tr": "ay",
+    "sv": "månad",
+    "nl": "maand",
+    "nb": "måned",
+    "da": "måned",
+    "fr": "mois"
+   }
+  },
+  {
    "bs": "mjeseca",
    "translations": {
     "de": "Monat (Gen.)",
@@ -5552,6 +6982,19 @@
     "nl": "maand (genitief)",
     "nb": "måned (genitiv)",
     "da": "måned (genitiv)",
+    "fr": "mois (génitif)"
+   }
+  },
+  {
+   "bs": "mjeseci",
+   "translations": {
+    "de": "Monate (Gen.)",
+    "en": "months (gen.)",
+    "tr": "aylar (genitif)",
+    "sv": "månader (genitiv)",
+    "nl": "maanden (genitief)",
+    "nb": "måneder (genitiv)",
+    "da": "måneder (genitiv)",
     "fr": "mois (génitif)"
    }
   },
@@ -5673,6 +7116,19 @@
    }
   },
   {
+   "bs": "mobitelu",
+   "translations": {
+    "de": "Handy (Lok.)",
+    "en": "phone (loc.)",
+    "tr": "cep telefonu (lokatif)",
+    "sv": "mobil (lokativ)",
+    "nl": "telefoon (locatief)",
+    "nb": "mobil (lokativ)",
+    "da": "mobil (lokativ)",
+    "fr": "portable (locatif)"
+   }
+  },
+  {
    "bs": "mog",
    "translations": {
     "de": "meines / meinen",
@@ -5692,7 +7148,7 @@
     "en": "could (m)",
     "tr": "-ebildi (eril)",
     "sv": "kunde (mask.)",
-    "nl": "kon (m)",
+    "nl": "gekund (m)",
     "nb": "kunne (hankj.)",
     "da": "kunne (hank.)",
     "fr": "pu (homme)"
@@ -5816,6 +7272,45 @@
    }
   },
   {
+   "bs": "mom",
+   "translations": {
+    "de": "meinem (Lok.)",
+    "en": "my (loc.)",
+    "tr": "benim (lokatif)",
+    "sv": "mitt (lokativ)",
+    "nl": "mijn (locatief)",
+    "nb": "mitt (lokativ)",
+    "da": "mit (lokativ)",
+    "fr": "ma (locatif)"
+   }
+  },
+  {
+   "bs": "mora",
+   "translations": {
+    "de": "er/sie muss",
+    "en": "he/she must",
+    "tr": "-mesi gerek",
+    "sv": "han/hon måste",
+    "nl": "hij/zij moet",
+    "nb": "han/hun må",
+    "da": "han/hun skal",
+    "fr": "il / elle doit"
+   }
+  },
+  {
+   "bs": "morali",
+   "translations": {
+    "de": "gemusst (Mehrz.)",
+    "en": "had to (pl.)",
+    "tr": "zorunda kaldılar",
+    "sv": "var tvungna",
+    "nl": "moesten",
+    "nb": "måtte (flere)",
+    "da": "måtte (flere)",
+    "fr": "ont dû"
+   }
+  },
+  {
    "bs": "moralo",
    "translations": {
     "de": "musste (s)",
@@ -5826,6 +7321,19 @@
     "nb": "måtte (intetkj.)",
     "da": "måtte (intetk.)",
     "fr": "devait (neutre)"
+   }
+  },
+  {
+   "bs": "moram",
+   "translations": {
+    "de": "ich muss",
+    "en": "I have to",
+    "tr": "-meliyim",
+    "sv": "jag måste",
+    "nl": "ik moet",
+    "nb": "jeg må",
+    "da": "jeg er nødt til",
+    "fr": "je dois"
    }
   },
   {
@@ -5845,12 +7353,12 @@
    "bs": "morate",
    "translations": {
     "de": "ihr müsst / Sie müssen",
-    "en": "you must (pl. / formal)",
+    "en": "you must (plural or formal)",
     "tr": "-meniz gerek",
     "sv": "ni måste",
     "nl": "jullie moeten / u moet",
-    "nb": "dere må",
-    "da": "I må / De må",
+    "nb": "dere må / De må",
+    "da": "I skal / De skal",
     "fr": "vous devez"
    }
   },
@@ -5972,6 +7480,19 @@
    }
   },
   {
+   "bs": "možeš",
+   "translations": {
+    "de": "du kannst",
+    "en": "you can",
+    "tr": "yapabilirsin",
+    "sv": "du kan",
+    "nl": "jij kunt",
+    "nb": "du kan",
+    "da": "du kan",
+    "fr": "tu peux"
+   }
+  },
+  {
    "bs": "mraku",
    "translations": {
     "de": "Dunkelheit (Lok.)",
@@ -6011,6 +7532,19 @@
    }
   },
   {
+   "bs": "mujo",
+   "translations": {
+    "de": "Mujo (Name)",
+    "en": "Mujo (name)",
+    "tr": "Mujo (isim)",
+    "sv": "Mujo (namn)",
+    "nl": "Mujo (naam)",
+    "nb": "Mujo (navn)",
+    "da": "Mujo (navn)",
+    "fr": "Mujo (prénom)"
+   }
+  },
+  {
    "bs": "muž",
    "translations": {
     "de": "Ehemann",
@@ -6047,6 +7581,19 @@
     "nb": "jeg håper",
     "da": "jeg håber",
     "fr": "j'espère"
+   }
+  },
+  {
+   "bs": "najbolja",
+   "translations": {
+    "de": "die beste",
+    "en": "the best",
+    "tr": "en iyisi",
+    "sv": "den bästa",
+    "nl": "de beste",
+    "nb": "den beste",
+    "da": "den bedste",
+    "fr": "la meilleure"
    }
   },
   {
@@ -6297,6 +7844,45 @@
    }
   },
   {
+   "bs": "napisao",
+   "translations": {
+    "de": "geschrieben (m)",
+    "en": "wrote (m)",
+    "tr": "yazdı (eril)",
+    "sv": "skrev (mask.)",
+    "nl": "geschreven (m)",
+    "nb": "skrev (hankj.)",
+    "da": "skrev (hank.)",
+    "fr": "écrit (homme)"
+   }
+  },
+  {
+   "bs": "napiši",
+   "translations": {
+    "de": "schreib (Befehl)",
+    "en": "write (imperative)",
+    "tr": "yaz (emir kipi)",
+    "sv": "skriv (imperativ)",
+    "nl": "schrijf (gebiedende wijs)",
+    "nb": "skriv (imperativ)",
+    "da": "skriv (bydeform)",
+    "fr": "écris (impératif)"
+   }
+  },
+  {
+   "bs": "napravili",
+   "translations": {
+    "de": "gemacht (Mehrz.)",
+    "en": "made (pl. or formal)",
+    "tr": "yaptınız",
+    "sv": "gjort (flera / ni)",
+    "nl": "gemaakt (meervoud / u)",
+    "nb": "laget (flere / De)",
+    "da": "lavet (flere / De)",
+    "fr": "fait (pluriel / vous)"
+   }
+  },
+  {
    "bs": "napraviti",
    "translations": {
     "de": "machen / zubereiten",
@@ -6323,6 +7909,19 @@
    }
   },
   {
+   "bs": "napuniti",
+   "translations": {
+    "de": "füllen (napuniti 30 godina: 30 werden)",
+    "en": "to fill (napuniti 30 godina: to turn 30)",
+    "tr": "doldurmak (napuniti 30 godina: 30 yaşına girmek)",
+    "sv": "fylla (napuniti 30 godina: fylla 30)",
+    "nl": "vullen (napuniti 30 godina: 30 worden)",
+    "nb": "fylle (napuniti 30 godina: fylle 30)",
+    "da": "fylde (napuniti 30 godina: fylde 30)",
+    "fr": "remplir (napuniti 30 godina : avoir 30 ans)"
+   }
+  },
+  {
    "bs": "naručio",
    "translations": {
     "de": "bestellt (m)",
@@ -6333,6 +7932,19 @@
     "nb": "bestilte (hankj.)",
     "da": "bestilte (hank.)",
     "fr": "commandé (homme)"
+   }
+  },
+  {
+   "bs": "nas",
+   "translations": {
+    "de": "uns",
+    "en": "to us",
+    "tr": "bize",
+    "sv": "till oss",
+    "nl": "aan ons",
+    "nb": "til oss",
+    "da": "til os",
+    "fr": "à nous"
    }
   },
   {
@@ -6351,11 +7963,11 @@
   {
    "bs": "nasmijala",
    "translations": {
-    "de": "gelacht (w)",
+    "de": "aufgelacht (w)",
     "en": "laughed (f)",
     "tr": "güldü (kadın)",
-    "sv": "skrattade (kvinna)",
-    "nl": "lachte (vrouw)",
+    "sv": "skrattade till (kvinna)",
+    "nl": "gelachen (vrouw)",
     "nb": "lo (kvinne)",
     "da": "lo (kvinde)",
     "fr": "ri (femme)"
@@ -6401,6 +8013,19 @@
    }
   },
   {
+   "bs": "naučio",
+   "translations": {
+    "de": "gelernt (m)",
+    "en": "learned (m)",
+    "tr": "öğrendi (eril)",
+    "sv": "lärde sig (mask.)",
+    "nl": "geleerd (m)",
+    "nb": "lærte (hankj.)",
+    "da": "lærte (hank.)",
+    "fr": "appris (homme)"
+   }
+  },
+  {
    "bs": "naučit",
    "translations": {
     "de": "lernen (naučit ću: ich werde lernen)",
@@ -6437,6 +8062,19 @@
     "nb": "om kveldene",
     "da": "om aftenen",
     "fr": "le soir"
+   }
+  },
+  {
+   "bs": "navijači",
+   "translations": {
+    "de": "Fans",
+    "en": "fans",
+    "tr": "taraftarlar",
+    "sv": "supportrar",
+    "nl": "fans",
+    "nb": "supportere",
+    "da": "fans",
+    "fr": "supporters"
    }
   },
   {
@@ -6485,7 +8123,7 @@
     "en": "called (m)",
     "tr": "aradı (eril)",
     "sv": "ringde (mask.)",
-    "nl": "belde (m)",
+    "nl": "gebeld (m)",
     "nb": "ringte (hankj.)",
     "da": "ringede (hank.)",
     "fr": "appelé (homme)"
@@ -6557,13 +8195,26 @@
    }
   },
   {
+   "bs": "naši",
+   "translations": {
+    "de": "unsere (Mehrz.)",
+    "en": "ours / our team (pl.)",
+    "tr": "bizimkiler",
+    "sv": "våra",
+    "nl": "de onzen",
+    "nb": "våre",
+    "da": "vores",
+    "fr": "les nôtres"
+   }
+  },
+  {
    "bs": "našla",
    "translations": {
     "de": "gefunden (w)",
     "en": "found (f)",
     "tr": "buldu (kadın)",
     "sv": "hittade (kvinna)",
-    "nl": "vond (vrouw)",
+    "nl": "gevonden (vrouw)",
     "nb": "fant (kvinne)",
     "da": "fandt (kvinde)",
     "fr": "trouvé (femme)"
@@ -6606,6 +8257,19 @@
     "nb": "ikke",
     "da": "ikke",
     "fr": "ne ... pas"
+   }
+  },
+  {
+   "bs": "nedjelje",
+   "translations": {
+    "de": "Sonntag (Gen.)",
+    "en": "Sunday (gen.)",
+    "tr": "pazar (genitif)",
+    "sv": "söndag (genitiv)",
+    "nl": "zondag (genitief)",
+    "nb": "søndag (genitiv)",
+    "da": "søndag (genitiv)",
+    "fr": "dimanche (génitif)"
    }
   },
   {
@@ -6661,6 +8325,19 @@
    }
   },
   {
+   "bs": "neka",
+   "translations": {
+    "de": "soll / möge",
+    "en": "let (him) / may",
+    "tr": "-sin (dilek)",
+    "sv": "må / ska",
+    "nl": "moet / moge",
+    "nb": "må / skal (ønske)",
+    "da": "må / skal (ønske)",
+    "fr": "que (souhait) / qu'il soit"
+   }
+  },
+  {
    "bs": "nekad",
    "translations": {
     "de": "früher",
@@ -6697,6 +8374,19 @@
     "nb": "noen",
     "da": "nogen",
     "fr": "quelqu'un"
+   }
+  },
+  {
+   "bs": "nekoliko",
+   "translations": {
+    "de": "einige / ein paar",
+    "en": "a few",
+    "tr": "birkaç",
+    "sv": "några",
+    "nl": "een paar",
+    "nb": "noen få",
+    "da": "nogle få",
+    "fr": "quelques"
    }
   },
   {
@@ -6741,14 +8431,14 @@
   {
    "bs": "nemojte",
    "translations": {
-    "de": "tut nicht! (Verbot)",
-    "en": "don't! (prohibition)",
+    "de": "tut nicht! / tun Sie nicht! (Verbot)",
+    "en": "don't! (plural or formal)",
     "tr": "yapmayın! (yasak)",
     "sv": "gör inte! (förbud)",
-    "nl": "niet doen! (verbod)",
+    "nl": "niet doen! / doet u niet! (verbod)",
     "nb": "ikke gjør det! (forbud)",
     "da": "lad være! (forbud)",
-    "fr": "ne faites pas ! (interdiction)"
+    "fr": "ne faites pas ! (interdiction)"
    }
   },
   {
@@ -6856,6 +8546,19 @@
    }
   },
   {
+   "bs": "nikoga",
+   "translations": {
+    "de": "niemanden",
+    "en": "nobody",
+    "tr": "hiç kimseyi",
+    "sv": "ingen",
+    "nl": "niemand",
+    "nb": "ingen",
+    "da": "ingen",
+    "fr": "personne"
+   }
+  },
+  {
    "bs": "nisam",
    "translations": {
     "de": "ich bin nicht",
@@ -6897,14 +8600,14 @@
   {
    "bs": "nisu",
    "translations": {
-    "de": "sind nicht",
-    "en": "are not",
-    "tr": "değiller",
-    "sv": "är inte",
-    "nl": "zijn niet",
-    "nb": "er ikke",
-    "da": "er ikke",
-    "fr": "ne sont pas"
+    "de": "sind nicht / haben nicht",
+    "en": "are not / have not",
+    "tr": "değiller / -mediler",
+    "sv": "är inte / har inte",
+    "nl": "zijn niet / hebben niet",
+    "nb": "er ikke / har ikke",
+    "da": "er ikke / har ikke",
+    "fr": "ne sont pas / n'ont pas"
    }
   },
   {
@@ -6931,6 +8634,19 @@
     "nb": "ingenting",
     "da": "ingenting",
     "fr": "rien"
+   }
+  },
+  {
+   "bs": "nje",
+   "translations": {
+    "de": "ihr / sie (Gen.)",
+    "en": "her / it (gen.)",
+    "tr": "ondan (genitif)",
+    "sv": "henne / den (genitiv)",
+    "nl": "haar (genitief)",
+    "nb": "henne / den (genitiv)",
+    "da": "hende / den (genitiv)",
+    "fr": "elle (génitif)"
    }
   },
   {
@@ -6973,6 +8689,19 @@
    }
   },
   {
+   "bs": "njegove",
+   "translations": {
+    "de": "seine (Akk. Mehrz.)",
+    "en": "his (acc. pl.)",
+    "tr": "onun (akuzatif çoğul)",
+    "sv": "hans (ackusativ plural)",
+    "nl": "zijn (accusatief meervoud)",
+    "nb": "hans (akkusativ flertall)",
+    "da": "hans (akkusativ flertal)",
+    "fr": "ses (accusatif pluriel)"
+   }
+  },
+  {
    "bs": "njegovi",
    "translations": {
     "de": "seine (Mehrz.)",
@@ -6986,6 +8715,32 @@
    }
   },
   {
+   "bs": "njegovih",
+   "translations": {
+    "de": "seiner (Gen. Mehrz.)",
+    "en": "his (gen. pl.)",
+    "tr": "onun (genitif çoğul)",
+    "sv": "hans (genitiv plural)",
+    "nl": "zijn (genitief meervoud)",
+    "nb": "hans (genitiv flertall)",
+    "da": "hans (genitiv flertal)",
+    "fr": "ses (génitif pluriel)"
+   }
+  },
+  {
+   "bs": "njegovog",
+   "translations": {
+    "de": "seines (Gen.)",
+    "en": "his (gen.)",
+    "tr": "onun (genitif)",
+    "sv": "hans (genitiv)",
+    "nl": "zijn (genitief)",
+    "nb": "hans (genitiv)",
+    "da": "hans (genitiv)",
+    "fr": "son (génitif)"
+   }
+  },
+  {
    "bs": "njegovom",
    "translations": {
     "de": "seiner (Lok.)",
@@ -6996,6 +8751,19 @@
     "nb": "hans (lokativ)",
     "da": "hans (lokativ)",
     "fr": "son (locatif)"
+   }
+  },
+  {
+   "bs": "njemačke",
+   "translations": {
+    "de": "Deutschland (Gen.)",
+    "en": "Germany (gen.)",
+    "tr": "Almanya (genitif)",
+    "sv": "Tyskland (genitiv)",
+    "nl": "Duitsland (genitief)",
+    "nb": "Tyskland (genitiv)",
+    "da": "Tyskland (genitiv)",
+    "fr": "Allemagne (génitif)"
    }
   },
   {
@@ -7038,6 +8806,19 @@
    }
   },
   {
+   "bs": "njena",
+   "translations": {
+    "de": "ihr (von ihr) (m/w/s)",
+    "en": "her (m/f/n)",
+    "tr": "onun (kadın) (e/d/n)",
+    "sv": "hennes (m/f/n)",
+    "nl": "haar (m/v/o)",
+    "nb": "hennes (m/f/n)",
+    "da": "hendes (h/hu/i)",
+    "fr": "son (à elle) (m/f/n)"
+   }
+  },
+  {
    "bs": "njeni",
    "translations": {
     "de": "ihre (Mehrz.)",
@@ -7074,6 +8855,32 @@
     "nb": "til dem",
     "da": "til dem",
     "fr": "à eux"
+   }
+  },
+  {
+   "bs": "nosili",
+   "translations": {
+    "de": "getragen (Mehrz.)",
+    "en": "carried (pl.)",
+    "tr": "taşıdılar",
+    "sv": "bar (flera)",
+    "nl": "gedragen (meervoud)",
+    "nb": "bar (flere)",
+    "da": "bar (flere)",
+    "fr": "porté (pluriel)"
+   }
+  },
+  {
+   "bs": "nositi",
+   "translations": {
+    "de": "tragen",
+    "en": "to wear / to carry",
+    "tr": "giymek / taşımak",
+    "sv": "ha på sig / bära",
+    "nl": "dragen",
+    "nb": "ha på seg / bære",
+    "da": "at have på / at bære",
+    "fr": "porter"
    }
   },
   {
@@ -7116,6 +8923,19 @@
    }
   },
   {
+   "bs": "nove",
+   "translations": {
+    "de": "neue (Mehrz.)",
+    "en": "new (pl.)",
+    "tr": "yeni (çoğul)",
+    "sv": "nya",
+    "nl": "nieuwe",
+    "nb": "nye",
+    "da": "nye",
+    "fr": "nouveaux"
+   }
+  },
+  {
    "bs": "novi",
    "translations": {
     "de": "neuen",
@@ -7134,10 +8954,10 @@
     "de": "neue (Akk.)",
     "en": "new (acc.)",
     "tr": "yeni (akuzatif)",
-    "sv": "nya (ackusativ)",
+    "sv": "ny (ackusativ)",
     "nl": "nieuwe (accusatief)",
-    "nb": "nye (akkusativ)",
-    "da": "nye (akkusativ)",
+    "nb": "ny (akkusativ)",
+    "da": "ny (akkusativ)",
     "fr": "nouvelle (accusatif)"
    }
   },
@@ -7194,6 +9014,19 @@
    }
   },
   {
+   "bs": "objasnio",
+   "translations": {
+    "de": "erklärt (m)",
+    "en": "explained (m)",
+    "tr": "açıkladı (eril)",
+    "sv": "förklarade (mask.)",
+    "nl": "uitgelegd (m)",
+    "nb": "forklarte (hankj.)",
+    "da": "forklarede (hank.)",
+    "fr": "expliqué (homme)"
+   }
+  },
+  {
    "bs": "objašnjava",
    "translations": {
     "de": "er/sie erklärt",
@@ -7246,6 +9079,19 @@
    }
   },
   {
+   "bs": "oca",
+   "translations": {
+    "de": "Vater (Gen.)",
+    "en": "father (gen.)",
+    "tr": "baba (genitif)",
+    "sv": "far (genitiv)",
+    "nl": "vader (genitief)",
+    "nb": "far (genitiv)",
+    "da": "far (genitiv)",
+    "fr": "père (génitif)"
+   }
+  },
+  {
    "bs": "od",
    "translations": {
     "de": "von",
@@ -7269,6 +9115,19 @@
     "nb": "pustet lettet ut (kvinne)",
     "da": "åndede lettet op (kvinde)",
     "fr": "soupiré de soulagement (femme)"
+   }
+  },
+  {
+   "bs": "odete",
+   "translations": {
+    "de": "ihr geht / Sie gehen",
+    "en": "you go (plural or formal)",
+    "tr": "gidersiniz",
+    "sv": "ni går",
+    "nl": "jullie gaan / u gaat",
+    "nb": "dere går / De går",
+    "da": "I går / De går",
+    "fr": "vous allez"
    }
   },
   {
@@ -7304,7 +9163,7 @@
     "en": "answered (m)",
     "tr": "cevap verdi (eril)",
     "sv": "svarade (mask.)",
-    "nl": "antwoordde (m)",
+    "nl": "geantwoord (m)",
     "nb": "svarte (hankj.)",
     "da": "svarede (hank.)",
     "fr": "répondu (homme)"
@@ -7365,14 +9224,27 @@
   {
    "bs": "odmarati",
    "translations": {
-    "de": "ruhen",
-    "en": "rest",
+    "de": "ruhen / sich ausruhen",
+    "en": "to rest",
     "tr": "dinlenmek",
-    "sv": "vila",
-    "nl": "rusten",
-    "nb": "hvile",
-    "da": "hvile",
-    "fr": "reposer"
+    "sv": "vila / vila sig",
+    "nl": "rusten / uitrusten",
+    "nb": "hvile / hvile seg",
+    "da": "hvile / hvile sig",
+    "fr": "reposer / se reposer"
+   }
+  },
+  {
+   "bs": "odmoru",
+   "translations": {
+    "de": "Urlaub (Lok.)",
+    "en": "vacation (loc.)",
+    "tr": "tatil (lokatif)",
+    "sv": "semester (lokativ)",
+    "nl": "vakantie (locatief)",
+    "nb": "ferie (lokativ)",
+    "da": "ferie (lokativ)",
+    "fr": "vacances (locatif)"
    }
   },
   {
@@ -7480,6 +9352,19 @@
    }
   },
   {
+   "bs": "omiljenog",
+   "translations": {
+    "de": "Lieblings- (Gen.)",
+    "en": "favorite (gen.)",
+    "tr": "en sevdiği (genitif)",
+    "sv": "favorit- (genitiv)",
+    "nl": "lievelings- (genitief)",
+    "nb": "favoritt- (genitiv)",
+    "da": "yndlings- (genitiv)",
+    "fr": "préféré (génitif)"
+   }
+  },
+  {
    "bs": "on",
    "translations": {
     "de": "er",
@@ -7584,6 +9469,19 @@
    }
   },
   {
+   "bs": "ormar",
+   "translations": {
+    "de": "Schrank",
+    "en": "cupboard",
+    "tr": "dolap",
+    "sv": "skåp",
+    "nl": "kast",
+    "nb": "skap",
+    "da": "skab",
+    "fr": "armoire"
+   }
+  },
+  {
    "bs": "osam",
    "translations": {
     "de": "acht",
@@ -7607,6 +9505,32 @@
     "nb": "åtti",
     "da": "firs",
     "fr": "quatre-vingts"
+   }
+  },
+  {
+   "bs": "osjeća",
+   "translations": {
+    "de": "er/sie fühlt sich",
+    "en": "he/she feels",
+    "tr": "hissediyor",
+    "sv": "han/hon mår / känner sig",
+    "nl": "hij/zij voelt zich",
+    "nb": "han/hun føler seg",
+    "da": "han/hun føler sig",
+    "fr": "il / elle se sent"
+   }
+  },
+  {
+   "bs": "osjećala",
+   "translations": {
+    "de": "gefühlt (w)",
+    "en": "felt (f)",
+    "tr": "hissetti (kadın)",
+    "sv": "kände sig (kvinna)",
+    "nl": "gevoeld (vrouw)",
+    "nb": "følte seg (kvinne)",
+    "da": "følte sig (kvinde)",
+    "fr": "senti (femme)"
    }
   },
   {
@@ -7646,6 +9570,19 @@
     "nb": "ble (hankj.)",
     "da": "blev (hank.)",
     "fr": "resté (homme)"
+   }
+  },
+  {
+   "bs": "ostat",
+   "translations": {
+    "de": "bleiben (Zukunft)",
+    "en": "to stay (future)",
+    "tr": "kalmak (gelecek)",
+    "sv": "stanna (framtid)",
+    "nl": "blijven (toekomst)",
+    "nb": "bli (framtid)",
+    "da": "at blive (fremtid)",
+    "fr": "rester (futur)"
    }
   },
   {
@@ -7766,6 +9703,32 @@
    }
   },
   {
+   "bs": "ove",
+   "translations": {
+    "de": "diese (Akk. Mehrz.)",
+    "en": "these (acc. pl.)",
+    "tr": "bu (akuzatif çoğul)",
+    "sv": "dessa (ackusativ plural)",
+    "nl": "deze (accusatief meervoud)",
+    "nb": "disse (akkusativ flertall)",
+    "da": "disse (akkusativ flertal)",
+    "fr": "ces (accusatif pluriel)"
+   }
+  },
+  {
+   "bs": "ovih",
+   "translations": {
+    "de": "dieser (Gen. Mehrz.)",
+    "en": "these (gen. pl.)",
+    "tr": "bu (genitif çoğul)",
+    "sv": "dessa (genitiv plural)",
+    "nl": "deze (genitief meervoud)",
+    "nb": "disse (genitiv flertall)",
+    "da": "disse (genitiv flertal)",
+    "fr": "ces (génitif pluriel)"
+   }
+  },
+  {
    "bs": "ovo",
    "translations": {
     "de": "dies / das",
@@ -7784,24 +9747,24 @@
     "de": "dieses (Gen.)",
     "en": "this (gen.)",
     "tr": "bu (genitif)",
-    "sv": "denna (genitiv)",
-    "nl": "deze (genitief)",
-    "nb": "denne (genitiv)",
-    "da": "denne (genitiv)",
+    "sv": "detta (genitiv)",
+    "nl": "dit (genitief)",
+    "nb": "dette (genitiv)",
+    "da": "dette (genitiv)",
     "fr": "ce (génitif)"
    }
   },
   {
    "bs": "ovoj",
    "translations": {
-    "de": "diesem (Lok.)",
+    "de": "dieser (Lok.)",
     "en": "this (loc.)",
     "tr": "bu (lokatif)",
     "sv": "denna (lokativ)",
-    "nl": "dit (locatief)",
+    "nl": "deze (locatief)",
     "nb": "denne (lokativ)",
     "da": "denne (lokativ)",
-    "fr": "ce (locatif)"
+    "fr": "cette (locatif)"
    }
   },
   {
@@ -7815,6 +9778,19 @@
     "nb": "denne (akkusativ)",
     "da": "denne (akkusativ)",
     "fr": "celle-ci (accusatif)"
+   }
+  },
+  {
+   "bs": "ozbiljno",
+   "translations": {
+    "de": "ernst",
+    "en": "serious",
+    "tr": "ciddi",
+    "sv": "allvarlig",
+    "nl": "ernstig / serieus",
+    "nb": "alvorlig",
+    "da": "alvorlig",
+    "fr": "sérieux"
    }
   },
   {
@@ -7837,7 +9813,7 @@
     "en": "got married (m)",
     "tr": "evlendi (eril)",
     "sv": "gifte sig (mask.)",
-    "nl": "trouwde (m)",
+    "nl": "getrouwd (m)",
     "nb": "giftet seg (hankj.)",
     "da": "blev gift (hank.)",
     "fr": "marié (homme)"
@@ -7872,14 +9848,14 @@
   {
    "bs": "padala",
    "translations": {
-    "de": "gefallen (w)",
-    "en": "fallen (f)",
+    "de": "gefallen (w) (Regen, Schnee)",
+    "en": "fallen (f) (rain, snow)",
     "tr": "yağdı (dişil)",
-    "sv": "fallit (fem.)",
-    "nl": "gevallen (v)",
-    "nb": "falt (hunkj.)",
-    "da": "faldet (hunk.)",
-    "fr": "tombée"
+    "sv": "fallit (fem.) (regn, snö)",
+    "nl": "gevallen (v) (regen, sneeuw)",
+    "nb": "falt (hunkj.) (regn, snø)",
+    "da": "faldet (hunk.) (regn, sne)",
+    "fr": "tombée (pluie, neige)"
    }
   },
   {
@@ -8104,6 +10080,32 @@
    }
   },
   {
+   "bs": "peku",
+   "translations": {
+    "de": "grillen / backen (sie)",
+    "en": "they grill / bake",
+    "tr": "ızgarada pişiyorlar",
+    "sv": "de grillar / bakar",
+    "nl": "ze grillen / bakken",
+    "nb": "de griller / baker",
+    "da": "de griller / bager",
+    "fr": "ils grillent / cuisent"
+   }
+  },
+  {
+   "bs": "penziju",
+   "translations": {
+    "de": "Rente (Akk.)",
+    "en": "retirement (acc.)",
+    "tr": "emeklilik (akuzatif)",
+    "sv": "pension (ackusativ)",
+    "nl": "pensioen (accusatief)",
+    "nb": "pensjon (akkusativ)",
+    "da": "pension (akkusativ)",
+    "fr": "retraite (accusatif)"
+   }
+  },
+  {
    "bs": "pet",
    "translations": {
     "de": "fünf",
@@ -8153,6 +10155,19 @@
     "nb": "den femte",
     "da": "den femte",
     "fr": "le cinq"
+   }
+  },
+  {
+   "bs": "petom",
+   "translations": {
+    "de": "fünften (Lok.)",
+    "en": "fifth (loc.)",
+    "tr": "beşinci (lokatif)",
+    "sv": "femte (lokativ)",
+    "nl": "vijfde (locatief)",
+    "nb": "femte (lokativ)",
+    "da": "femte (lokativ)",
+    "fr": "cinquième (locatif)"
    }
   },
   {
@@ -8210,14 +10225,14 @@
   {
    "bs": "pije",
    "translations": {
-    "de": "trinkt",
-    "en": "drinks / is drunk",
-    "tr": "içiyor / içiliyor",
-    "sv": "dricker / dricks",
-    "nl": "drinkt / wordt gedronken",
-    "nb": "drikker / drikkes",
-    "da": "drikker / drikkes",
-    "fr": "boit / se boit"
+    "de": "trinkt (se pije: wird getrunken)",
+    "en": "drinks (se pije: is drunk)",
+    "tr": "içiyor (se pije: içilir)",
+    "sv": "dricker (se pije: dricks)",
+    "nl": "drinkt (se pije: wordt gedronken)",
+    "nb": "drikker (se pije: drikkes)",
+    "da": "drikker (se pije: drikkes)",
+    "fr": "boit (se pije : se boit)"
    }
   },
   {
@@ -8231,6 +10246,32 @@
     "nb": "jeg drikker",
     "da": "jeg drikker",
     "fr": "je bois"
+   }
+  },
+  {
+   "bs": "pijemo",
+   "translations": {
+    "de": "wir trinken",
+    "en": "we drink",
+    "tr": "içiyoruz",
+    "sv": "vi dricker",
+    "nl": "we drinken",
+    "nb": "vi drikker",
+    "da": "vi drikker",
+    "fr": "nous buvons"
+   }
+  },
+  {
+   "bs": "pijte",
+   "translations": {
+    "de": "trinken Sie (Befehl)",
+    "en": "drink / take (formal, imperative)",
+    "tr": "için (emir kipi)",
+    "sv": "drick / ta (imperativ)",
+    "nl": "drinkt u / neemt u (gebiedende wijs)",
+    "nb": "drikk / ta (imperativ)",
+    "da": "drik / tag (bydeform)",
+    "fr": "buvez / prenez (impératif)"
    }
   },
   {
@@ -8312,16 +10353,42 @@
    }
   },
   {
+   "bs": "pitala",
+   "translations": {
+    "de": "gefragt (w)",
+    "en": "asked (f)",
+    "tr": "sordu (kadın)",
+    "sv": "frågade (kvinna)",
+    "nl": "gevraagd (vrouw)",
+    "nb": "spurte (kvinne)",
+    "da": "spurgte (kvinde)",
+    "fr": "demandé (femme)"
+   }
+  },
+  {
    "bs": "pitao",
    "translations": {
     "de": "gefragt (m)",
     "en": "asked (m)",
     "tr": "sordu (eril)",
     "sv": "frågade (mask.)",
-    "nl": "vroeg (m)",
+    "nl": "gevraagd (m)",
     "nb": "spurte (hankj.)",
     "da": "spurgte (hank.)",
     "fr": "demandé (homme)"
+   }
+  },
+  {
+   "bs": "pitom",
+   "translations": {
+    "de": "Pita (Instr.)",
+    "en": "pita (instr.)",
+    "tr": "pita (instrumental)",
+    "sv": "pita (instrumentalis)",
+    "nl": "pita (instrumentalis)",
+    "nb": "pita (instrumentalis)",
+    "da": "pita (instrumentalis)",
+    "fr": "pita (instrumental)"
    }
   },
   {
@@ -8338,16 +10405,55 @@
    }
   },
   {
+   "bs": "pišem",
+   "translations": {
+    "de": "ich schreibe",
+    "en": "I write",
+    "tr": "yazıyorum",
+    "sv": "jag skriver",
+    "nl": "ik schrijf",
+    "nb": "jeg skriver",
+    "da": "jeg skriver",
+    "fr": "j'écris"
+   }
+  },
+  {
    "bs": "pjevali",
    "translations": {
     "de": "gesungen (Mehrz.)",
     "en": "sang (pl.)",
     "tr": "şarkı söylediler (çoğul)",
-    "sv": "sjöng (plural)",
-    "nl": "zongen (meervoud)",
-    "nb": "sang (flertall)",
-    "da": "sang (flertal)",
+    "sv": "sjöng (flera)",
+    "nl": "gezongen (meervoud)",
+    "nb": "sang (flere)",
+    "da": "sang (flere)",
     "fr": "chanté (pluriel)"
+   }
+  },
+  {
+   "bs": "pjevanja",
+   "translations": {
+    "de": "Singen (Gen.)",
+    "en": "singing (gen.)",
+    "tr": "şarkı söyleme (genitif)",
+    "sv": "sjungande (genitiv)",
+    "nl": "zingen (genitief)",
+    "nb": "synging (genitiv)",
+    "da": "sang (genitiv)",
+    "fr": "chant (génitif)"
+   }
+  },
+  {
+   "bs": "pjevača",
+   "translations": {
+    "de": "Sänger (Gen.)",
+    "en": "singer (gen.)",
+    "tr": "şarkıcı (genitif)",
+    "sv": "sångare (genitiv)",
+    "nl": "zanger (genitief)",
+    "nb": "sanger (genitiv)",
+    "da": "sanger (genitiv)",
+    "fr": "chanteur (génitif)"
    }
   },
   {
@@ -8442,6 +10548,19 @@
    }
   },
   {
+   "bs": "plave",
+   "translations": {
+    "de": "blaue (Mehrz.)",
+    "en": "blue (pl.)",
+    "tr": "mavi (çoğul)",
+    "sv": "blåa",
+    "nl": "blauwe",
+    "nb": "blå (flertall)",
+    "da": "blå (flertal)",
+    "fr": "bleus (pluriel)"
+   }
+  },
+  {
    "bs": "plaća",
    "translations": {
     "de": "er/sie bezahlt",
@@ -8460,10 +10579,10 @@
     "de": "getanzt (Mehrz.)",
     "en": "danced (pl.)",
     "tr": "dans ettiler (çoğul)",
-    "sv": "dansade (plural)",
-    "nl": "dansten (meervoud)",
-    "nb": "danset (flertall)",
-    "da": "dansede (flertal)",
+    "sv": "dansade (flera)",
+    "nl": "gedanst (meervoud)",
+    "nb": "danset (flere)",
+    "da": "dansede (flere)",
     "fr": "dansé (pluriel)"
    }
   },
@@ -8520,6 +10639,19 @@
    }
   },
   {
+   "bs": "pod",
+   "translations": {
+    "de": "Fußboden",
+    "en": "floor",
+    "tr": "yer / zemin",
+    "sv": "golv",
+    "nl": "vloer",
+    "nb": "gulv",
+    "da": "gulv",
+    "fr": "sol"
+   }
+  },
+  {
    "bs": "poderalo",
    "translations": {
     "de": "gerissen (s)",
@@ -8572,16 +10704,29 @@
    }
   },
   {
+   "bs": "pogledajte",
+   "translations": {
+    "de": "schauen Sie (Befehl)",
+    "en": "look (formal, imperative)",
+    "tr": "bakın (emir kipi)",
+    "sv": "titta (imperativ)",
+    "nl": "kijkt u (gebiedende wijs)",
+    "nb": "se (imperativ)",
+    "da": "kig (bydeform)",
+    "fr": "regardez (impératif)"
+   }
+  },
+  {
    "bs": "pogledala",
    "translations": {
-    "de": "angeschaut (w)",
-    "en": "viewed (f)",
+    "de": "geschaut / angeschaut (w)",
+    "en": "looked / looked at (f)",
     "tr": "baktı (kadın)",
-    "sv": "tittade på (kvinna)",
-    "nl": "bekeek (vrouw)",
-    "nb": "så på (kvinne)",
-    "da": "så på (kvinde)",
-    "fr": "visité (femme)"
+    "sv": "tittade / tittade på (kvinna)",
+    "nl": "gekeken / bekeken (vrouw)",
+    "nb": "så / så på (kvinne)",
+    "da": "kiggede / så på (kvinde)",
+    "fr": "regardé / visité (femme)"
    }
   },
   {
@@ -8611,6 +10756,19 @@
    }
   },
   {
+   "bs": "pogledom",
+   "translations": {
+    "de": "Blick (Instr.)",
+    "en": "view (instr.)",
+    "tr": "manzara (instrumental)",
+    "sv": "utsikt (instrumentalis)",
+    "nl": "uitzicht (instrumentalis)",
+    "nb": "utsikt (instrumentalis)",
+    "da": "udsigt (instrumentalis)",
+    "fr": "vue (instrumental)"
+   }
+  },
+  {
    "bs": "pokazala",
    "translations": {
     "de": "gezeigt (w)",
@@ -8621,6 +10779,19 @@
     "nb": "viste (kvinne)",
     "da": "viste (kvinde)",
     "fr": "montré (femme)"
+   }
+  },
+  {
+   "bs": "pokazao",
+   "translations": {
+    "de": "gezeigt (m)",
+    "en": "showed (m)",
+    "tr": "gösterdi (eril)",
+    "sv": "visade (mask.)",
+    "nl": "laten zien (m)",
+    "nb": "viste (hankj.)",
+    "da": "viste (hank.)",
+    "fr": "montré (homme)"
    }
   },
   {
@@ -8663,13 +10834,39 @@
    }
   },
   {
+   "bs": "pokuca",
+   "translations": {
+    "de": "klopft",
+    "en": "knocks",
+    "tr": "kapıyı çalıyor",
+    "sv": "knackar",
+    "nl": "klopt",
+    "nb": "banker",
+    "da": "banker",
+    "fr": "frappe"
+   }
+  },
+  {
+   "bs": "pokucajte",
+   "translations": {
+    "de": "klopft (Befehl)",
+    "en": "knock (imperative)",
+    "tr": "kapıyı çalın (emir kipi)",
+    "sv": "knacka (imperativ)",
+    "nl": "klop (gebiedende wijs)",
+    "nb": "bank på (imperativ)",
+    "da": "bank på (bydeform)",
+    "fr": "frappez (impératif)"
+   }
+  },
+  {
    "bs": "pokucao",
    "translations": {
     "de": "geklopft (m)",
     "en": "knocked (m)",
     "tr": "kapıyı çaldı (eril)",
     "sv": "knackade (mask.)",
-    "nl": "klopte (m)",
+    "nl": "geklopt (m)",
     "nb": "banket (hankj.)",
     "da": "bankede (hank.)",
     "fr": "frappé (homme)"
@@ -8715,6 +10912,58 @@
    }
   },
   {
+   "bs": "polici",
+   "translations": {
+    "de": "Regal (Lok.)",
+    "en": "shelf (loc.)",
+    "tr": "raf (lokatif)",
+    "sv": "hylla (lokativ)",
+    "nl": "plank (locatief)",
+    "nb": "hylle (lokativ)",
+    "da": "hylde (lokativ)",
+    "fr": "étagère (locatif)"
+   }
+  },
+  {
+   "bs": "poluvremenu",
+   "translations": {
+    "de": "Halbzeit (Lok.)",
+    "en": "half (loc.)",
+    "tr": "devre (lokatif)",
+    "sv": "halvlek (lokativ)",
+    "nl": "helft (locatief)",
+    "nb": "omgang (lokativ)",
+    "da": "halvleg (lokativ)",
+    "fr": "mi-temps (locatif)"
+   }
+  },
+  {
+   "bs": "poluvrijeme",
+   "translations": {
+    "de": "Halbzeit",
+    "en": "half (of a match)",
+    "tr": "devre",
+    "sv": "halvlek",
+    "nl": "rust (helft)",
+    "nb": "omgang",
+    "da": "halvleg",
+    "fr": "mi-temps"
+   }
+  },
+  {
+   "bs": "pomislio",
+   "translations": {
+    "de": "gedacht (m)",
+    "en": "thought (m)",
+    "tr": "düşündü (eril)",
+    "sv": "tänkte (mask.)",
+    "nl": "gedacht (m)",
+    "nb": "tenkte (hankj.)",
+    "da": "tænkte (hank.)",
+    "fr": "pensé (homme)"
+   }
+  },
+  {
    "bs": "pomoći",
    "translations": {
     "de": "Hilfe (Lok.) / helfen",
@@ -8725,6 +10974,19 @@
     "nb": "hjelp (lokativ) / hjelpe",
     "da": "hjælp (lokativ) / at hjælpe",
     "fr": "aide (locatif) / aider"
+   }
+  },
+  {
+   "bs": "ponavlja",
+   "translations": {
+    "de": "er/sie wiederholt",
+    "en": "he/she repeats",
+    "tr": "tekrarlıyor",
+    "sv": "han/hon repeterar",
+    "nl": "hij/zij herhaalt",
+    "nb": "han/hun repeterer",
+    "da": "han/hun gentager",
+    "fr": "il / elle répète"
    }
   },
   {
@@ -8793,6 +11055,19 @@
    }
   },
   {
+   "bs": "ponosno",
+   "translations": {
+    "de": "stolz (Adverb)",
+    "en": "proudly",
+    "tr": "gururla",
+    "sv": "stolt (adverb)",
+    "nl": "trots (bijwoord)",
+    "nb": "stolt (adverb)",
+    "da": "stolt (adverbium)",
+    "fr": "fièrement"
+   }
+  },
+  {
    "bs": "ponoći",
    "translations": {
     "de": "Mitternacht (Gen.)",
@@ -8829,6 +11104,19 @@
     "nb": "drakk (kvinne)",
     "da": "drak (kvinde)",
     "fr": "bu (femme)"
+   }
+  },
+  {
+   "bs": "popiti",
+   "translations": {
+    "de": "trinken / austrinken",
+    "en": "to drink / to drink up",
+    "tr": "içmek / içip bitirmek",
+    "sv": "dricka / dricka upp",
+    "nl": "drinken / opdrinken",
+    "nb": "drikke / drikke opp",
+    "da": "at drikke / at drikke ud",
+    "fr": "boire / finir (son verre)"
    }
   },
   {
@@ -8946,6 +11234,19 @@
     "nb": "arbeid",
     "da": "arbejde",
     "fr": "travail"
+   }
+  },
+  {
+   "bs": "posebno",
+   "translations": {
+    "de": "besonders",
+    "en": "special",
+    "tr": "özel",
+    "sv": "speciell / särskild",
+    "nl": "bijzonder",
+    "nb": "spesiell / særlig",
+    "da": "særlig / speciel",
+    "fr": "spécial / particulier"
    }
   },
   {
@@ -9118,6 +11419,32 @@
    }
   },
   {
+   "bs": "pozdravio",
+   "translations": {
+    "de": "gegrüßt (m)",
+    "en": "greeted (m)",
+    "tr": "selam verdi (eril)",
+    "sv": "hälsade (mask.)",
+    "nl": "gegroet (m)",
+    "nb": "hilste (hankj.)",
+    "da": "hilste (hank.)",
+    "fr": "salué (homme)"
+   }
+  },
+  {
+   "bs": "pozvala",
+   "translations": {
+    "de": "eingeladen (w)",
+    "en": "invited (f)",
+    "tr": "davet etti (kadın)",
+    "sv": "bjöd in (kvinna)",
+    "nl": "uitgenodigd (vrouw)",
+    "nb": "inviterte (kvinne)",
+    "da": "inviterede (kvinde)",
+    "fr": "invité (femme)"
+   }
+  },
+  {
    "bs": "pozvao",
    "translations": {
     "de": "eingeladen (m)",
@@ -9170,6 +11497,19 @@
    }
   },
   {
+   "bs": "počnu",
+   "translations": {
+    "de": "sie fangen an",
+    "en": "they begin",
+    "tr": "başlıyorlar",
+    "sv": "de börjar",
+    "nl": "ze beginnen",
+    "nb": "de begynner",
+    "da": "de begynder",
+    "fr": "ils commencent"
+   }
+  },
+  {
    "bs": "poštovani",
    "translations": {
     "de": "sehr geehrte",
@@ -9183,16 +11523,42 @@
    }
   },
   {
+   "bs": "prava",
+   "translations": {
+    "de": "echt",
+    "en": "real / genuine",
+    "tr": "gerçek / hakiki",
+    "sv": "äkta / riktig",
+    "nl": "echt",
+    "nb": "ekte",
+    "da": "ægte",
+    "fr": "vrai / authentique"
+   }
+  },
+  {
+   "bs": "prave",
+   "translations": {
+    "de": "sie machen",
+    "en": "they make",
+    "tr": "yapıyorlar",
+    "sv": "de gör",
+    "nl": "ze maken",
+    "nb": "de lager",
+    "da": "de laver",
+    "fr": "ils font"
+   }
+  },
+  {
    "bs": "pravi",
    "translations": {
-    "de": "macht / echt",
-    "en": "makes / real",
-    "tr": "yapılıyor / gerçek",
-    "sv": "görs / riktig",
-    "nl": "maakt / echt",
-    "nb": "lages / ekte",
-    "da": "laves / ægte",
-    "fr": "fait / vrai"
+    "de": "er/sie macht",
+    "en": "he/she makes",
+    "tr": "yapıyor",
+    "sv": "han/hon gör",
+    "nl": "hij/zij maakt",
+    "nb": "han/hun lager",
+    "da": "han/hun laver",
+    "fr": "il / elle fait"
    }
   },
   {
@@ -9287,6 +11653,32 @@
    }
   },
   {
+   "bs": "predmet",
+   "translations": {
+    "de": "Betreff",
+    "en": "subject (of an email)",
+    "tr": "konu (e-postada)",
+    "sv": "ämne (i mejl)",
+    "nl": "onderwerp (van een mail)",
+    "nb": "emne (i e-post)",
+    "da": "emne (i mail)",
+    "fr": "objet (d'un e-mail)"
+   }
+  },
+  {
+   "bs": "pregledala",
+   "translations": {
+    "de": "untersucht (w)",
+    "en": "examined (f)",
+    "tr": "muayene etti (kadın)",
+    "sv": "undersökte (kvinna)",
+    "nl": "onderzocht (vrouw)",
+    "nb": "undersøkte (kvinne)",
+    "da": "undersøgte (kvinde)",
+    "fr": "examiné (femme)"
+   }
+  },
+  {
    "bs": "pregovaraju",
    "translations": {
     "de": "sie verhandeln",
@@ -9297,6 +11689,32 @@
     "nb": "de forhandler",
     "da": "de forhandler",
     "fr": "ils négocient"
+   }
+  },
+  {
+   "bs": "prekipi",
+   "translations": {
+    "de": "kocht über",
+    "en": "boils over",
+    "tr": "taşıyor",
+    "sv": "kokar över",
+    "nl": "kookt over",
+    "nb": "koker over",
+    "da": "koger over",
+    "fr": "déborde"
+   }
+  },
+  {
+   "bs": "prekipjeti",
+   "translations": {
+    "de": "überkochen",
+    "en": "to boil over",
+    "tr": "taşmak",
+    "sv": "koka över",
+    "nl": "overkoken",
+    "nb": "koke over",
+    "da": "koge over",
+    "fr": "déborder"
    }
   },
   {
@@ -9323,6 +11741,19 @@
     "nb": "overnatte",
     "da": "at overnatte",
     "fr": "passer la nuit"
+   }
+  },
+  {
+   "bs": "preseliti",
+   "translations": {
+    "de": "umziehen",
+    "en": "to move (house)",
+    "tr": "taşınmak (başka yere)",
+    "sv": "flytta (bostad)",
+    "nl": "verhuizen",
+    "nb": "flytte (bolig)",
+    "da": "flytte (bolig)",
+    "fr": "déménager"
    }
   },
   {
@@ -9378,6 +11809,32 @@
    }
   },
   {
+   "bs": "prijatelja",
+   "translations": {
+    "de": "Freunde (Gen. Mehrz.)",
+    "en": "friends (gen. pl.)",
+    "tr": "arkadaşlar (genitif çoğul)",
+    "sv": "vänner (genitiv plural)",
+    "nl": "vrienden (genitief meervoud)",
+    "nb": "venner (genitiv flertall)",
+    "da": "venner (genitiv flertal)",
+    "fr": "amis (génitif pluriel)"
+   }
+  },
+  {
+   "bs": "prijatelje",
+   "translations": {
+    "de": "Freunde (Akk.)",
+    "en": "friends (acc.)",
+    "tr": "arkadaşlar (akuzatif)",
+    "sv": "vänner (ackusativ)",
+    "nl": "vrienden (accusatief)",
+    "nb": "venner (akkusativ)",
+    "da": "venner (akkusativ)",
+    "fr": "amis (accusatif)"
+   }
+  },
+  {
    "bs": "prijatelji",
    "translations": {
     "de": "Freunde",
@@ -9401,6 +11858,19 @@
     "nb": "før / tidligere",
     "da": "før / tidligere",
     "fr": "avant"
+   }
+  },
+  {
+   "bs": "primijetio",
+   "translations": {
+    "de": "bemerkt (m)",
+    "en": "noticed (m)",
+    "tr": "fark etti (eril)",
+    "sv": "märkte (mask.)",
+    "nl": "gemerkt (m)",
+    "nb": "la merke til (hankj.)",
+    "da": "lagde mærke til (hank.)",
+    "fr": "remarqué (homme)"
    }
   },
   {
@@ -9488,10 +11958,23 @@
     "en": "told (m)",
     "tr": "anlattı (eril)",
     "sv": "berättade (mask.)",
-    "nl": "vertelde (m)",
+    "nl": "verteld (m)",
     "nb": "fortalte (hankj.)",
     "da": "fortalte (hank.)",
     "fr": "raconté (homme)"
+   }
+  },
+  {
+   "bs": "priče",
+   "translations": {
+    "de": "Geschichten",
+    "en": "stories",
+    "tr": "hikâyeler",
+    "sv": "historier",
+    "nl": "verhalen",
+    "nb": "historier",
+    "da": "historier",
+    "fr": "histoires"
    }
   },
   {
@@ -9544,6 +12027,19 @@
     "nb": "prøve / smake",
     "da": "at prøve / at smage",
     "fr": "essayer / goûter"
+   }
+  },
+  {
+   "bs": "problem",
+   "translations": {
+    "de": "Problem",
+    "en": "problem",
+    "tr": "sorun",
+    "sv": "problem",
+    "nl": "probleem",
+    "nb": "problem",
+    "da": "problem",
+    "fr": "problème"
    }
   },
   {
@@ -9612,6 +12108,32 @@
    }
   },
   {
+   "bs": "promiješa",
+   "translations": {
+    "de": "rührt um",
+    "en": "stirs",
+    "tr": "karıştırıyor",
+    "sv": "rör om",
+    "nl": "roert",
+    "nb": "rører om",
+    "da": "rører rundt",
+    "fr": "remue"
+   }
+  },
+  {
+   "bs": "protiv",
+   "translations": {
+    "de": "gegen",
+    "en": "against",
+    "tr": "karşı",
+    "sv": "emot",
+    "nl": "tegen",
+    "nb": "imot",
+    "da": "imod",
+    "fr": "contre"
+   }
+  },
+  {
    "bs": "provjerio",
    "translations": {
     "de": "überprüft (m)",
@@ -9638,6 +12160,19 @@
    }
   },
   {
+   "bs": "prozor",
+   "translations": {
+    "de": "Fenster",
+    "en": "window",
+    "tr": "pencere",
+    "sv": "fönster",
+    "nl": "raam",
+    "nb": "vindu",
+    "da": "vindue",
+    "fr": "fenêtre"
+   }
+  },
+  {
    "bs": "prozora",
    "translations": {
     "de": "Fenster (Gen. Mehrz.)",
@@ -9661,6 +12196,19 @@
     "nb": "forrige",
     "da": "sidste",
     "fr": "dernière"
+   }
+  },
+  {
+   "bs": "prošli",
+   "translations": {
+    "de": "vergangen / letzter (zeitlich)",
+    "en": "past / last (in time)",
+    "tr": "geçmiş / geçen (zaman)",
+    "sv": "förfluten / förra (i tid)",
+    "nl": "verleden / vorig (in de tijd)",
+    "nb": "forgangen / forrige (i tid)",
+    "da": "forløben / sidste (i tid)",
+    "fr": "passé / dernier (dans le temps)"
    }
   },
   {
@@ -9700,6 +12248,19 @@
     "nb": "jernbanespor",
     "da": "jernbanespor",
     "fr": "voie ferrée"
+   }
+  },
+  {
+   "bs": "prvenstvo",
+   "translations": {
+    "de": "Meisterschaft",
+    "en": "championship",
+    "tr": "şampiyona",
+    "sv": "mästerskap",
+    "nl": "kampioenschap",
+    "nb": "mesterskap",
+    "da": "mesterskab",
+    "fr": "championnat"
    }
   },
   {
@@ -9781,6 +12342,19 @@
    }
   },
   {
+   "bs": "pun",
+   "translations": {
+    "de": "voll",
+    "en": "full",
+    "tr": "dolu",
+    "sv": "full",
+    "nl": "vol",
+    "nb": "full",
+    "da": "fuld",
+    "fr": "plein"
+   }
+  },
+  {
    "bs": "pune",
    "translations": {
     "de": "voll (w. Mehrz.)",
@@ -9804,6 +12378,19 @@
     "nb": "mye",
     "da": "meget",
     "fr": "beaucoup"
+   }
+  },
+  {
+   "bs": "pustio",
+   "translations": {
+    "de": "gelassen (m)",
+    "en": "let out (m)",
+    "tr": "saldı (eril)",
+    "sv": "släppte ut (mask.)",
+    "nl": "gelaten (m)",
+    "nb": "slapp ut (hankj.)",
+    "da": "slap ud (hank.)",
+    "fr": "laissé sortir (homme)"
    }
   },
   {
@@ -9926,14 +12513,14 @@
   {
    "bs": "radi",
    "translations": {
-    "de": "arbeitet",
-    "en": "works",
+    "de": "er/sie arbeitet",
+    "en": "he/she works",
     "tr": "çalışıyor",
-    "sv": "arbetar",
-    "nl": "werkt",
-    "nb": "arbeider",
-    "da": "arbejder",
-    "fr": "travaille"
+    "sv": "han/hon arbetar",
+    "nl": "hij/zij werkt",
+    "nb": "han/hun jobber",
+    "da": "han/hun arbejder",
+    "fr": "il / elle travaille"
    }
   },
   {
@@ -9950,6 +12537,19 @@
    }
   },
   {
+   "bs": "radili",
+   "translations": {
+    "de": "gearbeitet (Mehrz.)",
+    "en": "worked (pl.)",
+    "tr": "çalıştılar",
+    "sv": "arbetade (flera)",
+    "nl": "gewerkt (meervoud)",
+    "nb": "jobbet (flere)",
+    "da": "arbejdede (flere)",
+    "fr": "travaillé (pluriel)"
+   }
+  },
+  {
    "bs": "radim",
    "translations": {
     "de": "ich arbeite",
@@ -9960,6 +12560,19 @@
     "nb": "jeg arbeider",
     "da": "jeg arbejder",
     "fr": "je travaille"
+   }
+  },
+  {
+   "bs": "radio",
+   "translations": {
+    "de": "funktioniert / gearbeitet (m)",
+    "en": "worked (m)",
+    "tr": "çalıştı (eril)",
+    "sv": "fungerade / arbetade (mask.)",
+    "nl": "gewerkt (m)",
+    "nb": "virket / jobbet (hankj.)",
+    "da": "virkede / arbejdede (hank.)",
+    "fr": "fonctionné / travaillé (m)"
    }
   },
   {
@@ -9976,6 +12589,19 @@
    }
   },
   {
+   "bs": "radnjama",
+   "translations": {
+    "de": "Läden (Lok.)",
+    "en": "shops (loc.)",
+    "tr": "dükkânlar (lokatif)",
+    "sv": "butiker (lokativ)",
+    "nl": "winkels (locatief)",
+    "nb": "butikker (lokativ)",
+    "da": "butikker (lokativ)",
+    "fr": "boutiques (locatif)"
+   }
+  },
+  {
    "bs": "radnji",
    "translations": {
     "de": "Laden (Lok.)",
@@ -9986,6 +12612,19 @@
     "nb": "butikk (lokativ)",
     "da": "butik (lokativ)",
     "fr": "boutique (locatif)"
+   }
+  },
+  {
+   "bs": "radnju",
+   "translations": {
+    "de": "Laden (Akk.)",
+    "en": "shop (acc.)",
+    "tr": "dükkân (akuzatif)",
+    "sv": "butik (ackusativ)",
+    "nl": "winkel (accusatief)",
+    "nb": "butikk (akkusativ)",
+    "da": "butik (akkusativ)",
+    "fr": "boutique (accusatif)"
    }
   },
   {
@@ -10041,6 +12680,19 @@
    }
   },
   {
+   "bs": "rahat",
+   "translations": {
+    "de": "rahat lokum: Lokum (Süßigkeit)",
+    "en": "rahat lokum: Turkish delight",
+    "tr": "rahat lokum: lokum",
+    "sv": "rahat lokum: turkisk konfekt",
+    "nl": "rahat lokum: Turks fruit",
+    "nb": "rahat lokum: tyrkisk konfekt",
+    "da": "rahat lokum: tyrkisk konfekt",
+    "fr": "rahat lokum : loukoum"
+   }
+  },
+  {
    "bs": "rano",
    "translations": {
     "de": "früh",
@@ -10051,6 +12703,32 @@
     "nb": "tidlig",
     "da": "tidligt",
     "fr": "tôt"
+   }
+  },
+  {
+   "bs": "razgovara",
+   "translations": {
+    "de": "unterhält sich (se razgovara: man unterhält sich)",
+    "en": "talks (se razgovara: people talk)",
+    "tr": "sohbet ediyor (se razgovara: sohbet edilir)",
+    "sv": "samtalar (se razgovara: man pratar)",
+    "nl": "praat (se razgovara: je praat)",
+    "nb": "snakker (se razgovara: man snakker)",
+    "da": "snakker (se razgovara: man snakker)",
+    "fr": "discute (se razgovara : on discute)"
+   }
+  },
+  {
+   "bs": "razgovarati",
+   "translations": {
+    "de": "sich unterhalten",
+    "en": "to have a talk",
+    "tr": "sohbet etmek",
+    "sv": "samtala",
+    "nl": "een gesprek voeren",
+    "nb": "snakke sammen",
+    "da": "at tale sammen",
+    "fr": "discuter"
    }
   },
   {
@@ -10132,6 +12810,19 @@
    }
   },
   {
+   "bs": "recept",
+   "translations": {
+    "de": "Rezept",
+    "en": "prescription",
+    "tr": "reçete",
+    "sv": "recept",
+    "nl": "recept",
+    "nb": "resept",
+    "da": "recept",
+    "fr": "ordonnance"
+   }
+  },
+  {
    "bs": "recite",
    "translations": {
     "de": "sagen Sie",
@@ -10145,16 +12836,29 @@
    }
   },
   {
+   "bs": "red",
+   "translations": {
+    "de": "Reihe (doći na red: drankommen)",
+    "en": "turn / row (doći na red: to be someone's turn)",
+    "tr": "sıra (doći na red: sırası gelmek)",
+    "sv": "tur / rad (doći na red: bli ens tur)",
+    "nl": "rij / beurt (doći na red: aan de beurt komen)",
+    "nb": "tur / rekke (doći na red: bli ens tur)",
+    "da": "tur / række (doći na red: blive ens tur)",
+    "fr": "rang / tour (doći na red : être son tour)"
+   }
+  },
+  {
    "bs": "redu",
    "translations": {
-    "de": "Ordnung (Lok.)",
-    "en": "order (loc.)",
-    "tr": "düzen (lokatif)",
-    "sv": "ordning (lokativ)",
-    "nl": "orde (locatief)",
-    "nb": "orden (lokativ)",
-    "da": "orden (lokativ)",
-    "fr": "ordre (locatif)"
+    "de": "Ordnung (Lok.) (u redu: in Ordnung)",
+    "en": "order (loc.) (u redu: all right)",
+    "tr": "düzen (lokatif) (u redu: yolunda)",
+    "sv": "ordning (lokativ) (u redu: i ordning)",
+    "nl": "orde (locatief) (u redu: in orde)",
+    "nb": "orden (lokativ) (u redu: i orden)",
+    "da": "orden (lokativ) (u redu: i orden)",
+    "fr": "ordre (locatif) (u redu : en ordre)"
    }
   },
   {
@@ -10162,9 +12866,9 @@
    "translations": {
     "de": "gesagt (m)",
     "en": "said (m)",
-    "tr": "dedi (eril)",
+    "tr": "söyledi (eril)",
     "sv": "sa (mask.)",
-    "nl": "zei (m)",
+    "nl": "gezegd (m)",
     "nb": "sa (hankj.)",
     "da": "sagde (hank.)",
     "fr": "dit (homme)"
@@ -10175,9 +12879,9 @@
    "translations": {
     "de": "gesagt (w)",
     "en": "said (f)",
-    "tr": "dedi (kadın)",
+    "tr": "söyledi (kadın)",
     "sv": "sa (kvinna)",
-    "nl": "zei (vrouw)",
+    "nl": "gezegd (vrouw)",
     "nb": "sa (kvinne)",
     "da": "sagde (kvinde)",
     "fr": "dit (femme)"
@@ -10194,6 +12898,19 @@
     "nb": "renovert",
     "da": "renoveret",
     "fr": "rénové"
+   }
+  },
+  {
+   "bs": "reprezentacije",
+   "translations": {
+    "de": "Nationalmannschaft (Gen.)",
+    "en": "national team (gen.)",
+    "tr": "milli takım (genitif)",
+    "sv": "landslag (genitiv)",
+    "nl": "nationale ploeg (genitief)",
+    "nb": "landslag (genitiv)",
+    "da": "landshold (genitiv)",
+    "fr": "équipe nationale (génitif)"
    }
   },
   {
@@ -10236,6 +12953,32 @@
    }
   },
   {
+   "bs": "reći",
+   "translations": {
+    "de": "sagen",
+    "en": "to say",
+    "tr": "söylemek",
+    "sv": "säga",
+    "nl": "zeggen",
+    "nb": "si",
+    "da": "at sige",
+    "fr": "dire"
+   }
+  },
+  {
+   "bs": "reže",
+   "translations": {
+    "de": "schneidet (se reže: wird geschnitten)",
+    "en": "cuts (se reže: is cut)",
+    "tr": "kesiyor (se reže: kesiliyor)",
+    "sv": "skär (se reže: skärs)",
+    "nl": "snijdt (se reže: wordt gesneden)",
+    "nb": "skjærer (se reže: skjæres)",
+    "da": "skærer (se reže: skæres)",
+    "fr": "coupe (se reže : est coupé)"
+   }
+  },
+  {
    "bs": "režije",
    "translations": {
     "de": "Nebenkosten",
@@ -10275,6 +13018,19 @@
    }
   },
   {
+   "bs": "riječi",
+   "translations": {
+    "de": "Wörter",
+    "en": "words",
+    "tr": "kelimeler",
+    "sv": "ord",
+    "nl": "woorden",
+    "nb": "ord",
+    "da": "ord",
+    "fr": "mots"
+   }
+  },
+  {
    "bs": "rodbina",
    "translations": {
     "de": "Verwandtschaft",
@@ -10285,6 +13041,19 @@
     "nb": "slekt",
     "da": "slægtninge",
     "fr": "parenté"
+   }
+  },
+  {
+   "bs": "roditelja",
+   "translations": {
+    "de": "Eltern (Gen.)",
+    "en": "parents (gen.)",
+    "tr": "anne baba (genitif)",
+    "sv": "föräldrar (genitiv)",
+    "nl": "ouders (genitief)",
+    "nb": "foreldre (genitiv)",
+    "da": "forældre (genitiv)",
+    "fr": "parents (génitif)"
    }
   },
   {
@@ -10353,6 +13122,19 @@
    }
   },
   {
+   "bs": "rođendan",
+   "translations": {
+    "de": "Geburtstag",
+    "en": "birthday",
+    "tr": "doğum günü",
+    "sv": "födelsedag",
+    "nl": "verjaardag",
+    "nb": "bursdag",
+    "da": "fødselsdag",
+    "fr": "anniversaire"
+   }
+  },
+  {
    "bs": "roštilj",
    "translations": {
     "de": "Grill / Gegrilltes",
@@ -10366,9 +13148,22 @@
    }
   },
   {
+   "bs": "roštilja",
+   "translations": {
+    "de": "Grill (Gen.)",
+    "en": "grill (gen.)",
+    "tr": "ızgara (genitif)",
+    "sv": "grill (genitiv)",
+    "nl": "barbecue (genitief)",
+    "nb": "grill (genitiv)",
+    "da": "grill (genitiv)",
+    "fr": "gril (génitif)"
+   }
+  },
+  {
    "bs": "rukama",
    "translations": {
-    "de": "Händen (Instr.)",
+    "de": "Hände (Instr.)",
     "en": "hands (instr.)",
     "tr": "eller (instrumental)",
     "sv": "händer (instrumentalis)",
@@ -10470,6 +13265,32 @@
    }
   },
   {
+   "bs": "safija",
+   "translations": {
+    "de": "Safija (Name)",
+    "en": "Safija (name)",
+    "tr": "Safija (isim)",
+    "sv": "Safija (namn)",
+    "nl": "Safija (naam)",
+    "nb": "Safija (navn)",
+    "da": "Safija (navn)",
+    "fr": "Safija (prénom)"
+   }
+  },
+  {
+   "bs": "sakrili",
+   "translations": {
+    "de": "versteckt (Mehrz.)",
+    "en": "hid (pl.)",
+    "tr": "saklandılar",
+    "sv": "gömde sig (flera)",
+    "nl": "verstopt (meervoud)",
+    "nb": "gjemte seg (flere)",
+    "da": "gemte sig (flere)",
+    "fr": "cachés (pluriel)"
+   }
+  },
+  {
    "bs": "salate",
    "translations": {
     "de": "Salate",
@@ -10532,6 +13353,19 @@
     "nb": "alene (flertall)",
     "da": "alene (flertal)",
     "fr": "seuls"
+   }
+  },
+  {
+   "bs": "samo",
+   "translations": {
+    "de": "nur",
+    "en": "only",
+    "tr": "sadece",
+    "sv": "bara",
+    "nl": "alleen",
+    "nb": "bare",
+    "da": "kun",
+    "fr": "seulement"
    }
   },
   {
@@ -10613,6 +13447,19 @@
    }
   },
   {
+   "bs": "sarme",
+   "translations": {
+    "de": "Sarma (Gen.)",
+    "en": "sarma (gen.)",
+    "tr": "sarma (genitif)",
+    "sv": "sarma (genitiv)",
+    "nl": "sarma (genitief)",
+    "nb": "sarma (genitiv)",
+    "da": "sarma (genitiv)",
+    "fr": "sarma (génitif)"
+   }
+  },
+  {
    "bs": "saru",
    "translations": {
     "de": "Sara (Akk.)",
@@ -10641,13 +13488,13 @@
   {
    "bs": "sata",
    "translations": {
-    "de": "Stunde (Gen.)",
-    "en": "hour (gen.)",
+    "de": "Stunde (Gen.) / Uhr",
+    "en": "hour (gen.) / o'clock",
     "tr": "saat (genitif)",
-    "sv": "timme (genitiv)",
+    "sv": "timme (genitiv) / klockan",
     "nl": "uur (genitief)",
-    "nb": "time (genitiv)",
-    "da": "time (genitiv)",
+    "nb": "time (genitiv) / klokka",
+    "da": "time (genitiv) / klokken",
     "fr": "heure (génitif)"
    }
   },
@@ -10701,6 +13548,19 @@
     "nb": "perfekt",
     "da": "perfekt",
     "fr": "parfait"
+   }
+  },
+  {
+   "bs": "sačekati",
+   "translations": {
+    "de": "abholen / erwarten",
+    "en": "to pick up / to wait for",
+    "tr": "karşılamak / beklemek",
+    "sv": "hämta / vänta på",
+    "nl": "ophalen / opwachten",
+    "nb": "hente / vente på",
+    "da": "hente / vente på",
+    "fr": "aller chercher / attendre"
    }
   },
   {
@@ -10782,6 +13642,19 @@
    }
   },
   {
+   "bs": "sedmicu",
+   "translations": {
+    "de": "Woche (Akk.)",
+    "en": "week (acc.)",
+    "tr": "hafta (akuzatif)",
+    "sv": "vecka (ackusativ)",
+    "nl": "week (accusatief)",
+    "nb": "uke (akkusativ)",
+    "da": "uge (akkusativ)",
+    "fr": "semaine (accusatif)"
+   }
+  },
+  {
    "bs": "sedmično",
    "translations": {
     "de": "pro Woche",
@@ -10792,6 +13665,19 @@
     "nb": "i uka",
     "da": "om ugen",
     "fr": "par semaine"
+   }
+  },
+  {
+   "bs": "sekundi",
+   "translations": {
+    "de": "Sekunde (Lok.)",
+    "en": "second (loc.)",
+    "tr": "saniye (lokatif)",
+    "sv": "sekund (lokativ)",
+    "nl": "seconde (locatief)",
+    "nb": "sekund (lokativ)",
+    "da": "sekund (lokativ)",
+    "fr": "seconde (locatif)"
    }
   },
   {
@@ -10886,6 +13772,19 @@
    }
   },
   {
+   "bs": "sigurno",
+   "translations": {
+    "de": "sicher",
+    "en": "safe / sure",
+    "tr": "güvenli / emin",
+    "sv": "säker",
+    "nl": "veilig / zeker",
+    "nb": "sikker / trygg",
+    "da": "sikker / tryg",
+    "fr": "sûr"
+   }
+  },
+  {
    "bs": "sijalo",
    "translations": {
     "de": "geschienen (s)",
@@ -10912,6 +13811,19 @@
    }
   },
   {
+   "bs": "sine",
+   "translations": {
+    "de": "Sohn! (Anrede)",
+    "en": "son! (vocative)",
+    "tr": "oğlum! (hitap)",
+    "sv": "min son! (tilltal)",
+    "nl": "zoon! (aanspreekvorm)",
+    "nb": "sønn! (tiltale)",
+    "da": "søn! (tiltale)",
+    "fr": "fiston ! (vocatif)"
+   }
+  },
+  {
    "bs": "sir",
    "translations": {
     "de": "Käse",
@@ -10935,6 +13847,19 @@
     "nb": "ost (instrumentalis)",
     "da": "ost (instrumentalis)",
     "fr": "fromage (instrumental)"
+   }
+  },
+  {
+   "bs": "sit",
+   "translations": {
+    "de": "satt (m)",
+    "en": "full (m)",
+    "tr": "tok (eril)",
+    "sv": "mätt (mask.)",
+    "nl": "vol (m)",
+    "nb": "mett (hankj.)",
+    "da": "mæt (hank.)",
+    "fr": "rassasié (m)"
    }
   },
   {
@@ -10990,6 +13915,32 @@
    }
   },
   {
+   "bs": "sjedim",
+   "translations": {
+    "de": "ich sitze",
+    "en": "I sit",
+    "tr": "oturuyorum",
+    "sv": "jag sitter",
+    "nl": "ik zit",
+    "nb": "jeg sitter",
+    "da": "jeg sidder",
+    "fr": "je suis assis(e)"
+   }
+  },
+  {
+   "bs": "sjedio",
+   "translations": {
+    "de": "gesessen (m)",
+    "en": "sat (m)",
+    "tr": "oturdu (eril)",
+    "sv": "satt (mask.)",
+    "nl": "gezeten (m)",
+    "nb": "satt (hankj.)",
+    "da": "sad (hank.)",
+    "fr": "assis (homme)"
+   }
+  },
+  {
    "bs": "sjela",
    "translations": {
     "de": "hingesetzt (w)",
@@ -11000,6 +13951,19 @@
     "nb": "satte seg (kvinne)",
     "da": "satte sig (kvinde)",
     "fr": "assise (femme)"
+   }
+  },
+  {
+   "bs": "sjeli",
+   "translations": {
+    "de": "hingesetzt (Mehrz.)",
+    "en": "sat down (pl.)",
+    "tr": "oturdular",
+    "sv": "satte sig (flera)",
+    "nl": "gingen zitten",
+    "nb": "satte seg (flere)",
+    "da": "satte sig (flere)",
+    "fr": "se sont assis"
    }
   },
   {
@@ -11055,6 +14019,19 @@
    }
   },
   {
+   "bs": "skine",
+   "translations": {
+    "de": "nimmt herunter",
+    "en": "takes off",
+    "tr": "indiriyor",
+    "sv": "tar av",
+    "nl": "neemt eraf",
+    "nb": "tar av",
+    "da": "tager af",
+    "fr": "retire"
+   }
+  },
+  {
    "bs": "skoro",
    "translations": {
     "de": "fast / bald",
@@ -11074,10 +14051,10 @@
     "en": "jumped (m)",
     "tr": "atladı (eril)",
     "sv": "hoppade (mask.)",
-    "nl": "sprong (m)",
+    "nl": "gesprongen (m)",
     "nb": "hoppet (hankj.)",
     "da": "sprang (hank.)",
-    "fr": "sauté (masculin)"
+    "fr": "sauté (homme)"
    }
   },
   {
@@ -11117,6 +14094,19 @@
     "nb": "foss (genitiv)",
     "da": "vandfald (genitiv)",
     "fr": "cascade (génitif)"
+   }
+  },
+  {
+   "bs": "slijećem",
+   "translations": {
+    "de": "ich lande",
+    "en": "I land",
+    "tr": "iniyorum",
+    "sv": "jag landar",
+    "nl": "ik land",
+    "nb": "jeg lander",
+    "da": "jeg lander",
+    "fr": "j'atterris"
    }
   },
   {
@@ -11211,6 +14201,19 @@
    }
   },
   {
+   "bs": "slobodno",
+   "translations": {
+    "de": "ruhig / frei",
+    "en": "freely / feel free",
+    "tr": "rahatça / serbestçe",
+    "sv": "gärna / fritt",
+    "nl": "gerust / vrij",
+    "nb": "gjerne / fritt",
+    "da": "bare / frit",
+    "fr": "librement / n'hésitez pas"
+   }
+  },
+  {
    "bs": "slušajte",
    "translations": {
     "de": "hört zu!",
@@ -11263,6 +14266,19 @@
    }
   },
   {
+   "bs": "slušati",
+   "translations": {
+    "de": "zuhören / anhören",
+    "en": "to listen (to)",
+    "tr": "dinlemek",
+    "sv": "lyssna (på)",
+    "nl": "luisteren (naar)",
+    "nb": "høre på / lytte",
+    "da": "at lytte / at høre på",
+    "fr": "écouter"
+   }
+  },
+  {
    "bs": "službenica",
    "translations": {
     "de": "Beamtin",
@@ -11273,6 +14289,19 @@
     "nb": "saksbehandler (kvinne)",
     "da": "sagsbehandler (kvinde)",
     "fr": "employée"
+   }
+  },
+  {
+   "bs": "smeta",
+   "translations": {
+    "de": "es stört",
+    "en": "it bothers",
+    "tr": "rahatsız ediyor",
+    "sv": "det stör",
+    "nl": "het stoort",
+    "nb": "det forstyrrer",
+    "da": "det forstyrrer",
+    "fr": "ça dérange"
    }
   },
   {
@@ -11308,10 +14337,23 @@
     "en": "laughed (m)",
     "tr": "güldü (eril)",
     "sv": "skrattade (mask.)",
-    "nl": "lachte (m)",
+    "nl": "gelachen (m)",
     "nb": "lo (hankj.)",
     "da": "lo (hank.)",
     "fr": "ri (homme)"
+   }
+  },
+  {
+   "bs": "smijati",
+   "translations": {
+    "de": "lachen",
+    "en": "to laugh",
+    "tr": "gülmek",
+    "sv": "skratta",
+    "nl": "lachen",
+    "nb": "le",
+    "da": "at grine",
+    "fr": "rire"
    }
   },
   {
@@ -11536,6 +14578,32 @@
    }
   },
   {
+   "bs": "spratu",
+   "translations": {
+    "de": "Stockwerk (Lok.)",
+    "en": "floor (loc.)",
+    "tr": "kat (lokatif)",
+    "sv": "våning (lokativ)",
+    "nl": "verdieping (locatief)",
+    "nb": "etasje (lokativ)",
+    "da": "etage (lokativ)",
+    "fr": "étage (locatif)"
+   }
+  },
+  {
+   "bs": "sprema",
+   "translations": {
+    "de": "er/sie bereitet vor",
+    "en": "he/she prepares",
+    "tr": "hazırlıyor",
+    "sv": "han/hon förbereder",
+    "nl": "hij/zij bereidt voor",
+    "nb": "han/hun forbereder",
+    "da": "han/hun forbereder",
+    "fr": "il / elle prépare"
+   }
+  },
+  {
    "bs": "spustili",
    "translations": {
     "de": "heruntergefahren (Mehrz.)",
@@ -11601,6 +14669,71 @@
    }
   },
   {
+   "bs": "srećom",
+   "translations": {
+    "de": "Glück (Instr.)",
+    "en": "luck (instr.)",
+    "tr": "şans (instrumental)",
+    "sv": "lycka (instrumentalis)",
+    "nl": "geluk (instrumentalis)",
+    "nb": "lykke (instrumentalis)",
+    "da": "lykke (instrumentalis)",
+    "fr": "bonheur (instrumental)"
+   }
+  },
+  {
+   "bs": "srijedu",
+   "translations": {
+    "de": "Mittwoch (Akk.)",
+    "en": "Wednesday (acc.)",
+    "tr": "çarşamba (akuzatif)",
+    "sv": "onsdag (ackusativ)",
+    "nl": "woensdag (accusatief)",
+    "nb": "onsdag (akkusativ)",
+    "da": "onsdag (akkusativ)",
+    "fr": "mercredi (accusatif)"
+   }
+  },
+  {
+   "bs": "stadion",
+   "translations": {
+    "de": "Stadion",
+    "en": "stadium",
+    "tr": "stadyum",
+    "sv": "stadion",
+    "nl": "stadion",
+    "nb": "stadion",
+    "da": "stadion",
+    "fr": "stade"
+   }
+  },
+  {
+   "bs": "stadiona",
+   "translations": {
+    "de": "Stadion (Gen.)",
+    "en": "stadium (gen.)",
+    "tr": "stadyum (genitif)",
+    "sv": "arena (genitiv)",
+    "nl": "stadion (genitief)",
+    "nb": "stadion (genitiv)",
+    "da": "stadion (genitiv)",
+    "fr": "stade (génitif)"
+   }
+  },
+  {
+   "bs": "stajao",
+   "translations": {
+    "de": "gestanden (m)",
+    "en": "stood (m)",
+    "tr": "durdu (eril)",
+    "sv": "stod (mask.)",
+    "nl": "gestaan (m)",
+    "nb": "sto (hankj.)",
+    "da": "stod (hank.)",
+    "fr": "resté debout (homme)"
+   }
+  },
+  {
    "bs": "stalno",
    "translations": {
     "de": "ständig",
@@ -11624,6 +14757,19 @@
     "nb": "leilighet",
     "da": "lejlighed",
     "fr": "appartement"
+   }
+  },
+  {
+   "bs": "stani",
+   "translations": {
+    "de": "halt (Befehl)",
+    "en": "stop (imperative)",
+    "tr": "dur (emir kipi)",
+    "sv": "stanna (imperativ)",
+    "nl": "stop (gebiedende wijs)",
+    "nb": "stopp (imperativ)",
+    "da": "stop (bydeform)",
+    "fr": "arrête (impératif)"
    }
   },
   {
@@ -11724,7 +14870,7 @@
     "en": "put (f)",
     "tr": "koydu (kadın)",
     "sv": "lade (kvinna)",
-    "nl": "legde (vrouw)",
+    "nl": "gelegd (vrouw)",
     "nb": "la (kvinne)",
     "da": "lagde (kvinde)",
     "fr": "posé (femme)"
@@ -11796,6 +14942,19 @@
    }
   },
   {
+   "bs": "stepenicama",
+   "translations": {
+    "de": "Treppe (Instr.)",
+    "en": "stairs (instr.)",
+    "tr": "merdiven (instrumental)",
+    "sv": "trappa (instrumentalis)",
+    "nl": "trap (instrumentalis)",
+    "nb": "trapp (instrumentalis)",
+    "da": "trappe (instrumentalis)",
+    "fr": "escalier (instrumental)"
+   }
+  },
+  {
    "bs": "stidjeti",
    "translations": {
     "de": "sich schämen",
@@ -11806,6 +14965,32 @@
     "nb": "skamme seg",
     "da": "at skamme sig",
     "fr": "avoir honte"
+   }
+  },
+  {
+   "bs": "stigao",
+   "translations": {
+    "de": "angekommen (m)",
+    "en": "arrived (m)",
+    "tr": "vardı (eril)",
+    "sv": "kom fram (mask.)",
+    "nl": "aangekomen (m)",
+    "nb": "kom fram (hankj.)",
+    "da": "ankom (hank.)",
+    "fr": "arrivé (homme)"
+   }
+  },
+  {
+   "bs": "stigli",
+   "translations": {
+    "de": "angekommen (Mehrz.)",
+    "en": "arrived (pl.)",
+    "tr": "vardılar",
+    "sv": "kom fram (flera)",
+    "nl": "aangekomen (meervoud)",
+    "nb": "kom fram (flere)",
+    "da": "ankom (flere)",
+    "fr": "arrivés"
    }
   },
   {
@@ -11887,6 +15072,19 @@
    }
   },
   {
+   "bs": "stolu",
+   "translations": {
+    "de": "Tisch (Lok.)",
+    "en": "table (loc.)",
+    "tr": "masa (lokatif)",
+    "sv": "bord (lokativ)",
+    "nl": "tafel (locatief)",
+    "nb": "bord (lokativ)",
+    "da": "bord (lokativ)",
+    "fr": "table (locatif)"
+   }
+  },
+  {
    "bs": "stop",
    "translations": {
     "de": "Stopp",
@@ -11910,6 +15108,19 @@
     "nb": "hundre",
     "da": "hundrede",
     "fr": "cent"
+   }
+  },
+  {
+   "bs": "strašno",
+   "translations": {
+    "de": "furchtbar",
+    "en": "terrible",
+    "tr": "korkunç",
+    "sv": "förfärlig",
+    "nl": "vreselijk",
+    "nb": "fryktelig",
+    "da": "forfærdelig",
+    "fr": "affreux"
    }
   },
   {
@@ -11988,6 +15199,19 @@
     "nb": "studerer",
     "da": "studerer",
     "fr": "étudie"
+   }
+  },
+  {
+   "bs": "stvari",
+   "translations": {
+    "de": "Sachen / Dinge",
+    "en": "things",
+    "tr": "şeyler / eşyalar",
+    "sv": "saker",
+    "nl": "dingen / spullen",
+    "nb": "ting",
+    "da": "ting",
+    "fr": "choses"
    }
   },
   {
@@ -12163,12 +15387,12 @@
    "bs": "svako",
    "translations": {
     "de": "jedes",
-    "en": "every",
+    "en": "every (n)",
     "tr": "her",
     "sv": "varje",
     "nl": "elk",
-    "nb": "hver",
-    "da": "hver",
+    "nb": "hvert",
+    "da": "hvert",
     "fr": "chaque"
    }
   },
@@ -12212,6 +15436,19 @@
    }
   },
   {
+   "bs": "svidjela",
+   "translations": {
+    "de": "gefallen (w)",
+    "en": "pleased / was liked (f)",
+    "tr": "hoşa gitti (dişil)",
+    "sv": "föll i smaken (fem.)",
+    "nl": "beviel (v)",
+    "nb": "falt i smak (hunkj.)",
+    "da": "faldt i smag (hunk.)",
+    "fr": "plu (féminin)"
+   }
+  },
+  {
    "bs": "svidjeti",
    "translations": {
     "de": "gefallen",
@@ -12251,6 +15488,19 @@
    }
   },
   {
+   "bs": "svijeća",
+   "translations": {
+    "de": "Kerzen (Gen.)",
+    "en": "candles (gen.)",
+    "tr": "mumlar (genitif)",
+    "sv": "ljus (genitiv)",
+    "nl": "kaarsen (genitief)",
+    "nb": "lys (genitiv)",
+    "da": "lys (genitiv)",
+    "fr": "bougies (génitif)"
+   }
+  },
+  {
    "bs": "svijeće",
    "translations": {
     "de": "Kerzen",
@@ -12261,6 +15511,19 @@
     "nb": "stearinlys",
     "da": "stearinlys",
     "fr": "bougies"
+   }
+  },
+  {
+   "bs": "svima",
+   "translations": {
+    "de": "allen",
+    "en": "to everyone",
+    "tr": "herkese",
+    "sv": "alla",
+    "nl": "iedereen",
+    "nb": "alle",
+    "da": "alle",
+    "fr": "à tous"
    }
   },
   {
@@ -12303,7 +15566,33 @@
    }
   },
   {
+   "bs": "svog",
+   "translations": {
+    "de": "seines / eigenen (Gen.)",
+    "en": "his own (gen.)",
+    "tr": "kendi (genitif)",
+    "sv": "sin egen (genitiv)",
+    "nl": "zijn eigen (genitief)",
+    "nb": "sin egen (genitiv)",
+    "da": "sin egen (genitiv)",
+    "fr": "son propre (génitif)"
+   }
+  },
+  {
    "bs": "svoj",
+   "translations": {
+    "de": "eigener (mein, dein, sein)",
+    "en": "one's own (my, your, his)",
+    "tr": "kendi (benim, senin, onun)",
+    "sv": "egen (min, din, sin)",
+    "nl": "eigen (mijn, jouw, zijn)",
+    "nb": "egen (min, din, sin)",
+    "da": "egen (min, din, sin)",
+    "fr": "son propre (mon, ton, son)"
+   }
+  },
+  {
+   "bs": "svoja",
    "translations": {
     "de": "eigener (mein, dein, sein)",
     "en": "one's own (my, your, his)",
@@ -12342,6 +15631,19 @@
    }
   },
   {
+   "bs": "tabletu",
+   "translations": {
+    "de": "Tablette (Akk.)",
+    "en": "tablet (acc.)",
+    "tr": "tablet (akuzatif)",
+    "sv": "tablett (ackusativ)",
+    "nl": "tablet (accusatief)",
+    "nb": "tablett (akkusativ)",
+    "da": "tablet (akkusativ)",
+    "fr": "comprimé (accusatif)"
+   }
+  },
+  {
    "bs": "tada",
    "translations": {
     "de": "damals / dann",
@@ -12352,6 +15654,19 @@
     "nb": "da / den gang",
     "da": "dengang / så",
     "fr": "alors / à l'époque"
+   }
+  },
+  {
+   "bs": "tajno",
+   "translations": {
+    "de": "heimlich",
+    "en": "secretly",
+    "tr": "gizlice",
+    "sv": "i hemlighet",
+    "nl": "heimelijk",
+    "nb": "i hemmelighet",
+    "da": "i hemmelighed",
+    "fr": "en secret"
    }
   },
   {
@@ -12381,6 +15696,19 @@
    }
   },
   {
+   "bs": "taksi",
+   "translations": {
+    "de": "Taxi",
+    "en": "taxi",
+    "tr": "taksi",
+    "sv": "taxi",
+    "nl": "taxi",
+    "nb": "drosje",
+    "da": "taxa",
+    "fr": "taxi"
+   }
+  },
+  {
    "bs": "taksu",
    "translations": {
     "de": "Gebühr (Akk.)",
@@ -12404,6 +15732,19 @@
     "nb": "der borte",
     "da": "derovre",
     "fr": "là-bas"
+   }
+  },
+  {
+   "bs": "tanjir",
+   "translations": {
+    "de": "Teller",
+    "en": "plate",
+    "tr": "tabak",
+    "sv": "tallrik",
+    "nl": "bord (om te eten)",
+    "nb": "tallerken",
+    "da": "tallerken",
+    "fr": "assiette"
    }
   },
   {
@@ -12469,6 +15810,19 @@
     "nb": "deg / til deg",
     "da": "dig / til dig",
     "fr": "toi"
+   }
+  },
+  {
+   "bs": "tek",
+   "translations": {
+    "de": "erst",
+    "en": "not until",
+    "tr": "ancak",
+    "sv": "först",
+    "nl": "pas",
+    "nb": "først",
+    "da": "først",
+    "fr": "seulement (pas avant)"
    }
   },
   {
@@ -12563,6 +15917,19 @@
    }
   },
   {
+   "bs": "temperaturu",
+   "translations": {
+    "de": "Fieber (Akk.)",
+    "en": "fever (acc.)",
+    "tr": "ateş (akuzatif)",
+    "sv": "feber (ackusativ)",
+    "nl": "koorts (accusatief)",
+    "nb": "feber (akkusativ)",
+    "da": "feber (akkusativ)",
+    "fr": "fièvre (accusatif)"
+   }
+  },
+  {
    "bs": "tepsiju",
    "translations": {
     "de": "Backblech (Akk.)",
@@ -12573,6 +15940,97 @@
     "nb": "stekebrett (akkusativ)",
     "da": "bageplade (akkusativ)",
     "fr": "plat à four (accusatif)"
+   }
+  },
+  {
+   "bs": "termin",
+   "translations": {
+    "de": "Termin",
+    "en": "appointment",
+    "tr": "randevu",
+    "sv": "tid (bokad)",
+    "nl": "afspraak",
+    "nb": "time (avtalt)",
+    "da": "tid (aftalt)",
+    "fr": "rendez-vous"
+   }
+  },
+  {
+   "bs": "teta",
+   "translations": {
+    "de": "Tante (Anrede für ältere Frauen)",
+    "en": "auntie (polite address for older women)",
+    "tr": "teyze (yaşlı kadınlara hitap)",
+    "sv": "tant (tilltal för äldre kvinnor)",
+    "nl": "tante (aanspreekvorm voor oudere vrouwen)",
+    "nb": "tante (tiltale for eldre kvinner)",
+    "da": "tante (tiltale til ældre kvinder)",
+    "fr": "tata (pour s'adresser à une femme âgée)"
+   }
+  },
+  {
+   "bs": "tetak",
+   "translations": {
+    "de": "Onkel (Mann der Tante)",
+    "en": "uncle (aunt's husband)",
+    "tr": "enişte (halanın veya teyzenin eşi)",
+    "sv": "fasters eller mosters man",
+    "nl": "oom (man van tante)",
+    "nb": "onkel (gift med faster eller moster)",
+    "da": "onkel (gift med faster eller moster)",
+    "fr": "oncle (mari de la tante)"
+   }
+  },
+  {
+   "bs": "tetka",
+   "translations": {
+    "de": "Tante (Schwester von Vater oder Mutter)",
+    "en": "aunt (father's or mother's sister)",
+    "tr": "hala / teyze",
+    "sv": "faster / moster",
+    "nl": "tante (zus van vader of moeder)",
+    "nb": "faster / moster",
+    "da": "faster / moster",
+    "fr": "tante (sœur du père ou de la mère)"
+   }
+  },
+  {
+   "bs": "tetki",
+   "translations": {
+    "de": "Tante (Dat.)",
+    "en": "aunt (dat.)",
+    "tr": "hala / teyze (datif)",
+    "sv": "faster / moster (dativ)",
+    "nl": "tante (datief)",
+    "nb": "tante (dativ)",
+    "da": "tante (dativ)",
+    "fr": "tante (datif)"
+   }
+  },
+  {
+   "bs": "teško",
+   "translations": {
+    "de": "schwierig",
+    "en": "difficult",
+    "tr": "zor",
+    "sv": "svårt",
+    "nl": "moeilijk",
+    "nb": "vanskelig",
+    "da": "svært",
+    "fr": "difficile"
+   }
+  },
+  {
+   "bs": "težak",
+   "translations": {
+    "de": "schwer (m)",
+    "en": "hard / heavy (m)",
+    "tr": "zor / ağır (eril)",
+    "sv": "svår / tung (mask.)",
+    "nl": "zwaar / moeilijk (m)",
+    "nb": "vanskelig / tung (hankj.)",
+    "da": "svær / tung (hank.)",
+    "fr": "difficile / lourd (m)"
    }
   },
   {
@@ -12693,6 +16151,19 @@
    }
   },
   {
+   "bs": "toplom",
+   "translations": {
+    "de": "warmen (Instr.)",
+    "en": "warm (instr.)",
+    "tr": "sıcak (instrumental)",
+    "sv": "varm (instrumentalis)",
+    "nl": "warm (instrumentalis)",
+    "nb": "varm (instrumentalis)",
+    "da": "varm (instrumentalis)",
+    "fr": "chaud (instrumental)"
+   }
+  },
+  {
    "bs": "torbi",
    "translations": {
     "de": "Tasche (Lok.)",
@@ -12753,7 +16224,7 @@
     "sv": "tårta (ackusativ)",
     "nl": "taart (accusatief)",
     "nb": "kake (akkusativ)",
-    "da": "kage (akkusativ)",
+    "da": "lagkage (akkusativ)",
     "fr": "gâteau (accusatif)"
    }
   },
@@ -12953,6 +16424,32 @@
    }
   },
   {
+   "bs": "trideset",
+   "translations": {
+    "de": "dreißig",
+    "en": "thirty",
+    "tr": "otuz",
+    "sv": "trettio",
+    "nl": "dertig",
+    "nb": "tretti",
+    "da": "tredive",
+    "fr": "trente"
+   }
+  },
+  {
+   "bs": "tridesetoj",
+   "translations": {
+    "de": "dreißigsten (Lok.)",
+    "en": "thirtieth (loc.)",
+    "tr": "otuzuncu (lokatif)",
+    "sv": "trettionde (lokativ)",
+    "nl": "dertigste (locatief)",
+    "nb": "trettiende (lokativ)",
+    "da": "tredivte (lokativ)",
+    "fr": "trentième (locatif)"
+   }
+  },
+  {
    "bs": "trubili",
    "translations": {
     "de": "gehupt (Mehrz.)",
@@ -13044,6 +16541,19 @@
    }
   },
   {
+   "bs": "tužan",
+   "translations": {
+    "de": "traurig (m/w)",
+    "en": "sad (m/f)",
+    "tr": "üzgün (e/k)",
+    "sv": "ledsen (m/k)",
+    "nl": "verdrietig (m/v)",
+    "nb": "lei seg (m/k)",
+    "da": "ked af det (m/k)",
+    "fr": "triste (m/f)"
+   }
+  },
+  {
    "bs": "tvoj",
    "translations": {
     "de": "dein",
@@ -13070,6 +16580,19 @@
    }
   },
   {
+   "bs": "tvojih",
+   "translations": {
+    "de": "deinen (kod tvojih: bei deinen Eltern)",
+    "en": "your (kod tvojih: at your parents')",
+    "tr": "seninkiler (kod tvojih: senin ailende)",
+    "sv": "dina (kod tvojih: hos dina föräldrar)",
+    "nl": "jouw (kod tvojih: bij je ouders)",
+    "nb": "dine (kod tvojih: hos foreldrene dine)",
+    "da": "dine (kod tvojih: hos dine forældre)",
+    "fr": "tes (kod tvojih : chez tes parents)"
+   }
+  },
+  {
    "bs": "u",
    "translations": {
     "de": "in",
@@ -13080,6 +16603,32 @@
     "nb": "i",
     "da": "i",
     "fr": "dans"
+   }
+  },
+  {
+   "bs": "ugasio",
+   "translations": {
+    "de": "ausgemacht (m)",
+    "en": "blew out / put out (m)",
+    "tr": "söndürdü (eril)",
+    "sv": "blåste ut / släckte (mask.)",
+    "nl": "uitgeblazen (m)",
+    "nb": "blåste ut (hankj.)",
+    "da": "pustede ud (hank.)",
+    "fr": "éteint / soufflé (homme)"
+   }
+  },
+  {
+   "bs": "ugašeno",
+   "translations": {
+    "de": "ausgeschaltet (s)",
+    "en": "switched off (n)",
+    "tr": "kapalı (nötr)",
+    "sv": "släckt (neutr.)",
+    "nl": "uitgeschakeld (o)",
+    "nb": "slukket (intetkj.)",
+    "da": "slukket (intetk.)",
+    "fr": "éteint (neutre)"
    }
   },
   {
@@ -13135,6 +16684,58 @@
    }
   },
   {
+   "bs": "ukrašava",
+   "translations": {
+    "de": "verziert (se ukrašava: wird verziert)",
+    "en": "decorates (se ukrašava: is decorated)",
+    "tr": "süslüyor (se ukrašava: süsleniyor)",
+    "sv": "dekorerar (se ukrašava: dekoreras)",
+    "nl": "versiert (se ukrašava: wordt versierd)",
+    "nb": "dekorerer (se ukrašava: dekoreres)",
+    "da": "dekorerer (se ukrašava: dekoreres)",
+    "fr": "décore (se ukrašava : est décoré)"
+   }
+  },
+  {
+   "bs": "ukrašavao",
+   "translations": {
+    "de": "verziert (m)",
+    "en": "decorated (m)",
+    "tr": "süsledi (eril)",
+    "sv": "dekorerade (mask.)",
+    "nl": "versierd (m)",
+    "nb": "dekorerte (hankj.)",
+    "da": "dekorerede (hank.)",
+    "fr": "décoré (homme)"
+   }
+  },
+  {
+   "bs": "ukusno",
+   "translations": {
+    "de": "lecker",
+    "en": "tasty",
+    "tr": "lezzetli",
+    "sv": "gott",
+    "nl": "lekker",
+    "nb": "godt (om mat)",
+    "da": "lækkert",
+    "fr": "délicieux"
+   }
+  },
+  {
+   "bs": "ulica",
+   "translations": {
+    "de": "Straße",
+    "en": "street",
+    "tr": "sokak",
+    "sv": "gata",
+    "nl": "straat",
+    "nb": "gate",
+    "da": "gade",
+    "fr": "rue"
+   }
+  },
+  {
    "bs": "ulice",
    "translations": {
     "de": "Straßen",
@@ -13170,7 +16771,7 @@
     "nl": "moe (m)",
     "nb": "trøtt (hankj.)",
     "da": "træt (hank.)",
-    "fr": "fatigué"
+    "fr": "fatigué (m)"
    }
   },
   {
@@ -13184,6 +16785,19 @@
     "nb": "trøtt (hunkj.)",
     "da": "træt (hunk.)",
     "fr": "fatiguée"
+   }
+  },
+  {
+   "bs": "umorni",
+   "translations": {
+    "de": "müde (Mehrz.)",
+    "en": "tired (pl.)",
+    "tr": "yorgun (çoğul)",
+    "sv": "trötta",
+    "nl": "moe (meervoud)",
+    "nb": "trøtte",
+    "da": "trætte",
+    "fr": "fatigués"
    }
   },
   {
@@ -13236,6 +16850,32 @@
     "nb": "slo på (kvinne)",
     "da": "tændte (kvinde)",
     "fr": "allumé (femme)"
+   }
+  },
+  {
+   "bs": "upalio",
+   "translations": {
+    "de": "eingeschaltet (m)",
+    "en": "switched on (m)",
+    "tr": "açtı (eril)",
+    "sv": "tände (mask.)",
+    "nl": "aangedaan (m)",
+    "nb": "slo på (hankj.)",
+    "da": "tændte (hank.)",
+    "fr": "allumé (homme)"
+   }
+  },
+  {
+   "bs": "upalu",
+   "translations": {
+    "de": "Entzündung (Akk.)",
+    "en": "inflammation (acc.)",
+    "tr": "iltihap (akuzatif)",
+    "sv": "inflammation (ackusativ)",
+    "nl": "ontsteking (accusatief)",
+    "nb": "betennelse (akkusativ)",
+    "da": "betændelse (akkusativ)",
+    "fr": "inflammation (accusatif)"
    }
   },
   {
@@ -13317,6 +16957,19 @@
    }
   },
   {
+   "bs": "usta",
+   "translations": {
+    "de": "Mund",
+    "en": "mouth",
+    "tr": "ağız",
+    "sv": "mun",
+    "nl": "mond",
+    "nb": "munn",
+    "da": "mund",
+    "fr": "bouche"
+   }
+  },
+  {
    "bs": "ustajem",
    "translations": {
     "de": "ich stehe auf",
@@ -13369,6 +17022,45 @@
    }
   },
   {
+   "bs": "utakmica",
+   "translations": {
+    "de": "Spiel (Match)",
+    "en": "game (match)",
+    "tr": "maç",
+    "sv": "match",
+    "nl": "wedstrijd",
+    "nb": "kamp",
+    "da": "kamp",
+    "fr": "match"
+   }
+  },
+  {
+   "bs": "utakmice",
+   "translations": {
+    "de": "Spiel (Gen.)",
+    "en": "match (gen.)",
+    "tr": "maç (genitif)",
+    "sv": "match (genitiv)",
+    "nl": "wedstrijd (genitief)",
+    "nb": "kamp (genitiv)",
+    "da": "kamp (genitiv)",
+    "fr": "match (génitif)"
+   }
+  },
+  {
+   "bs": "utakmicu",
+   "translations": {
+    "de": "Spiel (Akk.)",
+    "en": "match (acc.)",
+    "tr": "maç (akuzatif)",
+    "sv": "match (ackusativ)",
+    "nl": "wedstrijd (accusatief)",
+    "nb": "kamp (akkusativ)",
+    "da": "kamp (akkusativ)",
+    "fr": "match (accusatif)"
+   }
+  },
+  {
    "bs": "uvijek",
    "translations": {
     "de": "immer",
@@ -13379,6 +17071,32 @@
     "nb": "alltid",
     "da": "altid",
     "fr": "toujours"
+   }
+  },
+  {
+   "bs": "uz",
+   "translations": {
+    "de": "neben / zu / mit",
+    "en": "beside / with / along with",
+    "tr": "yanında / ile",
+    "sv": "bredvid / till / med",
+    "nl": "naast / bij / met",
+    "nb": "ved siden av / til / med",
+    "da": "ved siden af / til / med",
+    "fr": "à côté de / avec / près de"
+   }
+  },
+  {
+   "bs": "uzet",
+   "translations": {
+    "de": "nehmen (Zukunft)",
+    "en": "to take (future)",
+    "tr": "almak (gelecek)",
+    "sv": "ta (framtid)",
+    "nl": "nemen (toekomst)",
+    "nb": "ta (framtid)",
+    "da": "at tage (fremtid)",
+    "fr": "prendre (futur)"
    }
   },
   {
@@ -13408,6 +17126,19 @@
    }
   },
   {
+   "bs": "uzmemo",
+   "translations": {
+    "de": "wir nehmen",
+    "en": "we take",
+    "tr": "alıyoruz",
+    "sv": "vi tar",
+    "nl": "we nemen",
+    "nb": "vi tar",
+    "da": "vi tager",
+    "fr": "nous prenons"
+   }
+  },
+  {
    "bs": "uzmite",
    "translations": {
     "de": "nehmt!",
@@ -13421,6 +17152,19 @@
    }
   },
   {
+   "bs": "uči",
+   "translations": {
+    "de": "er/sie lernt",
+    "en": "he/she learns",
+    "tr": "öğreniyor",
+    "sv": "han/hon lär sig",
+    "nl": "hij/zij leert",
+    "nb": "han/hun lærer",
+    "da": "han/hun lærer",
+    "fr": "il / elle apprend"
+   }
+  },
+  {
    "bs": "učim",
    "translations": {
     "de": "ich lerne",
@@ -13431,6 +17175,45 @@
     "nb": "jeg lærer",
     "da": "jeg lærer",
     "fr": "j'apprends"
+   }
+  },
+  {
+   "bs": "učiti",
+   "translations": {
+    "de": "lernen",
+    "en": "to learn",
+    "tr": "öğrenmek",
+    "sv": "lära sig",
+    "nl": "leren",
+    "nb": "lære",
+    "da": "at lære",
+    "fr": "apprendre"
+   }
+  },
+  {
+   "bs": "ušla",
+   "translations": {
+    "de": "hineingegangen (w)",
+    "en": "went in (f)",
+    "tr": "içeri girdi (kadın)",
+    "sv": "gick in (kvinna)",
+    "nl": "naar binnen gegaan (vrouw)",
+    "nb": "gikk inn (kvinne)",
+    "da": "gik ind (kvinde)",
+    "fr": "entrée (femme)"
+   }
+  },
+  {
+   "bs": "ušli",
+   "translations": {
+    "de": "hereingekommen (Mehrz.)",
+    "en": "came in (pl.)",
+    "tr": "içeri girdiler",
+    "sv": "kom in (flera)",
+    "nl": "binnengekomen (meervoud)",
+    "nb": "kom inn (flere)",
+    "da": "kom ind (flere)",
+    "fr": "entrés"
    }
   },
   {
@@ -13476,13 +17259,52 @@
    "bs": "vas",
    "translations": {
     "de": "euch / Sie",
-    "en": "you (pl. / formal)",
-    "tr": "sizi",
+    "en": "you (plural or formal)",
+    "tr": "sizi / size",
     "sv": "er",
     "nl": "jullie / u",
-    "nb": "dere",
+    "nb": "dere / Dem",
     "da": "jer / Dem",
     "fr": "vous"
+   }
+  },
+  {
+   "bs": "vatre",
+   "translations": {
+    "de": "Feuer (Gen.)",
+    "en": "fire (gen.)",
+    "tr": "ateş (genitif)",
+    "sv": "eld (genitiv)",
+    "nl": "vuur (genitief)",
+    "nb": "ild (genitiv)",
+    "da": "ild (genitiv)",
+    "fr": "feu (génitif)"
+   }
+  },
+  {
+   "bs": "vatrom",
+   "translations": {
+    "de": "Feuer (Instr.)",
+    "en": "fire (instr.)",
+    "tr": "ateş (instrumental)",
+    "sv": "eld (instrumentalis)",
+    "nl": "vuur (instrumentalis)",
+    "nb": "ild (instrumentalis)",
+    "da": "ild (instrumentalis)",
+    "fr": "feu (instrumental)"
+   }
+  },
+  {
+   "bs": "vatru",
+   "translations": {
+    "de": "Feuer (Akk.)",
+    "en": "fire (acc.)",
+    "tr": "ateş (akuzatif)",
+    "sv": "eld (ackusativ)",
+    "nl": "vuur (accusatief)",
+    "nb": "ild (akkusativ)",
+    "da": "ild (akkusativ)",
+    "fr": "feu (accusatif)"
    }
   },
   {
@@ -13509,6 +17331,19 @@
     "nb": "Deres (akkusativ)",
     "da": "Deres (akkusativ)",
     "fr": "votre (accusatif)"
+   }
+  },
+  {
+   "bs": "važna",
+   "translations": {
+    "de": "wichtig (der wichtige)",
+    "en": "important (m.)",
+    "tr": "önemli (eril)",
+    "sv": "viktig",
+    "nl": "belangrijk (m.)",
+    "nb": "viktig (hankjønn)",
+    "da": "vigtig",
+    "fr": "important (m.)"
    }
   },
   {
@@ -13561,6 +17396,19 @@
     "nb": "stor (akkusativ)",
     "da": "stor (akkusativ)",
     "fr": "grande (accusatif)"
+   }
+  },
+  {
+   "bs": "vesela",
+   "translations": {
+    "de": "fröhlich",
+    "en": "cheerful",
+    "tr": "neşeli",
+    "sv": "munter",
+    "nl": "vrolijk",
+    "nb": "blid / munter",
+    "da": "munter",
+    "fr": "joyeux / gai"
    }
   },
   {
@@ -13629,6 +17477,19 @@
    }
   },
   {
+   "bs": "večere",
+   "translations": {
+    "de": "Abendessen (Gen.)",
+    "en": "dinner (gen.)",
+    "tr": "akşam yemeği (genitif)",
+    "sv": "middag (genitiv)",
+    "nl": "avondeten (genitief)",
+    "nb": "middag (genitiv)",
+    "da": "aftensmad (genitiv)",
+    "fr": "dîner (génitif)"
+   }
+  },
+  {
    "bs": "večeri",
    "translations": {
     "de": "Abend (Gen.)",
@@ -13670,14 +17531,14 @@
   {
    "bs": "vidimo",
    "translations": {
-    "de": "wir sehen",
-    "en": "we see",
-    "tr": "görüşürüz",
+    "de": "wir sehen (uns)",
+    "en": "we see (each other)",
+    "tr": "görüşüyoruz",
     "sv": "vi ses",
-    "nl": "we zien",
+    "nl": "we zien (elkaar)",
     "nb": "vi ses",
     "da": "vi ses",
-    "fr": "nous voyons"
+    "fr": "nous nous voyons"
    }
   },
   {
@@ -13687,7 +17548,7 @@
     "en": "saw (m)",
     "tr": "gördü (eril)",
     "sv": "såg (mask.)",
-    "nl": "zag (m)",
+    "nl": "gezien (m)",
     "nb": "så (hankj.)",
     "da": "så (hank.)",
     "fr": "vu (homme)"
@@ -13696,14 +17557,27 @@
   {
    "bs": "vidiš",
    "translations": {
-    "de": "siehst du",
+    "de": "du siehst",
     "en": "you see",
-    "tr": "görüyor musun",
-    "sv": "ser du",
-    "nl": "zie je",
-    "nb": "ser du",
-    "da": "ser du",
+    "tr": "görüyorsun",
+    "sv": "du ser",
+    "nl": "je ziet",
+    "nb": "du ser",
+    "da": "du ser",
     "fr": "tu vois"
+   }
+  },
+  {
+   "bs": "vidjeli",
+   "translations": {
+    "de": "gesehen (Mehrz.)",
+    "en": "saw (pl.)",
+    "tr": "gördüler",
+    "sv": "såg (flera)",
+    "nl": "gezien (meervoud)",
+    "nb": "så (flere)",
+    "da": "så (flere)",
+    "fr": "vu (pluriel)"
    }
   },
   {
@@ -13720,6 +17594,19 @@
    }
   },
   {
+   "bs": "vijest",
+   "translations": {
+    "de": "Neuigkeit / Nachricht",
+    "en": "news",
+    "tr": "haber",
+    "sv": "nyhet",
+    "nl": "nieuws",
+    "nb": "nyhet",
+    "da": "nyhed",
+    "fr": "nouvelle"
+   }
+  },
+  {
    "bs": "vijećnice",
    "translations": {
     "de": "Vijećnica (Gen., Rathaus von Sarajevo)",
@@ -13730,6 +17617,19 @@
     "nb": "Vijećnica (genitiv, rådhuset i Sarajevo)",
     "da": "Vijećnica (genitiv, rådhuset i Sarajevo)",
     "fr": "Vijećnica (génitif, hôtel de ville de Sarajevo)"
+   }
+  },
+  {
+   "bs": "vikali",
+   "translations": {
+    "de": "gerufen (Mehrz.)",
+    "en": "shouted (pl.)",
+    "tr": "bağırdılar",
+    "sv": "ropade (flera)",
+    "nl": "geroepen (meervoud)",
+    "nb": "ropte (flere)",
+    "da": "råbte (flere)",
+    "fr": "crié (pluriel)"
    }
   },
   {
@@ -13808,6 +17708,19 @@
     "nb": "brudekjole (lokativ)",
     "da": "brudekjole (lokativ)",
     "fr": "robe de mariée (locatif)"
+   }
+  },
+  {
+   "bs": "vjerovati",
+   "translations": {
+    "de": "glauben",
+    "en": "to believe",
+    "tr": "inanmak",
+    "sv": "tro",
+    "nl": "geloven",
+    "nb": "tro",
+    "da": "at tro",
+    "fr": "croire"
    }
   },
   {
@@ -13967,6 +17880,19 @@
    }
   },
   {
+   "bs": "vožnje",
+   "translations": {
+    "de": "Fahrt (Gen.)",
+    "en": "drive (gen.)",
+    "tr": "yolculuk (genitif)",
+    "sv": "resa (genitiv)",
+    "nl": "rit (genitief)",
+    "nb": "kjøretur (genitiv)",
+    "da": "køretur (genitiv)",
+    "fr": "trajet (génitif)"
+   }
+  },
+  {
    "bs": "vrata",
    "translations": {
     "de": "Tür",
@@ -13977,6 +17903,19 @@
     "nb": "dør",
     "da": "dør",
     "fr": "porte"
+   }
+  },
+  {
+   "bs": "vrati",
+   "translations": {
+    "de": "stellt zurück",
+    "en": "puts back",
+    "tr": "geri koyuyor",
+    "sv": "ställer tillbaka",
+    "nl": "zet terug",
+    "nb": "setter tilbake",
+    "da": "sætter tilbage",
+    "fr": "remet"
    }
   },
   {
@@ -14123,6 +18062,19 @@
    }
   },
   {
+   "bs": "zaboravili",
+   "translations": {
+    "de": "vergessen (Mehrz.)",
+    "en": "forgot (pl.)",
+    "tr": "unuttular",
+    "sv": "glömde (flera)",
+    "nl": "vergeten (meervoud)",
+    "nb": "glemte (flere)",
+    "da": "glemte (flere)",
+    "fr": "oublié (pluriel)"
+   }
+  },
+  {
    "bs": "zadatak",
    "translations": {
     "de": "Aufgabe",
@@ -14162,6 +18114,19 @@
    }
   },
   {
+   "bs": "zagorjeli",
+   "translations": {
+    "de": "angebrannt (Mehrz.)",
+    "en": "burned (pl.)",
+    "tr": "yandılar",
+    "sv": "brändes vid (flera)",
+    "nl": "aangebrand (meervoud)",
+    "nb": "brant seg (flere)",
+    "da": "brændte på (flere)",
+    "fr": "brûlés"
+   }
+  },
+  {
    "bs": "zagrebu",
    "translations": {
     "de": "Zagreb (Lok.)",
@@ -14194,7 +18159,7 @@
     "en": "hugged (m)",
     "tr": "sarıldı (eril)",
     "sv": "kramade (mask.)",
-    "nl": "omhelsde (m)",
+    "nl": "omhelsd (m)",
     "nb": "klemte (hankj.)",
     "da": "krammede (hank.)",
     "fr": "serré dans ses bras (homme)"
@@ -14253,6 +18218,19 @@
    }
   },
   {
+   "bs": "zakazao",
+   "translations": {
+    "de": "vereinbart (m)",
+    "en": "arranged / booked (m)",
+    "tr": "ayarladı (eril)",
+    "sv": "bokade (mask.)",
+    "nl": "afgesproken (m)",
+    "nb": "avtalte (hankj.)",
+    "da": "aftalte (hank.)",
+    "fr": "fixé / pris (homme)"
+   }
+  },
+  {
    "bs": "zalijeva",
    "translations": {
     "de": "gießt",
@@ -14276,6 +18254,19 @@
     "nb": "eltet (hunkj. flertall)",
     "da": "æltede (hunk. flertal)",
     "fr": "pétri (femmes)"
+   }
+  },
+  {
+   "bs": "zanat",
+   "translations": {
+    "de": "Handwerk",
+    "en": "trade (craft)",
+    "tr": "zanaat",
+    "sv": "hantverk",
+    "nl": "ambacht",
+    "nb": "håndverk",
+    "da": "håndværk",
+    "fr": "métier manuel"
    }
   },
   {
@@ -14318,6 +18309,45 @@
    }
   },
   {
+   "bs": "zarađuje",
+   "translations": {
+    "de": "verdient (se zarađuje: man verdient)",
+    "en": "earns (se zarađuje: one earns)",
+    "tr": "kazanıyor (se zarađuje: kazanılıyor)",
+    "sv": "tjänar (se zarađuje: man tjänar)",
+    "nl": "verdient (se zarađuje: je verdient)",
+    "nb": "tjener (se zarađuje: man tjener)",
+    "da": "tjener (se zarađuje: man tjener)",
+    "fr": "gagne (se zarađuje : on gagne)"
+   }
+  },
+  {
+   "bs": "zastavama",
+   "translations": {
+    "de": "Fahnen (Instr.)",
+    "en": "flags (instr.)",
+    "tr": "bayraklar (instrumental)",
+    "sv": "flaggor (instrumentalis)",
+    "nl": "vlaggen (instrumentalis)",
+    "nb": "flagg (instrumentalis)",
+    "da": "flag (instrumentalis)",
+    "fr": "drapeaux (instrumental)"
+   }
+  },
+  {
+   "bs": "zato",
+   "translations": {
+    "de": "deshalb",
+    "en": "therefore",
+    "tr": "bu yüzden",
+    "sv": "därför",
+    "nl": "daarom",
+    "nb": "derfor",
+    "da": "derfor",
+    "fr": "c'est pourquoi"
+   }
+  },
+  {
    "bs": "zatreba",
    "translations": {
     "de": "nötig wird",
@@ -14341,6 +18371,19 @@
     "nb": "fullførte (kvinne)",
     "da": "afsluttede (kvinde)",
     "fr": "terminé (femme)"
+   }
+  },
+  {
+   "bs": "završili",
+   "translations": {
+    "de": "beendet (Mehrz.)",
+    "en": "finished (pl.)",
+    "tr": "bitirdiler",
+    "sv": "blev klara",
+    "nl": "klaar waren",
+    "nb": "ble ferdige",
+    "da": "blev færdige",
+    "fr": "ont fini"
    }
   },
   {
@@ -14370,6 +18413,19 @@
    }
   },
   {
+   "bs": "zašto",
+   "translations": {
+    "de": "warum",
+    "en": "why",
+    "tr": "neden",
+    "sv": "varför",
+    "nl": "waarom",
+    "nb": "hvorfor",
+    "da": "hvorfor",
+    "fr": "pourquoi"
+   }
+  },
+  {
    "bs": "zbog",
    "translations": {
     "de": "wegen",
@@ -14380,6 +18436,32 @@
     "nb": "på grunn av",
     "da": "på grund af",
     "fr": "à cause de"
+   }
+  },
+  {
+   "bs": "zdrav",
+   "translations": {
+    "de": "gesund (m/w)",
+    "en": "healthy (m/f)",
+    "tr": "sağlıklı (e/k)",
+    "sv": "frisk (m/k)",
+    "nl": "gezond (m/v)",
+    "nb": "frisk (m/k)",
+    "da": "rask (m/k)",
+    "fr": "en bonne santé (m/f)"
+   }
+  },
+  {
+   "bs": "zdravlja",
+   "translations": {
+    "de": "Gesundheit (Gen.)",
+    "en": "health (gen.)",
+    "tr": "sağlık (genitif)",
+    "sv": "hälsa (genitiv)",
+    "nl": "gezondheid (genitief)",
+    "nb": "helse (genitiv)",
+    "da": "sundhed (genitiv)",
+    "fr": "santé (génitif)"
    }
   },
   {
@@ -14444,7 +18526,7 @@
     "nl": "gebouw (locatief)",
     "nb": "bygning (lokativ)",
     "da": "bygning (lokativ)",
-    "fr": "immeuble (locatif)"
+    "fr": "bâtiment (locatif)"
    }
   },
   {
@@ -14474,16 +18556,68 @@
    }
   },
   {
+   "bs": "zmaj",
+   "translations": {
+    "de": "Drache",
+    "en": "dragon",
+    "tr": "ejderha",
+    "sv": "drake",
+    "nl": "draak",
+    "nb": "drage",
+    "da": "drage",
+    "fr": "dragon"
+   }
+  },
+  {
+   "bs": "zmajevi",
+   "translations": {
+    "de": "Drachen (Spitzname der Nationalmannschaft)",
+    "en": "dragons (nickname of the national team)",
+    "tr": "ejderhalar (milli takımın lakabı)",
+    "sv": "drakar (landslagets smeknamn)",
+    "nl": "draken (bijnaam van het nationale team)",
+    "nb": "drager (kallenavnet til landslaget)",
+    "da": "drager (landsholdets kælenavn)",
+    "fr": "dragons (surnom de l'équipe nationale)"
+   }
+  },
+  {
+   "bs": "zmajevom",
+   "translations": {
+    "de": "Drachen- (Instr.)",
+    "en": "dragon's (instr.)",
+    "tr": "ejderha (instrumental)",
+    "sv": "drak- (instrumentalis)",
+    "nl": "draken- (instrumentalis)",
+    "nb": "drage- (instrumentalis)",
+    "da": "drage- (instrumentalis)",
+    "fr": "de dragon (instrumental)"
+   }
+  },
+  {
+   "bs": "zmaju",
+   "translations": {
+    "de": "Drache! (Anrede)",
+    "en": "dragon! (vocative)",
+    "tr": "ejderha! (hitap)",
+    "sv": "drake! (tilltal)",
+    "nl": "draak! (aanspreekvorm)",
+    "nb": "drage! (tiltale)",
+    "da": "drage! (tiltale)",
+    "fr": "dragon ! (vocatif)"
+   }
+  },
+  {
    "bs": "zna",
    "translations": {
-    "de": "weiß / kann",
-    "en": "knows / can",
+    "de": "er/sie weiß / kann",
+    "en": "he/she knows / can",
     "tr": "biliyor",
-    "sv": "vet / kan",
-    "nl": "weet / kan",
-    "nb": "vet / kan",
-    "da": "ved / kan",
-    "fr": "sait"
+    "sv": "han/hon vet / kan",
+    "nl": "hij/zij weet / kan",
+    "nb": "han/hun vet / kan",
+    "da": "han/hun ved / kan",
+    "fr": "il / elle sait"
    }
   },
   {
@@ -14506,7 +18640,7 @@
     "en": "knew (m)",
     "tr": "bildi (eril)",
     "sv": "visste (mask.)",
-    "nl": "wist (m)",
+    "nl": "geweten (m)",
     "nb": "visste (hankj.)",
     "da": "vidste (hank.)",
     "fr": "su (homme)"
@@ -14523,6 +18657,19 @@
     "nb": "vet dere",
     "da": "ved De / ved I",
     "fr": "savez-vous"
+   }
+  },
+  {
+   "bs": "znači",
+   "translations": {
+    "de": "es bedeutet",
+    "en": "it means",
+    "tr": "anlamına geliyor",
+    "sv": "det betyder",
+    "nl": "het betekent",
+    "nb": "det betyr",
+    "da": "det betyder",
+    "fr": "ça veut dire"
    }
   },
   {
@@ -14558,7 +18705,7 @@
     "en": "called (m)",
     "tr": "aradı (eril)",
     "sv": "ringde (mask.)",
-    "nl": "belde (m)",
+    "nl": "gebeld (m)",
     "nb": "ringte (hankj.)",
     "da": "ringede (hank.)",
     "fr": "appelé (homme)"
@@ -14643,6 +18790,19 @@
    }
   },
   {
+   "bs": "ćevapi",
+   "translations": {
+    "de": "Ćevapi",
+    "en": "ćevapi (grilled minced meat rolls)",
+    "tr": "ćevapi (küçük köfteler)",
+    "sv": "ćevapi (grillade köttkorvar)",
+    "nl": "ćevapi (gegrilde gehaktrolletjes)",
+    "nb": "ćevapi (grillede kjøttpølser)",
+    "da": "ćevapi (grillede kødpølser)",
+    "fr": "ćevapi (petites saucisses de viande grillée)"
+   }
+  },
+  {
    "bs": "ćeš",
    "translations": {
     "de": "du wirst",
@@ -14682,6 +18842,19 @@
    }
   },
   {
+   "bs": "čaja",
+   "translations": {
+    "de": "Tee (Gen.)",
+    "en": "tea (gen.)",
+    "tr": "çay (genitif)",
+    "sv": "te (genitiv)",
+    "nl": "thee (genitief)",
+    "nb": "te (genitiv)",
+    "da": "te (genitiv)",
+    "fr": "thé (génitif)"
+   }
+  },
+  {
    "bs": "čak",
    "translations": {
     "de": "sogar",
@@ -14708,6 +18881,19 @@
    }
   },
   {
+   "bs": "čaša",
+   "translations": {
+    "de": "Glas",
+    "en": "glass",
+    "tr": "bardak",
+    "sv": "glas",
+    "nl": "glas",
+    "nb": "glass",
+    "da": "glas",
+    "fr": "verre"
+   }
+  },
+  {
    "bs": "čeka",
    "translations": {
     "de": "wartet",
@@ -14718,6 +18904,19 @@
     "nb": "venter",
     "da": "venter",
     "fr": "attend"
+   }
+  },
+  {
+   "bs": "čekam",
+   "translations": {
+    "de": "ich warte",
+    "en": "I wait",
+    "tr": "bekliyorum",
+    "sv": "jag väntar",
+    "nl": "ik wacht",
+    "nb": "jeg venter",
+    "da": "jeg venter",
+    "fr": "j'attends"
    }
   },
   {
@@ -14734,6 +18933,19 @@
    }
   },
   {
+   "bs": "čekaonici",
+   "translations": {
+    "de": "Wartezimmer (Lok.)",
+    "en": "waiting room (loc.)",
+    "tr": "bekleme odası (lokatif)",
+    "sv": "väntrum (lokativ)",
+    "nl": "wachtkamer (locatief)",
+    "nb": "venterom (lokativ)",
+    "da": "venteværelse (lokativ)",
+    "fr": "salle d'attente (locatif)"
+   }
+  },
+  {
    "bs": "čekati",
    "translations": {
     "de": "warten",
@@ -14744,6 +18956,32 @@
     "nb": "vente",
     "da": "at vente",
     "fr": "attendre"
+   }
+  },
+  {
+   "bs": "čekića",
+   "translations": {
+    "de": "Hammer (Gen.)",
+    "en": "hammer (gen.)",
+    "tr": "çekiç (genitif)",
+    "sv": "hammare (genitiv)",
+    "nl": "hamer (genitief)",
+    "nb": "hammer (genitiv)",
+    "da": "hammer (genitiv)",
+    "fr": "marteau (génitif)"
+   }
+  },
+  {
+   "bs": "čekićem",
+   "translations": {
+    "de": "Hammer (Instr.)",
+    "en": "hammer (instr.)",
+    "tr": "çekiç (instrumental)",
+    "sv": "hammare (instrumentalis)",
+    "nl": "hamer (instrumentalis)",
+    "nb": "hammer (instrumentalis)",
+    "da": "hammer (instrumentalis)",
+    "fr": "marteau (instrumental)"
    }
   },
   {
@@ -14773,6 +19011,19 @@
    }
   },
   {
+   "bs": "četvrtog",
+   "translations": {
+    "de": "vierten (Gen.)",
+    "en": "fourth (gen.)",
+    "tr": "dördüncü (genitif)",
+    "sv": "fjärde (genitiv)",
+    "nl": "vierde (genitief)",
+    "nb": "fjerde (genitiv)",
+    "da": "fjerde (genitiv)",
+    "fr": "quatrième (génitif)"
+   }
+  },
+  {
    "bs": "češće",
    "translations": {
     "de": "öfter",
@@ -14783,6 +19034,19 @@
     "nb": "oftere",
     "da": "oftere",
     "fr": "plus souvent"
+   }
+  },
+  {
+   "bs": "čiji",
+   "translations": {
+    "de": "wessen",
+    "en": "whose",
+    "tr": "kimin",
+    "sv": "vems",
+    "nl": "wiens",
+    "nb": "hvem sin",
+    "da": "hvis",
+    "fr": "de qui"
    }
   },
   {
@@ -14848,6 +19112,58 @@
     "nb": "leste (hankj.)",
     "da": "læste (hank.)",
     "fr": "lu (homme)"
+   }
+  },
+  {
+   "bs": "čokolada",
+   "translations": {
+    "de": "Schokolade",
+    "en": "chocolate",
+    "tr": "çikolata",
+    "sv": "choklad",
+    "nl": "chocolade",
+    "nb": "sjokolade",
+    "da": "chokolade",
+    "fr": "chocolat"
+   }
+  },
+  {
+   "bs": "čovjek",
+   "translations": {
+    "de": "Mensch",
+    "en": "person",
+    "tr": "insan",
+    "sv": "människa",
+    "nl": "mens",
+    "nb": "menneske",
+    "da": "menneske",
+    "fr": "personne"
+   }
+  },
+  {
+   "bs": "čuje",
+   "translations": {
+    "de": "hört (se čuje: man hört)",
+    "en": "hears (se čuje: can be heard)",
+    "tr": "duyuyor (se čuje: duyuluyor)",
+    "sv": "hör (se čuje: man hör)",
+    "nl": "hoort (se čuje: je hoort)",
+    "nb": "hører (se čuje: man hører)",
+    "da": "hører (se čuje: man hører)",
+    "fr": "entend (se čuje : on entend)"
+   }
+  },
+  {
+   "bs": "čula",
+   "translations": {
+    "de": "gehört (w)",
+    "en": "heard (f)",
+    "tr": "duydu (kadın)",
+    "sv": "hörde (kvinna)",
+    "nl": "gehoord (vrouw)",
+    "nb": "hørte (kvinne)",
+    "da": "hørte (kvinde)",
+    "fr": "entendu (femme)"
    }
   },
   {
@@ -14942,6 +19258,32 @@
    }
   },
   {
+   "bs": "šezdesetoj",
+   "translations": {
+    "de": "sechzigsten (Lok.)",
+    "en": "sixtieth (loc.)",
+    "tr": "altmışıncı (lokatif)",
+    "sv": "sextionde (lokativ)",
+    "nl": "zestigste (locatief)",
+    "nb": "sekstiende (lokativ)",
+    "da": "tresindstyvende (lokativ)",
+    "fr": "soixantième (locatif)"
+   }
+  },
+  {
+   "bs": "šećer",
+   "translations": {
+    "de": "Zucker",
+    "en": "sugar",
+    "tr": "şeker",
+    "sv": "socker",
+    "nl": "suiker",
+    "nb": "sukker",
+    "da": "sukker",
+    "fr": "sucre"
+   }
+  },
+  {
    "bs": "škola",
    "translations": {
     "de": "Schule",
@@ -14965,6 +19307,19 @@
     "nb": "skole (akkusativ)",
     "da": "skole (akkusativ)",
     "fr": "école (accusatif)"
+   }
+  },
+  {
+   "bs": "šporeta",
+   "translations": {
+    "de": "Herd (Gen.)",
+    "en": "stove (gen.)",
+    "tr": "ocak (genitif)",
+    "sv": "spis (genitiv)",
+    "nl": "fornuis (genitief)",
+    "nb": "komfyr (genitiv)",
+    "da": "komfur (genitiv)",
+    "fr": "cuisinière (génitif)"
    }
   },
   {
@@ -15033,6 +19388,32 @@
    }
   },
   {
+   "bs": "šutio",
+   "translations": {
+    "de": "geschwiegen (m)",
+    "en": "was silent (m)",
+    "tr": "sustu (eril)",
+    "sv": "teg (mask.)",
+    "nl": "gezwegen (m)",
+    "nb": "tidde (hankj.)",
+    "da": "tav (hank.)",
+    "fr": "s'est tu (homme)"
+   }
+  },
+  {
+   "bs": "šutjeli",
+   "translations": {
+    "de": "geschwiegen (Mehrz.)",
+    "en": "were silent (pl.)",
+    "tr": "sustular",
+    "sv": "teg (flera)",
+    "nl": "zwegen",
+    "nb": "tidde (flere)",
+    "da": "tav (flere)",
+    "fr": "se sont tus"
+   }
+  },
+  {
    "bs": "žalio",
    "translations": {
     "de": "beschwert (m)",
@@ -15059,6 +19440,19 @@
    }
   },
   {
+   "bs": "želite",
+   "translations": {
+    "de": "ihr möchtet / Sie möchten",
+    "en": "you want (plural or formal)",
+    "tr": "istiyorsunuz",
+    "sv": "ni vill ha",
+    "nl": "jullie willen / u wilt",
+    "nb": "dere vil / De vil",
+    "da": "I vil / De vil",
+    "fr": "vous voulez"
+   }
+  },
+  {
    "bs": "željela",
    "translations": {
     "de": "wollte (w)",
@@ -15074,14 +19468,14 @@
   {
    "bs": "žena",
    "translations": {
-    "de": "Frau",
-    "en": "woman",
-    "tr": "kadın",
-    "sv": "kvinna",
-    "nl": "vrouw",
-    "nb": "kvinne",
-    "da": "kvinde",
-    "fr": "femme"
+    "de": "Frau / Ehefrau",
+    "en": "woman / wife",
+    "tr": "kadın / eş",
+    "sv": "kvinna / hustru",
+    "nl": "vrouw / echtgenote",
+    "nb": "kvinne / kone",
+    "da": "kvinde / kone",
+    "fr": "femme / épouse"
    }
   },
   {
@@ -15095,6 +19489,19 @@
     "nb": "de bor",
     "da": "de bor",
     "fr": "ils vivent"
+   }
+  },
+  {
+   "bs": "živi",
+   "translations": {
+    "de": "er/sie lebt",
+    "en": "he/she lives",
+    "tr": "yaşıyor",
+    "sv": "han/hon bor",
+    "nl": "hij/zij woont",
+    "nb": "han/hun bor",
+    "da": "han/hun bor",
+    "fr": "il / elle habite"
    }
   },
   {
@@ -15121,6 +19528,19 @@
     "nb": "vi bor",
     "da": "vi bor",
     "fr": "nous vivons"
+   }
+  },
+  {
+   "bs": "životu",
+   "translations": {
+    "de": "Leben (Lok.)",
+    "en": "life (loc.)",
+    "tr": "hayat (lokatif)",
+    "sv": "liv (lokativ)",
+    "nl": "leven (locatief)",
+    "nb": "liv (lokativ)",
+    "da": "liv (lokativ)",
+    "fr": "vie (locatif)"
    }
   },
   {

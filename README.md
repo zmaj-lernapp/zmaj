@@ -21,7 +21,7 @@
 **An offline app for learning Bosnian, and the open Bosnian course behind it.**
 295 levels from the first *Merhaba* to an employment contract, about 4,700 words
 and phrases and about 3,300 example sentences with Bosnian audio, 26 grammar
-lessons, 12 graded reading stories, an interface in eight languages. Progress
+lessons, 32 graded reading stories, an interface in eight languages. Progress
 lives on the phone; since v109 the Android app has an
 account (Google or email, after the first lesson) that backs it up. All of the
 content is free to reuse as a dataset.
@@ -74,8 +74,8 @@ Everything the app teaches is exported to [`data/`](data/) under
 |---|---:|---|
 | Words, phrases and example sentences, 31 sections, 295 levels | 7,997 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
-| Graded stories with glossary and questions | 24 | JSON |
-| Reading glossary | 1,164 | JSON |
+| Graded stories with glossary and questions | 32 | JSON |
+| Reading glossary | 1,504 | JSON |
 | Grammar lessons with exercises | 26 | JSON |
 | Synthetic Bosnian audio (MP3) | 2,411 | `web/audio/` |
 | Parallel corpus for machine translation | 8,309 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
@@ -109,7 +109,8 @@ Sprachsynthese zu trainieren. Mehr in data/DATASHEET.md. -->
 - **A level test** after each level, with review questions from the levels it
   builds on, and a **review pot** for what you got wrong.
 - **Grammar**: cases, verb endings, tenses, word order: 26 lessons, 175 exercises.
-- **Reading**: 24 stories, every word tappable, read aloud from start to end.
+- **Reading**: 32 stories, every word tappable. 12 are read aloud from start
+  to end; the 20 B1 stories get their audio in a later step.
 - **Audio for everything**, shipped with the app, so it works on devices with
   no Bosnian voice and without internet.
 - **Eight interface languages**; switching keeps your progress.
@@ -132,7 +133,7 @@ flowchart LR
   subgraph src["Content (edited by hand)"]
     V["vokabeln.py<br/>295 levels · 7,997 entries · 300 cloze sentences"]
     G["grammatik.py<br/>26 lessons"]
-    S["geschichten.py<br/>24 stories"]
+    S["geschichten.py<br/>32 stories"]
     U["uebersetzungen.py · sprachen.py<br/>8 languages"]
   end
   L{{"inhalt.lade_daten(lang)"}}

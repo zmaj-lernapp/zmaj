@@ -3,7 +3,7 @@
 An open, structured course for learning **Bosnian** (Ijekavian, Latin script):
 vocabulary, cloze sentences, graded reading stories, a reading glossary and
 grammar lessons, each translated into eight languages and with a Bosnian
-audio recording for every sentence and story and for all words but twelve
+audio recording for every sentence, for 12 of the 32 stories and for all words but twelve
 (family words added in October 2026).
 
 It is the exact content of the Zmaj app, exported by
@@ -60,13 +60,13 @@ pie showData title Words per section (7,997)
 |---|---|---|
 | `vocabulary.json` / `.csv` | words and phrases, 31 sections, 295 levels | 7,997 |
 | `sentences.json` / `.csv` | fill-in-the-gap sentences with the full sentence | 300 |
-| `stories.json` | graded stories with translation, glossary and comprehension questions | 24 |
-| `glossary.json` | word-by-word reading glossary used by the stories | 1,164 |
+| `stories.json` | graded stories with translation, glossary and comprehension questions | 32 |
+| `glossary.json` | word-by-word reading glossary used by the stories | 1,504 |
 | `grammar.json` | grammar lessons (explanations, tables, exercises) per language | 26 |
 | `anki/zmaj-bs-<lang>.tsv` | ready-to-import Anki decks, tagged by level | 8 decks |
 | `parallel/bs-<lang>.tsv` | Bosnian–X pairs for machine translation: words, then sentences | 8,297 pairs × 8 |
-| `parallel.jsonl` | one line per word, sentence and story with all translations | 8,321 lines |
-| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 8,321 `<tu>` |
+| `parallel.jsonl` | one line per word, sentence and story with all translations | 8,329 lines |
+| `parallel.tmx` | the same as a TMX 1.4b translation memory (`srclang="bs"`) | 8,329 `<tu>` |
 | `manifest.json` | counts and SHA-256 of every file above | – |
 | `schema/*.schema.json` | JSON Schema (2020-12) for the JSON files and one `parallel.jsonl` line | – |
 
@@ -104,7 +104,7 @@ Dobro jutro	Good morning	word	guten morgen:Dobro jutro
 Gdje je stanica?	Where is the stop?	sentence	s0041
 ```
 
-`parallel.jsonl` and `parallel.tmx` also contain the 24 stories as whole
+`parallel.jsonl` and `parallel.tmx` also contain the 32 stories as whole
 texts; they are not sentence-aligned. Words are short phrases, often with
 variants separated by ` / ` (*Laku noć / Lahku noć*); split or drop them as
 your task requires. With 8,297 pairs per language this is evaluation or
