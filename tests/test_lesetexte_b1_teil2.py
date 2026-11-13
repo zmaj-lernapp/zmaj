@@ -57,6 +57,46 @@ def test_drei_fragen_mit_drei_antworten(grunddaten):
             assert f["richtig"] in f["optionen"], (i, f["frage"])
 
 
+def test_absaetze_wie_in_paket_1_und_2(alle_daten):
+    """Absätze als Leerzeile in Text und Übersetzung, in jeder Sprache gleich
+    viele (Prüfung 13.11.2026: ohne sie war jeder Text am 360-px-Bildschirm
+    ein Block von zwei Bildschirmhöhen). Der Ton-Schlüssel hängt am Text, die
+    Absätze müssen also vor ton_bauen.py stehen."""
+    for code, daten in alle_daten.items():
+        g = _geschichten(daten)
+        for i in IDS:
+            text, ueb = g[i]["text"], g[i]["uebersetzung"]
+            absaetze = text.split("\n\n")
+            assert len(absaetze) >= 4, (i, len(absaetze))
+            assert len(ueb.split("\n\n")) == len(absaetze), (code, i)
+            for t in (text, ueb):
+                teile = t.split("\n\n")
+                assert all(p and p == p.strip() and "\n" not in p for p in teile), (code, i)
+
+
+def test_laenge_verraet_die_antwort_nicht(alle_daten, index_html):
+    """renderChoice() setzt Antworten über 14 Zeichen kleiner und ohne
+    Serifen. Ist nur die richtige so lang, sieht man sie (Prüfung 13.11.2026:
+    5 von 24 Fragen auf Deutsch, 31 über alle Sprachen). Also ist in keiner
+    Sprache nur die richtige Antwort lang. Und keine Antwort trägt einen
+    Hinweis in Klammern, wie ihn Wörterbuch-Bedeutungen haben ("personne
+    (négation)" stand im französischen Quiz)."""
+    grenze = re.search(r"label\.length>(\d+)\?' long'", index_html)
+    assert grenze, "Schwelle in renderChoice() nicht gefunden"
+    grenze = int(grenze.group(1))
+    fehler = []
+    for code, daten in alle_daten.items():
+        g = _geschichten(daten)
+        for i in IDS:
+            for n, f in enumerate(g[i]["fragen"], 1):
+                assert f["richtig"] in f["optionen"], (code, i, n)
+                lang = [o for o in f["optionen"] if len(o) > grenze]
+                if lang == [f["richtig"]]:
+                    fehler.append("%s %s Frage %d: %s" % (code, i, n, f["richtig"]))
+                fehler += ["%s %s Frage %d: %s" % (code, i, n, o) for o in f["optionen"] if "(" in o]
+    assert fehler == [], fehler
+
+
 def test_kein_titel_und_keine_kennung_doppelt(grunddaten):
     """Themen, die es schon gab, kommen nicht noch einmal (Entscheidung 15a)."""
     titel = [g["titel"].lower() for g in grunddaten["geschichten"]]
