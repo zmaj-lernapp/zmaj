@@ -70,11 +70,20 @@ def test_jedes_abzeichen_hat_sein_bild(wurzel, index_html):
                                         "erfolg.erste", "erfolg.alle", "erfolg.kopf"])
 def test_namen_bleiben_kurz(sprachcodes, schluessel):
     """Die Namen unter den Ringen: eine Zahl und ein Wort, damit bei 360 px
-    nichts umbricht (erfolge.md, Risiken). Hoechstens 16 Zeichen."""
+    nichts umbricht (erfolge.md, Risiken). Hoechstens 16 Zeichen.
+
+    Seit 13.11.2026 heisst erfolg.kopf "Bombengedächtnis" (Ajdin), in den
+    anderen Sprachen die Redewendung vom Elefanten-Gedaechtnis. Die sind
+    laenger: bis 18 Zeichen, aber jedes Wort ueber 10 Buchstaben braucht
+    einen weichen Trennstrich (U+00AD), sonst bricht es bei 55 px Spalte
+    mitten im Wort um ("Bombeng|edächtnis")."""
     import sprachen
     for code in sprachcodes:
         v = sprachen.texte(code)[schluessel]
-        assert v and len(v) <= 16, (code, schluessel, v)
+        sichtbar = v.replace("­", "")
+        assert sichtbar and len(sichtbar) <= (18 if schluessel == "erfolg.kopf" else 16), (code, schluessel, v)
+        for wort in v.split():
+            assert all(len(s) <= 10 for s in wort.split("­")), (code, schluessel, wort)
 
 
 def test_texte_in_allen_sprachen(sprachcodes, index_html):

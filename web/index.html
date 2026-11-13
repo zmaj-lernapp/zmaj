@@ -1067,7 +1067,11 @@
   .abz .abzring{margin-bottom:11px}
   .abz:focus-visible{outline:none}
   .abz:focus-visible .abzring{outline:3px solid var(--primary); outline-offset:2px}
-  .abzname{font-size:11px; font-weight:800; line-height:1.2; text-align:center; overflow-wrap:anywhere}
+  /* Lange Namen ("Bombengedächtnis", Ajdin 13.11.2026) brechen an weichen
+     Trennstrichen (U+00AD in sprachen.py) statt mitten im Wort. Die 2 px
+     links und rechts leiht sich der Name aus dem Spaltenabstand: bei 360 px
+     ist eine Spalte 55 px breit, "gedächtnis" braucht 57 px. */
+  .abzname{font-size:11px; font-weight:800; line-height:1.2; text-align:center; overflow-wrap:anywhere; margin:0 -2px}
   .abz.offen .abzname{color:var(--muted)}
   .abzbalken{display:block; width:44px; max-width:100%; height:5px; border-radius:99px; background:var(--primary-soft); overflow:hidden; margin-top:4px}
   .abzbalken i{display:block; height:100%; background:var(--accent)}
