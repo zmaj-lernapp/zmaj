@@ -58,8 +58,13 @@ TOR = 9447
 # Satz“ aus sprachen.py (task.kacheln). Keine Wörter wie „beste“, „Top“,
 # „neu“ und keine Vergleiche (Google-Regeln zu Store-Angaben).
 UEBERSCHRIFTEN = {
+    # Bild 4: „Wort für Wort bauen“ mit geschuetzten Leerzeichen (U+00A0) wie
+    # im Tuerkischen, damit es „Sätze / Wort für Wort bauen“ umbricht. Ohne
+    # brach es als „Sätze Wort für / Wort bauen“ um, nur mit „Wort für Wort“
+    # gebunden als „Sätze Wort für Wort / bauen“ (Pruefung 13.11.2026).
+    # Der Wortlaut bleibt gleich.
     "de": ["Jeden Tag ein Stück Bosnisch", "Vom Hallo bis zum Amt",
-           "Jedes Wort zum Anhören", "Sätze Wort für Wort bauen",
+           "Jedes Wort zum Anhören", "Sätze Wort für Wort bauen",
            "Grammatik, einfach erklärt", "Ganze Sätze selbst schreiben",
            "Geschichten: Wort antippen, verstehen", "Wiederholen, bevor du vergisst"],
     "en": ["A little Bosnian every day", "From hello to paperwork",

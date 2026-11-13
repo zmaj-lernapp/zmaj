@@ -5,6 +5,11 @@ Erzeugt die acht Bilder in store/screenshots, je 1080 x 1920, PNG ohne
 Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 13.11.2026
 (alle Sprachen und Geraete aus dem Stand 1.3, --version 1.3).
 
+store/screenshots haelt die deutschen Rohbilder ohne Ueberschrift aus
+diesem Lauf (--aussehen dunkel --version 1.3), seit 13.11.2026 in der neuen
+Folge 01-start bis 08-wiederholen. store/feature-1024x500.png ist am selben
+Tag aus web/_feature.html neu entstanden (grafiken_bauen.py, Schritt 4).
+
 Die Bilder entstehen in einem unsichtbaren Chrome am PC, nicht auf dem
 Handy. Das hat drei Gruende:
   - Das Handy braucht dafuer keine geaenderte Bildschirmgroesse.
