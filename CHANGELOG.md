@@ -33,7 +33,9 @@ are in the Play Store listing. Format:
   are open but not passed. Levels with known words always stay open. Two new
   levels hold 40 frequent words that came only in B1 before (*Little words* in
   A1, *Everyday words* in A2); the entries only moved, IDs, audio and progress
-  stay. "At home" now comes after "Cases 1"; "Building sentences" is split into
+  stay. *tako* and *pa*, now in the same level, never appear in the same multiple
+  choice (`NIE_NEBENEINANDER`; in English *pa* is "and then / so"). "At home"
+  now comes after "Cases 1"; "Building sentences" is split into
   two sections. 297 levels, 27 sections: B2 went from 14 sections to nine,
   one per colour (old 18+19, 21+22, 23+24, 28+29 and 30+31 merged; level order
   and progress unchanged). The tab bar shows the progress as "112/129" so that
