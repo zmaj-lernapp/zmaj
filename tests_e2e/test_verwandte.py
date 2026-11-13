@@ -109,6 +109,69 @@ def test_koseformen_zaehlen_beim_tippen(seite, heute_stand):
     assert seite.fehler == []
 
 
+AMIDZIC = "cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže"
+AMIDZICNA = "cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže"
+
+
+def test_stric_formen_zaehlen_beim_tippen(seite, heute_stand):
+    """13.11.2026, Ajdin: "4 ja" - stričević zaehlt beim Tippen neben amidžić,
+    stričevka neben amidžična, ueber "auch" wie die Koseformen. Ohne Haekchen
+    ist es wie bei jedem Wort 'almost' ("Richtig! Mit Sonderzeichen"), und
+    gezeigt wird dann das getippte Wort, nicht amidžić."""
+    seite.starten(stand=heute_stand())
+    erg = seite.js("""([ic, icna]) => {
+      const a = wortNachId(ic).w, b = wortNachId(icna).w;
+      const m = (eingabe, w) => matches(eingabe, annehmbar(w).join(' / '));
+      return {stricevic: m('stričević', a), gross: m('Stričević', a), ohne: m('stricevic', a),
+              gemeint: gemeinteAntwort('stricevic', annehmbar(a).join(' / ')),
+              stricevka: m('stričevka', b), ohne_f: m('stricevka', b),
+              amidzic: m('amidžić', a), brat: m('brat od amidže', a), amidzicna: m('amidžična', b),
+              quer: m('stričevka', a), quer_f: m('stričević', b), onkel: m('stric', a),
+              anzeige: [a.bs, b.bs], tippen: [typable(a), typable(b)]};
+    }""", [AMIDZIC, AMIDZICNA])
+    assert erg == {"stricevic": "ok", "gross": "ok", "ohne": "almost", "gemeint": "stričević",
+                   "stricevka": "ok", "ohne_f": "almost",
+                   "amidzic": "ok", "brat": "ok", "amidzicna": "ok",
+                   "quer": "no", "quer_f": "no", "onkel": "no",
+                   "anzeige": ["amidžić / brat od amidže", "amidžična / sestra od amidže"],
+                   "tippen": [False, False]}
+    assert seite.fehler == []
+
+
+SCHREIBEN = """async ([id, eingabe]) => {
+  const warte = ms => new Promise(r => setTimeout(r, ms));
+  const i = CATEGORIES.findIndex(c => c.id === 'familie');
+  openLevel(i); startLesson();
+  Lx.queue = [{typ: 'type', w: wortNachId(id).w, pool: CATEGORIES[i].words}];
+  Lx.i = 0; Lx.total = 1; Lx.right = 0; Lx.results = [];
+  showLessonTask();
+  await warte(250);
+  const body = document.getElementById('lBody');
+  body.querySelector('#xIn').value = eingabe;
+  body.querySelector('#xCheck').click();
+  await warte(150);
+  const fb = body.querySelector('#xFb');
+  return {richtig: Lx.right, ergebnis: Lx.results[0], klasse: fb.className, text: fb.textContent};
+}"""
+
+
+def test_schreibaufgabe_mit_stricevic(seite, heute_stand):
+    """Als Schreibaufgabe kommen amidžić und amidžična nie (" / ", typable()) -
+    gaebe es sie, zaehlte stričević bzw. stričevka auch dort; ohne Haekchen
+    "Richtig! Mit Sonderzeichen: stričević", ohne Leben."""
+    seite.starten(stand=heute_stand())
+    erg = seite.js(SCHREIBEN, [AMIDZIC, "stričević"])
+    assert (erg["richtig"], erg["ergebnis"], erg["klasse"]) == (1, True, "feedback ok"), erg
+    erg = seite.js(SCHREIBEN, [AMIDZIC, "stricevic"])
+    assert (erg["richtig"], erg["ergebnis"], erg["klasse"]) == (1, True, "feedback almost"), erg
+    assert erg["text"] == "Richtig! Mit Sonderzeichen: stričević", erg
+    erg = seite.js(SCHREIBEN, [AMIDZICNA, "stričevka"])
+    assert (erg["richtig"], erg["ergebnis"]) == (1, True), erg
+    erg = seite.js(SCHREIBEN, [AMIDZIC, "stričevka"])
+    assert (erg["richtig"], erg["ergebnis"]) == (0, False), erg
+    assert seite.fehler == []
+
+
 AUFGABE = """async ([art, eingabe]) => {
   const warte = ms => new Promise(r => setTimeout(r, ms));
   const i = CATEGORIES.findIndex(c => c.id === 'familie');

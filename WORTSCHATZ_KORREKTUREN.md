@@ -707,3 +707,31 @@ schon Grammatik-Überschrift; nicht en, sv) und auf Schwedisch *pitati* / *upita
 jetzt anders: sv „Jeden Monat schicke ich meinen Eltern eine Überweisung.“, nb
 „Vorfall“ (insident statt tilfelle, das ist *slučaj*), da „Ich kann mich nicht an
 seinen Namen erinnern.“ (komme i tanke om).
+
+## 13.11.2026 – Cousin und Cousine väterlicherseits: auch stričević und stričevka
+
+Frage an Ajdin: „Soll stričević / stričevka auch in die App? Am einfachsten zählt
+es beim Tippen als richtig neben amidžić (keine neue Aufnahme).“ Ajdin: „4 ja“.
+
+Belege (Recherche 13.11.2026): *stričević* = Sohn des *stric* (HJP), *stričevka* =
+gebräuchliche weibliche Form (CLASSLA-Korpus, Mundart Duvno).
+
+| Kennung | Änderung |
+|---|---|
+| `cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže` | `"auch": ["stričević"]` |
+| `cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže` | `"auch": ["stričevka"]` |
+
+- Derselbe Weg wie die Koseformen vom 23.10.2026 (*striko*, *adžo*, *ujo*, *dajo*):
+  `"auch"` am Wort in `vokabeln.py`. Die Varianten-Liste `varianten.py` gilt für
+  Wörter mit „ / “ nicht (`tippbar()`), deshalb nicht dort.
+- Nur die Grundform, ungebeugt wie bei den Koseformen. Ohne Häkchen
+  („stricevic“) ist es wie bei jedem Wort „Richtig! Mit Sonderzeichen: stričević“.
+- Kennung, Anzeige und Emirs Aufnahme bleiben, kein Lernstand geht verloren.
+  *stričević* und *stričevka* sind keine eigenen Lernwörter und werden nie
+  gesprochen.
+- Wie bei *amidža / stric*: Wörter mit „ / “ kommen heute nie als Schreibaufgabe
+  (`typable()`), und kein Lückensatz fragt *amidžić* oder *amidžična*. Wirksam
+  wird `"auch"` beim Tippen damit erst, wenn so eine Stelle dazukommt. Sichtbar
+  werden können die beiden heute nur wie *striko* und *adžo*: als falsche Kachel
+  beim Satzbau (`kachelAblenker()` nimmt jede Form aus `"auch"`).
+- Tests: `tests/test_verwandte.py`, `tests_e2e/test_verwandte.py`.

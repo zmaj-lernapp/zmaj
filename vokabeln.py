@@ -346,14 +346,18 @@ KATEGORIEN = [
         # ton_bauen.py spricht nur "bs".
         # Bewusst nicht: bratić, sestrična, bratučed - je nach Gegend Cousin
         # oder Neffe/Nichte.
+        # "auch" bei amidžić und amidžična (13.11.2026, Ajdin: "4 ja"): die
+        # Formen zu stric, stričević und stričevka. Wie die Koseformen nur
+        # beim Tippen richtig, keine eigenen Lernwoerter, nie gesprochen.
+        # Kennung, Anzeige und Aufnahme bleiben, wie sie sind.
         {"de": "Onkel (Bruder des Vaters)",                      "bs": "amidža / stric", "auch": ["striko", "adžo"]},
         {"de": "Onkel (Bruder der Mutter)",                      "bs": "daidža / ujak", "auch": ["ujo", "dajo"]},
         {"de": "Onkel (Mann der Tante)",                         "bs": "tetak"},
         {"de": "Tante (Schwester von Vater oder Mutter)",        "bs": "tetka"},
         {"de": "Tante (Frau des Onkels väterlicherseits)",       "bs": "strina / amidžinica"},
         {"de": "Tante (Frau des Onkels mütterlicherseits)",      "bs": "ujna / daidžinica"},
-        {"de": "Cousin (Sohn des Onkels väterlicherseits)",      "bs": "amidžić / brat od amidže"},
-        {"de": "Cousine (Tochter des Onkels väterlicherseits)",  "bs": "amidžična / sestra od amidže"},
+        {"de": "Cousin (Sohn des Onkels väterlicherseits)",      "bs": "amidžić / brat od amidže", "auch": ["stričević"]},
+        {"de": "Cousine (Tochter des Onkels väterlicherseits)",  "bs": "amidžična / sestra od amidže", "auch": ["stričevka"]},
         {"de": "Cousin (Sohn des Onkels mütterlicherseits)",     "bs": "daidžić / brat od daidže"},
         {"de": "Cousine (Tochter des Onkels mütterlicherseits)", "bs": "daidžična / sestra od daidže"},
         {"de": "Cousin (Sohn der Tante)",                        "bs": "tetić / brat od tetke"},

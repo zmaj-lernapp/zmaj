@@ -323,6 +323,10 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Family level (13.11.2026, approved by the maintainer): *stričević* now counts
+  as correct when typed next to *amidžić*, and *stričevka* next to *amidžična*,
+  through `"auch"` like the pet names *striko* and *adžo*. IDs, display and
+  recordings stay; both are not separate words and are never spoken.
 - Cloud backup (1.4, decided by the maintainer on 13.11.2026): the app reads
   the old form and a packed one. Packed, every learned word is stored once
   instead of twice (in `gewusst` and in the review box), then gzipped with the
