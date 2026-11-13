@@ -308,6 +308,12 @@ GESCHICHTEN = [
 # nach frei. Vorlage: Release\Entscheidungen_2026-11-13\lesetexte_proben.md
 # (Entscheidung 14a/15a/16a vom 13.11.2026).
 #
+# Absätze stehen wie in Paket 1 und 2 als Leerzeile ("\n\n") in Text und
+# Übersetzung, die App zeigt sie (white-space: pre-line). Sie gehören zum
+# Ton-Schlüssel: erst Absätze, dann ton_bauen.py, sonst spricht Azure zweimal.
+# Die Ablenker der Fragen sind ähnlich lang wie die richtige Antwort, weil
+# renderChoice() Antworten über 14 Zeichen kleiner setzt (Prüfung 13.11.2026).
+#
 # WOERTERBUCH_B1_2 sind die Wortformen dieser Texte, die im WOERTERBUCH oben
 # noch fehlten. Steht ein Wort schon im WOERTERBUCH, gilt der Eintrag dort.
 # Die Aufnahmen fehlen noch (ton_bauen.py, dann wortzeiten_holen.py), siehe
@@ -467,224 +473,110 @@ WOERTERBUCH.update({k: v for k, v in WOERTERBUCH_B1_2.items() if k not in WOERTE
 GESCHICHTEN += [
     {
         "id": "b1_doktor", "titel": "Kod doktora", "stufe": "B1", "passt_zu": "in_der_praxis",
-        "text": "Amar se već tri dana ne osjeća dobro. Boli ga grlo, ima temperaturu i stalno je umoran. "
-                "U ponedjeljak ujutro nazvao je dom zdravlja i zakazao termin kod doktorice za deset sati. "
-                "U čekaonici je bilo mnogo ljudi. "
-                "Pored Amara je sjedio jedan stariji čovjek koji je stalno kašljao. „I vas boli grlo?“ "
-                "pitao je čovjek. „Da, već tri dana“, odgovorio je Amar. „Sada su svi bolesni. "
-                "To je od ovog vremena.“ Kad je došao na red, doktorica ga je pitala: „Šta vas boli i od kada?“ "
-                "Amar joj je sve objasnio. Ona ga je pregledala i izmjerila mu temperaturu. „Imate upalu grla. "
-                "Nije ništa ozbiljno, ali morate se odmarati. Dat ću vam recept, a pet dana ste na bolovanju.“ "
-                "U apoteci mu je apotekar dao lijek i rekao: „Pijte jednu tabletu tri puta dnevno, poslije jela. "
-                "I pijte mnogo čaja s medom.“ Kod kuće je Amar nazvao mamu. „Jesi li bio kod doktora?“ "
-                "pitala je ona. „Jesam, mama. Nije ništa strašno.“ „Onda dobro. Čaj s medom i u krevet!“ "
-                "Poslije pet dana Amar je opet bio zdrav i vratio se na posao.",
-        "uebersetzung": "Amar fühlt sich schon seit drei Tagen nicht gut. "
-                "Sein Hals tut weh, er hat Fieber und ist ständig müde. "
-                "Am Montagmorgen hat er im Gesundheitszentrum angerufen und für zehn Uhr einen Termin bei der Ärztin vereinbart. "
-                "Im Wartezimmer waren viele Leute. Neben Amar saß ein älterer Mann, der ständig hustete. "
-                "„Tut Ihnen auch der Hals weh?“, fragte der Mann. „Ja, schon seit drei Tagen“, antwortete Amar. "
-                "„Jetzt sind alle krank. Das kommt von diesem Wetter.“ "
-                "Als er an der Reihe war, fragte ihn die Ärztin: „Was tut Ihnen weh, und seit wann?“ "
-                "Amar hat ihr alles erklärt. Sie hat ihn untersucht und bei ihm Fieber gemessen. "
-                "„Sie haben eine Halsentzündung. Es ist nichts Ernstes, aber Sie müssen sich ausruhen. "
-                "Ich gebe Ihnen ein Rezept, und Sie sind fünf Tage krankgeschrieben.“ "
-                "In der Apotheke gab ihm der Apotheker das Medikament und sagte: „Nehmen Sie dreimal täglich eine Tablette, nach dem Essen. "
-                "Und trinken Sie viel Tee mit Honig.“ Zu Hause rief Amar seine Mama an. "
-                "„Warst du beim Arzt?“, fragte sie. „Ja, Mama. Es ist nichts Schlimmes.“ „Dann ist es gut. "
-                "Tee mit Honig und ab ins Bett!“ Nach fünf Tagen war Amar wieder gesund und ging wieder zur Arbeit.",
+        "text": ("Amar se već tri dana ne osjeća dobro. Boli ga grlo, ima temperaturu i stalno je umoran. U ponedjeljak ujutro nazvao je dom zdravlja i zakazao termin kod doktorice za deset sati.\n\n"
+                 "U čekaonici je bilo mnogo ljudi. Pored Amara je sjedio jedan stariji čovjek koji je stalno kašljao. „I vas boli grlo?“ pitao je čovjek. „Da, već tri dana“, odgovorio je Amar. „Sada su svi bolesni. To je od ovog vremena.“\n\n"
+                 "Kad je došao na red, doktorica ga je pitala: „Šta vas boli i od kada?“ Amar joj je sve objasnio. Ona ga je pregledala i izmjerila mu temperaturu. „Imate upalu grla. Nije ništa ozbiljno, ali morate se odmarati. Dat ću vam recept, a pet dana ste na bolovanju.“\n\n"
+                 "U apoteci mu je apotekar dao lijek i rekao: „Pijte jednu tabletu tri puta dnevno, poslije jela. I pijte mnogo čaja s medom.“\n\n"
+                 "Kod kuće je Amar nazvao mamu. „Jesi li bio kod doktora?“ pitala je ona. „Jesam, mama. Nije ništa strašno.“ „Onda dobro. Čaj s medom i u krevet!“ Poslije pet dana Amar je opet bio zdrav i vratio se na posao."),
+        "uebersetzung": ("Amar fühlt sich schon seit drei Tagen nicht gut. Sein Hals tut weh, er hat Fieber und ist ständig müde. Am Montagmorgen hat er im Gesundheitszentrum angerufen und für zehn Uhr einen Termin bei der Ärztin vereinbart.\n\n"
+                         "Im Wartezimmer waren viele Leute. Neben Amar saß ein älterer Mann, der ständig hustete. „Tut Ihnen auch der Hals weh?“, fragte der Mann. „Ja, schon seit drei Tagen“, antwortete Amar. „Jetzt sind alle krank. Das kommt von diesem Wetter.“\n\n"
+                         "Als er an der Reihe war, fragte ihn die Ärztin: „Was tut Ihnen weh, und seit wann?“ Amar hat ihr alles erklärt. Sie hat ihn untersucht und bei ihm Fieber gemessen. „Sie haben eine Halsentzündung. Es ist nichts Ernstes, aber Sie müssen sich ausruhen. Ich gebe Ihnen ein Rezept, und Sie sind fünf Tage krankgeschrieben.“\n\n"
+                         "In der Apotheke gab ihm der Apotheker das Medikament und sagte: „Nehmen Sie dreimal täglich eine Tablette, nach dem Essen. Und trinken Sie viel Tee mit Honig.“\n\n"
+                         "Zu Hause rief Amar seine Mama an. „Warst du beim Arzt?“, fragte sie. „Ja, Mama. Es ist nichts Schlimmes.“ „Dann ist es gut. Tee mit Honig und ab ins Bett!“ Nach fünf Tagen war Amar wieder gesund und ging wieder zur Arbeit."),
         "vokabeln": {"vremena": "Wetter / Zeit (Gen.)", "jela": "Essen (Gen.)", "koji": "der (Relativ) / welcher"},
         "fragen": [
-            {"frage": "Was hat Amar?", "optionen": ["eine Halsentzündung", "eine Grippe", "Bauchschmerzen"], "richtig": "eine Halsentzündung"},
-            {"frage": "Wie oft soll er die Tablette nehmen?", "optionen": ["dreimal täglich", "einmal täglich", "nur am Abend"], "richtig": "dreimal täglich"},
+            {"frage": "Was hat Amar?", "optionen": ["eine Halsentzündung", "eine Ohrenentzündung", "Bauchschmerzen"], "richtig": "eine Halsentzündung"},
+            {"frage": "Wie oft soll er die Tablette nehmen?", "optionen": ["dreimal täglich", "zweimal täglich", "nur am Abend"], "richtig": "dreimal täglich"},
             {"frage": "Wie lange ist Amar krankgeschrieben?", "optionen": ["fünf Tage", "drei Tage", "zwei Wochen"], "richtig": "fünf Tage"},
         ],
     },
     {
         "id": "b1_selidba", "titel": "Selidba", "stufe": "B1", "passt_zu": "erledigen_umziehen",
-        "text": "Selma je dobila novi posao u Sarajevu, pa se mora preseliti iz Tuzle. "
-                "Našla je mali stan na Grbavici, blizu posla. "
-                "Stan ima dvije sobe, kuhinju i balkon s pogledom na planine. "
-                "U subotu ujutro došli su njen brat Tarik i dvojica prijatelja. "
-                "Cijelo jutro su nosili kutije, stolice, krevet i ormar u kombi. "
-                "„Šta imaš u ovoj kutiji, kamenje?“ smijao se Tarik. „Ne, knjige“, rekla je Selma. "
-                "Poslije dva sata vožnje stigli su u Sarajevo. "
-                "Ali lift u zgradi nije radio, a stan je bio na petom spratu. Morali su sve nositi stepenicama. "
-                "Kad su završili, svi su bili umorni i gladni. Onda je neko pokucao na vrata. "
-                "Bila je to komšinica s četvrtog sprata, s toplom pitom. „Dobro došli! Ja sam Hajra. "
-                "Ako vam nešto treba, samo pokucajte.“ "
-                "Sjeli su na pod, jer sto još nisu kupili, i jeli pitu rukama. "
-                "Selma je pogledala kroz prozor i nasmijala se. "
-                "Stan je još bio pun kutija, ali ona se već osjećala kao kod kuće.",
-        "uebersetzung": "Selma hat eine neue Arbeit in Sarajevo bekommen, also muss sie aus Tuzla umziehen. "
-                "Sie hat eine kleine Wohnung in Grbavica gefunden, in der Nähe der Arbeit. "
-                "Die Wohnung hat zwei Zimmer, eine Küche und einen Balkon mit Blick auf die Berge. "
-                "Am Samstagmorgen kamen ihr Bruder Tarik und zwei Freunde. "
-                "Den ganzen Morgen trugen sie Kisten, Stühle, ein Bett und einen Schrank in den Kleinbus. "
-                "„Was hast du in dieser Kiste, Steine?“, lachte Tarik. „Nein, Bücher“, sagte Selma. "
-                "Nach zwei Stunden Fahrt kamen sie in Sarajevo an. "
-                "Aber der Aufzug im Gebäude funktionierte nicht, und die Wohnung lag im fünften Stock. "
-                "Sie mussten alles über die Treppe tragen. Als sie fertig waren, waren alle müde und hungrig. "
-                "Dann klopfte jemand an die Tür. "
-                "Es war die Nachbarin aus dem vierten Stock, mit einer warmen Pita. „Willkommen! Ich bin Hajra. "
-                "Wenn ihr etwas braucht, klopft einfach.“ "
-                "Sie setzten sich auf den Boden, weil sie noch keinen Tisch gekauft hatten, und aßen die Pita mit den Händen. "
-                "Selma schaute aus dem Fenster und lachte. "
-                "Die Wohnung war noch voller Kisten, aber sie fühlte sich schon wie zu Hause.",
+        "text": ("Selma je dobila novi posao u Sarajevu, pa se mora preseliti iz Tuzle. Našla je mali stan na Grbavici, blizu posla. Stan ima dvije sobe, kuhinju i balkon s pogledom na planine.\n\n"
+                 "U subotu ujutro došli su njen brat Tarik i dvojica prijatelja. Cijelo jutro su nosili kutije, stolice, krevet i ormar u kombi. „Šta imaš u ovoj kutiji, kamenje?“ smijao se Tarik. „Ne, knjige“, rekla je Selma.\n\n"
+                 "Poslije dva sata vožnje stigli su u Sarajevo. Ali lift u zgradi nije radio, a stan je bio na petom spratu. Morali su sve nositi stepenicama. Kad su završili, svi su bili umorni i gladni.\n\n"
+                 "Onda je neko pokucao na vrata. Bila je to komšinica s četvrtog sprata, s toplom pitom. „Dobro došli! Ja sam Hajra. Ako vam nešto treba, samo pokucajte.“\n\n"
+                 "Sjeli su na pod, jer sto još nisu kupili, i jeli pitu rukama. Selma je pogledala kroz prozor i nasmijala se. Stan je još bio pun kutija, ali ona se već osjećala kao kod kuće."),
+        "uebersetzung": ("Selma hat eine neue Arbeit in Sarajevo bekommen, also muss sie aus Tuzla umziehen. Sie hat eine kleine Wohnung in Grbavica gefunden, in der Nähe der Arbeit. Die Wohnung hat zwei Zimmer, eine Küche und einen Balkon mit Blick auf die Berge.\n\n"
+                         "Am Samstagmorgen kamen ihr Bruder Tarik und zwei Freunde. Den ganzen Morgen trugen sie Kisten, Stühle, ein Bett und einen Schrank in den Kleinbus. „Was hast du in dieser Kiste, Steine?“, lachte Tarik. „Nein, Bücher“, sagte Selma.\n\n"
+                         "Nach zwei Stunden Fahrt kamen sie in Sarajevo an. Aber der Aufzug im Gebäude funktionierte nicht, und die Wohnung lag im fünften Stock. Sie mussten alles über die Treppe tragen. Als sie fertig waren, waren alle müde und hungrig.\n\n"
+                         "Dann klopfte jemand an die Tür. Es war die Nachbarin aus dem vierten Stock, mit einer warmen Pita. „Willkommen! Ich bin Hajra. Wenn ihr etwas braucht, klopft einfach.“\n\n"
+                         "Sie setzten sich auf den Boden, weil sie noch keinen Tisch gekauft hatten, und aßen die Pita mit den Händen. Selma schaute aus dem Fenster und lachte. Die Wohnung war noch voller Kisten, aber sie fühlte sich schon wie zu Hause."),
         "fragen": [
-            {"frage": "Warum zieht Selma um?", "optionen": ["wegen einer neuen Arbeit", "wegen der Miete", "wegen der Schule"], "richtig": "wegen einer neuen Arbeit"},
+            {"frage": "Warum zieht Selma um?", "optionen": ["wegen einer neuen Arbeit", "wegen der Miete", "wegen einer größeren Wohnung"], "richtig": "wegen einer neuen Arbeit"},
             {"frage": "Warum mussten sie alles über die Treppe tragen?", "optionen": ["der Aufzug funktionierte nicht", "die Kisten waren zu groß", "die Treppe war schneller"], "richtig": "der Aufzug funktionierte nicht"},
-            {"frage": "Was brachte die Nachbarin mit?", "optionen": ["eine warme Pita", "Kaffee", "Blumen"], "richtig": "eine warme Pita"},
+            {"frage": "Was brachte die Nachbarin mit?", "optionen": ["eine warme Pita", "eine warme Suppe", "einen Blumenstrauß"], "richtig": "eine warme Pita"},
         ],
     },
     {
         "id": "b1_rodjendan", "titel": "Rođendansko iznenađenje", "stufe": "B1", "passt_zu": "feiern",
-        "text": "Haris će u petak napuniti trideset godina. "
-                "Njegova žena Lamija već mjesec dana tajno sprema iznenađenje. "
-                "Pozvala je njegove roditelje, brata i najbolje prijatelje, ali niko ne smije ništa reći Harisu. "
-                "„Šta ćemo raditi u petak?“ pitao je Haris u srijedu. „Ništa posebno“, rekla je Lamija. "
-                "„Idemo kod tvojih na večeru.“ Haris je bio malo tužan. "
-                "Mislio je da su svi zaboravili njegov rođendan. "
-                "U petak navečer gosti su se sakrili u stanu njegovih roditelja. "
-                "Svjetlo je bilo ugašeno i svi su šutjeli. Kad su Haris i Lamija ušli, neko je upalio svjetlo. "
-                "„Iznenađenje! Sretan rođendan!“ Haris je stajao na vratima i nije mogao vjerovati. "
-                "Njegova mama je donijela veliku tortu s trideset svijeća. "
-                "Haris ih je ugasio odjednom, a svi su vikali: „Bravo!“ "
-                "Onda mu je Lamija dala poklon: dvije karte za koncert njegovog omiljenog pjevača. "
-                "„Ovo je najljepši rođendan u mom životu“, rekao je Haris. Do ponoći su jeli, pjevali i plesali. "
-                "A Haris je još dugo pričao svima kako ništa nije znao.",
-        "uebersetzung": "Haris wird am Freitag dreißig. "
-                "Seine Frau Lamija bereitet schon seit einem Monat heimlich eine Überraschung vor. "
-                "Sie hat seine Eltern, seinen Bruder und seine besten Freunde eingeladen, aber niemand darf Haris etwas sagen. "
-                "„Was machen wir am Freitag?“, fragte Haris am Mittwoch. „Nichts Besonderes“, sagte Lamija. "
-                "„Wir gehen zum Abendessen zu deinen Eltern.“ Haris war ein bisschen traurig. "
-                "Er dachte, alle hätten seinen Geburtstag vergessen. "
-                "Am Freitagabend versteckten sich die Gäste in der Wohnung seiner Eltern. "
-                "Das Licht war aus, und alle schwiegen. "
-                "Als Haris und Lamija hereinkamen, machte jemand das Licht an. „Überraschung! "
-                "Alles Gute zum Geburtstag!“ Haris stand in der Tür und konnte es nicht glauben. "
-                "Seine Mama brachte eine große Torte mit dreißig Kerzen. "
-                "Haris blies sie auf einmal aus, und alle riefen: „Bravo!“ "
-                "Dann gab ihm Lamija ein Geschenk: zwei Karten für das Konzert seines Lieblingssängers. "
-                "„Das ist der schönste Geburtstag meines Lebens“, sagte Haris. "
-                "Bis Mitternacht aßen, sangen und tanzten sie. "
-                "Und Haris erzählte noch lange allen, dass er nichts gewusst hatte.",
+        "text": ("Haris će u petak napuniti trideset godina. Njegova žena Lamija već mjesec dana tajno sprema iznenađenje. Pozvala je njegove roditelje, brata i najbolje prijatelje, ali niko ne smije ništa reći Harisu.\n\n"
+                 "„Šta ćemo raditi u petak?“ pitao je Haris u srijedu. „Ništa posebno“, rekla je Lamija. „Idemo kod tvojih na večeru.“ Haris je bio malo tužan. Mislio je da su svi zaboravili njegov rođendan.\n\n"
+                 "U petak navečer gosti su se sakrili u stanu njegovih roditelja. Svjetlo je bilo ugašeno i svi su šutjeli. Kad su Haris i Lamija ušli, neko je upalio svjetlo. „Iznenađenje! Sretan rođendan!“ Haris je stajao na vratima i nije mogao vjerovati.\n\n"
+                 "Njegova mama je donijela veliku tortu s trideset svijeća. Haris ih je ugasio odjednom, a svi su vikali: „Bravo!“ Onda mu je Lamija dala poklon: dvije karte za koncert njegovog omiljenog pjevača.\n\n"
+                 "„Ovo je najljepši rođendan u mom životu“, rekao je Haris. Do ponoći su jeli, pjevali i plesali. A Haris je još dugo pričao svima kako ništa nije znao."),
+        "uebersetzung": ("Haris wird am Freitag dreißig. Seine Frau Lamija bereitet schon seit einem Monat heimlich eine Überraschung vor. Sie hat seine Eltern, seinen Bruder und seine besten Freunde eingeladen, aber niemand darf Haris etwas sagen.\n\n"
+                         "„Was machen wir am Freitag?“, fragte Haris am Mittwoch. „Nichts Besonderes“, sagte Lamija. „Wir gehen zum Abendessen zu deinen Eltern.“ Haris war ein bisschen traurig. Er dachte, alle hätten seinen Geburtstag vergessen.\n\n"
+                         "Am Freitagabend versteckten sich die Gäste in der Wohnung seiner Eltern. Das Licht war aus, und alle schwiegen. Als Haris und Lamija hereinkamen, machte jemand das Licht an. „Überraschung! Alles Gute zum Geburtstag!“ Haris stand in der Tür und konnte es nicht glauben.\n\n"
+                         "Seine Mama brachte eine große Torte mit dreißig Kerzen. Haris blies sie auf einmal aus, und alle riefen: „Bravo!“ Dann gab ihm Lamija ein Geschenk: zwei Karten für das Konzert seines Lieblingssängers.\n\n"
+                         "„Das ist der schönste Geburtstag meines Lebens“, sagte Haris. Bis Mitternacht aßen, sangen und tanzten sie. Und Haris erzählte noch lange allen, dass er nichts gewusst hatte."),
         "vokabeln": {"smije": "darf (ne smije: darf nicht)", "odjednom": "auf einmal", "karte": "Karten / Tickets", "najbolje": "besten (Akk. Mehrz.)"},
         "fragen": [
             {"frage": "Wie alt wird Haris?", "optionen": ["dreißig", "zwanzig", "vierzig"], "richtig": "dreißig"},
-            {"frage": "Wohin wollten Haris und Lamija angeblich gehen?", "optionen": ["zum Abendessen bei seinen Eltern", "ins Kino", "zu einem Konzert"], "richtig": "zum Abendessen bei seinen Eltern"},
-            {"frage": "Was schenkte Lamija ihm?", "optionen": ["zwei Konzertkarten", "eine Torte", "ein neues Handy"], "richtig": "zwei Konzertkarten"},
+            {"frage": "Wohin wollten Haris und Lamija angeblich gehen?", "optionen": ["zum Abendessen bei seinen Eltern", "zum Abendessen ins Restaurant", "zu einem Konzert"], "richtig": "zum Abendessen bei seinen Eltern"},
+            {"frage": "Was schenkte Lamija ihm?", "optionen": ["zwei Konzertkarten", "eine Torte", "zwei Kinokarten"], "richtig": "zwei Konzertkarten"},
         ],
     },
     {
         "id": "b1_utakmica", "titel": "Utakmica", "stufe": "B1", "passt_zu": "sport",
-        "text": "Kenan ima dvanaest godina i jako voli fudbal. "
-                "Za njegov rođendan babo je kupio dvije karte za utakmicu reprezentacije u Zenici. "
-                "Bosna i Hercegovina igra protiv Islanda, a to je važna utakmica za Evropsko prvenstvo. "
-                "Na dan utakmice krenuli su iz Sarajeva već u podne. "
-                "Na autoputu su vidjeli mnogo auta sa zastavama. Ispred stadiona je bila velika gužva. "
-                "Navijači su nosili plave majice i pjevali: „Zmajevi, Zmajevi!“ Utakmica je počela u osam sati. "
-                "Prvo poluvrijeme je bilo teško. Island je bio bolji i u tridesetoj minuti je dao gol. "
-                "Kenan je bio tužan, ali babo mu je rekao: „Polako, sine. Utakmica traje devedeset minuta.“ "
-                "U drugom poluvremenu naši su igrali mnogo bolje. "
-                "U šezdesetoj minuti i Bosna je dala gol, a pet minuta prije kraja naš igrač je dao još jedan. "
-                "Cijeli stadion je skočio. Kenan je grlio babu i ljude koje nikad prije nije vidio. "
-                "Kući su stigli tek poslije ponoći, umorni i bez glasa od pjevanja. „Babo, kad idemo opet?“ "
-                "pitao je Kenan.",
-        "uebersetzung": "Kenan ist zwölf Jahre alt und liebt Fußball sehr. "
-                "Zu seinem Geburtstag hat Papa zwei Karten für ein Spiel der Nationalmannschaft in Zenica gekauft. "
-                "Bosnien und Herzegowina spielt gegen Island, und das ist ein wichtiges Spiel für die Europameisterschaft. "
-                "Am Tag des Spiels fuhren sie schon mittags in Sarajevo los. "
-                "Auf der Autobahn sahen sie viele Autos mit Fahnen. Vor dem Stadion war ein großes Gedränge. "
-                "Die Fans trugen blaue T-Shirts und sangen: „Drachen, Drachen!“ Das Spiel begann um acht Uhr. "
-                "Die erste Halbzeit war schwer. Island war besser und schoss in der dreißigsten Minute ein Tor. "
-                "Kenan war traurig, aber Papa sagte zu ihm: „Ruhig, mein Sohn. Ein Spiel dauert neunzig Minuten.“ "
-                "In der zweiten Halbzeit spielten unsere viel besser. "
-                "In der sechzigsten Minute schoss auch Bosnien ein Tor, und fünf Minuten vor dem Ende schoss unser Spieler noch eins. "
-                "Das ganze Stadion sprang auf. Kenan umarmte Papa und Leute, die er noch nie gesehen hatte. "
-                "Nach Hause kamen sie erst nach Mitternacht, müde und ohne Stimme vom Singen. "
-                "„Papa, wann gehen wir wieder?“, fragte Kenan.",
+        "text": ("Kenan ima dvanaest godina i jako voli fudbal. Za njegov rođendan babo je kupio dvije karte za utakmicu reprezentacije u Zenici. Bosna i Hercegovina igra protiv Islanda, a to je važna utakmica za Evropsko prvenstvo.\n\n"
+                 "Na dan utakmice krenuli su iz Sarajeva već u podne. Na autoputu su vidjeli mnogo auta sa zastavama. Ispred stadiona je bila velika gužva. Navijači su nosili plave majice i pjevali: „Zmajevi, Zmajevi!“\n\n"
+                 "Utakmica je počela u osam sati. Prvo poluvrijeme je bilo teško. Island je bio bolji i u tridesetoj minuti je dao gol. Kenan je bio tužan, ali babo mu je rekao: „Polako, sine. Utakmica traje devedeset minuta.“\n\n"
+                 "U drugom poluvremenu naši su igrali mnogo bolje. U šezdesetoj minuti i Bosna je dala gol, a pet minuta prije kraja naš igrač je dao još jedan. Cijeli stadion je skočio. Kenan je grlio babu i ljude koje nikad prije nije vidio.\n\n"
+                 "Kući su stigli tek poslije ponoći, umorni i bez glasa od pjevanja. „Babo, kad idemo opet?“ pitao je Kenan."),
+        "uebersetzung": ("Kenan ist zwölf Jahre alt und liebt Fußball sehr. Zu seinem Geburtstag hat Papa zwei Karten für ein Spiel der Nationalmannschaft in Zenica gekauft. Bosnien und Herzegowina spielt gegen Island, und das ist ein wichtiges Spiel für die Europameisterschaft.\n\n"
+                         "Am Tag des Spiels fuhren sie schon mittags in Sarajevo los. Auf der Autobahn sahen sie viele Autos mit Fahnen. Vor dem Stadion war ein großes Gedränge. Die Fans trugen blaue T-Shirts und sangen: „Drachen, Drachen!“\n\n"
+                         "Das Spiel begann um acht Uhr. Die erste Halbzeit war schwer. Island war besser und schoss in der dreißigsten Minute ein Tor. Kenan war traurig, aber Papa sagte zu ihm: „Ruhig, mein Sohn. Ein Spiel dauert neunzig Minuten.“\n\n"
+                         "In der zweiten Halbzeit spielten unsere viel besser. In der sechzigsten Minute schoss auch Bosnien ein Tor, und fünf Minuten vor dem Ende schoss unser Spieler noch eins. Das ganze Stadion sprang auf. Kenan umarmte Papa und Leute, die er noch nie gesehen hatte.\n\n"
+                         "Nach Hause kamen sie erst nach Mitternacht, müde und ohne Stimme vom Singen. „Papa, wann gehen wir wieder?“, fragte Kenan."),
         "vokabeln": {"prvo": "erste (s) / zuerst", "karte": "Karten / Tickets"},
         "fragen": [
             {"frage": "Gegen wen spielt Bosnien?", "optionen": ["gegen Island", "gegen Italien", "gegen Deutschland"], "richtig": "gegen Island"},
-            {"frage": "Wer schoss das erste Tor?", "optionen": ["Island", "Bosnien", "niemand"], "richtig": "Island"},
+            {"frage": "Wer schoss das erste Tor?", "optionen": ["die isländische Mannschaft", "die bosnische Mannschaft", "keine der beiden Mannschaften"], "richtig": "die isländische Mannschaft"},
             {"frage": "Wann kamen sie nach Hause?", "optionen": ["nach Mitternacht", "um zehn Uhr", "am nächsten Mittag"], "richtig": "nach Mitternacht"},
         ],
     },
     {
         "id": "b1_zanat", "titel": "Stari zanat na Baščaršiji", "stufe": "B1", "passt_zu": "arbeitsplatz",
-        "text": "Lejla je ovog ljeta na odmoru u Sarajevu. Najviše joj se svidjela jedna mala ulica na Baščaršiji. "
-                "Zove se Kazandžiluk. "
-                "Tu se cijeli dan čuje kucanje čekića, jer u malim radnjama majstori prave stvari od bakra. "
-                "Lejla je ušla u jednu radnju. Za stolom je sjedio stariji čovjek i polako ukrašavao jednu džezvu. "
-                "„Izvolite, slobodno pogledajte“, rekao je. „Jeste li vi napravili sve ove stvari?“ "
-                "pitala je Lejla. „Jesam. Ovaj zanat sam naučio od oca, a on od svog oca. "
-                "Naša porodica radi u ovoj radnji više od sto godina.“ "
-                "Majstor joj je pokazao kako se pravi džezva. "
-                "Prvo se bakar reže, onda se dugo kuca čekićem, a na kraju se ukrašava. "
-                "„Za jednu džezvu treba mi skoro cijeli dan“, objasnio je. "
-                "„A ko će raditi kad vi odete u penziju?“ pitala je Lejla. Majstor je malo šutio. "
-                "„Moj sin radi u banci. Mladi danas ne žele ovaj posao. Težak je, a ne zarađuje se mnogo.“ "
-                "Lejla je kupila džezvu i šest fildžana za nanu u Njemačkoj. „Neka je sa srećom!“ "
-                "rekao je majstor. „I pijte kahvu iz nje. Nemojte je samo držati na polici.“",
-        "uebersetzung": "Lejla ist diesen Sommer im Urlaub in Sarajevo. "
-                "Am besten gefiel ihr eine kleine Gasse auf der Baščaršija. Sie heißt Kazandžiluk. "
-                "Hier hört man den ganzen Tag Hämmern, denn in den kleinen Läden machen Handwerker Dinge aus Kupfer. "
-                "Lejla ging in einen Laden. "
-                "Am Tisch saß ein älterer Mann und verzierte langsam ein Kupferkännchen. "
-                "„Bitte sehr, schauen Sie sich ruhig um“, sagte er. "
-                "„Haben Sie all diese Sachen gemacht?“, fragte Lejla. „Ja. "
-                "Dieses Handwerk habe ich von meinem Vater gelernt und er von seinem Vater. "
-                "Unsere Familie arbeitet seit über hundert Jahren in diesem Laden.“ "
-                "Der Meister zeigte ihr, wie man ein Kupferkännchen macht. "
-                "Zuerst wird das Kupfer geschnitten, dann lange mit dem Hammer bearbeitet, und am Ende wird es verziert. "
-                "„Für ein Kännchen brauche ich fast einen ganzen Tag“, erklärte er. "
-                "„Und wer wird hier arbeiten, wenn Sie in Rente gehen?“, fragte Lejla. "
-                "Der Meister schwieg eine Weile. „Mein Sohn arbeitet bei einer Bank. "
-                "Die jungen Leute wollen diese Arbeit heute nicht. Sie ist schwer, und man verdient nicht viel.“ "
-                "Lejla kaufte ein Kupferkännchen und sechs Kaffeetassen für ihre Oma in Deutschland. "
-                "„Viel Freude damit!“, sagte der Meister. „Und trinken Sie Kaffee daraus. "
-                "Stellen Sie es nicht nur ins Regal.“",
+        "text": ("Lejla je ovog ljeta na odmoru u Sarajevu. Najviše joj se svidjela jedna mala ulica na Baščaršiji. Zove se Kazandžiluk. Tu se cijeli dan čuje kucanje čekića, jer u malim radnjama majstori prave stvari od bakra.\n\n"
+                 "Lejla je ušla u jednu radnju. Za stolom je sjedio stariji čovjek i polako ukrašavao jednu džezvu. „Izvolite, slobodno pogledajte“, rekao je. „Jeste li vi napravili sve ove stvari?“ pitala je Lejla. „Jesam. Ovaj zanat sam naučio od oca, a on od svog oca. Naša porodica radi u ovoj radnji više od sto godina.“\n\n"
+                 "Majstor joj je pokazao kako se pravi džezva. Prvo se bakar reže, onda se dugo kuca čekićem, a na kraju se ukrašava. „Za jednu džezvu treba mi skoro cijeli dan“, objasnio je.\n\n"
+                 "„A ko će raditi kad vi odete u penziju?“ pitala je Lejla. Majstor je malo šutio. „Moj sin radi u banci. Mladi danas ne žele ovaj posao. Težak je, a ne zarađuje se mnogo.“\n\n"
+                 "Lejla je kupila džezvu i šest fildžana za nanu u Njemačkoj. „Neka je sa srećom!“ rekao je majstor. „I pijte kahvu iz nje. Nemojte je samo držati na polici.“"),
+        "uebersetzung": ("Lejla ist diesen Sommer im Urlaub in Sarajevo. Am besten gefiel ihr eine kleine Gasse auf der Baščaršija. Sie heißt Kazandžiluk. Hier hört man den ganzen Tag Hämmern, denn in den kleinen Läden machen Handwerker Dinge aus Kupfer.\n\n"
+                         "Lejla ging in einen Laden. Am Tisch saß ein älterer Mann und verzierte langsam ein Kupferkännchen. „Bitte sehr, schauen Sie sich ruhig um“, sagte er. „Haben Sie all diese Sachen gemacht?“, fragte Lejla. „Ja. Dieses Handwerk habe ich von meinem Vater gelernt und er von seinem Vater. Unsere Familie arbeitet seit über hundert Jahren in diesem Laden.“\n\n"
+                         "Der Meister zeigte ihr, wie man ein Kupferkännchen macht. Zuerst wird das Kupfer geschnitten, dann lange mit dem Hammer bearbeitet, und am Ende wird es verziert. „Für ein Kännchen brauche ich fast einen ganzen Tag“, erklärte er.\n\n"
+                         "„Und wer wird hier arbeiten, wenn Sie in Rente gehen?“, fragte Lejla. Der Meister schwieg eine Weile. „Mein Sohn arbeitet bei einer Bank. Die jungen Leute wollen diese Arbeit heute nicht. Sie ist schwer, und man verdient nicht viel.“\n\n"
+                         "Lejla kaufte ein Kupferkännchen und sechs Kaffeetassen für ihre Oma in Deutschland. „Viel Freude damit!“, sagte der Meister. „Und trinken Sie Kaffee daraus. Stellen Sie es nicht nur ins Regal.“"),
         "vokabeln": {"sto": "hundert", "jeste": "ihr seid / Sie sind (Jeste li …?: Haben Sie …?)", "mladi": "die Jungen / junge Leute"},
         "fragen": [
             {"frage": "Woraus machen die Handwerker im Kazandžiluk ihre Sachen?", "optionen": ["aus Kupfer", "aus Holz", "aus Glas"], "richtig": "aus Kupfer"},
-            {"frage": "Wie lange braucht der Meister für ein Kupferkännchen?", "optionen": ["fast einen ganzen Tag", "eine Stunde", "eine Woche"], "richtig": "fast einen ganzen Tag"},
+            {"frage": "Wie lange braucht der Meister für ein Kupferkännchen?", "optionen": ["fast einen ganzen Tag", "nur eine halbe Stunde", "fast eine ganze Woche"], "richtig": "fast einen ganzen Tag"},
             {"frage": "Wo arbeitet der Sohn des Meisters?", "optionen": ["bei einer Bank", "im Laden des Vaters", "in Deutschland"], "richtig": "bei einer Bank"},
         ],
     },
     {
         "id": "b1_kahva", "titel": "Kahva kod komšinice", "stufe": "B1", "passt_zu": "nachbarn_miteinander",
-        "text": "Moja komšinica, teta Safija, živi na istom spratu kao ja. "
-                "Ima osamdeset godina, ali je još uvijek vrlo vesela. "
-                "Svake nedjelje u deset sati pokuca mi na vrata: „Komšinice, hajde na kahvu!“ "
-                "Kod nje kahva ima svoja pravila. Prvo kuha vodu u džezvi. "
-                "Onda skine džezvu sa šporeta, doda kahvu i promiješa. Džezvu vrati na vatru samo na kratko. "
-                "„Kahva ne smije prekipjeti“, kaže ona. „Ako prekipi, kuhaj novu.“ "
-                "Na stolu su fildžani, šećer, rahat lokum i čaša vode. "
-                "Prvo uzmemo komad rahat lokuma, a onda polako pijemo kahvu. "
-                "„E, ovo je prava bosanska kahva“, kaže teta Safija. "
-                "Onda počnu priče: ko se oženio, ko je dobio bebu, čiji sin radi u Njemačkoj i zašto komšija Mujo opet nikoga nije pozdravio. "
-                "Ja ne razumijem sve, ali volim slušati. "
-                "Jednom sam rekla da moram brzo popiti kahvu jer idem u grad. "
-                "Teta Safija me pogledala kao da sam rekla nešto strašno. „Kahva se ne pije na brzinu, dušo. "
-                "Uz kahvu se razgovara. Za kahvu uvijek ima vremena.“ Od tada sjedim do kraja, čak i kad kasnim.",
-        "uebersetzung": "Meine Nachbarin, Tante Safija, wohnt auf demselben Stockwerk wie ich. "
-                "Sie ist achtzig Jahre alt, aber immer noch sehr fröhlich. "
-                "Jeden Sonntag um zehn Uhr klopft sie an meine Tür: „Nachbarin, komm auf einen Kaffee!“ "
-                "Bei ihr hat der Kaffee seine eigenen Regeln. Zuerst kocht sie Wasser im Kupferkännchen. "
-                "Dann nimmt sie das Kännchen vom Herd, gibt den Kaffee dazu und rührt um. "
-                "Das Kännchen stellt sie nur kurz zurück aufs Feuer. „Der Kaffee darf nicht überkochen“, sagt sie. "
-                "„Wenn er überkocht, koch einen neuen.“ "
-                "Auf dem Tisch stehen Kaffeetassen, Zucker, Lokum und ein Glas Wasser. "
-                "Zuerst nehmen wir ein Stück Lokum, und dann trinken wir langsam den Kaffee. "
-                "„Ja, das ist echter bosnischer Kaffee“, sagt Tante Safija. "
-                "Dann fangen die Geschichten an: wer geheiratet hat, wer ein Baby bekommen hat, wessen Sohn in Deutschland arbeitet und warum Nachbar Mujo schon wieder niemanden gegrüßt hat. "
-                "Ich verstehe nicht alles, aber ich höre gern zu. "
-                "Einmal habe ich gesagt, dass ich den Kaffee schnell austrinken muss, weil ich in die Stadt gehe. "
-                "Tante Safija sah mich an, als hätte ich etwas Schreckliches gesagt. "
-                "„Kaffee trinkt man nicht auf die Schnelle, Schatz. Beim Kaffee unterhält man sich. "
-                "Für Kaffee ist immer Zeit.“ "
-                "Seitdem bleibe ich bis zum Schluss sitzen, sogar wenn ich spät dran bin.",
+        "text": ("Moja komšinica, teta Safija, živi na istom spratu kao ja. Ima osamdeset godina, ali je još uvijek vrlo vesela. Svake nedjelje u deset sati pokuca mi na vrata: „Komšinice, hajde na kahvu!“\n\n"
+                 "Kod nje kahva ima svoja pravila. Prvo kuha vodu u džezvi. Onda skine džezvu sa šporeta, doda kahvu i promiješa. Džezvu vrati na vatru samo na kratko. „Kahva ne smije prekipjeti“, kaže ona. „Ako prekipi, kuhaj novu.“\n\n"
+                 "Na stolu su fildžani, šećer, rahat lokum i čaša vode. Prvo uzmemo komad rahat lokuma, a onda polako pijemo kahvu. „E, ovo je prava bosanska kahva“, kaže teta Safija.\n\n"
+                 "Onda počnu priče: ko se oženio, ko je dobio bebu, čiji sin radi u Njemačkoj i zašto komšija Mujo opet nikoga nije pozdravio. Ja ne razumijem sve, ali volim slušati.\n\n"
+                 "Jednom sam rekla da moram brzo popiti kahvu jer idem u grad. Teta Safija me pogledala kao da sam rekla nešto strašno. „Kahva se ne pije na brzinu, dušo. Uz kahvu se razgovara. Za kahvu uvijek ima vremena.“ Od tada sjedim do kraja, čak i kad kasnim."),
+        "uebersetzung": ("Meine Nachbarin, Tante Safija, wohnt auf demselben Stockwerk wie ich. Sie ist achtzig Jahre alt, aber immer noch sehr fröhlich. Jeden Sonntag um zehn Uhr klopft sie an meine Tür: „Nachbarin, komm auf einen Kaffee!“\n\n"
+                         "Bei ihr hat der Kaffee seine eigenen Regeln. Zuerst kocht sie Wasser im Kupferkännchen. Dann nimmt sie das Kännchen vom Herd, gibt den Kaffee dazu und rührt um. Das Kännchen stellt sie nur kurz zurück aufs Feuer. „Der Kaffee darf nicht überkochen“, sagt sie. „Wenn er überkocht, koch einen neuen.“\n\n"
+                         "Auf dem Tisch stehen Kaffeetassen, Zucker, Lokum und ein Glas Wasser. Zuerst nehmen wir ein Stück Lokum, und dann trinken wir langsam den Kaffee. „Ja, das ist echter bosnischer Kaffee“, sagt Tante Safija.\n\n"
+                         "Dann fangen die Geschichten an: wer geheiratet hat, wer ein Baby bekommen hat, wessen Sohn in Deutschland arbeitet und warum Nachbar Mujo schon wieder niemanden gegrüßt hat. Ich verstehe nicht alles, aber ich höre gern zu.\n\n"
+                         "Einmal habe ich gesagt, dass ich den Kaffee schnell austrinken muss, weil ich in die Stadt gehe. Tante Safija sah mich an, als hätte ich etwas Schreckliches gesagt. „Kaffee trinkt man nicht auf die Schnelle, Schatz. Beim Kaffee unterhält man sich. Für Kaffee ist immer Zeit.“ Seitdem bleibe ich bis zum Schluss sitzen, sogar wenn ich spät dran bin."),
         "vokabeln": {"smije": "darf (ne smije: darf nicht)", "vremena": "Wetter / Zeit (Gen.)"},
         "fragen": [
             {"frage": "Wann lädt Tante Safija zum Kaffee ein?", "optionen": ["jeden Sonntag um zehn", "jeden Abend", "jeden Montag um acht"], "richtig": "jeden Sonntag um zehn"},
@@ -694,71 +586,40 @@ GESCHICHTEN += [
     },
     {
         "id": "b1_mejl", "titel": "Mejl rođaku", "stufe": "B1", "passt_zu": "urlaub",
-        "text": "Predmet: Dolazim u augustu! Dragi Adnane, kako si? Kako su tetka i tetak? "
-                "Nadam se da ste svi dobro. Kod nas je sve u redu, samo smo ovih mjeseci mnogo radili. "
-                "Imam lijepu vijest: u augustu dolazim u Sarajevo! Već sam kupio kartu za avion. "
-                "Slijećem desetog augusta u četiri sata popodne. Možeš li me sačekati na aerodromu? "
-                "Ako ne možeš, nije problem, uzet ću taksi. Ostat ću dvije sedmice. "
-                "Prvu sedmicu bih bio kod vas, ako vam to ne smeta. Drugu sedmicu idem kod nane u Goražde. "
-                "Ona me već svaki dan pita kad dolazim. Šta da vam donesem iz Njemačke? "
-                "Tetki se prošli put jako svidjela ona čokolada s lješnjacima. Napiši mi šta želite. "
-                "Sigurno si primijetio da ti pišem na bosanskom. Već pola godine učim svaki dan na mobitelu. "
-                "Još uvijek griješim, ali nadam se da ćemo ovog ljeta razgovarati samo na bosanskom. "
-                "Ako vidiš grešku, nemoj se smijati! Jedva čekam da se vidimo. Pozdravi sve! Tvoj rođak Emir",
-        "uebersetzung": "Betreff: Ich komme im August! Lieber Adnan, wie geht es dir? Wie geht es Tante und Onkel? "
-                "Ich hoffe, euch geht es allen gut. "
-                "Bei uns ist alles in Ordnung, wir haben in den letzten Monaten nur viel gearbeitet. "
-                "Ich habe eine schöne Neuigkeit: Im August komme ich nach Sarajevo! "
-                "Ich habe das Flugticket schon gekauft. Ich lande am zehnten August um vier Uhr nachmittags. "
-                "Kannst du mich am Flughafen abholen? "
-                "Wenn du nicht kannst, ist das kein Problem, dann nehme ich ein Taxi. Ich bleibe zwei Wochen. "
-                "Die erste Woche wäre ich bei euch, wenn euch das nicht stört. "
-                "Die zweite Woche fahre ich zur Oma nach Goražde. Sie fragt mich schon jeden Tag, wann ich komme. "
-                "Was soll ich euch aus Deutschland mitbringen? "
-                "Der Tante hat letztes Mal die Schokolade mit Haselnüssen sehr gut geschmeckt. "
-                "Schreib mir, was ihr möchtet. Du hast sicher bemerkt, dass ich dir auf Bosnisch schreibe. "
-                "Ich lerne schon seit einem halben Jahr jeden Tag auf dem Handy. "
-                "Ich mache immer noch Fehler, aber ich hoffe, dass wir diesen Sommer nur Bosnisch sprechen. "
-                "Wenn du einen Fehler siehst, lach nicht! Ich kann es kaum erwarten, dass wir uns sehen. "
-                "Grüß alle! Dein Cousin Emir",
+        "text": ("Predmet: Dolazim u augustu!\n\n"
+                 "Dragi Adnane, kako si? Kako su tetka i tetak? Nadam se da ste svi dobro. Kod nas je sve u redu, samo smo ovih mjeseci mnogo radili.\n\n"
+                 "Imam lijepu vijest: u augustu dolazim u Sarajevo! Već sam kupio kartu za avion. Slijećem desetog augusta u četiri sata popodne. Možeš li me sačekati na aerodromu? Ako ne možeš, nije problem, uzet ću taksi.\n\n"
+                 "Ostat ću dvije sedmice. Prvu sedmicu bih bio kod vas, ako vam to ne smeta. Drugu sedmicu idem kod nane u Goražde. Ona me već svaki dan pita kad dolazim.\n\n"
+                 "Šta da vam donesem iz Njemačke? Tetki se prošli put jako svidjela ona čokolada s lješnjacima. Napiši mi šta želite.\n\n"
+                 "Sigurno si primijetio da ti pišem na bosanskom. Već pola godine učim svaki dan na mobitelu. Još uvijek griješim, ali nadam se da ćemo ovog ljeta razgovarati samo na bosanskom. Ako vidiš grešku, nemoj se smijati!\n\n"
+                 "Jedva čekam da se vidimo. Pozdravi sve!\n\n"
+                 "Tvoj rođak Emir"),
+        "uebersetzung": ("Betreff: Ich komme im August!\n\n"
+                         "Lieber Adnan, wie geht es dir? Wie geht es Tante und Onkel? Ich hoffe, euch geht es allen gut. Bei uns ist alles in Ordnung, wir haben in den letzten Monaten nur viel gearbeitet.\n\n"
+                         "Ich habe eine schöne Neuigkeit: Im August komme ich nach Sarajevo! Ich habe das Flugticket schon gekauft. Ich lande am zehnten August um vier Uhr nachmittags. Kannst du mich am Flughafen abholen? Wenn du nicht kannst, ist das kein Problem, dann nehme ich ein Taxi.\n\n"
+                         "Ich bleibe zwei Wochen. Die erste Woche wäre ich bei euch, wenn euch das nicht stört. Die zweite Woche fahre ich zur Oma nach Goražde. Sie fragt mich schon jeden Tag, wann ich komme.\n\n"
+                         "Was soll ich euch aus Deutschland mitbringen? Der Tante hat letztes Mal die Schokolade mit Haselnüssen sehr gut geschmeckt. Schreib mir, was ihr möchtet.\n\n"
+                         "Du hast sicher bemerkt, dass ich dir auf Bosnisch schreibe. Ich lerne schon seit einem halben Jahr jeden Tag auf dem Handy. Ich mache immer noch Fehler, aber ich hoffe, dass wir diesen Sommer nur Bosnisch sprechen. Wenn du einen Fehler siehst, lach nicht!\n\n"
+                         "Ich kann es kaum erwarten, dass wir uns sehen. Grüß alle!\n\n"
+                         "Dein Cousin Emir"),
         "fragen": [
             {"frage": "Wann landet Emir in Sarajevo?", "optionen": ["am zehnten August", "am vierten August", "Ende Juli"], "richtig": "am zehnten August"},
-            {"frage": "Wo verbringt er die zweite Woche?", "optionen": ["bei der Oma in Goražde", "bei Adnan", "am Meer"], "richtig": "bei der Oma in Goražde"},
+            {"frage": "Wo verbringt er die zweite Woche?", "optionen": ["bei der Oma in Goražde", "bei Adnan in Sarajevo", "in einem Hotel in Mostar"], "richtig": "bei der Oma in Goražde"},
             {"frage": "Worum bittet Emir Adnan?", "optionen": ["ihn am Flughafen abzuholen", "ein Hotel zu buchen", "Schokolade zu kaufen"], "richtig": "ihn am Flughafen abzuholen"},
         ],
     },
     {
         "id": "b1_zmaj", "titel": "Zmaj uči bosanski", "stufe": "B1", "passt_zu": "lernen_studieren",
-        "text": "Zmaj je mali zmaj koji živi u Njemačkoj. "
-                "Već nekoliko mjeseci uči bosanski, jer ovog ljeta ide kod nane u Mostar. "
-                "Svako veče ponavlja nove riječi: kuća, voda, hljeb, kahva. "
-                "Kad je stigao kod nane, odmah je htio pokazati šta zna. „Dobro jutro, nano!“ rekao je ponosno. "
-                "Nana se nasmijala. „Dobro jutro? Sine, sad je osam sati navečer. Kaže se dobro veče.“ "
-                "Poslije večere nana ga je pitala: „Hoćeš li još sarme?“ Zmaj je bio sit, pa je rekao: „Hvala.“ "
-                "Nana mu je odmah stavila još tri sarme na tanjir. „Ali nano, rekao sam hvala!“ "
-                "„Čula sam“, rekla je nana. „Hvala znači da ti je ukusno.“ "
-                "Sutradan je Zmaj htio pomoći dedi oko roštilja. "
-                "Pustio je malo vatre iz usta, i ćevapi su u sekundi zagorjeli. „Stani, zmaju!“ rekao je dedo. "
-                "„Ćevapi se peku polako, a ne zmajevom vatrom.“ "
-                "Navečer je Zmaj napisao poruku mami: „Ja sam u Mostar i jedem mnogo sarme.“ "
-                "Nana je pogledala telefon. „Ne u Mostar, nego u Mostaru.“ Zmaj je pomislio da je bosanski težak. "
-                "Ali nana je strpljiva, a njena sarma je najbolja na svijetu. Zato će učiti dalje.",
-        "uebersetzung": "Zmaj ist ein kleiner Drache, der in Deutschland lebt. "
-                "Seit einigen Monaten lernt er schon Bosnisch, weil er diesen Sommer zu seiner Oma nach Mostar fährt. "
-                "Jeden Abend wiederholt er neue Wörter: kuća, voda, hljeb, kahva. "
-                "Als er bei der Oma ankam, wollte er sofort zeigen, was er kann. "
-                "„Guten Morgen, Oma!“, sagte er stolz. Die Oma lachte. „Guten Morgen? "
-                "Mein Junge, jetzt ist es acht Uhr abends. Man sagt Guten Abend.“ "
-                "Nach dem Abendessen fragte ihn die Oma: „Willst du noch Sarma?“ "
-                "Zmaj war satt, also sagte er: „Danke.“ Die Oma legte ihm sofort noch drei Sarma auf den Teller. "
-                "„Aber Oma, ich habe danke gesagt!“ „Ich habe es gehört“, sagte die Oma. "
-                "„Danke heißt, dass es dir schmeckt.“ Am nächsten Tag wollte Zmaj dem Opa am Grill helfen. "
-                "Er ließ ein bisschen Feuer aus dem Mund, und die Ćevapi waren in einer Sekunde angebrannt. "
-                "„Halt, Drache!“, sagte der Opa. „Ćevapi grillt man langsam, nicht mit Drachenfeuer.“ "
-                "Abends schrieb Zmaj seiner Mama eine Nachricht: „Ja sam u Mostar i jedem mnogo sarme.“ "
-                "(Ich bin in Mostar und esse viel Sarma.) Die Oma schaute auf das Handy. "
-                "„Nicht u Mostar, sondern u Mostaru.“ Zmaj dachte, dass Bosnisch schwer ist. "
-                "Aber die Oma ist geduldig, und ihre Sarma ist die beste der Welt. Deshalb lernt er weiter.",
+        "text": ("Zmaj je mali zmaj koji živi u Njemačkoj. Već nekoliko mjeseci uči bosanski, jer ovog ljeta ide kod nane u Mostar. Svako veče ponavlja nove riječi: kuća, voda, hljeb, kahva.\n\n"
+                 "Kad je stigao kod nane, odmah je htio pokazati šta zna. „Dobro jutro, nano!“ rekao je ponosno. Nana se nasmijala. „Dobro jutro? Sine, sad je osam sati navečer. Kaže se dobro veče.“\n\n"
+                 "Poslije večere nana ga je pitala: „Hoćeš li još sarme?“ Zmaj je bio sit, pa je rekao: „Hvala.“ Nana mu je odmah stavila još tri sarme na tanjir. „Ali nano, rekao sam hvala!“ „Čula sam“, rekla je nana. „Hvala znači da ti je ukusno.“\n\n"
+                 "Sutradan je Zmaj htio pomoći dedi oko roštilja. Pustio je malo vatre iz usta, i ćevapi su u sekundi zagorjeli. „Stani, zmaju!“ rekao je dedo. „Ćevapi se peku polako, a ne zmajevom vatrom.“\n\n"
+                 "Navečer je Zmaj napisao poruku mami: „Ja sam u Mostar i jedem mnogo sarme.“ Nana je pogledala telefon. „Ne u Mostar, nego u Mostaru.“ Zmaj je pomislio da je bosanski težak. Ali nana je strpljiva, a njena sarma je najbolja na svijetu. Zato će učiti dalje."),
+        "uebersetzung": ("Zmaj ist ein kleiner Drache, der in Deutschland lebt. Seit einigen Monaten lernt er schon Bosnisch, weil er diesen Sommer zu seiner Oma nach Mostar fährt. Jeden Abend wiederholt er neue Wörter: kuća, voda, hljeb, kahva.\n\n"
+                         "Als er bei der Oma ankam, wollte er sofort zeigen, was er kann. „Guten Morgen, Oma!“, sagte er stolz. Die Oma lachte. „Guten Morgen? Mein Junge, jetzt ist es acht Uhr abends. Man sagt Guten Abend.“\n\n"
+                         "Nach dem Abendessen fragte ihn die Oma: „Willst du noch Sarma?“ Zmaj war satt, also sagte er: „Danke.“ Die Oma legte ihm sofort noch drei Sarma auf den Teller. „Aber Oma, ich habe danke gesagt!“ „Ich habe es gehört“, sagte die Oma. „Danke heißt, dass es dir schmeckt.“\n\n"
+                         "Am nächsten Tag wollte Zmaj dem Opa am Grill helfen. Er ließ ein bisschen Feuer aus dem Mund, und die Ćevapi waren in einer Sekunde angebrannt. „Halt, Drache!“, sagte der Opa. „Ćevapi grillt man langsam, nicht mit Drachenfeuer.“\n\n"
+                         "Abends schrieb Zmaj seiner Mama eine Nachricht: „Ja sam u Mostar i jedem mnogo sarme.“ (Ich bin in Mostar und esse viel Sarma.) Die Oma schaute auf das Handy. „Nicht u Mostar, sondern u Mostaru.“ Zmaj dachte, dass Bosnisch schwer ist. Aber die Oma ist geduldig, und ihre Sarma ist die beste der Welt. Deshalb lernt er weiter."),
         "vokabeln": {"nego": "sondern / als", "koji": "der (Relativ) / welcher"},
         "fragen": [
             {"frage": "Welchen Fehler macht Zmaj, als er ankommt?", "optionen": ["er sagt am Abend „Dobro jutro“", "er vergisst den Namen der Oma", "er kommt zu spät"], "richtig": "er sagt am Abend „Dobro jutro“"},
