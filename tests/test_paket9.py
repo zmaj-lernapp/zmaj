@@ -274,7 +274,7 @@ def test_sektion_und_level(grunddaten_vor_umzug):
 
 
 def test_alle_sektionen(grunddaten):
-    assert len(grunddaten["sektionen"]) == 32       # seit 13.11.2026 (Sätze bauen 2)
+    assert len(grunddaten["sektionen"]) == 27       # seit 13.11.2026 (Sätze bauen 2, B2 in neun)
     assert len(grunddaten["kategorien"]) == 297     # seit 13.11.2026 (zwei Grundwort-Level)
 
 

@@ -401,7 +401,7 @@ Münzladen – er steht weiter unten unter „Münzen und Laden“. Der Geschich
 Reiter verschwindet, wenn es gar keine Geschichten gibt; Lernpfad und Laden
 sind immer da.
 
-## Der Lernpfad: fünf Reiter, 32 Sektionen, 297 Levels
+## Der Lernpfad: fünf Reiter, 27 Sektionen, 297 Levels
 
 Seit dem 13.11.2026 steht der Lernpfad in Reitern je Stufe: **A1 · A2 · B1 ·
 B2 · C1** (C1 noch leer, „bald“). Jeder Reiter zeigt seine Sektionen mit ihren
@@ -415,6 +415,13 @@ auf, wenn der vorige fertig ist. Vorher geht es mit dem **Sprung-Test** auf der
 Karte des Reiters: 15 Fragen aus dem vorigen Reiter, ab 12 richtigen ist er
 offen. Jede falsche Antwort kostet ein Leben wie im Level-Test; übersprungene
 Levels sind offen, aber nicht bestanden. Angefangene Levels bleiben immer offen.
+Ohne Leben zeigt die Karte dieselben Wege zu einem Leben wie der Level-Test
+(Video oder Münzen); geht mitten im Test das letzte Leben weg, kommt derselbe
+Schirm wie dort.
+Die zwei Grundwort-Level („Kleine Wörter“, „Wörter für jeden Tag“) sind für
+alle „dran“, die schon weiter sind, auch wenn sie vor 1.4 hinter ihnen
+eingestuft wurden. Wer mit den Reitern eingestuft wird, steigt dort ein, wo
+der Ergebnisschirm es sagt.
 Der Pfad öffnet sich in dem Reiter, in dem „Weitermachen“ steht.
 
 ### A1 (30 Levels)
@@ -520,90 +527,82 @@ meint, Sätze verbinden, Noch mehr Präpositionen, Fürwörter. Neunte Farbe.
 
 Ab Sektion 18 kommt Stufe B2 aus dem Ausbauplan, in eigenen Sektionen hinter
 B1, damit nichts davon in die ersten Sektionen rutscht (Wortschatz-Pakete 10
-bis 20, von Ajdin am 07.11.2026 durchgesehen). Die Farben gehen reihum weiter.
+bis 20, von Ajdin am 07.11.2026 durchgesehen). Die Farben fangen im Reiter B2
+wieder bei der ersten an.
 
-### B2 (129 Levels, noch 14 Sektionen)
+### B2 (129 Levels, 9 Sektionen)
 
-**Sektion 1 · Denken und Meinen** (12 Levels, seit 07.11.2026,
-Wortschatz-Paket 10): Grundlage und Rahmen, Arten und Einzelheiten, Forschen
-und verstehen, Überlegen und einschätzen, Vorhersehen und erkennen, Meinung und
-Kritik, Sagen und hervorheben, Daher, damit und bevor, Einerseits und
-andererseits, Trotz und dank, Vor allem und angeblich, Wie man etwas beurteilt.
-Erste Farbe.
+Seit dem 13.11.2026 (Frage 6a, „ja“) hat B2 neun Sektionen statt vierzehn,
+eine je Farbe, damit im Reiter keine Farbe doppelt vorkommt. Zusammengelegt
+wurden die alten Sektionen 18+19, 21+22, 23+24, 28+29 und 30+31; die
+Reihenfolge der Levels blieb, und der Lernstand hängt nicht an der Sektion.
 
-**Sektion 2 · Menschen und Beziehungen** (10 Levels, seit 07.11.2026,
-Wortschatz-Paket 11): Erziehung und Aufwachsen, Familie und Generationen, Liebe
-und Ehe, Streit und Versöhnung, Reue und Enttäuschung, Gefühle genauer,
-Charakter, Trauer und Beileid, Begegnen und versammeln, Nachbarn und
-Miteinander. Zweite Farbe.
+**Sektion 1 · Denken, Fühlen und Beziehungen** (22 Levels, seit 07.11.2026,
+Wortschatz-Pakete 10 und 11): Grundlage und Rahmen, Arten und Einzelheiten,
+Forschen und verstehen, Überlegen und einschätzen, Vorhersehen und erkennen,
+Meinung und Kritik, Sagen und hervorheben, Daher, damit und bevor, Einerseits
+und andererseits, Trotz und dank, Vor allem und angeblich, Wie man etwas
+beurteilt, Erziehung und Aufwachsen, Familie und Generationen, Liebe und Ehe,
+Streit und Versöhnung, Reue und Enttäuschung, Gefühle genauer, Charakter,
+Trauer und Beileid, Begegnen und versammeln, Nachbarn und Miteinander. Erste
+Farbe.
 
-**Sektion 3 · Arbeit und Wirtschaft** (12 Levels, seit 07.11.2026,
+**Sektion 2 · Arbeit und Wirtschaft** (12 Levels, seit 07.11.2026,
 Wortschatz-Paket 12): Firma und Leitung, Abteilung und Mitarbeiter, Produktion
 und Handel, Liefern und beschaffen, Geld und Preise, Wachstum und Rückgang,
 Schulden und Verluste, Anlegen und Vermögen, Investieren und beitragen, Beruf
-und Karriere, Aufstieg und Weiterbildung, Rechte bei der Arbeit. Dritte Farbe.
+und Karriere, Aufstieg und Weiterbildung, Rechte bei der Arbeit. Zweite Farbe.
 
-**Sektion 4 · Medien und Kultur** (8 Levels, seit 07.11.2026, Wortschatz-Paket
-13): Zeitung und Fernsehen, Berichten und verbreiten, Werbung, Theater und
-Musik, Regie und Premiere, Bücher und Kunst, Literatur und Malerei, Geschichte.
+**Sektion 3 · Medien, Kultur und Technik** (11 Levels, seit 07.11.2026,
+Wortschatz-Paket 13): Zeitung und Fernsehen, Berichten und verbreiten, Werbung,
+Theater und Musik, Regie und Premiere, Bücher und Kunst, Literatur und Malerei,
+Geschichte, Klima und Energie, Naturkatastrophen, Computer und Dateien. Dritte
+Farbe.
+
+**Sektion 4 · Staat, Recht und Behörden** (14 Levels, seit 07.11.2026,
+Wortschatz-Pakete 14 und 15): Staat und Institutionen, Wahlen und Parlament,
+Krieg und Frieden, Bürger und Rechte, Religion und Gemeinschaft, Gericht,
+Polizei und Anzeige, Ämter und Zuständigkeit, Bescheid und Einspruch, Verträge,
+Auf dem Amt, Post und Abmeldung, Bank und Darlehen, Versicherung und Zinsen.
 Vierte Farbe.
 
-**Sektion 5 · Umwelt und Technik** (3 Levels, seit 07.11.2026,
-Wortschatz-Paket 13): Klima und Energie, Naturkatastrophen, Computer und
-Dateien. Fünfte Farbe.
-
-**Sektion 6 · Gesellschaft und Politik** (5 Levels, seit 07.11.2026,
-Wortschatz-Paket 14): Staat und Institutionen, Wahlen und Parlament, Krieg und
-Frieden, Bürger und Rechte, Religion und Gemeinschaft. Sechste Farbe.
-
-**Sektion 7 · Recht und Behörden** (9 Levels, seit 07.11.2026,
-Wortschatz-Pakete 14 und 15): Gericht, Polizei und Anzeige, Ämter und
-Zuständigkeit, Bescheid und Einspruch, Verträge, Auf dem Amt, Post und
-Abmeldung, Bank und Darlehen, Versicherung und Zinsen. Siebte Farbe.
-
-**Sektion 8 · Haus und Wohnung** (8 Levels, seit 07.11.2026, Wortschatz-Paket
+**Sektion 5 · Haus und Wohnung** (8 Levels, seit 07.11.2026, Wortschatz-Paket
 15): Dinge im Haushalt, Bürste und Kamm, Räume und Möbel, Sauber und kaputt,
 Rohre, Strom und Schäden, Bauen und einbauen, Färben, kleben, nähen, Wohnen und
-Miete. Achte Farbe.
+Miete. Fünfte Farbe.
 
-**Sektion 9 · Gesundheit und Sport** (14 Levels, seit 07.11.2026,
+**Sektion 6 · Gesundheit und Sport** (14 Levels, seit 07.11.2026,
 Wortschatz-Paket 16): Der Körper genauer, Von der Augenbraue bis zum Knöchel,
 Krankheiten, Asthma, Migräne, Bruch, Ärzte und Krankenhaus, Chirurgie und
 Pflege, Leiden und lindern, Geburt und Behandlung, Psyche und Wohlbefinden,
 Stress und Erschöpfung, Sport und Wettkampf, Trainieren und siegen, Ernährung,
-Kalorien und Gewürze. Neunte Farbe.
+Kalorien und Gewürze. Sechste Farbe.
 
-**Sektion 10 · Schule und Wissen** (12 Levels, seit 07.11.2026,
+**Sektion 7 · Schule und Wissen** (12 Levels, seit 07.11.2026,
 Wortschatz-Paket 17): Schule und Klasse, Abitur und Klassenfahrt, An der
 Universität, Abschluss und Titel, Fächer und Wissensgebiete, Forschen und
 messen, Entdecken und erfinden, Lesen und aussprechen, Sprache und Grammatik,
 Reden und sich verständigen, Beschreiben und erklären, Begründen und
-zusammenfassen. Erste Farbe.
+zusammenfassen. Siebte Farbe.
 
-**Sektion 11 · Stadt, Verkehr und Reisen** (7 Levels, seit 07.11.2026,
+**Sektion 8 · Stadt, Land und unterwegs** (13 Levels, seit 07.11.2026,
 Wortschatz-Paket 18): In der Stadt, Straßen und Bahn, Kreisverkehr und Fähre,
-Autofahren, Unfälle und Pannen, Reisen und Unterkunft, Ankommen und ansehen.
-Zweite Farbe.
+Autofahren, Unfälle und Pannen, Reisen und Unterkunft, Ankommen und ansehen,
+Landschaft und Boden, Ozean und Schlucht, Jagen und fischen, Tiere genauer,
+Pflanzen und Anbau, Ernten und pflanzen. Achte Farbe.
 
-**Sektion 12 · Land, Tiere und Pflanzen** (6 Levels, seit 07.11.2026,
-Wortschatz-Paket 18): Landschaft und Boden, Ozean und Schlucht, Jagen und
-fischen, Tiere genauer, Pflanzen und Anbau, Ernten und pflanzen. Dritte Farbe.
-
-**Sektion 13 · Handeln und verändern** (11 Levels, seit 07.11.2026,
-Wortschatz-Paket 19): Bewegen und verschieben, Folgen und bewältigen,
+**Sektion 9 · Handeln und genauer sagen** (23 Levels, seit 07.11.2026,
+Wortschatz-Pakete 19 und 20): Bewegen und verschieben, Folgen und bewältigen,
 Durchführen und schaffen, Anpassen und verstärken, Stärken und verbessern,
 Verbinden und trennen, Bestimmen und hindern, Mit Menschen umgehen, Erkennen
-und ausdrücken, Paare: zu bekannten Verben, Entwicklung und Vergleich. Dritte
-Farbe.
+und ausdrücken, Paare: zu bekannten Verben, Entwicklung und Vergleich, Wie
+sicher, Ganz oder teilweise, Wie man etwas tut, Wann und wie lange, Schon immer
+und in Zukunft, Wo und wohin, Gut oder schlecht, Fest und sichtbar, Streng und
+zuverlässig, Feste Wendungen, Keine Ahnung und alle Achtung, Mengen und Maße.
+Neunte Farbe.
 
-**Sektion 14 · Genauer sagen** (12 Levels, seit 07.11.2026, Wortschatz-Paket
-20): Wie sicher, Ganz oder teilweise, Wie man etwas tut, Wann und wie lange,
-Schon immer und in Zukunft, Wo und wohin, Gut oder schlecht, Fest und sichtbar,
-Streng und zuverlässig, Feste Wendungen, Keine Ahnung und alle Achtung, Mengen
-und Maße. Fünfte Farbe.
-
-Auch in den Sektionen 12 bis 31 steht jedes Wort direkt vor seinem
-Beispielsatz. Was Ajdin als zweite Form freigegeben hat (*nogomet* bei
+Auch in B1 ab „Körper und Gesundheit“ und in ganz B2 steht jedes Wort direkt
+vor seinem Beispielsatz. Was Ajdin als zweite Form freigegeben hat (*nogomet* bei
 *fudbal*, *naočare* bei *naočale*), zählt beim Tippen; was er ausgeschlossen
 hat (*ranac*, *grudi*, *rentgen*, *prepisati*), zählt nicht.
 

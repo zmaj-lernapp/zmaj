@@ -12,9 +12,12 @@ der Level-Test (7a). Hier steht, was ein Lernender sieht:
 - bestandener Sprung-Test: Reiter offen, übersprungene Level offen, aber nicht
   bestanden, keine Münzen, kein Lerntag;
 - jede falsche Antwort kostet ein Leben, ohne Leben startet er nicht, bei null
-  ist er vorbei und nicht bestanden;
+  ist er vorbei und nicht bestanden; ohne Leben gibt es dieselben Wege zu
+  einem Leben wie im Level-Test;
 - wer vor dem Update schon weiter war, verliert nichts: B1 bleibt fertig, die
-  zwei neuen Grundwort-Level sind „dran“, angefangene Zuhause-Level bleiben offen.
+  zwei neuen Grundwort-Level sind „dran“ (auch nach einer alten Einstufung),
+  angefangene Zuhause-Level bleiben offen;
+- der Stand in der Leiste passt bei 360 px in allen acht Sprachen.
 
 Inhalt und Quelltext prüft tests/test_reiter.py ohne Browser."""
 import pytest
@@ -27,6 +30,34 @@ LEISTE = """() => [...document.querySelectorAll('#reiterLeiste button')].map(b =
 
 SEKTIONEN = """() => [...document.querySelectorAll('#sections .section')].map(s => ({
   titel: s.querySelector('h2').textContent, sek: s.className.match(/sek(\\d)/)[1]}))"""
+
+# Die Sprachen der Oberfläche, wie in sprachen.SPRACHEN
+SPRACHEN = ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
+
+# Drei Stände in einer Seite, gezeichnet ohne Neuladen: neu (A1 offen, drei zu,
+# C1 bald), weit (alle offen mit den größten Zahlen, B2 dreistellig) und fertig.
+STAENDE_MESSEN = """async () => {
+  await document.fonts.ready;   // gemessen wird in der Schrift der App, nicht im Ersatz
+  const L = st => reiterLevel(st).map(i => CATEGORIES[i].id);
+  const staende = {
+    neu: [],
+    weit: [...L('A1').slice(0, -1), ...L('A2').slice(0, -1), ...L('B1').slice(0, -1), ...L('B2').slice(0, 112)],
+    fertig: CATEGORIES.map(c => c.id),
+  };
+  const alt = new Set(passed), aus = {};
+  for(const [name, ids] of Object.entries(staende)){
+    passed.clear(); ids.forEach(id => passed.add(id));
+    reiterLeisteZeichnen(angezeigteStufe());
+    aus[name] = [...document.querySelectorAll('#reiterLeiste button')].map(b => {
+      const sz = b.querySelector('.sz');
+      return {st: b.dataset.stufe, art: b.className, text: sz.textContent.trim(), label: b.getAttribute('aria-label'),
+              sw: sz.scrollWidth, cw: sz.clientWidth, bw: b.scrollWidth, bc: b.clientWidth};
+    });
+  }
+  passed.clear(); alt.forEach(id => passed.add(id));
+  reiterLeisteZeichnen(angezeigteStufe());
+  return aus;
+}"""
 
 # Eine Antwort im laufenden Sprung-Test, richtig oder falsch, mit festgelegter
 # Auswahlaufgabe aus Level 1 - so ist "falsch" sicher falsch. Wartet, bis
@@ -71,13 +102,40 @@ def test_neu_offen_ist_a1(seite, heute_stand):
     assert [b["st"] for b in leiste] == STUFEN
     assert [b["art"] for b in leiste] == ["offen", "zu", "zu", "zu", "bald"]
     assert [b["an"] for b in leiste] == [True, False, False, False, False]
-    assert leiste[0]["text"] == "0 von 30"
+    assert leiste[0]["text"] == "0/30"
     assert seite.js("() => document.getElementById('reiterKarte').hidden")
     sek = seite.js(SEKTIONEN)
     assert [s["titel"] for s in sek] == ["Sektion 1 · Grundlagen & Alltag", "Sektion 2 · Dinge zum Anfassen",
                                          "Sektion 3 · Tiere & Natur", "Sektion 4 · Sätze bauen 1"]
     assert [s["sek"] for s in sek] == ["1", "2", "3", "4"]
     assert seite.fehler == [] and seite.fremd == []
+
+
+@pytest.mark.parametrize("sprache", SPRACHEN)
+def test_stand_passt_bei_360_px(seite, heute_stand, sprache):
+    """Prüfung vom 13.11.2026: Bei 360 px (Ajdins S21) schnitt die Leiste den
+    Stand an beiden Seiten ab, auf Türkisch immer ('30 içinden 29' wurde
+    '0 içinden 2'), auf Deutsch ab dreistelligen Zahlen in B2. Jetzt steht er
+    kurz als '112/129' da; der lange Satz bleibt für den Bildschirmleser."""
+    seite.starten(sprache=sprache, stand=heute_stand())
+    seite.js("() => { const v = document.getElementById('vorspann'); if(v) v.click(); }")
+    seite.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
+    seite.js("() => { homeMode = 'words'; showHome(); }")
+    assert seite.js("() => window.innerWidth") == 360
+    aus = seite.js(STAENDE_MESSEN)
+    zu_eng = [(name, b) for name, knoepfe in aus.items() for b in knoepfe
+              if b["sw"] > b["cw"] or b["bw"] > b["bc"]]
+    assert zu_eng == [], zu_eng
+    assert [b["art"] for b in aus["neu"]] == ["offen", "zu", "zu", "zu", "bald"]
+    assert [b["art"] for b in aus["weit"]] == ["offen", "offen", "offen", "offen", "bald"]
+    assert [b["art"] for b in aus["fertig"]] == ["fertig", "fertig", "fertig", "fertig", "bald"]
+    assert [b["text"] for b in aus["weit"]][:4] == ["29/30", "30/31", "106/107", "112/129"]
+    # Der Bildschirmleser hört den ganzen Satz in der Sprache, nicht "112 Schrägstrich 129"
+    assert all(b["label"].startswith(b["st"]) for b in aus["weit"])
+    assert "129" in aus["weit"][3]["label"] and "112" in aus["weit"][3]["label"]
+    if sprache == "de":
+        assert aus["weit"][3]["label"] == "B2, 112 von 129"
+    assert seite.fehler == []
 
 
 def test_reiter_antippen(seite, heute_stand):
@@ -164,11 +222,54 @@ def test_sprungtest_kostet_leben(seite, heute_stand):
     seite.js("() => document.querySelector('#eBody .weiterbox .btn').click()")
     assert seite.js("() => [Sx.fertig, Sx.ohneLeben, !!wann['sp:A2'], livesNow()]") == [True, True, False, 0]
     assert seite.page.locator("#eBody .feedback.no").text_content() == "Keine Leben mehr."
+    # Prüfung vom 13.11.2026: derselbe Schirm wie im Level-Test, mit der Wartezeit
+    assert seite.page.locator("#eBody .result-big.ohneleben").count() == 1
+    assert "bis zum nächsten Leben" in seite.page.locator("#eBody .stats").text_content()
     seite.page.click("#sprungLos")
     # ohne Leben startet er nicht
     seite.page.click("#sprungStart")
     assert seite.js("() => sichtbar('pfad')")
-    assert "Leben" in seite.page.locator("#sprungNote").text_content()
+    assert seite.page.locator("#sprungNote").text_content().startswith("Keine Leben mehr. Das nächste kommt in ")
+    assert seite.fehler == []
+
+
+def test_sprungtest_ohne_leben_zeigt_die_wege(seite, heute_stand):
+    """Prüfung vom 13.11.2026 (7a „wie der Level-Test“): ohne Leben gab es keinen
+    Weg zu einem neuen, der Hinweis sprach von der Grammatik-Erklärung und lag
+    bei 360 x 740 unter dem Bildrand. Jetzt: eigener kurzer Satz, Münzen (und
+    Video, wo erlaubt), sichtbar; mit einem Leben geht der Test wieder."""
+    seite.page.set_viewport_size({"width": 360, "height": 740})
+    _pfad(seite, heute_stand())
+    seite.page.click("#reiterLeiste button[data-stufe='A2']")
+    seite.js("() => { lives = {anzahl: 0, zeit: Date.now()}; muenzenGes = 500; muenzenAus = 0; renderLives(); }")
+    seite.page.click("#sprungStart")
+    seite.page.wait_for_timeout(600)          # sanftes Scrollen
+    z = seite.js("""() => { const n = document.getElementById('sprungNote').getBoundingClientRect();
+        const w = document.getElementById('sprungKCoin');
+        const r = w && w.getBoundingClientRect();
+        return {text: document.getElementById('sprungNote').textContent, sichtbar: n.top >= 0 && n.bottom <= innerHeight,
+                knopf: !!w, knopfSichtbar: !!r && r.top >= 0 && r.bottom <= innerHeight, pfad: sichtbar('pfad')}; }""")
+    assert z["pfad"] and z["knopf"], z
+    assert z["sichtbar"] and z["knopfSichtbar"], z
+    assert "Grammatik" not in z["text"] and z["text"].startswith("Keine Leben mehr."), z
+    # Ein Herz für Münzen: zurück auf der Karte ohne Hinweis, der Test startet
+    seite.page.click("#sprungKCoin")
+    assert seite.js("() => [livesNow(), muenzen(), document.getElementById('sprungNote').textContent]") == [1, 400, ""]
+    seite.page.click("#sprungStart")
+    assert seite.js("() => sichtbar('einstufungView') && !Sx.fertig")
+    # Mitten im Test bei null: dieselben Wege; mit Münzen zurück zur Karte
+    seite.js(ANTWORT, False)
+    seite.js("() => document.querySelector('#eBody .weiterbox .btn').click()")
+    assert seite.js("() => [Sx.ohneLeben, livesNow(), !!document.getElementById('sprungECoin')]") == [True, 0, True]
+    seite.page.click("#sprungECoin")
+    assert seite.js("() => [sichtbar('pfad'), livesNow(), angezeigteStufe()]") == [True, 1, "A2"]
+    assert seite.page.locator("#sprungStart").count() == 1
+    # Wachsen die Leben nach, verschwindet ein alter Hinweis von selbst
+    seite.js("() => { lives = {anzahl: 0, zeit: Date.now()}; renderLives(); }")
+    seite.page.click("#sprungStart")
+    assert seite.page.locator("#sprungNote").text_content() != ""
+    seite.js("() => { lives = {anzahl: 1, zeit: Date.now()}; ohneLebenVorbei(); }")
+    assert seite.page.locator("#sprungNote").text_content() == ""
     assert seite.fehler == []
 
 
@@ -201,7 +302,7 @@ def test_fortgeschrittene_verlieren_nichts(seite, heute_stand, ids):
         bestanden: passed.size, b2: isUnlocked(reiterLevel('B2')[0])})""")
     assert z == {"dran": "kleine_woerter", "stufe": "A1", "neu": [True, True], "bestanden": len(bis_b1), "b2": True}
     assert [b["art"] for b in seite.js(LEISTE)] == ["offen", "offen", "fertig", "offen", "bald"]
-    assert [b["text"] for b in seite.js(LEISTE)][:3] == ["29 von 30", "30 von 31", "✓ fertig"]
+    assert [b["text"] for b in seite.js(LEISTE)][:3] == ["29/30", "30/31", "✓ fertig"]
     assert seite.fehler == []
 
 
@@ -251,4 +352,49 @@ def test_levelnummer_je_reiter(seite, heute_stand, ids):
     assert seite.page.locator("#lvTitle small").text_content() == "A2 · Sektion 1"
     seite.js("() => openLevel(CATEGORIES.findIndex(c => c.id === 'kleine_woerter'))")
     assert seite.page.locator("#tag").text_content() == "Level 29 von 30"
+    assert seite.fehler == []
+
+
+DRAN = """() => ({dran: CATEGORIES[firstOpen()].id, stufe: angezeigteStufe(),
+    neu: ['kleine_woerter', 'jeden_tag'].map(id => isUnlocked(CATEGORIES.findIndex(c => c.id === id)))})"""
+
+
+def test_vor_den_reitern_eingestuft_bekommt_die_grundwoerter(seite, heute_stand, ids):
+    """Prüfung vom 13.11.2026: Wer vor dem Update bis zum Anfang von B1
+    eingestuft war, hatte die 40 Grundwörter noch vor sich in B1. Jetzt liegen
+    sie im übersprungenen A-Teil; ohne Ausnahme kämen sie nie dran
+    (firstOpen suchte nur ab dem Einstieg). Die alte Einstufung hat kein Feld
+    "reiter"."""
+    import datetime
+    tag = (datetime.date.today() - datetime.timedelta(days=30)).isoformat()
+    alt = {"tag": tag, "wahl": "gut", "bis": "formell", "richtig": 13, "fragen": 15}
+    b1 = ids[ids.index("formell"):ids.index("formell") + 3]
+    _pfad(seite, heute_stand(einstufung=alt, bestanden=b1))
+    assert seite.js(DRAN) == {"dran": "kleine_woerter", "stufe": "A1", "neu": [True, True]}
+    seite.js("() => { passed.add('kleine_woerter'); showHome(); }")
+    assert seite.js(DRAN)["dran"] == "jeden_tag"
+    seite.js("() => { passed.add('jeden_tag'); showHome(); }")
+    assert seite.js(DRAN) == {"dran": ids[ids.index("formell") + 3], "stufe": "B1", "neu": [True, True]}
+    # Eingestuft in A2 (bei "zukunft"): Kleine Wörter steht davor, Wörter für jeden Tag
+    # kommt ohnehin in der Reihe
+    _pfad(seite, heute_stand(einstufung=dict(alt, bis="zukunft"), bestanden=["zukunft"]))
+    assert seite.js(DRAN)["dran"] == "kleine_woerter"
+    seite.js("() => { passed.add('kleine_woerter'); showHome(); }")
+    assert seite.js(DRAN)["dran"] == "modal"
+    assert ids.index("jeden_tag") > ids.index("zukunft")
+    assert seite.fehler == []
+
+
+def test_mit_den_reitern_eingestuft_bleibt_beim_einstieg(seite, heute_stand, ids):
+    """Wer mit den Reitern eingestuft wird, hat A1 und A2 samt Grundwörtern
+    übersprungen; der Ergebnisschirm sagt "Du steigst in B1 ein", und dabei
+    bleibt Weitermachen. Die Level davor sind offen."""
+    _pfad(seite, heute_stand())
+    seite.js("() => { einstufungMerken('gut', 'formell', 13, 15); showHome(); }")
+    assert seite.js("() => einstufung.reiter") is True
+    assert seite.js("() => JSON.parse(localStorage.getItem('zmaj_stand')).einstufung.reiter") is True
+    assert seite.js(DRAN) == {"dran": "formell", "stufe": "B1", "neu": [True, True]}
+    # Ein Sprung-Test ist auch ein Einstieg mit den Reitern
+    _pfad(seite, heute_stand(wann={"sp:A2": "2026-11-13"}))
+    assert seite.js(DRAN)["dran"] == ids[30]
     assert seite.fehler == []

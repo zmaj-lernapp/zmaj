@@ -134,7 +134,7 @@ def _alle(daten):
 def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten_vor_umzug):
     grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     sektion = grunddaten["sektionen"][11]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
-    assert len(grunddaten["sektionen"]) == 32       # seit 13.11.2026 (Sätze bauen 2)
+    assert len(grunddaten["sektionen"]) == 27       # seit 13.11.2026 (Sätze bauen 2, B2 in neun)
     assert sektion["id"] == "wieetwasist"
     assert sektion["label"] == "Sektion 3 · Wie etwas ist"
     ids = [k["id"] for k in grunddaten["kategorien"]]

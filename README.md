@@ -72,7 +72,7 @@ Everything the app teaches is exported to [`data/`](data/) under
 
 | | Count | Formats |
 |---|---:|---|
-| Words, phrases and example sentences, 32 sections in four stages (A1 to B2), 297 levels | 7,997 | JSON, CSV, Anki (8 decks) |
+| Words, phrases and example sentences, 27 sections in four stages (A1 to B2), 297 levels | 7,997 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
 | Graded stories with glossary and questions | 12 | JSON |
 | Reading glossary | 406 | JSON |

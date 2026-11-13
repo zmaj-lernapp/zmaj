@@ -19,11 +19,12 @@ from paket1020_pruefung import *  # noqa: F401,F403
 LEVEL = ["wie_sicher", "ganz_teilweise", "wie_man_tut", "wann_wie_lange", "immer_zukunft", "wo_wohin",
          "gut_schlecht", "fest_sichtbar", "streng_zuverlaessig", "feste_wendungen", "keine_ahnung",
          "mengen_masse"]
+# Seit 13.11.2026 (Frage 6a) Genauer sagen in Handeln und genauer sagen
 SEKTION = {
-    "wie_sicher": "genauersagen", "ganz_teilweise": "genauersagen", "wie_man_tut": "genauersagen",
-    "wann_wie_lange": "genauersagen", "immer_zukunft": "genauersagen", "wo_wohin": "genauersagen",
-    "gut_schlecht": "genauersagen", "fest_sichtbar": "genauersagen", "streng_zuverlaessig": "genauersagen",
-    "feste_wendungen": "genauersagen", "keine_ahnung": "genauersagen", "mengen_masse": "genauersagen",
+    "wie_sicher": "handelnveraendern", "ganz_teilweise": "handelnveraendern", "wie_man_tut": "handelnveraendern",
+    "wann_wie_lange": "handelnveraendern", "immer_zukunft": "handelnveraendern", "wo_wohin": "handelnveraendern",
+    "gut_schlecht": "handelnveraendern", "fest_sichtbar": "handelnveraendern", "streng_zuverlaessig": "handelnveraendern",
+    "feste_wendungen": "handelnveraendern", "keine_ahnung": "handelnveraendern", "mengen_masse": "handelnveraendern",
 }
 
 # Die Woerter je Level ohne die Beispielsaetze. Bosnisch genau so, wie Ajdin es
@@ -108,11 +109,11 @@ def test_posve_gestrichen_und_dosada_daneben(grunddaten, index_html):
 
 
 def test_alle_sektionen(grunddaten):
-    """32 Sektionen und 297 Level seit den Stufen-Reitern (13.11.2026; vorher 31 und 295
-    seit den Paketen 10 bis 20); Stufe B2 hinter B1, 14 Sektionen."""
-    assert len(grunddaten["sektionen"]) == 32
+    """27 Sektionen und 297 Level seit den Stufen-Reitern (13.11.2026; vorher 31 und 295
+    seit den Paketen 10 bis 20); Stufe B2 hinter B1, 9 Sektionen (Frage 6a)."""
+    assert len(grunddaten["sektionen"]) == 27
     assert len(grunddaten["kategorien"]) == 297
     s = [x["id"] for x in grunddaten["sektionen"]]
-    assert s[17] == "wiewowann" and s[18] == "denkenmeinen" and s[-1] == "genauersagen"
-    assert [x["stufe"] for x in grunddaten["sektionen"]].count("B2") == 14
+    assert s[17] == "wiewowann" and s[18] == "denkenmeinen" and s[-1] == "handelnveraendern"
+    assert [x["stufe"] for x in grunddaten["sektionen"]].count("B2") == 9
     assert grunddaten["kategorien"][-1]["id"] == "mengen_masse"

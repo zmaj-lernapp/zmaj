@@ -149,8 +149,14 @@ durchgehen und korrigieren – besonders regionale Formen
 # Bis zum 12.11.2026 waren es 31 Sektionen in einer Reihe. Ajdin am 08.11.2026:
 # „ja so eine kategorie für A1-A2 niveau, B1-B2 usw“, „wir machen am besten alle
 # getrennt“. Am 13.11.2026 Variante B: Sätze bauen geteilt (A1 und A2), Zuhause
-# hinter Fälle 1. B2 bleibt bei 14 Sektionen, bis die naechsten B2-Pakete kommen
-# (Frage 6a: dann auf neun zusammenlegen).
+# hinter Fälle 1. B2 von 14 auf 9 Sektionen zusammengelegt (Frage 6a, „ja“): es
+# gibt neun Farben, und je Reiter soll keine doppelt vorkommen (Farben-Entscheidung
+# vom 27.09.2026). Zusammengelegt die alten Nummern 18+19, 21+22, 23+24, 28+29 und
+# 30+31; die Reihenfolge der Level blieb. Weggefallen sind dabei die Kennungen
+# menschenbeziehungen, umwelttechnik, rechtbehoerden, landtiere und genauersagen,
+# ihre Level stehen jetzt in der Sektion davor. Das kostet keinen Lernstand: der
+# Stand merkt sich Level und Woerter, keine Sektion (offeneSektion lebt nur bis
+# zum Schliessen der App).
 SEKTIONEN = [
     # ---- A1 ----
     {"id": "alltag", "stufe": "A1", "label": "Sektion 1 · Grundlagen & Alltag",
@@ -192,34 +198,24 @@ SEKTIONEN = [
     {"id": "wiewowann", "stufe": "B1", "label": "Sektion 9 · Wie, wo und wann",
      "beschreibung": "Eigenschaften, Orte, Zeiten und die kleinen Wörter, die Sätze verbinden, jedes mit einem Beispielsatz."},
     # ---- B2 ----
-    {"id": "denkenmeinen", "stufe": "B2", "label": "Sektion 1 · Denken und Meinen",
-     "beschreibung": "Grundlagen, Meinung und Kritik, Bindewörter und kleine Wörter, mit denen man genauer sagt, was man denkt, jedes mit einem Beispielsatz."},
-    {"id": "menschenbeziehungen", "stufe": "B2", "label": "Sektion 2 · Menschen und Beziehungen",
-     "beschreibung": "Erziehung, Familie, Liebe und Streit, Trauer und Nachbarschaft, jedes Wort mit einem Beispielsatz."},
-    {"id": "arbeitwirtschaft", "stufe": "B2", "label": "Sektion 3 · Arbeit und Wirtschaft",
+    {"id": "denkenmeinen", "stufe": "B2", "label": "Sektion 1 · Denken, Fühlen und Beziehungen",
+     "beschreibung": "Meinung und Kritik, Bindewörter, Familie, Liebe und Streit, Trauer und Nachbarschaft, jedes Wort mit einem Beispielsatz."},
+    {"id": "arbeitwirtschaft", "stufe": "B2", "label": "Sektion 2 · Arbeit und Wirtschaft",
      "beschreibung": "Firma und Handel, Geld und Preise, Gewinn und Verlust, Karriere und Rechte bei der Arbeit, jedes Wort mit einem Beispielsatz."},
-    {"id": "medienkultur", "stufe": "B2", "label": "Sektion 4 · Medien und Kultur",
-     "beschreibung": "Zeitung und Fernsehen, Werbung, Theater, Bücher, Kunst und Geschichte, jedes Wort mit einem Beispielsatz."},
-    {"id": "umwelttechnik", "stufe": "B2", "label": "Sektion 5 · Umwelt und Technik",
-     "beschreibung": "Klima und Energie, Naturkatastrophen, Computer und Dateien, jedes Wort mit einem Beispielsatz."},
-    {"id": "gesellschaftpolitik", "stufe": "B2", "label": "Sektion 6 · Gesellschaft und Politik",
-     "beschreibung": "Staat und Wahl, Krieg und Frieden, Bürger und Rechte, Religion und Gemeinschaft, jedes Wort mit einem Beispielsatz."},
-    {"id": "rechtbehoerden", "stufe": "B2", "label": "Sektion 7 · Recht und Behörden",
-     "beschreibung": "Gericht, Polizei, Bescheide und Verträge, dazu Amt, Post, Bank und Versicherung, jedes Wort mit einem Beispielsatz."},
-    {"id": "hauswohnung", "stufe": "B2", "label": "Sektion 8 · Haus und Wohnung",
+    {"id": "medienkultur", "stufe": "B2", "label": "Sektion 3 · Medien, Kultur und Technik",
+     "beschreibung": "Zeitung und Fernsehen, Kunst und Geschichte, Klima und Energie, Computer und Dateien, jedes Wort mit einem Beispielsatz."},
+    {"id": "gesellschaftpolitik", "stufe": "B2", "label": "Sektion 4 · Staat, Recht und Behörden",
+     "beschreibung": "Staat und Wahl, Krieg und Frieden, Gericht und Polizei, Amt, Bank und Versicherung, jedes Wort mit einem Beispielsatz."},
+    {"id": "hauswohnung", "stufe": "B2", "label": "Sektion 5 · Haus und Wohnung",
      "beschreibung": "Dinge im Haushalt, Räume und Möbel, Schäden, Reparieren und Bauen, Wohnen und Miete, jedes Wort mit einem Beispielsatz."},
-    {"id": "gesundheitsport", "stufe": "B2", "label": "Sektion 9 · Gesundheit und Sport",
+    {"id": "gesundheitsport", "stufe": "B2", "label": "Sektion 6 · Gesundheit und Sport",
      "beschreibung": "Der Körper genauer, Krankheiten, Krankenhaus, Psyche, Sport und Ernährung, jedes Wort mit einem Beispielsatz."},
-    {"id": "schulewissen", "stufe": "B2", "label": "Sektion 10 · Schule und Wissen",
+    {"id": "schulewissen", "stufe": "B2", "label": "Sektion 7 · Schule und Wissen",
      "beschreibung": "Schule und Universität, Fächer und Forschung, Sprache und Grammatik, reden und erklären, jedes Wort mit einem Beispielsatz."},
-    {"id": "stadtreisen", "stufe": "B2", "label": "Sektion 11 · Stadt, Verkehr und Reisen",
-     "beschreibung": "In der Stadt, Straßen und Bahn, Autofahren, Reisen und Unterkunft, jedes Wort mit einem Beispielsatz."},
-    {"id": "landtiere", "stufe": "B2", "label": "Sektion 12 · Land, Tiere und Pflanzen",
-     "beschreibung": "Landschaft und Boden, Tiere genauer, Pflanzen und Anbau, jedes Wort mit einem Beispielsatz."},
-    {"id": "handelnveraendern", "stufe": "B2", "label": "Sektion 13 · Handeln und verändern",
-     "beschreibung": "Verben, oft als Paar: bewegen, durchführen, verändern, verbinden, bestimmen und mit Menschen umgehen, jedes mit einem Beispielsatz."},
-    {"id": "genauersagen", "stufe": "B2", "label": "Sektion 14 · Genauer sagen",
-     "beschreibung": "Wie sicher, wie und wann, wo, wie gut, feste Wendungen und Mengen, jedes Wort mit einem Beispielsatz."},
+    {"id": "stadtreisen", "stufe": "B2", "label": "Sektion 8 · Stadt, Land und unterwegs",
+     "beschreibung": "Stadt und Verkehr, Reisen und Unterkunft, Landschaft, Tiere und Pflanzen, jedes Wort mit einem Beispielsatz."},
+    {"id": "handelnveraendern", "stufe": "B2", "label": "Sektion 9 · Handeln und genauer sagen",
+     "beschreibung": "Verben, oft als Paar, dazu wie sicher, wie und wo, feste Wendungen und Mengen, jedes Wort mit einem Beispielsatz."},
 ]
 
 
@@ -6154,7 +6150,7 @@ KATEGORIEN = [
         {"de": "Dieses Thema ist immer noch aktuell.", "bs": "Ta tema je još uvijek aktuelna."},
     ]},
 
-    {"id": "erziehung_aufwachsen", "label": "Erziehung und Aufwachsen", "sektion": "menschenbeziehungen", "tipp": "Erziehung, Vorbild, Jugendliche, Spielzeug, aufwachsen, belohnen: wie Kinder groß werden.",
+    {"id": "erziehung_aufwachsen", "label": "Erziehung und Aufwachsen", "sektion": "denkenmeinen", "tipp": "Erziehung, Vorbild, Jugendliche, Spielzeug, aufwachsen, belohnen: wie Kinder groß werden.",
      "baut_auf": ["etwas_beurteilen", "familie", "menschen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6190,7 +6186,7 @@ KATEGORIEN = [
         {"de": "Die Schulbildung der Kinder kostet viel Geld.", "bs": "Školovanje djece košta mnogo novca."},
     ]},
 
-    {"id": "familie_generationen", "label": "Familie und Generationen", "sektion": "menschenbeziehungen", "tipp": "Herkunft, Vorfahr, Enkel, Zwilling, Witwe, Schwiegereltern: die ganze Verwandtschaft.",
+    {"id": "familie_generationen", "label": "Familie und Generationen", "sektion": "denkenmeinen", "tipp": "Herkunft, Vorfahr, Enkel, Zwilling, Witwe, Schwiegereltern: die ganze Verwandtschaft.",
      "baut_auf": ["erziehung_aufwachsen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6234,7 +6230,7 @@ KATEGORIEN = [
         {"de": "Mein Schwiegervater und ich gehen zusammen angeln.", "bs": "Punac i ja idemo zajedno na pecanje."},
     ]},
 
-    {"id": "liebe_ehe", "label": "Liebe und Ehe", "sektion": "menschenbeziehungen", "tipp": "Leidenschaft, Trauung, Kuss, Eifersucht, treu, Verlobung: wenn zwei sich lieben.",
+    {"id": "liebe_ehe", "label": "Liebe und Ehe", "sektion": "denkenmeinen", "tipp": "Leidenschaft, Trauung, Kuss, Eifersucht, treu, Verlobung: wenn zwei sich lieben.",
      "baut_auf": ["familie_generationen", "beziehungen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6270,7 +6266,7 @@ KATEGORIEN = [
         {"de": "Die Verlobung war letzten Samstag.", "bs": "Vjeridba je bila prošle subote."},
     ]},
 
-    {"id": "streit_versoehnung", "label": "Streit und Versöhnung", "sektion": "menschenbeziehungen", "tipp": "Ärger, Beleidigung, Missverständnis, Versöhnung, verzeihen: streiten und sich wieder vertragen.",
+    {"id": "streit_versoehnung", "label": "Streit und Versöhnung", "sektion": "denkenmeinen", "tipp": "Ärger, Beleidigung, Missverständnis, Versöhnung, verzeihen: streiten und sich wieder vertragen.",
      "baut_auf": ["liebe_ehe", "stimmung_streit"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6300,7 +6296,7 @@ KATEGORIEN = [
         {"de": "Eine Mutter verzeiht ihren Kindern alles.", "bs": "Majka djeci sve oprašta."},
     ]},
 
-    {"id": "reue_enttaeuschung", "label": "Reue und Enttäuschung", "sektion": "menschenbeziehungen", "tipp": "Bereuen, Schande, sich schämen, Schuld, Betrug, enttäuschen: was danach bleibt.",
+    {"id": "reue_enttaeuschung", "label": "Reue und Enttäuschung", "sektion": "denkenmeinen", "tipp": "Bereuen, Schande, sich schämen, Schuld, Betrug, enttäuschen: was danach bleibt.",
      "baut_auf": ["streit_versoehnung"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6330,7 +6326,7 @@ KATEGORIEN = [
         {"de": "Der Film war eine echte Enttäuschung.", "bs": "Film je bio pravo razočaranje."},
     ]},
 
-    {"id": "gefuehle_genauer", "label": "Gefühle genauer", "sektion": "menschenbeziehungen", "tipp": "Zufriedenheit, Erwartung, Stolz, Panik, Erleichterung, Langeweile: was in einem vorgeht.",
+    {"id": "gefuehle_genauer", "label": "Gefühle genauer", "sektion": "denkenmeinen", "tipp": "Zufriedenheit, Erwartung, Stolz, Panik, Erleichterung, Langeweile: was in einem vorgeht.",
      "baut_auf": ["reue_enttaeuschung", "glueck_sorgen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6368,7 +6364,7 @@ KATEGORIEN = [
         {"de": "Deine Nachricht hat mich sehr gefreut.", "bs": "Tvoja poruka me je jako obradovala."},
     ]},
 
-    {"id": "charakter", "label": "Charakter", "sektion": "menschenbeziehungen", "tipp": "Verhalten, Weisheit, Geduld, bescheiden, gerecht, reif: wie ein Mensch ist.",
+    {"id": "charakter", "label": "Charakter", "sektion": "denkenmeinen", "tipp": "Verhalten, Weisheit, Geduld, bescheiden, gerecht, reif: wie ein Mensch ist.",
      "baut_auf": ["gefuehle_genauer", "wie_jemand_ist"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6410,7 +6406,7 @@ KATEGORIEN = [
         {"de": "Sie verdient ein besseres Leben.", "bs": "Ona zaslužuje bolji život."},
     ]},
 
-    {"id": "trauer_beileid", "label": "Trauer und Beileid", "sektion": "menschenbeziehungen", "tipp": "Versterben, Trauer, Grab, Trost, Gedenkfeier, Beileid: wenn jemand stirbt.",
+    {"id": "trauer_beileid", "label": "Trauer und Beileid", "sektion": "denkenmeinen", "tipp": "Versterben, Trauer, Grab, Trost, Gedenkfeier, Beileid: wenn jemand stirbt.",
      "baut_auf": ["charakter", "glaube_gedenken"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6448,7 +6444,7 @@ KATEGORIEN = [
         {"de": "Danke für Ihr Mitgefühl und Ihre Unterstützung.", "bs": "Hvala Vam na suosjećanju i podršci."},
     ]},
 
-    {"id": "begegnen_versammeln", "label": "Begegnen und versammeln", "sektion": "menschenbeziehungen", "tipp": "Begegnung, Siedlung, Kontakt, versammeln, empfangen, sich anschließen: zusammenkommen.",
+    {"id": "begegnen_versammeln", "label": "Begegnen und versammeln", "sektion": "denkenmeinen", "tipp": "Begegnung, Siedlung, Kontakt, versammeln, empfangen, sich anschließen: zusammenkommen.",
      "baut_auf": ["trauer_beileid"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -6480,7 +6476,7 @@ KATEGORIEN = [
         {"de": "Er lebt im Nachbardorf.",     "bs": "Živi u susjednom selu."},
     ]},
 
-    {"id": "nachbarn_miteinander", "label": "Nachbarn und Miteinander", "sektion": "menschenbeziehungen", "tipp": "Hof, Mitbürger, Solidarität, Zusammenleben, Nachbarschaft, widmen: mit anderen leben.",
+    {"id": "nachbarn_miteinander", "label": "Nachbarn und Miteinander", "sektion": "denkenmeinen", "tipp": "Hof, Mitbürger, Solidarität, Zusammenleben, Nachbarschaft, widmen: mit anderen leben.",
      "baut_auf": ["begegnen_versammeln", "putzen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7136,7 +7132,7 @@ KATEGORIEN = [
         {"de": "Das ganze Archiv ist in diesen Kartons.", "bs": "Cijela arhiva je u ovim kutijama."},
     ]},
 
-    {"id": "klima_energie", "label": "Klima und Energie", "sektion": "umwelttechnik", "tipp": "Atmosphäre, Abfall, Erdgas, Erdöl, Umwelt, Kraftwerk, erneuerbar: Energie und Klima.",
+    {"id": "klima_energie", "label": "Klima und Energie", "sektion": "medienkultur", "tipp": "Atmosphäre, Abfall, Erdgas, Erdöl, Umwelt, Kraftwerk, erneuerbar: Energie und Klima.",
      "baut_auf": ["geschichte_frueher", "technik_energie", "natur"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7182,7 +7178,7 @@ KATEGORIEN = [
         {"de": "Der Mensch ist ein soziales Wesen.", "bs": "Čovjek je društveno biće."},
     ]},
 
-    {"id": "naturkatastrophen", "label": "Naturkatastrophen", "sektion": "umwelttechnik", "tipp": "Überschwemmung, Katastrophe, Rettung, Erdbeben, Erdrutsch, Unwetter, Dürre: wenn die Natur zuschlägt.",
+    {"id": "naturkatastrophen", "label": "Naturkatastrophen", "sektion": "medienkultur", "tipp": "Überschwemmung, Katastrophe, Rettung, Erdbeben, Erdrutsch, Unwetter, Dürre: wenn die Natur zuschlägt.",
      "baut_auf": ["klima_energie", "notfall"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7222,7 +7218,7 @@ KATEGORIEN = [
         {"de": "Die Dürre hat dieses Jahr den Mais vernichtet.", "bs": "Suša je ove godine uništila kukuruz."},
     ]},
 
-    {"id": "computer_dateien", "label": "Computer und Dateien", "sektion": "umwelttechnik", "tipp": "Datenbank, Plattform, digital, Version, Link, Software, löschen, Datei: am Computer.",
+    {"id": "computer_dateien", "label": "Computer und Dateien", "sektion": "medienkultur", "tipp": "Datenbank, Plattform, digital, Version, Link, Software, löschen, Datei: am Computer.",
      "baut_auf": ["naturkatastrophen", "geraete"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7452,7 +7448,7 @@ KATEGORIEN = [
         {"de": "Der Hodscha hat über das Paradies und die Hölle gesprochen.", "bs": "Hodža je pričao o džennetu i džehennemu."},
     ]},
 
-    {"id": "gericht", "label": "Gericht", "sektion": "rechtbehoerden", "tipp": "Staatsanwaltschaft, Ermittlung, Anklage, aussagen, Prozess, Justiz, verurteilen: vor Gericht.",
+    {"id": "gericht", "label": "Gericht", "sektion": "gesellschaftpolitik", "tipp": "Staatsanwaltschaft, Ermittlung, Anklage, aussagen, Prozess, Justiz, verurteilen: vor Gericht.",
      "baut_auf": ["religion_gemeinschaft", "krieg_recht", "amt"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7496,7 +7492,7 @@ KATEGORIEN = [
         {"de": "Beschuldige mich nicht ohne Beweise.", "bs": "Ne optužuj me bez dokaza."},
     ]},
 
-    {"id": "polizei_anzeige", "label": "Polizei und Anzeige", "sektion": "rechtbehoerden", "tipp": "Droge, drohen, Fahndung, Kriminalität, Diebstahl, Festnahme, Strafanzeige: wenn die Polizei kommt.",
+    {"id": "polizei_anzeige", "label": "Polizei und Anzeige", "sektion": "gesellschaftpolitik", "tipp": "Droge, drohen, Fahndung, Kriminalität, Diebstahl, Festnahme, Strafanzeige: wenn die Polizei kommt.",
      "baut_auf": ["gericht"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7540,7 +7536,7 @@ KATEGORIEN = [
         {"de": "Er hat Strafanzeige gegen den Nachbarn erstattet.", "bs": "Podnio je krivičnu prijavu protiv komšije."},
     ]},
 
-    {"id": "aemter_zustaendigkeit", "label": "Ämter und Zuständigkeit", "sektion": "rechtbehoerden", "tipp": "Agentur, Dienst, Einrichtung, zuständig, verweisen, ausstellen, Unterlagen: wer wofür zuständig ist.",
+    {"id": "aemter_zustaendigkeit", "label": "Ämter und Zuständigkeit", "sektion": "gesellschaftpolitik", "tipp": "Agentur, Dienst, Einrichtung, zuständig, verweisen, ausstellen, Unterlagen: wer wofür zuständig ist.",
      "baut_auf": ["polizei_anzeige"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7570,7 +7566,7 @@ KATEGORIEN = [
         {"de": "Das liegt nicht in unserer Zuständigkeit.", "bs": "To nije u našoj nadležnosti."},
     ]},
 
-    {"id": "bescheid_einspruch", "label": "Bescheid und Einspruch", "sektion": "rechtbehoerden", "tipp": "Zustimmung, Anordnung, genehmigen, Bescheid, Einspruch, Behörde, durchführen: der Weg durch die Behörde.",
+    {"id": "bescheid_einspruch", "label": "Bescheid und Einspruch", "sektion": "gesellschaftpolitik", "tipp": "Zustimmung, Anordnung, genehmigen, Bescheid, Einspruch, Behörde, durchführen: der Weg durch die Behörde.",
      "baut_auf": ["aemter_zustaendigkeit"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7602,7 +7598,7 @@ KATEGORIEN = [
         {"de": "Die Polizei stellt in der Stadt langsam die Ordnung wieder her.", "bs": "Policija polako uspostavlja red u gradu."},
     ]},
 
-    {"id": "vertraege", "label": "Verträge", "sektion": "rechtbehoerden", "tipp": "Abänderung, Ergänzung, gelten, verlängern, Besitz, Erbe, abschließen, Pacht: Verträge schließen und lösen.",
+    {"id": "vertraege", "label": "Verträge", "sektion": "gesellschaftpolitik", "tipp": "Abänderung, Ergänzung, gelten, verlängern, Besitz, Erbe, abschließen, Pacht: Verträge schließen und lösen.",
      "baut_auf": ["bescheid_einspruch", "arbeitsvertrag"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7644,7 +7640,7 @@ KATEGORIEN = [
         {"de": "Er besitzt drei Häuser.",     "bs": "On posjeduje tri kuće."},
     ]},
 
-    {"id": "auf_dem_amt", "label": "Auf dem Amt", "sektion": "rechtbehoerden", "tipp": "Anmeldung, Aufenthalt, Liste, Urkunde, Visum, Gesuch, Protokoll, beglaubigen: Papiere fürs Amt.",
+    {"id": "auf_dem_amt", "label": "Auf dem Amt", "sektion": "gesellschaftpolitik", "tipp": "Anmeldung, Aufenthalt, Liste, Urkunde, Visum, Gesuch, Protokoll, beglaubigen: Papiere fürs Amt.",
      "baut_auf": ["vertraege", "amt"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7676,7 +7672,7 @@ KATEGORIEN = [
         {"de": "Ich warte auf eine Sendung aus Deutschland.", "bs": "Čekam pošiljku iz Njemačke."},
     ]},
 
-    {"id": "post_abmeldung", "label": "Post und Abmeldung", "sektion": "rechtbehoerden", "tipp": "Beilegen, Briefumschlag, Schalter, Finanzamt, Vollmacht, Empfänger, abmelden: Post und Formulare.",
+    {"id": "post_abmeldung", "label": "Post und Abmeldung", "sektion": "gesellschaftpolitik", "tipp": "Beilegen, Briefumschlag, Schalter, Finanzamt, Vollmacht, Empfänger, abmelden: Post und Formulare.",
      "baut_auf": ["auf_dem_amt"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7708,7 +7704,7 @@ KATEGORIEN = [
         {"de": "Für die Abmeldung braucht man nur den Personalausweis.", "bs": "Za odjavu treba samo lična karta."},
     ]},
 
-    {"id": "bank_darlehen", "label": "Bank und Darlehen", "sektion": "rechtbehoerden", "tipp": "Auszahlen, Transaktion, Prämie, Darlehen, Tilgung, Provision, Schließfach: bei der Bank.",
+    {"id": "bank_darlehen", "label": "Bank und Darlehen", "sektion": "gesellschaftpolitik", "tipp": "Auszahlen, Transaktion, Prämie, Darlehen, Tilgung, Provision, Schließfach: bei der Bank.",
      "baut_auf": ["post_abmeldung", "bank"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -7738,7 +7734,7 @@ KATEGORIEN = [
         {"de": "Die Dokumente bewahre ich im Schließfach der Bank auf.", "bs": "Dokumente držim u sefu u banci."},
     ]},
 
-    {"id": "versicherung_zinsen", "label": "Versicherung und Zinsen", "sektion": "rechtbehoerden", "tipp": "Bankrott, Devisen, Geldüberweisung, Zinssatz, abbezahlen, Bürge, Versicherungspolice: Geld absichern.",
+    {"id": "versicherung_zinsen", "label": "Versicherung und Zinsen", "sektion": "gesellschaftpolitik", "tipp": "Bankrott, Devisen, Geldüberweisung, Zinssatz, abbezahlen, Bürge, Versicherungspolice: Geld absichern.",
      "baut_auf": ["bank_darlehen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9102,7 +9098,7 @@ KATEGORIEN = [
         {"de": "Wir haben lange am Grenzübergang gewartet.", "bs": "Dugo smo čekali na graničnom prijelazu."},
     ]},
 
-    {"id": "landschaft_boden", "label": "Landschaft und Boden", "sektion": "landtiere", "tipp": "Erdboden, Gold, Welle, Morgendämmerung, Schatten, Schlamm, Acker, Wüste, Frost: was draußen ist.",
+    {"id": "landschaft_boden", "label": "Landschaft und Boden", "sektion": "stadtreisen", "tipp": "Erdboden, Gold, Welle, Morgendämmerung, Schatten, Schlamm, Acker, Wüste, Frost: was draußen ist.",
      "baut_auf": ["ankommen_ansehen", "natur", "wetter"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9136,7 +9132,7 @@ KATEGORIEN = [
         {"de": "Endlich sind wir wieder an Land.", "bs": "Konačno smo opet na kopnu."},
     ]},
 
-    {"id": "ozean_schlucht", "label": "Ozean und Schlucht", "sektion": "landtiere", "tipp": "Bergsteiger, Ozean, Weinberg, Landschaft, Bucht, Mündung, Vulkan, Lawine, Sumpf: Landschaften der Welt.",
+    {"id": "ozean_schlucht", "label": "Ozean und Schlucht", "sektion": "stadtreisen", "tipp": "Bergsteiger, Ozean, Weinberg, Landschaft, Bucht, Mündung, Vulkan, Lawine, Sumpf: Landschaften der Welt.",
      "baut_auf": ["landschaft_boden"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9170,7 +9166,7 @@ KATEGORIEN = [
         {"de": "Der Weg führt durch eine enge Schlucht.", "bs": "Put vodi kroz usku klisuru."},
     ]},
 
-    {"id": "jagen_fischen", "label": "Jagen und fischen", "sektion": "landtiere", "tipp": "Löwe, Jagd, Schildkröte, Jäger, Angeln, Widder, Bienenstock, Herde, Fischer: Tiere fangen und halten.",
+    {"id": "jagen_fischen", "label": "Jagen und fischen", "sektion": "stadtreisen", "tipp": "Löwe, Jagd, Schildkröte, Jäger, Angeln, Widder, Bienenstock, Herde, Fischer: Tiere fangen und halten.",
      "baut_auf": ["ozean_schlucht", "tiere_wild", "tiere_umgang"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9200,7 +9196,7 @@ KATEGORIEN = [
         {"de": "Der Fischer repariert das Netz am Ufer.", "bs": "Ribar popravlja mrežu na obali."},
     ]},
 
-    {"id": "tiere_genauer", "label": "Tiere genauer", "sektion": "landtiere", "tipp": "Affe, Wal, Elefant, Muschel, Rind, Weibchen, Delfin, Tiger, Schwarm, Kamel: Tiere aus aller Welt.",
+    {"id": "tiere_genauer", "label": "Tiere genauer", "sektion": "stadtreisen", "tipp": "Affe, Wal, Elefant, Muschel, Rind, Weibchen, Delfin, Tiger, Schwarm, Kamel: Tiere aus aller Welt.",
      "baut_auf": ["jagen_fischen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9230,7 +9226,7 @@ KATEGORIEN = [
         {"de": "Ein Kamel kommt lange ohne Wasser aus.", "bs": "Deva može dugo bez vode."},
     ]},
 
-    {"id": "pflanzen_anbau", "label": "Pflanzen und Anbau", "sektion": "landtiere", "tipp": "Frucht, Baumstamm, Rinde, Anbau, Rose, Samen, Weizen, Laub, säen: was wächst.",
+    {"id": "pflanzen_anbau", "label": "Pflanzen und Anbau", "sektion": "stadtreisen", "tipp": "Frucht, Baumstamm, Rinde, Anbau, Rose, Samen, Weizen, Laub, säen: was wächst.",
      "baut_auf": ["tiere_genauer"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9262,7 +9258,7 @@ KATEGORIEN = [
         {"de": "Diese Tomaten haben wir selbst gezogen.", "bs": "Sami smo uzgojili ovaj paradajz."},
     ]},
 
-    {"id": "ernten_pflanzen", "label": "Ernten und pflanzen", "sektion": "landtiere", "tipp": "Birke, Getreide, Lilie, Setzling, pflücken, pflanzen, Eiche, Dünger, Ernte: im Garten und auf dem Feld.",
+    {"id": "ernten_pflanzen", "label": "Ernten und pflanzen", "sektion": "stadtreisen", "tipp": "Birke, Getreide, Lilie, Setzling, pflücken, pflanzen, Eiche, Dünger, Ernte: im Garten und auf dem Feld.",
      "baut_auf": ["pflanzen_anbau"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9698,7 +9694,7 @@ KATEGORIEN = [
         {"de": "Vergleich dich nicht mit anderen.", "bs": "Nemoj se upoređivati s drugima."},
     ]},
 
-    {"id": "wie_sicher", "label": "Wie sicher", "sektion": "genauersagen", "tipp": "Offenbar, wenigstens, definitiv, absolut, relativ, äußerst, generell, kurz gesagt, wörtlich: wie sicher man ist.",
+    {"id": "wie_sicher", "label": "Wie sicher", "sektion": "handelnveraendern", "tipp": "Offenbar, wenigstens, definitiv, absolut, relativ, äußerst, generell, kurz gesagt, wörtlich: wie sicher man ist.",
      "baut_auf": ["entwicklung_vergleich", "wie_sehr", "wie_man_es_meint"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9728,7 +9724,7 @@ KATEGORIEN = [
         {"de": "Nimm das nicht wörtlich.",    "bs": "Nemoj to shvatiti doslovno."},
     ]},
 
-    {"id": "ganz_teilweise", "label": "Ganz oder teilweise", "sektion": "genauersagen", "tipp": "Ganz und gar, nebenbei, annähernd, total, zu wenig, allzu, vergeblich, teilweise, zweifellos, übertrieben: wie sehr.",
+    {"id": "ganz_teilweise", "label": "Ganz oder teilweise", "sektion": "handelnveraendern", "tipp": "Ganz und gar, nebenbei, annähernd, total, zu wenig, allzu, vergeblich, teilweise, zweifellos, übertrieben: wie sehr.",
      "baut_auf": ["wie_sicher"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9758,7 +9754,7 @@ KATEGORIEN = [
         {"de": "Mach dir nicht übertrieben viele Sorgen.", "bs": "Nemoj se pretjerano brinuti."},
     ]},
 
-    {"id": "wie_man_tut", "label": "Wie man etwas tut", "sektion": "genauersagen", "tipp": "Direkt, automatisch, gegenseitig, richtig, allmählich, absichtlich, selbstständig, auswendig, schriftlich: wie etwas geschieht.",
+    {"id": "wie_man_tut", "label": "Wie man etwas tut", "sektion": "handelnveraendern", "tipp": "Direkt, automatisch, gegenseitig, richtig, allmählich, absichtlich, selbstständig, auswendig, schriftlich: wie etwas geschieht.",
      "baut_auf": ["ganz_teilweise"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9796,7 +9792,7 @@ KATEGORIEN = [
         {"de": "Mündlich hat er mir die Stelle versprochen.", "bs": "Usmeno mi je obećao posao."},
     ]},
 
-    {"id": "wann_wie_lange", "label": "Wann und wie lange", "sektion": "genauersagen", "tipp": "Anfang, Ende, täglich, bald darauf, seit langem, zuerst, bisher, im Voraus, gelegentlich: wann etwas passiert.",
+    {"id": "wann_wie_lange", "label": "Wann und wie lange", "sektion": "handelnveraendern", "tipp": "Anfang, Ende, täglich, bald darauf, seit langem, zuerst, bisher, im Voraus, gelegentlich: wann etwas passiert.",
      "baut_auf": ["wie_man_tut", "wann_wie_oft"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9824,7 +9820,7 @@ KATEGORIEN = [
         {"de": "Das Geschäft ist vorübergehend geschlossen.", "bs": "Prodavnica je privremeno zatvorena."},
     ]},
 
-    {"id": "immer_zukunft", "label": "Schon immer und in Zukunft", "sektion": "genauersagen", "tipp": "Unaufhörlich, schon immer, vorerst, unerwartet, nachträglich, in Zukunft, schließlich, tagsüber: Zeit genauer sagen.",
+    {"id": "immer_zukunft", "label": "Schon immer und in Zukunft", "sektion": "handelnveraendern", "tipp": "Unaufhörlich, schon immer, vorerst, unerwartet, nachträglich, in Zukunft, schließlich, tagsüber: Zeit genauer sagen.",
      "baut_auf": ["wann_wie_lange"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9852,7 +9848,7 @@ KATEGORIEN = [
         {"de": "Tagsüber arbeite ich und nachts lerne ich.", "bs": "Danju radim, a noću učim."},
     ]},
 
-    {"id": "wo_wohin", "label": "Wo und wohin", "sektion": "genauersagen", "tipp": "Hinaus, mitten in, überall, gegenüber, entlang, hierher, von innen, von dort, anderswo, von oben: wo und woher.",
+    {"id": "wo_wohin", "label": "Wo und wohin", "sektion": "handelnveraendern", "tipp": "Hinaus, mitten in, überall, gegenüber, entlang, hierher, von innen, von dort, anderswo, von oben: wo und woher.",
      "baut_auf": ["immer_zukunft", "hier_dort"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9884,7 +9880,7 @@ KATEGORIEN = [
         {"de": "Die Aussicht von oben ist wunderschön.", "bs": "Pogled odozgo je prekrasan."},
     ]},
 
-    {"id": "gut_schlecht", "label": "Gut oder schlecht", "sektion": "genauersagen", "tipp": "Hochwertig, perfekt, ideal, furchtbar, wunderschön, ungewöhnlich, schädlich, berühmt, hässlich: wie gut etwas ist.",
+    {"id": "gut_schlecht", "label": "Gut oder schlecht", "sektion": "handelnveraendern", "tipp": "Hochwertig, perfekt, ideal, furchtbar, wunderschön, ungewöhnlich, schädlich, berühmt, hässlich: wie gut etwas ist.",
      "baut_auf": ["wo_wohin", "eigenschaften"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9928,7 +9924,7 @@ KATEGORIEN = [
         {"de": "Das ist eine unnötige Ausgabe.", "bs": "Ovo je nepotreban trošak."},
     ]},
 
-    {"id": "fest_sichtbar", "label": "Fest und sichtbar", "sektion": "genauersagen", "tipp": "Anwesend, fest, ruhig, gleich, klassisch, komplett, sichtbar, speziell, selten, mild, mächtig: Eigenschaften genauer.",
+    {"id": "fest_sichtbar", "label": "Fest und sichtbar", "sektion": "handelnveraendern", "tipp": "Anwesend, fest, ruhig, gleich, klassisch, komplett, sichtbar, speziell, selten, mild, mächtig: Eigenschaften genauer.",
      "baut_auf": ["gut_schlecht"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9958,7 +9954,7 @@ KATEGORIEN = [
         {"de": "Er ist ein mächtiger Mann in dieser Stadt.", "bs": "On je moćan čovjek u ovom gradu."},
     ]},
 
-    {"id": "streng_zuverlaessig", "label": "Streng und zuverlässig", "sektion": "genauersagen", "tipp": "Dauerhaft, verrückt, flach, winzig, korrekt, scharf, zuverlässig, streng, üblich, rund, dicht, intelligent: wie jemand oder etwas ist.",
+    {"id": "streng_zuverlaessig", "label": "Streng und zuverlässig", "sektion": "handelnveraendern", "tipp": "Dauerhaft, verrückt, flach, winzig, korrekt, scharf, zuverlässig, streng, üblich, rund, dicht, intelligent: wie jemand oder etwas ist.",
      "baut_auf": ["fest_sichtbar"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -9990,7 +9986,7 @@ KATEGORIEN = [
         {"de": "Mein Hund ist sehr intelligent.", "bs": "Moj pas je vrlo inteligentan."},
     ]},
 
-    {"id": "feste_wendungen", "label": "Feste Wendungen", "sektion": "genauersagen", "tipp": "Ungeachtet, vor allen Dingen, unter anderem, in jedem Fall, alles in allem, letzten Endes: was man oft sagt.",
+    {"id": "feste_wendungen", "label": "Feste Wendungen", "sektion": "handelnveraendern", "tipp": "Ungeachtet, vor allen Dingen, unter anderem, in jedem Fall, alles in allem, letzten Endes: was man oft sagt.",
      "baut_auf": ["streng_zuverlaessig", "kulturlevel"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -10020,7 +10016,7 @@ KATEGORIEN = [
         {"de": "Von Zeit zu Zeit hören wir voneinander.", "bs": "S vremena na vrijeme se čujemo."},
     ]},
 
-    {"id": "keine_ahnung", "label": "Keine Ahnung und alle Achtung", "sektion": "genauersagen", "tipp": "Alle Achtung!, Keine Ahnung., Schritt für Schritt, früher oder später, für alle Fälle, Halt durch!: Sätze für jeden Tag.",
+    {"id": "keine_ahnung", "label": "Keine Ahnung und alle Achtung", "sektion": "handelnveraendern", "tipp": "Alle Achtung!, Keine Ahnung., Schritt für Schritt, früher oder später, für alle Fälle, Halt durch!: Sätze für jeden Tag.",
      "baut_auf": ["feste_wendungen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [
@@ -10050,7 +10046,7 @@ KATEGORIEN = [
         {"de": "Nein danke, ich habe keinen Hunger.", "bs": "Neka, hvala, nisam gladan."},
     ]},
 
-    {"id": "mengen_masse", "label": "Mengen und Maße", "sektion": "genauersagen", "tipp": "Prozent, zwei Männer, etwa zehn, Tonne, Vielzahl, Zentimeter, Stückchen, Teelöffel, Schluck: wie viel genau.",
+    {"id": "mengen_masse", "label": "Mengen und Maße", "sektion": "handelnveraendern", "tipp": "Prozent, zwei Männer, etwa zehn, Tonne, Vielzahl, Zentimeter, Stückchen, Teelöffel, Schluck: wie viel genau.",
      "baut_auf": ["keine_ahnung", "mengen", "menge_teil"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (07.11.2026)
      "words": [

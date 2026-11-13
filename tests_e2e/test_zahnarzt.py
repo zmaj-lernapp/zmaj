@@ -117,7 +117,7 @@ def test_ohne_wort_ist_nichts_zu_sehen(seite, heute_stand):
     _heim(seite)
     assert seite.page.locator(SEKTION).count() == 0
     z = seite.js(ZAHLEN)
-    assert z["sektionen"] == 32 and z["level"] == 297 and z["woerter"] == 7997 and z["wortkarte"] is False
+    assert z["sektionen"] == 27 and z["level"] == 297 and z["woerter"] == 7997 and z["wortkarte"] is False
     assert seite.js("() => [zaAn(), zaSchalter.an, !!ZA, standAlsObjekt().zahnarzt.an]") == [False, False, True, False]
     assert seite.js("() => document.querySelector('#sections').textContent.includes('Beim Zahnarzt')") is False
     # Kein eigener Eintrag im Geraetespeicher, und nichts laedt nach

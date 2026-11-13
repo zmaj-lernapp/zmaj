@@ -5,7 +5,7 @@ Ajdin am 13.11.2026 zu Release\\Entscheidungen_2026-11-13: „alles wie
 empfohlen“, also Variante B (Frage 5b): Reiter je Stufe, zwei neue frühe
 Level mit den 40 verspäteten Grundwörtern, „Zuhause“ hinter die Grammatik.
 Der Sprung-Test in den nächsten Reiter kostet Leben wie der Level-Test (7a).
-B2 bleibt bei 14 Sektionen, bis die nächsten B2-Pakete kommen (6a, vorgemerkt).
+B2 ist von 14 auf 9 Sektionen zusammengelegt (6a), eine Farbe je Sektion.
 
 Hier steht, was sich ohne Browser prüfen lässt: Inhalt, Umzug, Übersetzungen
 und die Stellen im Quelltext. Das Verhalten prüft tests_e2e/test_reiter.py."""
@@ -33,7 +33,11 @@ def test_reiter_mit_ihren_sektionen_und_leveln(grunddaten):
     assert [s["id"] for s in sek if s["stufe"] == "A2"] == ["zuhause2", "saetze2", "einkauf", "herkunft", "kultur"]
     assert [s["id"] for s in sek if s["stufe"] == "B1"][0] == "amt", "Amt & Verträge ist Sektion 1 von B1"
     assert len([s for s in sek if s["stufe"] == "B1"]) == 9
-    assert len([s for s in sek if s["stufe"] == "B2"]) == 14, "6a: zusammengelegt wird erst mit den naechsten B2-Paketen"
+    assert [s["id"] for s in sek if s["stufe"] == "B2"] == [
+        "denkenmeinen", "arbeitwirtschaft", "medienkultur", "gesellschaftpolitik", "hauswohnung",
+        "gesundheitsport", "schulewissen", "stadtreisen", "handelnveraendern"], "6a: neun Sektionen, neun Farben"
+    assert all(len([s for s in sek if s["stufe"] == st]) <= 9 for st in ("A1", "A2", "B1", "B2")), \
+        "keine Farbe doppelt in einem Reiter (Farben-Entscheidung vom 27.09.2026)"
     assert stufen == sorted(stufen), "die Reiter stehen im Lernpfad in ihrer Folge"
 
 
@@ -46,9 +50,11 @@ def test_sektionsnummern_je_reiter_in_jeder_sprache(alle_daten):
     assert de["zuhause2"] == "Sektion 1 · Zuhause"
     assert de["saetze2"] == "Sektion 2 · Sätze bauen 2"
     assert de["amt"] == "Sektion 1 · Amt & Verträge"
-    assert de["genauersagen"] == "Sektion 14 · Genauer sagen"
+    assert de["handelnveraendern"] == "Sektion 9 · Handeln und genauer sagen"
+    assert de["denkenmeinen"] == "Sektion 1 · Denken, Fühlen und Beziehungen"
     en = {s["id"]: s["label"] for s in alle_daten["en"]["sektionen"]}
     assert en["saetze2"] == "Section 2 · Building sentences 2"
+    assert en["stadtreisen"] == "Section 8 · Town, country and on the move"
 
 
 @pytest.mark.parametrize("daten, befund", [
@@ -184,7 +190,7 @@ def test_oberflaechentexte_in_acht_sprachen():
     schluessel = ["reiter.leiste", "reiter.fertig", "reiter.stand", "reiter.zu", "reiter.bald", "reiter.zu_titel",
                   "reiter.zu_text", "reiter.zu_erst", "reiter.bald_titel", "sprung.starten", "sprung.regel",
                   "sprung.titel", "sprung.offen", "sprung.nicht", "sprung.zum_reiter", "sprung.abbrechen_frage",
-                  "sprung.abbrechen_text", "pfad.sektion_zu", "pfad.erst_stufe"]
+                  "sprung.abbrechen_text", "sprung.keine_leben", "pfad.sektion_zu", "pfad.erst_stufe"]
     codes = [s["code"] for s in sprachen.SPRACHEN]
     assert len(codes) == 8
     for c in codes:
@@ -228,6 +234,15 @@ def test_sprung_test_kostet_leben_und_merkt_sich_den_reiter(index_html):
     assert "passed.add" not in ende and "markToday" not in ende and "muenzen" not in ende
     start = _rumpf(html, "function sprungStarten(ziel){")
     assert "livesNow() === 0" in start, "ohne Leben kein Sprung-Test"
+    # Pruefung vom 13.11.2026: ohne Leben dieselben Wege wie beim Level-Test, mit
+    # eigenem Satz (nicht level.keine_leben mit der Grammatik-Erklaerung)
+    assert "sprungLebenWege(" in start and "sprung.keine_leben" in start and "level.keine_leben" not in start
+    assert "scrollIntoView" in start, "der Hinweis steht im Bild"
+    wege = _rumpf(html, "function sprungLebenWege(kasten, vorn){")
+    assert "werbungErlaubt(true)" in wege and "kaufe('herz')" in wege and "vollZeileLeben(" in wege
+    ohne = _rumpf(html, "function sprungOhneLeben(){")
+    assert "ohneleben" in ohne and "sprungLebenWege(" in ohne and "lektion.bis_naechstes" in ohne
+    assert "istSprungAd(quelle)" in html and "else if(istSprungAd(knopf)) sprungLebenDa();" in html
 
 
 def test_einstufung_mit_geteilten_saetzen(index_html):
@@ -237,3 +252,18 @@ def test_einstufung_mit_geteilten_saetzen(index_html):
     assert [re.findall(r"'(\w+)'", s) for s in sek] == [
         ["alltag"], ["anfassen", "tiernatur"], ["saetze"], ["zuhause2", "saetze2"], ["einkauf", "herkunft", "kultur"]]
     assert "haelfte" not in block
+
+
+def test_grundwoerter_fuer_alte_einstufungen(index_html):
+    """Pruefung vom 13.11.2026: Wer vor den Reitern eingestuft wurde, hatte die
+    40 Grundwoerter noch in B1 vor sich; jetzt liegen sie davor. firstOpen()
+    nimmt die zwei Grundwort-Level dann zuerst. Eine Einstufung mit den Reitern
+    traegt das Feld "reiter" und bleibt beim Einstieg. Verhalten:
+    tests_e2e/test_reiter.py."""
+    html = index_html.replace("\r\n", "\n")
+    assert "const GRUNDWORT_LEVEL = ['kleine_woerter', 'jeden_tag'];" in html
+    assert "const vorDenReiternEingestuft = () => !!(einstufung && einstufung.bis && !einstufung.reiter);" in html
+    erst = html.split("const firstOpen = () => {")[1].split("\n};\n")[0]
+    assert "vorDenReiternEingestuft()" in erst and "k < ab && GRUNDWORT_LEVEL" in erst
+    merken = _rumpf(html, "function einstufungMerken(wahl, bis, richtig, fragen){")
+    assert "reiter: true" in merken

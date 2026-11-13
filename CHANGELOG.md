@@ -17,8 +17,13 @@ are in the Play Store listing. Format:
   levels hold 40 frequent words that came only in B1 before (*Little words* in
   A1, *Everyday words* in A2); the entries only moved, IDs, audio and progress
   stay. "At home" now comes after "Cases 1"; "Building sentences" is split into
-  two sections. 297 levels, 32 sections. B2 keeps its 14 sections until the
-  next B2 packages (then nine, one per colour).
+  two sections. 297 levels, 27 sections: B2 went from 14 sections to nine,
+  one per colour (old 18+19, 21+22, 23+24, 28+29 and 30+31 merged; level order
+  and progress unchanged). The tab bar shows the progress as "112/129" so that
+  it fits 360 px in all eight languages (screen readers hear the full sentence).
+  Learners placed before the tabs get the two new levels as "Continue" even
+  though they lie before their placement. Without hearts the skip-ahead test
+  offers the same ways to a heart as the level test (video, coins).
 - A sandbox in the test app only (8.11.2026): when Android reports the app ID
   `de.smartdragon.zmaj.test` and the build carries a "-test" version, every
   level, section, level test and story is open, without writing anything into

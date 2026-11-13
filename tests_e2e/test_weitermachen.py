@@ -173,7 +173,9 @@ def test_eingestuft_aber_von_vorn_gelernt(seite, heute_stand):
     Einstieg etwas besteht, lernt wieder dort weiter."""
     ids = _ids(seite, heute_stand)
     ein = min(64, len(ids) - 3)
-    stand = {"einstufung": {"tag": datetime.date.today().isoformat(), "wahl": "alles", "bis": ids[ein]},
+    # reiter: eingestuft mit den Stufen-Reitern - vorher eingestuft holen die zwei
+    # Grundwort-Level den Knopf zurueck (tests_e2e/test_reiter.py)
+    stand = {"einstufung": {"tag": datetime.date.today().isoformat(), "wahl": "alles", "bis": ids[ein], "reiter": True},
              "bestanden": ids[:9]}
     seite.starten(stand=stand)
     _knopf_zeigt(seite, 9)

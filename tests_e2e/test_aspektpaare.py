@@ -128,7 +128,7 @@ def test_sektion_zehn_im_lernpfad(seite, heute_stand):
     (149 + 2 x 27). Seit den Paketen 5 bis 9 (06.11.2026): 39 Level in
     Sektion 10, 17 Sektionen, 136 Paare mehr. Seit den Paketen 10 bis 20 (07.11.2026):
     31 Sektionen, Stufe B2 hinter B1, 202 Paare mehr. Seit den Stufen-Reitern
-    (13.11.2026): 32 Sektionen, Farben je Reiter, Tun und Lassen ist Sektion 2
+    (13.11.2026): 27 Sektionen (B2 in neun), Farben je Reiter, Tun und Lassen ist Sektion 2
     von B1 und traegt die zweite Farbe."""
     seite.starten(stand=heute_stand())
     e = seite.js("""() => ({n: SECTIONS.length, letzte: SECTIONS[SECTIONS.length - 1].id,
@@ -136,7 +136,7 @@ def test_sektion_zehn_im_lernpfad(seite, heute_stand):
         farbe11: sektionsNummer('wieetwasist'),
         farben12: ['koerpergesundheit', 'zeitfreizeit', 'lernenarbeiten'].map(sektionsNummer),
         partnerFeld: CATEGORIES.flatMap(c => c.words).filter(w => w.partner).length})""")
-    assert e == {"n": 32, "letzte": "genauersagen", "farbe": "2", "level": 39, "farbe11": "3",
+    assert e == {"n": 27, "letzte": "handelnveraendern", "farbe": "2", "level": 39, "farbe11": "3",
                  "farben12": ["4", "5", "6"], "partnerFeld": 877}
     assert seite.fehler == []
 

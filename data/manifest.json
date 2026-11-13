@@ -17,7 +17,7 @@
   "fr"
  ],
  "counts": {
-  "sections": 32,
+  "sections": 27,
   "levels": 297,
   "words": 7997,
   "words_with_audio": 1748,
@@ -122,12 +122,12 @@
    "bytes": 104755
   },
   "vocabulary.csv": {
-   "sha256": "4c13488c5954d075412bf93623cea3786fb4c8df8b959eec98d33d662a05ef5e",
-   "bytes": 2201366
+   "sha256": "5e663d97e7b854b3503f95062497d6739660d9f057b788349e9b07f6238df762",
+   "bytes": 2202420
   },
   "vocabulary.json": {
-   "sha256": "07af414a2d6c7d4f5f472170411f9c53642089e2bcaf9d0fa2351055f79fd105",
-   "bytes": 4451517
+   "sha256": "e2a0502cc9bac2f860042f156ebfadea1b26661eca655dafc3ccc14dd6817727",
+   "bytes": 4445690
   }
  }
 }

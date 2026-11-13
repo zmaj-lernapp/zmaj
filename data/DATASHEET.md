@@ -41,25 +41,20 @@ pie showData title Words per section (7,997)
   "B1/7 Basic concepts" : 295
   "B1/8 People and society" : 294
   "B1/9 How, where and when" : 284
-  "B2/1 Thinking and opinions" : 307
-  "B2/2 People and relationships" : 298
-  "B2/3 Work and economy" : 305
-  "B2/4 Media and culture" : 198
-  "B2/5 Environment and technology" : 112
-  "B2/6 Society and politics" : 156
-  "B2/7 Law and authorities" : 262
-  "B2/8 House and home" : 236
-  "B2/9 Health and sport" : 330
-  "B2/10 School and knowledge" : 340
-  "B2/11 City, traffic and travel" : 182
-  "B2/12 Countryside, animals and plants" : 156
-  "B2/13 Acting and changing" : 338
-  "B2/14 Saying it more precisely" : 326
+  "B2/1 Thinking, feelings and relationships" : 605
+  "B2/2 Work and economy" : 305
+  "B2/3 Media, culture and technology" : 310
+  "B2/4 State, law and authorities" : 418
+  "B2/5 House and home" : 236
+  "B2/6 Health and sport" : 330
+  "B2/7 School and knowledge" : 340
+  "B2/8 Town, country and on the move" : 338
+  "B2/9 Acting and saying it more precisely" : 664
 ```
 
 | File | What | Count |
 |---|---|---|
-| `vocabulary.json` / `.csv` | words and phrases, 32 sections in four stages (A1 to B2), 297 levels | 7,997 |
+| `vocabulary.json` / `.csv` | words and phrases, 27 sections in four stages (A1 to B2), 297 levels | 7,997 |
 | `sentences.json` / `.csv` | fill-in-the-gap sentences with the full sentence | 300 |
 | `stories.json` | graded stories with translation, glossary and comprehension questions | 12 |
 | `glossary.json` | word-by-word reading glossary used by the stories | 406 |
