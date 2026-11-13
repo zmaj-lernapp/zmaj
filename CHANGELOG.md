@@ -260,6 +260,27 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Cloud backup (1.4, decided by the maintainer on 13.11.2026): the app reads
+  the old form and a packed one. Packed, every learned word is stored once
+  instead of twice (in `gewusst` and in the review box), then gzipped with the
+  browser's own `CompressionStream` and stored as Base64 in the same text
+  field. A full 1.3 learner shrinks from about 857,000 to about 195,000 bytes,
+  and 30,000 entries fit in about 783,000 of the 900,000. Step 1: the app
+  packs only when the old form no longer fits (`CLOUD_IMMER_PACKEN` stays
+  `false`), so a device with 1.3 notices nothing; 1.3 carries a packed backup
+  along unchanged as a field of a newer version, and 1.4 merges both. Before
+  each upload the app unpacks the packed text and compares it with the
+  progress; if anything differs, it uploads the old form or nothing. If the
+  device already knows the backup, it first fetches only `rev` (field mask)
+  and loads the full backup only when another device wrote. `firestore.rules`
+  is unchanged. `app_bauen.py --immer-packen` builds a test app that always
+  packs, for the phone test with a device on 1.3. A device that received a
+  packed backup while still on 1.3 carries it in its own progress; after the
+  update to 1.4 it unpacks and merges it before its next upload, so the words
+  of the device that wrote it stay in the cloud even when step 2 always packs
+  (review finding, 13.11.2026). Only a packed field that cannot be unpacked is
+  left out of a packed upload; it stays in the old form and on the device.
+  `tests_e2e/test_cloud_packen.py`.
 - Tablets: from 600 points on the shorter side (Android's "sw600dp") the
   whole app scales up with the screen. Upright, the column fills about
   88 % of the width (10-inch tablet: everything 1.3 times larger); in

@@ -175,6 +175,17 @@ Die E-Mail-Adresse steht nicht in Firestore, nur bei Firebase
 Authentication. Nach dem Anheben die Regeln einmal neu veröffentlichen,
 sonst lehnt Firestore einen Stand über 400.000 Zeichen weiter ab.
 
+Seit 1.4 (13.11.2026) darf in `daten` der Stand auch gepackt stehen:
+weiter eine Sicherung mit `app`, `version` und `datum`, im Stand aber nur
+`gepackt1`, der gezippte Stand als Base64-Text. Die App packt nur, wenn die
+alte Form nicht mehr unter 900.000 Bytes passt (`CLOUD_IMMER_PACKEN` in
+`web/index.html`). Es bleibt ein Text in `daten`, die Regeln bleiben also
+gleich, und es muss **nichts neu veröffentlicht** werden. Kennt das Gerät
+schon ein `rev`, holt die App zuerst mit der Feldmaske
+`mask.fieldPaths=rev` nur dieses Feld, und den ganzen Stand nur, wenn ein
+anderes Gerät geschrieben hat. Das ist ein gewöhnliches `get` und zählt
+als ein Lesevorgang.
+
 Seit dem 28.10.2026 stehen in `firestore.rules` auch die Regeln für das
 Kontaktformular (`nachrichten/{uid}`, Abschnitt 15) mit dem Platzhalter
 `MELDER_UID`. Solange er dort steht und „Anonym“ aus ist, kann niemand
