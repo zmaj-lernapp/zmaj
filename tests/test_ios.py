@@ -201,6 +201,19 @@ def test_ios_rechtstexte_ohne_werbung(monkeypatch, sprachcodes):
         for _, neu in sprachen.IOS_RECHT[code]["werbung_aus"]:
             assert neu in ds, code
 
+def test_ios_datenschutz_nennt_absturzberichte(sprachcodes):
+    """Patch a: Googles Angaben fuer iOS fuehren Absturzberichte als eigene
+    Datenart, die fuer Android nicht. Nur die iOS-Fassung nennt sie."""
+    import sprachen
+    neu = {"de": "Absturzberichte", "en": "crash reports", "tr": "çökme raporları",
+           "sv": "kraschrapporter", "nl": "crashrapporten", "nb": "krasjrapporter",
+           "da": "nedbrudsrapporter", "fr": "rapports de plantage"}
+    assert sorted(neu) == sorted(sprachcodes)
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        assert t["set.datenschutz_text_ios"].count(neu[code]) == 1, code
+        assert neu[code] not in t["set.datenschutz_text"], code
+
 
 def test_ios_rechtstexte_brechen_ab_bei_fremder_plattform(monkeypatch):
     """Fehlt fuer einen Android-Satz der iOS-Ersatz, bricht texte() ab,
@@ -248,6 +261,22 @@ def test_ios_datenschutz_schluesselbund_beim_loeschen(sprachcodes):
             assert SCHLUESSELBUND[code] in gefunden[0], (code, nr)
         assert SPEICHER_LEEREN[code] not in t["set.datenschutz_text_ios"], code
         assert SPEICHER_LEEREN[code] in t["set.datenschutz_text"], code
+
+def test_ios_konto_sichert_den_lernstand(sprachcodes):
+    """Patch b: Auf iOS gibt es "Spaeter", das Konto sichert den Lernstand.
+    Nutzungsbedingungen und Erklaerung (Abschnitt 2 und 3) sagen das, die
+    Android-Texte sagen weiter, dass man zum Lernen ein Konto braucht."""
+    import sprachen
+    r = sprachen.IOS_RECHT
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        alt, neu = r[code]["agb"][-1]
+        assert neu in t["set.agb_text_ios"] and alt not in t["set.agb_text_ios"], code
+        assert alt in t["set.agb_text"], code
+        for alt, neu in r[code]["datenschutz"][-2:]:
+            assert neu in t["set.datenschutz_text_ios"], (code, neu)
+            assert alt not in t["set.datenschutz_text_ios"], (code, alt)
+            assert alt in t["set.datenschutz_text"], (code, alt)
 
 
 def test_ios_keine_rechtstexte_ohne_konto(monkeypatch):
