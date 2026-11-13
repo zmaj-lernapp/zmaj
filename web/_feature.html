@@ -80,15 +80,17 @@ function schrift(){
   g.fillText(zeile2, x + 6, y + 116);
 }
 
+/* 13.11.2026 (Store-Bilder 1.3): "Woerter" statt "65 Levels" - die Zahl
+   stimmte seit 1.3 nicht mehr und steht ohnehin in der Kurzbeschreibung. */
 const ZEILEN = {
-  de: ['Bosnisch lernen', '65 Levels · Grammatik · Geschichten'],
-  en: ['Learn Bosnian', '65 levels · Grammar · Stories'],
-  tr: ['Boşnakça öğren', '65 seviye · Dil bilgisi · Hikâyeler'],
-  sv: ['Lär dig bosniska', '65 nivåer · Grammatik · Berättelser'],
-  nl: ['Bosnisch leren', '65 levels · Grammatica · Verhalen'],
-  nb: ['Lær bosnisk', '65 nivåer · Grammatikk · Historier'],
-  da: ['Lær bosnisk', '65 niveauer · Grammatik · Historier'],
-  fr: ['Apprendre le bosnien', '65 niveaux · Grammaire · Histoires'],
+  de: ['Bosnisch lernen', 'Wörter · Grammatik · Geschichten'],
+  en: ['Learn Bosnian', 'Words · Grammar · Stories'],
+  tr: ['Boşnakça öğren', 'Kelimeler · Dil bilgisi · Hikâyeler'],
+  sv: ['Lär dig bosniska', 'Ord · Grammatik · Berättelser'],
+  nl: ['Bosnisch leren', 'Woorden · Grammatica · Verhalen'],
+  nb: ['Lær bosnisk', 'Ord · Grammatikk · Historier'],
+  da: ['Lær bosnisk', 'Ord · Grammatik · Historier'],
+  fr: ['Apprendre le bosnien', 'Mots · Grammaire · Histoires'],
 };
 const SPRACHE = new URLSearchParams(location.search).get('sprache') || 'de';
 

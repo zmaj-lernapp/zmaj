@@ -2,7 +2,8 @@ STORE-BILDER NEU MACHEN
 =======================
 
 Erzeugt die acht Bilder in store/screenshots, je 1080 x 1920, PNG ohne
-Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 01.10.2026.
+Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 13.11.2026
+(alle Sprachen und Geraete aus dem Stand 1.3, --version 1.3).
 
 Die Bilder entstehen in einem unsichtbaren Chrome am PC, nicht auf dem
 Handy. Das hat drei Gruende:
@@ -28,7 +29,9 @@ Mac, liefert web/ selbst aus und kennt jede Sprache der App:
      python store/bilder_machen/bilder_playwright.py                  (Deutsch)
      python store/bilder_machen/bilder_playwright.py --sprache en --montage docs/assets/screenshots-en.png
 
-Der alte Weg unten funktioniert weiter.
+Der alte Weg unten funktioniert weiter, macht aber nur Deutsch und noch
+die alte Bildfolge (02-lernpfad, 04-auswahl, 05-richtig). Fuer den Store
+bilder_playwright.py nehmen.
 
 
 SO GEHT ES (Git Bash, im Projektordner)
@@ -96,9 +99,11 @@ Store-Eintrag, Grafiken, "Screenshots fuer 7-Zoll-Tablets" bzw.
 WAS AUF DEN BILDERN IST
 -----------------------
   01-start        Startseite: Lernserie, Weitermachen, Tagesaufgaben
-  02-lernpfad     Sektion 1 mit bestandenen und gesperrten Levels
+  02-amt          Sektion 9 "Amt & Vertraege" aufgeklappt (bis 13.11.2026:
+                  02-lernpfad, Sektion 1 unter "65 Levels")
   03-neues-wort   erste Karte einer Lektion
-  04-auswahl      Auswahlaufgabe "Wie viel kostet das?"
+  04-kacheln      Satz aus Kacheln legen, zwei Kacheln schon gelegt
+                  (bis 13.11.2026: 04-auswahl, eine Auswahlaufgabe)
   05-grammatik    Grammatikaufgabe (bis 11.10.2026: 04 nach der Antwort)
   06-luecke       Lueckensatz mit eingetippter Antwort
   07-geschichte   Geschichte "Na pijaci" mit angetipptem Wort
