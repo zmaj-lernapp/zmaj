@@ -34,7 +34,7 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     assert len(grunddaten["kategorien"]) == 295       # seit 07.11.2026 (Pakete 10 bis 20)
     assert woerter == 7997
     assert len(grunddaten["saetze"]) == 300
-    assert len(grunddaten["geschichten"]) == 12
+    assert len(grunddaten["geschichten"]) == 20       # seit 13.11.2026 (B1-Lesetexte, Pakete 3 und 4)
     assert len(grunddaten["grammatik"]) == 26
 
 

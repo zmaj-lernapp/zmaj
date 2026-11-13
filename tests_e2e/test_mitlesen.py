@@ -26,6 +26,7 @@ nachgemessen; die ersten Fassungen dieser Tests waren dadurch scheinbar
 gruen, weil alles bei null stimmte. Die Aufnahmen liefert hier deshalb
 _mit_bereichen() aus, mit 206 und Content-Range wie ein richtiger Server.
 """
+import importlib.util
 import os
 import re
 
@@ -336,11 +337,24 @@ def test_echte_wortzeiten_passen(dunkel):
     seite = dunkel
     ergebnis = seite.js("""() => STORIES.map((s, i) => { openStory(i);
       const datei = audioDatei(s.text), n = document.querySelectorAll('#rBody .txt .w').length;
-      return {nr: i, datei: datei, n: n, paare: (WORTZEITEN.get(datei) || []).length,
+      return {nr: i, id: s.id, datei: datei, n: n, paare: (WORTZEITEN.get(datei) || []).length,
               passt: !!mitlesZeiten(datei, n)}; })""")
     assert len(ergebnis) >= 12
-    assert [e for e in ergebnis if not e["passt"]] == []
+    # 13.11.2026: die B1-Lesetexte der Pakete 3 und 4 haben noch keine
+    # Aufnahme (tests/offen_b1_teil2.py). Sie fehlen hier ganz, nicht halb.
+    wartet = _wartet_auf_ton()
+    assert [e["id"] for e in ergebnis if e["id"] in wartet and e["datei"]] == []
+    assert [e for e in ergebnis if not e["passt"] and e["id"] not in wartet] == []
     assert seite.fehler == []
+
+
+def _wartet_auf_ton():
+    """GESCHICHTEN aus tests/offen_b1_teil2.py (dort steht, warum)."""
+    pfad = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tests", "offen_b1_teil2.py")
+    spec = importlib.util.spec_from_file_location("offen_b1_teil2", pfad)
+    modul = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modul)
+    return modul.GESCHICHTEN
 
 
 def _kontrast(a, b):
@@ -464,7 +478,10 @@ def test_folgt_dem_wort_ohne_zu_reissen(browser, basis, heute_stand):
     ctx, seite = neue_seite(browser, basis, "dark", hoehe=560)
     try:
         starten(seite, heute_stand())
-        nr = seite.js("() => STORIES.reduce((m, s, i, a) => s.text.length > a[m].text.length ? i : m, 0)")
+        # Die laengste MIT Aufnahme (13.11.2026: die B1-Lesetexte warten noch auf ihren Ton).
+        nr = seite.js("""() => STORIES.reduce((m, s, i, a) =>
+          audioDatei(s.text) && (m < 0 || s.text.length > a[m].text.length) ? i : m, -1)""")
+        assert nr >= 0
         n = seite.js(VORBEREITEN, [nr, SCHRITT, DAUER, ANFANG, 0, False])["n"]
         vorlesen(seite)
         seite.js("() => window.scrollTo(0, 0)")
