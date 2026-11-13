@@ -13,7 +13,9 @@ are in the Play Store listing. Format:
   and B1, stories (the first, all) and 100 words that reached the 90-day step
   of the review boxes. Badges are earned
   retroactively from what the app already stores (one short note "Du hast
-  schon 6 Abzeichen" after the update) and stay once earned, even if the number
+  schon 6 Abzeichen" after the update, once the splash screen is gone; a
+  device's first sync with an account counts the same way, so old badges get
+  no invented date and no red dot) and stay once earned, even if the number
   behind them drops. They show as a wall at the top of the profile, a row under
   "Weitermachen" (the three newest and "7 of 18") and a quiet line on the
   result screen of a lesson, test, review round or story. The card with confetti

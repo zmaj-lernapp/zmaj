@@ -6966,17 +6966,49 @@ function erfolgeAlsGesehen(){
    der Anmeldung mit einem Konto von frueher), merkt es sich noch nichts:
    Kommt der Stand gleich danach aus der Cloud, zaehlt das wie ein Update -
    sonst truege jedes alte Abzeichen einen roten Punkt und das heutige
-   Datum. */
+   Datum. Wer vor der Anmeldung schon gelernt hat, dessen Geraet merkt sich
+   bereits etwas; fuer ihn erledigt das der erste Abgleich
+   (erfolgeErsterAbgleich). */
 function erfolgeNachreichen(){
   if(!standGeladen || !CATEGORIES.length) return;
   const gesehen = erfolgeGesehen();
   if(gesehen === null && !hatGelernt()) return;
-  if(erfolgePruefen(gesehen !== null).length) saveProgress();
-  if(gesehen === null){
-    erfolgeAlsGesehen();
-    const n = erfolgeVerdient().length;
-    if(n) kurzMeldung(tp('erfolg.schon', n));
-  }
+  if(gesehen === null ? erfolgeWieUpdate() : erfolgePruefen(true).length) saveProgress();
+}
+/* Wie beim ersten Start nach dem Update: nachtragen ohne erfundenes Datum,
+   alles gilt als gesehen, und einmal der Satz "Du hast schon 6 Abzeichen" -
+   wenn eins dabei ist, das dieses Geraet noch nicht gezeigt hat. Gibt
+   zurueck, ob eins dazukam; speichern muss der Aufrufer. */
+function erfolgeWieUpdate(){
+  const vorher = erfolgeGesehen();
+  const neu = erfolgePruefen(false).length > 0;
+  erfolgeAlsGesehen();
+  const alle = erfolgeVerdient();
+  if(alle.some(e => !vorher || !vorher.has(e.id))) erfolgSchonMelden(alle.length);
+  return neu;
+}
+/* Aus cloudUebernehmen(), wenn dieses Geraet zum ersten Mal mit einem Konto
+   abgleicht: zaehlt wie ein Update (Pruefbefund 13.11.2026). Auf dem neuen
+   Handy kommt das Tor erst nach Lektion 1 oder der Einstufung, und dabei
+   speichert erfolgZeile() bzw. erfolgeNachreichen() schon die leere Liste
+   des Gesehenen. Danach galten alle alten Abzeichen als frisch verdient:
+   roter Punkt, kein Satz, und Woerter und Kartei bekamen das heutige
+   Datum - das beim Zusammenfuehren als das fruehere fuer immer im Konto
+   bliebe. Ohne Inhalt (kann nicht pruefen) vergisst das Geraet das
+   Gesehene, dann nimmt erfolgeNachreichen() den Weg des Updates. */
+function erfolgeErsterAbgleich(){
+  if(CATEGORIES.length){ erfolgeWieUpdate(); return; }
+  try{ localStorage.removeItem(ERFOLG_GESEHEN); }catch(e){}
+}
+/* Der Satz erst, wenn der Vorspann weg ist (Pruefbefund 13.11.2026):
+   showHome() laeuft beim Start schon darunter, und nach 3,2 s war der Satz
+   wieder weg, bevor die Startseite zu sehen war. vorspannVorbei steht
+   weiter unten im Skript, daher das try. */
+function erfolgSchonMelden(n){
+  const melden = () => kurzMeldung(tp('erfolg.schon', n));
+  let warten = null;
+  try{ warten = vorspannVorbei; }catch(e){}
+  if(warten) warten.then(melden); else melden();
 }
 function zahlText(n){ try{ return Number(n).toLocaleString(SPRACHE); }catch(e){ return String(n); } }
 function datumText(d){ try{ return new Date(d + 'T12:00:00').toLocaleDateString(SPRACHE); }catch(e){ return d; } }
@@ -10484,6 +10516,7 @@ function cloudUebernehmen(fremd, cloudVorher, erstesMal){
   seitNachEinlesen();
   geschenkPruefen();
   syncLives(); pruefeSchutz();
+  if(erstesMal) erfolgeErsterAbgleich();   // Erfolge: wie ein Update, vor dem Speichern
   saveProgress();
   renderLives();
   /* Auf der Startseite gleich zeigen, was dazugekommen ist. Mitten in einer

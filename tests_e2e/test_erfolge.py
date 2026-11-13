@@ -69,8 +69,17 @@ def _alter_stand(d, heute_stand):
         kartei={"tag": 0, "n": 0, "w": {w: [5, kt + 40, kt - 1] for w in d["woerter"][:100]}})
 
 
+def _vorspann_weg(seite):
+    seite.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
+
+
 def _kurznote(seite):
-    seite.page.wait_for_function("() => !!document.querySelector('.kurznote')", timeout=5000)
+    """Der Satz kommt erst nach dem Vorspann (Pruefbefund 13.11.2026: er
+    lief beim ersten Start des Tages ganz darunter ab). Also: erst warten,
+    bis #vorspann weg ist - dann muss er zu sehen sein."""
+    _vorspann_weg(seite)
+    seite.page.wait_for_function("""() => { const k = document.querySelector('.kurznote.an');
+      return !!k && k.getBoundingClientRect().height > 0; }""", timeout=2000)
     return seite.js("() => document.querySelector('.kurznote').textContent")
 
 
@@ -105,8 +114,9 @@ def test_rueckwirkend_beim_ersten_start(seite, heute_stand):
     daten = seite.js("() => Object.fromEntries(ERFOLGE.filter(erfolgVerdient).map(e => [e.id, erfolgDatum(e)]))")
     assert daten == {"t7": _tag(25), "t30": _tag(2), "f30": _tag(2), "w100": "", "a1": _tag(10),
                      "g1": _tag(20), "k100": ""}, daten
-    # Beim naechsten Start kein Satz mehr
+    # Beim naechsten Start kein Satz mehr - auch nicht nach dem Vorspann
     seite.neu_laden()
+    _vorspann_weg(seite)
     seite.page.wait_for_timeout(400)
     assert seite.js("() => !!document.querySelector('.kurznote')") is False
     assert seite.js(ZUSTAND)["verdient"] == z["verdient"]
@@ -136,6 +146,39 @@ def test_frisch_installiert_dann_cloud(seite, heute_stand):
     assert sorted(json.loads(z["gesehen"])) == sorted(z["verdient"])
     assert not any(" neu" in r for r in z["leiste"]["ringe"]), z["leiste"]
     assert not z["karte"] and z["konfetti"] == 0
+    assert seite.fehler == [] and seite.fremd == []
+
+
+def test_erst_gelernt_dann_cloud(seite, heute_stand):
+    """Neues Handy, altes Konto, der normale Weg (Pruefbefund 13.11.2026):
+    das Tor kommt erst nach Lektion 1, und dabei merkt sich das Geraet schon
+    die leere Liste des Gesehenen. Der erste Abgleich mit dem Konto zaehlt
+    trotzdem wie ein Update - kein Datum bei Woertern und Kartei, kein
+    roter Punkt, einmal der Satz. Vorher bekamen e:w100 und e:k100 das
+    heutige Datum, und das bliebe beim Zusammenfuehren fuer immer."""
+    d = _daten(seite, heute_stand)
+    seite.starten(stand=heute_stand())
+    seite.js("() => { openLevel(0); startLesson(); }")
+    seite.durchspielen("lBody", "Lx")
+    z = seite.js(ZUSTAND)
+    assert z["verdient"] == [] and z["gesehen"] == "[]", z
+    seite.js("() => document.getElementById('lPfad').click()")
+    # Wie cloudAbgleich() beim ersten Mal (m.rev leer), dann die Startseite
+    assert seite.js("(s) => cloudUebernehmen(s, [], true)", _alter_stand(d, heute_stand)) is True
+    seite.js("() => showHome()")
+    assert _kurznote(seite) == "Du hast schon 7 Abzeichen"
+    z = seite.js(ZUSTAND)
+    assert sorted(z["verdient"]) == sorted(["t7", "t30", "f30", "w100", "a1", "g1", "k100"]), z["verdient"]
+    assert "e:w100" not in z["wann"] and "e:k100" not in z["wann"], z["wann"]
+    assert "e:w100" not in z["gespeichert"]["wann"] and "e:k100" not in z["gespeichert"]["wann"]
+    assert {"e:" + x for x in z["verdient"]} <= set(z["gespeichert"]["gefeiert"])
+    assert sorted(json.loads(z["gesehen"])) == sorted(z["verdient"])
+    assert z["leiste"]["ringe"] and not any(" neu" in r for r in z["leiste"]["ringe"]), z["leiste"]
+    # Ein spaeterer Abgleich (m.rev gesetzt) bringt keinen zweiten Satz
+    seite.page.wait_for_function("() => !document.querySelector('.kurznote')", timeout=5000)
+    seite.js("(s) => { cloudUebernehmen(s, [], false); showHome(); }", _alter_stand(d, heute_stand))
+    seite.page.wait_for_timeout(400)
+    assert seite.js("() => !!document.querySelector('.kurznote')") is False
     assert seite.fehler == [] and seite.fremd == []
 
 
