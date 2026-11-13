@@ -353,6 +353,16 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
+  accept the common other word for the same thing, in the same form: *boca* for
+  *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
+  *puno* for *mnogo*. Until then "Voda je u ___." took only *flaši*, and *boci* cost a
+  heart. Only pairs that are clearly the same are listed, every form written out in
+  `varianten.py`; some count only where they mean the same (*zemlja* only in
+  "Švicarska je mala ___."). In sentence building the other word is no longer a
+  wrong tile (*puno* next to "Ima mnogo djece"), and in multiple choice it is never
+  a wrong button. Numbers from 21 to 99 also count with *i*: *dvadeset i jedan*,
+  typed and spoken. `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
 - The yellow marks above an exercise ("Review: Weather & nature", "Try again",
   "New word") no longer overlap (reported with a screenshot from a 360-point-wide
   phone on 11.11.2026). When they did not fit side by side, the second one wrapped
