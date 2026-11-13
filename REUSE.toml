@@ -80,6 +80,9 @@ SPDX-License-Identifier = "CC-BY-SA-4.0"
 # paintings in the style of the dragon as well. The author cut them out,
 # scaled them down and converted them to WebP. They replace emoji, which
 # look different on every phone brand and did not match the dragon.
+# Since 13 November 2026 the 15 achievement badges in web/erfolge
+# (calendars, flash cards, stairs, books, brain) are Gemini paintings in the
+# same style, cut out and converted to WebP the same way.
 [[annotations]]
 path = [
   "web/maskottchen/teile/**",
@@ -90,6 +93,7 @@ path = [
   "web/maskottchen/zmaj-traurig.png",
   "web/symbole/**",
   "web/flamme/**",
+  "web/erfolge/**",
   "web/icon-256.png",
   "web/icon.ico",
   "store/icon-512.png",

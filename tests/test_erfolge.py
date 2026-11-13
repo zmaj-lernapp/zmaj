@@ -46,6 +46,25 @@ def test_kein_konfetti_ausserhalb_der_wegmarken(index_html):
         assert verboten not in teil, verboten
 
 
+def test_jedes_abzeichen_hat_sein_bild(wurzel, index_html):
+    """Die gemalten Abzeichen (13.11.2026): jedes ausser der Flamme (die
+    nimmt das Bild der Serie) hat in ERFOLG_BILDER sein eigenes Bild in
+    web/erfolge, quadratisch und gross genug fuer dreifache Pixeldichte wie
+    web/symbole - und kein Bild liegt dort, das die App nicht nennt."""
+    import os
+
+    from test_symbole import _webp_groesse
+    m = re.search(r"const ERFOLG_BILDER = Object\.fromEntries\(\s*\[(.*?)\]", index_html, flags=re.S)
+    assert m, "ERFOLG_BILDER fehlt"
+    genannt = re.findall(r"'([a-z0-9]+)'", m.group(1))
+    assert genannt == [k for k in KENNUNGEN if not k.startswith("f")], genannt
+    ordner = os.path.join(wurzel, "web", "erfolge")
+    assert sorted(os.listdir(ordner)) == sorted(k + ".webp" for k in genannt)
+    for k in genannt:
+        b, h = _webp_groesse(os.path.join(ordner, k + ".webp"))
+        assert b == h and b >= 128, (k, b, h)
+
+
 @pytest.mark.parametrize("schluessel", ["erfolg.t7", "erfolg.t30", "erfolg.t100", "erfolg.t365",
                                         "erfolg.t1000", "erfolg.blau", "erfolg.lila", "erfolg.gold",
                                         "erfolg.erste", "erfolg.alle", "erfolg.kopf"])

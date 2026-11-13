@@ -1022,7 +1022,7 @@
      bleibt den Lerntagen.
      Ein Abzeichen ist ein Ring (.abzring) mit Bild und Zahl. Die Farbe
      gehoert der Kette (--ef, k-<kette>), bei der Flamme der Stufe (t-blau,
-     t-lila, t-gold) - so reicht spaeter ein gemaltes Bild je Kette.
+     t-lila, t-gold); das gemalte Bild (web/erfolge) gehoert dem Abzeichen.
      --ef-text ist die Schrift auf --ef: auf den Sektionsfarben, die hell
      dunkel und dunkel hell sind, dieselbe Regel wie --on-primary. Offen
      heisst grau (.aus), neu und noch nicht angesehen ein roter Punkt (.neu). */
@@ -7236,19 +7236,22 @@ function erfolgSatz(e){
   }
   return t(e.id === 'g1' ? 'erfolg.satz_erste' : 'erfolg.satz_alle');
 }
-/* Die gemalten Abzeichen kommen nach web/erfolge/ (Gemini, Ajdin 10a; der
-   Bogen-Entwurf vom 13.11.2026 liegt in Release\Entscheidungen_2026-11-13\
-   erfolge_bogen_entwurf.png). Bis sie freigegeben sind, stehen Platzhalter
-   wie im Entwurf erfolge_mock.png: die vorhandenen Bilder fuer Lerntage,
-   Flamme, Geschichten und Gedaechtnis, ein Buchstabe fuer Woerter und
-   Stufen. Ist das Bild einer Kette da, kommt es hierher (etwa
-   tage: 'erfolge/tage.webp'), und ihr Platzhalter faellt weg. Die Farbe
-   der Stufe macht der Ring, nicht das Bild - ein Bild je Kette reicht.
-   Die Flamme bleibt das gemalte Bild der Serie, eingefaerbt wie dort. */
-const ERFOLG_BILDER = {};
+/* Die gemalten Abzeichen in web/erfolge/ (Gemini, Ajdin 10a; Bogen-Entwurf
+   vom 13.11.2026 in Release\Entscheidungen_2026-11-13\erfolge_bogen_entwurf.png,
+   als Richtung freigegeben). Jedes Abzeichen hat sein eigenes Bild,
+   in einer Kette waechst es mit: Kalender mit Haken, Stern, Pokal, Krone,
+   goldener Kalender mit Edelstein - eine Karte, drei, ein dicker Stapel, ein
+   voller Karteikasten - ein, zwei, drei Stufen - ein Buch, ein Buecherstapel -
+   das Gehirn. 128 x 128 wie web/symbole. Die Farbe der Kette macht weiter
+   der Ring. Die Flamme bleibt das gemalte Bild der Serie, eingefaerbt wie
+   dort. Kommt ein Abzeichen ohne Bild dazu (spaeter B2, C1), greift der
+   Platzhalter darunter. */
+const ERFOLG_BILDER = Object.fromEntries(
+  ['t7', 't30', 't100', 't365', 't1000', 'w100', 'w500', 'w1000', 'w2500',
+   'a1', 'a2', 'b1', 'g1', 'ga', 'k100'].map(id => [id, 'erfolge/' + id + '.webp']));
 function erfolgBild(e){
   if(e.kette === 'flamme') return '<img class="ton-' + e.ton + '" src="flamme/flamme.webp" alt="">';
-  if(ERFOLG_BILDER[e.kette]) return '<img src="' + ERFOLG_BILDER[e.kette] + '" alt="">';
+  if(ERFOLG_BILDER[e.id]) return '<img src="' + ERFOLG_BILDER[e.id] + '" alt="">';
   switch(e.kette){
     case 'tage':    return '<img src="symbole/lernpfad.webp" alt="">';
     case 'woerter': return 'Č';
@@ -7257,9 +7260,11 @@ function erfolgBild(e){
   }
   return '<img src="symbole/geschichten.webp" alt="">';
 }
-/* Die Zahl auf dem Ring. Stufen tragen ihren Namen schon im Bild, "alle
-   Geschichten" haengt am Inhalt - beide ohne. */
-const erfolgPille = e => (e.kette === 'stufen' || e.id === 'ga') ? '' : zahlText(e.ziel);
+/* Die Zahl auf dem Ring. Bei den Stufen steht dort ihr Name (A1), seit das
+   gemalte Bild ihn nicht mehr traegt - nur der Platzhalter zeigt ihn selbst.
+   "Alle Geschichten" haengt am Inhalt und bleibt ohne. */
+const erfolgPille = e => e.kette === 'stufen' ? (ERFOLG_BILDER[e.id] ? e.stufe : '')
+  : e.id === 'ga' ? '' : zahlText(e.ziel);
 /* Der Ring ist Schmuck (aria-hidden): vorgelesen werden Name und Zustand
    daneben, nicht "Č 100 100". */
 function erfolgRing(e, an, neu, mitZahl){

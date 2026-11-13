@@ -22,8 +22,13 @@ are in the Play Store listing. Format:
   stays reserved for learning days. No new field in the saved progress: `e:<id>`
   in `gefeiert`, the date in `wann` where it cannot be recomputed, about 360
   bytes with all 18. Which badges were already seen is kept on the device only.
-  The pictures are placeholders until the painted ones are approved. Texts in
-  all eight languages (not by native speakers).
+  Every badge has its own picture painted with Gemini in the style of the
+  dragon (`web/erfolge`, 128 × 128 WebP), and the picture grows along its
+  chain: a calendar with a check, star, trophy, crown and a golden calendar
+  with a gem; one card, three cards, a thick deck and a full card box; one, two
+  and three steps (their ring now shows A1, A2, B1); one book and a pile of
+  books; the brain. The flame badges keep the painted streak flame in their
+  colour. Texts in all eight languages (not by native speakers).
 - Stage tabs A1 · A2 · B1 · B2 · C1 in the learning path (13.11.2026, variant B
   of the maintainer's decision). The path opens in the tab of "Continue"; section
   numbers, level numbers and colours start again in every tab; C1 is empty
