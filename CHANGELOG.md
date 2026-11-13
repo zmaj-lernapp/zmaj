@@ -274,7 +274,12 @@ are in the Play Store listing. Format:
   device already knows the backup, it first fetches only `rev` (field mask)
   and loads the full backup only when another device wrote. `firestore.rules`
   is unchanged. `app_bauen.py --immer-packen` builds a test app that always
-  packs, for the phone test with a device on 1.3.
+  packs, for the phone test with a device on 1.3. A device that received a
+  packed backup while still on 1.3 carries it in its own progress; after the
+  update to 1.4 it unpacks and merges it before its next upload, so the words
+  of the device that wrote it stay in the cloud even when step 2 always packs
+  (review finding, 13.11.2026). Only a packed field that cannot be unpacked is
+  left out of a packed upload; it stays in the old form and on the device.
   `tests_e2e/test_cloud_packen.py`.
 - Tablets: from 600 points on the shorter side (Android's "sw600dp") the
   whole app scales up with the screen. Upright, the column fills about

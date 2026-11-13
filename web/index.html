@@ -9916,6 +9916,10 @@ const utf8Laenge = s => { try{ return new TextEncoder().encode(s).length; }catch
    seit 28.10.2026) und schreibt den eigenen Stand daneben. Diese Fassung
    packt das wieder aus und fuehrt beides zusammen (cloudStandLesen). Was
    1.3 dabei genau tut: Release\Entscheidungen_2026-11-13\cloud_handytest.md.
+   Wird so ein Geraet mit 1.3 spaeter auf 1.4 aktualisiert, steht gepackt1
+   in seinem eigenen Stand. Das packt es vor dem naechsten Schreiben aus und
+   arbeitet es ein (gepacktEinarbeiten, Pruefbefund 13.11.2026) - ohne das
+   verloere Schritt 2 die Woerter des Geraets, das gepackt1 geschrieben hat.
    Ein Randfall bleibt, und nur 1.3 koennte ihn verhindern: Passen der
    eigene Stand von 1.3 und gepackt1 zusammen nicht unter die Grenze, laesst
    1.3 gepackt1 in der Cloud weg (standFremdAus) und behaelt es nur auf dem
@@ -10192,8 +10196,9 @@ async function cloudPacken(sicherung){
      - gepackt1 laesst sich nicht auspacken (kaputt, oder das Geraet kann
        kein gzip): der Stand mit gepackt1, unveraendert. Dann traegt diese
        Fassung es weiter wie 1.3 ein fremdes Feld - weggeworfen wird nichts,
-       was sich nicht lesen laesst. Erst wenn dieses Geraet selbst packt,
-       ersetzt es gepackt1 (siehe cloudAbgleich). */
+       was sich nicht lesen laesst. Vor jedem Schreiben versucht es das
+       Auspacken noch einmal (gepacktEinarbeiten); erst wenn dieses Geraet
+       selbst packt, ersetzt es gepackt1 (siehe cloudAbgleich). */
 async function cloudStandLesen(text){
   const s = cloudStandAus(text);
   if(!s || !Object.prototype.hasOwnProperty.call(s, CLOUD_PACK_FELD) || !packenMoeglich()) return s;
@@ -10227,6 +10232,38 @@ function cloudUebernehmen(fremd, cloudVorher, erstesMal){
      Lektion nicht - dort gilt der neue Stand ab der naechsten. */
   if(sichtbar('pfad') && !frageSchliessen) showHome();
   return true;
+}
+/* Ein gepackt1 im eigenen Stand (Pruefbefund 13.11.2026). Das traegt ein
+   Geraet, das bis zum Update noch 1.3 hatte: 1.3 hat gepackt1 aus der Cloud
+   als Feld einer neueren Fassung abgelegt (standFremd) und weitergetragen.
+   Nach dem Update auf 1.4 liest das Geraet die Cloud nur, wenn ein anderes
+   geschrieben hat (cloudStandLesen) - sonst blieb gepackt1 hier fuer immer
+   gepackt. Packte das Geraet dann selbst, kam es nicht mit in die Cloud:
+   Die Woerter des Geraets, das gepackt1 geschrieben hatte, waren dort weg,
+   und hier gingen sie beim Abmelden verloren. Mit Schritt 1 ging das noch
+   gut (die alte Form traegt gepackt1 weiter), mit Schritt 2 nicht mehr.
+   Darum wird es vor jedem Schreiben ausgepackt und eingearbeitet wie ein
+   Stand aus der Cloud (cloudUebernehmen: erst sicherungPlausibel, dann
+   standZusammenfuehren). gepackt1 selbst steht dabei in cloudVorher und
+   faellt so aus dem eigenen Stand - sein Inhalt steht danach in den
+   eigenen Feldern. Gibt zurueck:
+     'nichts'         kein gepackt1, oder das Geraet kann kein gzip - dann
+                      traegt es gepackt1 weiter wie 1.3
+     'kaputt'         es laesst sich nicht auspacken. Es bleibt hier und in
+                      der alten Form auch in der Cloud; erst wenn das Geraet
+                      packt, ersetzt es das neue gepackt1 (siehe cloudAbgleich)
+     'eingearbeitet'  ausgepackt und eingearbeitet
+     'fehler'         das Einarbeiten warf; der Stand ist wie vorher */
+async function gepacktEinarbeiten(){
+  const z = standFremd[CLOUD_PACK_FELD];
+  if(z === undefined || !packenMoeglich()) return 'nichts';
+  let innen = null;
+  try{ innen = sicherungStandAus(await cloudAuspacken(z)); }catch(e){ innen = null; }
+  if(!innen) return 'kaputt';
+  /* Waehrenddessen eine Sicherungsdatei eingelesen: dann deren gepackt1
+     (oder keins). Sonst liesse cloudAbgleich ein ungeprueftes weg. */
+  if(standFremd[CLOUD_PACK_FELD] !== z) return gepacktEinarbeiten();
+  return cloudUebernehmen(innen, [CLOUD_PACK_FELD], false) ? 'eingearbeitet' : 'fehler';
 }
 /* Der Abgleich. anlass: 'start' (nur lesen, einmal am Tag), 'pause' (App
    geht in den Hintergrund: schreiben, hoechstens einmal am Tag),
@@ -10274,6 +10311,10 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
     }
     if(!dok) m.fremd = [];
     if(!schreiben){ cloudMerkerSetzen(m, true); return fremd ? 'zusammengefuehrt' : 'gelesen'; }
+    /* Traegt der eigene Stand noch gepackt1 (Update von 1.3), erst
+       auspacken und einarbeiten, siehe gepacktEinarbeiten(). Wirft das
+       Einarbeiten, wird lieber nicht geschrieben - wie oben. */
+    if(await gepacktEinarbeiten() === 'fehler'){ cloudMerkerSetzen(m, true); return 'fehler'; }
     const stand = standAlsObjekt(), fp = cloudFingerabdruck(stand);
     if(!erstes && dok && !fremd && fp === m.fp){ cloudMerkerSetzen(m, true); return 'unveraendert'; }
     /* Passt der Stand nicht in die Cloud, bleiben dort Felder einer
@@ -10286,10 +10327,14 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
        Lernen unerreichbar, siehe dort.
        13.11.2026: Davor wird gepackt, wenn die alte Form nicht passt (nach
        Schritt 2 immer, CLOUD_IMMER_PACKEN). Erst wenn auch das nicht geht
-       oder nicht passt, bleiben fremde Felder weg. Ein mitgetragenes
-       gepackt1 kommt nicht mit hinein: Dieses Geraet kann gzip, hat es
-       also schon auszupacken versucht, und es war kaputt - das neue
-       gepackt1 ersetzt es. In der alten Form bleibt es stehen. */
+       oder nicht passt, bleiben fremde Felder weg. Ein gepackt1, das hier
+       jetzt noch im Stand steht, liess sich oben nicht auspacken
+       (gepacktEinarbeiten, 'kaputt'): Nur dann kommt es nicht mit in das
+       Gepackte, das neue gepackt1 ersetzt es. In der alten Form bleibt es
+       stehen, und auf dem Geraet auch. (Bis zum Pruefbefund vom 13.11.2026
+       hiess es hier, ein mitgetragenes gepackt1 sei immer kaputt. Ein
+       Geraet, das es noch unter 1.3 bekommen hat, hat es aber nie
+       auszupacken versucht.) */
     let oben = stand, text = JSON.stringify(sicherungObjekt(stand)), gepackt = false;
     if(CLOUD_IMMER_PACKEN || utf8Laenge(text) > CLOUD_GROESSE_MAX){
       const innen = Object.fromEntries(Object.entries(stand).filter(([k]) => k !== CLOUD_PACK_FELD));

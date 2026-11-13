@@ -20,6 +20,10 @@ Release\\Entscheidungen_2026-11-13\\cloud.md, Fragen 2a, 3a, 4a. Geprueft wird:
     Randfall, in dem 1.3 das gepackte Feld aus Platzgruenden fallen laesst.
   - Die Test-App von app_bauen.py --immer-packen mit 1.3 und 1.4, wie im
     Handytest (Release\\Entscheidungen_2026-11-13\\cloud_handytest.md).
+  - Ein Geraet traegt gepackt1 noch von 1.3 und wird auf 1.4 aktualisiert
+    (Schritt 1 und Schritt 2): es packt gepackt1 vor dem Schreiben aus, und
+    ein neues Geraet hat alles, auch wenn das schreibende weg ist
+    (Pruefbefund 13.11.2026).
   - Firestore gegen die Attrappe: Feldmaske fuer rev, und das gepackte
     Dokument erfuellt firestore.rules (nur daten und rev, daten ein Text bis
     900 000 Zeichen).
@@ -595,6 +599,89 @@ def test_handytest_immer_packen_mit_13_und_14(geraet_immer, geraet_13, seite, he
     assert "gepackt1" not in alt.js("() => standFremd")                    # das alte Feld ist weg
     assert "gepackt1" not in _stand(alt.js(DOK_HOLEN))
     assert immer.fehler == [] and alt.fehler == [] and neu.fehler == []
+
+
+# Nach dem Update: dieselbe Ablage wie vorher, ein frischer Adapter. Mit
+# "erst nachsehen" wie Firestore - kennt das Geraet das rev, laedt es nichts.
+ADAPTER_NACH_UPDATE = """(dok) => {
+    window.ablage = {uid: 'konto-probe', mitKennung: true, dok};
+    window.adapter = cloudSpeicherAdapter(window.ablage);
+}"""
+
+
+@pytest.mark.parametrize("schritt", [1, 2])
+def test_update_13_auf_14_mit_mitgetragenem_gepackt1(geraet_immer, geraet_13, seite, heute_stand,
+                                                     html_immer, schritt):
+    """Pruefbefund 13.11.2026: X (Test-App "immer packen") schreibt gepackt1.
+    Y mit 1.3 traegt es als fremdes Feld weiter und wird dann auf 1.4
+    aktualisiert - Schritt 1 (die App aus dem Store) oder Schritt 2 (nur
+    CLOUD_IMMER_PACKEN umgeschaltet). Danach hat niemand sonst geschrieben,
+    Y laedt die Cloud also nicht (nur rev). X ist weg, ein neues Geraet Z
+    meldet sich an. Vorher fehlten mit Schritt 2 die Woerter von X in der
+    Cloud: Y packte ohne das mitgetragene gepackt1. Jetzt packt Y es vor dem
+    Schreiben aus und arbeitet es ein - Z bekommt alles, und Y zeigt es."""
+    x, y, z = geraet_immer, geraet_13, seite
+    x.starten(stand=heute_stand())
+    w_x = x.js("() => CATEGORIES[0].words.slice(0, 4).map(w => w.id).concat(['nurx:wort'])")
+    x.js("(w) => { w.forEach(v => known.add(v)); stern['w:' + w[0]] = {z: Date.now(), r: Date.now()}; }", w_x)
+    assert x.js(ANMELDEN, [None, True]) is True
+    dok = x.js(DOK_HOLEN)
+    assert list(_stand(dok)) == ["gepackt1"]
+    blob = _stand(dok)["gepackt1"]
+
+    _13_starten(y, heute_stand)
+    w_y = y.js("() => CATEGORIES[1].words.slice(0, 3).map(w => w.id)")
+    y.js("(w) => w.forEach(v => known.add(v))", w_y)
+    assert y.js(ANMELDEN, [dok, False]) is True
+    assert set(y.js(WOERTER)) == set(w_y)                                   # 1.3 sieht nur seins
+    assert y.js("() => standFremd.gepackt1") == blob
+    dok = y.js(DOK_HOLEN)
+    assert _stand(dok)["gepackt1"] == blob
+
+    # Update auf 1.4: Geraetespeicher wie vorher, neuer Code.
+    y.page.unroute("**/app/index.html")
+    if schritt == 2:
+        y.page.route("**/app/index.html", lambda r: r.fulfill(
+            status=200, content_type="text/html; charset=utf-8", body=html_immer))
+    y.neu_laden()
+    assert y.js("() => [typeof cloudStandLesen, CLOUD_IMMER_PACKEN]") == ["function", schritt == 2]
+    assert y.js("() => standFremd.gepackt1") == blob                       # noch mitgetragen
+    y.js(ADAPTER_NACH_UPDATE, dok)
+    y.js("() => known.add('y:nach-update')")
+    assert y.js(ABGLEICH, "pause") == "gespeichert"
+    zaehler = y.js(ZAEHLER)
+    assert zaehler.get("laden", 0) == 0 and zaehler["kennung"] == 1, zaehler  # die Cloud nicht gelesen
+
+    alles = set(w_x) | set(w_y) | {"y:nach-update"}
+    assert set(y.js(WOERTER)) == alles                                      # Y zeigt jetzt auch X
+    assert "gepackt1" not in y.js("() => standFremd")                      # eingearbeitet
+    assert "w:" + w_x[0] in y.js("() => stern")
+    dok = y.js(DOK_HOLEN)
+    if schritt == 1:
+        assert "gepackt1" not in _stand(dok) and set(_stand(dok)["gewusst"]) == alles   # passt: alte Form
+    else:
+        assert list(_stand(dok)) == ["gepackt1"] and _stand(dok)["gepackt1"] != blob
+        assert set(y.js(GELESEN, dok["text"])["gewusst"]) == alles
+
+    # X ist weg. Ein neues Geraet meldet sich an und hat trotzdem alles.
+    z.starten(stand=heute_stand())
+    assert z.js(ANMELDEN, [dok, True]) is True
+    assert set(z.js(WOERTER)) == alles
+    assert "w:" + w_x[0] in z.js("() => stern")
+    assert x.fehler == [] and y.fehler == [] and z.fehler == []
+
+
+def test_mitgetragenes_gepackt1_kaputt_bleibt_in_der_alten_form(seite, heute_stand):
+    """Laesst sich ein mitgetragenes gepackt1 nicht auspacken, bleibt es auf
+    dem Geraet und in der alten Form auch in der Cloud. Weggelassen wird es
+    erst, wenn das Geraet selbst packt (siehe test_beschaedigt_...)."""
+    seite.starten(stand=heute_stand(gepackt1="das ist kein Base64!", gewusst=["eigen:wort"]))
+    assert seite.js("() => standFremd.gepackt1") == "das ist kein Base64!"
+    assert seite.js(ANMELDEN, [None, True]) is True
+    stand = _stand(seite.js(DOK_HOLEN))
+    assert stand["gepackt1"] == "das ist kein Base64!" and "eigen:wort" in stand["gewusst"]
+    assert seite.js("() => standFremd.gepackt1") == "das ist kein Base64!"
+    assert seite.fehler == []
 
 
 # ------------------------------------------------ Firestore, Attrappe ---
