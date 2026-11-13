@@ -63,23 +63,50 @@ SCHRITTE = [
         [...known].slice(40, 47).forEach((id, i) => { topf['w:' + id] = {typ: i % 2 ? 'mcrev' : 'mc', n: 0, z: Date.now() - i * 60000}; });
         homeMode = 'words'; showHome(); scrollTo(0,0);
         await new Promise(r=>setTimeout(r,2500)); return 'start'"""),
-    ("02-lernpfad", """
-        const z = [...document.querySelectorAll('.label')].filter(e => e.offsetParent)[8];
-        scrollBy(0, z.getBoundingClientRect().top - 70);
-        await new Promise(r=>setTimeout(r,400)); return scrollY"""),
+    # Bis 13.11.2026 "02-lernpfad": Sektion 1 unter "65 Levels - vom Hallo
+    # bis zum Amt". Jetzt (Store-Bilder 1.3) zeigt das Bild das Amt selbst:
+    # Sektion 9 "Amt & Vertraege" aufgeklappt, ihr Kopf oben. Die Level dort
+    # sind im Vorfuehrstand gesperrt - so sieht es in der App wirklich aus.
+    # Das Aufklappen faerbt die ganze App in der Farbe von Sektion 9; 03
+    # klappt darum zuerst wieder Sektion 1 auf.
+    ("02-amt", """
+        const amt = SECTIONS[8].id;
+        if(offeneSektion !== amt) sektionAufklappen(amt);
+        await new Promise(r=>setTimeout(r,900));
+        const k = [...document.getElementById('sections').children].find(e => e.dataset.sid === amt);
+        scrollBy(0, (k.getBoundingClientRect().top - 10) * rectFaktor());
+        await new Promise(r=>setTimeout(r,600)); return k.innerText.split('\\n')[0]"""),
     ("03-neues-wort", """
+        const eins = SECTIONS[0].id;
+        if(offeneSektion !== eins) sektionAufklappen(eins);
+        await new Promise(r=>setTimeout(r,900));
         openLevel(12); await new Promise(r=>setTimeout(r,400)); startLesson();
         await new Promise(r=>setTimeout(r,800)); scrollTo(0,0); return Lx.queue.length"""),
-    ("04-auswahl", """
-        let ziel = Lx.queue.findIndex(q => q.typ === 'mc' && q.w.de.length > 8);
-        if(ziel < 0) ziel = Lx.queue.findIndex(q => q.typ === 'mc');
+    # Bis 13.11.2026 "04-auswahl" (Auswahlaufgabe, die gewoehnlichste der
+    # App). Jetzt der Satzbau aus Kacheln (seit v104, bisher auf keinem Bild):
+    # eine Kachelaufgabe mit mindestens vier Woertern, zwei Kacheln schon
+    # gelegt. Dafuer die Lektion aus 03 bis zu 40 Mal neu mischen.
+    ("04-kacheln", """
+        const passt = q => q.typ === 'kacheln' && q.s.bs.trim().split(/\\s+/).length >= 4;
+        let ziel = Lx.queue.findIndex((q, i) => i >= Lx.i && passt(q));
+        for(let n = 0; ziel < 0 && n < 40; n++){ startLesson(); await new Promise(r=>setTimeout(r,600)); ziel = Lx.queue.findIndex(passt); }
+        if(ziel < 0) throw new Error('keine Kachelaufgabe mit vier Woertern in Level 13');
         while(Lx.i < ziel){ await window.__antworte(true, 'lBody', ()=>Lx); }
-        await new Promise(r=>setTimeout(r,800)); scrollTo(0,0); return Lx.i"""),
+        await new Promise(r=>setTimeout(r,800));
+        const q = Lx.queue[Lx.i];
+        const rand = /^[.,!?¿¡:;"„“”«»…()]+|[.,!?¿¡:;"„“”«»…()]+$/g;
+        const teile = q.s.bs.split(/\\s+/).map(x => x.replace(rand, '').toLowerCase()).filter(Boolean);
+        for(const soll of teile.slice(0, 2)){
+          const b = [...document.querySelectorAll('#lBody #xBank .kachel:not(.platz)')].find(o => o.textContent.toLowerCase() === soll);
+          if(b) b.click(); await new Promise(r=>setTimeout(r,450));
+        }
+        scrollTo(0,0); await new Promise(r=>setTimeout(r,500));
+        return q.s.bs"""),
     # Bis 11.10.2026 stand hier "05-richtig": dieselbe Aufgabe wie 04, nur
     # beantwortet. Jetzt eine Grammatikaufgabe - die zeigte bisher kein Bild.
     ("05-grammatik", """
-        // Konjugation: sieht nach Grammatik aus und fragt nicht schon wieder
-        // nach dem Preis wie 04.
+        // Konjugation: sieht nach Grammatik aus und fragt nicht nach dem
+        // Preis wie die alte Auswahlaufgabe 04.
         let ziel = -1;
         {
           const k = CATEGORIES.findIndex(c => c.id === 'konjugation');
@@ -120,12 +147,28 @@ SCHRITTE = [
     # scrollbar, und der Bildrand schnitt Flamme und Drachen mittendurch.
     # Oben passt bei 7 und 10 Zoll alles bis "Markiert" ins Bild. Das Handy
     # scrollt wie bisher.
+    # 13.11.2026: Auf Niederlaendisch und Daenisch bricht die Schutz-Zeile
+    # ueber dem Knopf um ("nog 9 dagen"), und ihre halbe Zeile stand oben
+    # abgeschnitten im Bild. Darum danach weiterscrollen, bis keine Schrift
+    # mehr am oberen Rand haengt - hoechstens bis der Knopf oben anstoesst.
     ("08-wiederholen", """
         homeMode = 'topf'; showHome(); await new Promise(r=>setTimeout(r,600));
         scrollTo(0,0); await new Promise(r=>setTimeout(r,200));
         const text = t('btn.weitermachen');
         const w = [...document.querySelectorAll('button')].find(b => b.offsetParent && b.textContent.includes(text));
-        if(w && !document.documentElement.classList.contains('gross')) scrollBy(0, w.getBoundingClientRect().top - 16);
+        if(w && !document.documentElement.classList.contains('gross')){
+          scrollBy(0, w.getBoundingClientRect().top - 16);
+          await new Promise(r=>setTimeout(r,200));
+          let unten = 0; const rg = document.createRange();
+          const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+          while(tw.nextNode()){
+            const n = tw.currentNode;
+            if(!n.textContent.trim() || !n.parentElement || !n.parentElement.offsetParent) continue;
+            rg.selectNodeContents(n);
+            for(const r of rg.getClientRects()) if(r.top < 0 && r.bottom > 0) unten = Math.max(unten, r.bottom);
+          }
+          if(unten > 0) scrollBy(0, Math.min(unten + 2, w.getBoundingClientRect().top));
+        }
         await new Promise(r=>setTimeout(r,400)); return scrollY"""),
 ]
 
@@ -223,6 +266,10 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
 
 def montage(pfade, ausgabe, auswahl=(0, 1, 2, 3, 6)):
     """Fünf Bilder nebeneinander, für das README.
+
+    Seit 13.11.2026 sind Bild 2 und 4 das Amt und die Kacheln (vorher
+    Lernpfad und Auswahlaufgabe). Wer die Leiste neu macht, passt den
+    Alt-Text in README.md (Bildleiste oben) mit an.
 
     Die Lücken sind durchsichtig (15.10.2026): Seit die Bilder dunkel sind,
     standen weiße Streifen dazwischen, auf GitHub im dunklen Modus grell.
