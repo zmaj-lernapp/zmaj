@@ -336,10 +336,14 @@ def test_echte_wortzeiten_passen(dunkel):
     seite = dunkel
     ergebnis = seite.js("""() => STORIES.map((s, i) => { openStory(i);
       const datei = audioDatei(s.text), n = document.querySelectorAll('#rBody .txt .w').length;
-      return {nr: i, datei: datei, n: n, paare: (WORTZEITEN.get(datei) || []).length,
-              passt: !!mitlesZeiten(datei, n)}; })""")
-    assert len(ergebnis) >= 12
-    assert [e for e in ergebnis if not e["passt"]] == []
+      return {nr: i, id: s.id, datei: datei, n: n, paare: (WORTZEITEN.get(datei) || []).length,
+              passt: !!(datei && mitlesZeiten(datei, n))}; })""")
+    # Die B1-Lesetexte (13.11.2026) haben noch keine Aufnahme, also auch keine
+    # Zeiten (tests/offen_lesetexte.json). Jede andere Geschichte muss passen.
+    mit_ton = [e for e in ergebnis if e["datei"]]
+    assert all(e["id"].startswith("b1_") for e in ergebnis if not e["datei"])
+    assert len(mit_ton) >= 12
+    assert [e for e in mit_ton if not e["passt"]] == []
     assert seite.fehler == []
 
 
@@ -464,7 +468,9 @@ def test_folgt_dem_wort_ohne_zu_reissen(browser, basis, heute_stand):
     ctx, seite = neue_seite(browser, basis, "dark", hoehe=560)
     try:
         starten(seite, heute_stand())
-        nr = seite.js("() => STORIES.reduce((m, s, i, a) => s.text.length > a[m].text.length ? i : m, 0)")
+        # Nur Geschichten mit Aufnahme: die B1-Lesetexte haben noch keine (13.11.2026)
+        nr = seite.js("""() => STORIES.reduce((m, s, i, a) =>
+          audioDatei(s.text) && s.text.length > a[m].text.length ? i : m, 0)""")
         n = seite.js(VORBEREITEN, [nr, SCHRITT, DAUER, ANFANG, 0, False])["n"]
         vorlesen(seite)
         seite.js("() => window.scrollTo(0, 0)")

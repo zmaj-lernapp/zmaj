@@ -42,12 +42,12 @@ def sentences():
 
 
 def stories():
-    """12 graded stories with translations, glossary and questions."""
+    """24 graded stories with translations, glossary and questions."""
     return _lade("stories")["entries"]
 
 
 def glossary():
-    """406 reading-glossary entries: bs and translations."""
+    """1,164 reading-glossary entries: bs and translations."""
     return _lade("glossary")["entries"]
 
 
