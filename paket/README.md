@@ -1,7 +1,7 @@
 # zmaj-bosnian
 
 The open Bosnian course behind the [Zmaj](https://github.com/zmaj-lernapp/zmaj)
-app as a Python package: 7,997 words and phrases in 295 levels, 300 cloze
+app as a Python package: 7,997 words and phrases in 297 levels, 300 cloze
 sentences, 12 graded stories with glossary and questions, 26 grammar lessons,
 406 glossary entries. Bosnian (Ijekavian, Latin script) with translations
 into German, English, Turkish, Swedish, Dutch, Norwegian Bokmål, Danish and

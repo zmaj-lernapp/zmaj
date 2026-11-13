@@ -23,42 +23,38 @@ source files disagree, so this folder is never stale.
 
 ```mermaid
 pie showData title Words per section (7,997)
-  "1 Basics & everyday life" : 353
-  "2 Things you can touch" : 114
-  "3 Animals & nature" : 111
-  "4 At home" : 137
-  "5 Building sentences" : 618
-  "6 Shopping & eating out" : 108
-  "7 Bosnia & origins" : 81
-  "8 People & culture" : 58
-  "9 Offices & contracts" : 162
-  "10 Doings and dealings" : 1106
-  "11 How things are" : 190
-  "12 Body and health" : 206
-  "13 Time and leisure" : 178
-  "14 Learning and working" : 122
-  "15 Basic concepts" : 302
-  "16 People and society" : 303
-  "17 How, where and when" : 302
-  "18 Thinking and opinions" : 307
-  "19 People and relationships" : 298
-  "20 Work and economy" : 305
-  "21 Media and culture" : 198
-  "22 Environment and technology" : 112
-  "23 Society and politics" : 156
-  "24 Law and authorities" : 262
-  "25 House and home" : 236
-  "26 Health and sport" : 330
-  "27 School and knowledge" : 340
-  "28 City, traffic and travel" : 182
-  "29 Land, animals and plants" : 156
-  "30 Acting and changing" : 338
-  "31 Saying it precisely" : 326
+  "A1/1 Basics & everyday life" : 353
+  "A1/2 Things you can touch" : 114
+  "A1/3 Animals & nature" : 111
+  "A1/4 Building sentences 1" : 187
+  "A2/1 At home" : 137
+  "A2/2 Building sentences 2" : 471
+  "A2/3 Shopping & eating out" : 108
+  "A2/4 Bosnia & origins" : 81
+  "A2/5 People & culture" : 58
+  "B1/1 Offices & contracts" : 162
+  "B1/2 Doings and dealings" : 1106
+  "B1/3 How things are" : 190
+  "B1/4 Body and health" : 205
+  "B1/5 Time and leisure" : 173
+  "B1/6 Learning and working" : 122
+  "B1/7 Basic concepts" : 295
+  "B1/8 People and society" : 294
+  "B1/9 How, where and when" : 284
+  "B2/1 Thinking, feelings and relationships" : 605
+  "B2/2 Work and economy" : 305
+  "B2/3 Media, culture and technology" : 310
+  "B2/4 State, law and authorities" : 418
+  "B2/5 House and home" : 236
+  "B2/6 Health and sport" : 330
+  "B2/7 School and knowledge" : 340
+  "B2/8 Town, country and on the move" : 338
+  "B2/9 Acting and saying it more precisely" : 664
 ```
 
 | File | What | Count |
 |---|---|---|
-| `vocabulary.json` / `.csv` | words and phrases, 31 sections, 295 levels | 7,997 |
+| `vocabulary.json` / `.csv` | words and phrases, 27 sections in four stages (A1 to B2), 297 levels | 7,997 |
 | `sentences.json` / `.csv` | fill-in-the-gap sentences with the full sentence | 300 |
 | `stories.json` | graded stories with translation, glossary and comprehension questions | 12 |
 | `glossary.json` | word-by-word reading glossary used by the stories | 406 |

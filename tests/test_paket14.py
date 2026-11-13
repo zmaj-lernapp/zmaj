@@ -20,12 +20,13 @@ from paket1020_pruefung import *  # noqa: F401,F403
 
 LEVEL = ["staat_institutionen", "wahlen_parlament", "krieg_frieden", "buerger_rechte", "religion_gemeinschaft",
          "gericht", "polizei_anzeige", "aemter_zustaendigkeit", "bescheid_einspruch", "vertraege"]
+# Seit 13.11.2026 (Frage 6a) Recht und Behörden in Staat, Recht und Behörden
 SEKTION = {
     "staat_institutionen": "gesellschaftpolitik", "wahlen_parlament": "gesellschaftpolitik",
     "krieg_frieden": "gesellschaftpolitik", "buerger_rechte": "gesellschaftpolitik",
-    "religion_gemeinschaft": "gesellschaftpolitik", "gericht": "rechtbehoerden",
-    "polizei_anzeige": "rechtbehoerden", "aemter_zustaendigkeit": "rechtbehoerden",
-    "bescheid_einspruch": "rechtbehoerden", "vertraege": "rechtbehoerden",
+    "religion_gemeinschaft": "gesellschaftpolitik", "gericht": "gesellschaftpolitik",
+    "polizei_anzeige": "gesellschaftpolitik", "aemter_zustaendigkeit": "gesellschaftpolitik",
+    "bescheid_einspruch": "gesellschaftpolitik", "vertraege": "gesellschaftpolitik",
 }
 
 # Die Woerter je Level ohne die Beispielsaetze. Bosnisch genau so, wie Ajdin es

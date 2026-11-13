@@ -99,7 +99,8 @@ def _paare(k):
     return list(zip(liste[0::2], liste[1::2]))
 
 
-def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
+def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     for k in _level(grunddaten):
         assert k["reihenfolge"] is True, k["id"]
         assert 16 <= len(k["words"]) <= 40, k["id"]
@@ -229,9 +230,10 @@ def test_jedes_wort_und_jeder_satz_hat_emirs_ton(grunddaten, wurzel):
     assert not ohne, ohne[:20]
 
 
-def test_sektion_und_level(grunddaten):
+def test_sektion_und_level(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     s = grunddaten["sektionen"]
-    assert s[15]["id"] == "menschengesellschaft" and s[15]["label"] == "Sektion 16 · Menschen und Gesellschaft"
+    assert s[16]["id"] == "menschengesellschaft" and s[16]["label"] == "Sektion 8 · Menschen und Gesellschaft"  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
     assert [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "menschengesellschaft"] == LEVEL
     ids = [k["id"] for k in grunddaten["kategorien"]]
     assert ids[ids.index("menschen") - 1] == "hilfe_hindernis", "direkt hinter Sektion 15"

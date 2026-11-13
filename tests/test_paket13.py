@@ -19,12 +19,13 @@ from paket1020_pruefung import *  # noqa: F401,F403
 LEVEL = ["zeitung_fernsehen", "berichten_verbreiten", "werbung", "theater_musik", "regie_premiere",
          "buecher_kunst", "literatur_malerei", "geschichte_frueher", "klima_energie", "naturkatastrophen",
          "computer_dateien"]
+# Seit 13.11.2026 (Frage 6a) Umwelt und Technik in Medien, Kultur und Technik
 SEKTION = {
     "zeitung_fernsehen": "medienkultur", "berichten_verbreiten": "medienkultur", "werbung": "medienkultur",
     "theater_musik": "medienkultur", "regie_premiere": "medienkultur", "buecher_kunst": "medienkultur",
     "literatur_malerei": "medienkultur", "geschichte_frueher": "medienkultur",
-    "klima_energie": "umwelttechnik", "naturkatastrophen": "umwelttechnik",
-    "computer_dateien": "umwelttechnik",
+    "klima_energie": "medienkultur", "naturkatastrophen": "medienkultur",
+    "computer_dateien": "medienkultur",
 }
 
 # Die Woerter je Level ohne die Beispielsaetze. Bosnisch genau so, wie Ajdin es

@@ -31,7 +31,8 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     """README und Store-Text nennen diese Zahlen. Ändern sie sich,
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
-    assert len(grunddaten["kategorien"]) == 295       # seit 07.11.2026 (Pakete 10 bis 20)
+    # 297 seit 13.11.2026: zwei neue Level mit umgezogenen Grundwoertern (Stufen-Reiter)
+    assert len(grunddaten["kategorien"]) == 297
     assert woerter == 7997
     assert len(grunddaten["saetze"]) == 300
     assert len(grunddaten["geschichten"]) == 12

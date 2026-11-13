@@ -54,11 +54,12 @@ def _test_bestehen(seite, i):
 
 def test_weiter_nach_dem_test_ueberspringt_bestandene_level(seite, heute_stand):
     """Pruefbericht 1.3, G3: nach dem letzten eingeschobenen Level (102) stand
-    "Weiter zu Level 103", und das war laengst bestanden. Dran ist Level 130."""
+    "Weiter zu Level 103", und das war laengst bestanden. Dran ist Level 130.
+    Seit den Stufen-Reitern (13.11.2026) zaehlt die Nummer je Reiter (levelNummer)."""
     ids = _ids(seite, heute_stand)
     seite.starten(stand=heute_stand(bestanden=ids[:101] + ids[102:129]))
     _test_bestehen(seite, 101)
-    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: 130})")
+    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: levelNummer(129)})")
     seite.page.click("#tNext")
     assert seite.js("() => [catIdx, passed.has(cur().id), document.getElementById('levelHome').style.display]") == [
         129, False, "block"]
@@ -76,7 +77,7 @@ def test_weiter_nach_dem_test_sonst_wie_bisher(seite, heute_stand):
     # Dahinter ist alles bestanden: ebenfalls eins weiter, auch wenn das bestanden ist
     seite.starten(stand=heute_stand(bestanden=ids[:50] + ids[51:]))
     _test_bestehen(seite, 50)
-    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: 52})")
+    assert seite.js(WEITER_KNOPF) == seite.js("() => t('test.weiter_level', {n: levelNummer(51)})")
     seite.page.click("#tNext")
     assert seite.js("() => catIdx") == 51
     assert seite.fehler == []
@@ -172,7 +173,9 @@ def test_eingestuft_aber_von_vorn_gelernt(seite, heute_stand):
     Einstieg etwas besteht, lernt wieder dort weiter."""
     ids = _ids(seite, heute_stand)
     ein = min(64, len(ids) - 3)
-    stand = {"einstufung": {"tag": datetime.date.today().isoformat(), "wahl": "alles", "bis": ids[ein]},
+    # reiter: eingestuft mit den Stufen-Reitern - vorher eingestuft holen die zwei
+    # Grundwort-Level den Knopf zurueck (tests_e2e/test_reiter.py)
+    stand = {"einstufung": {"tag": datetime.date.today().isoformat(), "wahl": "alles", "bis": ids[ein], "reiter": True},
              "bestanden": ids[:9]}
     seite.starten(stand=stand)
     _knopf_zeigt(seite, 9)

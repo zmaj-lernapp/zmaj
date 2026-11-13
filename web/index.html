@@ -1311,6 +1311,52 @@
   .section .sbar{height:8px; background:var(--primary-soft); border-radius:99px; overflow:hidden; margin-bottom:6px}
   .section .sbar i{display:block; height:100%; background:var(--sek, var(--accent)); width:0; transition:width .4s}
   .section .scap{font-size:12px; color:var(--muted); margin-bottom:6px; font-weight:700}
+  /* ---- Stufen-Reiter A1 bis C1 (13.11.2026) ----
+     Nach dem Entwurf reiter_mock.png: fuenf gleich breite Kaesten, oben die
+     Stufe gross, darunter der Stand, unten ein duenner Balken. Der gewaehlte
+     Reiter ist gefuellt wie die Lernpfad-Leiste darueber; zu ist gedaempft,
+     C1 ("bald") gestrichelt. Die Schrift des Stands wird auf schmalen
+     Handys kleiner.
+     Pruefung vom 13.11.2026: bei 360 px schnitt die Leiste den Stand an
+     beiden Seiten ab - als Flex-Kasten mit justify-content:center laeuft
+     zu langer Text links und rechts hinaus, und text-overflow greift dort
+     nicht. Aus "30 içinden 29" wurde "0 içinden 2", aus "112 von 129"
+     "112 von 12": falsche Zahlen statt Puenktchen. Darum steht der Stand
+     jetzt kurz als "112/129" in allen Sprachen (der ganze Satz geht an den
+     Bildschirmleser, aria-label), und .sz ist ein Block mit text-align,
+     damit ein zu langes Wort wenigstens in Puenktchen endet. Geprueft fuer
+     alle acht Sprachen in tests_e2e/test_reiter.py. */
+  .reiterleiste{display:flex; gap:6px; margin:0 0 12px}
+  .reiterleiste button{flex:1 1 0; min-width:0; position:relative; overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; gap:1px;
+    border:2px solid var(--line); background:var(--surface); color:var(--primary);
+    border-radius:var(--radius); padding:7px 2px 10px; font-family:inherit; cursor:pointer}
+  .reiterleiste .st{font-family:var(--font-ui); font-weight:800; font-size:19px; line-height:1.15}
+  .reiterleiste .sz{display:block; align-self:stretch; text-align:center; min-width:0;
+    font-size:clamp(8.5px, 2.75vw, 11.5px); font-weight:800; color:var(--muted);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .reiterleiste .sz .sym{--sg:1.15em}
+  .reiterleiste .sb{position:absolute; left:10px; right:10px; bottom:4px; height:3px;
+    border-radius:99px; background:var(--primary-soft); overflow:hidden}
+  .reiterleiste .sb i{display:block; height:100%; background:var(--accent)}
+  .reiterleiste .fertig .sb i{background:var(--good)}
+  .reiterleiste button[aria-selected="true"]{background:var(--primary-fill); border-color:var(--primary-fill); color:var(--on-fill)}
+  .reiterleiste button[aria-selected="true"] .sz{color:var(--on-fill)}
+  .reiterleiste .zu .st, .reiterleiste .bald .st{color:var(--muted)}
+  .reiterleiste .bald{border-style:dashed; background:transparent}
+  /* Auf hellem Grund verschwand die gestrichelte Linie fast (Bild vom
+     13.11.2026). Wo color-mix fehlt (WebView vor 111), bleibt --line. */
+  .reiterleiste .bald{border-color:color-mix(in srgb, var(--muted) 55%, transparent)}
+  .reiterleiste button[aria-selected="true"].zu .st, .reiterleiste button[aria-selected="true"].bald .st{color:var(--on-fill)}
+  .reiterleiste button:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  /* Die Karte eines Reiters, der noch zu ist (Sprung-Test) */
+  .reiterzu{text-align:center; padding:16px 16px 14px}
+  .reiterzu .schloss .sym{--sg:2.2em}
+  .reiterzu h2{color:var(--primary)}
+  .reiterzu .txt{font-size:14px; color:var(--muted); font-weight:700; margin:4px 0 12px}
+  .reiterzu .btn{width:100%; margin:0}
+  .reiterzu .regel{font-size:12px; color:var(--muted); font-weight:700; margin-top:8px}
+  .reiterzu .regel:empty{display:none}
   .node{
     display:flex; align-items:center; gap:14px; width:100%; text-align:left;
     border:0; background:transparent; color:var(--ink); font-family:inherit; padding:10px 2px; cursor:pointer;
@@ -2541,7 +2587,12 @@
       <button role="tab" id="modeTopf" aria-selected="false"><img class="sym" src="symbole/wiederholen.webp" alt="" aria-hidden="true"> <span data-t="tab.wiederholen"></span></button>
     </div>
     <div id="wordsHome">
+      <!-- Die Stufen-Reiter A1 bis C1 (13.11.2026). Leiste und Karte
+           zeichnet showPath() mit reiterLeisteZeichnen() und
+           reiterKarteZeichnen(). -->
+      <div class="reiterleiste" id="reiterLeiste" role="tablist"></div>
       <div class="summary" id="summary"></div>
+      <div id="reiterKarte" hidden></div>
       <div id="sections"></div>
     </div>
     <div id="storiesHome" style="display:none">
@@ -2631,7 +2682,7 @@
   <div id="einstufungView" style="display:none">
     <section>
       <!-- Derselbe Kasten wie in Lektion und Level-Test (19.10.2026) -->
-      <div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" aria-hidden="true"></div><div class="tbar" id="eBar"></div></div><div class="zmaj mini idle" id="zmajEinst"></div><div id="eBody"></div></div>
+      <div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" id="eHerz" aria-hidden="true"></div><div class="tbar" id="eBar"></div></div><div class="zmaj mini idle" id="zmajEinst"></div><div id="eBody"></div></div>
       <div class="nav"><button id="eQuit" data-t="einst.abbrechen"></button><span></span></div>
     </section>
   </div>
@@ -3946,8 +3997,53 @@ const istZa = x => typeof x === 'string' && x.startsWith(ZA_VORN);
 const ohneZa = menge => { let n = 0; menge.forEach(x => { if(!istZa(x)) n++; }); return n; };
 const imZa = () => CATEGORIES.length > 0 && catIdx >= CATEGORIES.length;
 const levelNach = i => i < CATEGORIES.length ? CATEGORIES[i] : zaLevel()[i - CATEGORIES.length];
-/* Die Nummer, die der Lernende sieht: im Zahnarzt-Teil zaehlt er von 1. */
-const levelNummer = i => i < CATEGORIES.length ? i + 1 : i - CATEGORIES.length + 1;
+/* ---- Stufen-Reiter (13.11.2026) ----
+   Der Lernpfad steht in Reitern je Stufe: A1, A2, B1, B2 und C1, das noch
+   leer ist ("bald"). Ajdin am 08.11.2026: "wir machen am besten alle
+   getrennt"; am 13.11.2026 Variante B aus Release\Entscheidungen_2026-11-13
+   (reiter.md, "alles wie empfohlen"): Reiter, zwei neue Grundwort-Level,
+   Zuhause hinter Faelle 1.
+   Die Stufe steht an der Sektion (vokabeln.py, "stufe"). Freigeschaltet wird
+   weiter in EINER Kette ueber alle Reiter (isUnlocked) - die Reiter zeigen
+   sie nur aufgeteilt. Ein Reiter ist offen, sobald eins seiner Level offen
+   ist; vorher geht es mit dem Sprung-Test (SPRUNG-TEST weiter unten).
+   Farben, Sektions- und Levelnummern fangen in jedem Reiter neu an. So kommt
+   auf einer Seite keine Farbe doppelt vor (Farben-Entscheidung vom
+   27.09.2026), solange ein Reiter hoechstens neun Sektionen hat. B2 hatte
+   vierzehn und ist seit Frage 6a (13.11.2026, "ja") auf neun zusammengelegt
+   (vokabeln.py); tests/test_reiter.py haelt die Grenze fest.
+   Gerechnet wird einmal je Inhalt (stufenKarte), nicht fuer jedes Level. */
+const STUFEN = ['A1', 'A2', 'B1', 'B2', 'C1'];
+let _stufen = null;
+function stufenKarte(){
+  if(_stufen && _stufen.kat === CATEGORIES && _stufen.sek === SECTIONS) return _stufen;
+  const vonSek = {}, sektionen = {}, level = {};
+  STUFEN.forEach(st => { sektionen[st] = []; level[st] = []; });
+  let vorige = STUFEN[0];
+  SECTIONS.forEach(s => {
+    /* Ohne gueltige Stufe gehoert eine Sektion zum Reiter davor - so faellt
+       keine aus dem Lernpfad heraus. */
+    const st = STUFEN.indexOf(s.stufe) >= 0 ? s.stufe : vorige;
+    vorige = st; vonSek[s.id] = st; sektionen[st].push(s);
+  });
+  const vonLevel = [], nr = [];
+  CATEGORIES.forEach((c, i) => {
+    const st = vonSek[c.sektion] || STUFEN[0];
+    vonLevel[i] = st; level[st].push(i); nr[i] = level[st].length;
+  });
+  _stufen = {kat: CATEGORIES, sek: SECTIONS, vonSek, sektionen, level, vonLevel, nr};
+  return _stufen;
+}
+/* Der Reiter eines Levels. Der Zahnarzt-Teil steht in dem, in dem gerade
+   gelernt wird (reiter.md: "im Reiter, in dem man gerade lernt"). */
+const stufeVon = i => i >= CATEGORIES.length ? stufeVon(firstOpen()) : (stufenKarte().vonLevel[i] || STUFEN[0]);
+const reiterLevel = st => stufenKarte().level[st] || [];
+const reiterSektionen = st => stufenKarte().sektionen[st] || [];
+/* Die Nummer, die der Lernende sieht: je Reiter von 1 (seit 13.11.2026), im
+   Zahnarzt-Teil ebenso. */
+const levelNummer = i => i < CATEGORIES.length ? (stufenKarte().nr[i] || i + 1) : i - CATEGORIES.length + 1;
+/* So viele Level hat der Reiter von Level i - fuer "Level 3 von 31". */
+const levelAnzahl = i => i < CATEGORIES.length ? reiterLevel(stufeVon(i)).length : zaLevel().length;
 /* Bis wohin man von hier aus blaettern darf: ueber das letzte Level des
    Lernpfads geht es nicht in den versteckten Teil, und umgekehrt. */
 const levelEnde = () => CATEGORIES.length + (imZa() ? zaLevel().length : 0);
@@ -4001,13 +4097,30 @@ const hoechsterBestanden = () => {
 /* Die Einstufung macht zusaetzlich alles bis zu ihrem Einstieg frei.
    "Dran" ist dann das erste offene Level AB dem Einstieg - sonst zeigte
    Weitermachen nach der Einstufung wieder auf Level 1. Ausnahme: wer
-   trotzdem von vorn lernt, siehe firstOpen. */
+   trotzdem von vorn lernt, siehe firstOpen.
+   Seit 13.11.2026 genauso der Sprung-Test in einen Reiter (sprungIndex):
+   offen ist alles bis zum ersten Level des Reiters. Alle drei Grenzen
+   rechnet freiBis(), zahlLevelHinter() nimmt dieselbe. */
+const freiBis = () => Math.max(hoechsterBestanden() + 1, einstufungIndex(), sprungIndex());
+/* Angefangene Level bleiben offen (13.11.2026, reiter.md). Seit Zuhause
+   hinter Faelle 1 steht, laege ein Level, in dem jemand gerade lernt, sonst
+   ploetzlich hinter dem Schloss - wer in "Kueche & Bad" Woerter gelernt,
+   "Natur" aber als letztes bestanden hat, kaeme nicht mehr hinein.
+   Angefangen heisst: mindestens ein Wort des Levels ist gewusst. Woerter
+   gehoeren genau einem Level (die Kennung ist eindeutig), gewusst wird ein
+   Wort nur in einer Lektion dieses Levels - also war es schon einmal offen.
+   Die zwei neuen Grundwort-Level sind fuer alle offen, die ihre Woerter aus
+   B1 schon kennen; dort stehen sie ohnehin vor dem hoechsten bestandenen. */
+const levelAngefangen = i => { const c = CATEGORIES[i]; return !!c && c.words.some(w => known.has(w.id)); };
 const isUnlocked = i => {
   /* Beim Zahnarzt: dieselbe Regel, nur innerhalb des Teils. Der Stand im
      Lernpfad und die Einstufung spielen dort keine Rolle. */
   if(i >= CATEGORIES.length && CATEGORIES.length) return allesOffen() || i - CATEGORIES.length <= zaHoechster() + 1;
-  return allesOffen() || i === 0 || i <= Math.max(hoechsterBestanden() + 1, einstufungIndex());
+  return inDerKette(i) || levelAngefangen(i);
 };
+/* Offen ueber die Kette allein, ohne die angefangenen Level. Danach
+   richtet sich, ob ein ganzer Reiter offen ist (stufeStand). */
+const inDerKette = i => allesOffen() || i === 0 || i <= freiBis();
 /* "Dran" ist das erste nicht bestandene Level ab dem Einstieg. Danach
    richten sich der Weitermachen-Knopf, die markierte Stelle im Lernpfad,
    die beim Start aufgeklappte Sektion und die Farbe der App.
@@ -4031,10 +4144,28 @@ const isUnlocked = i => {
        dem Einstieg bleibt es beim Einstieg.
    Verworfen: der Knopf im Level der letzten Lektion (Feld letzte_lektion)
    und der Knopf immer hinter dem hoechsten bestandenen, der eingeschobene
-   Level uebersprungen haette. Beide erschienen nie. */
+   Level uebersprungen haette. Beide erschienen nie.
+   Seit 13.11.2026 ist ein bestandener Sprung-Test ein Einstieg wie die
+   Einstufung: wer danach im neuen Reiter etwas besteht, macht dort weiter;
+   wer es nicht tut, lernt dort weiter, wo er war.
+   Die zwei Grundwort-Level (GRUNDWORT_LEVEL) sind fuer alle "dran", die vor
+   den Reitern eingestuft wurden (Pruefung vom 13.11.2026): ihre 40 Woerter
+   standen damals noch vor ihnen in B1, jetzt liegen sie im uebersprungenen
+   A-Teil - ohne diese Ausnahme kaemen sie nie dran, obwohl reiter.md sagt
+   "Wer schon weiter ist, hat sie danach als 'dran'". Wer mit den Reitern
+   eingestuft wird (einstufung.reiter), hat sie mit A1 und A2 bewusst
+   uebersprungen; der Ergebnisschirm sagt ihm "Du steigst in B1 ein", und
+   dabei bleibt es. Ebenso nach einem Sprung-Test, der gibt es nur mit den
+   Reitern. */
+const GRUNDWORT_LEVEL = ['kleine_woerter', 'jeden_tag'];
+const vorDenReiternEingestuft = () => !!(einstufung && einstufung.bis && !einstufung.reiter);
 const firstOpen = () => {
-  const ein = einstufungIndex(), h = hoechsterBestanden();
+  const ein = Math.max(einstufungIndex(), sprungIndex()), h = hoechsterBestanden();
   const ab = (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;
+  if(ab > 0 && vorDenReiternEingestuft()){
+    const g = CATEGORIES.findIndex((c, k) => k < ab && GRUNDWORT_LEVEL.indexOf(c.id) >= 0 && !passed.has(c.id));
+    if(g >= 0) return g;
+  }
   let i = CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id));
   if(i < 0) i = CATEGORIES.findIndex(c => !passed.has(c.id));
   return i < 0 ? CATEGORIES.length-1 : i;
@@ -4054,9 +4185,17 @@ let offeneSektion = null;        // welche Sektion offen ist
                                  // null = noch nie gesetzt, '' = alle zu
 
 /* Die Nummer der Farbe zu einer Sektion. Neun Sektionen, neun Farben.
-   Der Rest greift erst ab einer zehnten. */
+   Der Rest greift erst ab einer zehnten.
+   Seit 13.11.2026 je Reiter: die erste Sektion jedes Reiters traegt die
+   erste Farbe, wie im Lernpfad (showPath). Der Zahnarzt-Teil steht unten im
+   Reiter, in dem gerade gelernt wird, und nimmt die Farbe danach. */
 function sektionsNummer(id){
-  const i = (ZA && id === ZA.sektion.id) ? SECTIONS.length : SECTIONS.findIndex(s => s.id === id);
+  let i;
+  if(ZA && id === ZA.sektion.id) i = reiterSektionen(stufeVon(firstOpen())).length;
+  else {
+    const k = stufenKarte(), st = k.vonSek[id];
+    i = st ? k.sektionen[st].findIndex(s => s.id === id) : -1;
+  }
   return String((i < 0 ? 0 : i) % 9 + 1);
 }
 
@@ -4153,7 +4292,13 @@ function sektionsFarbe(){
   if(!CATEGORIES.length || !SECTIONS.length) return;
   /* Die aufgeklappte Sektion gibt die Farbe vor, nicht die, in der gerade
      gelernt wird. Wer sich Sektion 3 ansieht, soll sie auch sehen. */
-  const id = offeneSektion || (CATEGORIES[firstOpen()] || {}).sektion;
+  /* Ist keine aufgeklappt: die Sektion von Weitermachen - seit den
+     Stufen-Reitern (13.11.2026) nur, wenn ihr Reiter gezeigt wird. Sonst
+     die erste des gezeigten Reiters, damit die Farbe zu dem passt, was man
+     sieht. */
+  const next = firstOpen(), st = angezeigteStufe();
+  const id = offeneSektion || (stufeVon(next) === st ? (CATEGORIES[next] || {}).sektion
+                                                     : (reiterSektionen(st)[0] || {}).id);
   farbeSetzen(sektionsNummer(id));
 }
 const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
@@ -4327,7 +4472,7 @@ function zahlKennung(n){
    ist und nicht mal variiert"). */
 function zahlLevelHinter(){
   const i = CATEGORIES.findIndex(c => c.id === ZAHL_LEVEL);
-  return i >= 0 && i < Math.max(hoechsterBestanden() + 1, einstufungIndex());
+  return i >= 0 && i < freiBis();   // seit 13.11.2026 samt Sprung-Test
 }
 /* Die Zahl fuer eine Aufgabe, oder null fuer "wie bisher". */
 function zahlZiehen(s){
@@ -6816,7 +6961,11 @@ const ERFOLG_GESEHEN = 'zmaj_erfolge_gesehen';
 const KARTEI_FEST = KARTEI_ABSTAENDE.indexOf(90);
 /* Welche Stufe ein Level hat, fuer die Abzeichen A1, A2 und B1. Bringen
    die Stufen-Reiter (1.4) das Feld stufe oder reiter an Level oder
-   Sektion mit, gilt es. Bis dahin die Zuordnung aus
+   Sektion mit, gilt es. Seit dem Zusammenfuehren in sammeln-v112
+   (13.11.2026) traegt jede Sektion in SEKTIONEN ihre stufe, also gilt
+   immer das Feld - auch fuer die beiden neuen Grundwort-Level und
+   "Zuhause" hinter Faelle 1. Die Tabelle darunter ist nur noch der Rueckhalt
+   fuer einen Inhalt ohne das Feld: die Zuordnung aus
    Release\Entscheidungen_2026-11-13\level_reiter.csv (Variante B): "Saetze
    bauen" ist dort geteilt, seine ersten sechs Level gehoeren zu A1, der
    Rest zu A2. Alles ab B2 hat noch kein Abzeichen - erst, wenn die letzten
@@ -7498,9 +7647,10 @@ async function lektionDarfWeg(){
      Tx.queue.length warf diese Zeile waehrend eines Tests einen Fehler, und
      der Tipp auf Muenzen, Laden oder Zahnrad tat daraufhin gar nichts.
      Gefunden am 26.09.2026. */
+  if(sichtbar('einstufungView') && Sx && !Sx.fertig) return await sprungDarfWeg();   // 13.11.2026
   if(sichtbar('einstufungView') && Ex && !Ex.fertig){
     const ziel = einstufungZiel();
-    if(!await frage(t('einst.abbrechen_frage'), t('einst.abbrechen_text', {n: ziel + 1}),
+    if(!await frage(t('einst.abbrechen_frage'), t('einst.abbrechen_text', {stufe: stufeVon(ziel), n: levelNummer(ziel)}),
                     t('btn.abbrechen'), t('btn.weitermachen'))) return false;
     einstufungEnde();
     return true;
@@ -9747,7 +9897,18 @@ const UMBENANNT = {
    bei dva, tri, četiri im Subjekt steht das Verb im Plural (Gramatika
    bosanskoga jezika, § 241). */
 const SAETZE_UMBENANNT = {
-  'k:zahlen|Dva plus dva je četiri.': 'k:zahlen|Dva plus dva su četiri.'};
+  'k:zahlen|Dva plus dva je četiri.': 'k:zahlen|Dva plus dva su četiri.',
+  /* 13.11.2026, Stufen-Reiter: Zuhause steht hinter Faelle 1. Sechs
+     Satzbau-Saetze brauchten Woerter von dort (tanjir, alat, punjač,
+     parkirati, und zvati ueber nazvati) und ziehen in das erste Level, in
+     dem jede Kachel bekannt ist: vier nach Zuhause, die zwei mit "se zove"
+     nach Faelle 1 (dort steht zvati). Der Satz bleibt. */
+  'k:genus|Ovo je moj tanjir.': 'k:kueche_bad|Ovo je moj tanjir.',
+  'k:genus|Gdje je moj alat?': 'k:technik|Gdje je moj alat?',
+  'k:genus|Gdje je moj punjač?': 'k:geraete|Gdje je moj punjač?',
+  'k:genus|Moja sestra se zove Amina.': 'k:faelle1|Moja sestra se zove Amina.',
+  'k:genus|Moj muž se zove Ajdin.': 'k:faelle1|Moj muž se zove Ajdin.',
+  'k:faelle1|Gdje mogu parkirati svoj auto?': 'k:auto_werkstatt|Gdje mogu parkirati svoj auto?'};
 /* Ob ein Satz-Schluessel umgezogen ist: nur wenn der alte zu keiner Aufgabe
    mehr fuehrt und der neue zu einer. hasOwnProperty, damit "constructor"
    aus einer Sicherung nichts findet. */
@@ -11819,6 +11980,98 @@ $('btnBack').addEventListener('click', ()=>{ if(backTarget) backTarget(); });
    sondern der Sprung mitten in die Liste hinein.
    Ajdin am 29.09.2026: "braucht die app nicht zur aktuellsten stelle
    springen". */
+/* ---- Die Reiterleiste (13.11.2026) ----
+   Der Pfad oeffnet sich in dem Reiter, in dem Weitermachen steht
+   (reiter.md). Tippt man einen anderen an, bleibt der stehen - bis
+   Weitermachen selbst in einen anderen Reiter wandert, etwa nach dem
+   letzten Level von A1: dann zeigt der Pfad wieder dorthin. Gemerkt wird
+   das nur fuer diesen Start, wie die offene Sektion. */
+let stufeGewaehlt = null;   // {st, bei}: gewaehlt, als Weitermachen in "bei" stand
+function angezeigteStufe(){
+  const jetzt = stufeVon(firstOpen());
+  return (stufeGewaehlt && stufeGewaehlt.bei === jetzt && STUFEN.indexOf(stufeGewaehlt.st) >= 0)
+    ? stufeGewaehlt.st : jetzt;
+}
+/* Die Sektion, die in einem Reiter beim Hineinschauen offen ist: im
+   Reiter von Weitermachen dessen Sektion, sonst die mit dem ersten offenen,
+   nicht bestandenen Level. Ist dort nichts zu tun (fertig oder zu), sind
+   alle zugeklappt. */
+function laufendeSektion(st){
+  const next = firstOpen();
+  if(CATEGORIES[next] && stufeVon(next) === st) return CATEGORIES[next].sektion;
+  const k = reiterLevel(st).find(i => isUnlocked(i) && !passed.has(CATEGORIES[i].id));
+  return k === undefined ? '' : CATEGORIES[k].sektion;
+}
+/* Wie weit ein Reiter ist: bald (noch keine Level), fertig, offen oder zu.
+   Offen ist er, sobald die Kette sein erstes Level erreicht (inDerKette).
+   Ein angefangenes Level (levelAngefangen) bleibt trotzdem offen, macht
+   aber nicht den ganzen Reiter auf: wer in A1 lernt und in "Kueche & Bad"
+   schon Woerter kennt, sieht A2 zu, mit Sprung-Test, und kommt in
+   "Kueche & Bad" trotzdem hinein. */
+function stufeStand(st){
+  const L = reiterLevel(st);
+  if(!L.length) return {art: 'bald', done: 0, n: 0};
+  const done = L.filter(i => passed.has(CATEGORIES[i].id)).length;
+  const art = done === L.length ? 'fertig' : (inDerKette(L[0]) ? 'offen' : 'zu');
+  return {art, done, n: L.length};
+}
+function stufeWaehlen(st){
+  stufeGewaehlt = {st, bei: stufeVon(firstOpen())};
+  offeneSektion = laufendeSektion(st);
+  showPath();
+  sektionsFarbe();
+}
+function reiterLeisteZeichnen(stufe){
+  const leiste = $('reiterLeiste'); if(!leiste) return;
+  leiste.setAttribute('aria-label', t('reiter.leiste'));
+  leiste.innerHTML = STUFEN.map(st => {
+    const s = stufeStand(st), an = st === stufe;
+    /* Der Stand kurz als "11/31" (Pruefung vom 13.11.2026, siehe Stil
+       .reiterleiste .sz); vorgelesen wird der ganze Satz. */
+    const zeile = s.art === 'fertig' ? '✓ ' + esc(t('reiter.fertig'))
+                : s.art === 'offen'  ? s.done + '/' + s.n
+                : s.art === 'zu'     ? symbol('schloss') + ' ' + esc(t('reiter.zu'))
+                :                      esc(t('reiter.bald'));
+    const sagt = st + ', ' + (s.art === 'fertig' ? t('reiter.fertig')
+                            : s.art === 'offen'  ? t('reiter.stand', {done: s.done, n: s.n})
+                            : s.art === 'zu'     ? t('reiter.zu') : t('reiter.bald'));
+    const balken = s.n ? '<span class="sb"><i style="width:' + Math.round(s.done / s.n * 100) + '%"></i></span>' : '';
+    return '<button type="button" role="tab" class="' + s.art + '" data-stufe="' + st + '" aria-selected="' + an + '"' +
+           ' aria-label="' + esc(sagt) + '">' +
+           '<span class="st">' + st + '</span><span class="sz">' + zeile + '</span>' + balken + '</button>';
+  }).join('');
+  leiste.querySelectorAll('button').forEach(b => b.addEventListener('click', () => stufeWaehlen(b.dataset.stufe)));
+}
+/* Die Karte ueber den Sektionen eines Reiters, der noch zu ist: wie er
+   aufgeht, und der Sprung-Test, wenn der Reiter davor offen ist. Bei C1
+   nur "kommt bald". Sonst leer. */
+function reiterKarteZeichnen(stufe){
+  const k = $('reiterKarte'); if(!k) return;
+  const s = stufeStand(stufe);
+  if(s.art === 'bald'){
+    k.hidden = false;
+    k.innerHTML = '<div class="section reiterzu"><h2>' + esc(t('reiter.bald_titel', {stufe})) + '</h2></div>';
+    return;
+  }
+  if(s.art !== 'zu'){ k.hidden = true; k.innerHTML = ''; return; }
+  const vorher = sprungVorher(stufe);
+  const geht = !!vorher && stufeStand(vorher).art !== 'zu';
+  k.hidden = false;
+  k.innerHTML = '<div class="section reiterzu">' +
+    '<div class="schloss" aria-hidden="true">' + symbol('schloss') + '</div>' +
+    '<h2>' + esc(t('reiter.zu_titel', {stufe})) + '</h2>' +
+    '<div class="txt">' + esc(geht ? t('reiter.zu_text', {vorher}) : t('reiter.zu_erst', {vorher})) + '</div>' +
+    (geht ? '<button type="button" class="btn know" id="sprungStart"></button>' +
+            '<div class="regel">' + esc(t('sprung.regel', {n: SPRUNG_FRAGEN, vorher, ab: sprungNoetig(SPRUNG_FRAGEN), stufe})) + '</div>' +
+            /* Ohne Leben: der Hinweis und die Wege zu einem Leben (sprungStarten) */
+            '<div id="sprungOhne"><div class="regel" id="sprungNote" role="status"></div><div id="sprungLeben"></div></div>' : '') +
+    '</div>';
+  const knopf = k.querySelector('#sprungStart');
+  if(knopf){
+    knopf.textContent = t('sprung.starten');
+    knopf.addEventListener('click', () => sprungStarten(stufe));
+  }
+}
 function showPath(){
   $('tag').textContent=t('app.tag');
   const done = CATEGORIES.filter(c=>passed.has(c.id)).length;
@@ -11831,15 +12084,24 @@ function showPath(){
   $('summary').style.display = ALLE_FREI ? '' : 'none';
   const box=$('sections'); box.innerHTML='';
   const next = firstOpen();
+  /* Die Stufen-Reiter (13.11.2026): oben die Leiste, darunter nur die
+     Sektionen des gezeigten Reiters. Ist er noch zu, steht ueber ihnen die
+     Karte mit dem Sprung-Test. */
+  const stufe = angezeigteStufe();
+  reiterLeisteZeichnen(stufe);
+  reiterKarteZeichnen(stufe);
   /* Beim Zahnarzt: eine eigene Sektion am Ende, nur wenn freigeschaltet. Ihre
-     Level zaehlen ab CATEGORIES.length (levelNach); firstOpen() kennt sie nicht. */
-  const zaDa = zaAn();
-  const sektionenHier = zaDa ? SECTIONS.concat([ZA.sektion]) : SECTIONS;
+     Level zaehlen ab CATEGORIES.length (levelNach); firstOpen() kennt sie nicht.
+     Seit 13.11.2026 im Reiter, in dem gerade gelernt wird. */
+  const zaDa = zaAn() && stufe === stufeVon(next);
+  const imReiter = reiterSektionen(stufe);
+  const sektionenHier = zaDa ? imReiter.concat([ZA.sektion]) : imReiter;
   const zaNext = CATEGORIES.length + zaLevel().findIndex(c => !passed.has(c.id));
   /* Beim ersten Zeichnen ist die Sektion offen, in der gerade gelernt wird.
      Danach bleibt die stehen, die der Nutzer gewaehlt hat - auch nach einer
-     Lektion. Erst wenn es sie nicht mehr gibt, faellt es zurueck. */
-  const laufende = (CATEGORIES[next] || {}).sektion || (SECTIONS[0] || {}).id;
+     Lektion. Erst wenn es sie nicht mehr gibt, faellt es zurueck - seit den
+     Reitern auch, wenn sie in einem anderen Reiter steht. */
+  const laufende = laufendeSektion(stufe);
   /* Nur beim allerersten Zeichnen vorbelegen und dann, wenn die gewaehlte
      Sektion verschwunden ist. Ein leerer Merker heisst "alle zugeklappt" -
      das ist eine Wahl des Nutzers und wird nicht ueberschrieben. */
@@ -11866,7 +12128,10 @@ function showPath(){
       '<div class="skopf" role="button" tabindex="0" aria-expanded="'+(auf?'true':'false')+'">'+
         '<h2>'+esc(s.label)+'</h2><div class="desc">'+esc(s.beschreibung||'')+'</div>'+
         '<div class="sbar"><i style="width:'+Math.round(sdone/levels.length*100)+'%"></i></div>'+
-        '<div class="scap">'+t('pfad.sektion_stand',{done:sdone, n:levels.length})+(sopen?'':t('pfad.sektion_gesperrt',{n:si}))+'</div>'+
+        /* Gesperrt "bis Sektion n fertig ist": n ist die Sektion davor im
+           selben Reiter. Fuer die erste eines Reiters gibt es keine davor,
+           dort sagt die Karte oben, wie der Reiter aufgeht. */
+        '<div class="scap">'+t('pfad.sektion_stand',{done:sdone, n:levels.length})+(sopen?'':(si > 0 ? t('pfad.sektion_gesperrt',{n:si}) : t('pfad.sektion_zu')))+'</div>'+
       '</div><div class="levels"></div>';
     const kopf = sec.querySelector('.skopf');
     kopf.addEventListener('click', ()=> sektionAufklappen(s.id));
@@ -11884,7 +12149,14 @@ function showPath(){
         (o && !d ? '<div class="mini"><i style="width:'+pct+'%"></i></div>' : '')+'</div>'+
         '<div class="state">'+(d?t('zustand.bestanden'):(isCur?t('zustand.jetzt'):(o?(pct>0?pct+' %':t('zustand.offen')):t('zustand.gesperrt'))))+'</div>';
       b.addEventListener('click',()=>{
-        if(!isUnlocked(i)){ b.querySelector('.state').textContent=t('pfad.erst_level',{n:levelNummer(i) - 1}); return; }
+        if(!isUnlocked(i)){
+          /* Das erste Level eines Reiters hat davor keins im selben Reiter -
+             "Zuerst Level 0 bestehen" stand dort sonst (13.11.2026). */
+          const erstes = i < CATEGORIES.length && i > 0 && reiterLevel(stufeVon(i))[0] === i;
+          b.querySelector('.state').textContent = erstes ? t('pfad.erst_stufe', {stufe: stufeVon(i - 1)})
+                                                         : t('pfad.erst_level', {n: levelNummer(i - 1)});
+          return;
+        }
         openLevel(i);
       });
       levelKasten.appendChild(b);
@@ -12159,7 +12431,7 @@ function openLevel(i){
   if(!sichtbar('levelView')) pfadStelle = sichtbar('pfad') && homeMode === 'words' ? window.scrollY : 0;
   catIdx=i; showView('levelView');
   setzeZurueck(t('btn.zurueck_pfad'), ()=>{ homeMode='words'; showHome(); });
-  $('tag').textContent=t('level.zaehler',{i:levelNummer(i), n:levelEnde() - levelAnfang()});
+  $('tag').textContent=t('level.zaehler',{i:levelNummer(i), n:levelAnzahl(i)});   // je Reiter, 13.11.2026
   showLevelHome();
   kartenNachreichen();
 }
@@ -12194,7 +12466,9 @@ function showLevelHome(){
   $('zmajLesson').innerHTML=''; $('zmajTest').innerHTML='';
   uhrAus();
   const c = cur(); const s = imZa() ? ZA.sektion : SECTIONS.find(x=>x.id===c.sektion);
-  $('lvTitle').innerHTML = t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'<small>'+esc(s ? (imZa() ? s.label.replace(/ /g, ' ') : s.label.replace(/ ·.*$/,'')) : '')+'</small>';
+  /* Unter dem Titel die Sektion ohne ihren Namen, seit 13.11.2026 mit dem
+     Reiter davor ("A2 · Sektion 1"): die Nummern zaehlen je Reiter. */
+  $('lvTitle').innerHTML = t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'<small>'+esc(s ? (imZa() ? s.label.replace(/ /g, ' ') : stufeVon(catIdx) + ' · ' + s.label.replace(/ ·.*$/,'')) : '')+'</small>';
   $('lvTipp').textContent = c.tipp || '';
   const basis = $('lvBasis'); basis.innerHTML='';
   if(c.baut_auf && c.baut_auf.length){
@@ -13598,7 +13872,7 @@ function werbungFuerLeben(e){
      disabled, sein Text bleibt. Pruefung vom 07.10.2026. */
   const ladenKnopf = (quelle && quelle.hasAttribute && quelle.hasAttribute('data-videoleben')) ? quelle : null;
   const knopf = ladenKnopf ? null
-              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd' || quelle.id === 'sternAd' || quelle.id === 'karteiAd')) ? quelle : $('lAd');
+              : (quelle && (quelle.id === 'lvAd' || quelle.id === 'topfAd' || quelle.id === 'sternAd' || quelle.id === 'karteiAd' || istSprungAd(quelle))) ? quelle : $('lAd');
   /* Gefunden bei der Pruefung am 06.10.2026: der Knopf bleibt stehen,
      waehrend die Leben nachwachsen - der Schirm ohne Leben wartet die zwei
      Stunden ja gerade ab. Bei vollen Leben brachte das Video kein Herz,
@@ -13608,6 +13882,7 @@ function werbungFuerLeben(e){
     renderLives(); lebenWege(); topfNachziehen();
     if(sichtbar('shopView')) renderLaden();
     else if(knopf && knopf.id === 'lAd') ohneLebenVerlassen();
+    else if(istSprungAd(knopf)) sprungLebenDa();
     return;
   }
   /* Punkt 17: bis zum ersten Bild der Anzeige vergehen Sekunden, in denen
@@ -13640,6 +13915,7 @@ function werbungFuerLeben(e){
     const danach = ()=>{
       if(knopf && (knopf.id === 'topfAd' || knopf.id === 'sternAd' || knopf.id === 'karteiAd')) showTopf();   // sternAd: Kasten "Markiert", 19.10.2026; karteiAd: "Heute faellig", 29.10.2026
       else if(knopf && knopf.id === 'lAd') ohneLebenVerlassen();
+      else if(istSprungAd(knopf)) sprungLebenDa();   // Sprung-Test, 13.11.2026
       /* Aus dem Laden: den Laden neu zeichnen, damit Preis und Video zum
          neuen Herz passen. showLevelHome() traf hier nur die unsichtbare
          Levelansicht. 07.10.2026. */
@@ -13756,6 +14032,11 @@ function ohneLebenVorbei(){
   if(!anzeigeLaeuft && livesNow() > 0 && sichtbar('levelView')
      && ((sichtbar('lesson') && $('lBody').querySelector('.ohneleben')) ||
          (sichtbar('test')   && $('tBody').querySelector('.ohneleben')))) ohneLebenVerlassen();
+  /* Seit 13.11.2026 ebenso beim Sprung-Test: sein Schirm ohne Leben und der
+     Hinweis auf der Karte des Reiters */
+  if(!anzeigeLaeuft && livesNow() > 0
+     && ((sichtbar('einstufungView') && Sx && Sx.fertig && $('eBody').querySelector('.ohneleben')) ||
+         ($('sprungNote') && $('sprungNote').textContent))) sprungLebenDa();
 }
 /* Weg vom Schirm ohne Leben, sofern er noch steht: aus der Lektion (oder
    Wiederholen-Runde) wie bisher ueber lektionVerlassen(), aus dem
@@ -14033,6 +14314,13 @@ function naechstesOffenes(){
   for(let k = catIdx + 1; k < levelEnde(); k++) if(!passed.has(levelNach(k).id)) return k;
   return catIdx + 1;
 }
+/* Der Knopf dorthin. Die Levelnummern zaehlen seit 13.11.2026 je Reiter;
+   geht es in den naechsten Reiter, hiesse es sonst "Weiter zu Level 1".
+   Dann steht dort der Reiter: "Weiter zu A2". */
+function weiterText(ziel){
+  const anderer = !imZa() && ziel < CATEGORIES.length && stufeVon(ziel) !== stufeVon(catIdx);
+  return anderer ? t('test.weiter_stufe', {stufe: stufeVon(ziel)}) : t('test.weiter_level', {n: levelNummer(ziel)});
+}
 function showTestResult(){
   stilleBitte(); uhrAus(); testBar();   // das letzte Wort nicht ins Ergebnis reden lassen
   sternKnopf('tStern', null);
@@ -14075,7 +14363,7 @@ function showTestResult(){
     questLob+erfolgLob+
     '<div class="row">'+
       '<button class="btn ghost" id="tBack">'+(ok?t('test.zum_pfad'):t('lektion.zurueck'))+'</button>'+
-      (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:levelNummer(naechstesOffenes())})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
+      (ok && hasNext ? '<button class="btn know" id="tNext">'+weiterText(naechstesOffenes())+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
     '</div>';
   $('tBack').addEventListener('click', ()=>{ if(ok){ homeMode='words'; showHome(); } else showLevelHome(); });
   const n=$('tNext'); if(n){ const ziel = naechstesOffenes(); n.addEventListener('click', ()=> openLevel(ziel)); }
@@ -14130,12 +14418,18 @@ $('tQuit').addEventListener('click', async ()=>{
 
    Die Stufen haengen an den Kennungen der Sektionen, nicht an Nummern.
    Faellt eine Sektion weg, wird die Stufe kleiner oder entfaellt; die
-   Reihenfolge muss aber die des Lernpfads bleiben. */
+   Reihenfolge muss aber die des Lernpfads bleiben.
+   Seit 13.11.2026 (Stufen-Reiter): Zuhause steht hinter Faelle 1, und
+   "Saetze bauen" ist geteilt - die Teilung, die vorher haelfte 1 und 2
+   machte, ist jetzt die Sektion selbst (saetze in A1, saetze2 in A2).
+   Zuhause kommt deshalb zu Saetze bauen 2; sonst haette eine bestandene
+   zweite Stufe hinter Zuhause eingestuft, ueber Saetze bauen 1 hinweg.
+   Eingestuft wird weiter hoechstens bis zum Anfang von B1. */
 const EINSTUFUNG_STUFEN = [
   {sek:['alltag'],                          arten:['mcrev','mc','gap']},
-  {sek:['anfassen','tiernatur','zuhause2'], arten:['mcrev','mc','gap']},
-  {sek:['saetze'], haelfte:1,               arten:['gram','gram','gap']},
-  {sek:['saetze'], haelfte:2,               arten:['gram','gram','gap']},
+  {sek:['anfassen','tiernatur'],            arten:['mcrev','mc','gap']},
+  {sek:['saetze'],                          arten:['gram','gram','gap']},
+  {sek:['zuhause2','saetze2'],              arten:['gram','gram','gap']},
   {sek:['einkauf','herkunft','kultur'],     arten:['mcrev','mc','gap']},
 ];
 const EINSTUFUNG_QUOTE = 0.8;
@@ -14254,7 +14548,9 @@ function einstufungKarte(inhalt){
   return {kasten, zu};
 }
 function einstufungMerken(wahl, bis, richtig, fragen){
-  einstufung = {tag: today(), wahl: wahl, bis: bis || ''};
+  /* reiter: eingestuft mit den Stufen-Reitern (seit 13.11.2026), siehe
+     firstOpen und GRUNDWORT_LEVEL. Aeltere Einstufungen haben das Feld nicht. */
+  einstufung = {tag: today(), wahl: wahl, bis: bis || '', reiter: true};
   if(fragen !== undefined){ einstufung.richtig = richtig; einstufung.fragen = fragen; }
   saveProgress();
 }
@@ -14304,6 +14600,7 @@ function einstufungStarten(){
   if(anmeldungSperre()) return;
   if(!Ex || !Ex.qs.length){ einstufungMerken(Ex ? Ex.wahl : 'etwas', ''); Ex = null; return; }
   showView('einstufungView');
+  herzImKasten(false);   // nach einem Sprung-Test wieder der Platzhalter (13.11.2026)
   /* Die Uhr fuer die Tagesaufgabe "Minuten" laeuft bewusst nicht: der Test
      bringt keine Muenzen.
      Seit 19.10.2026 ganz ohne Kopf und Fuss, wie Lektion und Level-Test:
@@ -14362,7 +14659,7 @@ function einstufungEnde(){
     '<div class="ergebnis-titel">' + esc(t('einst.ergebnis_titel')) + '</div>' +
     '<div class="celebrate"><div class="zmaj ' + (ziel > 0 ? 'cheer' : 'idle') + '">' + zmaj(ziel > 0 ? 'cheer' : 'happy') + '</div></div>' +
     '<div class="result-big">' + richtig + ' / ' + Ex.results.length + '</div>' +
-    '<div class="feedback ok">' + esc(ziel > 0 ? t('einst.ergebnis_start', {n: ziel + 1, label: c.label})
+    '<div class="feedback ok">' + esc(ziel > 0 ? t('einst.ergebnis_start', {stufe: stufeVon(ziel), n: levelNummer(ziel), label: c.label})
                                               : t('einst.ergebnis_anfang')) + '</div>' +
     (ziel > 0 ? '<div class="feedback" style="color:var(--muted)">' + esc(t('einst.ergebnis_offen')) + '</div>' : '') +
     '<div class="row"><button class="btn know" id="eLos"></button></div>';
@@ -14373,16 +14670,236 @@ function einstufungEnde(){
   $('eLos').addEventListener('click', ()=>{
     homeMode = 'words';
     if(c) offeneSektion = c.sektion;
+    stufeGewaehlt = null;   // der Reiter des Einstiegs (13.11.2026)
     showHome();
   });
 }
 $('eQuit').addEventListener('click', async ()=>{
+  /* Derselbe Knopf beendet den Sprung-Test, der in dieser Ansicht laeuft */
+  if(Sx && !Sx.fertig){
+    if(await sprungDarfWeg()) sprungZurueck();
+    return;
+  }
   if(!Ex || Ex.fertig) return;
   const ziel = einstufungZiel();
-  if(!await frage(t('einst.abbrechen_frage'), t('einst.abbrechen_text', {n: ziel + 1}),
+  if(!await frage(t('einst.abbrechen_frage'), t('einst.abbrechen_text', {stufe: stufeVon(ziel), n: levelNummer(ziel)}),
                   t('btn.abbrechen'), t('btn.weitermachen'))) return;
   einstufungEnde();
 });
+
+/* =================== SPRUNG-TEST (13.11.2026) ===================
+   Ein Reiter geht auf, wenn der vorige fertig ist - oder vorher mit dem
+   Sprung-Test (reiter.md, Variante B, Ajdin: "alles wie empfohlen"):
+   15 Fragen aus dem vorigen Reiter, ab 12 richtigen ist der Reiter offen,
+   dieselbe Schwelle wie bei der Einstufung (80 Prozent). Gefragt wird wie
+   dort von leicht nach schwer: der vorige Reiter in fuenf Stuecken zu je
+   drei Fragen (Wort, Grammatik, Luecke - fehlt eins, weicht
+   einstufungFrage() aus). Ist die Schwelle nicht mehr zu schaffen, ist
+   Schluss.
+   Wie bei der Einstufung sind die uebersprungenen Level offen, aber nicht
+   bestanden: keine Muenzen, keine Wegmarken, kein Lerntag, nichts in
+   Topf und Kartei. Anders als dort kostet jede falsche Antwort ein Leben,
+   wie im Level-Test (Frage 7a am 13.11.2026; Level-Test seit 19.10.2026),
+   mit Vollversion unbegrenzt. Bei null Leben ist er vorbei und nicht
+   bestanden.
+   Gemerkt wird in wann unter "sp:<Reiter>" der Tag des Bestehens. wann
+   geht mit Sicherung und Cloud und wird beim Abgleich je Schluessel
+   vereinigt - ein bestandener Sprung geht also auf keinem Geraet wieder
+   verloren, und der Stand braucht kein neues Feld. Offen ist dann alles
+   bis zum ersten Level des Reiters (sprungIndex, freiBis).
+   Er laeuft in der Ansicht der Einstufung (eBar, eBody, eQuit), mit Sx
+   statt Ex. */
+const SPRUNG_FRAGEN = 15;
+let Sx = null;
+function herzImKasten(echt){
+  const h = $('eHerz'); if(!h) return;
+  h.classList.toggle('platzhalter', !echt);
+  if(echt) h.removeAttribute('aria-hidden'); else h.setAttribute('aria-hidden', 'true');
+  renderLives();
+}
+function sprungIndex(){
+  let bis = -1;
+  STUFEN.forEach(st => {
+    if(!wann['sp:' + st]) return;
+    const L = reiterLevel(st);
+    if(L.length) bis = Math.max(bis, L[0]);
+  });
+  return bis;
+}
+const sprungVorher = st => STUFEN[STUFEN.indexOf(st) - 1] || '';
+const sprungNoetig = n => Math.ceil(n * EINSTUFUNG_QUOTE - 1e-9);
+function sprungBauen(ziel){
+  const vorher = sprungVorher(ziel), levels = reiterLevel(vorher);
+  const qs = [], schon = new Set(), teile = 5;
+  for(let k = 0; k < teile; k++){
+    const stueck = levels.slice(Math.floor(k * levels.length / teile), Math.floor((k + 1) * levels.length / teile));
+    if(!stueck.length) continue;
+    ['mc', 'gram', 'gap'].forEach(art => { const q = einstufungFrage(stueck, art, schon); if(q) qs.push(q); });
+  }
+  Sx = {ziel, vorher, qs: qs.slice(0, SPRUNG_FRAGEN), i: 0, results: [], fehler: 0, fertig: false, ohneLeben: false};
+}
+/* Ohne Leben dieselben Wege wie beim Level-Test (lebenWege, lessonOutOfLives):
+   ein Video oder Muenzen fuer ein Leben, darunter die Zeile zur Vollversion.
+   Pruefung vom 13.11.2026: vorher stand auf der Karte nur ein Satz, der auf
+   die Grammatik-Erklaerung verwies (die es dort nicht gibt), und bei 360 x 740
+   lag er unter dem Bildrand - der Knopf schien nichts zu tun. Mitten im Test
+   gab es nur "Keine Leben mehr." und "Zurueck".
+   vorn: Anfang der Kennungen ("sprungK" auf der Karte, "sprungE" auf dem
+   Schirm am Ende), damit die Knoepfe nie doppelt im Dokument stehen;
+   werbungFuerLeben() kennt beide Video-Knoepfe. */
+function istSprungAd(k){ return !!k && (k.id === 'sprungKAd' || k.id === 'sprungEAd'); }
+function sprungLebenWege(kasten, vorn){
+  if(!kasten) return;
+  const herz = VERBRAUCH.find(w => w.id === 'herz');
+  const perVideo = werbungErlaubt(true);
+  const perMuenzen = muenzen() >= herz.preis && herz.geht();
+  kasten.innerHTML =
+    ((perVideo || perMuenzen) ?
+      '<div class="row schmal">' +
+        (perVideo   ? '<button class="btn ghost" id="' + vorn + 'Ad">' + mitSymbol('herz', esc(t('werbung.leben_holen'))) + '</button>' : '') +
+        (perMuenzen ? '<button class="btn ghost" id="' + vorn + 'Coin">' + t('lektion.leben_muenzen', symbolTexte({n: herz.preis})) + '</button>' : '') +
+      '</div>' : '') +
+    vollZeileLeben(vorn + 'Voll');
+  const ad = $(vorn + 'Ad'), coin = $(vorn + 'Coin');
+  if(ad) ad.addEventListener('click', werbungFuerLeben);
+  /* Wie beim Level-Test nur kaufen, wenn wirklich noch keins da ist */
+  if(coin) coin.addEventListener('click', ()=>{ if(livesNow() === 0) kaufe('herz'); renderLives(); sprungLebenDa(); });
+  vollZeileHorchen(vorn + 'Voll');
+}
+/* Ein Leben ist da (Video, Muenzen oder nachgewachsen): zurueck zur Karte
+   des Reiters, wo der Test von vorn beginnt - wie der Level-Test, der dann
+   auf der Level-Uebersicht steht. */
+function sprungLebenDa(){
+  if(sichtbar('einstufungView') && Sx && Sx.fertig){ sprungZurueck(); return; }
+  const n = $('sprungNote'), w = $('sprungLeben');
+  if(n) n.textContent = '';
+  if(w) w.innerHTML = '';
+  renderLives();
+}
+function sprungStarten(ziel){
+  if(anmeldungSperre()) return;
+  if(!sprungVorher(ziel)) return;
+  /* Ohne Leben kein Test, wie beim Level-Test (startTest) - aber mit den
+     Wegen zu einem Leben, sichtbar gleich unter dem Knopf. */
+  if(livesNow() === 0){
+    const n = $('sprungNote');
+    if(n) n.textContent = t('sprung.keine_leben', {zeit: fmtMin(nextLifeIn())});
+    sprungLebenWege($('sprungLeben'), 'sprungK');
+    const ohne = $('sprungOhne');
+    try{ if(ohne) ohne.scrollIntoView({block: 'nearest', behavior: kachelnRuhig() ? 'auto' : 'smooth'}); }catch(e){}
+    return;
+  }
+  if($('sprungNote')) $('sprungNote').textContent = '';   // ein alter Hinweis von vorhin verschwindet
+  if($('sprungLeben')) $('sprungLeben').innerHTML = '';
+  sprungBauen(ziel);
+  if(!Sx.qs.length){ Sx = null; return; }
+  showView('einstufungView');
+  /* Das Herz im Kasten ist bei der Einstufung ein unsichtbarer Platzhalter
+     (sie kostet keine Leben); hier ist es echt wie im Level-Test. */
+  herzImKasten(true);
+  nurHerz(true);
+  setzeZurueck(t('btn.zurueck'), ()=>{ if(Sx && !Sx.fertig) $('eQuit').click(); else sprungZurueck(); });
+  $('eQuit').style.display = '';
+  $('eBody').innerHTML = '';
+  const ze = $('zmajEinst'); ze.style.display = 'block'; ze.innerHTML = zmaj('happy'); setMood(ze, 'happy');
+  sprungFrageZeigen();
+}
+function sprungBar(){
+  $('eBar').innerHTML = Sx.qs.map((q, i) => '<i class="' +
+    (i < Sx.results.length ? (Sx.results[i] ? 'ok' : 'no') : (i === Sx.i && !Sx.fertig ? 'cur' : '')) + '"></i>').join('');
+  punkteStand($('eBar'), Sx.results.length, Sx.qs.length);
+}
+function sprungFrageZeigen(){
+  if(!Sx || Sx.fertig) return;
+  sprungBar();
+  if(Sx.i >= Sx.qs.length || Sx.fehler > Sx.qs.length - sprungNoetig(Sx.qs.length)){ sprungEnde(); return; }
+  const body = $('eBody');
+  body.dataset.i = Sx.i;
+  const meinSx = Sx;
+  renderTask(Sx.qs[Sx.i], body, res=>{
+    if(Sx !== meinSx || Sx.fertig) return;
+    Sx.results.push(!!res.ok);
+    if(!res.ok) Sx.fehler++;
+    Sx.i++;
+    sprungBar();
+    zmajReact(!!res.ok, 'zmajEinst');
+    if(!res.ok){
+      loseLife();
+      if(livesNow() === 0){ Sx.ohneLeben = true; weiterBeiTipp('eBody', sprungEnde); return; }
+    }
+    weiterBeiTipp('eBody', sprungFrageZeigen);
+  }, {noSkip:true});
+}
+function sprungEnde(){
+  if(!Sx || Sx.fertig) return;
+  Sx.fertig = true;
+  stilleBitte();
+  const ziel = Sx.ziel, n = Sx.qs.length, ab = sprungNoetig(n);
+  const richtig = Sx.results.filter(Boolean).length;
+  const ok = !Sx.ohneLeben && richtig >= ab;
+  if(ok && !wann['sp:' + ziel]) wann['sp:' + ziel] = today();
+  saveProgress();
+  $('eQuit').style.display = 'none';
+  // Das Ergebnis hat seinen grossen Drachen, wie einstufungEnde()
+  $('zmajEinst').style.display = 'none'; $('zmajEinst').innerHTML = '';
+  if(Sx.ohneLeben){ sprungOhneLeben(); return; }
+  sprungBar();
+  $('eBody').innerHTML =
+    '<div class="ergebnis-titel">' + esc(t('sprung.titel', {stufe: ziel})) + '</div>' +
+    '<div class="celebrate"><div class="zmaj ' + (ok ? 'cheer' : 'sad') + '">' + zmaj(ok ? 'cheer' : 'sad') + '</div></div>' +
+    '<div class="result-big' + (ok ? '' : ' fail') + '">' + richtig + ' / ' + n + '</div>' +
+    '<div class="feedback ' + (ok ? 'ok' : 'no') + '">' +
+      esc(ok ? t('sprung.offen', {stufe: ziel}) : t('sprung.nicht', {ab, stufe: ziel})) + '</div>' +
+    (ok ? '<div class="feedback" style="color:var(--muted)">' + esc(t('einst.ergebnis_offen')) + '</div>' : '') +
+    '<div class="row"><button class="btn know" id="sprungLos"></button></div>';
+  $('sprungLos').textContent = ok ? t('sprung.zum_reiter', {stufe: ziel}) : t('btn.zurueck');
+  $('sprungLos').addEventListener('click', sprungZurueck);
+  sound(ok ? 'done' : 'no');
+}
+/* Bei null Leben mitten im Test derselbe Schirm wie im Level-Test
+   (lessonOutOfLives): die Null, die Wartezeit und die Wege zu einem Leben.
+   Mit einem Leben geht es zurueck zur Karte (sprungLebenDa), dort beginnt
+   der Test von vorn. .ohneleben: daran erkennt ohneLebenVorbei() ihn. */
+function sprungOhneLeben(){
+  $('eBar').innerHTML = '';
+  herzImKasten(false);
+  $('eBody').innerHTML =
+    '<div class="ergebnis-titel">' + esc(t('sprung.titel', {stufe: Sx.ziel})) + '</div>' +
+    '<div class="celebrate"><div class="zmaj sad">' + zmaj('cry') + '</div></div>' +
+    '<div class="result-big fail ohneleben">' + symbol('herz', t('stat.leben')) + ' 0</div>' +
+    '<div class="feedback no">' + esc(t('lektion.keine_leben')) + '</div>' +
+    '<div class="stats"><div class="stat"><b>' + fmtMin(nextLifeIn()) + '</b>' + esc(t('lektion.bis_naechstes')) + '</div></div>' +
+    '<div id="sprungEWege"></div>' +
+    '<div class="row"><button class="btn know" id="sprungLos"></button></div>';
+  sprungLebenWege($('sprungEWege'), 'sprungE');
+  $('sprungLos').textContent = t('btn.zurueck');
+  $('sprungLos').addEventListener('click', sprungZurueck);
+  sound('no');
+  renderLives();
+}
+/* Abbrechen mit Nachfrage, wie beim Level-Test. Verbrauchte Leben bleiben
+   verbraucht. true, wenn abgebrochen ist. */
+async function sprungDarfWeg(){
+  if(!Sx || Sx.fertig) return true;
+  if(!await frage(t('sprung.abbrechen_frage'), t('sprung.abbrechen_text', {stufe: Sx.ziel}),
+                  t('btn.abbrechen'), t('btn.weitermachen'))) return false;
+  Sx.fertig = true;
+  stilleBitte();
+  saveProgress();
+  return true;
+}
+/* Zurueck in den Lernpfad, in den Reiter des Tests: bestanden steht er
+   offen da, sonst wieder mit seiner Karte. */
+function sprungZurueck(){
+  const ziel = Sx ? Sx.ziel : '';
+  herzImKasten(false);
+  homeMode = 'words';
+  if(ziel){
+    stufeGewaehlt = {st: ziel, bei: stufeVon(firstOpen())};
+    offeneSektion = laufendeSektion(ziel);
+  }
+  showHome();
+}
 
 /* =================== WIEDERHOLEN ===================
    Der Sammeltopf fuer falsch Beantwortetes - der zweite Wunsch der Tester
@@ -15778,7 +16295,8 @@ function kartenNachreichen(){
     }
   }, 600);
 }
-const Ex_laeuft = () => !!(Ex && !Ex.fertig && sichtbar('einstufungView'));
+/* Seit 13.11.2026 auch der Sprung-Test, der in derselben Ansicht laeuft */
+const Ex_laeuft = () => !!(((Ex && !Ex.fertig) || (Sx && !Sx.fertig)) && sichtbar('einstufungView'));
 
 /* =================== UPDATES AUS GOOGLE PLAY ===================
    10.10.2026, Ajdin: "ja mach sanft mit schalter und wenn es schwere

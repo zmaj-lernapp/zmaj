@@ -18,12 +18,13 @@ from paket1020_pruefung import *  # noqa: F401,F403
 LEVEL = ["in_der_stadt", "strassen_bahn", "kreisverkehr_faehre", "autofahren", "unfaelle_pannen",
          "reisen_unterkunft", "ankommen_ansehen", "landschaft_boden", "ozean_schlucht", "jagen_fischen",
          "tiere_genauer", "pflanzen_anbau", "ernten_pflanzen"]
+# Seit 13.11.2026 (Frage 6a) Land, Tiere und Pflanzen in Stadt, Land und unterwegs
 SEKTION = {
     "in_der_stadt": "stadtreisen", "strassen_bahn": "stadtreisen", "kreisverkehr_faehre": "stadtreisen",
     "autofahren": "stadtreisen", "unfaelle_pannen": "stadtreisen", "reisen_unterkunft": "stadtreisen",
-    "ankommen_ansehen": "stadtreisen", "landschaft_boden": "landtiere", "ozean_schlucht": "landtiere",
-    "jagen_fischen": "landtiere", "tiere_genauer": "landtiere", "pflanzen_anbau": "landtiere",
-    "ernten_pflanzen": "landtiere",
+    "ankommen_ansehen": "stadtreisen", "landschaft_boden": "stadtreisen", "ozean_schlucht": "stadtreisen",
+    "jagen_fischen": "stadtreisen", "tiere_genauer": "stadtreisen", "pflanzen_anbau": "stadtreisen",
+    "ernten_pflanzen": "stadtreisen",
 }
 
 # Die Woerter je Level ohne die Beispielsaetze. Bosnisch genau so, wie Ajdin es

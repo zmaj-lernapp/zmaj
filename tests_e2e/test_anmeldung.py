@@ -568,8 +568,11 @@ def test_neues_geraet_anmelden_behaelt_schutz_und_einstieg(seite, cloud_html):
     kennung = seite.js("() => CATEGORIES[50].id")
     level = seite.js("() => CATEGORIES.slice(50, 56).map(c => c.id)")
     tage = [(datetime.date.today() - datetime.timedelta(days=i)).isoformat() for i in range(3, 0, -1)]
+    # reiter: mit den Stufen-Reitern eingestuft (13.11.2026), sonst waeren die zwei
+    # Grundwort-Level davor "dran" (firstOpen)
     konto = {"schutz": {"anzahl": 2, "zeit": 0}, "bestanden": level, "gewusst": ["probe:konto"], "tage": tage,
-             "einstufung": {"tag": tage[0], "wahl": "gut", "bis": kennung, "richtig": 13, "fragen": 15}}
+             "einstufung": {"tag": tage[0], "wahl": "gut", "bis": kennung, "richtig": 13, "fragen": 15,
+                            "reiter": True}}
     attrappe.doks[UID] = {"daten": {"stringValue": json.dumps({"app": "zmaj", "version": 1, "stand": konto})},
                           "rev": {"stringValue": "altes-handy.1"}}
     seite.js("() => einstufungWahl()")

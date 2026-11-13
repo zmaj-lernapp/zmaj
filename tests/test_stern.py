@@ -160,7 +160,8 @@ def test_stern_knopf_steht_in_der_kopfzeile(index_html):
                  '<div class="zmaj mini idle" id="%s"></div><div id="%s"></div></div>'
                  % (herz, bar, knopf, SVG_LEER, drache, body))
         assert karte in index_html, knopf
-    assert ('<div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" aria-hidden="true"></div>'
+    # id="eHerz" seit 13.11.2026: im Sprung-Test, der dieselbe Ansicht nutzt, ist das Herz echt
+    assert ('<div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" id="eHerz" aria-hidden="true"></div>'
             '<div class="tbar" id="eBar"></div></div><div class="zmaj mini idle" id="zmajEinst"></div>'
             '<div id="eBody"></div></div>') in index_html, "die Einstufung bekommt keinen Stern"
     assert '<div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>' in index_html

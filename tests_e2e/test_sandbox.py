@@ -46,6 +46,9 @@ LAGE = """() => ({
   sektionenZu: document.querySelectorAll('#sections .section.locked').length,
   sektionen: document.querySelectorAll('#sections .section').length,
   levelZu: document.querySelectorAll('#sections .node.locked').length,
+  // Seit den Stufen-Reitern (13.11.2026) steht nur ein Reiter im Lernpfad
+  levelImReiter: reiterLevel(angezeigteStufe()).length,
+  reiter: [...document.querySelectorAll('#reiterLeiste button')].map(b => b.className),
   fuss: document.querySelector('footer[data-t="app.fuss"]').textContent,
   zeile: document.getElementById('ueberZeile').textContent,
   bestanden: passed.size, gewusst: known.size, gelesen: read.size,
@@ -86,7 +89,8 @@ def _gesperrt(lage):
     assert lage["sandbox"] is False, lage
     assert lage["offen"] == 1 and lage["level"] > 20, lage
     assert lage["tests"] == 0, lage
-    assert lage["sektionenZu"] > 0 and lage["levelZu"] == lage["level"] - 1, lage
+    assert lage["sektionenZu"] > 0 and lage["levelZu"] == lage["levelImReiter"] - 1, lage
+    assert lage["reiter"] == ["offen", "zu", "zu", "zu", "bald"], lage
     if lage["alleGeschichten"] > 1:
         assert lage["geschichten"] == 1, lage
     for text in (lage["fuss"], lage["zeile"]):
@@ -139,14 +143,16 @@ def test_test_app_alles_offen_ohne_lernstand(seite, heute_stand, test_paket):
     assert lage["sandbox"] is True and lage["gefragt"] == 1, lage
     assert lage["offen"] == lage["level"] and lage["tests"] == lage["level"], lage
     assert lage["geschichten"] == lage["alleGeschichten"], lage
-    assert lage["sektionenZu"] == 0 and lage["levelZu"] == 0 and lage["sektionen"] > 5, lage
+    assert lage["sektionenZu"] == 0 and lage["levelZu"] == 0 and lage["sektionen"] >= 4, lage
+    assert lage["reiter"] == ["offen", "offen", "offen", "offen", "bald"], lage
     assert lage["fuss"].startswith("Zmaj v1.4-test · Sandbox: alles offen · Einstellungen"), lage
     assert lage["zeile"].startswith("Zmaj Version 1.4-test · Sandbox: alles offen · "), lage
     # Nur die Sperren: Leben bleiben begrenzt wie in der echten App
     assert lage["leben"] is False, lage
     assert (lage["bestanden"], lage["gewusst"], lage["gelesen"]) == (0, 0, 0), lage
 
-    # Die letzte Sektion aufklappen und ihr letztes Level antippen
+    # Im letzten Reiter die letzte Sektion aufklappen und ihr letztes Level antippen
+    seite.page.click("#reiterLeiste button[data-stufe='B2']")
     letzte = seite.page.locator("#sections .section").last
     letzte.locator(".skopf").click()
     letzte.locator(".node").last.click()

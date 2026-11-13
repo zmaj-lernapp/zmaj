@@ -24,6 +24,23 @@ are in the Play Store listing. Format:
   bytes with all 18. Which badges were already seen is kept on the device only.
   The pictures are placeholders until the painted ones are approved. Texts in
   all eight languages (not by native speakers).
+- Stage tabs A1 · A2 · B1 · B2 · C1 in the learning path (13.11.2026, variant B
+  of the maintainer's decision). The path opens in the tab of "Continue"; section
+  numbers, level numbers and colours start again in every tab; C1 is empty
+  ("soon"). Unlocking stays one chain across all tabs. A locked tab can be opened
+  early with a skip-ahead test: 15 questions from the previous tab, 12 correct
+  opens it; every wrong answer costs a heart like the level test, skipped levels
+  are open but not passed. Levels with known words always stay open. Two new
+  levels hold 40 frequent words that came only in B1 before (*Little words* in
+  A1, *Everyday words* in A2); the entries only moved, IDs, audio and progress
+  stay. "At home" now comes after "Cases 1"; "Building sentences" is split into
+  two sections. 297 levels, 27 sections: B2 went from 14 sections to nine,
+  one per colour (old 18+19, 21+22, 23+24, 28+29 and 30+31 merged; level order
+  and progress unchanged). The tab bar shows the progress as "112/129" so that
+  it fits 360 px in all eight languages (screen readers hear the full sentence).
+  Learners placed before the tabs get the two new levels as "Continue" even
+  though they lie before their placement. Without hearts the skip-ahead test
+  offers the same ways to a heart as the level test (video, coins).
 - A sandbox in the test app only (8.11.2026): when Android reports the app ID
   `de.smartdragon.zmaj.test` and the build carries a "-test" version, every
   level, section, level test and story is open, without writing anything into

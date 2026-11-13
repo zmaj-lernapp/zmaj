@@ -35,6 +35,15 @@ def grunddaten(alle_daten):
 
 
 @pytest.fixture(scope="session")
+def grunddaten_vor_umzug(grunddaten):
+    """grunddaten mit den Leveln, wie die Wortschatz-Pakete sie geliefert
+    haben: die 40 Grundwoerter wieder an ihrem alten Platz in B1, ohne die
+    zwei neuen A-Level (Stufen-Reiter, 13.11.2026). Siehe grundwoerter_umzug.py."""
+    from grundwoerter_umzug import vor_umzug
+    return vor_umzug(grunddaten)
+
+
+@pytest.fixture(scope="session")
 def index_html(wurzel):
     """web/index.html, wie sie im Repository liegt (Zeilenenden unverändert)."""
     import io
