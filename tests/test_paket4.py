@@ -87,11 +87,12 @@ def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektionen_dreizehn_und_vierzehn_am_ende(grunddaten):
+def test_sektionen_dreizehn_und_vierzehn_am_ende(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     sektionen = grunddaten["sektionen"]
-    assert [s["id"] for s in sektionen][12:14] == ["zeitfreizeit", "lernenarbeiten"]
-    assert sektionen[12]["label"] == "Sektion 13 · Zeit und Freizeit"
-    assert sektionen[13]["label"] == "Sektion 14 · Lernen und Arbeiten"
+    assert [s["id"] for s in sektionen][13:15] == ["zeitfreizeit", "lernenarbeiten"]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
+    assert sektionen[13]["label"] == "Sektion 5 · Zeit und Freizeit"
+    assert sektionen[14]["label"] == "Sektion 6 · Lernen und Arbeiten"
     ids = [k["id"] for k in grunddaten["kategorien"]]
     i = ids.index("zeitangaben")
     assert ids[i:i + 10] == ZEIT + LERNEN, "hinter Sektion 12, seit 06.11.2026 folgen die Sektionen 15 bis 17"
@@ -103,7 +104,8 @@ def test_sektionen_dreizehn_und_vierzehn_am_ende(grunddaten):
     assert sum(len(k["words"]) for k in _level(grunddaten, ZEIT)) == 178
 
 
-def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
+def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     for k in _level(grunddaten, ZEIT + LERNEN):
         assert k["reihenfolge"] is True, k["id"]
         assert 20 <= len(k["words"]) <= 40, k["id"]
@@ -116,7 +118,8 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
             assert satz["bs"] != wort["bs"], satz
 
 
-def test_auch_genau_nach_dem_paket(grunddaten):
+def test_auch_genau_nach_dem_paket(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     neu = {w["bs"]: w for w in _neu(grunddaten)}
     assert {bs: w["auch"] for bs, w in neu.items() if w.get("auch")} == AUCH
     for w in neu.values():

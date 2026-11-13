@@ -108,15 +108,17 @@ def test_anderes_verb_des_paares_ist_fast_richtig(seite, heute_stand):
 
 def test_sektionen_achtzehn_bis_einunddreissig_im_lernpfad(seite, heute_stand):
     seite.starten(stand=heute_stand())
-    e = seite.js("""() => ({sektionen: SECTIONS.slice(17).map(s => s.id),
-        farben: SECTIONS.slice(17).map(s => sektionsNummer(s.id)),
-        level: SECTIONS.slice(17).map(s => CATEGORIES.filter(c => c.sektion === s.id).length),
+    # Seit den Stufen-Reitern (13.11.2026): der Reiter B2, Farben ab der ersten. Vierzehn
+    # Sektionen bei neun Farben, zusammengelegt wird mit den naechsten B2-Paketen (Frage 6a).
+    e = seite.js("""() => ({sektionen: SECTIONS.slice(18).map(s => s.id),
+        farben: SECTIONS.slice(18).map(s => sektionsNummer(s.id)),
+        level: SECTIONS.slice(18).map(s => CATEGORIES.filter(c => c.sektion === s.id).length),
         tun: CATEGORIES.filter(c => c.sektion === 'tunlassen').length,
         letzte: CATEGORIES[CATEGORIES.length - 1].id})""")
     assert e == {"sektionen": ["denkenmeinen", "menschenbeziehungen", "arbeitwirtschaft", "medienkultur",
                                "umwelttechnik", "gesellschaftpolitik", "rechtbehoerden", "hauswohnung",
                                "gesundheitsport", "schulewissen", "stadtreisen", "landtiere",
                                "handelnveraendern", "genauersagen"],
-                 "farben": ["9", "1", "2", "3", "4", "5", "6", "7", "8", "9", "1", "2", "3", "4"],
+                 "farben": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "1", "2", "3", "4", "5"],
                  "level": [12, 10, 12, 8, 3, 5, 9, 8, 14, 12, 7, 6, 11, 12], "tun": 39, "letzte": "mengen_masse"}
     assert seite.fehler == []

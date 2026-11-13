@@ -131,11 +131,12 @@ def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten):
-    sektion = grunddaten["sektionen"][10]
-    assert len(grunddaten["sektionen"]) == 31       # seit 07.11.2026 (Pakete 10 bis 20)
+def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
+    sektion = grunddaten["sektionen"][11]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
+    assert len(grunddaten["sektionen"]) == 32       # seit 13.11.2026 (Sätze bauen 2)
     assert sektion["id"] == "wieetwasist"
-    assert sektion["label"] == "Sektion 11 · Wie etwas ist"
+    assert sektion["label"] == "Sektion 3 · Wie etwas ist"
     ids = [k["id"] for k in grunddaten["kategorien"]]
     tun = [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "tunlassen"]
     assert tun[8:12] == TUN, "nach den acht Leveln aus Paket 1"

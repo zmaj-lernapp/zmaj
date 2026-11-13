@@ -523,6 +523,9 @@ def pruefe_vokabeln(daten):
     # Sätze, deren Zahl wechselt (25.10.2026)
     probleme += pruefe_zahlen(daten)
 
+    # Die Stufen-Reiter (13.11.2026)
+    probleme += pruefe_stufen(daten)
+
     # Grammatik-Lektionen
     for kid, lektion in daten.get("grammatik", {}).items():
         if kid not in ids:
@@ -539,6 +542,53 @@ def pruefe_vokabeln(daten):
             if f.get("richtig") not in f.get("optionen", []):
                 probleme.append(f"Geschichte '{g.get('id')}': 'richtig' fehlt in 'optionen': {f.get('frage')}")
 
+    return probleme
+
+
+# ---------------------------------------------------------------------------
+# Stufen-Reiter (13.11.2026)
+# ---------------------------------------------------------------------------
+# Der Lernpfad steht in Reitern je Stufe: A1, A2, B1, B2, C1 (Ajdin am
+# 08.11.2026: „wir machen am besten alle getrennt“, Variante B am 13.11.2026).
+# Die App liest die Stufe aus SEKTIONEN ("stufe") und rechnet damit Farben,
+# Sektions- und Levelnummern je Reiter und ob ein Reiter offen ist (das erste
+# Level des Reiters). Das geht nur gut, wenn die Reiter im Lernpfad nicht
+# durcheinander stehen und jede Sektion am Stueck kommt.
+STUFEN = ("A1", "A2", "B1", "B2", "C1")
+
+
+def pruefe_stufen(daten):
+    """Befunde wie in pruefe_vokabeln(). Ohne Sektionen (kleine Testdaten)
+    gibt es nichts zu pruefen."""
+    sektionen = daten.get("sektionen", [])
+    if not sektionen:
+        return []
+    probleme = []
+    stufe = {}
+    for s in sektionen:
+        st = s.get("stufe")
+        if st not in STUFEN:
+            probleme.append(f"Sektion '{s.get('id')}' ohne gültige Stufe: {st!r}")
+        stufe[s.get("id")] = st
+    folge = [k.get("sektion") for k in daten["kategorien"]]
+    rang = [STUFEN.index(stufe[x]) for x in folge if stufe.get(x) in STUFEN]
+    if rang != sorted(rang):
+        probleme.append("Stufen im Lernpfad nicht in der Folge " + ", ".join(STUFEN))
+    # Jede Sektion am Stueck, und in derselben Folge wie in SEKTIONEN
+    am_stueck = [x for i, x in enumerate(folge) if i == 0 or folge[i - 1] != x]
+    for x in sorted(set(am_stueck)):
+        if am_stueck.count(x) > 1:
+            probleme.append(f"Sektion '{x}' ist im Lernpfad zerrissen")
+    if [s.get("id") for s in sektionen if s.get("id") in am_stueck] != list(dict.fromkeys(am_stueck)):
+        probleme.append("SEKTIONEN steht nicht in der Folge des Lernpfads")
+    # Die Nummer im Namen zaehlt je Reiter von 1 (in jeder Sprache die erste Zahl)
+    zaehler = {}
+    for s in sektionen:
+        st = s.get("stufe")
+        zaehler[st] = zaehler.get(st, 0) + 1
+        m = re.search(r"\d+", str(s.get("label", "")))
+        if not m or int(m.group()) != zaehler[st]:
+            probleme.append(f"Sektion '{s.get('id')}': Nummer im Namen sollte {zaehler[st]} sein ({st})")
     return probleme
 
 

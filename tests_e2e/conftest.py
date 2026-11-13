@@ -47,7 +47,8 @@ BEREIT = ("typeof CATEGORIES !== 'undefined' && CATEGORIES && CATEGORIES.length 
 # Lektion eine halbe Minute.
 DURCHSPIELEN = r"""
 async ([feld, art]) => {
-  const X = () => art === 'Lx' ? Lx : Tx;
+  // Sx: der Sprung-Test in einen Reiter (13.11.2026), Liste qs wie beim Test
+  const X = () => art === 'Lx' ? Lx : (art === 'Sx' ? Sx : Tx);
   const liste = () => X().qs || X().queue;
   const body = document.getElementById(feld);
   const warte = ms => new Promise(r => setTimeout(r, ms));

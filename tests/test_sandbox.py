@@ -172,7 +172,11 @@ def test_sperren_fragen_alles_offen(index_html):
     html = _html(index_html)
     assert "const allesOffen = () => ALLE_FREI || SANDBOX;" in html
     unlocked = _rumpf(html, "const isUnlocked = i => {\n")
-    assert unlocked.count("return allesOffen() || ") == 2
+    # Seit den Stufen-Reitern (13.11.2026) steht die Kette des Lernpfads in
+    # inDerKette(), das zweite allesOffen() also dort
+    assert unlocked.count("return allesOffen() || ") == 1
+    assert "return inDerKette(i) || levelAngefangen(i);" in unlocked
+    assert "const inDerKette = i => allesOffen() || " in html
     assert "ALLE_FREI" not in unlocked
     assert "const testAllowed = c => allesOffen() || passed.has(c.id) ||" in html
     assert "const storyUnlocked = i => allesOffen() || i===0 || read.has(STORIES[i-1].id);" in html

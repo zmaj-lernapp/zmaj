@@ -7,6 +7,18 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Stage tabs A1 · A2 · B1 · B2 · C1 in the learning path (13.11.2026, variant B
+  of the maintainer's decision). The path opens in the tab of "Continue"; section
+  numbers, level numbers and colours start again in every tab; C1 is empty
+  ("soon"). Unlocking stays one chain across all tabs. A locked tab can be opened
+  early with a skip-ahead test: 15 questions from the previous tab, 12 correct
+  opens it; every wrong answer costs a heart like the level test, skipped levels
+  are open but not passed. Levels with known words always stay open. Two new
+  levels hold 40 frequent words that came only in B1 before (*Little words* in
+  A1, *Everyday words* in A2); the entries only moved, IDs, audio and progress
+  stay. "At home" now comes after "Cases 1"; "Building sentences" is split into
+  two sections. 297 levels, 32 sections. B2 keeps its 14 sections until the
+  next B2 packages (then nine, one per colour).
 - A sandbox in the test app only (8.11.2026): when Android reports the app ID
   `de.smartdragon.zmaj.test` and the build carries a "-test" version, every
   level, section, level test and story is open, without writing anything into

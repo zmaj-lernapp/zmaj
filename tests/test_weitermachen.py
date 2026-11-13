@@ -18,8 +18,9 @@ def _html(index_html):
 def test_dran_ist_das_erste_nicht_bestandene(index_html):
     html = _html(index_html)
     rumpf = html.split("const firstOpen = () => {\n")[1].split("\n};\n")[0]
-    # Der Einstieg gilt nur, solange davor nichts oder ab ihm schon etwas bestanden ist
-    assert "const ein = einstufungIndex(), h = hoechsterBestanden();" in rumpf
+    # Der Einstieg gilt nur, solange davor nichts oder ab ihm schon etwas bestanden ist.
+    # Seit 13.11.2026 ist ein bestandener Sprung-Test in einen Reiter auch ein Einstieg.
+    assert "const ein = Math.max(einstufungIndex(), sprungIndex()), h = hoechsterBestanden();" in rumpf
     assert "const ab = (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;" in rumpf
     # Vom Startpunkt aus das erste nicht bestandene - nicht h + 1, sonst
     # uebersprang der Knopf eingeschobene Level

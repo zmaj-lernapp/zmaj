@@ -577,143 +577,6 @@ biljka	plant	word	pflanze:biljka
 šljiva	pruim / pruimenboom	word	pflaume / pflaumenbaum:šljiva
 orah	walnoot / walnotenboom	word	walnuss / walnussbaum:orah
 korijen	wortel (van een plant)	word	wurzel:korijen
-rerna	oven	word	backofen:rerna
-flaša	fles	word	flasche:flaša
-viljuška	vork	word	gabel:viljuška
-zamrzivač	vrieskast	word	gefrierschrank:zamrzivač
-suđe	serviesgoed	word	geschirr:suđe
-prati suđe	afwassen	word	geschirr spülen:prati suđe
-tava	pan	word	pfanne:tava
-tanjir	bord (om te eten)	word	teller:tanjir
-lonac	kookpan	word	topf:lonac
-kesa	zakje / plastic zakje	word	tüte / plastiktüte:kesa
-posteljina	beddengoed	word	bettwäsche:posteljina
-deka	deken (voor het bed)	word	decke (bettdecke):deka
-jastuk	kussen	word	kissen:jastuk
-polica	schap / plank	word	regal / brett:polica
-ormar	kast	word	schrank:ormar
-kauč	bank (zitbank)	word	sofa:kauč
-zavjesa	gordijn	word	vorhang:zavjesa
-tuš	douche	word	dusche:tuš
-ogledalo	spiegel	word	spiegel:ogledalo
-WC	toilet	word	toilette:WC
-toalet papir	toiletpapier	word	toilettenpapier:toalet papir
-lavabo	wastafel	word	waschbecken:lavabo
-četkica za zube	tandenborstel	word	zahnbürste:četkica za zube
-pasta za zube	tandpasta	word	zahnpasta:pasta za zube
-pospremiti	opruimen	word	aufräumen:pospremiti
-metla	bezem	word	besen:metla
-pegla	strijkijzer	word	bügeleisen:pegla
-peglati	strijken	word	bügeln:peglati
-kanta	emmer	word	eimer:kanta
-smeće	afval	word	müll:smeće
-kanta za smeće	vuilnisbak / vuilniscontainer	word	mülleimer / mülltonne:kanta za smeće
-čisto	schoon	word	sauber:čisto
-prljavo	vies	word	schmutzig:prljavo
-usisivač	stofzuiger	word	staubsauger:usisivač
-veš mašina	wasmachine	word	waschmaschine:veš mašina
-deterdžent	wasmiddel	word	waschmittel:deterdžent
-veš	wasgoed	word	wäsche:veš
-štrik	waslijn	word	wäscheleine:štrik
-lift	lift	word	aufzug:lift
-poštansko sanduče	brievenbus	word	briefkasten:poštansko sanduče
-krov	dak	word	dach:krov
-tavan	zolder	word	dachboden:tavan
-pod	vloer	word	fußboden:pod
-domar	huismeester	word	hausmeister:domar
-podrum	kelder	word	keller:podrum
-zvono	deurbel	word	klingel:zvono
-zvoniti	aanbellen	word	klingeln:zvoniti
-komšinica	buurvrouw	word	nachbarin:komšinica
-zid	muur	word	wand:zid
-ograda	hek	word	zaun:ograda
-ugasiti	uitzetten / uitdoen	word	ausschalten / ausmachen:ugasiti
-bojler	boiler (warmwaterreservoir)	word	boiler / warmwasserspeicher:bojler
-drva	brandhout	word	brennholz:drva
-upaliti	aanzetten / aandoen	word	einschalten / anmachen:upaliti
-Nema struje	Er is geen stroom	word	es gibt keinen strom:Nema struje
-sijalica	gloeilamp	word	glühbirne:sijalica
-grijanje	verwarming	word	heizung:grijanje
-ugalj	steenkool	word	kohle:ugalj
-svjetlo	licht	word	licht:svjetlo
-peć	kachel (verwarming)	word	ofen (heizofen):peć
-osigurač	zekering	word	sicherung:osigurač
-utičnica	stopcontact	word	steckdose:utičnica
-utikač	stekker	word	stecker:utikač
-struja	stroom (elektriciteit)	word	strom:struja
-topla voda	warm water	word	warmes wasser:topla voda
-Ne radi	Het werkt niet	word	es funktioniert nicht:Ne radi
-Curi voda	Het lekt / het druppelt	word	es läuft aus / es tropft:Curi voda
-čekić	hamer	word	hammer:čekić
-majstor	vakman / klusjesman	word	handwerker / fachmann:majstor
-pokvaren / pokvarena / pokvareno	kapot	word	kaputt:pokvaren / pokvarena / pokvareno
-merdevine	ladder	word	leiter:merdevine
-ekser	spijker	word	nagel:ekser
-popraviti	repareren	word	reparieren:popraviti
-brava	slot (deurslot)	word	schloss (türschloss):brava
-šaraf	schroef	word	schraube:šaraf
-slavina	waterkraan	word	wasserhahn:slavina
-alat	gereedschap	word	werkzeug:alat
-gorivo	brandstof	word	kraftstoff / sprit:gorivo
-sipati gorivo	tanken	word	tanken:sipati gorivo
-guma	band (auto)	word	reifen:guma
-Pukla mi je guma.	Ik heb een lekke band.	word	ich habe einen platten.:Pukla mi je guma.
-kočnica	rem	word	bremse:kočnica
-motor	motor	word	motor:motor
-akumulator	accu (auto)	word	autobatterie:akumulator
-sigurnosni pojas	veiligheidsgordel	word	sicherheitsgurt:sigurnosni pojas
-parkiralište	parkeerplaats	word	parkplatz:parkiralište
-parkirati	parkeren	word	parken:parkirati
-semafor	verkeerslicht	word	ampel:semafor
-raskrsnica	kruispunt	word	kreuzung:raskrsnica
-saobraćaj	verkeer	word	verkehr:saobraćaj
-zastoj	file	word	stau:zastoj
-kazna	boete	word	strafzettel / bußgeld:kazna
-registracija	kenteken (auto)	word	kennzeichen (auto):registracija
-tehnički pregled	APK-keuring	word	hauptuntersuchung (tüv):tehnički pregled
-autoservis	garage	word	autowerkstatt:autoservis
-šlep služba	sleepdienst	word	abschleppdienst:šlep služba
-pomoć na cesti	pechhulp	word	pannenhilfe:pomoć na cesti
-odvijač / šrafciger	schroevendraaier	word	schraubenzieher:odvijač / šrafciger
-kliješta	tang	word	zange:kliješta
-bušilica	boormachine	word	bohrmaschine:bušilica
-bušiti	boren	word	bohren:bušiti
-testera	zaag	word	säge:testera
-francuski ključ	Engelse sleutel	word	rollgabelschlüssel (engländer):francuski ključ
-metar	rolmaat	word	maßband / zollstock:metar
-ljepilo	lijm	word	kleber:ljepilo
-produžni kabel	verlengsnoer	word	verlängerungskabel:produžni kabel
-radionica	werkplaats	word	werkstatt:radionica
-punjač	oplader	word	ladegerät:punjač
-baterija	batterij	word	akku:baterija
-Baterija je prazna.	Mijn batterij is leeg.	word	der akku ist leer.:Baterija je prazna.
-napuniti	opladen	word	aufladen:napuniti
-šifra / lozinka	wachtwoord	word	passwort:šifra / lozinka
-Koja je šifra za WiFi?	Wat is het wifi-wachtwoord?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
-internet	internet	word	internet:internet
-Nema signala.	Geen bereik.	word	kein empfang.:Nema signala.
-poruka	bericht	word	nachricht:poruka
-poslati poruku	een bericht sturen	word	eine nachricht schicken:poslati poruku
-nazvati	bellen (telefoon)	word	anrufen:nazvati
-aplikacija	app	word	app:aplikacija
-ekran	scherm	word	bildschirm:ekran
-tastatura	toetsenbord	word	tastatur:tastatura
-štampač	printer	word	drucker:štampač
-slušalice	koptelefoon	word	kopfhörer:slušalice
-slikati	fotograferen	word	fotografieren:slikati
-ažurirati	bijwerken	word	aktualisieren:ažurirati
-mašina za suđe	vaatwasser	word	spülmaschine:mašina za suđe
-sušilica za veš	droger	word	wäschetrockner:sušilica za veš
-mikrovalna	magnetron	word	mikrowelle:mikrovalna
-toster	broodrooster	word	toaster:toster
-kuhalo za vodu	waterkoker	word	wasserkocher:kuhalo za vodu
-fen	föhn	word	föhn:fen
-klima	airco	word	klimaanlage:klima
-ventilator	ventilator	word	ventilator:ventilator
-daljinski	afstandsbediening	word	fernbedienung:daljinski
-aparat za kahvu / aparat za kafu	koffiezetapparaat	word	kaffeemaschine:aparat za kahvu / aparat za kafu
-uputstvo	handleiding	word	bedienungsanleitung:uputstvo
-garancija	garantie	word	garantie:garancija
 Ko?	Wie?	word	wer?:Ko?
 Šta?	Wat?	word	was?:Šta?
 Gdje?	Waar?	word	wo?:Gdje?
@@ -852,6 +715,26 @@ također	ook	word	auch:također
 samo	alleen	word	nur:samo
 već	al	word	schon:već
 još ne	nog niet	word	noch nicht:još ne
+ovdje	hier	word	hier:ovdje
+tamo	daar	word	dort:tamo
+tu	hier vlakbij / hierzo	word	da / hier:tu
+gore	daarboven	word	oben:gore
+dolje	beneden	word	unten:dolje
+onda	dan	word	dann:onda
+zatim	daarna	word	danach:zatim
+prvo	eerst	word	zuerst:prvo
+opet	weer / opnieuw	word	wieder:opet
+odmah	meteen	word	sofort:odmah
+stalno	voortdurend	word	ständig:stalno
+tako	zo	word	so:tako
+vrlo / veoma	zeer (voor eigenschappen)	word	sehr (vor eigenschaften):vrlo / veoma
+rado	graag	word	gern:rado
+kao	als / zoals	word	wie / als:kao
+pa	en dan / dus	word	und dann / also:pa
+evo	hier is / daar is	word	hier ist / da ist:evo
+taj	die (daar)	word	dieser (da):taj
+sav	heel / al	word	ganz / all:sav
+cijeli	heel (m.)	word	ganz (der ganze):cijeli
 Vidim brata	Ik zie de broer	word	ich sehe den bruder:Vidim brata
 Vidim sestru	Ik zie de zus	word	ich sehe die schwester:Vidim sestru
 Vidim dijete	Ik zie het kind	word	ich sehe das kind:Vidim dijete
@@ -881,6 +764,143 @@ mene / me	mij	word	mich:mene / me
 tebe / te	jou	word	dich:tebe / te
 njega / ga	hem	word	ihn:njega / ga
 nju / je	haar (accusatief)	word	sie (akkusativ):nju / je
+rerna	oven	word	backofen:rerna
+flaša	fles	word	flasche:flaša
+viljuška	vork	word	gabel:viljuška
+zamrzivač	vrieskast	word	gefrierschrank:zamrzivač
+suđe	serviesgoed	word	geschirr:suđe
+prati suđe	afwassen	word	geschirr spülen:prati suđe
+tava	pan	word	pfanne:tava
+tanjir	bord (om te eten)	word	teller:tanjir
+lonac	kookpan	word	topf:lonac
+kesa	zakje / plastic zakje	word	tüte / plastiktüte:kesa
+posteljina	beddengoed	word	bettwäsche:posteljina
+deka	deken (voor het bed)	word	decke (bettdecke):deka
+jastuk	kussen	word	kissen:jastuk
+polica	schap / plank	word	regal / brett:polica
+ormar	kast	word	schrank:ormar
+kauč	bank (zitbank)	word	sofa:kauč
+zavjesa	gordijn	word	vorhang:zavjesa
+tuš	douche	word	dusche:tuš
+ogledalo	spiegel	word	spiegel:ogledalo
+WC	toilet	word	toilette:WC
+toalet papir	toiletpapier	word	toilettenpapier:toalet papir
+lavabo	wastafel	word	waschbecken:lavabo
+četkica za zube	tandenborstel	word	zahnbürste:četkica za zube
+pasta za zube	tandpasta	word	zahnpasta:pasta za zube
+pospremiti	opruimen	word	aufräumen:pospremiti
+metla	bezem	word	besen:metla
+pegla	strijkijzer	word	bügeleisen:pegla
+peglati	strijken	word	bügeln:peglati
+kanta	emmer	word	eimer:kanta
+smeće	afval	word	müll:smeće
+kanta za smeće	vuilnisbak / vuilniscontainer	word	mülleimer / mülltonne:kanta za smeće
+čisto	schoon	word	sauber:čisto
+prljavo	vies	word	schmutzig:prljavo
+usisivač	stofzuiger	word	staubsauger:usisivač
+veš mašina	wasmachine	word	waschmaschine:veš mašina
+deterdžent	wasmiddel	word	waschmittel:deterdžent
+veš	wasgoed	word	wäsche:veš
+štrik	waslijn	word	wäscheleine:štrik
+lift	lift	word	aufzug:lift
+poštansko sanduče	brievenbus	word	briefkasten:poštansko sanduče
+krov	dak	word	dach:krov
+tavan	zolder	word	dachboden:tavan
+pod	vloer	word	fußboden:pod
+domar	huismeester	word	hausmeister:domar
+podrum	kelder	word	keller:podrum
+zvono	deurbel	word	klingel:zvono
+zvoniti	aanbellen	word	klingeln:zvoniti
+komšinica	buurvrouw	word	nachbarin:komšinica
+zid	muur	word	wand:zid
+ograda	hek	word	zaun:ograda
+ugasiti	uitzetten / uitdoen	word	ausschalten / ausmachen:ugasiti
+bojler	boiler (warmwaterreservoir)	word	boiler / warmwasserspeicher:bojler
+drva	brandhout	word	brennholz:drva
+upaliti	aanzetten / aandoen	word	einschalten / anmachen:upaliti
+Nema struje	Er is geen stroom	word	es gibt keinen strom:Nema struje
+sijalica	gloeilamp	word	glühbirne:sijalica
+grijanje	verwarming	word	heizung:grijanje
+ugalj	steenkool	word	kohle:ugalj
+svjetlo	licht	word	licht:svjetlo
+peć	kachel (verwarming)	word	ofen (heizofen):peć
+osigurač	zekering	word	sicherung:osigurač
+utičnica	stopcontact	word	steckdose:utičnica
+utikač	stekker	word	stecker:utikač
+struja	stroom (elektriciteit)	word	strom:struja
+topla voda	warm water	word	warmes wasser:topla voda
+Ne radi	Het werkt niet	word	es funktioniert nicht:Ne radi
+Curi voda	Het lekt / het druppelt	word	es läuft aus / es tropft:Curi voda
+čekić	hamer	word	hammer:čekić
+majstor	vakman / klusjesman	word	handwerker / fachmann:majstor
+pokvaren / pokvarena / pokvareno	kapot	word	kaputt:pokvaren / pokvarena / pokvareno
+merdevine	ladder	word	leiter:merdevine
+ekser	spijker	word	nagel:ekser
+popraviti	repareren	word	reparieren:popraviti
+brava	slot (deurslot)	word	schloss (türschloss):brava
+šaraf	schroef	word	schraube:šaraf
+slavina	waterkraan	word	wasserhahn:slavina
+alat	gereedschap	word	werkzeug:alat
+gorivo	brandstof	word	kraftstoff / sprit:gorivo
+sipati gorivo	tanken	word	tanken:sipati gorivo
+guma	band (auto)	word	reifen:guma
+Pukla mi je guma.	Ik heb een lekke band.	word	ich habe einen platten.:Pukla mi je guma.
+kočnica	rem	word	bremse:kočnica
+motor	motor	word	motor:motor
+akumulator	accu (auto)	word	autobatterie:akumulator
+sigurnosni pojas	veiligheidsgordel	word	sicherheitsgurt:sigurnosni pojas
+parkiralište	parkeerplaats	word	parkplatz:parkiralište
+parkirati	parkeren	word	parken:parkirati
+semafor	verkeerslicht	word	ampel:semafor
+raskrsnica	kruispunt	word	kreuzung:raskrsnica
+saobraćaj	verkeer	word	verkehr:saobraćaj
+zastoj	file	word	stau:zastoj
+kazna	boete	word	strafzettel / bußgeld:kazna
+registracija	kenteken (auto)	word	kennzeichen (auto):registracija
+tehnički pregled	APK-keuring	word	hauptuntersuchung (tüv):tehnički pregled
+autoservis	garage	word	autowerkstatt:autoservis
+šlep služba	sleepdienst	word	abschleppdienst:šlep služba
+pomoć na cesti	pechhulp	word	pannenhilfe:pomoć na cesti
+odvijač / šrafciger	schroevendraaier	word	schraubenzieher:odvijač / šrafciger
+kliješta	tang	word	zange:kliješta
+bušilica	boormachine	word	bohrmaschine:bušilica
+bušiti	boren	word	bohren:bušiti
+testera	zaag	word	säge:testera
+francuski ključ	Engelse sleutel	word	rollgabelschlüssel (engländer):francuski ključ
+metar	rolmaat	word	maßband / zollstock:metar
+ljepilo	lijm	word	kleber:ljepilo
+produžni kabel	verlengsnoer	word	verlängerungskabel:produžni kabel
+radionica	werkplaats	word	werkstatt:radionica
+punjač	oplader	word	ladegerät:punjač
+baterija	batterij	word	akku:baterija
+Baterija je prazna.	Mijn batterij is leeg.	word	der akku ist leer.:Baterija je prazna.
+napuniti	opladen	word	aufladen:napuniti
+šifra / lozinka	wachtwoord	word	passwort:šifra / lozinka
+Koja je šifra za WiFi?	Wat is het wifi-wachtwoord?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
+internet	internet	word	internet:internet
+Nema signala.	Geen bereik.	word	kein empfang.:Nema signala.
+poruka	bericht	word	nachricht:poruka
+poslati poruku	een bericht sturen	word	eine nachricht schicken:poslati poruku
+nazvati	bellen (telefoon)	word	anrufen:nazvati
+aplikacija	app	word	app:aplikacija
+ekran	scherm	word	bildschirm:ekran
+tastatura	toetsenbord	word	tastatur:tastatura
+štampač	printer	word	drucker:štampač
+slušalice	koptelefoon	word	kopfhörer:slušalice
+slikati	fotograferen	word	fotografieren:slikati
+ažurirati	bijwerken	word	aktualisieren:ažurirati
+mašina za suđe	vaatwasser	word	spülmaschine:mašina za suđe
+sušilica za veš	droger	word	wäschetrockner:sušilica za veš
+mikrovalna	magnetron	word	mikrowelle:mikrovalna
+toster	broodrooster	word	toaster:toster
+kuhalo za vodu	waterkoker	word	wasserkocher:kuhalo za vodu
+fen	föhn	word	föhn:fen
+klima	airco	word	klimaanlage:klima
+ventilator	ventilator	word	ventilator:ventilator
+daljinski	afstandsbediening	word	fernbedienung:daljinski
+aparat za kahvu / aparat za kafu	koffiezetapparaat	word	kaffeemaschine:aparat za kahvu / aparat za kafu
+uputstvo	handleiding	word	bedienungsanleitung:uputstvo
+garancija	garantie	word	garantie:garancija
 bez šećera	zonder suiker	word	ohne zucker:bez šećera
 bez mlijeka	zonder melk	word	ohne milch:bez mlijeka
 iz Bosne	uit Bosnië	word	aus bosnien:iz Bosne
@@ -1129,6 +1149,26 @@ ujutro	's ochtends	word	am morgen:ujutro
 popodne	's middags	word	am nachmittag:popodne
 navečer	's avonds	word	am abend:navečer
 vikendom	in het weekend	word	am wochenende:vikendom
+ime	naam	word	name:ime
+prezime	achternaam	word	nachname:prezime
+adresa	adres	word	adresse:adresa
+telefon	telefoon	word	telefon:telefon
+roditelji	ouders	word	eltern:roditelji
+osoba	persoon	word	person:osoba
+hrana	eten / voedsel	word	essen / nahrung:hrana
+piće	drankje	word	getränk:piće
+lice	gezicht	word	gesicht:lice
+život	het leven	word	das leben:život
+mjesto	plaats / plek	word	ort / platz:mjesto
+dio	deel	word	teil:dio
+početak	begin	word	anfang:početak
+kraj	einde	word	ende:kraj
+problem	probleem	word	problem:problem
+slika	afbeelding / foto	word	bild / foto:slika
+priča	verhaal	word	geschichte (erzählung):priča
+igra	spelletje	word	spiel (zum spielen):igra
+film	film	word	film:film
+broj	getal / nummer	word	zahl / nummer:broj
 velik / velika	groot (m/v)	word	groß (m/w):velik / velika
 veći	groter	word	größer:veći
 najveći	het grootst	word	am größten:najveći
@@ -3037,7 +3077,6 @@ smrdjeti / smrditi	stinken	word	stinken:smrdjeti / smrditi
 Nešto smrdi u frižideru.	Er stinkt iets in de koelkast.	word	im kühlschrank stinkt etwas.:Nešto smrdi u frižideru.
 bljutav	flauw / smakeloos	word	fad (ohne geschmack):bljutav
 Supa je bljutava, fali joj soli.	De soep is flauw, er moet zout bij.	word	die suppe ist fad, es fehlt salz.:Supa je bljutava, fali joj soli.
-lice	gezicht	word	gesicht:lice
 Imaš nešto na licu.	Je hebt iets op je gezicht.	word	du hast etwas im gesicht.:Imaš nešto na licu.
 jezik	tong	word	zunge:jezik
 Ugrizao sam se za jezik.	Ik heb op mijn tong gebeten.	word	ich habe mir auf die zunge gebissen.:Ugrizao sam se za jezik.
@@ -3273,7 +3312,6 @@ budućnost	toekomst	word	zukunft:budućnost
 U budućnosti želimo živjeti u Bosni.	In de toekomst willen we in Bosnië wonen.	word	in zukunft wollen wir in bosnien leben.:U budućnosti želimo živjeti u Bosni.
 praznik	feestdag	word	feiertag:praznik
 Sutra je praznik, banke ne rade.	Morgen is het een feestdag, de banken zijn dicht.	word	morgen ist feiertag, die banken haben zu.:Sutra je praznik, banke ne rade.
-odmah	meteen	word	sofort:odmah
 Odmah dolazim!	Ik kom meteen!	word	ich komme sofort!:Odmah dolazim!
 upravo	net	word	gerade (eben):upravo
 Upravo sam stigla kući.	Ik ben net thuisgekomen.	word	ich bin gerade nach hause gekommen.:Upravo sam stigla kući.
@@ -3291,7 +3329,6 @@ tek	pas	word	erst:tek
 Film počinje tek u devet.	De film begint pas om negen uur.	word	der film fängt erst um neun an.:Film počinje tek u devet.
 još	nog	word	noch:još
 Još spava, nemoj ga buditi.	Hij slaapt nog, maak hem niet wakker.	word	er schläft noch, weck ihn nicht.:Još spava, nemoj ga buditi.
-opet	weer / opnieuw	word	wieder:opet
 Dođite nam opet!	Kom ons nog eens opzoeken!	word	kommt uns wieder besuchen!:Dođite nam opet!
 zauvijek	voor altijd	word	für immer:zauvijek
 Ovo ne može trajati zauvijek.	Dit kan niet eeuwig zo doorgaan.	word	das kann nicht für immer so weitergehen.:Ovo ne može trajati zauvijek.
@@ -3349,7 +3386,6 @@ gitara	gitaar	word	gitarre:gitara
 Kćerka uči svirati gitaru.	Mijn dochter leert gitaar spelen.	word	meine tochter lernt gitarre spielen.:Kćerka uči svirati gitaru.
 plesti	breien	word	stricken:plesti
 Nana plete čarape za zimu.	Oma breit sokken voor de winter.	word	oma strickt socken für den winter.:Nana plete čarape za zimu.
-slika	afbeelding / foto	word	bild / foto:slika
 Pošalji mi sliku!	Stuur me een foto!	word	schick mir ein foto!:Pošalji mi sliku!
 izlet	uitstapje	word	ausflug:izlet
 U nedjelju idemo na izlet na Vrelo Bosne.	Zondag maken we een uitstapje naar Vrelo Bosne.	word	am sonntag machen wir einen ausflug zum vrelo bosne.:U nedjelju idemo na izlet na Vrelo Bosne.
@@ -3363,7 +3399,6 @@ muzej	museum	word	museum:muzej
 Djeca su s razredom bila u muzeju.	De kinderen zijn met de klas naar het museum geweest.	word	die kinder waren mit der klasse im museum.:Djeca su s razredom bila u muzeju.
 žurka	feestje	word	party:žurka
 Ko sve dolazi na žurku?	Wie komen er allemaal naar het feestje?	word	wer kommt alles zur party?:Ko sve dolazi na žurku?
-igra	spelletje	word	spiel (zum spielen):igra
 Hajmo igrati neku igru!	Laten we een spelletje doen!	word	lass uns ein spiel spielen!:Hajmo igrati neku igru!
 novine	krant	word	zeitung:novine
 Dedo svako jutro čita novine.	Opa leest elke ochtend de krant.	word	opa liest jeden morgen zeitung.:Dedo svako jutro čita novine.
@@ -3377,7 +3412,6 @@ reklama	reclame	word	werbung:reklama
 Opet reklame, idem po sok.	Alweer reclame, ik ga sap halen.	word	schon wieder werbung, ich hol mir einen saft.:Opet reklame, idem po sok.
 radio	radio	word	radio:radio
 U autu uvijek slušam radio.	In de auto luister ik altijd naar de radio.	word	im auto höre ich immer radio.:U autu uvijek slušam radio.
-film	film	word	film:film
 Hoćemo li pogledati neki film?	Zullen we een film kijken?	word	wollen wir uns einen film anschauen?:Hoćemo li pogledati neki film?
 serija	serie	word	serie:serija
 Nana gleda svaku tursku seriju.	Oma kijkt elke Turkse serie.	word	oma schaut jede türkische serie.:Nana gleda svaku tursku seriju.
@@ -3543,7 +3577,6 @@ praksa	stage	word	praktikum:praksa
 Studenti moraju odraditi praksu.	Studenten moeten stage lopen.	word	studenten müssen ein praktikum machen.:Studenti moraju odraditi praksu.
 radni dan	werkdag	word	werktag:radni dan
 Radnim danima ustajem u šest.	Op werkdagen sta ik om zes uur op.	word	an werktagen stehe ich um sechs auf.:Radnim danima ustajem u šest.
-mjesto	plaats / plek	word	ort / platz:mjesto
 Je li ovo mjesto slobodno?	Is deze plaats vrij?	word	ist dieser platz frei?:Je li ovo mjesto slobodno?
 strana	kant (richting)	word	seite (richtung):strana
 Apoteka je na drugoj strani ulice.	De apotheek is aan de overkant van de straat.	word	die apotheke ist auf der anderen straßenseite.:Apoteka je na drugoj strani ulice.
@@ -3593,9 +3626,7 @@ Dužina staze je pet kilometara.	De lengte van het traject is vijf kilometer.	wo
 Moramo izmjeriti širinu prozora.	We moeten de breedte van het raam meten.	word	wir müssen die breite des fensters messen.:Moramo izmjeriti širinu prozora.
 ivica	rand (tafel, stoel)	word	kante (tischkante, stuhlkante):ivica
 Čaša stoji na samoj ivici stola.	Het glas staat vlak aan de rand van de tafel.	word	das glas steht direkt an der tischkante.:Čaša stoji na samoj ivici stola.
-dio	deel	word	teil:dio
 Drugi dio filma je bio bolji.	Het tweede deel van de film was beter.	word	der zweite teil des films war besser.:Drugi dio filma je bio bolji.
-broj	getal / nummer	word	zahl / nummer:broj
 Napiši mi svoj broj na papir.	Schrijf je nummer voor me op een briefje.	word	schreib mir deine nummer auf einen zettel.:Napiši mi svoj broj na papir.
 većina	meerderheid	word	mehrheit:većina
 Većina mojih prijatelja živi u Njemačkoj.	De meeste van mijn vrienden wonen in Duitsland.	word	die meisten meiner freunde leben in deutschland.:Većina mojih prijatelja živi u Njemačkoj.
@@ -3639,9 +3670,7 @@ razlika	verschil	word	unterschied:razlika
 Koja je razlika između ove dvije riječi?	Wat is het verschil tussen deze twee woorden?	word	was ist der unterschied zwischen diesen zwei wörtern?:Koja je razlika između ove dvije riječi?
 kilometar	kilometer	word	kilometer:kilometar
 Do škole ima samo jedan kilometar.	Het is maar één kilometer naar de school.	word	bis zur schule ist es nur ein kilometer.:Do škole ima samo jedan kilometar.
-početak	begin	word	anfang:početak
 Na početku mi je bilo teško.	In het begin was het moeilijk voor me.	word	am anfang war es schwer für mich.:Na početku mi je bilo teško.
-kraj	einde	word	ende:kraj
 Pekara je na kraju ulice.	De bakkerij is aan het einde van de straat.	word	die bäckerei ist am ende der straße.:Pekara je na kraju ulice.
 period	periode	word	zeitraum:period
 To je bio težak period u mom životu.	Dat was een moeilijke tijd in mijn leven.	word	das war eine schwere zeit in meinem leben.:To je bio težak period u mom životu.
@@ -3673,7 +3702,6 @@ faza	fase	word	phase:faza
 To je samo faza, proći će.	Het is maar een fase, het gaat wel over.	word	das ist nur eine phase, das geht vorbei.:To je samo faza, proći će.
 korak	stap	word	schritt:korak
 Prvi korak je uvijek najteži.	De eerste stap is altijd de moeilijkste.	word	der erste schritt ist immer der schwerste.:Prvi korak je uvijek najteži.
-život	het leven	word	das leben:život
 Život na selu je miran.	Het leven op het dorp is rustig.	word	das leben auf dem dorf ist ruhig.:Život na selu je miran.
 smrt	dood	word	tod:smrt
 Njegova smrt nas je sve potresla.	Zijn dood heeft ons allemaal geschokt.	word	sein tod hat uns alle erschüttert.:Njegova smrt nas je sve potresla.
@@ -3785,7 +3813,6 @@ pojam	begrip / benul	word	begriff / ahnung:pojam
 Nemam pojma gdje su ključevi.	Ik heb geen idee waar de sleutels zijn.	word	ich habe keine ahnung, wo die schlüssel sind.:Nemam pojma gdje su ključevi.
 pamet	verstand	word	verstand:pamet
 Ima novca, ali nema pameti.	Hij heeft geld, maar geen verstand.	word	er hat geld, aber keinen verstand.:Ima novca, ali nema pameti.
-problem	probleem	word	problem:problem
 To nije moj problem.	Dat is niet mijn probleem.	word	das ist nicht mein problem.:To nije moj problem.
 rješenje	oplossing	word	lösung:rješenje
 Za svaki problem postoji rješenje.	Voor elk probleem is er een oplossing.	word	für jedes problem gibt es eine lösung.:Za svaki problem postoji rješenje.
@@ -3845,9 +3872,7 @@ aktivnost	activiteit	word	aktivität:aktivnost
 Djeca imaju mnogo aktivnosti poslije škole.	De kinderen hebben na school veel activiteiten.	word	die kinder haben nach der schule viele aktivitäten.:Djeca imaju mnogo aktivnosti poslije škole.
 poteškoća	kleine moeilijkheid	word	kleine schwierigkeit:poteškoća
 Imam male poteškoće s internetom.	Ik heb kleine problemen met het internet.	word	ich habe kleine probleme mit dem internet.:Imam male poteškoće s internetom.
-osoba	persoon	word	person:osoba
 Rezervisao sam sto za četiri osobe.	Ik heb een tafel voor vier personen gereserveerd.	word	ich habe einen tisch für vier personen reserviert.:Rezervisao sam sto za četiri osobe.
-roditelji	ouders	word	eltern:roditelji
 Moji roditelji žive u Sarajevu.	Mijn ouders wonen in Sarajevo.	word	meine eltern leben in sarajevo.:Moji roditelji žive u Sarajevu.
 supruga	echtgenote (formeel)	word	ehefrau (förmlich):supruga
 Ovo je moja supruga, Amra.	Dit is mijn vrouw, Amra.	word	das ist meine frau, amra.:Ovo je moja supruga, Amra.
@@ -4102,19 +4127,12 @@ dova	islamitische smeekbede	word	muslimisches bittgebet:dova
 Moja nana svako veče uči dovu.	Mijn oma zegt elke avond een smeekbede.	word	meine oma spricht jeden abend ein bittgebet.:Moja nana svako veče uči dovu.
 mezarje	moslimbegraafplaats	word	muslimischer friedhof:mezarje
 Mezarje je iznad sela.	De begraafplaats ligt boven het dorp.	word	der friedhof liegt oberhalb des dorfes.:Mezarje je iznad sela.
-hrana	eten / voedsel	word	essen / nahrung:hrana
 Domaća hrana je najbolja.	Zelfgemaakt eten is het lekkerst.	word	selbstgemachtes essen ist am besten.:Domaća hrana je najbolja.
-piće	drankje	word	getränk:piće
 Šta ćete za piće?	Wat wilt u drinken?	word	was möchten sie trinken?:Šta ćete za piće?
-ime	naam	word	name:ime
 Kako se piše tvoje ime?	Hoe schrijf je jouw naam?	word	wie schreibt man deinen namen?:Kako se piše tvoje ime?
-prezime	achternaam	word	nachname:prezime
 Napišite ovdje svoje prezime.	Schrijf hier uw achternaam.	word	schreiben sie hier ihren nachnamen hin.:Napišite ovdje svoje prezime.
-adresa	adres	word	adresse:adresa
 Koja je tvoja nova adresa?	Wat is je nieuwe adres?	word	wie lautet deine neue adresse?:Koja je tvoja nova adresa?
-telefon	telefoon	word	telefon:telefon
 Ostavio sam telefon kod kuće.	Ik heb mijn telefoon thuis laten liggen.	word	ich habe das telefon zu hause gelassen.:Ostavio sam telefon kod kuće.
-priča	verhaal	word	geschichte (erzählung):priča
 To je duga priča.	Dat is een lang verhaal.	word	das ist eine lange geschichte.:To je duga priča.
 informacija	informatie	word	information:informacija
 Treba mi više informacija.	Ik heb meer informatie nodig.	word	ich brauche mehr informationen.:Treba mi više informacija.
@@ -4180,9 +4198,7 @@ negativan	negatief	word	negativ:negativan
 Nalaz je negativan, hvala Bogu.	De uitslag is negatief, godzijdank.	word	der befund ist negativ, gott sei dank.:Nalaz je negativan, hvala Bogu.
 jasan	duidelijk	word	klar:jasan
 Je li ti sada jasno?	Is het je nu duidelijk?	word	ist es dir jetzt klar?:Je li ti sada jasno?
-sav	heel / al	word	ganz / all:sav
 Djeca su popila sav sok.	De kinderen hebben al het sap opgedronken.	word	die kinder haben den ganzen saft getrunken.:Djeca su popila sav sok.
-cijeli	heel (m.)	word	ganz (der ganze):cijeli
 Cijeli grad je bez struje.	De hele stad zit zonder stroom.	word	die ganze stadt ist ohne strom.:Cijeli grad je bez struje.
 mnogi	vele	word	viele:mnogi
 Mnogi su otišli u Njemačku.	Velen zijn naar Duitsland gegaan.	word	viele sind nach deutschland gegangen.:Mnogi su otišli u Njemačku.
@@ -4288,15 +4304,10 @@ hitan	dringend	word	dringend:hitan
 Moram ti nešto hitno reći.	Ik moet je dringend iets zeggen.	word	ich muss dir dringend etwas sagen.:Moram ti nešto hitno reći.
 čest	veelvoorkomend	word	häufig:čest
 To je česta greška.	Dat is een veelgemaakte fout.	word	das ist ein häufiger fehler.:To je česta greška.
-tu	hier vlakbij / hierzo	word	da / hier:tu
 Ostavi torbu tu, pored vrata.	Laat de tas daar, naast de deur.	word	lass die tasche da, neben der tür.:Ostavi torbu tu, pored vrata.
-ovdje	hier	word	hier:ovdje
 Živim ovdje već deset godina.	Ik woon hier al tien jaar.	word	ich wohne hier schon seit zehn jahren.:Živim ovdje već deset godina.
-tamo	daar	word	dort:tamo
 Bio sam tamo prošle godine.	Ik was er vorig jaar.	word	ich war letztes jahr dort.:Bio sam tamo prošle godine.
-gore	daarboven	word	oben:gore
 Djeca se igraju gore u sobi.	De kinderen spelen boven op de kamer.	word	die kinder spielen oben im zimmer.:Djeca se igraju gore u sobi.
-dolje	beneden	word	unten:dolje
 Čekam te dolje, ispred zgrade.	Ik wacht beneden op je, voor het gebouw.	word	ich warte unten auf dich, vor dem gebäude.:Čekam te dolje, ispred zgrade.
 negdje	ergens	word	irgendwo:negdje
 Negdje sam ostavio ključeve.	Ik heb de sleutels ergens laten liggen.	word	ich habe die schlüssel irgendwo liegen lassen.:Negdje sam ostavio ključeve.
@@ -4306,9 +4317,7 @@ naprijed	vooruit / naar voren	word	vorwärts / nach vorne:naprijed
 Samo naprijed, ne boj se!	Vooruit maar, wees niet bang!	word	nur zu, hab keine angst!:Samo naprijed, ne boj se!
 nazad	terug	word	zurück:nazad
 Kad ideš nazad u Njemačku?	Wanneer ga je terug naar Duitsland?	word	wann gehst du zurück nach deutschland?:Kad ideš nazad u Njemačku?
-onda	dan	word	dann:onda
 Prvo ručak, onda kahva.	Eerst de lunch, dan de koffie.	word	erst das mittagessen, dann der kaffee.:Prvo ručak, onda kahva.
-zatim	daarna	word	danach:zatim
 Večerali smo, a zatim smo gledali film.	We hebben gegeten en daarna een film gekeken.	word	wir haben zu abend gegessen und danach einen film geschaut.:Večerali smo, a zatim smo gledali film.
 nekad	soms / vroeger	word	manchmal / früher:nekad
 Nekad smo živjeli u Tuzli.	Vroeger woonden we in Tuzla.	word	früher haben wir in tuzla gelebt.:Nekad smo živjeli u Tuzli.
@@ -4316,19 +4325,15 @@ odjednom	plotseling	word	plötzlich:odjednom
 Odjednom je nestala struja.	Plotseling viel de stroom uit.	word	plötzlich ist der strom ausgefallen.:Odjednom je nestala struja.
 davno	lang geleden	word	vor langer zeit:davno
 To je bilo davno, ne sjećam se.	Dat is lang geleden, ik herinner het me niet.	word	das ist lange her, ich erinnere mich nicht.:To je bilo davno, ne sjećam se.
-stalno	voortdurend	word	ständig:stalno
 Stalno mislim na tebe.	Ik denk voortdurend aan je.	word	ich denke ständig an dich.:Stalno mislim na tebe.
 trenutno	momenteel / op dit moment	word	momentan / gerade:trenutno
 Trenutno nisam kod kuće.	Ik ben op dit moment niet thuis.	word	ich bin gerade nicht zu hause.:Trenutno nisam kod kuće.
-prvo	eerst	word	zuerst:prvo
 Prvo operi ruke, pa onda jedi.	Was eerst je handen en eet dan.	word	wasch dir zuerst die hände und iss dann.:Prvo operi ruke, pa onda jedi.
 skoro	bijna / binnenkort	word	fast / bald:skoro
 Skoro sam zaboravio tvoj rođendan.	Ik was bijna je verjaardag vergeten.	word	ich hätte fast deinen geburtstag vergessen.:Skoro sam zaboravio tvoj rođendan.
-tako	zo	word	so:tako
 Zašto tako kasno dolaziš kući?	Waarom kom je zo laat thuis?	word	warum kommst du so spät nach hause?:Zašto tako kasno dolaziš kući?
 ovako	zo (zoals hier)	word	so (wie hier):ovako
 Gledaj, to se radi ovako.	Kijk, zo doe je dat.	word	schau, das macht man so.:Gledaj, to se radi ovako.
-vrlo / veoma	zeer (voor eigenschappen)	word	sehr (vor eigenschaften):vrlo / veoma
 Ovo je vrlo važno za mene.	Dit is zeer belangrijk voor mij.	word	das ist sehr wichtig für mich.:Ovo je vrlo važno za mene.
 toliko	zoveel	word	so viel:toliko
 Nano, ne mogu toliko pojesti!	Oma, zoveel kan ik niet eten!	word	oma, so viel kann ich nicht essen!:Nano, ne mogu toliko pojesti!
@@ -4340,7 +4345,6 @@ nekako	op de een of andere manier	word	irgendwie:nekako
 Nekako ćemo se snaći.	We redden het wel op de een of andere manier.	word	irgendwie kommen wir schon zurecht.:Nekako ćemo se snaći.
 pomalo	een beetje (enigszins)	word	ein wenig:pomalo
 Već pomalo govorim bosanski.	Ik spreek al een beetje Bosnisch.	word	ich spreche schon ein wenig bosnisch.:Već pomalo govorim bosanski.
-rado	graag	word	gern:rado
 Rado ću ti pomoći.	Ik help je graag.	word	ich helfe dir gern.:Rado ću ti pomoći.
 otprilike	ongeveer	word	ungefähr:otprilike
 Stižemo za otprilike sat vremena.	We komen over ongeveer een uur aan.	word	wir kommen in ungefähr einer stunde an.:Stižemo za otprilike sat vremena.
@@ -4372,9 +4376,7 @@ svakako	in ieder geval	word	auf jeden fall:svakako
 Svakako ću ti se javiti.	Ik laat in ieder geval iets van me horen.	word	ich melde mich auf jeden fall bei dir.:Svakako ću ti se javiti.
 valjda	wel / vermoedelijk	word	wohl / vermutlich:valjda
 Valjda će sve biti dobro.	Het komt wel allemaal goed.	word	es wird wohl alles gut werden.:Valjda će sve biti dobro.
-kao	als / zoals	word	wie / als:kao
 Spavao sam kao beba.	Ik heb geslapen als een baby.	word	ich habe wie ein baby geschlafen.:Spavao sam kao beba.
-pa	en dan / dus	word	und dann / also:pa
 Završi zadaću pa idi vani.	Maak je huiswerk af en ga dan naar buiten.	word	mach deine hausaufgaben fertig und geh dann raus.:Završi zadaću pa idi vani.
 što	wat / dat (in een bijzin)	word	was / dass (im nebensatz):što
 Žao mi je što kasnim.	Het spijt me dat ik te laat ben.	word	es tut mir leid, dass ich zu spät komme.:Žao mi je što kasnim.
@@ -4396,7 +4398,6 @@ pošto	aangezien / nadat	word	da / nachdem:pošto
 Pošto pada kiša, ostajemo kod kuće.	Aangezien het regent, blijven we thuis.	word	da es regnet, bleiben wir zu hause.:Pošto pada kiša, ostajemo kod kuće.
 neka	moet / moge	word	soll / möge:neka
 Neka sačeka pet minuta.	Hij moet maar vijf minuten wachten.	word	er soll fünf minuten warten.:Neka sačeka pet minuta.
-evo	hier is / daar is	word	hier ist / da ist:evo
 Evo ti ključevi od stana.	Hier heb je de sleutels van de woning.	word	hier hast du die wohnungsschlüssel.:Evo ti ključevi od stana.
 po	na / per	word	nach / pro:po
 Ulaz košta pet maraka po osobi.	De toegang kost vijf mark per persoon.	word	der eintritt kostet fünf mark pro person.:Ulaz košta pet maraka po osobi.
@@ -4428,7 +4429,6 @@ radi	vanwege / omwille van	word	wegen / um … willen:radi
 Radi djece ostajemo ovdje.	Omwille van de kinderen blijven we hier.	word	der kinder wegen bleiben wir hier.:Radi djece ostajemo ovdje.
 sebe	zich	word	sich:sebe
 On misli samo na sebe.	Hij denkt alleen aan zichzelf.	word	er denkt nur an sich.:On misli samo na sebe.
-taj	die (daar)	word	dieser (da):taj
 Ko je taj čovjek?	Wie is die man?	word	wer ist dieser mann?:Ko je taj čovjek?
 svoj	eigen (mijn, jouw, zijn)	word	eigener (mein, dein, sein):svoj
 Uzmi svoju torbu, idemo!	Pak je tas, we gaan!	word	nimm deine tasche, wir gehen!:Uzmi svoju torbu, idemo!

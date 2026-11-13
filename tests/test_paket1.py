@@ -78,10 +78,11 @@ def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektion_zehn_mit_zehn_leveln(grunddaten):
-    sektion = grunddaten["sektionen"][9]
+def test_sektion_zehn_mit_zehn_leveln(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
+    sektion = grunddaten["sektionen"][10]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
     assert sektion["id"] == "tunlassen"
-    assert sektion["label"] == "Sektion 10 · Tun und Lassen"
+    assert sektion["label"] == "Sektion 2 · Tun und Lassen" and sektion["stufe"] == "B1"
     level = _level(grunddaten)
     assert [k["id"] for k in level] == list(WOERTER)
     assert all(k["sektion"] == "tunlassen" for k in level)
