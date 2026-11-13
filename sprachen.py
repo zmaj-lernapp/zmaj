@@ -5463,6 +5463,11 @@ IOS_RECHT = {
              'Dieses Recht bleibt dir auch dann, wenn du die Vollversion schon benutzt hast.'),
             ('Am einfachsten widerrufst du über Google Play; dort läuft auch die Erstattung.',
              'Am einfachsten widerrufst du bei Apple unter reportaproblem.apple.com; dort läuft auch die Erstattung.'),
+            # Konto (Patch b, nach Ajdins Ja): Auf iOS gibt es "Spaeter"
+            # (anmSpaeterHeute), das Konto sichert den Lernstand. Fuer
+            # Android bleibt "Zum Lernen" richtig, dort ist es Pflicht.
+            ('Zum Lernen brauchst du ein Konto bei Zmaj.',
+             'Damit dein Lernstand gesichert wird, brauchst du ein Konto bei Zmaj.'),
         ],
         'datenschutz': [
             # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
@@ -5500,8 +5505,18 @@ IOS_RECHT = {
              'Auf deinem Gerät: solange die App installiert ist; der Anmeldeschlüssel im Schlüsselbund auch darüber hinaus, bis du dich in der App abmeldest oder dort das Konto löschst.'),
             ('Die Daten auf dem Gerät löschst du auch, indem du die App löschst oder ihren Speicher leerst.',
              'Die Daten auf dem Gerät löschst du auch, indem du die App löschst – bis auf den Anmeldeschlüssel im Schlüsselbund: Der bleibt erhalten, bei eingeschaltetem iCloud-Schlüsselbund auch auf deinen anderen Geräten, bis du dich in der App abmeldest oder dort das Konto löschst. Installierst du die App neu, bist du mit ihm gleich wieder angemeldet.'),
+            # Konto (Patch b): Abschnitt 2 und 3 wie in den Nutzungsbedingungen.
+            ('Zum Lernen in der App brauchst du ein <b>Konto bei Zmaj</b>;',
+             'Damit dein Lernstand gesichert wird, brauchst du ein <b>Konto bei Zmaj</b>;'),
+            ('Das Konto ist Voraussetzung für die Nutzung der App;',
+             'Das Konto ist Voraussetzung für die Sicherung deines Lernstands;'),
         ],
         'werbung': [
+            # Absturzberichte (Patch a, nach Ajdins Ja): Googles Angaben fuer
+            # iOS fuehren sie als eigene Datenart (nicht nutzerbezogen),
+            # die fuer Android nicht. Darum nur hier.
+            ('Startzeit, Hänger und Energieverbrauch.',
+             'Startzeit, Hänger und Energieverbrauch, dazu Absturzberichte ohne Bezug zu dir.'),
             ('<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen.',
              '<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen. Auf iPhone und iPad fragt danach Apple, ob die App dich über Apps und Websites anderer Firmen hinweg verfolgen darf (App-Tracking-Transparenz); nur mit deinem Ja bekommt Google die Werbe-ID. Ändern kannst du das jederzeit in den Einstellungen deines Geräts unter Datenschutz & Sicherheit → Tracking.'),
         ],
@@ -5539,6 +5554,8 @@ IOS_RECHT = {
              'This right stays with you even if you have already used the full version.'),
             ('The easiest way to withdraw is through Google Play; the refund is handled there too.',
              'The easiest way to withdraw is through Apple at reportaproblem.apple.com; the refund is handled there too.'),
+            ('To learn you need a Zmaj account.',
+             'So that your progress is backed up, you need a Zmaj account.'),
         ],
         'datenschutz': [
             # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
@@ -5576,8 +5593,14 @@ IOS_RECHT = {
              'On your device: as long as the app is installed; the sign-in key in the keychain also beyond that, until you sign out in the app or delete the account there.'),
             ('You can also delete the data on the device by deleting the app or clearing its storage.',
              'You can also delete the data on the device by deleting the app – except for the sign-in key in the keychain: it stays, with iCloud Keychain turned on also on your other devices, until you sign out in the app or delete the account there. If you reinstall the app, the key signs you straight back in.'),
+            ('To learn in the app you need a <b>Zmaj account</b>;',
+             'So that your progress is backed up, you need a <b>Zmaj account</b>;'),
+            ('The account is required to use the app;',
+             'The account is required for backing up your progress;'),
         ],
         'werbung': [
+            ('start-up time, freezes and battery use.',
+             'start-up time, freezes and battery use, plus crash reports that are not linked to you.'),
             ('<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests.',
              "<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests. On iPhone and iPad, Apple then asks whether the app may track you across apps and websites owned by other companies (App Tracking Transparency); only if you say yes does Google receive the advertising ID. You can change this at any time in your device's Settings under Privacy & Security → Tracking."),
         ],
@@ -5615,6 +5638,8 @@ IOS_RECHT = {
              'Tam sürümü kullanmaya başlamış olsan da bu hakkın devam eder.'),
             ('En kolayı Google Play üzerinden caymaktır; geri ödeme de orada yapılır.',
              'En kolayı Apple üzerinden, reportaproblem.apple.com adresinde caymaktır; geri ödeme de orada yapılır.'),
+            ('Öğrenmek için bir Zmaj hesabına ihtiyacın var.',
+             'İlerlemenin yedeklenmesi için bir Zmaj hesabına ihtiyacın var.'),
         ],
         'datenschutz': [
             # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
@@ -5652,8 +5677,14 @@ IOS_RECHT = {
              'Cihazında: uygulama yüklü olduğu sürece; anahtar zincirindeki giriş anahtarı ise bundan sonra da, uygulamada çıkış yapana ya da hesabını orada silene kadar.'),
             ('Cihazdaki verileri uygulamayı silerek ya da depolamasını temizleyerek de silebilirsin.',
              'Cihazdaki verileri uygulamayı silerek de silebilirsin – anahtar zincirindeki giriş anahtarı hariç: O, uygulamada çıkış yapana ya da hesabını orada silene kadar kalır; iCloud Anahtar Zinciri açıksa diğer cihazlarında da. Uygulamayı yeniden yüklersen bu anahtarla hemen yeniden girişli olursun.'),
+            ('Uygulamada öğrenmek için bir <b>Zmaj hesabına</b> ihtiyacın var;',
+             'İlerlemenin yedeklenmesi için bir <b>Zmaj hesabına</b> ihtiyacın var;'),
+            ('Hesap, uygulamayı kullanmanın ön koşuludur;',
+             'Hesap, ilerlemenin yedeklenmesinin ön koşuludur;'),
         ],
         'werbung': [
+            ('başlatma süresi, takılmalar ve pil tüketimi.',
+             'başlatma süresi, takılmalar ve pil tüketimi; ayrıca seninle ilişkilendirilmeyen çökme raporları.'),
             ('<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar.',
              "<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar. iPhone ve iPad'de ardından Apple, uygulamanın seni başka şirketlerin uygulama ve web sitelerinde izleyip izleyemeyeceğini sorar (Uygulama İzleme Şeffaflığı); Google reklam kimliğini yalnızca sen evet dersen alır. Bunu istediğin zaman cihazının Ayarlar'ında Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin."),
         ],
@@ -5691,6 +5722,8 @@ IOS_RECHT = {
              'Ångerrätten har du kvar även om du redan har använt fullversionen.'),
             ('Enklast ångrar du dig via Google Play; där sker också återbetalningen.',
              'Enklast ångrar du dig hos Apple på reportaproblem.apple.com; där sker också återbetalningen.'),
+            ('För att lära dig behöver du ett Zmaj-konto.',
+             'För att dina framsteg ska säkerhetskopieras behöver du ett Zmaj-konto.'),
         ],
         'datenschutz': [
             # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
@@ -5728,8 +5761,14 @@ IOS_RECHT = {
              'På din enhet: så länge appen är installerad; inloggningsnyckeln i nyckelringen även därefter, tills du loggar ut i appen eller raderar kontot där.'),
             ('Uppgifterna på enheten raderar du också genom att avinstallera appen eller tömma dess lagring.',
              'Uppgifterna på enheten raderar du också genom att avinstallera appen – utom inloggningsnyckeln i nyckelringen: den finns kvar, med iCloud-nyckelring påslagen även på dina andra enheter, tills du loggar ut i appen eller raderar kontot där. Installerar du om appen är du tack vare den direkt inloggad igen.'),
+            ('För att lära dig i appen behöver du ett <b>Zmaj-konto</b>;',
+             'För att dina framsteg ska säkerhetskopieras behöver du ett <b>Zmaj-konto</b>;'),
+            ('Kontot är en förutsättning för att använda appen;',
+             'Kontot är en förutsättning för att dina framsteg ska säkerhetskopieras;'),
         ],
         'werbung': [
+            ('starttid, hängningar och batteriförbrukning.',
+             'starttid, hängningar och batteriförbrukning, dessutom kraschrapporter som inte är kopplade till dig.'),
             ('<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen.',
              '<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen. På iPhone och iPad frågar Apple sedan om appen får spåra dig i appar och på webbplatser som tillhör andra företag (App Tracking Transparency); bara om du svarar ja får Google annons-id:t. Du kan ändra det när som helst i enhetens Inställningar under Integritet och säkerhet → Spårning.'),
         ],
@@ -5767,6 +5806,8 @@ IOS_RECHT = {
              'Dat recht houd je ook als je de volledige versie al gebruikt hebt.'),
             ('Het eenvoudigst herroep je via Google Play; daar loopt ook de terugbetaling.',
              'Het eenvoudigst herroep je bij Apple via reportaproblem.apple.com; daar loopt ook de terugbetaling.'),
+            ('Om te leren heb je een Zmaj-account nodig.',
+             'Voor de back-up van je voortgang heb je een Zmaj-account nodig.'),
         ],
         'datenschutz': [
             # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
@@ -5804,8 +5845,14 @@ IOS_RECHT = {
              'Op je apparaat: zolang de app geïnstalleerd is; de inlogsleutel in de sleutelhanger ook daarna, tot je in de app uitlogt of daar het account verwijdert.'),
             ('De gegevens op het apparaat wis je ook door de app te verwijderen of de opslag ervan te wissen.',
              'De gegevens op het apparaat wis je ook door de app te verwijderen – behalve de inlogsleutel in de sleutelhanger: die blijft bewaard, met de iCloud-sleutelhanger aan ook op je andere apparaten, tot je in de app uitlogt of daar het account verwijdert. Installeer je de app opnieuw, dan ben je daarmee meteen weer ingelogd.'),
+            ('Om in de app te leren heb je een <b>Zmaj-account</b> nodig;',
+             'Voor de back-up van je voortgang heb je een <b>Zmaj-account</b> nodig;'),
+            ('Het account is een voorwaarde om de app te gebruiken;',
+             'Het account is een voorwaarde voor de back-up van je voortgang;'),
         ],
         'werbung': [
+            ('opstarttijd, haperingen en batterijverbruik.',
+             'opstarttijd, haperingen en batterijverbruik, plus crashrapporten die niet aan jou gekoppeld zijn.'),
             ('<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden.',
              '<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden. Op iPhone en iPad vraagt Apple daarna of de app je mag volgen in apps en op websites van andere bedrijven (App Tracking Transparency); alleen als je ja zegt, krijgt Google de advertentie-ID. Je kunt dat altijd wijzigen in de Instellingen van je apparaat onder Privacy en beveiliging → Tracking.'),
         ],
@@ -5843,6 +5890,8 @@ IOS_RECHT = {
              'Denne retten beholder du også når du allerede har brukt fullversjonen.'),
             ('Enklest angrer du gjennom Google Play; refusjonen går også den veien.',
              'Enklest angrer du hos Apple på reportaproblem.apple.com; refusjonen går også den veien.'),
+            ('For å lære trenger du en Zmaj-konto.',
+             'For at framgangen din skal sikkerhetskopieres, trenger du en Zmaj-konto.'),
         ],
         'datenschutz': [
             # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
@@ -5880,8 +5929,14 @@ IOS_RECHT = {
              'På enheten din: så lenge appen er installert; innloggingsnøkkelen i nøkkelringen også etter det, til du logger ut i appen eller sletter kontoen der.'),
             ('Dataene på enheten sletter du også ved å slette appen eller tømme lagringen dens.',
              'Dataene på enheten sletter du også ved å slette appen – bortsett fra innloggingsnøkkelen i nøkkelringen: den blir liggende, med iCloud-nøkkelring slått på også på de andre enhetene dine, til du logger ut i appen eller sletter kontoen der. Installerer du appen på nytt, er du dermed straks innlogget igjen.'),
+            ('For å lære i appen trenger du en <b>Zmaj-konto</b>;',
+             'For at framgangen din skal sikkerhetskopieres, trenger du en <b>Zmaj-konto</b>;'),
+            ('Kontoen er en forutsetning for å bruke appen;',
+             'Kontoen er en forutsetning for sikkerhetskopien av framgangen din;'),
         ],
         'werbung': [
+            ('oppstartstid, heng og batteriforbruk.',
+             'oppstartstid, heng og batteriforbruk, i tillegg krasjrapporter som ikke er knyttet til deg.'),
             ('<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine.',
              '<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine. På iPhone og iPad spør Apple deretter om appen får spore deg på tvers av apper og nettsteder som tilhører andre selskaper (Gjennomsiktighet for appsporing); bare hvis du sier ja, får Google annonse-ID-en. Du kan endre det når som helst i Innstillinger på enheten under Personvern og sikkerhet → Sporing.'),
         ],
@@ -5919,6 +5974,8 @@ IOS_RECHT = {
              'Den ret beholder du, også selv om du allerede har brugt den fulde version.'),
             ('Nemmest fortryder du gennem Google Play; dér foregår refusionen også.',
              'Nemmest fortryder du hos Apple på reportaproblem.apple.com; dér foregår refusionen også.'),
+            ('For at lære skal du bruge en Zmaj-konto.',
+             'For at din fremgang kan sikkerhedskopieres, skal du bruge en Zmaj-konto.'),
         ],
         'datenschutz': [
             # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
@@ -5956,8 +6013,14 @@ IOS_RECHT = {
              'På din enhed: så længe appen er installeret; loginnøglen i nøgleringen også derefter, indtil du logger ud i appen eller sletter kontoen dér.'),
             ('Dataene på enheden sletter du også ved at slette appen eller rydde dens lagrede data.',
              'Dataene på enheden sletter du også ved at slette appen – bortset fra loginnøglen i nøgleringen: den bliver liggende, med iCloud-nøglering slået til også på dine andre enheder, indtil du logger ud i appen eller sletter kontoen dér. Installerer du appen igen, er du dermed straks logget ind igen.'),
+            ('For at lære i appen skal du bruge en <b>Zmaj-konto</b>;',
+             'For at din fremgang kan sikkerhedskopieres, skal du bruge en <b>Zmaj-konto</b>;'),
+            ('Kontoen er en forudsætning for at bruge appen;',
+             'Kontoen er en forudsætning for sikkerhedskopien af din fremgang;'),
         ],
         'werbung': [
+            ('opstartstid, hængninger og batteriforbrug.',
+             'opstartstid, hængninger og batteriforbrug, desuden nedbrudsrapporter, der ikke er knyttet til dig.'),
             ('<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser.',
              "<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser. På iPhone og iPad spørger Apple derefter, om appen må spore dig på tværs af apps og websteder, der tilhører andre virksomheder (Gennemsigtighed i appsporing); kun hvis du siger ja, får Google annonce-id'et. Du kan til enhver tid ændre det i enhedens Indstillinger under Anonymitet & sikkerhed → Sporing."),
         ],
@@ -5997,6 +6060,8 @@ IOS_RECHT = {
              'Tu conserves ce droit même si tu as déjà utilisé la version complète.'),
             ("Le plus simple est de te rétracter via Google Play\xa0; c'est là que se fait aussi le remboursement.",
              "Le plus simple est de te rétracter auprès d'Apple sur reportaproblem.apple.com ; c'est là que se fait aussi le remboursement."),
+            ('Pour apprendre, il te faut un compte Zmaj.',
+             'Pour que ta progression soit sauvegardée, il te faut un compte Zmaj.'),
         ],
         'datenschutz': [
             # Feedback (seit 01.11.2026, Stand 1.3): den Vorschlag nach der eigenen
@@ -6034,8 +6099,14 @@ IOS_RECHT = {
              "Sur ton appareil : tant que l'application est installée ; la clé de connexion dans le trousseau, même au-delà, jusqu'à ce que tu te déconnectes dans l'application ou que tu y supprimes le compte."),
             ("Tu peux aussi effacer les données de l'appareil en supprimant l'application ou en vidant sa mémoire.",
              "Tu peux aussi effacer les données de l'appareil en supprimant l'application – sauf la clé de connexion dans le trousseau : elle reste, sur tes autres appareils aussi si le trousseau iCloud est activé, jusqu'à ce que tu te déconnectes dans l'application ou que tu y supprimes le compte. Si tu réinstalles l'application, cette clé te reconnecte aussitôt."),
+            ("Pour apprendre dans l'application, il te faut un <b>compte Zmaj</b> ;",
+             'Pour que ta progression soit sauvegardée, il te faut un <b>compte Zmaj</b> ;'),
+            ("Le compte est une condition pour utiliser l'application ;",
+             'Le compte est une condition pour sauvegarder ta progression ;'),
         ],
         'werbung': [
+            ('temps de démarrage, blocages et consommation de batterie.',
+             'temps de démarrage, blocages et consommation de batterie, ainsi que des rapports de plantage qui ne sont pas liés à toi.'),
             ("<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt.",
              "<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt. Sur iPhone et iPad, Apple te demande ensuite si l'application peut te suivre dans les apps et sur les sites web d'autres entreprises (transparence du suivi des apps) ; Google ne reçoit l'identifiant publicitaire que si tu dis oui. Tu peux le modifier à tout moment dans les Réglages de ton appareil, sous Confidentialité et sécurité → Suivi."),
         ],
