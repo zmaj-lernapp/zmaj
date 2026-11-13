@@ -4971,9 +4971,10 @@ const getrageneFarbe = () => getragenListe()
    Zeitraeume (jeweils einschliesslich):
      Weihnachten  1. Dezember bis 7. Januar - Weihnachten, Neujahr und das
                   orthodoxe Weihnachten am 7. Januar
-     Ostern       Palmsonntag vor dem katholischen Ostern bis zum
-                  orthodoxen Ostermontag. Fallen beide auf einen Tag, ist
-                  das gut eine Woche, sonst bis zu sechs.
+     Ostern       je Palmsonntag bis Ostermontag, katholisch und orthodox
+                  (seit 13.11.2026). Fallen beide zusammen, sind es 9 Tage,
+                  liegen sie eine Woche auseinander 16, sonst zwei getrennte
+                  Wochen.
      Bajram       Ramazanski drei Tage, Kurban vier Tage, ab dem ersten Tag
                   laut Islamischer Gemeinschaft in BiH. Bajram wandert jedes
                   Jahr um elf Tage nach vorn und laesst sich nicht wie
@@ -5034,8 +5035,17 @@ function osternOst(j){
   return tagNr(j, Math.floor(n / 31), n % 31 + 1) + 13;
 }
 function festZeiten(j){
-  const z = [{id: 'weihnachten', von: tagNr(j, 12, 1), bis: tagNr(j + 1, 1, 7)},
-             {id: 'ostern', von: osternWest(j) - 7, bis: osternOst(j) + 1}];
+  const z = [{id: 'weihnachten', von: tagNr(j, 12, 1), bis: tagNr(j + 1, 1, 7)}];
+  /* Ostern: je eine Woche um jedes Ostern, Palmsonntag bis Ostermontag,
+     katholisch und orthodox. Ajdin, 13.11.2026: "mach kuerzen ostern" -
+     vorher lief es vom katholischen Palmsonntag bis zum orthodoxen
+     Ostermontag am Stueck, 2027 waeren das 44 Tage gewesen. Liegen beide
+     Wochen aneinander oder ueberlappen sie, wird ein Zeitraum daraus
+     (2026: 29.03.-13.04.); sonst sind es zwei (2027: 21.-29.03. und
+     25.04.-03.05.), dazwischen gibt es kein Osterkostuem. */
+  const ow = osternWest(j), oo = osternOst(j);
+  if(oo - 7 <= ow + 2) z.push({id: 'ostern', von: ow - 7, bis: oo + 1});
+  else z.push({id: 'ostern', von: ow - 7, bis: ow + 1}, {id: 'ostern', von: oo - 7, bis: oo + 1});
   if(j >= 2027) z.push({id: 'halloween', von: tagNr(j, 10, 24), bis: tagNr(j, 10, 31)});
   BAJRAM.forEach(([tag, dauer]) => {
     const [y, m, d] = tag.split('-').map(Number);
