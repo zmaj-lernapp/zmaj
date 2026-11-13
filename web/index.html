@@ -4100,8 +4100,16 @@ const hoechsterBestanden = () => {
    trotzdem von vorn lernt, siehe firstOpen.
    Seit 13.11.2026 genauso der Sprung-Test in einen Reiter (sprungIndex):
    offen ist alles bis zum ersten Level des Reiters. Alle drei Grenzen
-   rechnet freiBis(), zahlLevelHinter() nimmt dieselbe. */
-const freiBis = () => Math.max(hoechsterBestanden() + 1, einstufungIndex(), sprungIndex());
+   rechnet freiBis(), zahlLevelHinter() nimmt dieselbe.
+   Das "plus eins" springt ueber Level, die eine alte Einstufung ohnehin
+   offen haelt (altEingestuftOffen, zweite Pruefung vom 13.11.2026): wer
+   in 1.3 bei "Fragen stellen" eingestiegen ist und Faelle 1 besteht, hat
+   danach Faelle 2 offen wie in 1.3, obwohl Zuhause jetzt dazwischen steht. */
+const freiBis = () => {
+  let n = hoechsterBestanden() + 1;
+  while(altEingestuftOffen(n)) n++;
+  return Math.max(n, einstufungIndex(), sprungIndex());
+};
 /* Angefangene Level bleiben offen (13.11.2026, reiter.md). Seit Zuhause
    hinter Faelle 1 steht, laege ein Level, in dem jemand gerade lernt, sonst
    ploetzlich hinter dem Schloss - wer in "Kueche & Bad" Woerter gelernt,
@@ -4119,8 +4127,25 @@ const isUnlocked = i => {
   return inDerKette(i) || levelAngefangen(i);
 };
 /* Offen ueber die Kette allein, ohne die angefangenen Level. Danach
-   richtet sich, ob ein ganzer Reiter offen ist (stufeStand). */
-const inDerKette = i => allesOffen() || i === 0 || i <= freiBis();
+   richtet sich, ob ein ganzer Reiter offen ist (stufeStand).
+   Dazu kommt, was eine Einstufung von vor den Reitern abgedeckt hat und
+   jetzt hinter ihrem Einstieg liegt (zweite Pruefung vom 13.11.2026). In
+   1.3 fragte Stufe 2 der Einstufung auch "Zuhause" ab (EINSTUFUNG_STUFEN
+   damals: anfassen, tiernatur, zuhause2); wer sie bestand, stieg bei
+   "Fragen stellen" ein und hatte Zuhause offen. Seit Zuhause hinter
+   Faelle 1 steht, waeren die fuenf Level wieder zu und der Reiter A2 mit
+   ihnen - zu oeffnen nur ueber den Sprung-Test, der Leben kostet. Die
+   anderen alten Einstiege (obst, zukunft, einkauf_orte, formell) haben
+   alles, was sie in 1.3 abdeckten, auch jetzt vor sich; nachgerechnet mit
+   der Levelfolge von 1.3 in data/vocabulary.json. Kennungen statt
+   Nummern, wie bei "bestanden". */
+const ALT_EINSTUFUNG_OFFEN = {fragen: ['zuhause2']};
+const altEingestuftOffen = i => {
+  if(!vorDenReiternEingestuft() || !CATEGORIES[i]) return false;
+  const sek = ALT_EINSTUFUNG_OFFEN[einstufung.bis];
+  return !!sek && sek.indexOf(CATEGORIES[i].sektion) >= 0;
+};
+const inDerKette = i => allesOffen() || i === 0 || i <= freiBis() || altEingestuftOffen(i);
 /* "Dran" ist das erste nicht bestandene Level ab dem Einstieg. Danach
    richten sich der Weitermachen-Knopf, die markierte Stelle im Lernpfad,
    die beim Start aufgeklappte Sektion und die Farbe der App.
@@ -4156,17 +4181,36 @@ const inDerKette = i => allesOffen() || i === 0 || i <= freiBis();
    eingestuft wird (einstufung.reiter), hat sie mit A1 und A2 bewusst
    uebersprungen; der Ergebnisschirm sagt ihm "Du steigst in B1 ein", und
    dabei bleibt es. Ebenso nach einem Sprung-Test, der gibt es nur mit den
-   Reitern. */
+   Reitern.
+   Fuer diese alten Einstufungen zaehlen die Grundwort-Level nicht als
+   "vor dem Einstieg bestanden" (zweite Pruefung vom 13.11.2026): sonst
+   galt nach dem ersten bestandenen Grundwort-Level "lernt von vorn", und
+   Weitermachen sprang von "Kleine Woerter" auf Level 1 statt zu "Woerter
+   fuer jeden Tag" bzw. zum Einstieg. Sie liegen ja nur durch das Update
+   vor dem Einstieg; wer sie besteht, hat nicht von vorn angefangen.
+   Was eine alte Einstufung offen haelt, obwohl es jetzt hinter ihrem
+   Einstieg steht (ALT_EINSTUFUNG_OFFEN, bei "fragen" Zuhause), ist
+   ebenso wenig "dran", solange ab dem Einstieg gelernt wird: in 1.3 lag
+   es vor dem Einstieg, Weitermachen fuehrte nie hinein. Wer von vorn
+   lernt, bekommt es in der Reihe. */
 const GRUNDWORT_LEVEL = ['kleine_woerter', 'jeden_tag'];
 const vorDenReiternEingestuft = () => !!(einstufung && einstufung.bis && !einstufung.reiter);
+/* Ab welchem Level "dran" gesucht wird: der Einstieg, oder 0 fuer "lernt
+   von vorn". firstOpen() und naechstesOffenes() rechnen damit. */
+const dranAb = () => {
+  const ein = Math.max(einstufungIndex(), sprungIndex()), alt = vorDenReiternEingestuft();
+  let h = -1;
+  for(let k = CATEGORIES.length - 1; k >= 0; k--)
+    if(passed.has(CATEGORIES[k].id) && !(alt && GRUNDWORT_LEVEL.indexOf(CATEGORIES[k].id) >= 0)){ h = k; break; }
+  return (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;
+};
 const firstOpen = () => {
-  const ein = Math.max(einstufungIndex(), sprungIndex()), h = hoechsterBestanden();
-  const ab = (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;
+  const ab = dranAb();
   if(ab > 0 && vorDenReiternEingestuft()){
     const g = CATEGORIES.findIndex((c, k) => k < ab && GRUNDWORT_LEVEL.indexOf(c.id) >= 0 && !passed.has(c.id));
     if(g >= 0) return g;
   }
-  let i = CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id));
+  let i = CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id) && !(ab > 0 && altEingestuftOffen(k)));
   if(i < 0) i = CATEGORIES.findIndex(c => !passed.has(c.id));
   return i < 0 ? CATEGORIES.length-1 : i;
 };
@@ -14313,9 +14357,24 @@ function showTestQ(){
    bestanden" (Pruefbericht 1.3, G3: nach Level 102 ging es nach 103 statt
    nach 130). Ist alles dahinter bestanden, geht es wie bisher eins weiter.
    Im Zahnarzt-Teil bleibt es innerhalb des Teils, siehe levelEnde().
-   Das Ziel ist immer offen: alles davor bis hierher ist bestanden. */
+   Das Ziel ist immer offen: alles davor bis hierher ist bestanden.
+   Ausnahme seit der zweiten Pruefung vom 13.11.2026: wer vor den Reitern
+   eingestuft wurde und ein Grundwort-Level besteht, geht dorthin, wo
+   Weitermachen steht (firstOpen) - zum anderen Grundwort-Level oder zurueck
+   zum Einstieg, nicht in die Level dahinter, die er mit der Einstufung
+   uebersprungen hat ("Kleine Woerter" fuehrte sonst zu "Faelle 1"). Auch
+   dieses Ziel ist offen: ein Grundwort-Level vor dem Einstieg oder das
+   erste nicht bestandene ab dem Einstieg. Uebersprungen wird wie dort, was
+   eine alte Einstufung offen haelt (altEingestuftOffen): nach "Faelle 1"
+   geht es dann zu "Faelle 2" wie in 1.3, nicht nach "Kueche & Bad". */
 function naechstesOffenes(){
-  for(let k = catIdx + 1; k < levelEnde(); k++) if(!passed.has(levelNach(k).id)) return k;
+  if(!imZa() && vorDenReiternEingestuft() && GRUNDWORT_LEVEL.indexOf(cur().id) >= 0){
+    const f = firstOpen();
+    if(f !== catIdx && CATEGORIES[f] && !passed.has(CATEGORIES[f].id)) return f;
+  }
+  const ab = imZa() ? 0 : dranAb();
+  for(let k = catIdx + 1; k < levelEnde(); k++)
+    if(!passed.has(levelNach(k).id) && !(ab > 0 && altEingestuftOffen(k))) return k;
   return catIdx + 1;
 }
 /* Der Knopf dorthin. Die Levelnummern zaehlen seit 13.11.2026 je Reiter;

@@ -20,11 +20,15 @@ def test_dran_ist_das_erste_nicht_bestandene(index_html):
     rumpf = html.split("const firstOpen = () => {\n")[1].split("\n};\n")[0]
     # Der Einstieg gilt nur, solange davor nichts oder ab ihm schon etwas bestanden ist.
     # Seit 13.11.2026 ist ein bestandener Sprung-Test in einen Reiter auch ein Einstieg.
-    assert "const ein = Math.max(einstufungIndex(), sprungIndex()), h = hoechsterBestanden();" in rumpf
-    assert "const ab = (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;" in rumpf
+    # Das rechnet seit der zweiten Pruefung vom 13.11.2026 dranAb(), weil der
+    # Weiter-Knopf nach dem Test dieselbe Grenze braucht.
+    ab = html.split("const dranAb = () => {\n")[1].split("\n};\n")[0]
+    assert "const ein = Math.max(einstufungIndex(), sprungIndex()), alt = vorDenReiternEingestuft();" in ab
+    assert "return (ein > 0 && (h < 0 || h >= ein)) ? ein : 0;" in ab
+    assert "const ab = dranAb();" in rumpf
     # Vom Startpunkt aus das erste nicht bestandene - nicht h + 1, sonst
     # uebersprang der Knopf eingeschobene Level
-    assert "CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id))" in rumpf
+    assert "CATEGORIES.findIndex((c, k) => k >= ab && !passed.has(c.id)" in rumpf
     assert "h + 1" not in rumpf
 
 

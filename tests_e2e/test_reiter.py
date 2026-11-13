@@ -385,6 +385,87 @@ def test_vor_den_reitern_eingestuft_bekommt_die_grundwoerter(seite, heute_stand,
     assert seite.fehler == []
 
 
+WEITER = """() => { const z = naechstesOffenes();
+    return {ziel: CATEGORIES[z].id, offen: isUnlocked(z), knopf: weiterText(z)}; }"""
+
+
+def test_alte_einstufung_ohne_bestandenes_bleibt_beim_einstieg(seite, heute_stand, ids):
+    """Zweite Prüfung vom 13.11.2026: Wer in 1.3 eingestuft wurde und ab dem
+    Einstieg noch nichts bestanden hat, bekam "Kleine Wörter" als dran - nach
+    dem Bestehen sprang Weitermachen aber auf Level 1 ("basics"), denn
+    hoechsterBestanden() lag jetzt vor dem Einstieg und hieß "lernt von
+    vorn". Der Weiter-Knopf nach dem Test führte zu "Fälle 1". Jetzt zählen
+    die Grundwort-Level dabei nicht mit."""
+    import datetime
+    tag = (datetime.date.today() - datetime.timedelta(days=30)).isoformat()
+    alt = {"tag": tag, "wahl": "gut", "bis": "formell", "richtig": 13, "fragen": 15}
+    for bis in ("formell", "einkauf_orte"):
+        _pfad(seite, heute_stand(einstufung=dict(alt, bis=bis)))
+        assert seite.js(DRAN) == {"dran": "kleine_woerter", "stufe": "A1", "neu": [True, True]}, bis
+        seite.js("() => { passed.add('kleine_woerter'); showHome(); }")
+        assert seite.js(DRAN) == {"dran": "jeden_tag", "stufe": "A2", "neu": [True, True]}, bis
+        seite.js("() => { passed.add('jeden_tag'); showHome(); }")
+        assert seite.js(DRAN)["dran"] == bis
+    # Der Weiter-Knopf nach dem Test geht denselben Weg: Kleine Wörter ->
+    # Wörter für jeden Tag -> Einstieg, nicht in die übersprungenen Level
+    _pfad(seite, heute_stand(einstufung=alt))
+    seite.js("() => { catIdx = CATEGORIES.findIndex(c => c.id === 'kleine_woerter'); passed.add('kleine_woerter'); }")
+    assert seite.js(WEITER) == {"ziel": "jeden_tag", "offen": True, "knopf": "Weiter zu A2 →"}
+    seite.js("() => { catIdx = CATEGORIES.findIndex(c => c.id === 'jeden_tag'); passed.add('jeden_tag'); }")
+    assert seite.js(WEITER) == {"ziel": "formell", "offen": True, "knopf": "Weiter zu B1 →"}
+    # Im echten Test: Kleine Wörter bestehen, Weiter führt zu Wörter für jeden Tag
+    _pfad(seite, heute_stand(einstufung=alt))
+    seite.js("""() => { catIdx = CATEGORIES.findIndex(c => c.id === 'kleine_woerter');
+        cur().words.forEach(w => known.add(w.id)); openLevel(catIdx); startTest(); }""")
+    seite.durchspielen("tBody", "Tx")
+    assert seite.js("() => document.getElementById('tNext').textContent") == "Weiter zu A2 →"
+    seite.page.click("#tNext")
+    assert seite.js("() => cur().id") == "jeden_tag"
+    assert seite.js(DRAN)["dran"] == "jeden_tag"
+    # In A2 eingestuft (bei "zukunft"): Kleine Wörter, dann der Einstieg
+    _pfad(seite, heute_stand(einstufung=dict(alt, bis="zukunft")))
+    assert seite.js(DRAN)["dran"] == "kleine_woerter"
+    seite.js("() => { passed.add('kleine_woerter'); showHome(); }")
+    # Wörter für jeden Tag steht hinter "zukunft" und kommt in der Reihe
+    assert seite.js(DRAN) == {"dran": "zukunft", "stufe": "A2", "neu": [True, False]}
+    assert seite.fehler == []
+
+
+ZUHAUSE = ["kueche_bad", "putzen", "technik", "auto_werkstatt", "geraete"]
+
+
+def test_alte_einstufung_bei_fragen_haelt_zuhause_offen(seite, heute_stand, ids):
+    """Zweite Prüfung vom 13.11.2026: In 1.3 fragte Stufe 2 der Einstufung auch
+    "Zuhause" ab; wer sie bestand, stieg bei "Fragen stellen" ein und hatte
+    die fünf Zuhause-Level offen. Seit Zuhause hinter Fälle 1 steht, waren
+    sie nach dem Update wieder zu und A2 mit ihnen. Jetzt bleiben sie offen,
+    Weitermachen führt wie in 1.3 nicht hinein, und nach Fälle 1 geht es zu
+    Fälle 2."""
+    import datetime
+    tag = (datetime.date.today() - datetime.timedelta(days=30)).isoformat()
+    alt = {"tag": tag, "wahl": "etwas", "bis": "fragen", "richtig": 7, "fragen": 9}
+    offen = """() => { const k = id => CATEGORIES.findIndex(c => c.id === id);
+        return {zuhause: %s.map(id => isUnlocked(k(id))), a2: stufeStand('A2').art,
+                faelle1: isUnlocked(k('faelle1')), faelle2: isUnlocked(k('faelle2'))}; }""" % ZUHAUSE
+    _pfad(seite, heute_stand(einstufung=alt))
+    assert seite.js(offen) == {"zuhause": [True] * 5, "a2": "offen", "faelle1": False, "faelle2": False}
+    assert seite.js(DRAN)["dran"] == "fragen"
+    assert [b["art"] for b in seite.js(LEISTE)] == ["offen", "offen", "zu", "zu", "bald"]
+    # Fragen stellen bis Fälle 1 bestanden: Fälle 2 ist offen und dran, Zuhause bleibt offen
+    _pfad(seite, heute_stand(einstufung=alt, bestanden=ids[ids.index("fragen"):ids.index("faelle1") + 1]))
+    assert seite.js(offen) == {"zuhause": [True] * 5, "a2": "offen", "faelle1": True, "faelle2": True}
+    assert seite.js(DRAN)["dran"] == "faelle2"
+    seite.js("() => { catIdx = CATEGORIES.findIndex(c => c.id === 'faelle1'); }")
+    assert seite.js(WEITER)["ziel"] == "faelle2"
+    # Eingestuft mit den Reitern bleibt es bei der Kette: Zuhause ist dort zu
+    _pfad(seite, heute_stand(einstufung=dict(alt, reiter=True)))
+    assert seite.js(offen) == {"zuhause": [False] * 5, "a2": "zu", "faelle1": False, "faelle2": False}
+    # Andere alte Einstiege halten nichts zusaetzlich offen
+    _pfad(seite, heute_stand(einstufung=dict(alt, bis="zukunft")))
+    assert seite.js("() => isUnlocked(CATEGORIES.findIndex(c => c.id === 'modal'))") is False
+    assert seite.fehler == []
+
+
 def test_mit_den_reitern_eingestuft_bleibt_beim_einstieg(seite, heute_stand, ids):
     """Wer mit den Reitern eingestuft wird, hat A1 und A2 samt Grundwörtern
     übersprungen; der Ergebnisschirm sagt "Du steigst in B1 ein", und dabei

@@ -211,9 +211,11 @@ def _rumpf(html, kopf):
 def test_freischaltung_im_quelltext(index_html):
     html = index_html.replace("\r\n", "\n")
     # eine Kette: Bestanden, Einstufung, Sprung-Test - und angefangene Level bleiben offen
-    assert "const freiBis = () => Math.max(hoechsterBestanden() + 1, einstufungIndex(), sprungIndex());" in html
+    frei = html.split("const freiBis = () => {\n")[1].split("\n};\n")[0]
+    assert "let n = hoechsterBestanden() + 1;" in frei
+    assert "return Math.max(n, einstufungIndex(), sprungIndex());" in frei
     assert "return inDerKette(i) || levelAngefangen(i);" in html
-    assert "const inDerKette = i => allesOffen() || i === 0 || i <= freiBis();" in html
+    assert "const inDerKette = i => allesOffen() || i === 0 || i <= freiBis() || altEingestuftOffen(i);" in html
     # Ein Reiter ist offen, wenn die Kette sein erstes Level erreicht - ein
     # angefangenes Level allein macht ihn nicht auf
     assert "(inDerKette(L[0]) ? 'offen' : 'zu')" in html
@@ -267,3 +269,59 @@ def test_grundwoerter_fuer_alte_einstufungen(index_html):
     assert "vorDenReiternEingestuft()" in erst and "k < ab && GRUNDWORT_LEVEL" in erst
     merken = _rumpf(html, "function einstufungMerken(wahl, bis, richtig, fragen){")
     assert "reiter: true" in merken
+    # Zweite Pruefung vom 13.11.2026: bestandene Grundwort-Level zaehlen bei
+    # alten Einstufungen nicht als "vor dem Einstieg bestanden", sonst sprang
+    # Weitermachen danach auf Level 1. Der Weiter-Knopf nach dem Test geht
+    # denselben Weg.
+    ab = html.split("const dranAb = () => {")[1].split("\n};\n")[0]
+    assert "!(alt && GRUNDWORT_LEVEL.indexOf(CATEGORIES[k].id) >= 0)" in ab
+    assert "const ab = dranAb();" in erst
+    weiter = _rumpf(html, "function naechstesOffenes(){")
+    assert "vorDenReiternEingestuft() && GRUNDWORT_LEVEL.indexOf(cur().id) >= 0" in weiter
+    assert "const f = firstOpen();" in weiter
+
+
+def test_alte_einstufung_haelt_offen_was_sie_in_13_abdeckte(index_html):
+    """Zweite Pruefung vom 13.11.2026: Stufe 2 der Einstufung von 1.3 fragte
+    anfassen, tiernatur und zuhause2 ab; der Einstieg danach war "fragen".
+    Seit Zuhause hinter Faelle 1 steht, haelt ALT_EINSTUFUNG_OFFEN es fuer
+    diese alten Einstufungen offen. Nachgerechnet mit der Levelfolge von 1.3:
+    nur dieser Einstieg hat etwas hinter sich verloren. Verhalten:
+    tests_e2e/test_reiter.py."""
+    html = index_html.replace("\r\n", "\n")
+    assert "const ALT_EINSTUFUNG_OFFEN = {fragen: ['zuhause2']};" in html
+    alt = html.split("const altEingestuftOffen = i => {")[1].split("\n};\n")[0]
+    assert "vorDenReiternEingestuft()" in alt and "einstufung.bis" in alt
+    frei = html.split("const freiBis = () => {\n")[1].split("\n};\n")[0]
+    assert "while(altEingestuftOffen(n)) n++;" in frei, "nach Faelle 1 ist Faelle 2 offen"
+    erst = html.split("const firstOpen = () => {")[1].split("\n};\n")[0]
+    assert "!(ab > 0 && altEingestuftOffen(k))" in erst, "Weitermachen fuehrt nicht hinein"
+
+
+def _levelfolge_13():
+    """Die Levelfolge von 1.3 (v116), wie sie in data/vocabulary.json stand."""
+    return ["basics", "zahlen", "farben", "familie", "essen", "wochentage", "monate", "zeit", "zuhause",
+            "wetter", "koerper", "einkaufen", "unterwegs", "verben", "smalltalk", "obst", "gemuese",
+            "lebensmittel", "vorrat", "tiere", "tiere_wild", "tiere_umgang", "natur", "kueche_bad", "putzen",
+            "technik", "auto_werkstatt", "geraete", "fragen", "genus", "konjugation", "mehrzahl", "satzbau",
+            "faelle1", "faelle2", "praepositionen", "faelle3", "faelle4", "vergangenheit", "zukunft", "modal",
+            "reflexiv", "routine", "adjektive", "mengen", "gefuehle", "reisen", "feiern", "arbeit", "saetze",
+            "einkauf_orte", "resto1", "resto2", "essen_gehen", "bosnisch_essen", "laender", "nationalitaeten",
+            "kennenlernen", "kulturlevel", "formell"]
+
+
+def test_alte_einstiege_gegen_die_levelfolge_von_13(grunddaten, index_html):
+    """Fuer jeden Einstieg, den die Einstufung von 1.3 setzen konnte (obst,
+    fragen, zukunft, einkauf_orte, formell): was damals davor lag und jetzt
+    dahinter steht, muss in ALT_EINSTUFUNG_OFFEN stehen - sonst waere es
+    nach dem Update wieder zu."""
+    jetzt = [k["id"] for k in grunddaten["kategorien"]]
+    sektion = {k["id"]: k["sektion"] for k in grunddaten["kategorien"]}
+    alt = _levelfolge_13()
+    tabelle = re.search(r"const ALT_EINSTUFUNG_OFFEN = \{(.*?)\};", index_html).group(1)
+    assert tabelle == "fragen: ['zuhause2']"
+    offen = {"fragen": {"zuhause2"}}
+    for bis in ("obst", "fragen", "zukunft", "einkauf_orte", "formell"):
+        davor = alt[:alt.index(bis)]
+        verloren = {sektion[i] for i in davor if jetzt.index(i) > jetzt.index(bis)}
+        assert verloren == offen.get(bis, set()), (bis, verloren)

@@ -41,7 +41,12 @@ are in the Play Store listing. Format:
   and progress unchanged). The tab bar shows the progress as "112/129" so that
   it fits 360 px in all eight languages (screen readers hear the full sentence).
   Learners placed before the tabs get the two new levels as "Continue" even
-  though they lie before their placement. Without hearts the skip-ahead test
+  though they lie before their placement; once passed, "Continue" and the
+  button after the test lead to the other new level and then back to the
+  placement, not to level 1 (passing them does not count as "learning from the
+  start"). A placement from 1.3 at "Asking questions" also covered "At home";
+  those five levels stay open, and "Continue" skips them as it did in 1.3.
+  Without hearts the skip-ahead test
   offers the same ways to a heart as the level test (video, coins).
 - 20 reading stories for B1 (decided by the maintainer on 13.11.2026), in four
   packages behind the twelve older stories, in the same chain: the three
