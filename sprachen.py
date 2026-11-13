@@ -3629,7 +3629,7 @@ TEXTE = {
 "reiter.fertig": "klaar",
 "reiter.stand": "{done} van {n}",
 "reiter.zu": "op slot",
-"reiter.bald": "binnenkort",
+"reiter.bald": "volgt",
 "reiter.zu_titel": "{stufe} zit nog op slot",
 "reiter.zu_text": "Rond eerst {vorher} af – of laat in de sprongtoets zien wat je al kunt.",
 "reiter.zu_erst": "Rond eerst {vorher} af.",

@@ -1336,6 +1336,9 @@
     font-size:clamp(8.5px, 2.75vw, 11.5px); font-weight:800; color:var(--muted);
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .reiterleiste .sz .sym{--sg:1.15em}
+  /* Passt die Zeile auch mit 7 px nicht, nur ✓ bzw. das Schloss
+     (reiterLeisteEinpassen, zweite Pruefung vom 13.11.2026) */
+  .reiterleiste .sz.nurzeichen .wort{display:none}
   .reiterleiste .sb{position:absolute; left:10px; right:10px; bottom:4px; height:3px;
     border-radius:99px; background:var(--primary-soft); overflow:hidden}
   .reiterleiste .sb i{display:block; height:100%; background:var(--accent)}
@@ -12072,9 +12075,11 @@ function reiterLeisteZeichnen(stufe){
     const s = stufeStand(st), an = st === stufe;
     /* Der Stand kurz als "11/31" (Pruefung vom 13.11.2026, siehe Stil
        .reiterleiste .sz); vorgelesen wird der ganze Satz. */
-    const zeile = s.art === 'fertig' ? '✓ ' + esc(t('reiter.fertig'))
-                : s.art === 'offen'  ? s.done + '/' + s.n
-                : s.art === 'zu'     ? symbol('schloss') + ' ' + esc(t('reiter.zu'))
+    /* Das Wort hinter dem Zeichen steht in .wort: passt die Zeile auch
+       klein nicht, bleibt nur das Zeichen (reiterLeisteEinpassen). */
+    const zeile = s.art === 'fertig' ? '✓<span class="wort"> ' + esc(t('reiter.fertig')) + '</span>'
+                : s.art === 'offen'  ? s.done + '<span class="wort">/' + s.n + '</span>'
+                : s.art === 'zu'     ? symbol('schloss') + '<span class="wort"> ' + esc(t('reiter.zu')) + '</span>'
                 :                      esc(t('reiter.bald'));
     const sagt = st + ', ' + (s.art === 'fertig' ? t('reiter.fertig')
                             : s.art === 'offen'  ? t('reiter.stand', {done: s.done, n: s.n})
@@ -12082,10 +12087,46 @@ function reiterLeisteZeichnen(stufe){
     const balken = s.n ? '<span class="sb"><i style="width:' + Math.round(s.done / s.n * 100) + '%"></i></span>' : '';
     return '<button type="button" role="tab" class="' + s.art + '" data-stufe="' + st + '" aria-selected="' + an + '"' +
            ' aria-label="' + esc(sagt) + '">' +
-           '<span class="st">' + st + '</span><span class="sz">' + zeile + '</span>' + balken + '</button>';
+           '<span class="st">' + st + '</span><span class="sz"><span class="szi">' + zeile + '</span></span>' + balken + '</button>';
   }).join('');
   leiste.querySelectorAll('button').forEach(b => b.addEventListener('click', () => stufeWaehlen(b.dataset.stufe)));
+  reiterLeisteEinpassen();
 }
+/* Zweite Pruefung vom 13.11.2026: bei 320 px oder grosser Systemschrift
+   endete der Stand trotz der Kurzform in Puenktchen - "112/1…", "🔒 lock…",
+   "binnenk…", genau die abgeschnittenen Zahlen, die die erste Pruefung
+   verhindern sollte. Darum je Reiter messen, wie kaufkastenEinpassen():
+   passt die Zeile nicht, wird sie in halben Pixeln kleiner, hoechstens
+   bis 7 px. Reicht das nicht, zeigen "fertig" und "zu" nur ihr Zeichen
+   (✓ bzw. Schloss) und "offen" nur die Zahl der bestandenen Level - der
+   Balken darunter zeigt den Anteil, und der ganze Satz steht im
+   aria-label. Abgeschnitten wird so nie eine Zahl. "Bald" hat kein
+   Zeichen; dafuer ist das laengste Wort kurz (nl "volgt" statt
+   "binnenkort", das bei 320 px und 130 % auch mit 7 px nicht passte).
+   Gemessen wird am inneren .szi, nicht mit scrollWidth: das ist auf ganze
+   Pixel gerundet und uebersah 45,7 px Text in 44,8 px.
+   Mit grosser Systemschrift liefert getComputedStyle die schon
+   vergroesserte Schrift; die Schleife sucht trotzdem die groesste, die
+   passt, sie braucht nur ein paar Schritte mehr.
+   Eine versteckte Leiste misst nichts; die Schrift laedt nach und das
+   Handy wird gedreht, darum auch bei fonts.ready und resize. */
+function reiterLeisteEinpassen(){
+  const leiste = $('reiterLeiste');
+  if(!leiste || !leiste.offsetParent) return;
+  leiste.querySelectorAll('.sz').forEach(sz => {
+    const innen = sz.querySelector('.szi'); if(!innen) return;
+    sz.style.fontSize = ''; sz.classList.remove('nurzeichen');
+    const zuBreit = () => innen.getBoundingClientRect().width > sz.getBoundingClientRect().width + 0.01;
+    const kleiner = () => {
+      let px = parseFloat(getComputedStyle(sz).fontSize) || 11;
+      while(zuBreit() && px > 7){ px = Math.max(7, px - 0.5); sz.style.fontSize = px + 'px'; }
+    };
+    kleiner();
+    if(zuBreit() && sz.querySelector('.wort')){ sz.style.fontSize = ''; sz.classList.add('nurzeichen'); kleiner(); }
+  });
+}
+window.addEventListener('resize', reiterLeisteEinpassen);
+if(document.fonts) document.fonts.ready.then(reiterLeisteEinpassen);
 /* Die Karte ueber den Sektionen eines Reiters, der noch zu ist: wie er
    aufgeht, und der Sprung-Test, wenn der Reiter davor offen ist. Bei C1
    nur "kommt bald". Sonst leer. */

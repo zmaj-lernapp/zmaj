@@ -17,10 +17,14 @@ der Level-Test (7a). Hier steht, was ein Lernender sieht:
 - wer vor dem Update schon weiter war, verliert nichts: B1 bleibt fertig, die
   zwei neuen Grundwort-Level sind „dran“ (auch nach einer alten Einstufung),
   angefangene Zuhause-Level bleiben offen;
-- der Stand in der Leiste passt bei 360 px in allen acht Sprachen.
+- der Stand in der Leiste passt bei 360 und 320 px, auch mit großer
+  Systemschrift, in allen acht Sprachen;
+- wer in 1.3 eingestuft wurde, verliert nach dem ersten Grundwort-Level nicht
+  den Einstieg, und was die alte Einstufung offen hatte, bleibt offen.
 
 Inhalt und Quelltext prüft tests/test_reiter.py ohne Browser."""
 import pytest
+from conftest import Seite
 
 STUFEN = ["A1", "A2", "B1", "B2", "C1"]
 
@@ -33,6 +37,11 @@ SEKTIONEN = """() => [...document.querySelectorAll('#sections .section')].map(s 
 
 # Die Sprachen der Oberfläche, wie in sprachen.SPRACHEN
 SPRACHEN = ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
+
+# So stellt Chrome die große Systemschrift des Handys nach (wie in
+# test_kaufkasten.py und test_marken.py)
+GROSSE_SCHRIFT = """document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.style.cssText += ';text-size-adjust:130%;-webkit-text-size-adjust:130%'; });"""
 
 # Drei Stände in einer Seite, gezeichnet ohne Neuladen: neu (A1 offen, drei zu,
 # C1 bald), weit (alle offen mit den größten Zahlen, B2 dreistellig) und fertig.
@@ -49,8 +58,12 @@ STAENDE_MESSEN = """async () => {
     passed.clear(); ids.forEach(id => passed.add(id));
     reiterLeisteZeichnen(angezeigteStufe());
     aus[name] = [...document.querySelectorAll('#reiterLeiste button')].map(b => {
-      const sz = b.querySelector('.sz');
+      const sz = b.querySelector('.sz'), innen = sz.querySelector('.szi');
+      // sw/cw sind auf ganze Pixel gerundet; iw/ow messen genau (45,7 px Text in 44,8 px)
       return {st: b.dataset.stufe, art: b.className, text: sz.textContent.trim(), label: b.getAttribute('aria-label'),
+              sicht: sz.innerText.trim(), nur: sz.classList.contains('nurzeichen'),
+              px: parseFloat(sz.style.fontSize || getComputedStyle(sz).fontSize),
+              iw: innen.getBoundingClientRect().width, ow: sz.getBoundingClientRect().width,
               sw: sz.scrollWidth, cw: sz.clientWidth, bw: b.scrollWidth, bc: b.clientWidth};
     });
   }
@@ -111,21 +124,46 @@ def test_neu_offen_ist_a1(seite, heute_stand):
     assert seite.fehler == [] and seite.fremd == []
 
 
+# Breite x Höhe, große Systemschrift (130 %)
+GROESSEN = [(360, 640, False), (320, 640, False), (360, 780, True), (320, 640, True)]
+
+
 @pytest.mark.parametrize("sprache", SPRACHEN)
-def test_stand_passt_bei_360_px(seite, heute_stand, sprache):
+@pytest.mark.parametrize("breite,hoehe,gross", GROESSEN, ids=["360", "320", "360-gross", "320-gross"])
+def test_stand_passt_in_die_leiste(browser, basis, heute_stand, sprache, breite, hoehe, gross):
     """Prüfung vom 13.11.2026: Bei 360 px (Ajdins S21) schnitt die Leiste den
     Stand an beiden Seiten ab, auf Türkisch immer ('30 içinden 29' wurde
     '0 içinden 2'), auf Deutsch ab dreistelligen Zahlen in B2. Jetzt steht er
-    kurz als '112/129' da; der lange Satz bleibt für den Bildschirmleser."""
+    kurz als '112/129' da; der lange Satz bleibt für den Bildschirmleser.
+    Zweite Prüfung: bei 320 px und mit großer Systemschrift endete er trotzdem
+    in Pünktchen ('112/1…', '🔒 lock…', 'binnenk…'). Jetzt wird er kleiner,
+    höchstens bis 7 px; reicht das nicht, bleibt nur das Zeichen bzw. die Zahl
+    der bestandenen Level - nie eine abgeschnittene Zahl."""
+    ctx = browser.new_context(viewport={"width": breite, "height": hoehe}, device_scale_factor=3,
+                              is_mobile=True, has_touch=True, locale="de-DE", service_workers="block")
+    if gross:
+        ctx.add_init_script(GROSSE_SCHRIFT)
+    seite = Seite(ctx.new_page(), basis)
+    try:
+        _stand_messen(seite, heute_stand, sprache, breite)
+    finally:
+        ctx.close()
+
+
+def _stand_messen(seite, heute_stand, sprache, breite):
     seite.starten(sprache=sprache, stand=heute_stand())
     seite.js("() => { const v = document.getElementById('vorspann'); if(v) v.click(); }")
     seite.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
     seite.js("() => { homeMode = 'words'; showHome(); }")
-    assert seite.js("() => window.innerWidth") == 360
+    assert seite.js("() => window.innerWidth") == breite
     aus = seite.js(STAENDE_MESSEN)
     zu_eng = [(name, b) for name, knoepfe in aus.items() for b in knoepfe
-              if b["sw"] > b["cw"] or b["bw"] > b["bc"]]
+              if b["sw"] > b["cw"] or b["bw"] > b["bc"] or b["iw"] > b["ow"] + 0.01]
     assert zu_eng == [], zu_eng
+    assert all(b["px"] >= 7 for knoepfe in aus.values() for b in knoepfe), aus
+    # Sichtbar ist der ganze Stand oder die Zahl davor, nie ein Stück davon
+    for b in aus["weit"][:4]:
+        assert b["sicht"] == (b["text"].split("/")[0] if b["nur"] else b["text"]), b
     assert [b["art"] for b in aus["neu"]] == ["offen", "zu", "zu", "zu", "bald"]
     assert [b["art"] for b in aus["weit"]] == ["offen", "offen", "offen", "offen", "bald"]
     assert [b["art"] for b in aus["fertig"]] == ["fertig", "fertig", "fertig", "fertig", "bald"]

@@ -39,7 +39,11 @@ are in the Play Store listing. Format:
   two sections. 297 levels, 27 sections: B2 went from 14 sections to nine,
   one per colour (old 18+19, 21+22, 23+24, 28+29 and 30+31 merged; level order
   and progress unchanged). The tab bar shows the progress as "112/129" so that
-  it fits 360 px in all eight languages (screen readers hear the full sentence).
+  it fits 360 px in all eight languages (screen readers hear the full sentence);
+  at 320 px or with a large system font the line gets smaller (down to 7 px),
+  and if that is not enough, "done" and "locked" show only their sign and the
+  progress only the number passed, so no number is ever cut off. Dutch "soon"
+  is now *volgt* instead of *binnenkort*.
   Learners placed before the tabs get the two new levels as "Continue" even
   though they lie before their placement; once passed, "Continue" and the
   button after the test lead to the other new level and then back to the
