@@ -1015,6 +1015,87 @@
      Ringe, der Stil dafuer steht weiter unten bei .qringe. Die alten
      Regeln sind hier entfernt, es gab kein Element mehr dazu. */
   .qalle{margin-top:6px; font-size:12px; font-weight:800; color:var(--good-text)}
+  /* ---------- Erfolge (13.11.2026) ----------
+     Ajdin, Fragen 8a, 9b, 10a: 18 Abzeichen, still sichtbar an drei Orten -
+     Leiste auf der Startseite (.erfolgleiste), Wand im Profil (.abzwand),
+     ruhige Zeile am Ende einer Lektion (.erfolgzeile). Kein Konfetti, das
+     bleibt den Lerntagen.
+     Ein Abzeichen ist ein Ring (.abzring) mit Bild und Zahl. Die Farbe
+     gehoert der Kette (--ef, k-<kette>), bei der Flamme der Stufe (t-blau,
+     t-lila, t-gold) - so reicht spaeter ein gemaltes Bild je Kette.
+     --ef-text ist die Schrift auf --ef: auf den Sektionsfarben, die hell
+     dunkel und dunkel hell sind, dieselbe Regel wie --on-primary. Offen
+     heisst grau (.aus), neu und noch nicht angesehen ein roter Punkt (.neu). */
+  .abzring{--ef:var(--accent); --ef-text:var(--on-accent);
+           position:relative; flex:none; width:50px; height:50px; border-radius:50%;
+           border:3px solid var(--ef); background:var(--primary-soft); display:grid; place-items:center}
+  .abzring.k-woerter{--ef:var(--sek7); --ef-text:var(--on-primary)}
+  .abzring.k-stufen{--ef:var(--sek3); --ef-text:var(--on-primary)}
+  .abzring.k-lesen{--ef:var(--sek5); --ef-text:var(--on-primary)}
+  .abzring.k-kopf{--ef:var(--sek2); --ef-text:var(--on-primary)}
+  .abzring.t-blau{--ef:#4D9BFF; --ef-text:#0B1330}
+  .abzring.t-lila{--ef:#B07CFF; --ef-text:#0B1330}
+  .abzring.t-gold{--ef:#EBC45C; --ef-text:#0B1330}
+  .abzbild{width:64%; height:64%; display:grid; place-items:center; font-weight:900; font-size:18px; line-height:1; color:var(--ef)}
+  .abzbild img{width:100%; height:100%; object-fit:contain; display:block;
+               -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
+  /* Die Flamme in der Farbe ihrer Stufe - dieselben Filter wie
+     .flamme.stufe-blau usw. oben, ohne deren Schein. Bewusst nicht die
+     Klasse .flamme: die gehoert der laufenden Serie (flammeZeigen). */
+  .abzbild img.ton-blau{filter:hue-rotate(190deg) saturate(1.35)}
+  .abzbild img.ton-lila{filter:hue-rotate(245deg) saturate(1.45)}
+  .abzbild img.ton-gold{filter:saturate(.45) brightness(1.3)}
+  .abzzahl{position:absolute; left:50%; bottom:-9px; transform:translateX(-50%); min-width:22px;
+           padding:1px 6px; border-radius:99px; background:var(--ef); color:var(--ef-text);
+           font-size:10px; font-weight:900; line-height:1.4; white-space:nowrap; text-align:center}
+  .abzring.aus{border-color:var(--line)}
+  .abzring.aus .abzbild{filter:grayscale(1); opacity:.45}
+  .abzring.aus .abzzahl{background:var(--line); color:var(--muted)}
+  .abzring.neu::after{content:''; position:absolute; top:-3px; right:-3px; width:12px; height:12px;
+                      border-radius:50%; background:var(--bad); border:2px solid var(--surface)}
+  /* Die Wand im Profil: je Gruppe eine Ueberschrift und ein Raster, das bei
+     360 px fuenf Abzeichen nebeneinander fasst und bei grosser Schrift
+     umbricht. */
+  .abzkopf{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .abzstand{font-size:13px; font-weight:800; color:var(--muted); white-space:nowrap}
+  .abzgruppe{padding:6px 0 4px}
+  .abzgruppe + .abzgruppe{border-top:1px solid var(--line)}
+  .abzgruppe h3{font-family:var(--font-ui); font-size:13px; font-weight:800; color:var(--muted); margin:6px 0 8px}
+  .abzwand{display:grid; grid-template-columns:repeat(auto-fill, minmax(52px, 1fr)); gap:12px 4px}
+  .abz{display:flex; flex-direction:column; align-items:center; min-width:0; padding:0; margin:0;
+       border:0; background:none; color:var(--ink); font:inherit; cursor:pointer}
+  .abz .abzring{margin-bottom:11px}
+  .abz:focus-visible{outline:none}
+  .abz:focus-visible .abzring{outline:3px solid var(--primary); outline-offset:2px}
+  .abzname{font-size:11px; font-weight:800; line-height:1.2; text-align:center; overflow-wrap:anywhere}
+  .abz.offen .abzname{color:var(--muted)}
+  .abzbalken{display:block; width:44px; max-width:100%; height:5px; border-radius:99px; background:var(--primary-soft); overflow:hidden; margin-top:4px}
+  .abzbalken i{display:block; height:100%; background:var(--accent)}
+  .abzweit{font-size:10px; font-weight:700; color:var(--muted); margin-top:2px; white-space:nowrap}
+  .abzinfo{font-size:13px; font-weight:700; color:var(--ink); line-height:1.4; margin:10px 0 4px}
+  .abzinfo:empty{margin:0}
+  /* Die Leiste auf der Startseite unter "Weitermachen": die drei neuesten
+     Abzeichen und "7 von 18", ein Tipp oeffnet die Wand. Im Kartenstil der
+     Tagesaufgaben darunter. hidden muss hier ausdruecklich stehen, sonst
+     gewinnt display:flex. */
+  .erfolgleiste{display:flex; align-items:center; gap:10px; width:100%; margin:0 0 12px; padding:9px 12px;
+                border:2px solid var(--line); border-radius:14px; background:var(--surface); color:var(--ink);
+                font:inherit; text-align:left; cursor:pointer}
+  .erfolgleiste[hidden]{display:none}
+  .erfolgleiste .eltext{flex:1; min-width:0}
+  .erfolgleiste .elkopf{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+  .erfolgleiste .elstand{display:block; font-size:16px; font-weight:800}
+  .erfolgleiste .elbilder{display:flex; gap:6px; flex:none}
+  .erfolgleiste .abzring, .erfolgzeile .abzring{width:36px; height:36px; border-width:2px}
+  .erfolgleiste .abzbild, .erfolgzeile .abzbild{font-size:13px}
+  .erfolgleiste .elpfeil{flex:none; font-size:22px; line-height:1; font-weight:800; color:var(--muted)}
+  /* Die ruhige Zeile am Ende einer Lektion, eines Tests, einer Runde oder
+     einer Geschichte. Gruen wie die Zeilen der Tagesaufgaben, ohne Ton. */
+  .erfolgzeile{display:flex; align-items:center; gap:10px; margin-top:14px; padding:10px 12px; text-align:left;
+               border:2px solid var(--line); border-radius:14px; background:var(--surface)}
+  .erfolgzeile .ezbilder{display:flex; gap:4px; flex:none}
+  .erfolgzeile .ezt{font-size:14px; font-weight:800; color:var(--good-text); line-height:1.3}
+  .erfolgzeile .ezs{display:block; font-size:12px; font-weight:700; color:var(--muted)}
   /* ---------- Laden ---------- */
   .ware{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--line)}
   /* Nur die Zeile mit ZWEI Wegen darf umbrechen. flex-wrap auf .ware
@@ -2450,6 +2531,9 @@
     <!-- Der Einstieg. Er traegt den Namen des Levels, das als naechstes dran
          ist, und fuehrt direkt hinein. -->
     <button class="btn know weiterknopf" id="weiterKnopf"></button>
+    <!-- Erfolge (13.11.2026): die drei neuesten Abzeichen und "x von 18".
+         Ein Tipp oeffnet die Wand im Profil. Inhalt aus renderErfolgLeiste(). -->
+    <button type="button" class="erfolgleiste" id="erfolgLeiste" hidden></button>
     <div class="quests" id="questBox"></div>
     <div class="mode" role="tablist">
       <button role="tab" id="modeWords" aria-selected="true"><img class="sym" src="symbole/lernpfad.webp" alt="" aria-hidden="true"> <span data-t="tab.lernpfad"></span></button>
@@ -2554,7 +2638,10 @@
 
   <!-- ===== Einstellungen ===== -->
   <div id="kontoView" style="display:none">
-    <div class="section">
+    <!-- Die Wand der Erfolge ganz oben, ueber Konto und Lernserie
+         (13.11.2026). Inhalt aus renderErfolgWand(). -->
+    <div class="section" id="erfolgWand" hidden></div>
+    <div class="section" id="kontoKasten">
       <h2 data-t="set.profil"></h2>
       <div class="setting"><div><div class="st" id="setProfilName">–</div><div class="sd" id="setProfilMail"></div><div class="sd" id="setProfilSub" data-t="set.profil_sub"></div><div class="sd" id="setGesichert" hidden></div></div></div>
       <div class="row" style="margin-top:6px; margin-bottom:10px"><button class="btn ghost" id="setLogout" data-t="set.abmelden"></button></div>
@@ -6676,6 +6763,364 @@ function markToday(){
   return true;
 }
 
+/* =================== ERFOLGE (13.11.2026) ===================
+   Ajdin am 13.11.2026 zu Release\Entscheidungen_2026-11-13\erfolge.md:
+   "alles wie empfohlen" (Fragen 8a, 9b, 10a). Seine Wahl vom 18.09.2026
+   ("nur Lerntage") gilt weiter fuer das FEIERN: Karte und Konfetti gibt es
+   nur bei den Lerntagen (MEILENSTEINE, zeigeWegmarke). SICHTBAR werden
+   jetzt aber auch Flamme, Woerter, Stufen, Geschichten und "Fest im Kopf":
+     - 18 Abzeichen in ERFOLGE. Jedes gehoert zu einer Kette (nur das
+       naechste offene einer Kette bekommt einen Balken) und einer Gruppe
+       (eine Zeile der Wand).
+     - Zu sehen an drei Orten: die Wand oben im Profil (renderErfolgWand),
+       die Leiste unter "Weitermachen" mit den drei neuesten und "x von 18"
+       (renderErfolgLeiste) und eine ruhige Zeile auf dem Ergebnisschirm
+       von Lektion, Test, Wiederholen-Runde und Geschichte (erfolgZeile) -
+       ohne Ton, ohne Karte, ohne Konfetti.
+     - Rueckwirkend aus dem, was die App ohnehin speichert: Lerntage,
+       laengste Serie (rekord), gewusste Woerter, bestandene Level,
+       gelesene Geschichten, die Lernkartei. Wer das Update bekommt, hat
+       seine Abzeichen sofort, liest einmal "Du hast schon 6 Abzeichen",
+       und alle gelten als gesehen (erfolgeNachreichen).
+     - Ein verdientes Abzeichen bleibt fuer immer, auch wenn die Zahl
+       dahinter wieder faellt: die Stufe in der Kartei sinkt nach einem
+       Fehler, eine Stufe bekommt neue Level, neue Geschichten kommen dazu.
+     - Der Zahnarzt-Teil zaehlt nicht mit (ohneZa, nur CATEGORIES), wie bei
+       Tagesaufgaben und Muenzen.
+     - Keine Muenzen, kein Zufall, keine Uhrzeit, kein Vergleich mit
+       anderen, kein "ohne Fehler" - siehe erfolge.md, "Regeln, damit kein
+       Druck entsteht".
+   Gespeichert wird in den VORHANDENEN Merkern, kein neues Feld (erfolge.md:
+   die Cloud ist zu 91-95 % voll, siehe CLOUD_GROESSE_MAX):
+     gefeiert  "e:<id>" heisst verdient. Wird beim Zusammenfuehren vereinigt
+               und nie gekuerzt; auch 1.3 liest und schreibt die Eintraege
+               unveraendert mit, sie fragt nur ihre "tage..."-Marken ab.
+     wann      "e:<id>" -> Datum, nur wo es sich nicht jederzeit aus den
+               Daten ablesen laesst: Woerter, Stufen, alle Geschichten, Fest
+               im Kopf. Lerntage, Flamme und die erste Geschichte rechnet
+               erfolgDatum() aus tage, frost und "gs:" nach.
+   Mit allen 18 sind das rund 360 Bytes mehr im Stand (tests_e2e/
+   test_erfolge.py misst es).
+   Ob ein Abzeichen schon angesehen wurde (roter Punkt), merkt sich nur das
+   Geraet (ERFOLG_GESEHEN) - eine Bequemlichkeit, kein Lernstand, und in
+   der Cloud kostet es nichts. Auf einem neuen Geraet steht einmal der Satz
+   "Du hast schon ..." statt roter Punkte. */
+const ERFOLG_VORN = 'e:';
+const ERFOLG_GESEHEN = 'zmaj_erfolge_gesehen';
+/* Ab dieser Stufe der Lernkartei ist ein Wort "fest im Kopf": der Abstand
+   von 90 Tagen (erfolge.md, "Gedaechtnis"). */
+const KARTEI_FEST = KARTEI_ABSTAENDE.indexOf(90);
+/* Welche Stufe ein Level hat, fuer die Abzeichen A1, A2 und B1. Bringen
+   die Stufen-Reiter (1.4) das Feld stufe oder reiter an Level oder
+   Sektion mit, gilt es. Bis dahin die Zuordnung aus
+   Release\Entscheidungen_2026-11-13\level_reiter.csv (Variante B): "Saetze
+   bauen" ist dort geteilt, seine ersten sechs Level gehoeren zu A1, der
+   Rest zu A2. Alles ab B2 hat noch kein Abzeichen - erst, wenn die letzten
+   B2-Pakete drin sind, sonst waere es zu frueh verdient (erfolge.md). */
+const STUFE_NACH_SEKTION = {alltag: 'A1', anfassen: 'A1', tiernatur: 'A1',
+  zuhause2: 'A2', einkauf: 'A2', herkunft: 'A2', kultur: 'A2',
+  amt: 'B1', tunlassen: 'B1', wieetwasist: 'B1', koerpergesundheit: 'B1', zeitfreizeit: 'B1',
+  lernenarbeiten: 'B1', grundbegriffe: 'B1', menschengesellschaft: 'B1', wiewowann: 'B1'};
+const SAETZE_A1 = ['fragen', 'genus', 'konjugation', 'mehrzahl', 'satzbau', 'faelle1'];
+function levelStufe(c){
+  const s = SECTIONS.find(x => x.id === c.sektion) || {};
+  const feld = [c.stufe, c.reiter, s.stufe, s.reiter].find(x => typeof x === 'string' && x);
+  if(feld) return feld.toUpperCase();
+  if(c.sektion === 'saetze') return SAETZE_A1.includes(c.id) ? 'A1' : 'A2';
+  return STUFE_NACH_SEKTION[c.sektion] || '';
+}
+/* Die 18 Abzeichen, in der Reihenfolge der Wand. Ein weiteres kostet eine
+   Zeile hier und seine Texte (erfolg.*). Die Kennung steht im Lernstand
+   ("e:w500") und darf sich deshalb nie aendern.
+     ziel    die Schwelle; bei Stufen und "alle Geschichten" rechnet
+             erfolgStand() sie aus dem Inhalt
+     merken  das Datum kommt in wann, siehe oben
+     name    der Text unter dem Ring; sonst die Stufe oder die Zahl */
+const ERFOLGE = [
+  {id: 't7',    kette: 'tage',    gruppe: 'tage',    ziel: 7,    name: 'erfolg.t7'},
+  {id: 't30',   kette: 'tage',    gruppe: 'tage',    ziel: 30,   name: 'erfolg.t30'},
+  {id: 't100',  kette: 'tage',    gruppe: 'tage',    ziel: 100,  name: 'erfolg.t100'},
+  {id: 't365',  kette: 'tage',    gruppe: 'tage',    ziel: 365,  name: 'erfolg.t365'},
+  {id: 't1000', kette: 'tage',    gruppe: 'tage',    ziel: 1000, name: 'erfolg.t1000'},
+  {id: 'f30',   kette: 'flamme',  gruppe: 'flamme',  ziel: 30,   name: 'erfolg.blau', ton: 'blau'},
+  {id: 'f100',  kette: 'flamme',  gruppe: 'flamme',  ziel: 100,  name: 'erfolg.lila', ton: 'lila'},
+  {id: 'f365',  kette: 'flamme',  gruppe: 'flamme',  ziel: 365,  name: 'erfolg.gold', ton: 'gold'},
+  {id: 'w100',  kette: 'woerter', gruppe: 'woerter', ziel: 100,  merken: true},
+  {id: 'w500',  kette: 'woerter', gruppe: 'woerter', ziel: 500,  merken: true},
+  {id: 'w1000', kette: 'woerter', gruppe: 'woerter', ziel: 1000, merken: true},
+  {id: 'w2500', kette: 'woerter', gruppe: 'woerter', ziel: 2500, merken: true},
+  {id: 'a1',    kette: 'stufen',  gruppe: 'stufen',  stufe: 'A1', merken: true},
+  {id: 'a2',    kette: 'stufen',  gruppe: 'stufen',  stufe: 'A2', merken: true},
+  {id: 'b1',    kette: 'stufen',  gruppe: 'stufen',  stufe: 'B1', merken: true},
+  {id: 'g1',    kette: 'lesen',   gruppe: 'lesen',   ziel: 1,    name: 'erfolg.erste'},
+  {id: 'ga',    kette: 'lesen',   gruppe: 'lesen',   name: 'erfolg.alle', merken: true},
+  {id: 'k100',  kette: 'kopf',    gruppe: 'lesen',   ziel: 100,  name: 'erfolg.kopf', merken: true},
+];
+const ERFOLG_GRUPPEN = [
+  {id: 'tage', titel: 'erfolg.gruppe_tage'}, {id: 'flamme', titel: 'erfolg.gruppe_flamme'},
+  {id: 'woerter', titel: 'erfolg.gruppe_woerter'}, {id: 'stufen', titel: 'erfolg.gruppe_stufen'},
+  {id: 'lesen', titel: 'erfolg.gruppe_lesen'}];
+const erfolgVerdient = e => gefeiert.has(ERFOLG_VORN + e.id);
+const erfolgeVerdient = () => ERFOLGE.filter(erfolgVerdient);
+/* Woerter, die in der Kartei die 90-Tage-Stufe erreicht haben. */
+function festImKopf(){
+  let n = 0;
+  Object.keys(kartei.w).forEach(id => {
+    const e = kartei.w[id];
+    if(!istZa(id) && Array.isArray(e) && e[0] >= KARTEI_FEST) n++;
+  });
+  return n;
+}
+const erfolgStufenLevel = stufe => CATEGORIES.filter(c => levelStufe(c) === stufe);
+/* Wie weit ein Abzeichen ist: {wert, ziel}. ziel 0 heisst "gibt es hier
+   nicht" (eine Stufe ohne Level, kein Inhalt geladen) - nie verdient. */
+function erfolgStand(e){
+  switch(e.kette){
+    case 'tage':    return {wert: days.size, ziel: e.ziel};
+    case 'flamme':  return {wert: rekord, ziel: e.ziel};
+    case 'woerter': return {wert: ohneZa(known), ziel: e.ziel};
+    case 'stufen': {
+      const lv = erfolgStufenLevel(e.stufe);
+      return {wert: lv.filter(c => passed.has(c.id)).length, ziel: lv.length};
+    }
+    case 'lesen':   return {wert: STORIES.filter(s => read.has(s.id)).length, ziel: e.ziel || STORIES.length};
+    case 'kopf':    return {wert: festImKopf(), ziel: e.ziel};
+  }
+  return {wert: 0, ziel: 0};
+}
+function erfolgErreicht(e){ const s = erfolgStand(e); return s.ziel > 0 && s.wert >= s.ziel; }
+/* Der Tag, an dem eine Serie zum ersten Mal n Tage lang war. Dieselbe
+   Zaehlung wie laengsteSerie(): ein Frosttag ueberbrueckt, zaehlt aber
+   selbst nicht mit. */
+function serieErreicht(n){
+  let lauf = 0, vor = null;
+  for(const k of [...new Set([...days, ...frost])].sort()){
+    if(vor !== null){
+      const d = new Date(vor + 'T12:00:00'); d.setDate(d.getDate() + 1);
+      if(dayKey(d) !== k) lauf = 0;
+    }
+    if(days.has(k) && ++lauf >= n) return k;
+    vor = k;
+  }
+  return '';
+}
+const wannDatum = k => istDatum(wann[k]) ? wann[k] : '';
+/* Das Datum eines verdienten Abzeichens, '' wenn es keins gibt (Woerter,
+   die schon vor dem Update sassen). */
+function erfolgDatum(e){
+  if(e.kette === 'tage') return [...days].sort()[e.ziel - 1] || '';
+  if(e.kette === 'flamme') return serieErreicht(e.ziel);
+  if(e.id === 'g1') return Object.keys(wann).filter(k => k.startsWith('gs:')).map(wannDatum).filter(Boolean).sort()[0] || '';
+  return wannDatum(ERFOLG_VORN + e.id);
+}
+/* Rueckwirkend: das spaeteste Datum der Level einer Stufe bzw. aller
+   Geschichten - nur, wenn jedes eins hat ("wann" gibt es erst seit dem
+   19.09.2026). */
+function erfolgDatumNachgerechnet(e){
+  const keys = e.kette === 'stufen' ? erfolgStufenLevel(e.stufe).map(c => 'lv:' + c.id)
+             : (e.id === 'ga' ? STORIES.map(s => 'gs:' + s.id) : []);
+  const d = keys.map(wannDatum);
+  return (d.length && d.every(Boolean)) ? d.sort()[d.length - 1] : '';
+}
+/* Hakt ab, was erreicht und noch nicht verdient ist, und gibt das Neue
+   zurueck. Speichert NICHT - das tut der Aufrufer, auf den Ergebnisschirmen
+   ohnehin gleich danach. live: das Abzeichen faellt gerade jetzt, also
+   bekommt es das heutige Datum, wenn sich keins nachrechnen laesst. Beim
+   ersten Start nach dem Update nicht: wann jemand seine 500 Woerter
+   geschafft hat, weiss die App nicht, und erfunden wird kein Datum. */
+function erfolgePruefen(live){
+  if(!CATEGORIES.length) return [];
+  const neu = [];
+  ERFOLGE.forEach(e => {
+    if(erfolgVerdient(e) || !erfolgErreicht(e)) return;
+    gefeiert.add(ERFOLG_VORN + e.id);
+    if(e.merken){
+      const d = erfolgDatumNachgerechnet(e) || (live ? today() : '');
+      if(d) wann[ERFOLG_VORN + e.id] = d;
+    }
+    neu.push(e);
+  });
+  return neu;
+}
+/* Was auf diesem Geraet schon angesehen wurde. null: noch nie etwas -
+   der erste Start mit Erfolgen. Geht der Speicher nicht, gilt alles als
+   gesehen: lieber kein roter Punkt als einer, der nie weggeht. */
+function erfolgeGesehen(){
+  try{
+    const roh = localStorage.getItem(ERFOLG_GESEHEN);
+    if(roh === null) return null;
+    const l = JSON.parse(roh);
+    return new Set(Array.isArray(l) ? l.filter(x => typeof x === 'string') : []);
+  }catch(e){ return new Set(ERFOLGE.map(x => x.id)); }
+}
+function erfolgeAlsGesehen(){
+  try{ localStorage.setItem(ERFOLG_GESEHEN, JSON.stringify(erfolgeVerdient().map(e => e.id))); }catch(e){}
+}
+/* Aus showHome(): still nachtragen, was ausserhalb der Ergebnisschirme
+   erreicht wurde - rueckwirkend beim ersten Start nach dem Update, nach
+   der Einstufung, nach dem Abgleich mit der Cloud. Kein Ton, keine Karte;
+   Neues traegt nur den roten Punkt. Beim allerersten Mal auf diesem Geraet
+   gilt alles Erreichte als gesehen, und einmal kommt der Satz "Du hast
+   schon 6 Abzeichen" - wie bei den Wegmarken wird nichts nachgefeiert.
+   Solange auf dem Geraet noch nichts gelernt ist (frisch installiert, vor
+   der Anmeldung mit einem Konto von frueher), merkt es sich noch nichts:
+   Kommt der Stand gleich danach aus der Cloud, zaehlt das wie ein Update -
+   sonst truege jedes alte Abzeichen einen roten Punkt und das heutige
+   Datum. */
+function erfolgeNachreichen(){
+  if(!standGeladen || !CATEGORIES.length) return;
+  const gesehen = erfolgeGesehen();
+  if(gesehen === null && !hatGelernt()) return;
+  if(erfolgePruefen(gesehen !== null).length) saveProgress();
+  if(gesehen === null){
+    erfolgeAlsGesehen();
+    const n = erfolgeVerdient().length;
+    if(n) kurzMeldung(tp('erfolg.schon', n));
+  }
+}
+function zahlText(n){ try{ return Number(n).toLocaleString(SPRACHE); }catch(e){ return String(n); } }
+function datumText(d){ try{ return new Date(d + 'T12:00:00').toLocaleDateString(SPRACHE); }catch(e){ return d; } }
+function erfolgName(e){ return e.name ? t(e.name) : (e.stufe || zahlText(e.ziel)); }
+/* Der kurze Satz zum Abzeichen - beim Antippen in der Wand und in der
+   Zeile am Lektionsende ("Neues Abzeichen: 500 Woerter sitzen"). */
+function erfolgSatz(e){
+  const n = zahlText(e.ziel);
+  switch(e.kette){
+    case 'tage':    return t('erfolg.satz_tage', {n});
+    case 'flamme':  return t('erfolg.satz_flamme', {n});
+    case 'woerter': return t('erfolg.satz_woerter', {n});
+    case 'stufen':  return t('erfolg.satz_stufe', {stufe: e.stufe});
+    case 'kopf':    return t('erfolg.satz_kopf', {n});
+  }
+  return t(e.id === 'g1' ? 'erfolg.satz_erste' : 'erfolg.satz_alle');
+}
+/* Die gemalten Abzeichen kommen nach web/erfolge/ (Gemini, Ajdin 10a; der
+   Bogen-Entwurf vom 13.11.2026 liegt in Release\Entscheidungen_2026-11-13\
+   erfolge_bogen_entwurf.png). Bis sie freigegeben sind, stehen Platzhalter
+   wie im Entwurf erfolge_mock.png: die vorhandenen Bilder fuer Lerntage,
+   Flamme, Geschichten und Gedaechtnis, ein Buchstabe fuer Woerter und
+   Stufen. Ist das Bild einer Kette da, kommt es hierher (etwa
+   tage: 'erfolge/tage.webp'), und ihr Platzhalter faellt weg. Die Farbe
+   der Stufe macht der Ring, nicht das Bild - ein Bild je Kette reicht.
+   Die Flamme bleibt das gemalte Bild der Serie, eingefaerbt wie dort. */
+const ERFOLG_BILDER = {};
+function erfolgBild(e){
+  if(e.kette === 'flamme') return '<img class="ton-' + e.ton + '" src="flamme/flamme.webp" alt="">';
+  if(ERFOLG_BILDER[e.kette]) return '<img src="' + ERFOLG_BILDER[e.kette] + '" alt="">';
+  switch(e.kette){
+    case 'tage':    return '<img src="symbole/lernpfad.webp" alt="">';
+    case 'woerter': return 'Č';
+    case 'stufen':  return esc(e.stufe);
+    case 'kopf':    return '<img src="symbole/wiederholen.webp" alt="">';
+  }
+  return '<img src="symbole/geschichten.webp" alt="">';
+}
+/* Die Zahl auf dem Ring. Stufen tragen ihren Namen schon im Bild, "alle
+   Geschichten" haengt am Inhalt - beide ohne. */
+const erfolgPille = e => (e.kette === 'stufen' || e.id === 'ga') ? '' : zahlText(e.ziel);
+/* Der Ring ist Schmuck (aria-hidden): vorgelesen werden Name und Zustand
+   daneben, nicht "Č 100 100". */
+function erfolgRing(e, an, neu, mitZahl){
+  const pille = mitZahl ? erfolgPille(e) : '';
+  return '<span class="abzring k-' + e.kette + (e.ton ? ' t-' + e.ton : '') + (an ? '' : ' aus') + (neu ? ' neu' : '') + '" aria-hidden="true">' +
+    '<span class="abzbild">' + erfolgBild(e) + '</span>' +
+    (pille ? '<span class="abzzahl">' + esc(pille) + '</span>' : '') + '</span>';
+}
+/* Was beim Antippen unter der Gruppe steht: der Satz, dazu das Datum -
+   oder bei einem offenen, wie weit es ist. */
+function erfolgInfo(e){
+  if(erfolgVerdient(e)){
+    const d = erfolgDatum(e);
+    return erfolgSatz(e) + ' · ' + (d ? t('erfolg.am', {datum: datumText(d)}) : t('erfolg.geschafft'));
+  }
+  const s = erfolgStand(e);
+  return erfolgSatz(e) + ' · ' + zahlText(Math.min(s.wert, s.ziel)) + ' / ' + zahlText(s.ziel);
+}
+/* Die Wand, oben im Profil. Je Kette bekommt nur das erste offene einen
+   Balken; offene sind grau, noch nicht angesehene tragen den roten Punkt.
+   Danach gilt alles als gesehen - beim naechsten Oeffnen ist der Punkt weg. */
+function renderErfolgWand(){
+  const box = $('erfolgWand');
+  if(!box) return;
+  if(!CATEGORIES.length || !standGeladen){ box.hidden = true; box.innerHTML = ''; return; }
+  const gesehen = erfolgeGesehen() || new Set();
+  const naechste = new Set(), ketten = new Set();
+  ERFOLGE.forEach(e => {
+    if(erfolgVerdient(e) || ketten.has(e.kette)) return;
+    ketten.add(e.kette); naechste.add(e.id);
+  });
+  const abzeichen = e => {
+    const an = erfolgVerdient(e), neu = an && !gesehen.has(e.id), s = erfolgStand(e);
+    const balken = !an && naechste.has(e.id) && s.ziel > 0;
+    const wert = Math.min(s.wert, s.ziel);
+    return '<button type="button" class="abz' + (an ? '' : ' offen') + '" data-erfolg="' + e.id + '">' +
+      erfolgRing(e, an, neu, true) +
+      '<span class="abzname">' + esc(erfolgName(e)) + '</span>' +
+      '<span class="nurleser">' + esc(', ' + t(an ? 'erfolg.geschafft' : 'erfolg.offen') + (neu ? ', ' + t('erfolg.neu_kurz') : '')) + '</span>' +
+      (balken ? '<span class="abzbalken" aria-hidden="true"><i style="width:' + Math.round(wert / s.ziel * 100) + '%"></i></span>' +
+                '<span class="abzweit">' + esc(zahlText(wert) + ' / ' + zahlText(s.ziel)) + '</span>' : '') +
+      '</button>';
+  };
+  box.innerHTML =
+    '<div class="abzkopf"><h2>' + esc(t('erfolg.titel')) + '</h2><span class="abzstand">' +
+      esc(t('erfolg.stand', {n: erfolgeVerdient().length, gesamt: ERFOLGE.length})) + '</span></div>' +
+    ERFOLG_GRUPPEN.map(g => '<div class="abzgruppe"><h3>' + esc(t(g.titel)) + '</h3>' +
+      '<div class="abzwand">' + ERFOLGE.filter(e => e.gruppe === g.id).map(abzeichen).join('') + '</div>' +
+      '<div class="abzinfo" aria-live="polite"></div></div>').join('');
+  box.hidden = false;
+  box.querySelectorAll('.abz').forEach(b => b.addEventListener('click', () => {
+    const e = ERFOLGE.find(x => x.id === b.dataset.erfolg), info = b.closest('.abzgruppe').querySelector('.abzinfo');
+    if(!e || !info) return;
+    const war = info.dataset.erfolg === e.id;
+    info.dataset.erfolg = war ? '' : e.id;
+    info.textContent = war ? '' : erfolgInfo(e);
+  }));
+  if(erfolgeGesehen() !== null || hatGelernt()) erfolgeAlsGesehen();   // siehe erfolgeNachreichen
+}
+/* Die Leiste auf der Startseite: die drei zuletzt verdienten (ohne Datum
+   zuletzt, bei gleichem Datum das spaetere der Liste zuerst) und
+   "7 von 18". Ist noch keins verdient, steht grau das, dem man am
+   naechsten ist - eine leere Leiste saehe kaputt aus. */
+function renderErfolgLeiste(){
+  const el = $('erfolgLeiste');
+  if(!el) return;
+  if(!profil || !CATEGORIES.length || !standGeladen){ el.hidden = true; el.innerHTML = ''; return; }
+  const gesehen = erfolgeGesehen() || new Set();
+  const da = ERFOLGE.map((e, i) => ({e, i, d: erfolgDatum(e)})).filter(x => erfolgVerdient(x.e));
+  da.sort((a, b) => (a.d === b.d ? b.i - a.i : (a.d < b.d ? 1 : -1)));
+  let ringe = da.slice(0, 3).map(x => erfolgRing(x.e, true, !gesehen.has(x.e.id), false));
+  if(!ringe.length){
+    const anteil = e => { const s = erfolgStand(e); return s.ziel > 0 ? s.wert / s.ziel : -1; };
+    const naechstes = ERFOLGE.reduce((best, e) => anteil(e) > anteil(best) ? e : best, ERFOLGE[0]);
+    ringe = [erfolgRing(naechstes, false, false, false)];
+  }
+  el.innerHTML =
+    '<span class="eltext"><span class="elkopf">' + esc(t('erfolg.titel')) + '</span>' +
+      '<span class="elstand">' + esc(t('erfolg.stand', {n: da.length, gesamt: ERFOLGE.length})) + '</span></span>' +
+    '<span class="elbilder" aria-hidden="true">' + ringe.join('') + '</span>' +
+    '<span class="elpfeil" aria-hidden="true">›</span>';
+  el.hidden = false;
+}
+/* Die ruhige Zeile fuer den Ergebnisschirm (Ajdin 13.11.2026, 9b): neu
+   verdiente Abzeichen, gruen wie die Tagesaufgaben, ohne Ton und ohne
+   Konfetti. Prueft und hakt ab - also genau einmal je Ergebnisschirm rufen,
+   VOR dessen saveProgress(). '' wenn nichts neu ist. Die Lerntage bekommen
+   ihre grosse Karte weiter von pruefeMeilensteine(); diese Zeile steht
+   dann still darunter. */
+function erfolgZeile(){
+  if(!standGeladen) return '';
+  /* Die erste Lektion ueberhaupt: was bis eben verdient war, gilt als
+     gesehen, das Neue bekommt seinen roten Punkt (siehe
+     erfolgeNachreichen - vorher merkt sich das Geraet nichts). */
+  if(erfolgeGesehen() === null) erfolgeAlsGesehen();
+  const neu = erfolgePruefen(true);
+  if(!neu.length) return '';
+  const titel = neu.length === 1 ? t('erfolg.neu', {name: erfolgSatz(neu[0])}) : t('erfolg.neu_mehr', {n: neu.length});
+  return '<div class="erfolgzeile"><span class="ezbilder" aria-hidden="true">' +
+    neu.slice(-3).reverse().map(e => erfolgRing(e, true, false, false)).join('') + '</span>' +
+    '<span class="ezt">' + esc(titel) + '<span class="ezs">' + esc(t('erfolg.im_profil')) + '</span></span></div>';
+}
+
 /* ---- Tagesaufgaben ----
    Drei Stück am Tag, ausgelost aus Profilname und Datum. WELCHE drei es sind,
    wird nirgends gespeichert, sondern jedes Mal neu ausgerechnet – deshalb
@@ -7421,8 +7866,10 @@ function renderHero(){
     }
   }
   renderSerie();
+  renderErfolgLeiste();
   renderQuests();
 }
+$('erfolgLeiste').addEventListener('click', async ()=>{ await saveProgress(); showKonto(); });
 /* Die drei Tagesaufgaben. Absichtlich ohne Warnung und ohne Rot, wenn eine
    nicht geschafft ist: ein ausgelassener Tag soll nichts kosten. */
 function renderQuests(){
@@ -9327,6 +9774,12 @@ function showKonto(){
   showView('kontoView'); $('kopfLeiste').style.display='none';
   setzeZurueck(t('btn.zurueck'), showHome);
   $('tag').textContent=t('set.profil');
+  /* Erfolge ganz oben (13.11.2026). Hierher fuehrt auch die Leiste auf der
+     Startseite - die gibt es auch ohne Konto (Web-Demo, Handy vor der
+     Pflicht-Anmeldung). Dann bleibt der Kasten mit Konto und Abmelden
+     weg; dieselbe Bedingung wie fuer den Profilknopf in nachAnmeldung(). */
+  $('kontoKasten').hidden = !(MIT_SERVER || (cloudModus() && !!cloudMerker()));
+  renderErfolgWand();
   $('setProfilName').innerHTML = mitSymbol('profil', esc(profil+(premium?' · '+t('profil.vollversion'):'')));
   $('setProfilMail').textContent = kontoMail ? '✉ '+kontoMail : '';
   $('setSerie').textContent = tp('set.serie_stand', streak());
@@ -11016,6 +11469,7 @@ function showHome(){
   $('wordsHome').style.display = homeMode==='words' ? 'block' : 'none';
   $('storiesHome').style.display = homeMode==='stories' ? 'block' : 'none';
   $('topfHome').style.display = homeMode==='topf' ? 'block' : 'none';
+  erfolgeNachreichen();   // Erfolge (13.11.2026): still nachtragen, vor der Leiste in renderHero()
   renderHero(); renderLives();
   if(homeMode==='words') showPath(); else if(homeMode==='topf') showTopf(); else showStoryPath();
   einstufungAnbieten();
@@ -11339,6 +11793,7 @@ function showStoryQ(s, qi, right){
   if(qi>=fragen.length){
     const all = right===fragen.length;
     if(all){ if(!read.has(s.id)){ read.add(s.id); wann['gs:'+s.id] = today(); } markToday(); zaehle('gesch'); sound('done'); }
+    const erfolgLob = erfolgZeile();   // Erfolge (13.11.2026): hakt ab, also vor dem Speichern
     saveProgress();   // auch bei einem Fehler: die Fragen sind beantwortet
     /* Die gruenen Zeilen fuer erledigte Tagesaufgaben - derselbe Fehler, der
        am 18.09.2026 fuer die Lektion und danach fuer den Vokabeltest behoben
@@ -11354,7 +11809,7 @@ function showStoryQ(s, qi, right){
     if(questLob) setTimeout(()=>sound('quest'), 850);   // nach der Fanfare, nicht darueber
     const hasNext = rIdx+1 < STORIES.length;
     box.innerHTML='<div class="ergebnis-titel">'+t('gesch.fragen')+'</div>'+(all?'<div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>':'')+
-      '<div class="feedback '+(all?'ok':'no')+'" style="text-align:center">'+t('gesch.ergebnis',{r:right, n:fragen.length})+(all?t('gesch.geschafft'):t('gesch.nochmal_lesen'))+'</div>'+
+      '<div class="feedback '+(all?'ok':'no')+'" style="text-align:center">'+t('gesch.ergebnis',{r:right, n:fragen.length})+(all?t('gesch.geschafft'):t('gesch.nochmal_lesen'))+'</div>'+erfolgLob+
       '<div class="row"><button class="btn ghost" id="rAgain">'+t('gesch.fragen_nochmal')+'</button>'+(all && hasNext ? '<button class="btn know" id="rGoNext">'+t('gesch.naechste')+'</button>' : '')+'</div>'+
       /* Wie beim Vokabeltest: eine leise Reihe mit dem Weg heraus. Hier
          gab es bisher gar keinen - nur "nochmal" und "naechste". */
@@ -12994,7 +13449,9 @@ function lessonEnd(){
   // sie sich, indem man jede Hör- und Sprechaufgabe wegdrückt.
   if(Lx.right === scored && scored > 0 && Lx.skipped === 0) zaehle('per');
   /* Beim Zahnarzt: kein Lerntag, die Wegmarken bleiben beim Lernpfad. */
-  const newDay = imZa() ? false : markToday(); saveProgress(); sound('done');
+  const newDay = imZa() ? false : markToday();
+  const erfolgLob = erfolgZeile();   // Erfolge (13.11.2026): hakt ab, also vor dem Speichern
+  saveProgress(); sound('done');
   /* Die gruenen Zeilen fuer erledigte Tagesaufgaben. Sie waren seit dem
      Umbau des Ladens verschwunden: questZeilen() stand fertig da und wurde
      von niemandem mehr aufgerufen, die Muenzen erschienen wortlos in der
@@ -13012,7 +13469,7 @@ function lessonEnd(){
     '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>'+flammeHtml()+' '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>'+symbol('herz')+' '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
     (nowAllowed && !wasAllowed && !passed.has(c.id) ? '<div class="feedback ok">'+t('lektion.test_frei')+'</div>' : '')+
     (newDay ? '<div class="feedback ok">'+t('lektion.heute_geuebt')+'</div>' : '')+
-    questLob+
+    questLob+erfolgLob+
     '<div class="row"><button class="btn ghost" id="lHome">'+t('lektion.zurueck')+'</button><button class="btn know" id="lMore">'+t('lektion.noch_eine')+'</button></div>'+
     /* Zweite, leise Reihe: der Weg ganz heraus. "Zurueck zum Level" fuehrt
        nur in die Uebersicht DIESES Levels - auf dem Handy ist der
@@ -13263,6 +13720,7 @@ function showTestResult(){
   const neuBestanden = ok && !passed.has(c.id);
   if(ok){ if(!passed.has(c.id)){ passed.add(c.id); wann['lv:'+c.id] = today(); } if(!imZa()) markToday(); sound('done'); }
   if(ok && bewertungFaellig()) bewertungDran = true;
+  const erfolgLob = erfolgZeile();   // Erfolge (13.11.2026): hakt ab, also vor dem Speichern
   saveProgress();   // auch bei nicht bestanden: die Aufgaben sind trotzdem beantwortet
   /* Auch hier koennen Tagesaufgaben fertig geworden sein - siehe lessonEnd.
      Bei nicht bestandenem Test kommt der Ton frueher, weil dann keine
@@ -13288,7 +13746,7 @@ function showTestResult(){
     '<div class="ergebnis-titel">'+t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
     '<div class="feedback '+(ok?'ok':'no')+'">'+(ok ? t(nextSec ? 'test.sektion_fertig' : 'test.bestanden') : t('test.durchgefallen',{n:TEST_BESTANDEN_AB}))+'</div>'+
-    questLob+
+    questLob+erfolgLob+
     '<div class="row">'+
       '<button class="btn ghost" id="tBack">'+(ok?t('test.zum_pfad'):t('lektion.zurueck'))+'</button>'+
       (ok && hasNext ? '<button class="btn know" id="tNext">'+t('test.weiter_level',{n:levelNummer(naechstesOffenes())})+'</button>' : '<button class="btn again" id="tRetry">'+t('task.nochmal')+'</button>')+
@@ -13876,7 +14334,9 @@ function topfEnde(){
   const scored = Lx.results.filter(r => r !== 'intro' && r !== 'skip').length;
   zaehle('lek');
   if(Lx.right === scored && scored > 0 && Lx.skipped === 0) zaehle('per');
-  const newDay = markToday(); saveProgress(); sound('done');
+  const newDay = markToday();
+  const erfolgLob = erfolgZeile();   // Erfolge (13.11.2026): hakt ab, also vor dem Speichern
+  saveProgress(); sound('done');
   const questLob = questZeilen();
   if(questLob) setTimeout(()=>sound('quest'), 850);
   const rest = mitStern ? sternAnzahl() : (mitKartei ? karteiHeute().length : topfAnzahl());
@@ -13889,7 +14349,7 @@ function topfEnde(){
       '<div class="stat"><b>' + symbol('herz') + ' ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
     (rest === 0 && !mitStern ? '<div class="feedback ok">' + esc(t(mitKartei ? 'kartei.alles' : 'topf.alles')) + '</div>' : '') +
     (newDay ? '<div class="feedback ok">' + t('lektion.heute_geuebt') + '</div>' : '') +
-    questLob +
+    questLob + erfolgLob +
     '<div class="row"><button class="btn ghost" id="lHome"></button>' +
       (rest ? '<button class="btn know" id="lMore"></button>' : '') + '</div>';
   $('lHome').textContent = t('topf.zurueck');
