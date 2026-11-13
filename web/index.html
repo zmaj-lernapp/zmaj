@@ -14655,12 +14655,22 @@ function benGelernt(){
 /* Die Werte eines geplanten Abends. pause: Tage seit dem letzten Lerntag
    (basis, 0 ohne einen). Gerissen ist die Serie an dem Abend, wenn sie es
    jetzt schon ist oder mehr Tage dazwischen fehlen, als Schutz im Vorrat
-   liegt. */
+   liegt.
+   Zum Vorrat zaehlt auch ein Schutz, der bis 19 Uhr an dem Abend
+   nachwaechst: beim Oeffnen rettet pruefeSchutz() die Serie mit genau dem.
+   Vorher zaehlte nur der Schutz von jetzt, und B3 ("Serie weg?") kam fuer
+   eine Serie, die gar nicht gerissen war - gefunden in der Pruefung am
+   13.11.2026 (Serie 5, kein Schutz, der naechste in 12 Stunden). Wie
+   schutzAbends in benPlan(). */
 function benWerte(tag, basis, gelernt){
   const n = streak(), tagNr = benTagNr(tag);
   const pause = basis ? tagNr - benTagNr(basis) : 0;
   let fehlt = 0;
   for(let k = 1; k < pause; k++) if(!frost.has(tagMinus(tag, k))) fehlt++;
+  const schutzJetzt = schutzNow();   // gleicht zuerst ab, erst danach stimmt naechsterSchutzIn()
+  const rest = naechsterSchutzIn(), bis = benZeit(tag, BEN_ERINNERUNG_UM).getTime() - Date.now();
+  const nachwachsen = rest > 0 && rest <= bis ? 1 + Math.floor((bis - rest) / SCHUTZ_MS) : 0;
+  const vorrat = Math.min(SCHUTZ_MAX, schutzJetzt + nachwachsen);
   const m = MEILENSTEINE.find(x => x.ziel === days.size + 1 && !gefeiert.has(x.id));
   let wort = '';
   for(let i = 0; i < BEN_WORTE.length && !wort; i++){
@@ -14670,7 +14680,7 @@ function benWerte(tag, basis, gelernt){
   const offen = CATEGORIES.some(c => !passed.has(c.id)) ? CATEGORIES[firstOpen()] : null;
   return {n, pause, rekord, ziel: m ? m.ziel : 0, wort,
           woerter: Math.floor(ohneZa(known) / 100) * 100,   // abgerundet auf 100
-          gerissen: pause >= 2 && (n === 0 || fehlt > schutzNow()),
+          gerissen: pause >= 2 && (n === 0 || fehlt > vorrat),
           level: offen ? offen.label : ''};
 }
 /* Welche Texte an einem Abend in Frage kommen: vorrang vor allen anderen,
@@ -14862,9 +14872,17 @@ async function benPlanen(){
        am S21 so passiert am 01.10.2026. */
     let genau = false;
     try{ const r = await L.checkExactNotificationSetting(); genau = !!r && r.exact_alarm === 'granted'; }catch(e){}
+    /* largeBody: derselbe Text noch einmal, damit Android ihn aufgeklappt
+       ganz zeigt. Nur mit body setzt das Plugin (8.3.1) keinen Stil, dann
+       zeigt Android aufgeklappt hoechstens zwei Zeilen und vor Android 12
+       laesst sich die Nachricht gar nicht aufklappen - die Texte von 1.4
+       sind bis 80 Zeichen lang. Mit largeBody wird es BigTextStyle,
+       zugeklappt bleibt body. iOS kennt largeBody nicht und zeigt body.
+       Pruefung am 13.11.2026. */
     try{
       await L.schedule({notifications: plan.map(p => ({
-        id: p.id, title: p.titel, body: p.text, channelId: p.art === 'rueckhol' ? BEN_KANAL_LEISE : BEN_KANAL,
+        id: p.id, title: p.titel, body: p.text, largeBody: p.text,
+        channelId: p.art === 'rueckhol' ? BEN_KANAL_LEISE : BEN_KANAL,
         isExactNotification: genau,
         schedule: {at: p.wann, allowWhileIdle: true}, extra: {art: p.art}}))});
       s.geplant = s.geplant.concat(plan.map(p => ({id: p.id, at: p.wann.getTime(), tag: dayKey(p.wann), abend: p.art !== 'leben',

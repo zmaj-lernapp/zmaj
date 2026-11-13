@@ -46,7 +46,8 @@ def _iso(d):
 # Werte und die Gruppe des ersten Abends.
 LAGE = """(l) => {
   days = new Set(l.tage); frost = new Set(l.frost || []);
-  schutz = {anzahl: l.schutz || 0, zeit: (l.schutz || 0) >= SCHUTZ_MAX ? 0 : Date.now()};
+  schutz = {anzahl: l.schutz || 0, zeit: (l.schutz || 0) >= SCHUTZ_MAX ? 0
+            : Date.now() - (l.schutzNachIn !== undefined ? SCHUTZ_MS - l.schutzNachIn : 0)};
   gefeiert = new Set(l.gefeiert || []);
   passed = new Set(l.alleBestanden ? CATEGORIES.map(c => c.id) : []);
   const ids = [];
@@ -65,8 +66,11 @@ LAGE = """(l) => {
   const g = benGruppe(days.has(today()) || !(streak() > 0) || schutzNow() > 0 ? 'erinnerung' : 'serie', w);
   const fuell = {};
   Object.keys(BEN_TEXTE).forEach(k => { fuell[k] = benTexte(k, w); });
+  // Der Abend morgen um 19 Uhr, wenn bis dahin nicht gelernt wird
+  const wMorgen = benWerte(tagMinus(today(), -1), basis, benGelernt());
   return {plan, w, g, fuell, n: streak(), woerter: ohneZa(known),
-          level: (CATEGORIES[firstOpen()] || {}).label};
+          level: (CATEGORIES[firstOpen()] || {}).label,
+          wMorgen, gMorgen: benGruppe('erinnerung', wMorgen)};
 }"""
 
 
@@ -206,6 +210,32 @@ def test_pause_ohne_wort_ohne_level_ohne_riss(app):
     assert r["g"]["pool"] == ["b1", "b2"]
 
 
+def test_nachwachsender_schutz_kein_b3(app):
+    """Serie 5 bis gestern, kein Schutz, der naechste waechst in 12 Stunden
+    nach (heute um Mitternacht). Heute um 20 Uhr kommt die Warnung, der
+    Schutz kommt erst danach. Morgen rettet er die Serie beim Oeffnen -
+    also am Abend kein B3 "Serie weg?". Gefunden in der Pruefung am
+    13.11.2026; vorher zaehlte nur der Schutz von jetzt."""
+    stunde = 3600 * 1000
+    # Waechst er erst morgen nach 19 Uhr nach, ist die Serie zur Nachricht weg
+    r = _lage(app, tage=_tage(1, 6), schutzNachIn=33 * stunde)
+    assert r["wMorgen"]["pause"] == 2 and r["wMorgen"]["gerissen"] is True
+    assert "b3" in r["gMorgen"]["pool"]
+    r = _lage(app, tage=_tage(1, 6), schutzNachIn=12 * stunde)
+    abende = _abende(r)
+    assert abende[0]["art"] == "serie" and abende[0]["stunde"] == 20 and abende[0]["tag"] == _iso(0)
+    assert r["wMorgen"]["pause"] == 2 and r["wMorgen"]["gerissen"] is False
+    assert "b3" not in r["gMorgen"]["pool"]
+    assert abende[1]["tag"] == _iso(1) and abende[1]["key"] in B - {"b3"}, abende[1]
+    # Gegenprobe: morgen um 19 Uhr geoeffnet, rettet der Schutz die Serie
+    app.page.clock.set_fixed_time(datetime.datetime.combine(HEUTE + datetime.timedelta(days=1),
+                                                            datetime.time(19, 5)))
+    nachher = app.js("() => { pruefeSchutz(); return {meldung: schutzMeldung, n: streak(),"
+                     " frost: [...frost]}; }")
+    assert nachher == {"meldung": 1, "n": 5, "frost": [_iso(0)]}
+    assert app.fehler == []
+
+
 def test_lange_weg_oder_nie_gelernt_nur_witz(app):
     r = _lage(app, tage=_tage(10, 20))
     assert all(p["key"] in D for p in _abende(r)), r["plan"]
@@ -278,7 +308,7 @@ SCHRITT = """async ([tage, gelernt]) => {
   await benPlanen();
   const s = JSON.parse(localStorage.getItem('zmaj_benachrichtigung'));
   return {texte: s.texte || {}, geplant: s.geplant, pending: __ben.pending.map(n => ({id: n.id, at: +new Date(n.schedule.at),
-          title: n.title, art: n.extra.art}))};
+          title: n.title, art: n.extra.art, aufklappbar: !!n.body && n.largeBody === n.body}))};
 }""" % ALLE_WEGMARKEN
 
 
@@ -317,6 +347,8 @@ def test_drei_wochen_nie_derselbe_text_zweimal(app):
         # hoechstens eine Nachricht je Abend
         abende = [p for p in r["geplant"] if p["abend"]]
         assert len({p["tag"] for p in abende}) == len(abende)
+        # Android klappt jede ganz auf (largeBody = body)
+        assert r["pending"] and all(p["aufklappbar"] for p in r["pending"]), r["pending"]
     assert all(a != b for a, b in zip(gekommen, gekommen[1:])), gekommen
     assert sorted(gekommen[:7]) == ["a1", "a2", "a3", "a4", "a5", "c1", "c3"], gekommen
     assert sorted(gekommen[7:14]) == sorted(gekommen[:7]), gekommen

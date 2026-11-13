@@ -5454,7 +5454,7 @@ TEXTE = {
 "ben.d5_titel": "Zmaj, aussi un cerf-volant 🪁",
 "ben.d5_text": "Celui en papier. Fais-le voler aujourd'hui avec une leçon.",
 "ben.d6_titel": "Burek ou pita ? 🥧",
-"ben.d6_text": "En Bosnie, burek rime avec viande. Le reste, c'est de la pita. Leçon plutôt que débat ?",
+"ben.d6_text": "En Bosnie, burek rime avec viande. Le reste ? De la pita. Leçon, pas débat ?",
 "ben.farbe_blau": "bleue",
 "ben.farbe_lila": "violette",
 "ben.farbe_gold": "dorée",

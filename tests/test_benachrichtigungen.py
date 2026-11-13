@@ -52,10 +52,25 @@ BOSNISCH = {
     "d2": "Luk", "d3": "Kosa, kosa, kosa", "d6": "Burek",
 }
 
-# Was in der Vorschau als laengster Wert vorkommt: ein Level-Name mit 39
-# Zeichen, ein Wort mit 8 Buchstaben, Zahlen mit 4 Stellen.
-LANG = {"n": "1000", "ziel": "1000", "rekord": "1000", "woerter": "6000", "tage": "6",
-        "level": "x" * 39, "wort": "čokolada", "farbe": "goudkleurig"}
+# Laenge nach der Vorlage: Titel bis 30 Zeichen, Text bis 80. Ausnahme B4:
+# Dort steht das Wort selbst im Titel, mit Anfuehrungszeichen und Frage
+# braucht er in en, nl, da und fr bis zu 34 Zeichen. Das Wort steht vorn,
+# also in den ersten 40 Zeichen, die zugeklappt zu sehen sind.
+TITEL_BIS, TEXT_BIS = 30, 80
+TITEL_AUSNAHME = {"b4": 36}
+
+
+def _laengste_werte(code, daten, index_html):
+    """Die laengsten echten Werte je Sprache: der laengste Level-Name dieser
+    Sprache (so, wie die App ihn bekommt), das laengste Wort aus BEN_WORTE,
+    die laengste Flammenfarbe; Serie und Rekord 365, die Wegmarke 1000,
+    7000 Woerter, 6 Tage Pause."""
+    import sprachen
+    t = sprachen.TEXTE[code]
+    return {"n": "365", "ziel": "1000", "rekord": "365", "woerter": "7000", "tage": "6",
+            "level": max((k["label"] for k in daten["kategorien"]), key=len),
+            "wort": max(_woerter(index_html), key=len),
+            "farbe": max((t["ben.farbe_" + f] for f in ("blau", "lila", "gold")), key=len)}
 
 
 def _js_tabelle(index_html):
@@ -137,29 +152,40 @@ def test_platzhalter_und_mehrzahl(sprachcodes, k):
 
 
 @pytest.mark.parametrize("k", SCHLUESSEL)
-def test_ton_regeln(sprachcodes, k):
+def test_ton_regeln(sprachcodes, alle_daten, index_html, k):
     """Genau ein Emoji je Titel, keines im Text. Kein "Zmaj:" vorn, keine
     Uhrzeit, keine Grossbuchstaben-Rufe, hoechstens ein "!" je Teil.
-    Laenge: Titel bis 36 Zeichen, Text bis 100, auch mit den laengsten
-    Werten (Richtwert der Vorlage: 30 und 80, Android zeigt zugeklappt eine
-    Zeile)."""
+    Laenge wie in der Vorlage: Titel bis 30 Zeichen (B4 bis 36, siehe
+    TITEL_AUSNAHME), Text bis 80, mit den laengsten echten Werten der
+    Sprache. Bis zum 13.11.2026 stand hier 36 und 100 mit ausgedachten
+    Werten - so rutschte ein franzoesischer Text mit 87 Zeichen durch."""
     import sprachen
     for code in sprachcodes:
+        lang = _laengste_werte(code, alle_daten[code], index_html)
         titel = sprachen.TEXTE[code]["ben.%s_titel" % k]
         text = sprachen.TEXTE[code]["ben.%s_text" % k]
         for seite in titel.split("|"):
             assert len(EMOJI.findall(seite)) == 1, (code, k, seite)
             assert not seite.startswith("Zmaj:"), (code, k, seite)
-            voll = re.sub(r"\{(\w+)\}", lambda m: LANG[m.group(1)], seite)
-            assert len(voll) <= 36, (code, k, len(voll), voll)
+            voll = re.sub(r"\{(\w+)\}", lambda m: lang[m.group(1)], seite)
+            assert len(voll) <= TITEL_AUSNAHME.get(k, TITEL_BIS), (code, k, len(voll), voll)
             assert seite.count("!") <= 1, (code, k, seite)
         assert not EMOJI.findall(text), (code, k, text)
-        voll = re.sub(r"\{(\w+)\}", lambda m: LANG[m.group(1)], text)
-        assert len(voll) <= 100, (code, k, len(voll), voll)
+        voll = re.sub(r"\{(\w+)\}", lambda m: lang[m.group(1)], text)
+        assert len(voll) <= TEXT_BIS, (code, k, len(voll), voll)
         assert text.count("!") <= 1, (code, k, text)
         for teil in (titel, text):
             assert not re.search(r"\d{1,2}[:.]\d{2}|\b(19|20) ?(Uhr|pm|h)\b", teil), (code, k, teil)
             assert not re.search(r"\b[A-ZÄÖÜ]{4,}\b", teil.replace("ZMAJ", "")), (code, k, teil)
+
+
+def test_android_klappt_den_ganzen_text_auf(index_html):
+    """Nur mit body setzt das Plugin keinen Stil, dann zeigt Android
+    aufgeklappt hoechstens zwei Zeilen (vor Android 12 nur eine). Mit
+    largeBody wird es BigTextStyle; zugeklappt bleibt body. Pruefung am
+    13.11.2026."""
+    rumpf = index_html.split("async function benPlanen(){")[1].split("function zeigeBenFrage(")[0]
+    assert "body: p.text, largeBody: p.text," in rumpf
 
 
 def test_bosnische_stellen_bleiben(sprachcodes):
