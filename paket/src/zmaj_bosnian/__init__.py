@@ -27,12 +27,12 @@ def vocabulary():
 
 
 def levels():
-    """The 295 levels in course order, with labels and tips in 8 languages."""
+    """The 297 levels in course order, with labels and tips in 8 languages."""
     return _lade("vocabulary")["levels"]
 
 
 def sections():
-    """The 31 sections of the learning path."""
+    """The 27 sections of the learning path, each with its stage (A1 to B2)."""
     return _lade("vocabulary")["sections"]
 
 

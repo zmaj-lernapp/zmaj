@@ -41,6 +41,19 @@ are in the Play Store listing. Format:
   Learners placed before the tabs get the two new levels as "Continue" even
   though they lie before their placement. Without hearts the skip-ahead test
   offers the same ways to a heart as the level test (video, coins).
+- 20 reading stories for B1 (decided by the maintainer on 13.11.2026), in four
+  packages behind the twelve older stories, in the same chain: the three
+  approved samples (*Ljeto kod nane na selu*, *Voz Sarajevo–Mostar*,
+  *Izgubljeni telefon*) and 17 more written the same way, 160 to 200 words
+  each, in paragraphs, with three questions whose wrong answers are about as
+  long as the right one, and every word tappable. Three topics that came up
+  twice were replaced by a weather report (*Vrijeme za vikend*), a flat advert
+  (*Izdajem stan*) and an e-mail (*Mejl rođaku*). Texts, translations and
+  questions in all eight languages (translations not by native speakers).
+  Every word form stands in exactly one glossary block, with one meaning that
+  fits every story: 32 stories and 1,504 glossary entries in total. The new
+  stories have no audio yet; it is synthesised after the maintainer's review
+  (`tests/offen_lesetexte.json`, `tests/offen_b1_teil2.py`).
 - A sandbox in the test app only (8.11.2026): when Android reports the app ID
   `de.smartdragon.zmaj.test` and the build carries a "-test" version, every
   level, section, level test and story is open, without writing anything into
