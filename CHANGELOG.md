@@ -7,6 +7,23 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Achievements (approved by the maintainer on 13.11.2026): 18 badges for
+  learning days (7, 30, 100, 365, 1000), the longest streak (blue 30, purple
+  100, gold 365), words learned (100, 500, 1,000, 2,500), all levels of A1, A2
+  and B1, stories (the first, all) and 100 words that reached the 90-day step
+  of the review boxes. Badges are earned
+  retroactively from what the app already stores (one short note "Du hast
+  schon 6 Abzeichen" after the update, once the splash screen is gone; a
+  device's first sync with an account counts the same way, so old badges get
+  no invented date and no red dot) and stay once earned, even if the number
+  behind them drops. They show as a wall at the top of the profile, a row under
+  "Weitermachen" (the three newest and "7 of 18") and a quiet line on the
+  result screen of a lesson, test, review round or story. The card with confetti
+  stays reserved for learning days. No new field in the saved progress: `e:<id>`
+  in `gefeiert`, the date in `wann` where it cannot be recomputed, about 360
+  bytes with all 18. Which badges were already seen is kept on the device only.
+  The pictures are placeholders until the painted ones are approved. Texts in
+  all eight languages (not by native speakers).
 - A sandbox in the test app only (8.11.2026): when Android reports the app ID
   `de.smartdragon.zmaj.test` and the build carries a "-test" version, every
   level, section, level test and story is open, without writing anything into
