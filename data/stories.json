@@ -3380,6 +3380,2350 @@
     ]
    },
    "audio": "web/audio/g12.mp3"
+  },
+  {
+   "id": "b1_doktor",
+   "title": "Kod doktora",
+   "level_hint": "in_der_praxis",
+   "stage": {
+    "de": "B1",
+    "en": "B1",
+    "tr": "B1",
+    "sv": "B1",
+    "nl": "B1",
+    "nb": "B1",
+    "da": "B1",
+    "fr": "B1"
+   },
+   "bs": "Amar se već tri dana ne osjeća dobro. Boli ga grlo, ima temperaturu i stalno je umoran. U ponedjeljak ujutro nazvao je dom zdravlja i zakazao termin kod doktorice za deset sati. U čekaonici je bilo mnogo ljudi. Pored Amara je sjedio jedan stariji čovjek koji je stalno kašljao. „I vas boli grlo?“ pitao je čovjek. „Da, već tri dana“, odgovorio je Amar. „Sada su svi bolesni. To je od ovog vremena.“ Kad je došao na red, doktorica ga je pitala: „Šta vas boli i od kada?“ Amar joj je sve objasnio. Ona ga je pregledala i izmjerila mu temperaturu. „Imate upalu grla. Nije ništa ozbiljno, ali morate se odmarati. Dat ću vam recept, a pet dana ste na bolovanju.“ U apoteci mu je apotekar dao lijek i rekao: „Pijte jednu tabletu tri puta dnevno, poslije jela. I pijte mnogo čaja s medom.“ Kod kuće je Amar nazvao mamu. „Jesi li bio kod doktora?“ pitala je ona. „Jesam, mama. Nije ništa strašno.“ „Onda dobro. Čaj s medom i u krevet!“ Poslije pet dana Amar je opet bio zdrav i vratio se na posao.",
+   "translations": {
+    "de": "Amar fühlt sich schon seit drei Tagen nicht gut. Sein Hals tut weh, er hat Fieber und ist ständig müde. Am Montagmorgen hat er im Gesundheitszentrum angerufen und für zehn Uhr einen Termin bei der Ärztin vereinbart. Im Wartezimmer waren viele Leute. Neben Amar saß ein älterer Mann, der ständig hustete. „Tut Ihnen auch der Hals weh?“, fragte der Mann. „Ja, schon seit drei Tagen“, antwortete Amar. „Jetzt sind alle krank. Das kommt von diesem Wetter.“ Als er an der Reihe war, fragte ihn die Ärztin: „Was tut Ihnen weh, und seit wann?“ Amar hat ihr alles erklärt. Sie hat ihn untersucht und bei ihm Fieber gemessen. „Sie haben eine Halsentzündung. Es ist nichts Ernstes, aber Sie müssen sich ausruhen. Ich gebe Ihnen ein Rezept, und Sie sind fünf Tage krankgeschrieben.“ In der Apotheke gab ihm der Apotheker das Medikament und sagte: „Nehmen Sie dreimal täglich eine Tablette, nach dem Essen. Und trinken Sie viel Tee mit Honig.“ Zu Hause rief Amar seine Mama an. „Warst du beim Arzt?“, fragte sie. „Ja, Mama. Es ist nichts Schlimmes.“ „Dann ist es gut. Tee mit Honig und ab ins Bett!“ Nach fünf Tagen war Amar wieder gesund und ging wieder zur Arbeit.",
+    "en": "Amar has not been feeling well for three days. His throat hurts, he has a fever and he is tired all the time. On Monday morning he called the health center and booked an appointment with the doctor for ten o'clock. There were a lot of people in the waiting room. Next to Amar sat an older man who kept coughing. “Does your throat hurt too?” the man asked. “Yes, for three days already”, Amar answered. “Everyone is sick now. It's this weather.” When it was his turn, the doctor asked him: “What hurts, and since when?” Amar explained everything to her. She examined him and took his temperature. “You have a throat infection. It's nothing serious, but you need to rest. I'll give you a prescription, and you're on sick leave for five days.” At the pharmacy the pharmacist gave him the medicine and said: “Take one tablet three times a day, after meals. And drink a lot of tea with honey.” At home Amar called his mom. “Did you go to the doctor?” she asked. “Yes, Mom. It's nothing bad.” “Good, then. Tea with honey and off to bed!” After five days Amar was healthy again and went back to work.",
+    "tr": "Amar üç gündür kendini iyi hissetmiyor. Boğazı ağrıyor, ateşi var ve sürekli yorgun. Pazartesi sabahı sağlık ocağını aradı ve saat ona doktordan randevu aldı. Bekleme odasında çok insan vardı. Amar'ın yanında sürekli öksüren yaşlıca bir adam oturuyordu. “Sizin de mi boğazınız ağrıyor?” diye sordu adam. “Evet, üç gündür”, diye cevap verdi Amar. “Şimdi herkes hasta. Bu havadan.” Sırası gelince doktor ona sordu: “Neresi ağrıyor ve ne zamandan beri?” Amar ona her şeyi anlattı. Doktor onu muayene etti ve ateşini ölçtü. “Boğazınız iltihaplanmış. Ciddi bir şey değil, ama dinlenmeniz gerek. Size bir reçete yazıyorum, beş gün de raporlusunuz.” Eczanede eczacı ona ilacı verdi ve şöyle dedi: “Günde üç kez, yemekten sonra bir tablet alın. Bir de bol bol ballı çay için.” Evde Amar annesini aradı. “Doktora gittin mi?” diye sordu annesi. “Evet anne. Kötü bir şey yok.” “O zaman iyi. Ballı çay ve doğru yatağa!” Beş gün sonra Amar yine sağlığına kavuştu ve işe döndü.",
+    "sv": "Amar har inte mått bra på tre dagar. Han har ont i halsen, han har feber och är trött hela tiden. På måndagsmorgonen ringde han vårdcentralen och bokade en tid hos läkaren klockan tio. I väntrummet var det mycket folk. Bredvid Amar satt en äldre man som hostade hela tiden. ”Har du också ont i halsen?” frågade mannen. ”Ja, sedan tre dagar”, svarade Amar. ”Nu är alla sjuka. Det är det här vädret.” När det blev hans tur frågade läkaren honom: ”Var gör det ont, och sedan när?” Amar förklarade allt för henne. Hon undersökte honom och tog hans temperatur. ”Du har halsinfektion. Det är inget allvarligt, men du måste vila. Jag skriver ut ett recept, och du är sjukskriven i fem dagar.” På apoteket gav apotekaren honom medicinen och sa: ”Ta en tablett tre gånger om dagen, efter maten. Och drick mycket te med honung.” Hemma ringde Amar sin mamma. ”Har du varit hos läkaren?” frågade hon. ”Ja, mamma. Det är inget farligt.” ”Då är det bra. Te med honung och i säng!” Efter fem dagar var Amar frisk igen och gick tillbaka till jobbet.",
+    "nl": "Amar voelt zich al drie dagen niet goed. Zijn keel doet pijn, hij heeft koorts en hij is de hele tijd moe. Op maandagochtend belde hij het gezondheidscentrum en maakte een afspraak bij de dokter voor tien uur. In de wachtkamer zaten veel mensen. Naast Amar zat een oudere man die steeds hoestte. ‘Heeft u ook keelpijn?’ vroeg de man. ‘Ja, al drie dagen’, antwoordde Amar. ‘Iedereen is nu ziek. Dat komt door dit weer.’ Toen hij aan de beurt was, vroeg de dokter: ‘Waar heeft u pijn, en sinds wanneer?’ Amar legde haar alles uit. Ze onderzocht hem en mat zijn temperatuur. ‘U heeft keelontsteking. Het is niets ernstigs, maar u moet rusten. Ik geef u een recept, en u bent vijf dagen ziekgemeld.’ In de apotheek gaf de apotheker hem het medicijn en zei: ‘Neem drie keer per dag een tablet, na het eten. En drink veel thee met honing.’ Thuis belde Amar zijn moeder. ‘Ben je bij de dokter geweest?’ vroeg ze. ‘Ja, mam. Het is niets ergs.’ ‘Dan is het goed. Thee met honing en naar bed!’ Na vijf dagen was Amar weer gezond en ging hij weer aan het werk.",
+    "nb": "Amar har ikke følt seg bra på tre dager. Han har vondt i halsen, han har feber og er trøtt hele tiden. Mandag morgen ringte han legesenteret og bestilte time hos legen klokka ti. På venterommet var det mange folk. Ved siden av Amar satt en eldre mann som hostet hele tiden. «Har du også vondt i halsen?» spurte mannen. «Ja, i tre dager allerede», svarte Amar. «Nå er alle syke. Det er dette været.» Da det ble hans tur, spurte legen ham: «Hvor har du vondt, og siden når?» Amar forklarte alt for henne. Hun undersøkte ham og målte temperaturen hans. «Du har halsbetennelse. Det er ikke noe alvorlig, men du må hvile. Jeg gir deg en resept, og du er sykmeldt i fem dager.» På apoteket ga apotekeren ham medisinen og sa: «Ta én tablett tre ganger om dagen, etter mat. Og drikk mye te med honning.» Hjemme ringte Amar moren sin. «Har du vært hos legen?» spurte hun. «Ja, mamma. Det er ikke noe farlig.» «Da er det bra. Te med honning og rett i seng!» Etter fem dager var Amar frisk igjen og dro tilbake på jobb.",
+    "da": "Amar har ikke haft det godt i tre dage. Han har ondt i halsen, han har feber og er træt hele tiden. Mandag morgen ringede han til sundhedscentret og bestilte tid hos lægen klokken ti. I venteværelset var der mange mennesker. Ved siden af Amar sad en ældre mand, som hostede hele tiden. »Har du også ondt i halsen?« spurgte manden. »Ja, allerede i tre dage«, svarede Amar. »Nu er alle syge. Det er det her vejr.« Da det blev hans tur, spurgte lægen ham: »Hvor gør det ondt, og siden hvornår?« Amar forklarede hende det hele. Hun undersøgte ham og målte hans temperatur. »Du har halsbetændelse. Det er ikke noget alvorligt, men du skal hvile dig. Jeg giver dig en recept, og du er sygemeldt i fem dage.« På apoteket gav apotekeren ham medicinen og sagde: »Tag en tablet tre gange om dagen efter maden. Og drik masser af te med honning.« Derhjemme ringede Amar til sin mor. »Har du været hos lægen?« spurgte hun. »Ja, mor. Det er ikke noget slemt.« »Så er det godt. Te med honning og i seng!« Efter fem dage var Amar rask igen og tog tilbage på arbejde.",
+    "fr": "Amar ne se sent pas bien depuis trois jours. Il a mal à la gorge, il a de la fièvre et il est tout le temps fatigué. Lundi matin, il a appelé le centre de santé et a pris rendez-vous chez la médecin pour dix heures. Dans la salle d'attente, il y avait beaucoup de monde. À côté d'Amar était assis un homme âgé qui toussait sans arrêt. « Vous aussi, vous avez mal à la gorge ? » a demandé l'homme. « Oui, depuis trois jours déjà », a répondu Amar. « En ce moment, tout le monde est malade. C'est à cause de ce temps. » Quand ce fut son tour, la médecin lui a demandé : « Où avez-vous mal, et depuis quand ? » Amar lui a tout expliqué. Elle l'a examiné et a pris sa température. « Vous avez une angine. Ce n'est rien de grave, mais vous devez vous reposer. Je vous fais une ordonnance, et vous êtes en arrêt maladie pendant cinq jours. » À la pharmacie, le pharmacien lui a donné le médicament et a dit : « Prenez un comprimé trois fois par jour, après les repas. Et buvez beaucoup de thé au miel. » À la maison, Amar a appelé sa maman. « Tu es allé chez le médecin ? » a-t-elle demandé. « Oui, maman. Ce n'est rien de grave. » « Bon, alors. Du thé au miel et au lit ! » Après cinq jours, Amar était de nouveau en bonne santé et il est retourné au travail."
+   },
+   "glossary": {
+    "de": {
+     "vremena": "Wetter / Zeit (Gen.)",
+     "jela": "Essen (Gen.)",
+     "koji": "der (Relativ) / welcher"
+    },
+    "en": {
+     "vremena": "weather / time (gen.)",
+     "jela": "food / meal (gen.)",
+     "koji": "who / which (relative)"
+    },
+    "tr": {
+     "vremena": "hava / zaman (genitif)",
+     "jela": "yemek (genitif)",
+     "koji": "ki / hangi (ilgi)"
+    },
+    "sv": {
+     "vremena": "väder / tid (genitiv)",
+     "jela": "mat (genitiv)",
+     "koji": "som (relativ) / vilken"
+    },
+    "nl": {
+     "vremena": "weer / tijd (genitief)",
+     "jela": "eten (genitief)",
+     "koji": "die / welke (betrekkelijk)"
+    },
+    "nb": {
+     "vremena": "vær / tid (genitiv)",
+     "jela": "mat (genitiv)",
+     "koji": "som (relativ) / hvilken"
+    },
+    "da": {
+     "vremena": "vejr / tid (genitiv)",
+     "jela": "mad (genitiv)",
+     "koji": "som (relativ) / hvilken"
+    },
+    "fr": {
+     "vremena": "temps (génitif)",
+     "jela": "repas (génitif)",
+     "koji": "qui (relatif) / quel"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Was hat Amar?",
+      "optionen": [
+       "eine Halsentzündung",
+       "eine Grippe",
+       "Bauchschmerzen"
+      ],
+      "richtig": "eine Halsentzündung"
+     },
+     {
+      "frage": "Wie oft soll er die Tablette nehmen?",
+      "optionen": [
+       "dreimal täglich",
+       "einmal täglich",
+       "nur am Abend"
+      ],
+      "richtig": "dreimal täglich"
+     },
+     {
+      "frage": "Wie lange ist Amar krankgeschrieben?",
+      "optionen": [
+       "fünf Tage",
+       "drei Tage",
+       "zwei Wochen"
+      ],
+      "richtig": "fünf Tage"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What does Amar have?",
+      "optionen": [
+       "a throat infection",
+       "the flu",
+       "a stomach ache"
+      ],
+      "richtig": "a throat infection"
+     },
+     {
+      "frage": "How often should he take the tablet?",
+      "optionen": [
+       "three times a day",
+       "once a day",
+       "only in the evening"
+      ],
+      "richtig": "three times a day"
+     },
+     {
+      "frage": "How long is Amar on sick leave?",
+      "optionen": [
+       "five days",
+       "three days",
+       "two weeks"
+      ],
+      "richtig": "five days"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Amar'ın nesi var?",
+      "optionen": [
+       "boğaz iltihabı",
+       "grip",
+       "karın ağrısı"
+      ],
+      "richtig": "boğaz iltihabı"
+     },
+     {
+      "frage": "Tableti ne sıklıkla almalı?",
+      "optionen": [
+       "günde üç kez",
+       "günde bir kez",
+       "sadece akşamları"
+      ],
+      "richtig": "günde üç kez"
+     },
+     {
+      "frage": "Amar kaç gün raporlu?",
+      "optionen": [
+       "beş gün",
+       "üç gün",
+       "iki hafta"
+      ],
+      "richtig": "beş gün"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vad har Amar?",
+      "optionen": [
+       "halsinfektion",
+       "influensa",
+       "ont i magen"
+      ],
+      "richtig": "halsinfektion"
+     },
+     {
+      "frage": "Hur ofta ska han ta tabletten?",
+      "optionen": [
+       "tre gånger om dagen",
+       "en gång om dagen",
+       "bara på kvällen"
+      ],
+      "richtig": "tre gånger om dagen"
+     },
+     {
+      "frage": "Hur länge är Amar sjukskriven?",
+      "optionen": [
+       "fem dagar",
+       "tre dagar",
+       "två veckor"
+      ],
+      "richtig": "fem dagar"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Wat heeft Amar?",
+      "optionen": [
+       "een keelontsteking",
+       "griep",
+       "buikpijn"
+      ],
+      "richtig": "een keelontsteking"
+     },
+     {
+      "frage": "Hoe vaak moet hij de tablet innemen?",
+      "optionen": [
+       "drie keer per dag",
+       "één keer per dag",
+       "alleen 's avonds"
+      ],
+      "richtig": "drie keer per dag"
+     },
+     {
+      "frage": "Hoe lang is Amar ziekgemeld?",
+      "optionen": [
+       "vijf dagen",
+       "drie dagen",
+       "twee weken"
+      ],
+      "richtig": "vijf dagen"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hva feiler det Amar?",
+      "optionen": [
+       "halsbetennelse",
+       "influensa",
+       "vondt i magen"
+      ],
+      "richtig": "halsbetennelse"
+     },
+     {
+      "frage": "Hvor ofte skal han ta tabletten?",
+      "optionen": [
+       "tre ganger om dagen",
+       "én gang om dagen",
+       "bare om kvelden"
+      ],
+      "richtig": "tre ganger om dagen"
+     },
+     {
+      "frage": "Hvor lenge er Amar sykmeldt?",
+      "optionen": [
+       "fem dager",
+       "tre dager",
+       "to uker"
+      ],
+      "richtig": "fem dager"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvad fejler Amar?",
+      "optionen": [
+       "halsbetændelse",
+       "influenza",
+       "mavepine"
+      ],
+      "richtig": "halsbetændelse"
+     },
+     {
+      "frage": "Hvor tit skal han tage tabletten?",
+      "optionen": [
+       "tre gange om dagen",
+       "én gang om dagen",
+       "kun om aftenen"
+      ],
+      "richtig": "tre gange om dagen"
+     },
+     {
+      "frage": "Hvor længe er Amar sygemeldt?",
+      "optionen": [
+       "fem dage",
+       "tre dage",
+       "to uger"
+      ],
+      "richtig": "fem dage"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Qu'est-ce qu'a Amar ?",
+      "optionen": [
+       "une angine",
+       "la grippe",
+       "mal au ventre"
+      ],
+      "richtig": "une angine"
+     },
+     {
+      "frage": "À quelle fréquence doit-il prendre le comprimé ?",
+      "optionen": [
+       "trois fois par jour",
+       "une fois par jour",
+       "seulement le soir"
+      ],
+      "richtig": "trois fois par jour"
+     },
+     {
+      "frage": "Combien de temps Amar est-il en arrêt maladie ?",
+      "optionen": [
+       "cinq jours",
+       "trois jours",
+       "deux semaines"
+      ],
+      "richtig": "cinq jours"
+     }
+    ]
+   },
+   "audio": null
+  },
+  {
+   "id": "b1_selidba",
+   "title": "Selidba",
+   "level_hint": "erledigen_umziehen",
+   "stage": {
+    "de": "B1",
+    "en": "B1",
+    "tr": "B1",
+    "sv": "B1",
+    "nl": "B1",
+    "nb": "B1",
+    "da": "B1",
+    "fr": "B1"
+   },
+   "bs": "Selma je dobila novi posao u Sarajevu, pa se mora preseliti iz Tuzle. Našla je mali stan na Grbavici, blizu posla. Stan ima dvije sobe, kuhinju i balkon s pogledom na planine. U subotu ujutro došli su njen brat Tarik i dvojica prijatelja. Cijelo jutro su nosili kutije, stolice, krevet i ormar u kombi. „Šta imaš u ovoj kutiji, kamenje?“ smijao se Tarik. „Ne, knjige“, rekla je Selma. Poslije dva sata vožnje stigli su u Sarajevo. Ali lift u zgradi nije radio, a stan je bio na petom spratu. Morali su sve nositi stepenicama. Kad su završili, svi su bili umorni i gladni. Onda je neko pokucao na vrata. Bila je to komšinica s četvrtog sprata, s toplom pitom. „Dobro došli! Ja sam Hajra. Ako vam nešto treba, samo pokucajte.“ Sjeli su na pod, jer sto još nisu kupili, i jeli pitu rukama. Selma je pogledala kroz prozor i nasmijala se. Stan je još bio pun kutija, ali ona se već osjećala kao kod kuće.",
+   "translations": {
+    "de": "Selma hat eine neue Arbeit in Sarajevo bekommen, also muss sie aus Tuzla umziehen. Sie hat eine kleine Wohnung in Grbavica gefunden, in der Nähe der Arbeit. Die Wohnung hat zwei Zimmer, eine Küche und einen Balkon mit Blick auf die Berge. Am Samstagmorgen kamen ihr Bruder Tarik und zwei Freunde. Den ganzen Morgen trugen sie Kisten, Stühle, ein Bett und einen Schrank in den Kleinbus. „Was hast du in dieser Kiste, Steine?“, lachte Tarik. „Nein, Bücher“, sagte Selma. Nach zwei Stunden Fahrt kamen sie in Sarajevo an. Aber der Aufzug im Gebäude funktionierte nicht, und die Wohnung lag im fünften Stock. Sie mussten alles über die Treppe tragen. Als sie fertig waren, waren alle müde und hungrig. Dann klopfte jemand an die Tür. Es war die Nachbarin aus dem vierten Stock, mit einer warmen Pita. „Willkommen! Ich bin Hajra. Wenn ihr etwas braucht, klopft einfach.“ Sie setzten sich auf den Boden, weil sie noch keinen Tisch gekauft hatten, und aßen die Pita mit den Händen. Selma schaute aus dem Fenster und lachte. Die Wohnung war noch voller Kisten, aber sie fühlte sich schon wie zu Hause.",
+    "en": "Selma got a new job in Sarajevo, so she has to move from Tuzla. She found a small apartment in Grbavica, close to work. The apartment has two rooms, a kitchen and a balcony with a view of the mountains. On Saturday morning her brother Tarik and two friends came. All morning they carried boxes, chairs, a bed and a wardrobe into the van. “What have you got in this box, stones?” Tarik laughed. “No, books”, Selma said. After a two-hour drive they arrived in Sarajevo. But the elevator in the building was not working, and the apartment was on the fifth floor. They had to carry everything up the stairs. When they were done, everyone was tired and hungry. Then someone knocked on the door. It was the neighbor from the fourth floor, with a warm pita. “Welcome! I'm Hajra. If you need anything, just knock.” They sat down on the floor, because they had not bought a table yet, and ate the pita with their hands. Selma looked out of the window and laughed. The apartment was still full of boxes, but she already felt at home.",
+    "tr": "Selma Saraybosna'da yeni bir işe girdi, bu yüzden Tuzla'dan taşınması gerekiyor. İşine yakın, Grbavica'da küçük bir daire buldu. Dairede iki oda, bir mutfak ve dağlara bakan bir balkon var. Cumartesi sabahı kardeşi Tarik ve iki arkadaşı geldi. Bütün sabah kutuları, sandalyeleri, bir yatağı ve bir dolabı minibüse taşıdılar. “Bu kutuda ne var, taş mı?” diye güldü Tarik. “Hayır, kitap”, dedi Selma. İki saatlik yolculuktan sonra Saraybosna'ya vardılar. Ama binadaki asansör çalışmıyordu ve daire beşinci kattaydı. Her şeyi merdivenden taşımak zorunda kaldılar. İşleri bittiğinde herkes yorgun ve açtı. Sonra biri kapıyı çaldı. Dördüncü kattaki komşu kadındı, elinde sıcak bir pitayla. “Hoş geldiniz! Ben Hajra. Bir şeye ihtiyacınız olursa kapımı çalmanız yeter.” Henüz masa almadıkları için yere oturdular ve pitayı elleriyle yediler. Selma pencereden dışarı baktı ve güldü. Daire hâlâ kutularla doluydu, ama o kendini şimdiden evinde hissediyordu.",
+    "sv": "Selma har fått ett nytt jobb i Sarajevo, så hon måste flytta från Tuzla. Hon har hittat en liten lägenhet i Grbavica, nära jobbet. Lägenheten har två rum, ett kök och en balkong med utsikt över bergen. På lördagsmorgonen kom hennes bror Tarik och två vänner. Hela förmiddagen bar de lådor, stolar, en säng och en garderob till skåpbilen. ”Vad har du i den här lådan, stenar?” skrattade Tarik. ”Nej, böcker”, sa Selma. Efter två timmars bilresa kom de fram till Sarajevo. Men hissen i huset fungerade inte, och lägenheten låg på femte våningen. De fick bära allt uppför trappan. När de var klara var alla trötta och hungriga. Då knackade någon på dörren. Det var grannen från fjärde våningen, med en varm pita. ”Välkomna! Jag heter Hajra. Om ni behöver något är det bara att knacka.” De satte sig på golvet, eftersom de inte hade köpt något bord än, och åt pitan med händerna. Selma tittade ut genom fönstret och skrattade. Lägenheten var fortfarande full av lådor, men hon kände sig redan hemma.",
+    "nl": "Selma heeft een nieuwe baan in Sarajevo gekregen, dus moet ze verhuizen uit Tuzla. Ze heeft een klein appartement gevonden in Grbavica, dicht bij haar werk. Het appartement heeft twee kamers, een keuken en een balkon met uitzicht op de bergen. Op zaterdagochtend kwamen haar broer Tarik en twee vrienden. De hele ochtend droegen ze dozen, stoelen, een bed en een kast naar het busje. ‘Wat zit er in deze doos, stenen?’ lachte Tarik. ‘Nee, boeken’, zei Selma. Na twee uur rijden kwamen ze aan in Sarajevo. Maar de lift in het gebouw werkte niet, en het appartement lag op de vijfde verdieping. Ze moesten alles via de trap naar boven dragen. Toen ze klaar waren, was iedereen moe en hongerig. Toen klopte er iemand op de deur. Het was de buurvrouw van de vierde verdieping, met een warme pita. ‘Welkom! Ik ben Hajra. Als jullie iets nodig hebben, klop maar aan.’ Ze gingen op de vloer zitten, omdat ze nog geen tafel hadden gekocht, en aten de pita met hun handen. Selma keek uit het raam en lachte. Het appartement stond nog vol dozen, maar ze voelde zich al thuis.",
+    "nb": "Selma har fått ny jobb i Sarajevo, så hun må flytte fra Tuzla. Hun har funnet en liten leilighet på Grbavica, i nærheten av jobben. Leiligheten har to rom, et kjøkken og en balkong med utsikt mot fjellene. Lørdag morgen kom broren hennes Tarik og to venner. Hele formiddagen bar de esker, stoler, en seng og et skap inn i varebilen. «Hva har du i denne esken, stein?» lo Tarik. «Nei, bøker», sa Selma. Etter to timers kjøring kom de fram til Sarajevo. Men heisen i bygningen virket ikke, og leiligheten lå i femte etasje. De måtte bære alt opp trappene. Da de var ferdige, var alle trøtte og sultne. Så banket noen på døra. Det var naboen fra fjerde etasje, med en varm pita. «Velkommen! Jeg er Hajra. Hvis dere trenger noe, er det bare å banke på.» De satte seg på gulvet, fordi de ikke hadde kjøpt bord ennå, og spiste pitaen med hendene. Selma så ut av vinduet og lo. Leiligheten var fortsatt full av esker, men hun følte seg allerede hjemme.",
+    "da": "Selma har fået et nyt job i Sarajevo, så hun skal flytte fra Tuzla. Hun har fundet en lille lejlighed i Grbavica, tæt på arbejdet. Lejligheden har to værelser, et køkken og en altan med udsigt over bjergene. Lørdag morgen kom hendes bror Tarik og to venner. Hele formiddagen bar de kasser, stole, en seng og et skab ud i varebilen. »Hvad har du i den her kasse, sten?« lo Tarik. »Nej, bøger«, sagde Selma. Efter to timers kørsel kom de frem til Sarajevo. Men elevatoren i bygningen virkede ikke, og lejligheden lå på femte sal. De måtte bære det hele op ad trappen. Da de var færdige, var alle trætte og sultne. Så bankede nogen på døren. Det var naboen fra fjerde sal med en varm pita. »Velkommen! Jeg hedder Hajra. Hvis I mangler noget, så bare bank på.« De satte sig på gulvet, fordi de ikke havde købt et bord endnu, og spiste pitaen med hænderne. Selma kiggede ud ad vinduet og lo. Lejligheden var stadig fuld af kasser, men hun følte sig allerede hjemme.",
+    "fr": "Selma a obtenu un nouveau travail à Sarajevo, alors elle doit déménager de Tuzla. Elle a trouvé un petit appartement à Grbavica, près de son travail. L'appartement a deux pièces, une cuisine et un balcon avec vue sur les montagnes. Samedi matin, son frère Tarik et deux amis sont venus. Toute la matinée, ils ont porté des cartons, des chaises, un lit et une armoire jusqu'à la camionnette. « Qu'est-ce que tu as dans ce carton, des pierres ? » a ri Tarik. « Non, des livres », a dit Selma. Après deux heures de route, ils sont arrivés à Sarajevo. Mais l'ascenseur de l'immeuble ne marchait pas, et l'appartement était au cinquième étage. Ils ont dû tout monter par l'escalier. Quand ils ont eu fini, tout le monde était fatigué et affamé. Puis quelqu'un a frappé à la porte. C'était la voisine du quatrième étage, avec une pita chaude. « Bienvenue ! Je suis Hajra. Si vous avez besoin de quelque chose, frappez simplement. » Ils se sont assis par terre, parce qu'ils n'avaient pas encore acheté de table, et ont mangé la pita avec les mains. Selma a regardé par la fenêtre et a ri. L'appartement était encore plein de cartons, mais elle se sentait déjà chez elle."
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Warum zieht Selma um?",
+      "optionen": [
+       "wegen einer neuen Arbeit",
+       "wegen der Miete",
+       "wegen der Schule"
+      ],
+      "richtig": "wegen einer neuen Arbeit"
+     },
+     {
+      "frage": "Warum mussten sie alles über die Treppe tragen?",
+      "optionen": [
+       "der Aufzug funktionierte nicht",
+       "die Kisten waren zu groß",
+       "die Treppe war schneller"
+      ],
+      "richtig": "der Aufzug funktionierte nicht"
+     },
+     {
+      "frage": "Was brachte die Nachbarin mit?",
+      "optionen": [
+       "eine warme Pita",
+       "Kaffee",
+       "Blumen"
+      ],
+      "richtig": "eine warme Pita"
+     }
+    ],
+    "en": [
+     {
+      "frage": "Why is Selma moving?",
+      "optionen": [
+       "because of a new job",
+       "because of the rent",
+       "because of school"
+      ],
+      "richtig": "because of a new job"
+     },
+     {
+      "frage": "Why did they have to carry everything up the stairs?",
+      "optionen": [
+       "the elevator was not working",
+       "the boxes were too big",
+       "the stairs were faster"
+      ],
+      "richtig": "the elevator was not working"
+     },
+     {
+      "frage": "What did the neighbor bring?",
+      "optionen": [
+       "a warm pita",
+       "coffee",
+       "flowers"
+      ],
+      "richtig": "a warm pita"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Selma neden taşınıyor?",
+      "optionen": [
+       "yeni bir iş yüzünden",
+       "kira yüzünden",
+       "okul yüzünden"
+      ],
+      "richtig": "yeni bir iş yüzünden"
+     },
+     {
+      "frage": "Neden her şeyi merdivenden taşımak zorunda kaldılar?",
+      "optionen": [
+       "asansör çalışmıyordu",
+       "kutular çok büyüktü",
+       "merdiven daha hızlıydı"
+      ],
+      "richtig": "asansör çalışmıyordu"
+     },
+     {
+      "frage": "Komşu kadın ne getirdi?",
+      "optionen": [
+       "sıcak bir pita",
+       "kahve",
+       "çiçekler"
+      ],
+      "richtig": "sıcak bir pita"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Varför flyttar Selma?",
+      "optionen": [
+       "på grund av ett nytt jobb",
+       "på grund av hyran",
+       "på grund av skolan"
+      ],
+      "richtig": "på grund av ett nytt jobb"
+     },
+     {
+      "frage": "Varför var de tvungna att bära allt i trappan?",
+      "optionen": [
+       "hissen fungerade inte",
+       "lådorna var för stora",
+       "trappan gick fortare"
+      ],
+      "richtig": "hissen fungerade inte"
+     },
+     {
+      "frage": "Vad hade grannen med sig?",
+      "optionen": [
+       "en varm pita",
+       "kaffe",
+       "blommor"
+      ],
+      "richtig": "en varm pita"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Waarom verhuist Selma?",
+      "optionen": [
+       "vanwege een nieuwe baan",
+       "vanwege de huur",
+       "vanwege school"
+      ],
+      "richtig": "vanwege een nieuwe baan"
+     },
+     {
+      "frage": "Waarom moesten ze alles via de trap dragen?",
+      "optionen": [
+       "de lift werkte niet",
+       "de dozen waren te groot",
+       "de trap was sneller"
+      ],
+      "richtig": "de lift werkte niet"
+     },
+     {
+      "frage": "Wat bracht de buurvrouw mee?",
+      "optionen": [
+       "een warme pita",
+       "koffie",
+       "bloemen"
+      ],
+      "richtig": "een warme pita"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvorfor flytter Selma?",
+      "optionen": [
+       "på grunn av en ny jobb",
+       "på grunn av husleien",
+       "på grunn av skolen"
+      ],
+      "richtig": "på grunn av en ny jobb"
+     },
+     {
+      "frage": "Hvorfor måtte de bære alt opp trappene?",
+      "optionen": [
+       "heisen virket ikke",
+       "eskene var for store",
+       "trappene gikk fortere"
+      ],
+      "richtig": "heisen virket ikke"
+     },
+     {
+      "frage": "Hva hadde naboen med seg?",
+      "optionen": [
+       "en varm pita",
+       "kaffe",
+       "blomster"
+      ],
+      "richtig": "en varm pita"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvorfor flytter Selma?",
+      "optionen": [
+       "på grund af et nyt job",
+       "på grund af huslejen",
+       "på grund af skolen"
+      ],
+      "richtig": "på grund af et nyt job"
+     },
+     {
+      "frage": "Hvorfor måtte de bære alt op ad trappen?",
+      "optionen": [
+       "elevatoren virkede ikke",
+       "kasserne var for store",
+       "trappen var hurtigere"
+      ],
+      "richtig": "elevatoren virkede ikke"
+     },
+     {
+      "frage": "Hvad havde naboen med?",
+      "optionen": [
+       "en varm pita",
+       "kaffe",
+       "blomster"
+      ],
+      "richtig": "en varm pita"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Pourquoi Selma déménage-t-elle ?",
+      "optionen": [
+       "à cause d'un nouveau travail",
+       "à cause du loyer",
+       "à cause de l'école"
+      ],
+      "richtig": "à cause d'un nouveau travail"
+     },
+     {
+      "frage": "Pourquoi ont-ils dû tout porter par l'escalier ?",
+      "optionen": [
+       "l'ascenseur ne marchait pas",
+       "les cartons étaient trop grands",
+       "l'escalier était plus rapide"
+      ],
+      "richtig": "l'ascenseur ne marchait pas"
+     },
+     {
+      "frage": "Qu'a apporté la voisine ?",
+      "optionen": [
+       "une pita chaude",
+       "café",
+       "fleurs"
+      ],
+      "richtig": "une pita chaude"
+     }
+    ]
+   },
+   "audio": null
+  },
+  {
+   "id": "b1_rodjendan",
+   "title": "Rođendansko iznenađenje",
+   "level_hint": "feiern",
+   "stage": {
+    "de": "B1",
+    "en": "B1",
+    "tr": "B1",
+    "sv": "B1",
+    "nl": "B1",
+    "nb": "B1",
+    "da": "B1",
+    "fr": "B1"
+   },
+   "bs": "Haris će u petak napuniti trideset godina. Njegova žena Lamija već mjesec dana tajno sprema iznenađenje. Pozvala je njegove roditelje, brata i najbolje prijatelje, ali niko ne smije ništa reći Harisu. „Šta ćemo raditi u petak?“ pitao je Haris u srijedu. „Ništa posebno“, rekla je Lamija. „Idemo kod tvojih na večeru.“ Haris je bio malo tužan. Mislio je da su svi zaboravili njegov rođendan. U petak navečer gosti su se sakrili u stanu njegovih roditelja. Svjetlo je bilo ugašeno i svi su šutjeli. Kad su Haris i Lamija ušli, neko je upalio svjetlo. „Iznenađenje! Sretan rođendan!“ Haris je stajao na vratima i nije mogao vjerovati. Njegova mama je donijela veliku tortu s trideset svijeća. Haris ih je ugasio odjednom, a svi su vikali: „Bravo!“ Onda mu je Lamija dala poklon: dvije karte za koncert njegovog omiljenog pjevača. „Ovo je najljepši rođendan u mom životu“, rekao je Haris. Do ponoći su jeli, pjevali i plesali. A Haris je još dugo pričao svima kako ništa nije znao.",
+   "translations": {
+    "de": "Haris wird am Freitag dreißig. Seine Frau Lamija bereitet schon seit einem Monat heimlich eine Überraschung vor. Sie hat seine Eltern, seinen Bruder und seine besten Freunde eingeladen, aber niemand darf Haris etwas sagen. „Was machen wir am Freitag?“, fragte Haris am Mittwoch. „Nichts Besonderes“, sagte Lamija. „Wir gehen zum Abendessen zu deinen Eltern.“ Haris war ein bisschen traurig. Er dachte, alle hätten seinen Geburtstag vergessen. Am Freitagabend versteckten sich die Gäste in der Wohnung seiner Eltern. Das Licht war aus, und alle schwiegen. Als Haris und Lamija hereinkamen, machte jemand das Licht an. „Überraschung! Alles Gute zum Geburtstag!“ Haris stand in der Tür und konnte es nicht glauben. Seine Mama brachte eine große Torte mit dreißig Kerzen. Haris blies sie auf einmal aus, und alle riefen: „Bravo!“ Dann gab ihm Lamija ein Geschenk: zwei Karten für das Konzert seines Lieblingssängers. „Das ist der schönste Geburtstag meines Lebens“, sagte Haris. Bis Mitternacht aßen, sangen und tanzten sie. Und Haris erzählte noch lange allen, dass er nichts gewusst hatte.",
+    "en": "Haris turns thirty on Friday. His wife Lamija has been secretly preparing a surprise for a month. She has invited his parents, his brother and his best friends, but nobody is allowed to tell Haris anything. “What are we doing on Friday?” Haris asked on Wednesday. “Nothing special”, Lamija said. “We're going to your parents' for dinner.” Haris was a little sad. He thought everyone had forgotten his birthday. On Friday evening the guests hid in his parents' apartment. The light was off and everyone was quiet. When Haris and Lamija came in, someone switched on the light. “Surprise! Happy birthday!” Haris stood in the doorway and couldn't believe it. His mom brought a big cake with thirty candles. Haris blew them all out at once, and everyone shouted: “Bravo!” Then Lamija gave him a present: two tickets to a concert by his favorite singer. “This is the best birthday of my life”, Haris said. They ate, sang and danced until midnight. And for a long time afterwards Haris kept telling everyone how he hadn't known a thing.",
+    "tr": "Haris cuma günü otuz yaşına giriyor. Karısı Lamija bir aydır gizlice bir sürpriz hazırlıyor. Annesini, babasını, kardeşini ve en iyi arkadaşlarını davet etti, ama kimse Haris'e bir şey söylememeli. “Cuma günü ne yapıyoruz?” diye sordu Haris çarşamba günü. “Özel bir şey yok”, dedi Lamija. “Akşam yemeğine seninkilere gidiyoruz.” Haris biraz üzüldü. Herkesin doğum gününü unuttuğunu düşündü. Cuma akşamı misafirler onun annesiyle babasının dairesinde saklandı. Işık kapalıydı ve herkes susuyordu. Haris ile Lamija içeri girince biri ışığı yaktı. “Sürpriz! İyi ki doğdun!” Haris kapıda durdu ve inanamadı. Annesi otuz mumlu büyük bir pasta getirdi. Haris mumları bir seferde söndürdü, herkes de “Bravo!” diye bağırdı. Sonra Lamija ona bir hediye verdi: en sevdiği şarkıcının konseri için iki bilet. “Bu hayatımın en güzel doğum günü”, dedi Haris. Gece yarısına kadar yediler, şarkı söylediler ve dans ettiler. Haris de uzun süre herkese hiçbir şeyden haberi olmadığını anlattı.",
+    "sv": "Haris fyller trettio på fredag. Hans fru Lamija har i en månad i hemlighet förberett en överraskning. Hon har bjudit in hans föräldrar, hans bror och hans bästa vänner, men ingen får säga något till Haris. ”Vad ska vi göra på fredag?” frågade Haris på onsdagen. ”Inget särskilt”, sa Lamija. ”Vi ska äta middag hos dina föräldrar.” Haris blev lite ledsen. Han trodde att alla hade glömt hans födelsedag. På fredagskvällen gömde sig gästerna i hans föräldrars lägenhet. Lampan var släckt och alla var tysta. När Haris och Lamija kom in tände någon ljuset. ”Överraskning! Grattis på födelsedagen!” Haris stod i dörren och kunde inte tro det. Hans mamma kom in med en stor tårta med trettio ljus. Haris blåste ut alla på en gång, och alla ropade: ”Bravo!” Sedan gav Lamija honom en present: två biljetter till en konsert med hans favoritsångare. ”Det här är den bästa födelsedagen i mitt liv”, sa Haris. Till midnatt åt de, sjöng och dansade. Och Haris berättade länge för alla hur han inte hade vetat någonting.",
+    "nl": "Haris wordt vrijdag dertig. Zijn vrouw Lamija bereidt al een maand stiekem een verrassing voor. Ze heeft zijn ouders, zijn broer en zijn beste vrienden uitgenodigd, maar niemand mag Haris iets vertellen. ‘Wat doen we vrijdag?’ vroeg Haris op woensdag. ‘Niets bijzonders’, zei Lamija. ‘We gaan bij je ouders eten.’ Haris was een beetje verdrietig. Hij dacht dat iedereen zijn verjaardag vergeten was. Op vrijdagavond verstopten de gasten zich in het appartement van zijn ouders. Het licht was uit en iedereen was stil. Toen Haris en Lamija binnenkwamen, deed iemand het licht aan. ‘Verrassing! Gefeliciteerd met je verjaardag!’ Haris stond in de deuropening en kon het niet geloven. Zijn moeder bracht een grote taart met dertig kaarsjes. Haris blies ze in één keer uit, en iedereen riep: ‘Bravo!’ Toen gaf Lamija hem een cadeau: twee kaartjes voor een concert van zijn favoriete zanger. ‘Dit is de mooiste verjaardag van mijn leven’, zei Haris. Tot middernacht aten, zongen en dansten ze. En Haris vertelde nog lang aan iedereen dat hij van niets had geweten.",
+    "nb": "Haris fyller tretti på fredag. Kona hans Lamija har i en måned i hemmelighet forberedt en overraskelse. Hun har invitert foreldrene hans, broren hans og de beste vennene hans, men ingen får si noe til Haris. «Hva skal vi gjøre på fredag?» spurte Haris på onsdag. «Ikke noe spesielt», sa Lamija. «Vi skal på middag hos foreldrene dine.» Haris ble litt lei seg. Han trodde at alle hadde glemt bursdagen hans. Fredag kveld gjemte gjestene seg i leiligheten til foreldrene hans. Lyset var slukket, og alle var stille. Da Haris og Lamija kom inn, skrudde noen på lyset. «Overraskelse! Gratulerer med dagen!» Haris sto i døra og kunne ikke tro det. Moren hans kom med en stor kake med tretti lys. Haris blåste ut alle på én gang, og alle ropte: «Bravo!» Så ga Lamija ham en gave: to billetter til en konsert med favorittsangeren hans. «Dette er den fineste bursdagen i hele mitt liv», sa Haris. Til midnatt spiste, sang og danset de. Og Haris fortalte lenge alle hvordan han ikke hadde visst noe.",
+    "da": "Haris fylder tredive på fredag. Hans kone Lamija har i en måned i al hemmelighed forberedt en overraskelse. Hun har inviteret hans forældre, hans bror og hans bedste venner, men ingen må sige noget til Haris. »Hvad skal vi lave på fredag?« spurgte Haris om onsdagen. »Ikke noget særligt«, sagde Lamija. »Vi skal spise middag hos dine forældre.« Haris blev lidt ked af det. Han troede, at alle havde glemt hans fødselsdag. Fredag aften gemte gæsterne sig i hans forældres lejlighed. Lyset var slukket, og alle var stille. Da Haris og Lamija kom ind, tændte nogen lyset. »Overraskelse! Tillykke med fødselsdagen!« Haris stod i døren og kunne ikke tro det. Hans mor kom med en stor lagkage med tredive lys. Haris pustede dem alle ud på én gang, og alle råbte: »Bravo!« Så gav Lamija ham en gave: to billetter til en koncert med hans yndlingssanger. »Det her er den smukkeste fødselsdag i mit liv«, sagde Haris. Indtil midnat spiste, sang og dansede de. Og Haris fortalte længe alle, at han ikke havde anet noget.",
+    "fr": "Haris va avoir trente ans vendredi. Sa femme Lamija prépare en secret une surprise depuis un mois. Elle a invité ses parents, son frère et ses meilleurs amis, mais personne ne doit rien dire à Haris. « Qu'est-ce qu'on fait vendredi ? » a demandé Haris mercredi. « Rien de spécial », a dit Lamija. « On va dîner chez tes parents. » Haris était un peu triste. Il pensait que tout le monde avait oublié son anniversaire. Vendredi soir, les invités se sont cachés dans l'appartement de ses parents. La lumière était éteinte et tout le monde se taisait. Quand Haris et Lamija sont entrés, quelqu'un a allumé la lumière. « Surprise ! Joyeux anniversaire ! » Haris est resté sur le pas de la porte et n'en croyait pas ses yeux. Sa maman a apporté un grand gâteau avec trente bougies. Haris les a soufflées d'un seul coup, et tout le monde a crié : « Bravo ! » Puis Lamija lui a offert un cadeau : deux billets pour le concert de son chanteur préféré. « C'est le plus bel anniversaire de ma vie », a dit Haris. Jusqu'à minuit, ils ont mangé, chanté et dansé. Et Haris a raconté encore longtemps à tout le monde qu'il ne s'était douté de rien."
+   },
+   "glossary": {
+    "de": {
+     "smije": "darf (ne smije: darf nicht)",
+     "odjednom": "auf einmal",
+     "karte": "Karten / Tickets",
+     "najbolje": "besten (Akk. Mehrz.)"
+    },
+    "en": {
+     "smije": "may / is allowed (ne smije: must not)",
+     "odjednom": "all at once",
+     "karte": "tickets",
+     "najbolje": "best (acc. pl.)"
+    },
+    "tr": {
+     "smije": "-ebilir (ne smije: -memeli)",
+     "odjednom": "bir anda",
+     "karte": "biletler",
+     "najbolje": "en iyi (akuzatif çoğul)"
+    },
+    "sv": {
+     "smije": "får (ne smije: får inte)",
+     "odjednom": "på en gång",
+     "karte": "biljetter",
+     "najbolje": "bästa (ackusativ plural)"
+    },
+    "nl": {
+     "smije": "mag (ne smije: mag niet)",
+     "odjednom": "in één keer",
+     "karte": "kaartjes",
+     "najbolje": "beste (accusatief meervoud)"
+    },
+    "nb": {
+     "smije": "får lov (ne smije: må ikke)",
+     "odjednom": "på én gang",
+     "karte": "billetter",
+     "najbolje": "beste (akkusativ flertall)"
+    },
+    "da": {
+     "smije": "må (ne smije: må ikke)",
+     "odjednom": "på én gang",
+     "karte": "billetter",
+     "najbolje": "bedste (akkusativ flertal)"
+    },
+    "fr": {
+     "smije": "a le droit (ne smije : ne doit pas)",
+     "odjednom": "d'un seul coup",
+     "karte": "billets",
+     "najbolje": "meilleurs (accusatif pluriel)"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wie alt wird Haris?",
+      "optionen": [
+       "dreißig",
+       "zwanzig",
+       "vierzig"
+      ],
+      "richtig": "dreißig"
+     },
+     {
+      "frage": "Wohin wollten Haris und Lamija angeblich gehen?",
+      "optionen": [
+       "zum Abendessen bei seinen Eltern",
+       "ins Kino",
+       "zu einem Konzert"
+      ],
+      "richtig": "zum Abendessen bei seinen Eltern"
+     },
+     {
+      "frage": "Was schenkte Lamija ihm?",
+      "optionen": [
+       "zwei Konzertkarten",
+       "eine Torte",
+       "ein neues Handy"
+      ],
+      "richtig": "zwei Konzertkarten"
+     }
+    ],
+    "en": [
+     {
+      "frage": "How old is Haris turning?",
+      "optionen": [
+       "thirty",
+       "twenty",
+       "forty"
+      ],
+      "richtig": "thirty"
+     },
+     {
+      "frage": "Where did Lamija say they were going?",
+      "optionen": [
+       "to dinner at his parents'",
+       "to the movies",
+       "to a concert"
+      ],
+      "richtig": "to dinner at his parents'"
+     },
+     {
+      "frage": "What did Lamija give him?",
+      "optionen": [
+       "two concert tickets",
+       "a cake",
+       "a new phone"
+      ],
+      "richtig": "two concert tickets"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Haris kaç yaşına giriyor?",
+      "optionen": [
+       "otuz",
+       "yirmi",
+       "kırk"
+      ],
+      "richtig": "otuz"
+     },
+     {
+      "frage": "Lamija nereye gideceklerini söyledi?",
+      "optionen": [
+       "ailesinde akşam yemeğine",
+       "sinemaya",
+       "bir konsere"
+      ],
+      "richtig": "ailesinde akşam yemeğine"
+     },
+     {
+      "frage": "Lamija ona ne hediye etti?",
+      "optionen": [
+       "iki konser bileti",
+       "bir pasta",
+       "yeni bir telefon"
+      ],
+      "richtig": "iki konser bileti"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Hur gammal fyller Haris?",
+      "optionen": [
+       "trettio",
+       "tjugo",
+       "fyrtio"
+      ],
+      "richtig": "trettio"
+     },
+     {
+      "frage": "Vart sa Lamija att de skulle gå?",
+      "optionen": [
+       "på middag hos hans föräldrar",
+       "på bio",
+       "på en konsert"
+      ],
+      "richtig": "på middag hos hans föräldrar"
+     },
+     {
+      "frage": "Vad gav Lamija honom i present?",
+      "optionen": [
+       "två konsertbiljetter",
+       "en tårta",
+       "en ny mobil"
+      ],
+      "richtig": "två konsertbiljetter"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Hoe oud wordt Haris?",
+      "optionen": [
+       "dertig",
+       "twintig",
+       "veertig"
+      ],
+      "richtig": "dertig"
+     },
+     {
+      "frage": "Waar zei Lamija dat ze heen gingen?",
+      "optionen": [
+       "eten bij zijn ouders",
+       "naar de bioscoop",
+       "naar een concert"
+      ],
+      "richtig": "eten bij zijn ouders"
+     },
+     {
+      "frage": "Wat gaf Lamija hem cadeau?",
+      "optionen": [
+       "twee concertkaartjes",
+       "een taart",
+       "een nieuwe telefoon"
+      ],
+      "richtig": "twee concertkaartjes"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvor gammel blir Haris?",
+      "optionen": [
+       "tretti",
+       "tjue",
+       "førti"
+      ],
+      "richtig": "tretti"
+     },
+     {
+      "frage": "Hvor sa Lamija at de skulle dra?",
+      "optionen": [
+       "på middag hos foreldrene hans",
+       "på kino",
+       "på konsert"
+      ],
+      "richtig": "på middag hos foreldrene hans"
+     },
+     {
+      "frage": "Hva ga Lamija ham i gave?",
+      "optionen": [
+       "to konsertbilletter",
+       "en kake",
+       "en ny mobil"
+      ],
+      "richtig": "to konsertbilletter"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvor gammel bliver Haris?",
+      "optionen": [
+       "tredive",
+       "tyve",
+       "fyrre"
+      ],
+      "richtig": "tredive"
+     },
+     {
+      "frage": "Hvor sagde Lamija, at de skulle hen?",
+      "optionen": [
+       "til middag hos hans forældre",
+       "i biografen",
+       "til en koncert"
+      ],
+      "richtig": "til middag hos hans forældre"
+     },
+     {
+      "frage": "Hvad gav Lamija ham i gave?",
+      "optionen": [
+       "to koncertbilletter",
+       "en lagkage",
+       "en ny mobil"
+      ],
+      "richtig": "to koncertbilletter"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Quel âge va avoir Haris ?",
+      "optionen": [
+       "trente",
+       "vingt",
+       "quarante"
+      ],
+      "richtig": "trente"
+     },
+     {
+      "frage": "Où Lamija a-t-elle dit qu'ils allaient ?",
+      "optionen": [
+       "dîner chez ses parents",
+       "au cinéma",
+       "à un concert"
+      ],
+      "richtig": "dîner chez ses parents"
+     },
+     {
+      "frage": "Qu'est-ce que Lamija lui a offert ?",
+      "optionen": [
+       "deux billets de concert",
+       "un gâteau",
+       "un nouveau portable"
+      ],
+      "richtig": "deux billets de concert"
+     }
+    ]
+   },
+   "audio": null
+  },
+  {
+   "id": "b1_utakmica",
+   "title": "Utakmica",
+   "level_hint": "sport",
+   "stage": {
+    "de": "B1",
+    "en": "B1",
+    "tr": "B1",
+    "sv": "B1",
+    "nl": "B1",
+    "nb": "B1",
+    "da": "B1",
+    "fr": "B1"
+   },
+   "bs": "Kenan ima dvanaest godina i jako voli fudbal. Za njegov rođendan babo je kupio dvije karte za utakmicu reprezentacije u Zenici. Bosna i Hercegovina igra protiv Islanda, a to je važna utakmica za Evropsko prvenstvo. Na dan utakmice krenuli su iz Sarajeva već u podne. Na autoputu su vidjeli mnogo auta sa zastavama. Ispred stadiona je bila velika gužva. Navijači su nosili plave majice i pjevali: „Zmajevi, Zmajevi!“ Utakmica je počela u osam sati. Prvo poluvrijeme je bilo teško. Island je bio bolji i u tridesetoj minuti je dao gol. Kenan je bio tužan, ali babo mu je rekao: „Polako, sine. Utakmica traje devedeset minuta.“ U drugom poluvremenu naši su igrali mnogo bolje. U šezdesetoj minuti i Bosna je dala gol, a pet minuta prije kraja naš igrač je dao još jedan. Cijeli stadion je skočio. Kenan je grlio babu i ljude koje nikad prije nije vidio. Kući su stigli tek poslije ponoći, umorni i bez glasa od pjevanja. „Babo, kad idemo opet?“ pitao je Kenan.",
+   "translations": {
+    "de": "Kenan ist zwölf Jahre alt und liebt Fußball sehr. Zu seinem Geburtstag hat Papa zwei Karten für ein Spiel der Nationalmannschaft in Zenica gekauft. Bosnien und Herzegowina spielt gegen Island, und das ist ein wichtiges Spiel für die Europameisterschaft. Am Tag des Spiels fuhren sie schon mittags in Sarajevo los. Auf der Autobahn sahen sie viele Autos mit Fahnen. Vor dem Stadion war ein großes Gedränge. Die Fans trugen blaue T-Shirts und sangen: „Drachen, Drachen!“ Das Spiel begann um acht Uhr. Die erste Halbzeit war schwer. Island war besser und schoss in der dreißigsten Minute ein Tor. Kenan war traurig, aber Papa sagte zu ihm: „Ruhig, mein Sohn. Ein Spiel dauert neunzig Minuten.“ In der zweiten Halbzeit spielten unsere viel besser. In der sechzigsten Minute schoss auch Bosnien ein Tor, und fünf Minuten vor dem Ende schoss unser Spieler noch eins. Das ganze Stadion sprang auf. Kenan umarmte Papa und Leute, die er noch nie gesehen hatte. Nach Hause kamen sie erst nach Mitternacht, müde und ohne Stimme vom Singen. „Papa, wann gehen wir wieder?“, fragte Kenan.",
+    "en": "Kenan is twelve years old and really loves soccer. For his birthday, Dad bought two tickets for a national team match in Zenica. Bosnia and Herzegovina is playing against Iceland, and it is an important match for the European Championship. On the day of the match they set off from Sarajevo at noon. On the highway they saw lots of cars with flags. In front of the stadium there was a big crowd. The fans wore blue T-shirts and sang: “Dragons, dragons!” The match started at eight o'clock. The first half was hard. Iceland was better and scored a goal in the thirtieth minute. Kenan was sad, but Dad told him: “Take it easy, son. A match lasts ninety minutes.” In the second half our team played much better. In the sixtieth minute Bosnia scored too, and five minutes before the end our player scored another one. The whole stadium jumped up. Kenan hugged Dad and people he had never seen before. They got home only after midnight, tired and hoarse from singing. “Dad, when are we going again?” Kenan asked.",
+    "tr": "Kenan on iki yaşında ve futbolu çok seviyor. Doğum günü için babası Zenica'daki milli takım maçına iki bilet aldı. Bosna-Hersek İzlanda'ya karşı oynuyor ve bu, Avrupa Şampiyonası için önemli bir maç. Maç günü daha öğlen Saraybosna'dan yola çıktılar. Otoyolda bayraklı bir sürü araba gördüler. Stadyumun önünde büyük bir kalabalık vardı. Taraftarlar mavi tişörtler giymişti ve “Ejderhalar, ejderhalar!” diye şarkı söylüyordu. Maç saat sekizde başladı. İlk yarı zordu. İzlanda daha iyiydi ve otuzuncu dakikada gol attı. Kenan üzüldü, ama babası ona şöyle dedi: “Sakin ol oğlum. Maç doksan dakika sürer.” İkinci yarıda bizimkiler çok daha iyi oynadı. Altmışıncı dakikada Bosna da gol attı, maçın bitimine beş dakika kala da bizim oyuncu bir gol daha attı. Bütün stadyum ayağa fırladı. Kenan babasına ve daha önce hiç görmediği insanlara sarıldı. Eve ancak gece yarısından sonra vardılar, yorgun ve şarkı söylemekten sesleri kısılmış halde. “Baba, bir daha ne zaman gidiyoruz?” diye sordu Kenan.",
+    "sv": "Kenan är tolv år och älskar fotboll. Till hans födelsedag köpte pappa två biljetter till en landslagsmatch i Zenica. Bosnien och Hercegovina spelar mot Island, och det är en viktig match inför EM. På matchdagen åkte de från Sarajevo redan vid lunch. På motorvägen såg de många bilar med flaggor. Utanför arenan var det fullt av folk. Supportrarna hade blå t-shirts och sjöng: ”Drakarna, drakarna!” Matchen började klockan åtta. Första halvlek var tuff. Island var bättre och gjorde mål i trettionde minuten. Kenan blev ledsen, men pappa sa till honom: ”Lugn, min son. En match är nittio minuter.” I andra halvlek spelade våra mycket bättre. I sextionde minuten gjorde Bosnien också mål, och fem minuter före slutet gjorde vår spelare ett till. Hela arenan hoppade upp. Kenan kramade pappa och människor som han aldrig hade sett förut. De kom hem först efter midnatt, trötta och hesa av allt sjungande. ”Pappa, när åker vi igen?” frågade Kenan.",
+    "nl": "Kenan is twaalf jaar en is gek op voetbal. Voor zijn verjaardag heeft papa twee kaartjes gekocht voor een wedstrijd van het nationale team in Zenica. Bosnië en Herzegovina speelt tegen IJsland, en dat is een belangrijke wedstrijd voor het Europees kampioenschap. Op de dag van de wedstrijd vertrokken ze al om twaalf uur uit Sarajevo. Op de snelweg zagen ze veel auto's met vlaggen. Voor het stadion was het erg druk. De fans droegen blauwe T-shirts en zongen: ‘Draken, draken!’ De wedstrijd begon om acht uur. De eerste helft was zwaar. IJsland was beter en scoorde in de dertigste minuut. Kenan was verdrietig, maar papa zei tegen hem: ‘Rustig, jongen. Een wedstrijd duurt negentig minuten.’ In de tweede helft speelden de onzen veel beter. In de zestigste minuut scoorde ook Bosnië, en vijf minuten voor het einde maakte onze speler er nog een. Het hele stadion sprong op. Kenan omhelsde papa en mensen die hij nog nooit had gezien. Ze kwamen pas na middernacht thuis, moe en hees van het zingen. ‘Papa, wanneer gaan we weer?’ vroeg Kenan.",
+    "nb": "Kenan er tolv år og er veldig glad i fotball. Til bursdagen hans kjøpte pappa to billetter til en landskamp i Zenica. Bosnia-Hercegovina spiller mot Island, og det er en viktig kamp for EM. På kampdagen dro de fra Sarajevo allerede klokka tolv. På motorveien så de mange biler med flagg. Foran stadion var det fullt av folk. Supporterne hadde på seg blå T-skjorter og sang: «Dragene, dragene!» Kampen begynte klokka åtte. Første omgang var tung. Island var bedre og scoret i det trettiende minutt. Kenan ble lei seg, men pappa sa til ham: «Rolig, gutten min. En kamp varer i nitti minutter.» I andre omgang spilte våre mye bedre. I det sekstiende minutt scoret også Bosnia, og fem minutter før slutt scoret spilleren vår ett mål til. Hele stadion hoppet opp. Kenan klemte pappa og folk han aldri hadde sett før. De kom ikke hjem før etter midnatt, trøtte og hese etter all syngingen. «Pappa, når skal vi dit igjen?» spurte Kenan.",
+    "da": "Kenan er tolv år og elsker fodbold. Til hans fødselsdag købte far to billetter til en landskamp i Zenica. Bosnien-Hercegovina spiller mod Island, og det er en vigtig kamp om EM. På kampdagen kørte de fra Sarajevo allerede ved middagstid. På motorvejen så de mange biler med flag. Foran stadion var der en stor trængsel. Fansene havde blå T-shirts på og sang: »Dragerne, dragerne!« Kampen begyndte klokken otte. Første halvleg var svær. Island var bedre og scorede i det tredivte minut. Kenan blev ked af det, men far sagde til ham: »Rolig nu, min dreng. En kamp varer halvfems minutter.« I anden halvleg spillede vores meget bedre. I det tresindstyvende minut scorede Bosnien også, og fem minutter før slutningen scorede vores spiller endnu et mål. Hele stadion sprang op. Kenan krammede far og mennesker, han aldrig havde set før. De kom først hjem efter midnat, trætte og hæse af at synge. »Far, hvornår skal vi derhen igen?« spurgte Kenan.",
+    "fr": "Kenan a douze ans et adore le football. Pour son anniversaire, papa a acheté deux billets pour un match de l'équipe nationale à Zenica. La Bosnie-Herzégovine joue contre l'Islande, et c'est un match important pour le championnat d'Europe. Le jour du match, ils sont partis de Sarajevo dès midi. Sur l'autoroute, ils ont vu beaucoup de voitures avec des drapeaux. Devant le stade, il y avait une grande foule. Les supporters portaient des tee-shirts bleus et chantaient : « Les dragons, les dragons ! » Le match a commencé à huit heures. La première mi-temps a été difficile. L'Islande était meilleure et a marqué à la trentième minute. Kenan était triste, mais papa lui a dit : « Doucement, mon fils. Un match dure quatre-vingt-dix minutes. » En deuxième mi-temps, les nôtres ont beaucoup mieux joué. À la soixantième minute, la Bosnie a marqué elle aussi, et cinq minutes avant la fin, notre joueur en a marqué un autre. Tout le stade a bondi. Kenan a serré dans ses bras papa et des gens qu'il n'avait jamais vus. Ils sont rentrés seulement après minuit, fatigués et sans voix d'avoir tant chanté. « Papa, quand est-ce qu'on y retourne ? » a demandé Kenan."
+   },
+   "glossary": {
+    "de": {
+     "prvo": "erste (s) / zuerst",
+     "karte": "Karten / Tickets"
+    },
+    "en": {
+     "prvo": "first (n) / at first",
+     "karte": "tickets"
+    },
+    "tr": {
+     "prvo": "ilk (nötr) / önce",
+     "karte": "biletler"
+    },
+    "sv": {
+     "prvo": "första (neutr.) / först",
+     "karte": "biljetter"
+    },
+    "nl": {
+     "prvo": "eerste (o) / eerst",
+     "karte": "kaartjes"
+    },
+    "nb": {
+     "prvo": "første (intetkj.) / først",
+     "karte": "billetter"
+    },
+    "da": {
+     "prvo": "første (intetk.) / først",
+     "karte": "billetter"
+    },
+    "fr": {
+     "prvo": "premier (neutre) / d'abord",
+     "karte": "billets"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Gegen wen spielt Bosnien?",
+      "optionen": [
+       "gegen Island",
+       "gegen Italien",
+       "gegen Deutschland"
+      ],
+      "richtig": "gegen Island"
+     },
+     {
+      "frage": "Wer schoss das erste Tor?",
+      "optionen": [
+       "Island",
+       "Bosnien",
+       "niemand"
+      ],
+      "richtig": "Island"
+     },
+     {
+      "frage": "Wann kamen sie nach Hause?",
+      "optionen": [
+       "nach Mitternacht",
+       "um zehn Uhr",
+       "am nächsten Mittag"
+      ],
+      "richtig": "nach Mitternacht"
+     }
+    ],
+    "en": [
+     {
+      "frage": "Who is Bosnia playing against?",
+      "optionen": [
+       "against Iceland",
+       "against Italy",
+       "against Germany"
+      ],
+      "richtig": "against Iceland"
+     },
+     {
+      "frage": "Who scored the first goal?",
+      "optionen": [
+       "Iceland",
+       "Bosnia",
+       "nobody"
+      ],
+      "richtig": "Iceland"
+     },
+     {
+      "frage": "When did they get home?",
+      "optionen": [
+       "after midnight",
+       "at ten o'clock",
+       "the next day at noon"
+      ],
+      "richtig": "after midnight"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Bosna kime karşı oynuyor?",
+      "optionen": [
+       "İzlanda'ya karşı",
+       "İtalya'ya karşı",
+       "Almanya'ya karşı"
+      ],
+      "richtig": "İzlanda'ya karşı"
+     },
+     {
+      "frage": "İlk golü kim attı?",
+      "optionen": [
+       "İzlanda",
+       "Bosna",
+       "hiç kimse"
+      ],
+      "richtig": "İzlanda"
+     },
+     {
+      "frage": "Eve ne zaman vardılar?",
+      "optionen": [
+       "gece yarısından sonra",
+       "saat onda",
+       "ertesi gün öğlen"
+      ],
+      "richtig": "gece yarısından sonra"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Mot vem spelar Bosnien?",
+      "optionen": [
+       "mot Island",
+       "mot Italien",
+       "mot Tyskland"
+      ],
+      "richtig": "mot Island"
+     },
+     {
+      "frage": "Vem gjorde första målet?",
+      "optionen": [
+       "Island",
+       "Bosnien",
+       "ingen"
+      ],
+      "richtig": "Island"
+     },
+     {
+      "frage": "När kom de hem?",
+      "optionen": [
+       "efter midnatt",
+       "klockan tio",
+       "nästa dag vid lunch"
+      ],
+      "richtig": "efter midnatt"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Tegen wie speelt Bosnië?",
+      "optionen": [
+       "tegen IJsland",
+       "tegen Italië",
+       "tegen Duitsland"
+      ],
+      "richtig": "tegen IJsland"
+     },
+     {
+      "frage": "Wie scoorde het eerste doelpunt?",
+      "optionen": [
+       "IJsland",
+       "Bosnië",
+       "niemand"
+      ],
+      "richtig": "IJsland"
+     },
+     {
+      "frage": "Wanneer kwamen ze thuis?",
+      "optionen": [
+       "na middernacht",
+       "om tien uur",
+       "de volgende middag"
+      ],
+      "richtig": "na middernacht"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Mot hvem spiller Bosnia?",
+      "optionen": [
+       "mot Island",
+       "mot Italia",
+       "mot Tyskland"
+      ],
+      "richtig": "mot Island"
+     },
+     {
+      "frage": "Hvem scoret det første målet?",
+      "optionen": [
+       "Island",
+       "Bosnia",
+       "ingen"
+      ],
+      "richtig": "Island"
+     },
+     {
+      "frage": "Når kom de hjem?",
+      "optionen": [
+       "etter midnatt",
+       "klokka ti",
+       "neste dag ved lunsjtid"
+      ],
+      "richtig": "etter midnatt"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Mod hvem spiller Bosnien?",
+      "optionen": [
+       "mod Island",
+       "mod Italien",
+       "mod Tyskland"
+      ],
+      "richtig": "mod Island"
+     },
+     {
+      "frage": "Hvem scorede det første mål?",
+      "optionen": [
+       "Island",
+       "Bosnien",
+       "ingen"
+      ],
+      "richtig": "Island"
+     },
+     {
+      "frage": "Hvornår kom de hjem?",
+      "optionen": [
+       "efter midnat",
+       "klokken ti",
+       "næste dag ved middagstid"
+      ],
+      "richtig": "efter midnat"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Contre qui joue la Bosnie ?",
+      "optionen": [
+       "contre l'Islande",
+       "contre l'Italie",
+       "contre l'Allemagne"
+      ],
+      "richtig": "contre l'Islande"
+     },
+     {
+      "frage": "Qui a marqué le premier but ?",
+      "optionen": [
+       "l'Islande",
+       "Bosnie",
+       "personne (négation)"
+      ],
+      "richtig": "l'Islande"
+     },
+     {
+      "frage": "Quand sont-ils rentrés ?",
+      "optionen": [
+       "après minuit",
+       "à dix heures",
+       "le lendemain midi"
+      ],
+      "richtig": "après minuit"
+     }
+    ]
+   },
+   "audio": null
+  },
+  {
+   "id": "b1_zanat",
+   "title": "Stari zanat na Baščaršiji",
+   "level_hint": "arbeitsplatz",
+   "stage": {
+    "de": "B1",
+    "en": "B1",
+    "tr": "B1",
+    "sv": "B1",
+    "nl": "B1",
+    "nb": "B1",
+    "da": "B1",
+    "fr": "B1"
+   },
+   "bs": "Lejla je ovog ljeta na odmoru u Sarajevu. Najviše joj se svidjela jedna mala ulica na Baščaršiji. Zove se Kazandžiluk. Tu se cijeli dan čuje kucanje čekića, jer u malim radnjama majstori prave stvari od bakra. Lejla je ušla u jednu radnju. Za stolom je sjedio stariji čovjek i polako ukrašavao jednu džezvu. „Izvolite, slobodno pogledajte“, rekao je. „Jeste li vi napravili sve ove stvari?“ pitala je Lejla. „Jesam. Ovaj zanat sam naučio od oca, a on od svog oca. Naša porodica radi u ovoj radnji više od sto godina.“ Majstor joj je pokazao kako se pravi džezva. Prvo se bakar reže, onda se dugo kuca čekićem, a na kraju se ukrašava. „Za jednu džezvu treba mi skoro cijeli dan“, objasnio je. „A ko će raditi kad vi odete u penziju?“ pitala je Lejla. Majstor je malo šutio. „Moj sin radi u banci. Mladi danas ne žele ovaj posao. Težak je, a ne zarađuje se mnogo.“ Lejla je kupila džezvu i šest fildžana za nanu u Njemačkoj. „Neka je sa srećom!“ rekao je majstor. „I pijte kahvu iz nje. Nemojte je samo držati na polici.“",
+   "translations": {
+    "de": "Lejla ist diesen Sommer im Urlaub in Sarajevo. Am besten gefiel ihr eine kleine Gasse auf der Baščaršija. Sie heißt Kazandžiluk. Hier hört man den ganzen Tag Hämmern, denn in den kleinen Läden machen Handwerker Dinge aus Kupfer. Lejla ging in einen Laden. Am Tisch saß ein älterer Mann und verzierte langsam ein Kupferkännchen. „Bitte sehr, schauen Sie sich ruhig um“, sagte er. „Haben Sie all diese Sachen gemacht?“, fragte Lejla. „Ja. Dieses Handwerk habe ich von meinem Vater gelernt und er von seinem Vater. Unsere Familie arbeitet seit über hundert Jahren in diesem Laden.“ Der Meister zeigte ihr, wie man ein Kupferkännchen macht. Zuerst wird das Kupfer geschnitten, dann lange mit dem Hammer bearbeitet, und am Ende wird es verziert. „Für ein Kännchen brauche ich fast einen ganzen Tag“, erklärte er. „Und wer wird hier arbeiten, wenn Sie in Rente gehen?“, fragte Lejla. Der Meister schwieg eine Weile. „Mein Sohn arbeitet bei einer Bank. Die jungen Leute wollen diese Arbeit heute nicht. Sie ist schwer, und man verdient nicht viel.“ Lejla kaufte ein Kupferkännchen und sechs Kaffeetassen für ihre Oma in Deutschland. „Viel Freude damit!“, sagte der Meister. „Und trinken Sie Kaffee daraus. Stellen Sie es nicht nur ins Regal.“",
+    "en": "Lejla is on vacation in Sarajevo this summer. What she liked best was a small lane in Baščaršija. It is called Kazandžiluk. All day long you can hear hammering there, because in the small shops craftsmen make things out of copper. Lejla went into one of the shops. An older man was sitting at a table, slowly decorating a coffee pot. “Please, feel free to look around”, he said. “Did you make all these things?” Lejla asked. “I did. I learned this craft from my father, and he learned it from his father. Our family has been working in this shop for more than a hundred years.” The master showed her how a džezva is made. First the copper is cut, then it is hammered for a long time, and at the end it is decorated. “I need almost a whole day for one pot”, he explained. “And who will work here when you retire?” Lejla asked. The master was silent for a while. “My son works at a bank. Young people today don't want this job. It's hard, and you don't earn much.” Lejla bought a džezva and six coffee cups for her grandma in Germany. “Enjoy it!” the master said. “And drink coffee from it. Don't just keep it on a shelf.”",
+    "tr": "Lejla bu yaz Saraybosna'da tatilde. En çok Başçarşı'daki küçük bir sokağı beğendi. Adı Kazandžiluk. Orada bütün gün çekiç sesleri duyulur, çünkü küçük dükkânlarda ustalar bakırdan eşyalar yapar. Lejla dükkânlardan birine girdi. Masada yaşlıca bir adam oturuyor ve yavaş yavaş bir cezveyi süslüyordu. “Buyurun, rahatça bakın”, dedi. “Bütün bu eşyaları siz mi yaptınız?” diye sordu Lejla. “Evet. Bu zanaatı babamdan öğrendim, o da kendi babasından. Ailemiz yüz yıldan fazladır bu dükkânda çalışıyor.” Usta ona bir cezvenin nasıl yapıldığını gösterdi. Önce bakır kesilir, sonra uzun süre çekiçle dövülür, en sonunda da süslenir. “Bir cezve için neredeyse bütün bir güne ihtiyacım var”, diye açıkladı. “Peki siz emekli olunca burada kim çalışacak?” diye sordu Lejla. Usta bir süre sustu. “Oğlum bankada çalışıyor. Bugün gençler bu işi istemiyor. Zor bir iş ve çok para kazanılmıyor.” Lejla Almanya'daki ninesi için bir cezve ve altı fincan aldı. “Güle güle kullanın!” dedi usta. “Ve ondan kahve için. Sadece rafta durmasın.”",
+    "sv": "Lejla är på semester i Sarajevo i sommar. Bäst av allt tyckte hon om en liten gränd på Baščaršija. Den heter Kazandžiluk. Där hör man hamrande hela dagen, för i de små butikerna gör hantverkare saker av koppar. Lejla gick in i en av butikerna. Vid ett bord satt en äldre man och dekorerade långsamt en kopparkanna. ”Varsågod, titta gärna runt”, sa han. ”Har du gjort alla de här sakerna?” frågade Lejla. ”Ja. Det här hantverket lärde jag mig av min far, och han av sin far. Vår familj har arbetat i den här butiken i över hundra år.” Mästaren visade henne hur en džezva görs. Först skärs kopparn, sedan hamras den länge, och till sist dekoreras den. ”För en kanna behöver jag nästan en hel dag”, förklarade han. ”Och vem ska arbeta här när du går i pension?” frågade Lejla. Mästaren var tyst en stund. ”Min son arbetar på en bank. Unga vill inte ha det här jobbet i dag. Det är tungt, och man tjänar inte mycket.” Lejla köpte en džezva och sex kaffekoppar till sin mormor i Tyskland. ”Mycket nöje med den!” sa mästaren. ”Och drick kaffe ur den. Ställ den inte bara på en hylla.”",
+    "nl": "Lejla is deze zomer op vakantie in Sarajevo. Het mooiste vond ze een klein straatje op de Baščaršija. Het heet Kazandžiluk. Daar hoor je de hele dag gehamer, want in de kleine winkeltjes maken ambachtslieden dingen van koper. Lejla ging een van de winkeltjes binnen. Aan een tafel zat een oudere man die langzaam een koperen kannetje versierde. ‘Gaat uw gang, kijk gerust rond’, zei hij. ‘Heeft u al deze dingen gemaakt?’ vroeg Lejla. ‘Ja. Dit ambacht heb ik van mijn vader geleerd, en hij van zijn vader. Onze familie werkt al meer dan honderd jaar in deze winkel.’ De meester liet haar zien hoe een džezva wordt gemaakt. Eerst wordt het koper gesneden, dan wordt het lang met de hamer bewerkt, en aan het eind wordt het versierd. ‘Voor één kannetje heb ik bijna een hele dag nodig’, legde hij uit. ‘En wie gaat hier werken als u met pensioen gaat?’ vroeg Lejla. De meester zweeg even. ‘Mijn zoon werkt bij een bank. Jongeren willen dit werk tegenwoordig niet. Het is zwaar, en je verdient er niet veel mee.’ Lejla kocht een džezva en zes koffiekopjes voor haar oma in Duitsland. ‘Veel plezier ermee!’ zei de meester. ‘En drink er koffie uit. Zet hem niet alleen op een plank.’",
+    "nb": "Lejla er på ferie i Sarajevo i sommer. Best likte hun et lite smug på Baščaršija. Det heter Kazandžiluk. Der hører man hamring hele dagen, for i de små butikkene lager håndverkere ting av kobber. Lejla gikk inn i en av butikkene. Ved et bord satt en eldre mann og dekorerte langsomt en kobberkanne. «Vær så god, bare se deg om», sa han. «Har du laget alle disse tingene?» spurte Lejla. «Ja. Dette håndverket lærte jeg av faren min, og han av faren sin. Familien vår har jobbet i denne butikken i over hundre år.» Mesteren viste henne hvordan en džezva lages. Først skjæres kobberet, så hamres det lenge, og til slutt dekoreres det. «Til én kanne trenger jeg nesten en hel dag», forklarte han. «Og hvem skal jobbe her når du går av med pensjon?» spurte Lejla. Mesteren var stille en stund. «Sønnen min jobber i en bank. De unge vil ikke ha denne jobben i dag. Den er tung, og man tjener ikke mye.» Lejla kjøpte en džezva og seks kaffekopper til bestemoren sin i Tyskland. «Lykke til med den!» sa mesteren. «Og drikk kaffe av den. Ikke bare la den stå på en hylle.»",
+    "da": "Lejla er på ferie i Sarajevo i sommer. Allerbedst kunne hun lide en lille gyde på Baščaršija. Den hedder Kazandžiluk. Der hører man hamren hele dagen, for i de små butikker laver håndværkere ting af kobber. Lejla gik ind i en af butikkerne. Ved et bord sad en ældre mand og dekorerede langsomt en kobberkande. »Værsgo, bare kig dig omkring«, sagde han. »Har du lavet alle de her ting?« spurgte Lejla. »Ja. Det her håndværk lærte jeg af min far, og han af sin far. Vores familie har arbejdet i den her butik i mere end hundrede år.« Mesteren viste hende, hvordan en džezva bliver lavet. Først skæres kobberet, så bliver det hamret længe, og til sidst bliver det dekoreret. »Til én kande skal jeg bruge næsten en hel dag«, forklarede han. »Og hvem skal arbejde her, når du går på pension?« spurgte Lejla. Mesteren var stille et øjeblik. »Min søn arbejder i en bank. De unge vil ikke have det her arbejde i dag. Det er hårdt, og man tjener ikke meget.« Lejla købte en džezva og seks kaffekopper til sin bedstemor i Tyskland. »God fornøjelse med den!« sagde mesteren. »Og drik kaffe af den. Lad den ikke bare stå på en hylde.«",
+    "fr": "Lejla est en vacances à Sarajevo cet été. Ce qui lui a le plus plu, c'est une petite ruelle de la Baščaršija. Elle s'appelle Kazandžiluk. On y entend toute la journée des coups de marteau, car dans les petites boutiques, des artisans fabriquent des objets en cuivre. Lejla est entrée dans une boutique. À une table, un homme âgé décorait lentement une džezva. « Je vous en prie, n'hésitez pas à regarder », a-t-il dit. « C'est vous qui avez fait tous ces objets ? » a demandé Lejla. « Oui. J'ai appris ce métier de mon père, et lui du sien. Notre famille travaille dans cette boutique depuis plus de cent ans. » Le maître lui a montré comment on fabrique une džezva. D'abord on coupe le cuivre, puis on le martèle longuement, et à la fin on le décore. « Pour une seule cafetière, il me faut presque une journée entière », a-t-il expliqué. « Et qui travaillera ici quand vous partirez à la retraite ? » a demandé Lejla. Le maître est resté silencieux un moment. « Mon fils travaille dans une banque. Les jeunes ne veulent plus de ce métier aujourd'hui. Il est dur, et on ne gagne pas beaucoup. » Lejla a acheté une džezva et six tasses à café pour sa grand-mère en Allemagne. « Qu'elle vous porte bonheur ! » a dit le maître. « Et buvez-y du café. Ne la laissez pas seulement sur une étagère. »"
+   },
+   "glossary": {
+    "de": {
+     "sto": "hundert",
+     "jeste": "ihr seid / Sie sind (Jeste li …?: Haben Sie …?)",
+     "mladi": "die Jungen / junge Leute"
+    },
+    "en": {
+     "sto": "one hundred",
+     "jeste": "you are (plural or formal) (Jeste li …?: Did you …?)",
+     "mladi": "young people"
+    },
+    "tr": {
+     "sto": "yüz",
+     "jeste": "sizsiniz (Jeste li …?: … mı yaptınız?)",
+     "mladi": "gençler"
+    },
+    "sv": {
+     "sto": "hundra",
+     "jeste": "ni är (Jeste li …?: Har ni …?)",
+     "mladi": "de unga"
+    },
+    "nl": {
+     "sto": "honderd",
+     "jeste": "jullie zijn / u bent (Jeste li …?: Heeft u …?)",
+     "mladi": "jongeren"
+    },
+    "nb": {
+     "sto": "hundre",
+     "jeste": "dere er / De er (Jeste li …?: Har dere …?)",
+     "mladi": "de unge"
+    },
+    "da": {
+     "sto": "hundrede",
+     "jeste": "I er / De er (Jeste li …?: Har I …?)",
+     "mladi": "de unge"
+    },
+    "fr": {
+     "sto": "cent",
+     "jeste": "vous êtes (Jeste li … ? : Avez-vous … ?)",
+     "mladi": "les jeunes"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Woraus machen die Handwerker im Kazandžiluk ihre Sachen?",
+      "optionen": [
+       "aus Kupfer",
+       "aus Holz",
+       "aus Glas"
+      ],
+      "richtig": "aus Kupfer"
+     },
+     {
+      "frage": "Wie lange braucht der Meister für ein Kupferkännchen?",
+      "optionen": [
+       "fast einen ganzen Tag",
+       "eine Stunde",
+       "eine Woche"
+      ],
+      "richtig": "fast einen ganzen Tag"
+     },
+     {
+      "frage": "Wo arbeitet der Sohn des Meisters?",
+      "optionen": [
+       "bei einer Bank",
+       "im Laden des Vaters",
+       "in Deutschland"
+      ],
+      "richtig": "bei einer Bank"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What do the craftsmen in Kazandžiluk make their things from?",
+      "optionen": [
+       "from copper",
+       "from wood",
+       "from glass"
+      ],
+      "richtig": "from copper"
+     },
+     {
+      "frage": "How long does the master need for one coffee pot?",
+      "optionen": [
+       "almost a whole day",
+       "one hour",
+       "one week"
+      ],
+      "richtig": "almost a whole day"
+     },
+     {
+      "frage": "Where does the master's son work?",
+      "optionen": [
+       "at a bank",
+       "in his father's shop",
+       "in Germany"
+      ],
+      "richtig": "at a bank"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Kazandžiluk'taki ustalar eşyalarını neden yapıyor?",
+      "optionen": [
+       "bakırdan",
+       "tahtadan",
+       "camdan"
+      ],
+      "richtig": "bakırdan"
+     },
+     {
+      "frage": "Usta bir cezve için ne kadar zamana ihtiyaç duyuyor?",
+      "optionen": [
+       "neredeyse bütün bir gün",
+       "bir saat",
+       "bir hafta"
+      ],
+      "richtig": "neredeyse bütün bir gün"
+     },
+     {
+      "frage": "Ustanın oğlu nerede çalışıyor?",
+      "optionen": [
+       "bir bankada",
+       "babasının dükkânında",
+       "Almanya'da"
+      ],
+      "richtig": "bir bankada"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vad gör hantverkarna i Kazandžiluk sina saker av?",
+      "optionen": [
+       "av koppar",
+       "av trä",
+       "av glas"
+      ],
+      "richtig": "av koppar"
+     },
+     {
+      "frage": "Hur lång tid behöver mästaren för en kopparkanna?",
+      "optionen": [
+       "nästan en hel dag",
+       "en timme",
+       "en vecka"
+      ],
+      "richtig": "nästan en hel dag"
+     },
+     {
+      "frage": "Var arbetar mästarens son?",
+      "optionen": [
+       "på en bank",
+       "i sin pappas butik",
+       "i Tyskland"
+      ],
+      "richtig": "på en bank"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Waarvan maken de ambachtslieden in Kazandžiluk hun spullen?",
+      "optionen": [
+       "van koper",
+       "van hout",
+       "van glas"
+      ],
+      "richtig": "van koper"
+     },
+     {
+      "frage": "Hoe lang doet de meester over één koperen kannetje?",
+      "optionen": [
+       "bijna een hele dag",
+       "een uur",
+       "een week"
+      ],
+      "richtig": "bijna een hele dag"
+     },
+     {
+      "frage": "Waar werkt de zoon van de meester?",
+      "optionen": [
+       "bij een bank",
+       "in de winkel van zijn vader",
+       "in Duitsland"
+      ],
+      "richtig": "bij een bank"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hva lager håndverkerne i Kazandžiluk tingene sine av?",
+      "optionen": [
+       "av kobber",
+       "av tre",
+       "av glass"
+      ],
+      "richtig": "av kobber"
+     },
+     {
+      "frage": "Hvor lang tid trenger mesteren til én kobberkanne?",
+      "optionen": [
+       "nesten en hel dag",
+       "en time",
+       "en uke"
+      ],
+      "richtig": "nesten en hel dag"
+     },
+     {
+      "frage": "Hvor jobber sønnen til mesteren?",
+      "optionen": [
+       "i en bank",
+       "i butikken til faren",
+       "i Tyskland"
+      ],
+      "richtig": "i en bank"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvad laver håndværkerne i Kazandžiluk deres ting af?",
+      "optionen": [
+       "af kobber",
+       "af træ",
+       "af glas"
+      ],
+      "richtig": "af kobber"
+     },
+     {
+      "frage": "Hvor lang tid skal mesteren bruge på én kobberkande?",
+      "optionen": [
+       "næsten en hel dag",
+       "en time",
+       "en uge"
+      ],
+      "richtig": "næsten en hel dag"
+     },
+     {
+      "frage": "Hvor arbejder mesterens søn?",
+      "optionen": [
+       "i en bank",
+       "i sin fars butik",
+       "i Tyskland"
+      ],
+      "richtig": "i en bank"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "En quoi les artisans du Kazandžiluk fabriquent-ils leurs objets ?",
+      "optionen": [
+       "en cuivre",
+       "en bois",
+       "en verre"
+      ],
+      "richtig": "en cuivre"
+     },
+     {
+      "frage": "Combien de temps faut-il au maître pour une cafetière en cuivre ?",
+      "optionen": [
+       "presque une journée entière",
+       "une heure",
+       "une semaine"
+      ],
+      "richtig": "presque une journée entière"
+     },
+     {
+      "frage": "Où travaille le fils du maître ?",
+      "optionen": [
+       "dans une banque",
+       "dans la boutique de son père",
+       "en Allemagne"
+      ],
+      "richtig": "dans une banque"
+     }
+    ]
+   },
+   "audio": null
+  },
+  {
+   "id": "b1_kahva",
+   "title": "Kahva kod komšinice",
+   "level_hint": "nachbarn_miteinander",
+   "stage": {
+    "de": "B1",
+    "en": "B1",
+    "tr": "B1",
+    "sv": "B1",
+    "nl": "B1",
+    "nb": "B1",
+    "da": "B1",
+    "fr": "B1"
+   },
+   "bs": "Moja komšinica, teta Safija, živi na istom spratu kao ja. Ima osamdeset godina, ali je još uvijek vrlo vesela. Svake nedjelje u deset sati pokuca mi na vrata: „Komšinice, hajde na kahvu!“ Kod nje kahva ima svoja pravila. Prvo kuha vodu u džezvi. Onda skine džezvu sa šporeta, doda kahvu i promiješa. Džezvu vrati na vatru samo na kratko. „Kahva ne smije prekipjeti“, kaže ona. „Ako prekipi, kuhaj novu.“ Na stolu su fildžani, šećer, rahat lokum i čaša vode. Prvo uzmemo komad rahat lokuma, a onda polako pijemo kahvu. „E, ovo je prava bosanska kahva“, kaže teta Safija. Onda počnu priče: ko se oženio, ko je dobio bebu, čiji sin radi u Njemačkoj i zašto komšija Mujo opet nikoga nije pozdravio. Ja ne razumijem sve, ali volim slušati. Jednom sam rekla da moram brzo popiti kahvu jer idem u grad. Teta Safija me pogledala kao da sam rekla nešto strašno. „Kahva se ne pije na brzinu, dušo. Uz kahvu se razgovara. Za kahvu uvijek ima vremena.“ Od tada sjedim do kraja, čak i kad kasnim.",
+   "translations": {
+    "de": "Meine Nachbarin, Tante Safija, wohnt auf demselben Stockwerk wie ich. Sie ist achtzig Jahre alt, aber immer noch sehr fröhlich. Jeden Sonntag um zehn Uhr klopft sie an meine Tür: „Nachbarin, komm auf einen Kaffee!“ Bei ihr hat der Kaffee seine eigenen Regeln. Zuerst kocht sie Wasser im Kupferkännchen. Dann nimmt sie das Kännchen vom Herd, gibt den Kaffee dazu und rührt um. Das Kännchen stellt sie nur kurz zurück aufs Feuer. „Der Kaffee darf nicht überkochen“, sagt sie. „Wenn er überkocht, koch einen neuen.“ Auf dem Tisch stehen Kaffeetassen, Zucker, Lokum und ein Glas Wasser. Zuerst nehmen wir ein Stück Lokum, und dann trinken wir langsam den Kaffee. „Ja, das ist echter bosnischer Kaffee“, sagt Tante Safija. Dann fangen die Geschichten an: wer geheiratet hat, wer ein Baby bekommen hat, wessen Sohn in Deutschland arbeitet und warum Nachbar Mujo schon wieder niemanden gegrüßt hat. Ich verstehe nicht alles, aber ich höre gern zu. Einmal habe ich gesagt, dass ich den Kaffee schnell austrinken muss, weil ich in die Stadt gehe. Tante Safija sah mich an, als hätte ich etwas Schreckliches gesagt. „Kaffee trinkt man nicht auf die Schnelle, Schatz. Beim Kaffee unterhält man sich. Für Kaffee ist immer Zeit.“ Seitdem bleibe ich bis zum Schluss sitzen, sogar wenn ich spät dran bin.",
+    "en": "My neighbor, Aunt Safija, lives on the same floor as me. She is eighty years old, but still very cheerful. Every Sunday at ten o'clock she knocks on my door: “Neighbor, come for coffee!” At her place, coffee has its own rules. First she boils water in the džezva. Then she takes the džezva off the stove, adds the coffee and stirs. She puts the džezva back on the heat only briefly. “Coffee must not boil over”, she says. “If it boils over, make a new one.” On the table there are coffee cups, sugar, Turkish delight and a glass of water. First we take a piece of Turkish delight, and then we slowly drink the coffee. “Now this is real Bosnian coffee”, says Aunt Safija. Then the stories begin: who got married, who had a baby, whose son works in Germany and why neighbor Mujo once again didn't greet anyone. I don't understand everything, but I like to listen. Once I said that I had to drink my coffee quickly because I was going into town. Aunt Safija looked at me as if I had said something terrible. “Coffee is not drunk in a hurry, dear. Over coffee, people talk. There is always time for coffee.” Since then I stay until the end, even when I'm running late.",
+    "tr": "Komşum Safija teyze benimle aynı katta oturuyor. Seksen yaşında, ama hâlâ çok neşeli. Her pazar saat onda kapımı çalıyor: “Komşu, hadi kahveye!” Onun evinde kahvenin kendine göre kuralları var. Önce cezvede su kaynatıyor. Sonra cezveyi ocaktan alıyor, kahveyi ekliyor ve karıştırıyor. Cezveyi ateşe sadece kısa bir süre geri koyuyor. “Kahve taşmamalı”, diyor. “Taşarsa yenisini pişir.” Masada fincanlar, şeker, lokum ve bir bardak su var. Önce birer parça lokum alıyoruz, sonra kahveyi yavaş yavaş içiyoruz. “İşte bu gerçek Boşnak kahvesi”, diyor Safija teyze. Sonra hikâyeler başlıyor: kim evlendi, kimin bebeği oldu, kimin oğlu Almanya'da çalışıyor ve komşu Mujo neden yine kimseye selam vermedi. Her şeyi anlamıyorum, ama dinlemeyi seviyorum. Bir keresinde şehre gideceğim için kahvemi çabuk içmem gerektiğini söyledim. Safija teyze bana korkunç bir şey söylemişim gibi baktı. “Kahve aceleyle içilmez, canım. Kahve içerken sohbet edilir. Kahveye her zaman vakit vardır.” O zamandan beri geç kalsam bile sonuna kadar oturuyorum.",
+    "sv": "Min granne, tant Safija, bor på samma våning som jag. Hon är åttio år gammal men fortfarande väldigt glad. Varje söndag klockan tio knackar hon på min dörr: ”Granne, kom på kaffe!” Hos henne har kaffet sina egna regler. Först kokar hon vatten i džezvan. Sedan tar hon džezvan från spisen, häller i kaffet och rör om. Džezvan ställer hon tillbaka på värmen bara en kort stund. ”Kaffet får inte koka över”, säger hon. ”Om det kokar över, koka nytt.” På bordet står kaffekoppar, socker, turkisk konfekt och ett glas vatten. Först tar vi en bit konfekt, och sedan dricker vi kaffet långsamt. ”Ja, det här är riktigt bosniskt kaffe”, säger tant Safija. Sedan börjar berättelserna: vem som har gift sig, vem som har fått barn, vems son som jobbar i Tyskland och varför grannen Mujo återigen inte hälsade på någon. Jag förstår inte allt, men jag tycker om att lyssna. En gång sa jag att jag måste dricka kaffet snabbt eftersom jag skulle in till stan. Tant Safija tittade på mig som om jag hade sagt något hemskt. ”Kaffe dricker man inte i all hast, lilla vän. Över kaffet pratar man. Det finns alltid tid för kaffe.” Sedan dess sitter jag kvar till slutet, även när jag är sen.",
+    "nl": "Mijn buurvrouw, tante Safija, woont op dezelfde verdieping als ik. Ze is tachtig jaar, maar nog steeds heel vrolijk. Elke zondag om tien uur klopt ze op mijn deur: ‘Buurvrouw, kom koffie drinken!’ Bij haar heeft koffie zijn eigen regels. Eerst kookt ze water in de džezva. Dan haalt ze de džezva van het vuur, doet de koffie erbij en roert. De džezva zet ze maar heel even terug op het vuur. ‘Koffie mag niet overkoken’, zegt ze. ‘Als hij overkookt, zet je nieuwe.’ Op tafel staan koffiekopjes, suiker, Turks fruit en een glas water. Eerst nemen we een stukje Turks fruit, en dan drinken we langzaam de koffie. ‘Zo, dit is echte Bosnische koffie’, zegt tante Safija. Dan beginnen de verhalen: wie er getrouwd is, wie een baby heeft gekregen, wiens zoon in Duitsland werkt en waarom buurman Mujo alweer niemand heeft gegroet. Ik begrijp niet alles, maar ik luister graag. Een keer zei ik dat ik mijn koffie snel moest opdrinken omdat ik naar de stad ging. Tante Safija keek me aan alsof ik iets vreselijks had gezegd. ‘Koffie drink je niet even snel, lieverd. Bij de koffie praat je. Voor koffie is er altijd tijd.’ Sindsdien blijf ik zitten tot het einde, zelfs als ik laat ben.",
+    "nb": "Naboen min, tante Safija, bor i samme etasje som meg. Hun er åtti år, men fortsatt veldig blid. Hver søndag klokka ti banker hun på døra mi: «Nabo, kom på kaffe!» Hos henne har kaffen sine egne regler. Først koker hun vann i džezvaen. Så tar hun džezvaen av komfyren, har i kaffen og rører om. Džezvaen setter hun bare kort tilbake på varmen. «Kaffen må ikke koke over», sier hun. «Hvis den koker over, lag ny.» På bordet står kaffekopper, sukker, tyrkisk konfekt og et glass vann. Først tar vi et stykke konfekt, og så drikker vi kaffen langsomt. «Ja, dette er ekte bosnisk kaffe», sier tante Safija. Så begynner historiene: hvem som har giftet seg, hvem som har fått barn, hvem sin sønn som jobber i Tyskland, og hvorfor naboen Mujo igjen ikke hilste på noen. Jeg forstår ikke alt, men jeg liker å høre på. En gang sa jeg at jeg måtte drikke kaffen fort fordi jeg skulle til byen. Tante Safija så på meg som om jeg hadde sagt noe forferdelig. «Kaffe drikker man ikke i all hast, vennen min. Over kaffen prater man. Det er alltid tid til kaffe.» Siden da blir jeg sittende til slutten, selv når jeg er sen.",
+    "da": "Min nabo, tante Safija, bor på samme etage som mig. Hun er firs år, men stadig meget glad. Hver søndag klokken ti banker hun på min dør: »Nabo, kom og få kaffe!« Hos hende har kaffen sine egne regler. Først koger hun vand i džezvaen. Så tager hun džezvaen af komfuret, kommer kaffen i og rører rundt. Džezvaen sætter hun kun kort tilbage på varmen. »Kaffen må ikke koge over«, siger hun. »Hvis den koger over, så lav ny.« På bordet står kaffekopper, sukker, tyrkisk konfekt og et glas vand. Først tager vi et stykke konfekt, og så drikker vi langsomt kaffen. »Ja, det her er ægte bosnisk kaffe«, siger tante Safija. Så begynder historierne: hvem der er blevet gift, hvem der har fået en baby, hvis søn arbejder i Tyskland, og hvorfor naboen Mujo igen ikke hilste på nogen. Jeg forstår ikke alt, men jeg kan godt lide at lytte. En gang sagde jeg, at jeg skulle drikke min kaffe hurtigt, fordi jeg skulle ind til byen. Tante Safija så på mig, som om jeg havde sagt noget forfærdeligt. »Kaffe drikker man ikke i en fart, skat. Over kaffen snakker man. Der er altid tid til kaffe.« Siden da bliver jeg siddende til det sidste, også når jeg er forsinket.",
+    "fr": "Ma voisine, tante Safija, habite au même étage que moi. Elle a quatre-vingts ans, mais elle est toujours très gaie. Chaque dimanche à dix heures, elle frappe à ma porte : « Voisine, viens prendre le café ! » Chez elle, le café a ses propres règles. D'abord, elle fait bouillir de l'eau dans la džezva. Ensuite, elle retire la džezva du feu, ajoute le café et remue. Elle remet la džezva sur le feu juste un instant. « Le café ne doit pas déborder », dit-elle. « S'il déborde, refais-en un. » Sur la table, il y a des tasses à café, du sucre, des loukoums et un verre d'eau. D'abord, nous prenons un morceau de loukoum, puis nous buvons lentement le café. « Ça, c'est du vrai café bosnien », dit tante Safija. Ensuite, les histoires commencent : qui s'est marié, qui a eu un bébé, qui a un fils qui travaille en Allemagne et pourquoi le voisin Mujo n'a encore salué personne. Je ne comprends pas tout, mais j'aime écouter. Un jour, j'ai dit que je devais boire mon café vite parce que j'allais en ville. Tante Safija m'a regardée comme si j'avais dit quelque chose d'horrible. « Le café ne se boit pas en vitesse, ma chérie. Autour d'un café, on discute. Pour un café, il y a toujours le temps. » Depuis, je reste jusqu'à la fin, même quand je suis en retard."
+   },
+   "glossary": {
+    "de": {
+     "smije": "darf (ne smije: darf nicht)",
+     "vremena": "Wetter / Zeit (Gen.)"
+    },
+    "en": {
+     "smije": "may / is allowed (ne smije: must not)",
+     "vremena": "weather / time (gen.)"
+    },
+    "tr": {
+     "smije": "-ebilir (ne smije: -memeli)",
+     "vremena": "hava / zaman (genitif)"
+    },
+    "sv": {
+     "smije": "får (ne smije: får inte)",
+     "vremena": "väder / tid (genitiv)"
+    },
+    "nl": {
+     "smije": "mag (ne smije: mag niet)",
+     "vremena": "weer / tijd (genitief)"
+    },
+    "nb": {
+     "smije": "får lov (ne smije: må ikke)",
+     "vremena": "vær / tid (genitiv)"
+    },
+    "da": {
+     "smije": "må (ne smije: må ikke)",
+     "vremena": "vejr / tid (genitiv)"
+    },
+    "fr": {
+     "smije": "a le droit (ne smije : ne doit pas)",
+     "vremena": "temps (génitif)"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wann lädt Tante Safija zum Kaffee ein?",
+      "optionen": [
+       "jeden Sonntag um zehn",
+       "jeden Abend",
+       "jeden Montag um acht"
+      ],
+      "richtig": "jeden Sonntag um zehn"
+     },
+     {
+      "frage": "Was darf beim Kaffeekochen nicht passieren?",
+      "optionen": [
+       "der Kaffee darf nicht überkochen",
+       "das Wasser darf nicht kochen",
+       "es darf kein Zucker fehlen"
+      ],
+      "richtig": "der Kaffee darf nicht überkochen"
+     },
+     {
+      "frage": "Was sagt Tante Safija über den Kaffee?",
+      "optionen": [
+       "Für Kaffee ist immer Zeit.",
+       "Kaffee trinkt man schnell.",
+       "Kaffee macht müde."
+      ],
+      "richtig": "Für Kaffee ist immer Zeit."
+     }
+    ],
+    "en": [
+     {
+      "frage": "When does Aunt Safija invite her for coffee?",
+      "optionen": [
+       "every Sunday at ten",
+       "every evening",
+       "every Monday at eight"
+      ],
+      "richtig": "every Sunday at ten"
+     },
+     {
+      "frage": "What must not happen when making coffee?",
+      "optionen": [
+       "the coffee must not boil over",
+       "the water must not boil",
+       "there must always be sugar"
+      ],
+      "richtig": "the coffee must not boil over"
+     },
+     {
+      "frage": "What does Aunt Safija say about coffee?",
+      "optionen": [
+       "There is always time for coffee.",
+       "Coffee is drunk quickly.",
+       "Coffee makes you tired."
+      ],
+      "richtig": "There is always time for coffee."
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Safija teyze ne zaman kahveye çağırıyor?",
+      "optionen": [
+       "her pazar saat onda",
+       "her akşam",
+       "her pazartesi saat sekizde"
+      ],
+      "richtig": "her pazar saat onda"
+     },
+     {
+      "frage": "Kahve pişirirken ne olmamalı?",
+      "optionen": [
+       "kahve taşmamalı",
+       "su kaynamamalı",
+       "şeker eksik olmamalı"
+      ],
+      "richtig": "kahve taşmamalı"
+     },
+     {
+      "frage": "Safija teyze kahve hakkında ne diyor?",
+      "optionen": [
+       "Kahveye her zaman vakit vardır.",
+       "Kahve hızlı içilir.",
+       "Kahve insanı yorar."
+      ],
+      "richtig": "Kahveye her zaman vakit vardır."
+     }
+    ],
+    "sv": [
+     {
+      "frage": "När bjuder tant Safija på kaffe?",
+      "optionen": [
+       "varje söndag klockan tio",
+       "varje kväll",
+       "varje måndag klockan åtta"
+      ],
+      "richtig": "varje söndag klockan tio"
+     },
+     {
+      "frage": "Vad får inte hända när man kokar kaffe?",
+      "optionen": [
+       "kaffet får inte koka över",
+       "vattnet får inte koka",
+       "det får inte saknas socker"
+      ],
+      "richtig": "kaffet får inte koka över"
+     },
+     {
+      "frage": "Vad säger tant Safija om kaffet?",
+      "optionen": [
+       "Det finns alltid tid för kaffe.",
+       "Kaffe dricker man snabbt.",
+       "Kaffe gör en trött."
+      ],
+      "richtig": "Det finns alltid tid för kaffe."
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Wanneer nodigt tante Safija haar uit voor koffie?",
+      "optionen": [
+       "elke zondag om tien uur",
+       "elke avond",
+       "elke maandag om acht uur"
+      ],
+      "richtig": "elke zondag om tien uur"
+     },
+     {
+      "frage": "Wat mag er niet gebeuren bij het koffiezetten?",
+      "optionen": [
+       "de koffie mag niet overkoken",
+       "het water mag niet koken",
+       "er mag geen suiker ontbreken"
+      ],
+      "richtig": "de koffie mag niet overkoken"
+     },
+     {
+      "frage": "Wat zegt tante Safija over koffie?",
+      "optionen": [
+       "Er is altijd tijd voor koffie.",
+       "Koffie drink je snel.",
+       "Koffie maakt moe."
+      ],
+      "richtig": "Er is altijd tijd voor koffie."
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Når inviterer tante Safija på kaffe?",
+      "optionen": [
+       "hver søndag klokka ti",
+       "hver kveld",
+       "hver mandag klokka åtte"
+      ],
+      "richtig": "hver søndag klokka ti"
+     },
+     {
+      "frage": "Hva må ikke skje når man koker kaffe?",
+      "optionen": [
+       "kaffen må ikke koke over",
+       "vannet må ikke koke",
+       "det må ikke mangle sukker"
+      ],
+      "richtig": "kaffen må ikke koke over"
+     },
+     {
+      "frage": "Hva sier tante Safija om kaffen?",
+      "optionen": [
+       "Det er alltid tid til kaffe.",
+       "Kaffe drikker man fort.",
+       "Kaffe gjør deg trøtt."
+      ],
+      "richtig": "Det er alltid tid til kaffe."
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvornår inviterer tante Safija på kaffe?",
+      "optionen": [
+       "hver søndag klokken ti",
+       "hver aften",
+       "hver mandag klokken otte"
+      ],
+      "richtig": "hver søndag klokken ti"
+     },
+     {
+      "frage": "Hvad må ikke ske, når man laver kaffe?",
+      "optionen": [
+       "kaffen må ikke koge over",
+       "vandet må ikke koge",
+       "der må ikke mangle sukker"
+      ],
+      "richtig": "kaffen må ikke koge over"
+     },
+     {
+      "frage": "Hvad siger tante Safija om kaffen?",
+      "optionen": [
+       "Der er altid tid til kaffe.",
+       "Kaffe drikker man hurtigt.",
+       "Kaffe gør en træt."
+      ],
+      "richtig": "Der er altid tid til kaffe."
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Quand tante Safija l'invite-t-elle à prendre le café ?",
+      "optionen": [
+       "chaque dimanche à dix heures",
+       "chaque soir",
+       "chaque lundi à huit heures"
+      ],
+      "richtig": "chaque dimanche à dix heures"
+     },
+     {
+      "frage": "Qu'est-ce qui ne doit pas arriver quand on fait le café ?",
+      "optionen": [
+       "le café ne doit pas déborder",
+       "l'eau ne doit pas bouillir",
+       "il ne doit pas manquer de sucre"
+      ],
+      "richtig": "le café ne doit pas déborder"
+     },
+     {
+      "frage": "Que dit tante Safija à propos du café ?",
+      "optionen": [
+       "Il y a toujours le temps pour un café.",
+       "Le café se boit vite.",
+       "Le café fatigue."
+      ],
+      "richtig": "Il y a toujours le temps pour un café."
+     }
+    ]
+   },
+   "audio": null
+  },
+  {
+   "id": "b1_mejl",
+   "title": "Mejl rođaku",
+   "level_hint": "urlaub",
+   "stage": {
+    "de": "B1",
+    "en": "B1",
+    "tr": "B1",
+    "sv": "B1",
+    "nl": "B1",
+    "nb": "B1",
+    "da": "B1",
+    "fr": "B1"
+   },
+   "bs": "Predmet: Dolazim u augustu! Dragi Adnane, kako si? Kako su tetka i tetak? Nadam se da ste svi dobro. Kod nas je sve u redu, samo smo ovih mjeseci mnogo radili. Imam lijepu vijest: u augustu dolazim u Sarajevo! Već sam kupio kartu za avion. Slijećem desetog augusta u četiri sata popodne. Možeš li me sačekati na aerodromu? Ako ne možeš, nije problem, uzet ću taksi. Ostat ću dvije sedmice. Prvu sedmicu bih bio kod vas, ako vam to ne smeta. Drugu sedmicu idem kod nane u Goražde. Ona me već svaki dan pita kad dolazim. Šta da vam donesem iz Njemačke? Tetki se prošli put jako svidjela ona čokolada s lješnjacima. Napiši mi šta želite. Sigurno si primijetio da ti pišem na bosanskom. Već pola godine učim svaki dan na mobitelu. Još uvijek griješim, ali nadam se da ćemo ovog ljeta razgovarati samo na bosanskom. Ako vidiš grešku, nemoj se smijati! Jedva čekam da se vidimo. Pozdravi sve! Tvoj rođak Emir",
+   "translations": {
+    "de": "Betreff: Ich komme im August! Lieber Adnan, wie geht es dir? Wie geht es Tante und Onkel? Ich hoffe, euch geht es allen gut. Bei uns ist alles in Ordnung, wir haben in den letzten Monaten nur viel gearbeitet. Ich habe eine schöne Neuigkeit: Im August komme ich nach Sarajevo! Ich habe das Flugticket schon gekauft. Ich lande am zehnten August um vier Uhr nachmittags. Kannst du mich am Flughafen abholen? Wenn du nicht kannst, ist das kein Problem, dann nehme ich ein Taxi. Ich bleibe zwei Wochen. Die erste Woche wäre ich bei euch, wenn euch das nicht stört. Die zweite Woche fahre ich zur Oma nach Goražde. Sie fragt mich schon jeden Tag, wann ich komme. Was soll ich euch aus Deutschland mitbringen? Der Tante hat letztes Mal die Schokolade mit Haselnüssen sehr gut geschmeckt. Schreib mir, was ihr möchtet. Du hast sicher bemerkt, dass ich dir auf Bosnisch schreibe. Ich lerne schon seit einem halben Jahr jeden Tag auf dem Handy. Ich mache immer noch Fehler, aber ich hoffe, dass wir diesen Sommer nur Bosnisch sprechen. Wenn du einen Fehler siehst, lach nicht! Ich kann es kaum erwarten, dass wir uns sehen. Grüß alle! Dein Cousin Emir",
+    "en": "Subject: I'm coming in August! Dear Adnan, how are you? How are Auntie and Uncle? I hope you're all well. Everything is fine here, we've just been working a lot these past months. I have some good news: in August I'm coming to Sarajevo! I've already bought my plane ticket. I land on the tenth of August at four in the afternoon. Can you pick me up at the airport? If you can't, no problem, I'll take a taxi. I'm staying for two weeks. I'd spend the first week with you, if that's all right with you. The second week I'm going to Grandma's in Goražde. She already asks me every day when I'm coming. What should I bring you from Germany? Last time Auntie really liked that chocolate with hazelnuts. Write and tell me what you'd like. You've probably noticed that I'm writing to you in Bosnian. I've been learning every day on my phone for half a year now. I still make mistakes, but I hope that this summer we'll speak only Bosnian. If you see a mistake, don't laugh! I can't wait to see you. Say hi to everyone! Your cousin Emir",
+    "tr": "Konu: Ağustosta geliyorum! Sevgili Adnan, nasılsın? Teyzemle eniştem nasıllar? Umarım hepiniz iyisinizdir. Bizde her şey yolunda, sadece bu aylarda çok çalıştık. Güzel bir haberim var: ağustosta Saraybosna'ya geliyorum! Uçak biletimi bile aldım. On Ağustos'ta öğleden sonra saat dörtte iniyorum. Beni havalimanında karşılayabilir misin? Gelemezsen sorun değil, taksiye binerim. İki hafta kalacağım. Sizin için de uygunsa, ilk haftayı sizde geçirmek isterim. İkinci hafta Goražde'ye, nineme gidiyorum. Şimdiden her gün ne zaman geleceğimi soruyor. Size Almanya'dan ne getireyim? Geçen sefer teyzem o fındıklı çikolatayı çok beğenmişti. Ne istediğinizi bana yaz. Sana Boşnakça yazdığımı herhalde fark etmişsindir. Yarım yıldır her gün telefonda çalışıyorum. Hâlâ hata yapıyorum, ama umarım bu yaz sadece Boşnakça konuşuruz. Bir hata görürsen gülme! Görüşmek için sabırsızlanıyorum. Herkese selam söyle! Kuzenin Emir",
+    "sv": "Ämne: Jag kommer i augusti! Käre Adnan, hur mår du? Hur mår dina föräldrar? Jag hoppas att ni alla mår bra. Här är allt bra, vi har bara jobbat mycket de senaste månaderna. Jag har en glad nyhet: i augusti kommer jag till Sarajevo! Jag har redan köpt flygbiljetten. Jag landar den tionde augusti klockan fyra på eftermiddagen. Kan du hämta mig på flygplatsen? Om du inte kan är det inget problem, då tar jag en taxi. Jag stannar i två veckor. Den första veckan skulle jag bo hos er, om det inte stör. Den andra veckan åker jag till mormor i Goražde. Hon frågar mig redan varje dag när jag kommer. Vad ska jag ta med till er från Tyskland? Förra gången tyckte din mamma väldigt mycket om den där chokladen med hasselnötter. Skriv vad ni vill ha. Du har säkert märkt att jag skriver till dig på bosniska. Jag har lärt mig varje dag på mobilen i ett halvår nu. Jag gör fortfarande fel, men jag hoppas att vi bara ska prata bosniska i sommar. Om du ser ett fel, skratta inte! Jag längtar tills vi ses. Hälsa alla! Din kusin Emir",
+    "nl": "Onderwerp: Ik kom in augustus! Beste Adnan, hoe gaat het met je? Hoe gaat het met tante en oom? Ik hoop dat het met jullie allemaal goed gaat. Hier is alles in orde, we hebben de afgelopen maanden alleen veel gewerkt. Ik heb leuk nieuws: in augustus kom ik naar Sarajevo! Ik heb mijn vliegticket al gekocht. Ik land op tien augustus om vier uur 's middags. Kun je me ophalen van het vliegveld? Als dat niet lukt, geen probleem, dan neem ik een taxi. Ik blijf twee weken. De eerste week zou ik bij jullie logeren, als jullie het niet erg vinden. De tweede week ga ik naar oma in Goražde. Ze vraagt me nu al elke dag wanneer ik kom. Wat zal ik voor jullie meenemen uit Duitsland? De vorige keer vond tante die chocolade met hazelnoten erg lekker. Schrijf me wat jullie willen. Je hebt vast gemerkt dat ik je in het Bosnisch schrijf. Ik leer al een halfjaar elke dag op mijn telefoon. Ik maak nog steeds fouten, maar ik hoop dat we deze zomer alleen Bosnisch praten. Als je een fout ziet, niet lachen! Ik kan niet wachten tot we elkaar zien. Doe iedereen de groeten! Je neef Emir",
+    "nb": "Emne: Jeg kommer i august! Kjære Adnan, hvordan har du det? Hvordan har tante og onkel det? Jeg håper dere har det bra alle sammen. Her er alt i orden, vi har bare jobbet mye de siste månedene. Jeg har en gledelig nyhet: i august kommer jeg til Sarajevo! Jeg har allerede kjøpt flybilletten. Jeg lander den tiende august klokka fire om ettermiddagen. Kan du hente meg på flyplassen? Hvis du ikke kan, er det ikke noe problem, da tar jeg en taxi. Jeg blir i to uker. Den første uken kunne jeg bo hos dere, hvis det ikke er til bry. Den andre uken drar jeg til bestemor i Goražde. Hun spør meg allerede hver dag når jeg kommer. Hva skal jeg ta med til dere fra Tyskland? Sist likte tante veldig godt den sjokoladen med hasselnøtter. Skriv hva dere vil ha. Du har sikkert lagt merke til at jeg skriver til deg på bosnisk. Jeg har lært hver dag på mobilen i et halvt år nå. Jeg gjør fortsatt feil, men jeg håper vi bare snakker bosnisk i sommer. Hvis du ser en feil, ikke le! Jeg gleder meg veldig til vi ses. Hils alle sammen! Fetteren din Emir",
+    "da": "Emne: Jeg kommer i august! Kære Adnan, hvordan har du det? Hvordan har tante og onkel det? Jeg håber, I alle har det godt. Her er alt i orden, vi har bare arbejdet meget de sidste måneder. Jeg har en god nyhed: i august kommer jeg til Sarajevo! Jeg har allerede købt flybilletten. Jeg lander den tiende august klokken fire om eftermiddagen. Kan du hente mig i lufthavnen? Hvis du ikke kan, er det ikke noget problem, så tager jeg en taxa. Jeg bliver i to uger. Den første uge ville jeg bo hos jer, hvis det ikke er til besvær. Den anden uge tager jeg til bedstemor i Goražde. Hun spørger mig allerede hver dag, hvornår jeg kommer. Hvad skal jeg tage med til jer fra Tyskland? Sidst var tante meget glad for den chokolade med hasselnødder. Skriv, hvad I gerne vil have. Du har sikkert lagt mærke til, at jeg skriver til dig på bosnisk. Jeg har lært hver dag på mobilen i et halvt år nu. Jeg laver stadig fejl, men jeg håber, at vi kun taler bosnisk i sommer. Hvis du ser en fejl, så lad være med at grine! Jeg glæder mig vildt til, at vi ses. Hils alle! Din fætter Emir",
+    "fr": "Objet : J'arrive en août ! Cher Adnan, comment vas-tu ? Comment vont tata et tonton ? J'espère que vous allez tous bien. Chez nous, tout va bien, nous avons juste beaucoup travaillé ces derniers mois. J'ai une bonne nouvelle : en août, je viens à Sarajevo ! J'ai déjà acheté mon billet d'avion. J'atterris le dix août à quatre heures de l'après-midi. Est-ce que tu peux venir me chercher à l'aéroport ? Si tu ne peux pas, ce n'est pas grave, je prendrai un taxi. Je reste deux semaines. La première semaine, je logerais chez vous, si cela ne vous dérange pas. La deuxième semaine, je vais chez grand-mère à Goražde. Elle me demande déjà tous les jours quand j'arrive. Qu'est-ce que je peux vous rapporter d'Allemagne ? La dernière fois, tata a beaucoup aimé ce chocolat aux noisettes. Écris-moi ce que vous voulez. Tu as sûrement remarqué que je t'écris en bosnien. J'apprends tous les jours sur mon portable depuis six mois. Je fais encore des fautes, mais j'espère que cet été nous ne parlerons que bosnien. Si tu vois une faute, ne te moque pas ! J'ai hâte qu'on se voie. Salue tout le monde ! Ton cousin Emir"
+   },
+   "glossary": {
+    "de": {},
+    "en": {},
+    "tr": {},
+    "sv": {},
+    "nl": {},
+    "nb": {},
+    "da": {},
+    "fr": {}
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Wann landet Emir in Sarajevo?",
+      "optionen": [
+       "am zehnten August",
+       "am vierten August",
+       "Ende Juli"
+      ],
+      "richtig": "am zehnten August"
+     },
+     {
+      "frage": "Wo verbringt er die zweite Woche?",
+      "optionen": [
+       "bei der Oma in Goražde",
+       "bei Adnan",
+       "am Meer"
+      ],
+      "richtig": "bei der Oma in Goražde"
+     },
+     {
+      "frage": "Worum bittet Emir Adnan?",
+      "optionen": [
+       "ihn am Flughafen abzuholen",
+       "ein Hotel zu buchen",
+       "Schokolade zu kaufen"
+      ],
+      "richtig": "ihn am Flughafen abzuholen"
+     }
+    ],
+    "en": [
+     {
+      "frage": "When does Emir land in Sarajevo?",
+      "optionen": [
+       "on the tenth of August",
+       "on the fourth of August",
+       "at the end of July"
+      ],
+      "richtig": "on the tenth of August"
+     },
+     {
+      "frage": "Where does he spend the second week?",
+      "optionen": [
+       "at his grandma's in Goražde",
+       "at Adnan's",
+       "by the sea"
+      ],
+      "richtig": "at his grandma's in Goražde"
+     },
+     {
+      "frage": "What does Emir ask Adnan to do?",
+      "optionen": [
+       "to pick him up at the airport",
+       "to book a hotel",
+       "to buy chocolate"
+      ],
+      "richtig": "to pick him up at the airport"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Emir Saraybosna'ya ne zaman iniyor?",
+      "optionen": [
+       "on Ağustos'ta",
+       "dört Ağustos'ta",
+       "temmuz sonunda"
+      ],
+      "richtig": "on Ağustos'ta"
+     },
+     {
+      "frage": "İkinci haftayı nerede geçiriyor?",
+      "optionen": [
+       "Goražde'de ninesinin yanında",
+       "Adnan'ın yanında",
+       "deniz kenarında"
+      ],
+      "richtig": "Goražde'de ninesinin yanında"
+     },
+     {
+      "frage": "Emir Adnan'dan ne rica ediyor?",
+      "optionen": [
+       "onu havalimanında karşılamasını",
+       "otel ayırtmasını",
+       "çikolata almasını"
+      ],
+      "richtig": "onu havalimanında karşılamasını"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "När landar Emir i Sarajevo?",
+      "optionen": [
+       "den tionde augusti",
+       "den fjärde augusti",
+       "i slutet av juli"
+      ],
+      "richtig": "den tionde augusti"
+     },
+     {
+      "frage": "Var tillbringar han den andra veckan?",
+      "optionen": [
+       "hos mormor i Goražde",
+       "hos Adnan",
+       "vid havet"
+      ],
+      "richtig": "hos mormor i Goražde"
+     },
+     {
+      "frage": "Vad ber Emir Adnan om?",
+      "optionen": [
+       "att hämta honom på flygplatsen",
+       "att boka ett hotell",
+       "att köpa choklad"
+      ],
+      "richtig": "att hämta honom på flygplatsen"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Wanneer landt Emir in Sarajevo?",
+      "optionen": [
+       "op tien augustus",
+       "op vier augustus",
+       "eind juli"
+      ],
+      "richtig": "op tien augustus"
+     },
+     {
+      "frage": "Waar brengt hij de tweede week door?",
+      "optionen": [
+       "bij oma in Goražde",
+       "bij Adnan",
+       "aan zee"
+      ],
+      "richtig": "bij oma in Goražde"
+     },
+     {
+      "frage": "Wat vraagt Emir aan Adnan?",
+      "optionen": [
+       "hem op te halen van het vliegveld",
+       "een hotel te boeken",
+       "chocola te kopen"
+      ],
+      "richtig": "hem op te halen van het vliegveld"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Når lander Emir i Sarajevo?",
+      "optionen": [
+       "den tiende august",
+       "den fjerde august",
+       "i slutten av juli"
+      ],
+      "richtig": "den tiende august"
+     },
+     {
+      "frage": "Hvor tilbringer han den andre uken?",
+      "optionen": [
+       "hos bestemor i Goražde",
+       "hos Adnan",
+       "ved havet"
+      ],
+      "richtig": "hos bestemor i Goražde"
+     },
+     {
+      "frage": "Hva ber Emir Adnan om?",
+      "optionen": [
+       "å hente ham på flyplassen",
+       "å bestille et hotell",
+       "å kjøpe sjokolade"
+      ],
+      "richtig": "å hente ham på flyplassen"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvornår lander Emir i Sarajevo?",
+      "optionen": [
+       "den tiende august",
+       "den fjerde august",
+       "i slutningen af juli"
+      ],
+      "richtig": "den tiende august"
+     },
+     {
+      "frage": "Hvor tilbringer han den anden uge?",
+      "optionen": [
+       "hos bedstemor i Goražde",
+       "hos Adnan",
+       "ved havet"
+      ],
+      "richtig": "hos bedstemor i Goražde"
+     },
+     {
+      "frage": "Hvad beder Emir Adnan om?",
+      "optionen": [
+       "at hente ham i lufthavnen",
+       "at booke et hotel",
+       "at købe chokolade"
+      ],
+      "richtig": "at hente ham i lufthavnen"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Quand Emir atterrit-il à Sarajevo ?",
+      "optionen": [
+       "le dix août",
+       "le quatre août",
+       "fin juillet"
+      ],
+      "richtig": "le dix août"
+     },
+     {
+      "frage": "Où passe-t-il la deuxième semaine ?",
+      "optionen": [
+       "chez sa grand-mère à Goražde",
+       "chez Adnan",
+       "au bord de la mer"
+      ],
+      "richtig": "chez sa grand-mère à Goražde"
+     },
+     {
+      "frage": "Que demande Emir à Adnan ?",
+      "optionen": [
+       "de venir le chercher à l'aéroport",
+       "de réserver un hôtel",
+       "d'acheter du chocolat"
+      ],
+      "richtig": "de venir le chercher à l'aéroport"
+     }
+    ]
+   },
+   "audio": null
+  },
+  {
+   "id": "b1_zmaj",
+   "title": "Zmaj uči bosanski",
+   "level_hint": "lernen_studieren",
+   "stage": {
+    "de": "B1",
+    "en": "B1",
+    "tr": "B1",
+    "sv": "B1",
+    "nl": "B1",
+    "nb": "B1",
+    "da": "B1",
+    "fr": "B1"
+   },
+   "bs": "Zmaj je mali zmaj koji živi u Njemačkoj. Već nekoliko mjeseci uči bosanski, jer ovog ljeta ide kod nane u Mostar. Svako veče ponavlja nove riječi: kuća, voda, hljeb, kahva. Kad je stigao kod nane, odmah je htio pokazati šta zna. „Dobro jutro, nano!“ rekao je ponosno. Nana se nasmijala. „Dobro jutro? Sine, sad je osam sati navečer. Kaže se dobro veče.“ Poslije večere nana ga je pitala: „Hoćeš li još sarme?“ Zmaj je bio sit, pa je rekao: „Hvala.“ Nana mu je odmah stavila još tri sarme na tanjir. „Ali nano, rekao sam hvala!“ „Čula sam“, rekla je nana. „Hvala znači da ti je ukusno.“ Sutradan je Zmaj htio pomoći dedi oko roštilja. Pustio je malo vatre iz usta, i ćevapi su u sekundi zagorjeli. „Stani, zmaju!“ rekao je dedo. „Ćevapi se peku polako, a ne zmajevom vatrom.“ Navečer je Zmaj napisao poruku mami: „Ja sam u Mostar i jedem mnogo sarme.“ Nana je pogledala telefon. „Ne u Mostar, nego u Mostaru.“ Zmaj je pomislio da je bosanski težak. Ali nana je strpljiva, a njena sarma je najbolja na svijetu. Zato će učiti dalje.",
+   "translations": {
+    "de": "Zmaj ist ein kleiner Drache, der in Deutschland lebt. Seit einigen Monaten lernt er schon Bosnisch, weil er diesen Sommer zu seiner Oma nach Mostar fährt. Jeden Abend wiederholt er neue Wörter: kuća, voda, hljeb, kahva. Als er bei der Oma ankam, wollte er sofort zeigen, was er kann. „Guten Morgen, Oma!“, sagte er stolz. Die Oma lachte. „Guten Morgen? Mein Junge, jetzt ist es acht Uhr abends. Man sagt Guten Abend.“ Nach dem Abendessen fragte ihn die Oma: „Willst du noch Sarma?“ Zmaj war satt, also sagte er: „Danke.“ Die Oma legte ihm sofort noch drei Sarma auf den Teller. „Aber Oma, ich habe danke gesagt!“ „Ich habe es gehört“, sagte die Oma. „Danke heißt, dass es dir schmeckt.“ Am nächsten Tag wollte Zmaj dem Opa am Grill helfen. Er ließ ein bisschen Feuer aus dem Mund, und die Ćevapi waren in einer Sekunde angebrannt. „Halt, Drache!“, sagte der Opa. „Ćevapi grillt man langsam, nicht mit Drachenfeuer.“ Abends schrieb Zmaj seiner Mama eine Nachricht: „Ja sam u Mostar i jedem mnogo sarme.“ (Ich bin in Mostar und esse viel Sarma.) Die Oma schaute auf das Handy. „Nicht u Mostar, sondern u Mostaru.“ Zmaj dachte, dass Bosnisch schwer ist. Aber die Oma ist geduldig, und ihre Sarma ist die beste der Welt. Deshalb lernt er weiter.",
+    "en": "Zmaj is a little dragon who lives in Germany. For a few months now he has been learning Bosnian, because this summer he is going to his grandma's in Mostar. Every evening he repeats new words: kuća, voda, hljeb, kahva. When he arrived at Grandma's, he immediately wanted to show what he knew. “Good morning, Grandma!” he said proudly. Grandma laughed. “Good morning? Sweetheart, it's eight o'clock in the evening. You say good evening.” After dinner Grandma asked him: “Would you like some more sarma?” Zmaj was full, so he said: “Thank you.” Grandma immediately put three more sarmas on his plate. “But Grandma, I said thank you!” “I heard you”, Grandma said. “Thank you means you like it.” The next day Zmaj wanted to help Grandpa with the grill. He let a little fire out of his mouth, and the ćevapi were burnt in a second. “Stop, dragon!” Grandpa said. “Ćevapi are grilled slowly, not with dragon fire.” In the evening Zmaj wrote a message to his mom: “Ja sam u Mostar i jedem mnogo sarme.” (I'm in Mostar and eating lots of sarma.) Grandma looked at the phone. “Not u Mostar, but u Mostaru.” Zmaj thought that Bosnian was hard. But Grandma is patient, and her sarma is the best in the world. That's why he will keep learning.",
+    "tr": "Zmaj, Almanya'da yaşayan küçük bir ejderha. Birkaç aydır Boşnakça öğreniyor, çünkü bu yaz Mostar'a, ninesinin yanına gidiyor. Her akşam yeni kelimeleri tekrarlıyor: kuća, voda, hljeb, kahva. Ninesine varınca hemen ne bildiğini göstermek istedi. “Günaydın nine!” dedi gururla. Ninesi güldü. “Günaydın mı? Yavrum, şu an akşamın sekizi. İyi akşamlar denir.” Akşam yemeğinden sonra ninesi ona sordu: “Biraz daha sarma ister misin?” Zmaj doymuştu, bu yüzden “Teşekkürler” dedi. Ninesi hemen tabağına üç sarma daha koydu. “Ama nine, teşekkürler dedim!” “Duydum”, dedi ninesi. “Teşekkürler, beğendin demek.” Ertesi gün Zmaj dedesine mangalda yardım etmek istedi. Ağzından biraz ateş çıkardı ve ćevapi'ler bir saniyede yandı. “Dur, ejderha!” dedi dedesi. “Ćevapi yavaş yavaş pişirilir, ejderha ateşiyle değil.” Akşam Zmaj annesine bir mesaj yazdı: “Ja sam u Mostar i jedem mnogo sarme.” (Mostar'dayım ve çok sarma yiyorum.) Ninesi telefona baktı. “U Mostar değil, u Mostaru.” Zmaj Boşnakçanın zor olduğunu düşündü. Ama ninesi sabırlı ve onun sarması dünyanın en iyisi. Bu yüzden öğrenmeye devam edecek.",
+    "sv": "Zmaj är en liten drake som bor i Tyskland. Sedan några månader lär han sig bosniska, eftersom han ska åka till sin mormor i Mostar i sommar. Varje kväll repeterar han nya ord: kuća, voda, hljeb, kahva. När han kom fram till mormor ville han genast visa vad han kunde. ”God morgon, mormor!” sa han stolt. Mormor skrattade. ”God morgon? Lilla gubben, nu är klockan åtta på kvällen. Man säger god kväll.” Efter middagen frågade mormor: ”Vill du ha mer sarma?” Zmaj var mätt, så han sa: ”Tack.” Mormor lade genast tre sarma till på hans tallrik. ”Men mormor, jag sa ju tack!” ”Jag hörde det”, sa mormor. ”Tack betyder att det smakar bra.” Nästa dag ville Zmaj hjälpa morfar vid grillen. Han släppte ut lite eld ur munnen, och ćevapin blev brända på en sekund. ”Stopp, drake!” sa morfar. ”Ćevapi grillar man långsamt, inte med drakeld.” På kvällen skrev Zmaj ett meddelande till sin mamma: ”Ja sam u Mostar i jedem mnogo sarme.” (Jag är i Mostar och äter mycket sarma.) Mormor tittade på telefonen. ”Inte u Mostar, utan u Mostaru.” Zmaj tyckte att bosniska var svårt. Men mormor är tålmodig, och hennes sarma är världens bästa. Därför ska han fortsätta lära sig.",
+    "nl": "Zmaj is een kleine draak die in Duitsland woont. Hij leert al een paar maanden Bosnisch, want deze zomer gaat hij naar zijn oma in Mostar. Elke avond herhaalt hij nieuwe woorden: kuća, voda, hljeb, kahva. Toen hij bij oma aankwam, wilde hij meteen laten zien wat hij kon. ‘Goedemorgen, oma!’ zei hij trots. Oma lachte. ‘Goedemorgen? Jongen, het is nu acht uur 's avonds. Je zegt goedenavond.’ Na het avondeten vroeg oma: ‘Wil je nog wat sarma?’ Zmaj zat vol, dus hij zei: ‘Dank je.’ Oma legde meteen nog drie sarma op zijn bord. ‘Maar oma, ik zei toch dank je!’ ‘Dat hoorde ik’, zei oma. ‘Dank je betekent dat het je smaakt.’ De volgende dag wilde Zmaj opa helpen bij de barbecue. Hij liet een beetje vuur uit zijn mond, en de ćevapi waren in een seconde aangebrand. ‘Stop, draak!’ zei opa. ‘Ćevapi grill je langzaam, niet met drakenvuur.’ 's Avonds schreef Zmaj een bericht aan zijn moeder: ‘Ja sam u Mostar i jedem mnogo sarme.’ (Ik ben in Mostar en eet veel sarma.) Oma keek op de telefoon. ‘Niet u Mostar, maar u Mostaru.’ Zmaj vond Bosnisch moeilijk. Maar oma is geduldig, en haar sarma is de beste van de wereld. Daarom leert hij gewoon verder.",
+    "nb": "Zmaj er en liten drage som bor i Tyskland. I noen måneder nå har han lært bosnisk, fordi han skal til bestemoren sin i Mostar i sommer. Hver kveld repeterer han nye ord: kuća, voda, hljeb, kahva. Da han kom fram til bestemor, ville han straks vise hva han kunne. «God morgen, bestemor!» sa han stolt. Bestemor lo. «God morgen? Gutten min, klokka er åtte om kvelden. Man sier god kveld.» Etter middagen spurte bestemor: «Vil du ha mer sarma?» Zmaj var mett, så han sa: «Takk.» Bestemor la straks tre sarma til på tallerkenen hans. «Men bestemor, jeg sa jo takk!» «Jeg hørte det», sa bestemor. «Takk betyr at du synes det er godt.» Dagen etter ville Zmaj hjelpe bestefar med grillen. Han slapp ut litt ild fra munnen, og ćevapiene ble svidd på et sekund. «Stopp, drage!» sa bestefar. «Ćevapi griller man langsomt, ikke med drageild.» Om kvelden skrev Zmaj en melding til mamma: «Ja sam u Mostar i jedem mnogo sarme.» (Jeg er i Mostar og spiser mye sarma.) Bestemor så på telefonen. «Ikke u Mostar, men u Mostaru.» Zmaj syntes bosnisk var vanskelig. Men bestemor er tålmodig, og sarmaen hennes er verdens beste. Derfor fortsetter han å lære.",
+    "da": "Zmaj er en lille drage, der bor i Tyskland. I nogle måneder har han lært bosnisk, fordi han skal til sin bedstemor i Mostar i sommer. Hver aften gentager han nye ord: kuća, voda, hljeb, kahva. Da han kom frem til bedstemor, ville han straks vise, hvad han kunne. »Godmorgen, bedstemor!« sagde han stolt. Bedstemor lo. »Godmorgen? Min dreng, klokken er otte om aftenen. Man siger godaften.« Efter aftensmaden spurgte bedstemor: »Vil du have mere sarma?« Zmaj var mæt, så han sagde: »Tak.« Bedstemor lagde straks tre sarma mere på hans tallerken. »Men bedstemor, jeg sagde jo tak!« »Det hørte jeg«, sagde bedstemor. »Tak betyder, at det smager dig.« Næste dag ville Zmaj hjælpe bedstefar med grillen. Han lukkede lidt ild ud af munden, og på et sekund var ćevapierne brændt på. »Stop, drage!« sagde bedstefar. »Ćevapi griller man langsomt, ikke med drageild.« Om aftenen skrev Zmaj en besked til sin mor: »Ja sam u Mostar i jedem mnogo sarme.« (Jeg er i Mostar og spiser masser af sarma.) Bedstemor kiggede på telefonen. »Ikke u Mostar, men u Mostaru.« Zmaj syntes, at bosnisk var svært. Men bedstemor er tålmodig, og hendes sarma er den bedste i verden. Derfor bliver han ved med at lære.",
+    "fr": "Zmaj est un petit dragon qui vit en Allemagne. Depuis quelques mois, il apprend le bosnien, parce que cet été il va chez sa grand-mère à Mostar. Chaque soir, il répète de nouveaux mots : kuća, voda, hljeb, kahva. Quand il est arrivé chez sa grand-mère, il a tout de suite voulu montrer ce qu'il savait. « Bonjour, mamie ! » a-t-il dit fièrement. Mamie a ri. « Bonjour ? Mon petit, il est huit heures du soir. On dit bonsoir. » Après le dîner, mamie lui a demandé : « Tu veux encore de la sarma ? » Zmaj n'avait plus faim, alors il a dit : « Merci. » Mamie lui a aussitôt mis trois sarmas de plus dans son assiette. « Mais mamie, j'ai dit merci ! » « Je t'ai entendu », a dit mamie. « Merci, ça veut dire que c'est bon. » Le lendemain, Zmaj a voulu aider papi au barbecue. Il a laissé sortir un peu de feu de sa bouche, et les ćevapi ont brûlé en une seconde. « Arrête, dragon ! » a dit papi. « Les ćevapi se grillent lentement, pas avec un feu de dragon. » Le soir, Zmaj a écrit un message à sa maman : « Ja sam u Mostar i jedem mnogo sarme. » (Je suis à Mostar et je mange beaucoup de sarma.) Mamie a regardé le téléphone. « Pas u Mostar, mais u Mostaru. » Zmaj a pensé que le bosnien était difficile. Mais mamie est patiente, et sa sarma est la meilleure du monde. C'est pour ça qu'il va continuer à apprendre."
+   },
+   "glossary": {
+    "de": {
+     "nego": "sondern / als",
+     "koji": "der (Relativ) / welcher"
+    },
+    "en": {
+     "nego": "but rather / than",
+     "koji": "who / which (relative)"
+    },
+    "tr": {
+     "nego": "değil … / -den (daha)",
+     "koji": "ki / hangi (ilgi)"
+    },
+    "sv": {
+     "nego": "utan / än",
+     "koji": "som (relativ) / vilken"
+    },
+    "nl": {
+     "nego": "maar / dan",
+     "koji": "die / welke (betrekkelijk)"
+    },
+    "nb": {
+     "nego": "men / enn",
+     "koji": "som (relativ) / hvilken"
+    },
+    "da": {
+     "nego": "men / end",
+     "koji": "som (relativ) / hvilken"
+    },
+    "fr": {
+     "nego": "mais / que",
+     "koji": "qui (relatif) / quel"
+    }
+   },
+   "questions": {
+    "de": [
+     {
+      "frage": "Welchen Fehler macht Zmaj, als er ankommt?",
+      "optionen": [
+       "er sagt am Abend „Dobro jutro“",
+       "er vergisst den Namen der Oma",
+       "er kommt zu spät"
+      ],
+      "richtig": "er sagt am Abend „Dobro jutro“"
+     },
+     {
+      "frage": "Was bedeutet „Hvala“ für die Oma?",
+      "optionen": [
+       "dass es ihm schmeckt",
+       "dass er satt ist",
+       "dass er schlafen will"
+      ],
+      "richtig": "dass es ihm schmeckt"
+     },
+     {
+      "frage": "Was passiert mit den Ćevapi?",
+      "optionen": [
+       "sie brennen an",
+       "sie werden kalt",
+       "der Hund frisst sie"
+      ],
+      "richtig": "sie brennen an"
+     }
+    ],
+    "en": [
+     {
+      "frage": "What mistake does Zmaj make when he arrives?",
+      "optionen": [
+       "he says “Dobro jutro” in the evening",
+       "he forgets his grandma's name",
+       "he arrives late"
+      ],
+      "richtig": "he says “Dobro jutro” in the evening"
+     },
+     {
+      "frage": "What does “Hvala” mean to grandma?",
+      "optionen": [
+       "that he likes the food",
+       "that he is full",
+       "that he wants to sleep"
+      ],
+      "richtig": "that he likes the food"
+     },
+     {
+      "frage": "What happens to the ćevapi?",
+      "optionen": [
+       "they burn",
+       "they get cold",
+       "the dog eats them"
+      ],
+      "richtig": "they burn"
+     }
+    ],
+    "tr": [
+     {
+      "frage": "Zmaj geldiğinde hangi hatayı yapıyor?",
+      "optionen": [
+       "akşam “Dobro jutro” diyor",
+       "ninesinin adını unutuyor",
+       "geç kalıyor"
+      ],
+      "richtig": "akşam “Dobro jutro” diyor"
+     },
+     {
+      "frage": "Nine için “Hvala” ne anlama geliyor?",
+      "optionen": [
+       "yemeği beğendiğini",
+       "doyduğunu",
+       "uyumak istediğini"
+      ],
+      "richtig": "yemeği beğendiğini"
+     },
+     {
+      "frage": "Ćevapi'lere ne oluyor?",
+      "optionen": [
+       "yanıyorlar",
+       "soğuyorlar",
+       "köpek onları yiyor"
+      ],
+      "richtig": "yanıyorlar"
+     }
+    ],
+    "sv": [
+     {
+      "frage": "Vilket misstag gör Zmaj när han kommer fram?",
+      "optionen": [
+       "han säger ”Dobro jutro” på kvällen",
+       "han glömmer mormors namn",
+       "han kommer för sent"
+      ],
+      "richtig": "han säger ”Dobro jutro” på kvällen"
+     },
+     {
+      "frage": "Vad betyder ”Hvala” för mormor?",
+      "optionen": [
+       "att det smakar honom",
+       "att han är mätt",
+       "att han vill sova"
+      ],
+      "richtig": "att det smakar honom"
+     },
+     {
+      "frage": "Vad händer med ćevapin?",
+      "optionen": [
+       "de bränns vid",
+       "de blir kalla",
+       "hunden äter upp dem"
+      ],
+      "richtig": "de bränns vid"
+     }
+    ],
+    "nl": [
+     {
+      "frage": "Welke fout maakt Zmaj als hij aankomt?",
+      "optionen": [
+       "hij zegt 's avonds ‘Dobro jutro’",
+       "hij vergeet de naam van oma",
+       "hij komt te laat"
+      ],
+      "richtig": "hij zegt 's avonds ‘Dobro jutro’"
+     },
+     {
+      "frage": "Wat betekent ‘Hvala’ voor oma?",
+      "optionen": [
+       "dat het hem smaakt",
+       "dat hij vol zit",
+       "dat hij wil slapen"
+      ],
+      "richtig": "dat het hem smaakt"
+     },
+     {
+      "frage": "Wat gebeurt er met de ćevapi?",
+      "optionen": [
+       "ze branden aan",
+       "ze worden koud",
+       "de hond eet ze op"
+      ],
+      "richtig": "ze branden aan"
+     }
+    ],
+    "nb": [
+     {
+      "frage": "Hvilken feil gjør Zmaj da han kommer fram?",
+      "optionen": [
+       "han sier «Dobro jutro» om kvelden",
+       "han glemmer navnet til bestemor",
+       "han kommer for sent"
+      ],
+      "richtig": "han sier «Dobro jutro» om kvelden"
+     },
+     {
+      "frage": "Hva betyr «Hvala» for bestemor?",
+      "optionen": [
+       "at han synes det smaker godt",
+       "at han er mett",
+       "at han vil sove"
+      ],
+      "richtig": "at han synes det smaker godt"
+     },
+     {
+      "frage": "Hva skjer med ćevapiene?",
+      "optionen": [
+       "de blir svidd",
+       "de blir kalde",
+       "hunden spiser dem"
+      ],
+      "richtig": "de blir svidd"
+     }
+    ],
+    "da": [
+     {
+      "frage": "Hvilken fejl begår Zmaj, da han ankommer?",
+      "optionen": [
+       "han siger »Dobro jutro« om aftenen",
+       "han glemmer bedstemors navn",
+       "han kommer for sent"
+      ],
+      "richtig": "han siger »Dobro jutro« om aftenen"
+     },
+     {
+      "frage": "Hvad betyder »Hvala« for bedstemor?",
+      "optionen": [
+       "at det smager ham",
+       "at han er mæt",
+       "at han vil sove"
+      ],
+      "richtig": "at det smager ham"
+     },
+     {
+      "frage": "Hvad sker der med ćevapierne?",
+      "optionen": [
+       "de brænder på",
+       "de bliver kolde",
+       "hunden æder dem"
+      ],
+      "richtig": "de brænder på"
+     }
+    ],
+    "fr": [
+     {
+      "frage": "Quelle erreur Zmaj fait-il en arrivant ?",
+      "optionen": [
+       "il dit « Dobro jutro » le soir",
+       "il oublie le nom de sa grand-mère",
+       "il arrive en retard"
+      ],
+      "richtig": "il dit « Dobro jutro » le soir"
+     },
+     {
+      "frage": "Que signifie « Hvala » pour la grand-mère ?",
+      "optionen": [
+       "qu'il trouve ça bon",
+       "qu'il n'a plus faim",
+       "qu'il veut dormir"
+      ],
+      "richtig": "qu'il trouve ça bon"
+     },
+     {
+      "frage": "Qu'arrive-t-il aux ćevapi ?",
+      "optionen": [
+       "ils brûlent",
+       "ils refroidissent",
+       "le chien les mange"
+      ],
+      "richtig": "ils brûlent"
+     }
+    ]
+   },
+   "audio": null
   }
  ]
 }
