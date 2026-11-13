@@ -64,7 +64,7 @@ def test_datenkarte_passt_zum_manifest(wurzel):
         assert datei in manifest["files"], datei
 
     for zahl, schluessel in [("7,997 words", "words"), ("300 cloze", "sentences"),
-                             ("12 graded", "stories"), ("406", "glossary_entries"),
+                             ("32 graded", "stories"), ("1,504", "glossary_entries"),
                              ("26 grammar", "grammar_lessons")]:
         assert zahl in karte, zahl
         assert int(zahl.split()[0].replace(",", "")) == n[schluessel], schluessel
@@ -103,3 +103,25 @@ def test_datensatz_wirbt_nicht_fuer_sprachsynthese(wurzel):
                          ("README.md", text("README.md")),
                          ("paket/README.md", text("paket", "README.md"))]:
         assert hinweis in flach(inhalt), name
+
+
+def test_zahl_der_geschichten_ueberall_gleich(wurzel):
+    """13.11.2026: README.md nannte im ersten Absatz noch "12 graded reading
+    stories", Tabelle, Liste und Diagramm darunter schon 24. Kein Test sah die
+    Zeile. Jede Stelle "<n> (graded) (reading) stories" in den Texten, die die
+    Zahl nennen, muss zum Manifest passen."""
+    import re
+    n = json.loads(lies(wurzel, "manifest.json"))["counts"]["stories"]
+    dateien = ["README.md", "CITATION.cff", ".zenodo.json", "AGENTS.md", "data/README.md",
+               "data/DATASHEET.md", "paket/README.md", "paket/pyproject.toml",
+               "paket/src/zmaj_bosnian/__init__.py"]
+    falsch, gefunden = [], 0
+    for name in dateien:
+        text = io.open(os.path.join(wurzel, *name.split("/")), encoding="utf-8").read()
+        text = re.sub(r"\s+", " ", text)
+        for m in re.finditer(r"\b(\d+) (?:graded )?(?:reading )?stories\b", text):
+            gefunden += 1
+            if int(m.group(1)) != n:
+                falsch.append("%s: %s" % (name, m.group(0)))
+    assert gefunden >= 9, gefunden
+    assert not falsch, falsch
