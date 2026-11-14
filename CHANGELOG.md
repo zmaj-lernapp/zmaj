@@ -511,6 +511,15 @@ are in the Play Store listing. Format:
   questions and 38 of the older stories across all languages. `renderChoice()`
   now sets all buttons of a task the same, small as soon as one is long, in every
   language, story, lesson, test and grammar exercise.
+- Notifications after "Delete account" (review for 1.4, 14.11.2026, V6): deleting
+  the account did not cancel the scheduled notifications, and the next start
+  planned again on the empty progress: seven evening messages and "Ima li te?
+  Deine 200 Wörter sind alle noch da." Now deleting cancels everything in the
+  app's range (IDs 100 to 299), switches reminder, streak and hearts
+  notifications off and plans again (`benAllesAus()`), so nothing comes. Signing
+  out keeps the reminders on purpose. The return message after 14 days is only
+  planned when there is a learning day; without one there is nothing to return
+  to. `tests_e2e/test_anmeldung.py`, `tests_e2e/test_benachrichtigungen.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

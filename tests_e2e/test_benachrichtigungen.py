@@ -256,6 +256,17 @@ def test_rueckhol_nach_14_tagen_ist_b6(app, anzahl, text):
     assert zurueck[0]["titel"] == "Ima li te? 🐉" and zurueck[0]["text"] == text
 
 
+def test_rueckhol_nur_mit_einem_lerntag(app):
+    """Pruefbericht 1.4, V6: Ohne einen Lerntag (frisch, nach dem Abmelden oder
+    dem Loeschen des Kontos) gibt es nichts zurueckzuholen - "Deine Woerter
+    sind alle noch da" stimmte dann nicht. Die Abende bleiben."""
+    r = _lage(app, tage=[], anzahl=250)
+    assert [p for p in r["plan"] if p["art"] == "rueckhol"] == [], r["plan"]
+    assert len(_abende(r)) == 7
+    r = _lage(app, tage=_tage(20, 21))
+    assert [p["key"] for p in r["plan"] if p["art"] == "rueckhol"] == ["b6"]
+
+
 def test_schalter_wie_bisher(app):
     r = _lage(app, tage=_tage(1, 4), schalter={"erinnerung": False, "serie": False})
     assert r["plan"] == []

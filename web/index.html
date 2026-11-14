@@ -11777,7 +11777,9 @@ $('anmOffline').addEventListener('click', ()=>{
    nach dem Abmelden liegt der Stand im Konto, nach dem Loeschen landete
    der alte sonst im naechsten Konto. Sprache, Toene, Erinnerungen,
    Einwilligung, Vollversion, Nutzungsbedingungen und die Zufallskennung
-   bleiben. 28.10.2026 */
+   bleiben. 28.10.2026
+   Die Erinnerungen seit dem 14.11.2026 nur noch nach dem Abmelden: nach
+   dem Loeschen schaltet benAllesAus() sie ab (Pruefbericht 1.4, V6). */
 function standLeeren(){
   standErsetzen(() => ({}));
   setzeGetragen([]);
@@ -11877,6 +11879,7 @@ async function cloudKontoLoeschen(passwort){
   note.textContent = '';
   $('wegPw').value = ''; $('wegForm').style.display = 'none';
   await abmeldenFertig();
+  await benAllesAus();     // keine Nachrichten mehr fuer ein geloeschtes Konto (V6, 14.11.2026)
   anmeldungZeigen('abgemeldet', 'wahl', {hinweis: ''});
   const n = $('anmNote');
   n.textContent = t(r === true ? 'set.konto_weg_fertig' : 'set.konto_weg_teil');
@@ -16262,8 +16265,11 @@ function benPlan(){
      Jedes neue Planen schiebt sie nach hinten - sie kommt nur, wenn die
      App so lange zu blieb. basis sagt, zu welchem Lerntag sie gehoert;
      benPlanen traegt das nach dem Zustellen in s.rueckholFuer ein.
-     10.10.2026 */
-  if(s.erinnerung && !ruhe){
+     10.10.2026
+     Nur mit einem Lerntag (Pruefbericht 1.4, V6, 14.11.2026): Ohne ihn -
+     frisch, nach dem Abmelden oder nach "Konto loeschen" - gibt es nichts
+     zurueckzuholen, und "Deine Woerter sind alle noch da" stimmte nicht. */
+  if(s.erinnerung && !ruhe && basis){
     /* Seit 1.4 der Text B6, mit der Zahl der Woerter (13.11.2026). */
     const zurueck = tagMinus(heute, -BEN_PAUSE_TAGE);
     const [titel, text] = benTexte('b6', benWerte(zurueck, basis, gelernt));
@@ -16288,6 +16294,31 @@ function benPlan(){
   return plan;
 }
 let benLaeuft = null;
+/* Nach "Konto loeschen" (Pruefbericht 1.4, V6, 14.11.2026). Bis dahin
+   blieben die geplanten Nachrichten stehen, und der naechste Start plante
+   auf dem leeren Stand neu: sieben Abende und "Ima li te? Deine 200 Woerter
+   sind alle noch da." - obwohl die Datenschutzerklaerung (Abschnitt 10)
+   sagt, dass der Lernstand sofort geloescht ist. Jetzt sind alle drei
+   Schalter aus und alles in unserem Nummernbereich ist abgesagt, auch was
+   benPlanen() fuer heute behalten wuerde (s.geplant leer). Danach plant
+   benPlanen() wie immer - mit den Schaltern aus also nichts. Wer wieder
+   Nachrichten will, schaltet sie in den Einstellungen ein.
+   Nur hier, nicht beim Abmelden: dort bleiben die Erinnerungen mit Absicht,
+   sie holen zur Anmeldung zurueck. Erst einen laufenden Plan abwarten,
+   sonst schriebe er die alten Schalter mit seinem Stand zurueck. */
+async function benAllesAus(){
+  if(benLaeuft) try{ await benLaeuft; }catch(e){}
+  const s = benStand();
+  s.erinnerung = false; s.serie = false; s.leben = false; s.geplant = [];
+  benMerken(s);
+  const L = benPlugin();
+  if(L){
+    const weg = [];
+    for(let id = BEN_ID_ABEND; id < BEN_ID_LEBEN + 100; id++) weg.push({id});
+    try{ await L.cancel({notifications: weg}); }catch(e){}
+  }
+  await benPlanen();
+}
 async function benPlanen(){
   const L = benPlugin();
   if(!L || !standGeladen) return;
