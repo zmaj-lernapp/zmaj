@@ -139,7 +139,7 @@ GRAMMATIK = {
                          ["männlich, unbelebt", "hljeb, grad, auto", "hljeb, grad, auto", "bleibt gleich"],
                          ["weiblich", "sestra, kahva, kuća", "sestru, kahvu, kuću", "-a → -u"],
                          ["sächlich", "dijete, selo, more", "dijete, selo, more", "bleibt gleich"]]},
-            "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.",
+            "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.",
             "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.",
         ],
         "uebungen": [

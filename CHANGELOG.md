@@ -692,8 +692,15 @@ are in the Play Store listing. Format:
   questions in all eight languages (not by native speakers); the right answer is
   nowhere much longer than the wrong ones. Every word is tappable: 44 new glossary
   forms, *radio* as the device in the story's own entries, and the 31 forms only the
-  old story used are gone with their translations (1,515 entries). No audio yet; it comes with the next Vesna round
-  (`tests/offen_b1_teil2.py`). `tests/test_pruefbericht14_geschichten.py`.
+  old story used are gone with their translations (1,515 entries). No audio yet;
+  it comes with the next Vesna round (`tests/offen_b1_teil2.py`).
+  `tests/test_pruefbericht14_geschichten.py`.
+- *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it
+  means "mein eigener" and the story dictionary "eigener (mein, dein, sein)",
+  yet in *Voz Sarajevo–Mostar* a woman gives "svoj broj", her own number. Both
+  now say "der eigene (mein, dein, sein, ihr …)", used when the owner is the
+  subject, in all eight languages. The vocabulary entry keeps its `de` and so its
+  ID. `tests/test_pruefbericht14_grammatik.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

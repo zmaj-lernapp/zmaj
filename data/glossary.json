@@ -15633,14 +15633,14 @@
   {
    "bs": "svoj",
    "translations": {
-    "de": "eigener (mein, dein, sein)",
-    "en": "one's own (my, your, his)",
-    "tr": "kendi (benim, senin, onun)",
-    "sv": "egen (min, din, sin)",
-    "nl": "eigen (mijn, jouw, zijn)",
-    "nb": "egen (min, din, sin)",
-    "da": "egen (min, din, sin)",
-    "fr": "son propre (mon, ton, son)"
+    "de": "eigener (mein, dein, sein, ihr …)",
+    "en": "one's own (my, your, his, her …)",
+    "tr": "kendi (benim, senin, onun …)",
+    "sv": "egen (min, din, sin …)",
+    "nl": "eigen (mijn, jouw, zijn, haar …)",
+    "nb": "egen (min, din, sin …)",
+    "da": "egen (min, din, sin …)",
+    "fr": "son propre (mon, ton, son, leur …)"
    }
   },
   {

@@ -11,6 +11,12 @@ Die Uebung „Sjedim ___ tebe i brata.“ ist Genitiv und passt jetzt zur Tabell
 S4 (F21 ja): Die Instrumental-Regel sagte „-em nur nach j, č, š, ž“, die App
 schreibt aber auch čekićem und želucem. Jetzt: nach c, č, ć, dž, đ, j, lj, nj,
 š, ž + em, in allen 8 Sprachen.
+
+S6 (Offen-Liste, Punkt 3): „Svoj“ hiess in der Lektion Faelle 1 nur „mein
+eigener“, im Woerterbuch der Lesetexte „eigener (mein, dein, sein)“, obwohl in
+b1_voz und b1_telefon eine Frau „svoj broj“ hat. Jetzt „der eigene (mein, dein,
+sein, ihr …), wenn der Besitzer das Subjekt ist“, in 8 Sprachen. Die Vokabel
+behaelt ihr de, das ist ihre Kennung.
 """
 
 S4_BUCHSTABEN = "c, č, ć, dž, đ, j, lj, nj, š, ž"
@@ -84,3 +90,55 @@ def test_s4_instrumental_em_nach_allen_weichen_lauten(alle_daten, grunddaten):
     import json
     alles = json.dumps(grunddaten, ensure_ascii=False)
     assert "čekićem" in alles and "želucem" in alles
+
+
+# ---------------------------------------------------------------------------
+# S6: svoj ist nicht nur "mein eigener" (Offen-Liste, Punkt 3, 14.11.2026)
+# ---------------------------------------------------------------------------
+# Die Lektion Faelle 1 und das Woerterbuch der Lesetexte sagten "mein eigener"
+# bzw. "eigener (mein, dein, sein)". In b1_voz gibt die Frau "svoj broj" (ihre
+# Nummer), in b1_telefon schreibt Amina "na svoj broj" (an ihre eigene).
+S6_LEKTION = "„Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist."
+S6_WB = "eigener (mein, dein, sein, ihr …)"
+S6_KENNUNG = "eigener (mein, dein, sein):svoj"
+S6_ENGLISCH = ("“Svoj” means “one's own” (my, your, his, her …) and is used when the owner is the subject",
+               "one's own (my, your, his, her …)")
+
+
+def _faelle1_svoj(daten):
+    saetze = [t for t in daten["grammatik"]["faelle1"]["erklaerung"]
+              if isinstance(t, str) and "Volim svoju majku" in t]
+    assert len(saetze) == 1, saetze
+    return saetze[0]
+
+
+def test_s6_lektion_der_eigene(alle_daten):
+    de = _faelle1_svoj(alle_daten["de"])
+    assert S6_LEKTION in de and "mein eigener" not in de
+    for code, daten in alle_daten.items():
+        if code == "de":
+            continue
+        satz = _faelle1_svoj(daten)
+        assert satz != de and "Svoj" in satz and "…" in satz, (code, satz)
+        assert "eigen" not in satz or code == "nl", (code, satz)      # kein deutscher Rest
+    assert S6_ENGLISCH[0] in _faelle1_svoj(alle_daten["en"])
+
+
+def test_s6_woerterbuch_nicht_nur_mein(alle_daten):
+    de = alle_daten["de"]
+    assert de["woerterbuch"]["svoj"] == S6_WB
+    texte = {g["id"]: g["text"] for g in de["geschichten"]}
+    assert "Žena im daje svoj broj telefona." in texte["b1_voz"]
+    assert "napisala poruku na svoj broj" in texte["b1_telefon"]
+    for code, daten in alle_daten.items():
+        if code != "de":
+            assert daten["woerterbuch"]["svoj"] not in (S6_WB, ""), code
+    assert alle_daten["en"]["woerterbuch"]["svoj"] == S6_ENGLISCH[1]
+
+
+def test_s6_kennung_der_vokabel_bleibt(alle_daten):
+    """Das de der Vokabel svoj ist ihre Kennung (AGENTS.md, Regel 1), es bleibt."""
+    woerter = {w["id"]: w for k in alle_daten["de"]["kategorien"] for w in k["words"]}
+    assert woerter[S6_KENNUNG]["de"] == "eigener (mein, dein, sein)"
+    en = {w["id"]: w for k in alle_daten["en"]["kategorien"] for w in k["words"]}
+    assert en[S6_KENNUNG]["de"] == "one's own (my, your, his)"

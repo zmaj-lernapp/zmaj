@@ -2315,8 +2315,8 @@ INHALT = {
         "The double negative is obligatory: “Niko ne zna” (Nobody knows), “Nikad ne kasnim” (I am never late). There is no comma before “jer”, “da” and “ako” when the subclause follows the main clause: “Ne dolazim jer radim.”",
     "Bosnisch hat sieben Fälle. Der Nominativ ist die Grundform (wer? was?): „Brat radi.“ Der Akkusativ steht beim direkten Objekt (wen? was?): „Vidim brata.“":
         "Bosnian has seven cases. The nominative is the base form (who? what?): “Brat radi.” The accusative marks the direct object (whom? what?): “Vidim brata.”",
-    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.":
-        "Possessives and adjectives change along with the noun: “Volim svoju majku”, “Znam tvog brata”. “Svoj” means “my own” and is used when the owner is the subject of the sentence.",
+    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.":
+        "Possessives and adjectives change along with the noun: “Volim svoju majku”, “Znam tvog brata”. “Svoj” means “one's own” (my, your, his, her …) and is used when the owner is the subject of the sentence.",
     "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.":
         "Short pronouns in the accusative: me (me), te (you), ga (him), je (her), nas (us), vas (you, plural), ih (them). They take second position in the sentence: “Vidim te”, “Volim ga”.",
     "Der Genitiv antwortet auf „wessen?“ und „woher?“ und steht nach vielen Präpositionen: bez (ohne), iz (aus), od (von), do (bis), kod (bei), pored (neben), blizu (nahe), zbog (wegen).":
@@ -7121,6 +7121,7 @@ INHALT = {
     "dieser (da)": "this / that (one there)",
     "Wer ist dieser Mann?": "Who is that man?",
     "eigener (mein, dein, sein)": "one's own (my, your, his)",
+    "eigener (mein, dein, sein, ihr …)": "one's own (my, your, his, her …)",
     "Nimm deine Tasche, wir gehen!": "Take your bag, we're going!",
     "irgendein": "some (a certain)",
     "Irgendein Mann hat dich gesucht.": "Some man was looking for you.",
@@ -13338,8 +13339,8 @@ INHALT = {
         "Çift olumsuzluk zorunludur: “Niko ne zna” (Kimse bilmiyor), “Nikad ne kasnim” (Asla geç kalmam). Yan cümle ana cümleden sonra geliyorsa “jer”, “da” ve “ako” önüne virgül konmaz: “Ne dolazim jer radim.”",
     "Bosnisch hat sieben Fälle. Der Nominativ ist die Grundform (wer? was?): „Brat radi.“ Der Akkusativ steht beim direkten Objekt (wen? was?): „Vidim brata.“":
         "Boşnakçada yedi hâl vardır. Nominatif yalın biçimdir (kim? ne?): “Brat radi.” Akuzatif doğrudan nesnede kullanılır (kimi? neyi?): “Vidim brata.”",
-    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.":
-        "İyelik kelimeleri ve sıfatlar da birlikte değişir: “Volim svoju majku”, “Znam tvog brata”. “Svoj” “kendi” demektir ve sahibi cümlenin öznesi olduğunda kullanılır.",
+    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.":
+        "İyelik kelimeleri ve sıfatlar da birlikte değişir: “Volim svoju majku”, “Znam tvog brata”. “Svoj” “kendi” demektir (benim, senin, onun …) ve sahibi cümlenin öznesi olduğunda kullanılır.",
     "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.":
         "Akuzatifte kısa zamirler: me (beni), te (seni), ga (onu, erkek), je (onu, kadın), nas (bizi), vas (sizi), ih (onları). Cümlede ikinci sırada dururlar: “Vidim te”, “Volim ga”.",
     "Der Genitiv antwortet auf „wessen?“ und „woher?“ und steht nach vielen Präpositionen: bez (ohne), iz (aus), od (von), do (bis), kod (bei), pored (neben), blizu (nahe), zbog (wegen).":
@@ -18144,6 +18145,7 @@ INHALT = {
     "dieser (da)": "bu / şu (oradaki)",
     "Wer ist dieser Mann?": "Bu adam kim?",
     "eigener (mein, dein, sein)": "kendi (benim, senin, onun)",
+    "eigener (mein, dein, sein, ihr …)": "kendi (benim, senin, onun …)",
     "Nimm deine Tasche, wir gehen!": "Çantanı al, gidiyoruz!",
     "irgendein": "herhangi bir",
     "Irgendein Mann hat dich gesucht.": "Bir adam seni arıyordu.",
@@ -24355,8 +24357,8 @@ INHALT = {
         "Dubbel negation är obligatorisk: ”Niko ne zna” (Ingen vet), ”Nikad ne kasnim” (Jag kommer aldrig för sent). Det sätts inget kommatecken före ”jer”, ”da” och ”ako” när bisatsen kommer efter huvudsatsen: ”Ne dolazim jer radim.”",
     "Bosnisch hat sieben Fälle. Der Nominativ ist die Grundform (wer? was?): „Brat radi.“ Der Akkusativ steht beim direkten Objekt (wen? was?): „Vidim brata.“":
         "Bosniskan har sju kasus. Nominativ är grundformen (vem? vad?): ”Brat radi.” Ackusativ används för det direkta objektet (vem? vad?): ”Vidim brata.”",
-    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.":
-        "Possessiva ord och adjektiv ändras med: ”Volim svoju majku”, ”Znam tvog brata”. ”Svoj” betyder ”sin egen” och används när ägaren är meningens subjekt.",
+    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.":
+        "Possessiva ord och adjektiv ändras med: ”Volim svoju majku”, ”Znam tvog brata”. ”Svoj” betyder ”egen” (min, din, sin …) och används när ägaren är meningens subjekt.",
     "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.":
         "Korta pronomen i ackusativ: me (mig), te (dig), ga (honom), je (henne), nas (oss), vas (er), ih (dem). De står på andra plats i meningen: ”Vidim te”, ”Volim ga”.",
     "Der Genitiv antwortet auf „wessen?“ und „woher?“ und steht nach vielen Präpositionen: bez (ohne), iz (aus), od (von), do (bis), kod (bei), pored (neben), blizu (nahe), zbog (wegen).":
@@ -29149,6 +29151,7 @@ INHALT = {
     "dieser (da)": "den där",
     "Wer ist dieser Mann?": "Vem är den där mannen?",
     "eigener (mein, dein, sein)": "egen (min, din, sin)",
+    "eigener (mein, dein, sein, ihr …)": "egen (min, din, sin …)",
     "Nimm deine Tasche, wir gehen!": "Ta din väska, vi går!",
     "irgendein": "någon slags",
     "Irgendein Mann hat dich gesucht.": "Någon man letade efter dig.",
@@ -35359,8 +35362,8 @@ INHALT = {
         "Dubbele ontkenning is verplicht: ‘Niko ne zna’ (Niemand weet het), ‘Nikad ne kasnim’ (Ik kom nooit te laat). Voor ‘jer’, ‘da’ en ‘ako’ komt geen komma als de bijzin achter de hoofdzin staat: ‘Ne dolazim jer radim.’",
     "Bosnisch hat sieben Fälle. Der Nominativ ist die Grundform (wer? was?): „Brat radi.“ Der Akkusativ steht beim direkten Objekt (wen? was?): „Vidim brata.“":
         "Het Bosnisch heeft zeven naamvallen. De nominatief is de grondvorm (wie? wat?): ‘Brat radi.’ De accusatief hoort bij het lijdend voorwerp (wie? wat?): ‘Vidim brata.’",
-    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.":
-        "Bezittelijke woorden en bijvoeglijke naamwoorden veranderen mee: ‘Volim svoju majku’, ‘Znam tvog brata’. ‘Svoj’ betekent ‘zijn eigen’ en gebruik je als de bezitter het onderwerp van de zin is.",
+    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.":
+        "Bezittelijke woorden en bijvoeglijke naamwoorden veranderen mee: ‘Volim svoju majku’, ‘Znam tvog brata’. ‘Svoj’ betekent ‘eigen’ (mijn, jouw, zijn, haar …) en gebruik je als de bezitter het onderwerp van de zin is.",
     "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.":
         "Korte voornaamwoorden in de accusatief: me (mij), te (jou), ga (hem), je (haar), nas (ons), vas (jullie), ih (hen). Ze staan op de tweede plaats in de zin: ‘Vidim te’, ‘Volim ga’.",
     "Der Genitiv antwortet auf „wessen?“ und „woher?“ und steht nach vielen Präpositionen: bez (ohne), iz (aus), od (von), do (bis), kod (bei), pored (neben), blizu (nahe), zbog (wegen).":
@@ -40151,6 +40154,7 @@ INHALT = {
     "dieser (da)": "die (daar)",
     "Wer ist dieser Mann?": "Wie is die man?",
     "eigener (mein, dein, sein)": "eigen (mijn, jouw, zijn)",
+    "eigener (mein, dein, sein, ihr …)": "eigen (mijn, jouw, zijn, haar …)",
     "Nimm deine Tasche, wir gehen!": "Pak je tas, we gaan!",
     "irgendein": "een of ander",
     "Irgendein Mann hat dich gesucht.": "Een of andere man zocht je.",
@@ -46363,8 +46367,8 @@ INHALT = {
         "Dobbel nekting er obligatorisk: «Niko ne zna» (Ingen vet det), «Nikad ne kasnim» (Jeg kommer aldri for sent). Det settes ikke komma foran «jer», «da» og «ako» når leddsetningen kommer etter hovedsetningen: «Ne dolazim jer radim.»",
     "Bosnisch hat sieben Fälle. Der Nominativ ist die Grundform (wer? was?): „Brat radi.“ Der Akkusativ steht beim direkten Objekt (wen? was?): „Vidim brata.“":
         "Bosnisk har sju kasus. Nominativ er grunnformen (hvem? hva?): «Brat radi.» Akkusativ brukes ved det direkte objektet (hvem? hva?): «Vidim brata.»",
-    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.":
-        "Eiendomsord og adjektiv endrer seg med: «Volim svoju majku», «Znam tvog brata». «Svoj» betyr «sin egen» og brukes når eieren er setningens subjekt.",
+    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.":
+        "Eiendomsord og adjektiv endrer seg med: «Volim svoju majku», «Znam tvog brata». «Svoj» betyr «egen» (min, din, sin …) og brukes når eieren er setningens subjekt.",
     "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.":
         "Korte pronomen i akkusativ: me (meg), te (deg), ga (ham), je (henne), nas (oss), vas (dere), ih (dem). De står på andre plass i setningen: «Vidim te», «Volim ga».",
     "Der Genitiv antwortet auf „wessen?“ und „woher?“ und steht nach vielen Präpositionen: bez (ohne), iz (aus), od (von), do (bis), kod (bei), pored (neben), blizu (nahe), zbog (wegen).":
@@ -51153,6 +51157,7 @@ INHALT = {
     "dieser (da)": "den (der)",
     "Wer ist dieser Mann?": "Hvem er den mannen?",
     "eigener (mein, dein, sein)": "egen (min, din, sin)",
+    "eigener (mein, dein, sein, ihr …)": "egen (min, din, sin …)",
     "Nimm deine Tasche, wir gehen!": "Ta vesken din, vi drar!",
     "irgendein": "en eller annen",
     "Irgendein Mann hat dich gesucht.": "En eller annen mann lette etter deg.",
@@ -57365,8 +57370,8 @@ INHALT = {
         "Dobbelt nægtelse er obligatorisk: »Niko ne zna« (Ingen ved det), »Nikad ne kasnim« (Jeg kommer aldrig for sent). Der sættes ikke komma foran »jer«, »da« og »ako«, når ledsætningen kommer efter hovedsætningen: »Ne dolazim jer radim.«",
     "Bosnisch hat sieben Fälle. Der Nominativ ist die Grundform (wer? was?): „Brat radi.“ Der Akkusativ steht beim direkten Objekt (wen? was?): „Vidim brata.“":
         "Bosnisk har syv kasus. Nominativ er grundformen (hvem? hvad?): »Brat radi.« Akkusativ bruges ved det direkte objekt (hvem? hvad?): »Vidim brata.«",
-    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.":
-        "Ejestedord og tillægsord ændrer sig med: »Volim svoju majku«, »Znam tvog brata«. »Svoj« betyder »sin egen« og bruges, når ejeren er sætningens subjekt.",
+    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.":
+        "Ejestedord og tillægsord ændrer sig med: »Volim svoju majku«, »Znam tvog brata«. »Svoj« betyder »egen« (min, din, sin …) og bruges, når ejeren er sætningens subjekt.",
     "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.":
         "Korte stedord i akkusativ: me (mig), te (dig), ga (ham), je (hende), nas (os), vas (jer), ih (dem). De står på andenpladsen i sætningen: »Vidim te«, »Volim ga«.",
     "Der Genitiv antwortet auf „wessen?“ und „woher?“ und steht nach vielen Präpositionen: bez (ohne), iz (aus), od (von), do (bis), kod (bei), pored (neben), blizu (nahe), zbog (wegen).":
@@ -62156,6 +62161,7 @@ INHALT = {
     "dieser (da)": "den (der)",
     "Wer ist dieser Mann?": "Hvem er den mand?",
     "eigener (mein, dein, sein)": "egen (min, din, sin)",
+    "eigener (mein, dein, sein, ihr …)": "egen (min, din, sin …)",
     "Nimm deine Tasche, wir gehen!": "Tag din taske, vi går!",
     "irgendein": "en eller anden",
     "Irgendein Mann hat dich gesucht.": "En eller anden mand ledte efter dig.",
@@ -68369,8 +68375,8 @@ INHALT = {
         "La double négation est obligatoire : « Niko ne zna » (personne ne le sait), « Nikad ne kasnim » (je ne suis jamais en retard). On ne met pas de virgule devant « jer », « da » et « ako » quand la subordonnée suit la principale : « Ne dolazim jer radim. »",
     "Bosnisch hat sieben Fälle. Der Nominativ ist die Grundform (wer? was?): „Brat radi.“ Der Akkusativ steht beim direkten Objekt (wen? was?): „Vidim brata.“":
         "Le bosnien a sept cas. Le nominatif est la forme de base (qui ? quoi ?) : « Brat radi. » L'accusatif s'emploie pour le complément direct (qui ? quoi ?) : « Vidim brata. »",
-    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist.":
-        "Les possessifs et les adjectifs changent aussi : « Volim svoju majku », « Znam tvog brata ». « Svoj » veut dire « le sien propre » et s'emploie quand le possesseur est le sujet.",
+    "Besitzwörter und Adjektive ändern sich mit: „Volim svoju majku“, „Znam tvog brata“. „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist.":
+        "Les possessifs et les adjectifs changent aussi : « Volim svoju majku », « Znam tvog brata ». « Svoj » veut dire « propre » (mon, ton, son, leur …) et s'emploie quand le possesseur est le sujet.",
     "Kurze Pronomen im Akkusativ: me (mich), te (dich), ga (ihn), je (sie), nas (uns), vas (euch), ih (sie). Sie stehen an zweiter Stelle im Satz: „Vidim te“, „Volim ga“.":
         "Pronoms courts à l'accusatif : me (me), te (te), ga (le), je (la), nas (nous), vas (vous), ih (les). Ils occupent la deuxième place dans la phrase : « Vidim te », « Volim ga ».",
     "Der Genitiv antwortet auf „wessen?“ und „woher?“ und steht nach vielen Präpositionen: bez (ohne), iz (aus), od (von), do (bis), kod (bei), pored (neben), blizu (nahe), zbog (wegen).":
@@ -73169,6 +73175,7 @@ INHALT = {
     "dieser (da)": "ce ... -là",
     "Wer ist dieser Mann?": "Qui est cet homme ?",
     "eigener (mein, dein, sein)": "son propre (mon, ton, son)",
+    "eigener (mein, dein, sein, ihr …)": "son propre (mon, ton, son, leur …)",
     "Nimm deine Tasche, wir gehen!": "Prends ton sac, on y va !",
     "irgendein": "un certain",
     "Irgendein Mann hat dich gesucht.": "Un homme t'a cherché.",

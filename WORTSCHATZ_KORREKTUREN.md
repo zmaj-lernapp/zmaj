@@ -1211,3 +1211,16 @@ zwei Änderungen.
   vokabeln dieser Geschichte). Damit 1.515 statt 1.503 Einträge.
 - Der neue Text hat noch keinen Ton; er wartet mit der id in
   `tests/offen_b1_teil2.py` auf die Vesna-Runde.
+
+**S6, svoj.** Die Lektion Fälle 1 (`grammatik.py`) sagte „„Svoj“ heißt „mein
+eigener““, das Wörterbuch der Lesetexte „eigener (mein, dein, sein)“. In *Voz
+Sarajevo–Mostar* („Žena im daje svoj broj“) und *Izgubljeni telefon* („na svoj
+broj“) ist es aber „ihr eigener“.
+
+| Stelle | vorher | jetzt |
+|---|---|---|
+| Lektion Fälle 1 | „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist. | „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist. |
+| Wörterbuch der Lesetexte, *svoj* | eigener (mein, dein, sein) | eigener (mein, dein, sein, ihr …) |
+
+- Die Vokabel *svoj* behält „eigener (mein, dein, sein)“, das ist ihre Kennung
+  (`eigener (mein, dein, sein):svoj`). Kein bosnisches Wort geändert.

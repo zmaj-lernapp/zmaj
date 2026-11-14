@@ -214,7 +214,10 @@ WOERTERBUCH = {
     "pekla": "gebacken (w)", "nisu": "sind nicht / haben nicht", "gladni": "hungrig (Mehrz.)", "odustaje": "gibt auf",
     "hajde": "los! / komm!", "nemojte": "tut nicht! / tun Sie nicht! (Verbot)", "stidjeti": "sich schämen", "pričaju": "sie reden",
     "mostaru": "Mostar (Lok.)", "devet": "neun", "stiže": "kommt an", "daje": "gibt",
-    "svoj": "eigener (mein, dein, sein)", "broj": "Zahl / Nummer", "telefona": "Telefon (Gen.)",
+    # svoj (Prüfbericht 1.4, S6): nicht nur "mein eigener", in b1_voz ("Žena im
+    # daje svoj broj") und b1_telefon ist es "ihr eigener". Die Vokabel behält
+    # ihr de "eigener (mein, dein, sein)", das ist ihre Kennung.
+    "svoj": "eigener (mein, dein, sein, ihr …)", "broj": "Zahl / Nummer", "telefona": "Telefon (Gen.)",
     "zatreba": "nötig wird", "nazovite": "ruft an!", "nisi": "du bist nicht", "putu": "Weg / Reise (Lok.)",
     # b1_rafting
     "prijatelji": "Freunde", "julu": "Juli (Lok.)", "bihać": "Bihać", "dugo": "lange", "htjeli": "gewollt (Mehrz.)",

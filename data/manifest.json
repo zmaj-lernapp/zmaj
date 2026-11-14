@@ -62,12 +62,12 @@
    "bytes": 549983
   },
   "glossary.json": {
-   "sha256": "63e26b395f86443052315abc5e11fc4f12a84859b9a718764b0e126edb154ef6",
-   "bytes": 407159
+   "sha256": "9b6c6f4056b1525b64bbf4e8cd1d6f761ed64f66bafbe85b24fe2b068949c02f",
+   "bytes": 407213
   },
   "grammar.json": {
-   "sha256": "dd7094724fe0a5ed62ccddd407997942dd1e14fe714f5da1083b070c59bd8283",
-   "bytes": 636586
+   "sha256": "252129996d21cd686714e42159a5d2523f139eac7e56c9300bf0181a94ce3f03",
+   "bytes": 636746
   },
   "parallel.jsonl": {
    "sha256": "155866fbd700899cc714d58ea69ee84fa4bb73da36f7e5115eed8e8db415563c",
