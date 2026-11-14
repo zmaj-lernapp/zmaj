@@ -94,6 +94,11 @@ AUCH = {
     # seit dem 07.11.2026 (Warteliste)
     "mrtav": ["mrtva", "mrtvo"], "uopšte": ["uopće"],
 }
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten: weitere richtige Antworten beim
+# Tippen, die Kennung bleibt (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {
+    "nakon": ["poslije"],                                   # V9/F3
+}
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
@@ -146,7 +151,7 @@ def test_auch_genau_nach_dem_paket(grunddaten_vor_umzug):
     """Feld "auch" aus dem Paket, dazu die Formen aus "formen" (weiblich, saechlich)."""
     grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     neu = {w["bs"]: w for w in _neu(grunddaten)}
-    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == AUCH
+    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == {**AUCH, **PRUEFBERICHT_AUCH}
     for w in neu.values():
         formen = [f.strip() for f in w["bs"].split(" / ")]
         for a in w.get("auch", []):

@@ -467,6 +467,14 @@ are in the Play Store listing. Format:
   poštovanjem* now count next to the *s* form; the grammar of the level itself writes
   *sa bratom*. One `"auch"` each, IDs and recordings stay. No pair *s*/*sa* for
   everywhere, which would also allow *s mnom*. `tests/test_pruefbericht14_tippen.py`.
+- Typing the other usual word (review for 1.4, 14.11.2026, V9; decided by the
+  maintainer, F2 to F5): "sehr" (*jako*) and the gap "Kahva je ___ vruća." also take
+  *vrlo* and *veoma*; *poslije* and *nakon* count for each other in "nach (zeitlich)",
+  "nach (einem Ereignis)", "nach der Arbeit" and the gap "___ posla idem kući."; the gap
+  "___ pada kiša, ostajem kod kuće." also takes *Kad* and *Kada*, and "Kada ___
+  autobus?" also *kreće*. Only at these places, no pair for everywhere. In sentence
+  building *vrlo*, *veoma*, *kad* and *kada* are no longer wrong tiles next to "Kahva je
+  jako vruća." and "Ako pada kiša, ostajem kod kuće.". `tests/test_pruefbericht14_tippen.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

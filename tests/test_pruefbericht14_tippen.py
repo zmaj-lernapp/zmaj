@@ -104,3 +104,61 @@ def test_v8_kein_paar_s_sa_fuer_ueberall():
     import varianten
     for p in varianten.VARIANTEN:
         assert {str(p["a"]).lower(), str(p["b"]).lower()} & {"s", "sa"} == set(), p
+
+
+# ---- V9 / F2 bis F5: Lueckensaetze und Woerter mit einer zweiten gaengigen Antwort ----
+# F2 bis F5 ja. Nur an diesen Eintraegen, keine Paare fuer ueberall in varianten.py:
+# nicht ueberall passt das andere Wort (der Bericht nennt „volim te jako“ und „Vidimo
+# se poslije“).
+V9_WOERTER = {
+    "sehr:jako": ["vrlo", "veoma"],                     # F2, wie vrlo / veoma „sehr (vor Eigenschaften)“
+    "nach (zeitlich):poslije": ["nakon"],               # F3
+    "nach der arbeit:poslije posla": ["nakon posla"],   # F3
+    "nach (einem ereignis):nakon": ["poslije"],         # F3
+}
+V9_LUECKEN = {
+    "Kahva je ___ vruća.": ("jako", ["vrlo", "veoma"], ["vrlo", "veoma", "Vrlo"]),   # F2
+    "___ posla idem kući.": ("Poslije", ["Nakon"], ["Nakon", "nakon"]),             # F3
+    "___ pada kiša, ostajem kod kuće.": ("Ako", ["Kad", "Kada"], ["Kad", "kada"]),   # F4
+    "Kada ___ autobus?": ("polazi", ["kreće"], ["kreće"]),                          # F5
+}
+# Beim Satzbau liegen die anderen Woerter nicht als falsche Kachel: sie stehen bis
+# zu diesem Level im Wortschatz (vrlo / veoma in kleine_woerter, kad und „Kada?“).
+V9_OHNE = {
+    "Kahva je jako vruća.": ["vrlo", "veoma"],
+    "Ako pada kiša, ostajem kod kuće.": ["kad", "kada"],
+}
+
+
+def test_v9_woerter(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, V9_WOERTER, V9_WOERTER)
+
+
+def test_v9_lueckensaetze(alle_daten, grunddaten, index_html):
+    _pruefe_luecken(alle_daten, grunddaten, index_html, V9_LUECKEN)
+
+
+def test_v9_satzbau_ohne(alle_daten):
+    for code, daten in alle_daten.items():
+        for bs, ohne in V9_OHNE.items():
+            s = [x for x in daten["satzbau"] if x["bs"] == bs]
+            assert len(s) == 1, (code, bs)
+            # Was varianten.py dazugibt (kafa), steht dahinter.
+            assert s[0]["ohne"][:len(ohne)] == ohne, (code, s[0])
+
+
+def test_v9_kein_paar_fuer_ueberall():
+    import varianten
+    for p in varianten.VARIANTEN:
+        seiten = {str(p["a"]).lower(), str(p["b"]).lower()}
+        woerter = {"jako", "vrlo", "veoma", "poslije", "nakon", "ako", "kad", "kada", "polazi", "kreće"}
+        assert seiten & woerter == set(), p
+
+
+def test_v9_andere_stellen_bleiben(grunddaten):
+    """Die Woerter vrlo / veoma, ako und kad bleiben, wie sie waren: gefragt war nur
+    die Richtung zu den genannten Eintraegen."""
+    woerter = {w["bs"]: w for k in grunddaten["kategorien"] for w in k["words"]}
+    assert woerter["vrlo / veoma"].get("auch") is None
+    assert woerter["ako"].get("auch") is None
+    assert woerter["kad"].get("auch") == ["Kada?"]

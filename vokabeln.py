@@ -1378,7 +1378,7 @@ KATEGORIEN = [
         {"de": "hinter",                    "bs": "iza"},
         {"de": "vor (räumlich)",            "bs": "ispred"},
         {"de": "neben",                     "bs": "pored"},
-        {"de": "nach (zeitlich)",           "bs": "poslije"},
+        {"de": "nach (zeitlich)",           "bs": "poslije", "auch": ["nakon"]},   # poslije und nakon austauschbar (Ajdin, Prüfbericht 1.4, V9/F3)
         {"de": "vor (zeitlich)",            "bs": "prije"},
         {"de": "durch",                     "bs": "kroz"},
         {"de": "um ... herum",              "bs": "oko"},
@@ -1390,7 +1390,7 @@ KATEGORIEN = [
         {"de": "für dich",                  "bs": "za tebe"},
         {"de": "für die Kinder",            "bs": "za djecu"},
         {"de": "im Auto",                   "bs": "u autu"},
-        {"de": "nach der Arbeit",           "bs": "poslije posla"},
+        {"de": "nach der Arbeit",           "bs": "poslije posla", "auch": ["nakon posla"]},   # Prüfbericht 1.4, V9/F3
         {"de": "vor dem Essen",             "bs": "prije jela"},
     ]},
 
@@ -1681,7 +1681,7 @@ KATEGORIEN = [
         {"de": "schnell (m/w)",     "bs": "brz / brza"},
         {"de": "langsam (m/w)",     "bs": "spor / spora"},
         {"de": "als (Vergleich)",   "bs": "nego / od"},
-        {"de": "sehr",              "bs": "jako"},
+        {"de": "sehr",              "bs": "jako", "auch": ["vrlo", "veoma"]},   # wie vrlo / veoma „sehr (vor Eigenschaften)“ (Ajdin, Prüfbericht 1.4, V9/F2)
         {"de": "zu (zu groß)",      "bs": "previše"},
         {"de": "Das ist besser als das", "bs": "To je bolje nego to"},
     ]},
@@ -5714,7 +5714,7 @@ KATEGORIEN = [
      "words": [
         {"de": "nach / pro",                  "bs": "po"},
         {"de": "Der Eintritt kostet fünf Mark pro Person.", "bs": "Ulaz košta pet maraka po osobi."},
-        {"de": "nach (einem Ereignis)",       "bs": "nakon"},
+        {"de": "nach (einem Ereignis)",       "bs": "nakon", "auch": ["poslije"]},   # Prüfbericht 1.4, V9/F3
         {"de": "Nach dem Mittagessen trinken wir Kaffee.", "bs": "Nakon ručka pijemo kahvu."},
         {"de": "neben / zu / mit",            "bs": "uz"},
         {"de": "Zu Ćevapi gehört unbedingt Zwiebel.", "bs": "Uz ćevape obavezno ide luk."},
@@ -10267,7 +10267,9 @@ SAETZE = [
     {"kat": "satzbau", "text": "Nemam vremena ___ radim.",   "answer": "jer",     "de": "Ich habe keine Zeit, weil ich arbeite."},
     {"kat": "satzbau", "text": "Ja ___ umoran.",             "answer": "nisam",   "de": "Ich bin nicht müde."},
     {"kat": "satzbau", "text": "Volim kahvu, ___ ne volim čaj.", "answer": "ali", "de": "Ich mag Kaffee, aber ich mag keinen Tee."},
-    {"kat": "satzbau", "text": "___ pada kiša, ostajem kod kuće.", "answer": "Ako", "de": "Wenn es regnet, bleibe ich zu Hause."},
+    # Kad und Kada auch (Ajdin, Prüfbericht 1.4, V9/F4): „kad heißt wenn und ako heißt
+    # falls also an sich ja aber haben beide eine leicht andere bedeutung“.
+    {"kat": "satzbau", "text": "___ pada kiša, ostajem kod kuće.", "answer": "Ako", "auch": ["Kad", "Kada"], "de": "Wenn es regnet, bleibe ich zu Hause."},
 
     # Vergangenheit
     {"kat": "vergangenheit", "text": "Jučer ___ radila.",         "answer": "sam",   "de": "Gestern habe ich gearbeitet. (Frau)"},
@@ -10284,7 +10286,7 @@ SAETZE = [
     # Vergleichen & Beschreiben
     {"kat": "adjektive", "text": "Ovo je ___ nego to.",      "answer": "bolje",   "de": "Das ist besser als das."},
     {"kat": "adjektive", "text": "Moj brat je ___ od mene.", "answer": "stariji", "de": "Mein Bruder ist älter als ich."},
-    {"kat": "adjektive", "text": "Kahva je ___ vruća.",      "answer": "jako",    "de": "Der Kaffee ist sehr heiß."},
+    {"kat": "adjektive", "text": "Kahva je ___ vruća.",      "answer": "jako", "auch": ["vrlo", "veoma"], "de": "Der Kaffee ist sehr heiß."},   # Prüfbericht 1.4, V9/F2
     {"kat": "adjektive", "text": "Ova jakna je ___ od one.", "answer": "skuplja", "de": "Diese Jacke ist teurer als jene."},
 
     # Bank & Geld
@@ -10345,7 +10347,7 @@ SAETZE = [
 
     # Präpositionen
     {"kat": "praepositionen", "text": "Knjiga je ___ stolu.", "answer": "na",   "de": "Das Buch ist auf dem Tisch."},
-    {"kat": "praepositionen", "text": "___ posla idem kući.", "answer": "Poslije", "de": "Nach der Arbeit gehe ich nach Hause."},
+    {"kat": "praepositionen", "text": "___ posla idem kući.", "answer": "Poslije", "auch": ["Nakon"], "de": "Nach der Arbeit gehe ich nach Hause."},   # Prüfbericht 1.4, V9/F3
     {"kat": "praepositionen", "text": "Poklon je ___ tebe.", "answer": "za",    "de": "Das Geschenk ist für dich."},
     {"kat": "praepositionen", "text": "Kahva ___ mlijeka.", "answer": "bez",    "de": "Kaffee ohne Milch."},
 
@@ -10399,7 +10401,7 @@ SAETZE = [
 
     # Reisen & Verkehr
     {"kat": "reisen", "text": "Koliko traje ___?",         "answer": "vožnja",  "de": "Wie lange dauert die Fahrt?"},
-    {"kat": "reisen", "text": "Kada ___ autobus?",         "answer": "polazi",  "de": "Wann fährt der Bus ab?"},
+    {"kat": "reisen", "text": "Kada ___ autobus?",         "answer": "polazi", "auch": ["kreće"], "de": "Wann fährt der Bus ab?"},   # wie „Autobus kreće u sedam.“ (Ajdin, Prüfbericht 1.4, V9/F5)
     {"kat": "reisen", "text": "Gdje je ___?",              "answer": "izlaz",   "de": "Wo ist der Ausgang?"},
     {"kat": "reisen", "text": "Sretan ___!",               "answer": "put",     "de": "Gute Reise!"},
 
@@ -10923,9 +10925,9 @@ SATZBAU = [
     {"kat": "arbeit", "bs": "Sutra imam ispit.", "auch": ["Imam ispit sutra.", "Imam sutra ispit.", "Ispit imam sutra."], "de": "Morgen habe ich eine Prüfung.", "quelle": "neu"},
     # Level 50 · Ganze Sätze
     {"kat": "saetze", "bs": "Pitam se da li on dolazi.", "auch": ["Pitam se da li dolazi.", "Pitam se dolazi li on."], "de": "Ich frage mich, ob er kommt.", "quelle": "neu"},
-    {"kat": "saetze", "bs": "Ako pada kiša, ostajem kod kuće.", "auch": ["Ako kiša pada, ostajem kod kuće.", "Ostajem kod kuće ako pada kiša.", "Ostajem kod kuće ako kiša pada."], "de": "Wenn es regnet, bleibe ich zu Hause.", "quelle": "saetze"},
+    {"kat": "saetze", "bs": "Ako pada kiša, ostajem kod kuće.", "auch": ["Ako kiša pada, ostajem kod kuće.", "Ostajem kod kuće ako pada kiša.", "Ostajem kod kuće ako kiša pada."], "ohne": ["kad", "kada"], "de": "Wenn es regnet, bleibe ich zu Hause.", "quelle": "saetze"},   # kad/kada wie im Lückensatz (Prüfbericht 1.4, V9/F4)
     {"kat": "saetze", "bs": "Ne znam kada dolazi autobus.", "auch": ["Ne znam kada autobus dolazi."], "de": "Ich weiß nicht, wann der Bus kommt.", "quelle": "saetze"},
-    {"kat": "saetze", "bs": "Kahva je jako vruća.", "de": "Der Kaffee ist sehr heiß.", "quelle": "saetze"},
+    {"kat": "saetze", "bs": "Kahva je jako vruća.", "ohne": ["vrlo", "veoma"], "de": "Der Kaffee ist sehr heiß.", "quelle": "saetze"},   # vrlo/veoma wie im Lückensatz (Prüfbericht 1.4, V9/F2)
     {"kat": "saetze", "bs": "Želim kupiti kuću.", "auch": ["Želim kuću kupiti.", "Kuću želim kupiti."], "de": "Ich möchte ein Haus kaufen.", "quelle": "saetze"},
     {"kat": "saetze", "bs": "Mi ostajemo pet dana.", "auch": ["Ostajemo pet dana.", "Pet dana ostajemo."], "de": "Wir bleiben fünf Tage.", "formen": {"ostajemo": "ostajem"}, "quelle": "neu",
      "zahl": {"wort": "pet", "werte": [2, 3, 4, 5, 6, 7, 10, 14], "frei": "dana", "de": "Wir bleiben {n} Tage."}},

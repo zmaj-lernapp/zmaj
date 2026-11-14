@@ -821,3 +821,31 @@ den genannten Stellen, kein Paar für überall in `varianten.py`.
 - Kein Paar *s* → *sa* für überall, sonst gälte auch „s mnom“. Beim Satzbau sind *s*
   und *sa* schon dieselbe Kachel (`KACHEL_PAARE`).
 - Tests: `tests/test_pruefbericht14_tippen.py`.
+
+**V9 / F2 bis F5, eine zweite gängige Antwort.** F2 und F3: „passt“. F4 ja: „kad heißt
+wenn und ako heißt falls also an sich ja aber haben beide eine leicht andere
+bedeutung“. F5: „passt“.
+
+| Stelle | Änderung | Frage |
+|---|---|---|
+| `sehr:jako` | `"auch": ["vrlo", "veoma"]` | F2 |
+| Lückensatz „Kahva je ___ vruća.“ | `"auch": ["vrlo", "veoma"]` | F2 |
+| Satzbau „Kahva je jako vruća.“ | `"ohne": ["vrlo", "veoma"]` | F2 |
+| `nach (zeitlich):poslije` | `"auch": ["nakon"]` | F3 |
+| `nach der arbeit:poslije posla` | `"auch": ["nakon posla"]` | F3 |
+| `nach (einem ereignis):nakon` | `"auch": ["poslije"]` | F3 |
+| Lückensatz „___ posla idem kući.“ | `"auch": ["Nakon"]` | F3 |
+| Lückensatz „___ pada kiša, ostajem kod kuće.“ | `"auch": ["Kad", "Kada"]` | F4 |
+| Satzbau „Ako pada kiša, ostajem kod kuće.“ | `"ohne": ["kad", "kada"]` | F4 |
+| Lückensatz „Kada ___ autobus?“ | `"auch": ["kreće"]` | F5 |
+
+- Damit gilt für *jako* bei „sehr“ nicht mehr, was im Abschnitt vom 06.11.2026
+  (Pakete 5 bis 9) unter „Nie nebeneinander“ steht („Beim Tippen zählt das andere
+  Wort nicht, das hat Ajdin nicht freigegeben“). Nur an diesen Stellen, kein Paar
+  für überall in `varianten.py`.
+- `"ohne"`: *vrlo* und *veoma* (Level *kleine_woerter*) und *kad* / *Kada?* (Level
+  *fragen*) liegen sonst als falsche Kachel neben dem Satz, den sie genauso richtig
+  machen. Das `"auch"` am Wort *jako* sperrt *vrlo* und *veoma* außerdem bei den
+  übrigen Sätzen mit *jako* (`kachelAblenker()` nimmt jede Form aus `"auch"`).
+  *nakon* kommt erst in B1 und liegt bei den Sätzen mit *Poslije* nie als Kachel.
+- Die Wörter *vrlo / veoma*, *ako* und *kad* bleiben, wie sie waren.
