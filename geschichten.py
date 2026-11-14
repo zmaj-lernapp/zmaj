@@ -80,7 +80,7 @@ WOERTERBUCH = {
     "pričale": "geredet haben (w. Mehrz.)", "došao": "gekommen (m)", "kuhali": "gekocht haben",
     "jeste": "ja, ist es", "upisana": "eingetragen", "počela": "begonnen (w)", "razumijem": "ich verstehe",
     "govore": "sie sprechen", "govorim": "ich spreche", "naučiti": "erlernen", "učim": "ich lerne", "mislim": "ich denke",
-    "doći": "kommen", "nadam": "ich hoffe", "skuhati": "kochen", "pozdravi": "grüße", "recite": "sagen Sie",
+    "doći": "kommen", "nadam": "ich hoffe", "pozdravi": "grüße", "recite": "sagen Sie",
     "odgovara": "er/sie antwortet", "završila": "abgeschlossen (w)", "željela": "wollte (w)", "zarađivati": "verdienen",
     "mogla": "könnte (w)", "početi": "anfangen", "može": "er/sie kann", "objašnjava": "er/sie erklärt",
     "isplaćuje": "wird ausgezahlt", "zahvaljuje": "er/sie bedankt sich", "čekati": "warten",
@@ -463,14 +463,18 @@ GESCHICHTEN = [
     },
     {
         "id": "pismo", "titel": "Pismo nani", "stufe": "Fortgeschritten", "passt_zu": "zukunft",
-        "text": "Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. "
+        # "napraviti pitu" statt "skuhati pitu" (Prüfbericht 1.4, S3; Ajdin, F20,
+        # 14.11.2026: "man sagt napraviti pitu nicht skuhati"). Der Ton (g09) gehört
+        # noch zum alten Text, die Geschichte wartet bis zur nächsten Vesna-Runde
+        # (tests/offen_b1_teil2.py).
+        "text":"Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. "
                 "Kolege su ljubazne, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. "
                 "Navečer učim bosanski, a vikendom idemo u prirodu. Mislim da ćemo u augustu doći kod tebe. "
-                "Nadam se da ćeš nam skuhati pitu! Pozdravi dedu. Volim te, tvoja Amina.",
+                "Nadam se da ćeš nam napraviti pitu! Pozdravi dedu. Volim te, tvoja Amina.",
         "uebersetzung": "Liebe Oma, wie geht es dir? Uns geht es gut. Letzte Woche habe ich eine neue Arbeit in einer Firma im Stadtzentrum begonnen. "
                 "Die Kollegen sind freundlich, aber ich verstehe noch nicht alles, weil sie schnell sprechen. Ajdin sagt, dass ich es lernen werde. "
                 "Abends lerne ich Bosnisch, und am Wochenende gehen wir in die Natur. Ich denke, dass wir im August zu dir kommen. "
-                "Ich hoffe, dass du uns eine Pita kochst! Grüß den Opa. Ich liebe dich, deine Amina.",
+                "Ich hoffe, dass du uns eine Pita machst! Grüß den Opa. Ich liebe dich, deine Amina.",
         "fragen": [
             {"frage": "Was hat Amina letzte Woche begonnen?", "optionen": ["eine neue Arbeit", "einen Sprachkurs", "eine Reise"], "richtig": "eine neue Arbeit"},
             {"frage": "Warum versteht sie nicht alles?", "optionen": ["die Kollegen sprechen schnell", "sie ist müde", "sie hört nicht zu"], "richtig": "die Kollegen sprechen schnell"},

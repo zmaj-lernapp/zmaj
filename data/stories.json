@@ -2295,9 +2295,9 @@
     "da": "Øvet",
     "fr": "Avancé"
    },
-   "bs": "Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. Kolege su ljubazne, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. Navečer učim bosanski, a vikendom idemo u prirodu. Mislim da ćemo u augustu doći kod tebe. Nadam se da ćeš nam skuhati pitu! Pozdravi dedu. Volim te, tvoja Amina.",
+   "bs": "Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. Kolege su ljubazne, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. Navečer učim bosanski, a vikendom idemo u prirodu. Mislim da ćemo u augustu doći kod tebe. Nadam se da ćeš nam napraviti pitu! Pozdravi dedu. Volim te, tvoja Amina.",
    "translations": {
-    "de": "Liebe Oma, wie geht es dir? Uns geht es gut. Letzte Woche habe ich eine neue Arbeit in einer Firma im Stadtzentrum begonnen. Die Kollegen sind freundlich, aber ich verstehe noch nicht alles, weil sie schnell sprechen. Ajdin sagt, dass ich es lernen werde. Abends lerne ich Bosnisch, und am Wochenende gehen wir in die Natur. Ich denke, dass wir im August zu dir kommen. Ich hoffe, dass du uns eine Pita kochst! Grüß den Opa. Ich liebe dich, deine Amina.",
+    "de": "Liebe Oma, wie geht es dir? Uns geht es gut. Letzte Woche habe ich eine neue Arbeit in einer Firma im Stadtzentrum begonnen. Die Kollegen sind freundlich, aber ich verstehe noch nicht alles, weil sie schnell sprechen. Ajdin sagt, dass ich es lernen werde. Abends lerne ich Bosnisch, und am Wochenende gehen wir in die Natur. Ich denke, dass wir im August zu dir kommen. Ich hoffe, dass du uns eine Pita machst! Grüß den Opa. Ich liebe dich, deine Amina.",
     "en": "Dear grandma, how are you? We are doing well. Last week I started a new job at a company in the city center. My colleagues are friendly, but I do not understand everything yet because they speak fast. Ajdin says that I will learn it. In the evenings I study Bosnian, and on the weekend we go out into nature. I think that we will come to see you in August. I hope you will make us a pita! Say hello to grandpa. I love you, your Amina.",
     "tr": "Sevgili ninem, nasılsın? Biz iyiyiz. Geçen hafta şehir merkezindeki bir şirkette yeni bir işe başladım. İş arkadaşları cana yakın ama hızlı konuştukları için henüz her şeyi anlamıyorum. Ajdin öğreneceğimi söylüyor. Akşamları Boşnakça öğreniyorum, hafta sonları da doğaya gidiyoruz. Sanırım ağustosta sana geliriz. Umarım bize pita yaparsın! Dedeme selam söyle. Seni seviyorum, Amina'n.",
     "sv": "Kära mormor, hur mår du? Vi mår bra. Förra veckan började jag ett nytt jobb på ett företag i stadens centrum. Kollegerna är trevliga, men jag förstår inte allt än för att de pratar fort. Ajdin säger att jag kommer att lära mig. På kvällarna pluggar jag bosniska, och på helgen åker vi ut i naturen. Jag tror att vi kommer till dig i augusti. Jag hoppas att du gör en pita till oss! Hälsa morfar. Jag älskar dig, din Amina.",
@@ -2550,7 +2550,7 @@
      }
     ]
    },
-   "audio": "web/audio/g09.mp3"
+   "audio": null
   },
   {
    "id": "opcina",

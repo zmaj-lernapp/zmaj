@@ -345,9 +345,10 @@ def test_echte_wortzeiten_passen(dunkel):
     # 13.11.2026: die B1-Lesetexte haben noch keine Aufnahme. Ausgenommen ist
     # genau, was in tests/offen_lesetexte.json und tests/offen_b1_teil2.py steht,
     # wie in test_wortzeiten.py; jede andere Geschichte muss Ton und Zeiten haben.
-    # Wartende fehlen ganz, nicht halb.
+    # Wartende fehlen ganz, nicht halb. Seit 14.11.2026 wartet auch pismo
+    # (Prüfbericht 1.4, S3: neuer Text), von den zwölf alten haben elf Ton.
     wartet = _wartet_auf_ton()
-    assert len([e for e in ergebnis if e["datei"]]) >= 12
+    assert len([e for e in ergebnis if e["datei"]]) >= 11
     assert [e["id"] for e in ergebnis if not e["datei"] and not wartet(e)] == []
     assert [e["id"] for e in ergebnis if wartet(e) and e["datei"]] == []
     assert [e for e in ergebnis if not e["passt"] and not wartet(e)] == []

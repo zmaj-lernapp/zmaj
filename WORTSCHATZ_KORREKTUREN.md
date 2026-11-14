@@ -970,3 +970,19 @@ sporet ist elektroherd usw“, also a.
 - Im Wörterbuch der Geschichten steht *šporet* „Herd“ statt *štednjak*; *štednjak*
   kommt in keinem Text mehr vor. *plinski* bleibt „Gas-“, die Übersetzung bleibt
   „Gasherd“. Der Text hatte noch keinen Ton.
+
+**S3 / F20, Pita.** Frage: „napraviti pitu“ statt „skuhati pitu“? Ajdin: „man sagt
+napraviti pitu nicht skuhati“, also ja.
+
+| Geschichte | vorher | jetzt |
+|---|---|---|
+| *Pismo nani* (`pismo`) | Nadam se da ćeš nam skuhati pitu! | Nadam se da ćeš nam napraviti pitu! |
+
+- Auf Deutsch „Ich hoffe, dass du uns eine Pita machst!“ statt „… kochst!“, wie es
+  die anderen sieben Sprachen schon sagten („make us a pita“).
+- *skuhati* steht in keinem Text mehr und ist aus dem Wörterbuch der Geschichten raus;
+  *napraviti* („machen / zubereiten“) stand schon drin. Die Vokabel *skuhati*
+  („kochen“) bleibt.
+- Die Geschichte hatte Ton (g09, Vesna) und Wortzeiten. Beides gehört zum alten Text;
+  sie wird in der nächsten Vesna-Runde mit den B1-Texten neu gesprochen und wartet
+  bis dahin in `tests/offen_b1_teil2.py`. Die alte Datei bleibt liegen.

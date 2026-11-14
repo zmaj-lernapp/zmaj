@@ -25,6 +25,14 @@ der App šporet, štednjak steht als kroatisch. Ajdin (F9 a): "stednjak/sporet
 ist herd aber plinski sporet ist gasherd". Jetzt "plinski šporet", im
 WOERTERBUCH šporet statt štednjak; die Uebersetzung bleibt "Gasherd".
 
+S3: Im Brief an die Nana stand "Nadam se da ćeš nam skuhati pitu!". Ajdin
+(F20): "man sagt napraviti pitu nicht skuhati". Jetzt "napraviti pitu", auf
+Deutsch "eine Pita machst" wie schon in den anderen sieben Sprachen ("make
+us a pita"). skuhati steht in keinem Text mehr und ist aus dem WOERTERBUCH
+raus, napraviti ("machen / zubereiten") stand schon drin. Der Ton von pismo
+(g09) gehoert zum alten Text; die Geschichte wartet in tests/offen_b1_teil2.py
+auf die naechste Vesna-Runde, die Datei bleibt liegen.
+
 Der Text der Geschichten ist ihr Ton-Schluessel (ton_bauen.py). Er aendert
 sich nur, wo Ajdin es entschieden hat; test_text_der_geschichten_bleibt haelt
 jeden Stand fest. Die Tests im Browser stehen in
@@ -76,8 +84,9 @@ ENGLISCH = {
 }
 
 # sha256 ueber alle Geschichtentexte am 14.11.2026. B10 und B12 liessen sie
-# unveraendert (11df97e6…), seit V13 a steht in b1_struja "plinski šporet".
-TEXTE_SHA256 = "526d6a03987d0d0436bb20309ac0397e1e82685da62e20fc1b9f867fea028b6a"
+# unveraendert (11df97e6…), seit V13 a steht in b1_struja "plinski šporet"
+# (526d6a03…), seit S3 in pismo "napraviti pitu".
+TEXTE_SHA256 = "b8c9980c3261f712d9b371cbf328d6d5ea05deadb72c71bbe6292eac12a849e3"
 
 
 def _geschichten(daten):
@@ -239,3 +248,52 @@ def test_v13a_wartet_weiter_auf_ton():
     assert ton_bauen.schluessel(g["text"]) in offen_lesetexte.GESCHICHTEN
     assert "štednjak" not in offen_lesetexte.TON and "šporet" not in offen_lesetexte.TON
     assert "plinski" in offen_lesetexte.TON
+
+
+# ---------------------------------------------------------------------------
+# S3: "napraviti pitu" im Brief an die Nana (Ajdin, F20, 14.11.2026)
+# ---------------------------------------------------------------------------
+PISMO_ALT = "Nadam se da ćeš nam skuhati pitu!"
+PISMO_NEU = "Nadam se da ćeš nam napraviti pitu!"
+
+
+def test_s3_napraviti_pitu(alle_daten):
+    de = alle_daten["de"]
+    g = _geschichten(de)["pismo"]
+    assert PISMO_NEU in g["text"] and PISMO_ALT not in g["text"]
+    assert "Ich hoffe, dass du uns eine Pita machst!" in g["uebersetzung"]
+    assert [s["id"] for s in de["geschichten"] if "skuhati" in s["text"].lower()] == []
+    # Die anderen Sprachen sagten schon "machen"; ihr Schluessel ist der neue deutsche Text.
+    for code in SPRACHEN:
+        assert _geschichten(alle_daten[code])["pismo"]["uebersetzung"] != g["uebersetzung"], code
+    for code, stelle in {"en": "I hope you will make us a pita!", "tr": "Umarım bize pita yaparsın!",
+                         "fr": "tu nous feras une pita"}.items():
+        assert stelle in _geschichten(alle_daten[code])["pismo"]["uebersetzung"], code
+
+
+def test_s3_woerterbuch(alle_daten):
+    for code in ["de"] + SPRACHEN:
+        wb = alle_daten[code]["woerterbuch"]
+        assert "skuhati" not in wb, code
+        assert wb["napraviti"].strip(), code
+    assert alle_daten["de"]["woerterbuch"]["napraviti"] == "machen / zubereiten"
+
+
+def test_s3_pismo_wartet_auf_ton(wurzel):
+    """Die alte Aufnahme g09 bleibt liegen, passt aber nicht mehr zum Text.
+    pismo wartet deshalb mit den B1-Texten auf die naechste Vesna-Runde, als
+    einzige der zwoelf alten Geschichten."""
+    import io
+    import json
+    import os
+
+    import geschichten
+    import offen_b1_teil2
+    import ton_bauen
+    alt = {g["id"] for g in geschichten.GESCHICHTEN if not g["id"].startswith("b1_")}
+    assert offen_b1_teil2.GESCHICHTEN & alt == {"pismo"}
+    toene = json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8"))["toene"]
+    g09 = next(e for e in toene if e["datei"] == "g09.mp3")
+    assert PISMO_ALT in g09["text"] and os.path.getsize(os.path.join(wurzel, "web", "audio", "g09.mp3")) > 800
+    pismo = next(g for g in geschichten.GESCHICHTEN if g["id"] == "pismo")
+    assert ton_bauen.schluessel(pismo["text"]) not in {e["key"] for e in toene}

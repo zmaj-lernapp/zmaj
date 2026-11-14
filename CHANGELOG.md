@@ -67,7 +67,7 @@ are in the Play Store listing. Format:
   (*Izdajem stan*) and an e-mail (*Mejl rođaku*). Texts, translations and
   questions in all eight languages (translations not by native speakers).
   Every word form stands in exactly one glossary block, with one meaning that
-  fits every story: 32 stories and 1,504 glossary entries in total. The new
+  fits every story: 32 stories and 1,503 glossary entries in total. The new
   stories have no audio yet; it is synthesised after the maintainer's review
   (`tests/offen_lesetexte.json`, `tests/offen_b1_teil2.py`).
 - A sandbox in the test app only (8.11.2026): when Android reports the app ID
@@ -612,6 +612,13 @@ are in the Play Store listing. Format:
   listed as Croatian. The story dictionary has *šporet* "Herd" in place of
   *štednjak*; the translation stays "Gasherd". The story had no audio yet.
   `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
+- *Pismo nani* (review for 1.4, 14.11.2026, S3; decided by the maintainer, F20):
+  Amina hopes her nana will make a pita, *napraviti pitu*, no longer *skuhati
+  pitu* ("one says napraviti pitu, not skuhati"). The German translation now says
+  "eine Pita machst" like the other seven languages; *skuhati* left the story
+  dictionary, *napraviti* was already there. The old recording (g09) belongs to
+  the old text, so the story waits for the next Vesna round with the B1 stories
+  (`tests/offen_b1_teil2.py`); the file stays. `tests/test_pruefbericht14_geschichten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

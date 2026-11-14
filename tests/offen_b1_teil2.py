@@ -9,10 +9,16 @@ Geschichten durch: den Text und die Wörter, die nur in ihnen vorkommen, und
 nichts sonst. test_wartet_auf_ton_ist_aktuell in test_wortzeiten.py meldet jede
 Geschichte, die inzwischen ihren Ton hat: dann hier streichen. Ist die Menge
 leer, kann diese Datei weg.
+
+Dazu pismo ("Pismo nani", 14.11.2026): Ajdin hat "napraviti pitu" statt
+"skuhati pitu" entschieden (Prüfbericht 1.4, S3, F20). Der Ton (g09, Vesna)
+und seine Wortzeiten gehören zum alten Text. Die Geschichte wird in derselben
+Vesna-Runde wie die B1-Texte neu gesprochen, bis dahin wartet sie hier.
 """
 
 GESCHICHTEN = frozenset({"b1_doktor", "b1_selidba", "b1_rodjendan", "b1_utakmica",
-                         "b1_zanat", "b1_kahva", "b1_mejl", "b1_zmaj"})
+                         "b1_zanat", "b1_kahva", "b1_mejl", "b1_zmaj",
+                         "pismo"})
 
 
 def ton_schluessel():
