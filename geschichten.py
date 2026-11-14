@@ -31,6 +31,11 @@ Höfliches Vi, Vas, Vam (und vaš): groß nur in Geschriebenem an eine Person
 klein in den Gesprächen der Erzählung ("Prvo ću vam pokazati vašu
 kancelariju"). Ajdin, F23 (Prüfbericht 1.4, S7, 14.11.2026). Der Zahnarzt-Teil
 (zahnarzt.py) bleibt groß.
+Noch offen, steht groß, bis Ajdin entscheidet: „Hvala Vam na pomoći“ in opcina,
+auch ein Gespräch, war aber nicht gefragt. opcina hat Ton und Wortzeiten (g10),
+und ton_bauen.wortzeiten_passen() vergleicht den Text mit Groß- und
+Kleinschreibung: klein geschrieben fielen die Wortzeiten beim nächsten
+ton_bauen.py weg.
 
 HINWEIS: Claude ist kein Muttersprachler. Texte bitte prüfen.
 """

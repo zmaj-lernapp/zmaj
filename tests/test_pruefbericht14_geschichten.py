@@ -349,6 +349,18 @@ def test_s7_gross_nur_in_der_nachricht(grunddaten):
     assert {k: v for k, v in gross.items() if v} == {"b1_telefon": ["Vas"]}
 
 
+def test_s7_offen_nur_opcina(grunddaten):
+    """Ueber alle Geschichten steht ein grosses Vi mitten im Satz nur in der
+    Nachricht von b1_telefon und in opcina ("Hvala Vam na pomoći"). opcina ist
+    ein Gespraech, war in F23 aber nicht gefragt und hat Ton und Wortzeiten
+    (g10); bis Ajdin entscheidet, steht die Ausnahme oben in geschichten.py.
+    Kommt eine dritte Stelle dazu, schlaegt der Test an."""
+    gross = {g["id"]: _gross_mitten_im_satz(g["text"]) for g in grunddaten["geschichten"]}
+    assert {k: v for k, v in gross.items() if v} == {"b1_telefon": ["Vas"], "opcina": ["Vam"]}
+    import geschichten
+    assert "Hvala Vam na pomoći" in geschichten.__doc__
+
+
 def test_s7_ton_schluessel_bleibt():
     """Gross oder klein aendert den Ton-Schluessel nicht: beide Texte warten mit
     demselben Schluessel in tests/offen_lesetexte.json auf ihren Ton."""
