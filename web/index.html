@@ -4603,7 +4603,8 @@ function klingtWie(gehoert, ziel){
      und "2" auch fuer die weibliche Form "dvije". */
   const zg = zahlWert(gehoert), zz = zahlWert(ziel);
   if(zg !== null && zz !== null) return zg === zz;
-  // Ein Klammerzusatz spricht niemand mit: "nana (auch: metvica)" ist "nana".
+  /* Ein Klammerzusatz spricht niemand mit: "nana (auch: metvica)" war "nana". Seit dem
+     14.11.2026 heisst das Wort "nana / metvica" (Pruefbericht 1.4, B6), die Regel bleibt. */
   const g = lautlich(gehoert), z = lautlich(String(ziel).replace(/\([^)]*\)/g, ' '));
   if(!g || !z) return false;
   if(g === z) return true;
@@ -9991,7 +9992,11 @@ const UMBENANNT = {
      verwies ins Leere. Jetzt "Antwort auf Selam alejkum". Die Suche unten faende
      es heute auch ueber das bosnische Wort, aber nur, solange kein zweites Wort
      so heisst - hier steht es fest, fuer gewusst, Fehler-Topf und Sterne. */
-  '(antwort darauf):Alejkumu selam': 'antwort auf selam alejkum:Alejkumu selam'};
+  '(antwort darauf):Alejkumu selam': 'antwort auf selam alejkum:Alejkumu selam',
+  /* Pruefbericht 1.4 (14.11.2026), B6: Minze hiess "nana (auch: metvica)", mit dem
+     deutschen "auch" im bosnischen Knopf. Ajdin (F17 b): "nana / metvica" wie kahva /
+     kafa. Die Suche unten faende das alte bosnische Wort nicht mehr. */
+  'minze:nana (auch: metvica)': 'minze:nana / metvica'};
 /* Dasselbe fuer Saetze (25.10.2026): Fehler-Topf und Sterne merken sich
    einen Satz als "s:<Level>|<Lueckentext>" bzw. "k:<Level>|<Satz>"
    (topfSchluessel). Aendert sich der bosnische Text, fuehrt der alte

@@ -140,6 +140,37 @@ def test_b9_als_schreibaufgabe_loesbar(seite, heute_stand):
     assert seite.fehler == []
 
 
+# B6 (F17 b): "nana (auch: metvica)" heisst jetzt "nana / metvica" wie kahva / kafa. Der
+# alte Lernstand wandert mit, beim Sprechen zaehlt auch metvica, und bis es die Aufnahme
+# mit beiden Formen gibt, klingt die erste Form "nana".
+B6_ALT, B6_NEU = "minze:nana (auch: metvica)", "minze:nana / metvica"
+
+
+def test_b6_alter_lernstand_wandert_mit(seite, heute_stand):
+    seite.starten(stand=heute_stand(gewusst=[B6_ALT, "brot:hljeb"],
+                                    topf={"w:" + B6_ALT: {"typ": "type", "n": 1, "z": 123}},
+                                    stern={"w:" + B6_ALT: {"z": 50, "r": 7}}))
+    jetzt = seite.js("""([alt, neu]) => ({known: [...known], topf, stern, alt: !!wortNachId(alt),
+                                          bs: wortNachId(neu).w.bs})""", [B6_ALT, B6_NEU])
+    assert jetzt["alt"] is False and jetzt["bs"] == "nana / metvica"
+    assert B6_NEU in jetzt["known"] and B6_ALT not in jetzt["known"] and "brot:hljeb" in jetzt["known"]
+    assert jetzt["topf"] == {"w:" + B6_NEU: {"typ": "type", "n": 1, "z": 123}}
+    assert jetzt["stern"] == {"w:" + B6_NEU: {"z": 50, "r": 7}}
+    assert seite.fehler == []
+
+
+def test_b6_beide_formen_beim_tippen_und_sprechen(seite, heute_stand):
+    seite.starten(stand=heute_stand(), sprache="en")
+    erg = seite.js("""(id) => {
+      const w = wortNachId(id).w, ziele = String(w.bs).split(' / ');
+      return {bs: w.bs, tippen: ['nana', 'metvica'].map(e => matches(e, annehmbar(w).join(' / '))),
+              sprechen: ['nana', 'metvica'].map(s => ziele.some(z => klingtWie(s, z))),
+              ton: audioDatei(w.bs) === audioDatei('nana') && !!audioDatei('nana')};
+    }""", B6_NEU)
+    assert erg == {"bs": "nana / metvica", "tippen": ["ok", "ok"], "sprechen": [True, True], "ton": True}, erg
+    assert seite.fehler == []
+
+
 def test_b9_bedeutung_auf_englisch(seite, heute_stand):
     seite.starten(stand=heute_stand(), sprache="en")
     assert seite.js("(id) => wortNachId(id).w.de", B9_NEU) == "reply to Selam alejkum"

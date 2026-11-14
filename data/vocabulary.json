@@ -19872,8 +19872,8 @@
    "audio": "web/audio/w1716.mp3"
   },
   {
-   "id": "minze:nana (auch: metvica)",
-   "bs": "nana (auch: metvica)",
+   "id": "minze:nana / metvica",
+   "bs": "nana / metvica",
    "level": "natur",
    "level_position": 23,
    "section": "tiernatur",
@@ -19887,7 +19887,7 @@
     "da": "mynte",
     "fr": "menthe"
    },
-   "audio": "web/audio/w1717.mp3"
+   "audio": "web/audio/w0089.mp3"
   },
   {
    "id": "pflanze:biljka",

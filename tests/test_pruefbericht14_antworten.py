@@ -14,6 +14,7 @@ V4 und B8: In der Auswahl stand als falscher Knopf ein Wort, das genauso richtig
 ist (Molim neben „Gern geschehen“, dići neben podići, zajam neben pozajmica).
 B5: Ćao ist auch „Hallo“ (F16) und stand neben Zdravo als falscher Knopf.
 B9: „(Antwort darauf)“ als Bedeutung von Alejkumu selam verwies ins Leere.
+B6: „nana (auch: metvica)“ trug das deutsche „auch“ im bosnischen Knopf.
 V5: Hatte nur eines von zwei Woertern im selben Level eine Klammer („How are
 you?“ neben „How are you? (formal)“), passte die Frage auf beide Knoepfe.
 B7: Englische Lueckensaetze verlangten die Du-Form, „you“ passt aber auch auf
@@ -169,6 +170,38 @@ def test_b9_ton_bleibt(wurzel):
     with io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8") as f:
         toene = json.load(f)["toene"]
     assert [t["datei"] for t in toene if t["text"] == "Alejkumu selam"] == ["w1987.mp3"]
+
+
+# B6 (F17 b, "ok"): Minze hiess "nana (auch: metvica)", mit dem deutschen "auch" im
+# bosnischen Knopf, auch auf Englisch, Tuerkisch und Franzoesisch. Jetzt "nana / metvica"
+# wie kahva / kafa. Die Kennung aendert sich und zieht ueber UMBENANNT mit.
+B6_ALT, B6_NEU = "minze:nana (auch: metvica)", "minze:nana / metvica"
+
+
+def test_b6_neue_kennung_und_umbenannt(alle_daten, index_html):
+    assert "'%s': '%s'" % (B6_ALT, B6_NEU) in index_html
+    for code, daten in alle_daten.items():
+        woerter = _woerter(daten)
+        assert B6_ALT not in woerter and woerter[B6_NEU]["bs"] == "nana / metvica", code
+        # Kein bosnisches Wort traegt mehr einen Zusatz in Klammern.
+        assert [w["bs"] for w in woerter.values() if "(" in w["bs"]] == [], code
+
+
+def test_b6_ton_wie_kahva_kafa(wurzel):
+    """Wie kahva / kafa gehoert zum Wort eine Aufnahme mit beiden Formen ("nana,
+    metvica"). Die gibt es noch nicht, erzeugt wird sie nicht ohne Ajdin: bis dahin
+    spielt audioDatei() die erste Form "nana" (w0089). ton_pruefen.py laesst die Luecke
+    nur ueber NUR_ERSTE_FORM durch."""
+    import ton_bauen
+    import ton_pruefen
+    with io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8") as f:
+        toene = {t["key"]: t["datei"] for t in json.load(f)["toene"]}
+    assert toene["kahva / kafa"] != toene["kahva"]
+    assert toene["nana"] == "w0089.mp3"
+    assert "nana / metvica" not in toene and "nana / metvica" not in ton_bauen.nur_emir()
+    assert ton_pruefen.NUR_ERSTE_FORM == {"nana / metvica"}
+    posten = [p for p in ton_bauen.sammle() if p["text"] == "nana / metvica"]
+    assert [(p["key"], p.get("alle")) for p in posten] == [("nana / metvica", True)], posten
 
 
 # V5: Bei vielen Paaren hatte nur eines der beiden Woerter eine Klammer. Die Frage

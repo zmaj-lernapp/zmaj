@@ -928,7 +928,10 @@ KATEGORIEN = [
         {"de": "Ast / Zweig",            "bs": "grana"},
         {"de": "Kamille",                "bs": "kamilica"},
         {"de": "Linde",                  "bs": "lipa"},
-        {"de": "Minze",                  "bs": "nana (auch: metvica)"},
+        # Bis zum 14.11.2026 "nana (auch: metvica)", mit dem deutschen "auch" im bosnischen
+        # Knopf. Ajdin (Pruefbericht 1.4, B6/F17 b): "nana / metvica" wie kahva / kafa. Die
+        # alte Kennung zieht ueber UMBENANNT in web/index.html mit.
+        {"de": "Minze",                  "bs": "nana / metvica"},
         {"de": "Pflanze",                "bs": "biljka"},
         {"de": "Pflaume / Pflaumenbaum", "bs": "šljiva"},
         {"de": "Walnuss / Walnussbaum",  "bs": "orah"},

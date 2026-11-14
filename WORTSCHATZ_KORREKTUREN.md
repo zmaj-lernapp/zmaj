@@ -971,6 +971,21 @@ Ajdin: a, *b1_voz* bleibt „Gdje putujete, djeco?“. Zugleich Tabelle 2c, Nr. 
   in den Sommerurlaub?“ (*Kuda idete na ljetovanje?*) nehmen *Gdje* nicht; „___
   stanuješ?“ (Wo wohnst du?) nimmt *Kuda* weiter nicht.
 
+**B6 / F17 b, Minze.** Frage: a = nur „nana“, b = „nana / metvica“. Ajdin: „ok“, also b.
+
+| alte Kennung | neue Kennung |
+|---|---|
+| `minze:nana (auch: metvica)` | `minze:nana / metvica` |
+
+- Vorher stand im bosnischen Knopf das deutsche „auch“, in allen Sprachen. Jetzt zwei
+  Formen wie *kahva / kafa*: beide zählen beim Tippen und beim Sprechen, der Lernstand
+  zieht über `UMBENANNT` mit. Kein bosnisches Wort hat mehr einen Zusatz in Klammern.
+- Ton wie bei *kahva / kafa*: dazu gehört eine Aufnahme mit beiden Formen („nana,
+  metvica“, Schlüssel `nana / metvica`). Die gibt es noch nicht und wurde nicht erzeugt;
+  bis dahin klingt die erste Form *nana* (w0089, dieselbe wie „Oma“), `ton_pruefen.py`
+  führt das Wort in `NUR_ERSTE_FORM`. Die alte Aufnahme w1717 bleibt in `index.json`
+  stehen.
+
 ## 14.11.2026 – Prüfbericht 1.4: die fraglichen Varianten beim Tippen (Tabelle 2c, F6)
 
 Tabelle 2c in `Release\Wortschatz\varianten_2026-11-13.md`, 39 Zeilen (V10). Ajdin

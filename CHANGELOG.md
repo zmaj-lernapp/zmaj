@@ -515,6 +515,14 @@ are in the Play Store listing. Format:
   wrong button next to *Kuda* (now *Kada*), and the tip says "in speech often also
   Gdje", in all eight languages. The story *b1_voz* keeps "Gdje putujete, djeco?".
   `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+- "Minze" (review for 1.4, 14.11.2026, B6; decided by the maintainer, F17 b) is now
+  *nana / metvica* like *kahva / kafa* instead of *nana (auch: metvica)*, which showed
+  the German word "auch" on the Bosnian button in every language. Both forms count
+  when typing and speaking. The ID changes from `minze:nana (auch: metvica)` to
+  `minze:nana / metvica`; `UMBENANNT` moves progress, review box and stars along. A
+  recording with both forms does not exist yet; until then the first form *nana*
+  plays (`NUR_ERSTE_FORM` in `ton_pruefen.py`).
+  `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
 - Typing the second forms of table 2c (review for 1.4, 14.11.2026, V10; decided by
   the maintainer, F6: Croatian and the others too, "they are just not visible"):
   writing tasks and gap sentences now also take *kruh* for *hljeb*, *juha* for *supa*,

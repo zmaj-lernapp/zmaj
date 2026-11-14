@@ -6882,9 +6882,9 @@
    <tuv xml:lang="da"><seg>lind (træ)</seg></tuv>
    <tuv xml:lang="fr"><seg>tilleul</seg></tuv>
   </tu>
-  <tu tuid="minze:nana (auch: metvica)" segtype="phrase">
+  <tu tuid="minze:nana / metvica" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>nana (auch: metvica)</seg></tuv>
+   <tuv xml:lang="bs"><seg>nana / metvica</seg></tuv>
    <tuv xml:lang="de"><seg>Minze</seg></tuv>
    <tuv xml:lang="en"><seg>mint</seg></tuv>
    <tuv xml:lang="tr"><seg>nane</seg></tuv>
