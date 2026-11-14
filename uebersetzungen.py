@@ -4310,7 +4310,6 @@ INHALT = {
     "Wo ist der Spiegel?": "Where is the mirror?",
     "Wo ist die Bäckerei?": "Where is the bakery?",
     "Wo ist die Leine?": "Where is the leash?",
-    "Wo ist mein Wechselgeld?": "Where is my change?",
     "Wo ist mein Werkzeug?": "Where is my tool?",
     "Wo man einkauft, was es kostet, und wo das alles liegt.":
        "Where you shop, what it costs, and where everything is.",
@@ -15333,7 +15332,6 @@ INHALT = {
     "Wo ist der Spiegel?": "Ayna nerede?",
     "Wo ist die Bäckerei?": "Ekmek fırını nerede?",
     "Wo ist die Leine?": "Gezdirme tasması nerede?",
-    "Wo ist mein Wechselgeld?": "Para üstüm nerede?",
     "Wo ist mein Werkzeug?": "Aletim nerede?",
     "Wo man einkauft, was es kostet, und wo das alles liegt.":
        "Nerede alışveriş edilir, ne kadar tutar ve hepsi nerede.",
@@ -26352,7 +26350,6 @@ INHALT = {
     "Wo ist der Spiegel?": "Var är spegeln?",
     "Wo ist die Bäckerei?": "Var är bageriet?",
     "Wo ist die Leine?": "Var är kopplet?",
-    "Wo ist mein Wechselgeld?": "Var är min växel?",
     "Wo ist mein Werkzeug?": "Var är mitt verktyg?",
     "Wo man einkauft, was es kostet, und wo das alles liegt.":
        "Var man handlar, vad det kostar och var allt ligger.",
@@ -37357,7 +37354,6 @@ INHALT = {
     "Wo ist der Spiegel?": "Waar is de spiegel?",
     "Wo ist die Bäckerei?": "Waar is de bakkerij?",
     "Wo ist die Leine?": "Waar is de hondenlijn?",
-    "Wo ist mein Wechselgeld?": "Waar is mijn wisselgeld?",
     "Wo ist mein Werkzeug?": "Waar is mijn gereedschap?",
     "Wo man einkauft, was es kostet, und wo das alles liegt.":
        "Waar je boodschappen doet, wat het kost, en waar dat allemaal ligt.",
@@ -48363,7 +48359,6 @@ INHALT = {
     "Wo ist der Spiegel?": "Hvor er speilet?",
     "Wo ist die Bäckerei?": "Hvor er bakeriet?",
     "Wo ist die Leine?": "Hvor er hundebåndet?",
-    "Wo ist mein Wechselgeld?": "Hvor er vekslepengene mine?",
     "Wo ist mein Werkzeug?": "Hvor er verktøyet mitt?",
     "Wo man einkauft, was es kostet, und wo das alles liegt.":
        "Hvor man handler, hva det koster, og hvor alt ligger.",
@@ -59368,7 +59363,6 @@ INHALT = {
     "Wo ist der Spiegel?": "Hvor er spejlet?",
     "Wo ist die Bäckerei?": "Hvor er bageriet?",
     "Wo ist die Leine?": "Hvor er hundesnoren?",
-    "Wo ist mein Wechselgeld?": "Hvor er mine byttepenge?",
     "Wo ist mein Werkzeug?": "Hvor er mit værktøj?",
     "Wo man einkauft, was es kostet, und wo das alles liegt.":
        "Hvor man handler, hvad det koster, og hvor det hele ligger.",
@@ -70377,7 +70371,6 @@ INHALT = {
     "Wo ist der Spiegel?": "Où est le miroir ?",
     "Wo ist die Bäckerei?": "Où est la boulangerie ?",
     "Wo ist die Leine?": "Où est la laisse ?",
-    "Wo ist mein Wechselgeld?": "Où est ma monnaie ?",
     "Wo ist mein Werkzeug?": "Où est mon outil ?",
     "Wo man einkauft, was es kostet, und wo das alles liegt.":
        "Où on fait ses courses, ce que ça coûte, et où tout se trouve.",

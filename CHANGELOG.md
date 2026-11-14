@@ -705,6 +705,11 @@ are in the Play Store listing. Format:
   Infinitiv" was listed as Bosnian and stayed German in every language. It is now
   translated ("ću + infinitive", "ću + mastar", "ću + infinitif" …); the Bosnian
   forms and examples stay. `tests/test_pruefbericht14_grammatik.py`.
+- *Kusur* in the gap sentence (review for 1.4, 14.11.2026, S11): "Gdje je moj ___?"
+  said "Wo ist mein Wechselgeld?", the sentence-building task "Wo ist mein
+  Rückgeld?", and the maintainer's corrections take *Rückgeld*. Both say
+  *Rückgeld* now; the other languages already matched. Only the German shown
+  changed, the word keeps its ID. `tests/test_pruefbericht14_antworten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

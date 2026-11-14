@@ -10524,7 +10524,10 @@ SAETZE = [
     {"kat": "einkauf_orte", "text": "Jabuke su na ___.",     "answer": "akciji",  "de": "Die Äpfel sind im Angebot."},
     {"kat": "einkauf_orte", "text": "Ovo voće je ___.",      "answer": "svježe",  "de": "Dieses Obst ist frisch."},
     {"kat": "einkauf_orte", "text": "Mogu li ___ karticom?", "answer": "platiti", "de": "Kann ich mit Karte bezahlen?"},
-    {"kat": "einkauf_orte", "text": "Gdje je moj ___?",      "answer": "kusur",   "de": "Wo ist mein Wechselgeld?"},
+    # kusur ist Rückgeld (WORTSCHATZ_KORREKTUREN.md, Richtiggestellt), wie im
+    # Satzbau "Gdje je moj kusur?" (Prüfbericht 1.4, S11). Der Satz hängt an
+    # text und answer, die Kennung der Vokabel "Wechselgeld / Rückgeld" bleibt.
+    {"kat": "einkauf_orte", "text": "Gdje je moj ___?",      "answer": "kusur",   "de": "Wo ist mein Rückgeld?"},
 
     # Im Restaurant: ankommen
     {"kat": "resto1", "text": "Idemo u ___.",        "answer": "kafić",    "de": "Wir gehen ins Café."},

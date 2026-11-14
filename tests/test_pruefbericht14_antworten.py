@@ -20,6 +20,10 @@ V5: Hatte nur eines von zwei Woertern im selben Level eine Klammer („How are
 you?“ neben „How are you? (formal)“), passte die Frage auf beide Knoepfe.
 B7: Englische Lueckensaetze verlangten die Du-Form, „you“ passt aber auch auf
 die Sie- und Ihr-Form.
+S11 (Offen-Liste, Punkt 3): Der Lueckensatz „Gdje je moj ___?“ sagte
+„Wechselgeld“, der Satzbau-Satz „Gdje je moj kusur?“ „Rückgeld“, und
+WORTSCHATZ_KORREKTUREN.md (Richtiggestellt) nimmt Rückgeld. Jetzt auch der
+Lueckensatz; er haengt an text und answer, die Kennung der Vokabel bleibt.
 Die Tests im Browser stehen in tests_e2e/test_pruefbericht14_antworten.py und
 tests_e2e/test_antworten.py (GESPERRT, TEIL_DER_FRAGE).
 """
@@ -352,3 +356,34 @@ def test_b7_andere_sprachen_unveraendert(alle_daten):
         for text, antwort in B7_LUECKEN:
             s = [x for x in alle_daten[code]["saetze"] if x["text"] == text and x["answer"] == antwort]
             assert len(s) == 1 and "informal" not in s[0]["de"], (code, s)
+
+
+# ---------------------------------------------------------------------------
+# S11: kusur heisst im Lueckensatz Rueckgeld, wie im Satzbau
+# ---------------------------------------------------------------------------
+# So steht der Satz in jeder Sprache da; Lueckensatz und Satzbau sagen dasselbe.
+S11 = {"de": "Wo ist mein Rückgeld?", "en": "Where is my change?", "tr": "Para üstüm nerede?",
+       "sv": "Var är min växel?", "nl": "Waar is mijn wisselgeld?", "nb": "Hvor er vekslepengene mine?",
+       "da": "Hvor er mine byttepenge?", "fr": "Où est ma monnaie ?"}
+
+
+def test_s11_kusur_ist_rueckgeld(alle_daten, wurzel):
+    import uebersetzungen
+    assert set(alle_daten) == set(S11)
+    for code, daten in alle_daten.items():
+        luecke = [s for s in daten["saetze"] if s["text"] == "Gdje je moj ___?" and s["answer"] == "kusur"]
+        satzbau = [s for s in daten["satzbau"] if s["bs"] == "Gdje je moj kusur?"]
+        assert len(luecke) == 1 and len(satzbau) == 1, code
+        assert luecke[0]["de"] == satzbau[0]["de"] == S11[code], (code, luecke[0]["de"], satzbau[0]["de"])
+    # Der alte deutsche Schluessel ist in keiner Sprache mehr uebrig.
+    for code, tabelle in uebersetzungen.INHALT.items():
+        assert "Wo ist mein Wechselgeld?" not in tabelle["texte"], code
+    with io.open(os.path.join(wurzel, "WORTSCHATZ_KORREKTUREN.md"), encoding="utf-8") as f:
+        assert "| *kusur* | „Wechselgeld\" | **Rückgeld.**" in f.read()
+
+
+def test_s11_kennung_der_vokabel_bleibt(grunddaten):
+    """Nur die Anzeige des Satzes aendert sich. Die Vokabel kusur behaelt ihr
+    de "Wechselgeld / Rückgeld" und damit ihre Kennung."""
+    woerter = [w for k in grunddaten["kategorien"] for w in k["words"] if w["bs"] == "kusur"]
+    assert [w["id"] for w in woerter] == ["wechselgeld / rückgeld:kusur"]

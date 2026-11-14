@@ -1224,3 +1224,16 @@ broj“) ist es aber „ihr eigener“.
 
 - Die Vokabel *svoj* behält „eigener (mein, dein, sein)“, das ist ihre Kennung
   (`eigener (mein, dein, sein):svoj`). Kein bosnisches Wort geändert.
+
+**S11, kusur.** Oben unter „Richtiggestellt“ steht: *kusur* ist **Rückgeld**. Der
+Satzbau-Satz „Gdje je moj kusur?“ sagte das schon, der Lückensatz noch nicht.
+
+| Lückensatz | vorher | jetzt |
+|---|---|---|
+| „Gdje je moj ___?“ (*kusur*) | Wo ist mein Wechselgeld? | Wo ist mein Rückgeld? |
+
+- Nur die deutsche Anzeige; der Satz hängt an Text und Antwort. Die Vokabel *kusur*
+  behält „Wechselgeld / Rückgeld“ und damit ihre Kennung.
+- Die anderen Sprachen sagten schon dasselbe wie beim Satzbau (change, para üstü,
+  växel, wisselgeld, vekslepenger, byttepenge, monnaie); der alte deutsche Schlüssel
+  ist raus.

@@ -99081,7 +99081,7 @@
   <tu tuid="s0260" segtype="sentence">
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Gdje je moj kusur?</seg></tuv>
-   <tuv xml:lang="de"><seg>Wo ist mein Wechselgeld?</seg></tuv>
+   <tuv xml:lang="de"><seg>Wo ist mein Rückgeld?</seg></tuv>
    <tuv xml:lang="en"><seg>Where is my change?</seg></tuv>
    <tuv xml:lang="tr"><seg>Para üstüm nerede?</seg></tuv>
    <tuv xml:lang="sv"><seg>Var är min växel?</seg></tuv>
