@@ -145,7 +145,8 @@ GLEICH = {
     "radili su",
     "radile su",
     "Oni su radili.",
-    "ću + Infinitiv",
+    # "ću + Infinitiv" stand bis zum 14.11.2026 hier und blieb so in jeder
+    # Sprache deutsch (Prüfbericht 1.4, S8). Jetzt unten je Sprache übersetzt.
     "Ja ću raditi. / Radit ću.",
     "ćeš",
     "Ti ćeš doći. / Doći ćeš.",
@@ -2353,6 +2354,7 @@ INHALT = {
         "“sam, si, je, smo, ste, su” take second position in the sentence: “Jučer sam bila kod nane”, not “Sam jučer bila”. If the subject comes first, they follow right after it: “Ja sam bila kod nane.”",
     "Die Zukunft bildet man mit „htjeti“ in Kurzform + Infinitiv: ću, ćeš, će, ćemo, ćete, će.":
         "The future is formed with the short form of “htjeti” plus the infinitive: ću, ćeš, će, ćemo, ćete, će.",
+    "ću + Infinitiv": "ću + infinitive",
     "Zwei Stellungen: Steht ein Wort davor (ja, sutra, mi), kommt „ću“ an zweite Stelle: „Sutra ću raditi.“ Steht der Infinitiv am Anfang, verliert er das -i: „Radit ću.“ Bei Infinitiven auf -ći bleibt alles: „Doći ću.“ Seit der Rechtschreibung von 2018 darf man bei -ti auch zusammenschreiben: „Radiću.“ Gesprochen wird es immer so.":
         "Two word orders: if another word comes first (ja, sutra, mi), then “ću” takes second position: “Sutra ću raditi.” If the infinitive comes first, it drops the -i: “Radit ću.” Infinitives in -ći keep everything: “Doći ću.” Since the 2018 spelling rules you may also write -ti verbs as one word: “Radiću.” That is how it is pronounced anyway.",
     "Verneinung: neću, nećeš, neće, nećemo, nećete, neće: „Neću raditi sutra.“":
@@ -13377,6 +13379,7 @@ INHALT = {
         "“sam, si, je, smo, ste, su” cümlede ikinci sırada durur: “Jučer sam bila kod nane”, “Sam jučer bila” değil. Özne başta ise hemen ondan sonra gelir: “Ja sam bila kod nane.”",
     "Die Zukunft bildet man mit „htjeti“ in Kurzform + Infinitiv: ću, ćeš, će, ćemo, ćete, će.":
         "Gelecek zaman “htjeti” fiilinin kısa biçimi ile mastardan kurulur: ću, ćeš, će, ćemo, ćete, će.",
+    "ću + Infinitiv": "ću + mastar",
     "Zwei Stellungen: Steht ein Wort davor (ja, sutra, mi), kommt „ću“ an zweite Stelle: „Sutra ću raditi.“ Steht der Infinitiv am Anfang, verliert er das -i: „Radit ću.“ Bei Infinitiven auf -ći bleibt alles: „Doći ću.“ Seit der Rechtschreibung von 2018 darf man bei -ti auch zusammenschreiben: „Radiću.“ Gesprochen wird es immer so.":
         "İki dizilişi vardır: önünde başka bir kelime varsa (ja, sutra, mi), “ću” ikinci sıraya gelir: “Sutra ću raditi.” Mastar başta ise -i düşer: “Radit ću.” -ći ile biten mastarlarda hiçbir şey değişmez: “Doći ću.” 2018 imla kurallarından beri -ti fiillerini bitişik de yazabilirsin: “Radiću.” Konuşurken zaten böyle söylenir.",
     "Verneinung: neću, nećeš, neće, nećemo, nećete, neće: „Neću raditi sutra.“":
@@ -24395,6 +24398,7 @@ INHALT = {
         "”sam, si, je, smo, ste, su” står på andra plats i meningen: ”Jučer sam bila kod nane”, inte ”Sam jučer bila”. Om subjektet står först kommer de direkt efter: ”Ja sam bila kod nane.”",
     "Die Zukunft bildet man mit „htjeti“ in Kurzform + Infinitiv: ću, ćeš, će, ćemo, ćete, će.":
         "Framtiden bildas med kortformen av ”htjeti” plus infinitiv: ću, ćeš, će, ćemo, ćete, će.",
+    "ću + Infinitiv": "ću + infinitiv",
     "Zwei Stellungen: Steht ein Wort davor (ja, sutra, mi), kommt „ću“ an zweite Stelle: „Sutra ću raditi.“ Steht der Infinitiv am Anfang, verliert er das -i: „Radit ću.“ Bei Infinitiven auf -ći bleibt alles: „Doći ću.“ Seit der Rechtschreibung von 2018 darf man bei -ti auch zusammenschreiben: „Radiću.“ Gesprochen wird es immer so.":
         "Två ordföljder: om ett annat ord står först (ja, sutra, mi) hamnar ”ću” på andra plats: ”Sutra ću raditi.” Om infinitiven står först tappar den sitt -i: ”Radit ću.” Infinitiv på -ći behåller allt: ”Doći ću.” Sedan stavningsreglerna från 2018 får man också skriva ihop -ti-verben: ”Radiću.” Så uttalas det ändå.",
     "Verneinung: neću, nećeš, neće, nećemo, nećete, neće: „Neću raditi sutra.“":
@@ -35400,6 +35404,7 @@ INHALT = {
         "‘sam, si, je, smo, ste, su’ staan op de tweede plaats in de zin: ‘Jučer sam bila kod nane’, niet ‘Sam jučer bila’. Staat het onderwerp vooraan, dan komen ze er direct achter: ‘Ja sam bila kod nane.’",
     "Die Zukunft bildet man mit „htjeti“ in Kurzform + Infinitiv: ću, ćeš, će, ćemo, ćete, će.":
         "De toekomende tijd maak je met de korte vorm van ‘htjeti’ plus de infinitief: ću, ćeš, će, ćemo, ćete, će.",
+    "ću + Infinitiv": "ću + infinitief",
     "Zwei Stellungen: Steht ein Wort davor (ja, sutra, mi), kommt „ću“ an zweite Stelle: „Sutra ću raditi.“ Steht der Infinitiv am Anfang, verliert er das -i: „Radit ću.“ Bei Infinitiven auf -ći bleibt alles: „Doći ću.“ Seit der Rechtschreibung von 2018 darf man bei -ti auch zusammenschreiben: „Radiću.“ Gesprochen wird es immer so.":
         "Twee volgordes: staat er een ander woord voor (ja, sutra, mi), dan komt ‘ću’ op de tweede plaats: ‘Sutra ću raditi.’ Staat de infinitief vooraan, dan verliest die de -i: ‘Radit ću.’ Bij infinitieven op -ći blijft alles staan: ‘Doći ću.’ Sinds de spellingregels van 2018 mag je -ti-werkwoorden ook aan elkaar schrijven: ‘Radiću.’ Zo klinkt het toch al.",
     "Verneinung: neću, nećeš, neće, nećemo, nećete, neće: „Neću raditi sutra.“":
@@ -46405,6 +46410,7 @@ INHALT = {
         "«sam, si, je, smo, ste, su» står på andre plass i setningen: «Jučer sam bila kod nane», ikke «Sam jučer bila». Står subjektet først, kommer de rett etter: «Ja sam bila kod nane.»",
     "Die Zukunft bildet man mit „htjeti“ in Kurzform + Infinitiv: ću, ćeš, će, ćemo, ćete, će.":
         "Framtiden lages med kortformen av «htjeti» pluss infinitiven: ću, ćeš, će, ćemo, ćete, će.",
+    "ću + Infinitiv": "ću + infinitiv",
     "Zwei Stellungen: Steht ein Wort davor (ja, sutra, mi), kommt „ću“ an zweite Stelle: „Sutra ću raditi.“ Steht der Infinitiv am Anfang, verliert er das -i: „Radit ću.“ Bei Infinitiven auf -ći bleibt alles: „Doći ću.“ Seit der Rechtschreibung von 2018 darf man bei -ti auch zusammenschreiben: „Radiću.“ Gesprochen wird es immer so.":
         "To ordstillinger: står det et annet ord foran (ja, sutra, mi), kommer «ću» på andre plass: «Sutra ću raditi.» Står infinitiven først, mister den -i: «Radit ću.» Ved infinitiv på -ći blir alt stående: «Doći ću.» Siden rettskrivningen fra 2018 kan man også skrive -ti-verbene i ett: «Radiću.» Slik uttales det uansett.",
     "Verneinung: neću, nećeš, neće, nećemo, nećete, neće: „Neću raditi sutra.“":
@@ -57408,6 +57414,7 @@ INHALT = {
         "»sam, si, je, smo, ste, su« står på andenpladsen i sætningen: »Jučer sam bila kod nane«, ikke »Sam jučer bila«. Står subjektet først, kommer de lige efter: »Ja sam bila kod nane.«",
     "Die Zukunft bildet man mit „htjeti“ in Kurzform + Infinitiv: ću, ćeš, će, ćemo, ćete, će.":
         "Fremtiden dannes med kortformen af »htjeti« plus infinitiven: ću, ćeš, će, ćemo, ćete, će.",
+    "ću + Infinitiv": "ću + infinitiv",
     "Zwei Stellungen: Steht ein Wort davor (ja, sutra, mi), kommt „ću“ an zweite Stelle: „Sutra ću raditi.“ Steht der Infinitiv am Anfang, verliert er das -i: „Radit ću.“ Bei Infinitiven auf -ći bleibt alles: „Doći ću.“ Seit der Rechtschreibung von 2018 darf man bei -ti auch zusammenschreiben: „Radiću.“ Gesprochen wird es immer so.":
         "To ordstillinger: står der et andet ord foran (ja, sutra, mi), kommer »ću« på andenpladsen: »Sutra ću raditi.« Står infinitiven først, mister den -i: »Radit ću.« Ved infinitiv på -ći bliver alt stående: »Doći ću.« Siden retskrivningen fra 2018 må man også skrive -ti-verberne i ét ord: »Radiću.« Sådan udtales det alligevel.",
     "Verneinung: neću, nećeš, neće, nećemo, nećete, neće: „Neću raditi sutra.“":
@@ -68413,6 +68420,7 @@ INHALT = {
         "« sam, si, je, smo, ste, su » occupent la deuxième place dans la phrase : « Jučer sam bila kod nane », et non « Sam jučer bila ». Si le sujet est en tête, ces formes viennent juste après : « Ja sam bila kod nane. »",
     "Die Zukunft bildet man mit „htjeti“ in Kurzform + Infinitiv: ću, ćeš, će, ćemo, ćete, će.":
         "Le futur se forme avec « htjeti » sous sa forme courte + l'infinitif : ću, ćeš, će, ćemo, ćete, će.",
+    "ću + Infinitiv": "ću + infinitif",
     "Zwei Stellungen: Steht ein Wort davor (ja, sutra, mi), kommt „ću“ an zweite Stelle: „Sutra ću raditi.“ Steht der Infinitiv am Anfang, verliert er das -i: „Radit ću.“ Bei Infinitiven auf -ći bleibt alles: „Doći ću.“ Seit der Rechtschreibung von 2018 darf man bei -ti auch zusammenschreiben: „Radiću.“ Gesprochen wird es immer so.":
         "Deux positions : si un mot précède (ja, sutra, mi), « ću » passe en deuxième place : « Sutra ću raditi. » Si l'infinitif est en tête, il perd son -i : « Radit ću. » Avec les infinitifs en -ći, rien ne change : « Doći ću. » Depuis la réforme orthographique de 2018, on peut aussi tout écrire en un mot avec -ti : « Radiću. » À l'oral, c'est toujours ainsi qu'on le dit.",
     "Verneinung: neću, nećeš, neće, nećemo, nećete, neće: „Neću raditi sutra.“":

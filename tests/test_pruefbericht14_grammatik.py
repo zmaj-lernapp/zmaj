@@ -17,6 +17,10 @@ eigener“, im Woerterbuch der Lesetexte „eigener (mein, dein, sein)“, obwoh
 b1_voz und b1_telefon eine Frau „svoj broj“ hat. Jetzt „der eigene (mein, dein,
 sein, ihr …), wenn der Besitzer das Subjekt ist“, in 8 Sprachen. Die Vokabel
 behaelt ihr de, das ist ihre Kennung.
+
+S8 (Offen-Liste, Punkt 3): In der Lektion Zukunft stand „ću + Infinitiv“ in
+uebersetzungen.GLEICH und blieb in jeder Sprache deutsch. Jetzt uebersetzt
+(infinitive, mastar, infinitif, infinitief, infinitiv).
 """
 
 S4_BUCHSTABEN = "c, č, ć, dž, đ, j, lj, nj, š, ž"
@@ -142,3 +146,25 @@ def test_s6_kennung_der_vokabel_bleibt(alle_daten):
     assert woerter[S6_KENNUNG]["de"] == "eigener (mein, dein, sein)"
     en = {w["id"]: w for k in alle_daten["en"]["kategorien"] for w in k["words"]}
     assert en[S6_KENNUNG]["de"] == "one's own (my, your, his)"
+
+
+# ---------------------------------------------------------------------------
+# S8: "ću + Infinitiv" in der Lektion Zukunft (Offen-Liste, Punkt 3)
+# ---------------------------------------------------------------------------
+# Die Zelle stand in uebersetzungen.GLEICH und blieb in jeder Sprache deutsch.
+S8 = {"de": "ću + Infinitiv", "en": "ću + infinitive", "tr": "ću + mastar", "fr": "ću + infinitif",
+      "nl": "ću + infinitief", "sv": "ću + infinitiv", "nb": "ću + infinitiv", "da": "ću + infinitiv"}
+
+
+def test_s8_cu_infinitiv_uebersetzt(alle_daten, grunddaten):
+    import uebersetzungen
+    assert "ću + Infinitiv" not in uebersetzungen.GLEICH
+    vorlage = _tabelle(grunddaten["grammatik"]["zukunft"])
+    assert vorlage[1][:2] == ["ich", "ću + Infinitiv"]
+    assert set(alle_daten) == set(S8)
+    for code, daten in alle_daten.items():
+        tabelle = _tabelle(daten["grammatik"]["zukunft"])
+        assert tabelle[1][1] == S8[code], (code, tabelle[1])
+        # Die anderen Formen und die Beispiele sind bosnisch und bleiben.
+        assert [z[1] for z in tabelle[2:]] == [z[1] for z in vorlage[2:]], code
+        assert [z[2] for z in tabelle[1:]] == [z[2] for z in vorlage[1:]], code

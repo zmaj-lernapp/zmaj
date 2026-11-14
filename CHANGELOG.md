@@ -701,6 +701,10 @@ are in the Play Store listing. Format:
   now say "der eigene (mein, dein, sein, ihr …)", used when the owner is the
   subject, in all eight languages. The vocabulary entry keeps its `de` and so its
   ID. `tests/test_pruefbericht14_grammatik.py`.
+- Future tense lesson (review for 1.4, 14.11.2026, S8): the table cell "ću +
+  Infinitiv" was listed as Bosnian and stayed German in every language. It is now
+  translated ("ću + infinitive", "ću + mastar", "ću + infinitif" …); the Bosnian
+  forms and examples stay. `tests/test_pruefbericht14_grammatik.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
