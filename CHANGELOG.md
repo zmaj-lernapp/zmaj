@@ -733,6 +733,12 @@ are in the Play Store listing. Format:
   space before the arrow keeps it with the word before, in "Weiter zu Level 5 →"
   too, in all eight languages. `tests/test_pruefbericht14_oberflaeche.py`,
   `tests_e2e/test_pruefbericht14_kleinfehler.py`.
+- Without hearts (review for 1.4, 14.11.2026, S17) the note "Keine Leben mehr ·
+  nächstes in …" stays below the heart pill, and in Danish and Dutch at 360 px it
+  covered the top 11 px of the streak number. With 0 hearts the row with streak
+  and dragon on the start page now moves below the note (17 px, 20 px when the
+  coins have a line of their own); with hearts nothing moves.
+  `tests_e2e/test_pruefbericht14_kleinfehler.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

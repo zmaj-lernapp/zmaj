@@ -6,10 +6,31 @@ S16: "Weiter zu B1 →" auf dem Testergebnis brach bei 360 px so um, dass der
 Pfeil allein in der zweiten Zeile stand, auf Tuerkisch in einer dritten.
 Jetzt steht vor dem Pfeil ein geschuetztes Leerzeichen, in test.weiter_stufe
 und test.weiter_level, in allen acht Sprachen.
+
+S17: Bei 0 Leben haengt der Hinweis "Keine Leben mehr · naechstes in ..."
+dauerhaft unter der Herzpille. Auf Daenisch und Niederlaendisch lag er bei
+360 px 11 px ueber der Seriezahl. Jetzt rueckt die Reihe mit Serie und
+Drache bei 0 Leben unter ihn, auch im engen Kopf und mit grosser Schrift.
 """
 import pytest
+from conftest import Seite
 
 SPRACHEN = ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
+
+# So stellt Chrome die grosse Systemschrift des Handys nach (wie in test_reiter.py)
+GROSSE_SCHRIFT = """document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.style.cssText += ';text-size-adjust:130%;-webkit-text-size-adjust:130%'; });"""
+
+# Unterkante des Hinweises (mit seinen 2 px Schatten) und die Oberkanten von
+# Serie und Drache auf der Startseite
+LEBEN_HINWEIS = """() => { const i = document.querySelector('.livesbar .info');
+  const reihe = document.querySelector('#pfad .obenreihe');
+  return {hinweis: i ? i.getBoundingClientRect().bottom + 2 : null,
+          oben: Math.min(...[...reihe.children].map(k => k.getBoundingClientRect().top)),
+          zahl: document.getElementById('serieZahl').getBoundingClientRect().top,
+          polster: getComputedStyle(reihe).paddingTop,
+          eng: document.querySelector('header').classList.contains('eng'),
+          breit: document.documentElement.scrollWidth}; }"""
 
 # Steht der Pfeil im Knopf #tNext in derselben Zeile wie das Zeichen davor?
 PFEIL = r"""() => { const b = document.getElementById('tNext');
@@ -51,3 +72,44 @@ def test_s16_pfeil_nie_allein_in_der_zeile(seite, heute_stand, sprache):
     assert abs(p["pfeil"] - p["davor"]) < 1, (sprache, p)
     assert seite.js("() => document.documentElement.scrollWidth") <= 360
     assert seite.fehler == []
+
+
+# (Sprache, Breite, Muenzen, grosse Schrift): 360 px in jeder Sprache, dazu
+# der enge Kopf (Muenzen in eigener Zeile) und die grosse Systemschrift
+S17_FAELLE = [(s, 360, 0, False) for s in SPRACHEN] + [
+    ("nl", 320, 12345, False), ("da", 320, 12345, False), ("da", 360, 0, True), ("nl", 360, 0, True)]
+
+
+@pytest.mark.parametrize("sprache,breite,km,gross", S17_FAELLE,
+                         ids=["%s-%d%s%s" % (s, b, "-eng" if k else "", "-gross" if g else "") for s, b, k, g in S17_FAELLE])
+def test_s17_hinweis_ohne_leben_verdeckt_die_serie_nicht(browser, basis, heute_stand, sprache, breite, km, gross):
+    import datetime
+    ctx = browser.new_context(viewport={"width": breite, "height": 740}, locale="de-DE",
+                              service_workers="block", reduced_motion="reduce")
+    try:
+        seite = Seite(ctx.new_page(), basis)
+        seite.page.add_init_script("window.Capacitor = {Plugins: {App: {}}};")   # wie am Handy: keine Zurueck-Taste
+        if gross:
+            seite.page.add_init_script(GROSSE_SCHRIFT)
+        heute = datetime.date.today()
+        tage = [(heute - datetime.timedelta(days=i)).isoformat() for i in range(1, 32)]   # 31 Tage Serie
+        seite.starten(sprache=sprache, stand=heute_stand(tage=tage))
+        seite.js("() => { const v = document.getElementById('vorspann'); if(v) v.click(); }")
+        seite.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
+        # Volle Leben: der Hinweis ist zu, nichts rueckt
+        seite.js("(km) => { muenzenGes = km; muenzenAus = 0; homeMode = 'words'; showHome(); }", km)
+        voll = seite.js(LEBEN_HINWEIS)
+        assert voll["hinweis"] is None and voll["polster"] == "0px", voll
+        # 0 Leben: der Hinweis steht da, Serie und Drache darunter
+        seite.js("() => { lives = {anzahl: 0, zeit: Date.now()}; renderLives(); showHome(); }")
+        m = seite.js(LEBEN_HINWEIS)
+        if not gross:
+            assert m["eng"] == (km > 0), m
+        assert m["hinweis"] is not None and m["oben"] >= m["hinweis"] + 2, (sprache, m)
+        assert m["zahl"] >= m["hinweis"] + 2 and m["breit"] <= breite, (sprache, m)
+        # Ein Leben waechst nach: alles wieder wie vorher
+        seite.js("() => { lives = {anzahl: 1, zeit: Date.now()}; livesInfoAn = false; renderLives(); }")
+        assert seite.js(LEBEN_HINWEIS)["polster"] == "0px"
+        assert seite.fehler == []
+    finally:
+        ctx.close()

@@ -1950,6 +1950,19 @@
      livesInfoAn || n === 0). Dann traegt er denselben roten Rand wie die
      Pille darueber, damit beide als ein Stueck zu lesen sind. */
   .livesbar.zero .info{border-color:var(--bad)}
+  /* Pruefbericht 1.4, S17: Steht der Hinweis dauerhaft da (0 Leben), rueckt
+     auf der Startseite die Reihe mit Serie und Drache unter ihn. Er haengt
+     28 px unter der 38 px hohen Herzpille (4 Abstand + 24 hoch, dazu 2 px
+     Schatten), die Reihe stand nur 17 px darunter - in da und nl, wo der
+     Satz unter der Serie zwei Zeilen hat und der Block oben anliegt, lag er
+     11 px ueber der Seriezahl. 17 px mehr lassen 4 px Luft. Im engen Kopf
+     haengt er am ganzen Kopf (header.eng, siehe dort), dort braucht es 20.
+     Nur bei 0 Leben: der angetippte Hinweis bei vollen Leben ist kurz da und
+     soll nichts verschieben (siehe .livesbar .info). body.lebenLeer setzt
+     renderLives(). Polster statt Rand: ein Rand oben fiele mit dem Abstand
+     ueber der Startseite zusammen und schoebe nur 3 px. */
+  body.lebenLeer #pfad .obenreihe{padding-top:17px}
+  body.lebenLeer header.eng ~ main #pfad .obenreihe{padding-top:20px}
 
   /* ---------- Level ---------- */
   .level{background:var(--surface); border:2px solid var(--line); border-radius:var(--radius); padding:14px 18px; margin:4px 0 12px}
@@ -7742,6 +7755,7 @@ function renderLives(){
     k.classList.toggle('zero', n === 0 && !unlimited());
   });
   const zeigen = livesInfoAn || n === 0;
+  document.body.classList.toggle('lebenLeer', n === 0);   // Pruefbericht 1.4, S17: siehe body.lebenLeer im Stil
   bar.className='livesbar'+(unlimited()?' premium':'')+(n===0?' zero':'');
   bar.innerHTML = '<button type="button" class="herz" id="livesKnopf" aria-expanded="'+zeigen+'">'
                 + symbol('herz', t('stat.leben'))+' <b>'+(unlimited()?'∞':n)+'</b></button>'
