@@ -671,6 +671,14 @@ are in the Play Store listing. Format:
   message in *Izgubljeni telefon* keeps "molim Vas". The dental section stays
   capitalised. The audio keys are lower case, so nothing needs new audio.
   `tests/test_pruefbericht14_geschichten.py`.
+- Commas before *jer* and *ako* (review for 1.4, 14.11.2026, B11; decided by the
+  maintainer, F11 a): the grammar lesson teaches no comma before *jer*, *da* and
+  *ako* when the clause follows the main clause, yet seven B1 sentences had one
+  ("Najviše sam voljela subotu, jer je nana tada pravila pitu."). The comma is gone
+  in *Ljeto kod nane na selu*, *Dijaspora prvi put u Sarajevu*, *Jahorina*, *Stari
+  zanat na Baščaršiji*, *Zmaj uči bosanski*, *Izdajem stan* ("Može sutra u šest ako
+  vam odgovara.") and *Mejl rođaku*. Only punctuation changed; none of the seven had
+  audio yet. `tests/test_pruefbericht14_geschichten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

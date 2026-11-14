@@ -1152,3 +1152,23 @@ Dialogen, Zahnarzt bleibt groß? Ajdin: ja.
   Gespräch, stand aber nicht im Prüfbericht und hat Ton und Wortzeiten (g10).
   `ton_bauen.wortzeiten_passen()` vergleicht den Text mit Groß- und Kleinschreibung;
   klein geschrieben fielen die Wortzeiten beim nächsten `ton_bauen.py` weg.
+
+**B11 / F11, Komma vor jer und ako.** Frage: die 7 Kommas vor nachgestelltem *jer*
+und *ako* streichen (a) oder die Regel auf „meist kein Komma“ abschwächen (b)? Ajdin:
+a. Die Lektion (`grammatik.py`, Satzbau) sagt: kein Komma, wenn der Nebensatz hinter
+dem Hauptsatz steht.
+
+| Geschichte | vorher | jetzt |
+|---|---|---|
+| *Ljeto kod nane na selu* (`b1_ljeto`) | Najviše sam voljela subotu, jer je nana tada pravila pitu. | Najviše sam voljela subotu jer je nana tada pravila pitu. |
+| *Dijaspora prvi put u Sarajevu* (`b1_dijaspora`) | Tarik je bio malo nervozan, jer njegov bosanski nije savršen. | Tarik je bio malo nervozan jer njegov bosanski nije savršen. |
+| *Jahorina* (`b1_jahorina`) | … kapu i rukavice, jer je vani bilo minus osam. | … kapu i rukavice jer je vani bilo minus osam. |
+| *Stari zanat na Baščaršiji* (`b1_zanat`) | … čuje kucanje čekića, jer u malim radnjama … | … čuje kucanje čekića jer u malim radnjama … |
+| *Zmaj uči bosanski* (`b1_zmaj`) | … uči bosanski, jer ovog ljeta … | … uči bosanski jer ovog ljeta … |
+| *Izdajem stan* (`b1_stan`) | Može sutra u šest, ako vam odgovara. | Može sutra u šest ako vam odgovara. |
+| *Mejl rođaku* (`b1_mejl`) | Prvu sedmicu bih bio kod vas, ako vam to ne smeta. | Prvu sedmicu bih bio kod vas ako vam to ne smeta. |
+
+- Nicht geändert: der Einschub in *Selidba* („Sjeli su na pod, jer sto još nisu
+  kupili, i …“), dort schließt das zweite Komma ihn ab. Die Geschichte wird ersetzt.
+- Nur Satzzeichen, kein Wort geändert. Die Übersetzungen bleiben (auf Deutsch steht
+  das Komma vor „weil“). Keiner der sieben Texte hatte Ton.

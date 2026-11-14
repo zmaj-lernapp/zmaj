@@ -551,7 +551,7 @@ GESCHICHTEN = [
         "text": ("Kad sam bila mala, svako ljeto sam provodila kod nane na selu. Nanina kuća nije bila velika, ali je imala veliku baštu, a ispred kuće je bio stari orah.\n\n"
                  "Ujutro me budio horoz. Kad sam ustala, nana je već bila u kuhinji. Ona je pila kahvu, a ja toplo mlijeko. Poslije doručka smo išle u baštu. Nana mi je pokazala kako se bere paradajz i kako se zalijeva cvijeće. Brzo sam to naučila i bila sam jako ponosna.\n\n"
                  "Popodne je bilo vruće, pa smo sjedile u hladu ispod oraha. Nana je pričala o dedi i o vremenu kad je bila mlada. Ja sam slušala i jela trešnje iz komšijine bašte.\n\n"
-                 "Najviše sam voljela subotu, jer je nana tada pravila pitu. Cijela kuća je mirisala na tijesto, meso i luk. Navečer su dolazile komšinice. Pile su kahvu, pričale i smijale se do kasno u noć.\n\n"
+                 "Najviše sam voljela subotu jer je nana tada pravila pitu. Cijela kuća je mirisala na tijesto, meso i luk. Navečer su dolazile komšinice. Pile su kahvu, pričale i smijale se do kasno u noć.\n\n"
                  "Sada živim i radim u Njemačkoj. Ipak, svako ljeto dolazim na selo. Nana me čeka na vratima, kao nekad. Kad je zagrlim, opet se osjećam kao dijete."),
         "uebersetzung": ("Als ich klein war, habe ich jeden Sommer bei meiner Oma auf dem Dorf verbracht. Omas Haus war nicht groß, aber es hatte einen großen Garten, und vor dem Haus stand ein alter Walnussbaum.\n\n"
                          "Morgens hat mich der Hahn geweckt. Wenn ich aufstand, war Oma schon in der Küche. Sie trank Kaffee und ich warme Milch. Nach dem Frühstück gingen wir in den Garten. Oma hat mir gezeigt, wie man Tomaten pflückt und wie man die Blumen gießt. Ich habe das schnell gelernt und war sehr stolz.\n\n"
@@ -569,7 +569,7 @@ GESCHICHTEN = [
     {
         "id": "b1_dijaspora", "titel": "Dijaspora prvi put u Sarajevu", "stufe": "B1", "passt_zu": "urlaub",
         "text": ("Tarik ima dvadeset godina i rođen je u Njemačkoj. Njegovi roditelji su iz Bosne, ali on nikad nije bio u Sarajevu. Ovog ljeta je konačno došao. Na aerodromu ga je čekao rođak Haris.\n\n"
-                 "„Dobro došao!“ rekao je Haris i zagrlio ga. Tarik je bio malo nervozan, jer njegov bosanski nije savršen. „Ne brini“, smijao se Haris. „Ovdje svi razumiju dijasporu.“\n\n"
+                 "„Dobro došao!“ rekao je Haris i zagrlio ga. Tarik je bio malo nervozan jer njegov bosanski nije savršen. „Ne brini“, smijao se Haris. „Ovdje svi razumiju dijasporu.“\n\n"
                  "Prvo su otišli na Baščaršiju. Ulice su bile pune turista, a iz malih radnji je mirisalo na kahvu i ćevape. Tarik je naručio desetku s lukom i jogurt. „Ovo je najbolje što sam ikad jeo!“ rekao je.\n\n"
                  "Poslije ručka su šetali pored Miljacke do Vijećnice. Haris mu je pričao o historiji grada, a Tarik je slikao sve što je vidio. Navečer su se žičarom popeli na Trebević. Odozgo se vidio cijeli grad, a svjetla su se polako palila.\n\n"
                  "„Moj babo je uvijek govorio da je Sarajevo najljepši grad na svijetu“, rekao je Tarik tiho. „Sad znam da nije pretjerivao.“\n\n"
@@ -652,7 +652,7 @@ GESCHICHTEN = [
     {
         "id": "b1_jahorina", "titel": "Jahorina", "stufe": "B1", "passt_zu": "sport",
         "text": ("Amina i Ajdin su za Novu godinu otišli na Jahorinu. Amina je dobra skijašica, ali Ajdin nikad nije skijao. „Naučit ću za jedan dan“, rekao je samouvjereno.\n\n"
-                 "Prvog jutra su iznajmili skije, pancerice i štapove. Ajdin je obukao debelu jaknu, kapu i rukavice, jer je vani bilo minus osam. Snijega je bilo skoro metar.\n\n"
+                 "Prvog jutra su iznajmili skije, pancerice i štapove. Ajdin je obukao debelu jaknu, kapu i rukavice jer je vani bilo minus osam. Snijega je bilo skoro metar.\n\n"
                  "Amina je otišla na veliku stazu, a Ajdin u školu skijanja. Njegova instruktorica je bila mlada djevojka s mnogo strpljenja. „Polako, malo savijte koljena i gledajte naprijed“, govorila je. Ajdin je do podne pao pet puta. Djeca od šest godina su ga lako prestizala.\n\n"
                  "Popodne je bilo bolje. Spustio se niz malu stazu bez ijednog pada i bio je ponosan kao dijete. Navečer su sjedili u kafiću pored kamina i pili čaj s medom. Vani je opet padao snijeg. „Sve me boli“, rekao je Ajdin, „ali sutra idem opet.“\n\n"
                  "Trećeg dana su se zajedno spustili do hotela. Amina je bila brža, ali Ajdin se nije žalio. „Sljedeće zime ja ću tebe čekati dolje“, smijao se."),
@@ -763,7 +763,7 @@ GESCHICHTEN = [
                  "„Je li zgrada mirna? Dva dana sedmično radim od kuće.“\n"
                  "„Vrlo je mirna. Komšije su uglavnom stariji ljudi.“\n"
                  "„Odlično. Kada bih mogla pogledati stan?“\n"
-                 "„Može sutra u šest, ako vam odgovara.“\n"
+                 "„Može sutra u šest ako vam odgovara.“\n"
                  "„Odgovara mi. Hvala vam, vidimo se sutra!“\n\n"
                  "Sutradan je Selma pogledala stan. Bio je mali, ali svijetao i čist, a s balkona se vidio Trebević. Odmah je potpisala ugovor. Prvu noć je spavala na dušeku na podu, ali je bila presretna."),
         "uebersetzung": ("Selma hat eine Stelle in Sarajevo bekommen und sucht eine Wohnung. Im Internet hat sie diese Anzeige gefunden:\n\n"
@@ -1055,7 +1055,7 @@ GESCHICHTEN += [
     },
     {
         "id": "b1_zanat", "titel": "Stari zanat na Baščaršiji", "stufe": "B1", "passt_zu": "arbeitsplatz",
-        "text": ("Lejla je ovog ljeta na odmoru u Sarajevu. Najviše joj se svidjela jedna mala ulica na Baščaršiji. Zove se Kazandžiluk. Tu se cijeli dan čuje kucanje čekića, jer u malim radnjama majstori prave stvari od bakra.\n\n"
+        "text": ("Lejla je ovog ljeta na odmoru u Sarajevu. Najviše joj se svidjela jedna mala ulica na Baščaršiji. Zove se Kazandžiluk. Tu se cijeli dan čuje kucanje čekića jer u malim radnjama majstori prave stvari od bakra.\n\n"
                  "Lejla je ušla u jednu radnju. Za stolom je sjedio stariji čovjek i polako ukrašavao jednu džezvu. „Izvolite, slobodno pogledajte“, rekao je. „Jeste li vi napravili sve ove stvari?“ pitala je Lejla. „Jesam. Ovaj zanat sam naučio od oca, a on od svog oca. Naša porodica radi u ovoj radnji više od sto godina.“\n\n"
                  "Majstor joj je pokazao kako se pravi džezva. Prvo se bakar reže, onda se dugo kuca čekićem, a na kraju se ukrašava. „Za jednu džezvu treba mi skoro cijeli dan“, objasnio je.\n\n"
                  "„A ko će raditi kad vi odete u penziju?“ pitala je Lejla. Majstor je malo šutio. „Moj sin radi u banci. Mladi danas ne žele ovaj posao. Težak je, a ne zarađuje se mnogo.“\n\n"
@@ -1098,7 +1098,7 @@ GESCHICHTEN += [
         "text": ("Predmet: Dolazim u augustu!\n\n"
                  "Dragi Adnane, kako si? Kako su tetka i tetak? Nadam se da ste svi dobro. Kod nas je sve u redu, samo smo ovih mjeseci mnogo radili.\n\n"
                  "Imam lijepu vijest: u augustu dolazim u Sarajevo! Već sam kupio kartu za avion. Slijećem desetog augusta u četiri sata popodne. Možeš li me sačekati na aerodromu? Ako ne možeš, nije problem, uzet ću taksi.\n\n"
-                 "Ostat ću dvije sedmice. Prvu sedmicu bih bio kod vas, ako vam to ne smeta. Drugu sedmicu idem kod nane u Goražde. Ona me već svaki dan pita kad dolazim.\n\n"
+                 "Ostat ću dvije sedmice. Prvu sedmicu bih bio kod vas ako vam to ne smeta. Drugu sedmicu idem kod nane u Goražde. Ona me već svaki dan pita kad dolazim.\n\n"
                  "Šta da vam donesem iz Njemačke? Tetki se prošli put jako svidjela ona čokolada s lješnjacima. Napiši mi šta želite.\n\n"
                  "Sigurno si primijetio da ti pišem na bosanskom. Već pola godine učim svaki dan na mobitelu. Još uvijek griješim, ali nadam se da ćemo ovog ljeta razgovarati samo na bosanskom. Ako vidiš grešku, nemoj se smijati!\n\n"
                  "Jedva čekam da se vidimo. Pozdravi sve!\n\n"
@@ -1119,7 +1119,7 @@ GESCHICHTEN += [
     },
     {
         "id": "b1_zmaj", "titel": "Zmaj uči bosanski", "stufe": "B1", "passt_zu": "lernen_studieren",
-        "text": ("Zmaj je mali zmaj koji živi u Njemačkoj. Već nekoliko mjeseci uči bosanski, jer ovog ljeta ide kod nane u Mostar. Svako veče ponavlja nove riječi: kuća, voda, hljeb, kahva.\n\n"
+        "text": ("Zmaj je mali zmaj koji živi u Njemačkoj. Već nekoliko mjeseci uči bosanski jer ovog ljeta ide kod nane u Mostar. Svako veče ponavlja nove riječi: kuća, voda, hljeb, kahva.\n\n"
                  "Kad je stigao kod nane, odmah je htio pokazati šta zna. „Dobro jutro, nano!“ rekao je ponosno. Nana se nasmijala. „Dobro jutro? Sine, sad je osam sati navečer. Kaže se dobro veče.“\n\n"
                  "Poslije večere nana ga je pitala: „Hoćeš li još sarme?“ Zmaj je bio sit, pa je rekao: „Hvala.“ Nana mu je odmah stavila još tri sarme na tanjir. „Ali nano, rekao sam hvala!“ „Čula sam“, rekla je nana. „Hvala znači da ti je ukusno.“\n\n"
                  "Sutradan je Zmaj htio pomoći dedi oko roštilja. Pustio je malo vatre iz usta, i ćevapi su u sekundi zagorjeli. „Stani, zmaju!“ rekao je dedo. „Ćevapi se peku polako, a ne zmajevom vatrom.“\n\n"

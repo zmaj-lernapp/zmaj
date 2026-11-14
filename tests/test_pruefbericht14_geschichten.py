@@ -39,6 +39,15 @@ Zahnarzt-Teil bleibt gross. Klein jetzt auch in b1_posao (die Chefin zu Haris,
 mit vašu) und b1_stan (Telefonat); gross bleibt die Nachricht in b1_telefon.
 Der Ton-Schluessel ist kleingeschrieben und bleibt (ton_bauen.schluessel).
 
+B11 / F11 a: Die Lektion sagt, vor jer, da und ako steht kein Komma, wenn der
+Nebensatz hinter dem Hauptsatz steht (grammatik.py, satzbau). Sieben B1-Saetze
+hatten es trotzdem ("Najviše sam voljela subotu, jer je nana …"). Ajdin (F11):
+a, die sieben Kommas streichen. Der Einschub in b1_selidba ("Sjeli su na pod,
+jer sto još nisu kupili, i …") blieb, die Geschichte wird ersetzt. Keiner der
+sieben Texte hatte Ton; der Schluessel aendert sich mit dem Komma und ist in
+tests/offen_lesetexte.json nachgezogen (b1_zanat, b1_mejl und b1_zmaj warten
+mit ihrer id in tests/offen_b1_teil2.py).
+
 Der Text der Geschichten ist ihr Ton-Schluessel (ton_bauen.py). Er aendert
 sich nur, wo Ajdin es entschieden hat; test_text_der_geschichten_bleibt haelt
 jeden Stand fest. Die Tests im Browser stehen in
@@ -93,8 +102,9 @@ ENGLISCH = {
 # sha256 ueber alle Geschichtentexte am 14.11.2026. B10 und B12 liessen sie
 # unveraendert (11df97e6…), seit V13 a steht in b1_struja "plinski šporet"
 # (526d6a03…), seit S3 in pismo "napraviti pitu" (b8c9980c…), seit S7 "vam"
-# klein in den Gespraechen von b1_posao und b1_stan.
-TEXTE_SHA256 = "46d9367108436a5c4032be50bd182df7c3b830096ae201e7c984015289b3f7cc"
+# klein in den Gespraechen von b1_posao und b1_stan (46d93671…), seit F11 a
+# ohne die sieben Kommas vor nachgestelltem jer und ako.
+TEXTE_SHA256 = "7ae5034616af41506beb3ad86836f20f4965ec7751ec0c5d786d3da53d9bd1f7"
 
 
 def _geschichten(daten):
@@ -371,3 +381,53 @@ def test_s7_ton_schluessel_bleibt():
         g = next(s for s in geschichten.GESCHICHTEN if s["id"] == gid)
         assert ton_bauen.schluessel(g["text"]) == g["text"].lower()
         assert ton_bauen.schluessel(g["text"]) in offen_lesetexte.GESCHICHTEN, gid
+
+
+# ---------------------------------------------------------------------------
+# B11 / F11 a: kein Komma vor nachgestelltem jer und ako (14.11.2026)
+# ---------------------------------------------------------------------------
+# Geschichte -> der Satz, wie er jetzt dasteht
+F11 = {
+    "b1_ljeto": "Najviše sam voljela subotu jer je nana tada pravila pitu.",
+    "b1_dijaspora": "Tarik je bio malo nervozan jer njegov bosanski nije savršen.",
+    "b1_jahorina": "Ajdin je obukao debelu jaknu, kapu i rukavice jer je vani bilo minus osam.",
+    "b1_zanat": "Tu se cijeli dan čuje kucanje čekića jer u malim radnjama majstori prave stvari od bakra.",
+    "b1_zmaj": "Već nekoliko mjeseci uči bosanski jer ovog ljeta ide kod nane u Mostar.",
+    "b1_stan": "„Može sutra u šest ako vam odgovara.“",
+    "b1_mejl": "Prvu sedmicu bih bio kod vas ako vam to ne smeta.",
+}
+KOMMA_DAVOR = re.compile(r",\s+(jer|ako)(?![^\W\d_])")
+
+
+def test_f11_die_sieben_saetze(grunddaten):
+    g = _geschichten(grunddaten)
+    for gid, satz in F11.items():
+        assert satz in g[gid]["text"], (gid, satz)
+
+
+def test_f11_kein_komma_vor_jer_und_ako(grunddaten):
+    """Wie die Lektion es lehrt. Ein Komma davor bleibt nur, wo ein Einschub
+    endet, und das gibt es nur noch in b1_selidba ("Sjeli su na pod, jer sto
+    još nisu kupili, i …"); die Geschichte wird ersetzt."""
+    import grammatik
+    regel = "Vor „jer“, „da“ und „ako“ steht kein Komma, wenn der Nebensatz hinter dem Hauptsatz steht"
+    assert any(regel in str(teil) for teil in grammatik.GRAMMATIK["satzbau"]["erklaerung"])
+    funde = {s["id"]: [m.group() for m in KOMMA_DAVOR.finditer(s["text"])] for s in grunddaten["geschichten"]}
+    assert {k: v for k, v in funde.items() if v} == {"b1_selidba": [", jer"]}
+
+
+def test_f11_ton_schluessel_nachgezogen():
+    """Keiner der sieben Texte hatte Ton. Mit dem Komma aendert sich ihr
+    Schluessel: Paket 1 und 2 warten mit dem neuen Text in
+    tests/offen_lesetexte.json, Paket 3 und 4 mit ihrer id in
+    tests/offen_b1_teil2.py."""
+    import geschichten
+    import offen_b1_teil2
+    import offen_lesetexte
+    import ton_bauen
+    for gid in F11:
+        g = next(s for s in geschichten.GESCHICHTEN if s["id"] == gid)
+        k = ton_bauen.schluessel(g["text"])
+        assert k in offen_lesetexte.GESCHICHTEN or gid in offen_b1_teil2.GESCHICHTEN, gid
+    alt = [t for t in offen_lesetexte.GESCHICHTEN if KOMMA_DAVOR.search(t)]
+    assert alt == []
