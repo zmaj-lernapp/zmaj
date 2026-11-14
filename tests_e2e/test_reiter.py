@@ -210,6 +210,49 @@ def test_reiter_antippen(seite, heute_stand):
     assert seite.fehler == []
 
 
+# Wo die Leiste auf dem Bildschirm steht, und welcher Reiter gewaehlt ist
+LAGE = """() => ({oben: document.getElementById('reiterLeiste').getBoundingClientRect().top,
+  an: (document.querySelector('#reiterLeiste button[aria-selected="true"]') || {}).dataset.stufe})"""
+
+
+@pytest.mark.parametrize("breite,hoehe", [(360, 740), (412, 915)], ids=["360", "412"])
+def test_reiter_antippen_springt_nicht(browser, basis, heute_stand, breite, hoehe):
+    """Ajdin am 14.11.2026: "wenn man auf B1 zb tippt dann springt das bild
+    so komisch wieder nach oben mach das raus". Die Leiste bleibt beim
+    Tippen auf einen Reiter, wo sie war (hoechstens 2 px), nur der Inhalt
+    darunter wechselt - ob sie oben, in der Mitte oder unten im Bild steht,
+    in einen langen Reiter, in einen zugeklappten und in C1, das fast leer
+    ist. Getippt wird echt, mit der Maus auf den Knopf. Vorher stand man
+    nach dem Tippen auf B1 oder C1 wieder ganz oben."""
+    ctx = browser.new_context(viewport={"width": breite, "height": hoehe}, locale="de-DE",
+                              service_workers="block", reduced_motion="reduce")
+    try:
+        seite = Seite(ctx.new_page(), basis)
+        _pfad(seite, heute_stand())
+        lage = seite.js("""() => { const r = document.getElementById('reiterLeiste').getBoundingClientRect();
+          return {oben: r.top + scrollY, hoch: r.height}; }""")
+        gesprungen = []
+        # die Leiste knapp unter dem Rand oben, in der Mitte, unten im Bild
+        for ziel in (4, hoehe // 2, hoehe - lage["hoch"] - 4):
+            for st in ["B1", "C1", "A2", "B2", "A1", "C1", "B1"]:
+                seite.js("(y) => window.scrollTo({top: y, behavior: 'instant'})", max(0, lage["oben"] - ziel))
+                vorher = seite.js(LAGE)
+                seite.page.click("#reiterLeiste button[data-stufe='%s']" % st)
+                nachher = seite.js(LAGE)
+                assert nachher["an"] == st, (ziel, st, nachher)
+                if abs(nachher["oben"] - vorher["oben"]) > 2:
+                    gesprungen.append((ziel, vorher["an"], st, round(vorher["oben"]), round(nachher["oben"])))
+        assert gesprungen == [], gesprungen
+        # Die Startseite neu: oben, ohne leeren Bildschirm unter C1
+        seite.page.click("#reiterLeiste button[data-stufe='C1']")
+        seite.js("() => showHome()")
+        assert seite.js("() => [scrollY, document.getElementById('wordsHome').style.minHeight]") == [0, ""]
+        assert seite.js("() => document.documentElement.scrollWidth") <= breite
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
 def test_sprungtest_bestanden_oeffnet_den_reiter(seite, heute_stand):
     _pfad(seite, heute_stand())
     vorher = seite.js("() => ({muenzen: muenzen(), tage: days.size, bestanden: passed.size, leben: livesNow()})")

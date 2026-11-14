@@ -12131,6 +12131,10 @@ function showHome(){
   if(anmeldungSperre()) return;     // Pflicht-Anmeldung, 28.10.2026
   const stelle = homeMode === 'words' && sichtbar('levelView') ? pfadStelle : 0;
   pfadStelle = 0;
+  /* Die Mindesthoehe aus stufeWaehlen() nur behalten, wenn es gleich an die
+     alte Stelle zurueckgeht - sonst oeffnet die Startseite oben, und ein
+     kurzer Reiter braucht keinen leeren Bildschirm darunter. */
+  if(!stelle) $('wordsHome').style.minHeight = '';
   showView('pfad'); setzeZurueck('', null);
   $('modeWords').setAttribute('aria-selected', homeMode==='words'); $('modeStories').setAttribute('aria-selected', homeMode==='stories');
   $('modeTopf').setAttribute('aria-selected', homeMode==='topf');
@@ -12209,11 +12213,41 @@ function stufeStand(st){
   const art = done === L.length ? 'fertig' : (inDerKette(L[0]) ? 'offen' : 'zu');
   return {art, done, n: L.length};
 }
+/* Ein Tipp auf einen Reiter wechselt nur, was darunter steht - die Leiste
+   selbst bleibt genau da, wo der Finger sie getroffen hat. Ajdin am
+   14.11.2026: "wenn man auf B1 zb tippt dann springt das bild so komisch
+   wieder nach oben mach das raus".
+   Warum es sprang: showPath() leert erst die Sektionen. Fuer einen Augenblick
+   ist die Seite kuerzer als der Bildschirm, der Browser klemmt die Stelle
+   auf 0, und als die neuen Sektionen dastanden, stand man oben. In einen
+   kurzen Reiter (C1 "kommt bald", ein Reiter mit allen Sektionen zu) ginge
+   es auch ohne das Leeren nicht anders: die Seite reichte nicht bis dahin.
+   Deshalb wie bei sektionAufklappen(): Lage der Leiste vorher merken, und
+   damit die Stelle erreichbar bleibt, bekommt #wordsHome eine Mindesthoehe -
+   ab der Leiste ein Bildschirm abzueglich ihrer Lage. Ganz oben (scrollY 0)
+   braucht es keine, die Stelle 0 gibt es immer. Danach um den Rest
+   nachscrollen, ohne Fahrt (behavior 'instant'). Alles in einem Zug vor
+   dem naechsten Bild, es ruckelt nichts. Die Mindesthoehe bleibt stehen,
+   bis wieder ein Reiter gewaehlt wird oder die Startseite neu aufgeht
+   (showHome); vorher wegnehmen hiesse, die Seite springt doch noch. */
 function stufeWaehlen(st){
+  const leiste = $('reiterLeiste'), feld = $('wordsHome');
+  /* In Bildschirmpunkten, wie scrollBy und innerHeight - siehe rectFaktor() */
+  const oben = () => leiste.getBoundingClientRect().top * rectFaktor();
+  const vorher = (leiste && leiste.offsetParent) ? oben() : null;
+  if(feld){
+    feld.style.minHeight = '';
+    if(vorher !== null && innerHeight > 0 && window.scrollY > 0)
+      feld.style.minHeight = Math.ceil(Math.max(0, innerHeight - vorher) / GROSS) + 'px';
+  }
   stufeGewaehlt = {st, bei: stufeVon(firstOpen())};
   offeneSektion = laufendeSektion(st);
   showPath();
   sektionsFarbe();
+  if(vorher !== null){
+    const versatz = oben() - vorher;
+    if(Math.abs(versatz) > 0.5) scrollBy({top: versatz, behavior: 'instant'});
+  }
 }
 function reiterLeisteZeichnen(stufe){
   const leiste = $('reiterLeiste'); if(!leiste) return;

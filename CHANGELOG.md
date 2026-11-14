@@ -56,7 +56,11 @@ are in the Play Store listing. Format:
   at 320 px or with a large system font the line gets smaller (down to 7 px),
   and if that is not enough, "done" and "locked" show only their sign and the
   progress only the number passed, so no number is ever cut off. Dutch "soon"
-  is now *volgt* instead of *binnenkort*.
+  is now *volgt* instead of *binnenkort*. Tapping a tab keeps the tab bar exactly
+  where it is on the screen and only changes what is below it (reported by the
+  maintainer on 14.11.2026: after tapping B1 the page jumped back to the top,
+  because the page was briefly shorter than the screen while the sections were
+  redrawn).
   Learners placed before the tabs get the two new levels as "Continue" even
   though they lie before their placement; once passed, "Continue" and the
   button after the test lead to the other new level and then back to the
