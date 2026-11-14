@@ -88,7 +88,7 @@ brat	bror	zmaj zmaj::04_familie
 sestra	syster	zmaj zmaj::04_familie
 sin	son	zmaj zmaj::04_familie
 kćerka	dotter	zmaj zmaj::04_familie
-dijete	barn	zmaj zmaj::04_familie
+dijete	barn (ett)	zmaj zmaj::04_familie
 djeca	barn (flera)	zmaj zmaj::04_familie
 žena	hustru	zmaj zmaj::04_familie
 muž	make	zmaj zmaj::04_familie

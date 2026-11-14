@@ -1,7 +1,7 @@
 bs	fr	kind	id
-Merhaba	Salut	word	hallo:Merhaba
+Merhaba	Salut (en arrivant)	word	hallo:Merhaba
 Dobro jutro	Bonjour (le matin)	word	guten morgen:Dobro jutro
-Dobar dan	Bonjour	word	guten tag:Dobar dan
+Dobar dan	Bonjour (la journée)	word	guten tag:Dobar dan
 Dobro veče	Bonsoir	word	guten abend:Dobro veče
 Laku noć / Lahku noć	Bonne nuit	word	gute nacht:Laku noć / Lahku noć
 Doviđenja	Au revoir	word	auf wiedersehen:Doviđenja
@@ -579,7 +579,7 @@ orah	noix / noyer	word	walnuss / walnussbaum:orah
 korijen	racine	word	wurzel:korijen
 Ko?	Qui ?	word	wer?:Ko?
 Šta?	Quoi ?	word	was?:Šta?
-Gdje?	Où ?	word	wo?:Gdje?
+Gdje?	Où (sans mouvement) ?	word	wo?:Gdje?
 Kuda?	Où (vers où) ?	word	wohin?:Kuda?
 Odakle?	D'où ?	word	woher?:Odakle?
 Kada?	Quand ?	word	wann?:Kada?
@@ -7996,7 +7996,7 @@ gutljaj	gorgée	word	schluck:gutljaj
 Popij bar gutljaj vode.	Bois au moins une gorgée d'eau.	word	trink wenigstens einen schluck wasser.:Popij bar gutljaj vode.
 dunum	dunum (1 000 m²)	word	dunum (1.000 m²):dunum
 Imamo dva dunuma zemlje.	Nous avons deux dunums de terre.	word	wir haben zwei dunum land.:Imamo dva dunuma zemlje.
-Dobar dan	Bonjour	sentence	s0001
+Dobar dan	Bonjour (la journée)	sentence	s0001
 Merhaba, kako si?	Salut, comment ça va ?	sentence	s0002
 Kako si?	Comment vas-tu ?	sentence	s0003
 Hvala puno!	Merci beaucoup !	sentence	s0004

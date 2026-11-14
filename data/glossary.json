@@ -1661,9 +1661,9 @@
     "de": "Kind",
     "en": "child",
     "tr": "çocuk",
-    "sv": "barn",
+    "sv": "barn (ett)",
     "nl": "kind",
-    "nb": "barn",
+    "nb": "barn (ett)",
     "da": "barn",
     "fr": "enfant"
    }
@@ -3742,7 +3742,7 @@
     "en": "or",
     "tr": "veya",
     "sv": "eller",
-    "nl": "of",
+    "nl": "of (keuze)",
     "nb": "eller",
     "da": "eller",
     "fr": "ou"
@@ -7328,7 +7328,7 @@
    "translations": {
     "de": "ich muss",
     "en": "I have to",
-    "tr": "-meliyim",
+    "tr": "zorundayım",
     "sv": "jag måste",
     "nl": "ik moet",
     "nb": "jeg må",
@@ -12060,7 +12060,7 @@
    "translations": {
     "de": "Verkäufer",
     "en": "seller",
-    "tr": "satıcı",
+    "tr": "satıcı (erkek)",
     "sv": "säljare",
     "nl": "verkoper",
     "nb": "selger",
@@ -18806,7 +18806,7 @@
    "bs": "ćeš",
    "translations": {
     "de": "du wirst",
-    "en": "you will",
+    "en": "you will (singular)",
     "tr": "-eceksin",
     "sv": "du ska",
     "nl": "jij zult",

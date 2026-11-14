@@ -13,12 +13,15 @@ Kein Paar kad/kada in varianten.py, weil kada auch „Badewanne“ heisst.
 V4 und B8: In der Auswahl stand als falscher Knopf ein Wort, das genauso richtig
 ist (Molim neben „Gern geschehen“, dići neben podići, zajam neben pozajmica).
 B9: „(Antwort darauf)“ als Bedeutung von Alejkumu selam verwies ins Leere.
+V5: Hatte nur eines von zwei Woertern im selben Level eine Klammer („How are
+you?“ neben „How are you? (formal)“), passte die Frage auf beide Knoepfe.
 Die Tests im Browser stehen in tests_e2e/test_pruefbericht14_antworten.py und
-tests_e2e/test_antworten.py (GESPERRT).
+tests_e2e/test_antworten.py (GESPERRT, TEIL_DER_FRAGE).
 """
 import io
 import json
 import os
+import re
 
 V3_WOERTER = {
     "wann kommst du?:Kada dolaziš?": ["Kad dolaziš?"],
@@ -149,3 +152,87 @@ def test_b9_ton_bleibt(wurzel):
     with io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8") as f:
         toene = json.load(f)["toene"]
     assert [t["datei"] for t in toene if t["text"] == "Alejkumu selam"] == ["w1987.mp3"]
+
+
+# V5: Bei vielen Paaren hatte nur eines der beiden Woerter eine Klammer. Die Frage
+# ohne Klammer passte dann auf beide Knoepfe: auf Englisch stand bei „How are you?“
+# (Kako si?) Kako ste mit „How are you? (formal)“ als falscher Knopf, in 185 von 400
+# Ziehungen. Jetzt hat auch die andere Seite eine Klammer, nur in uebersetzungen.py;
+# keine Kennung aendert sich, das Deutsche bleibt (AGENTS.md, Regel 1).
+V5_NEU = {
+    "en": {"Kako si?": "How are you? (informal)", "tebi / ti": "to you (singular)",
+           "ćeš": "you will (singular)"},
+    "tr": {"iznad": "üstünde (yukarıda)", "moram": "zorundayım", "prodavač": "satıcı (erkek)"},
+    "sv": {"dijete": "barn (ett)"},
+    "nl": {"ili": "of (keuze)", "za": "voor (ten behoeve van)"},
+    "nb": {"dijete": "barn (ett)", "onda": "så (i tid)"},
+    "da": {"otac": "far (formelt)", "onda": "så (i tid)"},
+    "fr": {"Merhaba": "Salut (en arrivant)", "Dobar dan": "Bonjour (la journée)",
+           "Gdje?": "Où (sans mouvement) ?"},
+}
+
+
+def _bed(s):
+    """Wie _bedeutung in web/index.html: klein, Satzzeichen am Ende weg."""
+    return re.sub(r"\s+", " ", re.sub(r"[.!?…]+$", "", str(s or "").lower())).strip()
+
+
+def _ohne_klammer(s):
+    """Je Form die Klammer(n) am Ende weg, wie TEIL_DER_FRAGE in tests_e2e/test_antworten.py."""
+    return [_bed(re.sub(r"(\s*\([^)]*\))+(?=[\s.!?…]*$)", "", _bed(f))) for f in str(s).split(" / ")]
+
+
+def _gesperrt(w, x, nie):
+    """Was die App in der Auswahl ohnehin nie nebeneinander stellt (geschwister())."""
+    formen = lambda s: [_bed(f) for f in str(s).split(" / ")]
+    auch = lambda y: [f for a in (y.get("auch") or []) + (y.get("auch_var") or []) for f in formen(a)]
+    return (_bed(w["de"]) == _bed(x["de"]) or (w["bs"], x["bs"]) in nie or (x["bs"], w["bs"]) in nie
+            or x.get("partner") == w["bs"] or w.get("partner") == x["bs"]
+            or set(formen(x["bs"])) & set(auch(w)) or set(formen(w["bs"])) & set(auch(x)))
+
+
+def test_v5_neue_bedeutungen(alle_daten):
+    for code, neu in V5_NEU.items():
+        woerter = {}
+        for k in alle_daten[code]["kategorien"]:
+            for w in k["words"]:
+                woerter.setdefault(w["bs"], []).append(w)
+        for bs, de in neu.items():
+            assert [w["de"] for w in woerter[bs] if w["id"].split(":")[0] in {
+                "wie geht's dir?", "dir", "du wirst", "über / oberhalb", "ich muss", "verkäufer",
+                "kind", "oder", "für", "dann", "vater", "hallo", "guten tag", "wo?"}] == [de], (code, bs)
+
+
+def test_v5_kennungen_bleiben(grunddaten):
+    kennungen = {w["id"] for k in grunddaten["kategorien"] for w in k["words"]}
+    for kennung in ("wie geht's dir?:Kako si?", "dir:tebi / ti", "du wirst:ćeš", "über / oberhalb:iznad",
+                    "ich muss:moram", "verkäufer:prodavač", "kind:dijete", "oder:ili", "für:za",
+                    "dann:onda", "vater:otac", "hallo:Merhaba", "guten tag:Dobar dan", "wo?:Gdje?"):
+        assert kennung in kennungen, kennung
+
+
+def test_v5_woerterbuch_der_geschichten_bleibt(alle_daten):
+    """za und onda bekommen ihre Klammer nur als Wort (woerter): in den Geschichten
+    heisst za auch „pro“, „in“ und „an“ (za kilogram, za deset minuta, za stolom)."""
+    assert alle_daten["nl"]["woerterbuch"]["za"] == "voor"
+    assert alle_daten["nb"]["woerterbuch"]["onda"] == "så"
+    assert alle_daten["da"]["woerterbuch"]["onda"] == "så"
+
+
+def test_v5_keine_einseitige_klammer_im_selben_level(alle_daten, index_html):
+    """Heisst die Frage ohne Klammer genau wie ein anderes Wort desselben Levels ohne
+    seine Klammer am Ende, passt sie auf beide Knoepfe. Vorher 17 Paare in sieben
+    Sprachen, jetzt keins. "sie sind" (oni su) neben "Sie sind" (vi ste) bleibt: die
+    Grossschreibung trennt sie, genau das uebt das Level Konjugation."""
+    nie = _nie_nebeneinander(index_html)
+    rest = []
+    for code, daten in alle_daten.items():
+        for k in daten["kategorien"]:
+            for w in k["words"]:
+                frage = _bed(w["de"])
+                for x in k["words"]:
+                    if x["bs"] == w["bs"] or frage not in _ohne_klammer(x["de"]) or _gesperrt(w, x, nie):
+                        continue
+                    if {w["bs"], x["bs"]} != {"oni su", "vi ste"}:
+                        rest.append((code, k["id"], w["bs"], w["de"], x["bs"], x["de"]))
+    assert rest == []

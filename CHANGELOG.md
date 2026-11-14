@@ -476,6 +476,18 @@ are in the Play Store listing. Format:
   a writing task it could not be solved. The ID changes from
   `(antwort darauf):Alejkumu selam` to `antwort auf selam alejkum:Alejkumu selam`;
   `UMBENANNT` moves progress, review box and stars along. The recording stays.
+- Multiple choice (review for 1.4, 14.11.2026, V5): when only one of two words in a
+  level had a note in brackets, the question without one fit both buttons, e.g.
+  English "How are you?" (*Kako si?*) next to "How are you? (formal)" (*Kako ste?*),
+  in 185 of 400 draws. The other side now has a note too, 17 pairs in seven
+  languages: en "How are you? (informal)", "to you (singular)", "you will
+  (singular)"; tr "üstünde (yukarıda)", "zorundayım", "satıcı (erkek)"; sv/nb "barn
+  (ett)"; da "far (formelt)"; nl "of (keuze)", "voor (ten behoeve van)"; nb/da "så (i
+  tid)" (not "deretter"/"derefter", that is *zatim* in the same level); fr "Salut (en
+  arrivant)", "Bonjour (la journée)", "Où (sans mouvement) ?". Only
+  `uebersetzungen.py`, no ID changes; *za* and *onda* only as words (`"woerter"`), the
+  story dictionary keeps "voor" and "så". `tests_e2e/test_antworten.py` now strips
+  the note at the end before comparing.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

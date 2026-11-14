@@ -974,7 +974,8 @@ INHALT = {
     "Gern geschehen": "You are welcome",
     "Entschuldigung (du)": "Sorry (informal)",
     "Entschuldigung (Sie)": "Sorry (formal)",
-    "Wie geht's dir?": "How are you?",
+    # Pruefbericht 1.4 (14.11.2026), V5: Kako ste steht daneben als "How are you? (formal)", ohne Klammer passte die Frage auf beide (auch Lueckensatz "Kako ___?").
+    "Wie geht's dir?": "How are you? (informal)",
     "Wie geht es Ihnen?": "How are you? (formal)",
     "Gut": "Good",
     "Schlecht": "Bad",
@@ -1558,7 +1559,8 @@ INHALT = {
     "Ich sage dem Freund": "I tell my friend",
     "Ich schreibe der Oma": "I am writing to grandma",
     "mir": "to me",
-    "dir": "to you",
+    # Pruefbericht 1.4 (14.11.2026), V5: vama / vam steht im selben Level als "to you (plural or formal)".
+    "dir": "to you (singular)",
     "ihm": "to him",
     "ihr (Dativ)": "to her (dative)",
     "uns": "to us",
@@ -1635,7 +1637,8 @@ INHALT = {
     "Was hast du gemacht? (m/w)": "What did you do? (m/f)",
     # ---- Wörter · Zukunft und Pläne ----------------------------------------
     "ich werde": "I will",
-    "du wirst": "you will",
+    # Pruefbericht 1.4 (14.11.2026), V5: ćete steht im selben Level als "you will (plural)".
+    "du wirst": "you will (singular)",
     "er / sie wird": "he / she will",
     "wir werden": "we will",
     "ihr werdet": "you will (plural)",
@@ -12509,7 +12512,8 @@ INHALT = {
     "bei": "-de",
     "ohne": "-siz",
     "zu / in Richtung": "-e doğru",
-    "über / oberhalb": "üstünde",
+    # Pruefbericht 1.4 (14.11.2026), V5: na steht im selben Level als "üstünde (nerede)".
+    "über / oberhalb": "üstünde (yukarıda)",
     "unter": "altında",
     "zwischen": "arasında",
     "hinter": "arkasında",
@@ -12636,7 +12640,8 @@ INHALT = {
     "Ich werde es versuchen": "Deneyeceğim",
     # ---- Wörter · Können, müssen, wollen -----------------------------------
     "müssen": "zorunda olmak",
-    "ich muss": "-meliyim",
+    # Pruefbericht 1.4 (14.11.2026), V5: trebao bih steht im selben Level als "-meliyim (e/k)"; zorunda = verpflichtet (Wiktionary).
+    "ich muss": "zorundayım",
     "du musst": "-melisin",
     "wir müssen": "-meliyiz",
     "er / sie kann": "yapabilir",
@@ -13023,7 +13028,8 @@ INHALT = {
     "ein Haus kaufen": "ev satın almak",
     "Kaufvertrag": "satış sözleşmesi",
     "Verkäufer (Vertragspartei)": "satıcı",
-    "Verkäufer": "satıcı",
+    # Pruefbericht 1.4 (14.11.2026), V5: prodavačica steht im selben Level als "satıcı (kadın)". prodavac (Vertragspartei) bleibt "satıcı".
+    "Verkäufer": "satıcı (erkek)",
     "Käufer": "alıcı",
     "Eigentümer": "mülk sahibi",
     "Eigentum": "mülkiyet",
@@ -22998,7 +23004,8 @@ INHALT = {
     "Schwester": "syster",
     "Sohn": "son",
     "Tochter": "dotter",
-    "Kind": "barn",
+    # Pruefbericht 1.4 (14.11.2026), V5: djeca steht im selben Level als "barn (flera)".
+    "Kind": "barn (ett)",
     "Kinder": "barn (flera)",
     "Ehefrau": "hustru",
     "Ehemann": "make",
@@ -33721,6 +33728,9 @@ INHALT = {
 "woerter": {
     # Ausnahmen: bosnisches Wort -> Bedeutung in dieser Sprache.
     # Die normalen Vokabeln stehen unten unter "texte".
+    # Pruefbericht 1.4 (14.11.2026), V5: za steht im Level praepositionen neben ispred "voor (plaats)" und prije "voor (tijd)". Nur fuer das Wort:
+    # Im Woerterbuch der Geschichten bleibt "für" = voor (za kilogram, za deset minuta, za stolom).
+    "za": "voor (ten behoeve van)",
     "gotov": "klaar / af",
     "budućnost": "toekomst",
     # 06.11.2026, Pakete 5 bis 9: Beispiel, Fall, Form, Regel, Mittel und Person stehen schon als
@@ -34351,7 +34361,8 @@ INHALT = {
     "ich will nicht": "ik wil niet",
     "und": "en",
     "aber": "maar",
-    "oder": "of",
+    # Pruefbericht 1.4 (14.11.2026), V5: da li steht im selben Level als "of (in vragen)".
+    "oder": "of (keuze)",
     "weil": "omdat",
     "dass": "dat",
     "ob": "of (in vragen)",
@@ -44678,6 +44689,9 @@ INHALT = {
 "woerter": {
     # Ausnahmen: bosnisches Wort -> Bedeutung in dieser Sprache.
     # Die normalen Vokabeln stehen unten unter "texte".
+    # Pruefbericht 1.4 (14.11.2026), V5: onda steht im Level kleine_woerter neben tako "så (i så høy grad)". Nicht "deretter":
+    # so heisst zatim im selben Level. Nur fuer das Wort, im Woerterbuch der Geschichten bleibt "så".
+    "onda": "så (i tid)",
     "gotov": "ferdig",
     "budućnost": "framtid",
     # 06.11.2026, Pakete 5 bis 9: Beispiel, Fall, Form, Regel, Mittel und Person stehen schon als
@@ -44914,7 +44928,8 @@ INHALT = {
     "Schwester": "søster",
     "Sohn": "sønn",
     "Tochter": "datter",
-    "Kind": "barn",
+    # Pruefbericht 1.4 (14.11.2026), V5: djeca steht im selben Level als "barn (flere)"; ett = Zahlwort (et waere der Artikel).
+    "Kind": "barn (ett)",
     "Kinder": "barn (flere)",
     "Ehefrau": "kone",
     "Ehemann": "ektemann",
@@ -55635,6 +55650,9 @@ INHALT = {
 "woerter": {
     # Ausnahmen: bosnisches Wort -> Bedeutung in dieser Sprache.
     # Die normalen Vokabeln stehen unten unter "texte".
+    # Pruefbericht 1.4 (14.11.2026), V5: onda steht im Level kleine_woerter neben tako "så (i så høj grad)". Nicht "derefter":
+    # so heisst zatim im selben Level. Nur fuer das Wort, im Woerterbuch der Geschichten bleibt "så".
+    "onda": "så (i tid)",
     "gotov": "færdig",
     "budućnost": "fremtid",
     # 06.11.2026, Pakete 5 bis 9: Beispiel, Fall, Form, Regel, Mittel und Person stehen schon als
@@ -55867,7 +55885,8 @@ INHALT = {
     # ---- Wörter · Familie --------------------------------------------------
     "Mutter": "mor",
     "Mama": "mor",
-    "Vater": "far",
+    # Pruefbericht 1.4 (14.11.2026), V5: babo steht im selben Level als "far (bosnisk babo)"; formelt wie bei hustru / ægtemand.
+    "Vater": "far (formelt)",
     "Papa (bosnisch)": "far (bosnisk babo)",
     "Bruder": "bror",
     "Schwester": "søster",
@@ -66746,8 +66765,10 @@ INHALT = {
     "Fortgeschritten": "Avancé",
     "Amtssprache": "Langue administrative",
     # ---- Wörter · Grundlagen -----------------------------------------------
-    "Hallo": "Salut",
-    "Guten Tag": "Bonjour",
+    # Pruefbericht 1.4 (14.11.2026), V5: Ćao steht im selben Level als "Salut (en partant)".
+    "Hallo": "Salut (en arrivant)",
+    # Pruefbericht 1.4 (14.11.2026), V5: Dobro jutro steht im selben Level als "Bonjour (le matin)".
+    "Guten Tag": "Bonjour (la journée)",
     "Guten Morgen": "Bonjour (le matin)",
     "Guten Abend": "Bonsoir",
     "Gute Nacht": "Bonne nuit",
@@ -67107,7 +67128,8 @@ INHALT = {
     # ---- Wörter · Fragen stellen -------------------------------------------
     "Wer?": "Qui ?",
     "Was?": "Quoi ?",
-    "Wo?": "Où ?",
+    # Pruefbericht 1.4 (14.11.2026), V5: Kuda steht im selben Level (und in der Tabelle der Lektion) als "Où (vers où) ?".
+    "Wo?": "Où (sans mouvement) ?",
     "Wohin?": "Où (vers où) ?",
     "Woher?": "D'où ?",
     "Wann?": "Quand ?",

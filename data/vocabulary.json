@@ -9571,7 +9571,7 @@
     "nl": "Hallo",
     "nb": "Hei",
     "da": "Hej",
-    "fr": "Salut"
+    "fr": "Salut (en arrivant)"
    },
    "audio": "web/audio/w0001.mp3"
   },
@@ -9607,7 +9607,7 @@
     "nl": "Goedendag",
     "nb": "God dag",
     "da": "Goddag",
-    "fr": "Bonjour"
+    "fr": "Bonjour (la journée)"
    },
    "audio": "web/audio/w0002.mp3"
   },
@@ -9853,7 +9853,7 @@
    "section": "alltag",
    "translations": {
     "de": "Wie geht's dir?",
-    "en": "How are you?",
+    "en": "How are you? (informal)",
     "tr": "Nasılsın?",
     "sv": "Hur mår du?",
     "nl": "Hoe gaat het met je?",
@@ -10992,7 +10992,7 @@
     "sv": "far",
     "nl": "vader",
     "nb": "far",
-    "da": "far",
+    "da": "far (formelt)",
     "fr": "père"
    },
    "audio": "web/audio/w0079.mp3"
@@ -11097,9 +11097,9 @@
     "de": "Kind",
     "en": "child",
     "tr": "çocuk",
-    "sv": "barn",
+    "sv": "barn (ett)",
     "nl": "kind",
-    "nb": "barn",
+    "nb": "barn (ett)",
     "da": "barn",
     "fr": "enfant"
    },
@@ -20011,7 +20011,7 @@
     "nl": "Waar?",
     "nb": "Hvor?",
     "da": "Hvor?",
-    "fr": "Où ?"
+    "fr": "Où (sans mouvement) ?"
    },
    "audio": "web/audio/w0335.mp3"
   },
@@ -22096,7 +22096,7 @@
     "en": "or",
     "tr": "veya",
     "sv": "eller",
-    "nl": "of",
+    "nl": "of (keuze)",
     "nb": "eller",
     "da": "eller",
     "fr": "ou"
@@ -22547,8 +22547,8 @@
     "tr": "o zaman",
     "sv": "sedan",
     "nl": "dan",
-    "nb": "så",
-    "da": "så",
+    "nb": "så (i tid)",
+    "da": "så (i tid)",
     "fr": "alors"
    },
    "audio": "web/audio/w1265.mp3"
@@ -26434,7 +26434,7 @@
     "en": "for",
     "tr": "için",
     "sv": "för",
-    "nl": "voor",
+    "nl": "voor (ten behoeve van)",
     "nb": "for",
     "da": "for",
     "fr": "pour"
@@ -26504,7 +26504,7 @@
    "translations": {
     "de": "über / oberhalb",
     "en": "above",
-    "tr": "üstünde",
+    "tr": "üstünde (yukarıda)",
     "sv": "ovanför",
     "nl": "boven",
     "nb": "over",
@@ -26989,7 +26989,7 @@
    "section": "saetze2",
    "translations": {
     "de": "dir",
-    "en": "to you",
+    "en": "to you (singular)",
     "tr": "sana",
     "sv": "till dig",
     "nl": "aan jou",
@@ -28321,7 +28321,7 @@
    "section": "saetze2",
    "translations": {
     "de": "du wirst",
-    "en": "you will",
+    "en": "you will (singular)",
     "tr": "-eceksin",
     "sv": "du ska",
     "nl": "jij zult",
@@ -28700,7 +28700,7 @@
    "translations": {
     "de": "ich muss",
     "en": "I have to",
-    "tr": "-meliyim",
+    "tr": "zorundayım",
     "sv": "jag måste",
     "nl": "ik moet",
     "nb": "jeg må",
@@ -34442,7 +34442,7 @@
    "translations": {
     "de": "Verkäufer",
     "en": "seller",
-    "tr": "satıcı",
+    "tr": "satıcı (erkek)",
     "sv": "säljare",
     "nl": "verkoper",
     "nb": "selger",

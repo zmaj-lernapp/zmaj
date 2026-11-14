@@ -31,7 +31,7 @@
     "nl": "Goedendag",
     "nb": "God dag",
     "da": "Goddag",
-    "fr": "Bonjour"
+    "fr": "Bonjour (la journée)"
    },
    "audio": "web/audio/w0002.mp3"
   },
@@ -61,7 +61,7 @@
    "bs": "Kako si?",
    "translations": {
     "de": "Wie geht's dir?",
-    "en": "How are you?",
+    "en": "How are you? (informal)",
     "tr": "Nasılsın?",
     "sv": "Hur mår du?",
     "nl": "Hoe gaat het met je?",

@@ -16,7 +16,7 @@
    <tuv xml:lang="nl"><seg>Hallo</seg></tuv>
    <tuv xml:lang="nb"><seg>Hei</seg></tuv>
    <tuv xml:lang="da"><seg>Hej</seg></tuv>
-   <tuv xml:lang="fr"><seg>Salut</seg></tuv>
+   <tuv xml:lang="fr"><seg>Salut (en arrivant)</seg></tuv>
   </tu>
   <tu tuid="guten morgen:Dobro jutro" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -40,7 +40,7 @@
    <tuv xml:lang="nl"><seg>Goedendag</seg></tuv>
    <tuv xml:lang="nb"><seg>God dag</seg></tuv>
    <tuv xml:lang="da"><seg>Goddag</seg></tuv>
-   <tuv xml:lang="fr"><seg>Bonjour</seg></tuv>
+   <tuv xml:lang="fr"><seg>Bonjour (la journée)</seg></tuv>
   </tu>
   <tu tuid="guten abend:Dobro veče" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -202,7 +202,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Kako si?</seg></tuv>
    <tuv xml:lang="de"><seg>Wie geht's dir?</seg></tuv>
-   <tuv xml:lang="en"><seg>How are you?</seg></tuv>
+   <tuv xml:lang="en"><seg>How are you? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Nasılsın?</seg></tuv>
    <tuv xml:lang="sv"><seg>Hur mår du?</seg></tuv>
    <tuv xml:lang="nl"><seg>Hoe gaat het met je?</seg></tuv>
@@ -963,7 +963,7 @@
    <tuv xml:lang="sv"><seg>far</seg></tuv>
    <tuv xml:lang="nl"><seg>vader</seg></tuv>
    <tuv xml:lang="nb"><seg>far</seg></tuv>
-   <tuv xml:lang="da"><seg>far</seg></tuv>
+   <tuv xml:lang="da"><seg>far (formelt)</seg></tuv>
    <tuv xml:lang="fr"><seg>père</seg></tuv>
   </tu>
   <tu tuid="papa (bosnisch):babo" segtype="phrase">
@@ -1032,9 +1032,9 @@
    <tuv xml:lang="de"><seg>Kind</seg></tuv>
    <tuv xml:lang="en"><seg>child</seg></tuv>
    <tuv xml:lang="tr"><seg>çocuk</seg></tuv>
-   <tuv xml:lang="sv"><seg>barn</seg></tuv>
+   <tuv xml:lang="sv"><seg>barn (ett)</seg></tuv>
    <tuv xml:lang="nl"><seg>kind</seg></tuv>
-   <tuv xml:lang="nb"><seg>barn</seg></tuv>
+   <tuv xml:lang="nb"><seg>barn (ett)</seg></tuv>
    <tuv xml:lang="da"><seg>barn</seg></tuv>
    <tuv xml:lang="fr"><seg>enfant</seg></tuv>
   </tu>
@@ -6976,7 +6976,7 @@
    <tuv xml:lang="nl"><seg>Waar?</seg></tuv>
    <tuv xml:lang="nb"><seg>Hvor?</seg></tuv>
    <tuv xml:lang="da"><seg>Hvor?</seg></tuv>
-   <tuv xml:lang="fr"><seg>Où ?</seg></tuv>
+   <tuv xml:lang="fr"><seg>Où (sans mouvement) ?</seg></tuv>
   </tu>
   <tu tuid="wohin?:Kuda?" segtype="phrase">
    <prop type="x-kind">word</prop>
@@ -8365,7 +8365,7 @@
    <tuv xml:lang="en"><seg>or</seg></tuv>
    <tuv xml:lang="tr"><seg>veya</seg></tuv>
    <tuv xml:lang="sv"><seg>eller</seg></tuv>
-   <tuv xml:lang="nl"><seg>of</seg></tuv>
+   <tuv xml:lang="nl"><seg>of (keuze)</seg></tuv>
    <tuv xml:lang="nb"><seg>eller</seg></tuv>
    <tuv xml:lang="da"><seg>eller</seg></tuv>
    <tuv xml:lang="fr"><seg>ou</seg></tuv>
@@ -8666,8 +8666,8 @@
    <tuv xml:lang="tr"><seg>o zaman</seg></tuv>
    <tuv xml:lang="sv"><seg>sedan</seg></tuv>
    <tuv xml:lang="nl"><seg>dan</seg></tuv>
-   <tuv xml:lang="nb"><seg>så</seg></tuv>
-   <tuv xml:lang="da"><seg>så</seg></tuv>
+   <tuv xml:lang="nb"><seg>så (i tid)</seg></tuv>
+   <tuv xml:lang="da"><seg>så (i tid)</seg></tuv>
    <tuv xml:lang="fr"><seg>alors</seg></tuv>
   </tu>
   <tu tuid="danach:zatim" segtype="phrase">
@@ -11257,7 +11257,7 @@
    <tuv xml:lang="en"><seg>for</seg></tuv>
    <tuv xml:lang="tr"><seg>için</seg></tuv>
    <tuv xml:lang="sv"><seg>för</seg></tuv>
-   <tuv xml:lang="nl"><seg>voor</seg></tuv>
+   <tuv xml:lang="nl"><seg>voor (ten behoeve van)</seg></tuv>
    <tuv xml:lang="nb"><seg>for</seg></tuv>
    <tuv xml:lang="da"><seg>for</seg></tuv>
    <tuv xml:lang="fr"><seg>pour</seg></tuv>
@@ -11303,7 +11303,7 @@
    <tuv xml:lang="bs"><seg>iznad</seg></tuv>
    <tuv xml:lang="de"><seg>über / oberhalb</seg></tuv>
    <tuv xml:lang="en"><seg>above</seg></tuv>
-   <tuv xml:lang="tr"><seg>üstünde</seg></tuv>
+   <tuv xml:lang="tr"><seg>üstünde (yukarıda)</seg></tuv>
    <tuv xml:lang="sv"><seg>ovanför</seg></tuv>
    <tuv xml:lang="nl"><seg>boven</seg></tuv>
    <tuv xml:lang="nb"><seg>over</seg></tuv>
@@ -11626,7 +11626,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>tebi / ti</seg></tuv>
    <tuv xml:lang="de"><seg>dir</seg></tuv>
-   <tuv xml:lang="en"><seg>to you</seg></tuv>
+   <tuv xml:lang="en"><seg>to you (singular)</seg></tuv>
    <tuv xml:lang="tr"><seg>sana</seg></tuv>
    <tuv xml:lang="sv"><seg>till dig</seg></tuv>
    <tuv xml:lang="nl"><seg>aan jou</seg></tuv>
@@ -12514,7 +12514,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>ćeš</seg></tuv>
    <tuv xml:lang="de"><seg>du wirst</seg></tuv>
-   <tuv xml:lang="en"><seg>you will</seg></tuv>
+   <tuv xml:lang="en"><seg>you will (singular)</seg></tuv>
    <tuv xml:lang="tr"><seg>-eceksin</seg></tuv>
    <tuv xml:lang="sv"><seg>du ska</seg></tuv>
    <tuv xml:lang="nl"><seg>jij zult</seg></tuv>
@@ -12767,7 +12767,7 @@
    <tuv xml:lang="bs"><seg>moram</seg></tuv>
    <tuv xml:lang="de"><seg>ich muss</seg></tuv>
    <tuv xml:lang="en"><seg>I have to</seg></tuv>
-   <tuv xml:lang="tr"><seg>-meliyim</seg></tuv>
+   <tuv xml:lang="tr"><seg>zorundayım</seg></tuv>
    <tuv xml:lang="sv"><seg>jag måste</seg></tuv>
    <tuv xml:lang="nl"><seg>ik moet</seg></tuv>
    <tuv xml:lang="nb"><seg>jeg må</seg></tuv>
@@ -16595,7 +16595,7 @@
    <tuv xml:lang="bs"><seg>prodavač</seg></tuv>
    <tuv xml:lang="de"><seg>Verkäufer</seg></tuv>
    <tuv xml:lang="en"><seg>seller</seg></tuv>
-   <tuv xml:lang="tr"><seg>satıcı</seg></tuv>
+   <tuv xml:lang="tr"><seg>satıcı (erkek)</seg></tuv>
    <tuv xml:lang="sv"><seg>säljare</seg></tuv>
    <tuv xml:lang="nl"><seg>verkoper</seg></tuv>
    <tuv xml:lang="nb"><seg>selger</seg></tuv>
@@ -95980,7 +95980,7 @@
    <tuv xml:lang="nl"><seg>Goedendag</seg></tuv>
    <tuv xml:lang="nb"><seg>God dag</seg></tuv>
    <tuv xml:lang="da"><seg>Goddag</seg></tuv>
-   <tuv xml:lang="fr"><seg>Bonjour</seg></tuv>
+   <tuv xml:lang="fr"><seg>Bonjour (la journée)</seg></tuv>
   </tu>
   <tu tuid="s0002" segtype="sentence">
    <prop type="x-kind">sentence</prop>
@@ -95998,7 +95998,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Kako si?</seg></tuv>
    <tuv xml:lang="de"><seg>Wie geht's dir?</seg></tuv>
-   <tuv xml:lang="en"><seg>How are you?</seg></tuv>
+   <tuv xml:lang="en"><seg>How are you? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Nasılsın?</seg></tuv>
    <tuv xml:lang="sv"><seg>Hur mår du?</seg></tuv>
    <tuv xml:lang="nl"><seg>Hoe gaat het met je?</seg></tuv>

@@ -1,7 +1,7 @@
 id,level_position,level,section,bs,de,en,tr,sv,nl,nb,da,fr,audio
-hallo:Merhaba,1,basics,alltag,Merhaba,Hallo,Hello,Merhaba,Hej,Hallo,Hei,Hej,Salut,web/audio/w0001.mp3
+hallo:Merhaba,1,basics,alltag,Merhaba,Hallo,Hello,Merhaba,Hej,Hallo,Hei,Hej,Salut (en arrivant),web/audio/w0001.mp3
 guten morgen:Dobro jutro,1,basics,alltag,Dobro jutro,Guten Morgen,Good morning,Günaydın,God morgon,Goedemorgen,God morgen,Godmorgen,Bonjour (le matin),web/audio/w0003.mp3
-guten tag:Dobar dan,1,basics,alltag,Dobar dan,Guten Tag,Good day,İyi günler,God dag,Goedendag,God dag,Goddag,Bonjour,web/audio/w0002.mp3
+guten tag:Dobar dan,1,basics,alltag,Dobar dan,Guten Tag,Good day,İyi günler,God dag,Goedendag,God dag,Goddag,Bonjour (la journée),web/audio/w0002.mp3
 guten abend:Dobro veče,1,basics,alltag,Dobro veče,Guten Abend,Good evening,İyi akşamlar,God kväll,Goedenavond,God kveld,Godaften,Bonsoir,web/audio/w0004.mp3
 gute nacht:Laku noć / Lahku noć,1,basics,alltag,Laku noć / Lahku noć,Gute Nacht,Good night,İyi geceler,God natt,Welterusten,God natt,Godnat,Bonne nuit,web/audio/w2142.mp3
 auf wiedersehen:Doviđenja,1,basics,alltag,Doviđenja,Auf Wiedersehen,Goodbye,Hoşça kal,Hej då,Tot ziens,Ha det,Farvel,Au revoir,web/audio/w0006.mp3
@@ -15,7 +15,7 @@ vielen dank:Hvala puno,1,basics,alltag,Hvala puno,Vielen Dank,Thank you very muc
 gern geschehen:Nema na čemu,1,basics,alltag,Nema na čemu,Gern geschehen,You are welcome,Rica ederim,Ingen orsak,Graag gedaan,Ingen årsak,Selv tak,De rien,web/audio/w0014.mp3
 entschuldigung (du):Izvini,1,basics,alltag,Izvini,Entschuldigung (du),Sorry (informal),Affedersin (sen),Förlåt (du),Sorry (jij),Unnskyld (du),Undskyld (du),Excuse-moi,web/audio/w0015.mp3
 entschuldigung (sie):Izvinite,1,basics,alltag,Izvinite,Entschuldigung (Sie),Sorry (formal),Affedersiniz (siz),Ursäkta (ni),Neemt u mij niet kwalijk (u),Unnskyld meg (høflig),Undskyld mig (De),Excusez-moi,web/audio/w0016.mp3
-wie geht's dir?:Kako si?,1,basics,alltag,Kako si?,Wie geht's dir?,How are you?,Nasılsın?,Hur mår du?,Hoe gaat het met je?,Hvordan går det med deg?,Hvordan går det med dig?,Comment vas-tu ?,web/audio/w0017.mp3
+wie geht's dir?:Kako si?,1,basics,alltag,Kako si?,Wie geht's dir?,How are you? (informal),Nasılsın?,Hur mår du?,Hoe gaat het met je?,Hvordan går det med deg?,Hvordan går det med dig?,Comment vas-tu ?,web/audio/w0017.mp3
 wie geht es ihnen?:Kako ste?,1,basics,alltag,Kako ste?,Wie geht es Ihnen?,How are you? (formal),Nasılsınız?,Hur mår ni? (artigt),Hoe gaat het met u?,Hvordan går det med Dem?,Hvordan går det med Dem?,Comment allez-vous ?,web/audio/w0018.mp3
 gut:Dobro,1,basics,alltag,Dobro,Gut,Good,İyi,Bra,Goed,Bra,Godt,Bien,web/audio/w0019.mp3
 schlecht:Loše,1,basics,alltag,Loše,Schlecht,Bad,Kötü,Dåligt,Slecht,Dårlig,Dårligt,Mal,web/audio/w0020.mp3
@@ -78,13 +78,13 @@ lila:ljubičasta,3,farben,alltag,ljubičasta,lila,purple,mor,lila,paars,lilla,li
 rosa:roza,3,farben,alltag,roza,rosa,pink,pembe,rosa,roze,rosa,lyserød,rose,web/audio/w0076.mp3
 mutter:majka,4,familie,alltag,majka,Mutter,mother,anne,mor,moeder,mor,mor,mère,web/audio/w0077.mp3
 mama:mama,4,familie,alltag,mama,Mama,mom,anneciğim,mamma,mama,mamma,mor,maman,web/audio/w0078.mp3
-vater:otac,4,familie,alltag,otac,Vater,father,baba,far,vader,far,far,père,web/audio/w0079.mp3
+vater:otac,4,familie,alltag,otac,Vater,father,baba,far,vader,far,far (formelt),père,web/audio/w0079.mp3
 papa (bosnisch):babo,4,familie,alltag,babo,Papa (bosnisch),dad (Bosnian),babacığım (Boşnakça babo),pappa (bosniska babo),papa (Bosnisch babo),pappa (bosnisk babo),far (bosnisk babo),papa (babo en bosnien),web/audio/w0080.mp3
 bruder:brat,4,familie,alltag,brat,Bruder,brother,erkek kardeş,bror,broer,bror,bror,frère,web/audio/w0081.mp3
 schwester:sestra,4,familie,alltag,sestra,Schwester,sister,kız kardeş,syster,zus,søster,søster,sœur,web/audio/w0082.mp3
 sohn:sin,4,familie,alltag,sin,Sohn,son,oğul,son,zoon,sønn,søn,fils,web/audio/w0083.mp3
 tochter:kćerka,4,familie,alltag,kćerka,Tochter,daughter,kız evlat,dotter,dochter,datter,datter,fille (enfant),web/audio/w0084.mp3
-kind:dijete,4,familie,alltag,dijete,Kind,child,çocuk,barn,kind,barn,barn,enfant,web/audio/w0085.mp3
+kind:dijete,4,familie,alltag,dijete,Kind,child,çocuk,barn (ett),kind,barn (ett),barn,enfant,web/audio/w0085.mp3
 kinder:djeca,4,familie,alltag,djeca,Kinder,children,çocuklar,barn (flera),kinderen,barn (flere),børn,enfants,web/audio/w0086.mp3
 ehefrau:žena,4,familie,alltag,žena,Ehefrau,wife,eş (kadın),hustru,echtgenote,kone,kone,épouse,web/audio/w0087.mp3
 ehemann:muž,4,familie,alltag,muž,Ehemann,husband,eş (erkek),make,echtgenoot,ektemann,mand,mari,web/audio/w0088.mp3
@@ -579,7 +579,7 @@ walnuss / walnussbaum:orah,23,natur,tiernatur,orah,Walnuss / Walnussbaum,walnut 
 wurzel:korijen,23,natur,tiernatur,korijen,Wurzel,root (plant),kök,rot (växt),wortel (van een plant),rot (plante),rod (plante),racine,web/audio/w1721.mp3
 wer?:Ko?,24,fragen,saetze,Ko?,Wer?,Who?,Kim?,Vem?,Wie?,Hvem?,Hvem?,Qui ?,web/audio/w0333.mp3
 was?:Šta?,24,fragen,saetze,Šta?,Was?,What?,Ne?,Vad?,Wat?,Hva?,Hvad?,Quoi ?,web/audio/w0334.mp3
-wo?:Gdje?,24,fragen,saetze,Gdje?,Wo?,Where?,Nerede?,Var?,Waar?,Hvor?,Hvor?,Où ?,web/audio/w0335.mp3
+wo?:Gdje?,24,fragen,saetze,Gdje?,Wo?,Where?,Nerede?,Var?,Waar?,Hvor?,Hvor?,Où (sans mouvement) ?,web/audio/w0335.mp3
 wohin?:Kuda?,24,fragen,saetze,Kuda?,Wohin?,Where to?,Nereye?,Vart?,Waarheen?,Hvor hen?,Hvorhen?,Où (vers où) ?,web/audio/w0336.mp3
 woher?:Odakle?,24,fragen,saetze,Odakle?,Woher?,Where from?,Nereden?,Varifrån?,Waarvandaan?,Hvorfra?,Hvorfra?,D'où ?,web/audio/w0337.mp3
 wann?:Kada?,24,fragen,saetze,Kada?,Wann?,When?,Ne zaman?,När?,Wanneer?,Når?,Hvornår?,Quand ?,web/audio/w0338.mp3
@@ -695,7 +695,7 @@ ich kann nicht:ne mogu,28,satzbau,saetze,ne mogu,ich kann nicht,I cannot,yapamam
 ich will nicht:neću,28,satzbau,saetze,neću,ich will nicht,I do not want,istemiyorum,jag vill inte,ik wil niet,jeg vil ikke,jeg vil ikke,je ne veux pas,web/audio/w0446.mp3
 und:i,28,satzbau,saetze,i,und,and,ve,och,en,og,og,et,web/audio/w0447.mp3
 aber:ali,28,satzbau,saetze,ali,aber,but,ama,men,maar,men,men,mais,web/audio/w0448.mp3
-oder:ili,28,satzbau,saetze,ili,oder,or,veya,eller,of,eller,eller,ou,web/audio/w0449.mp3
+oder:ili,28,satzbau,saetze,ili,oder,or,veya,eller,of (keuze),eller,eller,ou,web/audio/w0449.mp3
 weil:jer,28,satzbau,saetze,jer,weil,because,çünkü,för att,omdat,fordi,fordi,parce que,web/audio/w0450.mp3
 dass:da,28,satzbau,saetze,da,dass,that,ki,att,dat,at,at,que,web/audio/w0009.mp3
 ob:da li,28,satzbau,saetze,da li,ob,whether,-ıp -madığı,om (i frågor),of (in vragen),om (i spørsmål),om (i spørgsmål),si (dans une question),web/audio/w0451.mp3
@@ -720,7 +720,7 @@ dort:tamo,29,kleine_woerter,saetze,tamo,dort,there,orada,där borta,daar,der bor
 da / hier:tu,29,kleine_woerter,saetze,tu,da / hier,right here / over here,burada (yakında) / şurada,just här / här borta,hier vlakbij / hierzo,akkurat her / her borte,lige her / herhenne,juste là / par ici,web/audio/w1273.mp3
 oben:gore,29,kleine_woerter,saetze,gore,oben,up there,yukarıda,uppe,daarboven,oppe,oppe,en haut,
 unten:dolje,29,kleine_woerter,saetze,dolje,unten,down there,aşağıda,nere,beneden,nede,nede,en bas,
-dann:onda,29,kleine_woerter,saetze,onda,dann,then,o zaman,sedan,dan,så,så,alors,web/audio/w1265.mp3
+dann:onda,29,kleine_woerter,saetze,onda,dann,then,o zaman,sedan,dan,så (i tid),så (i tid),alors,web/audio/w1265.mp3
 danach:zatim,29,kleine_woerter,saetze,zatim,danach,afterwards,ardından,därefter,daarna,deretter,derefter,ensuite,
 zuerst:prvo,29,kleine_woerter,saetze,prvo,zuerst,first,önce,först av allt,eerst,aller først,allerførst,d'abord,web/audio/w1321.mp3
 wieder:opet,29,kleine_woerter,saetze,opet,wieder,again,yine / tekrar,igen,weer / opnieuw,igjen,igen,de nouveau,
@@ -936,11 +936,11 @@ aus:iz,37,praepositionen,saetze2,iz,aus,from,-den,från,uit,fra,fra,de (provenan
 von:od,37,praepositionen,saetze2,od,von,from / of,-den / -in,av,van,av,af,de,web/audio/w0528.mp3
 bis:do,37,praepositionen,saetze2,do,bis,until,-e kadar,till,tot,til,til,jusqu'à,web/audio/w0529.mp3
 mit:sa,37,praepositionen,saetze2,sa,mit,with,ile,med,met,med,med,avec,web/audio/w0530.mp3
-für:za,37,praepositionen,saetze2,za,für,for,için,för,voor,for,for,pour,web/audio/w0531.mp3
+für:za,37,praepositionen,saetze2,za,für,for,için,för,voor (ten behoeve van),for,for,pour,web/audio/w0531.mp3
 bei:kod,37,praepositionen,saetze2,kod,bei,at,-de,hos,bij,hos,hos,chez,web/audio/w0532.mp3
 ohne:bez,37,praepositionen,saetze2,bez,ohne,without,-siz,utan,zonder,uten,uden,sans,web/audio/w0533.mp3
 zu / in richtung:prema,37,praepositionen,saetze2,prema,zu / in Richtung,towards,-e doğru,mot,naar,mot,mod,vers,web/audio/w0534.mp3
-über / oberhalb:iznad,37,praepositionen,saetze2,iznad,über / oberhalb,above,üstünde,ovanför,boven,over,over,au-dessus de,web/audio/w0535.mp3
+über / oberhalb:iznad,37,praepositionen,saetze2,iznad,über / oberhalb,above,üstünde (yukarıda),ovanför,boven,over,over,au-dessus de,web/audio/w0535.mp3
 unter:ispod,37,praepositionen,saetze2,ispod,unter,under,altında,under,onder,under,under,sous,web/audio/w0536.mp3
 zwischen:između,37,praepositionen,saetze2,između,zwischen,between,arasında,mellan,tussen,mellom,mellem,entre,web/audio/w0537.mp3
 hinter:iza,37,praepositionen,saetze2,iza,hinter,behind,arkasında,bakom,achter,bak,bag,derrière,web/audio/w0538.mp3
@@ -967,7 +967,7 @@ ich helfe meiner mutter:Pomažem majci,38,faelle3,saetze2,Pomažem majci,Ich hel
 ich sage dem freund:Kažem prijatelju,38,faelle3,saetze2,Kažem prijatelju,Ich sage dem Freund,I tell my friend,Arkadaşıma söylüyorum,Jag säger till min vän,Ik zeg het tegen mijn vriend,Jeg sier det til vennen min,Jeg siger det til min ven,Je le dis à mon ami,web/audio/w0558.mp3
 ich schreibe der oma:Pišem nani,38,faelle3,saetze2,Pišem nani,Ich schreibe der Oma,I am writing to grandma,Nineme yazıyorum,Jag skriver till mormor,Ik schrijf aan oma,Jeg skriver til bestemor,Jeg skriver til bedstemor,J'écris à grand-mère,web/audio/w0559.mp3
 mir:meni / mi,38,faelle3,saetze2,meni / mi,mir,to me,bana,till mig,aan mij,til meg,til mig,à moi,web/audio/w2176.mp3
-dir:tebi / ti,38,faelle3,saetze2,tebi / ti,dir,to you,sana,till dig,aan jou,til deg,til dig,à toi,web/audio/w2177.mp3
+dir:tebi / ti,38,faelle3,saetze2,tebi / ti,dir,to you (singular),sana,till dig,aan jou,til deg,til dig,à toi,web/audio/w2177.mp3
 ihm:njemu / mu,38,faelle3,saetze2,njemu / mu,ihm,to him,ona (erkek),till honom,aan hem,til ham,til ham,à lui,web/audio/w2178.mp3
 ihr (dativ):njoj / joj,38,faelle3,saetze2,njoj / joj,ihr (Dativ),to her (dative),ona (kadın),till henne,aan haar,til henne,til hende,à elle,web/audio/w2179.mp3
 uns:nama / nam,38,faelle3,saetze2,nama / nam,uns,to us,bize,till oss,aan ons,til oss,til os,à nous,web/audio/w2180.mp3
@@ -1041,7 +1041,7 @@ ich war in bosnien (m/w):Bio sam u Bosni / Bila sam u Bosni,40,vergangenheit,sae
 es war schön:Bilo je lijepo,40,vergangenheit,saetze2,Bilo je lijepo,Es war schön,It was nice,Güzeldi,Det var fint,Het was mooi,Det var fint,Det var dejligt,C'était beau,web/audio/w0631.mp3
 was hast du gemacht? (m/w):Šta si radio? / Šta si radila?,40,vergangenheit,saetze2,Šta si radio? / Šta si radila?,Was hast du gemacht? (m/w),What did you do? (m/f),Ne yaptın? (e/k),Vad gjorde du? (m/k),Wat heb je gedaan? (m/v),Hva gjorde du? (m/k),Hvad lavede du? (m/k),Qu'est-ce que tu as fait ? (m/f),web/audio/w2194.mp3
 ich werde:ću,41,zukunft,saetze2,ću,ich werde,I will,-eceğim,jag ska,ik zal,jeg skal,jeg skal,je vais (futur),web/audio/w0633.mp3
-du wirst:ćeš,41,zukunft,saetze2,ćeš,du wirst,you will,-eceksin,du ska,jij zult,du skal,du skal,tu vas (futur),web/audio/w0634.mp3
+du wirst:ćeš,41,zukunft,saetze2,ćeš,du wirst,you will (singular),-eceksin,du ska,jij zult,du skal,du skal,tu vas (futur),web/audio/w0634.mp3
 er / sie wird:će,41,zukunft,saetze2,će,er / sie wird,he / she will,-ecek,han / hon ska,hij / zij zal,han / hun skal,han / hun skal,il / elle va (futur),web/audio/w0635.mp3
 wir werden:ćemo,41,zukunft,saetze2,ćemo,wir werden,we will,-eceğiz,vi ska,wij zullen,vi skal,vi skal,nous allons (futur),web/audio/w0636.mp3
 ihr werdet:ćete,41,zukunft,saetze2,ćete,ihr werdet,you will (plural),-eceksiniz,ni ska,jullie zullen,dere skal,I skal,vous allez (futur),web/audio/w0637.mp3
@@ -1062,7 +1062,7 @@ reise:putovanje,41,zukunft,saetze2,putovanje,Reise,trip,seyahat,resa,reis,reise,
 wir fahren nach bosnien:Idemo u Bosnu,41,zukunft,saetze2,Idemo u Bosnu,Wir fahren nach Bosnien,We are going to Bosnia,Bosna'ya gidiyoruz,Vi åker till Bosnien,We gaan naar Bosnië,Vi drar til Bosnia,Vi tager til Bosnien,Nous allons en Bosnie,web/audio/w0652.mp3
 ich werde es versuchen:Pokušat ću,41,zukunft,saetze2,Pokušat ću,Ich werde es versuchen,I will try,Deneyeceğim,Jag ska försöka,Ik zal het proberen,Jeg skal prøve,Jeg skal prøve,Je vais essayer,web/audio/w0653.mp3
 müssen:morati,42,modal,saetze2,morati,müssen,to have to,zorunda olmak,måste,moeten,måtte,at skulle,devoir,web/audio/w0654.mp3
-ich muss:moram,42,modal,saetze2,moram,ich muss,I have to,-meliyim,jag måste,ik moet,jeg må,jeg er nødt til,je dois,web/audio/w0655.mp3
+ich muss:moram,42,modal,saetze2,moram,ich muss,I have to,zorundayım,jag måste,ik moet,jeg må,jeg er nødt til,je dois,web/audio/w0655.mp3
 du musst:moraš,42,modal,saetze2,moraš,du musst,you have to,-melisin,du måste,jij moet,du må,du er nødt til,tu dois,web/audio/w0656.mp3
 wir müssen:moramo,42,modal,saetze2,moramo,wir müssen,we have to,-meliyiz,vi måste,wij moeten,vi må,vi er nødt til,nous devons,web/audio/w0657.mp3
 er / sie kann:može,42,modal,saetze2,može,er / sie kann,he / she can,yapabilir,han / hon kan,hij / zij kan,han / hun kan,han / hun kan,il / elle peut,web/audio/w0658.mp3
@@ -1381,7 +1381,7 @@ metzger:mesar,53,einkauf_orte,einkauf,mesar,Metzger,butcher,kasap,slaktare,slage
 metzgerei:mesnica,53,einkauf_orte,einkauf,mesnica,Metzgerei,butcher shop,kasap dükkânı,köttaffär,slagerij,slakterbutikk,slagterforretning,boucherie,web/audio/w1810.mp3
 preisnachlass:sniženje,53,einkauf_orte,einkauf,sniženje,Preisnachlass,price reduction,fiyat indirimi,prisnedsättning (rabatt),prijsverlaging,prisavslag,rabat (nedsat pris),réduction (de prix),web/audio/w1811.mp3
 supermarkt:supermarket,53,einkauf_orte,einkauf,supermarket,Supermarkt,supermarket,süpermarket,matbutik (supermarket),supermarkt,supermarked,supermarked,supermarché,web/audio/w1812.mp3
-verkäufer:prodavač,53,einkauf_orte,einkauf,prodavač,Verkäufer,seller,satıcı,säljare,verkoper,selger,sælger,vendeur,web/audio/w0377.mp3
+verkäufer:prodavač,53,einkauf_orte,einkauf,prodavač,Verkäufer,seller,satıcı (erkek),säljare,verkoper,selger,sælger,vendeur,web/audio/w0377.mp3
 verkäuferin:prodavačica,53,einkauf_orte,einkauf,prodavačica,Verkäuferin,saleswoman,satıcı (kadın),expedit (kvinna),verkoopster,butikkselger (kvinne),ekspeditrice,vendeuse,web/audio/w1813.mp3
 bezahlen:platiti,53,einkauf_orte,einkauf,platiti,bezahlen,to pay,ödemek,betala,betalen,betale,betale,payer,web/audio/w1814.mp3
 fening (1/100 mark):fening,53,einkauf_orte,einkauf,fening,Fening (1/100 Mark),fening (1/100 of a mark),fening (markın 1/100'ü),fening (1/100 mark),fening (1/100 mark),fening (1/100 mark),fening (1/100 mark),fening (1/100 de mark),web/audio/w1815.mp3

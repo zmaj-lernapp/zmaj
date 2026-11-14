@@ -88,7 +88,7 @@ brat	bror	zmaj zmaj::04_familie
 sestra	søster	zmaj zmaj::04_familie
 sin	sønn	zmaj zmaj::04_familie
 kćerka	datter	zmaj zmaj::04_familie
-dijete	barn	zmaj zmaj::04_familie
+dijete	barn (ett)	zmaj zmaj::04_familie
 djeca	barn (flere)	zmaj zmaj::04_familie
 žena	kone	zmaj zmaj::04_familie
 muž	ektemann	zmaj zmaj::04_familie
@@ -724,7 +724,7 @@ tamo	der borte	zmaj zmaj::29_kleine_woerter
 tu	akkurat her / her borte	zmaj zmaj::29_kleine_woerter
 gore	oppe	zmaj zmaj::29_kleine_woerter
 dolje	nede	zmaj zmaj::29_kleine_woerter
-onda	så	zmaj zmaj::29_kleine_woerter
+onda	så (i tid)	zmaj zmaj::29_kleine_woerter
 zatim	deretter	zmaj zmaj::29_kleine_woerter
 prvo	aller først	zmaj zmaj::29_kleine_woerter
 opet	igjen	zmaj zmaj::29_kleine_woerter

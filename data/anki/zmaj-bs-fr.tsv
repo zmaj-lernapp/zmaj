@@ -3,9 +3,9 @@
 #notetype:Basic (and reversed card)
 #columns:Bosnian	fr	Tags
 #tags column:3
-Merhaba	Salut	zmaj zmaj::01_basics
+Merhaba	Salut (en arrivant)	zmaj zmaj::01_basics
 Dobro jutro	Bonjour (le matin)	zmaj zmaj::01_basics
-Dobar dan	Bonjour	zmaj zmaj::01_basics
+Dobar dan	Bonjour (la journée)	zmaj zmaj::01_basics
 Dobro veče	Bonsoir	zmaj zmaj::01_basics
 Laku noć / Lahku noć	Bonne nuit	zmaj zmaj::01_basics
 Doviđenja	Au revoir	zmaj zmaj::01_basics
@@ -583,7 +583,7 @@ orah	noix / noyer	zmaj zmaj::23_natur
 korijen	racine	zmaj zmaj::23_natur
 Ko?	Qui ?	zmaj zmaj::24_fragen
 Šta?	Quoi ?	zmaj zmaj::24_fragen
-Gdje?	Où ?	zmaj zmaj::24_fragen
+Gdje?	Où (sans mouvement) ?	zmaj zmaj::24_fragen
 Kuda?	Où (vers où) ?	zmaj zmaj::24_fragen
 Odakle?	D'où ?	zmaj zmaj::24_fragen
 Kada?	Quand ?	zmaj zmaj::24_fragen

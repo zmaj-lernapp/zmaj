@@ -84,7 +84,7 @@ brat	bror	word	bruder:brat
 sestra	syster	word	schwester:sestra
 sin	son	word	sohn:sin
 kćerka	dotter	word	tochter:kćerka
-dijete	barn	word	kind:dijete
+dijete	barn (ett)	word	kind:dijete
 djeca	barn (flera)	word	kinder:djeca
 žena	hustru	word	ehefrau:žena
 muž	make	word	ehemann:muž

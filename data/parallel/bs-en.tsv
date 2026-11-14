@@ -15,7 +15,7 @@ Molim	Please / you're welcome (polite)	word	bitte (höflich, allgemein):Molim
 Nema na čemu	You are welcome	word	gern geschehen:Nema na čemu
 Izvini	Sorry (informal)	word	entschuldigung (du):Izvini
 Izvinite	Sorry (formal)	word	entschuldigung (sie):Izvinite
-Kako si?	How are you?	word	wie geht's dir?:Kako si?
+Kako si?	How are you? (informal)	word	wie geht's dir?:Kako si?
 Kako ste?	How are you? (formal)	word	wie geht es ihnen?:Kako ste?
 Dobro	Good	word	gut:Dobro
 Loše	Bad	word	schlecht:Loše
@@ -967,7 +967,7 @@ Pomažem majci	I help my mother	word	ich helfe meiner mutter:Pomažem majci
 Kažem prijatelju	I tell my friend	word	ich sage dem freund:Kažem prijatelju
 Pišem nani	I am writing to grandma	word	ich schreibe der oma:Pišem nani
 meni / mi	to me	word	mir:meni / mi
-tebi / ti	to you	word	dir:tebi / ti
+tebi / ti	to you (singular)	word	dir:tebi / ti
 njemu / mu	to him	word	ihm:njemu / mu
 njoj / joj	to her (dative)	word	ihr (dativ):njoj / joj
 nama / nam	to us	word	uns:nama / nam
@@ -1041,7 +1041,7 @@ Bio sam u Bosni / Bila sam u Bosni	I was in Bosnia (m/f)	word	ich war in bosnien
 Bilo je lijepo	It was nice	word	es war schön:Bilo je lijepo
 Šta si radio? / Šta si radila?	What did you do? (m/f)	word	was hast du gemacht? (m/w):Šta si radio? / Šta si radila?
 ću	I will	word	ich werde:ću
-ćeš	you will	word	du wirst:ćeš
+ćeš	you will (singular)	word	du wirst:ćeš
 će	he / she will	word	er / sie wird:će
 ćemo	we will	word	wir werden:ćemo
 ćete	you will (plural)	word	ihr werdet:ćete
@@ -7998,7 +7998,7 @@ dunum	dunum (1,000 m²)	word	dunum (1.000 m²):dunum
 Imamo dva dunuma zemlje.	We have two dunums of land.	word	wir haben zwei dunum land.:Imamo dva dunuma zemlje.
 Dobar dan	Good day	sentence	s0001
 Merhaba, kako si?	Hello, how are you?	sentence	s0002
-Kako si?	How are you?	sentence	s0003
+Kako si?	How are you? (informal)	sentence	s0003
 Hvala puno!	Thank you very much!	sentence	s0004
 Laku noć!	Good night!	sentence	s0005
 Zovem se Amina.	My name is Amina.	sentence	s0006

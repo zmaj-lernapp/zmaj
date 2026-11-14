@@ -944,7 +944,7 @@ za	için	zmaj zmaj::37_praepositionen
 kod	-de	zmaj zmaj::37_praepositionen
 bez	-siz	zmaj zmaj::37_praepositionen
 prema	-e doğru	zmaj zmaj::37_praepositionen
-iznad	üstünde	zmaj zmaj::37_praepositionen
+iznad	üstünde (yukarıda)	zmaj zmaj::37_praepositionen
 ispod	altında	zmaj zmaj::37_praepositionen
 između	arasında	zmaj zmaj::37_praepositionen
 iza	arkasında	zmaj zmaj::37_praepositionen
@@ -1066,7 +1066,7 @@ putovanje	seyahat	zmaj zmaj::41_zukunft
 Idemo u Bosnu	Bosna'ya gidiyoruz	zmaj zmaj::41_zukunft
 Pokušat ću	Deneyeceğim	zmaj zmaj::41_zukunft
 morati	zorunda olmak	zmaj zmaj::42_modal
-moram	-meliyim	zmaj zmaj::42_modal
+moram	zorundayım	zmaj zmaj::42_modal
 moraš	-melisin	zmaj zmaj::42_modal
 moramo	-meliyiz	zmaj zmaj::42_modal
 može	yapabilir	zmaj zmaj::42_modal
@@ -1385,7 +1385,7 @@ mesar	kasap	zmaj zmaj::53_einkauf_orte
 mesnica	kasap dükkânı	zmaj zmaj::53_einkauf_orte
 sniženje	fiyat indirimi	zmaj zmaj::53_einkauf_orte
 supermarket	süpermarket	zmaj zmaj::53_einkauf_orte
-prodavač	satıcı	zmaj zmaj::53_einkauf_orte
+prodavač	satıcı (erkek)	zmaj zmaj::53_einkauf_orte
 prodavačica	satıcı (kadın)	zmaj zmaj::53_einkauf_orte
 platiti	ödemek	zmaj zmaj::53_einkauf_orte
 fening	fening (markın 1/100'ü)	zmaj zmaj::53_einkauf_orte

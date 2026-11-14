@@ -940,7 +940,7 @@ za	için	word	für:za
 kod	-de	word	bei:kod
 bez	-siz	word	ohne:bez
 prema	-e doğru	word	zu / in richtung:prema
-iznad	üstünde	word	über / oberhalb:iznad
+iznad	üstünde (yukarıda)	word	über / oberhalb:iznad
 ispod	altında	word	unter:ispod
 između	arasında	word	zwischen:između
 iza	arkasında	word	hinter:iza
@@ -1062,7 +1062,7 @@ putovanje	seyahat	word	reise:putovanje
 Idemo u Bosnu	Bosna'ya gidiyoruz	word	wir fahren nach bosnien:Idemo u Bosnu
 Pokušat ću	Deneyeceğim	word	ich werde es versuchen:Pokušat ću
 morati	zorunda olmak	word	müssen:morati
-moram	-meliyim	word	ich muss:moram
+moram	zorundayım	word	ich muss:moram
 moraš	-melisin	word	du musst:moraš
 moramo	-meliyiz	word	wir müssen:moramo
 može	yapabilir	word	er / sie kann:može
@@ -1381,7 +1381,7 @@ mesar	kasap	word	metzger:mesar
 mesnica	kasap dükkânı	word	metzgerei:mesnica
 sniženje	fiyat indirimi	word	preisnachlass:sniženje
 supermarket	süpermarket	word	supermarkt:supermarket
-prodavač	satıcı	word	verkäufer:prodavač
+prodavač	satıcı (erkek)	word	verkäufer:prodavač
 prodavačica	satıcı (kadın)	word	verkäuferin:prodavačica
 platiti	ödemek	word	bezahlen:platiti
 fening	fening (markın 1/100'ü)	word	fening (1/100 mark):fening

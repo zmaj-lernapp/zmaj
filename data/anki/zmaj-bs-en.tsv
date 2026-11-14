@@ -19,7 +19,7 @@ Molim	Please / you're welcome (polite)	zmaj zmaj::01_basics
 Nema na čemu	You are welcome	zmaj zmaj::01_basics
 Izvini	Sorry (informal)	zmaj zmaj::01_basics
 Izvinite	Sorry (formal)	zmaj zmaj::01_basics
-Kako si?	How are you?	zmaj zmaj::01_basics
+Kako si?	How are you? (informal)	zmaj zmaj::01_basics
 Kako ste?	How are you? (formal)	zmaj zmaj::01_basics
 Dobro	Good	zmaj zmaj::01_basics
 Loše	Bad	zmaj zmaj::01_basics
@@ -971,7 +971,7 @@ Pomažem majci	I help my mother	zmaj zmaj::38_faelle3
 Kažem prijatelju	I tell my friend	zmaj zmaj::38_faelle3
 Pišem nani	I am writing to grandma	zmaj zmaj::38_faelle3
 meni / mi	to me	zmaj zmaj::38_faelle3
-tebi / ti	to you	zmaj zmaj::38_faelle3
+tebi / ti	to you (singular)	zmaj zmaj::38_faelle3
 njemu / mu	to him	zmaj zmaj::38_faelle3
 njoj / joj	to her (dative)	zmaj zmaj::38_faelle3
 nama / nam	to us	zmaj zmaj::38_faelle3
@@ -1045,7 +1045,7 @@ Bio sam u Bosni / Bila sam u Bosni	I was in Bosnia (m/f)	zmaj zmaj::40_vergangen
 Bilo je lijepo	It was nice	zmaj zmaj::40_vergangenheit
 Šta si radio? / Šta si radila?	What did you do? (m/f)	zmaj zmaj::40_vergangenheit
 ću	I will	zmaj zmaj::41_zukunft
-ćeš	you will	zmaj zmaj::41_zukunft
+ćeš	you will (singular)	zmaj zmaj::41_zukunft
 će	he / she will	zmaj zmaj::41_zukunft
 ćemo	we will	zmaj zmaj::41_zukunft
 ćete	you will (plural)	zmaj zmaj::41_zukunft

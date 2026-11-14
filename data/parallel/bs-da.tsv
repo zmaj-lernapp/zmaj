@@ -78,7 +78,7 @@ ljubičasta	lilla	word	lila:ljubičasta
 roza	lyserød	word	rosa:roza
 majka	mor	word	mutter:majka
 mama	mor	word	mama:mama
-otac	far	word	vater:otac
+otac	far (formelt)	word	vater:otac
 babo	far (bosnisk babo)	word	papa (bosnisch):babo
 brat	bror	word	bruder:brat
 sestra	søster	word	schwester:sestra
@@ -720,7 +720,7 @@ tamo	derovre	word	dort:tamo
 tu	lige her / herhenne	word	da / hier:tu
 gore	oppe	word	oben:gore
 dolje	nede	word	unten:dolje
-onda	så	word	dann:onda
+onda	så (i tid)	word	dann:onda
 zatim	derefter	word	danach:zatim
 prvo	allerførst	word	zuerst:prvo
 opet	igen	word	wieder:opet

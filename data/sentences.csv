@@ -1,7 +1,7 @@
 id,level,bs,cloze,answer,de,en,tr,sv,nl,nb,da,fr,audio
-s0001,basics,Dobar dan,Dobar ___,dan,Guten Tag,Good day,İyi günler,God dag,Goedendag,God dag,Goddag,Bonjour,web/audio/w0002.mp3
+s0001,basics,Dobar dan,Dobar ___,dan,Guten Tag,Good day,İyi günler,God dag,Goedendag,God dag,Goddag,Bonjour (la journée),web/audio/w0002.mp3
 s0002,basics,"Merhaba, kako si?","___, kako si?",Merhaba,"Hallo, wie geht's dir?","Hello, how are you?","Merhaba, nasılsın?","Hej, hur mår du?","Hallo, hoe gaat het met je?","Hei, hvordan går det med deg?","Hej, hvordan går det med dig?","Salut, comment ça va ?",web/audio/w1097.mp3
-s0003,basics,Kako si?,Kako ___?,si,Wie geht's dir?,How are you?,Nasılsın?,Hur mår du?,Hoe gaat het met je?,Hvordan går det med deg?,Hvordan går det med dig?,Comment vas-tu ?,web/audio/w0017.mp3
+s0003,basics,Kako si?,Kako ___?,si,Wie geht's dir?,How are you? (informal),Nasılsın?,Hur mår du?,Hoe gaat het met je?,Hvordan går det med deg?,Hvordan går det med dig?,Comment vas-tu ?,web/audio/w0017.mp3
 s0004,basics,Hvala puno!,Hvala ___!,puno,Vielen Dank!,Thank you very much!,Çok teşekkürler!,Tack så mycket!,Hartelijk dank!,Tusen takk!,Mange tak!,Merci beaucoup !,web/audio/w1098.mp3
 s0005,basics,Laku noć!,Laku ___!,noć,Gute Nacht!,Good night!,İyi geceler!,God natt!,Welterusten!,God natt!,Godnat!,Bonne nuit !,web/audio/w1099.mp3
 s0006,basics,Zovem se Amina.,Zovem ___ Amina.,se,Ich heiße Amina.,My name is Amina.,Benim adım Amina.,Jag heter Amina.,Ik heet Amina.,Jeg heter Amina.,Jeg hedder Amina.,Je m'appelle Amina.,web/audio/w1100.mp3

@@ -45,14 +45,25 @@ GESPERRT = [("ziehen:vući", "ziehen / zurückziehen:povlačiti"),
 # sind" (oni su) neben "ihr seid / Sie sind" (vi ste) auf, und auf Daenisch "de er"
 # neben "I er / De er". Das bleibt: Die Grossschreibung trennt die beiden richtig,
 # und genau diesen Unterschied uebt das Level Konjugation.
+#
+# Pruefbericht 1.4 (14.11.2026), V5: Die Klammer am Ende des Knopfs wird vor dem
+# Vergleich abgetrennt. Auf Englisch stand bei der Frage "How are you?" (Kako si?)
+# Kako ste mit "How are you? (formal)" als falscher Knopf, in 185 von 400
+# Ziehungen - und "How are you?" passt auf beide. Nur die Frage ohne Klammer ist
+# das Problem: hat auch sie eine ("How are you? (informal)"), trennen die beiden
+# Klammern richtig. Eine Klammer mitten in der Bedeutung bleibt stehen, sie gehoert
+# zur Wendung: "to wake (someone) up" (buditi) ist nicht "to wake up" (buditi se).
 UNTERSCHIED_GEWOLLT = {"oni su", "vi ste"}
 TEIL_DER_FRAGE = r"""
 () => {
   const paare = [];
+  // Je Form die Klammer(n) am Ende weg, dann wie _bedeutung:
+  // "How are you? (formal)" -> "how are you", "Où (vers où) ?" -> "où".
+  const ohneKlammer = s => _formen(s).map(f => _bedeutung(f.replace(/(\s*\([^)]*\))+(?=[\s.!?…]*$)/, '')));
   for(const c of CATEGORIES){
     for(const w of c.words){
       const frage = _bedeutung(w.de);
-      const mitTeil = c.words.filter(x => x.bs !== w.bs && _formen(x.de).length > 1 && _formen(x.de).includes(frage));
+      const mitTeil = c.words.filter(x => x.bs !== w.bs && ohneKlammer(x.de).includes(frage));
       if(!mitTeil.length) continue;
       const gesperrt = new Set(geschwister(w).map(x => x.bs));
       mitTeil.filter(x => !gesperrt.has(x.bs)).forEach(x => paare.push([c.id, w.bs, w.de, x.bs, x.de]));
@@ -143,7 +154,7 @@ def test_gesperrte_paare_nie_in_derselben_auswahl(seite, heute_stand, wort, ande
 def test_frage_ist_nie_ein_teil_eines_falschen_knopfs(seite, heute_stand, sprache):
     seite.starten(stand=heute_stand(), sprache=sprache)
     rest = [p for p in seite.js(TEIL_DER_FRAGE) if not {p[1], p[3]} == UNTERSCHIED_GEWOLLT]
-    assert rest == []
+    assert rest == [], rest
     assert seite.fehler == []
 
 

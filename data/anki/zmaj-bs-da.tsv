@@ -82,7 +82,7 @@ ljubičasta	lilla	zmaj zmaj::03_farben
 roza	lyserød	zmaj zmaj::03_farben
 majka	mor	zmaj zmaj::04_familie
 mama	mor	zmaj zmaj::04_familie
-otac	far	zmaj zmaj::04_familie
+otac	far (formelt)	zmaj zmaj::04_familie
 babo	far (bosnisk babo)	zmaj zmaj::04_familie
 brat	bror	zmaj zmaj::04_familie
 sestra	søster	zmaj zmaj::04_familie
@@ -724,7 +724,7 @@ tamo	derovre	zmaj zmaj::29_kleine_woerter
 tu	lige her / herhenne	zmaj zmaj::29_kleine_woerter
 gore	oppe	zmaj zmaj::29_kleine_woerter
 dolje	nede	zmaj zmaj::29_kleine_woerter
-onda	så	zmaj zmaj::29_kleine_woerter
+onda	så (i tid)	zmaj zmaj::29_kleine_woerter
 zatim	derefter	zmaj zmaj::29_kleine_woerter
 prvo	allerførst	zmaj zmaj::29_kleine_woerter
 opet	igen	zmaj zmaj::29_kleine_woerter
