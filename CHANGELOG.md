@@ -541,6 +541,15 @@ are in the Play Store listing. Format:
   vocabulary keeps its `de` and so its ID; the story texts (the audio keys) stay.
   New texts in all eight languages (not by native speakers).
   `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
+- "Goes with level" of the reading stories (review for 1.4, 14.11.2026, B12): seven
+  B1 stories pointed to a B2 level that B1 learners usually have not opened yet
+  (*Izdajem stan* to "Wohnen und Miete"). They now point to a level up to B1 with
+  the same topic: *Izdajem stan* → "Wohnung & Hauskauf", *Voz Sarajevo–Mostar* and
+  *Dijaspora prvi put u Sarajevu* → "Reisen und Urlaub", *Jahorina* → "Sport und
+  Spiel", *Komšiluk bez struje* and *Kahva kod komšinice* → "Miteinander umgehen",
+  *Ljeto kod nane na selu* → "Familie". Unlocking does not depend on it, the text
+  and audio stay. A test keeps every story at A1 to B1.
+  `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

@@ -15,6 +15,11 @@ Form. Sie haben jetzt eigene Texte nur im WOERTERBUCH. Das de der Vokabel
 bleibt, sonst aenderte sich die Kennung und mit ihr der Lernstand (AGENTS.md,
 Regel 1).
 
+B12: "Passt zu Level" in der Liste und oben in der Geschichte zeigte bei
+sieben B1-Geschichten auf ein B2-Level, das B1-Lernende meist noch nicht offen
+haben (b1_stan auf "Wohnen und Miete"). Jetzt auf ein Level bis B1 mit
+demselben Thema. Die Freischaltung haengt nicht daran.
+
 Der Text der Geschichten ist ihr Ton-Schluessel (ton_bauen.py) und bleibt
 unveraendert. Die Tests im Browser stehen in
 tests_e2e/test_pruefbericht14_geschichten.py.
@@ -156,3 +161,40 @@ def test_b10_uebersetzt_in_allen_sprachen(alle_daten):
     for wort, bedeutung in ENGLISCH.items():
         assert en[wort] == bedeutung, wort
     assert _geschichten(alle_daten["en"])["intervju"]["vokabeln"]["je"] == "is / her (acc.)"
+
+
+# ---------------------------------------------------------------------------
+# B12: "Passt zu Level" zeigt bei B1-Geschichten auf kein B2-Level
+# ---------------------------------------------------------------------------
+# Geschichte -> (Level bis 14.11.2026, B2; Level jetzt)
+B12 = {
+    "b1_ljeto": ("familie_generationen", "familie"),
+    "b1_dijaspora": ("ankommen_ansehen", "urlaub"),
+    "b1_voz": ("strassen_bahn", "urlaub"),
+    "b1_jahorina": ("trainieren_siegen", "sport"),
+    "b1_struja": ("nachbarn_miteinander", "miteinander_umgehen"),
+    "b1_stan": ("wohnen_miete", "immobilien"),
+    "b1_kahva": ("nachbarn_miteinander", "miteinander_umgehen"),
+}
+
+
+def _stufe_der_level(daten):
+    stufe = {s["id"]: s.get("stufe") for s in daten["sektionen"]}
+    return {k["id"]: stufe.get(k.get("sektion")) for k in daten["kategorien"]}
+
+
+def test_b12_passt_zu_laut_bericht(grunddaten):
+    g = _geschichten(grunddaten)
+    stufe = _stufe_der_level(grunddaten)
+    for gid, (alt, neu) in B12.items():
+        assert stufe[alt] == "B2", (gid, alt)
+        assert g[gid]["passt_zu"] == neu, gid
+
+
+def test_b12_keine_geschichte_zeigt_auf_b2(grunddaten):
+    """Die Geschichten gehen bis B1. Ein Level aus B2 oder C1 haben ihre
+    Leser meist noch nicht offen."""
+    stufe = _stufe_der_level(grunddaten)
+    falsch = [(g["id"], g["passt_zu"], stufe.get(g["passt_zu"])) for g in grunddaten["geschichten"]
+              if stufe.get(g["passt_zu"]) not in ("A1", "A2", "B1")]
+    assert falsch == []

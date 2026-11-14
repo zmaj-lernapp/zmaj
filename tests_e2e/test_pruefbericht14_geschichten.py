@@ -53,3 +53,40 @@ def test_b10_bedeutung_beim_antippen(seite, heute_stand, sprache, spalte):
             falsch.append((gid, wort, r, bedeutung[spalte]))
     assert falsch == []
     assert seite.fehler == []
+
+
+# ---------------------------------------------------------------------------
+# B12: "Passt zu Level" zeigt bei B1-Geschichten auf ein Level bis B1
+# ---------------------------------------------------------------------------
+# Was in der Liste unter dem Titel und oben in der Geschichte steht
+PASST_ZU = r"""(gid) => {
+  showStoryPath();
+  const i = STORIES.findIndex(s => s.id === gid);
+  const knoten = [...document.querySelectorAll('#storyList .node')][i];
+  const liste = knoten ? knoten.querySelector('.tipp').textContent : null;
+  openStory(i); stilleBitte();
+  const kicker = document.querySelector('#rBody .kicker').textContent;
+  return {liste, kicker};
+}"""
+
+B12 = {
+    "b1_stan": "Wohnung & Hauskauf",
+    "b1_voz": "Reisen und Urlaub",
+    "b1_dijaspora": "Reisen und Urlaub",
+    "b1_jahorina": "Sport und Spiel",
+    "b1_struja": "Miteinander umgehen",
+    "b1_kahva": "Miteinander umgehen",
+    "b1_ljeto": "Familie",
+}
+
+
+def test_b12_passt_zu_level_bis_b1(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    seite.js("() => { homeMode = 'stories'; showHome(); }")
+    falsch = []
+    for gid, label in B12.items():
+        r = seite.js(PASST_ZU, gid)
+        if r["liste"] != "Passt zu Level: " + label or "„" + label + "“" not in r["kicker"]:
+            falsch.append((gid, label, r))
+    assert falsch == []
+    assert seite.fehler == []

@@ -13,7 +13,9 @@ Aufbau:
   GESCHICHTEN = Liste von {
       "id", "titel",
       "stufe":        Beschriftung der Schwierigkeit (z. B. "Kinderbuch")
-      "passt_zu":     Level-id aus vokabeln.py, dessen Wörter man kennen sollte
+      "passt_zu":     Level-id aus vokabeln.py, dessen Wörter man kennen sollte;
+                      höchstens B1, ein B2-Level haben die Leser meist noch nicht
+                      offen (Prüfbericht 1.4, B12, 14.11.2026)
       "text":         der bosnische Text,
       "uebersetzung": die deutsche Übersetzung,
       "vokabeln":     zusätzliche Wörter nur für diese Geschichte (optional),
@@ -530,7 +532,7 @@ GESCHICHTEN = [
     # Claude, die fraglichen Stellen prüft Ajdin. Absätze stehen als Leerzeile im
     # Text, die App zeigt sie (white-space: pre-line). Ton folgt (Azure, Vesna).
     {
-        "id": "b1_ljeto", "titel": "Ljeto kod nane na selu", "stufe": "B1", "passt_zu": "familie_generationen",
+        "id": "b1_ljeto", "titel": "Ljeto kod nane na selu", "stufe": "B1", "passt_zu": "familie",
         "text": ("Kad sam bila mala, svako ljeto sam provodila kod nane na selu. Nanina kuća nije bila velika, ali je imala veliku baštu, a ispred kuće je bio stari orah.\n\n"
                  "Ujutro me budio horoz. Kad sam ustala, nana je već bila u kuhinji. Ona je pila kahvu, a ja toplo mlijeko. Poslije doručka smo išle u baštu. Nana mi je pokazala kako se bere paradajz i kako se zalijeva cvijeće. Brzo sam to naučila i bila sam jako ponosna.\n\n"
                  "Popodne je bilo vruće, pa smo sjedile u hladu ispod oraha. Nana je pričala o dedi i o vremenu kad je bila mlada. Ja sam slušala i jela trešnje iz komšijine bašte.\n\n"
@@ -550,7 +552,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "b1_dijaspora", "titel": "Dijaspora prvi put u Sarajevu", "stufe": "B1", "passt_zu": "ankommen_ansehen",
+        "id": "b1_dijaspora", "titel": "Dijaspora prvi put u Sarajevu", "stufe": "B1", "passt_zu": "urlaub",
         "text": ("Tarik ima dvadeset godina i rođen je u Njemačkoj. Njegovi roditelji su iz Bosne, ali on nikad nije bio u Sarajevu. Ovog ljeta je konačno došao. Na aerodromu ga je čekao rođak Haris.\n\n"
                  "„Dobro došao!“ rekao je Haris i zagrlio ga. Tarik je bio malo nervozan, jer njegov bosanski nije savršen. „Ne brini“, smijao se Haris. „Ovdje svi razumiju dijasporu.“\n\n"
                  "Prvo su otišli na Baščaršiju. Ulice su bile pune turista, a iz malih radnji je mirisalo na kahvu i ćevape. Tarik je naručio desetku s lukom i jogurt. „Ovo je najbolje što sam ikad jeo!“ rekao je.\n\n"
@@ -593,7 +595,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "b1_voz", "titel": "Voz Sarajevo–Mostar", "stufe": "B1", "passt_zu": "strassen_bahn",
+        "id": "b1_voz", "titel": "Voz Sarajevo–Mostar", "stufe": "B1", "passt_zu": "urlaub",
         "text": ("Lejla i njen brat Emir žive u Njemačkoj. Ovog ljeta su prvi put zajedno u Bosni. Danas idu vozom iz Sarajeva u Mostar. Voz polazi u sedam i petnaest, a putovanje traje oko dva sata.\n\n"
                  "Lejla sjedi pored prozora. Preko puta njih sjedi jedna starija žena s velikom torbom. „Gdje putujete, djeco?“ pita ona. „U Mostar, prvi put“, odgovara Emir. „Onda morate vidjeti Stari most. A kad budete u gradu, probajte i ćevape!“\n\n"
                  "Uskoro dolazi kondukter. „Karte, molim.“ Emir mu pokazuje karte. „Sve je u redu. Sretan put!“\n\n"
@@ -633,7 +635,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "b1_jahorina", "titel": "Jahorina", "stufe": "B1", "passt_zu": "trainieren_siegen",
+        "id": "b1_jahorina", "titel": "Jahorina", "stufe": "B1", "passt_zu": "sport",
         "text": ("Amina i Ajdin su za Novu godinu otišli na Jahorinu. Amina je dobra skijašica, ali Ajdin nikad nije skijao. „Naučit ću za jedan dan“, rekao je samouvjereno.\n\n"
                  "Prvog jutra su iznajmili skije, pancerice i štapove. Ajdin je obukao debelu jaknu, kapu i rukavice, jer je vani bilo minus osam. Snijega je bilo skoro metar.\n\n"
                  "Amina je otišla na veliku stazu, a Ajdin u školu skijanja. Njegova instruktorica je bila mlada djevojka s mnogo strpljenja. „Polako, malo savijte koljena i gledajte naprijed“, govorila je. Ajdin je do podne pao pet puta. Djeca od šest godina su ga lako prestizala.\n\n"
@@ -672,7 +674,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "b1_struja", "titel": "Komšiluk bez struje", "stufe": "B1", "passt_zu": "nachbarn_miteinander",
+        "id": "b1_struja", "titel": "Komšiluk bez struje", "stufe": "B1", "passt_zu": "miteinander_umgehen",
         "text": ("Bila je hladna januarska večer. Merima je baš kuhala večeru kad je odjednom nestalo struje. Cijela zgrada je bila u mraku, a njen sin Kenan se uplašio i počeo plakati.\n\n"
                  "Merima je upalila svjetlo na telefonu i našla svijeće u ladici. Onda je neko pokucao na vrata. Bio je to komšija Hasan s trećeg sprata. „Komšinice, je li i kod vas nestalo struje?“ „Jeste. Znate li šta se desilo?“ „Zvao sam. Kažu da je kvar u cijelom naselju i da će ga popraviti za dva-tri sata.“\n\n"
                  "Hasan je imao plinski štednjak, pa je pozvao komšije na čaj. Uskoro je u njegovom stanu bilo desetak ljudi. Komšinica Zehra je donijela kolače, a mladi bračni par s prvog sprata donio je gitaru. Djeca su se igrala u hodniku, a odrasli su pričali, pjevali i smijali se.\n\n"
@@ -733,7 +735,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "b1_stan", "titel": "Izdajem stan", "stufe": "B1", "passt_zu": "wohnen_miete",
+        "id": "b1_stan", "titel": "Izdajem stan", "stufe": "B1", "passt_zu": "immobilien",
         "text": ("Selma je dobila posao u Sarajevu i traži stan. Na internetu je našla ovaj oglas:\n\n"
                  "„Izdajem jednosoban stan na Grbavici. Četrdeset kvadrata, treći sprat, ima lift. Stan je namješten, renoviran i ima balkon. U blizini su tramvaj, škola i prodavnica. Kirija je petsto maraka mjesečno plus režije. Kućni ljubimci nisu dozvoljeni. Zvati poslije pet sati.“\n\n"
                  "Selma je nazvala u pola šest.\n"
@@ -1056,7 +1058,7 @@ GESCHICHTEN += [
         ],
     },
     {
-        "id": "b1_kahva", "titel": "Kahva kod komšinice", "stufe": "B1", "passt_zu": "nachbarn_miteinander",
+        "id": "b1_kahva", "titel": "Kahva kod komšinice", "stufe": "B1", "passt_zu": "miteinander_umgehen",
         "text": ("Moja komšinica, teta Safija, živi na istom spratu kao ja. Ima osamdeset godina, ali je još uvijek vrlo vesela. Svake nedjelje u deset sati pokuca mi na vrata: „Komšinice, hajde na kahvu!“\n\n"
                  "Kod nje kahva ima svoja pravila. Prvo kuha vodu u džezvi. Onda skine džezvu sa šporeta, doda kahvu i promiješa. Džezvu vrati na vatru samo na kratko. „Kahva ne smije prekipjeti“, kaže ona. „Ako prekipi, kuhaj novu.“\n\n"
                  "Na stolu su fildžani, šećer, rahat lokum i čaša vode. Prvo uzmemo komad rahat lokuma, a onda polako pijemo kahvu. „E, ovo je prava bosanska kahva“, kaže teta Safija.\n\n"

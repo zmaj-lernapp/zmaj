@@ -3400,7 +3400,7 @@
   {
    "id": "b1_ljeto",
    "title": "Ljeto kod nane na selu",
-   "level_hint": "familie_generationen",
+   "level_hint": "familie",
    "stage": {
     "de": "B1",
     "en": "B1",
@@ -3687,7 +3687,7 @@
   {
    "id": "b1_dijaspora",
    "title": "Dijaspora prvi put u Sarajevu",
-   "level_hint": "ankommen_ansehen",
+   "level_hint": "urlaub",
    "stage": {
     "de": "B1",
     "en": "B1",
@@ -4245,7 +4245,7 @@
   {
    "id": "b1_voz",
    "title": "Voz Sarajevo–Mostar",
-   "level_hint": "strassen_bahn",
+   "level_hint": "urlaub",
    "stage": {
     "de": "B1",
     "en": "B1",
@@ -4811,7 +4811,7 @@
   {
    "id": "b1_jahorina",
    "title": "Jahorina",
-   "level_hint": "trainieren_siegen",
+   "level_hint": "sport",
    "stage": {
     "de": "B1",
     "en": "B1",
@@ -5369,7 +5369,7 @@
   {
    "id": "b1_struja",
    "title": "Komšiluk bez struje",
-   "level_hint": "nachbarn_miteinander",
+   "level_hint": "miteinander_umgehen",
    "stage": {
     "de": "B1",
     "en": "B1",
@@ -6230,7 +6230,7 @@
   {
    "id": "b1_stan",
    "title": "Izdajem stan",
-   "level_hint": "wohnen_miete",
+   "level_hint": "immobilien",
    "stage": {
     "de": "B1",
     "en": "B1",
@@ -8295,7 +8295,7 @@
   {
    "id": "b1_kahva",
    "title": "Kahva kod komšinice",
-   "level_hint": "nachbarn_miteinander",
+   "level_hint": "miteinander_umgehen",
    "stage": {
     "de": "B1",
     "en": "B1",
