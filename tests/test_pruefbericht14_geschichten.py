@@ -38,6 +38,9 @@ Geschriebenem an eine Person, klein in Gespraechen der Erzaehlung, der
 Zahnarzt-Teil bleibt gross. Klein jetzt auch in b1_posao (die Chefin zu Haris,
 mit vašu) und b1_stan (Telefonat); gross bleibt die Nachricht in b1_telefon.
 Der Ton-Schluessel ist kleingeschrieben und bleibt (ton_bauen.schluessel).
+Seit dem 14.11.2026 (Offen-Liste, Punkt 3) auch opcina: "Hvala vam na pomoći"
+am Schalter. g10 bleibt, nur seine Wortzeiten gehoeren zum alten Text und
+warten in WORTZEITEN_NEU (tests/offen_b1_teil2.py) auf die Vesna-Runde.
 
 B11 / F11 a: Die Lektion sagt, vor jer, da und ako steht kein Komma, wenn der
 Nebensatz hinter dem Hauptsatz steht (grammatik.py, satzbau). Sieben B1-Saetze
@@ -103,8 +106,9 @@ ENGLISCH = {
 # unveraendert (11df97e6…), seit V13 a steht in b1_struja "plinski šporet"
 # (526d6a03…), seit S3 in pismo "napraviti pitu" (b8c9980c…), seit S7 "vam"
 # klein in den Gespraechen von b1_posao und b1_stan (46d93671…), seit F11 a
-# ohne die sieben Kommas vor nachgestelltem jer und ako.
-TEXTE_SHA256 = "7ae5034616af41506beb3ad86836f20f4965ec7751ec0c5d786d3da53d9bd1f7"
+# ohne die sieben Kommas vor nachgestelltem jer und ako (7ae50346…), seit der
+# Offen-Liste, Punkt 3, "Hvala vam na pomoći" klein in opcina.
+TEXTE_SHA256 = "bc6caa5218647dc8cc86a5a9f30c6f46cb8928682d490570dc3a444b1506d274"
 
 
 def _geschichten(daten):
@@ -359,16 +363,41 @@ def test_s7_gross_nur_in_der_nachricht(grunddaten):
     assert {k: v for k, v in gross.items() if v} == {"b1_telefon": ["Vas"]}
 
 
-def test_s7_offen_nur_opcina(grunddaten):
-    """Ueber alle Geschichten steht ein grosses Vi mitten im Satz nur in der
-    Nachricht von b1_telefon und in opcina ("Hvala Vam na pomoći"). opcina ist
-    ein Gespraech, war in F23 aber nicht gefragt und hat Ton und Wortzeiten
-    (g10); bis Ajdin entscheidet, steht die Ausnahme oben in geschichten.py.
-    Kommt eine dritte Stelle dazu, schlaegt der Test an."""
+def test_s7_gross_ueberall_nur_in_der_nachricht(grunddaten):
+    """Ueber alle Geschichten steht ein grosses Vi mitten im Satz nur noch in
+    der Nachricht von b1_telefon. Seit dem 14.11.2026 (Offen-Liste, Punkt 3)
+    auch in opcina klein: "Hvala vam na pomoći" sagt Amina am Schalter, ein
+    Gespraech wie in F23. Kommt eine zweite Stelle dazu, schlaegt der Test an."""
     gross = {g["id"]: _gross_mitten_im_satz(g["text"]) for g in grunddaten["geschichten"]}
-    assert {k: v for k, v in gross.items() if v} == {"b1_telefon": ["Vas"], "opcina": ["Vam"]}
+    assert {k: v for k, v in gross.items() if v} == {"b1_telefon": ["Vas"]}
+    opcina = _geschichten(grunddaten)["opcina"]
+    assert "„Hvala vam na pomoći“, kaže Amina." in opcina["text"]
+    assert "„Danke für Ihre Hilfe“, sagt Amina." in opcina["uebersetzung"]
+
+
+def test_s7_opcina_behaelt_ihren_ton(wurzel):
+    """Der Ton-Schluessel ist kleingeschrieben: g10 passt weiter, gleich viele
+    Woerter, die App markiert beim Vorlesen richtig. Nur die Wortzeiten
+    gehoeren zum alten Text mit "Vam" und werden in der naechsten Vesna-Runde
+    neu geholt (WORTZEITEN_NEU in tests/offen_b1_teil2.py)."""
+    import io
+    import json
+    import os
+
     import geschichten
-    assert "Hvala Vam na pomoći" in geschichten.__doc__
+    import offen_b1_teil2
+    import offen_lesetexte
+    import ton_bauen
+    g = next(s for s in geschichten.GESCHICHTEN if s["id"] == "opcina")
+    toene = json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8"))["toene"]
+    g10 = next(e for e in toene if e["datei"] == "g10.mp3")
+    assert g10["key"] == ton_bauen.schluessel(g["text"])
+    assert "Hvala Vam na pomoći" in g10["text"]
+    assert len(g10["w"]) == len(ton_bauen.textwoerter(g["text"]))
+    assert "opcina" in offen_b1_teil2.WORTZEITEN_NEU
+    assert "opcina" not in offen_b1_teil2.GESCHICHTEN
+    assert ton_bauen.schluessel(g["text"]) not in offen_lesetexte.GESCHICHTEN
+    assert "Hvala Vam" not in geschichten.__doc__
 
 
 def test_s7_ton_schluessel_bleibt():

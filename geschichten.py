@@ -31,11 +31,12 @@ Höfliches Vi, Vas, Vam (und vaš): groß nur in Geschriebenem an eine Person
 klein in den Gesprächen der Erzählung ("Prvo ću vam pokazati vašu
 kancelariju"). Ajdin, F23 (Prüfbericht 1.4, S7, 14.11.2026). Der Zahnarzt-Teil
 (zahnarzt.py) bleibt groß.
-Noch offen, steht groß, bis Ajdin entscheidet: „Hvala Vam na pomoći“ in opcina,
-auch ein Gespräch, war aber nicht gefragt. opcina hat Ton und Wortzeiten (g10),
-und ton_bauen.wortzeiten_passen() vergleicht den Text mit Groß- und
-Kleinschreibung: klein geschrieben fielen die Wortzeiten beim nächsten
-ton_bauen.py weg.
+Seit dem 14.11.2026 (Offen-Liste, Punkt 3) auch in opcina klein: „Hvala vam na
+pomoći“ sagt Amina am Schalter, im Gespräch. Der Ton (g10) bleibt, der Schlüssel ist
+kleingeschrieben und die Stimme spricht es gleich. Seine Wortzeiten "w" holte
+wortzeiten_holen.py aber zum alten Text, und ton_bauen.wortzeiten_passen()
+vergleicht mit Groß- und Kleinschreibung: g10 bekommt sie in der nächsten
+Vesna-Runde neu (WORTZEITEN_NEU in tests/offen_b1_teil2.py).
 
 HINWEIS: Claude ist kein Muttersprachler. Texte bitte prüfen.
 """
@@ -496,7 +497,7 @@ GESCHICHTEN = [
         "id": "opcina", "titel": "Na općini", "stufe": "Amtssprache", "passt_zu": "amt",
         "text": "Amina treba potvrdu o prebivalištu. Ide na općinu u osam sati. Na šalteru pita: „Dobar dan, trebam potvrdu o prebivalištu. Koji dokumenti mi trebaju?“ "
                 "Službenica kaže: „Trebate ličnu kartu i obrazac. Taksa je pet maraka.“ Amina popunjava obrazac i potpisuje. Onda plaća taksu. "
-                "Potvrda je gotova za deset minuta. „Hvala Vam na pomoći“, kaže Amina.",
+                "Potvrda je gotova za deset minuta. „Hvala vam na pomoći“, kaže Amina.",
         "uebersetzung": "Amina braucht eine Wohnsitzbescheinigung. Sie geht um acht Uhr zum Gemeindeamt. Am Schalter fragt sie: „Guten Tag, ich brauche eine Wohnsitzbescheinigung. Welche Dokumente brauche ich?“ "
                 "Die Beamtin sagt: „Sie brauchen den Personalausweis und das Formular. Die Gebühr beträgt fünf Mark.“ Amina füllt das Formular aus und unterschreibt. Dann zahlt sie die Gebühr. "
                 "Die Bescheinigung ist in zehn Minuten fertig. „Danke für Ihre Hilfe“, sagt Amina.",

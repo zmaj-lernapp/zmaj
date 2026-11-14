@@ -74,6 +74,42 @@ def test_jede_geschichte_hat_passende_wortzeiten(index):
     assert not fehler, fehler[:20]
 
 
+def test_wortzeiten_gehoeren_zum_text(index):
+    """Die Zeiten "w" wurden genau zu diesem Text geholt (wortzeiten_passen()
+    vergleicht mit Gross- und Kleinschreibung, 20.10.2026). Sonst wirft der
+    naechste ton_bauen.py-Lauf sie weg. Ausgenommen ist nur, was in
+    WORTZEITEN_NEU (tests/offen_b1_teil2.py) auf die naechste Vesna-Runde wartet."""
+    import offen_lesetexte
+    nach_key = {e["key"]: e for e in index["toene"]}
+    falsch = sorted(s["id"] for s in _geschichten()
+                    if ton_bauen.schluessel(s["text"]) not in offen_lesetexte.GESCHICHTEN
+                    and s["id"] not in WARTET_AUF_TON
+                    and s["id"] not in offen_b1_teil2.WORTZEITEN_NEU
+                    and not ton_bauen.wortzeiten_passen(nach_key[ton_bauen.schluessel(s["text"])], s["text"]))
+    assert falsch == []
+
+
+def test_wortzeiten_neu_ist_aktuell(index):
+    """opcina (14.11.2026, "Hvala vam" statt "Hvala Vam"): gleicher Schluessel,
+    gleich viele Woerter, die App markiert weiter richtig. Nur der Text, zu dem
+    die Zeiten geholt wurden, unterscheidet sich in Gross und klein, und
+    wortzeiten_holen.py --holen nimmt die Geschichte deshalb von selbst mit
+    (_ziele(): alles, wofuer wortzeiten_passen() nicht gilt).
+    Passen die Zeiten wieder, aus WORTZEITEN_NEU streichen."""
+    nach_key = {e["key"]: e for e in index["toene"]}
+    ids = {s["id"] for s in _geschichten()}
+    assert offen_b1_teil2.WORTZEITEN_NEU <= ids
+    assert not offen_b1_teil2.WORTZEITEN_NEU & WARTET_AUF_TON
+    for s in _geschichten():
+        if s["id"] not in offen_b1_teil2.WORTZEITEN_NEU:
+            continue
+        e = nach_key[ton_bauen.schluessel(s["text"])]
+        assert not ton_bauen.wortzeiten_passen(e, s["text"]), \
+            "Wortzeiten passen wieder - aus WORTZEITEN_NEU streichen: %s" % s["id"]
+        assert e["text"] != s["text"] and e["text"].lower() == s["text"].lower(), s["id"]
+        assert len(e["w"]) == len(ton_bauen.textwoerter(s["text"])), s["id"]
+
+
 def test_wortzeiten_liegen_in_der_aufnahme(index, wurzel):
     """ton_bauen.py und wortzeiten_holen.py erzeugen MP3 mit festen 48 kbit/s,
     die Dauer ist also Groesse * 8 / 48. Wer eine Geschichte durch eine eigene

@@ -670,7 +670,11 @@ are in the Play Store listing. Format:
   vam") are now lower case like *Kod doktora* and *Stari zanat na Baščaršiji*; the
   message in *Izgubljeni telefon* keeps "molim Vas". The dental section stays
   capitalised. The audio keys are lower case, so nothing needs new audio.
-  `tests/test_pruefbericht14_geschichten.py`.
+  `tests/test_pruefbericht14_geschichten.py`. By the same rule *Na općini* now has
+  "Hvala vam na pomoći" at the counter. Its recording (g10) stays, only the word
+  timings were taken for the old spelling and are fetched again in the next Vesna
+  round (`WORTZEITEN_NEU` in `tests/offen_b1_teil2.py`); until then the app still
+  highlights the right words. `tests/test_wortzeiten.py`.
 - Commas before *jer* and *ako* (review for 1.4, 14.11.2026, B11; decided by the
   maintainer, F11 a): the grammar lesson teaches no comma before *jer*, *da* and
   *ako* when the clause follows the main clause, yet seven B1 sentences had one

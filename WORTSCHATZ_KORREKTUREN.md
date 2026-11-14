@@ -1148,10 +1148,23 @@ Dialogen, Zahnarzt bleibt groß? Ajdin: ja.
 - Mit *vam* auch *vašu* klein, im selben Satz der Chefin.
 - Der Zahnarzt-Teil (`zahnarzt.py`) bleibt groß. Der Ton-Schlüssel ist
   kleingeschrieben, beide Texte hatten noch keinen Ton.
-- Offen: *Na općini* (`opcina`), „Hvala Vam na pomoći“, kaže Amina. Auch ein
+- Zuerst offen: *Na općini* (`opcina`), „Hvala Vam na pomoći“, kaže Amina. Auch ein
   Gespräch, stand aber nicht im Prüfbericht und hat Ton und Wortzeiten (g10).
   `ton_bauen.wortzeiten_passen()` vergleicht den Text mit Groß- und Kleinschreibung;
   klein geschrieben fielen die Wortzeiten beim nächsten `ton_bauen.py` weg.
+- Nachtrag 14.11.2026 (Offen-Liste, Punkt 3): nach derselben Regel auch dort klein.
+
+| Geschichte | vorher | jetzt | warum |
+|---|---|---|---|
+| *Na općini* (`opcina`) | „Hvala Vam na pomoći“, kaže Amina. | „Hvala vam na pomoći“, kaže Amina. | Amina spricht am Schalter mit der Beamtin. |
+
+- Die Aufnahme (g10, Vesna) bleibt: Der Schlüssel ist kleingeschrieben, gesprochen
+  klingt es gleich, und die Zahl der Wörter ist dieselbe. Nur die Wortzeiten gehören
+  zum alten Text; g10 wartet in `WORTZEITEN_NEU` (`tests/offen_b1_teil2.py`) und
+  bekommt sie in der Vesna-Runde neu (`wortzeiten_holen.py --holen` nimmt sie von
+  selbst mit). Die Übersetzung „Danke für Ihre Hilfe“ bleibt.
+- Die Wendung „Hvala Vam na pomoći“ im Level *formell* (`vokabeln.py`) ist keine
+  Geschichte und bleibt groß.
 
 **B11 / F11, Komma vor jer und ako.** Frage: die 7 Kommas vor nachgestelltem *jer*
 und *ako* streichen (a) oder die Regel auf „meist kein Komma“ abschwächen (b)? Ajdin:
