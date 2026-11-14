@@ -792,8 +792,8 @@
        ],
        [
         "Genitiv",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Akkusativ",
@@ -807,8 +807,8 @@
        ],
        [
         "Instrumental",
-        "s/sa, pod, iznad, ispod, između, pred, za (hinter)",
-        "s bratom, pod stolom, između kuća"
+        "s/sa, pod, pred, za (hinter)",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -3951,8 +3951,8 @@
        ],
        [
         "Genitive",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Accusative",
@@ -3966,8 +3966,8 @@
        ],
        [
         "Instrumental",
-        "sa, pod, iznad, ispod, između, pred, za (behind)",
-        "s bratom, pod stolom, između kuća"
+        "sa, pod, pred, za (behind)",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -7110,8 +7110,8 @@
        ],
        [
         "Genitif",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Akuzatif",
@@ -7125,8 +7125,8 @@
        ],
        [
         "İnstrumental",
-        "sa, pod, iznad, ispod, između, pred, za (arkasında)",
-        "s bratom, pod stolom, između kuća"
+        "sa, pod, pred, za (arkasında)",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -10269,8 +10269,8 @@
        ],
        [
         "Genitiv",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Ackusativ",
@@ -10284,8 +10284,8 @@
        ],
        [
         "Instrumentalis",
-        "sa, pod, iznad, ispod, između, pred, za (bakom)",
-        "s bratom, pod stolom, između kuća"
+        "sa, pod, pred, za (bakom)",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -13428,8 +13428,8 @@
        ],
        [
         "Genitief",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Accusatief",
@@ -13443,8 +13443,8 @@
        ],
        [
         "Instrumentalis",
-        "sa, pod, iznad, ispod, između, pred, za (achter)",
-        "s bratom, pod stolom, između kuća"
+        "sa, pod, pred, za (achter)",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -16587,8 +16587,8 @@
        ],
        [
         "Genitiv",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Akkusativ",
@@ -16602,8 +16602,8 @@
        ],
        [
         "Instrumentalis",
-        "sa, pod, iznad, ispod, između, pred, za (bak)",
-        "s bratom, pod stolom, između kuća"
+        "sa, pod, pred, za (bak)",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -19746,8 +19746,8 @@
        ],
        [
         "Genitiv",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Akkusativ",
@@ -19761,8 +19761,8 @@
        ],
        [
         "Instrumentalis",
-        "sa, pod, iznad, ispod, između, pred, za (bag)",
-        "s bratom, pod stolom, između kuća"
+        "sa, pod, pred, za (bag)",
+        "s bratom, pod stolom"
        ]
       ]
      },
@@ -22905,8 +22905,8 @@
        ],
        [
         "Génitif",
-        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije",
-        "iz grada, kod nane, poslije posla"
+        "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između",
+        "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"
        ],
        [
         "Accusatif",
@@ -22920,8 +22920,8 @@
        ],
        [
         "Instrumental",
-        "sa, pod, iznad, ispod, između, pred, za (derrière)",
-        "s bratom, pod stolom, između kuća"
+        "sa, pod, pred, za (derrière)",
+        "s bratom, pod stolom"
        ]
       ]
      },
