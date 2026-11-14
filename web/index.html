@@ -671,6 +671,9 @@
   .flammenbox .funke.f1{left:-.75em; top:-.2em}
   .flammenbox .funke.f2{right:-.6em; top:.45em; animation-delay:.8s}
   .flammenbox .funke.f3{left:.6em; top:-1.05em; animation-delay:1.6s}
+  /* Seit 14.11.2026 das gemalte Bild (symbole/funken.webp) statt des
+     Zeichens ✨, das jedes Handy anders malte - so gross wie das Zeichen. */
+  .flammenbox .funke .sym{--sg:1em}
   .flamme.stufe-gold ~ .funke{animation-name:flammeFunke}
   .flamme.glut ~ .funke{animation-name:none}
   @keyframes flammeFunke{
@@ -2620,7 +2623,7 @@
              Seit dem 24.10.2026 ein gemaltes Bild statt des Emojis. Die
              Funken des Funkenflugs (.fk, 24.10.2026) legt funkenRichten()
              dazu, sobald sie gebraucht werden. -->
-        <div class="seriezahl"><span class="flammenbox" aria-hidden="true"><span class="flamme" id="serieFlamme" aria-hidden="true"><img class="flammenbild" src="flamme/flamme.webp" alt=""></span><span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span></span><span id="serieZahl">0</span></div>
+        <div class="seriezahl"><span class="flammenbox" aria-hidden="true"><span class="flamme" id="serieFlamme" aria-hidden="true"><img class="flammenbild" src="flamme/flamme.webp" alt=""></span><span class="funke f1"><img class="sym sym-funken" src="symbole/funken.webp" alt="" aria-hidden="true"></span><span class="funke f2"><img class="sym sym-funken" src="symbole/funken.webp" alt="" aria-hidden="true"></span><span class="funke f3"><img class="sym sym-funken" src="symbole/funken.webp" alt="" aria-hidden="true"></span></span><span id="serieZahl">0</span></div>
         <div class="streakline" id="streakLine"></div>
       </div>
       <div class="zmaj idle" id="zmajHome"></div>
@@ -4680,6 +4683,14 @@ function mitSymbol(name, html){ return symbol(name) + ' ' + html; }
    Statistik auf dem Ergebnis. Unbegrenzt ohne Kauf (?alle=1, Geschenk)
    bleibt es rot - Gold heisst gekauft. Gemalt mit Gemini wie die anderen. */
 function herzSymbol(sagt){ return symbol(premium ? 'herzgold' : 'herz', sagt); }
+/* Einheitlich auf Android und iPhone (14.11.2026). Ajdin im iPhone-Test:
+   "es hat noch die iphone bilder ... das muss einheitlich sein". Die
+   letzten Emojis der Oberflaeche sind ebenso gemalt (abgenommen: "passt")
+   und stehen nicht mehr im Text, sondern kommen von hier: ziel vor
+   "Level-Test" (war 🏁), stern vor "Zmaj bewerten" (⭐), herzblau nach
+   "Danke!" (💙), funken an der goldenen Flamme (✨), brief vor der E-Mail
+   im Profil (✉). Ueberall steht ein Wort daneben, die Bilder sind also
+   Schmuck. */
 function symbolTexte(vars){
   return Object.assign({herz: symbol('herz', t('stat.leben')),
                         muenze: symbol('muenze', SYMBOL_SAGT.muenze),
@@ -4690,7 +4701,8 @@ function symbolTexte(vars){
    Augenblick lang ein leerer Platz. Nur eigene Dateien. Die Liste haelt
    die Bilder fest, damit der Browser sie nicht wieder verwirft. */
 const SYMBOLE = ['lernpfad', 'geschichten', 'wiederholen', 'muenze', 'herz', 'laden',
-                 'einstellungen', 'profil', 'lautsprecher', 'schloss', 'herzgold'];
+                 'einstellungen', 'profil', 'lautsprecher', 'schloss', 'herzgold',
+                 'ziel', 'stern', 'herzblau', 'funken', 'brief'];
 const symbolVorrat = SYMBOLE.map(n => {
   const i = new Image(); i.src = 'symbole/' + n + '.webp';
   if(i.decode) i.decode().catch(() => {});
@@ -8035,7 +8047,8 @@ function flammeBild(z){ return 'flamme/' + (z === 'an' ? 'flamme' : z) + '.webp'
 function flammeHtml(){
   return '<span class="flammenbox" aria-hidden="true"><span class="' + flammeKlassen() + '" aria-hidden="true">' +
     '<img class="flammenbild" src="' + flammeBild(flammeZustand()) + '" alt=""></span>' +
-    '<span class="funke f1">✨</span><span class="funke f2">✨</span><span class="funke f3">✨</span>' +
+    '<span class="funke f1">' + symbol('funken') + '</span><span class="funke f2">' + symbol('funken') +
+    '</span><span class="funke f3">' + symbol('funken') + '</span>' +
     (funkenSoll() ? funkenHtml() : '') + '</span>';
 }
 /* Funkenflug (24.10.2026), siehe .fk im Stil. Ajdin: "kann man das feuer
@@ -10180,7 +10193,7 @@ function showKonto(){
   $('kontoKasten').hidden = !(MIT_SERVER || (cloudModus() && !!cloudMerker()));
   renderErfolgLeiste();
   $('setProfilName').innerHTML = mitSymbol('profil', esc(profil+(premium?' · '+t('profil.vollversion'):'')));
-  $('setProfilMail').textContent = kontoMail ? '✉ '+kontoMail : '';
+  $('setProfilMail').innerHTML = kontoMail ? mitSymbol('brief', esc(kontoMail)) : '';
   $('setSerie').textContent = tp('set.serie_stand', streak());
   const s=schutzNow(), rest=naechsterSchutzIn();
   $('setSchutz').textContent = tp('serie.schutz', s) +
@@ -11913,7 +11926,7 @@ function standLeeren(){
 }
 function kontoSeiteCloud(){
   const m = cloudMerker() || {};
-  $('setProfilMail').textContent = m.email ? '✉ ' + m.email : '';
+  $('setProfilMail').innerHTML = m.email ? mitSymbol('brief', esc(m.email)) : '';
   $('setProfilSub').hidden = true;
   const g = $('setGesichert');
   g.hidden = false;
@@ -12815,7 +12828,7 @@ function updateProgress(){
   const bt=$('btnTest'), allowed=testAllowed(c);
   testKnopf(livesNow());
   if(passed.has(c.id)){ bt.textContent=t('level.test_bestanden'); }
-  else if(allowed) bt.textContent = t('level.test');
+  else if(allowed) bt.innerHTML = mitSymbol('ziel', esc(t('level.test')));
   else bt.innerHTML = mitSymbol('schloss', esc(t('level.test_gesperrt',{p:TEST_FREI_AB})));
   $('lvNote').textContent = passed.has(c.id) ? t('level.note_bestanden') :
     (allowed ? t('level.note_frei',{a:TEST_BESTANDEN_AB, b:TEST_FRAGEN}) : t('level.note_zu',{p:TEST_FREI_AB}));
@@ -16119,7 +16132,7 @@ function zeigeBewertung(){
     '</div>';
   kasten.querySelector('h3').textContent = t('bew.titel');
   kasten.querySelector('.txt').textContent = t('bew.text');
-  kasten.querySelector('#bwJa').textContent = t('bew.bewerten');
+  kasten.querySelector('#bwJa').innerHTML = mitSymbol('stern', esc(t('bew.bewerten')));
   kasten.querySelector('#bwVor').textContent = t('bew.vorschlag');
   kasten.querySelector('#bwNein').textContent = t('bew.nein');
   document.body.appendChild(kasten);
@@ -16164,7 +16177,7 @@ function zeigeVorschlag(){
     if(r === null) return;
     // Ueber das Formular dankt set.feedback_danke schon selbst.
     if(r) feld.value = '';
-    else note.insertAdjacentText('afterbegin', t('bew.danke') + ' ');
+    else note.insertAdjacentHTML('afterbegin', esc(t('bew.danke')) + ' ' + symbol('herzblau') + ' ');
     sound('ok');
     kasten.querySelector('#bwZu').textContent = t('task.weiter');
   });

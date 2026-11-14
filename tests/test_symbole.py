@@ -148,3 +148,45 @@ def test_goldenes_herz_mit_vollversion(wurzel, index_html):
     assert len(zeilen) == 4, zeilen
     for z in zeilen:
         assert "herzSymbol(" in z and "symbol('herz'" not in z, z
+
+
+# Einheitlich auf Android und iPhone (14.11.2026): die letzten Emojis der
+# Oberflaeche, gemalt wie Symbol-Satz V1. Die Benachrichtigungen (ben.*)
+# zeigt das Betriebssystem, dort bleiben Emojis.
+GEMALT_WEG = ["🏁", "⭐", "💙", "✨", "✉"]
+
+
+def test_texte_ohne_gemalte_emojis(sprachcodes):
+    """Kein Text der Oberflaeche traegt noch 🏁 ⭐ 💙 ✨ ✉ - das Bild kommt
+    aus dem Code. Die drei Texte, die sie trugen, stehen in jeder Sprache
+    ohne Zeichen am Rand da."""
+    import sprachen
+    fehler = []
+    for code in sprachcodes:
+        texte = sprachen.texte(code)
+        for k, v in texte.items():
+            if not isinstance(v, str) or k.startswith("ben."):
+                continue
+            fehler += [(code, k, e) for e in GEMALT_WEG if e in v]
+        for k in ("level.test", "bew.bewerten", "bew.danke"):
+            assert texte[k] == texte[k].strip() and texte[k], (code, k, texte[k])
+    assert not fehler, fehler
+
+
+def test_index_ohne_gemalte_emojis_und_mit_bild(wurzel, index_html):
+    """Im Quelltext der App (ohne Kommentare) steht keines dieser Emojis
+    mehr. Stattdessen: Zielflagge vor dem Level-Test, Stern vor "Zmaj
+    bewerten", blaues Herz nach "Danke!", Funken an der goldenen Flamme
+    (oben im Kopf und in flammeHtml), Brief vor der E-Mail im Profil."""
+    code = _ohne_kommentare(index_html)
+    assert not [e for e in GEMALT_WEG if e in code]
+    assert "bt.innerHTML = mitSymbol('ziel', esc(t('level.test')));" in code
+    assert "#bwJa').innerHTML = mitSymbol('stern', esc(t('bew.bewerten')));" in code
+    assert "note.insertAdjacentHTML('afterbegin', esc(t('bew.danke')) + ' ' + symbol('herzblau') + ' ');" in code
+    assert code.count("mitSymbol('brief', esc(") == 2
+    assert code.count('<span class="funke f') == 6
+    assert code.count('<img class="sym sym-funken" src="symbole/funken.webp" alt="" aria-hidden="true">') == 3
+    assert code.count("symbol('funken')") == 3
+    for n in ("ziel", "stern", "herzblau", "funken", "brief"):
+        assert n in _symbole(index_html), n
+        assert os.path.isfile(os.path.join(wurzel, "web", "symbole", n + ".webp")), n

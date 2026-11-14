@@ -342,6 +342,16 @@ are in the Play Store listing. Format:
   one. Painted with Gemini like the other symbols (`web/symbole/herzgold.webp`,
   128 × 128 WebP); screen readers still hear "Leben". `tests/test_symbole.py`,
   `tests_e2e/test_symbole_einheitlich.py`.
+- The last emojis of the interface are painted pictures now, the same on Android
+  and iPhone (14.11.2026, the maintainer after the iPhone test: "das muss einheitlich
+  sein"): a chequered flag before "Level-Test" (was 🏁), a star before "Zmaj
+  bewerten" (⭐), a blue heart after "Danke!" (💙), three painted sparkles around the
+  golden streak flame (✨) and an envelope before the e-mail address in the profile
+  (✉). The texts in all eight languages no longer carry the emoji; the picture comes
+  from the code and is decoration next to the word (`web/symbole/ziel.webp`,
+  `stern.webp`, `herzblau.webp`, `funken.webp`, `brief.webp`). Emojis in the
+  notifications stay, the system shows those. `tests/test_symbole.py`,
+  `tests_e2e/test_symbole_einheitlich.py`.
 - The B1 section "Körper und Gesundheit" is now called "Arzt & Gesundheit"
   (14.11.2026, the maintainer's choice; "Doctor & health", "Doktor ve sağlık",
   "Läkare & hälsa", "Dokter & gezondheid", "Lege & helse", "Læge & sundhed",

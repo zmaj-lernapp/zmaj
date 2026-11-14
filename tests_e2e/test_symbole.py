@@ -181,7 +181,7 @@ def test_bildschirmleser(browser, basis):
         assert a["muenzen"] == [["", "true"], "500 KM"], a
         assert a["leben"] == [["Leben", None], "5"], a
         assert a["fuss"] == ["⚙"], a
-        assert a["vorrat"] == "11:true", a
+        assert a["vorrat"] == "16:true", a
         # Laden: der Preisknopf zeigt "100" und heisst "100 🪙, Herz auffuellen"
         preise = seite.js("""() => { showLaden(); return [...document.querySelectorAll('#ladenWaren button[data-ware]')]
             .map(b => [b.innerText.trim(), b.getAttribute('aria-label')]); }""")

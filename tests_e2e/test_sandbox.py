@@ -159,9 +159,10 @@ def test_test_app_alles_offen_ohne_lernstand(seite, heute_stand, test_paket):
     assert seite.page.locator("#levelView").is_visible()
     kopf = seite.js("""() => ({i: catIdx, n: CATEGORIES.length,
         test: document.getElementById('btnTest').disabled,
-        testText: document.getElementById('btnTest').textContent, frei: t('level.test')})""")
+        testText: document.getElementById('btnTest').textContent.trim(), frei: t('level.test'),
+        ziel: !!document.querySelector('#btnTest img.sym-ziel')})""")
     assert kopf["i"] == kopf["n"] - 1, kopf
-    assert kopf["test"] is False and kopf["testText"] == kopf["frei"], kopf
+    assert kopf["test"] is False and kopf["testText"] == kopf["frei"] and kopf["ziel"], kopf
     # Auch der versteckte Zahnarzt-Teil waere offen (nur im Arbeitsspeicher)
     za = seite.js("""() => { if(!ZA) return null; const alt = zaSchalter.an; zaSchalter.an = true;
         const offen = zaLevel().every((c, k) => isUnlocked(CATEGORIES.length + k));

@@ -822,7 +822,8 @@ def test_abmelden(seite, heute_stand, cloud_html):
     _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
     _mail_anmelden(seite, "ich@probe.example", "geheim-123")
     seite.js("() => showKonto()")
-    assert seite.js("""() => [document.getElementById('setProfilMail').textContent,
+    assert seite.js("""() => [(document.querySelector('#setProfilMail img.sym-brief') ? '✉' : '')
+                              + document.getElementById('setProfilMail').textContent,
                               document.getElementById('setGesichert').textContent,
                               document.getElementById('setPwZeile').hidden,
                               document.getElementById('setProfilSub').hidden,

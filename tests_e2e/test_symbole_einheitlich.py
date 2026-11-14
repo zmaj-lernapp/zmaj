@@ -10,11 +10,24 @@ Geprueft wird hier im Browser:
   - das goldene Herz: mit der Vollversion in der Kopfleiste, im
     Fragenkasten und in der Statistik nach der Lektion, ohne sie das rote;
     unbegrenzt ohne Kauf (?alle=1) bleibt es rot.
+  - die gemalten Bilder statt 🏁 ⭐ 💙 ✨ ✉: Level-Test, Bewertungskarte,
+    "Danke!" nach dem Vorschlag, Funken an der goldenen Flamme, E-Mail im
+    Profil - in allen acht Sprachen, geladen, als Schmuck (alt="").
 """
 import datetime
+import io
+import os
+import re
 
 import pytest
-from conftest import Seite
+from conftest import WURZEL, Seite
+
+# Fuer die goldene Flamme (365 Tage) muss die Uhr spaeter stehen: eine Serie
+# reicht nie vor APP_START zurueck (wie in test_flamme.py).
+with io.open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8") as _f:
+    APP_START = datetime.date.fromisoformat(
+        re.search(r"const APP_START = '(\d{4}-\d{2}-\d{2})';", _f.read()).group(1))
+SPAETER = APP_START + datetime.timedelta(days=400)
 
 
 def _stand(**mehr):
@@ -92,6 +105,96 @@ def test_unbegrenzt_ohne_kauf_bleibt_rot(browser, basis):
         assert seite.js("() => ALLE_FREI && !premium && unlimited()")
         herz = seite.js(HERZ, "#livesKnopf")
         assert herz["bild"] == "symbole/herz.webp" and herz["text"] == "∞", herz
+        assert seite.fehler == []
+    finally:
+        ctx.close()
+
+
+SPRACHEN = ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
+GEMALT_WEG = ["🏁", "⭐", "💙", "✨", "✉"]
+
+# Ein Knopf oder Kasten: seine Symbolbilder (Name, alt, aria-hidden, geladen)
+# und sein Text
+BILDER_IN = """(sel) => { const e = document.querySelector(sel); if(!e) return null;
+  return {bilder: [...e.querySelectorAll('img.sym')].map(i => [i.getAttribute('src'), i.getAttribute('alt'),
+                    i.getAttribute('aria-hidden'), i.complete && i.naturalWidth > 0]),
+          text: e.innerText.replace(/\\s+/g, ' ').trim()}; }"""
+
+
+def _bild(name):
+    return ["symbole/%s.webp" % name, "", "true", True]
+
+
+@pytest.mark.parametrize("sprache", SPRACHEN)
+def test_gemalt_statt_emoji(browser, basis, sprache):
+    """Level-Test, "Zmaj bewerten", "Danke!" und die E-Mail im Profil tragen
+    das gemalte Bild, der Text daneben kein Emoji mehr - in jeder Sprache."""
+    ctx, seite = _kontext(browser, basis)
+    try:
+        _starten(seite, sprache=sprache)
+        # wie innerText mit zusammengefassten Leerraeumen (fr: "Merci" und "!"
+        # mit geschuetztem Leerzeichen dazwischen)
+        t = lambda k: " ".join(seite.js("k => t(k)", k).split())  # noqa: E731
+        # Level-Test (frei, weil alle Woerter des Levels gewusst sind)
+        seite.js("() => { CATEGORIES[0].words.forEach(w => known.add(w.id)); openLevel(0); }")
+        seite.page.wait_for_function("() => [...document.querySelectorAll('#btnTest img.sym')].every(i => i.complete)")
+        test = seite.js(BILDER_IN, "#btnTest")
+        assert test == {"bilder": [_bild("ziel")], "text": t("level.test")}, test
+
+        # Die Bewertungskarte
+        seite.js("() => { homeMode = 'words'; showHome(); zeigeBewertung(); }")
+        seite.page.wait_for_function("() => [...document.querySelectorAll('#bwJa img.sym')].every(i => i.complete)")
+        ja = seite.js(BILDER_IN, "#bwJa")
+        assert ja == {"bilder": [_bild("stern")], "text": t("bew.bewerten")}, ja
+        seite.page.click("#bwVor")
+
+        # Vorschlag ohne Formular: das Mailprogramm (hier nachgestellt), davor "Danke!"
+        seite.js("() => { feedbackPerMail = (text, notiz) => { notiz.textContent = 'MAIL'; }; }")
+        seite.page.fill("#bwText", "Probe")
+        seite.page.click("#bwSenden")
+        seite.page.wait_for_function("() => !!document.querySelector('#bwNote img.sym-herzblau')")
+        seite.page.wait_for_function("() => document.querySelector('#bwNote img.sym-herzblau').complete")
+        note = seite.js(BILDER_IN, "#bwNote")
+        assert note == {"bilder": [_bild("herzblau")], "text": t("bew.danke") + " MAIL"}, note
+        seite.page.click("#bwZu")
+
+        # Profil mit Konto: der Brief vor der Adresse
+        seite.js("() => { kontoMail = 'ich@probe.example'; showKonto(); }")
+        seite.page.wait_for_function("() => [...document.querySelectorAll('#setProfilMail img.sym')].every(i => i.complete)")
+        mail = seite.js(BILDER_IN, "#setProfilMail")
+        assert mail == {"bilder": [_bild("brief")], "text": "ich@probe.example"}, mail
+
+        for k in ("level.test", "bew.bewerten", "bew.danke"):
+            assert not [e for e in GEMALT_WEG if e in t(k)], (k, t(k))
+        assert seite.fehler == [] and seite.fremd == []
+    finally:
+        ctx.close()
+
+
+def test_funken_an_der_goldenen_flamme(browser, basis):
+    """Ab 365 Tagen funkeln drei gemalte Funken um die Flamme, oben und in
+    der Statistik - geladen, so gross wie die Schrift des Funkens (vorher
+    das Zeichen ✨), innerhalb des Kastens mit aria-hidden."""
+    ctx, seite = _kontext(browser, basis)
+    try:
+        seite.page.clock.set_fixed_time(datetime.datetime.combine(SPAETER, datetime.time(12, 0)))
+        _starten(seite, {"einstufung": {"tag": SPAETER.isoformat(), "wahl": "neu", "bis": ""},
+                         "tage": [(SPAETER - datetime.timedelta(days=i)).isoformat() for i in range(0, 365)]})
+        seite.page.wait_for_function("() => [...document.querySelectorAll('.funke img')].every(i => i.complete)")
+        f = seite.js("""() => [...document.querySelectorAll('.seriezahl .funke')].map(x => {
+            const i = x.querySelector('img.sym'), r = i.getBoundingClientRect();
+            return {bild: i.getAttribute('src'), geladen: i.naturalWidth > 0, alt: i.getAttribute('alt'),
+                    text: x.textContent, b: Math.round(r.width * 10) / 10, h: Math.round(r.height * 10) / 10,
+                    schrift: parseFloat(getComputedStyle(x).fontSize),
+                    versteckt: !!x.closest('[aria-hidden="true"]')}; })""")
+        assert len(f) == 3, f
+        for x in f:
+            assert x["bild"] == "symbole/funken.webp" and x["geladen"] and x["alt"] == "" and x["text"] == "", x
+            assert abs(x["b"] - x["schrift"]) < 0.6 and x["b"] == x["h"] and x["versteckt"], x
+        assert seite.js("() => document.getElementById('serieFlamme').classList.contains('stufe-gold')")
+        statistik = seite.js("() => { const d = document.createElement('div'); d.innerHTML = flammeHtml();"
+                             " return [...d.querySelectorAll('.funke img.sym')].map(i => i.getAttribute('src')); }")
+        assert statistik == ["symbole/funken.webp"] * 3, statistik
         assert seite.fehler == []
     finally:
         ctx.close()
