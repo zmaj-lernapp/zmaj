@@ -15,6 +15,7 @@ ist (Molim neben „Gern geschehen“, dići neben podići, zajam neben pozajmic
 B5: Ćao ist auch „Hallo“ (F16) und stand neben Zdravo als falscher Knopf.
 B9: „(Antwort darauf)“ als Bedeutung von Alejkumu selam verwies ins Leere.
 B6: „nana (auch: metvica)“ trug das deutsche „auch“ im bosnischen Knopf.
+S2: koleginica heisst kolegica (F19), als Wort, im Lueckensatz und im Satzbau.
 V5: Hatte nur eines von zwei Woertern im selben Level eine Klammer („How are
 you?“ neben „How are you? (formal)“), passte die Frage auf beide Knoepfe.
 B7: Englische Lueckensaetze verlangten die Du-Form, „you“ passt aber auch auf
@@ -202,6 +203,39 @@ def test_b6_ton_wie_kahva_kafa(wurzel):
     assert ton_pruefen.NUR_ERSTE_FORM == {"nana / metvica"}
     posten = [p for p in ton_bauen.sammle() if p["text"] == "nana / metvica"]
     assert [(p["key"], p.get("alle")) for p in posten] == [("nana / metvica", True)], posten
+
+
+# S2 (F19): Ajdin „kolegica ist [richtig] nicht koleginica“, „ne sofort umstellen“. An
+# allen drei Stellen kolegica: das Wort, der Lueckensatz und der Satzbau-Satz. Die Kennung
+# des Worts und der Schluessel des Satzbau-Satzes ziehen ueber UMBENANNT und
+# SAETZE_UMBENANNT mit; der Lueckensatz behaelt seinen Schluessel. Den Ton spricht Emir
+# (tests/test_paket1020_ton.py). Die beiden anderen Saetze aus S2 bleiben, wie sie waren.
+S2_ALT, S2_NEU = "kollegin:koleginica", "kollegin:kolegica"
+
+
+def test_s2_kolegica_an_allen_stellen(alle_daten, index_html, wurzel):
+    assert "'%s': '%s'" % (S2_ALT, S2_NEU) in index_html
+    assert "'k:kennenlernen|Ovo je moja koleginica.': 'k:kennenlernen|Ovo je moja kolegica.'" in index_html
+    for code, daten in alle_daten.items():
+        woerter = _woerter(daten)
+        assert S2_ALT not in woerter and woerter[S2_NEU]["bs"] == "kolegica", code
+        luecke = [s for s in daten["saetze"] if s["kat"] == "kennenlernen" and s["text"] == "Ovo je moja ___."]
+        assert [(s["answer"], s.get("auch")) for s in luecke] == [("kolegica", None)], (code, luecke)
+        satz = [s for s in daten["satzbau"] if s["kat"] == "kennenlernen" and s["bs"].startswith("Ovo je moja kol")]
+        assert [(s["bs"], s.get("auch")) for s in satz] == [("Ovo je moja kolegica.", None)], (code, satz)
+    with io.open(os.path.join(wurzel, "vokabeln.py"), encoding="utf-8") as f:
+        # Nur noch in Kommentaren (bis wann es so hiess), in keinem Eintrag.
+        rest = [z for z in f if "koleginica" in z.split("#")[0]]
+    assert rest == [], rest
+
+
+def test_s2_die_anderen_saetze_bleiben(grunddaten):
+    """F19 b und c gelten nicht: keine Umstellung „Plava je voda u jezeru“ oder „Pet godina
+    ima moja sestra“."""
+    satz = {s["bs"]: s for s in grunddaten["satzbau"]}
+    assert satz["Voda u jezeru je plava"].get("auch") is None
+    auch = satz["Moja sestra ima pet godina"].get("auch") or []
+    assert not [a for a in auch if a.lower().startswith("pet godina ima")], auch
 
 
 # V5: Bei vielen Paaren hatte nur eines der beiden Woerter eine Klammer. Die Frage

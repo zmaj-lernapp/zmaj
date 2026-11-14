@@ -5295,8 +5295,8 @@
    "id": "s0294",
    "level": "kennenlernen",
    "cloze": "Ovo je moja ___.",
-   "answer": "koleginica",
-   "bs": "Ovo je moja koleginica.",
+   "answer": "kolegica",
+   "bs": "Ovo je moja kolegica.",
    "translations": {
     "de": "Das ist meine Kollegin.",
     "en": "This is my colleague (a woman).",
@@ -5307,7 +5307,7 @@
     "da": "Det her er min kollega.",
     "fr": "C'est ma collègue."
    },
-   "audio": "web/audio/w2135.mp3"
+   "audio": null
   },
   {
    "id": "s0295",

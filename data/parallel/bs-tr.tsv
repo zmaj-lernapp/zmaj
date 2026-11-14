@@ -1586,7 +1586,7 @@ Poznajemo se	Birbirimizi tanıyoruz	word	wir kennen uns:Poznajemo se
 poznanik / poznanica	tanıdık (erkek / kadın)	word	bekannter / bekannte:poznanik / poznanica
 raja	arkadaş çevresi / tayfa	word	freundeskreis / die clique:raja
 domaćin	ev sahibi	word	gastgeber:domaćin
-koleginica	iş arkadaşı (kadın)	word	kollegin:koleginica
+kolegica	iş arkadaşı (kadın)	word	kollegin:kolegica
 jaran	ahbap (argo, özellikle Saraybosna)	word	kumpel (slang, vor allem sarajevo):jaran
 drug / drugarica	arkadaş (samimi; erkek / kadın)	word	kumpel / kumpelin (locker):drug / drugarica
 komšije	komşular	word	nachbarn (mehrzahl):komšije
@@ -8289,7 +8289,7 @@ Moja vjera je važna.	İnancım önemli.	sentence	s0290
 Da te upoznam: moj brat.	Seni tanıştırayım: erkek kardeşim.	sentence	s0291
 Hoću da te posjetim.	Seni ziyaret etmek istiyorum.	sentence	s0292
 Molim te, oprosti mi.	Lütfen beni affet.	sentence	s0293
-Ovo je moja koleginica.	Bu benim kadın iş arkadaşım.	sentence	s0294
+Ovo je moja kolegica.	Bu benim kadın iş arkadaşım.	sentence	s0294
 Moj babo je dobar domaćin.	Babam iyi bir ev sahibi.	sentence	s0295
 Nana svira harmoniku.	Nenem akordeon çalıyor.	sentence	s0296
 Plešemo kolo.	Kolo oynuyoruz.	sentence	s0297

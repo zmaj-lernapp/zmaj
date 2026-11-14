@@ -38124,8 +38124,8 @@
    "audio": "web/audio/w2011.mp3"
   },
   {
-   "id": "kollegin:koleginica",
-   "bs": "koleginica",
+   "id": "kollegin:kolegica",
+   "bs": "kolegica",
    "level": "kennenlernen",
    "level_position": 60,
    "section": "kultur",
@@ -38139,7 +38139,7 @@
     "da": "kollega (kvinde)",
     "fr": "collègue (femme)"
    },
-   "audio": "web/audio/w2012.mp3"
+   "audio": null
   },
   {
    "id": "kumpel (slang, vor allem sarajevo):jaran",

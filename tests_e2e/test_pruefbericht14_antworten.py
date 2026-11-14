@@ -171,6 +171,42 @@ def test_b6_beide_formen_beim_tippen_und_sprechen(seite, heute_stand):
     assert seite.fehler == []
 
 
+# S2 (F19): koleginica heisst kolegica, als Wort, im Lueckensatz und im Satzbau-Satz. Der
+# alte Lernstand von Wort und Satz wandert mit; die Web-Demo hat fuer die neuen Texte keinen
+# Ton (den spricht nur Emir, in der App aus dem Store), sie faellt auf keine alte Aufnahme
+# mit "koleginica" zurueck.
+S2_ALT, S2_NEU = "kollegin:koleginica", "kollegin:kolegica"
+S2_SATZ_ALT, S2_SATZ_NEU = "k:kennenlernen|Ovo je moja koleginica.", "k:kennenlernen|Ovo je moja kolegica."
+
+
+def test_s2_alter_lernstand_wandert_mit(seite, heute_stand):
+    seite.starten(stand=heute_stand(gewusst=[S2_ALT, "brot:hljeb"],
+                                    topf={"w:" + S2_ALT: {"typ": "type", "n": 1, "z": 123},
+                                          S2_SATZ_ALT: {"typ": "kacheln", "n": 1, "z": 124}},
+                                    stern={"w:" + S2_ALT: {"z": 50, "r": 7}, S2_SATZ_ALT: {"z": 51, "r": 7}}))
+    jetzt = seite.js("""(neu) => ({known: [...known], topf, stern, bs: wortNachId(neu).w.bs})""", S2_NEU)
+    assert jetzt["bs"] == "kolegica"
+    assert S2_NEU in jetzt["known"] and S2_ALT not in jetzt["known"] and "brot:hljeb" in jetzt["known"]
+    assert jetzt["topf"] == {"w:" + S2_NEU: {"typ": "type", "n": 1, "z": 123},
+                             S2_SATZ_NEU: {"typ": "kacheln", "n": 1, "z": 124}}
+    assert jetzt["stern"] == {"w:" + S2_NEU: {"z": 50, "r": 7}, S2_SATZ_NEU: {"z": 51, "r": 7}}
+    assert seite.fehler == []
+
+
+S2 = [("type", S2_NEU, "kolegica"), ("gap", "Ovo je moja ___.|kolegica", "kolegica")]
+
+
+def test_s2_kolegica_ist_richtig(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    for ziel, eingabe, leben, lage in _antworten(seite, S2):
+        assert lage["ergebnis"] is True and lage["leben"] == leben, (ziel, eingabe, lage)
+        assert lage["fb"] == "Tačno! ✓" and "ok" in lage["klasse"].split(), (ziel, eingabe, lage)
+    erg = seite.js("""() => ({satz: SATZBAU.filter(s => s.bs.startsWith('Ovo je moja kol')).map(s => s.bs),
+                              wort: audioDatei('kolegica'), ganz: audioDatei('Ovo je moja kolegica.')})""")
+    assert erg == {"satz": ["Ovo je moja kolegica."], "wort": None, "ganz": None}, erg
+    assert seite.fehler == []
+
+
 def test_b9_bedeutung_auf_englisch(seite, heute_stand):
     seite.starten(stand=heute_stand(), sprache="en")
     assert seite.js("(id) => wortNachId(id).w.de", B9_NEU) == "reply to Selam alejkum"

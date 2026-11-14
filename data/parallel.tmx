@@ -19050,9 +19050,9 @@
    <tuv xml:lang="da"><seg>vært</seg></tuv>
    <tuv xml:lang="fr"><seg>hôte</seg></tuv>
   </tu>
-  <tu tuid="kollegin:koleginica" segtype="phrase">
+  <tu tuid="kollegin:kolegica" segtype="phrase">
    <prop type="x-kind">word</prop>
-   <tuv xml:lang="bs"><seg>koleginica</seg></tuv>
+   <tuv xml:lang="bs"><seg>kolegica</seg></tuv>
    <tuv xml:lang="de"><seg>Kollegin</seg></tuv>
    <tuv xml:lang="en"><seg>colleague (f)</seg></tuv>
    <tuv xml:lang="tr"><seg>iş arkadaşı (kadın)</seg></tuv>
@@ -99488,7 +99488,7 @@
   </tu>
   <tu tuid="s0294" segtype="sentence">
    <prop type="x-kind">sentence</prop>
-   <tuv xml:lang="bs"><seg>Ovo je moja koleginica.</seg></tuv>
+   <tuv xml:lang="bs"><seg>Ovo je moja kolegica.</seg></tuv>
    <tuv xml:lang="de"><seg>Das ist meine Kollegin.</seg></tuv>
    <tuv xml:lang="en"><seg>This is my colleague (a woman).</seg></tuv>
    <tuv xml:lang="tr"><seg>Bu benim kadın iş arkadaşım.</seg></tuv>

@@ -2157,7 +2157,10 @@ KATEGORIEN = [
         {"de": "Bekannter / Bekannte",               "bs": "poznanik / poznanica"},
         {"de": "Freundeskreis / die Clique",         "bs": "raja"},
         {"de": "Gastgeber",                          "bs": "domaćin"},
-        {"de": "Kollegin",                           "bs": "koleginica"},
+        # Bis zum 14.11.2026 "koleginica". Ajdin (Pruefbericht 1.4, S2/F19): "kolegica ist
+        # [richtig] nicht koleginica", "ne sofort umstellen". Die alte Kennung zieht ueber
+        # UMBENANNT in web/index.html mit, den Ton spricht Emir (w8953).
+        {"de": "Kollegin",                           "bs": "kolegica"},
         {"de": "Kumpel (Slang, vor allem Sarajevo)", "bs": "jaran"},
         {"de": "Kumpel / Kumpelin (locker)",         "bs": "drug / drugarica"},
         {"de": "Nachbarn (Mehrzahl)",                "bs": "komšije"},
@@ -10573,7 +10576,7 @@ SAETZE = [
     {"kat": "kennenlernen", "text": "Da te ___: moj brat.",   "answer": "upoznam",    "de": "Darf ich vorstellen: mein Bruder."},
     {"kat": "kennenlernen", "text": "Hoću da te ___.",        "answer": "posjetim",   "de": "Ich will dich besuchen."},
     {"kat": "kennenlernen", "text": "Molim te, ___ mi.",      "answer": "oprosti",    "de": "Bitte verzeih mir."},
-    {"kat": "kennenlernen", "text": "Ovo je moja ___.",       "answer": "koleginica", "de": "Das ist meine Kollegin."},
+    {"kat": "kennenlernen", "text": "Ovo je moja ___.",       "answer": "kolegica", "de": "Das ist meine Kollegin."},   # bis 14.11.2026 koleginica (Prüfbericht 1.4, S2/F19)
     {"kat": "kennenlernen", "text": "Moj babo je dobar ___.", "answer": "domaćin",    "de": "Mein Papa ist ein guter Gastgeber."},
 
     # Musik, Glaube & Gastfreundschaft
@@ -11002,7 +11005,9 @@ SATZBAU = [
     {"kat": "kennenlernen", "bs": "Da te upoznam: moj brat.", "de": "Darf ich vorstellen: mein Bruder.", "quelle": "saetze"},
     {"kat": "kennenlernen", "bs": "Hoću da te posjetim.", "de": "Ich will dich besuchen.", "formen": {"posjetim": "posjetiti"}, "quelle": "saetze"},
     {"kat": "kennenlernen", "bs": "Molim te, oprosti mi.", "auch": ["Oprosti mi, molim te."], "de": "Bitte verzeih mir.", "quelle": "saetze"},
-    {"kat": "kennenlernen", "bs": "Ovo je moja koleginica.", "de": "Das ist meine Kollegin.", "quelle": "saetze"},
+    # Bis zum 14.11.2026 "Ovo je moja koleginica." (Pruefbericht 1.4, S2/F19, Ton w8954 von
+    # Emir). Weiter ohne "auch": die Umstellung "Moja je ovo ..." (F19 a) ist nicht freigegeben.
+    {"kat": "kennenlernen", "bs": "Ovo je moja kolegica.", "de": "Das ist meine Kollegin.", "quelle": "saetze"},
     {"kat": "kennenlernen", "bs": "Moj babo je dobar domaćin.", "auch": ["Dobar domaćin je moj babo.", "Moj je babo dobar domaćin.", "Dobar je domaćin moj babo."], "de": "Mein Papa ist ein guter Gastgeber.", "quelle": "saetze"},
     {"kat": "kennenlernen", "bs": "Drago mi je što smo se upoznali", "de": "Schön, dich kennengelernt zu haben", "quelle": "vokabel"},
     # Level 59 · Musik, Glaube & Gastfreundschaft

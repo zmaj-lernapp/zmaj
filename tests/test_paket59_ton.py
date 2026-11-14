@@ -40,10 +40,10 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     emir = ton_bauen.nur_emir()
     neu = _im_bereich(emir)
     assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1) if n not in ZURUECKGEZOGEN]
-    # Dahinter stehen der Teil Beim Zahnarzt (w5206 bis w5316, tests/test_zahnarzt.py) und
-    # seit dem 07.11.2026 die Pakete 10 bis 20 mit der Warteliste (w5317 bis w8952,
-    # tests/test_paket1020_ton.py).
-    assert max(_nummer(e["datei"]) for e in emir.values()) == 8952
+    # Dahinter stehen der Teil Beim Zahnarzt (w5206 bis w5316, tests/test_zahnarzt.py),
+    # seit dem 07.11.2026 die Pakete 10 bis 20 mit der Warteliste (w5317 bis w8952) und seit
+    # dem 14.11.2026 kolegica (w8953, w8954), beides in tests/test_paket1020_ton.py.
+    assert max(_nummer(e["datei"]) for e in emir.values()) == 8954
     # Die 40 Grundwoerter, die am 13.11.2026 in zwei A-Level gezogen sind, kommen in der
     # App jetzt frueher dran; ihre Nummern bleiben (grundwoerter_umzug.py).
     from grundwoerter_umzug import UMZUG

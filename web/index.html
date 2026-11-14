@@ -9996,7 +9996,12 @@ const UMBENANNT = {
   /* Pruefbericht 1.4 (14.11.2026), B6: Minze hiess "nana (auch: metvica)", mit dem
      deutschen "auch" im bosnischen Knopf. Ajdin (F17 b): "nana / metvica" wie kahva /
      kafa. Die Suche unten faende das alte bosnische Wort nicht mehr. */
-  'minze:nana (auch: metvica)': 'minze:nana / metvica'};
+  'minze:nana (auch: metvica)': 'minze:nana / metvica',
+  /* Pruefbericht 1.4 (14.11.2026), S2: Ajdin (F19) "kolegica ist [richtig] nicht
+     koleginica", "ne sofort umstellen". Neuer Ton von Emir (w8953), die alte Aufnahme
+     bleibt wie bei produžni kabl in index.json. Die Suche unten faende das alte
+     bosnische Wort nicht mehr. */
+  'kollegin:koleginica': 'kollegin:kolegica'};
 /* Dasselbe fuer Saetze (25.10.2026): Fehler-Topf und Sterne merken sich
    einen Satz als "s:<Level>|<Lueckentext>" bzw. "k:<Level>|<Satz>"
    (topfSchluessel). Aendert sich der bosnische Text, fuehrt der alte
@@ -10017,7 +10022,10 @@ const SAETZE_UMBENANNT = {
   'k:genus|Gdje je moj punjač?': 'k:geraete|Gdje je moj punjač?',
   'k:genus|Moja sestra se zove Amina.': 'k:faelle1|Moja sestra se zove Amina.',
   'k:genus|Moj muž se zove Ajdin.': 'k:faelle1|Moj muž se zove Ajdin.',
-  'k:faelle1|Gdje mogu parkirati svoj auto?': 'k:auto_werkstatt|Gdje mogu parkirati svoj auto?'};
+  'k:faelle1|Gdje mogu parkirati svoj auto?': 'k:auto_werkstatt|Gdje mogu parkirati svoj auto?',
+  /* Pruefbericht 1.4 (14.11.2026), S2: koleginica heisst kolegica (Ajdin, F19). Der
+     Lueckensatz "Ovo je moja ___." behaelt seinen Schluessel, nur die Antwort wechselt. */
+  'k:kennenlernen|Ovo je moja koleginica.': 'k:kennenlernen|Ovo je moja kolegica.'};
 /* Ob ein Satz-Schluessel umgezogen ist: nur wenn der alte zu keiner Aufgabe
    mehr fuehrt und der neue zu einer. hasOwnProperty, damit "constructor"
    aus einer Sicherung nichts findet. */

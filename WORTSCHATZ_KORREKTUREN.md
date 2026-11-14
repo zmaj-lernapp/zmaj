@@ -986,6 +986,26 @@ Ajdin: a, *b1_voz* bleibt „Gdje putujete, djeco?“. Zugleich Tabelle 2c, Nr. 
   führt das Wort in `NUR_ERSTE_FORM`. Die alte Aufnahme w1717 bleibt in `index.json`
   stehen.
 
+**S2 / F19, Kollegin.** Gefragt war, ob drei umgestellte Satzbau-Sätze auch gelten.
+Ajdin: „kolegica ist [richtig] nicht koleginica also 2 passen nicht“, auf Rückfrage
+„ne sofort umstellen ne die sätze sind falsch“. Also *koleginica* überall *kolegica*;
+„Plava je voda u jezeru“ und „Pet godina ima moja sestra“ gelten nicht.
+
+| Stelle | vorher | jetzt |
+|---|---|---|
+| Wort „Kollegin“ (Level kennenlernen) | `kollegin:koleginica` | `kollegin:kolegica` |
+| Lückensatz „Ovo je moja ___.“ (kennenlernen) | *koleginica* | *kolegica* |
+| Satzbau „Das ist meine Kollegin.“ | `k:kennenlernen|Ovo je moja koleginica.` | `k:kennenlernen|Ovo je moja kolegica.` |
+
+- Lernstand: das Wort über `UMBENANNT`, der Satzbau-Satz über `SAETZE_UMBENANNT`; der
+  Lückensatz behält seinen Schlüssel (`s:kennenlernen|Ovo je moja ___.`).
+- Ton von Emir, von Ajdin angehört („passt“): w8953 *kolegica* (Fassung A) und w8954
+  „Ovo je moja kolegica.“ (Fassung D), nur in der Hülle (`audio_emir`), Einträge in
+  `ton_nur_emir.json`. `web/audio/index.json` bleibt; die alten Aufnahmen w2012 und
+  w2135 stehen dort weiter, wie w2278 bei *produžni kabl*, und spielen nicht mehr.
+- Der Satzbau-Satz bekommt kein `"auch"`: die Umstellung „Moja je ovo …“ (F19 a) ist
+  nicht freigegeben. Die beiden anderen Sätze bleiben, wie sie waren.
+
 ## 14.11.2026 – Prüfbericht 1.4: die fraglichen Varianten beim Tippen (Tabelle 2c, F6)
 
 Tabelle 2c in `Release\Wortschatz\varianten_2026-11-13.md`, 39 Zeilen (V10). Ajdin

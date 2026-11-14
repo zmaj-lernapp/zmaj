@@ -523,6 +523,15 @@ are in the Play Store listing. Format:
   recording with both forms does not exist yet; until then the first form *nana*
   plays (`NUR_ERSTE_FORM` in `ton_pruefen.py`).
   `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+- "Kollegin" (review for 1.4, 14.11.2026, S2; decided by the maintainer, F19) is
+  *kolegica*, not *koleginica*: the word, the gap "Ovo je moja ___." and the sentence
+  to build "Ovo je moja kolegica.". The ID changes from `kollegin:koleginica` to
+  `kollegin:kolegica`; `UMBENANNT` and `SAETZE_UMBENANNT` move progress, review box
+  and stars along. New recordings of the word and the sentence by Emir (app only,
+  `ton_nur_emir.json`, w8953 and w8954); `web/audio` keeps the old ones, which no
+  longer play. The reordered sentences "Plava je voda u jezeru" and "Pet godina ima
+  moja sestra" stay wrong. `tests/test_pruefbericht14_antworten.py`,
+  `tests/test_paket1020_ton.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
 - Typing the second forms of table 2c (review for 1.4, 14.11.2026, V10; decided by
   the maintainer, F6: Croatian and the others too, "they are just not visible"):
   writing tasks and gap sentences now also take *kruh* for *hljeb*, *juha* for *supa*,

@@ -20,6 +20,11 @@ Zurueckgezogen am 08.11.2026: w5562 (nego i) und w8899 (nego i / već i). Ajdin:
 nur rein in einem ganzen satz nur so hört es sich sehr komisch an“. Das Wort ist aus der
 App heraus, sein Satz w5563 bleibt. Die Nummern werden nicht neu vergeben, die Dateien
 liegen nicht mehr in audio_emir/ (app_bauen.py warnte sonst bei jedem Bau).
+
+Dahinter seit dem 14.11.2026: w8953 und w8954, kolegica statt koleginica (Pruefbericht 1.4,
+S2/F19). Emir hat das Wort und den Satz neu gesprochen (Stimme_Emir_neu\\nachbesserung_2026-11-14,
+Ajdin: „passt“). Die alten Aufnahmen w2012 und w2135 bleiben in web/audio/index.json stehen,
+wie w2278 bei produžni kabl, und spielen nicht mehr.
 """
 import io
 import json
@@ -29,6 +34,8 @@ ERSTE, LETZTE = 5317, 8952
 ZURUECKGEZOGEN = {5562, 8899}
 ZUSAMMENGESETZT = ["naime / jer", "poput / kao"]
 VOM_05_11 = ["rub", "rat", "mrtav", "naime", "poput"]
+KOLEGICA = {"kolegica": ("w8953.mp3", "kolegica"),
+            "ovo je moja kolegica.": ("w8954.mp3", "Ovo je moja kolegica.")}
 
 
 def _nummer(datei):
@@ -44,7 +51,10 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     emir = ton_bauen.nur_emir()
     neu = _im_bereich(emir)
     assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1) if n not in ZURUECKGEZOGEN]
-    assert max(_nummer(e["datei"]) for e in emir.values()) == LETZTE
+    # Dahinter nur die zwei Aufnahmen vom 14.11.2026 (kolegica, test_kolegica_spricht_emir).
+    assert max(_nummer(e["datei"]) for e in emir.values()) == 8954
+    nach = sorted(e["datei"] for e in emir.values() if _nummer(e["datei"]) > LETZTE)
+    assert nach == sorted(d for d, _ in KOLEGICA.values()), nach
     reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values())]
     assert [neu[d] for d in sorted(neu)] == reihe
 
@@ -98,6 +108,23 @@ def test_produzni_kabel_spricht_emir():
     assert "produžni kabl" not in {p["key"] for p in ton_bauen.sammle()}
 
 
+def test_kolegica_spricht_emir(wurzel):
+    """Aus koleginica wurde kolegica (Ajdin, Pruefbericht 1.4, S2/F19): Wort und Satzbau-Satz
+    mit neuer Aufnahme von Emir, wie bei produžni kabel. Der Lueckensatz „Ovo je moja ___.“
+    spricht denselben fertigen Satz. web/audio/index.json bleibt, wie es war."""
+    import ton_bauen
+    emir = ton_bauen.nur_emir()
+    for key, (datei, text) in KOLEGICA.items():
+        assert emir[key] == {"key": key, "datei": datei, "text": text}
+    keys = {p["key"] for p in ton_bauen.sammle()}
+    assert set(KOLEGICA) <= keys
+    assert "koleginica" not in keys and "ovo je moja koleginica." not in keys
+    with io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8") as f:
+        index = {e["key"]: e["datei"] for e in json.load(f)["toene"]}
+    assert index["koleginica"] == "w2012.mp3" and index["ovo je moja koleginica."] == "w2135.mp3"
+    assert not set(KOLEGICA) & set(index)
+
+
 def test_huelle_hat_jede_datei():
     import pytest
 
@@ -106,7 +133,7 @@ def test_huelle_hat_jede_datei():
     huelle = ton_pruefen._huelle_audio()
     if not huelle:
         pytest.skip("Huelle nicht da")
-    for datei in _im_bereich(ton_bauen.nur_emir()):
+    for datei in list(_im_bereich(ton_bauen.nur_emir())) + [d for d, _ in KOLEGICA.values()]:
         pfad = os.path.join(huelle, datei)
         assert os.path.isfile(pfad) and os.path.getsize(pfad) >= ton_pruefen.MINDEST, datei
     for n in ZURUECKGEZOGEN:
@@ -115,5 +142,5 @@ def test_huelle_hat_jede_datei():
 
 def test_keine_emir_datei_im_oeffentlichen_ordner(wurzel):
     import ton_bauen
-    for datei in _im_bereich(ton_bauen.nur_emir()):
+    for datei in list(_im_bereich(ton_bauen.nur_emir())) + [d for d, _ in KOLEGICA.values()]:
         assert not os.path.exists(os.path.join(wurzel, "web", "audio", datei)), datei
