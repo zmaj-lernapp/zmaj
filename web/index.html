@@ -14067,8 +14067,14 @@ function werbungFuerLeben(e){
       kurzMeldung(lohnAbgebrochen ? t('werbung.lohn_abgebrochen') : t('werbung.keine_anzeige'));
       return;
     }
-    lives = {anzahl: Math.min(LEBEN_MAX, lives.anzahl + WERBUNG_LEBEN_LOHN),
-             zeit: lives.zeit || Date.now()};
+    /* Die Zeit geht wie beim Kauf nach oben (Pruefbericht 1.4, B15,
+       14.11.2026). Bis dahin blieb sie stehen: Beim naechsten Abgleich mit
+       einem zweiten Geraet gewann bei gleicher Zeit die kleinere Zahl, und
+       das Herz aus dem Video war weg (siehe zeitNachKauf()). Vorher
+       abgleichen, was inzwischen nachgewachsen ist - auch wie beim Kauf. */
+    syncLives();
+    lives.anzahl = Math.min(LEBEN_MAX, lives.anzahl + WERBUNG_LEBEN_LOHN);
+    lives.zeit = zeitNachKauf(lives.zeit, lives.anzahl >= LEBEN_MAX);
     saveProgress(); renderLives(); sound('ok');
     /* Punkt 14: nur aufraeumen, wenn der Bildschirm ohne Leben ueberhaupt
        noch steht. Wer waehrend des Ladens mit Muenzen ein Herz gekauft und

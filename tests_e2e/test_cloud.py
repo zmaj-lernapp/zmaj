@@ -29,7 +29,8 @@ Produktionsstart. Geprueft wird hier:
     den Einstieg aus der Einstufung, und nichts Gelerntes geht verloren.
   - Ein im Laden gekaufter Serienschutz (06.11.2026) uebersteht den normalen
     Abgleich in beiden Richtungen, und die Muenzen zaehlen nur einmal. Dasselbe
-    fuer ein gekauftes Herz und gekauften Zierrat (07.11.2026).
+    fuer ein gekauftes Herz und gekauften Zierrat (07.11.2026) und fuer ein Herz
+    aus dem Video (Pruefbericht 1.4, B15, 14.11.2026).
 """
 import datetime
 import json
@@ -1214,6 +1215,50 @@ def test_gekauftes_herz_uebersteht_auch_das_nachwachsen(seite, zweites_geraet, h
     assert erster.js(ABGLEICH, "anmelden") == "gespeichert"
     assert kaeufer.js(LEBEN) == anderes.js(LEBEN) and anderes.js(LEBEN)["anzahl"] == 4
     assert kaeufer.js(MUENZEN) == anderes.js(MUENZEN) == {"ges": 600, "aus": 100, "frei": 500}
+
+
+# ------------------------------------------------- Herz aus dem Video ---
+# Pruefbericht 1.4, B15 (14.11.2026): Beim Muenzkauf am 07.11. behoben, beim
+# Video nicht. Das Video erhoehte die Zahl der Leben, aber nicht die Zeit -
+# beim naechsten Abgleich gewann bei gleicher Zeit die kleinere Zahl. Handy
+# und Tablet mit 0 Leben, Video am Handy: nach dem Abgleich wieder 0.
+
+def _video_ansehen(s):
+    """Der Knopf "Video ansehen" im Laden, die Anzeige ersetzt: ganz angesehen.
+    Die Demo hat keine Werbung (wie in test_test_leben.py)."""
+    s.js("() => { const v = document.getElementById('vorspann'); if(v) v.click(); }")
+    s.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
+    s.js("""() => { werbungErlaubt = () => true; zeigeWerbung = (belohnt, fertig) => fertig(true);
+                    festHeute = () => ''; showLaden(); ladenReiter = 'vorrat'; renderLaden(); }""")
+    s.page.locator("#ladenWaren button[data-videoleben]").click()
+    s.page.wait_for_timeout(100)
+    return s.js(LEBEN)
+
+
+@pytest.mark.parametrize("anzahl", [0, 2, 4])
+@pytest.mark.parametrize("zuschauer_schreibt_zuerst", [True, False])
+def test_herz_aus_dem_video_uebersteht_den_abgleich(seite, zweites_geraet, heute_stand, anzahl,
+                                                    zuschauer_schreibt_zuerst):
+    """Wie test_gekauftes_herz_uebersteht_den_abgleich, nur mit dem Video: Die Zeit
+    geht wie beim Kauf ueber zeitNachKauf() nach oben, das Herz bleibt auf beiden
+    Geraeten. Unter dem Hoechstwert eine Millisekunde, das kostet keine Wartezeit."""
+    zuschauer, anderes = seite, zweites_geraet
+    konto = {"anzahl": anzahl, "zeit": int(time.time() * 1000) - 30 * MINUTE_MS}
+    _zwei_geraete_mit_muenzen(zuschauer, anderes, heute_stand, leben=konto)
+    assert zuschauer.js(LEBEN) == konto and anderes.js(LEBEN) == konto
+    video = _kauf_abgleichen(zuschauer, anderes, lambda: _video_ansehen(zuschauer), zuschauer_schreibt_zuerst)
+    assert video["anzahl"] == anzahl + 1
+    for s in (zuschauer, anderes):
+        assert s.js(LEBEN) == video, "das Herz aus dem Video ist weg"
+        assert s.js(MUENZEN) == {"ges": 600, "aus": 0, "frei": 600}, "ein Video kostet keine Muenzen"
+        assert s.fehler == []
+    vorher, jetzt = {"leben": konto}, {"leben": video}
+    assert seite.js(MISCHEN, [jetzt, vorher])["leben"] == video
+    assert seite.js(MISCHEN, [vorher, jetzt])["leben"] == video
+    if video["anzahl"] < 5:
+        assert video["zeit"] - konto["zeit"] == 1, (konto, video)
+    else:
+        assert video["zeit"] > konto["zeit"], (konto, video)
 
 
 # ---------------------------------------------------- gekaufter Zierrat ---

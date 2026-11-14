@@ -520,6 +520,13 @@ are in the Play Store listing. Format:
   out keeps the reminders on purpose. The return message after 14 days is only
   planned when there is a learning day; without one there is nothing to return
   to. `tests_e2e/test_anmeldung.py`, `tests_e2e/test_benachrichtigungen.py`.
+- Heart from a video (review for 1.4, 14.11.2026, B15): watching a video raised the
+  number of hearts but not their time stamp, so the next sync with a second device
+  kept the smaller number at equal time and the heart was gone (phone and tablet
+  with 0 hearts, video on the phone: 0 again after the sync). The video now sets
+  the time like a coin purchase (`zeitNachKauf()`, fixed for purchases on
+  07.11.2026): one millisecond later below the maximum, so it costs no waiting
+  time. `tests_e2e/test_cloud.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
