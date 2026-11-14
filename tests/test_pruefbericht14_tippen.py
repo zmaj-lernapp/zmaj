@@ -209,8 +209,9 @@ def test_b2_umstellung_beim_tippen(alle_daten, grunddaten, index_html):
 # ---- B3 / F14: Woerter, die die App selbst als gleichbedeutend fuehrt ----
 # F14 a bis o alle ja, nur in der gefragten Richtung: das Wort der Aufgabe nimmt das
 # andere App-Wort, in der Form, in der die App es fuehrt (savremen wie moderan mit
-# weiblicher und saechlicher Form). Bei prije nur nekad, wie in F14 i gefragt; nekada
-# war nicht gefragt (Nachbesserung, 14.11.2026).
+# weiblicher und saechlicher Form). Bei prije nekad, wie in F14 i gefragt, und nekada:
+# erst war es wieder raus, weil nicht gefragt (Nachbesserung 61a8bcc), auf Rueckfrage
+# „nekada auch richtig?“ sagte Ajdin am 14.11.2026 „ja“.
 B3 = {
     "sagen:reći": ["kazati"],                                             # a
     "sich fürchten:plašiti se": ["bojati se"],                            # b
@@ -221,7 +222,7 @@ B3 = {
     "stau:zastoj": ["gužva"],                                             # f
     "bald:uskoro": ["skoro"],                                             # g
     "hier:ovdje": ["tu"],                                                 # h
-    "früher:prije": ["nekad"],                                            # i
+    "früher:prije": ["nekad", "nekada"],                                  # i
     "da (weil):budući da": ["pošto"],                                     # j
     "nachdem:nakon što": ["pošto"],                                       # j
     "vorbereiten:pripremiti": ["spremiti"],                               # k

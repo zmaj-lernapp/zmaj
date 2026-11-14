@@ -488,7 +488,7 @@ are in the Play Store listing. Format:
   14.11.2026, B3; decided by the maintainer, F14): "sagen" (*reći*) also takes
   *kazati*, *plašiti se* takes *bojati se*, *ukoliko* *ako*, *poći* *krenuti*, *žena* and
   *muž* take *supruga* and *suprug*, *zastoj* *gužva*, *uskoro* *skoro*, *ovdje* *tu*,
-  *prije* ("früher") *nekad*, *budući da* and *nakon što* *pošto*,
+  *prije* ("früher") *nekad* and *nekada*, *budući da* and *nakon što* *pošto*,
   *pripremiti* *spremiti*, *spojiti* *povezati*, *moderan* *savremen* (all three forms),
   *pravac* *smjer* and *nedostajati* *faliti*. Only in this direction; the other word
   does not take the first. `tests/test_pruefbericht14_tippen.py`.
