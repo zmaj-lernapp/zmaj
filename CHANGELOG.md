@@ -454,6 +454,14 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Typing (review for 1.4, 14.11.2026, V3): four correct answers no longer cost a
+  heart. *Kad dolaziš?* and *Kad ćeš doći?* count next to *Kada …*, *Kada se ženiš?*
+  next to *Kad se ženiš?* (as single words *kad* and *kada* already did), *Zdravo* in
+  the gap "___, kako si?" (the word *Merhaba* already took it), *Uspio sam!* next to
+  *Uspjela sam!* (the task names no gender) and *Šta se dogodilo?* next to *Šta se
+  desilo?* (as for the verb). One `"auch"` each; IDs and recordings stay. No pair
+  *kad*/*kada* for everywhere, because *kada* is also "bathtub".
+  `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

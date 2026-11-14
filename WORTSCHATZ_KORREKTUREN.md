@@ -735,3 +735,25 @@ gebräuchliche weibliche Form (CLASSLA-Korpus, Mundart Duvno).
   werden können die beiden heute nur wie *striko* und *adžo*: als falsche Kachel
   beim Satzbau (`kachelAblenker()` nimmt jede Form aus `"auch"`).
 - Tests: `tests/test_verwandte.py`, `tests_e2e/test_verwandte.py`.
+
+## 14.11.2026 – Prüfbericht 1.4: richtige Antworten, die ein Leben kosteten
+
+Keine neue Frage an Ajdin. Hier stehen nur Punkte aus `Release\Pruefbericht_1.4.md`
+ohne „Entscheidung“, umgesetzt nach seinem Auftrag vom 14.11.2026, die eindeutigen
+Fehler gleich in 1.4 zu beheben. Was er noch entscheidet (F1 bis F23), steht nicht hier.
+
+**V3, beim Tippen.** Jede Zeile folgt aus etwas, das schon gilt:
+
+| Kennung | Änderung | warum |
+|---|---|---|
+| `wann kommst du?:Kada dolaziš?` | `"auch": ["Kad dolaziš?"]` | Als Einzelwort gelten *kad* und *kada* beide („Wann?“, „als / wenn“). |
+| `wann wirst du kommen?:Kada ćeš doći?` | `"auch": ["Kad ćeš doći?"]` | ebenso; die Grammatik schreibt selbst „Kad ćeš doći?“ |
+| `wann heiratest du?:Kad se ženiš?` | `"auch": ["Kada se ženiš?"]` | ebenso |
+| Lückensatz „___, kako si?“ | `"auch": ["Zdravo"]` | Das Wort *Merhaba* hat *Zdravo* im `"auch"` („Hallo“). |
+| `ich habe es geschafft!:Uspjela sam!` | `"auch": ["Uspio sam!"]` | Die Aufgabe nennt kein Geschlecht. |
+| `was ist passiert?:Šta se desilo?` | `"auch": ["Šta se dogodilo?"]` | Beim Verb gilt beides (*desiti se / dogoditi se*, Paket 1). |
+
+- Kein Paar *kad* / *kada* für überall in `varianten.py`: *kada* heißt auch „Badewanne“.
+- Kennungen, Anzeige und Aufnahmen bleiben. Gesprochen wird weiter `bs`, im
+  Lückensatz der Satz mit *Merhaba*.
+- Tests: `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.

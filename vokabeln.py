@@ -953,7 +953,7 @@ KATEGORIEN = [
         {"de": "Wer bist du?",              "bs": "Ko si ti?"},
         {"de": "Woher kommst du?",          "bs": "Odakle si?"},
         {"de": "Wohin gehst du?",           "bs": "Kuda ideš?"},
-        {"de": "Wann kommst du?",           "bs": "Kada dolaziš?"},
+        {"de": "Wann kommst du?",           "bs": "Kada dolaziš?", "auch": ["Kad dolaziš?"]},   # kad und kada gelten wie beim Wort (Prüfbericht 1.4, V3)
         {"de": "Warum nicht?",              "bs": "Zašto ne?"},
         {"de": "Was ist das?",              "bs": "Šta je to?"},
         {"de": "Wie alt bist du?",          "bs": "Koliko imaš godina?"},
@@ -1504,7 +1504,7 @@ KATEGORIEN = [
         {"de": "Wir werden sehen",          "bs": "Vidjet ćemo"},
         {"de": "Ich werde lernen",          "bs": "Učit ću"},
         {"de": "Ich werde dich anrufen",    "bs": "Nazvat ću te"},
-        {"de": "Wann wirst du kommen?",  "bs": "Kada ćeš doći?"},
+        {"de": "Wann wirst du kommen?",  "bs": "Kada ćeš doći?", "auch": ["Kad ćeš doći?"]},   # Prüfbericht 1.4, V3
         {"de": "übermorgen",                "bs": "prekosutra"},
         {"de": "nächste Woche",             "bs": "sljedeće sedmice"},
         {"de": "nächstes Jahr",             "bs": "sljedeće godine"},
@@ -2578,7 +2578,7 @@ KATEGORIEN = [
         {"de": "weitermachen / fortsetzen",  "bs": "nastaviti", "partner": "nastavljati"},
         {"de": "Wir machen morgen weiter.",  "bs": "Nastavit ćemo sutra."},
         {"de": "schaffen / gelingen",        "bs": "uspjeti", "partner": "uspijevati"},
-        {"de": "Ich habe es geschafft!",     "bs": "Uspjela sam!"},
+        {"de": "Ich habe es geschafft!",     "bs": "Uspjela sam!", "auch": ["Uspio sam!"]},   # die Aufgabe nennt kein Geschlecht (Prüfbericht 1.4, V3)
         {"de": "dauern",                     "bs": "trajati"},
         {"de": "Wie lange dauert der Flug nach Sarajevo?", "bs": "Koliko traje let do Sarajeva?"},
         {"de": "ändern / wechseln",          "bs": "promijeniti", "partner": "mijenjati"},
@@ -2592,7 +2592,7 @@ KATEGORIEN = [
         {"de": "schließen / zumachen",       "bs": "zatvarati", "partner": "zatvoriti"},
         {"de": "Wir schließen in fünf Minuten.", "bs": "Zatvaramo za pet minuta."},
         {"de": "passieren / geschehen",      "bs": "desiti se / dogoditi se", "partner": "dešavati se / događati se"},
-        {"de": "Was ist passiert?",          "bs": "Šta se desilo?"},
+        {"de": "Was ist passiert?",          "bs": "Šta se desilo?", "auch": ["Šta se dogodilo?"]},   # wie beim Verb desiti se / dogoditi se (Prüfbericht 1.4, V3)
     ]},
 
     {"id": "tun_machen", "label": "Tun und machen", "sektion": "tunlassen", "tipp": "Machen, erledigen, werden, leben, benutzen.",
@@ -2799,7 +2799,7 @@ KATEGORIEN = [
         {"de": "schaffen / gelingen",        "bs": "uspijevati", "partner": "uspjeti"},
         {"de": "Ich schaffe es einfach nicht einzuschlafen.", "bs": "Nikako ne uspijevam zaspati."},
         {"de": "heiraten (Mann)",            "bs": "ženiti se", "partner": "oženiti se"},
-        {"de": "Wann heiratest du?",         "bs": "Kad se ženiš?"},
+        {"de": "Wann heiratest du?",         "bs": "Kad se ženiš?", "auch": ["Kada se ženiš?"]},   # Prüfbericht 1.4, V3
         {"de": "heiraten (Frau)",            "bs": "udavati se", "partner": "udati se"},
         {"de": "Meine Schwester heiratet im Juni.", "bs": "Sestra mi se udaje u junu."},
         {"de": "einschalten / anmachen",     "bs": "paliti", "partner": "upaliti"},
@@ -10103,7 +10103,7 @@ KATEGORIEN = [
 SAETZE = [
     # Grundlagen
     {"kat": "basics", "text": "Dobar ___",              "answer": "dan",       "de": "Guten Tag"},
-    {"kat": "basics", "text": "___, kako si?",          "answer": "Merhaba",   "de": "Hallo, wie geht's dir?"},
+    {"kat": "basics", "text": "___, kako si?",          "answer": "Merhaba",   "auch": ["Zdravo"], "de": "Hallo, wie geht's dir?"},   # wie beim Wort Merhaba (Prüfbericht 1.4, V3)
     {"kat": "basics", "text": "Kako ___?",              "answer": "si",        "de": "Wie geht's dir?"},
     {"kat": "basics", "text": "Hvala ___!",             "answer": "puno",      "de": "Vielen Dank!"},
     {"kat": "basics", "text": "Laku ___!",              "answer": "noć",       "de": "Gute Nacht!"},

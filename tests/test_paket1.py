@@ -60,6 +60,9 @@ AUCH = {
     "dobivati": ["dobijati"],
     "hitna": ["vozilo hitne pomoći", "sanitet", "kola hitne pomoći"],
 }
+# Pruefbericht 1.4, V3 (14.11.2026): zwei Beispielsaetze nehmen beim Tippen auch
+# die andere richtige Fassung. Die Kennung bleibt (tests/test_pruefbericht14_antworten.py).
+SATZ_AUCH = {"Uspjela sam!": ["Uspio sam!"], "Šta se desilo?": ["Šta se dogodilo?"]}
 
 # Gegenstuecke, die schon vor dem Paket in der App standen
 ALTE_PARTNER = {"dolaziti": "doći", "davati": "dati", "pomagati": "pomoći", "plaćati": "platiti",
@@ -104,7 +107,7 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
         for wort, satz in zip(woerter[0::2], woerter[1::2]):
             assert re.search(r"[.!?]$", satz["bs"]) and re.search(r"[.!?]$", satz["de"]), satz
             assert satz["bs"][:1].isupper() and satz["de"][:1].isupper(), satz
-            assert "partner" not in satz and "auch" not in satz, satz
+            assert "partner" not in satz and satz.get("auch") == SATZ_AUCH.get(satz["bs"]), satz
             assert satz["bs"] != wort["bs"], satz
 
 
@@ -114,10 +117,10 @@ def test_auch_formen_und_doppelformen(grunddaten):
         for a in w.get("auch", []):
             assert a not in formen, (w["bs"], a)     # steht schon im Wort, matches() trennt selbst
     neu = {w["bs"]: w for k in _level(grunddaten) for w in k["words"]}
-    for bs, auch in AUCH.items():
+    for bs, auch in {**AUCH, **SATZ_AUCH}.items():
         assert neu[bs].get("auch") == auch, bs
     mit_auch = {bs for bs, w in neu.items() if w.get("auch")}
-    assert mit_auch == set(AUCH)
+    assert mit_auch == set(AUCH) | set(SATZ_AUCH)
 
 
 def test_partner_stehen_in_der_app(grunddaten):
