@@ -11,6 +11,13 @@ S17: Bei 0 Leben haengt der Hinweis "Keine Leben mehr · naechstes in ..."
 dauerhaft unter der Herzpille. Auf Daenisch und Niederlaendisch lag er bei
 360 px 11 px ueber der Seriezahl. Jetzt rueckt die Reihe mit Serie und
 Drache bei 0 Leben unter ihn, auch im engen Kopf und mit grosser Schrift.
+
+S18: Unter dem Ergebnis von Lektion und Level-Test stand weiter
+"✕ Lektion abbrechen" bzw. "✕ Test abbrechen" - es gab nichts mehr
+abzubrechen. Jetzt ist der Knopf dort weg, wie nach dem Sprung-Test, auch
+nach einer Wiederholen-Runde und auf dem Schirm ohne Leben. Beim naechsten
+Start ist er wieder da; die Zurueck-Taste des Handys fuehrt wie bisher
+hinaus.
 """
 import pytest
 from conftest import Seite
@@ -113,3 +120,47 @@ def test_s17_hinweis_ohne_leben_verdeckt_die_serie_nicht(browser, basis, heute_s
         assert seite.fehler == []
     finally:
         ctx.close()
+
+
+# Sind "✕ Lektion abbrechen" und "✕ Test abbrechen" zu sehen?
+ABBRECHEN = "() => ['lQuit', 'tQuit'].map(id => { const k = document.getElementById(id); return !!k.offsetParent; })"
+
+
+def test_s18_kein_abbrechen_auf_dem_ergebnis(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    # Lektion: waehrend sie laeuft da, auf dem Ergebnis weg, "Noch eine" wieder da
+    seite.js("() => { openLevel(0); startLesson(); }")
+    assert seite.js(ABBRECHEN) == [True, False]
+    seite.durchspielen("lBody", "Lx")
+    assert seite.js("() => !!document.getElementById('lMore')"), "kein Ergebnisschirm"
+    assert seite.js(ABBRECHEN) == [False, False]
+    seite.page.click("#lMore")
+    assert seite.js(ABBRECHEN) == [True, False]
+    # Die Zurueck-Taste auf dem Ergebnis fuehrt weiter hinaus, ohne Nachfrage
+    seite.durchspielen("lBody", "Lx")
+    seite.js("() => zurueckTaste()")
+    assert seite.js("() => [sichtbar('levelView'), document.getElementById('levelHome').style.display]") == [True, "block"]
+    assert seite.js("() => !!document.querySelector('.nachfrage')") is False
+    # Level-Test: ebenso, "Nochmal" bzw. ein neuer Test zeigt ihn wieder
+    seite.js("() => { cur().words.forEach(w => known.add(w.id)); startTest(); }")
+    assert seite.js(ABBRECHEN) == [False, True]
+    seite.durchspielen("tBody", "Tx")
+    assert seite.js("() => !!document.getElementById('tBack')"), "kein Testergebnis"
+    assert seite.js(ABBRECHEN) == [False, False]
+    seite.js("() => startTest()")
+    assert seite.js(ABBRECHEN) == [False, True]
+    # Wiederholen-Runde: dasselbe Feld wie die Lektion
+    ids = seite.js("() => CATEGORIES[0].words.slice(0, 3).map(w => w.id)")
+    seite.js("""(ids) => { topf = {}; ids.forEach((id, i) => { topf['w:' + id] = {typ: 'mc', n: 0, z: 1000 + i}; });
+        homeMode = 'topf'; showHome(); startTopf(); }""", ids)
+    assert seite.js(ABBRECHEN) == [True, False]
+    seite.durchspielen("lBody", "Lx")
+    assert seite.js("() => !!document.querySelector('#lBody .result-big')"), "kein Rundenende"
+    assert seite.js(ABBRECHEN) == [False, False]
+    # Ohne Leben: der Schirm ist das Ende der Lektion bzw. des Tests
+    for start, feld in (("openLevel(0); startLesson();", "lBody"), ("openLevel(0); startTest();", "tBody")):
+        seite.js("() => { lives = {anzahl: 5, zeit: Date.now()}; %s }" % start)
+        seite.js("(t) => { lives = {anzahl: 0, zeit: Date.now()}; lessonOutOfLives(t); }", feld == "tBody")
+        assert seite.js("(f) => !!document.querySelector('#' + f + ' .ohneleben')", feld)
+        assert seite.js(ABBRECHEN) == [False, False], feld
+    assert seite.fehler == []

@@ -14265,6 +14265,15 @@ function werbungFuerLeben(e){
    Lektion steht oben der Name des Levels wie auf dem Testergebnis, denn
    "Lektion abgebrochen" stimmt hier nicht. */
 let ohneLeben = 0;
+/* Pruefbericht 1.4, S18: Auf dem Ergebnisschirm von Lektion, Runde und
+   Level-Test - und auf dem Schirm ohne Leben - gibt es nichts mehr
+   abzubrechen. "✕ Lektion abbrechen" bzw. "✕ Test abbrechen" fuehrte dort
+   nur noch zurueck, und dafuer hat der Schirm seine eigenen Knoepfe. Also
+   weg wie bei sprungEnde() (eQuit). Die Zurueck-Taste des Handys klickt den
+   versteckten Knopf weiter (zurueckTaste) und landet wie bisher in der
+   Uebersicht. startLesson(), rundeStarten() und startTest() zeigen ihn
+   wieder. */
+function abbrechenZeigen(id, an){ const k = $(id); if(k) k.style.display = an ? '' : 'none'; }
 function testOutOfLives(){ lessonOutOfLives(true); }
 function lessonOutOfLives(imTest){
   stilleBitte(); uhrAus();   // das letzte Wort nicht in den Ergebnisschirm reden lassen
@@ -14302,6 +14311,7 @@ function lessonOutOfLives(imTest){
   const perVideo = werbungErlaubt(true);   // das freiwillige Video, eigenes Kontingent
   const perMuenzen = muenzen() >= herz.preis && herz.geht();
   $(k.bar).innerHTML=''; $(k.drache).style.display='none'; $(k.drache).innerHTML=''; $(k.herz).style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
+  abbrechenZeigen(imTest ? 'tQuit' : 'lQuit', false);   // S18
   const titel = imTest ? t('level.titel', {i:levelNummer(catIdx), label:esc(cur().label)}) : t('lektion.aus');
   /* .ohneleben: daran erkennt ohneLebenVorbei() diesen Schirm. Im Test
      reicht .result-big.fail nicht, das traegt auch ein nicht bestandenes
@@ -14394,6 +14404,7 @@ function lessonEnd(){
   if(benPlugin() && !benStand().gefragt) benDran = true;
   const pct=levelPct(c), nowAllowed=testAllowed(c);
   $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('zmajLesson').innerHTML=''; $('lHerz').style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
+  abbrechenZeigen('lQuit', false);   // S18, siehe abbrechenZeigen
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.geschafft')+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
     '<div class="result-big">'+Lx.right+' / '+scored+'</div>'+
@@ -14571,6 +14582,7 @@ function startLesson(){
   $('zmajTest').innerHTML='';
   uhrNeu();
   const zl=$('zmajLesson'); zl.style.display='block'; $('lHerz').style.display=''; zl.innerHTML=zmaj('happy'); setMood(zl,'happy');
+  abbrechenZeigen('lQuit', true);   // das Ergebnis davor blendet ihn aus (S18)
   showLessonTask(); window.scrollTo({top:0, behavior:'smooth'});
 }
 $('btnLesson').addEventListener('click', startLesson);
@@ -14695,6 +14707,7 @@ function showTestResult(){
      wird dabei auch abgebaut, nicht nur versteckt: versteckt liefe er
      unsichtbar weiter (siehe showLevelHome). */
   $('zmajTest').style.display='none'; $('zmajTest').innerHTML='';
+  abbrechenZeigen('tQuit', false);   // S18, siehe abbrechenZeigen
   $('tBody').innerHTML =
     '<div class="ergebnis-titel">'+t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
@@ -14727,6 +14740,7 @@ function startTest(){
   /* Das Herz wie in startLesson() wieder einblenden: der Schirm ohne Leben
      blendet es aus (19.10.2026). */
   const zt=$('zmajTest'); zt.style.display='block'; $('tHerz').style.display=''; zt.innerHTML=zmaj('happy'); setMood(zt,'happy');
+  abbrechenZeigen('tQuit', true);   // das Ergebnis davor blendet ihn aus (S18)
   showTestQ(); window.scrollTo({top:0, behavior:'smooth'});
 }
 $('btnTest').addEventListener('click', startTest);
@@ -15500,6 +15514,7 @@ function rundeStarten(quelle){
   $('zmajTest').innerHTML = '';   // siehe startLesson
   uhrNeu();
   const zl = $('zmajLesson'); zl.style.display = 'block'; $('lHerz').style.display = ''; zl.innerHTML = zmaj('happy'); setMood(zl, 'happy');
+  abbrechenZeigen('lQuit', true);   // das Ergebnis davor blendet ihn aus (S18)
   Lx = {queue: aufgaben, i:0, results:[], right:0, total: aufgaben.length, skipped:0,
         newWords: new Set(), retried: new Set(), topf: true, quelle: quelle};
   showLessonTask();
@@ -15523,6 +15538,7 @@ function topfEnde(){
   if(questLob) setTimeout(()=>sound('quest'), 850);
   const rest = mitStern ? sternAnzahl() : (mitKartei ? karteiHeute().length : topfAnzahl());
   $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('zmajLesson').innerHTML = ''; $('lHerz').style.display = 'none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
+  abbrechenZeigen('lQuit', false);   // S18, siehe abbrechenZeigen
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +

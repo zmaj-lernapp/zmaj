@@ -739,6 +739,12 @@ are in the Play Store listing. Format:
   and dragon on the start page now moves below the note (17 px, 20 px when the
   coins have a line of their own); with hearts nothing moves.
   `tests_e2e/test_pruefbericht14_kleinfehler.py`.
+- Result screens (review for 1.4, 14.11.2026, S18) no longer show "✕ Lektion
+  abbrechen" or "✕ Test abbrechen" below the result: there was nothing left to
+  abort, the screen has its own buttons. The same after a review round and on the
+  screen without hearts, as after the skip-ahead test; the button is back when the
+  next lesson, round or test starts, and the phone's back key leaves as before.
+  `tests_e2e/test_pruefbericht14_kleinfehler.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
