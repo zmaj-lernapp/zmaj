@@ -352,6 +352,16 @@ are in the Play Store listing. Format:
   `stern.webp`, `herzblau.webp`, `funken.webp`, `brief.webp`). Emojis in the
   notifications stay, the system shows those. `tests/test_symbole.py`,
   `tests_e2e/test_symbole_einheitlich.py`.
+- Skip, pause, stop and cancel (14.11.2026, same request) no longer use ⏭ ⏸ ⏹ ✕,
+  which every phone drew differently and the iPhone as coloured emoji. They are
+  small signs drawn in the app itself (inline SVG in the colour of the button's
+  text, as large as the text and centred to it): on the skip links of listening,
+  speaking and tile tasks, on the pause and stop buttons when a story is read
+  aloud, and on "Lektion abbrechen", "Test abbrechen" and "Test beenden". The
+  texts in all eight languages no longer carry the sign. A no-break space keeps the
+  sign with its word, so it never stands alone on a line; the stop button keeps its
+  name "Stopp" for screen readers. `tests/test_symbole.py`, `tests/test_stern.py`,
+  `tests_e2e/test_symbole_einheitlich.py`, `tests_e2e/test_mitlesen.py`.
 - The B1 section "Körper und Gesundheit" is now called "Arzt & Gesundheit"
   (14.11.2026, the maintainer's choice; "Doctor & health", "Doktor ve sağlık",
   "Läkare & hälsa", "Dokter & gezondheid", "Lege & helse", "Læge & sundhed",

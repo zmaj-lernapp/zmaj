@@ -13,6 +13,9 @@ Geprueft wird hier im Browser:
   - die gemalten Bilder statt 🏁 ⭐ 💙 ✨ ✉: Level-Test, Bewertungskarte,
     "Danke!" nach dem Vorschlag, Funken an der goldenen Flamme, E-Mail im
     Profil - in allen acht Sprachen, geladen, als Schmuck (alt="").
+  - die selbst gezeichneten Zeichen statt ⏭ ⏸ ⏹ ✕: Ueberspringen, Pause,
+    Stopp und die drei Abbrechen-Knoepfe, in allen acht Sprachen, hell und
+    dunkel, bei 360 Punkten im Knopf und in einer Zeile.
 """
 import datetime
 import io
@@ -198,3 +201,97 @@ def test_funken_an_der_goldenen_flamme(browser, basis):
         assert seite.fehler == []
     finally:
         ctx.close()
+
+
+
+GEZEICHNET_WEG = ["⏭", "⏸", "⏹", "✕"]
+
+# Ein Knopf: seine gezeichneten Zeichen, sein Name, sein Text, und ob alles
+# in ihm liegt und in einer Zeile steht. Farbe: das Zeichen nimmt die Schrift-
+# farbe des Knopfs (currentColor).
+KNOPF = """(sel) => { const k = document.querySelector(sel); if(!k) return null;
+  const r = k.getBoundingClientRect(), s = getComputedStyle(k);
+  const zeichen = [...k.querySelectorAll('svg.zei')].map(z => { const q = z.getBoundingClientRect(), f = getComputedStyle(z);
+    return {name: [...z.classList].find(c => c.startsWith('zei-')), aria: z.getAttribute('aria-hidden'),
+            b: Math.round(q.width * 10) / 10, h: Math.round(q.height * 10) / 10,
+            schrift: parseFloat(f.fontSize), farbe: f.fill === s.color || f.stroke === s.color,
+            drin: q.left >= r.left - 0.5 && q.right <= r.right + 0.5 && q.top >= r.top - 0.5 && q.bottom <= r.bottom + 0.5}; });
+  // Zeilen nur aus dem Text, und wie weit das Zeichen neben der Mitte der
+  // Textzeile sitzt, in der es steht (null: es steht in keiner, allein)
+  const rects = [...k.childNodes].filter(n => n.nodeType === 3 && n.textContent.trim()).flatMap(n => {
+    const g = document.createRange(); g.selectNodeContents(n); return [...g.getClientRects()].filter(q => q.width > 0); });
+  const zeilen = new Set(rects.map(q => Math.round(q.top))).size;
+  zeichen.forEach((x, j) => { const q = k.querySelectorAll('svg.zei')[j].getBoundingClientRect(), m = (q.top + q.bottom) / 2;
+    const z = rects.find(r => m >= r.top && m <= r.bottom);
+    x.mitte = z ? Math.round(Math.abs(m - (z.top + z.bottom) / 2) * 10) / 10 : null; });
+  return {zeichen, text: k.innerText.replace(/\\s+/g, ' ').trim(), label: k.getAttribute('aria-label'),
+          zeilen, ueber: k.scrollWidth - k.clientWidth, sichtbar: !!k.getClientRects().length}; }"""
+
+
+def _zeichen(k, name, mit_wort=True):
+    """Genau ein Zeichen, Schmuck, so gross wie die Schrift, im Knopf, in seiner
+    Farbe - und (mit_wort) in der Zeile eines Wortes, mittig dazu, nie allein."""
+    assert len(k["zeichen"]) == 1, k
+    z = k["zeichen"][0]
+    assert z["name"] == "zei-" + name and z["aria"] == "true", k
+    assert abs(z["b"] - z["schrift"]) < 0.6 and z["b"] == z["h"] and z["drin"] and z["farbe"], k
+    if mit_wort:
+        assert z["mitte"] is not None and z["mitte"] <= 1.5, k
+
+
+@pytest.mark.parametrize("schema", ["light", "dark"])
+@pytest.mark.parametrize("sprache", SPRACHEN)
+def test_gezeichnete_zeichen(browser, basis, sprache, schema):
+    """Ueberspringen, Pause, Stopp und Abbrechen tragen das gezeichnete
+    Zeichen in der Schriftfarbe statt ⏭ ⏸ ⏹ ✕. Der Text daneben (bzw. das
+    aria-label des Stopp-Knopfs) nennt den Knopf. Bei 360 Punkten passt alles
+    in den Knopf, die Abbrechen-Knoepfe in eine Zeile; das Zeichen steht nie
+    allein in einer Zeile (geschuetztes Leerzeichen), nur am schmalen
+    Pause-Knopf neben Stopp darf es wie vorher das Emoji ueber dem Wort stehen."""
+    ctx, seite = _kontext(browser, basis, schema, breite=360, hoehe=740)
+    try:
+        _starten(seite, sprache=sprache)
+        t = lambda k: " ".join(seite.js("k => t(k)", k).split())  # noqa: E731
+
+        # Lektion: "Lektion abbrechen" und Ueberspringen (Hoeraufgabe)
+        seite.js("() => { openLevel(0); startLesson(); const w = CATEGORIES[0].words.find(x => hoerbar(x.bs));"
+                 " Lx.queue = [{typ:'listen', w, pool: CATEGORIES[0].words}]; Lx.i = 0; Lx.total = 1; showLessonTask(); stilleBitte(); }")
+        quit_ = seite.js(KNOPF, "#lQuit")
+        _zeichen(quit_, "zu")
+        assert quit_["text"] == t("lektion.abbrechen") and quit_["zeilen"] == 1 and quit_["ueber"] <= 0, quit_
+        skip = seite.js(KNOPF, "#xSkip")
+        _zeichen(skip, "weiter")
+        assert skip["text"] == t("task.hoeren_skip") and skip["ueber"] <= 0, skip
+
+        # Level-Test und Einstufung: "Test abbrechen", "Test beenden"
+        seite.js("() => { stilleBitte(); CATEGORIES[0].words.forEach(w => known.add(w.id)); openLevel(0); startTest(); stilleBitte(); }")
+        quit_ = seite.js(KNOPF, "#tQuit")
+        _zeichen(quit_, "zu")
+        assert quit_["text"] == t("test.abbrechen") and quit_["zeilen"] == 1 and quit_["ueber"] <= 0, quit_
+        seite.js("() => { stilleBitte(); baueEinstufung('etwas'); einstufungStarten(); stilleBitte(); }")
+        quit_ = seite.js(KNOPF, "#eQuit")
+        _zeichen(quit_, "zu")
+        assert quit_["text"] == t("einst.abbrechen") and quit_["zeilen"] == 1 and quit_["ueber"] <= 0, quit_
+
+        # Geschichte: Vorlesen -> Pause, daneben Stopp nur mit Zeichen
+        seite.js("() => { stilleBitte(); Ex = null; homeMode = 'stories'; openStory(0); }")
+        seite.js("() => { const k = document.getElementById('rListen'); k.innerHTML = zeichen('pause') + ' ' + esc(t('gesch.pause'));"
+                 " document.getElementById('rStop').hidden = false; }")
+        pause = seite.js(KNOPF, "#rListen")
+        # Neben Stopp ist der Knopf bei 360 Punkten schmal: das Zeichen darf wie
+        # vorher das Emoji ueber dem Wort stehen, nichts ragt heraus
+        _zeichen(pause, "pause", mit_wort=False)
+        assert pause["text"] == t("gesch.pause") and pause["zeilen"] == 1 and pause["ueber"] <= 0, pause
+        stopp = seite.js(KNOPF, "#rStop")
+        _zeichen(stopp, "stopp", mit_wort=False)
+        assert stopp["text"] == "" and stopp["label"] == t("gesch.stopp") and stopp["ueber"] <= 0, stopp
+
+        for k in ("gesch.pause", "gesch.stopp", "lektion.abbrechen", "test.abbrechen", "einst.abbrechen",
+                  "task.hoeren_skip", "task.sprechen_skip", "task.kacheln_skip"):
+            assert not [e for e in GEZEICHNET_WEG if e in t(k)], (k, t(k))
+        text = seite.js("() => document.body.innerText")
+        assert not [e for e in GEZEICHNET_WEG if e in text]
+        assert seite.fehler == [] and seite.fremd == []
+    finally:
+        ctx.close()
+

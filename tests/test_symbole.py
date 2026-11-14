@@ -190,3 +190,44 @@ def test_index_ohne_gemalte_emojis_und_mit_bild(wurzel, index_html):
     for n in ("ziel", "stern", "herzblau", "funken", "brief"):
         assert n in _symbole(index_html), n
         assert os.path.isfile(os.path.join(wurzel, "web", "symbole", n + ".webp")), n
+
+
+GEZEICHNET_WEG = ["⏭", "⏸", "⏹", "✕", "\\u23ed", "\\u23f8", "\\u23f9", "\\u2715", "&#10005;", "&times;"]
+
+
+def test_texte_ohne_gezeichnete_zeichen(sprachcodes):
+    """⏭ ⏸ ⏹ ✕ stehen in keinem Text mehr; Pause, Stopp und die drei
+    Abbrechen-Knoepfe haben in jeder Sprache nur ihr Wort."""
+    import sprachen
+    fehler = []
+    for code in sprachcodes:
+        texte = sprachen.texte(code)
+        for k, v in texte.items():
+            if isinstance(v, str) and not k.startswith("ben."):
+                fehler += [(code, k, e) for e in GEZEICHNET_WEG if e in v]
+        for k in ("gesch.pause", "gesch.stopp", "lektion.abbrechen", "test.abbrechen", "einst.abbrechen"):
+            assert texte[k] == texte[k].strip() and texte[k][0].isalpha(), (code, k, texte[k])
+    assert not fehler, fehler
+
+
+def test_zeichen_selbst_gezeichnet(index_html):
+    """zeichen() zeichnet weiter, pause, stopp und zu als Inline-SVG in der
+    Schriftfarbe (currentColor), als Schmuck (aria-hidden). Benutzt am
+    Ueberspringen-Knopf, beim Vorlesen (Pause, Stopp) und per data-zeichen
+    an den drei Abbrechen-Knoepfen, die applyTexts() fuellt."""
+    code = _ohne_kommentare(index_html)
+    assert not [e for e in GEZEICHNET_WEG if e in code]
+    m = re.search(r"function zeichen\(name\)\{(.*?)\n\}", index_html, re.S)
+    assert m, "zeichen() fehlt"
+    formen = set(re.findall(r"\n\s*(\w+): '<", m.group(1)))
+    assert formen == {"weiter", "pause", "stopp", "zu"}, formen
+    assert 'aria-hidden="true" focusable="false"' in m.group(1) and 'class="zei zei-' in m.group(1)
+    regel = re.search(r"\n\s*\.zei\{([^}]*)\}", index_html).group(1)
+    assert "fill:currentColor" in regel and "stroke:currentColor" in regel, regel
+    assert "width:1em" in regel and "height:1em" in regel and "vertical-align:calc(.35em - .5em)" in regel, regel
+    assert "'<button class=\"skip\" id=\"xSkip\">'+text+'\\u00a0'+zeichen('weiter')+'</button>'" in code
+    assert code.count("knopfVor.innerHTML = zeichen('pause') + ' ' + esc(t('gesch.pause'));") == 2
+    assert "hidden>'+zeichen('stopp')+'</button>" in code
+    for k in ("lQuit", "tQuit", "eQuit"):
+        assert re.search(r'<button id="%s" data-t="[a-z.]+" data-zeichen="zu"></button>' % k, code), k
+    assert "(el.dataset.zeichen ? zeichen(el.dataset.zeichen) + '\\u00a0' : '') + t(el.dataset.t, vars)" in code

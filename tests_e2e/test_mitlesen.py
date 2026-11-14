@@ -142,6 +142,14 @@ def starten(seite, stand):
     seite.konsole.clear()
 
 
+# Vorlesen- und Stopp-Knopf: gezeichnetes Zeichen (Klasse), Text, Name.
+# Seit 14.11.2026 statt der Zeichen ⏸ und ⏹ im Text (Offen-Liste 5).
+KNOEPFE = """() => { const z = k => { const s = k.querySelector('svg.zei');
+    return s ? [...s.classList].find(c => c.startsWith('zei-')) : null; };
+  const v = document.getElementById('rListen'), s = document.getElementById('rStop');
+  return {vor: [z(v), v.textContent.trim()], stopp: [z(s), s.textContent.trim(), s.getAttribute('aria-label')]}; }"""
+
+
 def vorlesen(seite):
     """Den grossen Knopf wirklich antippen (Nutzergeste fuer play()) und
     warten, bis die Aufnahme laeuft und das Mitlesen steht."""
@@ -219,9 +227,12 @@ def test_pause_haelt_weiter_laeuft(dunkel):
     seite = dunkel
     n = seite.js(VORBEREITEN, [0, SCHRITT, DAUER, ANFANG, 0, False])["n"]
     vorlesen(seite)
+    # Der Knopf zeigt das gezeichnete Pause-Zeichen, Stopp nur seines (14.11.2026)
+    assert seite.js(KNOEPFE) == {"vor": ["zei-pause", "Pause"], "stopp": ["zei-stopp", "", "Stopp"]}
     seite.js(SPRINGEN, ANFANG + 5 * SCHRITT + 20)
     seite.page.click("#rListen")                            # Pause
     seite.page.wait_for_function("() => spieler.paused && pausiert")
+    assert seite.js(KNOEPFE)["vor"] == [None, seite.js("() => t('gesch.weiterlesen')")]
     vorher = seite.js(ZUSTAND)
     assert stimmt(vorher, n) and len(vorher["gelesen"]) >= 5, vorher
     takte = vorher["takte"]

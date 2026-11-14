@@ -340,6 +340,16 @@
   .sym{--sg:1.25em; display:inline-block; flex:none; width:var(--sg); height:var(--sg);
        vertical-align:calc(.35em - var(--sg) / 2); object-fit:contain;
        -webkit-user-select:none; user-select:none; -webkit-user-drag:none; pointer-events:none}
+  /* ---- Selbst gezeichnete Zeichen (14.11.2026) ----
+     Ueberspringen, Pause, Stopp und Abbrechen (vorher ⏭ ⏸ ⏹ ✕) malte jedes
+     Handy anders, das iPhone als bunte Apple-Emojis. Ajdin: "das muss
+     einheitlich sein". Jetzt kleine Inline-SVG aus zeichen(), in der
+     Schriftfarbe des Knopfs (currentColor), so gross wie die Schrift und
+     mittig zu ihr wie .sym. Flaechen mit runden Ecken (der Strich ueber
+     den Rand), das Kreuz nur als Strich. */
+  .zei{display:inline-block; flex:none; width:1em; height:1em; vertical-align:calc(.35em - .5em); overflow:visible;
+       fill:currentColor; stroke:currentColor; stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; pointer-events:none}
+  .zei-zu{fill:none; stroke-width:2.6}
   /* Laden und Zahnrad tragen nur das Bild: etwas weniger Polster, damit
      die Knoepfe trotz groesserem Symbol so breit bleiben wie vorher.
      Seit 29.10.2026 auch der Profilknopf, und alle drei sind runde Knoepfe
@@ -2723,7 +2733,7 @@
            weiterBeiTipp() ihn nicht greift. Name und Zustand setzt
            sternKnopf(), siehe STERN. -->
       <div class="card"><div class="kastenkopf"><div class="kastenherz" id="lHerz"></div><div class="tbar" id="lBar"></div><button type="button" class="stern v1" id="lStern" aria-pressed="false" hidden><svg class="sternsym" viewBox="-12 -12 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path style="stroke-width:1.9" d="M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.544 1.544 0 0 1 9.662 -1.657L6.026 1.62A0.643 0.643 0 0 0 5.827 2.231L6.843 7.02A1.544 1.544 0 0 1 4.561 8.677L0.321 6.232A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z"/></svg></button></div><div class="zmaj mini idle" id="zmajLesson"></div><div id="lBody"></div></div>
-      <div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>
+      <div class="nav"><button id="lQuit" data-t="lektion.abbrechen" data-zeichen="zu"></button><span></span></div>
     </section>
 
     <!-- Der Kasten ist gebaut wie der der Lektion, mit eigenem Herz und
@@ -2734,7 +2744,7 @@
          ist es echt (#tHerz). -->
     <section id="test" style="display:none">
       <div class="card"><div class="kastenkopf"><div class="kastenherz" id="tHerz"></div><div class="tbar" id="tBar"></div><button type="button" class="stern v1" id="tStern" aria-pressed="false" hidden><svg class="sternsym" viewBox="-12 -12 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path style="stroke-width:1.9" d="M1.41 -9.701L3.403 -5.23A0.643 0.643 0 0 0 3.923 -4.853L8.791 -4.339A1.544 1.544 0 0 1 9.662 -1.657L6.026 1.62A0.643 0.643 0 0 0 5.827 2.231L6.843 7.02A1.544 1.544 0 0 1 4.561 8.677L0.321 6.232A0.643 0.643 0 0 0 -0.321 6.232L-4.561 8.677A1.544 1.544 0 0 1 -6.843 7.02L-5.827 2.231A0.643 0.643 0 0 0 -6.026 1.62L-9.662 -1.657A1.544 1.544 0 0 1 -8.791 -4.339L-3.923 -4.853A0.643 0.643 0 0 0 -3.403 -5.23L-1.41 -9.701A1.544 1.544 0 0 1 1.41 -9.701Z"/></svg></button></div><div class="zmaj mini idle" id="zmajTest"></div><div id="tBody"></div></div>
-      <div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>
+      <div class="nav"><button id="tQuit" data-t="test.abbrechen" data-zeichen="zu"></button><span></span></div>
     </section>
   </div>
 
@@ -2743,7 +2753,7 @@
     <section>
       <!-- Derselbe Kasten wie in Lektion und Level-Test (19.10.2026) -->
       <div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" id="eHerz" aria-hidden="true"></div><div class="tbar" id="eBar"></div></div><div class="zmaj mini idle" id="zmajEinst"></div><div id="eBody"></div></div>
-      <div class="nav"><button id="eQuit" data-t="einst.abbrechen"></button><span></span></div>
+      <div class="nav"><button id="eQuit" data-t="einst.abbrechen" data-zeichen="zu"></button><span></span></div>
     </section>
   </div>
 
@@ -3833,7 +3843,11 @@ function applyTexts(){
   // Dazu die gemalten Symbole fuer {herz}, {muenze} und {einstellungen}
   // (24.10.2026, siehe symbol()) - im Fuss steht das Zahnrad.
   const vars = symbolTexte({anbieter});
-  document.querySelectorAll('[data-t]').forEach(el=>{ el.innerHTML = t(el.dataset.t, vars); });
+  // data-zeichen: ein gezeichnetes Zeichen davor (zeichen(), 14.11.2026),
+  // mit geschuetztem Leerzeichen am ersten Wort
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    el.innerHTML = (el.dataset.zeichen ? zeichen(el.dataset.zeichen) + '\u00a0' : '') + t(el.dataset.t, vars);
+  });
   document.querySelectorAll('[data-t-title]').forEach(el=>{ el.title = t(el.dataset.tTitle); });
   document.querySelectorAll('[data-t-ph]').forEach(el=>{ el.placeholder = t(el.dataset.tPh); });
 }
@@ -4690,7 +4704,26 @@ function herzSymbol(sagt){ return symbol(premium ? 'herzgold' : 'herz', sagt); }
    "Level-Test" (war 🏁), stern vor "Zmaj bewerten" (⭐), herzblau nach
    "Danke!" (💙), funken an der goldenen Flamme (✨), brief vor der E-Mail
    im Profil (✉). Ueberall steht ein Wort daneben, die Bilder sind also
-   Schmuck. */
+   Schmuck. Die Zeichen fuer Ueberspringen, Pause, Stopp und Abbrechen
+   zeichnet zeichen() selbst. */
+/* Selbst gezeichnet (14.11.2026, siehe .zei im Stil): weiter (⏭, an den
+   Ueberspringen-Knoepfen), pause (⏸) und stopp (⏹) beim Vorlesen der
+   Geschichte, zu (✕) an "Lektion abbrechen", "Test abbrechen" und "Test
+   beenden" - dort per data-zeichen, damit ein Sprachwechsel (applyTexts)
+   es mitnimmt. Raster 24 x 24. Schmuck: aria-hidden, den Namen traegt das
+   Wort daneben bzw. das aria-label des Stopp-Knopfs. Als Funktion mit den
+   Formen darin, nicht als const: applyTexts darf es jederzeit rufen. */
+function zeichen(name){
+  const formen = {
+    weiter: '<path d="M3.5 6.5 10.5 12 3.5 17.5Z M10.5 6.5 17.5 12 10.5 17.5Z"/>'
+          + '<path d="M20.5 6.5v11" style="fill:none;stroke-width:2.6"/>',
+    pause: '<rect x="5.5" y="5" width="4" height="14" rx=".6"/><rect x="14.5" y="5" width="4" height="14" rx=".6"/>',
+    stopp: '<rect x="5.5" y="5.5" width="13" height="13" rx="1.2"/>',
+    zu: '<path d="M6.5 6.5 17.5 17.5 M17.5 6.5 6.5 17.5"/>',
+  };
+  return '<svg class="zei zei-' + name + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+       + formen[name] + '</svg>';
+}
 function symbolTexte(vars){
   return Object.assign({herz: symbol('herz', t('stat.leben')),
                         muenze: symbol('muenze', SYMBOL_SAGT.muenze),
@@ -12573,7 +12606,7 @@ function showStory(){
   html += '<div class="bubble empty" id="rBubble" hidden></div>';
   html += '<div class="row"><button class="btn ghost" id="rTrans">'+t('gesch.zeigen')+'</button>'+
           '<button class="btn again" id="rListen">'+mitSymbol('lautsprecher', t('gesch.vorlesen'))+'</button>'+
-          '<button class="btn ghost" id="rStop" style="flex:0 0 54px" aria-label="'+esc(nurWort(t('gesch.stopp')))+'" hidden>\u23f9</button></div>';
+          '<button class="btn ghost" id="rStop" style="flex:0 0 54px" aria-label="'+esc(nurWort(t('gesch.stopp')))+'" hidden>'+zeichen('stopp')+'</button></div>';
   html += '<div class="tempo" id="rTempo"></div>';
   html += '<div class="trans" id="rTransText" hidden>'+esc(s.uebersetzung||'')+'</div>';
   html += '<div class="fragenblock" id="rQ"></div>';
@@ -12639,7 +12672,7 @@ function showStory(){
   };
   knopfVor.addEventListener('click',()=>{
     if(pausiert){                      // angehalten -> an derselben Stelle weiter
-      if(tonWeiter()){ knopfVor.textContent = t('gesch.pause'); knopfVor.classList.add('laeuft'); wachHalten(true); }
+      if(tonWeiter()){ knopfVor.innerHTML = zeichen('pause') + ' ' + esc(t('gesch.pause')); knopfVor.classList.add('laeuft'); wachHalten(true); }
       return;
     }
     if(laeuftVor){                     // laeuft -> anhalten, Stelle merken
@@ -12654,7 +12687,7 @@ function showStory(){
     const weiterAb = geschichteStelle;
     geschichteStelle = null;
     laeuftVor = wiederVorlesen;
-    knopfVor.textContent = t('gesch.pause'); knopfVor.classList.add('laeuft');
+    knopfVor.innerHTML = zeichen('pause') + ' ' + esc(t('gesch.pause')); knopfVor.classList.add('laeuft');
     knopfStop.hidden = false;
     /* Die Marke unterscheidet Durchlaeufe: ein verspaeteter Rueckruf aus
        einem laengst abgestellten Lauf darf den naechsten nicht abwuergen. */
@@ -13282,7 +13315,8 @@ function renderTask(task, body, done, opts={}){
       return true;
     };
   };
-  const skipBtn = (text)=> opts.noSkip ? '' : '<button class="skip" id="xSkip">'+text+' ⏭</button>';
+  // Geschuetztes Leerzeichen: das Zeichen bricht nie allein in eine neue Zeile
+  const skipBtn = (text)=> opts.noSkip ? '' : '<button class="skip" id="xSkip">'+text+'\u00a0'+zeichen('weiter')+'</button>';
   const wireSkip = ()=>{ const b=$$('xSkip'); if(b) b.addEventListener('click',()=>done({ok:false, skipped:true})); };
 
   if(task.typ==='intro'){

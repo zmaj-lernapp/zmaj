@@ -164,9 +164,9 @@ def test_stern_knopf_steht_in_der_kopfzeile(index_html):
     assert ('<div class="card"><div class="kastenkopf"><div class="kastenherz platzhalter" id="eHerz" aria-hidden="true"></div>'
             '<div class="tbar" id="eBar"></div></div><div class="zmaj mini idle" id="zmajEinst"></div>'
             '<div id="eBody"></div></div>') in index_html, "die Einstufung bekommt keinen Stern"
-    assert '<div class="nav"><button id="lQuit" data-t="lektion.abbrechen"></button><span></span></div>' in index_html
-    assert '<div class="nav"><button id="tQuit" data-t="test.abbrechen"></button><span></span></div>' in index_html
-    assert '<div class="nav"><button id="eQuit" data-t="einst.abbrechen"></button><span></span></div>' in index_html
+    assert '<div class="nav"><button id="lQuit" data-t="lektion.abbrechen" data-zeichen="zu"></button><span></span></div>' in index_html
+    assert '<div class="nav"><button id="tQuit" data-t="test.abbrechen" data-zeichen="zu"></button><span></span></div>' in index_html
+    assert '<div class="nav"><button id="eQuit" data-t="einst.abbrechen" data-zeichen="zu"></button><span></span></div>' in index_html
     assert index_html.count('class="stern v1"') == 2
     assert 'class="zmajreihe"' not in index_html
     regeln = [z for z in index_html.splitlines() if "{" in z and not z.lstrip().startswith(("/*", "-", "*"))]
