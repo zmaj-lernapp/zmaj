@@ -1010,7 +1010,7 @@
         "männlich",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (nach j, č, š, ž: + em: prijateljem)"
+        "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "weiblich",
@@ -4169,7 +4169,7 @@
         "masculine",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (after j, č, š, ž: + em: prijateljem)"
+        "+ om (after c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "feminine",
@@ -7328,7 +7328,7 @@
         "eril",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (j, č, š, ž harflerinden sonra: + em: prijateljem)"
+        "+ om (c, č, ć, dž, đ, j, lj, nj, š, ž harflerinden sonra: + em: prijateljem)"
        ],
        [
         "dişil",
@@ -10487,7 +10487,7 @@
         "maskulinum",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (efter j, č, š, ž: + em: prijateljem)"
+        "+ om (efter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "femininum",
@@ -13646,7 +13646,7 @@
         "mannelijk",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (na j, č, š, ž: + em: prijateljem)"
+        "+ om (na c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "vrouwelijk",
@@ -16805,7 +16805,7 @@
         "hankjønn",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (etter j, č, š, ž: + em: prijateljem)"
+        "+ om (etter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "hunkjønn",
@@ -19964,7 +19964,7 @@
         "hankøn",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (efter j, č, š, ž: + em: prijateljem)"
+        "+ om (efter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"
        ],
        [
         "hunkøn",
@@ -23123,7 +23123,7 @@
         "masculin",
         "brat, auto, voz",
         "bratom, autom, vozom",
-        "+ om (après j, č, š, ž : + em : prijateljem)"
+        "+ om (après c, č, ć, dž, đ, j, lj, nj, š, ž : + em : prijateljem)"
        ],
        [
         "féminin",

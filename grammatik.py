@@ -220,7 +220,7 @@ GRAMMATIK = {
         "erklaerung": [
             "Instrumental = mit wem? womit? Nach „sa“ (mit) oder ohne Präposition beim Verkehrsmittel: „sa bratom“, „autom“, „vozom“.",
             {"tabelle": [["Geschlecht", "Nominativ", "Instrumental", "Regel"],
-                         ["männlich", "brat, auto, voz", "bratom, autom, vozom", "+ om (nach j, č, š, ž: + em: prijateljem)"],
+                         ["männlich", "brat, auto, voz", "bratom, autom, vozom", "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)"],
                          ["weiblich", "sestra, kahva", "sestrom, kahvom", "-a → -om"],
                          ["sächlich", "selo, mlijeko", "selom, mlijekom", "-o → -om"]]},
             "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).",

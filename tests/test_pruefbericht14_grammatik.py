@@ -7,7 +7,17 @@ den Genitiv („ispod stola“, „iznad grada“, „između tebe i brata“), 
 Beispiel „između kuća“ passte nur zufaellig (Genitiv Mehrzahl). Jetzt stehen
 die drei beim Genitiv, mit dem Beispiel „ispod stola, između kuće i škole“.
 Die Uebung „Sjedim ___ tebe i brata.“ ist Genitiv und passt jetzt zur Tabelle.
+
+S4 (F21 ja): Die Instrumental-Regel sagte „-em nur nach j, č, š, ž“, die App
+schreibt aber auch čekićem und želucem. Jetzt: nach c, č, ć, dž, đ, j, lj, nj,
+š, ž + em, in allen 8 Sprachen.
 """
+
+S4_BUCHSTABEN = "c, č, ć, dž, đ, j, lj, nj, š, ž"
+S4_IN_SPRACHE = {
+    "de": "nach ", "en": "after ", "sv": "efter ", "da": "efter ",
+    "nb": "etter ", "nl": "na ", "fr": "après ", "tr": "",
+}
 
 
 def _tabelle(lektion):
@@ -59,3 +69,18 @@ def test_v12_uebung_zwischen_passt(grunddaten):
                 if u["frage"].startswith("„Sjedim ___ tebe i brata.“")]
     assert len(uebungen) == 1, uebungen
     assert uebungen[0]["richtig"] == "između"
+
+
+def test_s4_instrumental_em_nach_allen_weichen_lauten(alle_daten, grunddaten):
+    assert set(alle_daten) == set(S4_IN_SPRACHE), sorted(alle_daten)
+    for code, daten in alle_daten.items():
+        tabelle = _tabelle(daten["grammatik"]["faelle4"])
+        regel = tabelle[1][3]
+        assert (S4_IN_SPRACHE[code] + S4_BUCHSTABEN) in regel, (code, regel)
+        assert "prijateljem" in regel and "+ om" in regel, (code, regel)
+        assert "nach" not in regel or code == "de", (code, regel)
+    # Die Woerter aus dem Bericht, die die Regel vorher nicht erklaerte
+    # (b1_zanat „kuca čekićem“, „Imam tegobe sa želucem.“).
+    import json
+    alles = json.dumps(grunddaten, ensure_ascii=False)
+    assert "čekićem" in alles and "želucem" in alles
