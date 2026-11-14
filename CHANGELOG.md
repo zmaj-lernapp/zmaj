@@ -508,6 +508,13 @@ are in the Play Store listing. Format:
   through `NIE_NEBENEINANDER`). *Zdravo* ("Hallo (neutral, überall)") does not take
   it when typing, just as it does not take *Merhaba*.
   `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_antworten.py`.
+- *Gdje* for "wohin" (review for 1.4, 14.11.2026, V11; decided by the maintainer, F7
+  a: colloquially it also means "where to"; table 2c, row 30): "Wohin gehst du?"
+  (*Kuda ideš?*) and the gap "___ ideš?" now also take *Gdje*; *Kuda* stays what is
+  shown and spoken. In the grammar lesson "Asking questions" *Gdje* is no longer the
+  wrong button next to *Kuda* (now *Kada*), and the tip says "in speech often also
+  Gdje", in all eight languages. The story *b1_voz* keeps "Gdje putujete, djeco?".
+  `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
 - Typing the second forms of table 2c (review for 1.4, 14.11.2026, V10; decided by
   the maintainer, F6: Croatian and the others too, "they are just not visible"):
   writing tasks and gap sentences now also take *kruh* for *hljeb*, *juha* for *supa*,

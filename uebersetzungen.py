@@ -2580,7 +2580,7 @@ INHALT = {
     "„Ostajemo tri ___.“ (Wir bleiben drei Tage.)": "“Ostajemo tri ___.” (We are staying three days.)",
     # ---- Grammatik · Tipps -------------------------------------------------
     "Gdje = wo (Ort), Kuda = wohin (Richtung).": "Gdje = where (place), Kuda = where to (direction).",
-    "Bewegung in eine Richtung: Kuda.": "Movement in a direction: Kuda.",
+    "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.": "Movement in a direction: Kuda. In speech often also Gdje.",
     "„li“ steht direkt hinter dem Verb.": "“li” goes directly after the verb.",
     "Koliko = wie viel, Kako = wie, Koji = welcher.": "Koliko = how much, Kako = how, Koji = which.",
     "Ko fragt nach Personen, Šta nach Dingen.": "Ko asks about people, Šta about things.",
@@ -13577,7 +13577,7 @@ INHALT = {
     "„Ostajemo tri ___.“ (Wir bleiben drei Tage.)": "“Ostajemo tri ___.” (Üç gün kalıyoruz.)",
     # ---- Grammatik · Tipps -------------------------------------------------
     "Gdje = wo (Ort), Kuda = wohin (Richtung).": "Gdje = nerede (yer), Kuda = nereye (yön).",
-    "Bewegung in eine Richtung: Kuda.": "Bir yöne hareket: Kuda.",
+    "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.": "Bir yöne hareket: Kuda. Konuşmada çoğu zaman Gdje de denir.",
     "„li“ steht direkt hinter dem Verb.": "“li” doğrudan fiilin arkasında durur.",
     "Koliko = wie viel, Kako = wie, Koji = welcher.": "Koliko = ne kadar, Kako = nasıl, Koji = hangi.",
     "Ko fragt nach Personen, Šta nach Dingen.": "Ko kişileri sorar, Šta nesneleri.",
@@ -24564,7 +24564,7 @@ INHALT = {
     "„Ostajemo tri ___.“ (Wir bleiben drei Tage.)": "”Ostajemo tri ___.” (Vi stannar i tre dagar.)",
     # ---- Grammatik · Tipps -------------------------------------------------
     "Gdje = wo (Ort), Kuda = wohin (Richtung).": "Gdje = var (plats), Kuda = vart (riktning).",
-    "Bewegung in eine Richtung: Kuda.": "Rörelse åt ett håll: Kuda.",
+    "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.": "Rörelse åt ett håll: Kuda. I talspråk ofta även Gdje.",
     "„li“ steht direkt hinter dem Verb.": "”li” står direkt efter verbet.",
     "Koliko = wie viel, Kako = wie, Koji = welcher.": "Koliko = hur mycket, Kako = hur, Koji = vilken.",
     "Ko fragt nach Personen, Šta nach Dingen.": "Ko frågar efter personer, Šta efter saker.",
@@ -35540,7 +35540,7 @@ INHALT = {
     "„Ostajemo tri ___.“ (Wir bleiben drei Tage.)": "‘Ostajemo tri ___.’ (We blijven drie dagen.)",
     # ---- Grammatik · Tipps -------------------------------------------------
     "Gdje = wo (Ort), Kuda = wohin (Richtung).": "Gdje = waar (plaats), Kuda = waarheen (richting).",
-    "Bewegung in eine Richtung: Kuda.": "Beweging in een richting: Kuda.",
+    "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.": "Beweging in een richting: Kuda. In de spreektaal vaak ook Gdje.",
     "„li“ steht direkt hinter dem Verb.": "‘li’ staat direct achter het werkwoord.",
     "Koliko = wie viel, Kako = wie, Koji = welcher.": "Koliko = hoeveel, Kako = hoe, Koji = welke.",
     "Ko fragt nach Personen, Šta nach Dingen.": "Ko vraagt naar personen, Šta naar dingen.",
@@ -46516,7 +46516,7 @@ INHALT = {
     "„Ostajemo tri ___.“ (Wir bleiben drei Tage.)": "«Ostajemo tri ___.» (Vi blir i tre dager.)",
     # ---- Grammatik · Tipps -------------------------------------------------
     "Gdje = wo (Ort), Kuda = wohin (Richtung).": "Gdje = hvor (sted), Kuda = hvor hen (retning).",
-    "Bewegung in eine Richtung: Kuda.": "Bevegelse i en retning: Kuda.",
+    "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.": "Bevegelse i en retning: Kuda. I talespråket ofte også Gdje.",
     "„li“ steht direkt hinter dem Verb.": "«li» står rett etter verbet.",
     "Koliko = wie viel, Kako = wie, Koji = welcher.": "Koliko = hvor mye, Kako = hvordan, Koji = hvilken.",
     "Ko fragt nach Personen, Šta nach Dingen.": "Ko spør etter personer, Šta etter ting.",
@@ -57490,7 +57490,7 @@ INHALT = {
     "„Ostajemo tri ___.“ (Wir bleiben drei Tage.)": "»Ostajemo tri ___.« (Vi bliver tre dage.)",
     # ---- Grammatik · Tipps -------------------------------------------------
     "Gdje = wo (Ort), Kuda = wohin (Richtung).": "Gdje = hvor (sted), Kuda = hvorhen (retning).",
-    "Bewegung in eine Richtung: Kuda.": "Bevægelse i en retning: Kuda.",
+    "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.": "Bevægelse i en retning: Kuda. I talesprog ofte også Gdje.",
     "„li“ steht direkt hinter dem Verb.": "»li« står lige efter verbet.",
     "Koliko = wie viel, Kako = wie, Koji = welcher.": "Koliko = hvor meget, Kako = hvordan, Koji = hvilken.",
     "Ko fragt nach Personen, Šta nach Dingen.": "Ko spørger om personer, Šta om ting.",
@@ -68470,7 +68470,7 @@ INHALT = {
     "„Ostajemo tri ___.“ (Wir bleiben drei Tage.)": "« Ostajemo tri ___. » (Nous restons trois jours.)",
     # ---- Grammatik · Tipps -------------------------------------------------
     "Gdje = wo (Ort), Kuda = wohin (Richtung).": "Gdje = où (lieu), Kuda = vers où (direction).",
-    "Bewegung in eine Richtung: Kuda.": "Mouvement dans une direction : Kuda.",
+    "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.": "Mouvement dans une direction : Kuda. À l'oral, souvent aussi Gdje.",
     "„li“ steht direkt hinter dem Verb.": "« li » se place juste après le verbe.",
     "Koliko = wie viel, Kako = wie, Koji = welcher.": "Koliko = combien, Kako = comment, Koji = quel.",
     "Ko fragt nach Personen, Šta nach Dingen.": "Ko interroge sur des personnes, Šta sur des choses.",

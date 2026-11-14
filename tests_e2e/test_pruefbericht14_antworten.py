@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Pruefbericht 1.4 (14.11.2026) im Browser: richtige Antworten, die ein Leben kosteten (V3, B5, B9).
+"""Pruefbericht 1.4 (14.11.2026) im Browser: richtige Antworten, die ein Leben kosteten (V3, B5, B9, V11).
 
 V3: „Wann kommst du?“, getippt „Kad dolaziš?“, gab erst „Fast richtig!“, dann
 „Richtig wäre: Kada dolaziš?“ und ein Leben weniger. Ebenso Zdravo im
@@ -78,6 +78,32 @@ def test_b5_cao_nie_als_kachel_neben_merhaba(seite, heute_stand):
       return {ohne: s.ohne, cao: gesehen.has('ćao'), anzahl: gesehen.size};
     }""")
     assert erg["ohne"][:1] == ["ćao"] and erg["cao"] is False and erg["anzahl"] > 5, erg
+    assert seite.fehler == []
+
+
+# V11 (F7 a): Gdje gilt umgangssprachlich auch fuer „wohin“. „Wohin gehst du?“ und der
+# Lueckensatz „___ ideš?“ nehmen es ohne Leben; in der Grammatik „Fragen stellen“ steht
+# Gdje nicht mehr als falscher Knopf neben Kuda.
+V11 = [("type", "wohin gehst du?:Kuda ideš?", "Gdje ideš?"),
+       ("gap", "___ ideš?|Kuda", "Gdje"),
+       ("type", "wohin gehst du?:Kuda ideš?", "Kuda ideš?"),
+       ("gap", "___ ideš?|Kuda", "Kuda")]
+
+
+def test_v11_gdje_kostet_bei_wohin_kein_leben(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    for ziel, eingabe, leben, lage in _antworten(seite, V11):
+        assert lage["ergebnis"] is True and lage["leben"] == leben, (ziel, eingabe, lage)
+        assert lage["fb"] == "Tačno! ✓" and "ok" in lage["klasse"].split(), (ziel, eingabe, lage)
+    assert seite.fehler == []
+
+
+def test_v11_grammatik_gdje_kein_falscher_knopf(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    erg = seite.js("""() => GRAMMAR.fragen.uebungen.filter(g => g.richtig === 'Kuda')
+                              .map(g => ({optionen: g.optionen, tipp: g.tipp}))""")
+    assert erg == [{"optionen": ["Kuda", "Kada", "Ko"],
+                    "tipp": "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje."}], erg
     assert seite.fehler == []
 
 

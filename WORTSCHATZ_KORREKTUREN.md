@@ -955,6 +955,22 @@ bosnisch“, also a, b, c, d und f ja, e nein.
   *Merhaba*; in der Auswahl stehen die beiden nie nebeneinander. Neben *Merhaba* hält
   das `"auch"` Ćao aus der Auswahl.
 
+**V11 / F7 a, Gdje für „wohin“.** Frage: a = gilt umgangssprachlich, b = nur *Kuda*.
+Ajdin: a, *b1_voz* bleibt „Gdje putujete, djeco?“. Zugleich Tabelle 2c, Nr. 30.
+
+| Stelle | Änderung |
+|---|---|
+| `wohin gehst du?:Kuda ideš?` | `"auch": ["Gdje ideš?"]` |
+| Lückensatz „___ ideš?“ (*Kuda*) | `"auch": ["Gdje"]`, wie beim Wort (V3) |
+| Grammatik „Fragen stellen“, „___ ideš?“ (Wohin gehst du?) | Knöpfe *Kuda* / *Kada* / *Ko* statt *Gdje* / *Kuda* / *Ko*; Tipp „Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.“ in 8 Sprachen |
+
+- Gezeigt, gesprochen und gelehrt wird weiter *Kuda*. Kennungen und Aufnahmen
+  bleiben. Die Grammatik-Übung zählt nach ihrer Nummer (`g:fragen|1`), ihr Lernstand
+  bleibt.
+- Nur an den beiden gefragten Stellen. „Wohin?“ (*Kuda?*) allein und „Wohin fahrt ihr
+  in den Sommerurlaub?“ (*Kuda idete na ljetovanje?*) nehmen *Gdje* nicht; „___
+  stanuješ?“ (Wo wohnst du?) nimmt *Kuda* weiter nicht.
+
 ## 14.11.2026 – Prüfbericht 1.4: die fraglichen Varianten beim Tippen (Tabelle 2c, F6)
 
 Tabelle 2c in `Release\Wortschatz\varianten_2026-11-13.md`, 39 Zeilen (V10). Ajdin
@@ -999,7 +1015,7 @@ allein steht (Ajdin über *šerpa* und *kola*).
 | 27 | *jelovnik* | *meni* | nur `speisekarte:jelovnik` |
 | 28 | *obrazac* | *formular* | überall |
 | 29 | *Izvini* | *Oprosti* | nur `entschuldigung (du):Izvini` |
-| 30 | | | gehört zu F7 (*Gdje* für „wohin“) |
+| 30 | *Kuda* | *Gdje* | gehört zu F7 a: nur „Wohin gehst du?“ und „___ ideš?“, als `"auch"`, siehe V11 oben |
 | 31 | *da li* | *je li* | nur `ob:da li`; Lückensatz „Pitam se ___ li dolazi.“ `"auch": ["je"]` |
 | 32 | *Hvala puno* | *Puno hvala*, *Hvala lijepa*, *Hvala mnogo* | nur `vielen dank:Hvala puno`; Lückensatz „Hvala ___!“ `"auch": ["mnogo", "lijepa"]` |
 | 33 | *Doviđenja* | *Do viđenja* | überall, auch bei „Tschüss“, das *Doviđenja* nimmt |

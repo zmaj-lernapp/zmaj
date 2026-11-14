@@ -333,3 +333,51 @@ def test_b5_andere_stellen_bleiben(grunddaten):
     assert woerter["tschüss:Ćao"].get("auch") == ["Doviđenja"]
     assert woerter["auf wiedersehen:Doviđenja"].get("auch") == ["Ćao"]
     assert woerter["hallo (neutral, überall):Zdravo"].get("auch") is None
+
+
+# ---- V11 / F7 a: Gdje auch fuer „wohin“ (Tabelle 2c, Nr. 30) ----
+# Ajdin: Gdje gilt umgangssprachlich auch fuer „wohin“. Das Wort „Wohin gehst du?“ und
+# der Lueckensatz „___ ideš?“ nehmen Gdje, gezeigt und gesprochen wird weiter Kuda. In
+# der Grammatik „Fragen stellen“ steht Gdje nicht mehr als falsche Antwort da (jetzt
+# Kada), der Tipp nennt es. b1_voz bleibt „Gdje putujete, djeco?“.
+V11 = {"wohin gehst du?:Kuda ideš?": ["Gdje ideš?"]}
+V11_NEU = {"wohin gehst du?:Kuda ideš?": ["Gdje ideš?", "gdje ideš"]}
+V11_LUECKEN = {"___ ideš?": ("Kuda", ["Gdje"], ["Gdje", "gdje"])}
+V11_TIPP = {
+    "de": "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.",
+    "en": "Movement in a direction: Kuda. In speech often also Gdje.",
+    "tr": "Bir yöne hareket: Kuda. Konuşmada çoğu zaman Gdje de denir.",
+    "sv": "Rörelse åt ett håll: Kuda. I talspråk ofta även Gdje.",
+    "nl": "Beweging in een richting: Kuda. In de spreektaal vaak ook Gdje.",
+    "nb": "Bevegelse i en retning: Kuda. I talespråket ofte også Gdje.",
+    "da": "Bevægelse i en retning: Kuda. I talesprog ofte også Gdje.",
+    "fr": "Mouvement dans une direction : Kuda. À l'oral, souvent aussi Gdje.",
+}
+
+
+def test_v11_gdje_beim_tippen(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, V11, V11_NEU)
+    _pruefe_luecken(alle_daten, grunddaten, index_html, V11_LUECKEN)
+
+
+def test_v11_grammatik_ohne_gdje_als_falsche_antwort(alle_daten):
+    assert set(alle_daten) == set(V11_TIPP), sorted(alle_daten)
+    for code, daten in alle_daten.items():
+        uebungen = daten["grammatik"]["fragen"]["uebungen"]
+        kuda = [u for u in uebungen if u["richtig"] == "Kuda"]
+        assert len(kuda) == 1, (code, kuda)
+        assert kuda[0]["optionen"] == ["Kuda", "Kada", "Ko"], (code, kuda[0])
+        assert kuda[0]["tipp"] == V11_TIPP[code], (code, kuda[0]["tipp"])
+        # „___ stanuješ?“ (Wo wohnst du?) bleibt: dort ist Kuda weiter falsch.
+        gdje = [u for u in uebungen if u["richtig"] == "Gdje"]
+        assert len(gdje) == 1 and gdje[0]["optionen"] == ["Gdje", "Kuda", "Kada"], (code, gdje)
+
+
+def test_v11_andere_stellen_bleiben(grunddaten):
+    """Nur das Gefragte: „Wohin?“ (Kuda?) allein und „Wo?“ (Gdje?) bleiben, und die
+    Geschichte b1_voz sagt weiter „Gdje putujete, djeco?“ (F7 a, nicht b)."""
+    woerter = _woerter(grunddaten)
+    assert woerter["wohin?:Kuda?"].get("auch") is None
+    assert woerter["wo?:Gdje?"].get("auch") is None
+    voz = [g for g in grunddaten["geschichten"] if g["id"] == "b1_voz"]
+    assert len(voz) == 1 and "„Gdje putujete, djeco?“" in voz[0]["text"], voz

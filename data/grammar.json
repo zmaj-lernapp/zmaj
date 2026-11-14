@@ -81,12 +81,12 @@
      {
       "frage": "„___ ideš?“ (Wohin gehst du?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Bewegung in eine Richtung: Kuda."
+      "tipp": "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje."
      },
      {
       "frage": "Ja/Nein-Frage: „Sprichst du Deutsch?“",
@@ -3240,12 +3240,12 @@
      {
       "frage": "“___ ideš?” (Where are you going?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Movement in a direction: Kuda."
+      "tipp": "Movement in a direction: Kuda. In speech often also Gdje."
      },
      {
       "frage": "Yes/no question: “Do you speak German?”",
@@ -6399,12 +6399,12 @@
      {
       "frage": "“___ ideš?” (Nereye gidiyorsun?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Bir yöne hareket: Kuda."
+      "tipp": "Bir yöne hareket: Kuda. Konuşmada çoğu zaman Gdje de denir."
      },
      {
       "frage": "Evet/hayır sorusu: “Almanca konuşuyor musun?”",
@@ -9558,12 +9558,12 @@
      {
       "frage": "”___ ideš?” (Vart går du?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Rörelse åt ett håll: Kuda."
+      "tipp": "Rörelse åt ett håll: Kuda. I talspråk ofta även Gdje."
      },
      {
       "frage": "Ja/nej-fråga: ”Talar du tyska?”",
@@ -12717,12 +12717,12 @@
      {
       "frage": "‘___ ideš?’ (Waar ga je heen?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Beweging in een richting: Kuda."
+      "tipp": "Beweging in een richting: Kuda. In de spreektaal vaak ook Gdje."
      },
      {
       "frage": "Ja/nee-vraag: ‘Spreek je Duits?’",
@@ -15876,12 +15876,12 @@
      {
       "frage": "«___ ideš?» (Hvor skal du?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Bevegelse i en retning: Kuda."
+      "tipp": "Bevegelse i en retning: Kuda. I talespråket ofte også Gdje."
      },
      {
       "frage": "Ja/nei-spørsmål: «Snakker du tysk?»",
@@ -19035,12 +19035,12 @@
      {
       "frage": "»___ ideš?« (Hvor skal du hen?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Bevægelse i en retning: Kuda."
+      "tipp": "Bevægelse i en retning: Kuda. I talesprog ofte også Gdje."
      },
      {
       "frage": "Ja/nej-spørgsmål: »Taler du tysk?«",
@@ -22194,12 +22194,12 @@
      {
       "frage": "« ___ ideš? » (Vers où vas-tu ?)",
       "optionen": [
-       "Gdje",
        "Kuda",
+       "Kada",
        "Ko"
       ],
       "richtig": "Kuda",
-      "tipp": "Mouvement dans une direction : Kuda."
+      "tipp": "Mouvement dans une direction : Kuda. À l'oral, souvent aussi Gdje."
      },
      {
       "frage": "Question par oui ou non : « Parles-tu allemand ? »",

@@ -33,7 +33,9 @@ GRAMMATIK = {
         ],
         "uebungen": [
             {"frage": "„___ stanuješ?“ (Wo wohnst du?)", "optionen": ["Gdje", "Kuda", "Kada"], "richtig": "Gdje", "tipp": "Gdje = wo (Ort), Kuda = wohin (Richtung)."},
-            {"frage": "„___ ideš?“ (Wohin gehst du?)", "optionen": ["Gdje", "Kuda", "Ko"], "richtig": "Kuda", "tipp": "Bewegung in eine Richtung: Kuda."},
+            # Bis zum 14.11.2026 stand Gdje als falsche Antwort da. Ajdin (Pruefbericht 1.4,
+            # V11/F7 a): Gdje gilt umgangssprachlich auch fuer "wohin". Seitdem Kada.
+            {"frage": "„___ ideš?“ (Wohin gehst du?)", "optionen": ["Kuda", "Kada", "Ko"], "richtig": "Kuda", "tipp": "Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje."},
             {"frage": "Ja/Nein-Frage: „Sprichst du Deutsch?“", "optionen": ["Govoriš li njemački?", "Gdje govoriš njemački?", "Govoriš njemački li?"], "richtig": "Govoriš li njemački?", "tipp": "„li“ steht direkt hinter dem Verb."},
             {"frage": "„___ košta hljeb?“ (Wie viel kostet das Brot?)", "optionen": ["Koliko", "Kako", "Koji"], "richtig": "Koliko", "tipp": "Koliko = wie viel, Kako = wie, Koji = welcher."},
             {"frage": "„___ je to?“ (Wer ist das?)", "optionen": ["Ko", "Šta", "Čiji"], "richtig": "Ko", "tipp": "Ko fragt nach Personen, Šta nach Dingen."},

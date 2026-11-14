@@ -952,7 +952,7 @@ KATEGORIEN = [
         {"de": "Ist das ...?",              "bs": "Je li to ...?"},
         {"de": "Wer bist du?",              "bs": "Ko si ti?"},
         {"de": "Woher kommst du?",          "bs": "Odakle si?"},
-        {"de": "Wohin gehst du?",           "bs": "Kuda ideš?"},
+        {"de": "Wohin gehst du?",           "bs": "Kuda ideš?", "auch": ["Gdje ideš?"]},   # gesprochen oft auch gdje (Ajdin, Prüfbericht 1.4, V11/F7 a)
         {"de": "Wann kommst du?",           "bs": "Kada dolaziš?", "auch": ["Kad dolaziš?"]},   # kad und kada gelten wie beim Wort (Prüfbericht 1.4, V3)
         {"de": "Warum nicht?",              "bs": "Zašto ne?"},
         {"de": "Was ist das?",              "bs": "Šta je to?"},
@@ -10250,7 +10250,7 @@ SAETZE = [
     {"kat": "fragen", "text": "___ je to?",                  "answer": "Šta",     "de": "Was ist das?"},
     {"kat": "fragen", "text": "Koliko ___ godina?",          "answer": "imaš",    "de": "Wie alt bist du?"},
     {"kat": "fragen", "text": "___ li vremena?",             "answer": "Imaš",    "de": "Hast du Zeit?"},
-    {"kat": "fragen", "text": "___ ideš?",                   "answer": "Kuda",    "de": "Wohin gehst du?"},
+    {"kat": "fragen", "text": "___ ideš?",                   "answer": "Kuda",    "auch": ["Gdje"], "de": "Wohin gehst du?"},   # wie beim Wort Kuda ideš? (Prüfbericht 1.4, V11/F7 a)
 
     # Verben beugen
     {"kat": "konjugation", "text": "Ja ___ iz Njemačke.",    "answer": "sam",     "de": "Ich bin aus Deutschland."},
