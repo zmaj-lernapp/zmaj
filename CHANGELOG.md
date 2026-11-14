@@ -335,6 +335,13 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Golden heart with the full version (14.11.2026, the maintainer's wish after the
+  purchase test on the iPhone): wherever the heart stands with ∞ (header, the heart
+  in lessons and tests, the statistics on the result screen) it is now golden
+  instead of red. Unlimited hearts without a purchase (test mode, gift) keep the red
+  one. Painted with Gemini like the other symbols (`web/symbole/herzgold.webp`,
+  128 × 128 WebP); screen readers still hear "Leben". `tests/test_symbole.py`,
+  `tests_e2e/test_symbole_einheitlich.py`.
 - The B1 section "Körper und Gesundheit" is now called "Arzt & Gesundheit"
   (14.11.2026, the maintainer's choice; "Doctor & health", "Doktor ve sağlık",
   "Läkare & hälsa", "Dokter & gezondheid", "Lege & helse", "Læge & sundhed",

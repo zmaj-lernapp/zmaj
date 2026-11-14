@@ -133,3 +133,18 @@ def test_bilder_als_schmuck_oder_mit_ersatztext(index_html):
     assert "alt=\"\" aria-hidden=\"true\"" in m.group(1)
     for img in re.findall(r'<img class="sym"[^>]*>', index_html):
         assert 'alt=""' in img and 'aria-hidden="true"' in img, img
+
+
+def test_goldenes_herz_mit_vollversion(wurzel, index_html):
+    """Goldenes Herz fuer die Vollversion (14.11.2026). Ajdin nach dem Kauf
+    im iPhone-Test: alles frei, "nur das das herz nicht gold ist".
+    herzSymbol() nimmt mit premium das goldene, sonst das rote - und jede
+    Stelle, an der neben dem Herz ∞ stehen kann, baut es mit herzSymbol():
+    Kopfleiste, Fragenkasten, Statistik nach Lektion und Test."""
+    assert "function herzSymbol(sagt){ return symbol(premium ? 'herzgold' : 'herz', sagt); }" in index_html
+    assert "herzgold" in _symbole(index_html)
+    assert os.path.isfile(os.path.join(wurzel, "web", "symbole", "herzgold.webp"))
+    zeilen = [z for z in _ohne_kommentare(index_html).splitlines() if "'∞'" in z]
+    assert len(zeilen) == 4, zeilen
+    for z in zeilen:
+        assert "herzSymbol(" in z and "symbol('herz'" not in z, z

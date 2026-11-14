@@ -4673,6 +4673,13 @@ function symbol(name, sagt){
        + (sagt ? 'alt="' + esc(sagt) + '"' : 'alt="" aria-hidden="true"') + '>';
 }
 function mitSymbol(name, html){ return symbol(name) + ' ' + html; }
+/* Goldenes Herz fuer die Vollversion (14.11.2026). Ajdin nach dem Kauf im
+   iPhone-Test: alles frei, "nur das das herz nicht gold ist". Mit der
+   Vollversion (premium, auch der Dauerschalter) steht ueberall, wo das Herz
+   mit ∞ steht, das goldene: Kopfleiste, Fragenkasten in Lektion und Test,
+   Statistik auf dem Ergebnis. Unbegrenzt ohne Kauf (?alle=1, Geschenk)
+   bleibt es rot - Gold heisst gekauft. Gemalt mit Gemini wie die anderen. */
+function herzSymbol(sagt){ return symbol(premium ? 'herzgold' : 'herz', sagt); }
 function symbolTexte(vars){
   return Object.assign({herz: symbol('herz', t('stat.leben')),
                         muenze: symbol('muenze', SYMBOL_SAGT.muenze),
@@ -4683,7 +4690,7 @@ function symbolTexte(vars){
    Augenblick lang ein leerer Platz. Nur eigene Dateien. Die Liste haelt
    die Bilder fest, damit der Browser sie nicht wieder verwirft. */
 const SYMBOLE = ['lernpfad', 'geschichten', 'wiederholen', 'muenze', 'herz', 'laden',
-                 'einstellungen', 'profil', 'lautsprecher', 'schloss'];
+                 'einstellungen', 'profil', 'lautsprecher', 'schloss', 'herzgold'];
 const symbolVorrat = SYMBOLE.map(n => {
   const i = new Image(); i.src = 'symbole/' + n + '.webp';
   if(i.decode) i.decode().catch(() => {});
@@ -7755,14 +7762,14 @@ function renderLives(){
      unsichtbare Pille (.kastenherz.platzhalter) wird trotzdem mitgefuellt -
      sie haelt die Hoehe der Kopfzeile frei (19.10.2026). */
   document.querySelectorAll('.kastenherz').forEach(k => {
-    k.innerHTML = symbol('herz', t('stat.leben')) + ' <b>' + (unlimited() ? '∞' : n) + '</b>';
+    k.innerHTML = herzSymbol(t('stat.leben')) + ' <b>' + (unlimited() ? '∞' : n) + '</b>';
     k.classList.toggle('zero', n === 0 && !unlimited());
   });
   const zeigen = livesInfoAn || n === 0;
   document.body.classList.toggle('lebenLeer', n === 0);   // Pruefbericht 1.4, S17: siehe body.lebenLeer im Stil
   bar.className='livesbar'+(unlimited()?' premium':'')+(n===0?' zero':'');
   bar.innerHTML = '<button type="button" class="herz" id="livesKnopf" aria-expanded="'+zeigen+'">'
-                + symbol('herz', t('stat.leben'))+' <b>'+(unlimited()?'∞':n)+'</b></button>'
+                + herzSymbol(t('stat.leben'))+' <b>'+(unlimited()?'∞':n)+'</b></button>'
                 + (zeigen ? '<span class="info">'+esc(lebenText(n))+'</span>' : '');
   $('livesKnopf').addEventListener('click', ()=>{ livesInfoAn = !livesInfoAn; renderLives(); });
   const b=$('btnLesson'); if(b){ b.disabled = n===0; b.innerHTML = n===0 ? mitSymbol('herz', esc(t('leben.warten'))) : esc(t('level.lektion')); }
@@ -14412,7 +14419,7 @@ function lessonEnd(){
   $('lBody').innerHTML =
     '<div class="ergebnis-titel">'+t('lektion.geschafft')+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
     '<div class="result-big">'+Lx.right+' / '+scored+'</div>'+
-    '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>'+flammeHtml()+' '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>'+symbol('herz')+' '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
+    '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>'+flammeHtml()+' '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>'+herzSymbol()+' '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
     (nowAllowed && !wasAllowed && !passed.has(c.id) ? '<div class="feedback ok">'+t('lektion.test_frei')+'</div>' : '')+
     (newDay ? '<div class="feedback ok">'+t('lektion.heute_geuebt')+'</div>' : '')+
     questLob+erfolgLob+
@@ -15548,7 +15555,7 @@ function topfEnde(){
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
     '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp(mitStern ? 'stern.rest' : (mitKartei ? 'kartei.rest' : 'topf.rest'), rest)) + '</div>' +
       '<div class="stat"><b>' + flammeHtml() + ' ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +
-      '<div class="stat"><b>' + symbol('herz') + ' ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
+      '<div class="stat"><b>' + herzSymbol() + ' ' + (unlimited() ? '∞' : livesNow()) + '</b>' + t('stat.leben') + '</div></div>' +
     (rest === 0 && !mitStern ? '<div class="feedback ok">' + esc(t(mitKartei ? 'kartei.alles' : 'topf.alles')) + '</div>' : '') +
     (newDay ? '<div class="feedback ok">' + t('lektion.heute_geuebt') + '</div>' : '') +
     questLob + erfolgLob +
