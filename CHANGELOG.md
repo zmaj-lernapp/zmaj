@@ -16,9 +16,17 @@ are in the Play Store listing. Format:
   schon 6 Abzeichen" after the update, once the splash screen is gone; a
   device's first sync with an account counts the same way, so old badges get
   no invented date and no red dot) and stay once earned, even if the number
-  behind them drops. They show as a wall at the top of the profile, a row under
-  "Weitermachen" (the three newest and "7 of 18") and a quiet line on the
-  result screen of a lesson, test, review round or story. The card with confetti
+  behind them drops. They show as a compact row at the top of the profile (the
+  three newest and "7 of 18"; a tap opens the whole wall on a page of its own,
+  and back leads to the profile) and a quiet line on the result screen of a
+  lesson, test, review round or story. On the start page only a red dot on the
+  profile button says that a badge has not been seen on the wall yet (moved
+  there on 14.11.2026 at the maintainer's request; until then the row stood
+  under "Weitermachen"). The profile button is now always there, also without
+  an account (web demo, the first lesson before the mandatory sign-in); without
+  an account the profile shows achievements and streak only. On the wall,
+  screen readers hear the whole sentence ("100 Wörter sitzen, geschafft")
+  instead of "100, geschafft" (review for 1.4, S15). The card with confetti
   stays reserved for learning days. No new field in the saved progress: `e:<id>`
   in `gefeiert`, the date in `wann` where it cannot be recomputed, about 360
   bytes with all 18. Which badges were already seen is kept on the device only.

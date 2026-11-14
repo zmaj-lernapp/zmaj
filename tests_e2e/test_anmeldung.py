@@ -193,6 +193,15 @@ def test_neu_erst_lektion_dann_nur_noch_anmeldung(seite, heute_stand, cloud_html
     attrappe = _starten(seite, cloud_html, stand=heute_stand())
     assert seite.js("() => [sichtbar('pfad'), anmeldungFaellig()]") == [True, False]
     assert _aufrufe(seite) == ["sitzungHolen", "restoreHolen"]
+    # Vor der ersten Lektion, noch ohne Konto: der Profilknopf ist da
+    # (14.11.2026), das Profil zeigt Erfolge und Lernserie, aber keinen
+    # Kasten mit Konto und Abmelden.
+    assert seite.js("() => document.getElementById('btnProfil').style.display") == "inline-block"
+    seite.js("() => document.getElementById('btnProfil').click()")
+    seite.page.wait_for_function("() => sichtbar('kontoView')")
+    assert seite.js("""() => ['erfolgLeiste', 'serieKasten', 'kontoKasten']
+                               .map(id => !document.getElementById(id).hidden)""") == [True, True, False]
+    seite.js("() => showHome()")
     seite.js("() => { openLevel(0); startLesson(); }")
     seite.durchspielen("lBody", "Lx")
     # Auf dem Ergebnisschirm nur noch "Weiter".
@@ -213,6 +222,7 @@ def test_neu_erst_lektion_dann_nur_noch_anmeldung(seite, heute_stand, cloud_html
                               document.getElementById('anmImp').textContent.includes(t('set.anbieter').split('<br>')[0]),
                               document.getElementById('btnSettings').style.display]""") \
         == [True, _t(seite, "anm.google"), True, True, _t(seite, "set.impressum"), True, "none"]
+    assert seite.js("() => document.getElementById('btnProfil').style.display") == "none"
     # Kein Weg daran vorbei.
     for weg in ("showHome()", "openLevel(0)", "showLaden()", "openStory(0)", "startLesson()",
                 "startTest()", "rundeStarten('topf')", "einstufungStarten()", "showView('pfad')"):

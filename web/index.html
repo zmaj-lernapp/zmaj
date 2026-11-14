@@ -1017,8 +1017,10 @@
   .qalle{margin-top:6px; font-size:12px; font-weight:800; color:var(--good-text)}
   /* ---------- Erfolge (13.11.2026) ----------
      Ajdin, Fragen 8a, 9b, 10a: 18 Abzeichen, still sichtbar an drei Orten -
-     Leiste auf der Startseite (.erfolgleiste), Wand im Profil (.abzwand),
-     ruhige Zeile am Ende einer Lektion (.erfolgzeile). Kein Konfetti, das
+     Leiste oben im Profil (.erfolgleiste, bis 14.11.2026 auf der
+     Startseite), die ganze Wand dahinter (.abzwand), ruhige Zeile am Ende
+     einer Lektion (.erfolgzeile). Auf der Startseite traegt nur der
+     Profilknopf einen roten Punkt (#btnProfil.neu). Kein Konfetti, das
      bleibt den Lerntagen.
      Ein Abzeichen ist ein Ring (.abzring) mit Bild und Zahl. Die Farbe
      gehoert der Kette (--ef, k-<kette>), bei der Flamme der Stufe (t-blau,
@@ -1078,10 +1080,10 @@
   .abzweit{font-size:10px; font-weight:700; color:var(--muted); margin-top:2px; white-space:nowrap}
   .abzinfo{font-size:13px; font-weight:700; color:var(--ink); line-height:1.4; margin:10px 0 4px}
   .abzinfo:empty{margin:0}
-  /* Die Leiste auf der Startseite unter "Weitermachen": die drei neuesten
-     Abzeichen und "7 von 18", ein Tipp oeffnet die Wand. Im Kartenstil der
-     Tagesaufgaben darunter. hidden muss hier ausdruecklich stehen, sonst
-     gewinnt display:flex. */
+  /* Die Leiste oben im Profil (bis 14.11.2026 auf der Startseite unter
+     "Weitermachen"): die drei neuesten Abzeichen und "7 von 18", ein Tipp
+     oeffnet die Wand. Im Kartenstil der Tagesaufgaben. hidden muss hier
+     ausdruecklich stehen, sonst gewinnt display:flex. */
   .erfolgleiste{display:flex; align-items:center; gap:10px; width:100%; margin:0 0 12px; padding:9px 12px;
                 border:2px solid var(--line); border-radius:14px; background:var(--surface); color:var(--ink);
                 font:inherit; text-align:left; cursor:pointer}
@@ -1093,6 +1095,12 @@
   .erfolgleiste .abzring, .erfolgzeile .abzring{width:36px; height:36px; border-width:2px}
   .erfolgleiste .abzbild, .erfolgzeile .abzbild{font-size:13px}
   .erfolgleiste .elpfeil{flex:none; font-size:22px; line-height:1; font-weight:800; color:var(--muted)}
+  /* Der rote Punkt am Profilknopf (14.11.2026, Ajdin: "ja roter punkt ist
+     gut"): ein Abzeichen, das in der Wand noch nicht zu sehen war. Wie
+     .abzring.neu, nur etwas kleiner. ::before, weil ::after schon die
+     unsichtbare Tippflaeche ist (.hbtns .back.nursymbol::after). */
+  #btnProfil.neu::before{content:''; position:absolute; top:-3px; right:-3px; width:11px; height:11px;
+                         border-radius:50%; background:var(--bad); border:2px solid var(--surface); pointer-events:none}
   /* Die ruhige Zeile am Ende einer Lektion, eines Tests, einer Runde oder
      einer Geschichte. Gruen wie die Zeilen der Tagesaufgaben, ohne Ton. */
   .erfolgzeile{display:flex; align-items:center; gap:10px; margin-top:14px; padding:10px 12px; text-align:left;
@@ -2608,9 +2616,10 @@
     <!-- Der Einstieg. Er traegt den Namen des Levels, das als naechstes dran
          ist, und fuehrt direkt hinein. -->
     <button class="btn know weiterknopf" id="weiterKnopf"></button>
-    <!-- Erfolge (13.11.2026): die drei neuesten Abzeichen und "x von 18".
-         Ein Tipp oeffnet die Wand im Profil. Inhalt aus renderErfolgLeiste(). -->
-    <button type="button" class="erfolgleiste" id="erfolgLeiste" hidden></button>
+    <!-- Die Leiste der Erfolge stand hier vom 13. bis 14.11.2026. Sie ist ins
+         Profil gewandert (#kontoView); auf der Startseite zeigt nur noch ein
+         roter Punkt am Profilknopf, dass ein neues Abzeichen da ist
+         (profilPunkt). -->
     <div class="quests" id="questBox"></div>
     <div class="mode" role="tablist">
       <button role="tab" id="modeWords" aria-selected="true"><img class="sym" src="symbole/lernpfad.webp" alt="" aria-hidden="true"> <span data-t="tab.lernpfad"></span></button>
@@ -2720,8 +2729,14 @@
 
   <!-- ===== Einstellungen ===== -->
   <div id="kontoView" style="display:none">
-    <!-- Die Wand der Erfolge ganz oben, ueber Konto und Lernserie
-         (13.11.2026). Inhalt aus renderErfolgWand(). -->
+    <!-- Erfolge ganz oben, ueber Konto und Lernserie. Seit 14.11.2026 nur
+         die kompakte Leiste wie vorher auf der Startseite (Ajdin: "mach die
+         erfolge in dem benutzer menü rein", "aber so machen das es so
+         kompakt ist wie bei der startseite"): die drei neuesten und "x von
+         18". Ein Tipp zeigt die ganze Wand allein auf der Seite, Zurueck
+         fuehrt ins Profil (showErfolge). Inhalt aus renderErfolgLeiste()
+         und renderErfolgWand(). -->
+    <button type="button" class="erfolgleiste" id="erfolgLeiste" hidden></button>
     <div class="section" id="erfolgWand" hidden></div>
     <div class="section" id="kontoKasten">
       <h2 data-t="set.profil"></h2>
@@ -2747,7 +2762,7 @@
       </form>
       <div class="sd" style="font-size:12px; color:var(--muted); padding-bottom:10px" data-t="set.konto"></div>
     </div>
-    <div class="section">
+    <div class="section" id="serieKasten">
       <h2 data-t="set.serie"></h2>
       <div class="setting"><div><div class="st" id="setSerie">–</div><div class="sd" id="setSchutz"></div></div></div>
       <div class="sd" id="setSchutzInfo" style="font-size:12px; color:var(--muted); padding-bottom:12px"></div>
@@ -7007,11 +7022,15 @@ function markToday(){
      - 18 Abzeichen in ERFOLGE. Jedes gehoert zu einer Kette (nur das
        naechste offene einer Kette bekommt einen Balken) und einer Gruppe
        (eine Zeile der Wand).
-     - Zu sehen an drei Orten: die Wand oben im Profil (renderErfolgWand),
-       die Leiste unter "Weitermachen" mit den drei neuesten und "x von 18"
-       (renderErfolgLeiste) und eine ruhige Zeile auf dem Ergebnisschirm
-       von Lektion, Test, Wiederholen-Runde und Geschichte (erfolgZeile) -
-       ohne Ton, ohne Karte, ohne Konfetti.
+     - Zu sehen an drei Orten: oben im Profil die Leiste mit den drei
+       neuesten und "x von 18" (renderErfolgLeiste), ein Tipp darauf zeigt
+       die ganze Wand (showErfolge, renderErfolgWand), und eine ruhige Zeile
+       auf dem Ergebnisschirm von Lektion, Test, Wiederholen-Runde und
+       Geschichte (erfolgZeile) - ohne Ton, ohne Karte, ohne Konfetti.
+       Die Leiste stand bis 14.11.2026 auf der Startseite unter
+       "Weitermachen"; dort sagt jetzt nur ein roter Punkt am Profilknopf,
+       dass etwas Neues da ist (profilPunkt). Ajdin am 14.11.2026: "mach
+       die erfolge in dem benutzer menü rein", "ja roter punkt ist gut".
      - Rueckwirkend aus dem, was die App ohnehin speichert: Lerntage,
        laengste Serie (rekord), gewusste Woerter, bestandene Level,
        gelesene Geschichten, die Lernkartei. Wer das Update bekommt, hat
@@ -7312,9 +7331,25 @@ function erfolgInfo(e){
   const s = erfolgStand(e);
   return erfolgSatz(e) + ' · ' + zahlText(Math.min(s.wert, s.ziel)) + ' / ' + zahlText(s.ziel);
 }
-/* Die Wand, oben im Profil. Je Kette bekommt nur das erste offene einen
-   Balken; offene sind grau, noch nicht angesehene tragen den roten Punkt.
-   Danach gilt alles als gesehen - beim naechsten Oeffnen ist der Punkt weg. */
+/* Was ein Bildschirmleser zu einem Abzeichen der Wand sagt (Pruefbericht
+   1.4, S15). Vorher nur der Name unter dem Ring und der Zustand: "100,
+   geschafft" - ohne die Gruppe darueber versteht das niemand, den ganzen
+   Satz gab es erst nach dem Antippen. Jetzt der Satz selbst ("100 Woerter
+   sitzen, geschafft"). Steht der sichtbare Name nicht schon darin, kommt
+   er davor ("1 Woche, 7 Tage gelernt, geschafft"): der Name, den man
+   sieht, soll auch im vorgelesenen stecken (WCAG 2.5.3). Der weiche
+   Trennstrich in "Bomben-gedaechtnis" gehoert nicht in den Vergleich. */
+function erfolgVorlesen(e, an, neu){
+  const name = erfolgName(e).replace(/­/g, ''), satz = erfolgSatz(e);
+  const teile = satz.toLowerCase().includes(name.toLowerCase()) ? [satz] : [name, satz];
+  teile.push(t(an ? 'erfolg.geschafft' : 'erfolg.offen'));
+  if(neu) teile.push(t('erfolg.neu_kurz'));
+  return teile.join(', ');
+}
+/* Die Wand, hinter der Leiste oben im Profil (showErfolge). Je Kette
+   bekommt nur das erste offene einen Balken; offene sind grau, noch nicht
+   angesehene tragen den roten Punkt. Danach gilt alles als gesehen - beim
+   naechsten Oeffnen ist der Punkt weg, auch der am Profilknopf. */
 function renderErfolgWand(){
   const box = $('erfolgWand');
   if(!box) return;
@@ -7331,8 +7366,8 @@ function renderErfolgWand(){
     const wert = Math.min(s.wert, s.ziel);
     return '<button type="button" class="abz' + (an ? '' : ' offen') + '" data-erfolg="' + e.id + '">' +
       erfolgRing(e, an, neu, true) +
-      '<span class="abzname">' + esc(erfolgName(e)) + '</span>' +
-      '<span class="nurleser">' + esc(', ' + t(an ? 'erfolg.geschafft' : 'erfolg.offen') + (neu ? ', ' + t('erfolg.neu_kurz') : '')) + '</span>' +
+      '<span class="abzname" aria-hidden="true">' + esc(erfolgName(e)) + '</span>' +
+      '<span class="nurleser">' + esc(erfolgVorlesen(e, an, neu)) + '</span>' +
       (balken ? '<span class="abzbalken" aria-hidden="true"><i style="width:' + Math.round(wert / s.ziel * 100) + '%"></i></span>' +
                 '<span class="abzweit">' + esc(zahlText(wert) + ' / ' + zahlText(s.ziel)) + '</span>' : '') +
       '</button>';
@@ -7352,11 +7387,13 @@ function renderErfolgWand(){
     info.textContent = war ? '' : erfolgInfo(e);
   }));
   if(erfolgeGesehen() !== null || hatGelernt()) erfolgeAlsGesehen();   // siehe erfolgeNachreichen
+  profilPunkt();
 }
-/* Die Leiste auf der Startseite: die drei zuletzt verdienten (ohne Datum
-   zuletzt, bei gleichem Datum das spaetere der Liste zuerst) und
-   "7 von 18". Ist noch keins verdient, steht grau das, dem man am
-   naechsten ist - eine leere Leiste saehe kaputt aus. */
+/* Die Leiste oben im Profil (bis 14.11.2026 auf der Startseite): die drei
+   zuletzt verdienten (ohne Datum zuletzt, bei gleichem Datum das spaetere
+   der Liste zuerst) und "7 von 18". Ist noch keins verdient, steht grau
+   das, dem man am naechsten ist - eine leere Leiste saehe kaputt aus.
+   Noch nicht angesehene tragen den roten Punkt, bis die Wand offen war. */
 function renderErfolgLeiste(){
   const el = $('erfolgLeiste');
   if(!el) return;
@@ -7377,6 +7414,22 @@ function renderErfolgLeiste(){
     '<span class="elpfeil" aria-hidden="true">›</span>';
   el.hidden = false;
 }
+/* Der rote Punkt am Profilknopf oben (14.11.2026): ein verdientes
+   Abzeichen, das auf diesem Geraet noch nicht in der Wand zu sehen war -
+   dieselbe Merkung wie die Punkte in Leiste und Wand (erfolgeGesehen). Er
+   geht weg, sobald die Wand offen war, nicht schon beim Blick ins Profil:
+   dort steht er weiter auf dem Ring in der Leiste. Ein Bildschirmleser
+   hoert ihn mit, "Profil, Neues Abzeichen: 100 Woerter sitzen". */
+function profilPunkt(){
+  const b = $('btnProfil');
+  if(!b) return;
+  const gesehen = erfolgeGesehen() || new Set();
+  const neu = (standGeladen && CATEGORIES.length) ? erfolgeVerdient().filter(e => !gesehen.has(e.id)) : [];
+  b.classList.toggle('neu', neu.length > 0);
+  if(neu.length) b.setAttribute('aria-label', t('set.profil') + ', ' +
+    (neu.length === 1 ? t('erfolg.neu', {name: erfolgSatz(neu[0])}) : t('erfolg.neu_mehr', {n: neu.length})));
+  else b.removeAttribute('aria-label');
+}
 /* Die ruhige Zeile fuer den Ergebnisschirm (Ajdin 13.11.2026, 9b): neu
    verdiente Abzeichen, gruen wie die Tagesaufgaben, ohne Ton und ohne
    Konfetti. Prueft und hakt ab - also genau einmal je Ergebnisschirm rufen,
@@ -7391,6 +7444,7 @@ function erfolgZeile(){
   if(erfolgeGesehen() === null) erfolgeAlsGesehen();
   const neu = erfolgePruefen(true);
   if(!neu.length) return '';
+  profilPunkt();   // nach einer Geschichte steht der Kopf mit dem Profilknopf darueber
   const titel = neu.length === 1 ? t('erfolg.neu', {name: erfolgSatz(neu[0])}) : t('erfolg.neu_mehr', {n: neu.length});
   return '<div class="erfolgzeile"><span class="ezbilder" aria-hidden="true">' +
     neu.slice(-3).reverse().map(e => erfolgRing(e, true, false, false)).join('') + '</span>' +
@@ -8143,10 +8197,10 @@ function renderHero(){
     }
   }
   renderSerie();
-  renderErfolgLeiste();
+  profilPunkt();   // Erfolge: seit 14.11.2026 statt der Leiste nur der rote Punkt
   renderQuests();
 }
-$('erfolgLeiste').addEventListener('click', async ()=>{ await saveProgress(); showKonto(); });
+$('erfolgLeiste').addEventListener('click', showErfolge);
 /* Die drei Tagesaufgaben. Absichtlich ohne Warnung und ohne Rot, wenn eine
    nicht geschafft ist: ein ausgelassener Tag soll nichts kosten. */
 function renderQuests(){
@@ -8975,6 +9029,7 @@ async function setzeSprache(code){
   try{ localStorage.setItem('zmaj_sprache', code); }catch(e){}
   try{ await ladeDaten(); }catch(e){ SPRACHE = vorher; return; }
   if(!STORIES.length) $('modeStories').hidden = true;
+  profilPunkt();          // sein Vorlesetext ist in der Sprache (14.11.2026)
   if(warAuf === 'settingsView') showSettings();          // dort steht die Auswahlliste
   else if(warAuf === 'profileView'){      // dort stehen die Flaggen
     if(cloudModus()) anmeldungZeigen(anmAnlass, anmModus); else zeigeAnmeldung(kontoModus);
@@ -9892,12 +9947,14 @@ async function nachAnmeldung(info){
      Geschenk: letzterTag steht beim Laden schon auf heute. Gefunden am
      29.09.2026, als es um den Geraetewechsel ging. */
   geschenkPruefen();
-  // Ohne Server gibt es kein Konto zu verwalten: kein Passwort, keine
-  // E-Mail, kein Abmelden. Dann bleibt der Knopf weg und mit ihm die
-  // ganze Kontoansicht - erreichbar ist sie nur ueber ihn.
-  /* Seit v109 auch mit der Pflicht-Anmeldung, sobald jemand angemeldet ist
-     (28.10.2026). */
-  $('btnProfil').style.display = (MIT_SERVER || (cloudModus() && !!cloudMerker())) ? 'inline-block' : 'none';
+  /* Der Profilknopf steht seit 14.11.2026 immer da, auch ohne Konto: im
+     Profil stehen jetzt die Erfolge, und die gibt es auch in der Web-Demo,
+     in der ersten Lektion vor der Pflicht-Anmeldung und auf dem iPhone
+     nach "Spaeter". Ohne Konto zeigt showKonto() nur Erfolge und
+     Lernserie, ohne den Kasten mit Passwort, E-Mail und Abmelden. Bis dahin
+     blieb der Knopf ohne Konto weg (ohne Server, und seit v109 vor der
+     Anmeldung). */
+  $('btnProfil').style.display = 'inline-block';
   // Kein Name mehr im Knopf, nur die Figur: eine Zeile oben (29.10.2026).
   $('btnSettings').style.display='inline-block';
   $('btnShop').style.display='inline-block';
@@ -10088,12 +10145,15 @@ function showKonto(){
   showView('kontoView'); $('kopfLeiste').style.display='none';
   setzeZurueck(t('btn.zurueck'), showHome);
   $('tag').textContent=t('set.profil');
-  /* Erfolge ganz oben (13.11.2026). Hierher fuehrt auch die Leiste auf der
-     Startseite - die gibt es auch ohne Konto (Web-Demo, Handy vor der
-     Pflicht-Anmeldung). Dann bleibt der Kasten mit Konto und Abmelden
-     weg; dieselbe Bedingung wie fuer den Profilknopf in nachAnmeldung(). */
+  /* Erfolge ganz oben (13.11.2026), seit 14.11.2026 als kompakte Leiste;
+     die Wand zeigt showErfolge(). Das Profil gibt es auch ohne Konto (Web-
+     Demo, Handy vor der Pflicht-Anmeldung, iPhone nach "Spaeter"): dann
+     stehen nur Erfolge und Lernserie da, der Kasten mit Konto und Abmelden
+     bleibt weg. */
+  $('erfolgWand').hidden = true; $('erfolgWand').innerHTML = '';
+  $('serieKasten').hidden = false;
   $('kontoKasten').hidden = !(MIT_SERVER || (cloudModus() && !!cloudMerker()));
-  renderErfolgWand();
+  renderErfolgLeiste();
   $('setProfilName').innerHTML = mitSymbol('profil', esc(profil+(premium?' · '+t('profil.vollversion'):'')));
   $('setProfilMail').textContent = kontoMail ? '✉ '+kontoMail : '';
   $('setSerie').textContent = tp('set.serie_stand', streak());
@@ -10102,6 +10162,17 @@ function showKonto(){
     (s>=SCHUTZ_MAX ? ' · '+t('serie.schutz_voll') : (rest ? ' · '+t('serie.schutz_naechster',{zeit:fmtTage(rest)}) : ''));
   $('setSchutzInfo').textContent = t('set.serie_schutz_sub',{tage:SCHUTZ_TAGE, max:SCHUTZ_MAX});
   if(cloudModus()) kontoSeiteCloud();     // Pflicht-Anmeldung, 28.10.2026
+}
+/* Die ganze Wand der Erfolge, nach einem Tipp auf die Leiste im Profil
+   (14.11.2026). Eine eigene Seite in derselben Ansicht: oben nur die Wand,
+   Konto und Lernserie sind weg, und Zurueck - die Taste oben wie die des
+   Handys - fuehrt ins Profil, nicht auf die Startseite. */
+function showErfolge(){
+  showView('kontoView'); $('kopfLeiste').style.display='none';
+  setzeZurueck(t('btn.zurueck'), showKonto);
+  $('tag').textContent = t('erfolg.titel');
+  $('erfolgLeiste').hidden = true; $('kontoKasten').hidden = true; $('serieKasten').hidden = true;
+  renderErfolgWand();
 }
 function showSettings(){
   showView('settingsView'); $('kopfLeiste').style.display='none';
@@ -11267,7 +11338,10 @@ function cloudVonAussenAbgemeldet(uid){
   cloudNativToken = null; restoreUid = '';
   try{ localStorage.setItem(ABGEMELDET, '1'); }catch(e){}
   anmAufruf('abmelden', {}, 8000);
-  $('btnProfil').style.display = 'none';
+  /* Der Profilknopf bleibt seit 14.11.2026 stehen: die Erfolge gibt es
+     auch ohne Konto (siehe nachAnmeldung). Ist das Profil gerade offen,
+     verschwindet dort der Kasten mit dem Konto. */
+  if(sichtbar('kontoView')) $('kontoKasten').hidden = true;
   torPruefen();
 }
 /* Googles ID-Token aus der Huelle. Google sperrt die Anmeldung in einer
@@ -11589,7 +11663,7 @@ function torStattKnoepfe(ids){
 function kopfZurueck(){
   $('btnSettings').style.display = 'inline-block';
   $('btnShop').style.display = 'inline-block';
-  $('btnProfil').style.display = cloudMerker() ? 'inline-block' : 'none';
+  $('btnProfil').style.display = 'inline-block';     // auch ohne Konto, siehe nachAnmeldung (14.11.2026)
 }
 
 /* ---- Die Anmeldeseite ----

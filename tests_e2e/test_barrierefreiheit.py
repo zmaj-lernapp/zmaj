@@ -69,6 +69,8 @@ ANSICHTEN = [
      " await warte(500);"),
     ("test", "Lx=null; openLevel(3); await warte(400); startTest(); await warte(900);"),
     ("einstellungen", "Lx=null; showSettings(); await warte(800);"),
+    # Das Profil mit der Leiste der Erfolge (14.11.2026, vorher auf der Startseite)
+    ("profil", "showKonto(); await warte(600);"),
     ("geschichte", "openStory(3); await warte(800); stilleBitte();"),
     ("laden", "showLaden(); await warte(800);"),
     # der Reiter mit den Kostuemen: Tragen, Preis und Vollversion (17.10.2026)

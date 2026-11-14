@@ -8,9 +8,15 @@ Ajdin am 13.11.2026 zu Release\\Entscheidungen_2026-11-13\\erfolge.md:
   - Rueckwirkend aus vorhandenen Daten; einmal "Du hast schon N Abzeichen",
     und alle gelten als gesehen.
   - Ein verdientes bleibt fuer immer.
-  - Wand im Profil, Leiste auf der Startseite (3 neueste + "x von 18"),
-    ruhige Zeile am Lektionsende. Feier-Karte und Konfetti nur bei
-    Lerntagen - hier also nie.
+  - Leiste oben im Profil (3 neueste + "x von 18"), ein Tipp zeigt die
+    ganze Wand, ruhige Zeile am Lektionsende. Feier-Karte und Konfetti nur
+    bei Lerntagen - hier also nie.
+  - Seit 14.11.2026 (Ajdin: "mach die erfolge in dem benutzer menü rein",
+    "ja roter punkt ist gut"): die Leiste steht nicht mehr auf der
+    Startseite, dort zeigt ein roter Punkt am Profilknopf ein neues
+    Abzeichen, bis die Wand offen war. Den Profilknopf gibt es auch ohne
+    Konto. Die Wand liest dem Bildschirmleser den ganzen Satz vor
+    (Pruefbericht 1.4, S15).
   - Kein neues Feld im Stand: "e:<id>" in gefeiert, Datum in wann, mit
     allen 18 hoechstens etwa 0,5 KB mehr.
   - Texte in allen acht Sprachen.
@@ -38,12 +44,23 @@ ZUSTAND = """() => ({
   wann: Object.fromEntries(Object.entries(wann).filter(([k]) => k.startsWith('e:'))),
   gespeichert: JSON.parse(localStorage.getItem('zmaj_stand') || '{}'),
   gesehen: localStorage.getItem('zmaj_erfolge_gesehen'),
-  leiste: (() => { const l = document.getElementById('erfolgLeiste');
-    return {sichtbar: !l.hidden && l.offsetHeight > 0, text: l.innerText,
-            ringe: [...l.querySelectorAll('.abzring')].map(r => r.className)}; })(),
+  punkt: (() => { const b = document.getElementById('btnProfil');
+    return {da: b.style.display === 'inline-block', neu: b.classList.contains('neu'),
+            name: b.getAttribute('aria-label')}; })(),
+  aufStart: !!document.querySelector('#pfad .erfolgleiste'),
   karte: !!document.querySelector('.nachfrage'),
   konfetti: document.querySelectorAll('.schnipsel').length,
 })"""
+
+# Die Leiste oben im Profil (bis 14.11.2026 auf der Startseite), dazu was
+# sonst auf der Seite steht.
+LEISTE = """() => { const l = document.getElementById('erfolgLeiste');
+  return {sichtbar: !l.hidden && l.offsetHeight > 0, text: l.innerText,
+          ringe: [...l.querySelectorAll('.abzring')].map(r => r.className),
+          oben: l.getBoundingClientRect().bottom <= document.getElementById('serieKasten').getBoundingClientRect().top,
+          wand: !document.getElementById('erfolgWand').hidden,
+          konto: !document.getElementById('kontoKasten').hidden,
+          serie: !document.getElementById('serieKasten').hidden}; }"""
 
 
 def _tag(n):
@@ -67,6 +84,14 @@ def _alter_stand(d, heute_stand):
         tage=[_tag(i) for i in range(1, 32)], gewusst=d["woerter"][:120],
         bestanden=d["a1"], gelesen=[d["story"]], wann=wann,
         kartei={"tag": 0, "n": 0, "w": {w: [5, kt + 40, kt - 1] for w in d["woerter"][:100]}})
+
+
+def _profil(seite):
+    """Das Profil ueber den Knopf oben oeffnen und die Leiste ablesen."""
+    seite.js("() => document.getElementById('btnProfil').click()")
+    seite.page.wait_for_function("() => sichtbar('kontoView') && !document.getElementById('serieKasten').hidden",
+                                 timeout=3000)
+    return seite.js(LEISTE)
 
 
 def _vorspann_weg(seite):
@@ -102,14 +127,20 @@ def test_rueckwirkend_beim_ersten_start(seite, heute_stand):
     # alles gesehen, keine Karte, kein Konfetti
     assert sorted(json.loads(z["gesehen"])) == sorted(z["verdient"])
     assert not z["karte"] and z["konfetti"] == 0
-    # Leiste: "7 von 18", die drei neuesten - Flamme und 1 Monat (vorgestern,
-    # bei gleichem Datum das spaetere der Liste zuerst), dann A1 - ohne Punkt
-    assert z["leiste"]["sichtbar"], z["leiste"]
-    assert "Erfolge" in z["leiste"]["text"] and "7 von 18" in z["leiste"]["text"]
-    ringe = z["leiste"]["ringe"]
+    # Startseite: keine Leiste mehr, der Profilknopf da und ohne Punkt
+    assert z["aufStart"] is False
+    assert z["punkt"] == {"da": True, "neu": False, "name": None}, z["punkt"]
+    # Leiste oben im Profil: "7 von 18", die drei neuesten - Flamme und
+    # 1 Monat (vorgestern, bei gleichem Datum das spaetere der Liste zuerst),
+    # dann A1 - ohne Punkt. Die Wand erst nach einem Tipp.
+    leiste = _profil(seite)
+    assert leiste["sichtbar"] and leiste["oben"] and not leiste["wand"] and leiste["serie"], leiste
+    assert "Erfolge" in leiste["text"] and "7 von 18" in leiste["text"]
+    ringe = leiste["ringe"]
     assert len(ringe) == 3, ringe
     assert "k-flamme" in ringe[0] and "k-tage" in ringe[1] and "k-stufen" in ringe[2], ringe
     assert not any(" neu" in r or " aus" in r for r in ringe), ringe
+    seite.js("() => showHome()")
     # Die Daten aus tage, frost und gs:
     daten = seite.js("() => Object.fromEntries(ERFOLGE.filter(erfolgVerdient).map(e => [e.id, erfolgDatum(e)]))")
     assert daten == {"t7": _tag(25), "t30": _tag(2), "f30": _tag(2), "w100": "", "a1": _tag(10),
@@ -132,7 +163,8 @@ def test_frisch_installiert_dann_cloud(seite, heute_stand):
     seite.starten(stand=heute_stand())
     z = seite.js(ZUSTAND)
     assert z["verdient"] == [] and z["gesehen"] is None, z
-    assert "0 von 18" in z["leiste"]["text"]
+    assert z["punkt"] == {"da": True, "neu": False, "name": None}, z["punkt"]
+    assert "0 von 18" in _profil(seite)["text"]
     # Die Wand ueber die Leiste oeffnen aendert daran nichts
     seite.js("() => document.getElementById('erfolgLeiste').click()")
     seite.page.wait_for_function("() => !document.getElementById('erfolgWand').hidden", timeout=3000)
@@ -144,8 +176,10 @@ def test_frisch_installiert_dann_cloud(seite, heute_stand):
     assert sorted(z["verdient"]) == sorted(["t7", "t30", "f30", "w100", "a1", "g1", "k100"]), z["verdient"]
     assert z["wann"] == {"e:a1": _tag(10)}, z["wann"]
     assert sorted(json.loads(z["gesehen"])) == sorted(z["verdient"])
-    assert not any(" neu" in r for r in z["leiste"]["ringe"]), z["leiste"]
+    assert z["punkt"]["neu"] is False, z["punkt"]
     assert not z["karte"] and z["konfetti"] == 0
+    ringe = _profil(seite)["ringe"]
+    assert len(ringe) == 3 and not any(" neu" in r for r in ringe), ringe
     assert seite.fehler == [] and seite.fremd == []
 
 
@@ -173,7 +207,9 @@ def test_erst_gelernt_dann_cloud(seite, heute_stand):
     assert "e:w100" not in z["gespeichert"]["wann"] and "e:k100" not in z["gespeichert"]["wann"]
     assert {"e:" + x for x in z["verdient"]} <= set(z["gespeichert"]["gefeiert"])
     assert sorted(json.loads(z["gesehen"])) == sorted(z["verdient"])
-    assert z["leiste"]["ringe"] and not any(" neu" in r for r in z["leiste"]["ringe"]), z["leiste"]
+    assert z["punkt"]["neu"] is False, z["punkt"]
+    ringe = _profil(seite)["ringe"]
+    assert ringe and not any(" neu" in r for r in ringe), ringe
     # Ein spaeterer Abgleich (m.rev gesetzt) bringt keinen zweiten Satz
     seite.page.wait_for_function("() => !document.querySelector('.kurznote')", timeout=5000)
     seite.js("(s) => { cloudUebernehmen(s, [], false); showHome(); }", _alter_stand(d, heute_stand))
@@ -185,14 +221,19 @@ def test_erst_gelernt_dann_cloud(seite, heute_stand):
 def test_lektion_bringt_neues_abzeichen(seite, heute_stand):
     """99 Woerter, eine Lektion in Level 1: am Ende die ruhige Zeile
     "Neues Abzeichen: 100 Woerter sitzen", Datum heute, kein Konfetti. Auf
-    der Startseite traegt es den roten Punkt, bis die Wand offen war."""
+    der Startseite traegt der Profilknopf den roten Punkt, im Profil der
+    Ring in der Leiste - bis die Wand offen war."""
     d = _daten(seite, heute_stand)
     seite.starten(stand=heute_stand(gewusst=d["woerter"][:99]))
     z = seite.js(ZUSTAND)
     assert z["verdient"] == [] and z["gesehen"] == "[]"
-    # Noch keins: grau das naechste, "0 von 18"
-    assert "0 von 18" in z["leiste"]["text"] and len(z["leiste"]["ringe"]) == 1
-    assert " aus" in z["leiste"]["ringe"][0] and "k-woerter" in z["leiste"]["ringe"][0]
+    # Ohne Konto: der Profilknopf ist trotzdem da, ohne Punkt
+    assert z["punkt"] == {"da": True, "neu": False, "name": None}, z["punkt"]
+    # Noch keins: grau das naechste, "0 von 18"; ohne Konto ohne den Kontokasten
+    leiste = _profil(seite)
+    assert "0 von 18" in leiste["text"] and len(leiste["ringe"]) == 1
+    assert " aus" in leiste["ringe"][0] and "k-woerter" in leiste["ringe"][0]
+    assert not leiste["konto"] and leiste["serie"] and not leiste["wand"], leiste
     seite.js("() => { openLevel(0); startLesson(); }")
     seite.durchspielen("lBody", "Lx")
     ende = seite.js("""() => { const z = document.querySelector('#lBody .erfolgzeile');
@@ -207,23 +248,50 @@ def test_lektion_bringt_neues_abzeichen(seite, heute_stand):
     assert not z["karte"] and z["konfetti"] == 0
     seite.page.wait_for_timeout(1600)          # die Wegmarke kaeme nach 1,4 s
     assert seite.js("() => !!document.querySelector('.nachfrage')") is False
-    # Zurueck: der rote Punkt in der Leiste
+    # Zurueck: der rote Punkt am Profilknopf, mit Namen fuer den Bildschirmleser
     seite.js("() => document.getElementById('lPfad').click()")
     z = seite.js(ZUSTAND)
-    assert "1 von 18" in z["leiste"]["text"]
-    assert len(z["leiste"]["ringe"]) == 1 and " neu" in z["leiste"]["ringe"][0]
-    # Die Wand: ueber die Leiste, ohne Konto ohne den Kontokasten
+    assert z["aufStart"] is False
+    assert z["punkt"] == {"da": True, "neu": True, "name": "Profil, Neues Abzeichen: 100 Wörter sitzen"}, z["punkt"]
+    # Im Profil: "1 von 18", der Ring mit Punkt. Der Punkt am Knopf bleibt,
+    # bis die Wand offen war - ein Blick ins Profil reicht nicht.
+    leiste = _profil(seite)
+    assert "1 von 18" in leiste["text"]
+    assert len(leiste["ringe"]) == 1 and " neu" in leiste["ringe"][0], leiste
+    assert seite.js(ZUSTAND)["punkt"]["neu"] is True
+    # Die Wand: ein Tipp auf die Leiste, allein auf der Seite, Zurueck fuehrt ins Profil
     seite.js("() => document.getElementById('erfolgLeiste').click()")
-    seite.page.wait_for_function("() => document.getElementById('kontoView').style.display !== 'none'", timeout=3000)
+    seite.page.wait_for_function("() => !document.getElementById('erfolgWand').hidden", timeout=3000)
     wand = seite.js("""() => { const w = document.getElementById('erfolgWand');
       return {sichtbar: !w.hidden, knoepfe: w.querySelectorAll('.abz').length,
               an: [...w.querySelectorAll('.abz:not(.offen)')].map(b => b.dataset.erfolg),
               neu: [...w.querySelectorAll('.abzring.neu')].length,
               balken: [...w.querySelectorAll('.abzbalken')].length,
               kopf: w.querySelector('.abzstand').textContent,
-              konto: document.getElementById('kontoKasten').hidden}; }""")
+              leiste: !document.getElementById('erfolgLeiste').hidden,
+              konto: !document.getElementById('kontoKasten').hidden,
+              serie: !document.getElementById('serieKasten').hidden,
+              tag: document.getElementById('tag').textContent,
+              zurueck: backTarget === showKonto}; }""")
     assert wand == {"sichtbar": True, "knoepfe": 18, "an": ["w100"], "neu": 1, "balken": 6,
-                    "kopf": "1 von 18", "konto": True}, wand
+                    "kopf": "1 von 18", "leiste": False, "konto": False, "serie": False,
+                    "tag": "Erfolge", "zurueck": True}, wand
+    # Gesehen: der Punkt am Profilknopf ist weg
+    assert seite.js(ZUSTAND)["punkt"] == {"da": True, "neu": False, "name": None}
+    # S15: vorgelesen wird der ganze Satz statt nur "100, geschafft"; der
+    # Name unter dem Ring steht davor, wenn der Satz ihn nicht enthaelt
+    leser = seite.js("""() => Object.fromEntries([...document.querySelectorAll('#erfolgWand .abz')]
+      .map(b => [b.dataset.erfolg, b.querySelector('.nurleser').textContent]))""")
+    assert leser["w100"] == "100 Wörter sitzen, geschafft, neu", leser
+    assert leser["w500"] == "500 Wörter sitzen, noch offen", leser
+    assert leser["t7"] == "1 Woche, 7 Tage gelernt, noch offen", leser
+    assert leser["f30"] == "Blau, 30 Tage am Stück gelernt, noch offen", leser
+    assert leser["a1"] == "Alle Level von A1 bestanden, noch offen", leser
+    assert leser["g1"] == "Die erste Geschichte gelesen, noch offen", leser
+    assert leser["k100"] == "Bombengedächtnis, 100 Wörter, die erst in 3 Monaten wiederkommen, noch offen", leser
+    assert seite.js("""() => [...document.querySelectorAll('#erfolgWand .abzname')]
+      .every(n => n.getAttribute('aria-hidden') === 'true')""")
+    assert seite.page.get_by_role("button", name="100 Wörter sitzen, geschafft, neu", exact=True).count() == 1
     # Antippen: Satz und Datum, nochmal antippen: weg
     info = seite.js("""() => { const b = document.querySelector('#erfolgWand [data-erfolg="w100"]'); b.click();
       return b.closest('.abzgruppe').querySelector('.abzinfo').textContent; }""")
@@ -232,9 +300,16 @@ def test_lektion_bringt_neues_abzeichen(seite, heute_stand):
     offen = seite.js("""() => { const b = document.querySelector('#erfolgWand [data-erfolg="w500"]'); b.click();
       return b.closest('.abzgruppe').querySelector('.abzinfo').textContent; }""")
     assert offen.startswith("500 Wörter sitzen · ") and offen.endswith(" / 500"), offen
-    # Gesehen: zurueck auf der Startseite ohne Punkt
-    seite.js("() => showHome()")
-    assert not any(" neu" in r for r in seite.js(ZUSTAND)["leiste"]["ringe"])
+    # Zurueck: erst ins Profil - die Leiste wieder da, ohne Punkt -, dann
+    # auf die Startseite, auch dort ohne Punkt
+    seite.js("() => document.getElementById('btnBack').click()")
+    leiste = seite.js(LEISTE)
+    assert leiste["sichtbar"] and not leiste["wand"] and leiste["serie"] and not leiste["konto"], leiste
+    assert not any(" neu" in r for r in leiste["ringe"]), leiste
+    assert seite.js("() => sichtbar('kontoView') && backTarget === showHome")
+    seite.js("() => document.getElementById('btnBack').click()")
+    z = seite.js(ZUSTAND)
+    assert seite.js("() => sichtbar('pfad')") and z["punkt"]["neu"] is False, z["punkt"]
     assert seite.fehler == [] and seite.fremd == []
 
 
@@ -302,17 +377,25 @@ def test_alle_sprachen(seite, heute_stand, sprache):
     d = _daten(seite, heute_stand)
     seite.starten(sprache=sprache, stand=_alter_stand(d, heute_stand))
     note = _kurznote(seite)
-    leiste = seite.js("() => document.getElementById('erfolgLeiste').innerText")
+    profil = _profil(seite)
+    leiste = profil["text"]
+    breit = seite.js("() => document.documentElement.scrollWidth")
     seite.js("() => document.getElementById('erfolgLeiste').click()")
     seite.page.wait_for_function("() => !document.getElementById('erfolgWand').hidden", timeout=3000)
     wand = seite.js("""() => { const w = document.getElementById('erfolgWand');
       w.querySelectorAll('.abz').forEach(b => b.click());   // jede Gruppe zeigt ihren letzten Satz
       return {text: w.innerText, breit: document.documentElement.scrollWidth,
+              leser: [...w.querySelectorAll('.nurleser')].map(n => n.textContent).join(' | '),
+              tag: document.getElementById('tag').textContent,
               raus: [...w.querySelectorAll('.abz, .abzinfo')].filter(e => e.getBoundingClientRect().right > 361).length}; }""")
+    # Ein neues Abzeichen: der Vorlesetext des Profilknopfs in dieser Sprache
+    punkt = seite.js("""() => { showHome(); localStorage.setItem('zmaj_erfolge_gesehen', '[]'); profilPunkt();
+      return document.getElementById('btnProfil').getAttribute('aria-label'); }""")
     zeile = seite.js("""() => { known = new Set(); ERFOLGE.forEach(e => gefeiert.delete(ERFOLG_VORN + e.id));
       return erfolgZeile(); }""")
-    for text in (note, leiste, wand["text"], zeile):
-        assert "erfolg." not in text and "{" not in text, (sprache, text)
-    assert "7" in note and "18" in leiste
+    for text in (note, leiste, wand["text"], wand["leser"], wand["tag"], punkt, zeile):
+        assert "erfolg." not in text and "set." not in text and "{" not in text, (sprache, text)
+    assert "7" in note and "18" in leiste and "7" in punkt
+    assert breit <= 360 and profil["sichtbar"], (sprache, breit, profil)
     assert wand["breit"] <= 360 and wand["raus"] == 0, (sprache, wand)
     assert seite.fehler == [] and seite.fremd == []

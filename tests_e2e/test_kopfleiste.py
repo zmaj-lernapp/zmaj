@@ -158,7 +158,8 @@ def test_angemeldet_alles_in_einer_zeile(browser, basis, cloud_html, heute_stand
 @pytest.mark.parametrize("breite", [360, 412])
 def test_ohne_anmeldung_alles_in_einer_zeile(browser, basis, heute_stand, breite):
     """Die Quelle (CLOUD_AN = false) und der Weg "Erst einmal
-    weiterlernen": ohne Profilknopf, sonst gleich."""
+    weiterlernen": seit 14.11.2026 mit Profilknopf wie angemeldet - im
+    Profil stehen die Erfolge, die gibt es auch ohne Konto."""
     ctx, seite = _kontext(browser, basis, breite, 800)
     try:
         seite.page.add_init_script("window.Capacitor = {Plugins: {App: {}}};")
@@ -166,8 +167,11 @@ def test_ohne_anmeldung_alles_in_einer_zeile(browser, basis, heute_stand, breite
         for name, js in ANSICHTEN:
             for stand in STAENDE:
                 k = ansicht(seite, js, stand[1:])
-                assert [x["id"] for x in k["teile"]] == ["livesBar", "muenzBar", "btnShop", "btnSettings"], (name, stand)
+                assert [x["id"] for x in k["teile"]] == ["livesBar", "muenzBar", "btnShop", "btnProfil", "btnSettings"], (name, stand)
                 pruefen(k)
+        for name, js in (ANSICHTEN[0], ANSICHTEN[3]):
+            ansicht(seite, js, STAENDE[-1][1:])
+            trefferflaechen(seite)
         assert seite.fehler == []
     finally:
         ctx.close()
