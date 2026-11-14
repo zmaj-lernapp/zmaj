@@ -189,3 +189,18 @@ def test_b1_nur_diese_richtung(grunddaten):
     """„Das stimmt nicht“ (To nije tačno) war nicht gefragt und bleibt."""
     woerter = _woerter(grunddaten)
     assert woerter["das stimmt nicht:To nije tačno"].get("auch") is None
+
+
+# ---- B2 / F13: andere Wortstellung ----
+# F13 a und b ja. Beim Satzbau galt die Umstellung schon („Danas je hladno i kiša pada.“).
+B2 = {
+    "es regnet:Pada kiša": ["Kiša pada"],                     # a
+    "es schneit:Pada snijeg": ["Snijeg pada"],                # a
+    "es läuft aus / es tropft:Curi voda": ["Voda curi"],      # a
+    "mir ist es egal:Svejedno mi je": ["Meni je svejedno"],   # b
+    "mir ist langweilig:Dosadno mi je": ["Meni je dosadno"],  # b
+}
+
+
+def test_b2_umstellung_beim_tippen(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, B2, B2)

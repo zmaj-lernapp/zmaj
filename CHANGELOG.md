@@ -480,6 +480,10 @@ are in the Play Store listing. Format:
   mi potvrda*, *Fališ mi*, *Kako ti je ime?*, *Ne brini se*, *Ja ću raditi* and *očev
   auto* now count next to the phrase the app shows. One `"auch"` each, IDs and
   recordings stay. `tests/test_pruefbericht14_tippen.py`.
+- Typing another word order (review for 1.4, 14.11.2026, B2; decided by the
+  maintainer, F13): *Kiša pada*, *Snijeg pada*, *Voda curi*, *Meni je svejedno* and
+  *Meni je dosadno* now count next to *Pada kiša* and the others, as sentence
+  building already allowed. `tests/test_pruefbericht14_tippen.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

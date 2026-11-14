@@ -503,8 +503,8 @@ KATEGORIEN = [
         {"de": "warm",          "bs": "toplo"},
         {"de": "kalt",          "bs": "hladno"},
         {"de": "heiß",          "bs": "vruće"},
-        {"de": "Es regnet",     "bs": "Pada kiša"},
-        {"de": "Es schneit",    "bs": "Pada snijeg"},
+        {"de": "Es regnet",     "bs": "Pada kiša", "auch": ["Kiša pada"]},   # andere Wortstellung (Ajdin, Prüfbericht 1.4, B2/F13)
+        {"de": "Es schneit",    "bs": "Pada snijeg", "auch": ["Snijeg pada"]},   # Prüfbericht 1.4, B2/F13
         {"de": "Frühling",      "bs": "proljeće"},
         {"de": "Sommer",        "bs": "ljeto"},
         {"de": "Herbst",        "bs": "jesen"},
@@ -1241,7 +1241,7 @@ KATEGORIEN = [
         {"de": "Strom",                       "bs": "struja"},
         {"de": "warmes Wasser",               "bs": "topla voda"},
         {"de": "Es funktioniert nicht",       "bs": "Ne radi"},
-        {"de": "Es läuft aus / es tropft",    "bs": "Curi voda"},
+        {"de": "Es läuft aus / es tropft",    "bs": "Curi voda", "auch": ["Voda curi"]},   # Prüfbericht 1.4, B2/F13
         {"de": "Hammer",                      "bs": "čekić"},
         {"de": "Handwerker / Fachmann",       "bs": "majstor"},
         {"de": "kaputt",                      "bs": "pokvaren / pokvarena / pokvareno"},
@@ -1734,14 +1734,14 @@ KATEGORIEN = [
         {"de": "Das stimmt",                "bs": "To je tačno", "auch": ["Tačno je"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Das stimmt nicht",          "bs": "To nije tačno"},
         {"de": "wichtig",                   "bs": "važno"},
-        {"de": "Mir ist es egal",           "bs": "Svejedno mi je"},
+        {"de": "Mir ist es egal",           "bs": "Svejedno mi je", "auch": ["Meni je svejedno"]},   # Prüfbericht 1.4, B2/F13
         {"de": "Angst",                     "bs": "strah"},
         {"de": "Ich habe Angst",            "bs": "Bojim se"},
         {"de": "wütend (m/w)",              "bs": "ljut / ljuta"},
         {"de": "nervös (m/w)",              "bs": "nervozan / nervozna"},
         {"de": "zufrieden (m/w)",           "bs": "zadovoljan / zadovoljna"},
         {"de": "überrascht (m/w)",          "bs": "iznenađen / iznenađena"},
-        {"de": "Mir ist langweilig",        "bs": "Dosadno mi je"},
+        {"de": "Mir ist langweilig",        "bs": "Dosadno mi je", "auch": ["Meni je dosadno"]},   # Prüfbericht 1.4, B2/F13
         {"de": "einsam (m/w)",              "bs": "usamljen / usamljena"},
         {"de": "stolz (m/w)",               "bs": "ponosan / ponosna"},
         {"de": "Ich bin stolz auf dich (m/w)", "bs": "Ponosan sam na tebe / Ponosna sam na tebe"},

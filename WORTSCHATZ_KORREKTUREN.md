@@ -868,3 +868,15 @@ bedeutung“. F5: „passt“.
 - Auch bei *Trebam vodu* (Level Fälle 1, Akkusativ) und *auto oca* (Fälle 2,
   Genitiv), obwohl die andere Fassung den geübten Fall umgeht, und bei *Radit ću*
   im Level Zukunft. Gezeigt und gesprochen wird weiter die Fassung der App.
+
+**B2 / F13, andere Wortstellung.** Ajdin: „passt“, a und b ja.
+
+| Kennung | Änderung |
+|---|---|
+| `es regnet:Pada kiša` | `"auch": ["Kiša pada"]` |
+| `es schneit:Pada snijeg` | `"auch": ["Snijeg pada"]` |
+| `es läuft aus / es tropft:Curi voda` | `"auch": ["Voda curi"]` |
+| `mir ist es egal:Svejedno mi je` | `"auch": ["Meni je svejedno"]` |
+| `mir ist langweilig:Dosadno mi je` | `"auch": ["Meni je dosadno"]` |
+
+- Beim Satzbau galt die Umstellung schon („Danas je hladno i kiša pada.“).
