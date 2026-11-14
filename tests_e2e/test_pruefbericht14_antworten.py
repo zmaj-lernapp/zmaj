@@ -159,8 +159,9 @@ def test_b9_als_schreibaufgabe_loesbar(seite, heute_stand):
 
 
 # B6 (F17 b): "nana (auch: metvica)" heisst jetzt "nana / metvica" wie kahva / kafa. Der
-# alte Lernstand wandert mit, beim Sprechen zaehlt auch metvica, und bis es die Aufnahme
-# mit beiden Formen gibt, klingt die erste Form "nana".
+# alte Lernstand wandert mit, beim Sprechen zaehlt auch metvica. Die Aufnahme mit beiden
+# Formen (w8955, Emir) liegt nur in der Huelle; in web/, gegen das diese Tests laufen,
+# klingt weiter die erste Form "nana".
 B6_ALT, B6_NEU = "minze:nana (auch: metvica)", "minze:nana / metvica"
 
 

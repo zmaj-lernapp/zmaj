@@ -567,9 +567,12 @@ are in the Play Store listing. Format:
   the German word "auch" on the Bosnian button in every language. Both forms count
   when typing and speaking. The ID changes from `minze:nana (auch: metvica)` to
   `minze:nana / metvica`; `UMBENANNT` moves progress, review box and stars along. A
-  recording with both forms does not exist yet; until then the first form *nana*
-  plays (`NUR_ERSTE_FORM` in `ton_pruefen.py`).
-  `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+  new recording by Emir says both forms, "nana, metvica." like *kahva / kafa* (app
+  only, `ton_nur_emir.json`, w8955, 14.11.2026). Until then only the first form *nana*
+  played, the same recording as "Oma"; the web demo still does, and `NUR_ERSTE_FORM`
+  in `ton_pruefen.py` is empty again.
+  `tests/test_pruefbericht14_antworten.py`, `tests/test_paket1020_ton.py`,
+  `tests_e2e/test_pruefbericht14_antworten.py`.
 - "Kollegin" (review for 1.4, 14.11.2026, S2; decided by the maintainer, F19) is
   *kolegica*, not *koleginica*: the word, the gap "Ovo je moja ___." and the sentence
   to build "Ovo je moja kolegica.". The ID changes from `kollegin:koleginica` to

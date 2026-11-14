@@ -198,17 +198,22 @@ def test_b6_neue_kennung_und_umbenannt(alle_daten, index_html):
 
 def test_b6_ton_wie_kahva_kafa(wurzel):
     """Wie kahva / kafa gehoert zum Wort eine Aufnahme mit beiden Formen ("nana,
-    metvica"). Die gibt es noch nicht, erzeugt wird sie nicht ohne Ajdin: bis dahin
-    spielt audioDatei() die erste Form "nana" (w0089). ton_pruefen.py laesst die Luecke
-    nur ueber NUR_ERSTE_FORM durch."""
+    metvica"). Seit dem 14.11.2026 spricht sie Emir (w8955, Ajdin: „Nimm die neue
+    fassung“). Sie liegt nur in der Huelle (ton_nur_emir.json), app_bauen.emir_drueber()
+    traegt sie beim Bauen ein. web/audio/index.json bleibt: Die Web-Demo spielt weiter
+    die erste Form "nana" (w0089, auch Oma), die alte w1717 zum Schluessel "nana (auch:
+    metvica)" spielt nicht mehr. NUR_ERSTE_FORM in ton_pruefen.py ist wieder leer."""
     import ton_bauen
     import ton_pruefen
     with io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8") as f:
         toene = {t["key"]: t["datei"] for t in json.load(f)["toene"]}
     assert toene["kahva / kafa"] != toene["kahva"]
     assert toene["nana"] == "w0089.mp3"
-    assert "nana / metvica" not in toene and "nana / metvica" not in ton_bauen.nur_emir()
-    assert ton_pruefen.NUR_ERSTE_FORM == {"nana / metvica"}
+    assert toene["nana (auch: metvica)"] == "w1717.mp3"
+    assert "nana / metvica" not in toene
+    assert ton_bauen.nur_emir()["nana / metvica"] == {"key": "nana / metvica", "datei": "w8955.mp3",
+                                                      "text": "nana / metvica"}
+    assert ton_pruefen.NUR_ERSTE_FORM == set()
     posten = [p for p in ton_bauen.sammle() if p["text"] == "nana / metvica"]
     assert [(p["key"], p.get("alle")) for p in posten] == [("nana / metvica", True)], posten
 

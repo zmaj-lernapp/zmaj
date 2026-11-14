@@ -34,11 +34,11 @@ TONARTEN = (".mp3", ".m4a", ".wav", ".ogg", ".webm")
 # salz am besten zu so/sol aendern weil man es so oder so sagt") hat seine
 # Aufnahme mit beiden Formen - von Emir, siehe ton_nur_emir.json.
 #
-# Seit dem 14.11.2026 "nana / metvica" (Pruefbericht 1.4, B6/F17 b, vorher
-# "nana (auch: metvica)"): wie kahva / kafa gehoert dazu eine Aufnahme
-# "nana, metvica". Bis Emir sie spricht, klingt nur "nana" (w0089), wie das
-# Wort fuer die Oma. Erzeugt wird sie nicht ohne Ajdin.
-NUR_ERSTE_FORM = {"nana / metvica"}
+# Leer seit dem 14.11.2026: "nana / metvica" (Pruefbericht 1.4, B6/F17 b,
+# vorher "nana (auch: metvica)") hat seine Aufnahme mit beiden Formen - von
+# Emir, siehe ton_nur_emir.json (w8955, gesprochen "nana, metvica." wie
+# kahva / kafa). Bis dahin klang nur "nana" (w0089), wie das Wort fuer die Oma.
+NUR_ERSTE_FORM = set()
 
 
 def _huelle_audio():

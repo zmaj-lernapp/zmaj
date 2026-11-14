@@ -25,6 +25,11 @@ Dahinter seit dem 14.11.2026: w8953 und w8954, kolegica statt koleginica (Pruefb
 S2/F19). Emir hat das Wort und den Satz neu gesprochen (Stimme_Emir_neu\\nachbesserung_2026-11-14,
 Ajdin: „passt“). Die alten Aufnahmen w2012 und w2135 bleiben in web/audio/index.json stehen,
 wie w2278 bei produžni kabl, und spielen nicht mehr.
+
+Und w8955, nana / metvica mit beiden Formen (Pruefbericht 1.4, B6/F17 b): Emir spricht
+„nana, metvica.“ wie kahva / kafa (Stimme_Emir_neu\\nachbesserung_2026-11-14\\nana_metvica,
+Ajdin: „Nimm die neue fassung“). w0089 „nana“ (auch Oma) und w1717 „nana (auch: metvica)“
+bleiben in web/audio/index.json stehen.
 """
 import io
 import json
@@ -36,6 +41,8 @@ ZUSAMMENGESETZT = ["naime / jer", "poput / kao"]
 VOM_05_11 = ["rub", "rat", "mrtav", "naime", "poput"]
 KOLEGICA = {"kolegica": ("w8953.mp3", "kolegica"),
             "ovo je moja kolegica.": ("w8954.mp3", "Ovo je moja kolegica.")}
+NANA_METVICA = {"nana / metvica": ("w8955.mp3", "nana / metvica")}
+DAHINTER = dict(KOLEGICA, **NANA_METVICA)
 
 
 def _nummer(datei):
@@ -51,10 +58,13 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     emir = ton_bauen.nur_emir()
     neu = _im_bereich(emir)
     assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1) if n not in ZURUECKGEZOGEN]
-    # Dahinter nur die zwei Aufnahmen vom 14.11.2026 (kolegica, test_kolegica_spricht_emir).
-    assert max(_nummer(e["datei"]) for e in emir.values()) == 8954
+    # Dahinter nur die drei Aufnahmen vom 14.11.2026 (kolegica, test_kolegica_spricht_emir,
+    # und nana / metvica, tests/test_pruefbericht14_antworten.py).
+    assert max(_nummer(e["datei"]) for e in emir.values()) == 8955
     nach = sorted(e["datei"] for e in emir.values() if _nummer(e["datei"]) > LETZTE)
-    assert nach == sorted(d for d, _ in KOLEGICA.values()), nach
+    assert nach == sorted(d for d, _ in DAHINTER.values()), nach
+    for key, (datei, text) in DAHINTER.items():
+        assert emir[key] == {"key": key, "datei": datei, "text": text}
     reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values())]
     assert [neu[d] for d in sorted(neu)] == reihe
 
@@ -133,7 +143,7 @@ def test_huelle_hat_jede_datei():
     huelle = ton_pruefen._huelle_audio()
     if not huelle:
         pytest.skip("Huelle nicht da")
-    for datei in list(_im_bereich(ton_bauen.nur_emir())) + [d for d, _ in KOLEGICA.values()]:
+    for datei in list(_im_bereich(ton_bauen.nur_emir())) + [d for d, _ in DAHINTER.values()]:
         pfad = os.path.join(huelle, datei)
         assert os.path.isfile(pfad) and os.path.getsize(pfad) >= ton_pruefen.MINDEST, datei
     for n in ZURUECKGEZOGEN:
@@ -142,5 +152,5 @@ def test_huelle_hat_jede_datei():
 
 def test_keine_emir_datei_im_oeffentlichen_ordner(wurzel):
     import ton_bauen
-    for datei in list(_im_bereich(ton_bauen.nur_emir())) + [d for d, _ in KOLEGICA.values()]:
+    for datei in list(_im_bereich(ton_bauen.nur_emir())) + [d for d, _ in DAHINTER.values()]:
         assert not os.path.exists(os.path.join(wurzel, "web", "audio", datei)), datei

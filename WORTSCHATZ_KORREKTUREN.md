@@ -994,9 +994,11 @@ Ajdin: a, *b1_voz* bleibt „Gdje putujete, djeco?“. Zugleich Tabelle 2c, Nr. 
   Formen wie *kahva / kafa*: beide zählen beim Tippen und beim Sprechen, der Lernstand
   zieht über `UMBENANNT` mit. Kein bosnisches Wort hat mehr einen Zusatz in Klammern.
 - Ton wie bei *kahva / kafa*: dazu gehört eine Aufnahme mit beiden Formen („nana,
-  metvica“, Schlüssel `nana / metvica`). Die gibt es noch nicht und wurde nicht erzeugt;
-  bis dahin klingt die erste Form *nana* (w0089, dieselbe wie „Oma“), `ton_pruefen.py`
-  führt das Wort in `NUR_ERSTE_FORM`. Die alte Aufnahme w1717 bleibt in `index.json`
+  metvica“, Schlüssel `nana / metvica`). Emir hat sie am 14.11.2026 gesprochen (w8955,
+  Ajdin: „Nimm die neue fassung“), sie liegt nur in der Hülle (`ton_nur_emir.json`).
+  Bis dahin klang die erste Form *nana* (w0089, dieselbe wie „Oma“), und
+  `ton_pruefen.py` führte das Wort in `NUR_ERSTE_FORM`; die Liste ist wieder leer. In
+  der Web-Demo klingt weiter *nana*. Die alte Aufnahme w1717 bleibt in `index.json`
   stehen.
 
 **S2 / F19, Kollegin.** Gefragt war, ob drei umgestellte Satzbau-Sätze auch gelten.
