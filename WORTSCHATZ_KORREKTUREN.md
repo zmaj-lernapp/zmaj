@@ -896,7 +896,7 @@ App-Wort mit, das andere Wort selbst bekommt nichts dazu.
 | `stau:zastoj` | `"auch": ["gužva"]` | f |
 | `bald:uskoro` | `"auch": ["skoro"]` | g |
 | `hier:ovdje` | `"auch": ["tu"]` | h |
-| `früher:prije` | `"auch": ["nekad", "nekada"]` | i |
+| `früher:prije` | `"auch": ["nekad"]` | i |
 | `da (weil):budući da` | `"auch": ["pošto"]` | j |
 | `nachdem:nakon što` | `"auch": ["pošto"]` | j |
 | `vorbereiten:pripremiti` | `"auch": ["spremiti"]` | k |
@@ -906,8 +906,10 @@ App-Wort mit, das andere Wort selbst bekommt nichts dazu.
 | `fehlen:nedostajati` | `"auch": ["faliti"]` | o |
 
 - Das andere Wort in der Form, in der die App es führt: *savremen* wie *moderan* mit
-  weiblicher und sächlicher Form; *nekad* mit *nekada*, wie beim Wort *nekad*
-  („manchmal / früher“). Nur „früher“, nicht *prije* „vor (zeitlich)“.
+  weiblicher und sächlicher Form. Bei *prije* nur *nekad*, wie in F14 i gefragt;
+  *nekada* stand zuerst mit drin, war aber nicht gefragt und ist wieder raus
+  (Nachbesserung 14.11.2026, offen für Ajdin). Nur „früher“, nicht *prije* „vor
+  (zeitlich)“.
 - Für *ovdje* gilt damit nicht mehr, was im Abschnitt vom 06.11.2026 unter „Nie
   nebeneinander“ steht: *tu* zählt beim Tippen mit. *tu* selbst nimmt *ovdje* nicht.
   In der Auswahl stehen die beiden weiter nie nebeneinander.

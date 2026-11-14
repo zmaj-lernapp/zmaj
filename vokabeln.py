@@ -1483,7 +1483,7 @@ KATEGORIEN = [
         {"de": "letzte Woche",              "bs": "prošle sedmice"},
         {"de": "letztes Jahr",              "bs": "prošle godine"},
         {"de": "vor zwei Tagen",            "bs": "prije dva dana"},
-        {"de": "früher",                    "bs": "prije", "auch": ["nekad", "nekada"]},   # nekada wie beim Wort nekad (Prüfbericht 1.4, B3/F14)
+        {"de": "früher",                    "bs": "prije", "auch": ["nekad"]},   # nur nekad, wie Ajdin es freigab (Prüfbericht 1.4, B3/F14)
         {"de": "damals",                    "bs": "tada"},
         {"de": "Ich war in Bosnien (m/w)",  "bs": "Bio sam u Bosni / Bila sam u Bosni"},
         {"de": "Es war schön",              "bs": "Bilo je lijepo"},
