@@ -262,3 +262,16 @@ def test_b3_partner_bleiben(grunddaten):
     for kennung, partner in (("vorbereiten:pripremiti", "pripremati"), ("sich fürchten:plašiti se", "uplašiti se"),
                              ("losgehen:poći", "polaziti"), ("verbinden:spojiti", "spajati")):
         assert woerter[kennung].get("partner") == partner, kennung
+
+
+# ---- B4 / F15: „Dobrodošli“ zusammengeschrieben ----
+# F15 ja. Vorher erst „Fast richtig!“ (das fehlende Leerzeichen), dann „Richtig waere:
+# Dobro došli“ und ein Leben weniger. Gezeigt wird weiter „Dobro došli“.
+B4 = {"willkommen:Dobro došli": ["Dobrodošli"]}
+
+
+def test_b4_dobrodosli_zusammen(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, B4, B4)
+    # Ohne Haekchen ist es wie sonst "Richtig! Mit Sonderzeichen" - kein Leben.
+    w = _woerter(grunddaten)["willkommen:Dobro došli"]
+    assert _matches(index_html, [(_wort_antworten(w), "Dobrodosli")]) == ["almost"]

@@ -492,6 +492,9 @@ are in the Play Store listing. Format:
   *pripremiti* *spremiti*, *spojiti* *povezati*, *moderan* *savremen* (all three forms),
   *pravac* *smjer* and *nedostajati* *faliti*. Only in this direction; the other word
   does not take the first. `tests/test_pruefbericht14_tippen.py`.
+- Typing *Dobrodošli* as one word (review for 1.4, 14.11.2026, B4; decided by the
+  maintainer, F15) now counts for "Willkommen" next to *Dobro došli*; until then it
+  was "Almost right!" and then cost a heart. `tests/test_pruefbericht14_tippen.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

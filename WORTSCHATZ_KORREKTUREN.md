@@ -913,3 +913,11 @@ App-Wort mit, das andere Wort selbst bekommt nichts dazu.
   In der Auswahl stehen die beiden weiter nie nebeneinander.
 - Partner (*pripremati*, *uplašiti se*, *polaziti*, *spajati*) bleiben, wie sie sind.
 - Die Paket-Tests 1, 8, 9, 10 und 19 kennen die neuen `"auch"` (`PRUEFBERICHT_AUCH`).
+
+**B4 / F15, „Dobrodošli“.** Ajdin: „passt“.
+
+| Kennung | Änderung |
+|---|---|
+| `willkommen:Dobro došli` | `"auch": ["Dobrodošli"]` |
+
+- Gezeigt und gesprochen wird weiter „Dobro došli“.

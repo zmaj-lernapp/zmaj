@@ -233,7 +233,7 @@ KATEGORIEN = [
         {"de": "Gute Nacht",                  "bs": "Laku noć / Lahku noć"},
         {"de": "Auf Wiedersehen",             "bs": "Doviđenja", "auch": ["Ćao"]},
         {"de": "Tschüss",                     "bs": "Ćao", "auch": ["Doviđenja"]},
-        {"de": "Willkommen",                  "bs": "Dobro došli"},
+        {"de": "Willkommen",                  "bs": "Dobro došli", "auch": ["Dobrodošli"]},   # zusammengeschrieben auch (Ajdin, Prüfbericht 1.4, B4/F15)
         {"de": "Ja",                          "bs": "Da"},
         {"de": "Nein",                        "bs": "Ne"},
         {"de": "Danke",                       "bs": "Hvala"},
