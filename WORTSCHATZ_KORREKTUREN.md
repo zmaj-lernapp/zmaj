@@ -1121,6 +1121,21 @@ die Form der App, Kennungen und Aufnahmen bleiben.
   *Gdje?* stehen in der Auswahl nicht mehr nebeneinander (`geschwister()` liest das
   `"auch"`).
 
+**Oprostite neben Izvinite (Sie-Form).** „Ja“. Ein Paar in `varianten.py` (`auch_var`),
+nur an den beiden Stellen, an denen die App *Izvinite* zum Tippen erwartet, wie
+*Izvini* / *Oprosti* (Tabelle 2c, Nr. 29):
+
+| Stelle | zählt jetzt auch |
+|---|---|
+| `entschuldigung (sie):Izvinite` | *Oprostite* |
+| Lückensatz „___, molim Vas.“ (*Izvinite*) | *Oprostite* |
+
+- Die übrigen Stellen mit *Izvinite* sind lange Sätze („Izvinite, pogriješio sam
+  broj.“) oder Satzbau, dort wird nicht getippt.
+- Die du-Form war nicht gefragt: „Entschuldigung (du)“ nimmt *Oprostite* nicht,
+  „Verzeih mir“ nicht „Oprostite mi“, „Molim te, ___ mi.“ (*oprosti*) nicht
+  *oprostite*. *Oprosti* bei *Izvini* gilt schon seit Nr. 29.
+
 ## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zu den Geschichten
 
 Änderungen am Text der Geschichten (`geschichten.py`). Der Text ist der

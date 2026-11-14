@@ -143,3 +143,26 @@ def test_tabelle_2c_nur_in_einer_richtung(seite, heute_stand):
     }""")
     assert erg == {"nein": ["no"] * 9, "geschw": [True, True, True]}
     assert seite.fehler == []
+
+
+# Dritte Runde (Ajdin, 14.11.2026 abends, Offen-Liste 5a): je „Ja“, nur beim Tippen.
+# Alle Fälle in node prüft tests/test_varianten.py (DRITTE_RUNDE).
+DRITTE_RUNDE = [("basics", "type", "entschuldigung (sie):Izvinite", "Oprostite"),
+                ("formell", "gap", "___, molim Vas.", "Oprostite")]
+GEGEN_DRITTE_RUNDE = """() => {
+  const w = id => wortNachId(id).w;
+  const typ = (id, e) => matches(e, annehmbar(w(id)).join(' / '));
+  const luecke = (text, e) => { const s = SENTENCES.find(x => x.text === text);
+    return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
+  return [typ('entschuldigung (du):Izvini', 'Oprostite'), typ('verzeih mir:Oprosti mi', 'Oprostite mi'),
+          luecke('Molim te, ___ mi.', 'oprostite')];
+}"""
+
+
+def test_dritte_runde_zaehlt_beim_tippen(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    for level, art, wer, eingabe in DRITTE_RUNDE:
+        assert seite.js(AUFGABE, [level, art, wer, eingabe]) == RICHTIG, (wer, eingabe)
+    erg = seite.js(GEGEN_DRITTE_RUNDE)
+    assert erg == ["no"] * len(erg) and len(erg) >= 3, erg
+    assert seite.fehler == []

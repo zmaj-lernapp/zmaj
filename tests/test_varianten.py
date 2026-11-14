@@ -149,6 +149,8 @@ WOERTER = {
     "granatapfel:nar": ["šipak"],
     "beißen:ugristi": ["ujesti"],
     "verkehr:saobraćaj": ["promet"],
+    # Dritte Runde (Ajdin, 14.11.2026 abends, Offen-Liste 5a)
+    "entschuldigung (sie):Izvinite": ["Oprostite"],
 }
 
 # Lückensatz: Text -> zusätzliche Antworten
@@ -170,6 +172,8 @@ LUECKEN = {
     "Kolika je ___ mjesečno?": ["stanarina", "najamnina"],   # 16
     "Svi ___ su došli.": ["musafiri"],                       # 37
     "Idem u ___.": ["kasapnicu"],                            # 37
+    # Dritte Runde (Ajdin, 14.11.2026 abends, Offen-Liste 5a)
+    "___, molim Vas.": ["Oprostite"],
 }
 
 # Satzbau: Satz -> was zu "ohne" dazukommt. Fast alles sperrte die App schon
@@ -625,3 +629,54 @@ def test_tabelle_2c_nichts_anderes_wird_richtig(node_2c):
 def test_tisuca_bleibt_tausend(index_html):
     """Tabelle 2c Nr. 38: tisuća gilt weiter als 1000 (Ajdin, 14.11.2026)."""
     assert "const ZAHL_SONDER = {jedna:1, jedno:1, dvije:2, dvoje:2, tisuca:1000};" in _html(index_html)
+
+
+# --- Dritte Runde (Ajdin, 14.11.2026 abends, Offen-Liste 5a) in matches() ---
+# Je „Ja“ in Release\Pruefbericht_1.4.md, „Dritte Runde“: bis dahin falsch, jetzt richtig.
+DRITTE_RUNDE = [
+    ("w", "entschuldigung (sie):Izvinite", "Oprostite"),               # Oprostite neben Izvinite
+    ("l", "___, molim Vas.", "Oprostite"),
+]
+# Bleibt falsch: die du-Form war nicht gefragt, und nie von oprosti nach izvini.
+GEGEN_DRITTE_RUNDE = [
+    ("w", "entschuldigung (du):Izvini", "Oprostite"),
+    ("w", "entschuldigung (sie):Izvinite", "Oprosti"),
+    ("w", "verzeih mir:Oprosti mi", "Oprostite mi"),
+    ("l", "Molim te, ___ mi.", "oprostite"),
+    ("l", "Molim te, ___ mi.", "izvini"),
+]
+
+
+@pytest.fixture(scope="module")
+def node_dritte(index_html, grunddaten):
+    if not shutil.which("node"):
+        pytest.skip("node fehlt")
+    html = _html(index_html)
+    bloecke = "\n".join([
+        _stueck(html, "const strip = s =>", "\n/* ---------- Gesprochenes vergleichen"),
+        _stueck(html, "const ZAHL_EINER = ", "\n/* ---- Zahlen, die wechseln"),
+        _stueck(html, "function matches(guess, answer){", "\n/* ---------- Fast richtig: erst ein Hinweis"),
+        _stueck(html, "function einTippfehler(a, b){", "\n/* So lange nach dem Hinweis"),
+    ])
+    faelle = []
+    for art, wer, eingabe in DRITTE_RUNDE:
+        faelle.append(((art, wer, eingabe, "vorher"), eingabe, _antworten_von(grunddaten, art, wer, True)))
+        faelle.append(((art, wer, eingabe, "jetzt"), eingabe, _antworten_von(grunddaten, art, wer)))
+    for art, wer, eingabe in GEGEN_DRITTE_RUNDE:
+        faelle.append((("gegen", art, wer, eingabe), eingabe, _antworten_von(grunddaten, art, wer)))
+    ein = {"bloecke": bloecke, "faelle": [f[1:] for f in faelle], "zahlen": []}
+    aus = subprocess.run(["node", "-e", NODE], input=json.dumps(ein), capture_output=True, text=True,
+                         encoding="utf-8", check=True, timeout=120)
+    return dict(zip([f[0] for f in faelle], json.loads(aus.stdout)["faelle"]))
+
+
+def test_dritte_runde_vorher_falsch_jetzt_richtig(node_dritte):
+    falsch = {k: v for k, v in node_dritte.items() if k[0] != "gegen" and v != ("no" if k[-1] == "vorher" else "ok")}
+    assert falsch == {}
+    assert len([k for k in node_dritte if k[0] != "gegen"]) == 2 * len(DRITTE_RUNDE)
+
+
+def test_dritte_runde_nichts_anderes_wird_richtig(node_dritte):
+    falsch = {k: v for k, v in node_dritte.items() if k[0] == "gegen" and v != "no"}
+    assert falsch == {}
+    assert len([k for k in node_dritte if k[0] == "gegen"]) == len(GEGEN_DRITTE_RUNDE)

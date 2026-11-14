@@ -605,6 +605,11 @@ are in the Play Store listing. Format:
   form may now have several second forms (*kafena*: *smeđa*, *kahvena*, *braon*). Row
   30 (*Gdje* for "wohin") belongs to F7; *tisuća* still counts as 1000 (row 38).
   `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing *Oprostite* (third round, 14.11.2026 evening; decided by the maintainer):
+  "Entschuldigung (Sie)" (*Izvinite*) and the gap "___, molim Vas." now also take
+  *Oprostite*, like *Oprosti* for *Izvini* (table 2c, row 29). Only the formal form
+  was asked; "Entschuldigung (du)" and "Verzeih mir" do not take it.
+  `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

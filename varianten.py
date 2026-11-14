@@ -367,6 +367,10 @@ VARIANTEN = [
      "gilt": UEBERALL, "beleg": "2c Nr. 28; Alltag, bs-Web 9 %"},
     {"a": "izvini", "b": "oprosti", "gilt": ["entschuldigung (du):Izvini"],
      "beleg": "2c Nr. 29; bs-Web 65 %; oprosti heißt auch „verzeih“, Oprosti mi ist ein eigenes Wort"},
+    # Dritte Runde (Ajdin, 14.11.2026 abends): „Oprostite“ neben „Izvinite“ (Sie-Form),
+    # „Ja“. Nur wo die App Izvinite zum Tippen erwartet, wie bei Nr. 29.
+    {"a": "izvinite", "b": "oprostite", "gilt": ["entschuldigung (sie):Izvinite", "___, molim Vas."],
+     "beleg": "dritte Runde, 14.11.2026; wie izvini / oprosti, oprostite heißt auch „verzeihen Sie“"},
     {"a": "da li", "b": "je li", "gilt": ["ob:da li"], "beleg": "2c Nr. 31; beides Standard, je li 19 %"},
     {"a": "hvala puno", "b": "puno hvala", "gilt": ["vielen dank:Hvala puno"], "beleg": "2c Nr. 32; 17 %"},
     {"a": "hvala puno", "b": "hvala lijepa", "gilt": ["vielen dank:Hvala puno"], "beleg": "2c Nr. 32; 6 %"},
