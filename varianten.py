@@ -8,14 +8,21 @@ web/index.html). Im Lückensatz galt nicht einmal das "auch" des Wortes:
 „Voda je u ___.“ nahm nur flaši, boci war falsch und kostete ein Leben.
 Ajdin wollte das für die ganze App: „die ganze app nochmal danach
 kontrollieren“. Die Suche danach (Korpus bs-Web, Zahlen unter "beleg") hat
-die Paare in eindeutig und fraglich geteilt. Hier stehen NUR die
-eindeutigen; die fraglichen entscheidet Ajdin und kommen erst danach dazu.
+die Paare in eindeutig und fraglich geteilt. Zuerst standen hier nur die
+eindeutigen (Tabelle 2a und 2b in Release/Wortschatz/varianten_2026-11-13.md).
+Seit dem 14.11.2026 auch die fraglichen aus Tabelle 2c, Ajdin (Prüfbericht
+1.4, F6): „oder nimm doch kroatische und die anderen rein die sind nur nicht
+sichtbar“. Sie gelten nur beim Tippen, gezeigt oder gelehrt werden sie nie -
+wie alle Paare hier: "auch_var" steht nirgends auf dem Bildschirm, nicht als
+Kachel und nicht als Knopf.
 
 Ein Paar heißt: Wo a steht, gilt beim Tippen auch b - in derselben Form.
 „Pijem kahvu“ nimmt „Pijem kafu“, die Lücke mit flaši nimmt boci. Nur in
 diese Richtung: b kann ein anderes Wort sein, das die App mit eigener
 Bedeutung kennt (otok heißt im Zahnarzt-Teil Schwellung, puno steht bei
-pun „voll“).
+pun „voll“, meni heißt auch „mir“). Darum gilt bei „mir“ nie jelovnik.
+Mehrere Paare dürfen dasselbe a haben (kafena: smeđa, kahvena, braon),
+dann gilt jedes b für sich.
 
     "a", "b" : die beiden Wörter, ausgeschrieben. Ein Wort, das sich nicht
                beugt, als Zeichenkette ("sada", "dva puta"). Sonst je Zahl
@@ -232,6 +239,198 @@ VARIANTEN = [
     {"a": {"sg": ("država", "države", "državi", "državu", "državom", "državi")},
      "b": {"sg": ("zemlja", "zemlje", "zemlji", "zemlju", "zemljom", "zemlji")},
      "gilt": ["Švicarska je mala ___."], "beleg": "Wort država mit auch zemlja; zemlja ist auch die Erde"},
+
+    # === Tabelle 2c, Ajdin am 14.11.2026 (Prüfbericht 1.4, F6/V10) ===
+    # Zuerst „ne keine kroatischen wörter nur bosnische“, dann: „oder nimm doch
+    # kroatische und die anderen rein die sind nur nicht sichtbar“. Alle Zeilen
+    # ja, nur beim Tippen und nur von der Form der App zur anderen. Nr. 30 (Gdje
+    # für „wohin“) gehört zu F7, Nr. 38 (tisuća) bleibt, wie es ist (ZAHL_SONDER
+    # in web/index.html). Anderes Geschlecht oder andere Zahl: nur, wo das Wort
+    # allein steht (ALLEIN). Wo die andere Form auch etwas anderes heißt (meni
+    # „mir“, kola, pare, sahat, tikva, šipak, ujesti, promet), nur am einen Wort.
+    # Nr. 31 und 32 haben in den Lückensätzen „Pitam se ___ li dolazi.“ und
+    # „Hvala ___!“ ein "auch" in vokabeln.py: da und puno wären hier Paare für
+    # die ganze App, und je, da, puno sind Kacheln in vielen Sätzen.
+    {"a": {"sg": ("hljeb", "hljeba", "hljebu", "hljeb", "hljebom", "hljebu")},
+     "b": {"sg": ("kruh", "kruha", "kruhu", "kruh", "kruhom", "kruhu")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 1; bs-Web Formen 9.910 / 12.912 (43 %), hr 98 %"},
+    {"a": {"sg": ("supa", "supe", "supi", "supu", "supom", "supi")},
+     "b": {"sg": ("juha", "juhe", "juhi", "juhu", "juhom", "juhi")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 2; bs-Web Formen 1.859 / 2.767 (40 %), hr 90 %"},
+    # Ohne Genitiv, Dativ und Lokativ: plate und plati sind auch „sie zahlen“, „zahl!“.
+    {"a": {"sg": ("plata", None, None, "platu", "platom", None)},
+     "b": {"sg": ("plaća", None, None, "plaću", "plaćom", None)},
+     "gilt": UEBERALL, "beleg": "2c Nr. 3; bs-Web 76.788 / 76.292 (50 %), hr 95 %"},
+    {"a": "polako", "b": "polahko", "gilt": UEBERALL,
+     "beleg": "2c Nr. 4; bs-Web 3.897 / 56.494 (6 %), wie lako / lahko"},
+    {"a": "minuta", "b": "minut", "gilt": ALLEIN, "beleg": "2c Nr. 5; bs-Web 13 %; f. / m."},
+    {"a": "jučer", "b": "juče", "gilt": UEBERALL, "beleg": "2c Nr. 6; bs-Web 39.011 / 98.105 (28 %)"},
+    {"a": {"sg": ("sedmica", "sedmice", "sedmici", "sedmicu", "sedmicom", "sedmici")},
+     "b": {"sg": ("hefta", "hefte", "hefti", "heftu", "heftom", "hefti")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 7; Umgangssprache, bs-Web 1 %"},
+    {"a": "lonac", "b": "šerpa", "gilt": ALLEIN,
+     "beleg": "2c Nr. 8; „u šerpi“ 322 / „u loncu“ 1.245 (21 %); m. / f., nicht bosanski lonac"},
+    {"a": "tava", "b": "tiganj", "gilt": ALLEIN, "beleg": "2c Nr. 9; bs-Web 14 %, sr 79 %; f. / m."},
+    {"a": {"sg": ("špinat", "špinata", "špinatu", "špinat", "špinatom", "špinatu")},
+     "b": {"sg": ("spanać", "spanaća", "spanaću", "spanać", "spanaćem", "spanaću")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 10; bs-Web 1.060 / 5.447 (16 %), sr 91 %"},
+    {"a": {"sg": ("bašta", "bašte", "bašti", "baštu", "baštom", "bašti")},
+     "b": {"sg": ("bašča", "bašče", "bašči", "bašču", "baščom", "bašči")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 11; die bosnische Form (Baščaršija), bs-Web 14 %"},
+    {"a": "kćerka", "b": "kći", "gilt": ALLEIN, "beleg": "2c Nr. 12; bs-Web 17 %, hr 72 %"},
+    {"a": "kćerka", "b": "kćer", "gilt": ALLEIN, "beleg": "2c Nr. 12; bs-Web 17 %"},
+    {"a": "sat", "b": "sahat", "gilt": ["stunde / uhr:sat"],
+     "beleg": "2c Nr. 13; bs-Web 1 %; nur das Wort, nicht „Koliko je sati?“"},
+    {"a": "historija", "b": "povijest", "gilt": ALLEIN,
+     "beleg": "2c Nr. 14; bs-Web 52 %, hr 98 %; andere Beugung"},
+    {"a": "posjeta", "b": "posjet", "gilt": ALLEIN, "beleg": "2c Nr. 15; bs-Web 52 %; f. / m."},
+    {"a": {"sg": ("kirija", "kirije", "kiriji", "kiriju", "kirijom", "kiriji")},
+     "b": {"sg": ("stanarina", "stanarine", "stanarini", "stanarinu", "stanarinom", "stanarini")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 16; bs-Web 33 %, hr 84 %"},
+    {"a": {"sg": ("kirija", "kirije", "kiriji", "kiriju", "kirijom", "kiriji")},
+     "b": {"sg": ("najamnina", "najamnine", "najamnini", "najamninu", "najamninom", "najamnini")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 16; bs-Web 33 %, hr 90 %"},
+    # Nr. 17: kroatisch geprägt, im bosnischen Web 39 bis 53 %.
+    {"a": {"sg": ("frižider", "frižidera", "frižideru", "frižider", "frižiderom", "frižideru")},
+     "b": {"sg": ("hladnjak", "hladnjaka", "hladnjaku", "hladnjak", "hladnjakom", "hladnjaku")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 17; hladnjak 41 %"},
+    {"a": {"sg": ("rerna", "rerne", "rerni", "rernu", "rernom", "rerni")},
+     "b": {"sg": ("pećnica", "pećnice", "pećnici", "pećnicu", "pećnicom", "pećnici")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 17; pećnica 48 %"},
+    {"a": {"sg": ("kesa", "kese", "kesi", "kesu", "kesom", "kesi")},
+     "b": {"sg": ("vrećica", "vrećice", "vrećici", "vrećicu", "vrećicom", "vrećici")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 17; vrećica 48 % (auch Teebeutel)"},
+    {"a": "sirće", "b": "ocat", "gilt": ALLEIN, "beleg": "2c Nr. 17; ocat 44 %; n. / m."},
+    {"a": {"sg": ("plafon", "plafona", "plafonu", "plafon", "plafonom", "plafonu")},
+     "b": {"sg": ("strop", "stropa", "stropu", "strop", "stropom", "stropu")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 17; strop 45 %"},
+    {"a": {"sg": ("fabrika", "fabrike", "fabrici", "fabriku", "fabrikom", "fabrici")},
+     "b": {"sg": ("tvornica", "tvornice", "tvornici", "tvornicu", "tvornicom", "tvornici")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 17; tvornica 39 %"},
+    {"a": {"sg": ("kajsija", "kajsije", "kajsiji", "kajsiju", "kajsijom", "kajsiji"),
+           "pl": ("kajsije", "kajsija", "kajsijama", "kajsije", "kajsijama", "kajsijama")},
+     "b": {"sg": ("marelica", "marelice", "marelici", "marelicu", "marelicom", "marelici"),
+           "pl": ("marelice", "marelica", "marelicama", "marelice", "marelicama", "marelicama")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 17; marelica 41 %"},
+    {"a": {"sg": ("praziluk", "praziluka", "praziluku", "praziluk", "prazilukom", "praziluku")},
+     "b": {"sg": ("poriluk", "poriluka", "poriluku", "poriluk", "porilukom", "poriluku")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 17; poriluk 53 %"},
+    {"a": {"sg": ("peškir", "peškira", "peškiru", "peškir", "peškirom", "peškiru"),
+           "pl": ("peškiri", "peškira", "peškirima", "peškire", "peškirima", "peškirima")},
+     "b": {"sg": ("ručnik", "ručnika", "ručniku", "ručnik", "ručnikom", "ručniku"),
+           "pl": ("ručnici", "ručnika", "ručnicima", "ručnike", "ručnicima", "ručnicima")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 17; ručnik 39 %"},
+    # Nr. 18 und 19: gegenseitig, beide Wörter stehen in der App.
+    {"a": "prodavnica", "b": "radnja", "gilt": ["laden:prodavnica"],
+     "beleg": "2c Nr. 18; radnja heißt auch Handlung, darum nur an den beiden Wörtern"},
+    {"a": "radnja", "b": "prodavnica", "gilt": ["geschäft:radnja"], "beleg": "2c Nr. 18"},
+    {"a": "dvorište", "b": "avlija", "gilt": ["hof (am haus):dvorište"], "beleg": "2c Nr. 19; n. / f."},
+    {"a": "avlija", "b": "dvorište", "gilt": ["hof / innenhof:avlija"], "beleg": "2c Nr. 19; f. / n."},
+    {"a": "ponekad", "b": "nekad", "gilt": ["manchmal:ponekad"],
+     "beleg": "2c Nr. 20; nekad steht in der App als „manchmal / früher“"},
+    # Nr. 21: kafena hat oben schon smeđa (Tabelle 2a).
+    {"a": {"m_sg": ("kafen", "kafenog", "kafenom", "kafen", "kafenim", "kafenom"),
+           "f_sg": ("kafena", "kafene", "kafenoj", "kafenu", "kafenom", "kafenoj"),
+           "n_sg": ("kafeno", "kafenog", "kafenom", "kafeno", "kafenim", "kafenom"),
+           "m_pl": ("kafeni", "kafenih", "kafenim", "kafene", "kafenim", "kafenim"),
+           "f_pl": ("kafene", "kafenih", "kafenim", "kafene", "kafenim", "kafenim"),
+           "n_pl": ("kafena", "kafenih", "kafenim", "kafena", "kafenim", "kafenim")},
+     "b": {"m_sg": ("kahven", "kahvenog", "kahvenom", "kahven", "kahvenim", "kahvenom"),
+           "f_sg": ("kahvena", "kahvene", "kahvenoj", "kahvenu", "kahvenom", "kahvenoj"),
+           "n_sg": ("kahveno", "kahvenog", "kahvenom", "kahveno", "kahvenim", "kahvenom"),
+           "m_pl": ("kahveni", "kahvenih", "kahvenim", "kahvene", "kahvenim", "kahvenim"),
+           "f_pl": ("kahvene", "kahvenih", "kahvenim", "kahvene", "kahvenim", "kahvenim"),
+           "n_pl": ("kahvena", "kahvenih", "kahvenim", "kahvena", "kahvenim", "kahvenim")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 21; die Form zu kahva, bs-Web 12 / 219 (5 %)"},
+    {"a": "kafena", "b": "braon", "gilt": ALLEIN,
+     "beleg": "2c Nr. 21; Alltag, eher serbisch; braon beugt sich nicht"},
+    {"a": {"sg": ("fildžan", "fildžana", "fildžanu", "fildžan", "fildžanom", "fildžanu"),
+           "pl": ("fildžani", "fildžana", "fildžanima", "fildžane", "fildžanima", "fildžanima")},
+     "b": {"sg": ("findžan", "findžana", "findžanu", "findžan", "findžanom", "findžanu"),
+           "pl": ("findžani", "findžana", "findžanima", "findžane", "findžanima", "findžanima")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 22; zweite Schreibung, bs-Web 139 / 1.182 (11 %)"},
+    {"a": "auto", "b": "kola", "gilt": ["auto:auto"],
+     "beleg": "2c Nr. 23; Mehrzahlwort, Adjektive wandern mit - nur das Wort allein"},
+    {"a": "novac", "b": "pare", "gilt": ["geld:novac"],
+     "beleg": "2c Nr. 24; Mehrzahlwort, pare ist auch Mehrzahl von para - nur das Wort allein"},
+    {"a": {"sg": ("mobitel", "mobitela", "mobitelu", "mobitel", "mobitelom", "mobitelu")},
+     "b": {"sg": ("mobilni", "mobilnog", "mobilnom", "mobilni", "mobilnim", "mobilnom")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 25; Alltag"},
+    {"a": "pijaca", "b": "pazar", "gilt": ALLEIN,
+     "beleg": "2c Nr. 26; bs-Web 44 %; f. / m., pazar ist auch Markttag und Ortsname"},
+    {"a": "jelovnik", "b": "meni", "gilt": ["speisekarte:jelovnik"],
+     "beleg": "2c Nr. 27; meni heißt auch „mir“ - nur bei der Speisekarte, nie umgekehrt"},
+    {"a": {"sg": ("obrazac", "obrasca", "obrascu", "obrazac", "obrascem", "obrascu"),
+           "pl": ("obrasci", "obrazaca", "obrascima", "obrasce", "obrascima", "obrascima")},
+     "b": {"sg": ("formular", "formulara", "formularu", "formular", "formularom", "formularu"),
+           "pl": ("formulari", "formulara", "formularima", "formulare", "formularima", "formularima")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 28; Alltag, bs-Web 9 %"},
+    {"a": "izvini", "b": "oprosti", "gilt": ["entschuldigung (du):Izvini"],
+     "beleg": "2c Nr. 29; bs-Web 65 %; oprosti heißt auch „verzeih“, Oprosti mi ist ein eigenes Wort"},
+    {"a": "da li", "b": "je li", "gilt": ["ob:da li"], "beleg": "2c Nr. 31; beides Standard, je li 19 %"},
+    {"a": "hvala puno", "b": "puno hvala", "gilt": ["vielen dank:Hvala puno"], "beleg": "2c Nr. 32; 17 %"},
+    {"a": "hvala puno", "b": "hvala lijepa", "gilt": ["vielen dank:Hvala puno"], "beleg": "2c Nr. 32; 6 %"},
+    {"a": "hvala puno", "b": "hvala mnogo", "gilt": ["vielen dank:Hvala puno"], "beleg": "2c Nr. 32; 6 %"},
+    {"a": "doviđenja", "b": "do viđenja", "gilt": UEBERALL,
+     "beleg": "2c Nr. 33; getrennt geschrieben, bs-Web 308 / 1.247 (20 %)"},
+    {"a": "dobro veče", "b": "dobra večer", "gilt": UEBERALL,
+     "beleg": "2c Nr. 34; eher kroatisch, bs-Web 30 %, hr 74 %"},
+    {"a": "navečer", "b": "uveče", "gilt": UEBERALL, "beleg": "2c Nr. 35; eher serbisch, bs-Web 36 %"},
+    {"a": "ujutro", "b": "ujutru", "gilt": UEBERALL, "beleg": "2c Nr. 35; eher serbisch, bs-Web 20 %"},
+    # Nr. 36: drug ist beim Wort prijatelj schon "auch".
+    {"a": "prijatelja", "b": "druga", "gilt": ["bei meinem freund:kod prijatelja"],
+     "beleg": "2c Nr. 36; „kod druga“ 278 / 1.103 (20 %)"},
+    {"a": "prijatelju", "b": "druže", "gilt": ["anrede: freund!:prijatelju!"],
+     "beleg": "2c Nr. 36; klingt in der Anrede nach Genosse"},
+    # Nr. 37: seltene Alltagsformen und Turzismen, im bosnischen Web 1 bis 23 %.
+    {"a": {"sg": ("prozor", "prozora", "prozoru", "prozor", "prozorom", "prozoru"),
+           "pl": ("prozori", "prozora", "prozorima", "prozore", "prozorima", "prozorima")},
+     "b": {"sg": ("pendžer", "pendžera", "pendžeru", "pendžer", "pendžerom", "pendžeru"),
+           "pl": ("pendžeri", "pendžera", "pendžerima", "pendžere", "pendžerima", "pendžerima")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37"},
+    {"a": {"sg": ("zid", "zida", "zidu", "zid", "zidom", "zidu")},
+     "b": {"sg": ("duvar", "duvara", "duvaru", "duvar", "duvarom", "duvaru")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37"},
+    {"a": "ulica", "b": "sokak", "gilt": ALLEIN, "beleg": "2c Nr. 37; f. / m."},
+    {"a": {"sg": ("ormar", "ormara", "ormaru", "ormar", "ormarom", "ormaru")},
+     "b": {"sg": ("dolap", "dolapa", "dolapu", "dolap", "dolapom", "dolapu")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37"},
+    {"a": {"sg": ("gost", "gosta", "gostu", "gosta", "gostom", "gostu"),
+           "pl": ("gosti", "gostiju", "gostima", "goste", "gostima", "gostima")},
+     "b": {"sg": ("musafir", "musafira", "musafiru", "musafira", "musafirom", "musafiru"),
+           "pl": ("musafiri", "musafira", "musafirima", "musafire", "musafirima", "musafirima")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37"},
+    {"a": {"sg": ("lijek", "lijeka", "lijeku", "lijek", "lijekom", "lijeku")},
+     "b": {"sg": ("hap", "hapa", "hapu", "hap", "hapom", "hapu")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37"},
+    # Ohne Dativ und Lokativ: prehladi ist auch „erkältet sich“.
+    {"a": {"sg": ("prehlada", "prehlade", None, "prehladu", "prehladom", None)},
+     "b": {"sg": ("nahlada", "nahlade", None, "nahladu", "nahladom", None)},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37"},
+    {"a": "kvasac", "b": "germa", "gilt": ALLEIN, "beleg": "2c Nr. 37; m. / f."},
+    {"a": "stepenice", "b": "basamaci", "gilt": ALLEIN, "beleg": "2c Nr. 37; f. / m."},
+    {"a": "pas", "b": "kuče", "gilt": ALLEIN, "beleg": "2c Nr. 37; m. / n."},
+    {"a": "komad", "b": "parče", "gilt": ALLEIN, "beleg": "2c Nr. 37; m. / n."},
+    {"a": {"sg": ("mesnica", "mesnice", "mesnici", "mesnicu", "mesnicom", "mesnici")},
+     "b": {"sg": ("kasapnica", "kasapnice", "kasapnici", "kasapnicu", "kasapnicom", "kasapnici")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37"},
+    {"a": "raspust", "b": "ferije", "gilt": ALLEIN, "beleg": "2c Nr. 37; Einzahl / Mehrzahl"},
+    {"a": "deka", "b": "ćebe", "gilt": ALLEIN, "beleg": "2c Nr. 37; ćebe 17 %; f. / n."},
+    {"a": {"pl": ("merdevine", "merdevina", "merdevinama", "merdevine", "merdevinama", "merdevinama")},
+     "b": {"pl": ("skale", "skala", "skalama", "skale", "skalama", "skalama")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37"},
+    {"a": {"sg": ("lješnjak", "lješnjaka", "lješnjaku", "lješnjak", "lješnjakom", "lješnjaku"),
+           "pl": ("lješnjaci", "lješnjaka", "lješnjacima", "lješnjake", "lješnjacima", "lješnjacima")},
+     "b": {"sg": ("lješnik", "lješnika", "lješniku", "lješnik", "lješnikom", "lješniku"),
+           "pl": ("lješnici", "lješnika", "lješnicima", "lješnike", "lješnicima", "lješnicima")},
+     "gilt": UEBERALL, "beleg": "2c Nr. 37; lješnik 23 %, hr 1 %"},
+    # Nr. 39: die andere Form heißt auch etwas anderes - nur am einen Wort.
+    {"a": "bundeva", "b": "tikva", "gilt": ["kürbis:bundeva"],
+     "beleg": "2c Nr. 39; 53 %; tikva ist auch der Flaschenkürbis"},
+    {"a": "nar", "b": "šipak", "gilt": ["granatapfel:nar"], "beleg": "2c Nr. 39; 25 %; šipak ist auch die Hagebutte"},
+    {"a": "ugristi", "b": "ujesti", "gilt": ["beißen:ugristi"],
+     "beleg": "2c Nr. 39; 47 %; ujesti eher bei Insekten und Hunden"},
+    {"a": "saobraćaj", "b": "promet", "gilt": ["verkehr:saobraćaj"], "beleg": "2c Nr. 39; 69 %; promet ist auch Umsatz"},
 ]
 
 # Antworten mit einer Form, die mehrere Fälle sein kann, die verschiedene b
@@ -347,6 +546,9 @@ def zusatz(antworten, kennung, wort, fall=None, idx=None):
                 von, bis = stueck[0].start(), stueck[-1].end()
                 form = " ".join(x.group(0).lower() for x in stueck)
                 allein = ganz == antwort[von:bis].lower()
+                # Alle Paare mit dieser Form, nicht nur das erste (14.11.2026):
+                # kafena nimmt smeđa, kahvena und braon.
+                ziele_hier = []
                 for nr, ziele in idx.get(form, []):
                     if not _gilt_hier(VARIANTEN[nr], kennung, wort, allein):
                         continue
@@ -355,21 +557,24 @@ def zusatz(antworten, kennung, wort, fall=None, idx=None):
                         probleme.append("Variante [%s] '%s' in '%s': mehrere Fälle (%s) - Fall in "
                                         "FALL angeben" % (kennung, form, antwort, ", ".join(ziele)))
                         continue
-                    treffer.append((von, bis, ziel))
+                    if ziel not in ziele_hier:
+                        ziele_hier.append(ziel)
+                if ziele_hier:
+                    treffer.append((von, bis, ziele_hier))
                     belegt.update(range(i, i + n))
-                    break
         if len(treffer) > HOECHSTENS:
             probleme.append("Variante [%s] '%s': %d Wörter mit Varianten, erlaubt sind %d"
                             % (kennung, antwort, len(treffer), HOECHSTENS))
             continue
         treffer.sort()
-        for wahl in itertools.product((False, True), repeat=len(treffer)):
+        # Je Wort: bleibt (None) oder eines seiner b. Alles bleibt = die Antwort selbst.
+        for wahl in itertools.product(*[[None] + ziele for _, _, ziele in treffer]):
             if not any(wahl):
                 continue
             neu, ende = [], 0
-            for (von, bis, ziel), tauschen in zip(treffer, wahl):
+            for (von, bis, _), ziel in zip(treffer, wahl):
                 neu.append(antwort[ende:von])
-                neu.append(_gross(antwort[von:bis], ziel) if tauschen else antwort[von:bis])
+                neu.append(_gross(antwort[von:bis], ziel) if ziel else antwort[von:bis])
                 ende = bis
             neu = "".join(neu) + antwort[ende:]
             if neu.strip().lower() not in schon:
@@ -507,12 +712,16 @@ def pruefe_varianten(daten):
         g = p["gilt"]
         if g not in (UEBERALL, ALLEIN) and not (isinstance(g, list) and g and all(isinstance(x, str) for x in g)):
             probleme.append("%s: gilt ist %r" % (name, g))
-        for f in faelle(a).values():
-            if not isinstance(f, str):
+        # Dieselbe Form von a darf bei mehreren Paaren stehen (kafena: smeđa,
+        # kahvena, braon), aber nicht zweimal mit demselben b.
+        fb = faelle(b)
+        for fall, f in faelle(a).items():
+            if not isinstance(f, str) or not isinstance(fb.get(fall), str):
                 continue
-            if f.lower() in gesehen and gesehen[f.lower()] != nr:
-                probleme.append("%s: '%s' steht schon bei einem anderen Paar" % (name, f))
-            gesehen[f.lower()] = nr
+            schluessel = (f.lower(), fb[fall].lower())
+            if schluessel in gesehen and gesehen[schluessel] != nr:
+                probleme.append("%s: '%s' -> '%s' steht schon bei einem anderen Paar" % (name, f, fb[fall]))
+            gesehen[schluessel] = nr
 
     # Formen von a, die in der App ein eigenes Wort sind (wie sto: hundert
     # und Tisch, kola: Auto und Gen. von kolo). Nur bei UEBERALL und ALLEIN -

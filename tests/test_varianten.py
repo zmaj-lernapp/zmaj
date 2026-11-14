@@ -4,7 +4,9 @@
 Bis dahin nahm „Voda je u ___.“ nur flaši - boci war falsch und kostete ein
 Leben -, und „Pijem kahvu“ nahm nicht „Pijem kafu“, obwohl das Wort selbst
 „kahva / kafa“ heißt. Ajdin: „die ganze app nochmal danach kontrollieren“.
-Eingetragen sind nur die eindeutigen Paare; die fraglichen entscheidet er.
+Zuerst nur die eindeutigen Paare, seit dem 14.11.2026 auch die fraglichen aus
+Tabelle 2c (Prüfbericht 1.4, F6): „nimm doch kroatische und die anderen rein
+die sind nur nicht sichtbar“ - beim Tippen richtig, gezeigt nie.
 
 Getippt wird an zwei Stellen, beide in renderTask(): Schreibaufgabe
 (annehmbar()) und Lückensatz. Sie laufen in Lektion, Level-Test, Einstufung,
@@ -33,7 +35,7 @@ import varianten
 
 # Schreibaufgabe: Kennung des Wortes -> zusätzliche Antworten
 WOERTER = {
-    "braun:kafena": ["smeđa"],
+    "braun:kafena": ["smeđa", "kahvena", "braon"],
     "rosa:roza": ["ružičasta"],
     "jetzt:sada": ["sad"],
     "abend:večer": ["veče"],
@@ -49,10 +51,10 @@ WOERTER = {
     "insel:ostrvo": ["otok"],
     "luft:zrak": ["vazduh"],
     "flasche:flaša": ["boca"],
-    "decke (bettdecke):deka": ["pokrivač"],
+    "decke (bettdecke):deka": ["pokrivač", "ćebe"],
     "waschbecken:lavabo": ["umivaonik"],
     "nachbarin:komšinica": ["susjeda"],
-    "leiter:merdevine": ["ljestve"],
+    "leiter:merdevine": ["ljestve", "skale"],
     "schraube:šaraf": ["vijak"],
     "säge:testera": ["pila"],
     "drucker:štampač": ["printer"],
@@ -75,6 +77,78 @@ WOERTER = {
     "der kaffee ist heiß:Kahva je vruća": ["Kafa je vruća"],
     "gehen wir einen kaffee trinken:Idemo na kahvu": ["Idemo na kafu"],
     "nachbarn (mehrzahl):komšije": ["susjedi"],
+    # Tabelle 2c (Ajdin, 14.11.2026, F6). Die Nummer ist die Zeile der Tabelle.
+    "brot:hljeb": ["kruh"],                                   # 1
+    "ich esse brot:Jedem hljeb": ["Jedem kruh"],
+    "es gibt kein brot:Nema hljeba": ["Nema kruha"],
+    "suppe:supa": ["juha"],                                   # 2
+    "gehalt:plata": ["plaća"],                                # 3
+    "bruttogehalt:bruto plata": ["bruto plaća"],
+    "nettogehalt:neto plata": ["neto plaća"],
+    "langsam:polako": ["polahko"],                            # 4
+    "minute:minuta": ["minut"],                               # 5
+    "gestern:jučer": ["juče"],                                # 6
+    "woche:sedmica": ["hefta"],                               # 7
+    "letzte woche:prošle sedmice": ["prošle hefte"],
+    "topf:lonac": ["šerpa"],                                  # 8, bosanski lonac nicht
+    "pfanne:tava": ["tiganj"],                                # 9
+    "spinat:špinat": ["spanać"],                              # 10
+    "garten:bašta": ["bašča"],                                # 11
+    "tochter:kćerka": ["kći", "kćer"],                        # 12
+    "stunde / uhr:sat": ["sahat"],                            # 13
+    "geschichte (fach):historija": ["povijest"],              # 14
+    "besuch:posjeta": ["posjet"],                             # 15
+    "miete:kirija": ["stanarina", "najamnina"],               # 16
+    "kühlschrank:frižider": ["hladnjak"],                     # 17
+    "backofen:rerna": ["pećnica"],
+    "tüte / plastiktüte:kesa": ["vrećica"],
+    "essig:sirće": ["ocat"],
+    "zimmerdecke:plafon": ["strop"],
+    "fabrik:fabrika": ["tvornica"],
+    "aprikose:kajsija": ["marelica"],
+    "lauch:praziluk": ["poriluk"],
+    "handtuch:peškir": ["ručnik"],
+    "laden:prodavnica": ["radnja"],                           # 18
+    "geschäft:radnja": ["prodavnica"],
+    "hof (am haus):dvorište": ["avlija"],                     # 19
+    "hof / innenhof:avlija": ["dvorište"],
+    "manchmal:ponekad": ["nekad"],                            # 20
+    "kaffeetasse (traditionell):fildžan": ["findžan"],        # 22 (21 oben bei kafena)
+    "auto:auto": ["kola"],                                    # 23
+    "geld:novac": ["pare"],                                   # 24
+    "handy:mobitel": ["mobilni"],                             # 25
+    "markt:pijaca": ["pazar"],                                # 26
+    "speisekarte:jelovnik": ["meni"],                         # 27
+    "formular:obrazac": ["formular"],                         # 28
+    "entschuldigung (du):Izvini": ["Oprosti"],                # 29
+    "ob:da li": ["je li"],                                    # 31
+    "vielen dank:Hvala puno": ["Puno hvala", "Hvala lijepa", "Hvala mnogo"],   # 32
+    "auf wiedersehen:Doviđenja": ["Do viđenja"],              # 33
+    "tschüss:Ćao": ["Do viđenja"],                            #    das Wort nimmt auch Doviđenja
+    "guten abend:Dobro veče": ["Dobra večer"],                # 34
+    "am abend:navečer": ["uveče"],                            # 35
+    "am morgen:ujutro": ["ujutru"],
+    "bei meinem freund:kod prijatelja": ["kod druga"],        # 36
+    "anrede: freund!:prijatelju!": ["druže!"],
+    "fenster:prozor": ["pendžer"],                            # 37 (deka und merdevine oben)
+    "wand:zid": ["duvar"],
+    "straße:ulica": ["sokak"],
+    "schrank:ormar": ["dolap"],
+    "gast:gost": ["musafir"],
+    "gäste:gosti": ["musafiri"],
+    "medikament:lijek": ["hap"],
+    "erkältung:prehlada": ["nahlada"],
+    "hefe:kvasac": ["germa"],
+    "treppe:stepenice": ["basamaci"],
+    "hund:pas": ["kuče"],
+    "stück:komad": ["parče"],
+    "metzgerei:mesnica": ["kasapnica"],
+    "schulferien:raspust": ["ferije"],
+    "haselnuss:lješnjak": ["lješnik"],
+    "kürbis:bundeva": ["tikva"],                              # 39
+    "granatapfel:nar": ["šipak"],
+    "beißen:ugristi": ["ujesti"],
+    "verkehr:saobraćaj": ["promet"],
 }
 
 # Lückensatz: Text -> zusätzliche Antworten
@@ -90,6 +164,12 @@ LUECKEN = {
     "Voda je u ___.": ["boci"],
     "Koja je ___ za WiFi?": ["lozinka"],
     "Švicarska je mala ___.": ["zemlja"],
+    # Tabelle 2c. „Hvala ___!“ (Nr. 32) und „Pitam se ___ li dolazi.“ (Nr. 31)
+    # haben ein "auch" am Lückensatz in vokabeln.py, kein Paar hier.
+    "Djeca ne vole ___.": ["spanać"],                        # 10
+    "Kolika je ___ mjesečno?": ["stanarina", "najamnina"],   # 16
+    "Svi ___ su došli.": ["musafiri"],                       # 37
+    "Idem u ___.": ["kasapnicu"],                            # 37
 }
 
 # Satzbau: Satz -> was zu "ohne" dazukommt. Fast alles sperrte die App schon
@@ -116,6 +196,12 @@ KACHELN = {
     "Švicarska je mala država.": ["zemlja"],
     "Moja majka je Bosanka.": ["mama"],
     "Taksa za pasoš je trideset maraka.": ["naknada"],
+    # Tabelle 2c: gesperrt wird in beide Richtungen. Hier ist plaća das Verb
+    # („zahlt“) und oprosti „verzeih“ - plata und izvini als falsche Kachel
+    # wären harmlos, die Sperre kostet nur eine Auswahl. izvini liegt wegen
+    # KACHEL_VERWECHSELBAR ohnehin nie als Kachel.
+    "Svako plaća svoje": ["plata"],
+    "Molim te, oprosti mi.": ["izvini"],
 }
 
 
@@ -205,12 +291,23 @@ def _z(antworten, wort=True, kennung="x", fall=None):
     ("roza", True, ["ružičasta"]),                       # ALLEIN
     ("roza haljina", True, []),
     ("roza", False, []),                                 # ALLEIN nie im Lückensatz
-    ("Dobro veče", True, []),                            # nur von a nach b
+    ("veče", True, []),                                  # nur von a nach b (večer -> veče)
+    ("Dobro veče", True, ["Dobra večer"]),               # Tabelle 2c Nr. 34, die ganze Wendung
     ("Pijem kafu", True, []),
     ("Pijem kahvu sada", True, ["Pijem kahvu sad", "Pijem kafu sada", "Pijem kafu sad"]),
     ("senf", True, []),                                  # Paar mit Kennungen: nur dort
     ("šifra", False, []),
     ("taksi", True, []),                                 # das Taxi, nicht taksa
+    # Tabelle 2c (14.11.2026): mehrere Paare mit demselben a
+    ("kafena", True, ["smeđa", "kahvena", "braon"]),
+    ("kafena haljina", True, ["smeđa haljina", "kahvena haljina"]),      # braon nur allein
+    ("kafena kesa", True, ["kafena vrećica", "smeđa kesa", "smeđa vrećica", "kahvena kesa", "kahvena vrećica"]),
+    ("bosanski lonac", True, []),                        # šerpa nur beim Wort allein
+    ("jelovnik", True, []),                              # meni nur bei „Speisekarte“
+    ("meni", True, []),                                  # nur von a nach b: „mir“ nimmt nie jelovnik
+    ("Nemam novca", True, []),                           # pare nur beim Wort novac
+    ("u autu", True, []),                                # kola nur beim Wort auto
+    ("plati", True, []),                                 # das Verb, nicht plata
 ])
 def test_zusatz_an_beispielen(antwort, wort, mehr):
     assert _z([antwort], wort) == (mehr, [])
@@ -226,6 +323,30 @@ def test_zusatz_fall_und_kennung():
     assert _z(["šifra"], False, kennung="Koja je ___ za WiFi?") == (["lozinka"], [])
     assert _z(["senf"], True, kennung="senf:senf") == (["gorušica"], [])
     assert _z(["senf"], False, kennung="Kečap i ___, molim.", fall="sg_akk") == (["gorušicu"], [])
+
+
+def test_kennungen_der_gefaehrlichen_paare():
+    """meni, kola, pare, sahat, tikva, šipak, ujesti und promet heißen auch etwas
+    anderes. Sie gelten nur am einen Wort der App, nie umgekehrt."""
+    for a, b, kennung in (("jelovnik", "meni", "speisekarte:jelovnik"), ("auto", "kola", "auto:auto"),
+                          ("novac", "pare", "geld:novac"), ("sat", "sahat", "stunde / uhr:sat"),
+                          ("bundeva", "tikva", "kürbis:bundeva"), ("nar", "šipak", "granatapfel:nar"),
+                          ("ugristi", "ujesti", "beißen:ugristi"), ("saobraćaj", "promet", "verkehr:saobraćaj")):
+        assert _z([a], True, kennung=kennung) == ([b], []), a
+        assert _z([a], True) == ([], []), a                 # an jedem anderen Wort nichts
+        assert _z([b], True, kennung=kennung) == ([], []), b
+        paare = [p for p in varianten.VARIANTEN if varianten.faelle(p["a"]).get("grund") == a]
+        assert [p["gilt"] for p in paare] == [[kennung]], a
+
+
+def test_dasselbe_paar_zweimal_ist_ein_befund(monkeypatch):
+    """Dasselbe a darf mehrere b haben (kafena), aber nicht zweimal dasselbe b."""
+    monkeypatch.setattr(varianten, "VARIANTEN", [
+        {"a": "kafena", "b": "braon", "gilt": varianten.ALLEIN, "beleg": "x"},
+        {"a": "kafena", "b": "kahvena", "gilt": varianten.ALLEIN, "beleg": "x"},
+        {"a": "kafena", "b": "braon", "gilt": varianten.UEBERALL, "beleg": "x"}])
+    probleme = varianten.pruefe_varianten({"kategorien": [], "saetze": []})
+    assert probleme == ["Variante kafena / braon: 'kafena' -> 'braon' steht schon bei einem anderen Paar"]
 
 
 def test_hoechstens_zwei_woerter_je_antwort():
@@ -356,3 +477,151 @@ def test_zahl_mit_und_in_matches(index_html):
     html = _html(index_html)
     assert "if(teile.length === 3 && teile[1] === 'i') teile.splice(1, 1);" in html
     assert re.search(r"const zg = zahlWert\(g\);", html)
+
+
+# --- Tabelle 2c (Ajdin, 14.11.2026, Prüfbericht 1.4, F6) in matches() ---
+
+# Je Zeile der Tabelle mindestens ein Beispiel: ("w", Kennung des Wortes) für die
+# Schreibaufgabe, ("l", Text) für den Lückensatz, dazu die Eingabe. Bis dahin
+# falsch ("no"), jetzt richtig ("ok"). Nr. 30 (Gdje) gehört zu F7, Nr. 38
+# (tisuća) bleibt, wie es war.
+TABELLE_2C = {
+    1: [("w", "brot:hljeb", "kruh"), ("w", "es gibt kein brot:Nema hljeba", "Nema kruha")],
+    2: [("w", "suppe:supa", "juha")],
+    3: [("w", "gehalt:plata", "plaća"), ("w", "nettogehalt:neto plata", "neto plaća")],
+    4: [("w", "langsam:polako", "polahko")],
+    5: [("w", "minute:minuta", "minut")],
+    6: [("w", "gestern:jučer", "juče")],
+    7: [("w", "woche:sedmica", "hefta"), ("w", "letzte woche:prošle sedmice", "prošle hefte")],
+    8: [("w", "topf:lonac", "šerpa")],
+    9: [("w", "pfanne:tava", "tiganj")],
+    10: [("w", "spinat:špinat", "spanać"), ("l", "Djeca ne vole ___.", "spanać")],
+    11: [("w", "garten:bašta", "bašča")],
+    12: [("w", "tochter:kćerka", "kći"), ("w", "tochter:kćerka", "kćer")],
+    13: [("w", "stunde / uhr:sat", "sahat")],
+    14: [("w", "geschichte (fach):historija", "povijest")],
+    15: [("w", "besuch:posjeta", "posjet")],
+    16: [("w", "miete:kirija", "stanarina"), ("l", "Kolika je ___ mjesečno?", "najamnina")],
+    17: [("w", "kühlschrank:frižider", "hladnjak"), ("w", "backofen:rerna", "pećnica"),
+         ("w", "tüte / plastiktüte:kesa", "vrećica"), ("w", "essig:sirće", "ocat"),
+         ("w", "zimmerdecke:plafon", "strop"), ("w", "fabrik:fabrika", "tvornica"),
+         ("w", "aprikose:kajsija", "marelica"), ("w", "lauch:praziluk", "poriluk"),
+         ("w", "handtuch:peškir", "ručnik")],
+    18: [("w", "laden:prodavnica", "radnja"), ("w", "geschäft:radnja", "prodavnica")],
+    19: [("w", "hof (am haus):dvorište", "avlija"), ("w", "hof / innenhof:avlija", "dvorište")],
+    20: [("w", "manchmal:ponekad", "nekad")],
+    21: [("w", "braun:kafena", "braon"), ("w", "braun:kafena", "kahvena")],
+    22: [("w", "kaffeetasse (traditionell):fildžan", "findžan")],
+    23: [("w", "auto:auto", "kola")],
+    24: [("w", "geld:novac", "pare")],
+    25: [("w", "handy:mobitel", "mobilni")],
+    26: [("w", "markt:pijaca", "pazar")],
+    27: [("w", "speisekarte:jelovnik", "meni")],
+    28: [("w", "formular:obrazac", "formular")],
+    29: [("w", "entschuldigung (du):Izvini", "Oprosti")],
+    31: [("w", "ob:da li", "je li"), ("l", "Pitam se ___ li dolazi.", "je")],
+    32: [("w", "vielen dank:Hvala puno", "Puno hvala"), ("w", "vielen dank:Hvala puno", "Hvala lijepa"),
+         ("w", "vielen dank:Hvala puno", "Hvala mnogo"), ("l", "Hvala ___!", "lijepa"), ("l", "Hvala ___!", "mnogo")],
+    33: [("w", "auf wiedersehen:Doviđenja", "Do viđenja")],
+    34: [("w", "guten abend:Dobro veče", "Dobra večer")],
+    35: [("w", "am abend:navečer", "uveče"), ("w", "am morgen:ujutro", "ujutru")],
+    36: [("w", "bei meinem freund:kod prijatelja", "kod druga"), ("w", "anrede: freund!:prijatelju!", "druže!")],
+    37: [("w", "fenster:prozor", "pendžer"), ("w", "wand:zid", "duvar"), ("w", "straße:ulica", "sokak"),
+         ("w", "schrank:ormar", "dolap"), ("w", "gast:gost", "musafir"), ("l", "Svi ___ su došli.", "musafiri"),
+         ("w", "medikament:lijek", "hap"), ("w", "erkältung:prehlada", "nahlada"), ("w", "hefe:kvasac", "germa"),
+         ("w", "treppe:stepenice", "basamaci"), ("w", "hund:pas", "kuče"), ("w", "stück:komad", "parče"),
+         ("w", "metzgerei:mesnica", "kasapnica"), ("l", "Idem u ___.", "kasapnicu"),
+         ("w", "schulferien:raspust", "ferije"), ("w", "decke (bettdecke):deka", "ćebe"),
+         ("w", "leiter:merdevine", "skale"), ("w", "haselnuss:lješnjak", "lješnik")],
+    39: [("w", "kürbis:bundeva", "tikva"), ("w", "granatapfel:nar", "šipak"), ("w", "beißen:ugristi", "ujesti"),
+         ("w", "verkehr:saobraćaj", "promet")],
+}
+
+# Bleibt falsch: die andere Richtung, Wörter mit derselben Form und anderer
+# Bedeutung, und wo das Wort nicht allein steht, obwohl Geschlecht oder Zahl
+# anders sind (Ajdin: „nur wo das Wort allein steht“).
+GEGEN_2C = [
+    ("w", "mir:meni / mi", "jelovnik"),                               # meni heißt auch „mir“
+    ("w", "mir ist es egal:Svejedno mi je", "Svejedno jelovnik je"),
+    ("w", "mir ist es egal:Svejedno mi je", "Jelovnik je svejedno"),
+    ("w", "geld:novac", "para"),                                      # pare nur so, wie es allein steht
+    ("w", "ich habe kein geld:Nemam novca", "Nemam para"),
+    ("w", "geld einzahlen:uplatiti novac", "uplatiti pare"),
+    ("w", "im auto:u autu", "u kolima"),                              # kola nur beim Wort auto
+    ("w", "ich habe ein auto:Imam auto", "Imam kola"),
+    ("w", "das auto des vaters:auto oca", "kola oca"),
+    ("w", "das auto des vaters:auto oca", "očev kola"),
+    ("l", "Putujemo ___.", "kolima"),
+    ("w", "krankenwagen / rettung:hitna", "auto hitne pomoći"),       # nie von kola nach auto
+    ("l", "Koliko je ___?", "sahata"),                                # sahat nur beim Wort sat
+    ("l", "Koliko je ___?", "sahati"),
+    ("l", "Supa je u ___.", "šerpi"),                                 # šerpa nur beim Wort lonac
+    ("w", "bosnischer schmortopf:bosanski lonac", "bosanska šerpa"),
+    ("w", "auf dem markt:na pijaci", "na pazaru"),
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Pas me je ugrizao"),   # nie von ujesti nach ugristi
+    ("w", "verkehrs-:saobraćajni", "prometni"),                       # promet nur beim Wort saobraćaj
+    ("w", "verzeih mir:Oprosti mi", "Izvini mi"),                     # nie von oprosti nach izvini
+    ("w", "manchmal / früher:nekad", "ponekad"),                      # nie von nekad nach ponekad
+    ("w", "handel:trgovina", "prodavnica"),                           # trgovina gehört nicht dazu
+    ("w", "voll:pun", "mnogo"),                                       # puno → mnogo nur in „Hvala ___!“
+    ("w", "dass:da", "je"),                                           # da → je nur in „Pitam se ___ li dolazi.“
+    ("l", "Mislim ___ je dobro.", "je"),
+    ("w", "nie:nikad", "nekad"),
+]
+
+
+def _antworten_von(daten, art, wer, ohne_neu=False):
+    """Alle Antworten, wie die App sie prüft. ohne_neu: so, wie es vor dem
+    14.11.2026 war - ohne auch_var und ohne das "auch" der beiden Lückensätze."""
+    if art == "w":
+        w = next(x for x in _woerter(daten) if x["id"] == wer)
+        mehr = [] if ohne_neu else w.get("auch_var", [])
+        return " / ".join([w["bs"]] + list(w.get("auch") or []) + mehr)
+    s = next(x for x in daten["saetze"] if x["text"] == wer)
+    if ohne_neu:
+        return s["answer"]
+    return " / ".join([s["answer"]] + list(s.get("auch") or []) + list(s.get("auch_var") or []))
+
+
+@pytest.fixture(scope="module")
+def node_2c(index_html, grunddaten):
+    if not shutil.which("node"):
+        pytest.skip("node fehlt")
+    html = _html(index_html)
+    bloecke = "\n".join([
+        _stueck(html, "const strip = s =>", "\n/* ---------- Gesprochenes vergleichen"),
+        _stueck(html, "const ZAHL_EINER = ", "\n/* ---- Zahlen, die wechseln"),
+        _stueck(html, "function matches(guess, answer){", "\n/* ---------- Fast richtig: erst ein Hinweis"),
+        _stueck(html, "function einTippfehler(a, b){", "\n/* So lange nach dem Hinweis"),
+    ])
+    faelle = []
+    for nr, beispiele in TABELLE_2C.items():
+        for art, wer, eingabe in beispiele:
+            faelle.append(((nr, art, wer, eingabe, "vorher"), eingabe, _antworten_von(grunddaten, art, wer, True)))
+            faelle.append(((nr, art, wer, eingabe, "jetzt"), eingabe, _antworten_von(grunddaten, art, wer)))
+    for art, wer, eingabe in GEGEN_2C:
+        faelle.append((("gegen", art, wer, eingabe), eingabe, _antworten_von(grunddaten, art, wer)))
+    ein = {"bloecke": bloecke, "faelle": [f[1:] for f in faelle], "zahlen": []}
+    aus = subprocess.run(["node", "-e", NODE], input=json.dumps(ein), capture_output=True, text=True,
+                         encoding="utf-8", check=True, timeout=120)
+    return dict(zip([f[0] for f in faelle], json.loads(aus.stdout)["faelle"]))
+
+
+def test_tabelle_2c_jede_zeile_hat_ein_beispiel():
+    assert set(TABELLE_2C) == set(range(1, 40)) - {30, 38}
+
+
+def test_tabelle_2c_vorher_falsch_jetzt_richtig(node_2c):
+    falsch = {k: v for k, v in node_2c.items() if k[0] != "gegen" and v != ("no" if k[-1] == "vorher" else "ok")}
+    assert falsch == {}
+
+
+def test_tabelle_2c_nichts_anderes_wird_richtig(node_2c):
+    falsch = {k: v for k, v in node_2c.items() if k[0] == "gegen" and v != "no"}
+    assert falsch == {}
+    assert len([k for k in node_2c if k[0] == "gegen"]) == len(GEGEN_2C)
+
+
+def test_tisuca_bleibt_tausend(index_html):
+    """Tabelle 2c Nr. 38: tisuća gilt weiter als 1000 (Ajdin, 14.11.2026)."""
+    assert "const ZAHL_SONDER = {jedna:1, jedno:1, dvije:2, dvoje:2, tisuca:1000};" in _html(index_html)

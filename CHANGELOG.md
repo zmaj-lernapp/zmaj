@@ -508,6 +508,24 @@ are in the Play Store listing. Format:
   through `NIE_NEBENEINANDER`). *Zdravo* ("Hallo (neutral, überall)") does not take
   it when typing, just as it does not take *Merhaba*.
   `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_antworten.py`.
+- Typing the second forms of table 2c (review for 1.4, 14.11.2026, V10; decided by
+  the maintainer, F6: Croatian and the others too, "they are just not visible"):
+  writing tasks and gap sentences now also take *kruh* for *hljeb*, *juha* for *supa*,
+  *plaća* for *plata*, *juče* for *jučer*, *hefta* for *sedmica*, *spanać* for *špinat*,
+  *stanarina* and *najamnina* for *kirija*, *hladnjak* for *frižider*, *kola* for
+  *auto*, *pare* for *novac*, *meni* for *jelovnik*, *Oprosti* for *Izvini*, *je li* for
+  *da li*, *Puno hvala*, *Hvala lijepa* and *Hvala mnogo* for *Hvala puno*, *Do viđenja*,
+  *Dobra večer*, *musafir* for *gost* and the rest of the table, row by row in
+  `varianten.py`. Shown, spoken and taught is still only the app's own word. Only in
+  that direction: "mir" (*meni / mi*) never takes *jelovnik*, *nekad* not *ponekad*.
+  Where gender or number differ (*šerpa*, *kola*, *pare*, *kuče*), only where the word
+  stands alone; where the other form also means something else (*meni*, *kola*,
+  *pare*, *sahat*, *tikva*, *šipak*, *ujesti*, *promet*), only at that one word.
+  *prodavnica* and *radnja*, *dvorište* and *avlija* take each other and, like
+  *ponekad* and *nekad*, no longer stand next to each other in multiple choice. A
+  form may now have several second forms (*kafena*: *smeđa*, *kahvena*, *braon*). Row
+  30 (*Gdje* for "wohin") belongs to F7; *tisuća* still counts as 1000 (row 38).
+  `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

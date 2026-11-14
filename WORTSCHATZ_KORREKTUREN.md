@@ -955,6 +955,85 @@ bosnisch“, also a, b, c, d und f ja, e nein.
   *Merhaba*; in der Auswahl stehen die beiden nie nebeneinander. Neben *Merhaba* hält
   das `"auch"` Ćao aus der Auswahl.
 
+## 14.11.2026 – Prüfbericht 1.4: die fraglichen Varianten beim Tippen (Tabelle 2c, F6)
+
+Tabelle 2c in `Release\Wortschatz\varianten_2026-11-13.md`, 39 Zeilen (V10). Ajdin
+zuerst: „ne keine kroatischen wörter nur bosnische“, dann: „oder nimm doch kroatische
+und die anderen rein die sind nur nicht sichtbar“. Also alle Zeilen ja, nur als weitere
+richtige Antwort beim Tippen. Gezeigt, gesprochen und gelehrt wird weiter nur die Form
+der App; Kennungen und Aufnahmen bleiben. Eingetragen als Paare in `varianten.py`
+(`auch_var`: steht nirgends auf dem Bildschirm, nicht als Kachel, nicht als Knopf), nur
+von der Form der App zur anderen. Wo Geschlecht oder Zahl abweichen: nur, wo das Wort
+allein steht (Ajdin über *šerpa* und *kola*).
+
+| Nr. | Form der App | zählt auch | wo |
+|---:|---|---|---|
+| 1 | *hljeb* | *kruh* | überall, auch „Jedem kruh“, „Nema kruha“ |
+| 2 | *supa* | *juha* | überall |
+| 3 | *plata* | *plaća* | überall („bruto plaća“), nur Nom., Akk., Instr. |
+| 4 | *polako* | *polahko* | überall |
+| 5 | *minuta* | *minut* | allein |
+| 6 | *jučer* | *juče* | überall |
+| 7 | *sedmica* | *hefta* | überall („prošle hefte“) |
+| 8 | *lonac* | *šerpa* | allein, nicht *bosanski lonac* |
+| 9 | *tava* | *tiganj* | allein |
+| 10 | *špinat* | *spanać* | überall, auch „Djeca ne vole ___.“ |
+| 11 | *bašta* | *bašča* | überall |
+| 12 | *kćerka* | *kći*, *kćer* | allein |
+| 13 | *sat* | *sahat* | nur `stunde / uhr:sat` |
+| 14 | *historija* | *povijest* | allein |
+| 15 | *posjeta* | *posjet* | allein |
+| 16 | *kirija* | *stanarina*, *najamnina* | überall, auch „Kolika je ___ mjesečno?“ |
+| 17 | *frižider*, *rerna*, *kesa*, *plafon*, *fabrika*, *kajsija*, *praziluk*, *peškir* | *hladnjak*, *pećnica*, *vrećica*, *strop*, *tvornica*, *marelica*, *poriluk*, *ručnik* | überall |
+| 17 | *sirće* | *ocat* | allein |
+| 18 | *prodavnica* („Laden“), *radnja* („Geschäft“) | gegenseitig | nur an den beiden Wörtern |
+| 19 | *dvorište*, *avlija* | gegenseitig | nur an den beiden Wörtern |
+| 20 | *ponekad* | *nekad* | nur `manchmal:ponekad` |
+| 21 | *kafena* | *kahvena* | überall, wie *smeđa* (Tabelle 2a) |
+| 21 | *kafena* | *braon* | allein |
+| 22 | *fildžan* | *findžan* | überall |
+| 23 | *auto* | *kola* | nur `auto:auto` |
+| 24 | *novac* | *pare* | nur `geld:novac` |
+| 25 | *mobitel* | *mobilni* | überall |
+| 26 | *pijaca* | *pazar* | allein |
+| 27 | *jelovnik* | *meni* | nur `speisekarte:jelovnik` |
+| 28 | *obrazac* | *formular* | überall |
+| 29 | *Izvini* | *Oprosti* | nur `entschuldigung (du):Izvini` |
+| 30 | | | gehört zu F7 (*Gdje* für „wohin“) |
+| 31 | *da li* | *je li* | nur `ob:da li`; Lückensatz „Pitam se ___ li dolazi.“ `"auch": ["je"]` |
+| 32 | *Hvala puno* | *Puno hvala*, *Hvala lijepa*, *Hvala mnogo* | nur `vielen dank:Hvala puno`; Lückensatz „Hvala ___!“ `"auch": ["mnogo", "lijepa"]` |
+| 33 | *Doviđenja* | *Do viđenja* | überall, auch bei „Tschüss“, das *Doviđenja* nimmt |
+| 34 | *Dobro veče* | *Dobra večer* | überall |
+| 35 | *navečer*, *ujutro* | *uveče*, *ujutru* | überall |
+| 36 | *kod prijatelja*, *prijatelju!* | *kod druga*, *druže!* | nur an den beiden Wörtern |
+| 37 | *prozor*, *zid*, *ormar*, *gost*, *lijek*, *prehlada*, *mesnica*, *merdevine*, *lješnjak* | *pendžer*, *duvar*, *dolap*, *musafir*, *hap*, *nahlada*, *kasapnica*, *skale*, *lješnik* | überall, auch „Svi ___ su došli.“ (*musafiri*) und „Idem u ___.“ (*kasapnicu*) |
+| 37 | *ulica*, *kvasac*, *stepenice*, *pas*, *komad*, *raspust*, *deka* | *sokak*, *germa*, *basamaci*, *kuče*, *parče*, *ferije*, *ćebe* | allein |
+| 38 | *tisuća* | bleibt 1000 (`ZAHL_SONDER`) | |
+| 39 | *bundeva*, *nar*, *ugristi*, *saobraćaj* | *tikva*, *šipak*, *ujesti*, *promet* | nur am einen Wort |
+
+- Nur in dieser Richtung: „mir“ (*meni / mi*, „Svejedno mi je“) nimmt nie *jelovnik*,
+  *nekad* nicht *ponekad*, „Oprosti mi“ nicht „Izvini mi“, „Pas me je ujeo“ nicht
+  *ugrizao*, *saobraćajni* nicht *prometni*, *trgovina* („Handel“) nicht *prodavnica*.
+- „Nur am einen Wort“, weil die andere Form auch etwas anderes heißt: *meni* „mir“,
+  *kola* (auch von *kolo*), *pare* (auch von *para*), *radnja* „Handlung“, *tikva*
+  Flaschenkürbis, *šipak* Hagebutte, *promet* Umsatz. *sahat* nur beim Wort, nicht in
+  „Koliko je ___?“ (*sati*).
+- Bei *plata* und *prehlada* fehlen mit Absicht die Formen, die zugleich ein Verb sind
+  (*plate*, *plati*: „zahlen“; *prehladi*: „erkältet sich“).
+- In „Pitam se ___ li dolazi.“ und „Hvala ___!“ ein `"auch"` am Lückensatz, kein Paar:
+  *da* und *puno* wären Paare für die ganze App, und *je*, *da*, *puno* sind Kacheln in
+  vielen Sätzen.
+- Ein Wort darf jetzt mehrere zweite Formen haben (*kafena*: *smeđa*, *kahvena*,
+  *braon*; *deka*: *pokrivač*, *ćebe*; *merdevine*: *ljestve*, *skale*).
+- In der Auswahl stehen *prodavnica* und *radnja*, *dvorište* und *avlija*, *ponekad*
+  und *nekad* nie mehr nebeneinander (`geschwister()` liest `auch_var` mit).
+- Nicht eingebaut, weil Geschlecht oder Zahl abweichen und das Wort dort nicht allein
+  steht, obwohl der Rest richtig bliebe: „Supa je u ___.“ (*šerpi*), „Imam auto“, „u autu“,
+  „autom“, „Putujemo ___.“ (*kola*, *kolima*), „Nemam novca“, „podići novac“, „uplatiti
+  novac“ (*para*, *pare*), „na pijaci“ (*na pazaru*), „Tražimo ulicu“, „na ulici“ (*sokak*),
+  „On ima psa“, „Bojim se pasa“, „Čuvaj se psa!“ (*kuče*, *kučeta*). Ajdin entscheidet,
+  ob sie dazukommen. „Pas me je ujeo“ ginge nicht: mit *kuče* hieße es *ujelo*.
+
 ## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zu den Geschichten
 
 Änderungen am Text der Geschichten (`geschichten.py`). Der Text ist der

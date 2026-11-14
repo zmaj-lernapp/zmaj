@@ -10108,7 +10108,7 @@ SAETZE = [
     {"kat": "basics", "text": "Dobar ___",              "answer": "dan",       "de": "Guten Tag"},
     {"kat": "basics", "text": "___, kako si?",          "answer": "Merhaba",   "auch": ["Zdravo", "Ćao"], "de": "Hallo, wie geht's dir?"},   # wie beim Wort Merhaba (Prüfbericht 1.4, V3; Ćao B5/F16)
     {"kat": "basics", "text": "Kako ___?",              "answer": "si",        "de": "Wie geht's dir?"},
-    {"kat": "basics", "text": "Hvala ___!",             "answer": "puno",      "de": "Vielen Dank!"},
+    {"kat": "basics", "text": "Hvala ___!",             "answer": "puno", "auch": ["mnogo", "lijepa"], "de": "Vielen Dank!"},   # nur beim Tippen (Ajdin, Prüfbericht 1.4, F6/V10, Tabelle 2c Nr. 32)
     {"kat": "basics", "text": "Laku ___!",              "answer": "noć",       "de": "Gute Nacht!"},
     {"kat": "basics", "text": "Zovem ___ Amina.",       "answer": "se",        "de": "Ich heiße Amina."},
     {"kat": "basics", "text": "Ne ___.",                "answer": "razumijem", "de": "Ich verstehe nicht."},
@@ -10263,7 +10263,7 @@ SAETZE = [
     # Nebensätze & Verneinung
     {"kat": "satzbau", "text": "Mislim ___ je dobro.",       "answer": "da",      "de": "Ich denke, dass es gut ist."},
     {"kat": "satzbau", "text": "Ne znam ___ je ključ.",      "answer": "gdje",    "de": "Ich weiß nicht, wo der Schlüssel ist."},
-    {"kat": "satzbau", "text": "Pitam se ___ li dolazi.",    "answer": "da",      "de": "Ich frage mich, ob er kommt."},
+    {"kat": "satzbau", "text": "Pitam se ___ li dolazi.",    "answer": "da", "auch": ["je"], "de": "Ich frage mich, ob er kommt."},   # je li, nur beim Tippen (Prüfbericht 1.4, F6/V10, Tabelle 2c Nr. 31)
     {"kat": "satzbau", "text": "Nemam vremena ___ radim.",   "answer": "jer",     "de": "Ich habe keine Zeit, weil ich arbeite."},
     {"kat": "satzbau", "text": "Ja ___ umoran.",             "answer": "nisam",   "de": "Ich bin nicht müde."},
     {"kat": "satzbau", "text": "Volim kahvu, ___ ne volim čaj.", "answer": "ali", "de": "Ich mag Kaffee, aber ich mag keinen Tee."},

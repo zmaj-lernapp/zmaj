@@ -102,3 +102,44 @@ def test_auswahl_haelt_die_variante_fern(seite, heute_stand):
     }""")
     assert erg == {"geschw": True, "neben": False, "umgekehrt": True}
     assert seite.fehler == []
+
+
+def test_tabelle_2c_zaehlt_beim_tippen(seite, heute_stand):
+    """Tabelle 2c (Ajdin, 14.11.2026, Prüfbericht 1.4, F6): die zweite Form zählt
+    beim Tippen, gezeigt wird sie nie. Alle Zeilen prüft tests/test_varianten.py."""
+    seite.starten(stand=heute_stand())
+    for level, art, wer, eingabe in (("essen", "type", "brot:hljeb", "kruh"),
+                                     ("faelle2", "type", "es gibt kein brot:Nema hljeba", "Nema kruha"),
+                                     ("essen_gehen", "type", "speisekarte:jelovnik", "meni"),
+                                     ("unterwegs", "type", "auto:auto", "kola"),
+                                     ("familie", "type", "tochter:kćerka", "kćer"),
+                                     ("basics", "type", "vielen dank:Hvala puno", "Puno hvala"),
+                                     ("immobilien", "gap", "Kolika je ___ mjesečno?", "stanarina"),
+                                     ("basics", "gap", "Hvala ___!", "lijepa"),
+                                     ("satzbau", "gap", "Pitam se ___ li dolazi.", "je")):
+        assert seite.js(AUFGABE, [level, art, wer, eingabe]) == RICHTIG, (wer, eingabe)
+    assert seite.fehler == []
+
+
+def test_tabelle_2c_nur_in_einer_richtung(seite, heute_stand):
+    """meni heißt auch „mir“, kola und pare sind Mehrzahlwörter: sie gelten nur am
+    einen Wort. In der Auswahl stehen radnja und prodavnica, ponekad und nekad
+    nicht mehr als falscher Knopf nebeneinander - das Getippte zählt ja auch."""
+    seite.starten(stand=heute_stand())
+    erg = seite.js("""() => {
+      const w = id => wortNachId(id).w;
+      const typ = (id, e) => matches(e, annehmbar(w(id)).join(' / '));
+      const luecke = (text, e) => { const s = SENTENCES.find(x => x.text === text);
+        return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
+      const geschw = (id, bs) => geschwister(w(id)).some(x => x.bs === bs);
+      return {nein: [typ('mir ist es egal:Svejedno mi je', 'Jelovnik je svejedno'), typ('mir:meni / mi', 'jelovnik'),
+                     typ('im auto:u autu', 'u kolima'), typ('ich habe kein geld:Nemam novca', 'Nemam para'),
+                     typ('krankenwagen / rettung:hitna', 'auto hitne pomoći'),
+                     typ('der hund hat mich gebissen:Pas me je ujeo', 'Pas me je ugrizao'),
+                     luecke('Supa je u ___.', 'šerpi'), luecke('Koliko je ___?', 'sahata'),
+                     luecke('Mislim ___ je dobro.', 'je')],
+              geschw: [geschw('laden:prodavnica', 'radnja'), geschw('geschäft:radnja', 'prodavnica'),
+                       geschw('manchmal:ponekad', 'nekad')]};
+    }""")
+    assert erg == {"nein": ["no"] * 9, "geschw": [True, True, True]}
+    assert seite.fehler == []
