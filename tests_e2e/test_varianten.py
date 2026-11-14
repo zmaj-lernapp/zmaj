@@ -132,11 +132,13 @@ def test_tabelle_2c_nur_in_einer_richtung(seite, heute_stand):
       const luecke = (text, e) => { const s = SENTENCES.find(x => x.text === text);
         return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
       const geschw = (id, bs) => geschwister(w(id)).some(x => x.bs === bs);
+      // „u kolima“, „Nemam para“ und „Supa je u šerpi“ zählen seit der dritten Runde
+      // (unten), „kola oca“ und „Putujemo kolima“ weiter nicht.
       return {nein: [typ('mir ist es egal:Svejedno mi je', 'Jelovnik je svejedno'), typ('mir:meni / mi', 'jelovnik'),
-                     typ('im auto:u autu', 'u kolima'), typ('ich habe kein geld:Nemam novca', 'Nemam para'),
+                     typ('das auto des vaters:auto oca', 'kola oca'), typ('geld einzahlen:uplatiti novac', 'uplatiti pare'),
                      typ('krankenwagen / rettung:hitna', 'auto hitne pomoći'),
                      typ('der hund hat mich gebissen:Pas me je ujeo', 'Pas me je ugrizao'),
-                     luecke('Supa je u ___.', 'šerpi'), luecke('Koliko je ___?', 'sahata'),
+                     luecke('Putujemo ___.', 'kolima'), luecke('Koliko je ___?', 'sahata'),
                      luecke('Mislim ___ je dobro.', 'je')],
               geschw: [geschw('laden:prodavnica', 'radnja'), geschw('geschäft:radnja', 'prodavnica'),
                        geschw('manchmal:ponekad', 'nekad')]};
@@ -149,14 +151,24 @@ def test_tabelle_2c_nur_in_einer_richtung(seite, heute_stand):
 # Alle Fälle in node prüft tests/test_varianten.py (DRITTE_RUNDE).
 DRITTE_RUNDE = [("basics", "type", "entschuldigung (sie):Izvinite", "Oprostite"),
                 ("formell", "gap", "___, molim Vas.", "Oprostite"),
-                ("routine", "type", "manchmal:ponekad", "nekada")]
+                ("routine", "type", "manchmal:ponekad", "nekada"),
+                ("faelle1", "type", "ich habe ein auto:Imam auto", "Imam kola"),
+                ("praepositionen", "type", "im auto:u autu", "u kolima"),
+                ("faelle2", "type", "ich habe kein geld:Nemam novca", "Nemam para"),
+                ("praepositionen", "type", "auf dem markt:na pijaci", "na pazaru"),
+                ("faelle3", "type", "auf der straße:na ulici", "na sokaku"),
+                ("kueche_bad", "gap", "Supa je u ___.", "šerpi"),
+                ("faelle1", "type", "er hat einen hund:On ima psa", "On ima kuče")]
 GEGEN_DRITTE_RUNDE = """() => {
   const w = id => wortNachId(id).w;
   const typ = (id, e) => matches(e, annehmbar(w(id)).join(' / '));
   const luecke = (text, e) => { const s = SENTENCES.find(x => x.text === text);
     return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
   return [typ('entschuldigung (du):Izvini', 'Oprostite'), typ('verzeih mir:Oprosti mi', 'Oprostite mi'),
-          luecke('Molim te, ___ mi.', 'oprostite'), typ('manchmal:ponekad', 'nikada'), typ('nie:nikad', 'nekada')];
+          luecke('Molim te, ___ mi.', 'oprostite'), typ('manchmal:ponekad', 'nikada'), typ('nie:nikad', 'nekada'),
+          typ('mit dem auto:autom', 'kolima'), typ('ich habe ein auto:Imam auto', 'Imam kolima'),
+          typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kučeta!'),
+          typ('wir suchen die straße:Tražimo ulicu', 'Tražimo sokak'), luecke('Putujemo ___.', 'kolima')];
 }"""
 
 

@@ -353,10 +353,27 @@ VARIANTEN = [
      "b": {"sg": ("findžan", "findžana", "findžanu", "findžan", "findžanom", "findžanu"),
            "pl": ("findžani", "findžana", "findžanima", "findžane", "findžanima", "findžanima")},
      "gilt": UEBERALL, "beleg": "2c Nr. 22; zweite Schreibung, bs-Web 139 / 1.182 (11 %)"},
-    {"a": "auto", "b": "kola", "gilt": ["auto:auto"],
-     "beleg": "2c Nr. 23; Mehrzahlwort, Adjektive wandern mit - nur das Wort allein"},
+    {"a": "auto", "b": "kola", "gilt": ["auto:auto", "ich habe ein auto:Imam auto"],
+     "beleg": "2c Nr. 23; Mehrzahlwort, Adjektive wandern mit - nur das Wort allein; "
+              "„Imam kola“ seit der dritten Runde (14.11.2026)"},
     {"a": "novac", "b": "pare", "gilt": ["geld:novac"],
      "beleg": "2c Nr. 24; Mehrzahlwort, pare ist auch Mehrzahl von para - nur das Wort allein"},
+    # Dritte Runde (Ajdin, 14.11.2026 abends): „Zweite Form auch in ganzen Sätzen“, „Ja“ -
+    # genau die Formen, nach denen gefragt war: „Imam kola“ (oben bei auto), „u kolima“,
+    # „Nemam para“, „na pazaru“, „na sokaku“, „Supa je u šerpi“, „On ima kuče“. Jede nur
+    # an ihrer einen Stelle, keine weiteren gebeugten Formen (kola, pare, šerpa, kuče
+    # haben anderes Geschlecht oder andere Zahl, Adjektive und Verben wandern mit).
+    {"a": "autu", "b": "kolima", "gilt": ["im auto:u autu"], "beleg": "dritte Runde, 14.11.2026: „u kolima“"},
+    {"a": "novca", "b": "para", "gilt": ["ich habe kein geld:Nemam novca"],
+     "beleg": "dritte Runde, 14.11.2026: „Nemam para“"},
+    {"a": "pijaci", "b": "pazaru", "gilt": ["auf dem markt:na pijaci"],
+     "beleg": "dritte Runde, 14.11.2026: „na pazaru“"},
+    {"a": "ulici", "b": "sokaku", "gilt": ["auf der straße:na ulici"],
+     "beleg": "dritte Runde, 14.11.2026: „na sokaku“"},
+    {"a": "loncu", "b": "šerpi", "gilt": ["Supa je u ___."],
+     "beleg": "dritte Runde, 14.11.2026: „Supa je u šerpi“"},
+    {"a": "psa", "b": "kuče", "gilt": ["er hat einen hund:On ima psa"],
+     "beleg": "dritte Runde, 14.11.2026: „On ima kuče“"},
     {"a": {"sg": ("mobitel", "mobitela", "mobitelu", "mobitel", "mobitelom", "mobitelu")},
      "b": {"sg": ("mobilni", "mobilnog", "mobilnom", "mobilni", "mobilnim", "mobilnom")},
      "gilt": UEBERALL, "beleg": "2c Nr. 25; Alltag"},

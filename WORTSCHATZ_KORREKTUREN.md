@@ -1100,6 +1100,8 @@ allein steht (Ajdin über *šerpa* und *kola*).
   novac“ (*para*, *pare*), „na pijaci“ (*na pazaru*), „Tražimo ulicu“, „na ulici“ (*sokak*),
   „On ima psa“, „Bojim se pasa“, „Čuvaj se psa!“ (*kuče*, *kučeta*). Ajdin entscheidet,
   ob sie dazukommen. „Pas me je ujeo“ ginge nicht: mit *kuče* hieße es *ujelo*.
+  Seit der dritten Runde (unten) zählen „Imam kola“, „u kolima“, „Nemam para“, „na
+  pazaru“, „na sokaku“, „Supa je u šerpi“ und „On ima kuče“; die übrigen bleiben.
 
 ## 14.11.2026 abends – dritte Runde: weitere richtige Antworten beim Tippen
 
@@ -1140,6 +1142,33 @@ nur an den beiden Stellen, an denen die App *Izvinite* zum Tippen erwartet, wie
 Nr. 20), ebenso nur an `manchmal:ponekad`: das Wort nimmt jetzt *nekad* und *nekada*.
 *ponekad* ist sonst nirgends die Antwort (kein Lückensatz). Nur in dieser Richtung:
 „manchmal / früher“ (*nekad*) nimmt *ponekad* nicht, „nie“ (*nikad*) nicht *nekada*.
+
+**Zweite Form auch in ganzen Sätzen.** „Ja“ zu „Imam kola“, „Nemam para“, „na pazaru“,
+„na sokaku“, „Supa je u šerpi“, „On ima kuče“ – genau die Stellen, die bei F6 nicht
+eingebaut waren, weil Geschlecht oder Zahl abweichen. Je ein Paar in `varianten.py`
+nur an dieser einen Stelle, mit genau der gefragten Form (keine weiteren gebeugten
+Formen selbst gebildet):
+
+| Stelle | zählt jetzt auch |
+|---|---|
+| `ich habe ein auto:Imam auto` | Imam kola (Paar *auto* / *kola*, bisher nur `auto:auto`) |
+| `im auto:u autu` | u kolima |
+| `ich habe kein geld:Nemam novca` | Nemam para |
+| `auf dem markt:na pijaci` | na pazaru |
+| `auf der straße:na ulici` | na sokaku |
+| Lückensatz „Supa je u ___.“ (*loncu*) | šerpi |
+| `er hat einen hund:On ima psa` | On ima kuče |
+
+- Nicht gefragt: „Koliko je sahat?“ (Ajdin: „Ne“) und „Moja je ovo kolegica.“ („Ne“)
+  bleiben falsch.
+- Weiter falsch, weil nicht gefragt (Ajdin entscheidet): `mit dem auto:autom` und
+  „Putujemo ___.“ (*kolima*), `das auto des vaters:auto oca` (*kola oca*), `geld
+  abheben:podići novac` und `geld einzahlen:uplatiti novac` (*pare*), `wir suchen die
+  straße:Tražimo ulicu` (*sokak*), `ich habe angst vor hunden:Bojim se pasa`,
+  `vorsicht vor dem hund!:Čuvaj se psa!` und `der hund hat mich gebissen:Pas me je ujeo`
+  (*kuče*). Dazu gut 80 lange Beispielsätze mit *auto*, *novac*, *pijaca*, *ulica*,
+  *lonac* und *pas*, die nie getippt werden.
+- Beim Satzbau ändert sich nichts: keine der neuen Formen ist eine Kachel der App.
 
 ## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zu den Geschichten
 

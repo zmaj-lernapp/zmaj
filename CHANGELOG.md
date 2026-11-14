@@ -614,6 +614,14 @@ are in the Play Store listing. Format:
   maintainer): *ponekad* now also takes the long form *nekada* next to *nekad* (table
   2c, row 20). Still only in that direction.
   `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing the second form in whole phrases (third round, 14.11.2026 evening; decided
+  by the maintainer): "Imam kola", "u kolima", "Nemam para", "na pazaru", "na
+  sokaku", the gap "Supa je u ___." with *šerpi* and "On ima kuče" now count next to
+  *Imam auto*, *u autu*, *Nemam novca*, *na pijaci*, *na ulici*, *loncu* and *On ima
+  psa*. Only at these seven places and only these forms; *autom*, *Putujemo ___.*,
+  *uplatiti novac*, *Tražimo ulicu*, *Čuvaj se psa!* and the others stay as they were.
+  "Koliko je sahat?" and "Moja je ovo kolegica." stay wrong (the maintainer: no).
+  `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

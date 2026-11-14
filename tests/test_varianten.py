@@ -151,6 +151,12 @@ WOERTER = {
     "verkehr:saobraćaj": ["promet"],
     # Dritte Runde (Ajdin, 14.11.2026 abends, Offen-Liste 5a)
     "entschuldigung (sie):Izvinite": ["Oprostite"],
+    "ich habe ein auto:Imam auto": ["Imam kola"],
+    "im auto:u autu": ["u kolima"],
+    "ich habe kein geld:Nemam novca": ["Nemam para"],
+    "auf dem markt:na pijaci": ["na pazaru"],
+    "auf der straße:na ulici": ["na sokaku"],
+    "er hat einen hund:On ima psa": ["On ima kuče"],
 }
 
 # Lückensatz: Text -> zusätzliche Antworten
@@ -174,6 +180,7 @@ LUECKEN = {
     "Idem u ___.": ["kasapnicu"],                            # 37
     # Dritte Runde (Ajdin, 14.11.2026 abends, Offen-Liste 5a)
     "___, molim Vas.": ["Oprostite"],
+    "Supa je u ___.": ["šerpi"],
 }
 
 # Satzbau: Satz -> was zu "ohne" dazukommt. Fast alles sperrte die App schon
@@ -309,8 +316,9 @@ def _z(antworten, wort=True, kennung="x", fall=None):
     ("bosanski lonac", True, []),                        # šerpa nur beim Wort allein
     ("jelovnik", True, []),                              # meni nur bei „Speisekarte“
     ("meni", True, []),                                  # nur von a nach b: „mir“ nimmt nie jelovnik
-    ("Nemam novca", True, []),                           # pare nur beim Wort novac
-    ("u autu", True, []),                                # kola nur beim Wort auto
+    ("Nemam novca", True, []),                           # para nur an „Nemam novca“ (Kennung)
+    ("u autu", True, []),                                # kolima nur an „u autu“ (Kennung)
+    ("Imam auto", True, []),                             # kola nur an auto und „Imam auto“
     ("plati", True, []),                                 # das Verb, nicht plata
 ])
 def test_zusatz_an_beispielen(antwort, wort, mehr):
@@ -340,7 +348,11 @@ def test_kennungen_der_gefaehrlichen_paare():
         assert _z([a], True) == ([], []), a                 # an jedem anderen Wort nichts
         assert _z([b], True, kennung=kennung) == ([], []), b
         paare = [p for p in varianten.VARIANTEN if varianten.faelle(p["a"]).get("grund") == a]
-        assert [p["gilt"] for p in paare] == [[kennung]], a
+        assert [p["gilt"] for p in paare] == [[kennung] + SAETZE_DRITTE_RUNDE.get(a, [])], a
+
+
+# Dritte Runde (14.11.2026 abends): „Imam kola“ - das Paar auto / kola gilt auch dort.
+SAETZE_DRITTE_RUNDE = {"auto": ["ich habe ein auto:Imam auto"]}
 
 
 def test_dasselbe_paar_zweimal_ist_ein_befund(monkeypatch):
@@ -543,25 +555,22 @@ TABELLE_2C = {
 
 # Bleibt falsch: die andere Richtung, Wörter mit derselben Form und anderer
 # Bedeutung, und wo das Wort nicht allein steht, obwohl Geschlecht oder Zahl
-# anders sind (Ajdin: „nur wo das Wort allein steht“).
+# anders sind (Ajdin: „nur wo das Wort allein steht“). Die sechs Sätze, die Ajdin
+# in der dritten Runde freigegeben hat („Nemam para“, „u kolima“ …), stehen unten
+# bei DRITTE_RUNDE.
 GEGEN_2C = [
     ("w", "mir:meni / mi", "jelovnik"),                               # meni heißt auch „mir“
     ("w", "mir ist es egal:Svejedno mi je", "Svejedno jelovnik je"),
     ("w", "mir ist es egal:Svejedno mi je", "Jelovnik je svejedno"),
     ("w", "geld:novac", "para"),                                      # pare nur so, wie es allein steht
-    ("w", "ich habe kein geld:Nemam novca", "Nemam para"),
     ("w", "geld einzahlen:uplatiti novac", "uplatiti pare"),
-    ("w", "im auto:u autu", "u kolima"),                              # kola nur beim Wort auto
-    ("w", "ich habe ein auto:Imam auto", "Imam kola"),
-    ("w", "das auto des vaters:auto oca", "kola oca"),
+    ("w", "das auto des vaters:auto oca", "kola oca"),                # kola nur an auto und „Imam auto“
     ("w", "das auto des vaters:auto oca", "očev kola"),
     ("l", "Putujemo ___.", "kolima"),
     ("w", "krankenwagen / rettung:hitna", "auto hitne pomoći"),       # nie von kola nach auto
     ("l", "Koliko je ___?", "sahata"),                                # sahat nur beim Wort sat
     ("l", "Koliko je ___?", "sahati"),
-    ("l", "Supa je u ___.", "šerpi"),                                 # šerpa nur beim Wort lonac
-    ("w", "bosnischer schmortopf:bosanski lonac", "bosanska šerpa"),
-    ("w", "auf dem markt:na pijaci", "na pazaru"),
+    ("w", "bosnischer schmortopf:bosanski lonac", "bosanska šerpa"),  # šerpa nur am Wort lonac, šerpi in „Supa je u ___.“
     ("w", "der hund hat mich gebissen:Pas me je ujeo", "Pas me je ugrizao"),   # nie von ujesti nach ugristi
     ("w", "verkehrs-:saobraćajni", "prometni"),                       # promet nur beim Wort saobraćaj
     ("w", "verzeih mir:Oprosti mi", "Izvini mi"),                     # nie von oprosti nach izvini
@@ -637,6 +646,14 @@ DRITTE_RUNDE = [
     ("w", "entschuldigung (sie):Izvinite", "Oprostite"),               # Oprostite neben Izvinite
     ("l", "___, molim Vas.", "Oprostite"),
     ("w", "manchmal:ponekad", "nekada"),                              # nekada bei ponekad
+    # Zweite Form auch in ganzen Sätzen, genau diese sieben Stellen
+    ("w", "ich habe ein auto:Imam auto", "Imam kola"),
+    ("w", "im auto:u autu", "u kolima"),
+    ("w", "ich habe kein geld:Nemam novca", "Nemam para"),
+    ("w", "auf dem markt:na pijaci", "na pazaru"),
+    ("w", "auf der straße:na ulici", "na sokaku"),
+    ("l", "Supa je u ___.", "šerpi"),
+    ("w", "er hat einen hund:On ima psa", "On ima kuče"),
 ]
 # Bleibt falsch: die du-Form war nicht gefragt, und nie von oprosti nach izvini.
 GEGEN_DRITTE_RUNDE = [
@@ -648,6 +665,22 @@ GEGEN_DRITTE_RUNDE = [
     ("w", "manchmal:ponekad", "nikada"),                              # nikada heißt „nie“
     ("w", "nie:nikad", "nekada"),
     ("w", "manchmal / früher:nekad", "ponekad"),                      # nie von nekad nach ponekad
+    # Keine weiteren gebeugten Formen: nur die sieben Stellen, nur die genannte Form
+    ("w", "ich habe ein auto:Imam auto", "Imam kolima"),
+    ("w", "im auto:u autu", "u kola"),
+    ("w", "er hat einen hund:On ima psa", "On ima kučeta"),
+    ("w", "auf der straße:na ulici", "na sokak"),
+    ("w", "auf dem markt:na pijaci", "na pazar"),
+    ("w", "mit dem auto:autom", "kolima"),
+    ("l", "Putujemo ___.", "kolima"),
+    ("w", "geld einzahlen:uplatiti novac", "uplatiti para"),
+    ("w", "geld abheben:podići novac", "podići pare"),
+    ("w", "wir suchen die straße:Tražimo ulicu", "Tražimo sokak"),
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučeta"),
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo"),
+    ("l", "Na pijaci ima mnogo ___.", "pazaru"),
+    ("l", "Koliko je ___?", "sahat"),                                 # „Koliko je sahat?“: Ajdin „Ne“
 ]
 
 
@@ -684,3 +717,12 @@ def test_dritte_runde_nichts_anderes_wird_richtig(node_dritte):
     falsch = {k: v for k, v in node_dritte.items() if k[0] == "gegen" and v != "no"}
     assert falsch == {}
     assert len([k for k in node_dritte if k[0] == "gegen"]) == len(GEGEN_DRITTE_RUNDE)
+
+
+def test_dritte_runde_nein_bleibt_nein(grunddaten):
+    """Ajdin „Ne“: „Koliko je sahat?“ (oben in GEGEN_DRITTE_RUNDE) und „Moja je ovo
+    kolegica.“ als andere Wortstellung beim Satzbau."""
+    s = [x for x in grunddaten["satzbau"] if x["bs"] == "Ovo je moja kolegica."]
+    assert len(s) == 1 and not s[0].get("auch"), s
+    luecke = [x for x in grunddaten["saetze"] if x["text"] == "Koliko je ___?"]
+    assert len(luecke) == 1 and not luecke[0].get("auch") and not luecke[0].get("auch_var"), luecke
