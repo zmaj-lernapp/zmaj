@@ -269,7 +269,7 @@ WOERTERBUCH = {
     "sprata": "Stockwerk (Gen.)", "znate": "wissen Sie / ihr wisst", "desilo": "passiert (s)",
     "zvao": "angerufen (m)", "kažu": "sie sagen", "kvar": "Defekt / Panne", "cijelom": "ganzen (Lok.)",
     "naselju": "Siedlung (Lok.)", "popraviti": "reparieren", "dva-tri": "zwei, drei", "imao": "gehabt (m)",
-    "plinski": "Gas-", "štednjak": "Herd", "pozvao": "eingeladen (m)", "komšije": "Nachbarn (Mehrzahl)",
+    "plinski": "Gas-", "šporet": "Herd", "pozvao": "eingeladen (m)", "komšije": "Nachbarn (Mehrzahl)",
     "njegovom": "seiner (Lok.)", "stanu": "Wohnung (Lok.)", "desetak": "etwa zehn", "ljudi": "Leute",
     "komšinica": "Nachbarin", "zehra": "Zehra (Name)", "donijela": "gebracht (w)", "kolače": "Kuchen (Akk. Mehrz.)",
     "mladi": "junge (m)", "bračni": "ehelich / Ehe-", "par": "Paar / ein paar", "donio": "gebracht (m)",
@@ -675,9 +675,11 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_struja", "titel": "Komšiluk bez struje", "stufe": "B1", "passt_zu": "miteinander_umgehen",
+        # "plinski šporet" statt "plinski štednjak" (Prüfbericht 1.4, V13 a; Ajdin, F9 a,
+        # 14.11.2026): Der Herd heißt in der App šporet, štednjak steht als kroatisch.
         "text": ("Bila je hladna januarska večer. Merima je baš kuhala večeru kad je odjednom nestalo struje. Cijela zgrada je bila u mraku, a njen sin Kenan se uplašio i počeo plakati.\n\n"
                  "Merima je upalila svjetlo na telefonu i našla svijeće u ladici. Onda je neko pokucao na vrata. Bio je to komšija Hasan s trećeg sprata. „Komšinice, je li i kod vas nestalo struje?“ „Jeste. Znate li šta se desilo?“ „Zvao sam. Kažu da je kvar u cijelom naselju i da će ga popraviti za dva-tri sata.“\n\n"
-                 "Hasan je imao plinski štednjak, pa je pozvao komšije na čaj. Uskoro je u njegovom stanu bilo desetak ljudi. Komšinica Zehra je donijela kolače, a mladi bračni par s prvog sprata donio je gitaru. Djeca su se igrala u hodniku, a odrasli su pričali, pjevali i smijali se.\n\n"
+                 "Hasan je imao plinski šporet, pa je pozvao komšije na čaj. Uskoro je u njegovom stanu bilo desetak ljudi. Komšinica Zehra je donijela kolače, a mladi bračni par s prvog sprata donio je gitaru. Djeca su se igrala u hodniku, a odrasli su pričali, pjevali i smijali se.\n\n"
                  "„Pet godina živimo u ovoj zgradi, a nikad nismo ovako sjedili zajedno“, rekla je Merima.\n\n"
                  "Oko deset sati struja se vratila. Svjetla su se upalila, a svi su malo razočarano zapljeskali. „Šteta“, rekao je Hasan. „Bilo je lijepo bez struje.“ Od te večeri komšije se mnogo češće druže."),
         "uebersetzung": ("Es war ein kalter Januarabend. Merima kochte gerade das Abendessen, als plötzlich der Strom ausfiel. Das ganze Haus war dunkel, und ihr Sohn Kenan erschrak und fing an zu weinen.\n\n"

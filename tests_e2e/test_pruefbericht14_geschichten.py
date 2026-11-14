@@ -90,3 +90,16 @@ def test_b12_passt_zu_level_bis_b1(seite, heute_stand):
             falsch.append((gid, label, r))
     assert falsch == []
     assert seite.fehler == []
+
+
+# ---------------------------------------------------------------------------
+# V13 a: b1_struja sagt "plinski šporet" (Ajdin, F9 a, 14.11.2026)
+# ---------------------------------------------------------------------------
+@pytest.mark.parametrize("sprache,bedeutung", [("de", "Herd"), ("en", "stove")])
+def test_v13a_sporet_beim_antippen(seite, heute_stand, sprache, bedeutung):
+    seite.starten(sprache=sprache, stand=heute_stand())
+    r = seite.js(TIPPEN, ["b1_struja", "plinski", "šporet"])
+    assert r is not None and not r["hidden"], r
+    assert r["wort"].lower() == "šporet" and r["bedeutung"] == bedeutung, r
+    assert seite.js(TIPPEN, ["b1_struja", "plinski", "štednjak"]) is None
+    assert seite.fehler == []

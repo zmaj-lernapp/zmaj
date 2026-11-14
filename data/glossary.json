@@ -19310,6 +19310,19 @@
    }
   },
   {
+   "bs": "šporet",
+   "translations": {
+    "de": "Herd",
+    "en": "stove",
+    "tr": "mutfak ocağı",
+    "sv": "spis",
+    "nl": "fornuis",
+    "nb": "komfyr",
+    "da": "komfur",
+    "fr": "cuisinière"
+   }
+  },
+  {
    "bs": "šporeta",
    "translations": {
     "de": "Herd (Gen.)",
@@ -19346,19 +19359,6 @@
     "nb": "staver (akkusativ)",
     "da": "stave (akkusativ)",
     "fr": "bâtons (accusatif)"
-   }
-  },
-  {
-   "bs": "štednjak",
-   "translations": {
-    "de": "Herd",
-    "en": "stove",
-    "tr": "mutfak ocağı",
-    "sv": "spis",
-    "nl": "fornuis",
-    "nb": "komfyr",
-    "da": "komfur",
-    "fr": "cuisinière"
    }
   },
   {

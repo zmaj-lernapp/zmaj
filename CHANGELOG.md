@@ -606,6 +606,12 @@ are in the Play Store listing. Format:
   administrative" next to "À faire maintenant") wraps inside itself instead of
   being cut. `tests_e2e/test_pruefbericht14_oberflaeche.py` (all eight languages,
   360 and 412 px, every story in every state).
+- *Komšiluk bez struje* (review for 1.4, 14.11.2026, V13 a; decided by the
+  maintainer, F9 a): Hasan's gas stove is now *plinski šporet* instead of *plinski
+  štednjak*. Everywhere else the app calls the stove *šporet*, and *štednjak* is
+  listed as Croatian. The story dictionary has *šporet* "Herd" in place of
+  *štednjak*; the translation stays "Gasherd". The story had no audio yet.
+  `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

@@ -952,3 +952,21 @@ bosnisch“, also a, b, c, d und f ja, e nein.
 - *Zdravo* („Hallo (neutral, überall)“) nimmt Ćao beim Tippen nicht, so wenig wie
   *Merhaba*; in der Auswahl stehen die beiden nie nebeneinander. Neben *Merhaba* hält
   das `"auch"` Ćao aus der Auswahl.
+
+## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zu den Geschichten
+
+Änderungen am Text der Geschichten (`geschichten.py`). Der Text ist der
+Ton-Schlüssel (`ton_bauen.py`): jede Geschichte, deren Wörter sich ändern, wird neu
+gesprochen.
+
+**V13 a / F9 a, Herd.** Frage: „plinski šporet“, „šporet na plin“ oder štednjak
+lassen? Ajdin: „stednjak/sporet ist herd aber plinski sporet ist gasherd elektrisni
+sporet ist elektroherd usw“, also a.
+
+| Geschichte | vorher | jetzt |
+|---|---|---|
+| *Komšiluk bez struje* (`b1_struja`) | Hasan je imao plinski štednjak | Hasan je imao plinski šporet |
+
+- Im Wörterbuch der Geschichten steht *šporet* „Herd“ statt *štednjak*; *štednjak*
+  kommt in keinem Text mehr vor. *plinski* bleibt „Gas-“, die Übersetzung bleibt
+  „Gasherd“. Der Text hatte noch keinen Ton.

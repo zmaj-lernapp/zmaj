@@ -20,8 +20,14 @@ sieben B1-Geschichten auf ein B2-Level, das B1-Lernende meist noch nicht offen
 haben (b1_stan auf "Wohnen und Miete"). Jetzt auf ein Level bis B1 mit
 demselben Thema. Die Freischaltung haengt nicht daran.
 
-Der Text der Geschichten ist ihr Ton-Schluessel (ton_bauen.py) und bleibt
-unveraendert. Die Tests im Browser stehen in
+V13 a: b1_struja sagte "Hasan je imao plinski štednjak". Der Herd heisst in
+der App šporet, štednjak steht als kroatisch. Ajdin (F9 a): "stednjak/sporet
+ist herd aber plinski sporet ist gasherd". Jetzt "plinski šporet", im
+WOERTERBUCH šporet statt štednjak; die Uebersetzung bleibt "Gasherd".
+
+Der Text der Geschichten ist ihr Ton-Schluessel (ton_bauen.py). Er aendert
+sich nur, wo Ajdin es entschieden hat; test_text_der_geschichten_bleibt haelt
+jeden Stand fest. Die Tests im Browser stehen in
 tests_e2e/test_pruefbericht14_geschichten.py.
 """
 import hashlib
@@ -69,8 +75,9 @@ ENGLISCH = {
     "svoja": "own (pl.)",
 }
 
-# sha256 ueber alle Geschichtentexte am 14.11.2026, vor B10 und B12
-TEXTE_SHA256 = "11df97e6637dfa90a1b5e68dd94252a6dd0f7ad928aafee97bba75d4eb4f6d8f"
+# sha256 ueber alle Geschichtentexte am 14.11.2026. B10 und B12 liessen sie
+# unveraendert (11df97e6…), seit V13 a steht in b1_struja "plinski šporet".
+TEXTE_SHA256 = "526d6a03987d0d0436bb20309ac0397e1e82685da62e20fc1b9f867fea028b6a"
 
 
 def _geschichten(daten):
@@ -198,3 +205,37 @@ def test_b12_keine_geschichte_zeigt_auf_b2(grunddaten):
     falsch = [(g["id"], g["passt_zu"], stufe.get(g["passt_zu"])) for g in grunddaten["geschichten"]
               if stufe.get(g["passt_zu"]) not in ("A1", "A2", "B1")]
     assert falsch == []
+
+
+# ---------------------------------------------------------------------------
+# V13 a: "plinski šporet" in b1_struja (Ajdin, F9 a, 14.11.2026)
+# ---------------------------------------------------------------------------
+def test_v13a_plinski_sporet(grunddaten):
+    g = _geschichten(grunddaten)["b1_struja"]
+    assert "Hasan je imao plinski šporet, pa je pozvao komšije na čaj." in g["text"]
+    assert "Hasan hatte einen Gasherd" in g["uebersetzung"]
+    assert [s["id"] for s in grunddaten["geschichten"] if "štednjak" in s["text"].lower()] == []
+
+
+def test_v13a_woerterbuch(alle_daten):
+    """šporet steht im WOERTERBUCH, štednjak nicht mehr (kommt in keinem Text vor)."""
+    de = alle_daten["de"]["woerterbuch"]
+    assert de["šporet"] == "Herd" and de["plinski"] == "Gas-"
+    assert "štednjak" not in de
+    for code in SPRACHEN:
+        wb = alle_daten[code]["woerterbuch"]
+        assert wb["šporet"].strip() and wb["šporet"] != "Herd", (code, wb["šporet"])
+        assert "štednjak" not in wb, code
+    assert alle_daten["en"]["woerterbuch"]["šporet"] == "stove"
+
+
+def test_v13a_wartet_weiter_auf_ton():
+    """b1_struja hat noch keinen Ton (tests/offen_lesetexte.json), der neue
+    Text steht dort; šporet hat seine Aufnahme schon (Vokabel "Herd")."""
+    import geschichten
+    import offen_lesetexte
+    import ton_bauen
+    g = next(s for s in geschichten.GESCHICHTEN if s["id"] == "b1_struja")
+    assert ton_bauen.schluessel(g["text"]) in offen_lesetexte.GESCHICHTEN
+    assert "štednjak" not in offen_lesetexte.TON and "šporet" not in offen_lesetexte.TON
+    assert "plinski" in offen_lesetexte.TON
