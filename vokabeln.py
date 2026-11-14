@@ -10183,7 +10183,7 @@ SAETZE = [
 
     # Smalltalk & Gefühle
     {"kat": "smalltalk", "text": "Volim ___.",          "answer": "te",       "de": "Ich liebe dich."},
-    {"kat": "smalltalk", "text": "___ mi.",             "answer": "Nedostaješ", "de": "Ich vermisse dich."},
+    {"kat": "smalltalk", "text": "___ mi.",             "answer": "Nedostaješ", "auch": ["Fališ"], "de": "Ich vermisse dich."},   # wie beim Wort Nedostaješ mi (Prüfbericht 1.4, B1/F12 e; V3)
     {"kat": "smalltalk", "text": "Nema ___.",           "answer": "problema", "de": "Kein Problem."},
     {"kat": "smalltalk", "text": "Šta ___?",            "answer": "radiš",    "de": "Was machst du?"},
     {"kat": "smalltalk", "text": "___, idemo!",         "answer": "Hajde",    "de": "Komm, wir gehen!"},

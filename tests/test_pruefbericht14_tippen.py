@@ -185,6 +185,16 @@ def test_b1_andere_fassung_beim_tippen(alle_daten, grunddaten, index_html):
     _pruefe_woerter(alle_daten, grunddaten, index_html, B1, B1)
 
 
+# Der Lueckensatz „___ mi.“ (Ich vermisse dich.) richtet sich nach dem "auch" des Worts
+# „Nedostaješ mi“, wie „___, kako si?“ nach Merhaba (V3). Seit dem 14.11.2026 (Offen-Liste,
+# Punkt 2: „Fališ auch in der Lücke“).
+B1_LUECKEN = {"___ mi.": ("Nedostaješ", ["Fališ"], ["Fališ", "fališ"])}
+
+
+def test_b1_falis_auch_im_lueckensatz(alle_daten, grunddaten, index_html):
+    _pruefe_luecken(alle_daten, grunddaten, index_html, B1_LUECKEN)
+
+
 def test_b1_nur_diese_richtung(grunddaten):
     """„Das stimmt nicht“ (To nije tačno) war nicht gefragt und bleibt."""
     woerter = _woerter(grunddaten)

@@ -81,6 +81,21 @@ def test_b5_cao_nie_als_kachel_neben_merhaba(seite, heute_stand):
     assert seite.fehler == []
 
 
+# B1 (F12 e): „Fališ mi“ zaehlt bei „Ich vermisse dich“. Der Lueckensatz „___ mi.“ richtet
+# sich nach dem Wort (V3) und nimmt seit dem 14.11.2026 auch Fališ (Offen-Liste, Punkt 2).
+B1_LUECKE = [("gap", "___ mi.|Nedostaješ", "Fališ"),
+             ("gap", "___ mi.|Nedostaješ", "Nedostaješ"),
+             ("type", "ich vermisse dich:Nedostaješ mi", "Fališ mi")]
+
+
+def test_b1_falis_kostet_auch_in_der_luecke_kein_leben(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    for ziel, eingabe, leben, lage in _antworten(seite, B1_LUECKE):
+        assert lage["ergebnis"] is True and lage["leben"] == leben, (ziel, eingabe, lage)
+        assert lage["fb"] == "Tačno! ✓" and "ok" in lage["klasse"].split(), (ziel, eingabe, lage)
+    assert seite.fehler == []
+
+
 # V11 (F7 a): Gdje gilt umgangssprachlich auch fuer „wohin“. „Wohin gehst du?“ und der
 # Lueckensatz „___ ideš?“ nehmen es ohne Leben; in der Grammatik „Fragen stellen“ steht
 # Gdje nicht mehr als falscher Knopf neben Kuda.

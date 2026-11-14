@@ -868,6 +868,11 @@ bedeutung“. F5: „passt“.
 - Auch bei *Trebam vodu* (Level Fälle 1, Akkusativ) und *auto oca* (Fälle 2,
   Genitiv), obwohl die andere Fassung den geübten Fall umgeht, und bei *Radit ću*
   im Level Zukunft. Gezeigt und gesprochen wird weiter die Fassung der App.
+- Nachtrag 14.11.2026 (Offen-Liste, Punkt 2: „Fališ auch in der Lücke“): Auch der
+  Lückensatz „___ mi.“ (*Nedostaješ*, „Ich vermisse dich.“) nimmt `"auch":
+  ["Fališ"]`. Er richtet sich nach dem `"auch"` des Worts, wie „___, kako si?“ nach
+  *Merhaba* (V3). Einen Satzbau-Satz mit *Nedostaješ* gibt es nicht, ein `"ohne"`
+  braucht es nicht.
 
 **B2 / F13, andere Wortstellung.** Ajdin: „passt“, a und b ja.
 

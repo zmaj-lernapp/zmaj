@@ -479,7 +479,8 @@ are in the Play Store listing. Format:
   maintainer, F12): *Gdje živiš?*, *To je skupo*, *Tačno je*, *Treba mi voda*, *Treba
   mi potvrda*, *Fališ mi*, *Kako ti je ime?*, *Ne brini se*, *Ja ću raditi* and *očev
   auto* now count next to the phrase the app shows. One `"auch"` each, IDs and
-  recordings stay. `tests/test_pruefbericht14_tippen.py`.
+  recordings stay. The gap "___ mi." (*Nedostaješ*) follows the word and takes *Fališ*
+  too. `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
 - Typing another word order (review for 1.4, 14.11.2026, B2; decided by the
   maintainer, F13): *Kiša pada*, *Snijeg pada*, *Voda curi*, *Meni je svejedno* and
   *Meni je dosadno* now count next to *Pada kiša* and the others, as sentence
