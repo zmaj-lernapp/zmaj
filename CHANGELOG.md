@@ -619,6 +619,14 @@ are in the Play Store listing. Format:
   dictionary, *napraviti* was already there. The old recording (g09) belongs to
   the old text, so the story waits for the next Vesna round with the B1 stories
   (`tests/offen_b1_teil2.py`); the file stays. `tests/test_pruefbericht14_geschichten.py`.
+- Polite *Vi* in the reading stories (review for 1.4, 14.11.2026, S7; decided by
+  the maintainer, F23): capitalised only in writing to one person, lower case in
+  the conversations of a story. *Prvi dan na poslu* ("Prvo ću vam pokazati vašu
+  kancelariju") and the phone call in *Izdajem stan* ("ako vam odgovara", "Hvala
+  vam") are now lower case like *Kod doktora* and *Stari zanat na Baščaršiji*; the
+  message in *Izgubljeni telefon* keeps "molim Vas". The dental section stays
+  capitalised. The audio keys are lower case, so nothing needs new audio.
+  `tests/test_pruefbericht14_geschichten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

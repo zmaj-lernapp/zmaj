@@ -33,12 +33,19 @@ raus, napraviti ("machen / zubereiten") stand schon drin. Der Ton von pismo
 (g09) gehoert zum alten Text; die Geschichte wartet in tests/offen_b1_teil2.py
 auf die naechste Vesna-Runde, die Datei bleibt liegen.
 
+S7: Vi, Vas, Vam standen mal gross, mal klein. Ajdin (F23): gross in
+Geschriebenem an eine Person, klein in Gespraechen der Erzaehlung, der
+Zahnarzt-Teil bleibt gross. Klein jetzt auch in b1_posao (die Chefin zu Haris,
+mit vašu) und b1_stan (Telefonat); gross bleibt die Nachricht in b1_telefon.
+Der Ton-Schluessel ist kleingeschrieben und bleibt (ton_bauen.schluessel).
+
 Der Text der Geschichten ist ihr Ton-Schluessel (ton_bauen.py). Er aendert
 sich nur, wo Ajdin es entschieden hat; test_text_der_geschichten_bleibt haelt
 jeden Stand fest. Die Tests im Browser stehen in
 tests_e2e/test_pruefbericht14_geschichten.py.
 """
 import hashlib
+import re
 
 import pytest
 
@@ -85,8 +92,9 @@ ENGLISCH = {
 
 # sha256 ueber alle Geschichtentexte am 14.11.2026. B10 und B12 liessen sie
 # unveraendert (11df97e6…), seit V13 a steht in b1_struja "plinski šporet"
-# (526d6a03…), seit S3 in pismo "napraviti pitu".
-TEXTE_SHA256 = "b8c9980c3261f712d9b371cbf328d6d5ea05deadb72c71bbe6292eac12a849e3"
+# (526d6a03…), seit S3 in pismo "napraviti pitu" (b8c9980c…), seit S7 "vam"
+# klein in den Gespraechen von b1_posao und b1_stan.
+TEXTE_SHA256 = "46d9367108436a5c4032be50bd182df7c3b830096ae201e7c984015289b3f7cc"
 
 
 def _geschichten(daten):
@@ -297,3 +305,57 @@ def test_s3_pismo_wartet_auf_ton(wurzel):
     assert PISMO_ALT in g09["text"] and os.path.getsize(os.path.join(wurzel, "web", "audio", "g09.mp3")) > 800
     pismo = next(g for g in geschichten.GESCHICHTEN if g["id"] == "pismo")
     assert ton_bauen.schluessel(pismo["text"]) not in {e["key"] for e in toene}
+
+
+# ---------------------------------------------------------------------------
+# S7: hoefliches Vi gross nur in Geschriebenem an eine Person (Ajdin, F23)
+# ---------------------------------------------------------------------------
+VI_FORMEN = re.compile(r"(?<![^\W\d_])(vi|vas|vam|vama|vaš|vaša|vaše|vašu|vašeg|vašem|vašoj|vaši|vašim|vaših)"
+                       r"(?![^\W\d_])", re.I)
+
+# Geschichte -> Stellen, wie sie jetzt im Text stehen
+S7 = {
+    "b1_posao": ["Prvo ću vam pokazati vašu kancelariju"],                 # die Chefin zu Haris
+    "b1_stan": ["ako vam odgovara", "Hvala vam, vidimo se sutra!"],         # Telefonat
+    "b1_telefon": ["Ako ste ga našli, molim Vas, javite se."],             # Nachricht, geschrieben
+    "b1_doktor": ["„I vas boli grlo?“", "„Šta vas boli i od kada?“", "Dat ću vam recept"],
+    "b1_zanat": ["„Jeste li vi napravili", "kad vi odete u penziju"],
+}
+
+
+def _gross_mitten_im_satz(text):
+    """Gross geschriebene Vi-Formen, die nicht am Satz- oder Redeanfang stehen."""
+    raus = []
+    for m in VI_FORMEN.finditer(text):
+        davor = text[:m.start()].rstrip()
+        if m.group()[0].isupper() and davor and davor[-1] not in "„\".!?:":
+            raus.append(m.group())
+    return raus
+
+
+def test_s7_stellen(grunddaten):
+    g = _geschichten(grunddaten)
+    for gid, stellen in S7.items():
+        for stelle in stellen:
+            assert stelle in g[gid]["text"], (gid, stelle)
+
+
+def test_s7_gross_nur_in_der_nachricht(grunddaten):
+    """In den B1-Texten steht ein grosses Vi mitten im Satz nur noch in der
+    Nachricht an den Finder des Handys. "„Vaš telefon …" beginnt die Rede.
+    b1_mejl schreibt dem Cousin und seiner Familie (vas, vam: euch), klein."""
+    gross = {g["id"]: _gross_mitten_im_satz(g["text"]) for g in grunddaten["geschichten"]
+             if g["id"].startswith("b1_")}
+    assert {k: v for k, v in gross.items() if v} == {"b1_telefon": ["Vas"]}
+
+
+def test_s7_ton_schluessel_bleibt():
+    """Gross oder klein aendert den Ton-Schluessel nicht: beide Texte warten mit
+    demselben Schluessel in tests/offen_lesetexte.json auf ihren Ton."""
+    import geschichten
+    import offen_lesetexte
+    import ton_bauen
+    for gid in ("b1_posao", "b1_stan"):
+        g = next(s for s in geschichten.GESCHICHTEN if s["id"] == gid)
+        assert ton_bauen.schluessel(g["text"]) == g["text"].lower()
+        assert ton_bauen.schluessel(g["text"]) in offen_lesetexte.GESCHICHTEN, gid

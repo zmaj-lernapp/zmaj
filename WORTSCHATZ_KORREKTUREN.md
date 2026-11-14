@@ -986,3 +986,24 @@ napraviti pitu nicht skuhati“, also ja.
 - Die Geschichte hatte Ton (g09, Vesna) und Wortzeiten. Beides gehört zum alten Text;
   sie wird in der nächsten Vesna-Runde mit den B1-Texten neu gesprochen und wartet
   bis dahin in `tests/offen_b1_teil2.py`. Die alte Datei bleibt liegen.
+
+**S7 / F23, Vi, Vas, Vam.** Frage: groß in Geschriebenem an eine Person, klein in
+Dialogen, Zahnarzt bleibt groß? Ajdin: ja.
+
+| Geschichte | vorher | jetzt | warum |
+|---|---|---|---|
+| *Prvi dan na poslu* (`b1_posao`) | Prvo ću Vam pokazati Vašu kancelariju | Prvo ću vam pokazati vašu kancelariju | Die Chefin spricht mit Haris. |
+| *Izdajem stan* (`b1_stan`) | ako Vam odgovara · Hvala Vam | ako vam odgovara · Hvala vam | Telefonat |
+
+- Bleibt groß: „molim Vas, javite se“ in *Izgubljeni telefon* (`b1_telefon`), die
+  Nachricht an den Finder. „Vaš telefon …“ beim Kellner beginnt die Rede.
+- Bleibt klein: *Kod doktora* (`b1_doktor`) und *Stari zanat na Baščaršiji*
+  (`b1_zanat`), Gespräche. In *Mejl rođaku* (`b1_mejl`) schreibt Emir dem Cousin und
+  seiner Familie (*kod vas*, *ako vam*: bei euch, euch); das ist kein höfliches Vi.
+- Mit *vam* auch *vašu* klein, im selben Satz der Chefin.
+- Der Zahnarzt-Teil (`zahnarzt.py`) bleibt groß. Der Ton-Schlüssel ist
+  kleingeschrieben, beide Texte hatten noch keinen Ton.
+- Offen: *Na općini* (`opcina`), „Hvala Vam na pomoći“, kaže Amina. Auch ein
+  Gespräch, stand aber nicht im Prüfbericht und hat Ton und Wortzeiten (g10).
+  `ton_bauen.wortzeiten_passen()` vergleicht den Text mit Groß- und Kleinschreibung;
+  klein geschrieben fielen die Wortzeiten beim nächsten `ton_bauen.py` weg.

@@ -26,6 +26,12 @@ Tipp zum Schreiben neuer Geschichten: kurze Sätze, Wörter aus den Levels davor
 und jedes neue Wort ins WOERTERBUCH eintragen. start.py meldet beim Start,
 welche Wörter noch fehlen.
 
+Höfliches Vi, Vas, Vam (und vaš): groß nur in Geschriebenem an eine Person
+(Brief, Mail, Nachricht, Anzeige, wie "molim Vas, javite se" in b1_telefon),
+klein in den Gesprächen der Erzählung ("Prvo ću vam pokazati vašu
+kancelariju"). Ajdin, F23 (Prüfbericht 1.4, S7, 14.11.2026). Der Zahnarzt-Teil
+(zahnarzt.py) bleibt groß.
+
 HINWEIS: Claude ist kein Muttersprachler. Texte bitte prüfen.
 """
 
@@ -722,7 +728,7 @@ GESCHICHTEN = [
     {
         "id": "b1_posao", "titel": "Prvi dan na poslu", "stufe": "B1", "passt_zu": "arbeitsplatz",
         "text": ("Haris je završio elektrotehniku i u ponedjeljak je počeo raditi u jednoj firmi u Zenici. Noć prije nije mogao spavati. Ustao je u šest, obukao novu košulju i dva puta provjerio je li ponio sve dokumente.\n\n"
-                 "Na poslu ga je dočekala šefica, gospođa Mujić. „Dobro jutro, Harise, dobro došli! Prvo ću Vam pokazati Vašu kancelariju, a onda ćete upoznati kolege.“\n\n"
+                 "Na poslu ga je dočekala šefica, gospođa Mujić. „Dobro jutro, Harise, dobro došli! Prvo ću vam pokazati vašu kancelariju, a onda ćete upoznati kolege.“\n\n"
                  "Kolege su bile ljubazne. Najstariji među njima, Nedžad, radi u firmi već dvadeset godina. „Ako ti bilo šta treba, pitaj mene“, rekao je. „I nemoj se stidjeti. Svi smo nekad bili novi.“\n\n"
                  "Prije podne je Haris čitao pravila firme. U deset sati svi su otišli na pauzu, ali Haris nije znao da se u firmi kahva pije zajedno, pa je ostao za stolom. Nedžad se vratio po njega: „Hajde, kahva je svetinja!“\n\n"
                  "Poslije pauze je dobio prvi zadatak: morao je popraviti jedan stari aparat. Trebalo mu je tri sata, ali je uspio. Šefica je bila zadovoljna. „Odlično za prvi dan“, rekla je.\n\n"
@@ -752,8 +758,8 @@ GESCHICHTEN = [
                  "„Je li zgrada mirna? Dva dana sedmično radim od kuće.“\n"
                  "„Vrlo je mirna. Komšije su uglavnom stariji ljudi.“\n"
                  "„Odlično. Kada bih mogla pogledati stan?“\n"
-                 "„Može sutra u šest, ako Vam odgovara.“\n"
-                 "„Odgovara mi. Hvala Vam, vidimo se sutra!“\n\n"
+                 "„Može sutra u šest, ako vam odgovara.“\n"
+                 "„Odgovara mi. Hvala vam, vidimo se sutra!“\n\n"
                  "Sutradan je Selma pogledala stan. Bio je mali, ali svijetao i čist, a s balkona se vidio Trebević. Odmah je potpisala ugovor. Prvu noć je spavala na dušeku na podu, ali je bila presretna."),
         "uebersetzung": ("Selma hat eine Stelle in Sarajevo bekommen und sucht eine Wohnung. Im Internet hat sie diese Anzeige gefunden:\n\n"
                          "„Vermiete Einzimmerwohnung in Grbavica. Vierzig Quadratmeter, dritter Stock, mit Aufzug. Die Wohnung ist möbliert, renoviert und hat einen Balkon. In der Nähe: Straßenbahn, Schule und Laden. Miete fünfhundert Mark im Monat plus Nebenkosten. Haustiere nicht erlaubt. Anrufe nach 17 Uhr.“\n\n"
