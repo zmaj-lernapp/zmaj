@@ -12,6 +12,7 @@ Kein Paar kad/kada in varianten.py, weil kada auch „Badewanne“ heisst.
 
 V4 und B8: In der Auswahl stand als falscher Knopf ein Wort, das genauso richtig
 ist (Molim neben „Gern geschehen“, dići neben podići, zajam neben pozajmica).
+B5: Ćao ist auch „Hallo“ (F16) und stand neben Zdravo als falscher Knopf.
 B9: „(Antwort darauf)“ als Bedeutung von Alejkumu selam verwies ins Leere.
 V5: Hatte nur eines von zwei Woertern im selben Level eine Klammer („How are
 you?“ neben „How are you? (formal)“), passte die Frage auf beide Knoepfe.
@@ -50,10 +51,11 @@ def test_v3_zdravo_im_lueckensatz(grunddaten):
     saetze = [s for s in grunddaten["saetze"] if s["text"] == "___, kako si?"]
     assert len(saetze) == 1, saetze
     s = saetze[0]
-    # Gezeigt und gesprochen wird weiter der Satz mit Merhaba.
-    assert s["answer"] == "Merhaba" and s["auch"] == ["Zdravo"], s
+    # Gezeigt und gesprochen wird weiter der Satz mit Merhaba. Ćao seit B5/F16
+    # (tests/test_pruefbericht14_tippen.py), am Wort wie im Lueckensatz.
+    assert s["answer"] == "Merhaba" and s["auch"] == ["Zdravo", "Ćao"], s
     merhaba = [w for w in _woerter(grunddaten).values() if w["bs"] == "Merhaba"]
-    assert [w.get("auch") for w in merhaba] == [["Zdravo"]]
+    assert [w.get("auch") for w in merhaba] == [["Zdravo", "Ćao"]]
 
 
 def test_v3_auch_gilt_in_jeder_sprache(alle_daten):
@@ -116,6 +118,19 @@ B8_PAARE = [("zajam", "pozajmica"), ("jaran", "drug / drugarica")]
 
 def test_b8_darlehen_und_kumpel_nie_in_derselben_auswahl(index_html, grunddaten):
     _paare_pruefen(index_html, grunddaten, B8_PAARE)
+
+
+# B5: Ćao ist auch „Hallo“ (Ajdin, F16 ja) und stand als falscher Knopf neben
+# „Hallo“, in 46 bis 57 von 400 Ziehungen. Zdravo („Hallo (neutral, überall)“)
+# nimmt Ćao beim Tippen nicht, darum hier. Bei Merhaba zaehlt es beim Tippen
+# ("auch", test_pruefbericht14_tippen.py); das haelt es auch aus der Auswahl
+# (geschwister()), ein Paar hier waere doppelt und sagte das Gegenteil.
+B5_PAARE = [("Zdravo", "Ćao")]
+
+
+def test_b5_cao_nie_neben_zdravo(index_html, grunddaten):
+    _paare_pruefen(index_html, grunddaten, B5_PAARE)
+    assert ("Merhaba", "Ćao") not in _nie_nebeneinander(index_html)
 
 
 # B9: Alejkumu selam hiess "(Antwort darauf)", englisch "(reply to this)". Seit dem

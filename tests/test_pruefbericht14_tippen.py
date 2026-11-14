@@ -300,3 +300,35 @@ def test_s1_ajde_bleibt_falsch(grunddaten, index_html):
     s = _luecken(grunddaten, "___, idemo!")
     assert s["answer"] == "Hajde" and "auch" not in s, s
     assert _matches(index_html, [(_luecke_antworten(s), "Ajde")]) == ["no"]
+
+
+# ---- B5 / F16: Ćao ist auch „Hallo“ ----
+# F16 ja. Beim Wort „Hallo“ (Merhaba) zaehlt Ćao beim Tippen, ebenso im Lueckensatz
+# „___, kako si?“, der sich nach dem Wort richtet (V3). Gezeigt und gesprochen wird
+# weiter Merhaba. Beim Satzbau „Merhaba, kako si?“ liegt ćao nie als falsche Kachel,
+# wie es die Beschreibung von "ohne" in vokabeln.py schon als Beispiel nennt.
+B5 = {"hallo:Merhaba": ["Zdravo", "Ćao"]}
+B5_NEU = {"hallo:Merhaba": ["Ćao", "ćao"]}
+B5_LUECKEN = {"___, kako si?": ("Merhaba", ["Zdravo", "Ćao"], ["Ćao", "ćao"])}
+
+
+def test_b5_cao_bei_hallo(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, B5, B5_NEU)
+    _pruefe_luecken(alle_daten, grunddaten, index_html, B5_LUECKEN)
+
+
+def test_b5_satzbau_ohne_cao(alle_daten):
+    for code, daten in alle_daten.items():
+        s = [x for x in daten["satzbau"] if x["bs"] == "Merhaba, kako si?"]
+        assert len(s) == 1, (code, s)
+        assert s[0]["ohne"][:1] == ["ćao"], (code, s[0])
+
+
+def test_b5_andere_stellen_bleiben(grunddaten):
+    """Ćao bleibt „Tschüss“ mit Doviđenja im "auch". Zdravo („Hallo (neutral,
+    überall)“) nimmt Ćao nicht, so wenig wie Merhaba; in der Auswahl haelt
+    NIE_NEBENEINANDER die beiden auseinander (test_pruefbericht14_antworten.py)."""
+    woerter = _woerter(grunddaten)
+    assert woerter["tschüss:Ćao"].get("auch") == ["Doviđenja"]
+    assert woerter["auf wiedersehen:Doviđenja"].get("auch") == ["Ćao"]
+    assert woerter["hallo (neutral, überall):Zdravo"].get("auch") is None

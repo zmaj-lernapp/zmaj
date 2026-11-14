@@ -500,6 +500,14 @@ are in the Play Store listing. Format:
   ___." *benzin*, "Ovo je jako ___." *fino* and "Poslije posla ___ večeru." *spremam* and
   *pravim*. *Ajde* without h in "___, idemo!" stays wrong ("no longer Bosnian").
   `tests/test_pruefbericht14_tippen.py`.
+- *Ćao* is also "Hallo" (review for 1.4, 14.11.2026, B5; decided by the maintainer,
+  F16). Typing it for "Hallo" (*Merhaba*) and in the gap sentence "___, kako si?" now
+  counts; *Merhaba* stays what is shown and spoken. In sentence building "Merhaba, kako
+  si?" *ćao* is no longer a wrong tile (`"ohne"`), and in multiple choice it no longer
+  stands as a wrong button next to "Hallo" (*Merhaba* through its `"auch"`, *Zdravo*
+  through `NIE_NEBENEINANDER`). *Zdravo* ("Hallo (neutral, überall)") does not take
+  it when typing, just as it does not take *Merhaba*.
+  `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_antworten.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

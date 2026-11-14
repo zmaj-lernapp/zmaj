@@ -223,7 +223,7 @@ KATEGORIEN = [
     {"id": "basics", "label": "Grundlagen", "sektion": "alltag", "tipp": "Erste Wörter: Grüßen, Danke, Ja und Nein.",
      "reihe": ["Dobro jutro", "Dobar dan", "Dobro veče", "Laku noć / Lahku noć"],   # Grüße nach Tageszeit in Folge, der Rest gemischt (27.10.2026)
      "words": [
-        {"de": "Hallo",                       "bs": "Merhaba", "auch": ["Zdravo"]},
+        {"de": "Hallo",                       "bs": "Merhaba", "auch": ["Zdravo", "Ćao"]},   # Ćao ist auch „Hallo“ (Ajdin, Prüfbericht 1.4, B5/F16)
         # Die Grüße auch in der Liste in Tagesfolge wie in "reihe": Anki,
         # die Exporte und die Wortliste des Levels gehen nach der Liste
         # (Prüfer 27.10.2026).
@@ -10106,7 +10106,7 @@ KATEGORIEN = [
 SAETZE = [
     # Grundlagen
     {"kat": "basics", "text": "Dobar ___",              "answer": "dan",       "de": "Guten Tag"},
-    {"kat": "basics", "text": "___, kako si?",          "answer": "Merhaba",   "auch": ["Zdravo"], "de": "Hallo, wie geht's dir?"},   # wie beim Wort Merhaba (Prüfbericht 1.4, V3)
+    {"kat": "basics", "text": "___, kako si?",          "answer": "Merhaba",   "auch": ["Zdravo", "Ćao"], "de": "Hallo, wie geht's dir?"},   # wie beim Wort Merhaba (Prüfbericht 1.4, V3; Ćao B5/F16)
     {"kat": "basics", "text": "Kako ___?",              "answer": "si",        "de": "Wie geht's dir?"},
     {"kat": "basics", "text": "Hvala ___!",             "answer": "puno",      "de": "Vielen Dank!"},
     {"kat": "basics", "text": "Laku ___!",              "answer": "noć",       "de": "Gute Nacht!"},
@@ -10594,7 +10594,7 @@ SAETZE = [
 # und mit "ohne" Ablenker gesperrt, die den Satz ebenfalls richtig machen.
 SATZBAU = [
     # Level 1 · Grundlagen
-    {"kat": "basics", "bs": "Merhaba, kako si?", "de": "Hallo, wie geht's dir?", "quelle": "saetze"},
+    {"kat": "basics", "bs": "Merhaba, kako si?", "ohne": ["ćao"], "de": "Hallo, wie geht's dir?", "quelle": "saetze"},   # ćao ist auch „Hallo“ (Prüfbericht 1.4, B5/F16)
     {"kat": "basics", "bs": "Ja se zovem Amina.", "auch": ["Zovem se Amina.", "Amina se zovem."], "de": "Ich heiße Amina.", "quelle": "neu"},
     {"kat": "basics", "bs": "Drago mi je.", "de": "Freut mich.", "quelle": "saetze"},
     {"kat": "basics", "bs": "Nema na čemu.", "de": "Gern geschehen.", "quelle": "saetze"},

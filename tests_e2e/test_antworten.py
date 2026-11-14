@@ -37,7 +37,9 @@ GESPERRT = [("ziehen:vući", "ziehen / zurückziehen:povlačiti"),
             ("hochheben / aufheben / abheben:podizati", "anheben / aufheben (umgangssprachlich):dizati"),
             # B8: beide "Darlehen", beide "Kumpel", im selben Level.
             ("darlehen / anleihe:zajam", "darlehen (privat):pozajmica"),
-            ("kumpel (slang, vor allem sarajevo):jaran", "kumpel / kumpelin (locker):drug / drugarica")]
+            ("kumpel (slang, vor allem sarajevo):jaran", "kumpel / kumpelin (locker):drug / drugarica"),
+            # B5: Ćao ist auch „Hallo“ (F16). Zdravo nimmt es beim Tippen nicht.
+            ("hallo (neutral, überall):Zdravo", "tschüss:Ćao")]
 
 # Frage und falscher Knopf im selben Level: Heisst die Frage genau wie ein Teil
 # des Knopfs, muss das andere Wort aus der Auswahl heraus sein. Verglichen wird
@@ -147,6 +149,19 @@ def test_gesperrte_paare_nie_in_derselben_auswahl(seite, heute_stand, wort, ande
         assert e["gesehen"] == 0, (a, b, e)
         # Gesperrt heisst nicht gleichwertig: beim Tippen aendert sich nichts.
         assert e["geschwister"] and not e["annehmbar"], (a, b, e)
+    assert seite.fehler == []
+
+
+def test_cao_nie_neben_merhaba_und_zaehlt_dort_beim_tippen(seite, heute_stand):
+    """Pruefbericht 1.4, B5 (F16 ja): Ćao ist auch „Hallo“. Bei Merhaba steht es im
+    "auch": nie in derselben Auswahl, beim Tippen richtig. Ćao selbst ("Tschüss")
+    nimmt Merhaba nicht."""
+    seite.starten(stand=heute_stand())
+    hin = seite.js(AUSWAHL, ["hallo:Merhaba", "tschüss:Ćao", 200])
+    her = seite.js(AUSWAHL, ["tschüss:Ćao", "hallo:Merhaba", 200])
+    assert hin["gesehen"] == 0 and her["gesehen"] == 0, (hin, her)
+    assert hin["geschwister"] and her["geschwister"], (hin, her)
+    assert hin["annehmbar"] and not her["annehmbar"], (hin, her)
     assert seite.fehler == []
 
 

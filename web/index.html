@@ -12812,7 +12812,13 @@ const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako']
   /* Pruefbericht 1.4 (14.11.2026), B8: zajam und pozajmica heissen in allen Sprachen
      "Darlehen" (Level bank_darlehen), jaran und drug / drugarica beide "Kumpel" (Level
      kennenlernen). Nur die Klammer trennt sie. */
-  ['zajam', 'pozajmica'], ['jaran', 'drug / drugarica']];
+  ['zajam', 'pozajmica'], ['jaran', 'drug / drugarica'],
+  /* Pruefbericht 1.4 (14.11.2026), B5: Ćao ist auch „Hallo“ (Ajdin, F16). Es stand als
+     falscher Knopf neben „Hallo“, in 46 bis 57 von 400 Ziehungen. Bei Merhaba („Hallo“)
+     zaehlt es seitdem beim Tippen, das "auch" am Wort haelt es dort aus der Auswahl
+     (geschwister()). Bei Zdravo („Hallo (neutral, überall)“) zaehlt es nicht, so wenig
+     wie Merhaba - darum hier. */
+  ['Zdravo', 'Ćao']];
 /* Seit den Paketen 10 bis 20 sind es gut 90 Paare, und distractors() fragt fuer jedes Wort
    des Vorrats: als Menge nachschlagen statt die Liste jedes Mal abzulaufen (07.11.2026). */
 const _NIE = new Set(NIE_NEBENEINANDER.flatMap(([x, y]) => [x + '\u0000' + y, y + '\u0000' + x]));

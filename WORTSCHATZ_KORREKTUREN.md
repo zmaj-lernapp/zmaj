@@ -937,3 +937,18 @@ bosnisch“, also a, b, c, d und f ja, e nein.
   mehr bosnisch“; es bekommt wie bisher „Fast richtig!“ und ist beim zweiten Mal falsch.
 - Beim Satzbau liegen *struci*, *posebno*, *benzin*, *fino*, *spremam* und *pravim* bis
   zu diesen Leveln nie als Kachel, ein `"ohne"` braucht es nicht.
+
+**B5 / F16, Ćao.** Frage: „Ist Ćao auch „Hallo“?“ Ajdin: „passt“, also ja.
+
+| Stelle | Änderung |
+|---|---|
+| `hallo:Merhaba` | `"auch": ["Zdravo", "Ćao"]` |
+| Lückensatz „___, kako si?“ (*Merhaba*) | `"auch": ["Zdravo", "Ćao"]`, wie beim Wort (V3) |
+| Satzbau „Merhaba, kako si?“ | `"ohne": ["ćao"]` |
+| `NIE_NEBENEINANDER` | `['Zdravo', 'Ćao']` |
+
+- Gezeigt und gesprochen wird weiter *Merhaba*. Ćao selbst bleibt „Tschüss“ mit
+  *Doviđenja* im `"auch"`; Kennung und Aufnahme bleiben.
+- *Zdravo* („Hallo (neutral, überall)“) nimmt Ćao beim Tippen nicht, so wenig wie
+  *Merhaba*; in der Auswahl stehen die beiden nie nebeneinander. Neben *Merhaba* hält
+  das `"auch"` Ćao aus der Auswahl.

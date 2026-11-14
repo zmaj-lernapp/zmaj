@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Pruefbericht 1.4 (14.11.2026) im Browser: richtige Antworten, die ein Leben kosteten (V3, B9).
+"""Pruefbericht 1.4 (14.11.2026) im Browser: richtige Antworten, die ein Leben kosteten (V3, B5, B9).
 
 V3: „Wann kommst du?“, getippt „Kad dolaziš?“, gab erst „Fast richtig!“, dann
 „Richtig wäre: Kada dolaziš?“ und ein Leben weniger. Ebenso Zdravo im
@@ -51,6 +51,33 @@ def test_v3_nur_die_genannten_formen(seite, heute_stand):
               matches('Doviđenja', [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / '))];
     }""")
     assert erg == ["almost", "no", "no", "no"], erg
+    assert seite.fehler == []
+
+
+# B5 (F16 ja): Ćao ist auch „Hallo“. Getippt bei „Hallo“ und im Lueckensatz
+# „___, kako si?“ kostet es kein Leben mehr, beim Satzbau „Merhaba, kako si?“
+# liegt ćao nie als falsche Kachel.
+B5 = [("type", "hallo:Merhaba", "Ćao"),
+      ("gap", "___, kako si?|Merhaba", "Ćao")]
+
+
+def test_b5_cao_kostet_bei_hallo_kein_leben(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    for ziel, eingabe, leben, lage in _antworten(seite, B5):
+        assert lage["ergebnis"] is True and lage["leben"] == leben, (ziel, eingabe, lage)
+        assert lage["fb"] == "Tačno! ✓" and "ok" in lage["klasse"].split(), (ziel, eingabe, lage)
+    assert seite.fehler == []
+
+
+def test_b5_cao_nie_als_kachel_neben_merhaba(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    erg = seite.js("""() => {
+      const s = SATZBAU.find(x => x.bs === 'Merhaba, kako si?');
+      const gesehen = new Set();
+      for(let n = 0; n < 300; n++) kachelAblenker(s, 3).forEach(x => gesehen.add(x.toLowerCase()));
+      return {ohne: s.ohne, cao: gesehen.has('ćao'), anzahl: gesehen.size};
+    }""")
+    assert erg["ohne"][:1] == ["ćao"] and erg["cao"] is False and erg["anzahl"] > 5, erg
     assert seite.fehler == []
 
 
