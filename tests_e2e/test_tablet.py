@@ -287,7 +287,11 @@ def test_dialog_meldung_und_konfetti_mittig(geraet, heute_stand, breite, hoehe):
                         return {box: [b.left, b.top, b.right, b.bottom], min: Math.min(...x), max: Math.max(...x), n: x.length}; }""")
     l, o, r, u = w["box"]
     assert abs((l + r) / 2 - breite / 2) <= 1 and abs((o + u) / 2 - hoehe / 2) <= 1, w
-    assert w["n"] > 0 and w["min"] >= -1 and w["max"] <= breite, w
+    # Ein Schnipsel ganz links (left 0) ragt gedreht ueber den Rand: 9 x 14
+    # Punkte, schraeg gestellt bis zu 3,8 Punkte, mit dem zoom mal GROSS -
+    # auf dem iPad 13 Zoll 5,3 px. Die alte Grenze -1 machte den Test dort
+    # zufaellig rot, die App war richtig (Pruefbericht 1.4, S28).
+    assert w["n"] > 0 and w["min"] >= -5 * g and w["max"] <= breite, w
     assert s.fehler == [] and s.fremd == []
 
 
