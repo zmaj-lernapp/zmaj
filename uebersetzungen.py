@@ -1303,7 +1303,8 @@ INHALT = {
     "schön": "nice",
     "Nichts": "Nothing",
     "Alles": "Everything",
-    "Was machst du?": "What are you doing?",
+    # Pruefbericht 1.4 (14.11.2026), B7: Im Lueckensatz gilt nur radiš, "you" passte auch auf radite (wie "Wann wirst du kommen?"). Gilt auch fuer Wort und Satzbau mit demselben Text.
+    "Was machst du?": "What are you doing? (informal)",
     "Wo bist du?": "Where are you?",
     "Ich habe keine Zeit": "I have no time",
     "Ich bin müde (m/w)": "I am tired (m/f)",
@@ -1337,8 +1338,10 @@ INHALT = {
     "Wann kommst du?": "When are you coming?",
     "Warum nicht?": "Why not?",
     "Was ist das?": "What is that?",
-    "Wie alt bist du?": "How old are you?",
-    "Hast du Zeit?": "Do you have time?",
+    # Pruefbericht 1.4 (14.11.2026), B7: Im Lueckensatz gilt nur imaš, "you" passte auch auf imate (wie "Wann wirst du kommen?"). Gilt auch fuer Wort und Satzbau mit demselben Text.
+    "Wie alt bist du?": "How old are you? (informal)",
+    # Pruefbericht 1.4 (14.11.2026), B7: Im Lueckensatz gilt nur Imaš, "you" passte auch auf Imate (wie "Wann wirst du kommen?"). Gilt auch fuer Wort und Satzbau mit demselben Text.
+    "Hast du Zeit?": "Do you have time? (informal)",
     "Sprichst du Englisch?": "Do you speak English?",
     "Kann ich helfen?": "Can I help?",
     "Wo wohnst du?": "Where do you live?",
@@ -1673,7 +1676,8 @@ INHALT = {
     "Ich muss arbeiten": "I have to work",
     "Ich muss gehen": "I have to go",
     "Ich kann nicht kommen": "I cannot come",
-    "Kannst du mir helfen?": "Can you help me?",
+    # Pruefbericht 1.4 (14.11.2026), B7: Im Lueckensatz gilt nur Možeš, "you" passte auch auf Možete (wie "Wann wirst du kommen?"). Gilt auch fuer Wort und Satzbau mit demselben Text.
+    "Kannst du mir helfen?": "Can you help me? (informal)",
     "Ich will schlafen": "I want to sleep",
     "Ich möchte lernen": "I want to study",
     "Darf ich fragen?": "May I ask?",
@@ -2166,8 +2170,10 @@ INHALT = {
     "Ich spreche Bosnisch.": "I speak Bosnian.",
     "Ich trinke Kaffee.": "I drink coffee.",
     "Wir lernen Bosnisch.": "We are learning Bosnian.",
-    "Ich liebe dich.": "I love you.",
-    "Ich vermisse dich.": "I miss you.",
+    # Pruefbericht 1.4 (14.11.2026), B7: Im Lueckensatz gilt nur te, "you" passte auch auf vas (wie "Wann wirst du kommen?").
+    "Ich liebe dich.": "I love you. (informal)",
+    # Pruefbericht 1.4 (14.11.2026), B7: Im Lueckensatz gilt nur Nedostaješ, "you" passte auch auf Nedostajete (wie "Wann wirst du kommen?").
+    "Ich vermisse dich.": "I miss you. (informal)",
     "Kein Problem.": "No problem.",
     "Komm, wir gehen!": "Come on, let's go!",
     "Wo ist der Schlüssel?": "Where is the key?",

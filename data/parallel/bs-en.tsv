@@ -338,7 +338,7 @@ Super!	Great!	word	super!:Super!
 lijepo	nice	word	schön:lijepo
 Ništa	Nothing	word	nichts:Ništa
 Sve	Everything	word	alles:Sve
-Šta radiš?	What are you doing?	word	was machst du?:Šta radiš?
+Šta radiš?	What are you doing? (informal)	word	was machst du?:Šta radiš?
 Gdje si?	Where are you?	word	wo bist du?:Gdje si?
 Nemam vremena	I have no time	word	ich habe keine zeit:Nemam vremena
 Umoran sam / Umorna sam	I am tired (m/f)	word	ich bin müde (m/w):Umoran sam / Umorna sam
@@ -596,8 +596,8 @@ Kuda ideš?	Where are you going?	word	wohin gehst du?:Kuda ideš?
 Kada dolaziš?	When are you coming?	word	wann kommst du?:Kada dolaziš?
 Zašto ne?	Why not?	word	warum nicht?:Zašto ne?
 Šta je to?	What is that?	word	was ist das?:Šta je to?
-Koliko imaš godina?	How old are you?	word	wie alt bist du?:Koliko imaš godina?
-Imaš li vremena?	Do you have time?	word	hast du zeit?:Imaš li vremena?
+Koliko imaš godina?	How old are you? (informal)	word	wie alt bist du?:Koliko imaš godina?
+Imaš li vremena?	Do you have time? (informal)	word	hast du zeit?:Imaš li vremena?
 Govoriš li engleski?	Do you speak English?	word	sprichst du englisch?:Govoriš li engleski?
 Mogu li pomoći?	Can I help?	word	kann ich helfen?:Mogu li pomoći?
 Gdje stanuješ?	Where do you live?	word	wo wohnst du?:Gdje stanuješ?
@@ -1075,7 +1075,7 @@ trebao bih / trebala bih	I should (m/f)	word	ich sollte (m/w):trebao bih / treba
 Moram raditi	I have to work	word	ich muss arbeiten:Moram raditi
 Moram ići	I have to go	word	ich muss gehen:Moram ići
 Ne mogu doći	I cannot come	word	ich kann nicht kommen:Ne mogu doći
-Možeš li mi pomoći?	Can you help me?	word	kannst du mir helfen?:Možeš li mi pomoći?
+Možeš li mi pomoći?	Can you help me? (informal)	word	kannst du mir helfen?:Možeš li mi pomoći?
 Hoću spavati	I want to sleep	word	ich will schlafen:Hoću spavati
 Želim učiti	I want to study	word	ich möchte lernen:Želim učiti
 pitati	to ask	word	fragen:pitati
@@ -8042,10 +8042,10 @@ Skreni lijevo.	Turn left.	sentence	s0043
 Ja govorim bosanski.	I speak Bosnian.	sentence	s0044
 Ja pijem kahvu.	I drink coffee.	sentence	s0045
 Mi učimo bosanski.	We are learning Bosnian.	sentence	s0046
-Volim te.	I love you.	sentence	s0047
-Nedostaješ mi.	I miss you.	sentence	s0048
+Volim te.	I love you. (informal)	sentence	s0047
+Nedostaješ mi.	I miss you. (informal)	sentence	s0048
 Nema problema.	No problem.	sentence	s0049
-Šta radiš?	What are you doing?	sentence	s0050
+Šta radiš?	What are you doing? (informal)	sentence	s0050
 Hajde, idemo!	Come on, let's go!	sentence	s0051
 Gdje je ključ?	Where is the key?	sentence	s0052
 Ovo je moja soba.	This is my room.	sentence	s0053
@@ -8084,8 +8084,8 @@ Imate li pasoš?	Do you have a passport? (formal)	sentence	s0085
 Koji dokumenti mi trebaju?	Which documents do I need?	sentence	s0086
 Odakle si?	Where are you from?	sentence	s0087
 Šta je to?	What is that?	sentence	s0088
-Koliko imaš godina?	How old are you?	sentence	s0089
-Imaš li vremena?	Do you have time?	sentence	s0090
+Koliko imaš godina?	How old are you? (informal)	sentence	s0089
+Imaš li vremena?	Do you have time? (informal)	sentence	s0090
 Kuda ideš?	Where are you going?	sentence	s0091
 Ja sam iz Njemačke.	I am from Germany.	sentence	s0092
 Mi smo kod kuće.	We are at home.	sentence	s0093
@@ -8159,7 +8159,7 @@ Putujemo autom.	We are traveling by car.	sentence	s0160
 Sine, dođi ovamo!	Son, come here!	sentence	s0161
 Kahva sa šećerom.	Coffee with sugar.	sentence	s0162
 Moram raditi sutra.	I have to work tomorrow.	sentence	s0163
-Možeš li mi pomoći?	Can you help me?	sentence	s0164
+Možeš li mi pomoći?	Can you help me? (informal)	sentence	s0164
 Smijem li pitati?	May I ask?	sentence	s0165
 Ne mogu doći.	I cannot come.	sentence	s0166
 Zovem se Amina.	My name is Amina.	sentence	s0167

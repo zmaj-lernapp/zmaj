@@ -338,7 +338,7 @@ super!:Super!,15,smalltalk,alltag,Super!,Super!,Great!,Süper!,Toppen!,Top!,Supe
 schön:lijepo,15,smalltalk,alltag,lijepo,schön,nice,güzel,fint,mooi,fint,flot,joli,web/audio/w0316.mp3
 nichts:Ništa,15,smalltalk,alltag,Ništa,Nichts,Nothing,Hiçbir şey,Ingenting,Niets,Ingenting,Ingenting,Rien,web/audio/w0317.mp3
 alles:Sve,15,smalltalk,alltag,Sve,Alles,Everything,Her şey,Allt,Alles,Alt,Alt,Tout,web/audio/w0318.mp3
-was machst du?:Šta radiš?,15,smalltalk,alltag,Šta radiš?,Was machst du?,What are you doing?,Ne yapıyorsun?,Vad gör du?,Wat doe je?,Hva gjør du?,Hvad laver du?,Qu'est-ce que tu fais ?,web/audio/w0319.mp3
+was machst du?:Šta radiš?,15,smalltalk,alltag,Šta radiš?,Was machst du?,What are you doing? (informal),Ne yapıyorsun?,Vad gör du?,Wat doe je?,Hva gjør du?,Hvad laver du?,Qu'est-ce que tu fais ?,web/audio/w0319.mp3
 wo bist du?:Gdje si?,15,smalltalk,alltag,Gdje si?,Wo bist du?,Where are you?,Neredesin?,Var är du?,Waar ben je?,Hvor er du?,Hvor er du?,Où es-tu ?,web/audio/w0320.mp3
 ich habe keine zeit:Nemam vremena,15,smalltalk,alltag,Nemam vremena,Ich habe keine Zeit,I have no time,Vaktim yok,Jag har ingen tid,Ik heb geen tijd,Jeg har ikke tid,Jeg har ikke tid,Je n'ai pas le temps,web/audio/w0321.mp3
 ich bin müde (m/w):Umoran sam / Umorna sam,15,smalltalk,alltag,Umoran sam / Umorna sam,Ich bin müde (m/w),I am tired (m/f),Yorgunum (e/k),Jag är trött (m/k),Ik ben moe (m/v),Jeg er trøtt (m/k),Jeg er træt (m/k),Je suis fatigué (m/f),web/audio/w2147.mp3
@@ -596,8 +596,8 @@ wohin gehst du?:Kuda ideš?,24,fragen,saetze,Kuda ideš?,Wohin gehst du?,Where a
 wann kommst du?:Kada dolaziš?,24,fragen,saetze,Kada dolaziš?,Wann kommst du?,When are you coming?,Ne zaman geliyorsun?,När kommer du?,Wanneer kom je?,Når kommer du?,Hvornår kommer du?,Quand viens-tu ?,web/audio/w0349.mp3
 warum nicht?:Zašto ne?,24,fragen,saetze,Zašto ne?,Warum nicht?,Why not?,Neden olmasın?,Varför inte?,Waarom niet?,Hvorfor ikke?,Hvorfor ikke?,Pourquoi pas ?,web/audio/w0350.mp3
 was ist das?:Šta je to?,24,fragen,saetze,Šta je to?,Was ist das?,What is that?,Bu ne?,Vad är det?,Wat is dat?,Hva er det?,Hvad er det?,Qu'est-ce que c'est ?,web/audio/w0351.mp3
-wie alt bist du?:Koliko imaš godina?,24,fragen,saetze,Koliko imaš godina?,Wie alt bist du?,How old are you?,Kaç yaşındasın?,Hur gammal är du?,Hoe oud ben je?,Hvor gammel er du?,Hvor gammel er du?,Quel âge as-tu ?,web/audio/w0352.mp3
-hast du zeit?:Imaš li vremena?,24,fragen,saetze,Imaš li vremena?,Hast du Zeit?,Do you have time?,Vaktin var mı?,Har du tid?,Heb je tijd?,Har du tid?,Har du tid?,Tu as le temps ?,web/audio/w0353.mp3
+wie alt bist du?:Koliko imaš godina?,24,fragen,saetze,Koliko imaš godina?,Wie alt bist du?,How old are you? (informal),Kaç yaşındasın?,Hur gammal är du?,Hoe oud ben je?,Hvor gammel er du?,Hvor gammel er du?,Quel âge as-tu ?,web/audio/w0352.mp3
+hast du zeit?:Imaš li vremena?,24,fragen,saetze,Imaš li vremena?,Hast du Zeit?,Do you have time? (informal),Vaktin var mı?,Har du tid?,Heb je tijd?,Har du tid?,Har du tid?,Tu as le temps ?,web/audio/w0353.mp3
 sprichst du englisch?:Govoriš li engleski?,24,fragen,saetze,Govoriš li engleski?,Sprichst du Englisch?,Do you speak English?,İngilizce konuşuyor musun?,Talar du engelska?,Spreek je Engels?,Snakker du engelsk?,Taler du engelsk?,Tu parles anglais ?,web/audio/w0354.mp3
 kann ich helfen?:Mogu li pomoći?,24,fragen,saetze,Mogu li pomoći?,Kann ich helfen?,Can I help?,Yardım edebilir miyim?,Kan jag hjälpa till?,Kan ik helpen?,Kan jeg hjelpe?,Kan jeg hjælpe?,Je peux aider ?,web/audio/w0355.mp3
 wo wohnst du?:Gdje stanuješ?,24,fragen,saetze,Gdje stanuješ?,Wo wohnst du?,Where do you live?,Nerede oturuyorsun?,Var bor du?,Waar woon je?,Hvor bor du?,Hvor bor du?,Où habites-tu ?,web/audio/w0356.mp3
@@ -1075,7 +1075,7 @@ ich sollte (m/w):trebao bih / trebala bih,42,modal,saetze2,trebao bih / trebala 
 ich muss arbeiten:Moram raditi,42,modal,saetze2,Moram raditi,Ich muss arbeiten,I have to work,Çalışmam gerek,Jag måste arbeta,Ik moet werken,Jeg må arbeide,Jeg er nødt til at arbejde,Je dois travailler,web/audio/w0665.mp3
 ich muss gehen:Moram ići,42,modal,saetze2,Moram ići,Ich muss gehen,I have to go,Gitmem gerek,Jag måste gå,Ik moet gaan,Jeg må gå,Jeg må gå,Je dois y aller,web/audio/w0666.mp3
 ich kann nicht kommen:Ne mogu doći,42,modal,saetze2,Ne mogu doći,Ich kann nicht kommen,I cannot come,Gelemem,Jag kan inte komma,Ik kan niet komen,Jeg kan ikke komme,Jeg kan ikke komme,Je ne peux pas venir,web/audio/w0667.mp3
-kannst du mir helfen?:Možeš li mi pomoći?,42,modal,saetze2,Možeš li mi pomoći?,Kannst du mir helfen?,Can you help me?,Bana yardım edebilir misin?,Kan du hjälpa mig?,Kun je me helpen?,Kan du hjelpe meg?,Kan du hjælpe mig?,Tu peux m'aider ?,web/audio/w0668.mp3
+kannst du mir helfen?:Možeš li mi pomoći?,42,modal,saetze2,Možeš li mi pomoći?,Kannst du mir helfen?,Can you help me? (informal),Bana yardım edebilir misin?,Kan du hjälpa mig?,Kun je me helpen?,Kan du hjelpe meg?,Kan du hjælpe mig?,Tu peux m'aider ?,web/audio/w0668.mp3
 ich will schlafen:Hoću spavati,42,modal,saetze2,Hoću spavati,Ich will schlafen,I want to sleep,Uyumak istiyorum,Jag vill sova,Ik wil slapen,Jeg vil sove,Jeg vil sove,Je veux dormir,web/audio/w0669.mp3
 ich möchte lernen:Želim učiti,42,modal,saetze2,Želim učiti,Ich möchte lernen,I want to study,Öğrenmek istiyorum,Jag vill plugga,Ik wil leren,Jeg vil lære,Jeg vil gerne lære,Je veux apprendre,web/audio/w0670.mp3
 fragen:pitati,42,modal,saetze2,pitati,fragen,to ask,sormak,ställa en fråga,vragen,spørre,at spørge,demander,web/audio/w0680.mp3

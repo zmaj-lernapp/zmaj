@@ -15667,7 +15667,7 @@
    "section": "alltag",
    "translations": {
     "de": "Was machst du?",
-    "en": "What are you doing?",
+    "en": "What are you doing? (informal)",
     "tr": "Ne yapıyorsun?",
     "sv": "Vad gör du?",
     "nl": "Wat doe je?",
@@ -20311,7 +20311,7 @@
    "section": "saetze",
    "translations": {
     "de": "Wie alt bist du?",
-    "en": "How old are you?",
+    "en": "How old are you? (informal)",
     "tr": "Kaç yaşındasın?",
     "sv": "Hur gammal är du?",
     "nl": "Hoe oud ben je?",
@@ -20329,7 +20329,7 @@
    "section": "saetze",
    "translations": {
     "de": "Hast du Zeit?",
-    "en": "Do you have time?",
+    "en": "Do you have time? (informal)",
     "tr": "Vaktin var mı?",
     "sv": "Har du tid?",
     "nl": "Heb je tijd?",
@@ -28933,7 +28933,7 @@
    "section": "saetze2",
    "translations": {
     "de": "Kannst du mir helfen?",
-    "en": "Can you help me?",
+    "en": "Can you help me? (informal)",
     "tr": "Bana yardım edebilir misin?",
     "sv": "Kan du hjälpa mig?",
     "nl": "Kun je me helpen?",

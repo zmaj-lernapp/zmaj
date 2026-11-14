@@ -15,6 +15,8 @@ ist (Molim neben „Gern geschehen“, dići neben podići, zajam neben pozajmic
 B9: „(Antwort darauf)“ als Bedeutung von Alejkumu selam verwies ins Leere.
 V5: Hatte nur eines von zwei Woertern im selben Level eine Klammer („How are
 you?“ neben „How are you? (formal)“), passte die Frage auf beide Knoepfe.
+B7: Englische Lueckensaetze verlangten die Du-Form, „you“ passt aber auch auf
+die Sie- und Ihr-Form.
 Die Tests im Browser stehen in tests_e2e/test_pruefbericht14_antworten.py und
 tests_e2e/test_antworten.py (GESPERRT, TEIL_DER_FRAGE).
 """
@@ -236,3 +238,31 @@ def test_v5_keine_einseitige_klammer_im_selben_level(alle_daten, index_html):
                     if {w["bs"], x["bs"]} != {"oni su", "vi ste"}:
                         rest.append((code, k["id"], w["bs"], w["de"], x["bs"], x["de"]))
     assert rest == []
+
+
+# B7: "How are you?" bei „Kako ___?“ nahm nur si, ste war falsch, obwohl "you" beides
+# sein kann. Ebenso bei radiš, imaš, Imaš, Možeš, te und Nedostaješ. Die en-Texte
+# sagen jetzt "(informal)", wie „Kada ___ doći?“ schon "(singular, informal)". Die
+# anderen Sprachen unterscheiden du und Sie selbst. Gleicher Text, gleiche
+# Uebersetzung: auch das Wort und der Satzbau-Satz mit demselben Text bekommen es.
+B7_LUECKEN = [("Kako ___?", "si"), ("Volim ___.", "te"), ("___ mi.", "Nedostaješ"),
+              ("Šta ___?", "radiš"), ("Koliko ___ godina?", "imaš"), ("___ li vremena?", "Imaš"),
+              ("___ li mi pomoći?", "Možeš"), ("Kada ___ doći?", "ćeš")]
+
+
+def test_b7_englische_luecken_mit_du_form_sagen_informal(alle_daten):
+    en = alle_daten["en"]
+    for text, antwort in B7_LUECKEN:
+        s = [x for x in en["saetze"] if x["text"] == text and x["answer"] == antwort]
+        assert len(s) == 1, (text, antwort)
+        assert re.search(r"\((singular, )?informal\)$", s[0]["de"]), s[0]
+    # Die Sie-Form hat ihr "(formal)" schon, die beiden stehen nie gleich da.
+    ste = [x for x in en["saetze"] if x["text"] == "Kako ___?" and x["answer"] == "ste"]
+    assert [x["de"] for x in ste] == ["How are you? (formal)"]
+
+
+def test_b7_andere_sprachen_unveraendert(alle_daten):
+    for code in ("tr", "sv", "nl", "nb", "da", "fr"):
+        for text, antwort in B7_LUECKEN:
+            s = [x for x in alle_daten[code]["saetze"] if x["text"] == text and x["answer"] == antwort]
+            assert len(s) == 1 and "informal" not in s[0]["de"], (code, s)

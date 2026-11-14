@@ -342,7 +342,7 @@ Super!	Great!	zmaj zmaj::15_smalltalk
 lijepo	nice	zmaj zmaj::15_smalltalk
 Ništa	Nothing	zmaj zmaj::15_smalltalk
 Sve	Everything	zmaj zmaj::15_smalltalk
-Šta radiš?	What are you doing?	zmaj zmaj::15_smalltalk
+Šta radiš?	What are you doing? (informal)	zmaj zmaj::15_smalltalk
 Gdje si?	Where are you?	zmaj zmaj::15_smalltalk
 Nemam vremena	I have no time	zmaj zmaj::15_smalltalk
 Umoran sam / Umorna sam	I am tired (m/f)	zmaj zmaj::15_smalltalk
@@ -600,8 +600,8 @@ Kuda ideš?	Where are you going?	zmaj zmaj::24_fragen
 Kada dolaziš?	When are you coming?	zmaj zmaj::24_fragen
 Zašto ne?	Why not?	zmaj zmaj::24_fragen
 Šta je to?	What is that?	zmaj zmaj::24_fragen
-Koliko imaš godina?	How old are you?	zmaj zmaj::24_fragen
-Imaš li vremena?	Do you have time?	zmaj zmaj::24_fragen
+Koliko imaš godina?	How old are you? (informal)	zmaj zmaj::24_fragen
+Imaš li vremena?	Do you have time? (informal)	zmaj zmaj::24_fragen
 Govoriš li engleski?	Do you speak English?	zmaj zmaj::24_fragen
 Mogu li pomoći?	Can I help?	zmaj zmaj::24_fragen
 Gdje stanuješ?	Where do you live?	zmaj zmaj::24_fragen
@@ -1079,7 +1079,7 @@ trebao bih / trebala bih	I should (m/f)	zmaj zmaj::42_modal
 Moram raditi	I have to work	zmaj zmaj::42_modal
 Moram ići	I have to go	zmaj zmaj::42_modal
 Ne mogu doći	I cannot come	zmaj zmaj::42_modal
-Možeš li mi pomoći?	Can you help me?	zmaj zmaj::42_modal
+Možeš li mi pomoći?	Can you help me? (informal)	zmaj zmaj::42_modal
 Hoću spavati	I want to sleep	zmaj zmaj::42_modal
 Želim učiti	I want to study	zmaj zmaj::42_modal
 pitati	to ask	zmaj zmaj::42_modal

@@ -488,6 +488,12 @@ are in the Play Store listing. Format:
   `uebersetzungen.py`, no ID changes; *za* and *onda* only as words (`"woerter"`), the
   story dictionary keeps "voor" and "så". `tests_e2e/test_antworten.py` now strips
   the note at the end before comparing.
+- English gap sentences (review for 1.4, 14.11.2026, B7): seven gaps take only the
+  informal form (*si*, *te*, *Nedostaješ*, *radiš*, *imaš*, *Imaš*, *Možeš*), but
+  "you" also fits the formal or plural one. Their English texts now say
+  "(informal)", like "When will you come? (singular, informal)" already did; the
+  word and the sentence-building item with the same text get it too. The other
+  languages tell *du* and *Sie* apart on their own.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

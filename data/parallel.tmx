@@ -4078,7 +4078,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Šta radiš?</seg></tuv>
    <tuv xml:lang="de"><seg>Was machst du?</seg></tuv>
-   <tuv xml:lang="en"><seg>What are you doing?</seg></tuv>
+   <tuv xml:lang="en"><seg>What are you doing? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Ne yapıyorsun?</seg></tuv>
    <tuv xml:lang="sv"><seg>Vad gör du?</seg></tuv>
    <tuv xml:lang="nl"><seg>Wat doe je?</seg></tuv>
@@ -7174,7 +7174,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Koliko imaš godina?</seg></tuv>
    <tuv xml:lang="de"><seg>Wie alt bist du?</seg></tuv>
-   <tuv xml:lang="en"><seg>How old are you?</seg></tuv>
+   <tuv xml:lang="en"><seg>How old are you? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Kaç yaşındasın?</seg></tuv>
    <tuv xml:lang="sv"><seg>Hur gammal är du?</seg></tuv>
    <tuv xml:lang="nl"><seg>Hoe oud ben je?</seg></tuv>
@@ -7186,7 +7186,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Imaš li vremena?</seg></tuv>
    <tuv xml:lang="de"><seg>Hast du Zeit?</seg></tuv>
-   <tuv xml:lang="en"><seg>Do you have time?</seg></tuv>
+   <tuv xml:lang="en"><seg>Do you have time? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Vaktin var mı?</seg></tuv>
    <tuv xml:lang="sv"><seg>Har du tid?</seg></tuv>
    <tuv xml:lang="nl"><seg>Heb je tijd?</seg></tuv>
@@ -12922,7 +12922,7 @@
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Možeš li mi pomoći?</seg></tuv>
    <tuv xml:lang="de"><seg>Kannst du mir helfen?</seg></tuv>
-   <tuv xml:lang="en"><seg>Can you help me?</seg></tuv>
+   <tuv xml:lang="en"><seg>Can you help me? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Bana yardım edebilir misin?</seg></tuv>
    <tuv xml:lang="sv"><seg>Kan du hjälpa mig?</seg></tuv>
    <tuv xml:lang="nl"><seg>Kun je me helpen?</seg></tuv>
@@ -96526,7 +96526,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Volim te.</seg></tuv>
    <tuv xml:lang="de"><seg>Ich liebe dich.</seg></tuv>
-   <tuv xml:lang="en"><seg>I love you.</seg></tuv>
+   <tuv xml:lang="en"><seg>I love you. (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Seni seviyorum.</seg></tuv>
    <tuv xml:lang="sv"><seg>Jag älskar dig.</seg></tuv>
    <tuv xml:lang="nl"><seg>Ik hou van je.</seg></tuv>
@@ -96538,7 +96538,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Nedostaješ mi.</seg></tuv>
    <tuv xml:lang="de"><seg>Ich vermisse dich.</seg></tuv>
-   <tuv xml:lang="en"><seg>I miss you.</seg></tuv>
+   <tuv xml:lang="en"><seg>I miss you. (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Seni özledim.</seg></tuv>
    <tuv xml:lang="sv"><seg>Jag saknar dig.</seg></tuv>
    <tuv xml:lang="nl"><seg>Ik mis je.</seg></tuv>
@@ -96562,7 +96562,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Šta radiš?</seg></tuv>
    <tuv xml:lang="de"><seg>Was machst du?</seg></tuv>
-   <tuv xml:lang="en"><seg>What are you doing?</seg></tuv>
+   <tuv xml:lang="en"><seg>What are you doing? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Ne yapıyorsun?</seg></tuv>
    <tuv xml:lang="sv"><seg>Vad gör du?</seg></tuv>
    <tuv xml:lang="nl"><seg>Wat doe je?</seg></tuv>
@@ -97030,7 +97030,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Koliko imaš godina?</seg></tuv>
    <tuv xml:lang="de"><seg>Wie alt bist du?</seg></tuv>
-   <tuv xml:lang="en"><seg>How old are you?</seg></tuv>
+   <tuv xml:lang="en"><seg>How old are you? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Kaç yaşındasın?</seg></tuv>
    <tuv xml:lang="sv"><seg>Hur gammal är du?</seg></tuv>
    <tuv xml:lang="nl"><seg>Hoe oud ben je?</seg></tuv>
@@ -97042,7 +97042,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Imaš li vremena?</seg></tuv>
    <tuv xml:lang="de"><seg>Hast du Zeit?</seg></tuv>
-   <tuv xml:lang="en"><seg>Do you have time?</seg></tuv>
+   <tuv xml:lang="en"><seg>Do you have time? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Vaktin var mı?</seg></tuv>
    <tuv xml:lang="sv"><seg>Har du tid?</seg></tuv>
    <tuv xml:lang="nl"><seg>Heb je tijd?</seg></tuv>
@@ -97930,7 +97930,7 @@
    <prop type="x-kind">sentence</prop>
    <tuv xml:lang="bs"><seg>Možeš li mi pomoći?</seg></tuv>
    <tuv xml:lang="de"><seg>Kannst du mir helfen?</seg></tuv>
-   <tuv xml:lang="en"><seg>Can you help me?</seg></tuv>
+   <tuv xml:lang="en"><seg>Can you help me? (informal)</seg></tuv>
    <tuv xml:lang="tr"><seg>Bana yardım edebilir misin?</seg></tuv>
    <tuv xml:lang="sv"><seg>Kan du hjälpa mig?</seg></tuv>
    <tuv xml:lang="nl"><seg>Kun je me helpen?</seg></tuv>
