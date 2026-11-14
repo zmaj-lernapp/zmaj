@@ -83,6 +83,9 @@ SPDX-License-Identifier = "CC-BY-SA-4.0"
 # Since 13 November 2026 the 15 achievement badges in web/erfolge
 # (calendars, flash cards, stairs, books, brain) are Gemini paintings in the
 # same style, cut out and converted to WebP the same way.
+# Since 14 November 2026 six more icons in web/symbole (golden heart,
+# chequered flag, star, blue heart, sparkles, envelope) are Gemini
+# paintings in the same style, cut out and converted the same way.
 [[annotations]]
 path = [
   "web/maskottchen/teile/**",
