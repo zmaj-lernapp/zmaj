@@ -745,6 +745,11 @@ are in the Play Store listing. Format:
   screen without hearts, as after the skip-ahead test; the button is back when the
   next lesson, round or test starts, and the phone's back key leaves as before.
   `tests_e2e/test_pruefbericht14_kleinfehler.py`.
+- The number on badges not yet earned (review for 1.4, 14.11.2026, S19) was grey on
+  a grey pill, 4.27 to 4.32 : 1, below the 4.5 : 1 that small text needs. It is now
+  in the text colour (at least 5.4 : 1 on all nine section colours, light and
+  dark). axe now also checks the profile and the achievement wall.
+  `tests_e2e/test_pruefbericht14_kleinfehler.py`, `tests_e2e/test_barrierefreiheit.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

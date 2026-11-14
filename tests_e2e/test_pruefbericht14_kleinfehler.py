@@ -18,6 +18,11 @@ abzubrechen. Jetzt ist der Knopf dort weg, wie nach dem Sprung-Test, auch
 nach einer Wiederholen-Runde und auf dem Schirm ohne Leben. Beim naechsten
 Start ist er wieder da; die Zurueck-Taste des Handys fuehrt wie bisher
 hinaus.
+
+S19: Die Zahl auf offenen Abzeichen (grau auf grauer Pille) hatte 4,27 bis
+4,32 : 1, unter den 4,5 : 1 fuer kleine Schrift. Jetzt in der Schriftfarbe,
+auf allen neun Sektionsfarben, hell und dunkel; axe prueft die Wand in
+test_barrierefreiheit.py.
 """
 import pytest
 from conftest import Seite
@@ -163,4 +168,48 @@ def test_s18_kein_abbrechen_auf_dem_ergebnis(seite, heute_stand):
         seite.js("(t) => { lives = {anzahl: 0, zeit: Date.now()}; lessonOutOfLives(t); }", feld == "tBody")
         assert seite.js("(f) => !!document.querySelector('#' + f + ' .ohneleben')", feld)
         assert seite.js(ABBRECHEN) == [False, False], feld
+    assert seite.fehler == []
+
+
+# Kontrast jeder Zahl auf den Ringen der Wand, je Sektionsfarbe hell und
+# dunkel (WCAG: relative Leuchtdichte)
+KONTRAST = """async () => {
+  const warte = ms => new Promise(r => setTimeout(r, ms));
+  const rgb = s => s.match(/[\\d.]+/g).slice(0, 3).map(Number);
+  const lum = c => { const [r, g, b] = c.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+                     return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  const kontrast = (a, b) => { const x = lum(rgb(a)), y = lum(rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+  // Ohne das weiche Ueberblenden der Sektionsfarbe (weichUmblenden), sonst
+  // misst es mitten im Uebergang
+  clearTimeout(farbUhr); document.documentElement.classList.remove('farbwechsel');
+  const aus = [];
+  for(const thema of ['light', 'dark']){
+    document.documentElement.dataset.theme = thema;
+    for(const sek of '123456789'){
+      document.documentElement.dataset.sek = sek; await warte(20);
+      document.querySelectorAll('#erfolgWand .abzzahl').forEach(z => {
+        const s = getComputedStyle(z);
+        aus.push({wo: thema + sek, id: z.closest('.abz').dataset.erfolg, offen: z.parentElement.classList.contains('aus'),
+                  k: Math.round(kontrast(s.color, s.backgroundColor) * 100) / 100});
+      });
+    }
+  }
+  return aus;
+}"""
+
+
+def test_s19_zahl_auf_den_abzeichen_lesbar(seite, heute_stand):
+    import datetime
+    heute = datetime.date.today()
+    seite.starten(stand=heute_stand(tage=[(heute - datetime.timedelta(days=i)).isoformat() for i in range(1, 32)]))
+    seite.js("() => showErfolge()")
+    werte = seite.js(KONTRAST)
+    offen = [w for w in werte if w["offen"]]
+    assert len(offen) == 14 * 18, len(offen)          # 14 offene mit Zahl, je Sektion und Thema
+    assert [w for w in werte if w["k"] < 4.5] == []
+    # und alle verdient: die Pillen in der Farbe der Kette
+    seite.js("() => { ERFOLGE.forEach(e => gefeiert.add(ERFOLG_VORN + e.id)); showErfolge(); }")
+    werte = seite.js(KONTRAST)
+    assert werte and not any(w["offen"] for w in werte)
+    assert [w for w in werte if w["k"] < 4.5] == []
     assert seite.fehler == []

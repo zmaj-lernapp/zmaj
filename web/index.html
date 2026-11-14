@@ -1052,7 +1052,11 @@
            font-size:10px; font-weight:900; line-height:1.4; white-space:nowrap; text-align:center}
   .abzring.aus{border-color:var(--line)}
   .abzring.aus .abzbild{filter:grayscale(1); opacity:.45}
-  .abzring.aus .abzzahl{background:var(--line); color:var(--muted)}
+  /* Die Zahl auf offenen Abzeichen in der Schriftfarbe statt grau: --muted
+     auf --line hatte 4,27 bis 4,32 : 1, unter den 4,5 : 1 fuer kleine
+     Schrift (Pruefbericht 1.4, S19). Leiser als bei verdienten bleibt sie
+     durch die graue Pille. */
+  .abzring.aus .abzzahl{background:var(--line); color:var(--ink)}
   .abzring.neu::after{content:''; position:absolute; top:-3px; right:-3px; width:12px; height:12px;
                       border-radius:50%; background:var(--bad); border:2px solid var(--surface)}
   /* Die Wand im Profil: je Gruppe eine Ueberschrift und ein Raster, das bei
