@@ -76,23 +76,26 @@ def test_absaetze_wie_in_paket_1_und_2(alle_daten):
 
 def test_laenge_verraet_die_antwort_nicht(alle_daten, index_html):
     """renderChoice() setzt Antworten über 14 Zeichen kleiner und ohne
-    Serifen. Ist nur die richtige so lang, sieht man sie (Prüfung 13.11.2026:
-    5 von 24 Fragen auf Deutsch, 31 über alle Sprachen). Also ist in keiner
-    Sprache nur die richtige Antwort lang. Und keine Antwort trägt einen
-    Hinweis in Klammern, wie ihn Wörterbuch-Bedeutungen haben ("personne
-    (négation)" stand im französischen Quiz)."""
-    grenze = re.search(r"label\.length>(\d+)\?' long'", index_html)
-    assert grenze, "Schwelle in renderChoice() nicht gefunden"
-    grenze = int(grenze.group(1))
+    Serifen. Bis zum 14.11.2026 je Knopf: War nur die richtige so lang, sah
+    man sie (Prüfung 13.11.2026: 5 von 24 Fragen auf Deutsch, 31 über alle
+    Sprachen), und umgekehrt eine kurze richtige zwischen langen falschen -
+    das prüfte dieser Test nicht, und er sah nur diese acht Texte. Seit dem
+    Prüfbericht 1.4 (B13) sind alle Knöpfe einer Aufgabe gleich, in jeder
+    Sprache, jeder Geschichte und jeder Lektion; das misst
+    tests_e2e/test_pruefbericht14_oberflaeche.py im Browser nach.
+    Und keine Antwort trägt einen Hinweis in Klammern, wie ihn
+    Wörterbuch-Bedeutungen haben ("personne (négation)" stand im
+    französischen Quiz)."""
+    rumpf = index_html.split("function renderChoice(")[1].split("function gramFrageHtml(")[0]
+    assert "const klein = opts.some(o => keyOf(o).length > 14);" in rumpf, "Schwelle in renderChoice() nicht gefunden"
+    assert "b.className='opt'+(klein?' long':'');" in rumpf
+    assert not re.search(r"label\.length\s*>", rumpf), "wieder je Knopf"
     fehler = []
     for code, daten in alle_daten.items():
         g = _geschichten(daten)
         for i in IDS:
             for n, f in enumerate(g[i]["fragen"], 1):
                 assert f["richtig"] in f["optionen"], (code, i, n)
-                lang = [o for o in f["optionen"] if len(o) > grenze]
-                if lang == [f["richtig"]]:
-                    fehler.append("%s %s Frage %d: %s" % (code, i, n, f["richtig"]))
                 fehler += ["%s %s Frage %d: %s" % (code, i, n, o) for o in f["optionen"] if "(" in o]
     assert fehler == [], fehler
 

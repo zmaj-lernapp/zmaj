@@ -504,6 +504,13 @@ are in the Play Store listing. Format:
   is scrolled up just enough to stay visible, and reading along scrolls before
   the current word goes behind the bubble.
   `tests_e2e/test_pruefbericht14_oberflaeche.py`.
+- Answer buttons (review for 1.4, 14.11.2026, B13): answers over 14 characters
+  are set smaller and without serifs. This was decided per button, so when only
+  the right answer was long it stood out as the only different one ("ein alter
+  Walnussbaum" in *Ljeto kod nane na selu*), and the other way round: 31 B1
+  questions and 38 of the older stories across all languages. `renderChoice()`
+  now sets all buttons of a task the same, small as soon as one is long, in every
+  language, story, lesson, test and grammar exercise.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

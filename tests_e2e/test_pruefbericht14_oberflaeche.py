@@ -80,3 +80,72 @@ def test_v2_mitlesen_scrollt_vor_der_blase(seite, heute_stand):
     assert r["kein"] is False, r
     assert r["gescrollt"], r
     assert seite.fehler == []
+
+
+# ---------------------------------------------------------------------------
+# B13: Die richtige Antwort verraet sich nicht durch ihre Schrift
+# ---------------------------------------------------------------------------
+# Antworten ueber 14 Zeichen stehen kleiner und ohne Serifen da (.opt.long).
+# Bis zum 14.11.2026 je Knopf: War nur die richtige lang, stand sie als
+# einzige anders da ("ein alter Walnussbaum" in b1_ljeto), und umgekehrt -
+# bei 31 B1-Fragen und 38 der alten Geschichten ueber alle Sprachen. Jetzt
+# sind alle Knoepfe einer Aufgabe gleich: klein, sobald einer lang ist.
+SPRACHEN = ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
+
+FRAGEN_ALLE = r"""() => {
+  const aus = []; let lang = 0, kurz = 0, fragen = 0;
+  STORIES.forEach((s, i) => {
+    openStory(i); stilleBitte();
+    (s.fragen || []).forEach((f, nr) => {
+      showStoryQ(s, nr, 0); fragen++;
+      const k = [...document.querySelectorAll('#rOpts .opt')];
+      const klein = k.map(b => b.classList.contains('long'));
+      const soll = k.some(b => b.textContent.length > 14);
+      if(soll) lang++; else kurz++;
+      if(!k.length || klein.some(x => x !== soll))
+        aus.push([s.id, nr + 1, k.map(b => b.textContent), klein]);
+    });
+  });
+  return {aus, lang, kurz, fragen};
+}"""
+
+
+def test_b13_alle_antworten_einer_frage_gleich_gross(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    for sprache in SPRACHEN:
+        seite.js("async (c) => { await setzeSprache(c); }", sprache)
+        r = seite.js(FRAGEN_ALLE)
+        assert r["aus"] == [], (sprache, r["aus"][:5])
+        assert r["fragen"] >= 96 and r["lang"] > 0 and r["kurz"] > 0, (sprache, r)
+    assert seite.fehler == []
+
+
+def test_b13_walnussbaum_steht_nicht_mehr_allein_klein(seite, heute_stand):
+    """Das Beispiel aus dem Bericht: "Was stand vor Omas Haus?" (b1_ljeto)."""
+    seite.starten(stand=heute_stand())
+    k = seite.js("""() => {
+      const s = STORIES.find(x => x.id === 'b1_ljeto'), nr = s.fragen.findIndex(f => f.richtig === 'ein alter Walnussbaum');
+      openStory(STORIES.indexOf(s)); stilleBitte(); showStoryQ(s, nr, 0);
+      return [...document.querySelectorAll('#rOpts .opt')].map(b => [b.textContent, b.classList.contains('long')]);
+    }""")
+    assert len(k) == 3 and ["ein alter Walnussbaum", True] in k, k
+    assert all(lang for _, lang in k), k
+    assert seite.fehler == []
+
+
+def test_b13_auch_in_der_lektion(seite, heute_stand):
+    """renderChoice() baut auch die Auswahl in Lektion, Test und Grammatik:
+    ein langer und drei kurze Knoepfe stehen alle klein da, vier kurze alle
+    gross."""
+    seite.starten(stand=heute_stand())
+    r = seite.js("""() => {
+      const box = document.createElement('div'); box.className = 'options';
+      document.getElementById('rBody').appendChild(box);
+      const knoepfe = liste => { renderChoice(box, liste.map(k => ({k})), liste[0], o => o.k, () => {});
+                                 return [...box.querySelectorAll('.opt')].map(b => b.classList.contains('long')); };
+      const aus = {gemischt: knoepfe(['Kühlschrank', 'Bedienungsanleitung', 'Tisch', 'Stuhl']),
+                   kurz: knoepfe(['Kühlschrank', 'Tisch', 'Stuhl', 'Fenster'])};
+      box.remove(); return aus;
+    }""")
+    assert r == {"gemischt": [True] * 4, "kurz": [False] * 4}, r
+    assert seite.fehler == []
