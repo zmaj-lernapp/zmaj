@@ -1383,19 +1383,30 @@
   .node.locked .label{color:var(--muted)}
   .node .txt{flex:1; min-width:0}
   .node .label{font-weight:800; font-size:15px}
-  /* Titel und Schwierigkeit in EINER Zeile. Vorher rutschte das Schildchen
-     bei langen Titeln ("Razgovor za posao") in die naechste Zeile, bei kurzen
-     nicht - die Liste wirkte dadurch zerfasert. Ajdin am 18.09.2026.
-     Jetzt kuerzt der Titel ab, das Schildchen bleibt stehen. */
-  .node .label.mitstufe{display:flex; align-items:center; gap:8px; min-width:0; flex-wrap:wrap}
-  .node .label.mitstufe .titel{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-                               flex:1 1 48px; max-width:max-content}
-  .node .label.mitstufe .stufe{margin-left:0; flex:0 0 auto; max-width:100%;
-                               overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  /* Grosse Schrift: blieben neben dem Schildchen keine 48 Punkte fuer den
-     Titel, verschwand er ganz - jetzt rutscht das Schildchen darunter.
-     Sonst bleibt es wie oben beschrieben in einer Zeile, der Titel kuerzt
-     ab und waechst nie ueber seine eigene Breite. 06.10.2026, siehe .wrap. */
+  /* Titel und Schwierigkeit (Geschichtenliste). Am 18.09.2026 wollte Ajdin
+     beides in EINER Zeile - "Razgovor za posao" rutschte als einziger um,
+     die Liste wirkte zerfasert -, dafuer kuerzte der Titel ab. Bei der
+     Pruefung am 14.11.2026 stand davon in Franzoesisch bei 360 px bei 14
+     von 32 Geschichten nur noch "Na op..." oder "Razgo..." da (Pruefbericht
+     1.4, B14). Ajdin hat entschieden (E3, Weg a): der Titel ist immer ganz
+     zu lesen, das Schildchen rutscht in die Zeile darunter, wenn es daneben
+     keinen Platz hat.
+     Deshalb Fliesstext statt Flexbox: ein langer Titel bricht wie Text um,
+     und das Schildchen steht hinter seinem letzten Wort, wenn es dort
+     hinpasst, sonst vorn in der Zeile darunter. Der Abstand ist ein
+     Leerzeichen (.luecke, 8 Punkte breit) und kein Rand: am Zeilenende
+     faellt ein Leerzeichen weg, ein Rand bliebe stehen und rueckte das
+     umgebrochene Schildchen ein. Wo alles in eine Zeile passt, steht es
+     da wie vorher. Pruefung: test_pruefbericht14_oberflaeche.py (B14).
+     Grosse Schrift (06.10.2026, siehe .wrap): vorher verschwand der Titel
+     dort ganz, wenn neben dem Schildchen keine 48 Punkte blieben; jetzt
+     bricht er einfach um.
+     Ist das Schildchen allein breiter als die Zeile, bricht es in sich um
+     statt abzukuerzen: "Langue administrative" neben "A faire maintenant"
+     bei 360 px stand sonst als "Langue admini..." da. Bei normaler Schrift
+     kommt das nur dort vor. */
+  .node .label.mitstufe .luecke{font-size:0; word-spacing:8px}
+  .node .label.mitstufe .stufe{margin-left:0; max-width:100%; text-align:center}
   .node .tipp{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .node .mini{height:5px; background:var(--primary-soft); border-radius:99px; margin-top:6px; overflow:hidden; width:120px; max-width:100%}
   .node .mini i{display:block; height:100%; background:var(--accent); width:0}
@@ -12335,7 +12346,7 @@ function showStoryPath(){
     const lvl = byId(s.passt_zu);
     b.innerHTML = '<div class="circle">'+(d?'✓':(o?(i+1):symbol('schloss')))+'</div>'+
       '<div class="txt"><div class="label'+(s.stufe?' mitstufe':'')+'"><span class="titel">'+esc(s.titel)+'</span>'+
-        (s.stufe?'<span class="stufe">'+esc(s.stufe)+'</span>':'')+'</div><div class="tipp">'+(lvl?t('gesch.passt_zu',{label:esc(lvl.label)}):'')+'</div></div>'+
+        (s.stufe?'<span class="luecke"> </span><span class="stufe">'+esc(s.stufe)+'</span>':'')+'</div><div class="tipp">'+(lvl?t('gesch.passt_zu',{label:esc(lvl.label)}):'')+'</div></div>'+
       '<div class="state">'+(d?t('gesch.gelesen'):(isCur?t('zustand.jetzt'):(o?t('zustand.offen'):t('zustand.gesperrt'))))+'</div>';
     b.addEventListener('click',()=>{
       if(!storyUnlocked(i)){ b.querySelector('.state').textContent=t('gesch.erst',{n:i}); return; }

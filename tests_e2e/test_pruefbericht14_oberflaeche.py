@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Pruefbericht 1.4 (14.11.2026) im Browser: Lesetexte und Antwortknoepfe.
+"""Pruefbericht 1.4 (14.11.2026) im Browser: Lesetexte, Antwortknoepfe und
+die Geschichtenliste.
 
 V2: Die Blase mit der Bedeutung eines angetippten Wortes stand hinter dem
 ganzen Text, und die Seite scrollte nicht. Wer oben ein Wort antippte, sah
@@ -148,4 +149,110 @@ def test_b13_auch_in_der_lektion(seite, heute_stand):
       box.remove(); return aus;
     }""")
     assert r == {"gemischt": [True] * 4, "kurz": [False] * 4}, r
+    assert seite.fehler == []
+
+
+# ---------------------------------------------------------------------------
+# B14 / E3: Geschichtentitel ganz lesbar, das Schildchen weicht aus
+# ---------------------------------------------------------------------------
+# Bis zum 14.11.2026 kuerzte der Titel in der Geschichtenliste ab, damit das
+# Schildchen daneben stehen blieb - in Franzoesisch bei 360 px bei 14 von 32
+# Geschichten ("Na op...", "Razgo..."). Ajdin hat entschieden (E3, Weg a):
+# der Titel ist immer ganz zu lesen, das Schildchen rutscht in die Zeile
+# darunter, wenn es daneben keinen Platz hat.
+#
+# Gemessen wird jede Geschichte in jedem Zustand (gelesen, jetzt dran,
+# gesperrt, offen): einmal mit den ersten k gelesen fuer jedes k, einmal mit
+# jeder zweiten. Der Zustand rechts nimmt dem Titel Platz, "À faire
+# maintenant" am meisten. Abgeschnitten heisst: der Kasten des Titels ist
+# schmaler als sein Text, oder der Text (Range, also auch der verdeckte Teil)
+# ragt aus dem Titel, der Zeile oder dem Knopf.
+TITEL_MESSEN = r"""async () => {
+  await document.fonts.ready;
+  const aus = [], vorher = [...read];
+  const faelle = [];
+  for(let k = 0; k <= STORIES.length; k++) faelle.push(STORIES.slice(0, k).map(s => s.id));
+  faelle.push(STORIES.filter((s, i) => i % 2 === 0).map(s => s.id));
+  let knoten = 0, zweizeilig = 0, darunter = 0, daneben = 0, hoechstens = 0;
+  const innen = (q, r) => q.left >= r.left - 0.5 && q.right <= r.right + 0.5;
+  for(const ids of faelle){
+    read.clear(); ids.forEach(id => read.add(id));
+    showStoryPath();
+    [...document.querySelectorAll('#storyList .node')].forEach((n, i) => {
+      knoten++;
+      const t = n.querySelector('.titel'), st = n.querySelector('.stufe'), z = n.querySelector('.state');
+      const nr = n.getBoundingClientRect(), lr = n.querySelector('.label').getBoundingClientRect(),
+            tr = t.getBoundingClientRect(), zr = z.getBoundingClientRect();
+      const rg = document.createRange(); rg.selectNodeContents(t);
+      const zeilen = [...rg.getClientRects()].filter(q => q.width > 0);
+      const tops = [...new Set(zeilen.map(q => Math.round(q.top)))];
+      const fehler = [];
+      if(t.clientWidth > 0 && t.scrollWidth > t.clientWidth) fehler.push('Titel gekuerzt');
+      if(!zeilen.every(q => innen(q, tr) && innen(q, lr) && innen(q, nr))) fehler.push('Titel ragt hinaus');
+      if(tops.length > 2) fehler.push(tops.length + ' Zeilen');
+      if(!innen(lr, nr) || !innen(zr, nr) || lr.right > zr.left + 0.5) fehler.push('Zeile ragt hinaus');
+      hoechstens = Math.max(hoechstens, tops.length);
+      if(tops.length > 1) zweizeilig++;
+      if(st){
+        const sr = st.getBoundingClientRect(), letzte = zeilen[zeilen.length - 1];
+        if(st.scrollWidth > st.clientWidth) fehler.push('Schildchen gekuerzt');
+        if(!innen(sr, lr) || !innen(sr, nr)) fehler.push('Schildchen ragt hinaus');
+        const mitte = q => (q.top + q.bottom) / 2;
+        const gleicheZeile = Math.abs(mitte(sr) - mitte(letzte)) < 6;
+        if(gleicheZeile) daneben++; else darunter++;
+        if(!gleicheZeile && sr.top < letzte.bottom - 1) fehler.push('Schildchen ueberlappt den Titel');
+        // daneben, wenn es hinter dem letzten Wort Platz hat (8 Punkte Abstand)
+        if(!gleicheZeile && letzte.right + 8 + sr.width <= lr.right - 1) fehler.push('Schildchen ohne Grund darunter');
+        if(gleicheZeile && sr.left < letzte.right + 6) fehler.push('Schildchen klebt am Titel');
+      }
+      if(fehler.length) aus.push([i, STORIES[i].titel, z.textContent, fehler.join(', ')]);
+    });
+  }
+  read.clear(); vorher.forEach(id => read.add(id)); showStoryPath();
+  const breit = document.documentElement.scrollWidth > document.documentElement.clientWidth;
+  return {aus, knoten, zweizeilig, darunter, daneben, hoechstens, breit};
+}"""
+
+
+@pytest.mark.parametrize("breite,hoehe", [(360, 740), (412, 915)])
+def test_b14_geschichtentitel_nie_abgeschnitten(seite, heute_stand, breite, hoehe):
+    seite.page.set_viewport_size({"width": breite, "height": hoehe})
+    seite.starten(stand=heute_stand())
+    darunter = {}
+    for sprache in SPRACHEN:
+        seite.js("async (c) => { await setzeSprache(c); homeMode = 'stories'; showHome(); }", sprache)
+        r = seite.js(TITEL_MESSEN)
+        assert r["aus"] == [], (sprache, breite, len(r["aus"]), r["aus"][:6])
+        assert r["breit"] is False, (sprache, breite)
+        assert r["knoten"] >= 33 * 32 and r["daneben"] > 0, (sprache, r)
+        darunter[sprache] = r["darunter"]
+    # Ohne Ausweichen ging es nicht: bei 360 px rutscht in jeder Sprache
+    # irgendwo ein Schildchen darunter (sonst prueft der Test nichts).
+    if breite == 360:
+        assert all(n > 0 for n in darunter.values()), darunter
+    assert seite.fehler == []
+
+
+def test_b14_kurze_titel_wie_vorher(seite, heute_stand):
+    """Wo alles in eine Zeile passt, bleibt es dabei: Titel und Schildchen
+    nebeneinander, mittig zueinander, 8 Punkte Abstand, eine Zeile hoch.
+    Der Stand wie im Bild aus dem Bericht (fr, 360 px): 12 gelesen, die
+    13. dran - dort standen die ersten neun schon vorher so da."""
+    seite.starten(stand=heute_stand())
+    r = seite.js("""async () => {
+      await setzeSprache('fr'); await document.fonts.ready;
+      read.clear(); STORIES.slice(0, 12).forEach(s => read.add(s.id));
+      homeMode = 'stories'; showHome();
+      return [...document.querySelectorAll('#storyList .node')].slice(0, 9).map(n => {
+        const t = n.querySelector('.titel').getBoundingClientRect(), s = n.querySelector('.stufe').getBoundingClientRect();
+        return {titel: n.querySelector('.titel').textContent, abstand: s.left - t.right,
+                mitte: (s.top + s.bottom - t.top - t.bottom) / 2,
+                hoehe: n.querySelector('.label').getBoundingClientRect().height, titelHoehe: t.height};
+      });
+    }""")
+    assert [x["titel"] for x in r[:3]] == ["Mira i Rex", "Naša kuća", "Moja porodica"], r
+    for x in r:
+        assert x["abstand"] == pytest.approx(8, abs=0.6), x
+        assert abs(x["mitte"]) <= 1.5, x
+        assert x["hoehe"] <= x["titelHoehe"] + 0.5, x
     assert seite.fehler == []

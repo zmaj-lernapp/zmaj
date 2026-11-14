@@ -550,6 +550,16 @@ are in the Play Store listing. Format:
   *Ljeto kod nane na selu* → "Familie". Unlocking does not depend on it, the text
   and audio stay. A test keeps every story at A1 to B1.
   `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
+- Story titles in the list (review for 1.4, 14.11.2026, B14; decided by the
+  maintainer, E3 option a): the title was shortened so that its level label could
+  stay beside it, in French at 360 px for 14 of 32 stories ("Na op…", "Razgo…").
+  The title is now always shown in full and wraps like text if needed (at most
+  two lines at normal font size); the label stands after its last word when it
+  fits there and otherwise moves to the line below. Where everything fits in one
+  line it looks as before. A label wider than the whole line ("Langue
+  administrative" next to "À faire maintenant") wraps inside itself instead of
+  being cut. `tests_e2e/test_pruefbericht14_oberflaeche.py` (all eight languages,
+  360 and 412 px, every story in every state).
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
