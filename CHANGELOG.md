@@ -775,6 +775,12 @@ are in the Play Store listing. Format:
   Infinitiv" was listed as Bosnian and stayed German in every language. It is now
   translated ("ću + infinitive", "ću + mastar", "ću + infinitif" …); the Bosnian
   forms and examples stay. `tests/test_pruefbericht14_grammatik.py`.
+- Vocative rule (third round, 14.11.2026 evening; decided by the maintainer): the
+  lesson "Cases 4: Instrumental & Vocative" said masculine words add -u only "after
+  j, č, š, ž". It now names all soft endings, "after ć, č, j, lj, nj, š, ž, đ, dž",
+  with *mladiću!* next to *prijatelju!*, as in the clip *41 Zmajevi*, in all eight
+  languages. The app computes no vocative forms itself; the exercise stays.
+  `tests/test_pruefbericht14_grammatik.py`.
 - *Kusur* in the gap sentence (review for 1.4, 14.11.2026, S11): "Gdje je moj ___?"
   said "Wo ist mein Wechselgeld?", the sentence-building task "Wo ist mein
   Rückgeld?", and the maintainer's corrections take *Rückgeld*. Both say

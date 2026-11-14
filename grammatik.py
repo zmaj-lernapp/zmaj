@@ -226,7 +226,7 @@ GRAMMATIK = {
                          ["weiblich", "sestra, kahva", "sestrom, kahvom", "-a → -om"],
                          ["sächlich", "selo, mlijeko", "selom, mlijekom", "-o → -om"]]},
             "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).",
-            "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).",
+            "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).",
         ],
         "uebungen": [
             {"frage": "„Idem s ___.“ (Ich gehe mit dem Bruder.)", "optionen": ["brata", "bratu", "bratom"], "richtig": "bratom", "tipp": "s/sa + Instrumental: + om."},

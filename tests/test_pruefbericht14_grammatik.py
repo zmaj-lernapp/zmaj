@@ -97,6 +97,41 @@ def test_s4_instrumental_em_nach_allen_weichen_lauten(alle_daten, grunddaten):
 
 
 # ---------------------------------------------------------------------------
+# Vokativ: + u nach allen weichen Lauten (dritte Runde, 14.11.2026 abends)
+# ---------------------------------------------------------------------------
+# Die Regel nannte nur „nach j, č, š, ž + u (prijatelju!)“. Ajdin: ć, lj, nj, đ, dž
+# dazuschreiben, „Ja“ - so wie im Clip 41 Zmajevi (Release\Clips_2026-11-13\41_Zmajevi\
+# storyboard.md): mladić → mladiću, prijatelj → prijatelju.
+VOKATIV_BUCHSTABEN = "ć, č, j, lj, nj, š, ž, đ, dž"
+VOKATIV_IN_SPRACHE = {
+    "de": "nach {} + u", "en": "after {} it adds -u", "tr": "{} harflerinden sonra + u gelir",
+    "sv": "efter {} blir det + u", "nl": "na {} wordt het + u", "nb": "etter {} blir det + u",
+    "da": "efter {} bliver det + u", "fr": "après {} + u",
+}
+
+
+def _vokativ(daten):
+    saetze = [t for t in daten["grammatik"]["faelle4"]["erklaerung"]
+              if isinstance(t, str) and "(brate!, gospodine!, sine!)" in t]
+    assert len(saetze) == 1, saetze
+    return saetze[0]
+
+
+def test_vokativ_u_nach_allen_weichen_lauten(alle_daten):
+    assert set(alle_daten) == set(VOKATIV_IN_SPRACHE), sorted(alle_daten)
+    for code, daten in alle_daten.items():
+        regel = _vokativ(daten)
+        assert VOKATIV_IN_SPRACHE[code].format(VOKATIV_BUCHSTABEN) in regel, (code, regel)
+        assert "(mladiću!, prijatelju!)" in regel, (code, regel)
+        assert "j, č, š, ž" not in regel, (code, regel)
+        assert "nach" not in regel or code == "de", (code, regel)       # kein deutscher Rest
+    # Die Uebung dazu bleibt: prijatelju! ist richtig, prijatelje! falsch.
+    for code, daten in alle_daten.items():
+        freund = [u for u in daten["grammatik"]["faelle4"]["uebungen"] if u["richtig"] == "prijatelju!"]
+        assert len(freund) == 1 and freund[0]["optionen"] == ["prijatelje!", "prijatelju!", "prijatelja!"], code
+
+
+# ---------------------------------------------------------------------------
 # S6: svoj ist nicht nur "mein eigener" (Offen-Liste, Punkt 3, 14.11.2026)
 # ---------------------------------------------------------------------------
 # Die Lektion Faelle 1 und das Woerterbuch der Lesetexte sagten "mein eigener"

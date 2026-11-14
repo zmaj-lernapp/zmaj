@@ -1170,6 +1170,12 @@ Formen selbst gebildet):
   *lonac* und *pas*, die nie getippt werden.
 - Beim Satzbau ändert sich nichts: keine der neuen Formen ist eine Kachel der App.
 
+**Vokativ-Regel.** „Ja“: ć, lj, nj, đ, dž zu j, č, š, ž dazuschreiben. In der Lektion
+„Fälle 4: Instrumental & Vokativ“ (`grammatik.py`, `faelle4`) steht jetzt „nach ć, č, j,
+lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!)“ statt „nach j, č, š, ž + u
+(prijatelju!)“, in 8 Sprachen, wie im Clip 41 Zmajevi. Die App bildet selbst keine
+Vokative; die Übung „Anrede an den Freund“ (*prijatelju!*) bleibt.
+
 ## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zu den Geschichten
 
 Änderungen am Text der Geschichten (`geschichten.py`). Der Text ist der

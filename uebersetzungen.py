@@ -2344,8 +2344,8 @@ INHALT = {
         "Instrumental = with whom? with what? After “sa” (with), or with no preposition at all for means of transport: “sa bratom”, “autom”, “vozom”.",
     "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).":
         "Pronouns: sa mnom (with me), sa tobom (with you), s njim (with him), s njom (with her), sa nama (with us), sa vama (with you, plural).",
-    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
-        "Vocative = the form for addressing someone. Masculine usually adds -e (brate!, gospodine!, sine!), after j, č, š, ž it adds -u (prijatelju!). Feminine words in -a become -o (sestro!, nano!, gospođo!), pet names in -ica become -ice (Amrice!). Female first names in -a usually stay the same (Amina!), male first names take -e (Ajdine!, Emire!).",
+    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
+        "Vocative = the form for addressing someone. Masculine usually adds -e (brate!, gospodine!, sine!), after ć, č, j, lj, nj, š, ž, đ, dž it adds -u (mladiću!, prijatelju!). Feminine words in -a become -o (sestro!, nano!, gospođo!), pet names in -ica become -ice (Amrice!). Female first names in -a usually stay the same (Amina!), male first names take -e (Ajdine!, Emire!).",
     "Die Vergangenheit (Perfekt) baut man aus „biti“ in der Gegenwart + dem Partizip auf -o / -la / -lo / -li / -le.":
         "The past tense is built from “biti” in the present plus the participle in -o / -la / -lo / -li / -le.",
     "Das Partizip kommt vom Infinitiv: raditi → radio/radila, imati → imao/imala, biti → bio/bila, ići → išao/išla, jesti → jeo/jela, reći → rekao/rekla.":
@@ -13368,8 +13368,8 @@ INHALT = {
         "İnstrumental = kiminle? neyle? “sa” (ile) edatından sonra ya da ulaşım aracında edatsız kullanılır: “sa bratom”, “autom”, “vozom”.",
     "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).":
         "Zamirler: sa mnom (benimle), sa tobom (seninle), s njim (onunla, erkek), s njom (onunla, kadın), sa nama (bizimle), sa vama (sizinle).",
-    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
-        "Vokatif = hitap biçimi. Eril kelimeler genellikle + e alır (brate!, gospodine!, sine!), j, č, š, ž harflerinden sonra + u gelir (prijatelju!). -a ile biten dişil kelimeler -o olur (sestro!, nano!, gospođo!), -ica ile biten sevgi adları -ice olur (Amrice!). -a ile biten kadın adları çoğunlukla değişmez (Amina!), erkek adları -e alır (Ajdine!, Emire!).",
+    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
+        "Vokatif = hitap biçimi. Eril kelimeler genellikle + e alır (brate!, gospodine!, sine!), ć, č, j, lj, nj, š, ž, đ, dž harflerinden sonra + u gelir (mladiću!, prijatelju!). -a ile biten dişil kelimeler -o olur (sestro!, nano!, gospođo!), -ica ile biten sevgi adları -ice olur (Amrice!). -a ile biten kadın adları çoğunlukla değişmez (Amina!), erkek adları -e alır (Ajdine!, Emire!).",
     "Die Vergangenheit (Perfekt) baut man aus „biti“ in der Gegenwart + dem Partizip auf -o / -la / -lo / -li / -le.":
         "Geçmiş zaman, “biti” fiilinin şimdiki zaman biçimi ile -o / -la / -lo / -li / -le ekli ortaçtan kurulur.",
     "Das Partizip kommt vom Infinitiv: raditi → radio/radila, imati → imao/imala, biti → bio/bila, ići → išao/išla, jesti → jeo/jela, reći → rekao/rekla.":
@@ -24386,8 +24386,8 @@ INHALT = {
         "Instrumentalis = med vem? med vad? Efter ”sa” (med), eller helt utan preposition när det gäller färdmedel: ”sa bratom”, ”autom”, ”vozom”.",
     "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).":
         "Pronomen: sa mnom (med mig), sa tobom (med dig), s njim (med honom), s njom (med henne), sa nama (med oss), sa vama (med er).",
-    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
-        "Vokativ = tilltalsformen. Maskulina ord får oftast + e (brate!, gospodine!, sine!), efter j, č, š, ž blir det + u (prijatelju!). Feminina ord på -a blir -o (sestro!, nano!, gospođo!), smeknamn på -ica blir -ice (Amrice!). Kvinnonamn på -a är oftast oförändrade (Amina!), mansnamn får -e (Ajdine!, Emire!).",
+    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
+        "Vokativ = tilltalsformen. Maskulina ord får oftast + e (brate!, gospodine!, sine!), efter ć, č, j, lj, nj, š, ž, đ, dž blir det + u (mladiću!, prijatelju!). Feminina ord på -a blir -o (sestro!, nano!, gospođo!), smeknamn på -ica blir -ice (Amrice!). Kvinnonamn på -a är oftast oförändrade (Amina!), mansnamn får -e (Ajdine!, Emire!).",
     "Die Vergangenheit (Perfekt) baut man aus „biti“ in der Gegenwart + dem Partizip auf -o / -la / -lo / -li / -le.":
         "Dåtiden byggs av ”biti” i presens plus particip på -o / -la / -lo / -li / -le.",
     "Das Partizip kommt vom Infinitiv: raditi → radio/radila, imati → imao/imala, biti → bio/bila, ići → išao/išla, jesti → jeo/jela, reći → rekao/rekla.":
@@ -35391,8 +35391,8 @@ INHALT = {
         "Instrumentalis = met wie? waarmee? Na ‘sa’ (met), of helemaal zonder voorzetsel bij vervoermiddelen: ‘sa bratom’, ‘autom’, ‘vozom’.",
     "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).":
         "Voornaamwoorden: sa mnom (met mij), sa tobom (met jou), s njim (met hem), s njom (met haar), sa nama (met ons), sa vama (met jullie).",
-    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
-        "Vocatief = de aanspreekvorm. Mannelijke woorden krijgen meestal + e (brate!, gospodine!, sine!), na j, č, š, ž wordt het + u (prijatelju!). Vrouwelijke woorden op -a worden -o (sestro!, nano!, gospođo!), koosnamen op -ica worden -ice (Amrice!). Vrouwennamen op -a blijven meestal gelijk (Amina!), mannennamen krijgen -e (Ajdine!, Emire!).",
+    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
+        "Vocatief = de aanspreekvorm. Mannelijke woorden krijgen meestal + e (brate!, gospodine!, sine!), na ć, č, j, lj, nj, š, ž, đ, dž wordt het + u (mladiću!, prijatelju!). Vrouwelijke woorden op -a worden -o (sestro!, nano!, gospođo!), koosnamen op -ica worden -ice (Amrice!). Vrouwennamen op -a blijven meestal gelijk (Amina!), mannennamen krijgen -e (Ajdine!, Emire!).",
     "Die Vergangenheit (Perfekt) baut man aus „biti“ in der Gegenwart + dem Partizip auf -o / -la / -lo / -li / -le.":
         "De verleden tijd bouw je met ‘biti’ in de tegenwoordige tijd plus het deelwoord op -o / -la / -lo / -li / -le.",
     "Das Partizip kommt vom Infinitiv: raditi → radio/radila, imati → imao/imala, biti → bio/bila, ići → išao/išla, jesti → jeo/jela, reći → rekao/rekla.":
@@ -46396,8 +46396,8 @@ INHALT = {
         "Instrumentalis = med hvem? med hva? Etter «sa» (med), eller helt uten preposisjon ved framkomstmidler: «sa bratom», «autom», «vozom».",
     "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).":
         "Pronomen: sa mnom (med meg), sa tobom (med deg), s njim (med ham), s njom (med henne), sa nama (med oss), sa vama (med dere).",
-    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
-        "Vokativ = tiltaleformen. Hankjønnsord får som regel + e (brate!, gospodine!, sine!), etter j, č, š, ž blir det + u (prijatelju!). Hunkjønnsord på -a blir -o (sestro!, nano!, gospođo!), kjælenavn på -ica blir -ice (Amrice!). Kvinnenavn på -a er som regel uendret (Amina!), mannsnavn får -e (Ajdine!, Emire!).",
+    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
+        "Vokativ = tiltaleformen. Hankjønnsord får som regel + e (brate!, gospodine!, sine!), etter ć, č, j, lj, nj, š, ž, đ, dž blir det + u (mladiću!, prijatelju!). Hunkjønnsord på -a blir -o (sestro!, nano!, gospođo!), kjælenavn på -ica blir -ice (Amrice!). Kvinnenavn på -a er som regel uendret (Amina!), mannsnavn får -e (Ajdine!, Emire!).",
     "Die Vergangenheit (Perfekt) baut man aus „biti“ in der Gegenwart + dem Partizip auf -o / -la / -lo / -li / -le.":
         "Fortiden bygges av «biti» i presens pluss partisippet på -o / -la / -lo / -li / -le.",
     "Das Partizip kommt vom Infinitiv: raditi → radio/radila, imati → imao/imala, biti → bio/bila, ići → išao/išla, jesti → jeo/jela, reći → rekao/rekla.":
@@ -57399,8 +57399,8 @@ INHALT = {
         "Instrumentalis = med hvem? med hvad? Efter »sa« (med), eller helt uden forholdsord ved transportmidler: »sa bratom«, »autom«, »vozom«.",
     "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).":
         "Stedord: sa mnom (med mig), sa tobom (med dig), s njim (med ham), s njom (med hende), sa nama (med os), sa vama (med jer).",
-    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
-        "Vokativ = tiltaleformen. Hankønsord får som regel + e (brate!, gospodine!, sine!), efter j, č, š, ž bliver det + u (prijatelju!). Hunkønsord på -a bliver -o (sestro!, nano!, gospođo!), kælenavne på -ica bliver -ice (Amrice!). Kvindenavne på -a er som regel uændrede (Amina!), mandenavne får -e (Ajdine!, Emire!).",
+    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
+        "Vokativ = tiltaleformen. Hankønsord får som regel + e (brate!, gospodine!, sine!), efter ć, č, j, lj, nj, š, ž, đ, dž bliver det + u (mladiću!, prijatelju!). Hunkønsord på -a bliver -o (sestro!, nano!, gospođo!), kælenavne på -ica bliver -ice (Amrice!). Kvindenavne på -a er som regel uændrede (Amina!), mandenavne får -e (Ajdine!, Emire!).",
     "Die Vergangenheit (Perfekt) baut man aus „biti“ in der Gegenwart + dem Partizip auf -o / -la / -lo / -li / -le.":
         "Datiden bygges af »biti« i nutid plus tillægsformen på -o / -la / -lo / -li / -le.",
     "Das Partizip kommt vom Infinitiv: raditi → radio/radila, imati → imao/imala, biti → bio/bila, ići → išao/išla, jesti → jeo/jela, reći → rekao/rekla.":
@@ -68404,8 +68404,8 @@ INHALT = {
         "Instrumental = avec qui ? avec quoi ? Après « sa » (avec) ou sans préposition pour les moyens de transport : « sa bratom », « autom », « vozom ».",
     "Pronomen: sa mnom (mit mir), sa tobom (mit dir), s njim (mit ihm), s njom (mit ihr), sa nama (mit uns), sa vama (mit euch).":
         "Pronoms : sa mnom (avec moi), sa tobom (avec toi), s njim (avec lui), s njom (avec elle), sa nama (avec nous), sa vama (avec vous).",
-    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach j, č, š, ž + u (prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
-        "Vocatif = la forme d'adresse. Au masculin le plus souvent + e (brate!, gospodine!, sine!), après j, č, š, ž + u (prijatelju!). Au féminin en -a → -o (sestro!, nano!, gospođo!), les diminutifs en -ica → -ice (Amrice!). Les prénoms féminins en -a restent le plus souvent identiques (Amina!), les prénoms masculins prennent -e (Ajdine!, Emire!).",
+    "Vokativ = die Anrede. Männlich meist + e (brate!, gospodine!, sine!), nach ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Weiblich auf -a → -o (sestro!, nano!, gospođo!), Kosenamen auf -ica → -ice (Amrice!). Weibliche Vornamen auf -a bleiben meist gleich (Amina!), männliche Vornamen bekommen -e (Ajdine!, Emire!).":
+        "Vocatif = la forme d'adresse. Au masculin le plus souvent + e (brate!, gospodine!, sine!), après ć, č, j, lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!). Au féminin en -a → -o (sestro!, nano!, gospođo!), les diminutifs en -ica → -ice (Amrice!). Les prénoms féminins en -a restent le plus souvent identiques (Amina!), les prénoms masculins prennent -e (Ajdine!, Emire!).",
     "Die Vergangenheit (Perfekt) baut man aus „biti“ in der Gegenwart + dem Partizip auf -o / -la / -lo / -li / -le.":
         "Le passé (parfait) se forme avec « biti » au présent + le participe en -o / -la / -lo / -li / -le.",
     "Das Partizip kommt vom Infinitiv: raditi → radio/radila, imati → imao/imala, biti → bio/bila, ići → išao/išla, jesti → jeo/jela, reći → rekao/rekla.":
