@@ -462,6 +462,11 @@ are in the Play Store listing. Format:
   desilo?* (as for the verb). One `"auch"` each; IDs and recordings stay. No pair
   *kad*/*kada* for everywhere, because *kada* is also "bathtub".
   `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+- Typing *sa* (review for 1.4, 14.11.2026, V8; decided by the maintainer, F1): *sa
+  bratom*, *sa djecom*, *sa tobom*, *sa nama*, *sa mlijekom*, *sa mojom ženom* and *Sa
+  poštovanjem* now count next to the *s* form; the grammar of the level itself writes
+  *sa bratom*. One `"auch"` each, IDs and recordings stay. No pair *s*/*sa* for
+  everywhere, which would also allow *s mnom*. `tests/test_pruefbericht14_tippen.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

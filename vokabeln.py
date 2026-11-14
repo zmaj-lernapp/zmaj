@@ -1386,7 +1386,7 @@ KATEGORIEN = [
         {"de": "im Haus",                   "bs": "u kući"},
         {"de": "auf dem Tisch",             "bs": "na stolu"},
         {"de": "auf dem Markt",             "bs": "na pijaci"},
-        {"de": "mit meiner Frau",           "bs": "s mojom ženom"},
+        {"de": "mit meiner Frau",           "bs": "s mojom ženom", "auch": ["sa mojom ženom"]},   # s und sa (Ajdin, Prüfbericht 1.4, V8/F1)
         {"de": "für dich",                  "bs": "za tebe"},
         {"de": "für die Kinder",            "bs": "za djecu"},
         {"de": "im Auto",                   "bs": "u autu"},
@@ -1431,19 +1431,19 @@ KATEGORIEN = [
     {"id": "faelle4", "label": "Fälle 4: Instrumental & Vokativ", "sektion": "saetze2", "tipp": "Mit wem, womit? Und wie man jemanden anspricht.",
      "baut_auf": ["faelle3", "familie", "unterwegs"],
      "words": [
-        {"de": "mit dem Bruder",            "bs": "s bratom"},
+        {"de": "mit dem Bruder",            "bs": "s bratom", "auch": ["sa bratom"]},   # die Grammatik schreibt „sa bratom“ (Ajdin, Prüfbericht 1.4, V8/F1)
         {"de": "mit der Schwester",         "bs": "sa sestrom"},
-        {"de": "mit den Kindern",           "bs": "s djecom"},
+        {"de": "mit den Kindern",           "bs": "s djecom", "auch": ["sa djecom"]},   # Prüfbericht 1.4, V8/F1
         {"de": "mit dem Auto",              "bs": "autom"},
         {"de": "mit dem Bus",               "bs": "autobusom"},
         {"de": "mit dem Zug",               "bs": "vozom"},
         {"de": "mit dem Fahrrad",           "bs": "biciklom"},
         {"de": "zu Fuß",                    "bs": "pješke"},
         {"de": "mit mir",                   "bs": "sa mnom"},
-        {"de": "mit dir",                   "bs": "s tobom"},
-        {"de": "mit uns",                   "bs": "s nama"},
+        {"de": "mit dir",                   "bs": "s tobom", "auch": ["sa tobom"]},   # Prüfbericht 1.4, V8/F1
+        {"de": "mit uns",                   "bs": "s nama", "auch": ["sa nama"]},   # Prüfbericht 1.4, V8/F1
         {"de": "mit Zucker",                "bs": "sa šećerom"},
-        {"de": "mit Milch",                 "bs": "s mlijekom"},
+        {"de": "mit Milch",                 "bs": "s mlijekom", "auch": ["sa mlijekom"]},   # Prüfbericht 1.4, V8/F1
         {"de": "unter dem Tisch",           "bs": "pod stolom"},
         {"de": "Anrede: Bruder!",           "bs": "brate!"},
         {"de": "Anrede: Schwester!",        "bs": "sestro!"},
@@ -2213,7 +2213,7 @@ KATEGORIEN = [
         {"de": "Vielen Dank für Ihre Hilfe",        "bs": "Hvala Vam na pomoći"},
         {"de": "Sehr geehrter Herr",                "bs": "Poštovani gospodine"},
         {"de": "Sehr geehrte Frau",                 "bs": "Poštovana gospođo"},
-        {"de": "Mit freundlichen Grüßen",           "bs": "S poštovanjem"},
+        {"de": "Mit freundlichen Grüßen",           "bs": "S poštovanjem", "auch": ["Sa poštovanjem"]},   # Prüfbericht 1.4, V8/F1
     ]},
 
     {"id": "amt", "label": "Amt & Behörde", "sektion": "amt", "baut_auf": ["formell", "zeit", "zahlen", "arbeit"], "tipp": "Dokumente, Anträge, Behördensprache. Das schwerste Level.",

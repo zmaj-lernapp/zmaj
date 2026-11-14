@@ -796,3 +796,28 @@ an den Vokabeln ändert sich nichts, der Text der Geschichten bleibt (Ton-Schlü
   dir“, „sie (Akkusativ)“, „klein (w)“, „Beamtin“, „ihrer eigenen“); nachgeschlagen
   in Wiktionary (nl *toen*, da *hvornår*, fr *médecin* für Frauen) und Den Danske
   Ordbog (da *da* für einen Zeitpunkt in der Vergangenheit).
+
+## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zum Tippen
+
+Ajdins Antworten auf die Fragen aus `Release\Pruefbericht_1.4.md` („Antworten von
+Ajdin (14.11.2026)“), soweit sie beim Tippen eine weitere richtige Antwort bringen.
+Je ein `"auch"` am Wort oder am Lückensatz; Kennungen, Anzeige und Aufnahmen
+bleiben, gesprochen wird weiter `bs` bzw. die Lösung des Lückensatzes. Gilt nur an
+den genannten Stellen, kein Paar für überall in `varianten.py`.
+
+**V8 / F1, s und sa.** Ajdin: „passt“.
+
+| Kennung | Änderung |
+|---|---|
+| `mit meiner frau:s mojom ženom` | `"auch": ["sa mojom ženom"]` |
+| `mit dem bruder:s bratom` | `"auch": ["sa bratom"]` |
+| `mit den kindern:s djecom` | `"auch": ["sa djecom"]` |
+| `mit dir:s tobom` | `"auch": ["sa tobom"]` |
+| `mit uns:s nama` | `"auch": ["sa nama"]` |
+| `mit milch:s mlijekom` | `"auch": ["sa mlijekom"]` |
+| `mit freundlichen grüßen:S poštovanjem` | `"auch": ["Sa poštovanjem"]` |
+
+- Die Grammatik des Levels Fälle 4 schreibt selbst „sa bratom“, „sa tobom“, „sa nama“.
+- Kein Paar *s* → *sa* für überall, sonst gälte auch „s mnom“. Beim Satzbau sind *s*
+  und *sa* schon dieselbe Kachel (`KACHEL_PAARE`).
+- Tests: `tests/test_pruefbericht14_tippen.py`.
