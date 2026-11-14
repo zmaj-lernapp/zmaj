@@ -2223,6 +2223,19 @@
   .bubble{margin-top:14px; padding:10px 14px; border-radius:12px; background:var(--accent-soft); color:var(--ink); font-size:14px; min-height:40px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-weight:700}
   .bubble b{font-family:var(--font-display); font-size:18px; color:var(--primary)}
   .bubble.empty{color:var(--muted); background:transparent; border:2px dashed var(--line)}
+  /* Pruefbericht 1.4, V2 (14.11.2026): Die Blase stand hinter dem ganzen
+     Text, und die Seite scrollte nicht. Wer in einem langen Text oben ein
+     Wort antippte, sah nur die gelbe Markierung - in allen 20 B1-Texten bei
+     360 und 412 px, bei 360 px auch in "intervju" (Wort bei 463 px, Blase
+     bei 1544 px). sticky haelt sie unten im Bild fest, solange ihr Platz
+     unter dem Text noch nicht zu sehen ist; der Platz selbst bleibt, der
+     Text springt also nicht. Liegt das angetippte Wort darunter, schiebt
+     das Antippen die Seite so weit, dass es darueber steht (showStory),
+     und beim Vorlesen rueckt die Seite vor der Blase nach (mitlesenImBlick).
+     Ueber der Update-Leiste, wenn sie steht. */
+  #rBody .bubble{position:sticky; z-index:2; bottom:calc(12px + env(safe-area-inset-bottom, 0px));
+    box-shadow:0 6px 18px rgba(0,0,0,.18)}
+  body.updDa #rBody .bubble{bottom:calc(var(--upd-hoehe, 72px) + 28px + env(safe-area-inset-bottom, 0px))}
   .trans{font-size:14px; color:var(--muted); line-height:1.6; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); white-space:pre-line}
   /* Eigener Name, nicht .q - das ist die Zeile der Tagesaufgaben und
      die steht auf display:flex. Damit lag hier alles nebeneinander. */
@@ -8461,7 +8474,15 @@ function mitlesenZeigen(m, t){
 function mitlesenImBlick(el, davor){
   try{
     /* h in den Einheiten von getBoundingClientRect, siehe rectFaktor() */
-    const h = (window.innerHeight || document.documentElement.clientHeight) / rectFaktor();
+    let h = (window.innerHeight || document.documentElement.clientHeight) / rectFaktor();
+    /* Steht die Blase eines angetippten Wortes unten im Bild (V2,
+       14.11.2026), endet der freie Bereich an ihrer Oberkante. Steht sie an
+       ihrem Platz unter dem Text, liegt ohnehin jedes Wort darueber. */
+    const blase = $('rBubble');
+    if(blase && !blase.hidden){
+      const o = blase.getBoundingClientRect().top;
+      if(o > 0 && o < h) h = o;
+    }
     const r = el.getBoundingClientRect();
     if(r.top >= 0 && r.bottom <= h) return;
     if(davor){
@@ -12415,6 +12436,16 @@ function showStory(){
       b.querySelector('.wortton').addEventListener('click', ()=>{ stilleBitte(); sprichMitSpieler(wort); });
       sprichMitSpieler(wort);
     }
+    /* Die Blase sitzt unten im Bild fest (V2, 14.11.2026, CSS bei
+       .bubble). Wer ein Wort ganz unten antippt, haette es sonst unter ihr.
+       Dann die Seite gerade so weit schieben, dass es darueber steht - sonst
+       bleibt sie stehen. Erst hier, wenn der Lautsprecher schon drin ist:
+       er kann die Blase hoeher machen. */
+    try{
+      const wr = w.getBoundingClientRect(), br = b.getBoundingClientRect();
+      if(wr.bottom > br.top - 6 && wr.top < br.bottom)
+        scrollBy({top: (wr.bottom - br.top + 12) * rectFaktor(), behavior: kachelnRuhig() ? 'auto' : 'smooth'});
+    }catch(e){}
   }));
   $('rTrans').addEventListener('click',()=>{ const box=$('rTransText'); box.hidden=!box.hidden; $('rTrans').textContent = box.hidden?t('gesch.zeigen'):t('gesch.verbergen'); });
   /* Der grosse Knopf macht drei Dinge nacheinander: vorlesen, anhalten,

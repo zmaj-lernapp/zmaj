@@ -494,6 +494,16 @@ are in the Play Store listing. Format:
   "(informal)", like "When will you come? (singular, informal)" already did; the
   word and the sentence-building item with the same text get it too. The other
   languages tell *du* and *Sie* apart on their own.
+- Reading stories (review for 1.4, 14.11.2026, V2): the bubble with the meaning
+  of a tapped word stood after the whole text, and the page did not scroll. Who
+  tapped a word near the top only saw the yellow mark, in all 20 B1 stories at
+  360 and 412 px and in *intervju* at 360 px (word at 463 px, bubble at 1544 px).
+  The bubble now sticks to the bottom of the screen (`position: sticky` inside
+  the story card, above the update bar when it shows); its place under the text
+  stays, so the text does not jump. A word tapped right above the bottom edge
+  is scrolled up just enough to stay visible, and reading along scrolls before
+  the current word goes behind the bubble.
+  `tests_e2e/test_pruefbericht14_oberflaeche.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
