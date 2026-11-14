@@ -335,6 +335,12 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- The B1 section "Körper und Gesundheit" is now called "Arzt & Gesundheit"
+  (14.11.2026, the maintainer's choice; "Doctor & health", "Doktor ve sağlık",
+  "Läkare & hälsa", "Dokter & gezondheid", "Lege & helse", "Læge & sundhed",
+  "Médecin & santé"). Only the name changed: the section keeps its ID, colour and
+  levels, and the A1 level "Körper & Gesundheit" keeps its name.
+  `tests/test_sektion_arzt.py`.
 - Family level (13.11.2026, approved by the maintainer): *stričević* now counts
   as correct when typed next to *amidžić*, and *stričevka* next to *amidžična*,
   through `"auch"` like the pet names *striko* and *adžo*. IDs, display and

@@ -185,7 +185,10 @@ SEKTIONEN = [
      "beschreibung": "Die wichtigsten Verben, oft als Paar, jedes mit einem Beispielsatz. Dazu Hilfe im Notfall."},
     {"id": "wieetwasist", "stufe": "B1", "label": "Sektion 3 · Wie etwas ist",
      "beschreibung": "Adjektive für Gegensätze, Charakter, Gefühle und Sinne, jedes mit einem Beispielsatz."},
-    {"id": "koerpergesundheit", "stufe": "B1", "label": "Sektion 4 · Körper und Gesundheit",
+    # Name seit 14.11.2026 "Arzt & Gesundheit", vorher "Körper und Gesundheit"
+    # (Ajdin: "ok mach arzt & gesundheit"). Die id bleibt; das A1-Level
+    # "Körper & Gesundheit" heißt weiter so.
+    {"id": "koerpergesundheit", "stufe": "B1", "label": "Sektion 4 · Arzt & Gesundheit",
      "beschreibung": "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz."},
     {"id": "zeitfreizeit", "stufe": "B1", "label": "Sektion 5 · Zeit und Freizeit",
      "beschreibung": "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz."},

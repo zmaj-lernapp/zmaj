@@ -494,10 +494,10 @@ jedes mit seinem Beispielsatz. Gezeigt wird die männliche Form (*dug*), die
 weibliche und die sächliche (*duga*, *dugo*) zählen beim Tippen genauso.
 Die Sektion trägt die dritte Farbe.
 
-**Sektion 4 · Körper und Gesundheit** (8 Levels, seit 01.11.2026,
-Wortschatz-Paket 3): Von Kopf bis Fuß, Haut, Knochen und Organe, Krank sein,
-Beschwerden, In der Arztpraxis, Untersuchen und heilen, In der Apotheke,
-Gesund leben. Vierte Farbe.
+**Sektion 4 · Arzt & Gesundheit** (8 Levels, seit 01.11.2026,
+Wortschatz-Paket 3; bis 14.11.2026 „Körper und Gesundheit“): Von Kopf bis
+Fuß, Haut, Knochen und Organe, Krank sein, Beschwerden, In der Arztpraxis,
+Untersuchen und heilen, In der Apotheke, Gesund leben. Vierte Farbe.
 
 **Sektion 5 · Zeit und Freizeit** (6 Levels, seit 01.11.2026,
 Wortschatz-Paket 4): Zeitangaben, Sofort, gerade, endlich, Sport und Spiel,
@@ -601,7 +601,7 @@ und in Zukunft, Wo und wohin, Gut oder schlecht, Fest und sichtbar, Streng und
 zuverlässig, Feste Wendungen, Keine Ahnung und alle Achtung, Mengen und Maße.
 Neunte Farbe.
 
-Auch in B1 ab „Körper und Gesundheit“ und in ganz B2 steht jedes Wort direkt
+Auch in B1 ab „Arzt & Gesundheit“ und in ganz B2 steht jedes Wort direkt
 vor seinem Beispielsatz. Was Ajdin als zweite Form freigegeben hat (*nogomet* bei
 *fudbal*, *naočare* bei *naočale*), zählt beim Tippen; was er ausgeschlossen
 hat (*ranac*, *grudi*, *rentgen*, *prepisati*), zählt nicht.

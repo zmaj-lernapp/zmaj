@@ -113,7 +113,8 @@ def test_sektion_zwoelf_und_drei_level_in_tun_und_lassen(grunddaten_vor_umzug):
     grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     sektionen = [s["id"] for s in grunddaten["sektionen"]]
     assert sektionen[12] == "koerpergesundheit"  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
-    assert grunddaten["sektionen"][12]["label"] == "Sektion 4 · Körper und Gesundheit"
+    # seit 14.11.2026 "Arzt & Gesundheit" (Ajdin), siehe tests/test_sektion_arzt.py
+    assert grunddaten["sektionen"][12]["label"] == "Sektion 4 · Arzt & Gesundheit"
     tun = [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "tunlassen"]
     assert tun[12:15] == TUN, "nach im_haushalt"
     assert tun[-2:] == ["passieren", "notfall"], "seit 06.11.2026 stehen dazwischen die Level aus Paket 7 und 8"

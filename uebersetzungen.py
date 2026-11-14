@@ -5060,7 +5060,7 @@ INHALT = {
     # und bekommen damit auch hier dieselbe Übersetzung. Wo zwei Wörter in einer
     # Sprache sonst gleich hießen (jezik Zunge / Sprache, pacijent / strpljiv,
     # želudac / stomak), steht eine Klammer dahinter.
-    "Sektion 4 · Körper und Gesundheit": "Section 4 · Body and health",
+    "Sektion 4 · Arzt & Gesundheit": "Section 4 · Doctor & health",
     "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz.": "Body parts, ailments, at the doctor's and at the pharmacy, each word with an example sentence.",
     "Sektion 5 · Zeit und Freizeit": "Section 5 · Time and leisure",
     "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz.": "Time expressions, sports, hobbies, media and travel, each word with an example sentence.",
@@ -16082,7 +16082,7 @@ INHALT = {
     "fad (ohne Geschmack)": "tatsız / yavan",
     "Die Suppe ist fad, es fehlt Salz.": "Çorba yavan, tuzu eksik.",
     # ---- Wortschatz-Pakete 3 und 4: Kaufen und bezahlen, Paare, Sektionen 12-14 (01.11.2026) ----
-    "Sektion 4 · Körper und Gesundheit": "4. bölüm · Vücut ve sağlık",
+    "Sektion 4 · Arzt & Gesundheit": "4. bölüm · Doktor ve sağlık",
     "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz.": "Vücut bölümleri, şikâyetler, doktorda ve eczanede, her kelime bir örnek cümleyle.",
     "Sektion 5 · Zeit und Freizeit": "5. bölüm · Zaman ve boş zaman",
     "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz.": "Zaman ifadeleri, spor, hobiler, medya ve seyahat, her kelime bir örnek cümleyle.",
@@ -27090,7 +27090,7 @@ INHALT = {
     "fad (ohne Geschmack)": "fadd / smaklös",
     "Die Suppe ist fad, es fehlt Salz.": "Soppan är fadd, det saknas salt.",
     # ---- Wortschatz-Pakete 3 und 4: Kaufen und bezahlen, Paare, Sektionen 12-14 (01.11.2026) ----
-    "Sektion 4 · Körper und Gesundheit": "Avsnitt 4 · Kropp och hälsa",
+    "Sektion 4 · Arzt & Gesundheit": "Avsnitt 4 · Läkare & hälsa",
     "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz.": "Kroppsdelar, besvär, hos läkaren och på apoteket, varje ord med en exempelmening.",
     "Sektion 5 · Zeit und Freizeit": "Avsnitt 5 · Tid och fritid",
     "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz.": "Tidsuttryck, sport, hobbyer, medier och resor, varje ord med en exempelmening.",
@@ -38093,7 +38093,7 @@ INHALT = {
     "fad (ohne Geschmack)": "flauw / smakeloos",
     "Die Suppe ist fad, es fehlt Salz.": "De soep is flauw, er moet zout bij.",
     # ---- Wortschatz-Pakete 3 und 4: Kaufen und bezahlen, Paare, Sektionen 12-14 (01.11.2026) ----
-    "Sektion 4 · Körper und Gesundheit": "Deel 4 · Lichaam en gezondheid",
+    "Sektion 4 · Arzt & Gesundheit": "Deel 4 · Dokter & gezondheid",
     "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz.": "Lichaamsdelen, klachten, bij de dokter en bij de apotheek, elk woord met een voorbeeldzin.",
     "Sektion 5 · Zeit und Freizeit": "Deel 5 · Tijd en vrije tijd",
     "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz.": "Tijdsaanduidingen, sport, hobby's, media en reizen, elk woord met een voorbeeldzin.",
@@ -49096,7 +49096,7 @@ INHALT = {
     "fad (ohne Geschmack)": "smakløs / flau",
     "Die Suppe ist fad, es fehlt Salz.": "Suppa er smakløs, den mangler salt.",
     # ---- Wortschatz-Pakete 3 und 4: Kaufen und bezahlen, Paare, Sektionen 12-14 (01.11.2026) ----
-    "Sektion 4 · Körper und Gesundheit": "Del 4 · Kropp og helse",
+    "Sektion 4 · Arzt & Gesundheit": "Del 4 · Lege & helse",
     "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz.": "Kroppsdeler, plager, hos legen og på apoteket, hvert ord med en eksempelsetning.",
     "Sektion 5 · Zeit und Freizeit": "Del 5 · Tid og fritid",
     "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz.": "Tidsuttrykk, sport, hobbyer, medier og reiser, hvert ord med en eksempelsetning.",
@@ -60100,7 +60100,7 @@ INHALT = {
     "fad (ohne Geschmack)": "fad / smagløs",
     "Die Suppe ist fad, es fehlt Salz.": "Suppen er fad, den mangler salt.",
     # ---- Wortschatz-Pakete 3 und 4: Kaufen und bezahlen, Paare, Sektionen 12-14 (01.11.2026) ----
-    "Sektion 4 · Körper und Gesundheit": "Del 4 · Krop og sundhed",
+    "Sektion 4 · Arzt & Gesundheit": "Del 4 · Læge & sundhed",
     "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz.": "Kropsdele, gener, hos lægen og på apoteket, hvert ord med en eksempelsætning.",
     "Sektion 5 · Zeit und Freizeit": "Del 5 · Tid og fritid",
     "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz.": "Tidsudtryk, sport, hobbyer, medier og rejser, hvert ord med en eksempelsætning.",
@@ -71113,7 +71113,7 @@ INHALT = {
     "fad (ohne Geschmack)": "fade",
     "Die Suppe ist fad, es fehlt Salz.": "La soupe est fade, il manque du sel.",
     # ---- Wortschatz-Pakete 3 und 4: Kaufen und bezahlen, Paare, Sektionen 12-14 (01.11.2026) ----
-    "Sektion 4 · Körper und Gesundheit": "Partie 4 · Le corps et la santé",
+    "Sektion 4 · Arzt & Gesundheit": "Partie 4 · Médecin & santé",
     "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz.": "Les parties du corps, les maux, chez le médecin et à la pharmacie, chaque mot avec une phrase d'exemple.",
     "Sektion 5 · Zeit und Freizeit": "Partie 5 · Le temps et les loisirs",
     "Zeitangaben, Sport, Hobbys, Medien und Reisen, jedes Wort mit einem Beispielsatz.": "Les indications de temps, le sport, les loisirs, les médias et les voyages, chaque mot avec une phrase d'exemple.",

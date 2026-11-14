@@ -322,14 +322,14 @@
    "position": 13,
    "stage": "B1",
    "label": {
-    "de": "Sektion 4 · Körper und Gesundheit",
-    "en": "Section 4 · Body and health",
-    "tr": "4. bölüm · Vücut ve sağlık",
-    "sv": "Avsnitt 4 · Kropp och hälsa",
-    "nl": "Deel 4 · Lichaam en gezondheid",
-    "nb": "Del 4 · Kropp og helse",
-    "da": "Del 4 · Krop og sundhed",
-    "fr": "Partie 4 · Le corps et la santé"
+    "de": "Sektion 4 · Arzt & Gesundheit",
+    "en": "Section 4 · Doctor & health",
+    "tr": "4. bölüm · Doktor ve sağlık",
+    "sv": "Avsnitt 4 · Läkare & hälsa",
+    "nl": "Deel 4 · Dokter & gezondheid",
+    "nb": "Del 4 · Lege & helse",
+    "da": "Del 4 · Læge & sundhed",
+    "fr": "Partie 4 · Médecin & santé"
    },
    "description": {
     "de": "Körperteile, Beschwerden, beim Arzt und in der Apotheke, jedes Wort mit einem Beispielsatz.",

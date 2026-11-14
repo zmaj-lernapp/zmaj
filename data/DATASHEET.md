@@ -35,7 +35,7 @@ pie showData title Words per section (7,997)
   "B1/1 Offices & contracts" : 162
   "B1/2 Doings and dealings" : 1106
   "B1/3 How things are" : 190
-  "B1/4 Body and health" : 205
+  "B1/4 Doctor & health" : 205
   "B1/5 Time and leisure" : 173
   "B1/6 Learning and working" : 122
   "B1/7 Basic concepts" : 295
