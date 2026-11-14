@@ -67,7 +67,7 @@ are in the Play Store listing. Format:
   (*Izdajem stan*) and an e-mail (*Mejl rođaku*). Texts, translations and
   questions in all eight languages (translations not by native speakers).
   Every word form stands in exactly one glossary block, with one meaning that
-  fits every story: 32 stories and 1,503 glossary entries in total. The new
+  fits every story: 32 stories and 1,515 glossary entries in total. The new
   stories have no audio yet; it is synthesised after the maintainer's review
   (`tests/offen_lesetexte.json`, `tests/offen_b1_teil2.py`).
 - A sandbox in the test app only (8.11.2026): when Android reports the app ID
@@ -683,6 +683,17 @@ are in the Play Store listing. Format:
   zanat na Baščaršiji*, *Zmaj uči bosanski*, *Izdajem stan* ("Može sutra u šest ako
   vam odgovara.") and *Mejl rođaku*. Only punctuation changed; none of the seven had
   audio yet. `tests/test_pruefbericht14_geschichten.py`.
+- A new B1 story instead of *Selidba* (review for 1.4, 14.11.2026; decided by the
+  maintainer, F10): *Selidba* told the same tale as *Izdajem stan*, a young woman
+  moving for work. In its place, under the same ID so reading progress stays, comes
+  *Dedo i nana se sele*: Grandpa and Grandma move from their village below Vlašić
+  into a small flat in Travnik, and Grandpa, who wanted only his armchair and his
+  radio, secretly brings a young plum tree in a bucket. Translation and three
+  questions in all eight languages (not by native speakers); the right answer is
+  nowhere much longer than the wrong ones. Every word is tappable: 44 new glossary
+  forms, *radio* as the device in the story's own entries, and the 31 forms only the
+  old story used are gone with their translations (1,515 entries). No audio yet; it comes with the next Vesna round
+  (`tests/offen_b1_teil2.py`). `tests/test_pruefbericht14_geschichten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

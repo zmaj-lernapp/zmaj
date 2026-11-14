@@ -51,6 +51,16 @@ sieben Texte hatte Ton; der Schluessel aendert sich mit dem Komma und ist in
 tests/offen_lesetexte.json nachgezogen (b1_zanat, b1_mejl und b1_zmaj warten
 mit ihrer id in tests/offen_b1_teil2.py).
 
+F10: Ajdin "mach eine neue geschichte". Statt "Selidba" (wieder eine junge
+Frau, die wegen der Arbeit umzieht, wie in b1_stan) steht unter derselben id
+"Dedo i nana se sele": Opa und Oma ziehen vom Dorf unter dem Vlašić in eine
+kleine Wohnung in Travnik, der Opa nimmt heimlich einen Pflaumenbaum mit.
+Angenommen mit "nana se teško penje uz stepenice" und "Napokon bašta koja nije
+prevelika". Uebersetzung und Fragen in acht Sprachen, die richtige Antwort ist
+nirgends deutlich laenger (B13). Die Formen der alten Geschichte, die kein Text
+mehr braucht, sind aus dem WOERTERBUCH und aus uebersetzungen.py raus. Ton
+folgt in der Vesna-Runde.
+
 Der Text der Geschichten ist ihr Ton-Schluessel (ton_bauen.py). Er aendert
 sich nur, wo Ajdin es entschieden hat; test_text_der_geschichten_bleibt haelt
 jeden Stand fest. Die Tests im Browser stehen in
@@ -107,8 +117,9 @@ ENGLISCH = {
 # (526d6a03…), seit S3 in pismo "napraviti pitu" (b8c9980c…), seit S7 "vam"
 # klein in den Gespraechen von b1_posao und b1_stan (46d93671…), seit F11 a
 # ohne die sieben Kommas vor nachgestelltem jer und ako (7ae50346…), seit der
-# Offen-Liste, Punkt 3, "Hvala vam na pomoći" klein in opcina.
-TEXTE_SHA256 = "bc6caa5218647dc8cc86a5a9f30c6f46cb8928682d490570dc3a444b1506d274"
+# Offen-Liste, Punkt 3, "Hvala vam na pomoći" klein in opcina (bc6caa52…), dann
+# "Dedo i nana se sele" statt "Selidba".
+TEXTE_SHA256 = "ccb927282ee9eec5450739fa64a01284c31d0278860c3f15b2c73493efe1744d"
 
 
 def _geschichten(daten):
@@ -435,14 +446,15 @@ def test_f11_die_sieben_saetze(grunddaten):
 
 
 def test_f11_kein_komma_vor_jer_und_ako(grunddaten):
-    """Wie die Lektion es lehrt. Ein Komma davor bleibt nur, wo ein Einschub
-    endet, und das gibt es nur noch in b1_selidba ("Sjeli su na pod, jer sto
-    još nisu kupili, i …"); die Geschichte wird ersetzt."""
+    """Wie die Lektion es lehrt, in keiner Geschichte. Bis zur neuen
+    Geschichte stand ein Komma davor nur noch im Einschub der alten
+    b1_selidba ("Sjeli su na pod, jer sto još nisu kupili, i …"); "Dedo i
+    nana se sele" hat weder jer noch ako."""
     import grammatik
     regel = "Vor „jer“, „da“ und „ako“ steht kein Komma, wenn der Nebensatz hinter dem Hauptsatz steht"
     assert any(regel in str(teil) for teil in grammatik.GRAMMATIK["satzbau"]["erklaerung"])
     funde = {s["id"]: [m.group() for m in KOMMA_DAVOR.finditer(s["text"])] for s in grunddaten["geschichten"]}
-    assert {k: v for k, v in funde.items() if v} == {"b1_selidba": [", jer"]}
+    assert {k: v for k, v in funde.items() if v} == {}
 
 
 def test_f11_ton_schluessel_nachgezogen():
@@ -460,3 +472,127 @@ def test_f11_ton_schluessel_nachgezogen():
         assert k in offen_lesetexte.GESCHICHTEN or gid in offen_b1_teil2.GESCHICHTEN, gid
     alt = [t for t in offen_lesetexte.GESCHICHTEN if KOMMA_DAVOR.search(t)]
     assert alt == []
+
+
+# ---------------------------------------------------------------------------
+# F10: "Dedo i nana se sele" statt "Selidba" (Offen-Liste, Punkt 3, 14.11.2026)
+# ---------------------------------------------------------------------------
+# Ajdin: "mach eine neue geschichte", Entwurf Release\Selidba_neu_Entwurf.md,
+# Vorschlag 1, angenommen mit "nimm penje uz stepenicama" und "nimm napokon...".
+DEDO_TEXT = "\n\n".join([
+    "Dedo Rasim i nana Fadila već četrdeset godina žive u kući na selu ispod Vlašića. Ali bašta im je "
+    "prevelika, a nana se teško penje uz stepenice. Zato su odlučili da se presele u Travnik, u mali stan "
+    "blizu kćerke Alme. Zgrada ima lift.",
+    "U subotu je došao unuk Edin da pomogne. Nana je htjela sve ponijeti: ormar, šporet na drva i trideset "
+    "tegli zimnice. „Nano, stan ima dvije sobe, a ne deset!“ rekao je Edin. Uzeo je papir i zapisivao šta "
+    "ide, a šta ostaje.",
+    "Dedo je htio samo dvije stvari: staru fotelju i radio. „U njoj trideset godina slušam radio. Bez nje "
+    "ne idem!“ Ormar i šporet su ostali u kući, a ključ su dali komšiji.",
+    "Edin je u punom kombiju našao kantu koje nije bilo na spisku. U kanti je bila mlada šljiva iz bašte. "
+    "„Dedo, rekao si samo dvije stvari!“ „Ovo nije stvar“, rekao je dedo. „Ovo je šljiva.“",
+    "Prve večeri su sjedili na novom balkonu. Nana je skuhala kahvu, a dedo je zalijevao svoju šljivu. "
+    "„Napokon bašta koja nije prevelika“, rekao je. Nana se nasmijala: „Naviknut ćemo se, Rasime.“",
+])
+DEDO_FRAGEN = [
+    ("Wohin ziehen Rasim und Fadila?",
+     ["in eine kleine Wohnung in Travnik", "in ein großes Haus in Sarajevo", "in ein anderes Dorf am Vlašić"]),
+    ("Welche zwei Dinge wollte der Opa mitnehmen?",
+     ["den alten Sessel und das Radio", "den Schrank und den Holzherd", "den großen Tisch und das Bett"]),
+    ("Was fand Edin im vollen Kleinbus?",
+     ["einen Pflaumenbaum im Eimer", "einen Eimer mit Pflaumenmus", "den Schlüssel vom alten Haus"]),
+]
+# Aus der alten Geschichte, kommen in keinem Text mehr vor
+SELIDBA_ALT_WOERTER = ["hajra", "kamenje", "kutiji", "pokucajte", "stepenicama", "petom", "pitom", "kombi"]
+SELIDBA_ALT_TEXTE = ["Warum zieht Selma um?", "der Aufzug funktionierte nicht", "eine warme Pita",
+                     "Hajra (Name)", "funktioniert / gearbeitet (m)", "Kisten (Akk.)"]
+
+
+def test_f10_text_wie_angenommen(grunddaten):
+    g = _geschichten(grunddaten)["b1_selidba"]
+    assert g["titel"] == "Dedo i nana se sele"
+    assert g["stufe"] == "B1" and g["passt_zu"] == "erledigen_umziehen"
+    assert g["text"] == DEDO_TEXT
+    assert "nana se teško penje uz stepenice" in g["text"]
+    assert "„Napokon bašta koja nije prevelika“" in g["text"]
+    assert not re.search(r"(?i)\b(jer|ako|vi|vas|vam)\b", g["text"])
+
+
+def test_f10_id_und_platz_bleiben(grunddaten):
+    """Die id bleibt b1_selidba, so bleibt der Lesestand. Auch der Platz in der
+    Kette bleibt: hinter b1_doktor, vor b1_rodjendan."""
+    ids = [g["id"] for g in grunddaten["geschichten"]]
+    i = ids.index("b1_selidba")
+    assert ids[i - 1:i + 2] == ["b1_doktor", "b1_selidba", "b1_rodjendan"]
+
+
+def test_f10_uebersetzung_und_fragen(alle_daten):
+    de = _geschichten(alle_daten["de"])["b1_selidba"]
+    ueb = de["uebersetzung"]
+    assert "Aber der Garten ist ihnen zu groß, und Oma fällt das Treppensteigen schwer." in ueb
+    assert "„Endlich ein Garten, der nicht zu groß ist“, sagte er." in ueb
+    assert [(f["frage"], f["optionen"]) for f in de["fragen"]] == DEDO_FRAGEN
+    assert [f["richtig"] for f in de["fragen"]] == [o[0] for _, o in DEDO_FRAGEN]
+    for code in SPRACHEN:
+        g = _geschichten(alle_daten[code])["b1_selidba"]
+        assert g["titel"] == "Dedo i nana se sele", code
+        assert g["uebersetzung"] != ueb and "Rasim" in g["uebersetzung"], code
+        assert len(g["uebersetzung"].split("\n\n")) == 5, code
+        for f, f_de in zip(g["fragen"], de["fragen"]):
+            assert f["frage"] != f_de["frage"], (code, f["frage"])
+            assert all(o != o_de for o, o_de in zip(f["optionen"], f_de["optionen"])), (code, f["optionen"])
+            assert f["richtig"] == f["optionen"][0], code
+
+
+def test_f10_richtige_antwort_nicht_laenger(alle_daten):
+    """B13: Die richtige Antwort ist in keiner Sprache deutlich laenger als die
+    falschen (hoechstens das 1,25-fache der kuerzesten)."""
+    zu_lang = []
+    for code, daten in alle_daten.items():
+        for n, f in enumerate(_geschichten(daten)["b1_selidba"]["fragen"], 1):
+            falsch = [len(o) for o in f["optionen"] if o != f["richtig"]]
+            if len(f["richtig"]) > 1.25 * min(falsch):
+                zu_lang.append((code, n, f["richtig"], falsch))
+    assert zu_lang == []
+
+
+def test_f10_woerterbuch(alle_daten):
+    """Jedes Wort laesst sich antippen (test_inhalt.py). radio ist hier das
+    Geraet, njoj und nje meinen den Sessel; die Formen der alten Geschichte
+    sind raus, ihre Uebersetzungen auch."""
+    import uebersetzungen
+    de = alle_daten["de"]
+    g = _geschichten(de)["b1_selidba"]
+    vok = g["vokabeln"]
+    assert vok["radio"] == "Radio / funktioniert (m)"
+    assert "Sessel" in vok["njoj"] and "Sessel" in vok["nje"]
+    wb = de["woerterbuch"]
+    assert "radio" not in wb
+    for wort in ("rasim", "fadila", "vlašića", "travnik", "prevelika", "penje", "napokon", "tegli",
+                 "zimnice", "kantu", "spisku", "šljiva", "šljivu", "zalijevao", "fotelju", "nasmijala"):
+        assert wort in wb, wort
+    for wort in SELIDBA_ALT_WOERTER:
+        assert wort not in wb, wort
+    for code in SPRACHEN:
+        gv = _geschichten(alle_daten[code])["b1_selidba"]["vokabeln"]
+        assert set(gv) == set(vok), code
+        assert all(gv[k].strip() and gv[k] != vok[k] for k in vok), code
+        texte = uebersetzungen.INHALT[code]["texte"]
+        assert [t for t in SELIDBA_ALT_TEXTE if t in texte] == [], code
+    assert alle_daten["en"]["woerterbuch"]["šljiva"] == "plum tree / plum"
+    assert _geschichten(alle_daten["en"])["b1_selidba"]["vokabeln"]["radio"] == "radio / worked (m)"
+
+
+def test_f10_wartet_auf_ton(wurzel):
+    """Neuer Text, neuer Ton-Schluessel: die Geschichte wartet weiter mit ihrer
+    id in tests/offen_b1_teil2.py auf die Vesna-Runde."""
+    import io
+    import json
+    import os
+
+    import geschichten
+    import offen_b1_teil2
+    import ton_bauen
+    assert "b1_selidba" in offen_b1_teil2.GESCHICHTEN
+    g = next(s for s in geschichten.GESCHICHTEN if s["id"] == "b1_selidba")
+    toene = json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8"))["toene"]
+    assert ton_bauen.schluessel(g["text"]) not in {e["key"] for e in toene}

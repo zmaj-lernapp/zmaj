@@ -853,25 +853,30 @@ WOERTERBUCH_B1_2 = {
     "čaja": "Tee (Gen.)",
     "doktora": "Arzt (Gen.)",
     "strašno": "furchtbar", "zdrav": "gesund (m)",
-    # b1_selidba
-    "mora": "er/sie muss",
-    "preseliti": "umziehen",
-    "pogledom": "Blick (Instr.)",
-    "dvojica": "zwei (Männer)", "prijatelja": "Freunde (Gen. Mehrz.)",
-    "cijelo": "ganz (der ganze)", "nosili": "getragen (Mehrz.)",
-    "kutije": "Kisten (Akk.)", "ormar": "Schrank", "kombi": "Kleinbus / Lieferwagen", "imaš": "du hast",
-    "kutiji": "Kiste (Lok.)", "kamenje": "Steine (Sammelwort)",
-    "knjige": "Bücher", "vožnje": "Fahrt (Gen.)",
-    "stigli": "angekommen (Mehrz.)",
-    "radio": "funktioniert / gearbeitet (m)", "petom": "fünften (Lok.)", "spratu": "Stockwerk (Lok.)",
-    "morali": "gemusst (Mehrz.)", "nositi": "tragen", "stepenicama": "Treppe (Instr.)",
-    "završili": "beendet (Mehrz.)", "umorni": "müde (Mehrz.)",
-    "četvrtog": "vierten (Gen.)",
-    "toplom": "warmen (Instr.)", "pitom": "Pita (Instr.)", "hajra": "Hajra (Name)",
-    "samo": "nur", "pokucajte": "klopft (Befehl)", "sjeli": "hingesetzt (Mehrz.)", "pod": "Fußboden",
-    "kupili": "gekauft (Mehrz.)",
-    "kroz": "durch", "prozor": "Fenster",
-    "pun": "voll", "kutija": "Schachtel / Kiste", "osjećala": "gefühlt (w)",
+    # b1_selidba, seit 14.11.2026 "Dedo i nana se sele" statt "Selidba" (Offen-
+    # Liste, Punkt 3). Von den Formen der alten Geschichte stehen hier nur noch
+    # die, die ein Text braucht (nosili, stigli, umorni in b1_utakmica, spratu
+    # in b1_kahva, samo in mehreren); die übrigen 31 kamen in keinem Text mehr
+    # vor. radio ("funktioniert") ist auch raus: in der neuen Geschichte ist es
+    # das Gerät und steht in ihren vokabeln.
+    "rasim": "Rasim (Name)", "fadila": "Fadila (Name)", "vlašića": "Vlašić (Gen., Berg über Travnik)",
+    "prevelika": "zu groß (w)", "penje": "steigt (penje se: steigt hinauf)", "stepenice": "Treppe (Akk.)",
+    "odlučili": "beschlossen (Mehrz.)", "presele": "umziehen (da se presele: dass sie umziehen)",
+    "travnik": "Travnik (Stadt)", "kćerke": "Tochter (Gen.)", "alme": "Alma (Gen., Name)",
+    "unuk": "Enkel", "edin": "Edin (Name)", "pomogne": "hilft (da pomogne: um zu helfen)",
+    "ponijeti": "mitnehmen", "ormar": "Schrank", "drva": "Holz (šporet na drva: Holzherd)",
+    "tegli": "Gläser (Gen. Mehrz.)", "zimnice": "Wintervorrat (Gen.)", "uzeo": "genommen (m)",
+    "zapisivao": "aufgeschrieben (m)", "ostaje": "bleibt", "fotelju": "Sessel (Akk.)",
+    "slušam": "ich höre", "ostali": "geblieben (Mehrz.)", "ključ": "Schlüssel", "dali": "gegeben (Mehrz.)",
+    "komšiji": "Nachbar (Dat.)", "punom": "vollen (Lok.)", "kombiju": "Kleinbus (Lok.)",
+    "kantu": "Eimer (Akk.)", "spisku": "Liste (Lok.)", "kanti": "Eimer (Lok.)",
+    "šljiva": "Pflaumenbaum / Pflaume", "stvar": "Sache / Ding", "prve": "ersten (Gen., w)",
+    "novom": "neuen (Lok.)", "skuhala": "gekocht (w)", "zalijevao": "gegossen (m)",
+    "svoju": "seine eigene (Akk.)", "šljivu": "Pflaumenbaum (Akk.)", "napokon": "endlich",
+    "koja": "die (Relativ) / welche (w)",
+    "naviknut": "gewöhnen (naviknut ćemo se: wir werden uns gewöhnen)", "rasime": "Rasim! (Anrede)",
+    "nosili": "getragen (Mehrz.)", "stigli": "angekommen (Mehrz.)", "spratu": "Stockwerk (Lok.)",
+    "umorni": "müde (Mehrz.)", "samo": "nur",
     # b1_rodjendan
     "napuniti": "füllen (napuniti 30 godina: 30 werden)",
     "trideset": "dreißig", "lamija": "Lamija (Name)", "mjesec": "Monat",
@@ -999,21 +1004,40 @@ GESCHICHTEN += [
         ],
     },
     {
-        "id": "b1_selidba", "titel": "Selidba", "stufe": "B1", "passt_zu": "erledigen_umziehen",
-        "text": ("Selma je dobila novi posao u Sarajevu, pa se mora preseliti iz Tuzle. Našla je mali stan na Grbavici, blizu posla. Stan ima dvije sobe, kuhinju i balkon s pogledom na planine.\n\n"
-                 "U subotu ujutro došli su njen brat Tarik i dvojica prijatelja. Cijelo jutro su nosili kutije, stolice, krevet i ormar u kombi. „Šta imaš u ovoj kutiji, kamenje?“ smijao se Tarik. „Ne, knjige“, rekla je Selma.\n\n"
-                 "Poslije dva sata vožnje stigli su u Sarajevo. Ali lift u zgradi nije radio, a stan je bio na petom spratu. Morali su sve nositi stepenicama. Kad su završili, svi su bili umorni i gladni.\n\n"
-                 "Onda je neko pokucao na vrata. Bila je to komšinica s četvrtog sprata, s toplom pitom. „Dobro došli! Ja sam Hajra. Ako vam nešto treba, samo pokucajte.“\n\n"
-                 "Sjeli su na pod, jer sto još nisu kupili, i jeli pitu rukama. Selma je pogledala kroz prozor i nasmijala se. Stan je još bio pun kutija, ali ona se već osjećala kao kod kuće."),
-        "uebersetzung": ("Selma hat eine neue Arbeit in Sarajevo bekommen, also muss sie aus Tuzla umziehen. Sie hat eine kleine Wohnung in Grbavica gefunden, in der Nähe der Arbeit. Die Wohnung hat zwei Zimmer, eine Küche und einen Balkon mit Blick auf die Berge.\n\n"
-                         "Am Samstagmorgen kamen ihr Bruder Tarik und zwei Freunde. Den ganzen Morgen trugen sie Kisten, Stühle, ein Bett und einen Schrank in den Kleinbus. „Was hast du in dieser Kiste, Steine?“, lachte Tarik. „Nein, Bücher“, sagte Selma.\n\n"
-                         "Nach zwei Stunden Fahrt kamen sie in Sarajevo an. Aber der Aufzug im Gebäude funktionierte nicht, und die Wohnung lag im fünften Stock. Sie mussten alles über die Treppe tragen. Als sie fertig waren, waren alle müde und hungrig.\n\n"
-                         "Dann klopfte jemand an die Tür. Es war die Nachbarin aus dem vierten Stock, mit einer warmen Pita. „Willkommen! Ich bin Hajra. Wenn ihr etwas braucht, klopft einfach.“\n\n"
-                         "Sie setzten sich auf den Boden, weil sie noch keinen Tisch gekauft hatten, und aßen die Pita mit den Händen. Selma schaute aus dem Fenster und lachte. Die Wohnung war noch voller Kisten, aber sie fühlte sich schon wie zu Hause."),
+        # Neue Geschichte statt "Selidba" (14.11.2026, Offen-Liste, Punkt 3;
+        # Prüfbericht 1.4, F10): Ajdin "mach eine neue geschichte", Entwurf
+        # "Dedo i nana se sele" (Release\Selidba_neu_Entwurf.md, Vorschlag 1)
+        # angenommen mit "nimm penje uz stepenicama" und "nimm napokon...".
+        # Die id bleibt, damit der Lesestand bleibt. Ton folgt in der
+        # Vesna-Runde (tests/offen_b1_teil2.py).
+        "id": "b1_selidba", "titel": "Dedo i nana se sele", "stufe": "B1", "passt_zu": "erledigen_umziehen",
+        "text": ("Dedo Rasim i nana Fadila već četrdeset godina žive u kući na selu ispod Vlašića. Ali bašta im je prevelika, a nana se teško penje uz stepenice. Zato su odlučili da se presele u Travnik, u mali stan blizu kćerke Alme. Zgrada ima lift.\n\n"
+                 "U subotu je došao unuk Edin da pomogne. Nana je htjela sve ponijeti: ormar, šporet na drva i trideset tegli zimnice. „Nano, stan ima dvije sobe, a ne deset!“ rekao je Edin. Uzeo je papir i zapisivao šta ide, a šta ostaje.\n\n"
+                 "Dedo je htio samo dvije stvari: staru fotelju i radio. „U njoj trideset godina slušam radio. Bez nje ne idem!“ Ormar i šporet su ostali u kući, a ključ su dali komšiji.\n\n"
+                 "Edin je u punom kombiju našao kantu koje nije bilo na spisku. U kanti je bila mlada šljiva iz bašte. „Dedo, rekao si samo dvije stvari!“ „Ovo nije stvar“, rekao je dedo. „Ovo je šljiva.“\n\n"
+                 "Prve večeri su sjedili na novom balkonu. Nana je skuhala kahvu, a dedo je zalijevao svoju šljivu. „Napokon bašta koja nije prevelika“, rekao je. Nana se nasmijala: „Naviknut ćemo se, Rasime.“"),
+        "uebersetzung": ("Opa Rasim und Oma Fadila wohnen schon seit vierzig Jahren in einem Haus auf dem Dorf unterhalb des Vlašić. Aber der Garten ist ihnen zu groß, und Oma fällt das Treppensteigen schwer. Deshalb haben sie beschlossen, nach Travnik zu ziehen, in eine kleine Wohnung in der Nähe ihrer Tochter Alma. Das Gebäude hat einen Aufzug.\n\n"
+                         "Am Samstag kam ihr Enkel Edin, um zu helfen. Oma wollte alles mitnehmen: den Schrank, den Holzherd und dreißig Gläser Wintervorrat. „Oma, die Wohnung hat zwei Zimmer, nicht zehn!“, sagte Edin. Er nahm ein Blatt Papier und schrieb auf, was mitkommt und was bleibt.\n\n"
+                         "Opa wollte nur zwei Dinge: den alten Sessel und das Radio. „Seit dreißig Jahren höre ich darin Radio. Ohne ihn gehe ich nicht!“ Der Schrank und der Herd blieben im Haus, und den Schlüssel gaben sie dem Nachbarn.\n\n"
+                         "Im vollen Kleinbus fand Edin einen Eimer, der nicht auf der Liste stand. Im Eimer war ein junger Pflaumenbaum aus dem Garten. „Opa, du hast nur zwei Dinge gesagt!“ „Das ist kein Ding“, sagte Opa. „Das ist ein Pflaumenbaum.“\n\n"
+                         "Am ersten Abend saßen sie auf dem neuen Balkon. Oma kochte Kaffee, und Opa goss seinen Pflaumenbaum. „Endlich ein Garten, der nicht zu groß ist“, sagte er. Oma lachte: „Wir werden uns daran gewöhnen, Rasim.“"),
+        # radio ist hier zweimal das Gerät, sonst heißt es "funktioniert" (wie
+        # odgovara in b1_stan). njoj und nje meinen den Sessel (fotelja), auf
+        # Deutsch "darin" und "ohne ihn". Die übrigen meinen hier etwas anderes
+        # als im WOERTERBUCH: teško "schwer" statt "schwierig", uz "hinauf",
+        # staru weiblich (fotelja), koje Genitiv nach "nije bilo".
+        "vokabeln": {"radio": "Radio / funktioniert (m)",
+                     "njoj": "ihr (Lok.) (u njoj: darin, im Sessel)",
+                     "nje": "ihr / sie (Gen.) (bez nje: ohne ihn, den Sessel)",
+                     "teško": "schwer / mit Mühe",
+                     "uz": "hinauf (uz stepenice: die Treppe hinauf)",
+                     "staru": "alte (Akk., w)",
+                     "koje": "die (Relativ, Gen. w)"},
+        # Antworten etwa gleich lang (Prüfbericht 1.4, B13), keine verrät sich.
         "fragen": [
-            {"frage": "Warum zieht Selma um?", "optionen": ["wegen einer neuen Arbeit", "wegen der Miete", "wegen einer größeren Wohnung"], "richtig": "wegen einer neuen Arbeit"},
-            {"frage": "Warum mussten sie alles über die Treppe tragen?", "optionen": ["der Aufzug funktionierte nicht", "die Kisten waren zu groß", "die Treppe war schneller"], "richtig": "der Aufzug funktionierte nicht"},
-            {"frage": "Was brachte die Nachbarin mit?", "optionen": ["eine warme Pita", "eine warme Suppe", "einen Blumenstrauß"], "richtig": "eine warme Pita"},
+            {"frage": "Wohin ziehen Rasim und Fadila?", "optionen": ["in eine kleine Wohnung in Travnik", "in ein großes Haus in Sarajevo", "in ein anderes Dorf am Vlašić"], "richtig": "in eine kleine Wohnung in Travnik"},
+            {"frage": "Welche zwei Dinge wollte der Opa mitnehmen?", "optionen": ["den alten Sessel und das Radio", "den Schrank und den Holzherd", "den großen Tisch und das Bett"], "richtig": "den alten Sessel und das Radio"},
+            {"frage": "Was fand Edin im vollen Kleinbus?", "optionen": ["einen Pflaumenbaum im Eimer", "einen Eimer mit Pflaumenmus", "den Schlüssel vom alten Haus"], "richtig": "einen Pflaumenbaum im Eimer"},
         ],
     },
     {

@@ -1185,3 +1185,29 @@ dem Hauptsatz steht.
   kupili, i …“), dort schließt das zweite Komma ihn ab. Die Geschichte wird ersetzt.
 - Nur Satzzeichen, kein Wort geändert. Die Übersetzungen bleiben (auf Deutsch steht
   das Komma vor „weil“). Keiner der sieben Texte hatte Ton.
+
+**F10, Selidba.** Ajdin: „mach eine neue geschichte“. Die alte *Selidba* (Selma
+zieht wegen der Arbeit nach Sarajevo) erzählte dasselbe Muster wie *Izdajem stan*.
+Neu, unter derselben id `b1_selidba` (der Lesestand bleibt), mit dem Titel *Dedo i
+nana se sele*: Entwurf `Release\Selidba_neu_Entwurf.md`, Vorschlag 1, angenommen mit
+zwei Änderungen.
+
+| Stelle | Entwurf | angenommen | Ajdin |
+|---|---|---|---|
+| Absatz 1 | a nana teško hoda po stepenicama | a nana se teško penje uz stepenice | „nimm penje uz stepenicama“ |
+| Absatz 5 | „Bašta je mala, ali je naša“, rekao je. | „Napokon bašta koja nije prevelika“, rekao je. | „nimm napokon...“ |
+
+- Deutsch dazu: „… und Oma fällt das Treppensteigen schwer.“ (blieb) und „Endlich ein
+  Garten, der nicht zu groß ist“, sagte er. Übersetzung und Fragen in allen acht
+  Sprachen; die richtige Antwort ist nirgends deutlich länger als die falschen (B13).
+- Wörterbuch der Geschichten: 44 neue Formen (Namen, *Vlašića*, *Travnik*,
+  *prevelika*, *penje*, *tegli*, *zimnice*, *kantu*, *spisku*, *šljiva*, *zalijevao*,
+  *fotelju*, *napokon* …). Eigene Bedeutungen nur in dieser Geschichte: *radio*
+  „Radio / funktioniert (m)“ (hier das Gerät), *njoj* und *nje* für den Sessel
+  (*fotelja*), *teško* „schwer / mit Mühe“, *uz* „hinauf (uz stepenice)“, *staru*
+  „alte (Akk., w)“, *koje* „die (Relativ, Gen. w)“. Die 31 Formen der alten
+  Geschichte, die kein Text mehr braucht (*Hajra*, *kamenje*, *pokucajte* …), sind
+  raus, mit ihren Übersetzungen, dazu *radio* „funktioniert“ (steht jetzt nur in den
+  vokabeln dieser Geschichte). Damit 1.515 statt 1.503 Einträge.
+- Der neue Text hat noch keinen Ton; er wartet mit der id in
+  `tests/offen_b1_teil2.py` auf die Vesna-Runde.

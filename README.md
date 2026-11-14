@@ -75,7 +75,7 @@ Everything the app teaches is exported to [`data/`](data/) under
 | Words, phrases and example sentences, 27 sections in four stages (A1 to B2), 297 levels | 7,997 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
 | Graded stories with glossary and questions | 32 | JSON |
-| Reading glossary | 1,503 | JSON |
+| Reading glossary | 1,515 | JSON |
 | Grammar lessons with exercises | 26 | JSON |
 | Synthetic Bosnian audio (MP3) | 2,411 | `web/audio/` |
 | Parallel corpus for machine translation | 8,309 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
