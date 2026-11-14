@@ -505,10 +505,11 @@ are in the Play Store listing. Format:
   F16). Typing it for "Hallo" (*Merhaba*) and in the gap sentence "___, kako si?" now
   counts; *Merhaba* stays what is shown and spoken. In sentence building "Merhaba, kako
   si?" *ćao* is no longer a wrong tile (`"ohne"`), and in multiple choice it no longer
-  stands as a wrong button next to "Hallo" (*Merhaba* through its `"auch"`, *Zdravo*
-  through `NIE_NEBENEINANDER`). *Zdravo* ("Hallo (neutral, überall)") does not take
-  it when typing, just as it does not take *Merhaba*.
-  `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_antworten.py`.
+  stands as a wrong button next to "Hallo". *Zdravo* ("Hallo (neutral, überall)")
+  takes it when typing too; both words hold it out of multiple choice through their
+  `"auch"`, so no pair in `NIE_NEBENEINANDER` is needed. *Ćao* itself ("Tschüss")
+  takes neither. `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_antworten.py`,
+  `tests_e2e/test_pruefbericht14_antworten.py`.
 - *Gdje* for "wohin" (review for 1.4, 14.11.2026, V11; decided by the maintainer, F7
   a: colloquially it also means "where to"; table 2c, row 30): "Wohin gehst du?"
   (*Kuda ideš?*) and the gap "___ ideš?" now also take *Gdje*; *Kuda* stays what is

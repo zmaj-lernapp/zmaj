@@ -258,7 +258,7 @@ KATEGORIEN = [
         {"de": "Vielleicht",                  "bs": "Možda"},
         {"de": "Prost!",                      "bs": "Živjeli!", "auch": ["U zdravlje!"]},
         {"de": "Guten Appetit",               "bs": "Prijatno"},
-        {"de": "Hallo (neutral, überall)", "bs": "Zdravo"},
+        {"de": "Hallo (neutral, überall)", "bs": "Zdravo", "auch": ["Ćao"]},   # Ćao ist auch „Hallo“, wie bei Merhaba (Ajdin, Prüfbericht 1.4, B5/F16)
     ]},
 
     {"id": "zahlen", "label": "Zahlen", "sektion": "alltag", "tipp": "Zählen von null bis tausend.",

@@ -336,14 +336,24 @@ def test_b5_satzbau_ohne_cao(alle_daten):
         assert s[0]["ohne"][:1] == ["ćao"], (code, s[0])
 
 
+# Seit dem 14.11.2026 (Offen-Liste, Punkt 2; Ajdin zu F16 „passt“) zaehlt Ćao auch beim
+# Wort Zdravo („Hallo (neutral, überall)“), wie bei Merhaba. Das "auch" haelt es in der
+# Auswahl heraus, das Paar in NIE_NEBENEINANDER ist darum raus (test_pruefbericht14_antworten.py).
+B5_ZDRAVO = {"hallo (neutral, überall):Zdravo": ["Ćao"]}
+B5_ZDRAVO_NEU = {"hallo (neutral, überall):Zdravo": ["Ćao", "ćao"]}
+
+
+def test_b5_cao_auch_bei_zdravo(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, B5_ZDRAVO, B5_ZDRAVO_NEU)
+
+
 def test_b5_andere_stellen_bleiben(grunddaten):
-    """Ćao bleibt „Tschüss“ mit Doviđenja im "auch". Zdravo („Hallo (neutral,
-    überall)“) nimmt Ćao nicht, so wenig wie Merhaba; in der Auswahl haelt
-    NIE_NEBENEINANDER die beiden auseinander (test_pruefbericht14_antworten.py)."""
+    """Ćao bleibt „Tschüss“ mit Doviđenja im "auch" und nimmt weder Merhaba noch
+    Zdravo. Zdravo nimmt Merhaba nicht."""
     woerter = _woerter(grunddaten)
     assert woerter["tschüss:Ćao"].get("auch") == ["Doviđenja"]
     assert woerter["auf wiedersehen:Doviđenja"].get("auch") == ["Ćao"]
-    assert woerter["hallo (neutral, überall):Zdravo"].get("auch") is None
+    assert woerter["hallo (neutral, überall):Zdravo"].get("auch") == ["Ćao"]
 
 
 # ---- V11 / F7 a: Gdje auch fuer „wohin“ (Tabelle 2c, Nr. 30) ----

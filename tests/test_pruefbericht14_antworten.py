@@ -123,16 +123,20 @@ def test_b8_darlehen_und_kumpel_nie_in_derselben_auswahl(index_html, grunddaten)
 
 
 # B5: Ćao ist auch „Hallo“ (Ajdin, F16 ja) und stand als falscher Knopf neben
-# „Hallo“, in 46 bis 57 von 400 Ziehungen. Zdravo („Hallo (neutral, überall)“)
-# nimmt Ćao beim Tippen nicht, darum hier. Bei Merhaba zaehlt es beim Tippen
-# ("auch", test_pruefbericht14_tippen.py); das haelt es auch aus der Auswahl
-# (geschwister()), ein Paar hier waere doppelt und sagte das Gegenteil.
-B5_PAARE = [("Zdravo", "Ćao")]
-
-
+# „Hallo“, in 46 bis 57 von 400 Ziehungen. Bei Merhaba und seit dem 14.11.2026 auch bei
+# Zdravo („Hallo (neutral, überall)“, Offen-Liste Punkt 2) zaehlt es beim Tippen ("auch",
+# test_pruefbericht14_tippen.py); das haelt es auch aus der Auswahl (geschwister()). Ein
+# Paar in NIE_NEBENEINANDER waere doppelt und sagte das Gegenteil - das fuer Zdravo, das
+# bis dahin dort stand, ist darum raus.
 def test_b5_cao_nie_neben_zdravo(index_html, grunddaten):
-    _paare_pruefen(index_html, grunddaten, B5_PAARE)
-    assert ("Merhaba", "Ćao") not in _nie_nebeneinander(index_html)
+    nie = _nie_nebeneinander(index_html)
+    assert ("Zdravo", "Ćao") not in nie and ("Merhaba", "Ćao") not in nie
+    woerter = {w["bs"]: w for k in grunddaten["kategorien"] for w in k["words"]}
+    # Im selben Level wie Ćao, dort zieht die Auswahl ihre falschen Knoepfe; das "auch"
+    # des Worts haelt Ćao heraus.
+    level = {w["bs"]: k["id"] for k in grunddaten["kategorien"] for w in k["words"]}
+    assert level["Zdravo"] == level["Ćao"], level["Zdravo"]
+    assert woerter["Zdravo"].get("auch") == ["Ćao"]
 
 
 # B9: Alejkumu selam hiess "(Antwort darauf)", englisch "(reply to this)". Seit dem

@@ -12825,13 +12825,13 @@ const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako']
   /* Pruefbericht 1.4 (14.11.2026), B8: zajam und pozajmica heissen in allen Sprachen
      "Darlehen" (Level bank_darlehen), jaran und drug / drugarica beide "Kumpel" (Level
      kennenlernen). Nur die Klammer trennt sie. */
-  ['zajam', 'pozajmica'], ['jaran', 'drug / drugarica'],
-  /* Pruefbericht 1.4 (14.11.2026), B5: Ćao ist auch „Hallo“ (Ajdin, F16). Es stand als
-     falscher Knopf neben „Hallo“, in 46 bis 57 von 400 Ziehungen. Bei Merhaba („Hallo“)
-     zaehlt es seitdem beim Tippen, das "auch" am Wort haelt es dort aus der Auswahl
-     (geschwister()). Bei Zdravo („Hallo (neutral, überall)“) zaehlt es nicht, so wenig
-     wie Merhaba - darum hier. */
-  ['Zdravo', 'Ćao']];
+  ['zajam', 'pozajmica'], ['jaran', 'drug / drugarica']];
+/* Pruefbericht 1.4 (14.11.2026), B5: Ćao ist auch „Hallo“ (Ajdin, F16). Es stand als
+   falscher Knopf neben „Hallo“, in 46 bis 57 von 400 Ziehungen. Bei Merhaba und, nach
+   Ajdins „passt“ (Offen-Liste, Punkt 2), auch bei Zdravo („Hallo (neutral, überall)“)
+   zaehlt es beim Tippen; das "auch" am Wort haelt es aus der Auswahl (geschwister()).
+   Solange Zdravo Ćao beim Tippen nicht nahm, stand oben das Paar Zdravo / Ćao. Seit dem
+   14.11.2026 ist es raus: es waere doppelt und sagte "beim Tippen zaehlt es nicht". */
 /* Seit den Paketen 10 bis 20 sind es gut 90 Paare, und distractors() fragt fuer jedes Wort
    des Vorrats: als Menge nachschlagen statt die Liste jedes Mal abzulaufen (07.11.2026). */
 const _NIE = new Set(NIE_NEBENEINANDER.flatMap(([x, y]) => [x + '\u0000' + y, y + '\u0000' + x]));

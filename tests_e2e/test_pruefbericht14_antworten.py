@@ -58,7 +58,10 @@ def test_v3_nur_die_genannten_formen(seite, heute_stand):
 # „___, kako si?“ kostet es kein Leben mehr, beim Satzbau „Merhaba, kako si?“
 # liegt ćao nie als falsche Kachel.
 B5 = [("type", "hallo:Merhaba", "Ćao"),
-      ("gap", "___, kako si?|Merhaba", "Ćao")]
+      ("gap", "___, kako si?|Merhaba", "Ćao"),
+      # Seit dem 14.11.2026 auch bei Zdravo (Offen-Liste, Punkt 2).
+      ("type", "hallo (neutral, überall):Zdravo", "Ćao"),
+      ("type", "hallo (neutral, überall):Zdravo", "Zdravo")]
 
 
 def test_b5_cao_kostet_bei_hallo_kein_leben(seite, heute_stand):

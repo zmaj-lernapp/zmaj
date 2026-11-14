@@ -953,13 +953,20 @@ bosnisch“, also a, b, c, d und f ja, e nein.
 | `hallo:Merhaba` | `"auch": ["Zdravo", "Ćao"]` |
 | Lückensatz „___, kako si?“ (*Merhaba*) | `"auch": ["Zdravo", "Ćao"]`, wie beim Wort (V3) |
 | Satzbau „Merhaba, kako si?“ | `"ohne": ["ćao"]` |
-| `NIE_NEBENEINANDER` | `['Zdravo', 'Ćao']` |
+| `hallo (neutral, überall):Zdravo` | `"auch": ["Ćao"]` (Nachtrag, siehe unten) |
+| `NIE_NEBENEINANDER` | `['Zdravo', 'Ćao']`, mit dem Nachtrag wieder raus |
 
 - Gezeigt und gesprochen wird weiter *Merhaba*. Ćao selbst bleibt „Tschüss“ mit
   *Doviđenja* im `"auch"`; Kennung und Aufnahme bleiben.
-- *Zdravo* („Hallo (neutral, überall)“) nimmt Ćao beim Tippen nicht, so wenig wie
-  *Merhaba*; in der Auswahl stehen die beiden nie nebeneinander. Neben *Merhaba* hält
-  das `"auch"` Ćao aus der Auswahl.
+- Zuerst nahm *Zdravo* („Hallo (neutral, überall)“) Ćao beim Tippen nicht, so wenig
+  wie *Merhaba*; in der Auswahl hielt `NIE_NEBENEINANDER` die beiden auseinander.
+  Neben *Merhaba* hält das `"auch"` Ćao aus der Auswahl.
+- Nachtrag 14.11.2026 (Offen-Liste, Punkt 2: „Ćao auch bei Zdravo“): Ajdins „passt“
+  zu F16 gilt auch für *Zdravo*. Das Wort nimmt beim Tippen `"auch": ["Ćao"]`, wie
+  *Merhaba*; gezeigt und gesprochen wird weiter *Zdravo*. Das `"auch"` hält Ćao jetzt
+  auch dort aus der Auswahl, das Paar in `NIE_NEBENEINANDER` ist darum raus (es wäre
+  doppelt und sagte „beim Tippen zählt es nicht“). Einen Lückensatz oder Satzbau-Satz
+  mit *Zdravo* gibt es nicht. Ćao selbst nimmt *Zdravo* nicht.
 
 **V11 / F7 a, Gdje für „wohin“.** Frage: a = gilt umgangssprachlich, b = nur *Kuda*.
 Ajdin: a, *b1_voz* bleibt „Gdje putujete, djeco?“. Zugleich Tabelle 2c, Nr. 30.
