@@ -12757,7 +12757,11 @@ const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako']
      Sprachen. dići und dizati sind die Kurzformen von podići und podizati (Ajdin,
      v111_entscheidungen.md Nr. 53), auch ueber Kreuz. Beim Tippen aendert sich nichts. */
   ['Molim', 'Nema na čemu'], ['podići / podignuti', 'dići'], ['podići / podignuti', 'dizati'],
-  ['podizati', 'dići'], ['podizati', 'dizati']];
+  ['podizati', 'dići'], ['podizati', 'dizati'],
+  /* Pruefbericht 1.4 (14.11.2026), B8: zajam und pozajmica heissen in allen Sprachen
+     "Darlehen" (Level bank_darlehen), jaran und drug / drugarica beide "Kumpel" (Level
+     kennenlernen). Nur die Klammer trennt sie. */
+  ['zajam', 'pozajmica'], ['jaran', 'drug / drugarica']];
 /* Seit den Paketen 10 bis 20 sind es gut 90 Paare, und distractors() fragt fuer jedes Wort
    des Vorrats: als Menge nachschlagen statt die Liste jedes Mal abzulaufen (07.11.2026). */
 const _NIE = new Set(NIE_NEBENEINANDER.flatMap(([x, y]) => [x + '\u0000' + y, y + '\u0000' + x]));

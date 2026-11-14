@@ -92,3 +92,13 @@ def _paare_pruefen(index_html, grunddaten, paare):
 
 def test_v4_molim_und_heben_nie_in_derselben_auswahl(index_html, grunddaten):
     _paare_pruefen(index_html, grunddaten, V4_PAARE)
+
+
+# B8: zajam und pozajmica heissen in allen Sprachen "Darlehen" (bank_darlehen),
+# jaran und drug / drugarica beide "Kumpel" (kennenlernen). Sie standen als
+# falscher Knopf nebeneinander, in 106 bzw. 77 von 400 Ziehungen.
+B8_PAARE = [("zajam", "pozajmica"), ("jaran", "drug / drugarica")]
+
+
+def test_b8_darlehen_und_kumpel_nie_in_derselben_auswahl(index_html, grunddaten):
+    _paare_pruefen(index_html, grunddaten, B8_PAARE)

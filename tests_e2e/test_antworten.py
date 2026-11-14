@@ -34,7 +34,10 @@ GESPERRT = [("ziehen:vući", "ziehen / zurückziehen:povlačiti"),
             ("hochheben / aufheben / abheben:podići / podignuti", "anheben / aufheben (umgangssprachlich):dići"),
             ("hochheben / aufheben / abheben:podići / podignuti", "anheben / aufheben (umgangssprachlich):dizati"),
             ("hochheben / aufheben / abheben:podizati", "anheben / aufheben (umgangssprachlich):dići"),
-            ("hochheben / aufheben / abheben:podizati", "anheben / aufheben (umgangssprachlich):dizati")]
+            ("hochheben / aufheben / abheben:podizati", "anheben / aufheben (umgangssprachlich):dizati"),
+            # B8: beide "Darlehen", beide "Kumpel", im selben Level.
+            ("darlehen / anleihe:zajam", "darlehen (privat):pozajmica"),
+            ("kumpel (slang, vor allem sarajevo):jaran", "kumpel / kumpelin (locker):drug / drugarica")]
 
 # Frage und falscher Knopf im selben Level: Heisst die Frage genau wie ein Teil
 # des Knopfs, muss das andere Wort aus der Auswahl heraus sein. Verglichen wird
