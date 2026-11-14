@@ -12750,7 +12750,14 @@ const NIE_NEBENEINANDER = [['sav', 'cijeli'], ['tu', 'ovdje'], ['tako', 'ovako']
   /* Stufen-Reiter (13.11.2026): tako ("so") und pa ("und dann / also") stehen seitdem beide
      im Level kleine_woerter. Auf Englisch heisst pa "and then / so" - bei der Frage "so"
      waere der falsche Knopf in Wahrheit richtig (tests_e2e/test_antworten.py, V1, en). */
-  ['tako', 'pa']];
+  ['tako', 'pa'],
+  /* Pruefbericht 1.4 (14.11.2026), V4: Molim heisst "Bitte", auf Englisch "Please / you're
+     welcome (polite)", und ist die uebliche Antwort auf Hvala. Neben "Gern geschehen" (Nema
+     na čemu) war der falsche Knopf in Wahrheit richtig, schon in Level 1 und in allen acht
+     Sprachen. dići und dizati sind die Kurzformen von podići und podizati (Ajdin,
+     v111_entscheidungen.md Nr. 53), auch ueber Kreuz. Beim Tippen aendert sich nichts. */
+  ['Molim', 'Nema na čemu'], ['podići / podignuti', 'dići'], ['podići / podignuti', 'dizati'],
+  ['podizati', 'dići'], ['podizati', 'dizati']];
 /* Seit den Paketen 10 bis 20 sind es gut 90 Paare, und distractors() fragt fuer jedes Wort
    des Vorrats: als Menge nachschlagen statt die Liste jedes Mal abzulaufen (07.11.2026). */
 const _NIE = new Set(NIE_NEBENEINANDER.flatMap(([x, y]) => [x + '\u0000' + y, y + '\u0000' + x]));

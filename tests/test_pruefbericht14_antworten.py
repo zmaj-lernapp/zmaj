@@ -55,3 +55,40 @@ def test_v3_kein_paar_kad_kada_fuer_ueberall():
     import varianten
     for p in varianten.VARIANTEN:
         assert {str(p["a"]).lower(), str(p["b"]).lower()} & {"kad", "kada"} == set(), p
+
+
+# V4: Bei "Was bedeutet ...?" stand als falsche Antwort ein Wort mit derselben
+# Bedeutung. Molim ("Bitte", englisch "Please / you're welcome (polite)") ist die
+# uebliche Antwort auf Hvala und stand neben "Gern geschehen" (Nema na čemu), in
+# 43 bis 62 von 400 Ziehungen. dići / dizati sind die Kurzformen von podići /
+# podizati (v111_entscheidungen.md Nr. 53) und standen daneben, auch ueber Kreuz.
+# Jetzt in NIE_NEBENEINANDER; beim Tippen aendert sich nichts.
+V4_PAARE = [("Molim", "Nema na čemu"), ("podići / podignuti", "dići"), ("podići / podignuti", "dizati"),
+            ("podizati", "dići"), ("podizati", "dizati")]
+
+
+def _nie_nebeneinander(index_html):
+    import re
+    block = re.search(r"const NIE_NEBENEINANDER = \[(.*?)\]\];", index_html, re.S).group(1)
+    block = re.sub(r"/\*.*?\*/", "", block, flags=re.S)
+    return set(re.findall(r"\['([^']+)', '([^']+)'\]", block + "]"))
+
+
+def _paare_pruefen(index_html, grunddaten, paare):
+    nie = _nie_nebeneinander(index_html)
+    woerter = {}
+    for k in grunddaten["kategorien"]:
+        for w in k["words"]:
+            woerter.setdefault(w["bs"], []).append((k["id"], w))
+    for a, b in paare:
+        assert (a, b) in nie, (a, b)
+        assert len(woerter.get(a, [])) == 1 and len(woerter.get(b, [])) == 1, (a, b)
+        (level_a, wa), (level_b, wb) = woerter[a][0], woerter[b][0]
+        # Im selben Level, dort zieht die Auswahl ihre falschen Knoepfe.
+        assert level_a == level_b, (a, level_a, b, level_b)
+        # Gesperrt heisst nicht gleichwertig: kein "auch", beim Tippen zaehlt das andere nicht.
+        assert b not in wa.get("auch", []) and a not in wb.get("auch", []), (a, b)
+
+
+def test_v4_molim_und_heben_nie_in_derselben_auswahl(index_html, grunddaten):
+    _paare_pruefen(index_html, grunddaten, V4_PAARE)

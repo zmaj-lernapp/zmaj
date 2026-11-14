@@ -27,7 +27,14 @@ GESPERRT = [("ziehen:vući", "ziehen / zurückziehen:povlačiti"),
             ("dokument:dokument", "bescheinigung:potvrda"),
             ("alles gut:Sve je dobro", "was gibt's? / wie läuft's?:Šta ima?"),
             ("wesentlich / wichtig:bitan", "wichtig (der wichtige):važan"),
-            ("nach (einem ereignis):nakon", "nach / pro:po")]
+            ("nach (einem ereignis):nakon", "nach / pro:po"),
+            # Pruefbericht 1.4 (14.11.2026), V4: Molim ist die uebliche Antwort auf
+            # Hvala; dići / dizati sind die Kurzformen von podići / podizati.
+            ("bitte (höflich, allgemein):Molim", "gern geschehen:Nema na čemu"),
+            ("hochheben / aufheben / abheben:podići / podignuti", "anheben / aufheben (umgangssprachlich):dići"),
+            ("hochheben / aufheben / abheben:podići / podignuti", "anheben / aufheben (umgangssprachlich):dizati"),
+            ("hochheben / aufheben / abheben:podizati", "anheben / aufheben (umgangssprachlich):dići"),
+            ("hochheben / aufheben / abheben:podizati", "anheben / aufheben (umgangssprachlich):dizati")]
 
 # Frage und falscher Knopf im selben Level: Heisst die Frage genau wie ein Teil
 # des Knopfs, muss das andere Wort aus der Auswahl heraus sein. Verglichen wird

@@ -462,6 +462,11 @@ are in the Play Store listing. Format:
   desilo?* (as for the verb). One `"auch"` each; IDs and recordings stay. No pair
   *kad*/*kada* for everywhere, because *kada* is also "bathtub".
   `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+- Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
+  right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
+  "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and
+  *dići* / *dizati*, the short forms of *podići* / *podizati*, next to them. The five
+  pairs are in `NIE_NEBENEINANDER`; typing does not change.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
