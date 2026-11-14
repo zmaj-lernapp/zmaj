@@ -328,6 +328,10 @@ VARIANTEN = [
     {"a": "avlija", "b": "dvorište", "gilt": ["hof / innenhof:avlija"], "beleg": "2c Nr. 19; f. / n."},
     {"a": "ponekad", "b": "nekad", "gilt": ["manchmal:ponekad"],
      "beleg": "2c Nr. 20; nekad steht in der App als „manchmal / früher“"},
+    # Dritte Runde (Ajdin, 14.11.2026 abends): „nekada“ auch, wo „ponekad“ gefragt ist, „Ja“ -
+    # die lange Form wie bei nekad selbst (F14 i).
+    {"a": "ponekad", "b": "nekada", "gilt": ["manchmal:ponekad"],
+     "beleg": "dritte Runde, 14.11.2026; nekad steht schon da, nekada ist die lange Form"},
     # Nr. 21: kafena hat oben schon smeđa (Tabelle 2a).
     {"a": {"m_sg": ("kafen", "kafenog", "kafenom", "kafen", "kafenim", "kafenom"),
            "f_sg": ("kafena", "kafene", "kafenoj", "kafenu", "kafenom", "kafenoj"),

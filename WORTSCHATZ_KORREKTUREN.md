@@ -1136,6 +1136,11 @@ nur an den beiden Stellen, an denen die App *Izvinite* zum Tippen erwartet, wie
   „Verzeih mir“ nicht „Oprostite mi“, „Molim te, ___ mi.“ (*oprosti*) nicht
   *oprostite*. *Oprosti* bei *Izvini* gilt schon seit Nr. 29.
 
+**nekada bei ponekad.** „Ja“. Ein zweites Paar neben *ponekad* → *nekad* (Tabelle 2c,
+Nr. 20), ebenso nur an `manchmal:ponekad`: das Wort nimmt jetzt *nekad* und *nekada*.
+*ponekad* ist sonst nirgends die Antwort (kein Lückensatz). Nur in dieser Richtung:
+„manchmal / früher“ (*nekad*) nimmt *ponekad* nicht, „nie“ (*nikad*) nicht *nekada*.
+
 ## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zu den Geschichten
 
 Änderungen am Text der Geschichten (`geschichten.py`). Der Text ist der

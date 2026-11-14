@@ -112,7 +112,7 @@ WOERTER = {
     "geschäft:radnja": ["prodavnica"],
     "hof (am haus):dvorište": ["avlija"],                     # 19
     "hof / innenhof:avlija": ["dvorište"],
-    "manchmal:ponekad": ["nekad"],                            # 20
+    "manchmal:ponekad": ["nekad", "nekada"],                  # 20, nekada seit der dritten Runde
     "kaffeetasse (traditionell):fildžan": ["findžan"],        # 22 (21 oben bei kafena)
     "auto:auto": ["kola"],                                    # 23
     "geld:novac": ["pare"],                                   # 24
@@ -636,6 +636,7 @@ def test_tisuca_bleibt_tausend(index_html):
 DRITTE_RUNDE = [
     ("w", "entschuldigung (sie):Izvinite", "Oprostite"),               # Oprostite neben Izvinite
     ("l", "___, molim Vas.", "Oprostite"),
+    ("w", "manchmal:ponekad", "nekada"),                              # nekada bei ponekad
 ]
 # Bleibt falsch: die du-Form war nicht gefragt, und nie von oprosti nach izvini.
 GEGEN_DRITTE_RUNDE = [
@@ -644,6 +645,9 @@ GEGEN_DRITTE_RUNDE = [
     ("w", "verzeih mir:Oprosti mi", "Oprostite mi"),
     ("l", "Molim te, ___ mi.", "oprostite"),
     ("l", "Molim te, ___ mi.", "izvini"),
+    ("w", "manchmal:ponekad", "nikada"),                              # nikada heißt „nie“
+    ("w", "nie:nikad", "nekada"),
+    ("w", "manchmal / früher:nekad", "ponekad"),                      # nie von nekad nach ponekad
 ]
 
 
