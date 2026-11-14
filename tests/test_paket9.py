@@ -98,6 +98,8 @@ AUCH = {
 # Tippen, die Kennung bleibt (tests/test_pruefbericht14_tippen.py).
 PRUEFBERICHT_AUCH = {
     "nakon": ["poslije"],                                   # V9/F3
+    "moderan": ["moderna", "moderno", "savremen", "savremena", "savremeno"],   # B3/F14
+    "ovdje": ["tu"], "ukoliko": ["ako"],                    # B3/F14
 }
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
@@ -293,7 +295,20 @@ def test_nie_nebeneinander_in_der_auswahl(index_html, grunddaten, a, b):
     assert a in bs and b in bs
     assert "['%s', '%s']" % (a, b) in index_html
     w = {x["bs"]: x for x in _alle(grunddaten)}
+    frei = FREIGEGEBEN.get((a, b))
+    if frei:
+        wort, auch = frei
+        anderes = a if wort == b else b
+        assert all(x in w[wort].get("auch", []) for x in auch), (wort, auch)
+        assert wort not in w[anderes].get("auch", []), "die andere Richtung hat Ajdin nicht freigegeben"
+        return
     assert b not in w[a].get("auch", []) and a not in w[b].get("auch", []), "kein auch: das saehe beim Tippen mit"
+
+
+# Pruefbericht 1.4 (14.11.2026): beim Tippen hat Ajdin eine Richtung freigegeben -
+# ovdje nimmt tu (B3/F14 h), jako nimmt vrlo und veoma (V9/F2). In der Auswahl stehen
+# die beiden weiter nie nebeneinander (tests/test_pruefbericht14_tippen.py).
+FREIGEGEBEN = {("tu", "ovdje"): ("ovdje", ["tu"]), ("vrlo / veoma", "jako"): ("jako", ["vrlo", "veoma"])}
 
 
 @pytest.mark.parametrize("wort, form", [("važan", "važno"), ("čist", "čisto"), ("topao", "toplo"), ("hladan", "hladno"),

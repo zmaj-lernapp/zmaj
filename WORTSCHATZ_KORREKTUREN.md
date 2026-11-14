@@ -880,3 +880,36 @@ bedeutung“. F5: „passt“.
 | `mir ist langweilig:Dosadno mi je` | `"auch": ["Meni je dosadno"]` |
 
 - Beim Satzbau galt die Umstellung schon („Danas je hladno i kiša pada.“).
+
+**B3 / F14, Wörter, die die App selbst als gleichbedeutend führt.** Ajdin: „passt“,
+a bis o alle ja, nur in der gefragten Richtung: Das Wort der Aufgabe nimmt das andere
+App-Wort mit, das andere Wort selbst bekommt nichts dazu.
+
+| Kennung | Änderung | |
+|---|---|---|
+| `sagen:reći` | `"auch": ["kazati"]` | a |
+| `sich fürchten:plašiti se` | `"auch": ["bojati se"]` | b |
+| `falls:ukoliko` | `"auch": ["ako"]` | c |
+| `losgehen:poći` | `"auch": ["krenuti"]` | d |
+| `ehefrau:žena` | `"auch": ["supruga"]` | e |
+| `ehemann:muž` | `"auch": ["suprug"]` | e |
+| `stau:zastoj` | `"auch": ["gužva"]` | f |
+| `bald:uskoro` | `"auch": ["skoro"]` | g |
+| `hier:ovdje` | `"auch": ["tu"]` | h |
+| `früher:prije` | `"auch": ["nekad", "nekada"]` | i |
+| `da (weil):budući da` | `"auch": ["pošto"]` | j |
+| `nachdem:nakon što` | `"auch": ["pošto"]` | j |
+| `vorbereiten:pripremiti` | `"auch": ["spremiti"]` | k |
+| `verbinden:spojiti` | `"auch": ["povezati"]` | l |
+| `modern:moderan` | `"auch"` um *savremen*, *savremena*, *savremeno* ergänzt | m |
+| `richtung:pravac` | `"auch": ["smjer"]` | n |
+| `fehlen:nedostajati` | `"auch": ["faliti"]` | o |
+
+- Das andere Wort in der Form, in der die App es führt: *savremen* wie *moderan* mit
+  weiblicher und sächlicher Form; *nekad* mit *nekada*, wie beim Wort *nekad*
+  („manchmal / früher“). Nur „früher“, nicht *prije* „vor (zeitlich)“.
+- Für *ovdje* gilt damit nicht mehr, was im Abschnitt vom 06.11.2026 unter „Nie
+  nebeneinander“ steht: *tu* zählt beim Tippen mit. *tu* selbst nimmt *ovdje* nicht.
+  In der Auswahl stehen die beiden weiter nie nebeneinander.
+- Partner (*pripremati*, *uplašiti se*, *polaziti*, *spajati*) bleiben, wie sie sind.
+- Die Paket-Tests 1, 8, 9, 10 und 19 kennen die neuen `"auch"` (`PRUEFBERICHT_AUCH`).

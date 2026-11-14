@@ -331,8 +331,8 @@ KATEGORIEN = [
         {"de": "Tochter",             "bs": "kćerka"},
         {"de": "Kind",                "bs": "dijete"},
         {"de": "Kinder",              "bs": "djeca"},
-        {"de": "Ehefrau",             "bs": "žena"},
-        {"de": "Ehemann",             "bs": "muž"},
+        {"de": "Ehefrau",             "bs": "žena", "auch": ["supruga"]},   # nur in dieser Richtung (Ajdin, Prüfbericht 1.4, B3/F14)
+        {"de": "Ehemann",             "bs": "muž", "auch": ["suprug"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Oma",                 "bs": "nana"},
         {"de": "Opa",                 "bs": "dedo"},
         # Verwandte nach ihrer Seite, Ajdin am 23.10.2026: "tetka ujna strina
@@ -1106,7 +1106,7 @@ KATEGORIEN = [
     {"id": "kleine_woerter", "label": "Kleine Wörter", "sektion": "saetze", "tipp": "Hier, dort, dann, so, wie: kleine Wörter für jeden Satz.",
      "baut_auf": ["fragen", "satzbau"],
      "words": [
-        {"de": "hier",                        "bs": "ovdje"},
+        {"de": "hier",                        "bs": "ovdje", "auch": ["tu"]},   # Prüfbericht 1.4, B3/F14
         {"de": "dort",                        "bs": "tamo"},
         {"de": "da / hier",                   "bs": "tu"},
         {"de": "oben",                        "bs": "gore"},
@@ -1271,7 +1271,7 @@ KATEGORIEN = [
         {"de": "Ampel",                               "bs": "semafor"},
         {"de": "Kreuzung",                            "bs": "raskrsnica"},
         {"de": "Verkehr",                             "bs": "saobraćaj"},
-        {"de": "Stau",                                "bs": "zastoj"},
+        {"de": "Stau",                                "bs": "zastoj", "auch": ["gužva"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Strafzettel / Bußgeld",               "bs": "kazna"},
         {"de": "Kennzeichen (Auto)",                  "bs": "registracija"},
         {"de": "Hauptuntersuchung (TÜV)",             "bs": "tehnički pregled"},
@@ -1423,7 +1423,7 @@ KATEGORIEN = [
         {"de": "geben",                     "bs": "dati"},
         {"de": "helfen",                    "bs": "pomoći"},
         {"de": "schreiben",                 "bs": "pisati"},
-        {"de": "sagen",                     "bs": "reći"},
+        {"de": "sagen",                     "bs": "reći", "auch": ["kazati"]},   # Prüfbericht 1.4, B3/F14
         {"de": "schenken",                  "bs": "pokloniti"},
         {"de": "zeigen",                    "bs": "pokazati", "partner": "pokazivati"},
     ]},
@@ -1483,7 +1483,7 @@ KATEGORIEN = [
         {"de": "letzte Woche",              "bs": "prošle sedmice"},
         {"de": "letztes Jahr",              "bs": "prošle godine"},
         {"de": "vor zwei Tagen",            "bs": "prije dva dana"},
-        {"de": "früher",                    "bs": "prije"},
+        {"de": "früher",                    "bs": "prije", "auch": ["nekad", "nekada"]},   # nekada wie beim Wort nekad (Prüfbericht 1.4, B3/F14)
         {"de": "damals",                    "bs": "tada"},
         {"de": "Ich war in Bosnien (m/w)",  "bs": "Bio sam u Bosni / Bila sam u Bosni"},
         {"de": "Es war schön",              "bs": "Bilo je lijepo"},
@@ -1508,7 +1508,7 @@ KATEGORIEN = [
         {"de": "übermorgen",                "bs": "prekosutra"},
         {"de": "nächste Woche",             "bs": "sljedeće sedmice"},
         {"de": "nächstes Jahr",             "bs": "sljedeće godine"},
-        {"de": "bald",                      "bs": "uskoro"},
+        {"de": "bald",                      "bs": "uskoro", "auch": ["skoro"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Plan",                      "bs": "plan"},
         {"de": "Ich habe vor ...",          "bs": "Planiram ..."},
         {"de": "Ich möchte reisen",         "bs": "Želim putovati"},
@@ -1780,7 +1780,7 @@ KATEGORIEN = [
         {"de": "Benzin",                    "bs": "benzin"},
         {"de": "Autobahn",                  "bs": "autoput"},
         {"de": "Landkarte",                 "bs": "mapa", "auch": ["karta"]},
-        {"de": "Richtung",                  "bs": "pravac"},
+        {"de": "Richtung",                  "bs": "pravac", "auch": ["smjer"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Fahrt",                     "bs": "vožnja"},
         {"de": "Wie lange dauert die Fahrt?", "bs": "Koliko traje vožnja?"},
         {"de": "Wann fährt der Bus ab?",    "bs": "Kada polazi autobus?"},
@@ -2628,7 +2628,7 @@ KATEGORIEN = [
         {"de": "Ich versuche den ganzen Tag, dich anzurufen.", "bs": "Pokušavam te nazvati cijeli dan."},
         {"de": "lösen / klären",             "bs": "riješiti", "partner": "rješavati"},
         {"de": "Wir klären das zusammen.",   "bs": "Riješit ćemo to zajedno."},
-        {"de": "vorbereiten",                "bs": "pripremiti", "partner": "pripremati"},
+        {"de": "vorbereiten",                "bs": "pripremiti", "partner": "pripremati", "auch": ["spremiti"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Ich muss alles für die Reise vorbereiten.", "bs": "Moram sve pripremiti za put."},
         {"de": "trinken / austrinken",       "bs": "popiti", "partner": "piti"},
         {"de": "Lass uns einen Kaffee trinken!", "bs": "Hajmo popiti kahvu!"},
@@ -2690,7 +2690,7 @@ KATEGORIEN = [
         {"de": "Mich interessiert Geschichte.", "bs": "Zanima me historija."},
         {"de": "abhängen",                   "bs": "zavisiti"},
         {"de": "Das hängt vom Wetter ab.",   "bs": "Zavisi od vremena."},
-        {"de": "fehlen",                     "bs": "nedostajati"},
+        {"de": "fehlen",                     "bs": "nedostajati", "auch": ["faliti"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Bosnien fehlt mir sehr.",    "bs": "Mnogo mi nedostaje Bosna."},
         {"de": "aufwachen",                  "bs": "probuditi se", "partner": "buditi se"},
         {"de": "Ich bin um fünf aufgewacht.", "bs": "Probudio sam se u pet."},
@@ -3475,7 +3475,7 @@ KATEGORIEN = [
         {"de": "Ärgere dich nicht über mich.", "bs": "Nemoj se ljutiti na mene."},
         {"de": "sich ärgern",                 "bs": "naljutiti se", "partner": "ljutiti se"},
         {"de": "Papa hat sich wegen des Autos geärgert.", "bs": "Babo se naljutio zbog auta."},
-        {"de": "sich fürchten",               "bs": "plašiti se", "partner": "uplašiti se"},
+        {"de": "sich fürchten",               "bs": "plašiti se", "partner": "uplašiti se", "auch": ["bojati se"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Das Kind fürchtet sich vor der Dunkelheit.", "bs": "Dijete se plaši mraka."},
         {"de": "sich fürchten",               "bs": "uplašiti se", "partner": "plašiti se"},
         {"de": "Ich habe Angst bekommen, als es gedonnert hat.", "bs": "Uplašio sam se kad je zagrmilo."},
@@ -3545,7 +3545,7 @@ KATEGORIEN = [
      "baut_auf": ["sich_bewegen"],
      "reihenfolge": True,   # jedes Wort vor seinem Beispielsatz (06.11.2026)
      "words": [
-        {"de": "losgehen",                    "bs": "poći", "partner": "polaziti"},
+        {"de": "losgehen",                    "bs": "poći", "partner": "polaziti", "auch": ["krenuti"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Wir müssen vor Einbruch der Dunkelheit losgehen.", "bs": "Moramo poći prije mraka."},
         {"de": "losgehen",                    "bs": "polaziti", "partner": "poći"},
         {"de": "Morgen gehen wir um acht Uhr früh los.", "bs": "Sutra polazimo u osam ujutro."},
@@ -5553,7 +5553,7 @@ KATEGORIEN = [
         {"de": "Gott sei Dank sind alle gesund und munter.", "bs": "Hvala Bogu, svi su živi i zdravi."},
         {"de": "stark / kräftig",             "bs": "snažan", "auch": ["snažna", "snažno"]},
         {"de": "Mein Bruder ist stark wie ein Stier.", "bs": "Moj brat je snažan kao bik."},
-        {"de": "modern",                      "bs": "moderan", "auch": ["moderna", "moderno"]},
+        {"de": "modern",                      "bs": "moderan", "auch": ["moderna", "moderno", "savremen", "savremena", "savremeno"]},   # savremen in den Formen wie beim Wort (Prüfbericht 1.4, B3/F14)
         {"de": "Sie haben eine sehr moderne Küche.", "bs": "Imaju jako modernu kuhinju."},
         {"de": "warm (der warme)",            "bs": "topao", "auch": ["topla", "toplo"]},
         {"de": "Ich brauche einen warmen Pullover.", "bs": "Treba mi topao džemper."},
@@ -5689,7 +5689,7 @@ KATEGORIEN = [
         {"de": "Es tut mir leid, dass ich zu spät komme.", "bs": "Žao mi je što kasnim."},
         {"de": "obwohl",                      "bs": "iako"},
         {"de": "Obwohl ich müde bin, gehe ich zum Training.", "bs": "Iako sam umoran, idem na trening."},
-        {"de": "falls",                       "bs": "ukoliko"},
+        {"de": "falls",                       "bs": "ukoliko", "auch": ["ako"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Falls du nicht kommen kannst, sag mir Bescheid.", "bs": "Ukoliko ne možeš doći, javi mi."},
         {"de": "also",                        "bs": "dakle"},
         {"de": "Also, wir sehen uns morgen um acht.", "bs": "Dakle, vidimo se sutra u osam."},
@@ -6024,7 +6024,7 @@ KATEGORIEN = [
         {"de": "Es ist spät, daher müssen wir gehen.", "bs": "Kasno je, stoga moramo ići."},
         {"de": "außerdem",                    "bs": "osim toga"},
         {"de": "Das Hotel ist schön und außerdem günstig.", "bs": "Hotel je lijep, a osim toga je jeftin."},
-        {"de": "da (weil)",                   "bs": "budući da"},
+        {"de": "da (weil)",                   "bs": "budući da", "auch": ["pošto"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Da Sonntag ist, ist alles geschlossen.", "bs": "Budući da je nedjelja, sve je zatvoreno."},
         {"de": "damit / um zu",               "bs": "kako bi / kako bih"},
         {"de": "Sie lernt, um die Prüfung zu bestehen.", "bs": "Ona uči kako bi položila ispit."},
@@ -6032,7 +6032,7 @@ KATEGORIEN = [
         {"de": "Ich habe ein Taxi genommen, sodass ich nicht zu spät kam.", "bs": "Uzeo sam taksi, tako da nisam zakasnio."},
         {"de": "bevor",                       "bs": "prije nego što", "auch": ["prije nego"]},
         {"de": "Ruf mich an, bevor du losgehst.", "bs": "Nazovi me prije nego što kreneš."},
-        {"de": "nachdem",                     "bs": "nakon što"},
+        {"de": "nachdem",                     "bs": "nakon što", "auch": ["pošto"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Nachdem ich fertig bin, rufe ich dich an.", "bs": "Nakon što završim, nazvat ću te."},
         {"de": "nicht nur",                   "bs": "ne samo"},
         {"de": "Er kommt nicht nur zu spät, sondern ärgert sich auch noch.", "bs": "Ne samo da kasni, nego se još i ljuti."},
@@ -9497,7 +9497,7 @@ KATEGORIEN = [
         {"de": "Man hat ihr den Preis für die beste Arbeit verliehen.", "bs": "Dodijelili su joj nagradu za najbolji rad."},
         {"de": "zuteilen / verleihen",        "bs": "dodjeljivati", "partner": "dodijeliti"},
         {"de": "Die Schule vergibt jedes Jahr Stipendien.", "bs": "Škola svake godine dodjeljuje stipendije."},
-        {"de": "verbinden",                   "bs": "spojiti", "partner": "spajati"},
+        {"de": "verbinden",                   "bs": "spojiti", "partner": "spajati", "auch": ["povezati"]},   # Prüfbericht 1.4, B3/F14
         {"de": "Können wir diese zwei Tische zusammenstellen?", "bs": "Možemo li spojiti ova dva stola?"},
         {"de": "verbinden",                   "bs": "spajati", "partner": "spojiti"},
         {"de": "Diese Brücke verbindet zwei Stadtteile.", "bs": "Ovaj most spaja dva dijela grada."},

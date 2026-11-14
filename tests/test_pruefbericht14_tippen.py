@@ -204,3 +204,61 @@ B2 = {
 
 def test_b2_umstellung_beim_tippen(alle_daten, grunddaten, index_html):
     _pruefe_woerter(alle_daten, grunddaten, index_html, B2, B2)
+
+
+# ---- B3 / F14: Woerter, die die App selbst als gleichbedeutend fuehrt ----
+# F14 a bis o alle ja, nur in der gefragten Richtung: das Wort der Aufgabe nimmt das
+# andere App-Wort, in der Form, in der die App es fuehrt (savremen wie moderan mit
+# weiblicher und saechlicher Form, nekad mit nekada wie beim Wort nekad).
+B3 = {
+    "sagen:reći": ["kazati"],                                             # a
+    "sich fürchten:plašiti se": ["bojati se"],                            # b
+    "falls:ukoliko": ["ako"],                                             # c
+    "losgehen:poći": ["krenuti"],                                         # d
+    "ehefrau:žena": ["supruga"],                                          # e
+    "ehemann:muž": ["suprug"],                                            # e
+    "stau:zastoj": ["gužva"],                                             # f
+    "bald:uskoro": ["skoro"],                                             # g
+    "hier:ovdje": ["tu"],                                                 # h
+    "früher:prije": ["nekad", "nekada"],                                  # i
+    "da (weil):budući da": ["pošto"],                                     # j
+    "nachdem:nakon što": ["pošto"],                                       # j
+    "vorbereiten:pripremiti": ["spremiti"],                               # k
+    "verbinden:spojiti": ["povezati"],                                    # l
+    "modern:moderan": ["moderna", "moderno", "savremen", "savremena", "savremeno"],   # m
+    "richtung:pravac": ["smjer"],                                         # n
+    "fehlen:nedostajati": ["faliti"],                                     # o
+}
+B3_NEU = dict(B3, **{"modern:moderan": ["savremen", "savremena", "savremeno"]})
+# Das andere Wort selbst bekommt nichts dazu (nicht „auch umgekehrt“).
+B3_GEGENSTUECK = {
+    "sagen / mitteilen:kazati": None, "angst haben / sich fürchten:bojati se": None,
+    "wenn / falls:ako": None, "losgehen / losfahren:krenuti": None,
+    "ehefrau (förmlich):supruga": None, "ehemann (förmlich):suprug": None,
+    "gedränge / stau:gužva": None, "fast / bald:skoro": None, "da / hier:tu": None,
+    "manchmal / früher:nekad": ["nekada"], "da / nachdem:pošto": None,
+    "vorbereiten / zubereiten:spremiti": None, "verbinden (in zusammenhang bringen):povezati": None,
+    "zeitgenössisch / modern:savremen": ["savremena", "savremeno"],
+    "richtung (fahrtrichtung):smjer": None, "fehlen (locker):faliti": None,
+}
+
+
+def test_b3_gleichbedeutende_woerter(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, B3, B3_NEU)
+
+
+def test_b3_nur_in_der_gefragten_richtung(grunddaten):
+    woerter = _woerter(grunddaten)
+    for kennung, auch in B3_GEGENSTUECK.items():
+        assert kennung in woerter, kennung
+        assert woerter[kennung].get("auch") == auch, (kennung, woerter[kennung].get("auch"))
+    # „vor (zeitlich)“ heisst auch prije, nekad passt dort nicht und war nicht gefragt.
+    assert woerter["vor (zeitlich):prije"].get("auch") is None
+
+
+def test_b3_partner_bleiben(grunddaten):
+    """Das Aspekt-Gegenstueck bleibt, wie es war: pripremati, uplašiti se, polaziti, spajati."""
+    woerter = _woerter(grunddaten)
+    for kennung, partner in (("vorbereiten:pripremiti", "pripremati"), ("sich fürchten:plašiti se", "uplašiti se"),
+                             ("losgehen:poći", "polaziti"), ("verbinden:spojiti", "spajati")):
+        assert woerter[kennung].get("partner") == partner, kennung

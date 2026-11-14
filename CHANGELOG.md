@@ -484,6 +484,14 @@ are in the Play Store listing. Format:
   maintainer, F13): *Kiša pada*, *Snijeg pada*, *Voda curi*, *Meni je svejedno* and
   *Meni je dosadno* now count next to *Pada kiša* and the others, as sentence
   building already allowed. `tests/test_pruefbericht14_tippen.py`.
+- Typing a word the app itself lists with the same meaning (review for 1.4,
+  14.11.2026, B3; decided by the maintainer, F14): "sagen" (*reći*) also takes
+  *kazati*, *plašiti se* takes *bojati se*, *ukoliko* *ako*, *poći* *krenuti*, *žena* and
+  *muž* take *supruga* and *suprug*, *zastoj* *gužva*, *uskoro* *skoro*, *ovdje* *tu*,
+  *prije* ("früher") *nekad* / *nekada*, *budući da* and *nakon što* *pošto*,
+  *pripremiti* *spremiti*, *spojiti* *povezati*, *moderan* *savremen* (all three forms),
+  *pravac* *smjer* and *nedostajati* *faliti*. Only in this direction; the other word
+  does not take the first. `tests/test_pruefbericht14_tippen.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

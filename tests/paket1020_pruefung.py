@@ -67,10 +67,13 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten, request):
 
 
 def test_auch_genau_nach_dem_paket(grunddaten, request):
-    """Feld "auch" aus dem Paket, dazu die Formen aus "formen" (weiblich, saechlich)."""
+    """Feld "auch" aus dem Paket, dazu die Formen aus "formen" (weiblich, saechlich).
+    PRUEFBERICHT_AUCH: was Ajdin am 14.11.2026 dazu freigegeben hat (Pruefbericht 1.4,
+    tests/test_pruefbericht14_tippen.py)."""
     m = request.module
     neu = {w["bs"]: w for w in _neu(m, grunddaten)}
-    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == m.AUCH
+    erwartet = {**m.AUCH, **getattr(m, "PRUEFBERICHT_AUCH", {})}
+    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == erwartet
     for w in neu.values():
         formen = [f.strip() for f in w["bs"].split(" / ")]
         for a in w.get("auch", []):

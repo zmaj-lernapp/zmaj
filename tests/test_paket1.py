@@ -63,6 +63,9 @@ AUCH = {
 # Pruefbericht 1.4, V3 (14.11.2026): zwei Beispielsaetze nehmen beim Tippen auch
 # die andere richtige Fassung. Die Kennung bleibt (tests/test_pruefbericht14_antworten.py).
 SATZ_AUCH = {"Uspjela sam!": ["Uspio sam!"], "Šta se desilo?": ["Šta se dogodilo?"]}
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten (B3/F14): das andere App-Wort gilt
+# beim Tippen mit, nur in dieser Richtung (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {"pripremiti": ["spremiti"], "nedostajati": ["faliti"]}
 
 # Gegenstuecke, die schon vor dem Paket in der App standen
 ALTE_PARTNER = {"dolaziti": "doći", "davati": "dati", "pomagati": "pomoći", "plaćati": "platiti",
@@ -117,10 +120,10 @@ def test_auch_formen_und_doppelformen(grunddaten):
         for a in w.get("auch", []):
             assert a not in formen, (w["bs"], a)     # steht schon im Wort, matches() trennt selbst
     neu = {w["bs"]: w for k in _level(grunddaten) for w in k["words"]}
-    for bs, auch in {**AUCH, **SATZ_AUCH}.items():
+    for bs, auch in {**AUCH, **SATZ_AUCH, **PRUEFBERICHT_AUCH}.items():
         assert neu[bs].get("auch") == auch, bs
     mit_auch = {bs for bs, w in neu.items() if w.get("auch")}
-    assert mit_auch == set(AUCH) | set(SATZ_AUCH)
+    assert mit_auch == set(AUCH) | set(SATZ_AUCH) | set(PRUEFBERICHT_AUCH)
 
 
 def test_partner_stehen_in_der_app(grunddaten):
