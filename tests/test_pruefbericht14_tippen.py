@@ -275,3 +275,28 @@ def test_b4_dobrodosli_zusammen(alle_daten, grunddaten, index_html):
     # Ohne Haekchen ist es wie sonst "Richtig! Mit Sonderzeichen" - kein Leben.
     w = _woerter(grunddaten)["willkommen:Dobro došli"]
     assert _matches(index_html, [(_wort_antworten(w), "Dobrodosli")]) == ["almost"]
+
+
+# ---- S1 / F18: Lueckensaetze mit weiteren gebraeuchlichen Antworten ----
+# F18 a, b, c, d und f ja; e nein: Ajde ohne h, Ajdin: „das ist schon nicht mehr
+# bosnisch“. Beim Satzbau liegen die neuen Woerter bis zu diesen Leveln nie als
+# Kachel, ein "ohne" braucht es nicht.
+S1 = {
+    "Šta si po ___?": ("zanimanju", ["struci"], ["struci"]),                              # a
+    "Možemo li platiti ___?": ("odvojeno", ["posebno"], ["posebno"]),                     # b
+    "Moram sipati ___.": ("gorivo", ["benzin"], ["benzin"]),                              # c
+    "Ovo je jako ___.": ("ukusno", ["fino"], ["fino"]),                                   # d
+    "Poslije posla ___ večeru.": ("kuham", ["spremam", "pravim"], ["spremam", "pravim"]),  # f
+}
+
+
+def test_s1_weitere_antworten_im_lueckensatz(alle_daten, grunddaten, index_html):
+    _pruefe_luecken(alle_daten, grunddaten, index_html, S1)
+
+
+def test_s1_ajde_bleibt_falsch(grunddaten, index_html):
+    """F18 e nein: „___, idemo!“ nimmt nur Hajde. Ajde ist ein Buchstabe weniger und
+    bekommt wie bisher „Fast richtig!“, beim zweiten Mal ist es falsch."""
+    s = _luecken(grunddaten, "___, idemo!")
+    assert s["answer"] == "Hajde" and "auch" not in s, s
+    assert _matches(index_html, [(_luecke_antworten(s), "Ajde")]) == ["no"]

@@ -921,3 +921,19 @@ App-Wort mit, das andere Wort selbst bekommt nichts dazu.
 | `willkommen:Dobro došli` | `"auch": ["Dobrodošli"]` |
 
 - Gezeigt und gesprochen wird weiter „Dobro došli“.
+
+**S1 / F18, Lückensätze.** Ajdin: „passt außer ajde das ist schon nicht mehr
+bosnisch“, also a, b, c, d und f ja, e nein.
+
+| Lückensatz | Änderung | |
+|---|---|---|
+| „Šta si po ___?“ (*zanimanju*) | `"auch": ["struci"]` | a |
+| „Možemo li platiti ___?“ (*odvojeno*) | `"auch": ["posebno"]` | b |
+| „Moram sipati ___.“ (*gorivo*) | `"auch": ["benzin"]` | c |
+| „Ovo je jako ___.“ (*ukusno*) | `"auch": ["fino"]` | d |
+| „Poslije posla ___ večeru.“ (*kuham*) | `"auch": ["spremam", "pravim"]` | f |
+
+- **Nicht:** „___, idemo!“ nimmt weiter nur *Hajde*. *Ajde* ohne h ist „schon nicht
+  mehr bosnisch“; es bekommt wie bisher „Fast richtig!“ und ist beim zweiten Mal falsch.
+- Beim Satzbau liegen *struci*, *posebno*, *benzin*, *fino*, *spremam* und *pravim* bis
+  zu diesen Leveln nie als Kachel, ein `"ohne"` braucht es nicht.

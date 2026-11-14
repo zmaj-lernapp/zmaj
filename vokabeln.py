@@ -10215,7 +10215,7 @@ SAETZE = [
     # Arbeit & Schule
     {"kat": "arbeit", "text": "Sutra ___.",             "answer": "radim",    "de": "Morgen arbeite ich."},
     {"kat": "arbeit", "text": "Imam ___.",              "answer": "ispit",    "de": "Ich habe eine Prüfung."},
-    {"kat": "arbeit", "text": "Šta si po ___?",         "answer": "zanimanju", "de": "Was bist du von Beruf?"},
+    {"kat": "arbeit", "text": "Šta si po ___?",         "answer": "zanimanju", "auch": ["struci"], "de": "Was bist du von Beruf?"},   # Ajdin, Prüfbericht 1.4, S1/F18
 
     # Höflich & Formell
     {"kat": "formell", "text": "Kako ___?",             "answer": "ste",      "de": "Wie geht es Ihnen?"},
@@ -10379,7 +10379,7 @@ SAETZE = [
     # Tagesablauf
     {"kat": "routine", "text": "___ u sedam sati.",        "answer": "Ustajem", "de": "Ich stehe um sieben Uhr auf.",
      "zahl": {"wort": "sedam", "werte": [5, 6, 7, 8, 9], "de": "Ich stehe um {n} Uhr auf."}},
-    {"kat": "routine", "text": "Poslije posla ___ večeru.", "answer": "kuham",  "de": "Nach der Arbeit koche ich Abendessen."},
+    {"kat": "routine", "text": "Poslije posla ___ večeru.", "answer": "kuham", "auch": ["spremam", "pravim"], "de": "Nach der Arbeit koche ich Abendessen."},   # Prüfbericht 1.4, S1/F18
     {"kat": "routine", "text": "Idem ___ u jedanaest.",    "answer": "spavati", "de": "Ich gehe um elf schlafen.",
      "zahl": {"wort": "jedanaest", "werte": [9, 10, 11, 12], "frei": "uhrzeit", "de": "Ich gehe um {n} schlafen."}},
     {"kat": "routine", "text": "___ dan pijem kahvu.",     "answer": "Svaki",   "de": "Jeden Tag trinke ich Kaffee."},
@@ -10500,7 +10500,7 @@ SAETZE = [
     {"kat": "technik", "text": "Upali ___, molim te.", "answer": "svjetlo",  "de": "Mach bitte das Licht an."},
     {"kat": "technik", "text": "Ne radi ___.",         "answer": "bojler",   "de": "Der Boiler funktioniert nicht."},
     {"kat": "technik", "text": "Ugasi ___.",           "answer": "grijanje", "de": "Mach die Heizung aus."},
-    {"kat": "auto_werkstatt", "text": "Moram sipati ___.", "answer": "gorivo", "de": "Ich muss tanken."},
+    {"kat": "auto_werkstatt", "text": "Moram sipati ___.", "answer": "gorivo", "auch": ["benzin"], "de": "Ich muss tanken."},   # Prüfbericht 1.4, S1/F18
     {"kat": "auto_werkstatt", "text": "Pukla mi je ___.", "answer": "guma", "de": "Ich habe einen Platten."},
     {"kat": "auto_werkstatt", "text": "Gdje mogu ___ svoj auto?", "answer": "parkirati", "de": "Wo kann ich mein Auto parken?"},
     {"kat": "auto_werkstatt", "text": "Na ___ je crveno.", "answer": "semaforu", "de": "Die Ampel ist rot."},
@@ -10530,12 +10530,12 @@ SAETZE = [
     # Im Restaurant: essen & zahlen
     {"kat": "resto2", "text": "Ovo meso je ___.",       "answer": "ljuto",    "de": "Dieses Fleisch ist scharf."},
     {"kat": "resto2", "text": "Voće je ___.",           "answer": "slatko",   "de": "Das Obst ist süß."},
-    {"kat": "resto2", "text": "Možemo li platiti ___?", "answer": "odvojeno", "de": "Können wir getrennt zahlen?"},
+    {"kat": "resto2", "text": "Možemo li platiti ___?", "answer": "odvojeno", "auch": ["posebno"], "de": "Können wir getrennt zahlen?"},   # Prüfbericht 1.4, S1/F18
     {"kat": "resto2", "text": "Jedemo ___.",            "answer": "zajedno",  "de": "Wir essen zusammen."},
     {"kat": "resto2", "text": "Zadržite ___.",          "answer": "kusur",    "de": "Behalten Sie das Rückgeld."},
 
     # Essen gehen & Mengen
-    {"kat": "essen_gehen", "text": "Ovo je jako ___.",          "answer": "ukusno",   "de": "Das ist sehr lecker."},
+    {"kat": "essen_gehen", "text": "Ovo je jako ___.",          "answer": "ukusno", "auch": ["fino"], "de": "Das ist sehr lecker."},   # Prüfbericht 1.4, S1/F18
     {"kat": "essen_gehen", "text": "Idemo u ___.",              "answer": "restoran", "de": "Wir gehen ins Restaurant."},
     {"kat": "essen_gehen", "text": "Gdje je ___?",              "answer": "pekara",   "de": "Wo ist die Bäckerei?"},
     {"kat": "essen_gehen", "text": "Jedan ___ mlijeka, molim.", "answer": "litar",    "de": "Einen Liter Milch, bitte."},
