@@ -757,3 +757,17 @@ Fehler gleich in 1.4 zu beheben. Was er noch entscheidet (F1 bis F23), steht nic
 - Kennungen, Anzeige und Aufnahmen bleiben. Gesprochen wird weiter `bs`, im
   Lückensatz der Satz mit *Merhaba*.
 - Tests: `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+
+**B9, Bedeutung.** *Alejkumu selam* hieß „(Antwort darauf)“. Seit dem alphabetischen
+Einsortieren steht es vor *Selam alejkum*, „darauf“ zeigte ins Leere.
+
+| alte Kennung | neue Kennung |
+|---|---|
+| `(antwort darauf):Alejkumu selam` | `antwort auf selam alejkum:Alejkumu selam` |
+
+- Neue Bedeutung „Antwort auf Selam alejkum“, in den anderen Sprachen nach dem Muster
+  von „Antwort auf den Bajram-Gruß“: en *reply to Selam alejkum*, tr *Selam alejkum'a
+  verilen cevap*, sv/nb/da *svar på Selam alejkum*, nl *antwoord op Selam alejkum*,
+  fr *réponse à Selam alejkum*. Der Gruß bleibt bosnisch geschrieben.
+- Das bosnische Wort und seine Aufnahme (w1987) bleiben, der Lernstand zieht über
+  `UMBENANNT` mit.

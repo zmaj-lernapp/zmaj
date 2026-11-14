@@ -18750,17 +18750,17 @@
    <tuv xml:lang="da"><seg>Hvordan siger man det på bosnisk?</seg></tuv>
    <tuv xml:lang="fr"><seg>Comment dit-on ça en bosnien ?</seg></tuv>
   </tu>
-  <tu tuid="(antwort darauf):Alejkumu selam" segtype="phrase">
+  <tu tuid="antwort auf selam alejkum:Alejkumu selam" segtype="phrase">
    <prop type="x-kind">word</prop>
    <tuv xml:lang="bs"><seg>Alejkumu selam</seg></tuv>
-   <tuv xml:lang="de"><seg>(Antwort darauf)</seg></tuv>
-   <tuv xml:lang="en"><seg>(reply to this)</seg></tuv>
-   <tuv xml:lang="tr"><seg>(buna verilen cevap)</seg></tuv>
-   <tuv xml:lang="sv"><seg>(svar på det)</seg></tuv>
-   <tuv xml:lang="nl"><seg>(antwoord daarop)</seg></tuv>
-   <tuv xml:lang="nb"><seg>(svar på det)</seg></tuv>
-   <tuv xml:lang="da"><seg>(svar på det)</seg></tuv>
-   <tuv xml:lang="fr"><seg>(réponse à cela)</seg></tuv>
+   <tuv xml:lang="de"><seg>Antwort auf Selam alejkum</seg></tuv>
+   <tuv xml:lang="en"><seg>reply to Selam alejkum</seg></tuv>
+   <tuv xml:lang="tr"><seg>Selam alejkum'a verilen cevap</seg></tuv>
+   <tuv xml:lang="sv"><seg>svar på Selam alejkum</seg></tuv>
+   <tuv xml:lang="nl"><seg>antwoord op Selam alejkum</seg></tuv>
+   <tuv xml:lang="nb"><seg>svar på Selam alejkum</seg></tuv>
+   <tuv xml:lang="da"><seg>svar på Selam alejkum</seg></tuv>
+   <tuv xml:lang="fr"><seg>réponse à Selam alejkum</seg></tuv>
   </tu>
   <tu tuid="besuch:posjeta" segtype="phrase">
    <prop type="x-kind">word</prop>

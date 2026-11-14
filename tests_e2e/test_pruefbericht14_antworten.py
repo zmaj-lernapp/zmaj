@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Pruefbericht 1.4 (14.11.2026) im Browser: richtige Antworten, die ein Leben kosteten.
+"""Pruefbericht 1.4 (14.11.2026) im Browser: richtige Antworten, die ein Leben kosteten (V3, B9).
 
 V3: „Wann kommst du?“, getippt „Kad dolaziš?“, gab erst „Fast richtig!“, dann
 „Richtig wäre: Kada dolaziš?“ und ein Leben weniger. Ebenso Zdravo im
@@ -51,4 +51,43 @@ def test_v3_nur_die_genannten_formen(seite, heute_stand):
               matches('Doviđenja', [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / '))];
     }""")
     assert erg == ["almost", "no", "no", "no"], erg
+    assert seite.fehler == []
+
+
+# B9: Alejkumu selam hiess "(Antwort darauf)" und stand vor Selam alejkum - der
+# Verweis ging ins Leere. Die neue Bedeutung aendert die Kennung; UMBENANNT zieht
+# gewusst, Fehler-Topf und Sterne mit (wie salz:so in test_umbenannt.py).
+B9_ALT, B9_NEU = "(antwort darauf):Alejkumu selam", "antwort auf selam alejkum:Alejkumu selam"
+
+
+def test_b9_alter_lernstand_wandert_mit(seite, heute_stand):
+    seite.starten(stand=heute_stand(gewusst=[B9_ALT, "brot:hljeb"],
+                                    topf={"w:" + B9_ALT: {"typ": "type", "n": 1, "z": 123}},
+                                    stern={"w:" + B9_ALT: {"z": 50, "r": 7}}))
+    jetzt = seite.js("""([alt, neu]) => ({known: [...known], topf, stern, alt: !!wortNachId(alt),
+                                          umbenannt: UMBENANNT[alt], de: wortNachId(neu).w.de})""", [B9_ALT, B9_NEU])
+    assert jetzt["alt"] is False and jetzt["umbenannt"] == B9_NEU and jetzt["de"] == "Antwort auf Selam alejkum"
+    assert B9_NEU in jetzt["known"] and B9_ALT not in jetzt["known"] and "brot:hljeb" in jetzt["known"]
+    assert jetzt["topf"] == {"w:" + B9_NEU: {"typ": "type", "n": 1, "z": 123}}
+    assert jetzt["stern"] == {"w:" + B9_NEU: {"z": 50, "r": 7}}
+    gespeichert = seite.js("() => JSON.parse(localStorage.getItem('zmaj_stand'))")
+    assert B9_NEU in gespeichert["gewusst"] and B9_ALT not in gespeichert["gewusst"]
+    assert seite.fehler == []
+
+
+def test_b9_als_schreibaufgabe_loesbar(seite, heute_stand):
+    """Die Aufgabe nennt jetzt den Gruss, auf den man antwortet."""
+    seite.starten(stand=heute_stand())
+    seite.js(STARTEN["Lx"])
+    leben = seite.js(LEGEN, ["Lx", "type", B9_NEU])
+    assert "Antwort auf Selam alejkum" in seite.js("() => document.getElementById('lBody').innerText")
+    seite.js(EINGEBEN, ["Alejkumu selam", 250])
+    lage = seite.js(LAGE, "")
+    assert lage["ergebnis"] is True and lage["leben"] == leben and lage["fb"] == "Tačno! ✓", lage
+    assert seite.fehler == []
+
+
+def test_b9_bedeutung_auf_englisch(seite, heute_stand):
+    seite.starten(stand=heute_stand(), sprache="en")
+    assert seite.js("(id) => wortNachId(id).w.de", B9_NEU) == "reply to Selam alejkum"
     assert seite.fehler == []

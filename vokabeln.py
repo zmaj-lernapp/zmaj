@@ -2126,7 +2126,10 @@ KATEGORIEN = [
      # Stattdessen die Familie: "Ovo je moja žena", prijatelj, porodica.
      "baut_auf": ["basics", "smalltalk", "familie"],
      "words": [
-        {"de": "(Antwort darauf)",                   "bs": "Alejkumu selam"},
+        # Bis zum 14.11.2026 "(Antwort darauf)": seit dem alphabetischen Einsortieren
+        # steht es vor Selam alejkum und verwies ins Leere (Pruefbericht 1.4, B9). Die
+        # alte Kennung zieht ueber UMBENANNT in web/index.html mit.
+        {"de": "Antwort auf Selam alejkum",          "bs": "Alejkumu selam"},
         {"de": "Besuch",                             "bs": "posjeta"},
         {"de": "Danke für alles",                    "bs": "Hvala na svemu"},
         {"de": "Darf ich vorstellen: ...",           "bs": "Da te upoznam: ..."},

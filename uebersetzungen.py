@@ -3543,7 +3543,7 @@ INHALT = {
     # Sektionen, Levelnamen, Leveltipps, Vokabeln und Lueckensaetze.
     # Nicht von Muttersprachlern - siehe Hinweis im Kopf dieser Datei.
 
-    "(Antwort darauf)": "(reply to this)",
+    "Antwort auf Selam alejkum": "reply to Selam alejkum",
     "Adler": "eagle",
     "Ajvar (Paprikapaste)": "ajvar (pepper paste)",
     "Akkordeon": "accordion",
@@ -14522,7 +14522,7 @@ INHALT = {
     # Sektionen, Levelnamen, Leveltipps, Vokabeln und Lueckensaetze.
     # Nicht von Muttersprachlern - siehe Hinweis im Kopf dieser Datei.
 
-    "(Antwort darauf)": "(buna verilen cevap)",
+    "Antwort auf Selam alejkum": "Selam alejkum'a verilen cevap",
     "Adler": "kartal",
     "Ajvar (Paprikapaste)": "ajvar (biber ezmesi)",
     "Akkordeon": "akordeon",
@@ -25496,7 +25496,7 @@ INHALT = {
     # Sektionen, Levelnamen, Leveltipps, Vokabeln und Lueckensaetze.
     # Nicht von Muttersprachlern - siehe Hinweis im Kopf dieser Datei.
 
-    "(Antwort darauf)": "(svar på det)",
+    "Antwort auf Selam alejkum": "svar på Selam alejkum",
     "Adler": "örn",
     "Ajvar (Paprikapaste)": "ajvar (paprikapasta)",
     "Akkordeon": "dragspel",
@@ -36455,7 +36455,7 @@ INHALT = {
     # Sektionen, Levelnamen, Leveltipps, Vokabeln und Lueckensaetze.
     # Nicht von Muttersprachlern - siehe Hinweis im Kopf dieser Datei.
 
-    "(Antwort darauf)": "(antwoord daarop)",
+    "Antwort auf Selam alejkum": "antwoord op Selam alejkum",
     "Adler": "arend",
     "Ajvar (Paprikapaste)": "ajvar (paprikapasta)",
     "Akkordeon": "accordeon",
@@ -47414,7 +47414,7 @@ INHALT = {
     # Sektionen, Levelnamen, Leveltipps, Vokabeln und Lueckensaetze.
     # Nicht von Muttersprachlern - siehe Hinweis im Kopf dieser Datei.
 
-    "(Antwort darauf)": "(svar på det)",
+    "Antwort auf Selam alejkum": "svar på Selam alejkum",
     "Adler": "ørn",
     "Ajvar (Paprikapaste)": "ajvar (paprikapuré)",
     "Akkordeon": "trekkspill",
@@ -58371,7 +58371,7 @@ INHALT = {
     # Sektionen, Levelnamen, Leveltipps, Vokabeln und Lueckensaetze.
     # Nicht von Muttersprachlern - siehe Hinweis im Kopf dieser Datei.
 
-    "(Antwort darauf)": "(svar på det)",
+    "Antwort auf Selam alejkum": "svar på Selam alejkum",
     "Adler": "ørn",
     "Ajvar (Paprikapaste)": "ajvar (peberfrugtpasta)",
     "Akkordeon": "harmonika",
@@ -69335,7 +69335,7 @@ INHALT = {
     # Sektionen, Levelnamen, Leveltipps, Vokabeln und Lueckensaetze.
     # Nicht von Muttersprachlern - siehe Hinweis im Kopf dieser Datei.
 
-    "(Antwort darauf)": "(réponse à cela)",
+    "Antwort auf Selam alejkum": "réponse à Selam alejkum",
     "Adler": "aigle",
     "Ajvar (Paprikapaste)": "ajvar (purée de poivrons)",
     "Akkordeon": "accordéon",

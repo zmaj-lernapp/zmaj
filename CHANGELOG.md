@@ -470,6 +470,12 @@ are in the Play Store listing. Format:
 - Multiple choice (review for 1.4, 14.11.2026, B8): *zajam* and *pozajmica* (both
   "loan") and *jaran* and *drug / drugarica* (both "buddy") no longer stand next to
   each other as right and wrong answer (`NIE_NEBENEINANDER`).
+- *Alejkumu selam* (review for 1.4, 14.11.2026, B9) means "Reply to Selam alejkum"
+  instead of "(Reply to this)", in all eight languages. Since the words were sorted
+  alphabetically it stood before *Selam alejkum*, so "this" pointed nowhere, and as
+  a writing task it could not be solved. The ID changes from
+  `(antwort darauf):Alejkumu selam` to `antwort auf selam alejkum:Alejkumu selam`;
+  `UMBENANNT` moves progress, review box and stars along. The recording stays.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

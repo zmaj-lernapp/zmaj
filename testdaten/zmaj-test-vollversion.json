@@ -1566,7 +1566,7 @@
    "sprichst du bosnisch?:Govoriš li bosanski?",
    "was bedeutet das?:Šta to znači?",
    "wie sagt man das auf bosnisch?:Kako se to kaže na bosanskom?",
-   "(antwort darauf):Alejkumu selam",
+   "antwort auf selam alejkum:Alejkumu selam",
    "besuch:posjeta",
    "danke für alles:Hvala na svemu",
    "darf ich vorstellen: ...:Da te upoznam: ...",
@@ -8336,7 +8336,6 @@
    "b1_zmaj"
   ],
   "tage": [
-   "2026-10-14",
    "2026-10-15",
    "2026-10-16",
    "2026-10-17",
@@ -8365,7 +8364,8 @@
    "2026-11-09",
    "2026-11-10",
    "2026-11-11",
-   "2026-11-12"
+   "2026-11-12",
+   "2026-11-13"
   ],
   "frost": [],
   "besitz": [
