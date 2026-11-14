@@ -771,3 +771,28 @@ Einsortieren steht es vor *Selam alejkum*, „darauf“ zeigte ins Leere.
   fr *réponse à Selam alejkum*. Der Gruß bleibt bosnisch geschrieben.
 - Das bosnische Wort und seine Aufnahme (w1987) bleiben, der Lernstand zieht über
   `UMBENANNT` mit.
+
+**B10, Wörterbuch der Lesetexte.** Nur die Bedeutung beim Antippen in den
+Geschichten (`WOERTERBUCH` und `vokabeln` in `geschichten.py`). Am Bosnischen und
+an den Vokabeln ändert sich nichts, der Text der Geschichten bleibt (Ton-Schlüssel).
+
+| Wort | vorher | jetzt | warum |
+|---|---|---|---|
+| *ti* | du | du / dir | In den B1-Texten jedes Mal „dir“ („Ako ti bilo šta treba“). |
+| *kad* | als / wenn (zeitlich) | als / wenn / wann | „Babo, kad idemo opet?“, „pita kad dolazim“ |
+| *vam* | Ihnen | Ihnen / euch | „Ako vam nešto zatreba“ zu den Kindern, „Šta da vam donesem“ |
+| *je* in intervju, b1_ljeto, b1_voz, b1_zanat | ist | ist / sie (Akk.) | „Direktor je pita“, „Kad je zagrlim“, „sama sam je pekla“, „Nemojte je samo držati“; sonst bleibt „ist“ |
+| *zadovoljan*, *zdrav*, *tužan* | … (m/w) | … (m) | im Text männlich (Dino, Amar, Haris, Kenan) |
+| *vaš* | euer / Ihr (m/w/s) | euer / Ihr (m) | „Vaš telefon“ |
+| *važna* | wichtig (der wichtige) | wichtig (w) | „važna utakmica“ |
+| *njena* | ihr (von ihr) (m/w/s) | ihre (von ihr, w) | „njena sarma“ |
+| *doktorica* | Arzt / Ärztin | Ärztin | |
+| *svoja* | eigener (mein, dein, sein) | eigene (Mehrz.) | „svoja pravila“ |
+
+- Die Vokabeln behalten ihr `de` („zufrieden (m/w)“ für *zadovoljan / zadovoljna*),
+  sonst änderte sich die Kennung. Die acht Wörter haben deshalb einen eigenen Text
+  nur im Wörterbuch.
+- Übersetzungen nach den Mustern, die in `uebersetzungen.py` schon stehen („dich /
+  dir“, „sie (Akkusativ)“, „klein (w)“, „Beamtin“, „ihrer eigenen“); nachgeschlagen
+  in Wiktionary (nl *toen*, da *hvornår*, fr *médecin* für Frauen) und Den Danske
+  Ordbog (da *da* für einen Zeitpunkt in der Vergangenheit).

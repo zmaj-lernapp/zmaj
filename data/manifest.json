@@ -62,8 +62,8 @@
    "bytes": 549991
   },
   "glossary.json": {
-   "sha256": "a0a9324cb70b9e18e190aba47b2aaadff5416f399e413ff66dc3acc4f7027e8d",
-   "bytes": 402572
+   "sha256": "eb071616be298d5eeda464b6ece44d6e4fc9ec0859aacf52716e26d21000f119",
+   "bytes": 402550
   },
   "grammar.json": {
    "sha256": "aafdae46305972b9bbcc10c8de689a57d493ab276bd6c3fac7b3e7900183e6ae",
@@ -118,8 +118,8 @@
    "bytes": 149620
   },
   "stories.json": {
-   "sha256": "db96b3b1eb912ec763f768a4ad1bba78b5f9efe90356d49bc4491fbcbb6bdb69",
-   "bytes": 436927
+   "sha256": "b45747e5768d40e181e92d62fbdf87d74f1956a4a9198658a5d44992964e144c",
+   "bytes": 437943
   },
   "vocabulary.csv": {
    "sha256": "c481d8be52a8fba9d909bf3c1e9a09fac277893391c06004193d70e23b94b1ed",

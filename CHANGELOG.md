@@ -527,6 +527,20 @@ are in the Play Store listing. Format:
   the time like a coin purchase (`zeitNachKauf()`, fixed for purchases on
   07.11.2026): one millisecond later below the maximum, so it costs no waiting
   time. `tests_e2e/test_cloud.py`.
+- Dictionary of the reading stories (review for 1.4, 14.11.2026, B10): tapping a
+  word sometimes showed the wrong meaning. *ti* now says "du / dir" (in the B1
+  stories it is always "to you"), *kad* "als / wenn / wann" ("Babo, kad idemo
+  opet?"), *vam* "Ihnen / euch" (four places speak to several people). *je* also
+  means "sie (Akk.)" in *Razgovor za posao*, *Ljeto kod nane na selu*, *Voz
+  Sarajevo–Mostar* and *Stari zanat na Baščaršiji* ("Direktor je pita"), as the
+  story's own entry like *smije*; elsewhere it stays "ist". Eight words took the
+  meaning of the vocabulary entry with all genders ("zufrieden (m/w)") or the wrong
+  one (*važna*: "wichtig (der wichtige)"); they now have their own text with the
+  form in the story (*zadovoljan*, *zdrav*, *tužan*, *vaš* masculine, *važna*,
+  *njena*, *doktorica* feminine, *svoja* plural). Only the dictionary changed, the
+  vocabulary keeps its `de` and so its ID; the story texts (the audio keys) stay.
+  New texts in all eight languages (not by native speakers).
+  `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

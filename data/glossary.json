@@ -1944,14 +1944,14 @@
   {
    "bs": "doktorica",
    "translations": {
-    "de": "Arzt / Ärztin",
-    "en": "doctor (m/f)",
-    "tr": "doktor (e/k)",
-    "sv": "läkare (m/k)",
-    "nl": "dokter (m/v)",
-    "nb": "lege (m/k)",
-    "da": "læge (m/k)",
-    "fr": "médecin (m/f)"
+    "de": "Ärztin",
+    "en": "doctor (f)",
+    "tr": "doktor (kadın)",
+    "sv": "läkare (kvinna)",
+    "nl": "dokter (vrouw)",
+    "nb": "lege (kvinne)",
+    "da": "læge (kvinde)",
+    "fr": "médecin (femme)"
    }
   },
   {
@@ -4739,14 +4739,14 @@
   {
    "bs": "kad",
    "translations": {
-    "de": "als / wenn (zeitlich)",
-    "en": "when (in time)",
-    "tr": "-dığı zaman",
-    "sv": "när (i tiden)",
-    "nl": "wanneer (in de tijd)",
-    "nb": "da / når (i tid)",
-    "da": "da / når (om tid)",
-    "fr": "quand (temporel)"
+    "de": "als / wenn / wann",
+    "en": "when",
+    "tr": "-dığı zaman / ne zaman",
+    "sv": "när",
+    "nl": "toen / wanneer",
+    "nb": "da / når",
+    "da": "da / når / hvornår",
+    "fr": "quand"
    }
   },
   {
@@ -8808,14 +8808,14 @@
   {
    "bs": "njena",
    "translations": {
-    "de": "ihr (von ihr) (m/w/s)",
-    "en": "her (m/f/n)",
-    "tr": "onun (kadın) (e/d/n)",
-    "sv": "hennes (m/f/n)",
-    "nl": "haar (m/v/o)",
-    "nb": "hennes (m/f/n)",
-    "da": "hendes (h/hu/i)",
-    "fr": "son (à elle) (m/f/n)"
+    "de": "ihre (von ihr, w)",
+    "en": "her (f)",
+    "tr": "onun (kadın, dişil)",
+    "sv": "hennes (fem.)",
+    "nl": "haar (v)",
+    "nb": "hennes (hunkj.)",
+    "da": "hendes (hunk.)",
+    "fr": "sa (à elle)"
    }
   },
   {
@@ -15594,14 +15594,14 @@
   {
    "bs": "svoja",
    "translations": {
-    "de": "eigener (mein, dein, sein)",
-    "en": "one's own (my, your, his)",
-    "tr": "kendi (benim, senin, onun)",
-    "sv": "egen (min, din, sin)",
-    "nl": "eigen (mijn, jouw, zijn)",
-    "nb": "egen (min, din, sin)",
-    "da": "egen (min, din, sin)",
-    "fr": "son propre (mon, ton, son)"
+    "de": "eigene (Mehrz.)",
+    "en": "own (pl.)",
+    "tr": "kendi (çoğul)",
+    "sv": "egna (plural)",
+    "nl": "eigen (meervoud)",
+    "nb": "egne (flertall)",
+    "da": "egne (flertal)",
+    "fr": "propres (pluriel)"
    }
   },
   {
@@ -16036,14 +16036,14 @@
   {
    "bs": "ti",
    "translations": {
-    "de": "du",
-    "en": "you",
-    "tr": "sen",
-    "sv": "du",
-    "nl": "jij",
-    "nb": "du",
-    "da": "du",
-    "fr": "tu"
+    "de": "du / dir",
+    "en": "you / to you",
+    "tr": "sen / sana",
+    "sv": "du / till dig",
+    "nl": "jij / aan jou",
+    "nb": "du / til deg",
+    "da": "du / til dig",
+    "fr": "tu / à toi"
    }
   },
   {
@@ -16543,14 +16543,14 @@
   {
    "bs": "tužan",
    "translations": {
-    "de": "traurig (m/w)",
-    "en": "sad (m/f)",
-    "tr": "üzgün (e/k)",
-    "sv": "ledsen (m/k)",
-    "nl": "verdrietig (m/v)",
-    "nb": "lei seg (m/k)",
-    "da": "ked af det (m/k)",
-    "fr": "triste (m/f)"
+    "de": "traurig (m)",
+    "en": "sad (m)",
+    "tr": "üzgün (eril)",
+    "sv": "ledsen (mask.)",
+    "nl": "verdrietig (m)",
+    "nb": "lei seg (hankj.)",
+    "da": "ked af det (hank.)",
+    "fr": "triste (masculin)"
    }
   },
   {
@@ -17232,13 +17232,13 @@
   {
    "bs": "vam",
    "translations": {
-    "de": "Ihnen",
-    "en": "to you (formal)",
+    "de": "Ihnen / euch",
+    "en": "to you (formal or plural)",
     "tr": "size",
     "sv": "er",
-    "nl": "u",
-    "nb": "Dem",
-    "da": "Dem",
+    "nl": "u / jullie",
+    "nb": "Dem / dere",
+    "da": "Dem / jer",
     "fr": "à vous"
    }
   },
@@ -17310,14 +17310,14 @@
   {
    "bs": "vaš",
    "translations": {
-    "de": "euer / Ihr (m/w/s)",
-    "en": "your (plural or formal) (m/f/n)",
-    "tr": "sizin (e/d/n)",
-    "sv": "er / ert (m/f/n)",
-    "nl": "jullie / uw (m/v/o)",
-    "nb": "deres (m/f/n)",
-    "da": "jeres (h/hu/i)",
-    "fr": "votre (m/f/n)"
+    "de": "euer / Ihr (m)",
+    "en": "your (plural or formal) (m)",
+    "tr": "sizin (eril)",
+    "sv": "er (mask.)",
+    "nl": "jullie / uw (m)",
+    "nb": "deres (hankj.)",
+    "da": "jeres (hank.)",
+    "fr": "votre (masculin)"
    }
   },
   {
@@ -17336,14 +17336,14 @@
   {
    "bs": "važna",
    "translations": {
-    "de": "wichtig (der wichtige)",
-    "en": "important (m.)",
-    "tr": "önemli (eril)",
-    "sv": "viktig",
-    "nl": "belangrijk (m.)",
-    "nb": "viktig (hankjønn)",
-    "da": "vigtig",
-    "fr": "important (m.)"
+    "de": "wichtig (w)",
+    "en": "important (f)",
+    "tr": "önemli (dişil)",
+    "sv": "viktig (fem.)",
+    "nl": "belangrijk (v)",
+    "nb": "viktig (hunkj.)",
+    "da": "vigtig (hunk.)",
+    "fr": "importante"
    }
   },
   {
@@ -18090,14 +18090,14 @@
   {
    "bs": "zadovoljan",
    "translations": {
-    "de": "zufrieden (m/w)",
-    "en": "content (m/f)",
-    "tr": "memnun (e/k)",
-    "sv": "nöjd (m/k)",
-    "nl": "tevreden (m/v)",
-    "nb": "fornøyd (m/k)",
-    "da": "tilfreds (m/k)",
-    "fr": "content (m/f)"
+    "de": "zufrieden (m)",
+    "en": "content (m)",
+    "tr": "memnun (eril)",
+    "sv": "nöjd (mask.)",
+    "nl": "tevreden (m)",
+    "nb": "fornøyd (hankj.)",
+    "da": "tilfreds (hank.)",
+    "fr": "content"
    }
   },
   {
@@ -18441,14 +18441,14 @@
   {
    "bs": "zdrav",
    "translations": {
-    "de": "gesund (m/w)",
-    "en": "healthy (m/f)",
-    "tr": "sağlıklı (e/k)",
-    "sv": "frisk (m/k)",
-    "nl": "gezond (m/v)",
-    "nb": "frisk (m/k)",
-    "da": "rask (m/k)",
-    "fr": "en bonne santé (m/f)"
+    "de": "gesund (m)",
+    "en": "healthy (m)",
+    "tr": "sağlıklı (eril)",
+    "sv": "frisk (mask.)",
+    "nl": "gezond (m)",
+    "nb": "frisk (hankj.)",
+    "da": "rask (hank.)",
+    "fr": "en bonne santé (masculin)"
    }
   },
   {

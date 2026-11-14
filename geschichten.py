@@ -42,7 +42,9 @@ WOERTERBUCH = {
     "sve": "alles", "svaki": "jeder", "mnogo": "viel / viele", "malo": "wenig / ein bisschen", "nešto": "etwas",
     "moj": "mein", "moja": "meine", "moje": "mein (s)", "moju": "meine (Akk.)", "mog": "meines / meinen",
     "tvoj": "dein", "tvoja": "deine", "naš": "unser", "naša": "unsere", "našu": "unsere (Akk.)", "njegov": "sein", "njen": "ihr",
-    "on": "er", "ona": "sie", "oni": "sie (Mehrzahl)", "ja": "ich", "ti": "du", "vi": "ihr / Sie", "tebe": "dich / dir", "sebi": "sich",
+    # ti und vam (Prüfbericht 1.4, B10, 14.11.2026): In den B1-Texten heißt ti
+    # jedes Mal "dir" ("Ako ti bilo šta treba"), vam an vier Stellen "euch".
+    "on": "er", "ona": "sie", "oni": "sie (Mehrzahl)", "ja": "ich", "ti": "du / dir", "vi": "ihr / Sie", "tebe": "dich / dir", "sebi": "sich",
     "koliko": "wie viel", "koji": "welche", "gdje": "wo", "kada": "wann", "šta": "was", "ko": "wer", "kako": "wie",
     "danas": "heute", "jučer": "gestern", "sutra": "morgen", "navečer": "abends", "ujutro": "morgens",
     "rano": "früh", "kasno": "spät", "duže": "länger", "ponekad": "manchmal", "uvijek": "immer", "brzo": "schnell",
@@ -112,7 +114,7 @@ WOERTERBUCH = {
     "potvrdu": "Bescheinigung (Akk.)", "potvrda": "Bescheinigung", "prebivalištu": "Wohnsitz (Lok.)",
     "općinu": "Gemeindeamt (Akk.)", "šalteru": "Schalter (Lok.)", "dokumenti": "Dokumente", "službenica": "Beamtin",
     "ličnu": "Personal- (Akk.)", "kartu": "Karte / Ausweis (Akk.)", "obrazac": "Formular", "taksa": "Gebühr",
-    "taksu": "Gebühr (Akk.)", "pomoći": "Hilfe (Lok.) / helfen", "hvala": "danke", "vam": "Ihnen", "molim": "bitte",
+    "taksu": "Gebühr (Akk.)", "pomoći": "Hilfe (Lok.) / helfen", "hvala": "danke", "vam": "Ihnen / euch", "molim": "bitte",
     "agent": "Makler", "nekretnine": "Immobilien", "gruntovnicu": "Grundbuch (Akk.)", "kaparu": "Anzahlung (Akk.)",
     "kupoprodajni": "Kauf-", "ugovor": "Vertrag", "notara": "Notar (Gen.)",
     "razgovor": "Gespräch", "ekonomiju": "Wirtschaft (Akk.)", "iskustva": "Erfahrung (Gen.)",
@@ -123,8 +125,11 @@ WOERTERBUCH = {
     # Jede Wortform der zwölf Texte, die oben noch fehlt, in der Reihenfolge der Texte.
     # Kommt eine Form auch in Paket 3 und 4 vor, steht sie nur hier, mit einer
     # Bedeutung, die in beiden Texten passt (jednom, pravila, žena ...).
-    # b1_ljeto
-    "kad": "als / wenn (zeitlich)", "mala": "klein (w)", "svako": "jedes", "ljeto": "Sommer",
+    # Adjektive und Possessive mit dem Geschlecht aus dem Text ("zufrieden (m)",
+    # "wichtig (w)"), auch wenn die Vokabel alle Formen nennt (Prüfbericht 1.4,
+    # B10): Hier steht ein eigener Text, das de der Vokabel bleibt (Kennung).
+    # b1_ljeto. kad auch "wann" (Prüfbericht 1.4, B10): "Babo, kad idemo opet?"
+    "kad": "als / wenn / wann", "mala": "klein (w)", "svako": "jedes", "ljeto": "Sommer",
     "provodila": "verbracht (w)", "nanina": "Omas (w)", "imala": "gehabt (w)", "ispred": "vor (räumlich)",
     "kuće": "Haus (Gen.)", "orah": "Walnuss / Walnussbaum", "budio": "geweckt (m)", "horoz": "Hahn",
     "kuhinji": "Küche (Lok.)", "pila": "getrunken (w)", "toplo": "warm", "mlijeko": "Milch",
@@ -175,7 +180,7 @@ WOERTERBUCH = {
     "azra": "Azra (Name)", "ako": "wenn / falls", "bude": "sein wird (nach ako / kad)", "padala": "gefallen (w) (Regen, Schnee)",
     "mokri": "nass (Mehrz.)", "predlaže": "schlägt vor", "senad": "Senad (Name)", "možemo": "wir können",
     "napraviti": "machen / zubereiten", "roštilj": "Grill / Gegrilltes", "dino": "Dino (Name)",
-    "zadovoljan": "zufrieden (m/w)", "raditi": "arbeiten / tun", "zaista": "wirklich / tatsächlich",
+    "zadovoljan": "zufrieden (m)", "raditi": "arbeiten / tun", "zaista": "wirklich / tatsächlich",
     "sijalo": "geschienen (s)", "spakovala": "eingepackt (w)", "hranu": "Essen (Akk.)", "krenula": "losgefahren (w)",
     "trčao": "gerannt (m)", "po": "durch / (jemanden) holen", "hranio": "gefüttert (m)", "patke": "Enten (Akk.)",
     "umorno": "müde", "prognoza": "Prognose", "tačna": "richtig / genau (w)",
@@ -333,7 +338,7 @@ WOERTERBUCH = {
     "njeni": "ihre (Mehrz.)", "brojevi": "Nummern", "ajdinovog": "Ajdins (Gen.)", "napisala": "geschrieben (w)",
     "poruku": "Nachricht (Akk.)", "izgubila": "verloren (w)", "negdje": "irgendwo", "našli": "gefunden (Mehrz.)",
     "javite": "melden Sie sich!", "kasnije": "später", "zazvonio": "geklingelt (einmal, m)", "ajdinov": "Ajdins",
-    "konobar": "Kellner", "tom": "diesem (Lok.)", "vaš": "euer / Ihr (m/w/s)", "stola": "Tisch (Gen.)",
+    "konobar": "Kellner", "tom": "diesem (Lok.)", "vaš": "euer / Ihr (m)", "stola": "Tisch (Gen.)",
     "našao": "gefunden (m)", "čistio": "geputzt (m)", "možete": "ihr könnt / Sie können",
     "sačuvat": "aufbewahren (sačuvat ću: ich bewahre auf)", "odahnula": "aufgeatmet (w)", "joj": "ihr (Dativ)",
     "dirao": "angefasst (m)", "dati": "geben", "htio": "wollte (m)", "uzeti": "nehmen", "novac": "Geld",
@@ -511,6 +516,8 @@ GESCHICHTEN = [
                 "Der Direktor fragt, wie viel sie verdienen möchte und wann sie anfangen könnte. Amina sagt, dass sie nächsten Monat anfangen kann. "
                 "Am Ende erklärt der Direktor die Bedingungen: Die Probezeit dauert drei Monate, die Arbeitszeit ist von acht bis sechzehn Uhr, und das Gehalt wird am Fünften des Monats gezahlt. "
                 "Amina bedankt sich und sagt, dass sie auf die Antwort warten wird.",
+        # "Direktor je pita": je ist hier "sie" (Prüfbericht 1.4, B10)
+        "vokabeln": {"je": "ist / sie (Akk.)"},
         "fragen": [
             {"frage": "Wie viele Jahre Erfahrung hat Amina?", "optionen": ["drei", "fünf", "zehn"], "richtig": "drei"},
             {"frage": "Wie lange dauert die Probezeit?", "optionen": ["drei Monate", "einen Monat", "ein Jahr"], "richtig": "drei Monate"},
@@ -534,6 +541,8 @@ GESCHICHTEN = [
                          "Am Nachmittag war es heiß, also saßen wir im Schatten unter dem Walnussbaum. Oma erzählte von Opa und von der Zeit, als sie jung war. Ich hörte zu und aß Kirschen aus dem Garten des Nachbarn.\n\n"
                          "Am liebsten mochte ich den Samstag, weil Oma da Pita machte. Das ganze Haus roch nach Teig, Fleisch und Zwiebeln. Abends kamen die Nachbarinnen. Sie tranken Kaffee, redeten und lachten bis spät in die Nacht.\n\n"
                          "Jetzt lebe und arbeite ich in Deutschland. Trotzdem komme ich jeden Sommer ins Dorf. Oma wartet an der Tür auf mich, wie früher. Wenn ich sie umarme, fühle ich mich wieder wie ein Kind."),
+        # "Kad je zagrlim": je ist hier "sie" (Prüfbericht 1.4, B10)
+        "vokabeln": {"je": "ist / sie (Akk.)"},
         "fragen": [
             {"frage": "Was stand vor Omas Haus?", "optionen": ["ein alter Walnussbaum", "ein Kirschbaum", "ein Brunnen"], "richtig": "ein alter Walnussbaum"},
             {"frage": "Was trank das Mädchen am Morgen?", "optionen": ["warme Milch", "Kaffee", "Tee"], "richtig": "warme Milch"},
@@ -597,7 +606,8 @@ GESCHICHTEN = [
                          "Nach Konjic führt die Bahnstrecke an der Neretva entlang. Der Fluss ist grün, und die Berge sind hoch und steil. Lejla fotografiert ständig mit dem Handy. „Schau mal, Emir! Das ist schöner als auf den Bildern.“\n\n"
                          "Die Frau öffnet die Tasche und holt eine Pita heraus. „Nehmt, ich habe sie selbst gebacken.“ Emir sagt, dass sie keinen Hunger haben, aber die Frau gibt nicht auf: „Na los, seid nicht schüchtern!“ Am Ende essen sie die Pita und reden über Mostar.\n\n"
                          "Kurz nach neun kommt der Zug in Mostar an. Die Frau gibt ihnen ihre Telefonnummer. „Wenn ihr etwas braucht, ruft mich an.“ Lejla lacht: „In Bosnien ist man unterwegs nie allein.“"),
-        "vokabeln": {"sam": "bin / allein (m)"},
+        # "sama sam je pekla": je ist hier "sie", die Pita (Prüfbericht 1.4, B10)
+        "vokabeln": {"sam": "bin / allein (m)", "je": "ist / sie (Akk.)"},
         "fragen": [
             {"frage": "Wie lange dauert die Fahrt?", "optionen": ["etwa zwei Stunden", "etwa vier Stunden", "eine halbe Stunde"], "richtig": "etwa zwei Stunden"},
             {"frage": "Was muss man in Mostar unbedingt sehen?", "optionen": ["die Alte Brücke", "die Baščaršija", "den Bahnhof"], "richtig": "die Alte Brücke"},
@@ -813,7 +823,7 @@ WOERTERBUCH_B1_2 = {
     "čekaonici": "Wartezimmer (Lok.)", "amara": "Amar (Gen.)", "sjedio": "gesessen (m)",
     "čovjek": "Mensch", "kašljao": "gehustet (m)",
     "bolesni": "krank (Mehrz.)",
-    "red": "Reihe (doći na red: drankommen)", "doktorica": "Arzt / Ärztin",
+    "red": "Reihe (doći na red: drankommen)", "doktorica": "Ärztin",
     "pitala": "gefragt (w)", "objasnio": "erklärt (m)", "pregledala": "untersucht (w)",
     "izmjerila": "gemessen (w)", "imate": "ihr habt / Sie haben", "upalu": "Entzündung (Akk.)", "grla": "Hals (Gen.)",
     "ozbiljno": "ernst",
@@ -822,7 +832,7 @@ WOERTERBUCH_B1_2 = {
     "pijte": "trinken Sie (Befehl)", "tabletu": "Tablette (Akk.)", "dnevno": "täglich",
     "čaja": "Tee (Gen.)",
     "doktora": "Arzt (Gen.)",
-    "strašno": "furchtbar", "zdrav": "gesund (m/w)",
+    "strašno": "furchtbar", "zdrav": "gesund (m)",
     # b1_selidba
     "mora": "er/sie muss",
     "preseliti": "umziehen",
@@ -848,7 +858,7 @@ WOERTERBUCH_B1_2 = {
     "tajno": "heimlich", "sprema": "er/sie bereitet vor", "iznenađenje": "Überraschung", "pozvala": "eingeladen (w)",
     "njegove": "seine (Akk. Mehrz.)", "prijatelje": "Freunde (Akk.)",
     "reći": "sagen", "harisu": "Haris (Dat.)", "srijedu": "Mittwoch (Akk.)",
-    "posebno": "besonders", "tvojih": "deinen (kod tvojih: bei deinen Eltern)", "tužan": "traurig (m/w)",
+    "posebno": "besonders", "tvojih": "deinen (kod tvojih: bei deinen Eltern)", "tužan": "traurig (m)",
     "mislio": "gedacht (m)", "zaboravili": "vergessen (Mehrz.)", "rođendan": "Geburtstag", "gosti": "Gäste",
     "sakrili": "versteckt (Mehrz.)", "njegovih": "seiner (Gen. Mehrz.)",
     "roditelja": "Eltern (Gen.)", "ugašeno": "ausgeschaltet (s)",
@@ -863,7 +873,7 @@ WOERTERBUCH_B1_2 = {
     "fudbal": "Fußball", "kupio": "gekauft (m)", "utakmicu": "Spiel (Akk.)",
     "reprezentacije": "Nationalmannschaft (Gen.)", "bosna": "Bosnien",
     "hercegovina": "Herzegowina", "igra": "er/sie spielt", "protiv": "gegen", "islanda": "Island (Gen.)",
-    "važna": "wichtig (der wichtige)", "utakmica": "Spiel (Match)", "evropsko": "Europa- / europäisch (s)",
+    "važna": "wichtig (w)", "utakmica": "Spiel (Match)", "evropsko": "Europa- / europäisch (s)",
     "prvenstvo": "Meisterschaft", "utakmice": "Spiel (Gen.)", "krenuli": "losgefahren (Mehrz.)",
     "autoputu": "Autobahn (Lok.)", "vidjeli": "gesehen (Mehrz.)", "auta": "Autos (Gen.)",
     "zastavama": "Fahnen (Instr.)", "stadiona": "Stadion (Gen.)",
@@ -900,7 +910,7 @@ WOERTERBUCH_B1_2 = {
     "teta": "Tante (Anrede für ältere Frauen)", "safija": "Safija (Name)", "živi": "er/sie lebt",
     "istom": "gleichen (Lok.)", "vesela": "fröhlich",
     "nedjelje": "Sonntag (Gen.)", "pokuca": "klopft",
-    "svoja": "eigener (mein, dein, sein)", "kuha": "er/sie kocht",
+    "svoja": "eigene (Mehrz.)", "kuha": "er/sie kocht",
     "džezvi": "Kupferkännchen (Lok.)", "skine": "nimmt herunter", "šporeta": "Herd (Gen.)", "doda": "fügt hinzu",
     "promiješa": "rührt um", "vrati": "stellt zurück", "vatru": "Feuer (Akk.)", "kratko": "kurz",
     "prekipjeti": "überkochen", "prekipi": "kocht über", "kuhaj": "koch (Befehl)",
@@ -942,7 +952,7 @@ WOERTERBUCH_B1_2 = {
     "stani": "halt (Befehl)", "zmaju": "Drache! (Anrede)", "peku": "grillen / backen (sie)",
     "zmajevom": "Drachen- (Instr.)", "vatrom": "Feuer (Instr.)", "napisao": "geschrieben (m)",
     "mami": "Mama (Dat.)",
-    "pomislio": "gedacht (m)", "njena": "ihr (von ihr) (m/w/s)",
+    "pomislio": "gedacht (m)", "njena": "ihre (von ihr, w)",
     "najbolja": "die beste", "zato": "deshalb",
     "učiti": "lernen", "dalje": "weiter",
 }
@@ -1036,7 +1046,9 @@ GESCHICHTEN += [
                          "Der Meister zeigte ihr, wie man ein Kupferkännchen macht. Zuerst wird das Kupfer geschnitten, dann lange mit dem Hammer bearbeitet, und am Ende wird es verziert. „Für ein Kännchen brauche ich fast einen ganzen Tag“, erklärte er.\n\n"
                          "„Und wer wird hier arbeiten, wenn Sie in Rente gehen?“, fragte Lejla. Der Meister schwieg eine Weile. „Mein Sohn arbeitet bei einer Bank. Die jungen Leute wollen diese Arbeit heute nicht. Sie ist schwer, und man verdient nicht viel.“\n\n"
                          "Lejla kaufte ein Kupferkännchen und sechs Kaffeetassen für ihre Oma in Deutschland. „Viel Freude damit!“, sagte der Meister. „Und trinken Sie Kaffee daraus. Stellen Sie es nicht nur ins Regal.“"),
-        "vokabeln": {"sto": "hundert", "jeste": "ihr seid / Sie sind (Jeste li …?: Haben Sie …?)", "mladi": "die Jungen / junge Leute"},
+        # "Nemojte je samo držati": je ist hier "sie", die Džezva (Prüfbericht 1.4, B10)
+        "vokabeln": {"sto": "hundert", "jeste": "ihr seid / Sie sind (Jeste li …?: Haben Sie …?)", "mladi": "die Jungen / junge Leute",
+                     "je": "ist / sie (Akk.)"},
         "fragen": [
             {"frage": "Woraus machen die Handwerker im Kazandžiluk ihre Sachen?", "optionen": ["aus Kupfer", "aus Holz", "aus Glas"], "richtig": "aus Kupfer"},
             {"frage": "Wie lange braucht der Meister für ein Kupferkännchen?", "optionen": ["fast einen ganzen Tag", "nur eine halbe Stunde", "fast eine ganze Woche"], "richtig": "fast einen ganzen Tag"},

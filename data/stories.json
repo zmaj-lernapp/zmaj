@@ -3136,14 +3136,30 @@
     "fr": "Amina a un entretien d'embauche dans une entreprise. Le directeur lui demande : « Parlez-nous un peu de vous. » Amina répond : « J'ai fait des études d'économie et j'ai trois ans d'expérience en comptabilité. Je parle allemand, anglais et un peu bosnien. » Le directeur demande combien elle voudrait gagner et quand elle pourrait commencer. Amina dit qu'elle peut commencer le mois prochain. À la fin, le directeur explique les conditions : la période d'essai dure trois mois, les horaires vont de huit à seize heures, et le salaire est versé le cinq du mois. Amina le remercie et dit qu'elle attendra la réponse."
    },
    "glossary": {
-    "de": {},
-    "en": {},
-    "tr": {},
-    "sv": {},
-    "nl": {},
-    "nb": {},
-    "da": {},
-    "fr": {}
+    "de": {
+     "je": "ist / sie (Akk.)"
+    },
+    "en": {
+     "je": "is / her (acc.)"
+    },
+    "tr": {
+     "je": "-dir / onu (kadın)"
+    },
+    "sv": {
+     "je": "är / henne"
+    },
+    "nl": {
+     "je": "is / haar (accusatief)"
+    },
+    "nb": {
+     "je": "er / henne"
+    },
+    "da": {
+     "je": "er / hende"
+    },
+    "fr": {
+     "je": "est / la (elle)"
+    }
    },
    "questions": {
     "de": [
@@ -3407,14 +3423,30 @@
     "fr": "Quand j'étais petite, je passais chaque été chez ma grand-mère, au village. La maison de grand-mère n'était pas grande, mais elle avait un grand jardin, et devant la maison se dressait un vieux noyer.\n\nLe matin, le coq me réveillait. Quand je me levais, grand-mère était déjà dans la cuisine. Elle buvait du café, et moi du lait chaud. Après le petit-déjeuner, nous allions au jardin. Grand-mère m'a montré comment on cueille les tomates et comment on arrose les fleurs. J'ai vite appris et j'étais très fière.\n\nL'après-midi, il faisait chaud, alors nous nous asseyions à l'ombre sous le noyer. Grand-mère parlait de grand-père et de l'époque où elle était jeune. J'écoutais en mangeant des cerises du jardin du voisin.\n\nLe jour que je préférais, c'était le samedi, parce que grand-mère faisait alors de la pita. Toute la maison sentait la pâte, la viande et l'oignon. Le soir, les voisines venaient. Elles buvaient du café, bavardaient et riaient jusque tard dans la nuit.\n\nAujourd'hui, je vis et je travaille en Allemagne. Pourtant, je reviens au village chaque été. Grand-mère m'attend sur le pas de la porte, comme autrefois. Quand je la serre dans mes bras, je me sens de nouveau comme une enfant."
    },
    "glossary": {
-    "de": {},
-    "en": {},
-    "tr": {},
-    "sv": {},
-    "nl": {},
-    "nb": {},
-    "da": {},
-    "fr": {}
+    "de": {
+     "je": "ist / sie (Akk.)"
+    },
+    "en": {
+     "je": "is / her (acc.)"
+    },
+    "tr": {
+     "je": "-dir / onu (kadın)"
+    },
+    "sv": {
+     "je": "är / henne"
+    },
+    "nl": {
+     "je": "is / haar (accusatief)"
+    },
+    "nb": {
+     "je": "er / henne"
+    },
+    "da": {
+     "je": "er / hende"
+    },
+    "fr": {
+     "je": "est / la (elle)"
+    }
    },
    "questions": {
     "de": [
@@ -4237,28 +4269,36 @@
    },
    "glossary": {
     "de": {
-     "sam": "bin / allein (m)"
+     "sam": "bin / allein (m)",
+     "je": "ist / sie (Akk.)"
     },
     "en": {
-     "sam": "am / alone (m)"
+     "sam": "am / alone (m)",
+     "je": "is / her (acc.)"
     },
     "tr": {
-     "sam": "-im / yalnız (eril)"
+     "sam": "-im / yalnız (eril)",
+     "je": "-dir / onu (kadın)"
     },
     "sv": {
-     "sam": "är / ensam (mask.)"
+     "sam": "är / ensam (mask.)",
+     "je": "är / henne"
     },
     "nl": {
-     "sam": "ben / alleen (m)"
+     "sam": "ben / alleen (m)",
+     "je": "is / haar (accusatief)"
     },
     "nb": {
-     "sam": "er / alene (hankj.)"
+     "sam": "er / alene (hankj.)",
+     "je": "er / henne"
     },
     "da": {
-     "sam": "er / alene (hank.)"
+     "sam": "er / alene (hank.)",
+     "je": "er / hende"
     },
     "fr": {
-     "sam": "suis / seul"
+     "sam": "suis / seul",
+     "je": "est / la (elle)"
     }
    },
    "questions": {
@@ -7970,42 +8010,50 @@
     "de": {
      "sto": "hundert",
      "jeste": "ihr seid / Sie sind (Jeste li …?: Haben Sie …?)",
-     "mladi": "die Jungen / junge Leute"
+     "mladi": "die Jungen / junge Leute",
+     "je": "ist / sie (Akk.)"
     },
     "en": {
      "sto": "one hundred",
      "jeste": "you are (plural or formal) (Jeste li …?: Did you …?)",
-     "mladi": "young people"
+     "mladi": "young people",
+     "je": "is / her (acc.)"
     },
     "tr": {
      "sto": "yüz",
      "jeste": "sizsiniz (Jeste li …?: … mı yaptınız?)",
-     "mladi": "gençler"
+     "mladi": "gençler",
+     "je": "-dir / onu (kadın)"
     },
     "sv": {
      "sto": "hundra",
      "jeste": "ni är (Jeste li …?: Har ni …?)",
-     "mladi": "de unga"
+     "mladi": "de unga",
+     "je": "är / henne"
     },
     "nl": {
      "sto": "honderd",
      "jeste": "jullie zijn / u bent (Jeste li …?: Heeft u …?)",
-     "mladi": "jongeren"
+     "mladi": "jongeren",
+     "je": "is / haar (accusatief)"
     },
     "nb": {
      "sto": "hundre",
      "jeste": "dere er / De er (Jeste li …?: Har dere …?)",
-     "mladi": "de unge"
+     "mladi": "de unge",
+     "je": "er / henne"
     },
     "da": {
      "sto": "hundrede",
      "jeste": "I er / De er (Jeste li …?: Har I …?)",
-     "mladi": "de unge"
+     "mladi": "de unge",
+     "je": "er / hende"
     },
     "fr": {
      "sto": "cent",
      "jeste": "vous êtes (Jeste li … ? : Avez-vous … ?)",
-     "mladi": "les jeunes"
+     "mladi": "les jeunes",
+     "je": "est / la (elle)"
     }
    },
    "questions": {
