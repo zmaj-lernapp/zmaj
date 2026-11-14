@@ -728,6 +728,11 @@ are in the Play Store listing. Format:
   Rückgeld?", and the maintainer's corrections take *Rückgeld*. Both say
   *Rückgeld* now; the other languages already matched. Only the German shown
   changed, the word keeps its ID. `tests/test_pruefbericht14_antworten.py`.
+- "Weiter zu B1 →" on the test result (review for 1.4, 14.11.2026, S16): at 360 px
+  the arrow stood alone on the second line, in Turkish on a third. A no-break
+  space before the arrow keeps it with the word before, in "Weiter zu Level 5 →"
+  too, in all eight languages. `tests/test_pruefbericht14_oberflaeche.py`,
+  `tests_e2e/test_pruefbericht14_kleinfehler.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

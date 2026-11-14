@@ -417,7 +417,7 @@ def test_weiter_in_den_naechsten_reiter(seite, heute_stand, ids):
     _pfad(seite, heute_stand(bestanden=ids[:29]))
     seite.js("() => { catIdx = 29; cur().words.forEach(w => known.add(w.id)); openLevel(29); startTest(); }")
     seite.durchspielen("tBody", "Tx")
-    assert seite.js("() => document.getElementById('tNext').textContent") == "Weiter zu A2 →"
+    assert seite.js("() => document.getElementById('tNext').textContent") == "Weiter zu A2\u00a0→"
     seite.page.click("#tNext")
     assert seite.js("() => [catIdx, document.getElementById('tag').textContent]") == [30, "Level 1 von 31"]
     seite.page.click("#btnBack")
@@ -491,15 +491,15 @@ def test_alte_einstufung_ohne_bestandenes_bleibt_beim_einstieg(seite, heute_stan
     # Wörter für jeden Tag -> Einstieg, nicht in die übersprungenen Level
     _pfad(seite, heute_stand(einstufung=alt))
     seite.js("() => { catIdx = CATEGORIES.findIndex(c => c.id === 'kleine_woerter'); passed.add('kleine_woerter'); }")
-    assert seite.js(WEITER) == {"ziel": "jeden_tag", "offen": True, "knopf": "Weiter zu A2 →"}
+    assert seite.js(WEITER) == {"ziel": "jeden_tag", "offen": True, "knopf": "Weiter zu A2\u00a0→"}
     seite.js("() => { catIdx = CATEGORIES.findIndex(c => c.id === 'jeden_tag'); passed.add('jeden_tag'); }")
-    assert seite.js(WEITER) == {"ziel": "formell", "offen": True, "knopf": "Weiter zu B1 →"}
+    assert seite.js(WEITER) == {"ziel": "formell", "offen": True, "knopf": "Weiter zu B1\u00a0→"}
     # Im echten Test: Kleine Wörter bestehen, Weiter führt zu Wörter für jeden Tag
     _pfad(seite, heute_stand(einstufung=alt))
     seite.js("""() => { catIdx = CATEGORIES.findIndex(c => c.id === 'kleine_woerter');
         cur().words.forEach(w => known.add(w.id)); openLevel(catIdx); startTest(); }""")
     seite.durchspielen("tBody", "Tx")
-    assert seite.js("() => document.getElementById('tNext').textContent") == "Weiter zu A2 →"
+    assert seite.js("() => document.getElementById('tNext').textContent") == "Weiter zu A2\u00a0→"
     seite.page.click("#tNext")
     assert seite.js("() => cur().id") == "jeden_tag"
     assert seite.js(DRAN)["dran"] == "jeden_tag"
