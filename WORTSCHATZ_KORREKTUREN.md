@@ -849,3 +849,22 @@ bedeutung“. F5: „passt“.
   übrigen Sätzen mit *jako* (`kachelAblenker()` nimmt jede Form aus `"auch"`).
   *nakon* kommt erst in B1 und liegt bei den Sätzen mit *Poslije* nie als Kachel.
 - Die Wörter *vrlo / veoma*, *ako* und *kad* bleiben, wie sie waren.
+
+**B1 / F12, Wendungen mit einer anderen Fassung.** Ajdin: „passt“, a bis i alle ja.
+
+| Kennung | Änderung |
+|---|---|
+| `wo wohnst du?:Gdje stanuješ?` | `"auch": ["Gdje živiš?"]` |
+| `das ist teuer:Ovo je skupo` | `"auch": ["To je skupo"]` |
+| `das stimmt:To je tačno` | `"auch": ["Tačno je"]` |
+| `ich brauche wasser:Trebam vodu` | `"auch": ["Treba mi voda"]` |
+| `ich brauche eine bescheinigung:Trebam potvrdu` | `"auch": ["Treba mi potvrda"]` |
+| `ich vermisse dich:Nedostaješ mi` | `"auch": ["Fališ mi"]` |
+| `wie heißt du?:Kako se zoveš?` | `"auch": ["Kako ti je ime?"]` |
+| `mach dir keine sorgen:Ne brini` | `"auch": ["Ne brini se"]` |
+| `ich werde arbeiten:Radit ću` | `"auch": ["Ja ću raditi"]` |
+| `das auto des vaters:auto oca` | `"auch": ["očev auto"]` |
+
+- Auch bei *Trebam vodu* (Level Fälle 1, Akkusativ) und *auto oca* (Fälle 2,
+  Genitiv), obwohl die andere Fassung den geübten Fall umgeht, und bei *Radit ću*
+  im Level Zukunft. Gezeigt und gesprochen wird weiter die Fassung der App.

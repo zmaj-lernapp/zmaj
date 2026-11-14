@@ -162,3 +162,30 @@ def test_v9_andere_stellen_bleiben(grunddaten):
     assert woerter["vrlo / veoma"].get("auch") is None
     assert woerter["ako"].get("auch") is None
     assert woerter["kad"].get("auch") == ["Kada?"]
+
+
+# ---- B1 / F12: Wendungen mit einer gebraeuchlichen anderen Fassung ----
+# F12 a bis i alle ja. Auch bei Trebam vodu (faelle1, Akkusativ) und auto oca
+# (faelle2, Genitiv), obwohl die andere Fassung den geuebten Fall umgeht.
+B1 = {
+    "wo wohnst du?:Gdje stanuješ?": ["Gdje živiš?"],                          # a
+    "das ist teuer:Ovo je skupo": ["To je skupo"],                            # b
+    "das stimmt:To je tačno": ["Tačno je"],                                   # c
+    "ich brauche wasser:Trebam vodu": ["Treba mi voda"],                      # d
+    "ich brauche eine bescheinigung:Trebam potvrdu": ["Treba mi potvrda"],    # d
+    "ich vermisse dich:Nedostaješ mi": ["Fališ mi"],                          # e
+    "wie heißt du?:Kako se zoveš?": ["Kako ti je ime?"],                      # f
+    "mach dir keine sorgen:Ne brini": ["Ne brini se"],                        # g
+    "ich werde arbeiten:Radit ću": ["Ja ću raditi"],                          # h
+    "das auto des vaters:auto oca": ["očev auto"],                            # i
+}
+
+
+def test_b1_andere_fassung_beim_tippen(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, B1, B1)
+
+
+def test_b1_nur_diese_richtung(grunddaten):
+    """„Das stimmt nicht“ (To nije tačno) war nicht gefragt und bleibt."""
+    woerter = _woerter(grunddaten)
+    assert woerter["das stimmt nicht:To nije tačno"].get("auch") is None

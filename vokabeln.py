@@ -246,7 +246,7 @@ KATEGORIEN = [
         {"de": "Wie geht es Ihnen?",          "bs": "Kako ste?"},
         {"de": "Gut",                         "bs": "Dobro", "auch": ["dobar", "dobra"]},
         {"de": "Schlecht",                    "bs": "Loše", "auch": ["loš", "loša"]},
-        {"de": "Wie heißt du?",               "bs": "Kako se zoveš?"},
+        {"de": "Wie heißt du?",               "bs": "Kako se zoveš?", "auch": ["Kako ti je ime?"]},   # Ajdin, Prüfbericht 1.4, B1/F12
         {"de": "Ich heiße ...",               "bs": "Zovem se ..."},
         {"de": "Freut mich",                  "bs": "Drago mi je"},
         {"de": "Ich verstehe",                "bs": "Razumijem"},
@@ -644,7 +644,7 @@ KATEGORIEN = [
         {"de": "Was gibt's? / Wie läuft's?",   "bs": "Šta ima?"},
         {"de": "Alles gut",                    "bs": "Sve je dobro"},
         {"de": "Kein Problem",                 "bs": "Nema problema"},
-        {"de": "Mach dir keine Sorgen",        "bs": "Ne brini"},
+        {"de": "Mach dir keine Sorgen",        "bs": "Ne brini", "auch": ["Ne brini se"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Komm! / Los!",                 "bs": "Hajde!"},
         {"de": "Auf geht's!",                  "bs": "Hajmo!"},
         {"de": "Schau mal",                    "bs": "Vidi"},
@@ -661,7 +661,7 @@ KATEGORIEN = [
         {"de": "traurig (m/w)",                "bs": "tužan / tužna"},
         {"de": "Liebe",                        "bs": "ljubav"},
         {"de": "Ich liebe dich",               "bs": "Volim te"},
-        {"de": "Ich vermisse dich",            "bs": "Nedostaješ mi"},
+        {"de": "Ich vermisse dich",            "bs": "Nedostaješ mi", "auch": ["Fališ mi"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Schatz (Anrede)",              "bs": "dušo"},
         {"de": "Das gefällt mir",              "bs": "Sviđa mi se"},
         {"de": "Ich möchte (m/w)",             "bs": "Htio bih / Htjela bih"},
@@ -960,7 +960,7 @@ KATEGORIEN = [
         {"de": "Hast du Zeit?",             "bs": "Imaš li vremena?"},
         {"de": "Sprichst du Englisch?",     "bs": "Govoriš li engleski?"},
         {"de": "Kann ich helfen?",          "bs": "Mogu li pomoći?"},
-        {"de": "Wo wohnst du?",             "bs": "Gdje stanuješ?"},
+        {"de": "Wo wohnst du?",             "bs": "Gdje stanuješ?", "auch": ["Gdje živiš?"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Was meinst du?",            "bs": "Šta misliš?"},
     ]},
 
@@ -1145,7 +1145,7 @@ KATEGORIEN = [
         {"de": "Er hat einen Hund",         "bs": "On ima psa"},
         {"de": "Sie hat eine Katze",        "bs": "Ona ima mačku"},
         {"de": "Wir suchen die Straße",     "bs": "Tražimo ulicu"},
-        {"de": "Ich brauche Wasser",        "bs": "Trebam vodu"},
+        {"de": "Ich brauche Wasser",        "bs": "Trebam vodu", "auch": ["Treba mi voda"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Ich brauche einen Schlüssel", "bs": "Trebam ključ"},
         {"de": "Ich kenne deinen Bruder",   "bs": "Znam tvog brata"},
         {"de": "Frage",                     "bs": "pitanje"},
@@ -1340,7 +1340,7 @@ KATEGORIEN = [
         {"de": "bei der Oma",               "bs": "kod nane"},
         {"de": "bei meinem Freund",         "bs": "kod prijatelja"},
         {"de": "das Haus meiner Schwester", "bs": "kuća moje sestre"},
-        {"de": "das Auto des Vaters",       "bs": "auto oca"},
+        {"de": "das Auto des Vaters",       "bs": "auto oca", "auch": ["očev auto"]},   # Prüfbericht 1.4, B1/F12
         {"de": "ein Glas Wasser",           "bs": "čaša vode"},
         {"de": "eine Tasse Kaffee",         "bs": "šolja kahve"},
         {"de": "ein Kilo Äpfel",            "bs": "kilogram jabuka"},
@@ -1499,7 +1499,7 @@ KATEGORIEN = [
         {"de": "er / sie wird",             "bs": "će"},
         {"de": "wir werden",                "bs": "ćemo"},
         {"de": "ihr werdet",                "bs": "ćete"},
-        {"de": "Ich werde arbeiten",        "bs": "Radit ću"},
+        {"de": "Ich werde arbeiten",        "bs": "Radit ću", "auch": ["Ja ću raditi"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Ich werde kommen",          "bs": "Doći ću"},
         {"de": "Wir werden sehen",          "bs": "Vidjet ćemo"},
         {"de": "Ich werde lernen",          "bs": "Učit ću"},
@@ -1731,7 +1731,7 @@ KATEGORIEN = [
         {"de": "Ich stimme zu",             "bs": "Slažem se"},
         {"de": "Ich stimme nicht zu",       "bs": "Ne slažem se"},
         {"de": "Ich bin sicher (m/w)",      "bs": "Siguran sam / Sigurna sam"},
-        {"de": "Das stimmt",                "bs": "To je tačno"},
+        {"de": "Das stimmt",                "bs": "To je tačno", "auch": ["Tačno je"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Das stimmt nicht",          "bs": "To nije tačno"},
         {"de": "wichtig",                   "bs": "važno"},
         {"de": "Mir ist es egal",           "bs": "Svejedno mi je"},
@@ -1982,7 +1982,7 @@ KATEGORIEN = [
         {"de": "Trinkgeld (förmlich)",        "bs": "napojnica"},
         {"de": "Wie viel macht das?",         "bs": "Koliko je?", "auch": ["Koliko košta?"]},
         {"de": "zusammen",                    "bs": "zajedno"},
-        {"de": "Das ist teuer",               "bs": "Ovo je skupo"},
+        {"de": "Das ist teuer",               "bs": "Ovo je skupo", "auch": ["To je skupo"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Ein halbes Kilo, bitte",      "bs": "Pola kile, molim"},
         {"de": "Ein Kilo, bitte",             "bs": "Jedan kilogram, molim"},
         {"de": "Eine Tüte, bitte",            "bs": "Jednu kesu, molim"},
@@ -2255,7 +2255,7 @@ KATEGORIEN = [
         {"de": "Botschaft",                  "bs": "ambasada"},
         {"de": "Grenze",                     "bs": "granica"},
         {"de": "Zoll",                       "bs": "carina"},
-        {"de": "Ich brauche eine Bescheinigung", "bs": "Trebam potvrdu"},
+        {"de": "Ich brauche eine Bescheinigung", "bs": "Trebam potvrdu", "auch": ["Treba mi potvrda"]},   # Prüfbericht 1.4, B1/F12
         {"de": "Wo muss ich unterschreiben?",    "bs": "Gdje trebam potpisati?"},
         {"de": "Welche Dokumente brauche ich?",  "bs": "Koji dokumenti mi trebaju?"},
     ]},
