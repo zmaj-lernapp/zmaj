@@ -62,6 +62,10 @@ AUCH = {
     "nezaposlen": ["nezaposlena", "nezaposleno"], "zaposlen": ["zaposlena", "zaposleno"],
 }
 
+# Spaeter dazu, nicht aus dem Paket: Ajdin am 14.11.2026 abends (dritte Runde,
+# Offen-Liste 5a) „Gdje idete na ljetovanje?“: „Ja“. Der einzige Beispielsatz mit "auch".
+AUCH_SPAETER = {"Kuda idete na ljetovanje?": ["Gdje idete na ljetovanje?"]}
+
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {"ruksak": "ranac", "poljoprivrednik": "seljak"}
 
@@ -114,14 +118,15 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten_vor_umzug):
         for wort, satz in zip(woerter[0::2], woerter[1::2]):
             assert re.search(r"[.!?]$", satz["bs"]) and re.search(r"[.!?]$", satz["de"]), satz
             assert satz["bs"][:1].isupper() and satz["de"][:1].isupper(), satz
-            assert "partner" not in satz and "auch" not in satz, satz
+            assert "partner" not in satz, satz
+            assert satz.get("auch") == AUCH_SPAETER.get(satz["bs"]), satz
             assert satz["bs"] != wort["bs"], satz
 
 
 def test_auch_genau_nach_dem_paket(grunddaten_vor_umzug):
     grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     neu = {w["bs"]: w for w in _neu(grunddaten)}
-    assert {bs: w["auch"] for bs, w in neu.items() if w.get("auch")} == AUCH
+    assert {bs: w["auch"] for bs, w in neu.items() if w.get("auch")} == {**AUCH, **AUCH_SPAETER}
     for w in neu.values():
         assert " / " not in w["bs"], w["bs"]     # Paket 4 hat keine Doppelform
         for a in w.get("auch", []):

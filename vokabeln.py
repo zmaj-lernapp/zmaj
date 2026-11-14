@@ -946,7 +946,7 @@ KATEGORIEN = [
         {"de": "Wer?",                      "bs": "Ko?"},
         {"de": "Was?",                      "bs": "Šta?"},
         {"de": "Wo?",                       "bs": "Gdje?"},
-        {"de": "Wohin?",                    "bs": "Kuda?"},
+        {"de": "Wohin?",                    "bs": "Kuda?", "auch": ["Gdje?"]},   # „Ja gdje geht auch alleine“ (Ajdin, 14.11.2026 abends, wie Kuda ideš? bei F7 a)
         {"de": "Woher?",                    "bs": "Odakle?"},
         {"de": "Wann?",                     "bs": "Kada?", "auch": ["kad"]},
         {"de": "Warum?",                    "bs": "Zašto?"},
@@ -4501,7 +4501,7 @@ KATEGORIEN = [
         {"de": "Schiff",                     "bs": "brod"},
         {"de": "Ich bin zum ersten Mal mit dem Schiff gefahren.", "bs": "Prvi put sam se vozio brodom."},
         {"de": "Sommerurlaub",               "bs": "ljetovanje"},
-        {"de": "Wohin fahrt ihr in den Sommerurlaub?", "bs": "Kuda idete na ljetovanje?"},
+        {"de": "Wohin fahrt ihr in den Sommerurlaub?", "bs": "Kuda idete na ljetovanje?", "auch": ["Gdje idete na ljetovanje?"]},   # Ajdin, 14.11.2026 abends: „Ja“ (wie Kuda ideš? bei F7 a)
         {"de": "Strand",                     "bs": "plaža"},
         {"de": "Wir waren den ganzen Tag am Strand.", "bs": "Cijeli dan smo bili na plaži."},
         {"de": "packen",                     "bs": "spakovati", "partner": "pakovati"},

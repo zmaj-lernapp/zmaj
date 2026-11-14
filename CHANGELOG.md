@@ -561,6 +561,11 @@ are in the Play Store listing. Format:
   shown and spoken. In the grammar lesson "Asking questions" *Gdje* is no longer the
   wrong button next to *Kuda* (now *Kada*), and the tip says "in speech often also
   Gdje", in all eight languages. The story *b1_voz* keeps "Gdje putujete, djeco?".
+  Since the third round (14.11.2026 evening, the maintainer: "gdje also works on its
+  own") "Wohin?" (*Kuda?*) on its own takes *Gdje?* as well, and "Kuda idete na
+  ljetovanje?" takes "Gdje idete na ljetovanje?" (too long to be typed today). "Wo?"
+  (*Gdje?*) still does not take *Kuda*; *Kuda?* and *Gdje?* no longer stand next to
+  each other in multiple choice.
   `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
 - "Minze" (review for 1.4, 14.11.2026, B6; decided by the maintainer, F17 b) is now
   *nana / metvica* like *kahva / kafa* instead of *nana (auch: metvica)*, which showed

@@ -395,10 +395,42 @@ def test_v11_grammatik_ohne_gdje_als_falsche_antwort(alle_daten):
 
 
 def test_v11_andere_stellen_bleiben(grunddaten):
-    """Nur das Gefragte: „Wohin?“ (Kuda?) allein und „Wo?“ (Gdje?) bleiben, und die
-    Geschichte b1_voz sagt weiter „Gdje putujete, djeco?“ (F7 a, nicht b)."""
+    """„Wo?“ (Gdje?) nimmt Kuda nicht, und die Geschichte b1_voz sagt weiter „Gdje
+    putujete, djeco?“ (F7 a, nicht b). „Wohin?“ (Kuda?) allein und „Kuda idete na
+    ljetovanje?“ nehmen Gdje seit der dritten Runde, siehe unten."""
     woerter = _woerter(grunddaten)
-    assert woerter["wohin?:Kuda?"].get("auch") is None
     assert woerter["wo?:Gdje?"].get("auch") is None
+    assert woerter["wo wohnst du?:Gdje stanuješ?"].get("auch") == ["Gdje živiš?"]
     voz = [g for g in grunddaten["geschichten"] if g["id"] == "b1_voz"]
     assert len(voz) == 1 and "„Gdje putujete, djeco?“" in voz[0]["text"], voz
+
+
+# ---- Dritte Runde (14.11.2026 abends, Offen-Liste 5a): Gdje auch allein ----
+# Ajdin: „Ja gdje geht auch alleine“ - auch beim Wort „Wohin?“ (Kuda?) allein, und
+# „Gdje idete na ljetovanje?“ neben „Kuda idete na ljetovanje?“: „Ja“. Wie bei F7 a ein
+# "auch" am Wort, gezeigt und gesprochen wird weiter Kuda. Der Satz ist zu lang fuer eine
+# Schreibaufgabe (typable()), sein "auch" steht dort, falls er einmal getippt wird.
+GDJE_ALLEIN = {"wohin?:Kuda?": ["Gdje?"],
+               "wohin fahrt ihr in den sommerurlaub?:Kuda idete na ljetovanje?": ["Gdje idete na ljetovanje?"]}
+GDJE_ALLEIN_NEU = {"wohin?:Kuda?": ["Gdje?", "gdje", "Kuda?"],
+                   "wohin fahrt ihr in den sommerurlaub?:Kuda idete na ljetovanje?":
+                       ["Gdje idete na ljetovanje?", "gdje idete na ljetovanje"]}
+
+
+def test_dritte_runde_gdje_allein_beim_tippen(alle_daten, grunddaten, index_html):
+    _pruefe_woerter(alle_daten, grunddaten, index_html, GDJE_ALLEIN, GDJE_ALLEIN_NEU)
+
+
+def test_dritte_runde_gdje_nichts_anderes_wird_richtig(grunddaten, index_html):
+    """Gegenproben: „Wo?“ nimmt Kuda weiter nicht, „Wo wohnst du?“ nicht „Kuda
+    stanuješ?“, „Wohin?“ nicht Odakle, und der Satz nur mit Gdje statt Kuda."""
+    woerter = _woerter(grunddaten)
+    faelle = [(_wort_antworten(woerter["wo?:Gdje?"]), "Kuda?"),
+              (_wort_antworten(woerter["wo wohnst du?:Gdje stanuješ?"]), "Kuda stanuješ?"),
+              (_wort_antworten(woerter["wohin?:Kuda?"]), "Odakle?"),
+              (_wort_antworten(woerter["wohin?:Kuda?"]), "Gdje je?"),
+              (_wort_antworten(woerter["wohin fahrt ihr in den sommerurlaub?:Kuda idete na ljetovanje?"]),
+               "Gdje ste na ljetovanju?")]
+    assert _matches(index_html, faelle) == ["no"] * len(faelle), faelle
+    assert woerter["wohin?:Kuda?"].get("auch_var") is None
+    assert woerter["wo?:Gdje?"].get("auch_var") is None

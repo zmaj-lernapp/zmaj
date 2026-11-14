@@ -980,9 +980,10 @@ Ajdin: a, *b1_voz* bleibt „Gdje putujete, djeco?“. Zugleich Tabelle 2c, Nr. 
 - Gezeigt, gesprochen und gelehrt wird weiter *Kuda*. Kennungen und Aufnahmen
   bleiben. Die Grammatik-Übung zählt nach ihrer Nummer (`g:fragen|1`), ihr Lernstand
   bleibt.
-- Nur an den beiden gefragten Stellen. „Wohin?“ (*Kuda?*) allein und „Wohin fahrt ihr
-  in den Sommerurlaub?“ (*Kuda idete na ljetovanje?*) nehmen *Gdje* nicht; „___
-  stanuješ?“ (Wo wohnst du?) nimmt *Kuda* weiter nicht.
+- Zuerst nur an den beiden gefragten Stellen. „Wohin?“ (*Kuda?*) allein und „Wohin
+  fahrt ihr in den Sommerurlaub?“ (*Kuda idete na ljetovanje?*) nehmen *Gdje* seit der
+  dritten Runde (14.11.2026 abends, siehe unten); „___ stanuješ?“ (Wo wohnst du?) nimmt
+  *Kuda* weiter nicht.
 
 **B6 / F17 b, Minze.** Frage: a = nur „nana“, b = „nana / metvica“. Ajdin: „ok“, also b.
 
@@ -1099,6 +1100,26 @@ allein steht (Ajdin über *šerpa* und *kola*).
   novac“ (*para*, *pare*), „na pijaci“ (*na pazaru*), „Tražimo ulicu“, „na ulici“ (*sokak*),
   „On ima psa“, „Bojim se pasa“, „Čuvaj se psa!“ (*kuče*, *kučeta*). Ajdin entscheidet,
   ob sie dazukommen. „Pas me je ujeo“ ginge nicht: mit *kuče* hieße es *ujelo*.
+
+## 14.11.2026 abends – dritte Runde: weitere richtige Antworten beim Tippen
+
+Ajdin hat die offenen Bosnisch-Fragen aus Punkt 2 der Offen-Liste je mit „Ja“ oder
+„Ne“ beantwortet (`Release\Pruefbericht_1.4.md`, „Dritte Runde“). Alles hier ist nur
+eine weitere richtige Antwort beim Tippen: gezeigt, gesprochen und gelehrt wird weiter
+die Form der App, Kennungen und Aufnahmen bleiben.
+
+**Gdje auch allein.** „Ja gdje geht auch alleine“, und „Gdje idete na ljetovanje?“: „Ja“.
+
+| Stelle | Änderung |
+|---|---|
+| `wohin?:Kuda?` | `"auch": ["Gdje?"]` |
+| `wohin fahrt ihr in den sommerurlaub?:Kuda idete na ljetovanje?` | `"auch": ["Gdje idete na ljetovanje?"]` |
+
+- Wie bei V11 ein `"auch"` am Wort. Der Satz ist zu lang für eine Schreibaufgabe
+  (`typable()`), heute wird er nirgends getippt.
+- „Wo?“ (*Gdje?*) nimmt *Kuda* weiter nicht, „___ stanuješ?“ auch nicht. *Kuda?* und
+  *Gdje?* stehen in der Auswahl nicht mehr nebeneinander (`geschwister()` liest das
+  `"auch"`).
 
 ## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zu den Geschichten
 

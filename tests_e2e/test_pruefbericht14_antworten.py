@@ -116,6 +116,26 @@ def test_v11_gdje_kostet_bei_wohin_kein_leben(seite, heute_stand):
     assert seite.fehler == []
 
 
+def test_dritte_runde_gdje_auch_bei_wohin_allein(seite, heute_stand):
+    """Ajdin, 14.11.2026 abends: „Ja gdje geht auch alleine“. „Wohin?“ (Kuda?) nimmt
+    Gdje ohne Leben; „Wo?“ (Gdje?) nimmt Kuda weiter nicht."""
+    seite.starten(stand=heute_stand())
+    for ziel, eingabe, leben, lage in _antworten(seite, [("type", "wohin?:Kuda?", "Gdje?"),
+                                                         ("type", "wohin?:Kuda?", "Kuda?")]):
+        assert lage["ergebnis"] is True and lage["leben"] == leben, (ziel, eingabe, lage)
+        assert lage["fb"] == "Tačno! ✓" and "ok" in lage["klasse"].split(), (ziel, eingabe, lage)
+    erg = seite.js("""() => {
+      const typ = (id, e) => matches(e, annehmbar(wortNachId(id).w).join(' / '));
+      const geschw = (id, bs) => geschwister(wortNachId(id).w).some(x => x.bs === bs);
+      return [typ('wo?:Gdje?', 'Kuda?'), typ('wo wohnst du?:Gdje stanuješ?', 'Kuda stanuješ?'),
+              typ('wohin?:Kuda?', 'Odakle?'), geschw('wohin?:Kuda?', 'Gdje?'), geschw('wo?:Gdje?', 'Kuda?')];
+    }""")
+    # Gdje ist bei „Wohin?“ richtig, also nie mehr falscher Knopf daneben - in beide
+    # Richtungen, wie bei ponekad und nekad.
+    assert erg == ["no", "no", "no", True, True], erg
+    assert seite.fehler == []
+
+
 def test_v11_grammatik_gdje_kein_falscher_knopf(seite, heute_stand):
     seite.starten(stand=heute_stand())
     erg = seite.js("""() => GRAMMAR.fragen.uebungen.filter(g => g.richtig === 'Kuda')
