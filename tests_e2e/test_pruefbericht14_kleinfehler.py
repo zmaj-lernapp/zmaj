@@ -23,6 +23,10 @@ S19: Die Zahl auf offenen Abzeichen (grau auf grauer Pille) hatte 4,27 bis
 4,32 : 1, unter den 4,5 : 1 fuer kleine Schrift. Jetzt in der Schriftfarbe,
 auf allen neun Sektionsfarben, hell und dunkel; axe prueft die Wand in
 test_barrierefreiheit.py.
+
+S21: "Zmaj bewerten" auf der Bewertungskarte startete Googles Fenster in der
+App - Google raet davon ab, es ueber einen Knopf zu starten. Jetzt oeffnet
+der Knopf gleich den Play Store (BEWERTUNG_IM_APP = false).
 """
 import pytest
 from conftest import Seite
@@ -212,4 +216,24 @@ def test_s19_zahl_auf_den_abzeichen_lesbar(seite, heute_stand):
     werte = seite.js(KONTRAST)
     assert werte and not any(w["offen"] for w in werte)
     assert [w for w in werte if w["k"] < 4.5] == []
+    assert seite.fehler == []
+
+
+# Das Plugin der Huelle, nachgebaut: merkt sich, was aufgerufen wurde
+BEWERTUNG_PLUGIN = """window.__bewertung = [];
+window.Capacitor = {Plugins: {App: {}, ZmajBewertung: {
+  imApp: async () => { window.__bewertung.push('imApp'); return {ok: true, ms: 2000}; },
+  storeOeffnen: async () => { window.__bewertung.push('storeOeffnen'); return {}; }}}};"""
+
+
+def test_s21_bewerten_oeffnet_gleich_den_store(seite, heute_stand):
+    seite.page.add_init_script(BEWERTUNG_PLUGIN)
+    seite.starten(stand=heute_stand())
+    assert seite.js("() => BEWERTUNG_IM_APP") is False
+    seite.js("() => zeigeBewertung()")
+    seite.page.click("#bwJa")
+    seite.page.wait_for_function("() => window.__bewertung.length > 0", timeout=3000)
+    seite.page.wait_for_timeout(200)
+    assert seite.js("() => window.__bewertung") == ["storeOeffnen"]
+    assert seite.js("() => [bewertung.bewertet, !!document.querySelector('.nachfrage')]") == [True, False]
     assert seite.fehler == []

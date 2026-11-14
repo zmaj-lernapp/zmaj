@@ -16065,8 +16065,13 @@ function karteiKasten(){
    1,2 Sekunden die Anzeige. Sie wartet, bis man ihn verlaesst. */
 const BEWERTUNG_AB_TAG = 3, BEWERTUNG_PRO_JAHR = 2, BEWERTUNG_ABSTAND = 90;
 /* true: erst Googles Fenster in der App, und wenn es nicht kommt, der Play
-   Store. false: gleich der Play Store. Siehe ZmajBewertung.java. */
-const BEWERTUNG_IM_APP = true;
+   Store. false: gleich der Play Store. Siehe ZmajBewertung.java.
+   Seit 14.11.2026 false (Pruefbericht 1.4, S21): Google raet davon ab, das
+   Fenster ueber einen Knopf zu starten - es kommt nur, wenn Googles
+   Kontingent es zulaesst, und ein Knopf, der manchmal nichts tut, sieht
+   kaputt aus. "Zmaj bewerten" auf der Karte oeffnet deshalb gleich den
+   Store. */
+const BEWERTUNG_IM_APP = false;
 const ZMAJ_PAKET = 'de.smartdragon.zmaj';
 let bewertungDran = false;
 function bewertungFaellig(){

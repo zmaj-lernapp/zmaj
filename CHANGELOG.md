@@ -750,6 +750,11 @@ are in the Play Store listing. Format:
   in the text colour (at least 5.4 : 1 on all nine section colours, light and
   dark). axe now also checks the profile and the achievement wall.
   `tests_e2e/test_pruefbericht14_kleinfehler.py`, `tests_e2e/test_barrierefreiheit.py`.
+- "Zmaj bewerten" on the rating card (review for 1.4, 14.11.2026, S21) opens the
+  Play Store directly instead of Google's in-app review window
+  (`BEWERTUNG_IM_APP = false`): Google advises against starting that window from a
+  button, because its quota may keep it from showing at all.
+  `tests/test_pruefbericht14_oberflaeche.py`, `tests_e2e/test_pruefbericht14_kleinfehler.py`.
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
