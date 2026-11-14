@@ -7357,7 +7357,7 @@ function erfolgInfo(e){
    sieht, soll auch im vorgelesenen stecken (WCAG 2.5.3). Der weiche
    Trennstrich in "Bomben-gedaechtnis" gehoert nicht in den Vergleich. */
 function erfolgVorlesen(e, an, neu){
-  const name = erfolgName(e).replace(/­/g, ''), satz = erfolgSatz(e);
+  const name = erfolgName(e).replace(/\u00ad/g, ''), satz = erfolgSatz(e);
   const teile = satz.toLowerCase().includes(name.toLowerCase()) ? [satz] : [name, satz];
   teile.push(t(an ? 'erfolg.geschafft' : 'erfolg.offen'));
   if(neu) teile.push(t('erfolg.neu_kurz'));

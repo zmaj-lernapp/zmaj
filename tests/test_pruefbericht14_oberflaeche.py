@@ -12,7 +12,7 @@ der App (BEWERTUNG_IM_APP = false).
 """
 import pytest
 
-NBSP_PFEIL = " →"
+NBSP_PFEIL = "\u00a0→"
 
 
 @pytest.mark.parametrize("schluessel", ["test.weiter_level", "test.weiter_stufe"])
