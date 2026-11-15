@@ -69,6 +69,23 @@ FAELLE = {
     ("b1_kahva", "digne", "kajmak"): ("Schaum (auf dem Kaffee) / Kajmak", "foam (on the coffee) / kajmak"),
 }
 
+# Das erste Wort einer Geschichte antippen (TIPPEN braucht ein Wort davor)
+ERSTES = r"""(gid) => {
+  const i = STORIES.findIndex(s => s.id === gid);
+  openStory(i); stilleBitte();
+  const w = document.querySelector('#rBody .txt .w');
+  w.click();
+  const b = document.getElementById('rBubble');
+  const fett = b.querySelector('b');
+  return {hidden: b.hidden, wort: fett ? fett.textContent : '',
+          bedeutung: b.textContent.slice(fett ? fett.textContent.length : 0).trim()};
+}"""
+
+# Geschichte -> (erstes Wort, Bedeutung auf Deutsch, auf Englisch)
+ERSTE_WOERTER = {
+    "b1_mejl": ("Naslov", "Betreff / Titel", "subject / title"),
+}
+
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
 ZU_SEHEN = {
     "b1_dijaspora": ("Tarik je naručio deset ćevapa s lukom i jogurt.",
@@ -96,6 +113,7 @@ ZU_SEHEN = {
     "b1_kahva": ("Džezvu vrati na vatru samo na kratko, da se digne kajmak.",
                  "Das Kännchen stellt sie nur kurz zurück aufs Feuer, damit der Schaum aufsteigt.",
                  "She puts the džezva back on the heat only briefly, so that the foam rises."),
+    "b1_mejl": ("Naslov: Dolazim u augustu!", "Betreff: Ich komme im August!", "Subject: I'm coming in August!"),
 }
 
 
@@ -121,4 +139,14 @@ def test_neue_fassung_und_uebersetzung(seite, heute_stand, sprache, spalte):
         if saetze[0] not in r["text"] or saetze[spalte] not in r["trans"]:
             falsch.append((gid, saetze[0], saetze[spalte]))
     assert falsch == []
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("sprache,spalte", [("de", 1), ("en", 2)])
+def test_erstes_wort_beim_antippen(seite, heute_stand, sprache, spalte):
+    seite.starten(sprache=sprache, stand=heute_stand())
+    for gid, (wort, *bedeutung) in ERSTE_WOERTER.items():
+        r = seite.js(ERSTES, gid)
+        assert not r["hidden"] and r["wort"] == wort, (gid, r)
+        assert r["bedeutung"] == bedeutung[spalte - 1], (gid, r)
     assert seite.fehler == []

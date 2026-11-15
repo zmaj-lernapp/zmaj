@@ -988,7 +988,7 @@ WOERTERBUCH_B1_2 = {
     "razgovara": "unterhält sich (se razgovara: man unterhält sich)", "sjedim": "ich sitze",
     "kasnim": "Ich komme zu spät",
     # b1_mejl
-    "predmet": "Betreff", "dragi": "lieber", "adnane": "Adnan! (Anrede)",
+    "naslov": "Betreff / Titel", "dragi": "lieber", "adnane": "Adnan! (Anrede)",
     "tetka": "Tante (Schwester von Vater oder Mutter)", "tetak": "Onkel (Mann der Tante)", "nas": "uns",
     "ovih": "dieser (Gen. Mehrz.)", "mjeseci": "Monate (Gen.)",
     "radili": "gearbeitet (Mehrz.)", "lijepu": "schöne (Akk.)", "vijest": "Neuigkeit / Nachricht",
@@ -1167,7 +1167,9 @@ GESCHICHTEN += [
     },
     {
         "id": "b1_mejl", "titel": "Mejl rođaku", "stufe": "B1", "passt_zu": "urlaub",
-        "text": ("Predmet: Dolazim u augustu!\n\n"
+        # A/B-Liste, Ajdin 15.11.2026: T12 B "Naslov" statt "Predmet"; auf Deutsch
+        # bleibt es "Betreff".
+        "text": ("Naslov: Dolazim u augustu!\n\n"
                  "Dragi Adnane, kako si? Kako su tetka i tetak? Nadam se da ste svi dobro. Kod nas je sve u redu, samo smo ovih mjeseci mnogo radili.\n\n"
                  "Imam lijepu vijest: u augustu dolazim u Sarajevo! Već sam kupio kartu za avion. Slijećem desetog augusta u četiri sata popodne. Možeš li me sačekati na aerodromu? Ako ne možeš, nije problem, uzet ću taksi.\n\n"
                  "Ostat ću dvije sedmice. Prvu sedmicu bih bio kod vas ako vam to ne smeta. Drugu sedmicu idem kod nane u Goražde. Ona me već svaki dan pita kad dolazim.\n\n"

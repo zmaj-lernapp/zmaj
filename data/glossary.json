@@ -7987,6 +7987,19 @@
    }
   },
   {
+   "bs": "naslov",
+   "translations": {
+    "de": "Betreff / Titel",
+    "en": "subject / title",
+    "tr": "konu / başlık",
+    "sv": "ämne / rubrik",
+    "nl": "onderwerp / titel",
+    "nb": "emne / tittel",
+    "da": "emne / titel",
+    "fr": "objet / titre"
+   }
+  },
+  {
    "bs": "nasmijala",
    "translations": {
     "de": "aufgelacht (w)",
@@ -11754,19 +11767,6 @@
     "nb": "foreslår",
     "da": "foreslår",
     "fr": "propose"
-   }
-  },
-  {
-   "bs": "predmet",
-   "translations": {
-    "de": "Betreff",
-    "en": "subject (of an email)",
-    "tr": "konu (e-postada)",
-    "sv": "ämne (i mejl)",
-    "nl": "onderwerp (van een mail)",
-    "nb": "emne (i e-post)",
-    "da": "emne (i mail)",
-    "fr": "objet (d'un e-mail)"
    }
   },
   {

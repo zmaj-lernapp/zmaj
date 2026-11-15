@@ -56,6 +56,7 @@ B = {
     "T7": ("b1_utakmica", "Kenan je grlio oca i ljude koje nikad prije nije vidio.", "Kenan je grlio babu"),
     "T11": ("b1_kahva", "Džezvu vrati na vatru samo na kratko, da se digne kajmak.",
             "Džezvu vrati na vatru samo na kratko. „"),
+    "T12": ("b1_mejl", "Naslov: Dolazim u augustu!", "Predmet:"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -137,17 +138,19 @@ NEU = {
     "oca": "Vater (Gen./Akk.)",
     "digne": "hebt (se digne: steigt auf)",
     "kajmak": "Schaum (auf dem Kaffee) / Kajmak",
+    "naslov": "Betreff / Titel",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
 RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
-        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku", "bolovanju", "ih", "babu"]
+        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku", "bolovanju", "ih", "babu",
+        "predmet"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
 RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",
               "Januar- (w)", "tanzen / spielen", "Elektrotechnik (Akk.)", "Heiligtum", "Krankschreibung (Lok.)",
               "auf einmal", "deinen (kod tvojih: bei deinen Eltern)", "sie (Akk. Mehrz.)", "Papa (Akk.)",
-              "Vater (Gen.)"]
+              "Vater (Gen.)", "Betreff"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").
@@ -243,6 +246,14 @@ def test_t6_odjednom_nur_noch_ploetzlich(grunddaten):
     assert "odjednom" not in g["b1_rodjendan"]["text"]
     assert "kad je odjednom nestalo struje" in g["b1_struja"]["text"]
     assert grunddaten["woerterbuch"]["odjednom"] == "plötzlich"
+
+
+def test_t12_betreff_bleibt_auf_deutsch(alle_daten):
+    """Naslov statt Predmet; die Übersetzung bleibt "Betreff" (Subject, Konu ...)."""
+    g = _geschichten(alle_daten["de"])["b1_mejl"]
+    assert g["text"].startswith("Naslov: Dolazim u augustu!\n\n")
+    assert g["uebersetzung"].startswith("Betreff: Ich komme im August!\n\n")
+    assert _geschichten(alle_daten["en"])["b1_mejl"]["uebersetzung"].startswith("Subject: I'm coming in August!")
 
 
 def test_alte_formen_stehen_in_keinem_text(grunddaten):

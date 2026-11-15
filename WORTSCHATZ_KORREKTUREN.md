@@ -1378,6 +1378,7 @@ Sprachen sind nachgezogen.
 | T6 | *Rođendansko iznenađenje* | Haris ih je ugasio odjednom, a svi su vikali: „Bravo!“ | Haris je ugasio sve svijeće u jednom dahu, a svi su vikali: „Bravo!“ |
 | T7 | *Utakmica* (`b1_utakmica`) | Kenan je grlio babu i ljude … | Kenan je grlio oca i ljude … |
 | T11 | *Kahva kod komšinice* (`b1_kahva`) | Džezvu vrati na vatru samo na kratko. | Džezvu vrati na vatru samo na kratko, da se digne kajmak. |
+| T12 | *Mejl rođaku* (`b1_mejl`) | Predmet: Dolazim u augustu! | Naslov: Dolazim u augustu! |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1420,7 +1421,8 @@ Sprachen sind nachgezogen.
   „Babo, kad idemo opet?“). *digne* „hebt (se digne: steigt auf)“ und *kajmak*
   „Schaum (auf dem Kaffee) / Kajmak“ neu (die Vokabel *kajmak* behält „Kajmak
   (Rahmaufstrich)“ und ihre Kennung). Deutsch „…, damit der Schaum aufsteigt.“, in
-  allen Sprachen nachgezogen.
+  allen Sprachen nachgezogen. *naslov* „Betreff / Titel“ statt *predmet* „Betreff“; die
+  Übersetzung bleibt „Betreff: Ich komme im August!“.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
