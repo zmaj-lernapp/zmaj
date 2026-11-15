@@ -54,8 +54,8 @@ def test_v12_iznad_ispod_izmedju_beim_genitiv(grunddaten):
         assert p not in praep_ins, (p, instrumental)
     assert "ispod stola, između kuće i škole" in genitiv[2], genitiv
     assert "između" not in instrumental[2], instrumental
-    # Was beim Instrumental war, bleibt dort.
-    assert praep_ins == ["s/sa", "pod", "pred", "za (hinter)"], instrumental
+    # Was beim Instrumental war, bleibt dort; nad und među kamen am 15.11.2026 dazu (unten).
+    assert praep_ins == ["s/sa", "pod", "nad", "pred", "za (hinter)", "među"], instrumental
     assert instrumental[2] == "s bratom, pod stolom", instrumental
 
 
@@ -71,7 +71,29 @@ def test_v12_in_jeder_sprache(alle_daten, grunddaten):
         if code != "de":
             # Die Zelle ist uebersetzt ("za (behind)"), kein deutscher Rest.
             assert "hinter" not in instrumental, (code, instrumental)
-            assert instrumental.startswith("sa, pod, pred, za ("), (code, instrumental)
+            assert instrumental.startswith("sa, pod, nad, pred, za ("), (code, instrumental)
+
+
+# ---------------------------------------------------------------------------
+# Frage 10 (Release\Fragen_Ajdin_2026-11-15.md, Ajdin 15.11.2026 abends, „10 ja“)
+# ---------------------------------------------------------------------------
+# Beim Instrumental standen nur „s/sa, pod, pred, za (hinter)“. nad (über) und među
+# (zwischen) kommen dazu, das Beispiel „s bratom, pod stolom“ bleibt.
+FRAGE10_HINTER = {"de": "hinter", "en": "behind", "tr": "arkasında", "sv": "bakom", "nl": "achter",
+                  "nb": "bak", "da": "bag", "fr": "derrière"}
+
+
+def test_frage10_nad_und_medju_beim_instrumental(alle_daten):
+    assert set(alle_daten) == set(FRAGE10_HINTER), sorted(alle_daten)
+    for code, daten in alle_daten.items():
+        tabelle = _tabelle(daten["grammatik"]["praepositionen"])
+        instrumental = tabelle[-1]
+        anfang = "s/sa" if code == "de" else "sa"           # die Übersetzungen schreiben seit jeher „sa“
+        assert instrumental[1] == "%s, pod, nad, pred, za (%s), među" % (anfang, FRAGE10_HINTER[code]), code
+        assert instrumental[2] == "s bratom, pod stolom", code
+        # Genitiv behält iznad und između, die Zeile Instrumental steht nur einmal da.
+        assert "iznad" in tabelle[1][1] and "između" in tabelle[1][1], code
+        assert [z for z in tabelle if "među" in z[1] and "između" not in z[1]] == [instrumental], code
 
 
 def test_v12_uebung_zwischen_passt(grunddaten):

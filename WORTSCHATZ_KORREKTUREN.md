@@ -1443,7 +1443,7 @@ Sprachen sind nachgezogen.
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
 
-## 15.11.2026 abends – zweite Form an neun weiteren Stellen beim Tippen
+## 15.11.2026 abends – Fragenliste: zweite Form an neun weiteren Stellen, nad und među
 
 Ajdin auf die Fragenliste vom 15.11.2026 (`Release\Fragen_Ajdin_2026-11-15.md`,
 Frage 9): „9 ja (alle 9a–9i)“, und die vorgeschlagenen Formen mit „ja“ bestätigt.
@@ -1472,3 +1472,9 @@ gelehrt wird weiter die Form der App, Kennungen und Aufnahmen bleiben.
   „Čuvaj se kuče!“, „Kuče me je ujeo“, „Pas me je ujelo“, „Ujelo me je kuče“,
   „Putujemo kola“, „podići para“ und *kučadi* beim Wort *pas*.
 - Beim Satzbau ändert sich nichts: keine der neuen Formen ist eine Kachel der App.
+
+**Präpositionen mit Instrumental.** Frage 10, „10 ja“: In der Lektion „Präpositionen“
+(`grammatik.py`, `praepositionen`) heißt die Zeile Instrumental jetzt „s/sa, pod, nad,
+pred, za (hinter), među“ statt „s/sa, pod, pred, za (hinter)“ (*nad* „über“, *među*
+„zwischen“), in 8 Sprachen. Das Beispiel „s bratom, pod stolom“ bleibt, die Übungen
+auch.

@@ -844,6 +844,11 @@ are in the Play Store listing. Format:
   with *mladiću!* next to *prijatelju!*, as in the clip *41 Zmajevi*, in all eight
   languages. The app computes no vocative forms itself; the exercise stays.
   `tests/test_pruefbericht14_grammatik.py`.
+- Prepositions with the instrumental (questions of 15.11.2026, 10; decided by the
+  maintainer): the table in the lesson "Prepositions" listed only "s/sa, pod, pred, za
+  (behind)". It now reads "s/sa, pod, nad, pred, za (behind), među" (*nad* "above",
+  *među* "between"), in all eight languages; the example "s bratom, pod stolom" stays.
+  `tests/test_pruefbericht14_grammatik.py`.
 - *Kusur* in the gap sentence (review for 1.4, 14.11.2026, S11): "Gdje je moj ___?"
   said "Wo ist mein Wechselgeld?", the sentence-building task "Wo ist mein
   Rückgeld?", and the maintainer's corrections take *Rückgeld*. Both say

@@ -182,7 +182,7 @@ GRAMMATIK = {
                          ["Genitiv", "bez, iz, od, do, kod, pored, blizu, zbog, poslije, prije, iznad, ispod, između", "iz grada, kod nane, poslije posla, ispod stola, između kuće i škole"],
                          ["Akkusativ", "za, kroz; u/na bei Bewegung (wohin?)", "za tebe, kroz grad, idem u grad, idem na pijacu"],
                          ["Lokativ", "u/na bei Ort (wo?), o (über), prema", "u gradu, na pijaci, o poslu"],
-                         ["Instrumental", "s/sa, pod, pred, za (hinter)", "s bratom, pod stolom"]]},
+                         ["Instrumental", "s/sa, pod, nad, pred, za (hinter), među", "s bratom, pod stolom"]]},
             "Merke „u“ und „na“: Bewegung → Akkusativ (Idem u grad), Ort → Lokativ (Ja sam u gradu). Auf Deutsch ist das wie „in die Stadt“ und „in der Stadt“.",
             "„na“ statt „u“ bei: pijaca, posao, fakultet, more, Baščaršija, sto, ulica. Also „idem na posao“, „na pijaci“, „na moru“.",
         ],
