@@ -20,9 +20,19 @@ im Kopf. Hier im Browser nachgestellt, wenn es geht mit WebKit von Playwright
 - maximum-scale=1.0 und 16 px in allen Eingabefeldern, keine waagerechte
   Ueberbreite bei 375, 390 und 414 Punkten
 
-Seit dem 15.11.2026 (Build 4, Befund: der Doppeltipp zoomt ohne Weg
-zurueck): user-scalable=no, minimum- und maximum-scale 1, touch-action:
-manipulation an allen Elementen; Android ohne all das
+Seit dem 15.11.2026 (Build 4, Befund mit iOS 27.2.1: nach dem Hintergrund
+kein Ton mehr, und der Doppeltipp zoomt ohne Weg zurueck), siehe "Zurueck
+in der App" in index.html:
+- zurueck (sichtbar, 'resume', 'appStateChange'): ein ruhender Kontext wird
+  fortgesetzt, ein bestelltes Wort faellt weg, der naechste Tipp spielt den
+  spieler und den Ein-Sample-Puffer neu an
+- bleibt er stehen oder steht seine Uhr, wird er geschlossen und im
+  naechsten Tipp neu angelegt
+- solange die App nur inaktiv ist, zaehlt die Uhr-Probe nicht
+- eine vom System angehaltene Geschichte merkt sich die Stelle und spielt
+  nicht von selbst weiter
+- user-scalable=no, minimum- und maximum-scale 1, touch-action:
+  manipulation an allen Elementen; Android ohne all das
 
 Hoerbares gibt es im Browser nicht, und WebKit unter Windows hat gar keinen
 AudioContext. Deshalb eine Attrappe (TON), die mitschreibt, was die App
@@ -104,6 +114,27 @@ TON = r"""
 })();
 """
 
+# Das Plugin App der Huelle, mit Gedaechtnis (15.11.2026): die Attrappe in
+# test_ios.HUELLE vergisst ihre Horcher. Hier landen sie in window.__app, und
+# APP_MELDET ruft sie wie die Huelle ('appStateChange', 'pause', 'resume').
+APP = r"""
+(() => {
+  const H = window.__app = {};
+  const A = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App;
+  if(A) A.addListener = (n, f) => { (H[n] = H[n] || []).push(f); return Promise.resolve({remove(){}}); };
+})();
+"""
+APP_MELDET = "([n, d]) => { (window.__app[n] || []).forEach(f => f(d)); return (window.__app[n] || []).length; }"
+
+# Verdecken und wieder zeigen wie in test_cloud.py: document.hidden
+# ueberschreiben und visibilitychange schicken. melden=False zeigt nur, ohne
+# Ereignis (dann meldet sich die Seite ueber das Plugin App).
+SICHT = """([versteckt, melden]) => {
+  if(versteckt) Object.defineProperty(document, 'hidden', {configurable: true, get: () => true});
+  else delete document.hidden;
+  if(melden) document.dispatchEvent(new Event('visibilitychange'));
+}"""
+
 # Ein Wort mit Aufnahme: der Text, den speak() bekommt, und seine Datei.
 WORT = """() => { const w = CATEGORIES[0].words.find(x => audioDatei(x.bs));
                   return {bs: w.bs, datei: audioDatei(w.bs)}; }"""
@@ -141,6 +172,7 @@ def _start(b, basis, heute_stand, plattform="ios", ua=UA_IOS26, breite=414, hoeh
         opts["user_agent"] = ua
     ctx = b.new_context(**opts)
     ctx.add_init_script(HUELLE % plattform)
+    ctx.add_init_script(APP)
     if ton:
         ctx.add_init_script(TON)
     s = Seite(ctx.new_page(), basis)
@@ -487,7 +519,230 @@ def test_android_felder_und_viewport_wie_vorher(browser, basis, heute_stand):
         ctx.close()
 
 
-# --------------------------------------------- kein Doppeltipp-Zoom (Build 4) ---
+# ----------------------------------------- zurueck in der App (Build 4) ---
+def _protokoll(s, stueck):
+    return any(stueck in z for z in s.js("() => TON_PROTOKOLL"))
+
+
+def test_zurueck_setzt_fort_verwirft_das_bestellte_wort_und_entsperrt_neu(motor, basis, heute_stand):
+    """Nur inaktiv (Siri, Anruf): der Kontext ist 'interrupted', die Seite
+    bleibt sichtbar. Bei 'appStateChange' mit isActive: das auf der alten Uhr
+    bestellte Wort faellt weg, resume() ohne Tipp, und erst wenn die Uhr
+    wieder nachweislich laeuft, kommen die Woerter ueber WebAudio. Der
+    naechste Tipp spielt spieler und Ein-Sample-Puffer neu an - ohne neuen
+    Kontext."""
+    ctx, s = _start(motor, basis, heute_stand)
+    try:
+        w = s.js(WORT)
+        _tippen(s)
+        _puffer(s, w)
+        _bereit_lebt(s)
+        s.page.wait_for_function("() => spielerFrei === true && vorwaermen === null")
+        assert s.js(APP_MELDET, ["appStateChange", {"isActive": False}]) == 1
+        s.js("""() => { actx.zustand('interrupted'); window.__ton.resume = []; window.__gestoppt = 0;
+                        waQuelle = {onended: null, stop(){ window.__gestoppt++; }}; }""")
+        assert s.js("() => [tonInaktiv, tonUhrLesen()]") == [True, "unklar"]
+
+        s.js(APP_MELDET, ["appStateChange", {"isActive": True}])
+        r = s.js("""() => ({resume: window.__ton.resume, gestoppt: window.__gestoppt, wa: waQuelle === null,
+                            frei: spielerFrei, tonFrei: tonFrei === null, inaktiv: tonInaktiv, z: actx.state})""")
+        assert [x["von"] for x in r["resume"]] == ["interrupted"] and r["resume"][0]["ev"] is None, r
+        assert r["gestoppt"] == 1 and r["wa"] and r["frei"] is False and r["tonFrei"], r
+        assert r["inaktiv"] is False and r["z"] == "running", r
+        assert _protokoll(s, "zurueck (aktiv): AudioContext interrupted") and _protokoll(s, "App inaktiv")
+        # Bis die Uhr bewiesen ist, der spieler; dann WebAudio wie vorher
+        if not s.js("() => tonUhr && tonUhr.lebt"):
+            assert s.js(SPRECHEN, w) == {"webaudio": 0, "spieler": 1}
+        _bereit_lebt(s)
+        _puffer(s, w)
+        assert s.js(SPRECHEN, w) == {"webaudio": 1, "spieler": 0}
+
+        # Der naechste Tipp: Ein-Sample-Puffer und spieler neu, Kontext derselbe
+        s.page.wait_for_timeout(200)
+        assert s.js("() => spielerFrei") is False             # die Woerter dazwischen machen ihn nicht frei
+        s.js("() => { window.__ton.spiele = []; window.__ton.starts = []; }")
+        _tippen(s)
+        t = _ton(s)
+        assert len(t["neu"]) == 1 and t["zu"] == [], t
+        eins = [x for x in t["starts"] if x["n"] == 1]
+        assert eins and eins[0]["ev"] in GESTEN, t
+        assert t["spiele"] and t["spiele"][0]["muted"] is True and t["spiele"][0]["ev"] in GESTEN, t
+        assert s.fehler == []
+    finally:
+        ctx.close()
+
+
+def test_zurueck_bleibt_er_stehen_wird_er_verworfen(motor, basis, heute_stand):
+    """Im Hintergrund 'suspended', und resume() hilft nicht: RUECKKEHR_MS
+    spaeter geschlossen. Bis zum naechsten Tipp sprechen die Woerter ueber den
+    spieler, ohne Tipp entsteht kein neuer Kontext. Zurueck kommt die Seite
+    hier ueber 'resume' vom Plugin App, ohne visibilitychange."""
+    ctx, s = _start(motor, basis, heute_stand)
+    try:
+        w = s.js(WORT)
+        _tippen(s)
+        _puffer(s, w)
+        _bereit_lebt(s)
+        s.js(SICHT, [True, True])
+        s.js(APP_MELDET, ["pause", None])
+        s.js("""() => { actx.zustand('suspended'); window.__ton.resume = [];
+                        actx.resume = function(){ window.__ton.resume.push({nr: this.nr, von: this._z, ev: null});
+                                                  return Promise.resolve(); }; }""")
+        assert s.js("() => tonInaktiv") is True
+        s.js(SICHT, [False, False])
+        assert s.js(APP_MELDET, ["resume", None]) == 1
+        assert [x["von"] for x in _ton(s)["resume"]] == ["suspended"]
+        assert s.js("() => actx !== null && spielerFrei === false")
+        s.page.wait_for_function("() => actx === null", timeout=3000)
+        t = _ton(s)
+        assert [x["nr"] for x in t["zu"]] == [0], t
+        assert _protokoll(s, "AudioContext tot (zurueck, suspended)")
+        assert s.js(SPRECHEN, w) == {"webaudio": 0, "spieler": 1}
+        s.js("() => sound('ok')")
+        assert len(_ton(s)["neu"]) == 1                       # ohne Tipp kein neuer
+
+        _tippen(s)
+        t = _ton(s)
+        assert len(t["neu"]) == 2 and t["neu"][1]["ev"] in GESTEN, t
+        _bereit_lebt(s)
+        assert s.js(SPRECHEN, w) == {"webaudio": 1, "spieler": 0}
+        assert s.fehler == []
+    finally:
+        ctx.close()
+
+
+def test_zurueck_uhr_steht_trotz_running(webkit, basis, heute_stand):
+    """Wieder sichtbar, der Kontext meldet 'running', aber seine Uhr steht:
+    die Wanduhr-Probe nach der Rueckkehr schliesst ihn, der naechste Tipp
+    legt einen neuen an."""
+    ctx, s = _start(webkit, basis, heute_stand)
+    try:
+        _tippen(s)
+        _bereit_lebt(s)
+        s.js(SICHT, [True, True])
+        s.js("() => actx.stirb()")
+        s.js(SICHT, [False, True])
+        assert s.js("() => actx !== null && actx.state") == "running"
+        s.page.wait_for_function("() => actx === null", timeout=3000)
+        assert _protokoll(s, "AudioContext tot (zurueck)") and _protokoll(s, "zurueck (sichtbar): AudioContext running")
+        _tippen(s)
+        t = _ton(s)
+        assert len(t["neu"]) == 2 and t["neu"][1]["ev"] in GESTEN, t
+        assert s.fehler == []
+    finally:
+        ctx.close()
+
+
+def test_inaktiv_zaehlt_die_uhr_nicht(motor, basis, heute_stand):
+    """Kontrollzentrum, Siri, Anruf: die App ist inaktiv, die Seite sichtbar.
+    Steht die Uhr dann, ist das kein toter Kontext - kein Schliessen, die
+    Woerter ueber den spieler. Erst zurueck in der App zaehlt die Probe
+    wieder. Ein Fingertipp hebt das Inaktiv auf, falls 'appStateChange' mit
+    isActive einmal fehlt."""
+    ctx, s = _start(motor, basis, heute_stand)
+    try:
+        w = s.js(WORT)
+        _tippen(s)
+        _puffer(s, w)
+        _bereit_lebt(s)
+        s.js(APP_MELDET, ["appStateChange", {"isActive": False}])
+        s.js("() => { actx.stirb(); sound('ok'); }")          # die erste Probe der Uhr
+        s.page.wait_for_timeout(700)                          # mehr als UHR_WAND: jetzt waere sie 'tot'
+        s.js("() => sound('no')")
+        assert s.js(SPRECHEN, w) == {"webaudio": 0, "spieler": 1}
+        assert s.js("() => actx !== null") and _ton(s)["zu"] == []
+        s.js(APP_MELDET, ["appStateChange", {"isActive": True}])
+        s.page.wait_for_function("() => actx === null", timeout=3000)
+        assert [x["nr"] for x in _ton(s)["zu"]] == [0]
+
+        s.js(APP_MELDET, ["appStateChange", {"isActive": False}])
+        assert s.js("() => tonInaktiv") is True
+        _tippen(s)
+        assert s.js("() => tonInaktiv") is False
+        assert len(_ton(s)["neu"]) == 2
+        assert s.fehler == []
+    finally:
+        ctx.close()
+
+
+def test_android_rueckkehr_wie_vorher(motor, basis, heute_stand):
+    """Gegenprobe: auf Android haengt die Seite am Plugin App nur 'backButton'
+    wie vorher, keine Horcher fuer 'appStateChange', 'pause' und 'resume'.
+    Verdecken und wieder Zeigen setzen den Kontext weder fort noch schliessen
+    sie ihn, und es gibt kein Ton-Protokoll. Auf iOS haengen alle vier."""
+    ctx, s = _start(motor, basis, heute_stand, plattform="android", ua=None)
+    try:
+        s.page.wait_for_function("() => window.__ton.neu.length === 1 && vorwaermen === null", timeout=10000)
+        assert sorted(s.js("() => Object.keys(window.__app)")) == ["backButton"]
+        s.js("() => { actx.zustand('suspended'); window.__ton.resume = []; }")
+        s.js(SICHT, [True, True])
+        s.js(SICHT, [False, True])
+        s.page.wait_for_timeout(1300)                         # laenger als RUECKKEHR_MS
+        t = _ton(s)
+        assert t["resume"] == [] and t["zu"] == [] and len(t["neu"]) == 1, t
+        assert s.js("() => actx.state") == "suspended"
+        assert s.js("() => [tonInaktiv, tonRueckkehr]") == [False, 0]
+        assert s.js("() => TON_PROTOKOLL") == []
+        assert s.fehler == []
+    finally:
+        ctx.close()
+    ctx, s = _start(motor, basis, heute_stand)
+    try:
+        assert sorted(s.js("() => Object.keys(window.__app)")) == ["appStateChange", "backButton", "pause", "resume"]
+        assert s.fehler == []
+    finally:
+        ctx.close()
+
+
+@pytest.mark.parametrize("plattform", ["ios", "android"])
+def test_geschichte_vom_system_angehalten(browser, basis, heute_stand, plattform):
+    """Haelt das System eine vorgelesene Geschichte an (Anruf, Siri), merkt
+    sie sich auf iOS die Stelle wie beim Wechsel in den Hintergrund, und ein
+    zweites pause() haelt WebKit davon ab, sie nach der Unterbrechung von
+    selbst weiterzuspielen. "Vorlesen" macht dann dort weiter. Das Ende der
+    Aufnahme zaehlt nicht. Android: wie vorher, nur der Knopf springt zurueck.
+    (Chromium: die Attrappe spielt nichts ab, das Anhalten wird als
+    'pause'-Ereignis nachgestellt.)"""
+    ios = plattform == "ios"
+    ctx, s = _start(browser, basis, heute_stand, plattform=plattform, ua=UA_IOS26 if ios else None)
+    try:
+        s.js("() => openStory(0)")
+        s.page.click("#rListen")
+        s.page.wait_for_function("() => laeuftVor !== null && spieler.src.includes('/audio/')")
+        anhalten = """(ende) => {
+          if(!window.__pausen){
+            window.__pausen = {n: 0};
+            const orig = HTMLMediaElement.prototype.pause;
+            spieler.pause = function(){ window.__pausen.n++; return orig.call(this); };
+          }
+          Object.defineProperty(spieler, 'currentTime', {configurable: true, get: () => ende ? 30 : 12.5, set(){}});
+          Object.defineProperty(spieler, 'duration', {configurable: true, get: () => 30});
+          Object.defineProperty(spieler, 'ended', {configurable: true, get: () => !!ende});
+          const vorher = window.__pausen.n;
+          spieler.dispatchEvent(new Event('pause'));
+          return {stelle: geschichteStelle, pausen: window.__pausen.n - vorher, laeuft: laeuftVor !== null,
+                  knopf: document.getElementById('rListen').classList.contains('laeuft'), src: spieler.src};
+        }"""
+        r = s.js(anhalten, False)
+        assert r["laeuft"] is False and r["knopf"] is False, r
+        if ios:
+            assert r["stelle"] == {"datei": r["src"], "sekunde": 12.5} and r["pausen"] == 1, r
+            assert _protokoll(s, "Geschichte von aussen angehalten bei 12.5 s")
+        else:
+            assert r["stelle"] is None and r["pausen"] == 0, r
+            assert s.js("() => TON_PROTOKOLL") == []
+
+        # Vorlesen nimmt die Stelle mit, und das Ende der Aufnahme merkt nichts
+        s.page.click("#rListen")
+        s.page.wait_for_function("() => laeuftVor !== null")
+        assert s.js("() => geschichteStelle") is None
+        r = s.js(anhalten, True)
+        assert r["stelle"] is None and r["pausen"] == 0 and r["laeuft"] is False, r
+        assert s.fehler == []
+    finally:
+        ctx.close()
+
+
 @pytest.mark.parametrize("plattform", ["ios", "android"])
 def test_kein_doppeltipp_zoom_nur_auf_ios(motor, basis, heute_stand, plattform):
     """iOS: der Viewport ist nicht zoombar (min = max = 1, user-scalable=no),

@@ -7788,7 +7788,15 @@ function stilleBitte(behalteAufgabe){
    kommt aber. Nur kommt es VERZOEGERT, auch fuer das pause(), das
    spieleDatei() vor jedem Start selbst ruft - dann laeuft laengst der neue
    Ton und `paused` ist schon wieder false. Deshalb die Pruefung. */
-spieler.addEventListener('pause', ()=>{ if(spieler.paused && !pausiert) knopfZurueck(); });
+spieler.addEventListener('pause', ()=>{
+  if(!spieler.paused || pausiert) return;
+  /* iPhone (15.11.2026): eine vorgelesene Geschichte, die das System
+     anhaelt (Anruf, Siri), merkt sich die Stelle, und sie setzt nicht von
+     selbst wieder ein - siehe tonVonAussenAngehalten() bei "Zurueck in der
+     App". Android bleibt, wie es war. */
+  if(IST_IOS && laeuftVor) tonVonAussenAngehalten();
+  knopfZurueck();
+});
 spieler.addEventListener('error', knopfZurueck);
 /* ---- Mitlesen ----
    Wunsch einer Testerin, umgesetzt am 20.10.2026: beim Vorlesen einer Geschichte
@@ -8109,6 +8117,7 @@ let tonInGeste = false;     // nur waehrend tonEntsperren(): dann legt tonKontex
 let tonFrei = null;         // der Kontext, fuer den in einer Geste der Ein-Sample-Puffer lief
 let spielerFrei = false;    // der spieler hat auf iOS schon einmal gespielt
 let sitzungGesetzt = false; // tonSitzung() lief schon
+let tonInaktiv = false;     // die App ist nur inaktiv (Kontrollzentrum, Siri, Anruf), siehe "Zurueck in der App"
 /* Die letzte Probe der Kontext-Uhr: {ctx, ct, wand, lebt}. lebt heisst: die
    Uhr ist seit dem Anlegen bzw. dem letzten Zustandswechsel nachweislich
    gelaufen. Verglichen wird erst nach UHR_WAND Sekunden Wanduhr; steht sie
@@ -8183,10 +8192,12 @@ function tonBaldPruefen(wo){
   setTimeout(()=>tonPruefen(wo), 150);
   setTimeout(()=>tonPruefen(wo), 150 + UHR_WAND * 1000 + 250);
 }
-/* 'lebt', 'unklar' oder 'tot' - nur auf iOS gerufen. */
+/* 'lebt', 'unklar' oder 'tot' - nur auf iOS gerufen. Solange die App nur
+   inaktiv ist (tonInaktiv, siehe "Zurueck in der App"), zaehlt die Probe
+   nicht: iOS haelt die Ausgabe dort an, ohne den Zustand zu wechseln. */
 function tonUhrLesen(){
   const c = actx;
-  if(!c || c.state !== 'running' || document.hidden){ tonUhr = null; return 'unklar'; }
+  if(!c || c.state !== 'running' || document.hidden || tonInaktiv){ tonUhr = null; return 'unklar'; }
   const jetzt = performance.now(), ct = c.currentTime, u = tonUhr;
   if(!u || u.ctx !== c){ tonUhr = {ctx: c, ct, wand: jetzt, lebt: false}; return 'unklar'; }
   if(jetzt - u.wand < UHR_WAND * 1000) return u.lebt ? 'lebt' : 'unklar';
@@ -8230,6 +8241,7 @@ function tonFuerWoerter(){
 }
 function tonEntsperren(e){
   if(!e || !e.isTrusted) return;     // ein .click() aus dem Skript ist kein Fingertipp
+  tonInaktiv = false;                 // wer tippt, hat die App vor sich (falls 'appStateChange' fehlte)
   tonSitzung();
   if(actx && actx.state === 'closed') actx = null;
   if(actx) tonPruefen('tipp');        // tot: geschlossen und gleich neu
@@ -8272,14 +8284,96 @@ function spielerAbgelehnt(e, wo){
   spielerFrei = false;
   tonMerken('spieler.play (' + wo + ') abgelehnt: ' + ((e && (e.name || e.message)) || e));
 }
+/* ---- Zurueck in der App: iPhone und iPad (15.11.2026, Build 4) ----
+   Ajdin am iPhone 11 nach dem Update auf iOS 27.2.1, TestFlight 1.3 Build 3
+   (noch ohne "Ton im Fingertipp"): nach einem frischen Start Ton, nach dem
+   Schliessen ohne Beenden und Wiederoeffnen keiner mehr, "ka mal
+   funktioniert es mal nicht". Eine Sprechuebung brachte ihn zurueck.
+   iOS schaltet die Audio-Sitzung einer App ab, die im Hintergrund
+   angehalten wird, und beim Zurueckkommen schaltete sie niemand wieder ein
+   - ausser der Spracherkennung (setActive in ZmajSprache.swift). Das tut
+   seit Build 4 die Huelle bei jeder Rueckkehr (ZmajTon.swift). Die Seite
+   tut ihren Teil:
+   1. Zurueck heisst: sichtbar (visibilitychange), 'resume' oder
+      'appStateChange' mit isActive vom Plugin App. Alle rufen tonZurueck(),
+      oft kurz nacheinander; es zaehlt nur die letzte Probe (tonRueckkehr).
+   2. Laeuft der AudioContext nicht ('suspended', 'interrupted'), wird er
+      fortgesetzt. Ein Wort, das auf seiner stehenden Uhr noch bestellt
+      war, faellt vorher weg (waStopp) - es kaeme sonst verspaetet ueber das,
+      was als Naechstes klingt.
+   3. Laeuft er nach RUECKKEHR_MS immer noch nicht, wird er geschlossen, und
+      der naechste Tipp legt einen neuen an. Laeuft er, beweist die
+      Wanduhr-Probe wie nach dem Anlegen, dass seine Uhr geht (tonBaldPruefen,
+      bei einem Zustandswechsel ueber 'statechange'); steht sie, ebenso
+      schliessen. Bis dahin sprechen die Woerter ueber den spieler.
+   4. Der naechste Tipp spielt den Ein-Sample-Puffer und den spieler neu an
+      (tonFrei, spielerFrei) - in der Zeit draussen kann iOS die Sitzung
+      gewechselt haben. Laeuft gerade etwas oder ist eine Geschichte
+      angehalten, bleibt der spieler in Ruhe (spielerEntsperren).
+   5. Ist die App nur inaktiv (Kontrollzentrum, Siri, Anruf), bleibt die
+      Seite sichtbar. Dann zaehlt die Uhr-Probe nicht (tonInaktiv): iOS haelt
+      die Ausgabe an, ohne den Zustand zu wechseln, das ist kein toter
+      Kontext.
+   6. Haelt das System eine vorgelesene Geschichte an, merkt sie sich die
+      Stelle wie beim Wechsel in den Hintergrund, und "Vorlesen" macht dort
+      weiter (tonVonAussenAngehalten). Noch einmal pause() dazu: WebKit setzt
+      eine Wiedergabe, die vor einer Unterbrechung lief, danach sonst von
+      selbst fort (mayResumePlayback). Dann liefe die Geschichte weiter,
+      waehrend der Knopf schon wieder "Vorlesen" zeigt, und ein Tipp darauf
+      begaenne sie von vorn.
+   Android und die Web-Demo: nichts davon (IST_IOS, tests_e2e/test_ios_ton.py). */
+let tonRueckkehr = 0;          // zaehlt die Rueckkehr-Proben; nur die letzte gilt
+const RUECKKEHR_MS = 1000;     // so lange darf resume() nach der Rueckkehr brauchen
+function tonWirdInaktiv(wo){
+  tonInaktiv = true; tonUhr = null;
+  tonMerken('App ' + wo);
+}
+function tonZurueck(wo){
+  tonInaktiv = false; tonUhr = null;
+  tonFrei = null; spielerFrei = false;       // der naechste Tipp spielt beides neu an
+  const nr = ++tonRueckkehr, c = actx;
+  if(!c){ tonMerken('zurueck (' + wo + '), noch ohne AudioContext'); return; }
+  tonMerken('zurueck (' + wo + '): AudioContext ' + c.state);
+  if(c.state === 'closed'){ actx = null; return; }
+  if(c.state === 'running'){ tonBaldPruefen('zurueck'); return; }
+  waStopp();
+  tonWecken(c, 'zurueck');
+  setTimeout(()=>{
+    if(nr !== tonRueckkehr || c !== actx || document.hidden || tonInaktiv) return;
+    if(c.state !== 'running') tonWeg('zurueck, ' + c.state);
+  }, RUECKKEHR_MS);
+}
+function tonVonAussenAngehalten(){
+  const t = +spieler.currentTime || 0, d = +spieler.duration || 0;
+  if(spieler.ended || (d && t >= d - 0.25)) return;     // das Ende der Aufnahme, kein Anhalten
+  if(spieler.src && t > 0) geschichteStelle = {datei: spieler.src, sekunde: t};
+  tonMerken('Geschichte von aussen angehalten bei ' + t.toFixed(1) + ' s');
+  try{ spieler.pause(); }catch(e){}
+}
 if(IST_IOS){
   ['touchend', 'pointerup', 'click'].forEach(n =>
     document.addEventListener(n, tonEntsperren, {capture: true, passive: true}));
   spieler.addEventListener('playing', ()=>{ spielerFrei = true; });
   document.addEventListener('visibilitychange', ()=>{
     tonUhr = null;
-    if(!document.hidden && actx) tonBaldPruefen('zurueck');
+    if(!document.hidden) tonZurueck('sichtbar');
   });
+  /* Das Plugin App der Huelle (AppPlugin.swift in @capacitor/app 8.1.1):
+     'appStateChange' kommt auch, wenn die App nur inaktiv wird - die Seite
+     bleibt dann sichtbar, und visibilitychange schweigt. 'pause' und
+     'resume' kommen beim Wechsel in den Hinter- und Vordergrund. */
+  const appP = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App;
+  const appHoeren = (name, f) => {
+    try{ const h = appP.addListener(name, f); if(h && h.catch) h.catch(()=>{}); }catch(e){}
+  };
+  if(appP && typeof appP.addListener === 'function'){
+    appHoeren('appStateChange', d => {
+      if(d && d.isActive === false) tonWirdInaktiv('inaktiv');
+      else if(d && d.isActive === true) tonZurueck('aktiv');
+    });
+    appHoeren('pause', () => tonWirdInaktiv('im Hintergrund'));
+    appHoeren('resume', () => tonZurueck('im Vordergrund'));
+  }
 }
 /* Sekunden bis kurz vor dem ersten Laut im Puffer. */
 function vorlaufMessen(buf){

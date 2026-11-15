@@ -763,8 +763,16 @@ def test_ios_abgelehntes_play_wird_nicht_verschluckt(index_html):
     assert "spielerFrei = false;" in abgelehnt and "tonMerken(" in abgelehnt
 
 
-# ------------------------------------ kein Doppeltipp-Zoom (15.11.2026) ---
-# Befund am iPhone 11 (Build 3): der Doppeltipp zoomt ohne Weg zurueck.
+# ------------------------- Zurueck in der App, kein Zoom (15.11.2026) ---
+# Befund am iPhone 11 (iOS 27.2.1, Build 3): nach dem Hintergrund kein Ton
+# mehr, und der Doppeltipp zoomt ohne Weg zurueck. Das Verhalten pruefen
+# tests_e2e/test_ios_ton.py; hier, dass die Stellen an der Weiche stehen.
+def _ios_block(index_html):
+    text = index_html.replace("\r\n", "\n")
+    block = text[text.index("if(IST_IOS){\n  ['touchend', 'pointerup', 'click'].forEach(n =>"):]
+    return block[:block.index("\n}\n")]
+
+
 def test_ios_kein_doppeltipp_zoom(index_html):
     """touch-action: manipulation an allen Elementen, nur auf iOS und ohne
     Gewicht (:where). Sonst setzt die App nirgends touch-action."""
@@ -772,3 +780,57 @@ def test_ios_kein_doppeltipp_zoom(index_html):
     assert index_html.count(regel) == 1
     code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S).replace(regel, "")
     assert "touch-action" not in code and "touchAction" not in code
+
+
+def test_ios_rueckkehr_horcher(index_html):
+    """Sichtbar, 'resume' und 'appStateChange' rufen tonZurueck(), nur auf iOS;
+    inaktiv und 'pause' halten die Uhr-Probe an."""
+    block = _ios_block(index_html)
+    assert "if(!document.hidden) tonZurueck('sichtbar');" in block
+    assert "if(!document.hidden && actx) tonBaldPruefen('zurueck');" not in index_html
+    for stueck in ("appHoeren('appStateChange', d => {",
+                   "if(d && d.isActive === false) tonWirdInaktiv('inaktiv');",
+                   "else if(d && d.isActive === true) tonZurueck('aktiv');",
+                   "appHoeren('pause', () => tonWirdInaktiv('im Hintergrund'));",
+                   "appHoeren('resume', () => tonZurueck('im Vordergrund'));",
+                   "if(appP && typeof appP.addListener === 'function'){"):
+        assert stueck in block, stueck
+    code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S)
+    assert code.count("tonZurueck(") == 1 + 3                 # die Funktion und drei Aufrufe im Block
+    assert code.count("addListener('appStateChange'") == 0 and code.count("appHoeren(") == 3
+
+
+def test_ios_rueckkehr_weckt_verwirft_und_entsperrt(index_html):
+    """Laeuft der Kontext nicht: das bestellte Wort weg, fortsetzen, und nach
+    RUECKKEHR_MS schliessen, wenn er dann noch steht. Laeuft er: die
+    Wanduhr-Probe. In jedem Fall spielt der naechste Tipp neu an."""
+    z = _funktion(index_html, "function tonZurueck(wo){")
+    assert "tonFrei = null; spielerFrei = false;" in z and "tonInaktiv = false;" in z
+    assert z.index("if(c.state === 'running'){ tonBaldPruefen('zurueck'); return; }") < z.index("waStopp();")
+    assert z.index("waStopp();") < z.index("tonWecken(c, 'zurueck');") < z.index("setTimeout(")
+    assert "if(nr !== tonRueckkehr || c !== actx || document.hidden || tonInaktiv) return;" in z
+    assert "if(c.state !== 'running') tonWeg('zurueck, ' + c.state);" in z
+    assert "}, RUECKKEHR_MS);" in z and "const RUECKKEHR_MS = 1000;" in index_html
+    assert "new Kontext(" not in z                            # neu angelegt wird nur im Tipp
+
+
+def test_ios_inaktiv_zaehlt_die_uhr_nicht(index_html):
+    uhr = _funktion(index_html, "function tonUhrLesen(){")
+    assert "c.state !== 'running' || document.hidden || tonInaktiv){ tonUhr = null; return 'unklar'; }" in uhr
+    entsperren = _funktion(index_html, "function tonEntsperren(e){")
+    assert entsperren.index("if(!e || !e.isTrusted) return;") < entsperren.index("tonInaktiv = false;")
+    assert "tonInaktiv = true;" in _funktion(index_html, "function tonWirdInaktiv(wo){")
+
+
+def test_ios_geschichte_von_aussen_angehalten(index_html):
+    """Haelt das System den spieler an, waehrend eine Geschichte vorliest:
+    Stelle merken und noch einmal pause(), damit WebKit nicht von selbst
+    weiterspielt. Nur auf iOS; das Ende der Aufnahme zaehlt nicht."""
+    text = index_html.replace("\r\n", "\n")
+    horcher = text[text.index("spieler.addEventListener('pause', ()=>{\n"):]
+    horcher = horcher[:horcher.index("\n});\n")]
+    assert horcher.index("if(!spieler.paused || pausiert) return;") < horcher.index(
+        "if(IST_IOS && laeuftVor) tonVonAussenAngehalten();") < horcher.index("knopfZurueck();")
+    aussen = _funktion(index_html, "function tonVonAussenAngehalten(){")
+    assert aussen.index("if(spieler.ended || (d && t >= d - 0.25)) return;") < aussen.index("geschichteStelle =")
+    assert aussen.index("geschichteStelle =") < aussen.index("spieler.pause();")
