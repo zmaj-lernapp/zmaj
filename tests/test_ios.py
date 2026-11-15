@@ -659,3 +659,99 @@ def test_grund_unter_der_statusleiste_nur_auf_ios(index_html):
     regel = index_html[i:index_html.index("}", i)]
     assert "env(safe-area-inset-top" in regel and "position:fixed" in regel
     assert "body::before" not in index_html.replace('html[data-plattform="ios"] body::before', "")
+
+
+# ------------------------------- iPhone-Ton und Breite (15.11.2026) ---
+# Befund am iPhone 11 (iOS 16.6.1, TestFlight 1.3 Build 3): nie Ton, und die
+# Seite rechts angeschnitten. Das Verhalten im Browser pruefen
+# tests_e2e/test_ios_ton.py; hier, dass die Stellen an der Weiche stehen.
+def _funktion(index_html, kopf):
+    """Der Rumpf einer Funktion oberster Ebene, bis zur naechsten."""
+    text = index_html.replace("\r\n", "\n")
+    i = text.index(kopf)
+    return text[i:text.index("\n}\n", i) + 2]
+
+
+def test_ios_viewport_sperrt_den_fokus_zoom(index_html):
+    """maximum-scale=1.0 nur auf iOS: dort zoomt WKWebView sonst beim Antippen
+    eines Felds unter 16 px und bleibt so stehen. Android: wie vorher."""
+    kopf = index_html[:index_html.index("<style>")]
+    assert "'width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover'" in kopf
+    zeile = re.search(r'<meta name="viewport"[^>]*>', index_html).group(0)
+    assert "maximum-scale" not in zeile and "user-scalable" not in index_html
+
+
+def test_ios_eingabefelder_16px(index_html):
+    """16 px in allen .field-Feldern auf iOS, 15 px bleibt die Regel fuer alle."""
+    assert ('html[data-plattform="ios"] input.field, html[data-plattform="ios"] textarea.field,'
+            ' html[data-plattform="ios"] select.field{font-size:16px}') in index_html
+    assert "input.field,textarea.field,select.field,button.field{" in index_html
+    regel = index_html[index_html.index("input.field,textarea.field,select.field,button.field{"):]
+    assert "font-size:15px" in regel[:regel.index("}")]
+
+
+def test_ios_kein_audiokontext_ohne_fingertipp(index_html):
+    """Der AudioContext entsteht auf iOS nur in tonEntsperren() (tonInGeste),
+    und das Vorwaermen laesst iOS aus, bevor es etwas anlegt."""
+    kontext = _funktion(index_html, "function tonKontext(){")
+    assert kontext.index("if(IST_IOS && !tonInGeste) return null;") < kontext.index("new Kontext(")
+    assert index_html.count("new Kontext(") == 2 and index_html.count("tonInGeste = true;") == 1
+    entsperren = _funktion(index_html, "function tonEntsperren(e){")
+    assert "tonInGeste = true;" in entsperren and "finally { tonInGeste = false; }" in entsperren
+    assert "if(!e || !e.isTrusted) return;" in entsperren
+    assert "q.buffer = c.createBuffer(1, 1, c.sampleRate);" in entsperren
+    vorwaermen = _funktion(index_html, "function tonVorwaermen(){")
+    assert vorwaermen.index("if(IST_IOS) return;") < vorwaermen.index("tonKontext();")
+
+
+def test_ios_tipp_horcher_vor_jedem_klick(index_html):
+    """Capture-Phase, damit der Ton entsperrt ist, bevor der Klick ein Wort
+    spricht - und nur auf iOS."""
+    text = index_html.replace("\r\n", "\n")
+    block = text[text.index("if(IST_IOS){\n  ['touchend', 'pointerup', 'click'].forEach(n =>"):]
+    block = block[:block.index("\n}\n")]
+    assert "document.addEventListener(n, tonEntsperren, {capture: true, passive: true})" in block
+    assert text.count("tonEntsperren, {capture") == 1
+
+
+def test_ios_audiosession_erst_im_tipp_und_ab_ios_17(index_html):
+    """'playback' steht nur noch in tonSitzung(), und dort erst nach der
+    Pruefung auf iOS 17. Beim Laden des Skripts setzt niemand mehr etwas."""
+    code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S)       # ohne Kommentare
+    assert len(re.findall(r"\.type\s*=\s*'playback'", code)) == 1
+    assert code.count("navigator.audioSession") == 1                 # const s = navigator.audioSession;
+    sitzung = _funktion(index_html, "function tonSitzung(){")
+    assert sitzung.index("if(!IOS_AB_17)") < sitzung.index("s.type = 'playback'")
+    assert "if(!s){" in sitzung
+    assert "const IOS_AB_17 = IOS_FASSUNG ? IOS_FASSUNG >= 17 : typeof Set.prototype.union === 'function';" in index_html
+    assert "/(?:iPhone|CPU) OS (\\d+)_/" in index_html
+
+
+def test_resume_bei_jedem_zustand_ausser_running_und_closed(index_html):
+    """Auch bei WebKits 'interrupted'. Bis zum 15.11.2026 nur bei 'suspended'."""
+    rumpf = _funktion(index_html, "function sound(kind){")
+    assert "if(actx.state !== 'running' && actx.state !== 'closed'){" in rumpf
+    assert "const p = actx.resume(); if(p && p.catch) p.catch(()=>{});" in rumpf
+    assert "state==='suspended'" not in index_html
+    assert "if(actx.state !== 'running'){ tonWecken(actx, 'wort'); return false; }" in index_html
+
+
+def test_ios_toter_kontext_raeumt_die_alte_uhr_ab(index_html):
+    """Geschlossen wird mit allem, was auf seiner Uhr steht. Und ein Wort laeuft
+    auf iOS nur mit nachweislich laufender Uhr ueber WebAudio."""
+    weg = _funktion(index_html, "function tonWeg(wo){")
+    for stueck in ("waStopp();", "actx = null;", "rueckTon = null; tonNull = null;", "alt.close()"):
+        assert stueck in weg, stueck
+    spielen = _funktion(index_html, "function pufferSpielen(text, fertig, wann){")
+    assert spielen.index("if(IST_IOS && !tonFuerWoerter()) return false;") < spielen.index("createBufferSource()")
+    uhr = _funktion(index_html, "function tonUhrLesen(){")
+    assert "document.hidden" in uhr and "if(ct - u.ct < UHR_MIN) return 'tot';" in uhr
+
+
+def test_ios_abgelehntes_play_wird_nicht_verschluckt(index_html):
+    """Auf iOS gibt es keine Computerstimme: eine Ablehnung kommt ins
+    Ton-Protokoll, und spielerFrei faellt zurueck."""
+    sprich = _funktion(index_html, "function sprichMitSpieler(text, fertig, rate){")
+    assert "if(IST_IOS && !(e && e.name === 'AbortError')) spielerAbgelehnt(e, datei);" in sprich
+    abgelehnt = _funktion(index_html, "function spielerAbgelehnt(e, wo){")
+    assert "spielerFrei = false;" in abgelehnt and "tonMerken(" in abgelehnt

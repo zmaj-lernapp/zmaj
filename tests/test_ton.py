@@ -96,18 +96,26 @@ const aufrufe = [];
 const geraet = (name, wirft) => class {
   constructor(...a){ aufrufe.push([name, ...a]); if(wirft(a)) throw new TypeError('nein'); this.name = name; }
 };
-const fall = fenster => {
+// ios/geste: iPhone, und ob gerade ein Fingertipp laeuft (15.11.2026: auf iOS
+// entsteht der Kontext nur in tonEntsperren(), siehe "Ton im Fingertipp").
+const fall = (fenster, ios = false, geste = false) => {
   aufrufe.length = 0;
-  const t = new Function('window', 'let actx = null;\n' + quelle + '\nreturn {tonKontext, lies: () => actx};')(fenster);
+  const t = new Function('window', 'let actx = null; const IST_IOS = ' + ios + '; let tonInGeste = ' + geste + ';\n' +
+                         'const neuGemeldet = []; function tonKontextNeu(c){ neuGemeldet.push(c.name); }\n' + quelle +
+                         '\nreturn {tonKontext, lies: () => actx, neuGemeldet};')(fenster);
   const eins = t.tonKontext(), bis_hier = aufrufe.slice(), zwei = t.tonKontext();
-  return {aufrufe: bis_hier, name: eins ? eins.name : null, derselbe: eins === zwei, gemerkt: t.lies() === eins};
+  return {aufrufe: bis_hier, name: eins ? eins.name : null, derselbe: eins === zwei, gemerkt: t.lies() === eins,
+          gemeldet: t.neuGemeldet};
 };
+const neu = () => ({AudioContext: geraet('neu', () => false)});
 console.log(JSON.stringify({
   neu: fall({AudioContext: geraet('neu', () => false), webkitAudioContext: geraet('alt', () => false)}),
   alt: fall({webkitAudioContext: geraet('alt', () => false)}),
   wirft_bei_option: fall({AudioContext: geraet('neu', a => a.length > 0)}),
   wirft_immer: fall({AudioContext: geraet('neu', () => true)}),
   keiner: fall({}),
+  ios_ohne_tipp: fall(neu(), true, false),
+  ios_im_tipp: fall(neu(), true, true),
 }));
 """
 
@@ -124,13 +132,20 @@ def test_tonkontext_nimmt_playback_und_faellt_zurueck(index_html):
                          capture_output=True, text=True, check=True).stdout
     r = json.loads(aus)
     option = {"latencyHint": "playback"}
-    assert r["neu"] == {"aufrufe": [["neu", option]], "name": "neu", "derselbe": True, "gemerkt": True}
-    assert r["alt"] == {"aufrufe": [["alt", option]], "name": "alt", "derselbe": True, "gemerkt": True}
+    assert r["neu"] == {"aufrufe": [["neu", option]], "name": "neu", "derselbe": True, "gemerkt": True,
+                        "gemeldet": []}
+    assert r["alt"] == {"aufrufe": [["alt", option]], "name": "alt", "derselbe": True, "gemerkt": True,
+                        "gemeldet": []}
     assert r["wirft_bei_option"] == {"aufrufe": [["neu", option], ["neu"]], "name": "neu",
-                                     "derselbe": True, "gemerkt": True}
+                                     "derselbe": True, "gemerkt": True, "gemeldet": []}
     assert r["wirft_immer"]["aufrufe"] == [["neu", option], ["neu"]]
     assert r["wirft_immer"]["name"] is None
-    assert r["keiner"] == {"aufrufe": [], "name": None, "derselbe": True, "gemerkt": True}
+    assert r["keiner"] == {"aufrufe": [], "name": None, "derselbe": True, "gemerkt": True, "gemeldet": []}
+    # Android meldet nichts weiter; das iPhone legt nur im Fingertipp an (15.11.2026)
+    assert r["neu"]["gemeldet"] == [] and r["wirft_immer"]["gemeldet"] == []
+    assert r["ios_ohne_tipp"] == {"aufrufe": [], "name": None, "derselbe": True, "gemerkt": True, "gemeldet": []}
+    assert r["ios_im_tipp"] == {"aufrufe": [["neu", option]], "name": "neu", "derselbe": True, "gemerkt": True,
+                                "gemeldet": ["neu"]}
 
 
 # Das Tempo (05.11.2026): bei Ajdins Frau stand es aus einer Geschichte auf
@@ -155,7 +170,7 @@ TEMPO_PROBE = r"""
 const quelle = process.argv[1];
 const bau = (datei, spielt) => new Function('datei', 'spielt', `
   let tempo = 0.75, pausiert = false, vorwaermen = null, tonMarke = 0, laeuftVor = null;
-  const hasTTS = true, raten = [];
+  const hasTTS = true, raten = [], IST_IOS = false;
   const spieler = {playbackRate: 1, muted: false, currentTime: 0, pause(){}, play(){ return spielt(); }};
   const waStopp = () => {}, fuerStimme = t => t, pickVoice = () => null, audioDatei = () => datei;
   class SpeechSynthesisUtterance { constructor(t){ this.text = t; } }

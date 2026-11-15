@@ -158,14 +158,22 @@ def basis(wurzelordner):
 
 
 @pytest.fixture(scope="session")
-def browser():
+def pw():
+    """Das eine Playwright der Sitzung. Ein zweites sync_playwright() daneben
+    geht nicht; wer WebKit braucht (test_ios_ton.py, 15.11.2026), holt es
+    hier mit pw.webkit."""
     from playwright.sync_api import sync_playwright
 
+    with sync_playwright() as p:
+        yield p
+
+
+@pytest.fixture(scope="session")
+def browser(pw):
     chromium = os.environ.get("ZMAJ_CHROMIUM") or None
-    with sync_playwright() as pw:
-        b = pw.chromium.launch(executable_path=chromium)
-        yield b
-        b.close()
+    b = pw.chromium.launch(executable_path=chromium)
+    yield b
+    b.close()
 
 
 class Seite:

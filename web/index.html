@@ -41,7 +41,16 @@
      getPlatform() nach - fuer sie bleibt alles wie vorher.
      Android bekommt viewport-fit bewusst NICHT: die WebView beachtet es dort
      seit Chromium 140 auch, und dann laege die Kopfleiste unter der
-     Statusleiste. Android bleibt, wie es war. */
+     Statusleiste. Android bleibt, wie es war.
+     maximum-scale=1.0 seit dem 15.11.2026 (Ajdin: "die app ist etwas zu
+     breit fuer iphone das muss ganz leicht duenner sein"): Tippt man auf
+     dem iPhone in ein Feld mit weniger als 16 px Schrift, vergroessert
+     WKWebView die Seite auf 16/Schriftgroesse (15 px: +6,8 %) und bleibt
+     nach dem Verlassen so stehen - rechts fehlten am iPhone 11 rund 11
+     Punkte (WebKit WKWebViewIOS.mm, _zoomToFocusRect). Capacitor sperrt das
+     Zoomen mit zwei Fingern ohnehin, es geht also nichts verloren. Die
+     Felder haben auf iOS ausserdem 16 px (Stil bei input.field), das ist
+     die zweite Sicherung. */
   var C = window.Capacitor;
   window.ZMAJ_PLATTFORM = !C ? 'web'
     : (typeof C.getPlatform === 'function' ? String(C.getPlatform() || 'web')
@@ -49,7 +58,7 @@
   document.documentElement.dataset.plattform = window.ZMAJ_PLATTFORM;
   if(window.ZMAJ_PLATTFORM === 'ios'){
     var vp = document.querySelector('meta[name="viewport"]');
-    if(vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover');
+    if(vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover');
   }
 </script>
 <!-- Tablets (30.10.2026). Ajdin zu den Store-Bildern fuer 7- und 10-Zoll-
@@ -1761,6 +1770,13 @@
     font-family:inherit; font-size:15px; padding:11px 12px; border:2px solid var(--line); border-radius:12px; background:var(--surface); color:var(--ink); width:100%;
   }
   input.field:focus,textarea.field:focus,select.field:focus,button.field:focus{outline:none; border-color:var(--primary)}
+  /* iPhone: Eingabefelder mit mindestens 16 px Schrift (15.11.2026). Darunter
+     zoomt WKWebView beim Antippen auf 16/Schriftgroesse (15 px: +6,8 %) und
+     bleibt so stehen, rechts fehlten dann rund 11 Punkte (iPhone 11). Die
+     erste Sicherung ist maximum-scale=1.0 im Kopf. Die Felder in den
+     Lektionen sind groesser (.type-input, .blank-input). Android zoomt nicht
+     und behaelt 15 px; button.field (#langKopf) zoomt nie. */
+  html[data-plattform="ios"] input.field, html[data-plattform="ios"] textarea.field, html[data-plattform="ios"] select.field{font-size:16px}
 
   /* ---------- Leben ---------- */
   /* Schmal genug, um in eine Ecke zu passen: nur so breit wie ihr Inhalt.
@@ -5403,7 +5419,19 @@ function sound(kind){
   if(!soundOn) return;
   try{
     if(!tonKontext()) return;
-    if(actx.state==='suspended') actx.resume();
+    /* iPhone: ein Kontext, dessen Uhr trotz 'running' steht, wird
+       geschlossen; der naechste Tipp legt einen neuen an (siehe "Ton im
+       Fingertipp", 15.11.2026). */
+    if(IST_IOS && tonUhrLesen() === 'tot'){ tonWeg('sound'); return; }
+    /* Fortsetzen bei jedem Zustand ausser 'running' und 'closed', also auch
+       bei WebKits 'interrupted' (iPhone: Anruf, Siri, Heimknopf). Bis zum
+       15.11.2026 nur bei 'suspended' - nach einer Unterbrechung blieben die
+       Pieptoene dann fuer immer stumm. Android kennt nur suspended, running
+       und closed, dort ist es dasselbe wie vorher. Die Ablehnung wird
+       gefangen statt als Fehler in der Konsole zu landen. */
+    if(actx.state !== 'running' && actx.state !== 'closed'){
+      const p = actx.resume(); if(p && p.catch) p.catch(()=>{});
+    }
     tonNull = actx.currentTime;
     if(kind==='ok'){ tone(660,0,0.12); tone(880,0.11,0.18); }
     else if(kind==='no'){ tone(200,0,0.22,'sawtooth',0.26); tone(160,0.12,0.25,'sawtooth',0.22); }
@@ -7554,12 +7582,10 @@ function questZeilen(){
    Woertern ohne Aufnahme stuenden Lautsprecher. Gesprochen wird auf dem
    iPhone nur, was als Aufnahme mitkommt - wie in der Android-App. */
 const hasTTS = !IST_IOS && 'speechSynthesis' in window;
-/* Der Stummschalter am iPhone schaltet WebAudio sonst ab, und die Woerter
-   blieben stumm. Mit dem Typ 'playback' (Safari ab 16.4) spielt die App wie
-   ein Musikspieler auch bei stumm geschaltetem Telefon - man tippt ja
-   ausdruecklich auf den Lautsprecher. Ob WKWebView das so umsetzt, zeigt
-   erst das Geraet (iOS_Plan.md, Stufe B). */
-if(IST_IOS){ try{ if(navigator.audioSession) navigator.audioSession.type = 'playback'; }catch(e){} }
+/* Hier stand bis zum 15.11.2026 navigator.audioSession.type = 'playback',
+   gleich beim Laden des Skripts. Das geschieht jetzt erst im ersten
+   Fingertipp und erst ab iOS 17 - siehe tonSitzung() bei "Ton im
+   Fingertipp". */
 let canListen = hasTTS;
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 /* Spracherkennung gibt es auf zwei Wegen, und der Unterschied ist nicht
@@ -7880,8 +7906,9 @@ function tonWeiter(){
   if(hasTTS && speechSynthesis.paused){ try{ speechSynthesis.resume(); }catch(e){} return true; }
   const p = spieler.play();
   /* Laesst das Geraet nicht weiterspielen, lieber sauber abstellen als den
-     Knopf auf "Pause" stehenlassen - sonst reagiert er scheinbar nicht mehr. */
-  if(p && p.catch) p.catch(()=>stilleBitte());
+     Knopf auf "Pause" stehenlassen - sonst reagiert er scheinbar nicht mehr.
+     Auf dem iPhone steht die Ablehnung im Ton-Protokoll (15.11.2026). */
+  if(p && p.catch) p.catch(e=>{ if(IST_IOS) spielerAbgelehnt(e, 'weiter'); stilleBitte(); });
   return true;
 }
 function setzeTempo(v){
@@ -8008,14 +8035,230 @@ const puffer = new Map();
    das Wort setzt 171 bzw. 189 ms nach Tonbeginn ein, der Ton ist dann bei
    rund -30 dBFS (test_wort_webaudio.py). Wirft ein Geraet bei der Option,
    geht es ohne sie; geht auch das nicht, bleibt actx null, und der spieler
-   spricht. */
+   spricht.
+   Auf iPhone und iPad entsteht er seit dem 15.11.2026 nur noch im
+   Fingertipp (tonInGeste), siehe "Ton im Fingertipp" gleich darunter.
+   Ausserhalb einer Geste bleibt actx dort null, und der spieler spricht. */
 function tonKontext(){
   if(actx) return actx;
+  if(IST_IOS && !tonInGeste) return null;
   const Kontext = window.AudioContext || window.webkitAudioContext;
   if(!Kontext) return null;
   try{ actx = new Kontext({latencyHint: 'playback'}); }
   catch(e){ try{ actx = new Kontext(); }catch(e2){} }
+  if(IST_IOS && actx) tonKontextNeu(actx);
   return actx;
+}
+/* ---- Ton im Fingertipp: iPhone und iPad (15.11.2026) ----
+   Ajdin mit TestFlight 1.3 (Build 3) auf dem iPhone 11 mit iOS 16.6.1:
+   nie Ton, kein Wort und kein Piepen, auch nicht beim ersten Wort,
+   Lautstaerke normal, Lautlos-Schalter aus. Im Simulator (iOS 26.5) war
+   nie etwas zu hoeren, dort wurde nur dekodiert. Am Geraet gemessen ist
+   nichts. Die Diagnose vom 14./15.11.2026 fand drei Stellen, an denen ein
+   stummer AudioContext unbemerkt bleibt:
+   - Er entstand ohne Fingertipp rund 2,4 s nach dem Start (tonVorwaermen),
+     nachdem navigator.audioSession.type schon auf 'playback' stand.
+     Capacitor erlaubt Ton ohne Geste, also meldete er sofort 'running'.
+     Aus WKWebView sind Faelle bekannt, in denen so ein Kontext 'running'
+     meldet und stumm bleibt; geholfen hat dort der Start bzw. resume() im
+     Fingertipp (bugs.webkit.org 240646, 256075).
+   - sound() setzte ihn nur bei 'suspended' fort. WebKit kennt dazu
+     'interrupted' (Anruf, Siri, Heimknopf, eine andere Tonquelle).
+   - pufferSpielen() vertraute 'running' blind. Es gab keinen Rueckfall auf
+     den spieler, und eine Computerstimme hat iOS in der App nicht.
+   Deshalb auf iOS, fuer alle Fassungen ab 16.4:
+   1. Der Kontext entsteht nur im Fingertipp. tonEntsperren() haengt in der
+      Capture-Phase an touchend, pointerup und click, laeuft also vor jedem
+      anderen Klick, und tut synchron in der Geste: anlegen oder fortsetzen,
+      einen Puffer mit einem einzigen Sample abspielen, den spieler einmal
+      stumm anspielen.
+   2. Fortgesetzt wird bei jedem Zustand ausser 'running' und 'closed'.
+   3. Die Uhr wird geprueft (tonUhrLesen): steht currentTime trotz 'running'
+      gegen die Wanduhr, ist der Kontext tot. Er wird geschlossen, der
+      naechste Tipp legt einen neuen an. Woerter laufen erst ueber WebAudio,
+      wenn seine Uhr nachweislich laeuft, bis dahin ueber den spieler.
+   4. Lehnt der spieler ab, steht das im Ton-Protokoll (TON_PROTOKOLL und
+      Konsole), und der naechste Tipp spielt ihn neu an.
+   5. navigator.audioSession.type = 'playback' erst im ersten Tipp und nur
+      ab iOS 17, darunter laufen die Woerter ueber den spieler - siehe
+      tonSitzung().
+   Android und die Web-Demo bleiben, wie sie waren: dort haengt hier
+   nichts (tests_e2e/test_ios_ton.py prueft beides). */
+let tonInGeste = false;     // nur waehrend tonEntsperren(): dann legt tonKontext() auf iOS an
+let tonFrei = null;         // der Kontext, fuer den in einer Geste der Ein-Sample-Puffer lief
+let spielerFrei = false;    // der spieler hat auf iOS schon einmal gespielt
+let sitzungGesetzt = false; // tonSitzung() lief schon
+/* Die letzte Probe der Kontext-Uhr: {ctx, ct, wand, lebt}. lebt heisst: die
+   Uhr ist seit dem Anlegen bzw. dem letzten Zustandswechsel nachweislich
+   gelaufen. Verglichen wird erst nach UHR_WAND Sekunden Wanduhr; steht sie
+   dann um weniger als UHR_MIN weiter, ist der Kontext tot. Im Hintergrund
+   und bei jedem Zustandswechsel beginnt die Probe neu - iOS haelt dort
+   die Ausgabe an, das ist kein Fehler. */
+let tonUhr = null;
+const UHR_WAND = 0.5, UHR_MIN = 0.05;
+/* Ton-Protokoll, nur iOS: die letzten 60 Ereignisse, dazu die Konsole. Am
+   Geraet mit dem Web-Inspektor lesbar; es geht nirgendwohin. */
+const TON_PROTOKOLL = [];
+function tonMerken(was){
+  TON_PROTOKOLL.push(Math.round(performance.now()) + ' ' + was);
+  if(TON_PROTOKOLL.length > 60) TON_PROTOKOLL.shift();
+  try{ console.info('[Zmaj Ton] ' + was); }catch(e){}
+}
+/* Die iOS-Fassung, 0 = unbekannt. WKWebView meldet "iPhone OS 16_6_1" bzw.
+   auf dem iPad "CPU OS 16_6" (die Huelle verlangt mit preferredContentMode
+   "mobile" die Handy-Kennung). Zeigt sich ein iPad doch als Mac ohne
+   iOS-Fassung, entscheidet Set.prototype.union, das es erst ab Safari 17
+   gibt (MDN browser-compat-data). Ab iOS 26 friert WebKit die Fassung im UA ein (18_6,
+   18_6_2, spaeter 18_7; bugs.webkit.org 298473) - auch das ist ab 17. */
+const IOS_FASSUNG = (()=>{
+  const m = /(?:iPhone|CPU) OS (\d+)_/.exec(navigator.userAgent || '');
+  return m ? +m[1] : 0;
+})();
+const IOS_AB_17 = IOS_FASSUNG ? IOS_FASSUNG >= 17 : typeof Set.prototype.union === 'function';
+/* navigator.audioSession.type = 'playback': Ton auch mit Lautlos-Schalter,
+   wie ein Musikspieler. Erst im ersten Fingertipp, vor dem Anlegen des
+   Kontexts, und nur ab iOS 17. Recherche 15.11.2026:
+   - Safari 16.4 brachte nur "a subset of the AudioSession Web API"
+     (webkit.org/blog/13966).
+   - Der WebKit-Entwickler J.-Y. Avenard, bugs.webkit.org 237322, Kommentar
+     6 (25.09.2024): "Since iOS 17, you can set the audio session type to
+     playback".
+   - Ein Bericht aus der Praxis, nach type = 'playback' auf dem iPhone:
+     "no success/failure sounds at all, ringer on or off", behoben durch
+     Zuruecknehmen (github.com/juancho0202/inburgering-a2-cursus/pull/16).
+   - WebKit 16.6 gleicht Unterbrechungen zwischen Web- und GPU-Prozess noch
+     nicht ab, 17 schon (Quellvergleich der Tags WebKit-7615.3.12.11.3 und
+     WebKit-7616.2.9.11.9, Diagnose 15.11.2026).
+   Belegt ist der stumme Kontext unter 16 damit nicht, aber er kann es sein,
+   und das iPhone 11 mit 16.6.1 war genau so stumm. Also bleibt die Sitzung
+   unter 17 beim Standard. Dann schaltet der Lautlos-Schalter WebAudio stumm
+   (bugs.webkit.org 237322), <audio> aber nicht (bugs.webkit.org 251532) -
+   deshalb sprechen die Woerter unter iOS 17 ueber den spieler, und nur die
+   Pieptoene haengen am Schalter. */
+function tonSitzung(){
+  if(sitzungGesetzt) return;
+  sitzungGesetzt = true;
+  const s = navigator.audioSession;
+  if(!s){ tonMerken('audioSession: gibt es nicht'); return; }
+  if(!IOS_AB_17){ tonMerken('audioSession: bleibt ' + s.type + ' (iOS ' + (IOS_FASSUNG || '?') + ')'); return; }
+  try{ s.type = 'playback'; tonMerken('audioSession: playback'); }
+  catch(e){ tonMerken('audioSession: ' + (e && e.name)); }
+}
+function tonKontextNeu(c){
+  tonUhr = null; tonFrei = null;
+  tonMerken('AudioContext neu: ' + c.state + ', ' + c.sampleRate + ' Hz, iOS ' + (IOS_FASSUNG || '?'));
+  try{ c.addEventListener('statechange', ()=>{
+    if(c !== actx) return;
+    tonUhr = null;
+    tonMerken('AudioContext: ' + c.state);
+    if(c.state === 'running') tonBaldPruefen('wieder an');
+  }); }catch(e){}
+  tonBaldPruefen('nach dem Anlegen');
+}
+/* Zweimal nachsehen, damit die Woerter bald ueber WebAudio laufen und nicht
+   erst nach dem naechsten Tipp: einmal, wenn er laeuft (erste Probe), und
+   eine gute halbe Sekunde spaeter (der Beweis). */
+function tonBaldPruefen(wo){
+  setTimeout(()=>tonPruefen(wo), 150);
+  setTimeout(()=>tonPruefen(wo), 150 + UHR_WAND * 1000 + 250);
+}
+/* 'lebt', 'unklar' oder 'tot' - nur auf iOS gerufen. */
+function tonUhrLesen(){
+  const c = actx;
+  if(!c || c.state !== 'running' || document.hidden){ tonUhr = null; return 'unklar'; }
+  const jetzt = performance.now(), ct = c.currentTime, u = tonUhr;
+  if(!u || u.ctx !== c){ tonUhr = {ctx: c, ct, wand: jetzt, lebt: false}; return 'unklar'; }
+  if(jetzt - u.wand < UHR_WAND * 1000) return u.lebt ? 'lebt' : 'unklar';
+  if(ct - u.ct < UHR_MIN) return 'tot';
+  tonUhr = {ctx: c, ct, wand: jetzt, lebt: true};
+  return 'lebt';
+}
+/* true: die Uhr laeuft nachweislich. Ein toter Kontext wird geschlossen. */
+function tonPruefen(wo){
+  const z = tonUhrLesen();
+  if(z === 'tot') tonWeg(wo);
+  return z === 'lebt';
+}
+/* Schliessen; angelegt wird erst im naechsten Fingertipp. */
+function tonWeg(wo){
+  const alt = actx; if(!alt) return;
+  const u = tonUhr;
+  tonMerken('AudioContext tot (' + wo + '): ' + alt.state + ', Uhr ' +
+            (u ? (alt.currentTime - u.ct).toFixed(3) + ' s in ' + ((performance.now() - u.wand) / 1000).toFixed(2) + ' s' : '?'));
+  waStopp();
+  actx = null; tonUhr = null; tonFrei = null;
+  /* Beide stehen auf der Uhr des alten Kontexts. Ein Wort, das darauf
+     bestellt wuerde, kaeme beim neuen erst viel spaeter. */
+  rueckTon = null; tonNull = null;
+  try{ const p = alt.close(); if(p && p.catch) p.catch(()=>{}); }catch(e){}
+}
+function tonWecken(c, wo){
+  try{
+    const p = c.resume();
+    if(p && p.catch) p.catch(e => tonMerken('resume (' + wo + ') abgelehnt: ' + (e && e.name)));
+  }catch(e){ tonMerken('resume (' + wo + '): ' + (e && e.name)); }
+}
+/* Darf ein Wort jetzt ueber WebAudio? Unter iOS 17 nie (siehe tonSitzung),
+   sonst nur mit nachweislich laufender Uhr. Laeuft er nicht ('suspended',
+   'interrupted'), wird er geweckt, und das Wort kommt gleich ueber den
+   spieler - nicht erst nach WECKEN_MS. */
+function tonFuerWoerter(){
+  if(!IOS_AB_17) return false;
+  if(actx.state !== 'running'){ tonWecken(actx, 'wort'); return false; }
+  return tonPruefen('wort');
+}
+function tonEntsperren(e){
+  if(!e || !e.isTrusted) return;     // ein .click() aus dem Skript ist kein Fingertipp
+  tonSitzung();
+  if(actx && actx.state === 'closed') actx = null;
+  if(actx) tonPruefen('tipp');        // tot: geschlossen und gleich neu
+  if(!actx){
+    tonInGeste = true;
+    try{ tonKontext(); } finally { tonInGeste = false; }
+  }
+  const c = actx;
+  if(c){
+    const gesperrt = c.state !== 'running';
+    if(gesperrt) tonWecken(c, 'tipp');
+    if(gesperrt || tonFrei !== c){
+      try{
+        const q = c.createBufferSource();
+        q.buffer = c.createBuffer(1, 1, c.sampleRate);
+        q.connect(c.destination);
+        q.start(0);
+        tonFrei = c;
+      }catch(err){ tonMerken('Ein-Sample-Puffer: ' + (err && err.name)); }
+    }
+  }
+  if(!spielerFrei) spielerEntsperren();
+}
+/* Den spieler einmal in einer Geste anspielen, stumm mit der Stille aus
+   stilleWav() wie beim Vorwaermen. Danach darf er auch aus einem Zeitgeber
+   heraus spielen (spaeterSprechen), selbst wenn WebKit dafuer eine Geste
+   verlangt. Laeuft gerade etwas oder ist eine Geschichte angehalten, bleibt
+   er in Ruhe. Ein echtes Wort im selben Tipp bricht das Anspielen ab
+   (spieleDatei) - dann ist er durch das Wort frei. */
+function spielerEntsperren(){
+  if(!spieler.paused || pausiert || laeuftVor || vorwaermen) return;
+  stummAnspielen(err => {
+    if(!err){ spielerFrei = true; return; }
+    if(err.name !== 'AbortError') spielerAbgelehnt(err, 'anspielen');
+  });
+}
+/* Eine Ablehnung nicht verschlucken (15.11.2026): ins Protokoll, und der
+   naechste Tipp spielt den spieler neu an. */
+function spielerAbgelehnt(e, wo){
+  spielerFrei = false;
+  tonMerken('spieler.play (' + wo + ') abgelehnt: ' + ((e && (e.name || e.message)) || e));
+}
+if(IST_IOS){
+  ['touchend', 'pointerup', 'click'].forEach(n =>
+    document.addEventListener(n, tonEntsperren, {capture: true, passive: true}));
+  spieler.addEventListener('playing', ()=>{ spielerFrei = true; });
+  document.addEventListener('visibilitychange', ()=>{
+    tonUhr = null;
+    if(!document.hidden && actx) tonBaldPruefen('zurueck');
+  });
 }
 /* Sekunden bis kurz vor dem ersten Laut im Puffer. */
 function vorlaufMessen(buf){
@@ -8034,7 +8277,8 @@ function pufferLaden(datei){
   if(!datei) return;
   const da = puffer.get(datei);
   if(da){ puffer.delete(datei); puffer.set(datei, da); return; }
-  const ctx = tonKontext();
+  if(IST_IOS && !IOS_AB_17) return;   // unter iOS 17 sprechen die Woerter ueber den spieler (tonSitzung)
+  const ctx = tonKontext();           // iOS: nur, wenn ein Tipp ihn schon angelegt hat
   if(!ctx || typeof fetch !== 'function') return;
   const p = {buf: null, vorlauf: 0};
   puffer.set(datei, p);
@@ -8079,6 +8323,9 @@ function pufferSpielen(text, fertig, wann){
   const datei = audioDatei(text);
   const p = datei ? pufferNehmen(datei) : null;
   if(!p) return false;
+  /* iPhone: nur mit nachweislich laufender Uhr, sonst gleich der spieler
+     (15.11.2026, "Ton im Fingertipp"). */
+  if(IST_IOS && !tonFuerWoerter()) return false;
   let q;
   try{
     q = actx.createBufferSource();
@@ -8145,10 +8392,19 @@ function stilleWav(){
 }
 function tonVorwaermen(){
   if(!AUDIO.size) return;              // keine Aufnahmen, also auch keine Lektion
+  /* iPhone und iPad: weder Kontext noch Anspielen ohne Fingertipp - beides
+     macht dort tonEntsperren() im ersten Tipp (15.11.2026). */
+  if(IST_IOS) return;
   tonKontext();                        // seit dem 26.10.2026 auch bei Toenen aus: die Woerter laufen ueber ihn
   if(!spieler.paused || pausiert || laeuftVor || spieler.getAttribute('src')) return;
+  stummAnspielen();
+}
+/* Die Zehntelsekunde Stille stumm im spieler. dann(fehler) erfaehrt, ob
+   play() angenommen (null) oder abgelehnt wurde - gebraucht von
+   spielerEntsperren() auf iOS (15.11.2026). */
+function stummAnspielen(dann){
   let adresse = null;
-  try{ adresse = stilleWav(); }catch(e){ return; }
+  try{ adresse = stilleWav(); }catch(e){ if(dann) dann(e); return; }
   const lauf = vorwaermen = {};
   const ende = ()=>{
     if(vorwaermen === lauf){           // sonst spielt inzwischen ein echtes Wort
@@ -8160,10 +8416,11 @@ function tonVorwaermen(){
   };
   spieler.muted = true;
   spieler.src = adresse;
-  let p = null;
-  try{ p = spieler.play(); }catch(e){}
-  if(p && p.then) p.then(()=>setTimeout(ende, 120), ende);
-  else setTimeout(ende, 120);
+  let p = null, fehler = null;
+  try{ p = spieler.play(); }catch(e){ fehler = e; }
+  if(p && p.then) p.then(()=>{ if(dann) dann(null); setTimeout(ende, 120); },
+                         e=>{ if(dann) dann(e || new Error('play')); ende(); });
+  else { if(dann) dann(fehler); setTimeout(ende, 120); }
 }
 /* Der ruhige Moment: die App steht, und der Vorspann bewegt sich nicht mehr
    (beim ersten Start des Tages steht er danach noch VORSPANN_HALT still da,
@@ -8229,6 +8486,11 @@ function sprichMitSpieler(text, fertig, rate){
      Ansicht, ohne Stopp-Knopf. */
   const marke = tonMarke;
   spieleDatei(datei, fertig, rate).catch(e=>{
+    /* iPhone (15.11.2026): dort gibt es keine Computerstimme, eine
+       verschluckte Ablehnung hiesse Stille ohne Spur. Also ins Protokoll,
+       und der naechste Tipp spielt den spieler neu an (tonEntsperren).
+       sprichMitStimme() ruft danach fertig, der Knopf springt zurueck. */
+    if(IST_IOS && !(e && e.name === 'AbortError')) spielerAbgelehnt(e, datei);
     if(marke !== tonMarke || (e && e.name === 'AbortError')) return;
     sprichMitStimme(text, fertig, rate);
   });

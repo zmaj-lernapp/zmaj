@@ -523,6 +523,9 @@ def test_tonweg_status_null_und_latenz(seite, heute_stand, plattform):
     """)
     _app(seite, plattform, heute_stand)
     assert seite.js("() => tempo") == 0.75
+    # Seit dem 15.11.2026 entsteht der AudioContext auf iOS erst im Fingertipp
+    # (test_ios_ton.py) - also einmal neben die Spalte tippen, wo nichts ist.
+    seite.page.mouse.click(4, 450)
     ergebnis = seite.js("""async () => {
         const datei = [...AUDIO.values()][0];
         pufferLaden(datei);
