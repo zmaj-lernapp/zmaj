@@ -50,7 +50,18 @@
      Punkte (WebKit WKWebViewIOS.mm, _zoomToFocusRect). Capacitor sperrt das
      Zoomen mit zwei Fingern ohnehin, es geht also nichts verloren. Die
      Felder haben auf iOS ausserdem 16 px (Stil bei input.field), das ist
-     die zweite Sicherung. */
+     die zweite Sicherung.
+     minimum-scale=1.0 und user-scalable=no seit dem 15.11.2026 (Ajdin mit
+     Build 3: "wenn ich doppel tippe dann zoomt die app rein aber kann nicht
+     wieder zurück zoomen"). Capacitor sperrt das Zoomen mit zwei Fingern
+     erst, wenn ein Zoom beginnt (scrollViewWillBeginZooming); kommt das
+     auch beim Doppeltipp-Zoom, geht es danach nicht mehr zurueck - so passt
+     es zum Befund, belegt ist es ohne Mac nicht. Mit min = max = 1 und user-scalable=no ist
+     die Seite fuer WKWebView nicht zoombar, dann gibt es auch keinen
+     Doppeltipp-Zoom (WKWebView beachtet das, solange
+     ignoresViewportScaleLimits aus ist; die Huelle setzt es ausdruecklich
+     in ZmajViewController.swift). Dazu touch-action: manipulation im Stil,
+     auch in Kaesten mit eigenem Bildlauf. Android bleibt, wie es war. */
   var C = window.Capacitor;
   window.ZMAJ_PLATTFORM = !C ? 'web'
     : (typeof C.getPlatform === 'function' ? String(C.getPlatform() || 'web')
@@ -58,7 +69,7 @@
   document.documentElement.dataset.plattform = window.ZMAJ_PLATTFORM;
   if(window.ZMAJ_PLATTFORM === 'ios'){
     var vp = document.querySelector('meta[name="viewport"]');
-    if(vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover');
+    if(vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
   }
 </script>
 <!-- Tablets (30.10.2026). Ajdin zu den Store-Bildern fuer 7- und 10-Zoll-
@@ -1777,6 +1788,16 @@
      Lektionen sind groesser (.type-input, .blank-input). Android zoomt nicht
      und behaelt 15 px; button.field (#langKopf) zoomt nie. */
   html[data-plattform="ios"] input.field, html[data-plattform="ios"] textarea.field, html[data-plattform="ios"] select.field{font-size:16px}
+  /* iPhone: kein Doppeltipp-Zoom (15.11.2026, Build 3: "wenn ich doppel tippe
+     dann zoomt die app rein aber kann nicht wieder zurück zoomen"). Die erste
+     Sicherung ist der Viewport im Kopf (user-scalable=no, min = max = 1).
+     manipulation laesst Wischen und Blaettern, nimmt aber den Doppeltipp
+     weg - und ein schneller zweiter Tipp ist dann ein zweiter Klick, wie auf
+     Android. An allen Elementen, nicht nur an html: touch-action erbt nicht
+     ueber einen Kasten mit eigenem Bildlauf hinweg (WebKit beginnt dort neu).
+     :where haelt die Regel ohne Gewicht, eine eigene touch-action an einem
+     Element ginge also vor. Android: keine Regel, wie vorher. */
+  :where(html[data-plattform="ios"], html[data-plattform="ios"] *){touch-action:manipulation}
 
   /* ---------- Leben ---------- */
   /* Schmal genug, um in eine Ecke zu passen: nur so breit wie ihr Inhalt.

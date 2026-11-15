@@ -20,6 +20,10 @@ im Kopf. Hier im Browser nachgestellt, wenn es geht mit WebKit von Playwright
 - maximum-scale=1.0 und 16 px in allen Eingabefeldern, keine waagerechte
   Ueberbreite bei 375, 390 und 414 Punkten
 
+Seit dem 15.11.2026 (Build 4, Befund: der Doppeltipp zoomt ohne Weg
+zurueck): user-scalable=no, minimum- und maximum-scale 1, touch-action:
+manipulation an allen Elementen; Android ohne all das
+
 Hoerbares gibt es im Browser nicht, und WebKit unter Windows hat gar keinen
 AudioContext. Deshalb eine Attrappe (TON), die mitschreibt, was die App
 bestellt - samt dem Ereignis, in dem es geschah (window.event). Den Zoom von
@@ -478,6 +482,43 @@ def test_android_felder_und_viewport_wie_vorher(browser, basis, heute_stand):
         s.js("() => showSettings()")
         felder = {f["id"]: f["px"] for f in s.js(FELDER)}
         assert felder["fbText"] == 15 and felder["kontoMail"] == 15, felder
+        assert s.fehler == []
+    finally:
+        ctx.close()
+
+
+# --------------------------------------------- kein Doppeltipp-Zoom (Build 4) ---
+@pytest.mark.parametrize("plattform", ["ios", "android"])
+def test_kein_doppeltipp_zoom_nur_auf_ios(motor, basis, heute_stand, plattform):
+    """iOS: der Viewport ist nicht zoombar (min = max = 1, user-scalable=no),
+    und jedes Element hat touch-action: manipulation - auch in einem Kasten
+    mit eigenem Bildlauf, wo WebKit die touch-action neu beginnt. Android:
+    der Viewport wie vorher, touch-action ueberall auto."""
+    ios = plattform == "ios"
+    ctx, s = _start(motor, basis, heute_stand, plattform=plattform, ua=UA_IOS26 if ios else None)
+    try:
+        vp = s.js("() => document.querySelector('meta[name=viewport]').content")
+        if ios:
+            assert vp == ("width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,"
+                          " user-scalable=no, viewport-fit=cover"), vp
+        else:
+            assert vp == "width=device-width, initial-scale=1.0", vp
+        for js in ("() => { homeMode = 'words'; showHome(); }", "() => showSettings()",
+                   "() => { showHome(); openLevel(0); startLesson(); }"):
+            s.js(js)
+            r = s.js("""() => {
+              const k = document.createElement('div'); k.style.cssText = 'overflow:auto; height:40px';
+              const b = document.createElement('button'); b.textContent = 'x'; k.appendChild(b);
+              document.body.appendChild(k);
+              const alle = [document.documentElement, document.body, ...document.querySelectorAll('body *')];
+              const werte = [...new Set(alle.map(e => getComputedStyle(e).touchAction))];
+              const knopf = getComputedStyle(b).touchAction;
+              k.remove();
+              return {werte, knopf, n: alle.length};
+            }""")
+            assert r["n"] > 50, r
+            soll = "manipulation" if ios else "auto"
+            assert r["werte"] == [soll] and r["knopf"] == soll, (js, r)
         assert s.fehler == []
     finally:
         ctx.close()

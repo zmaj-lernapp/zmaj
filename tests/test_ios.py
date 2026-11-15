@@ -674,11 +674,17 @@ def _funktion(index_html, kopf):
 
 def test_ios_viewport_sperrt_den_fokus_zoom(index_html):
     """maximum-scale=1.0 nur auf iOS: dort zoomt WKWebView sonst beim Antippen
-    eines Felds unter 16 px und bleibt so stehen. Android: wie vorher."""
+    eines Felds unter 16 px und bleibt so stehen. Seit dem 15.11.2026 auch
+    minimum-scale=1.0 und user-scalable=no gegen den Doppeltipp-Zoom.
+    Android: wie vorher."""
     kopf = index_html[:index_html.index("<style>")]
-    assert "'width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover'" in kopf
+    assert ("'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,"
+            " user-scalable=no, viewport-fit=cover'") in kopf
     zeile = re.search(r'<meta name="viewport"[^>]*>', index_html).group(0)
-    assert "maximum-scale" not in zeile and "user-scalable" not in index_html
+    assert "maximum-scale" not in zeile and "user-scalable" not in zeile
+    # user-scalable steht nur in dieser einen Zeile fuer iOS
+    code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S)
+    assert code.count("user-scalable") == 1
 
 
 def test_ios_eingabefelder_16px(index_html):
@@ -755,3 +761,14 @@ def test_ios_abgelehntes_play_wird_nicht_verschluckt(index_html):
     assert "if(IST_IOS && !(e && e.name === 'AbortError')) spielerAbgelehnt(e, datei);" in sprich
     abgelehnt = _funktion(index_html, "function spielerAbgelehnt(e, wo){")
     assert "spielerFrei = false;" in abgelehnt and "tonMerken(" in abgelehnt
+
+
+# ------------------------------------ kein Doppeltipp-Zoom (15.11.2026) ---
+# Befund am iPhone 11 (Build 3): der Doppeltipp zoomt ohne Weg zurueck.
+def test_ios_kein_doppeltipp_zoom(index_html):
+    """touch-action: manipulation an allen Elementen, nur auf iOS und ohne
+    Gewicht (:where). Sonst setzt die App nirgends touch-action."""
+    regel = ':where(html[data-plattform="ios"], html[data-plattform="ios"] *){touch-action:manipulation}'
+    assert index_html.count(regel) == 1
+    code = re.sub(r"/\*.*?\*/", "", index_html, flags=re.S).replace(regel, "")
+    assert "touch-action" not in code and "touchAction" not in code
