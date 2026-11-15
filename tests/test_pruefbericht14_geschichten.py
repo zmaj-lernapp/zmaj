@@ -92,7 +92,8 @@ JE = "ist / sie (Akk.)"
 GESCHLECHT = {
     "zadovoljan": ("zufrieden (m)", "b1_vrijeme", "Mali Dino nije zadovoljan",
                    "zufrieden (m/w):zadovoljan / zadovoljna"),
-    "zdrav": ("gesund (m)", "b1_doktor", "Amar je opet bio zdrav", "gesund (m/w):zdrav / zdrava"),
+    # seit Ajdins A/B-Antwort T3 (15.11.2026) "ponovo" statt "opet"
+    "zdrav": ("gesund (m)", "b1_doktor", "Amar je ponovo bio zdrav", "gesund (m/w):zdrav / zdrava"),
     "tužan": ("traurig (m)", "b1_rodjendan", "Haris je bio malo tužan", "traurig (m/w):tužan / tužna"),
     "vaš": ("euer / Ihr (m)", "b1_telefon", "Vaš telefon", "euer / ihr (m/w/s):vaš / vaša / vaše"),
     "važna": ("wichtig (w)", "b1_utakmica", "važna utakmica", "wichtig (der wichtige):važan"),
@@ -122,7 +123,7 @@ ENGLISCH = {
 # hoefliche Vi gross auch in den Gespraechen (Ajdin: "mach doch alles groß",
 # 21871bb1…), dann Ajdins A/B-Antworten zu den B1-Lesetexten, eine Geschichte
 # nach der anderen (tests/test_lesetexte_ab.py).
-TEXTE_SHA256 = "376c5465b4ff67847f945bda0ad6aeabc2aeb48ea64c2b972be24741cbcae7fe"
+TEXTE_SHA256 = "7c804418a0e967f108f5b36ebae045d32f2b88755d05fae25aaee91d976f4de7"
 
 
 def _geschichten(daten):
@@ -349,7 +350,9 @@ S7 = {
     "b1_posao": ["Prvo ću Vam pokazati Vašu kancelariju"],                  # die Chefin zu Haris
     "b1_stan": ["ako Vam odgovara", "Hvala Vam, vidimo se sutra!"],         # Telefonat
     "b1_telefon": ["Ako ste ga našli, molim Vas, javite se."],             # Nachricht, geschrieben
-    "b1_doktor": ["„I Vas boli grlo?“", "„Šta Vas boli i od kada?“", "Dat ću Vam recept"],
+    # seit Ajdins A/B-Antwort T1 (15.11.2026) auch "i otvorit ću Vam bolovanje"
+    "b1_doktor": ["„I Vas boli grlo?“", "„Šta Vas boli i od kada?“",
+                  "Dat ću Vam recept i otvorit ću Vam bolovanje na pet dana."],
     "b1_zanat": ["„Jeste li Vi napravili", "kad Vi odete u penziju"],      # Lejla zum Meister
 }
 # Klein, weil mehrere gemeint sind (ihr, euch)
@@ -393,7 +396,7 @@ def test_s7_gross_auch_im_gespraech(grunddaten):
     gross = {g["id"]: _gross_mitten_im_satz(g["text"]) for g in grunddaten["geschichten"]}
     assert {k: v for k, v in gross.items() if v} == {
         "opcina": ["Vam"], "b1_struja": ["Vas"], "b1_posao": ["Vam", "Vašu"], "b1_stan": ["Vam", "Vam"],
-        "b1_telefon": ["Vas"], "b1_doktor": ["Vas", "Vas", "Vam"], "b1_zanat": ["Vi", "Vi"]}
+        "b1_telefon": ["Vas"], "b1_doktor": ["Vas", "Vas", "Vam", "Vam"], "b1_zanat": ["Vi", "Vi"]}
     opcina = _geschichten(grunddaten)["opcina"]
     assert "„Danke für Ihre Hilfe“, sagt Amina." in opcina["uebersetzung"]
 

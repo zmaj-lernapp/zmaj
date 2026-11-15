@@ -902,16 +902,16 @@
    }
   },
   {
-   "bs": "bolovanju",
+   "bs": "bolovanje",
    "translations": {
-    "de": "Krankschreibung (Lok.)",
-    "en": "sick leave (loc.)",
-    "tr": "istirahat raporu (lokatif)",
-    "sv": "sjukskrivning (lokativ)",
-    "nl": "ziekmelding (locatief)",
-    "nb": "sykmelding (lokativ)",
-    "da": "sygemelding (lokativ)",
-    "fr": "arrêt de travail (locatif)"
+    "de": "Krankschreibung (Akk.)",
+    "en": "sick leave (acc.)",
+    "tr": "istirahat raporu (akuzatif)",
+    "sv": "sjukskrivning (ackusativ)",
+    "nl": "ziekmelding (accusatief)",
+    "nb": "sykmelding (akkusativ)",
+    "da": "sygemelding (akkusativ)",
+    "fr": "arrêt de travail (accusatif)"
    }
   },
   {
@@ -9742,6 +9742,19 @@
    }
   },
   {
+   "bs": "otvorit",
+   "translations": {
+    "de": "öffnen (otvorit ću bolovanje: ich schreibe krank)",
+    "en": "to open (otvorit ću bolovanje: I'll put you on sick leave)",
+    "tr": "açmak (otvorit ću bolovanje: rapor vereceğim)",
+    "sv": "öppna (otvorit ću bolovanje: jag sjukskriver dig)",
+    "nl": "openen (otvorit ću bolovanje: ik schrijf u ziek)",
+    "nb": "åpne (otvorit ću bolovanje: jeg sykmelder deg)",
+    "da": "åbne (otvorit ću bolovanje: jeg sygemelder dig)",
+    "fr": "ouvrir (otvorit ću bolovanje : je vous mets en arrêt maladie)"
+   }
+  },
+  {
    "bs": "ova",
    "translations": {
     "de": "diese",
@@ -11143,6 +11156,19 @@
     "nb": "stolt (adverb)",
     "da": "stolt (adverbium)",
     "fr": "fièrement"
+   }
+  },
+  {
+   "bs": "ponovo",
+   "translations": {
+    "de": "wieder / erneut",
+    "en": "again / once more",
+    "tr": "yeniden / tekrar",
+    "sv": "igen / på nytt",
+    "nl": "weer / opnieuw",
+    "nb": "igjen / på nytt",
+    "da": "igen / på ny",
+    "fr": "de nouveau / à nouveau"
    }
   },
   {
@@ -17266,6 +17292,19 @@
     "nb": "han/hun tar",
     "da": "han/hun tager",
     "fr": "il / elle prend"
+   }
+  },
+  {
+   "bs": "uzimajte",
+   "translations": {
+    "de": "nehmen Sie (Befehl)",
+    "en": "take (formal, imperative)",
+    "tr": "alın (emir kipi)",
+    "sv": "ta (imperativ)",
+    "nl": "neemt u (gebiedende wijs)",
+    "nb": "ta (imperativ)",
+    "da": "tag (bydeform)",
+    "fr": "prenez (impératif)"
    }
   },
   {

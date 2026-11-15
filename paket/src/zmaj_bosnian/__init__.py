@@ -47,7 +47,7 @@ def stories():
 
 
 def glossary():
-    """1,518 reading-glossary entries: bs and translations."""
+    """1,521 reading-glossary entries: bs and translations."""
     return _lade("glossary")["entries"]
 
 

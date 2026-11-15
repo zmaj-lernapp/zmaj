@@ -54,6 +54,11 @@ FAELLE = {
     ("b1_posao", "bili", "ljubazni"): ("freundlich (Mehrz.)", "friendly (pl.)"),
     ("b1_posao", "je", "obavezna"): ("Pflicht / verpflichtend (w)", "a must / compulsory (f)"),
     ("b1_stan", "na", "madracu"): ("Matratze (Lok.)", "mattress (loc.)"),
+    ("b1_doktor", "i", "otvorit"): ("öffnen (otvorit ću bolovanje: ich schreibe krank)",
+                                    "to open (otvorit ću bolovanje: I'll put you on sick leave)"),
+    ("b1_doktor", "vam", "bolovanje"): ("Krankschreibung (Akk.)", "sick leave (acc.)"),
+    ("b1_doktor", "rekao", "uzimajte"): ("nehmen Sie (Befehl)", "take (formal, imperative)"),
+    ("b1_doktor", "je", "ponovo"): ("wieder / erneut", "again / once more"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -72,6 +77,9 @@ ZU_SEHEN = {
     "b1_svadba": ("Plesali smo kolo oko cijele sale", "Wir tanzten Kolo durch den ganzen Saal",
                   "We danced the kolo around the whole hall"),
     "b1_posao": ("„Hajde, kahva je obavezna!“", "„Komm, der Kaffee ist Pflicht!“", "“Come on, coffee is a must!”"),
+    "b1_doktor": ("Dat ću Vam recept i otvorit ću Vam bolovanje na pet dana.",
+                  "Ich gebe Ihnen ein Rezept und schreibe Sie für fünf Tage krank.",
+                  "I'll give you a prescription and put you on sick leave for five days."),
 }
 
 

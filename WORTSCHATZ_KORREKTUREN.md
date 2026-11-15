@@ -1371,6 +1371,9 @@ Sprachen sind nachgezogen.
 | L27 | *Prvi dan na poslu* | Kolege su bile ljubazne. | Kolege su bili ljubazni. |
 | L28 | *Prvi dan na poslu* | „Hajde, kahva je svetinja!“ | „Hajde, kahva je obavezna!“ |
 | L30 | *Izdajem stan* (`b1_stan`) | Prvu noć je spavala na dušeku na podu … | Prvu noć je spavala na madracu na podu … |
+| T1 | *Kod doktora* (`b1_doktor`) | Dat ću Vam recept, a pet dana ste na bolovanju. | Dat ću Vam recept i otvorit ću Vam bolovanje na pet dana. |
+| T2 | *Kod doktora* | Pijte jednu tabletu tri puta dnevno, poslije jela. | Uzimajte jednu tabletu tri puta dnevno, poslije jela. |
+| T3 | *Kod doktora* | Poslije pet dana Amar je opet bio zdrav … | Poslije pet dana Amar je ponovo bio zdrav … |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1394,7 +1397,12 @@ Sprachen sind nachgezogen.
   verpflichtend (w)“ neu, *elektrotehniku* und *svetinja* raus. Deutsch jetzt „Komm,
   der Kaffee ist Pflicht!“, in allen Sprachen nachgezogen. Im Brief *Pismo nani*
   steht weiter „Kolege su ljubazne“; danach war nicht gefragt. *madracu* „Matratze
-  (Lok.)“ statt *dušeku*, die Übersetzung sagte schon „Matratze“.
+  (Lok.)“ statt *dušeku*, die Übersetzung sagte schon „Matratze“. *otvorit* „öffnen
+  (otvorit ću bolovanje: ich schreibe krank)“, *bolovanje* „Krankschreibung (Akk.)“,
+  *uzimajte* „nehmen Sie (Befehl)“ und *ponovo* „wieder / erneut“ neu, *bolovanju*
+  raus; *pijte* bleibt („I pijte mnogo čaja“). Das zweite *Vam* in T1 ist groß wie
+  überall, wo eine Person höflich angeredet wird. Deutsch jetzt „Ich gebe Ihnen ein
+  Rezept und schreibe Sie für fünf Tage krank.“, in allen Sprachen nachgezogen.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.

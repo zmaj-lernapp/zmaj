@@ -43,6 +43,13 @@ B = {
     "L27": ("b1_posao", "Kolege su bili ljubazni.", "Kolege su bile ljubazne."),
     "L28": ("b1_posao", "„Hajde, kahva je obavezna!“", "„Hajde, kahva je svetinja!“"),
     "L30": ("b1_stan", "Prvu noć je spavala na madracu na podu, ali je bila presretna.", "na dušeku"),
+    # T1: Vam groß wie überall, wo EINE Person höflich angeredet wird
+    "T1": ("b1_doktor", "Dat ću Vam recept i otvorit ću Vam bolovanje na pet dana.",
+           "Dat ću Vam recept, a pet dana ste na bolovanju."),
+    "T2": ("b1_doktor", "„Uzimajte jednu tabletu tri puta dnevno, poslije jela.",
+           "„Pijte jednu tabletu tri puta dnevno"),
+    "T3": ("b1_doktor", "Poslije pet dana Amar je ponovo bio zdrav i vratio se na posao.",
+           "Amar je opet bio zdrav"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -72,6 +79,8 @@ DE = {
     "b1_pita": [("Oma legte den Teig auf den großen Tisch und rollte ihn mit dem Nudelholz aus, bis er dünn wie Papier war.",
                  "zog ihn mit den Händen aus")],
     "b1_posao": [("„Komm, der Kaffee ist Pflicht!“", "„Komm, der Kaffee ist heilig!“")],
+    "b1_doktor": [("Ich gebe Ihnen ein Rezept und schreibe Sie für fünf Tage krank.",
+                   "und Sie sind fünf Tage krankgeschrieben")],
 }
 
 # Stichprobe: so heißt es jetzt auf Englisch
@@ -79,6 +88,7 @@ EN = {
     "b1_dijaspora": "Tarik ordered ten ćevapi with onions and a yogurt.",
     "b1_pita": "Grandma put the dough on the big table and rolled it out with a rolling pin until it was as thin as paper.",
     "b1_posao": "Nedžad came back for him: “Come on, coffee is a must!”",
+    "b1_doktor": "I'll give you a prescription and put you on sick leave for five days.",
 }
 
 # Neue Formen im Wörterbuch der Lesetexte und ihre Bedeutung
@@ -101,15 +111,19 @@ NEU = {
     "ljubazni": "freundlich (Mehrz.)",
     "obavezna": "Pflicht / verpflichtend (w)",
     "madracu": "Matratze (Lok.)",
+    "otvorit": "öffnen (otvorit ću bolovanje: ich schreibe krank)",
+    "bolovanje": "Krankschreibung (Akk.)",
+    "uzimajte": "nehmen Sie (Befehl)",
+    "ponovo": "wieder / erneut",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
 RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
-        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku"]
+        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku", "bolovanju"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
 RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",
-              "Januar- (w)", "tanzen / spielen", "Elektrotechnik (Akk.)", "Heiligtum"]
+              "Januar- (w)", "tanzen / spielen", "Elektrotechnik (Akk.)", "Heiligtum", "Krankschreibung (Lok.)"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").

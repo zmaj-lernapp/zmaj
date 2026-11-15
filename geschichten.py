@@ -882,12 +882,14 @@ WOERTERBUCH_B1_2 = {
     "pitala": "gefragt (w)", "objasnio": "erklärt (m)", "pregledala": "untersucht (w)",
     "izmjerila": "gemessen (w)", "imate": "ihr habt / Sie haben", "upalu": "Entzündung (Akk.)", "grla": "Hals (Gen.)",
     "ozbiljno": "ernst",
-    "dat": "geben (Zukunft)", "recept": "Rezept", "bolovanju": "Krankschreibung (Lok.)", "apoteci": "Apotheke (Lok.)",
+    "dat": "geben (Zukunft)", "recept": "Rezept",
+    "otvorit": "öffnen (otvorit ću bolovanje: ich schreibe krank)", "bolovanje": "Krankschreibung (Akk.)",
+    "apoteci": "Apotheke (Lok.)",
     "apotekar": "Apotheker", "lijek": "Medikament",
-    "pijte": "trinken Sie (Befehl)", "tabletu": "Tablette (Akk.)", "dnevno": "täglich",
+    "pijte": "trinken Sie (Befehl)", "uzimajte": "nehmen Sie (Befehl)", "tabletu": "Tablette (Akk.)", "dnevno": "täglich",
     "čaja": "Tee (Gen.)",
     "doktora": "Arzt (Gen.)",
-    "strašno": "furchtbar", "zdrav": "gesund (m)",
+    "strašno": "furchtbar", "zdrav": "gesund (m)", "ponovo": "wieder / erneut",
     # b1_selidba, seit 14.11.2026 "Dedo i nana se sele" statt "Selidba" (Offen-
     # Liste, Punkt 3). Von den Formen der alten Geschichte stehen hier nur noch
     # die, die ein Text braucht (nosili, stigli, umorni in b1_utakmica, spratu
@@ -1021,14 +1023,17 @@ WOERTERBUCH.update(WOERTERBUCH_B1_2)
 GESCHICHTEN += [
     {
         "id": "b1_doktor", "titel": "Kod doktora", "stufe": "B1", "passt_zu": "in_der_praxis",
+        # A/B-Liste, Ajdin 15.11.2026: T1 B "i otvorit ću Vam bolovanje na pet dana"
+        # (Vam groß wie überall), T2 B "Uzimajte" statt "Pijte", T3 B "ponovo" statt
+        # "opet" (opet = schon wieder, ponovo = erneut).
         "text": ("Amar se već tri dana ne osjeća dobro. Boli ga grlo, ima temperaturu i stalno je umoran. U ponedjeljak ujutro nazvao je dom zdravlja i zakazao termin kod doktorice za deset sati.\n\n"
                  "U čekaonici je bilo mnogo ljudi. Pored Amara je sjedio jedan stariji čovjek koji je stalno kašljao. „I Vas boli grlo?“ pitao je čovjek. „Da, već tri dana“, odgovorio je Amar. „Sada su svi bolesni. To je od ovog vremena.“\n\n"
-                 "Kad je došao na red, doktorica ga je pitala: „Šta Vas boli i od kada?“ Amar joj je sve objasnio. Ona ga je pregledala i izmjerila mu temperaturu. „Imate upalu grla. Nije ništa ozbiljno, ali morate se odmarati. Dat ću Vam recept, a pet dana ste na bolovanju.“\n\n"
-                 "U apoteci mu je apotekar dao lijek i rekao: „Pijte jednu tabletu tri puta dnevno, poslije jela. I pijte mnogo čaja s medom.“\n\n"
-                 "Kod kuće je Amar nazvao mamu. „Jesi li bio kod doktora?“ pitala je ona. „Jesam, mama. Nije ništa strašno.“ „Onda dobro. Čaj s medom i u krevet!“ Poslije pet dana Amar je opet bio zdrav i vratio se na posao."),
+                 "Kad je došao na red, doktorica ga je pitala: „Šta Vas boli i od kada?“ Amar joj je sve objasnio. Ona ga je pregledala i izmjerila mu temperaturu. „Imate upalu grla. Nije ništa ozbiljno, ali morate se odmarati. Dat ću Vam recept i otvorit ću Vam bolovanje na pet dana.“\n\n"
+                 "U apoteci mu je apotekar dao lijek i rekao: „Uzimajte jednu tabletu tri puta dnevno, poslije jela. I pijte mnogo čaja s medom.“\n\n"
+                 "Kod kuće je Amar nazvao mamu. „Jesi li bio kod doktora?“ pitala je ona. „Jesam, mama. Nije ništa strašno.“ „Onda dobro. Čaj s medom i u krevet!“ Poslije pet dana Amar je ponovo bio zdrav i vratio se na posao."),
         "uebersetzung": ("Amar fühlt sich schon seit drei Tagen nicht gut. Sein Hals tut weh, er hat Fieber und ist ständig müde. Am Montagmorgen hat er im Gesundheitszentrum angerufen und für zehn Uhr einen Termin bei der Ärztin vereinbart.\n\n"
                          "Im Wartezimmer waren viele Leute. Neben Amar saß ein älterer Mann, der ständig hustete. „Tut Ihnen auch der Hals weh?“, fragte der Mann. „Ja, schon seit drei Tagen“, antwortete Amar. „Jetzt sind alle krank. Das kommt von diesem Wetter.“\n\n"
-                         "Als er an der Reihe war, fragte ihn die Ärztin: „Was tut Ihnen weh, und seit wann?“ Amar hat ihr alles erklärt. Sie hat ihn untersucht und bei ihm Fieber gemessen. „Sie haben eine Halsentzündung. Es ist nichts Ernstes, aber Sie müssen sich ausruhen. Ich gebe Ihnen ein Rezept, und Sie sind fünf Tage krankgeschrieben.“\n\n"
+                         "Als er an der Reihe war, fragte ihn die Ärztin: „Was tut Ihnen weh, und seit wann?“ Amar hat ihr alles erklärt. Sie hat ihn untersucht und bei ihm Fieber gemessen. „Sie haben eine Halsentzündung. Es ist nichts Ernstes, aber Sie müssen sich ausruhen. Ich gebe Ihnen ein Rezept und schreibe Sie für fünf Tage krank.“\n\n"
                          "In der Apotheke gab ihm der Apotheker das Medikament und sagte: „Nehmen Sie dreimal täglich eine Tablette, nach dem Essen. Und trinken Sie viel Tee mit Honig.“\n\n"
                          "Zu Hause rief Amar seine Mama an. „Warst du beim Arzt?“, fragte sie. „Ja, Mama. Es ist nichts Schlimmes.“ „Dann ist es gut. Tee mit Honig und ab ins Bett!“ Nach fünf Tagen war Amar wieder gesund und ging wieder zur Arbeit."),
         "vokabeln": {"vremena": "Wetter / Zeit (Gen.)", "jela": "Essen (Gen.)", "koji": "der (Relativ) / welcher"},
