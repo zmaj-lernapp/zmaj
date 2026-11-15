@@ -791,7 +791,8 @@ are in the Play Store listing. Format:
   (not by native speakers); where he kept the text, nothing changed. *Dijaspora
   prvi put u Sarajevu*: Tarik orders *deset ćevapa* instead of a *desetka*.
   *Vrijeme za vikend*: the radio greets *dragi slušaoci* instead of *poštovani*,
-  and the family can *roštiljati* instead of *napraviti roštilj*.
+  and the family can *roštiljati* instead of *napraviti roštilj*. *Jahorina*:
+  they rent *skijaške cipele* instead of *pancerice*.
   None of these stories had audio yet; they wait for the next Vesna round.
   `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it

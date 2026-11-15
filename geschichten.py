@@ -248,7 +248,8 @@ WOERTERBUCH = {
     "novu": "neue (Akk.)", "godinu": "Jahr (Akk.)", "jahorinu": "Jahorina (Akk., Berg)", "dobra": "gut (w)",
     "skijašica": "Skifahrerin", "skijao": "Ski gefahren (m)", "naučit": "lernen (naučit ću: ich werde lernen)",
     "samouvjereno": "selbstsicher", "prvog": "ersten (Gen.)", "jutra": "Morgen (Gen.)",
-    "iznajmili": "ausgeliehen (Mehrz.)", "skije": "Skier", "pancerice": "Skischuhe", "štapove": "Stöcke (Akk.)",
+    "iznajmili": "ausgeliehen (Mehrz.)", "skije": "Skier", "skijaške": "Ski- (skijaške cipele: Skischuhe)",
+    "cipele": "Schuhe", "štapove": "Stöcke (Akk.)",
     "obukao": "angezogen (m)", "debelu": "dicke (Akk.)", "jaknu": "Jacke (Akk.)", "kapu": "Mütze (Akk.)",
     "rukavice": "Handschuhe", "vani": "draußen", "minus": "minus", "snijega": "Schnee (Gen.)",
     "skoro": "fast / bald", "metar": "Meter", "stazu": "Piste (Akk.)", "školu": "Schule (Akk.)",
@@ -667,8 +668,10 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_jahorina", "titel": "Jahorina", "stufe": "B1", "passt_zu": "sport",
+        # A/B-Liste, Ajdin 15.11.2026: L16 B "skijaške cipele" statt "pancerice".
+        # L17 A: "Prvog jutra" und "Trećeg dana" bleiben.
         "text": ("Amina i Ajdin su za Novu godinu otišli na Jahorinu. Amina je dobra skijašica, ali Ajdin nikad nije skijao. „Naučit ću za jedan dan“, rekao je samouvjereno.\n\n"
-                 "Prvog jutra su iznajmili skije, pancerice i štapove. Ajdin je obukao debelu jaknu, kapu i rukavice jer je vani bilo minus osam. Snijega je bilo skoro metar.\n\n"
+                 "Prvog jutra su iznajmili skije, skijaške cipele i štapove. Ajdin je obukao debelu jaknu, kapu i rukavice jer je vani bilo minus osam. Snijega je bilo skoro metar.\n\n"
                  "Amina je otišla na veliku stazu, a Ajdin u školu skijanja. Njegova instruktorica je bila mlada djevojka s mnogo strpljenja. „Polako, malo savijte koljena i gledajte naprijed“, govorila je. Ajdin je do podne pao pet puta. Djeca od šest godina su ga lako prestizala.\n\n"
                  "Popodne je bilo bolje. Spustio se niz malu stazu bez ijednog pada i bio je ponosan kao dijete. Navečer su sjedili u kafiću pored kamina i pili čaj s medom. Vani je opet padao snijeg. „Sve me boli“, rekao je Ajdin, „ali sutra idem opet.“\n\n"
                  "Trećeg dana su se zajedno spustili do hotela. Amina je bila brža, ali Ajdin se nije žalio. „Sljedeće zime ja ću tebe čekati dolje“, smijao se."),

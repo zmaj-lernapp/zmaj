@@ -24,6 +24,8 @@ B = {
     "L10": ("b1_vrijeme", "„Dobro veče, dragi slušaoci.", "„Dobro veče, poštovani slušaoci."),
     "L12": ("b1_vrijeme", "„Ako bude sunčano, možemo i roštiljati.“",
             "„Ako bude sunčano, možemo napraviti i roštilj.“"),
+    "L16": ("b1_jahorina", "Prvog jutra su iznajmili skije, skijaške cipele i štapove.",
+            "Prvog jutra su iznajmili skije, pancerice i štapove."),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -61,13 +63,15 @@ EN = {
 NEU = {
     "ćevapa": "Ćevapi (Gen.)",
     "roštiljati": "grillen",
+    "skijaške": "Ski- (skijaške cipele: Skischuhe)",
+    "cipele": "Schuhe",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
-RAUS = ["desetku", "poštovani", "roštilj"]
+RAUS = ["desetku", "poštovani", "roštilj", "pancerice"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
-RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte"]
+RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").

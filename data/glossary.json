@@ -1331,6 +1331,19 @@
    }
   },
   {
+   "bs": "cipele",
+   "translations": {
+    "de": "Schuhe",
+    "en": "shoes",
+    "tr": "ayakkabı",
+    "sv": "skor",
+    "nl": "schoenen",
+    "nb": "sko",
+    "da": "sko",
+    "fr": "chaussures"
+   }
+  },
+  {
    "bs": "cvijeća",
    "translations": {
     "de": "Blumen (Gen.)",
@@ -9924,19 +9937,6 @@
    }
   },
   {
-   "bs": "pancerice",
-   "translations": {
-    "de": "Skischuhe",
-    "en": "ski boots",
-    "tr": "kayak ayakkabıları",
-    "sv": "pjäxor",
-    "nl": "skischoenen",
-    "nb": "skistøvler",
-    "da": "skistøvler",
-    "fr": "chaussures de ski"
-   }
-  },
-  {
    "bs": "pao",
    "translations": {
     "de": "gefallen (m)",
@@ -13990,6 +13990,19 @@
     "nb": "skiløper (kvinne)",
     "da": "skiløber (kvinde)",
     "fr": "skieuse"
+   }
+  },
+  {
+   "bs": "skijaške",
+   "translations": {
+    "de": "Ski- (skijaške cipele: Skischuhe)",
+    "en": "ski (skijaške cipele: ski boots)",
+    "tr": "kayak (skijaške cipele: kayak ayakkabıları)",
+    "sv": "skid- (skijaške cipele: pjäxor)",
+    "nl": "ski- (skijaške cipele: skischoenen)",
+    "nb": "ski- (skijaške cipele: skistøvler)",
+    "da": "ski- (skijaške cipele: skistøvler)",
+    "fr": "de ski (skijaške cipele : chaussures de ski)"
    }
   },
   {

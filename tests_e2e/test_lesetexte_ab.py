@@ -36,6 +36,8 @@ FAELLE = {
     ("b1_dijaspora", "deset", "ćevapa"): ("Ćevapi (Gen.)", "ćevapi (gen.)"),
     ("b1_vrijeme", "veče", "dragi"): ("liebe (Mehrz.)", "dear (pl.)"),
     ("b1_vrijeme", "i", "roštiljati"): ("grillen", "to grill / to barbecue"),
+    ("b1_jahorina", "skije", "skijaške"): ("Ski- (skijaške cipele: Skischuhe)", "ski (skijaške cipele: ski boots)"),
+    ("b1_jahorina", "skijaške", "cipele"): ("Schuhe", "shoes"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
