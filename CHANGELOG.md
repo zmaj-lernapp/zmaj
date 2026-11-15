@@ -376,6 +376,13 @@ are in the Play Store listing. Format:
   "Médecin & santé"). Only the name changed: the section keeps its ID, colour and
   levels, and the A1 level "Körper & Gesundheit" keeps its name.
   `tests/test_sektion_arzt.py`.
+- Terms of use, section 2 (review for 1.3, S30, the maintainer on 14.11.2026:
+  "ja mach"): the app replaces no lessons, human translation and legal advice,
+  and now also no medical explanation; health joins office, bank, property and
+  employment contract among the levels where the words only help to follow a
+  conversation. All eight languages, with and without an account, dated
+  14.11.2026. A clarification, so no "terms changed" note.
+  `tests/test_nutzungsbedingungen_s30.py`.
 - Family level (13.11.2026, approved by the maintainer): *stričević* now counts
   as correct when typed next to *amidžić*, and *stričevka* next to *amidžična*,
   through `"auch"` like the pet names *striko* and *adžo*. IDs, display and
