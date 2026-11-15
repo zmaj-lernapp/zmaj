@@ -1244,6 +1244,35 @@ Dialogen, Zahnarzt bleibt groß? Ajdin: ja.
 - Die Wendung „Hvala Vam na pomoći“ im Level *formell* (`vokabeln.py`) ist keine
   Geschichte und bleibt groß.
 
+**Neu entschieden am 15.11.2026: höfliches Vi überall groß.** Frage: Sollen „Hvala Vam
+na pomoći“, „Hvala Vam na suosjećanju i podršci.“ und „Hvala Vam na dobroj saradnji.“
+im Wortschatz groß bleiben oder wie im Gespräch klein werden? Ajdin: „mach doch alles
+groß“. Das ersetzt F23 oben: *Vi, Vas, Vam, Vaš* (jede Form) stehen groß, sobald EINE
+Person höflich angeredet wird, auch in den Gesprächen der Geschichten. Klein bleibt,
+wo mehrere gemeint sind (ihr, euch).
+
+| Geschichte | vorher | jetzt | wer mit wem |
+|---|---|---|---|
+| *Na općini* (`opcina`) | Hvala vam na pomoći | Hvala Vam na pomoći | Amina zur Beamtin |
+| *Komšiluk bez struje* (`b1_struja`) | je li i kod vas nestalo struje? | je li i kod Vas nestalo struje? | Hasan zu Merima (sie antwortet „Znate li“, deutsch „bei Ihnen“) |
+| *Prvi dan na poslu* (`b1_posao`) | Prvo ću vam pokazati vašu kancelariju | Prvo ću Vam pokazati Vašu kancelariju | die Chefin zu Haris |
+| *Izdajem stan* (`b1_stan`) | ako vam odgovara · Hvala vam | ako Vam odgovara · Hvala Vam | Telefonat Selma – Vermieter |
+| *Kod doktora* (`b1_doktor`) | I vas boli grlo? · Šta vas boli · Dat ću vam recept | I Vas boli grlo? · Šta Vas boli · Dat ću Vam recept | der ältere Mann und die Ärztin zu Amar |
+| *Stari zanat na Baščaršiji* (`b1_zanat`) | Jeste li vi napravili · kad vi odete u penziju | Jeste li Vi napravili · kad Vi odete u penziju | Lejla zum Meister |
+
+- Klein bleiben: *Voz Sarajevo–Mostar* (`b1_voz`, „Ako vam nešto zatreba“: die Frau zu
+  Lejla und Emir), *Rafting na Uni* (`b1_rafting`, „Prsluk će vas držati“: der
+  Instruktor zur Gruppe), *Mejl rođaku* (`b1_mejl`, „kod vas“, „ako vam“, „Šta da vam
+  donesem“: an Cousin und Familie).
+- Grammatik: der Tipp zur Übung „Kako ___?“ heißt jetzt „Höflich = Vi → ste.“ (in allen
+  Sprachen). Die Tabellen der Pronomen („vi (ihr / Sie)“, „vas“, „vama, vam“) und die
+  Wörter „vaš / vaša / vaše“, „vi ste“, „vama / vam“ nennen beide Bedeutungen und
+  bleiben klein, ebenso „vas (euch)“, „vam (euch)“, „sa vama (mit euch)“ in den
+  Erklärungen.
+- Die Aufnahme von *Na općini* (g10) sagt „Hvala Vam“: Die Wortzeiten gehören damit
+  wieder genau zum Text, `WORTZEITEN_NEU` ist leer. Die Ton-Schlüssel sind
+  kleingeschrieben, keine Geschichte braucht deshalb neuen Ton.
+
 **B11 / F11, Komma vor jer und ako.** Frage: die 7 Kommas vor nachgestelltem *jer*
 und *ako* streichen (a) oder die Regel auf „meist kein Komma“ abschwächen (b)? Ajdin:
 a. Die Lektion (`grammatik.py`, Satzbau) sagt: kein Komma, wenn der Nebensatz hinter

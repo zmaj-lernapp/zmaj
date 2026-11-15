@@ -17,21 +17,20 @@ Vesna-Runde wie die B1-Texte neu gesprochen, bis dahin wartet sie hier.
 
 WORTZEITEN_NEU (14.11.2026, Offen-Liste, Punkt 3): Geschichten, die ihren Ton
 haben und behalten, deren Wortzeiten "w" aber zu einem alten Text gehören.
-opcina ("Na općini") sagt jetzt "Hvala vam na pomoći" statt "Hvala Vam" (F23:
-klein im Gespräch). Der Schlüssel ist kleingeschrieben, die Aufnahme g10 passt
-weiter, und die Zahl der Wörter ist gleich, die App markiert also richtig.
-ton_bauen.wortzeiten_passen() vergleicht den Text aber mit Groß- und
-Kleinschreibung: Der nächste ton_bauen.py-Lauf wirft "w" von g10 weg, und
-wortzeiten_holen.py --holen nimmt g10 von selbst mit (spricht neu, wenige
-Cent). test_wortzeiten_neu_ist_aktuell in test_wortzeiten.py meldet, sobald die
-Zeiten wieder passen: dann hier streichen.
+ton_bauen.wortzeiten_passen() vergleicht den Text mit Groß- und
+Kleinschreibung; wortzeiten_holen.py --holen nimmt so eine Geschichte von
+selbst mit. test_wortzeiten_neu_ist_aktuell in test_wortzeiten.py meldet,
+sobald die Zeiten wieder passen: dann hier streichen.
+Bis zum 15.11.2026 stand hier opcina ("Hvala vam" statt "Hvala Vam", F23).
+Seit Ajdins "mach doch alles groß" steht dort wieder "Hvala Vam na pomoći" wie
+in der Aufnahme g10, die Wortzeiten passen wieder. Die Liste ist leer.
 """
 
 GESCHICHTEN = frozenset({"b1_doktor", "b1_selidba", "b1_rodjendan", "b1_utakmica",
                          "b1_zanat", "b1_kahva", "b1_mejl", "b1_zmaj",
                          "pismo"})
 
-WORTZEITEN_NEU = frozenset({"opcina"})
+WORTZEITEN_NEU = frozenset()
 
 
 def ton_schluessel():

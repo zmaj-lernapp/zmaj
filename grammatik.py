@@ -82,7 +82,7 @@ GRAMMATIK = {
             {"frage": "„Ti ___ dva brata.“ (Du hast zwei Brüder.)", "optionen": ["imam", "imaš", "ima"], "richtig": "imaš", "tipp": "ti → -š."},
             {"frage": "„Oni ___ u Sarajevu.“ (Sie arbeiten in Sarajevo.)", "optionen": ["radi", "radimo", "rade"], "richtig": "rade", "tipp": "oni → -e / -ju."},
             {"frage": "Wie sagt man „ich spreche“?", "optionen": ["govorim", "govoriš", "govori"], "richtig": "govorim", "tipp": "ja → -m."},
-            {"frage": "„Kako ___?“ (Wie geht es Ihnen? – höflich)", "optionen": ["si", "ste", "su"], "richtig": "ste", "tipp": "Höflich = vi → ste."},
+            {"frage": "„Kako ___?“ (Wie geht es Ihnen? – höflich)", "optionen": ["si", "ste", "su"], "richtig": "ste", "tipp": "Höflich = Vi → ste."},
             {"frage": "Welcher Satz ist richtig?", "optionen": ["Ja sam umoran.", "Sam ja umoran.", "Sam umoran ja."], "richtig": "Ja sam umoran.", "tipp": "„sam“ steht nie an erster Stelle."},
         ],
     },

@@ -90,12 +90,13 @@ def test_wortzeiten_gehoeren_zum_text(index):
 
 
 def test_wortzeiten_neu_ist_aktuell(index):
-    """opcina (14.11.2026, "Hvala vam" statt "Hvala Vam"): gleicher Schluessel,
-    gleich viele Woerter, die App markiert weiter richtig. Nur der Text, zu dem
-    die Zeiten geholt wurden, unterscheidet sich in Gross und klein, und
-    wortzeiten_holen.py --holen nimmt die Geschichte deshalb von selbst mit
-    (_ziele(): alles, wofuer wortzeiten_passen() nicht gilt).
-    Passen die Zeiten wieder, aus WORTZEITEN_NEU streichen."""
+    """Was in WORTZEITEN_NEU steht: gleicher Schluessel, gleich viele Woerter,
+    die App markiert weiter richtig. Nur der Text, zu dem die Zeiten geholt
+    wurden, unterscheidet sich in Gross und klein, und wortzeiten_holen.py
+    --holen nimmt die Geschichte deshalb von selbst mit (_ziele(): alles,
+    wofuer wortzeiten_passen() nicht gilt). Passen die Zeiten wieder, aus
+    WORTZEITEN_NEU streichen. Bis zum 15.11.2026 opcina ("Hvala vam"), seit
+    "Hvala Vam" wieder dasteht, ist die Liste leer."""
     nach_key = {e["key"]: e for e in index["toene"]}
     ids = {s["id"] for s in _geschichten()}
     assert offen_b1_teil2.WORTZEITEN_NEU <= ids

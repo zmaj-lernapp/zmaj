@@ -26,17 +26,22 @@ Tipp zum Schreiben neuer Geschichten: kurze Sätze, Wörter aus den Levels davor
 und jedes neue Wort ins WOERTERBUCH eintragen. start.py meldet beim Start,
 welche Wörter noch fehlen.
 
-Höfliches Vi, Vas, Vam (und vaš): groß nur in Geschriebenem an eine Person
-(Brief, Mail, Nachricht, Anzeige, wie "molim Vas, javite se" in b1_telefon),
-klein in den Gesprächen der Erzählung ("Prvo ću vam pokazati vašu
-kancelariju"). Ajdin, F23 (Prüfbericht 1.4, S7, 14.11.2026). Der Zahnarzt-Teil
-(zahnarzt.py) bleibt groß.
-Seit dem 14.11.2026 (Offen-Liste, Punkt 3) auch in opcina klein: „Hvala vam na
-pomoći“ sagt Amina am Schalter, im Gespräch. Der Ton (g10) bleibt, der Schlüssel ist
-kleingeschrieben und die Stimme spricht es gleich. Seine Wortzeiten "w" holte
-wortzeiten_holen.py aber zum alten Text, und ton_bauen.wortzeiten_passen()
-vergleicht mit Groß- und Kleinschreibung: g10 bekommt sie in der nächsten
-Vesna-Runde neu (WORTZEITEN_NEU in tests/offen_b1_teil2.py).
+Höfliches Vi, Vas, Vam und Vaš (in jeder Form, auch Vašu, Vašeg ...): groß,
+sobald EINE Person höflich angeredet wird, überall - in den Gesprächen der
+Erzählung genauso wie in Geschriebenem, in Wörtern, Sätzen, Lückensätzen,
+Kacheln und in der Grammatik. Ajdin am 15.11.2026: "mach doch alles groß".
+Das ersetzt F23 (Prüfbericht 1.4, S7, 14.11.2026: groß nur in Geschriebenem,
+im Gespräch klein). Also "Prvo ću Vam pokazati Vašu kancelariju" (die Chefin zu
+Haris), "ako Vam odgovara" und "Hvala Vam" (Telefonat), "Hvala Vam na pomoći"
+(Amina am Schalter), "kod Vas" (Hasan zu Merima), "I Vas boli grlo?", "Šta Vas
+boli", "Dat ću Vam recept" (Wartezimmer, Ärztin), "Jeste li Vi napravili",
+"kad Vi odete" (Lejla zum Meister), "molim Vas, javite se" (Nachricht).
+Klein bleibt, wo mehrere gemeint sind (ihr, euch): "Ako vam nešto zatreba" zu
+Lejla und Emir in b1_voz, "Prsluk će vas držati" zur ganzen Gruppe in
+b1_rafting, Emirs Mail an Cousin und Familie in b1_mejl ("kod vas", "ako vam",
+"Šta da vam donesem"). Der Ton-Schlüssel ist kleingeschrieben
+(ton_bauen.schluessel): groß oder klein kostet keinen neuen Ton, und die
+Wortzeiten von opcina (g10) gehören mit "Hvala Vam" wieder genau zum Text.
 
 HINWEIS: Claude ist kein Muttersprachler. Texte bitte prüfen.
 """
@@ -500,7 +505,7 @@ GESCHICHTEN = [
         "id": "opcina", "titel": "Na općini", "stufe": "Amtssprache", "passt_zu": "amt",
         "text": "Amina treba potvrdu o prebivalištu. Ide na općinu u osam sati. Na šalteru pita: „Dobar dan, trebam potvrdu o prebivalištu. Koji dokumenti mi trebaju?“ "
                 "Službenica kaže: „Trebate ličnu kartu i obrazac. Taksa je pet maraka.“ Amina popunjava obrazac i potpisuje. Onda plaća taksu. "
-                "Potvrda je gotova za deset minuta. „Hvala vam na pomoći“, kaže Amina.",
+                "Potvrda je gotova za deset minuta. „Hvala Vam na pomoći“, kaže Amina.",
         "uebersetzung": "Amina braucht eine Wohnsitzbescheinigung. Sie geht um acht Uhr zum Gemeindeamt. Am Schalter fragt sie: „Guten Tag, ich brauche eine Wohnsitzbescheinigung. Welche Dokumente brauche ich?“ "
                 "Die Beamtin sagt: „Sie brauchen den Personalausweis und das Formular. Die Gebühr beträgt fünf Mark.“ Amina füllt das Formular aus und unterschreibt. Dann zahlt sie die Gebühr. "
                 "Die Bescheinigung ist in zehn Minuten fertig. „Danke für Ihre Hilfe“, sagt Amina.",
@@ -697,7 +702,7 @@ GESCHICHTEN = [
         # "plinski šporet" statt "plinski štednjak" (Prüfbericht 1.4, V13 a; Ajdin, F9 a,
         # 14.11.2026): Der Herd heißt in der App šporet, štednjak steht als kroatisch.
         "text": ("Bila je hladna januarska večer. Merima je baš kuhala večeru kad je odjednom nestalo struje. Cijela zgrada je bila u mraku, a njen sin Kenan se uplašio i počeo plakati.\n\n"
-                 "Merima je upalila svjetlo na telefonu i našla svijeće u ladici. Onda je neko pokucao na vrata. Bio je to komšija Hasan s trećeg sprata. „Komšinice, je li i kod vas nestalo struje?“ „Jeste. Znate li šta se desilo?“ „Zvao sam. Kažu da je kvar u cijelom naselju i da će ga popraviti za dva-tri sata.“\n\n"
+                 "Merima je upalila svjetlo na telefonu i našla svijeće u ladici. Onda je neko pokucao na vrata. Bio je to komšija Hasan s trećeg sprata. „Komšinice, je li i kod Vas nestalo struje?“ „Jeste. Znate li šta se desilo?“ „Zvao sam. Kažu da je kvar u cijelom naselju i da će ga popraviti za dva-tri sata.“\n\n"
                  "Hasan je imao plinski šporet, pa je pozvao komšije na čaj. Uskoro je u njegovom stanu bilo desetak ljudi. Komšinica Zehra je donijela kolače, a mladi bračni par s prvog sprata donio je gitaru. Djeca su se igrala u hodniku, a odrasli su pričali, pjevali i smijali se.\n\n"
                  "„Pet godina živimo u ovoj zgradi, a nikad nismo ovako sjedili zajedno“, rekla je Merima.\n\n"
                  "Oko deset sati struja se vratila. Svjetla su se upalila, a svi su malo razočarano zapljeskali. „Šteta“, rekao je Hasan. „Bilo je lijepo bez struje.“ Od te večeri komšije se mnogo češće druže."),
@@ -737,7 +742,7 @@ GESCHICHTEN = [
     {
         "id": "b1_posao", "titel": "Prvi dan na poslu", "stufe": "B1", "passt_zu": "arbeitsplatz",
         "text": ("Haris je završio elektrotehniku i u ponedjeljak je počeo raditi u jednoj firmi u Zenici. Noć prije nije mogao spavati. Ustao je u šest, obukao novu košulju i dva puta provjerio je li ponio sve dokumente.\n\n"
-                 "Na poslu ga je dočekala šefica, gospođa Mujić. „Dobro jutro, Harise, dobro došli! Prvo ću vam pokazati vašu kancelariju, a onda ćete upoznati kolege.“\n\n"
+                 "Na poslu ga je dočekala šefica, gospođa Mujić. „Dobro jutro, Harise, dobro došli! Prvo ću Vam pokazati Vašu kancelariju, a onda ćete upoznati kolege.“\n\n"
                  "Kolege su bile ljubazne. Najstariji među njima, Nedžad, radi u firmi već dvadeset godina. „Ako ti bilo šta treba, pitaj mene“, rekao je. „I nemoj se stidjeti. Svi smo nekad bili novi.“\n\n"
                  "Prije podne je Haris čitao pravila firme. U deset sati svi su otišli na pauzu, ali Haris nije znao da se u firmi kahva pije zajedno, pa je ostao za stolom. Nedžad se vratio po njega: „Hajde, kahva je svetinja!“\n\n"
                  "Poslije pauze je dobio prvi zadatak: morao je popraviti jedan stari aparat. Trebalo mu je tri sata, ali je uspio. Šefica je bila zadovoljna. „Odlično za prvi dan“, rekla je.\n\n"
@@ -767,8 +772,8 @@ GESCHICHTEN = [
                  "„Je li zgrada mirna? Dva dana sedmično radim od kuće.“\n"
                  "„Vrlo je mirna. Komšije su uglavnom stariji ljudi.“\n"
                  "„Odlično. Kada bih mogla pogledati stan?“\n"
-                 "„Može sutra u šest ako vam odgovara.“\n"
-                 "„Odgovara mi. Hvala vam, vidimo se sutra!“\n\n"
+                 "„Može sutra u šest ako Vam odgovara.“\n"
+                 "„Odgovara mi. Hvala Vam, vidimo se sutra!“\n\n"
                  "Sutradan je Selma pogledala stan. Bio je mali, ali svijetao i čist, a s balkona se vidio Trebević. Odmah je potpisala ugovor. Prvu noć je spavala na dušeku na podu, ali je bila presretna."),
         "uebersetzung": ("Selma hat eine Stelle in Sarajevo bekommen und sucht eine Wohnung. Im Internet hat sie diese Anzeige gefunden:\n\n"
                          "„Vermiete Einzimmerwohnung in Grbavica. Vierzig Quadratmeter, dritter Stock, mit Aufzug. Die Wohnung ist möbliert, renoviert und hat einen Balkon. In der Nähe: Straßenbahn, Schule und Laden. Miete fünfhundert Mark im Monat plus Nebenkosten. Haustiere nicht erlaubt. Anrufe nach 17 Uhr.“\n\n"
@@ -990,8 +995,8 @@ GESCHICHTEN += [
     {
         "id": "b1_doktor", "titel": "Kod doktora", "stufe": "B1", "passt_zu": "in_der_praxis",
         "text": ("Amar se već tri dana ne osjeća dobro. Boli ga grlo, ima temperaturu i stalno je umoran. U ponedjeljak ujutro nazvao je dom zdravlja i zakazao termin kod doktorice za deset sati.\n\n"
-                 "U čekaonici je bilo mnogo ljudi. Pored Amara je sjedio jedan stariji čovjek koji je stalno kašljao. „I vas boli grlo?“ pitao je čovjek. „Da, već tri dana“, odgovorio je Amar. „Sada su svi bolesni. To je od ovog vremena.“\n\n"
-                 "Kad je došao na red, doktorica ga je pitala: „Šta vas boli i od kada?“ Amar joj je sve objasnio. Ona ga je pregledala i izmjerila mu temperaturu. „Imate upalu grla. Nije ništa ozbiljno, ali morate se odmarati. Dat ću vam recept, a pet dana ste na bolovanju.“\n\n"
+                 "U čekaonici je bilo mnogo ljudi. Pored Amara je sjedio jedan stariji čovjek koji je stalno kašljao. „I Vas boli grlo?“ pitao je čovjek. „Da, već tri dana“, odgovorio je Amar. „Sada su svi bolesni. To je od ovog vremena.“\n\n"
+                 "Kad je došao na red, doktorica ga je pitala: „Šta Vas boli i od kada?“ Amar joj je sve objasnio. Ona ga je pregledala i izmjerila mu temperaturu. „Imate upalu grla. Nije ništa ozbiljno, ali morate se odmarati. Dat ću Vam recept, a pet dana ste na bolovanju.“\n\n"
                  "U apoteci mu je apotekar dao lijek i rekao: „Pijte jednu tabletu tri puta dnevno, poslije jela. I pijte mnogo čaja s medom.“\n\n"
                  "Kod kuće je Amar nazvao mamu. „Jesi li bio kod doktora?“ pitala je ona. „Jesam, mama. Nije ništa strašno.“ „Onda dobro. Čaj s medom i u krevet!“ Poslije pet dana Amar je opet bio zdrav i vratio se na posao."),
         "uebersetzung": ("Amar fühlt sich schon seit drei Tagen nicht gut. Sein Hals tut weh, er hat Fieber und ist ständig müde. Am Montagmorgen hat er im Gesundheitszentrum angerufen und für zehn Uhr einen Termin bei der Ärztin vereinbart.\n\n"
@@ -1084,9 +1089,9 @@ GESCHICHTEN += [
     {
         "id": "b1_zanat", "titel": "Stari zanat na Baščaršiji", "stufe": "B1", "passt_zu": "arbeitsplatz",
         "text": ("Lejla je ovog ljeta na odmoru u Sarajevu. Najviše joj se svidjela jedna mala ulica na Baščaršiji. Zove se Kazandžiluk. Tu se cijeli dan čuje kucanje čekića jer u malim radnjama majstori prave stvari od bakra.\n\n"
-                 "Lejla je ušla u jednu radnju. Za stolom je sjedio stariji čovjek i polako ukrašavao jednu džezvu. „Izvolite, slobodno pogledajte“, rekao je. „Jeste li vi napravili sve ove stvari?“ pitala je Lejla. „Jesam. Ovaj zanat sam naučio od oca, a on od svog oca. Naša porodica radi u ovoj radnji više od sto godina.“\n\n"
+                 "Lejla je ušla u jednu radnju. Za stolom je sjedio stariji čovjek i polako ukrašavao jednu džezvu. „Izvolite, slobodno pogledajte“, rekao je. „Jeste li Vi napravili sve ove stvari?“ pitala je Lejla. „Jesam. Ovaj zanat sam naučio od oca, a on od svog oca. Naša porodica radi u ovoj radnji više od sto godina.“\n\n"
                  "Majstor joj je pokazao kako se pravi džezva. Prvo se bakar reže, onda se dugo kuca čekićem, a na kraju se ukrašava. „Za jednu džezvu treba mi skoro cijeli dan“, objasnio je.\n\n"
-                 "„A ko će raditi kad vi odete u penziju?“ pitala je Lejla. Majstor je malo šutio. „Moj sin radi u banci. Mladi danas ne žele ovaj posao. Težak je, a ne zarađuje se mnogo.“\n\n"
+                 "„A ko će raditi kad Vi odete u penziju?“ pitala je Lejla. Majstor je malo šutio. „Moj sin radi u banci. Mladi danas ne žele ovaj posao. Težak je, a ne zarađuje se mnogo.“\n\n"
                  "Lejla je kupila džezvu i šest fildžana za nanu u Njemačkoj. „Neka je sa srećom!“ rekao je majstor. „I pijte kahvu iz nje. Nemojte je samo držati na polici.“"),
         "uebersetzung": ("Lejla ist diesen Sommer im Urlaub in Sarajevo. Am besten gefiel ihr eine kleine Gasse auf der Baščaršija. Sie heißt Kazandžiluk. Hier hört man den ganzen Tag Hämmern, denn in den kleinen Läden machen Handwerker Dinge aus Kupfer.\n\n"
                          "Lejla ging in einen Laden. Am Tisch saß ein älterer Mann und verzierte langsam ein Kupferkännchen. „Bitte sehr, schauen Sie sich ruhig um“, sagte er. „Haben Sie all diese Sachen gemacht?“, fragte Lejla. „Ja. Dieses Handwerk habe ich von meinem Vater gelernt und er von seinem Vater. Unsere Familie arbeitet seit über hundert Jahren in diesem Laden.“\n\n"

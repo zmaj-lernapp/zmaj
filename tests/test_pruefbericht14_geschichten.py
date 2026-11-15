@@ -33,14 +33,14 @@ raus, napraviti ("machen / zubereiten") stand schon drin. Der Ton von pismo
 (g09) gehoert zum alten Text; die Geschichte wartet in tests/offen_b1_teil2.py
 auf die naechste Vesna-Runde, die Datei bleibt liegen.
 
-S7: Vi, Vas, Vam standen mal gross, mal klein. Ajdin (F23): gross in
-Geschriebenem an eine Person, klein in Gespraechen der Erzaehlung, der
-Zahnarzt-Teil bleibt gross. Klein jetzt auch in b1_posao (die Chefin zu Haris,
-mit vašu) und b1_stan (Telefonat); gross bleibt die Nachricht in b1_telefon.
-Der Ton-Schluessel ist kleingeschrieben und bleibt (ton_bauen.schluessel).
-Seit dem 14.11.2026 (Offen-Liste, Punkt 3) auch opcina: "Hvala vam na pomoći"
-am Schalter. g10 bleibt, nur seine Wortzeiten gehoeren zum alten Text und
-warten in WORTZEITEN_NEU (tests/offen_b1_teil2.py) auf die Vesna-Runde.
+S7: Vi, Vas, Vam standen mal gross, mal klein. Ajdin (F23, 14.11.2026): gross
+in Geschriebenem an eine Person, klein in Gespraechen der Erzaehlung. Am
+15.11.2026 neu entschieden: "mach doch alles groß" - gross, sobald EINE Person
+hoeflich angeredet wird, auch in den Gespraechen (b1_posao, b1_stan, opcina,
+b1_struja, b1_doktor, b1_zanat; b1_telefon war es schon). Klein bleibt, wo
+mehrere gemeint sind: b1_voz, b1_rafting, b1_mejl. Der Ton-Schluessel ist
+kleingeschrieben und bleibt (ton_bauen.schluessel); die Wortzeiten von opcina
+(g10) gehoeren mit "Hvala Vam" wieder genau zum Text.
 
 B11 / F11 a: Die Lektion sagt, vor jer, da und ako steht kein Komma, wenn der
 Nebensatz hinter dem Hauptsatz steht (grammatik.py, satzbau). Sieben B1-Saetze
@@ -118,8 +118,9 @@ ENGLISCH = {
 # klein in den Gespraechen von b1_posao und b1_stan (46d93671…), seit F11 a
 # ohne die sieben Kommas vor nachgestelltem jer und ako (7ae50346…), seit der
 # Offen-Liste, Punkt 3, "Hvala vam na pomoći" klein in opcina (bc6caa52…), dann
-# "Dedo i nana se sele" statt "Selidba".
-TEXTE_SHA256 = "ccb927282ee9eec5450739fa64a01284c31d0278860c3f15b2c73493efe1744d"
+# "Dedo i nana se sele" statt "Selidba" (ccb92728…), seit 15.11.2026 das
+# hoefliche Vi gross auch in den Gespraechen (Ajdin: "mach doch alles groß").
+TEXTE_SHA256 = "21871bb1cdc5a40ac41cfb58b4821c05459316e73f546155477fa5c6dcd054f9"
 
 
 def _geschichten(daten):
@@ -333,18 +334,27 @@ def test_s3_pismo_wartet_auf_ton(wurzel):
 
 
 # ---------------------------------------------------------------------------
-# S7: hoefliches Vi gross nur in Geschriebenem an eine Person (Ajdin, F23)
+# S7: hoefliches Vi gross, sobald EINE Person hoeflich angeredet wird, auch im
+# Gespraech (Ajdin am 15.11.2026: "mach doch alles groß", statt F23)
 # ---------------------------------------------------------------------------
 VI_FORMEN = re.compile(r"(?<![^\W\d_])(vi|vas|vam|vama|vaš|vaša|vaše|vašu|vašeg|vašem|vašoj|vaši|vašim|vaših)"
                        r"(?![^\W\d_])", re.I)
 
-# Geschichte -> Stellen, wie sie jetzt im Text stehen
+# Geschichte -> Stellen, wie sie jetzt im Text stehen: EINE Person, hoeflich
 S7 = {
-    "b1_posao": ["Prvo ću vam pokazati vašu kancelariju"],                 # die Chefin zu Haris
-    "b1_stan": ["ako vam odgovara", "Hvala vam, vidimo se sutra!"],         # Telefonat
+    "opcina": ["„Hvala Vam na pomoći“, kaže Amina."],                       # Amina am Schalter
+    "b1_struja": ["„Komšinice, je li i kod Vas nestalo struje?“"],           # Hasan zu Merima
+    "b1_posao": ["Prvo ću Vam pokazati Vašu kancelariju"],                  # die Chefin zu Haris
+    "b1_stan": ["ako Vam odgovara", "Hvala Vam, vidimo se sutra!"],         # Telefonat
     "b1_telefon": ["Ako ste ga našli, molim Vas, javite se."],             # Nachricht, geschrieben
-    "b1_doktor": ["„I vas boli grlo?“", "„Šta vas boli i od kada?“", "Dat ću vam recept"],
-    "b1_zanat": ["„Jeste li vi napravili", "kad vi odete u penziju"],
+    "b1_doktor": ["„I Vas boli grlo?“", "„Šta Vas boli i od kada?“", "Dat ću Vam recept"],
+    "b1_zanat": ["„Jeste li Vi napravili", "kad Vi odete u penziju"],      # Lejla zum Meister
+}
+# Klein, weil mehrere gemeint sind (ihr, euch)
+S7_KLEIN = {
+    "b1_voz": ["„Ako vam nešto zatreba, nazovite me.“"],                    # die Frau zu Lejla und Emir
+    "b1_rafting": ["Prsluk će vas držati."],                                 # der Instruktor zur Gruppe
+    "b1_mejl": ["kod vas ako vam to ne smeta", "Šta da vam donesem"],       # an Cousin und Familie
 }
 
 
@@ -360,37 +370,48 @@ def _gross_mitten_im_satz(text):
 
 def test_s7_stellen(grunddaten):
     g = _geschichten(grunddaten)
-    for gid, stellen in S7.items():
+    for gid, stellen in list(S7.items()) + list(S7_KLEIN.items()):
         for stelle in stellen:
             assert stelle in g[gid]["text"], (gid, stelle)
 
 
-def test_s7_gross_nur_in_der_nachricht(grunddaten):
-    """In den B1-Texten steht ein grosses Vi mitten im Satz nur noch in der
-    Nachricht an den Finder des Handys. "„Vaš telefon …" beginnt die Rede.
-    b1_mejl schreibt dem Cousin und seiner Familie (vas, vam: euch), klein."""
-    gross = {g["id"]: _gross_mitten_im_satz(g["text"]) for g in grunddaten["geschichten"]
-             if g["id"].startswith("b1_")}
-    assert {k: v for k, v in gross.items() if v} == {"b1_telefon": ["Vas"]}
+def test_s7_klein_nur_wo_mehrere_gemeint_sind(grunddaten):
+    """Ueber alle Geschichten steht ein kleines vi, vas, vam oder vaš nur noch
+    dort, wo mehrere angeredet werden. Kommt eine Stelle dazu, schlaegt der
+    Test an: dann lesen, wer mit wem spricht."""
+    klein = {g["id"]: [m.group() for m in VI_FORMEN.finditer(g["text"]) if m.group()[0].islower()]
+             for g in grunddaten["geschichten"]}
+    assert {k: v for k, v in klein.items() if v} == {
+        "b1_voz": ["vam"], "b1_rafting": ["vas"], "b1_mejl": ["vas", "vam", "vam"]}
 
 
-def test_s7_gross_ueberall_nur_in_der_nachricht(grunddaten):
-    """Ueber alle Geschichten steht ein grosses Vi mitten im Satz nur noch in
-    der Nachricht von b1_telefon. Seit dem 14.11.2026 (Offen-Liste, Punkt 3)
-    auch in opcina klein: "Hvala vam na pomoći" sagt Amina am Schalter, ein
-    Gespraech wie in F23. Kommt eine zweite Stelle dazu, schlaegt der Test an."""
+def test_s7_gross_auch_im_gespraech(grunddaten):
+    """Jede hoefliche Anrede einer Person steht gross, mitten im Satz wie in
+    der Nachricht von b1_telefon. "„Vaš telefon …" beginnt die Rede."""
     gross = {g["id"]: _gross_mitten_im_satz(g["text"]) for g in grunddaten["geschichten"]}
-    assert {k: v for k, v in gross.items() if v} == {"b1_telefon": ["Vas"]}
+    assert {k: v for k, v in gross.items() if v} == {
+        "opcina": ["Vam"], "b1_struja": ["Vas"], "b1_posao": ["Vam", "Vašu"], "b1_stan": ["Vam", "Vam"],
+        "b1_telefon": ["Vas"], "b1_doktor": ["Vas", "Vas", "Vam"], "b1_zanat": ["Vi", "Vi"]}
     opcina = _geschichten(grunddaten)["opcina"]
-    assert "„Hvala vam na pomoći“, kaže Amina." in opcina["text"]
     assert "„Danke für Ihre Hilfe“, sagt Amina." in opcina["uebersetzung"]
 
 
+@pytest.mark.parametrize("gid,sie", [
+    ("opcina", "Danke für Ihre Hilfe"), ("b1_struja", "ist bei Ihnen auch der Strom weg"),
+    ("b1_posao", "zeige ich Ihnen Ihr Büro"), ("b1_stan", "wenn es Ihnen passt"),
+    ("b1_doktor", "Tut Ihnen auch der Hals weh"), ("b1_doktor", "Was tut Ihnen weh"),
+    ("b1_doktor", "Ich gebe Ihnen ein Rezept"), ("b1_zanat", "Haben Sie all diese Sachen gemacht"),
+    ("b1_zanat", "wenn Sie in Rente gehen"),
+])
+def test_s7_uebersetzung_in_der_sie_form(grunddaten, gid, sie):
+    """Wo das Bosnische siezt, siezt auch die Uebersetzung."""
+    assert sie in _geschichten(grunddaten)[gid]["uebersetzung"], (gid, sie)
+
+
 def test_s7_opcina_behaelt_ihren_ton(wurzel):
-    """Der Ton-Schluessel ist kleingeschrieben: g10 passt weiter, gleich viele
-    Woerter, die App markiert beim Vorlesen richtig. Nur die Wortzeiten
-    gehoeren zum alten Text mit "Vam" und werden in der naechsten Vesna-Runde
-    neu geholt (WORTZEITEN_NEU in tests/offen_b1_teil2.py)."""
+    """Der Ton-Schluessel ist kleingeschrieben: g10 passt. Seit dem 15.11.2026
+    steht wieder "Hvala Vam" wie in der Aufnahme, die Wortzeiten gehoeren damit
+    wieder genau zum Text, opcina steht nicht mehr in WORTZEITEN_NEU."""
     import io
     import json
     import os
@@ -405,10 +426,10 @@ def test_s7_opcina_behaelt_ihren_ton(wurzel):
     assert g10["key"] == ton_bauen.schluessel(g["text"])
     assert "Hvala Vam na pomoći" in g10["text"]
     assert len(g10["w"]) == len(ton_bauen.textwoerter(g["text"]))
-    assert "opcina" in offen_b1_teil2.WORTZEITEN_NEU
+    assert ton_bauen.wortzeiten_passen(g10, g["text"])
+    assert "opcina" not in offen_b1_teil2.WORTZEITEN_NEU
     assert "opcina" not in offen_b1_teil2.GESCHICHTEN
     assert ton_bauen.schluessel(g["text"]) not in offen_lesetexte.GESCHICHTEN
-    assert "Hvala Vam" not in geschichten.__doc__
 
 
 def test_s7_ton_schluessel_bleibt():
@@ -417,7 +438,7 @@ def test_s7_ton_schluessel_bleibt():
     import geschichten
     import offen_lesetexte
     import ton_bauen
-    for gid in ("b1_posao", "b1_stan"):
+    for gid in ("b1_posao", "b1_stan", "b1_struja"):
         g = next(s for s in geschichten.GESCHICHTEN if s["id"] == gid)
         assert ton_bauen.schluessel(g["text"]) == g["text"].lower()
         assert ton_bauen.schluessel(g["text"]) in offen_lesetexte.GESCHICHTEN, gid
@@ -433,7 +454,7 @@ F11 = {
     "b1_jahorina": "Ajdin je obukao debelu jaknu, kapu i rukavice jer je vani bilo minus osam.",
     "b1_zanat": "Tu se cijeli dan čuje kucanje čekića jer u malim radnjama majstori prave stvari od bakra.",
     "b1_zmaj": "Već nekoliko mjeseci uči bosanski jer ovog ljeta ide kod nane u Mostar.",
-    "b1_stan": "„Može sutra u šest ako vam odgovara.“",
+    "b1_stan": "„Može sutra u šest ako Vam odgovara.“",
     "b1_mejl": "Prvu sedmicu bih bio kod vas ako vam to ne smeta.",
 }
 KOMMA_DAVOR = re.compile(r",\s+(jer|ako)(?![^\W\d_])")

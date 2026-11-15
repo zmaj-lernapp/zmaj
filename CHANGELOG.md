@@ -751,18 +751,20 @@ are in the Play Store listing. Format:
   dictionary, *napraviti* was already there. The old recording (g09) belongs to
   the old text, so the story waits for the next Vesna round with the B1 stories
   (`tests/offen_b1_teil2.py`); the file stays. `tests/test_pruefbericht14_geschichten.py`.
-- Polite *Vi* in the reading stories (review for 1.4, 14.11.2026, S7; decided by
-  the maintainer, F23): capitalised only in writing to one person, lower case in
-  the conversations of a story. *Prvi dan na poslu* ("Prvo ću vam pokazati vašu
-  kancelariju") and the phone call in *Izdajem stan* ("ako vam odgovara", "Hvala
-  vam") are now lower case like *Kod doktora* and *Stari zanat na Baščaršiji*; the
-  message in *Izgubljeni telefon* keeps "molim Vas". The dental section stays
-  capitalised. The audio keys are lower case, so nothing needs new audio.
-  `tests/test_pruefbericht14_geschichten.py`. By the same rule *Na općini* now has
-  "Hvala vam na pomoći" at the counter. Its recording (g10) stays, only the word
-  timings were taken for the old spelling and are fetched again in the next Vesna
-  round (`WORTZEITEN_NEU` in `tests/offen_b1_teil2.py`); until then the app still
-  highlights the right words. `tests/test_wortzeiten.py`.
+- Polite *Vi* in the reading stories (review for 1.4, S7; decided by the
+  maintainer on 15.11.2026: "mach doch alles groß", replacing the rule of
+  14.11.2026 that kept it lower case in conversations): *Vi, Vas, Vam, Vaš* are
+  capitalised whenever one person is addressed politely, in conversations as well
+  as in writing - *Na općini* ("Hvala Vam na pomoći"), *Komšiluk bez struje*,
+  *Prvi dan na poslu* ("Prvo ću Vam pokazati Vašu kancelariju"), the phone call in
+  *Izdajem stan*, *Kod doktora* and *Stari zanat na Baščaršiji*; *Izgubljeni
+  telefon* already had "molim Vas". Lower case stays where several people are
+  meant (the train, the rafting group, the e-mail to the cousin's family). The
+  grammar hint "Höflich = Vi → ste." follows suit in all languages; vocabulary,
+  sentences and the dental section were capitalised already. The audio keys are
+  lower case, so nothing needs new audio, and the word timings of *Na općini* (g10)
+  match its text again. `tests/test_pruefbericht14_geschichten.py`,
+  `tests/test_wortzeiten.py`.
 - Commas before *jer* and *ako* (review for 1.4, 14.11.2026, B11; decided by the
   maintainer, F11 a): the grammar lesson teaches no comma before *jer*, *da* and
   *ako* when the clause follows the main clause, yet seven B1 sentences had one

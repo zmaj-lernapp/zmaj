@@ -2596,7 +2596,7 @@ INHALT = {
     "Ausnahme: babo ist männlich, obwohl es auf -o endet.":
         "Exception: babo is masculine even though it ends in -o.",
     "Berufe: -ik → -ica.": "Job titles: -ik → -ica.",
-    "Höflich = vi → ste.": "Polite form = vi → ste.",
+    "Höflich = Vi → ste.": "Polite form = Vi → ste.",
     "weiblich → -e.": "feminine → -e.",
     "kurzes männliches Wort → -ovi.": "short masculine word → -ovi.",
     "sächlich → -a.": "neuter → -a.",
@@ -13621,7 +13621,7 @@ INHALT = {
     "more endet auf -e → sächlich → veliko.": "more -e ile biter → nötr → veliko.",
     "Ausnahme: babo ist männlich, obwohl es auf -o endet.": "İstisna: babo -o ile bitse de erildir.",
     "Berufe: -ik → -ica.": "Meslek adları: -ik → -ica.",
-    "Höflich = vi → ste.": "Kibar biçim = vi → ste.",
+    "Höflich = Vi → ste.": "Kibar biçim = Vi → ste.",
     "weiblich → -e.": "dişil → -e.",
     "kurzes männliches Wort → -ovi.": "kısa eril kelime → -ovi.",
     "sächlich → -a.": "nötr → -a.",
@@ -24638,7 +24638,7 @@ INHALT = {
     "Ausnahme: babo ist männlich, obwohl es auf -o endet.":
         "Undantag: babo är maskulint fast det slutar på -o.",
     "Berufe: -ik → -ica.": "Yrkesord: -ik → -ica.",
-    "Höflich = vi → ste.": "Artig form = vi → ste.",
+    "Höflich = Vi → ste.": "Artig form = Vi → ste.",
     "weiblich → -e.": "femininum → -e.",
     "kurzes männliches Wort → -ovi.": "kort maskulint ord → -ovi.",
     "sächlich → -a.": "neutrum → -a.",
@@ -35643,7 +35643,7 @@ INHALT = {
     "Ausnahme: babo ist männlich, obwohl es auf -o endet.":
         "Uitzondering: babo is mannelijk hoewel het op -o eindigt.",
     "Berufe: -ik → -ica.": "Beroepen: -ik → -ica.",
-    "Höflich = vi → ste.": "Beleefde vorm = vi → ste.",
+    "Höflich = Vi → ste.": "Beleefde vorm = Vi → ste.",
     "weiblich → -e.": "vrouwelijk → -e.",
     "kurzes männliches Wort → -ovi.": "kort mannelijk woord → -ovi.",
     "sächlich → -a.": "onzijdig → -a.",
@@ -46648,7 +46648,7 @@ INHALT = {
     "Ausnahme: babo ist männlich, obwohl es auf -o endet.":
         "Unntak: babo er hankjønn selv om det slutter på -o.",
     "Berufe: -ik → -ica.": "Yrkesord: -ik → -ica.",
-    "Höflich = vi → ste.": "Høflig form = vi → ste.",
+    "Höflich = Vi → ste.": "Høflig form = Vi → ste.",
     "weiblich → -e.": "hunkjønn → -e.",
     "kurzes männliches Wort → -ovi.": "kort hankjønnsord → -ovi.",
     "sächlich → -a.": "intetkjønn → -a.",
@@ -57651,7 +57651,7 @@ INHALT = {
     "Ausnahme: babo ist männlich, obwohl es auf -o endet.":
         "Undtagelse: babo er hankøn, selv om det ender på -o.",
     "Berufe: -ik → -ica.": "Erhvervsord: -ik → -ica.",
-    "Höflich = vi → ste.": "Høflig form = vi → ste.",
+    "Höflich = Vi → ste.": "Høflig form = Vi → ste.",
     "weiblich → -e.": "hunkøn → -e.",
     "kurzes männliches Wort → -ovi.": "kort hankønsord → -ovi.",
     "sächlich → -a.": "intetkøn → -a.",
@@ -68660,7 +68660,7 @@ INHALT = {
     "Ausnahme: babo ist männlich, obwohl es auf -o endet.":
         "Exception : babo est masculin, bien qu'il se termine par -o.",
     "Berufe: -ik → -ica.": "Métiers : -ik → -ica.",
-    "Höflich = vi → ste.": "Vouvoiement = vi → ste.",
+    "Höflich = Vi → ste.": "Vouvoiement = Vi → ste.",
     "weiblich → -e.": "féminin → -e.",
     "kurzes männliches Wort → -ovi.": "mot masculin court → -ovi.",
     "sächlich → -a.": "neutre → -a.",
