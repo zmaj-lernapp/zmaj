@@ -63,6 +63,8 @@ FAELLE = {
     ("b1_rodjendan", "ugasio", "sve"): ("alle (sve svijeće: alle Kerzen)", "all (sve svijeće: all the candles)"),
     ("b1_rodjendan", "jednom", "dahu"): ("Atem (Lok.) (u jednom dahu: in einem Atemzug)",
                                         "breath (loc.) (u jednom dahu: in one breath)"),
+    ("b1_utakmica", "grlio", "oca"): ("Vater (Gen./Akk.)", "father (gen./acc.)"),
+    ("b1_zanat", "od", "oca"): ("Vater (Gen./Akk.)", "father (gen./acc.)"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -87,6 +89,8 @@ ZU_SEHEN = {
     "b1_rodjendan": ("Haris je ugasio sve svijeće u jednom dahu",
                      "Haris blies alle Kerzen in einem Atemzug aus",
                      "Haris blew out all the candles in one breath"),
+    "b1_utakmica": ("Kenan je grlio oca i ljude", "Kenan umarmte seinen Vater und Leute",
+                    "Kenan hugged his father and people"),
 }
 
 

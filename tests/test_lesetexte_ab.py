@@ -53,6 +53,7 @@ B = {
     "T5": ("b1_rodjendan", "„Idemo kod tvojih roditelja na večeru.“", "„Idemo kod tvojih na večeru.“"),
     "T6": ("b1_rodjendan", "Haris je ugasio sve svijeće u jednom dahu, a svi su vikali: „Bravo!“",
            "Haris ih je ugasio odjednom"),
+    "T7": ("b1_utakmica", "Kenan je grlio oca i ljude koje nikad prije nije vidio.", "Kenan je grlio babu"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -86,6 +87,7 @@ DE = {
                    "und Sie sind fünf Tage krankgeschrieben")],
     "b1_rodjendan": [("Haris blies alle Kerzen in einem Atemzug aus, und alle riefen: „Bravo!“",
                       "Haris blies sie auf einmal aus")],
+    "b1_utakmica": [("Kenan umarmte seinen Vater und Leute, die er noch nie gesehen hatte.", "Kenan umarmte Papa")],
 }
 
 # Stichprobe: so heißt es jetzt auf Englisch
@@ -95,6 +97,7 @@ EN = {
     "b1_posao": "Nedžad came back for him: “Come on, coffee is a must!”",
     "b1_doktor": "I'll give you a prescription and put you on sick leave for five days.",
     "b1_rodjendan": "Haris blew out all the candles in one breath, and everyone shouted: “Bravo!”",
+    "b1_utakmica": "Kenan hugged his father and people he had never seen before.",
 }
 
 # Neue Formen im Wörterbuch der Lesetexte und ihre Bedeutung
@@ -125,16 +128,19 @@ NEU = {
     "roditelja": "Eltern (Gen.)",
     "svijeće": "Kerzen",
     "dahu": "Atem (Lok.) (u jednom dahu: in einem Atemzug)",
+    # in Stari zanat "od oca" (Gen.), in Utakmica "grlio oca" (Akk.)
+    "oca": "Vater (Gen./Akk.)",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
 RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
-        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku", "bolovanju", "ih"]
+        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku", "bolovanju", "ih", "babu"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
 RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",
               "Januar- (w)", "tanzen / spielen", "Elektrotechnik (Akk.)", "Heiligtum", "Krankschreibung (Lok.)",
-              "auf einmal", "deinen (kod tvojih: bei deinen Eltern)", "sie (Akk. Mehrz.)"]
+              "auf einmal", "deinen (kod tvojih: bei deinen Eltern)", "sie (Akk. Mehrz.)", "Papa (Akk.)",
+              "Vater (Gen.)"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").

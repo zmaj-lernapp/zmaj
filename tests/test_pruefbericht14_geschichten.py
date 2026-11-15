@@ -123,7 +123,7 @@ ENGLISCH = {
 # hoefliche Vi gross auch in den Gespraechen (Ajdin: "mach doch alles groß",
 # 21871bb1…), dann Ajdins A/B-Antworten zu den B1-Lesetexten, eine Geschichte
 # nach der anderen (tests/test_lesetexte_ab.py).
-TEXTE_SHA256 = "6c7c33cd7d38e4d63c29fd6b8eafbbeaf1819e1d6eb2cacc235a6c59753b14a7"
+TEXTE_SHA256 = "ad0fe7a7c57667712a8a1914609797354fbb34c1ea2bc610b6c58790c7ed3e12"
 
 
 def _geschichten(daten):

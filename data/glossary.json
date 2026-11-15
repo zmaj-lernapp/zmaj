@@ -408,19 +408,6 @@
    }
   },
   {
-   "bs": "babu",
-   "translations": {
-    "de": "Papa (Akk.)",
-    "en": "dad (acc.)",
-    "tr": "baba (akuzatif)",
-    "sv": "pappa (ackusativ)",
-    "nl": "papa (accusatief)",
-    "nb": "pappa (akkusativ)",
-    "da": "far (akkusativ)",
-    "fr": "papa (accusatif)"
-   }
-  },
-  {
    "bs": "bakar",
    "translations": {
     "de": "Kupfer",
@@ -9120,14 +9107,14 @@
   {
    "bs": "oca",
    "translations": {
-    "de": "Vater (Gen.)",
-    "en": "father (gen.)",
-    "tr": "baba (genitif)",
-    "sv": "far (genitiv)",
-    "nl": "vader (genitief)",
-    "nb": "far (genitiv)",
-    "da": "far (genitiv)",
-    "fr": "père (génitif)"
+    "de": "Vater (Gen./Akk.)",
+    "en": "father (gen./acc.)",
+    "tr": "baba (genitif/akuzatif)",
+    "sv": "far (genitiv/ackusativ)",
+    "nl": "vader (genitief/accusatief)",
+    "nb": "far (genitiv/akkusativ)",
+    "da": "far (genitiv/akkusativ)",
+    "fr": "père (génitif/accusatif)"
    }
   },
   {

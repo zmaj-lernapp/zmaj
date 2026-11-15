@@ -41,7 +41,7 @@ configs:
 
 # Zmaj: open Bosnian course
 
-**7,997 words and phrases, 300 cloze sentences, 32 graded stories, 1,521
+**7,997 words and phrases, 300 cloze sentences, 32 graded stories, 1,520
 glossary entries and 26 grammar lessons in Bosnian (Ijekavian, Latin
 script), each translated into German, English, Turkish, Swedish, Dutch,
 Norwegian Bokmål, Danish and French**, with a synthetic Bosnian audio file for

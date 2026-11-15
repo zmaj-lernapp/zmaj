@@ -946,7 +946,7 @@ WOERTERBUCH_B1_2 = {
     "drugom": "zweiten (Lok.)", "poluvremenu": "Halbzeit (Lok.)", "naši": "unsere (Mehrz.)",
     "šezdesetoj": "sechzigsten (Lok.)",
     "kraja": "Ende (Gen.)", "igrač": "Spieler", "stadion": "Stadion",
-    "grlio": "umarmt (m)", "babu": "Papa (Akk.)", "ljude": "Leute (Akk.)",
+    "grlio": "umarmt (m)", "ljude": "Leute (Akk.)",
     "koje": "die (Akk. Mehrz.)", "tek": "erst", "glasa": "Stimme (Gen.)",
     "pjevanja": "Singen (Gen.)",
     # b1_zanat
@@ -958,7 +958,7 @@ WOERTERBUCH_B1_2 = {
     "bakra": "Kupfer (Gen.)", "ušla": "hineingegangen (w)", "radnju": "Laden (Akk.)",
     "ukrašavao": "verziert (m)", "džezvu": "Kupferkännchen (Akk.)", "izvolite": "Bitte sehr (beim Überreichen)",
     "slobodno": "ruhig / frei", "pogledajte": "schauen Sie (Befehl)", "napravili": "gemacht (Mehrz.)",
-    "ove": "diese (Akk. Mehrz.)", "zanat": "Handwerk", "naučio": "gelernt (m)", "oca": "Vater (Gen.)",
+    "ove": "diese (Akk. Mehrz.)", "zanat": "Handwerk", "naučio": "gelernt (m)", "oca": "Vater (Gen./Akk.)",
     "svog": "seines / eigenen (Gen.)", "majstor": "Handwerker / Fachmann",
     "pokazao": "gezeigt (m)", "džezva": "Kupferkännchen", "bakar": "Kupfer",
     "reže": "schneidet (se reže: wird geschnitten)", "kuca": "klopft / hämmert", "čekićem": "Hammer (Instr.)",
@@ -1103,15 +1103,17 @@ GESCHICHTEN += [
     },
     {
         "id": "b1_utakmica", "titel": "Utakmica", "stufe": "B1", "passt_zu": "sport",
+        # A/B-Liste, Ajdin 15.11.2026: T7 B "grlio oca" statt "babu". T16 A: "kad
+        # idemo opet" bleibt.
         "text": ("Kenan ima dvanaest godina i jako voli fudbal. Za njegov rođendan babo je kupio dvije karte za utakmicu reprezentacije u Zenici. Bosna i Hercegovina igra protiv Islanda, a to je važna utakmica za Evropsko prvenstvo.\n\n"
                  "Na dan utakmice krenuli su iz Sarajeva već u podne. Na autoputu su vidjeli mnogo auta sa zastavama. Ispred stadiona je bila velika gužva. Navijači su nosili plave majice i pjevali: „Zmajevi, Zmajevi!“\n\n"
                  "Utakmica je počela u osam sati. Prvo poluvrijeme je bilo teško. Island je bio bolji i u tridesetoj minuti je dao gol. Kenan je bio tužan, ali babo mu je rekao: „Polako, sine. Utakmica traje devedeset minuta.“\n\n"
-                 "U drugom poluvremenu naši su igrali mnogo bolje. U šezdesetoj minuti i Bosna je dala gol, a pet minuta prije kraja naš igrač je dao još jedan. Cijeli stadion je skočio. Kenan je grlio babu i ljude koje nikad prije nije vidio.\n\n"
+                 "U drugom poluvremenu naši su igrali mnogo bolje. U šezdesetoj minuti i Bosna je dala gol, a pet minuta prije kraja naš igrač je dao još jedan. Cijeli stadion je skočio. Kenan je grlio oca i ljude koje nikad prije nije vidio.\n\n"
                  "Kući su stigli tek poslije ponoći, umorni i bez glasa od pjevanja. „Babo, kad idemo opet?“ pitao je Kenan."),
         "uebersetzung": ("Kenan ist zwölf Jahre alt und liebt Fußball sehr. Zu seinem Geburtstag hat Papa zwei Karten für ein Spiel der Nationalmannschaft in Zenica gekauft. Bosnien und Herzegowina spielt gegen Island, und das ist ein wichtiges Spiel für die Europameisterschaft.\n\n"
                          "Am Tag des Spiels fuhren sie schon mittags in Sarajevo los. Auf der Autobahn sahen sie viele Autos mit Fahnen. Vor dem Stadion war ein großes Gedränge. Die Fans trugen blaue T-Shirts und sangen: „Drachen, Drachen!“\n\n"
                          "Das Spiel begann um acht Uhr. Die erste Halbzeit war schwer. Island war besser und schoss in der dreißigsten Minute ein Tor. Kenan war traurig, aber Papa sagte zu ihm: „Ruhig, mein Sohn. Ein Spiel dauert neunzig Minuten.“\n\n"
-                         "In der zweiten Halbzeit spielten unsere viel besser. In der sechzigsten Minute schoss auch Bosnien ein Tor, und fünf Minuten vor dem Ende schoss unser Spieler noch eins. Das ganze Stadion sprang auf. Kenan umarmte Papa und Leute, die er noch nie gesehen hatte.\n\n"
+                         "In der zweiten Halbzeit spielten unsere viel besser. In der sechzigsten Minute schoss auch Bosnien ein Tor, und fünf Minuten vor dem Ende schoss unser Spieler noch eins. Das ganze Stadion sprang auf. Kenan umarmte seinen Vater und Leute, die er noch nie gesehen hatte.\n\n"
                          "Nach Hause kamen sie erst nach Mitternacht, müde und ohne Stimme vom Singen. „Papa, wann gehen wir wieder?“, fragte Kenan."),
         "vokabeln": {"prvo": "erste (s) / zuerst", "karte": "Karten / Tickets"},
         "fragen": [

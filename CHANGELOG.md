@@ -807,7 +807,8 @@ are in the Play Store listing. Format:
   pharmacist *Uzimajte* instead of *Pijte*, and Amar is *ponovo* healthy
   instead of *opet*. *Rođendansko iznenađenje*: *kod tvojih roditelja* instead
   of *kod tvojih*, and Haris blows out *sve svijeće u jednom dahu* instead of
-  *ih … odjednom*.
+  *ih … odjednom*. *Utakmica*: Kenan hugs *oca*, his father, instead of
+  *babu*.
   None of these stories had audio yet; they wait for the next Vesna round.
   `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it
