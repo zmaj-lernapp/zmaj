@@ -11404,7 +11404,6 @@ INHALT = {
     "Wetter- (Akk.)": "weather (acc.)",
     "Vorhersage (Akk.)": "forecast (acc.)",
     "Radio (Lok.)": "radio (loc.)",
-    "sehr geehrte": "dear (formal)",
     "Zuhörer": "listeners",
     "bewölkt": "cloudy",
     "Berg- (Lok. Mehrz.)": "mountain (loc. pl.)",
@@ -11820,6 +11819,8 @@ INHALT = {
     "eigene (Mehrz.)": "own (pl.)",
     # ---- Lesetexte A/B (Ajdin 15.11.2026): neue Bedeutungen und Fragen ----
     "Ćevapi (Gen.)": "ćevapi (gen.)",
+    "grillen": "to grill / to barbecue",
+    "liebe (Mehrz.)": "dear (pl.)",
     # ENDE en texte
 },
 },
@@ -22429,7 +22430,6 @@ INHALT = {
     "Wetter- (Akk.)": "hava (akuzatif)",
     "Vorhersage (Akk.)": "tahmin (akuzatif)",
     "Radio (Lok.)": "radyo (lokatif)",
-    "sehr geehrte": "sayın",
     "Zuhörer": "dinleyiciler",
     "bewölkt": "bulutlu",
     "Berg- (Lok. Mehrz.)": "dağlık (lokatif çoğul)",
@@ -22845,6 +22845,8 @@ INHALT = {
     "eigene (Mehrz.)": "kendi (çoğul)",
     # ---- Lesetexte A/B (Ajdin 15.11.2026): neue Bedeutungen und Fragen ----
     "Ćevapi (Gen.)": "ćevapi (genitif)",
+    "grillen": "ızgara yapmak / mangal yapmak",
+    "liebe (Mehrz.)": "sevgili (çoğul)",
     # ENDE tr texte
 },
 },
@@ -33436,7 +33438,6 @@ INHALT = {
     "Wetter- (Akk.)": "väder- (ackusativ)",
     "Vorhersage (Akk.)": "prognos (ackusativ)",
     "Radio (Lok.)": "radio (lokativ)",
-    "sehr geehrte": "ärade",
     "Zuhörer": "lyssnare",
     "bewölkt": "molnigt",
     "Berg- (Lok. Mehrz.)": "berg- (lokativ plural)",
@@ -33852,6 +33853,8 @@ INHALT = {
     "eigene (Mehrz.)": "egna (plural)",
     # ---- Lesetexte A/B (Ajdin 15.11.2026): neue Bedeutungen und Fragen ----
     "Ćevapi (Gen.)": "ćevapi (genitiv)",
+    "grillen": "grilla",
+    "liebe (Mehrz.)": "kära",
     # ENDE sv texte
 },
 },
@@ -44440,7 +44443,6 @@ INHALT = {
     "Wetter- (Akk.)": "weer- (accusatief)",
     "Vorhersage (Akk.)": "voorspelling (accusatief)",
     "Radio (Lok.)": "radio (locatief)",
-    "sehr geehrte": "beste",
     "Zuhörer": "luisteraars",
     "bewölkt": "bewolkt",
     "Berg- (Lok. Mehrz.)": "berg- (locatief meervoud)",
@@ -44856,6 +44858,8 @@ INHALT = {
     "eigene (Mehrz.)": "eigen (meervoud)",
     # ---- Lesetexte A/B (Ajdin 15.11.2026): neue Bedeutungen und Fragen ----
     "Ćevapi (Gen.)": "ćevapi (genitief)",
+    "grillen": "grillen / barbecueën",
+    "liebe (Mehrz.)": "beste (meervoud)",
     # ENDE nl texte
 },
 },
@@ -55444,7 +55448,6 @@ INHALT = {
     "Wetter- (Akk.)": "vær- (akkusativ)",
     "Vorhersage (Akk.)": "varsel (akkusativ)",
     "Radio (Lok.)": "radio (lokativ)",
-    "sehr geehrte": "kjære",
     "Zuhörer": "lyttere",
     "bewölkt": "overskyet",
     "Berg- (Lok. Mehrz.)": "fjell- (lokativ flertall)",
@@ -55860,6 +55863,8 @@ INHALT = {
     "eigene (Mehrz.)": "egne (flertall)",
     # ---- Lesetexte A/B (Ajdin 15.11.2026): neue Bedeutungen und Fragen ----
     "Ćevapi (Gen.)": "ćevapi (genitiv)",
+    "grillen": "grille",
+    "liebe (Mehrz.)": "kjære",
     # ENDE nb texte
 },
 },
@@ -66449,7 +66454,6 @@ INHALT = {
     "Wetter- (Akk.)": "vejr- (akkusativ)",
     "Vorhersage (Akk.)": "udsigt (akkusativ)",
     "Radio (Lok.)": "radio (lokativ)",
-    "sehr geehrte": "kære",
     "Zuhörer": "lyttere",
     "bewölkt": "overskyet",
     "Berg- (Lok. Mehrz.)": "bjerg- (lokativ flertal)",
@@ -66865,6 +66869,8 @@ INHALT = {
     "eigene (Mehrz.)": "egne (flertal)",
     # ---- Lesetexte A/B (Ajdin 15.11.2026): neue Bedeutungen und Fragen ----
     "Ćevapi (Gen.)": "ćevapi (genitiv)",
+    "grillen": "at grille",
+    "liebe (Mehrz.)": "kære",
     # ENDE da texte
 },
 },
@@ -77464,7 +77470,6 @@ INHALT = {
     "Wetter- (Akk.)": "météo (accusatif)",
     "Vorhersage (Akk.)": "prévisions (accusatif)",
     "Radio (Lok.)": "radio (locatif)",
-    "sehr geehrte": "chers",
     "Zuhörer": "auditeurs",
     "bewölkt": "nuageux",
     "Berg- (Lok. Mehrz.)": "de montagne (locatif pluriel)",
@@ -77880,6 +77885,8 @@ INHALT = {
     "eigene (Mehrz.)": "propres (pluriel)",
     # ---- Lesetexte A/B (Ajdin 15.11.2026): neue Bedeutungen und Fragen ----
     "Ćevapi (Gen.)": "ćevapi (génitif)",
+    "grillen": "faire des grillades",
+    "liebe (Mehrz.)": "chers",
     # ENDE fr texte
 },
 },

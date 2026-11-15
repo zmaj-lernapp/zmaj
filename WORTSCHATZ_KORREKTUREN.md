@@ -1359,8 +1359,14 @@ Sprachen sind nachgezogen.
 | Stelle | Geschichte | vorher (A) | jetzt (B) |
 |---|---|---|---|
 | L9 | *Dijaspora prvi put u Sarajevu* (`b1_dijaspora`) | Tarik je naručio desetku s lukom i jogurt. | Tarik je naručio deset ćevapa s lukom i jogurt. |
+| L10 | *Vrijeme za vikend* (`b1_vrijeme`) | Dobro veče, poštovani slušaoci. | Dobro veče, dragi slušaoci. |
+| L12 | *Vrijeme za vikend* | Ako bude sunčano, možemo napraviti i roštilj. | Ako bude sunčano, možemo i roštiljati. |
 
-- Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus.
+- Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
+  neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
+  (Mehrz.)“ (vokabeln der Geschichte), im Wörterbuch bleibt „lieber“ aus *Mejl
+  rođaku*. Die Übersetzungen sagten schon „liebe Hörerinnen und Hörer“ und „grillen“.
+  *Vrijeme za vikend* hat damit 159 statt 160 Wörter.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.

@@ -190,7 +190,7 @@ WOERTERBUCH = {
     "dnevnoj": "Wohn- (dnevna soba: Wohnzimmer)", "vikend": "Wochenende", "planiraju": "sie planen",
     "izlet": "Ausflug", "vrelo": "Quelle", "pažljivo": "aufmerksam", "slušaju": "sie hören zu",
     "vremensku": "Wetter- (Akk.)", "prognozu": "Vorhersage (Akk.)", "radiju": "Radio (Lok.)", "veče": "Abend",
-    "poštovani": "sehr geehrte", "slušaoci": "Zuhörer", "biti": "sein", "oblačno": "bewölkt",
+    "slušaoci": "Zuhörer", "biti": "sein", "oblačno": "bewölkt",
     "planinskim": "Berg- (Lok. Mehrz.)", "krajevima": "Gegenden (Lok.)", "moguća": "möglich (w)", "magla": "Nebel",
     "podne": "Mittag", "očekuje": "wird erwartet", "kiša": "Regen", "poslijepodne": "am Nachmittag",
     "grmljavina": "Gewitter", "temperatura": "Temperatur", "petnaest": "fünfzehn", "stepeni": "Grad (Mehrz.)",
@@ -198,7 +198,7 @@ WOERTERBUCH = {
     "stepena": "Grad (Gen.)", "vidiš": "du siehst", "izleta": "Ausflug (Gen.)", "mama": "Mama",
     "azra": "Azra (Name)", "ako": "wenn / falls", "bude": "sein wird (nach ako / kad)", "padala": "gefallen (w) (Regen, Schnee)",
     "mokri": "nass (Mehrz.)", "predlaže": "schlägt vor", "senad": "Senad (Name)", "možemo": "wir können",
-    "napraviti": "machen / zubereiten", "roštilj": "Grill / Gegrilltes", "dino": "Dino (Name)",
+    "napraviti": "machen / zubereiten", "roštiljati": "grillen", "dino": "Dino (Name)",
     "zadovoljan": "zufrieden (m)", "raditi": "arbeiten / tun", "zaista": "wirklich / tatsächlich",
     "sijalo": "geschienen (s)", "spakovala": "eingepackt (w)", "hranu": "Essen (Akk.)", "krenula": "losgefahren (w)",
     "trčao": "gerannt (m)", "po": "durch / (jemanden) holen", "hranio": "gefüttert (m)", "patke": "Enten (Akk.)",
@@ -600,10 +600,12 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_vrijeme", "titel": "Vrijeme za vikend", "stufe": "B1", "passt_zu": "wetter",
+        # A/B-Liste, Ajdin 15.11.2026: L10 B "dragi slušaoci" statt "poštovani", L12 B
+        # "možemo i roštiljati" statt "napraviti i roštilj". L11 A: "poslijepodne" bleibt.
         "text": ("U petak navečer porodica Hodžić sjedi u dnevnoj sobi. Za vikend planiraju izlet na Vrelo Bosne, pa svi pažljivo slušaju vremensku prognozu na radiju.\n\n"
-                 "„Dobro veče, poštovani slušaoci. Sutra, u subotu, ujutro će biti oblačno, a u planinskim krajevima moguća je magla. Oko podne se očekuje kiša, a poslijepodne i grmljavina. Temperatura će biti od deset do petnaest stepeni. U nedjelju će biti sunčano i toplije, s temperaturom do dvadeset dva stepena.“\n\n"
+                 "„Dobro veče, dragi slušaoci. Sutra, u subotu, ujutro će biti oblačno, a u planinskim krajevima moguća je magla. Oko podne se očekuje kiša, a poslijepodne i grmljavina. Temperatura će biti od deset do petnaest stepeni. U nedjelju će biti sunčano i toplije, s temperaturom do dvadeset dva stepena.“\n\n"
                  "„Vidiš, u subotu nema izleta“, kaže mama Azra. „Ako bude padala kiša, svi ćemo biti mokri.“\n\n"
-                 "„Onda idemo u nedjelju“, predlaže babo Senad. „Ako bude sunčano, možemo napraviti i roštilj.“\n\n"
+                 "„Onda idemo u nedjelju“, predlaže babo Senad. „Ako bude sunčano, možemo i roštiljati.“\n\n"
                  "Mali Dino nije zadovoljan. „A šta ćemo raditi u subotu?“\n\n"
                  "„U subotu idemo kod nane“, odgovara mama. „Kod nane je uvijek lijepo vrijeme.“\n\n"
                  "U nedjelju ujutro sunce je zaista sijalo. Porodica je spakovala hranu i krenula na Vrelo Bosne. Dino je cijeli dan trčao po parku i hranio patke. Navečer je umorno rekao: „Ova prognoza je bila tačna.“"),
@@ -614,6 +616,9 @@ GESCHICHTEN = [
                          "Der kleine Dino ist nicht zufrieden. „Und was machen wir am Samstag?“\n\n"
                          "„Am Samstag gehen wir zur Oma“, antwortet Mama. „Bei Oma ist immer schönes Wetter.“\n\n"
                          "Am Sonntagmorgen schien wirklich die Sonne. Die Familie packte Essen ein und fuhr zum Vrelo Bosne. Dino rannte den ganzen Tag durch den Park und fütterte die Enten. Abends sagte er müde: „Diese Vorhersage hat gestimmt.“"),
+        # "dragi slušaoci" ist Mehrzahl; im WOERTERBUCH steht "lieber" aus b1_mejl
+        # ("Dragi Adnane").
+        "vokabeln": {"dragi": "liebe (Mehrz.)"},
         "fragen": [
             {"frage": "Wie wird das Wetter am Samstag?", "optionen": ["bewölkt, mit Regen und Gewitter", "sonnig und warm", "kalt, mit Schnee"], "richtig": "bewölkt, mit Regen und Gewitter"},
             {"frage": "Wohin geht die Familie am Samstag?", "optionen": ["zur Oma", "zum Vrelo Bosne", "ins Kino"], "richtig": "zur Oma"},

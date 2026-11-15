@@ -34,6 +34,8 @@ ZEIGEN = r"""(gid) => {
 # (Geschichte, Wort davor, Wort) -> Bedeutung auf Deutsch und Englisch
 FAELLE = {
     ("b1_dijaspora", "deset", "ćevapa"): ("Ćevapi (Gen.)", "ćevapi (gen.)"),
+    ("b1_vrijeme", "veče", "dragi"): ("liebe (Mehrz.)", "dear (pl.)"),
+    ("b1_vrijeme", "i", "roštiljati"): ("grillen", "to grill / to barbecue"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -41,6 +43,9 @@ ZU_SEHEN = {
     "b1_dijaspora": ("Tarik je naručio deset ćevapa s lukom i jogurt.",
                      "Tarik bestellte zehn Ćevapi mit Zwiebeln und einen Joghurt.",
                      "Tarik ordered ten ćevapi with onions and a yogurt."),
+    "b1_vrijeme": ("Ako bude sunčano, možemo i roštiljati.",
+                   "Wenn es sonnig ist, können wir auch grillen.",
+                   "If it's sunny, we can have a barbecue too."),
 }
 
 

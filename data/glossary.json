@@ -11510,19 +11510,6 @@
    }
   },
   {
-   "bs": "poštovani",
-   "translations": {
-    "de": "sehr geehrte",
-    "en": "dear (formal)",
-    "tr": "sayın",
-    "sv": "ärade",
-    "nl": "beste",
-    "nb": "kjære",
-    "da": "kære",
-    "fr": "chers"
-   }
-  },
-  {
    "bs": "prava",
    "translations": {
     "de": "echt",
@@ -13148,19 +13135,6 @@
    }
   },
   {
-   "bs": "roštilj",
-   "translations": {
-    "de": "Grill / Gegrilltes",
-    "en": "barbecue / grilled food",
-    "tr": "ızgara",
-    "sv": "grill / grillat",
-    "nl": "grill / gegrild vlees",
-    "nb": "grill / grillmat",
-    "da": "grill / grillmad",
-    "fr": "gril / grillades"
-   }
-  },
-  {
    "bs": "roštilja",
    "translations": {
     "de": "Grill (Gen.)",
@@ -13171,6 +13145,19 @@
     "nb": "grill (genitiv)",
     "da": "grill (genitiv)",
     "fr": "gril (génitif)"
+   }
+  },
+  {
+   "bs": "roštiljati",
+   "translations": {
+    "de": "grillen",
+    "en": "to grill / to barbecue",
+    "tr": "ızgara yapmak / mangal yapmak",
+    "sv": "grilla",
+    "nl": "grillen / barbecueën",
+    "nb": "grille",
+    "da": "at grille",
+    "fr": "faire des grillades"
    }
   },
   {
