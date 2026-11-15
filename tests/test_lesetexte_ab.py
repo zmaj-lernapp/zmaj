@@ -38,6 +38,10 @@ B = {
     "L24 b": ("b1_svadba", "Moja nana je, sa svojih osamdeset godina, plesala duže od mene.", "igrala duže od mene"),
     "L24 c": ("b1_svadba", "Toliko sam se najela da više nisam mogla plesati.", "nisam mogla igrati"),
     "L24 d": ("b1_svadba", "Plesali smo i pjevali do tri ujutro.", "Igrali smo i pjevali"),
+    "L26": ("b1_posao", "Haris je završio elektrotehnički fakultet i u ponedjeljak je počeo raditi",
+            "završio elektrotehniku"),
+    "L27": ("b1_posao", "Kolege su bili ljubazni.", "Kolege su bile ljubazne."),
+    "L28": ("b1_posao", "„Hajde, kahva je obavezna!“", "„Hajde, kahva je svetinja!“"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -66,12 +70,14 @@ DE = {
                       "Tarik bestellte eine Portion mit zehn Ćevapi und Zwiebeln und dazu einen Joghurt.")],
     "b1_pita": [("Oma legte den Teig auf den großen Tisch und rollte ihn mit dem Nudelholz aus, bis er dünn wie Papier war.",
                  "zog ihn mit den Händen aus")],
+    "b1_posao": [("„Komm, der Kaffee ist Pflicht!“", "„Komm, der Kaffee ist heilig!“")],
 }
 
 # Stichprobe: so heißt es jetzt auf Englisch
 EN = {
     "b1_dijaspora": "Tarik ordered ten ćevapi with onions and a yogurt.",
     "b1_pita": "Grandma put the dough on the big table and rolled it out with a rolling pin until it was as thin as paper.",
+    "b1_posao": "Nedžad came back for him: “Come on, coffee is a must!”",
 }
 
 # Neue Formen im Wörterbuch der Lesetexte und ihre Bedeutung
@@ -89,15 +95,19 @@ NEU = {
     "veče": "Abend",
     "plesala": "getanzt (w)",
     "plesati": "tanzen",
+    "elektrotehnički": "Elektrotechnik- (elektrotehnički fakultet: Fakultät für Elektrotechnik)",
+    "fakultet": "Fakultät (Studium)",
+    "ljubazni": "freundlich (Mehrz.)",
+    "obavezna": "Pflicht / verpflichtend (w)",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
 RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
-        "januarska", "večer", "igrati"]
+        "januarska", "večer", "igrati", "elektrotehniku", "svetinja"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
 RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",
-              "Januar- (w)", "tanzen / spielen"]
+              "Januar- (w)", "tanzen / spielen", "Elektrotechnik (Akk.)", "Heiligtum"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").

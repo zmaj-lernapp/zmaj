@@ -2631,16 +2631,16 @@
    }
   },
   {
-   "bs": "elektrotehniku",
+   "bs": "elektrotehnički",
    "translations": {
-    "de": "Elektrotechnik (Akk.)",
-    "en": "electrical engineering (acc.)",
-    "tr": "elektrik mühendisliği (akuzatif)",
-    "sv": "elektroteknik (ackusativ)",
-    "nl": "elektrotechniek (accusatief)",
-    "nb": "elektroteknikk (akkusativ)",
-    "da": "elektroteknik (akkusativ)",
-    "fr": "électrotechnique (accusatif)"
+    "de": "Elektrotechnik- (elektrotehnički fakultet: Fakultät für Elektrotechnik)",
+    "en": "electrical engineering (elektrotehnički fakultet: faculty of electrical engineering)",
+    "tr": "elektrik mühendisliği (elektrotehnički fakultet: elektrik mühendisliği fakültesi)",
+    "sv": "elektroteknisk (elektrotehnički fakultet: fakulteten för elektroteknik)",
+    "nl": "elektrotechnisch (elektrotehnički fakultet: faculteit elektrotechniek)",
+    "nb": "elektroteknisk (elektrotehnički fakultet: fakultet for elektroteknikk)",
+    "da": "elektroteknisk (elektrotehnički fakultet: fakultet for elektroteknik)",
+    "fr": "d'électrotechnique (elektrotehnički fakultet : faculté d'électrotechnique)"
    }
   },
   {
@@ -2706,6 +2706,19 @@
     "nb": "Fadila (navn)",
     "da": "Fadila (navn)",
     "fr": "Fadila (prénom)"
+   }
+  },
+  {
+   "bs": "fakultet",
+   "translations": {
+    "de": "Fakultät (Studium)",
+    "en": "faculty (university)",
+    "tr": "fakülte",
+    "sv": "fakultet",
+    "nl": "faculteit",
+    "nb": "fakultet",
+    "da": "fakultet",
+    "fr": "faculté"
    }
   },
   {
@@ -6310,6 +6323,19 @@
    }
   },
   {
+   "bs": "ljubazni",
+   "translations": {
+    "de": "freundlich (Mehrz.)",
+    "en": "friendly (pl.)",
+    "tr": "cana yakın (çoğul)",
+    "sv": "trevliga",
+    "nl": "aardig (meervoud)",
+    "nb": "hyggelige",
+    "da": "flinke",
+    "fr": "gentils"
+   }
+  },
+  {
    "bs": "ljubimci",
    "translations": {
     "de": "Lieblinge (kućni ljubimci: Haustiere)",
@@ -8998,6 +9024,19 @@
     "nb": "bredd (lokativ)",
     "da": "bred (lokativ)",
     "fr": "rive (locatif)"
+   }
+  },
+  {
+   "bs": "obavezna",
+   "translations": {
+    "de": "Pflicht / verpflichtend (w)",
+    "en": "a must / compulsory (f)",
+    "tr": "şart / zorunlu (dişil)",
+    "sv": "obligatorisk (fem.)",
+    "nl": "verplicht (v)",
+    "nb": "obligatorisk (hunkj.)",
+    "da": "obligatorisk (hunk.)",
+    "fr": "obligatoire"
    }
   },
   {
@@ -15472,19 +15511,6 @@
     "nb": "alt",
     "da": "alt",
     "fr": "tout"
-   }
-  },
-  {
-   "bs": "svetinja",
-   "translations": {
-    "de": "Heiligtum",
-    "en": "sacred thing",
-    "tr": "kutsal şey",
-    "sv": "helgedom",
-    "nl": "heiligdom",
-    "nb": "helligdom",
-    "da": "helligdom",
-    "fr": "chose sacrée"
    }
   },
   {

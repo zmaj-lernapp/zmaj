@@ -47,6 +47,12 @@ FAELLE = {
     ("b1_struja", "januarsko", "veče"): ("Abend", "evening"),
     ("b1_svadba", "godina", "plesala"): ("getanzt (w)", "danced (f)"),
     ("b1_svadba", "mogla", "plesati"): ("tanzen", "to dance"),
+    ("b1_posao", "završio", "elektrotehnički"): ("Elektrotechnik- (elektrotehnički fakultet: Fakultät für Elektrotechnik)",
+                                                 "electrical engineering (elektrotehnički fakultet: "
+                                                 "faculty of electrical engineering)"),
+    ("b1_posao", "elektrotehnički", "fakultet"): ("Fakultät (Studium)", "faculty (university)"),
+    ("b1_posao", "bili", "ljubazni"): ("freundlich (Mehrz.)", "friendly (pl.)"),
+    ("b1_posao", "je", "obavezna"): ("Pflicht / verpflichtend (w)", "a must / compulsory (f)"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -64,6 +70,7 @@ ZU_SEHEN = {
                   "It was a cold January evening."),
     "b1_svadba": ("Plesali smo kolo oko cijele sale", "Wir tanzten Kolo durch den ganzen Saal",
                   "We danced the kolo around the whole hall"),
+    "b1_posao": ("„Hajde, kahva je obavezna!“", "„Komm, der Kaffee ist Pflicht!“", "“Come on, coffee is a must!”"),
 }
 
 

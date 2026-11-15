@@ -320,17 +320,19 @@ WOERTERBUCH = {
     "roditeljima": "Eltern (Dat.)", "pogledao": "angeschaut (m)", "saru": "Sara (Akk.)", "nova": "neue (w)",
     "sutradan": "am nächsten Tag", "umorna": "müde (w)",
     # b1_posao
-    "završio": "abgeschlossen (m)", "elektrotehniku": "Elektrotechnik (Akk.)", "ponedjeljak": "Montag",
+    "završio": "abgeschlossen (m)",
+    "elektrotehnički": "Elektrotechnik- (elektrotehnički fakultet: Fakultät für Elektrotechnik)",
+    "fakultet": "Fakultät (Studium)", "ponedjeljak": "Montag",
     "zenici": "Zenica (Lok.)", "mogao": "gekonnt (m)", "ustao": "aufgestanden (m)", "košulju": "Hemd (Akk.)",
     "provjerio": "überprüft (m)", "ponio": "mitgenommen (m)", "dokumente": "Dokumente (Akk.)",
     "poslu": "Arbeit (Lok.)", "dočekala": "empfangen (w)", "šefica": "Chefin", "gospođa": "Frau (Anrede)",
     "mujić": "Mujić (Familienname)", "jutro": "Morgen (Tageszeit)", "harise": "Haris! (Anrede)",
     "pokazati": "zeigen", "vašu": "Ihre (Akk.)", "kancelariju": "Büro (Akk.)", "ćete": "ihr werdet",
-    "upoznati": "jemanden kennenlernen", "najstariji": "der älteste", "među": "zwischen / unter (mehreren)",
+    "upoznati": "jemanden kennenlernen", "ljubazni": "freundlich (Mehrz.)", "najstariji": "der älteste", "među": "zwischen / unter (mehreren)",
     "nedžad": "Nedžad (Name)", "radi": "er/sie arbeitet", "pitaj": "frag!", "nemoj": "tu nicht! (Verbot)",
     "čitao": "gelesen (m)", "firme": "Firma (Gen.)", "pauzu": "Pause (Akk.)", "znao": "gewusst (m)",
     "pije": "trinkt (se pije: wird getrunken)", "ostao": "geblieben (m)", "stolom": "Tisch (Instr.)", "vratio": "zurückgekommen (m)",
-    "njega": "ihn", "svetinja": "Heiligtum", "pauze": "Pause (Gen.)", "dobio": "bekommen (m)", "zadatak": "Aufgabe",
+    "njega": "ihn", "obavezna": "Pflicht / verpflichtend (w)", "pauze": "Pause (Gen.)", "dobio": "bekommen (m)", "zadatak": "Aufgabe",
     "morao": "gemusst (m)", "aparat": "Gerät", "trebalo": "gebraucht (s)", "uspio": "geschafft (m)",
     "zadovoljna": "zufrieden (w)", "odlično": "ausgezeichnet", "nazvala": "angerufen (w)", "umoran": "müde (m)",
     "svidjeti": "gefallen",
@@ -761,16 +763,19 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_posao", "titel": "Prvi dan na poslu", "stufe": "B1", "passt_zu": "arbeitsplatz",
-        "text": ("Haris je završio elektrotehniku i u ponedjeljak je počeo raditi u jednoj firmi u Zenici. Noć prije nije mogao spavati. Ustao je u šest, obukao novu košulju i dva puta provjerio je li ponio sve dokumente.\n\n"
+        # A/B-Liste, Ajdin 15.11.2026: L26 B "elektrotehnički fakultet" statt
+        # "elektrotehniku", L27 B "Kolege su bili ljubazni" (auch Männer wie Nedžad),
+        # L28 B "kahva je obavezna" statt "svetinja".
+        "text": ("Haris je završio elektrotehnički fakultet i u ponedjeljak je počeo raditi u jednoj firmi u Zenici. Noć prije nije mogao spavati. Ustao je u šest, obukao novu košulju i dva puta provjerio je li ponio sve dokumente.\n\n"
                  "Na poslu ga je dočekala šefica, gospođa Mujić. „Dobro jutro, Harise, dobro došli! Prvo ću Vam pokazati Vašu kancelariju, a onda ćete upoznati kolege.“\n\n"
-                 "Kolege su bile ljubazne. Najstariji među njima, Nedžad, radi u firmi već dvadeset godina. „Ako ti bilo šta treba, pitaj mene“, rekao je. „I nemoj se stidjeti. Svi smo nekad bili novi.“\n\n"
-                 "Prije podne je Haris čitao pravila firme. U deset sati svi su otišli na pauzu, ali Haris nije znao da se u firmi kahva pije zajedno, pa je ostao za stolom. Nedžad se vratio po njega: „Hajde, kahva je svetinja!“\n\n"
+                 "Kolege su bili ljubazni. Najstariji među njima, Nedžad, radi u firmi već dvadeset godina. „Ako ti bilo šta treba, pitaj mene“, rekao je. „I nemoj se stidjeti. Svi smo nekad bili novi.“\n\n"
+                 "Prije podne je Haris čitao pravila firme. U deset sati svi su otišli na pauzu, ali Haris nije znao da se u firmi kahva pije zajedno, pa je ostao za stolom. Nedžad se vratio po njega: „Hajde, kahva je obavezna!“\n\n"
                  "Poslije pauze je dobio prvi zadatak: morao je popraviti jedan stari aparat. Trebalo mu je tri sata, ali je uspio. Šefica je bila zadovoljna. „Odlično za prvi dan“, rekla je.\n\n"
                  "Navečer ga je nazvala mama. „Kako je bilo?“ „Umoran sam, ali mislim da će mi se ovdje svidjeti.“"),
         "uebersetzung": ("Haris hat sein Studium der Elektrotechnik abgeschlossen und am Montag angefangen, bei einer Firma in Zenica zu arbeiten. In der Nacht davor konnte er nicht schlafen. Er stand um sechs auf, zog ein neues Hemd an und prüfte zweimal, ob er alle Unterlagen dabeihatte.\n\n"
                          "Bei der Arbeit empfing ihn die Chefin, Frau Mujić. „Guten Morgen, Haris, herzlich willkommen! Zuerst zeige ich Ihnen Ihr Büro, und dann lernen Sie die Kollegen kennen.“\n\n"
                          "Die Kollegen waren freundlich. Der Älteste von ihnen, Nedžad, arbeitet schon seit zwanzig Jahren in der Firma. „Wenn du irgendetwas brauchst, frag mich“, sagte er. „Und sei nicht schüchtern. Wir waren alle mal neu.“\n\n"
-                         "Am Vormittag las Haris die Regeln der Firma. Um zehn Uhr gingen alle in die Pause, aber Haris wusste nicht, dass man in der Firma den Kaffee zusammen trinkt, und blieb am Tisch sitzen. Nedžad kam zurück, um ihn zu holen: „Komm, der Kaffee ist heilig!“\n\n"
+                         "Am Vormittag las Haris die Regeln der Firma. Um zehn Uhr gingen alle in die Pause, aber Haris wusste nicht, dass man in der Firma den Kaffee zusammen trinkt, und blieb am Tisch sitzen. Nedžad kam zurück, um ihn zu holen: „Komm, der Kaffee ist Pflicht!“\n\n"
                          "Nach der Pause bekam er seine erste Aufgabe: Er musste ein altes Gerät reparieren. Er brauchte drei Stunden, aber er schaffte es. Die Chefin war zufrieden. „Ausgezeichnet für den ersten Tag“, sagte sie.\n\n"
                          "Abends rief ihn seine Mama an. „Wie war es?“ „Ich bin müde, aber ich glaube, es wird mir hier gefallen.“"),
         "vokabeln": {"bilo": "war (s) / bilo šta: irgendetwas"},

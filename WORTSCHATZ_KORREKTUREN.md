@@ -1367,6 +1367,9 @@ Sprachen sind nachgezogen.
 | L21 | *Nanina pita* | Tijesto je moralo odmarati pola sata. | Tijesto je trebalo da odmori pola sata. |
 | L22 | *Komšiluk bez struje* (`b1_struja`) | Bila je hladna januarska večer. | Bilo je hladno januarsko veče. |
 | L24 | *Svadba i kolo* (`b1_svadba`), „ja alle“ | Igrali smo kolo · nana … igrala duže od mene · nisam mogla igrati · Igrali smo i pjevali | Plesali smo kolo · nana … plesala duže od mene · nisam mogla plesati · Plesali smo i pjevali |
+| L26 | *Prvi dan na poslu* (`b1_posao`) | Haris je završio elektrotehniku … | Haris je završio elektrotehnički fakultet … |
+| L27 | *Prvi dan na poslu* | Kolege su bile ljubazne. | Kolege su bili ljubazni. |
+| L28 | *Prvi dan na poslu* | „Hajde, kahva je svetinja!“ | „Hajde, kahva je obavezna!“ |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1384,7 +1387,12 @@ Sprachen sind nachgezogen.
   Geschichte bleibt, wie es war. *plesala* „getanzt (w)“ und *plesati* „tanzen“
   neu, *igrati* raus; *igrali* und *igrala* bleiben im Wörterbuch für *Utakmica*
   („naši su igrali“) und *Komšiluk bez struje* („Djeca su se igrala“). Die
-  Übersetzungen sagten schon „tanzten“.
+  Übersetzungen sagten schon „tanzten“. *elektrotehnički* „Elektrotechnik-
+  (elektrotehnički fakultet: Fakultät für Elektrotechnik)“, *fakultet* „Fakultät
+  (Studium)“, *ljubazni* „freundlich (Mehrz.)“ und *obavezna* „Pflicht /
+  verpflichtend (w)“ neu, *elektrotehniku* und *svetinja* raus. Deutsch jetzt „Komm,
+  der Kaffee ist Pflicht!“, in allen Sprachen nachgezogen. Im Brief *Pismo nani*
+  steht weiter „Kolege su ljubazne“; danach war nicht gefragt.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
