@@ -33,6 +33,11 @@ B = {
               "stavile fil na tijesto"),
     "L21": ("b1_pita", "Tijesto je trebalo da odmori pola sata.", "Tijesto je moralo odmarati pola sata."),
     "L22": ("b1_struja", "Bilo je hladno januarsko veče.", "Bila je hladna januarska večer."),
+    # L24 "ja alle": alle vier Stellen zum Kolo tanzen jetzt (plesati)
+    "L24 a": ("b1_svadba", "Plesali smo kolo oko cijele sale, od najmlađih do najstarijih.", "Igrali smo kolo"),
+    "L24 b": ("b1_svadba", "Moja nana je, sa svojih osamdeset godina, plesala duže od mene.", "igrala duže od mene"),
+    "L24 c": ("b1_svadba", "Toliko sam se najela da više nisam mogla plesati.", "nisam mogla igrati"),
+    "L24 d": ("b1_svadba", "Plesali smo i pjevali do tri ujutro.", "Igrali smo i pjevali"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -82,15 +87,17 @@ NEU = {
     "hladno": "kalt (s)",
     "januarsko": "Januar- (s)",
     "veče": "Abend",
+    "plesala": "getanzt (w)",
+    "plesati": "tanzen",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
 RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
-        "januarska", "večer"]
+        "januarska", "večer", "igrati"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
 RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",
-              "Januar- (w)"]
+              "Januar- (w)", "tanzen / spielen"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").
@@ -162,6 +169,18 @@ def test_woerterbuch(alle_daten):
         assert [t for t in RAUS_TEXTE if t in texte] == [], code
     for code, daten in alle_daten.items():
         assert [w for w in RAUS if w in daten["woerterbuch"]] == [], code
+
+
+def test_l24_kolo_wird_ueberall_getanzt(grunddaten):
+    """Ajdin zu L24: "ja alle". In Svadba i kolo wird nur noch getanzt
+    (plesati); igrati steht in keiner Form mehr dort, in Utakmica und
+    Komšiluk bez struje spielen sie weiter (igrali, igrala)."""
+    g = _geschichten(grunddaten)
+    svadba = {w.lower() for w in re.findall(r"[^\W\d_]+", g["b1_svadba"]["text"])}
+    assert not {w for w in svadba if w.startswith("igr")}
+    assert {"plesali", "plesala", "plesati"} <= svadba
+    assert "naši su igrali mnogo bolje" in g["b1_utakmica"]["text"]
+    assert "Djeca su se igrala u hodniku" in g["b1_struja"]["text"]
 
 
 def test_alte_formen_stehen_in_keinem_text(grunddaten):

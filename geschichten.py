@@ -308,13 +308,13 @@ WOERTERBUCH = {
     "mladu": "Braut (Akk.)", "cijelim": "ganzen (Instr.)", "putem": "Weg (Instr.)", "trubili": "gehupt (Mehrz.)",
     "izašla": "herausgekommen (w)", "bijeloj": "weißen (Lok.)", "vjenčanici": "Brautkleid (Lok.)",
     "sreće": "Glück (Gen.)", "svirao": "gespielt (Musik, m)", "bend": "Band (Musik)", "mladenci": "Brautpaar",
-    "plesali": "getanzt (Mehrz.)", "sami": "allein (Mehrz.)", "ustali": "aufgestanden (Mehrz.)",
+    "plesali": "getanzt (Mehrz.)", "plesala": "getanzt (w)", "sami": "allein (Mehrz.)", "ustali": "aufgestanden (Mehrz.)",
     "uhvatili": "gefasst (Mehrz.)", "ruke": "Hände (Akk.)", "igrali": "gespielt / getanzt (Mehrz.)",
     "kolo": "Kolo (bosnischer Reigentanz)", "cijele": "ganzen (Gen.)", "sale": "Saal (Gen.)",
     "najmlađih": "der Jüngsten (Gen. Mehrz.)", "najstarijih": "der Ältesten (Gen. Mehrz.)",
     "svojih": "ihrer eigenen (Gen. Mehrz.)", "mene": "mich", "hrane": "Essen (Gen.)", "supa": "Suppe",
     "sarma": "Sarma (Krautwickel)", "pečenje": "Braten", "salate": "Salate", "torta": "Torte", "toliko": "so viel",
-    "najela": "satt gegessen (w)", "više": "mehr", "nisam": "ich bin nicht", "igrati": "tanzen / spielen",
+    "najela": "satt gegessen (w)", "više": "mehr", "nisam": "ich bin nicht", "plesati": "tanzen",
     "ponoći": "Mitternacht (Gen.)", "rezali": "geschnitten (Mehrz.)", "tortu": "Torte (Akk.)",
     "održao": "gehalten (m)", "kratak": "kurz", "govor": "Rede", "zahvalio": "bedankt (m)",
     "roditeljima": "Eltern (Dat.)", "pogledao": "angeschaut (m)", "saru": "Sara (Akk.)", "nova": "neue (w)",
@@ -738,12 +738,14 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_svadba", "titel": "Svadba i kolo", "stufe": "B1", "passt_zu": "feiern",
+        # A/B-Liste, Ajdin 15.11.2026: L24 B, Kolo heißt "plesati", an allen vier
+        # Stellen ("ja alle"). L25 A: "djevojka" bleibt.
         "text": ("Prošle subote se oženio moj brat Adnan. Njegova djevojka Sara je iz Tuzle, pa je svadba bila tamo, u jednom velikom restoranu. Došlo je skoro dvjesto gostiju: rodbina, prijatelji, komšije, pa čak i Adnanov šef.\n\n"
                  "Ujutro smo autima otišli po mladu i cijelim putem trubili. Kad je Sara izašla iz kuće u bijeloj vjenčanici, svi su zapljeskali, a moja mama je odmah počela plakati od sreće.\n\n"
-                 "U restoranu je svirao bend. Prvo su mladenci plesali sami, a onda su svi ustali i uhvatili se za ruke. Igrali smo kolo oko cijele sale, od najmlađih do najstarijih. Moja nana je, sa svojih osamdeset godina, igrala duže od mene.\n\n"
-                 "Hrane je bilo mnogo: supa, sarma, pečenje, salate i na kraju velika torta. Toliko sam se najela da više nisam mogla igrati.\n\n"
+                 "U restoranu je svirao bend. Prvo su mladenci plesali sami, a onda su svi ustali i uhvatili se za ruke. Plesali smo kolo oko cijele sale, od najmlađih do najstarijih. Moja nana je, sa svojih osamdeset godina, plesala duže od mene.\n\n"
+                 "Hrane je bilo mnogo: supa, sarma, pečenje, salate i na kraju velika torta. Toliko sam se najela da više nisam mogla plesati.\n\n"
                  "Oko ponoći su mladenci rezali tortu. Adnan je održao kratak govor i zahvalio se roditeljima. Onda je pogledao Saru i rekao: „Od danas smo nova porodica.“\n\n"
-                 "Igrali smo i pjevali do tri ujutro. Sutradan sam bila umorna, ali sretna."),
+                 "Plesali smo i pjevali do tri ujutro. Sutradan sam bila umorna, ali sretna."),
         "uebersetzung": ("Letzten Samstag hat mein Bruder Adnan geheiratet. Seine Freundin Sara kommt aus Tuzla, deshalb war die Hochzeit dort, in einem großen Restaurant. Es kamen fast zweihundert Gäste: Verwandte, Freunde, Nachbarn und sogar Adnans Chef.\n\n"
                          "Am Morgen fuhren wir mit den Autos los, um die Braut abzuholen, und hupten den ganzen Weg. Als Sara im weißen Brautkleid aus dem Haus kam, klatschten alle, und meine Mama fing sofort an, vor Glück zu weinen.\n\n"
                          "Im Restaurant spielte eine Band. Zuerst tanzte das Brautpaar allein, und dann standen alle auf und fassten sich an den Händen. Wir tanzten Kolo durch den ganzen Saal, von den Jüngsten bis zu den Ältesten. Meine Oma tanzte mit ihren achtzig Jahren länger als ich.\n\n"

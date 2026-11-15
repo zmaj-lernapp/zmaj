@@ -1366,6 +1366,7 @@ Sprachen sind nachgezogen.
 | L19 | *Nanina pita* | pripremile su fil · stavile fil na tijesto | pripremile su nadjev · stavile nadjev na tijesto |
 | L21 | *Nanina pita* | Tijesto je moralo odmarati pola sata. | Tijesto je trebalo da odmori pola sata. |
 | L22 | *Komšiluk bez struje* (`b1_struja`) | Bila je hladna januarska večer. | Bilo je hladno januarsko veče. |
+| L24 | *Svadba i kolo* (`b1_svadba`), „ja alle“ | Igrali smo kolo · nana … igrala duže od mene · nisam mogla igrati · Igrali smo i pjevali | Plesali smo kolo · nana … plesala duže od mene · nisam mogla plesati · Plesali smo i pjevali |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1380,7 +1381,10 @@ Sprachen sind nachgezogen.
   poslu*. Deutsch jetzt „rollte ihn mit dem Nudelholz aus“, in allen Sprachen
   nachgezogen. *hladno* „kalt (s)“ und *januarsko* „Januar- (s)“ neu, *januarska* und
   *večer* raus; *veče* „Abend“ stand schon drin. „Od te večeri“ am Ende der
-  Geschichte bleibt, wie es war.
+  Geschichte bleibt, wie es war. *plesala* „getanzt (w)“ und *plesati* „tanzen“
+  neu, *igrati* raus; *igrali* und *igrala* bleiben im Wörterbuch für *Utakmica*
+  („naši su igrali“) und *Komšiluk bez struje* („Djeca su se igrala“). Die
+  Übersetzungen sagten schon „tanzten“.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.

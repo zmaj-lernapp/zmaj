@@ -797,7 +797,9 @@ are in the Play Store listing. Format:
   stretching it by hand, the filling is *nadjev* instead of *fil*, and the dough
   *trebalo je da odmori* instead of *moralo je odmarati*. *Komšiluk bez struje*
   opens with *Bilo je hladno januarsko veče* (neuter *veče*) instead of *Bila je
-  hladna januarska večer*.
+  hladna januarska večer*. *Svadba i kolo*: the kolo is danced with *plesati*
+  in all four places (*Plesali smo kolo*, *plesala*, *plesati*, *Plesali smo i
+  pjevali*), no longer *igrati*.
   None of these stories had audio yet; they wait for the next Vesna round.
   `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it

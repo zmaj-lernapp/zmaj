@@ -3710,19 +3710,6 @@
    }
   },
   {
-   "bs": "igrati",
-   "translations": {
-    "de": "tanzen / spielen",
-    "en": "dance / play",
-    "tr": "dans etmek / oynamak",
-    "sv": "dansa / spela",
-    "nl": "dansen / spelen",
-    "nb": "danse / spille",
-    "da": "danse / spille",
-    "fr": "danser / jouer"
-   }
-  },
-  {
    "bs": "igrač",
    "translations": {
     "de": "Spieler",
@@ -10613,6 +10600,19 @@
    }
   },
   {
+   "bs": "plesala",
+   "translations": {
+    "de": "getanzt (w)",
+    "en": "danced (f)",
+    "tr": "dans etti (kadın)",
+    "sv": "dansade (kvinna)",
+    "nl": "danste (vrouw)",
+    "nb": "danset (kvinne)",
+    "da": "dansede (kvinde)",
+    "fr": "dansé (femme)"
+   }
+  },
+  {
    "bs": "plesali",
    "translations": {
     "de": "getanzt (Mehrz.)",
@@ -10623,6 +10623,19 @@
     "nb": "danset (flere)",
     "da": "dansede (flere)",
     "fr": "dansé (pluriel)"
+   }
+  },
+  {
+   "bs": "plesati",
+   "translations": {
+    "de": "tanzen",
+    "en": "to dance",
+    "tr": "dans etmek",
+    "sv": "dansa",
+    "nl": "dansen",
+    "nb": "danse",
+    "da": "at danse",
+    "fr": "danser"
    }
   },
   {

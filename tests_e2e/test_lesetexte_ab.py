@@ -45,6 +45,8 @@ FAELLE = {
     ("b1_struja", "je", "hladno"): ("kalt (s)", "cold (n)"),
     ("b1_struja", "hladno", "januarsko"): ("Januar- (s)", "January (n)"),
     ("b1_struja", "januarsko", "veče"): ("Abend", "evening"),
+    ("b1_svadba", "godina", "plesala"): ("getanzt (w)", "danced (f)"),
+    ("b1_svadba", "mogla", "plesati"): ("tanzen", "to dance"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -60,6 +62,8 @@ ZU_SEHEN = {
                 "rolled it out with a rolling pin until it was as thin as paper."),
     "b1_struja": ("Bilo je hladno januarsko veče.", "Es war ein kalter Januarabend.",
                   "It was a cold January evening."),
+    "b1_svadba": ("Plesali smo kolo oko cijele sale", "Wir tanzten Kolo durch den ganzen Saal",
+                  "We danced the kolo around the whole hall"),
 }
 
 
