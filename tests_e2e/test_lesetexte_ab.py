@@ -42,6 +42,9 @@ FAELLE = {
     ("b1_pita", "pripremile", "nadjev"): ("Füllung", "filling"),
     ("b1_pita", "je", "trebalo"): ("musste (s)", "had to (n)"),
     ("b1_pita", "da", "odmori"): ("ruht (sich) aus", "rests"),
+    ("b1_struja", "je", "hladno"): ("kalt (s)", "cold (n)"),
+    ("b1_struja", "hladno", "januarsko"): ("Januar- (s)", "January (n)"),
+    ("b1_struja", "januarsko", "veče"): ("Abend", "evening"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -55,6 +58,8 @@ ZU_SEHEN = {
     "b1_pita": ("razvijala ga oklagijom dok nije postalo tanko kao papir.",
                 "rollte ihn mit dem Nudelholz aus, bis er dünn wie Papier war.",
                 "rolled it out with a rolling pin until it was as thin as paper."),
+    "b1_struja": ("Bilo je hladno januarsko veče.", "Es war ein kalter Januarabend.",
+                  "It was a cold January evening."),
 }
 
 

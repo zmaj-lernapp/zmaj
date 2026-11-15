@@ -32,6 +32,7 @@ B = {
     "L19 b": ("b1_pita", "Na kraju su stavile nadjev na tijesto, savile ga i stavile pitu u tepsiju.",
               "stavile fil na tijesto"),
     "L21": ("b1_pita", "Tijesto je trebalo da odmori pola sata.", "Tijesto je moralo odmarati pola sata."),
+    "L22": ("b1_struja", "Bilo je hladno januarsko veče.", "Bila je hladna januarska večer."),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -78,13 +79,18 @@ NEU = {
     "oklagijom": "Nudelholz (Instr.)",
     "nadjev": "Füllung",
     "odmori": "ruht (sich) aus",
+    "hladno": "kalt (s)",
+    "januarsko": "Januar- (s)",
+    "veče": "Abend",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
-RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo"]
+RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
+        "januarska", "večer"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
-RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)"]
+RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",
+              "Januar- (w)"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").

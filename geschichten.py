@@ -281,7 +281,7 @@ WOERTERBUCH = {
     "sretna": "glücklich (w)", "naninu": "Omas (Akk.)", "tajnu": "Geheimnis (Akk.)", "puno": "viel",
     "ljubavi": "Liebe (Gen.)",
     # b1_struja
-    "januarska": "Januar- (w)", "večer": "Abend", "merima": "Merima (Name)", "baš": "gerade / genau",
+    "hladno": "kalt (s)", "januarsko": "Januar- (s)", "merima": "Merima (Name)", "baš": "gerade / genau",
     "kuhala": "gekocht (w)", "odjednom": "plötzlich", "nestalo": "weg / verschwunden (s)", "struje": "Strom (Gen.)",
     "zgrada": "Gebäude", "mraku": "Dunkelheit (Lok.)", "sin": "Sohn", "kenan": "Kenan (Name)",
     "uplašio": "erschrocken (m)", "počeo": "begonnen (m)", "plakati": "weinen", "upalila": "eingeschaltet (w)",
@@ -715,9 +715,11 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_struja", "titel": "Komšiluk bez struje", "stufe": "B1", "passt_zu": "miteinander_umgehen",
+        # A/B-Liste, Ajdin 15.11.2026: L22 B "Bilo je hladno januarsko veče" (veče
+        # sächlich) statt "Bila je hladna januarska večer".
         # "plinski šporet" statt "plinski štednjak" (Prüfbericht 1.4, V13 a; Ajdin, F9 a,
         # 14.11.2026): Der Herd heißt in der App šporet, štednjak steht als kroatisch.
-        "text": ("Bila je hladna januarska večer. Merima je baš kuhala večeru kad je odjednom nestalo struje. Cijela zgrada je bila u mraku, a njen sin Kenan se uplašio i počeo plakati.\n\n"
+        "text": ("Bilo je hladno januarsko veče. Merima je baš kuhala večeru kad je odjednom nestalo struje. Cijela zgrada je bila u mraku, a njen sin Kenan se uplašio i počeo plakati.\n\n"
                  "Merima je upalila svjetlo na telefonu i našla svijeće u ladici. Onda je neko pokucao na vrata. Bio je to komšija Hasan s trećeg sprata. „Komšinice, je li i kod Vas nestalo struje?“ „Jeste. Znate li šta se desilo?“ „Zvao sam. Kažu da je kvar u cijelom naselju i da će ga popraviti za dva-tri sata.“\n\n"
                  "Hasan je imao plinski šporet, pa je pozvao komšije na čaj. Uskoro je u njegovom stanu bilo desetak ljudi. Komšinica Zehra je donijela kolače, a mladi bračni par s prvog sprata donio je gitaru. Djeca su se igrala u hodniku, a odrasli su pričali, pjevali i smijali se.\n\n"
                  "„Pet godina živimo u ovoj zgradi, a nikad nismo ovako sjedili zajedno“, rekla je Merima.\n\n"

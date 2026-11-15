@@ -3398,6 +3398,19 @@
    }
   },
   {
+   "bs": "hladno",
+   "translations": {
+    "de": "kalt (s)",
+    "en": "cold (n)",
+    "tr": "soğuk (nötr)",
+    "sv": "kallt (neutr.)",
+    "nl": "koud (o)",
+    "nb": "kaldt (intetkj.)",
+    "da": "koldt (intetk.)",
+    "fr": "froid (neutre)"
+   }
+  },
+  {
    "bs": "hladu",
    "translations": {
     "de": "Schatten (Lok.)",
@@ -4308,16 +4321,16 @@
    }
   },
   {
-   "bs": "januarska",
+   "bs": "januarsko",
    "translations": {
-    "de": "Januar- (w)",
-    "en": "January (f)",
-    "tr": "ocak (dişil)",
-    "sv": "januari- (fem.)",
-    "nl": "januari- (v)",
-    "nb": "januar- (hunkj.)",
-    "da": "januar- (hunk.)",
-    "fr": "de janvier"
+    "de": "Januar- (s)",
+    "en": "January (n)",
+    "tr": "ocak (nötr)",
+    "sv": "januari- (neutr.)",
+    "nl": "januari- (o)",
+    "nb": "januar- (intetkj.)",
+    "da": "januar- (intetk.)",
+    "fr": "de janvier (neutre)"
    }
   },
   {
@@ -17543,19 +17556,6 @@
   },
   {
    "bs": "veče",
-   "translations": {
-    "de": "Abend",
-    "en": "evening",
-    "tr": "akşam",
-    "sv": "kväll",
-    "nl": "avond",
-    "nb": "kveld",
-    "da": "aften",
-    "fr": "soir"
-   }
-  },
-  {
-   "bs": "večer",
    "translations": {
     "de": "Abend",
     "en": "evening",

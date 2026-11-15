@@ -1365,6 +1365,7 @@ Sprachen sind nachgezogen.
 | L18 | *Nanina pita* (`b1_pita`) | … na veliki sto i razvlačila ga rukama dok nije postalo tanko kao papir. | … na veliki sto i razvijala ga oklagijom dok nije postalo tanko kao papir. |
 | L19 | *Nanina pita* | pripremile su fil · stavile fil na tijesto | pripremile su nadjev · stavile nadjev na tijesto |
 | L21 | *Nanina pita* | Tijesto je moralo odmarati pola sata. | Tijesto je trebalo da odmori pola sata. |
+| L22 | *Komšiluk bez struje* (`b1_struja`) | Bila je hladna januarska večer. | Bilo je hladno januarsko veče. |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1377,7 +1378,9 @@ Sprachen sind nachgezogen.
   *rukama*, *fil* und *moralo* raus; *trebalo* heißt in *Nanina pita* „musste (s)“
   (vokabeln der Geschichte), im Wörterbuch bleibt „gebraucht (s)“ aus *Prvi dan na
   poslu*. Deutsch jetzt „rollte ihn mit dem Nudelholz aus“, in allen Sprachen
-  nachgezogen.
+  nachgezogen. *hladno* „kalt (s)“ und *januarsko* „Januar- (s)“ neu, *januarska* und
+  *večer* raus; *veče* „Abend“ stand schon drin. „Od te večeri“ am Ende der
+  Geschichte bleibt, wie es war.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
