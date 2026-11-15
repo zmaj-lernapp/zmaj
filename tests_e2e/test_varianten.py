@@ -132,13 +132,14 @@ def test_tabelle_2c_nur_in_einer_richtung(seite, heute_stand):
       const luecke = (text, e) => { const s = SENTENCES.find(x => x.text === text);
         return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
       const geschw = (id, bs) => geschwister(w(id)).some(x => x.bs === bs);
-      // „u kolima“, „Nemam para“ und „Supa je u šerpi“ zählen seit der dritten Runde
-      // (unten), „kola oca“ und „Putujemo kolima“ weiter nicht.
+      // „u kolima“, „Nemam para“ und „Supa je u šerpi“ zählen seit der dritten Runde,
+      // „kola oca“, „uplatiti pare“ und „Putujemo kolima“ seit den Fragen vom 15.11.
+      // (unten), „očev kola“, „uplatiti para“ und „Putujemo kola“ weiter nicht.
       return {nein: [typ('mir ist es egal:Svejedno mi je', 'Jelovnik je svejedno'), typ('mir:meni / mi', 'jelovnik'),
-                     typ('das auto des vaters:auto oca', 'kola oca'), typ('geld einzahlen:uplatiti novac', 'uplatiti pare'),
+                     typ('das auto des vaters:auto oca', 'očev kola'), typ('geld einzahlen:uplatiti novac', 'uplatiti para'),
                      typ('krankenwagen / rettung:hitna', 'auto hitne pomoći'),
                      typ('der hund hat mich gebissen:Pas me je ujeo', 'Pas me je ugrizao'),
-                     luecke('Putujemo ___.', 'kolima'), luecke('Koliko je ___?', 'sahata'),
+                     luecke('Putujemo ___.', 'kola'), luecke('Koliko je ___?', 'sahata'),
                      luecke('Mislim ___ je dobro.', 'je')],
               geschw: [geschw('laden:prodavnica', 'radnja'), geschw('geschäft:radnja', 'prodavnica'),
                        geschw('manchmal:ponekad', 'nekad')]};
@@ -166,9 +167,8 @@ GEGEN_DRITTE_RUNDE = """() => {
     return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
   return [typ('entschuldigung (du):Izvini', 'Oprostite'), typ('verzeih mir:Oprosti mi', 'Oprostite mi'),
           luecke('Molim te, ___ mi.', 'oprostite'), typ('manchmal:ponekad', 'nikada'), typ('nie:nikad', 'nekada'),
-          typ('mit dem auto:autom', 'kolima'), typ('ich habe ein auto:Imam auto', 'Imam kolima'),
-          typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kučeta!'),
-          typ('wir suchen die straße:Tražimo ulicu', 'Tražimo sokak'), luecke('Putujemo ___.', 'kolima')];
+          typ('ich habe ein auto:Imam auto', 'Imam kolima'), typ('im auto:u autu', 'u kola'),
+          typ('er hat einen hund:On ima psa', 'On ima kučeta'), typ('auf der straße:na ulici', 'na sokak')];
 }"""
 
 
@@ -178,4 +178,40 @@ def test_dritte_runde_zaehlt_beim_tippen(seite, heute_stand):
         assert seite.js(AUFGABE, [level, art, wer, eingabe]) == RICHTIG, (wer, eingabe)
     erg = seite.js(GEGEN_DRITTE_RUNDE)
     assert erg == ["no"] * len(erg) and len(erg) >= 3, erg
+    assert seite.fehler == []
+
+
+# Fragen vom 15.11.2026 (Ajdin abends, 9a bis 9i, Offen-Liste 5d): die zweite Form auch
+# an diesen neun Stellen, genau mit den bestätigten Formen, nur beim Tippen.
+# Alle Fälle in node prüft tests/test_varianten.py (FRAGEN_15_11).
+FRAGEN_15_11 = [("faelle4", "type", "mit dem auto:autom", "kolima"),
+                ("faelle4", "gap", "Putujemo ___.", "kolima"),
+                ("faelle2", "type", "das auto des vaters:auto oca", "kola oca"),
+                ("bank", "type", "geld abheben:podići novac", "podići pare"),
+                ("bank", "type", "geld einzahlen:uplatiti novac", "uplatiti pare"),
+                ("faelle1", "type", "wir suchen die straße:Tražimo ulicu", "Tražimo sokak"),
+                ("tiere_umgang", "type", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučadi"),
+                ("tiere_umgang", "type", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),
+                ("tiere_umgang", "type", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo.")]
+GEGEN_FRAGEN_15_11 = """() => {
+  const w = id => wortNachId(id).w;
+  const typ = (id, e) => matches(e, annehmbar(w(id)).join(' / '));
+  const luecke = (text, e) => { const s = SENTENCES.find(x => x.text === text);
+    return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
+  return [typ('mit dem auto:autom', 'kola'), luecke('Putujemo ___.', 'kola'),
+          typ('das auto des vaters:auto oca', 'očev kola'), typ('das auto des vaters:auto oca', 'očeva kola'),
+          typ('geld abheben:podići novac', 'podići para'), typ('wir suchen die straße:Tražimo ulicu', 'Tražimo sokaka'),
+          typ('ich habe angst vor hunden:Bojim se pasa', 'Bojim se kučeta'),
+          typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kuče!'),
+          typ('der hund hat mich gebissen:Pas me je ujeo', 'Kuče me je ujeo'),
+          typ('der hund hat mich gebissen:Pas me je ujeo', 'Pas me je ujelo'), typ('hund:pas', 'kučadi')];
+}"""
+
+
+def test_fragen_15_11_zaehlen_beim_tippen(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    for level, art, wer, eingabe in FRAGEN_15_11:
+        assert seite.js(AUFGABE, [level, art, wer, eingabe]) == RICHTIG, (wer, eingabe)
+    erg = seite.js(GEGEN_FRAGEN_15_11)
+    assert erg == ["no"] * 11, erg
     assert seite.fehler == []

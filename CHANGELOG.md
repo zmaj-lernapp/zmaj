@@ -640,6 +640,14 @@ are in the Play Store listing. Format:
   *uplatiti novac*, *Tražimo ulicu*, *Čuvaj se psa!* and the others stay as they were.
   "Koliko je sahat?" and "Moja je ovo kolegica." stay wrong (the maintainer: no).
   `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing the second form at nine more places (questions of 15.11.2026, 9a to 9i;
+  decided by the maintainer, forms confirmed one by one): *kolima* for *autom* and in
+  the gap "Putujemo ___.", "kola oca", "podići pare", "uplatiti pare", "Tražimo
+  sokak", "Bojim se kučadi", "Čuvaj se kučeta!" and "Kuče me je ujelo" now count next
+  to *auto oca*, *podići novac*, *uplatiti novac*, *Tražimo ulicu*, *Bojim se pasa*,
+  *Čuvaj se psa!* and *Pas me je ujeo*. Only there and only these forms; "očev kola",
+  "Bojim se kučeta", "Kuče me je ujeo" and the like stay wrong. Nothing changes in
+  sentence building. `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and

@@ -1101,7 +1101,8 @@ allein steht (Ajdin über *šerpa* und *kola*).
   „On ima psa“, „Bojim se pasa“, „Čuvaj se psa!“ (*kuče*, *kučeta*). Ajdin entscheidet,
   ob sie dazukommen. „Pas me je ujeo“ ginge nicht: mit *kuče* hieße es *ujelo*.
   Seit der dritten Runde (unten) zählen „Imam kola“, „u kolima“, „Nemam para“, „na
-  pazaru“, „na sokaku“, „Supa je u šerpi“ und „On ima kuče“; die übrigen bleiben.
+  pazaru“, „na sokaku“, „Supa je u šerpi“ und „On ima kuče“, seit den Fragen vom
+  15.11.2026 (ganz unten) auch die übrigen neun.
 
 ## 14.11.2026 abends – dritte Runde: weitere richtige Antworten beim Tippen
 
@@ -1167,7 +1168,8 @@ Formen selbst gebildet):
   straße:Tražimo ulicu` (*sokak*), `ich habe angst vor hunden:Bojim se pasa`,
   `vorsicht vor dem hund!:Čuvaj se psa!` und `der hund hat mich gebissen:Pas me je ujeo`
   (*kuče*). Dazu gut 80 lange Beispielsätze mit *auto*, *novac*, *pijaca*, *ulica*,
-  *lonac* und *pas*, die nie getippt werden.
+  *lonac* und *pas*, die nie getippt werden. Die neun hat Ajdin am 15.11.2026 abends
+  freigegeben (ganz unten).
 - Beim Satzbau ändert sich nichts: keine der neuen Formen ist eine Kachel der App.
 
 **Vokativ-Regel.** „Ja“: ć, lj, nj, đ, dž zu j, č, š, ž dazuschreiben. In der Lektion
@@ -1440,3 +1442,33 @@ Sprachen sind nachgezogen.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
+
+## 15.11.2026 abends – zweite Form an neun weiteren Stellen beim Tippen
+
+Ajdin auf die Fragenliste vom 15.11.2026 (`Release\Fragen_Ajdin_2026-11-15.md`,
+Frage 9): „9 ja (alle 9a–9i)“, und die vorgeschlagenen Formen mit „ja“ bestätigt.
+Das sind die Stellen, die in der dritten Runde (oben) nicht gefragt waren. Wie dort
+nur eine weitere richtige Antwort beim Tippen (`auch_var`): gezeigt, gesprochen und
+gelehrt wird weiter die Form der App, Kennungen und Aufnahmen bleiben.
+
+| Frage | Stelle | zählt jetzt auch |
+|---|---|---|
+| 9a | `mit dem auto:autom` | kolima |
+| 9b | Lückensatz „Putujemo ___.“ (*autom*) | kolima |
+| 9c | `das auto des vaters:auto oca` | kola oca |
+| 9d | `geld abheben:podići novac` | podići pare |
+| 9e | `geld einzahlen:uplatiti novac` | uplatiti pare |
+| 9f | `wir suchen die straße:Tražimo ulicu` | Tražimo sokak |
+| 9g | `ich habe angst vor hunden:Bojim se pasa` | Bojim se kučadi |
+| 9h | `vorsicht vor dem hund!:Čuvaj se psa!` | Čuvaj se kučeta! |
+| 9i | `der hund hat mich gebissen:Pas me je ujeo` | Kuče me je ujelo |
+
+- Je ein Paar in `varianten.py` nur an dieser Stelle; *novac* / *pare* gilt jetzt
+  auch an den beiden Bank-Wörtern. Keine weiteren Formen selbst gebildet.
+- „auto oca“ und „Pas me je ujeo“ sind als ganze Wendung eingetragen: bei *kuče*
+  wandert das Verb mit (*ujelo*), und am Paar *auto* / *kola* wäre aus dem `"auch"`
+  „očev auto“ auch „očev kola“ geworden.
+- Weiter falsch, weil nicht gefragt: „očev kola“ und „očeva kola“, „Bojim se kučeta“,
+  „Čuvaj se kuče!“, „Kuče me je ujeo“, „Pas me je ujelo“, „Ujelo me je kuče“,
+  „Putujemo kola“, „podići para“ und *kučadi* beim Wort *pas*.
+- Beim Satzbau ändert sich nichts: keine der neuen Formen ist eine Kachel der App.

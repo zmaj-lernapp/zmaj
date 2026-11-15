@@ -157,6 +157,15 @@ WOERTER = {
     "auf dem markt:na pijaci": ["na pazaru"],
     "auf der straße:na ulici": ["na sokaku"],
     "er hat einen hund:On ima psa": ["On ima kuče"],
+    # Fragen vom 15.11.2026 (Ajdin abends, 9a bis 9i, Offen-Liste 5d)
+    "mit dem auto:autom": ["kolima"],
+    "das auto des vaters:auto oca": ["kola oca"],                # nicht „očev kola“ aus dem "auch"
+    "geld abheben:podići novac": ["podići pare"],
+    "geld einzahlen:uplatiti novac": ["uplatiti pare"],
+    "wir suchen die straße:Tražimo ulicu": ["Tražimo sokak"],
+    "ich habe angst vor hunden:Bojim se pasa": ["Bojim se kučadi"],
+    "vorsicht vor dem hund!:Čuvaj se psa!": ["Čuvaj se kučeta!"],
+    "der hund hat mich gebissen:Pas me je ujeo": ["Kuče me je ujelo"],
 }
 
 # Lückensatz: Text -> zusätzliche Antworten
@@ -181,6 +190,8 @@ LUECKEN = {
     # Dritte Runde (Ajdin, 14.11.2026 abends, Offen-Liste 5a)
     "___, molim Vas.": ["Oprostite"],
     "Supa je u ___.": ["šerpi"],
+    # Fragen vom 15.11.2026 (Ajdin abends, 9b)
+    "Putujemo ___.": ["kolima"],
 }
 
 # Satzbau: Satz -> was zu "ohne" dazukommt. Fast alles sperrte die App schon
@@ -319,6 +330,10 @@ def _z(antworten, wort=True, kennung="x", fall=None):
     ("Nemam novca", True, []),                           # para nur an „Nemam novca“ (Kennung)
     ("u autu", True, []),                                # kolima nur an „u autu“ (Kennung)
     ("Imam auto", True, []),                             # kola nur an auto und „Imam auto“
+    ("autom", True, []),                                 # kolima nur an „mit dem Auto“ und „Putujemo ___.“
+    ("auto oca", True, []),                              # kola oca nur an „das Auto des Vaters“
+    ("Pas me je ujeo", True, []),                        # Kuče me je ujelo nur dort
+    ("Čuvaj se psa!", True, []),
     ("plati", True, []),                                 # das Verb, nicht plata
 ])
 def test_zusatz_an_beispielen(antwort, wort, mehr):
@@ -352,7 +367,10 @@ def test_kennungen_der_gefaehrlichen_paare():
 
 
 # Dritte Runde (14.11.2026 abends): „Imam kola“ - das Paar auto / kola gilt auch dort.
-SAETZE_DRITTE_RUNDE = {"auto": ["ich habe ein auto:Imam auto"]}
+# Fragen vom 15.11.2026 (9d, 9e): novac / pare auch in „podići novac“ und „uplatiti novac“.
+# „auto oca“ hat ein eigenes Paar (die ganze Wendung), das bleibt hier draußen.
+SAETZE_DRITTE_RUNDE = {"auto": ["ich habe ein auto:Imam auto"],
+                       "novac": ["geld abheben:podići novac", "geld einzahlen:uplatiti novac"]}
 
 
 def test_dasselbe_paar_zweimal_ist_ein_befund(monkeypatch):
@@ -557,16 +575,14 @@ TABELLE_2C = {
 # Bedeutung, und wo das Wort nicht allein steht, obwohl Geschlecht oder Zahl
 # anders sind (Ajdin: „nur wo das Wort allein steht“). Die sechs Sätze, die Ajdin
 # in der dritten Runde freigegeben hat („Nemam para“, „u kolima“ …), stehen unten
-# bei DRITTE_RUNDE.
+# bei DRITTE_RUNDE, die neun vom 15.11.2026 („kola oca“, „uplatiti pare“ …) bei
+# FRAGEN_15_11.
 GEGEN_2C = [
     ("w", "mir:meni / mi", "jelovnik"),                               # meni heißt auch „mir“
     ("w", "mir ist es egal:Svejedno mi je", "Svejedno jelovnik je"),
     ("w", "mir ist es egal:Svejedno mi je", "Jelovnik je svejedno"),
     ("w", "geld:novac", "para"),                                      # pare nur so, wie es allein steht
-    ("w", "geld einzahlen:uplatiti novac", "uplatiti pare"),
-    ("w", "das auto des vaters:auto oca", "kola oca"),                # kola nur an auto und „Imam auto“
-    ("w", "das auto des vaters:auto oca", "očev kola"),
-    ("l", "Putujemo ___.", "kolima"),
+    ("w", "das auto des vaters:auto oca", "očev kola"),               # „kola oca“ seit den Fragen vom 15.11. (unten)
     ("w", "krankenwagen / rettung:hitna", "auto hitne pomoći"),       # nie von kola nach auto
     ("l", "Koliko je ___?", "sahata"),                                # sahat nur beim Wort sat
     ("l", "Koliko je ___?", "sahati"),
@@ -665,27 +681,24 @@ GEGEN_DRITTE_RUNDE = [
     ("w", "manchmal:ponekad", "nikada"),                              # nikada heißt „nie“
     ("w", "nie:nikad", "nekada"),
     ("w", "manchmal / früher:nekad", "ponekad"),                      # nie von nekad nach ponekad
-    # Keine weiteren gebeugten Formen: nur die sieben Stellen, nur die genannte Form
+    # Keine weiteren gebeugten Formen: nur die sieben Stellen, nur die genannte Form.
+    # autom, „Putujemo ___.“, podići / uplatiti novac, „Tražimo ulicu“, „Čuvaj se psa!“
+    # und „Pas me je ujeo“ zählen seit den Fragen vom 15.11. (FRAGEN_15_11 unten).
     ("w", "ich habe ein auto:Imam auto", "Imam kolima"),
     ("w", "im auto:u autu", "u kola"),
     ("w", "er hat einen hund:On ima psa", "On ima kučeta"),
     ("w", "auf der straße:na ulici", "na sokak"),
     ("w", "auf dem markt:na pijaci", "na pazar"),
-    ("w", "mit dem auto:autom", "kolima"),
-    ("l", "Putujemo ___.", "kolima"),
     ("w", "geld einzahlen:uplatiti novac", "uplatiti para"),
-    ("w", "geld abheben:podići novac", "podići pare"),
-    ("w", "wir suchen die straße:Tražimo ulicu", "Tražimo sokak"),
-    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučeta"),
-    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),
-    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo"),
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučeta"),   # Ajdin: „kučadi“
     ("l", "Na pijaci ima mnogo ___.", "pazaru"),
     ("l", "Koliko je ___?", "sahat"),                                 # „Koliko je sahat?“: Ajdin „Ne“
 ]
 
 
-@pytest.fixture(scope="module")
-def node_dritte(index_html, grunddaten):
+def _node_ja_und_gegen(index_html, grunddaten, ja, gegen):
+    """Je „ja“ vorher (ohne auch_var) und jetzt, dazu die Gegenproben, durch das
+    echte matches() aus web/index.html."""
     if not shutil.which("node"):
         pytest.skip("node fehlt")
     html = _html(index_html)
@@ -696,15 +709,20 @@ def node_dritte(index_html, grunddaten):
         _stueck(html, "function einTippfehler(a, b){", "\n/* So lange nach dem Hinweis"),
     ])
     faelle = []
-    for art, wer, eingabe in DRITTE_RUNDE:
+    for art, wer, eingabe in ja:
         faelle.append(((art, wer, eingabe, "vorher"), eingabe, _antworten_von(grunddaten, art, wer, True)))
         faelle.append(((art, wer, eingabe, "jetzt"), eingabe, _antworten_von(grunddaten, art, wer)))
-    for art, wer, eingabe in GEGEN_DRITTE_RUNDE:
+    for art, wer, eingabe in gegen:
         faelle.append((("gegen", art, wer, eingabe), eingabe, _antworten_von(grunddaten, art, wer)))
     ein = {"bloecke": bloecke, "faelle": [f[1:] for f in faelle], "zahlen": []}
     aus = subprocess.run(["node", "-e", NODE], input=json.dumps(ein), capture_output=True, text=True,
                          encoding="utf-8", check=True, timeout=120)
     return dict(zip([f[0] for f in faelle], json.loads(aus.stdout)["faelle"]))
+
+
+@pytest.fixture(scope="module")
+def node_dritte(index_html, grunddaten):
+    return _node_ja_und_gegen(index_html, grunddaten, DRITTE_RUNDE, GEGEN_DRITTE_RUNDE)
 
 
 def test_dritte_runde_vorher_falsch_jetzt_richtig(node_dritte):
@@ -726,3 +744,81 @@ def test_dritte_runde_nein_bleibt_nein(grunddaten):
     assert len(s) == 1 and not s[0].get("auch"), s
     luecke = [x for x in grunddaten["saetze"] if x["text"] == "Koliko je ___?"]
     assert len(luecke) == 1 and not luecke[0].get("auch") and not luecke[0].get("auch_var"), luecke
+
+
+# --- Fragen vom 15.11.2026 (Ajdin abends, 9a bis 9i, Offen-Liste 5d) in matches() ---
+# Release\Fragen_Ajdin_2026-11-15.md, „Ajdins Antworten“: „9 ja (alle 9a–9i)“, die Formen
+# auf Vorschlag bestätigt. Bis dahin falsch, jetzt richtig - mit genau diesen Formen.
+FRAGEN_15_11 = [
+    ("w", "mit dem auto:autom", "kolima"),                              # 9a
+    ("l", "Putujemo ___.", "kolima"),                                   # 9b
+    ("w", "das auto des vaters:auto oca", "kola oca"),                  # 9c
+    ("w", "geld abheben:podići novac", "podići pare"),                  # 9d
+    ("w", "geld einzahlen:uplatiti novac", "uplatiti pare"),            # 9e
+    ("w", "wir suchen die straße:Tražimo ulicu", "Tražimo sokak"),      # 9f
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučadi"),   # 9g
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),  # 9h
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta"),   #    ohne Ausrufezeichen wie bisher
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo."),   # 9i, wie Ajdin es schrieb
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo"),
+]
+# Bleibt falsch: andere Fälle, das halbe Paar, und dieselben Formen an anderen Stellen.
+GEGEN_FRAGEN_15_11 = [
+    ("w", "mit dem auto:autom", "kola"),
+    ("l", "Putujemo ___.", "kola"),
+    ("w", "ich habe ein auto:Imam auto", "Imam kolima"),
+    ("w", "das auto des vaters:auto oca", "očev kola"),                 # aus dem "auch" „očev auto“
+    ("w", "das auto des vaters:auto oca", "očeva kola"),                # nicht gefragt
+    ("w", "geld abheben:podići novac", "podići para"),
+    ("w", "geld einzahlen:uplatiti novac", "uplatiti para"),
+    ("w", "geld:novac", "para"),
+    ("w", "wir suchen die straße:Tražimo ulicu", "Tražimo sokaka"),
+    ("w", "wir suchen die straße:Tražimo ulicu", "Tražimo sokaku"),
+    ("w", "auf der straße:na ulici", "na sokak"),
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučeta"),
+    ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kuče"),
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kuče!"),
+    ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučadi!"),
+    ("w", "er hat einen hund:On ima psa", "On ima kučeta"),
+    ("w", "er hat einen hund:On ima psa", "On ima kučadi"),
+    ("w", "hund:pas", "kučadi"),
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujeo"),     # das Verb wandert mit
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Pas me je ujelo"),
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Ujelo me je kuče"),    # andere Stellung nicht gefragt
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Pas me je ugrizao"),
+    ("w", "beißen:ugristi", "ujelo"),
+]
+
+
+@pytest.fixture(scope="module")
+def node_fragen_15_11(index_html, grunddaten):
+    return _node_ja_und_gegen(index_html, grunddaten, FRAGEN_15_11, GEGEN_FRAGEN_15_11)
+
+
+def test_fragen_15_11_vorher_falsch_jetzt_richtig(node_fragen_15_11):
+    falsch = {k: v for k, v in node_fragen_15_11.items()
+              if k[0] != "gegen" and v != ("no" if k[-1] == "vorher" else "ok")}
+    assert falsch == {}
+    assert len([k for k in node_fragen_15_11 if k[0] != "gegen"]) == 2 * len(FRAGEN_15_11)
+
+
+def test_fragen_15_11_nichts_anderes_wird_richtig(node_fragen_15_11):
+    falsch = {k: v for k, v in node_fragen_15_11.items() if k[0] == "gegen" and v != "no"}
+    assert falsch == {}
+    assert len([k for k in node_fragen_15_11 if k[0] == "gegen"]) == len(GEGEN_FRAGEN_15_11)
+
+
+def test_fragen_15_11_nur_an_ihrer_stelle():
+    """Jedes neue Paar gilt nur an der Stelle, nach der gefragt war."""
+    stellen = {("autom", "kolima"): ["mit dem auto:autom", "Putujemo ___."],
+               ("auto oca", "kola oca"): ["das auto des vaters:auto oca"],
+               ("ulicu", "sokak"): ["wir suchen die straße:Tražimo ulicu"],
+               ("pasa", "kučadi"): ["ich habe angst vor hunden:Bojim se pasa"],
+               ("psa", "kučeta"): ["vorsicht vor dem hund!:Čuvaj se psa!"],
+               ("pas me je ujeo", "kuče me je ujelo"): ["der hund hat mich gebissen:Pas me je ujeo"]}
+    gefunden = {(p["a"], p["b"]): p["gilt"] for p in varianten.VARIANTEN
+                if isinstance(p["a"], str) and (p["a"], p["b"]) in stellen}
+    assert gefunden == stellen
+    for (a, b), gilt in stellen.items():
+        assert _z([a], True) == ([], []), a                                 # anderswo nichts
+        assert _z([a], True, kennung=gilt[0]) == ([b], []), a

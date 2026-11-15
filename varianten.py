@@ -356,8 +356,9 @@ VARIANTEN = [
     {"a": "auto", "b": "kola", "gilt": ["auto:auto", "ich habe ein auto:Imam auto"],
      "beleg": "2c Nr. 23; Mehrzahlwort, Adjektive wandern mit - nur das Wort allein; "
               "„Imam kola“ seit der dritten Runde (14.11.2026)"},
-    {"a": "novac", "b": "pare", "gilt": ["geld:novac"],
-     "beleg": "2c Nr. 24; Mehrzahlwort, pare ist auch Mehrzahl von para - nur das Wort allein"},
+    {"a": "novac", "b": "pare", "gilt": ["geld:novac", "geld abheben:podići novac", "geld einzahlen:uplatiti novac"],
+     "beleg": "2c Nr. 24; Mehrzahlwort, pare ist auch Mehrzahl von para - nur das Wort allein; "
+              "„podići pare“ und „uplatiti pare“ seit den Fragen vom 15.11.2026 (9d, 9e)"},
     # Dritte Runde (Ajdin, 14.11.2026 abends): „Zweite Form auch in ganzen Sätzen“, „Ja“ -
     # genau die Formen, nach denen gefragt war: „Imam kola“ (oben bei auto), „u kolima“,
     # „Nemam para“, „na pazaru“, „na sokaku“, „Supa je u šerpi“, „On ima kuče“. Jede nur
@@ -374,6 +375,25 @@ VARIANTEN = [
      "beleg": "dritte Runde, 14.11.2026: „Supa je u šerpi“"},
     {"a": "psa", "b": "kuče", "gilt": ["er hat einen hund:On ima psa"],
      "beleg": "dritte Runde, 14.11.2026: „On ima kuče“"},
+    # Fragen vom 15.11.2026 (Ajdin abends, 9a bis 9i): die zweite Form auch an den
+    # neun Stellen, die in der dritten Runde nicht gefragt waren, „ja“, mit genau den
+    # Formen, die er bestätigt hat: kolima, kola oca, podići pare und uplatiti pare
+    # (oben bei novac), Tražimo sokak, Bojim se kučadi, Čuvaj se kučeta!, Kuče me je
+    # ujelo. Wieder jede nur an ihrer Stelle, keine weiteren Formen selbst gebildet.
+    # „auto oca“ als ganze Wendung: am Paar auto / kola wäre aus dem "auch" „očev auto“
+    # auch „očev kola“ geworden. „Pas me je ujeo“ ebenso, mit kuče wandert das Verb mit.
+    {"a": "autom", "b": "kolima", "gilt": ["mit dem auto:autom", "Putujemo ___."],
+     "beleg": "Fragen 15.11.2026, 9a und 9b: „kolima“"},
+    {"a": "auto oca", "b": "kola oca", "gilt": ["das auto des vaters:auto oca"],
+     "beleg": "Fragen 15.11.2026, 9c: „kola oca“"},
+    {"a": "ulicu", "b": "sokak", "gilt": ["wir suchen die straße:Tražimo ulicu"],
+     "beleg": "Fragen 15.11.2026, 9f: „Tražimo sokak“"},
+    {"a": "pasa", "b": "kučadi", "gilt": ["ich habe angst vor hunden:Bojim se pasa"],
+     "beleg": "Fragen 15.11.2026, 9g: „Bojim se kučadi“"},
+    {"a": "psa", "b": "kučeta", "gilt": ["vorsicht vor dem hund!:Čuvaj se psa!"],
+     "beleg": "Fragen 15.11.2026, 9h: „Čuvaj se kučeta!“"},
+    {"a": "pas me je ujeo", "b": "kuče me je ujelo", "gilt": ["der hund hat mich gebissen:Pas me je ujeo"],
+     "beleg": "Fragen 15.11.2026, 9i: „Kuče me je ujelo.“"},
     {"a": {"sg": ("mobitel", "mobitela", "mobitelu", "mobitel", "mobitelom", "mobitelu")},
      "b": {"sg": ("mobilni", "mobilnog", "mobilnom", "mobilni", "mobilnim", "mobilnom")},
      "gilt": UEBERALL, "beleg": "2c Nr. 25; Alltag"},
