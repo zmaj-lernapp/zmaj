@@ -822,27 +822,6 @@ GESCHICHTEN = [
             {"frage": "Was sieht man vom Balkon aus?", "optionen": ["den Trebević", "die Miljacka", "die Baščaršija"], "richtig": "den Trebević"},
         ],
     },
-    {
-        "id": "b1_telefon", "titel": "Izgubljeni telefon", "stufe": "B1", "passt_zu": "geraete",
-        "text": ("U petak poslije posla Amina je sjela u kafić na Baščaršiji, blizu Sebilja. Popila je kahvu, platila i otišla kući tramvajem. Kod kuće je htjela nazvati mamu, ali telefona nije bilo u torbi. Tražila ga je svugdje: u jakni, u kuhinji, čak i ispod kreveta. Ništa.\n\n"
-                 "„Ajdine, nazovi me, molim te!“ Ajdin je nazvao njen broj. Telefon je zvonio, ali niko se nije javio. Amina je bila nervozna. U telefonu su bili svi njeni brojevi i slike.\n\n"
-                 "Onda je s Ajdinovog telefona napisala poruku na svoj broj: „Dobro veče! Izgubila sam ovaj telefon danas oko pet sati, negdje na Baščaršiji. Ako ste ga našli, molim Vas, javite se. Hvala!“\n\n"
-                 "Sat kasnije zazvonio je Ajdinov telefon. Javio se konobar koji radi u tom kafiću. „Vaš telefon je bio ispod stola. Našao sam ga kad sam čistio. Možete doći sutra ujutro, sačuvat ću ga.“\n\n"
-                 "Amina je odahnula. Sutradan je rano otišla u kafić. Konobar joj je dao telefon i rekao: „Sve je tu, ništa nisam dirao.“ Amina mu je htjela dati deset maraka, ali on nije htio uzeti novac. „Bilo bi mi drago da opet dođete na kahvu“, rekao je.\n\n"
-                 "Od tada Amina svake sedmice pije kahvu baš u tom kafiću."),
-        "uebersetzung": ("Am Freitag nach der Arbeit setzte sich Amina in ein Café auf der Baščaršija, in der Nähe des Sebilj. Sie trank einen Kaffee, bezahlte und fuhr mit der Straßenbahn nach Hause. Zu Hause wollte sie ihre Mama anrufen, aber das Handy war nicht in der Tasche. Sie suchte es überall: in der Jacke, in der Küche, sogar unter dem Bett. Nichts.\n\n"
-                         "„Ajdin, ruf mich bitte an!“ Ajdin rief ihre Nummer an. Das Handy klingelte, aber niemand ging ran. Amina war nervös. Im Handy waren alle ihre Nummern und Bilder.\n\n"
-                         "Dann schrieb sie von Ajdins Handy eine Nachricht an ihre eigene Nummer: „Guten Abend! Ich habe dieses Handy heute gegen fünf Uhr verloren, irgendwo auf der Baščaršija. Wenn Sie es gefunden haben, melden Sie sich bitte. Danke!“\n\n"
-                         "Eine Stunde später klingelte Ajdins Handy. Es meldete sich ein Kellner, der in diesem Café arbeitet. „Ihr Handy lag unter dem Tisch. Ich habe es beim Putzen gefunden. Sie können morgen früh kommen, ich bewahre es so lange auf.“\n\n"
-                         "Amina atmete auf. Am nächsten Tag ging sie früh ins Café. Der Kellner gab ihr das Handy und sagte: „Es ist alles da, ich habe nichts angefasst.“ Amina wollte ihm zehn Mark geben, aber er wollte das Geld nicht nehmen. „Es würde mich freuen, wenn Sie wieder auf einen Kaffee kommen“, sagte er.\n\n"
-                         "Seitdem trinkt Amina jede Woche ihren Kaffee genau in diesem Café."),
-        "vokabeln": {"koji": "der / welcher (Relativsatz)"},
-        "fragen": [
-            {"frage": "Wo hat Amina das Handy verloren?", "optionen": ["in einem Café", "in der Straßenbahn", "zu Hause"], "richtig": "in einem Café"},
-            {"frage": "Wer hat das Handy gefunden?", "optionen": ["ein Kellner", "Ajdin", "eine Nachbarin"], "richtig": "ein Kellner"},
-            {"frage": "Was wollte der Kellner statt Geld?", "optionen": ["dass sie wieder auf einen Kaffee kommt", "zehn Mark", "ein neues Handy"], "richtig": "dass sie wieder auf einen Kaffee kommt"},
-        ],
-    },
 ]
 
 
@@ -852,7 +831,9 @@ GESCHICHTEN = [
 # Acht Lesetexte für die neue Stufe "B1", je 150 bis 200 Wörter, ijekavisch.
 # Sie stehen hinter allen anderen Geschichten und werden wie diese der Reihe
 # nach frei. Vorlage: Release\Entscheidungen_2026-11-13\lesetexte_proben.md
-# (Entscheidung 14a/15a/16a vom 13.11.2026).
+# (Entscheidung 14a/15a/16a vom 13.11.2026). Seit dem 15.11.2026 steht
+# "Izgubljeni telefon" aus Paket 2 zwischen ihnen, hinter "Dedo i nana se sele"
+# (Ajdin, A/B-Liste S7: "lass doktor vorher").
 #
 # Absätze stehen wie in Paket 1 und 2 als Leerzeile ("\n\n") in Text und
 # Übersetzung, die App zeigt sie (white-space: pre-line). Sie gehören zum
@@ -1079,6 +1060,30 @@ GESCHICHTEN += [
             {"frage": "Wohin ziehen Rasim und Fadila?", "optionen": ["in eine kleine Wohnung in Travnik", "in ein großes Haus in Sarajevo", "in ein anderes Dorf am Vlašić"], "richtig": "in eine kleine Wohnung in Travnik"},
             {"frage": "Welche zwei Dinge wollte der Opa mitnehmen?", "optionen": ["den alten Sessel und das Radio", "den Schrank und den Holzherd", "den großen Tisch und das Bett"], "richtig": "den alten Sessel und das Radio"},
             {"frage": "Was fand Edin im vollen Kleinbus?", "optionen": ["einen Pflaumenbaum im Eimer", "einen Eimer mit Pflaumenmus", "den Schlüssel vom alten Haus"], "richtig": "einen Pflaumenbaum im Eimer"},
+        ],
+    },
+    {
+        # S7 (A/B-Liste, Ajdin 15.11.2026: "lass doktor vorher"): hinter "Kod doktora"
+        # und "Dedo i nana se sele", wie in seiner Themenliste. Die id bleibt und mit
+        # ihr der Lesestand; die Wörter stehen oben im WOERTERBUCH (Paket 1 und 2).
+        "id": "b1_telefon", "titel": "Izgubljeni telefon", "stufe": "B1", "passt_zu": "geraete",
+        "text": ("U petak poslije posla Amina je sjela u kafić na Baščaršiji, blizu Sebilja. Popila je kahvu, platila i otišla kući tramvajem. Kod kuće je htjela nazvati mamu, ali telefona nije bilo u torbi. Tražila ga je svugdje: u jakni, u kuhinji, čak i ispod kreveta. Ništa.\n\n"
+                 "„Ajdine, nazovi me, molim te!“ Ajdin je nazvao njen broj. Telefon je zvonio, ali niko se nije javio. Amina je bila nervozna. U telefonu su bili svi njeni brojevi i slike.\n\n"
+                 "Onda je s Ajdinovog telefona napisala poruku na svoj broj: „Dobro veče! Izgubila sam ovaj telefon danas oko pet sati, negdje na Baščaršiji. Ako ste ga našli, molim Vas, javite se. Hvala!“\n\n"
+                 "Sat kasnije zazvonio je Ajdinov telefon. Javio se konobar koji radi u tom kafiću. „Vaš telefon je bio ispod stola. Našao sam ga kad sam čistio. Možete doći sutra ujutro, sačuvat ću ga.“\n\n"
+                 "Amina je odahnula. Sutradan je rano otišla u kafić. Konobar joj je dao telefon i rekao: „Sve je tu, ništa nisam dirao.“ Amina mu je htjela dati deset maraka, ali on nije htio uzeti novac. „Bilo bi mi drago da opet dođete na kahvu“, rekao je.\n\n"
+                 "Od tada Amina svake sedmice pije kahvu baš u tom kafiću."),
+        "uebersetzung": ("Am Freitag nach der Arbeit setzte sich Amina in ein Café auf der Baščaršija, in der Nähe des Sebilj. Sie trank einen Kaffee, bezahlte und fuhr mit der Straßenbahn nach Hause. Zu Hause wollte sie ihre Mama anrufen, aber das Handy war nicht in der Tasche. Sie suchte es überall: in der Jacke, in der Küche, sogar unter dem Bett. Nichts.\n\n"
+                         "„Ajdin, ruf mich bitte an!“ Ajdin rief ihre Nummer an. Das Handy klingelte, aber niemand ging ran. Amina war nervös. Im Handy waren alle ihre Nummern und Bilder.\n\n"
+                         "Dann schrieb sie von Ajdins Handy eine Nachricht an ihre eigene Nummer: „Guten Abend! Ich habe dieses Handy heute gegen fünf Uhr verloren, irgendwo auf der Baščaršija. Wenn Sie es gefunden haben, melden Sie sich bitte. Danke!“\n\n"
+                         "Eine Stunde später klingelte Ajdins Handy. Es meldete sich ein Kellner, der in diesem Café arbeitet. „Ihr Handy lag unter dem Tisch. Ich habe es beim Putzen gefunden. Sie können morgen früh kommen, ich bewahre es so lange auf.“\n\n"
+                         "Amina atmete auf. Am nächsten Tag ging sie früh ins Café. Der Kellner gab ihr das Handy und sagte: „Es ist alles da, ich habe nichts angefasst.“ Amina wollte ihm zehn Mark geben, aber er wollte das Geld nicht nehmen. „Es würde mich freuen, wenn Sie wieder auf einen Kaffee kommen“, sagte er.\n\n"
+                         "Seitdem trinkt Amina jede Woche ihren Kaffee genau in diesem Café."),
+        "vokabeln": {"koji": "der / welcher (Relativsatz)"},
+        "fragen": [
+            {"frage": "Wo hat Amina das Handy verloren?", "optionen": ["in einem Café", "in der Straßenbahn", "zu Hause"], "richtig": "in einem Café"},
+            {"frage": "Wer hat das Handy gefunden?", "optionen": ["ein Kellner", "Ajdin", "eine Nachbarin"], "richtig": "ein Kellner"},
+            {"frage": "Was wollte der Kellner statt Geld?", "optionen": ["dass sie wieder auf einen Kaffee kommt", "zehn Mark", "ein neues Handy"], "richtig": "dass sie wieder auf einen Kaffee kommt"},
         ],
     },
     {

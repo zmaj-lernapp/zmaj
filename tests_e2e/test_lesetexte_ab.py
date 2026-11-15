@@ -148,6 +148,21 @@ def test_neue_fassung_und_uebersetzung(seite, heute_stand, sprache, spalte):
     assert seite.fehler == []
 
 
+def test_s7_telefon_kommt_nach_doktor_und_selidba(seite, heute_stand):
+    """"Izgubljeni telefon" steht hinter "Kod doktora" und "Dedo i nana se
+    sele" und wird frei, sobald "Dedo i nana se sele" gelesen ist."""
+    seite.starten(stand=heute_stand())
+    r = seite.js("""() => {
+      const ids = STORIES.map(s => s.id), i = ids.indexOf('b1_telefon');
+      const vorher = storyUnlocked(i);
+      read.add('b1_selidba');
+      return {nachbarn: ids.slice(i - 3, i + 2), vorher: vorher, nachher: storyUnlocked(i),
+              danach: storyUnlocked(i + 1)}; }""")
+    assert r["nachbarn"] == ["b1_stan", "b1_doktor", "b1_selidba", "b1_telefon", "b1_rodjendan"], r
+    assert r["vorher"] is False and r["nachher"] is True and r["danach"] is False, r
+    assert seite.fehler == []
+
+
 @pytest.mark.parametrize("sprache,spalte", [("de", 1), ("en", 2)])
 def test_erstes_wort_beim_antippen(seite, heute_stand, sprache, spalte):
     seite.starten(sprache=sprache, stand=heute_stand())

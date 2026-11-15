@@ -271,6 +271,34 @@ def test_t12_betreff_bleibt_auf_deutsch(alle_daten):
     assert _geschichten(alle_daten["en"])["b1_mejl"]["uebersetzung"].startswith("Subject: I'm coming in August!")
 
 
+# S7: "lass doktor vorher" - Izgubljeni telefon hinter Kod doktora und Dedo i
+# nana se sele, wie in Ajdins Themenliste
+B1_REIHE = ["b1_ljeto", "b1_dijaspora", "b1_vrijeme", "b1_voz", "b1_rafting", "b1_jahorina", "b1_pita",
+            "b1_struja", "b1_svadba", "b1_posao", "b1_stan", "b1_doktor", "b1_selidba", "b1_telefon",
+            "b1_rodjendan", "b1_utakmica", "b1_zanat", "b1_kahva", "b1_mejl", "b1_zmaj"]
+
+
+def test_s7_telefon_hinter_doktor_und_selidba(alle_daten):
+    """Nur die Reihenfolge ändert sich: Text, id, Stufe und passt_zu bleiben,
+    in jeder Sprache dieselbe Kette. Frei wird eine Geschichte, wenn die davor
+    gelesen ist (storyUnlocked in web/index.html); der Lesestand hängt an der id."""
+    for code, daten in alle_daten.items():
+        ids = [g["id"] for g in daten["geschichten"]]
+        assert [i for i in ids if i.startswith("b1_")] == B1_REIHE, code
+        assert ids[-len(B1_REIHE):] == B1_REIHE, code
+    g = _geschichten(alle_daten["de"])["b1_telefon"]
+    assert g["titel"] == "Izgubljeni telefon" and g["stufe"] == "B1" and g["passt_zu"] == "geraete"
+
+
+def test_s7_testdaten_in_der_neuen_reihenfolge(wurzel):
+    """Die Sicherungen zum Durchtesten führen die gelesenen Geschichten in der
+    Reihenfolge der App (testdaten_bauen.py)."""
+    for name in ("zmaj-test-alles-offen.json", "zmaj-test-vollversion.json"):
+        stand = json.load(io.open(os.path.join(wurzel, "testdaten", name), encoding="utf-8"))["stand"]
+        gelesen = [i for i in stand["gelesen"] if i.startswith("b1_")]
+        assert gelesen == B1_REIHE, name
+
+
 ZMAJ_FRAGEN = [
     ("Welchen Fehler macht Zmaj, als er ankommt?",
      ["er sagt am Abend „Dobro jutro“", "er vergisst den Namen der Oma", "er kommt zu spät"]),

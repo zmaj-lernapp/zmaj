@@ -815,7 +815,9 @@ are in the Play Store listing. Format:
   joke at dinner is the maintainer's own version: Zmaj says *Ne, hvala*, Nana
   still serves more sarma, "Kod nane se ne kaže ne." ("At Grandma's you don't
   say no."); the second question now asks why Zmaj still gets more sarma. The
-  story dictionary has 1,520 entries.
+  story dictionary has 1,520 entries. *Izgubljeni telefon* now comes after *Kod
+  doktora* and *Dedo i nana se sele*, as in the maintainer's list of topics; it
+  keeps its ID, and with it the reading progress.
   None of these stories had audio yet; they wait for the next Vesna round.
   `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it

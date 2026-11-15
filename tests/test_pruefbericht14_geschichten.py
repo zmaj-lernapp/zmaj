@@ -122,8 +122,9 @@ ENGLISCH = {
 # "Dedo i nana se sele" statt "Selidba" (ccb92728…), seit 15.11.2026 das
 # hoefliche Vi gross auch in den Gespraechen (Ajdin: "mach doch alles groß",
 # 21871bb1…), dann Ajdins A/B-Antworten zu den B1-Lesetexten, eine Geschichte
-# nach der anderen (tests/test_lesetexte_ab.py).
-TEXTE_SHA256 = "118b50083893465f7f33b0b99899e848eb2d77d9108bdf8c6e452883ae4f659b"
+# nach der anderen (tests/test_lesetexte_ab.py), zuletzt "Izgubljeni telefon"
+# hinter "Dedo i nana se sele" (S7): Die Summe hängt auch an der Reihenfolge.
+TEXTE_SHA256 = "6c0f1e61e1962ba26c95a351894cfd3bcc14f2ed6a6fc50b6f2e556ee6b19146"
 
 
 def _geschichten(daten):
@@ -545,10 +546,12 @@ def test_f10_text_wie_angenommen(grunddaten):
 
 def test_f10_id_und_platz_bleiben(grunddaten):
     """Die id bleibt b1_selidba, so bleibt der Lesestand. Auch der Platz in der
-    Kette bleibt: hinter b1_doktor, vor b1_rodjendan."""
+    Kette bleibt: hinter b1_doktor. Seit dem 15.11.2026 folgt ihr "Izgubljeni
+    telefon" (Ajdin, A/B-Liste S7), davor war es b1_rodjendan
+    (tests/test_lesetexte_ab.py)."""
     ids = [g["id"] for g in grunddaten["geschichten"]]
     i = ids.index("b1_selidba")
-    assert ids[i - 1:i + 2] == ["b1_doktor", "b1_selidba", "b1_rodjendan"]
+    assert ids[i - 1:i + 2] == ["b1_doktor", "b1_selidba", "b1_telefon"]
 
 
 def test_f10_uebersetzung_und_fragen(alle_daten):

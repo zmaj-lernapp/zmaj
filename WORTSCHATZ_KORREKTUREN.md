@@ -1432,6 +1432,11 @@ Sprachen sind nachgezogen.
   „Warum bekommt Zmaj trotzdem noch mehr Sarma?“ (richtig: „bei der Oma sagt man nicht
   nein“), die dritte „sie verbrennen“ statt „sie brennen an“, alles in acht Sprachen.
 - Wörterbuch der Lesetexte danach: 1.520 Einträge (vorher 1.515).
+- Sachfragen: S1 bis S6 „ja“, es bleibt, wie es ist (S6: die Namensprobe von Vesna
+  „ton ist gut“). S7 „nein“, „lass doktor vorher“: *Izgubljeni telefon*
+  (`b1_telefon`) steht jetzt hinter *Kod doktora* und *Dedo i nana se sele*, wie in
+  seiner Themenliste. Die id bleibt und mit ihr der Lesestand; frei wird die
+  Geschichte, wenn *Dedo i nana se sele* gelesen ist. Kein Text geändert.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
