@@ -17,9 +17,9 @@ Die Pruefungen ohne Browser stehen in tests/test_weitermachen.py.
 import datetime
 
 KNOPF = """() => { homeMode = 'words'; showHome(); const k = document.getElementById('weiterKnopf');
-  return k.style.display === 'none' ? null : k.textContent; }"""
+  return k.style.display === 'none' ? null : k.textContent.trim(); }"""
 LEVEL = "() => CATEGORIES.map(c => c.id)"
-NAME = "(i) => '▶ ' + t('btn.weitermachen') + ' · ' + CATEGORIES[i].label"
+NAME = "(i) => t('btn.weitermachen') + ' · ' + CATEGORIES[i].label"
 # Die Nummern im Kreis der Level, die der Lernpfad als "Jetzt dran" markiert
 JETZT = """() => { homeMode = 'words'; showHome();
   return [...document.querySelectorAll('#sections .node.current .circle')].map(n => n.textContent); }"""
@@ -102,7 +102,7 @@ def test_ajdins_beispiel_level_8_ueben_knopf_bleibt_bei_10(seite, heute_stand):
     _knopf_zeigt(seite, 9)
     assert seite.js(JETZT) == ["10"]
     _lektion_in(seite, 7)
-    assert seite.js("() => document.getElementById('weiterKnopf').textContent") == seite.js(NAME, 9)
+    assert seite.js("() => document.getElementById('weiterKnopf').textContent.trim()") == seite.js(NAME, 9)
     _knopf_zeigt(seite, 9)
     # Der Knopf oeffnet Level 10
     seite.page.click("#weiterKnopf")

@@ -352,6 +352,14 @@ are in the Play Store listing. Format:
   `stern.webp`, `herzblau.webp`, `funken.webp`, `brief.webp`). Emojis in the
   notifications stay, the system shows those. `tests/test_symbole.py`,
   `tests_e2e/test_symbole_einheitlich.py`.
+- 🎉 and ▶ are painted pictures as well (15.11.2026, the maintainer: "Male sie",
+  approved with "Passt"): a painted play sign before "Lektion starten", "Weitermachen
+  · …" and "Weiterlesen", and a painted party popper after "Lektion geschafft",
+  "Runde geschafft", "Bestanden! Bravo", "… die ganze Sektion fertig" and "Geschichte
+  geschafft!". The texts in all eight languages no longer carry the sign; the popper
+  never stands alone on a line, it stays with the last word (`web/symbole/play.webp`,
+  `konfetti.webp`). `tests/test_symbole.py`, `tests_e2e/test_symbole_einheitlich.py`,
+  `tests_e2e/test_mitlesen.py`.
 - Skip, pause, stop and cancel (14.11.2026, same request) no longer use ⏭ ⏸ ⏹ ✕,
   which every phone drew differently and the iPhone as coloured emoji. They are
   small signs drawn in the app itself (inline SVG in the colour of the button's

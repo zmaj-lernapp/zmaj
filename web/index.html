@@ -350,6 +350,9 @@
   .zei{display:inline-block; flex:none; width:1em; height:1em; vertical-align:calc(.35em - .5em); overflow:visible;
        fill:currentColor; stroke:currentColor; stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; pointer-events:none}
   .zei-zu{fill:none; stroke-width:2.6}
+  /* Das letzte Wort und das Konfetti danach (mitKonfetti, 15.11.2026)
+     brechen nicht auseinander. */
+  .amwort{white-space:nowrap}
   /* Laden und Zahnrad tragen nur das Bild: etwas weniger Polster, damit
      die Knoepfe trotz groesserem Symbol so breit bleiben wie vorher.
      Seit 29.10.2026 auch der Profilknopf, und alle drei sind runde Knoepfe
@@ -4706,6 +4709,20 @@ function herzSymbol(sagt){ return symbol(premium ? 'herzgold' : 'herz', sagt); }
    im Profil (✉). Ueberall steht ein Wort daneben, die Bilder sind also
    Schmuck. Die Zeichen fuer Ueberspringen, Pause, Stopp und Abbrechen
    zeichnet zeichen() selbst. */
+/* 🎉 und ▶ ebenso gemalt (15.11.2026, Ajdin: "Male sie", abgenommen:
+   "Passt"). play steht vor "Lektion starten", "Weitermachen · ..." und
+   "Weiterlesen" (war ▶), konfetti nach "Lektion geschafft", "Runde
+   geschafft", "Bestanden! Bravo", "... die ganze Sektion fertig" und
+   "Geschichte geschafft!" (war 🎉). Wie das Emoji am Ende des Satzes,
+   aber nie allein in einer Zeile: das letzte Wort und das Bild stehen in
+   .amwort zusammen (ein geschuetztes Leerzeichen allein reicht nicht,
+   Chrome bricht trotzdem vor dem Bild um - so stand es auf Tuerkisch bei
+   360 px allein unter "hikâye tamamlandı!"). Nur fuer reinen Text ohne
+   Tags. Schmuck, der Satz sagt es schon. */
+function mitKonfetti(html){
+  const i = html.lastIndexOf(' ') + 1;
+  return html.slice(0, i) + '<span class="amwort">' + html.slice(i) + '\u00a0' + symbol('konfetti') + '</span>';
+}
 /* Selbst gezeichnet (14.11.2026, siehe .zei im Stil): weiter (⏭, an den
    Ueberspringen-Knoepfen), pause (⏸) und stopp (⏹) beim Vorlesen der
    Geschichte, zu (✕) an "Lektion abbrechen", "Test abbrechen" und "Test
@@ -4735,7 +4752,7 @@ function symbolTexte(vars){
    die Bilder fest, damit der Browser sie nicht wieder verwirft. */
 const SYMBOLE = ['lernpfad', 'geschichten', 'wiederholen', 'muenze', 'herz', 'laden',
                  'einstellungen', 'profil', 'lautsprecher', 'schloss', 'herzgold',
-                 'ziel', 'stern', 'herzblau', 'funken', 'brief'];
+                 'ziel', 'stern', 'herzblau', 'funken', 'brief', 'konfetti', 'play'];
 const symbolVorrat = SYMBOLE.map(n => {
   const i = new Image(); i.src = 'symbole/' + n + '.webp';
   if(i.decode) i.decode().catch(() => {});
@@ -7817,7 +7834,7 @@ function renderLives(){
                 + herzSymbol(t('stat.leben'))+' <b>'+(unlimited()?'∞':n)+'</b></button>'
                 + (zeigen ? '<span class="info">'+esc(lebenText(n))+'</span>' : '');
   $('livesKnopf').addEventListener('click', ()=>{ livesInfoAn = !livesInfoAn; renderLives(); });
-  const b=$('btnLesson'); if(b){ b.disabled = n===0; b.innerHTML = n===0 ? mitSymbol('herz', esc(t('leben.warten'))) : esc(t('level.lektion')); }
+  const b=$('btnLesson'); if(b){ b.disabled = n===0; b.innerHTML = n===0 ? mitSymbol('herz', esc(t('leben.warten'))) : mitSymbol('play', esc(t('level.lektion'))); }
   testKnopf(n);
   kopfEng();
 }
@@ -8260,7 +8277,7 @@ function renderHero(){
       if(c){ name = c.label; hin = () => openLevel(i); }
     }
     if(hin){
-      k.textContent = '▶ ' + t('btn.weitermachen') + ' · ' + name;
+      k.innerHTML = mitSymbol('play', esc(t('btn.weitermachen') + ' · ' + name));
       k.onclick = hin;
       k.style.display = '';
     } else {
@@ -12676,7 +12693,7 @@ function showStory(){
       return;
     }
     if(laeuftVor){                     // laeuft -> anhalten, Stelle merken
-      if(tonPause()){ knopfVor.textContent = t('gesch.weiterlesen'); knopfVor.classList.remove('laeuft'); wachHalten(false); }
+      if(tonPause()){ knopfVor.innerHTML = mitSymbol('play', esc(t('gesch.weiterlesen'))); knopfVor.classList.remove('laeuft'); wachHalten(false); }
       else stilleBitte();              // nichts zum Anhalten da: sauber abstellen
       return;
     }
@@ -12741,7 +12758,7 @@ function showStoryQ(s, qi, right){
     if(questLob) setTimeout(()=>sound('quest'), 850);   // nach der Fanfare, nicht darueber
     const hasNext = rIdx+1 < STORIES.length;
     box.innerHTML='<div class="ergebnis-titel">'+t('gesch.fragen')+'</div>'+(all?'<div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>':'')+
-      '<div class="feedback '+(all?'ok':'no')+'" style="text-align:center">'+t('gesch.ergebnis',{r:right, n:fragen.length})+(all?t('gesch.geschafft'):t('gesch.nochmal_lesen'))+'</div>'+erfolgLob+
+      '<div class="feedback '+(all?'ok':'no')+'" style="text-align:center">'+t('gesch.ergebnis',{r:right, n:fragen.length})+(all?mitKonfetti(t('gesch.geschafft')):t('gesch.nochmal_lesen'))+'</div>'+erfolgLob+
       '<div class="row"><button class="btn ghost" id="rAgain">'+t('gesch.fragen_nochmal')+'</button>'+(all && hasNext ? '<button class="btn know" id="rGoNext">'+t('gesch.naechste')+'</button>' : '')+'</div>'+
       /* Wie beim Vokabeltest: eine leise Reihe mit dem Weg heraus. Hier
          gab es bisher gar keinen - nur "nochmal" und "naechste". */
@@ -14464,7 +14481,7 @@ function lessonEnd(){
   $('lBar').innerHTML=''; $('zmajLesson').style.display='none'; $('zmajLesson').innerHTML=''; $('lHerz').style.display='none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   abbrechenZeigen('lQuit', false);   // S18, siehe abbrechenZeigen
   $('lBody').innerHTML =
-    '<div class="ergebnis-titel">'+t('lektion.geschafft')+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
+    '<div class="ergebnis-titel">'+mitKonfetti(t('lektion.geschafft'))+'</div><div class="celebrate"><div class="zmaj cheer">'+zmaj('cheer')+'</div></div>'+
     '<div class="result-big">'+Lx.right+' / '+scored+'</div>'+
     '<div class="stats"><div class="stat"><b>+'+Lx.newWords.size+'</b>'+tp('stat.neue_woerter', Lx.newWords.size)+'</div><div class="stat"><b>'+pct+' %</b>'+t('stat.fortschritt')+'</div><div class="stat"><b>'+flammeHtml()+' '+streak()+'</b>'+tp('stat.tage_folge', streak())+'</div><div class="stat"><b>'+herzSymbol()+' '+(unlimited()?'∞':livesNow())+'</b>'+t('stat.leben')+'</div></div>'+
     (nowAllowed && !wasAllowed && !passed.has(c.id) ? '<div class="feedback ok">'+t('lektion.test_frei')+'</div>' : '')+
@@ -14769,7 +14786,7 @@ function showTestResult(){
   $('tBody').innerHTML =
     '<div class="ergebnis-titel">'+t('level.titel',{i:levelNummer(catIdx), label:esc(c.label)})+'</div><div class="celebrate"><div class="zmaj '+(ok?'cheer':'sad')+'">'+zmaj(ok?'cheer':'sad')+'</div></div>'+
     '<div class="result-big'+(ok?'':' fail')+'">'+Tx.right+' / '+Tx.qs.length+'</div>'+
-    '<div class="feedback '+(ok?'ok':'no')+'">'+(ok ? t(nextSec ? 'test.sektion_fertig' : 'test.bestanden') : t('test.durchgefallen',{n:TEST_BESTANDEN_AB}))+'</div>'+
+    '<div class="feedback '+(ok?'ok':'no')+'">'+(ok ? mitKonfetti(t(nextSec ? 'test.sektion_fertig' : 'test.bestanden')) : t('test.durchgefallen',{n:TEST_BESTANDEN_AB}))+'</div>'+
     questLob+erfolgLob+
     '<div class="row">'+
       '<button class="btn ghost" id="tBack">'+(ok?t('test.zum_pfad'):t('lektion.zurueck'))+'</button>'+
@@ -15598,7 +15615,7 @@ function topfEnde(){
   $('lBar').innerHTML = ''; $('zmajLesson').style.display = 'none'; $('zmajLesson').innerHTML = ''; $('lHerz').style.display = 'none';   // kleiner Drache abgebaut, nicht nur versteckt - siehe showLevelHome (19.10.2026)
   abbrechenZeigen('lQuit', false);   // S18, siehe abbrechenZeigen
   $('lBody').innerHTML =
-    '<div class="ergebnis-titel">' + t('topf.fertig') + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
+    '<div class="ergebnis-titel">' + mitKonfetti(t('topf.fertig')) + '</div><div class="celebrate"><div class="zmaj cheer">' + zmaj('cheer') + '</div></div>' +
     '<div class="result-big">' + Lx.right + ' / ' + scored + '</div>' +
     '<div class="stats"><div class="stat"><b>' + rest + '</b>' + esc(tp(mitStern ? 'stern.rest' : (mitKartei ? 'kartei.rest' : 'topf.rest'), rest)) + '</div>' +
       '<div class="stat"><b>' + flammeHtml() + ' ' + streak() + '</b>' + tp('stat.tage_folge', streak()) + '</div>' +

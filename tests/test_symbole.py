@@ -231,3 +231,61 @@ def test_zeichen_selbst_gezeichnet(index_html):
     for k in ("lQuit", "tQuit", "eQuit"):
         assert re.search(r'<button id="%s" data-t="[a-z.]+" data-zeichen="zu"></button>' % k, code), k
     assert "(el.dataset.zeichen ? zeichen(el.dataset.zeichen) + '\\u00a0' : '') + t(el.dataset.t, vars)" in code
+
+
+# 🎉 und ▶ gemalt (Offen-Liste 5a, 15.11.2026). Ajdin: "Male sie",
+# abgenommen mit "Passt". Wie oben: das Bild kommt aus dem Code, die Texte
+# tragen das Zeichen nicht mehr. Die Benachrichtigungen (ben.*) bleiben.
+GEMALT_WEG_5A = ["🎉", "▶", "\\u25b6", "\\U0001f389", "&#9654;", "&#127881;"]
+PLAY_TEXTE = ("level.lektion", "gesch.weiterlesen")
+KONFETTI_TEXTE = ("lektion.geschafft", "test.bestanden", "test.sektion_fertig", "topf.fertig", "gesch.geschafft")
+
+
+def test_texte_ohne_konfetti_und_play(sprachcodes):
+    """Kein Text der Oberflaeche traegt noch 🎉 oder ▶. Die sieben Texte,
+    die sie trugen, stehen in jeder Sprache ohne Zeichen und ohne Leerraum
+    am Rand da (gesch.geschafft beginnt wie bisher mit " – ")."""
+    import sprachen
+    fehler = []
+    for code in sprachcodes:
+        texte = sprachen.texte(code)
+        for k, v in texte.items():
+            if isinstance(v, str) and not k.startswith("ben."):
+                fehler += [(code, k, e) for e in GEMALT_WEG_5A if e in v]
+        for k in PLAY_TEXTE + KONFETTI_TEXTE:
+            v = texte[k]
+            assert v and v == v.rstrip() and v[-1] not in " \u00a0", (code, k, v)
+            assert v == v.lstrip() or k == "gesch.geschafft", (code, k, v)
+            assert v[0].isalpha() or k == "gesch.geschafft", (code, k, v)
+        assert texte["gesch.geschafft"].startswith(" – "), (code, texte["gesch.geschafft"])
+    assert not fehler, fehler
+
+
+def test_konfetti_und_play_aus_dem_code(wurzel, index_html):
+    """Im Quelltext (ohne Kommentare) kein 🎉 und kein ▶ mehr. play vor
+    "Lektion starten", "Weitermachen · ..." und "Weiterlesen", konfetti
+    ueber mitKonfetti() nach den fuenf Erfolgssaetzen - mit dem letzten Wort
+    in .amwort, das geschuetzte Leerzeichen als Fluchtfolge, nicht als
+    unsichtbares Zeichen."""
+    code = _ohne_kommentare(index_html)
+    assert not [e for e in GEMALT_WEG_5A if e in code]
+    m = re.search(r"function mitKonfetti\(html\)\{(.*?)\n\}", code, re.S)
+    assert m, "mitKonfetti() fehlt"
+    assert "'<span class=\"amwort\">' + html.slice(i) + '\\u00a0' + symbol('konfetti') + '</span>'" in m.group(1)
+    assert "\u00a0" not in m.group(1)
+    # Das letzte Wort und das Bild brechen nicht auseinander (in Chrome reicht
+    # das geschuetzte Leerzeichen vor einem Bild allein nicht)
+    assert ".amwort{white-space:nowrap}" in index_html
+    assert ": mitSymbol('play', esc(t('level.lektion'))); }" in code
+    assert "k.innerHTML = mitSymbol('play', esc(t('btn.weitermachen') + ' · ' + name));" in code
+    assert "knopfVor.innerHTML = mitSymbol('play', esc(t('gesch.weiterlesen')));" in code
+    assert code.count("mitSymbol('play'") == 3
+    for k in KONFETTI_TEXTE:
+        if k.startswith("test."):
+            continue
+        assert "mitKonfetti(t('%s'))" % k in code, k
+    assert "mitKonfetti(t(nextSec ? 'test.sektion_fertig' : 'test.bestanden'))" in code
+    assert code.count("mitKonfetti(") == 5   # die Funktion und vier Stellen (der Test mit zwei Texten)
+    for n in ("konfetti", "play"):
+        assert n in _symbole(index_html), n
+        assert os.path.isfile(os.path.join(wurzel, "web", "symbole", n + ".webp")), n

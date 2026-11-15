@@ -16,6 +16,10 @@ Geprueft wird hier im Browser:
   - die selbst gezeichneten Zeichen statt ⏭ ⏸ ⏹ ✕: Ueberspringen, Pause,
     Stopp und die drei Abbrechen-Knoepfe, in allen acht Sprachen, hell und
     dunkel, bei 360 Punkten im Knopf und in einer Zeile.
+  - seit 15.11.2026 (Offen-Liste 5a) gemaltes play statt ▶ (Weitermachen,
+    "Lektion starten"; "Weiterlesen" in test_mitlesen.py) und gemaltes
+    Konfetti statt 🎉 (Ende von Lektion, Test, Wiederholungsrunde und
+    Geschichte), in allen acht Sprachen.
 """
 import datetime
 import io
@@ -295,3 +299,89 @@ def test_gezeichnete_zeichen(browser, basis, sprache, schema):
     finally:
         ctx.close()
 
+
+
+# 🎉 und ▶ gemalt (Offen-Liste 5a, 15.11.2026). Ajdin: "Male sie", abgenommen
+# mit "Passt". play steht vor dem Wort, konfetti nach dem Satz (wie vorher das
+# Emoji), mit geschuetztem Leerzeichen am letzten Wort.
+GEMALT_WEG_5A = ["🎉", "▶"]
+
+# Wie BILDER_IN, dazu: steht jedes Bild in der Zeile eines Wortes (seine Mitte
+# innerhalb der Hoehe einer Textzeile), oder allein in einer eigenen Zeile?
+BILDER_ZEILE = """(sel) => { const e = document.querySelector(sel); if(!e) return null;
+  const rects = []; const w = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+  for(let n = w.nextNode(); n; n = w.nextNode()){ if(!n.textContent.trim()) continue;
+    const g = document.createRange(); g.selectNodeContents(n); rects.push(...[...g.getClientRects()].filter(q => q.width > 0)); }
+  return {bilder: [...e.querySelectorAll('img.sym')].map(i => [i.getAttribute('src'), i.getAttribute('alt'),
+                    i.getAttribute('aria-hidden'), i.complete && i.naturalWidth > 0]),
+          inZeile: [...e.querySelectorAll('img.sym')].every(i => { const q = i.getBoundingClientRect(), m = (q.top + q.bottom) / 2;
+                    return rects.some(r => m >= r.top && m <= r.bottom); }),
+          text: e.innerText.replace(/\\s+/g, ' ').trim()}; }"""
+
+
+def _geladen(seite, sel):
+    seite.page.wait_for_function(
+        "(s) => { const i = [...document.querySelectorAll(s + ' img.sym')]; return i.length > 0 && i.every(x => x.complete); }",
+        arg=sel, timeout=8000)
+    return seite.js(BILDER_ZEILE, sel)
+
+
+@pytest.mark.parametrize("sprache", SPRACHEN)
+def test_konfetti_und_play_gemalt(browser, basis, sprache):
+    """Weitermachen, "Lektion starten" und "Weiterlesen" tragen das gemalte
+    play vor dem Wort (war ▶), die Erfolgssaetze nach Lektion, Test,
+    Wiederholungsrunde und Geschichte das gemalte Konfetti danach (war 🎉) -
+    in jeder Sprache, geladen, als Schmuck, bei 360 Punkten in der Zeile des
+    Wortes. Die Texte selbst tragen keines der Zeichen mehr."""
+    ctx, seite = _kontext(browser, basis, breite=360, hoehe=740)
+    try:
+        _starten(seite, sprache=sprache)
+        t = lambda k, v=None: " ".join(seite.js("([k, v]) => t(k, v || undefined)", [k, v]).split())  # noqa: E731
+
+        # Startseite: Weitermachen
+        seite.js("() => { homeMode = 'words'; showHome(); }")
+        k = _geladen(seite, "#weiterKnopf")
+        name = " ".join(seite.js("() => CATEGORIES[firstOpen()].label").split())
+        assert k == {"bilder": [_bild("play")], "inZeile": True, "text": t("btn.weitermachen") + " · " + name}, k
+
+        # Level: Lektion starten
+        seite.js("() => openLevel(0)")
+        k = _geladen(seite, "#btnLesson")
+        assert k == {"bilder": [_bild("play")], "inZeile": True, "text": t("level.lektion")}, k
+
+        # Ende der Lektion
+        seite.js("() => { startLesson(); stilleBitte(); }")
+        seite.durchspielen("lBody", "Lx")
+        k = _geladen(seite, "#lBody .ergebnis-titel")
+        assert k == {"bilder": [_bild("konfetti")], "inZeile": True, "text": t("lektion.geschafft")}, k
+
+        # Bestandener Level-Test
+        seite.js("() => { stilleBitte(); CATEGORIES[0].words.forEach(w => known.add(w.id)); openLevel(0); startTest();"
+                 " stilleBitte(); Tx.i = Tx.qs.length; Tx.right = Tx.qs.length; showTestResult(); }")
+        k = _geladen(seite, "#tBody .feedback.ok")
+        assert k["bilder"] == [_bild("konfetti")] and k["inZeile"], k
+        assert k["text"] in (t("test.bestanden"), t("test.sektion_fertig")), k
+
+        # Ende einer Wiederholungsrunde (wie TOPF_ENDE in test_flamme.py)
+        seite.js("""() => { stilleBitte(); showView('levelView');
+          for(const [id, an] of [['levelHome', 'none'], ['test', 'none'], ['lesson', 'block']]) document.getElementById(id).style.display = an;
+          Lx = {queue: [], i: 0, results: [], right: 0, total: 0, skipped: 0, newWords: new Set(), retried: new Set(),
+                topf: true, quelle: 'topf'};
+          topfEnde(); }""")
+        k = _geladen(seite, "#lBody .ergebnis-titel")
+        assert k == {"bilder": [_bild("konfetti")], "inZeile": True, "text": t("topf.fertig")}, k
+
+        # Alle Fragen einer Geschichte richtig
+        seite.js("() => { stilleBitte(); homeMode = 'stories'; openStory(0); stilleBitte();"
+                 " const s = STORIES[0]; showStoryQ(s, s.fragen.length, s.fragen.length); }")
+        k = _geladen(seite, "#rQ .feedback.ok")
+        n = seite.js("() => STORIES[0].fragen.length")
+        erwartet = " ".join((seite.js("(n) => t('gesch.ergebnis', {r: n, n})", n) + seite.js("() => t('gesch.geschafft')")).split())
+        assert k == {"bilder": [_bild("konfetti")], "inZeile": True, "text": erwartet}, k
+
+        for key in ("btn.weitermachen", "level.lektion", "gesch.weiterlesen", "lektion.geschafft", "test.bestanden",
+                    "test.sektion_fertig", "topf.fertig", "gesch.geschafft"):
+            assert not [e for e in GEMALT_WEG_5A if e in t(key)], (key, t(key))
+        assert seite.fehler == [] and seite.fremd == []
+    finally:
+        ctx.close()

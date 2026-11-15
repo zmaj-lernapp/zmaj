@@ -233,6 +233,9 @@ def test_pause_haelt_weiter_laeuft(dunkel):
     seite.page.click("#rListen")                            # Pause
     seite.page.wait_for_function("() => spieler.paused && pausiert")
     assert seite.js(KNOEPFE)["vor"] == [None, seite.js("() => t('gesch.weiterlesen')")]
+    # Seit 15.11.2026 das gemalte play vor "Weiterlesen" statt ▶ im Text (Offen-Liste 5a)
+    assert seite.js("() => [...document.querySelectorAll('#rListen img.sym')].map(i => [i.getAttribute('src'),"
+                    " i.getAttribute('alt'), i.getAttribute('aria-hidden')])") == [["symbole/play.webp", "", "true"]]
     vorher = seite.js(ZUSTAND)
     assert stimmt(vorher, n) and len(vorher["gelesen"]) >= 5, vorher
     takte = vorher["takte"]
