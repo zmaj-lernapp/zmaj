@@ -65,6 +65,8 @@ FAELLE = {
                                         "breath (loc.) (u jednom dahu: in one breath)"),
     ("b1_utakmica", "grlio", "oca"): ("Vater (Gen./Akk.)", "father (gen./acc.)"),
     ("b1_zanat", "od", "oca"): ("Vater (Gen./Akk.)", "father (gen./acc.)"),
+    ("b1_kahva", "se", "digne"): ("hebt (se digne: steigt auf)", "lifts (se digne: rises)"),
+    ("b1_kahva", "digne", "kajmak"): ("Schaum (auf dem Kaffee) / Kajmak", "foam (on the coffee) / kajmak"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -91,6 +93,9 @@ ZU_SEHEN = {
                      "Haris blew out all the candles in one breath"),
     "b1_utakmica": ("Kenan je grlio oca i ljude", "Kenan umarmte seinen Vater und Leute",
                     "Kenan hugged his father and people"),
+    "b1_kahva": ("Džezvu vrati na vatru samo na kratko, da se digne kajmak.",
+                 "Das Kännchen stellt sie nur kurz zurück aufs Feuer, damit der Schaum aufsteigt.",
+                 "She puts the džezva back on the heat only briefly, so that the foam rises."),
 }
 
 

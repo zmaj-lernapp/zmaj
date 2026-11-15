@@ -54,6 +54,8 @@ B = {
     "T6": ("b1_rodjendan", "Haris je ugasio sve svijeće u jednom dahu, a svi su vikali: „Bravo!“",
            "Haris ih je ugasio odjednom"),
     "T7": ("b1_utakmica", "Kenan je grlio oca i ljude koje nikad prije nije vidio.", "Kenan je grlio babu"),
+    "T11": ("b1_kahva", "Džezvu vrati na vatru samo na kratko, da se digne kajmak.",
+            "Džezvu vrati na vatru samo na kratko. „"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -88,6 +90,8 @@ DE = {
     "b1_rodjendan": [("Haris blies alle Kerzen in einem Atemzug aus, und alle riefen: „Bravo!“",
                       "Haris blies sie auf einmal aus")],
     "b1_utakmica": [("Kenan umarmte seinen Vater und Leute, die er noch nie gesehen hatte.", "Kenan umarmte Papa")],
+    "b1_kahva": [("Das Kännchen stellt sie nur kurz zurück aufs Feuer, damit der Schaum aufsteigt.",
+                  "Das Kännchen stellt sie nur kurz zurück aufs Feuer. „")],
 }
 
 # Stichprobe: so heißt es jetzt auf Englisch
@@ -98,6 +102,7 @@ EN = {
     "b1_doktor": "I'll give you a prescription and put you on sick leave for five days.",
     "b1_rodjendan": "Haris blew out all the candles in one breath, and everyone shouted: “Bravo!”",
     "b1_utakmica": "Kenan hugged his father and people he had never seen before.",
+    "b1_kahva": "She puts the džezva back on the heat only briefly, so that the foam rises.",
 }
 
 # Neue Formen im Wörterbuch der Lesetexte und ihre Bedeutung
@@ -130,6 +135,8 @@ NEU = {
     "dahu": "Atem (Lok.) (u jednom dahu: in einem Atemzug)",
     # in Stari zanat "od oca" (Gen.), in Utakmica "grlio oca" (Akk.)
     "oca": "Vater (Gen./Akk.)",
+    "digne": "hebt (se digne: steigt auf)",
+    "kajmak": "Schaum (auf dem Kaffee) / Kajmak",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind

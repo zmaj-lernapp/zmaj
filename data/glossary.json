@@ -1656,6 +1656,19 @@
    }
   },
   {
+   "bs": "digne",
+   "translations": {
+    "de": "hebt (se digne: steigt auf)",
+    "en": "lifts (se digne: rises)",
+    "tr": "kaldırır (se digne: kabarır)",
+    "sv": "lyfter (se digne: stiger)",
+    "nl": "heft (se digne: komt op)",
+    "nb": "løfter (se digne: stiger)",
+    "da": "løfter (se digne: stiger op)",
+    "fr": "lève (se digne : monte)"
+   }
+  },
+  {
    "bs": "dijasporu",
    "translations": {
     "de": "Diaspora (Akk.)",
@@ -4851,6 +4864,19 @@
     "nb": "kaffe (akkusativ)",
     "da": "kaffe (akkusativ)",
     "fr": "café (accusatif)"
+   }
+  },
+  {
+   "bs": "kajmak",
+   "translations": {
+    "de": "Schaum (auf dem Kaffee) / Kajmak",
+    "en": "foam (on the coffee) / kajmak",
+    "tr": "köpük (kahvenin üstünde) / kaymak",
+    "sv": "skum (på kaffet) / kajmak",
+    "nl": "schuim (op de koffie) / kajmak",
+    "nb": "skum (på kaffen) / kajmak",
+    "da": "skum (på kaffen) / kajmak",
+    "fr": "mousse (sur le café) / kajmak"
    }
   },
   {

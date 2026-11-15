@@ -975,6 +975,7 @@ WOERTERBUCH_B1_2 = {
     "svoja": "eigene (Mehrz.)", "kuha": "er/sie kocht",
     "džezvi": "Kupferkännchen (Lok.)", "skine": "nimmt herunter", "šporeta": "Herd (Gen.)", "doda": "fügt hinzu",
     "promiješa": "rührt um", "vrati": "stellt zurück", "vatru": "Feuer (Akk.)", "kratko": "kurz",
+    "digne": "hebt (se digne: steigt auf)", "kajmak": "Schaum (auf dem Kaffee) / Kajmak",
     "prekipjeti": "überkochen", "prekipi": "kocht über", "kuhaj": "koch (Befehl)",
     "stolu": "Tisch (Lok.)", "fildžani": "Kaffeetassen", "šećer": "Zucker", "rahat": "rahat lokum: Lokum (Süßigkeit)",
     "lokum": "Lokum (Süßigkeit)", "čaša": "Glas", "uzmemo": "wir nehmen", "komad": "Stück",
@@ -1145,13 +1146,15 @@ GESCHICHTEN += [
     },
     {
         "id": "b1_kahva", "titel": "Kahva kod komšinice", "stufe": "B1", "passt_zu": "miteinander_umgehen",
+        # A/B-Liste, Ajdin 15.11.2026: T11 B ", da se digne kajmak" (der Schaum der
+        # Kahva). T10 A: "teta" bleibt.
         "text": ("Moja komšinica, teta Safija, živi na istom spratu kao ja. Ima osamdeset godina, ali je još uvijek vrlo vesela. Svake nedjelje u deset sati pokuca mi na vrata: „Komšinice, hajde na kahvu!“\n\n"
-                 "Kod nje kahva ima svoja pravila. Prvo kuha vodu u džezvi. Onda skine džezvu sa šporeta, doda kahvu i promiješa. Džezvu vrati na vatru samo na kratko. „Kahva ne smije prekipjeti“, kaže ona. „Ako prekipi, kuhaj novu.“\n\n"
+                 "Kod nje kahva ima svoja pravila. Prvo kuha vodu u džezvi. Onda skine džezvu sa šporeta, doda kahvu i promiješa. Džezvu vrati na vatru samo na kratko, da se digne kajmak. „Kahva ne smije prekipjeti“, kaže ona. „Ako prekipi, kuhaj novu.“\n\n"
                  "Na stolu su fildžani, šećer, rahat lokum i čaša vode. Prvo uzmemo komad rahat lokuma, a onda polako pijemo kahvu. „E, ovo je prava bosanska kahva“, kaže teta Safija.\n\n"
                  "Onda počnu priče: ko se oženio, ko je dobio bebu, čiji sin radi u Njemačkoj i zašto komšija Mujo opet nikoga nije pozdravio. Ja ne razumijem sve, ali volim slušati.\n\n"
                  "Jednom sam rekla da moram brzo popiti kahvu jer idem u grad. Teta Safija me pogledala kao da sam rekla nešto strašno. „Kahva se ne pije na brzinu, dušo. Uz kahvu se razgovara. Za kahvu uvijek ima vremena.“ Od tada sjedim do kraja, čak i kad kasnim."),
         "uebersetzung": ("Meine Nachbarin, Tante Safija, wohnt auf demselben Stockwerk wie ich. Sie ist achtzig Jahre alt, aber immer noch sehr fröhlich. Jeden Sonntag um zehn Uhr klopft sie an meine Tür: „Nachbarin, komm auf einen Kaffee!“\n\n"
-                         "Bei ihr hat der Kaffee seine eigenen Regeln. Zuerst kocht sie Wasser im Kupferkännchen. Dann nimmt sie das Kännchen vom Herd, gibt den Kaffee dazu und rührt um. Das Kännchen stellt sie nur kurz zurück aufs Feuer. „Der Kaffee darf nicht überkochen“, sagt sie. „Wenn er überkocht, koch einen neuen.“\n\n"
+                         "Bei ihr hat der Kaffee seine eigenen Regeln. Zuerst kocht sie Wasser im Kupferkännchen. Dann nimmt sie das Kännchen vom Herd, gibt den Kaffee dazu und rührt um. Das Kännchen stellt sie nur kurz zurück aufs Feuer, damit der Schaum aufsteigt. „Der Kaffee darf nicht überkochen“, sagt sie. „Wenn er überkocht, koch einen neuen.“\n\n"
                          "Auf dem Tisch stehen Kaffeetassen, Zucker, Lokum und ein Glas Wasser. Zuerst nehmen wir ein Stück Lokum, und dann trinken wir langsam den Kaffee. „Ja, das ist echter bosnischer Kaffee“, sagt Tante Safija.\n\n"
                          "Dann fangen die Geschichten an: wer geheiratet hat, wer ein Baby bekommen hat, wessen Sohn in Deutschland arbeitet und warum Nachbar Mujo schon wieder niemanden gegrüßt hat. Ich verstehe nicht alles, aber ich höre gern zu.\n\n"
                          "Einmal habe ich gesagt, dass ich den Kaffee schnell austrinken muss, weil ich in die Stadt gehe. Tante Safija sah mich an, als hätte ich etwas Schreckliches gesagt. „Kaffee trinkt man nicht auf die Schnelle, Schatz. Beim Kaffee unterhält man sich. Für Kaffee ist immer Zeit.“ Seitdem bleibe ich bis zum Schluss sitzen, sogar wenn ich spät dran bin."),
