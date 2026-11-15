@@ -119,8 +119,10 @@ ENGLISCH = {
 # ohne die sieben Kommas vor nachgestelltem jer und ako (7ae50346…), seit der
 # Offen-Liste, Punkt 3, "Hvala vam na pomoći" klein in opcina (bc6caa52…), dann
 # "Dedo i nana se sele" statt "Selidba" (ccb92728…), seit 15.11.2026 das
-# hoefliche Vi gross auch in den Gespraechen (Ajdin: "mach doch alles groß").
-TEXTE_SHA256 = "21871bb1cdc5a40ac41cfb58b4821c05459316e73f546155477fa5c6dcd054f9"
+# hoefliche Vi gross auch in den Gespraechen (Ajdin: "mach doch alles groß",
+# 21871bb1…), dann Ajdins A/B-Antworten zu den B1-Lesetexten, eine Geschichte
+# nach der anderen (tests/test_lesetexte_ab.py).
+TEXTE_SHA256 = "5eda15a573cc610096b1f37c2ab41ddfa871fd0d2f1b6073424c7d052bf5a00e"
 
 
 def _geschichten(daten):

@@ -785,6 +785,13 @@ are in the Play Store listing. Format:
   old story used are gone with their translations (1,515 entries). No audio yet;
   it comes with the next Vesna round (`tests/offen_b1_teil2.py`).
   `tests/test_pruefbericht14_geschichten.py`.
+- B1 reading stories, the maintainer's answers to the open A/B passages
+  (15.11.2026): where he chose the other wording, the story now has exactly
+  that, with translation, questions and story dictionary in all eight languages
+  (not by native speakers); where he kept the text, nothing changed. *Dijaspora
+  prvi put u Sarajevu*: Tarik orders *deset ćevapa* instead of a *desetka*.
+  None of these stories had audio yet; they wait for the next Vesna round.
+  `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it
   means "mein eigener" and the story dictionary "eigener (mein, dein, sein)",
   yet in *Voz Sarajevo–Mostar* a woman gives "svoj broj", her own number. Both

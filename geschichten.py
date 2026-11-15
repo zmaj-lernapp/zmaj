@@ -175,7 +175,7 @@ WOERTERBUCH = {
     "razumiju": "sie verstehen", "dijasporu": "Diaspora (Akk.)", "otišli": "gegangen (Mehrz.)", "ulice": "Straßen",
     "bile": "waren (w. Mehrz.)", "pune": "voll (w. Mehrz.)", "turista": "Touristen (Gen.)",
     "malih": "kleinen (Gen. Mehrz.)", "mirisalo": "es roch / duftete", "naručio": "bestellt (m)",
-    "desetku": "zehn Ćevapi (Portion, Akk.)", "s": "mit", "lukom": "Zwiebeln (Instr.)", "jogurt": "Joghurt",
+    "ćevapa": "Ćevapi (Gen.)", "s": "mit", "lukom": "Zwiebeln (Instr.)", "jogurt": "Joghurt",
     "najbolje": "das Beste / am besten", "što": "was / dass (im Nebensatz)", "ikad": "jemals", "jeo": "gegessen (m)",
     "šetali": "spaziert (Mehrz.)", "miljacke": "Miljacka (Gen., Fluss in Sarajevo)",
     "vijećnice": "Vijećnica (Gen., Rathaus von Sarajevo)", "pričao": "erzählt (m)", "historiji": "Geschichte (Lok.)",
@@ -577,15 +577,17 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_dijaspora", "titel": "Dijaspora prvi put u Sarajevu", "stufe": "B1", "passt_zu": "urlaub",
+        # A/B-Liste (Lesetexte_Fragen_AB.md), Ajdin 15.11.2026: L9 B, "deset ćevapa"
+        # statt "desetku".
         "text": ("Tarik ima dvadeset godina i rođen je u Njemačkoj. Njegovi roditelji su iz Bosne, ali on nikad nije bio u Sarajevu. Ovog ljeta je konačno došao. Na aerodromu ga je čekao rođak Haris.\n\n"
                  "„Dobro došao!“ rekao je Haris i zagrlio ga. Tarik je bio malo nervozan jer njegov bosanski nije savršen. „Ne brini“, smijao se Haris. „Ovdje svi razumiju dijasporu.“\n\n"
-                 "Prvo su otišli na Baščaršiju. Ulice su bile pune turista, a iz malih radnji je mirisalo na kahvu i ćevape. Tarik je naručio desetku s lukom i jogurt. „Ovo je najbolje što sam ikad jeo!“ rekao je.\n\n"
+                 "Prvo su otišli na Baščaršiju. Ulice su bile pune turista, a iz malih radnji je mirisalo na kahvu i ćevape. Tarik je naručio deset ćevapa s lukom i jogurt. „Ovo je najbolje što sam ikad jeo!“ rekao je.\n\n"
                  "Poslije ručka su šetali pored Miljacke do Vijećnice. Haris mu je pričao o historiji grada, a Tarik je slikao sve što je vidio. Navečer su se žičarom popeli na Trebević. Odozgo se vidio cijeli grad, a svjetla su se polako palila.\n\n"
                  "„Moj babo je uvijek govorio da je Sarajevo najljepši grad na svijetu“, rekao je Tarik tiho. „Sad znam da nije pretjerivao.“\n\n"
                  "Prije spavanja je nazvao roditelje i sve im ispričao. „Sljedeće godine opet dolazim, ali na duže“, obećao je."),
         "uebersetzung": ("Tarik ist zwanzig Jahre alt und in Deutschland geboren. Seine Eltern kommen aus Bosnien, aber er war noch nie in Sarajevo. Diesen Sommer ist er endlich gekommen. Am Flughafen wartete sein Cousin Haris auf ihn.\n\n"
                          "„Willkommen!“, sagte Haris und umarmte ihn. Tarik war ein bisschen nervös, weil sein Bosnisch nicht perfekt ist. „Keine Sorge“, lachte Haris. „Hier verstehen alle die Diaspora.“\n\n"
-                         "Zuerst gingen sie auf die Baščaršija. Die Straßen waren voller Touristen, und aus den kleinen Läden duftete es nach Kaffee und Ćevapi. Tarik bestellte eine Portion mit zehn Ćevapi und Zwiebeln und dazu einen Joghurt. „Das ist das Beste, was ich je gegessen habe!“, sagte er.\n\n"
+                         "Zuerst gingen sie auf die Baščaršija. Die Straßen waren voller Touristen, und aus den kleinen Läden duftete es nach Kaffee und Ćevapi. Tarik bestellte zehn Ćevapi mit Zwiebeln und einen Joghurt. „Das ist das Beste, was ich je gegessen habe!“, sagte er.\n\n"
                          "Nach dem Mittagessen spazierten sie an der Miljacka entlang bis zur Vijećnica. Haris erzählte ihm von der Geschichte der Stadt, und Tarik fotografierte alles, was er sah. Abends fuhren sie mit der Seilbahn auf den Trebević. Von oben sah man die ganze Stadt, und langsam gingen die Lichter an.\n\n"
                          "„Mein Papa hat immer gesagt, dass Sarajevo die schönste Stadt der Welt ist“, sagte Tarik leise. „Jetzt weiß ich, dass er nicht übertrieben hat.“\n\n"
                          "Vor dem Schlafengehen rief er seine Eltern an und erzählte ihnen alles. „Nächstes Jahr komme ich wieder, aber für länger“, versprach er."),

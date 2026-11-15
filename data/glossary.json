@@ -1578,19 +1578,6 @@
    }
   },
   {
-   "bs": "desetku",
-   "translations": {
-    "de": "zehn Ćevapi (Portion, Akk.)",
-    "en": "ten ćevapi (portion, acc.)",
-    "tr": "on ćevapi (porsiyon, akuzatif)",
-    "sv": "tio ćevapi (portion, ackusativ)",
-    "nl": "tien ćevapi (portie, accusatief)",
-    "nb": "ti ćevapi (porsjon, akkusativ)",
-    "da": "ti ćevapi (portion, akkusativ)",
-    "fr": "dix ćevapi (portion, accusatif)"
-   }
-  },
-  {
    "bs": "desetog",
    "translations": {
     "de": "am zehnten",
@@ -18904,6 +18891,19 @@
     "nb": "dere skal",
     "da": "I skal",
     "fr": "vous allez (futur)"
+   }
+  },
+  {
+   "bs": "ćevapa",
+   "translations": {
+    "de": "Ćevapi (Gen.)",
+    "en": "ćevapi (gen.)",
+    "tr": "ćevapi (genitif)",
+    "sv": "ćevapi (genitiv)",
+    "nl": "ćevapi (genitief)",
+    "nb": "ćevapi (genitiv)",
+    "da": "ćevapi (genitiv)",
+    "fr": "ćevapi (génitif)"
    }
   },
   {

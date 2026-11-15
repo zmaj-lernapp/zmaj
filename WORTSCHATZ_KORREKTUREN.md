@@ -1344,3 +1344,23 @@ Satzbau-Satz „Gdje je moj kusur?“ sagte das schon, der Lückensatz noch nich
 - Die anderen Sprachen sagten schon dasselbe wie beim Satzbau (change, para üstü,
   växel, wisselgeld, vekslepenger, byttepenge, monnaie); der alte deutsche Schlüssel
   ist raus.
+
+## 15.11.2026 – Lesetexte B1: Ajdins Antworten auf die A/B-Liste
+
+In der Liste `Release\Lesetexte_Fragen_AB.md` stand zu jeder fraglichen Stelle der
+neuen B1-Lesetexte A (wie es im Text stand) und B (der andere Vorschlag). Ajdin am
+15.11.2026: „L9 B, L10 B, L11 A, L12 B, L13 A, L14 A, L15 A, L16 B, L17 A, L18 B,
+L19 B, L20 A, L21 B, L22 B, L24 B („ja alle“), L25 A, L26 B, L27 B, L28 B, L29 A,
+L30 B“ und „T1 B, T2 B, T3 B, T5 B, T6 B, T7 B, T8 A, T9 A, T10 A, T11 B, T12 B,
+T13 A, T14 B, T15 B, T16 A“. Eingebaut ist genau B, wie es in der Liste stand; wo
+er A gewählt hat, bleibt der Text. Übersetzung, Fragen und Wörterbuch in allen acht
+Sprachen sind nachgezogen.
+
+| Stelle | Geschichte | vorher (A) | jetzt (B) |
+|---|---|---|---|
+| L9 | *Dijaspora prvi put u Sarajevu* (`b1_dijaspora`) | Tarik je naručio desetku s lukom i jogurt. | Tarik je naručio deset ćevapa s lukom i jogurt. |
+
+- Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus.
+- Keine dieser Geschichten hatte Ton. Der neue Text wartet in
+  `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
+  `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
