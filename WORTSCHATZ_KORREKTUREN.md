@@ -1362,6 +1362,9 @@ Sprachen sind nachgezogen.
 | L10 | *Vrijeme za vikend* (`b1_vrijeme`) | Dobro veče, poštovani slušaoci. | Dobro veče, dragi slušaoci. |
 | L12 | *Vrijeme za vikend* | Ako bude sunčano, možemo napraviti i roštilj. | Ako bude sunčano, možemo i roštiljati. |
 | L16 | *Jahorina* (`b1_jahorina`) | Prvog jutra su iznajmili skije, pancerice i štapove. | Prvog jutra su iznajmili skije, skijaške cipele i štapove. |
+| L18 | *Nanina pita* (`b1_pita`) | … na veliki sto i razvlačila ga rukama dok nije postalo tanko kao papir. | … na veliki sto i razvijala ga oklagijom dok nije postalo tanko kao papir. |
+| L19 | *Nanina pita* | pripremile su fil · stavile fil na tijesto | pripremile su nadjev · stavile nadjev na tijesto |
+| L21 | *Nanina pita* | Tijesto je moralo odmarati pola sata. | Tijesto je trebalo da odmori pola sata. |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1369,7 +1372,12 @@ Sprachen sind nachgezogen.
   rođaku*. Die Übersetzungen sagten schon „liebe Hörerinnen und Hörer“ und „grillen“.
   *Vrijeme za vikend* hat damit 159 statt 160 Wörter. *skijaške* „Ski- (skijaške
   cipele: Skischuhe)“ und *cipele* „Schuhe“ neu, *pancerice* raus; die Übersetzung
-  sagte schon „Skischuhe“.
+  sagte schon „Skischuhe“. *razvijala* „ausgerollt (w)“, *oklagijom* „Nudelholz
+  (Instr.)“, *nadjev* „Füllung“ und *odmori* „ruht (sich) aus“ neu, *razvlačila*,
+  *rukama*, *fil* und *moralo* raus; *trebalo* heißt in *Nanina pita* „musste (s)“
+  (vokabeln der Geschichte), im Wörterbuch bleibt „gebraucht (s)“ aus *Prvi dan na
+  poslu*. Deutsch jetzt „rollte ihn mit dem Nudelholz aus“, in allen Sprachen
+  nachgezogen.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.

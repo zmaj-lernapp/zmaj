@@ -267,13 +267,13 @@ WOERTERBUCH = {
     "rekla": "gesagt (w)", "nauči": "bring mir bei!", "pravim": "ich mache", "niko": "niemand", "zna": "er/sie weiß / kann",
     "pravu": "echte (Akk.)", "nasmijala": "aufgelacht (w)", "moraš": "du musst", "strpljiva": "geduldig (w)",
     "pravi": "er/sie macht", "brzinu": "Schnelle (Akk.) (na brzinu: auf die Schnelle)", "zamijesile": "geknetet (w. Mehrz.)", "brašna": "Mehl (Gen.)",
-    "vode": "Wasser (Gen.)", "soli": "Salz (Gen.)", "ulja": "Öl (Gen.)", "moralo": "musste (s)", "odmarati": "ruhen / sich ausruhen",
+    "vode": "Wasser (Gen.)", "soli": "Salz (Gen.)", "ulja": "Öl (Gen.)", "odmori": "ruht (sich) aus", "odmarati": "ruhen / sich ausruhen",
     "pola": "die Hälfte", "međuvremenu": "Zwischenzeit (Lok.)", "pripremile": "vorbereitet (w. Mehrz.)",
-    "fil": "Füllung", "oguljile": "geschält (w. Mehrz.)", "krompir": "Kartoffel",
+    "nadjev": "Füllung", "oguljile": "geschält (w. Mehrz.)", "krompir": "Kartoffel",
     "isjekle": "geschnitten (w. Mehrz.)", "male": "kleine (Akk. Mehrz.)", "kocke": "Würfel (Akk. Mehrz.)",
     "dodale": "hinzugefügt (w. Mehrz.)", "so": "Salz", "biber": "Pfeffer", "najteži": "der schwerste", "dio": "Teil",
-    "stavila": "gelegt (w)", "veliki": "groß (m)", "razvlačila": "gezogen / gedehnt (w)",
-    "rukama": "Hände (Instr.)", "dok": "während / bis", "postalo": "geworden (s)", "tanko": "dünn (s)",
+    "stavila": "gelegt (w)", "veliki": "groß (m)", "razvijala": "ausgerollt (w)",
+    "oklagijom": "Nudelholz (Instr.)", "dok": "während / bis", "postalo": "geworden (s)", "tanko": "dünn (s)",
     "papir": "Papier", "probala": "probiert (w)", "odmah": "sofort", "poderalo": "gerissen (s)", "meni": "mir",
     "dešavalo": "passiert (s)", "stavile": "gelegt (w. Mehrz.)", "savile": "gerollt (w. Mehrz.)",
     "tepsiju": "Backblech (Akk.)", "vremena": "Zeit (Gen.)", "probao": "probiert (m)", "ovu": "diese (Akk.)",
@@ -688,19 +688,25 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_pita", "titel": "Nanina pita", "stufe": "B1", "passt_zu": "bosnisch_essen",
+        # A/B-Liste, Ajdin 15.11.2026: L18 B "razvijala ga oklagijom" statt "razvlačila
+        # ga rukama", L19 B "nadjev" statt "fil" (beide Stellen), L21 B "trebalo da
+        # odmori" statt "moralo odmarati". L17 A ("Jednog jutra") und L20 A ("savile")
+        # bleiben.
         "text": ("Lejla studira u Beču, ali je za praznike došla kući. Jednog jutra je rekla nani: „Nano, nauči me da pravim pitu. U Beču niko ne zna napraviti pravu pitu.“\n\n"
                  "Nana se nasmijala. „Dobro, ali moraš biti strpljiva. Pita se ne pravi na brzinu.“\n\n"
-                 "Prvo su zamijesile tijesto od brašna, vode, soli i malo ulja. Tijesto je moralo odmarati pola sata. U međuvremenu su pripremile fil: oguljile su krompir, isjekle ga na male kocke i dodale luk, so i biber.\n\n"
-                 "Onda je došao najteži dio. Nana je stavila tijesto na veliki sto i razvlačila ga rukama dok nije postalo tanko kao papir. Kad je Lejla probala, tijesto se odmah poderalo. „Ne brini“, rekla je nana. „I meni se to dešavalo kad sam bila mlada.“\n\n"
-                 "Na kraju su stavile fil na tijesto, savile ga i stavile pitu u tepsiju. Pekla se skoro sat vremena, a cijela kuća je mirisala.\n\n"
+                 "Prvo su zamijesile tijesto od brašna, vode, soli i malo ulja. Tijesto je trebalo da odmori pola sata. U međuvremenu su pripremile nadjev: oguljile su krompir, isjekle ga na male kocke i dodale luk, so i biber.\n\n"
+                 "Onda je došao najteži dio. Nana je stavila tijesto na veliki sto i razvijala ga oklagijom dok nije postalo tanko kao papir. Kad je Lejla probala, tijesto se odmah poderalo. „Ne brini“, rekla je nana. „I meni se to dešavalo kad sam bila mlada.“\n\n"
+                 "Na kraju su stavile nadjev na tijesto, savile ga i stavile pitu u tepsiju. Pekla se skoro sat vremena, a cijela kuća je mirisala.\n\n"
                  "Kad je dedo probao pitu, rekao je: „Ovu je pravila Lejla, zar ne? Malo je drugačija, ali je odlična.“ Lejla je bila sretna. Sada zna naninu tajnu: puno ljubavi i puno vremena."),
         "uebersetzung": ("Lejla studiert in Wien, aber in den Ferien ist sie nach Hause gekommen. Eines Morgens sagte sie zu ihrer Oma: „Oma, bring mir bei, wie man Pita macht. In Wien kann niemand eine richtige Pita machen.“\n\n"
                          "Oma lachte. „Gut, aber du musst geduldig sein. Pita macht man nicht in Eile.“\n\n"
                          "Zuerst kneteten sie einen Teig aus Mehl, Wasser, Salz und ein wenig Öl. Der Teig musste eine halbe Stunde ruhen. In der Zwischenzeit bereiteten sie die Füllung vor: Sie schälten Kartoffeln, schnitten sie in kleine Würfel und gaben Zwiebeln, Salz und Pfeffer dazu.\n\n"
-                         "Dann kam der schwierigste Teil. Oma legte den Teig auf den großen Tisch und zog ihn mit den Händen aus, bis er dünn wie Papier war. Als Lejla es versuchte, riss der Teig sofort. „Keine Sorge“, sagte Oma. „Das ist mir auch passiert, als ich jung war.“\n\n"
+                         "Dann kam der schwierigste Teil. Oma legte den Teig auf den großen Tisch und rollte ihn mit dem Nudelholz aus, bis er dünn wie Papier war. Als Lejla es versuchte, riss der Teig sofort. „Keine Sorge“, sagte Oma. „Das ist mir auch passiert, als ich jung war.“\n\n"
                          "Zum Schluss legten sie die Füllung auf den Teig, rollten ihn auf und legten die Pita auf das Backblech. Sie backte fast eine Stunde, und das ganze Haus duftete.\n\n"
                          "Als Opa die Pita probierte, sagte er: „Die hat Lejla gemacht, nicht wahr? Sie ist ein bisschen anders, aber ausgezeichnet.“ Lejla war glücklich. Jetzt kennt sie Omas Geheimnis: viel Liebe und viel Zeit."),
-        "vokabeln": {"pita": "Pita (Gericht)"},
+        # "Tijesto je trebalo da odmori": trebalo heißt hier "musste"; im WOERTERBUCH
+        # steht "gebraucht (s)" aus b1_posao ("Trebalo mu je tri sata").
+        "vokabeln": {"pita": "Pita (Gericht)", "trebalo": "musste (s)"},
         "fragen": [
             {"frage": "Wo studiert Lejla?", "optionen": ["in Wien", "in Sarajevo", "in Berlin"], "richtig": "in Wien"},
             {"frage": "Was kommt in die Füllung?", "optionen": ["Kartoffeln, Zwiebeln, Salz und Pfeffer", "Fleisch und Zwiebeln", "Käse und Spinat"], "richtig": "Kartoffeln, Zwiebeln, Salz und Pfeffer"},

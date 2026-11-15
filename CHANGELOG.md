@@ -792,7 +792,10 @@ are in the Play Store listing. Format:
   prvi put u Sarajevu*: Tarik orders *deset ćevapa* instead of a *desetka*.
   *Vrijeme za vikend*: the radio greets *dragi slušaoci* instead of *poštovani*,
   and the family can *roštiljati* instead of *napraviti roštilj*. *Jahorina*:
-  they rent *skijaške cipele* instead of *pancerice*.
+  they rent *skijaške cipele* instead of *pancerice*. *Nanina pita*: Grandma
+  rolls the dough out with a rolling pin (*razvijala ga oklagijom*) instead of
+  stretching it by hand, the filling is *nadjev* instead of *fil*, and the dough
+  *trebalo je da odmori* instead of *moralo je odmarati*.
   None of these stories had audio yet; they wait for the next Vesna round.
   `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it

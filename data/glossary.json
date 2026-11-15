@@ -2709,19 +2709,6 @@
    }
   },
   {
-   "bs": "fil",
-   "translations": {
-    "de": "Füllung",
-    "en": "filling",
-    "tr": "iç harcı",
-    "sv": "fyllning",
-    "nl": "vulling",
-    "nb": "fyll",
-    "da": "fyld",
-    "fr": "farce"
-   }
-  },
-  {
    "bs": "fildžana",
    "translations": {
     "de": "Kaffeetassen (Gen.)",
@@ -7298,19 +7285,6 @@
    }
   },
   {
-   "bs": "moralo",
-   "translations": {
-    "de": "musste (s)",
-    "en": "had to (n)",
-    "tr": "zorundaydı (nötr)",
-    "sv": "måste (neutr.)",
-    "nl": "moest (o)",
-    "nb": "måtte (intetkj.)",
-    "da": "måtte (intetk.)",
-    "fr": "devait (neutre)"
-   }
-  },
-  {
    "bs": "moram",
    "translations": {
     "de": "ich muss",
@@ -7568,6 +7542,19 @@
     "nb": "jeg håper",
     "da": "jeg håber",
     "fr": "j'espère"
+   }
+  },
+  {
+   "bs": "nadjev",
+   "translations": {
+    "de": "Füllung",
+    "en": "filling",
+    "tr": "iç harcı",
+    "sv": "fyllning",
+    "nl": "vulling",
+    "nb": "fyll",
+    "da": "fyld",
+    "fr": "farce"
    }
   },
   {
@@ -9261,6 +9248,19 @@
    }
   },
   {
+   "bs": "odmori",
+   "translations": {
+    "de": "ruht (sich) aus",
+    "en": "rests",
+    "tr": "dinlenir",
+    "sv": "vilar",
+    "nl": "rust (uit)",
+    "nb": "hviler",
+    "da": "hviler",
+    "fr": "se repose"
+   }
+  },
+  {
    "bs": "odmoru",
    "translations": {
     "de": "Urlaub (Lok.)",
@@ -9362,6 +9362,19 @@
     "nb": "skrelte (hunkj. flertall)",
     "da": "skrællede (hunk. flertal)",
     "fr": "épluché (femmes)"
+   }
+  },
+  {
+   "bs": "oklagijom",
+   "translations": {
+    "de": "Nudelholz (Instr.)",
+    "en": "rolling pin (instr.)",
+    "tr": "oklava (instrumental)",
+    "sv": "kavel (instrumentalis)",
+    "nl": "deegroller (instrumentalis)",
+    "nb": "kjevle (instrumentalis)",
+    "da": "kagerulle (instrumentalis)",
+    "fr": "rouleau à pâtisserie (instrumental)"
    }
   },
   {
@@ -12784,16 +12797,16 @@
    }
   },
   {
-   "bs": "razvlačila",
+   "bs": "razvijala",
    "translations": {
-    "de": "gezogen / gedehnt (w)",
-    "en": "stretched (f)",
+    "de": "ausgerollt (w)",
+    "en": "rolled out (f)",
     "tr": "açtı (kadın)",
-    "sv": "drog ut (kvinna)",
-    "nl": "trok uit (vrouw)",
-    "nb": "dro ut (kvinne)",
-    "da": "trak ud (kvinde)",
-    "fr": "étiré (femme)"
+    "sv": "kavlade ut (kvinna)",
+    "nl": "rolde uit (vrouw)",
+    "nb": "kjevlet ut (kvinne)",
+    "da": "rullede ud (kvinde)",
+    "fr": "étalé (femme)"
    }
   },
   {
@@ -13158,19 +13171,6 @@
     "nb": "grille",
     "da": "at grille",
     "fr": "faire des grillades"
-   }
-  },
-  {
-   "bs": "rukama",
-   "translations": {
-    "de": "Hände (Instr.)",
-    "en": "hands (instr.)",
-    "tr": "eller (instrumental)",
-    "sv": "händer (instrumentalis)",
-    "nl": "handen (instrumentalis)",
-    "nb": "hender (instrumentalis)",
-    "da": "hænder (instrumentalis)",
-    "fr": "mains (instrumental)"
    }
   },
   {

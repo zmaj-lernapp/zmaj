@@ -38,6 +38,10 @@ FAELLE = {
     ("b1_vrijeme", "i", "roštiljati"): ("grillen", "to grill / to barbecue"),
     ("b1_jahorina", "skije", "skijaške"): ("Ski- (skijaške cipele: Skischuhe)", "ski (skijaške cipele: ski boots)"),
     ("b1_jahorina", "skijaške", "cipele"): ("Schuhe", "shoes"),
+    ("b1_pita", "ga", "oklagijom"): ("Nudelholz (Instr.)", "rolling pin (instr.)"),
+    ("b1_pita", "pripremile", "nadjev"): ("Füllung", "filling"),
+    ("b1_pita", "je", "trebalo"): ("musste (s)", "had to (n)"),
+    ("b1_pita", "da", "odmori"): ("ruht (sich) aus", "rests"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -48,6 +52,9 @@ ZU_SEHEN = {
     "b1_vrijeme": ("Ako bude sunčano, možemo i roštiljati.",
                    "Wenn es sonnig ist, können wir auch grillen.",
                    "If it's sunny, we can have a barbecue too."),
+    "b1_pita": ("razvijala ga oklagijom dok nije postalo tanko kao papir.",
+                "rollte ihn mit dem Nudelholz aus, bis er dünn wie Papier war.",
+                "rolled it out with a rolling pin until it was as thin as paper."),
 }
 
 

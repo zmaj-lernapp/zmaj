@@ -26,6 +26,12 @@ B = {
             "„Ako bude sunčano, možemo napraviti i roštilj.“"),
     "L16": ("b1_jahorina", "Prvog jutra su iznajmili skije, skijaške cipele i štapove.",
             "Prvog jutra su iznajmili skije, pancerice i štapove."),
+    "L18": ("b1_pita", "Nana je stavila tijesto na veliki sto i razvijala ga oklagijom dok nije postalo tanko kao papir.",
+            "razvlačila ga rukama"),
+    "L19 a": ("b1_pita", "U međuvremenu su pripremile nadjev: oguljile su krompir,", "pripremile fil:"),
+    "L19 b": ("b1_pita", "Na kraju su stavile nadjev na tijesto, savile ga i stavile pitu u tepsiju.",
+              "stavile fil na tijesto"),
+    "L21": ("b1_pita", "Tijesto je trebalo da odmori pola sata.", "Tijesto je moralo odmarati pola sata."),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -52,11 +58,14 @@ A = {
 DE = {
     "b1_dijaspora": [("Tarik bestellte zehn Ćevapi mit Zwiebeln und einen Joghurt.",
                       "Tarik bestellte eine Portion mit zehn Ćevapi und Zwiebeln und dazu einen Joghurt.")],
+    "b1_pita": [("Oma legte den Teig auf den großen Tisch und rollte ihn mit dem Nudelholz aus, bis er dünn wie Papier war.",
+                 "zog ihn mit den Händen aus")],
 }
 
 # Stichprobe: so heißt es jetzt auf Englisch
 EN = {
     "b1_dijaspora": "Tarik ordered ten ćevapi with onions and a yogurt.",
+    "b1_pita": "Grandma put the dough on the big table and rolled it out with a rolling pin until it was as thin as paper.",
 }
 
 # Neue Formen im Wörterbuch der Lesetexte und ihre Bedeutung
@@ -65,18 +74,24 @@ NEU = {
     "roštiljati": "grillen",
     "skijaške": "Ski- (skijaške cipele: Skischuhe)",
     "cipele": "Schuhe",
+    "razvijala": "ausgerollt (w)",
+    "oklagijom": "Nudelholz (Instr.)",
+    "nadjev": "Füllung",
+    "odmori": "ruht (sich) aus",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
-RAUS = ["desetku", "poštovani", "roštilj", "pancerice"]
+RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
-RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe"]
+RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").
 VOKABELN = {
     ("b1_vrijeme", "dragi"): "liebe (Mehrz.)",
+    # "Tijesto je trebalo da odmori": musste; im WOERTERBUCH "gebraucht (s)" aus b1_posao
+    ("b1_pita", "trebalo"): "musste (s)",
 }
 
 
