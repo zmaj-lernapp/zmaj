@@ -159,14 +159,35 @@ def basis(wurzelordner):
 
 
 @pytest.fixture(scope="session")
-def browser():
+def playwright_sitzung():
+    """Eine Playwright-Sitzung fuer alle Tests - zwei im selben Prozess
+    vertraegt die Sync-API nicht. Chromium und WebKit kommen beide aus ihr."""
     from playwright.sync_api import sync_playwright
 
-    chromium = os.environ.get("ZMAJ_CHROMIUM") or None
     with sync_playwright() as pw:
-        b = pw.chromium.launch(executable_path=chromium)
-        yield b
-        b.close()
+        yield pw
+
+
+@pytest.fixture(scope="session")
+def browser(playwright_sitzung):
+    chromium = os.environ.get("ZMAJ_CHROMIUM") or None
+    b = playwright_sitzung.chromium.launch(executable_path=chromium)
+    yield b
+    b.close()
+
+
+@pytest.fixture(scope="session")
+def webkit(playwright_sitzung):
+    """WebKit, die Engine des iPhones (15.11.2026, Offen-Liste 5b). Nur wenn
+    Playwright es auf dem Rechner schon hat - hier wird nichts geladen (kein
+    playwright install). Fehlt es, wird der Test uebersprungen; die Chromium-
+    Faelle laufen trotzdem."""
+    try:
+        b = playwright_sitzung.webkit.launch()
+    except Exception as e:      # jeder Startfehler heisst hier: kein WebKit da
+        pytest.skip("WebKit fehlt: %s" % str(e).strip().splitlines()[0])
+    yield b
+    b.close()
 
 
 class Seite:

@@ -833,6 +833,19 @@ are in the Play Store listing. Format:
   (`BEWERTUNG_IM_APP = false`): Google advises against starting that window from a
   button, because its quota may keep it from showing at all.
   `tests/test_pruefbericht14_oberflaeche.py`, `tests_e2e/test_pruefbericht14_kleinfehler.py`.
+- A lighter answer button (reported by the maintainer on the iPhone, 15.11.2026):
+  sometimes the bottom right one of the four answers had the light background of a
+  right answer and a blue border, and looked like the solution. On a phone `:hover`
+  stays where the finger was, and WebKit hands it to whatever is drawn there next:
+  "Weiter" below a new word lies over the bottom right answer of the question that
+  follows. On Android a tile that slid under the finger in sentence building lit up
+  the same way, and a wrong answer kept the light background. Every hover highlight
+  now applies only with a mouse (`@media (hover:hover) and (pointer:fine)`), and an
+  answered button no longer lights up under the mouse either. The tab picker in the
+  shop and the language picker show focus only via `:focus-visible`, so the keyboard
+  focus ring stays and a tap no longer leaves a blue border. The colours for right
+  and wrong are unchanged. `tests/test_heller_knopf.py`, `tests_e2e/test_heller_knopf.py`
+  (real taps with touch emulation in Chromium and, where Playwright has it, WebKit).
 - Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
   accept the common other word for the same thing, in the same form: *boca* for
   *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,

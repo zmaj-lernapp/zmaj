@@ -319,7 +319,8 @@
     border:2px solid var(--line); background:var(--surface); color:var(--ink); font-family:inherit; font-size:13px; font-weight:800;
     padding:7px 12px; border-radius:99px; cursor:pointer; transition:.15s;
   }
-  .back:hover{border-color:var(--primary); color:var(--primary)}
+  /* :hover nur mit Maus, siehe .opt (15.11.2026) */
+  @media (hover:hover) and (pointer:fine){ .back:hover{border-color:var(--primary); color:var(--primary)} }
   /* ---- Gemalte Symbole statt Emojis (24.10.2026) ----
      Ajdin am 23.10.2026: "die emojis die muessten mal anders gemacht
      werden". Entschieden ist Symbol-Satz V1 aus web/symbole, komplett
@@ -1164,7 +1165,7 @@
     border:2px solid var(--line); background:var(--surface); color:var(--muted); font-family:inherit; font-size:13px; font-weight:800;
     padding:6px 12px; border-radius:99px; cursor:pointer; transition:.15s;
   }
-  .langbar button:hover{border-color:var(--primary)}
+  @media (hover:hover) and (pointer:fine){ .langbar button:hover{border-color:var(--primary)} }
   .langbar button.on{border-color:var(--primary); color:var(--primary); background:var(--primary-soft)}
   .summary{font-size:13px; color:var(--muted); margin:2px 0 14px 4px; font-weight:700}
   .stufe{display:inline-block; font-size:11px; color:var(--on-accent); background:var(--accent); border-radius:99px; padding:1px 8px; margin-left:8px; vertical-align:middle; font-weight:800}
@@ -1397,7 +1398,7 @@
     border:0; background:transparent; color:var(--ink); font-family:inherit; padding:10px 2px; cursor:pointer;
     border-top:1px solid var(--line);
   }
-  .node:hover .circle{transform:scale(1.06)}
+  @media (hover:hover) and (pointer:fine){ .node:hover .circle{transform:scale(1.06)} }
   .node .circle{
     flex:0 0 44px; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
     font-weight:800; font-size:15px; border:3px solid var(--line); color:var(--muted); background:var(--surface); transition:.15s;
@@ -1865,7 +1866,14 @@
   input.field,textarea.field,select.field,button.field{
     font-family:inherit; font-size:15px; padding:11px 12px; border:2px solid var(--line); border-radius:12px; background:var(--surface); color:var(--ink); width:100%;
   }
-  input.field:focus,textarea.field:focus,select.field:focus,button.field:focus{outline:none; border-color:var(--primary)}
+  /* Der Knopf der Reiterwahl (Laden, Sprache) zeigt den Fokus nur ueber
+     :focus-visible (15.11.2026, Offen-Liste 5b): am Android-Handy bekommt
+     ein angetippter Knopf den Fokus, und der Rand blieb danach blau. Die
+     Eingabefelder behalten :focus, dort steht ja der Cursor. Zwei Regeln:
+     eine alte WebView, die :focus-visible nicht kennt, verwirft sonst die
+     ganze Regel samt den Feldern. */
+  input.field:focus,textarea.field:focus,select.field:focus{outline:none; border-color:var(--primary)}
+  button.field:focus-visible{outline:none; border-color:var(--primary)}
 
   /* ---------- Leben ---------- */
   /* Schmal genug, um in eine Ecke zu passen: nur so breit wie ihr Inhalt.
@@ -1963,7 +1971,7 @@
     font:inherit; font-size:17px; color:var(--bad); padding:3px 8px; border-radius:99px;
   }
   .livesbar .herz b{font-size:15px; color:var(--ink)}
-  .livesbar .herz:hover{background:var(--primary-soft)}
+  @media (hover:hover) and (pointer:fine){ .livesbar .herz:hover{background:var(--primary-soft)} }
   .livesbar.premium .herz{color:var(--accent-dark)}
   .livesbar.zero{border-color:var(--bad)}
   /* Bei null Leben steht der Hinweis dauerhaft (renderLives: zeigen =
@@ -2025,7 +2033,7 @@
     background:none; border:0; border-bottom:1px solid var(--line); cursor:pointer;
     font:600 15px var(--font-ui); color:var(--ink); padding:12px 14px}
   .sprachzeile:last-child{border-bottom:0}
-  .sprachzeile:hover{background:var(--primary-soft)}
+  @media (hover:hover) and (pointer:fine){ .sprachzeile:hover{background:var(--primary-soft)} }
   .sprachzeile.jetzt{background:var(--primary-soft); color:var(--primary)}
   .sprachzeile .haken{margin-left:auto; color:var(--good-text)}
   @media (prefers-reduced-motion:reduce){ .sprachliste{animation:none} }
@@ -2080,7 +2088,7 @@
     margin-top:12px; border:2px solid var(--line); background:var(--surface); color:var(--ink);
     font-family:inherit; font-size:14px; font-weight:800; padding:8px 16px; border-radius:99px; cursor:pointer; display:inline-flex; gap:7px; align-items:center;
   }
-  .listen:hover{border-color:var(--primary); color:var(--primary)}
+  @media (hover:hover) and (pointer:fine){ .listen:hover{border-color:var(--primary); color:var(--primary)} }
   .listen.bigplay{width:96px; height:96px; border-radius:50%; justify-content:center; font-size:40px; margin:6px auto 12px; background:var(--primary-fill); color:var(--on-fill); border:0; box-shadow:0 5px 0 var(--primary-fill-dark)}
   .listen.bigplay:active{transform:translateY(3px); box-shadow:0 2px 0 var(--primary-dark)}
 
@@ -2108,7 +2116,7 @@
   .btn:active{transform:translateY(3px); box-shadow:none}
   .btn:disabled{opacity:.45; cursor:default; transform:none}
   .skip{margin-top:14px; border:0; background:transparent; color:var(--muted); font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; text-decoration:underline dotted}
-  .skip:hover{color:var(--primary)}
+  @media (hover:hover) and (pointer:fine){ .skip:hover{color:var(--primary)} }
 
   .sentence{font-family:var(--font-display); font-size:24px; margin:6px 0 4px; line-height:1.4; font-weight:500}
   .blank-input{font-family:var(--font-display); font-size:22px; color:var(--primary); text-align:center; border:0; border-bottom:3px dashed var(--muted); background:transparent; width:150px; padding:2px 4px}
@@ -2160,7 +2168,18 @@
     font-size:20px; font-weight:600; padding:15px 10px; border-radius:14px; cursor:pointer; transition:.12s; line-height:1.3; box-shadow:0 3px 0 var(--line);
   }
   .opt.long{font-size:15px; font-family:var(--font-ui); font-weight:700}
-  .opt:hover{border-color:var(--primary); background:var(--primary-soft)}
+  /* Hervorheben unter dem Zeiger nur mit Maus (15.11.2026, Offen-Liste 5b).
+     Ajdin am iPhone: "manchmal ist wenn man 4 antwortmöglichkeiten hat der
+     unten rechts eine hellere farbe man würde denken das das richtig sei".
+     Am Handy bleibt :hover nach einem Tipp an der Stelle des Fingers
+     haengen, und WebKit gibt es nach dem Neuzeichnen an den Knopf weiter,
+     der jetzt dort liegt: nach "Weiter" eines neuen Worts der Antwortknopf
+     unten rechts, mit demselben hellen Grund wie "richtig". Deshalb hier
+     und bei allen anderen :hover nur fuer Geraete mit Maus; Tastatur zeigt
+     ihren Fokusring weiter ueber :focus-visible. Beantwortete (disabled)
+     Knoepfe leuchten auch mit Maus nicht mehr auf, sonst bekam der falsche
+     unter dem Zeiger den Grund von richtig. */
+  @media (hover:hover) and (pointer:fine){ .opt:not(:disabled):hover{border-color:var(--primary); background:var(--primary-soft)} }
   .opt:active{transform:translateY(2px); box-shadow:none}
   .opt.right{border-color:var(--good); background:var(--primary-soft); color:var(--good-text); box-shadow:0 3px 0 var(--good-dark)}
   .opt.wrong{border-color:var(--bad); color:var(--bad-text); box-shadow:0 3px 0 var(--bad)}
@@ -2243,7 +2262,8 @@
   .story h3{font-family:var(--font-ui); font-weight:800; font-size:22px; margin:0 0 12px; color:var(--primary)}
   .story .txt{font-family:var(--font-display); font-size:20px; line-height:1.75; font-weight:500; white-space:pre-line}
   .story .w{cursor:pointer; border-bottom:2px dotted var(--line); border-radius:3px; transition:.12s}
-  .story .w:hover,.story .w.on{background:var(--accent-soft); color:var(--primary); border-bottom-color:var(--accent)}
+  @media (hover:hover) and (pointer:fine){ .story .w:hover{background:var(--accent-soft); color:var(--primary); border-bottom-color:var(--accent)} }
+  .story .w.on{background:var(--accent-soft); color:var(--primary); border-bottom-color:var(--accent)}
   /* ---- Mitlesen (20.10.2026) ----
      Wunsch einer Testerin: beim Vorlesen einer Geschichte zeigt die App das Wort,
      das die Stimme gerade spricht, damit man im Text folgen kann. Ajdin
