@@ -50,6 +50,9 @@ B = {
            "„Pijte jednu tabletu tri puta dnevno"),
     "T3": ("b1_doktor", "Poslije pet dana Amar je ponovo bio zdrav i vratio se na posao.",
            "Amar je opet bio zdrav"),
+    "T5": ("b1_rodjendan", "„Idemo kod tvojih roditelja na večeru.“", "„Idemo kod tvojih na večeru.“"),
+    "T6": ("b1_rodjendan", "Haris je ugasio sve svijeće u jednom dahu, a svi su vikali: „Bravo!“",
+           "Haris ih je ugasio odjednom"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -81,6 +84,8 @@ DE = {
     "b1_posao": [("„Komm, der Kaffee ist Pflicht!“", "„Komm, der Kaffee ist heilig!“")],
     "b1_doktor": [("Ich gebe Ihnen ein Rezept und schreibe Sie für fünf Tage krank.",
                    "und Sie sind fünf Tage krankgeschrieben")],
+    "b1_rodjendan": [("Haris blies alle Kerzen in einem Atemzug aus, und alle riefen: „Bravo!“",
+                      "Haris blies sie auf einmal aus")],
 }
 
 # Stichprobe: so heißt es jetzt auf Englisch
@@ -89,6 +94,7 @@ EN = {
     "b1_pita": "Grandma put the dough on the big table and rolled it out with a rolling pin until it was as thin as paper.",
     "b1_posao": "Nedžad came back for him: “Come on, coffee is a must!”",
     "b1_doktor": "I'll give you a prescription and put you on sick leave for five days.",
+    "b1_rodjendan": "Haris blew out all the candles in one breath, and everyone shouted: “Bravo!”",
 }
 
 # Neue Formen im Wörterbuch der Lesetexte und ihre Bedeutung
@@ -115,15 +121,20 @@ NEU = {
     "bolovanje": "Krankschreibung (Akk.)",
     "uzimajte": "nehmen Sie (Befehl)",
     "ponovo": "wieder / erneut",
+    "tvojih": "deiner (Gen. Mehrz.)",
+    "roditelja": "Eltern (Gen.)",
+    "svijeće": "Kerzen",
+    "dahu": "Atem (Lok.) (u jednom dahu: in einem Atemzug)",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
 RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
-        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku", "bolovanju"]
+        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku", "bolovanju", "ih"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
 RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",
-              "Januar- (w)", "tanzen / spielen", "Elektrotechnik (Akk.)", "Heiligtum", "Krankschreibung (Lok.)"]
+              "Januar- (w)", "tanzen / spielen", "Elektrotechnik (Akk.)", "Heiligtum", "Krankschreibung (Lok.)",
+              "auf einmal", "deinen (kod tvojih: bei deinen Eltern)", "sie (Akk. Mehrz.)"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").
@@ -131,6 +142,8 @@ VOKABELN = {
     ("b1_vrijeme", "dragi"): "liebe (Mehrz.)",
     # "Tijesto je trebalo da odmori": musste; im WOERTERBUCH "gebraucht (s)" aus b1_posao
     ("b1_pita", "trebalo"): "musste (s)",
+    # "ugasio sve svijeće": alle; im WOERTERBUCH "alles"
+    ("b1_rodjendan", "sve"): "alle (sve svijeće: alle Kerzen)",
 }
 
 
@@ -207,6 +220,16 @@ def test_l24_kolo_wird_ueberall_getanzt(grunddaten):
     assert {"plesali", "plesala", "plesati"} <= svadba
     assert "naši su igrali mnogo bolje" in g["b1_utakmica"]["text"]
     assert "Djeca su se igrala u hodniku" in g["b1_struja"]["text"]
+
+
+def test_t6_odjednom_nur_noch_ploetzlich(grunddaten):
+    """odjednom steht nur noch in Komšiluk bez struje ("plötzlich");
+    Rođendansko iznenađenje braucht seinen Eintrag "auf einmal" nicht mehr."""
+    g = _geschichten(grunddaten)
+    assert "odjednom" not in g["b1_rodjendan"]["vokabeln"]
+    assert "odjednom" not in g["b1_rodjendan"]["text"]
+    assert "kad je odjednom nestalo struje" in g["b1_struja"]["text"]
+    assert grunddaten["woerterbuch"]["odjednom"] == "plötzlich"
 
 
 def test_alte_formen_stehen_in_keinem_text(grunddaten):

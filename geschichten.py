@@ -920,14 +920,14 @@ WOERTERBUCH_B1_2 = {
     "tajno": "heimlich", "sprema": "er/sie bereitet vor", "iznenađenje": "Überraschung", "pozvala": "eingeladen (w)",
     "njegove": "seine (Akk. Mehrz.)", "prijatelje": "Freunde (Akk.)",
     "reći": "sagen", "harisu": "Haris (Dat.)", "srijedu": "Mittwoch (Akk.)",
-    "posebno": "besonders", "tvojih": "deinen (kod tvojih: bei deinen Eltern)", "tužan": "traurig (m)",
+    "posebno": "besonders", "tvojih": "deiner (Gen. Mehrz.)", "tužan": "traurig (m)",
     "mislio": "gedacht (m)", "zaboravili": "vergessen (Mehrz.)", "rođendan": "Geburtstag", "gosti": "Gäste",
     "sakrili": "versteckt (Mehrz.)", "njegovih": "seiner (Gen. Mehrz.)",
     "roditelja": "Eltern (Gen.)", "ugašeno": "ausgeschaltet (s)",
     "šutjeli": "geschwiegen (Mehrz.)", "ušli": "hereingekommen (Mehrz.)", "upalio": "eingeschaltet (m)",
     "stajao": "gestanden (m)",
     "vjerovati": "glauben", "svijeća": "Kerzen (Gen.)",
-    "ih": "sie (Akk. Mehrz.)", "ugasio": "ausgemacht (m)", "vikali": "gerufen (Mehrz.)", "bravo": "bravo",
+    "ugasio": "ausgemacht (m)", "dahu": "Atem (Lok.) (u jednom dahu: in einem Atemzug)", "vikali": "gerufen (Mehrz.)", "bravo": "bravo",
     "dala": "gegeben (w)", "koncert": "Konzert", "njegovog": "seines (Gen.)", "omiljenog": "Lieblings- (Gen.)",
     "pjevača": "Sänger (Gen.)", "mom": "meinem (Lok.)", "životu": "Leben (Lok.)",
     "svima": "allen",
@@ -1082,17 +1082,19 @@ GESCHICHTEN += [
     },
     {
         "id": "b1_rodjendan", "titel": "Rođendansko iznenađenje", "stufe": "B1", "passt_zu": "feiern",
+        # A/B-Liste, Ajdin 15.11.2026: T5 B "kod tvojih roditelja", T6 B "ugasio sve
+        # svijeće u jednom dahu" statt "ih je ugasio odjednom".
         "text": ("Haris će u petak napuniti trideset godina. Njegova žena Lamija već mjesec dana tajno sprema iznenađenje. Pozvala je njegove roditelje, brata i najbolje prijatelje, ali niko ne smije ništa reći Harisu.\n\n"
-                 "„Šta ćemo raditi u petak?“ pitao je Haris u srijedu. „Ništa posebno“, rekla je Lamija. „Idemo kod tvojih na večeru.“ Haris je bio malo tužan. Mislio je da su svi zaboravili njegov rođendan.\n\n"
+                 "„Šta ćemo raditi u petak?“ pitao je Haris u srijedu. „Ništa posebno“, rekla je Lamija. „Idemo kod tvojih roditelja na večeru.“ Haris je bio malo tužan. Mislio je da su svi zaboravili njegov rođendan.\n\n"
                  "U petak navečer gosti su se sakrili u stanu njegovih roditelja. Svjetlo je bilo ugašeno i svi su šutjeli. Kad su Haris i Lamija ušli, neko je upalio svjetlo. „Iznenađenje! Sretan rođendan!“ Haris je stajao na vratima i nije mogao vjerovati.\n\n"
-                 "Njegova mama je donijela veliku tortu s trideset svijeća. Haris ih je ugasio odjednom, a svi su vikali: „Bravo!“ Onda mu je Lamija dala poklon: dvije karte za koncert njegovog omiljenog pjevača.\n\n"
+                 "Njegova mama je donijela veliku tortu s trideset svijeća. Haris je ugasio sve svijeće u jednom dahu, a svi su vikali: „Bravo!“ Onda mu je Lamija dala poklon: dvije karte za koncert njegovog omiljenog pjevača.\n\n"
                  "„Ovo je najljepši rođendan u mom životu“, rekao je Haris. Do ponoći su jeli, pjevali i plesali. A Haris je još dugo pričao svima kako ništa nije znao."),
         "uebersetzung": ("Haris wird am Freitag dreißig. Seine Frau Lamija bereitet schon seit einem Monat heimlich eine Überraschung vor. Sie hat seine Eltern, seinen Bruder und seine besten Freunde eingeladen, aber niemand darf Haris etwas sagen.\n\n"
                          "„Was machen wir am Freitag?“, fragte Haris am Mittwoch. „Nichts Besonderes“, sagte Lamija. „Wir gehen zum Abendessen zu deinen Eltern.“ Haris war ein bisschen traurig. Er dachte, alle hätten seinen Geburtstag vergessen.\n\n"
                          "Am Freitagabend versteckten sich die Gäste in der Wohnung seiner Eltern. Das Licht war aus, und alle schwiegen. Als Haris und Lamija hereinkamen, machte jemand das Licht an. „Überraschung! Alles Gute zum Geburtstag!“ Haris stand in der Tür und konnte es nicht glauben.\n\n"
-                         "Seine Mama brachte eine große Torte mit dreißig Kerzen. Haris blies sie auf einmal aus, und alle riefen: „Bravo!“ Dann gab ihm Lamija ein Geschenk: zwei Karten für das Konzert seines Lieblingssängers.\n\n"
+                         "Seine Mama brachte eine große Torte mit dreißig Kerzen. Haris blies alle Kerzen in einem Atemzug aus, und alle riefen: „Bravo!“ Dann gab ihm Lamija ein Geschenk: zwei Karten für das Konzert seines Lieblingssängers.\n\n"
                          "„Das ist der schönste Geburtstag meines Lebens“, sagte Haris. Bis Mitternacht aßen, sangen und tanzten sie. Und Haris erzählte noch lange allen, dass er nichts gewusst hatte."),
-        "vokabeln": {"smije": "darf (ne smije: darf nicht)", "odjednom": "auf einmal", "karte": "Karten / Tickets", "najbolje": "besten (Akk. Mehrz.)"},
+        "vokabeln": {"smije": "darf (ne smije: darf nicht)", "sve": "alle (sve svijeće: alle Kerzen)", "karte": "Karten / Tickets", "najbolje": "besten (Akk. Mehrz.)"},
         "fragen": [
             {"frage": "Wie alt wird Haris?", "optionen": ["dreißig", "zwanzig", "vierzig"], "richtig": "dreißig"},
             {"frage": "Wohin wollten Haris und Lamija angeblich gehen?", "optionen": ["zum Abendessen bei seinen Eltern", "zum Abendessen ins Restaurant", "zu einem Konzert"], "richtig": "zum Abendessen bei seinen Eltern"},

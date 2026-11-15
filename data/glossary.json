@@ -1383,6 +1383,19 @@
    }
   },
   {
+   "bs": "dahu",
+   "translations": {
+    "de": "Atem (Lok.) (u jednom dahu: in einem Atemzug)",
+    "en": "breath (loc.) (u jednom dahu: in one breath)",
+    "tr": "nefes (lokatif) (u jednom dahu: tek nefeste)",
+    "sv": "andetag (lokativ) (u jednom dahu: i ett andetag)",
+    "nl": "adem (locatief) (u jednom dahu: in één adem)",
+    "nb": "åndedrag (lokativ) (u jednom dahu: i ett åndedrag)",
+    "da": "åndedrag (lokativ) (u jednom dahu: i ét åndedrag)",
+    "fr": "souffle (locatif) (u jednom dahu : d'un seul souffle)"
+   }
+  },
+  {
    "bs": "daje",
    "translations": {
     "de": "gibt",
@@ -3720,19 +3733,6 @@
     "nb": "spiller",
     "da": "spiller",
     "fr": "joueur"
-   }
-  },
-  {
-   "bs": "ih",
-   "translations": {
-    "de": "sie (Akk. Mehrz.)",
-    "en": "them (acc.)",
-    "tr": "onları",
-    "sv": "dem",
-    "nl": "ze (meervoud)",
-    "nb": "dem",
-    "da": "dem",
-    "fr": "les"
    }
   },
   {
@@ -16725,14 +16725,14 @@
   {
    "bs": "tvojih",
    "translations": {
-    "de": "deinen (kod tvojih: bei deinen Eltern)",
-    "en": "your (kod tvojih: at your parents')",
-    "tr": "seninkiler (kod tvojih: senin ailende)",
-    "sv": "dina (kod tvojih: hos dina föräldrar)",
-    "nl": "jouw (kod tvojih: bij je ouders)",
-    "nb": "dine (kod tvojih: hos foreldrene dine)",
-    "da": "dine (kod tvojih: hos dine forældre)",
-    "fr": "tes (kod tvojih : chez tes parents)"
+    "de": "deiner (Gen. Mehrz.)",
+    "en": "your (gen. pl.)",
+    "tr": "senin (genitif çoğul)",
+    "sv": "dina (genitiv plural)",
+    "nl": "jouw (genitief meervoud)",
+    "nb": "dine (genitiv flertall)",
+    "da": "dine (genitiv flertal)",
+    "fr": "tes (génitif pluriel)"
    }
   },
   {

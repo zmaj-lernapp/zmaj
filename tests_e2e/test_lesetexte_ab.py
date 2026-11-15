@@ -59,6 +59,10 @@ FAELLE = {
     ("b1_doktor", "vam", "bolovanje"): ("Krankschreibung (Akk.)", "sick leave (acc.)"),
     ("b1_doktor", "rekao", "uzimajte"): ("nehmen Sie (Befehl)", "take (formal, imperative)"),
     ("b1_doktor", "je", "ponovo"): ("wieder / erneut", "again / once more"),
+    ("b1_rodjendan", "kod", "tvojih"): ("deiner (Gen. Mehrz.)", "your (gen. pl.)"),
+    ("b1_rodjendan", "ugasio", "sve"): ("alle (sve svijeće: alle Kerzen)", "all (sve svijeće: all the candles)"),
+    ("b1_rodjendan", "jednom", "dahu"): ("Atem (Lok.) (u jednom dahu: in einem Atemzug)",
+                                        "breath (loc.) (u jednom dahu: in one breath)"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)
@@ -80,6 +84,9 @@ ZU_SEHEN = {
     "b1_doktor": ("Dat ću Vam recept i otvorit ću Vam bolovanje na pet dana.",
                   "Ich gebe Ihnen ein Rezept und schreibe Sie für fünf Tage krank.",
                   "I'll give you a prescription and put you on sick leave for five days."),
+    "b1_rodjendan": ("Haris je ugasio sve svijeće u jednom dahu",
+                     "Haris blies alle Kerzen in einem Atemzug aus",
+                     "Haris blew out all the candles in one breath"),
 }
 
 

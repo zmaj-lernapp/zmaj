@@ -805,7 +805,9 @@ are in the Play Store listing. Format:
   *Izdajem stan*: Selma sleeps *na madracu* instead of *na dušeku*. *Kod
   doktora*: the doctor says *otvorit ću Vam bolovanje na pet dana*, the
   pharmacist *Uzimajte* instead of *Pijte*, and Amar is *ponovo* healthy
-  instead of *opet*.
+  instead of *opet*. *Rođendansko iznenađenje*: *kod tvojih roditelja* instead
+  of *kod tvojih*, and Haris blows out *sve svijeće u jednom dahu* instead of
+  *ih … odjednom*.
   None of these stories had audio yet; they wait for the next Vesna round.
   `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it

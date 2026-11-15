@@ -1374,6 +1374,8 @@ Sprachen sind nachgezogen.
 | T1 | *Kod doktora* (`b1_doktor`) | Dat ću Vam recept, a pet dana ste na bolovanju. | Dat ću Vam recept i otvorit ću Vam bolovanje na pet dana. |
 | T2 | *Kod doktora* | Pijte jednu tabletu tri puta dnevno, poslije jela. | Uzimajte jednu tabletu tri puta dnevno, poslije jela. |
 | T3 | *Kod doktora* | Poslije pet dana Amar je opet bio zdrav … | Poslije pet dana Amar je ponovo bio zdrav … |
+| T5 | *Rođendansko iznenađenje* (`b1_rodjendan`) | Idemo kod tvojih na večeru. | Idemo kod tvojih roditelja na večeru. |
+| T6 | *Rođendansko iznenađenje* | Haris ih je ugasio odjednom, a svi su vikali: „Bravo!“ | Haris je ugasio sve svijeće u jednom dahu, a svi su vikali: „Bravo!“ |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1403,6 +1405,13 @@ Sprachen sind nachgezogen.
   raus; *pijte* bleibt („I pijte mnogo čaja“). Das zweite *Vam* in T1 ist groß wie
   überall, wo eine Person höflich angeredet wird. Deutsch jetzt „Ich gebe Ihnen ein
   Rezept und schreibe Sie für fünf Tage krank.“, in allen Sprachen nachgezogen.
+  *tvojih* heißt jetzt „deiner (Gen. Mehrz.)“ (vorher „deinen (kod tvojih: bei deinen
+  Eltern)“), *dahu* „Atem (Lok.) (u jednom dahu: in einem Atemzug)“ neu, *ih* raus;
+  *roditelja* und *svijeće* standen schon drin. *sve* heißt in dieser Geschichte „alle
+  (sve svijeće: alle Kerzen)“ (vokabeln), *odjednom* „auf einmal“ ist dort raus und
+  bleibt im Wörterbuch „plötzlich“ (*Komšiluk bez struje*). Deutsch jetzt „Haris blies
+  alle Kerzen in einem Atemzug aus“, in allen Sprachen nachgezogen; auf Türkisch
+  heißt „kod tvojih roditelja“ jetzt „anne babana“ statt „seninkilere“.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
