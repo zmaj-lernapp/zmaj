@@ -53,6 +53,7 @@ FAELLE = {
     ("b1_posao", "elektrotehnički", "fakultet"): ("Fakultät (Studium)", "faculty (university)"),
     ("b1_posao", "bili", "ljubazni"): ("freundlich (Mehrz.)", "friendly (pl.)"),
     ("b1_posao", "je", "obavezna"): ("Pflicht / verpflichtend (w)", "a must / compulsory (f)"),
+    ("b1_stan", "na", "madracu"): ("Matratze (Lok.)", "mattress (loc.)"),
 }
 
 # Geschichte -> (bosnisch jetzt, deutsch jetzt, englisch jetzt)

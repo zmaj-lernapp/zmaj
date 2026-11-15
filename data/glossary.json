@@ -2436,19 +2436,6 @@
    }
   },
   {
-   "bs": "dušeku",
-   "translations": {
-    "de": "Matratze (Lok.)",
-    "en": "mattress (loc.)",
-    "tr": "şilte (lokatif)",
-    "sv": "madrass (lokativ)",
-    "nl": "matras (locatief)",
-    "nb": "madrass (lokativ)",
-    "da": "madras (lokativ)",
-    "fr": "matelas (locatif)"
-   }
-  },
-  {
    "bs": "dušo",
    "translations": {
     "de": "Schatz (Anrede)",
@@ -6424,6 +6411,19 @@
     "nb": "løk (instrumentalis)",
     "da": "løg (instrumentalis)",
     "fr": "oignons (instrumental)"
+   }
+  },
+  {
+   "bs": "madracu",
+   "translations": {
+    "de": "Matratze (Lok.)",
+    "en": "mattress (loc.)",
+    "tr": "şilte (lokatif)",
+    "sv": "madrass (lokativ)",
+    "nl": "matras (locatief)",
+    "nb": "madrass (lokativ)",
+    "da": "madras (lokativ)",
+    "fr": "matelas (locatif)"
    }
   },
   {

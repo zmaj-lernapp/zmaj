@@ -1370,6 +1370,7 @@ Sprachen sind nachgezogen.
 | L26 | *Prvi dan na poslu* (`b1_posao`) | Haris je završio elektrotehniku … | Haris je završio elektrotehnički fakultet … |
 | L27 | *Prvi dan na poslu* | Kolege su bile ljubazne. | Kolege su bili ljubazni. |
 | L28 | *Prvi dan na poslu* | „Hajde, kahva je svetinja!“ | „Hajde, kahva je obavezna!“ |
+| L30 | *Izdajem stan* (`b1_stan`) | Prvu noć je spavala na dušeku na podu … | Prvu noć je spavala na madracu na podu … |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1392,7 +1393,8 @@ Sprachen sind nachgezogen.
   (Studium)“, *ljubazni* „freundlich (Mehrz.)“ und *obavezna* „Pflicht /
   verpflichtend (w)“ neu, *elektrotehniku* und *svetinja* raus. Deutsch jetzt „Komm,
   der Kaffee ist Pflicht!“, in allen Sprachen nachgezogen. Im Brief *Pismo nani*
-  steht weiter „Kolege su ljubazne“; danach war nicht gefragt.
+  steht weiter „Kolege su ljubazne“; danach war nicht gefragt. *madracu* „Matratze
+  (Lok.)“ statt *dušeku*, die Übersetzung sagte schon „Matratze“.
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.

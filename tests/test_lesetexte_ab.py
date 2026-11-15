@@ -42,6 +42,7 @@ B = {
             "završio elektrotehniku"),
     "L27": ("b1_posao", "Kolege su bili ljubazni.", "Kolege su bile ljubazne."),
     "L28": ("b1_posao", "„Hajde, kahva je obavezna!“", "„Hajde, kahva je svetinja!“"),
+    "L30": ("b1_stan", "Prvu noć je spavala na madracu na podu, ali je bila presretna.", "na dušeku"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -99,11 +100,12 @@ NEU = {
     "fakultet": "Fakultät (Studium)",
     "ljubazni": "freundlich (Mehrz.)",
     "obavezna": "Pflicht / verpflichtend (w)",
+    "madracu": "Matratze (Lok.)",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
 RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
-        "januarska", "večer", "igrati", "elektrotehniku", "svetinja"]
+        "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
 RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",

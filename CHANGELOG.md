@@ -802,6 +802,7 @@ are in the Play Store listing. Format:
   pjevali*), no longer *igrati*. *Prvi dan na poslu*: Haris finished the
   *elektrotehnički fakultet*, *Kolege su bili ljubazni* (the colleagues include
   men like Nedžad) and coffee is *obavezna*, a must, rather than *svetinja*.
+  *Izdajem stan*: Selma sleeps *na madracu* instead of *na dušeku*.
   None of these stories had audio yet; they wait for the next Vesna round.
   `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it

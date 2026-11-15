@@ -351,7 +351,7 @@ WOERTERBUCH = {
     "vrlo": "sehr (vor Eigenschaften)", "uglavnom": "meistens / hauptsächlich", "stariji": "älter",
     "bih": "würde (ich)", "pogledati": "ansehen / schauen", "vidimo": "wir sehen (uns)", "pogledala": "geschaut / angeschaut (w)",
     "svijetao": "hell", "čist": "sauber (m)", "balkona": "Balkon (Gen.)", "potpisala": "unterschrieben (w)",
-    "prvu": "erste (Akk.)", "spavala": "geschlafen (w)", "dušeku": "Matratze (Lok.)", "podu": "Boden (Lok.)",
+    "prvu": "erste (Akk.)", "spavala": "geschlafen (w)", "madracu": "Matratze (Lok.)", "podu": "Boden (Lok.)",
     "presretna": "überglücklich (w)",
     # b1_telefon
     "sjela": "hingesetzt (w)", "kafić": "Café", "baščaršiji": "Baščaršija (Lok.)", "blizu": "in der Nähe von",
@@ -787,6 +787,8 @@ GESCHICHTEN = [
     },
     {
         "id": "b1_stan", "titel": "Izdajem stan", "stufe": "B1", "passt_zu": "immobilien",
+        # A/B-Liste, Ajdin 15.11.2026: L30 B "na madracu" statt "na dušeku". L29 A:
+        # "jednosoban stan" bleibt.
         "text": ("Selma je dobila posao u Sarajevu i traži stan. Na internetu je našla ovaj oglas:\n\n"
                  "„Izdajem jednosoban stan na Grbavici. Četrdeset kvadrata, treći sprat, ima lift. Stan je namješten, renoviran i ima balkon. U blizini su tramvaj, škola i prodavnica. Kirija je petsto maraka mjesečno plus režije. Kućni ljubimci nisu dozvoljeni. Zvati poslije pet sati.“\n\n"
                  "Selma je nazvala u pola šest.\n"
@@ -799,7 +801,7 @@ GESCHICHTEN = [
                  "„Odlično. Kada bih mogla pogledati stan?“\n"
                  "„Može sutra u šest ako Vam odgovara.“\n"
                  "„Odgovara mi. Hvala Vam, vidimo se sutra!“\n\n"
-                 "Sutradan je Selma pogledala stan. Bio je mali, ali svijetao i čist, a s balkona se vidio Trebević. Odmah je potpisala ugovor. Prvu noć je spavala na dušeku na podu, ali je bila presretna."),
+                 "Sutradan je Selma pogledala stan. Bio je mali, ali svijetao i čist, a s balkona se vidio Trebević. Odmah je potpisala ugovor. Prvu noć je spavala na madracu na podu, ali je bila presretna."),
         "uebersetzung": ("Selma hat eine Stelle in Sarajevo bekommen und sucht eine Wohnung. Im Internet hat sie diese Anzeige gefunden:\n\n"
                          "„Vermiete Einzimmerwohnung in Grbavica. Vierzig Quadratmeter, dritter Stock, mit Aufzug. Die Wohnung ist möbliert, renoviert und hat einen Balkon. In der Nähe: Straßenbahn, Schule und Laden. Miete fünfhundert Mark im Monat plus Nebenkosten. Haustiere nicht erlaubt. Anrufe nach 17 Uhr.“\n\n"
                          "Selma rief um halb sechs an.\n"
