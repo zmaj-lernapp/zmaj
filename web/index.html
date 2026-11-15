@@ -16329,26 +16329,32 @@ function benAbendId(tag){
 function benFassung(tag, fassungen){ return fassungen[benTagNr(tag) % fassungen.length]; }
 /* =================== TEXTE MIT PERSOENLICHKEIT ===================
    Version 1.4, Ajdin am 13.11.2026 (11a 12a 13a, Vorlage
-   Release/Entscheidungen_2026-11-13/benachrichtigungen.md): 24 Texte mit
-   Zmaj-Humor in vier Gruppen statt der zwoelf braven von vorher. Ohne
-   Namen, ohne Uhrzeit im Text, keine Werbung. Welche Gruppe ein Abend
+   Release/Entscheidungen_2026-11-13/benachrichtigungen.md): Texte mit
+   Zmaj-Humor in Gruppen statt der zwoelf braven von vorher. Ohne Namen,
+   ohne Uhrzeit im Text, keine Werbung. Am 14.11.2026 hat Ajdin alle 24
+   gelesen und sieben gestrichen: A1 ("Raus"), B4 mit einem gelernten Wort
+   im Titel ("diese Benachrichtigung ist komisch mach weg", samt Wortliste
+   und Platzhalter {wort}) und die ganze Gruppe D mit den Wortwitzen ("Der
+   Rest raus"). Es bleiben 17, wortgleich. Welche Gruppe ein Abend
    bekommt, haengt an der Lage an diesem Abend - gerechnet unter der
    Annahme, dass bis dahin nicht gelernt wird; wer lernt, plant ohnehin neu.
-     Serienwarnung (20 Uhr)            A1-A5, ab 7 Tagen Serie auch C1 und
+     Serienwarnung (20 Uhr)            A2-A5, ab 7 Tagen Serie auch C1 und
                                        (Serie = Rekord) C3. A6 hat Vorrang,
                                        wenn die naechste Lektion eine
                                        Wegmarke (7/30/100/365/1000 Lerntage)
                                        vollmacht.
-     gestern gelernt, keine Warnung    C Lob oder D Wortwitz (C1 nicht, der
-       (Schalter aus oder Schutz da)   ist ein 20-Uhr-Text). C5 hat Vorrang
-                                       am Tag nach 30, 100 oder 365 Tagen.
-     2 bis 6 Tage Pause                B1-B5. B3 nur, wenn die Serie an dem
-                                       Abend gerissen ist, B4 nur mit einem
-                                       gelernten Wort aus BEN_WORTE, B5 nur
-                                       mit einem offenen Level.
+     gestern gelernt, keine Warnung    C Lob: C2 ab 100 Woertern, C3 bei
+       (Schalter aus oder Schutz da)   Rekord, C4, C6 (C1 nicht, der ist ein
+                                       20-Uhr-Text). C5 hat Vorrang am Tag
+                                       nach 30, 100 oder 365 Tagen.
+     2 bis 6 Tage Pause                B1, B2, B3, B5. B3 nur, wenn die
+                                       Serie an dem Abend gerissen ist, B5
+                                       nur mit einem offenen Level.
      Rueckhol-Nachricht nach 14 Tagen  B6
-     alles andere                      D Wortwitz
-   A4 ("{n} Tage am Stueck") kommt erst ab 2 Tagen.
+     alles andere (7 und mehr Tage     B2 und C4; mit einem Lerntag auch B1
+       Pause oder nie gelernt)         und B5 (B5 nur mit offenem Level).
+   A4 ("{n} Tage am Stueck") kommt erst ab 2 Tagen. Jede Lage hat mindestens
+   zwei Texte, die sich abwechseln.
    Gewaehlt wird der Text, der am laengsten nicht kam (s.texte: Schluessel
    -> letzter Abend, eingetragen beim Zustellen in benPlanen); bei
    Gleichstand reihum nach dem Kalendertag. Der Text vom Vorabend ist
@@ -16357,39 +16363,17 @@ function benFassung(tag, fassungen){ return fassungen[benTagNr(tag) % fassungen.
    Alle Platzhalter werden hier auf dem Geraet gefuellt, nichts verlaesst
    es. Hoechstens eine Zahl je Text, sonst klappt die Mehrzahl nicht. */
 const BEN_TEXTE = {
-  a1: ['ben.a1_titel', 'ben.a1_text'], a2: ['ben.a2_titel', 'ben.a2_text'],
-  a3: ['ben.a3_titel', 'ben.a3_text'], a4: ['ben.a4_titel', 'ben.a4_text'],
-  a5: ['ben.a5_titel', 'ben.a5_text'], a6: ['ben.a6_titel', 'ben.a6_text'],
+  a2: ['ben.a2_titel', 'ben.a2_text'], a3: ['ben.a3_titel', 'ben.a3_text'],
+  a4: ['ben.a4_titel', 'ben.a4_text'], a5: ['ben.a5_titel', 'ben.a5_text'],
+  a6: ['ben.a6_titel', 'ben.a6_text'],
   b1: ['ben.b1_titel', 'ben.b1_text'], b2: ['ben.b2_titel', 'ben.b2_text'],
-  b3: ['ben.b3_titel', 'ben.b3_text'], b4: ['ben.b4_titel', 'ben.b4_text'],
-  b5: ['ben.b5_titel', 'ben.b5_text'], b6: ['ben.b6_titel', 'ben.b6_text'],
+  b3: ['ben.b3_titel', 'ben.b3_text'], b5: ['ben.b5_titel', 'ben.b5_text'],
+  b6: ['ben.b6_titel', 'ben.b6_text'],
   c1: ['ben.c1_titel', 'ben.c1_text'], c2: ['ben.c2_titel', 'ben.c2_text'],
   c3: ['ben.c3_titel', 'ben.c3_text'], c4: ['ben.c4_titel', 'ben.c4_text'],
   c5: ['ben.c5_titel', 'ben.c5_text'], c6: ['ben.c6_titel', 'ben.c6_text'],
-  d1: ['ben.d1_titel', 'ben.d1_text'], d2: ['ben.d2_titel', 'ben.d2_text'],
-  d3: ['ben.d3_titel', 'ben.d3_text'], d4: ['ben.d4_titel', 'ben.d4_text'],
-  d5: ['ben.d5_titel', 'ben.d5_text'], d6: ['ben.d6_titel', 'ben.d6_text'],
 };
-const BEN_WITZE = ['d1', 'd2', 'd3', 'd4', 'd5', 'd6'];
 const BEN_FARBTAGE = [30, 100, 365];   // C5: am Tag danach, die Flamme hat die Farbe gewechselt
-/* {wort} steht auf dem Sperrbildschirm. Deshalb nur aus dieser festen
-   Liste: harmlose Woerter aus dem Wortschatz mit hoechstens 8 Buchstaben,
-   ohne alles, was im Alltag auch als Schimpfwort oder Anspielung dient
-   (pas, krava, ovca, konj, patka, jaje, riba, mačka fehlen mit Absicht).
-   Ebenso sir, more und med: auf dem Sperrbildschirm lesen sie sich als
-   englisches "sir"/"more" bzw. skandinavisches "med" (mit).
-   Es kommt nur ein Wort, das schon gelernt ist. */
-const BEN_WORTE = ['čaj', 'voda', 'hljeb', 'jabuka', 'kruška', 'mlijeko', 'sunce',
-  'rijeka', 'cvijet', 'drvo', 'ptica', 'kuća', 'knjiga', 'prozor', 'vrata', 'lopta', 'pjesma', 'jagoda',
-  'trešnja', 'banana', 'limun', 'sladoled', 'čokolada', 'pita', 'ćevapi', 'zmaj', 'lubenica', 'šećer',
-  'kolač', 'ruža', 'snijeg', 'kiša', 'oblak', 'zvijezda', 'planina', 'jezero', 'leptir'];
-/* Die schon gelernten Woerter des Lernpfads (ohne Zahnarzt-Teil), einmal
-   je Planen. */
-function benGelernt(){
-  const g = new Set();
-  CATEGORIES.forEach(c => (c.words || []).forEach(w => { if(known.has(w.id)) g.add(w.bs); }));
-  return g;
-}
 /* Die Werte eines geplanten Abends. pause: Tage seit dem letzten Lerntag
    (basis, 0 ohne einen). Gerissen ist die Serie an dem Abend, wenn sie es
    jetzt schon ist oder mehr Tage dazwischen fehlen, als Schutz im Vorrat
@@ -16400,7 +16384,7 @@ function benGelernt(){
    eine Serie, die gar nicht gerissen war - gefunden in der Pruefung am
    13.11.2026 (Serie 5, kein Schutz, der naechste in 12 Stunden). Wie
    schutzAbends in benPlan(). */
-function benWerte(tag, basis, gelernt){
+function benWerte(tag, basis){
   const n = streak(), tagNr = benTagNr(tag);
   const pause = basis ? tagNr - benTagNr(basis) : 0;
   let fehlt = 0;
@@ -16410,13 +16394,8 @@ function benWerte(tag, basis, gelernt){
   const nachwachsen = rest > 0 && rest <= bis ? 1 + Math.floor((bis - rest) / SCHUTZ_MS) : 0;
   const vorrat = Math.min(SCHUTZ_MAX, schutzJetzt + nachwachsen);
   const m = MEILENSTEINE.find(x => x.ziel === days.size + 1 && !gefeiert.has(x.id));
-  let wort = '';
-  for(let i = 0; i < BEN_WORTE.length && !wort; i++){
-    const x = BEN_WORTE[(tagNr + i) % BEN_WORTE.length];
-    if(gelernt.has(x)) wort = x;
-  }
   const offen = CATEGORIES.some(c => !passed.has(c.id)) ? CATEGORIES[firstOpen()] : null;
-  return {n, pause, rekord, ziel: m ? m.ziel : 0, wort,
+  return {n, pause, rekord, ziel: m ? m.ziel : 0,
           woerter: Math.floor(ohneZa(known) / 100) * 100,   // abgerundet auf 100
           gerissen: pause >= 2 && (n === 0 || fehlt > vorrat),
           level: offen ? offen.label : ''};
@@ -16425,23 +16404,27 @@ function benWerte(tag, basis, gelernt){
    sonst einer aus pool. */
 function benGruppe(art, w){
   if(art === 'serie'){
-    const pool = ['a1', 'a2', 'a3'].concat(w.n >= 2 ? ['a4'] : [], ['a5']);
+    const pool = ['a2', 'a3'].concat(w.n >= 2 ? ['a4'] : [], ['a5']);
     if(w.n >= 7){ pool.push('c1'); if(w.n >= w.rekord) pool.push('c3'); }
     return {vorrang: w.ziel ? ['a6'] : [], pool};
   }
   if(w.pause === 1){
     const pool = (w.woerter >= 100 ? ['c2'] : [])
-      .concat(w.n >= 7 && w.n >= w.rekord ? ['c3'] : [], ['c4', 'c6'], BEN_WITZE);
+      .concat(w.n >= 7 && w.n >= w.rekord ? ['c3'] : [], ['c4', 'c6']);
     return {vorrang: BEN_FARBTAGE.includes(w.n) ? ['c5'] : [], pool};
   }
   if(w.pause >= 2 && w.pause <= 6){
     const pool = ['b1', 'b2'];
     if(w.gerissen) pool.push('b3');
-    if(w.wort) pool.push('b4');
     if(w.level) pool.push('b5');
     return {vorrang: [], pool};
   }
-  return {vorrang: [], pool: BEN_WITZE.slice()};
+  /* Alles andere: 7 und mehr Tage Pause oder noch nie gelernt - bis zum
+     14.11.2026 kamen hier die Wortwitze. Mit einem Lerntag (pause > 0)
+     B1, B2 und mit offenem Level B5, ohne einen nur B2; dazu immer C4. */
+  const pool = w.pause > 0 ? ['b1', 'b2'].concat(w.level ? ['b5'] : []) : ['b2'];
+  pool.push('c4');
+  return {vorrang: [], pool};
 }
 /* zuletzt: Schluessel -> Tag, an dem er zuletzt kam (auch die Abende davor
    in diesem Plan). */
@@ -16461,11 +16444,11 @@ function benWahl(gruppe, tag, zuletzt){
 }
 /* Titel und Text, fertig gefuellt. Die Mehrzahl richtet sich nach der Zahl,
    die im Text steht; nur {n} kann 1 sein, die anderen sind immer groesser
-   (Pause 2 bis 6, Woerter ab 100, Rekord ab 7, Wegmarke ab 7). */
+   (Pause ab 2, Woerter ab 100, Rekord ab 7, Wegmarke ab 7). */
 function benTexte(k, w){
   const farbe = {blau: t('ben.farbe_blau'), lila: t('ben.farbe_lila'), gold: t('ben.farbe_gold')}[flammeStufe(w.n)] || '';
   const vars = {n: w.n, ziel: w.ziel, rekord: w.rekord, woerter: w.woerter, tage: w.pause,
-                level: w.level, wort: w.wort, farbe};
+                level: w.level, farbe};
   const zahl = {a6: w.ziel, b1: w.pause, b6: w.woerter, c2: w.woerter, c3: w.rekord}[k] || w.n;
   const text = (k === 'b6' && w.woerter < 100) ? 'ben.b6_text_wenig' : BEN_TEXTE[k][1];
   return [tp(BEN_TEXTE[k][0], zahl, vars), tp(text, zahl, vars)];
@@ -16487,7 +16470,6 @@ function benPlan(){
   /* Welcher Text wann zuletzt kam, dazu die Abende dieses Plans - siehe
      TEXTE MIT PERSOENLICHKEIT. */
   const zuletzt = Object.assign({}, s.texte || {});
-  const gelernt = benGelernt();
   for(let d = 0; d < BEN_TAGE && !ruhe; d++){
     const tag = tagMinus(heute, -d);
     if(d === 0 && heuteGeuebt) continue;
@@ -16508,7 +16490,7 @@ function benPlan(){
     if(wann.getTime() <= jetzt + 60000) continue;
     abende.add(tag);
     /* Der Text nach der Lage an diesem Abend (1.4, 13.11.2026). */
-    const w = benWerte(tag, basis, gelernt);
+    const w = benWerte(tag, basis);
     const key = benWahl(benGruppe(art, w), tag, zuletzt);
     zuletzt[key] = tag;
     const [titel, text] = benTexte(key, w);
@@ -16526,7 +16508,7 @@ function benPlan(){
   if(s.erinnerung && !ruhe && basis){
     /* Seit 1.4 der Text B6, mit der Zahl der Woerter (13.11.2026). */
     const zurueck = tagMinus(heute, -BEN_PAUSE_TAGE);
-    const [titel, text] = benTexte('b6', benWerte(zurueck, basis, gelernt));
+    const [titel, text] = benTexte('b6', benWerte(zurueck, basis));
     plan.push({id: BEN_ID_RUECKHOL, art: 'rueckhol', basis, key: 'b6',
                wann: benZeit(zurueck, BEN_ERINNERUNG_UM), titel, text});
   }

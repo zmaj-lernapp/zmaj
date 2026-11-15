@@ -402,16 +402,19 @@ are in the Play Store listing. Format:
   left out of a packed upload; it stays in the old form and on the device.
   `tests_e2e/test_cloud_packen.py`.
 - Evening notifications with personality (decided by the maintainer on
-  13.11.2026): 24 new texts with Zmaj's humour replace the twelve plain
-  reminder, streak and come-back texts, in all eight languages. Which group
-  comes depends on the evening: streak at risk at 8 pm (A, from 7 days also
-  praise), learned yesterday but no warning due at 7 pm (praise or a Bosnian
-  word joke), a break of 2 to 6 days (come-back), the quiet message after 14
-  days, otherwise a word joke. Placeholders are filled on the device: streak,
-  next milestone, record, words learned (rounded down to 100), days of the
-  break, the next open level, the flame colour and one learned word from a
-  fixed list of harmless words. The text that has not come for the longest
-  time wins, so the same one never comes two evenings in a row. No name, no
+  13.11.2026, thinned out on 14.11.2026): 17 new texts with Zmaj's humour
+  replace the twelve plain reminder, streak and come-back texts, in all eight
+  languages. Which group comes depends on the evening: streak at risk at 8 pm
+  (A, from 7 days also praise), learned yesterday but no warning due at 7 pm
+  (praise), a break of 2 to 6 days (come-back), the quiet message after 14
+  days, otherwise "better late than never" or "grain by grain", after a
+  learning day also the come-back texts. Of the 24 drafts the maintainer
+  struck one streak text, the one showing a learned word on the lock screen
+  and all six Bosnian word jokes. Placeholders are filled on the device:
+  streak, next milestone, record, words learned (rounded down to 100), days
+  of the break, the next open level and the flame colour. The text that has
+  not come for the longest time wins, so the same one never comes two
+  evenings in a row, and every situation has at least two texts. No name, no
   server; 7 pm and 8 pm stay fixed, at most one message per evening, the
   switches work as before. Hearts-refilled texts are unchanged.
 - Tablets: from 600 points on the shorter side (Android's "sw600dp") the

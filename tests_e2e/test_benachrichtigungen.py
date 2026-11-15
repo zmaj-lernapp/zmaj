@@ -2,14 +2,16 @@
 """Benachrichtigungen mit Persoenlichkeit (Version 1.4, Ajdin am 13.11.2026:
 11a 12a 13a, Vorlage benachrichtigungen.md), in der echten App.
 
-benPlan() rechnet ohne Plugin, was die naechsten Abende bringen - das
-pruefen die Lagen hier direkt:
-  - Serie in Gefahr (20 Uhr): A1-A5, Einzahl bei 1 Tag, A4 erst ab 2,
+Am 14.11.2026 hat Ajdin A1, B4 (mit der Wortliste) und die Wortwitze D1-D6
+gestrichen; sie kommen nie. benPlan() rechnet ohne Plugin, was die
+naechsten Abende bringen - das pruefen die Lagen hier direkt:
+  - Serie in Gefahr (20 Uhr): A2-A5, Einzahl bei 1 Tag, A4 erst ab 2,
     A6 vor einer Wegmarke, ab 7 Tagen auch C1 und (Serie = Rekord) C3;
   - gestern gelernt, keine Warnung faellig (Schutz da oder Schalter aus):
-    C oder D um 19 Uhr, C5 mit der Flammenfarbe am Tag nach 30/100/365;
-  - 2 bis 6 Tage Pause: B1-B5, mit Tagen, Wort und Level gefuellt;
-  - laenger weg oder nie gelernt: D;
+    C um 19 Uhr, C5 mit der Flammenfarbe am Tag nach 30/100/365;
+  - 2 bis 6 Tage Pause: B1, B2, B3, B5, mit Tagen und Level gefuellt;
+  - laenger weg (7 und mehr Tage): B1, B2, B5 und C4; nie gelernt: B2 und
+    C4 im Wechsel;
   - nach 14 Tagen B6 mit den Woertern, abgerundet auf 100;
   - die Schalter wie bisher, hoechstens eine Nachricht am Abend.
 Dazu die Auswahl: nie derselbe Text zwei Abende hintereinander - ueber
@@ -26,10 +28,13 @@ import pytest
 JETZT = datetime.datetime(2026, 11, 10, 12, 0)
 HEUTE = JETZT.date()
 SPRACHEN = ["de", "en", "tr", "sv", "nl", "nb", "da", "fr"]
-A = {"a1", "a2", "a3", "a4", "a5"}
+A = {"a2", "a3", "a4", "a5"}
 C_19 = {"c2", "c3", "c4", "c6"}
-D = {"d1", "d2", "d3", "d4", "d5", "d6"}
-B = {"b1", "b2", "b3", "b4", "b5"}
+B = {"b1", "b2", "b3", "b5"}
+# 7 und mehr Tage Pause (bis 14.11.2026 die Wortwitze); ohne Lerntag nur B2/C4
+LANGE = {"b1", "b2", "b5", "c4"}
+# Am 14.11.2026 von Ajdin gestrichen: kommen nie
+GESTRICHEN = {"a1", "b4", "d1", "d2", "d3", "d4", "d5", "d6"}
 ALLE_WEGMARKEN = ["tage7", "tage30", "tage100", "tage365", "tage1000"]
 
 
@@ -52,9 +57,7 @@ LAGE = """(l) => {
   passed = new Set(l.alleBestanden ? CATEGORIES.map(c => c.id) : []);
   const ids = [];
   const alle = CATEGORIES.flatMap(c => c.words);
-  (l.woerter || []).forEach(bs => { const w = alle.find(x => x.bs === bs); if(w) ids.push(w.id); });
-  for(const w of alle){ if(new Set(ids).size >= (l.anzahl || 0)) break;
-                        if(!BEN_WORTE.includes(w.bs)) ids.push(w.id); }
+  for(const w of alle){ if(new Set(ids).size >= (l.anzahl || 0)) break; ids.push(w.id); }
   known = new Set(ids);
   rekord = l.rekord !== undefined ? l.rekord : streak();
   localStorage.setItem('zmaj_benachrichtigung', JSON.stringify(Object.assign(
@@ -62,12 +65,12 @@ LAGE = """(l) => {
   const plan = benPlan().map(p => ({key: p.key, art: p.art, tag: dayKey(p.wann), stunde: p.wann.getHours(),
                                     titel: p.titel, text: p.text}));
   let basis = ''; days.forEach(k => { if(k > basis) basis = k; });
-  const w = benWerte(today(), basis, benGelernt());
+  const w = benWerte(today(), basis);
   const g = benGruppe(days.has(today()) || !(streak() > 0) || schutzNow() > 0 ? 'erinnerung' : 'serie', w);
   const fuell = {};
   Object.keys(BEN_TEXTE).forEach(k => { fuell[k] = benTexte(k, w); });
   // Der Abend morgen um 19 Uhr, wenn bis dahin nicht gelernt wird
-  const wMorgen = benWerte(tagMinus(today(), -1), basis, benGelernt());
+  const wMorgen = benWerte(tagMinus(today(), -1), basis);
   return {plan, w, g, fuell, n: streak(), woerter: ohneZa(known),
           level: (CATEGORIES[firstOpen()] || {}).label,
           wMorgen, gMorgen: benGruppe('erinnerung', wMorgen)};
@@ -93,6 +96,7 @@ def _abende(r):
 def _ohne_wiederholung(abende):
     keys = [p["key"] for p in abende]
     assert all(a != b for a, b in zip(keys, keys[1:])), keys
+    assert not GESTRICHEN & set(keys), keys
 
 
 # ---------------------------------------------------------------------------
@@ -102,7 +106,8 @@ def _ohne_wiederholung(abende):
 def test_serie_in_gefahr_um_20_uhr(app):
     """Serie 3, heute noch nichts, kein Schutz: heute um 20 Uhr ein Text aus
     A, mit der Zahl. Die Abende danach: 2 bis 6 Tage Pause -> B um 19 Uhr,
-    am siebten D. Eine Nachricht je Abend, keine zweimal hintereinander."""
+    am siebten (7 Tage Pause) B1, B2, B5 oder C4. Eine Nachricht je Abend,
+    keine zweimal hintereinander."""
     r = _lage(app, tage=_tage(1, 4))
     abende = _abende(r)
     assert [p["tag"] for p in abende] == [_iso(d) for d in range(7)]
@@ -111,7 +116,7 @@ def test_serie_in_gefahr_um_20_uhr(app):
     assert "3 Tage" in erst["titel"] + erst["text"], erst
     assert all(p["stunde"] == 19 and p["art"] == "erinnerung" for p in abende[1:])
     assert all(p["key"] in B for p in abende[1:6]), abende
-    assert abende[6]["key"] in D, abende[6]
+    assert abende[6]["key"] in LANGE, abende[6]
     _ohne_wiederholung(abende)
     assert r["fuell"]["a4"][1] == "3 Tage am Stück. Zeig der Serie, wer hier stur ist."
     assert app.fehler == []
@@ -120,10 +125,10 @@ def test_serie_in_gefahr_um_20_uhr(app):
 def test_ein_tag_einzahl_und_ohne_a4(app):
     r = _lage(app, tage=_tage(1, 2))
     assert r["n"] == 1
-    assert r["g"] == {"vorrang": [], "pool": ["a1", "a2", "a3", "a5"]}
-    assert r["fuell"]["a1"][0] == "🔥 1 Tag. Noch."
+    assert r["g"] == {"vorrang": [], "pool": ["a2", "a3", "a5"]}
     assert r["fuell"]["a2"][0] == "Pazi! 🔥 1 Tag"
-    assert _abende(r)[0]["key"] in {"a1", "a2", "a3", "a5"}
+    assert r["fuell"]["a3"][0] == "🔥 1 Tag"
+    assert _abende(r)[0]["key"] in {"a2", "a3", "a5"}
 
 
 def test_wegmarke_hat_vorrang(app):
@@ -140,36 +145,37 @@ def test_wegmarke_hat_vorrang(app):
 
 def test_ab_sieben_tagen_auch_lob(app):
     r = _lage(app, tage=_tage(1, 11), rekord=10)
-    assert r["g"]["pool"] == ["a1", "a2", "a3", "a4", "a5", "c1", "c3"]
+    assert r["g"]["pool"] == ["a2", "a3", "a4", "a5", "c1", "c3"]
     assert r["fuell"]["c1"][0] == "Svaka čast! 🔥 10 Tage"
     assert r["fuell"]["c3"][1] == "Rekord: 10 Tage am Stück. Zmaj verbeugt sich. Ein bisschen."
     r = _lage(app, tage=_tage(1, 11), rekord=25)          # Rekord liegt hoeher: kein C3
-    assert r["g"]["pool"] == ["a1", "a2", "a3", "a4", "a5", "c1"]
+    assert r["g"]["pool"] == ["a2", "a3", "a4", "a5", "c1"]
 
 
 # ---------------------------------------------------------------------------
 # Gestern gelernt, keine Warnung faellig
 # ---------------------------------------------------------------------------
 
-def test_gestern_gelernt_mit_schutz_lob_oder_witz(app):
+def test_gestern_gelernt_mit_schutz_lob(app):
+    """Seit 14.11.2026 ohne die Wortwitze: nur noch Lob."""
     r = _lage(app, tage=_tage(1, 13), schutz=1, rekord=12, anzahl=250)
     erst = _abende(r)[0]
     assert erst["art"] == "erinnerung" and erst["stunde"] == 19
-    assert r["g"] == {"vorrang": [], "pool": ["c2", "c3", "c4", "c6"] + sorted(D)}
-    assert erst["key"] in C_19 | D, erst
+    assert r["g"] == {"vorrang": [], "pool": ["c2", "c3", "c4", "c6"]}
+    assert erst["key"] in C_19, erst
     assert r["woerter"] == 250
     assert r["fuell"]["c2"][0] == "Schon 200 Wörter! 🐉"
-    # Unter 100 Woertern kein C2, Rekord hoeher: kein C3
+    # Unter 100 Woertern kein C2, Rekord hoeher: kein C3 - bleiben zwei im Wechsel
     r = _lage(app, tage=_tage(1, 13), schutz=1, rekord=40, anzahl=60)
-    assert r["g"]["pool"] == ["c4", "c6"] + sorted(D)
+    assert r["g"]["pool"] == ["c4", "c6"]
 
 
 def test_serie_aus_dann_lob_statt_warnung(app):
     """Schalter "Serie in Gefahr" aus: die Erinnerung um 19 Uhr bleibt, mit
-    Lob oder Witz statt der Warnung."""
+    Lob statt der Warnung."""
     r = _lage(app, tage=_tage(1, 5), schalter={"serie": False})
     erst = _abende(r)[0]
-    assert erst["art"] == "erinnerung" and erst["stunde"] == 19 and erst["key"] in C_19 | D
+    assert erst["art"] == "erinnerung" and erst["stunde"] == 19 and erst["key"] in C_19
 
 
 @pytest.mark.parametrize("n,farbe", [(30, "blau"), (100, "lila"), (365, "golden")])
@@ -187,26 +193,28 @@ def test_am_tag_nach_30_100_365_die_flammenfarbe(app, n, farbe):
 
 def test_pause_drei_tage_comeback(app):
     """Zuletzt vor drei Tagen gelernt, kein Schutz: Serie gerissen. Alle
-    fuenf B-Texte kommen in Frage und sind fertig gefuellt."""
-    r = _lage(app, tage=_tage(3, 10), woerter=["voda"])
+    vier B-Texte kommen in Frage und sind fertig gefuellt; B4 ist seit dem
+    14.11.2026 weg, ein Wort steht nicht mehr in den Werten."""
+    r = _lage(app, tage=_tage(3, 10))
     erst = _abende(r)[0]
     assert erst["art"] == "erinnerung" and erst["stunde"] == 19 and erst["key"] in B
-    assert r["w"]["pause"] == 3 and r["w"]["gerissen"] is True and r["w"]["wort"] == "voda"
-    assert r["g"] == {"vorrang": [], "pool": ["b1", "b2", "b3", "b4", "b5"]}
+    assert r["w"]["pause"] == 3 and r["w"]["gerissen"] is True and "wort" not in r["w"]
+    assert r["g"] == {"vorrang": [], "pool": ["b1", "b2", "b3", "b5"]}
     f = r["fuell"]
+    assert sorted(f) == sorted(["a2", "a3", "a4", "a5", "a6", "b1", "b2", "b3", "b5", "b6",
+                                "c1", "c2", "c3", "c4", "c5", "c6"])
     assert f["b1"] == ["Šta ima? 🐉", "3 Tage Funkstille. Zmaj hat deine Wörter abgestaubt."]
-    assert f["b4"] == ["„voda“ – noch im Kopf? 🐉", "Zmaj wettet: ja. Beweis es ihm in einer Lektion."]
     assert f["b5"] == ["Dein Platz ist noch frei 🐉", "„%s“ wartet genau da, wo du aufgehört hast." % r["level"]]
     assert r["level"]
 
 
-def test_pause_ohne_wort_ohne_level_ohne_riss(app):
-    """Kein gelerntes Wort aus der Liste: kein B4. Alles bestanden: kein B5.
-    Zwei Tage Pause, aber der Schutz hat gestern gerettet und noch einer
-    liegt bereit: kein B3 - und die Warnung entfaellt, der Schutz ist ja da."""
+def test_pause_ohne_level_ohne_riss(app):
+    """Alles bestanden: kein B5. Zwei Tage Pause, aber der Schutz hat gestern
+    gerettet und noch einer liegt bereit: kein B3 - und die Warnung
+    entfaellt, der Schutz ist ja da. Bleiben B1 und B2 im Wechsel."""
     tage = _tage(2, 9)
     r = _lage(app, tage=tage, frost=[_tage(1, 2)[0]], schutz=1, alleBestanden=True, anzahl=30)
-    assert r["w"]["pause"] == 2 and r["w"]["gerissen"] is False and r["w"]["wort"] == ""
+    assert r["w"]["pause"] == 2 and r["w"]["gerissen"] is False
     assert r["g"]["pool"] == ["b1", "b2"]
 
 
@@ -236,12 +244,52 @@ def test_nachwachsender_schutz_kein_b3(app):
     assert app.fehler == []
 
 
-def test_lange_weg_oder_nie_gelernt_nur_witz(app):
-    r = _lage(app, tage=_tage(10, 20))
-    assert all(p["key"] in D for p in _abende(r)), r["plan"]
+def test_lange_weg_b1_b2_b5_c4(app):
+    """Ajdin am 14.11.2026: statt der Wortwitze nach 7 und mehr Tagen Pause
+    B2 und C4, mit einem Lerntag auch B1 und B5 (B5 nur mit offenem Level).
+    {tage} in B1 steht dort bis 13 (und darueber) in der Mehrzahl."""
+    r = _lage(app, tage=_tage(7, 12))
+    assert r["w"]["pause"] == 7
+    assert r["g"] == {"vorrang": [], "pool": ["b1", "b2", "b5", "c4"]}
+    assert r["fuell"]["b1"] == ["Šta ima? 🐉", "7 Tage Funkstille. Zmaj hat deine Wörter abgestaubt."]
+    abende = _abende(r)
+    assert all(p["key"] in LANGE and p["stunde"] == 19 for p in abende), r["plan"]
+    _ohne_wiederholung(abende)
+    assert {p["key"] for p in abende} == LANGE, abende   # reihum kommt jeder dran
+    r = _lage(app, tage=_tage(13, 20))
+    assert r["w"]["pause"] == 13
+    assert r["fuell"]["b1"][1] == "13 Tage Funkstille. Zmaj hat deine Wörter abgestaubt."
+    # Alles bestanden: kein B5
+    r = _lage(app, tage=_tage(10, 20), alleBestanden=True)
+    assert r["g"]["pool"] == ["b1", "b2", "c4"]
+    assert all(p["key"] in {"b1", "b2", "c4"} for p in _abende(r)), r["plan"]
     _ohne_wiederholung(_abende(r))
+    assert app.fehler == []
+
+
+def test_nie_gelernt_b2_und_c4_im_wechsel(app):
+    """Ohne einen Lerntag nur B2 und C4 - sie wechseln sich jeden Abend ab."""
     r = _lage(app, tage=[])
-    assert all(p["key"] in D for p in _abende(r)), r["plan"]
+    assert r["g"] == {"vorrang": [], "pool": ["b2", "c4"]}
+    keys = [p["key"] for p in _abende(r)]
+    assert len(keys) == 7 and set(keys) == {"b2", "c4"}, keys
+    _ohne_wiederholung(_abende(r))
+
+
+@pytest.mark.parametrize("lage", [
+    dict(tage=_tage(1, 2)), dict(tage=_tage(1, 11), rekord=10), dict(tage=_tage(1, 7), gefeiert=[]),
+    dict(tage=_tage(1, 13), schutz=1, rekord=12, anzahl=250), dict(tage=_tage(1, 31), schutz=1),
+    dict(tage=_tage(3, 10)), dict(tage=_tage(2, 9), schutz=1, alleBestanden=True),
+    dict(tage=_tage(7, 12)), dict(tage=_tage(10, 20), alleBestanden=True), dict(tage=[]),
+])
+def test_gestrichene_kommen_nie(app, lage):
+    """A1, B4 und D1-D6 kommen in keiner Lage, und jede Lage hat mindestens
+    zwei Texte, die sich abwechseln."""
+    r = _lage(app, **lage)
+    assert not GESTRICHEN & set(r["g"]["pool"] + r["g"]["vorrang"]), r["g"]
+    assert len(r["g"]["pool"]) >= 2, r["g"]
+    assert not GESTRICHEN & {p["key"] for p in r["plan"]}, r["plan"]
+    _ohne_wiederholung(_abende(r))
 
 
 @pytest.mark.parametrize("anzahl,text", [
@@ -275,8 +323,8 @@ def test_schalter_wie_bisher(app):
 
 
 def test_zweimal_planen_derselbe_text(app):
-    a = _lage(app, tage=_tage(3, 10), woerter=["voda"])
-    b = _lage(app, tage=_tage(3, 10), woerter=["voda"])
+    a = _lage(app, tage=_tage(3, 10))
+    b = _lage(app, tage=_tage(3, 10))
     assert [p["key"] for p in a["plan"]] == [p["key"] for p in b["plan"]]
 
 
@@ -287,10 +335,10 @@ def test_vorabend_ist_gesperrt(app):
     for k in sorted(B):
         texte = {x: "2026-10-01" for x in B}
         texte[k] = gestern
-        r = _lage(app, tage=_tage(3, 10), woerter=["voda"], texte=texte)
+        r = _lage(app, tage=_tage(3, 10), texte=texte)
         assert _abende(r)[0]["key"] != k
-    texte = {"b1": "2026-11-01", "b2": "2026-10-20", "b3": "2026-11-05", "b4": "2026-11-07", "b5": "2026-11-08"}
-    r = _lage(app, tage=_tage(3, 10), woerter=["voda"], texte=texte)
+    texte = {"b1": "2026-11-01", "b2": "2026-10-20", "b3": "2026-11-05", "b5": "2026-11-08"}
+    r = _lage(app, tage=_tage(3, 10), texte=texte)
     assert _abende(r)[0]["key"] == "b2"
 
 
@@ -327,8 +375,9 @@ def test_drei_wochen_nie_derselbe_text_zweimal(app):
     """Jeden Abend kommt um 20 Uhr die Serienwarnung, um 21 Uhr wird
     gelernt. benPlanen() merkt sich beim naechsten Mal, was kam, und plant
     fuer morgen einen anderen Text - den, der am laengsten nicht kam. Bei
-    sieben Texten in der Gruppe (Serie ab 7 = Rekord: A1-A5, C1, C3) kommt
-    also jeder einmal, bevor sich einer wiederholt."""
+    sechs Texten in der Gruppe (Serie ab 7 = Rekord: A2-A5, C1, C3; A1 ist
+    seit dem 14.11.2026 weg) kommt also jeder einmal, bevor sich einer
+    wiederholt."""
     app.js(PLUGIN)
     app.js("() => { localStorage.setItem('zmaj_benachrichtigung', JSON.stringify("
            "{gefragt: true, erinnerung: true, serie: true, leben: false})); }")
@@ -361,8 +410,10 @@ def test_drei_wochen_nie_derselbe_text_zweimal(app):
         # Android klappt jede ganz auf (largeBody = body)
         assert r["pending"] and all(p["aufklappbar"] for p in r["pending"]), r["pending"]
     assert all(a != b for a, b in zip(gekommen, gekommen[1:])), gekommen
-    assert sorted(gekommen[:7]) == ["a1", "a2", "a3", "a4", "a5", "c1", "c3"], gekommen
-    assert sorted(gekommen[7:14]) == sorted(gekommen[:7]), gekommen
+    assert sorted(gekommen[:6]) == ["a2", "a3", "a4", "a5", "c1", "c3"], gekommen
+    assert sorted(gekommen[6:12]) == sorted(gekommen[:6]), gekommen
+    assert sorted(gekommen[12:18]) == sorted(gekommen[:6]), gekommen
+    assert not GESTRICHEN & set(gekommen), gekommen
     assert app.fehler == []
 
 
@@ -374,13 +425,13 @@ AUSWAHL = """() => {
   let tag = '2026-11-10';
   for(let i = 0; i < 400; i++){
     const pool = alle.filter(() => zufall(3) > 0);
-    if(pool.length < 2) pool.push('d1', 'd2');
+    if(pool.length < 2) pool.push('b1', 'b2');
     const vorrang = zufall(5) === 0 ? [alle[zufall(alle.length)]] : [];
     const k = benWahl({vorrang, pool}, tag, zuletzt);
     folge.push(k); zuletzt[k] = tag; tag = tagMinus(tag, -1);
   }
   // Fest stehende Gruppe: jeder kommt einmal, bevor einer wiederkommt
-  const fest = ['b1', 'b2', 'b3', 'b4', 'b5'], z2 = {}, reihe = [];
+  const fest = ['b1', 'b2', 'b3', 'b5', 'c4'], z2 = {}, reihe = [];
   tag = '2026-11-10';
   for(let i = 0; i < 15; i++){ const k = benWahl({vorrang: [], pool: fest}, tag, z2); reihe.push(k); z2[k] = tag; tag = tagMinus(tag, -1); }
   return {folge, reihe};
@@ -395,7 +446,7 @@ def test_auswahl_vierhundert_abende(app):
     assert all(a != b for a, b in zip(f, f[1:]))
     reihe = r["reihe"]
     for i in range(0, 15, 5):
-        assert sorted(reihe[i:i + 5]) == ["b1", "b2", "b3", "b4", "b5"], reihe
+        assert sorted(reihe[i:i + 5]) == ["b1", "b2", "b3", "b5", "c4"], reihe
     assert reihe[5:10] == reihe[:5] and reihe[10:] == reihe[:5]
 
 
@@ -407,10 +458,10 @@ SPRACHE = """async (code) => {
   await setzeSprache(code);
   const aus = {};
   const w = (n, extra) => Object.assign({n, pause: 4, rekord: n, ziel: 30, woerter: 1200, gerissen: true,
-                                         level: CATEGORIES[0].label, wort: 'voda'}, extra || {});
+                                         level: CATEGORIES[0].label}, extra || {});
   Object.keys(BEN_TEXTE).forEach(k => {
     aus[k] = {eins: benTexte(k, w(1)), fuenf: benTexte(k, w(5)), dreissig: benTexte(k, w(30)),
-              wenig: benTexte(k, w(5, {woerter: 0}))};
+              wenig: benTexte(k, w(5, {woerter: 0})), lange: benTexte(k, w(5, {pause: 13}))};
   });
   const roh = {}; Object.values(BEN_TEXTE).flat().concat(['ben.b6_text_wenig', 'ben.farbe_blau']).forEach(s => { roh[s] = T[s]; });
   return {aus, roh, level: CATEGORIES[0].label, sprache: SPRACHE};
@@ -428,12 +479,18 @@ def test_alle_sprachen_fertig_gefuellt(app):
                     # "null" nicht: "null Tränen" ist gewollt
                     assert not any(x in teil for x in ("undefined", "NaN", "[object")), (code, k, name, teil)
         # Einzahl und Mehrzahl: genau die Seite vor bzw. hinter dem Strich
-        for k in ("a1", "a2", "a3", "a5"):
+        assert sorted(r["aus"]) == sorted(["a2", "a3", "a4", "a5", "a6", "b1", "b2", "b3", "b5", "b6",
+                                           "c1", "c2", "c3", "c4", "c5", "c6"]), code
+        for k in ("a2", "a3", "a5"):
             roh = r["roh"]["ben.%s_titel" % k].split("|")
             assert r["aus"][k]["eins"][0] == roh[0].replace("{n}", "1"), (code, k)
             assert r["aus"][k]["fuenf"][0] == roh[1].replace("{n}", "5"), (code, k)
-        assert "voda" in r["aus"]["b4"]["eins"][0] and r["level"] in r["aus"]["b5"]["eins"][1], code
+        assert r["level"] in r["aus"]["b5"]["eins"][1], code
         assert "4" in r["aus"]["b1"]["eins"][1] and "1200" in r["aus"]["b6"]["eins"][1], code
+        # 13 Tage Pause (seit 14.11.2026 kommt B1 auch nach 7 und mehr Tagen):
+        # dieselbe Mehrzahl wie bei 4, nur die Zahl anders
+        assert r["aus"]["b1"]["lange"][1] == r["roh"]["ben.b1_text"].replace("{tage}", "13"), code
+        assert r["aus"]["b1"]["eins"][1] == r["roh"]["ben.b1_text"].replace("{tage}", "4"), code
         assert r["aus"]["b6"]["wenig"][1] == r["roh"]["ben.b6_text_wenig"], code
         assert r["roh"]["ben.farbe_blau"] in r["aus"]["c5"]["dreissig"][1], code
     assert app.fehler == [] and app.fremd == []
