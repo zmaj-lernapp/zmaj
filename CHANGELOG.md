@@ -810,7 +810,12 @@ are in the Play Store listing. Format:
   *ih … odjednom*. *Utakmica*: Kenan hugs *oca*, his father, instead of
   *babu*. *Kahva kod komšinice*: the džezva goes back on the fire *da se digne
   kajmak*, so that the foam rises. *Mejl rođaku*: the subject line starts with
-  *Naslov* instead of *Predmet*; the translation keeps "Betreff".
+  *Naslov* instead of *Predmet*; the translation keeps "Betreff". *Zmaj uči
+  bosanski*: the ćevapi are *izgorjeli* (burnt) instead of *zagorjeli*, and the
+  joke at dinner is the maintainer's own version: Zmaj says *Ne, hvala*, Nana
+  still serves more sarma, "Kod nane se ne kaže ne." ("At Grandma's you don't
+  say no."); the second question now asks why Zmaj still gets more sarma. The
+  story dictionary has 1,520 entries.
   None of these stories had audio yet; they wait for the next Vesna round.
   `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
 - *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it

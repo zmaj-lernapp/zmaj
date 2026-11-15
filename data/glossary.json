@@ -4100,6 +4100,19 @@
    }
   },
   {
+   "bs": "izgorjeli",
+   "translations": {
+    "de": "verbrannt (Mehrz.)",
+    "en": "burnt (pl.)",
+    "tr": "tamamen yandılar",
+    "sv": "brändes upp (flera)",
+    "nl": "verbrand (meervoud)",
+    "nb": "brant opp (flere)",
+    "da": "brændte (flere)",
+    "fr": "brûlés (complètement)"
+   }
+  },
+  {
    "bs": "izgubila",
    "translations": {
     "de": "verloren (w)",
@@ -16866,19 +16879,6 @@
    }
   },
   {
-   "bs": "ukusno",
-   "translations": {
-    "de": "lecker",
-    "en": "tasty",
-    "tr": "lezzetli",
-    "sv": "gott",
-    "nl": "lekker",
-    "nb": "godt (om mat)",
-    "da": "lækkert",
-    "fr": "délicieux"
-   }
-  },
-  {
    "bs": "ulica",
    "translations": {
     "de": "Straße",
@@ -18296,19 +18296,6 @@
    }
   },
   {
-   "bs": "zagorjeli",
-   "translations": {
-    "de": "angebrannt (Mehrz.)",
-    "en": "burned (pl.)",
-    "tr": "yandılar",
-    "sv": "brändes vid (flera)",
-    "nl": "aangebrand (meervoud)",
-    "nb": "brant seg (flere)",
-    "da": "brændte på (flere)",
-    "fr": "brûlés"
-   }
-  },
-  {
    "bs": "zagrebu",
    "translations": {
     "de": "Zagreb (Lok.)",
@@ -18865,19 +18852,6 @@
     "nb": "vet dere",
     "da": "ved De / ved I",
     "fr": "savez-vous"
-   }
-  },
-  {
-   "bs": "znači",
-   "translations": {
-    "de": "es bedeutet",
-    "en": "it means",
-    "tr": "anlamına geliyor",
-    "sv": "det betyder",
-    "nl": "het betekent",
-    "nb": "det betyr",
-    "da": "det betyder",
-    "fr": "ça veut dire"
    }
   },
   {

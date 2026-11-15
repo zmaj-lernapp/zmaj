@@ -1009,9 +1009,9 @@ WOERTERBUCH_B1_2 = {
     "stigao": "angekommen (m)",
     "ponosno": "stolz (Adverb)", "večere": "Abendessen (Gen.)",
     "hoćeš": "du willst", "sarme": "Sarma (Gen.)", "sit": "satt (m)", "tanjir": "Teller",
-    "čula": "gehört (w)", "znači": "es bedeutet", "ukusno": "lecker",
+    "čula": "gehört (w)",
     "roštilja": "Grill (Gen.)", "pustio": "gelassen (m)", "vatre": "Feuer (Gen.)",
-    "usta": "Mund", "ćevapi": "Ćevapi", "sekundi": "Sekunde (Lok.)", "zagorjeli": "angebrannt (Mehrz.)",
+    "usta": "Mund", "ćevapi": "Ćevapi", "sekundi": "Sekunde (Lok.)", "izgorjeli": "verbrannt (Mehrz.)",
     "stani": "halt (Befehl)", "zmaju": "Drache! (Anrede)", "peku": "grillen / backen (sie)",
     "zmajevom": "Drachen- (Instr.)", "vatrom": "Feuer (Instr.)", "napisao": "geschrieben (m)",
     "mami": "Mama (Dat.)",
@@ -1193,21 +1193,25 @@ GESCHICHTEN += [
     },
     {
         "id": "b1_zmaj", "titel": "Zmaj uči bosanski", "stufe": "B1", "passt_zu": "lernen_studieren",
+        # A/B-Liste, Ajdin 15.11.2026: T14 B "izgorjeli" statt "zagorjeli", T15 B
+        # genau wie von ihm abgenommen ("T15 passt"): Zmaj sagt „Ne, hvala.“, die
+        # Nana gibt ihm trotzdem mehr, „Kod nane se ne kaže ne.“ Die zweite Frage
+        # folgt dem neuen Witz. T13 A: "Pustio je malo vatre iz usta" bleibt.
         "text": ("Zmaj je mali zmaj koji živi u Njemačkoj. Već nekoliko mjeseci uči bosanski jer ovog ljeta ide kod nane u Mostar. Svako veče ponavlja nove riječi: kuća, voda, hljeb, kahva.\n\n"
                  "Kad je stigao kod nane, odmah je htio pokazati šta zna. „Dobro jutro, nano!“ rekao je ponosno. Nana se nasmijala. „Dobro jutro? Sine, sad je osam sati navečer. Kaže se dobro veče.“\n\n"
-                 "Poslije večere nana ga je pitala: „Hoćeš li još sarme?“ Zmaj je bio sit, pa je rekao: „Hvala.“ Nana mu je odmah stavila još tri sarme na tanjir. „Ali nano, rekao sam hvala!“ „Čula sam“, rekla je nana. „Hvala znači da ti je ukusno.“\n\n"
-                 "Sutradan je Zmaj htio pomoći dedi oko roštilja. Pustio je malo vatre iz usta, i ćevapi su u sekundi zagorjeli. „Stani, zmaju!“ rekao je dedo. „Ćevapi se peku polako, a ne zmajevom vatrom.“\n\n"
+                 "Poslije večere nana ga je pitala: „Hoćeš li još sarme?“ Zmaj je bio sit, pa je rekao: „Ne, hvala.“ Nana mu je odmah stavila još tri sarme na tanjir. „Ali nano, rekao sam ne, hvala!“ „Čula sam“, rekla je nana. „Kod nane se ne kaže ne.“\n\n"
+                 "Sutradan je Zmaj htio pomoći dedi oko roštilja. Pustio je malo vatre iz usta, i ćevapi su u sekundi izgorjeli. „Stani, zmaju!“ rekao je dedo. „Ćevapi se peku polako, a ne zmajevom vatrom.“\n\n"
                  "Navečer je Zmaj napisao poruku mami: „Ja sam u Mostar i jedem mnogo sarme.“ Nana je pogledala telefon. „Ne u Mostar, nego u Mostaru.“ Zmaj je pomislio da je bosanski težak. Ali nana je strpljiva, a njena sarma je najbolja na svijetu. Zato će učiti dalje."),
         "uebersetzung": ("Zmaj ist ein kleiner Drache, der in Deutschland lebt. Seit einigen Monaten lernt er schon Bosnisch, weil er diesen Sommer zu seiner Oma nach Mostar fährt. Jeden Abend wiederholt er neue Wörter: kuća, voda, hljeb, kahva.\n\n"
                          "Als er bei der Oma ankam, wollte er sofort zeigen, was er kann. „Guten Morgen, Oma!“, sagte er stolz. Die Oma lachte. „Guten Morgen? Mein Junge, jetzt ist es acht Uhr abends. Man sagt Guten Abend.“\n\n"
-                         "Nach dem Abendessen fragte ihn die Oma: „Willst du noch Sarma?“ Zmaj war satt, also sagte er: „Danke.“ Die Oma legte ihm sofort noch drei Sarma auf den Teller. „Aber Oma, ich habe danke gesagt!“ „Ich habe es gehört“, sagte die Oma. „Danke heißt, dass es dir schmeckt.“\n\n"
-                         "Am nächsten Tag wollte Zmaj dem Opa am Grill helfen. Er ließ ein bisschen Feuer aus dem Mund, und die Ćevapi waren in einer Sekunde angebrannt. „Halt, Drache!“, sagte der Opa. „Ćevapi grillt man langsam, nicht mit Drachenfeuer.“\n\n"
+                         "Nach dem Abendessen fragte ihn die Oma: „Willst du noch Sarma?“ Zmaj war satt, also sagte er: „Nein, danke.“ Die Oma legte ihm sofort noch drei Sarma auf den Teller. „Aber Oma, ich habe nein, danke gesagt!“ „Ich habe es gehört“, sagte die Oma. „Bei der Oma sagt man nicht nein.“\n\n"
+                         "Am nächsten Tag wollte Zmaj dem Opa am Grill helfen. Er ließ ein bisschen Feuer aus dem Mund, und die Ćevapi waren in einer Sekunde verbrannt. „Halt, Drache!“, sagte der Opa. „Ćevapi grillt man langsam, nicht mit Drachenfeuer.“\n\n"
                          "Abends schrieb Zmaj seiner Mama eine Nachricht: „Ja sam u Mostar i jedem mnogo sarme.“ (Ich bin in Mostar und esse viel Sarma.) Die Oma schaute auf das Handy. „Nicht u Mostar, sondern u Mostaru.“ Zmaj dachte, dass Bosnisch schwer ist. Aber die Oma ist geduldig, und ihre Sarma ist die beste der Welt. Deshalb lernt er weiter."),
-        "vokabeln": {"nego": "sondern / als", "koji": "der (Relativ) / welcher"},
+        "vokabeln": {"nego": "sondern / als", "koji": "der (Relativ) / welcher", "ne": "nicht / nein"},
         "fragen": [
             {"frage": "Welchen Fehler macht Zmaj, als er ankommt?", "optionen": ["er sagt am Abend „Dobro jutro“", "er vergisst den Namen der Oma", "er kommt zu spät"], "richtig": "er sagt am Abend „Dobro jutro“"},
-            {"frage": "Was bedeutet „Hvala“ für die Oma?", "optionen": ["dass es ihm schmeckt", "dass er satt ist", "dass er schlafen will"], "richtig": "dass es ihm schmeckt"},
-            {"frage": "Was passiert mit den Ćevapi?", "optionen": ["sie brennen an", "sie werden kalt", "der Hund frisst sie"], "richtig": "sie brennen an"},
+            {"frage": "Warum bekommt Zmaj trotzdem noch mehr Sarma?", "optionen": ["bei der Oma sagt man nicht nein", "die Oma hat ihn nicht gehört", "er hat um mehr Sarma gebeten"], "richtig": "bei der Oma sagt man nicht nein"},
+            {"frage": "Was passiert mit den Ćevapi?", "optionen": ["sie verbrennen", "sie werden kalt", "der Hund frisst sie"], "richtig": "sie verbrennen"},
         ],
     },
 ]

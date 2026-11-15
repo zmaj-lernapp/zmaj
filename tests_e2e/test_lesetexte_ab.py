@@ -67,6 +67,9 @@ FAELLE = {
     ("b1_zanat", "od", "oca"): ("Vater (Gen./Akk.)", "father (gen./acc.)"),
     ("b1_kahva", "se", "digne"): ("hebt (se digne: steigt auf)", "lifts (se digne: rises)"),
     ("b1_kahva", "digne", "kajmak"): ("Schaum (auf dem Kaffee) / Kajmak", "foam (on the coffee) / kajmak"),
+    ("b1_zmaj", "sekundi", "izgorjeli"): ("verbrannt (Mehrz.)", "burnt (pl.)"),
+    ("b1_zmaj", "sam", "ne"): ("nicht / nein", "not / no"),
+    ("b1_zmaj", "kaže", "ne"): ("nicht / nein", "not / no"),
 }
 
 # Das erste Wort einer Geschichte antippen (TIPPEN braucht ein Wort davor)
@@ -114,6 +117,9 @@ ZU_SEHEN = {
                  "Das Kännchen stellt sie nur kurz zurück aufs Feuer, damit der Schaum aufsteigt.",
                  "She puts the džezva back on the heat only briefly, so that the foam rises."),
     "b1_mejl": ("Naslov: Dolazim u augustu!", "Betreff: Ich komme im August!", "Subject: I'm coming in August!"),
+    "b1_zmaj": ("„Čula sam“, rekla je nana. „Kod nane se ne kaže ne.“",
+                "„Ich habe es gehört“, sagte die Oma. „Bei der Oma sagt man nicht nein.“",
+                "“I heard you”, Grandma said. “At Grandma's you don't say no.”"),
 }
 
 

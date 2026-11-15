@@ -57,6 +57,11 @@ B = {
     "T11": ("b1_kahva", "Džezvu vrati na vatru samo na kratko, da se digne kajmak.",
             "Džezvu vrati na vatru samo na kratko. „"),
     "T12": ("b1_mejl", "Naslov: Dolazim u augustu!", "Predmet:"),
+    "T14": ("b1_zmaj", "Pustio je malo vatre iz usta, i ćevapi su u sekundi izgorjeli.", "zagorjeli"),
+    # T15 genau wie in Ajdins Antwortzeile ("T15 passt")
+    "T15": ("b1_zmaj", "Zmaj je bio sit, pa je rekao: „Ne, hvala.“ Nana mu je odmah stavila još tri sarme na "
+                       "tanjir. „Ali nano, rekao sam ne, hvala!“ „Čula sam“, rekla je nana. „Kod nane se ne kaže ne.“",
+            "Hvala znači"),
 }
 
 # Stelle -> (Geschichte, Stelle, die bleibt): hier hat Ajdin A gewählt
@@ -93,6 +98,11 @@ DE = {
     "b1_utakmica": [("Kenan umarmte seinen Vater und Leute, die er noch nie gesehen hatte.", "Kenan umarmte Papa")],
     "b1_kahva": [("Das Kännchen stellt sie nur kurz zurück aufs Feuer, damit der Schaum aufsteigt.",
                   "Das Kännchen stellt sie nur kurz zurück aufs Feuer. „")],
+    # Den letzten Satz hat Ajdin selbst übersetzt: „Bei der Oma sagt man nicht nein.“
+    "b1_zmaj": [("Zmaj war satt, also sagte er: „Nein, danke.“ Die Oma legte ihm sofort noch drei Sarma auf den "
+                 "Teller. „Aber Oma, ich habe nein, danke gesagt!“ „Ich habe es gehört“, sagte die Oma. „Bei der "
+                 "Oma sagt man nicht nein.“", "„Danke heißt, dass es dir schmeckt.“"),
+                ("die Ćevapi waren in einer Sekunde verbrannt.", "angebrannt")],
 }
 
 # Stichprobe: so heißt es jetzt auf Englisch
@@ -104,6 +114,7 @@ EN = {
     "b1_rodjendan": "Haris blew out all the candles in one breath, and everyone shouted: “Bravo!”",
     "b1_utakmica": "Kenan hugged his father and people he had never seen before.",
     "b1_kahva": "She puts the džezva back on the heat only briefly, so that the foam rises.",
+    "b1_zmaj": "“But Grandma, I said no, thank you!” “I heard you”, Grandma said. “At Grandma's you don't say no.”",
 }
 
 # Neue Formen im Wörterbuch der Lesetexte und ihre Bedeutung
@@ -139,18 +150,20 @@ NEU = {
     "digne": "hebt (se digne: steigt auf)",
     "kajmak": "Schaum (auf dem Kaffee) / Kajmak",
     "naslov": "Betreff / Titel",
+    "izgorjeli": "verbrannt (Mehrz.)",
 }
 
 # Formen, die in keinem Text mehr stehen und deshalb aus dem Wörterbuch raus sind
 RAUS = ["desetku", "poštovani", "roštilj", "pancerice", "razvlačila", "rukama", "fil", "moralo",
         "januarska", "večer", "igrati", "elektrotehniku", "svetinja", "dušeku", "bolovanju", "ih", "babu",
-        "predmet"]
+        "predmet", "zagorjeli", "znači", "ukusno"]
 
 # Deutsche Texte, die mit ihnen aus uebersetzungen.py gegangen sind
 RAUS_TEXTE = ["zehn Ćevapi (Portion, Akk.)", "sehr geehrte", "Skischuhe", "gezogen / gedehnt (w)", "Hände (Instr.)",
               "Januar- (w)", "tanzen / spielen", "Elektrotechnik (Akk.)", "Heiligtum", "Krankschreibung (Lok.)",
               "auf einmal", "deinen (kod tvojih: bei deinen Eltern)", "sie (Akk. Mehrz.)", "Papa (Akk.)",
-              "Vater (Gen.)", "Betreff"]
+              "Vater (Gen.)", "Betreff", "angebrannt (Mehrz.)", "es bedeutet", "Was bedeutet „Hvala“ für die Oma?",
+              "dass es ihm schmeckt", "dass er satt ist", "dass er schlafen will", "sie brennen an"]
 
 # (Geschichte, Wort) -> Bedeutung in den vokabeln der Geschichte. "dragi
 # slušaoci" ist Mehrzahl, im WOERTERBUCH bleibt "lieber" ("Dragi Adnane").
@@ -160,6 +173,8 @@ VOKABELN = {
     ("b1_pita", "trebalo"): "musste (s)",
     # "ugasio sve svijeće": alle; im WOERTERBUCH "alles"
     ("b1_rodjendan", "sve"): "alle (sve svijeće: alle Kerzen)",
+    # „Ne, hvala.“, „Kod nane se ne kaže ne.“: nein; im WOERTERBUCH "nicht"
+    ("b1_zmaj", "ne"): "nicht / nein",
 }
 
 
@@ -254,6 +269,35 @@ def test_t12_betreff_bleibt_auf_deutsch(alle_daten):
     assert g["text"].startswith("Naslov: Dolazim u augustu!\n\n")
     assert g["uebersetzung"].startswith("Betreff: Ich komme im August!\n\n")
     assert _geschichten(alle_daten["en"])["b1_mejl"]["uebersetzung"].startswith("Subject: I'm coming in August!")
+
+
+ZMAJ_FRAGEN = [
+    ("Welchen Fehler macht Zmaj, als er ankommt?",
+     ["er sagt am Abend „Dobro jutro“", "er vergisst den Namen der Oma", "er kommt zu spät"]),
+    ("Warum bekommt Zmaj trotzdem noch mehr Sarma?",
+     ["bei der Oma sagt man nicht nein", "die Oma hat ihn nicht gehört", "er hat um mehr Sarma gebeten"]),
+    ("Was passiert mit den Ćevapi?", ["sie verbrennen", "sie werden kalt", "der Hund frisst sie"]),
+]
+
+
+def test_t15_die_fragen_folgen_dem_neuen_witz(alle_daten):
+    """Die zweite Frage fragte, was "Hvala" für die Oma bedeutet; das gibt
+    es nicht mehr. Jetzt: warum Zmaj trotzdem mehr Sarma bekommt. Die dritte
+    sagt "verbrennen" wie T14. Die richtige Antwort steht vorn und ist in
+    keiner Sprache die einzige lange."""
+    de = _geschichten(alle_daten["de"])["b1_zmaj"]
+    assert [(f["frage"], f["optionen"]) for f in de["fragen"]] == ZMAJ_FRAGEN
+    assert [f["richtig"] for f in de["fragen"]] == [o[0] for _, o in ZMAJ_FRAGEN]
+    for code in SPRACHEN:
+        g = _geschichten(alle_daten[code])["b1_zmaj"]
+        for f, f_de in zip(g["fragen"], de["fragen"]):
+            assert f["richtig"] == f["optionen"][0], code
+            assert all(o != o_de for o, o_de in zip(f["optionen"], f_de["optionen"])), (code, f["optionen"])
+            falsch = [o for o in f["optionen"] if o != f["richtig"]]
+            assert len(f["richtig"]) <= 14 or any(len(o) > 14 for o in falsch), (code, f["optionen"])
+    en = _geschichten(alle_daten["en"])["b1_zmaj"]["fragen"][1]
+    assert en["frage"] == "Why does Zmaj still get more sarma?"
+    assert en["richtig"] == "at Grandma's you don't say no"
 
 
 def test_alte_formen_stehen_in_keinem_text(grunddaten):

@@ -1379,6 +1379,8 @@ Sprachen sind nachgezogen.
 | T7 | *Utakmica* (`b1_utakmica`) | Kenan je grlio babu i ljude … | Kenan je grlio oca i ljude … |
 | T11 | *Kahva kod komšinice* (`b1_kahva`) | Džezvu vrati na vatru samo na kratko. | Džezvu vrati na vatru samo na kratko, da se digne kajmak. |
 | T12 | *Mejl rođaku* (`b1_mejl`) | Predmet: Dolazim u augustu! | Naslov: Dolazim u augustu! |
+| T14 | *Zmaj uči bosanski* (`b1_zmaj`) | … i ćevapi su u sekundi zagorjeli. | … i ćevapi su u sekundi izgorjeli. |
+| T15 | *Zmaj uči bosanski*, „T15 passt“ | Zmaj je bio sit, pa je rekao: „Hvala.“ … „Ali nano, rekao sam hvala!“ „Čula sam“, rekla je nana. „Hvala znači da ti je ukusno.“ | Zmaj je bio sit, pa je rekao: „Ne, hvala.“ … „Ali nano, rekao sam ne, hvala!“ „Čula sam“, rekla je nana. „Kod nane se ne kaže ne.“ |
 
 - Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
   neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
@@ -1422,7 +1424,14 @@ Sprachen sind nachgezogen.
   „Schaum (auf dem Kaffee) / Kajmak“ neu (die Vokabel *kajmak* behält „Kajmak
   (Rahmaufstrich)“ und ihre Kennung). Deutsch „…, damit der Schaum aufsteigt.“, in
   allen Sprachen nachgezogen. *naslov* „Betreff / Titel“ statt *predmet* „Betreff“; die
-  Übersetzung bleibt „Betreff: Ich komme im August!“.
+  Übersetzung bleibt „Betreff: Ich komme im August!“. *izgorjeli* „verbrannt (Mehrz.)“
+  neu, *zagorjeli*, *znači* und *ukusno* raus; *ne* heißt in *Zmaj uči bosanski*
+  „nicht / nein“ (vokabeln), weil es dort zweimal „nein“ ist. Den deutschen Schlusssatz
+  hat Ajdin selbst gegeben: „Bei der Oma sagt man nicht nein.“ Die zweite Frage hieß
+  „Was bedeutet „Hvala“ für die Oma?“, das trägt der neue Witz nicht mehr; jetzt
+  „Warum bekommt Zmaj trotzdem noch mehr Sarma?“ (richtig: „bei der Oma sagt man nicht
+  nein“), die dritte „sie verbrennen“ statt „sie brennen an“, alles in acht Sprachen.
+- Wörterbuch der Lesetexte danach: 1.520 Einträge (vorher 1.515).
 - Keine dieser Geschichten hatte Ton. Der neue Text wartet in
   `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
   `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
