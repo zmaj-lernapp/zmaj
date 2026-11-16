@@ -350,6 +350,27 @@ def test_konto_loeschen_mit_apple_widerruft(seite, heute_stand, cloud_html):
     w = attrappe.widerrufen[0]
     assert (w["providerId"], w["tokenType"], w["token"]) == ("apple.com", "CODE", "code-probe")
     assert attrappe.konto_weg and seite.js(ZUSTAND)["merker"] is None
+    # Danach: anmelden, damit der Lernstand gesichert wird (Ajdin 15.11.2026)
+    assert seite.js(ZUSTAND)["frage"] == "Melde dich an, damit dein Lernstand gesichert wird."
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("plattform", ["ios", "android"])
+def test_nach_dem_abmelden(seite, heute_stand, cloud_html, plattform):
+    """Nach dem Abmelden heisst es auf iOS "Melde dich an, damit dein
+    Lernstand gesichert wird." - dort geht es auch ohne Konto weiter
+    ("Spaeter"). Android: "um weiterzulernen", wie vorher (15.11.2026)."""
+    attrappe = _ios_anmelden(seite, cloud_html, heute_stand, plattform=plattform)
+    attrappe.konto_anlegen("ich@probe.example", "geheim-123")
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    seite.js("() => showKonto()")
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    z = seite.js(ZUSTAND)
+    assert z["merker"] is None
+    assert z["frage"] == ("Melde dich an, damit dein Lernstand gesichert wird." if plattform == "ios"
+                          else "Melde dich an, um weiterzulernen.")
     assert seite.fehler == []
 
 

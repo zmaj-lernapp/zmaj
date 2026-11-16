@@ -388,6 +388,29 @@ def test_ios_konto_sichert_den_lernstand(sprachcodes):
             assert alt in t["set.datenschutz_text"], (code, alt)
 
 
+# Nach dem Abmelden und nach "Konto loeschen" (Ajdin 15.11.2026, Fragen
+# 15.11. Nr. 1: "1 ja"): auf iOS wie in den Rechtstexten, Android bleibt.
+ABGEMELDET = {
+    "de": ("Melde dich an, damit dein Lernstand gesichert wird.", "Melde dich an, um weiterzulernen."),
+    "en": ("Sign in so your progress is backed up.", "Sign in to keep learning."),
+    "tr": ("İlerlemenin yedeklenmesi için giriş yap.", "Öğrenmeye devam etmek için giriş yap."),
+    "sv": ("Logga in så att din utveckling säkerhetskopieras.", "Logga in för att fortsätta lära dig."),
+    "nl": ("Log in zodat er een back-up van je voortgang wordt gemaakt.", "Log in om verder te leren."),
+    "nb": ("Logg inn, så sikkerhetskopieres framgangen din.", "Logg inn for å lære videre."),
+    "da": ("Log ind, så din fremgang bliver sikkerhedskopieret.", "Log ind for at lære videre."),
+    "fr": ("Connecte-toi pour que ta progression soit sauvegardée.", "Connecte-toi pour continuer à apprendre."),
+}
+
+
+def test_ios_nach_abmelden_sichert_das_konto(sprachcodes):
+    import sprachen
+    assert sorted(ABGEMELDET) == sorted(sprachcodes)
+    for code in sprachcodes:
+        ios, android = ABGEMELDET[code]
+        assert sprachen.TEXTE[code]["anm.text_abgemeldet_ios"] == ios, code
+        assert sprachen.TEXTE[code]["anm.text_abgemeldet"] == android, code
+
+
 def test_ios_keine_rechtstexte_ohne_konto(monkeypatch):
     """Die Web-Demo (ohne Pflichtkonto) hat keine iOS-Fassung."""
     import sprachen
