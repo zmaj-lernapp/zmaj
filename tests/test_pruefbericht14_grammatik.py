@@ -54,8 +54,9 @@ def test_v12_iznad_ispod_izmedju_beim_genitiv(grunddaten):
         assert p not in praep_ins, (p, instrumental)
     assert "ispod stola, između kuće i škole" in genitiv[2], genitiv
     assert "između" not in instrumental[2], instrumental
-    # Was beim Instrumental war, bleibt dort; nad und među kamen am 15.11.2026 dazu (unten).
-    assert praep_ins == ["s/sa", "pod", "nad", "pred", "za (hinter)", "među"], instrumental
+    # Was beim Instrumental war, bleibt dort; nad und među kamen am 15.11.2026 dazu,
+    # nad hat seit dem 16.11.2026 seine Bedeutung dabei (unten).
+    assert praep_ins == ["s/sa", "pod", "nad (über)", "pred", "za (hinter)", "među"], instrumental
     assert instrumental[2] == "s bratom, pod stolom", instrumental
 
 
@@ -71,7 +72,8 @@ def test_v12_in_jeder_sprache(alle_daten, grunddaten):
         if code != "de":
             # Die Zelle ist uebersetzt ("za (behind)"), kein deutscher Rest.
             assert "hinter" not in instrumental, (code, instrumental)
-            assert instrumental.startswith("sa, pod, nad, pred, za ("), (code, instrumental)
+            assert "über" not in instrumental, (code, instrumental)
+            assert instrumental.startswith("s/sa, pod, nad ("), (code, instrumental)
 
 
 # ---------------------------------------------------------------------------
@@ -82,18 +84,42 @@ def test_v12_in_jeder_sprache(alle_daten, grunddaten):
 FRAGE10_HINTER = {"de": "hinter", "en": "behind", "tr": "arkasında", "sv": "bakom", "nl": "achter",
                   "nb": "bak", "da": "bag", "fr": "derrière"}
 
+# Frage 7 (Release\Fragen_Ajdin_2026-11-16.md, Ajdin 16.11.2026: „ja, überall s/sa und
+# nad (über)“): Die Übersetzungen schrieben in dieser Zeile seit jeher nur „sa“, jetzt
+# überall „s/sa“ wie auf Deutsch. nad stand ohne Bedeutung, eine Zeile darüber
+# „o (über)“. Jetzt „nad (über)“, in den anderen Sprachen das Wort für „oberhalb“
+# (wie beim Wort nad „über (gehoben)“), das nicht das Wort für o ist (about, om, over …).
+FRAGE7_NAD = {"de": "über", "en": "above", "tr": "üstünde", "sv": "över", "nl": "boven",
+              "nb": "over", "da": "over", "fr": "au-dessus de"}
+FRAGE7_O = {"de": "über", "en": "about", "tr": "hakkında", "sv": "om", "nl": "over",
+            "nb": "om", "da": "om", "fr": "à propos de"}
+
 
 def test_frage10_nad_und_medju_beim_instrumental(alle_daten):
     assert set(alle_daten) == set(FRAGE10_HINTER), sorted(alle_daten)
     for code, daten in alle_daten.items():
         tabelle = _tabelle(daten["grammatik"]["praepositionen"])
         instrumental = tabelle[-1]
-        anfang = "s/sa" if code == "de" else "sa"           # die Übersetzungen schreiben seit jeher „sa“
-        assert instrumental[1] == "%s, pod, nad, pred, za (%s), među" % (anfang, FRAGE10_HINTER[code]), code
+        assert instrumental[1] == "s/sa, pod, nad (%s), pred, za (%s), među" % (
+            FRAGE7_NAD[code], FRAGE10_HINTER[code]), code
         assert instrumental[2] == "s bratom, pod stolom", code
         # Genitiv behält iznad und između, die Zeile Instrumental steht nur einmal da.
         assert "iznad" in tabelle[1][1] and "između" in tabelle[1][1], code
         assert [z for z in tabelle if "među" in z[1] and "između" not in z[1]] == [instrumental], code
+
+
+def test_frage7_nad_nicht_wie_o(alle_daten):
+    """nad (oberhalb) heißt in keiner Sprache so wie o (über ein Thema) eine Zeile
+    darüber, außer auf Deutsch, wo beides „über“ ist und der Ort die Zeile trennt."""
+    for code, daten in alle_daten.items():
+        tabelle = _tabelle(daten["grammatik"]["praepositionen"])
+        lokativ = tabelle[-2][1]
+        assert "o (%s)" % FRAGE7_O[code] in lokativ, (code, lokativ)
+        assert "nad (%s)" % FRAGE7_NAD[code] in tabelle[-1][1], code
+        if code != "de":
+            assert FRAGE7_NAD[code] != FRAGE7_O[code], code
+        # „sa“ allein steht nirgends mehr am Anfang
+        assert tabelle[-1][1].startswith("s/sa, "), code
 
 
 def test_v12_uebung_zwischen_passt(grunddaten):

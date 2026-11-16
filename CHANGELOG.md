@@ -677,6 +677,14 @@ are in the Play Store listing. Format:
   *Čuvaj se psa!* and *Pas me je ujeo*. Only there and only these forms; "očev kola",
   "Bojim se kučeta", "Kuče me je ujeo" and the like stay wrong. Nothing changes in
   sentence building. `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing at two of those places again (questions of 16.11.2026, 8a and 8b; decided by
+  the maintainer): for "das Auto des Vaters", "očeva kola" now counts as well, next to
+  *auto oca*, *očev auto* and *kola oca*; "očev kola" stays wrong. For "Der Hund hat
+  mich gebissen" only *Pas me je ujeo* and *Ujeo me je pas* count ("only pas, but
+  both"): *Ujeo me je pas* is new when typing (one `"auch"`, as in sentence building;
+  ID and recording stay), and "Kuče me je ujelo", allowed on 15.11.2026, is wrong
+  again. The other forms with *kuče* ("On ima kuče", "Bojim se kučadi", "Čuvaj se
+  kučeta!") stay. `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and
@@ -879,6 +887,12 @@ are in the Play Store listing. Format:
   (behind)". It now reads "s/sa, pod, nad, pred, za (behind), među" (*nad* "above",
   *među* "between"), in all eight languages; the example "s bratom, pod stolom" stays.
   `tests/test_pruefbericht14_grammatik.py`.
+- Prepositions with the instrumental (questions of 16.11.2026, 7; decided by the
+  maintainer): the row starts with "s/sa" in all eight languages (the seven
+  translations had only "sa"), and *nad* now carries its meaning: "nad (über)" in
+  German, elsewhere the word for "above" (*above*, *üstünde*, *över*, *boven*,
+  *over*, *au-dessus de*), so that it is not mixed up with "o (about)" one row
+  higher. `tests/test_pruefbericht14_grammatik.py`.
 - *Kusur* in the gap sentence (review for 1.4, 14.11.2026, S11): "Gdje je moj ___?"
   said "Wo ist mein Wechselgeld?", the sentence-building task "Wo ist mein
   Rückgeld?", and the maintainer's corrections take *Rückgeld*. Both say

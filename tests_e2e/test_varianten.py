@@ -133,8 +133,9 @@ def test_tabelle_2c_nur_in_einer_richtung(seite, heute_stand):
         return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
       const geschw = (id, bs) => geschwister(w(id)).some(x => x.bs === bs);
       // „u kolima“, „Nemam para“ und „Supa je u šerpi“ zählen seit der dritten Runde,
-      // „kola oca“, „uplatiti pare“ und „Putujemo kolima“ seit den Fragen vom 15.11.
-      // (unten), „očev kola“, „uplatiti para“ und „Putujemo kola“ weiter nicht.
+      // „kola oca“, „uplatiti pare“ und „Putujemo kolima“ seit den Fragen vom 15.11.,
+      // „očeva kola“ seit dem 16.11. (unten), „očev kola“, „uplatiti para“ und
+      // „Putujemo kola“ weiter nicht.
       return {nein: [typ('mir ist es egal:Svejedno mi je', 'Jelovnik je svejedno'), typ('mir:meni / mi', 'jelovnik'),
                      typ('das auto des vaters:auto oca', 'očev kola'), typ('geld einzahlen:uplatiti novac', 'uplatiti para'),
                      typ('krankenwagen / rettung:hitna', 'auto hitne pomoći'),
@@ -191,15 +192,15 @@ FRAGEN_15_11 = [("faelle4", "type", "mit dem auto:autom", "kolima"),
                 ("bank", "type", "geld einzahlen:uplatiti novac", "uplatiti pare"),
                 ("faelle1", "type", "wir suchen die straße:Tražimo ulicu", "Tražimo sokak"),
                 ("tiere_umgang", "type", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučadi"),
-                ("tiere_umgang", "type", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),
-                ("tiere_umgang", "type", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo.")]
+                ("tiere_umgang", "type", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!")]
+# 9i „Kuče me je ujelo.“ hat Ajdin am 16.11.2026 zurückgenommen (8b), siehe FRAGEN_16_11.
 GEGEN_FRAGEN_15_11 = """() => {
   const w = id => wortNachId(id).w;
   const typ = (id, e) => matches(e, annehmbar(w(id)).join(' / '));
   const luecke = (text, e) => { const s = SENTENCES.find(x => x.text === text);
     return matches(e, [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ')); };
   return [typ('mit dem auto:autom', 'kola'), luecke('Putujemo ___.', 'kola'),
-          typ('das auto des vaters:auto oca', 'očev kola'), typ('das auto des vaters:auto oca', 'očeva kola'),
+          typ('das auto des vaters:auto oca', 'očev kola'),
           typ('geld abheben:podići novac', 'podići para'), typ('wir suchen die straße:Tražimo ulicu', 'Tražimo sokaka'),
           typ('ich habe angst vor hunden:Bojim se pasa', 'Bojim se kučeta'),
           typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kuče!'),
@@ -213,5 +214,42 @@ def test_fragen_15_11_zaehlen_beim_tippen(seite, heute_stand):
     for level, art, wer, eingabe in FRAGEN_15_11:
         assert seite.js(AUFGABE, [level, art, wer, eingabe]) == RICHTIG, (wer, eingabe)
     erg = seite.js(GEGEN_FRAGEN_15_11)
-    assert erg == ["no"] * 11, erg
+    assert erg == ["no"] * 10, erg
+    assert seite.fehler == []
+
+
+# Fragen vom 16.11.2026 (Ajdin, 8a und 8b, Offen-Liste 6): „očeva kola“ zählt bei „Das Auto
+# des Vaters“ auch. Bei „Der Hund hat mich gebissen“ nur „Pas me je ujeo“ und „Ujeo me je
+# pas“ („nimm nur pas aber beide“), die kuče-Form vom 15.11. (9i) ist wieder falsch.
+# Alle Fälle in node prüft tests/test_varianten.py (FRAGEN_16_11).
+FRAGEN_16_11 = [("faelle2", "type", "das auto des vaters:auto oca", "očeva kola"),
+                ("faelle2", "type", "das auto des vaters:auto oca", "kola oca"),
+                ("faelle2", "type", "das auto des vaters:auto oca", "očev auto"),
+                ("tiere_umgang", "type", "der hund hat mich gebissen:Pas me je ujeo", "Pas me je ujeo"),
+                ("tiere_umgang", "type", "der hund hat mich gebissen:Pas me je ujeo", "Ujeo me je pas")]
+GEGEN_FRAGEN_16_11 = """() => {
+  const w = id => wortNachId(id).w;
+  const typ = (id, e) => matches(e, annehmbar(w(id)).join(' / '));
+  const hund = w('der hund hat mich gebissen:Pas me je ujeo');
+  return {nein: [typ('das auto des vaters:auto oca', 'očev kola'), typ('das auto des vaters:auto oca', 'očeva auto'),
+                 typ('der hund hat mich gebissen:Pas me je ujeo', 'Kuče me je ujelo.'),
+                 typ('der hund hat mich gebissen:Pas me je ujeo', 'Kuče me je ujelo'),
+                 typ('der hund hat mich gebissen:Pas me je ujeo', 'Ujelo me je kuče'),
+                 typ('er hat einen hund:On ima psa', 'Kuče me je ujelo')],
+          hund: annehmbar(hund), auch_var: hund.auch_var || null,
+          // Die anderen kuče-Formen bleiben (On ima kuče, Bojim se kučadi, Čuvaj se kučeta!)
+          ja: [typ('er hat einen hund:On ima psa', 'On ima kuče'),
+               typ('ich habe angst vor hunden:Bojim se pasa', 'Bojim se kučadi'),
+               typ('vorsicht vor dem hund!:Čuvaj se psa!', 'Čuvaj se kučeta!')]};
+}"""
+
+
+def test_fragen_16_11_zaehlen_beim_tippen(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    for level, art, wer, eingabe in FRAGEN_16_11:
+        assert seite.js(AUFGABE, [level, art, wer, eingabe]) == RICHTIG, (wer, eingabe)
+    erg = seite.js(GEGEN_FRAGEN_16_11)
+    assert erg["nein"] == ["no"] * 6, erg
+    assert erg["hund"] == ["Pas me je ujeo", "Ujeo me je pas"] and erg["auch_var"] is None, erg
+    assert erg["ja"] == ["ok"] * 3, erg
     assert seite.fehler == []

@@ -379,9 +379,10 @@ VARIANTEN = [
     # neun Stellen, die in der dritten Runde nicht gefragt waren, „ja“, mit genau den
     # Formen, die er bestätigt hat: kolima, kola oca, podići pare und uplatiti pare
     # (oben bei novac), Tražimo sokak, Bojim se kučadi, Čuvaj se kučeta!, Kuče me je
-    # ujelo. Wieder jede nur an ihrer Stelle, keine weiteren Formen selbst gebildet.
+    # ujelo (am 16.11.2026 wieder raus, siehe unten). Wieder jede nur an ihrer Stelle,
+    # keine weiteren Formen selbst gebildet.
     # „auto oca“ als ganze Wendung: am Paar auto / kola wäre aus dem "auch" „očev auto“
-    # auch „očev kola“ geworden. „Pas me je ujeo“ ebenso, mit kuče wandert das Verb mit.
+    # auch „očev kola“ geworden.
     {"a": "autom", "b": "kolima", "gilt": ["mit dem auto:autom", "Putujemo ___."],
      "beleg": "Fragen 15.11.2026, 9a und 9b: „kolima“"},
     {"a": "auto oca", "b": "kola oca", "gilt": ["das auto des vaters:auto oca"],
@@ -392,8 +393,16 @@ VARIANTEN = [
      "beleg": "Fragen 15.11.2026, 9g: „Bojim se kučadi“"},
     {"a": "psa", "b": "kučeta", "gilt": ["vorsicht vor dem hund!:Čuvaj se psa!"],
      "beleg": "Fragen 15.11.2026, 9h: „Čuvaj se kučeta!“"},
-    {"a": "pas me je ujeo", "b": "kuče me je ujelo", "gilt": ["der hund hat mich gebissen:Pas me je ujeo"],
-     "beleg": "Fragen 15.11.2026, 9i: „Kuče me je ujelo.“"},
+    # Fragen vom 16.11.2026 (Ajdin, 8a und 8b). 8a: „očeva kola“ zählt auch, „očev auto“
+    # bleibt, „očev kola“ bleibt falsch. Am "auch" „očev auto“ als ganze Wendung, wie
+    # „auto oca“ / „kola oca“ oben: mit kola wandert das Adjektiv mit (očeva, Mehrzahl).
+    # 8b: „nimm nur pas aber beide“ - bei „Der Hund hat mich gebissen“ gelten nur „Pas me
+    # je ujeo“ und „Ujeo me je pas“ (das steht als "auch" am Wort in vokabeln.py, wie beim
+    # Satzbau). Das Paar „pas me je ujeo“ / „kuče me je ujelo“ vom
+    # 15.11.2026 (9i) ist deshalb wieder raus; die anderen kuče-Formen (On ima kuče,
+    # Bojim se kučadi, Čuvaj se kučeta!, kuče allein beim Wort pas) bleiben.
+    {"a": "očev auto", "b": "očeva kola", "gilt": ["das auto des vaters:auto oca"],
+     "beleg": "Fragen 16.11.2026, 8a/8b: „očeva kola“ zählt auch"},
     {"a": {"sg": ("mobitel", "mobitela", "mobitelu", "mobitel", "mobitelom", "mobitelu")},
      "b": {"sg": ("mobilni", "mobilnog", "mobilnom", "mobilni", "mobilnim", "mobilnom")},
      "gilt": UEBERALL, "beleg": "2c Nr. 25; Alltag"},

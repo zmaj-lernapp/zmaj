@@ -159,13 +159,15 @@ WOERTER = {
     "er hat einen hund:On ima psa": ["On ima kuče"],
     # Fragen vom 15.11.2026 (Ajdin abends, 9a bis 9i, Offen-Liste 5d)
     "mit dem auto:autom": ["kolima"],
-    "das auto des vaters:auto oca": ["kola oca"],                # nicht „očev kola“ aus dem "auch"
+    # nicht „očev kola“ aus dem "auch"; „očeva kola“ seit den Fragen vom 16.11.2026 (8a)
+    "das auto des vaters:auto oca": ["kola oca", "očeva kola"],
     "geld abheben:podići novac": ["podići pare"],
     "geld einzahlen:uplatiti novac": ["uplatiti pare"],
     "wir suchen die straße:Tražimo ulicu": ["Tražimo sokak"],
     "ich habe angst vor hunden:Bojim se pasa": ["Bojim se kučadi"],
     "vorsicht vor dem hund!:Čuvaj se psa!": ["Čuvaj se kučeta!"],
-    "der hund hat mich gebissen:Pas me je ujeo": ["Kuče me je ujelo"],
+    # „Der Hund hat mich gebissen“ nahm vom 15.11. (9i) bis 16.11.2026 (8b) auch
+    # „Kuče me je ujelo“, jetzt nur noch „Pas me je ujeo“ und „Ujeo me je pas“.
 }
 
 # Lückensatz: Text -> zusätzliche Antworten
@@ -332,7 +334,8 @@ def _z(antworten, wort=True, kennung="x", fall=None):
     ("Imam auto", True, []),                             # kola nur an auto und „Imam auto“
     ("autom", True, []),                                 # kolima nur an „mit dem Auto“ und „Putujemo ___.“
     ("auto oca", True, []),                              # kola oca nur an „das Auto des Vaters“
-    ("Pas me je ujeo", True, []),                        # Kuče me je ujelo nur dort
+    ("očev auto", True, []),                             # očeva kola nur dort
+    ("Pas me je ujeo", True, []),                        # Kuče me je ujelo seit dem 16.11.2026 nirgends
     ("Čuvaj se psa!", True, []),
     ("plati", True, []),                                 # das Verb, nicht plata
 ])
@@ -682,8 +685,9 @@ GEGEN_DRITTE_RUNDE = [
     ("w", "nie:nikad", "nekada"),
     ("w", "manchmal / früher:nekad", "ponekad"),                      # nie von nekad nach ponekad
     # Keine weiteren gebeugten Formen: nur die sieben Stellen, nur die genannte Form.
-    # autom, „Putujemo ___.“, podići / uplatiti novac, „Tražimo ulicu“, „Čuvaj se psa!“
-    # und „Pas me je ujeo“ zählen seit den Fragen vom 15.11. (FRAGEN_15_11 unten).
+    # autom, „Putujemo ___.“, podići / uplatiti novac, „Tražimo ulicu“ und „Čuvaj se psa!“
+    # zählen seit den Fragen vom 15.11. (FRAGEN_15_11 unten), „Pas me je ujeo“ nahm
+    # vom 15.11. bis zum 16.11.2026 auch „Kuče me je ujelo“ (FRAGEN_16_11 unten).
     ("w", "ich habe ein auto:Imam auto", "Imam kolima"),
     ("w", "im auto:u autu", "u kola"),
     ("w", "er hat einen hund:On ima psa", "On ima kučeta"),
@@ -759,8 +763,7 @@ FRAGEN_15_11 = [
     ("w", "ich habe angst vor hunden:Bojim se pasa", "Bojim se kučadi"),   # 9g
     ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta!"),  # 9h
     ("w", "vorsicht vor dem hund!:Čuvaj se psa!", "Čuvaj se kučeta"),   #    ohne Ausrufezeichen wie bisher
-    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo."),   # 9i, wie Ajdin es schrieb
-    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo"),
+    # 9i „Kuče me je ujelo“ hat Ajdin am 16.11.2026 zurückgenommen (8b), siehe FRAGEN_16_11.
 ]
 # Bleibt falsch: andere Fälle, das halbe Paar, und dieselben Formen an anderen Stellen.
 GEGEN_FRAGEN_15_11 = [
@@ -768,7 +771,6 @@ GEGEN_FRAGEN_15_11 = [
     ("l", "Putujemo ___.", "kola"),
     ("w", "ich habe ein auto:Imam auto", "Imam kolima"),
     ("w", "das auto des vaters:auto oca", "očev kola"),                 # aus dem "auch" „očev auto“
-    ("w", "das auto des vaters:auto oca", "očeva kola"),                # nicht gefragt
     ("w", "geld abheben:podići novac", "podići para"),
     ("w", "geld einzahlen:uplatiti novac", "uplatiti para"),
     ("w", "geld:novac", "para"),
@@ -814,11 +816,77 @@ def test_fragen_15_11_nur_an_ihrer_stelle():
                ("auto oca", "kola oca"): ["das auto des vaters:auto oca"],
                ("ulicu", "sokak"): ["wir suchen die straße:Tražimo ulicu"],
                ("pasa", "kučadi"): ["ich habe angst vor hunden:Bojim se pasa"],
-               ("psa", "kučeta"): ["vorsicht vor dem hund!:Čuvaj se psa!"],
-               ("pas me je ujeo", "kuče me je ujelo"): ["der hund hat mich gebissen:Pas me je ujeo"]}
+               ("psa", "kučeta"): ["vorsicht vor dem hund!:Čuvaj se psa!"]}
     gefunden = {(p["a"], p["b"]): p["gilt"] for p in varianten.VARIANTEN
                 if isinstance(p["a"], str) and (p["a"], p["b"]) in stellen}
     assert gefunden == stellen
     for (a, b), gilt in stellen.items():
         assert _z([a], True) == ([], []), a                                 # anderswo nichts
         assert _z([a], True, kennung=gilt[0]) == ([b], []), a
+
+
+# --- Fragen vom 16.11.2026 (Ajdin, 8a und 8b, Offen-Liste 6) in matches() ---
+# Release\Fragen_Ajdin_2026-11-16.md, „Ajdins Antworten“: 8a „očeva kola“ zählt auch,
+# „očev auto“ bleibt. 8b „nimm nur pas aber beide“: bei „Der Hund hat mich gebissen“
+# nur „Pas me je ujeo“ und „Ujeo me je pas“, die kuče-Form vom 15.11. (9i) fällt weg.
+FRAGEN_16_11 = [
+    ("w", "das auto des vaters:auto oca", "očeva kola"),                # 8a
+    ("w", "das auto des vaters:auto oca", "Očeva kola"),
+]
+# Bleibt oder wird falsch: očev kola, die kuče-Formen bei „Der Hund hat mich gebissen“.
+GEGEN_FRAGEN_16_11 = [
+    ("w", "das auto des vaters:auto oca", "očev kola"),
+    ("w", "das auto des vaters:auto oca", "očeva auto"),
+    ("w", "das auto des vaters:auto oca", "kola očeva"),
+    ("w", "ich habe ein auto:Imam auto", "Imam očeva kola"),
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo."),   # 8b, bis 16.11. richtig
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujelo"),
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Ujelo me je kuče"),
+    ("w", "der hund hat mich gebissen:Pas me je ujeo", "Kuče me je ujeo"),
+]
+# Richtig: das Wort selbst und, seit dem 16.11.2026, sein "auch" „Ujeo me je pas“ (vorher nur
+# beim Satzbau als andere Reihenfolge, beim Tippen falsch).
+NUR_PAS = ["Pas me je ujeo", "Ujeo me je pas", "Pas me je ujeo.", "ujeo me je pas"]
+
+
+@pytest.fixture(scope="module")
+def node_fragen_16_11(index_html, grunddaten):
+    ja = FRAGEN_16_11 + [("w", "der hund hat mich gebissen:Pas me je ujeo", x) for x in NUR_PAS]
+    return _node_ja_und_gegen(index_html, grunddaten, ja, GEGEN_FRAGEN_16_11)
+
+
+def test_fragen_16_11_oceva_kola_vorher_falsch_jetzt_richtig(node_fragen_16_11):
+    for art, wer, eingabe in FRAGEN_16_11:
+        assert node_fragen_16_11[(art, wer, eingabe, "vorher")] == "no", eingabe
+        assert node_fragen_16_11[(art, wer, eingabe, "jetzt")] == "ok", eingabe
+
+
+def test_fragen_16_11_beide_pas_formen_zaehlen(node_fragen_16_11):
+    """Beide pas-Formen gelten, mit und ohne auch_var: sie stehen in bs und "auch", nicht
+    in einem Paar von varianten.py."""
+    for eingabe in NUR_PAS:
+        for wann in ("vorher", "jetzt"):
+            assert node_fragen_16_11[("w", "der hund hat mich gebissen:Pas me je ujeo", eingabe, wann)] == "ok", \
+                (eingabe, wann)
+
+
+def test_fragen_16_11_nichts_anderes_wird_richtig(node_fragen_16_11):
+    falsch = {k: v for k, v in node_fragen_16_11.items() if k[0] == "gegen" and v != "no"}
+    assert falsch == {}
+    assert len([k for k in node_fragen_16_11 if k[0] == "gegen"]) == len(GEGEN_FRAGEN_16_11)
+
+
+def test_fragen_16_11_paare(grunddaten):
+    """8a: genau ein neues Paar, nur am "auch" „očev auto“ von „Das Auto des Vaters“.
+    8b: kein Paar mehr nach kuče me je ujelo, die anderen kuče-Paare bleiben."""
+    paare = {(p["a"], p["b"]): p for p in varianten.VARIANTEN if isinstance(p["a"], str)}
+    p = paare[("očev auto", "očeva kola")]
+    assert p["gilt"] == ["das auto des vaters:auto oca"]
+    assert p["beleg"].startswith("Fragen 16.11.2026, 8a/8b")
+    assert _z(["očev auto"], True) == ([], [])
+    assert _z(["očev auto"], True, kennung="das auto des vaters:auto oca") == (["očeva kola"], [])
+    assert not [k for k in paare if "ujelo" in k[1] or "ujeo" in k[0]]
+    assert {k for k in paare if k[1].startswith("kuč")} == {
+        ("pas", "kuče"), ("psa", "kuče"), ("pasa", "kučadi"), ("psa", "kučeta")}
+    w = next(x for x in _woerter(grunddaten) if x["id"] == "der hund hat mich gebissen:Pas me je ujeo")
+    assert w["bs"] == "Pas me je ujeo" and w.get("auch") == ["Ujeo me je pas"] and "auch_var" not in w
