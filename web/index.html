@@ -2033,6 +2033,31 @@
      Gefunden bei der Pruefung am 06.10.2026. */
   header.eng{position:relative}
   header.eng .livesbar{position:static}
+  /* Die Zuruecktaste nur als Pfeil (16.11.2026, Offen-Liste 9). Auf dem
+     iPhone steht sie mit in der Leiste (es hat keine Zuruecktaste, siehe
+     setzeZurueck), im Browser ebenso. Seit dem Profilknopf passte die
+     Leiste mit "← Geschichten" oder "← Lernpfad" nicht mehr in eine
+     Zeile, die Muenzen rutschten allein in die zweite - in der Geschichte
+     auch bei 440 Punkten in de, sv, nb und da (Pruefer der App-Store-
+     Bilder). Passt sie mit dem Wort nicht, setzt kopfEng() header.knapp:
+     die Taste wird ein runder 38-px-Knopf mit dem Pfeil wie Laden, Profil
+     und Zahnrad; das Wort steht weiter darin (Schrift 0, fuer
+     Bildschirmleser auch im aria-label). Wo das Wort passt, bleibt alles
+     wie vorher. !important, weil die Tests grosse Schrift mit
+     style.fontSize an jedem Element nachstellen.
+     Tippflaeche 48 hoch und 46 breit: links teilt sie sich die 4 px
+     Luecke mit dem Zahnrad wie die anderen Knoepfe, rechts reicht sie
+     6 px in den Seitenrand (16 px). tests_e2e/test_kopfleiste.py
+     Nur die Farben gleiten (.back hat transition:.15s fuer alles): kopfEng()
+     nimmt knapp zum Messen kurz weg. Glitten Schrift und Polster mit, maesse
+     es die halb verwandelte Taste, und bei jedem renderLives() finge der
+     Uebergang neu an - die Schrift blieb dann bei 11,5 px stehen und ragte
+     26 px ueber den Rand (gefunden mit test_erfolge.py, ohne "weniger
+     Bewegung"). */
+  .hbtns #btnBack{transition-property:border-color, color, background-color}
+  header.knapp #btnBack{width:38px; padding-left:0; padding-right:0; position:relative; font-size:0 !important}
+  header.knapp #btnBack::before{content:"←"; font-size:20px; line-height:34px}
+  header.knapp #btnBack::after{content:""; position:absolute; top:-7px; bottom:-7px; left:-4px; right:-8px}
   /* Alles in der Kopfzeile gleich hoch. Vorher: Herzen 42 Punkte, Muenzen 36,
      Knoepfe 37 - mittig ausgerichtet, aber sichtbar verschieden gross, und
      genau das machte die Zeile unruhig. Ajdin am 18.09.2026. */
@@ -4257,7 +4282,11 @@ function setzeZurueck(text, ziel){
   if(!k) return;
   const vorher = k.style.display + '|' + k.textContent;
   if(!ziel || geraeteZurueck()) k.style.display = 'none';
-  else { k.style.display = 'inline-block'; k.textContent = text; }
+  /* aria-label: Im knappen Kopf (header.knapp, siehe kopfEng) zeigt die
+     Taste nur den Pfeil, das Wort hat dort die Schriftgroesse 0. Damit
+     Bildschirmleser es trotzdem sicher vorlesen, steht derselbe Text auch
+     hier (16.11.2026). */
+  else { k.style.display = 'inline-block'; k.textContent = text; k.setAttribute('aria-label', text); }
   /* Die Taste macht den Kopf breiter (oder schmaler): neu messen, ob er
      noch in eine Zeile passt. Pruefbefund vom 24.10.2026: bei 360 px und
      130 % Schrift ragte "← Geschichten" 52 px ueber den Rand, die Seite
@@ -8109,15 +8138,30 @@ function testKnopf(n){
    bei normaler Schrift passt das immer, dann bleibt alles wie bisher.
    Ein versteckter Kopf (Lektion) misst nichts; beim Verlassen ruft
    nurHerz(false) noch einmal hierher. Gefunden bei der Pruefung am
-   06.10.2026: bei 200 % lag das Herz halb ueber den Muenzen. */
+   06.10.2026: bei 200 % lag das Herz halb ueber den Muenzen.
+   Steht die Zuruecktaste mit in der Leiste (iPhone, Browser), kommt davor
+   ein Zwischenschritt (16.11.2026, Offen-Liste 9): passt es mit dem Wort
+   nicht, zeigt sie nur den Pfeil (header.knapp, siehe dort im Stil). Erst
+   wenn auch das nicht reicht, gilt header.eng - dann wie bisher mit dem
+   ganzen Wort. Android zeigt die Taste nie, dort aendert sich nichts. */
 function kopfEng(){
   const h = document.querySelector('header');
   if(!h || !h.offsetParent) return;
-  h.classList.remove('eng');
-  h.style.gridTemplateColumns = 'auto auto auto'; h.style.width = 'max-content';
-  const noetig = h.offsetWidth;
-  h.style.gridTemplateColumns = ''; h.style.width = '';
-  if(noetig > h.offsetWidth) h.classList.add('eng');
+  h.classList.remove('eng', 'knapp');
+  const passt = () => {
+    h.style.gridTemplateColumns = 'auto auto auto'; h.style.width = 'max-content';
+    const noetig = h.offsetWidth;
+    h.style.gridTemplateColumns = ''; h.style.width = '';
+    return noetig <= h.offsetWidth;
+  };
+  if(passt()) return;
+  const zurueck = $('btnBack');
+  if(zurueck && zurueck.style.display !== 'none'){
+    h.classList.add('knapp');
+    if(passt()) return;
+    h.classList.remove('knapp');
+  }
+  h.classList.add('eng');
 }
 window.addEventListener('resize', kopfEng);
 if(document.fonts) document.fonts.ready.then(kopfEng);
