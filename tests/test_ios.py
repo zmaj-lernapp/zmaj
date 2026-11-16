@@ -257,6 +257,39 @@ def test_ios_datenschutz_app_set_id_bricht_ab(monkeypatch):
             sprachen.texte(code)
 
 
+# Fragen 15.11.2026 Nr. 2 (Ajdin: "2 ja"): Apple will in der Erklaerung
+# lesen, dass ein fremder Dienst die Daten genauso schuetzt. Beim Konto steht
+# es (Auftragsverarbeiter), bei der Werbung nun auch - nur auf iOS.
+GOOGLE_REGELN = {
+    "de": "Google verarbeitet die Daten für uns nach denselben Regeln wie in dieser Erklärung.",
+    "en": "Google processes the data for us under the same rules as in this privacy policy.",
+    "tr": "Google verileri bizim için bu gizlilik politikasındaki kuralların aynısına göre işler.",
+    "sv": "Google behandlar uppgifterna åt oss enligt samma regler som i den här integritetspolicyn.",
+    "nl": "Google verwerkt de gegevens voor ons volgens dezelfde regels als in deze privacyverklaring.",
+    "nb": "Google behandler opplysningene for oss etter de samme reglene som i denne personvernerklæringen.",
+    "da": "Google behandler oplysningerne for os efter de samme regler som i denne privatlivspolitik.",
+    "fr": "Google traite les données pour nous selon les mêmes règles que celles de cette politique de confidentialité.",
+}
+
+
+def test_ios_datenschutz_google_nach_denselben_regeln(sprachcodes, monkeypatch):
+    """Der Satz steht im Absatz zur Werbung, direkt hinter dem, wofuer Google
+    die Daten nutzt, einmal und nur in der iOS-Fassung. Ohne Werbung gibt es
+    den Absatz nicht, dann auch den Satz nicht."""
+    import sprachen
+    assert sorted(GOOGLE_REGELN) == sorted(sprachcodes)
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        ios = t["set.datenschutz_text_ios"]
+        assert ios.count(GOOGLE_REGELN[code]) == 1, code
+        werbung = [a for a in ios.split("<br>") if "AdMob" in a and GOOGLE_REGELN[code] in a]
+        assert len(werbung) == 1 and werbung[0].endswith(GOOGLE_REGELN[code]), code
+        assert GOOGLE_REGELN[code] not in t["set.datenschutz_text"], code
+    monkeypatch.setattr(sprachen, "WERBUNG_LAEUFT", False)
+    for code in sprachcodes:
+        assert GOOGLE_REGELN[code] not in sprachen.texte(code)["set.datenschutz_text_ios"], code
+
+
 # Pruefbericht 1.4, S22: eigener Stand der iOS-Fassungen (IOS_STAND).
 STAND_DS_IOS = {"de": "Stand: 16.11.2026", "en": "Last updated: November 16, 2026",
                 "tr": "Son güncelleme: 16.11.2026", "sv": "Senast uppdaterad: 16.11.2026",

@@ -6072,7 +6072,8 @@ TEXTE = {
 # Wer an IOS_RECHT etwas aendert, setzt hier den Tag ("TT.MM.JJJJ"). Es gilt
 # der spaetere von beiden, in jeder Sprache in deren Schreibweise
 # (stand_setzen()); ein neuerer Stand fuer Android geht also mit.
-# 16.11.2026: Datenschutz ohne App-Set-ID (S23). Nutzungsbedingungen: Mit
+# 16.11.2026: Datenschutz ohne App-Set-ID (S23) und mit dem Satz, dass
+# Google die Werbedaten nach denselben Regeln verarbeitet. Nutzungsbedingungen: Mit
 # 1.4 kam der Satz zur aerztlichen Aufklaerung (S30, fuer Android Stand
 # 14.11.) auch in die iOS-Fassung - sie entsteht aus set.agb_text, nur die
 # Saetze in IOS_RECHT[code]["agb"] werden getauscht, und keiner davon
@@ -6168,6 +6169,14 @@ IOS_RECHT = {
             # die fuer Android nicht. Darum nur hier.
             ('Startzeit, Hänger und Energieverbrauch.',
              'Startzeit, Hänger und Energieverbrauch, dazu Absturzberichte ohne Bezug zu dir.'),
+            # Fremde Dienste (Ajdin 15.11.2026, Fragen 15.11. Nr. 2: "2 ja"):
+            # Apple will in der Erklaerung lesen, dass wer Daten bekommt,
+            # sie genauso schuetzt. Beim Konto steht das schon (Firebase als
+            # Auftragsverarbeiter), bei der Werbung fehlte es. Gesucht wird
+            # nur das Ende des Satzes "Google verwendet all das ...": dessen
+            # Anfang ist die Spur von werbung_texte.py (tests/test_richten.py).
+            ('ihre Reichweite zu messen und Betrug zu erkennen.',
+             'ihre Reichweite zu messen und Betrug zu erkennen. Google verarbeitet die Daten für uns nach denselben Regeln wie in dieser Erklärung.'),
             ('<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen.',
              '<b>Deine Wahl:</b> Beim ersten Start zeigt dir Google ein eigenes Fenster und fragt, ob die Anzeigen zu deinen Interessen passen dürfen. Auf iPhone und iPad fragt danach Apple, ob die App dich über Apps und Websites anderer Firmen hinweg verfolgen darf (App-Tracking-Transparenz); nur mit deinem Ja bekommt Google die Werbe-ID. Ändern kannst du das jederzeit in den Einstellungen deines Geräts unter Datenschutz & Sicherheit → Tracking.'),
         ],
@@ -6254,6 +6263,8 @@ IOS_RECHT = {
              'an identifier that only applies to the apps of one developer,'),
             ('start-up time, freezes and battery use.',
              'start-up time, freezes and battery use, plus crash reports that are not linked to you.'),
+            ('measure their reach and detect fraud.',
+             'measure their reach and detect fraud. Google processes the data for us under the same rules as in this privacy policy.'),
             ('<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests.',
              "<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests. On iPhone and iPad, Apple then asks whether the app may track you across apps and websites owned by other companies (App Tracking Transparency); only if you say yes does Google receive the advertising ID. You can change this at any time in your device's Settings under Privacy & Security → Tracking."),
         ],
@@ -6340,6 +6351,8 @@ IOS_RECHT = {
              'yalnızca aynı geliştiricinin uygulamalarında geçerli bir kimliği,'),
             ('başlatma süresi, takılmalar ve pil tüketimi.',
              'başlatma süresi, takılmalar ve pil tüketimi; ayrıca seninle ilişkilendirilmeyen çökme raporları.'),
+            ('erişimi ölçmek ve dolandırıcılığı tespit etmek için kullanır.',
+             'erişimi ölçmek ve dolandırıcılığı tespit etmek için kullanır. Google verileri bizim için bu gizlilik politikasındaki kuralların aynısına göre işler.'),
             ('<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar.',
              "<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar. iPhone ve iPad'de ardından Apple, uygulamanın seni başka şirketlerin uygulama ve web sitelerinde izleyip izleyemeyeceğini sorar (Uygulama İzleme Şeffaflığı); Google reklam kimliğini yalnızca sen evet dersen alır. Bunu istediğin zaman cihazının Ayarlar'ında Gizlilik ve Güvenlik → İzleme bölümünden değiştirebilirsin."),
         ],
@@ -6426,6 +6439,8 @@ IOS_RECHT = {
              'en identifierare som bara gäller för appar från samma utvecklare,'),
             ('starttid, hängningar och batteriförbrukning.',
              'starttid, hängningar och batteriförbrukning, dessutom kraschrapporter som inte är kopplade till dig.'),
+            ('mäta deras räckvidd och upptäcka bedrägerier.',
+             'mäta deras räckvidd och upptäcka bedrägerier. Google behandlar uppgifterna åt oss enligt samma regler som i den här integritetspolicyn.'),
             ('<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen.',
              '<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen. På iPhone och iPad frågar Apple sedan om appen får spåra dig i appar och på webbplatser som tillhör andra företag (App Tracking Transparency); bara om du svarar ja får Google annons-id:t. Du kan ändra det när som helst i enhetens Inställningar under Integritet och säkerhet → Spårning.'),
         ],
@@ -6512,6 +6527,8 @@ IOS_RECHT = {
              'een ID die alleen geldt voor de apps van één ontwikkelaar,'),
             ('opstarttijd, haperingen en batterijverbruik.',
              'opstarttijd, haperingen en batterijverbruik, plus crashrapporten die niet aan jou gekoppeld zijn.'),
+            ('hun bereik te meten en fraude op te sporen.',
+             'hun bereik te meten en fraude op te sporen. Google verwerkt de gegevens voor ons volgens dezelfde regels als in deze privacyverklaring.'),
             ('<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden.',
              '<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden. Op iPhone en iPad vraagt Apple daarna of de app je mag volgen in apps en op websites van andere bedrijven (App Tracking Transparency); alleen als je ja zegt, krijgt Google de advertentie-ID. Je kunt dat altijd wijzigen in de Instellingen van je apparaat onder Privacy en beveiliging → Tracking.'),
         ],
@@ -6598,6 +6615,8 @@ IOS_RECHT = {
              'en ID som bare gjelder for appene fra én utvikler,'),
             ('oppstartstid, heng og batteriforbruk.',
              'oppstartstid, heng og batteriforbruk, i tillegg krasjrapporter som ikke er knyttet til deg.'),
+            ('måle rekkevidden deres og oppdage svindel.',
+             'måle rekkevidden deres og oppdage svindel. Google behandler opplysningene for oss etter de samme reglene som i denne personvernerklæringen.'),
             ('<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine.',
              '<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine. På iPhone og iPad spør Apple deretter om appen får spore deg på tvers av apper og nettsteder som tilhører andre selskaper (Gjennomsiktighet for appsporing); bare hvis du sier ja, får Google annonse-ID-en. Du kan endre det når som helst i Innstillinger på enheten under Personvern og sikkerhet → Sporing.'),
         ],
@@ -6684,6 +6703,8 @@ IOS_RECHT = {
              'et id, der kun gælder for apps fra samme udvikler,'),
             ('opstartstid, hængninger og batteriforbrug.',
              'opstartstid, hængninger og batteriforbrug, desuden nedbrudsrapporter, der ikke er knyttet til dig.'),
+            ('måle deres rækkevidde og opdage svindel.',
+             'måle deres rækkevidde og opdage svindel. Google behandler oplysningerne for os efter de samme regler som i denne privatlivspolitik.'),
             ('<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser.',
              "<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser. På iPhone og iPad spørger Apple derefter, om appen må spore dig på tværs af apps og websteder, der tilhører andre virksomheder (Gennemsigtighed i appsporing); kun hvis du siger ja, får Google annonce-id'et. Du kan til enhver tid ændre det i enhedens Indstillinger under Anonymitet & sikkerhed → Sporing."),
         ],
@@ -6772,6 +6793,8 @@ IOS_RECHT = {
              "un identifiant valable uniquement pour les applis d'un même développeur,"),
             ('temps de démarrage, blocages et consommation de batterie.',
              'temps de démarrage, blocages et consommation de batterie, ainsi que des rapports de plantage qui ne sont pas liés à toi.'),
+            ('mesurer leur portée et détecter la fraude.',
+             'mesurer leur portée et détecter la fraude. Google traite les données pour nous selon les mêmes règles que celles de cette politique de confidentialité.'),
             ("<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt.",
              "<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt. Sur iPhone et iPad, Apple te demande ensuite si l'application peut te suivre dans les apps et sur les sites web d'autres entreprises (transparence du suivi des apps) ; Google ne reçoit l'identifiant publicitaire que si tu dis oui. Tu peux le modifier à tout moment dans les Réglages de ton appareil, sous Confidentialité et sécurité → Suivi."),
         ],
