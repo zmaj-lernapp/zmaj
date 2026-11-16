@@ -11,6 +11,8 @@ Geprüft wird ohne Browser:
   - Store-Bilder 1.4 (16.11.2026): bilder_playwright.py markiert alle
     Abzeichen als gesehen (sonst „Du hast schon 5 Abzeichen“ auf Bild 1),
     und Bild 2 öffnet B1 nur für sich - Bild 3 stellt den Stand wieder her.
+  - Nachbesserung 16.11.2026: keine halbe Schriftzeile unten auf Bild 2 und
+    auf Bild 8 der Tablets, und Bild 8 zeigt die Tagesaufgaben wie Bild 1.
 """
 import os
 import re
@@ -66,3 +68,27 @@ def test_bild2_oeffnet_b1_nur_fuer_sich():
         assert re.search(r"^function %s\(" % name, app, re.M), name
     assert re.search(r"^let [^\n]*\bpassed = new Set\(\)", app, re.M)
     assert 'id="reiterLeiste"' in app and 'id="btnProfil"' in app
+
+
+def test_keine_halbe_zeile_unten():
+    """Bild 2 sucht einen Abstand der Reiterleiste ohne halbe Schriftzeile am
+    unteren Rand, Bild 8 bricht auf Tablets mit einer ab, und jede andere
+    meldet die Ausgabe (Prüfung 16.11.2026: fr Bild 2, da tab7 Bild 8)."""
+    schritte = dict(BP.SCHRITTE)
+    assert "window.__untenAngeschnitten = () =>" in BP.UNTEN_ANGESCHNITTEN
+    assert "if(!window.__untenAngeschnitten().length){ weg = [el, a]; break; }" in schritte["02-amt"]
+    assert 'id="modeWords"' in _app()   # die Leiste Lernpfad/Geschichten/Wiederholen
+    assert "throw new Error('Bild 8 unten angeschnitten: '" in schritte["08-wiederholen"]
+    assert re.search(r"^function rectFaktor\(", _app(), re.M)
+
+
+def test_bild8_tagesaufgaben_wie_bild1():
+    """Vor Bild 8 stehen die Tagesaufgaben wieder wie auf Bild 1: Bild 4 bis 6
+    erfüllten auf da tab7 alle drei, und die Zeile "Alle tre klaret!" schob
+    die Seite so weit hinunter, dass unten eine Zeile halb im Bild stand."""
+    schritte = dict(BP.SCHRITTE)
+    assert "window.__tagwerk01 = JSON.stringify(tagwerk[t]);" in schritte["01-start"]
+    assert "tagwerk[today()] = JSON.parse(window.__tagwerk01);" in schritte["08-wiederholen"]
+    app = _app()
+    assert re.search(r"^let tagwerk = \{\};", app, re.M)
+    assert re.search(r"^const today = \(\) =>", app, re.M)

@@ -56,6 +56,54 @@ NICHTS_IM_BILD = """
     if(sichtbar(k)) return 'Meldung im Bild: ' + k.textContent;
     return ''"""
 
+# Schriftzeilen, durch die der untere Bildrand geht (16.11.2026, Pruefung der
+# Store-Bilder 1.4: auf fr Bild 2 stand "Médecin & assurance" nur zur oberen
+# Haelfte im Bild, auf da tab7 Bild 8 fehlten "og sjældnere." die
+# Unterlaengen). Gemessen wird die Tinte der Buchstaben (canvas.measureText),
+# nicht das Kaestchen der Zeile: das reicht oben und unten ein paar Punkte
+# ueber die Schrift hinaus, und ein angeschnittener Rand eines Kreises oder
+# einer Karte ist kein Fehler. Unsichtbares (display, visibility, opacity)
+# und was ein Kasten mit overflow selbst abschneidet, zaehlt nicht. Ragt von
+# einer Zeile hoechstens 1,5 Punkte ins Bild (Spitzen von Akzenten und
+# Oberlaengen), liest das niemand als Schrift; fehlen von ihr hoechstens
+# 0,5 Punkte, sieht man es nicht.
+# getClientRects und canvas messen auf Tablets verschieden (zoom, siehe
+# rectFaktor in web/index.html): darum der Faktor k aus der Hoehe der Zeile.
+# Gibt die Anfaenge der angeschnittenen Zeilen zurueck, [] wenn keine.
+UNTEN_ANGESCHNITTEN = """
+    window.__untenAngeschnitten = () => {
+      const f = typeof rectFaktor === 'function' ? rectFaktor() : 1;
+      const H = innerHeight / f, aus = [], rg = document.createRange();
+      const cv = document.createElement('canvas').getContext('2d');
+      const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      while(tw.nextNode()){
+        const n = tw.currentNode, el = n.parentElement, text = n.textContent.trim();
+        if(!text || !el) continue;
+        rg.selectNodeContents(n);
+        const zeilen = [...rg.getClientRects()].filter(r => r.width && r.top < H && r.bottom > H);
+        if(!zeilen.length) continue;
+        let von = -Infinity, bis = Infinity, weg = false;
+        for(let a = el; a && a !== document.documentElement; a = a.parentElement){
+          const s = getComputedStyle(a);
+          if(s.display === 'none' || s.visibility !== 'visible' || +s.opacity === 0){ weg = true; break; }
+          if(s.overflowY !== 'visible'){ const b = a.getBoundingClientRect(); von = Math.max(von, b.top); bis = Math.min(bis, b.bottom); }
+        }
+        if(weg) continue;
+        const s = getComputedStyle(el);
+        cv.font = s.fontStyle + ' ' + s.fontWeight + ' ' + s.fontSize + ' ' + s.fontFamily;
+        const m = cv.measureText(s.textTransform === 'uppercase' ? text.toUpperCase() : text);
+        const kasten = m.fontBoundingBoxAscent + m.fontBoundingBoxDescent;
+        for(const r of zeilen){
+          const k = kasten ? r.height / kasten : 1, grund = r.top + m.fontBoundingBoxAscent * k;
+          const oben = Math.max(von, grund - m.actualBoundingBoxAscent * k);
+          const unten = Math.min(bis, grund + m.actualBoundingBoxDescent * k);
+          if(oben < H - 1.5 && unten > H + 0.5){ aus.push(text.slice(0, 40)); break; }
+        }
+      }
+      return aus;
+    };
+    return 1"""
+
 # Bildschirm in CSS-Punkten und Pixeldichte. "handy" ist das Store-Format
 # selbst (so breit wie Ajdins S21). Die Tablets haben die üblichen Android-
 # Maße: 600 x 960 dp (7 Zoll, wie das Nexus 7) und 800 x 1280 dp (10 Zoll).
@@ -73,6 +121,7 @@ SCHRITTE = [
     ("01-start", """
         const q = questsHeute(), t = today(); tagwerk[t] = {};
         q.forEach((x,i) => { tagwerk[t][x.id] = i === 0 ? x.ziel : Math.floor(x.ziel * 0.6); });
+        window.__tagwerk01 = JSON.stringify(tagwerk[t]);   // fuer Bild 8, siehe dort
         [...known].slice(40, 47).forEach((id, i) => { topf['w:' + id] = {typ: i % 2 ? 'mcrev' : 'mc', n: 0, z: Date.now() - i * 60000}; });
         homeMode = 'words'; showHome(); scrollTo(0,0);
         await new Promise(r=>setTimeout(r,2500)); return 'start'"""),
@@ -115,8 +164,41 @@ SCHRITTE = [
           throw new Error('Amt steht nicht direkt unter der Reiterleiste (Karte "noch zu"?)');
         scrollBy(0, (oben.getBoundingClientRect().top - 10) * rectFaktor());
         await new Promise(r=>setTimeout(r,600));
+        // 16.11.2026 (Pruefung): Auf Franzoesisch braucht der Kopf der Sektion
+        // zwei Zeilen und die Beschreibung drei, und der untere Rand schnitt
+        // das sechste Level "Médecin & assurance" mitten durch die Schrift.
+        // Die Seite so weit zurueckschieben, dass das Level ganz unter dem
+        // Rand liegt, geht nicht: dafuer fehlen 28 Punkte, und schon 12 Punkte
+        // ueber der Reiterleiste stuende die Leiste Lernpfad/Geschichten/
+        // Wiederholen halb im Bild. Darum die Reiterleiste naeher an den
+        // oberen Rand, hoechstens bis 0, bis keine Schriftzeile mehr am
+        // unteren Rand haengt (der Rand eines Schlosskreises darf, wie auf en
+        // und nl). Auf fr steht sie dann ganz oben am Rand; "Médecin &
+        // assurance" und "Verrouillé" sind ganz zu sehen. Auf 10 Zoll schnitt
+        // der Rand ebenso den Kopf der Sektion 5 (de, sv: bei 3 ganz zu
+        // sehen). Reicht auch 0 nicht (10 Zoll tr, nl, nb), kommt die Leiste
+        // Lernpfad/Geschichten/Wiederholen mit ins Bild, ganz und oben
+        // (wieder 10 bis 0 Punkte). Hilft auch das nicht, bleibt es wie
+        // vorher, und die Ausgabe meldet die Zeile ("unten angeschnitten") -
+        // abbrechen hiesse, die ganze Sprache faellt aus.
+        const modus = (document.getElementById('modeWords') || {}).parentElement;
+        const wege = [];
+        for(let a = 10; a >= 0; a--) wege.push([oben, a]);
+        if(oben === leiste && modus) for(let a = 10; a >= 0; a--) wege.push([modus, a]);
+        let weg = null;
+        for(const [el, a] of wege){
+          scrollBy(0, (el.getBoundingClientRect().top - a) * rectFaktor());
+          await new Promise(r=>setTimeout(r,150));
+          if(!window.__untenAngeschnitten().length){ weg = [el, a]; break; }
+        }
+        if(!weg){
+          weg = [oben, 10];
+          scrollBy(0, (oben.getBoundingClientRect().top - 10) * rectFaktor());
+        }
+        await new Promise(r=>setTimeout(r,300));
         const reiter = leiste ? leiste.querySelector('[aria-selected="true"]') : null;
-        return (reiter ? reiter.dataset.stufe + ' | ' : '') + k.innerText.split('\\n')[0]"""),
+        return (reiter ? reiter.dataset.stufe + ' | ' : '') + 'oben ' + (weg[0] === modus ? 'Lernpfad ' : '') + weg[1]
+          + ' | ' + k.innerText.split('\\n')[0]"""),
     ("03-neues-wort", """
         // Den Vorfuehrstand aus 02 zurueck (A1 und A2 wieder offen)
         if(window.__bestandenVorher){ passed = window.__bestandenVorher; delete window.__bestandenVorher; }
@@ -196,7 +278,18 @@ SCHRITTE = [
     # ueber dem Knopf um ("nog 9 dagen"), und ihre halbe Zeile stand oben
     # abgeschnitten im Bild. Darum danach weiterscrollen, bis keine Schrift
     # mehr am oberen Rand haengt - hoechstens bis der Knopf oben anstoesst.
+    # 16.11.2026 (Pruefung): Die Aufgaben, die das Skript fuer Bild 4 bis 6
+    # beantwortet, koennen Tagesaufgaben erfuellen. Auf da tab7 waren es alle
+    # drei: "3/3", darunter die gruene Zeile "Alle tre klaret!", alles darunter
+    # rutschte tiefer, und der untere Rand schnitt die Beschreibung von
+    # "Dagens gentagelse" durch. Darum stehen die Tagesaufgaben vor Bild 8
+    # wieder wie auf Bild 1 (eine erfuellt, zwei zu 60 %). Die KM bleiben,
+    # wie sie sind - sie stehen auch auf Bild 7. Auf Tablets bricht das
+    # Skript ab, wenn trotzdem eine Schriftzeile am unteren Rand haengt; am
+    # Handy ist die angeschnittene Karte "Markiert" eine offene Frage an
+    # Ajdin (Offen-Liste), dort nur der Hinweis in der Ausgabe.
     ("08-wiederholen", """
+        if(window.__tagwerk01) tagwerk[today()] = JSON.parse(window.__tagwerk01);
         homeMode = 'topf'; showHome(); await new Promise(r=>setTimeout(r,600));
         scrollTo(0,0); await new Promise(r=>setTimeout(r,200));
         const text = t('btn.weitermachen');
@@ -214,7 +307,12 @@ SCHRITTE = [
           }
           if(unten > 0) scrollBy(0, Math.min(unten + 2, w.getBoundingClientRect().top));
         }
-        await new Promise(r=>setTimeout(r,400)); return scrollY"""),
+        await new Promise(r=>setTimeout(r,400));
+        if(document.documentElement.classList.contains('gross')){
+          const rest = window.__untenAngeschnitten();
+          if(rest.length) throw new Error('Bild 8 unten angeschnitten: ' + rest.join(' | '));
+        }
+        return scrollY"""),
 ]
 
 
@@ -313,6 +411,7 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
             seite.wait_for_function("typeof openLevel === 'function' && typeof Lx !== 'undefined'", timeout=30000)
             seite.wait_for_timeout(6000)   # Vorspann und Drache
             js(antworte)
+            js(UNTEN_ANGESCHNITTEN)
             js("const st = document.createElement('style'); st.textContent = '#btnBack{display:none!important}'; "
                "document.head.append(st); return 1")
             for name, code in SCHRITTE:
@@ -324,6 +423,12 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
                 seite.screenshot(path=pfad)
                 pfade.append(pfad)
                 print("  %-16s %s" % (name, str(ergebnis)[:60].replace("\n", " ")))
+                # Nur ein Hinweis zum Nachsehen (siehe LIESMICH.txt). Bild 2
+                # hat vorher selbst nach einem Abstand ohne halbe Zeile
+                # gesucht, Bild 8 bricht auf Tablets oben schon ab.
+                unten = js("return window.__untenAngeschnitten().join(' | ')")
+                if unten:
+                    print("  %-16s unten angeschnitten: %s" % ("", unten[:90]))
             browser.close()
     finally:
         srv.shutdown()

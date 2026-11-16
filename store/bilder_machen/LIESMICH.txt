@@ -109,7 +109,9 @@ WAS AUF DEN BILDERN IST
                   die Stufen-Reiter A1 bis C1 (seit 1.4)
   02-amt          oben die Reiterleiste mit B1, darunter "Amt & Vertraege"
                   aufgeklappt (seit 16.11.2026; 13.11.: als Sektion 9 ohne
-                  Reiter, davor 02-lernpfad, Sektion 1 unter "65 Levels")
+                  Reiter, davor 02-lernpfad, Sektion 1 unter "65 Levels");
+                  auf 10 Zoll tr, nl, nb steht darueber noch die Leiste
+                  Lernpfad/Geschichten/Wiederholen (Nachbesserung 16.11.)
   03-neues-wort   erste Karte einer Lektion
   04-kacheln      Satz aus Kacheln legen, zwei Kacheln schon gelegt
                   (bis 13.11.2026: 04-auswahl, eine Auswahlaufgabe)
@@ -139,3 +141,24 @@ SEIT 1.4 (16.11.2026)
     mit Playwright, --chrome mit dem installierten Chrome; beschriften.py
     mit dem Python von Thonny, das websockets hat), Ablage in
     Release\Store_Bilder_1.4 mit LIESMICH.md.
+
+  Nachbesserung nach der Pruefung (16.11.2026):
+  - Halbe Zeilen unten: Das Skript misst nach jedem Bild, ob der untere
+    Rand eine Schriftzeile durchschneidet (die Buchstaben selbst, nicht
+    der Rand eines Kreises oder einer Karte), und schreibt sie als
+    "unten angeschnitten: ..." in die Ausgabe. Ausser bei Bild 2 und Bild 8
+    auf Tablets (unten) ist das nur ein Hinweis zum Nachsehen. Am 16.11.
+    meldete es Bild 1 (die Startseite geht unten weiter), Bild 4 am Handy
+    ("Ueberspringen" knapp am Rand) und Bild 8 am Handy (Karte "Markiert",
+    offene Frage an Ajdin); Liste in Release\Store_Bilder_1.4\LIESMICH.md.
+  - Bild 2: Auf Franzoesisch schnitt der Rand das sechste Level mitten
+    durch, auf 10 Zoll den Kopf der Sektion 5. Die Reiterleiste rueckt dann
+    naeher an den oberen Rand (von 10 bis hoechstens 0 Punkte), bis keine
+    Zeile mehr halb im Bild steht; auf fr am Handy steht sie ganz oben, auf
+    10 Zoll de und sv bei 3. Reicht das nicht (10 Zoll tr, nl, nb), steht
+    darueber die Leiste Lernpfad/Geschichten/Wiederholen mit im Bild. Hilft
+    auch das nicht, bleibt es wie vorher, und die Ausgabe meldet die Zeile.
+  - Bild 8: Die Tagesaufgaben stehen wieder wie auf Bild 1. Auf da tab7
+    hatten Bild 4 bis 6 alle drei erfuellt, die Zeile "Alle tre klaret!"
+    schob alles hinunter, und unten stand eine halbe Zeile. Auf Tablets
+    bricht das Skript ab, wenn dort trotzdem eine Zeile halb im Bild steht.
