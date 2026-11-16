@@ -342,6 +342,22 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Speaking: targets of three sounds or fewer, counted the way the comparison counts
+  them (*Da*, *Ne*, *pas*, *sin*, *čaj*), now count only when heard exactly
+  (maintainer's decision, 16.11.2026). Until now one letter could differ, so *pa*
+  counted for *pas*, *sir* for *sin*, *na* for *ne* and *dva*, *dan* or *pa* for *Da*.
+  In return, repetitions and the filler words *pa, eto, evo, ovaj, hm, aha, ok* around
+  the word are fine: *Pa da*, *Da da* and *Ćao ćao* count, *Pa dva*, *Ne znam* for
+  *Ne* and *Ko je* for *Ko?* do not. Targets of four sounds or more are unchanged. Of
+  559 short single-word targets, 498 accepted another word of the app before and 313
+  now (none of them with three sounds or fewer); wrong short words that pass in the
+  test corpus drop from 453 of 555 to 0. Short words that a recognizer writes slightly
+  differently (*Ciao* for *Ćao*, *Tko* for *Ko*) are now rejected.
+- Skipping a speaking task after a failed try in that task (a recognizer error, the
+  time limit or a result judged wrong) no longer costs the daily task "without
+  mistakes" (maintainer's decision, 16.11.2026). Skipping without trying counts as
+  before, and statistics, the result screen and reviews still count every skip. No new
+  field in the saved progress.
 - Browser tests no longer hand `mailto:` links to the operating system
   (16.11.2026). With the installed Chrome on Windows every feedback,
   withdrawal or recommend test opened a Windows "Choose an app" window,
@@ -540,6 +556,38 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Speaking tasks (feedback through the form, 16.11.2026: even a native speaker is not
+  always recognized). On Android the app now listens only in Bosnian
+  (bs-BA) and Croatian (hr-HR). Until now every "No match" moved the next tap one
+  language further, so after two failed tries in one task it listened in Serbian
+  (sr-RS), whose Cyrillic transcript always counted as wrong, and other errors ran
+  silently through to the phone's own language within a single tap (offline that gave
+  a German transcript instead of the offline message). Now "No match" and "No speech
+  input" keep the language and show the message; only two of them in a row with
+  bs-BA, as long as bs-BA has delivered nothing in this session, move the next tap to
+  hr-HR (two "Network error" in a row while the phone reports a connection do the
+  same). "Didn't understand" (where Android reports a missing language) and "error
+  from server" still switch to hr-HR within the same tap, so phones without Bosnian
+  keep speaking; "Client side error" and "RecognitionService busy" first try the same
+  language once more after 0.4 s; "Network error" shows the offline message at once.
+  The language that delivered a result is used first for the rest of the session, and
+  hr-HR when bs-BA is missing. If every language fails with language or service
+  errors on two taps in a row, speaking tasks leave the lesson mix for this session
+  only (not remembered like a refused microphone, the next start tries again). Every
+  start has a 12-second limit: a recognizer that never answers no longer leaves the
+  task on "Listening…", and a late result of that start is discarded. The iPhone keeps
+  its own path.
+- Speaking: a Cyrillic transcript (*хвала*, *добар дан*, *два*) is written in Latin
+  letters before it is compared, for what was heard and for the target; typing is
+  unchanged. In the test corpus of 94,538 possible transcripts, Cyrillic rejections
+  drop from 9,388 to 49 (the rest are Ekavian forms such as *млеко*).
+- Speaking: plural entries such as *brat → braća* also count when only the plural is
+  said; the singular alone still does not (all 26 entries checked).
+- Speaking: tapping the microphone right after "Vorsprechen" stops the recording
+  first, so the recognizer no longer hears the speaker together with the learner; the
+  task stays valid. In the browser, a recognition that ends without a result and
+  without an error shows "That did not work" instead of leaving "Listening…" on the
+  screen. `tests_e2e/test_sprechen.py`.
 - Reading stories (review for 1.4, V1; 16.11.2026): "Vorlesen", its stop button and
   the speed bar appear only when the story has a recording. The Android shell has no
   computer voice, so the button stood under the B1 stories that had no audio yet and
