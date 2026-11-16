@@ -1136,6 +1136,10 @@ are in the Play Store listing. Format:
 - The dragon rests when animations are off or reduced motion is set, and
   pauses in hidden views.
 - Cancelling "Save backup" shows a neutral note instead of an error.
+- Withdrawal and feedback emails: the date under the text is the local day.
+  It was the UTC date, so between midnight and 1 a.m. (2 a.m. in summer) the
+  email named the day before. `tests_e2e/test_widerruf.py` caught it when it
+  ran after midnight on 17.11.2026.
 
 ### Changed
 - Full version: the settings row and the purchase box also name what Zmaj

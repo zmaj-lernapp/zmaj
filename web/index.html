@@ -9857,8 +9857,11 @@ function widerrufZeigen(){
        Kasten. § 356a Abs. 2 BGB verlangt Name, Angaben zum Vertrag und den Weg
        fuer die Bestaetigung; ohne sie folgte eine Rueckfrage (Pruefbericht 1.3,
        G15). Der Text nennt weder Google noch GPA: iOS nimmt denselben. */
+    /* today() statt toISOString(): UTC zeigte zwischen Mitternacht und 1 Uhr
+       (im Sommer 2 Uhr) noch den Vortag. Gefunden 17.11.2026 um 0:28, als
+       test_widerruf.py nach Mitternacht lief. Ebenso feedbackPerMail(). */
     const rumpf = t('set.widerruf_mail') + '\n\n--\n'
-                + (SPRACHE||'') + ' · ' + new Date().toISOString().slice(0,10);
+                + (SPRACHE||'') + ' · ' + today();
     try{ location.href = 'mailto:' + ZMAJ_MAIL
           + '?subject=' + encodeURIComponent(betreff)
           + '&body=' + encodeURIComponent(rumpf); }catch(e){}
@@ -12348,7 +12351,7 @@ const ZMAJ_MAIL = 'zmaj.lernapp@gmail.com';
    (feedbackUeberFormular, weiter unten). Ohne Cloud bleibt es der Weg. */
 function feedbackPerMail(text, notiz){
   const betreff = 'Zmaj – ' + t('set.feedback');
-  const fuss = '\n\n--\n' + (SPRACHE||'') + ' · ' + new Date().toISOString().slice(0,10);
+  const fuss = '\n\n--\n' + (SPRACHE||'') + ' · ' + today();   // oertlicher Tag, siehe Widerruf
   try{ location.href = 'mailto:' + ZMAJ_MAIL
         + '?subject=' + encodeURIComponent(betreff)
         + '&body=' + encodeURIComponent(text + fuss); }catch(e){}
