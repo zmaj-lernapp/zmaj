@@ -296,6 +296,34 @@ def test_ios_stand_nimmt_den_spaeteren(monkeypatch):
         sprachen.texte("de")
 
 
+STAND_AGB_IOS = {"de": "Stand: 16.11.2026", "en": "Last updated: November 16, 2026",
+                 "tr": "Son güncelleme: 16.11.2026", "sv": "Senast uppdaterad: 16.11.2026",
+                 "nl": "Laatst bijgewerkt: 16.11.2026", "nb": "Sist oppdatert: 16.11.2026",
+                 "da": "Senest opdateret: 16.11.2026", "fr": "Dernière mise à jour : 16.11.2026"}
+
+
+def test_ios_agb_mit_s30(sprachcodes):
+    """S30 aus 1.4 (Ajdin 14.11.2026: "ja mach"): Auch die iOS-Nutzungs-
+    bedingungen sagen in Punkt 2, dass die App keine aerztliche Aufklaerung
+    ersetzt, und nennen bei den heiklen Leveln die Gesundheit - in allen
+    acht Sprachen, ohne den Zahnarzt-Teil zu verraten. Stand fuer iOS
+    16.11.2026 (IOS_STAND), fuer Android bleibt der 14.11.2026."""
+    import sprachen
+    from test_nutzungsbedingungen_s30 import PUNKT2
+    assert sorted(PUNKT2) == sorted(sprachcodes) == sorted(STAND_AGB_IOS)
+    assert sprachen.IOS_STAND["agb"] == "16.11.2026"
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        punkt2 = t["set.agb_text_ios"].split("<b>2.")[1].split("<b>3.")[0]
+        assert punkt2 == t["set.agb_text"].split("<b>2.")[1].split("<b>3.")[0], code
+        for teil in PUNKT2[code]:
+            assert teil in punkt2, (code, teil)
+        assert not re.search(r"zahn|tooth|dental|diş hekim|tandarts|tandlæge|tandlege|tandläkare|dentiste",
+                             punkt2, re.I), code
+        assert _stand(t["set.agb_text_ios"]) == [STAND_AGB_IOS[code]], code
+        assert _stand(t["set.agb_text"])[0].endswith(("14.11.2026", "November 14, 2026")), code
+
+
 def test_ios_rechtstexte_brechen_ab_bei_fremder_plattform(monkeypatch):
     """Fehlt fuer einen Android-Satz der iOS-Ersatz, bricht texte() ab,
     statt still den Play Store zu nennen (IOS_FREMDE_WOERTER)."""

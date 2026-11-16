@@ -6060,8 +6060,12 @@ TEXTE = {
 # Wer an IOS_RECHT etwas aendert, setzt hier den Tag ("TT.MM.JJJJ"). Es gilt
 # der spaetere von beiden, in jeder Sprache in deren Schreibweise
 # (stand_setzen()); ein neuerer Stand fuer Android geht also mit.
-# 16.11.2026: Datenschutz ohne App-Set-ID (S23).
-IOS_STAND = {"agb": "14.11.2026", "datenschutz": "16.11.2026"}
+# 16.11.2026: Datenschutz ohne App-Set-ID (S23). Nutzungsbedingungen: Mit
+# 1.4 kam der Satz zur aerztlichen Aufklaerung (S30, fuer Android Stand
+# 14.11.) auch in die iOS-Fassung - sie entsteht aus set.agb_text, nur die
+# Saetze in IOS_RECHT[code]["agb"] werden getauscht, und keiner davon
+# beruehrt Punkt 2. Fuer das iPhone ist das eine neue Fassung vom 16.11.
+IOS_STAND = {"agb": "16.11.2026", "datenschutz": "16.11.2026"}
 IOS_RECHT = {
     'de': {
         'agb': [
