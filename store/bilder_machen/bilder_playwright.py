@@ -124,9 +124,50 @@ RAND_PRUEFUNG = r"""
       || ['Top', 'Bottom', 'Left', 'Right'].some(k => parseFloat(s['border' + k + 'Width']) > 0 && !durchsichtig(s['border' + k + 'Color']));
     const faktor = () => typeof rectFaktor === 'function' ? rectFaktor() : 1;
     const KNOEPFE = 'button, [role=button], [role=tab], .btn, .kachel, a[href], input:not([type=hidden]), select, textarea';
+    // Streifen oben (Pruefung nach der Kopfleiste 16.11.2026): Auf den Bildern,
+    // deren Seite nicht ganz oben steht (Bild 2, am Handy Bild 8), stand das
+    // oberste Teil nur 6 bis 10 Punkte unter dem Rand - knapper als die 10
+    // Punkte, die Ajdin bei der Kopfleiste schon "knapp" fand; Bild 8 hatte
+    // vor dem Feinschliff 16. Mit Rollen allein geht es dort nicht: Zwischen
+    // Reiterleiste, Leiste Lernpfad/Geschichten/Wiederholen, Karte "Heute"
+    // und "Weitermachen" sind nur 9 bis 13 Punkte frei, bei 16 stuende das
+    // Teil darueber halb im Bild. Darum liegt fuer diese Bilder oben ein
+    // Streifen in der Farbe des Grunds, so hoch wie der Rand oben der App
+    // (padding-top von body, 16 Punkte, auf 10 Zoll mitgewachsen): oben sieht
+    // das Bild aus wie eine Seite, die ganz oben steht. Was darunter liegt,
+    // ist verdeckt, und __randSchnitte misst den oberen Rand an seiner
+    // Unterkante (__band(), 0 ohne Streifen). Die App bleibt, wie sie ist.
+    const BAND = '__streifenOben';
+    window.__band = () => { const s = document.getElementById(BAND); return s ? s.getBoundingClientRect().bottom : 0; };
+    window.__bandFarbe = () => {
+      const s = document.getElementById(BAND);
+      if(s) s.style.background = getComputedStyle(document.body).backgroundColor;   // Grund der Sektion
+    };
+    window.__bandAn = () => {
+      window.__polsterZurueck();
+      let s = document.getElementById(BAND);
+      if(!s){ s = document.createElement('div'); s.id = BAND; document.body.appendChild(s); }
+      s.style.cssText = 'position:fixed; left:0; top:0; width:100%; pointer-events:none; z-index:2147483647; height:'
+        + (parseFloat(getComputedStyle(document.body).paddingTop) || 0) + 'px';
+      window.__bandFarbe();
+    };
+    window.__bandWeg = () => { const s = document.getElementById(BAND); if(s) s.remove(); };
+    // Wie weit ein Schatten (box-shadow, nicht inset) unter den Kasten reicht:
+    // "Weitermachen" hat unten eine dunkle Kante, die nicht im Kasten liegt.
+    const schattenUnten = s => {
+      if(!s.boxShadow || s.boxShadow === 'none') return 0;
+      let tief = 0;
+      for(const teil of s.boxShadow.split(/,(?![^(]*\))/)){
+        if(/inset/.test(teil)) continue;
+        const z = (teil.match(/-?[\d.]+px/g) || []).map(parseFloat);
+        if(z.length >= 2) tief = Math.max(tief, z[1] + Math.max(0, z[2] || 0) + (z[3] || 0));
+      }
+      return tief;
+    };
     window.__randSchnitte = () => {
       const f = faktor(), H = innerHeight / f, px = 1 / (devicePixelRatio * f), luft = 4 * px;
-      const raender = [['oben', 0], ['unten', H]], aus = [];
+      const B = window.__band();
+      const raender = [['oben', B], ['unten', H]], aus = [];
       const rg = document.createRange(), zr = document.createRange();
       const cv = document.createElement('canvas').getContext('2d');
       const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
@@ -157,8 +198,8 @@ RAND_PRUEFUNG = r"""
           const oben = Math.max(box[0], grund - m.actualBoundingBoxAscent * k - px);
           const unten = Math.min(box[1], grund + m.actualBoundingBoxDescent * k + strich + px);
           if(oben >= unten) continue;
-          if(oben < 0 && unten > 0 || oben < H && unten > H) aus.push((oben < 0 ? 'oben: ' : 'unten: ') + zeile.slice(0, 40));
-          else if(unten > 0 && oben < luft) aus.push('oben zu knapp: ' + zeile.slice(0, 40));
+          if(oben < B && unten > B || oben < H && unten > H) aus.push((oben < B ? 'oben: ' : 'unten: ') + zeile.slice(0, 40));
+          else if(unten > B && oben < B + luft) aus.push('oben zu knapp: ' + zeile.slice(0, 40));
           else if(oben < H && unten > H - luft) aus.push('unten zu knapp: ' + zeile.slice(0, 40));
         }
       }
@@ -173,18 +214,24 @@ RAND_PRUEFUNG = r"""
         while(!schrift && tk.nextNode()){
           if(!tk.currentNode.textContent.trim()) continue;
           rg.selectNodeContents(tk.currentNode);
-          schrift = [...rg.getClientRects()].some(q => q.width && q.bottom > 0 && q.top < H);
+          schrift = [...rg.getClientRects()].some(q => q.width && q.bottom > B && q.top < H);
         }
         const name = (b.innerText || b.value || '').trim().replace(/\s+/g, ' ').slice(0, 40);
         if(schrift) quer.forEach(([wo]) => aus.push(wo + ', Knopf: ' + name));
       }
       // Oben auch kein halber Kasten ohne Schrift: die untere Haelfte der
       // Pillen der Kopfleiste, der Drache oder die Flamme sahen dort
-      // abgeschnitten aus (Probe 7 Zoll Bild 8). Grosse Karten duerfen.
+      // abgeschnitten aus (Probe 7 Zoll Bild 8). Grosse Karten duerfen - am
+      // Rand des Bildschirms, nicht am Streifen: Dort saehe eine halbe Karte
+      // aus, als liefe sie unter einer Leiste durch. Am Streifen zaehlt auch
+      // der Schatten unter dem Kasten.
       for(const el of document.body.querySelectorAll('*')){
+        if(el.id === BAND) continue;
         const r = el.getBoundingClientRect();
-        if(!r.width || !(r.top < -px && r.bottom > px) || r.height > H / 4) continue;
-        if(el.ownerSVGElement || !bemalt(el, getComputedStyle(el)) || !ausschnitt(el)) continue;
+        if(!r.width || !r.height || r.top >= B - px || r.height > (B ? H : H / 4)) continue;
+        if(el.ownerSVGElement) continue;
+        const s = getComputedStyle(el);
+        if(!(r.bottom + (B ? schattenUnten(s) : 0) > B + px) || !bemalt(el, s) || !ausschnitt(el)) continue;
         aus.push('oben, Kasten: ' + String(el.id || el.className || el.tagName).slice(0, 30));
       }
       return aus;
@@ -193,13 +240,15 @@ RAND_PRUEFUNG = r"""
     // oder Schrift) oben anstoesst; in Punkten fuer scrollTo. Ein halber
     // Punkt Luft: auf 7 Zoll de Bild 8 steht "Heute ist nichts fällig." erst
     // 16 Punkte weiter oben ganz im Bild, die Kopfleiste dann einen Punkt
-    // unter dem Rand - knapp, aber ganz (Probe 16.11.2026).
+    // unter dem Rand - knapp, aber ganz (Probe 16.11.2026). Liegt oben der
+    // Streifen, zaehlt erst, was unter ihm anfaengt.
     window.__kopfRaum = () => {
-      const f = faktor();
+      const f = faktor(), B = window.__band();
       let oben = innerHeight / f / 3;
       for(const el of document.body.querySelectorAll('*')){
+        if(el.id === BAND) continue;
         const r = el.getBoundingClientRect();
-        if(!r.width || !r.height || r.top < -0.5 || r.top >= oben) continue;
+        if(!r.width || !r.height || r.top < B - 0.5 || r.top >= oben) continue;
         if(!bemalt(el, getComputedStyle(el)) && ![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) continue;
         if(ausschnitt(el)) oben = r.top;
       }
@@ -307,6 +356,43 @@ RAND_PRUEFUNG = r"""
       if(gut) return frei;
       window.__polsterZurueck();
       return '';
+    };
+    // Lage fuer eine Seite, die nicht ganz oben steht (Bild 2, am Handy
+    // Bild 8): Streifen oben an (siehe __bandAn), dann steht das Teil anker
+    // 0, 1, 2 ... bis Punkte unter dem Streifen, bis nichts mehr am Rand
+    // haengt. Was ueber dem Anker liegt, verschwindet unter dem Streifen oder
+    // steht ganz im Bild; halb im Bild meldet es __randSchnitte. Gerollt wird
+    // um ganze Punkte (wie in __randFrei), und zwar so, dass der Anker nie
+    // ueber "k Punkte unter dem Streifen" steht. Gibt '' zurueck und nimmt den
+    // Streifen wieder weg, wenn es keine solche Lage gibt.
+    window.__bandFrei = async (anker, bis) => {
+      window.__standZurueck();
+      const a = document.activeElement;
+      if(a && a !== document.body && a.blur) a.blur();
+      window.__bandAn();
+      const bild = () => new Promise(r => requestAnimationFrame(() => r()));
+      await bild();
+      const f = faktor(), B = window.__band();
+      for(let k = 0; k <= bis; k++){
+        scrollTo({top: scrollY + Math.floor((anker.getBoundingClientRect().top - B - k) * f), behavior: 'instant'});
+        await bild();
+        const d = anker.getBoundingClientRect().top - B;
+        if(d < k - 0.01 || d >= k + 1) continue;   // so weit rollt die Seite nicht (Anfang oder Ende)
+        if(!window.__randSchnitte().length) return 'Streifen +' + k;
+      }
+      window.__bandWeg();
+      await bild();
+      return '';
+    };
+    // Vor dem Bild: Steht die Seite ganz oben, ueber dem obersten Teil
+    // mindestens __luftMin Punkte (__luftOben); steht sie nicht ganz oben,
+    // muss der Streifen liegen - dann misst __luftOben ab dem Streifen.
+    // Gibt [Luft, Mindestmass, Streifen ja/nein] zurueck.
+    window.__luftPruefen = () => {
+      const B = window.__band();
+      window.__bandFarbe();
+      if(!window.__obenStand && !B) return [0, window.__luftMin, false];
+      return [window.__luftOben(), window.__luftMin, !!B];
     };
     return 1"""
 
@@ -441,24 +527,29 @@ SCHRITTE = [
         // oben am Rand wirkte die Reiterleiste gedraengt (fr Handy); darum
         // unter 4 Punkten erst die Leiste Lernpfad/Geschichten/Wiederholen
         // darueber, dann erst die Reiterleiste naeher an den Rand.
+        // Pruefung nach der Kopfleiste 16.11.2026: Auch 10 Punkte waren
+        // knapp (am Handy fr 7, mit der Leiste Lernpfad oben). Hoeher als 11
+        // ging die Reiterleiste nicht, dann stand die Leiste darueber halb im
+        // Bild. Jetzt liegt oben der Streifen (siehe __bandAn), und die
+        // Reiterleiste steht 0 bis 24 Punkte unter ihm, bis unten keine Zeile
+        // mehr haengt; geht das nicht, ebenso die Leiste Lernpfad/Geschichten/
+        // Wiederholen und zuletzt die Karte "Heute" (Probe 16.11.2026: am
+        // Handy en und nl schnitt der Rand unten ab 13 bzw. 12 Punkten
+        // ueber der Reiterleiste die Beschreibung des letzten Levels, mit der
+        // Leiste Lernpfad oben die des fuenften; mit "Heute" oben stehen drei
+        // Level im Bild). Geht nichts davon, bricht das Skript vor dem Bild ab.
         const modus = (document.getElementById('modeWords') || {}).parentElement;
-        const wege = [];
-        for(let a = 10; a >= 4; a -= 0.5) wege.push([oben, a]);
-        if(oben === leiste && modus) for(let a = 10; a >= 0; a -= 0.5) wege.push([modus, a]);
-        for(let a = 3.5; a >= 0; a -= 0.5) wege.push([oben, a]);
-        let weg = null;
-        for(const [el, a] of wege){
-          scrollBy(0, (el.getBoundingClientRect().top - a) * rectFaktor());
-          await new Promise(r=>setTimeout(r,40));
-          if(!window.__randSchnitte().length){ weg = [el, a]; break; }
-        }
-        if(!weg){
-          weg = [oben, 10];
-          scrollBy(0, (oben.getBoundingClientRect().top - 10) * rectFaktor());
+        let frei = '', wer = '';
+        const anker = [['Reiterleiste', oben]];
+        if(oben === leiste) anker.push(['Lernpfad', modus], ['Heute', document.getElementById('questBox')]);
+        for(const [name, el] of anker){
+          if(!el || !el.getClientRects().length) continue;
+          frei = await window.__bandFrei(el, 24);
+          if(frei){ wer = name; break; }
         }
         await new Promise(r=>setTimeout(r,300));
         const reiter = leiste ? leiste.querySelector('[aria-selected="true"]') : null;
-        return (reiter ? reiter.dataset.stufe + ' | ' : '') + 'oben ' + (weg[0] === modus ? 'Lernpfad ' : '') + weg[1]
+        return (reiter ? reiter.dataset.stufe + ' | ' : '') + 'oben ' + (frei ? wer + ', ' + frei : 'angeschnitten')
           + ' | ' + k.innerText.split('\\n')[0]"""),
     ("03-neues-wort", """
         // Den Vorfuehrstand aus 02 zurueck (A1 und A2 wieder offen)
@@ -581,53 +672,31 @@ SCHRITTE = [
     # Geschichten/Wiederholen. In jedem sucht __randFrei den Rand zwischen
     # zwei Zeilen. Tablets bleiben ganz oben, wie bisher. Die Karte
     # "Markiert" bleibt unten angeschnitten oder steht ganz im Bild.
+    # Pruefung nach der Kopfleiste 16.11.2026: am Handy mit dem Streifen oben
+    # (__bandFrei statt __randFrei, siehe dort).
     ("08-wiederholen", """
         if(window.__tagwerk01) tagwerk[today()] = JSON.parse(window.__tagwerk01);
         homeMode = 'topf'; showHome(); await new Promise(r=>setTimeout(r,600));
         scrollTo(0,0); await new Promise(r=>setTimeout(r,200));
-        const text = t('btn.weitermachen'), f = rectFaktor();
+        const text = t('btn.weitermachen');
         const w = [...document.querySelectorAll('button')].find(b => b.offsetParent && b.textContent.includes(text));
-        const warte = ms => new Promise(r=>setTimeout(r,ms));
         let frei = '', wie = 'ganz oben';
         if(document.documentElement.classList.contains('gross')) frei = await window.__randFrei();
         else if(w){
-          // 1. Der Knopf ganz hinaus, mit seinem Schatten (box-shadow, reicht
-          // ein paar Punkte unter den Kasten); __randFrei rollt dann hinauf,
-          // bis die Karte darunter oben anstoesst
-          wie = 'Heute oben';
-          const schatten = (getComputedStyle(w).boxShadow.match(/-?[\\d.]+px/g) || []).map(parseFloat);
-          const tiefe = schatten.length >= 2 ? Math.max(0, schatten[1] + (schatten[2] || 0) + (schatten[3] || 0)) : 0;
-          scrollBy(0, Math.ceil((w.getBoundingClientRect().bottom + tiefe) * f) + 1);
-          await warte(300);
-          frei = await window.__randFrei();
-          if(!frei){
-            // 2. "Weitermachen" 16 Punkte unter dem Rand (bis 16.11.2026 der
-            // einzige Ausschnitt); haengt darueber Schrift halb im Bild,
-            // weiter, hoechstens bis der Knopf oben anstoesst
-            wie = 'Weitermachen oben';
-            scrollTo(0,0);
-            scrollBy(0, (w.getBoundingClientRect().top - 16) * f);
-            await warte(200);
-            let unten = 0; const rg = document.createRange();
-            const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-            while(tw.nextNode()){
-              const n = tw.currentNode;
-              if(!n.textContent.trim() || !n.parentElement || !n.parentElement.offsetParent) continue;
-              rg.selectNodeContents(n);
-              for(const r of rg.getClientRects()) if(r.top < 0 && r.bottom > 0) unten = Math.max(unten, r.bottom);
-            }
-            if(unten > 0) scrollBy(0, Math.min(unten + 2, w.getBoundingClientRect().top) * f);
-            await warte(300);
-            frei = await window.__randFrei();
-          }
+          // Pruefung nach der Kopfleiste 16.11.2026: Bis dahin rollte die
+          // Seite hinauf, bis die Karte "Heute" oben anstiess - sie stand 6
+          // bis 7 Punkte unter dem Rand, "Weitermachen" bei de 10 (vor dem
+          // Feinschliff 16). Jetzt liegt oben der Streifen (siehe __bandAn),
+          // und unter ihm stehen der Reihe nach die Karte "Heute" ("Weiter-
+          // machen" mit seinem Schatten darunter verdeckt), "Weitermachen" und
+          // die Leiste Lernpfad/Geschichten/Wiederholen, je 0 bis 24 Punkte
+          // tiefer, bis unten keine Zeile mehr haengt.
           const leiste = (document.getElementById('modeWords') || {}).parentElement;
-          if(!frei && leiste){
-            // 3. Die Leiste Lernpfad/Geschichten/Wiederholen 10 Punkte unter
-            // dem Rand, die Karte "Heute" darueber ganz hinaus
-            wie = 'Leiste oben';
-            scrollBy(0, (leiste.getBoundingClientRect().top - 10) * f);
-            await warte(300);
-            frei = await window.__randFrei();
+          for(const [name, el] of [['Heute', document.getElementById('questBox')], ['Weitermachen', w], ['Leiste', leiste]]){
+            if(!el || !el.getClientRects().length) continue;
+            wie = name + ' oben';
+            frei = await window.__bandFrei(el, 24);
+            if(frei) break;
           }
         }
         return scrollY + ' | ' + wie + ' | ' + (frei || 'angeschnitten')"""),
@@ -686,7 +755,7 @@ def server_starten():
     return srv, "http://127.0.0.1:%d" % srv.server_address[1]
 
 
-def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, version=None):
+def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, version=None, kennung_ab=1):
     """aussehen: None = wie bisher (Playwright stellt hell ein), "hell" oder
     "dunkel". Die Store-Bilder sind seit v5 (15.10.2026) dunkel; die App folgt
     dem Gerät, darum wird hier das Gerät dunkel gestellt, nicht die App.
@@ -695,9 +764,16 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
     (version_einsetzen) aus versionName der Hülle in die gebaute App setzt.
     In web/index.html steht nur der Rückfallwert, und der hinkt vor einem
     Release eine Nummer hinterher (30.10.2026: Bilder für 1.2 zeigten 1.1).
-    Ersetzt wird nur in der ausgelieferten Seite, web/ bleibt unberührt."""
+    Ersetzt wird nur in der ausgelieferten Seite, web/ bleibt unberührt.
+
+    kennung_ab: mit welcher Geraete-Kennung (1 bis 6, siehe GERAETE_IDS) der
+    erste Durchgang beginnt. Wer nur einzelne Bilder eines Satzes neu macht,
+    braucht dieselben Tagesaufgaben wie auf den uebrigen (Pruefung nach der
+    Kopfleiste 16.11.2026: Store-Bilder 1.4 nl am Handy mit Kennung 2)."""
     from playwright.sync_api import sync_playwright
 
+    if not 1 <= kennung_ab <= len(GERAETE_IDS):
+        raise SystemExit("--kennung %r: 1 bis %d" % (kennung_ab, len(GERAETE_IDS)))
     g = GERAETE[geraet]
     farbe = {"hell": {"color_scheme": "light"}, "dunkel": {"color_scheme": "dark"}}.get(aussehen, {})
     if not os.path.exists(os.path.join(WEB, "inhalt", sprache + ".json")):
@@ -722,7 +798,7 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
             # Tagesaufgaben, deren Text anders umbricht, und alles darunter
             # steht eine Zeile hoeher oder tiefer. Auf allen Bildern eines
             # Laufs bleiben es dieselben.
-            for kennung in GERAETE_IDS:
+            for kennung in GERAETE_IDS[kennung_ab - 1:]:
                 try:
                     pfade = ein_lauf(browser, basis, sprache, ziel, g, geraet, farbe, version, kennung)
                     break
@@ -776,7 +852,8 @@ def ein_lauf(browser, basis, sprache, ziel, g, geraet, farbe, version, kennung):
        "document.head.append(st); return 1")
     pfade, stand1 = [], None
     for name, code in SCHRITTE:
-        js("window.__polsterZurueck(); window.__obenStand = false; return 1")   # Rand oben wieder wie in der App
+        # Rand oben wieder wie in der App, kein Streifen oben
+        js("window.__polsterZurueck(); window.__bandWeg(); window.__obenStand = false; return 1")
         ergebnis = js(code)
         lage = js("return await window.__randFrei(%s)" % json.dumps(SPIELRAUM.get(name, {})))
         stoert = js(NICHTS_IM_BILD)
@@ -794,13 +871,15 @@ def ein_lauf(browser, basis, sprache, ziel, g, geraet, farbe, version, kennung):
             raise Angeschnitten("%s %s %s: am Rand angeschnitten: %s"
                                 % (sprache, geraet, name, " | ".join(schnitte)))
         # Stand die Seite ganz oben, klebt die Kopfleiste nicht am Rand
-        # (Pruefung nach dem Feinschliff 16.11.2026, siehe __luftMin)
-        luft = js("return window.__obenStand ? [window.__luftOben(), window.__luftMin] : null")
-        if luft and luft[0] < luft[1] - 0.5:
-            raise SystemExit("%s %s %s: ueber der Kopfleiste nur %.1f Punkte Luft statt %s"
-                             % (sprache, geraet, name, luft[0], luft[1]))
-        if luft:
-            lage += " | Luft oben %.0f" % luft[0]
+        # (Pruefung nach dem Feinschliff 16.11.2026, siehe __luftMin); steht
+        # sie nicht ganz oben, liegt oben der Streifen (Pruefung nach der
+        # Kopfleiste, siehe __bandAn) - auf jedem Bild
+        luft = js("return window.__luftPruefen()")
+        if luft[0] < luft[1] - 0.5:
+            raise SystemExit("%s %s %s: ueber dem obersten Teil nur %.1f Punkte Luft statt %s%s"
+                             % (sprache, geraet, name, luft[0], luft[1],
+                                "" if luft[2] or luft[0] else " (Seite nicht ganz oben, kein Streifen)"))
+        lage += " | Luft oben %.0f%s" % (luft[0], " (Streifen)" if luft[2] else "")
         pfad = os.path.join(ziel, name + ".png")
         for _ in range(4):
             js("return await window.__drachePausieren()")
@@ -869,12 +948,15 @@ def main(argv=None):
     p.add_argument("--version",
                    help="Nummer in der Fußzeile wie in der gebauten App, z. B. 1.2 (versionName der Hülle); "
                         "ohne: der Rückfallwert aus web/index.html")
+    p.add_argument("--kennung", type=int, default=1,
+                   help="mit der wievielten Geräte-Kennung (Tagesaufgaben) begonnen wird, 1 bis %d; "
+                        "nur zum Nachmachen einzelner Bilder eines Satzes" % len(GERAETE_IDS))
     a = p.parse_args(argv)
     if a.geraet != "handy" and not a.ziel:
         p.error("--geraet %s braucht --ziel (Rohbilder, nicht für store/screenshots)" % a.geraet)
     ziel = a.ziel or (os.path.join(WURZEL, "store", "screenshots") if a.sprache == "de"
                       else os.path.join(WURZEL, "docs", "assets", "screenshots-" + a.sprache))
-    pfade = bilder_machen(a.sprache, ziel, a.chrome, a.geraet, a.aussehen, a.version)
+    pfade = bilder_machen(a.sprache, ziel, a.chrome, a.geraet, a.aussehen, a.version, a.kennung)
     if a.montage:
         montage(pfade, a.montage)
     return 0

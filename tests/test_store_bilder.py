@@ -20,6 +20,10 @@ Geprüft wird ohne Browser:
   - Danach (Prüfung am selben Tag): steht die Seite ganz oben, bleiben über
     der Kopfleiste mindestens 16 Punkte wie in der App; auf 7 Zoll Bild 1
     klebte sie am Rand, am Handy auf Bild 1 und 4 stand sie zu knapp.
+  - Prüfung danach: Steht die Seite nicht ganz oben (Bild 2, am Handy
+    Bild 8), liegt oben ein Streifen in der Farbe des Grunds, so hoch wie der
+    Rand oben der App - vorher stand das oberste Teil dort nur 6 bis 10
+    Punkte unter dem Rand.
 """
 import inspect
 import json
@@ -81,10 +85,17 @@ def test_bild2_oeffnet_b1_nur_fuer_sich():
 
 def test_keine_halbe_zeile_unten():
     """Bild 2 sucht einen Abstand der Reiterleiste ohne angeschnittene Zeile
-    (Prüfung 16.11.2026: fr Bild 2), jetzt mit der strengeren Messung."""
+    (Prüfung 16.11.2026: fr Bild 2), jetzt mit der strengeren Messung und
+    unter dem Streifen oben (siehe test_streifen_oben_auf_gerollten_seiten)."""
     schritte = dict(BP.SCHRITTE)
     assert "window.__randSchnitte = () =>" in BP.RAND_PRUEFUNG
-    assert "if(!window.__randSchnitte().length){ weg = [el, a]; break; }" in schritte["02-amt"]
+    assert "if(!window.__randSchnitte().length) return 'Streifen +' + k;" in BP.RAND_PRUEFUNG
+    b2 = schritte["02-amt"]
+    # der Reihe nach: Reiterleiste, Leiste Lernpfad, Karte "Heute" (Handy en, nl)
+    assert "const anker = [['Reiterleiste', oben]];" in b2
+    assert "if(oben === leiste) anker.push(['Lernpfad', modus], ['Heute', document.getElementById('questBox')]);" in b2
+    assert "for(const [name, el] of anker){" in b2
+    assert "frei = await window.__bandFrei(el, 24);" in b2
     assert 'id="modeWords"' in _app()   # die Leiste Lernpfad/Geschichten/Wiederholen
     assert re.search(r"^function rectFaktor\(", _app(), re.M)
 
@@ -120,7 +131,8 @@ def test_rand_oben_nur_fuer_ein_bild():
     # bis zu 24 Punkte: 7 Zoll Bild 1 braucht 21 (siehe test_kopfleiste_nicht_am_rand)
     assert "const polster = y0 < 0.5 ? (opts.polster === undefined ? 24 : opts.polster) : 0;" in js
     quelle = inspect.getsource(BP.ein_lauf)
-    assert quelle.index('js("window.__polsterZurueck(); window.__obenStand = false; return 1")') < quelle.index("ergebnis = js(code)")
+    zurueck = 'js("window.__polsterZurueck(); window.__bandWeg(); window.__obenStand = false; return 1")'
+    assert quelle.index(zurueck) < quelle.index("ergebnis = js(code)")
     # der Rand, der da waechst, ist der der App
     assert re.search(r"^  body\{[^}]*padding:16px 16px 48px;", _app(), re.M | re.S)
 
@@ -148,8 +160,10 @@ def test_kopfleiste_nicht_am_rand():
     # und nur die Seite ganz oben zaehlt: Bild 2 und Bild 8 am Handy rollen selbst
     assert frei.index("if(opts.nurPruefen)") < frei.index("window.__obenStand = y0 < 0.5;")
     quelle = inspect.getsource(BP.ein_lauf)
-    assert 'luft = js("return window.__obenStand ? [window.__luftOben(), window.__luftMin] : null")' in quelle
-    assert re.search(r"if luft and luft\[0\] < luft\[1\] - 0\.5:\s+raise SystemExit\(", quelle)
+    assert 'luft = js("return window.__luftPruefen()")' in quelle
+    assert re.search(r"if luft\[0\] < luft\[1\] - 0\.5:\s+raise SystemExit\(", quelle)
+    pruefen = js.split("window.__luftPruefen = () => {", 1)[1].split("};", 1)[0]
+    assert "return [window.__luftOben(), window.__luftMin, !!B];" in pruefen
     # vor jedem Schritt zurueckgesetzt, und geprueft wird vor dem Bild
     assert quelle.index("window.__obenStand = false;") < quelle.index("ergebnis = js(code)")
     assert quelle.index("luft = js(") < quelle.index("seite.screenshot(")
@@ -176,13 +190,13 @@ def test_luft_oben_wie_in_der_app():
 
 
 def test_luft_oben_in_der_ausgabe():
-    """Die Ausgabe nennt je Bild, das ganz oben steht, die Luft ueber der
-    Kopfleiste ("Luft oben 26") - nach der Pruefung, also nur fuer Bilder,
-    die sie bestanden haben."""
+    """Die Ausgabe nennt je Bild die Luft ueber dem obersten Teil ("Luft
+    oben 26", mit Streifen "Luft oben 17 (Streifen)") - nach der Pruefung,
+    also nur fuer Bilder, die sie bestanden haben."""
     quelle = inspect.getsource(BP.ein_lauf)
-    zeile = 'lage += " | Luft oben %.0f" % luft[0]'
+    zeile = 'lage += " | Luft oben %.0f%s" % (luft[0], " (Streifen)" if luft[2] else "")'
     assert zeile in quelle
-    assert quelle.index("raise SystemExit(\"%s %s %s: ueber der Kopfleiste") < quelle.index(zeile)
+    assert quelle.index("raise SystemExit(\"%s %s %s: ueber dem obersten Teil") < quelle.index(zeile)
     assert quelle.index(zeile) < quelle.index('print("  %-16s %s | %s" % (name,')
 
 
@@ -263,7 +277,7 @@ def test_feste_geraete_kennung_fuer_die_tagesaufgaben():
     assert ids[0] == "zmaj-store-bilder" and len(ids) == len(set(ids)) >= 4
     assert "json.dumps(GERAETE_ID_SCHLUESSEL), json.dumps(kennung)" in inspect.getsource(BP.ein_lauf)
     quelle = inspect.getsource(BP.bilder_machen)
-    assert "for kennung in GERAETE_IDS:" in quelle and "except Angeschnitten as e:" in quelle
+    assert "for kennung in GERAETE_IDS[kennung_ab - 1:]:" in quelle and "except Angeschnitten as e:" in quelle
     # nur der Rand fuehrt zum neuen Versuch, alles andere bricht ab
     assert "raise Angeschnitten(" in inspect.getsource(BP.ein_lauf)
 
@@ -309,16 +323,73 @@ def test_bild4_und_6_mischen_neu_statt_anschnitt():
 
 def test_bild8_ohne_halbe_zeile():
     """Tablets ganz oben wie bisher; das Handy probiert der Reihe nach die
-    Karte "Heute" oben ("Weitermachen" mit seinem Schatten ganz aus dem
-    Bild), "Weitermachen" oben wie bis 16.11. und die Leiste Lernpfad/
+    Karte "Heute" oben ("Weitermachen" mit seinem Schatten unter dem
+    Streifen), "Weitermachen" oben wie bis 16.11. und die Leiste Lernpfad/
     Geschichten/Wiederholen oben - mit dem Knopf oben allein gab es oft
     keinen Rand ohne halbe Zeile, und darueber hing der Drache."""
     b8 = dict(BP.SCHRITTE)["08-wiederholen"]
-    wege = [b8.index(s) for s in ("if(document.documentElement.classList.contains('gross')) frei = await window.__randFrei();",
-                                  "wie = 'Heute oben';", "wie = 'Weitermachen oben';", "wie = 'Leiste oben';")]
-    assert wege == sorted(wege)
-    assert b8.count("frei = await window.__randFrei();") == 4
-    assert "getComputedStyle(w).boxShadow" in b8
+    tablets = "if(document.documentElement.classList.contains('gross')) frei = await window.__randFrei();"
+    wege = "for(const [name, el] of [['Heute', document.getElementById('questBox')], ['Weitermachen', w], ['Leiste', leiste]]){"
+    assert b8.index(tablets) < b8.index(wege)
+    assert b8.count("frei = await window.__randFrei();") == 1
+    assert "frei = await window.__bandFrei(el, 24);" in b8
+    # der Schatten unter "Weitermachen" darf nicht unter dem Streifen hervorschauen
+    js = BP.RAND_PRUEFUNG
+    assert "r.bottom + (B ? schattenUnten(s) : 0) > B + px" in js
+    assert '<div class="quests" id="questBox"></div>' in _app()   # die Karte "Heute"
+    assert '<button class="btn know weiterknopf" id="weiterKnopf"></button>' in _app()
+
+
+def test_streifen_oben_auf_gerollten_seiten():
+    """Pruefung nach der Kopfleiste 16.11.2026: Auf Bild 2 (alle Geraete) und
+    am Handy auf Bild 8 stand das oberste Teil 6 bis 10 Punkte unter dem
+    Rand. Durch Rollen allein ging nicht mehr (zwischen den Leisten und
+    Karten sind nur 9 bis 13 Punkte frei). Dort liegt jetzt oben ein Streifen
+    in der Farbe des Grunds, so hoch wie der Rand oben der App, und der obere
+    Rand wird an seiner Unterkante gemessen. Vor jedem Schritt ist er weg,
+    und ein Bild, dessen Seite nicht ganz oben steht, braucht ihn."""
+    js = BP.RAND_PRUEFUNG
+    an = js.split("window.__bandAn = () => {", 1)[1].split("};", 1)[0]
+    # so hoch wie der Rand oben der App (nicht der fuer ein Bild vergroesserte)
+    assert an.index("window.__polsterZurueck();") < an.index("getComputedStyle(document.body).paddingTop")
+    assert "position:fixed; left:0; top:0;" in an and "z-index:2147483647" in an
+    assert "s.style.background = getComputedStyle(document.body).backgroundColor;" in js
+    assert re.search(r"^  body\{\s*background:var\(--bg\);", _app(), re.M)   # der Grund ist eine Farbe
+    # gemessen wird an der Unterkante des Streifens
+    schnitte = js.split("window.__randSchnitte = () => {", 1)[1]
+    assert "const raender = [['oben', B], ['unten', H]], aus = [];" in schnitte
+    assert "if(oben < B && unten > B || oben < H && unten > H)" in schnitte
+    assert "q.bottom > B && q.top < H" in schnitte
+    # am Streifen auch keine halbe grosse Karte
+    assert "r.height > (B ? H : H / 4)" in schnitte
+    kopf = js.split("window.__kopfRaum = () => {", 1)[1].split("};", 1)[0]
+    assert "if(el.id === BAND) continue;" in kopf and "r.top < B - 0.5" in kopf
+    # Lage: Anker k Punkte unter dem Streifen, nie hoeher
+    frei = js.split("window.__bandFrei = async (anker, bis) => {", 1)[1].split("    };", 1)[0]
+    assert "Math.floor((anker.getBoundingClientRect().top - B - k) * f)" in frei
+    assert "if(d < k - 0.01 || d >= k + 1) continue;" in frei
+    assert frei.index("window.__bandWeg();") > frei.index("for(let k = 0; k <= bis; k++){")
+    # nicht ganz oben und ohne Streifen: keine Luft, das Skript bricht ab
+    assert "if(!window.__obenStand && !B) return [0, window.__luftMin, false];" in js
+    quelle = inspect.getsource(BP.ein_lauf)
+    assert quelle.index("window.__bandWeg();") < quelle.index("ergebnis = js(code)")
+    assert quelle.index('luft = js("return window.__luftPruefen()")') < quelle.index("seite.screenshot(")
+    # Bild 2 und am Handy Bild 8 nehmen den Streifen, die uebrigen Bilder nicht
+    schritte = dict(BP.SCHRITTE)
+    for name, code in schritte.items():
+        assert ("window.__bandFrei(" in code) == (name in ("02-amt", "08-wiederholen")), name
+
+
+def test_kennung_zum_nachmachen():
+    """Wer nur einzelne Bilder eines Satzes neu macht, braucht dieselben
+    Tagesaufgaben wie auf den uebrigen: --kennung waehlt, mit welcher
+    Geraete-Kennung begonnen wird (Store-Bilder 1.4: nl am Handy mit 2)."""
+    quelle = inspect.getsource(BP.main)
+    assert 'p.add_argument("--kennung", type=int, default=1,' in quelle
+    assert "a.version, a.kennung)" in quelle
+    machen = inspect.getsource(BP.bilder_machen)
+    assert "kennung_ab=1):" in machen
+    assert "if not 1 <= kennung_ab <= len(GERAETE_IDS):" in machen
 
 
 def test_bild8_tagesaufgaben_wie_bild1():
