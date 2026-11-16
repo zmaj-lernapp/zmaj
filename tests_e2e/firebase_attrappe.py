@@ -130,6 +130,10 @@ class Attrappe:
         self.anonyme = set()
         self.nachrichten = {}
         self.nachricht_fehler = None
+        # Je Lesen von users/{uid} die Feldmaske oder None (13.11.2026).
+        self.masken = []
+        # maske_abgelehnt: Firestore nimmt die Feldmaske nicht an (400).
+        self.maske_abgelehnt = False
 
     # Das Dokument des Probekontos UID - so lesen es die Tests vom 19.10.
     @property
@@ -300,8 +304,19 @@ class Attrappe:
             if token not in self.gueltig or self.id_uid.get(token) != uid:
                 return antwort(403, {"error": {"status": "PERMISSION_DENIED"}})
             if art == "GET":
-                return antwort(200, {"fields": self.doks[uid]}) if uid in self.doks \
-                    else antwort(404, {"error": {"status": "NOT_FOUND"}})
+                # Mit Feldmaske (13.11.2026, "erst nachsehen"): nur diese Felder,
+                # wie Firestore mit mask.fieldPaths.
+                maske = urllib.parse.parse_qs(teile.query).get("mask.fieldPaths")
+                self.masken.append(maske)
+                if maske is not None and self.maske_abgelehnt:
+                    return antwort(400, {"error": {"code": 400, "message": "Invalid mask.",
+                                                   "status": "INVALID_ARGUMENT"}})
+                if uid not in self.doks:
+                    return antwort(404, {"error": {"status": "NOT_FOUND"}})
+                felder = self.doks[uid]
+                if maske is not None:
+                    felder = {k: v for k, v in felder.items() if k in maske}
+                return antwort(200, {"fields": felder} if felder else {})
             if art == "PATCH":
                 self.doks[uid] = json.loads(request.post_data)["fields"]
                 return antwort(200, {"fields": self.doks[uid]})

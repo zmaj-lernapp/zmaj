@@ -68,8 +68,10 @@ LAGE = r"""
 () => {
   // Seit dem 24.10.2026 ist das Herz ein Bild (web/symbole/herz.webp) und
   // steht nicht mehr im Text. mitHerz() schreibt es wieder als ♥ davor -
-  // aber nur, wenn das gemalte Herz wirklich da ist.
-  const mitHerz = e => (e.querySelector('img.sym-herz') ? '♥' : '') + e.textContent;
+  // aber nur, wenn das gemalte Herz wirklich da ist. Seit dem 14.11.2026
+  // ist es mit der Vollversion golden (herzgold.webp), dann steht ♛ davor.
+  const mitHerz = e => (e.querySelector('img.sym-herz') ? '♥' : '')
+                     + (e.querySelector('img.sym-herzgold') ? '♛' : '') + e.textContent;
   const herz = id => {
     const e = document.getElementById(id);
     return {text: mitHerz(e), null_: e.classList.contains('zero'),
@@ -286,7 +288,7 @@ def test_vollversion_test_kostet_nichts(seite, heute_stand):
         seite.js(WEITER, "tBody")
     lage = seite.js(LAGE)
     assert lage["test"] and lage["tx"]["i"] == 3 and lage["tx"]["results"] == [False, False, False]
-    assert lage["tHerz"] == {"text": "♥ ∞", "null_": False, "sichtbar": True}, lage["tHerz"]
+    assert lage["tHerz"] == {"text": "♛ ∞", "null_": False, "sichtbar": True}, lage["tHerz"]
     assert seite.js("() => lives.anzahl") == 1, "mit der Vollversion darf kein Leben verloren gehen"
     assert seite.fehler == [], seite.fehler
 

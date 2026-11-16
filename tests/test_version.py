@@ -310,10 +310,14 @@ def test_sprachen_mit_platzhalter(sprachcodes, key, anfang):
 
 def test_t_setzt_version_aus_app_version(index_html):
     """{version} fuellt t() selbst, fuer jeden Aufruf - nicht nur applyTexts().
-    APP_VERSION steht vor t(), sonst gaebe es beim ersten Text einen Fehler."""
+    APP_VERSION steht vor t(), sonst gaebe es beim ersten Text einen Fehler.
+    Seit 08.11.2026 ueber versionText(): ausser in der Sandbox der Test-App
+    genau APP_VERSION (tests/test_sandbox.py)."""
     m = re.search(r"\nfunction t\(key, vars\)\{(.*?)\n\}", index_html, re.S)
     assert m, "t() fehlt"
-    assert "{version: APP_VERSION}" in m.group(1)
+    assert "{version: versionText()}" in m.group(1)
+    assert ("function versionText(){ return APP_VERSION + "
+            "(SANDBOX ? ' · Sandbox: alles offen' : ''); }") in index_html
     assert index_html.index("\nconst APP_VERSION = ") < m.start()
 
 

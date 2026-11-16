@@ -33,6 +33,11 @@ TONARTEN = (".mp3", ".m4a", ".wav", ".ogg", ".webm")
 # Leer seit dem 23.10.2026: "so / sol" (Ajdin am 22.10.2026: "die vokabel
 # salz am besten zu so/sol aendern weil man es so oder so sagt") hat seine
 # Aufnahme mit beiden Formen - von Emir, siehe ton_nur_emir.json.
+#
+# Leer seit dem 14.11.2026: "nana / metvica" (Pruefbericht 1.4, B6/F17 b,
+# vorher "nana (auch: metvica)") hat seine Aufnahme mit beiden Formen - von
+# Emir, siehe ton_nur_emir.json (w8955, gesprochen "nana, metvica." wie
+# kahva / kafa). Bis dahin klang nur "nana" (w0089), wie das Wort fuer die Oma.
 NUR_ERSTE_FORM = set()
 
 

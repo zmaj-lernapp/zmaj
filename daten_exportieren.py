@@ -82,6 +82,9 @@ def sammeln():
         sektionen.append({
             "id": s["id"],
             "position": i + 1,
+            # Seit 13.11.2026: die Stufe (Reiter in der App). Die Nummer im
+            # Namen zaehlt je Stufe, "Sektion 1" gibt es also viermal.
+            "stage": s.get("stufe", ""),
             "label": {c: alle[c]["sektionen"][i]["label"] for c in codes},
             "description": {c: alle[c]["sektionen"][i].get("beschreibung", "") for c in codes},
         })

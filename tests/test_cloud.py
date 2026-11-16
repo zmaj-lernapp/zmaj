@@ -288,3 +288,58 @@ def test_main_ohne_zugang_bricht_vor_dem_bau_ab(monkeypatch, tmp_path):
     monkeypatch.setattr(app_bauen, "CLOUD_DATEI", str(tmp_path / "gibt-es-nicht.json"))
     with pytest.raises(SystemExit):
         app_bauen.main(["--aab"])
+
+
+# ---- Gepackt sichern, Weg A (Ajdin am 13.11.2026) ----
+# Schritt 1 (1.4): packen nur, wenn die alte Form nicht mehr passt. Schritt 2
+# ("immer packen", ein bis zwei Monate spaeter) kommt ueber die Quelle. Fuer
+# den Handytest mit einem Geraet mit 1.3 gibt es die Test-App mit
+# --immer-packen. Das Verhalten pruefen tests_e2e/test_cloud_packen.py.
+
+def test_packen_in_der_quelle_noch_schritt_1(index_html):
+    import app_bauen
+    assert index_html.count(app_bauen.PACKEN_AUS) == 1
+    assert app_bauen.PACKEN_AN not in index_html
+    assert index_html.count("const CLOUD_PACK_FELD = 'gepackt1';") == 1
+
+
+def test_immer_packen_nur_in_der_kopie(tmp_path):
+    import app_bauen
+    kopie = tmp_path / "index.html"
+    kopie.write_bytes(("a\r\n" + app_bauen.PACKEN_AUS + "\r\nb\n").encode("utf-8"))
+    app_bauen.immer_packen_einschalten(str(kopie))
+    assert kopie.read_bytes() == ("a\r\n" + app_bauen.PACKEN_AN + "\r\nb\n").encode("utf-8")
+    # Steht der Anker nicht genau einmal da, bricht der Bau ab, und die
+    # Datei bleibt, wie sie war.
+    for roh in (b"a\n", (app_bauen.PACKEN_AUS * 2).encode("utf-8")):
+        kopie.write_bytes(roh)
+        with pytest.raises(SystemExit):
+            app_bauen.immer_packen_einschalten(str(kopie))
+        assert kopie.read_bytes() == roh
+
+
+def test_immer_packen_nie_fuer_den_store():
+    import app_bauen
+    assert app_bauen.schalter_lesen(["--immer-packen"]) == {"--immer-packen"}
+    assert app_bauen.schalter_lesen(["--nur-abgleich", "--immer-packen"]) == {"--nur-abgleich", "--immer-packen"}
+    with pytest.raises(SystemExit) as fehler:
+        app_bauen.schalter_lesen(["--aab", "--immer-packen"])
+    assert "CLOUD_IMMER_PACKEN" in str(fehler.value)
+
+
+def test_immer_packen_im_bau_nach_dem_kopieren(monkeypatch):
+    """In die Kopie www/index.html, also nach kopieren() und vor capacitor() -
+    nur, was dann in www/ liegt, kommt ins Paket. Ohne den Schalter nie."""
+    import app_bauen
+    aufrufe = []
+    for name in ("anmeldung_pruefen", "versionsname_lesen", "pruefen", "kopieren", "emir_drueber",
+                 "dauer_einsetzen", "cloud_einsetzen", "version_einsetzen", "ton_verkleinern",
+                 "testwerbung_einschalten", "immer_packen_einschalten", "versionsnummer_hochzaehlen",
+                 "capacitor", "plugins_flicken", "debug_apk", "freigabe_aab", "versionsname_anheben"):
+        monkeypatch.setattr(app_bauen, name, lambda *a, n=name, **k: aufrufe.append(n))
+    app_bauen.main(["--immer-packen"])
+    assert aufrufe.index("kopieren") < aufrufe.index("immer_packen_einschalten") < aufrufe.index("capacitor")
+    assert "debug_apk" in aufrufe and "freigabe_aab" not in aufrufe
+    aufrufe.clear()
+    app_bauen.main([])
+    assert "immer_packen_einschalten" not in aufrufe and "debug_apk" in aufrufe

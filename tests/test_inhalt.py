@@ -31,10 +31,11 @@ def test_kennzahlen_wie_im_readme(grunddaten):
     """README und Store-Text nennen diese Zahlen. Ändern sie sich,
     müssen die Texte mitgehen."""
     woerter = sum(len(k["words"]) for k in grunddaten["kategorien"])
-    assert len(grunddaten["kategorien"]) == 295       # seit 07.11.2026 (Pakete 10 bis 20)
+    # 297 seit 13.11.2026: zwei neue Level mit umgezogenen Grundwoertern (Stufen-Reiter)
+    assert len(grunddaten["kategorien"]) == 297
     assert woerter == 7997
     assert len(grunddaten["saetze"]) == 300
-    assert len(grunddaten["geschichten"]) == 12
+    assert len(grunddaten["geschichten"]) == 32       # seit 13.11.2026 (B1-Lesetexte, Pakete 1 bis 4)
     assert len(grunddaten["grammatik"]) == 26
 
 
@@ -160,4 +161,29 @@ def test_uebersetzungen_ohne_doppelte_schluessel():
                     if k.value in gesehen:
                         doppelt.append("Zeile %d: %r" % (k.lineno, k.value))
                     gesehen.add(k.value)
+    assert not doppelt, "\n".join(doppelt[:20])
+
+
+def test_geschichten_woerterbuch_jede_form_einmal():
+    """13.11.2026, Merge der B1-Lesetexte (Paket 1/2 und 3/4): 159 Wortformen
+    standen im WOERTERBUCH und in WOERTERBUCH_B1_2, 42 davon mit anderer
+    Bedeutung. Welche galt, hing an der Reihenfolge der Blöcke - jednom hieß
+    dann in einem Text "einmal" statt "einem (Lok.)". Jede Form steht deshalb
+    in genau einem Block und dort genau einmal (ruff prüft F601 nicht)."""
+    import ast
+    import pathlib
+    quelle = (pathlib.Path(__file__).resolve().parent.parent / "geschichten.py").read_text(encoding="utf-8")
+    bloecke = {}
+    for knoten in ast.parse(quelle).body:
+        if (isinstance(knoten, ast.Assign) and isinstance(knoten.value, ast.Dict)
+                and any(isinstance(z, ast.Name) and z.id.startswith("WOERTERBUCH") for z in knoten.targets)):
+            bloecke[knoten.targets[0].id] = knoten.value
+    assert "WOERTERBUCH" in bloecke, sorted(bloecke)
+    gesehen, doppelt = {}, []
+    for name, d in bloecke.items():
+        for k in d.keys:
+            if isinstance(k, ast.Constant):
+                if k.value in gesehen:
+                    doppelt.append("%s Zeile %d: %r (schon %s)" % (name, k.lineno, k.value, gesehen[k.value]))
+                gesehen.setdefault(k.value, "%s Zeile %d" % (name, k.lineno))
     assert not doppelt, "\n".join(doppelt[:20])

@@ -18,11 +18,18 @@ def index(wurzel):
 def test_ton_pruefen_meldet_nichts(wurzel, monkeypatch):
     """Seit dem 07.11.2026 ohne die Schluessel aus tests/offen_p1020.json: Emirs Ton fuer
     die Pakete 10 bis 20 kommt im eigenen Schritt. Alles andere muss vollstaendig sein."""
+    import offen_b1_teil2
+    import offen_lesetexte
     import offen_p1020
     import ton_bauen
     import ton_pruefen
     echt = ton_bauen.sammle
-    monkeypatch.setattr(ton_bauen, "sammle", lambda: [p for p in echt() if p["key"] not in offen_p1020.TON])
+    # 13.11.2026: die B1-Lesetexte (Pakete 1 und 2: tests/offen_lesetexte.json,
+    # Pakete 3 und 4: tests/offen_b1_teil2.py) warten noch auf ihren Ton. Seit
+    # dem 16.11.2026 liest Vesna die Texte vor, es warten nur noch die Woerter,
+    # die allein in diesen Texten stehen (Woerter spricht Emir).
+    offen = offen_p1020.TON | offen_lesetexte.TON | offen_b1_teil2.ton_schluessel()
+    monkeypatch.setattr(ton_bauen, "sammle", lambda: [p for p in echt() if p["key"] not in offen])
     assert ton_pruefen.main() in (0, None)
 
 

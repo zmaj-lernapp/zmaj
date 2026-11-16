@@ -87,6 +87,9 @@ AUCH = {
     "aktivan": ["aktivna", "aktivno"], "dostupan": ["dostupna", "dostupno"],
     "nezavisan": ["nezavisna", "nezavisno"], "aktuelan": ["aktuelna", "aktuelno"],
 }
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten (B3/F14): das andere App-Wort gilt
+# beim Tippen mit, nur in dieser Richtung (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {"budući da": ["pošto"], "nakon što": ["pošto"]}
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {

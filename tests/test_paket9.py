@@ -94,6 +94,13 @@ AUCH = {
     # seit dem 07.11.2026 (Warteliste)
     "mrtav": ["mrtva", "mrtvo"], "uopšte": ["uopće"],
 }
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten: weitere richtige Antworten beim
+# Tippen, die Kennung bleibt (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {
+    "nakon": ["poslije"],                                   # V9/F3
+    "moderan": ["moderna", "moderno", "savremen", "savremena", "savremeno"],   # B3/F14
+    "ovdje": ["tu"], "ukoliko": ["ako"],                    # B3/F14
+}
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
@@ -129,7 +136,8 @@ def _paare(k):
     return list(zip(liste[0::2], liste[1::2]))
 
 
-def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
+def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     for k in _level(grunddaten):
         assert k["reihenfolge"] is True, k["id"]
         assert 16 <= len(k["words"]) <= 40, k["id"]
@@ -141,10 +149,11 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
             assert satz["bs"] != wort["bs"], satz
 
 
-def test_auch_genau_nach_dem_paket(grunddaten):
+def test_auch_genau_nach_dem_paket(grunddaten_vor_umzug):
     """Feld "auch" aus dem Paket, dazu die Formen aus "formen" (weiblich, saechlich)."""
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     neu = {w["bs"]: w for w in _neu(grunddaten)}
-    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == AUCH
+    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == {**AUCH, **PRUEFBERICHT_AUCH}
     for w in neu.values():
         formen = [f.strip() for f in w["bs"].split(" / ")]
         for a in w.get("auch", []):
@@ -259,9 +268,10 @@ def test_jedes_wort_und_jeder_satz_hat_emirs_ton(grunddaten, wurzel):
     assert not ohne, ohne[:20]
 
 
-def test_sektion_und_level(grunddaten):
+def test_sektion_und_level(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     s = grunddaten["sektionen"]
-    assert s[16]["id"] == "wiewowann" and s[16]["label"] == "Sektion 17 · Wie, wo und wann"
+    assert s[17]["id"] == "wiewowann" and s[17]["label"] == "Sektion 9 · Wie, wo und wann"  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
     assert [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "wiewowann"] == LEVEL
     ids = [k["id"] for k in grunddaten["kategorien"]]
     # seit dem 07.11.2026 folgt Stufe B2 (Sektionen 18 bis 31, Pakete 10 bis 20)
@@ -271,8 +281,8 @@ def test_sektion_und_level(grunddaten):
 
 
 def test_alle_sektionen(grunddaten):
-    assert len(grunddaten["sektionen"]) == 31       # seit 07.11.2026 (Pakete 10 bis 20)
-    assert len(grunddaten["kategorien"]) == 295
+    assert len(grunddaten["sektionen"]) == 27       # seit 13.11.2026 (Sätze bauen 2, B2 in neun)
+    assert len(grunddaten["kategorien"]) == 297     # seit 13.11.2026 (zwei Grundwort-Level)
 
 
 @pytest.mark.parametrize("a, b", [("sav", "cijeli"), ("tu", "ovdje"), ("tako", "ovako"), ("vrlo / veoma", "jako"),
@@ -285,7 +295,20 @@ def test_nie_nebeneinander_in_der_auswahl(index_html, grunddaten, a, b):
     assert a in bs and b in bs
     assert "['%s', '%s']" % (a, b) in index_html
     w = {x["bs"]: x for x in _alle(grunddaten)}
+    frei = FREIGEGEBEN.get((a, b))
+    if frei:
+        wort, auch = frei
+        anderes = a if wort == b else b
+        assert all(x in w[wort].get("auch", []) for x in auch), (wort, auch)
+        assert wort not in w[anderes].get("auch", []), "die andere Richtung hat Ajdin nicht freigegeben"
+        return
     assert b not in w[a].get("auch", []) and a not in w[b].get("auch", []), "kein auch: das saehe beim Tippen mit"
+
+
+# Pruefbericht 1.4 (14.11.2026): beim Tippen hat Ajdin eine Richtung freigegeben -
+# ovdje nimmt tu (B3/F14 h), jako nimmt vrlo und veoma (V9/F2). In der Auswahl stehen
+# die beiden weiter nie nebeneinander (tests/test_pruefbericht14_tippen.py).
+FREIGEGEBEN = {("tu", "ovdje"): ("ovdje", ["tu"]), ("vrlo / veoma", "jako"): ("jako", ["vrlo", "veoma"])}
 
 
 @pytest.mark.parametrize("wort, form", [("važan", "važno"), ("čist", "čisto"), ("topao", "toplo"), ("hladan", "hladno"),

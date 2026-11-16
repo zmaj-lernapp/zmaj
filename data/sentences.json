@@ -31,7 +31,7 @@
     "nl": "Goedendag",
     "nb": "God dag",
     "da": "Goddag",
-    "fr": "Bonjour"
+    "fr": "Bonjour (la journée)"
    },
    "audio": "web/audio/w0002.mp3"
   },
@@ -61,7 +61,7 @@
    "bs": "Kako si?",
    "translations": {
     "de": "Wie geht's dir?",
-    "en": "How are you?",
+    "en": "How are you? (informal)",
     "tr": "Nasılsın?",
     "sv": "Hur mår du?",
     "nl": "Hoe gaat het met je?",
@@ -853,7 +853,7 @@
    "bs": "Volim te.",
    "translations": {
     "de": "Ich liebe dich.",
-    "en": "I love you.",
+    "en": "I love you. (informal)",
     "tr": "Seni seviyorum.",
     "sv": "Jag älskar dig.",
     "nl": "Ik hou van je.",
@@ -871,7 +871,7 @@
    "bs": "Nedostaješ mi.",
    "translations": {
     "de": "Ich vermisse dich.",
-    "en": "I miss you.",
+    "en": "I miss you. (informal)",
     "tr": "Seni özledim.",
     "sv": "Jag saknar dig.",
     "nl": "Ik mis je.",
@@ -907,7 +907,7 @@
    "bs": "Šta radiš?",
    "translations": {
     "de": "Was machst du?",
-    "en": "What are you doing?",
+    "en": "What are you doing? (informal)",
     "tr": "Ne yapıyorsun?",
     "sv": "Vad gör du?",
     "nl": "Wat doe je?",
@@ -1609,7 +1609,7 @@
    "bs": "Koliko imaš godina?",
    "translations": {
     "de": "Wie alt bist du?",
-    "en": "How old are you?",
+    "en": "How old are you? (informal)",
     "tr": "Kaç yaşındasın?",
     "sv": "Hur gammal är du?",
     "nl": "Hoe oud ben je?",
@@ -1627,7 +1627,7 @@
    "bs": "Imaš li vremena?",
    "translations": {
     "de": "Hast du Zeit?",
-    "en": "Do you have time?",
+    "en": "Do you have time? (informal)",
     "tr": "Vaktin var mı?",
     "sv": "Har du tid?",
     "nl": "Heb je tijd?",
@@ -2959,7 +2959,7 @@
    "bs": "Možeš li mi pomoći?",
    "translations": {
     "de": "Kannst du mir helfen?",
-    "en": "Can you help me?",
+    "en": "Can you help me? (informal)",
     "tr": "Bana yardım edebilir misin?",
     "sv": "Kan du hjälpa mig?",
     "nl": "Kun je me helpen?",
@@ -4686,7 +4686,7 @@
    "answer": "kusur",
    "bs": "Gdje je moj kusur?",
    "translations": {
-    "de": "Wo ist mein Wechselgeld?",
+    "de": "Wo ist mein Rückgeld?",
     "en": "Where is my change?",
     "tr": "Para üstüm nerede?",
     "sv": "Var är min växel?",
@@ -5295,8 +5295,8 @@
    "id": "s0294",
    "level": "kennenlernen",
    "cloze": "Ovo je moja ___.",
-   "answer": "koleginica",
-   "bs": "Ovo je moja koleginica.",
+   "answer": "kolegica",
+   "bs": "Ovo je moja kolegica.",
    "translations": {
     "de": "Das ist meine Kollegin.",
     "en": "This is my colleague (a woman).",
@@ -5307,7 +5307,7 @@
     "da": "Det her er min kollega.",
     "fr": "C'est ma collègue."
    },
-   "audio": "web/audio/w2135.mp3"
+   "audio": null
   },
   {
    "id": "s0295",

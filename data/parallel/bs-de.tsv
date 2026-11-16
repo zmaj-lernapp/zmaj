@@ -572,148 +572,11 @@ livada	Wiese	word	wiese:livada
 grana	Ast / Zweig	word	ast / zweig:grana
 kamilica	Kamille	word	kamille:kamilica
 lipa	Linde	word	linde:lipa
-nana (auch: metvica)	Minze	word	minze:nana (auch: metvica)
+nana / metvica	Minze	word	minze:nana / metvica
 biljka	Pflanze	word	pflanze:biljka
 šljiva	Pflaume / Pflaumenbaum	word	pflaume / pflaumenbaum:šljiva
 orah	Walnuss / Walnussbaum	word	walnuss / walnussbaum:orah
 korijen	Wurzel	word	wurzel:korijen
-rerna	Backofen	word	backofen:rerna
-flaša	Flasche	word	flasche:flaša
-viljuška	Gabel	word	gabel:viljuška
-zamrzivač	Gefrierschrank	word	gefrierschrank:zamrzivač
-suđe	Geschirr	word	geschirr:suđe
-prati suđe	Geschirr spülen	word	geschirr spülen:prati suđe
-tava	Pfanne	word	pfanne:tava
-tanjir	Teller	word	teller:tanjir
-lonac	Topf	word	topf:lonac
-kesa	Tüte / Plastiktüte	word	tüte / plastiktüte:kesa
-posteljina	Bettwäsche	word	bettwäsche:posteljina
-deka	Decke (Bettdecke)	word	decke (bettdecke):deka
-jastuk	Kissen	word	kissen:jastuk
-polica	Regal / Brett	word	regal / brett:polica
-ormar	Schrank	word	schrank:ormar
-kauč	Sofa	word	sofa:kauč
-zavjesa	Vorhang	word	vorhang:zavjesa
-tuš	Dusche	word	dusche:tuš
-ogledalo	Spiegel	word	spiegel:ogledalo
-WC	Toilette	word	toilette:WC
-toalet papir	Toilettenpapier	word	toilettenpapier:toalet papir
-lavabo	Waschbecken	word	waschbecken:lavabo
-četkica za zube	Zahnbürste	word	zahnbürste:četkica za zube
-pasta za zube	Zahnpasta	word	zahnpasta:pasta za zube
-pospremiti	aufräumen	word	aufräumen:pospremiti
-metla	Besen	word	besen:metla
-pegla	Bügeleisen	word	bügeleisen:pegla
-peglati	bügeln	word	bügeln:peglati
-kanta	Eimer	word	eimer:kanta
-smeće	Müll	word	müll:smeće
-kanta za smeće	Mülleimer / Mülltonne	word	mülleimer / mülltonne:kanta za smeće
-čisto	sauber	word	sauber:čisto
-prljavo	schmutzig	word	schmutzig:prljavo
-usisivač	Staubsauger	word	staubsauger:usisivač
-veš mašina	Waschmaschine	word	waschmaschine:veš mašina
-deterdžent	Waschmittel	word	waschmittel:deterdžent
-veš	Wäsche	word	wäsche:veš
-štrik	Wäscheleine	word	wäscheleine:štrik
-lift	Aufzug	word	aufzug:lift
-poštansko sanduče	Briefkasten	word	briefkasten:poštansko sanduče
-krov	Dach	word	dach:krov
-tavan	Dachboden	word	dachboden:tavan
-pod	Fußboden	word	fußboden:pod
-domar	Hausmeister	word	hausmeister:domar
-podrum	Keller	word	keller:podrum
-zvono	Klingel	word	klingel:zvono
-zvoniti	klingeln	word	klingeln:zvoniti
-komšinica	Nachbarin	word	nachbarin:komšinica
-zid	Wand	word	wand:zid
-ograda	Zaun	word	zaun:ograda
-ugasiti	ausschalten / ausmachen	word	ausschalten / ausmachen:ugasiti
-bojler	Boiler / Warmwasserspeicher	word	boiler / warmwasserspeicher:bojler
-drva	Brennholz	word	brennholz:drva
-upaliti	einschalten / anmachen	word	einschalten / anmachen:upaliti
-Nema struje	Es gibt keinen Strom	word	es gibt keinen strom:Nema struje
-sijalica	Glühbirne	word	glühbirne:sijalica
-grijanje	Heizung	word	heizung:grijanje
-ugalj	Kohle	word	kohle:ugalj
-svjetlo	Licht	word	licht:svjetlo
-peć	Ofen (Heizofen)	word	ofen (heizofen):peć
-osigurač	Sicherung	word	sicherung:osigurač
-utičnica	Steckdose	word	steckdose:utičnica
-utikač	Stecker	word	stecker:utikač
-struja	Strom	word	strom:struja
-topla voda	warmes Wasser	word	warmes wasser:topla voda
-Ne radi	Es funktioniert nicht	word	es funktioniert nicht:Ne radi
-Curi voda	Es läuft aus / es tropft	word	es läuft aus / es tropft:Curi voda
-čekić	Hammer	word	hammer:čekić
-majstor	Handwerker / Fachmann	word	handwerker / fachmann:majstor
-pokvaren / pokvarena / pokvareno	kaputt	word	kaputt:pokvaren / pokvarena / pokvareno
-merdevine	Leiter	word	leiter:merdevine
-ekser	Nagel	word	nagel:ekser
-popraviti	reparieren	word	reparieren:popraviti
-brava	Schloss (Türschloss)	word	schloss (türschloss):brava
-šaraf	Schraube	word	schraube:šaraf
-slavina	Wasserhahn	word	wasserhahn:slavina
-alat	Werkzeug	word	werkzeug:alat
-gorivo	Kraftstoff / Sprit	word	kraftstoff / sprit:gorivo
-sipati gorivo	tanken	word	tanken:sipati gorivo
-guma	Reifen	word	reifen:guma
-Pukla mi je guma.	Ich habe einen Platten.	word	ich habe einen platten.:Pukla mi je guma.
-kočnica	Bremse	word	bremse:kočnica
-motor	Motor	word	motor:motor
-akumulator	Autobatterie	word	autobatterie:akumulator
-sigurnosni pojas	Sicherheitsgurt	word	sicherheitsgurt:sigurnosni pojas
-parkiralište	Parkplatz	word	parkplatz:parkiralište
-parkirati	parken	word	parken:parkirati
-semafor	Ampel	word	ampel:semafor
-raskrsnica	Kreuzung	word	kreuzung:raskrsnica
-saobraćaj	Verkehr	word	verkehr:saobraćaj
-zastoj	Stau	word	stau:zastoj
-kazna	Strafzettel / Bußgeld	word	strafzettel / bußgeld:kazna
-registracija	Kennzeichen (Auto)	word	kennzeichen (auto):registracija
-tehnički pregled	Hauptuntersuchung (TÜV)	word	hauptuntersuchung (tüv):tehnički pregled
-autoservis	Autowerkstatt	word	autowerkstatt:autoservis
-šlep služba	Abschleppdienst	word	abschleppdienst:šlep služba
-pomoć na cesti	Pannenhilfe	word	pannenhilfe:pomoć na cesti
-odvijač / šrafciger	Schraubenzieher	word	schraubenzieher:odvijač / šrafciger
-kliješta	Zange	word	zange:kliješta
-bušilica	Bohrmaschine	word	bohrmaschine:bušilica
-bušiti	bohren	word	bohren:bušiti
-testera	Säge	word	säge:testera
-francuski ključ	Rollgabelschlüssel (Engländer)	word	rollgabelschlüssel (engländer):francuski ključ
-metar	Maßband / Zollstock	word	maßband / zollstock:metar
-ljepilo	Kleber	word	kleber:ljepilo
-produžni kabel	Verlängerungskabel	word	verlängerungskabel:produžni kabel
-radionica	Werkstatt	word	werkstatt:radionica
-punjač	Ladegerät	word	ladegerät:punjač
-baterija	Akku	word	akku:baterija
-Baterija je prazna.	Der Akku ist leer.	word	der akku ist leer.:Baterija je prazna.
-napuniti	aufladen	word	aufladen:napuniti
-šifra / lozinka	Passwort	word	passwort:šifra / lozinka
-Koja je šifra za WiFi?	Wie ist das WLAN-Passwort?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
-internet	Internet	word	internet:internet
-Nema signala.	Kein Empfang.	word	kein empfang.:Nema signala.
-poruka	Nachricht	word	nachricht:poruka
-poslati poruku	eine Nachricht schicken	word	eine nachricht schicken:poslati poruku
-nazvati	anrufen	word	anrufen:nazvati
-aplikacija	App	word	app:aplikacija
-ekran	Bildschirm	word	bildschirm:ekran
-tastatura	Tastatur	word	tastatur:tastatura
-štampač	Drucker	word	drucker:štampač
-slušalice	Kopfhörer	word	kopfhörer:slušalice
-slikati	fotografieren	word	fotografieren:slikati
-ažurirati	aktualisieren	word	aktualisieren:ažurirati
-mašina za suđe	Spülmaschine	word	spülmaschine:mašina za suđe
-sušilica za veš	Wäschetrockner	word	wäschetrockner:sušilica za veš
-mikrovalna	Mikrowelle	word	mikrowelle:mikrovalna
-toster	Toaster	word	toaster:toster
-kuhalo za vodu	Wasserkocher	word	wasserkocher:kuhalo za vodu
-fen	Föhn	word	föhn:fen
-klima	Klimaanlage	word	klimaanlage:klima
-ventilator	Ventilator	word	ventilator:ventilator
-daljinski	Fernbedienung	word	fernbedienung:daljinski
-aparat za kahvu / aparat za kafu	Kaffeemaschine	word	kaffeemaschine:aparat za kahvu / aparat za kafu
-uputstvo	Bedienungsanleitung	word	bedienungsanleitung:uputstvo
-garancija	Garantie	word	garantie:garancija
 Ko?	Wer?	word	wer?:Ko?
 Šta?	Was?	word	was?:Šta?
 Gdje?	Wo?	word	wo?:Gdje?
@@ -852,6 +715,26 @@ također	auch	word	auch:također
 samo	nur	word	nur:samo
 već	schon	word	schon:već
 još ne	noch nicht	word	noch nicht:još ne
+ovdje	hier	word	hier:ovdje
+tamo	dort	word	dort:tamo
+tu	da / hier	word	da / hier:tu
+gore	oben	word	oben:gore
+dolje	unten	word	unten:dolje
+onda	dann	word	dann:onda
+zatim	danach	word	danach:zatim
+prvo	zuerst	word	zuerst:prvo
+opet	wieder	word	wieder:opet
+odmah	sofort	word	sofort:odmah
+stalno	ständig	word	ständig:stalno
+tako	so	word	so:tako
+vrlo / veoma	sehr (vor Eigenschaften)	word	sehr (vor eigenschaften):vrlo / veoma
+rado	gern	word	gern:rado
+kao	wie / als	word	wie / als:kao
+pa	und dann / also	word	und dann / also:pa
+evo	hier ist / da ist	word	hier ist / da ist:evo
+taj	dieser (da)	word	dieser (da):taj
+sav	ganz / all	word	ganz / all:sav
+cijeli	ganz (der ganze)	word	ganz (der ganze):cijeli
 Vidim brata	Ich sehe den Bruder	word	ich sehe den bruder:Vidim brata
 Vidim sestru	Ich sehe die Schwester	word	ich sehe die schwester:Vidim sestru
 Vidim dijete	Ich sehe das Kind	word	ich sehe das kind:Vidim dijete
@@ -881,6 +764,143 @@ mene / me	mich	word	mich:mene / me
 tebe / te	dich	word	dich:tebe / te
 njega / ga	ihn	word	ihn:njega / ga
 nju / je	sie (Akkusativ)	word	sie (akkusativ):nju / je
+rerna	Backofen	word	backofen:rerna
+flaša	Flasche	word	flasche:flaša
+viljuška	Gabel	word	gabel:viljuška
+zamrzivač	Gefrierschrank	word	gefrierschrank:zamrzivač
+suđe	Geschirr	word	geschirr:suđe
+prati suđe	Geschirr spülen	word	geschirr spülen:prati suđe
+tava	Pfanne	word	pfanne:tava
+tanjir	Teller	word	teller:tanjir
+lonac	Topf	word	topf:lonac
+kesa	Tüte / Plastiktüte	word	tüte / plastiktüte:kesa
+posteljina	Bettwäsche	word	bettwäsche:posteljina
+deka	Decke (Bettdecke)	word	decke (bettdecke):deka
+jastuk	Kissen	word	kissen:jastuk
+polica	Regal / Brett	word	regal / brett:polica
+ormar	Schrank	word	schrank:ormar
+kauč	Sofa	word	sofa:kauč
+zavjesa	Vorhang	word	vorhang:zavjesa
+tuš	Dusche	word	dusche:tuš
+ogledalo	Spiegel	word	spiegel:ogledalo
+WC	Toilette	word	toilette:WC
+toalet papir	Toilettenpapier	word	toilettenpapier:toalet papir
+lavabo	Waschbecken	word	waschbecken:lavabo
+četkica za zube	Zahnbürste	word	zahnbürste:četkica za zube
+pasta za zube	Zahnpasta	word	zahnpasta:pasta za zube
+pospremiti	aufräumen	word	aufräumen:pospremiti
+metla	Besen	word	besen:metla
+pegla	Bügeleisen	word	bügeleisen:pegla
+peglati	bügeln	word	bügeln:peglati
+kanta	Eimer	word	eimer:kanta
+smeće	Müll	word	müll:smeće
+kanta za smeće	Mülleimer / Mülltonne	word	mülleimer / mülltonne:kanta za smeće
+čisto	sauber	word	sauber:čisto
+prljavo	schmutzig	word	schmutzig:prljavo
+usisivač	Staubsauger	word	staubsauger:usisivač
+veš mašina	Waschmaschine	word	waschmaschine:veš mašina
+deterdžent	Waschmittel	word	waschmittel:deterdžent
+veš	Wäsche	word	wäsche:veš
+štrik	Wäscheleine	word	wäscheleine:štrik
+lift	Aufzug	word	aufzug:lift
+poštansko sanduče	Briefkasten	word	briefkasten:poštansko sanduče
+krov	Dach	word	dach:krov
+tavan	Dachboden	word	dachboden:tavan
+pod	Fußboden	word	fußboden:pod
+domar	Hausmeister	word	hausmeister:domar
+podrum	Keller	word	keller:podrum
+zvono	Klingel	word	klingel:zvono
+zvoniti	klingeln	word	klingeln:zvoniti
+komšinica	Nachbarin	word	nachbarin:komšinica
+zid	Wand	word	wand:zid
+ograda	Zaun	word	zaun:ograda
+ugasiti	ausschalten / ausmachen	word	ausschalten / ausmachen:ugasiti
+bojler	Boiler / Warmwasserspeicher	word	boiler / warmwasserspeicher:bojler
+drva	Brennholz	word	brennholz:drva
+upaliti	einschalten / anmachen	word	einschalten / anmachen:upaliti
+Nema struje	Es gibt keinen Strom	word	es gibt keinen strom:Nema struje
+sijalica	Glühbirne	word	glühbirne:sijalica
+grijanje	Heizung	word	heizung:grijanje
+ugalj	Kohle	word	kohle:ugalj
+svjetlo	Licht	word	licht:svjetlo
+peć	Ofen (Heizofen)	word	ofen (heizofen):peć
+osigurač	Sicherung	word	sicherung:osigurač
+utičnica	Steckdose	word	steckdose:utičnica
+utikač	Stecker	word	stecker:utikač
+struja	Strom	word	strom:struja
+topla voda	warmes Wasser	word	warmes wasser:topla voda
+Ne radi	Es funktioniert nicht	word	es funktioniert nicht:Ne radi
+Curi voda	Es läuft aus / es tropft	word	es läuft aus / es tropft:Curi voda
+čekić	Hammer	word	hammer:čekić
+majstor	Handwerker / Fachmann	word	handwerker / fachmann:majstor
+pokvaren / pokvarena / pokvareno	kaputt	word	kaputt:pokvaren / pokvarena / pokvareno
+merdevine	Leiter	word	leiter:merdevine
+ekser	Nagel	word	nagel:ekser
+popraviti	reparieren	word	reparieren:popraviti
+brava	Schloss (Türschloss)	word	schloss (türschloss):brava
+šaraf	Schraube	word	schraube:šaraf
+slavina	Wasserhahn	word	wasserhahn:slavina
+alat	Werkzeug	word	werkzeug:alat
+gorivo	Kraftstoff / Sprit	word	kraftstoff / sprit:gorivo
+sipati gorivo	tanken	word	tanken:sipati gorivo
+guma	Reifen	word	reifen:guma
+Pukla mi je guma.	Ich habe einen Platten.	word	ich habe einen platten.:Pukla mi je guma.
+kočnica	Bremse	word	bremse:kočnica
+motor	Motor	word	motor:motor
+akumulator	Autobatterie	word	autobatterie:akumulator
+sigurnosni pojas	Sicherheitsgurt	word	sicherheitsgurt:sigurnosni pojas
+parkiralište	Parkplatz	word	parkplatz:parkiralište
+parkirati	parken	word	parken:parkirati
+semafor	Ampel	word	ampel:semafor
+raskrsnica	Kreuzung	word	kreuzung:raskrsnica
+saobraćaj	Verkehr	word	verkehr:saobraćaj
+zastoj	Stau	word	stau:zastoj
+kazna	Strafzettel / Bußgeld	word	strafzettel / bußgeld:kazna
+registracija	Kennzeichen (Auto)	word	kennzeichen (auto):registracija
+tehnički pregled	Hauptuntersuchung (TÜV)	word	hauptuntersuchung (tüv):tehnički pregled
+autoservis	Autowerkstatt	word	autowerkstatt:autoservis
+šlep služba	Abschleppdienst	word	abschleppdienst:šlep služba
+pomoć na cesti	Pannenhilfe	word	pannenhilfe:pomoć na cesti
+odvijač / šrafciger	Schraubenzieher	word	schraubenzieher:odvijač / šrafciger
+kliješta	Zange	word	zange:kliješta
+bušilica	Bohrmaschine	word	bohrmaschine:bušilica
+bušiti	bohren	word	bohren:bušiti
+testera	Säge	word	säge:testera
+francuski ključ	Rollgabelschlüssel (Engländer)	word	rollgabelschlüssel (engländer):francuski ključ
+metar	Maßband / Zollstock	word	maßband / zollstock:metar
+ljepilo	Kleber	word	kleber:ljepilo
+produžni kabel	Verlängerungskabel	word	verlängerungskabel:produžni kabel
+radionica	Werkstatt	word	werkstatt:radionica
+punjač	Ladegerät	word	ladegerät:punjač
+baterija	Akku	word	akku:baterija
+Baterija je prazna.	Der Akku ist leer.	word	der akku ist leer.:Baterija je prazna.
+napuniti	aufladen	word	aufladen:napuniti
+šifra / lozinka	Passwort	word	passwort:šifra / lozinka
+Koja je šifra za WiFi?	Wie ist das WLAN-Passwort?	word	wie ist das wlan-passwort?:Koja je šifra za WiFi?
+internet	Internet	word	internet:internet
+Nema signala.	Kein Empfang.	word	kein empfang.:Nema signala.
+poruka	Nachricht	word	nachricht:poruka
+poslati poruku	eine Nachricht schicken	word	eine nachricht schicken:poslati poruku
+nazvati	anrufen	word	anrufen:nazvati
+aplikacija	App	word	app:aplikacija
+ekran	Bildschirm	word	bildschirm:ekran
+tastatura	Tastatur	word	tastatur:tastatura
+štampač	Drucker	word	drucker:štampač
+slušalice	Kopfhörer	word	kopfhörer:slušalice
+slikati	fotografieren	word	fotografieren:slikati
+ažurirati	aktualisieren	word	aktualisieren:ažurirati
+mašina za suđe	Spülmaschine	word	spülmaschine:mašina za suđe
+sušilica za veš	Wäschetrockner	word	wäschetrockner:sušilica za veš
+mikrovalna	Mikrowelle	word	mikrowelle:mikrovalna
+toster	Toaster	word	toaster:toster
+kuhalo za vodu	Wasserkocher	word	wasserkocher:kuhalo za vodu
+fen	Föhn	word	föhn:fen
+klima	Klimaanlage	word	klimaanlage:klima
+ventilator	Ventilator	word	ventilator:ventilator
+daljinski	Fernbedienung	word	fernbedienung:daljinski
+aparat za kahvu / aparat za kafu	Kaffeemaschine	word	kaffeemaschine:aparat za kahvu / aparat za kafu
+uputstvo	Bedienungsanleitung	word	bedienungsanleitung:uputstvo
+garancija	Garantie	word	garantie:garancija
 bez šećera	ohne Zucker	word	ohne zucker:bez šećera
 bez mlijeka	ohne Milch	word	ohne milch:bez mlijeka
 iz Bosne	aus Bosnien	word	aus bosnien:iz Bosne
@@ -1129,6 +1149,26 @@ ujutro	am Morgen	word	am morgen:ujutro
 popodne	am Nachmittag	word	am nachmittag:popodne
 navečer	am Abend	word	am abend:navečer
 vikendom	am Wochenende	word	am wochenende:vikendom
+ime	Name	word	name:ime
+prezime	Nachname	word	nachname:prezime
+adresa	Adresse	word	adresse:adresa
+telefon	Telefon	word	telefon:telefon
+roditelji	Eltern	word	eltern:roditelji
+osoba	Person	word	person:osoba
+hrana	Essen / Nahrung	word	essen / nahrung:hrana
+piće	Getränk	word	getränk:piće
+lice	Gesicht	word	gesicht:lice
+život	das Leben	word	das leben:život
+mjesto	Ort / Platz	word	ort / platz:mjesto
+dio	Teil	word	teil:dio
+početak	Anfang	word	anfang:početak
+kraj	Ende	word	ende:kraj
+problem	Problem	word	problem:problem
+slika	Bild / Foto	word	bild / foto:slika
+priča	Geschichte (Erzählung)	word	geschichte (erzählung):priča
+igra	Spiel (zum Spielen)	word	spiel (zum spielen):igra
+film	Film	word	film:film
+broj	Zahl / Nummer	word	zahl / nummer:broj
 velik / velika	groß (m/w)	word	groß (m/w):velik / velika
 veći	größer	word	größer:veći
 najveći	am größten	word	am größten:najveći
@@ -1521,7 +1561,7 @@ Molim te, pričaj sporije	Sprich bitte langsamer	word	sprich bitte langsamer:Mol
 Govoriš li bosanski?	Sprichst du Bosnisch?	word	sprichst du bosnisch?:Govoriš li bosanski?
 Šta to znači?	Was bedeutet das?	word	was bedeutet das?:Šta to znači?
 Kako se to kaže na bosanskom?	Wie sagt man das auf Bosnisch?	word	wie sagt man das auf bosnisch?:Kako se to kaže na bosanskom?
-Alejkumu selam	(Antwort darauf)	word	(antwort darauf):Alejkumu selam
+Alejkumu selam	Antwort auf Selam alejkum	word	antwort auf selam alejkum:Alejkumu selam
 posjeta	Besuch	word	besuch:posjeta
 Hvala na svemu	Danke für alles	word	danke für alles:Hvala na svemu
 Da te upoznam: ...	Darf ich vorstellen: ...	word	darf ich vorstellen: ...:Da te upoznam: ...
@@ -1546,7 +1586,7 @@ Poznajemo se	Wir kennen uns	word	wir kennen uns:Poznajemo se
 poznanik / poznanica	Bekannter / Bekannte	word	bekannter / bekannte:poznanik / poznanica
 raja	Freundeskreis / die Clique	word	freundeskreis / die clique:raja
 domaćin	Gastgeber	word	gastgeber:domaćin
-koleginica	Kollegin	word	kollegin:koleginica
+kolegica	Kollegin	word	kollegin:kolegica
 jaran	Kumpel (Slang, vor allem Sarajevo)	word	kumpel (slang, vor allem sarajevo):jaran
 drug / drugarica	Kumpel / Kumpelin (locker)	word	kumpel / kumpelin (locker):drug / drugarica
 komšije	Nachbarn (Mehrzahl)	word	nachbarn (mehrzahl):komšije
@@ -3037,7 +3077,6 @@ smrdjeti / smrditi	stinken	word	stinken:smrdjeti / smrditi
 Nešto smrdi u frižideru.	Im Kühlschrank stinkt etwas.	word	im kühlschrank stinkt etwas.:Nešto smrdi u frižideru.
 bljutav	fad (ohne Geschmack)	word	fad (ohne geschmack):bljutav
 Supa je bljutava, fali joj soli.	Die Suppe ist fad, es fehlt Salz.	word	die suppe ist fad, es fehlt salz.:Supa je bljutava, fali joj soli.
-lice	Gesicht	word	gesicht:lice
 Imaš nešto na licu.	Du hast etwas im Gesicht.	word	du hast etwas im gesicht.:Imaš nešto na licu.
 jezik	Zunge	word	zunge:jezik
 Ugrizao sam se za jezik.	Ich habe mir auf die Zunge gebissen.	word	ich habe mir auf die zunge gebissen.:Ugrizao sam se za jezik.
@@ -3273,7 +3312,6 @@ budućnost	Zukunft	word	zukunft:budućnost
 U budućnosti želimo živjeti u Bosni.	In Zukunft wollen wir in Bosnien leben.	word	in zukunft wollen wir in bosnien leben.:U budućnosti želimo živjeti u Bosni.
 praznik	Feiertag	word	feiertag:praznik
 Sutra je praznik, banke ne rade.	Morgen ist Feiertag, die Banken haben zu.	word	morgen ist feiertag, die banken haben zu.:Sutra je praznik, banke ne rade.
-odmah	sofort	word	sofort:odmah
 Odmah dolazim!	Ich komme sofort!	word	ich komme sofort!:Odmah dolazim!
 upravo	gerade (eben)	word	gerade (eben):upravo
 Upravo sam stigla kući.	Ich bin gerade nach Hause gekommen.	word	ich bin gerade nach hause gekommen.:Upravo sam stigla kući.
@@ -3291,7 +3329,6 @@ tek	erst	word	erst:tek
 Film počinje tek u devet.	Der Film fängt erst um neun an.	word	der film fängt erst um neun an.:Film počinje tek u devet.
 još	noch	word	noch:još
 Još spava, nemoj ga buditi.	Er schläft noch, weck ihn nicht.	word	er schläft noch, weck ihn nicht.:Još spava, nemoj ga buditi.
-opet	wieder	word	wieder:opet
 Dođite nam opet!	Kommt uns wieder besuchen!	word	kommt uns wieder besuchen!:Dođite nam opet!
 zauvijek	für immer	word	für immer:zauvijek
 Ovo ne može trajati zauvijek.	Das kann nicht für immer so weitergehen.	word	das kann nicht für immer so weitergehen.:Ovo ne može trajati zauvijek.
@@ -3349,7 +3386,6 @@ gitara	Gitarre	word	gitarre:gitara
 Kćerka uči svirati gitaru.	Meine Tochter lernt Gitarre spielen.	word	meine tochter lernt gitarre spielen.:Kćerka uči svirati gitaru.
 plesti	stricken	word	stricken:plesti
 Nana plete čarape za zimu.	Oma strickt Socken für den Winter.	word	oma strickt socken für den winter.:Nana plete čarape za zimu.
-slika	Bild / Foto	word	bild / foto:slika
 Pošalji mi sliku!	Schick mir ein Foto!	word	schick mir ein foto!:Pošalji mi sliku!
 izlet	Ausflug	word	ausflug:izlet
 U nedjelju idemo na izlet na Vrelo Bosne.	Am Sonntag machen wir einen Ausflug zum Vrelo Bosne.	word	am sonntag machen wir einen ausflug zum vrelo bosne.:U nedjelju idemo na izlet na Vrelo Bosne.
@@ -3363,7 +3399,6 @@ muzej	Museum	word	museum:muzej
 Djeca su s razredom bila u muzeju.	Die Kinder waren mit der Klasse im Museum.	word	die kinder waren mit der klasse im museum.:Djeca su s razredom bila u muzeju.
 žurka	Party	word	party:žurka
 Ko sve dolazi na žurku?	Wer kommt alles zur Party?	word	wer kommt alles zur party?:Ko sve dolazi na žurku?
-igra	Spiel (zum Spielen)	word	spiel (zum spielen):igra
 Hajmo igrati neku igru!	Lass uns ein Spiel spielen!	word	lass uns ein spiel spielen!:Hajmo igrati neku igru!
 novine	Zeitung	word	zeitung:novine
 Dedo svako jutro čita novine.	Opa liest jeden Morgen Zeitung.	word	opa liest jeden morgen zeitung.:Dedo svako jutro čita novine.
@@ -3377,7 +3412,6 @@ reklama	Werbung	word	werbung:reklama
 Opet reklame, idem po sok.	Schon wieder Werbung, ich hol mir einen Saft.	word	schon wieder werbung, ich hol mir einen saft.:Opet reklame, idem po sok.
 radio	Radio	word	radio:radio
 U autu uvijek slušam radio.	Im Auto höre ich immer Radio.	word	im auto höre ich immer radio.:U autu uvijek slušam radio.
-film	Film	word	film:film
 Hoćemo li pogledati neki film?	Wollen wir uns einen Film anschauen?	word	wollen wir uns einen film anschauen?:Hoćemo li pogledati neki film?
 serija	Serie	word	serie:serija
 Nana gleda svaku tursku seriju.	Oma schaut jede türkische Serie.	word	oma schaut jede türkische serie.:Nana gleda svaku tursku seriju.
@@ -3543,7 +3577,6 @@ praksa	Praktikum	word	praktikum:praksa
 Studenti moraju odraditi praksu.	Studenten müssen ein Praktikum machen.	word	studenten müssen ein praktikum machen.:Studenti moraju odraditi praksu.
 radni dan	Werktag	word	werktag:radni dan
 Radnim danima ustajem u šest.	An Werktagen stehe ich um sechs auf.	word	an werktagen stehe ich um sechs auf.:Radnim danima ustajem u šest.
-mjesto	Ort / Platz	word	ort / platz:mjesto
 Je li ovo mjesto slobodno?	Ist dieser Platz frei?	word	ist dieser platz frei?:Je li ovo mjesto slobodno?
 strana	Seite (Richtung)	word	seite (richtung):strana
 Apoteka je na drugoj strani ulice.	Die Apotheke ist auf der anderen Straßenseite.	word	die apotheke ist auf der anderen straßenseite.:Apoteka je na drugoj strani ulice.
@@ -3593,9 +3626,7 @@ Dužina staze je pet kilometara.	Die Länge der Strecke beträgt fünf Kilometer
 Moramo izmjeriti širinu prozora.	Wir müssen die Breite des Fensters messen.	word	wir müssen die breite des fensters messen.:Moramo izmjeriti širinu prozora.
 ivica	Kante (Tischkante, Stuhlkante)	word	kante (tischkante, stuhlkante):ivica
 Čaša stoji na samoj ivici stola.	Das Glas steht direkt an der Tischkante.	word	das glas steht direkt an der tischkante.:Čaša stoji na samoj ivici stola.
-dio	Teil	word	teil:dio
 Drugi dio filma je bio bolji.	Der zweite Teil des Films war besser.	word	der zweite teil des films war besser.:Drugi dio filma je bio bolji.
-broj	Zahl / Nummer	word	zahl / nummer:broj
 Napiši mi svoj broj na papir.	Schreib mir deine Nummer auf einen Zettel.	word	schreib mir deine nummer auf einen zettel.:Napiši mi svoj broj na papir.
 većina	Mehrheit	word	mehrheit:većina
 Većina mojih prijatelja živi u Njemačkoj.	Die meisten meiner Freunde leben in Deutschland.	word	die meisten meiner freunde leben in deutschland.:Većina mojih prijatelja živi u Njemačkoj.
@@ -3639,9 +3670,7 @@ razlika	Unterschied	word	unterschied:razlika
 Koja je razlika između ove dvije riječi?	Was ist der Unterschied zwischen diesen zwei Wörtern?	word	was ist der unterschied zwischen diesen zwei wörtern?:Koja je razlika između ove dvije riječi?
 kilometar	Kilometer	word	kilometer:kilometar
 Do škole ima samo jedan kilometar.	Bis zur Schule ist es nur ein Kilometer.	word	bis zur schule ist es nur ein kilometer.:Do škole ima samo jedan kilometar.
-početak	Anfang	word	anfang:početak
 Na početku mi je bilo teško.	Am Anfang war es schwer für mich.	word	am anfang war es schwer für mich.:Na početku mi je bilo teško.
-kraj	Ende	word	ende:kraj
 Pekara je na kraju ulice.	Die Bäckerei ist am Ende der Straße.	word	die bäckerei ist am ende der straße.:Pekara je na kraju ulice.
 period	Zeitraum	word	zeitraum:period
 To je bio težak period u mom životu.	Das war eine schwere Zeit in meinem Leben.	word	das war eine schwere zeit in meinem leben.:To je bio težak period u mom životu.
@@ -3673,7 +3702,6 @@ faza	Phase	word	phase:faza
 To je samo faza, proći će.	Das ist nur eine Phase, das geht vorbei.	word	das ist nur eine phase, das geht vorbei.:To je samo faza, proći će.
 korak	Schritt	word	schritt:korak
 Prvi korak je uvijek najteži.	Der erste Schritt ist immer der schwerste.	word	der erste schritt ist immer der schwerste.:Prvi korak je uvijek najteži.
-život	das Leben	word	das leben:život
 Život na selu je miran.	Das Leben auf dem Dorf ist ruhig.	word	das leben auf dem dorf ist ruhig.:Život na selu je miran.
 smrt	Tod	word	tod:smrt
 Njegova smrt nas je sve potresla.	Sein Tod hat uns alle erschüttert.	word	sein tod hat uns alle erschüttert.:Njegova smrt nas je sve potresla.
@@ -3785,7 +3813,6 @@ pojam	Begriff / Ahnung	word	begriff / ahnung:pojam
 Nemam pojma gdje su ključevi.	Ich habe keine Ahnung, wo die Schlüssel sind.	word	ich habe keine ahnung, wo die schlüssel sind.:Nemam pojma gdje su ključevi.
 pamet	Verstand	word	verstand:pamet
 Ima novca, ali nema pameti.	Er hat Geld, aber keinen Verstand.	word	er hat geld, aber keinen verstand.:Ima novca, ali nema pameti.
-problem	Problem	word	problem:problem
 To nije moj problem.	Das ist nicht mein Problem.	word	das ist nicht mein problem.:To nije moj problem.
 rješenje	Lösung	word	lösung:rješenje
 Za svaki problem postoji rješenje.	Für jedes Problem gibt es eine Lösung.	word	für jedes problem gibt es eine lösung.:Za svaki problem postoji rješenje.
@@ -3845,9 +3872,7 @@ aktivnost	Aktivität	word	aktivität:aktivnost
 Djeca imaju mnogo aktivnosti poslije škole.	Die Kinder haben nach der Schule viele Aktivitäten.	word	die kinder haben nach der schule viele aktivitäten.:Djeca imaju mnogo aktivnosti poslije škole.
 poteškoća	kleine Schwierigkeit	word	kleine schwierigkeit:poteškoća
 Imam male poteškoće s internetom.	Ich habe kleine Probleme mit dem Internet.	word	ich habe kleine probleme mit dem internet.:Imam male poteškoće s internetom.
-osoba	Person	word	person:osoba
 Rezervisao sam sto za četiri osobe.	Ich habe einen Tisch für vier Personen reserviert.	word	ich habe einen tisch für vier personen reserviert.:Rezervisao sam sto za četiri osobe.
-roditelji	Eltern	word	eltern:roditelji
 Moji roditelji žive u Sarajevu.	Meine Eltern leben in Sarajevo.	word	meine eltern leben in sarajevo.:Moji roditelji žive u Sarajevu.
 supruga	Ehefrau (förmlich)	word	ehefrau (förmlich):supruga
 Ovo je moja supruga, Amra.	Das ist meine Frau, Amra.	word	das ist meine frau, amra.:Ovo je moja supruga, Amra.
@@ -4102,19 +4127,12 @@ dova	muslimisches Bittgebet	word	muslimisches bittgebet:dova
 Moja nana svako veče uči dovu.	Meine Oma spricht jeden Abend ein Bittgebet.	word	meine oma spricht jeden abend ein bittgebet.:Moja nana svako veče uči dovu.
 mezarje	muslimischer Friedhof	word	muslimischer friedhof:mezarje
 Mezarje je iznad sela.	Der Friedhof liegt oberhalb des Dorfes.	word	der friedhof liegt oberhalb des dorfes.:Mezarje je iznad sela.
-hrana	Essen / Nahrung	word	essen / nahrung:hrana
 Domaća hrana je najbolja.	Selbstgemachtes Essen ist am besten.	word	selbstgemachtes essen ist am besten.:Domaća hrana je najbolja.
-piće	Getränk	word	getränk:piće
 Šta ćete za piće?	Was möchten Sie trinken?	word	was möchten sie trinken?:Šta ćete za piće?
-ime	Name	word	name:ime
 Kako se piše tvoje ime?	Wie schreibt man deinen Namen?	word	wie schreibt man deinen namen?:Kako se piše tvoje ime?
-prezime	Nachname	word	nachname:prezime
 Napišite ovdje svoje prezime.	Schreiben Sie hier Ihren Nachnamen hin.	word	schreiben sie hier ihren nachnamen hin.:Napišite ovdje svoje prezime.
-adresa	Adresse	word	adresse:adresa
 Koja je tvoja nova adresa?	Wie lautet deine neue Adresse?	word	wie lautet deine neue adresse?:Koja je tvoja nova adresa?
-telefon	Telefon	word	telefon:telefon
 Ostavio sam telefon kod kuće.	Ich habe das Telefon zu Hause gelassen.	word	ich habe das telefon zu hause gelassen.:Ostavio sam telefon kod kuće.
-priča	Geschichte (Erzählung)	word	geschichte (erzählung):priča
 To je duga priča.	Das ist eine lange Geschichte.	word	das ist eine lange geschichte.:To je duga priča.
 informacija	Information	word	information:informacija
 Treba mi više informacija.	Ich brauche mehr Informationen.	word	ich brauche mehr informationen.:Treba mi više informacija.
@@ -4180,9 +4198,7 @@ negativan	negativ	word	negativ:negativan
 Nalaz je negativan, hvala Bogu.	Der Befund ist negativ, Gott sei Dank.	word	der befund ist negativ, gott sei dank.:Nalaz je negativan, hvala Bogu.
 jasan	klar	word	klar:jasan
 Je li ti sada jasno?	Ist es dir jetzt klar?	word	ist es dir jetzt klar?:Je li ti sada jasno?
-sav	ganz / all	word	ganz / all:sav
 Djeca su popila sav sok.	Die Kinder haben den ganzen Saft getrunken.	word	die kinder haben den ganzen saft getrunken.:Djeca su popila sav sok.
-cijeli	ganz (der ganze)	word	ganz (der ganze):cijeli
 Cijeli grad je bez struje.	Die ganze Stadt ist ohne Strom.	word	die ganze stadt ist ohne strom.:Cijeli grad je bez struje.
 mnogi	viele	word	viele:mnogi
 Mnogi su otišli u Njemačku.	Viele sind nach Deutschland gegangen.	word	viele sind nach deutschland gegangen.:Mnogi su otišli u Njemačku.
@@ -4288,15 +4304,10 @@ hitan	dringend	word	dringend:hitan
 Moram ti nešto hitno reći.	Ich muss dir dringend etwas sagen.	word	ich muss dir dringend etwas sagen.:Moram ti nešto hitno reći.
 čest	häufig	word	häufig:čest
 To je česta greška.	Das ist ein häufiger Fehler.	word	das ist ein häufiger fehler.:To je česta greška.
-tu	da / hier	word	da / hier:tu
 Ostavi torbu tu, pored vrata.	Lass die Tasche da, neben der Tür.	word	lass die tasche da, neben der tür.:Ostavi torbu tu, pored vrata.
-ovdje	hier	word	hier:ovdje
 Živim ovdje već deset godina.	Ich wohne hier schon seit zehn Jahren.	word	ich wohne hier schon seit zehn jahren.:Živim ovdje već deset godina.
-tamo	dort	word	dort:tamo
 Bio sam tamo prošle godine.	Ich war letztes Jahr dort.	word	ich war letztes jahr dort.:Bio sam tamo prošle godine.
-gore	oben	word	oben:gore
 Djeca se igraju gore u sobi.	Die Kinder spielen oben im Zimmer.	word	die kinder spielen oben im zimmer.:Djeca se igraju gore u sobi.
-dolje	unten	word	unten:dolje
 Čekam te dolje, ispred zgrade.	Ich warte unten auf dich, vor dem Gebäude.	word	ich warte unten auf dich, vor dem gebäude.:Čekam te dolje, ispred zgrade.
 negdje	irgendwo	word	irgendwo:negdje
 Negdje sam ostavio ključeve.	Ich habe die Schlüssel irgendwo liegen lassen.	word	ich habe die schlüssel irgendwo liegen lassen.:Negdje sam ostavio ključeve.
@@ -4306,9 +4317,7 @@ naprijed	vorwärts / nach vorne	word	vorwärts / nach vorne:naprijed
 Samo naprijed, ne boj se!	Nur zu, hab keine Angst!	word	nur zu, hab keine angst!:Samo naprijed, ne boj se!
 nazad	zurück	word	zurück:nazad
 Kad ideš nazad u Njemačku?	Wann gehst du zurück nach Deutschland?	word	wann gehst du zurück nach deutschland?:Kad ideš nazad u Njemačku?
-onda	dann	word	dann:onda
 Prvo ručak, onda kahva.	Erst das Mittagessen, dann der Kaffee.	word	erst das mittagessen, dann der kaffee.:Prvo ručak, onda kahva.
-zatim	danach	word	danach:zatim
 Večerali smo, a zatim smo gledali film.	Wir haben zu Abend gegessen und danach einen Film geschaut.	word	wir haben zu abend gegessen und danach einen film geschaut.:Večerali smo, a zatim smo gledali film.
 nekad	manchmal / früher	word	manchmal / früher:nekad
 Nekad smo živjeli u Tuzli.	Früher haben wir in Tuzla gelebt.	word	früher haben wir in tuzla gelebt.:Nekad smo živjeli u Tuzli.
@@ -4316,19 +4325,15 @@ odjednom	plötzlich	word	plötzlich:odjednom
 Odjednom je nestala struja.	Plötzlich ist der Strom ausgefallen.	word	plötzlich ist der strom ausgefallen.:Odjednom je nestala struja.
 davno	vor langer Zeit	word	vor langer zeit:davno
 To je bilo davno, ne sjećam se.	Das ist lange her, ich erinnere mich nicht.	word	das ist lange her, ich erinnere mich nicht.:To je bilo davno, ne sjećam se.
-stalno	ständig	word	ständig:stalno
 Stalno mislim na tebe.	Ich denke ständig an dich.	word	ich denke ständig an dich.:Stalno mislim na tebe.
 trenutno	momentan / gerade	word	momentan / gerade:trenutno
 Trenutno nisam kod kuće.	Ich bin gerade nicht zu Hause.	word	ich bin gerade nicht zu hause.:Trenutno nisam kod kuće.
-prvo	zuerst	word	zuerst:prvo
 Prvo operi ruke, pa onda jedi.	Wasch dir zuerst die Hände und iss dann.	word	wasch dir zuerst die hände und iss dann.:Prvo operi ruke, pa onda jedi.
 skoro	fast / bald	word	fast / bald:skoro
 Skoro sam zaboravio tvoj rođendan.	Ich hätte fast deinen Geburtstag vergessen.	word	ich hätte fast deinen geburtstag vergessen.:Skoro sam zaboravio tvoj rođendan.
-tako	so	word	so:tako
 Zašto tako kasno dolaziš kući?	Warum kommst du so spät nach Hause?	word	warum kommst du so spät nach hause?:Zašto tako kasno dolaziš kući?
 ovako	so (wie hier)	word	so (wie hier):ovako
 Gledaj, to se radi ovako.	Schau, das macht man so.	word	schau, das macht man so.:Gledaj, to se radi ovako.
-vrlo / veoma	sehr (vor Eigenschaften)	word	sehr (vor eigenschaften):vrlo / veoma
 Ovo je vrlo važno za mene.	Das ist sehr wichtig für mich.	word	das ist sehr wichtig für mich.:Ovo je vrlo važno za mene.
 toliko	so viel	word	so viel:toliko
 Nano, ne mogu toliko pojesti!	Oma, so viel kann ich nicht essen!	word	oma, so viel kann ich nicht essen!:Nano, ne mogu toliko pojesti!
@@ -4340,7 +4345,6 @@ nekako	irgendwie	word	irgendwie:nekako
 Nekako ćemo se snaći.	Irgendwie kommen wir schon zurecht.	word	irgendwie kommen wir schon zurecht.:Nekako ćemo se snaći.
 pomalo	ein wenig	word	ein wenig:pomalo
 Već pomalo govorim bosanski.	Ich spreche schon ein wenig Bosnisch.	word	ich spreche schon ein wenig bosnisch.:Već pomalo govorim bosanski.
-rado	gern	word	gern:rado
 Rado ću ti pomoći.	Ich helfe dir gern.	word	ich helfe dir gern.:Rado ću ti pomoći.
 otprilike	ungefähr	word	ungefähr:otprilike
 Stižemo za otprilike sat vremena.	Wir kommen in ungefähr einer Stunde an.	word	wir kommen in ungefähr einer stunde an.:Stižemo za otprilike sat vremena.
@@ -4372,9 +4376,7 @@ svakako	auf jeden Fall	word	auf jeden fall:svakako
 Svakako ću ti se javiti.	Ich melde mich auf jeden Fall bei dir.	word	ich melde mich auf jeden fall bei dir.:Svakako ću ti se javiti.
 valjda	wohl / vermutlich	word	wohl / vermutlich:valjda
 Valjda će sve biti dobro.	Es wird wohl alles gut werden.	word	es wird wohl alles gut werden.:Valjda će sve biti dobro.
-kao	wie / als	word	wie / als:kao
 Spavao sam kao beba.	Ich habe wie ein Baby geschlafen.	word	ich habe wie ein baby geschlafen.:Spavao sam kao beba.
-pa	und dann / also	word	und dann / also:pa
 Završi zadaću pa idi vani.	Mach deine Hausaufgaben fertig und geh dann raus.	word	mach deine hausaufgaben fertig und geh dann raus.:Završi zadaću pa idi vani.
 što	was / dass (im Nebensatz)	word	was / dass (im nebensatz):što
 Žao mi je što kasnim.	Es tut mir leid, dass ich zu spät komme.	word	es tut mir leid, dass ich zu spät komme.:Žao mi je što kasnim.
@@ -4396,7 +4398,6 @@ pošto	da / nachdem	word	da / nachdem:pošto
 Pošto pada kiša, ostajemo kod kuće.	Da es regnet, bleiben wir zu Hause.	word	da es regnet, bleiben wir zu hause.:Pošto pada kiša, ostajemo kod kuće.
 neka	soll / möge	word	soll / möge:neka
 Neka sačeka pet minuta.	Er soll fünf Minuten warten.	word	er soll fünf minuten warten.:Neka sačeka pet minuta.
-evo	hier ist / da ist	word	hier ist / da ist:evo
 Evo ti ključevi od stana.	Hier hast du die Wohnungsschlüssel.	word	hier hast du die wohnungsschlüssel.:Evo ti ključevi od stana.
 po	nach / pro	word	nach / pro:po
 Ulaz košta pet maraka po osobi.	Der Eintritt kostet fünf Mark pro Person.	word	der eintritt kostet fünf mark pro person.:Ulaz košta pet maraka po osobi.
@@ -4428,7 +4429,6 @@ radi	wegen / um … willen	word	wegen / um … willen:radi
 Radi djece ostajemo ovdje.	Der Kinder wegen bleiben wir hier.	word	der kinder wegen bleiben wir hier.:Radi djece ostajemo ovdje.
 sebe	sich	word	sich:sebe
 On misli samo na sebe.	Er denkt nur an sich.	word	er denkt nur an sich.:On misli samo na sebe.
-taj	dieser (da)	word	dieser (da):taj
 Ko je taj čovjek?	Wer ist dieser Mann?	word	wer ist dieser mann?:Ko je taj čovjek?
 svoj	eigener (mein, dein, sein)	word	eigener (mein, dein, sein):svoj
 Uzmi svoju torbu, idemo!	Nimm deine Tasche, wir gehen!	word	nimm deine tasche, wir gehen!:Uzmi svoju torbu, idemo!
@@ -8255,7 +8255,7 @@ Idem u mesnicu.	Ich gehe in die Metzgerei.	sentence	s0256
 Jabuke su na akciji.	Die Äpfel sind im Angebot.	sentence	s0257
 Ovo voće je svježe.	Dieses Obst ist frisch.	sentence	s0258
 Mogu li platiti karticom?	Kann ich mit Karte bezahlen?	sentence	s0259
-Gdje je moj kusur?	Wo ist mein Wechselgeld?	sentence	s0260
+Gdje je moj kusur?	Wo ist mein Rückgeld?	sentence	s0260
 Idemo u kafić.	Wir gehen ins Café.	sentence	s0261
 Danas jedemo vani.	Heute essen wir draußen.	sentence	s0262
 Sto na terasi, molim.	Einen Tisch auf der Terrasse, bitte.	sentence	s0263
@@ -8289,7 +8289,7 @@ Moja vjera je važna.	Mein Glaube ist wichtig.	sentence	s0290
 Da te upoznam: moj brat.	Darf ich vorstellen: mein Bruder.	sentence	s0291
 Hoću da te posjetim.	Ich will dich besuchen.	sentence	s0292
 Molim te, oprosti mi.	Bitte verzeih mir.	sentence	s0293
-Ovo je moja koleginica.	Das ist meine Kollegin.	sentence	s0294
+Ovo je moja kolegica.	Das ist meine Kollegin.	sentence	s0294
 Moj babo je dobar domaćin.	Mein Papa ist ein guter Gastgeber.	sentence	s0295
 Nana svira harmoniku.	Oma spielt Akkordeon.	sentence	s0296
 Plešemo kolo.	Wir tanzen Kolo.	sentence	s0297

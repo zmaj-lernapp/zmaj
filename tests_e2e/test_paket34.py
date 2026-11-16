@@ -122,9 +122,10 @@ def test_ausgeschlossen_und_einen_buchstaben_daneben(seite, heute_stand):
 
 def test_sektionen_zwoelf_bis_vierzehn_im_lernpfad(seite, heute_stand):
     seite.starten(stand=heute_stand())
-    e = seite.js("""() => ({sektionen: SECTIONS.slice(11, 14).map(s => s.id),
-        farben: SECTIONS.slice(11, 14).map(s => sektionsNummer(s.id)),
-        level: SECTIONS.slice(11, 14).map(s => CATEGORIES.filter(c => c.sektion === s.id).length)})""")
-    assert e == {"sektionen": ["koerpergesundheit", "zeitfreizeit", "lernenarbeiten"], "farben": ["3", "4", "5"],
+    # Seit den Stufen-Reitern (13.11.2026) Sektion 4 bis 6 von B1, Farben je Reiter
+    e = seite.js("""() => ({sektionen: SECTIONS.slice(12, 15).map(s => s.id),
+        farben: SECTIONS.slice(12, 15).map(s => sektionsNummer(s.id)),
+        level: SECTIONS.slice(12, 15).map(s => CATEGORIES.filter(c => c.sektion === s.id).length)})""")
+    assert e == {"sektionen": ["koerpergesundheit", "zeitfreizeit", "lernenarbeiten"], "farben": ["4", "5", "6"],
                  "level": [8, 6, 4]}
     assert seite.fehler == []

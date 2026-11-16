@@ -193,6 +193,15 @@ def test_neu_erst_lektion_dann_nur_noch_anmeldung(seite, heute_stand, cloud_html
     attrappe = _starten(seite, cloud_html, stand=heute_stand())
     assert seite.js("() => [sichtbar('pfad'), anmeldungFaellig()]") == [True, False]
     assert _aufrufe(seite) == ["sitzungHolen", "restoreHolen"]
+    # Vor der ersten Lektion, noch ohne Konto: der Profilknopf ist da
+    # (14.11.2026), das Profil zeigt Erfolge und Lernserie, aber keinen
+    # Kasten mit Konto und Abmelden.
+    assert seite.js("() => document.getElementById('btnProfil').style.display") == "inline-block"
+    seite.js("() => document.getElementById('btnProfil').click()")
+    seite.page.wait_for_function("() => sichtbar('kontoView')")
+    assert seite.js("""() => ['erfolgLeiste', 'serieKasten', 'kontoKasten']
+                               .map(id => !document.getElementById(id).hidden)""") == [True, True, False]
+    seite.js("() => showHome()")
     seite.js("() => { openLevel(0); startLesson(); }")
     seite.durchspielen("lBody", "Lx")
     # Auf dem Ergebnisschirm nur noch "Weiter".
@@ -213,6 +222,7 @@ def test_neu_erst_lektion_dann_nur_noch_anmeldung(seite, heute_stand, cloud_html
                               document.getElementById('anmImp').textContent.includes(t('set.anbieter').split('<br>')[0]),
                               document.getElementById('btnSettings').style.display]""") \
         == [True, _t(seite, "anm.google"), True, True, _t(seite, "set.impressum"), True, "none"]
+    assert seite.js("() => document.getElementById('btnProfil').style.display") == "none"
     # Kein Weg daran vorbei.
     for weg in ("showHome()", "openLevel(0)", "showLaden()", "openStory(0)", "startLesson()",
                 "startTest()", "rundeStarten('topf')", "einstufungStarten()", "showView('pfad')"):
@@ -568,8 +578,11 @@ def test_neues_geraet_anmelden_behaelt_schutz_und_einstieg(seite, cloud_html):
     kennung = seite.js("() => CATEGORIES[50].id")
     level = seite.js("() => CATEGORIES.slice(50, 56).map(c => c.id)")
     tage = [(datetime.date.today() - datetime.timedelta(days=i)).isoformat() for i in range(3, 0, -1)]
+    # reiter: mit den Stufen-Reitern eingestuft (13.11.2026), sonst waeren die zwei
+    # Grundwort-Level davor "dran" (firstOpen)
     konto = {"schutz": {"anzahl": 2, "zeit": 0}, "bestanden": level, "gewusst": ["probe:konto"], "tage": tage,
-             "einstufung": {"tag": tage[0], "wahl": "gut", "bis": kennung, "richtig": 13, "fragen": 15}}
+             "einstufung": {"tag": tage[0], "wahl": "gut", "bis": kennung, "richtig": 13, "fragen": 15,
+                            "reiter": True}}
     attrappe.doks[UID] = {"daten": {"stringValue": json.dumps({"app": "zmaj", "version": 1, "stand": konto})},
                           "rev": {"stringValue": "altes-handy.1"}}
     seite.js("() => einstufungWahl()")
@@ -809,7 +822,8 @@ def test_abmelden(seite, heute_stand, cloud_html):
     _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
     _mail_anmelden(seite, "ich@probe.example", "geheim-123")
     seite.js("() => showKonto()")
-    assert seite.js("""() => [document.getElementById('setProfilMail').textContent,
+    assert seite.js("""() => [(document.querySelector('#setProfilMail img.sym-brief') ? '✉' : '')
+                              + document.getElementById('setProfilMail').textContent,
                               document.getElementById('setGesichert').textContent,
                               document.getElementById('setPwZeile').hidden,
                               document.getElementById('setProfilSub').hidden,
@@ -963,6 +977,103 @@ def test_konto_loeschen_mit_google_fragt_zuerst(seite, heute_stand, cloud_html):
     z = seite.js(ZUSTAND)
     assert z["merker"] is None and z["woerter"] == 0
     assert seite.js("() => document.getElementById('anmNote').textContent") == _t(seite, "set.konto_weg_fertig")
+    assert seite.fehler == []
+
+
+# Pruefbericht 1.4, V6 (14.11.2026): Nach "Konto loeschen" kamen weiter
+# Abendnachrichten, darunter "Ima li te? Deine 200 Woerter sind alle noch da."
+# Das Plugin der Huelle fuer Benachrichtigungen, nachgestellt. Was geplant
+# ist, liegt in sessionStorage - es uebersteht das Neuladen wie bei Android
+# die Wecker einen Neustart der App. Nach PLUGIN einhaengen, das setzt
+# window.Capacitor neu.
+BEN_PLUGIN = r"""
+(() => {
+  const ss = window.sessionStorage;
+  const lies = () => { try{ return JSON.parse(ss.getItem('probe_ben') || '[]'); }catch(e){ return []; } };
+  const merk = a => ss.setItem('probe_ben', JSON.stringify(a));
+  window.Capacitor = window.Capacitor || {Plugins: {}};
+  window.Capacitor.Plugins.LocalNotifications = {
+    checkPermissions: async () => ({display: 'granted'}),
+    requestPermissions: async () => ({display: 'granted'}),
+    getPending: async () => ({notifications: lies().map(n => ({id: n.id}))}),
+    cancel: async (o) => { const weg = new Set(o.notifications.map(n => n.id)); merk(lies().filter(n => !weg.has(n.id))); },
+    createChannel: async () => {},
+    checkExactNotificationSetting: async () => ({exact_alarm: 'denied'}),
+    schedule: async (o) => {
+      const neu = o.notifications.map(n => ({id: n.id, art: n.extra && n.extra.art, text: n.body}));
+      const ids = new Set(neu.map(n => n.id));
+      merk(lies().filter(n => !ids.has(n.id)).concat(neu)); },
+  };
+})();
+"""
+BEN_AN = """() => localStorage.setItem('zmaj_benachrichtigung',
+    JSON.stringify({gefragt: true, erinnerung: true, serie: true, leben: true}))"""
+GEPLANT = "() => JSON.parse(sessionStorage.getItem('probe_ben') || '[]')"
+BEN_STAND = "() => JSON.parse(localStorage.getItem('zmaj_benachrichtigung') || 'null')"
+
+
+def _ben_starten(seite, heute_stand, cloud_html):
+    """Angemeldet, drei Lerntage, alle drei Schalter an und schon geplant."""
+    attrappe = Attrappe()
+    attrappe.konto_anlegen("ich@probe.example", "geheim-123")
+    seite.page.add_init_script(PLUGIN)
+    seite.page.add_init_script(BEN_PLUGIN)
+    _starten(seite, cloud_html, stand=_gelernt(heute_stand, tage=3), attrappe=attrappe,
+             vorbereiten=BEN_AN, plugin=False)
+    _mail_anmelden(seite, "ich@probe.example", "geheim-123")
+    seite.js("async () => { await benPlanen(); }")
+    vorher = seite.js(GEPLANT)
+    arten = [n["art"] for n in vorher]
+    assert "rueckhol" in arten and len(arten) >= 5, vorher
+    return attrappe
+
+
+def _ben_fertig(seite):
+    seite.page.wait_for_function("() => !benLaeuft")
+
+
+def test_konto_loeschen_sagt_alle_nachrichten_ab(seite, heute_stand, cloud_html):
+    """Die Datenschutzerklaerung (Abschnitt 10) verspricht, dass der Lernstand
+    sofort geloescht ist. Bis 1.4 sagte "Konto loeschen" die geplanten
+    Nachrichten nicht ab, und der naechste Start plante auf dem leeren Stand
+    neu. Jetzt ist alles abgesagt und alle drei Schalter sind aus - auch nach
+    einem Neustart kommt nichts."""
+    _ben_starten(seite, heute_stand, cloud_html)
+    seite.js("() => showKonto()")
+    seite.page.click("#setKontoWeg")
+    seite.page.fill("#wegPw", "geheim-123")
+    seite.page.click("#wegKnopf")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    _ben_fertig(seite)
+    assert seite.js(GEPLANT) == []
+    s = seite.js(BEN_STAND)
+    assert (s["erinnerung"], s["serie"], s["leben"], s["geplant"]) == (False, False, False, []), s
+    _neu_laden(seite)
+    _ben_fertig(seite)
+    seite.js("async () => { await benPlanen(); }")
+    assert seite.js(GEPLANT) == []
+    assert seite.fehler == []
+
+
+def test_abmelden_behaelt_die_erinnerungen_ohne_rueckhol(seite, heute_stand, cloud_html):
+    """Beim Abmelden bleiben die Erinnerungen mit Absicht - sie holen zur
+    Anmeldung zurueck. Die Rueckhol-Nachricht ("Deine Woerter sind alle noch
+    da") kommt aber nur, wenn es einen Lerntag gibt, nicht auf dem leeren
+    Stand nach dem Abmelden."""
+    _ben_starten(seite, heute_stand, cloud_html)
+    seite.js("() => showKonto()")
+    seite.page.click("#setLogout")
+    seite.page.click("#frJa")
+    seite.page.wait_for_function("() => sichtbar('profileView')")
+    _neu_laden(seite)
+    _ben_fertig(seite)
+    seite.js("async () => { await benPlanen(); }")
+    arten = [n["art"] for n in seite.js(GEPLANT)]
+    assert arten and "rueckhol" not in arten, arten
+    assert set(arten) <= {"erinnerung", "serie"}, arten
+    s = seite.js(BEN_STAND)
+    assert (s["erinnerung"], s["serie"], s["leben"]) == (True, True, True), s
     assert seite.fehler == []
 
 

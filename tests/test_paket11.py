@@ -20,12 +20,13 @@ from paket1020_pruefung import *  # noqa: F401,F403
 LEVEL = ["erziehung_aufwachsen", "familie_generationen", "liebe_ehe", "streit_versoehnung",
          "reue_enttaeuschung", "gefuehle_genauer", "charakter", "trauer_beileid", "begegnen_versammeln",
          "nachbarn_miteinander"]
+# Seit 13.11.2026 (Frage 6a) in der Sektion davor, Denken, Fühlen und Beziehungen
 SEKTION = {
-    "erziehung_aufwachsen": "menschenbeziehungen", "familie_generationen": "menschenbeziehungen",
-    "liebe_ehe": "menschenbeziehungen", "streit_versoehnung": "menschenbeziehungen",
-    "reue_enttaeuschung": "menschenbeziehungen", "gefuehle_genauer": "menschenbeziehungen",
-    "charakter": "menschenbeziehungen", "trauer_beileid": "menschenbeziehungen",
-    "begegnen_versammeln": "menschenbeziehungen", "nachbarn_miteinander": "menschenbeziehungen",
+    "erziehung_aufwachsen": "denkenmeinen", "familie_generationen": "denkenmeinen",
+    "liebe_ehe": "denkenmeinen", "streit_versoehnung": "denkenmeinen",
+    "reue_enttaeuschung": "denkenmeinen", "gefuehle_genauer": "denkenmeinen",
+    "charakter": "denkenmeinen", "trauer_beileid": "denkenmeinen",
+    "begegnen_versammeln": "denkenmeinen", "nachbarn_miteinander": "denkenmeinen",
 }
 
 # Die Woerter je Level ohne die Beispielsaetze. Bosnisch genau so, wie Ajdin es

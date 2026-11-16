@@ -125,10 +125,11 @@ def test_doppelformen_alle_formen_am_ende(grunddaten):
         assert 3124 <= _nummer(erste["datei"]) <= 3421, erste
 
 
-def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, index, wurzel):
+def test_jeder_beispielsatz_hat_emirs_ton(grunddaten_vor_umzug, index, wurzel):
     """Jeder der 150 Saetze hat seine eigene Aufnahme, Text genau wie in der
     App - auch die aus Ajdins Entscheidungen (Boli me u prsima. statt grudi,
     Ne mogu izabrati ...)."""
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     import ton_bauen
     import ton_pruefen
     emir = ton_bauen.nur_emir()
@@ -150,11 +151,12 @@ def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, index, wurzel):
         assert ton_bauen.schluessel(satz) in emir, satz
 
 
-def test_nummern_gehoeren_dem_paket(grunddaten):
+def test_nummern_gehoeren_dem_paket(grunddaten_vor_umzug):
     """Genau die 302 neuen Aufnahmen, lueckenlos, keine fuer etwas anderes,
     und in der Reihenfolge von ton_bauen.sammle(). Die Nummern bleiben
     vergeben (ton_bauen.grosser_lauf zaehlt sie mit), auch wenn ein Wort
     spaeter wieder geht."""
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     import ton_bauen
     emir = ton_bauen.nur_emir()
     im_paket = {e["datei"]: k for k, e in emir.items() if _im_bereich(e["datei"])}
@@ -162,5 +164,9 @@ def test_nummern_gehoeren_dem_paket(grunddaten):
     assert len(im_paket) == 302
     texte = {w["bs"] for w in _neue_woerter(grunddaten) + _neue_saetze(grunddaten)}
     assert {emir[k]["text"] for k in im_paket.values()} <= texte
-    reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(im_paket.values())]
-    assert [im_paket[d] for d in sorted(im_paket)] == reihe
+    # Seit 13.11.2026 kommen die 40 umgezogenen Grundwoerter in der App frueher dran,
+    # ihre Nummern bleiben (grundwoerter_umzug.py). Sie zaehlen hier nicht zur Reihenfolge.
+    from grundwoerter_umzug import UMZUG
+    umgezogen = {f(u[1]) for u in UMZUG for f in (ton_bauen.schluessel, ton_bauen.schluessel_alle)}
+    reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(im_paket.values()) and p["key"] not in umgezogen]
+    assert [im_paket[d] for d in sorted(im_paket) if im_paket[d] not in umgezogen] == reihe

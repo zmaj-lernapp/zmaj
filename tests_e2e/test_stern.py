@@ -842,7 +842,7 @@ KAESTEN = """() => {
           leerStern: leer && leer.querySelector('svg') && {rolle: leer.querySelector('svg').getAttribute('role'),
                                                           w: leer.querySelector('svg').getAttribute('width')},
           notizen: document.querySelectorAll('#topfHome .note').length,
-          weiter: w.style.display, weiterText: w.textContent};
+          weiter: w.style.display, weiterText: w.textContent.trim()};
 }"""
 
 
@@ -924,7 +924,7 @@ def test_weitermachen_knopf_unveraendert(seite, heute_stand):
     assert seite.js(KAESTEN)["weiter"] == "none", "nur Sterne: Weitermachen startet keine Markiert-Runde"
     seite.js(FUELLEN, [3, 4])
     k = seite.js(KAESTEN)
-    assert k["weiter"] == "" and k["weiterText"] == "▶ Weitermachen · Wiederholen"
+    assert k["weiter"] == "" and k["weiterText"] == "Weitermachen · Wiederholen"
     seite.page.click("#weiterKnopf")
     lage = seite.js("() => ({quelle: Lx.quelle, alleImTopf: Lx.queue.every(a => topfSchluessel(a) in topf)})")
     assert lage == {"quelle": "topf", "alleImTopf": True}

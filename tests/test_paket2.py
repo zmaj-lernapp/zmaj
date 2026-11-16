@@ -94,6 +94,9 @@ FORMEN = {
 AUCH_EXTRA = {"shvatati": ["shvaćati"], "sačekati": ["pričekati"], "objesiti": ["okačiti"],
               "počistiti": ["očistiti"], "mekan": ["mek", "meko"], "komplikovan": ["kompliciran"],
               "stidljiv": ["sramežljiv"]}
+# Pruefbericht 1.4, V3 (14.11.2026): ein Beispielsatz nimmt beim Tippen auch kada.
+# Die Kennung bleibt (tests/test_pruefbericht14_antworten.py).
+SATZ_AUCH = {"Kad se ženiš?": ["Kada se ženiš?"]}
 
 # Das Gegenstueck jedes neuen Verbs. Steht es in Paket 1 oder der App, hat
 # es seit Paket 2 umgekehrt auch "partner".
@@ -131,11 +134,12 @@ def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten):
-    sektion = grunddaten["sektionen"][10]
-    assert len(grunddaten["sektionen"]) == 31       # seit 07.11.2026 (Pakete 10 bis 20)
+def test_sektion_elf_und_vier_level_in_tun_und_lassen(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
+    sektion = grunddaten["sektionen"][11]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
+    assert len(grunddaten["sektionen"]) == 27       # seit 13.11.2026 (Sätze bauen 2, B2 in neun)
     assert sektion["id"] == "wieetwasist"
-    assert sektion["label"] == "Sektion 11 · Wie etwas ist"
+    assert sektion["label"] == "Sektion 3 · Wie etwas ist"
     ids = [k["id"] for k in grunddaten["kategorien"]]
     tun = [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "tunlassen"]
     assert tun[8:12] == TUN, "nach den acht Leveln aus Paket 1"
@@ -163,7 +167,7 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
         for wort, satz in zip(woerter[0::2], woerter[1::2]):
             assert re.search(r"[.!?]$", satz["bs"]) and re.search(r"[.!?]$", satz["de"]), satz
             assert satz["bs"][:1].isupper() and satz["de"][:1].isupper(), satz
-            assert "partner" not in satz and "auch" not in satz, satz
+            assert "partner" not in satz and satz.get("auch") == SATZ_AUCH.get(satz["bs"]), satz
             assert satz["bs"] != wort["bs"], satz
 
 
@@ -189,8 +193,10 @@ def test_adjektive_maennlich_die_anderen_formen_zaehlen(grunddaten):
         assert w["auch"] == [weiblich, saechlich] + AUCH_EXTRA.get(bs, []), bs
     for bs, extra in AUCH_EXTRA.items():
         assert neu[bs]["auch"][-len(extra):] == extra, bs
+    for bs, auch in SATZ_AUCH.items():
+        assert neu[bs]["auch"] == auch, bs
     mit_auch = {bs for bs, w in neu.items() if w.get("auch")}
-    assert mit_auch == set(FORMEN) | set(AUCH_EXTRA)
+    assert mit_auch == set(FORMEN) | set(AUCH_EXTRA) | set(SATZ_AUCH)
     for w in neu.values():
         formen = [f.strip() for f in w["bs"].split(" / ")]
         for a in w.get("auch", []):

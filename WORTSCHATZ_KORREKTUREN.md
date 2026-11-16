@@ -707,3 +707,774 @@ schon Grammatik-Überschrift; nicht en, sv) und auf Schwedisch *pitati* / *upita
 jetzt anders: sv „Jeden Monat schicke ich meinen Eltern eine Überweisung.“, nb
 „Vorfall“ (insident statt tilfelle, das ist *slučaj*), da „Ich kann mich nicht an
 seinen Namen erinnern.“ (komme i tanke om).
+
+## 13.11.2026 – Cousin und Cousine väterlicherseits: auch stričević und stričevka
+
+Frage an Ajdin: „Soll stričević / stričevka auch in die App? Am einfachsten zählt
+es beim Tippen als richtig neben amidžić (keine neue Aufnahme).“ Ajdin: „4 ja“.
+
+Belege (Recherche 13.11.2026): *stričević* = Sohn des *stric* (HJP), *stričevka* =
+gebräuchliche weibliche Form (CLASSLA-Korpus, Mundart Duvno).
+
+| Kennung | Änderung |
+|---|---|
+| `cousin (sohn des onkels väterlicherseits):amidžić / brat od amidže` | `"auch": ["stričević"]` |
+| `cousine (tochter des onkels väterlicherseits):amidžična / sestra od amidže` | `"auch": ["stričevka"]` |
+
+- Derselbe Weg wie die Koseformen vom 23.10.2026 (*striko*, *adžo*, *ujo*, *dajo*):
+  `"auch"` am Wort in `vokabeln.py`. Die Varianten-Liste `varianten.py` gilt für
+  Wörter mit „ / “ nicht (`tippbar()`), deshalb nicht dort.
+- Nur die Grundform, ungebeugt wie bei den Koseformen. Ohne Häkchen
+  („stricevic“) ist es wie bei jedem Wort „Richtig! Mit Sonderzeichen: stričević“.
+- Kennung, Anzeige und Emirs Aufnahme bleiben, kein Lernstand geht verloren.
+  *stričević* und *stričevka* sind keine eigenen Lernwörter und werden nie
+  gesprochen.
+- Wie bei *amidža / stric*: Wörter mit „ / “ kommen heute nie als Schreibaufgabe
+  (`typable()`), und kein Lückensatz fragt *amidžić* oder *amidžična*. Wirksam
+  wird `"auch"` beim Tippen damit erst, wenn so eine Stelle dazukommt. Sichtbar
+  werden können die beiden heute nur wie *striko* und *adžo*: als falsche Kachel
+  beim Satzbau (`kachelAblenker()` nimmt jede Form aus `"auch"`).
+- Tests: `tests/test_verwandte.py`, `tests_e2e/test_verwandte.py`.
+
+## 14.11.2026 – Prüfbericht 1.4: richtige Antworten, die ein Leben kosteten
+
+Keine neue Frage an Ajdin. Hier stehen nur Punkte aus `Release\Pruefbericht_1.4.md`
+ohne „Entscheidung“, umgesetzt nach seinem Auftrag vom 14.11.2026, die eindeutigen
+Fehler gleich in 1.4 zu beheben. Was er noch entscheidet (F1 bis F23), steht nicht hier.
+
+**V3, beim Tippen.** Jede Zeile folgt aus etwas, das schon gilt:
+
+| Kennung | Änderung | warum |
+|---|---|---|
+| `wann kommst du?:Kada dolaziš?` | `"auch": ["Kad dolaziš?"]` | Als Einzelwort gelten *kad* und *kada* beide („Wann?“, „als / wenn“). |
+| `wann wirst du kommen?:Kada ćeš doći?` | `"auch": ["Kad ćeš doći?"]` | ebenso; die Grammatik schreibt selbst „Kad ćeš doći?“ |
+| `wann heiratest du?:Kad se ženiš?` | `"auch": ["Kada se ženiš?"]` | ebenso |
+| Lückensatz „___, kako si?“ | `"auch": ["Zdravo"]` | Das Wort *Merhaba* hat *Zdravo* im `"auch"` („Hallo“). |
+| `ich habe es geschafft!:Uspjela sam!` | `"auch": ["Uspio sam!"]` | Die Aufgabe nennt kein Geschlecht. |
+| `was ist passiert?:Šta se desilo?` | `"auch": ["Šta se dogodilo?"]` | Beim Verb gilt beides (*desiti se / dogoditi se*, Paket 1). |
+
+- Kein Paar *kad* / *kada* für überall in `varianten.py`: *kada* heißt auch „Badewanne“.
+- Kennungen, Anzeige und Aufnahmen bleiben. Gesprochen wird weiter `bs`, im
+  Lückensatz der Satz mit *Merhaba*.
+- Tests: `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+
+**B9, Bedeutung.** *Alejkumu selam* hieß „(Antwort darauf)“. Seit dem alphabetischen
+Einsortieren steht es vor *Selam alejkum*, „darauf“ zeigte ins Leere.
+
+| alte Kennung | neue Kennung |
+|---|---|
+| `(antwort darauf):Alejkumu selam` | `antwort auf selam alejkum:Alejkumu selam` |
+
+- Neue Bedeutung „Antwort auf Selam alejkum“, in den anderen Sprachen nach dem Muster
+  von „Antwort auf den Bajram-Gruß“: en *reply to Selam alejkum*, tr *Selam alejkum'a
+  verilen cevap*, sv/nb/da *svar på Selam alejkum*, nl *antwoord op Selam alejkum*,
+  fr *réponse à Selam alejkum*. Der Gruß bleibt bosnisch geschrieben.
+- Das bosnische Wort und seine Aufnahme (w1987) bleiben, der Lernstand zieht über
+  `UMBENANNT` mit.
+
+**B10, Wörterbuch der Lesetexte.** Nur die Bedeutung beim Antippen in den
+Geschichten (`WOERTERBUCH` und `vokabeln` in `geschichten.py`). Am Bosnischen und
+an den Vokabeln ändert sich nichts, der Text der Geschichten bleibt (Ton-Schlüssel).
+
+| Wort | vorher | jetzt | warum |
+|---|---|---|---|
+| *ti* | du | du / dir | In den B1-Texten jedes Mal „dir“ („Ako ti bilo šta treba“). |
+| *kad* | als / wenn (zeitlich) | als / wenn / wann | „Babo, kad idemo opet?“, „pita kad dolazim“ |
+| *vam* | Ihnen | Ihnen / euch | „Ako vam nešto zatreba“ zu den Kindern, „Šta da vam donesem“ |
+| *je* in intervju, b1_ljeto, b1_voz, b1_zanat | ist | ist / sie (Akk.) | „Direktor je pita“, „Kad je zagrlim“, „sama sam je pekla“, „Nemojte je samo držati“; sonst bleibt „ist“ |
+| *zadovoljan*, *zdrav*, *tužan* | … (m/w) | … (m) | im Text männlich (Dino, Amar, Haris, Kenan) |
+| *vaš* | euer / Ihr (m/w/s) | euer / Ihr (m) | „Vaš telefon“ |
+| *važna* | wichtig (der wichtige) | wichtig (w) | „važna utakmica“ |
+| *njena* | ihr (von ihr) (m/w/s) | ihre (von ihr, w) | „njena sarma“ |
+| *doktorica* | Arzt / Ärztin | Ärztin | |
+| *svoja* | eigener (mein, dein, sein) | eigene (Mehrz.) | „svoja pravila“ |
+
+- Die Vokabeln behalten ihr `de` („zufrieden (m/w)“ für *zadovoljan / zadovoljna*),
+  sonst änderte sich die Kennung. Die acht Wörter haben deshalb einen eigenen Text
+  nur im Wörterbuch.
+- Übersetzungen nach den Mustern, die in `uebersetzungen.py` schon stehen („dich /
+  dir“, „sie (Akkusativ)“, „klein (w)“, „Beamtin“, „ihrer eigenen“); nachgeschlagen
+  in Wiktionary (nl *toen*, da *hvornår*, fr *médecin* für Frauen) und Den Danske
+  Ordbog (da *da* für einen Zeitpunkt in der Vergangenheit).
+
+## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zum Tippen
+
+Ajdins Antworten auf die Fragen aus `Release\Pruefbericht_1.4.md` („Antworten von
+Ajdin (14.11.2026)“), soweit sie beim Tippen eine weitere richtige Antwort bringen.
+Je ein `"auch"` am Wort oder am Lückensatz; Kennungen, Anzeige und Aufnahmen
+bleiben, gesprochen wird weiter `bs` bzw. die Lösung des Lückensatzes. Gilt nur an
+den genannten Stellen, kein Paar für überall in `varianten.py`.
+
+**V8 / F1, s und sa.** Ajdin: „passt“.
+
+| Kennung | Änderung |
+|---|---|
+| `mit meiner frau:s mojom ženom` | `"auch": ["sa mojom ženom"]` |
+| `mit dem bruder:s bratom` | `"auch": ["sa bratom"]` |
+| `mit den kindern:s djecom` | `"auch": ["sa djecom"]` |
+| `mit dir:s tobom` | `"auch": ["sa tobom"]` |
+| `mit uns:s nama` | `"auch": ["sa nama"]` |
+| `mit milch:s mlijekom` | `"auch": ["sa mlijekom"]` |
+| `mit freundlichen grüßen:S poštovanjem` | `"auch": ["Sa poštovanjem"]` |
+
+- Die Grammatik des Levels Fälle 4 schreibt selbst „sa bratom“, „sa tobom“, „sa nama“.
+- Kein Paar *s* → *sa* für überall, sonst gälte auch „s mnom“. Beim Satzbau sind *s*
+  und *sa* schon dieselbe Kachel (`KACHEL_PAARE`).
+- Tests: `tests/test_pruefbericht14_tippen.py`.
+
+**V9 / F2 bis F5, eine zweite gängige Antwort.** F2 und F3: „passt“. F4 ja: „kad heißt
+wenn und ako heißt falls also an sich ja aber haben beide eine leicht andere
+bedeutung“. F5: „passt“.
+
+| Stelle | Änderung | Frage |
+|---|---|---|
+| `sehr:jako` | `"auch": ["vrlo", "veoma"]` | F2 |
+| Lückensatz „Kahva je ___ vruća.“ | `"auch": ["vrlo", "veoma"]` | F2 |
+| Satzbau „Kahva je jako vruća.“ | `"ohne": ["vrlo", "veoma"]` | F2 |
+| `nach (zeitlich):poslije` | `"auch": ["nakon"]` | F3 |
+| `nach der arbeit:poslije posla` | `"auch": ["nakon posla"]` | F3 |
+| `nach (einem ereignis):nakon` | `"auch": ["poslije"]` | F3 |
+| Lückensatz „___ posla idem kući.“ | `"auch": ["Nakon"]` | F3 |
+| Lückensatz „___ pada kiša, ostajem kod kuće.“ | `"auch": ["Kad", "Kada"]` | F4 |
+| Satzbau „Ako pada kiša, ostajem kod kuće.“ | `"ohne": ["kad", "kada"]` | F4 |
+| Lückensatz „Kada ___ autobus?“ | `"auch": ["kreće"]` | F5 |
+
+- Damit gilt für *jako* bei „sehr“ nicht mehr, was im Abschnitt vom 06.11.2026
+  (Pakete 5 bis 9) unter „Nie nebeneinander“ steht („Beim Tippen zählt das andere
+  Wort nicht, das hat Ajdin nicht freigegeben“). Nur an diesen Stellen, kein Paar
+  für überall in `varianten.py`.
+- `"ohne"`: *vrlo* und *veoma* (Level *kleine_woerter*) und *kad* / *Kada?* (Level
+  *fragen*) liegen sonst als falsche Kachel neben dem Satz, den sie genauso richtig
+  machen. Das `"auch"` am Wort *jako* sperrt *vrlo* und *veoma* außerdem bei den
+  übrigen Sätzen mit *jako* (`kachelAblenker()` nimmt jede Form aus `"auch"`).
+  *nakon* kommt erst in B1 und liegt bei den Sätzen mit *Poslije* nie als Kachel.
+- Die Wörter *vrlo / veoma*, *ako* und *kad* bleiben, wie sie waren.
+
+**B1 / F12, Wendungen mit einer anderen Fassung.** Ajdin: „passt“, a bis i alle ja.
+
+| Kennung | Änderung |
+|---|---|
+| `wo wohnst du?:Gdje stanuješ?` | `"auch": ["Gdje živiš?"]` |
+| `das ist teuer:Ovo je skupo` | `"auch": ["To je skupo"]` |
+| `das stimmt:To je tačno` | `"auch": ["Tačno je"]` |
+| `ich brauche wasser:Trebam vodu` | `"auch": ["Treba mi voda"]` |
+| `ich brauche eine bescheinigung:Trebam potvrdu` | `"auch": ["Treba mi potvrda"]` |
+| `ich vermisse dich:Nedostaješ mi` | `"auch": ["Fališ mi"]` |
+| `wie heißt du?:Kako se zoveš?` | `"auch": ["Kako ti je ime?"]` |
+| `mach dir keine sorgen:Ne brini` | `"auch": ["Ne brini se"]` |
+| `ich werde arbeiten:Radit ću` | `"auch": ["Ja ću raditi"]` |
+| `das auto des vaters:auto oca` | `"auch": ["očev auto"]` |
+
+- Auch bei *Trebam vodu* (Level Fälle 1, Akkusativ) und *auto oca* (Fälle 2,
+  Genitiv), obwohl die andere Fassung den geübten Fall umgeht, und bei *Radit ću*
+  im Level Zukunft. Gezeigt und gesprochen wird weiter die Fassung der App.
+- Nachtrag 14.11.2026 (Offen-Liste, Punkt 2: „Fališ auch in der Lücke“): Auch der
+  Lückensatz „___ mi.“ (*Nedostaješ*, „Ich vermisse dich.“) nimmt `"auch":
+  ["Fališ"]`. Er richtet sich nach dem `"auch"` des Worts, wie „___, kako si?“ nach
+  *Merhaba* (V3). Einen Satzbau-Satz mit *Nedostaješ* gibt es nicht, ein `"ohne"`
+  braucht es nicht.
+
+**B2 / F13, andere Wortstellung.** Ajdin: „passt“, a und b ja.
+
+| Kennung | Änderung |
+|---|---|
+| `es regnet:Pada kiša` | `"auch": ["Kiša pada"]` |
+| `es schneit:Pada snijeg` | `"auch": ["Snijeg pada"]` |
+| `es läuft aus / es tropft:Curi voda` | `"auch": ["Voda curi"]` |
+| `mir ist es egal:Svejedno mi je` | `"auch": ["Meni je svejedno"]` |
+| `mir ist langweilig:Dosadno mi je` | `"auch": ["Meni je dosadno"]` |
+
+- Beim Satzbau galt die Umstellung schon („Danas je hladno i kiša pada.“).
+
+**B3 / F14, Wörter, die die App selbst als gleichbedeutend führt.** Ajdin: „passt“,
+a bis o alle ja, nur in der gefragten Richtung: Das Wort der Aufgabe nimmt das andere
+App-Wort mit, das andere Wort selbst bekommt nichts dazu.
+
+| Kennung | Änderung | |
+|---|---|---|
+| `sagen:reći` | `"auch": ["kazati"]` | a |
+| `sich fürchten:plašiti se` | `"auch": ["bojati se"]` | b |
+| `falls:ukoliko` | `"auch": ["ako"]` | c |
+| `losgehen:poći` | `"auch": ["krenuti"]` | d |
+| `ehefrau:žena` | `"auch": ["supruga"]` | e |
+| `ehemann:muž` | `"auch": ["suprug"]` | e |
+| `stau:zastoj` | `"auch": ["gužva"]` | f |
+| `bald:uskoro` | `"auch": ["skoro"]` | g |
+| `hier:ovdje` | `"auch": ["tu"]` | h |
+| `früher:prije` | `"auch": ["nekad", "nekada"]` | i |
+| `da (weil):budući da` | `"auch": ["pošto"]` | j |
+| `nachdem:nakon što` | `"auch": ["pošto"]` | j |
+| `vorbereiten:pripremiti` | `"auch": ["spremiti"]` | k |
+| `verbinden:spojiti` | `"auch": ["povezati"]` | l |
+| `modern:moderan` | `"auch"` um *savremen*, *savremena*, *savremeno* ergänzt | m |
+| `richtung:pravac` | `"auch": ["smjer"]` | n |
+| `fehlen:nedostajati` | `"auch": ["faliti"]` | o |
+
+- Das andere Wort in der Form, in der die App es führt: *savremen* wie *moderan* mit
+  weiblicher und sächlicher Form. Bei *prije* *nekad*, wie in F14 i gefragt, und
+  *nekada*: *nekada* stand zuerst mit drin, war aber nicht gefragt und kam in der
+  Nachbesserung vom 14.11.2026 wieder raus. Auf die Rückfrage „nekada auch richtig?“
+  sagte Ajdin am selben Tag „ja“, seitdem steht es wieder da. Nur „früher“, nicht
+  *prije* „vor (zeitlich)“.
+- Für *ovdje* gilt damit nicht mehr, was im Abschnitt vom 06.11.2026 unter „Nie
+  nebeneinander“ steht: *tu* zählt beim Tippen mit. *tu* selbst nimmt *ovdje* nicht.
+  In der Auswahl stehen die beiden weiter nie nebeneinander.
+- Partner (*pripremati*, *uplašiti se*, *polaziti*, *spajati*) bleiben, wie sie sind.
+- Die Paket-Tests 1, 8, 9, 10 und 19 kennen die neuen `"auch"` (`PRUEFBERICHT_AUCH`).
+
+**B4 / F15, „Dobrodošli“.** Ajdin: „passt“.
+
+| Kennung | Änderung |
+|---|---|
+| `willkommen:Dobro došli` | `"auch": ["Dobrodošli"]` |
+
+- Gezeigt und gesprochen wird weiter „Dobro došli“.
+
+**S1 / F18, Lückensätze.** Ajdin: „passt außer ajde das ist schon nicht mehr
+bosnisch“, also a, b, c, d und f ja, e nein.
+
+| Lückensatz | Änderung | |
+|---|---|---|
+| „Šta si po ___?“ (*zanimanju*) | `"auch": ["struci"]` | a |
+| „Možemo li platiti ___?“ (*odvojeno*) | `"auch": ["posebno"]` | b |
+| „Moram sipati ___.“ (*gorivo*) | `"auch": ["benzin"]` | c |
+| „Ovo je jako ___.“ (*ukusno*) | `"auch": ["fino"]` | d |
+| „Poslije posla ___ večeru.“ (*kuham*) | `"auch": ["spremam", "pravim"]` | f |
+
+- **Nicht:** „___, idemo!“ nimmt weiter nur *Hajde*. *Ajde* ohne h ist „schon nicht
+  mehr bosnisch“; es bekommt wie bisher „Fast richtig!“ und ist beim zweiten Mal falsch.
+- Beim Satzbau liegen *struci*, *posebno*, *benzin*, *fino*, *spremam* und *pravim* bis
+  zu diesen Leveln nie als Kachel, ein `"ohne"` braucht es nicht.
+
+**B5 / F16, Ćao.** Frage: „Ist Ćao auch „Hallo“?“ Ajdin: „passt“, also ja.
+
+| Stelle | Änderung |
+|---|---|
+| `hallo:Merhaba` | `"auch": ["Zdravo", "Ćao"]` |
+| Lückensatz „___, kako si?“ (*Merhaba*) | `"auch": ["Zdravo", "Ćao"]`, wie beim Wort (V3) |
+| Satzbau „Merhaba, kako si?“ | `"ohne": ["ćao"]` |
+| `hallo (neutral, überall):Zdravo` | `"auch": ["Ćao"]` (Nachtrag, siehe unten) |
+| `NIE_NEBENEINANDER` | `['Zdravo', 'Ćao']`, mit dem Nachtrag wieder raus |
+
+- Gezeigt und gesprochen wird weiter *Merhaba*. Ćao selbst bleibt „Tschüss“ mit
+  *Doviđenja* im `"auch"`; Kennung und Aufnahme bleiben.
+- Zuerst nahm *Zdravo* („Hallo (neutral, überall)“) Ćao beim Tippen nicht, so wenig
+  wie *Merhaba*; in der Auswahl hielt `NIE_NEBENEINANDER` die beiden auseinander.
+  Neben *Merhaba* hält das `"auch"` Ćao aus der Auswahl.
+- Nachtrag 14.11.2026 (Offen-Liste, Punkt 2: „Ćao auch bei Zdravo“): Ajdins „passt“
+  zu F16 gilt auch für *Zdravo*. Das Wort nimmt beim Tippen `"auch": ["Ćao"]`, wie
+  *Merhaba*; gezeigt und gesprochen wird weiter *Zdravo*. Das `"auch"` hält Ćao jetzt
+  auch dort aus der Auswahl, das Paar in `NIE_NEBENEINANDER` ist darum raus (es wäre
+  doppelt und sagte „beim Tippen zählt es nicht“). Einen Lückensatz oder Satzbau-Satz
+  mit *Zdravo* gibt es nicht. Ćao selbst nimmt *Zdravo* nicht.
+
+**V11 / F7 a, Gdje für „wohin“.** Frage: a = gilt umgangssprachlich, b = nur *Kuda*.
+Ajdin: a, *b1_voz* bleibt „Gdje putujete, djeco?“. Zugleich Tabelle 2c, Nr. 30.
+
+| Stelle | Änderung |
+|---|---|
+| `wohin gehst du?:Kuda ideš?` | `"auch": ["Gdje ideš?"]` |
+| Lückensatz „___ ideš?“ (*Kuda*) | `"auch": ["Gdje"]`, wie beim Wort (V3) |
+| Grammatik „Fragen stellen“, „___ ideš?“ (Wohin gehst du?) | Knöpfe *Kuda* / *Kada* / *Ko* statt *Gdje* / *Kuda* / *Ko*; Tipp „Bewegung in eine Richtung: Kuda. Gesprochen oft auch Gdje.“ in 8 Sprachen |
+
+- Gezeigt, gesprochen und gelehrt wird weiter *Kuda*. Kennungen und Aufnahmen
+  bleiben. Die Grammatik-Übung zählt nach ihrer Nummer (`g:fragen|1`), ihr Lernstand
+  bleibt.
+- Zuerst nur an den beiden gefragten Stellen. „Wohin?“ (*Kuda?*) allein und „Wohin
+  fahrt ihr in den Sommerurlaub?“ (*Kuda idete na ljetovanje?*) nehmen *Gdje* seit der
+  dritten Runde (14.11.2026 abends, siehe unten); „___ stanuješ?“ (Wo wohnst du?) nimmt
+  *Kuda* weiter nicht.
+
+**B6 / F17 b, Minze.** Frage: a = nur „nana“, b = „nana / metvica“. Ajdin: „ok“, also b.
+
+| alte Kennung | neue Kennung |
+|---|---|
+| `minze:nana (auch: metvica)` | `minze:nana / metvica` |
+
+- Vorher stand im bosnischen Knopf das deutsche „auch“, in allen Sprachen. Jetzt zwei
+  Formen wie *kahva / kafa*: beide zählen beim Tippen und beim Sprechen, der Lernstand
+  zieht über `UMBENANNT` mit. Kein bosnisches Wort hat mehr einen Zusatz in Klammern.
+- Ton wie bei *kahva / kafa*: dazu gehört eine Aufnahme mit beiden Formen („nana,
+  metvica“, Schlüssel `nana / metvica`). Emir hat sie am 14.11.2026 gesprochen (w8955,
+  Ajdin: „Nimm die neue fassung“), sie liegt nur in der Hülle (`ton_nur_emir.json`).
+  Bis dahin klang die erste Form *nana* (w0089, dieselbe wie „Oma“), und
+  `ton_pruefen.py` führte das Wort in `NUR_ERSTE_FORM`; die Liste ist wieder leer. In
+  der Web-Demo klingt weiter *nana*. Die alte Aufnahme w1717 bleibt in `index.json`
+  stehen.
+
+**S2 / F19, Kollegin.** Gefragt war, ob drei umgestellte Satzbau-Sätze auch gelten.
+Ajdin: „kolegica ist [richtig] nicht koleginica also 2 passen nicht“, auf Rückfrage
+„ne sofort umstellen ne die sätze sind falsch“. Also *koleginica* überall *kolegica*;
+„Plava je voda u jezeru“ und „Pet godina ima moja sestra“ gelten nicht.
+
+| Stelle | vorher | jetzt |
+|---|---|---|
+| Wort „Kollegin“ (Level kennenlernen) | `kollegin:koleginica` | `kollegin:kolegica` |
+| Lückensatz „Ovo je moja ___.“ (kennenlernen) | *koleginica* | *kolegica* |
+| Satzbau „Das ist meine Kollegin.“ | `k:kennenlernen|Ovo je moja koleginica.` | `k:kennenlernen|Ovo je moja kolegica.` |
+
+- Lernstand: das Wort über `UMBENANNT`, der Satzbau-Satz über `SAETZE_UMBENANNT`; der
+  Lückensatz behält seinen Schlüssel (`s:kennenlernen|Ovo je moja ___.`).
+- Ton von Emir, von Ajdin angehört („passt“): w8953 *kolegica* (Fassung A) und w8954
+  „Ovo je moja kolegica.“ (Fassung D), nur in der Hülle (`audio_emir`), Einträge in
+  `ton_nur_emir.json`. `web/audio/index.json` bleibt; die alten Aufnahmen w2012 und
+  w2135 stehen dort weiter, wie w2278 bei *produžni kabl*, und spielen nicht mehr.
+- Der Satzbau-Satz bekommt kein `"auch"`: die Umstellung „Moja je ovo …“ (F19 a) ist
+  nicht freigegeben. Die beiden anderen Sätze bleiben, wie sie waren.
+
+## 14.11.2026 – Prüfbericht 1.4: die fraglichen Varianten beim Tippen (Tabelle 2c, F6)
+
+Tabelle 2c in `Release\Wortschatz\varianten_2026-11-13.md`, 39 Zeilen (V10). Ajdin
+zuerst: „ne keine kroatischen wörter nur bosnische“, dann: „oder nimm doch kroatische
+und die anderen rein die sind nur nicht sichtbar“. Also alle Zeilen ja, nur als weitere
+richtige Antwort beim Tippen. Gezeigt, gesprochen und gelehrt wird weiter nur die Form
+der App; Kennungen und Aufnahmen bleiben. Eingetragen als Paare in `varianten.py`
+(`auch_var`: steht nirgends auf dem Bildschirm, nicht als Kachel, nicht als Knopf), nur
+von der Form der App zur anderen. Wo Geschlecht oder Zahl abweichen: nur, wo das Wort
+allein steht (Ajdin über *šerpa* und *kola*).
+
+| Nr. | Form der App | zählt auch | wo |
+|---:|---|---|---|
+| 1 | *hljeb* | *kruh* | überall, auch „Jedem kruh“, „Nema kruha“ |
+| 2 | *supa* | *juha* | überall |
+| 3 | *plata* | *plaća* | überall („bruto plaća“), nur Nom., Akk., Instr. |
+| 4 | *polako* | *polahko* | überall |
+| 5 | *minuta* | *minut* | allein |
+| 6 | *jučer* | *juče* | überall |
+| 7 | *sedmica* | *hefta* | überall („prošle hefte“) |
+| 8 | *lonac* | *šerpa* | allein, nicht *bosanski lonac* |
+| 9 | *tava* | *tiganj* | allein |
+| 10 | *špinat* | *spanać* | überall, auch „Djeca ne vole ___.“ |
+| 11 | *bašta* | *bašča* | überall |
+| 12 | *kćerka* | *kći*, *kćer* | allein |
+| 13 | *sat* | *sahat* | nur `stunde / uhr:sat` |
+| 14 | *historija* | *povijest* | allein |
+| 15 | *posjeta* | *posjet* | allein |
+| 16 | *kirija* | *stanarina*, *najamnina* | überall, auch „Kolika je ___ mjesečno?“ |
+| 17 | *frižider*, *rerna*, *kesa*, *plafon*, *fabrika*, *kajsija*, *praziluk*, *peškir* | *hladnjak*, *pećnica*, *vrećica*, *strop*, *tvornica*, *marelica*, *poriluk*, *ručnik* | überall |
+| 17 | *sirće* | *ocat* | allein |
+| 18 | *prodavnica* („Laden“), *radnja* („Geschäft“) | gegenseitig | nur an den beiden Wörtern |
+| 19 | *dvorište*, *avlija* | gegenseitig | nur an den beiden Wörtern |
+| 20 | *ponekad* | *nekad* | nur `manchmal:ponekad` |
+| 21 | *kafena* | *kahvena* | überall, wie *smeđa* (Tabelle 2a) |
+| 21 | *kafena* | *braon* | allein |
+| 22 | *fildžan* | *findžan* | überall |
+| 23 | *auto* | *kola* | nur `auto:auto` |
+| 24 | *novac* | *pare* | nur `geld:novac` |
+| 25 | *mobitel* | *mobilni* | überall |
+| 26 | *pijaca* | *pazar* | allein |
+| 27 | *jelovnik* | *meni* | nur `speisekarte:jelovnik` |
+| 28 | *obrazac* | *formular* | überall |
+| 29 | *Izvini* | *Oprosti* | nur `entschuldigung (du):Izvini` |
+| 30 | *Kuda* | *Gdje* | gehört zu F7 a: nur „Wohin gehst du?“ und „___ ideš?“, als `"auch"`, siehe V11 oben |
+| 31 | *da li* | *je li* | nur `ob:da li`; Lückensatz „Pitam se ___ li dolazi.“ `"auch": ["je"]` |
+| 32 | *Hvala puno* | *Puno hvala*, *Hvala lijepa*, *Hvala mnogo* | nur `vielen dank:Hvala puno`; Lückensatz „Hvala ___!“ `"auch": ["mnogo", "lijepa"]` |
+| 33 | *Doviđenja* | *Do viđenja* | überall, auch bei „Tschüss“, das *Doviđenja* nimmt |
+| 34 | *Dobro veče* | *Dobra večer* | überall |
+| 35 | *navečer*, *ujutro* | *uveče*, *ujutru* | überall |
+| 36 | *kod prijatelja*, *prijatelju!* | *kod druga*, *druže!* | nur an den beiden Wörtern |
+| 37 | *prozor*, *zid*, *ormar*, *gost*, *lijek*, *prehlada*, *mesnica*, *merdevine*, *lješnjak* | *pendžer*, *duvar*, *dolap*, *musafir*, *hap*, *nahlada*, *kasapnica*, *skale*, *lješnik* | überall, auch „Svi ___ su došli.“ (*musafiri*) und „Idem u ___.“ (*kasapnicu*) |
+| 37 | *ulica*, *kvasac*, *stepenice*, *pas*, *komad*, *raspust*, *deka* | *sokak*, *germa*, *basamaci*, *kuče*, *parče*, *ferije*, *ćebe* | allein |
+| 38 | *tisuća* | bleibt 1000 (`ZAHL_SONDER`) | |
+| 39 | *bundeva*, *nar*, *ugristi*, *saobraćaj* | *tikva*, *šipak*, *ujesti*, *promet* | nur am einen Wort |
+
+- Nur in dieser Richtung: „mir“ (*meni / mi*, „Svejedno mi je“) nimmt nie *jelovnik*,
+  *nekad* nicht *ponekad*, „Oprosti mi“ nicht „Izvini mi“, „Pas me je ujeo“ nicht
+  *ugrizao*, *saobraćajni* nicht *prometni*, *trgovina* („Handel“) nicht *prodavnica*.
+- „Nur am einen Wort“, weil die andere Form auch etwas anderes heißt: *meni* „mir“,
+  *kola* (auch von *kolo*), *pare* (auch von *para*), *radnja* „Handlung“, *tikva*
+  Flaschenkürbis, *šipak* Hagebutte, *promet* Umsatz. *sahat* nur beim Wort, nicht in
+  „Koliko je ___?“ (*sati*).
+- Bei *plata* und *prehlada* fehlen mit Absicht die Formen, die zugleich ein Verb sind
+  (*plate*, *plati*: „zahlen“; *prehladi*: „erkältet sich“).
+- In „Pitam se ___ li dolazi.“ und „Hvala ___!“ ein `"auch"` am Lückensatz, kein Paar:
+  *da* und *puno* wären Paare für die ganze App, und *je*, *da*, *puno* sind Kacheln in
+  vielen Sätzen.
+- Ein Wort darf jetzt mehrere zweite Formen haben (*kafena*: *smeđa*, *kahvena*,
+  *braon*; *deka*: *pokrivač*, *ćebe*; *merdevine*: *ljestve*, *skale*).
+- In der Auswahl stehen *prodavnica* und *radnja*, *dvorište* und *avlija*, *ponekad*
+  und *nekad* nie mehr nebeneinander (`geschwister()` liest `auch_var` mit).
+- Nicht eingebaut, weil Geschlecht oder Zahl abweichen und das Wort dort nicht allein
+  steht, obwohl der Rest richtig bliebe: „Supa je u ___.“ (*šerpi*), „Imam auto“, „u autu“,
+  „autom“, „Putujemo ___.“ (*kola*, *kolima*), „Nemam novca“, „podići novac“, „uplatiti
+  novac“ (*para*, *pare*), „na pijaci“ (*na pazaru*), „Tražimo ulicu“, „na ulici“ (*sokak*),
+  „On ima psa“, „Bojim se pasa“, „Čuvaj se psa!“ (*kuče*, *kučeta*). Ajdin entscheidet,
+  ob sie dazukommen. „Pas me je ujeo“ ginge nicht: mit *kuče* hieße es *ujelo*.
+  Seit der dritten Runde (unten) zählen „Imam kola“, „u kolima“, „Nemam para“, „na
+  pazaru“, „na sokaku“, „Supa je u šerpi“ und „On ima kuče“, seit den Fragen vom
+  15.11.2026 (ganz unten) auch die übrigen neun.
+
+## 14.11.2026 abends – dritte Runde: weitere richtige Antworten beim Tippen
+
+Ajdin hat die offenen Bosnisch-Fragen aus Punkt 2 der Offen-Liste je mit „Ja“ oder
+„Ne“ beantwortet (`Release\Pruefbericht_1.4.md`, „Dritte Runde“). Alles hier ist nur
+eine weitere richtige Antwort beim Tippen: gezeigt, gesprochen und gelehrt wird weiter
+die Form der App, Kennungen und Aufnahmen bleiben.
+
+**Gdje auch allein.** „Ja gdje geht auch alleine“, und „Gdje idete na ljetovanje?“: „Ja“.
+
+| Stelle | Änderung |
+|---|---|
+| `wohin?:Kuda?` | `"auch": ["Gdje?"]` |
+| `wohin fahrt ihr in den sommerurlaub?:Kuda idete na ljetovanje?` | `"auch": ["Gdje idete na ljetovanje?"]` |
+
+- Wie bei V11 ein `"auch"` am Wort. Der Satz ist zu lang für eine Schreibaufgabe
+  (`typable()`), heute wird er nirgends getippt.
+- „Wo?“ (*Gdje?*) nimmt *Kuda* weiter nicht, „___ stanuješ?“ auch nicht. *Kuda?* und
+  *Gdje?* stehen in der Auswahl nicht mehr nebeneinander (`geschwister()` liest das
+  `"auch"`).
+
+**Oprostite neben Izvinite (Sie-Form).** „Ja“. Ein Paar in `varianten.py` (`auch_var`),
+nur an den beiden Stellen, an denen die App *Izvinite* zum Tippen erwartet, wie
+*Izvini* / *Oprosti* (Tabelle 2c, Nr. 29):
+
+| Stelle | zählt jetzt auch |
+|---|---|
+| `entschuldigung (sie):Izvinite` | *Oprostite* |
+| Lückensatz „___, molim Vas.“ (*Izvinite*) | *Oprostite* |
+
+- Die übrigen Stellen mit *Izvinite* sind lange Sätze („Izvinite, pogriješio sam
+  broj.“) oder Satzbau, dort wird nicht getippt.
+- Die du-Form war nicht gefragt: „Entschuldigung (du)“ nimmt *Oprostite* nicht,
+  „Verzeih mir“ nicht „Oprostite mi“, „Molim te, ___ mi.“ (*oprosti*) nicht
+  *oprostite*. *Oprosti* bei *Izvini* gilt schon seit Nr. 29.
+
+**nekada bei ponekad.** „Ja“. Ein zweites Paar neben *ponekad* → *nekad* (Tabelle 2c,
+Nr. 20), ebenso nur an `manchmal:ponekad`: das Wort nimmt jetzt *nekad* und *nekada*.
+*ponekad* ist sonst nirgends die Antwort (kein Lückensatz). Nur in dieser Richtung:
+„manchmal / früher“ (*nekad*) nimmt *ponekad* nicht, „nie“ (*nikad*) nicht *nekada*.
+
+**Zweite Form auch in ganzen Sätzen.** „Ja“ zu „Imam kola“, „Nemam para“, „na pazaru“,
+„na sokaku“, „Supa je u šerpi“, „On ima kuče“ – genau die Stellen, die bei F6 nicht
+eingebaut waren, weil Geschlecht oder Zahl abweichen. Je ein Paar in `varianten.py`
+nur an dieser einen Stelle, mit genau der gefragten Form (keine weiteren gebeugten
+Formen selbst gebildet):
+
+| Stelle | zählt jetzt auch |
+|---|---|
+| `ich habe ein auto:Imam auto` | Imam kola (Paar *auto* / *kola*, bisher nur `auto:auto`) |
+| `im auto:u autu` | u kolima |
+| `ich habe kein geld:Nemam novca` | Nemam para |
+| `auf dem markt:na pijaci` | na pazaru |
+| `auf der straße:na ulici` | na sokaku |
+| Lückensatz „Supa je u ___.“ (*loncu*) | šerpi |
+| `er hat einen hund:On ima psa` | On ima kuče |
+
+- Nicht gefragt: „Koliko je sahat?“ (Ajdin: „Ne“) und „Moja je ovo kolegica.“ („Ne“)
+  bleiben falsch.
+- Weiter falsch, weil nicht gefragt (Ajdin entscheidet): `mit dem auto:autom` und
+  „Putujemo ___.“ (*kolima*), `das auto des vaters:auto oca` (*kola oca*), `geld
+  abheben:podići novac` und `geld einzahlen:uplatiti novac` (*pare*), `wir suchen die
+  straße:Tražimo ulicu` (*sokak*), `ich habe angst vor hunden:Bojim se pasa`,
+  `vorsicht vor dem hund!:Čuvaj se psa!` und `der hund hat mich gebissen:Pas me je ujeo`
+  (*kuče*). Dazu gut 80 lange Beispielsätze mit *auto*, *novac*, *pijaca*, *ulica*,
+  *lonac* und *pas*, die nie getippt werden. Die neun hat Ajdin am 15.11.2026 abends
+  freigegeben (ganz unten).
+- Beim Satzbau ändert sich nichts: keine der neuen Formen ist eine Kachel der App.
+
+**Vokativ-Regel.** „Ja“: ć, lj, nj, đ, dž zu j, č, š, ž dazuschreiben. In der Lektion
+„Fälle 4: Instrumental & Vokativ“ (`grammatik.py`, `faelle4`) steht jetzt „nach ć, č, j,
+lj, nj, š, ž, đ, dž + u (mladiću!, prijatelju!)“ statt „nach j, č, š, ž + u
+(prijatelju!)“, in 8 Sprachen, wie im Clip 41 Zmajevi. Die App bildet selbst keine
+Vokative; die Übung „Anrede an den Freund“ (*prijatelju!*) bleibt.
+
+## 14.11.2026 – Prüfbericht 1.4: Ajdins Antworten zu den Geschichten
+
+Änderungen am Text der Geschichten (`geschichten.py`). Der Text ist der
+Ton-Schlüssel (`ton_bauen.py`): jede Geschichte, deren Wörter sich ändern, wird neu
+gesprochen.
+
+**V13 a / F9 a, Herd.** Frage: „plinski šporet“, „šporet na plin“ oder štednjak
+lassen? Ajdin: „stednjak/sporet ist herd aber plinski sporet ist gasherd elektrisni
+sporet ist elektroherd usw“, also a.
+
+| Geschichte | vorher | jetzt |
+|---|---|---|
+| *Komšiluk bez struje* (`b1_struja`) | Hasan je imao plinski štednjak | Hasan je imao plinski šporet |
+
+- Im Wörterbuch der Geschichten steht *šporet* „Herd“ statt *štednjak*; *štednjak*
+  kommt in keinem Text mehr vor. *plinski* bleibt „Gas-“, die Übersetzung bleibt
+  „Gasherd“. Der Text hatte noch keinen Ton.
+
+**S3 / F20, Pita.** Frage: „napraviti pitu“ statt „skuhati pitu“? Ajdin: „man sagt
+napraviti pitu nicht skuhati“, also ja.
+
+| Geschichte | vorher | jetzt |
+|---|---|---|
+| *Pismo nani* (`pismo`) | Nadam se da ćeš nam skuhati pitu! | Nadam se da ćeš nam napraviti pitu! |
+
+- Auf Deutsch „Ich hoffe, dass du uns eine Pita machst!“ statt „… kochst!“, wie es
+  die anderen sieben Sprachen schon sagten („make us a pita“).
+- *skuhati* steht in keinem Text mehr und ist aus dem Wörterbuch der Geschichten raus;
+  *napraviti* („machen / zubereiten“) stand schon drin. Die Vokabel *skuhati*
+  („kochen“) bleibt.
+- Die Geschichte hatte Ton (g09, Vesna) und Wortzeiten. Beides gehört zum alten Text;
+  sie wird in der nächsten Vesna-Runde mit den B1-Texten neu gesprochen und wartet
+  bis dahin in `tests/offen_b1_teil2.py`. Die alte Datei bleibt liegen.
+
+**S7 / F23, Vi, Vas, Vam.** Frage: groß in Geschriebenem an eine Person, klein in
+Dialogen, Zahnarzt bleibt groß? Ajdin: ja.
+
+| Geschichte | vorher | jetzt | warum |
+|---|---|---|---|
+| *Prvi dan na poslu* (`b1_posao`) | Prvo ću Vam pokazati Vašu kancelariju | Prvo ću vam pokazati vašu kancelariju | Die Chefin spricht mit Haris. |
+| *Izdajem stan* (`b1_stan`) | ako Vam odgovara · Hvala Vam | ako vam odgovara · Hvala vam | Telefonat |
+
+- Bleibt groß: „molim Vas, javite se“ in *Izgubljeni telefon* (`b1_telefon`), die
+  Nachricht an den Finder. „Vaš telefon …“ beim Kellner beginnt die Rede.
+- Bleibt klein: *Kod doktora* (`b1_doktor`) und *Stari zanat na Baščaršiji*
+  (`b1_zanat`), Gespräche. In *Mejl rođaku* (`b1_mejl`) schreibt Emir dem Cousin und
+  seiner Familie (*kod vas*, *ako vam*: bei euch, euch); das ist kein höfliches Vi.
+- Mit *vam* auch *vašu* klein, im selben Satz der Chefin.
+- Der Zahnarzt-Teil (`zahnarzt.py`) bleibt groß. Der Ton-Schlüssel ist
+  kleingeschrieben, beide Texte hatten noch keinen Ton.
+- Zuerst offen: *Na općini* (`opcina`), „Hvala Vam na pomoći“, kaže Amina. Auch ein
+  Gespräch, stand aber nicht im Prüfbericht und hat Ton und Wortzeiten (g10).
+  `ton_bauen.wortzeiten_passen()` vergleicht den Text mit Groß- und Kleinschreibung;
+  klein geschrieben fielen die Wortzeiten beim nächsten `ton_bauen.py` weg.
+- Nachtrag 14.11.2026 (Offen-Liste, Punkt 3): nach derselben Regel auch dort klein.
+
+| Geschichte | vorher | jetzt | warum |
+|---|---|---|---|
+| *Na općini* (`opcina`) | „Hvala Vam na pomoći“, kaže Amina. | „Hvala vam na pomoći“, kaže Amina. | Amina spricht am Schalter mit der Beamtin. |
+
+- Die Aufnahme (g10, Vesna) bleibt: Der Schlüssel ist kleingeschrieben, gesprochen
+  klingt es gleich, und die Zahl der Wörter ist dieselbe. Nur die Wortzeiten gehören
+  zum alten Text; g10 wartet in `WORTZEITEN_NEU` (`tests/offen_b1_teil2.py`) und
+  bekommt sie in der Vesna-Runde neu (`wortzeiten_holen.py --holen` nimmt sie von
+  selbst mit). Die Übersetzung „Danke für Ihre Hilfe“ bleibt.
+- Die Wendung „Hvala Vam na pomoći“ im Level *formell* (`vokabeln.py`) ist keine
+  Geschichte und bleibt groß.
+
+**Neu entschieden am 15.11.2026: höfliches Vi überall groß.** Frage: Sollen „Hvala Vam
+na pomoći“, „Hvala Vam na suosjećanju i podršci.“ und „Hvala Vam na dobroj saradnji.“
+im Wortschatz groß bleiben oder wie im Gespräch klein werden? Ajdin: „mach doch alles
+groß“. Das ersetzt F23 oben: *Vi, Vas, Vam, Vaš* (jede Form) stehen groß, sobald EINE
+Person höflich angeredet wird, auch in den Gesprächen der Geschichten. Klein bleibt,
+wo mehrere gemeint sind (ihr, euch).
+
+| Geschichte | vorher | jetzt | wer mit wem |
+|---|---|---|---|
+| *Na općini* (`opcina`) | Hvala vam na pomoći | Hvala Vam na pomoći | Amina zur Beamtin |
+| *Komšiluk bez struje* (`b1_struja`) | je li i kod vas nestalo struje? | je li i kod Vas nestalo struje? | Hasan zu Merima (sie antwortet „Znate li“, deutsch „bei Ihnen“) |
+| *Prvi dan na poslu* (`b1_posao`) | Prvo ću vam pokazati vašu kancelariju | Prvo ću Vam pokazati Vašu kancelariju | die Chefin zu Haris |
+| *Izdajem stan* (`b1_stan`) | ako vam odgovara · Hvala vam | ako Vam odgovara · Hvala Vam | Telefonat Selma – Vermieter |
+| *Kod doktora* (`b1_doktor`) | I vas boli grlo? · Šta vas boli · Dat ću vam recept | I Vas boli grlo? · Šta Vas boli · Dat ću Vam recept | der ältere Mann und die Ärztin zu Amar |
+| *Stari zanat na Baščaršiji* (`b1_zanat`) | Jeste li vi napravili · kad vi odete u penziju | Jeste li Vi napravili · kad Vi odete u penziju | Lejla zum Meister |
+
+- Klein bleiben: *Voz Sarajevo–Mostar* (`b1_voz`, „Ako vam nešto zatreba“: die Frau zu
+  Lejla und Emir), *Rafting na Uni* (`b1_rafting`, „Prsluk će vas držati“: der
+  Instruktor zur Gruppe), *Mejl rođaku* (`b1_mejl`, „kod vas“, „ako vam“, „Šta da vam
+  donesem“: an Cousin und Familie).
+- Grammatik: der Tipp zur Übung „Kako ___?“ heißt jetzt „Höflich = Vi → ste.“ (in allen
+  Sprachen). Die Tabellen der Pronomen („vi (ihr / Sie)“, „vas“, „vama, vam“) und die
+  Wörter „vaš / vaša / vaše“, „vi ste“, „vama / vam“ nennen beide Bedeutungen und
+  bleiben klein, ebenso „vas (euch)“, „vam (euch)“, „sa vama (mit euch)“ in den
+  Erklärungen.
+- Die Aufnahme von *Na općini* (g10) sagt „Hvala Vam“: Die Wortzeiten gehören damit
+  wieder genau zum Text, `WORTZEITEN_NEU` ist leer. Die Ton-Schlüssel sind
+  kleingeschrieben, keine Geschichte braucht deshalb neuen Ton.
+
+**B11 / F11, Komma vor jer und ako.** Frage: die 7 Kommas vor nachgestelltem *jer*
+und *ako* streichen (a) oder die Regel auf „meist kein Komma“ abschwächen (b)? Ajdin:
+a. Die Lektion (`grammatik.py`, Satzbau) sagt: kein Komma, wenn der Nebensatz hinter
+dem Hauptsatz steht.
+
+| Geschichte | vorher | jetzt |
+|---|---|---|
+| *Ljeto kod nane na selu* (`b1_ljeto`) | Najviše sam voljela subotu, jer je nana tada pravila pitu. | Najviše sam voljela subotu jer je nana tada pravila pitu. |
+| *Dijaspora prvi put u Sarajevu* (`b1_dijaspora`) | Tarik je bio malo nervozan, jer njegov bosanski nije savršen. | Tarik je bio malo nervozan jer njegov bosanski nije savršen. |
+| *Jahorina* (`b1_jahorina`) | … kapu i rukavice, jer je vani bilo minus osam. | … kapu i rukavice jer je vani bilo minus osam. |
+| *Stari zanat na Baščaršiji* (`b1_zanat`) | … čuje kucanje čekića, jer u malim radnjama … | … čuje kucanje čekića jer u malim radnjama … |
+| *Zmaj uči bosanski* (`b1_zmaj`) | … uči bosanski, jer ovog ljeta … | … uči bosanski jer ovog ljeta … |
+| *Izdajem stan* (`b1_stan`) | Može sutra u šest, ako vam odgovara. | Može sutra u šest ako vam odgovara. |
+| *Mejl rođaku* (`b1_mejl`) | Prvu sedmicu bih bio kod vas, ako vam to ne smeta. | Prvu sedmicu bih bio kod vas ako vam to ne smeta. |
+
+- Nicht geändert: der Einschub in *Selidba* („Sjeli su na pod, jer sto još nisu
+  kupili, i …“), dort schließt das zweite Komma ihn ab. Die Geschichte wird ersetzt.
+- Nur Satzzeichen, kein Wort geändert. Die Übersetzungen bleiben (auf Deutsch steht
+  das Komma vor „weil“). Keiner der sieben Texte hatte Ton.
+
+**F10, Selidba.** Ajdin: „mach eine neue geschichte“. Die alte *Selidba* (Selma
+zieht wegen der Arbeit nach Sarajevo) erzählte dasselbe Muster wie *Izdajem stan*.
+Neu, unter derselben id `b1_selidba` (der Lesestand bleibt), mit dem Titel *Dedo i
+nana se sele*: Entwurf `Release\Selidba_neu_Entwurf.md`, Vorschlag 1, angenommen mit
+zwei Änderungen.
+
+| Stelle | Entwurf | angenommen | Ajdin |
+|---|---|---|---|
+| Absatz 1 | a nana teško hoda po stepenicama | a nana se teško penje uz stepenice | „nimm penje uz stepenicama“ |
+| Absatz 5 | „Bašta je mala, ali je naša“, rekao je. | „Napokon bašta koja nije prevelika“, rekao je. | „nimm napokon...“ |
+
+- Deutsch dazu: „… und Oma fällt das Treppensteigen schwer.“ (blieb) und „Endlich ein
+  Garten, der nicht zu groß ist“, sagte er. Übersetzung und Fragen in allen acht
+  Sprachen; die richtige Antwort ist nirgends deutlich länger als die falschen (B13).
+- Wörterbuch der Geschichten: 44 neue Formen (Namen, *Vlašića*, *Travnik*,
+  *prevelika*, *penje*, *tegli*, *zimnice*, *kantu*, *spisku*, *šljiva*, *zalijevao*,
+  *fotelju*, *napokon* …). Eigene Bedeutungen nur in dieser Geschichte: *radio*
+  „Radio / funktioniert (m)“ (hier das Gerät), *njoj* und *nje* für den Sessel
+  (*fotelja*), *teško* „schwer / mit Mühe“, *uz* „hinauf (uz stepenice)“, *staru*
+  „alte (Akk., w)“, *koje* „die (Relativ, Gen. w)“. Die 31 Formen der alten
+  Geschichte, die kein Text mehr braucht (*Hajra*, *kamenje*, *pokucajte* …), sind
+  raus, mit ihren Übersetzungen, dazu *radio* „funktioniert“ (steht jetzt nur in den
+  vokabeln dieser Geschichte). Damit 1.515 statt 1.503 Einträge.
+- Der neue Text hat noch keinen Ton; er wartet mit der id in
+  `tests/offen_b1_teil2.py` auf die Vesna-Runde.
+
+**S6, svoj.** Die Lektion Fälle 1 (`grammatik.py`) sagte „„Svoj“ heißt „mein
+eigener““, das Wörterbuch der Lesetexte „eigener (mein, dein, sein)“. In *Voz
+Sarajevo–Mostar* („Žena im daje svoj broj“) und *Izgubljeni telefon* („na svoj
+broj“) ist es aber „ihr eigener“.
+
+| Stelle | vorher | jetzt |
+|---|---|---|
+| Lektion Fälle 1 | „Svoj“ heißt „mein eigener“ und wird benutzt, wenn der Besitzer das Subjekt ist. | „Svoj“ heißt „der eigene“ (mein, dein, sein, ihr …) und wird benutzt, wenn der Besitzer das Subjekt ist. |
+| Wörterbuch der Lesetexte, *svoj* | eigener (mein, dein, sein) | eigener (mein, dein, sein, ihr …) |
+
+- Die Vokabel *svoj* behält „eigener (mein, dein, sein)“, das ist ihre Kennung
+  (`eigener (mein, dein, sein):svoj`). Kein bosnisches Wort geändert.
+
+**S11, kusur.** Oben unter „Richtiggestellt“ steht: *kusur* ist **Rückgeld**. Der
+Satzbau-Satz „Gdje je moj kusur?“ sagte das schon, der Lückensatz noch nicht.
+
+| Lückensatz | vorher | jetzt |
+|---|---|---|
+| „Gdje je moj ___?“ (*kusur*) | Wo ist mein Wechselgeld? | Wo ist mein Rückgeld? |
+
+- Nur die deutsche Anzeige; der Satz hängt an Text und Antwort. Die Vokabel *kusur*
+  behält „Wechselgeld / Rückgeld“ und damit ihre Kennung.
+- Die anderen Sprachen sagten schon dasselbe wie beim Satzbau (change, para üstü,
+  växel, wisselgeld, vekslepenger, byttepenge, monnaie); der alte deutsche Schlüssel
+  ist raus.
+
+## 15.11.2026 – Lesetexte B1: Ajdins Antworten auf die A/B-Liste
+
+In der Liste `Release\Lesetexte_Fragen_AB.md` stand zu jeder fraglichen Stelle der
+neuen B1-Lesetexte A (wie es im Text stand) und B (der andere Vorschlag). Ajdin am
+15.11.2026: „L9 B, L10 B, L11 A, L12 B, L13 A, L14 A, L15 A, L16 B, L17 A, L18 B,
+L19 B, L20 A, L21 B, L22 B, L24 B („ja alle“), L25 A, L26 B, L27 B, L28 B, L29 A,
+L30 B“ und „T1 B, T2 B, T3 B, T5 B, T6 B, T7 B, T8 A, T9 A, T10 A, T11 B, T12 B,
+T13 A, T14 B, T15 B, T16 A“. Eingebaut ist genau B, wie es in der Liste stand; wo
+er A gewählt hat, bleibt der Text. Übersetzung, Fragen und Wörterbuch in allen acht
+Sprachen sind nachgezogen.
+
+| Stelle | Geschichte | vorher (A) | jetzt (B) |
+|---|---|---|---|
+| L9 | *Dijaspora prvi put u Sarajevu* (`b1_dijaspora`) | Tarik je naručio desetku s lukom i jogurt. | Tarik je naručio deset ćevapa s lukom i jogurt. |
+| L10 | *Vrijeme za vikend* (`b1_vrijeme`) | Dobro veče, poštovani slušaoci. | Dobro veče, dragi slušaoci. |
+| L12 | *Vrijeme za vikend* | Ako bude sunčano, možemo napraviti i roštilj. | Ako bude sunčano, možemo i roštiljati. |
+| L16 | *Jahorina* (`b1_jahorina`) | Prvog jutra su iznajmili skije, pancerice i štapove. | Prvog jutra su iznajmili skije, skijaške cipele i štapove. |
+| L18 | *Nanina pita* (`b1_pita`) | … na veliki sto i razvlačila ga rukama dok nije postalo tanko kao papir. | … na veliki sto i razvijala ga oklagijom dok nije postalo tanko kao papir. |
+| L19 | *Nanina pita* | pripremile su fil · stavile fil na tijesto | pripremile su nadjev · stavile nadjev na tijesto |
+| L21 | *Nanina pita* | Tijesto je moralo odmarati pola sata. | Tijesto je trebalo da odmori pola sata. |
+| L22 | *Komšiluk bez struje* (`b1_struja`) | Bila je hladna januarska večer. | Bilo je hladno januarsko veče. |
+| L24 | *Svadba i kolo* (`b1_svadba`), „ja alle“ | Igrali smo kolo · nana … igrala duže od mene · nisam mogla igrati · Igrali smo i pjevali | Plesali smo kolo · nana … plesala duže od mene · nisam mogla plesati · Plesali smo i pjevali |
+| L26 | *Prvi dan na poslu* (`b1_posao`) | Haris je završio elektrotehniku … | Haris je završio elektrotehnički fakultet … |
+| L27 | *Prvi dan na poslu* | Kolege su bile ljubazne. | Kolege su bili ljubazni. |
+| L28 | *Prvi dan na poslu* | „Hajde, kahva je svetinja!“ | „Hajde, kahva je obavezna!“ |
+| L30 | *Izdajem stan* (`b1_stan`) | Prvu noć je spavala na dušeku na podu … | Prvu noć je spavala na madracu na podu … |
+| T1 | *Kod doktora* (`b1_doktor`) | Dat ću Vam recept, a pet dana ste na bolovanju. | Dat ću Vam recept i otvorit ću Vam bolovanje na pet dana. |
+| T2 | *Kod doktora* | Pijte jednu tabletu tri puta dnevno, poslije jela. | Uzimajte jednu tabletu tri puta dnevno, poslije jela. |
+| T3 | *Kod doktora* | Poslije pet dana Amar je opet bio zdrav … | Poslije pet dana Amar je ponovo bio zdrav … |
+| T5 | *Rođendansko iznenađenje* (`b1_rodjendan`) | Idemo kod tvojih na večeru. | Idemo kod tvojih roditelja na večeru. |
+| T6 | *Rođendansko iznenađenje* | Haris ih je ugasio odjednom, a svi su vikali: „Bravo!“ | Haris je ugasio sve svijeće u jednom dahu, a svi su vikali: „Bravo!“ |
+| T7 | *Utakmica* (`b1_utakmica`) | Kenan je grlio babu i ljude … | Kenan je grlio oca i ljude … |
+| T11 | *Kahva kod komšinice* (`b1_kahva`) | Džezvu vrati na vatru samo na kratko. | Džezvu vrati na vatru samo na kratko, da se digne kajmak. |
+| T12 | *Mejl rođaku* (`b1_mejl`) | Predmet: Dolazim u augustu! | Naslov: Dolazim u augustu! |
+| T14 | *Zmaj uči bosanski* (`b1_zmaj`) | … i ćevapi su u sekundi zagorjeli. | … i ćevapi su u sekundi izgorjeli. |
+| T15 | *Zmaj uči bosanski*, „T15 passt“ | Zmaj je bio sit, pa je rekao: „Hvala.“ … „Ali nano, rekao sam hvala!“ „Čula sam“, rekla je nana. „Hvala znači da ti je ukusno.“ | Zmaj je bio sit, pa je rekao: „Ne, hvala.“ … „Ali nano, rekao sam ne, hvala!“ „Čula sam“, rekla je nana. „Kod nane se ne kaže ne.“ |
+
+- Wörterbuch: *ćevapa* „Ćevapi (Gen.)“ neu, *desetku* raus. *roštiljati* „grillen“
+  neu, *poštovani* und *roštilj* raus; *dragi* heißt in *Vrijeme za vikend* „liebe
+  (Mehrz.)“ (vokabeln der Geschichte), im Wörterbuch bleibt „lieber“ aus *Mejl
+  rođaku*. Die Übersetzungen sagten schon „liebe Hörerinnen und Hörer“ und „grillen“.
+  *Vrijeme za vikend* hat damit 159 statt 160 Wörter. *skijaške* „Ski- (skijaške
+  cipele: Skischuhe)“ und *cipele* „Schuhe“ neu, *pancerice* raus; die Übersetzung
+  sagte schon „Skischuhe“. *razvijala* „ausgerollt (w)“, *oklagijom* „Nudelholz
+  (Instr.)“, *nadjev* „Füllung“ und *odmori* „ruht (sich) aus“ neu, *razvlačila*,
+  *rukama*, *fil* und *moralo* raus; *trebalo* heißt in *Nanina pita* „musste (s)“
+  (vokabeln der Geschichte), im Wörterbuch bleibt „gebraucht (s)“ aus *Prvi dan na
+  poslu*. Deutsch jetzt „rollte ihn mit dem Nudelholz aus“, in allen Sprachen
+  nachgezogen. *hladno* „kalt (s)“ und *januarsko* „Januar- (s)“ neu, *januarska* und
+  *večer* raus; *veče* „Abend“ stand schon drin. „Od te večeri“ am Ende der
+  Geschichte bleibt, wie es war. *plesala* „getanzt (w)“ und *plesati* „tanzen“
+  neu, *igrati* raus; *igrali* und *igrala* bleiben im Wörterbuch für *Utakmica*
+  („naši su igrali“) und *Komšiluk bez struje* („Djeca su se igrala“). Die
+  Übersetzungen sagten schon „tanzten“. *elektrotehnički* „Elektrotechnik-
+  (elektrotehnički fakultet: Fakultät für Elektrotechnik)“, *fakultet* „Fakultät
+  (Studium)“, *ljubazni* „freundlich (Mehrz.)“ und *obavezna* „Pflicht /
+  verpflichtend (w)“ neu, *elektrotehniku* und *svetinja* raus. Deutsch jetzt „Komm,
+  der Kaffee ist Pflicht!“, in allen Sprachen nachgezogen. Im Brief *Pismo nani*
+  steht weiter „Kolege su ljubazne“; danach war nicht gefragt. *madracu* „Matratze
+  (Lok.)“ statt *dušeku*, die Übersetzung sagte schon „Matratze“. *otvorit* „öffnen
+  (otvorit ću bolovanje: ich schreibe krank)“, *bolovanje* „Krankschreibung (Akk.)“,
+  *uzimajte* „nehmen Sie (Befehl)“ und *ponovo* „wieder / erneut“ neu, *bolovanju*
+  raus; *pijte* bleibt („I pijte mnogo čaja“). Das zweite *Vam* in T1 ist groß wie
+  überall, wo eine Person höflich angeredet wird. Deutsch jetzt „Ich gebe Ihnen ein
+  Rezept und schreibe Sie für fünf Tage krank.“, in allen Sprachen nachgezogen.
+  *tvojih* heißt jetzt „deiner (Gen. Mehrz.)“ (vorher „deinen (kod tvojih: bei deinen
+  Eltern)“), *dahu* „Atem (Lok.) (u jednom dahu: in einem Atemzug)“ neu, *ih* raus;
+  *roditelja* und *svijeće* standen schon drin. *sve* heißt in dieser Geschichte „alle
+  (sve svijeće: alle Kerzen)“ (vokabeln), *odjednom* „auf einmal“ ist dort raus und
+  bleibt im Wörterbuch „plötzlich“ (*Komšiluk bez struje*). Deutsch jetzt „Haris blies
+  alle Kerzen in einem Atemzug aus“, in allen Sprachen nachgezogen; auf Türkisch
+  heißt „kod tvojih roditelja“ jetzt „anne babana“ statt „seninkilere“. *oca* heißt
+  jetzt „Vater (Gen./Akk.)“, weil es in *Stari zanat na Baščaršiji* („od oca“) und hier
+  („grlio oca“) steht; *babu* raus. Deutsch „Kenan umarmte seinen Vater“, in allen
+  Sprachen nachgezogen. Sonst bleibt *babo* in der Geschichte („babo je kupio“,
+  „Babo, kad idemo opet?“). *digne* „hebt (se digne: steigt auf)“ und *kajmak*
+  „Schaum (auf dem Kaffee) / Kajmak“ neu (die Vokabel *kajmak* behält „Kajmak
+  (Rahmaufstrich)“ und ihre Kennung). Deutsch „…, damit der Schaum aufsteigt.“, in
+  allen Sprachen nachgezogen. *naslov* „Betreff / Titel“ statt *predmet* „Betreff“; die
+  Übersetzung bleibt „Betreff: Ich komme im August!“. *izgorjeli* „verbrannt (Mehrz.)“
+  neu, *zagorjeli*, *znači* und *ukusno* raus; *ne* heißt in *Zmaj uči bosanski*
+  „nicht / nein“ (vokabeln), weil es dort zweimal „nein“ ist. Den deutschen Schlusssatz
+  hat Ajdin selbst gegeben: „Bei der Oma sagt man nicht nein.“ Die zweite Frage hieß
+  „Was bedeutet „Hvala“ für die Oma?“, das trägt der neue Witz nicht mehr; jetzt
+  „Warum bekommt Zmaj trotzdem noch mehr Sarma?“ (richtig: „bei der Oma sagt man nicht
+  nein“), die dritte „sie verbrennen“ statt „sie brennen an“, alles in acht Sprachen.
+- Wörterbuch der Lesetexte danach: 1.520 Einträge (vorher 1.515).
+- Sachfragen: S1 bis S6 „ja“, es bleibt, wie es ist (S6: die Namensprobe von Vesna
+  „ton ist gut“). S7 „nein“, „lass doktor vorher“: *Izgubljeni telefon*
+  (`b1_telefon`) steht jetzt hinter *Kod doktora* und *Dedo i nana se sele*, wie in
+  seiner Themenliste. Die id bleibt und mit ihr der Lesestand; frei wird die
+  Geschichte, wenn *Dedo i nana se sele* gelesen ist. Kein Text geändert.
+- Keine dieser Geschichten hatte Ton. Der neue Text wartet in
+  `tests/offen_lesetexte.json` (Pakete 1 und 2) oder mit seiner id in
+  `tests/offen_b1_teil2.py` (Pakete 3 und 4) auf die Vesna-Runde.
+
+## 15.11.2026 abends – Fragenliste: zweite Form an neun weiteren Stellen, nad und među
+
+Ajdin auf die Fragenliste vom 15.11.2026 (`Release\Fragen_Ajdin_2026-11-15.md`,
+Frage 9): „9 ja (alle 9a–9i)“, und die vorgeschlagenen Formen mit „ja“ bestätigt.
+Das sind die Stellen, die in der dritten Runde (oben) nicht gefragt waren. Wie dort
+nur eine weitere richtige Antwort beim Tippen (`auch_var`): gezeigt, gesprochen und
+gelehrt wird weiter die Form der App, Kennungen und Aufnahmen bleiben.
+
+| Frage | Stelle | zählt jetzt auch |
+|---|---|---|
+| 9a | `mit dem auto:autom` | kolima |
+| 9b | Lückensatz „Putujemo ___.“ (*autom*) | kolima |
+| 9c | `das auto des vaters:auto oca` | kola oca |
+| 9d | `geld abheben:podići novac` | podići pare |
+| 9e | `geld einzahlen:uplatiti novac` | uplatiti pare |
+| 9f | `wir suchen die straße:Tražimo ulicu` | Tražimo sokak |
+| 9g | `ich habe angst vor hunden:Bojim se pasa` | Bojim se kučadi |
+| 9h | `vorsicht vor dem hund!:Čuvaj se psa!` | Čuvaj se kučeta! |
+| 9i | `der hund hat mich gebissen:Pas me je ujeo` | Kuče me je ujelo |
+
+- Je ein Paar in `varianten.py` nur an dieser Stelle; *novac* / *pare* gilt jetzt
+  auch an den beiden Bank-Wörtern. Keine weiteren Formen selbst gebildet.
+- „auto oca“ und „Pas me je ujeo“ sind als ganze Wendung eingetragen: bei *kuče*
+  wandert das Verb mit (*ujelo*), und am Paar *auto* / *kola* wäre aus dem `"auch"`
+  „očev auto“ auch „očev kola“ geworden.
+- Weiter falsch, weil nicht gefragt: „očev kola“ und „očeva kola“, „Bojim se kučeta“,
+  „Čuvaj se kuče!“, „Kuče me je ujeo“, „Pas me je ujelo“, „Ujelo me je kuče“,
+  „Putujemo kola“, „podići para“ und *kučadi* beim Wort *pas*.
+- Beim Satzbau ändert sich nichts: keine der neuen Formen ist eine Kachel der App.
+
+**Präpositionen mit Instrumental.** Frage 10, „10 ja“: In der Lektion „Präpositionen“
+(`grammatik.py`, `praepositionen`) heißt die Zeile Instrumental jetzt „s/sa, pod, nad,
+pred, za (hinter), među“ statt „s/sa, pod, pred, za (hinter)“ (*nad* „über“, *među*
+„zwischen“), in 8 Sprachen. Das Beispiel „s bratom, pod stolom“ bleibt, die Übungen
+auch.

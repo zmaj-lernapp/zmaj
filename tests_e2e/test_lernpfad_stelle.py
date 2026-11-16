@@ -11,7 +11,7 @@ import pytest
 
 @pytest.fixture
 def lernpfad(browser, basis, heute_stand):
-    """Lernpfad auf 360 Punkten, Sektion 10 offen, ein Level weit unten im Blick."""
+    """Lernpfad auf 360 Punkten, Tun und Lassen (B1, Sektion 2) offen, ein Level weit unten im Blick."""
     from conftest import Seite
     ctx = browser.new_context(viewport={"width": 360, "height": 640}, locale="de-DE", service_workers="block")
     seite = Seite(ctx.new_page(), basis)
@@ -20,7 +20,7 @@ def lernpfad(browser, basis, heute_stand):
     seite.starten(stand=heute_stand(bestanden=ids[:129]))
     seite.js("() => document.getElementById('vorspann').click()")
     seite.page.wait_for_function("() => !document.getElementById('vorspann')", timeout=15000)
-    seite.js("() => { homeMode = 'words'; showHome(); if(offeneSektion !== SECTIONS[9].id) sektionAufklappen(SECTIONS[9].id); }")
+    seite.js("() => { homeMode = 'words'; showHome(); if(offeneSektion !== 'tunlassen') sektionAufklappen('tunlassen'); }")
     yield seite
     ctx.close()
 

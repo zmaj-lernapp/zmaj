@@ -1,7 +1,7 @@
 bs	fr	kind	id
-Merhaba	Salut	word	hallo:Merhaba
+Merhaba	Salut (en arrivant)	word	hallo:Merhaba
 Dobro jutro	Bonjour (le matin)	word	guten morgen:Dobro jutro
-Dobar dan	Bonjour	word	guten tag:Dobar dan
+Dobar dan	Bonjour (la journée)	word	guten tag:Dobar dan
 Dobro veče	Bonsoir	word	guten abend:Dobro veče
 Laku noć / Lahku noć	Bonne nuit	word	gute nacht:Laku noć / Lahku noć
 Doviđenja	Au revoir	word	auf wiedersehen:Doviđenja
@@ -572,11 +572,198 @@ livada	pré	word	wiese:livada
 grana	branche / rameau	word	ast / zweig:grana
 kamilica	camomille	word	kamille:kamilica
 lipa	tilleul	word	linde:lipa
-nana (auch: metvica)	menthe	word	minze:nana (auch: metvica)
+nana / metvica	menthe	word	minze:nana / metvica
 biljka	plante	word	pflanze:biljka
 šljiva	prune / prunier	word	pflaume / pflaumenbaum:šljiva
 orah	noix / noyer	word	walnuss / walnussbaum:orah
 korijen	racine	word	wurzel:korijen
+Ko?	Qui ?	word	wer?:Ko?
+Šta?	Quoi ?	word	was?:Šta?
+Gdje?	Où (sans mouvement) ?	word	wo?:Gdje?
+Kuda?	Où (vers où) ?	word	wohin?:Kuda?
+Odakle?	D'où ?	word	woher?:Odakle?
+Kada?	Quand ?	word	wann?:Kada?
+Zašto?	Pourquoi ?	word	warum?:Zašto?
+Kako?	Comment ?	word	wie?:Kako?
+Koliko?	Combien ?	word	wie viel?:Koliko?
+Koji?	Quel ?	word	welcher?:Koji?
+Čiji?	À qui ?	word	wessen?:Čiji?
+Da li ...?	Question oui/non : Est-ce que ... ?	word	ja/nein-frage: ist ...?:Da li ...?
+Je li to ...?	C'est ... ?	word	ist das ...?:Je li to ...?
+Ko si ti?	Qui es-tu ?	word	wer bist du?:Ko si ti?
+Odakle si?	D'où viens-tu ?	word	woher kommst du?:Odakle si?
+Kuda ideš?	Où vas-tu ?	word	wohin gehst du?:Kuda ideš?
+Kada dolaziš?	Quand viens-tu ?	word	wann kommst du?:Kada dolaziš?
+Zašto ne?	Pourquoi pas ?	word	warum nicht?:Zašto ne?
+Šta je to?	Qu'est-ce que c'est ?	word	was ist das?:Šta je to?
+Koliko imaš godina?	Quel âge as-tu ?	word	wie alt bist du?:Koliko imaš godina?
+Imaš li vremena?	Tu as le temps ?	word	hast du zeit?:Imaš li vremena?
+Govoriš li engleski?	Tu parles anglais ?	word	sprichst du englisch?:Govoriš li engleski?
+Mogu li pomoći?	Je peux aider ?	word	kann ich helfen?:Mogu li pomoći?
+Gdje stanuješ?	Où habites-tu ?	word	wo wohnst du?:Gdje stanuješ?
+Šta misliš?	Qu'en penses-tu ?	word	was meinst du?:Šta misliš?
+on	il	word	er:on
+ona	elle	word	sie (einzahl):ona
+ono	cela	word	es:ono
+oni	ils	word	sie (mehrzahl, männlich):oni
+one	elles	word	sie (mehrzahl, weiblich):one
+moj / moja / moje	mon (m/f/n)	word	mein (m/w/s):moj / moja / moje
+tvoj / tvoja / tvoje	ton (m/f/n)	word	dein (m/w/s):tvoj / tvoja / tvoje
+njegov / njegova / njegovo	son (à lui) (m/f/n)	word	sein (m/w/s):njegov / njegova / njegovo
+njen / njena / njeno	son (à elle) (m/f/n)	word	ihr (von ihr) (m/w/s):njen / njena / njeno
+naš / naša / naše	notre (m/f/n)	word	unser (m/w/s):naš / naša / naše
+vaš / vaša / vaše	votre (m/f/n)	word	euer / ihr (m/w/s):vaš / vaša / vaše
+ovaj / ova / ovo	ce / cette (m/f/n)	word	dieser / diese / dieses:ovaj / ova / ovo
+onaj / ona / ono	celui-là / celle-là (m/f/n)	word	jener / jene / jenes:onaj / ona / ono
+muškarac	l'homme	word	der mann:muškarac
+djevojka	la jeune fille	word	das mädchen:djevojka
+dječak	le garçon	word	der junge:dječak
+nastavnik / nastavnica	enseignant / enseignante	word	lehrer / lehrerin:nastavnik / nastavnica
+student / studentica	étudiant / étudiante	word	student / studentin:student / studentica
+konobar / konobarica	serveur / serveuse	word	kellner / kellnerin:konobar / konobarica
+doktor / doktorica	médecin (m/f)	word	arzt / ärztin:doktor / doktorica
+prodavač / prodavačica	vendeur / vendeuse	word	verkäufer / verkäuferin:prodavač / prodavačica
+velik / velika / veliko	grand (m/f/n)	word	groß (m/w/s):velik / velika / veliko
+lijep / lijepa / lijepo	beau (m/f/n)	word	schön (m/w/s):lijep / lijepa / lijepo
+dobar / dobra / dobro	bon (m/f/n)	word	gut (m/w/s):dobar / dobra / dobro
+nov / nova / novo	nouveau (m/f/n)	word	neu (m/w/s):nov / nova / novo
+pismo	la lettre	word	der brief:pismo
+stvar	la chose	word	die sache / das ding:stvar
+ja sam	je suis	word	ich bin:ja sam
+ti si	tu es	word	du bist:ti si
+on je / ona je	il / elle est	word	er / sie ist:on je / ona je
+mi smo	nous sommes	word	wir sind:mi smo
+vi ste	vous êtes	word	ihr seid / sie sind:vi ste
+oni su	ils sont	word	sie sind:oni su
+imam	j'ai	word	ich habe:imam
+imaš	tu as	word	du hast:imaš
+ima	il / elle a	word	er / sie hat:ima
+imamo	nous avons	word	wir haben:imamo
+imate	vous avez	word	ihr habt:imate
+imaju	ils ont	word	sie haben:imaju
+idem	je vais	word	ich gehe:idem
+ideš	tu vas	word	du gehst:ideš
+idemo	nous allons	word	wir gehen:idemo
+idu	ils vont	word	sie gehen:idu
+jedem	je mange	word	ich esse:jedem
+jedeš	tu manges	word	du isst:jedeš
+pijem	je bois	word	ich trinke:pijem
+govorim	je parle	word	ich spreche:govorim
+znam	je sais	word	ich weiß:znam
+znaš	tu sais	word	du weißt:znaš
+mogu	je peux	word	ich kann:mogu
+možeš	tu peux	word	du kannst:možeš
+hoću	je veux	word	ich will:hoću
+radim	je travaille	word	ich arbeite:radim
+stanujem	j'habite	word	ich wohne:stanujem
+učim	j'apprends	word	ich lerne:učim
+volim	j'aime	word	ich liebe / mag:volim
+brat → braća	frère → frères	word	bruder → brüder:brat → braća
+sestra → sestre	sœur → sœurs	word	schwester → schwestern:sestra → sestre
+kuća → kuće	maison → maisons	word	haus → häuser:kuća → kuće
+grad → gradovi	ville → villes	word	stadt → städte:grad → gradovi
+dijete → djeca	enfant → enfants	word	kind → kinder:dijete → djeca
+žena → žene	femme → femmes	word	frau → frauen:žena → žene
+muškarac → muškarci	homme → hommes	word	mann → männer:muškarac → muškarci
+prijatelj → prijatelji	ami → amis	word	freund → freunde:prijatelj → prijatelji
+jabuka → jabuke	pomme → pommes	word	apfel → äpfel:jabuka → jabuke
+knjiga → knjige	livre → livres	word	buch → bücher:knjiga → knjige
+sto → stolovi	table → tables	word	tisch → tische:sto → stolovi
+stolica → stolice	chaise → chaises	word	stuhl → stühle:stolica → stolice
+auto → auti	voiture → voitures	word	auto → autos:auto → auti
+dan → dani	jour → jours	word	tag → tage:dan → dani
+godina → godine	an → ans	word	jahr → jahre:godina → godine
+riječ → riječi	mot → mots	word	wort → wörter:riječ → riječi
+oko → oči	œil → yeux	word	auge → augen:oko → oči
+ruka → ruke	main → mains	word	hand → hände:ruka → ruke
+čovjek → ljudi	personne → gens	word	mensch → menschen:čovjek → ljudi
+prozor → prozori	fenêtre → fenêtres	word	fenster → fenster:prozor → prozori
+selo → sela	village → villages	word	dorf → dörfer:selo → sela
+jaje → jaja	œuf → œufs	word	ei → eier:jaje → jaja
+ključ → ključevi	clé → clés	word	schlüssel → schlüssel:ključ → ključevi
+zub → zubi	dent → dents	word	zahn → zähne:zub → zubi
+noć → noći	nuit → nuits	word	nacht → nächte:noć → noći
+pas → psi	chien → chiens	word	hund → hunde:pas → psi
+čovjek	personne	word	mensch:čovjek
+ljudi	gens	word	leute:ljudi
+ne	ne ... pas	word	nicht:ne
+nisam	je ne suis pas	word	ich bin nicht:nisam
+nisi	tu n'es pas	word	du bist nicht:nisi
+nije	il / elle n'est pas	word	er / sie ist nicht:nije
+nemam	je n'ai pas	word	ich habe nicht / kein:nemam
+ne mogu	je ne peux pas	word	ich kann nicht:ne mogu
+neću	je ne veux pas	word	ich will nicht:neću
+i	et	word	und:i
+ali	mais	word	aber:ali
+ili	ou	word	oder:ili
+jer	parce que	word	weil:jer
+da	que	word	dass:da
+da li	si (dans une question)	word	ob:da li
+ako	si (condition)	word	wenn / falls:ako
+kad	quand (temporel)	word	als / wenn (zeitlich):kad
+zato	c'est pourquoi	word	deshalb:zato
+Mislim da ...	Je pense que ...	word	ich denke, dass ...:Mislim da ...
+Ne znam gdje ...	Je ne sais pas où ...	word	ich weiß nicht, wo ...:Ne znam gdje ...
+Pitam se da li ...	Je me demande si ...	word	ich frage mich, ob ...:Pitam se da li ...
+Kaže da ...	Il dit que ...	word	er sagt, dass ...:Kaže da ...
+Nadam se da ...	J'espère que ...	word	ich hoffe, dass ...:Nadam se da ...
+Ne vjerujem	Je ne crois pas	word	ich glaube nicht:Ne vjerujem
+niko	personne (négation)	word	niemand:niko
+nikad	jamais	word	nie:nikad
+uvijek	toujours	word	immer:uvijek
+također	aussi	word	auch:također
+samo	seulement	word	nur:samo
+već	déjà	word	schon:već
+još ne	pas encore	word	noch nicht:još ne
+ovdje	ici	word	hier:ovdje
+tamo	là-bas	word	dort:tamo
+tu	juste là / par ici	word	da / hier:tu
+gore	en haut	word	oben:gore
+dolje	en bas	word	unten:dolje
+onda	alors	word	dann:onda
+zatim	ensuite	word	danach:zatim
+prvo	d'abord	word	zuerst:prvo
+opet	de nouveau	word	wieder:opet
+odmah	tout de suite	word	sofort:odmah
+stalno	constamment	word	ständig:stalno
+tako	si	word	so:tako
+vrlo / veoma	très (devant une qualité)	word	sehr (vor eigenschaften):vrlo / veoma
+rado	volontiers	word	gern:rado
+kao	comme / en tant que	word	wie / als:kao
+pa	et puis / donc	word	und dann / also:pa
+evo	voici / voilà	word	hier ist / da ist:evo
+taj	ce ... -là	word	dieser (da):taj
+sav	tout / entier	word	ganz / all:sav
+cijeli	entier (m.)	word	ganz (der ganze):cijeli
+Vidim brata	Je vois le frère	word	ich sehe den bruder:Vidim brata
+Vidim sestru	Je vois la sœur	word	ich sehe die schwester:Vidim sestru
+Vidim dijete	Je vois l'enfant	word	ich sehe das kind:Vidim dijete
+Pijem kahvu	Je bois du café	word	ich trinke kaffee:Pijem kahvu
+Jedem hljeb	Je mange du pain	word	ich esse brot:Jedem hljeb
+Imam pitanje	J'ai une question	word	ich habe eine frage:Imam pitanje
+Imam auto	J'ai une voiture	word	ich habe ein auto:Imam auto
+Volim svoju majku	J'aime ma mère	word	ich liebe meine mutter:Volim svoju majku
+Kupujem jaknu	J'achète une veste	word	ich kaufe eine jacke:Kupujem jaknu
+Čitam knjigu	Je lis un livre	word	ich lese ein buch:Čitam knjigu
+Zovem doktora	J'appelle le médecin	word	ich rufe den arzt:Zovem doktora
+On ima psa	Il a un chien	word	er hat einen hund:On ima psa
+Ona ima mačku	Elle a un chat	word	sie hat eine katze:Ona ima mačku
+Tražimo ulicu	Nous cherchons la rue	word	wir suchen die straße:Tražimo ulicu
+Trebam vodu	J'ai besoin d'eau	word	ich brauche wasser:Trebam vodu
+Trebam ključ	J'ai besoin d'une clé	word	ich brauche einen schlüssel:Trebam ključ
+Znam tvog brata	Je connais ton frère	word	ich kenne deinen bruder:Znam tvog brata
+pitanje	question	word	frage:pitanje
+odgovor	réponse	word	antwort:odgovor
+čitati	lire	word	lesen:čitati
+tražiti	chercher	word	suchen:tražiti
+trebati	avoir besoin de	word	brauchen:trebati
+zvati	appeler	word	rufen / anrufen:zvati
+kupujem	j'achète	word	ich kaufe:kupujem
+vidim	je vois	word	ich sehe:vidim
+mene / me	me	word	mich:mene / me
+tebe / te	te	word	dich:tebe / te
+njega / ga	le (lui)	word	ihn:njega / ga
+nju / je	la (elle)	word	sie (akkusativ):nju / je
 rerna	four	word	backofen:rerna
 flaša	bouteille	word	flasche:flaša
 viljuška	fourchette	word	gabel:viljuška
@@ -714,173 +901,6 @@ daljinski	télécommande	word	fernbedienung:daljinski
 aparat za kahvu / aparat za kafu	cafetière	word	kaffeemaschine:aparat za kahvu / aparat za kafu
 uputstvo	mode d'emploi	word	bedienungsanleitung:uputstvo
 garancija	garantie	word	garantie:garancija
-Ko?	Qui ?	word	wer?:Ko?
-Šta?	Quoi ?	word	was?:Šta?
-Gdje?	Où ?	word	wo?:Gdje?
-Kuda?	Où (vers où) ?	word	wohin?:Kuda?
-Odakle?	D'où ?	word	woher?:Odakle?
-Kada?	Quand ?	word	wann?:Kada?
-Zašto?	Pourquoi ?	word	warum?:Zašto?
-Kako?	Comment ?	word	wie?:Kako?
-Koliko?	Combien ?	word	wie viel?:Koliko?
-Koji?	Quel ?	word	welcher?:Koji?
-Čiji?	À qui ?	word	wessen?:Čiji?
-Da li ...?	Question oui/non : Est-ce que ... ?	word	ja/nein-frage: ist ...?:Da li ...?
-Je li to ...?	C'est ... ?	word	ist das ...?:Je li to ...?
-Ko si ti?	Qui es-tu ?	word	wer bist du?:Ko si ti?
-Odakle si?	D'où viens-tu ?	word	woher kommst du?:Odakle si?
-Kuda ideš?	Où vas-tu ?	word	wohin gehst du?:Kuda ideš?
-Kada dolaziš?	Quand viens-tu ?	word	wann kommst du?:Kada dolaziš?
-Zašto ne?	Pourquoi pas ?	word	warum nicht?:Zašto ne?
-Šta je to?	Qu'est-ce que c'est ?	word	was ist das?:Šta je to?
-Koliko imaš godina?	Quel âge as-tu ?	word	wie alt bist du?:Koliko imaš godina?
-Imaš li vremena?	Tu as le temps ?	word	hast du zeit?:Imaš li vremena?
-Govoriš li engleski?	Tu parles anglais ?	word	sprichst du englisch?:Govoriš li engleski?
-Mogu li pomoći?	Je peux aider ?	word	kann ich helfen?:Mogu li pomoći?
-Gdje stanuješ?	Où habites-tu ?	word	wo wohnst du?:Gdje stanuješ?
-Šta misliš?	Qu'en penses-tu ?	word	was meinst du?:Šta misliš?
-on	il	word	er:on
-ona	elle	word	sie (einzahl):ona
-ono	cela	word	es:ono
-oni	ils	word	sie (mehrzahl, männlich):oni
-one	elles	word	sie (mehrzahl, weiblich):one
-moj / moja / moje	mon (m/f/n)	word	mein (m/w/s):moj / moja / moje
-tvoj / tvoja / tvoje	ton (m/f/n)	word	dein (m/w/s):tvoj / tvoja / tvoje
-njegov / njegova / njegovo	son (à lui) (m/f/n)	word	sein (m/w/s):njegov / njegova / njegovo
-njen / njena / njeno	son (à elle) (m/f/n)	word	ihr (von ihr) (m/w/s):njen / njena / njeno
-naš / naša / naše	notre (m/f/n)	word	unser (m/w/s):naš / naša / naše
-vaš / vaša / vaše	votre (m/f/n)	word	euer / ihr (m/w/s):vaš / vaša / vaše
-ovaj / ova / ovo	ce / cette (m/f/n)	word	dieser / diese / dieses:ovaj / ova / ovo
-onaj / ona / ono	celui-là / celle-là (m/f/n)	word	jener / jene / jenes:onaj / ona / ono
-muškarac	l'homme	word	der mann:muškarac
-djevojka	la jeune fille	word	das mädchen:djevojka
-dječak	le garçon	word	der junge:dječak
-nastavnik / nastavnica	enseignant / enseignante	word	lehrer / lehrerin:nastavnik / nastavnica
-student / studentica	étudiant / étudiante	word	student / studentin:student / studentica
-konobar / konobarica	serveur / serveuse	word	kellner / kellnerin:konobar / konobarica
-doktor / doktorica	médecin (m/f)	word	arzt / ärztin:doktor / doktorica
-prodavač / prodavačica	vendeur / vendeuse	word	verkäufer / verkäuferin:prodavač / prodavačica
-velik / velika / veliko	grand (m/f/n)	word	groß (m/w/s):velik / velika / veliko
-lijep / lijepa / lijepo	beau (m/f/n)	word	schön (m/w/s):lijep / lijepa / lijepo
-dobar / dobra / dobro	bon (m/f/n)	word	gut (m/w/s):dobar / dobra / dobro
-nov / nova / novo	nouveau (m/f/n)	word	neu (m/w/s):nov / nova / novo
-pismo	la lettre	word	der brief:pismo
-stvar	la chose	word	die sache / das ding:stvar
-ja sam	je suis	word	ich bin:ja sam
-ti si	tu es	word	du bist:ti si
-on je / ona je	il / elle est	word	er / sie ist:on je / ona je
-mi smo	nous sommes	word	wir sind:mi smo
-vi ste	vous êtes	word	ihr seid / sie sind:vi ste
-oni su	ils sont	word	sie sind:oni su
-imam	j'ai	word	ich habe:imam
-imaš	tu as	word	du hast:imaš
-ima	il / elle a	word	er / sie hat:ima
-imamo	nous avons	word	wir haben:imamo
-imate	vous avez	word	ihr habt:imate
-imaju	ils ont	word	sie haben:imaju
-idem	je vais	word	ich gehe:idem
-ideš	tu vas	word	du gehst:ideš
-idemo	nous allons	word	wir gehen:idemo
-idu	ils vont	word	sie gehen:idu
-jedem	je mange	word	ich esse:jedem
-jedeš	tu manges	word	du isst:jedeš
-pijem	je bois	word	ich trinke:pijem
-govorim	je parle	word	ich spreche:govorim
-znam	je sais	word	ich weiß:znam
-znaš	tu sais	word	du weißt:znaš
-mogu	je peux	word	ich kann:mogu
-možeš	tu peux	word	du kannst:možeš
-hoću	je veux	word	ich will:hoću
-radim	je travaille	word	ich arbeite:radim
-stanujem	j'habite	word	ich wohne:stanujem
-učim	j'apprends	word	ich lerne:učim
-volim	j'aime	word	ich liebe / mag:volim
-brat → braća	frère → frères	word	bruder → brüder:brat → braća
-sestra → sestre	sœur → sœurs	word	schwester → schwestern:sestra → sestre
-kuća → kuće	maison → maisons	word	haus → häuser:kuća → kuće
-grad → gradovi	ville → villes	word	stadt → städte:grad → gradovi
-dijete → djeca	enfant → enfants	word	kind → kinder:dijete → djeca
-žena → žene	femme → femmes	word	frau → frauen:žena → žene
-muškarac → muškarci	homme → hommes	word	mann → männer:muškarac → muškarci
-prijatelj → prijatelji	ami → amis	word	freund → freunde:prijatelj → prijatelji
-jabuka → jabuke	pomme → pommes	word	apfel → äpfel:jabuka → jabuke
-knjiga → knjige	livre → livres	word	buch → bücher:knjiga → knjige
-sto → stolovi	table → tables	word	tisch → tische:sto → stolovi
-stolica → stolice	chaise → chaises	word	stuhl → stühle:stolica → stolice
-auto → auti	voiture → voitures	word	auto → autos:auto → auti
-dan → dani	jour → jours	word	tag → tage:dan → dani
-godina → godine	an → ans	word	jahr → jahre:godina → godine
-riječ → riječi	mot → mots	word	wort → wörter:riječ → riječi
-oko → oči	œil → yeux	word	auge → augen:oko → oči
-ruka → ruke	main → mains	word	hand → hände:ruka → ruke
-čovjek → ljudi	personne → gens	word	mensch → menschen:čovjek → ljudi
-prozor → prozori	fenêtre → fenêtres	word	fenster → fenster:prozor → prozori
-selo → sela	village → villages	word	dorf → dörfer:selo → sela
-jaje → jaja	œuf → œufs	word	ei → eier:jaje → jaja
-ključ → ključevi	clé → clés	word	schlüssel → schlüssel:ključ → ključevi
-zub → zubi	dent → dents	word	zahn → zähne:zub → zubi
-noć → noći	nuit → nuits	word	nacht → nächte:noć → noći
-pas → psi	chien → chiens	word	hund → hunde:pas → psi
-čovjek	personne	word	mensch:čovjek
-ljudi	gens	word	leute:ljudi
-ne	ne ... pas	word	nicht:ne
-nisam	je ne suis pas	word	ich bin nicht:nisam
-nisi	tu n'es pas	word	du bist nicht:nisi
-nije	il / elle n'est pas	word	er / sie ist nicht:nije
-nemam	je n'ai pas	word	ich habe nicht / kein:nemam
-ne mogu	je ne peux pas	word	ich kann nicht:ne mogu
-neću	je ne veux pas	word	ich will nicht:neću
-i	et	word	und:i
-ali	mais	word	aber:ali
-ili	ou	word	oder:ili
-jer	parce que	word	weil:jer
-da	que	word	dass:da
-da li	si (dans une question)	word	ob:da li
-ako	si (condition)	word	wenn / falls:ako
-kad	quand (temporel)	word	als / wenn (zeitlich):kad
-zato	c'est pourquoi	word	deshalb:zato
-Mislim da ...	Je pense que ...	word	ich denke, dass ...:Mislim da ...
-Ne znam gdje ...	Je ne sais pas où ...	word	ich weiß nicht, wo ...:Ne znam gdje ...
-Pitam se da li ...	Je me demande si ...	word	ich frage mich, ob ...:Pitam se da li ...
-Kaže da ...	Il dit que ...	word	er sagt, dass ...:Kaže da ...
-Nadam se da ...	J'espère que ...	word	ich hoffe, dass ...:Nadam se da ...
-Ne vjerujem	Je ne crois pas	word	ich glaube nicht:Ne vjerujem
-niko	personne (négation)	word	niemand:niko
-nikad	jamais	word	nie:nikad
-uvijek	toujours	word	immer:uvijek
-također	aussi	word	auch:također
-samo	seulement	word	nur:samo
-već	déjà	word	schon:već
-još ne	pas encore	word	noch nicht:još ne
-Vidim brata	Je vois le frère	word	ich sehe den bruder:Vidim brata
-Vidim sestru	Je vois la sœur	word	ich sehe die schwester:Vidim sestru
-Vidim dijete	Je vois l'enfant	word	ich sehe das kind:Vidim dijete
-Pijem kahvu	Je bois du café	word	ich trinke kaffee:Pijem kahvu
-Jedem hljeb	Je mange du pain	word	ich esse brot:Jedem hljeb
-Imam pitanje	J'ai une question	word	ich habe eine frage:Imam pitanje
-Imam auto	J'ai une voiture	word	ich habe ein auto:Imam auto
-Volim svoju majku	J'aime ma mère	word	ich liebe meine mutter:Volim svoju majku
-Kupujem jaknu	J'achète une veste	word	ich kaufe eine jacke:Kupujem jaknu
-Čitam knjigu	Je lis un livre	word	ich lese ein buch:Čitam knjigu
-Zovem doktora	J'appelle le médecin	word	ich rufe den arzt:Zovem doktora
-On ima psa	Il a un chien	word	er hat einen hund:On ima psa
-Ona ima mačku	Elle a un chat	word	sie hat eine katze:Ona ima mačku
-Tražimo ulicu	Nous cherchons la rue	word	wir suchen die straße:Tražimo ulicu
-Trebam vodu	J'ai besoin d'eau	word	ich brauche wasser:Trebam vodu
-Trebam ključ	J'ai besoin d'une clé	word	ich brauche einen schlüssel:Trebam ključ
-Znam tvog brata	Je connais ton frère	word	ich kenne deinen bruder:Znam tvog brata
-pitanje	question	word	frage:pitanje
-odgovor	réponse	word	antwort:odgovor
-čitati	lire	word	lesen:čitati
-tražiti	chercher	word	suchen:tražiti
-trebati	avoir besoin de	word	brauchen:trebati
-zvati	appeler	word	rufen / anrufen:zvati
-kupujem	j'achète	word	ich kaufe:kupujem
-vidim	je vois	word	ich sehe:vidim
-mene / me	me	word	mich:mene / me
-tebe / te	te	word	dich:tebe / te
-njega / ga	le (lui)	word	ihn:njega / ga
-nju / je	la (elle)	word	sie (akkusativ):nju / je
 bez šećera	sans sucre	word	ohne zucker:bez šećera
 bez mlijeka	sans lait	word	ohne milch:bez mlijeka
 iz Bosne	de Bosnie	word	aus bosnien:iz Bosne
@@ -1129,6 +1149,26 @@ ujutro	le matin	word	am morgen:ujutro
 popodne	l'après-midi	word	am nachmittag:popodne
 navečer	le soir	word	am abend:navečer
 vikendom	le week-end	word	am wochenende:vikendom
+ime	nom	word	name:ime
+prezime	nom de famille	word	nachname:prezime
+adresa	adresse	word	adresse:adresa
+telefon	téléphone	word	telefon:telefon
+roditelji	parents	word	eltern:roditelji
+osoba	personne (individu)	word	person:osoba
+hrana	nourriture / aliments	word	essen / nahrung:hrana
+piće	boisson	word	getränk:piće
+lice	visage	word	gesicht:lice
+život	la vie	word	das leben:život
+mjesto	lieu / endroit	word	ort / platz:mjesto
+dio	partie	word	teil:dio
+početak	début	word	anfang:početak
+kraj	fin	word	ende:kraj
+problem	problème	word	problem:problem
+slika	image / photo	word	bild / foto:slika
+priča	histoire (récit)	word	geschichte (erzählung):priča
+igra	jeu	word	spiel (zum spielen):igra
+film	film	word	film:film
+broj	nombre / numéro	word	zahl / nummer:broj
 velik / velika	grand (m/f)	word	groß (m/w):velik / velika
 veći	plus grand	word	größer:veći
 najveći	le plus grand	word	am größten:najveći
@@ -1521,7 +1561,7 @@ Molim te, pričaj sporije	Parle plus lentement, s'il te plaît	word	sprich bitte
 Govoriš li bosanski?	Tu parles bosnien ?	word	sprichst du bosnisch?:Govoriš li bosanski?
 Šta to znači?	Qu'est-ce que ça veut dire ?	word	was bedeutet das?:Šta to znači?
 Kako se to kaže na bosanskom?	Comment dit-on ça en bosnien ?	word	wie sagt man das auf bosnisch?:Kako se to kaže na bosanskom?
-Alejkumu selam	(réponse à cela)	word	(antwort darauf):Alejkumu selam
+Alejkumu selam	réponse à Selam alejkum	word	antwort auf selam alejkum:Alejkumu selam
 posjeta	visite	word	besuch:posjeta
 Hvala na svemu	Merci pour tout	word	danke für alles:Hvala na svemu
 Da te upoznam: ...	Je te présente : ...	word	darf ich vorstellen: ...:Da te upoznam: ...
@@ -1546,7 +1586,7 @@ Poznajemo se	On se connaît	word	wir kennen uns:Poznajemo se
 poznanik / poznanica	connaissance	word	bekannter / bekannte:poznanik / poznanica
 raja	cercle d'amis / la bande	word	freundeskreis / die clique:raja
 domaćin	hôte	word	gastgeber:domaćin
-koleginica	collègue (femme)	word	kollegin:koleginica
+kolegica	collègue (femme)	word	kollegin:kolegica
 jaran	pote (argot, surtout à Sarajevo)	word	kumpel (slang, vor allem sarajevo):jaran
 drug / drugarica	copain / copine (familier)	word	kumpel / kumpelin (locker):drug / drugarica
 komšije	voisins (pluriel)	word	nachbarn (mehrzahl):komšije
@@ -3037,7 +3077,6 @@ smrdjeti / smrditi	puer	word	stinken:smrdjeti / smrditi
 Nešto smrdi u frižideru.	Il y a quelque chose qui pue dans le frigo.	word	im kühlschrank stinkt etwas.:Nešto smrdi u frižideru.
 bljutav	fade	word	fad (ohne geschmack):bljutav
 Supa je bljutava, fali joj soli.	La soupe est fade, il manque du sel.	word	die suppe ist fad, es fehlt salz.:Supa je bljutava, fali joj soli.
-lice	visage	word	gesicht:lice
 Imaš nešto na licu.	Tu as quelque chose sur le visage.	word	du hast etwas im gesicht.:Imaš nešto na licu.
 jezik	langue (organe)	word	zunge:jezik
 Ugrizao sam se za jezik.	Je me suis mordu la langue.	word	ich habe mir auf die zunge gebissen.:Ugrizao sam se za jezik.
@@ -3273,7 +3312,6 @@ budućnost	avenir	word	zukunft:budućnost
 U budućnosti želimo živjeti u Bosni.	À l'avenir, nous voulons vivre en Bosnie.	word	in zukunft wollen wir in bosnien leben.:U budućnosti želimo živjeti u Bosni.
 praznik	jour férié	word	feiertag:praznik
 Sutra je praznik, banke ne rade.	Demain, c'est férié, les banques sont fermées.	word	morgen ist feiertag, die banken haben zu.:Sutra je praznik, banke ne rade.
-odmah	tout de suite	word	sofort:odmah
 Odmah dolazim!	J'arrive tout de suite !	word	ich komme sofort!:Odmah dolazim!
 upravo	juste (à l'instant)	word	gerade (eben):upravo
 Upravo sam stigla kući.	Je viens de rentrer à la maison.	word	ich bin gerade nach hause gekommen.:Upravo sam stigla kući.
@@ -3291,7 +3329,6 @@ tek	seulement (pas avant)	word	erst:tek
 Film počinje tek u devet.	Le film ne commence qu'à neuf heures.	word	der film fängt erst um neun an.:Film počinje tek u devet.
 još	encore	word	noch:još
 Još spava, nemoj ga buditi.	Il dort encore, ne le réveille pas.	word	er schläft noch, weck ihn nicht.:Još spava, nemoj ga buditi.
-opet	de nouveau	word	wieder:opet
 Dođite nam opet!	Revenez nous voir !	word	kommt uns wieder besuchen!:Dođite nam opet!
 zauvijek	pour toujours	word	für immer:zauvijek
 Ovo ne može trajati zauvijek.	Ça ne peut pas durer éternellement.	word	das kann nicht für immer so weitergehen.:Ovo ne može trajati zauvijek.
@@ -3349,7 +3386,6 @@ gitara	guitare	word	gitarre:gitara
 Kćerka uči svirati gitaru.	Ma fille apprend à jouer de la guitare.	word	meine tochter lernt gitarre spielen.:Kćerka uči svirati gitaru.
 plesti	tricoter	word	stricken:plesti
 Nana plete čarape za zimu.	Grand-mère tricote des chaussettes pour l'hiver.	word	oma strickt socken für den winter.:Nana plete čarape za zimu.
-slika	image / photo	word	bild / foto:slika
 Pošalji mi sliku!	Envoie-moi une photo !	word	schick mir ein foto!:Pošalji mi sliku!
 izlet	excursion	word	ausflug:izlet
 U nedjelju idemo na izlet na Vrelo Bosne.	Dimanche, on fait une excursion à Vrelo Bosne.	word	am sonntag machen wir einen ausflug zum vrelo bosne.:U nedjelju idemo na izlet na Vrelo Bosne.
@@ -3363,7 +3399,6 @@ muzej	musée	word	museum:muzej
 Djeca su s razredom bila u muzeju.	Les enfants sont allés au musée avec leur classe.	word	die kinder waren mit der klasse im museum.:Djeca su s razredom bila u muzeju.
 žurka	soirée	word	party:žurka
 Ko sve dolazi na žurku?	Qui vient à la soirée ?	word	wer kommt alles zur party?:Ko sve dolazi na žurku?
-igra	jeu	word	spiel (zum spielen):igra
 Hajmo igrati neku igru!	Jouons à un jeu !	word	lass uns ein spiel spielen!:Hajmo igrati neku igru!
 novine	journal	word	zeitung:novine
 Dedo svako jutro čita novine.	Grand-père lit le journal tous les matins.	word	opa liest jeden morgen zeitung.:Dedo svako jutro čita novine.
@@ -3377,7 +3412,6 @@ reklama	publicité	word	werbung:reklama
 Opet reklame, idem po sok.	Encore de la pub, je vais chercher un jus.	word	schon wieder werbung, ich hol mir einen saft.:Opet reklame, idem po sok.
 radio	radio	word	radio:radio
 U autu uvijek slušam radio.	Dans la voiture, j'écoute toujours la radio.	word	im auto höre ich immer radio.:U autu uvijek slušam radio.
-film	film	word	film:film
 Hoćemo li pogledati neki film?	On regarde un film ?	word	wollen wir uns einen film anschauen?:Hoćemo li pogledati neki film?
 serija	série	word	serie:serija
 Nana gleda svaku tursku seriju.	Grand-mère regarde toutes les séries turques.	word	oma schaut jede türkische serie.:Nana gleda svaku tursku seriju.
@@ -3543,7 +3577,6 @@ praksa	stage	word	praktikum:praksa
 Studenti moraju odraditi praksu.	Les étudiants doivent faire un stage.	word	studenten müssen ein praktikum machen.:Studenti moraju odraditi praksu.
 radni dan	jour ouvrable	word	werktag:radni dan
 Radnim danima ustajem u šest.	En semaine, je me lève à six heures.	word	an werktagen stehe ich um sechs auf.:Radnim danima ustajem u šest.
-mjesto	lieu / endroit	word	ort / platz:mjesto
 Je li ovo mjesto slobodno?	Cette place est-elle libre ?	word	ist dieser platz frei?:Je li ovo mjesto slobodno?
 strana	côté (direction)	word	seite (richtung):strana
 Apoteka je na drugoj strani ulice.	La pharmacie est de l'autre côté de la rue.	word	die apotheke ist auf der anderen straßenseite.:Apoteka je na drugoj strani ulice.
@@ -3593,9 +3626,7 @@ Dužina staze je pet kilometara.	La longueur du parcours est de cinq kilomètres
 Moramo izmjeriti širinu prozora.	Nous devons mesurer la largeur de la fenêtre.	word	wir müssen die breite des fensters messen.:Moramo izmjeriti širinu prozora.
 ivica	bord (table, chaise)	word	kante (tischkante, stuhlkante):ivica
 Čaša stoji na samoj ivici stola.	Le verre est tout au bord de la table.	word	das glas steht direkt an der tischkante.:Čaša stoji na samoj ivici stola.
-dio	partie	word	teil:dio
 Drugi dio filma je bio bolji.	La deuxième partie du film était meilleure.	word	der zweite teil des films war besser.:Drugi dio filma je bio bolji.
-broj	nombre / numéro	word	zahl / nummer:broj
 Napiši mi svoj broj na papir.	Écris-moi ton numéro sur un papier.	word	schreib mir deine nummer auf einen zettel.:Napiši mi svoj broj na papir.
 većina	majorité	word	mehrheit:većina
 Većina mojih prijatelja živi u Njemačkoj.	La plupart de mes amis vivent en Allemagne.	word	die meisten meiner freunde leben in deutschland.:Većina mojih prijatelja živi u Njemačkoj.
@@ -3639,9 +3670,7 @@ razlika	différence	word	unterschied:razlika
 Koja je razlika između ove dvije riječi?	Quelle est la différence entre ces deux mots ?	word	was ist der unterschied zwischen diesen zwei wörtern?:Koja je razlika između ove dvije riječi?
 kilometar	kilomètre	word	kilometer:kilometar
 Do škole ima samo jedan kilometar.	Il n'y a qu'un kilomètre jusqu'à l'école.	word	bis zur schule ist es nur ein kilometer.:Do škole ima samo jedan kilometar.
-početak	début	word	anfang:početak
 Na početku mi je bilo teško.	Au début, c'était difficile pour moi.	word	am anfang war es schwer für mich.:Na početku mi je bilo teško.
-kraj	fin	word	ende:kraj
 Pekara je na kraju ulice.	La boulangerie est au bout de la rue.	word	die bäckerei ist am ende der straße.:Pekara je na kraju ulice.
 period	période	word	zeitraum:period
 To je bio težak period u mom životu.	C'était une période difficile de ma vie.	word	das war eine schwere zeit in meinem leben.:To je bio težak period u mom životu.
@@ -3673,7 +3702,6 @@ faza	phase	word	phase:faza
 To je samo faza, proći će.	Ce n'est qu'une phase, ça passera.	word	das ist nur eine phase, das geht vorbei.:To je samo faza, proći će.
 korak	pas (marche)	word	schritt:korak
 Prvi korak je uvijek najteži.	Le premier pas est toujours le plus difficile.	word	der erste schritt ist immer der schwerste.:Prvi korak je uvijek najteži.
-život	la vie	word	das leben:život
 Život na selu je miran.	La vie au village est calme.	word	das leben auf dem dorf ist ruhig.:Život na selu je miran.
 smrt	mort	word	tod:smrt
 Njegova smrt nas je sve potresla.	Sa mort nous a tous bouleversés.	word	sein tod hat uns alle erschüttert.:Njegova smrt nas je sve potresla.
@@ -3785,7 +3813,6 @@ pojam	notion / idée (savoir)	word	begriff / ahnung:pojam
 Nemam pojma gdje su ključevi.	Je n'ai aucune idée d'où sont les clés.	word	ich habe keine ahnung, wo die schlüssel sind.:Nemam pojma gdje su ključevi.
 pamet	bon sens	word	verstand:pamet
 Ima novca, ali nema pameti.	Il a de l'argent, mais pas de bon sens.	word	er hat geld, aber keinen verstand.:Ima novca, ali nema pameti.
-problem	problème	word	problem:problem
 To nije moj problem.	Ce n'est pas mon problème.	word	das ist nicht mein problem.:To nije moj problem.
 rješenje	solution	word	lösung:rješenje
 Za svaki problem postoji rješenje.	À chaque problème, il y a une solution.	word	für jedes problem gibt es eine lösung.:Za svaki problem postoji rješenje.
@@ -3845,9 +3872,7 @@ aktivnost	activité	word	aktivität:aktivnost
 Djeca imaju mnogo aktivnosti poslije škole.	Les enfants ont beaucoup d'activités après l'école.	word	die kinder haben nach der schule viele aktivitäten.:Djeca imaju mnogo aktivnosti poslije škole.
 poteškoća	petite difficulté	word	kleine schwierigkeit:poteškoća
 Imam male poteškoće s internetom.	J'ai de petits problèmes avec internet.	word	ich habe kleine probleme mit dem internet.:Imam male poteškoće s internetom.
-osoba	personne (individu)	word	person:osoba
 Rezervisao sam sto za četiri osobe.	J'ai réservé une table pour quatre personnes.	word	ich habe einen tisch für vier personen reserviert.:Rezervisao sam sto za četiri osobe.
-roditelji	parents	word	eltern:roditelji
 Moji roditelji žive u Sarajevu.	Mes parents vivent à Sarajevo.	word	meine eltern leben in sarajevo.:Moji roditelji žive u Sarajevu.
 supruga	épouse (soutenu)	word	ehefrau (förmlich):supruga
 Ovo je moja supruga, Amra.	Voici ma femme, Amra.	word	das ist meine frau, amra.:Ovo je moja supruga, Amra.
@@ -4102,19 +4127,12 @@ dova	invocation musulmane (doua)	word	muslimisches bittgebet:dova
 Moja nana svako veče uči dovu.	Ma grand-mère fait une invocation chaque soir.	word	meine oma spricht jeden abend ein bittgebet.:Moja nana svako veče uči dovu.
 mezarje	cimetière musulman	word	muslimischer friedhof:mezarje
 Mezarje je iznad sela.	Le cimetière se trouve au-dessus du village.	word	der friedhof liegt oberhalb des dorfes.:Mezarje je iznad sela.
-hrana	nourriture / aliments	word	essen / nahrung:hrana
 Domaća hrana je najbolja.	La cuisine maison est la meilleure.	word	selbstgemachtes essen ist am besten.:Domaća hrana je najbolja.
-piće	boisson	word	getränk:piće
 Šta ćete za piće?	Que désirez-vous boire ?	word	was möchten sie trinken?:Šta ćete za piće?
-ime	nom	word	name:ime
 Kako se piše tvoje ime?	Comment s'écrit ton nom ?	word	wie schreibt man deinen namen?:Kako se piše tvoje ime?
-prezime	nom de famille	word	nachname:prezime
 Napišite ovdje svoje prezime.	Écrivez ici votre nom de famille.	word	schreiben sie hier ihren nachnamen hin.:Napišite ovdje svoje prezime.
-adresa	adresse	word	adresse:adresa
 Koja je tvoja nova adresa?	Quelle est ta nouvelle adresse ?	word	wie lautet deine neue adresse?:Koja je tvoja nova adresa?
-telefon	téléphone	word	telefon:telefon
 Ostavio sam telefon kod kuće.	J'ai laissé le téléphone à la maison.	word	ich habe das telefon zu hause gelassen.:Ostavio sam telefon kod kuće.
-priča	histoire (récit)	word	geschichte (erzählung):priča
 To je duga priča.	C'est une longue histoire.	word	das ist eine lange geschichte.:To je duga priča.
 informacija	information	word	information:informacija
 Treba mi više informacija.	J'ai besoin de plus d'informations.	word	ich brauche mehr informationen.:Treba mi više informacija.
@@ -4180,9 +4198,7 @@ negativan	négatif	word	negativ:negativan
 Nalaz je negativan, hvala Bogu.	Le résultat est négatif, Dieu merci.	word	der befund ist negativ, gott sei dank.:Nalaz je negativan, hvala Bogu.
 jasan	clair	word	klar:jasan
 Je li ti sada jasno?	C'est clair pour toi maintenant ?	word	ist es dir jetzt klar?:Je li ti sada jasno?
-sav	tout / entier	word	ganz / all:sav
 Djeca su popila sav sok.	Les enfants ont bu tout le jus.	word	die kinder haben den ganzen saft getrunken.:Djeca su popila sav sok.
-cijeli	entier (m.)	word	ganz (der ganze):cijeli
 Cijeli grad je bez struje.	La ville entière est sans électricité.	word	die ganze stadt ist ohne strom.:Cijeli grad je bez struje.
 mnogi	nombreux	word	viele:mnogi
 Mnogi su otišli u Njemačku.	Beaucoup sont partis en Allemagne.	word	viele sind nach deutschland gegangen.:Mnogi su otišli u Njemačku.
@@ -4288,15 +4304,10 @@ hitan	urgent	word	dringend:hitan
 Moram ti nešto hitno reći.	Je dois te dire quelque chose d'urgent.	word	ich muss dir dringend etwas sagen.:Moram ti nešto hitno reći.
 čest	fréquent	word	häufig:čest
 To je česta greška.	C'est une erreur fréquente.	word	das ist ein häufiger fehler.:To je česta greška.
-tu	juste là / par ici	word	da / hier:tu
 Ostavi torbu tu, pored vrata.	Laisse le sac là, à côté de la porte.	word	lass die tasche da, neben der tür.:Ostavi torbu tu, pored vrata.
-ovdje	ici	word	hier:ovdje
 Živim ovdje već deset godina.	J'habite ici depuis dix ans.	word	ich wohne hier schon seit zehn jahren.:Živim ovdje već deset godina.
-tamo	là-bas	word	dort:tamo
 Bio sam tamo prošle godine.	J'y étais l'année dernière.	word	ich war letztes jahr dort.:Bio sam tamo prošle godine.
-gore	en haut	word	oben:gore
 Djeca se igraju gore u sobi.	Les enfants jouent en haut dans la chambre.	word	die kinder spielen oben im zimmer.:Djeca se igraju gore u sobi.
-dolje	en bas	word	unten:dolje
 Čekam te dolje, ispred zgrade.	Je t'attends en bas, devant l'immeuble.	word	ich warte unten auf dich, vor dem gebäude.:Čekam te dolje, ispred zgrade.
 negdje	quelque part	word	irgendwo:negdje
 Negdje sam ostavio ključeve.	J'ai laissé les clés quelque part.	word	ich habe die schlüssel irgendwo liegen lassen.:Negdje sam ostavio ključeve.
@@ -4306,9 +4317,7 @@ naprijed	en avant	word	vorwärts / nach vorne:naprijed
 Samo naprijed, ne boj se!	Vas-y, n'aie pas peur !	word	nur zu, hab keine angst!:Samo naprijed, ne boj se!
 nazad	en arrière	word	zurück:nazad
 Kad ideš nazad u Njemačku?	Quand retournes-tu en Allemagne ?	word	wann gehst du zurück nach deutschland?:Kad ideš nazad u Njemačku?
-onda	alors	word	dann:onda
 Prvo ručak, onda kahva.	D'abord le déjeuner, ensuite le café.	word	erst das mittagessen, dann der kaffee.:Prvo ručak, onda kahva.
-zatim	ensuite	word	danach:zatim
 Večerali smo, a zatim smo gledali film.	Nous avons dîné, puis nous avons regardé un film.	word	wir haben zu abend gegessen und danach einen film geschaut.:Večerali smo, a zatim smo gledali film.
 nekad	parfois / autrefois	word	manchmal / früher:nekad
 Nekad smo živjeli u Tuzli.	Autrefois, nous vivions à Tuzla.	word	früher haben wir in tuzla gelebt.:Nekad smo živjeli u Tuzli.
@@ -4316,19 +4325,15 @@ odjednom	soudain	word	plötzlich:odjednom
 Odjednom je nestala struja.	Soudain, le courant a été coupé.	word	plötzlich ist der strom ausgefallen.:Odjednom je nestala struja.
 davno	il y a longtemps	word	vor langer zeit:davno
 To je bilo davno, ne sjećam se.	C'était il y a longtemps, je ne m'en souviens pas.	word	das ist lange her, ich erinnere mich nicht.:To je bilo davno, ne sjećam se.
-stalno	constamment	word	ständig:stalno
 Stalno mislim na tebe.	Je pense constamment à toi.	word	ich denke ständig an dich.:Stalno mislim na tebe.
 trenutno	en ce moment / actuellement	word	momentan / gerade:trenutno
 Trenutno nisam kod kuće.	Je ne suis pas à la maison en ce moment.	word	ich bin gerade nicht zu hause.:Trenutno nisam kod kuće.
-prvo	d'abord	word	zuerst:prvo
 Prvo operi ruke, pa onda jedi.	Lave-toi d'abord les mains, puis mange.	word	wasch dir zuerst die hände und iss dann.:Prvo operi ruke, pa onda jedi.
 skoro	presque / bientôt	word	fast / bald:skoro
 Skoro sam zaboravio tvoj rođendan.	J'ai failli oublier ton anniversaire.	word	ich hätte fast deinen geburtstag vergessen.:Skoro sam zaboravio tvoj rođendan.
-tako	si	word	so:tako
 Zašto tako kasno dolaziš kući?	Pourquoi rentres-tu si tard à la maison ?	word	warum kommst du so spät nach hause?:Zašto tako kasno dolaziš kući?
 ovako	ainsi (comme ici)	word	so (wie hier):ovako
 Gledaj, to se radi ovako.	Regarde, c'est comme ça qu'on fait.	word	schau, das macht man so.:Gledaj, to se radi ovako.
-vrlo / veoma	très (devant une qualité)	word	sehr (vor eigenschaften):vrlo / veoma
 Ovo je vrlo važno za mene.	C'est très important pour moi.	word	das ist sehr wichtig für mich.:Ovo je vrlo važno za mene.
 toliko	tant	word	so viel:toliko
 Nano, ne mogu toliko pojesti!	Grand-mère, je ne peux pas manger autant !	word	oma, so viel kann ich nicht essen!:Nano, ne mogu toliko pojesti!
@@ -4340,7 +4345,6 @@ nekako	d'une façon ou d'une autre	word	irgendwie:nekako
 Nekako ćemo se snaći.	On se débrouillera d'une façon ou d'une autre.	word	irgendwie kommen wir schon zurecht.:Nekako ćemo se snaći.
 pomalo	un tantinet	word	ein wenig:pomalo
 Već pomalo govorim bosanski.	Je parle déjà un peu bosnien.	word	ich spreche schon ein wenig bosnisch.:Već pomalo govorim bosanski.
-rado	volontiers	word	gern:rado
 Rado ću ti pomoći.	Je t'aiderai volontiers.	word	ich helfe dir gern.:Rado ću ti pomoći.
 otprilike	environ	word	ungefähr:otprilike
 Stižemo za otprilike sat vremena.	Nous arrivons dans environ une heure.	word	wir kommen in ungefähr einer stunde an.:Stižemo za otprilike sat vremena.
@@ -4372,9 +4376,7 @@ svakako	de toute façon	word	auf jeden fall:svakako
 Svakako ću ti se javiti.	Je te donnerai de mes nouvelles de toute façon.	word	ich melde mich auf jeden fall bei dir.:Svakako ću ti se javiti.
 valjda	sans doute / vraisemblablement	word	wohl / vermutlich:valjda
 Valjda će sve biti dobro.	Tout ira sans doute bien.	word	es wird wohl alles gut werden.:Valjda će sve biti dobro.
-kao	comme / en tant que	word	wie / als:kao
 Spavao sam kao beba.	J'ai dormi comme un bébé.	word	ich habe wie ein baby geschlafen.:Spavao sam kao beba.
-pa	et puis / donc	word	und dann / also:pa
 Završi zadaću pa idi vani.	Finis tes devoirs et puis va dehors.	word	mach deine hausaufgaben fertig und geh dann raus.:Završi zadaću pa idi vani.
 što	ce que / que (dans une subordonnée)	word	was / dass (im nebensatz):što
 Žao mi je što kasnim.	Je suis désolé d'être en retard.	word	es tut mir leid, dass ich zu spät komme.:Žao mi je što kasnim.
@@ -4396,7 +4398,6 @@ pošto	puisque / après que	word	da / nachdem:pošto
 Pošto pada kiša, ostajemo kod kuće.	Puisqu'il pleut, nous restons à la maison.	word	da es regnet, bleiben wir zu hause.:Pošto pada kiša, ostajemo kod kuće.
 neka	que (souhait) / qu'il soit	word	soll / möge:neka
 Neka sačeka pet minuta.	Qu'il attende cinq minutes.	word	er soll fünf minuten warten.:Neka sačeka pet minuta.
-evo	voici / voilà	word	hier ist / da ist:evo
 Evo ti ključevi od stana.	Voici les clés de l'appartement.	word	hier hast du die wohnungsschlüssel.:Evo ti ključevi od stana.
 po	après / par	word	nach / pro:po
 Ulaz košta pet maraka po osobi.	L'entrée coûte cinq marks par personne.	word	der eintritt kostet fünf mark pro person.:Ulaz košta pet maraka po osobi.
@@ -4428,7 +4429,6 @@ radi	à cause de / pour l'amour de	word	wegen / um … willen:radi
 Radi djece ostajemo ovdje.	Nous restons ici pour les enfants.	word	der kinder wegen bleiben wir hier.:Radi djece ostajemo ovdje.
 sebe	se	word	sich:sebe
 On misli samo na sebe.	Il ne pense qu'à lui.	word	er denkt nur an sich.:On misli samo na sebe.
-taj	ce ... -là	word	dieser (da):taj
 Ko je taj čovjek?	Qui est cet homme ?	word	wer ist dieser mann?:Ko je taj čovjek?
 svoj	son propre (mon, ton, son)	word	eigener (mein, dein, sein):svoj
 Uzmi svoju torbu, idemo!	Prends ton sac, on y va !	word	nimm deine tasche, wir gehen!:Uzmi svoju torbu, idemo!
@@ -7996,7 +7996,7 @@ gutljaj	gorgée	word	schluck:gutljaj
 Popij bar gutljaj vode.	Bois au moins une gorgée d'eau.	word	trink wenigstens einen schluck wasser.:Popij bar gutljaj vode.
 dunum	dunum (1 000 m²)	word	dunum (1.000 m²):dunum
 Imamo dva dunuma zemlje.	Nous avons deux dunums de terre.	word	wir haben zwei dunum land.:Imamo dva dunuma zemlje.
-Dobar dan	Bonjour	sentence	s0001
+Dobar dan	Bonjour (la journée)	sentence	s0001
 Merhaba, kako si?	Salut, comment ça va ?	sentence	s0002
 Kako si?	Comment vas-tu ?	sentence	s0003
 Hvala puno!	Merci beaucoup !	sentence	s0004
@@ -8289,7 +8289,7 @@ Moja vjera je važna.	Ma foi est importante.	sentence	s0290
 Da te upoznam: moj brat.	Je te présente : mon frère.	sentence	s0291
 Hoću da te posjetim.	Je veux te rendre visite.	sentence	s0292
 Molim te, oprosti mi.	S'il te plaît, pardonne-moi.	sentence	s0293
-Ovo je moja koleginica.	C'est ma collègue.	sentence	s0294
+Ovo je moja kolegica.	C'est ma collègue.	sentence	s0294
 Moj babo je dobar domaćin.	Mon papa est un bon hôte.	sentence	s0295
 Nana svira harmoniku.	Grand-mère joue de l'accordéon.	sentence	s0296
 Plešemo kolo.	Nous dansons le kolo.	sentence	s0297

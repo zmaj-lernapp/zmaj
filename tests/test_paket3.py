@@ -109,10 +109,12 @@ def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektion_zwoelf_und_drei_level_in_tun_und_lassen(grunddaten):
+def test_sektion_zwoelf_und_drei_level_in_tun_und_lassen(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     sektionen = [s["id"] for s in grunddaten["sektionen"]]
-    assert sektionen[11] == "koerpergesundheit"
-    assert grunddaten["sektionen"][11]["label"] == "Sektion 12 · Körper und Gesundheit"
+    assert sektionen[12] == "koerpergesundheit"  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
+    # seit 14.11.2026 "Arzt & Gesundheit" (Ajdin), siehe tests/test_sektion_arzt.py
+    assert grunddaten["sektionen"][12]["label"] == "Sektion 4 · Arzt & Gesundheit"
     tun = [k["id"] for k in grunddaten["kategorien"] if k["sektion"] == "tunlassen"]
     assert tun[12:15] == TUN, "nach im_haushalt"
     assert tun[-2:] == ["passieren", "notfall"], "seit 06.11.2026 stehen dazwischen die Level aus Paket 7 und 8"
@@ -125,7 +127,8 @@ def test_sektion_zwoelf_und_drei_level_in_tun_und_lassen(grunddaten):
     assert sum(len(k["words"]) for k in _level(grunddaten, KOERPER)) == 206
 
 
-def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
+def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     for k in _level(grunddaten, TUN + KOERPER):
         assert k["reihenfolge"] is True, k["id"]
         assert 20 <= len(k["words"]) <= 40, k["id"]

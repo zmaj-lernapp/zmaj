@@ -51,37 +51,50 @@ TOR = 9447
 # Reihenfolge wie BP.SCHRITTE. Höchstens etwa 38 Zeichen, sonst wird die
 # Schrift kleiner. Übersetzt und von je einem zweiten Durchgang gegengelesen
 # am 11.10.2026; Deutsch hat Ajdin freigegeben.
+# 13.11.2026 (Store-Bilder 1.3, Ajdin: „alles wie empfohlen“): Bild 2 ohne
+# Zahl - „65 Levels“ stimmte seit 1.3 nicht mehr, und ohne Zahl bleibt das
+# Bild auch nach B2 richtig; die Zahl steht in der Kurzbeschreibung. Bild 4
+# zeigt die Kacheln statt der Auswahlaufgabe, der Text folgt „Bilde den
+# Satz“ aus sprachen.py (task.kacheln). Keine Wörter wie „beste“, „Top“,
+# „neu“ und keine Vergleiche (Google-Regeln zu Store-Angaben).
 UEBERSCHRIFTEN = {
-    "de": ["Jeden Tag ein Stück Bosnisch", "65 Levels – vom Hallo bis zum Amt",
-           "Jedes Wort zum Anhören", "Kurze Übungen, die hängen bleiben",
+    # Bild 4: „Wort für Wort bauen“ mit geschuetzten Leerzeichen (U+00A0) wie
+    # im Tuerkischen, damit es „Sätze / Wort für Wort bauen“ umbricht. Ohne
+    # brach es als „Sätze Wort für / Wort bauen“ um, nur mit „Wort für Wort“
+    # gebunden als „Sätze Wort für Wort / bauen“ (Pruefung 13.11.2026).
+    # Der Wortlaut bleibt gleich.
+    "de": ["Jeden Tag ein Stück Bosnisch", "Vom Hallo bis zum Amt",
+           "Jedes Wort zum Anhören", "Sätze Wort für Wort bauen",
            "Grammatik, einfach erklärt", "Ganze Sätze selbst schreiben",
            "Geschichten: Wort antippen, verstehen", "Wiederholen, bevor du vergisst"],
-    "en": ["A little Bosnian every day", "65 levels – from hello to paperwork",
-           "Hear every word", "Short exercises that stick",
+    "en": ["A little Bosnian every day", "From hello to paperwork",
+           "Hear every word", "Build sentences word by word",
            "Grammar made simple", "Write whole sentences yourself",
            "Stories: tap a word to understand it", "Review before you forget"],
-    "tr": ["Her gün biraz Boşnakça", "65 seviye – merhabadan resmî işlere",
-           "Her kelimeyi dinleyebilirsin", "Akılda kalan kısa alıştırmalar",
+    "tr": ["Her gün biraz Boşnakça", "Merhabadan resmî işlere",
+           # Bild 4: zwischen „kelime kelime“ steht ein geschuetztes Leerzeichen
+           # (U+00A0), damit „Wort für Wort“ in einer Zeile bleibt.
+           "Her kelimeyi dinleyebilirsin", "Cümleleri kelime kelime kur",
            "Dil bilgisi, sade ve anlaşılır", "Cümleleri baştan sona kendin yaz",
            "Hikâyeler: kelimeye dokun, anla", "Unutmadan önce tekrar et"],
-    "sv": ["Lite bosniska varje dag", "65 nivåer – från hej till myndigheter",
-           "Lyssna på varje ord", "Korta övningar som fastnar i minnet",
+    "sv": ["Lite bosniska varje dag", "Från hej till myndigheter",
+           "Lyssna på varje ord", "Bygg meningar ord för ord",
            "Grammatik, enkelt förklarad", "Skriv hela meningar själv",
            "Berättelser: tryck på okända ord", "Repetera innan du glömmer"],
-    "nl": ["Elke dag een stukje Bosnisch", "65 levels – van hallo tot het loket",
-           "Hoor hoe elk woord klinkt", "Korte oefeningen die blijven hangen",
+    "nl": ["Elke dag een stukje Bosnisch", "Van hallo tot het loket",
+           "Hoor hoe elk woord klinkt", "Bouw zinnen woord voor woord",
            "Grammatica, helder uitgelegd", "Schrijf zelf hele zinnen",
            "Verhalen: tik aan wat je niet kent", "Herhalen voordat je het vergeet"],
-    "nb": ["Litt bosnisk hver dag", "65 nivåer – fra hei til byråkratiet",
-           "Hør hvert eneste ord", "Korte øvelser som sitter",
+    "nb": ["Litt bosnisk hver dag", "Fra hei til byråkratiet",
+           "Hør hvert eneste ord", "Bygg setninger ord for ord",
            "Grammatikk, enkelt forklart", "Skriv hele setninger selv",
            "Historier: Trykk på et ord og forstå", "Repeter før du glemmer"],
-    "da": ["Lidt bosnisk hver dag", "65 niveauer – fra hej til kommunen",
-           "Hør hvert eneste ord", "Korte øvelser, der bliver hængende",
+    "da": ["Lidt bosnisk hver dag", "Fra hej til kommunen",
+           "Hør hvert eneste ord", "Byg sætninger ord for ord",
            "Grammatik, enkelt forklaret", "Skriv selv hele sætninger",
            "Historier: tryk på et ord, forstå det", "Gentag, før du glemmer det"],
-    "fr": ["Un peu de bosnien chaque jour", "65 niveaux – du bonjour à la paperasse",
-           "Écoute chaque mot", "Exercices courts qui restent en tête",
+    "fr": ["Un peu de bosnien chaque jour", "Du bonjour à la paperasse",
+           "Écoute chaque mot", "Construis des phrases mot par mot",
            "La grammaire, expliquée simplement", "Écris toi-même des phrases complètes",
            "Touche un mot, l’histoire s’éclaire", "Révise avant d’oublier"],
 }

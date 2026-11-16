@@ -60,6 +60,12 @@ AUCH = {
     "dobivati": ["dobijati"],
     "hitna": ["vozilo hitne pomoći", "sanitet", "kola hitne pomoći"],
 }
+# Pruefbericht 1.4, V3 (14.11.2026): zwei Beispielsaetze nehmen beim Tippen auch
+# die andere richtige Fassung. Die Kennung bleibt (tests/test_pruefbericht14_antworten.py).
+SATZ_AUCH = {"Uspjela sam!": ["Uspio sam!"], "Šta se desilo?": ["Šta se dogodilo?"]}
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten (B3/F14): das andere App-Wort gilt
+# beim Tippen mit, nur in dieser Richtung (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {"pripremiti": ["spremiti"], "nedostajati": ["faliti"]}
 
 # Gegenstuecke, die schon vor dem Paket in der App standen
 ALTE_PARTNER = {"dolaziti": "doći", "davati": "dati", "pomagati": "pomoći", "plaćati": "platiti",
@@ -78,10 +84,11 @@ def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektion_zehn_mit_zehn_leveln(grunddaten):
-    sektion = grunddaten["sektionen"][9]
+def test_sektion_zehn_mit_zehn_leveln(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
+    sektion = grunddaten["sektionen"][10]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
     assert sektion["id"] == "tunlassen"
-    assert sektion["label"] == "Sektion 10 · Tun und Lassen"
+    assert sektion["label"] == "Sektion 2 · Tun und Lassen" and sektion["stufe"] == "B1"
     level = _level(grunddaten)
     assert [k["id"] for k in level] == list(WOERTER)
     assert all(k["sektion"] == "tunlassen" for k in level)
@@ -103,7 +110,7 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
         for wort, satz in zip(woerter[0::2], woerter[1::2]):
             assert re.search(r"[.!?]$", satz["bs"]) and re.search(r"[.!?]$", satz["de"]), satz
             assert satz["bs"][:1].isupper() and satz["de"][:1].isupper(), satz
-            assert "partner" not in satz and "auch" not in satz, satz
+            assert "partner" not in satz and satz.get("auch") == SATZ_AUCH.get(satz["bs"]), satz
             assert satz["bs"] != wort["bs"], satz
 
 
@@ -113,10 +120,10 @@ def test_auch_formen_und_doppelformen(grunddaten):
         for a in w.get("auch", []):
             assert a not in formen, (w["bs"], a)     # steht schon im Wort, matches() trennt selbst
     neu = {w["bs"]: w for k in _level(grunddaten) for w in k["words"]}
-    for bs, auch in AUCH.items():
+    for bs, auch in {**AUCH, **SATZ_AUCH, **PRUEFBERICHT_AUCH}.items():
         assert neu[bs].get("auch") == auch, bs
     mit_auch = {bs for bs, w in neu.items() if w.get("auch")}
-    assert mit_auch == set(AUCH)
+    assert mit_auch == set(AUCH) | set(SATZ_AUCH) | set(PRUEFBERICHT_AUCH)
 
 
 def test_partner_stehen_in_der_app(grunddaten):

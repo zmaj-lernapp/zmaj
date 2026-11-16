@@ -66,10 +66,11 @@ def _pruefe_emir(e, text, wo, wurzel, huelle):
             "Emir-Aufnahme fehlt in der Huelle: %s (%s)" % (e["datei"], wo)
 
 
-def test_jede_neue_wort_id_hat_emirs_ton(grunddaten, index, wurzel):
+def test_jede_neue_wort_id_hat_emirs_ton(grunddaten_vor_umzug, index, wurzel):
     """Jede neue Wort-ID gegen ton_nur_emir.json: die App findet ihren Ton
     ueber den Schluessel aus dem bosnischen Text (audioDatei() in
     web/index.html)."""
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     import ton_bauen
     import ton_pruefen
     emir = ton_bauen.nur_emir()
@@ -97,9 +98,10 @@ def test_jede_neue_wort_id_hat_emirs_ton(grunddaten, index, wurzel):
     assert len(gesehen) == 150
 
 
-def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, index, wurzel):
+def test_jeder_beispielsatz_hat_emirs_ton(grunddaten_vor_umzug, index, wurzel):
     """Jeder der 150 Saetze hat seine eigene Aufnahme, Text genau wie in der
     App."""
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     import ton_bauen
     import ton_pruefen
     emir = ton_bauen.nur_emir()
@@ -118,22 +120,27 @@ def test_jeder_beispielsatz_hat_emirs_ton(grunddaten, index, wurzel):
     assert not ohne, ohne[:20]
 
 
-def test_nummern_w3422_bis_w3719_gehoeren_dem_paket(grunddaten):
+def test_nummern_w3422_bis_w3719_gehoeren_dem_paket(grunddaten_vor_umzug):
     """Genau die 298 neuen Aufnahmen, lueckenlos, keine fuer etwas anderes,
     und in der Reihenfolge von ton_bauen.sammle(). Die Nummern bleiben
     vergeben (ton_bauen.grosser_lauf zaehlt sie mit), auch wenn ein Wort
     spaeter wieder geht."""
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     import ton_bauen
     emir = ton_bauen.nur_emir()
     im_paket = {e["datei"]: k for k, e in emir.items() if ERSTE <= _nummer(e["datei"]) <= LETZTE}
     assert sorted(im_paket) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
     texte = {w["bs"] for w in _neue_woerter(grunddaten) + _neue_saetze(grunddaten)}
     assert {emir[k]["text"] for k in im_paket.values()} <= texte
-    reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(im_paket.values())]
-    assert [im_paket[d] for d in sorted(im_paket)] == reihe
+    # Seit 13.11.2026 kommen die 40 umgezogenen Grundwoerter in der App frueher dran,
+    # ihre Nummern bleiben (grundwoerter_umzug.py). Sie zaehlen hier nicht zur Reihenfolge.
+    from grundwoerter_umzug import UMZUG
+    umgezogen = {f(u[1]) for u in UMZUG for f in (ton_bauen.schluessel, ton_bauen.schluessel_alle)}
+    reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(im_paket.values()) and p["key"] not in umgezogen]
+    assert [im_paket[d] for d in sorted(im_paket) if im_paket[d] not in umgezogen] == reihe
 
 
-def test_pakete_3_und_4_belegen_w3124_bis_w3723(grunddaten):
+def test_pakete_3_und_4_belegen_w3124_bis_w3723(grunddaten_vor_umzug):
     """Paket 3 (w3124-w3421, w3720-w3723) und Paket 4 (w3422-w3719) belegen
     zusammen w3124 bis w3723 lueckenlos, in der Reihenfolge von sammle():
     erst alle Woerter und Saetze, dann die Doppelformen mit allen Formen."""
@@ -141,5 +148,9 @@ def test_pakete_3_und_4_belegen_w3124_bis_w3723(grunddaten):
     emir = ton_bauen.nur_emir()
     neu = {e["datei"]: k for k, e in emir.items() if 3124 <= _nummer(e["datei"]) <= 3723}
     assert sorted(neu) == ["w%04d.mp3" % n for n in range(3124, 3724)]
-    reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values())]
-    assert [neu[d] for d in sorted(neu)] == reihe
+    # Seit 13.11.2026 kommen die 40 umgezogenen Grundwoerter in der App frueher dran,
+    # ihre Nummern bleiben (grundwoerter_umzug.py). Sie zaehlen hier nicht zur Reihenfolge.
+    from grundwoerter_umzug import UMZUG
+    umgezogen = {f(u[1]) for u in UMZUG for f in (ton_bauen.schluessel, ton_bauen.schluessel_alle)}
+    reihe = [p["key"] for p in ton_bauen.sammle() if p["key"] in set(neu.values()) and p["key"] not in umgezogen]
+    assert [neu[d] for d in sorted(neu) if neu[d] not in umgezogen] == reihe

@@ -62,6 +62,10 @@ AUCH = {
     "nezaposlen": ["nezaposlena", "nezaposleno"], "zaposlen": ["zaposlena", "zaposleno"],
 }
 
+# Spaeter dazu, nicht aus dem Paket: Ajdin am 14.11.2026 abends (dritte Runde,
+# Offen-Liste 5a) „Gdje idete na ljetovanje?“: „Ja“. Der einzige Beispielsatz mit "auch".
+AUCH_SPAETER = {"Kuda idete na ljetovanje?": ["Gdje idete na ljetovanje?"]}
+
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {"ruksak": "ranac", "poljoprivrednik": "seljak"}
 
@@ -87,11 +91,12 @@ def _alle(daten):
     return [w for k in daten["kategorien"] for w in k["words"]]
 
 
-def test_sektionen_dreizehn_und_vierzehn_am_ende(grunddaten):
+def test_sektionen_dreizehn_und_vierzehn_am_ende(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     sektionen = grunddaten["sektionen"]
-    assert [s["id"] for s in sektionen][12:14] == ["zeitfreizeit", "lernenarbeiten"]
-    assert sektionen[12]["label"] == "Sektion 13 · Zeit und Freizeit"
-    assert sektionen[13]["label"] == "Sektion 14 · Lernen und Arbeiten"
+    assert [s["id"] for s in sektionen][13:15] == ["zeitfreizeit", "lernenarbeiten"]  # seit 13.11.2026 Nummer je Reiter, Saetze bauen geteilt (Stufen-Reiter)
+    assert sektionen[13]["label"] == "Sektion 5 · Zeit und Freizeit"
+    assert sektionen[14]["label"] == "Sektion 6 · Lernen und Arbeiten"
     ids = [k["id"] for k in grunddaten["kategorien"]]
     i = ids.index("zeitangaben")
     assert ids[i:i + 10] == ZEIT + LERNEN, "hinter Sektion 12, seit 06.11.2026 folgen die Sektionen 15 bis 17"
@@ -103,7 +108,8 @@ def test_sektionen_dreizehn_und_vierzehn_am_ende(grunddaten):
     assert sum(len(k["words"]) for k in _level(grunddaten, ZEIT)) == 178
 
 
-def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
+def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     for k in _level(grunddaten, ZEIT + LERNEN):
         assert k["reihenfolge"] is True, k["id"]
         assert 20 <= len(k["words"]) <= 40, k["id"]
@@ -112,13 +118,15 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
         for wort, satz in zip(woerter[0::2], woerter[1::2]):
             assert re.search(r"[.!?]$", satz["bs"]) and re.search(r"[.!?]$", satz["de"]), satz
             assert satz["bs"][:1].isupper() and satz["de"][:1].isupper(), satz
-            assert "partner" not in satz and "auch" not in satz, satz
+            assert "partner" not in satz, satz
+            assert satz.get("auch") == AUCH_SPAETER.get(satz["bs"]), satz
             assert satz["bs"] != wort["bs"], satz
 
 
-def test_auch_genau_nach_dem_paket(grunddaten):
+def test_auch_genau_nach_dem_paket(grunddaten_vor_umzug):
+    grunddaten = grunddaten_vor_umzug   # Level wie geliefert (grundwoerter_umzug.py, 13.11.2026)
     neu = {w["bs"]: w for w in _neu(grunddaten)}
-    assert {bs: w["auch"] for bs, w in neu.items() if w.get("auch")} == AUCH
+    assert {bs: w["auch"] for bs, w in neu.items() if w.get("auch")} == {**AUCH, **AUCH_SPAETER}
     for w in neu.values():
         assert " / " not in w["bs"], w["bs"]     # Paket 4 hat keine Doppelform
         for a in w.get("auch", []):

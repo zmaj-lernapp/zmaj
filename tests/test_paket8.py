@@ -63,6 +63,9 @@ NUR_SATZ = {}
 AUCH = {
     "uticati": ["utjecati"],
 }
+# Pruefbericht 1.4 (14.11.2026), Ajdins Antworten (B3/F14): das andere App-Wort gilt
+# beim Tippen mit, nur in dieser Richtung (tests/test_pruefbericht14_tippen.py).
+PRUEFBERICHT_AUCH = {"plašiti se": ["bojati se"], "poći": ["krenuti"]}
 
 # Ajdin: diese Formen zaehlen beim Tippen NICHT (zaehlt_nicht im Paket).
 ZAEHLT_NICHT = {
@@ -147,7 +150,7 @@ def test_jedes_wort_steht_vor_seinem_beispielsatz(grunddaten):
 def test_auch_genau_nach_dem_paket(grunddaten):
     """Feld "auch" aus dem Paket, dazu die Formen aus "formen" (weiblich, saechlich)."""
     neu = {w["bs"]: w for w in _neu(grunddaten)}
-    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == AUCH
+    assert {b: w["auch"] for b, w in neu.items() if w.get("auch")} == {**AUCH, **PRUEFBERICHT_AUCH}
     for w in neu.values():
         formen = [f.strip() for f in w["bs"].split(" / ")]
         for a in w.get("auch", []):

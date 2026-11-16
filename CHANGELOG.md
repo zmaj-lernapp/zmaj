@@ -7,6 +7,94 @@ are in the Play Store listing. Format:
 ## [Unreleased]
 
 ### Added
+- Achievements (approved by the maintainer on 13.11.2026): 18 badges for
+  learning days (7, 30, 100, 365, 1000), the longest streak (blue 30, purple
+  100, gold 365), words learned (100, 500, 1,000, 2,500), all levels of A1, A2
+  and B1, stories (the first, all) and 100 words that reached the 90-day step
+  of the review boxes. Badges are earned
+  retroactively from what the app already stores (one short note "Du hast
+  schon 6 Abzeichen" after the update, once the splash screen is gone; a
+  device's first sync with an account counts the same way, so old badges get
+  no invented date and no red dot) and stay once earned, even if the number
+  behind them drops. They show as a compact row at the top of the profile (the
+  three newest and "7 of 18"; a tap opens the whole wall on a page of its own,
+  and back leads to the profile) and a quiet line on the result screen of a
+  lesson, test, review round or story. On the start page only a red dot on the
+  profile button says that a badge has not been seen on the wall yet (moved
+  there on 14.11.2026 at the maintainer's request; until then the row stood
+  under "Weitermachen"). The profile button is now always there, also without
+  an account (web demo, the first lesson before the mandatory sign-in); without
+  an account the profile shows achievements and streak only. On the wall,
+  screen readers hear the whole sentence ("100 Wörter sitzen, geschafft")
+  instead of "100, geschafft" (review for 1.4, S15). The card with confetti
+  stays reserved for learning days. No new field in the saved progress: `e:<id>`
+  in `gefeiert`, the date in `wann` where it cannot be recomputed, about 360
+  bytes with all 18. Which badges were already seen is kept on the device only.
+  Every badge has its own picture painted with Gemini in the style of the
+  dragon (`web/erfolge`, 128 × 128 WebP), and the picture grows along its
+  chain: a calendar with a check, star, trophy, crown and a golden calendar
+  with a gem; one card, three cards, a thick deck and a full card box; one, two
+  and three steps (their ring now shows A1, A2, B1); one book and a pile of
+  books; the brain. The flame badges keep the painted streak flame in their
+  colour. Texts in all eight languages (not by native speakers).
+- Stage tabs A1 · A2 · B1 · B2 · C1 in the learning path (13.11.2026, variant B
+  of the maintainer's decision). The path opens in the tab of "Continue"; section
+  numbers, level numbers and colours start again in every tab; C1 is empty
+  ("soon"). Unlocking stays one chain across all tabs. A locked tab can be opened
+  early with a skip-ahead test: 15 questions from the previous tab, 12 correct
+  opens it; every wrong answer costs a heart like the level test, skipped levels
+  are open but not passed. Levels with known words always stay open. Two new
+  levels hold 40 frequent words that came only in B1 before (*Little words* in
+  A1, *Everyday words* in A2); the entries only moved, IDs, audio and progress
+  stay. *tako* and *pa*, now in the same level, never appear in the same multiple
+  choice (`NIE_NEBENEINANDER`; in English *pa* is "and then / so"). "At home"
+  now comes after "Cases 1"; "Building sentences" is split into
+  two sections. 297 levels, 27 sections: B2 went from 14 sections to nine,
+  one per colour (old 18+19, 21+22, 23+24, 28+29 and 30+31 merged; level order
+  and progress unchanged). The tab bar shows the progress as "112/129" so that
+  it fits 360 px in all eight languages (screen readers hear the full sentence);
+  at 320 px or with a large system font the line gets smaller (down to 7 px),
+  and if that is not enough, "done" and "locked" show only their sign and the
+  progress only the number passed, so no number is ever cut off. Dutch "soon"
+  is now *volgt* instead of *binnenkort*. Tapping a tab keeps the tab bar exactly
+  where it is on the screen and only changes what is below it (reported by the
+  maintainer on 14.11.2026: after tapping B1 the page jumped back to the top,
+  because the page was briefly shorter than the screen while the sections were
+  redrawn).
+  Learners placed before the tabs get the two new levels as "Continue" even
+  though they lie before their placement; once passed, "Continue" and the
+  button after the test lead to the other new level and then back to the
+  placement, not to level 1 (passing them does not count as "learning from the
+  start"). A placement from 1.3 at "Asking questions" also covered "At home";
+  those five levels stay open, and "Continue" skips them as it did in 1.3.
+  Without hearts the skip-ahead test
+  offers the same ways to a heart as the level test (video, coins).
+- 20 reading stories for B1 (decided by the maintainer on 13.11.2026), in four
+  packages behind the twelve older stories, in the same chain: the three
+  approved samples (*Ljeto kod nane na selu*, *Voz Sarajevo–Mostar*,
+  *Izgubljeni telefon*) and 17 more written the same way, 160 to 200 words
+  each, in paragraphs, with three questions whose wrong answers are about as
+  long as the right one, and every word tappable. Three topics that came up
+  twice were replaced by a weather report (*Vrijeme za vikend*), a flat advert
+  (*Izdajem stan*) and an e-mail (*Mejl rođaku*). Texts, translations and
+  questions in all eight languages (translations not by native speakers).
+  Every word form stands in exactly one glossary block, with one meaning that
+  fits every story: 32 stories and 1,515 glossary entries in total. Since
+  16.11.2026 the Azure voice Vesna reads all 20 aloud, like the older stories,
+  with word timings for the read-along highlight (`g13.mp3` to `g32.mp3`), after
+  the maintainer had answered every open Bosnian question about the texts. The
+  words that occur only in these stories have no recording yet: words and
+  sentences are spoken by the Emir voice, not by Azure
+  (`tests/offen_lesetexte.json`, `WOERTER` in `tests/offen_b1_teil2.py`).
+  `ton_bauen.py --nur-geschichten` synthesises stories only, and
+  `ZMAJ_TTS_ZUGANG` points `ton_bauen.py` and `wortzeiten_holen.py` to an access
+  file outside the repository. `tests/test_offen_lesetexte.py`, `tests/test_wortzeiten.py`.
+- A sandbox in the test app only (8.11.2026): when Android reports the app ID
+  `de.smartdragon.zmaj.test` and the build carries a "-test" version, every
+  level, section, level test and story is open, without writing anything into
+  `passed`, `known` or `read`; the version line says "Sandbox: alles offen".
+  Hearts, ads, the placement test and saving work as before. The store app and
+  the browser version stay locked exactly as before.
 - Ten grammar lessons for B1 (approved by the maintainer on 7.11.2026), each in
   the level it explains: verb pairs, present-tense stems, the imperative, dates
   and times, ne-/ni- words and collective numbers, the conditional, possessive
@@ -273,8 +361,10 @@ are in the Play Store listing. Format:
   chosen from the phone's language list (English otherwise). Four large
   buttons of equal width: the official "Get it on Google Play" badge in the
   page's language, with the channel as campaign source in `referrer=`
-  (`utm_source=tiktok|instagram|youtube`, otherwise `web`, also without
-  JavaScript), then Instagram, TikTok and YouTube with their logos. Below,
+  (`utm_source=tiktok|instagram|youtube&utm_medium=bio`, otherwise
+  `utm_source=linkseite`, also without JavaScript; until 12.11.2026
+  `utm_medium=social&utm_campaign=bio` and `web`), then Instagram, TikTok
+  and YouTube with their logos. Below,
   in small print, contact, legal notice, privacy policy, terms of use, the
   note "Characters & voices made with AI" and the Google Play trademark
   notice. The badges and logos are stored unchanged in `grafik/marken`
@@ -283,6 +373,102 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Golden heart with the full version (14.11.2026, the maintainer's wish after the
+  purchase test on the iPhone): wherever the heart stands with ∞ (header, the heart
+  in lessons and tests, the statistics on the result screen) it is now golden
+  instead of red. Unlimited hearts without a purchase (test mode, gift) keep the red
+  one. Painted with Gemini like the other symbols (`web/symbole/herzgold.webp`,
+  128 × 128 WebP); screen readers still hear "Leben". `tests/test_symbole.py`,
+  `tests_e2e/test_symbole_einheitlich.py`.
+- The last emojis of the interface are painted pictures now, the same on Android
+  and iPhone (14.11.2026, the maintainer after the iPhone test: "das muss einheitlich
+  sein"): a chequered flag before "Level-Test" (was 🏁), a star before "Zmaj
+  bewerten" (⭐), a blue heart after "Danke!" (💙), three painted sparkles around the
+  golden streak flame (✨) and an envelope before the e-mail address in the profile
+  (✉). The texts in all eight languages no longer carry the emoji; the picture comes
+  from the code and is decoration next to the word (`web/symbole/ziel.webp`,
+  `stern.webp`, `herzblau.webp`, `funken.webp`, `brief.webp`). Emojis in the
+  notifications stay, the system shows those. `tests/test_symbole.py`,
+  `tests_e2e/test_symbole_einheitlich.py`.
+- 🎉 and ▶ are painted pictures as well (15.11.2026, the maintainer: "Male sie",
+  approved with "Passt"): a painted play sign before "Lektion starten", "Weitermachen
+  · …" and "Weiterlesen", and a painted party popper after "Lektion geschafft",
+  "Runde geschafft", "Bestanden! Bravo", "… die ganze Sektion fertig" and "Geschichte
+  geschafft!". The texts in all eight languages no longer carry the sign; the popper
+  never stands alone on a line, it stays with the last word (`web/symbole/play.webp`,
+  `konfetti.webp`). `tests/test_symbole.py`, `tests_e2e/test_symbole_einheitlich.py`,
+  `tests_e2e/test_mitlesen.py`.
+- Skip, pause, stop and cancel (14.11.2026, same request) no longer use ⏭ ⏸ ⏹ ✕,
+  which every phone drew differently and the iPhone as coloured emoji. They are
+  small signs drawn in the app itself (inline SVG in the colour of the button's
+  text, as large as the text and centred to it): on the skip links of listening,
+  speaking and tile tasks, on the pause and stop buttons when a story is read
+  aloud, and on "Lektion abbrechen", "Test abbrechen" and "Test beenden". The
+  texts in all eight languages no longer carry the sign. A no-break space keeps the
+  sign with its word, so it never stands alone on a line; the stop button keeps its
+  name "Stopp" for screen readers. `tests/test_symbole.py`, `tests/test_stern.py`,
+  `tests_e2e/test_symbole_einheitlich.py`, `tests_e2e/test_mitlesen.py`.
+- The B1 section "Körper und Gesundheit" is now called "Arzt & Gesundheit"
+  (14.11.2026, the maintainer's choice; "Doctor & health", "Doktor ve sağlık",
+  "Läkare & hälsa", "Dokter & gezondheid", "Lege & helse", "Læge & sundhed",
+  "Médecin & santé"). Only the name changed: the section keeps its ID, colour and
+  levels, and the A1 level "Körper & Gesundheit" keeps its name.
+  `tests/test_sektion_arzt.py`.
+- Terms of use, section 2 (review for 1.3, S30, the maintainer on 14.11.2026:
+  "ja mach"): the app replaces no lessons, human translation and legal advice,
+  and now also no medical explanation; health joins office, bank, property and
+  employment contract among the levels where the words only help to follow a
+  conversation. All eight languages, with and without an account, dated
+  14.11.2026. A clarification, so no "terms changed" note.
+  `tests/test_nutzungsbedingungen_s30.py`.
+- Privacy policy, ads (review for 1.4, S23, the maintainer on 15.11.2026: yes):
+  besides the advertising ID, Google's ad component also collects the app set ID,
+  according to Google's data disclosure for AdMob. The sentence on what Google
+  receives now names it, "the app set ID (an identifier that only applies to the
+  apps of one developer)", in all eight languages, with and without an account;
+  dated 16.11.2026. The website (`seite_bauen.py`) takes the same text.
+  `tests/test_datenschutz_s23.py`.
+- Family level (13.11.2026, approved by the maintainer): *stričević* now counts
+  as correct when typed next to *amidžić*, and *stričevka* next to *amidžična*,
+  through `"auch"` like the pet names *striko* and *adžo*. IDs, display and
+  recordings stay; both are not separate words and are never spoken.
+- Cloud backup (1.4, decided by the maintainer on 13.11.2026): the app reads
+  the old form and a packed one. Packed, every learned word is stored once
+  instead of twice (in `gewusst` and in the review box), then gzipped with the
+  browser's own `CompressionStream` and stored as Base64 in the same text
+  field. A full 1.3 learner shrinks from about 857,000 to about 195,000 bytes,
+  and 30,000 entries fit in about 783,000 of the 900,000. Step 1: the app
+  packs only when the old form no longer fits (`CLOUD_IMMER_PACKEN` stays
+  `false`), so a device with 1.3 notices nothing; 1.3 carries a packed backup
+  along unchanged as a field of a newer version, and 1.4 merges both. Before
+  each upload the app unpacks the packed text and compares it with the
+  progress; if anything differs, it uploads the old form or nothing. If the
+  device already knows the backup, it first fetches only `rev` (field mask)
+  and loads the full backup only when another device wrote. `firestore.rules`
+  is unchanged. `app_bauen.py --immer-packen` builds a test app that always
+  packs, for the phone test with a device on 1.3. A device that received a
+  packed backup while still on 1.3 carries it in its own progress; after the
+  update to 1.4 it unpacks and merges it before its next upload, so the words
+  of the device that wrote it stay in the cloud even when step 2 always packs
+  (review finding, 13.11.2026). Only a packed field that cannot be unpacked is
+  left out of a packed upload; it stays in the old form and on the device.
+  `tests_e2e/test_cloud_packen.py`.
+- Evening notifications with personality (decided by the maintainer on
+  13.11.2026, thinned out on 14.11.2026): 17 new texts with Zmaj's humour
+  replace the twelve plain reminder, streak and come-back texts, in all eight
+  languages. Which group comes depends on the evening: streak at risk at 8 pm
+  (A, from 7 days also praise), learned yesterday but no warning due at 7 pm
+  (praise), a break of 2 to 6 days (come-back), the quiet message after 14
+  days, otherwise "better late than never" or "grain by grain", after a
+  learning day also the come-back texts. Of the 24 drafts the maintainer
+  struck one streak text, the one showing a learned word on the lock screen
+  and all six Bosnian word jokes. Placeholders are filled on the device:
+  streak, next milestone, record, words learned (rounded down to 100), days
+  of the break, the next open level and the flame colour. The text that has
+  not come for the longest time wins, so the same one never comes two
+  evenings in a row, and every situation has at least two texts. No name, no
+  server; 7 pm and 8 pm stay fixed, at most one message per evening, the
+  switches work as before. Hearts-refilled texts are unchanged.
 - Tablets: from 600 points on the shorter side (Android's "sw600dp") the
   whole app scales up with the screen. Upright, the column fills about
   88 % of the width (10-inch tablet: everything 1.3 times larger); in
@@ -376,6 +562,420 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Reading stories (review for 1.4, V1; 16.11.2026): "Vorlesen", its stop button and
+  the speed bar appear only when the story has a recording. The Android shell has no
+  computer voice, so the button stood under the B1 stories that had no audio yet and
+  did nothing when tapped. Every story has its recording now; the check catches the
+  next one that comes into the app before its audio, on the PC as well.
+  `tests_e2e/test_vorlesen_nur_mit_ton.py`.
+- Typing (review for 1.4, 14.11.2026, V3): four correct answers no longer cost a
+  heart. *Kad dolaziš?* and *Kad ćeš doći?* count next to *Kada …*, *Kada se ženiš?*
+  next to *Kad se ženiš?* (as single words *kad* and *kada* already did), *Zdravo* in
+  the gap "___, kako si?" (the word *Merhaba* already took it), *Uspio sam!* next to
+  *Uspjela sam!* (the task names no gender) and *Šta se dogodilo?* next to *Šta se
+  desilo?* (as for the verb). One `"auch"` each; IDs and recordings stay. No pair
+  *kad*/*kada* for everywhere, because *kada* is also "bathtub".
+  `tests/test_pruefbericht14_antworten.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+- Typing *sa* (review for 1.4, 14.11.2026, V8; decided by the maintainer, F1): *sa
+  bratom*, *sa djecom*, *sa tobom*, *sa nama*, *sa mlijekom*, *sa mojom ženom* and *Sa
+  poštovanjem* now count next to the *s* form; the grammar of the level itself writes
+  *sa bratom*. One `"auch"` each, IDs and recordings stay. No pair *s*/*sa* for
+  everywhere, which would also allow *s mnom*. `tests/test_pruefbericht14_tippen.py`.
+- Typing the other usual word (review for 1.4, 14.11.2026, V9; decided by the
+  maintainer, F2 to F5): "sehr" (*jako*) and the gap "Kahva je ___ vruća." also take
+  *vrlo* and *veoma*; *poslije* and *nakon* count for each other in "nach (zeitlich)",
+  "nach (einem Ereignis)", "nach der Arbeit" and the gap "___ posla idem kući."; the gap
+  "___ pada kiša, ostajem kod kuće." also takes *Kad* and *Kada*, and "Kada ___
+  autobus?" also *kreće*. Only at these places, no pair for everywhere. In sentence
+  building *vrlo*, *veoma*, *kad* and *kada* are no longer wrong tiles next to "Kahva je
+  jako vruća." and "Ako pada kiša, ostajem kod kuće.". `tests/test_pruefbericht14_tippen.py`.
+- Typing another usual wording (review for 1.4, 14.11.2026, B1; decided by the
+  maintainer, F12): *Gdje živiš?*, *To je skupo*, *Tačno je*, *Treba mi voda*, *Treba
+  mi potvrda*, *Fališ mi*, *Kako ti je ime?*, *Ne brini se*, *Ja ću raditi* and *očev
+  auto* now count next to the phrase the app shows. One `"auch"` each, IDs and
+  recordings stay. The gap "___ mi." (*Nedostaješ*) follows the word and takes *Fališ*
+  too. `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+- Typing another word order (review for 1.4, 14.11.2026, B2; decided by the
+  maintainer, F13): *Kiša pada*, *Snijeg pada*, *Voda curi*, *Meni je svejedno* and
+  *Meni je dosadno* now count next to *Pada kiša* and the others, as sentence
+  building already allowed. `tests/test_pruefbericht14_tippen.py`.
+- Typing a word the app itself lists with the same meaning (review for 1.4,
+  14.11.2026, B3; decided by the maintainer, F14): "sagen" (*reći*) also takes
+  *kazati*, *plašiti se* takes *bojati se*, *ukoliko* *ako*, *poći* *krenuti*, *žena* and
+  *muž* take *supruga* and *suprug*, *zastoj* *gužva*, *uskoro* *skoro*, *ovdje* *tu*,
+  *prije* ("früher") *nekad* and *nekada*, *budući da* and *nakon što* *pošto*,
+  *pripremiti* *spremiti*, *spojiti* *povezati*, *moderan* *savremen* (all three forms),
+  *pravac* *smjer* and *nedostajati* *faliti*. Only in this direction; the other word
+  does not take the first. `tests/test_pruefbericht14_tippen.py`.
+- Typing *Dobrodošli* as one word (review for 1.4, 14.11.2026, B4; decided by the
+  maintainer, F15) now counts for "Willkommen" next to *Dobro došli*; until then it
+  was "Almost right!" and then cost a heart. `tests/test_pruefbericht14_tippen.py`.
+- Gap sentences (review for 1.4, 14.11.2026, S1; decided by the maintainer, F18):
+  "Šta si po ___?" also takes *struci*, "Možemo li platiti ___?" *posebno*, "Moram sipati
+  ___." *benzin*, "Ovo je jako ___." *fino* and "Poslije posla ___ večeru." *spremam* and
+  *pravim*. *Ajde* without h in "___, idemo!" stays wrong ("no longer Bosnian").
+  `tests/test_pruefbericht14_tippen.py`.
+- *Ćao* is also "Hallo" (review for 1.4, 14.11.2026, B5; decided by the maintainer,
+  F16). Typing it for "Hallo" (*Merhaba*) and in the gap sentence "___, kako si?" now
+  counts; *Merhaba* stays what is shown and spoken. In sentence building "Merhaba, kako
+  si?" *ćao* is no longer a wrong tile (`"ohne"`), and in multiple choice it no longer
+  stands as a wrong button next to "Hallo". *Zdravo* ("Hallo (neutral, überall)")
+  takes it when typing too; both words hold it out of multiple choice through their
+  `"auch"`, so no pair in `NIE_NEBENEINANDER` is needed. *Ćao* itself ("Tschüss")
+  takes neither. `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_antworten.py`,
+  `tests_e2e/test_pruefbericht14_antworten.py`.
+- *Gdje* for "wohin" (review for 1.4, 14.11.2026, V11; decided by the maintainer, F7
+  a: colloquially it also means "where to"; table 2c, row 30): "Wohin gehst du?"
+  (*Kuda ideš?*) and the gap "___ ideš?" now also take *Gdje*; *Kuda* stays what is
+  shown and spoken. In the grammar lesson "Asking questions" *Gdje* is no longer the
+  wrong button next to *Kuda* (now *Kada*), and the tip says "in speech often also
+  Gdje", in all eight languages. The story *b1_voz* keeps "Gdje putujete, djeco?".
+  Since the third round (14.11.2026 evening, the maintainer: "gdje also works on its
+  own") "Wohin?" (*Kuda?*) on its own takes *Gdje?* as well, and "Kuda idete na
+  ljetovanje?" takes "Gdje idete na ljetovanje?" (too long to be typed today). "Wo?"
+  (*Gdje?*) still does not take *Kuda*; *Kuda?* and *Gdje?* no longer stand next to
+  each other in multiple choice.
+  `tests/test_pruefbericht14_tippen.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+- "Minze" (review for 1.4, 14.11.2026, B6; decided by the maintainer, F17 b) is now
+  *nana / metvica* like *kahva / kafa* instead of *nana (auch: metvica)*, which showed
+  the German word "auch" on the Bosnian button in every language. Both forms count
+  when typing and speaking. The ID changes from `minze:nana (auch: metvica)` to
+  `minze:nana / metvica`; `UMBENANNT` moves progress, review box and stars along. A
+  new recording by Emir says both forms, "nana, metvica." like *kahva / kafa* (app
+  only, `ton_nur_emir.json`, w8955, 14.11.2026). Until then only the first form *nana*
+  played, the same recording as "Oma"; the web demo still does, and `NUR_ERSTE_FORM`
+  in `ton_pruefen.py` is empty again.
+  `tests/test_pruefbericht14_antworten.py`, `tests/test_paket1020_ton.py`,
+  `tests_e2e/test_pruefbericht14_antworten.py`.
+- "Kollegin" (review for 1.4, 14.11.2026, S2; decided by the maintainer, F19) is
+  *kolegica*, not *koleginica*: the word, the gap "Ovo je moja ___." and the sentence
+  to build "Ovo je moja kolegica.". The ID changes from `kollegin:koleginica` to
+  `kollegin:kolegica`; `UMBENANNT` and `SAETZE_UMBENANNT` move progress, review box
+  and stars along. New recordings of the word and the sentence by Emir (app only,
+  `ton_nur_emir.json`, w8953 and w8954); `web/audio` keeps the old ones, which no
+  longer play. The reordered sentences "Plava je voda u jezeru" and "Pet godina ima
+  moja sestra" stay wrong. `tests/test_pruefbericht14_antworten.py`,
+  `tests/test_paket1020_ton.py`, `tests_e2e/test_pruefbericht14_antworten.py`.
+- Typing the second forms of table 2c (review for 1.4, 14.11.2026, V10; decided by
+  the maintainer, F6: Croatian and the others too, "they are just not visible"):
+  writing tasks and gap sentences now also take *kruh* for *hljeb*, *juha* for *supa*,
+  *plaća* for *plata*, *juče* for *jučer*, *hefta* for *sedmica*, *spanać* for *špinat*,
+  *stanarina* and *najamnina* for *kirija*, *hladnjak* for *frižider*, *kola* for
+  *auto*, *pare* for *novac*, *meni* for *jelovnik*, *Oprosti* for *Izvini*, *je li* for
+  *da li*, *Puno hvala*, *Hvala lijepa* and *Hvala mnogo* for *Hvala puno*, *Do viđenja*,
+  *Dobra večer*, *musafir* for *gost* and the rest of the table, row by row in
+  `varianten.py`. Shown, spoken and taught is still only the app's own word. Only in
+  that direction: "mir" (*meni / mi*) never takes *jelovnik*, *nekad* not *ponekad*.
+  Where gender or number differ (*šerpa*, *kola*, *pare*, *kuče*), only where the word
+  stands alone; where the other form also means something else (*meni*, *kola*,
+  *pare*, *sahat*, *tikva*, *šipak*, *ujesti*, *promet*), only at that one word.
+  *prodavnica* and *radnja*, *dvorište* and *avlija* take each other and, like
+  *ponekad* and *nekad*, no longer stand next to each other in multiple choice. A
+  form may now have several second forms (*kafena*: *smeđa*, *kahvena*, *braon*). Row
+  30 (*Gdje* for "wohin") belongs to F7; *tisuća* still counts as 1000 (row 38).
+  `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing *Oprostite* (third round, 14.11.2026 evening; decided by the maintainer):
+  "Entschuldigung (Sie)" (*Izvinite*) and the gap "___, molim Vas." now also take
+  *Oprostite*, like *Oprosti* for *Izvini* (table 2c, row 29). Only the formal form
+  was asked; "Entschuldigung (du)" and "Verzeih mir" do not take it.
+  `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing *nekada* for "manchmal" (third round, 14.11.2026 evening; decided by the
+  maintainer): *ponekad* now also takes the long form *nekada* next to *nekad* (table
+  2c, row 20). Still only in that direction.
+  `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing the second form in whole phrases (third round, 14.11.2026 evening; decided
+  by the maintainer): "Imam kola", "u kolima", "Nemam para", "na pazaru", "na
+  sokaku", the gap "Supa je u ___." with *šerpi* and "On ima kuče" now count next to
+  *Imam auto*, *u autu*, *Nemam novca*, *na pijaci*, *na ulici*, *loncu* and *On ima
+  psa*. Only at these seven places and only these forms; *autom*, *Putujemo ___.*,
+  *uplatiti novac*, *Tražimo ulicu*, *Čuvaj se psa!* and the others stay as they were.
+  "Koliko je sahat?" and "Moja je ovo kolegica." stay wrong (the maintainer: no).
+  `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing the second form at nine more places (questions of 15.11.2026, 9a to 9i;
+  decided by the maintainer, forms confirmed one by one): *kolima* for *autom* and in
+  the gap "Putujemo ___.", "kola oca", "podići pare", "uplatiti pare", "Tražimo
+  sokak", "Bojim se kučadi", "Čuvaj se kučeta!" and "Kuče me je ujelo" now count next
+  to *auto oca*, *podići novac*, *uplatiti novac*, *Tražimo ulicu*, *Bojim se pasa*,
+  *Čuvaj se psa!* and *Pas me je ujeo*. Only there and only these forms; "očev kola",
+  "Bojim se kučeta", "Kuče me je ujeo" and the like stay wrong. Nothing changes in
+  sentence building. `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
+  right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
+  "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and
+  *dići* / *dizati*, the short forms of *podići* / *podizati*, next to them. The five
+  pairs are in `NIE_NEBENEINANDER`; typing does not change.
+- Multiple choice (review for 1.4, 14.11.2026, B8): *zajam* and *pozajmica* (both
+  "loan") and *jaran* and *drug / drugarica* (both "buddy") no longer stand next to
+  each other as right and wrong answer (`NIE_NEBENEINANDER`).
+- *Alejkumu selam* (review for 1.4, 14.11.2026, B9) means "Reply to Selam alejkum"
+  instead of "(Reply to this)", in all eight languages. Since the words were sorted
+  alphabetically it stood before *Selam alejkum*, so "this" pointed nowhere, and as
+  a writing task it could not be solved. The ID changes from
+  `(antwort darauf):Alejkumu selam` to `antwort auf selam alejkum:Alejkumu selam`;
+  `UMBENANNT` moves progress, review box and stars along. The recording stays.
+- Multiple choice (review for 1.4, 14.11.2026, V5): when only one of two words in a
+  level had a note in brackets, the question without one fit both buttons, e.g.
+  English "How are you?" (*Kako si?*) next to "How are you? (formal)" (*Kako ste?*),
+  in 185 of 400 draws. The other side now has a note too, 17 pairs in seven
+  languages: en "How are you? (informal)", "to you (singular)", "you will
+  (singular)"; tr "üstünde (yukarıda)", "zorundayım", "satıcı (erkek)"; sv/nb "barn
+  (ett)"; da "far (formelt)"; nl "of (keuze)", "voor (ten behoeve van)"; nb/da "så (i
+  tid)" (not "deretter"/"derefter", that is *zatim* in the same level); fr "Salut (en
+  arrivant)", "Bonjour (la journée)", "Où (sans mouvement) ?". Only
+  `uebersetzungen.py`, no ID changes; *za* and *onda* only as words (`"woerter"`), the
+  story dictionary keeps "voor" and "så". `tests_e2e/test_antworten.py` now strips
+  the note at the end before comparing.
+- English gap sentences (review for 1.4, 14.11.2026, B7): seven gaps take only the
+  informal form (*si*, *te*, *Nedostaješ*, *radiš*, *imaš*, *Imaš*, *Možeš*), but
+  "you" also fits the formal or plural one. Their English texts now say
+  "(informal)", like "When will you come? (singular, informal)" already did; the
+  word and the sentence-building item with the same text get it too. The other
+  languages tell *du* and *Sie* apart on their own.
+- Reading stories (review for 1.4, 14.11.2026, V2): the bubble with the meaning
+  of a tapped word stood after the whole text, and the page did not scroll. Who
+  tapped a word near the top only saw the yellow mark, in all 20 B1 stories at
+  360 and 412 px and in *intervju* at 360 px (word at 463 px, bubble at 1544 px).
+  The bubble now sticks to the bottom of the screen (`position: sticky` inside
+  the story card, above the update bar when it shows); its place under the text
+  stays, so the text does not jump. A word tapped right above the bottom edge
+  is scrolled up just enough to stay visible, and reading along scrolls before
+  the current word goes behind the bubble.
+  `tests_e2e/test_pruefbericht14_oberflaeche.py`.
+- Answer buttons (review for 1.4, 14.11.2026, B13): answers over 14 characters
+  are set smaller and without serifs. This was decided per button, so when only
+  the right answer was long it stood out as the only different one ("ein alter
+  Walnussbaum" in *Ljeto kod nane na selu*), and the other way round: 31 B1
+  questions and 38 of the older stories across all languages. `renderChoice()`
+  now sets all buttons of a task the same, small as soon as one is long, in every
+  language, story, lesson, test and grammar exercise.
+- Notifications after "Delete account" (review for 1.4, 14.11.2026, V6): deleting
+  the account did not cancel the scheduled notifications, and the next start
+  planned again on the empty progress: seven evening messages and "Ima li te?
+  Deine 200 Wörter sind alle noch da." Now deleting cancels everything in the
+  app's range (IDs 100 to 299), switches reminder, streak and hearts
+  notifications off and plans again (`benAllesAus()`), so nothing comes. Signing
+  out keeps the reminders on purpose. The return message after 14 days is only
+  planned when there is a learning day; without one there is nothing to return
+  to. `tests_e2e/test_anmeldung.py`, `tests_e2e/test_benachrichtigungen.py`.
+- Heart from a video (review for 1.4, 14.11.2026, B15): watching a video raised the
+  number of hearts but not their time stamp, so the next sync with a second device
+  kept the smaller number at equal time and the heart was gone (phone and tablet
+  with 0 hearts, video on the phone: 0 again after the sync). The video now sets
+  the time like a coin purchase (`zeitNachKauf()`, fixed for purchases on
+  07.11.2026): one millisecond later below the maximum, so it costs no waiting
+  time. `tests_e2e/test_cloud.py`.
+- Dictionary of the reading stories (review for 1.4, 14.11.2026, B10): tapping a
+  word sometimes showed the wrong meaning. *ti* now says "du / dir" (in the B1
+  stories it is always "to you"), *kad* "als / wenn / wann" ("Babo, kad idemo
+  opet?"), *vam* "Ihnen / euch" (four places speak to several people). *je* also
+  means "sie (Akk.)" in *Razgovor za posao*, *Ljeto kod nane na selu*, *Voz
+  Sarajevo–Mostar* and *Stari zanat na Baščaršiji* ("Direktor je pita"), as the
+  story's own entry like *smije*; elsewhere it stays "ist". Eight words took the
+  meaning of the vocabulary entry with all genders ("zufrieden (m/w)") or the wrong
+  one (*važna*: "wichtig (der wichtige)"); they now have their own text with the
+  form in the story (*zadovoljan*, *zdrav*, *tužan*, *vaš* masculine, *važna*,
+  *njena*, *doktorica* feminine, *svoja* plural). Only the dictionary changed, the
+  vocabulary keeps its `de` and so its ID; the story texts (the audio keys) stay.
+  New texts in all eight languages (not by native speakers).
+  `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
+- "Goes with level" of the reading stories (review for 1.4, 14.11.2026, B12): seven
+  B1 stories pointed to a B2 level that B1 learners usually have not opened yet
+  (*Izdajem stan* to "Wohnen und Miete"). They now point to a level up to B1 with
+  the same topic: *Izdajem stan* → "Wohnung & Hauskauf", *Voz Sarajevo–Mostar* and
+  *Dijaspora prvi put u Sarajevu* → "Reisen und Urlaub", *Jahorina* → "Sport und
+  Spiel", *Komšiluk bez struje* and *Kahva kod komšinice* → "Miteinander umgehen",
+  *Ljeto kod nane na selu* → "Familie". Unlocking does not depend on it, the text
+  and audio stay. A test keeps every story at A1 to B1.
+  `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
+- Story titles in the list (review for 1.4, 14.11.2026, B14; decided by the
+  maintainer, E3 option a): the title was shortened so that its level label could
+  stay beside it, in French at 360 px for 14 of 32 stories ("Na op…", "Razgo…").
+  The title is now always shown in full and wraps like text if needed (at most
+  two lines at normal font size); the label stands after its last word when it
+  fits there and otherwise moves to the line below. Where everything fits in one
+  line it looks as before. A label wider than the whole line ("Langue
+  administrative" next to "À faire maintenant") wraps inside itself instead of
+  being cut. `tests_e2e/test_pruefbericht14_oberflaeche.py` (all eight languages,
+  360 and 412 px, every story in every state).
+- *Komšiluk bez struje* (review for 1.4, 14.11.2026, V13 a; decided by the
+  maintainer, F9 a): Hasan's gas stove is now *plinski šporet* instead of *plinski
+  štednjak*. Everywhere else the app calls the stove *šporet*, and *štednjak* is
+  listed as Croatian. The story dictionary has *šporet* "Herd" in place of
+  *štednjak*; the translation stays "Gasherd". The story had no audio yet.
+  `tests/test_pruefbericht14_geschichten.py`, `tests_e2e/test_pruefbericht14_geschichten.py`.
+- *Pismo nani* (review for 1.4, 14.11.2026, S3; decided by the maintainer, F20):
+  Amina hopes her nana will make a pita, *napraviti pitu*, no longer *skuhati
+  pitu* ("one says napraviti pitu, not skuhati"). The German translation now says
+  "eine Pita machst" like the other seven languages; *skuhati* left the story
+  dictionary, *napraviti* was already there. The old recording (g09) belonged to
+  the old text, so the story waited for the next Vesna round with the B1 stories
+  (`tests/offen_b1_teil2.py`). Vesna read it again on 16.11.2026, under the same
+  number g09. `tests/test_pruefbericht14_geschichten.py`.
+- Polite *Vi* in the reading stories (review for 1.4, S7; decided by the
+  maintainer on 15.11.2026: "mach doch alles groß", replacing the rule of
+  14.11.2026 that kept it lower case in conversations): *Vi, Vas, Vam, Vaš* are
+  capitalised whenever one person is addressed politely, in conversations as well
+  as in writing - *Na općini* ("Hvala Vam na pomoći"), *Komšiluk bez struje*,
+  *Prvi dan na poslu* ("Prvo ću Vam pokazati Vašu kancelariju"), the phone call in
+  *Izdajem stan*, *Kod doktora* and *Stari zanat na Baščaršiji*; *Izgubljeni
+  telefon* already had "molim Vas". Lower case stays where several people are
+  meant (the train, the rafting group, the e-mail to the cousin's family). The
+  grammar hint "Höflich = Vi → ste." follows suit in all languages; vocabulary,
+  sentences and the dental section were capitalised already. The audio keys are
+  lower case, so nothing needs new audio, and the word timings of *Na općini* (g10)
+  match its text again. `tests/test_pruefbericht14_geschichten.py`,
+  `tests/test_wortzeiten.py`.
+- Commas before *jer* and *ako* (review for 1.4, 14.11.2026, B11; decided by the
+  maintainer, F11 a): the grammar lesson teaches no comma before *jer*, *da* and
+  *ako* when the clause follows the main clause, yet seven B1 sentences had one
+  ("Najviše sam voljela subotu, jer je nana tada pravila pitu."). The comma is gone
+  in *Ljeto kod nane na selu*, *Dijaspora prvi put u Sarajevu*, *Jahorina*, *Stari
+  zanat na Baščaršiji*, *Zmaj uči bosanski*, *Izdajem stan* ("Može sutra u šest ako
+  vam odgovara.") and *Mejl rođaku*. Only punctuation changed; none of the seven had
+  audio yet. `tests/test_pruefbericht14_geschichten.py`.
+- A new B1 story instead of *Selidba* (review for 1.4, 14.11.2026; decided by the
+  maintainer, F10): *Selidba* told the same tale as *Izdajem stan*, a young woman
+  moving for work. In its place, under the same ID so reading progress stays, comes
+  *Dedo i nana se sele*: Grandpa and Grandma move from their village below Vlašić
+  into a small flat in Travnik, and Grandpa, who wanted only his armchair and his
+  radio, secretly brings a young plum tree in a bucket. Translation and three
+  questions in all eight languages (not by native speakers); the right answer is
+  nowhere much longer than the wrong ones. Every word is tappable: 44 new glossary
+  forms, *radio* as the device in the story's own entries, and the 31 forms only the
+  old story used are gone with their translations (1,515 entries). Vesna read it
+  on 16.11.2026 (g25) with the other B1 stories.
+  `tests/test_pruefbericht14_geschichten.py`.
+- B1 reading stories, the maintainer's answers to the open A/B passages
+  (15.11.2026): where he chose the other wording, the story now has exactly
+  that, with translation, questions and story dictionary in all eight languages
+  (not by native speakers); where he kept the text, nothing changed. *Dijaspora
+  prvi put u Sarajevu*: Tarik orders *deset ćevapa* instead of a *desetka*.
+  *Vrijeme za vikend*: the radio greets *dragi slušaoci* instead of *poštovani*,
+  and the family can *roštiljati* instead of *napraviti roštilj*. *Jahorina*:
+  they rent *skijaške cipele* instead of *pancerice*. *Nanina pita*: Grandma
+  rolls the dough out with a rolling pin (*razvijala ga oklagijom*) instead of
+  stretching it by hand, the filling is *nadjev* instead of *fil*, and the dough
+  *trebalo je da odmori* instead of *moralo je odmarati*. *Komšiluk bez struje*
+  opens with *Bilo je hladno januarsko veče* (neuter *veče*) instead of *Bila je
+  hladna januarska večer*. *Svadba i kolo*: the kolo is danced with *plesati*
+  in all four places (*Plesali smo kolo*, *plesala*, *plesati*, *Plesali smo i
+  pjevali*), no longer *igrati*. *Prvi dan na poslu*: Haris finished the
+  *elektrotehnički fakultet*, *Kolege su bili ljubazni* (the colleagues include
+  men like Nedžad) and coffee is *obavezna*, a must, rather than *svetinja*.
+  *Izdajem stan*: Selma sleeps *na madracu* instead of *na dušeku*. *Kod
+  doktora*: the doctor says *otvorit ću Vam bolovanje na pet dana*, the
+  pharmacist *Uzimajte* instead of *Pijte*, and Amar is *ponovo* healthy
+  instead of *opet*. *Rođendansko iznenađenje*: *kod tvojih roditelja* instead
+  of *kod tvojih*, and Haris blows out *sve svijeće u jednom dahu* instead of
+  *ih … odjednom*. *Utakmica*: Kenan hugs *oca*, his father, instead of
+  *babu*. *Kahva kod komšinice*: the džezva goes back on the fire *da se digne
+  kajmak*, so that the foam rises. *Mejl rođaku*: the subject line starts with
+  *Naslov* instead of *Predmet*; the translation keeps "Betreff". *Zmaj uči
+  bosanski*: the ćevapi are *izgorjeli* (burnt) instead of *zagorjeli*, and the
+  joke at dinner is the maintainer's own version: Zmaj says *Ne, hvala*, Nana
+  still serves more sarma, "Kod nane se ne kaže ne." ("At Grandma's you don't
+  say no."); the second question now asks why Zmaj still gets more sarma. The
+  story dictionary has 1,520 entries. *Izgubljeni telefon* now comes after *Kod
+  doktora* and *Dedo i nana se sele*, as in the maintainer's list of topics; it
+  keeps its ID, and with it the reading progress.
+  None of these stories had audio yet; they wait for the next Vesna round.
+  `tests/test_lesetexte_ab.py`, `tests_e2e/test_lesetexte_ab.py`.
+- *Svoj* (review for 1.4, 14.11.2026, S6): the grammar lesson on cases said it
+  means "mein eigener" and the story dictionary "eigener (mein, dein, sein)",
+  yet in *Voz Sarajevo–Mostar* a woman gives "svoj broj", her own number. Both
+  now say "der eigene (mein, dein, sein, ihr …)", used when the owner is the
+  subject, in all eight languages. The vocabulary entry keeps its `de` and so its
+  ID. `tests/test_pruefbericht14_grammatik.py`.
+- Future tense lesson (review for 1.4, 14.11.2026, S8): the table cell "ću +
+  Infinitiv" was listed as Bosnian and stayed German in every language. It is now
+  translated ("ću + infinitive", "ću + mastar", "ću + infinitif" …); the Bosnian
+  forms and examples stay. `tests/test_pruefbericht14_grammatik.py`.
+- Vocative rule (third round, 14.11.2026 evening; decided by the maintainer): the
+  lesson "Cases 4: Instrumental & Vocative" said masculine words add -u only "after
+  j, č, š, ž". It now names all soft endings, "after ć, č, j, lj, nj, š, ž, đ, dž",
+  with *mladiću!* next to *prijatelju!*, as in the clip *41 Zmajevi*, in all eight
+  languages. The app computes no vocative forms itself; the exercise stays.
+  `tests/test_pruefbericht14_grammatik.py`.
+- Prepositions with the instrumental (questions of 15.11.2026, 10; decided by the
+  maintainer): the table in the lesson "Prepositions" listed only "s/sa, pod, pred, za
+  (behind)". It now reads "s/sa, pod, nad, pred, za (behind), među" (*nad* "above",
+  *među* "between"), in all eight languages; the example "s bratom, pod stolom" stays.
+  `tests/test_pruefbericht14_grammatik.py`.
+- *Kusur* in the gap sentence (review for 1.4, 14.11.2026, S11): "Gdje je moj ___?"
+  said "Wo ist mein Wechselgeld?", the sentence-building task "Wo ist mein
+  Rückgeld?", and the maintainer's corrections take *Rückgeld*. Both say
+  *Rückgeld* now; the other languages already matched. Only the German shown
+  changed, the word keeps its ID. `tests/test_pruefbericht14_antworten.py`.
+- "Weiter zu B1 →" on the test result (review for 1.4, 14.11.2026, S16): at 360 px
+  the arrow stood alone on the second line, in Turkish on a third. A no-break
+  space before the arrow keeps it with the word before, in "Weiter zu Level 5 →"
+  too, in all eight languages. `tests/test_pruefbericht14_oberflaeche.py`,
+  `tests_e2e/test_pruefbericht14_kleinfehler.py`.
+- Without hearts (review for 1.4, 14.11.2026, S17) the note "Keine Leben mehr ·
+  nächstes in …" stays below the heart pill, and in Danish and Dutch at 360 px it
+  covered the top 11 px of the streak number. With 0 hearts the row with streak
+  and dragon on the start page now moves below the note (17 px, 20 px when the
+  coins have a line of their own); with hearts nothing moves.
+  `tests_e2e/test_pruefbericht14_kleinfehler.py`.
+- Result screens (review for 1.4, 14.11.2026, S18) no longer show "✕ Lektion
+  abbrechen" or "✕ Test abbrechen" below the result: there was nothing left to
+  abort, the screen has its own buttons. The same after a review round and on the
+  screen without hearts, as after the skip-ahead test; the button is back when the
+  next lesson, round or test starts, and the phone's back key leaves as before.
+  `tests_e2e/test_pruefbericht14_kleinfehler.py`.
+- The number on badges not yet earned (review for 1.4, 14.11.2026, S19) was grey on
+  a grey pill, 4.27 to 4.32 : 1, below the 4.5 : 1 that small text needs. It is now
+  in the text colour (at least 5.4 : 1 on all nine section colours, light and
+  dark). axe now also checks the profile and the achievement wall.
+  `tests_e2e/test_pruefbericht14_kleinfehler.py`, `tests_e2e/test_barrierefreiheit.py`.
+- "Zmaj bewerten" on the rating card (review for 1.4, 14.11.2026, S21) opens the
+  Play Store directly instead of Google's in-app review window
+  (`BEWERTUNG_IM_APP = false`): Google advises against starting that window from a
+  button, because its quota may keep it from showing at all.
+  `tests/test_pruefbericht14_oberflaeche.py`, `tests_e2e/test_pruefbericht14_kleinfehler.py`.
+- A lighter answer button (reported by the maintainer on the iPhone, 15.11.2026):
+  sometimes the bottom right one of the four answers had the light background of a
+  right answer and a blue border, and looked like the solution. On a phone `:hover`
+  stays where the finger was, and WebKit hands it to whatever is drawn there next:
+  "Weiter" below a new word lies over the bottom right answer of the question that
+  follows. On Android a tile that slid under the finger in sentence building lit up
+  the same way, and a wrong answer kept the light background. Every hover highlight
+  now applies only with a mouse (`@media (hover:hover) and (pointer:fine)`), and an
+  answered button no longer lights up under the mouse either. The tab picker in the
+  shop and the language picker show focus only via `:focus-visible`, so the keyboard
+  focus ring stays and a tap no longer leaves a blue border. The colours for right
+  and wrong are unchanged. `tests/test_heller_knopf.py`, `tests_e2e/test_heller_knopf.py`
+  (real taps with touch emulation in Chromium and, where Playwright has it, WebKit).
+- Typing the other usual word (12.11.2026): writing tasks and gap sentences now also
+  accept the common other word for the same thing, in the same form: *boca* for
+  *flaša*, *Pijem kafu* for *Pijem kahvu*, *susjed* for *komšija*, *sad* for *sada*,
+  *puno* for *mnogo*. Until then "Voda je u ___." took only *flaši*, and *boci* cost a
+  heart. Only pairs that are clearly the same are listed, every form written out in
+  `varianten.py`; some count only where they mean the same (*zemlja* only in
+  "Švicarska je mala ___."). In sentence building the other word is no longer a
+  wrong tile (*puno* next to "Ima mnogo djece"), and in multiple choice it is never
+  a wrong button. Numbers from 21 to 99 also count with *i*: *dvadeset i jedan*,
+  typed and spoken. `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- The yellow marks above an exercise ("Review: Weather & nature", "Try again",
+  "New word") no longer overlap (reported with a screenshot from a 360-point-wide
+  phone on 11.11.2026). When they did not fit side by side, the second one wrapped
+  directly onto the first without any gap. Wrapped marks now stand 6 px apart and
+  each line is centred; a mark whose level name needs two or three lines becomes a
+  rounded box instead of an oval. With one line of marks everything stays where it
+  was. The hidden instruction text in that line still took about 11 px of width
+  through letter spacing and pushed the marks off-centre; it no longer does.
+  `tests_e2e/test_marken.py` (longest level name in all 8 languages, 360 and 320
+  points wide, normal and large system font).
+- Typing without diacritics (checked 12.11.2026, writing task and gap sentence in
+  every mode): a number word without its marks (*sest* for *šest*, *cetiri* for
+  *četiri*) now counts like any other word, right with "Correct! With the special
+  letters: šest" instead of a plain "Correct!". Digits together with missing marks
+  (*5 brace* for *pet braće*) count as right instead of costing a heart. When the
+  typed answer is a further accepted one (*cao* for *Doviđenja*, which also takes
+  *Ćao*), the message shows that answer's spelling, not the first one's. A space
+  after a final "!" or "." no longer stops the "Almost right!" hint, and a mark
+  typed as a separate combining character counts as typed correctly.
+  `tests/test_haekchen.py`, `tests_e2e/test_haekchen.py`.
 - Privacy policy, all 8 languages, web demo included: it said "nothing more than a yes or a no"
   is held about the subscription, but after a purchase the app also keeps Google's purchase
   identifier, the plan and the end of the free week. The subscription paragraph now says so

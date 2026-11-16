@@ -47,7 +47,8 @@ BEREIT = ("typeof CATEGORIES !== 'undefined' && CATEGORIES && CATEGORIES.length 
 # Lektion eine halbe Minute.
 DURCHSPIELEN = r"""
 async ([feld, art]) => {
-  const X = () => art === 'Lx' ? Lx : Tx;
+  // Sx: der Sprung-Test in einen Reiter (13.11.2026), Liste qs wie beim Test
+  const X = () => art === 'Lx' ? Lx : (art === 'Sx' ? Sx : Tx);
   const liste = () => X().qs || X().queue;
   const body = document.getElementById(feld);
   const warte = ms => new Promise(r => setTimeout(r, ms));
@@ -158,20 +159,41 @@ def basis(wurzelordner):
 
 
 @pytest.fixture(scope="session")
-def pw():
-    """Das eine Playwright der Sitzung. Ein zweites sync_playwright() daneben
-    geht nicht; wer WebKit braucht (test_ios_ton.py, 15.11.2026), holt es
-    hier mit pw.webkit."""
+def playwright_sitzung():
+    """Eine Playwright-Sitzung fuer alle Tests - zwei im selben Prozess
+    vertraegt die Sync-API nicht. Chromium und WebKit kommen beide aus ihr."""
     from playwright.sync_api import sync_playwright
 
-    with sync_playwright() as p:
-        yield p
+    with sync_playwright() as pw:
+        yield pw
 
 
 @pytest.fixture(scope="session")
-def browser(pw):
+def pw(playwright_sitzung):
+    """Dieselbe Sitzung unter dem Namen, den test_ios_ton.py (15.11.2026)
+    benutzt: Es holt sich WebKit mit pw.webkit. Seit dem 1.4-Merge
+    (16.11.2026) gibt es nur noch ein sync_playwright(), playwright_sitzung."""
+    return playwright_sitzung
+
+
+@pytest.fixture(scope="session")
+def browser(playwright_sitzung):
     chromium = os.environ.get("ZMAJ_CHROMIUM") or None
-    b = pw.chromium.launch(executable_path=chromium)
+    b = playwright_sitzung.chromium.launch(executable_path=chromium)
+    yield b
+    b.close()
+
+
+@pytest.fixture(scope="session")
+def webkit(playwright_sitzung):
+    """WebKit, die Engine des iPhones (15.11.2026, Offen-Liste 5b). Nur wenn
+    Playwright es auf dem Rechner schon hat - hier wird nichts geladen (kein
+    playwright install). Fehlt es, wird der Test uebersprungen; die Chromium-
+    Faelle laufen trotzdem."""
+    try:
+        b = playwright_sitzung.webkit.launch()
+    except Exception as e:      # jeder Startfehler heisst hier: kein WebKit da
+        pytest.skip("WebKit fehlt: %s" % str(e).strip().splitlines()[0])
     yield b
     b.close()
 

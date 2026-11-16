@@ -33,6 +33,11 @@ NEU = [
     ("Nichte", "nećakinja"),
 ]
 KOSEFORMEN = {"amidža / stric": ["striko", "adžo"], "daidža / ujak": ["ujo", "dajo"]}
+# Die Formen zu stric (13.11.2026, Ajdin: "4 ja"): wie die Koseformen nur
+# beim Tippen richtig. stričević = Sohn des stric (HJP), stričevka die
+# gebraeuchliche weibliche Form (CLASSLA-Korpus, Mundart Duvno).
+STRIC_FORMEN = {"amidžić / brat od amidže": ["stričević"], "amidžična / sestra od amidže": ["stričevka"]}
+AUCH = {**KOSEFORMEN, **STRIC_FORMEN}
 UMBENANNT = {
     "tante:tetka": "tante (schwester von vater oder mutter):tetka",
     "onkel (vaterseite):amidža": "onkel (bruder des vaters):amidža / stric",
@@ -54,18 +59,29 @@ def test_familie_hat_alle_verwandten(grunddaten):
 
 def test_koseformen_sind_keine_lernwoerter(grunddaten):
     woerter = {w["bs"]: w for w in _familie(grunddaten)["words"]}
-    for bs, formen in KOSEFORMEN.items():
+    for bs, formen in AUCH.items():
         assert woerter[bs].get("auch") == formen, bs
     alle = {f for k in grunddaten["kategorien"] for w in k["words"] for f in w["bs"].split(" / ")}
-    for f in sum(KOSEFORMEN.values(), []):
+    for f in sum(AUCH.values(), []):
         assert f not in alle, f
+
+
+def test_stric_formen_aendern_keine_kennung(grunddaten):
+    """stričević und stričevka stehen nur in "auch": Kennung, Anzeige und
+    Aufnahme von amidžić und amidžična bleiben, der Lernstand haengt daran."""
+    woerter = {w["bs"]: w for w in _familie(grunddaten)["words"]}
+    for (de, bs) in [p for p in NEU if p[1] in STRIC_FORMEN]:
+        w = woerter[bs]
+        assert w["de"] == de and w["id"] == de.lower() + ":" + bs, bs
+    import ton_bauen
+    assert set(STRIC_FORMEN) <= set(ton_bauen.nur_emir())
 
 
 def test_koseformen_werden_nie_gesprochen(grunddaten):
     """Frueher sprach Emir ein "(auch: ...)" mit - als deutsches "auch".
     Gesprochen wird genau das, was ton_bauen.py aus "bs" macht."""
     import ton_bauen
-    verboten = set(sum(KOSEFORMEN.values(), [])) | {"auch"}
+    verboten = set(sum(AUCH.values(), [])) | {"auch"}
     familie = {w["bs"] for w in _familie(grunddaten)["words"]}
     texte = [ton_bauen.sprechtext_alle(p["text"]) if p.get("alle") else ton_bauen.sprechtext(p["text"])
              for p in ton_bauen.sammle() if p["text"] in familie or "pčelar" in p["text"]]

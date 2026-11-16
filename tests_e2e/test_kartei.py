@@ -327,7 +327,7 @@ def test_lektion_bis_zu_drei_faellige_mit_hinweis(seite, heute_stand):
     assert text == "Wiederholung: " + lv[3]
     # Weitermachen bleibt beim Level
     seite.js("() => { homeMode = 'words'; showHome(); }")
-    assert seite.js("() => document.getElementById('weiterKnopf').textContent").startswith("▶ Weitermachen · ")
+    assert seite.js("() => document.getElementById('weiterKnopf').textContent.trim()").startswith("Weitermachen · ")
     assert seite.fehler == []
 
 
@@ -409,7 +409,7 @@ def test_dritter_kasten_unter_markiert_im_selben_aufbau(browser, basis, heute_st
             assert a == b, (a, b)
         assert k["h"] - k["bau"][1][2] == s["h"] - s["bau"][1][2], (k["h"], s["h"])
         # Weitermachen bleibt, wie es war: nur der Topf, nie die Kartei
-        assert seite.js("() => document.getElementById('weiterKnopf').textContent") == "▶ Weitermachen · Wiederholen"
+        assert seite.js("() => document.getElementById('weiterKnopf').textContent.trim()") == "Weitermachen · Wiederholen"
         seite.js("() => { topf = {}; homeMode = 'topf'; showHome(); }")
         assert seite.js("() => document.getElementById('weiterKnopf').style.display") == "none"
         # Einzahl
