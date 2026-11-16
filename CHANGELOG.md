@@ -540,6 +540,19 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Top bar on the iPhone and in the browser (review of the App Store pictures,
+  16.11.2026): the back button stands in the bar there (the iPhone has no back key;
+  Android never shows it), and since the profile button was added, "← Learning path"
+  or "← Stories" no longer fitted next to lives, coins and the round buttons, so the
+  coins moved alone into a second row: in the level view at every iPhone width up to
+  430 points, in a story still at 440 points in German, Swedish, Norwegian and Danish.
+  When its label does not fit, the button now shows only the arrow, as a round 38 px
+  button like shop, profile and settings; screen readers still hear the label
+  (`aria-label`), and the tap area is 48 × 46. Where the label fits (wide screens,
+  tablets, short words) nothing changes. The bar now stays in one row from 375 points
+  up to 9,999 coins, from 390 points also with 99,999; below that the second row comes
+  as before. Only the colours of the button fade now, so the bar is never measured
+  with a half-changed button. `tests_e2e/test_kopfleiste.py`.
 - Reading stories (review for 1.4, V1; 16.11.2026): "Vorlesen", its stop button and
   the speed bar appear only when the story has a recording. The Android shell has no
   computer voice, so the button stood under the B1 stories that had no audio yet and
