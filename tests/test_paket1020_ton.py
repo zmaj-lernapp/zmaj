@@ -30,6 +30,10 @@ Und w8955, nana / metvica mit beiden Formen (Pruefbericht 1.4, B6/F17 b): Emir s
 „nana, metvica.“ wie kahva / kafa (Stimme_Emir_neu\\nachbesserung_2026-11-14\\nana_metvica,
 Ajdin: „Nimm die neue fassung“). w0089 „nana“ (auch Oma) und w1717 „nana (auch: metvica)“
 bleiben in web/audio/index.json stehen.
+
+Danach seit dem 16.11.2026 nur noch w8956 bis w9048: die 93 Antworten der Grammatik-Uebungen,
+die die App nach der Antwort spricht (Stimme_Emir_neu\\nachbesserung_2026-11-15_grammatik,
+Ko in Fassung C2, plačem in K2). Die prueft tests/test_grammatik_ton.py.
 """
 import io
 import json
@@ -43,6 +47,7 @@ KOLEGICA = {"kolegica": ("w8953.mp3", "kolegica"),
             "ovo je moja kolegica.": ("w8954.mp3", "Ovo je moja kolegica.")}
 NANA_METVICA = {"nana / metvica": ("w8955.mp3", "nana / metvica")}
 DAHINTER = dict(KOLEGICA, **NANA_METVICA)
+GRAMMATIK_ERSTE, GRAMMATIK_LETZTE = 8956, 9048       # tests/test_grammatik_ton.py
 
 
 def _nummer(datei):
@@ -58,10 +63,11 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     emir = ton_bauen.nur_emir()
     neu = _im_bereich(emir)
     assert sorted(neu) == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1) if n not in ZURUECKGEZOGEN]
-    # Dahinter nur die drei Aufnahmen vom 14.11.2026 (kolegica, test_kolegica_spricht_emir,
-    # und nana / metvica, tests/test_pruefbericht14_antworten.py).
-    assert max(_nummer(e["datei"]) for e in emir.values()) == 8955
-    nach = sorted(e["datei"] for e in emir.values() if _nummer(e["datei"]) > LETZTE)
+    # Dahinter die drei Aufnahmen vom 14.11.2026 (kolegica, test_kolegica_spricht_emir,
+    # und nana / metvica, tests/test_pruefbericht14_antworten.py), danach nur noch die
+    # Grammatik-Antworten (16.11.2026, tests/test_grammatik_ton.py).
+    assert max(_nummer(e["datei"]) for e in emir.values()) == GRAMMATIK_LETZTE
+    nach = sorted(e["datei"] for e in emir.values() if LETZTE < _nummer(e["datei"]) < GRAMMATIK_ERSTE)
     assert nach == sorted(d for d, _ in DAHINTER.values()), nach
     for key, (datei, text) in DAHINTER.items():
         assert emir[key] == {"key": key, "datei": datei, "text": text}

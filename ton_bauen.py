@@ -315,6 +315,23 @@ def sammle():
             if " / " in w["bs"] and k not in gesehen:
                 gesehen.add(k)
                 posten.append({"art": "wort", "key": k, "text": w["bs"], "alle": True})
+
+    # Die Antworten der Grammatik-Uebungen (15.11.2026). Nach der Antwort spricht die App
+    # g.richtig, wenn sie bosnisch ist (gramAntwortBosnisch in index.html: keine Klammer
+    # "(on)", "(ona)", "(ono)" am Ende). Bis dahin blieben 93 davon auf dem Handy stumm.
+    # Spricht nur Emir (ton_nur_emir.json, w8956 bis w9048 seit dem 16.11.2026). Was
+    # audioDatei() schon unter einem anderen Schluessel findet (ohne Satzzeichen,
+    # audioKey), kommt nicht dazu. Ganz am Ende, damit die vergebenen Nummern bleiben.
+    for lektion in _modul("grammatik").GRAMMATIK.values():
+        for ue in lektion.get("uebungen", []):
+            r = ue.get("richtig", "")
+            if re.search(r"\((on|ona|ono)\)\s*$", r):
+                continue
+            k = schluessel_alle(r) if " / " in r else schluessel(r)
+            kurz = re.sub(r"[.!?…]+$", "", r.split(" / ")[0]).strip().lower()
+            if k and k not in gesehen and schluessel(r) not in gesehen and kurz not in gesehen:
+                gesehen.add(k)
+                posten.append({"art": "wort", "key": k, "text": r})
     return posten
 
 

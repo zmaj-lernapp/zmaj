@@ -546,6 +546,15 @@ are in the Play Store listing. Format:
   did nothing when tapped. Every story has its recording now; the check catches the
   next one that comes into the app before its audio, on the PC as well.
   `tests_e2e/test_vorlesen_nur_mit_ton.py`.
+- Grammar exercises now speak the answer for 93 more answers (recorded on 15.11.2026,
+  approved by the maintainer after listening on 15 and 16.11.2026). After a grammar
+  exercise the app speaks the right answer when it is Bosnian, but 94 of the 175
+  exercises had no recording and stayed silent on the phone, which has no computer
+  voice. The recordings exist only in the store version; the web demo stays silent
+  there. Fifteen of the answers are also words in the B1 stories, which now speak
+  when tapped. The audio check now knows the answers of the grammar exercises, so
+  the next one without a recording is reported before the build.
+  `tests/test_grammatik_ton.py`, `tests_e2e/test_grammatik_ton.py`.
 - Typing (review for 1.4, 14.11.2026, V3): four correct answers no longer cost a
   heart. *Kad dolaziš?* and *Kad ćeš doći?* count next to *Kada …*, *Kada se ženiš?*
   next to *Kad se ženiš?* (as single words *kad* and *kada* already did), *Zdravo* in

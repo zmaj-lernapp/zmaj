@@ -49,6 +49,13 @@ def ton_schluessel():
             sonst.add(ton_bauen.schluessel(w["bs"]))
     for s in vokabeln.SAETZE:
         sonst.add(ton_bauen.schluessel(s["text"].replace("___", s["answer"])))
+    # Die Antworten der Grammatik-Uebungen spricht die App auch (seit dem 16.11.2026 mit
+    # Emir, ton_nur_emir.json): ko, doktora, napisao, pišem, čekam, čiji aus diesen Texten
+    # haben damit ihren Ton.
+    import grammatik
+    for lektion in grammatik.GRAMMATIK.values():
+        for ue in lektion.get("uebungen", []):
+            sonst.add(ton_bauen.schluessel(ue.get("richtig", "")))
     for g in geschichten.GESCHICHTEN:
         if g["id"] not in ids:
             sonst.update(ton_bauen.schluessel(w) for w in ton_bauen.textwoerter(g["text"]))

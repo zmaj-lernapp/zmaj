@@ -43,8 +43,9 @@ def test_nummern_lueckenlos_und_in_der_reihenfolge_der_app():
     # Dahinter stehen der Teil Beim Zahnarzt (w5206 bis w5316, tests/test_zahnarzt.py),
     # seit dem 07.11.2026 die Pakete 10 bis 20 mit der Warteliste (w5317 bis w8952) und seit
     # dem 14.11.2026 kolegica (w8953, w8954) und nana / metvica (w8955), alles in
-    # tests/test_paket1020_ton.py.
-    assert max(_nummer(e["datei"]) for e in emir.values()) == 8955
+    # tests/test_paket1020_ton.py, seit dem 16.11.2026 die Grammatik-Antworten (w8956 bis
+    # w9048, tests/test_grammatik_ton.py).
+    assert max(_nummer(e["datei"]) for e in emir.values()) == 9048
     # Die 40 Grundwoerter, die am 13.11.2026 in zwei A-Level gezogen sind, kommen in der
     # App jetzt frueher dran; ihre Nummern bleiben (grundwoerter_umzug.py).
     from grundwoerter_umzug import UMZUG
