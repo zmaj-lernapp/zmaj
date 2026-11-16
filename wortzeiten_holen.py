@@ -16,6 +16,9 @@ MP3. Zeiten und Datei stammen so aus demselben Aufruf und passen sicher
 zusammen; Zeiten zu einer früher erzeugten Datei gibt es nicht.
 Am 20.10.2026 so für alle zwölf Geschichten gemacht, 3.805 Zeichen, rund
 6 Cent. Ajdin dazu: "ja du darfst 6 cent benutzen".
+Am 16.11.2026 für die 20 B1-Lesetexte und pismo (Offen-Liste 6): erst
+ton_bauen.py --nur-geschichten, dann dieses Skript, je 20.299 Zeichen, zusammen
+rund 0,65 Euro.
 
 ABHÄNGIGKEIT: azure-cognitiveservices-speech. Das ist keine
 Standardbibliothek, deshalb wird es erst hier zur Laufzeit geladen – der Bau,
@@ -37,7 +40,8 @@ nimmt alle, --nur g01.mp3,g05.mp3 nur diese. --roh ORDNER legt die rohen
 Ereignisse je Geschichte als JSON dort ab (zum Nachsehen, nicht fürs Repo).
 Danach: ton_pruefen.py und python -m pytest.
 
-Den Schlüssel liest das Skript aus tts_zugang.json; er wird nie ausgegeben.
+Den Schlüssel liest das Skript aus tts_zugang.json (oder der Datei, die
+ZMAJ_TTS_ZUGANG nennt, siehe ton_bauen.py); er wird nie ausgegeben.
 """
 import io
 import json

@@ -4,7 +4,8 @@
 Sie stehen hinter den zwölf alten Geschichten in derselben Kette, tragen die
 Stufe "B1" und zeigen ihre Absätze (white-space: pre-line in .story .txt und
 .trans). Jede Wortform hat im Wörterbuch eine Bedeutung, auch in den anderen
-Sprachen. Ton gibt es für sie noch nicht (tests/offen_lesetexte.json)."""
+Sprachen. Seit dem 16.11.2026 liest Vesna sie vor (Offen-Liste 6); die Wörter,
+die nur in ihnen stehen, haben noch keinen Ton (tests/offen_lesetexte.json)."""
 import re
 
 

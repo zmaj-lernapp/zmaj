@@ -67,7 +67,7 @@ pie showData title Words per section (7,997)
 | `schema/*.schema.json` | JSON Schema (2020-12) for the JSON files and one `parallel.jsonl` line | – |
 
 Audio paths (`web/audio/w0001.mp3` …) are relative to the repository root.
-There are 2,411 MP3 files (≈ 37 MB). Twelve family words and 6,237 new
+There are 2,431 MP3 files (≈ 42 MB). Twelve family words and 6,237 new
 words and example sentences of sections 3, 4 and 10 to 31, added in October and
 November 2026, have none (`"audio": null`); the app speaks them with
 recordings that are not part of this dataset.
@@ -119,7 +119,7 @@ flowchart LR
   DE --> MT["machine translation<br/>en tr sv nl nb da fr"]
   MT --> AI["2 independent AI review passes<br/>141 confirmed findings"]
   AI --> T["translations<br/>not yet native-reviewed"]
-  B --> TTS["Azure neural TTS<br/>2,411 MP3"]
+  B --> TTS["Azure neural TTS<br/>2,431 MP3"]
   TTS --> H["native speaker spot check<br/>docs/TONBEFUNDE.md"]
 ```
 
@@ -140,7 +140,7 @@ have **not yet been reviewed by native speakers**. Corrections are very welcome:
 use the *Language correction* issue form.
 
 **Audio.** Synthesised with Azure Neural Text-to-Speech: `bs-BA-GoranNeural`
-(2,307 files), `bs-BA-VesnaNeural` (12, story voices) and `hr-HR-SreckoNeural`
+(2,386 files), `bs-BA-VesnaNeural` (32, one per story) and `hr-HR-SreckoNeural`
 (13, where the Bosnian voice mispronounced a word). It is synthetic speech,
 not a recording of a person. Known pronunciation issues are documented in
 [`docs/TONBEFUNDE.md`](../docs/TONBEFUNDE.md). If you republish the audio, say that it is

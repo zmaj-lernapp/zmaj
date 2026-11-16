@@ -77,7 +77,7 @@ Everything the app teaches is exported to [`data/`](data/) under
 | Graded stories with glossary and questions | 32 | JSON |
 | Reading glossary | 1,520 | JSON |
 | Grammar lessons with exercises | 26 | JSON |
-| Synthetic Bosnian audio (MP3) | 2,411 | `web/audio/` |
+| Synthetic Bosnian audio (MP3) | 2,431 | `web/audio/` |
 | Parallel corpus for machine translation | 8,309 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
 
 Every item is translated into **German, English, Turkish, Swedish, Dutch,
@@ -138,7 +138,7 @@ flowchart LR
   end
   L{{"inhalt.lade_daten(lang)"}}
   V & G & S & U --> L
-  A[("web/audio/<br/>2,411 MP3")]
+  A[("web/audio/<br/>2,431 MP3")]
   L --> APP["web/inhalt/*.json<br/>Android app"]
   L --> DS["data/<br/>JSON · CSV · Anki TSV"]
   L --> DEMO["_site/<br/>web demo, no ads"]

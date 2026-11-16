@@ -23,14 +23,25 @@ als Datei vorhanden ist, wird übersprungen. Ein zweiter Aufruf kostet nichts.
 
 ZUGANG: Lege neben diese Datei eine tts_zugang.json nach dem Muster in
 tts_zugang.BEISPIEL.json. Diese Datei gehört NICHT in die App, nicht ins APK
-und nicht auf GitHub – der Schlüssel wird nur hier am PC gebraucht.
+und nicht auf GitHub – der Schlüssel wird nur hier am PC gebraucht. Liegt sie
+woanders, nennt die Umgebungsvariable ZMAJ_TTS_ZUGANG den Pfad; das gilt auch
+für wortzeiten_holen.py.
+
+NUR DIE GESCHICHTEN (seit 16.11.2026): Wörter und Sätze spricht Emir (siehe
+NUR EMIR unten), Azure nur noch die Geschichten. Für neue oder geänderte
+Geschichten deshalb
+
+    "C:\Users\Ajdin\AppData\Local\Programs\Thonny\python.exe" ton_bauen.py --nur-geschichten
+
+und danach wortzeiten_holen.py --holen. Ohne die Option bekäme jedes neue Wort
+ohne Aufnahme eine Azure-Fassung.
 
 WICHTIG ZUR LIZENZ: Bei Azure muss die Ressource im bezahlten Tarif S0 laufen,
 nicht im kostenlosen F0. Der kostenlose Tarif trägt die Rechte zur
 kommerziellen Verwendung nicht. S0 hat keine Grundgebühr; dieser Lauf kostet
 ein paar Cent. Siehe LIESMICH in web/audio.
 
-WORTZEITEN (seit 20.10.2026): Bei den zwölf Geschichten steht in index.json
+WORTZEITEN (seit 20.10.2026): Bei jeder Geschichte steht in index.json
 zusätzlich "w" – für jedes Wort, das die App in der Geschichte antippbar
 anzeigt, ein Paar [start_ms, ende_ms] in der Aufnahme. Damit markiert die App
 beim Vorlesen das Wort, das gerade gesprochen wird. Dieses Skript holt sie
@@ -66,7 +77,9 @@ import urllib.request
 ORDNER = os.path.dirname(os.path.abspath(__file__))
 AUDIO = os.path.join(ORDNER, "web", "audio")
 INDEX = os.path.join(AUDIO, "index.json")
-ZUGANG = os.path.join(ORDNER, "tts_zugang.json")
+# Die Zugangsdatei kann auch woanders liegen (16.11.2026): ZMAJ_TTS_ZUGANG
+# nennt dann den Pfad, die Datei muss nicht in dieses Projekt kopiert werden.
+ZUGANG = os.environ.get("ZMAJ_TTS_ZUGANG") or os.path.join(ORDNER, "tts_zugang.json")
 # Aufnahmen, die es nur von Emir gibt (23.10.2026), siehe nur_emir().
 NUR_EMIR = os.path.join(ORDNER, "ton_nur_emir.json")
 
@@ -478,7 +491,7 @@ def probe(dienst, zugang, stimmen):
     print("Wenn eine Stimme überzeugt: ton_bauen.py mit  --stimme <name>  starten.")
 
 
-def grosser_lauf(dienst, zugang, stimme, stimme_gesch):
+def grosser_lauf(dienst, zugang, stimme, stimme_gesch, nur_geschichten=False):
     os.makedirs(AUDIO, exist_ok=True)
     alt = {"version": 1, "toene": []}
     if os.path.exists(INDEX):
@@ -486,6 +499,12 @@ def grosser_lauf(dienst, zugang, stimme, stimme_gesch):
     bekannt = {e["key"]: e for e in alt.get("toene", [])}
 
     posten = sammle()
+    # --nur-geschichten (16.11.2026): Woerter und Saetze spricht seit dem
+    # 23.10.2026 Emir, Azure (Vesna) nur noch die Geschichten. Ohne die Option
+    # erzeugte der Lauf fuer jedes neue Wort ohne Aufnahme eine Azure-Fassung
+    # - bei den B1-Lesetexten 838 Woerter mit der falschen Stimme.
+    if nur_geschichten:
+        posten = [p for p in posten if p["art"] == "geschichte"]
     woerter = [p for p in posten if p["art"] == "wort"]
     print("%d Wörter, %d Geschichten, %d schon vorhanden\n"
           % (len(woerter), len(posten) - len(woerter), len(bekannt)))
@@ -593,7 +612,8 @@ def main():
         raise SystemExit("Keine Stimme gewählt. Erst  --probe  laufen lassen,\n"
                          "dann  --stimme <name>  angeben.")
     grosser_lauf(dienst, zugang, stimme,
-                 zugang.get("stimme_geschichten") or stimme)
+                 zugang.get("stimme_geschichten") or stimme,
+                 nur_geschichten="--nur-geschichten" in arg)
 
 
 if __name__ == "__main__":

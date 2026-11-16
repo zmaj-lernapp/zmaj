@@ -2,9 +2,11 @@
 """Was beim Einbau der B1-Lesetexte (Paket 1 und 2, 13.11.2026) noch fehlt: der Ton.
 
 Die zwölf Texte stehen in geschichten.py, mit Übersetzung, Fragen und jeder
-Wortform im Wörterbuch. Vorgelesen werden sie erst, wenn Ajdin die fraglichen
-bosnischen Stellen entschieden hat; ein geänderter Text hieße sonst eine neue
-Aufnahme. Bis dahin lassen die Ton-Tests (test_ton.py, test_wortzeiten.py und
+Wortform im Wörterbuch. Seit dem 16.11.2026 liest Azure (Vesna) sie vor, mit
+Wortzeiten (Offen-Liste 6, nach Ajdins A/B-Antworten vom 15.11.2026);
+"geschichten" in offen_lesetexte.json ist deshalb leer. Es fehlen noch die
+Wörter, die nur in diesen Texten stehen: Wörter spricht Emir, nicht Azure.
+Bis dahin lassen die Ton-Tests (test_ton.py, test_wortzeiten.py und
 tests_e2e/test_mitlesen.py) genau die Schlüssel aus offen_lesetexte.json durch
 und nichts sonst. tests/test_offen_lesetexte.py
 meldet jeden Schlüssel, der inzwischen Ton hat oder in keinem Text mehr

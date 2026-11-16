@@ -26,7 +26,7 @@
   "stories": 32,
   "glossary_entries": 1520,
   "grammar_lessons": 26,
-  "audio_files": 2411
+  "audio_files": 2431
  },
  "files": {
   "anki/zmaj-bs-da.tsv": {
@@ -118,8 +118,8 @@
    "bytes": 149597
   },
   "stories.json": {
-   "sha256": "298752e73b309c3ff5d1f64471c1c8079e6dd3dc27b1509b2971ce43e1346239",
-   "bytes": 444709
+   "sha256": "7a08e57a27d887e170433ca2a6847f30b1b68daaebdb1552f2d1054911442046",
+   "bytes": 445024
   },
   "vocabulary.csv": {
    "sha256": "2473b8ff70d73975fac6c8cf5452b99dccb02b5824032ca9b934502f5763a6f0",

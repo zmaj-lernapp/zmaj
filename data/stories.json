@@ -2550,7 +2550,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g09.mp3"
   },
   {
    "id": "opcina",
@@ -3682,7 +3682,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g13.mp3"
   },
   {
    "id": "b1_dijaspora",
@@ -3969,7 +3969,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g14.mp3"
   },
   {
    "id": "b1_vrijeme",
@@ -4256,7 +4256,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g15.mp3"
   },
   {
    "id": "b1_voz",
@@ -4551,7 +4551,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g16.mp3"
   },
   {
    "id": "b1_rafting",
@@ -4822,7 +4822,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g17.mp3"
   },
   {
    "id": "b1_jahorina",
@@ -5093,7 +5093,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g18.mp3"
   },
   {
    "id": "b1_pita",
@@ -5388,7 +5388,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g19.mp3"
   },
   {
    "id": "b1_struja",
@@ -5675,7 +5675,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g20.mp3"
   },
   {
    "id": "b1_svadba",
@@ -5962,7 +5962,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g21.mp3"
   },
   {
    "id": "b1_posao",
@@ -6249,7 +6249,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g22.mp3"
   },
   {
    "id": "b1_stan",
@@ -6536,7 +6536,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g23.mp3"
   },
   {
    "id": "b1_doktor",
@@ -6839,7 +6839,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g24.mp3"
   },
   {
    "id": "b1_selidba",
@@ -7174,7 +7174,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g25.mp3"
   },
   {
    "id": "b1_telefon",
@@ -7461,7 +7461,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g26.mp3"
   },
   {
    "id": "b1_rodjendan",
@@ -7772,7 +7772,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g27.mp3"
   },
   {
    "id": "b1_utakmica",
@@ -8067,7 +8067,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g28.mp3"
   },
   {
    "id": "b1_zanat",
@@ -8378,7 +8378,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g29.mp3"
   },
   {
    "id": "b1_kahva",
@@ -8673,7 +8673,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g30.mp3"
   },
   {
    "id": "b1_mejl",
@@ -8944,7 +8944,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g31.mp3"
   },
   {
    "id": "b1_zmaj",
@@ -9247,7 +9247,7 @@
      }
     ]
    },
-   "audio": null
+   "audio": "web/audio/g32.mp3"
   }
  ]
 }

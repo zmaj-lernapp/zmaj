@@ -30,8 +30,9 @@ S3: Im Brief an die Nana stand "Nadam se da ćeš nam skuhati pitu!". Ajdin
 Deutsch "eine Pita machst" wie schon in den anderen sieben Sprachen ("make
 us a pita"). skuhati steht in keinem Text mehr und ist aus dem WOERTERBUCH
 raus, napraviti ("machen / zubereiten") stand schon drin. Der Ton von pismo
-(g09) gehoert zum alten Text; die Geschichte wartet in tests/offen_b1_teil2.py
-auf die naechste Vesna-Runde, die Datei bleibt liegen.
+(g09) gehoerte zum alten Text; die Geschichte wartete in tests/offen_b1_teil2.py
+auf die naechste Vesna-Runde. Am 16.11.2026 hat Vesna sie neu gesprochen, unter
+derselben Nummer g09 (Offen-Liste 6).
 
 S7: Vi, Vas, Vam standen mal gross, mal klein. Ajdin (F23, 14.11.2026): gross
 in Geschriebenem an eine Person, klein in Gespraechen der Erzaehlung. Am
@@ -47,9 +48,10 @@ Nebensatz hinter dem Hauptsatz steht (grammatik.py, satzbau). Sieben B1-Saetze
 hatten es trotzdem ("Najviše sam voljela subotu, jer je nana …"). Ajdin (F11):
 a, die sieben Kommas streichen. Der Einschub in b1_selidba ("Sjeli su na pod,
 jer sto još nisu kupili, i …") blieb, die Geschichte wird ersetzt. Keiner der
-sieben Texte hatte Ton; der Schluessel aendert sich mit dem Komma und ist in
-tests/offen_lesetexte.json nachgezogen (b1_zanat, b1_mejl und b1_zmaj warten
-mit ihrer id in tests/offen_b1_teil2.py).
+sieben Texte hatte Ton; der Schluessel aendert sich mit dem Komma und war in
+tests/offen_lesetexte.json nachgezogen (b1_zanat, b1_mejl und b1_zmaj warteten
+mit ihrer id in tests/offen_b1_teil2.py). Seit dem 16.11.2026 hat Vesna alle
+sieben ohne das Komma gesprochen.
 
 F10: Ajdin "mach eine neue geschichte". Statt "Selidba" (wieder eine junge
 Frau, die wegen der Arbeit umzieht, wie in b1_stan) steht unter derselben id
@@ -58,8 +60,8 @@ kleine Wohnung in Travnik, der Opa nimmt heimlich einen Pflaumenbaum mit.
 Angenommen mit "nana se teško penje uz stepenice" und "Napokon bašta koja nije
 prevelika". Uebersetzung und Fragen in acht Sprachen, die richtige Antwort ist
 nirgends deutlich laenger (B13). Die Formen der alten Geschichte, die kein Text
-mehr braucht, sind aus dem WOERTERBUCH und aus uebersetzungen.py raus. Ton
-folgt in der Vesna-Runde.
+mehr braucht, sind aus dem WOERTERBUCH und aus uebersetzungen.py raus. Den
+Ton hat Vesna am 16.11.2026 gesprochen (g25, Offen-Liste 6).
 
 Der Text der Geschichten ist ihr Ton-Schluessel (ton_bauen.py). Er aendert
 sich nur, wo Ajdin es entschieden hat; test_text_der_geschichten_bleibt haelt
@@ -276,14 +278,23 @@ def test_v13a_woerterbuch(alle_daten):
     assert alle_daten["en"]["woerterbuch"]["šporet"] == "stove"
 
 
-def test_v13a_wartet_weiter_auf_ton():
-    """b1_struja hat noch keinen Ton (tests/offen_lesetexte.json), der neue
-    Text steht dort; šporet hat seine Aufnahme schon (Vokabel "Herd")."""
+def test_v13a_ton(wurzel):
+    """b1_struja hat seit dem 16.11.2026 Ton, gesprochen mit "plinski šporet"
+    (Offen-Liste 6). šporet hat seine Aufnahme schon (Vokabel "Herd"), plinski
+    steht nur in diesem Text und wartet in tests/offen_lesetexte.json auf Emir."""
+    import io
+    import json
+    import os
+
     import geschichten
     import offen_lesetexte
     import ton_bauen
     g = next(s for s in geschichten.GESCHICHTEN if s["id"] == "b1_struja")
-    assert ton_bauen.schluessel(g["text"]) in offen_lesetexte.GESCHICHTEN
+    toene = {e["key"]: e for e in json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"),
+                                                    encoding="utf-8"))["toene"]}
+    e = toene[ton_bauen.schluessel(g["text"])]
+    assert "plinski šporet" in e["text"] and "štednjak" not in e["text"]
+    assert ton_bauen.schluessel(g["text"]) not in offen_lesetexte.GESCHICHTEN
     assert "štednjak" not in offen_lesetexte.TON and "šporet" not in offen_lesetexte.TON
     assert "plinski" in offen_lesetexte.TON
 
@@ -317,10 +328,11 @@ def test_s3_woerterbuch(alle_daten):
     assert alle_daten["de"]["woerterbuch"]["napraviti"] == "machen / zubereiten"
 
 
-def test_s3_pismo_wartet_auf_ton(wurzel):
-    """Die alte Aufnahme g09 bleibt liegen, passt aber nicht mehr zum Text.
-    pismo wartet deshalb mit den B1-Texten auf die naechste Vesna-Runde, als
-    einzige der zwoelf alten Geschichten."""
+def test_s3_pismo_hat_neuen_ton(wurzel):
+    """Am 16.11.2026 hat Vesna pismo mit "napraviti pitu" neu gesprochen, unter
+    derselben Nummer g09 (Offen-Liste 6). Die alte Aufnahme mit "skuhati pitu"
+    ist ersetzt, kein Eintrag gehoert mehr zum alten Text, und pismo wartet
+    nicht mehr in tests/offen_b1_teil2.py."""
     import io
     import json
     import os
@@ -328,13 +340,15 @@ def test_s3_pismo_wartet_auf_ton(wurzel):
     import geschichten
     import offen_b1_teil2
     import ton_bauen
-    alt = {g["id"] for g in geschichten.GESCHICHTEN if not g["id"].startswith("b1_")}
-    assert offen_b1_teil2.GESCHICHTEN & alt == {"pismo"}
+    assert "pismo" not in offen_b1_teil2.GESCHICHTEN | offen_b1_teil2.WOERTER
     toene = json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8"))["toene"]
     g09 = next(e for e in toene if e["datei"] == "g09.mp3")
-    assert PISMO_ALT in g09["text"] and os.path.getsize(os.path.join(wurzel, "web", "audio", "g09.mp3")) > 800
     pismo = next(g for g in geschichten.GESCHICHTEN if g["id"] == "pismo")
-    assert ton_bauen.schluessel(pismo["text"]) not in {e["key"] for e in toene}
+    assert g09["key"] == ton_bauen.schluessel(pismo["text"]) and g09["text"] == pismo["text"]
+    assert PISMO_NEU in g09["text"] and g09["stimme"] == "bs-BA-VesnaNeural"
+    assert ton_bauen.wortzeiten_passen(g09, pismo["text"])
+    assert os.path.getsize(os.path.join(wurzel, "web", "audio", "g09.mp3")) > 800
+    assert [e["datei"] for e in toene if PISMO_ALT in e["text"]] == []
 
 
 # ---------------------------------------------------------------------------
@@ -438,16 +452,23 @@ def test_s7_opcina_behaelt_ihren_ton(wurzel):
     assert ton_bauen.schluessel(g["text"]) not in offen_lesetexte.GESCHICHTEN
 
 
-def test_s7_ton_schluessel_bleibt():
-    """Gross oder klein aendert den Ton-Schluessel nicht: beide Texte warten mit
-    demselben Schluessel in tests/offen_lesetexte.json auf ihren Ton."""
+def test_s7_ton_schluessel_bleibt(wurzel):
+    """Gross oder klein aendert den Ton-Schluessel nicht. Gesprochen hat Vesna
+    die Texte am 16.11.2026 mit dem grossen Vi (Offen-Liste 6), die Wortzeiten
+    gehoeren genau zu diesem Text."""
+    import io
+    import json
+    import os
+
     import geschichten
-    import offen_lesetexte
     import ton_bauen
+    toene = {e["key"]: e for e in json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"),
+                                                    encoding="utf-8"))["toene"]}
     for gid in ("b1_posao", "b1_stan", "b1_struja"):
         g = next(s for s in geschichten.GESCHICHTEN if s["id"] == gid)
         assert ton_bauen.schluessel(g["text"]) == g["text"].lower()
-        assert ton_bauen.schluessel(g["text"]) in offen_lesetexte.GESCHICHTEN, gid
+        e = toene[ton_bauen.schluessel(g["text"])]
+        assert e["text"] == g["text"] and ton_bauen.wortzeiten_passen(e, g["text"]), gid
 
 
 # ---------------------------------------------------------------------------
@@ -484,20 +505,23 @@ def test_f11_kein_komma_vor_jer_und_ako(grunddaten):
     assert {k: v for k, v in funde.items() if v} == {}
 
 
-def test_f11_ton_schluessel_nachgezogen():
-    """Keiner der sieben Texte hatte Ton. Mit dem Komma aendert sich ihr
-    Schluessel: Paket 1 und 2 warten mit dem neuen Text in
-    tests/offen_lesetexte.json, Paket 3 und 4 mit ihrer id in
-    tests/offen_b1_teil2.py."""
+def test_f11_ton_ohne_komma(wurzel):
+    """Keiner der sieben Texte hatte Ton, als das Komma wegfiel. Vesna hat sie am
+    16.11.2026 ohne das Komma gesprochen (Offen-Liste 6): die Aufnahme gehoert
+    zum neuen Text, keine zu einem Text mit dem alten Komma."""
+    import io
+    import json
+    import os
+
     import geschichten
-    import offen_b1_teil2
-    import offen_lesetexte
     import ton_bauen
+    toene = json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8"))["toene"]
+    nach_key = {e["key"]: e for e in toene}
     for gid in F11:
         g = next(s for s in geschichten.GESCHICHTEN if s["id"] == gid)
-        k = ton_bauen.schluessel(g["text"])
-        assert k in offen_lesetexte.GESCHICHTEN or gid in offen_b1_teil2.GESCHICHTEN, gid
-    alt = [t for t in offen_lesetexte.GESCHICHTEN if KOMMA_DAVOR.search(t)]
+        e = nach_key[ton_bauen.schluessel(g["text"])]
+        assert F11[gid] in e["text"] and ton_bauen.wortzeiten_passen(e, g["text"]), gid
+    alt = [e["datei"] for e in toene if e["datei"].startswith("g") and KOMMA_DAVOR.search(e["text"])]
     assert alt == []
 
 
@@ -611,9 +635,10 @@ def test_f10_woerterbuch(alle_daten):
     assert _geschichten(alle_daten["en"])["b1_selidba"]["vokabeln"]["radio"] == "radio / worked (m)"
 
 
-def test_f10_wartet_auf_ton(wurzel):
-    """Neuer Text, neuer Ton-Schluessel: die Geschichte wartet weiter mit ihrer
-    id in tests/offen_b1_teil2.py auf die Vesna-Runde."""
+def test_f10_ton(wurzel):
+    """Neuer Text, neuer Ton-Schluessel: Vesna hat "Dedo i nana se sele" am
+    16.11.2026 gesprochen (g25, Offen-Liste 6). Die Geschichte wartet nicht
+    mehr, nur ihre neuen Woerter warten in tests/offen_b1_teil2.py auf Emir."""
     import io
     import json
     import os
@@ -621,7 +646,11 @@ def test_f10_wartet_auf_ton(wurzel):
     import geschichten
     import offen_b1_teil2
     import ton_bauen
-    assert "b1_selidba" in offen_b1_teil2.GESCHICHTEN
+    assert "b1_selidba" not in offen_b1_teil2.GESCHICHTEN
+    assert "b1_selidba" in offen_b1_teil2.WOERTER
     g = next(s for s in geschichten.GESCHICHTEN if s["id"] == "b1_selidba")
-    toene = json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"), encoding="utf-8"))["toene"]
-    assert ton_bauen.schluessel(g["text"]) not in {e["key"] for e in toene}
+    toene = {e["key"]: e for e in json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"),
+                                                    encoding="utf-8"))["toene"]}
+    e = toene[ton_bauen.schluessel(g["text"])]
+    assert e["text"].startswith("Dedo Rasim i nana Fadila") and e["stimme"] == "bs-BA-VesnaNeural"
+    assert ton_bauen.wortzeiten_passen(e, g["text"])

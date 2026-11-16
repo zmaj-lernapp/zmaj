@@ -79,9 +79,16 @@ are in the Play Store listing. Format:
   (*Izdajem stan*) and an e-mail (*Mejl rođaku*). Texts, translations and
   questions in all eight languages (translations not by native speakers).
   Every word form stands in exactly one glossary block, with one meaning that
-  fits every story: 32 stories and 1,515 glossary entries in total. The new
-  stories have no audio yet; it is synthesised after the maintainer's review
-  (`tests/offen_lesetexte.json`, `tests/offen_b1_teil2.py`).
+  fits every story: 32 stories and 1,515 glossary entries in total. Since
+  16.11.2026 the Azure voice Vesna reads all 20 aloud, like the older stories,
+  with word timings for the read-along highlight (`g13.mp3` to `g32.mp3`), after
+  the maintainer had answered every open Bosnian question about the texts. The
+  words that occur only in these stories have no recording yet: words and
+  sentences are spoken by the Emir voice, not by Azure
+  (`tests/offen_lesetexte.json`, `WOERTER` in `tests/offen_b1_teil2.py`).
+  `ton_bauen.py --nur-geschichten` synthesises stories only, and
+  `ZMAJ_TTS_ZUGANG` points `ton_bauen.py` and `wortzeiten_holen.py` to an access
+  file outside the repository. `tests/test_offen_lesetexte.py`, `tests/test_wortzeiten.py`.
 - A sandbox in the test app only (8.11.2026): when Android reports the app ID
   `de.smartdragon.zmaj.test` and the build carries a "-test" version, every
   level, section, level test and story is open, without writing anything into
@@ -763,9 +770,10 @@ are in the Play Store listing. Format:
   Amina hopes her nana will make a pita, *napraviti pitu*, no longer *skuhati
   pitu* ("one says napraviti pitu, not skuhati"). The German translation now says
   "eine Pita machst" like the other seven languages; *skuhati* left the story
-  dictionary, *napraviti* was already there. The old recording (g09) belongs to
-  the old text, so the story waits for the next Vesna round with the B1 stories
-  (`tests/offen_b1_teil2.py`); the file stays. `tests/test_pruefbericht14_geschichten.py`.
+  dictionary, *napraviti* was already there. The old recording (g09) belonged to
+  the old text, so the story waited for the next Vesna round with the B1 stories
+  (`tests/offen_b1_teil2.py`). Vesna read it again on 16.11.2026, under the same
+  number g09. `tests/test_pruefbericht14_geschichten.py`.
 - Polite *Vi* in the reading stories (review for 1.4, S7; decided by the
   maintainer on 15.11.2026: "mach doch alles groß", replacing the rule of
   14.11.2026 that kept it lower case in conversations): *Vi, Vas, Vam, Vaš* are
@@ -797,8 +805,8 @@ are in the Play Store listing. Format:
   questions in all eight languages (not by native speakers); the right answer is
   nowhere much longer than the wrong ones. Every word is tappable: 44 new glossary
   forms, *radio* as the device in the story's own entries, and the 31 forms only the
-  old story used are gone with their translations (1,515 entries). No audio yet;
-  it comes with the next Vesna round (`tests/offen_b1_teil2.py`).
+  old story used are gone with their translations (1,515 entries). Vesna read it
+  on 16.11.2026 (g25) with the other B1 stories.
   `tests/test_pruefbericht14_geschichten.py`.
 - B1 reading stories, the maintainer's answers to the open A/B passages
   (15.11.2026): where he chose the other wording, the story now has exactly

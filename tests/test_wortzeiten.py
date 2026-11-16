@@ -27,8 +27,9 @@ def _geschichten():
     return geschichten.GESCHICHTEN
 
 
-# Geschichten, deren Aufnahme noch fehlt (13.11.2026: B1-Lesetexte, Pakete 3
-# und 4), siehe tests/offen_b1_teil2.py.
+# Geschichten, deren Aufnahme noch fehlt, siehe tests/offen_b1_teil2.py. Vom
+# 13.11.2026 an die B1-Lesetexte der Pakete 3 und 4, seit dem 16.11.2026 liest
+# Vesna alle Geschichten vor (Offen-Liste 6) und die Menge ist leer.
 WARTET_AUF_TON = offen_b1_teil2.GESCHICHTEN
 
 
@@ -47,8 +48,8 @@ def test_jede_geschichte_hat_passende_wortzeiten(index):
     fehler = []
     for s in _geschichten():
         k = ton_bauen.schluessel(s["text"])
-        # B1-Lesetexte ohne Ton (13.11.2026): Pakete 1 und 2 in tests/offen_lesetexte.json,
-        # Pakete 3 und 4 in tests/offen_b1_teil2.py
+        # Geschichten ohne Ton: Pakete 1 und 2 in tests/offen_lesetexte.json,
+        # Pakete 3 und 4 in tests/offen_b1_teil2.py (13.11.2026, seit 16.11.2026 leer)
         if k in offen_lesetexte.GESCHICHTEN or s["id"] in WARTET_AUF_TON:
             continue
         e = nach_key[k]
@@ -183,7 +184,7 @@ def test_schreibe_index_behaelt_w_in_einer_zeile(tmp_path, monkeypatch):
     assert zurueck == {"version": 1, "toene": [bekannt["g"], bekannt["a"]]}
 
 
-def _lauf(tmp_path, monkeypatch, eintrag, posten):
+def _lauf(tmp_path, monkeypatch, eintrag, posten, **optionen):
     """grosser_lauf() ohne Netz: ein Eintrag im Index, eine Datei, feste Posten."""
     audio = tmp_path / "audio"
     audio.mkdir()
@@ -199,7 +200,7 @@ def _lauf(tmp_path, monkeypatch, eintrag, posten):
         gerufen.append(text)
         return b"\xff" * 900
 
-    ton_bauen.grosser_lauf(dienst, {}, "wort-stimme", "gesch-stimme")
+    ton_bauen.grosser_lauf(dienst, {}, "wort-stimme", "gesch-stimme", **optionen)
     toene = json.load(io.open(str(audio / "index.json"), encoding="utf-8"))["toene"]
     return {e["datei"]: e for e in toene}, gerufen
 
@@ -236,3 +237,43 @@ def test_neue_geschichte_kommt_ohne_w(tmp_path, monkeypatch):
     assert gerufen == [ton_bauen.sprechtext(neu)]          # "Reks je veliki."
     assert "w" not in toene["g02.mp3"] and toene["g02.mp3"]["text"] == neu
     assert toene["g01.mp3"] == eintrag          # die alte Aufnahme behaelt ihre eigenen Zeiten
+
+
+def test_nur_geschichten_spricht_keine_woerter(tmp_path, monkeypatch):
+    """ton_bauen.py --nur-geschichten (16.11.2026): Woerter und Saetze spricht
+    Emir, Azure nur die Geschichten. Die neue Geschichte bekommt ihre Aufnahme
+    mit der Geschichtenstimme, das neue Wort keine und auch keine Nummer."""
+    alt = "Rex je mali."
+    eintrag = {"key": ton_bauen.schluessel(alt), "datei": "g01.mp3", "text": alt,
+               "stimme": "gesch-stimme", "w": [[100, 300], [320, 400], [420, 700]]}
+    neu = "Rex je veliki."
+    posten = [{"art": "geschichte", "key": ton_bauen.schluessel(alt), "text": alt},
+              {"art": "geschichte", "key": ton_bauen.schluessel(neu), "text": neu},
+              {"art": "wort", "key": "veliki", "text": "veliki"}]
+    toene, gerufen = _lauf(tmp_path, monkeypatch, dict(eintrag), posten, nur_geschichten=True)
+    assert gerufen == [ton_bauen.sprechtext(neu)]
+    assert sorted(toene) == ["g01.mp3", "g02.mp3"]
+    assert toene["g02.mp3"]["stimme"] == "gesch-stimme" and toene["g01.mp3"] == eintrag
+    assert list((tmp_path / "audio").glob("w*.mp3")) == []
+    # ohne die Option spricht derselbe Lauf auch das Wort, mit der Wortstimme
+    zwei = tmp_path / "zwei"
+    zwei.mkdir()
+    toene, gerufen = _lauf(zwei, monkeypatch, dict(eintrag), posten)
+    assert gerufen == [ton_bauen.sprechtext(neu), "veliki"]
+    assert [e["stimme"] for e in toene.values() if e["key"] == "veliki"] == ["wort-stimme"]
+
+
+def test_zugang_auch_ausserhalb_des_projekts(wurzel, tmp_path):
+    """ZMAJ_TTS_ZUGANG (16.11.2026) nennt die Zugangsdatei, wenn sie nicht neben
+    ton_bauen.py liegt - so muss der Schluessel nie ins Projekt kopiert werden.
+    Ohne die Variable bleibt es tts_zugang.json neben dem Skript."""
+    import subprocess
+    import sys
+    pfad = str(tmp_path / "zugang.json")
+    befehl = [sys.executable, "-c", "import ton_bauen; print(ton_bauen.ZUGANG)"]
+    umgebung = {k: v for k, v in os.environ.items() if k != "ZMAJ_TTS_ZUGANG"}
+    ohne = subprocess.run(befehl, cwd=wurzel, env=umgebung, capture_output=True, text=True, check=True)
+    assert ohne.stdout.strip() == os.path.join(wurzel, "tts_zugang.json")
+    mit = subprocess.run(befehl, cwd=wurzel, env=dict(umgebung, ZMAJ_TTS_ZUGANG=pfad),
+                         capture_output=True, text=True, check=True)
+    assert mit.stdout.strip() == pfad

@@ -487,9 +487,8 @@ GESCHICHTEN = [
     {
         "id": "pismo", "titel": "Pismo nani", "stufe": "Fortgeschritten", "passt_zu": "zukunft",
         # "napraviti pitu" statt "skuhati pitu" (Prüfbericht 1.4, S3; Ajdin, F20,
-        # 14.11.2026: "man sagt napraviti pitu nicht skuhati"). Der Ton (g09) gehört
-        # noch zum alten Text, die Geschichte wartet bis zur nächsten Vesna-Runde
-        # (tests/offen_b1_teil2.py).
+        # 14.11.2026: "man sagt napraviti pitu nicht skuhati"). Den Ton (g09) hat
+        # Vesna am 16.11.2026 mit dem neuen Text gesprochen (Offen-Liste 6).
         "text":"Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. "
                 "Kolege su ljubazne, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. "
                 "Navečer učim bosanski, a vikendom idemo u prirodu. Mislim da ćemo u augustu doći kod tebe. "
@@ -845,8 +844,9 @@ GESCHICHTEN = [
 # noch fehlen. Jede Form steht genau einmal: 159 Formen kommen auch in Paket 1
 # und 2 vor und stehen deshalb nur oben, mit einer Bedeutung, die in allen
 # Texten passt (Merge vom 13.11.2026). tests/test_inhalt.py prüft das.
-# Die Aufnahmen fehlen noch (ton_bauen.py, dann wortzeiten_holen.py), siehe
-# WARTET_AUF_TON in tests/test_wortzeiten.py.
+# Die Texte liest Vesna seit dem 16.11.2026 vor (ton_bauen.py, dann
+# wortzeiten_holen.py; Offen-Liste 6). Die Wörter, die nur in diesen Texten
+# stehen, haben noch keinen Ton, siehe WOERTER in tests/offen_b1_teil2.py.
 #
 # HINWEIS: Claude ist kein Muttersprachler. Texte bitte prüfen.
 # ---------------------------------------------------------------------------
@@ -1030,8 +1030,8 @@ GESCHICHTEN += [
         # Prüfbericht 1.4, F10): Ajdin "mach eine neue geschichte", Entwurf
         # "Dedo i nana se sele" (Release\Selidba_neu_Entwurf.md, Vorschlag 1)
         # angenommen mit "nimm penje uz stepenicama" und "nimm napokon...".
-        # Die id bleibt, damit der Lesestand bleibt. Ton folgt in der
-        # Vesna-Runde (tests/offen_b1_teil2.py).
+        # Die id bleibt, damit der Lesestand bleibt. Den Ton hat Vesna am
+        # 16.11.2026 gesprochen (g25, Offen-Liste 6).
         "id": "b1_selidba", "titel": "Dedo i nana se sele", "stufe": "B1", "passt_zu": "erledigen_umziehen",
         "text": ("Dedo Rasim i nana Fadila već četrdeset godina žive u kući na selu ispod Vlašića. Ali bašta im je prevelika, a nana se teško penje uz stepenice. Zato su odlučili da se presele u Travnik, u mali stan blizu kćerke Alme. Zgrada ima lift.\n\n"
                  "U subotu je došao unuk Edin da pomogne. Nana je htjela sve ponijeti: ormar, šporet na drva i trideset tegli zimnice. „Nano, stan ima dvije sobe, a ne deset!“ rekao je Edin. Uzeo je papir i zapisivao šta ide, a šta ostaje.\n\n"

@@ -5,10 +5,11 @@ Release\\Lesetexte_Fragen_AB.md stellte zu den fraglichen Stellen der neuen
 Lesetexte zwei Fassungen zur Wahl: A, wie es im Text stand, und B. Wo Ajdin
 B gewählt hat, steht jetzt genau B im Text, mit Übersetzung, Fragen und
 Wörterbuch in allen acht Sprachen. Wo er A gewählt hat, bleibt der Text.
-Keine dieser Geschichten hat schon Ton: Ein neuer Text ist ein neuer
-Ton-Schlüssel, und der steht in tests/offen_lesetexte.json (Pakete 1 und 2),
-oder die Geschichte wartet mit ihrer id in tests/offen_b1_teil2.py (Pakete 3
-und 4). Im Browser: tests_e2e/test_lesetexte_ab.py.
+Erst danach hat Vesna die Geschichten gesprochen (16.11.2026, Offen-Liste 6):
+die Aufnahme gehört genau zu diesem Text. Neue Wörter ohne Aufnahme stehen in
+tests/offen_lesetexte.json (Pakete 1 und 2) oder kommen aus WOERTER in
+tests/offen_b1_teil2.py (Pakete 3 und 4), bis Emir sie spricht. Im Browser:
+tests_e2e/test_lesetexte_ab.py.
 """
 import io
 import json
@@ -343,21 +344,25 @@ def test_vokabeln_der_geschichten(alle_daten):
             assert v.strip() and v != bedeutung, (code, gid, wort)
 
 
-def test_wartet_auf_ton(wurzel):
-    """Neuer Text, neuer Schlüssel: Die Geschichte wartet weiter auf Vesna,
-    und jedes neue Wort ohne Aufnahme steht in einer der beiden Listen."""
+def test_ton_zum_neuen_text(wurzel):
+    """Neuer Text, neuer Schlüssel: Vesna hat die Geschichte am 16.11.2026 mit
+    genau diesem Text gesprochen (Offen-Liste 6), die Wortzeiten passen. Jedes
+    neue Wort ohne Aufnahme steht in einer der beiden Listen."""
     import geschichten
     import offen_b1_teil2
     import offen_lesetexte
     import ton_bauen
-    index = {e["key"] for e in json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"),
-                                                 encoding="utf-8"))["toene"]}
+    toene = {e["key"]: e for e in json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"),
+                                                    encoding="utf-8"))["toene"]}
+    index = set(toene)
     g = {s["id"]: s for s in geschichten.GESCHICHTEN}
     teil2 = offen_b1_teil2.ton_schluessel()
     for gid in _geaendert():
         k = ton_bauen.schluessel(g[gid]["text"])
-        assert k not in index, gid
-        assert k in offen_lesetexte.GESCHICHTEN or gid in offen_b1_teil2.GESCHICHTEN, gid
+        assert k in index, gid
+        assert toene[k]["text"] == g[gid]["text"] and toene[k]["stimme"] == "bs-BA-VesnaNeural", gid
+        assert ton_bauen.wortzeiten_passen(toene[k], g[gid]["text"]), gid
+        assert k not in offen_lesetexte.GESCHICHTEN and gid not in offen_b1_teil2.GESCHICHTEN, gid
     for wort in NEU:
         k = ton_bauen.schluessel(wort)
         if k not in index and k not in ton_bauen.nur_emir():
