@@ -125,3 +125,24 @@ def test_zahl_der_geschichten_ueberall_gleich(wurzel):
                 falsch.append("%s: %s" % (name, m.group(0)))
     assert gefunden >= 9, gefunden
     assert not falsch, falsch
+
+
+def test_paket_hilfe_nennt_die_zahlen_des_manifests(wurzel):
+    """16.11.2026: Nach a87b70d ("ljubazne" fällt aus dem Wörterbuch der
+    Geschichten) sagte help(glossary) im Paket noch "1,520 reading-glossary
+    entries", Datenkarte, Datenblatt und READMEs schon 1,519. Kein Test las
+    die Docstrings. Jede Zahl darin muss zum Manifest passen."""
+    import re
+    n = json.loads(lies(wurzel, "manifest.json"))["counts"]
+    text = io.open(os.path.join(wurzel, "paket", "src", "zmaj_bosnian", "__init__.py"),
+                   encoding="utf-8").read()
+    for muster, schluessel in [(r"All ([\d,]+) words", "words"),
+                               (r"The ([\d,]+) levels", "levels"),
+                               (r"The ([\d,]+) sections", "sections"),
+                               (r"([\d,]+) cloze sentences", "sentences"),
+                               (r"([\d,]+) graded stories", "stories"),
+                               (r"([\d,]+) reading-glossary entries", "glossary_entries"),
+                               (r"The ([\d,]+) grammar lessons", "grammar_lessons")]:
+        m = re.search(muster, text)
+        assert m, muster
+        assert int(m.group(1).replace(",", "")) == n[schluessel], m.group(0)
