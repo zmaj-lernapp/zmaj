@@ -125,8 +125,9 @@ ENGLISCH = {
 # hoefliche Vi gross auch in den Gespraechen (Ajdin: "mach doch alles groß",
 # 21871bb1…), dann Ajdins A/B-Antworten zu den B1-Lesetexten, eine Geschichte
 # nach der anderen (tests/test_lesetexte_ab.py), zuletzt "Izgubljeni telefon"
-# hinter "Dedo i nana se sele" (S7): Die Summe hängt auch an der Reihenfolge.
-TEXTE_SHA256 = "6c0f1e61e1962ba26c95a351894cfd3bcc14f2ed6a6fc50b6f2e556ee6b19146"
+# hinter "Dedo i nana se sele" (S7), am 16.11.2026 "Kolege su ljubazni" in pismo
+# (Fragen 16.11.2026, 5; 6c0f1e61… davor): Die Summe hängt auch an der Reihenfolge.
+TEXTE_SHA256 = "eea63ba62bde0aea667aecb2716c6b43dd9331bc8fb6afb1517f4eb0d4096f4a"
 
 
 def _geschichten(daten):
@@ -332,7 +333,8 @@ def test_s3_pismo_hat_neuen_ton(wurzel):
     """Am 16.11.2026 hat Vesna pismo mit "napraviti pitu" neu gesprochen, unter
     derselben Nummer g09 (Offen-Liste 6). Die alte Aufnahme mit "skuhati pitu"
     ist ersetzt, kein Eintrag gehoert mehr zum alten Text, und pismo wartet
-    nicht mehr in tests/offen_b1_teil2.py."""
+    nicht mehr in tests/offen_b1_teil2.py. Am Abend desselben Tages noch einmal,
+    mit "Kolege su ljubazni" statt "ljubazne" (Ajdin, Fragen 16.11.2026, 5)."""
     import io
     import json
     import os
@@ -346,6 +348,8 @@ def test_s3_pismo_hat_neuen_ton(wurzel):
     pismo = next(g for g in geschichten.GESCHICHTEN if g["id"] == "pismo")
     assert g09["key"] == ton_bauen.schluessel(pismo["text"]) and g09["text"] == pismo["text"]
     assert PISMO_NEU in g09["text"] and g09["stimme"] == "bs-BA-VesnaNeural"
+    assert "Kolege su ljubazni," in g09["text"] and "ljubazne" not in g09["text"]
+    assert "Kolege su ljubazni," in pismo["text"] and "ljubazne" not in pismo["text"]
     assert ton_bauen.wortzeiten_passen(g09, pismo["text"])
     assert os.path.getsize(os.path.join(wurzel, "web", "audio", "g09.mp3")) > 800
     assert [e["datei"] for e in toene if PISMO_ALT in e["text"]] == []

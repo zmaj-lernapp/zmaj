@@ -1484,10 +1484,12 @@ auch.
 Ajdin auf die Fragenliste vom 16.11.2026 (`Release\Fragen_Ajdin_2026-11-16.md`,
 „Ajdins Antworten“).
 
-**Pismo nani (Frage 5), noch nicht eingebaut.** Ajdin: „ljubazni“, also „Kolege su
-ljubazni“ im Brief an die Nana, wie in *Prvi dan na poslu*. Der Brief ist von Vesna
-vorgelesen (g09) und muss dafür neu gesprochen werden; dieser Azure-Lauf war am
-16.11.2026 nicht freigegeben. Bis dahin steht weiter „Kolege su ljubazne“.
+**Pismo nani (Frage 5).** Ajdin: „ljubazni“, also „Kolege su ljubazni“ im Brief an
+die Nana, wie in *Prvi dan na poslu*. Vesna hat den Brief am Abend des 16.11.2026 mit
+diesem Text neu gesprochen, unter derselben Nummer g09 (355 Zeichen). Die alte Aufnahme
+mit „ljubazne“ liegt in `Release\Hoerproben_Vesna_2026-11-14\_alt\Pismo_nani_alt_ljubazne.mp3`.
+Im Wörterbuch der Geschichte fällt „ljubazne“ weg; „ljubazni“ steht schon im Wörterbuch.
+Die Übersetzungen bleiben („Die Kollegen sind freundlich“).
 
 **Präpositionen mit Instrumental (Frage 7).** „ja, überall s/sa und nad (über)“: Die
 Zeile heißt jetzt „s/sa, pod, nad (über), pred, za (hinter), među“. Die sieben

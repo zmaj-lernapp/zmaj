@@ -111,7 +111,7 @@ WOERTERBUCH = {
     "velika": "groß (w)", "veliku": "große (Akk.)", "lijep": "schön (m)", "lijepo": "schön", "stare": "alte",
     "staru": "altes (Akk.)", "starog": "alten", "maloj": "kleinen (Lok.)", "mali": "klein (m)", "dobar": "gut (m)", "dobro": "gut",
     "gotova": "fertig", "jeftinije": "billiger", "stari": "alte / Alt-", "kafen": "braun (m)", "kafena": "braun (w)", "kafeno": "braun (s)", "boja": "Farbe", "bijela": "weiß (w)",
-    "žuta": "gelb (w)", "plava": "blau (w)", "novi": "neuen", "draga": "liebe", "ljubazne": "freundlich (Mehrz.)",
+    "žuta": "gelb (w)", "plava": "blau (w)", "novi": "neuen", "draga": "liebe",
     "grad": "Stadt", "grada": "Stadt (Gen.)", "gradu": "Stadt (Lok.)", "park": "Park", "parku": "Park (Lok.)", "sunce": "Sonne",
     "pijacu": "Markt (Akk.)", "pijaci": "Markt (Lok.)", "voća": "Obst (Gen.)", "voće": "Obst", "povrća": "Gemüse (Gen.)",
     "jabuke": "Äpfel", "jabuku": "Apfel (Akk.)", "paradajz": "Tomate", "luk": "Zwiebel", "marke": "Mark (Währung)", "maraka": "Mark (Gen. Mehrz.)",
@@ -489,8 +489,11 @@ GESCHICHTEN = [
         # "napraviti pitu" statt "skuhati pitu" (Prüfbericht 1.4, S3; Ajdin, F20,
         # 14.11.2026: "man sagt napraviti pitu nicht skuhati"). Den Ton (g09) hat
         # Vesna am 16.11.2026 mit dem neuen Text gesprochen (Offen-Liste 6).
+        # "Kolege su ljubazni" statt "ljubazne", wie "Kolege su bili ljubazni" in
+        # b1_posao (Ajdin, Fragen 16.11.2026, 5: "ljubazni"). g09 hat Vesna am
+        # 16.11.2026 noch einmal gesprochen, mit diesem Text.
         "text":"Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. "
-                "Kolege su ljubazne, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. "
+                "Kolege su ljubazni, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. "
                 "Navečer učim bosanski, a vikendom idemo u prirodu. Mislim da ćemo u augustu doći kod tebe. "
                 "Nadam se da ćeš nam napraviti pitu! Pozdravi dedu. Volim te, tvoja Amina.",
         "uebersetzung": "Liebe Oma, wie geht es dir? Uns geht es gut. Letzte Woche habe ich eine neue Arbeit in einer Firma im Stadtzentrum begonnen. "
