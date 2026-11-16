@@ -555,6 +555,14 @@ are in the Play Store listing. Format:
   when tapped. The audio check now knows the answers of the grammar exercises, so
   the next one without a recording is reported before the build.
   `tests/test_grammatik_ton.py`, `tests_e2e/test_grammatik_ton.py`.
+- Every word in the 20 new B1 reading stories can now be tapped and heard (823
+  words recorded on 16.11.2026, approved by the maintainer after listening the same
+  day). Tapping a word in a story speaks it when there is a recording, but the words
+  that occur only in these stories had none and stayed silent on the phone, which has
+  no computer voice. The recordings exist only in the store version; the web demo
+  stays silent there. The lists of story words still waiting for audio are empty
+  now, so the audio check reports the next word without a recording before the build.
+  `tests/test_geschichtenwoerter_ton.py`, `tests_e2e/test_geschichtenwoerter_ton.py`.
 - Typing (review for 1.4, 14.11.2026, V3): four correct answers no longer cost a
   heart. *Kad dolaziš?* and *Kad ćeš doći?* count next to *Kada …*, *Kada se ženiš?*
   next to *Kad se ženiš?* (as single words *kad* and *kada* already did), *Zdravo* in
