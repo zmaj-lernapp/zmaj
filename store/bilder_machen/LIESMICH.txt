@@ -3,8 +3,9 @@ STORE-BILDER NEU MACHEN
 
 Erzeugt die acht Bilder in store/screenshots, je 1080 x 1920, PNG ohne
 Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 16.11.2026
-(alle Sprachen und Geraete aus dem Stand 1.4, --version 1.4; davor am
-13.11.2026 aus 1.3 - die wurden nie hochgeladen).
+(alle Sprachen und Geraete aus dem Stand 1.4, --version 1.4, nach dem
+Feinschliff noch einmal alle; davor am 13.11.2026 aus 1.3 - die wurden nie
+hochgeladen).
 
 store/screenshots haelt die deutschen Rohbilder ohne Ueberschrift aus
 diesem Lauf (--aussehen dunkel --version 1.4), in der Folge 01-start bis
@@ -147,10 +148,10 @@ SEIT 1.4 (16.11.2026)
     Rand eine Schriftzeile durchschneidet (die Buchstaben selbst, nicht
     der Rand eines Kreises oder einer Karte), und schreibt sie als
     "unten angeschnitten: ..." in die Ausgabe. Ausser bei Bild 2 und Bild 8
-    auf Tablets (unten) ist das nur ein Hinweis zum Nachsehen. Am 16.11.
+    auf Tablets (unten) war das nur ein Hinweis zum Nachsehen. Am 16.11.
     meldete es Bild 1 (die Startseite geht unten weiter), Bild 4 am Handy
-    ("Ueberspringen" knapp am Rand) und Bild 8 am Handy (Karte "Markiert",
-    offene Frage an Ajdin); Liste in Release\Store_Bilder_1.4\LIESMICH.md.
+    ("Ueberspringen" knapp am Rand) und Bild 8 am Handy (Karte "Markiert");
+    seit dem Feinschliff (unten) bricht es dann ab.
   - Bild 2: Auf Franzoesisch schnitt der Rand das sechste Level mitten
     durch, auf 10 Zoll den Kopf der Sektion 5. Die Reiterleiste rueckt dann
     naeher an den oberen Rand (von 10 bis hoechstens 0 Punkte), bis keine
@@ -162,3 +163,41 @@ SEIT 1.4 (16.11.2026)
     hatten Bild 4 bis 6 alle drei erfuellt, die Zeile "Alle tre klaret!"
     schob alles hinunter, und unten stand eine halbe Zeile. Auf Tablets
     bricht das Skript ab, wenn dort trotzdem eine Zeile halb im Bild steht.
+
+  Feinschliff (16.11.2026, alle 192 Bilder neu):
+  - Rand: Vor jedem Bild sucht das Skript die naechste Lage der Seite, in
+    der weder der obere noch der untere Rand eine Schriftzeile oder einen
+    Knopf mit Schrift durchschneidet (__randFrei, __randSchnitte). Gemessen
+    wird Zeile fuer Zeile die Tinte der Buchstaben; von einer Zeile ausserhalb
+    darf kein Geraetepixel hereinragen (vorher 1,5 Punkte, auf 7 Zoll sah man
+    die Spitzen), eine Zeile im Bild haelt 4 Geraetepixel Abstand zum Rand,
+    und eine Unterstreichung zaehlt mit. Oben darf auch kein halber Kasten
+    stehen (Pillen der Kopfleiste, Drache, Flamme). Die Seite rueckt dafuer
+    Punkt fuer Punkt hinauf, hoechstens bis oben etwas anstoesst, oder -
+    wenn sie ganz oben steht und nicht weiter hinunter kann - tiefer: der
+    Rand ueber der Kopfleiste (padding-top von body, in der App 16 Punkte)
+    waechst fuer dieses eine Bild um bis zu 12 Punkte. Steht danach
+    trotzdem etwas am Rand, bricht das Skript ab - kein Hinweis mehr, den
+    man ueberlesen kann. Die Ausgabe nennt je Bild, was noetig war ("frei
+    +7" = 7 Punkte hinauf, "frei Rand oben +3" = 3 Punkte mehr Rand).
+  - Bild 2: Die Reiterleiste steht 10 bis 4 Punkte unter dem Rand; geht das
+    nicht, steht die Leiste Lernpfad/Geschichten/Wiederholen darueber (so
+    jetzt fr am Handy statt der Reiterleiste ganz oben am Rand).
+  - Bild 4 und 6: reicht das Hinaufruecken nicht, kommt ein anderer Satz
+    (bis zu 12 Mal neu gemischt). Bild 8 am Handy: der Reihe nach oben die
+    Karte "Heute" ("Weitermachen" ganz aus dem Bild), oben "Weitermachen"
+    wie bisher, oben die Leiste Lernpfad/Geschichten/Wiederholen - der erste
+    Ausschnitt ohne halbe Zeile gilt. Mit "Weitermachen" oben allein ging es
+    oft nicht: darueber hing der Drache oder allein "9 dage tilbage".
+  - Tagesaufgaben: Die App zieht sie mit der Geraete-Kennung als Startwert.
+    Das Skript setzt eine feste (GERAETE_IDS), damit zeigen an einem Tag
+    alle Laeufe dieselben drei. Geht ein Lauf am Rand nicht auf (Tablets
+    haben kaum Spielraum), kommt er noch einmal mit der naechsten Kennung:
+    andere Aufgaben, anders umbrochen, alles darunter eine Zeile versetzt.
+    Die Ausgabe nennt am Ende jeder Sprache Kennung und Aufgaben.
+  - KM und Tagesaufgaben: vor jedem Bild wie auf Bild 1 (die Antworten fuer
+    Bild 4 bis 6 erfuellten manchmal eine Aufgabe, dann stand auf Bild 7
+    und 8 1250 KM). Stehen sie doch anders im Bild, bricht das Skript ab.
+  - Kein Tastaturfokus mehr (Bild 3 zeigte "Weiter" mit Fokusrahmen), und
+    der Drache hat die Augen offen: das Skript wartet auf ein Bild der
+    Animation ohne Blinzeln und haelt sie dort an, bis das Bild gemacht ist.

@@ -46,6 +46,14 @@ APP_VERSION_ZEILE = re.compile(r"^const APP_VERSION = '[^'\r\n]*';", re.M)
 # wurde (ERFOLG_GESEHEN in web/index.html), siehe erfolge_ids()
 ERFOLGE_LISTE = re.compile(r"^const ERFOLGE = \[(.*?)^\];", re.M | re.S)
 ERFOLG_GESEHEN = "zmaj_erfolge_gesehen"
+# Die Tagesaufgaben zieht die App mit der Geraete-Kennung (LOKAL_ID, siehe
+# questSaat und zieh in web/index.html) und dem Datum als Startwert. Ohne
+# feste Kennung erfand jeder Lauf eine neue, und Handy, Tablets und Sprachen
+# zeigten verschiedene Aufgaben (Store-Bilder 1.4). Mit der ersten stehen an
+# einem Tag ueberall dieselben drei (Feinschliff 16.11.2026); die weiteren
+# nur, wenn sie am Rand nicht aufgehen (siehe bilder_machen).
+GERAETE_ID_SCHLUESSEL = "zmaj_id"
+GERAETE_IDS = ("zmaj-store-bilder",) + tuple("zmaj-store-bilder-%d" % i for i in range(2, 7))
 
 # Nach jedem Schritt, vor dem Bild: nichts davon darf im Bild stehen.
 NICHTS_IM_BILD = """
@@ -56,51 +64,259 @@ NICHTS_IM_BILD = """
     if(sichtbar(k)) return 'Meldung im Bild: ' + k.textContent;
     return ''"""
 
-# Schriftzeilen, durch die der untere Bildrand geht (16.11.2026, Pruefung der
+# KM und Tagesaufgaben, soweit im Bild (Feinschliff 16.11.2026): auf allen
+# Bildern einer Sprache und eines Geraets dieselben wie auf Bild 1, sonst
+# bricht das Skript ab. Auf 10 Zoll en und fr standen auf Bild 7 und 8
+# 1250 KM statt 1240, auf dem Handy de Bild 8 "2/3" statt "1/3".
+STAND_IM_BILD = """
+    const sichtbar = e => !!e && e.getClientRects().length > 0;
+    const m = document.getElementById('muenzBar'), q = document.getElementById('questBox');
+    return [sichtbar(m) ? m.textContent.trim() : '', sichtbar(q) ? q.innerText.trim().replace(/\\s+/g, ' ') : '']"""
+
+# Was der obere oder untere Bildrand durchschneidet (16.11.2026, Pruefung der
 # Store-Bilder 1.4: auf fr Bild 2 stand "Médecin & assurance" nur zur oberen
 # Haelfte im Bild, auf da tab7 Bild 8 fehlten "og sjældnere." die
-# Unterlaengen). Gemessen wird die Tinte der Buchstaben (canvas.measureText),
-# nicht das Kaestchen der Zeile: das reicht oben und unten ein paar Punkte
-# ueber die Schrift hinaus, und ein angeschnittener Rand eines Kreises oder
-# einer Karte ist kein Fehler. Unsichtbares (display, visibility, opacity)
-# und was ein Kasten mit overflow selbst abschneidet, zaehlt nicht. Ragt von
-# einer Zeile hoechstens 1,5 Punkte ins Bild (Spitzen von Akzenten und
-# Oberlaengen), liest das niemand als Schrift; fehlen von ihr hoechstens
-# 0,5 Punkte, sieht man es nicht.
-# getClientRects und canvas messen auf Tablets verschieden (zoom, siehe
-# rectFaktor in web/index.html): darum der Faktor k aus der Hoehe der Zeile.
-# Gibt die Anfaenge der angeschnittenen Zeilen zurueck, [] wenn keine.
-UNTEN_ANGESCHNITTEN = """
-    window.__untenAngeschnitten = () => {
-      const f = typeof rectFaktor === 'function' ? rectFaktor() : 1;
-      const H = innerHeight / f, aus = [], rg = document.createRange();
+# Unterlaengen; Feinschliff am selben Tag: halbe Zeilen auf Bild 1, 4 und 8,
+# auf 7 Zoll 1 bis 3 Pixel der naechsten Zeile, "Lektion abbrechen" halb im
+# Bild). Der Rand des Bildschirms ist auch der Rand im Rahmen, den
+# beschriften.py darum legt.
+#   - Schriftzeilen: gemessen wird die Tinte der Buchstaben (canvas.measureText)
+#     Zeile fuer Zeile, nicht das Kaestchen der Zeile - das reicht oben und
+#     unten ein paar Punkte ueber die Schrift hinaus; eine Unterstreichung
+#     ("Ueberspringen") reicht weiter hinab. Von einer Zeile ausserhalb darf
+#     kein Geraetepixel ins Bild ragen (dazu ein Pixel Saum fuer die
+#     Kantenglaettung) - bis 16.11. durften es 1,5 Punkte sein, auf 7 Zoll
+#     waren das sichtbare Spitzen. Eine Zeile im Bild haelt 4 Geraetepixel
+#     Abstand zum Rand: sass die Grundlinie genau auf dem Rand, sah die Zeile
+#     abgeschnitten aus, auch wenn ihr nichts fehlte.
+#   - Knoepfe mit Schrift (auch Reiter und Kacheln): der Kasten darf nicht
+#     durchgeschnitten sein, wenn von seiner Schrift etwas im Bild steht -
+#     sonst steht ein halber Knopf da, auch wenn sein Text ganz ist. Ein
+#     Rand ohne Schrift (Kreis, Karte, der obere Rand des naechsten Knopfs)
+#     ist kein Fehler, und Level-Zeilen und Sektionskoepfe sind Karten der
+#     Liste, die unten weiterlaeuft.
+#   - Oben auch kein halber Kasten ohne Schrift (Pillen der Kopfleiste,
+#     Drache, Flamme); grosse Karten duerfen dort angeschnitten sein.
+# Unsichtbares (display, visibility, opacity) und was ein Kasten mit overflow
+# selbst abschneidet, zaehlt nicht. getClientRects und canvas messen auf
+# Tablets verschieden (zoom, siehe rectFaktor in web/index.html): darum der
+# Faktor k aus der Hoehe der Zeile.
+# __randSchnitte() gibt die angeschnittenen Zeilen und Knoepfe zurueck, [] wenn
+# keine. __randFrei() sucht vor jedem Bild die naechste Lage der Seite ohne
+# solche (Punkt fuer Punkt; siehe dort), und vor jedem Bild bricht das
+# Skript ab, wenn trotzdem etwas angeschnitten ist - damit spaetere Laeufe
+# nicht still schlechter werden.
+RAND_PRUEFUNG = r"""
+    // [von, bis, unterstrichen] - wo Kaesten mit overflow abschneiden; null = unsichtbar
+    const ausschnitt = el => {
+      let von = -Infinity, bis = Infinity, strich = false;
+      for(let a = el; a && a !== document.documentElement; a = a.parentElement){
+        const s = getComputedStyle(a);
+        if(s.display === 'none' || s.visibility !== 'visible' || +s.opacity === 0) return null;
+        if(s.overflowY !== 'visible'){ const b = a.getBoundingClientRect(); von = Math.max(von, b.top); bis = Math.min(bis, b.bottom); }
+        if(/underline/.test(s.textDecorationLine)) strich = true;
+      }
+      return bis - von < 2 ? null : [von, bis, strich];
+    };
+    const durchsichtig = c => !c || c === 'transparent' || /rgba\([^)]*,\s*0\)$/.test(c);
+    const bemalt = (el, s) => /^(img|svg|canvas|video)$/i.test(el.tagName) || !durchsichtig(s.backgroundColor)
+      || s.backgroundImage !== 'none' || s.boxShadow !== 'none'
+      || ['Top', 'Bottom', 'Left', 'Right'].some(k => parseFloat(s['border' + k + 'Width']) > 0 && !durchsichtig(s['border' + k + 'Color']));
+    const faktor = () => typeof rectFaktor === 'function' ? rectFaktor() : 1;
+    const KNOEPFE = 'button, [role=button], [role=tab], .btn, .kachel, a[href], input:not([type=hidden]), select, textarea';
+    window.__randSchnitte = () => {
+      const f = faktor(), H = innerHeight / f, px = 1 / (devicePixelRatio * f), luft = 4 * px;
+      const raender = [['oben', 0], ['unten', H]], aus = [];
+      const rg = document.createRange(), zr = document.createRange();
       const cv = document.createElement('canvas').getContext('2d');
       const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
       while(tw.nextNode()){
-        const n = tw.currentNode, el = n.parentElement, text = n.textContent.trim();
-        if(!text || !el) continue;
+        const n = tw.currentNode, el = n.parentElement;
+        if(!el || !n.textContent.trim()) continue;
         rg.selectNodeContents(n);
-        const zeilen = [...rg.getClientRects()].filter(r => r.width && r.top < H && r.bottom > H);
-        if(!zeilen.length) continue;
-        let von = -Infinity, bis = Infinity, weg = false;
-        for(let a = el; a && a !== document.documentElement; a = a.parentElement){
-          const s = getComputedStyle(a);
-          if(s.display === 'none' || s.visibility !== 'visible' || +s.opacity === 0){ weg = true; break; }
-          if(s.overflowY !== 'visible'){ const b = a.getBoundingClientRect(); von = Math.max(von, b.top); bis = Math.min(bis, b.bottom); }
+        const nah = [...rg.getClientRects()].filter(r => r.width && r.height
+          && raender.some(([, E]) => r.top - r.height < E && r.bottom + r.height > E));
+        if(!nah.length) continue;
+        const box = ausschnitt(el);
+        if(!box) continue;
+        const s = getComputedStyle(el), t = n.textContent, zeichen = [];
+        for(let i = 0; i < t.length; i++){
+          zr.setStart(n, i); zr.setEnd(n, i + 1);
+          const q = zr.getBoundingClientRect();
+          if(q.width || q.height) zeichen.push([t[i], q]);
         }
-        if(weg) continue;
-        const s = getComputedStyle(el);
         cv.font = s.fontStyle + ' ' + s.fontWeight + ' ' + s.fontSize + ' ' + s.fontFamily;
-        const m = cv.measureText(s.textTransform === 'uppercase' ? text.toUpperCase() : text);
-        const kasten = m.fontBoundingBoxAscent + m.fontBoundingBoxDescent;
-        for(const r of zeilen){
+        for(const r of nah){
+          let zeile = zeichen.filter(([, q]) => q.top < r.bottom - 0.01 && q.bottom > r.top + 0.01
+            && q.left > r.left - 1 && q.right < r.right + 1).map(([c]) => c).join('').trim();
+          if(!zeile) continue;
+          if(s.textTransform === 'uppercase') zeile = zeile.toUpperCase();
+          const m = cv.measureText(zeile), kasten = m.fontBoundingBoxAscent + m.fontBoundingBoxDescent;
           const k = kasten ? r.height / kasten : 1, grund = r.top + m.fontBoundingBoxAscent * k;
-          const oben = Math.max(von, grund - m.actualBoundingBoxAscent * k);
-          const unten = Math.min(bis, grund + m.actualBoundingBoxDescent * k);
-          if(oben < H - 1.5 && unten > H + 0.5){ aus.push(text.slice(0, 40)); break; }
+          const strich = box[2] ? 0.2 * parseFloat(s.fontSize) * k : 0;
+          const oben = Math.max(box[0], grund - m.actualBoundingBoxAscent * k - px);
+          const unten = Math.min(box[1], grund + m.actualBoundingBoxDescent * k + strich + px);
+          if(oben >= unten) continue;
+          if(oben < 0 && unten > 0 || oben < H && unten > H) aus.push((oben < 0 ? 'oben: ' : 'unten: ') + zeile.slice(0, 40));
+          else if(unten > 0 && oben < luft) aus.push('oben zu knapp: ' + zeile.slice(0, 40));
+          else if(oben < H && unten > H - luft) aus.push('unten zu knapp: ' + zeile.slice(0, 40));
         }
       }
+      for(const b of document.querySelectorAll(KNOEPFE)){
+        if(b.closest('.node, .skopf')) continue;
+        const r = b.getBoundingClientRect();
+        if(!r.width || !r.height || r.height > H / 4) continue;
+        const quer = raender.filter(([, E]) => r.top < E - px && r.bottom > E + px);
+        if(!quer.length || !ausschnitt(b) || !bemalt(b, getComputedStyle(b))) continue;
+        let schrift = /^(INPUT|SELECT|TEXTAREA)$/.test(b.tagName) && !!(b.value || b.placeholder);
+        const tk = document.createTreeWalker(b, NodeFilter.SHOW_TEXT);
+        while(!schrift && tk.nextNode()){
+          if(!tk.currentNode.textContent.trim()) continue;
+          rg.selectNodeContents(tk.currentNode);
+          schrift = [...rg.getClientRects()].some(q => q.width && q.bottom > 0 && q.top < H);
+        }
+        const name = (b.innerText || b.value || '').trim().replace(/\s+/g, ' ').slice(0, 40);
+        if(schrift) quer.forEach(([wo]) => aus.push(wo + ', Knopf: ' + name));
+      }
+      // Oben auch kein halber Kasten ohne Schrift: die untere Haelfte der
+      // Pillen der Kopfleiste, der Drache oder die Flamme sahen dort
+      // abgeschnitten aus (Probe 7 Zoll Bild 8). Grosse Karten duerfen.
+      for(const el of document.body.querySelectorAll('*')){
+        const r = el.getBoundingClientRect();
+        if(!r.width || !(r.top < -px && r.bottom > px) || r.height > H / 4) continue;
+        if(el.ownerSVGElement || !bemalt(el, getComputedStyle(el)) || !ausschnitt(el)) continue;
+        aus.push('oben, Kasten: ' + String(el.id || el.className || el.tagName).slice(0, 30));
+      }
       return aus;
+    };
+    // Wie weit die Seite hinauf darf, bis das oberste Teil (bemalter Kasten
+    // oder Schrift) oben anstoesst; in Punkten fuer scrollTo. Ein halber
+    // Punkt Luft: auf 7 Zoll de Bild 8 steht "Heute ist nichts fällig." erst
+    // 16 Punkte weiter oben ganz im Bild, die Kopfleiste dann einen Punkt
+    // unter dem Rand - knapp, aber ganz (Probe 16.11.2026).
+    window.__kopfRaum = () => {
+      const f = faktor();
+      let oben = innerHeight / f / 3;
+      for(const el of document.body.querySelectorAll('*')){
+        const r = el.getBoundingClientRect();
+        if(!r.width || !r.height || r.top < -0.5 || r.top >= oben) continue;
+        if(!bemalt(el, getComputedStyle(el)) && ![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) continue;
+        if(ausschnitt(el)) oben = r.top;
+      }
+      return Math.max(0, (oben - 0.5) * f);
+    };
+    // KM und Tagesaufgaben wie auf Bild 1 (16.11.2026): die Antworten fuer
+    // Bild 4 bis 6 erfuellen manchmal eine Tagesaufgabe, und auf 10 Zoll en
+    // und fr standen auf Bild 7 und 8 dann 1250 KM statt 1240.
+    window.__standZurueck = () => {
+      if(window.__muenzen01){ muenzenGes = window.__muenzen01[0]; muenzenAus = window.__muenzen01[1]; }
+      if(window.__tagwerk01) tagwerk[today()] = JSON.parse(window.__tagwerk01);
+      if(typeof renderLives === 'function') renderLives();
+    };
+    // Den oberen Rand der Seite (padding-top von body, 16 Punkte) wie in
+    // der App; __randFrei vergroessert ihn nur fuer das eine Bild.
+    window.__polsterZurueck = () => {
+      if(window.__polster0 === undefined) window.__polster0 = document.body.style.paddingTop;
+      document.body.style.paddingTop = window.__polster0;
+    };
+    // Vor jedem Bild: Stand wie Bild 1, kein Fokusrahmen (Bild 3 zeigte
+    // "Weiter" mit Tastaturfokus), dann die naechste Lage ohne Anschnitt,
+    // Punkt fuer Punkt abwechselnd in beide Richtungen:
+    //   - die Seite rollt hinauf, bis oben etwas anstoesst (opts.runter,
+    //     ohne: __kopfRaum, hoechstens 40 Punkte);
+    //   - die Seite rollt hinunter, wenn sie nicht ganz oben steht (opts.hoch);
+    //   - steht sie ganz oben, rueckt sie stattdessen tiefer: der Rand ueber
+    //     der Kopfleiste waechst um bis zu opts.polster Punkte (ohne: 12).
+    //     Ohne das gab es auf 10 Zoll sv und nb Bild 1 keine Lage ohne halben
+    //     Level-Titel ("Veckodagar"), und auf 7 Zoll de Bild 8 stand die
+    //     Kopfleiste sonst einen Punkt unter dem Rand. Ein paar Punkte mehr
+    //     Rand oben sieht niemand; die App selbst bleibt, wie sie ist.
+    // opts.nurPruefen: nichts verschieben, nur nachsehen (fuer Bilder, die
+    // ihre Lage schon selbst gesucht haben). Chrome rollt hier nur um ganze
+    // Punkte (Probe 16.11.2026), darum in Schritten von einem Punkt.
+    // Gibt '' zurueck, wenn es keine solche Lage gibt.
+    window.__randFrei = async (opts) => {
+      opts = opts || {};
+      window.__standZurueck();
+      const a = document.activeElement;
+      if(a && a !== document.body && a.blur) a.blur();
+      const bild = () => new Promise(r => requestAnimationFrame(() => r()));
+      await bild();
+      if(opts.nurPruefen) return window.__randSchnitte().length ? '' : 'frei';
+      window.__polsterZurueck();
+      await bild();
+      const b = document.body, pt0 = parseFloat(getComputedStyle(b).paddingTop) || 0;
+      const f = faktor(), y0 = scrollY;
+      const runter = Math.min(opts.runter === undefined ? window.__kopfRaum() : opts.runter, 40 * f);
+      const hoch = Math.min(opts.hoch || 0, y0);
+      const polster = y0 < 0.5 ? (opts.polster === undefined ? 12 : opts.polster) : 0;
+      const wege = [];
+      for(let k = 0; k <= Math.max(runter, hoch, polster); k++){
+        if(k <= runter + 1e-6) wege.push(['rollen', k]);
+        if(k && k <= hoch) wege.push(['rollen', -k]);
+        else if(k && k <= polster) wege.push(['polster', k]);
+      }
+      for(const [art, k] of wege){
+        if(art === 'rollen'){ window.__polsterZurueck(); scrollTo({top: y0 + k, behavior: 'instant'}); }
+        else { scrollTo({top: y0, behavior: 'instant'}); b.style.paddingTop = (pt0 + k) + 'px'; }
+        await bild();
+        if(art === 'rollen' && Math.abs(scrollY - y0 - k) > 0.5) continue;
+        if(!window.__randSchnitte().length)
+          return 'frei' + (!k ? '' : art === 'polster' ? ' Rand oben +' + k : ' ' + (k > 0 ? '+' : '') + k);
+      }
+      window.__polsterZurueck();
+      scrollTo({top: y0, behavior: 'instant'});
+      await bild();
+      return '';
+    };
+    return 1"""
+
+# Der Drache blinzelt (Pruefung 16.11.2026: Bild 5 auf Handy en, sv, nl, da
+# und 7 Zoll nb mit geschlossenen Augen). Er ist eine Lottie-Animation, und
+# in seiner Ruheschleife zeigt er zweimal je Durchgang fuer vier Bilder den
+# Kopf "bild_kopf_blinzeln" statt "bild_kopf_neutral" (maskottchen/zmaj.json).
+# Vor dem Bild wartet das Skript darum, bis jeder sichtbare Drache den Kopf
+# mit offenen Augen zeigt, haelt alle Animationen dort an und laesst sie
+# nach dem Bild weiterlaufen. Animationen ohne diese Ebenen (aeltere
+# Zeichnung) bleiben unbeachtet. Die App bleibt, wie sie ist.
+DRACHE_ANHALTEN = r"""
+    const deckkraft = (l, fr) => {
+      const o = l && l.ks && l.ks.o;
+      if(!o) return 100;
+      if(!o.a) return +o.k || 0;
+      let v = 0;
+      for(const k of o.k){ if(k.t <= fr){ if(k.s !== undefined) v = Array.isArray(k.s) ? k.s[0] : k.s; } else break; }
+      return +v || 0;
+    };
+    const augenOffen = a => {
+      const ls = (a.animationData && a.animationData.layers) || [];
+      const offen = ls.find(l => l.nm === 'bild_kopf_neutral'), zu = ls.find(l => l.nm === 'bild_kopf_blinzeln');
+      if(!offen) return true;
+      const fr = (a.firstFrame || 0) + (a.currentFrame || 0);
+      return deckkraft(offen, fr) > 0 && !(zu && deckkraft(zu, fr) > 0);
+    };
+    const animationen = () => (window.lottie && lottie.getRegisteredAnimations ? lottie.getRegisteredAnimations() : [])
+      .filter(a => a.isLoaded && a.wrapper && a.wrapper.isConnected);
+    const sichtbar = a => a.wrapper.getClientRects().length > 0;
+    window.__drachePausieren = async () => {
+      const t0 = Date.now();
+      while(Date.now() - t0 < 8000){
+        const alle = animationen();
+        if(alle.filter(sichtbar).every(augenOffen)){
+          window.__angehalten = alle.filter(a => !a.isPaused);
+          window.__angehalten.forEach(a => a.pause());
+          return alle.filter(sichtbar).length;
+        }
+        await new Promise(r => setTimeout(r, 15));
+      }
+      throw new Error('Drache: nach 8 s noch keine offenen Augen');
+    };
+    window.__dracheNoch = () => animationen().filter(sichtbar)
+      .filter(a => !augenOffen(a) || (!a.isPaused && (window.__angehalten || []).includes(a))).length
+      ? 'Drache hat sich bewegt' : '';
+    window.__dracheWeiter = () => {
+      (window.__angehalten || []).forEach(a => { try{ a.play(); }catch(e){} });
+      window.__angehalten = [];
     };
     return 1"""
 
@@ -122,6 +338,7 @@ SCHRITTE = [
         const q = questsHeute(), t = today(); tagwerk[t] = {};
         q.forEach((x,i) => { tagwerk[t][x.id] = i === 0 ? x.ziel : Math.floor(x.ziel * 0.6); });
         window.__tagwerk01 = JSON.stringify(tagwerk[t]);   // fuer Bild 8, siehe dort
+        window.__muenzen01 = [muenzenGes, muenzenAus];     // KM wie hier auf allen Bildern (__standZurueck)
         [...known].slice(40, 47).forEach((id, i) => { topf['w:' + id] = {typ: i % 2 ? 'mcrev' : 'mc', n: 0, z: Date.now() - i * 60000}; });
         homeMode = 'words'; showHome(); scrollTo(0,0);
         await new Promise(r=>setTimeout(r,2500)); return 'start'"""),
@@ -179,17 +396,22 @@ SCHRITTE = [
         // sehen). Reicht auch 0 nicht (10 Zoll tr, nl, nb), kommt die Leiste
         // Lernpfad/Geschichten/Wiederholen mit ins Bild, ganz und oben
         // (wieder 10 bis 0 Punkte). Hilft auch das nicht, bleibt es wie
-        // vorher, und die Ausgabe meldet die Zeile ("unten angeschnitten") -
-        // abbrechen hiesse, die ganze Sprache faellt aus.
+        // vorher, und das Skript bricht vor dem Bild ab (seit dem
+        // Feinschliff 16.11.2026, mit der strengeren Messung und in halben
+        // Punkten; vorher stand dann nur ein Hinweis in der Ausgabe). Ganz
+        // oben am Rand wirkte die Reiterleiste gedraengt (fr Handy); darum
+        // unter 4 Punkten erst die Leiste Lernpfad/Geschichten/Wiederholen
+        // darueber, dann erst die Reiterleiste naeher an den Rand.
         const modus = (document.getElementById('modeWords') || {}).parentElement;
         const wege = [];
-        for(let a = 10; a >= 0; a--) wege.push([oben, a]);
-        if(oben === leiste && modus) for(let a = 10; a >= 0; a--) wege.push([modus, a]);
+        for(let a = 10; a >= 4; a -= 0.5) wege.push([oben, a]);
+        if(oben === leiste && modus) for(let a = 10; a >= 0; a -= 0.5) wege.push([modus, a]);
+        for(let a = 3.5; a >= 0; a -= 0.5) wege.push([oben, a]);
         let weg = null;
         for(const [el, a] of wege){
           scrollBy(0, (el.getBoundingClientRect().top - a) * rectFaktor());
-          await new Promise(r=>setTimeout(r,150));
-          if(!window.__untenAngeschnitten().length){ weg = [el, a]; break; }
+          await new Promise(r=>setTimeout(r,40));
+          if(!window.__randSchnitte().length){ weg = [el, a]; break; }
         }
         if(!weg){
           weg = [oben, 10];
@@ -213,22 +435,32 @@ SCHRITTE = [
     # App). Jetzt der Satzbau aus Kacheln (seit v104, bisher auf keinem Bild):
     # eine Kachelaufgabe mit mindestens vier Woertern, zwei Kacheln schon
     # gelegt. Dafuer die Lektion aus 03 bis zu 40 Mal neu mischen.
+    # 16.11.2026 (Feinschliff): Am Handy stand je nach Satz "Ueberspringen"
+    # ohne Unterlaengen am unteren Rand (de, en, da) oder der Knopf
+    # "Lektion abbrechen" halb im Bild (nl, nb, fr). Die Seite rueckt darum
+    # bis zu ihrem oberen Rand hinauf (__randFrei); reicht das nicht, kommt
+    # ein anderer Satz (bis zu 12 Mal neu gemischt) - das Motiv bleibt.
     ("04-kacheln", """
         const passt = q => q.typ === 'kacheln' && q.s.bs.trim().split(/\\s+/).length >= 4;
-        let ziel = Lx.queue.findIndex((q, i) => i >= Lx.i && passt(q));
-        for(let n = 0; ziel < 0 && n < 40; n++){ startLesson(); await new Promise(r=>setTimeout(r,600)); ziel = Lx.queue.findIndex(passt); }
-        if(ziel < 0) throw new Error('keine Kachelaufgabe mit vier Woertern in Level 13');
-        while(Lx.i < ziel){ await window.__antworte(true, 'lBody', ()=>Lx); }
-        await new Promise(r=>setTimeout(r,800));
-        const q = Lx.queue[Lx.i];
         const rand = /^[.,!?¿¡:;"„“”«»…()]+|[.,!?¿¡:;"„“”«»…()]+$/g;
-        const teile = q.s.bs.split(/\\s+/).map(x => x.replace(rand, '').toLowerCase()).filter(Boolean);
-        for(const soll of teile.slice(0, 2)){
-          const b = [...document.querySelectorAll('#lBody #xBank .kachel:not(.platz)')].find(o => o.textContent.toLowerCase() === soll);
-          if(b) b.click(); await new Promise(r=>setTimeout(r,450));
+        let q = null, frei = '';
+        for(let versuch = 0; versuch < 12 && !frei; versuch++){
+          if(versuch){ startLesson(); await new Promise(r=>setTimeout(r,600)); }
+          let ziel = Lx.queue.findIndex((q, i) => i >= Lx.i && passt(q));
+          for(let n = 0; ziel < 0 && n < 40; n++){ startLesson(); await new Promise(r=>setTimeout(r,600)); ziel = Lx.queue.findIndex(passt); }
+          if(ziel < 0) throw new Error('keine Kachelaufgabe mit vier Woertern in Level 13');
+          while(Lx.i < ziel){ await window.__antworte(true, 'lBody', ()=>Lx); }
+          await new Promise(r=>setTimeout(r,800));
+          q = Lx.queue[Lx.i];
+          const teile = q.s.bs.split(/\\s+/).map(x => x.replace(rand, '').toLowerCase()).filter(Boolean);
+          for(const soll of teile.slice(0, 2)){
+            const b = [...document.querySelectorAll('#lBody #xBank .kachel:not(.platz)')].find(o => o.textContent.toLowerCase() === soll);
+            if(b) b.click(); await new Promise(r=>setTimeout(r,450));
+          }
+          scrollTo(0,0); await new Promise(r=>setTimeout(r,500));
+          frei = await window.__randFrei();
         }
-        scrollTo(0,0); await new Promise(r=>setTimeout(r,500));
-        return q.s.bs"""),
+        return q.s.bs + ' | ' + (frei || 'angeschnitten')"""),
     # Bis 11.10.2026 stand hier "05-richtig": dieselbe Aufgabe wie 04, nur
     # beantwortet. Jetzt eine Grammatikaufgabe - die zeigte bisher kein Bild.
     ("05-grammatik", """
@@ -252,18 +484,26 @@ SCHRITTE = [
     # nicht schon in der Frage aus 05 steht, und ein ganzer Satz (Satzzeichen
     # am Ende, mindestens vier Wörter) - "Sedam, osam, ___" passt nicht zu
     # "Ganze Sätze selbst schreiben". Dafür bis zu 40 Mal neu mischen.
+    # 16.11.2026 (Feinschliff): wie 04 - erst hinaufruecken, sonst ein
+    # anderer Satz.
     ("06-luecke", """
         const wb = document.querySelector('#lBody .weiterbox .btn');
         if(wb){ wb.click(); await new Promise(r=>setTimeout(r,500)); }
         const passt = q => q.typ === 'gap' && !(window.__f5 || '').includes(q.s.text)
           && /[.?!]\\s*$/.test(q.s.text) && q.s.text.trim().split(/\\s+/).length >= 4;
-        let ziel = Lx.queue.findIndex((q, i) => i >= Lx.i && passt(q));
-        for(let n = 0; ziel < 0 && n < 40; n++){ startLesson(); await new Promise(r=>setTimeout(r,600)); ziel = Lx.queue.findIndex(passt); }
-        while(Lx.i < ziel){ await window.__antworte(true, 'lBody', ()=>Lx); }
-        await new Promise(r=>setTimeout(r,800));
-        const q = Lx.queue[Lx.i]; const inp = document.getElementById('xIn');
-        inp.value = q.s.answer.split(' / ')[0]; inp.dispatchEvent(new Event('input', {bubbles:true})); inp.blur();
-        scrollTo(0,0); await new Promise(r=>setTimeout(r,300)); return q.s.text"""),
+        let q = null, frei = '';
+        for(let versuch = 0; versuch < 12 && !frei; versuch++){
+          if(versuch){ startLesson(); await new Promise(r=>setTimeout(r,600)); }
+          let ziel = Lx.queue.findIndex((q, i) => i >= Lx.i && passt(q));
+          for(let n = 0; ziel < 0 && n < 40; n++){ startLesson(); await new Promise(r=>setTimeout(r,600)); ziel = Lx.queue.findIndex(passt); }
+          while(Lx.i < ziel){ await window.__antworte(true, 'lBody', ()=>Lx); }
+          await new Promise(r=>setTimeout(r,800));
+          q = Lx.queue[Lx.i]; const inp = document.getElementById('xIn');
+          inp.value = q.s.answer.split(' / ')[0]; inp.dispatchEvent(new Event('input', {bubbles:true})); inp.blur();
+          scrollTo(0,0); await new Promise(r=>setTimeout(r,300));
+          frei = await window.__randFrei();
+        }
+        return q.s.text + ' | ' + (frei || 'angeschnitten')"""),
     ("07-geschichte", """
         Lx = null; openStory(3); await new Promise(r=>setTimeout(r,600));
         const w = [...document.querySelectorAll('#rBody .w')].find(x => x.textContent === 'povrća');
@@ -283,37 +523,80 @@ SCHRITTE = [
     # drei: "3/3", darunter die gruene Zeile "Alle tre klaret!", alles darunter
     # rutschte tiefer, und der untere Rand schnitt die Beschreibung von
     # "Dagens gentagelse" durch. Darum stehen die Tagesaufgaben vor Bild 8
-    # wieder wie auf Bild 1 (eine erfuellt, zwei zu 60 %). Die KM bleiben,
-    # wie sie sind - sie stehen auch auf Bild 7. Auf Tablets bricht das
-    # Skript ab, wenn trotzdem eine Schriftzeile am unteren Rand haengt; am
-    # Handy ist die angeschnittene Karte "Markiert" eine offene Frage an
-    # Ajdin (Offen-Liste), dort nur der Hinweis in der Ausgabe.
+    # wieder wie auf Bild 1 (eine erfuellt, zwei zu 60 %).
+    # Feinschliff 16.11.2026: Seitdem stehen vor jedem Bild auch die KM wie
+    # auf Bild 1 (__standZurueck). Am Handy schnitt der untere Rand eine
+    # Zeile der Karte "Markiert" durch (de, sv, nl, da). Mit "Weitermachen"
+    # oben gab es oft keine Lage ohne: weiter hinauf stiess der Knopf oben
+    # an, weiter hinunter stand ueber ihm allein "9 dage tilbage" oder der
+    # Drache halb im Bild. Darum probiert das Handy drei Ausschnitte, bis
+    # einer aufgeht: oben die Karte "Heute" ("Weitermachen" ganz aus dem
+    # Bild), oben "Weitermachen" wie bisher, oben die Leiste Lernpfad/
+    # Geschichten/Wiederholen. In jedem sucht __randFrei den Rand zwischen
+    # zwei Zeilen. Tablets bleiben ganz oben, wie bisher. Die Karte
+    # "Markiert" bleibt unten angeschnitten oder steht ganz im Bild.
     ("08-wiederholen", """
         if(window.__tagwerk01) tagwerk[today()] = JSON.parse(window.__tagwerk01);
         homeMode = 'topf'; showHome(); await new Promise(r=>setTimeout(r,600));
         scrollTo(0,0); await new Promise(r=>setTimeout(r,200));
-        const text = t('btn.weitermachen');
+        const text = t('btn.weitermachen'), f = rectFaktor();
         const w = [...document.querySelectorAll('button')].find(b => b.offsetParent && b.textContent.includes(text));
-        if(w && !document.documentElement.classList.contains('gross')){
-          scrollBy(0, w.getBoundingClientRect().top - 16);
-          await new Promise(r=>setTimeout(r,200));
-          let unten = 0; const rg = document.createRange();
-          const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-          while(tw.nextNode()){
-            const n = tw.currentNode;
-            if(!n.textContent.trim() || !n.parentElement || !n.parentElement.offsetParent) continue;
-            rg.selectNodeContents(n);
-            for(const r of rg.getClientRects()) if(r.top < 0 && r.bottom > 0) unten = Math.max(unten, r.bottom);
+        const warte = ms => new Promise(r=>setTimeout(r,ms));
+        let frei = '', wie = 'ganz oben';
+        if(document.documentElement.classList.contains('gross')) frei = await window.__randFrei();
+        else if(w){
+          // 1. Der Knopf ganz hinaus, mit seinem Schatten (box-shadow, reicht
+          // ein paar Punkte unter den Kasten); __randFrei rollt dann hinauf,
+          // bis die Karte darunter oben anstoesst
+          wie = 'Heute oben';
+          const schatten = (getComputedStyle(w).boxShadow.match(/-?[\\d.]+px/g) || []).map(parseFloat);
+          const tiefe = schatten.length >= 2 ? Math.max(0, schatten[1] + (schatten[2] || 0) + (schatten[3] || 0)) : 0;
+          scrollBy(0, Math.ceil((w.getBoundingClientRect().bottom + tiefe) * f) + 1);
+          await warte(300);
+          frei = await window.__randFrei();
+          if(!frei){
+            // 2. "Weitermachen" 16 Punkte unter dem Rand (bis 16.11.2026 der
+            // einzige Ausschnitt); haengt darueber Schrift halb im Bild,
+            // weiter, hoechstens bis der Knopf oben anstoesst
+            wie = 'Weitermachen oben';
+            scrollTo(0,0);
+            scrollBy(0, (w.getBoundingClientRect().top - 16) * f);
+            await warte(200);
+            let unten = 0; const rg = document.createRange();
+            const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+            while(tw.nextNode()){
+              const n = tw.currentNode;
+              if(!n.textContent.trim() || !n.parentElement || !n.parentElement.offsetParent) continue;
+              rg.selectNodeContents(n);
+              for(const r of rg.getClientRects()) if(r.top < 0 && r.bottom > 0) unten = Math.max(unten, r.bottom);
+            }
+            if(unten > 0) scrollBy(0, Math.min(unten + 2, w.getBoundingClientRect().top) * f);
+            await warte(300);
+            frei = await window.__randFrei();
           }
-          if(unten > 0) scrollBy(0, Math.min(unten + 2, w.getBoundingClientRect().top));
+          const leiste = (document.getElementById('modeWords') || {}).parentElement;
+          if(!frei && leiste){
+            // 3. Die Leiste Lernpfad/Geschichten/Wiederholen 10 Punkte unter
+            // dem Rand, die Karte "Heute" darueber ganz hinaus
+            wie = 'Leiste oben';
+            scrollBy(0, (leiste.getBoundingClientRect().top - 10) * f);
+            await warte(300);
+            frei = await window.__randFrei();
+          }
         }
-        await new Promise(r=>setTimeout(r,400));
-        if(document.documentElement.classList.contains('gross')){
-          const rest = window.__untenAngeschnitten();
-          if(rest.length) throw new Error('Bild 8 unten angeschnitten: ' + rest.join(' | '));
-        }
-        return scrollY"""),
+        return scrollY + ' | ' + wie + ' | ' + (frei || 'angeschnitten')"""),
 ]
+
+# Wie weit __randFrei die Seite vor dem Bild verschieben darf (Punkte, siehe
+# dort). Ohne Eintrag: hinauf, bis oben etwas anstoesst, oder tiefer mit
+# mehr Rand oben. Bild 2, 4, 6 und 8 suchen ihre Lage selbst; hier wird nur
+# noch nachgeprueft.
+SPIELRAUM = {
+    "02-amt": {"nurPruefen": True},
+    "04-kacheln": {"nurPruefen": True},
+    "06-luecke": {"nurPruefen": True},
+    "08-wiederholen": {"nurPruefen": True},
+}
 
 
 def lernstand():
@@ -381,57 +664,103 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
         if anzahl != 1:
             raise SystemExit("\"const APP_VERSION = '...';\" steht %d-mal in web/index.html statt einmal" % anzahl)
     os.makedirs(ziel, exist_ok=True)
-    antworte = open(os.path.join(HIER, "antworte.js"), encoding="utf-8").read()
     srv, basis = server_starten()
     pfade = []
     try:
         with sync_playwright() as pw:
             browser = pw.chromium.launch(executable_path=chrome) if chrome else pw.chromium.launch()
-            seite = browser.new_context(viewport={"width": g["breite"], "height": g["hoehe"]},
-                                        device_scale_factor=g["dsf"], locale=sprache, **farbe).new_page()
-            js = lambda code: seite.evaluate("async () => {" + code + "}")  # noqa: E731
-            if version is not None:
-                def mit_version(route):
-                    antwort = route.fetch()
-                    text = APP_VERSION_ZEILE.sub(lambda _: "const APP_VERSION = '%s';" % version,
-                                                 antwort.text(), count=1)
-                    route.fulfill(response=antwort, body=text)
-                seite.route(re.compile(r"/index\.html(\?|$)"), mit_version)
-            # Den Stand auf einer leeren Seite desselben Ursprungs setzen, nicht in
-            # der laufenden App: deren visibilitychange speichert beim Wegnavigieren
-            # sonst den eigenen, leeren Stand darueber (wie tests_e2e/conftest.py).
-            seite.goto(basis + "/leer")
-            js("localStorage.clear(); localStorage.setItem('zmaj_stand', %s); "
-               "localStorage.setItem('zmaj_einwilligung', JSON.stringify({wahl:'nein',stand:1,zeit:new Date().toISOString()})); "
-               "localStorage.setItem('zmaj_sprache', %s); "
-               "localStorage.setItem(%s, %s); return 1"
-               % (json.dumps(lernstand()), json.dumps(sprache),
-                  json.dumps(ERFOLG_GESEHEN), json.dumps(json.dumps(erfolge_ids()))))
-            seite.goto(basis + "/index.html?neu=%d" % time.time())
-            seite.wait_for_function("typeof openLevel === 'function' && typeof Lx !== 'undefined'", timeout=30000)
-            seite.wait_for_timeout(6000)   # Vorspann und Drache
-            js(antworte)
-            js(UNTEN_ANGESCHNITTEN)
-            js("const st = document.createElement('style'); st.textContent = '#btnBack{display:none!important}'; "
-               "document.head.append(st); return 1")
-            for name, code in SCHRITTE:
-                ergebnis = js(code)
-                stoert = js(NICHTS_IM_BILD)
-                if stoert:
-                    raise SystemExit("%s %s: %s" % (sprache, name, stoert))
-                pfad = os.path.join(ziel, name + ".png")
-                seite.screenshot(path=pfad)
-                pfade.append(pfad)
-                print("  %-16s %s" % (name, str(ergebnis)[:60].replace("\n", " ")))
-                # Nur ein Hinweis zum Nachsehen (siehe LIESMICH.txt). Bild 2
-                # hat vorher selbst nach einem Abstand ohne halbe Zeile
-                # gesucht, Bild 8 bricht auf Tablets oben schon ab.
-                unten = js("return window.__untenAngeschnitten().join(' | ')")
-                if unten:
-                    print("  %-16s unten angeschnitten: %s" % ("", unten[:90]))
+            # Feinschliff 16.11.2026: Haengt am Rand eine halbe Zeile, und es
+            # gibt keine Lage ohne (Tablets haben wenig Spielraum: die Seite
+            # darf nur bis zur Kopfleiste hinauf), kommt der ganze Lauf noch
+            # einmal mit der naechsten Geraete-Kennung - andere
+            # Tagesaufgaben, deren Text anders umbricht, und alles darunter
+            # steht eine Zeile hoeher oder tiefer. Auf allen Bildern eines
+            # Laufs bleiben es dieselben.
+            for kennung in GERAETE_IDS:
+                try:
+                    pfade = ein_lauf(browser, basis, sprache, ziel, g, geraet, farbe, version, kennung)
+                    break
+                except Angeschnitten as e:
+                    fehler = str(e)
+                    print("  %-16s %s - noch einmal mit anderen Tagesaufgaben" % ("(" + kennung + ")", fehler))
+            else:
+                raise SystemExit(fehler)
             browser.close()
     finally:
         srv.shutdown()
+    return pfade
+
+
+class Angeschnitten(Exception):
+    """Am Bildrand haengt eine halbe Zeile oder ein halber Knopf."""
+
+
+def ein_lauf(browser, basis, sprache, ziel, g, geraet, farbe, version, kennung):
+    """Ein Durchgang durch alle Schritte mit einer Geraete-Kennung; gibt die
+    Pfade der Bilder zurueck."""
+    kontext = browser.new_context(viewport={"width": g["breite"], "height": g["hoehe"]},
+                                  device_scale_factor=g["dsf"], locale=sprache, **farbe)
+    seite = kontext.new_page()
+    js = lambda code: seite.evaluate("async () => {" + code + "}")  # noqa: E731
+    if version is not None:
+        def mit_version(route):
+            antwort = route.fetch()
+            text = APP_VERSION_ZEILE.sub(lambda _: "const APP_VERSION = '%s';" % version,
+                                         antwort.text(), count=1)
+            route.fulfill(response=antwort, body=text)
+        seite.route(re.compile(r"/index\.html(\?|$)"), mit_version)
+    # Den Stand auf einer leeren Seite desselben Ursprungs setzen, nicht in
+    # der laufenden App: deren visibilitychange speichert beim Wegnavigieren
+    # sonst den eigenen, leeren Stand darueber (wie tests_e2e/conftest.py).
+    seite.goto(basis + "/leer")
+    js("localStorage.clear(); localStorage.setItem('zmaj_stand', %s); "
+       "localStorage.setItem('zmaj_einwilligung', JSON.stringify({wahl:'nein',stand:1,zeit:new Date().toISOString()})); "
+       "localStorage.setItem('zmaj_sprache', %s); "
+       "localStorage.setItem(%s, %s); localStorage.setItem(%s, %s); return 1"
+       % (json.dumps(lernstand()), json.dumps(sprache),
+          json.dumps(ERFOLG_GESEHEN), json.dumps(json.dumps(erfolge_ids())),
+          json.dumps(GERAETE_ID_SCHLUESSEL), json.dumps(kennung)))
+    seite.goto(basis + "/index.html?neu=%d" % time.time())
+    seite.wait_for_function("typeof openLevel === 'function' && typeof Lx !== 'undefined'", timeout=30000)
+    seite.wait_for_timeout(6000)   # Vorspann und Drache
+    js(open(os.path.join(HIER, "antworte.js"), encoding="utf-8").read())
+    js(RAND_PRUEFUNG)
+    js(DRACHE_ANHALTEN)
+    js("const st = document.createElement('style'); st.textContent = '#btnBack{display:none!important}'; "
+       "document.head.append(st); return 1")
+    pfade, stand1 = [], None
+    for name, code in SCHRITTE:
+        js("window.__polsterZurueck(); return 1")   # Rand oben wieder wie in der App
+        ergebnis = js(code)
+        lage = js("return await window.__randFrei(%s)" % json.dumps(SPIELRAUM.get(name, {})))
+        stoert = js(NICHTS_IM_BILD)
+        if stoert:
+            raise SystemExit("%s %s: %s" % (sprache, name, stoert))
+        stand = js(STAND_IM_BILD)
+        stand1 = stand1 or stand
+        for was, jetzt, vorher in zip(("KM", "Tagesaufgaben"), stand, stand1):
+            if jetzt and jetzt != vorher:
+                raise SystemExit("%s %s %s: %s %r statt %r wie auf Bild 1"
+                                 % (sprache, geraet, name, was, jetzt, vorher))
+        # Abbruch statt Hinweis (Feinschliff 16.11.2026), siehe RAND_PRUEFUNG
+        schnitte = js("return window.__randSchnitte()")
+        if schnitte:
+            raise Angeschnitten("%s %s %s: am Rand angeschnitten: %s"
+                                % (sprache, geraet, name, " | ".join(schnitte)))
+        pfad = os.path.join(ziel, name + ".png")
+        for _ in range(4):
+            js("return await window.__drachePausieren()")
+            seite.screenshot(path=pfad)
+            bewegt = js("return window.__dracheNoch()")
+            js("window.__dracheWeiter(); return 1")
+            if not bewegt:
+                break
+        else:
+            raise SystemExit("%s %s %s: %s" % (sprache, geraet, name, bewegt))
+        pfade.append(pfad)
+        print("  %-16s %s | %s" % (name, str(ergebnis)[:60].replace("\n", " "), lage))
+    print("  %-16s Tagesaufgaben: %s" % ("(" + kennung + ")", stand1[1][:70]))
+    kontext.close()
     return pfade
 
 
