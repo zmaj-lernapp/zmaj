@@ -2,13 +2,15 @@ STORE-BILDER NEU MACHEN
 =======================
 
 Erzeugt die acht Bilder in store/screenshots, je 1080 x 1920, PNG ohne
-Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 13.11.2026
-(alle Sprachen und Geraete aus dem Stand 1.3, --version 1.3).
+Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 16.11.2026
+(alle Sprachen und Geraete aus dem Stand 1.4, --version 1.4; davor am
+13.11.2026 aus 1.3 - die wurden nie hochgeladen).
 
 store/screenshots haelt die deutschen Rohbilder ohne Ueberschrift aus
-diesem Lauf (--aussehen dunkel --version 1.3), seit 13.11.2026 in der neuen
-Folge 01-start bis 08-wiederholen. store/feature-1024x500.png ist am selben
-Tag aus web/_feature.html neu entstanden (grafiken_bauen.py, Schritt 4).
+diesem Lauf (--aussehen dunkel --version 1.4), in der Folge 01-start bis
+08-wiederholen. store/feature-1024x500.png ist am 13.11.2026 aus
+web/_feature.html entstanden (grafiken_bauen.py, Schritt 4); am 16.11.2026
+neu gerechnet war sie Byte fuer Byte gleich und blieb darum, wie sie ist.
 
 Die Bilder entstehen in einem unsichtbaren Chrome am PC, nicht auf dem
 Handy. Das hat drei Gruende:
@@ -81,7 +83,7 @@ einem schlichten Tablet-Rahmen. Rohbilder je Sprache:
   tablet7   Bildschirm 600 x 960 Punkte (wie ein Nexus 7), mal 2
   tablet10  Bildschirm 800 x 1280 Punkte (uebliches 10-Zoll-Tablet), mal 2
 
---version 1.2 schreibt in die Fusszeile dieselbe Nummer wie die gebaute App
+--version 1.4 schreibt in die Fusszeile dieselbe Nummer wie die gebaute App
 (versionName der Huelle). Ohne steht dort der Rueckfallwert aus
 web/index.html, und der hinkt vor einem Release eine Nummer hinterher.
 Gilt fuer Handy und Tablet gleich.
@@ -103,9 +105,11 @@ Store-Eintrag, Grafiken, "Screenshots fuer 7-Zoll-Tablets" bzw.
 
 WAS AUF DEN BILDERN IST
 -----------------------
-  01-start        Startseite: Lernserie, Weitermachen, Tagesaufgaben
-  02-amt          Sektion 9 "Amt & Vertraege" aufgeklappt (bis 13.11.2026:
-                  02-lernpfad, Sektion 1 unter "65 Levels")
+  01-start        Startseite: Lernserie, Weitermachen, Tagesaufgaben, darunter
+                  die Stufen-Reiter A1 bis C1 (seit 1.4)
+  02-amt          oben die Reiterleiste mit B1, darunter "Amt & Vertraege"
+                  aufgeklappt (seit 16.11.2026; 13.11.: als Sektion 9 ohne
+                  Reiter, davor 02-lernpfad, Sektion 1 unter "65 Levels")
   03-neues-wort   erste Karte einer Lektion
   04-kacheln      Satz aus Kacheln legen, zwei Kacheln schon gelegt
                   (bis 13.11.2026: 04-auswahl, eine Auswahlaufgabe)
@@ -117,3 +121,21 @@ WAS AUF DEN BILDERN IST
 Die Lektion wird zufaellig zusammengestellt. Das Skript sucht sich die
 Aufgaben darin selbst; Wort und Satz koennen also beim naechsten Lauf
 andere sein.
+
+
+SEIT 1.4 (16.11.2026)
+---------------------
+  - Abzeichen: Ohne Merker meldet die App beim ersten Start "Du hast schon
+    5 Abzeichen", und ein neues Abzeichen traegt den roten Punkt am
+    Profilknopf. bilder_playwright.py markiert darum im Vorfuehrstand alle
+    Abzeichen als gesehen (zmaj_erfolge_gesehen, die Kennungen aus ERFOLGE
+    in web/index.html) und bricht ab, wenn trotzdem ein roter Punkt oder
+    eine Meldung im Bild stuende. Die App bleibt, wie sie ist.
+  - Bild 2: Im Vorfuehrstand ist B1 zu, und ueber dem Amt stand die grosse
+    Karte "B1 ist noch zu". Fuer dieses Bild gelten A1 und A2 darum als
+    geschafft (nur im Speicher der Seite); Bild 3 stellt den Stand wieder
+    her. So sieht es fuer jemanden aus, der bis B1 gekommen ist.
+  - Alle Sprachen und Geraete wie am 13.11. (Python aus werkzeuge\e2e-venv
+    mit Playwright, --chrome mit dem installierten Chrome; beschriften.py
+    mit dem Python von Thonny, das websockets hat), Ablage in
+    Release\Store_Bilder_1.4 mit LIESMICH.md.
