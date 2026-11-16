@@ -41,7 +41,7 @@ UIKit beim Antippen eines Felds kann Playwright nicht ausloesen; geprueft
 wird seine Ursache, die Schrift unter 16 px.
 """
 import pytest
-from conftest import Seite
+from conftest import MitSchemaSperre, Seite
 from test_ios import HUELLE
 
 # Was WKWebView meldet: iOS 26 friert die Fassung im UA auf 18_6 ein.
@@ -155,7 +155,8 @@ def webkit(pw):
         b = pw.webkit.launch()
     except Exception as e:                       # pragma: no cover - nur ohne WebKit
         pytest.skip("WebKit von Playwright fehlt: %s" % e)
-    yield b
+    # Mit der SCHEMA_SPERRE wie jeder Kontext der Suite (conftest.py, 16.11.2026)
+    yield MitSchemaSperre(b)
     b.close()
 
 
