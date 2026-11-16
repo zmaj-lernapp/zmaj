@@ -42,6 +42,19 @@ WEB = os.path.join(WURZEL, "web")
 # Wie in app_bauen.py (version_einsetzen), siehe --version
 VERSIONSNAME_FORM = re.compile(r"([1-9][0-9]*)\.(0|[1-9][0-9]*)")
 APP_VERSION_ZEILE = re.compile(r"^const APP_VERSION = '[^'\r\n]*';", re.M)
+# Die Abzeichen der App (seit 1.4) und wo sie sich merkt, was schon angesehen
+# wurde (ERFOLG_GESEHEN in web/index.html), siehe erfolge_ids()
+ERFOLGE_LISTE = re.compile(r"^const ERFOLGE = \[(.*?)^\];", re.M | re.S)
+ERFOLG_GESEHEN = "zmaj_erfolge_gesehen"
+
+# Nach jedem Schritt, vor dem Bild: nichts davon darf im Bild stehen.
+NICHTS_IM_BILD = """
+    const sichtbar = e => !!e && e.getClientRects().length > 0;
+    const p = document.getElementById('btnProfil');
+    if(sichtbar(p) && p.classList.contains('neu')) return 'roter Punkt am Profilknopf';
+    const k = document.querySelector('.kurznote');
+    if(sichtbar(k)) return 'Meldung im Bild: ' + k.textContent;
+    return ''"""
 
 # Bildschirm in CSS-Punkten und Pixeldichte. "handy" ist das Store-Format
 # selbst (so breit wie Ajdins S21). Die Tablets haben die üblichen Android-
@@ -69,6 +82,16 @@ SCHRITTE = [
     # Vorfuehrstand gesperrt - so sieht es in der App wirklich aus. Seit den
     # Stufen-Reitern (1.4) ist es Sektion 1 im Reiter B1; 03 geht darum zuerst
     # zurueck in den Reiter von Weitermachen und klappt dort Sektion 1 auf.
+    # 16.11.2026 (Store-Bilder 1.4): oben steht die Reiterleiste A1 bis C1 mit
+    # dem gewaehlten B1, direkt darunter die Sektion. Mit dem Kopf der Sektion
+    # ganz oben war die Leiste aus dem Bild gerutscht, und man sah nicht, in
+    # welcher Stufe das Amt liegt. Und: Im Vorfuehrstand ist B1 noch zu. Ueber
+    # den Sektionen stand dann gross die Karte "B1 ist noch zu - Schliess erst
+    # A2 ab" (reiterKarteZeichnen), das Amt rutschte halb aus dem Bild, und im
+    # Store las es sich wie eine Sperre. Fuer dieses Bild gelten A1 und A2
+    # darum als geschafft - so sieht es fuer jemanden aus, der bis B1 gekommen
+    # ist: A1 und A2 "fertig", B1 offen, das erste Level "Jetzt dran". Nur im
+    # Speicher der Seite; 03 stellt den Stand wieder her.
     ("02-amt", """
         // Seit den Stufen-Reitern (v14-reiter, 13.11.2026) steht Amt & Vertraege
         // als Sektion 1 im Reiter B1, nicht mehr an Stelle 9 der ganzen Liste:
@@ -76,14 +99,27 @@ SCHRITTE = [
         // ihre Kennung suchen und vorher ihren Reiter waehlen.
         const amt = 'amt';
         if(!SECTIONS.some(s => s.id === amt)) throw new Error('keine Sektion amt');
+        if(typeof reiterLevel === 'function'){
+          const st = stufeVon(CATEGORIES.findIndex(c => c.sektion === amt));
+          window.__bestandenVorher = new Set(passed);
+          STUFEN.slice(0, STUFEN.indexOf(st)).forEach(s => reiterLevel(s).forEach(i => passed.add(CATEGORIES[i].id)));
+        }
         if(typeof stufeWaehlen === 'function') stufeWaehlen(stufeVon(CATEGORIES.findIndex(c => c.sektion === amt)));
         await new Promise(r=>setTimeout(r,300));
         if(offeneSektion !== amt) sektionAufklappen(amt);
         await new Promise(r=>setTimeout(r,900));
         const k = [...document.getElementById('sections').children].find(e => e.dataset.sid === amt);
-        scrollBy(0, (k.getBoundingClientRect().top - 10) * rectFaktor());
-        await new Promise(r=>setTimeout(r,600)); return k.innerText.split('\\n')[0]"""),
+        const leiste = document.getElementById('reiterLeiste');
+        const oben = (leiste && leiste.getClientRects().length) ? leiste : k;
+        if(oben === leiste && k.getBoundingClientRect().top - leiste.getBoundingClientRect().bottom > 40)
+          throw new Error('Amt steht nicht direkt unter der Reiterleiste (Karte "noch zu"?)');
+        scrollBy(0, (oben.getBoundingClientRect().top - 10) * rectFaktor());
+        await new Promise(r=>setTimeout(r,600));
+        const reiter = leiste ? leiste.querySelector('[aria-selected="true"]') : null;
+        return (reiter ? reiter.dataset.stufe + ' | ' : '') + k.innerText.split('\\n')[0]"""),
     ("03-neues-wort", """
+        // Den Vorfuehrstand aus 02 zurueck (A1 und A2 wieder offen)
+        if(window.__bestandenVorher){ passed = window.__bestandenVorher; delete window.__bestandenVorher; }
         // Zurueck in den Reiter von Weitermachen (A1), dort Sektion 1 auf
         if(typeof stufeWaehlen === 'function') stufeWaehlen(stufeVon(firstOpen()));
         const eins = SECTIONS[0].id;
@@ -196,6 +232,22 @@ def lernstand():
     return json.dumps(s, ensure_ascii=False)
 
 
+def erfolge_ids():
+    """Die Kennungen aller Abzeichen aus web/index.html (ERFOLGE), [] ohne.
+
+    Seit 1.4 hat die App Abzeichen. Was auf dem Geraet schon angesehen
+    wurde, steht nicht im Lernstand, sondern unter ERFOLG_GESEHEN. Fehlt der
+    Eintrag, nimmt die App den ersten Start nach dem Update an und meldet
+    gut vier Sekunden nach dem Start "Du hast schon 5 Abzeichen" - die
+    Meldung stand je nach Rechner noch auf Bild 1 (Probe 16.11.2026). Ein
+    neues Abzeichen truege ausserdem den roten Punkt am Profilknopf. Darum
+    gelten fuer die Bilder alle Abzeichen als gesehen; die App bleibt, wie
+    sie ist."""
+    with open(os.path.join(WEB, "index.html"), encoding="utf-8") as f:
+        m = ERFOLGE_LISTE.search(f.read())
+    return re.findall(r"\{\s*id:\s*'([^']+)'", m.group(1)) if m else []
+
+
 def server_starten():
     """web/ auf einem freien Port, im Hintergrund, ohne Ausgabe."""
     class Leise(http.server.SimpleHTTPRequestHandler):
@@ -253,8 +305,10 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
             seite.goto(basis + "/leer")
             js("localStorage.clear(); localStorage.setItem('zmaj_stand', %s); "
                "localStorage.setItem('zmaj_einwilligung', JSON.stringify({wahl:'nein',stand:1,zeit:new Date().toISOString()})); "
-               "localStorage.setItem('zmaj_sprache', %s); return 1"
-               % (json.dumps(lernstand()), json.dumps(sprache)))
+               "localStorage.setItem('zmaj_sprache', %s); "
+               "localStorage.setItem(%s, %s); return 1"
+               % (json.dumps(lernstand()), json.dumps(sprache),
+                  json.dumps(ERFOLG_GESEHEN), json.dumps(json.dumps(erfolge_ids()))))
             seite.goto(basis + "/index.html?neu=%d" % time.time())
             seite.wait_for_function("typeof openLevel === 'function' && typeof Lx !== 'undefined'", timeout=30000)
             seite.wait_for_timeout(6000)   # Vorspann und Drache
@@ -263,6 +317,9 @@ def bilder_machen(sprache, ziel, chrome=None, geraet="handy", aussehen=None, ver
                "document.head.append(st); return 1")
             for name, code in SCHRITTE:
                 ergebnis = js(code)
+                stoert = js(NICHTS_IM_BILD)
+                if stoert:
+                    raise SystemExit("%s %s: %s" % (sprache, name, stoert))
                 pfad = os.path.join(ziel, name + ".png")
                 seite.screenshot(path=pfad)
                 pfade.append(pfad)

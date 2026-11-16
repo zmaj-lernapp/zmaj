@@ -8,14 +8,25 @@ Geprüft wird ohne Browser:
     (U+00A0) ist unsichtbar und geht beim Bearbeiten leicht verloren. Ohne
     brach Bild 4 auf Deutsch als „Sätze Wort für / Wort bauen“ um
     (Prüfung 13.11.2026), auf Türkisch „kelime / kelime“.
+  - Store-Bilder 1.4 (16.11.2026): bilder_playwright.py markiert alle
+    Abzeichen als gesehen (sonst „Du hast schon 5 Abzeichen“ auf Bild 1),
+    und Bild 2 öffnet B1 nur für sich - Bild 3 stellt den Stand wieder her.
 """
 import os
+import re
 import sys
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(WURZEL, "store", "bilder_machen"))
 
 import beschriften  # noqa: E402
+
+BP = beschriften.BP
+
+
+def _app():
+    with open(os.path.join(WURZEL, "web", "index.html"), encoding="utf-8") as f:
+        return f.read()
 
 NBSP = " "
 
@@ -32,3 +43,26 @@ def test_bild4_bleibt_zusammen():
     assert de == "Sätze " + NBSP.join(["Wort", "für", "Wort", "bauen"])
     assert de.replace(NBSP, " ") == "Sätze Wort für Wort bauen"   # Wortlaut unverändert
     assert "kelime" + NBSP + "kelime" in beschriften.UEBERSCHRIFTEN["tr"][3]
+
+
+def test_alle_abzeichen_gelten_als_gesehen():
+    """Jedes Abzeichen aus ERFOLGE, unter dem Schlüssel, den die App liest."""
+    app = _app()
+    ids = BP.erfolge_ids()
+    liste = app.split("const ERFOLGE = [", 1)[1].split("];", 1)[0]
+    assert ids and len(ids) == len(set(ids)) == liste.count("{id:")
+    assert "const ERFOLG_GESEHEN = '%s';" % BP.ERFOLG_GESEHEN in app
+
+
+def test_bild2_oeffnet_b1_nur_fuer_sich():
+    schritte = dict(BP.SCHRITTE)
+    assert "window.__bestandenVorher = new Set(passed)" in schritte["02-amt"]
+    assert "passed = window.__bestandenVorher" in schritte["03-neues-wort"]
+    # Was Bild 2 aus der App braucht, gibt es dort unter diesem Namen
+    app = _app()
+    for name in ("STUFEN", "reiterLevel", "stufeVon", "firstOpen"):
+        assert re.search(r"^const %s = " % name, app, re.M), name
+    for name in ("stufeWaehlen", "sektionAufklappen"):
+        assert re.search(r"^function %s\(" % name, app, re.M), name
+    assert re.search(r"^let [^\n]*\bpassed = new Set\(\)", app, re.M)
+    assert 'id="reiterLeiste"' in app and 'id="btnProfil"' in app
