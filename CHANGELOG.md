@@ -342,6 +342,15 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Browser tests no longer hand `mailto:` links to the operating system
+  (16.11.2026). With the installed Chrome on Windows every feedback,
+  withdrawal or recommend test opened a Windows "Choose an app" window,
+  32 of them after one run. `tests_e2e/conftest.py` now adds a small script to
+  every browser context that stops navigations to foreign schemes (`mailto:`,
+  `tel:`, `intent:` …) through the Navigation API before Chrome passes them on;
+  `page.route()` does not catch them. The address still reaches `Seite.fremd`,
+  where `test_feedback.py` and `test_widerruf.py` read it. The app itself is
+  unchanged. `tests_e2e/test_schema_sperre.py` (fails without the script).
 - Golden heart with the full version (14.11.2026, the maintainer's wish after the
   purchase test on the iPhone): wherever the heart stands with ∞ (header, the heart
   in lessons and tests, the statistics on the result screen) it is now golden

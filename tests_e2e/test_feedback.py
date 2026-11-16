@@ -51,7 +51,7 @@ def _senden(seite, text):
 
 
 def _mails(seite):
-    """Die mailto:-Aufrufe bisher - Chromium meldet sie als Anfrage."""
+    """Die mailto:-Aufrufe bisher - die SCHEMA_SPERRE (conftest.py) meldet sie in fremd."""
     return [u for u in seite.fremd if u.startswith("mailto:" + ZMAJ_MAIL + "?")]
 
 

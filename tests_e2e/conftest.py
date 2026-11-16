@@ -94,6 +94,52 @@ async ([feld, art]) => {
 }
 """
 
+# Fremde Schemata (mailto:, tel:, intent: ...) gibt das installierte Chrome
+# unter Windows an das System weiter. Ohne Mailprogramm oeffnet Windows dann
+# bei jedem Klick ein Fenster "App auswaehlen" (OpenWith.exe). Nach den Laeufen
+# vom 14./15.11.2026 standen 32 solche Fenster in Ajdins Taskleiste, ausgeloest
+# von Feedback, Widerruf und Empfehlen (index.html, location.href = 'mailto:').
+# Dieses Skript laeuft in jedem Dokument vor der App und haelt solche
+# Navigationen ueber die Navigation API an, bevor Chrome sie weitergibt. Die
+# Adresse steht danach in window.__zmajFremdeSchemata und, bei einer Seite()
+# (unten), in Seite.fremd - dort, wo Chromium sie vorher als Anfrage meldete.
+# Erprobt am 16.11.2026: page.route("mailto:*") haelt nichts an, das Fenster
+# kam trotzdem; mit diesem Skript kam keins (tests_e2e/test_schema_sperre.py).
+SCHEMA_SPERRE = r"""(() => {
+  const intern = /^(https?|about|blob|data|javascript|file):/i;
+  window.__zmajFremdeSchemata = [];
+  if (!window.navigation) return;
+  navigation.addEventListener('navigate', e => {
+    const url = e.destination && e.destination.url;
+    if (!url || intern.test(url)) return;
+    window.__zmajFremdeSchemata.push(url);
+    if (typeof window.__zmajSchemaMelden === 'function') window.__zmajSchemaMelden(url);
+    if (e.cancelable) e.preventDefault();
+  });
+})();"""
+
+
+class MitSchemaSperre:
+    """Ein Browser, dessen neue Kontexte die SCHEMA_SPERRE mitbringen, sonst
+    genau wie der Browser selbst (alles andere wird durchgereicht). So gilt die
+    Sperre auch fuer die rund 40 Tests, die ihren Kontext selbst anlegen."""
+
+    def __init__(self, browser):
+        self._browser = browser
+
+    def __getattr__(self, name):
+        return getattr(self._browser, name)
+
+    def new_context(self, *args, **kwargs):
+        ctx = self._browser.new_context(*args, **kwargs)
+        ctx.add_init_script(SCHEMA_SPERRE)
+        return ctx
+
+    def new_page(self, *args, **kwargs):
+        page = self._browser.new_page(*args, **kwargs)
+        page.context.add_init_script(SCHEMA_SPERRE)
+        return page
+
 
 @pytest.fixture(scope="session")
 def heute_stand():
@@ -172,7 +218,7 @@ def playwright_sitzung():
 def browser(playwright_sitzung):
     chromium = os.environ.get("ZMAJ_CHROMIUM") or None
     b = playwright_sitzung.chromium.launch(executable_path=chromium)
-    yield b
+    yield MitSchemaSperre(b)
     b.close()
 
 
@@ -186,7 +232,7 @@ def webkit(playwright_sitzung):
         b = playwright_sitzung.webkit.launch()
     except Exception as e:      # jeder Startfehler heisst hier: kein WebKit da
         pytest.skip("WebKit fehlt: %s" % str(e).strip().splitlines()[0])
-    yield b
+    yield MitSchemaSperre(b)
     b.close()
 
 
@@ -202,6 +248,9 @@ class Seite:
         page.on("pageerror", lambda e: self.fehler.append(str(e)))
         page.on("request", lambda r: None if r.url.startswith((basis, "data:", "blob:"))
                 else self.fremd.append(r.url))
+        # mailto: und andere fremde Schemata haelt die SCHEMA_SPERRE an; als
+        # Anfrage kommen sie dann nicht mehr an, deshalb meldet sie sie hier.
+        page.expose_binding("__zmajSchemaMelden", lambda quelle, url: self.fremd.append(url))
 
     def js(self, code, arg=None):
         return self.page.evaluate(code, arg)
