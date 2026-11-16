@@ -4,12 +4,13 @@ STORE-BILDER NEU MACHEN
 Erzeugt die acht Bilder in store/screenshots, je 1080 x 1920, PNG ohne
 Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 16.11.2026
 (alle Sprachen und Geraete aus dem Stand 1.4, --version 1.4, nach dem
-Feinschliff noch einmal alle; davor am 13.11.2026 aus 1.3 - die wurden nie
-hochgeladen).
+Feinschliff noch einmal alle, am Nachmittag Bild 1 und 4 am Handy und
+Bild 1 auf 7 Zoll mit mehr Luft ueber der Kopfleiste; davor am 13.11.2026
+aus 1.3 - die wurden nie hochgeladen).
 
 store/screenshots haelt die deutschen Rohbilder ohne Ueberschrift aus
 diesem Lauf (--aussehen dunkel --version 1.4), in der Folge 01-start bis
-08-wiederholen. store/feature-1024x500.png ist am 13.11.2026 aus
+08-wiederholen; 01 und 04 aus dem Lauf fuer die Kopfleiste. store/feature-1024x500.png ist am 13.11.2026 aus
 web/_feature.html entstanden (grafiken_bauen.py, Schritt 4); am 16.11.2026
 neu gerechnet war sie Byte fuer Byte gleich und blieb darum, wie sie ist.
 
@@ -173,13 +174,15 @@ SEIT 1.4 (16.11.2026)
     die Spitzen), eine Zeile im Bild haelt 4 Geraetepixel Abstand zum Rand,
     und eine Unterstreichung zaehlt mit. Oben darf auch kein halber Kasten
     stehen (Pillen der Kopfleiste, Drache, Flamme). Die Seite rueckt dafuer
-    Punkt fuer Punkt hinauf, hoechstens bis oben etwas anstoesst, oder -
-    wenn sie ganz oben steht und nicht weiter hinunter kann - tiefer: der
-    Rand ueber der Kopfleiste (padding-top von body, in der App 16 Punkte)
-    waechst fuer dieses eine Bild um bis zu 12 Punkte. Steht danach
-    trotzdem etwas am Rand, bricht das Skript ab - kein Hinweis mehr, den
-    man ueberlesen kann. Die Ausgabe nennt je Bild, was noetig war ("frei
-    +7" = 7 Punkte hinauf, "frei Rand oben +3" = 3 Punkte mehr Rand).
+    Punkt fuer Punkt hinauf, hoechstens bis oben etwas anstoesst (steht sie
+    ganz oben, seit der Pruefung danach nur bis __luftMin, siehe unten),
+    oder - wenn sie ganz oben steht und nicht weiter hinunter kann - tiefer:
+    der Rand ueber der Kopfleiste (padding-top von body, in der App 16
+    Punkte) waechst fuer dieses eine Bild um bis zu 24 Punkte (bis zur
+    Pruefung danach: 12). Steht danach trotzdem etwas am Rand, bricht das
+    Skript ab - kein Hinweis mehr, den man ueberlesen kann. Die Ausgabe
+    nennt je Bild, was noetig war ("frei +7" = 7 Punkte hinauf, "frei Rand
+    oben +3" = 3 Punkte mehr Rand).
   - Bild 2: Die Reiterleiste steht 10 bis 4 Punkte unter dem Rand; geht das
     nicht, steht die Leiste Lernpfad/Geschichten/Wiederholen darueber (so
     jetzt fr am Handy statt der Reiterleiste ganz oben am Rand).
@@ -201,3 +204,41 @@ SEIT 1.4 (16.11.2026)
   - Kein Tastaturfokus mehr (Bild 3 zeigte "Weiter" mit Fokusrahmen), und
     der Drache hat die Augen offen: das Skript wartet auf ein Bild der
     Animation ohne Blinzeln und haelt sie dort an, bis das Bild gemacht ist.
+
+  Pruefung nach dem Feinschliff (16.11.2026, Zweig bilder-kopfleiste):
+  - Kopfleiste nicht am Rand: Damit unten keine Zeile halb im Bild steht,
+    hatte __randFrei auch Seiten hinaufgerollt, die ganz oben stehen. Die
+    Kopfleiste stand dann zu knapp unter dem Rand: auf 7 Zoll Bild 1 (de,
+    en, tr, nl, da) 3 bis 4 Punkte, am Handy auf Bild 1 9 bis 10 (alle
+    ausser da), und die Karte der Lektion auf Bild 4 am Handy 9 bis 11. In
+    der App sind es 16 bis 17 (Karte einer Lektion 16, Kopfleiste 17; auf
+    10 Zoll 21 bis 22). Ajdin: "ja ist schon knapp".
+  - Steht die Seite ganz oben, bleibt ueber dem obersten Teil jetzt
+    mindestens __luftMin = 16 Punkte, der Rand oben der App (padding-top
+    von body). Hinauf rollt sie nur noch bis dahin (Handy und 7 Zoll damit
+    praktisch gar nicht), sonst rueckt sie tiefer: der Rand oben waechst um
+    bis zu 24 Punkte. Vor jedem Bild bricht das Skript ab, wenn es doch
+    weniger Luft ist, und die Ausgabe nennt sie ("Luft oben 26"). Seiten,
+    die selbst rollen (Bild 2, Bild 8 am Handy), zaehlen nicht: dort steht
+    oben eine Karte mitten aus der Liste. Ein erster Versuch mit 8 Punkten
+    war noch zu knapp.
+  - Was das kostet (Probe 16.11.2026, Lagen dazwischen schneiden alle eine
+    Zeile): Bild 1 am Handy 9 Punkte mehr Rand oben, Kopfleiste 26 Punkte
+    unter dem Rand (nl mit den anderen Tagesaufgaben 8, also 25; da wie
+    vorher 1, also 18). Bild 1 auf 7 Zoll 21 Punkte mehr (Kopfleiste 38
+    Punkte unter dem Rand); das Level "Essen & Trinken", das hinaufgerollt
+    ganz zu sehen war, liegt dann ganz unter dem Rand, unten steht nur der
+    Rand seines Kreises. Unten endet das Bild jeweils so viel frueher.
+  - Bild 4 und 6 (Lektion): Am Handy schnitt der Rand ohne Hinaufrollen je
+    nach Satz und Kacheln "Ueberspringen" oder "Lektion abbrechen". Mehr
+    Rand oben schiebt beides ganz hinaus, die Karte steht dann aber tiefer
+    als auf Bild 3 und 5. Darum nimmt das Skript (__satzFrei) zuerst einen
+    Satz, der mit hoechstens 4 Punkten mehr Rand aufgeht; erst ab dem 9.
+    Versuch den, der am wenigsten braucht, im letzten jeden. Am 16.11.
+    stand die Karte so bei de, tr, sv, nl, nb und fr 16 Punkte unter dem
+    Rand wie in der App (nl aus einem zweiten Lauf), bei en und da 27 (11
+    Punkte mehr Rand: "Ne znam gdje je ključ." mit acht Kacheln; "Gdje je
+    crvena torba?" haette 23 gebraucht; ohne mehr Rand ging es in Proben
+    mit je 30 Saetzen bei en nie, bei da zweimal; weitere Laeufe, en
+    einmal, da zweimal, brachten wieder 27). Welche Kacheln kommen, ist
+    Zufall der Lektion.

@@ -213,6 +213,18 @@ RAND_PRUEFUNG = r"""
       if(window.__tagwerk01) tagwerk[today()] = JSON.parse(window.__tagwerk01);
       if(typeof renderLives === 'function') renderLives();
     };
+    // Luft ueber dem obersten Teil (Kopfleiste), wenn die Seite ganz oben
+    // steht: mindestens __luftMin Punkte (Pruefung nach dem Feinschliff
+    // 16.11.2026: auf 7 Zoll Bild 1 stand die Kopfleiste bei de, en, tr, nl
+    // und da nur 3 bis 4 Punkte unter dem Rand, am Handy auf Bild 1 9 bis 10
+    // und auf Bild 4 9 bis 11, und wirkte gedraengt - wie vorher die
+    // Reiterleiste ganz oben auf fr Handy Bild 2). 16 ist der Rand oben der
+    // App (padding-top von body); dort steht die Kopfleiste 16 bis 17 Punkte
+    // unter dem Rand, die Karte einer Lektion 16, auf 10 Zoll 21 bis 22
+    // (Probe 16.11.2026). Erst stand hier 8 - das war noch gedraengt (Ajdin:
+    // "ja ist schon knapp"). __luftOben() misst sie in Punkten der Seite.
+    window.__luftMin = 16;
+    window.__luftOben = () => window.__kopfRaum() / faktor() + 0.5;
     // Den oberen Rand der Seite (padding-top von body, 16 Punkte) wie in
     // der App; __randFrei vergroessert ihn nur fuer das eine Bild.
     window.__polsterZurueck = () => {
@@ -223,14 +235,21 @@ RAND_PRUEFUNG = r"""
     // "Weiter" mit Tastaturfokus), dann die naechste Lage ohne Anschnitt,
     // Punkt fuer Punkt abwechselnd in beide Richtungen:
     //   - die Seite rollt hinauf, bis oben etwas anstoesst (opts.runter,
-    //     ohne: __kopfRaum, hoechstens 40 Punkte);
+    //     ohne: __kopfRaum, hoechstens 40 Punkte); steht sie ganz oben, nur
+    //     so weit, dass ueber der Kopfleiste __luftMin Punkte bleiben;
     //   - die Seite rollt hinunter, wenn sie nicht ganz oben steht (opts.hoch);
     //   - steht sie ganz oben, rueckt sie stattdessen tiefer: der Rand ueber
-    //     der Kopfleiste waechst um bis zu opts.polster Punkte (ohne: 12).
+    //     der Kopfleiste waechst um bis zu opts.polster Punkte (ohne: 24).
     //     Ohne das gab es auf 10 Zoll sv und nb Bild 1 keine Lage ohne halben
     //     Level-Titel ("Veckodagar"), und auf 7 Zoll de Bild 8 stand die
-    //     Kopfleiste sonst einen Punkt unter dem Rand. Ein paar Punkte mehr
-    //     Rand oben sieht niemand; die App selbst bleibt, wie sie ist.
+    //     Kopfleiste sonst einen Punkt unter dem Rand. Auf 7 Zoll Bild 1 (de,
+    //     en, tr, nl, da) ragte die Beschreibung des letzten Levels ("Essen &
+    //     Trinken") ins Bild; ganz zu sehen ist sie erst 13 bis 14 Punkte
+    //     weiter oben, mit der Kopfleiste 3 bis 4 Punkte unter dem Rand.
+    //     Darum dort 21 Punkte mehr Rand oben: das Level liegt ganz unter
+    //     dem Rand, und ueber der Kopfleiste ist Luft wie unter einer
+    //     Statusleiste (Probe 16.11.2026: von 12 Punkten hinauf bis 20 Punkte
+    //     mehr Rand ging nichts auf). Die App selbst bleibt, wie sie ist.
     // opts.nurPruefen: nichts verschieben, nur nachsehen (fuer Bilder, die
     // ihre Lage schon selbst gesucht haben). Chrome rollt hier nur um ganze
     // Punkte (Probe 16.11.2026), darum in Schritten von einem Punkt.
@@ -246,10 +265,11 @@ RAND_PRUEFUNG = r"""
       window.__polsterZurueck();
       await bild();
       const b = document.body, pt0 = parseFloat(getComputedStyle(b).paddingTop) || 0;
-      const f = faktor(), y0 = scrollY;
-      const runter = Math.min(opts.runter === undefined ? window.__kopfRaum() : opts.runter, 40 * f);
+      const f = faktor(), y0 = scrollY, kopf = window.__kopfRaum();
+      window.__obenStand = y0 < 0.5;   // fuer die Pruefung der Luft oben (ein_lauf)
+      const runter = Math.min(opts.runter === undefined ? (y0 < 0.5 ? Math.max(0, kopf - window.__luftMin * f) : kopf) : opts.runter, 40 * f);
       const hoch = Math.min(opts.hoch || 0, y0);
-      const polster = y0 < 0.5 ? (opts.polster === undefined ? 12 : opts.polster) : 0;
+      const polster = y0 < 0.5 ? (opts.polster === undefined ? 24 : opts.polster) : 0;
       const wege = [];
       for(let k = 0; k <= Math.max(runter, hoch, polster); k++){
         if(k <= runter + 1e-6) wege.push(['rollen', k]);
@@ -267,6 +287,25 @@ RAND_PRUEFUNG = r"""
       window.__polsterZurueck();
       scrollTo({top: y0, behavior: 'instant'});
       await bild();
+      return '';
+    };
+    // Bild 4 und 6 (Pruefung nach dem Feinschliff 16.11.2026): Die Lektion
+    // steht ganz oben und darf nicht mehr hinauf (__luftMin), nur tiefer -
+    // dann steht ihre Karte aber tiefer als auf Bild 3 und 5 (16 Punkte unter
+    // dem Rand). Am Handy schnitt der Rand ohne mehr Rand oben je nach Satz
+    // "Lektion abbrechen" oder "Ueberspringen"; "Gdje je crvena torba?"
+    // brauchte 23 Punkte mehr, "Ne znam gdje je ključ." 13. Ein Satz mit mehr
+    // als 4 Punkten gilt darum erst ab dem 9. Versuch und nur, wenn kein Satz
+    // davor weniger brauchte (wahl.bester); im letzten Versuch jeder, der
+    // aufgeht. Gibt die Lage zurueck wie __randFrei, '' = naechster Satz.
+    window.__satzFrei = async (versuch, letzter, wahl) => {
+      const frei = await window.__randFrei();
+      const m = /Rand oben \+(\d+)/.exec(frei), k = m ? +m[1] : 0;
+      if(!frei || k <= 4 || letzter) return frei;
+      const gut = versuch >= 8 && k <= wahl.bester;
+      wahl.bester = Math.min(wahl.bester, k);
+      if(gut) return frei;
+      window.__polsterZurueck();
       return '';
     };
     return 1"""
@@ -440,10 +479,15 @@ SCHRITTE = [
     # "Lektion abbrechen" halb im Bild (nl, nb, fr). Die Seite rueckt darum
     # bis zu ihrem oberen Rand hinauf (__randFrei); reicht das nicht, kommt
     # ein anderer Satz (bis zu 12 Mal neu gemischt) - das Motiv bleibt.
+    # Pruefung danach (16.11.2026): Hinauf darf die Lektion nicht mehr (die
+    # Karte stand 9 bis 11 statt 16 Punkte unter dem Rand, siehe __luftMin),
+    # nur tiefer, und von den Saetzen gilt der, der dafuer am wenigsten
+    # braucht (__satzFrei).
     ("04-kacheln", """
         const passt = q => q.typ === 'kacheln' && q.s.bs.trim().split(/\\s+/).length >= 4;
         const rand = /^[.,!?¿¡:;"„“”«»…()]+|[.,!?¿¡:;"„“”«»…()]+$/g;
         let q = null, frei = '';
+        const wahl = {bester: Infinity};
         for(let versuch = 0; versuch < 12 && !frei; versuch++){
           if(versuch){ startLesson(); await new Promise(r=>setTimeout(r,600)); }
           let ziel = Lx.queue.findIndex((q, i) => i >= Lx.i && passt(q));
@@ -458,7 +502,7 @@ SCHRITTE = [
             if(b) b.click(); await new Promise(r=>setTimeout(r,450));
           }
           scrollTo(0,0); await new Promise(r=>setTimeout(r,500));
-          frei = await window.__randFrei();
+          frei = await window.__satzFrei(versuch, versuch === 11, wahl);
         }
         return q.s.bs + ' | ' + (frei || 'angeschnitten')"""),
     # Bis 11.10.2026 stand hier "05-richtig": dieselbe Aufgabe wie 04, nur
@@ -485,13 +529,15 @@ SCHRITTE = [
     # am Ende, mindestens vier Wörter) - "Sedam, osam, ___" passt nicht zu
     # "Ganze Sätze selbst schreiben". Dafür bis zu 40 Mal neu mischen.
     # 16.11.2026 (Feinschliff): wie 04 - erst hinaufruecken, sonst ein
-    # anderer Satz.
+    # anderer Satz. Pruefung danach: wie 04 nicht mehr hinauf, und der Satz,
+    # der am wenigsten mehr Rand oben braucht (__satzFrei).
     ("06-luecke", """
         const wb = document.querySelector('#lBody .weiterbox .btn');
         if(wb){ wb.click(); await new Promise(r=>setTimeout(r,500)); }
         const passt = q => q.typ === 'gap' && !(window.__f5 || '').includes(q.s.text)
           && /[.?!]\\s*$/.test(q.s.text) && q.s.text.trim().split(/\\s+/).length >= 4;
         let q = null, frei = '';
+        const wahl = {bester: Infinity};
         for(let versuch = 0; versuch < 12 && !frei; versuch++){
           if(versuch){ startLesson(); await new Promise(r=>setTimeout(r,600)); }
           let ziel = Lx.queue.findIndex((q, i) => i >= Lx.i && passt(q));
@@ -501,7 +547,7 @@ SCHRITTE = [
           q = Lx.queue[Lx.i]; const inp = document.getElementById('xIn');
           inp.value = q.s.answer.split(' / ')[0]; inp.dispatchEvent(new Event('input', {bubbles:true})); inp.blur();
           scrollTo(0,0); await new Promise(r=>setTimeout(r,300));
-          frei = await window.__randFrei();
+          frei = await window.__satzFrei(versuch, versuch === 11, wahl);
         }
         return q.s.text + ' | ' + (frei || 'angeschnitten')"""),
     ("07-geschichte", """
@@ -730,7 +776,7 @@ def ein_lauf(browser, basis, sprache, ziel, g, geraet, farbe, version, kennung):
        "document.head.append(st); return 1")
     pfade, stand1 = [], None
     for name, code in SCHRITTE:
-        js("window.__polsterZurueck(); return 1")   # Rand oben wieder wie in der App
+        js("window.__polsterZurueck(); window.__obenStand = false; return 1")   # Rand oben wieder wie in der App
         ergebnis = js(code)
         lage = js("return await window.__randFrei(%s)" % json.dumps(SPIELRAUM.get(name, {})))
         stoert = js(NICHTS_IM_BILD)
@@ -747,6 +793,14 @@ def ein_lauf(browser, basis, sprache, ziel, g, geraet, farbe, version, kennung):
         if schnitte:
             raise Angeschnitten("%s %s %s: am Rand angeschnitten: %s"
                                 % (sprache, geraet, name, " | ".join(schnitte)))
+        # Stand die Seite ganz oben, klebt die Kopfleiste nicht am Rand
+        # (Pruefung nach dem Feinschliff 16.11.2026, siehe __luftMin)
+        luft = js("return window.__obenStand ? [window.__luftOben(), window.__luftMin] : null")
+        if luft and luft[0] < luft[1] - 0.5:
+            raise SystemExit("%s %s %s: ueber der Kopfleiste nur %.1f Punkte Luft statt %s"
+                             % (sprache, geraet, name, luft[0], luft[1]))
+        if luft:
+            lage += " | Luft oben %.0f" % luft[0]
         pfad = os.path.join(ziel, name + ".png")
         for _ in range(4):
             js("return await window.__drachePausieren()")
