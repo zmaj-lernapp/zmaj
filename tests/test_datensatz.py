@@ -64,7 +64,7 @@ def test_datenkarte_passt_zum_manifest(wurzel):
         assert datei in manifest["files"], datei
 
     for zahl, schluessel in [("7,997 words", "words"), ("300 cloze", "sentences"),
-                             ("32 graded", "stories"), ("1,520", "glossary_entries"),
+                             ("32 graded", "stories"), ("1,519", "glossary_entries"),
                              ("26 grammar", "grammar_lessons")]:
         assert zahl in karte, zahl
         assert int(zahl.split()[0].replace(",", "")) == n[schluessel], schluessel

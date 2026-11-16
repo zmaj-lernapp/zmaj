@@ -24,7 +24,7 @@
   "sentences": 300,
   "sentences_with_audio": 299,
   "stories": 32,
-  "glossary_entries": 1520,
+  "glossary_entries": 1519,
   "grammar_lessons": 26,
   "audio_files": 2431
  },
@@ -62,19 +62,19 @@
    "bytes": 549983
   },
   "glossary.json": {
-   "sha256": "1562493c780183207115cfcadfc88257b14329cfe5b0ddd3a1bddc0b841e2ae0",
-   "bytes": 410044
+   "sha256": "40fa1c3039c5abfe079a773276215055b403835d85110800d8442c297e70c05e",
+   "bytes": 409776
   },
   "grammar.json": {
    "sha256": "735b7c0a8de0c983a6d727b5cd4d8cf63021163aa4881a9ea3e9fb0a12ccc3ac",
    "bytes": 637184
   },
   "parallel.jsonl": {
-   "sha256": "f456f91ef2d1542881ffedf006b4555573fef1953b910171dc94b182607c0a37",
+   "sha256": "0ef5e998b1a0dad4ab4df56cd80cee27b46b013d3854f7eec2d138c58f28062e",
    "bytes": 3270062
   },
   "parallel.tmx": {
-   "sha256": "087ddc4f158242595ffb22c84b50ba09d3f06bd2ee6f2955c03e9eeab9da9f16",
+   "sha256": "4c1cec36c1cc03752d4a801db51569936bbf655318a3de42eb60d508d9317562",
    "bytes": 5768237
   },
   "parallel/bs-da.tsv": {
@@ -118,7 +118,7 @@
    "bytes": 149597
   },
   "stories.json": {
-   "sha256": "7a08e57a27d887e170433ca2a6847f30b1b68daaebdb1552f2d1054911442046",
+   "sha256": "f4fe602274ada8445083bc770b7d5bb896cf07f35bc42ac7f3a723bd99f931f2",
    "bytes": 445024
   },
   "vocabulary.csv": {

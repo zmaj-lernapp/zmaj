@@ -806,6 +806,10 @@ are in the Play Store listing. Format:
   the old text, so the story waited for the next Vesna round with the B1 stories
   (`tests/offen_b1_teil2.py`). Vesna read it again on 16.11.2026, under the same
   number g09. `tests/test_pruefbericht14_geschichten.py`.
+- *Pismo nani* (decided by the maintainer on 16.11.2026): "Kolege su ljubazni"
+  instead of "ljubazne", as in *Prvi dan na poslu* ("Kolege su bili ljubazni").
+  Vesna read the letter once more the same evening, still under g09; the
+  translations already said "friendly" for both. `tests/test_pruefbericht14_geschichten.py`.
 - Polite *Vi* in the reading stories (review for 1.4, S7; decided by the
   maintainer on 15.11.2026: "mach doch alles groß", replacing the rule of
   14.11.2026 that kept it lower case in conversations): *Vi, Vas, Vam, Vaš* are
