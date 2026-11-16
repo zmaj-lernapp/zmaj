@@ -6053,6 +6053,15 @@ TEXTE = {
 # laufen sonst nicht durch. Den Wortlaut prueft Ajdin oder ein Anwalt.
 # Verkaeufer: Apple Distribution International Ltd. (Cork), laut Apples
 # Media Services Terms der Haendler fuer App-Store-Kaeufe in der EU.
+#
+# Der Stand am Ende (Pruefbericht 1.4, S22): Bis zum 16.11.2026 erbten die
+# iOS-Fassungen den Stand der Android-Texte, auch wenn sich nur ein Satz hier
+# geaendert hatte - nach ce3a178 (13.11.) zeigten sie "06.11." und "01.11.".
+# Wer an IOS_RECHT etwas aendert, setzt hier den Tag ("TT.MM.JJJJ"). Es gilt
+# der spaetere von beiden, in jeder Sprache in deren Schreibweise
+# (stand_setzen()); ein neuerer Stand fuer Android geht also mit.
+# 16.11.2026: Datenschutz ohne App-Set-ID (S23).
+IOS_STAND = {"agb": "14.11.2026", "datenschutz": "16.11.2026"}
 IOS_RECHT = {
     'de': {
         'agb': [
@@ -6131,6 +6140,13 @@ IOS_RECHT = {
              'Das Konto ist Voraussetzung für die Sicherung deines Lernstands;'),
         ],
         'werbung': [
+            # App-Set-ID (S23, Android 1.4, Ajdin 15.11.2026: "ja"): Die
+            # gibt es nur auf Android. Googles Angaben fuer iOS nennen an
+            # der Stelle "app- or developer-bounded device identifiers",
+            # also bleibt die Erklaerung in Klammern und nur der Name geht
+            # (Release\Datenschutz_S23_Entwurf.md, 16.11.2026).
+            ('die App-Set-ID (eine Kennung, die nur für die Apps eines Anbieters gilt),',
+             'eine Kennung, die nur für die Apps eines Anbieters gilt,'),
             # Absturzberichte (Patch a, nach Ajdins Ja): Googles Angaben fuer
             # iOS fuehren sie als eigene Datenart (nicht nutzerbezogen),
             # die fuer Android nicht. Darum nur hier.
@@ -6218,6 +6234,8 @@ IOS_RECHT = {
              'The account is required for backing up your progress;'),
         ],
         'werbung': [
+            ('the app set ID (an identifier that only applies to the apps of one developer),',
+             'an identifier that only applies to the apps of one developer,'),
             ('start-up time, freezes and battery use.',
              'start-up time, freezes and battery use, plus crash reports that are not linked to you.'),
             ('<b>Your choice:</b> The first time you open the app, Google shows you a window of its own and asks whether the ads may be tailored to your interests.',
@@ -6302,6 +6320,8 @@ IOS_RECHT = {
              'Hesap, ilerlemenin yedeklenmesinin ön koşuludur;'),
         ],
         'werbung': [
+            ('uygulama seti kimliğini (yalnızca aynı geliştiricinin uygulamalarında geçerli bir kimlik),',
+             'yalnızca aynı geliştiricinin uygulamalarında geçerli bir kimliği,'),
             ('başlatma süresi, takılmalar ve pil tüketimi.',
              'başlatma süresi, takılmalar ve pil tüketimi; ayrıca seninle ilişkilendirilmeyen çökme raporları.'),
             ('<b>Seçim senin:</b> Uygulamayı ilk açtığında Google kendi penceresini gösterir ve reklamların senin ilgi alanlarına göre seçilip seçilemeyeceğini sorar.',
@@ -6386,6 +6406,8 @@ IOS_RECHT = {
              'Kontot är en förutsättning för att dina framsteg ska säkerhetskopieras;'),
         ],
         'werbung': [
+            ('app set-id:t (en identifierare som bara gäller för appar från samma utvecklare),',
+             'en identifierare som bara gäller för appar från samma utvecklare,'),
             ('starttid, hängningar och batteriförbrukning.',
              'starttid, hängningar och batteriförbrukning, dessutom kraschrapporter som inte är kopplade till dig.'),
             ('<b>Ditt val:</b> När du startar appen första gången visar Google ett eget fönster och frågar om annonserna får anpassas efter dina intressen.',
@@ -6470,6 +6492,8 @@ IOS_RECHT = {
              'Het account is een voorwaarde voor de back-up van je voortgang;'),
         ],
         'werbung': [
+            ('de app set-ID (een ID die alleen geldt voor de apps van één ontwikkelaar),',
+             'een ID die alleen geldt voor de apps van één ontwikkelaar,'),
             ('opstarttijd, haperingen en batterijverbruik.',
              'opstarttijd, haperingen en batterijverbruik, plus crashrapporten die niet aan jou gekoppeld zijn.'),
             ('<b>Jouw keuze:</b> Als je de app voor het eerst opent, toont Google een eigen venster en vraagt of de advertenties op jouw interesses afgestemd mogen worden.',
@@ -6554,6 +6578,8 @@ IOS_RECHT = {
              'Kontoen er en forutsetning for sikkerhetskopien av framgangen din;'),
         ],
         'werbung': [
+            ('app set-ID-en (en ID som bare gjelder for appene fra én utvikler),',
+             'en ID som bare gjelder for appene fra én utvikler,'),
             ('oppstartstid, heng og batteriforbruk.',
              'oppstartstid, heng og batteriforbruk, i tillegg krasjrapporter som ikke er knyttet til deg.'),
             ('<b>Ditt valg:</b> Første gang du åpner appen, viser Google sitt eget vindu og spør om annonsene får tilpasses interessene dine.',
@@ -6638,6 +6664,8 @@ IOS_RECHT = {
              'Kontoen er en forudsætning for sikkerhedskopien af din fremgang;'),
         ],
         'werbung': [
+            ("app set-id'et (et id, der kun gælder for apps fra samme udvikler),",
+             'et id, der kun gælder for apps fra samme udvikler,'),
             ('opstartstid, hængninger og batteriforbrug.',
              'opstartstid, hængninger og batteriforbrug, desuden nedbrudsrapporter, der ikke er knyttet til dig.'),
             ('<b>Dit valg:</b> Første gang du starter appen, viser Google sit eget vindue og spørger, om annoncerne må tilpasses dine interesser.',
@@ -6724,6 +6752,8 @@ IOS_RECHT = {
              'Le compte est une condition pour sauvegarder ta progression ;'),
         ],
         'werbung': [
+            ("l'identifiant App Set (un identifiant valable uniquement pour les applis d'un même développeur),",
+             "un identifiant valable uniquement pour les applis d'un même développeur,"),
             ('temps de démarrage, blocages et consommation de batterie.',
              'temps de démarrage, blocages et consommation de batterie, ainsi que des rapports de plantage qui ne sont pas liés à toi.'),
             ("<b>Ton choix\xa0:</b> Au premier démarrage, Google affiche sa propre fenêtre et te demande si les annonces peuvent correspondre à tes centres d'intérêt.",
@@ -6757,6 +6787,8 @@ IOS_FREMDE_WOERTER = (
     "Google-Konto", "Google account", "Google hesab", "Google-konto",
     "compte Google", "Google-account", "Google Commerce",
     "Familienmediathek", "Family Library",
+    # Die App-Set-ID gibt es nur auf Android (S23, 16.11.2026).
+    "App-Set-ID", "app set ID", "app set-id", "app set-ID", "App Set", "uygulama seti",
 )
 
 
@@ -6791,8 +6823,17 @@ def ios_rechtstexte(code, zusammen, erlaubt=()):
         ds = _genau_einmal(ds, alt, neu, code + " datenschutz")
     _ohne_fremde_plattform(agb, code + " agb", erlaubt)
     _ohne_fremde_plattform(ds, code + " datenschutz", erlaubt)
-    zusammen["set.agb_text_ios"] = agb
-    zusammen["set.datenschutz_text_ios"] = ds
+    zusammen["set.agb_text_ios"] = _ios_stand(agb, "agb")
+    zusammen["set.datenschutz_text_ios"] = _ios_stand(ds, "datenschutz")
+
+
+def _ios_stand(text, teil):
+    """Der Stand am Ende der iOS-Fassung: IOS_STAND[teil] oder der Stand der
+    Android-Fassung, je nachdem, welcher spaeter ist (stand_setzen())."""
+    import re
+    if not re.fullmatch(r"\d{2}\.\d{2}\.\d{4}", IOS_STAND.get(teil) or ""):
+        raise ValueError("IOS_STAND['%s'] in sprachen.py: Tag als 'TT.MM.JJJJ' setzen." % teil)
+    return stand_setzen(text, IOS_STAND[teil])
 
 
 def texte(code):

@@ -19,7 +19,8 @@ import pytest
 # Was auf iOS nirgends stehen darf - in keiner der acht Sprachen.
 VERBOTEN = re.compile(r"Google Play|Play Store|Play-butikk|Play Butik|Android|Google-Konto|Google account"
                       r"|Google hesab|Google-konto|compte Google|Google-account|Google Commerce"
-                      r"|Familienmediathek|Family Library")
+                      r"|Familienmediathek|Family Library"
+                      r"|App-Set-ID|app set ID|app set-id|app set-ID|App Set|uygulama seti")
 
 
 def _ohne_formular(text, code):
@@ -213,6 +214,86 @@ def test_ios_datenschutz_nennt_absturzberichte(sprachcodes):
         t = sprachen.texte(code)
         assert t["set.datenschutz_text_ios"].count(neu[code]) == 1, code
         assert neu[code] not in t["set.datenschutz_text"], code
+
+
+# S23 (Android 1.4, Ajdin 15.11.2026): Fuer Android nennt die Erklaerung die
+# App-Set-ID. Die gibt es auf dem iPhone nicht; dort bleibt nur die
+# Erklaerung, die in Android in Klammern steht (16.11.2026).
+APP_SET_ID = re.compile(r"app[- ]set[- ]?id|identifiant App Set|uygulama seti", re.I)
+KENNUNG_IOS = {"de": "die Werbe-ID deines Geräts, eine Kennung, die nur für die Apps eines Anbieters gilt, deine IP-Adresse,",
+               "en": "your device's advertising ID, an identifier that only applies to the apps of one developer, your IP address,",
+               "tr": "cihazının reklam kimliğini, yalnızca aynı geliştiricinin uygulamalarında geçerli bir kimliği, IP adresini,",
+               "sv": "din enhets annons-id, en identifierare som bara gäller för appar från samma utvecklare, din IP-adress,",
+               "nl": "de advertentie-ID van je apparaat, een ID die alleen geldt voor de apps van één ontwikkelaar, je IP-adres,",
+               "nb": "enhetens annonse-ID, en ID som bare gjelder for appene fra én utvikler, IP-adressen din,",
+               "da": "din enheds annoncerings-id, et id, der kun gælder for apps fra samme udvikler, din IP-adresse,",
+               "fr": "l'identifiant publicitaire de ton appareil, un identifiant valable uniquement pour les applis "
+                     "d'un même développeur, ton adresse IP,"}
+
+
+def test_ios_datenschutz_ohne_app_set_id(sprachcodes):
+    """In keiner Sprache steht in der iOS-Erklaerung die App-Set-ID, die
+    Kennung selbst bleibt beschrieben. Android nennt sie weiter."""
+    import sprachen
+    assert sorted(KENNUNG_IOS) == sorted(sprachcodes)
+    for code in sprachcodes:
+        t = sprachen.texte(code)
+        ios = t["set.datenschutz_text_ios"]
+        assert not APP_SET_ID.search(ios), (code, APP_SET_ID.search(ios))
+        assert ios.count(KENNUNG_IOS[code]) == 1, code
+        assert len(APP_SET_ID.findall(t["set.datenschutz_text"])) == 1, code
+
+
+def test_ios_datenschutz_app_set_id_bricht_ab(monkeypatch):
+    """Fehlt das Paar, bricht texte() ab, statt still die App-Set-ID zu zeigen
+    (IOS_FREMDE_WOERTER)."""
+    import sprachen
+    for code in ("de", "en", "tr", "fr"):
+        roh = dict(sprachen.IOS_RECHT[code])
+        roh["werbung"] = [p for p in roh["werbung"] if not APP_SET_ID.search(p[0])]
+        assert len(roh["werbung"]) == len(sprachen.IOS_RECHT[code]["werbung"]) - 1, code
+        monkeypatch.setitem(sprachen.IOS_RECHT, code, roh)
+        with pytest.raises(ValueError, match="(?i)app.?set|uygulama seti"):
+            sprachen.texte(code)
+
+
+# Pruefbericht 1.4, S22: eigener Stand der iOS-Fassungen (IOS_STAND).
+STAND_DS_IOS = {"de": "Stand: 16.11.2026", "en": "Last updated: November 16, 2026",
+                "tr": "Son güncelleme: 16.11.2026", "sv": "Senast uppdaterad: 16.11.2026",
+                "nl": "Laatst bijgewerkt: 16 november 2026", "nb": "Sist oppdatert: 16.11.2026",
+                "da": "Senest opdateret: 16.11.2026", "fr": "Dernière mise à jour : 16.11.2026"}
+
+
+def _stand(text):
+    return re.findall(r"<i>([^<]*)</i>$", text)
+
+
+def test_ios_datenschutz_stand(sprachcodes):
+    import sprachen
+    assert sorted(STAND_DS_IOS) == sorted(sprachcodes)
+    assert sprachen.IOS_STAND["datenschutz"] == "16.11.2026"
+    for code in sprachcodes:
+        assert _stand(sprachen.texte(code)["set.datenschutz_text_ios"]) == [STAND_DS_IOS[code]], code
+
+
+def test_ios_stand_nimmt_den_spaeteren(monkeypatch):
+    """IOS_STAND frueher als der Stand fuer Android: es bleibt der fuer
+    Android. Spaeter: der von IOS_STAND. Ohne gueltigen Tag: Abbruch."""
+    import sprachen
+    android = _stand(sprachen.texte("de")["set.datenschutz_text"])
+    monkeypatch.setitem(sprachen.IOS_STAND, "datenschutz", "01.01.2026")
+    assert _stand(sprachen.texte("de")["set.datenschutz_text_ios"]) == android
+    monkeypatch.setitem(sprachen.IOS_STAND, "datenschutz", "24.12.2026")
+    monkeypatch.setitem(sprachen.IOS_STAND, "agb", "24.12.2026")
+    t = sprachen.texte("en")
+    assert _stand(t["set.datenschutz_text_ios"]) == ["Last updated: December 24, 2026"]
+    assert _stand(t["set.agb_text_ios"]) == ["Last updated: December 24, 2026"]
+    assert _stand(sprachen.texte("nl")["set.agb_text_ios"]) == ["Laatst bijgewerkt: 24.12.2026"]
+    # Android bleibt, wie es ist
+    assert _stand(sprachen.texte("de")["set.datenschutz_text"]) == android
+    monkeypatch.setitem(sprachen.IOS_STAND, "agb", "")
+    with pytest.raises(ValueError, match="IOS_STAND"):
+        sprachen.texte("de")
 
 
 def test_ios_rechtstexte_brechen_ab_bei_fremder_plattform(monkeypatch):
