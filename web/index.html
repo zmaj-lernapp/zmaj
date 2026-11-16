@@ -4698,17 +4698,70 @@ function abstand(a, b){
   }
   return vorige[n];
 }
+/* ---- Kyrillisch beim Sprechen (16.11.2026) ----
+   Rueckmeldung ueber das Formular: die Sprechuebung erkennt auch einen
+   Muttersprachler nicht immer (Sprech-Analyse vom 16.11.2026, Punkt 2).
+   Schreibt ein Erkenner kyrillisch - Azure tut es bei sr-RS, Google
+   vielleicht -, strich lautlich() alles ausser a-z, aus "хвала" wurde ein
+   leerer Text, und jedes richtig gesprochene Wort war falsch. Im Korpus
+   9.388 von 9.388 kyrillischen Faellen. Seit Android nur noch bs-BA und
+   hr-HR nimmt, ist das ein Sicherheitsnetz.
+   Umgeschrieben wird am Anfang von klingtWie(), fuer Gehoertes UND Ziel, vor
+   zahlWert(): am Anfang von lautlich() waere zu spaet, zahlWert() entfernt
+   Kyrillisch selbst, und "два" bliebe fuer "dvije" falsch. Nur beim
+   Sprechen - getippt wird mit matches(), das bleibt, wie es ist.
+   Die Tabelle: das serbische Alphabet, dazu die russischen Buchstaben, die
+   es dort nicht gibt. Gross wird klein, das tun zahlWert() und lautlich()
+   ohnehin. */
+const KYRILLISCH = {'а':'a', 'б':'b', 'в':'v', 'г':'g', 'д':'d', 'ђ':'đ', 'е':'e', 'ж':'ž', 'з':'z', 'и':'i',
+  'ј':'j', 'к':'k', 'л':'l', 'љ':'lj', 'м':'m', 'н':'n', 'њ':'nj', 'о':'o', 'п':'p', 'р':'r', 'с':'s', 'т':'t',
+  'ћ':'ć', 'у':'u', 'ф':'f', 'х':'h', 'ц':'c', 'ч':'č', 'џ':'dž', 'ш':'š',
+  'й':'j', 'щ':'šč', 'ъ':'', 'ы':'i', 'ь':'', 'э':'e', 'ю':'ju', 'я':'ja', 'ё':'jo',
+  'ѓ':'đ', 'ќ':'ć', 'ѕ':'dz', 'і':'i', 'ї':'ji', 'є':'je'};
+const kyrillischLatein = s => String(s).replace(/[\u0400-\u04FF]/g, c => {
+  const l = KYRILLISCH[c.toLowerCase()];
+  return l === undefined ? c : l;
+});
+/* ---- Sehr kurze Ziele (16.11.2026) ----
+   Ziele mit hoechstens drei Lauten (so gezaehlt, wie lautlich() zaehlt)
+   gelten nur noch GENAU gleich. Bis dahin durfte ein Buchstabe abweichen,
+   und dann zaehlte "pa" fuer "pas", "sir" fuer "sin", "na" fuer "ne", "dva",
+   "dan" und "pa" fuer "Da": 498 von 559 kurzen Zielen nahmen ein anderes
+   Wort der App an (Analyse, Punkt 7). Ajdin am 16.11.2026: nur noch genau
+   gleich. Dafuer duerfen um das Wort herum Wiederholungen und Fuellwoerter
+   stehen, "Pa da", "Da da", "Ćao ćao" (Punkt 5, Fix-Plan Schritt 3) - das
+   Wort selbst aber nur genau gleich, sonst ginge "Pa dva" fuer "Da" durch.
+   "Ko je" fuer "Ko?" bleibt falsch, "je" ist kein Fuellwort. Ab vier
+   Lauten bleibt alles wie bisher. Die Fuellwoerter stehen schon so da, wie
+   lautlich() sie schreibt ("Hmm" wird "hm", "OK" wird "ok").
+   Zusammengeschrieben zaehlt nicht: "dada" ist EIN gehoertes Wort, und es
+   klingt nicht genau wie "da". Bis zur Nachbesserung am 16.11.2026 galt es,
+   und dann waren die App-Woerter "nana" (Oma) richtig fuer "na" und "jaja"
+   (Eier) fuer "Ja". */
+const FUELLWOERTER = new Set(['pa', 'eto', 'evo', 'ovaj', 'hm', 'aha', 'ok']);
+function wortGenau(gehoert, ziel){
+  const woerter = s => String(s).split(/\s+/).map(x => lautlich(x)).filter(Boolean);
+  const zw = woerter(ziel);
+  // Ein Fuellwort, das selbst zum Ziel gehoert ("Evo"), bleibt stehen.
+  const gw = woerter(gehoert).filter(x => !FUELLWOERTER.has(x) || zw.includes(x));
+  if(!gw.length || !zw.length) return false;
+  // Das Ziel ein- oder mehrmals, Wort fuer Wort und jedes genau gleich
+  return gw.length % zw.length === 0 && gw.every((x, i) => x === zw[i % zw.length]);
+}
 /* Passt das Gehoerte zum Zielwort? */
 function klingtWie(gehoert, ziel){
+  gehoert = kyrillischLatein(gehoert); ziel = kyrillischLatein(ziel);   // siehe KYRILLISCH (16.11.2026)
   /* Sind beide Seiten eine Zahl, wird gerechnet - dann gilt "5" fuer "pet"
      und "2" auch fuer die weibliche Form "dvije". */
   const zg = zahlWert(gehoert), zz = zahlWert(ziel);
   if(zg !== null && zz !== null) return zg === zz;
   /* Ein Klammerzusatz spricht niemand mit: "nana (auch: metvica)" war "nana". Seit dem
      14.11.2026 heisst das Wort "nana / metvica" (Pruefbericht 1.4, B6), die Regel bleibt. */
-  const g = lautlich(gehoert), z = lautlich(String(ziel).replace(/\([^)]*\)/g, ' '));
+  const zielOhne = String(ziel).replace(/\([^)]*\)/g, ' ');
+  const g = lautlich(gehoert), z = lautlich(zielOhne);
   if(!g || !z) return false;
   if(g === z) return true;
+  if(z.length <= 3) return wortGenau(gehoert, zielOhne);   // siehe FUELLWOERTER (16.11.2026)
   // Enthalten zaehlt nur bei genug Buchstaben, sonst passt "da" ueberallhin
   const kurz = Math.min(g.length, z.length);
   /* Mehr gesagt als das Ziel ist in Ordnung. Weniger nur, wenn fast alles da ist:
@@ -4716,6 +4769,29 @@ function klingtWie(gehoert, ziel){
      gewusst (Pruefbericht 1.3, 06.11.2026). */
   if(kurz >= 4 && (g.includes(z) || (z.includes(g) && g.length >= z.length * 0.7))) return true;
   return abstand(g, z) <= Math.max(1, Math.round(z.length / 5));
+}
+/* Passt das Gehoerte zu einem Eintrag? Das fragt die Sprechaufgabe (bewerte()).
+   Jede Schreibweise gilt: "Laku noć / Lahku noć" sind zwei.
+   Pfeil-Eintraege im Level "Mehrzahl" ("brat → braća", 26 Stueck, 16.11.2026,
+   Analyse Punkt 8): Bis dahin zaehlten sie nur, wenn beide Woerter gesagt
+   wurden, "braća" allein war falsch. Jetzt gilt auch die Mehrzahl allein, die
+   Einzahl allein weiter nicht.
+   Die Mehrzahl allein nur GENAU gleich, wie ein sehr kurzes Ziel (wortGenau()),
+   mit Wiederholungen und Fuellwoertern: "braća", "kuče", "Pa braća". Zuerst
+   lief sie durch klingtWie() mit seiner Aehnlichkeit, und dann galten fremde
+   Woerter: "brava" fuer braća, "doći" fuer noći, "dati" fuer dani, "mene" fuer
+   žene, dazu jeder Satz mit der Mehrzahl darin ("On posjeduje tri kuće.") -
+   194 fremde Woerter und Saetze der App in 19 der 26 Eintraege (Pruefung vom
+   16.11.2026).
+   Bei vier Lauten widersprach das Ajdins Entscheidung (keine neue
+   Aehnlichkeit). Genau gleich kann die Einzahl nie sein, ein Vergleich mit
+   ihr ist nicht mehr noetig. */
+function passtGesprochen(gehoert, bs){
+  return String(bs).split(' / ').some(form => {
+    if(klingtWie(gehoert, form)) return true;          // beide Woerter zusammen, wie bisher
+    const pfeil = form.split(' → ');
+    return pfeil.length === 2 && wortGenau(kyrillischLatein(gehoert), pfeil[1]);
+  });
 }
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 /* Fuer aria-label: alles vor dem ersten Buchstaben weg. Auf dem Bildschirm
@@ -8451,6 +8527,92 @@ async function hoerenPruefen(){
     canSpeak = !!SR && window.isSecureContext;
   }
   return canSpeak;
+}
+/* ---- Android: in welcher Sprache zugehoert wird (16.11.2026) ----
+   Rueckmeldung ueber das Formular: die Sprechuebung erkennt auch einen
+   Muttersprachler nicht immer (Sprech-Analyse vom 16.11.2026, Punkte 1, 3
+   und 19). Bis dahin probierte die Sprechaufgabe bs-BA, hr-HR, sr-RS und
+   zuletzt die Sprache des Handys. Jedes "No match" schob den naechsten Tipp
+   eine Sprache weiter - nach zwei Fehlversuchen hoerte die App serbisch zu,
+   und eine kyrillische Abschrift war immer falsch. Andere Fehler liefen in
+   einem Tipp still bis zur Handysprache durch, ohne Netz kam so eine
+   deutsche Abschrift statt der Offline-Meldung.
+   Jetzt gibt es nur noch bs-BA und hr-HR, und was ein Fehler bedeutet,
+   entscheidet, wie es weitergeht (sprechFehlerArt()):
+   - "No match", "No speech input": die Sprache bleibt, die Meldung kommt.
+     Meist war es zu kurz, zu leise oder angeschnitten. Nur solange bs-BA in
+     dieser Sitzung noch nichts geliefert hat, nimmt nach zwei solchen
+     Versuchen in Folge der naechste Tipp hr-HR - fuer Handys, die bs-BA
+     nicht koennen und trotzdem "No match" melden. Ebenso nach zwei
+     "Network error" in Folge, obwohl das Handy Netz meldet.
+   - "Didn't understand" (darunter Androids "Sprache fehlt", Fehler 12 und
+     13) und "error from server": sofort im selben Tipp die andere Sprache,
+     wie bisher. Handys ohne bs-BA duerfen nicht vom Sprechen abgeschnitten
+     werden.
+   - "Client side error" (bis Android 11 vielleicht "Sprache fehlt"):
+     nach SPRECH_NOCHMAL_MS einmal dieselbe Sprache, dann die andere.
+   - "RecognitionService busy", "Audio recording error": einmal dieselbe
+     Sprache nach SPRECH_NOCHMAL_MS, dann die Meldung.
+   - "Network error", "Network timeout": sofort die Offline-Meldung.
+   Die Sprache, die etwas geliefert hat, gilt fuer die ganze Sitzung, ebenso
+   hr-HR, wenn bs-BA "fehlt". Hat aber bs-BA einmal geliefert, bleibt es bei
+   bs-BA: liefert spaeter hr-HR, weil bs-BA einmal abgelehnt hat, war hr-HR
+   nur die Ausweichsprache in diesem Tipp. Scheitern alle Sprachen
+   SPRECH_DIENST_GRENZE Tipps in Folge an Sprach- oder Dienstfehlern, faellt
+   das Sprechen fuer diese Sitzung aus (canSpeak), ohne mikroAbsageMerken():
+   beim naechsten Start wird neu versucht. Und jeder Start hat eine Zeitgrenze
+   (sprechStart()). Gilt nur fuer Android - das iPhone (ZmajSprache) und der
+   Browser behalten ihren Weg, siehe sprechAufIOS(). */
+const SPRECH_SPRACHEN = ['bs-BA', 'hr-HR'];
+let SPRECH_ZEITGRENZE = 12000;    // ms je Start; die Tests setzen sie herunter
+const SPRECH_NOCHMAL_MS = 400;
+const SPRECH_DIENST_GRENZE = 2;
+let sprechSprache = null;         // womit der naechste Tipp beginnt; null = bs-BA, noch nicht bestaetigt
+const sprechGeliefert = new Set(); // Sprachen, die in dieser Sitzung schon etwas geliefert haben
+const sprechFehlt = new Set();    // Sprachen, die in dieser Sitzung mit "Sprache fehlt" abgelehnt wurden
+let sprechStill = 0;              // "No match" / "No speech input" mit bs-BA in Folge
+let sprechDienstAus = 0;          // Tipps in Folge, an denen jede Sprache an Sprach- oder Dienstfehlern scheiterte
+let sprechVersuch = 0;            // Nummer des letzten Starts
+let sprechOffen = 0;              // Nummer des Starts, auf den die Seite gerade wartet
+/* Ob die Seite in der iPhone-Huelle laeuft. Dort meldet ZmajSprache bs-BA
+   sofort als unbekannt und lehnt nach dem Start nie mehr ab, und es hat
+   eigene Zeitgrenzen - fuer das iPhone bleibt die Sprechaufgabe deshalb,
+   wie sie war. In zmaj-ios-web steht dafuer schon IST_IOS. */
+function sprechAufIOS(){
+  try{
+    const C = window.Capacitor;
+    return !!C && typeof C.getPlatform === 'function' && C.getPlatform() === 'ios';
+  }catch(e){ return false; }
+}
+function sprechFehlerArt(e){
+  const m = String((e && e.message) || e || '');
+  if(/No match|No speech input/i.test(m)) return 'still';
+  if(/Network/i.test(m)) return 'netz';
+  if(/busy|Audio recording/i.test(m)) return 'belegt';
+  if(/Client side error/i.test(m)) return 'client';
+  return 'sprache';    // Didn't understand, error from server und alles Unbekannte
+}
+/* H.start() mit Zeitgrenze (Analyse Punkt 19): Ruft Androids Erkenner nach
+   dem Sprechende weder ein Ergebnis noch einen Fehler auf, wartete die Seite
+   bisher ewig, und ein weiterer Tipp rief nur H.stop(), das dann nichts mehr
+   tut. Nach SPRECH_ZEITGRENZE kommt {zeitAus: true}. Das Community-Plugin
+   hat kein cancel - ein spaetes Ergebnis dieses Starts verwirft die Seite
+   ueber die Versuchsnummer. Der naechste start() baut den Erkenner ohnehin
+   neu. */
+function sprechStart(H, optionen){
+  const nr = ++sprechVersuch;
+  sprechOffen = nr;
+  return new Promise((fertig, fehler) => {
+    const uhr = setTimeout(() => {
+      if(sprechOffen !== nr) return;
+      sprechOffen = 0;
+      try{ const s = H.stop(); if(s && s.catch) s.catch(() => {}); }catch(e){}   // nicht warten: stop() antwortet dann nie
+      fertig({zeitAus: true});
+    }, SPRECH_ZEITGRENZE);
+    Promise.resolve().then(() => H.start(optionen)).then(
+      r => { clearTimeout(uhr); if(sprechOffen !== nr) return; sprechOffen = 0; fertig(r); },
+      e => { clearTimeout(uhr); if(sprechOffen !== nr) return; sprechOffen = 0; fehler(e); });
+  });
 }
 let AUDIO = new Map();
 /* Wortzeiten der Geschichten fuer das Mitlesen (20.10.2026): Datei ->
@@ -13484,17 +13646,32 @@ function renderTask(task, body, done, opts={}){
     // Laufende Erkennung abbrechen - beim Ueberspringen und ueber stilleBitte()
     const abhoeren = async ()=>{ const H = hoererPlugin(); try{ if(H) await H.stop(); else if(rec) rec.abort(); }catch(e){} };
 
+    /* Ob in DIESER Aufgabe schon ein Versuch gescheitert ist: eine Meldung
+       des Erkenners (No match, kein Netz, Didn't understand, Zeitgrenze)
+       oder ein Ergebnis, das als falsch gewertet wurde. Dann kostet das
+       Ueberspringen die Tagesaufgabe "ohne Fehler" nicht mehr - Ajdin am
+       16.11.2026, nach einer Rueckmeldung ueber das Formular. Ueberspringen ohne
+       jeden Versuch zaehlt wie bisher. Siehe Lx.skipNachFehler. */
+    let gescheitert = false;
+    const fehlerText = ()=> navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline';
+    /* Eine Meldung, wenn es nichts zu bewerten gibt - nur, solange die Aufgabe gilt. */
+    const melde = (schluessel)=>{
+      if(fin || meineAufgabe !== aufgabeMarke) return;
+      gescheitert = true;
+      heard.textContent = t(schluessel);
+      ansagen(esc(heard.textContent));
+    };
     /* Ein Ergebnis bewerten - egal, woher es kommt. Die Erkennung liefert
        mehrere Vorschläge; einer muss passen. */
     const bewerte = (liste)=>{
       // Zu spaet: die Aufgabe ist schon beantwortet, uebersprungen oder verlassen.
       if(fin || meineAufgabe !== aufgabeMarke) return;
-      // Jede Schreibweise des Zielworts gilt: "Laku noc / Lahku noc" sind zwei
-      const ziele = String(w.bs).split(' / ');
+      // Jede Schreibweise des Zielworts gilt: "Laku noc / Lahku noc" sind zwei,
+      // bei "brat → braća" auch die Mehrzahl allein (passtGesprochen(), 16.11.2026)
       let treffer = false, erstes = '';
       for(const s of liste){
         if(!erstes) erstes = String(s).trim();
-        if(ziele.some(z => klingtWie(s, z))) treffer = true;
+        if(passtGesprochen(s, w.bs)) treffer = true;
       }
       if(treffer){
         fin = true;
@@ -13506,21 +13683,94 @@ function renderTask(task, body, done, opts={}){
            Mikrofon belegt. Vorher stand hier der Satz "Ich habe ‚‘
            verstanden" mit einem leeren Wort darin, dazu der Fehlerton. Der
            Nutzer bekam gesagt, er habe falsch gesprochen. */
-        heard.textContent = t(navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline');
-        ansagen(esc(heard.textContent));
+        melde(fehlerText());
       } else {
+        gescheitert = true;
         heard.textContent = t('task.gehoert_no',{text:erstes}); sound('no');
         ansagen(esc(heard.textContent));
       }
     };
+    /* Vor dem Zuhoeren nur den Ton anhalten (16.11.2026, Analyse Punkt 15):
+       Wer gleich nach "Vorsprechen" auf das Mikrofon tippte, nahm Emir mit
+       auf. Die Aufnahme laeuft meist ueber WebAudio, und das richtet sich
+       nicht sicher nach dem Audiofokus des Erkenners. NICHT stilleBitte():
+       ohne true erhoeht es aufgabeMarke, und bewerte() verwuerfe danach
+       jedes Ergebnis dieser Aufgabe. Das stumme Vorwaermen bleibt in Ruhe,
+       wie in pufferSpielen(). */
+    const tonAnhalten = ()=>{ waStopp(); if(!vorwaermen) try{ spieler.pause(); }catch(e){} };
 
     /* Sobald der Nutzer stoppt, ueberspringt oder die Aufgabe verlaesst,
        darf die Sprachschleife unten nicht die naechste Sprache anwerfen.
        Vorher lief das Mikrofon bis zu viermal weiter, auch auf der
        Levueluebersicht. Gefunden am 26.09.2026. */
     let stoppGewollt = false;
-    /* Mit welcher Sprache der naechste Tipp beginnt, siehe unten. */
+    /* Nur iPhone: mit welcher Sprache der naechste Tipp beginnt, siehe unten. */
     let sprachNr = 0;
+    const abgebrochen = ()=> stoppGewollt || fin || meineAufgabe !== aufgabeMarke;
+    /* Ein Tipp auf Android, siehe "---- Android: in welcher Sprache
+       zugehoert wird" (16.11.2026). Gibt {erg} zurueck oder {art}, warum
+       nichts kam. */
+    const hoereAndroid = async (H)=>{
+      const reihe = [sprechSprache || SPRECH_SPRACHEN[0]];
+      const zweite = SPRECH_SPRACHEN.find(s => s !== reihe[0]);
+      if(!sprechFehlt.has(zweite)) reihe.push(zweite);
+      let art = null, nochmal = false;
+      for(let i = 0; i < reihe.length; ){
+        const sprache = reihe[i];
+        let erg = null, text = '';
+        art = null;
+        try{ erg = await sprechStart(H, {maxResults:5, partialResults:false, popup:false, language:sprache}); }
+        catch(e){ art = sprechFehlerArt(e); text = String((e && e.message) || e || ''); }
+        if(erg && erg.zeitAus) return {art: 'zeit'};
+        if(!art){
+          if(erg && Array.isArray(erg.matches) && erg.matches.length){
+            /* Nicht von bs-BA weg, wenn bs-BA schon geliefert hat: ein einzelnes
+               "error from server" oder "Didn't understand" (darunter meldet das
+               Plugin auch Androids Fehler 10 und 11) schickte sonst den Rest der
+               Sitzung zu hr-HR, und hr-HR schreibt laut Analyse "Tko" und "Što"
+               (Pruefung vom 16.11.2026). */
+            if(sprache === SPRECH_SPRACHEN[0] || !sprechGeliefert.has(SPRECH_SPRACHEN[0])) sprechSprache = sprache;
+            sprechGeliefert.add(sprache); sprechFehlt.delete(sprache);
+            sprechStill = 0; sprechDienstAus = 0;
+          }
+          return {erg};
+        }
+        if(abgebrochen()) return {art: 'stopp'};   // gestoppt, uebersprungen, verlassen: keine weitere Sprache
+        if(art === 'still' || (art === 'netz' && navigator.onLine)){
+          if(art === 'still') sprechDienstAus = 0;   // der Erkenner laeuft, er hat nur nichts verstanden
+          /* Zweimal in Folge mit bs-BA, und bs-BA hat in dieser Sitzung noch
+             nichts geliefert: der naechste Tipp nimmt hr-HR. */
+          if(sprache === SPRECH_SPRACHEN[0] && sprechSprache === null && !sprechGeliefert.has(sprache) && ++sprechStill >= 2){
+            sprechSprache = SPRECH_SPRACHEN[1]; sprechStill = 0;
+          }
+          return {art};
+        }
+        if(art === 'netz') return {art};
+        if((art === 'belegt' || art === 'client') && !nochmal){
+          nochmal = true;
+          await new Promise(r => setTimeout(r, SPRECH_NOCHMAL_MS));
+          if(abgebrochen()) return {art: 'stopp'};
+          continue;   // dieselbe Sprache noch einmal
+        }
+        if(art === 'belegt') return {art};
+        /* "Sprache fehlt" ("Didn't understand", oder zweimal "Client side
+           error"): fuer die Sitzung merken - es sei denn, diese Sprache hat
+           schon etwas geliefert. Dann die andere Sprache, im selben Tipp. */
+        if((art === 'client' || /Didn't understand/i.test(text)) && !sprechGeliefert.has(sprache)){
+          sprechFehlt.add(sprache);
+          const andere = SPRECH_SPRACHEN.find(s => s !== sprache);
+          if(!sprechFehlt.has(andere) && (sprechSprache === null || sprechSprache === sprache)) sprechSprache = andere;
+        }
+        i++; nochmal = false;
+      }
+      /* Jede Sprache ist an Sprach- oder Dienstfehlern gescheitert. Mehrmals
+         in Folge: Sprechaufgaben fallen ab der naechsten Lektion aus, wie bei
+         abgelehntem Mikrofon - aber nur fuer diese Sitzung, ohne
+         mikroAbsageMerken(). So bleibt die Tagesaufgabe "ohne Fehler"
+         erreichbar. */
+      if(++sprechDienstAus >= SPRECH_DIENST_GRENZE) canSpeak = false;
+      return {art};
+    };
     mic.addEventListener('click', async ()=>{
       if(fin) return;
       const H = hoererPlugin();
@@ -13546,6 +13796,16 @@ function renderTask(task, body, done, opts={}){
           listening = true; stoppGewollt = false;
           mic.classList.add('rec'); heard.textContent = t('task.hoert_zu');
           hoererAbbrechen = ()=>{ stoppGewollt = true; abhoeren(); };
+          tonAnhalten();
+          if(!sprechAufIOS()){
+            const aus = await hoereAndroid(H);
+            listening = false; mic.classList.remove('rec');
+            if(aus.erg) bewerte(aus.erg.matches || []);
+            else melde(aus.art === 'netz' ? 'task.mikro_offline' : fehlerText());
+            return;
+          }
+          /* iPhone, unveraendert: ZmajSprache lehnt bs-BA sofort ab und nach dem
+             Start nie mehr, die Schleife endet also bei hr-HR. */
           let erg = null;
           const sprachen = ['bs-BA','hr-HR','sr-RS', null];
           for(let nr = sprachNr; nr < sprachen.length; nr++){
@@ -13578,23 +13838,33 @@ function renderTask(task, body, done, opts={}){
           bewerte((erg && erg.matches) || []);
         }catch(e){
           listening = false; mic.classList.remove('rec');
-          heard.textContent = t(navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline');
+          melde(fehlerText());
         }
         return;
       }
       // Weg über den Browser
       if(listening){ rec && rec.stop(); return; }
       rec=new SR(); rec.lang='hr-HR'; rec.interimResults=false; rec.maxAlternatives=3;
+      /* Endet Chromes Erkennung ohne Ergebnis und ohne Fehler, stand bis zum
+         16.11.2026 weiter "Hoert zu ..." da, obwohl nichts mehr zuhoerte
+         (Analyse Punkt 16). Jetzt kommt die Meldung. */
+      let geantwortet = false;
       rec.onstart=()=>{ listening=true; mic.classList.add('rec'); heard.textContent=t('task.hoert_zu'); hoererAbbrechen = abhoeren; };
-      rec.onerror=(e)=>{ heard.textContent = e.error==='not-allowed' ? t('task.mikro_blockiert') : t(navigator.onLine ? 'task.mikro_fehler' : 'task.mikro_offline'); };
-      rec.onend=()=>{ listening=false; mic.classList.remove('rec'); };
-      rec.onresult=(ev)=> bewerte([...ev.results[0]].map(r=>r.transcript));
+      rec.onerror=(e)=>{
+        geantwortet = true;
+        if(e.error !== 'not-allowed') gescheitert = true;
+        heard.textContent = e.error==='not-allowed' ? t('task.mikro_blockiert') : t(fehlerText());
+      };
+      rec.onend=()=>{ listening=false; mic.classList.remove('rec'); if(!geantwortet) melde('task.mikro_fehler'); };
+      rec.onresult=(ev)=>{ geantwortet = true; bewerte([...ev.results[0]].map(r=>r.transcript)); };
+      tonAnhalten();
       rec.start();
     });
     // Nicht wireSkip(): Ueberspringen muss hier auch die Erkennung beenden,
     // sonst kommt ihr Ergebnis Sekunden spaeter in die naechste Aufgabe.
+    // nachFehler: siehe gescheitert oben (16.11.2026).
     const skipS = $$('xSkip');
-    if(skipS) skipS.addEventListener('click', ()=>{ fin = true; abhoeren(); done({ok:false, skipped:true}); });
+    if(skipS) skipS.addEventListener('click', ()=>{ fin = true; abhoeren(); done({ok:false, skipped:true, nachFehler:gescheitert}); });
     return;
   }
   if(task.typ==='gap'){
@@ -14115,7 +14385,7 @@ function buildLesson(){
      freigeschaltet!" kam nie. Hier gemerkt, erscheint er genau in der
      Lektion, die ihn freischaltet.
      Gefunden bei der Pruefung am 07.10.2026. */
-  Lx = {queue:[...intros, ...tasks], i:0, results:[], right:0, total:tasks.length, skipped:0, newWords:new Set(), retried:new Set(),
+  Lx = {queue:[...intros, ...tasks], i:0, results:[], right:0, total:tasks.length, skipped:0, skipNachFehler:0, newWords:new Set(), retried:new Set(),
         testVorher: testAllowed(c)};
 }
 /* Die Punktereihe ueber einer Aufgabe (Lektion, Level-Test, Einstufung) ist
@@ -14146,7 +14416,7 @@ function showLessonTask(){
   $('lBody').dataset.i = Lx.i;
   renderTask(task, $('lBody'), res=>{
     if(res.intro){ Lx.results[Lx.i]='intro'; }
-    else if(res.skipped){ Lx.results[Lx.i]='skip'; Lx.skipped++; }
+    else if(res.skipped){ Lx.results[Lx.i]='skip'; Lx.skipped++; if(res.nachFehler) Lx.skipNachFehler = (Lx.skipNachFehler || 0) + 1; }
     else {
       Lx.results[Lx.i]=res.ok; zmajReact(res.ok); uhrTakt(true); zaehle('auf');
       topfMerken(task, res.ok);
@@ -14527,6 +14797,12 @@ function ohneLebenVerlassen(){
   if(sichtbar('lesson')) lektionVerlassen();
   else if(sichtbar('test')) showLevelHome();
 }
+/* Fuer die Tagesaufgabe "ohne Fehler": nichts uebersprungen - ausser
+   Sprechaufgaben, an denen der Erkenner schon gescheitert war (16.11.2026,
+   Ajdin nach einer Rueckmeldung ueber das Formular; res.nachFehler in der
+   Sprechaufgabe). Lx.skipped selbst bleibt, wie es war: Statistik,
+   Ergebnis und Wiederholung zaehlen jedes Ueberspringen. */
+const ohneUebersprungen = () => Lx.skipped - (Lx.skipNachFehler || 0) === 0;
 function lessonEnd(){
   if(Lx && Lx.topf){ topfEnde(); return; }
   stilleBitte(); uhrAus();   // das letzte Wort nicht in den Ergebnisschirm reden lassen
@@ -14535,7 +14811,7 @@ function lessonEnd(){
   zaehle('lek');
   // "Ohne Fehler" nur, wenn auch nichts übersprungen wurde – sonst holt man
   // sie sich, indem man jede Hör- und Sprechaufgabe wegdrückt.
-  if(Lx.right === scored && scored > 0 && Lx.skipped === 0) zaehle('per');
+  if(Lx.right === scored && scored > 0 && ohneUebersprungen()) zaehle('per');
   /* Beim Zahnarzt: kein Lerntag, die Wegmarken bleiben beim Lernpfad. */
   const newDay = imZa() ? false : markToday();
   const erfolgLob = erfolgZeile();   // Erfolge (13.11.2026): hakt ab, also vor dem Speichern
@@ -15662,7 +15938,7 @@ function rundeStarten(quelle){
   uhrNeu();
   const zl = $('zmajLesson'); zl.style.display = 'block'; $('lHerz').style.display = ''; zl.innerHTML = zmaj('happy'); setMood(zl, 'happy');
   abbrechenZeigen('lQuit', true);   // das Ergebnis davor blendet ihn aus (S18)
-  Lx = {queue: aufgaben, i:0, results:[], right:0, total: aufgaben.length, skipped:0,
+  Lx = {queue: aufgaben, i:0, results:[], right:0, total: aufgaben.length, skipped:0, skipNachFehler:0,
         newWords: new Set(), retried: new Set(), topf: true, quelle: quelle};
   showLessonTask();
   window.scrollTo({top:0, behavior:'smooth'});
@@ -15677,7 +15953,7 @@ function topfEnde(){
   stilleBitte(); uhrAus();
   const scored = Lx.results.filter(r => r !== 'intro' && r !== 'skip').length;
   zaehle('lek');
-  if(Lx.right === scored && scored > 0 && Lx.skipped === 0) zaehle('per');
+  if(Lx.right === scored && scored > 0 && ohneUebersprungen()) zaehle('per');
   const newDay = markToday();
   const erfolgLob = erfolgZeile();   // Erfolge (13.11.2026): hakt ab, also vor dem Speichern
   saveProgress(); sound('done');
