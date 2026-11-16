@@ -348,11 +348,13 @@ are in the Play Store listing. Format:
   counted for *pas*, *sir* for *sin*, *na* for *ne* and *dva*, *dan* or *pa* for *Da*.
   In return, repetitions and the filler words *pa, eto, evo, ovaj, hm, aha, ok* around
   the word are fine: *Pa da*, *Da da* and *Ćao ćao* count, *Pa dva*, *Ne znam* for
-  *Ne* and *Ko je* for *Ko?* do not. Targets of four sounds or more are unchanged. Of
-  559 short single-word targets, 498 accepted another word of the app before and 313
-  now (none of them with three sounds or fewer); wrong short words that pass in the
-  test corpus drop from 453 of 555 to 0. Short words that a recognizer writes slightly
-  differently (*Ciao* for *Ćao*, *Tko* for *Ko*) are now rejected.
+  *Ne* and *Ko je* for *Ko?* do not, and neither does the word written together
+  (*dada*), which would let *nana* count for *na* and *jaja* for *Ja*. Targets of four
+  sounds or more are unchanged. Of 559 short single-word targets, 498 accepted another
+  word of the app before and 313 now (none of them with three sounds or fewer); wrong
+  short words that pass in the test corpus drop from 453 of 555 to 0. Short words that
+  a recognizer writes slightly differently (*Ciao* for *Ćao*, *Tko* for *Ko*) are now
+  rejected.
 - Skipping a speaking task after a failed try in that task (a recognizer error, the
   time limit or a result judged wrong) no longer costs the daily task "without
   mistakes" (maintainer's decision, 16.11.2026). Skipping without trying counts as
@@ -571,18 +573,22 @@ are in the Play Store listing. Format:
   keep speaking; "Client side error" and "RecognitionService busy" first try the same
   language once more after 0.4 s; "Network error" shows the offline message at once.
   The language that delivered a result is used first for the rest of the session, and
-  hr-HR when bs-BA is missing. If every language fails with language or service
-  errors on two taps in a row, speaking tasks leave the lesson mix for this session
-  only (not remembered like a refused microphone, the next start tries again). Every
-  start has a 12-second limit: a recognizer that never answers no longer leaves the
-  task on "Listening…", and a late result of that start is discarded. The iPhone keeps
-  its own path.
+  hr-HR when bs-BA is missing; once bs-BA has delivered, it stays first even when hr-HR
+  fills in after a single error from bs-BA. If every language fails with language or
+  service errors on two taps in a row, speaking tasks leave the lesson mix for this
+  session only (not remembered like a refused microphone, the next start tries again).
+  Every start has a 12-second limit: a recognizer that never answers no longer leaves
+  the task on "Listening…", and a late result of that start is discarded. The iPhone
+  keeps its own path.
 - Speaking: a Cyrillic transcript (*хвала*, *добар дан*, *два*) is written in Latin
   letters before it is compared, for what was heard and for the target; typing is
   unchanged. In the test corpus of 94,538 possible transcripts, Cyrillic rejections
   drop from 9,388 to 49 (the rest are Ekavian forms such as *млеко*).
 - Speaking: plural entries such as *brat → braća* also count when only the plural is
-  said; the singular alone still does not (all 26 entries checked).
+  said, as long as it sounds exactly like the plural (*Pa braća* and *braća braća* are
+  fine); a merely similar word (*brava* for *braća*, *doći* for *noći*) or a sentence
+  with the plural in it does not count, and the singular alone still does not (all 26
+  entries checked).
 - Speaking: tapping the microphone right after "Vorsprechen" stops the recording
   first, so the recognizer no longer hears the speaker together with the learner; the
   task stays valid. In the browser, a recognition that ends without a result and

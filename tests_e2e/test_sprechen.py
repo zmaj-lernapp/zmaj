@@ -26,6 +26,10 @@ und zur Handysprache, und eine kyrillische Abschrift war immer falsch.
 - Ajdins Entscheidung 3: Ueberspringen nach einem gescheiterten Versuch kostet die
   Tagesaufgabe "ohne Fehler" nicht mehr.
 
+Nachbesserung nach der Pruefung (16.11.2026): Die Mehrzahl allein gilt nur genau
+gleich ("brava" war richtig fuer "braća"), zusammengeschrieben zaehlt nicht ("nana"
+war richtig fuer "na"), und hat bs-BA einmal geliefert, bleibt es bei bs-BA.
+
 Der Erkenner ist nachgebaut: Er schreibt jeden Aufruf mit und antwortet nach Plan.
 Der echte Android-Erkenner laeuft nur am Handy.
 """
@@ -222,10 +226,30 @@ def test_ein_wort_aus_dem_satz_gibt_kein_bravo(mit_erkenner):
     ("да", "Da"),
     ("џезва", "džezva"),
     ("љубав", "ljubav"),
+    ("коњ", "konj"),
+    ("ђак", "đak"),
+    ("жена", "žena"),
+    ("чај", "čaj"),
+    ("шума", "šuma"),
+    ("цијена", "cijena"),
+    ("сестра", "sestra"),
 ])
 def test_kyrillisch_zaehlt_beim_sprechen(seite, heute_stand, gehoert, ziel):
     seite.starten(stand=heute_stand())
     assert seite.js("([g, z]) => klingtWie(g, z)", [gehoert, ziel]) is True
+    assert seite.fehler == []
+
+
+def test_kyrillisch_jeder_buchstabe_des_serbischen_alphabets(seite, heute_stand):
+    """lautlich() macht aus ž, č, ć, š und đ ohnehin z, c, s und d - ein Tippfehler in
+    der Tabelle (etwa 'ж': 'z') fiele bei klingtWie() nicht auf. Darum hier die
+    Umschrift selbst, alle 30 Buchstaben, gross und klein."""
+    seite.starten(stand=heute_stand())
+    kyr = "АБВГДЂЕЖЗИЈКЛЉМНЊОПРСТЋУФХЦЧЏШ"
+    lat = "abvgdđežzijklljmnnjoprstćufhcčdžš"
+    assert seite.js("(s) => kyrillischLatein(s)", kyr) == lat
+    assert seite.js("(s) => kyrillischLatein(s)", kyr.lower()) == lat
+    assert seite.js("(s) => kyrillischLatein(s)", "Laku noć, 5!") == "Laku noć, 5!"   # Latein bleibt, wie es ist
     assert seite.fehler == []
 
 
@@ -254,7 +278,9 @@ def test_kyrillische_abschrift_in_der_aufgabe(mit_erkenner):
     ("da eto", "Da", True),
     ("Ćao ćao", "Ćao", True),
     ("Hmm, da.", "Da", True),
-    ("dada", "Da", True),               # zusammengeschrieben
+    ("dada", "Da", False),              # zusammengeschrieben: ein Wort, nicht genau gleich
+    ("nana", "na", False),              # "nana" (Oma) ist selbst ein Wort der App
+    ("Nana", "na", False),
     ("ko", "Ko?", True),
     ("pa", "pas", False),               # ein Buchstabe weniger: frueher richtig
     ("sir", "sin", False),
@@ -311,11 +337,36 @@ def test_pfeil_eintraege_mehrzahl_allein_ja_einzahl_allein_nein(seite, heute_sta
     assert seite.fehler == []
 
 
+@pytest.mark.parametrize("gehoert, eintrag, soll", [
+    ("braća", "brat → braća", True),
+    ("Pa braća", "brat → braća", True),             # Fuellwort davor
+    ("braća braća", "brat → braća", True),          # Wiederholung
+    ("kuče", "kuća → kuće", True),                  # č und ć gelten weiter gleich
+    ("дјеца", "dijete → djeca", True),              # Kyrillisch wie ueberall beim Sprechen
+    ("brat braća", "brat → braća", True),           # beide Woerter, wie bisher
+    # Nur aehnlich ist nicht genau: das waren fremde Woerter der App
+    ("brava", "brat → braća", False),
+    ("brada", "brat → braća", False),
+    ("doći", "noć → noći", False),
+    ("dati", "dan → dani", False),
+    ("mene", "žena → žene", False),
+    ("odjeća", "dijete → djeca", False),
+    ("On posjeduje tri kuće.", "kuća → kuće", False),   # ein Satz mit der Mehrzahl darin
+    ("Pa brat", "brat → braća", False),             # die Einzahl allein weiter nicht
+])
+def test_pfeil_eintraege_mehrzahl_allein_nur_genau_gleich(seite, heute_stand, gehoert, eintrag, soll):
+    seite.starten(stand=heute_stand())
+    assert seite.js("([g, bs]) => passtGesprochen(g, bs)", [gehoert, eintrag]) is soll
+    assert seite.fehler == []
+
+
 def test_braca_in_der_aufgabe(mit_erkenner):
     seite = mit_erkenner
     seite.js(AUFGABE, "brat → braća")
     z = _tippen(seite, ["brat"])
     assert z["ergebnisse"] == [], z
+    z = _tippen(seite, ["brava"])
+    assert z["ergebnisse"] == [] and "brava" in z["gehoert"], z
     z = _tippen(seite, ["braća"])
     assert z["ergebnisse"] == [True], z
     assert seite.fehler == []
@@ -389,6 +440,24 @@ def test_andere_ablehnung_nimmt_im_selben_tipp_hr(mit_erkenner, meldung):
     seite.js(AUFGABE, "Hvala")
     z = _tippen(seite, ["hvala"])
     assert z["aufrufe"] == ["hr-HR"] and z["ergebnisse"] == [True], z
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("meldung", ["Didn't understand, please try again.", "error from server"])
+def test_hat_bs_geliefert_wird_hr_nur_ausweichsprache(mit_erkenner, meldung):
+    """Ein einzelnes voruebergehendes Nein von bs-BA, nachdem bs-BA schon geliefert
+    hat: hr-HR hilft im selben Tipp aus, der naechste Tipp beginnt wieder mit bs-BA.
+    Vorher blieb die ganze restliche Sitzung bei hr-HR ("Tko" fuer "Ko?")."""
+    seite = mit_erkenner
+    seite.js(AUFGABE, "Hvala")
+    assert _tippen(seite, ["hvala"])["aufrufe"] == ["bs-BA"]
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, meldung, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA", "hr-HR"] and z["ergebnisse"] == [True], z
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA"] and z["ergebnisse"] == [True], z
+    assert seite.js("() => sprechSprache") == "bs-BA"
     assert seite.fehler == []
 
 
@@ -583,4 +652,36 @@ def test_ueberspringen_im_browser_nach_fehlversuch(mit_browser):
     seite.page.wait_for_timeout(200)
     e = seite.js(UEBERSPRINGEN_UND_ENDE)
     assert e["per"] == 1 and e["skipped"] == 1, e
+    assert seite.fehler == []
+
+
+# Eine Wiederholen-Runde (rundeStarten, Lx.topf), deren erste Aufgabe dieses Wort
+# sprechen will. Echte Runden haben keine Sprechaufgaben - topfAufgabe() macht aus
+# 'speak' 'mcrev' -, hier wird eine eingesetzt, damit topfEnde() und das Lx aus
+# rundeStarten() mitgeprueft sind, falls sie einmal dazukommen.
+RUNDE = r"""
+(bs) => {
+  const f = CATEGORIES.flatMap(c => c.words.map(w => ({w, c}))).find(x => x.w.bs === bs);
+  if(!f) throw new Error('kein Wort ' + bs);
+  topf = {}; topf['w:' + f.w.id] = {typ: 'mc', n: 0, z: 1000};
+  homeMode = 'topf'; showHome(); startTopf();
+  const mc = Lx.queue.find(a => a.typ === 'mc');
+  if(!Lx.topf || !mc) throw new Error('keine Runde');
+  Lx.queue = [{typ: 'speak', w: f.w}, mc]; Lx.i = 0; Lx.results = []; Lx.total = 2;
+  showLessonTask();
+  if(window.__hoerer) window.__hoerer.aufrufe.length = 0;
+  return {topf: Lx.topf, skipNachFehler: Lx.skipNachFehler};
+}
+"""
+
+
+@pytest.mark.parametrize("plan, per", [(["No match"], 1), ([["kruh"]], 1), (None, 0)])
+def test_ueberspringen_in_der_runde_wie_in_der_lektion(mit_erkenner, plan, per):
+    seite = mit_erkenner
+    assert seite.js(RUNDE, "Hvala") == {"topf": True, "skipNachFehler": 0}
+    if plan is not None:
+        _tippen(seite, *plan)
+    e = seite.js(UEBERSPRINGEN_UND_ENDE)
+    assert e == {"per": per, "skipped": 1, "ergebnisse": ["skip", True]}, e
+    assert seite.js("() => !!document.querySelector('#lBody .result-big') && Lx.topf") is True
     assert seite.fehler == []

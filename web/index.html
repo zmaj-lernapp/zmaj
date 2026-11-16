@@ -4733,19 +4733,20 @@ const kyrillischLatein = s => String(s).replace(/[\u0400-\u04FF]/g, c => {
    Wort selbst aber nur genau gleich, sonst ginge "Pa dva" fuer "Da" durch.
    "Ko je" fuer "Ko?" bleibt falsch, "je" ist kein Fuellwort. Ab vier
    Lauten bleibt alles wie bisher. Die Fuellwoerter stehen schon so da, wie
-   lautlich() sie schreibt ("Hmm" wird "hm", "OK" wird "ok"). */
+   lautlich() sie schreibt ("Hmm" wird "hm", "OK" wird "ok").
+   Zusammengeschrieben zaehlt nicht: "dada" ist EIN gehoertes Wort, und es
+   klingt nicht genau wie "da". Bis zur Nachbesserung am 16.11.2026 galt es,
+   und dann waren die App-Woerter "nana" (Oma) richtig fuer "na" und "jaja"
+   (Eier) fuer "Ja". */
 const FUELLWOERTER = new Set(['pa', 'eto', 'evo', 'ovaj', 'hm', 'aha', 'ok']);
-function kurzGenau(gehoert, ziel, z){
+function wortGenau(gehoert, ziel){
   const woerter = s => String(s).split(/\s+/).map(x => lautlich(x)).filter(Boolean);
   const zw = woerter(ziel);
   // Ein Fuellwort, das selbst zum Ziel gehoert ("Evo"), bleibt stehen.
   const gw = woerter(gehoert).filter(x => !FUELLWOERTER.has(x) || zw.includes(x));
   if(!gw.length || !zw.length) return false;
-  // Das Ziel ein- oder mehrmals, Wort fuer Wort
-  if(gw.length % zw.length === 0 && gw.every((x, i) => x === zw[i % zw.length])) return true;
-  // oder zusammengeschrieben, wie ein Erkenner es manchmal tut ("dada")
-  const zus = gw.join('');
-  return zus.length % z.length === 0 && zus === z.repeat(zus.length / z.length);
+  // Das Ziel ein- oder mehrmals, Wort fuer Wort und jedes genau gleich
+  return gw.length % zw.length === 0 && gw.every((x, i) => x === zw[i % zw.length]);
 }
 /* Passt das Gehoerte zum Zielwort? */
 function klingtWie(gehoert, ziel){
@@ -4760,7 +4761,7 @@ function klingtWie(gehoert, ziel){
   const g = lautlich(gehoert), z = lautlich(zielOhne);
   if(!g || !z) return false;
   if(g === z) return true;
-  if(z.length <= 3) return kurzGenau(gehoert, zielOhne, z);   // siehe FUELLWOERTER (16.11.2026)
+  if(z.length <= 3) return wortGenau(gehoert, zielOhne);   // siehe FUELLWOERTER (16.11.2026)
   // Enthalten zaehlt nur bei genug Buchstaben, sonst passt "da" ueberallhin
   const kurz = Math.min(g.length, z.length);
   /* Mehr gesagt als das Ziel ist in Ordnung. Weniger nur, wenn fast alles da ist:
@@ -4774,16 +4775,22 @@ function klingtWie(gehoert, ziel){
    Pfeil-Eintraege im Level "Mehrzahl" ("brat → braća", 26 Stueck, 16.11.2026,
    Analyse Punkt 8): Bis dahin zaehlten sie nur, wenn beide Woerter gesagt
    wurden, "braća" allein war falsch. Jetzt gilt auch die Mehrzahl allein, die
-   Einzahl allein weiter nicht. Weil sich die beiden oft nur in einem Laut
-   unterscheiden ("kuća → kuće"), muss das Gehoerte der Mehrzahl naeher sein
-   als der Einzahl - sonst ginge "kuća" ueber die Aehnlichkeit mit "kuće" durch. */
+   Einzahl allein weiter nicht.
+   Die Mehrzahl allein nur GENAU gleich, wie ein sehr kurzes Ziel (wortGenau()),
+   mit Wiederholungen und Fuellwoertern: "braća", "kuče", "Pa braća". Zuerst
+   lief sie durch klingtWie() mit seiner Aehnlichkeit, und dann galten fremde
+   Woerter: "brava" fuer braća, "doći" fuer noći, "dati" fuer dani, "mene" fuer
+   žene, dazu jeder Satz mit der Mehrzahl darin ("On posjeduje tri kuće.") -
+   194 fremde Woerter und Saetze der App in 19 der 26 Eintraege (Pruefung vom
+   16.11.2026).
+   Bei vier Lauten widersprach das Ajdins Entscheidung (keine neue
+   Aehnlichkeit). Genau gleich kann die Einzahl nie sein, ein Vergleich mit
+   ihr ist nicht mehr noetig. */
 function passtGesprochen(gehoert, bs){
   return String(bs).split(' / ').some(form => {
     if(klingtWie(gehoert, form)) return true;          // beide Woerter zusammen, wie bisher
     const pfeil = form.split(' → ');
-    if(pfeil.length !== 2 || !klingtWie(gehoert, pfeil[1])) return false;
-    const g = lautlich(kyrillischLatein(gehoert));
-    return abstand(g, lautlich(pfeil[1])) < abstand(g, lautlich(pfeil[0]));
+    return pfeil.length === 2 && wortGenau(kyrillischLatein(gehoert), pfeil[1]);
   });
 }
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -8548,10 +8555,12 @@ async function hoerenPruefen(){
      Sprache nach SPRECH_NOCHMAL_MS, dann die Meldung.
    - "Network error", "Network timeout": sofort die Offline-Meldung.
    Die Sprache, die etwas geliefert hat, gilt fuer die ganze Sitzung, ebenso
-   hr-HR, wenn bs-BA "fehlt". Scheitern alle Sprachen SPRECH_DIENST_GRENZE
-   Tipps in Folge an Sprach- oder Dienstfehlern, faellt das Sprechen fuer
-   diese Sitzung aus (canSpeak), ohne mikroAbsageMerken(): beim naechsten
-   Start wird neu versucht. Und jeder Start hat eine Zeitgrenze
+   hr-HR, wenn bs-BA "fehlt". Hat aber bs-BA einmal geliefert, bleibt es bei
+   bs-BA: liefert spaeter hr-HR, weil bs-BA einmal abgelehnt hat, war hr-HR
+   nur die Ausweichsprache in diesem Tipp. Scheitern alle Sprachen
+   SPRECH_DIENST_GRENZE Tipps in Folge an Sprach- oder Dienstfehlern, faellt
+   das Sprechen fuer diese Sitzung aus (canSpeak), ohne mikroAbsageMerken():
+   beim naechsten Start wird neu versucht. Und jeder Start hat eine Zeitgrenze
    (sprechStart()). Gilt nur fuer Android - das iPhone (ZmajSprache) und der
    Browser behalten ihren Weg, siehe sprechAufIOS(). */
 const SPRECH_SPRACHEN = ['bs-BA', 'hr-HR'];
@@ -13715,7 +13724,13 @@ function renderTask(task, body, done, opts={}){
         if(erg && erg.zeitAus) return {art: 'zeit'};
         if(!art){
           if(erg && Array.isArray(erg.matches) && erg.matches.length){
-            sprechSprache = sprache; sprechGeliefert.add(sprache); sprechFehlt.delete(sprache);
+            /* Nicht von bs-BA weg, wenn bs-BA schon geliefert hat: ein einzelnes
+               "error from server" oder "Didn't understand" (darunter meldet das
+               Plugin auch Androids Fehler 10 und 11) schickte sonst den Rest der
+               Sitzung zu hr-HR, und hr-HR schreibt laut Analyse "Tko" und "Što"
+               (Pruefung vom 16.11.2026). */
+            if(sprache === SPRECH_SPRACHEN[0] || !sprechGeliefert.has(SPRECH_SPRACHEN[0])) sprechSprache = sprache;
+            sprechGeliefert.add(sprache); sprechFehlt.delete(sprache);
             sprechStill = 0; sprechDienstAus = 0;
           }
           return {erg};
