@@ -383,6 +383,13 @@ are in the Play Store listing. Format:
   conversation. All eight languages, with and without an account, dated
   14.11.2026. A clarification, so no "terms changed" note.
   `tests/test_nutzungsbedingungen_s30.py`.
+- Privacy policy, ads (review for 1.4, S23, the maintainer on 15.11.2026: yes):
+  besides the advertising ID, Google's ad component also collects the app set ID,
+  according to Google's data disclosure for AdMob. The sentence on what Google
+  receives now names it, "the app set ID (an identifier that only applies to the
+  apps of one developer)", in all eight languages, with and without an account;
+  dated 16.11.2026. The website (`seite_bauen.py`) takes the same text.
+  `tests/test_datenschutz_s23.py`.
 - Family level (13.11.2026, approved by the maintainer): *stričević* now counts
   as correct when typed next to *amidžić*, and *stričevka* next to *amidžična*,
   through `"auch"` like the pet names *striko* and *adžo*. IDs, display and
