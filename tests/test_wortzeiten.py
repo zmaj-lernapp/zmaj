@@ -250,6 +250,9 @@ def test_nur_geschichten_spricht_keine_woerter(tmp_path, monkeypatch):
     posten = [{"art": "geschichte", "key": ton_bauen.schluessel(alt), "text": alt},
               {"art": "geschichte", "key": ton_bauen.schluessel(neu), "text": neu},
               {"art": "wort", "key": "veliki", "text": "veliki"}]
+    # Ohne das echte ton_nur_emir.json: dort steht veliki seit dem 16.11.2026 (Emir,
+    # Woerter der B1-Lesetexte), und grosser_lauf() liesse es dann zu Recht aus.
+    monkeypatch.setattr(ton_bauen, "NUR_EMIR", str(tmp_path / "ton_nur_emir.json"))
     toene, gerufen = _lauf(tmp_path, monkeypatch, dict(eintrag), posten, nur_geschichten=True)
     assert gerufen == [ton_bauen.sprechtext(neu)]
     assert sorted(toene) == ["g01.mp3", "g02.mp3"]

@@ -15,6 +15,9 @@ Emir, nicht Azure (seit 23.10.2026), und wann, entscheidet Ajdin. Bis dahin
 lassen die Ton-Tests genau diese Wörter durch, tests/test_offen_lesetexte.py
 meldet jedes, das inzwischen Ton hat. Die Wörter der Pakete 1 und 2 stehen in
 tests/offen_lesetexte.json. Sind beide Mengen leer, kann diese Datei weg.
+Bis zum 16.11.2026 standen hier die acht Texte von b1_doktor bis b1_zmaj. Seitdem
+spricht Emir alle Wörter der 20 B1-Lesetexte (ton_nur_emir.json, w9049 bis w9871,
+Offen-Liste 6a, tests/test_geschichtenwoerter_ton.py), WOERTER ist leer.
 
 WORTZEITEN_NEU (14.11.2026, Offen-Liste, Punkt 3): Geschichten, die ihren Ton
 haben und behalten, deren Wortzeiten "w" aber zu einem alten Text gehören.
@@ -29,8 +32,7 @@ in der Aufnahme g10, die Wortzeiten passen wieder. Die Liste ist leer.
 
 GESCHICHTEN = frozenset()
 
-WOERTER = frozenset({"b1_doktor", "b1_selidba", "b1_rodjendan", "b1_utakmica",
-                     "b1_zanat", "b1_kahva", "b1_mejl", "b1_zmaj"})
+WOERTER = frozenset()
 
 WORTZEITEN_NEU = frozenset()
 

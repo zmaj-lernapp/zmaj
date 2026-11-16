@@ -282,7 +282,8 @@ def test_v13a_woerterbuch(alle_daten):
 def test_v13a_ton(wurzel):
     """b1_struja hat seit dem 16.11.2026 Ton, gesprochen mit "plinski šporet"
     (Offen-Liste 6). šporet hat seine Aufnahme schon (Vokabel "Herd"), plinski
-    steht nur in diesem Text und wartet in tests/offen_lesetexte.json auf Emir."""
+    steht nur in diesem Text und wartete in tests/offen_lesetexte.json auf Emir.
+    Seit dem Abend des 16.11.2026 spricht Emir es (w9426, Offen-Liste 6a)."""
     import io
     import json
     import os
@@ -297,7 +298,8 @@ def test_v13a_ton(wurzel):
     assert "plinski šporet" in e["text"] and "štednjak" not in e["text"]
     assert ton_bauen.schluessel(g["text"]) not in offen_lesetexte.GESCHICHTEN
     assert "štednjak" not in offen_lesetexte.TON and "šporet" not in offen_lesetexte.TON
-    assert "plinski" in offen_lesetexte.TON
+    assert "plinski" not in offen_lesetexte.TON and "plinski" not in toene
+    assert ton_bauen.nur_emir()["plinski"] == {"key": "plinski", "datei": "w9426.mp3", "text": "plinski"}
 
 
 # ---------------------------------------------------------------------------
@@ -642,7 +644,9 @@ def test_f10_woerterbuch(alle_daten):
 def test_f10_ton(wurzel):
     """Neuer Text, neuer Ton-Schluessel: Vesna hat "Dedo i nana se sele" am
     16.11.2026 gesprochen (g25, Offen-Liste 6). Die Geschichte wartet nicht
-    mehr, nur ihre neuen Woerter warten in tests/offen_b1_teil2.py auf Emir."""
+    mehr, ihre neuen Woerter warteten in tests/offen_b1_teil2.py auf Emir. Seit
+    dem Abend des 16.11.2026 spricht er sie (Offen-Liste 6a), auch kombiju und
+    zimnice aus dem neuen Text."""
     import io
     import json
     import os
@@ -651,7 +655,9 @@ def test_f10_ton(wurzel):
     import offen_b1_teil2
     import ton_bauen
     assert "b1_selidba" not in offen_b1_teil2.GESCHICHTEN
-    assert "b1_selidba" in offen_b1_teil2.WOERTER
+    assert "b1_selidba" not in offen_b1_teil2.WOERTER
+    emir = ton_bauen.nur_emir()
+    assert all(9049 <= int(emir[k]["datei"][1:5]) <= 9871 for k in ("kombiju", "zimnice"))
     g = next(s for s in geschichten.GESCHICHTEN if s["id"] == "b1_selidba")
     toene = {e["key"]: e for e in json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"),
                                                     encoding="utf-8"))["toene"]}

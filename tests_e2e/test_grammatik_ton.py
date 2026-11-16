@@ -8,13 +8,15 @@ hat die Aufnahmen von Emir nicht, sie liegen nur in der Huelle. Die Tests tragen
 Eintraege aus ton_nur_emir.json deshalb selbst in AUDIO ein, wie app_bauen.emir_drueber()
 es fuer die App tut, und schreiben mit, welche Datei abgespielt wuerde (wie
 tests_e2e/test_zahlen.py). Daten und Nummern prueft tests/test_grammatik_ton.py.
+Dahinter stehen seit dem 16.11.2026 die Woerter der B1-Lesetexte (w9049 bis w9871,
+tests_e2e/test_geschichtenwoerter_ton.py).
 """
 import io
 import json
 import os
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ERSTE = 8956
+ERSTE, LETZTE = 8956, 9048
 
 
 def _emir():
@@ -72,7 +74,7 @@ def test_jede_bosnische_antwort_findet_ihre_aufnahme(seite, heute_stand):
     bosnisch = [u for u in vorher if u["bs"]]
     assert len(vorher) == 175 and len(bosnisch) == 172, (len(vorher), len(bosnisch))
     assert sorted(u["richtig"] for u in vorher if not u["bs"]) == ["männlich (on)", "sächlich (ono)", "weiblich (ona)"]
-    neu = {d for d in emir.values() if int(d[1:5]) >= ERSTE}
+    neu = {d for d in emir.values() if ERSTE <= int(d[1:5]) <= LETZTE}
     assert not [u for u in vorher if u["datei"] in neu]                 # die Demo kennt sie nicht
     assert len([u for u in bosnisch if not u["datei"]]) >= 94
     seite.js(VORBEREITEN, [[k, d] for k, d in emir.items()])
@@ -96,5 +98,5 @@ def test_nach_der_antwort_spricht_emir(seite, heute_stand):
                                                     ("bratom", "bratom"), ("Ko", "ko"), ("plačem", "plačem")]):
         r = seite.js(ANTWORTEN, [lektion, richtig])
         assert r == {"ok": True, "datei": emir[key], "lang": "bs"}, (richtig, r)
-        assert int(emir[key][1:5]) >= ERSTE, (richtig, emir[key])
+        assert ERSTE <= int(emir[key][1:5]) <= LETZTE, (richtig, emir[key])
     assert seite.fehler == []

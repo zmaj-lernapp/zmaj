@@ -14,6 +14,8 @@ w9048 in ton_nur_emir.json, in der Reihenfolge der Liste
 (Stimme_Emir_neu\\nachbesserung_2026-11-15_grammatik\\nummern.json). web/audio/index.json
 bleibt, die Web-Demo bleibt bei diesen Antworten still. ton_bauen.sammle() kennt sie
 (letzter Block), damit ton_pruefen.py eine kuenftige Antwort ohne Ton meldet.
+Dahinter stehen seit dem 16.11.2026 die Woerter der B1-Lesetexte (w9049 bis w9871,
+tests/test_geschichtenwoerter_ton.py); hier zaehlt nur der Bereich bis w9048.
 """
 import hashlib
 import io
@@ -69,7 +71,7 @@ def _antworten(grammatik):
 
 def _neu():
     import ton_bauen
-    return sorted((e for e in ton_bauen.nur_emir().values() if _nummer(e["datei"]) >= ERSTE),
+    return sorted((e for e in ton_bauen.nur_emir().values() if ERSTE <= _nummer(e["datei"]) <= LETZTE),
                   key=lambda e: e["datei"])
 
 
