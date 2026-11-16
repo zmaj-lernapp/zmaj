@@ -12641,10 +12641,17 @@ function showStory(){
   const tokens = s.text.split(/([^\p{L}\p{M}'’-]+)/u);
   html += '<h3>'+esc(s.titel)+'</h3><div class="txt">'+tokens.map(x=> /[\p{L}\p{M}]/u.test(x) ? '<span class="w">'+esc(x)+'</span>' : esc(x)).join('')+'</div>';
   html += '<div class="bubble empty" id="rBubble" hidden></div>';
+  /* "Vorlesen", Stopp und die Tempo-Leiste nur, wenn es die Geschichte als
+     Aufnahme gibt (Pruefbericht 1.4, V1; Offen-Liste 6, 16.11.2026). Die
+     App-Huelle hat keine Computerstimme: bei den B1-Texten ohne Aufnahme
+     stand der Knopf da, und ein Tipp darauf tat nichts. Seit dem 16.11.2026
+     hat jede Geschichte ihre Aufnahme; das hier faengt die naechste ab, die
+     vor ihrem Ton in die App kommt. Am PC gilt dasselbe, auch mit Stimme. */
+  const mitTon = !!audioDatei(s.text);
   html += '<div class="row"><button class="btn ghost" id="rTrans">'+t('gesch.zeigen')+'</button>'+
-          '<button class="btn again" id="rListen">'+mitSymbol('lautsprecher', t('gesch.vorlesen'))+'</button>'+
-          '<button class="btn ghost" id="rStop" style="flex:0 0 54px" aria-label="'+esc(nurWort(t('gesch.stopp')))+'" hidden>'+zeichen('stopp')+'</button></div>';
-  html += '<div class="tempo" id="rTempo"></div>';
+          (mitTon ? '<button class="btn again" id="rListen">'+mitSymbol('lautsprecher', t('gesch.vorlesen'))+'</button>'+
+          '<button class="btn ghost" id="rStop" style="flex:0 0 54px" aria-label="'+esc(nurWort(t('gesch.stopp')))+'" hidden>'+zeichen('stopp')+'</button>' : '')+'</div>';
+  if(mitTon) html += '<div class="tempo" id="rTempo"></div>';
   html += '<div class="trans" id="rTransText" hidden>'+esc(s.uebersetzung||'')+'</div>';
   html += '<div class="fragenblock" id="rQ"></div>';
   $('rBody').innerHTML = html;
@@ -12707,7 +12714,8 @@ function showStory(){
        dann kommt kein stilleBitte(), nur dieser Rueckruf. (20.10.2026) */
     mitlesenAus();
   };
-  knopfVor.addEventListener('click',()=>{
+  // Ohne Aufnahme gibt es beide Knoepfe nicht (mitTon oben, 16.11.2026)
+  if(mitTon) knopfVor.addEventListener('click',()=>{
     if(pausiert){                      // angehalten -> an derselben Stelle weiter
       if(tonWeiter()){ knopfVor.innerHTML = zeichen('pause') + ' ' + esc(t('gesch.pause')); knopfVor.classList.add('laeuft'); wachHalten(true); }
       return;
@@ -12751,8 +12759,8 @@ function showStory(){
   });
   /* Der kleine Knopf bricht wirklich ab - dann ist auch die gemerkte
      Stelle hinfaellig, sonst spraenge der naechste Start mittenhinein. */
-  knopfStop.addEventListener('click', ()=>{ geschichteStelle = null; stilleBitte(); });
-  tempoLeiste('rTempo', true);
+  if(mitTon) knopfStop.addEventListener('click', ()=>{ geschichteStelle = null; stilleBitte(); });
+  tempoLeiste('rTempo', true);   // ohne Aufnahme gibt es #rTempo nicht, dann tut sie nichts
   showStoryQ(s, 0, 0);
 }
 function showStoryQ(s, qi, right){

@@ -531,6 +531,12 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Reading stories (review for 1.4, V1; 16.11.2026): "Vorlesen", its stop button and
+  the speed bar appear only when the story has a recording. The Android shell has no
+  computer voice, so the button stood under the B1 stories that had no audio yet and
+  did nothing when tapped. Every story has its recording now; the check catches the
+  next one that comes into the app before its audio, on the PC as well.
+  `tests_e2e/test_vorlesen_nur_mit_ton.py`.
 - Typing (review for 1.4, 14.11.2026, V3): four correct answers no longer cost a
   heart. *Kad dolaziš?* and *Kad ćeš doći?* count next to *Kada …*, *Kada se ženiš?*
   next to *Kad se ženiš?* (as single words *kad* and *kada* already did), *Zdravo* in
