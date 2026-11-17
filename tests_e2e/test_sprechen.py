@@ -30,6 +30,12 @@ Nachbesserung nach der Pruefung (16.11.2026): Die Mehrzahl allein gilt nur genau
 gleich ("brava" war richtig fuer "braća"), zusammengeschrieben zaehlt nicht ("nana"
 war richtig fuer "na"), und hat bs-BA einmal geliefert, bleibt es bei bs-BA.
 
+Ajdins Antworten vom 16.11.2026 (Fragen, Abschnitt 11), nur beim Sprechen: "Tko" gilt
+fuer "Ko", "Što" fuer "Šta" (als Wort und im Satz), "Ćau" und "Ciao" fuer "Ćao", und
+"e", "ee", "eee" sowie "Okay", "Okej", "Okey" sind Fuellwoerter wie "ok". Dazu
+(17.11.2026): Faellt das Sprechen fuer die Sitzung aus, nimmt die Seite die restlichen
+Sprechaufgaben aus der laufenden Lektion.
+
 Der Erkenner ist nachgebaut: Er schreibt jeden Aufruf mit und antwortet nach Plan.
 Der echte Android-Erkenner laeuft nur am Handy.
 """
@@ -314,6 +320,108 @@ def test_pa_da_in_der_aufgabe(mit_erkenner):
     z = _tippen(seite, ["dva", "pa"])
     assert z["ergebnisse"] == [] and "dva" in z["gehoert"], z
     z = _tippen(seite, ["Pa da"])
+    assert z["ergebnisse"] == [True], z
+    assert seite.fehler == []
+
+
+# --------------- Fragen 11.1 bis 11.3 (17.11.2026): Schreibweise des Erkenners ---
+
+# [gehoert, ziel, soll]. Ein Lauf, eine Seite: passtGesprochen() wie in bewerte().
+NEUE_REGELN = [
+    # 11.1: "Tko" fuer "Ko", "Što" fuer "Šta", als Wort und im Satz
+    ["Tko", "Ko?", True],
+    ["tko?", "Ko?", True],
+    ["TKO", "Ko?", True],
+    ["Tko je to?", "Ko je to?", True],
+    ["Što", "Šta?", True],
+    ["ŠTO?", "Šta?", True],
+    ["Što je to?", "Šta je to?", True],
+    ["Eee tko", "Ko?", True],
+    ["тко", "Ko?", True],                  # erst Kyrillisch in Latein, dann die Schreibweise
+    ["што", "Šta?", True],
+    ["sto", "Šta?", False],                # sto (hundert) wird nie zu šta
+    ["Sto", "Šta?", False],
+    ["100", "Šta?", False],
+    ["Šta", "sto", False],
+    ["šta", "sto", False],
+    ["sto", "sto", True],
+    ["zašto", "Šta?", False],              # nur ganze Woerter
+    ["nešto", "Šta?", False],
+    ["zašto", "zašto", True],
+    ["nešto", "nešto", True],
+    ["Tko", "to", False],
+    ["Što", "stan", False],                # nur, wo das Ziel "šta" hat
+    ["Što", "staž", False],
+    ["Šta", "što", False],                 # das App-Wort "što" (dass) nimmt "Šta" nicht
+    ["što", "što", True],
+    ["sto", "što", True],                  # Haekchen zaehlen weiter nicht
+    ["Drago mi je što smo se upoznali", "Drago mi je što smo se upoznali", True],
+    # 11.3: "Ćau" und "Ciao" fuer "Ćao"
+    ["Ćau", "Ćao", True],
+    ["ćau", "Ćao", True],
+    ["čau", "Ćao", True],
+    ["Cau", "Ćao", True],
+    ["Ciao", "Ćao", True],
+    ["CIAO", "Ćao", True],
+    ["cao", "Ćao", True],
+    ["Ćau ćau", "Ćao", True],
+    ["Ciao ciao", "Ćao", True],
+    ["Ćau", "Da", False],
+    ["Ciao", "čaj", False],
+    # 11.2: "e", "ee", "eee" und "Okay", "Okej", "Okey" wie "ok"
+    ["Eee da", "Da", True],
+    ["E da", "Da", True],
+    ["eeeee, da", "Da", True],
+    ["Da eee", "Da", True],
+    ["Okej da", "Da", True],
+    ["Okay da", "Da", True],
+    ["okey, da", "Da", True],
+    ["Eee ne", "Ne", True],
+    ["Eee braća", "brat → braća", True],
+    ["Okej psi", "pas → psi", True],
+    ["e", "Da", False],                    # nur Fuellwoerter: es bleibt nichts
+    ["Eee", "Da", False],
+    ["e e", "Da", False],
+    ["Okej", "Da", False],
+    ["okej ne", "Da", False],
+    ["e dva", "Da", False],                # das Wort selbst weiter nur genau gleich
+    ["eh da", "Da", False],                # "eh" ist kein Fuellwort
+    ["je da", "Da", False],
+    ["e", "E", True],                      # ein Ziel "E": das Zoegern selbst gilt
+    ["ee", "E", True],
+    ["Eee", "E", True],
+    ["Eee da", "E", False],
+]
+
+
+def test_erkenner_schreibweise_und_neue_fuellwoerter(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    falsch = seite.js("(liste) => liste.filter(([g, z, soll]) => passtGesprochen(g, z) !== soll)", NEUE_REGELN)
+    assert falsch == [], falsch
+    assert seite.fehler == []
+
+
+def test_neue_regeln_gelten_nicht_beim_tippen(seite, heute_stand):
+    seite.starten(stand=heute_stand())
+    e = seite.js("""() => [['Tko', 'Ko?'], ['Što', 'Šta?'], ['Ciao', 'Ćao'], ['Ćau', 'Ćao'], ['Eee da', 'Da'],
+                           ['Okej da', 'Da']].map(([g, z]) => [g, z, matches(g, z)])""")
+    assert all(r != "ok" for _, _, r in e), e
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("ziel, falsch, richtig", [
+    ("Ko?", "Ko je", "Tko"),
+    ("Šta?", "sto", "Što"),
+    ("Ćao", "čaj", "Ćau ćau"),
+    ("Da", "e", "Eee da"),
+    ("Da", "Okej", "Okej da"),
+])
+def test_neue_regeln_in_der_aufgabe(mit_erkenner, ziel, falsch, richtig):
+    seite = mit_erkenner
+    seite.js(AUFGABE, ziel)
+    z = _tippen(seite, [falsch])
+    assert z["ergebnisse"] == [] and z["i"] == 0, z
+    z = _tippen(seite, [richtig])
     assert z["ergebnisse"] == [True], z
     assert seite.fehler == []
 
@@ -684,4 +792,77 @@ def test_ueberspringen_in_der_runde_wie_in_der_lektion(mit_erkenner, plan, per):
     e = seite.js(UEBERSPRINGEN_UND_ENDE)
     assert e == {"per": per, "skipped": 1, "ergebnisse": ["skip", True]}, e
     assert seite.js("() => !!document.querySelector('#lBody .result-big') && Lx.topf") is True
+    assert seite.fehler == []
+
+
+# ----------- 17.11.2026: Sprechen faellt fuer die Sitzung aus, laufende Lektion ---
+
+# Eine Lektion mit diesen Sprechaufgaben und danach einer Auswahl zum ersten Wort. ab:
+# so viele Aufgaben sind schon richtig beantwortet, die naechste ist dran.
+AUFGABEN = r"""
+([liste, ab]) => {
+  const finde = bs => {
+    const f = CATEGORIES.flatMap(c => c.words.map(w => ({w, c}))).find(x => x.w.bs === bs);
+    if(!f) throw new Error('kein Wort ' + bs);
+    return f;
+  };
+  const erstes = finde(liste[0]);
+  catIdx = CATEGORIES.indexOf(erstes.c); openLevel(catIdx); buildLesson();
+  Lx.queue = [...liste.map(bs => ({typ: 'speak', w: finde(bs).w})), {typ: 'mc', w: erstes.w}];
+  Lx.i = ab; Lx.results = Array(ab).fill(true); Lx.right = ab;
+  document.getElementById('levelHome').style.display = 'none';
+  document.getElementById('lesson').style.display = 'block';
+  nurHerz(true); showLessonTask();
+  if(window.__hoerer) window.__hoerer.aufrufe.length = 0;
+}
+"""
+
+# n Sprechaufgaben ueberspringen, die Auswahl richtig beantworten, Lektion beenden.
+UEBERSPRINGEN_N_UND_ENDE = r"""
+(n) => {
+  for(let k = 0; k < n; k++) document.querySelector('#lBody #xSkip').click();
+  const richtig = [...document.querySelectorAll('#lBody .opt')].find(b => b.textContent === 'Hvala');
+  richtig.click();
+  lessonEnd();
+  return {per: (tagwerk[today()] || {}).per || 0, skipped: Lx.skipped, ergebnisse: Lx.results.slice()};
+}
+"""
+
+STAND_LEKTION = """() => ({an: canSpeak, typen: Lx.queue.map(a => a.typ), woerter: Lx.queue.map(a => a.w.bs), i: Lx.i,
+                           punkte: document.querySelectorAll('#lBar i').length, gemerkt: localStorage.getItem(MIKRO_NEIN)})"""
+
+
+@pytest.mark.parametrize("meldung", ["Didn't understand, please try again.", "error from server"])
+def test_sprechen_aus_nimmt_die_restlichen_sprechaufgaben_aus_der_lektion(mit_erkenner, meldung):
+    """Bis zum 17.11.2026 standen sie weiter da und liessen sich nur ueberspringen, und
+    Ueberspringen ohne eigenen Versuch kostete "ohne Fehler". Die Aufgabe davor und die,
+    an der es gerade gescheitert ist, bleiben."""
+    seite = mit_erkenner
+    seite.js(AUFGABEN, [["Hvala", "Da", "Ne"], 1])
+    _tippen(seite, meldung, meldung)
+    e = seite.js(STAND_LEKTION)
+    assert e["an"] is True and e["typen"] == ["speak", "speak", "speak", "mc"], e   # einmal ist noch kein Muster
+    _tippen(seite, meldung, meldung)
+    e = seite.js(STAND_LEKTION)
+    assert e == {"an": False, "typen": ["speak", "speak", "mc"], "woerter": ["Hvala", "Da", "Hvala"], "i": 1,
+                 "punkte": 3, "gemerkt": None}, e
+    e = seite.js(UEBERSPRINGEN_N_UND_ENDE, 1)
+    assert e == {"per": 1, "skipped": 1, "ergebnisse": [True, "skip", True]}, e
+    assert seite.fehler == []
+
+
+def test_abgelehntes_mikrofon_laesst_die_sprechaufgaben_stehen(mit_erkenner):
+    """Beim abgelehnten Mikrofon bleibt es, wie es war: Sprechaufgaben fallen erst ab der
+    naechsten Lektion weg, und Ueberspringen ohne Versuch kostet "ohne Fehler"."""
+    seite = mit_erkenner
+    seite.js(AUFGABEN, [["Hvala", "Da"], 0])
+    seite.js("""() => { const H = window.Capacitor.Plugins.SpeechRecognition;
+        H.checkPermissions = async () => ({speechRecognition: 'denied'});
+        H.requestPermissions = async () => ({speechRecognition: 'denied'}); }""")
+    z = _tippen(seite)
+    assert z["gehoert"] == _t(seite, "task.mikro_blockiert") and z["aufrufe"] == [], z
+    e = seite.js(STAND_LEKTION)
+    assert e["an"] is False and e["typen"] == ["speak", "speak", "mc"] and e["gemerkt"] == "1", e
+    e = seite.js(UEBERSPRINGEN_N_UND_ENDE, 2)
+    assert e == {"per": 0, "skipped": 2, "ergebnisse": ["skip", "skip", True]}, e
     assert seite.fehler == []
