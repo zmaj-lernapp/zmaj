@@ -127,7 +127,10 @@ ENGLISCH = {
 # nach der anderen (tests/test_lesetexte_ab.py), zuletzt "Izgubljeni telefon"
 # hinter "Dedo i nana se sele" (S7), am 16.11.2026 "Kolege su ljubazni" in pismo
 # (Fragen 16.11.2026, 5; 6c0f1e61… davor): Die Summe hängt auch an der Reihenfolge.
-TEXTE_SHA256 = "eea63ba62bde0aea667aecb2716c6b43dd9331bc8fb6afb1517f4eb0d4096f4a"
+# Seit dem 17.11.2026 stehen die Geschichten Stufe für Stufe (REIHENFOLGE in
+# geschichten.py, Offen-Liste 7), kein Text ist geändert: in der Folge bis dahin
+# (GESCH_ALTE_FOLGE) ergeben dieselben Texte weiter eea63ba6… von davor.
+TEXTE_SHA256 = "ecdd0513c8a7772a12af6f0f99b59166020759eb1d12a0a5d874c6cd59aa5bec"
 
 
 def _geschichten(daten):
@@ -575,13 +578,16 @@ def test_f10_text_wie_angenommen(grunddaten):
 
 
 def test_f10_id_und_platz_bleiben(grunddaten):
-    """Die id bleibt b1_selidba, so bleibt der Lesestand. Auch der Platz in der
-    Kette bleibt: hinter b1_doktor. Seit dem 15.11.2026 folgt ihr "Izgubljeni
-    telefon" (Ajdin, A/B-Liste S7), davor war es b1_rodjendan
-    (tests/test_lesetexte_ab.py)."""
+    """Die id bleibt b1_selidba, so bleibt der Lesestand. Der Platz in der Kette
+    war hinter b1_doktor, seit dem 15.11.2026 gefolgt von "Izgubljeni telefon"
+    (Ajdin, A/B-Liste S7). Seit dem 17.11.2026 stehen die Geschichten nach
+    Schwierigkeit (REIHENFOLGE in geschichten.py, Offen-Liste 7): weiter hinter
+    b1_doktor, jetzt zwischen b1_telefon und b1_zanat
+    (tests/test_geschichten_stufen.py)."""
     ids = [g["id"] for g in grunddaten["geschichten"]]
     i = ids.index("b1_selidba")
-    assert ids[i - 1:i + 2] == ["b1_doktor", "b1_selidba", "b1_telefon"]
+    assert ids[i - 1:i + 2] == ["b1_telefon", "b1_selidba", "b1_zanat"]
+    assert ids.index("b1_doktor") < i
 
 
 def test_f10_uebersetzung_und_fragen(alle_daten):

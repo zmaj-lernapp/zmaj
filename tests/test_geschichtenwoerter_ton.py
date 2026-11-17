@@ -17,6 +17,12 @@ w9871 in ton_nur_emir.json, in der Reihenfolge von ton_bauen.sammle()
 deshalb die erste Nummer. web/audio/index.json bleibt, die Web-Demo bleibt bei diesen
 Woertern still. tests/offen_lesetexte.json "woerter" und WOERTER in tests/offen_b1_teil2.py
 sind seitdem leer. Im Browser: tests_e2e/test_geschichtenwoerter_ton.py.
+
+Seit dem 17.11.2026 stehen die Geschichten Stufe fuer Stufe (REIHENFOLGE in
+geschichten.py, Offen-Liste 7), und "Razgovor za posao" hat auch die Stufe B1. Die 20
+B1-Lesetexte sind darum die mit "b1_" vorn, und sammle() bringt die Woerter in einer
+anderen Folge. Die Nummern bleiben (ton_bauen.py vergibt nur neue); verglichen wird mit
+sammle() in der Folge vom 16.11.2026 (ALTE_FOLGE in tests/test_geschichten_stufen.py).
 """
 import hashlib
 import io
@@ -55,8 +61,8 @@ def _neu():
 def _b1_woerter():
     import geschichten
     import ton_bauen
-    b1 = [g for g in geschichten.GESCHICHTEN if g.get("stufe") == "B1"]
-    assert len(b1) == 20, [g["id"] for g in b1]
+    b1 = [g for g in geschichten.GESCHICHTEN if g["id"].startswith("b1_")]
+    assert len(b1) == 20 and all(g["stufe"] == "B1" for g in b1), [g["id"] for g in b1]
     return {ton_bauen.schluessel(w) for g in b1 for w in ton_bauen.textwoerter(g["text"])}
 
 
@@ -77,7 +83,26 @@ def test_a_jedes_wort_der_b1_texte_hat_ton(wurzel):
     assert still <= _b1_woerter()
 
 
-def test_b_nummern_lueckenlos_in_der_reihenfolge_von_sammle():
+def _sammle_wie_am_16_11(monkeypatch):
+    """sammle() mit den Geschichten in der Folge vom 16.11.2026, als die Nummern
+    vergeben wurden."""
+    import ton_bauen
+    from test_geschichten_stufen import ALTE_FOLGE
+    echt = ton_bauen._modul
+
+    def modul(name):
+        m = echt(name)
+        if name == "geschichten":
+            m.GESCHICHTEN.sort(key=lambda g: ALTE_FOLGE.index(g["id"]))
+        return m
+
+    monkeypatch.setattr(ton_bauen, "_modul", modul)
+    posten = ton_bauen.sammle()
+    monkeypatch.setattr(ton_bauen, "_modul", echt)
+    return posten
+
+
+def test_b_nummern_lueckenlos_in_der_reihenfolge_von_sammle(monkeypatch):
     import ton_bauen
     neu = _neu()
     assert [e["datei"] for e in neu] == ["w%04d.mp3" % n for n in range(ERSTE, LETZTE + 1)]
@@ -86,9 +111,13 @@ def test_b_nummern_lueckenlos_in_der_reihenfolge_von_sammle():
     # Die letzten Nummern ueberhaupt
     assert max(_nummer(e["datei"]) for e in ton_bauen.nur_emir().values()) == LETZTE
     # sammle() kennt alle als Wort aus einer Geschichte, mit demselben Text, und die Nummern
-    # folgen seiner Reihenfolge.
-    posten = [p for p in ton_bauen.sammle() if p["key"] in {e["key"] for e in neu}]
+    # folgen seiner Reihenfolge vom 16.11.2026. Heute bringt sammle() dieselben Woerter,
+    # nur steht ein Wort vielleicht zuerst gross in einer anderen Geschichte ("Boli").
+    posten = [p for p in _sammle_wie_am_16_11(monkeypatch) if p["key"] in {e["key"] for e in neu}]
     assert [p["key"] for p in posten] == [e["key"] for e in neu]
+    heute = [p for p in ton_bauen.sammle() if p["key"] in {e["key"] for e in neu}]
+    assert (sorted((p["key"], p["text"].lower(), p["art"]) for p in heute)
+            == sorted((p["key"], p["text"].lower(), p["art"]) for p in posten))
     assert all(p["art"] == "wort" for p in posten)
     assert [p["text"] for p in posten] == [e["text"] for e in neu]
     assert neu[0] == {"key": "ljubazni", "datei": "w9049.mp3", "text": "ljubazni"}

@@ -148,18 +148,23 @@ def test_neue_fassung_und_uebersetzung(seite, heute_stand, sprache, spalte):
     assert seite.fehler == []
 
 
-def test_s7_telefon_kommt_nach_doktor_und_selidba(seite, heute_stand):
-    """"Izgubljeni telefon" steht hinter "Kod doktora" und "Dedo i nana se
-    sele" und wird frei, sobald "Dedo i nana se sele" gelesen ist."""
+def test_s7_telefon_kommt_nach_doktor(seite, heute_stand):
+    """"Izgubljeni telefon" steht hinter "Kod doktora" (S7). Bis zum 17.11.2026 auch
+    hinter "Dedo i nana se sele"; seitdem stehen die B1-Texte von leicht nach schwer,
+    und das Telefon kommt nach "Dijaspora prvi put u Sarajevu", vor "Dedo i nana se
+    sele". Frei wird es, sobald die davor gelesen ist - oder, wie vorher, "Dedo i
+    nana se sele" (GESCH_ALTE_FOLGE in storyUnlocked)."""
     seite.starten(stand=heute_stand())
     r = seite.js("""() => {
       const ids = STORIES.map(s => s.id), i = ids.indexOf('b1_telefon');
       const vorher = storyUnlocked(i);
-      read.add('b1_selidba');
-      return {nachbarn: ids.slice(i - 3, i + 2), vorher: vorher, nachher: storyUnlocked(i),
-              danach: storyUnlocked(i + 1)}; }""")
-    assert r["nachbarn"] == ["b1_stan", "b1_doktor", "b1_selidba", "b1_telefon", "b1_rodjendan"], r
-    assert r["vorher"] is False and r["nachher"] is True and r["danach"] is False, r
+      read.add('b1_dijaspora');
+      const neu = [storyUnlocked(i), storyUnlocked(i + 1)];
+      read.clear(); read.add('b1_selidba');
+      return {nachbarn: ids.slice(i - 3, i + 2), doktor: ids.indexOf('b1_doktor') < i, vorher: vorher,
+              neu: neu, alt: storyUnlocked(i)}; }""")
+    assert r["nachbarn"] == ["b1_pita", "b1_kahva", "b1_dijaspora", "b1_telefon", "b1_selidba"], r
+    assert r["doktor"] and r["vorher"] is False and r["neu"] == [True, False] and r["alt"] is True, r
     assert seite.fehler == []
 
 
