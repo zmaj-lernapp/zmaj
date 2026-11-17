@@ -2161,6 +2161,10 @@
   .loesung .lbs{display:block; font-family:var(--font-display); font-weight:600;
     font-size:16px; color:var(--primary); line-height:1.35}
   .loesung .lde{display:block; margin-top:2px; font-size:13.5px; color:var(--muted); font-weight:600}
+  /* "Auch richtig:" ueber der Hauptform (17.11.2026, Offen-Liste 7): steht oben
+     als Loesung eine andere richtige Form ("Richtig waere: Mnogo hvala"), sagt
+     diese Zeile, dass die Hauptform darunter genauso gilt. Klein wie .tempo .tlabel. */
+  .loesung .lauch{display:block; margin-bottom:1px; font-size:12px; font-weight:800; color:var(--muted)}
 
   /* Tempo des Vorlesens. Steht unter dem Vorlese-Knopf der Geschichte und
      noch einmal in den Einstellungen; beide zeigen denselben Wert. */
@@ -5056,6 +5060,42 @@ function fastGleich(a, g){
 function gemeinteAntwort(guess, answer){
   const g = String(guess || '').trim(), alts = String(answer || '').split(' / ');
   return alts.find(a => fastGleich(a, g)) || alts[0];
+}
+/* Welche richtige Antwort einer FALSCHEN Eingabe am naechsten liegt - fuer
+   "Richtig waere: {wort}" (17.11.2026, Offen-Liste 7). Ajdin beim Handytest:
+   "ich wollte extra falsch machen damit ich sehe ob man auch sieht was bei
+   der version die man geschrieben hat falsch ist er zeigt leider nur die
+   normale form an". Wer bei "Vielen Dank" zweimal "Mnogo hvla" tippte, las
+   "Richtig waere: Hvala puno" und erfuhr nicht, dass bei "Mnogo hvala" nur
+   ein a fehlte. Jetzt steht dort "Mnogo hvala", und die Loesung darunter
+   zeigt mit "Auch richtig:" die Hauptform (loesung() in renderTask).
+   answer wie bei matches(), mit " / " getrennt - dieselben Antworten, die
+   dort als richtig gelten (Hauptform, auch, auch_var, gleich uebersetzte).
+   haupt ist, was bisher dastand: w.bs bzw. s.answer.
+   Gemessen wird abstand() (Levenshtein) auf den Formen von clean(), wie bei
+   fastGleich() und fastRichtig(): Gross/klein, Haekchen, Satzzeichen am
+   Ende, Komma und Bindestrich zaehlen nicht, Ziffern auch ausgeschrieben.
+   Bei gleichem Abstand gewinnt die frueher genannte Antwort, zuerst also
+   die Hauptform. Es bleibt bei haupt,
+   - wenn die naechste Antwort ein Teil von haupt ist ("vrlo" aus
+     "vrlo / veoma" - die getippte Form steht dann schon mit da);
+   - wenn die Eingabe keiner Antwort nahe ist: mehr als die Haelfte der
+     Buchstaben der naechsten Antwort anders ("ne znam", ein ganz anderes
+     Wort). Dann waere jede Form geraten, und es steht wie bisher die
+     Hauptform da.
+   Was als richtig, fast richtig oder falsch zaehlt, aendert sich dadurch
+   nicht - nur, welche Form als Loesung dasteht. */
+function naechsteAntwort(guess, answer, haupt){
+  const g = String(guess || '').trim();
+  if(!g) return haupt;
+  const cg = clean(g), zg = clean(zahlenAusschreiben(g));
+  let beste = null, bester = Infinity;
+  String(answer || '').split(' / ').forEach(a => {
+    const d = Math.min(abstand(clean(a), cg), abstand(clean(zahlenAusschreiben(a)), zg));
+    if(d < bester){ bester = d; beste = a; }
+  });
+  if(beste === null || 2 * bester > clean(beste).length) return haupt;
+  return String(haupt).split(' / ').includes(beste) ? haupt : beste;
 }
 
 /* ---------- Fast richtig: erst ein Hinweis, nicht gleich falsch ----------
@@ -13580,13 +13620,20 @@ function renderTask(task, body, done, opts={}){
      konnte man eine Auswahlaufgabe richtig lösen, ohne je zu erfahren, was
      das Wort bedeutet - und bei den Höraufgaben stand überhaupt nichts
      Übersetztes auf dem Bildschirm. Ajdin am 18.09.2026. */
-  const loesung = (bs, de)=>{
+  /* auch (17.11.2026, Offen-Liste 7): oben steht als Loesung eine andere
+     richtige Form als bs (naechsteAntwort(), gemeinteAntwort()). Dann kommt
+     ueber bs klein "Auch richtig:" - sonst stuenden zwei verschiedene
+     Loesungen ohne Erklaerung untereinander. Gesprochen wird weiter bs. */
+  const loesung = (bs, de, auch)=>{
     const feld = $$('xFb');
     if(!feld || !bs || body.querySelector('.loesung')) return;
     feld.insertAdjacentHTML('afterend',
-      '<div class="loesung"><span class="lbs" lang="bs">'+esc(bs)+'</span>'+
+      '<div class="loesung">'+(auch ? '<span class="lauch">'+esc(t('task.auch_richtig'))+'</span>' : '')+
+      '<span class="lbs" lang="bs">'+esc(bs)+'</span>'+
       (de ? '<span class="lde">'+esc(de)+'</span>' : '')+'</div>');
   };
+  /* Ist gezeigt eine andere Form als die Hauptform haupt (" / " getrennt)? */
+  const andereForm = (gezeigt, haupt)=> !String(haupt).split(' / ').includes(gezeigt);
   /* Der Hinweis "Fast richtig!" (24.10.2026, siehe fastRichtig()) fuer die
      Schreibaufgabe und den Lueckensatz - in Lektion, Wiederholen, Level-Test
      und Einstufung, die alle hier durchgehen. Einmal je Aufgabe. Er steht
@@ -13691,9 +13738,13 @@ function renderTask(task, body, done, opts={}){
       const pruefKnopf = $$('xCheck');
       if(pruefKnopf && pruefKnopf.parentElement) pruefKnopf.parentElement.hidden = true;
       const ok = r==='ok' || r==='almost';
+      /* Falsch: die richtige Form, die dem Getippten am naechsten liegt, nicht
+         immer w.bs (naechsteAntwort(), 17.11.2026). Ist es eine andere, sagt
+         die Loesung darunter "Auch richtig:" zu w.bs. */
+      const gezeigt = r==='ok' ? w.bs : r==='almost' ? gemeinteAntwort(inp.value, auchOk) : naechsteAntwort(inp.value, auchOk, w.bs);
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
-      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', r==='almost' ? gemeinteAntwort(inp.value, auchOk) : w.bs);
-      loesung(w.bs, w.de);
+      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', gezeigt);
+      loesung(w.bs, w.de, andereForm(gezeigt, w.bs));
       sound(ok?'ok':'no'); spaeterSprechen(w.bs, nachAntwort(ok), ok); done({ok});
     };
     inp.addEventListener('keydown',e=>{ if(e.key==='Enter' && !e.repeat) check(); });   // festgehalten ist kein zweiter Versuch
@@ -13985,9 +14036,11 @@ function renderTask(task, body, done, opts={}){
       const pruefKnopf = $$('xCheck');
       if(pruefKnopf && pruefKnopf.parentElement) pruefKnopf.parentElement.hidden = true;
       const ok = r==='ok' || r==='almost';
+      // Wie in der Schreibaufgabe (17.11.2026): die naechste richtige Form.
+      const gezeigt = r==='ok' ? s.answer : r==='almost' ? gemeinteAntwort(inp.value, antworten) : naechsteAntwort(inp.value, antworten, s.answer);
       if(r==='ok') rueckmeldung('ok', 'task.richtig');
-      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', r==='almost' ? gemeinteAntwort(inp.value, antworten) : s.answer);
-      loesung(s.text.replace('___', s.answer), s.de);
+      else rueckmeldung(r==='almost' ? 'almost' : 'no', r==='almost' ? 'task.fast' : 'task.falsch', gezeigt);
+      loesung(s.text.replace('___', s.answer), s.de, andereForm(gezeigt, s.answer));
       sound(ok?'ok':'no');
       /* Erst jetzt den FERTIGEN Satz sprechen - vorher waere die Loesung
          verraten. Gehoert wird der Satz mit eingesetztem Wort, nicht der

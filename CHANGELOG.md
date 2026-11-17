@@ -1166,6 +1166,20 @@ are in the Play Store listing. Format:
 - Typing "Vielen Dank": *Mnogo hvala* counts as well, next to *Puno hvala*, *Hvala
   mnogo* and *Hvala lijepa* (decided by the maintainer on 17.11.2026 after feedback
   through the form). `tests/test_varianten.py`.
+- Typing: after a wrong answer, "Richtig wäre:" names the correct form closest to
+  what was typed, not always the main form. Typing "Mnogo hvla" twice for "Vielen
+  Dank" showed *Hvala puno*, so nobody saw what was wrong with their *Mnogo hvala*
+  (found by the maintainer on the phone on 17.11.2026). Now the answer is *Mnogo
+  hvala*, and the solution box below says "Auch richtig:" above *Hvala puno*. The
+  distance is measured after the same normalisation as the comparison (case,
+  diacritics, final punctuation, comma and hyphen); on a tie the main form wins,
+  and an input close to no form (more than half of it different) still shows the
+  main form. The same in cloze sentences and in the level test and placement test;
+  "Mit Sonderzeichen" gets the "Auch richtig:" line as well when it names another
+  form. What counts as right, almost right or wrong, the hearts and the recording
+  played afterwards (the main form, as in the box) stay as they were. New text
+  `task.auch_richtig` in all eight languages. `tests_e2e/test_tipp_rueckmeldung.py`,
+  `tests/test_tipp_rueckmeldung.py`.
 
 ### Changed
 - Full version: the settings row and the purchase box also name what Zmaj
