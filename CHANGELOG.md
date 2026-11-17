@@ -437,6 +437,18 @@ are in the Play Store listing. Format:
   apps of one developer)", in all eight languages, with and without an account;
   dated 16.11.2026. The website (`seite_bauen.py`) takes the same text.
   `tests/test_datenschutz_s23.py`.
+- Privacy policy, section 3, "How often" (with an account only; approved by
+  the maintainer on 17.11.2026): it said the app reads the account at most
+  once a day on start and writes at most once a day on leaving, which no
+  longer matched the cloud check on every opening. It now says that on
+  opening the app briefly checks whether the account holds more recent
+  progress, for example from another device, and loads it only then, and
+  that it writes the progress at most twice a day, after learning and on
+  leaving, plus once on signing in and once on signing out. All eight
+  languages; the date of the policy stays and is set to the release day
+  before the upload. The README and `FIREBASE_EINRICHTEN.md` (section 13:
+  up to two writes per device and day, reads now the tighter Spark limit at
+  about 5,000 daily active users) follow. `tests/test_datenschutz_wie_oft.py`.
 - Family level (13.11.2026, approved by the maintainer): *stričević* now counts
   as correct when typed next to *amidžić*, and *stričevka* next to *amidžična*,
   through `"auch"` like the pet names *striko* and *adžo*. IDs, display and
