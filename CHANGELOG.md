@@ -347,19 +347,32 @@ are in the Play Store listing. Format:
   (maintainer's decision, 16.11.2026). Until now one letter could differ, so *pa*
   counted for *pas*, *sir* for *sin*, *na* for *ne* and *dva*, *dan* or *pa* for *Da*.
   In return, repetitions and the filler words *pa, eto, evo, ovaj, hm, aha, ok* around
-  the word are fine: *Pa da*, *Da da* and *Ćao ćao* count, *Pa dva*, *Ne znam* for
-  *Ne* and *Ko je* for *Ko?* do not, and neither does the word written together
-  (*dada*), which would let *nana* count for *na* and *jaja* for *Ja*. Targets of four
-  sounds or more are unchanged. Of 559 short single-word targets, 498 accepted another
-  word of the app before and 313 now (none of them with three sounds or fewer); wrong
-  short words that pass in the test corpus drop from 453 of 555 to 0. Short words that
-  a recognizer writes slightly differently (*Ciao* for *Ćao*, *Tko* for *Ko*) are now
-  rejected.
+  the word are fine, and so are the hesitation *e / ee / eee* and *okay / okej /
+  okey* (maintainer's decision, 16.11.2026): *Pa da*, *Da da*, *Ćao ćao*, *Eee da* and
+  *Okej da* count, *e* alone, *Pa dva*, *Ne znam* for *Ne* and *Ko je* for *Ko?* do
+  not, and neither does the word written together (*dada*), which would let *nana*
+  count for *na* and *jaja* for *Ja*. Targets of four sounds or more are unchanged.
+  Of 559 short single-word targets, 498 accepted another word of the app before and
+  314 now (of those with three sounds or fewer only *Šta?*, which takes *što*, see
+  below); wrong short words that pass in the test corpus drop from 453 of 555 to 0.
+- Speaking: the way the Croatian recognizer writes a few short words now counts for
+  the app's form (maintainer's decision, 16.11.2026): *Tko* for *Ko*, *Što* for *Šta*,
+  *Ćau*, *Čau* and *Ciao* for *Ćao*, as a word and in sentences (*Tko je to?* for
+  *Ko je to?*, *Ćau ćau* for *Ćao*). Only whole words of what was heard are rewritten,
+  and only where the target has the app's form and not the recognizer's own, so
+  *sto* (hundred) never becomes *šta*, *zašto* and *nešto* stay as they are, and the
+  app's word *što* ("that") does not take *Šta*. Typing is unchanged. In the test
+  corpus no correct transcript is newly rejected; no other word of the app newly
+  passes for a target of four to eight sounds (9.27 million pairs).
 - Skipping a speaking task after a failed try in that task (a recognizer error, the
   time limit or a result judged wrong) no longer costs the daily task "without
   mistakes" (maintainer's decision, 16.11.2026). Skipping without trying counts as
   before, and statistics, the result screen and reviews still count every skip. No new
-  field in the saved progress.
+  field in the saved progress. When speaking is switched off for the session because
+  every language keeps failing on Android, the speaking tasks still ahead in the
+  running lesson are taken out at once instead of only from the next lesson on, so
+  they no longer have to be skipped (17.11.2026); a refused microphone stays as it
+  was.
 - Browser tests no longer hand `mailto:` links to the operating system
   (16.11.2026). With the installed Chrome on Windows every feedback,
   withdrawal or recommend test opened a Windows "Choose an app" window,

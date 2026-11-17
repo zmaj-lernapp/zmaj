@@ -4722,6 +4722,39 @@ const kyrillischLatein = s => String(s).replace(/[\u0400-\u04FF]/g, c => {
   const l = KYRILLISCH[c.toLowerCase()];
   return l === undefined ? c : l;
 });
+/* ---- Wie ein Erkenner kurze Woerter schreibt (17.11.2026) ----
+   Seit sehr kurze Ziele nur noch genau gleich gelten (siehe FUELLWOERTER),
+   fiel durch, was der kroatische Erkenner anders schreibt als die App: "Tko"
+   fuer "Ko", "Što" fuer "Šta", dazu "Ćau" und "Ciao" fuer "Ćao". Ajdin am
+   16.11.2026: beim Sprechen zaehlen sie, als Woerter und in Saetzen ("Tko je
+   to?" fuer "Ko je to?"). Getippt bleibt es, wie es ist (matches()), "auch"-
+   Formen gibt es dafuer nicht.
+   Umgeschrieben wird nur das Gehoerte, nur ganze Woerter ("zašto", "nešto"
+   bleiben), und nur dort, wo das Ziel die Form der App enthaelt: "Što" wird
+   "šta", wenn im Ziel "šta" steht - und nicht selbst "što". Und zwar vor
+   zahlWert() und lautlich(), solange die Haekchen noch dastehen: lautlich()
+   macht aus "što" und "sto" (hundert) dasselbe, und zahlWert() liest "Što" als
+   100. So wird "sto" nie zu "šta", und "sto" gilt weiter nicht fuer "Šta?",
+   "Šta" nicht fuer "sto".
+   Zuerst wurde auf beiden Seiten und ueberall umgeschrieben. Dann galt aber
+   auch "Šta" fuer das App-Wort "što" (dass), ein einzelnes "Što" fuer "stan",
+   "usta", "star", "stav" und "staž" (ueber "šta", einen Buchstaben daneben),
+   und "sto", "schto" und "shto" galten nicht mehr fuer "što" (Messung vom
+   17.11.2026). Dass "Što" fuer "sto" zaehlt, bleibt, wie es war: die Haekchen
+   zaehlen beim Sprechen nicht.
+   "čao" und "cao" braucht es hier nicht, lautlich() macht sie ohnehin zu
+   "Ćao"; "cau" ist "Ćau" ohne Haekchen. */
+const ERKENNER_SCHREIBWEISE = {'tko': 'ko', 'što': 'šta', 'ćau': 'ćao', 'čau': 'ćao', 'cau': 'ćao', 'ciao': 'ćao'};
+function schreibweiseAngleichen(gehoert, ziel){
+  const klein = w => w.normalize('NFC').toLowerCase();
+  let zw = null;   // die Woerter des Ziels, erst wenn es sie braucht
+  return String(gehoert).replace(/[\p{L}\p{M}]+/gu, w => {
+    const k = klein(w), n = ERKENNER_SCHREIBWEISE[k];
+    if(n === undefined) return w;
+    if(!zw) zw = new Set((String(ziel).match(/[\p{L}\p{M}]+/gu) || []).map(klein));
+    return zw.has(n) && !zw.has(k) ? n : w;
+  });
+}
 /* ---- Sehr kurze Ziele (16.11.2026) ----
    Ziele mit hoechstens drei Lauten (so gezaehlt, wie lautlich() zaehlt)
    gelten nur noch GENAU gleich. Bis dahin durfte ein Buchstabe abweichen,
@@ -4737,8 +4770,14 @@ const kyrillischLatein = s => String(s).replace(/[\u0400-\u04FF]/g, c => {
    Zusammengeschrieben zaehlt nicht: "dada" ist EIN gehoertes Wort, und es
    klingt nicht genau wie "da". Bis zur Nachbesserung am 16.11.2026 galt es,
    und dann waren die App-Woerter "nana" (Oma) richtig fuer "na" und "jaja"
-   (Eier) fuer "Ja". */
-const FUELLWOERTER = new Set(['pa', 'eto', 'evo', 'ovaj', 'hm', 'aha', 'ok']);
+   (Eier) fuer "Ja".
+   Seit dem 17.11.2026 auch das Zoegern "e", "ee", "eee" (lautlich() macht
+   jedes Wort nur aus e zu "e") und "Okay", "Okej", "Okey" wie "ok" (lautlich():
+   "okaj", "okej") - Ajdin am 16.11.2026, "Eee da" und "Okej da" fuer "Da".
+   "e" allein fuer "Da" bleibt falsch: ohne die Fuellwoerter bleibt nichts.
+   Waere "E" (Ausruf) einmal selbst ein Ziel - heute ist es keins -, gaelte
+   dort das Zoegern: ein Fuellwort im Ziel zaehlt mit (siehe unten). */
+const FUELLWOERTER = new Set(['pa', 'eto', 'evo', 'ovaj', 'hm', 'aha', 'ok', 'e', 'okaj', 'okej']);
 function wortGenau(gehoert, ziel){
   const woerter = s => String(s).split(/\s+/).map(x => lautlich(x)).filter(Boolean);
   const zw = woerter(ziel);
@@ -4750,7 +4789,8 @@ function wortGenau(gehoert, ziel){
 }
 /* Passt das Gehoerte zum Zielwort? */
 function klingtWie(gehoert, ziel){
-  gehoert = kyrillischLatein(gehoert); ziel = kyrillischLatein(ziel);   // siehe KYRILLISCH (16.11.2026)
+  ziel = kyrillischLatein(ziel);   // siehe KYRILLISCH (16.11.2026) und ERKENNER_SCHREIBWEISE (17.11.2026)
+  gehoert = schreibweiseAngleichen(kyrillischLatein(gehoert), ziel);
   /* Sind beide Seiten eine Zahl, wird gerechnet - dann gilt "5" fuer "pet"
      und "2" auch fuer die weibliche Form "dvije". */
   const zg = zahlWert(gehoert), zz = zahlWert(ziel);
@@ -4790,7 +4830,7 @@ function passtGesprochen(gehoert, bs){
   return String(bs).split(' / ').some(form => {
     if(klingtWie(gehoert, form)) return true;          // beide Woerter zusammen, wie bisher
     const pfeil = form.split(' → ');
-    return pfeil.length === 2 && wortGenau(kyrillischLatein(gehoert), pfeil[1]);
+    return pfeil.length === 2 && wortGenau(schreibweiseAngleichen(kyrillischLatein(gehoert), pfeil[1]), pfeil[1]);
   });
 }
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -13770,8 +13810,9 @@ function renderTask(task, body, done, opts={}){
          in Folge: Sprechaufgaben fallen ab der naechsten Lektion aus, wie bei
          abgelehntem Mikrofon - aber nur fuer diese Sitzung, ohne
          mikroAbsageMerken(). So bleibt die Tagesaufgabe "ohne Fehler"
-         erreichbar. */
-      if(++sprechDienstAus >= SPRECH_DIENST_GRENZE) canSpeak = false;
+         erreichbar. Seit dem 17.11.2026 auch in der laufenden Lektion, siehe
+         sprechAufgabenRaus(). */
+      if(++sprechDienstAus >= SPRECH_DIENST_GRENZE){ canSpeak = false; sprechAufgabenRaus(); }
       return {art};
     };
     mic.addEventListener('click', async ()=>{
@@ -14806,6 +14847,26 @@ function ohneLebenVerlassen(){
    Sprechaufgabe). Lx.skipped selbst bleibt, wie es war: Statistik,
    Ergebnis und Wiederholung zaehlen jedes Ueberspringen. */
 const ohneUebersprungen = () => Lx.skipped - (Lx.skipNachFehler || 0) === 0;
+/* Faellt das Sprechen fuer die Sitzung aus, weil auf Android jede Sprache
+   wiederholt an Sprach- oder Dienstfehlern scheitert (hoereAndroid(),
+   SPRECH_DIENST_GRENZE), kam bis zum 17.11.2026 erst ab der naechsten Lektion
+   keine Sprechaufgabe mehr. In der laufenden blieben die uebrigen stehen und
+   liessen sich nur ueberspringen, und Ueberspringen ohne eigenen Versuch
+   kostete die Tagesaufgabe "ohne Fehler". Jetzt nimmt die Seite die noch
+   kommenden Sprechaufgaben aus der Lektion: ihr Wort hat in dieser Lektion
+   dann keine Aufgabe, wie nach dem Ueberspringen, nur ohne Tipp und ohne
+   Ueberspringen-Zaehler. Die Aufgabe, an der es gerade gescheitert ist, bleibt
+   stehen; ihr Ueberspringen kostet nichts (gescheitert, Lx.skipNachFehler).
+   Nur hier, nicht bei abgelehntem Mikrofon: dort bleibt es, wie es war.
+   Sprechaufgaben gibt es nur in Lektionen (buildLesson()). */
+function sprechAufgabenRaus(){
+  if(!Lx || !Array.isArray(Lx.queue)) return;
+  let raus = 0;
+  for(let i = Lx.queue.length - 1; i > Lx.i; i--){
+    if(Lx.queue[i] && Lx.queue[i].typ === 'speak'){ Lx.queue.splice(i, 1); raus++; }
+  }
+  if(raus && sichtbar('lesson')) lessonBar();
+}
 function lessonEnd(){
   if(Lx && Lx.topf){ topfEnde(); return; }
   stilleBitte(); uhrAus();   // das letzte Wort nicht in den Ergebnisschirm reden lassen
