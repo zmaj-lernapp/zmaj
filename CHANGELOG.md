@@ -571,6 +571,37 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Cloud backup on Android (field test on a phone, 17.11.2026, with the
+  maintainer's approval of "check the cloud on every opening"): progress
+  learned on one phone did not reach the account for three days, and a second
+  device that had already read the account that afternoon showed "your streak
+  is broken" and an old level count until the next day. The app uploaded only
+  when it went to the background, and Android ends an app that is swiped away
+  before those requests finish; it read only once a day. With an account it
+  now works like this:
+  - On every start and every return to the foreground the app checks the
+    account, but only the revision (`rev`, one read of a few hundred bytes).
+    The whole progress is loaded only when another device has written; then it
+    is merged and the start page shows it at once (in the middle of a lesson
+    or story it counts from the next one, as before). At most once every two
+    minutes (`CLOUD_NACHSEHEN_MS`), so switching back and forth costs nothing.
+    Without a cheap check (an adapter without `kennung`, or Firestore refusing
+    the field mask until the next start) it stays at one full read a day.
+  - If the progress changed since the last upload and today's upload on
+    leaving has not arrived, the next start or return uploads it, exactly as
+    leaving would (it then counts as that day's upload).
+  - Right after the result screen of a lesson, review round, test, story or
+    jump test the app also uploads once a day, while it is still in the
+    foreground, so a second device knows about the learning day the same day.
+  - At most two uploads per account and day (plus signing in and out), each
+    only if something changed. Every upload still reads first and merges a
+    foreign revision; signing out, packing (`gepackt1`) and devices with 1.3
+    work as before. Offline or signed out, nothing is shown.
+  - Deleting the account waits for a sync that is still running instead of
+    failing with "that did not work".
+  - `tests_e2e/test_cloud_nachsehen.py`; the Firebase stand-in can now lose a
+    write (`schreib_abbruch`). The source keeps `CLOUD_AN = false`, so the web
+    demo is unchanged.
 - Top bar on the iPhone and in the browser (review of the App Store pictures,
   16.11.2026): the back button stands in the bar there (the iPhone has no back key;
   Android never shows it), and since the profile button was added, "← Learning path"

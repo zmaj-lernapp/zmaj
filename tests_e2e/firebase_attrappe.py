@@ -91,7 +91,10 @@ class Attrappe:
     "Erst einmal weiterlernen" auch bei Fehlern von Firebase).
     kontingent_weg: Firestore beantwortet alles mit 429 RESOURCE_EXHAUSTED,
     wie wenn das Tageskontingent des Projekts aufgebraucht ist
-    (Gegenpruefung 28.10.: Abmelden sagt dann nicht "brauchst Internet")."""
+    (Gegenpruefung 28.10.: Abmelden sagt dann nicht "brauchst Internet").
+    schreib_abbruch (17.11.2026): das Schreiben (PATCH) bricht ab wie in
+    einer App, die Android nach dem Wegwischen beendet - "verloren": es kommt
+    nie an, "angekommen": Firestore hat es, nur die Antwort fehlt."""
 
     def __init__(self):
         self.doks = {}
@@ -110,6 +113,7 @@ class Attrappe:
         self.token_fehler = None
         self.anmelde_fehler = None
         self.kontingent_weg = False
+        self.schreib_abbruch = None
         self.abbruch = False
         self.n = 0
         # Feedback ueber das Formular (01.11.2026). Ohne anonym_neu bleibt
@@ -303,7 +307,11 @@ class Attrappe:
                     felder = {k: v for k, v in felder.items() if k in maske}
                 return antwort(200, {"fields": felder} if felder else {})
             if art == "PATCH":
+                if self.schreib_abbruch == "verloren":
+                    return route.abort()
                 self.doks[uid] = json.loads(request.post_data)["fields"]
+                if self.schreib_abbruch == "angekommen":
+                    return route.abort()
                 return antwort(200, {"fields": self.doks[uid]})
             if art == "DELETE":
                 if self.dok_fehler:

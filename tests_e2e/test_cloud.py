@@ -325,12 +325,15 @@ def test_hoechstens_einmal_am_tag_und_nur_bei_aenderungen(seite, heute_stand):
     assert seite.js(ABGLEICH, "start") == "nichts"          # heute schon gelesen
     assert seite.js(ZAEHLER) == {"anmelden": 1, "laden": 2, "speichern": 2, "loeschen": 0}
 
-    # Tag 2: beim Start nur lesen, geschrieben wird beim Verlassen.
+    # Tag 2: probe:qx2 kam gestern nach dem Schreiben des Tages dazu. Bis
+    # zum 17.11.2026 kam es erst beim Verlassen mit - wurde die App dabei
+    # weggewischt, gar nicht. Jetzt holt der Start es nach, und das ist das
+    # Schreiben des Tages.
     _uhr(seite, tag1 + datetime.timedelta(days=1), 9)
-    assert seite.js(ABGLEICH, "start") == "gelesen"
-    assert seite.js(ABGLEICH, "pause") == "gespeichert"      # probe:qx2 kommt jetzt mit
+    assert seite.js(ABGLEICH, "start") == "gespeichert"      # probe:qx2 kommt jetzt mit
     assert "probe:qx2" in json.loads(seite.js("() => ablage.dok.text"))["stand"]["gewusst"]
-    assert seite.js(ZAEHLER) == {"anmelden": 1, "laden": 4, "speichern": 3, "loeschen": 0}
+    assert seite.js(ABGLEICH, "pause") == "nichts"
+    assert seite.js(ZAEHLER) == {"anmelden": 1, "laden": 3, "speichern": 3, "loeschen": 0}
 
     # Tag 3, nichts gelernt: gelesen ja, geschrieben nein.
     _uhr(seite, tag1 + datetime.timedelta(days=2), 20)
@@ -362,11 +365,12 @@ def test_zweites_geraet_wird_eingearbeitet_weggenommenes_bleibt_weg(seite, heute
 
     # Hier wird der Stern weggenommen. Am naechsten Tag schreibt dieses
     # Geraet drueber - der Stern kommt nicht aus der eigenen Sicherung zurueck.
+    # Seit 17.11.2026 schon beim Start (nachgeholt), nicht erst beim Verlassen.
     _uhr(seite, tag1 + datetime.timedelta(days=1), 10)
     seite.js("() => { stern = {}; }")
-    assert seite.js(ABGLEICH, "start") == "gelesen"
+    assert seite.js(ABGLEICH, "start") == "gespeichert"
     assert seite.js("() => Object.keys(stern)") == []
-    assert seite.js(ABGLEICH, "pause") == "gespeichert"
+    assert seite.js(ABGLEICH, "pause") == "nichts"
     assert json.loads(seite.js("() => ablage.dok.text"))["stand"]["stern"] == {}
 
     # Ein zweites Geraet hat geschrieben: dessen Woerter und Sterne kommen
@@ -434,16 +438,28 @@ def test_firestore_adapter_gegen_attrappe(seite, heute_stand, cloud_html):
     assert "neu:im-hintergrund" in json.loads(attrappe.dok["daten"]["stringValue"])["stand"]["gewusst"]
 
     # Neu geladen ist der Ausweis weg: der Start holt mit dem gemerkten
-    # Erneuerungsschluessel einen neuen und liest - heute schon gelesen,
-    # also gar nichts. Am naechsten Tag dagegen genau eine Leseanfrage.
+    # Erneuerungsschluessel einen neuen und sieht nach. Bis zum 17.11.2026
+    # hiess "heute schon gelesen" gar nichts - und ein anderes Geraet, das
+    # danach schrieb, sah dieses erst am naechsten Tag. Jetzt bei jedem Start,
+    # aber nur rev, und geschrieben wird nichts (heute schon geschrieben).
     attrappe.anfragen.clear()
     seite.js("() => { delete document.hidden; }")
     seite.page.reload()
     seite.bereit()
-    seite.page.wait_for_timeout(500)
-    assert attrappe.anfragen == []
+    for _ in range(200):
+        if len(attrappe.anfragen) >= 2:
+            break
+        seite.page.wait_for_timeout(25)
+    seite.page.wait_for_function("() => !cloudLaeuft")
+    seite.page.wait_for_timeout(300)
+    assert attrappe.anfragen == [
+        ("POST", "securetoken.googleapis.com/v1/token", ""),
+        ("GET", dok_pfad, "Bearer id-2")]
+    assert attrappe.masken[-1] == ["rev"]
+    # Ebenso, wenn zuletzt an einem anderen Tag gelesen wurde.
     # cloudLaeuft haelt den Abgleich auf, den das Verlassen der alten Seite
     # (visibilitychange) sonst noch anstiesse - gezaehlt wird nur der Start.
+    attrappe.anfragen.clear()
     seite.js("""() => { const m = JSON.parse(localStorage.getItem('zmaj_cloud'));
                         m.gelesen = '2026-01-01'; localStorage.setItem('zmaj_cloud', JSON.stringify(m));
                         cloudLaeuft = true; }""")
@@ -778,12 +794,14 @@ def test_geloeschtes_fremdes_feld_kommt_nicht_zurueck(seite, heute_stand):
     seite.js("""() => { const s = JSON.parse(ablage.dok.text);
                         delete s.stand.wdh_v1; s.stand.wdh_v2 = {a: 2};
                         ablage.dok = {text: JSON.stringify(s), rev: 'tablet.3'}; }""")
-    assert seite.js(ABGLEICH, "start") == "zusammengefuehrt"
-    assert seite.js("() => cloudMerker().fremd") == ["wdh_v2"]
-    assert seite.js(ABGLEICH, "pause") == "gespeichert"
+    # aus_datei ist hier neu und noch nicht oben: Seit 17.11.2026 holt der
+    # Start das Schreiben gleich nach, erst zusammengefuehrt, dann geschrieben.
+    assert seite.js(ABGLEICH, "start") == "gespeichert"
+    assert "wdh_v1" not in seite.js("() => standFremd")
     stand = json.loads(seite.js("() => ablage.dok.text"))["stand"]
     assert {k: v for k, v in stand.items() if k not in bekannt} == {"wdh_v2": {"a": 2}, "aus_datei": {"d": 1}}
     assert sorted(seite.js("() => cloudMerker().fremd")) == ["aus_datei", "wdh_v2"]
+    assert seite.js(ABGLEICH, "pause") == "nichts"
     # Rein: ohne cloudVorher (erste Anmeldung) kommt alles von a mit, mit
     # nur das, was die Cloud nie hatte.
     mischen = "([a, b, v]) => Object.keys(standZusammenfuehren(a, b, v)).filter(k => !STAND_FELDER.has(k))"

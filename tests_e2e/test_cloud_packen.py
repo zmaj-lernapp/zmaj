@@ -713,13 +713,21 @@ def test_firestore_gepackt_nach_den_regeln_und_mit_feldmaske(seite, heute_stand,
     assert attrappe.masken[-2:] == [["rev"], None]
 
     # Nimmt Firestore die Feldmaske nicht an, laedt die App wie bisher alles,
-    # statt jeden Abgleich daran scheitern zu lassen.
+    # statt jeden Abgleich daran scheitern zu lassen. Das Zusammenfuehren von
+    # gestern hat den Stand hier veraendert (sortiert), und heute wurde noch
+    # nicht geschrieben: Seit 17.11.2026 schreibt der Start ihn gleich mit.
     _uhr(seite, tag + datetime.timedelta(days=2))
     attrappe.maske_abgelehnt = True
     attrappe.dok = dict(attrappe.dok, rev={"stringValue": "anderes.2"})
-    assert seite.js("async () => await cloudAbgleich('start')") == "zusammengefuehrt"
-    assert attrappe.masken[-2:] == [["rev"], None]
+    n = len(attrappe.masken)
+    assert seite.js("async () => await cloudAbgleich('start')") == "gespeichert"
+    assert attrappe.masken[n:] == [["rev"], None]
+    assert attrappe.dok["rev"]["stringValue"] == seite.js("() => cloudMerker().rev") != "anderes.2"
+    # Am naechsten Tag beim Verlassen: gleich der ganze Stand, ohne die
+    # abgelehnte Feldmaske noch einmal zu versuchen (cloudMaskeKaputt).
+    _uhr(seite, tag + datetime.timedelta(days=3))
     seite.js("() => known.add('probe:nach-maske')")
     assert seite.js("async () => await cloudAbgleich('pause')") == "gespeichert"
+    assert attrappe.masken[n + 2:] == [None]
     assert "probe:nach-maske" in seite.js(GELESEN, attrappe.dok["daten"]["stringValue"])["gewusst"]
     assert seite.fehler == []

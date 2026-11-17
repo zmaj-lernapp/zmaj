@@ -102,6 +102,35 @@ def test_rev_ohne_geraetekennung(index_html):
     assert "geraetId" not in abgleich and "cloudRev()" in abgleich
 
 
+def _funktion(index_html, name):
+    return re.search(r"\nfunction %s\(.*?\r?\n\}" % name, index_html, re.S).group(0)
+
+
+def test_nachsehen_bei_jedem_oeffnen_und_nach_dem_lernen(index_html):
+    """17.11.2026: Nachgesehen wird beim Start und bei jeder Rueckkehr in
+    den Vordergrund, hoechstens alle zwei Minuten, und geschrieben auch
+    gleich nach jedem Ergebnisschirm, auf dem ein Lerntag entstehen kann
+    (dazu der Sprung-Test). Das Verhalten pruefen
+    tests_e2e/test_cloud_nachsehen.py."""
+    assert index_html.count("let CLOUD_NACHSEHEN_MS = 2 * 60 * 1000;") == 1
+    horcher = re.search(r"if\(CLOUD_AN\)\{\r?\n  document\.addEventListener\('visibilitychange', \(\)=>\{(.*?)\}\);",
+                        index_html, re.S).group(1)
+    assert "cloudAbgleich('pause')" in horcher and horcher.index("return;") < horcher.index("cloudAbgleich('vorn')")
+    assert index_html.count("if(CLOUD_AN) cloudAbgleich('start');") == 1
+    for name in ("lessonEnd", "topfEnde", "showTestResult", "sprungEnde"):
+        assert _funktion(index_html, name).count("cloudNachLernen();") == 1, name
+    story = _funktion(index_html, "showStoryQ")
+    assert story.count("cloudNachLernen();") == 1 and story.index("saveProgress()") < story.index("cloudNachLernen()")
+    # Ohne CLOUD_AN tut es nichts, und es wartet nicht.
+    nach = _funktion(index_html, "cloudNachLernen")
+    assert "if(CLOUD_AN) setTimeout(() => cloudAbgleich('ende'), 0);" in nach
+    # Zwei Schreibvorgaenge am Tag hoechstens: m.tag (Verlassen oder
+    # Nachholen) und m.ende (nach dem Lernen), nie beide zugleich.
+    abgleich = re.search(r"async function cloudAbgleich\(.*?\n\}", index_html, re.S).group(0)
+    assert "if(nachLernen) m.ende = heute;" in abgleich
+    assert "else if(!erstes && !zuletzt) m.tag = heute;" in abgleich
+
+
 def test_anleitung_ohne_echte_werte(wurzel):
     text = _lesen(wurzel, "FIREBASE_EINRICHTEN.md")
     assert not SCHLUESSEL_FORM.search(text)
