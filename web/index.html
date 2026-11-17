@@ -11054,8 +11054,10 @@ $('sichDatei').addEventListener('change', async e=>{
        Start des Tages und vor jedem Schreiben.
        Seit 17.11.2026 hoechstens zwei am Tag: der beim Verlassen (oder,
        wenn er nicht ankam, beim naechsten Oeffnen nachgeholt) und einer
-       gleich nach dem Lernen. Nachgesehen wird bei jedem Oeffnen, nur rev,
-       hoechstens alle CLOUD_NACHSEHEN_MS. Siehe cloudAbgleich().
+       gleich nach dem Lernen - und hoechstens CLOUD_SCHREIBVERSUCHE
+       Versuche, auch wenn keiner ankommt. Nachgesehen wird bei jedem
+       Oeffnen, nur rev, hoechstens alle CLOUD_NACHSEHEN_MS. Siehe
+       cloudAbgleich().
      - In der Cloud steht dasselbe JSON wie in der Sicherungsdatei
        (sicherungObjekt), als ein Text in users/{uid}. Keine
        Firebase-Sonderfunktionen: fuer einen anderen Anbieter genuegt ein
@@ -11102,7 +11104,9 @@ const CLOUD_CLIENT = '__CLOUD_CLIENT__';
                ueberhaupt (fuer "Zuletzt gesichert" in der Kontoseite).
                Seit 17.11.2026 zaehlt das Nachholen beim Oeffnen als das
                Schreiben beim Verlassen (tag), und ende ist der Tag des
-               letzten Schreibens gleich nach dem Lernen (cloudNachLernen) */
+               letzten Schreibens gleich nach dem Lernen (cloudNachLernen)
+     versuche  {tag, n}: so oft wurde an diesem Tag zu schreiben versucht,
+               ob es ankam oder nicht (CLOUD_SCHREIBVERSUCHE, 17.11.2026) */
 const CLOUD_MERKER = 'zmaj_cloud';
 /* Wer sich abgemeldet hat oder dessen Konto von aussen weg ist, sieht beim
    naechsten Start gleich die Anmeldung - auch mit leerem Lernstand. */
@@ -11513,9 +11517,58 @@ let CLOUD_NACHSEHEN_MS = 2 * 60 * 1000;   // die Tests setzen sie herunter
 let cloudNachgesehen = 0;                  // Date.now() der letzten Anfrage
 /* Ob sich nur rev holen laesst (kennung, 13.11.2026): nicht bei einem
    Adapter ohne kennung, nicht ohne gemerktes rev und nicht, wenn Firestore
-   die Feldmaske seit dem Start abgelehnt hat (cloudMaskeKaputt). */
-const cloudMaskeKaputt = new WeakSet();
-const cloudBillig = (adapter, m) => !!m.rev && typeof adapter.kennung === 'function' && !cloudMaskeKaputt.has(adapter);
+   die Feldmaske heute nicht annimmt (cloudMaskeAus).
+   Pruefbefund 17.11.2026: Bis dahin galt jeder Fehler beim Nachsehen als
+   abgelehnte Maske, auch ein einzelner 503 von Firestore oder vom
+   Ausweis, und das Nachsehen blieb bis zum naechsten Start aus - ein
+   zweites Geraet sah dann wieder tagelang nichts Neues, genau der Befund
+   vom 17.11. Jetzt: Weist Firestore die Maske selbst ab (400, e.maske),
+   gilt sie fuer heute als abgelehnt; andere Fehler erst, wenn es
+   CLOUD_MASKE_FEHLER Mal hintereinander so ging und das ganze Lesen danach
+   klappte. Fehler des Ausweises (e.ausweis) zaehlen nie. Ein gelungenes
+   Nachsehen faengt von vorn an, und am naechsten Tag wird die Maske wieder
+   versucht. Nur im Arbeitsspeicher, je Adapter {tag, n}. */
+const CLOUD_MASKE_FEHLER = 2;
+const cloudMaskeFehler = new WeakMap();
+function cloudMaskeAus(adapter){
+  const x = cloudMaskeFehler.get(adapter);
+  return !!x && x.tag === today() && x.n >= CLOUD_MASKE_FEHLER;
+}
+const cloudBillig = (adapter, m) => !!m.rev && typeof adapter.kennung === 'function' && !cloudMaskeAus(adapter);
+/* Schreibversuche am Tag (Pruefbefund 17.11.2026). "Hoechstens zwei am Tag"
+   (m.tag, m.ende) zaehlt nur, was ankam. Blieb die Antwort aufs Schreiben
+   aus - langsames Netz, die 20 Sekunden in senden() laufen ab, obwohl
+   Firestore den Stand schon hat -, schrieb jeder weitere Anlass neu: in
+   der Probe 15 Schreibvorgaenge und 14 volle Ladungen an einem Tag. Darum
+   zaehlt m.versuche ({tag, n}) jeden Schreibversuch von 'pause', 'start',
+   'vorn' und 'ende', gemerkt VOR dem Schreiben, damit auch eine dabei
+   beendete App ihn verbraucht hat. Sind es CLOUD_SCHREIBVERSUCHE, wird bis
+   zum naechsten Tag nur noch nachgesehen; was liegen blieb, holt das erste
+   Oeffnen am naechsten Tag nach. Anmelden und Abmelden zaehlen nicht und
+   sind nie gesperrt. Vier: die zwei, die ankommen sollen, und Luft fuer
+   zwei, die nicht ankamen - etwa das Schreiben beim Verlassen, das Android
+   beim Wegwischen abwuergt. */
+const CLOUD_SCHREIBVERSUCHE = 4;
+/* Steht in der Cloud (s, wie cloudStandLesen ihn liefert) schon alles,
+   was dieses Geraet hat? Rein, vor dem Einarbeiten: Der eigene Stand mit
+   der Cloud zusammengefuehrt ergibt dasselbe wie die Cloud mit sich selbst
+   - mit denselben Schritten wie cloudUebernehmen() (sicherungPlausibel,
+   standZusammenfuehren, cloudVorher). getragen zaehlt nicht mit: das ist
+   die Wahl des Geraets, dort gewinnt ohnehin das eigene. Pruefbefund
+   17.11.2026, siehe cloudAbgleich() bei !schreiben. Bewusst nicht nur "seit
+   dem letzten Hochladen nichts Neues" (m.fp): Schreiben zwei Geraete im
+   selben Augenblick, fehlt dem spaeteren Stand in der Cloud, was das
+   fruehere hochgeladen hatte - das muss wieder hoch. Laeuft nur, wenn ein
+   anderes Geraet geschrieben hat; wirft etwas, gilt es als nein. */
+function cloudHatAlles(s, cloudVorher){
+  try{
+    const b = sicherungPlausibel(s);
+    const mit = standZusammenfuehren(standAlsObjekt(), b, cloudVorher, false);
+    const nur = standZusammenfuehren(b, b, cloudVorher, false);
+    mit.getragen = nur.getragen;
+    return JSON.stringify(mit) === JSON.stringify(nur);
+  }catch(e){ return false; }
+}
 /* Der Abgleich. anlass:
      'start'     die App startet, und seit 17.11.2026
      'vorn'      sie kommt zurueck in den Vordergrund: beide nachsehen und,
@@ -11540,24 +11593,31 @@ const cloudBillig = (adapter, m) => !!m.rev && typeof adapter.kennung === 'funct
    Schreibvorgaenge je Nutzer und Tag (dazu An- und Abmelden), jeder nur,
    wenn sich etwas geaendert hat - bei Spark (20 000 am Tag fuer alle) reicht
    das fuer rund 10 000 Lernende am Tag. Enger wird jetzt das Lesen (50 000
-   am Tag): rund ein Lesevorgang je Oeffnen und einer je Schreiben. */
+   am Tag): rund ein Lesevorgang je Oeffnen und einer je Schreiben.
+   Nachbesserung nach dem Pruefbefund vom 17.11.2026: hoechstens
+   CLOUD_SCHREIBVERSUCHE Versuche am Tag, auch wenn keiner ankommt; reines
+   Einarbeiten gilt als hochgeladen (m.fp, unten); und ein einzelner Fehler
+   beim Nachsehen schaltet es nicht mehr ab (cloudMaskeAus). */
 async function cloudAbgleich(anlass, adapter = cloudAdapter()){
   const m = cloudMerker();
   if(!adapter || !m || cloudLaeuft || !standGeladen || MIT_SERVER) return 'nichts';
   const heute = today(), erstes = anlass === 'anmelden', zuletzt = anlass === 'abmelden';
   const oeffnen = anlass === 'start' || anlass === 'vorn', nachLernen = anlass === 'ende';
   const geaendert = () => m.fp !== cloudFingerabdruck(standAlsObjekt());
-  let schreiben = erstes || zuletzt || (anlass === 'pause' && m.tag !== heute);
+  // Heute schon so oft zu schreiben versucht, siehe CLOUD_SCHREIBVERSUCHE.
+  const versucht = () => (m.versuche && m.versuche.tag === heute && Number(m.versuche.n)) || 0;
+  const frei = versucht() < CLOUD_SCHREIBVERSUCHE;
+  let schreiben = erstes || zuletzt || (anlass === 'pause' && m.tag !== heute && frei);
   if(oeffnen){
     // Gedrosselt; geht die Uhr des Geraets zurueck, wird nachgesehen.
     const seit = Date.now() - cloudNachgesehen;
     if(cloudNachgesehen && seit >= 0 && seit < CLOUD_NACHSEHEN_MS) return 'nichts';
-    schreiben = m.tag !== heute && geaendert();
+    schreiben = frei && m.tag !== heute && geaendert();
     /* Billig ist nur rev. Ohne (cloudBillig) kaeme bei jedem Oeffnen der
        ganze Stand - dann wie bisher hoechstens einmal am Tag. */
     if(!schreiben && m.gelesen === heute && !cloudBillig(adapter, m)) return 'nichts';
   }else if(nachLernen){
-    if(m.ende === heute || !geaendert()) return 'nichts';
+    if(!frei || m.ende === heute || !geaendert()) return 'nichts';
     schreiben = true;
   }else{
     if(!schreiben && m.gelesen === heute) return 'nichts';
@@ -11577,32 +11637,57 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
        anderen Grund als Netz oder Anmeldung - etwa weil Firestore die
        Feldmaske einmal nicht annimmt -, wird wie bisher alles geladen.
        Sonst bliebe jeder Abgleich an dieser einen Anfrage haengen. */
-    let dok, kennung, ohneMaske = false;
+    let dok, kennung, maske = '';
     if(cloudBillig(adapter, m)){
       try{ kennung = await adapter.kennung(m); }
-      catch(e){ if(!e || e.netz || e.abgemeldet || e.name === 'AbortError') throw e; kennung = undefined; ohneMaske = true; }
+      catch(e){
+        if(!e || e.netz || e.abgemeldet || e.name === 'AbortError') throw e;
+        kennung = undefined;
+        maske = e.ausweis ? 'ausweis' : (e.maske ? 'abgelehnt' : 'fehler');
+      }
     }
     if(kennung === undefined) dok = await adapter.laden(m);
     else dok = kennung === null ? null : (kennung === m.rev ? {rev: kennung, text: null} : await adapter.laden(m));
-    /* Ging das Nachsehen nicht, das ganze Lesen aber schon, nimmt Firestore
-       die Feldmaske nicht an. Dann bis zum naechsten Start wie ein Adapter
-       ohne kennung - sonst kaeme mit dem Nachsehen bei jedem Oeffnen
-       (17.11.2026) jedesmal der ganze Stand. */
-    if(ohneMaske) cloudMaskeKaputt.add(adapter);
+    /* Ging das Nachsehen nicht, das ganze Lesen aber schon: mitzaehlen,
+       ob Firestore die Feldmaske nicht annimmt - sonst kaeme mit dem
+       Nachsehen bei jedem Oeffnen (17.11.2026) jedesmal der ganze Stand.
+       Ging es, von vorn. Siehe cloudMaskeAus(). */
+    if(maske === 'abgelehnt' || maske === 'fehler'){
+      const x = cloudMaskeFehler.get(adapter), vorher = (x && x.tag === heute) ? x.n : 0;
+      cloudMaskeFehler.set(adapter, {tag: heute, n: maske === 'abgelehnt' ? CLOUD_MASKE_FEHLER : vorher + 1});
+    }else if(kennung !== undefined) cloudMaskeFehler.delete(adapter);
     m.gelesen = heute;
     const fremd = !!dok && dok.rev !== m.rev;
+    let schonOben = false;
     if(fremd){
       /* Ist der Text dort kaputt, gibt es nichts einzuarbeiten - dann
          ersetzt ihn unten der eigene Stand. Wirft das Einarbeiten, wird
          lieber nicht geschrieben: dort koennte ein anderes Geraet stehen.
          Seit 13.11.2026 alt oder gepackt, siehe cloudStandLesen(). */
       const s = await cloudStandLesen(dok.text);
+      if(s && !schreiben && m.rev) schonOben = cloudHatAlles(s, m.fremd);
       if(s && !cloudUebernehmen(s, m.fremd, !m.rev)) return 'fehler';
       m.rev = dok.rev;
       m.fremd = fremdNamen(s);
     }
     if(!dok) m.fremd = [];
-    if(!schreiben){ cloudMerkerSetzen(m, true); return fremd ? 'zusammengefuehrt' : 'gelesen'; }
+    if(!schreiben){
+      /* Pruefbefund 17.11.2026: Hatte die Cloud schon alles, was dieses
+         Geraet hat (cloudHatAlles), gilt der zusammengefuehrte Stand als
+         hochgeladen (m.fp). Bis dahin hielt das naechste Oeffnen ihn fuer
+         neu (sortierte Listen genuegten) und lud ihn noch einmal hoch, mit
+         dem Schreiben des Tages (m.tag): Gerade im Zwei-Geraete-Fall des
+         Befunds kostete jedes Einarbeiten so den zweiten Schreibvorgang, und
+         was danach gelernt wurde, kam erst am naechsten Tag hoch. Was
+         cloudUebernehmen() dabei selbst nachtraegt (Serienschutz, Abzeichen),
+         kommt mit der naechsten eigenen Aenderung mit; das andere Geraet
+         rechnet es ohnehin selbst. Fehlt der Cloud etwas von hier - eigenes
+         Neues, oder ein anderes Geraet hat im selben Augenblick darueber
+         geschrieben -, bleibt m.fp, und das Nachholen bringt es hoch. */
+      if(schonOben) m.fp = cloudFingerabdruck(standAlsObjekt());
+      cloudMerkerSetzen(m, true);
+      return fremd ? 'zusammengefuehrt' : 'gelesen';
+    }
     /* Traegt der eigene Stand noch gepackt1 (Update von 1.3), erst
        auspacken und einarbeiten, siehe gepacktEinarbeiten(). Wirft das
        Einarbeiten, wird lieber nicht geschrieben - wie oben. */
@@ -11641,6 +11726,8 @@ async function cloudAbgleich(anlass, adapter = cloudAdapter()){
     }
     if(utf8Laenge(text) > CLOUD_GROESSE_MAX){ cloudMerkerSetzen(m, true); return 'zu gross'; }
     const rev = cloudRev();
+    // Den Versuch merken, bevor er losgeht - siehe CLOUD_SCHREIBVERSUCHE.
+    if(!erstes && !zuletzt){ m.versuche = {tag: heute, n: versucht() + 1}; cloudMerkerSetzen(m, true); }
     await adapter.speichern(m, {text, rev});
     m.rev = rev; m.fp = fp; m.gesichert = heute; m.fremd = fremdNamen(oben);
     if(nachLernen) m.ende = heute;
@@ -11856,7 +11943,9 @@ function cloudFirestore(projekt, schluessel){
      19.10.2026: Der Fehler traegt Firebases Grund (error.message, etwa
      CREDENTIAL_TOO_OLD_LOGIN_AGAIN) - loeschen() braucht ihn.
      28.10.2026: Kein Netz oder keine Antwort traegt netz - die Anmeldung
-     sagt dann "Keine Verbindung" statt "hat nicht geklappt". */
+     sagt dann "Keine Verbindung" statt "hat nicht geklappt".
+     17.11.2026: Dazu status, die HTTP-Antwort - kennung() erkennt daran,
+     ob Firestore die Feldmaske wirklich ablehnt (400). */
   async function senden(url, optionen, fehltOk){
     const ab = new AbortController(), uhr = setTimeout(() => ab.abort(), 20000);
     try{
@@ -11866,6 +11955,7 @@ function cloudFirestore(projekt, schluessel){
       if(r.status === 404 && fehltOk) return null;
       if(!r.ok){
         const f = new Error('cloud ' + r.status);
+        f.status = r.status;
         try{ const d = await r.json(); f.grund = String((d && d.error && d.error.message) || ''); }catch(e){}
         throw f;
       }
@@ -11959,9 +12049,19 @@ function cloudFirestore(projekt, schluessel){
     /* Nur rev, fuer "erst nachsehen" (13.11.2026): Firestore schickt mit
        der Feldmaske (DocumentMask, mask.fieldPaths) nur dieses Feld. Es ist
        ein gewoehnliches get, die Regel "allow get" gilt unveraendert, und es
-       zaehlt als ein Lesevorgang. null: es gibt noch kein Dokument. */
+       zaehlt als ein Lesevorgang. null: es gibt noch kein Dokument.
+       17.11.2026 (Pruefbefund): Ein Fehler traegt maske nur, wenn Firestore
+       die Feldmaske selbst abweist (400) - nicht bei 5xx, 429 oder wenn
+       schon der Ausweis (securetoken) scheitert; der traegt ausweis. Vorher
+       galt jeder Fehler als abgelehnte Maske, und ein einziger 503 schaltete
+       das Nachsehen bis zum naechsten Start ab. */
     async kennung(m){
-      const r = await senden(dokument(m.uid) + '?mask.fieldPaths=rev', {headers: await mitAusweis(m)}, true);
+      let kopf;
+      try{ kopf = await mitAusweis(m); }
+      catch(e){ if(e && typeof e === 'object') e.ausweis = true; throw e; }
+      let r;
+      try{ r = await senden(dokument(m.uid) + '?mask.fieldPaths=rev', {headers: kopf}, true); }
+      catch(e){ if(e && typeof e === 'object' && e.status === 400) e.maske = true; throw e; }
       if(!r) return null;
       const f = (await r.json()).fields || {};
       return (f.rev && f.rev.stringValue) || '';

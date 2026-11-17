@@ -586,22 +586,35 @@ are in the Play Store listing. Format:
     or story it counts from the next one, as before). At most once every two
     minutes (`CLOUD_NACHSEHEN_MS`), so switching back and forth costs nothing.
     Without a cheap check (an adapter without `kennung`, or Firestore refusing
-    the field mask until the next start) it stays at one full read a day.
+    the field mask, then for the rest of that day) it stays at one full read
+    a day.
   - If the progress changed since the last upload and today's upload on
     leaving has not arrived, the next start or return uploads it, exactly as
     leaving would (it then counts as that day's upload).
   - Right after the result screen of a lesson, review round, test, story or
     jump test the app also uploads once a day, while it is still in the
     foreground, so a second device knows about the learning day the same day.
-  - At most two uploads per account and day (plus signing in and out), each
-    only if something changed. Every upload still reads first and merges a
-    foreign revision; signing out, packing (`gepackt1`) and devices with 1.3
-    work as before. Offline or signed out, nothing is shown.
+  - At most two uploads per device and day (plus signing in and out), each
+    only if something changed, and at most four upload attempts a day
+    (`CLOUD_SCHREIBVERSUCHE`) even if none of them gets an answer; what is
+    left over goes up with the first opening on the next day. Every upload
+    still reads first and merges a foreign revision; signing out, packing
+    (`gepackt1`) and devices with 1.3 work as before. Offline or signed out,
+    nothing is shown.
   - Deleting the account waits for a sync that is still running instead of
     failing with "that did not work".
+  - After review of the change: a single failed check (a 503 from Firestore
+    or from the token service) no longer switches the cheap check off until
+    the next start; only Firestore rejecting the field mask (HTTP 400) or two
+    failures in a row do, and only for that day. Merging another device's
+    progress while nothing of this device was waiting to go up no longer
+    counts as a change, so it no longer uses up the day's upload. Before,
+    an upload whose answer never came could be repeated on every start,
+    return and result screen (15 uploads in one day in the review).
   - `tests_e2e/test_cloud_nachsehen.py`; the Firebase stand-in can now lose a
-    write (`schreib_abbruch`). The source keeps `CLOUD_AN = false`, so the web
-    demo is unchanged.
+    write (`schreib_abbruch`) and fail a check or a token refresh once
+    (`maske_fehler`, `token_fehler_folge`). The source keeps
+    `CLOUD_AN = false`, so the web demo is unchanged.
 - Top bar on the iPhone and in the browser (review of the App Store pictures,
   16.11.2026): the back button stands in the bar there (the iPhone has no back key;
   Android never shows it), and since the profile button was added, "← Learning path"

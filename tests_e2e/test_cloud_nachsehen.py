@@ -21,6 +21,12 @@ Levelstand, waehrend in der Cloud laengst mehr stand. Ajdin: "ja ist gut so
     einmal am Tag der ganze Stand, kein voller Download je Oeffnen.
   - Ohne Netz, mit kaputtem Firebase oder abgemeldet: still, keine Meldung.
   - Nach einer echten Lektion geht der Lerntag gleich in die Cloud.
+Nachbesserung nach dem Pruefbefund vom 17.11.2026:
+  - Ein einzelner Fehler beim Nachsehen (503 von Firestore oder vom
+    Ausweis) schaltet es nicht ab; erst eine Ablehnung (400) oder zwei
+    Fehler hintereinander, und dann nur fuer diesen Tag.
+  - Hoechstens vier Schreibversuche am Tag, auch wenn keiner ankommt.
+  - Reines Einarbeiten verbraucht das Schreiben des Tages nicht.
 Firebase beantwortet firebase_attrappe.py, kein Byte verlaesst den Rechner.
 """
 import datetime
@@ -447,4 +453,240 @@ def test_nach_der_lektion_geht_der_lerntag_gleich_in_die_cloud(seite, heute_stan
     _fertig(seite)
     assert [art for art, _ in wege(attrappe)] == ["GET", "PATCH"]
     assert seite.js(MERKER)["tag"] == heute
+    assert seite.fehler == []
+
+
+# ------------------------------ Nachbesserung nach dem Pruefbefund 17.11. ---
+
+TOKEN = "securetoken.googleapis.com/v1/token"
+LERNEN_UND_ENDE = "async (w) => { known.add(w); saveProgress(); return await cloudAbgleich('ende'); }"
+
+
+def _a_schreibt(attrappe, wort, rev):
+    """Ein anderes Geraet hat geschrieben: ein Wort mehr in gewusst, neue rev."""
+    datei = json.loads(attrappe.dok["daten"]["stringValue"])
+    datei["stand"]["gewusst"] = sorted(set(datei["stand"]["gewusst"]) | {wort})
+    attrappe.dok = {"daten": {"stringValue": json.dumps(datei)}, "rev": {"stringValue": rev}}
+
+
+def _warte(seite, bedingung):
+    for _ in range(400):
+        if bedingung():
+            return
+        seite.page.wait_for_timeout(25)
+    raise AssertionError("Bedingung nicht erfuellt")
+
+
+@pytest.mark.parametrize("wo", ["firestore", "ausweis"])
+def test_ein_fehler_beim_nachsehen_schaltet_es_nicht_ab(seite, heute_stand, cloud_html, wo):
+    """Probe P9 des Pruefers: Ein einzelner 503 beim Nachsehen - von Firestore
+    oder schon beim Erneuern des Ausweises - galt als abgelehnte Feldmaske,
+    und bis zum naechsten Start sah das Geraet nichts Neues mehr (der Befund
+    vom 17.11. waere zurueck gewesen). Jetzt wird einmal der ganze Stand
+    gelesen, und die naechste Rueckkehr sieht wieder nur rev nach - und
+    findet, was ein anderes Geraet geschrieben hat."""
+    attrappe = Attrappe()
+    _starten(seite, cloud_html, attrappe, heute_stand())
+    assert seite.js(ANMELDEN) is True
+    if wo == "firestore":
+        seite.js(OHNE_DROSSEL)
+        attrappe.maske_fehler = [503]
+        attrappe.anfragen.clear()
+        masken = len(attrappe.masken)
+        seite.js(VORN)
+        _fertig(seite)
+        assert wege(attrappe) == [("GET", DOK), ("GET", DOK)] and attrappe.masken[masken:] == [["rev"], None]
+    else:
+        # Neu geladen ist der Ausweis weg, und sein Erneuern scheitert einmal.
+        # Heute schon geschrieben: Weder das Verlassen der alten Seite noch der
+        # Start schreiben etwas, gezaehlt wird nur das Nachsehen.
+        seite.js("() => { const m = cloudMerker(); m.tag = today(); localStorage.setItem('zmaj_cloud', JSON.stringify(m)); }")
+        attrappe.token_fehler_folge = [503]
+        attrappe.anfragen.clear()
+        masken = len(attrappe.masken)
+        seite.page.reload()
+        seite.page.wait_for_function(BEREIT, timeout=30000)
+        _warte(seite, lambda: len(attrappe.masken) > masken)
+        _fertig(seite)
+        assert wege(attrappe) == [("POST", TOKEN), ("POST", TOKEN), ("GET", DOK)]
+        assert attrappe.masken[masken:] == [None]
+        seite.js(OHNE_DROSSEL)
+    assert seite.js("() => cloudBillig(cloudAdapter(), cloudMerker())") is True
+    # Ein anderes Geraet schreibt; die naechste Rueckkehr sieht nach und arbeitet es ein.
+    _a_schreibt(attrappe, "probe:von-a", "a.1")
+    attrappe.anfragen.clear()
+    masken = len(attrappe.masken)
+    seite.js(VORN)
+    _fertig(seite)
+    assert wege(attrappe) == [("GET", DOK), ("GET", DOK)] and attrappe.masken[masken:] == [["rev"], None]
+    assert seite.js("() => [known.has('probe:von-a'), cloudMerker().rev]") == [True, "a.1"]
+    # Danach wieder nur rev - und nichts hochzuladen.
+    attrappe.anfragen.clear()
+    seite.js(VORN)
+    _fertig(seite)
+    assert wege(attrappe) == [("GET", DOK)] and attrappe.masken[-1] == ["rev"]
+    assert seite.fehler == []
+
+
+def test_maske_erst_nach_zwei_fehlern_hintereinander_aus(seite, heute_stand, cloud_html):
+    """Andere Fehler als eine Ablehnung (400) schalten das Nachsehen erst aus,
+    wenn es zweimal hintereinander so ging - dann fuer den Rest des Tages, wie
+    ein Adapter ohne kennung. Ein gelungenes Nachsehen dazwischen faengt von
+    vorn an."""
+    attrappe = Attrappe()
+    _starten(seite, cloud_html, attrappe, heute_stand())
+    assert seite.js(ANMELDEN) is True
+    seite.js(OHNE_DROSSEL)
+    billig = "() => cloudBillig(cloudAdapter(), cloudMerker())"
+    attrappe.maske_fehler = [503]
+    for _ in range(2):                       # Fehler, dann gelungen
+        seite.js(VORN)
+        _fertig(seite)
+    attrappe.maske_fehler = [500]
+    seite.js(VORN)
+    _fertig(seite)
+    assert seite.js(billig) is True
+    assert attrappe.masken[1:] == [["rev"], None, ["rev"], ["rev"], None]
+    attrappe.maske_fehler = [503]            # der zweite hintereinander
+    seite.js(VORN)
+    _fertig(seite)
+    assert seite.js(billig) is False
+    attrappe.anfragen.clear()
+    for _ in range(3):
+        seite.js(VORN)
+        _fertig(seite)
+    assert attrappe.anfragen == []           # heute schon gelesen: wie ohne kennung
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("abbruch", ["verloren", "angekommen"])
+def test_hoechstens_vier_schreibversuche_am_tag(seite, heute_stand, cloud_html, abbruch):
+    """Probe P15 des Pruefers: Kommt keine Antwort aufs Schreiben, verbrauchte
+    das den Tag nicht, und jeder Anlass schrieb neu - drei Lektionen, sechsmal
+    weg und sechsmal zurueck ergaben 15 Schreibvorgaenge (und bei
+    "angekommen" 14 volle Ladungen). Jetzt hoechstens CLOUD_SCHREIBVERSUCHE
+    (4) am Tag; der naechste Tag holt den Rest nach. Anmelden und Abmelden
+    sind nie gesperrt."""
+    attrappe = Attrappe()
+    tag1 = datetime.date.today()
+    _uhr(seite, tag1, 9)
+    _starten(seite, cloud_html, attrappe, heute_stand())
+    assert seite.js("() => CLOUD_SCHREIBVERSUCHE") == 4
+    assert seite.js(ANMELDEN) is True
+    seite.js(OHNE_DROSSEL)
+    attrappe.schreib_abbruch = abbruch
+    attrappe.anfragen.clear()
+    masken = len(attrappe.masken)
+    for i in range(3):
+        assert seite.js(LERNEN_UND_ENDE, "probe:lektion%d" % i) in ("fehler", "nichts")
+        for _ in range(2):
+            seite.js(WEG)
+            _fertig(seite)
+            seite.js(VORN)
+            _fertig(seite)
+    arten = [a for a, _ in wege(attrappe)]
+    assert arten.count("PATCH") == 4, arten
+    voll = attrappe.masken[masken:].count(None)
+    assert voll == (4 if abbruch == "angekommen" else 0), attrappe.masken[masken:]
+    m = seite.js(MERKER)
+    assert m["versuche"] == {"tag": tag1.isoformat(), "n": 4}
+    assert m.get("tag") != tag1.isoformat() and m.get("ende") != tag1.isoformat()
+    assert seite.js(STILL) == {"fehler": False, "karte": False, "pfad": True, "merker": True}
+    # Weiter nur nachsehen, nie mehr schreiben - auch wenn das Netz wieder geht.
+    attrappe.schreib_abbruch = None
+    attrappe.anfragen.clear()
+    for anlass in ("ende", "pause", "vorn", "start"):
+        assert seite.js("async (a) => await cloudAbgleich(a)", anlass) in ("nichts", "gelesen"), anlass
+    assert [a for a, _ in wege(attrappe)] == ["GET", "GET"]
+
+    # Naechster Tag: das erste Oeffnen holt alles nach, und es zaehlt neu.
+    _uhr(seite, tag1 + datetime.timedelta(days=1), 9)
+    attrappe.anfragen.clear()
+    assert seite.js("async () => await cloudAbgleich('vorn')") == "gespeichert"
+    assert wege(attrappe) == [("POST", TOKEN), ("GET", DOK), ("PATCH", DOK)]   # der Ausweis von gestern ist abgelaufen
+    assert {"probe:lektion0", "probe:lektion1", "probe:lektion2"} <= set(_im_dok(attrappe)["gewusst"])
+    m = seite.js(MERKER)
+    assert m["versuche"] == {"tag": (tag1 + datetime.timedelta(days=1)).isoformat(), "n": 1}
+    # Sind die Versuche des Tages aufgebraucht, schreibt das Abmelden trotzdem.
+    seite.js("""() => { const m = cloudMerker(); m.versuche = {tag: today(), n: 4};
+                        localStorage.setItem('zmaj_cloud', JSON.stringify(m)); }""")
+    assert seite.js(LERNEN_UND_ENDE, "probe:vor-dem-abmelden") == "nichts"
+    assert seite.js("async () => await cloudAbgleich('abmelden')") == "gespeichert"
+    assert "probe:vor-dem-abmelden" in _im_dok(attrappe)["gewusst"]
+    assert seite.js(MERKER)["versuche"]["n"] == 4
+    assert seite.fehler == []
+
+
+def test_reines_einarbeiten_kostet_kein_schreiben(seite, heute_stand, cloud_html):
+    """Probe P12 des Pruefers: Nach reinem Einarbeiten (hier nichts Neues)
+    hielt das naechste Oeffnen den zusammengefuehrten Stand fuer neu und lud
+    ihn hoch - mit dem Schreiben des Tages. Zwei Lektionen danach: die zweite
+    kam erst am naechsten Tag in die Cloud. Jetzt gilt reines Einarbeiten als
+    hochgeladen; war vorher etwas offen, bleibt es offen."""
+    attrappe = Attrappe()
+    tag1 = datetime.date.today()
+    _uhr(seite, tag1, 9)
+    _starten(seite, cloud_html, attrappe, heute_stand())
+    assert seite.js(ANMELDEN) is True
+    seite.js(OHNE_DROSSEL)
+    gleich = "() => cloudMerker().fp === cloudFingerabdruck(standAlsObjekt())"
+    _a_schreibt(attrappe, "probe:von-a", "a.1")
+    attrappe.anfragen.clear()
+    assert seite.js("async () => await cloudAbgleich('vorn')") == "zusammengefuehrt"
+    assert wege(attrappe) == [("GET", DOK), ("GET", DOK)]
+    assert seite.js(gleich) is True and seite.js("() => known.has('probe:von-a')") is True
+    # Wieder zurueck und wieder weg, ohne zu lernen: nur nachsehen.
+    attrappe.anfragen.clear()
+    assert seite.js("async () => await cloudAbgleich('vorn')") == "gelesen"
+    assert seite.js("async () => await cloudAbgleich('pause')") == "unveraendert"
+    assert wege(attrappe) == [("GET", DOK)]
+    # Zwei Lektionen danach: beide noch heute oben.
+    assert seite.js(LERNEN_UND_ENDE, "probe:b1") == "gespeichert"
+    seite.js("() => { known.add('probe:b2'); saveProgress(); }")
+    assert seite.js("async () => await cloudAbgleich('pause')") == "gespeichert"
+    assert {"probe:von-a", "probe:b1", "probe:b2"} <= set(_im_dok(attrappe)["gewusst"])
+    m = seite.js(MERKER)
+    assert m["tag"] == m["ende"] == tag1.isoformat()
+    # War vor dem Einarbeiten etwas offen, bleibt es offen ...
+    _a_schreibt(attrappe, "probe:von-a2", "a.2")
+    seite.js("() => { known.add('probe:b3'); saveProgress(); }")
+    attrappe.anfragen.clear()
+    assert seite.js("async () => await cloudAbgleich('vorn')") == "zusammengefuehrt"   # heute schon zweimal
+    assert wege(attrappe) == [("GET", DOK), ("GET", DOK)]
+    assert seite.js(gleich) is False
+    # ... und der naechste Tag holt es nach, mit allem von beiden.
+    _uhr(seite, tag1 + datetime.timedelta(days=1), 9)
+    assert seite.js("async () => await cloudAbgleich('start')") == "gespeichert"
+    assert {"probe:von-a", "probe:von-a2", "probe:b1", "probe:b2", "probe:b3"} <= set(_im_dok(attrappe)["gewusst"])
+    assert seite.fehler == []
+
+
+def test_ueberschriebenes_kommt_wieder_hoch(seite, heute_stand, cloud_html):
+    """Schreiben zwei Geraete im selben Augenblick, fehlt dem spaeteren Stand
+    in der Cloud, was das fruehere hochgeladen hatte (Firestore schreibt ohne
+    Vorbedingung). Dann gilt das Einarbeiten nicht als hochgeladen, und das
+    Nachholen bringt es wieder hoch - darum prueft cloudHatAlles() den
+    Inhalt und nicht nur, ob hier seit dem letzten Hochladen etwas dazukam."""
+    attrappe = Attrappe()
+    tag1 = datetime.date.today()
+    _uhr(seite, tag1, 9)
+    _starten(seite, cloud_html, attrappe, heute_stand())
+    assert seite.js(ANMELDEN) is True
+    seite.js(OHNE_DROSSEL)
+    vorher = attrappe.dok                    # den hat das andere Geraet gelesen
+    assert seite.js(LERNEN_UND_ENDE, "probe:b-oben") == "gespeichert"
+    attrappe.dok = vorher
+    _a_schreibt(attrappe, "probe:von-a", "a.1")         # ohne probe:b-oben
+    assert seite.js("async () => await cloudAbgleich('vorn')") == "zusammengefuehrt"
+    assert seite.js("() => cloudMerker().fp !== cloudFingerabdruck(standAlsObjekt())") is True
+    attrappe.anfragen.clear()
+    assert seite.js("async () => await cloudAbgleich('vorn')") == "gespeichert"
+    assert wege(attrappe) == [("GET", DOK), ("PATCH", DOK)]
+    assert {"probe:von-a", "probe:b-oben"} <= set(_im_dok(attrappe)["gewusst"])
+    # getragen ist die Wahl des Geraets und zaehlt dabei nicht mit; ein
+    # fehlendes Wort schon.
+    probe = "(was) => { const s = standAlsObjekt(); if(was) s.getragen = 'anders'; else s.gewusst = s.gewusst.slice(1);" \
+            " return cloudHatAlles(s, cloudMerker().fremd); }"
+    assert seite.js(probe, True) is True
+    assert seite.js(probe, False) is False
     assert seite.fehler == []
