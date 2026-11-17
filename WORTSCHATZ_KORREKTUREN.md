@@ -1068,7 +1068,7 @@ allein steht (Ajdin über *šerpa* und *kola*).
 | 29 | *Izvini* | *Oprosti* | nur `entschuldigung (du):Izvini` |
 | 30 | *Kuda* | *Gdje* | gehört zu F7 a: nur „Wohin gehst du?“ und „___ ideš?“, als `"auch"`, siehe V11 oben |
 | 31 | *da li* | *je li* | nur `ob:da li`; Lückensatz „Pitam se ___ li dolazi.“ `"auch": ["je"]` |
-| 32 | *Hvala puno* | *Puno hvala*, *Hvala lijepa*, *Hvala mnogo* | nur `vielen dank:Hvala puno`; Lückensatz „Hvala ___!“ `"auch": ["mnogo", "lijepa"]` |
+| 32 | *Hvala puno* | *Puno hvala*, *Hvala lijepa*, *Hvala mnogo*, seit 17.11.2026 auch *Mnogo hvala* (Ajdin: „ja“) | nur `vielen dank:Hvala puno`; Lückensatz „Hvala ___!“ `"auch": ["mnogo", "lijepa"]` |
 | 33 | *Doviđenja* | *Do viđenja* | überall, auch bei „Tschüss“, das *Doviđenja* nimmt |
 | 34 | *Dobro veče* | *Dobra večer* | überall |
 | 35 | *navečer*, *ujutro* | *uveče*, *ujutru* | überall |

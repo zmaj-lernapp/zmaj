@@ -425,6 +425,8 @@ VARIANTEN = [
     {"a": "hvala puno", "b": "puno hvala", "gilt": ["vielen dank:Hvala puno"], "beleg": "2c Nr. 32; 17 %"},
     {"a": "hvala puno", "b": "hvala lijepa", "gilt": ["vielen dank:Hvala puno"], "beleg": "2c Nr. 32; 6 %"},
     {"a": "hvala puno", "b": "hvala mnogo", "gilt": ["vielen dank:Hvala puno"], "beleg": "2c Nr. 32; 6 %"},
+    # Ajdin, 17.11.2026 („ja“, nach einer Rückmeldung über das Formular: „mnogo ti hvala“).
+    {"a": "hvala puno", "b": "mnogo hvala", "gilt": ["vielen dank:Hvala puno"], "beleg": "Ajdin 17.11.2026; puno = mnogo"},
     {"a": "doviđenja", "b": "do viđenja", "gilt": UEBERALL,
      "beleg": "2c Nr. 33; getrennt geschrieben, bs-Web 308 / 1.247 (20 %)"},
     {"a": "dobro veče", "b": "dobra večer", "gilt": UEBERALL,

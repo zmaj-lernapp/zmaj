@@ -122,7 +122,7 @@ WOERTER = {
     "formular:obrazac": ["formular"],                         # 28
     "entschuldigung (du):Izvini": ["Oprosti"],                # 29
     "ob:da li": ["je li"],                                    # 31
-    "vielen dank:Hvala puno": ["Puno hvala", "Hvala lijepa", "Hvala mnogo"],   # 32
+    "vielen dank:Hvala puno": ["Puno hvala", "Hvala lijepa", "Hvala mnogo", "Mnogo hvala"],   # 32, Mnogo hvala seit 17.11.
     "auf wiedersehen:Doviđenja": ["Do viđenja"],              # 33
     "tschüss:Ćao": ["Do viđenja"],                            #    das Wort nimmt auch Doviđenja
     "guten abend:Dobro veče": ["Dobra večer"],                # 34
@@ -558,7 +558,8 @@ TABELLE_2C = {
     29: [("w", "entschuldigung (du):Izvini", "Oprosti")],
     31: [("w", "ob:da li", "je li"), ("l", "Pitam se ___ li dolazi.", "je")],
     32: [("w", "vielen dank:Hvala puno", "Puno hvala"), ("w", "vielen dank:Hvala puno", "Hvala lijepa"),
-         ("w", "vielen dank:Hvala puno", "Hvala mnogo"), ("l", "Hvala ___!", "lijepa"), ("l", "Hvala ___!", "mnogo")],
+         ("w", "vielen dank:Hvala puno", "Hvala mnogo"), ("w", "vielen dank:Hvala puno", "Mnogo hvala"),
+         ("l", "Hvala ___!", "lijepa"), ("l", "Hvala ___!", "mnogo")],
     33: [("w", "auf wiedersehen:Doviđenja", "Do viđenja")],
     34: [("w", "guten abend:Dobro veče", "Dobra večer")],
     35: [("w", "am abend:navečer", "uveče"), ("w", "am morgen:ujutro", "ujutru")],

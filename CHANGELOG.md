@@ -1153,6 +1153,9 @@ are in the Play Store listing. Format:
   It was the UTC date, so between midnight and 1 a.m. (2 a.m. in summer) the
   email named the day before. `tests_e2e/test_widerruf.py` caught it when it
   ran after midnight on 17.11.2026.
+- Typing "Vielen Dank": *Mnogo hvala* counts as well, next to *Puno hvala*, *Hvala
+  mnogo* and *Hvala lijepa* (decided by the maintainer on 17.11.2026 after feedback
+  through the form). `tests/test_varianten.py`.
 
 ### Changed
 - Full version: the settings row and the purchase box also name what Zmaj
