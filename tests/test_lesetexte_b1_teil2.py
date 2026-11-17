@@ -31,10 +31,13 @@ def _geschichten(grunddaten):
     return {g["id"]: g for g in grunddaten["geschichten"]}
 
 
-def test_alle_acht_hinter_den_alten_geschichten(grunddaten):
+def test_alle_acht_hinter_den_leichteren_stufen(grunddaten):
+    """Bis zum 17.11.2026 standen die acht in der Folge der Pakete 3 und 4 hinter
+    allen anderen Geschichten. Seitdem stehen alle B1-Texte zusammen von leicht
+    nach schwer (REIHENFOLGE in geschichten.py, Offen-Liste 7; die ganze Folge
+    prüft tests/test_geschichten_stufen.py) - hinter A1 und A2 bleiben sie."""
     ids = [g["id"] for g in grunddaten["geschichten"]]
     stellen = [ids.index(i) for i in IDS]
-    assert stellen == sorted(stellen), "Reihenfolge der Pakete 3 und 4"
     ohne_b1 = [n for n, g in enumerate(grunddaten["geschichten"]) if g["stufe"] != "B1"]
     assert max(ohne_b1) < min(stellen), "B1 steht hinter allen anderen Stufen"
 

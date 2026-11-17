@@ -530,6 +530,8 @@ def pruefe_vokabeln(daten):
     probleme += varianten.pruefe_varianten(daten)
     # Die Stufen-Reiter (13.11.2026)
     probleme += pruefe_stufen(daten)
+    # Die Geschichten in denselben Stufen (17.11.2026)
+    probleme += pruefe_geschichten_stufen(daten)
 
     # Grammatik-Lektionen
     for kid, lektion in daten.get("grammatik", {}).items():
@@ -594,6 +596,26 @@ def pruefe_stufen(daten):
         m = re.search(r"\d+", str(s.get("label", "")))
         if not m or int(m.group()) != zaehler[st]:
             probleme.append(f"Sektion '{s.get('id')}': Nummer im Namen sollte {zaehler[st]} sein ({st})")
+    return probleme
+
+
+def pruefe_geschichten_stufen(daten):
+    """Die Geschichten stehen seit dem 17.11.2026 in denselben Stufen wie der
+    Lernpfad (Ajdin: "also nur A1, A2 usw", Offen-Liste 7). Die App zeigt sie
+    in Reitern und zaehlt je Reiter; das geht nur, wenn jede Geschichte eine
+    gueltige Stufe hat und die Liste Stufe fuer Stufe steht (REIHENFOLGE in
+    geschichten.py)."""
+    probleme = []
+    rang = []
+    for g in daten.get("geschichten", []):
+        st = g.get("stufe")
+        if st not in STUFEN:
+            probleme.append(f"Geschichte '{g.get('id')}' ohne gültige Stufe: {st!r}")
+        else:
+            rang.append(STUFEN.index(st))
+    if rang != sorted(rang):
+        probleme.append("Geschichten stehen nicht Stufe für Stufe " + ", ".join(STUFEN)
+                        + " (REIHENFOLGE in geschichten.py)")
     return probleme
 
 

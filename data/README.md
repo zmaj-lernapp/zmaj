@@ -58,7 +58,7 @@ an offline app for learning Bosnian. It is exported from the app's sources by
 |---|---|
 | `vocabulary.csv` / `.json` | words with level, section, 8 translations, audio path |
 | `sentences.csv` / `.json` | cloze sentence, answer, full sentence, 8 translations, audio path |
-| `stories.json` | story text, translations, glossary, comprehension questions |
+| `stories.json` | story text, stage (A1 to B1, in that order), translations, glossary, comprehension questions |
 | `glossary.json` | reading glossary |
 | `grammar.json` | grammar lessons per language |
 | `anki/zmaj-bs-<lang>.tsv` | Anki decks, tagged by level |

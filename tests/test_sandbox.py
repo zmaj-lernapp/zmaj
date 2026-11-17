@@ -179,7 +179,11 @@ def test_sperren_fragen_alles_offen(index_html):
     assert "const inDerKette = i => allesOffen() || " in html
     assert "ALLE_FREI" not in unlocked
     assert "const testAllowed = c => allesOffen() || passed.has(c.id) ||" in html
-    assert "const storyUnlocked = i => allesOffen() || i===0 || read.has(STORIES[i-1].id);" in html
+    # Seit den Stufen der Geschichten (17.11.2026) eine Funktion: dazu kommen die
+    # gelesene Geschichte selbst und die Vorgaengerin in der alten Folge
+    # (tests/test_geschichten_stufen.py) - allesOffen() steht weiter vorn
+    story = html.split("function storyUnlocked(i){\n")[1].split("\n}\n")[0]
+    assert "  if(allesOffen() || i === 0 || read.has(s.id) || read.has(STORIES[i-1].id)) return true;" in story
 
 
 def test_sonst_bleibt_alles_wie_in_der_echten_app(index_html):

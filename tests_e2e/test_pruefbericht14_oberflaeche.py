@@ -167,6 +167,9 @@ def test_b13_auch_in_der_lektion(seite, heute_stand):
 # maintenant" am meisten. Abgeschnitten heisst: der Kasten des Titels ist
 # schmaler als sein Text, oder der Text (Range, also auch der verdeckte Teil)
 # ragt aus dem Titel, der Zeile oder dem Knopf.
+# Seit dem 17.11.2026 stehen die Geschichten in Stufen-Reitern: gemessen wird in
+# jedem Zustand jeder Reiter, so kommt weiter jede Geschichte dran. Das
+# Schildchen zeigt seitdem nur noch die Stufe (A1, A2, B1).
 TITEL_MESSEN = r"""async () => {
   await document.fonts.ready;
   const aus = [], vorher = [...read];
@@ -177,8 +180,11 @@ TITEL_MESSEN = r"""async () => {
   const innen = (q, r) => q.left >= r.left - 0.5 && q.right <= r.right + 0.5;
   for(const ids of faelle){
     read.clear(); ids.forEach(id => read.add(id));
-    showStoryPath();
-    [...document.querySelectorAll('#storyList .node')].forEach((n, i) => {
+    for(const reiter of STUFEN){
+     if(!geschImReiter(reiter).length) continue;
+     geschGewaehlt = {st: reiter, bei: geschStufe(geschNaechste())}; showStoryPath();
+     [...document.querySelectorAll('#storyList .node')].forEach((n, k) => {
+      const i = geschImReiter(reiter)[k];
       knoten++;
       const t = n.querySelector('.titel'), st = n.querySelector('.stufe'), z = n.querySelector('.state');
       const nr = n.getBoundingClientRect(), lr = n.querySelector('.label').getBoundingClientRect(),
@@ -206,8 +212,10 @@ TITEL_MESSEN = r"""async () => {
         if(gleicheZeile && sr.left < letzte.right + 6) fehler.push('Schildchen klebt am Titel');
       }
       if(fehler.length) aus.push([i, STORIES[i].titel, z.textContent, fehler.join(', ')]);
-    });
+     });
+    }
   }
+  geschGewaehlt = null;
   read.clear(); vorher.forEach(id => read.add(id)); showStoryPath();
   const breit = document.documentElement.scrollWidth > document.documentElement.clientWidth;
   return {aus, knoten, zweizeilig, darunter, daneben, hoechstens, breit};
@@ -237,20 +245,28 @@ def test_b14_kurze_titel_wie_vorher(seite, heute_stand):
     """Wo alles in eine Zeile passt, bleibt es dabei: Titel und Schildchen
     nebeneinander, mittig zueinander, 8 Punkte Abstand, eine Zeile hoch.
     Der Stand wie im Bild aus dem Bericht (fr, 360 px): 12 gelesen, die
-    13. dran - dort standen die ersten neun schon vorher so da."""
+    13. dran - dort standen die ersten neun schon vorher so da. Seit dem
+    17.11.2026 in den Reitern A1 und A2 (alle elf gelesen), das Schildchen
+    nur noch mit der Stufe: dort passen jetzt alle elf daneben."""
     seite.starten(stand=heute_stand())
     r = seite.js("""async () => {
       await setzeSprache('fr'); await document.fonts.ready;
       read.clear(); STORIES.slice(0, 12).forEach(s => read.add(s.id));
       homeMode = 'stories'; showHome();
-      return [...document.querySelectorAll('#storyList .node')].slice(0, 9).map(n => {
-        const t = n.querySelector('.titel').getBoundingClientRect(), s = n.querySelector('.stufe').getBoundingClientRect();
-        return {titel: n.querySelector('.titel').textContent, abstand: s.left - t.right,
-                mitte: (s.top + s.bottom - t.top - t.bottom) / 2,
-                hoehe: n.querySelector('.label').getBoundingClientRect().height, titelHoehe: t.height};
-      });
+      const aus = [];
+      for(const st of ['A1', 'A2']){
+        geschStufeWaehlen(st);
+        [...document.querySelectorAll('#storyList .node')].forEach(n => {
+          const t = n.querySelector('.titel').getBoundingClientRect(), s = n.querySelector('.stufe').getBoundingClientRect();
+          aus.push({titel: n.querySelector('.titel').textContent, stufe: n.querySelector('.stufe').textContent,
+                    abstand: s.left - t.right, mitte: (s.top + s.bottom - t.top - t.bottom) / 2,
+                    hoehe: n.querySelector('.label').getBoundingClientRect().height, titelHoehe: t.height});
+        });
+      }
+      return aus;
     }""")
-    assert [x["titel"] for x in r[:3]] == ["Mira i Rex", "Naša kuća", "Moja porodica"], r
+    assert [x["titel"] for x in r[:3]] == ["Mira i Rex", "Moja porodica", "Naša kuća"], r
+    assert [x["stufe"] for x in r] == ["A1"] * 5 + ["A2"] * 6, r
     for x in r:
         assert x["abstand"] == pytest.approx(8, abs=0.6), x
         assert abs(x["mitte"]) <= 1.5, x

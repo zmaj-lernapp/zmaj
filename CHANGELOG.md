@@ -70,7 +70,8 @@ are in the Play Store listing. Format:
   Without hearts the skip-ahead test
   offers the same ways to a heart as the level test (video, coins).
 - 20 reading stories for B1 (decided by the maintainer on 13.11.2026), in four
-  packages behind the twelve older stories, in the same chain: the three
+  packages, in the same chain as the twelve older stories (since 17.11.2026
+  ordered by stage and difficulty, see *Changed*): the three
   approved samples (*Ljeto kod nane na selu*, *Voz Sarajevo–Mostar*,
   *Izgubljeni telefon*) and 17 more written the same way, 160 to 200 words
   each, in paragraphs, with three questions whose wrong answers are about as
@@ -342,6 +343,31 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Reading stories by stage (maintainer's decision, 17.11.2026: only A1, A2 and so
+  on, from very easy to harder, no "official language"). Every story now has the
+  stage A1, A2, B1 or B2 like the learning path instead of a theme ("Kinderbuch",
+  "Einfach", "Mittel", "Fortgeschritten", "Amtssprache"); the themes and their
+  translations are gone in all eight languages, also from the hidden summary line.
+  The list goes stage by stage and from easy to hard within each stage, measured by
+  length, sentence length, subordinate clauses, tenses, cases and vocabulary: A1 has
+  five stories (*Mira i Rex*, *Moja porodica*, *Naša kuća*, *Na pijaci*, *Moj dan*),
+  A2 six (*Na općini*, *Jučer*, *U gradu*, *Kupujemo kuću*, *Put u Bosnu*, *Pismo
+  nani*), B1 the 20 B1 reading stories from easy to hard and *Razgovor za posao*
+  last; B2 has none yet. The order is `REIHENFOLGE` in `geschichten.py`, and
+  `inhalt.pruefe_vokabeln()` reports a story without a valid stage or out of order.
+  The stories tab shows the same stage tabs as the learning path (same look,
+  "read/total" per tab, B2 and C1 "soon", a tab with no open story says which stage
+  comes first, and tapping a tab keeps the bar where it is). It opens on the tab of
+  the next unread story; a tab picked by hand stays until that story moves to
+  another tab. Numbers and "Story 2 of 6" count per tab, and the header of a story
+  reads "A1 · goes with level …". Unlocking: a story is open when it has been read,
+  when the one before it has been read, or when the one before it in the old order
+  has been read (`GESCH_ALTE_FOLGE`), so nothing that was open before closes, for
+  any saved progress, from the cloud or a backup file too. Without that, *Razgovor
+  za posao* (12th before, now last in B1) would have locked again for everyone who
+  had read up to *Kupujemo kuću*. IDs, texts, questions, translations and recordings
+  stay (the recordings are found by their text); `data/stories.json` and the
+  parallel corpus follow the new order, with `stage` "A1" etc. in every language.
 - Speaking: targets of three sounds or fewer, counted the way the comparison counts
   them (*Da*, *Ne*, *pas*, *sin*, *čaj*), now count only when heard exactly
   (maintainer's decision, 16.11.2026). Until now one letter could differ, so *pa*

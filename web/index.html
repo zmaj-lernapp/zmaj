@@ -2714,7 +2714,11 @@
       <div id="sections"></div>
     </div>
     <div id="storiesHome" style="display:none">
+      <!-- Dieselben Stufen-Reiter wie im Lernpfad (17.11.2026, Offen-Liste 7).
+           Leiste, Karte und Liste zeichnet showStoryPath(). -->
+      <div class="reiterleiste" id="geschReiter" role="tablist"></div>
       <div class="summary" id="sSummary"></div>
+      <div id="geschKarte" hidden></div>
       <div class="section" id="storyList"></div>
     </div>
     <!-- Wiederholen: der Sammeltopf fuer falsch Beantwortetes. Darunter
@@ -8448,8 +8452,7 @@ function renderHero(){
     } else if(homeMode === 'stories'){
       /* Die erste ungelesene. Sind alle gelesen, die letzte - dann ist der
          Knopf ein Weg zum Nachlesen statt eine tote Stelle. */
-      let si = STORIES.findIndex(s => !read.has(s.id));
-      if(si < 0) si = STORIES.length - 1;
+      const si = geschNaechste();
       const s = STORIES[si];
       if(s && storyUnlocked(si)){ name = s.titel; hin = () => openStory(si); }
     } else {
@@ -12520,6 +12523,7 @@ function showHome(){
      alte Stelle zurueckgeht - sonst oeffnet die Startseite oben, und ein
      kurzer Reiter braucht keinen leeren Bildschirm darunter. */
   if(!stelle) $('wordsHome').style.minHeight = '';
+  $('storiesHome').style.minHeight = '';   // ebenso aus geschStufeWaehlen()
   showView('pfad'); setzeZurueck('', null);
   $('modeWords').setAttribute('aria-selected', homeMode==='words'); $('modeStories').setAttribute('aria-selected', homeMode==='stories');
   $('modeTopf').setAttribute('aria-selected', homeMode==='topf');
@@ -12616,7 +12620,17 @@ function stufeStand(st){
    bis wieder ein Reiter gewaehlt wird oder die Startseite neu aufgeht
    (showHome); vorher wegnehmen hiesse, die Seite springt doch noch. */
 function stufeWaehlen(st){
-  const leiste = $('reiterLeiste'), feld = $('wordsHome');
+  leisteStehenLassen($('reiterLeiste'), $('wordsHome'), () => {
+    stufeGewaehlt = {st, bei: stufeVon(firstOpen())};
+    offeneSektion = laufendeSektion(st);
+    showPath();
+    sektionsFarbe();
+  });
+}
+/* Seit dem 17.11.2026 haben die Geschichten dieselbe Leiste
+   (geschStufeWaehlen), darum steht das Festhalten hier fuer beide: feld
+   ist der Bereich unter der Leiste, neuZeichnen() zeichnet ihn neu. */
+function leisteStehenLassen(leiste, feld, neuZeichnen){
   /* In Bildschirmpunkten, wie scrollBy und innerHeight - siehe rectFaktor() */
   const oben = () => leiste.getBoundingClientRect().top * rectFaktor();
   const vorher = (leiste && leiste.offsetParent) ? oben() : null;
@@ -12625,10 +12639,7 @@ function stufeWaehlen(st){
     if(vorher !== null && innerHeight > 0 && window.scrollY > 0)
       feld.style.minHeight = Math.ceil(Math.max(0, innerHeight - vorher) / GROSS) + 'px';
   }
-  stufeGewaehlt = {st, bei: stufeVon(firstOpen())};
-  offeneSektion = laufendeSektion(st);
-  showPath();
-  sektionsFarbe();
+  neuZeichnen();
   if(vorher !== null){
     const versatz = oben() - vorher;
     if(Math.abs(versatz) > 0.5) scrollBy({top: versatz, behavior: 'instant'});
@@ -12636,9 +12647,16 @@ function stufeWaehlen(st){
 }
 function reiterLeisteZeichnen(stufe){
   const leiste = $('reiterLeiste'); if(!leiste) return;
+  reiterKnoepfe(leiste, stufe, stufeStand, stufeWaehlen);
+}
+/* Die Knoepfe einer Reiterleiste. stand(st) liefert {art, done, n} wie
+   stufeStand(), waehlen(st) kommt beim Antippen. Seit dem 17.11.2026 auch
+   fuer die Geschichten (geschStand, geschStufeWaehlen): dieselben Klassen,
+   dieselben Texte, dasselbe Einpassen. */
+function reiterKnoepfe(leiste, stufe, stand, waehlen){
   leiste.setAttribute('aria-label', t('reiter.leiste'));
   leiste.innerHTML = STUFEN.map(st => {
-    const s = stufeStand(st), an = st === stufe;
+    const s = stand(st), an = st === stufe;
     /* Der Stand kurz als "11/31" (Pruefung vom 13.11.2026, siehe Stil
        .reiterleiste .sz); vorgelesen wird der ganze Satz. */
     /* Das Wort hinter dem Zeichen steht in .wort: passt die Zeile auch
@@ -12655,8 +12673,8 @@ function reiterLeisteZeichnen(stufe){
            ' aria-label="' + esc(sagt) + '">' +
            '<span class="st">' + st + '</span><span class="sz"><span class="szi">' + zeile + '</span></span>' + balken + '</button>';
   }).join('');
-  leiste.querySelectorAll('button').forEach(b => b.addEventListener('click', () => stufeWaehlen(b.dataset.stufe)));
-  reiterLeisteEinpassen();
+  leiste.querySelectorAll('button').forEach(b => b.addEventListener('click', () => waehlen(b.dataset.stufe)));
+  reiterLeisteEinpassen(leiste);
 }
 /* Zweite Pruefung vom 13.11.2026: bei 320 px oder grosser Systemschrift
    endete der Stand trotz der Kurzform in Puenktchen - "112/1…", "🔒 lock…",
@@ -12676,9 +12694,13 @@ function reiterLeisteZeichnen(stufe){
    passt, sie braucht nur ein paar Schritte mehr.
    Eine versteckte Leiste misst nichts; die Schrift laedt nach und das
    Handy wird gedreht, darum auch bei fonts.ready und resize. */
-function reiterLeisteEinpassen(){
-  const leiste = $('reiterLeiste');
-  if(!leiste || !leiste.offsetParent) return;
+function reiterLeisteEinpassen(el){
+  /* Ohne Leiste (resize und fonts.ready geben ein Ereignis oder nichts mit)
+     beide, Lernpfad und Geschichten - gemessen wird nur die sichtbare. */
+  const leisten = (el && el.nodeType === 1) ? [el] : [$('reiterLeiste'), $('geschReiter')];
+  leisten.forEach(leiste => { if(leiste && leiste.offsetParent) leisteEinpassen(leiste); });
+}
+function leisteEinpassen(leiste){
   leiste.querySelectorAll('.sz').forEach(sz => {
     const innen = sz.querySelector('.szi'); if(!innen) return;
     sz.style.fontSize = ''; sz.classList.remove('nurzeichen');
@@ -12831,7 +12853,105 @@ function showPath(){
 }
 
 /* =================== GESCHICHTEN-PFAD =================== */
-const storyUnlocked = i => allesOffen() || i===0 || read.has(STORIES[i-1].id);
+/* ---- Stufen wie im Lernpfad (17.11.2026, Offen-Liste 7) ----
+   Ajdin: "lass sie auch in 1.4 rein machen das da steht amtssprache lass
+   raus es soll einfach von kinderleicht zu schwerer sein usw also nur A1,
+   A2 usw". Jede Geschichte hat ihre Stufe (geschichten.py, "stufe"), und
+   STORIES steht Stufe fuer Stufe, in jeder von leicht nach schwer
+   (REIHENFOLGE dort). Oben stehen dieselben Reiter wie im Lernpfad
+   (reiterKnoepfe), darunter nur die Geschichten des gezeigten. Eine Stufe
+   ohne Geschichten (heute B2 und C1) steht da wie C1 im Lernpfad: "bald".
+   Nummern und "Geschichte 2 von 6" zaehlen je Reiter, wie die Level. */
+let _gStufen = null;
+function geschStufen(){
+  if(_gStufen && _gStufen.von === STORIES) return _gStufen;
+  const stufe = [], nr = [], je = {};
+  STUFEN.forEach(st => { je[st] = []; });
+  let vorige = STUFEN[0];
+  STORIES.forEach((s, i) => {
+    /* Ohne gueltige Stufe gehoert sie zur davor, wie eine Sektion (stufenKarte) */
+    const st = STUFEN.indexOf(s.stufe) >= 0 ? s.stufe : vorige;
+    vorige = st; stufe[i] = st; je[st].push(i); nr[i] = je[st].length;
+  });
+  _gStufen = {von: STORIES, stufe, nr, je};
+  return _gStufen;
+}
+function geschStufe(i){ return geschStufen().stufe[i] || STUFEN[0]; }
+function geschImReiter(st){ return geschStufen().je[st] || []; }
+/* Die naechste: die erste ungelesene, sind alle gelesen, die letzte. Sie
+   ist immer frei, denn alles davor ist gelesen. */
+function geschNaechste(){ const i = STORIES.findIndex(s => !read.has(s.id)); return i < 0 ? STORIES.length - 1 : i; }
+/* ---- Was frei ist ----
+   Eine Geschichte ist frei, wenn sie gelesen ist, wenn die davor gelesen
+   ist (die erste immer) - oder wenn sie es in der Folge bis zum 17.11.2026
+   war. Dort standen die zwoelf ersten nach Thema, von "Kinderbuch" bis
+   "Amtssprache", dahinter die B1-Lesetexte, und frei war jede, deren
+   Vorgaengerin in dieser Folge gelesen war. Mit der neuen Folge allein
+   ginge manches wieder zu: "Razgovor za posao" stand auf Platz 12 und
+   steht jetzt am Ende von B1 - wer bis "Kupujemo kuću" gelesen hatte,
+   saehe sie gesperrt, ebenso "Naša kuća" nach "Mira i Rex". Mit der alten
+   Vorgaengerin bleibt jede Geschichte frei, die vorher frei war, fuer
+   jeden gespeicherten Stand, auch aus der Cloud oder einer Sicherungsdatei.
+   Bis 1.3 gab es nur die ersten zwoelf, in derselben Folge wie hier. Eine
+   neue Geschichte steht nicht in der Liste und geht nur der Reihe nach
+   auf. tests/test_geschichten_stufen.py haelt die Liste fest. */
+const GESCH_ALTE_FOLGE = ['mira', 'kuca1', 'porodica', 'pijaca', 'dan', 'grad', 'jucer', 'put', 'pismo',
+  'opcina', 'kuca', 'intervju', 'b1_ljeto', 'b1_dijaspora', 'b1_vrijeme', 'b1_voz', 'b1_rafting',
+  'b1_jahorina', 'b1_pita', 'b1_struja', 'b1_svadba', 'b1_posao', 'b1_stan', 'b1_doktor', 'b1_selidba',
+  'b1_telefon', 'b1_rodjendan', 'b1_utakmica', 'b1_zanat', 'b1_kahva', 'b1_mejl', 'b1_zmaj'];
+function storyUnlocked(i){
+  const s = STORIES[i]; if(!s) return false;
+  if(allesOffen() || i === 0 || read.has(s.id) || read.has(STORIES[i-1].id)) return true;
+  const k = GESCH_ALTE_FOLGE.indexOf(s.id);
+  return k === 0 || (k > 0 && read.has(GESCH_ALTE_FOLGE[k-1]));
+}
+/* Wie weit ein Reiter ist, wie stufeStand(): bald (keine Geschichten),
+   fertig (alle gelesen), offen (eine ist frei) oder zu. */
+function geschStand(st){
+  const L = geschImReiter(st);
+  if(!L.length) return {art: 'bald', done: 0, n: 0};
+  const done = L.filter(i => read.has(STORIES[i].id)).length;
+  const art = done === L.length ? 'fertig' : (L.some(i => storyUnlocked(i)) ? 'offen' : 'zu');
+  return {art, done, n: L.length};
+}
+/* Geoeffnet wird der Reiter der naechsten Geschichte. Tippt man einen
+   anderen an, bleibt der stehen, bis die naechste in einen anderen Reiter
+   wandert (nach der letzten von A1) - wie stufeGewaehlt im Lernpfad.
+   Gemerkt nur fuer diesen Start. */
+let geschGewaehlt = null;   // {st, bei}: gewaehlt, als die naechste in "bei" stand
+function geschAngezeigt(){
+  const jetzt = geschStufe(geschNaechste());
+  return (geschGewaehlt && geschGewaehlt.bei === jetzt && STUFEN.indexOf(geschGewaehlt.st) >= 0)
+    ? geschGewaehlt.st : jetzt;
+}
+/* Wie im Lernpfad: die Leiste bleibt, wo der Finger sie getroffen hat,
+   nur darunter wechselt es (leisteStehenLassen). */
+function geschStufeWaehlen(st){
+  leisteStehenLassen($('geschReiter'), $('storiesHome'), () => {
+    geschGewaehlt = {st, bei: geschStufe(geschNaechste())};
+    showStoryPath();
+  });
+}
+/* Die Karte ueber einem Reiter, in dem noch keine Geschichte frei ist: wie
+   er aufgeht. Bei einer Stufe ohne Geschichten nur "kommt bald". Sonst leer.
+   Die Texte sind die der Reiter im Lernpfad. */
+function geschKarteZeichnen(stufe){
+  const k = $('geschKarte'); if(!k) return;
+  const s = geschStand(stufe);
+  if(s.art === 'bald'){
+    k.hidden = false;
+    k.innerHTML = '<div class="section reiterzu"><h2>' + esc(t('reiter.bald_titel', {stufe})) + '</h2></div>';
+    return;
+  }
+  if(s.art !== 'zu'){ k.hidden = true; k.innerHTML = ''; return; }
+  const vorher = STUFEN.slice(0, STUFEN.indexOf(stufe)).filter(st => geschImReiter(st).length).pop();
+  k.hidden = false;
+  k.innerHTML = '<div class="section reiterzu">' +
+    '<div class="schloss" aria-hidden="true">' + symbol('schloss') + '</div>' +
+    '<h2>' + esc(t('reiter.zu_titel', {stufe})) + '</h2>' +
+    (vorher ? '<div class="txt">' + esc(t('reiter.zu_erst', {vorher})) + '</div>' : '') +
+    '</div>';
+}
 function showStoryPath(){
   $('tag').textContent=t('gesch.titel');
   const done = STORIES.filter(s=>read.has(s.id)).length;
@@ -12843,19 +12963,33 @@ function showStoryPath(){
      deshalb faellt sie ganz weg. Der Text bleibt gefuellt, falls die
      Zeile wiederkommt. */
   $('sSummary').style.display = 'none';
-  const next = (()=>{ const i = STORIES.findIndex(s=>!read.has(s.id)); return i<0 ? STORIES.length-1 : i; })();
+  /* Die Stufen-Reiter (17.11.2026): oben die Leiste, darunter nur die
+     Geschichten des gezeigten Reiters, die Nummern je Reiter von 1. */
+  const next = geschNaechste(), stufe = geschAngezeigt(), G = geschStufen();
+  const leiste = $('geschReiter');
+  if(leiste) reiterKnoepfe(leiste, stufe, geschStand, geschStufeWaehlen);
+  geschKarteZeichnen(stufe);
+  const hier = geschImReiter(stufe);
   const box=$('storyList'); box.innerHTML='<h2>'+t('gesch.titel')+'</h2><div class="desc">'+t('gesch.desc')+'</div>';
-  STORIES.forEach((s,i)=>{
+  box.style.display = hier.length ? '' : 'none';   // "bald": nur die Karte
+  hier.forEach(i=>{
+    const s = STORIES[i];
     const b=document.createElement('button');
     const d=read.has(s.id), o=storyUnlocked(i), isCur=(i===next && !d);
     b.className='node'+(d?' done':'')+(isCur?' current':'')+(o?'':' locked');
     const lvl = byId(s.passt_zu);
-    b.innerHTML = '<div class="circle">'+(d?'✓':(o?(i+1):symbol('schloss')))+'</div>'+
+    b.innerHTML = '<div class="circle">'+(d?'✓':(o?G.nr[i]:symbol('schloss')))+'</div>'+
       '<div class="txt"><div class="label'+(s.stufe?' mitstufe':'')+'"><span class="titel">'+esc(s.titel)+'</span>'+
         (s.stufe?'<span class="luecke"> </span><span class="stufe">'+esc(s.stufe)+'</span>':'')+'</div><div class="tipp">'+(lvl?t('gesch.passt_zu',{label:esc(lvl.label)}):'')+'</div></div>'+
       '<div class="state">'+(d?t('gesch.gelesen'):(isCur?t('zustand.jetzt'):(o?t('zustand.offen'):t('zustand.gesperrt'))))+'</div>';
     b.addEventListener('click',()=>{
-      if(!storyUnlocked(i)){ b.querySelector('.state').textContent=t('gesch.erst',{n:i}); return; }
+      if(!storyUnlocked(i)){
+        /* Die erste eines Reiters hat davor keine im selben Reiter - dann
+           wie beim ersten Level eines Reiters (pfad.erst_stufe). */
+        b.querySelector('.state').textContent = geschStufe(i - 1) === stufe
+          ? t('gesch.erst', {n: G.nr[i - 1]}) : t('pfad.erst_stufe', {stufe: geschStufe(i - 1)});
+        return;
+      }
       openStory(i);
     });
     box.appendChild(b);
@@ -12866,7 +13000,8 @@ function openStory(i){
   if(anmeldungSperre()) return;
   rIdx=i; showView('storyView'); uhrNeu();
   setzeZurueck(t('btn.zurueck_geschichten'), ()=>{ homeMode='stories'; showHome(); });
-  $('tag').textContent=t('gesch.zaehler',{i:i+1, n:STORIES.length});
+  /* Je Reiter, wie "Level 3 von 31" (17.11.2026) */
+  $('tag').textContent=t('gesch.zaehler',{i:geschStufen().nr[i] || i+1, n:geschImReiter(geschStufe(i)).length || STORIES.length});
   showStory();
   $('sPrev').disabled = i===0;
   $('sNext2').disabled = !(i+1<STORIES.length && storyUnlocked(i+1));

@@ -640,32 +640,57 @@ lässt: eine kurze Erklärung mit Tabelle, zum Beispiel alle Endungen eines
 Falls. Die dazugehörigen Übungsaufgaben kommen in der Lektion und im
 Level-Test dran, mit Tipp bei Fehlern. Die Lektionen stehen in `grammatik.py`.
 
-## Der Geschichten-Pfad: 12 Geschichten
+## Der Geschichten-Pfad: 32 Geschichten
 
-Die Geschichten sind wie Levels aufgebaut und werden von vorn nach hinten
-schwerer:
+Die Geschichten stehen in Stufen wie der Lernpfad, mit denselben Reitern
+A1 bis C1 (seit 17.11.2026; vorher nach Thema, „Kinderbuch“ bis
+„Amtssprache“). In jeder Stufe werden sie von vorn nach hinten schwerer.
+B2 und C1 haben noch keine Geschichten und zeigen „bald“. Die Folge steht in
+`geschichten.py` unter `REIHENFOLGE`:
 
-| Nr. | Titel              | Stufe           | Passt zu Level          |
-|-----|--------------------|-----------------|-------------------------|
-| 1   | Mira i Rex         | Kinderbuch      | Farben                  |
-| 2   | Naša kuća          | Kinderbuch      | Zuhause                 |
-| 3   | Moja porodica      | Einfach         | Familie                 |
-| 4   | Na pijaci          | Einfach         | Einkaufen & Kleidung    |
-| 5   | Moj dan            | Einfach         | Tagesablauf             |
-| 6   | U gradu            | Mittel          | Präpositionen           |
-| 7   | Jučer              | Mittel          | Vergangenheit           |
-| 8   | Put u Bosnu        | Mittel          | Reisen & Verkehr        |
-| 9   | Pismo nani         | Fortgeschritten | Zukunft & Pläne         |
-| 10  | Na općini          | Amtssprache     | Amt & Behörde           |
-| 11  | Kupujemo kuću      | Amtssprache     | Wohnung & Hauskauf      |
-| 12  | Razgovor za posao  | Amtssprache     | Arbeitsvertrag & Bewerbung |
+| Stufe | Nr. | Titel                         | Passt zu Level             |
+|-------|-----|-------------------------------|----------------------------|
+| A1    | 1   | Mira i Rex                    | Farben                     |
+| A1    | 2   | Moja porodica                 | Familie                    |
+| A1    | 3   | Naša kuća                     | Zuhause                    |
+| A1    | 4   | Na pijaci                     | Einkaufen & Kleidung       |
+| A1    | 5   | Moj dan                       | Tagesablauf                |
+| A2    | 1   | Na općini                     | Amt & Behörde              |
+| A2    | 2   | Jučer                         | Vergangenheit              |
+| A2    | 3   | U gradu                       | Präpositionen              |
+| A2    | 4   | Kupujemo kuću                 | Wohnung & Hauskauf         |
+| A2    | 5   | Put u Bosnu                   | Reisen & Verkehr           |
+| A2    | 6   | Pismo nani                    | Zukunft & Pläne            |
+| B1    | 1   | Vrijeme za vikend             | Wetter & Natur             |
+| B1    | 2   | Voz Sarajevo–Mostar           | Reisen und Urlaub          |
+| B1    | 3   | Izdajem stan                  | Wohnung & Hauskauf         |
+| B1    | 4   | Ljeto kod nane na selu        | Familie                    |
+| B1    | 5   | Svadba i kolo                 | Feste & Traditionen        |
+| B1    | 6   | Rafting na Uni                | Sport und Spiel            |
+| B1    | 7   | Rođendansko iznenađenje       | Feste & Traditionen        |
+| B1    | 8   | Kod doktora                   | In der Arztpraxis          |
+| B1    | 9   | Prvi dan na poslu             | Am Arbeitsplatz            |
+| B1    | 10  | Jahorina                      | Sport und Spiel            |
+| B1    | 11  | Utakmica                      | Sport und Spiel            |
+| B1    | 12  | Komšiluk bez struje           | Miteinander umgehen        |
+| B1    | 13  | Zmaj uči bosanski             | Lernen und studieren       |
+| B1    | 14  | Nanina pita                   | Bosnische Küche            |
+| B1    | 15  | Kahva kod komšinice           | Miteinander umgehen        |
+| B1    | 16  | Dijaspora prvi put u Sarajevu | Reisen und Urlaub          |
+| B1    | 17  | Izgubljeni telefon            | Handy, Computer & Geräte   |
+| B1    | 18  | Dedo i nana se sele           | Erledigen und umziehen     |
+| B1    | 19  | Stari zanat na Baščaršiji     | Am Arbeitsplatz            |
+| B1    | 20  | Mejl rođaku                   | Reisen und Urlaub          |
+| B1    | 21  | Razgovor za posao             | Arbeitsvertrag & Bewerbung |
 
 Regeln: Nur die erste Geschichte ist offen. Eine Geschichte gilt als gelesen,
 wenn alle Fragen zum Text richtig beantwortet sind. Dann öffnet sich die
-nächste. Jedes Wort im Text lässt sich antippen und zeigt die Übersetzung, die
-ganze Übersetzung kann eingeblendet werden, „Vorlesen“ nutzt die
-Computerstimme. Gelesene Geschichten bleiben offen. Mit `?alle=1` sind auch
-hier alle Geschichten frei.
+nächste, auch über die Stufe hinweg. Was in der Folge bis zum 17.11.2026
+offen war, bleibt offen (`GESCH_ALTE_FOLGE` in `web/index.html`). Der Reiter
+Geschichten öffnet die Stufe der nächsten ungelesenen Geschichte. Jedes Wort
+im Text lässt sich antippen und zeigt die Übersetzung, die ganze Übersetzung
+kann eingeblendet werden, „Vorlesen“ nutzt die Computerstimme. Gelesene
+Geschichten bleiben offen. Mit `?alle=1` sind auch hier alle Geschichten frei.
 
 Die Geschichten und das Wörterbuch stehen in `geschichten.py`. Fehlt ein Wort
 aus einem Geschichtentext im Wörterbuch, meldet das `start.py` beim Start,

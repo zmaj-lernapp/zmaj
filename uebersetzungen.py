@@ -40,8 +40,13 @@ GRUNDSPRACHE = "de"
 
 
 GLEICH = {
-    # B1-Lesetexte (13.11.2026): die Stufe und zwei Namen als Antwort.
+    # Die Stufen der Geschichten (B1 seit 13.11.2026, A1, A2 und B2 seit dem
+    # 17.11.2026 statt "Kinderbuch" bis "Amtssprache", Offen-Liste 7) und zwei
+    # Namen als Antwort.
+    "A1",
+    "A2",
     "B1",
+    "B2",
     "Amina",
     "Ajdin",
     # Bosnische Beispiele, Namen und Zahlen aus den Grammatik-Tabellen,
@@ -952,12 +957,6 @@ INHALT = {
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "At the doctor's and at the health insurer: referral, prescription, sick note.",
 
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Picture book",
-    "Einfach": "Easy",
-    "Mittel": "Medium",
-    "Fortgeschritten": "Advanced",
-    "Amtssprache": "Administrative language",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hello",
     "Guten Tag": "Good day",
@@ -11990,12 +11989,6 @@ INHALT = {
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Doktorda ve sağlık sigortasında: sevk, reçete, istirahat raporu.",
 
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Çocuk kitabı",
-    "Einfach": "Kolay",
-    "Mittel": "Orta",
-    "Fortgeschritten": "İleri",
-    "Amtssprache": "Resmî dil",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Merhaba",
     "Guten Tag": "İyi günler",
@@ -23017,12 +23010,6 @@ INHALT = {
     "Arzt & Versicherung": "Läkare & försäkring",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Hos läkaren och hos försäkringskassan: remiss, recept, sjukskrivning.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Bilderbok",
-    "Einfach": "Lätt",
-    "Mittel": "Medel",
-    "Fortgeschritten": "Avancerad",
-    "Amtssprache": "Myndighetsspråk",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hej",
     "Guten Tag": "God dag",
@@ -34030,12 +34017,6 @@ INHALT = {
     "Arzt & Versicherung": "Dokter & verzekering",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Bij de dokter en bij de zorgverzekeraar: verwijsbrief, recept, ziekmelding.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Kinderboek",
-    "Einfach": "Makkelijk",
-    "Mittel": "Gemiddeld",
-    "Fortgeschritten": "Gevorderd",
-    "Amtssprache": "Ambtelijke taal",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hallo",
     "Guten Tag": "Goedendag",
@@ -45041,12 +45022,6 @@ INHALT = {
     "Arzt & Versicherung": "Lege & forsikring",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Hos legen og hos helseforsikringen: henvisning, resept, sykmelding.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Billedbok",
-    "Einfach": "Lett",
-    "Mittel": "Middels",
-    "Fortgeschritten": "Viderekommen",
-    "Amtssprache": "Myndighetsspråk",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hei",
     "Guten Tag": "God dag",
@@ -56054,12 +56029,6 @@ INHALT = {
     "Arzt & Versicherung": "Læge & forsikring",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Hos lægen og hos sygesikringen: henvisning, recept, sygemelding.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Billedbog",
-    "Einfach": "Let",
-    "Mittel": "Middel",
-    "Fortgeschritten": "Øvet",
-    "Amtssprache": "Myndighedssprog",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hej",
     "Guten Tag": "Goddag",
@@ -67065,12 +67034,6 @@ INHALT = {
     "Arzt & Versicherung": "Médecin & assurance",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Chez le médecin et à l'assurance maladie : orientation, ordonnance, arrêt de travail.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Album jeunesse",
-    "Einfach": "Facile",
-    "Mittel": "Moyen",
-    "Fortgeschritten": "Avancé",
-    "Amtssprache": "Langue administrative",
     # ---- Wörter · Grundlagen -----------------------------------------------
     # Pruefbericht 1.4 (14.11.2026), V5: Ćao steht im selben Level als "Salut (en partant)".
     "Hallo": "Salut (en arrivant)",

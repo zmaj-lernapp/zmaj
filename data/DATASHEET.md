@@ -56,7 +56,7 @@ pie showData title Words per section (7,997)
 |---|---|---|
 | `vocabulary.json` / `.csv` | words and phrases, 27 sections in four stages (A1 to B2), 297 levels | 7,997 |
 | `sentences.json` / `.csv` | fill-in-the-gap sentences with the full sentence | 300 |
-| `stories.json` | graded stories with translation, glossary and comprehension questions | 32 |
+| `stories.json` | graded stories, stage by stage from A1 to B1 (`stage`), with translation, glossary and comprehension questions | 32 |
 | `glossary.json` | word-by-word reading glossary used by the stories | 1,519 |
 | `grammar.json` | grammar lessons (explanations, tables, exercises) per language | 26 |
 | `anki/zmaj-bs-<lang>.tsv` | ready-to-import Anki decks, tagged by level | 8 decks |

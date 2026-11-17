@@ -53,7 +53,7 @@ VORBEREITEN = """(emir) => {
 ALLE = """() => {
   const raus = [];
   STORIES.forEach((s, i) => {
-    if(s.stufe !== 'B1') return;
+    if(!s.id.startsWith('b1_')) return;   // die 20 B1-Lesetexte; seit 17.11.2026 ist auch intervju B1
     openStory(i); stilleBitte();
     document.querySelectorAll('#rBody .txt .w').forEach(w =>
       raus.push({id: s.id, wort: w.textContent, datei: audioDatei(w.textContent)}));

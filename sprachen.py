@@ -416,7 +416,7 @@ TEXTE = {
 
 # ---- Geschichten ----------------------------------------------------------
 "gesch.titel": "Geschichten",
-"gesch.summary": "{done} von {n} Geschichten gelesen · von Kinderbuch bis Amtssprache. Eine Geschichte ist geschafft, wenn alle Fragen richtig beantwortet sind.",
+"gesch.summary": "{done} von {n} Geschichten gelesen. Eine Geschichte ist geschafft, wenn alle Fragen richtig beantwortet sind.",
 "gesch.desc": "Freiwillig für alle, die auch lesen wollen. Jedes Wort im Text lässt sich antippen.",
 "gesch.passt_zu": "Passt zu Level: {label}",
 "gesch.kicker_passt": " · passt zu Level „{label}“",
@@ -1158,7 +1158,7 @@ TEXTE = {
 "zustand.gesperrt": "Locked",
 
 "gesch.titel": "Stories",
-"gesch.summary": "{done} of {n} stories read · from picture book to official language. A story counts as done when every question is answered correctly.",
+"gesch.summary": "{done} of {n} stories read. A story counts as done when every question is answered correctly.",
 "gesch.desc": "Optional, for everyone who also wants to read. Every word in the text can be tapped.",
 "gesch.passt_zu": "Goes with level: {label}",
 "gesch.kicker_passt": " · goes with level “{label}”",
@@ -1861,7 +1861,7 @@ TEXTE = {
 "zustand.gesperrt": "Kilitli",
 
 "gesch.titel": "Hikâyeler",
-"gesch.summary": "{n} hikâyeden {done} tanesi okundu · çocuk kitabından resmî dile kadar. Bütün sorular doğru cevaplanınca hikâye tamamlanır.",
+"gesch.summary": "{n} hikâyeden {done} tanesi okundu. Bütün sorular doğru cevaplanınca hikâye tamamlanır.",
 "gesch.desc": "İsteğe bağlı, okumak isteyenler için. Metindeki her kelimeye dokunabilirsin.",
 "gesch.passt_zu": "Şu seviyeye uyar: {label}",
 "gesch.kicker_passt": " · “{label}” seviyesine uyar",
@@ -2562,7 +2562,7 @@ TEXTE = {
 "zustand.gesperrt": "Låst",
 
 "gesch.titel": "Berättelser",
-"gesch.summary": "{done} av {n} berättelser lästa · från bilderbok till myndighetsspråk. En berättelse är klar när alla frågor är rätt besvarade.",
+"gesch.summary": "{done} av {n} berättelser lästa. En berättelse är klar när alla frågor är rätt besvarade.",
 "gesch.desc": "Frivilligt, för alla som också vill läsa. Varje ord i texten går att trycka på.",
 "gesch.passt_zu": "Hör till nivå: {label}",
 "gesch.kicker_passt": " · hör till nivån ”{label}”",
@@ -3259,7 +3259,7 @@ TEXTE = {
     "zustand.gesperrt": "Op slot",
     "gesch.titel": "Verhalen",
     "gesch.summary":
-        "{done} van {n} verhalen gelezen · van prentenboek tot ambtelijke taal. Een verhaal is af als alle vragen goed beantwoord zijn.",
+        "{done} van {n} verhalen gelezen. Een verhaal is af als alle vragen goed beantwoord zijn.",
     "gesch.desc": "Vrijwillig, voor iedereen die ook wil lezen. Elk woord in de tekst kun je aantikken.",
     "gesch.passt_zu": "Hoort bij niveau: {label}",
     "gesch.kicker_passt": " · hoort bij niveau ‘{label}’",
@@ -3958,7 +3958,7 @@ TEXTE = {
     "zustand.gesperrt": "Låst",
     "gesch.titel": "Fortellinger",
     "gesch.summary":
-        "{done} av {n} fortellinger lest · fra billedbok til myndighetsspråk. En fortelling er ferdig når alle spørsmålene er riktig besvart.",
+        "{done} av {n} fortellinger lest. En fortelling er ferdig når alle spørsmålene er riktig besvart.",
     "gesch.desc": "Frivillig, for alle som også vil lese. Du kan trykke på hvert ord i teksten.",
     "gesch.passt_zu": "Hører til nivå: {label}",
     "gesch.kicker_passt": " · hører til nivået «{label}»",
@@ -4658,7 +4658,7 @@ TEXTE = {
     "zustand.gesperrt": "Låst",
     "gesch.titel": "Fortællinger",
     "gesch.summary":
-        "{done} af {n} fortællinger læst · fra billedbog til myndighedssprog. En fortælling er færdig, når alle spørgsmål er besvaret rigtigt.",
+        "{done} af {n} fortællinger læst. En fortælling er færdig, når alle spørgsmål er besvaret rigtigt.",
     "gesch.desc": "Frivilligt, for alle, der også vil læse. Du kan trykke på hvert ord i teksten.",
     "gesch.passt_zu": "Hører til niveau: {label}",
     "gesch.kicker_passt": " · hører til niveauet »{label}«",
@@ -5357,7 +5357,7 @@ TEXTE = {
     "zustand.gesperrt": "Verrouillé",
     "gesch.titel": "Histoires",
     "gesch.summary":
-        "Histoires lues : {done} sur {n} · de l'album jeunesse à la langue administrative. Une histoire est terminée quand toutes les questions ont une bonne réponse.",
+        "Histoires lues : {done} sur {n}. Une histoire est terminée quand toutes les questions ont une bonne réponse.",
     "gesch.desc": "Facultatif, pour tous ceux qui veulent aussi lire. Chaque mot du texte peut être touché.",
     "gesch.passt_zu": "Va avec le niveau : {label}",
     "gesch.kicker_passt": " · va avec le niveau « {label} »",
