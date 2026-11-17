@@ -8586,14 +8586,39 @@ async function hoerenPruefen(){
      nicht koennen und trotzdem "No match" melden. Ebenso nach zwei
      "Network error" in Folge, obwohl das Handy Netz meldet.
    - "Didn't understand" (darunter Androids "Sprache fehlt", Fehler 12 und
-     13) und "error from server": sofort im selben Tipp die andere Sprache,
-     wie bisher. Handys ohne bs-BA duerfen nicht vom Sprechen abgeschnitten
-     werden.
+     13, aber auch 10, 11 und alles Unbekannte) und "error from server":
+     zuerst nach SPRECH_NOCHMAL_MS einmal dieselbe Sprache, still im selben
+     Tipp - "Hoert zu ..." bleibt stehen. Erst wenn auch dieser Start
+     ablehnt, kommt im selben Tipp die andere Sprache, und gibt es keine
+     mehr, die Meldung. Handys ohne bs-BA duerfen nicht vom Sprechen
+     abgeschnitten werden.
+     Warum erst noch einmal (Geraetebefund 17.11.2026, Samsung S21 mit
+     Googles Erkennungsdienst): Nach einem Start, der zugehoert hatte, lehnte
+     der naechste oft sofort (0 ms) mit "Didn't understand" ab, auch nach 3
+     oder 10 s Pause, und der Start direkt danach hoerte in 5 von 5 Faellen
+     wieder zu. Bis dahin galt die Sprache schon nach dieser einen Ablehnung
+     als fehlend - etwa jeder zweite Tipp zeigte "Das hat nicht geklappt",
+     ohne zugehoert zu haben.
    - "Client side error" (bis Android 11 vielleicht "Sprache fehlt"):
-     nach SPRECH_NOCHMAL_MS einmal dieselbe Sprache, dann die andere.
+     ebenso, einmal dieselbe Sprache, dann die andere.
    - "RecognitionService busy", "Audio recording error": einmal dieselbe
      Sprache nach SPRECH_NOCHMAL_MS, dann die Meldung.
-   - "Network error", "Network timeout": sofort die Offline-Meldung.
+   - Je Sprache und Tipp gibt es nur diese eine Wiederholung, gleich nach
+     welchem Fehler ("busy", dann "Didn't understand" startet nicht ein
+     drittes Mal) - hoechstens vier Starts je Tipp.
+   - "Network error", "Network timeout": sofort die Offline-Meldung, auch
+     im Wiederholversuch.
+   Als "fehlt" fuer die Sitzung gilt eine Sprache nur, wenn BEIDE Starts im
+   Tipp mit "Sprache fehlt" ("Didn't understand" oder "Client side error")
+   abgelehnt haben, und zwar sofort, unter SPRECH_SOFORT_MS: Androids
+   "Sprache fehlt" kommt beim Start, bevor das Mikrofon aufgeht (bs-BA am
+   S21: immer 0 ms; das frueheste "No match" kam nach 5,2 s). Eine spaete
+   Ablehnung kommt von einem Erkenner, der die Sprache angenommen und
+   zugehoert hat. Und weil auf einen Start, der zugehoert hat, oft eine
+   Sofort-Ablehnung folgt, sperrte "spaet, dann sofort" sonst eine Sprache
+   aus, die funktioniert - bei bs-BA hiesse das hr-HR fuer die ganze Sitzung
+   ("Tko" statt "Ko"). Geht ein Paar ohne diese Merkung aus, kommt trotzdem
+   im selben Tipp die andere Sprache, wie bei "error from server".
    Die Sprache, die etwas geliefert hat, gilt fuer die ganze Sitzung, ebenso
    hr-HR, wenn bs-BA "fehlt". Hat aber bs-BA einmal geliefert, bleibt es bei
    bs-BA: liefert spaeter hr-HR, weil bs-BA einmal abgelehnt hat, war hr-HR
@@ -8604,8 +8629,11 @@ async function hoerenPruefen(){
    (sprechStart()). Gilt nur fuer Android - das iPhone (ZmajSprache) und der
    Browser behalten ihren Weg, siehe sprechAufIOS(). */
 const SPRECH_SPRACHEN = ['bs-BA', 'hr-HR'];
-let SPRECH_ZEITGRENZE = 12000;    // ms je Start; die Tests setzen sie herunter
+/* 15 s statt 12 s seit dem 17.11.2026: am S21 kam "No match" bei Stille
+   einmal erst nach 11,5 s, knapp hinter der alten Grenze. */
+let SPRECH_ZEITGRENZE = 15000;    // ms je Start; die Tests setzen sie herunter
 const SPRECH_NOCHMAL_MS = 400;
+let SPRECH_SOFORT_MS = 1500;      // schneller abgelehnt = nicht zugehoert; die Tests setzen sie herunter
 const SPRECH_DIENST_GRENZE = 2;
 let sprechSprache = null;         // womit der naechste Tipp beginnt; null = bs-BA, noch nicht bestaetigt
 const sprechGeliefert = new Set(); // Sprachen, die in dieser Sitzung schon etwas geliefert haben
@@ -13757,11 +13785,14 @@ function renderTask(task, body, done, opts={}){
       const reihe = [sprechSprache || SPRECH_SPRACHEN[0]];
       const zweite = SPRECH_SPRACHEN.find(s => s !== reihe[0]);
       if(!sprechFehlt.has(zweite)) reihe.push(zweite);
-      let art = null, nochmal = false;
+      /* nochmal: die eine Wiederholung dieser Sprache ist verbraucht, gleich
+         wofuer. fehltErst: ihr erster Start endete sofort mit "Sprache fehlt". */
+      let art = null, nochmal = false, fehltErst = false;
       for(let i = 0; i < reihe.length; ){
         const sprache = reihe[i];
         let erg = null, text = '';
         art = null;
+        const beginn = Date.now();
         try{ erg = await sprechStart(H, {maxResults:5, partialResults:false, popup:false, language:sprache}); }
         catch(e){ art = sprechFehlerArt(e); text = String((e && e.message) || e || ''); }
         if(erg && erg.zeitAus) return {art: 'zeit'};
@@ -13789,29 +13820,36 @@ function renderTask(task, body, done, opts={}){
           return {art};
         }
         if(art === 'netz') return {art};
-        if((art === 'belegt' || art === 'client') && !nochmal){
-          nochmal = true;
+        /* Hier bleiben "busy", "Client side error" und die Ablehnungen
+           ("Didn't understand", "error from server", Unbekanntes). Ob es nach
+           "Sprache fehlt" aussah: so ein Text und sofort, siehe SPRECH_SOFORT_MS. */
+        const fehltJetzt = (art === 'client' || /Didn't understand/i.test(text)) && Date.now() - beginn < SPRECH_SOFORT_MS;
+        if(!nochmal){
+          nochmal = true; fehltErst = fehltJetzt;
           await new Promise(r => setTimeout(r, SPRECH_NOCHMAL_MS));
           if(abgebrochen()) return {art: 'stopp'};
-          continue;   // dieselbe Sprache noch einmal
+          continue;   // dieselbe Sprache noch einmal, still im selben Tipp
         }
         if(art === 'belegt') return {art};
-        /* "Sprache fehlt" ("Didn't understand", oder zweimal "Client side
-           error"): fuer die Sitzung merken - es sei denn, diese Sprache hat
-           schon etwas geliefert. Dann die andere Sprache, im selben Tipp. */
-        if((art === 'client' || /Didn't understand/i.test(text)) && !sprechGeliefert.has(sprache)){
+        /* Zweimal sofort "Sprache fehlt": fuer die Sitzung merken - es sei
+           denn, diese Sprache hat schon etwas geliefert. Dann, und auch ohne
+           Merkung, die andere Sprache im selben Tipp. */
+        if(fehltErst && fehltJetzt && !sprechGeliefert.has(sprache)){
           sprechFehlt.add(sprache);
           const andere = SPRECH_SPRACHEN.find(s => s !== sprache);
           if(!sprechFehlt.has(andere) && (sprechSprache === null || sprechSprache === sprache)) sprechSprache = andere;
         }
-        i++; nochmal = false;
+        i++; nochmal = false; fehltErst = false;
       }
       /* Jede Sprache ist an Sprach- oder Dienstfehlern gescheitert. Mehrmals
          in Folge: Sprechaufgaben fallen ab der naechsten Lektion aus, wie bei
          abgelehntem Mikrofon - aber nur fuer diese Sitzung, ohne
          mikroAbsageMerken(). So bleibt die Tagesaufgabe "ohne Fehler"
          erreichbar. Seit dem 17.11.2026 auch in der laufenden Lektion, siehe
-         sprechAufgabenRaus(). */
+         sprechAufgabenRaus(). Eine Ablehnung, nach der die Wiederholung
+         zuhoert, kommt hier nie an: der Tipp endet oben mit dem Ergebnis
+         oder "No match", und ein Treffer wie ein "No match" setzt den Zaehler
+         sogar zurueck. */
       if(++sprechDienstAus >= SPRECH_DIENST_GRENZE){ canSpeak = false; sprechAufgabenRaus(); }
       return {art};
     };

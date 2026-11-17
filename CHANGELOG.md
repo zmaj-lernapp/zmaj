@@ -594,18 +594,28 @@ are in the Play Store listing. Format:
   input" keep the language and show the message; only two of them in a row with
   bs-BA, as long as bs-BA has delivered nothing in this session, move the next tap to
   hr-HR (two "Network error" in a row while the phone reports a connection do the
-  same). "Didn't understand" (where Android reports a missing language) and "error
-  from server" still switch to hr-HR within the same tap, so phones without Bosnian
-  keep speaking; "Client side error" and "RecognitionService busy" first try the same
-  language once more after 0.4 s; "Network error" shows the offline message at once.
+  same). "Didn't understand" (where Android reports a missing language), "error from
+  server", "Client side error" and "RecognitionService busy" first try the same
+  language once more after 0.4 s, within the same tap and with "Listening…" still on
+  the screen, at most once per language and tap. A second "busy" shows the message;
+  after a second refusal of the other kinds the tap switches to hr-HR, so phones
+  without Bosnian keep speaking. On a Samsung phone (17.11.2026) the recognizer
+  sometimes refused a start at once with "Didn't understand" right after a start that
+  had listened, and the start after that listened again; until then that single
+  refusal showed "That did not work" without listening on about every second tap, or
+  sent the whole session to hr-HR. Now the app tries once more within the same tap,
+  and a language counts as missing for the session only when both starts were refused
+  at once (within 1.5 s, before the microphone opened). "Network error" shows the
+  offline message at once, also on the second try.
   The language that delivered a result is used first for the rest of the session, and
   hr-HR when bs-BA is missing; once bs-BA has delivered, it stays first even when hr-HR
-  fills in after a single error from bs-BA. If every language fails with language or
+  fills in for it in a single tap. If every language fails with language or
   service errors on two taps in a row, speaking tasks leave the lesson mix for this
-  session only (not remembered like a refused microphone, the next start tries again).
-  Every start has a 12-second limit: a recognizer that never answers no longer leaves
-  the task on "Listening…", and a late result of that start is discarded. The iPhone
-  keeps its own path.
+  session only (not remembered like a refused microphone, the next start tries again);
+  a refusal after which the second try listens does not count. Every start has a
+  15-second limit (the Samsung phone once reported "No match" only after 11.5 s): a
+  recognizer that never answers no longer leaves the task on "Listening…", and a late
+  result of that start is discarded. The iPhone keeps its own path.
 - Speaking: a Cyrillic transcript (*хвала*, *добар дан*, *два*) is written in Latin
   letters before it is compared, for what was heard and for the target; typing is
   unchanged. In the test corpus of 94,538 possible transcripts, Cyrillic rejections

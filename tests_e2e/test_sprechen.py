@@ -36,13 +36,21 @@ fuer "Ko", "Što" fuer "Šta" (als Wort und im Satz), "Ćau" und "Ciao" fuer "Ć
 (17.11.2026): Faellt das Sprechen fuer die Sitzung aus, nimmt die Seite die restlichen
 Sprechaufgaben aus der laufenden Lektion.
 
+Geraetebefund vom 17.11.2026 (Samsung S21, Googles Erkennungsdienst): Dort lehnt jeder
+Start mit bs-BA sofort ab, und nach einem Start, der zugehoert hat, lehnt der naechste oft
+sofort mit "Didn't understand" ab - der Start danach hoert wieder zu. Bis dahin zeigte
+etwa jeder zweite Tipp "Das hat nicht geklappt", ohne zugehoert zu haben. Jetzt
+versucht die App nach einer Ablehnung einmal dieselbe Sprache, still im selben Tipp;
+als fehlend gilt eine Sprache erst nach zwei sofortigen Ablehnungen. Die Zeitgrenze
+je Start ist 15 s statt 12 s.
+
 Der Erkenner ist nachgebaut: Er schreibt jeden Aufruf mit und antwortet nach Plan.
 Der echte Android-Erkenner laeuft nur am Handy.
 """
 import pytest
 
 ERKENNER = r"""
-window.__hoerer = {plan: [], aufrufe: [], stops: 0};
+window.__hoerer = {plan: [], aufrufe: [], stops: 0, texte: [], zeiten: []};
 window.Capacitor = window.Capacitor || {Plugins: {}};
 window.Capacitor.Plugins = window.Capacitor.Plugins || {};
 window.Capacitor.Plugins.SpeechRecognition = {
@@ -51,11 +59,16 @@ window.Capacitor.Plugins.SpeechRecognition = {
   requestPermissions: async () => ({speechRecognition: 'granted'}),
   start: async (o) => {
     window.__hoerer.aufrufe.push(o.language || null);
+    // Was beim Start auf dem Schirm steht, und wann gestartet wurde
+    const h = document.querySelector('#lBody #xHeard');
+    window.__hoerer.texte.push(h ? h.textContent : null);
+    window.__hoerer.zeiten.push(performance.now());
     await new Promise(r => setTimeout(r, 15));
     const a = window.__hoerer.plan.shift();
     if(typeof a === 'string') throw new Error(a);
-    if(a && !Array.isArray(a)){            // {warte: ms, matches: [...]} - eine spaete Antwort
-      await new Promise(r => setTimeout(r, a.warte || 0));
+    if(a && !Array.isArray(a)){            // {warte: ms, matches: [...]} - eine spaete Antwort,
+      await new Promise(r => setTimeout(r, a.warte || 0));   // {warte: ms, fehler: '...'} - eine spaete Ablehnung
+      if(a.fehler) throw new Error(a.fehler);
       return {matches: a.matches || []};
     }
     return {matches: a || []};
@@ -102,7 +115,7 @@ AUFGABE = r"""
   document.getElementById('levelHome').style.display = 'none';
   document.getElementById('lesson').style.display = 'block';
   nurHerz(true); showLessonTask();
-  if(window.__hoerer) window.__hoerer.aufrufe.length = 0;
+  if(window.__hoerer){ window.__hoerer.aufrufe.length = 0; window.__hoerer.texte.length = 0; window.__hoerer.zeiten.length = 0; }
 }
 """
 
@@ -538,12 +551,18 @@ def test_hat_bs_geliefert_bleibt_es_bei_bs(mit_erkenner):
 @pytest.mark.parametrize("meldung", ["Didn't understand, please try again.", "error from server"])
 def test_andere_ablehnung_nimmt_im_selben_tipp_hr(mit_erkenner, meldung):
     """So meldet das Plugin auch "Sprache fehlt" (Android-Fehler 12 und 13 fallen in
-    den Zweig mit dem ersten Text). Hier muss der Rueckfall sofort greifen - Handys ohne
-    bs-BA duerfen nicht vom Sprechen abgeschnitten werden."""
+    den Zweig mit dem ersten Text). Seit dem Geraetebefund vom 17.11.2026 erst nach
+    einem zweiten Start mit bs-BA, aber weiter im selben Tipp - Handys ohne bs-BA
+    duerfen nicht vom Sprechen abgeschnitten werden. Auf dem Schirm steht dabei die
+    ganze Zeit "Hoert zu ...". Nur "Didn't understand" merkt bs-BA als fehlend."""
     seite = mit_erkenner
     seite.js(AUFGABE, "Hvala")
-    z = _tippen(seite, meldung, ["hvala"])
-    assert z["aufrufe"] == ["bs-BA", "hr-HR"] and z["ergebnisse"] == [True], z
+    hoert = _t(seite, "task.hoert_zu")
+    z = _tippen(seite, meldung, meldung, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA", "bs-BA", "hr-HR"] and z["ergebnisse"] == [True], z
+    assert seite.js("() => window.__hoerer.texte") == [hoert] * 3
+    fehlt = ["bs-BA"] if meldung.startswith("Didn't") else []
+    assert seite.js("() => [...sprechFehlt]") == fehlt
     # Die gemerkte Sprache gilt in der naechsten Aufgabe
     seite.js(AUFGABE, "Hvala")
     z = _tippen(seite, ["hvala"])
@@ -560,8 +579,9 @@ def test_hat_bs_geliefert_wird_hr_nur_ausweichsprache(mit_erkenner, meldung):
     seite.js(AUFGABE, "Hvala")
     assert _tippen(seite, ["hvala"])["aufrufe"] == ["bs-BA"]
     seite.js(AUFGABE, "Hvala")
-    z = _tippen(seite, meldung, ["hvala"])
-    assert z["aufrufe"] == ["bs-BA", "hr-HR"] and z["ergebnisse"] == [True], z
+    z = _tippen(seite, meldung, meldung, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA", "bs-BA", "hr-HR"] and z["ergebnisse"] == [True], z
+    assert seite.js("() => [...sprechFehlt]") == []
     seite.js(AUFGABE, "Hvala")
     z = _tippen(seite, ["hvala"])
     assert z["aufrufe"] == ["bs-BA"] and z["ergebnisse"] == [True], z
@@ -575,10 +595,10 @@ def test_ohne_bs_scheitert_es_nicht_an_bs(mit_erkenner):
     seite = mit_erkenner
     seite.js(AUFGABE, "Hvala")
     fehlt = "Didn't understand, please try again."
-    z = _tippen(seite, fehlt, "No match")
-    assert z["aufrufe"] == ["bs-BA", "hr-HR"] and z["ergebnisse"] == [], z
+    z = _tippen(seite, fehlt, fehlt, "No match")
+    assert z["aufrufe"] == ["bs-BA", "bs-BA", "hr-HR"] and z["ergebnisse"] == [], z
     z = _tippen(seite, ["hvala"])
-    assert z["aufrufe"] == ["bs-BA", "hr-HR", "hr-HR"] and z["ergebnisse"] == [True], z
+    assert z["aufrufe"] == ["bs-BA", "bs-BA", "hr-HR", "hr-HR"] and z["ergebnisse"] == [True], z
     assert seite.js("() => canSpeak") is True
     assert seite.fehler == []
 
@@ -616,11 +636,12 @@ def test_kein_netz_zeigt_die_offline_meldung_ohne_zweiten_aufruf(mit_erkenner, m
 
 @pytest.mark.parametrize("meldung", ["Didn't understand, please try again.", "error from server"])
 def test_wiederholtes_scheitern_beider_sprachen_nimmt_das_sprechen_fuer_die_sitzung(mit_erkenner, meldung):
+    """Je Sprache zwei Ablehnungen (eine Wiederholung), also bis zu vier je Tipp."""
     seite = mit_erkenner
     seite.js(AUFGABE, "Hvala")
-    _tippen(seite, meldung, meldung)
+    _tippen(seite, meldung, meldung, meldung, meldung)
     assert seite.js("() => canSpeak") is True                 # einmal ist noch kein Muster
-    z = _tippen(seite, meldung, meldung)
+    z = _tippen(seite, meldung, meldung, meldung, meldung)
     assert z["gehoert"] == _t(seite, "task.mikro_fehler"), z
     e = seite.js("""() => { const vorher = canSpeak;
         catIdx = 0; openLevel(0); buildLesson();
@@ -650,12 +671,14 @@ def test_ein_start_ohne_antwort_endet_nach_der_zeitgrenze(mit_erkenner):
     assert seite.fehler == []
 
 
-def test_abgebrochen_startet_keine_weitere_sprache(mit_erkenner):
+@pytest.mark.parametrize("meldung", ["Client side error", "Didn't understand, please try again."])
+def test_abgebrochen_startet_keine_weitere_sprache(mit_erkenner, meldung):
+    """Auch nicht dieselbe Sprache noch einmal."""
     seite = mit_erkenner
     seite.js(AUFGABE, "Hvala")
-    seite.js("""() => { window.__hoerer.plan = ['Client side error']; const H = window.Capacitor.Plugins.SpeechRecognition;
+    seite.js("""(m) => { window.__hoerer.plan = [m, ['hvala']]; const H = window.Capacitor.Plugins.SpeechRecognition;
         const alt = H.start;
-        H.start = async (o) => { document.querySelector('#lBody #xMic').click(); return await alt(o); }; }""")
+        H.start = async (o) => { document.querySelector('#lBody #xMic').click(); return await alt(o); }; }""", meldung)
     seite.page.locator("#lBody #xMic").click()
     seite.page.wait_for_timeout(700)
     assert seite.js(LAGE)["aufrufe"] == ["bs-BA"]
@@ -670,6 +693,166 @@ def test_iphone_behaelt_seinen_weg(mit_iphone):
     seite.js(AUFGABE, "Hvala")
     z = _tippen(seite, "Language not supported", {"warte": 600, "matches": ["хвала"]})
     assert z["aufrufe"] == ["bs-BA", "hr-HR"] and z["ergebnisse"] == [True], z
+    assert seite.fehler == []
+
+
+# ---------- Geraetebefund 17.11.2026: nach einer Ablehnung noch einmal dieselbe Sprache ---
+
+DU = "Didn't understand, please try again."
+STAND_SPRACHE = """() => ({sprache: sprechSprache, fehlt: [...sprechFehlt], geliefert: [...sprechGeliefert],
+                          dienst: sprechDienstAus, an: canSpeak})"""
+
+
+def _nur_hr(seite):
+    """Wie am S21: bs-BA lehnt zweimal sofort ab, hr-HR hoert zu und hoert nichts.
+    Danach steht eine neue Aufgabe da."""
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, DU, DU, "No match")
+    assert z["aufrufe"] == ["bs-BA", "bs-BA", "hr-HR"] and z["gehoert"] == _t(seite, "task.mikro_fehler"), z
+    seite.js(AUFGABE, "Hvala")
+
+
+def test_standardwerte_zeitgrenze_15_s(seite, heute_stand):
+    """(e) Die Tests setzen die Grenzen herunter - hier die Werte, mit denen die App laeuft.
+    Am S21 kam "No match" einmal erst nach 11,5 s, knapp hinter den alten 12 s."""
+    seite.starten(stand=heute_stand())
+    assert seite.js("() => [SPRECH_ZEITGRENZE, SPRECH_SOFORT_MS, SPRECH_NOCHMAL_MS]") == [15000, 1500, 400]
+    assert seite.fehler == []
+
+
+def test_wie_am_s21_sofort_abgelehnt_dann_zugehoert(mit_erkenner):
+    """(a) hr-HR lehnt sofort ab, die Wiederholung im selben Tipp hoert zu und liefert:
+    bewertet, genau zwei Starts, dazwischen keine Meldung, sondern "Hoert zu ...". Und
+    auch nach vielen Tipps im Wechsel faellt das Sprechen nicht aus."""
+    seite = mit_erkenner
+    _nur_hr(seite)
+    hoert, fehler = _t(seite, "task.hoert_zu"), _t(seite, "task.mikro_fehler")
+    for n in range(1, 4):      # am Geraet: jeder Tipp nach einem, der zugehoert hat
+        z = _tippen(seite, DU, "No match")
+        assert z["aufrufe"] == ["hr-HR"] * (2 * n) and z["gehoert"] == fehler, z
+    assert seite.js(STAND_SPRACHE) == {"sprache": "hr-HR", "fehlt": ["bs-BA"], "geliefert": [], "dienst": 0, "an": True}
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, DU, ["hvala"], ["hvala"])
+    assert z["aufrufe"] == ["hr-HR", "hr-HR"] and z["ergebnisse"] == [True], z
+    assert "hvala" in z["gehoert"] and z["gehoert"] != fehler, z
+    e = seite.js("() => ({texte: window.__hoerer.texte.slice(), zeiten: window.__hoerer.zeiten.slice(), "
+                 "rest: window.__hoerer.plan.length})")
+    assert e["texte"] == [hoert, hoert] and e["rest"] == 1, e
+    assert e["zeiten"][1] - e["zeiten"][0] >= 400, e          # SPRECH_NOCHMAL_MS dazwischen
+    assert seite.js(STAND_SPRACHE)["an"] is True
+    assert seite.fehler == []
+
+
+def test_bs_zweimal_sofort_abgelehnt_dann_hr_und_danach_gleich_hr(mit_erkenner):
+    """(b) und Punkt 3: Erst nach der zweiten Sofort-Ablehnung gilt bs-BA als fehlend,
+    hr-HR hilft im selben Tipp aus, und jeder weitere Tipp beginnt direkt mit hr-HR."""
+    seite = mit_erkenner
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, DU, DU, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA", "bs-BA", "hr-HR"] and z["ergebnisse"] == [True], z
+    assert seite.js(STAND_SPRACHE) == {"sprache": "hr-HR", "fehlt": ["bs-BA"], "geliefert": ["hr-HR"], "dienst": 0,
+                                       "an": True}
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, "No match")
+    assert z["aufrufe"] == ["hr-HR"], z
+    z = _tippen(seite, DU, ["hvala"])
+    assert z["aufrufe"] == ["hr-HR", "hr-HR", "hr-HR"] and z["ergebnisse"] == [True], z
+    assert seite.fehler == []
+
+
+def test_bs_einmal_abgelehnt_dann_geliefert_bleibt_bs(mit_erkenner):
+    """(c) Eine einzelne Sofort-Ablehnung von bs-BA ist kein "fehlt": bs-BA bleibt die
+    Sprache der Sitzung. Vorher ging hier die ganze Sitzung zu hr-HR."""
+    seite = mit_erkenner
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, DU, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA", "bs-BA"] and z["ergebnisse"] == [True], z
+    assert seite.js(STAND_SPRACHE) == {"sprache": "bs-BA", "fehlt": [], "geliefert": ["bs-BA"], "dienst": 0, "an": True}
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA"] and z["ergebnisse"] == [True], z
+    assert seite.fehler == []
+
+
+def test_hr_zweimal_abgelehnt_zeigt_die_meldung_ohne_endlosschleife(mit_erkenner):
+    """(d) Ist bs-BA schon als fehlend gemerkt und lehnt auch hr-HR zweimal ab, kommt die
+    Meldung - nach genau zwei Starts. Der naechste Tipp versucht es wieder."""
+    seite = mit_erkenner
+    _nur_hr(seite)
+    z = _tippen(seite, DU, DU, ["hvala"], ["hvala"])
+    assert z["aufrufe"] == ["hr-HR", "hr-HR"] and z["gehoert"] == _t(seite, "task.mikro_fehler"), z
+    assert z["ergebnisse"] == [], z
+    seite.page.wait_for_timeout(700)
+    e = seite.js("() => ({aufrufe: window.__hoerer.aufrufe.slice(), rest: window.__hoerer.plan.length, "
+                 "rec: document.querySelector('#lBody #xMic').classList.contains('rec')})")
+    assert e == {"aufrufe": ["hr-HR", "hr-HR"], "rest": 2, "rec": False}, e
+    e = seite.js(STAND_SPRACHE)
+    assert e["dienst"] == 1 and e["an"] is True, e             # einmal ist noch kein Muster
+    z = _tippen(seite, ["hvala"])
+    assert z["aufrufe"] == ["hr-HR"] * 3 and z["ergebnisse"] == [True], z
+    assert seite.js(STAND_SPRACHE)["dienst"] == 0
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("plan", [
+    [{"warte": 500, "fehler": DU}, DU, ["hvala"]],     # spaet, dann sofort: wie nach einem Start, der zugehoert hat
+    [DU, {"warte": 500, "fehler": DU}, ["hvala"]],     # sofort, dann spaet
+])
+def test_spaete_ablehnung_sperrt_die_sprache_nicht(mit_erkenner, plan):
+    """Nur zwei SOFORTIGE Ablehnungen heissen "Sprache fehlt" - eine spaete kommt von
+    einem Erkenner, der zugehoert hat. hr-HR hilft trotzdem im selben Tipp aus, und
+    bs-BA bleibt im Spiel."""
+    seite = mit_erkenner
+    seite.js("() => { SPRECH_SOFORT_MS = 200; }")
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, *plan)
+    assert z["aufrufe"] == ["bs-BA", "bs-BA", "hr-HR"] and z["ergebnisse"] == [True], z
+    assert seite.js("() => [...sprechFehlt]") == []
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, DU, DU, ["hvala"])                 # bs-BA ist nicht ausgesperrt
+    assert z["aufrufe"] == ["hr-HR", "hr-HR", "bs-BA"] and z["ergebnisse"] == [True], z
+    assert seite.fehler == []
+
+
+@pytest.mark.parametrize("plan, aufrufe, ausgang, fehlt", [
+    (["RecognitionService busy", DU, ["hvala"]], ["bs-BA", "bs-BA", "hr-HR"], True, []),
+    ([DU, "RecognitionService busy", ["hvala"]], ["bs-BA", "bs-BA"], "task.mikro_fehler", []),
+    (["Client side error", DU, ["hvala"]], ["bs-BA", "bs-BA", "hr-HR"], True, ["bs-BA"]),
+    ([DU, "Network error", ["hvala"]], ["bs-BA", "bs-BA"], "task.mikro_offline", []),
+    ([DU, "Network timeout", ["hvala"]], ["bs-BA", "bs-BA"], "task.mikro_offline", []),
+    ([DU, "No match", ["hvala"]], ["bs-BA", "bs-BA"], "task.mikro_fehler", []),
+])
+def test_eine_wiederholung_je_sprache(mit_erkenner, plan, aufrufe, ausgang, fehlt):
+    """Die neue Wiederholung stapelt sich nicht auf die von "busy" und "Client side
+    error", und kommt nach ihr "Network error", zeigt die App weiter die
+    Offline-Meldung."""
+    seite = mit_erkenner
+    seite.js(AUFGABE, "Hvala")
+    z = _tippen(seite, *plan)
+    assert z["aufrufe"] == aufrufe, z
+    if ausgang is True:
+        assert z["ergebnisse"] == [True], z
+    else:
+        assert z["ergebnisse"] == [] and z["gehoert"] == _t(seite, ausgang), z
+    assert seite.js("() => [...sprechFehlt]") == fehlt
+    assert seite.fehler == []
+
+
+def test_wiederholung_mit_zeitgrenze_bewertet_kein_spaetes_ergebnis(mit_erkenner):
+    """Der Wiederholversuch hat seine eigene Zeitgrenze und Versuchsnummer: nach ihr
+    kommt die Meldung, kein dritter Start, und sein spaetes Ergebnis wird verworfen."""
+    seite = mit_erkenner
+    seite.js("() => { SPRECH_ZEITGRENZE = 300; }")
+    seite.js(AUFGABE, "Hvala")
+    fehler = _t(seite, "task.mikro_fehler")
+    z = _tippen(seite, DU, {"warte": 1500, "matches": ["hvala"]}, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA", "bs-BA"] and z["gehoert"] == fehler and z["ergebnisse"] == [], z
+    assert seite.js("() => window.__hoerer.stops") >= 1
+    seite.page.wait_for_timeout(1700)                         # das spaete Ergebnis ist inzwischen da
+    z = seite.js(LAGE)
+    assert z["aufrufe"] == ["bs-BA", "bs-BA"] and z["ergebnisse"] == [] and z["gehoert"] == fehler and z["i"] == 0, z
+    z = _tippen(seite, ["hvala"])
+    assert z["aufrufe"] == ["bs-BA"] * 3 and z["ergebnisse"] == [True], z
     assert seite.fehler == []
 
 
@@ -724,7 +907,8 @@ UEBERSPRINGEN_UND_ENDE = r"""
 
 
 @pytest.mark.parametrize("plan", [["No match"], ["Network error"], [["kruh"]],
-                                  ["Didn't understand, please try again.", "No match"]])
+                                  ["Didn't understand, please try again.", "Didn't understand, please try again.",
+                                   "No match"]])
 def test_ueberspringen_nach_gescheitertem_versuch_kostet_ohne_fehler_nicht(mit_erkenner, plan):
     seite = mit_erkenner
     seite.js(AUFGABE, "Hvala")
@@ -839,10 +1023,10 @@ def test_sprechen_aus_nimmt_die_restlichen_sprechaufgaben_aus_der_lektion(mit_er
     an der es gerade gescheitert ist, bleiben."""
     seite = mit_erkenner
     seite.js(AUFGABEN, [["Hvala", "Da", "Ne"], 1])
-    _tippen(seite, meldung, meldung)
+    _tippen(seite, meldung, meldung, meldung, meldung)
     e = seite.js(STAND_LEKTION)
     assert e["an"] is True and e["typen"] == ["speak", "speak", "speak", "mc"], e   # einmal ist noch kein Muster
-    _tippen(seite, meldung, meldung)
+    _tippen(seite, meldung, meldung, meldung, meldung)
     e = seite.js(STAND_LEKTION)
     assert e == {"an": False, "typen": ["speak", "speak", "mc"], "woerter": ["Hvala", "Da", "Hvala"], "i": 1,
                  "punkte": 3, "gemerkt": None}, e
