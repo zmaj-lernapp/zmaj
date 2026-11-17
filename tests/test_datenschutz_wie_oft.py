@@ -28,10 +28,10 @@ NEU = {
           "Lernen und wenn du sie verlässt, dazu einmal beim Anmelden und einmal beim Abmelden.",
     "en": "When you open the app, it briefly checks whether there is more recent progress in your account, for "
           "example from another device, and loads it only then. It writes your progress at most twice a day, "
-          "after learning and when you leave it, plus once when you sign in and once when you sign out.",
+          "after learning and when you leave the app, plus once when you sign in and once when you sign out.",
     "tr": "Uygulama açılışta, hesabında, örneğin başka bir cihazdan gelmiş, daha yeni bir durum olup olmadığına "
           "kısaca bakar ve yalnızca varsa indirir. Durumu hesabına günde en fazla iki kez yazar: "
-          "çalıştıktan sonra ve uygulamadan çıktığında; buna girişte ve çıkışta birer kez eklenir.",
+          "sen çalıştıktan sonra ve uygulamadan çıktığında; buna girişte ve çıkışta birer kez eklenir.",
     "sv": "När du öppnar appen kontrollerar den snabbt om det finns ett nyare läge i ditt konto, till exempel "
           "från en annan enhet, och hämtar det bara i så fall. Den skriver läget högst två gånger om dagen, "
           "efter att du har övat och när du lämnar den, plus en gång när du loggar in och en gång när du "
@@ -42,16 +42,16 @@ NEU = {
           "uitloggen.",
     "nb": "Når du åpner appen, sjekker den raskt om det ligger nyere framgang i kontoen din, for eksempel fra "
           "en annen enhet, og henter den bare i så fall. Den skriver framgangen din høyst to ganger om dagen, "
-          "etter at du har øvd og når du forlater den, i tillegg én gang når du logger inn og én gang når du "
+          "etter at du har øvd og når du forlater appen, i tillegg én gang når du logger inn og én gang når du "
           "logger ut.",
     "da": "Når du åbner appen, tjekker den kort, om der ligger nyere fremgang på din konto, for eksempel fra "
           "en anden enhed, og henter den kun i så fald. Den skriver din fremgang højst to gange om dagen, "
-          "efter at du har øvet dig og når du forlader den, plus én gang når du logger ind og én gang når du "
+          "efter at du har øvet dig og når du forlader appen, plus én gang når du logger ind og én gang når du "
           "logger ud.",
     "fr": "À l'ouverture, l'application vérifie brièvement si ton compte contient une progression plus "
           "récente, par exemple provenant d'un autre appareil, et ne la récupère que dans ce cas. Elle écrit "
-          "ta progression au plus deux fois par jour, après une séance d'apprentissage et quand tu la "
-          "quittes, plus une fois à la connexion et une fois à la déconnexion.",
+          "ta progression au plus deux fois par jour, après une séance d'apprentissage et quand tu quittes "
+          "l'application, plus une fois à la connexion et une fois à la déconnexion.",
 }
 
 # Je Sprache ein Stück des alten Satzes, das im neuen nicht vorkommt.
@@ -107,3 +107,22 @@ def test_alter_satz_auch_nicht_in_der_quelle_und_den_hinweisen(wurzel):
     anleitung = io.open(os.path.join(wurzel, "FIREBASE_EINRICHTEN.md"), encoding="utf-8").read()
     assert "höchstens einmal am Tag je Nutzer" not in anleitung
     assert "höchstens 1× schreiben am Tag" not in anleitung
+    # §9 Testen, Schritt 4 (Prüferbefund 17.11.2026): sonst hält, wer danach
+    # testet, die zwei Schreibvorgänge am Tag für einen Fehler.
+    assert "höchstens einen Schreibvorgang je Nutzer und Tag" not in anleitung
+    assert "höchstens zwei Schreibvorgänge je Gerät und Tag gibt" in anleitung
+
+
+def test_bezuege_eindeutig():
+    """Prüferbefunde vom 17.11.2026: Im Türkischen bezog man „çalıştıktan
+    sonra“ ohne Subjekt auf die App („nachdem sie gelaufen ist“), im
+    Französischen konnte „la quittes“ auch „ta progression“ meinen, im
+    Englischen, Norwegischen und Dänischen „it“/„den“ ebenso den Stand."""
+    assert "yazar: sen çalıştıktan sonra" in NEU["tr"]
+    assert "quand tu quittes l'application" in NEU["fr"]
+    assert "when you leave the app" in NEU["en"]
+    assert "når du forlater appen" in NEU["nb"]
+    assert "når du forlader appen" in NEU["da"]
+    for code, stueck in (("fr", "tu la quittes"), ("en", "leave it,"), ("nb", "forlater den,"),
+                         ("da", "forlader den,")):
+        assert stueck not in NEU[code], code

@@ -446,9 +446,12 @@ are in the Play Store listing. Format:
   that it writes the progress at most twice a day, after learning and on
   leaving, plus once on signing in and once on signing out. All eight
   languages; the date of the policy stays and is set to the release day
-  before the upload. The README and `FIREBASE_EINRICHTEN.md` (section 13:
-  up to two writes per device and day, reads now the tighter Spark limit at
-  about 5,000 daily active users) follow. `tests/test_datenschutz_wie_oft.py`.
+  before the upload. The README and `FIREBASE_EINRICHTEN.md` (section 9, test
+  step 4, and section 13: up to two writes per device and day, reads now the
+  tighter Spark limit at about 5,000 daily active users) follow. In Turkish,
+  French, English, Norwegian and Danish the sentence names who learns and
+  what is left (you, the app), so it cannot be read as the app running or
+  as leaving the progress. `tests/test_datenschutz_wie_oft.py`.
 - Family level (13.11.2026, approved by the maintainer): *stričević* now counts
   as correct when typed next to *amidžić*, and *stričevka* next to *amidžična*,
   through `"auch"` like the pet names *striko* and *adžo*. IDs, display and

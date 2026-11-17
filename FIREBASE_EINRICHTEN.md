@@ -234,7 +234,8 @@ Nachrichten bleiben liegen.
    sein. Dabei auch prüfen, ob der Restore-Schlüssel ohne
    `assetlinks.json` angelegt wird.
 4. In der Konsole unter **Firestore Database** → **Nutzung** nachsehen, dass
-   es höchstens einen Schreibvorgang je Nutzer und Tag gibt.
+   es höchstens zwei Schreibvorgänge je Gerät und Tag gibt (nach dem Lernen
+   und beim Verlassen), dazu je einen beim An- und Abmelden.
 5. Danach den Freigabe-Bau (R8) aus dem internen Test einmal ganz
    durchspielen: Anmeldung, Kauf, Werbung, Erinnerung, Sprechaufgabe,
    Sicherung.
