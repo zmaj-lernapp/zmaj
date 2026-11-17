@@ -110,6 +110,34 @@ def test_freischalten_mit_alter_folge(wurzel):
     assert "const storyUnlocked" not in html
 
 
+def _frei(i, gelesen, neu):
+    """storyUnlocked() aus web/index.html, ohne allesOffen()."""
+    s = neu[i]
+    if i == 0 or s in gelesen or neu[i - 1] in gelesen:
+        return True
+    k = ALTE_FOLGE.index(s)
+    return k == 0 or (k > 0 and ALTE_FOLGE[k - 1] in gelesen)
+
+
+def test_zurueck_nur_in_eine_freie(wurzel):
+    """Pruefung 17.11.2026: "Vorherige" (sPrev) oeffnete die davor ohne nachzufragen.
+    Mit der alten Folge war die immer gelesen. In der neuen ist sie bei alten Staenden
+    oft zu (37 Faelle, etwa "Mejl rođaku" vor "Razgovor za posao", wer bis "Kupujemo
+    kuću" gelesen hat). Deshalb fragen Knopf, Horcher und Ergebnisschirm nach."""
+    neu = [i for _, liste in NEU for i in liste]
+    faelle = [(k, neu[i]) for k in range(len(ALTE_FOLGE) + 1)
+              for i in range(1, len(neu))
+              if _frei(i, set(ALTE_FOLGE[:k]), neu) and not _frei(i - 1, set(ALTE_FOLGE[:k]), neu)]
+    assert len(faelle) == 37 and (11, "intervju") in faelle and (5, "grad") in faelle
+    html = _html(wurzel)
+    oeffnen = html.split("function openStory(i){\n")[1].split("\n}\n")[0]
+    assert "$('sPrev').disabled = !(i>0 && storyUnlocked(i-1));" in oeffnen
+    assert "$('sPrev').addEventListener('click',()=>{ if(rIdx>0 && storyUnlocked(rIdx-1)) openStory(rIdx-1); });" in html
+    ergebnis = html.split("function showStoryQ(s, qi, right){\n")[1].split("\n}\n")[0]
+    assert "$('sPrev').disabled = !(rIdx>0 && storyUnlocked(rIdx-1));" in ergebnis
+    assert "$('sPrev').disabled = i===0;" not in html
+
+
 def test_jede_geschichte_behaelt_ihre_aufnahme(wurzel):
     """Die Aufnahme haengt am Text, nicht am Platz: jede Geschichte findet ihre, mit
     passenden Wortzeiten (Mitlesen), numeriert in der alten Folge."""

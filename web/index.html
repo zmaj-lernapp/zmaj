@@ -13003,10 +13003,14 @@ function openStory(i){
   /* Je Reiter, wie "Level 3 von 31" (17.11.2026) */
   $('tag').textContent=t('gesch.zaehler',{i:geschStufen().nr[i] || i+1, n:geschImReiter(geschStufe(i)).length || STORIES.length});
   showStory();
-  $('sPrev').disabled = i===0;
+  /* Zurueck nur in eine freie (17.11.2026). In der neuen Folge kann die
+     davor noch zu sein: wer bis "Kupujemo kuću" gelesen hat, darf "Razgovor
+     za posao" lesen (alte Folge), die davor ist "Mejl rođaku" und gesperrt.
+     Vorher war die davor immer gelesen, und der Knopf fragte nicht nach. */
+  $('sPrev').disabled = !(i>0 && storyUnlocked(i-1));
   $('sNext2').disabled = !(i+1<STORIES.length && storyUnlocked(i+1));
 }
-$('sPrev').addEventListener('click',()=>{ if(rIdx>0) openStory(rIdx-1); });
+$('sPrev').addEventListener('click',()=>{ if(rIdx>0 && storyUnlocked(rIdx-1)) openStory(rIdx-1); });
 $('sNext2').addEventListener('click',()=>{ if(rIdx+1<STORIES.length && storyUnlocked(rIdx+1)) openStory(rIdx+1); });
 
 /* ---- Bildschirm an beim Vorlesen ----
@@ -13207,6 +13211,9 @@ function showStoryQ(s, qi, right){
     $('rHome').addEventListener('click',()=>{ homeMode='stories'; showHome(); });
     const n=$('rGoNext'); if(n) n.addEventListener('click',()=>openStory(rIdx+1));
     $('sNext2').disabled = !(hasNext && storyUnlocked(rIdx+1));
+    /* Gelesen kann auch die davor aufgehen: nach "Moj dan" ist "U gradu"
+       frei (alte Folge), "Jučer" davor erst, wenn "U gradu" gelesen ist. */
+    $('sPrev').disabled = !(rIdx>0 && storyUnlocked(rIdx-1));
     return;
   }
   const q=fragen[qi];

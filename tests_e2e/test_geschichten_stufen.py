@@ -296,6 +296,78 @@ def test_blaettern_ueber_die_stufengrenze(seite, heute_stand):
     assert seite.fehler == []
 
 
+ZURUECK = r"""(alteFolge) => {
+  const aus = [], gesperrt = [];
+  const b = document.getElementById('sPrev');
+  for(let k = 0; k <= alteFolge.length; k++){
+    read.clear(); alteFolge.slice(0, k).forEach(id => read.add(id));
+    STORIES.forEach((s, i) => {
+      if(!storyUnlocked(i)) return;
+      openStory(i); stilleBitte();
+      const vorFrei = i > 0 && storyUnlocked(i - 1);
+      if(b.disabled === vorFrei) aus.push([k, s.id, 'Knopf']);
+      if(i > 0 && !vorFrei){
+        gesperrt.push([k, s.id]);
+        // Auch der Horcher selbst fragt nach, falls der Knopf doch einmal frei ist
+        b.disabled = false; b.click();
+        if(rIdx !== i) aus.push([k, s.id, 'Horcher: ' + STORIES[rIdx].id]);
+      }
+    });
+  }
+  stilleBitte();
+  return {aus, gesperrt};
+}"""
+
+
+def test_zurueck_nur_in_eine_freie(seite, heute_stand):
+    """Pruefung 17.11.2026: "Vorherige" oeffnete die davor ohne nachzufragen. In der
+    neuen Folge ist sie bei alten Staenden manchmal gesperrt - wer bis "Kupujemo kuću"
+    gelesen hat, darf "Razgovor za posao" lesen, die davor ist "Mejl rođaku" und zu.
+    Mit jedem Stand der alten Kette: der Knopf ist genau dann frei, wenn die davor frei
+    ist, und auch ein Tipp auf den Horcher oeffnet keine gesperrte."""
+    seite.starten(stand=heute_stand())
+    r = seite.js(ZURUECK, ALTE_FOLGE)
+    assert r["aus"] == [], r["aus"]
+    # 37 Faelle, in denen die davor zu ist, darunter die beiden aus der Pruefung
+    assert len(r["gesperrt"]) == 37, r["gesperrt"]
+    assert [11, "intervju"] in r["gesperrt"] and [5, "grad"] in r["gesperrt"]
+    assert seite.fehler == []
+
+
+def test_zurueck_aus_razgovor_za_posao(seite, heute_stand):
+    """Das Beispiel aus der Pruefung, echt getippt: A1 und A2 nach alter Folge gelesen,
+    "Razgovor za posao" ist frei und steht am Ende von B1. Zurueck ist gesperrt."""
+    seite.starten(stand=heute_stand(gelesen=ALTE_FOLGE[:11]))
+    _geschichten(seite)
+    assert [x["st"] for x in seite.js(LEISTE) if x["an"]] == ["B1"]
+    seite.page.locator("#storyList .node").nth(len(B1) - 1).click()
+    seite.js("() => stilleBitte()")
+    assert seite.js("() => STORIES[rIdx].id") == "intervju"
+    assert seite.js("() => document.getElementById('tag').textContent") == "Geschichte 21 von 21"
+    assert seite.js("() => [document.getElementById('sPrev').disabled, storyUnlocked(rIdx - 1)]") == [True, False]
+    assert seite.fehler == []
+
+
+def test_zurueck_geht_nach_dem_lesen_auf(seite, heute_stand):
+    """A1 gelesen: "U gradu" ist frei (alte Folge, nach "Moj dan"), "Jučer" davor noch
+    nicht. Sind alle Fragen richtig, geht "Jučer" auf - und "Vorherige" mit, ohne die
+    Geschichte neu zu oeffnen."""
+    seite.starten(stand=heute_stand(gelesen=ALTE_FOLGE[:5]))
+    r = seite.js(OFFEN.replace("return {", "window.__f = STORIES[i].fragen.map(f => f.richtig); return {"), "grad")
+    assert r["tag"] == "Geschichte 3 von 6" and r["vor"] is False, r
+    for richtig in seite.js("() => window.__f"):
+        seite.page.locator("#rQ #rOpts .opt").filter(has_text=re.compile("^" + re.escape(richtig) + "$")).first.click()
+        weiter = seite.page.locator("#rQ .weiterbox .btn")
+        weiter.wait_for(state="visible")
+        weiter.click()
+    seite.page.locator("#rQ .ergebnis-titel").wait_for(state="visible")
+    assert seite.js("() => read.has('grad') && !document.getElementById('sPrev').disabled") is True
+    seite.page.click("#sPrev")
+    assert seite.js("() => STORIES[rIdx].id") == "jucer"
+    assert seite.js("() => document.getElementById('tag').textContent") == "Geschichte 2 von 6"
+    assert seite.fehler == []
+
+
 def test_naechste_nach_allen_fragen_und_tagesaufgabe(seite, heute_stand):
     """Alle Fragen richtig: gelesen, "Nächste Geschichte" fuehrt zur naechsten in der
     neuen Folge (Moja porodica nach Mira i Rex), die Tagesaufgabe zaehlt."""
