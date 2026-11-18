@@ -13207,8 +13207,9 @@ function showStoryPath(){
     b.className='node'+(d?' done':'')+(isCur?' current':'')+(o?'':' locked');
     const lvl = byId(s.passt_zu);
     b.innerHTML = '<div class="circle">'+(d?'✓':(o?G.nr[i]:symbol('schloss')))+'</div>'+
-      '<div class="txt"><div class="label'+(s.stufe?' mitstufe':'')+'"><span class="titel">'+esc(s.titel)+'</span>'+
-        (s.stufe?'<span class="luecke"> </span><span class="stufe">'+esc(s.stufe)+'</span>':'')+'</div><div class="tipp">'+(lvl?t('gesch.passt_zu',{label:esc(lvl.label)}):'')+'</div></div>'+
+      /* Kein Stufen-Schildchen mehr hinter dem Titel (Ajdin 18.11.2026: "ja weg"):
+         die Stufe steht schon im Reiter, unter A1 stand sonst fuenfmal "A1". */
+      '<div class="txt"><div class="label"><span class="titel">'+esc(s.titel)+'</span></div><div class="tipp">'+(lvl?t('gesch.passt_zu',{label:esc(lvl.label)}):'')+'</div></div>'+
       '<div class="state">'+(d?t('gesch.gelesen'):(isCur?t('zustand.jetzt'):(o?t('zustand.offen'):t('zustand.gesperrt'))))+'</div>';
     b.addEventListener('click',()=>{
       if(!storyUnlocked(i)){

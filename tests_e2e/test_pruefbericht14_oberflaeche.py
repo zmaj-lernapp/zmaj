@@ -232,12 +232,9 @@ def test_b14_geschichtentitel_nie_abgeschnitten(seite, heute_stand, breite, hoeh
         r = seite.js(TITEL_MESSEN)
         assert r["aus"] == [], (sprache, breite, len(r["aus"]), r["aus"][:6])
         assert r["breit"] is False, (sprache, breite)
-        assert r["knoten"] >= 33 * 32 and r["daneben"] > 0, (sprache, r)
+        # Seit dem 18.11.2026 gibt es kein Schildchen mehr (Ajdin: "ja weg").
+        assert r["knoten"] >= 33 * 32 and r["daneben"] == 0 and r["darunter"] == 0, (sprache, r)
         darunter[sprache] = r["darunter"]
-    # Ohne Ausweichen ging es nicht: bei 360 px rutscht in jeder Sprache
-    # irgendwo ein Schildchen darunter (sonst prueft der Test nichts).
-    if breite == 360:
-        assert all(n > 0 for n in darunter.values()), darunter
     assert seite.fehler == []
 
 
@@ -257,18 +254,17 @@ def test_b14_kurze_titel_wie_vorher(seite, heute_stand):
       for(const st of ['A1', 'A2']){
         geschStufeWaehlen(st);
         [...document.querySelectorAll('#storyList .node')].forEach(n => {
-          const t = n.querySelector('.titel').getBoundingClientRect(), s = n.querySelector('.stufe').getBoundingClientRect();
-          aus.push({titel: n.querySelector('.titel').textContent, stufe: n.querySelector('.stufe').textContent,
-                    abstand: s.left - t.right, mitte: (s.top + s.bottom - t.top - t.bottom) / 2,
+          const t = n.querySelector('.titel').getBoundingClientRect();
+          aus.push({titel: n.querySelector('.titel').textContent, schild: !!n.querySelector('.stufe'), reiter: st,
                     hoehe: n.querySelector('.label').getBoundingClientRect().height, titelHoehe: t.height});
         });
       }
       return aus;
     }""")
     assert [x["titel"] for x in r[:3]] == ["Mira i Rex", "Moja porodica", "Naša kuća"], r
-    assert [x["stufe"] for x in r] == ["A1"] * 5 + ["A2"] * 6, r
+    assert [x["reiter"] for x in r] == ["A1"] * 5 + ["A2"] * 6, r
+    # Seit dem 18.11.2026 ohne Schildchen: die Stufe steht nur noch im Reiter.
     for x in r:
-        assert x["abstand"] == pytest.approx(8, abs=0.6), x
-        assert abs(x["mitte"]) <= 1.5, x
+        assert x["schild"] is False, x
         assert x["hoehe"] <= x["titelHoehe"] + 0.5, x
     assert seite.fehler == []

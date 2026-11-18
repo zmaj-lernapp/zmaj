@@ -612,6 +612,7 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Story list: the level badge behind each title is gone; the level already stands in the tab above (decided by the maintainer on 18.11.2026).
 - Cloud backup on Android (field test on a phone, 17.11.2026, with the
   maintainer's approval of "check the cloud on every opening"): progress
   learned on one phone did not reach the account for three days, and a second
