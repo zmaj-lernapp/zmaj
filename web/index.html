@@ -8931,13 +8931,9 @@ let sprechOffen = 0;              // Nummer des Starts, auf den die Seite gerade
 /* Ob die Seite in der iPhone-Huelle laeuft. Dort meldet ZmajSprache bs-BA
    sofort als unbekannt und lehnt nach dem Start nie mehr ab, und es hat
    eigene Zeitgrenzen - fuer das iPhone bleibt die Sprechaufgabe deshalb,
-   wie sie war. In zmaj-ios-web steht dafuer schon IST_IOS. */
-function sprechAufIOS(){
-  try{
-    const C = window.Capacitor;
-    return !!C && typeof C.getPlatform === 'function' && C.getPlatform() === 'ios';
-  }catch(e){ return false; }
-}
+   wie sie war. Hier in ios-web entscheidet die Weiche im Kopf (IST_IOS);
+   die Plattform fragt nur der Kopf ab (tests/test_ios.py). */
+function sprechAufIOS(){ return IST_IOS; }
 function sprechFehlerArt(e){
   const m = String((e && e.message) || e || '');
   if(/No match|No speech input/i.test(m)) return 'still';

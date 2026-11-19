@@ -291,10 +291,12 @@ def test_ios_datenschutz_google_nach_denselben_regeln(sprachcodes, monkeypatch):
 
 
 # Pruefbericht 1.4, S22: eigener Stand der iOS-Fassungen (IOS_STAND).
-STAND_DS_IOS = {"de": "Stand: 16.11.2026", "en": "Last updated: November 16, 2026",
-                "tr": "Son güncelleme: 16.11.2026", "sv": "Senast uppdaterad: 16.11.2026",
-                "nl": "Laatst bijgewerkt: 16 november 2026", "nb": "Sist oppdatert: 16.11.2026",
-                "da": "Senest opdateret: 16.11.2026", "fr": "Dernière mise à jour : 16.11.2026"}
+# Seit 19.11.2026 (Android 1.4, Abschnitt 3 „Wie oft“) gilt der spaetere
+# Stand der Android-Fassung, IOS_STAND bleibt beim 16.11. (stand_setzen).
+STAND_DS_IOS = {"de": "Stand: 19.11.2026", "en": "Last updated: November 19, 2026",
+                "tr": "Son güncelleme: 19.11.2026", "sv": "Senast uppdaterad: 19.11.2026",
+                "nl": "Laatst bijgewerkt: 19 november 2026", "nb": "Sist oppdatert: 19.11.2026",
+                "da": "Senest opdateret: 19.11.2026", "fr": "Dernière mise à jour : 19.11.2026"}
 
 
 def _stand(text):
