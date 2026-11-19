@@ -713,13 +713,29 @@ def test_firestore_gepackt_nach_den_regeln_und_mit_feldmaske(seite, heute_stand,
     assert attrappe.masken[-2:] == [["rev"], None]
 
     # Nimmt Firestore die Feldmaske nicht an, laedt die App wie bisher alles,
-    # statt jeden Abgleich daran scheitern zu lassen.
+    # statt jeden Abgleich daran scheitern zu lassen. Geschrieben wird dabei
+    # nichts: Hier war seit dem letzten Hochladen nichts Neues, und reines
+    # Einarbeiten gilt als hochgeladen (Pruefbefund 17.11.2026 - bis dahin
+    # lud der Start den nur sortierten Stand noch einmal hoch).
     _uhr(seite, tag + datetime.timedelta(days=2))
     attrappe.maske_abgelehnt = True
     attrappe.dok = dict(attrappe.dok, rev={"stringValue": "anderes.2"})
+    n = len(attrappe.masken)
     assert seite.js("async () => await cloudAbgleich('start')") == "zusammengefuehrt"
-    assert attrappe.masken[-2:] == [["rev"], None]
+    assert attrappe.masken[n:] == [["rev"], None]
+    assert attrappe.dok["rev"]["stringValue"] == seite.js("() => cloudMerker().rev") == "anderes.2"
+    # Am selben Tag beim Verlassen: gleich der ganze Stand, ohne die
+    # abgelehnte Feldmaske noch einmal zu versuchen (cloudMaskeAus).
     seite.js("() => known.add('probe:nach-maske')")
     assert seite.js("async () => await cloudAbgleich('pause')") == "gespeichert"
+    assert attrappe.masken[n + 2:] == [None]
     assert "probe:nach-maske" in seite.js(GELESEN, attrappe.dok["daten"]["stringValue"])["gewusst"]
+    # Am naechsten Tag wird sie einmal wieder versucht - abgelehnt, also
+    # wieder der ganze Stand und fuer diesen Tag ohne Maske.
+    _uhr(seite, tag + datetime.timedelta(days=3))
+    seite.js("() => known.add('probe:tag-drei')")
+    assert seite.js("async () => await cloudAbgleich('pause')") == "gespeichert"
+    assert attrappe.masken[n + 3:] == [["rev"], None]
+    assert seite.js("() => cloudBillig(cloudAdapter(), cloudMerker())") is False
+    assert "probe:tag-drei" in seite.js(GELESEN, attrappe.dok["daten"]["stringValue"])["gewusst"]
     assert seite.fehler == []

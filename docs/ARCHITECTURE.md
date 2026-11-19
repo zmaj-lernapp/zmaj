@@ -59,7 +59,7 @@ erDiagram
   LEVEL ||--o| GRAMMAR_LESSON : "explains (26)"
   LEVEL }o--o{ LEVEL : "baut_auf (review)"
   STORY }o--o| LEVEL : "passt_zu"
-  STORY }o--o{ GLOSSARY_ENTRY : "tappable words (1,520)"
+  STORY }o--o{ GLOSSARY_ENTRY : "tappable words (1,519)"
   WORD ||--o| AUDIO : "w0001.mp3"
   SENTENCE ||--o| AUDIO : "spoken"
   STORY ||--o| AUDIO : "g01.mp3"

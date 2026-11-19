@@ -3,16 +3,23 @@
 geschichten.py  –  DER GESCHICHTEN-PFAD
 
 Die Geschichten sind ein eigener Pfad neben dem Lernpfad, für alle, die auch
-lesen wollen. DIE REIHENFOLGE IN DER LISTE IST DIE SCHWIERIGKEIT: die erste
-Geschichte ist wie ein Kinderbuch, die letzte ist Amtssprache. Eine Geschichte
-wird frei, wenn bei der vorherigen alle Fragen richtig beantwortet wurden.
+lesen wollen. Sie stehen in Stufen wie der Lernpfad, A1, A2, B1 und B2, und
+werden von Stufe zu Stufe schwerer (Ajdin am 17.11.2026: "es soll einfach von
+kinderleicht zu schwerer sein usw also nur A1, A2 usw"; Offen-Liste 7). Die
+Stufe steht an jeder Geschichte ("stufe"), die Folge in der App in REIHENFOLGE
+ganz unten: Stufe für Stufe, in jeder von leicht nach schwer. Eine Geschichte
+wird frei, wenn bei der vorherigen alle Fragen richtig beantwortet wurden;
+was nach der Folge bis zum 17.11.2026 frei war, bleibt frei (storyUnlocked in
+web/index.html).
 
 Aufbau:
   WOERTERBUCH = Wort im Text (klein geschrieben, genau wie es im Text steht)
                 → deutsche Bedeutung. Gilt für alle Geschichten.
   GESCHICHTEN = Liste von {
       "id", "titel",
-      "stufe":        Beschriftung der Schwierigkeit (z. B. "Kinderbuch")
+      "stufe":        "A1", "A2", "B1" oder "B2", wie die Reiter im Lernpfad
+                      (bis 17.11.2026 Themen wie "Kinderbuch", "Einfach" und
+                      "Amtssprache"; Ajdin: "amtssprache lass raus")
       "passt_zu":     Level-id aus vokabeln.py, dessen Wörter man kennen sollte;
                       höchstens B1, ein B2-Level haben die Leser meist noch nicht
                       offen (Prüfbericht 1.4, B12, 14.11.2026)
@@ -111,7 +118,7 @@ WOERTERBUCH = {
     "velika": "groß (w)", "veliku": "große (Akk.)", "lijep": "schön (m)", "lijepo": "schön", "stare": "alte",
     "staru": "altes (Akk.)", "starog": "alten", "maloj": "kleinen (Lok.)", "mali": "klein (m)", "dobar": "gut (m)", "dobro": "gut",
     "gotova": "fertig", "jeftinije": "billiger", "stari": "alte / Alt-", "kafen": "braun (m)", "kafena": "braun (w)", "kafeno": "braun (s)", "boja": "Farbe", "bijela": "weiß (w)",
-    "žuta": "gelb (w)", "plava": "blau (w)", "novi": "neuen", "draga": "liebe", "ljubazne": "freundlich (Mehrz.)",
+    "žuta": "gelb (w)", "plava": "blau (w)", "novi": "neuen", "draga": "liebe",
     "grad": "Stadt", "grada": "Stadt (Gen.)", "gradu": "Stadt (Lok.)", "park": "Park", "parku": "Park (Lok.)", "sunce": "Sonne",
     "pijacu": "Markt (Akk.)", "pijaci": "Markt (Lok.)", "voća": "Obst (Gen.)", "voće": "Obst", "povrća": "Gemüse (Gen.)",
     "jabuke": "Äpfel", "jabuku": "Apfel (Akk.)", "paradajz": "Tomate", "luk": "Zwiebel", "marke": "Mark (Währung)", "maraka": "Mark (Gen. Mehrz.)",
@@ -373,7 +380,7 @@ WOERTERBUCH = {
 
 GESCHICHTEN = [
     {
-        "id": "mira", "titel": "Mira i Rex", "stufe": "Kinderbuch", "passt_zu": "farben",
+        "id": "mira", "titel": "Mira i Rex", "stufe": "A1", "passt_zu": "farben",
         "text": "Ovo je Mira. Mira je djevojčica. Mira ima psa. Pas se zove Rex. Rex je kafen i mali. Mira voli Rexa. Rex voli Miru. "
                 "Mira i Rex idu u park. U parku je sunce. Rex trči. Mira se smije. Onda idu kući. Mira jede jabuku. Rex spava.",
         "uebersetzung": "Das ist Mira. Mira ist ein Mädchen. Mira hat einen Hund. Der Hund heißt Rex. Rex ist braun und klein. Mira liebt Rex. Rex liebt Mira. "
@@ -386,7 +393,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "kuca1", "titel": "Naša kuća", "stufe": "Kinderbuch", "passt_zu": "zuhause",
+        "id": "kuca1", "titel": "Naša kuća", "stufe": "A1", "passt_zu": "zuhause",
         "text": "Ovo je naša kuća. Kuća je bijela. Ima velika vrata i četiri prozora. U kući je kuhinja. Kuhinja je žuta. Tu su sto i četiri stolice. "
                 "Moja soba je plava. U sobi su krevet i lampa. Iza kuće je bašta. U bašti su jedno drvo i mnogo cvijeća. Volim našu kuću.",
         "uebersetzung": "Das ist unser Haus. Das Haus ist weiß. Es hat eine große Tür und vier Fenster. Im Haus ist eine Küche. Die Küche ist gelb. Da sind ein Tisch und vier Stühle. "
@@ -399,7 +406,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "porodica", "titel": "Moja porodica", "stufe": "Einfach", "passt_zu": "familie",
+        "id": "porodica", "titel": "Moja porodica", "stufe": "A1", "passt_zu": "familie",
         "text": "Zovem se Amina. Imam dvadeset pet godina. Moja porodica je velika. Moj muž se zove Ajdin. On je inženjer. "
                 "Imam jednog brata i jednu sestru. Moj brat se zove Emir, a moja sestra se zove Lejla. "
                 "Moja majka je nastavnica, a moj babo je pčelar. Moja nana i moj dedo žive u Bosni. Volim svoju porodicu.",
@@ -414,7 +421,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "pijaca", "titel": "Na pijaci", "stufe": "Einfach", "passt_zu": "einkaufen",
+        "id": "pijaca", "titel": "Na pijaci", "stufe": "A1", "passt_zu": "einkaufen",
         "text": "Danas je subota. Amina ide na pijacu. Na pijaci ima mnogo voća i povrća. Amina kupuje jabuke, paradajz i luk. "
                 "„Koliko koštaju jabuke?“ pita Amina. „Dvije marke za kilogram“, kaže prodavač. Amina uzima dva kilograma. "
                 "Onda kupuje hljeb i sir. Sve zajedno košta deset maraka. Amina plaća gotovinom i ide kući.",
@@ -428,7 +435,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "dan", "titel": "Moj dan", "stufe": "Einfach", "passt_zu": "routine",
+        "id": "dan", "titel": "Moj dan", "stufe": "A1", "passt_zu": "routine",
         "text": "Svaki dan ustajem u sedam sati. Prvo se tuširam, a onda doručkujem. Za doručak jedem hljeb sa sirom i pijem kahvu. "
                 "U osam idem na posao. Radim u kancelariji do četiri. Poslije posla idem u kupovinu. Navečer kuham večeru i gledam televiziju. "
                 "Ponekad čitam knjigu. Idem spavati u jedanaest. Vikendom spavam duže.",
@@ -442,7 +449,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "grad", "titel": "U gradu", "stufe": "Mittel", "passt_zu": "praepositionen",
+        "id": "grad", "titel": "U gradu", "stufe": "A2", "passt_zu": "praepositionen",
         "text": "Ajdin i Amina su u Sarajevu. Hotel je u centru grada, pored rijeke. Ujutro idu na Baščaršiju. Tamo piju kahvu i jedu ćevape. "
                 "Poslije ručka šetaju preko starog mosta. Amina kupuje poklon za nanu u maloj radnji. "
                 "Navečer sjede na balkonu i gledaju grad. „Sarajevo je lijep grad“, kaže Amina.",
@@ -456,7 +463,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "jucer", "titel": "Jučer", "stufe": "Mittel", "passt_zu": "vergangenheit",
+        "id": "jucer", "titel": "Jučer", "stufe": "A2", "passt_zu": "vergangenheit",
         "text": "Jučer je bio lijep dan. Ustala sam rano i otišla na pijacu. Kupila sam voće i cvijeće. Poslije sam bila kod nane. "
                 "Pile smo kahvu i pričale o porodici. Nana mi je pokazala stare slike. Navečer je došao Ajdin i zajedno smo kuhali večeru. "
                 "Bio je to dobar dan.",
@@ -470,7 +477,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "put", "titel": "Put u Bosnu", "stufe": "Mittel", "passt_zu": "reisen",
+        "id": "put", "titel": "Put u Bosnu", "stufe": "A2", "passt_zu": "reisen",
         "text": "Sljedeće sedmice idemo u Bosnu. Putovat ćemo autom jer je jeftinije nego avionom. Vožnja traje oko dvanaest sati. "
                 "Prvo ćemo prenoćiti u Zagrebu. Onda ćemo voziti do Sarajeva. U Sarajevu ćemo ostati tri dana kod amidže. "
                 "Poslije toga idemo na more. Amina se već raduje. Nazvat ćemo nanu kad stignemo.",
@@ -485,12 +492,15 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "pismo", "titel": "Pismo nani", "stufe": "Fortgeschritten", "passt_zu": "zukunft",
+        "id": "pismo", "titel": "Pismo nani", "stufe": "A2", "passt_zu": "zukunft",
         # "napraviti pitu" statt "skuhati pitu" (Prüfbericht 1.4, S3; Ajdin, F20,
         # 14.11.2026: "man sagt napraviti pitu nicht skuhati"). Den Ton (g09) hat
         # Vesna am 16.11.2026 mit dem neuen Text gesprochen (Offen-Liste 6).
+        # "Kolege su ljubazni" statt "ljubazne", wie "Kolege su bili ljubazni" in
+        # b1_posao (Ajdin, Fragen 16.11.2026, 5: "ljubazni"). g09 hat Vesna am
+        # 16.11.2026 noch einmal gesprochen, mit diesem Text.
         "text":"Draga nano, kako si? Mi smo dobro. Prošle sedmice sam počela novi posao u jednoj firmi u centru grada. "
-                "Kolege su ljubazne, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. "
+                "Kolege su ljubazni, ali još ne razumijem sve jer govore brzo. Ajdin kaže da ću naučiti. "
                 "Navečer učim bosanski, a vikendom idemo u prirodu. Mislim da ćemo u augustu doći kod tebe. "
                 "Nadam se da ćeš nam napraviti pitu! Pozdravi dedu. Volim te, tvoja Amina.",
         "uebersetzung": "Liebe Oma, wie geht es dir? Uns geht es gut. Letzte Woche habe ich eine neue Arbeit in einer Firma im Stadtzentrum begonnen. "
@@ -504,7 +514,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "opcina", "titel": "Na općini", "stufe": "Amtssprache", "passt_zu": "amt",
+        "id": "opcina", "titel": "Na općini", "stufe": "A2", "passt_zu": "amt",
         "text": "Amina treba potvrdu o prebivalištu. Ide na općinu u osam sati. Na šalteru pita: „Dobar dan, trebam potvrdu o prebivalištu. Koji dokumenti mi trebaju?“ "
                 "Službenica kaže: „Trebate ličnu kartu i obrazac. Taksa je pet maraka.“ Amina popunjava obrazac i potpisuje. Onda plaća taksu. "
                 "Potvrda je gotova za deset minuta. „Hvala Vam na pomoći“, kaže Amina.",
@@ -518,7 +528,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "kuca", "titel": "Kupujemo kuću", "stufe": "Amtssprache", "passt_zu": "immobilien",
+        "id": "kuca", "titel": "Kupujemo kuću", "stufe": "A2", "passt_zu": "immobilien",
         "text": "Ajdin i Amina žele kupiti kuću u Bosni. Agent za nekretnine im pokazuje staru kuću na selu. Kuća ima tri sobe, veliku kuhinju i baštu. "
                 "Cijena je osamdeset hiljada maraka. Ajdin pita: „Je li kuća upisana u gruntovnicu?“ Agent kaže da jeste. "
                 "Oni pregovaraju o cijeni i dogovaraju kaparu. Sljedeće sedmice potpisuju kupoprodajni ugovor kod notara.",
@@ -533,7 +543,7 @@ GESCHICHTEN = [
         ],
     },
     {
-        "id": "intervju", "titel": "Razgovor za posao", "stufe": "Amtssprache", "passt_zu": "arbeitsvertrag",
+        "id": "intervju", "titel": "Razgovor za posao", "stufe": "B1", "passt_zu": "arbeitsvertrag",
         "text": "Amina ima razgovor za posao u jednoj firmi. Direktor je pita: „Recite nam nešto o sebi.“ "
                 "Amina odgovara: „Završila sam ekonomiju i imam tri godine iskustva u računovodstvu. Govorim njemački, engleski i malo bosanski.“ "
                 "Direktor pita koliko bi željela zarađivati i kada bi mogla početi. Amina kaže da može početi sljedećeg mjeseca. "
@@ -828,11 +838,11 @@ GESCHICHTEN = [
 # B1-LESETEXTE, PAKETE 3 UND 4 (13.11.2026)
 #
 # Acht Lesetexte für die neue Stufe "B1", je 150 bis 200 Wörter, ijekavisch.
-# Sie stehen hinter allen anderen Geschichten und werden wie diese der Reihe
-# nach frei. Vorlage: Release\Entscheidungen_2026-11-13\lesetexte_proben.md
-# (Entscheidung 14a/15a/16a vom 13.11.2026). Seit dem 15.11.2026 steht
-# "Izgubljeni telefon" aus Paket 2 zwischen ihnen, hinter "Dedo i nana se sele"
-# (Ajdin, A/B-Liste S7: "lass doktor vorher").
+# Sie werden wie alle anderen der Reihe nach frei. Vorlage:
+# Release\Entscheidungen_2026-11-13\lesetexte_proben.md (Entscheidung
+# 14a/15a/16a vom 13.11.2026). Seit dem 15.11.2026 steht "Izgubljeni telefon"
+# aus Paket 2 zwischen ihnen (Ajdin, A/B-Liste S7: "lass doktor vorher"). Wo
+# sie in der App stehen, sagt seit dem 17.11.2026 REIHENFOLGE ganz unten.
 #
 # Absätze stehen wie in Paket 1 und 2 als Leerzeile ("\n\n") in Text und
 # Übersetzung, die App zeigt sie (white-space: pre-line). Sie gehören zum
@@ -1066,6 +1076,8 @@ GESCHICHTEN += [
         # S7 (A/B-Liste, Ajdin 15.11.2026: "lass doktor vorher"): hinter "Kod doktora"
         # und "Dedo i nana se sele", wie in seiner Themenliste. Die id bleibt und mit
         # ihr der Lesestand; die Wörter stehen oben im WOERTERBUCH (Paket 1 und 2).
+        # Seit dem 17.11.2026 nach Schwierigkeit (REIHENFOLGE unten): weiter hinter
+        # "Kod doktora", aber vor "Dedo i nana se sele".
         "id": "b1_telefon", "titel": "Izgubljeni telefon", "stufe": "B1", "passt_zu": "geraete",
         "text": ("U petak poslije posla Amina je sjela u kafić na Baščaršiji, blizu Sebilja. Popila je kahvu, platila i otišla kući tramvajem. Kod kuće je htjela nazvati mamu, ali telefona nije bilo u torbi. Tražila ga je svugdje: u jakni, u kuhinji, čak i ispod kreveta. Ništa.\n\n"
                  "„Ajdine, nazovi me, molim te!“ Ajdin je nazvao njen broj. Telefon je zvonio, ali niko se nije javio. Amina je bila nervozna. U telefonu su bili svi njeni brojevi i slike.\n\n"
@@ -1220,3 +1232,42 @@ GESCHICHTEN += [
         ],
     },
 ]
+
+
+# ---------------------------------------------------------------------------
+# REIHENFOLGE (17.11.2026, Offen-Liste 7)
+#
+# Ajdin: "lass sie auch in 1.4 rein machen das da steht amtssprache lass raus
+# es soll einfach von kinderleicht zu schwerer sein usw also nur A1, A2 usw".
+# Bis dahin standen die zwölf ersten Geschichten nach Thema (Kinderbuch,
+# Einfach, Mittel, Fortgeschritten, Amtssprache), dahinter die 20 B1-Lesetexte.
+# Jetzt Stufe für Stufe wie im Lernpfad und in jeder Stufe von leicht nach
+# schwer, gemessen an Länge, Satzlänge, Nebensätzen, Zeitformen, Fällen und
+# Wortschatz (Einstufung vom 17.11.2026, Ajdin: "passt so"):
+#   A1  nur Präsens, keine Nebensätze, höchstens 60 Wörter, kurze Sätze
+#   A2  kurze Texte mit Perfekt, Futur und einfachen Nebensätzen (da, jer, kad)
+#   B1  ab 150 Wörtern, oder Konditional mit indirekten Fragen und langen Sätzen
+#   B2  noch keine
+# Die drei Texte, die "Amtssprache" hießen, stehen nach ihrem Inhalt: "Na
+# općini" und "Kupujemo kuću" in A2 (Sätze wie A1/A2, nur einige Amtswörter),
+# "Razgovor za posao" am Ende von B1 (Konditional, indirekte Fragen, die
+# längsten Sätze).
+#
+# Die ids bleiben, an ihnen hängt der Lesestand ("read"). Die Folge bis zum
+# 17.11.2026 steht in web/index.html (GESCH_ALTE_FOLGE): was danach frei war,
+# bleibt frei. Eine neue Geschichte gehört hier hinein, an ihre Stelle in
+# ihrer Stufe; fehlt sie, rutscht sie ans Ende, und inhalt.pruefe_vokabeln()
+# meldet die Stufe, wenn sie dort nicht passt.
+# ---------------------------------------------------------------------------
+REIHENFOLGE = [
+    # A1
+    "mira", "porodica", "kuca1", "pijaca", "dan",
+    # A2
+    "opcina", "jucer", "grad", "kuca", "put", "pismo",
+    # B1
+    "b1_vrijeme", "b1_voz", "b1_stan", "b1_ljeto", "b1_svadba", "b1_rafting",
+    "b1_rodjendan", "b1_doktor", "b1_posao", "b1_jahorina", "b1_utakmica",
+    "b1_struja", "b1_zmaj", "b1_pita", "b1_kahva", "b1_dijaspora", "b1_telefon",
+    "b1_selidba", "b1_zanat", "b1_mejl", "intervju",
+]
+GESCHICHTEN.sort(key=lambda g: REIHENFOLGE.index(g["id"]) if g["id"] in REIHENFOLGE else len(REIHENFOLGE))

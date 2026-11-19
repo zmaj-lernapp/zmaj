@@ -40,8 +40,13 @@ GRUNDSPRACHE = "de"
 
 
 GLEICH = {
-    # B1-Lesetexte (13.11.2026): die Stufe und zwei Namen als Antwort.
+    # Die Stufen der Geschichten (B1 seit 13.11.2026, A1, A2 und B2 seit dem
+    # 17.11.2026 statt "Kinderbuch" bis "Amtssprache", Offen-Liste 7) und zwei
+    # Namen als Antwort.
+    "A1",
+    "A2",
     "B1",
+    "B2",
     "Amina",
     "Ajdin",
     # Bosnische Beispiele, Namen und Zahlen aus den Grammatik-Tabellen,
@@ -952,12 +957,6 @@ INHALT = {
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "At the doctor's and at the health insurer: referral, prescription, sick note.",
 
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Picture book",
-    "Einfach": "Easy",
-    "Mittel": "Medium",
-    "Fortgeschritten": "Advanced",
-    "Amtssprache": "Administrative language",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hello",
     "Guten Tag": "Good day",
@@ -2446,7 +2445,7 @@ INHALT = {
     "bleibt gleich": "stays the same",
     "za, kroz; u/na bei Bewegung (wohin?)": "za, kroz; u/na for movement (where to?)",
     "u/na bei Ort (wo?), o (über), prema": "u/na for a place (where?), o (about), prema",
-    "s/sa, pod, nad, pred, za (hinter), među": "sa, pod, nad, pred, za (behind), među",
+    "s/sa, pod, nad (über), pred, za (hinter), među": "s/sa, pod, nad (above), pred, za (behind), među",
     "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)": "+ om (after c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)",
     "ich": "I",
     "du": "you",
@@ -11990,12 +11989,6 @@ INHALT = {
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Doktorda ve sağlık sigortasında: sevk, reçete, istirahat raporu.",
 
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Çocuk kitabı",
-    "Einfach": "Kolay",
-    "Mittel": "Orta",
-    "Fortgeschritten": "İleri",
-    "Amtssprache": "Resmî dil",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Merhaba",
     "Guten Tag": "İyi günler",
@@ -13479,8 +13472,8 @@ INHALT = {
     "bleibt gleich": "değişmez",
     "za, kroz; u/na bei Bewegung (wohin?)": "za, kroz; hareket bildirirken u/na (nereye?)",
     "u/na bei Ort (wo?), o (über), prema": "yer bildirirken u/na (nerede?), o (hakkında), prema",
-    "s/sa, pod, nad, pred, za (hinter), među":
-        "sa, pod, nad, pred, za (arkasında), među",
+    "s/sa, pod, nad (über), pred, za (hinter), među":
+        "s/sa, pod, nad (üstünde), pred, za (arkasında), među",
     "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)": "+ om (c, č, ć, dž, đ, j, lj, nj, š, ž harflerinden sonra: + em: prijateljem)",
     "ich": "ben",
     "du": "sen",
@@ -23017,12 +23010,6 @@ INHALT = {
     "Arzt & Versicherung": "Läkare & försäkring",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Hos läkaren och hos försäkringskassan: remiss, recept, sjukskrivning.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Bilderbok",
-    "Einfach": "Lätt",
-    "Mittel": "Medel",
-    "Fortgeschritten": "Avancerad",
-    "Amtssprache": "Myndighetsspråk",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hej",
     "Guten Tag": "God dag",
@@ -24504,7 +24491,7 @@ INHALT = {
     "bleibt gleich": "oförändrat",
     "za, kroz; u/na bei Bewegung (wohin?)": "za, kroz; u/na vid rörelse (vart?)",
     "u/na bei Ort (wo?), o (über), prema": "u/na vid plats (var?), o (om), prema",
-    "s/sa, pod, nad, pred, za (hinter), među": "sa, pod, nad, pred, za (bakom), među",
+    "s/sa, pod, nad (über), pred, za (hinter), među": "s/sa, pod, nad (över), pred, za (bakom), među",
     "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)": "+ om (efter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)",
     "ich": "jag",
     "du": "du",
@@ -34030,12 +34017,6 @@ INHALT = {
     "Arzt & Versicherung": "Dokter & verzekering",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Bij de dokter en bij de zorgverzekeraar: verwijsbrief, recept, ziekmelding.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Kinderboek",
-    "Einfach": "Makkelijk",
-    "Mittel": "Gemiddeld",
-    "Fortgeschritten": "Gevorderd",
-    "Amtssprache": "Ambtelijke taal",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hallo",
     "Guten Tag": "Goedendag",
@@ -35517,7 +35498,7 @@ INHALT = {
     "bleibt gleich": "blijft gelijk",
     "za, kroz; u/na bei Bewegung (wohin?)": "za, kroz; u/na bij beweging (waarheen?)",
     "u/na bei Ort (wo?), o (über), prema": "u/na bij plaats (waar?), o (over), prema",
-    "s/sa, pod, nad, pred, za (hinter), među": "sa, pod, nad, pred, za (achter), među",
+    "s/sa, pod, nad (über), pred, za (hinter), među": "s/sa, pod, nad (boven), pred, za (achter), među",
     "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)": "+ om (na c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)",
     "ich": "ik",
     "du": "jij",
@@ -45041,12 +45022,6 @@ INHALT = {
     "Arzt & Versicherung": "Lege & forsikring",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Hos legen og hos helseforsikringen: henvisning, resept, sykmelding.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Billedbok",
-    "Einfach": "Lett",
-    "Mittel": "Middels",
-    "Fortgeschritten": "Viderekommen",
-    "Amtssprache": "Myndighetsspråk",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hei",
     "Guten Tag": "God dag",
@@ -46530,7 +46505,7 @@ INHALT = {
     "bleibt gleich": "uendret",
     "za, kroz; u/na bei Bewegung (wohin?)": "za, kroz; u/na ved bevegelse (hvor hen?)",
     "u/na bei Ort (wo?), o (über), prema": "u/na ved sted (hvor?), o (om), prema",
-    "s/sa, pod, nad, pred, za (hinter), među": "sa, pod, nad, pred, za (bak), među",
+    "s/sa, pod, nad (über), pred, za (hinter), među": "s/sa, pod, nad (over), pred, za (bak), među",
     "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)": "+ om (etter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)",
     "ich": "jeg",
     "du": "du",
@@ -56054,12 +56029,6 @@ INHALT = {
     "Arzt & Versicherung": "Læge & forsikring",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Hos lægen og hos sygesikringen: henvisning, recept, sygemelding.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Billedbog",
-    "Einfach": "Let",
-    "Mittel": "Middel",
-    "Fortgeschritten": "Øvet",
-    "Amtssprache": "Myndighedssprog",
     # ---- Wörter · Grundlagen -----------------------------------------------
     "Hallo": "Hej",
     "Guten Tag": "Goddag",
@@ -57541,7 +57510,7 @@ INHALT = {
     "bleibt gleich": "uændret",
     "za, kroz; u/na bei Bewegung (wohin?)": "za, kroz; u/na ved bevægelse (hvorhen?)",
     "u/na bei Ort (wo?), o (über), prema": "u/na ved sted (hvor?), o (om), prema",
-    "s/sa, pod, nad, pred, za (hinter), među": "sa, pod, nad, pred, za (bag), među",
+    "s/sa, pod, nad (über), pred, za (hinter), među": "s/sa, pod, nad (over), pred, za (bag), među",
     "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)": "+ om (efter c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)",
     "ich": "jeg",
     "du": "du",
@@ -67065,12 +67034,6 @@ INHALT = {
     "Arzt & Versicherung": "Médecin & assurance",
     "Beim Arzt und bei der Krankenkasse: Überweisung, Rezept, Krankschreibung.":
         "Chez le médecin et à l'assurance maladie : orientation, ordonnance, arrêt de travail.",
-    # ---- Schwierigkeitsstufen der Geschichten ------------------------------
-    "Kinderbuch": "Album jeunesse",
-    "Einfach": "Facile",
-    "Mittel": "Moyen",
-    "Fortgeschritten": "Avancé",
-    "Amtssprache": "Langue administrative",
     # ---- Wörter · Grundlagen -----------------------------------------------
     # Pruefbericht 1.4 (14.11.2026), V5: Ćao steht im selben Level als "Salut (en partant)".
     "Hallo": "Salut (en arrivant)",
@@ -68550,7 +68513,7 @@ INHALT = {
     "Lokativ": "Locatif",
     "u/na bei Ort (wo?), o (über), prema": "u/na avec un lieu (où ?), o (à propos de), prema",
     "Instrumental": "Instrumental",
-    "s/sa, pod, nad, pred, za (hinter), među": "sa, pod, nad, pred, za (derrière), među",
+    "s/sa, pod, nad (über), pred, za (hinter), među": "s/sa, pod, nad (au-dessus de), pred, za (derrière), među",
     "Dativ / Lokativ": "Datif / Locatif",
     "+ om (nach c, č, ć, dž, đ, j, lj, nj, š, ž: + em: prijateljem)": "+ om (après c, č, ć, dž, đ, j, lj, nj, š, ž : + em : prijateljem)",
     "ich": "je",

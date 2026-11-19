@@ -880,13 +880,19 @@ def test_abmelden_bei_ungueltiger_sitzung_bleibt_der_lernstand(seite, heute_stan
     uid = attrappe.konto_anlegen("ich@probe.example", "geheim-123")
     _starten(seite, cloud_html, stand=_gelernt(heute_stand), attrappe=attrappe)
     _mail_anmelden(seite, "ich@probe.example", "geheim-123")
-    # Heute schon gelesen und geschrieben: der Start fragt Firebase nicht
-    # mehr, und der Ausweis im Speicher ist nach dem Neuladen weg.
+    # Heute schon gelesen und geschrieben, und der Ausweis im Speicher ist
+    # nach dem Neuladen weg. Seit 17.11.2026 sieht der Start trotzdem nach
+    # und merkte die ungueltige Anmeldung selbst - darum startet das Geraet
+    # hier ohne Netz: das Nachsehen scheitert still, man bleibt angemeldet.
     seite.js("""() => { const m = JSON.parse(localStorage.getItem('zmaj_cloud'));
                         m.gelesen = m.tag = today(); localStorage.setItem('zmaj_cloud', JSON.stringify(m)); }""")
     attrappe.token_fehler = "TOKEN_EXPIRED"
+    attrappe.abbruch = True
+    attrappe.anfragen.clear()
     _neu_laden(seite)
+    _warte(seite, lambda: any(a[0] == "ABBRUCH" for a in attrappe.anfragen))
     _fertig(seite)
+    attrappe.abbruch = False
     assert seite.js(ZUSTAND)["sicht"] == ["pfad"]
     seite.js("() => { known.add('probe:abends'); showKonto(); }")
     attrappe.anfragen.clear()

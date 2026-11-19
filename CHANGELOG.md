@@ -70,7 +70,8 @@ are in the Play Store listing. Format:
   Without hearts the skip-ahead test
   offers the same ways to a heart as the level test (video, coins).
 - 20 reading stories for B1 (decided by the maintainer on 13.11.2026), in four
-  packages behind the twelve older stories, in the same chain: the three
+  packages, in the same chain as the twelve older stories (since 17.11.2026
+  ordered by stage and difficulty, see *Changed*): the three
   approved samples (*Ljeto kod nane na selu*, *Voz Sarajevo–Mostar*,
   *Izgubljeni telefon*) and 17 more written the same way, 160 to 200 words
   each, in paragraphs, with three questions whose wrong answers are about as
@@ -373,6 +374,62 @@ are in the Play Store listing. Format:
   Security Policy allows only the page's own script, style and images.
 
 ### Changed
+- Reading stories by stage (maintainer's decision, 17.11.2026: only A1, A2 and so
+  on, from very easy to harder, no "official language"). Every story now has the
+  stage A1, A2, B1 or B2 like the learning path instead of a theme ("Kinderbuch",
+  "Einfach", "Mittel", "Fortgeschritten", "Amtssprache"); the themes and their
+  translations are gone in all eight languages, also from the hidden summary line.
+  The list goes stage by stage and from easy to hard within each stage, measured by
+  length, sentence length, subordinate clauses, tenses, cases and vocabulary: A1 has
+  five stories (*Mira i Rex*, *Moja porodica*, *Naša kuća*, *Na pijaci*, *Moj dan*),
+  A2 six (*Na općini*, *Jučer*, *U gradu*, *Kupujemo kuću*, *Put u Bosnu*, *Pismo
+  nani*), B1 the 20 B1 reading stories from easy to hard and *Razgovor za posao*
+  last; B2 has none yet. The order is `REIHENFOLGE` in `geschichten.py`, and
+  `inhalt.pruefe_vokabeln()` reports a story without a valid stage or out of order.
+  The stories tab shows the same stage tabs as the learning path (same look,
+  "read/total" per tab, B2 and C1 "soon", a tab with no open story says which stage
+  comes first, and tapping a tab keeps the bar where it is). It opens on the tab of
+  the next unread story; a tab picked by hand stays until that story moves to
+  another tab. Numbers and "Story 2 of 6" count per tab, and the header of a story
+  reads "A1 · goes with level …". Unlocking: a story is open when it has been read,
+  when the one before it has been read, or when the one before it in the old order
+  has been read (`GESCH_ALTE_FOLGE`), so nothing that was open before closes, for
+  any saved progress, from the cloud or a backup file too. Without that, *Razgovor
+  za posao* (12th before, now last in B1) would have locked again for everyone who
+  had read up to *Kupujemo kuću*. IDs, texts, questions, translations and recordings
+  stay (the recordings are found by their text); `data/stories.json` and the
+  parallel corpus follow the new order, with `stage` "A1" etc. in every language.
+- Speaking: targets of three sounds or fewer, counted the way the comparison counts
+  them (*Da*, *Ne*, *pas*, *sin*, *čaj*), now count only when heard exactly
+  (maintainer's decision, 16.11.2026). Until now one letter could differ, so *pa*
+  counted for *pas*, *sir* for *sin*, *na* for *ne* and *dva*, *dan* or *pa* for *Da*.
+  In return, repetitions and the filler words *pa, eto, evo, ovaj, hm, aha, ok* around
+  the word are fine, and so are the hesitation *e / ee / eee* and *okay / okej /
+  okey* (maintainer's decision, 16.11.2026): *Pa da*, *Da da*, *Ćao ćao*, *Eee da* and
+  *Okej da* count, *e* alone, *Pa dva*, *Ne znam* for *Ne* and *Ko je* for *Ko?* do
+  not, and neither does the word written together (*dada*), which would let *nana*
+  count for *na* and *jaja* for *Ja*. Targets of four sounds or more are unchanged.
+  Of 559 short single-word targets, 498 accepted another word of the app before and
+  314 now (of those with three sounds or fewer only *Šta?*, which takes *što*, see
+  below); wrong short words that pass in the test corpus drop from 453 of 555 to 0.
+- Speaking: the way the Croatian recognizer writes a few short words now counts for
+  the app's form (maintainer's decision, 16.11.2026): *Tko* for *Ko*, *Što* for *Šta*,
+  *Ćau*, *Čau* and *Ciao* for *Ćao*, as a word and in sentences (*Tko je to?* for
+  *Ko je to?*, *Ćau ćau* for *Ćao*). Only whole words of what was heard are rewritten,
+  and only where the target has the app's form and not the recognizer's own, so
+  *sto* (hundred) never becomes *šta*, *zašto* and *nešto* stay as they are, and the
+  app's word *što* ("that") does not take *Šta*. Typing is unchanged. In the test
+  corpus no correct transcript is newly rejected; no other word of the app newly
+  passes for a target of four to eight sounds (9.27 million pairs).
+- Skipping a speaking task after a failed try in that task (a recognizer error, the
+  time limit or a result judged wrong) no longer costs the daily task "without
+  mistakes" (maintainer's decision, 16.11.2026). Skipping without trying counts as
+  before, and statistics, the result screen and reviews still count every skip. No new
+  field in the saved progress. When speaking is switched off for the session because
+  every language keeps failing on Android, the speaking tasks still ahead in the
+  running lesson are taken out at once instead of only from the next lesson on, so
+  they no longer have to be skipped (17.11.2026); a refused microphone stays as it
+  was.
 - Browser tests no longer hand `mailto:` links to the operating system
   (16.11.2026). With the installed Chrome on Windows every feedback,
   withdrawal or recommend test opened a Windows "Choose an app" window,
@@ -437,6 +494,21 @@ are in the Play Store listing. Format:
   apps of one developer)", in all eight languages, with and without an account;
   dated 16.11.2026. The website (`seite_bauen.py`) takes the same text.
   `tests/test_datenschutz_s23.py`.
+- Privacy policy, section 3, "How often" (with an account only; approved by
+  the maintainer on 17.11.2026): it said the app reads the account at most
+  once a day on start and writes at most once a day on leaving, which no
+  longer matched the cloud check on every opening. It now says that on
+  opening the app briefly checks whether the account holds more recent
+  progress, for example from another device, and loads it only then, and
+  that it writes the progress at most twice a day, after learning and on
+  leaving, plus once on signing in and once on signing out. All eight
+  languages; the date of the policy stays and is set to the release day
+  before the upload. The README and `FIREBASE_EINRICHTEN.md` (section 9, test
+  step 4, and section 13: up to two writes per device and day, reads now the
+  tighter Spark limit at about 5,000 daily active users) follow. In Turkish,
+  French, English, Norwegian and Danish the sentence names who learns and
+  what is left (you, the app), so it cannot be read as the app running or
+  as leaving the progress. `tests/test_datenschutz_wie_oft.py`.
 - Family level (13.11.2026, approved by the maintainer): *stričević* now counts
   as correct when typed next to *amidžić*, and *stričevka* next to *amidžična*,
   through `"auch"` like the pet names *striko* and *adžo*. IDs, display and
@@ -571,6 +643,51 @@ are in the Play Store listing. Format:
   stays MP3 for the web demo, the dataset and the Anki decks.
 
 ### Fixed
+- Story list: the level badge behind each title is gone; the level already stands in the tab above (decided by the maintainer on 18.11.2026).
+- Cloud backup on Android (field test on a phone, 17.11.2026, with the
+  maintainer's approval of "check the cloud on every opening"): progress
+  learned on one phone did not reach the account for three days, and a second
+  device that had already read the account that afternoon showed "your streak
+  is broken" and an old level count until the next day. The app uploaded only
+  when it went to the background, and Android ends an app that is swiped away
+  before those requests finish; it read only once a day. With an account it
+  now works like this:
+  - On every start and every return to the foreground the app checks the
+    account, but only the revision (`rev`, one read of a few hundred bytes).
+    The whole progress is loaded only when another device has written; then it
+    is merged and the start page shows it at once (in the middle of a lesson
+    or story it counts from the next one, as before). At most once every two
+    minutes (`CLOUD_NACHSEHEN_MS`), so switching back and forth costs nothing.
+    Without a cheap check (an adapter without `kennung`, or Firestore refusing
+    the field mask, then for the rest of that day) it stays at one full read
+    a day.
+  - If the progress changed since the last upload and today's upload on
+    leaving has not arrived, the next start or return uploads it, exactly as
+    leaving would (it then counts as that day's upload).
+  - Right after the result screen of a lesson, review round, test, story or
+    jump test the app also uploads once a day, while it is still in the
+    foreground, so a second device knows about the learning day the same day.
+  - At most two uploads per device and day (plus signing in and out), each
+    only if something changed, and at most four upload attempts a day
+    (`CLOUD_SCHREIBVERSUCHE`) even if none of them gets an answer; what is
+    left over goes up with the first opening on the next day. Every upload
+    still reads first and merges a foreign revision; signing out, packing
+    (`gepackt1`) and devices with 1.3 work as before. Offline or signed out,
+    nothing is shown.
+  - Deleting the account waits for a sync that is still running instead of
+    failing with "that did not work".
+  - After review of the change: a single failed check (a 503 from Firestore
+    or from the token service) no longer switches the cheap check off until
+    the next start; only Firestore rejecting the field mask (HTTP 400) or two
+    failures in a row do, and only for that day. Merging another device's
+    progress while nothing of this device was waiting to go up no longer
+    counts as a change, so it no longer uses up the day's upload. Before,
+    an upload whose answer never came could be repeated on every start,
+    return and result screen (15 uploads in one day in the review).
+  - `tests_e2e/test_cloud_nachsehen.py`; the Firebase stand-in can now lose a
+    write (`schreib_abbruch`) and fail a check or a token refresh once
+    (`maske_fehler`, `token_fehler_folge`). The source keeps
+    `CLOUD_AN = false`, so the web demo is unchanged.
 - Top bar on the iPhone and in the browser (review of the App Store pictures,
   16.11.2026): the back button stands in the bar there (the iPhone has no back key;
   Android never shows it), and since the profile button was added, "← Learning path"
@@ -584,12 +701,75 @@ are in the Play Store listing. Format:
   up to 9,999 coins, from 390 points also with 99,999; below that the second row comes
   as before. Only the colours of the button fade now, so the bar is never measured
   with a half-changed button. `tests_e2e/test_kopfleiste.py`.
+- Speaking tasks (feedback through the form, 16.11.2026: even a native speaker is not
+  always recognized). On Android the app now listens only in Bosnian
+  (bs-BA) and Croatian (hr-HR). Until now every "No match" moved the next tap one
+  language further, so after two failed tries in one task it listened in Serbian
+  (sr-RS), whose Cyrillic transcript always counted as wrong, and other errors ran
+  silently through to the phone's own language within a single tap (offline that gave
+  a German transcript instead of the offline message). Now "No match" and "No speech
+  input" keep the language and show the message; only two of them in a row with
+  bs-BA, as long as bs-BA has delivered nothing in this session, move the next tap to
+  hr-HR (two "Network error" in a row while the phone reports a connection do the
+  same). "Didn't understand" (where Android reports a missing language), "error from
+  server", "Client side error" and "RecognitionService busy" first try the same
+  language once more after 0.4 s, within the same tap and with "Listening…" still on
+  the screen, at most once per language and tap. A second "busy" shows the message;
+  after a second refusal of the other kinds the tap switches to hr-HR, so phones
+  without Bosnian keep speaking. On a Samsung phone (17.11.2026) the recognizer
+  sometimes refused a start at once with "Didn't understand" right after a start that
+  had listened, and the start after that listened again; until then that single
+  refusal showed "That did not work" without listening on about every second tap, or
+  sent the whole session to hr-HR. Now the app tries once more within the same tap,
+  and a language counts as missing for the session only when both starts were refused
+  at once (within 1.5 s, before the microphone opened). "Network error" shows the
+  offline message at once, also on the second try.
+  The language that delivered a result is used first for the rest of the session, and
+  hr-HR when bs-BA is missing; once bs-BA has delivered, it stays first even when hr-HR
+  fills in for it in a single tap. If every language fails with language or
+  service errors on two taps in a row, speaking tasks leave the lesson mix for this
+  session only (not remembered like a refused microphone, the next start tries again);
+  a refusal after which the second try listens does not count. Every start has a
+  15-second limit (the Samsung phone once reported "No match" only after 11.5 s): a
+  recognizer that never answers no longer leaves the task on "Listening…", and a late
+  result of that start is discarded. The iPhone keeps its own path.
+- Speaking: a Cyrillic transcript (*хвала*, *добар дан*, *два*) is written in Latin
+  letters before it is compared, for what was heard and for the target; typing is
+  unchanged. In the test corpus of 94,538 possible transcripts, Cyrillic rejections
+  drop from 9,388 to 49 (the rest are Ekavian forms such as *млеко*).
+- Speaking: plural entries such as *brat → braća* also count when only the plural is
+  said, as long as it sounds exactly like the plural (*Pa braća* and *braća braća* are
+  fine); a merely similar word (*brava* for *braća*, *doći* for *noći*) or a sentence
+  with the plural in it does not count, and the singular alone still does not (all 26
+  entries checked).
+- Speaking: tapping the microphone right after "Vorsprechen" stops the recording
+  first, so the recognizer no longer hears the speaker together with the learner; the
+  task stays valid. In the browser, a recognition that ends without a result and
+  without an error shows "That did not work" instead of leaving "Listening…" on the
+  screen. `tests_e2e/test_sprechen.py`.
 - Reading stories (review for 1.4, V1; 16.11.2026): "Vorlesen", its stop button and
   the speed bar appear only when the story has a recording. The Android shell has no
   computer voice, so the button stood under the B1 stories that had no audio yet and
   did nothing when tapped. Every story has its recording now; the check catches the
   next one that comes into the app before its audio, on the PC as well.
   `tests_e2e/test_vorlesen_nur_mit_ton.py`.
+- Grammar exercises now speak the answer for 93 more answers (recorded on 15.11.2026,
+  approved by the maintainer after listening on 15 and 16.11.2026). After a grammar
+  exercise the app speaks the right answer when it is Bosnian, but 94 of the 175
+  exercises had no recording and stayed silent on the phone, which has no computer
+  voice. The recordings exist only in the store version; the web demo stays silent
+  there. Fifteen of the answers are also words in the B1 stories, which now speak
+  when tapped. The audio check now knows the answers of the grammar exercises, so
+  the next one without a recording is reported before the build.
+  `tests/test_grammatik_ton.py`, `tests_e2e/test_grammatik_ton.py`.
+- Every word in the 20 new B1 reading stories can now be tapped and heard (823
+  words recorded on 16.11.2026, approved by the maintainer after listening the same
+  day). Tapping a word in a story speaks it when there is a recording, but the words
+  that occur only in these stories had none and stayed silent on the phone, which has
+  no computer voice. The recordings exist only in the store version; the web demo
+  stays silent there. The lists of story words still waiting for audio are empty
+  now, so the audio check reports the next word without a recording before the build.
+  `tests/test_geschichtenwoerter_ton.py`, `tests_e2e/test_geschichtenwoerter_ton.py`.
 - Typing (review for 1.4, 14.11.2026, V3): four correct answers no longer cost a
   heart. *Kad dolaziš?* and *Kad ćeš doći?* count next to *Kada …*, *Kada se ženiš?*
   next to *Kad se ženiš?* (as single words *kad* and *kada* already did), *Zdravo* in
@@ -721,6 +901,14 @@ are in the Play Store listing. Format:
   *Čuvaj se psa!* and *Pas me je ujeo*. Only there and only these forms; "očev kola",
   "Bojim se kučeta", "Kuče me je ujeo" and the like stay wrong. Nothing changes in
   sentence building. `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
+- Typing at two of those places again (questions of 16.11.2026, 8a and 8b; decided by
+  the maintainer): for "das Auto des Vaters", "očeva kola" now counts as well, next to
+  *auto oca*, *očev auto* and *kola oca*; "očev kola" stays wrong. For "Der Hund hat
+  mich gebissen" only *Pas me je ujeo* and *Ujeo me je pas* count ("only pas, but
+  both"): *Ujeo me je pas* is new when typing (one `"auch"`, as in sentence building;
+  ID and recording stay), and "Kuče me je ujelo", allowed on 15.11.2026, is wrong
+  again. The other forms with *kuče* ("On ima kuče", "Bojim se kučadi", "Čuvaj se
+  kučeta!") stay. `tests/test_varianten.py`, `tests_e2e/test_varianten.py`.
 - Multiple choice (review for 1.4, 14.11.2026, V4): a wrong button that was in fact
   right no longer costs a heart. *Molim* ("Please / you're welcome") stood next to
   "You're welcome" (*Nema na čemu*) already in level 1, in all eight languages, and
@@ -833,6 +1021,10 @@ are in the Play Store listing. Format:
   the old text, so the story waited for the next Vesna round with the B1 stories
   (`tests/offen_b1_teil2.py`). Vesna read it again on 16.11.2026, under the same
   number g09. `tests/test_pruefbericht14_geschichten.py`.
+- *Pismo nani* (decided by the maintainer on 16.11.2026): "Kolege su ljubazni"
+  instead of "ljubazne", as in *Prvi dan na poslu* ("Kolege su bili ljubazni").
+  Vesna read the letter once more the same evening, still under g09; the
+  translations already said "friendly" for both. `tests/test_pruefbericht14_geschichten.py`.
 - Polite *Vi* in the reading stories (review for 1.4, S7; decided by the
   maintainer on 15.11.2026: "mach doch alles groß", replacing the rule of
   14.11.2026 that kept it lower case in conversations): *Vi, Vas, Vam, Vaš* are
@@ -923,6 +1115,12 @@ are in the Play Store listing. Format:
   (behind)". It now reads "s/sa, pod, nad, pred, za (behind), među" (*nad* "above",
   *među* "between"), in all eight languages; the example "s bratom, pod stolom" stays.
   `tests/test_pruefbericht14_grammatik.py`.
+- Prepositions with the instrumental (questions of 16.11.2026, 7; decided by the
+  maintainer): the row starts with "s/sa" in all eight languages (the seven
+  translations had only "sa"), and *nad* now carries its meaning: "nad (über)" in
+  German, elsewhere the word for "above" (*above*, *üstünde*, *över*, *boven*,
+  *over*, *au-dessus de*), so that it is not mixed up with "o (about)" one row
+  higher. `tests/test_pruefbericht14_grammatik.py`.
 - *Kusur* in the gap sentence (review for 1.4, 14.11.2026, S11): "Gdje je moj ___?"
   said "Wo ist mein Wechselgeld?", the sentence-building task "Wo ist mein
   Rückgeld?", and the maintainer's corrections take *Rückgeld*. Both say
@@ -1078,6 +1276,27 @@ are in the Play Store listing. Format:
 - The dragon rests when animations are off or reduced motion is set, and
   pauses in hidden views.
 - Cancelling "Save backup" shows a neutral note instead of an error.
+- Withdrawal and feedback emails: the date under the text is the local day.
+  It was the UTC date, so between midnight and 1 a.m. (2 a.m. in summer) the
+  email named the day before. `tests_e2e/test_widerruf.py` caught it when it
+  ran after midnight on 17.11.2026.
+- Typing "Vielen Dank": *Mnogo hvala* counts as well, next to *Puno hvala*, *Hvala
+  mnogo* and *Hvala lijepa* (decided by the maintainer on 17.11.2026 after feedback
+  through the form). `tests/test_varianten.py`.
+- Typing: after a wrong answer, "Richtig wäre:" names the correct form closest to
+  what was typed, not always the main form. Typing "Mnogo hvla" twice for "Vielen
+  Dank" showed *Hvala puno*, so nobody saw what was wrong with their *Mnogo hvala*
+  (found by the maintainer on the phone on 17.11.2026). Now the answer is *Mnogo
+  hvala*, and the solution box below says "Auch richtig:" above *Hvala puno*. The
+  distance is measured after the same normalisation as the comparison (case,
+  diacritics, final punctuation, comma and hyphen); on a tie the main form wins,
+  and an input close to no form (more than half of it different) still shows the
+  main form. The same in cloze sentences and in the level test and placement test;
+  "Mit Sonderzeichen" gets the "Auch richtig:" line as well when it names another
+  form. What counts as right, almost right or wrong, the hearts and the recording
+  played afterwards (the main form, as in the box) stay as they were. New text
+  `task.auch_richtig` in all eight languages. `tests_e2e/test_tipp_rueckmeldung.py`,
+  `tests/test_tipp_rueckmeldung.py`.
 
 ### Changed
 - Full version: the settings row and the purchase box also name what Zmaj

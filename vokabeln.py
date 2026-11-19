@@ -896,7 +896,7 @@ KATEGORIEN = [
         {"de": "Spaziergang",                "bs": "šetnja"},
         {"de": "stechen (Insekt)",           "bs": "ubosti"},
         {"de": "Vorsicht vor dem Hund!",     "bs": "Čuvaj se psa!"},
-        {"de": "Der Hund hat mich gebissen", "bs": "Pas me je ujeo"},
+        {"de": "Der Hund hat mich gebissen", "bs": "Pas me je ujeo", "auch": ["Ujeo me je pas"]},   # Fragen 16.11.2026, 8b
         {"de": "gefährlich",                "bs": "opasno"},
         {"de": "Gefahr",                     "bs": "opasnost"},
         {"de": "Mine (Landmine)",            "bs": "mina"},

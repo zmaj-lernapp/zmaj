@@ -1068,7 +1068,7 @@ allein steht (Ajdin über *šerpa* und *kola*).
 | 29 | *Izvini* | *Oprosti* | nur `entschuldigung (du):Izvini` |
 | 30 | *Kuda* | *Gdje* | gehört zu F7 a: nur „Wohin gehst du?“ und „___ ideš?“, als `"auch"`, siehe V11 oben |
 | 31 | *da li* | *je li* | nur `ob:da li`; Lückensatz „Pitam se ___ li dolazi.“ `"auch": ["je"]` |
-| 32 | *Hvala puno* | *Puno hvala*, *Hvala lijepa*, *Hvala mnogo* | nur `vielen dank:Hvala puno`; Lückensatz „Hvala ___!“ `"auch": ["mnogo", "lijepa"]` |
+| 32 | *Hvala puno* | *Puno hvala*, *Hvala lijepa*, *Hvala mnogo*, seit 17.11.2026 auch *Mnogo hvala* (Ajdin: „ja“) | nur `vielen dank:Hvala puno`; Lückensatz „Hvala ___!“ `"auch": ["mnogo", "lijepa"]` |
 | 33 | *Doviđenja* | *Do viđenja* | überall, auch bei „Tschüss“, das *Doviđenja* nimmt |
 | 34 | *Dobro veče* | *Dobra večer* | überall |
 | 35 | *navečer*, *ujutro* | *uveče*, *ujutru* | überall |
@@ -1478,3 +1478,45 @@ gelehrt wird weiter die Form der App, Kennungen und Aufnahmen bleiben.
 pred, za (hinter), među“ statt „s/sa, pod, pred, za (hinter)“ (*nad* „über“, *među*
 „zwischen“), in 8 Sprachen. Das Beispiel „s bratom, pod stolom“ bleibt, die Übungen
 auch.
+
+## 16.11.2026 – Fragenliste: s/sa und nad (über), očeva kola, nur pas
+
+Ajdin auf die Fragenliste vom 16.11.2026 (`Release\Fragen_Ajdin_2026-11-16.md`,
+„Ajdins Antworten“).
+
+**Pismo nani (Frage 5).** Ajdin: „ljubazni“, also „Kolege su ljubazni“ im Brief an
+die Nana, wie in *Prvi dan na poslu*. Vesna hat den Brief am Abend des 16.11.2026 mit
+diesem Text neu gesprochen, unter derselben Nummer g09 (355 Zeichen). Die alte Aufnahme
+mit „ljubazne“ liegt in `Release\Hoerproben_Vesna_2026-11-14\_alt\Pismo_nani_alt_ljubazne.mp3`.
+Im Wörterbuch der Geschichte fällt „ljubazne“ weg; „ljubazni“ steht schon im Wörterbuch.
+Die Übersetzungen bleiben („Die Kollegen sind freundlich“).
+
+**Präpositionen mit Instrumental (Frage 7).** „ja, überall s/sa und nad (über)“: Die
+Zeile heißt jetzt „s/sa, pod, nad (über), pred, za (hinter), među“. Die sieben
+Übersetzungen schrieben dort bisher nur „sa“, jetzt auch „s/sa“. *nad* bekommt in jeder
+Sprache das Wort für „oberhalb“, damit es nicht wie *o* eine Zeile darüber aussieht
+(*o* heißt dort about, hakkında, om, over, à propos de): above, üstünde, över, boven,
+over (nb, da), au-dessus de, wie beim Wort *nad* „über (gehoben)“.
+
+**Weitere Formen beim Tippen (Frage 8).**
+
+| Frage | Stelle | Antwort | jetzt |
+|---|---|---|---|
+| 8a | `das auto des vaters:auto oca` | „očeva kola“ zählt auch, „očev auto“ bleibt | zählt: auto oca, očev auto, kola oca, očeva kola; falsch bleibt „očev kola“ |
+| 8b | `der hund hat mich gebissen:Pas me je ujeo` | „nimm nur pas aber beide“ | zählt nur: Pas me je ujeo, Ujeo me je pas |
+
+- 8a ist ein Paar in `varianten.py` („očev auto“ → „očeva kola“) nur an dieser Stelle,
+  als ganze Wendung wie „auto oca“ / „kola oca“: bei *kola* wandert das Adjektiv mit.
+- 8b: „Ujeo me je pas“ zählte beim Tippen bisher nicht (es stand nur beim Satzbau als
+  andere Reihenfolge), jetzt ist es ein `"auch"` am Wort in `vokabeln.py`; Kennung und
+  Aufnahme bleiben. Das Paar „pas me je ujeo“ / „kuče me je ujelo“ vom 15.11.2026 (9i,
+  Abschnitt oben) ist wieder raus. „Kuče me je ujelo“ und „Ujelo me je kuče“ sind
+  wieder falsch.
+  Die anderen Formen mit *kuče* bleiben: „On ima kuče“, „Bojim se kučadi“, „Čuvaj se
+  kučeta!“ und *kuče* allein beim Wort *pas*.
+
+**Bleibt, wie es ist.** Frage 4 „ja“: die drei deutschen Sätze in *Zmaj uči bosanski*
+(T15, „Aber Oma, ich habe nein, danke gesagt!“, die neue zweite Frage) und in *Kod
+doktora* (T1, „und schreibe Sie für fünf Tage krank“). Frage 6 „ja, beides bleibt so“:
+„Tišina, molim vas!“ klein (an eine Gruppe), „kod Vas“ in *Komšiluk bez struje* groß
+(Hasan siezt Merima).

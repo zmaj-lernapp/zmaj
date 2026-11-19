@@ -102,6 +102,68 @@ def test_rev_ohne_geraetekennung(index_html):
     assert "geraetId" not in abgleich and "cloudRev()" in abgleich
 
 
+def _funktion(index_html, name):
+    return re.search(r"\nfunction %s\(.*?\r?\n\}" % name, index_html, re.S).group(0)
+
+
+def test_nachsehen_bei_jedem_oeffnen_und_nach_dem_lernen(index_html):
+    """17.11.2026: Nachgesehen wird beim Start und bei jeder Rueckkehr in
+    den Vordergrund, hoechstens alle zwei Minuten, und geschrieben auch
+    gleich nach jedem Ergebnisschirm, auf dem ein Lerntag entstehen kann
+    (dazu der Sprung-Test). Das Verhalten pruefen
+    tests_e2e/test_cloud_nachsehen.py."""
+    assert index_html.count("let CLOUD_NACHSEHEN_MS = 2 * 60 * 1000;") == 1
+    horcher = re.search(r"if\(CLOUD_AN\)\{\r?\n  document\.addEventListener\('visibilitychange', \(\)=>\{(.*?)\}\);",
+                        index_html, re.S).group(1)
+    assert "cloudAbgleich('pause')" in horcher and horcher.index("return;") < horcher.index("cloudAbgleich('vorn')")
+    assert index_html.count("if(CLOUD_AN) cloudAbgleich('start');") == 1
+    for name in ("lessonEnd", "topfEnde", "showTestResult", "sprungEnde"):
+        assert _funktion(index_html, name).count("cloudNachLernen();") == 1, name
+    story = _funktion(index_html, "showStoryQ")
+    assert story.count("cloudNachLernen();") == 1 and story.index("saveProgress()") < story.index("cloudNachLernen()")
+    # Ohne CLOUD_AN tut es nichts, und es wartet nicht.
+    nach = _funktion(index_html, "cloudNachLernen")
+    assert "if(CLOUD_AN) setTimeout(() => cloudAbgleich('ende'), 0);" in nach
+    # Zwei Schreibvorgaenge am Tag hoechstens: m.tag (Verlassen oder
+    # Nachholen) und m.ende (nach dem Lernen), nie beide zugleich.
+    abgleich = re.search(r"async function cloudAbgleich\(.*?\n\}", index_html, re.S).group(0)
+    assert "if(nachLernen) m.ende = heute;" in abgleich
+    assert "else if(!erstes && !zuletzt) m.tag = heute;" in abgleich
+
+
+def test_nachbesserung_nach_dem_pruefbefund(index_html):
+    """Pruefbefund 17.11.2026 zum Nachsehen bei jedem Oeffnen, das Verhalten
+    pruefen tests_e2e/test_cloud_nachsehen.py und test_cloud_packen.py:
+      - hoechstens vier Schreibversuche am Tag, gezaehlt VOR dem Schreiben,
+        Anmelden und Abmelden ausgenommen;
+      - reines Einarbeiten gilt als hochgeladen (m.fp), nur wenn die Cloud
+        schon alles hatte, was das Geraet hat (cloudHatAlles);
+      - nur eine Ablehnung der Feldmaske (400) schaltet das Nachsehen sofort
+        ab, und dann nur fuer diesen Tag; Fehler des Ausweises nie."""
+    assert index_html.count("const CLOUD_SCHREIBVERSUCHE = 4;") == 1
+    assert index_html.count("const CLOUD_MASKE_FEHLER = 2;") == 1
+    assert "cloudMaskeKaputt" not in index_html
+    abgleich = re.search(r"async function cloudAbgleich\(.*?\n\}", index_html, re.S).group(0)
+    merken = "if(!erstes && !zuletzt){ m.versuche = {tag: heute, n: versucht() + 1}; cloudMerkerSetzen(m, true); }"
+    assert abgleich.count(merken) == 1
+    assert abgleich.index(merken) < abgleich.index("await adapter.speichern(m, {text, rev});")
+    assert "schreiben = frei && m.tag !== heute && geaendert();" in abgleich
+    assert "if(!frei || m.ende === heute || !geaendert()) return 'nichts';" in abgleich
+    assert "(anlass === 'pause' && m.tag !== heute && frei)" in abgleich
+    # Geprueft vor dem Einarbeiten, m.fp nur ohne Schreiben danach
+    pruefen = "if(s && !schreiben && m.rev) schonOben = cloudHatAlles(s, m.fremd);"
+    assert abgleich.count(pruefen) == 1
+    assert abgleich.index(pruefen) < abgleich.index("cloudUebernehmen(s, m.fremd, !m.rev)")
+    assert "if(schonOben) m.fp = cloudFingerabdruck(standAlsObjekt());" in abgleich
+    hat = _funktion(index_html, "cloudHatAlles")
+    assert "sicherungPlausibel(s)" in hat and "mit.getragen = nur.getragen;" in hat
+    maske = _funktion(index_html, "cloudMaskeAus")
+    assert "x.tag === today()" in maske
+    assert "if(e && typeof e === 'object' && e.status === 400) e.maske = true;" in index_html
+    assert "if(e && typeof e === 'object') e.ausweis = true;" in index_html
+    assert "f.status = r.status;" in index_html
+
+
 def test_anleitung_ohne_echte_werte(wurzel):
     text = _lesen(wurzel, "FIREBASE_EINRICHTEN.md")
     assert not SCHLUESSEL_FORM.search(text)

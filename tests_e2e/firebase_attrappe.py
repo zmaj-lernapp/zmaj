@@ -94,7 +94,14 @@ class Attrappe:
     "Erst einmal weiterlernen" auch bei Fehlern von Firebase).
     kontingent_weg: Firestore beantwortet alles mit 429 RESOURCE_EXHAUSTED,
     wie wenn das Tageskontingent des Projekts aufgebraucht ist
-    (Gegenpruefung 28.10.: Abmelden sagt dann nicht "brauchst Internet")."""
+    (Gegenpruefung 28.10.: Abmelden sagt dann nicht "brauchst Internet").
+    schreib_abbruch (17.11.2026): das Schreiben (PATCH) bricht ab wie in
+    einer App, die Android nach dem Wegwischen beendet - "verloren": es kommt
+    nie an, "angekommen": Firestore hat es, nur die Antwort fehlt.
+    maske_fehler und token_fehler_folge (Pruefbefund 17.11.2026): Statuscodes
+    wie 503, mit denen die naechsten Lesevorgaenge mit Feldmaske bzw. die
+    naechsten Anfragen an securetoken je einmal scheitern - ein Fehler, der
+    vorbeigeht, keine abgelehnte Maske."""
 
     def __init__(self):
         self.doks = {}
@@ -113,6 +120,7 @@ class Attrappe:
         self.token_fehler = None
         self.anmelde_fehler = None
         self.kontingent_weg = False
+        self.schreib_abbruch = None
         self.abbruch = False
         self.n = 0
         # Mit Apple anmelden (iOS, 30.10.2026): Token "apple-probe" mit dem
@@ -134,6 +142,9 @@ class Attrappe:
         self.masken = []
         # maske_abgelehnt: Firestore nimmt die Feldmaske nicht an (400).
         self.maske_abgelehnt = False
+        # Je einmal scheitern, siehe oben (Pruefbefund 17.11.2026).
+        self.maske_fehler = []
+        self.token_fehler_folge = []
 
     # Das Dokument des Probekontos UID - so lesen es die Tests vom 19.10.
     @property
@@ -224,6 +235,8 @@ class Attrappe:
             # Mit dem Schutz vor E-Mail-Aufzaehlung auch fuer unbekannte Adressen 200.
             return antwort(200, {"email": daten.get("email") or ""})
         if teile.netloc == "securetoken.googleapis.com":
+            if self.token_fehler_folge:
+                return fehler("UNAVAILABLE", self.token_fehler_folge.pop(0))
             if isinstance(self.token_fehler, int):
                 return fehler("UNAVAILABLE", self.token_fehler)
             if self.token_fehler:
@@ -308,6 +321,9 @@ class Attrappe:
                 # wie Firestore mit mask.fieldPaths.
                 maske = urllib.parse.parse_qs(teile.query).get("mask.fieldPaths")
                 self.masken.append(maske)
+                if maske is not None and self.maske_fehler:
+                    status = self.maske_fehler.pop(0)
+                    return antwort(status, {"error": {"code": status, "message": "Probe.", "status": "UNAVAILABLE"}})
                 if maske is not None and self.maske_abgelehnt:
                     return antwort(400, {"error": {"code": 400, "message": "Invalid mask.",
                                                    "status": "INVALID_ARGUMENT"}})
@@ -318,7 +334,11 @@ class Attrappe:
                     felder = {k: v for k, v in felder.items() if k in maske}
                 return antwort(200, {"fields": felder} if felder else {})
             if art == "PATCH":
+                if self.schreib_abbruch == "verloren":
+                    return route.abort()
                 self.doks[uid] = json.loads(request.post_data)["fields"]
+                if self.schreib_abbruch == "angekommen":
+                    return route.abort()
                 return antwort(200, {"fields": self.doks[uid]})
             if art == "DELETE":
                 if self.dok_fehler:

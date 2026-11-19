@@ -125,8 +125,12 @@ ENGLISCH = {
 # hoefliche Vi gross auch in den Gespraechen (Ajdin: "mach doch alles groß",
 # 21871bb1…), dann Ajdins A/B-Antworten zu den B1-Lesetexten, eine Geschichte
 # nach der anderen (tests/test_lesetexte_ab.py), zuletzt "Izgubljeni telefon"
-# hinter "Dedo i nana se sele" (S7): Die Summe hängt auch an der Reihenfolge.
-TEXTE_SHA256 = "6c0f1e61e1962ba26c95a351894cfd3bcc14f2ed6a6fc50b6f2e556ee6b19146"
+# hinter "Dedo i nana se sele" (S7), am 16.11.2026 "Kolege su ljubazni" in pismo
+# (Fragen 16.11.2026, 5; 6c0f1e61… davor): Die Summe hängt auch an der Reihenfolge.
+# Seit dem 17.11.2026 stehen die Geschichten Stufe für Stufe (REIHENFOLGE in
+# geschichten.py, Offen-Liste 7), kein Text ist geändert: in der Folge bis dahin
+# (GESCH_ALTE_FOLGE) ergeben dieselben Texte weiter eea63ba6… von davor.
+TEXTE_SHA256 = "ecdd0513c8a7772a12af6f0f99b59166020759eb1d12a0a5d874c6cd59aa5bec"
 
 
 def _geschichten(daten):
@@ -281,7 +285,8 @@ def test_v13a_woerterbuch(alle_daten):
 def test_v13a_ton(wurzel):
     """b1_struja hat seit dem 16.11.2026 Ton, gesprochen mit "plinski šporet"
     (Offen-Liste 6). šporet hat seine Aufnahme schon (Vokabel "Herd"), plinski
-    steht nur in diesem Text und wartet in tests/offen_lesetexte.json auf Emir."""
+    steht nur in diesem Text und wartete in tests/offen_lesetexte.json auf Emir.
+    Seit dem Abend des 16.11.2026 spricht Emir es (w9426, Offen-Liste 6a)."""
     import io
     import json
     import os
@@ -296,7 +301,8 @@ def test_v13a_ton(wurzel):
     assert "plinski šporet" in e["text"] and "štednjak" not in e["text"]
     assert ton_bauen.schluessel(g["text"]) not in offen_lesetexte.GESCHICHTEN
     assert "štednjak" not in offen_lesetexte.TON and "šporet" not in offen_lesetexte.TON
-    assert "plinski" in offen_lesetexte.TON
+    assert "plinski" not in offen_lesetexte.TON and "plinski" not in toene
+    assert ton_bauen.nur_emir()["plinski"] == {"key": "plinski", "datei": "w9426.mp3", "text": "plinski"}
 
 
 # ---------------------------------------------------------------------------
@@ -332,7 +338,8 @@ def test_s3_pismo_hat_neuen_ton(wurzel):
     """Am 16.11.2026 hat Vesna pismo mit "napraviti pitu" neu gesprochen, unter
     derselben Nummer g09 (Offen-Liste 6). Die alte Aufnahme mit "skuhati pitu"
     ist ersetzt, kein Eintrag gehoert mehr zum alten Text, und pismo wartet
-    nicht mehr in tests/offen_b1_teil2.py."""
+    nicht mehr in tests/offen_b1_teil2.py. Am Abend desselben Tages noch einmal,
+    mit "Kolege su ljubazni" statt "ljubazne" (Ajdin, Fragen 16.11.2026, 5)."""
     import io
     import json
     import os
@@ -346,6 +353,8 @@ def test_s3_pismo_hat_neuen_ton(wurzel):
     pismo = next(g for g in geschichten.GESCHICHTEN if g["id"] == "pismo")
     assert g09["key"] == ton_bauen.schluessel(pismo["text"]) and g09["text"] == pismo["text"]
     assert PISMO_NEU in g09["text"] and g09["stimme"] == "bs-BA-VesnaNeural"
+    assert "Kolege su ljubazni," in g09["text"] and "ljubazne" not in g09["text"]
+    assert "Kolege su ljubazni," in pismo["text"] and "ljubazne" not in pismo["text"]
     assert ton_bauen.wortzeiten_passen(g09, pismo["text"])
     assert os.path.getsize(os.path.join(wurzel, "web", "audio", "g09.mp3")) > 800
     assert [e["datei"] for e in toene if PISMO_ALT in e["text"]] == []
@@ -569,13 +578,16 @@ def test_f10_text_wie_angenommen(grunddaten):
 
 
 def test_f10_id_und_platz_bleiben(grunddaten):
-    """Die id bleibt b1_selidba, so bleibt der Lesestand. Auch der Platz in der
-    Kette bleibt: hinter b1_doktor. Seit dem 15.11.2026 folgt ihr "Izgubljeni
-    telefon" (Ajdin, A/B-Liste S7), davor war es b1_rodjendan
-    (tests/test_lesetexte_ab.py)."""
+    """Die id bleibt b1_selidba, so bleibt der Lesestand. Der Platz in der Kette
+    war hinter b1_doktor, seit dem 15.11.2026 gefolgt von "Izgubljeni telefon"
+    (Ajdin, A/B-Liste S7). Seit dem 17.11.2026 stehen die Geschichten nach
+    Schwierigkeit (REIHENFOLGE in geschichten.py, Offen-Liste 7): weiter hinter
+    b1_doktor, jetzt zwischen b1_telefon und b1_zanat
+    (tests/test_geschichten_stufen.py)."""
     ids = [g["id"] for g in grunddaten["geschichten"]]
     i = ids.index("b1_selidba")
-    assert ids[i - 1:i + 2] == ["b1_doktor", "b1_selidba", "b1_telefon"]
+    assert ids[i - 1:i + 2] == ["b1_telefon", "b1_selidba", "b1_zanat"]
+    assert ids.index("b1_doktor") < i
 
 
 def test_f10_uebersetzung_und_fragen(alle_daten):
@@ -638,7 +650,9 @@ def test_f10_woerterbuch(alle_daten):
 def test_f10_ton(wurzel):
     """Neuer Text, neuer Ton-Schluessel: Vesna hat "Dedo i nana se sele" am
     16.11.2026 gesprochen (g25, Offen-Liste 6). Die Geschichte wartet nicht
-    mehr, nur ihre neuen Woerter warten in tests/offen_b1_teil2.py auf Emir."""
+    mehr, ihre neuen Woerter warteten in tests/offen_b1_teil2.py auf Emir. Seit
+    dem Abend des 16.11.2026 spricht er sie (Offen-Liste 6a), auch kombiju und
+    zimnice aus dem neuen Text."""
     import io
     import json
     import os
@@ -647,7 +661,9 @@ def test_f10_ton(wurzel):
     import offen_b1_teil2
     import ton_bauen
     assert "b1_selidba" not in offen_b1_teil2.GESCHICHTEN
-    assert "b1_selidba" in offen_b1_teil2.WOERTER
+    assert "b1_selidba" not in offen_b1_teil2.WOERTER
+    emir = ton_bauen.nur_emir()
+    assert all(9049 <= int(emir[k]["datei"][1:5]) <= 9871 for k in ("kombiju", "zimnice"))
     g = next(s for s in geschichten.GESCHICHTEN if s["id"] == "b1_selidba")
     toene = {e["key"]: e for e in json.load(io.open(os.path.join(wurzel, "web", "audio", "index.json"),
                                                     encoding="utf-8"))["toene"]}

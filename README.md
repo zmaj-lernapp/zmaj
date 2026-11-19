@@ -75,7 +75,7 @@ Everything the app teaches is exported to [`data/`](data/) under
 | Words, phrases and example sentences, 27 sections in four stages (A1 to B2), 297 levels | 7,997 | JSON, CSV, Anki (8 decks) |
 | Cloze sentences with full sentence | 300 | JSON, CSV |
 | Graded stories with glossary and questions | 32 | JSON |
-| Reading glossary | 1,520 | JSON |
+| Reading glossary | 1,519 | JSON |
 | Grammar lessons with exercises | 26 | JSON |
 | Synthetic Bosnian audio (MP3) | 2,431 | `web/audio/` |
 | Parallel corpus for machine translation | 8,309 items × 8 languages | TMX 1.4b, JSONL, TSV pairs |
@@ -116,8 +116,10 @@ Sprachsynthese zu trainieren. Mehr in data/DATASHEET.md. -->
 - **Eight interface languages**; switching keeps your progress.
 - **Private by design**: no analytics, no remote fonts or scripts. Progress is
   stored on the device and can be exported to a file. Since v109 the Android
-  app has a mandatory account that backs progress up at most once a day to
-  Firebase (Cloud Firestore in Frankfurt); the web demo has no account.
+  app has a mandatory account that backs progress up to Firebase (Cloud
+  Firestore in Frankfurt): on opening it only checks whether another device
+  has written, and it uploads at most twice a day (after learning and on
+  leaving), plus on signing in and out; the web demo has no account.
 - **Funding, openly**: the Google Play build shows ads via Google AdMob behind
   Google's consent dialog, and an optional subscription removes them. Every
   exercise is free; nothing in the course is paywalled. What is sent to whom

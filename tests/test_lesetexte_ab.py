@@ -272,21 +272,25 @@ def test_t12_betreff_bleibt_auf_deutsch(alle_daten):
     assert _geschichten(alle_daten["en"])["b1_mejl"]["uebersetzung"].startswith("Subject: I'm coming in August!")
 
 
-# S7: "lass doktor vorher" - Izgubljeni telefon hinter Kod doktora und Dedo i
-# nana se sele, wie in Ajdins Themenliste
-B1_REIHE = ["b1_ljeto", "b1_dijaspora", "b1_vrijeme", "b1_voz", "b1_rafting", "b1_jahorina", "b1_pita",
-            "b1_struja", "b1_svadba", "b1_posao", "b1_stan", "b1_doktor", "b1_selidba", "b1_telefon",
-            "b1_rodjendan", "b1_utakmica", "b1_zanat", "b1_kahva", "b1_mejl", "b1_zmaj"]
+# S7: "lass doktor vorher" - Izgubljeni telefon hinter Kod doktora (15.11.2026,
+# damals auch hinter Dedo i nana se sele, wie in Ajdins Themenliste). Seit dem
+# 17.11.2026 stehen die B1-Texte von leicht nach schwer (REIHENFOLGE in
+# geschichten.py, Offen-Liste 7), dahinter noch "Razgovor za posao": Kod doktora
+# bleibt vor dem Telefon, Dedo i nana se sele kommt jetzt danach.
+B1_REIHE = ["b1_vrijeme", "b1_voz", "b1_stan", "b1_ljeto", "b1_svadba", "b1_rafting", "b1_rodjendan",
+            "b1_doktor", "b1_posao", "b1_jahorina", "b1_utakmica", "b1_struja", "b1_zmaj", "b1_pita",
+            "b1_kahva", "b1_dijaspora", "b1_telefon", "b1_selidba", "b1_zanat", "b1_mejl"]
 
 
-def test_s7_telefon_hinter_doktor_und_selidba(alle_daten):
+def test_s7_telefon_hinter_doktor(alle_daten):
     """Nur die Reihenfolge ändert sich: Text, id, Stufe und passt_zu bleiben,
     in jeder Sprache dieselbe Kette. Frei wird eine Geschichte, wenn die davor
     gelesen ist (storyUnlocked in web/index.html); der Lesestand hängt an der id."""
     for code, daten in alle_daten.items():
         ids = [g["id"] for g in daten["geschichten"]]
         assert [i for i in ids if i.startswith("b1_")] == B1_REIHE, code
-        assert ids[-len(B1_REIHE):] == B1_REIHE, code
+        assert ids[-len(B1_REIHE) - 1:] == B1_REIHE + ["intervju"], code
+        assert ids.index("b1_doktor") < ids.index("b1_telefon"), code
     g = _geschichten(alle_daten["de"])["b1_telefon"]
     assert g["titel"] == "Izgubljeni telefon" and g["stufe"] == "B1" and g["passt_zu"] == "geraete"
 

@@ -3,12 +3,15 @@ STORE-BILDER NEU MACHEN
 
 Erzeugt die acht Bilder in store/screenshots, je 1080 x 1920, PNG ohne
 Alphakanal - so, wie Google sie fuer Telefone will. Zuletzt am 16.11.2026
-(alle Sprachen und Geraete aus dem Stand 1.4, --version 1.4; davor am
+(alle Sprachen und Geraete aus dem Stand 1.4, --version 1.4, nach dem
+Feinschliff noch einmal alle, am Nachmittag Bild 1 und 4 am Handy und
+Bild 1 auf 7 Zoll mit mehr Luft ueber der Kopfleiste, am Abend Bild 2 auf
+allen Geraeten und Bild 8 am Handy mit dem Streifen oben; davor am
 13.11.2026 aus 1.3 - die wurden nie hochgeladen).
 
 store/screenshots haelt die deutschen Rohbilder ohne Ueberschrift aus
 diesem Lauf (--aussehen dunkel --version 1.4), in der Folge 01-start bis
-08-wiederholen. store/feature-1024x500.png ist am 13.11.2026 aus
+08-wiederholen; 01 und 04 aus dem Lauf fuer die Kopfleiste, 02 und 08 aus dem Lauf mit dem Streifen oben. store/feature-1024x500.png ist am 13.11.2026 aus
 web/_feature.html entstanden (grafiken_bauen.py, Schritt 4); am 16.11.2026
 neu gerechnet war sie Byte fuer Byte gleich und blieb darum, wie sie ist.
 
@@ -109,7 +112,11 @@ WAS AUF DEN BILDERN IST
                   die Stufen-Reiter A1 bis C1 (seit 1.4)
   02-amt          oben die Reiterleiste mit B1, darunter "Amt & Vertraege"
                   aufgeklappt (seit 16.11.2026; 13.11.: als Sektion 9 ohne
-                  Reiter, davor 02-lernpfad, Sektion 1 unter "65 Levels")
+                  Reiter, davor 02-lernpfad, Sektion 1 unter "65 Levels");
+                  auf 10 Zoll tr, nl, nb stand darueber noch die Leiste
+                  Lernpfad/Geschichten/Wiederholen (Nachbesserung 16.11.;
+                  seit dem Streifen oben am Abend nicht mehr, dafuer am
+                  Handy en und nl die Karte "Heute" ganz oben)
   03-neues-wort   erste Karte einer Lektion
   04-kacheln      Satz aus Kacheln legen, zwei Kacheln schon gelegt
                   (bis 13.11.2026: 04-auswahl, eine Auswahlaufgabe)
@@ -139,3 +146,145 @@ SEIT 1.4 (16.11.2026)
     mit Playwright, --chrome mit dem installierten Chrome; beschriften.py
     mit dem Python von Thonny, das websockets hat), Ablage in
     Release\Store_Bilder_1.4 mit LIESMICH.md.
+
+  Nachbesserung nach der Pruefung (16.11.2026):
+  - Halbe Zeilen unten: Das Skript misst nach jedem Bild, ob der untere
+    Rand eine Schriftzeile durchschneidet (die Buchstaben selbst, nicht
+    der Rand eines Kreises oder einer Karte), und schreibt sie als
+    "unten angeschnitten: ..." in die Ausgabe. Ausser bei Bild 2 und Bild 8
+    auf Tablets (unten) war das nur ein Hinweis zum Nachsehen. Am 16.11.
+    meldete es Bild 1 (die Startseite geht unten weiter), Bild 4 am Handy
+    ("Ueberspringen" knapp am Rand) und Bild 8 am Handy (Karte "Markiert");
+    seit dem Feinschliff (unten) bricht es dann ab.
+  - Bild 2: Auf Franzoesisch schnitt der Rand das sechste Level mitten
+    durch, auf 10 Zoll den Kopf der Sektion 5. Die Reiterleiste rueckt dann
+    naeher an den oberen Rand (von 10 bis hoechstens 0 Punkte), bis keine
+    Zeile mehr halb im Bild steht; auf fr am Handy steht sie ganz oben, auf
+    10 Zoll de und sv bei 3. Reicht das nicht (10 Zoll tr, nl, nb), steht
+    darueber die Leiste Lernpfad/Geschichten/Wiederholen mit im Bild. Hilft
+    auch das nicht, bleibt es wie vorher, und die Ausgabe meldet die Zeile.
+  - Bild 8: Die Tagesaufgaben stehen wieder wie auf Bild 1. Auf da tab7
+    hatten Bild 4 bis 6 alle drei erfuellt, die Zeile "Alle tre klaret!"
+    schob alles hinunter, und unten stand eine halbe Zeile. Auf Tablets
+    bricht das Skript ab, wenn dort trotzdem eine Zeile halb im Bild steht.
+
+  Feinschliff (16.11.2026, alle 192 Bilder neu):
+  - Rand: Vor jedem Bild sucht das Skript die naechste Lage der Seite, in
+    der weder der obere noch der untere Rand eine Schriftzeile oder einen
+    Knopf mit Schrift durchschneidet (__randFrei, __randSchnitte). Gemessen
+    wird Zeile fuer Zeile die Tinte der Buchstaben; von einer Zeile ausserhalb
+    darf kein Geraetepixel hereinragen (vorher 1,5 Punkte, auf 7 Zoll sah man
+    die Spitzen), eine Zeile im Bild haelt 4 Geraetepixel Abstand zum Rand,
+    und eine Unterstreichung zaehlt mit. Oben darf auch kein halber Kasten
+    stehen (Pillen der Kopfleiste, Drache, Flamme). Die Seite rueckt dafuer
+    Punkt fuer Punkt hinauf, hoechstens bis oben etwas anstoesst (steht sie
+    ganz oben, seit der Pruefung danach nur bis __luftMin, siehe unten),
+    oder - wenn sie ganz oben steht und nicht weiter hinunter kann - tiefer:
+    der Rand ueber der Kopfleiste (padding-top von body, in der App 16
+    Punkte) waechst fuer dieses eine Bild um bis zu 24 Punkte (bis zur
+    Pruefung danach: 12). Steht danach trotzdem etwas am Rand, bricht das
+    Skript ab - kein Hinweis mehr, den man ueberlesen kann. Die Ausgabe
+    nennt je Bild, was noetig war ("frei +7" = 7 Punkte hinauf, "frei Rand
+    oben +3" = 3 Punkte mehr Rand).
+  - Bild 2: Die Reiterleiste steht 10 bis 4 Punkte unter dem Rand; geht das
+    nicht, steht die Leiste Lernpfad/Geschichten/Wiederholen darueber (so
+    jetzt fr am Handy statt der Reiterleiste ganz oben am Rand).
+  - Bild 4 und 6: reicht das Hinaufruecken nicht, kommt ein anderer Satz
+    (bis zu 12 Mal neu gemischt). Bild 8 am Handy: der Reihe nach oben die
+    Karte "Heute" ("Weitermachen" ganz aus dem Bild), oben "Weitermachen"
+    wie bisher, oben die Leiste Lernpfad/Geschichten/Wiederholen - der erste
+    Ausschnitt ohne halbe Zeile gilt. Mit "Weitermachen" oben allein ging es
+    oft nicht: darueber hing der Drache oder allein "9 dage tilbage".
+  - Tagesaufgaben: Die App zieht sie mit der Geraete-Kennung als Startwert.
+    Das Skript setzt eine feste (GERAETE_IDS), damit zeigen an einem Tag
+    alle Laeufe dieselben drei. Geht ein Lauf am Rand nicht auf (Tablets
+    haben kaum Spielraum), kommt er noch einmal mit der naechsten Kennung:
+    andere Aufgaben, anders umbrochen, alles darunter eine Zeile versetzt.
+    Die Ausgabe nennt am Ende jeder Sprache Kennung und Aufgaben.
+  - KM und Tagesaufgaben: vor jedem Bild wie auf Bild 1 (die Antworten fuer
+    Bild 4 bis 6 erfuellten manchmal eine Aufgabe, dann stand auf Bild 7
+    und 8 1250 KM). Stehen sie doch anders im Bild, bricht das Skript ab.
+  - Kein Tastaturfokus mehr (Bild 3 zeigte "Weiter" mit Fokusrahmen), und
+    der Drache hat die Augen offen: das Skript wartet auf ein Bild der
+    Animation ohne Blinzeln und haelt sie dort an, bis das Bild gemacht ist.
+
+  Pruefung nach dem Feinschliff (16.11.2026, Zweig bilder-kopfleiste):
+  - Kopfleiste nicht am Rand: Damit unten keine Zeile halb im Bild steht,
+    hatte __randFrei auch Seiten hinaufgerollt, die ganz oben stehen. Die
+    Kopfleiste stand dann zu knapp unter dem Rand: auf 7 Zoll Bild 1 (de,
+    en, tr, nl, da) 3 bis 4 Punkte, am Handy auf Bild 1 9 bis 10 (alle
+    ausser da), und die Karte der Lektion auf Bild 4 am Handy 9 bis 11. In
+    der App sind es 16 bis 17 (Karte einer Lektion 16, Kopfleiste 17; auf
+    10 Zoll 21 bis 22). Ajdin: "ja ist schon knapp".
+  - Steht die Seite ganz oben, bleibt ueber dem obersten Teil jetzt
+    mindestens __luftMin = 16 Punkte, der Rand oben der App (padding-top
+    von body). Hinauf rollt sie nur noch bis dahin (Handy und 7 Zoll damit
+    praktisch gar nicht), sonst rueckt sie tiefer: der Rand oben waechst um
+    bis zu 24 Punkte. Vor jedem Bild bricht das Skript ab, wenn es doch
+    weniger Luft ist, und die Ausgabe nennt sie ("Luft oben 26"). Seiten,
+    die selbst rollen (Bild 2, Bild 8 am Handy), zaehlten hier noch nicht:
+    dort steht oben eine Karte mitten aus der Liste (seit dem Abend mit dem
+    Streifen oben, siehe unten). Ein erster Versuch mit 8 Punkten war noch
+    zu knapp.
+  - Was das kostet (Probe 16.11.2026, Lagen dazwischen schneiden alle eine
+    Zeile): Bild 1 am Handy 9 Punkte mehr Rand oben, Kopfleiste 26 Punkte
+    unter dem Rand (nl mit den anderen Tagesaufgaben 8, also 25; da wie
+    vorher 1, also 18). Bild 1 auf 7 Zoll 21 Punkte mehr (Kopfleiste 38
+    Punkte unter dem Rand); das Level "Essen & Trinken", das hinaufgerollt
+    ganz zu sehen war, liegt dann ganz unter dem Rand, unten steht nur der
+    Rand seines Kreises. Unten endet das Bild jeweils so viel frueher.
+  - Bild 4 und 6 (Lektion): Am Handy schnitt der Rand ohne Hinaufrollen je
+    nach Satz und Kacheln "Ueberspringen" oder "Lektion abbrechen". Mehr
+    Rand oben schiebt beides ganz hinaus, die Karte steht dann aber tiefer
+    als auf Bild 3 und 5. Darum nimmt das Skript (__satzFrei) zuerst einen
+    Satz, der mit hoechstens 4 Punkten mehr Rand aufgeht; erst ab dem 9.
+    Versuch den, der am wenigsten braucht, im letzten jeden. Am 16.11.
+    stand die Karte so bei de, tr, sv, nl, nb und fr 16 Punkte unter dem
+    Rand wie in der App (nl aus einem zweiten Lauf), bei en und da 27 (11
+    Punkte mehr Rand: "Ne znam gdje je ključ." mit acht Kacheln; "Gdje je
+    crvena torba?" haette 23 gebraucht; ohne mehr Rand ging es in Proben
+    mit je 30 Saetzen bei en nie, bei da zweimal; weitere Laeufe, en
+    einmal, da zweimal, brachten wieder 27). Welche Kacheln kommen, ist
+    Zufall der Lektion.
+
+  Pruefung nach der Kopfleiste (16.11.2026 abends, Zweig bilder-kopfleiste):
+  - Auf den Bildern, deren Seite nicht ganz oben steht, stand das oberste
+    Teil zu knapp unter dem Rand: auf Bild 2 die Reiterleiste 10 Punkte
+    (alle Geraete; am Handy fr die Leiste Lernpfad/Geschichten/Wiederholen
+    7), auf Bild 8 am Handy die Karte "Heute" 6 bis 7 (de "Weitermachen"
+    10; vor dem Feinschliff 16). Durch Rollen allein geht es nicht: Zwischen
+    Reiterleiste, Leiste Lernpfad/..., Karte "Heute" und "Weitermachen"
+    sind nur 9 bis 13 Punkte frei, mit 16 stuende das Teil darueber halb im
+    Bild.
+  - Streifen oben: Auf diesen Bildern legt das Skript oben einen Streifen
+    in der Farbe des Grunds ueber die Seite, so hoch wie der Rand oben der
+    App (padding-top von body: 16 Punkte, auf 10 Zoll mit der App 1,3-mal
+    so gross). Was darunter liegt, ist verdeckt; oben sieht das Bild aus
+    wie eine Seite, die ganz oben steht. Den oberen Rand misst
+    __randSchnitte dann an der Unterkante des Streifens: keine Zeile, kein
+    Knopf und kein Kasten darf ihn durchschneiden, auch keine grosse Karte
+    und kein Schatten (box-shadow, die dunkle Kante unter "Weitermachen").
+    __bandFrei stellt das oberste Teil 0 bis 24 Punkte unter den Streifen,
+    bis unten keine Zeile mehr haengt: Bild 2 der Reihe nach die
+    Reiterleiste, die Leiste Lernpfad/... und die Karte "Heute"; Bild 8 am
+    Handy die Karte "Heute", "Weitermachen" und die Leiste. Die App bleibt,
+    wie sie ist.
+  - Vor jedem Bild bricht das Skript ab, wenn die Seite nicht ganz oben
+    steht und kein Streifen liegt (__luftPruefen). Die Ausgabe nennt "Luft
+    oben 17 (Streifen)" bzw. "oben Reiterleiste, Streifen +4".
+  - --kennung N: mit der N-ten Geraete-Kennung beginnen. Wer nur einzelne
+    Bilder eines Satzes neu macht, braucht dieselben Tagesaufgaben wie auf
+    den uebrigen (Store-Bilder 1.4: nl am Handy mit --kennung 2).
+  - Am 16.11. neu: Bild 2 auf allen Geraeten, Bild 8 am Handy (32 Bilder).
+    Bild 2: Reiterleiste direkt unter dem Streifen (Luft 16 bis 17, fr am
+    Handy 21, auf 10 Zoll 22 bis 24 Bildschirmpunkte wie die Kopfleiste in
+    der App); am Handy en und nl die Karte "Heute" oben (16), denn mit der
+    Reiterleiste oben schnitt der Rand unten ab 13 (en) bzw. 12 (nl)
+    Punkten Luft die Beschreibung des letzten Levels, mit der Leiste
+    Lernpfad oben die des fuenften; so stehen drei Level des Amts im Bild.
+    Bild 8 am Handy: Karte "Heute" oben (16) bei en, tr, nb, da, fr;
+    "Weitermachen" oben bei de und sv (26, naeher schnitt der Rand unten
+    eine Zeile der Karte "Markiert"); nl die Leiste oben (17, Kennung 2,
+    ohne Tagesaufgaben im Bild). Unter dem Streifen von de und sv endet
+    ein kaum sichtbarer Schatten des Drachen (Farbe hoechstens 3 von 255
+    anders).

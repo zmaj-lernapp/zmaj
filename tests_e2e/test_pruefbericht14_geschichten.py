@@ -59,10 +59,11 @@ def test_b10_bedeutung_beim_antippen(seite, heute_stand, sprache, spalte):
 # B12: "Passt zu Level" zeigt bei B1-Geschichten auf ein Level bis B1
 # ---------------------------------------------------------------------------
 # Was in der Liste unter dem Titel und oben in der Geschichte steht
+# Seit dem 17.11.2026 steht in der Liste nur der gewaehlte Stufen-Reiter
 PASST_ZU = r"""(gid) => {
-  showStoryPath();
   const i = STORIES.findIndex(s => s.id === gid);
-  const knoten = [...document.querySelectorAll('#storyList .node')][i];
+  geschStufeWaehlen(geschStufe(i));
+  const knoten = [...document.querySelectorAll('#storyList .node')][geschImReiter(geschStufe(i)).indexOf(i)];
   const liste = knoten ? knoten.querySelector('.tipp').textContent : null;
   openStory(i); stilleBitte();
   const kicker = document.querySelector('#rBody .kicker').textContent;

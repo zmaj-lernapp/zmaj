@@ -5,7 +5,7 @@ App-Set-ID, die Googles Werbebaustein laut Google erhebt
 (developers.google.com/admob/android/privacy/play-data-disclosure, abgerufen am
 15.11.2026). Wortlaut nach Release\\Datenschutz_S23_Entwurf.md, in beiden
 Fassungen (mit Konto und ohne, Web-Demo) und allen acht Sprachen. Der Stand der
-Erklaerung ist der 16.11.2026. Ohne Werbung (set.dsgvo_werbung_aus) kommt die
+Erklaerung ist der 19.11.2026. Ohne Werbung (set.dsgvo_werbung_aus) kommt die
 Kennung nicht vor.
 """
 import re
@@ -39,10 +39,10 @@ HALBSATZ = {
            "l'identifiant App Set (un identifiant valable uniquement pour les applis d'un même développeur), ",
            "ton adresse IP,"),
 }
-STAND = {"de": "Stand: 16.11.2026", "en": "Last updated: November 16, 2026",
-         "tr": "Son güncelleme: 16.11.2026", "sv": "Senast uppdaterad: 16.11.2026",
-         "nl": "Laatst bijgewerkt: 16 november 2026", "nb": "Sist oppdatert: 16.11.2026",
-         "da": "Senest opdateret: 16.11.2026", "fr": "Dernière mise à jour : 16.11.2026"}
+STAND = {"de": "Stand: 19.11.2026", "en": "Last updated: November 19, 2026",
+         "tr": "Son güncelleme: 19.11.2026", "sv": "Senast uppdaterad: 19.11.2026",
+         "nl": "Laatst bijgewerkt: 19 november 2026", "nb": "Sist oppdatert: 19.11.2026",
+         "da": "Senest opdateret: 19.11.2026", "fr": "Dernière mise à jour : 19.11.2026"}
 # Der Name der Kennung je Sprache
 NAME = {"de": "App-Set-ID", "en": "app set ID", "tr": "uygulama seti kimliğ", "sv": "app set-id",
         "nl": "app set-ID", "nb": "app set-ID", "da": "app set-id", "fr": "identifiant App Set"}

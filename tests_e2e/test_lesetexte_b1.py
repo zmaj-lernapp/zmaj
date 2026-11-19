@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Die B1-Lesetexte (13.11.2026, Paket 1 und 2): zwölf längere Geschichten mit Absätzen.
 
-Sie stehen hinter den zwölf alten Geschichten in derselben Kette, tragen die
+Sie stehen hinter den Geschichten von A1 und A2 in derselben Kette (seit dem
+17.11.2026 von leicht nach schwer, tests_e2e/test_geschichten_stufen.py), tragen die
 Stufe "B1" und zeigen ihre Absätze (white-space: pre-line in .story .txt und
 .trans). Jede Wortform hat im Wörterbuch eine Bedeutung, auch in den anderen
 Sprachen. Seit dem 16.11.2026 liest Vesna sie vor (Offen-Liste 6); die Wörter,
@@ -13,17 +14,20 @@ def _genau(text):
     return re.compile("^" + re.escape(text) + "$")
 
 
-def test_hinter_den_alten_geschichten_in_einer_kette(seite, heute_stand):
+def test_hinter_a1_und_a2_in_einer_kette(seite, heute_stand):
+    """Bis zum 17.11.2026 kam b1_ljeto als erste B1 hinter "Razgovor za posao". Seitdem
+    beginnt B1 mit b1_vrijeme hinter "Pismo nani", der letzten von A2."""
     seite.starten(stand=heute_stand())
     lage = seite.js("""() => {
-      const i = STORIES.findIndex(s => s.id === 'b1_ljeto');
+      const i = STORIES.findIndex(s => s.id === 'b1_vrijeme');
       return {i: i, n: STORIES.length, davor: STORIES[i - 1].id,
-              stufen: [...new Set(STORIES.slice(i).map(s => s.stufe))], offen: storyUnlocked(i)}; }""")
-    assert lage["i"] == 12 and lage["n"] >= 24, lage
-    assert lage["davor"] == "intervju"
-    assert lage["stufen"] == ["B1"]
-    assert lage["offen"] is False, "erst nach der letzten alten Geschichte frei"
-    assert seite.js("() => { read.add('intervju'); return storyUnlocked(12); }") is True
+              stufen: [...new Set(STORIES.slice(i).map(s => s.stufe))],
+              vorher: [...new Set(STORIES.slice(0, i).map(s => s.stufe))], offen: storyUnlocked(i)}; }""")
+    assert lage["i"] == 11 and lage["n"] >= 32, lage
+    assert lage["davor"] == "pismo"
+    assert lage["stufen"] == ["B1"] and lage["vorher"] == ["A1", "A2"]
+    assert lage["offen"] is False, "erst nach der letzten von A2 frei"
+    assert seite.js("() => { read.add('pismo'); return storyUnlocked(11); }") is True
     assert seite.fehler == []
 
 
@@ -33,8 +37,9 @@ def test_absaetze_und_jedes_wort_mit_bedeutung(seite, heute_stand):
       const i = STORIES.findIndex(s => s.id === 'b1_stan');
       openStory(i); stilleBitte();
       const txt = document.querySelector('#rBody .txt');
-      const ohne = STORIES.slice(12).flatMap((s, k) => {
-        openStory(12 + k); stilleBitte();
+      const ohne = STORIES.flatMap((s, k) => {
+        if(s.stufe !== 'B1') return [];
+        openStory(k); stilleBitte();
         return [...document.querySelectorAll('#rBody .txt .w')]
           .filter(w => !lookup(w.textContent, s)).map(w => s.id + ':' + w.textContent); });
       openStory(i); stilleBitte();
@@ -76,7 +81,10 @@ def test_alle_fragen_richtig_schaltet_die_naechste_frei(seite, heute_stand):
         if k < len(fragen) - 1:
             seite.page.locator("#rQ #rOpts .opt").first.wait_for(state="visible")
     seite.page.locator("#rQ .ergebnis-titel").wait_for(state="visible")
+    # Frei wird die naechste in der Folge seit dem 17.11.2026 (b1_svadba) und die
+    # naechste in der alten (b1_dijaspora), siehe storyUnlocked()
     lage = seite.js("() => ({gelesen: read.has('b1_ljeto'), weiter: !!document.getElementById('rGoNext'), "
-                    "frei: storyUnlocked(STORIES.findIndex(s => s.id === 'b1_dijaspora'))})")
-    assert lage == {"gelesen": True, "weiter": True, "frei": True}, lage
+                    "naechste: STORIES[rIdx + 1].id, frei: storyUnlocked(rIdx + 1), "
+                    "alt: storyUnlocked(STORIES.findIndex(s => s.id === 'b1_dijaspora'))})")
+    assert lage == {"gelesen": True, "weiter": True, "naechste": "b1_svadba", "frei": True, "alt": True}, lage
     assert seite.fehler == []
