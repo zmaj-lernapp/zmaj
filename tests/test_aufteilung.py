@@ -418,7 +418,8 @@ def test_jeder_teil_endet_mit_seinem_zaehler():
 def test_horcher_warten_auf_den_start():
     """Horcher, die beim Laden angemeldet werden und in spaetere Dateien
     greifen, tun vor skripteDa nichts (PLAN 4 und G3): Lernzeit, Cloud
-    (sichtbar, online, offline), Updates (status, sichtbar), Drache."""
+    (sichtbar, online, offline), Updates (status, sichtbar), Drache
+    (MutationObserver und matchMedia)."""
     ganz = app_quelle.lesen(WEB).replace("\r\n", "\n")
     lern = re.search(r"\ndocument\.addEventListener\('visibilitychange', \(\)=>\{\n  if\(!skripteDa\) return;"
                      r"[^\n]*\n  if\(document\.hidden\)\{\n    /\* Eine vorgelesene Geschichte", ganz)
@@ -431,3 +432,7 @@ def test_horcher_warten_auf_den_start():
     assert "  if(!skripteDa || document.hidden || !updBereit) return;" in ganz
     beob = ganz[ganz.index("\nnew MutationObserver(()=>{"):]
     assert "  if(!skripteDa) return;" in beob[:beob.index("mountZmaj")]
+    # Bewegung am Geraet umgestellt: zmajRuht() fragt VIEWS (inhalt.js)
+    assert ("matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', "
+            "()=>{ if(skripteDa) zmajeAnpassen(); });") in ganz
+    assert ganz.count(".addEventListener('change', ()=>zmajeAnpassen())") == 0

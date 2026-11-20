@@ -6041,7 +6041,8 @@ function zmajeAnpassen(){
     else if(a.isPaused) playMood(el, /^(ok|cheer|no)/.test(m) ? 'idle' : m);
   });
 }
-try{ matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', ()=>zmajeAnpassen()); }catch(e){}
+/* Vor skripteDa nichts: zmajRuht() fragt VIEWS (inhalt.js, spaeter). */
+try{ matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', ()=>{ if(skripteDa) zmajeAnpassen(); }); }catch(e){}
 function playMood(el, mood){
   const name = MOOD_SEG[mood] || 'idle';
   /* Alle Stimmungen stecken als Marker in derselben Datei, es wird also nie
