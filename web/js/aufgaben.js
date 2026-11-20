@@ -37,7 +37,11 @@ const wortVorrat = () => CATEGORIES.concat(imZa() ? zaLevel() : []).flatMap(c=>c
    steht nur an einem der beiden; gelesen wird es in beide Richtungen. */
 const istPartner = (w, x) => !!(w && x && x.bs !== w.bs && (x.partner === w.bs || w.partner === x.bs));
 function partnerVon(w){
-  return CATEGORIES.flatMap(c=>c.words).filter(x => istPartner(w, x));
+  /* Nur der Lernpfad, auch im Zahnarzt-Teil: dessen Woerter stehen im
+     Verzeichnis hinter denen der CATEGORIES (ab ix.basis). */
+  const ix = wortIndex();
+  return ix.treffer([ix.partnerFeld.get(w.bs), ix.nachBs.get(w.partner)], ix.basis)
+    .filter(x => istPartner(w, x));
 }
 /* Was beim Tippen als Gegenstueck erkannt wird: seine Formen und sein
    "auch", mit " / " wie bei matches(). Leer, wenn das Wort keins hat. */
@@ -113,11 +117,82 @@ const nieNebeneinander = (a, b) => _NIE.has(a + '\u0000' + b);
 /* auch_var zaehlt hier wie auch (12.11.2026): steht boca einmal als eigenes
    Wort in der App, liegt es nie als falscher Knopf neben flaša. */
 const _auchAlle = w => [...(w.auch || []), ...(w.auch_var || [])];
+/* Verzeichnis ueber wortVorrat() (Optimierung 1.5, Punkt 2, 20.11.2026).
+   Bis dahin liefen geschwister(), annehmbar() und partnerVon() bei jeder
+   Auswahl- und Tippaufgabe ueber alle 7.997 Eintraege und rechneten
+   _bedeutung, _formen und _auchAlle jedes Mal neu: gemessen 15 ms je
+   Aufgabe am Laptop, 80-95 ms bei 4-facher Drossel, direkt nach "Weiter",
+   und mit jedem Wortpaket mehr (Release/Optimierung_2026-11-20,
+   geprueft_laufzeit.md, Befund 2). Jetzt wird einmal nachgeschlagen, je Sprache
+   und Zahnarzt-Zustand gebaut (18-23 ms) und von selbst neu, sobald sich der
+   Vorrat aendert: andere CATEGORIES (Sprachwechsel, ladeDaten()), anderer
+   Zahnarzt-Teil, imZa() an oder aus, oder ein Wort mehr oder weniger in einem
+   Level (tests_e2e/test_varianten.py legt eins dazu). Die Ergebnisse sind
+   genau die alten, in derselben Reihenfolge (Positionen im Vorrat, aufsteigend):
+   tests_e2e/test_auswahl_verzeichnis.py vergleicht alle Eintraege in allen acht
+   Sprachen mit den alten Schleifen.
+   auch und auch_var zaehlen ueber _auchAlle in beide Richtungen. Kommen mit
+   K2 (Wort-Alternativen) mehr auch_var-Paare in den Inhalt, braucht es hier
+   nichts Neues; ein weiteres Feld gehoert in _auchAlle, dann gilt es hier mit. */
+let _wortIndex = null;
+const _OHNE_ZA = [];      // immer dasselbe leere Feld, sonst saehe jeder Aufruf einen neuen Vorrat
+function _vorratKennung(){
+  const za = imZa() ? zaLevel() : _OHNE_ZA;
+  let n = 0;
+  for(const c of CATEGORIES) n += c.words.length;
+  for(const c of za) n += c.words.length;
+  return {kat: CATEGORIES, za, n};
+}
+function wortIndex(){
+  const k = _vorratKennung(), alt = _wortIndex;
+  if(alt && alt.kat === k.kat && alt.za === k.za && alt.n === k.n) return alt;
+  const vorrat = wortVorrat();
+  const basis = CATEGORIES.reduce((s, c) => s + c.words.length, 0);
+  const nachBedeutung = new Map(), nachBs = new Map(), partnerFeld = new Map(),
+        nachForm = new Map(), nachAuchForm = new Map();
+  const dazu = (m, schluessel, i) => {
+    const l = m.get(schluessel);
+    if(!l) m.set(schluessel, [i]); else if(l[l.length - 1] !== i) l.push(i);
+  };
+  vorrat.forEach((x, i) => {
+    dazu(nachBedeutung, _bedeutung(x.de), i);
+    dazu(nachBs, x.bs, i);
+    if(x.partner !== undefined) dazu(partnerFeld, x.partner, i);
+    _formen(x.bs).forEach(f => dazu(nachForm, f, i));
+    _auchAlle(x).flatMap(_formen).forEach(f => dazu(nachAuchForm, f, i));
+  });
+  /* Die Eintraege zu den Positionen aus mehreren Listen: jede einmal,
+     aufsteigend wie im Vorrat, und nur unter bis (partnerVon: nur der Lernpfad). */
+  const treffer = (listen, bis = vorrat.length) => {
+    const pos = new Set();
+    listen.forEach(l => { if(l) l.forEach(i => { if(i < bis) pos.add(i); }); });
+    return [...pos].sort((a, b) => a - b).map(i => vorrat[i]);
+  };
+  _wortIndex = {kat: k.kat, za: k.za, n: k.n, vorrat, basis,
+                nachBedeutung, nachBs, partnerFeld, nachForm, nachAuchForm, treffer};
+  return _wortIndex;
+}
+/* Fuer nieNebeneinander(): zu jedem Wort die, mit denen es nie in einer Auswahl steht. */
+const _NIE_NACH = new Map();
+NIE_NEBENEINANDER.forEach(([x, y]) => [[x, y], [y, x]].forEach(([a, b]) => {
+  if(!_NIE_NACH.has(a)) _NIE_NACH.set(a, []);
+  _NIE_NACH.get(a).push(b);
+}));
+/* Wie bis zum 20.11.2026 wortVorrat().filter(...) mit diesen fuenf Gruenden:
+   gleiche Bedeutung, Aspektpartner, nieNebeneinander, ein Teil von w in seinem
+   auch (oder auch_var), ein Teil von ihm im auch von w. Das Verzeichnis liefert
+   die Kandidaten, die alte Bedingung entscheidet weiter ueber jeden. */
 function geschwister(w){
+  const ix = wortIndex();
   const b = _bedeutung(w.de);
   const meineAuch = new Set(_auchAlle(w).flatMap(_formen));
   const meineFormen = _formen(w.bs);
-  return wortVorrat().filter(x => x.bs !== w.bs &&
+  const listen = [b ? ix.nachBedeutung.get(b) : null,
+                  ix.partnerFeld.get(w.bs), ix.nachBs.get(w.partner)];
+  (_NIE_NACH.get(w.bs) || []).forEach(y => listen.push(ix.nachBs.get(y)));
+  meineAuch.forEach(f => listen.push(ix.nachForm.get(f)));
+  meineFormen.forEach(f => listen.push(ix.nachAuchForm.get(f)));
+  return ix.treffer(listen).filter(x => x.bs !== w.bs &&
     ((b && _bedeutung(x.de) === b) ||
      istPartner(w, x) ||
      nieNebeneinander(w.bs, x.bs) ||
@@ -132,7 +207,8 @@ function geschwister(w){
    Sprechen zaehlt weiter nur bs. */
 function annehmbar(w){
   const b = _bedeutung(w.de);
-  const gleich = b ? wortVorrat().filter(x => x.bs !== w.bs && _bedeutung(x.de) === b && !istPartner(w, x)).map(x=>x.bs) : [];
+  const ix = wortIndex();
+  const gleich = b ? ix.treffer([ix.nachBedeutung.get(b)]).filter(x => x.bs !== w.bs && _bedeutung(x.de) === b && !istPartner(w, x)).map(x=>x.bs) : [];
   return [w.bs, ...gleich, ...(w.auch || []), ...(w.auch_var || [])];
 }
 function distractors(target, words, n){

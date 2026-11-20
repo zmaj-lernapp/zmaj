@@ -422,7 +422,9 @@ def test_app_haengt_sie_an_beiden_tippstellen_an(index_html):
     assert "return [w.bs, ...gleich, ...(w.auch || []), ...(w.auch_var || [])];" in html
     assert "const antworten = [s.answer, ...(s.auch || []), ...(s.auch_var || [])].join(' / ');" in html
     assert "const _auchAlle = w => [...(w.auch || []), ...(w.auch_var || [])];" in html
-    assert html.count("_auchAlle(") == 2              # in geschwister() für beide Richtungen
+    # in geschwister() für beide Richtungen, dazu einmal beim Bau des Verzeichnisses
+    # (wortIndex(), seit 20.11.2026, Optimierung Punkt 2)
+    assert html.count("_auchAlle(") == 3
     # kachelAblenker() nimmt "ohne" wie bisher
     assert "...(s.ohne || []).map(kachelNorm)" in html
 
