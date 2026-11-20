@@ -3204,6 +3204,39 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="sternGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--stern-gold-hell)"/><stop offset="1" style="stop-color:var(--stern-gold-tief)"/></linearGradient></defs></svg>
 
 <script>
+/* Bauwerte (20.11.2026): die Zeilen, die app_bauen.py (Android und --ios),
+   demo_bauen.py, die Tests und die Workflows der iOS-Huelle in der KOPIE
+   www/index.html suchen und austauschen. Sie stehen hier in index.html und
+   nicht im grossen Skript, damit das so bleibt, wenn das Skript in Dateien
+   geteilt wird (Release/Aufteilung/PLAN.md). Jede Zeile genau so, mit den
+   Leerzeichen, und genau einmal. Nur reine Werte, nichts, was etwas anderes
+   aus der App braucht: dieser Block laeuft vor allem anderen. */
+/* Version: version_einsetzen() setzt sie beim Bauen ein. */
+const APP_VERSION = '1.1';
+/* Werbung: demo_bauen.py, testwerbung_einschalten(); die iOS-Bloecke
+   tauscht ios_zugang_einsetzen() (app_bauen.py --ios). */
+const WERBUNG_AN          = true;  // Hauptschalter
+const ADMOB_TEST = false;
+const ADMOB_ID_ANDROID = {
+  interstitial: 'ca-app-pub-9105747905460295/9764395638',   // Zmaj, angelegt 20.09.2026
+  belohnt:      'ca-app-pub-9105747905460295/8572576770',   // Zmaj, angelegt 20.09.2026
+};
+const ADMOB_ID_IOS = {
+  interstitial: 'ca-app-pub-3940256099942544/4411468910',   // Googles iOS-Testblock (Interstitial)
+  belohnt:      'ca-app-pub-3940256099942544/1712485313',   // Googles iOS-Testblock (Belohnt)
+};
+/* Dauer-Vollversion: dauer_einsetzen(), nur der Platzhalter steht hier. */
+const DAUER_PRUEFWERT = '__DAUER_PRUEFWERT__';
+/* Cloud: cloud_einsetzen(), immer_packen_einschalten(). */
+const CLOUD_AN = false;
+const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';
+const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';
+const CLOUD_CLIENT = '__CLOUD_CLIENT__';
+const CLOUD_IMMER_PACKEN = false;
+/* App Store: ios_zugang_einsetzen(). */
+const APPLE_APP_ID = '__APPLE_ID__';
+</script>
+<script>
 /* Der Inhalt kommt aus vokabeln.py, grammatik.py und geschichten.py – hier muss nichts geändert werden. */
 /* Wo die App laeuft: 'android', 'ios' oder 'web'. Entschieden wird es EIN
    Mal, im kleinen Skript im Kopf (ZMAJ_PLATTFORM), damit Stil und Skript
@@ -3353,7 +3386,7 @@ try{
       Platform). Ohne das werden keine Anzeigen ausgeliefert.
    3. Die Vollversion darf nur über die Bezahlung des jeweiligen Stores
       verkauft werden - eigene Bezahlwege sind dort nicht erlaubt. */
-const WERBUNG_AN          = true;  // Hauptschalter
+/* WERBUNG_AN steht im Bauwerte-Block vor diesem Skript. */
 /* Ajdin am 27.09.2026: "die anzeige sollte nach jeder lektion kommen nicht
    nach 3 lektionen sonst kann ich ja garnichts verdienen". Beides auf 1.
    Die Obergrenze fuer den Tag bleibt bei WERBUNG_MAX_TAG - sie ist jetzt
@@ -3559,7 +3592,7 @@ function werbungGezaehlt(belohnt){
    Geht irgendetwas davon schief, bleibt AdMobP null und die App läuft
    einfach ohne Werbung weiter. Eine Lernapp, die wegen einer Anzeige nicht
    startet, wäre der schlechteste aller Tauschhandel. */
-const ADMOB_TEST = false;
+/* ADMOB_TEST steht im Bauwerte-Block vor diesem Skript. */
 /* Punkt 4 aus WERBUNG_PRUEFUNG.md: unsere eigenen Geraete bekommen auch
    nach dem Tausch auf die echten Kennungen weiter TESTanzeigen. Ohne das
    waere jeder eigene Klick beim Nachtesten ungueltiger Traffic auf dem
@@ -3628,10 +3661,7 @@ async function attNachfragen(A){
     }
   }catch(e){}
 }
-const ADMOB_ID_ANDROID = {
-  interstitial: 'ca-app-pub-9105747905460295/9764395638',   // Zmaj, angelegt 20.09.2026
-  belohnt:      'ca-app-pub-9105747905460295/8572576770',   // Zmaj, angelegt 20.09.2026
-};
+/* ADMOB_ID_ANDROID steht im Bauwerte-Block vor diesem Skript. */
 /* iPhone und iPad (30.10.2026): eigene Anzeigenbloecke, sie gehoeren zur
    iOS-App in AdMob. Hier stehen Googles oeffentliche Test-Bloecke fuer iOS
    (developers.google.com/admob/ios/test-ads) - so zeigt auch der Bau in der
@@ -3639,10 +3669,7 @@ const ADMOB_ID_ANDROID = {
    nur in die KOPIE www/index.html ein, aus ios_zugang.xcconfig der Huelle
    (ios_admob_einsetzen), wie die Firebase-Werte. Die Zeilen muessen genau
    so bleiben, das Bauskript sucht sie. */
-const ADMOB_ID_IOS = {
-  interstitial: 'ca-app-pub-3940256099942544/4411468910',   // Googles iOS-Testblock (Interstitial)
-  belohnt:      'ca-app-pub-3940256099942544/1712485313',   // Googles iOS-Testblock (Belohnt)
-};
+/* ADMOB_ID_IOS steht im Bauwerte-Block vor diesem Skript. */
 const ADMOB_ID = IST_IOS ? ADMOB_ID_IOS : ADMOB_ID_ANDROID;
 let AdMobP = null;          // das Plugin, sobald es sich gemeldet hat
 let admobDarf = false;      // canRequestAds – vorher darf nichts geladen werden
@@ -4041,7 +4068,7 @@ if(SPRACHE === 'no' || SPRACHE === 'nn') SPRACHE = 'nb';
    damit, in der Test-App mit "-test". Hier steht nur der Rueckfallwert
    fuer die Web-Demo, start.py und die Tests. Die Zeile muss genau so,
    am Zeilenanfang und genau einmal dastehen, sonst bricht der Bau ab. */
-const APP_VERSION = '1.1';
+/* APP_VERSION steht im Bauwerte-Block vor diesem Skript. */
 const FALLBACK = {   // nur nötig, wenn der Server gar nicht antwortet
   /* Updates aus Google Play, zweisprachig wie err.server: gerade eine
      Fassung, deren Inhalte nicht laden, braucht vielleicht das Pflicht-
@@ -7207,7 +7234,7 @@ const DAUER_SCHLUESSEL = 'zmaj_dauer2';
    den Wert aus der privaten Huelle ein (dauer_pruefwert.txt, angelegt mit
    dauer_wort_setzen.py). Ohne eingesetzten Wert, etwa in der Web-Demo,
    schaltet kein Wort etwas frei. 11.10.2026 */
-const DAUER_PRUEFWERT = '__DAUER_PRUEFWERT__';
+/* DAUER_PRUEFWERT steht im Bauwerte-Block vor diesem Skript. */
 const DAUER_SALZ = 'zmaj-dauer-2026';
 const DAUER_RUNDEN = 300000;
 async function dauerWortStimmt(w){
@@ -11790,14 +11817,12 @@ $('sichDatei').addEventListener('change', async e=>{
    den Hintergrund geht (schreiben, hoechstens einmal am Tag) - dann ist der
    Stand des Tages am vollstaendigsten. Seit 17.11.2026 auch bei jeder
    Rueckkehr in den Vordergrund und nach dem Lernen, siehe cloudAbgleich(). */
-const CLOUD_AN = false;
+/* CLOUD_AN steht im Bauwerte-Block vor diesem Skript. */
 /* Platzhalter wie beim Dauer-Pruefwert: app_bauen.py (cloud_einsetzen)
    setzt beim Bauen die Werte aus der privaten Huelle ein
    (cloud_zugang.json). Im Repository stehen sie nie. CLOUD_CLIENT ist die
    Web-Client-ID fuer die Anmeldung mit Google (28.10.2026). */
-const CLOUD_PROJEKT = '__CLOUD_PROJEKT__';
-const CLOUD_SCHLUESSEL = '__CLOUD_SCHLUESSEL__';
-const CLOUD_CLIENT = '__CLOUD_CLIENT__';
+/* CLOUD_PROJEKT, CLOUD_SCHLUESSEL und CLOUD_CLIENT stehen im Bauwerte-Block vor diesem Skript. */
 /* Was dieses Geraet sich merkt, erst nach dem Anmelden:
      art, uid  das Konto ('google', 'passwort' oder 'anonym')
      token     der Erneuerungsschluessel der Anmeldung - liegt im
@@ -11881,7 +11906,7 @@ const utf8Laenge = s => { try{ return new TextEncoder().encode(s).length; }catch
    Der Name traegt das Format. Ein spaeteres anderes bekommt einen neuen
    (gepackt2), und diese Fassung traegt es dann genauso weiter wie 1.3
    heute gepackt1. */
-const CLOUD_IMMER_PACKEN = false;
+/* CLOUD_IMMER_PACKEN steht im Bauwerte-Block vor diesem Skript. */
 const CLOUD_PACK_FELD = 'gepackt1';
 /* Ausgepackt hoechstens so viel: ein kaputtes oder gefaelschtes Dokument
    fuellt nicht den Arbeitsspeicher. Der volle Stand von 1.3 hat 860 000
@@ -13431,7 +13456,7 @@ if(CLOUD_AN){
    Werbe-IDs. Ohne Nummer gibt es auf iOS keinen Link in einen Store - die
    beiden Zeilen "Bewerten" und "Empfehlen" sind dann ausgeblendet
    (einstellungenFuerPlattform), statt ins Leere zu fuehren. */
-const APPLE_APP_ID = '__APPLE_ID__';
+/* APPLE_APP_ID steht im Bauwerte-Block vor diesem Skript. */
 const appStoreDa = () => /^[0-9]{6,12}$/.test(APPLE_APP_ID);
 const appStoreLink = () => appStoreDa() ? 'https://apps.apple.com/app/id' + APPLE_APP_ID : '';
 /* Der Weg in den Store fuer Bewerten und Empfehlen: auf iOS der App Store,
