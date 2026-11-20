@@ -27,7 +27,7 @@ nach den Tipps nichts Ernstes.
 import os
 
 import pytest
-from conftest import Seite
+from conftest import Seite, frisch_abwarten
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AXE = os.path.join(WURZEL, "tests_e2e", "vendor", "axe.min.js")
@@ -144,6 +144,7 @@ def _tipp_auf(s, sel, text=None, falsch=False, fx=0.5, fy=0.5):
     s.page.wait_for_timeout(80)                  # nach scrollIntoView
     lage = s.js(LAGE, [sel, lage["t"], False])
     x, y = lage["x"] + lage["w"] * fx, lage["y"] + lage["h"] * fy
+    frisch_abwarten(s.page)                      # Doppeltipp-Sperre nach neuer Aufgabe
     _tipp(s, x, y)
     return x, y, lage["t"]
 

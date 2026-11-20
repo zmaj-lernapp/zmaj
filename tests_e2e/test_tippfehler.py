@@ -452,6 +452,7 @@ def test_fokus_kommt_nach_echtem_tipp_auf_pruefen_zurueck(seite, heute_stand):
                                          ("gap", "Ne ___.|razumijem", "razumijen", "razumijem")):
         leben = _legen(seite, "Lx", typ, ziel)
         seite.page.locator("#lBody #xIn").fill(vertippt)
+        seite.frisch_abwarten()
         seite.page.locator("#lBody #xCheck").click()
         seite.page.wait_for_timeout(250)
         _ist_hinweis(seite.js(LAGE, loesung), vertippt, leben)

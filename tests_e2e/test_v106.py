@@ -26,7 +26,7 @@ import re
 import struct
 
 import pytest
-from conftest import Seite
+from conftest import Seite, frisch_abwarten
 
 WURZEL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MASKOTTCHEN = os.path.join(WURZEL, "web", "maskottchen")
@@ -107,9 +107,11 @@ class Kacheln:
         return self.platz_ort.count()
 
     def tippe(self, wort):
+        frisch_abwarten(self.page)
         self.vorrat_ort.filter(has_text=_genau(wort)).click()
 
     def zurueck(self, wort):
+        frisch_abwarten(self.page)
         self.zeile_ort.filter(has_text=_genau(wort)).click()
 
     def legen(self, woerter):

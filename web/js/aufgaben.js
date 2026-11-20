@@ -326,8 +326,37 @@ function woerterVorladen(task){
     if(text) pufferLaden(audioDatei(text));
   });
 }
-
+/* Doppeltipp (20.11.2026, Optimierung Punkt 1, S9 aus Pruefbericht 1.3):
+   Weiter auf einer Wortkarte zeichnet sofort die naechste Aufgabe. Ein
+   schneller zweiter Tipp traf dann schon sie - nach der LETZTEN Wortkarte
+   eine Antwort in der ersten echten Aufgabe, und das kostete ein Leben,
+   obwohl die Frage nie zu sehen war (gemessen 2 von 9 Laeufen, 150 und
+   250 ms Abstand). Darum zaehlt FRISCH_MS lang nach jeder neu gezeichneten
+   Aufgabe kein Tipp in ihrem Feld.
+   Nur echte Tipps und Klicks mit der Maus (isTrusted, detail > 0). Enter
+   und Leertaste auf einem Knopf geben detail 0 und bleiben wie bisher; die
+   Klicks per Skript (Testhelfer) ebenso. Die 900 ms nach einer Antwort
+   (WEITER_NACH, weiterBeiTipp) bleiben, wie sie sind.
+   Gesperrt ist nur, was die Aufgabe selbst gezeichnet hat (frisch.inhalt).
+   Wird das Feld in der Zeit neu gefuellt - "Ueberspringen" auf der letzten
+   Aufgabe zeigt sofort das Ergebnis -, gilt fuer das Neue nichts mehr. */
+const FRISCH_MS = 300;
+let frisch = null;
+window.addEventListener('click', e => {
+  if(!frisch || !e.isTrusted || !(e.detail > 0)) return;
+  if(performance.now() >= frisch.bis){ frisch = null; return; }
+  const f = frisch, ziel = e.target;
+  if(!(f.inhalt || [f.feld]).some(k => k.isConnected && f.feld.contains(k) && k.contains(ziel))) return;
+  e.stopImmediatePropagation();
+  e.preventDefault();
+}, true);
 function renderTask(task, body, done, opts={}){
+  const f = frisch = {feld: body, bis: performance.now() + FRISCH_MS, inhalt: null};
+  aufgabeZeichnen(task, body, done, opts);
+  f.inhalt = [...body.children];
+}
+
+function aufgabeZeichnen(task, body, done, opts={}){
   /* NUR innerhalb dieser Aufgabe suchen. Lektion und Test benutzen dieselben
      Kennungen (xOpts, xFb, ...). Sind beide gefuellt, liefert
      document.getElementById immer die ERSTE im Dokument - die der Lektion.

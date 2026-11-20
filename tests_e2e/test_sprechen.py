@@ -127,6 +127,7 @@ LAGE = """() => ({gehoert: document.querySelector('#lBody #xHeard').textContent,
 def _tippen(seite, *plan):
     """Das Mikrofon antippen und warten, bis es wieder aus ist."""
     seite.js("(p) => { window.__hoerer.plan = p; }", list(plan))
+    seite.frisch_abwarten()
     seite.page.locator("#lBody #xMic").click()
     seite.page.wait_for_timeout(30)
     seite.page.wait_for_function(MIKRO_FERTIG)
@@ -679,6 +680,7 @@ def test_abgebrochen_startet_keine_weitere_sprache(mit_erkenner, meldung):
     seite.js("""(m) => { window.__hoerer.plan = [m, ['hvala']]; const H = window.Capacitor.Plugins.SpeechRecognition;
         const alt = H.start;
         H.start = async (o) => { document.querySelector('#lBody #xMic').click(); return await alt(o); }; }""", meldung)
+    seite.frisch_abwarten()
     seite.page.locator("#lBody #xMic").click()
     seite.page.wait_for_timeout(700)
     assert seite.js(LAGE)["aufrufe"] == ["bs-BA"]
@@ -867,6 +869,7 @@ def test_vorsprechen_dann_sofort_mikrofon_wird_noch_bewertet(mit_erkenner):
     seite = mit_erkenner
     seite.js(AUFGABE, "Hvala")
     assert seite.page.locator("#lBody #xListen").count() == 1
+    seite.frisch_abwarten()
     seite.page.locator("#lBody #xListen").click()
     seite.js(TON_SPION)
     z = _tippen(seite, ["hvala"])
@@ -880,6 +883,7 @@ def test_browser_ohne_ergebnis_und_ohne_fehler_zeigt_die_meldung(mit_browser):
     seite.js(AUFGABE, "Hvala")
     seite.js(TON_SPION)
     seite.js("() => { window.__sr.plan = [undefined]; }")
+    seite.frisch_abwarten()
     seite.page.locator("#lBody #xMic").click()
     seite.page.wait_for_timeout(200)
     e = seite.js("() => ({gehoert: document.querySelector('#lBody #xHeard').textContent, starts: window.__sr.starts, "
@@ -940,6 +944,7 @@ def test_ueberspringen_im_browser_nach_fehlversuch(mit_browser):
     seite = mit_browser
     seite.js(AUFGABE, "Hvala")
     seite.js("() => { window.__sr.plan = [{fehler: 'no-speech'}]; }")
+    seite.frisch_abwarten()
     seite.page.locator("#lBody #xMic").click()
     seite.page.wait_for_timeout(200)
     e = seite.js(UEBERSPRINGEN_UND_ENDE)

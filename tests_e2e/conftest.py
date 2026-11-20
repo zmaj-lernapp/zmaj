@@ -45,6 +45,20 @@ BEREIT = ("typeof CATEGORIES !== 'undefined' && CATEGORIES && CATEGORIES.length 
 # braucht der Bildschirmfoto-Lauf, damit man das Gruen sieht), sondern genau
 # so lange, bis die App den naechsten Schritt gemacht hat. Sonst dauerte eine
 # Lektion eine halbe Minute.
+# Doppeltipp-Sperre (20.11.2026, Optimierung Punkt 1): eine neu gezeichnete
+# Aufgabe nimmt FRISCH_MS (300 ms) lang keinen echten Tipp oder Mausklick an
+# (aufgaben.js, vor renderTask). Klicks per Skript wie in DURCHSPIELEN gelten
+# sofort. Wer mit Playwright klickt (locator.click, mouse, touchscreen), wartet
+# vorher mit frisch_abwarten() - nur so lange wie noetig.
+FRISCH_ABWARTEN = r"""() => new Promise(r => setTimeout(r,
+  typeof frisch !== 'undefined' && frisch ? Math.max(0, frisch.bis - performance.now()) + 30 : 0))"""
+
+
+def frisch_abwarten(page):
+    """Bis die zuletzt gezeichnete Aufgabe echte Tipps annimmt."""
+    page.evaluate(FRISCH_ABWARTEN)
+
+
 DURCHSPIELEN = r"""
 async ([feld, art]) => {
   // Sx: der Sprung-Test in einen Reiter (13.11.2026), Liste qs wie beim Test
@@ -312,6 +326,9 @@ class Seite:
 
     def durchspielen(self, feld, art):
         return self.js(DURCHSPIELEN, [feld, art])
+
+    def frisch_abwarten(self):
+        frisch_abwarten(self.page)
 
 
 @pytest.fixture

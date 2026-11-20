@@ -312,12 +312,14 @@ def test_geschlechtsfrage_spricht_nichts_deutsches(seite, heute_stand):
     seite.starten(stand=heute_stand())
     g = seite.js(GRAM_AUFGABE, "weiblich (ona)")
     assert g, "keine Geschlechtsaufgabe im Inhalt"
+    seite.frisch_abwarten()
     seite.page.locator("#lBody .opt").first.click()
     seite.page.wait_for_timeout(600)
     assert seite.js("() => window.gesprochen") == []
 
     g = seite.js(GRAM_AUFGABE, "moja")
     assert g, "keine Aufgabe mit der Antwort moja"
+    seite.frisch_abwarten()
     seite.page.locator("#lBody .opt").first.click()
     assert seite.js("() => window.gesprochen") == ["moja"]
     assert seite.fehler == []
