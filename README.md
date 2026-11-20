@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 295 levels, 7,997 words, grammar, stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
+  <img src="docs/assets/social-preview.jpg" width="640" alt="Zmaj – a smiling blue cartoon dragon with golden horns, light blue wings and a yellow belly, standing upright. Learn Bosnian: 297 levels, about 4,700 words and phrases, grammar, 32 stories. Open source app and open dataset, 8 languages, offline. Illustration created with Google Gemini, edited.">
 </p>
 
 <h1 align="center">Zmaj – learn Bosnian</h1>
@@ -243,7 +243,7 @@ Please cite as described in [CITATION.cff](CITATION.cff), DOI
 
 **Zmaj** ist eine Offline-App zum Bosnischlernen: 297 Level, rund 4.700 Wörter
 und Wendungen und rund 3.300 Beispielsätze mit bosnischer Tonspur,
-26 Grammatikeinheiten, 12 Lesegeschichten, Oberfläche in
+26 Grammatikeinheiten, 32 Lesegeschichten, Oberfläche in
 acht Sprachen. Der Lernstand liegt auf dem Gerät; die Android-App sichert ihn
 seit v109 in einem Konto, die Browser-Demo hat keins.
 Der gesamte Lerninhalt steht unter CC BY-SA 4.0 als Datensatz in
