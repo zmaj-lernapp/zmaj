@@ -142,7 +142,8 @@ Quellen der Bilder (ausserhalb des Repos, nicht im Temp-Ordner):
 Standbilder ohne Animation: zmaj-frei.png, zmaj-jubel.png und
 zmaj-traurig.png (transparent, aus dem Bild-Drachen gerendert). Die App
 zeigt sie nur, wenn lottie-web oder zmaj.json fehlt (zmaj() in
-web/index.html); dann bewegt sich das Bild per CSS.
+web/index.html); dann bewegt sich das Bild per CSS. Hier bleiben sie PNG,
+in die App kommen sie seit 1.5 als WebP (app_bauen.py, standbilder_als_webp).
 
 Der Drache ausserhalb der App (Stand 15.10.2026):
   App-Symbol      der Drachenkopf ("Entwurf 4", ebenfalls mit Google Gemini

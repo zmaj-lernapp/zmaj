@@ -409,6 +409,7 @@ def test_immer_packen_im_bau_nach_dem_kopieren(monkeypatch):
     for name in ("anmeldung_pruefen", "versionsname_lesen", "pruefen", "kopieren", "emir_drueber",
                  "dauer_einsetzen", "cloud_einsetzen", "version_einsetzen", "ton_verkleinern",
                  "testwerbung_einschalten", "immer_packen_einschalten", "versionsnummer_hochzaehlen",
+                 "standbilder_als_webp", "ton_index_verschlanken",
                  "capacitor", "plugins_flicken", "debug_apk", "freigabe_aab", "versionsname_anheben"):
         monkeypatch.setattr(app_bauen, name, lambda *a, n=name, **k: aufrufe.append(n))
     app_bauen.main(["--immer-packen"])

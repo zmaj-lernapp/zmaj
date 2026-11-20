@@ -700,6 +700,7 @@ def _ablauf(monkeypatch, wurzel):
 
     for name in ("pruefen", "emir_drueber", "cloud_einsetzen", "ios_zugang_einsetzen", "ton_verkleinern",
                  "capacitor", "testwerbung_einschalten", "ios_zahnarzt_entfernen",
+                 "standbilder_als_webp", "ton_index_verschlanken",
                  # Android-Schritte, die auf iOS nie laufen duerfen
                  "dauer_einsetzen", "versionsnummer_hochzaehlen", "plugins_flicken", "debug_apk",
                  "freigabe_aab", "versionsname_lesen", "versionsname_anheben", "anmeldung_pruefen"):
@@ -722,9 +723,14 @@ def test_ios_bauen_ablauf(tmp_path, monkeypatch, wurzel):
     namen = [a[0] for a in aufrufe]
     assert www == os.path.join(str(h), "www")
     assert namen == ["pruefen", "kopieren", "emir_drueber", "cloud_einsetzen", "ios_zugang_einsetzen",
-                     "ios_zahnarzt_entfernen", "ton_verkleinern", "capacitor"]
+                     "ios_zahnarzt_entfernen", "ton_verkleinern", "standbilder_als_webp",
+                     "ton_index_verschlanken", "capacitor"]
     ton = aufrufe[namen.index("ton_verkleinern")]
     assert ton[2] == {"zwischen": os.path.join(str(h), ".ton_aac"), "codec": "aac"}
+    # Aufraeumen (1.5): im www/ der iOS-Huelle, und "stimme" bleibt fuer store_helfer.py
+    assert aufrufe[namen.index("standbilder_als_webp")][1] == (www,)
+    assert aufrufe[namen.index("ton_index_verschlanken")][1] == (
+        os.path.join(www, "audio"), app_bauen.TON_FELDER_IOS)
     assert aufrufe[namen.index("capacitor")][1] == ("ios", str(h))
     assert aufrufe[namen.index("emir_drueber")][1] == (www, os.path.join(str(h), "audio_emir"))
     text = io.open(os.path.join(www, "index.html"), encoding="utf-8").read()
@@ -737,7 +743,8 @@ def test_ios_bauen_ci_ohne_geheimes(tmp_path, monkeypatch, wurzel):
     aufrufe = _ablauf(monkeypatch, wurzel)
     app_bauen.main(["--ios", "--ci", "--huelle=%s" % h])
     namen = [a[0] for a in aufrufe]
-    assert namen == ["pruefen", "kopieren", "ios_zahnarzt_entfernen", "ton_verkleinern"]
+    assert namen == ["pruefen", "kopieren", "ios_zahnarzt_entfernen", "ton_verkleinern",
+                     "standbilder_als_webp", "ton_index_verschlanken"]
     text = io.open(os.path.join(str(h), "www", "index.html"), encoding="utf-8").read()
     assert "const CLOUD_AN = false;" in text and "const APP_VERSION = '1.1-test';" in text
 

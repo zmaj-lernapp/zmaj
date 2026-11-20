@@ -785,12 +785,7 @@ def test_festtrachten_laden_ohne_kaputte_bilder(seite, heute_stand, netz):
     _netz_ok(seite, netz)
 
 
-def test_standbilder_des_drachen_laden(seite, heute_stand):
-    """Ohne lottie zeigt die App die drei Standbilder (zmaj() in index.html).
-    Hier lottie kurz ausblenden und nachsehen, dass sie da sind und der
-    Browser sie zeichnen kann."""
-    seite.starten(stand=heute_stand())
-    r = seite.js("""async () => {
+STANDBILDER_MESSEN = """async () => {
         const l = window.lottie; window.lottie = undefined;
         const aus = {};
         try { for(const m of ['happy', 'cheer', 'sad', 'cry']) aus[m] = zmaj(m); } finally { window.lottie = l; }
@@ -802,7 +797,66 @@ def test_standbilder_des_drachen_laden(seite, heute_stand):
                 b.onload = () => res(b.naturalWidth); b.onerror = () => res(0); b.src = treffer[1]; });
             ergebnis[m] = {src: treffer[1], breite};
         }
-        return ergebnis; }""")
+        return ergebnis; }"""
+
+
+@pytest.fixture(scope="module")
+def www_standbilder(wurzelordner, tmp_path_factory):
+    """Standbilder und Inhalt der Demo, wie app_bauen.py sie seit 1.5 in die
+    App legt (standbilder_als_webp, Optimierung Punkt 5): WebP statt PNG,
+    die neuen Namen in der Liste "maskottchen"."""
+    import shutil
+
+    import app_bauen
+    ffmpeg = app_bauen.ffmpeg_finden()
+    if not ffmpeg or not os.path.isfile(ffmpeg):
+        pytest.skip("kein ffmpeg auf diesem Rechner")
+    www = tmp_path_factory.mktemp("standbilder") / "www"
+    app = os.path.join(wurzelordner, "app")
+    shutil.copytree(os.path.join(app, "inhalt"), str(www / "inhalt"))
+    (www / "maskottchen").mkdir()
+    for n in app_bauen.STANDBILDER:
+        shutil.copyfile(os.path.join(app, "maskottchen", n + ".png"), str(www / "maskottchen" / (n + ".png")))
+    assert app_bauen.standbilder_als_webp(str(www)) == 3
+    return www
+
+
+def test_standbilder_des_drachen_als_webp_wie_in_der_app(seite, heute_stand, www_standbilder):
+    """Wie test_standbilder_des_drachen_laden, aber mit dem, was in der App
+    liegt: die PNG gibt es dort nicht mehr (404), zmaj() nimmt die WebP, und
+    der Browser zeichnet sie in voller Groesse."""
+    gefragt = []
+
+    def liefern(route):
+        url = route.request.url.split("?")[0]
+        teil = "maskottchen" if "/app/maskottchen/" in url else "inhalt"
+        pfad = www_standbilder / teil / url.rsplit("/", 1)[-1]
+        gefragt.append(url.rsplit("/", 1)[-1])
+        if not pfad.is_file():
+            return route.fulfill(status=404, body="")
+        route.fulfill(status=200, body=pfad.read_bytes(),
+                      content_type="image/webp" if pfad.suffix == ".webp" else "application/json")
+
+    seite.page.route("**/app/inhalt/*.json*", liefern)
+    seite.page.route(re.compile(r".*/app/maskottchen/zmaj-[a-z]+\.(png|webp)(\?.*)?$"), liefern)
+    seite.starten(stand=heute_stand())
+    assert seite.js("() => ['zmaj-frei.webp', 'zmaj-jubel.webp', 'zmaj-traurig.webp', 'zmaj-frei.png']"
+                    ".map(f => MASCOT.has(f))") == [True, True, True, False]
+    r = seite.js(STANDBILDER_MESSEN)
+    assert {m: v["src"] for m, v in r.items()} == {
+        "happy": "maskottchen/zmaj-frei.webp", "cheer": "maskottchen/zmaj-jubel.webp",
+        "sad": "maskottchen/zmaj-traurig.webp", "cry": "maskottchen/zmaj-traurig.webp"}
+    assert all(v["breite"] == 540 for v in r.values()), r
+    assert "de.json" in gefragt and not [g for g in gefragt if g.endswith(".png")], gefragt
+    assert seite.fehler == []
+
+
+def test_standbilder_des_drachen_laden(seite, heute_stand):
+    """Ohne lottie zeigt die App die drei Standbilder (zmaj() in index.html).
+    Hier lottie kurz ausblenden und nachsehen, dass sie da sind und der
+    Browser sie zeichnen kann."""
+    seite.starten(stand=heute_stand())
+    r = seite.js(STANDBILDER_MESSEN)
     assert {m: v["src"] for m, v in r.items()} == {
         "happy": "maskottchen/zmaj-frei.png", "cheer": "maskottchen/zmaj-jubel.png",
         "sad": "maskottchen/zmaj-traurig.png", "cry": "maskottchen/zmaj-traurig.png"}

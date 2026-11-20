@@ -72,6 +72,7 @@ Store-Version. Jeder Bau setzt sie in die Kopie www/index.html ein (Debug
 und --nur-abgleich mit "-test"); erst nach einem fertigen --aab steigt sie
 um eins (1.1 -> 1.2). Seit 30.10.2026, siehe versionsname_anheben().
 """
+import glob
 import io
 import json
 import re
@@ -97,7 +98,10 @@ BUILD_GRADLE = os.path.join(ANDROID, "app", "build.gradle")
 
 # Was in der App nichts verloren hat
 RAUS_ORDNER = {"_probe"}
-RAUS_DATEIEN = {"liesmich.txt"}
+# icon.ico (seit 1.5, Optimierung Punkt 5): das Symbol der Windows-
+# Verknuepfung und das Tab-Symbol von start.py und seite_bauen.py. Die App
+# laedt es nie, im Paket waren das 0,1 MB umsonst.
+RAUS_DATEIEN = {"liesmich.txt", "icon.ico"}
 RAUS_ENDUNGEN = (".sicherung", ".bak", ".orig", ".alt")
 # Sicherungen heissen index.html.vor_audio, .vor_lokal, .vor_sicherung und so
 # weiter - eine feste Liste vergisst man beim naechsten Umbau. Deshalb ein
@@ -677,6 +681,116 @@ def emir_drueber(www=None, emir=None):
     if not getauscht:
         print("   WARNUNG: audio_emir/ ist da, aber nichts passte - das Paket spricht Azure.")
     return getauscht
+
+
+# ------------------------------------------------- Aufraeumen im Bau (1.5) ---
+# Optimierung Punkt 5 (Ajdin am 20.11.2026: "und räum auf"). Beides nur in der
+# KOPIE www/, web/ bleibt, wie es ist (Web-Demo, Datensatz, Tests).
+#
+# Die drei Standbilder des Drachen zeigt die App nur, wenn lottie fehlt
+# (zmaj() in drache.js). Als PNG wogen sie 0,5 MB, und PNG liegt im APK
+# ungepackt. Als WebP mit denselben Schaltern wie alle anderen Drachenbilder
+# (WEBP in haut_einbauen.py) sind es 0,14 MB. zmaj() nimmt je Bild erst
+# .webp, dann .png - welche Datei es gibt, sagt die Liste "maskottchen" in
+# inhalt/<sprache>.json, darum wird sie hier mit umgeschrieben.
+STANDBILDER = ("zmaj-frei", "zmaj-jubel", "zmaj-traurig")
+STANDBILD_WEBP = ["-pix_fmt", "bgra", "-c:v", "libwebp", "-lossless", "0", "-quality", "90",
+                  "-compression_level", "6", "-preset", "drawing"]
+
+
+def standbilder_als_webp(www=None, ffmpeg=None):
+    """Macht in www/maskottchen aus zmaj-frei/-jubel/-traurig.png je eine
+    .webp, nimmt die PNG heraus und traegt die neuen Namen in die Liste
+    "maskottchen" jeder www/inhalt/*.json ein. Ohne ffmpeg (oder ohne libwebp
+    darin) bleiben alle drei PNG, mit Hinweis - die App zeigt beides, und ein
+    halb umgestellter Satz kommt so nie heraus. Gibt die Zahl der Bilder
+    zurueck."""
+    www = www or WWW
+    if _liegt_in(www, WEB):
+        raise SystemExit("\nABBRUCH: %s liegt in web/. Umgewandelt wird nur die Kopie." % www)
+    ordner = os.path.join(www, "maskottchen")
+    pngs = [n for n in STANDBILDER if os.path.isfile(os.path.join(ordner, n + ".png"))]
+    if not pngs:
+        return 0
+    ffmpeg = ffmpeg or ffmpeg_finden()
+    if not ffmpeg or not os.path.isfile(ffmpeg):
+        print("\nHINWEIS: ffmpeg fehlt (%s) - die Standbilder bleiben PNG." % ffmpeg)
+        return 0
+    # Erst alle in .tmp.webp; getauscht wird erst, wenn alle gut sind.
+    fertig = []
+    for n in pngs:
+        quelle, tmp = os.path.join(ordner, n + ".png"), os.path.join(ordner, n + ".tmp.webp")
+        fertig.append(tmp)
+        r = subprocess.run([ffmpeg, "-hide_banner", "-loglevel", "error", "-y", "-i", quelle]
+                           + STANDBILD_WEBP + [tmp], capture_output=True)
+        kopf = b""
+        if os.path.isfile(tmp):
+            with open(tmp, "rb") as f:
+                kopf = f.read(12)
+        if r.returncode != 0 or kopf[:4] != b"RIFF" or kopf[8:12] != b"WEBP":
+            for d in fertig:
+                if os.path.isfile(d):
+                    os.remove(d)
+            print("\nWARNUNG: %s.png liess sich nicht nach WebP umwandeln - die Standbilder "
+                  "bleiben PNG. %s" % (n, r.stderr.decode("utf-8", "replace")[-300:].strip()))
+            return 0
+    vorher = nachher = 0
+    for n, tmp in zip(pngs, fertig):
+        quelle, ziel = os.path.join(ordner, n + ".png"), os.path.join(ordner, n + ".webp")
+        os.replace(tmp, ziel)
+        vorher += os.path.getsize(quelle)
+        nachher += os.path.getsize(ziel)
+        os.remove(quelle)
+    namen = {n + ".png": n + ".webp" for n in pngs}
+    for pfad in sorted(glob.glob(os.path.join(www, "inhalt", "*.json"))):
+        with io.open(pfad, encoding="utf-8") as f:
+            daten = json.load(f)
+        if not (isinstance(daten, dict) and isinstance(daten.get("maskottchen"), list)):
+            continue                        # liste.json
+        daten["maskottchen"] = [namen.get(d, d) for d in daten["maskottchen"]]
+        with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
+            f.write(json.dumps(daten, ensure_ascii=False, separators=(",", ":")))
+    print("\nStandbilder des Drachen als WebP: %d, %d KB -> %d KB"
+          % (len(pngs), vorher // 1024, nachher // 1024))
+    return len(pngs)
+
+
+# audio/index.json: Die App liest je Eintrag nur key, datei und w (ladeAudio()
+# in inhalt.js). "text" und "stimme" sind fuer Menschen und fuer den Bau -
+# emir_drueber() setzt "stimme" und zaehlt danach damit, ios_zahnarzt_entfernen()
+# und ton_verkleinern() lesen key und datei. Darum ist das Verschlanken der
+# LETZTE Schritt an www/, kurz vor capacitor(). Auf iOS bleibt "stimme": das
+# Pruefskript der iOS-Huelle (ios/store_helfer.py) zaehlt damit die
+# Emir-Aufnahmen im fertigen Paket.
+TON_FELDER = ("key", "datei", "w")
+TON_FELDER_IOS = TON_FELDER + ("stimme",)
+
+
+def ton_index_verschlanken(audio=None, felder=TON_FELDER):
+    """Laesst in www/audio/index.json je Eintrag nur `felder` stehen und
+    schreibt die Datei ohne Einrueckung. Alles ausserhalb von "toene"
+    (version) bleibt. Gibt (vorher, nachher) in Bytes zurueck."""
+    audio = audio or os.path.join(WWW, "audio")
+    if _liegt_in(audio, WEB):
+        raise SystemExit("\nABBRUCH: %s liegt in web/. Verschlankt wird nur die Kopie." % audio)
+    pfad = os.path.join(audio, "index.json")
+    if not os.path.isfile(pfad):
+        return (0, 0)
+    vorher = os.path.getsize(pfad)
+    with io.open(pfad, encoding="utf-8") as f:
+        index = json.load(f)
+    toene = index.get("toene", [])
+    kaputt = [e for e in toene if not (isinstance(e, dict) and e.get("key") and e.get("datei"))]
+    if kaputt:
+        raise SystemExit("ABBRUCH: %d Eintraege in %s ohne key oder datei, z. B. %r"
+                         % (len(kaputt), pfad, kaputt[0]))
+    index["toene"] = [{k: e[k] for k in felder if k in e} for e in toene]
+    with io.open(pfad, "w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(index, ensure_ascii=False, separators=(",", ":")))
+    nachher = os.path.getsize(pfad)
+    print("\naudio/index.json verschlankt (%s): %d KB -> %d KB"
+          % (", ".join(felder), vorher // 1024, nachher // 1024))
+    return (vorher, nachher)
 
 
 # Aus diesen Dateien baut inhalt_bauen.py die JSON-Dateien für das Handy.
@@ -1467,6 +1581,11 @@ def ios_bauen(schalter):
     zwischen = os.path.join(huelle, ".ton_aac")
     zwischen_ausblenden(zwischen)
     ton_verkleinern(os.path.join(www, "audio"), zwischen=zwischen, codec="aac")
+    # Aufraeumen wie auf Android, als Letztes an www/ (nach dem Zahnarzt und
+    # der Umwandlung, die beide noch key und datei lesen). "stimme" bleibt,
+    # siehe TON_FELDER_IOS.
+    standbilder_als_webp(www)
+    ton_index_verschlanken(os.path.join(www, "audio"), TON_FELDER_IOS)
     if ci:
         print("\nFertig. cap sync macht der Cloud-Bau nach npm ci.")
     else:
@@ -1517,6 +1636,10 @@ def main(argv=None):
         testwerbung_einschalten()
     if "--immer-packen" in schalter:
         immer_packen_einschalten()
+    # Aufraeumen (1.5, Optimierung Punkt 5), als Letztes an www/: Bis hier
+    # lesen emir_drueber() und ton_verkleinern() noch die vollen Eintraege.
+    standbilder_als_webp()
+    ton_index_verschlanken()
     # Nur hochzaehlen, wenn auch gebaut wird. --nur-abgleich hat sonst
     # Nummern verbrannt, ohne dass ein Paket entstand.
     nummer = None

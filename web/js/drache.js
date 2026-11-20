@@ -554,9 +554,11 @@ async function zmajDaten(vorgabe){
 }
 function zmaj(mood='happy'){
   if(hasLottie()) return '<div class="zmaj-anim" data-mood="'+esc(mood)+'"></div>';
-  /* cry: das traurige Standbild (15.10.2026, Standbilder des Bild-Drachen) */
-  const want = mood==='cheer' ? ['zmaj-jubel.png'] : ((mood==='sad' || mood==='cry') ? ['zmaj-traurig.png'] : []);
-  const file = [...want, 'zmaj-frei.png', 'zmaj.png'].find(f=>MASCOT.has(f));
+  /* cry: das traurige Standbild (15.10.2026, Standbilder des Bild-Drachen).
+     Je Bild erst .webp, dann .png: web/ hat PNG, die App bekommt seit 1.5
+     WebP (standbilder_als_webp() in app_bauen.py, Optimierung Punkt 5). */
+  const want = mood==='cheer' ? ['zmaj-jubel'] : ((mood==='sad' || mood==='cry') ? ['zmaj-traurig'] : []);
+  const file = [...want, 'zmaj-frei', 'zmaj'].flatMap(n => [n + '.webp', n + '.png']).find(f=>MASCOT.has(f));
   if(file) return '<img src="maskottchen/'+file+'" alt="Zmaj, der Lerndrache">';
   return zmajSvg(mood);
 }

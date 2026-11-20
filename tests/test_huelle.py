@@ -162,6 +162,8 @@ def test_main_reicht_pflicht_durch(monkeypatch):
     # hier nicht gibt - eigene Tests in test_cloud.py. 28.10.2026
     for name in ("anmeldung_pruefen", "pruefen", "kopieren", "emir_drueber", "dauer_einsetzen", "cloud_einsetzen",
                  "ton_verkleinern", "capacitor",
+                 # Aufraeumen (1.5) liefe sonst am echten www/ der Huelle
+                 "standbilder_als_webp", "ton_index_verschlanken",
                  "plugins_flicken", "freigabe_aab", "debug_apk",
                  # versionName (30.10.2026) liest sonst die echte build.gradle
                  # der Huelle; eigene Tests in test_version.py
